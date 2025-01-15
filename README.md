@@ -1,4 +1,4 @@
-# Resident Evil – Code: Veronica X Decompilation
+# Resident Evil – Code: Veronica X Decompilation (SLUS-20184)
 
 <img src="https://i.imgur.com/xj2ujPy.jpeg"/>
 
