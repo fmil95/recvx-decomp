@@ -335,23 +335,17 @@ int njUserMain() { // Line 300, Address: 0x12b430
     
 } // Line 336, Address: 0x12b4c0, 0x12b4d0
 
-
-
-
-/* 100% match */
-void njUserExit() { // Line 342, Address: 0x12b4e0
-    ExitSoundProgram(); // Line 343, Address: 0x12b4e8
+// 100% matching!
+void njUserExit() 
+{ 
+    ExitSoundProgram();
     
-    BupExit(); // Line 345, Address: 0x12b4f0,
-
-
-
-
-
-
+    BupExit(); 
     
-    njExitTexture(); // Line 353, Address: 0x12b4f8
-    njExitPrint(); // Line 354, Address: 0x12b500,
-    sbExitSystem(); // Line 355, Address: 0x12b508
-    syBtExit(); // Line 356, Address: 0x12b510
-} // Line 357, Address: 0x12b518
+    njExitTexture();
+    njExitPrint(); 
+    
+    sbExitSystem(); 
+    
+    syBtExit(); 
+} 
