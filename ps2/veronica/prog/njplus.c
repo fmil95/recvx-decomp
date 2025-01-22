@@ -1263,13 +1263,13 @@ void npSetMemory(unsigned char* memp, unsigned int size, char dat)
     }
 }
 
-// 
-// Start address: 0x12cf90
-void npSetMemoryL(unsigned int* memp, unsigned int size, int dat)
-{
-	// Line 2359, Address: 0x12cf90, Func Offset: 0
-	// Line 2360, Address: 0x12cfb8, Func Offset: 0x28
-	// Func End, Address: 0x12cfc0, Func Offset: 0x30
+// 100% matching!
+void npSetMemoryL(unsigned int* memp, unsigned int size, int dat) 
+{ 
+    while (size-- != 0) 
+    {
+        *memp++ = dat;
+    }
 }
 
 // 
