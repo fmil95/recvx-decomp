@@ -1805,12 +1805,10 @@ int npCopyVlist(int* dstp, int* srcp)
 	// Func End, Address: 0x12e08c, Func Offset: 0x6c
 }
 
-// 
-// Start address: 0x12e090
-void npCutSkin()
+// 100% matching!
+void npCutSkin() 
 {
-	// Line 3672, Address: 0x12e090, Func Offset: 0
-	// Func End, Address: 0x12e098, Func Offset: 0x8
+    
 }
 
 // 
