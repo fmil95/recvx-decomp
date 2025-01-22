@@ -294,46 +294,27 @@ void njUserInit() { // Line 149, Address: 0x12b0f0
     Init_Expand(); // Line 294, Address: 0x12b420
 }
 
-
-
-/* 100% match */
-int njUserMain() { // Line 300, Address: 0x12b430
+// 100% matching!
+int njUserMain() 
+{ 
     int i; 
 
-    Ps2_sys_cnt++; // Line 303, Address: 0x12b440, 0x12b454
+    Ps2_sys_cnt++; 
+  
+    for (i = 0; i < 23; i++) 
+    { 
+        if (((sys->tk_flg & (1 << i))) && (!(sys->ts_flg & (1 << i)))) 
+        { 
+            bhSysTaskJumpTab[i](sys); 
+        } 
+    } 
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    for (i = 0; i < 23; i++) { // Line 314, Address: 0x12b450
-        if (((sys->tk_flg & (1 << i))) && (!(sys->ts_flg & (1 << i)))) { // Line 315, Address: 0x12b460
-
-            
-            bhSysTaskJumpTab[i](sys); // Line 318, Address: 0x12b490
-        } // Line 319, Address: 0x12b49c
-    } // Line 320, Address: 0x12b4a0
+    PS2_jikken(); 
     
-    PS2_jikken(); // Line 322, Address: 0x12b4b0
+    bhCheckSoftReset(); 
     
-    bhCheckSoftReset(); // Line 324, Address: 0x12b4b8
-    
-        
-    
-        
-        
-        
-        
-        
-    return 0; // Line 333, Address: 0x12b4cc
-
-    
-} // Line 336, Address: 0x12b4c0, 0x12b4d0
+    return 0; 
+} 
 
 // 100% matching!
 void njUserExit() 
