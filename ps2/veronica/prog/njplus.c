@@ -1254,13 +1254,13 @@ void npClrTranslate()
 	// Func End, Address: 0x12cf58, Func Offset: 0x48
 }
 
-// 
-// Start address: 0x12cf60
+// 100% matching!
 void npSetMemory(unsigned char* memp, unsigned int size, char dat)
 {
-	// Line 2351, Address: 0x12cf60, Func Offset: 0
-	// Line 2352, Address: 0x12cf88, Func Offset: 0x28
-	// Func End, Address: 0x12cf90, Func Offset: 0x30
+    while (size-- != 0) 
+    {
+        *memp++ = dat;
+    }
 }
 
 // 
