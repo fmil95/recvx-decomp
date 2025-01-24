@@ -172,41 +172,19 @@ void sbInitSystem(int mode, int frame, int count) { // Line 99, Address: 0x12b53
     }
 }
 
-
-
-
-/* 100% match */
-void sbExitSystem() { // Line 179, Address: 0x12b620
-
-
+// 100% matching!
+void sbExitSystem() 
+{ 
+    ExitGdSystem(); 
     
-    ExitGdSystem(); // Line 183, Address: 0x12b628
-
-
-
-
-
-
+    syRtcFinish(); 
     
-    syRtcFinish(); // Line 191, Address: 0x12b630
-
+    pdExitPeripheral(); 
     
-    pdExitPeripheral(); // Line 194, Address: 0x12b638
-
+    njExitSystem(); 
     
-    njExitSystem(); // Line 197, Address: 0x12b640
-
-
-
-
-
-
+    syMallocFinish(); 
+    syHwFinish(); 
     
-    syMallocFinish(); // Line 205, Address: 0x12b648
-
-    
-    syHwFinish(); // Line 208, Address: 0x12b650
-
-    
-    _builtin_set_imask(0xF); // Line 211, Address: 0x12b658
-} // Line 212, Address: 0x12b660
+    _builtin_set_imask(0xF); 
+}
