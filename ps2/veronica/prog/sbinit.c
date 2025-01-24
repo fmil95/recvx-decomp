@@ -1,3 +1,4 @@
+#include "common.h"
 #include "types.h"
 
 unsigned char gMapleSendBuf[49184];

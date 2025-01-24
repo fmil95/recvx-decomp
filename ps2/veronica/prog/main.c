@@ -1,3 +1,4 @@
+#include "common.h"
 #include "types.h"
 
 float cmat[16]; /* UNUSED */

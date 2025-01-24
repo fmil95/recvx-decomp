@@ -1,3 +1,5 @@
+#include "common.h"
+
 void main();
 
 // 100% matching!
