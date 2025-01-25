@@ -1,6 +1,4 @@
-#include "common.h"
-
-void main();
+#include "njloop.h"
 
 // 100% matching!
 void main() 
