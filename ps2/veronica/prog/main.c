@@ -1,37 +1,38 @@
 #include "main.h"
-#include "types.h"
 
-float cmat[16]; /* UNUSED */
+float cmat[16];
 float BHD_ASPECT_X;
 float BHD_ASPECT_Y;
-int pd_port; /* UNUSED */
+int pd_port;
 _anon11* hws;
-_anon46* sys;
-_anon32* rom; /* UNUSED */
-BH_PWORK* plp; /* UNUSED */
-typedef void(*fn)(System*); // not originally outputted by dwarf2cpp
-fn bhSysTaskJumpTab[23]; // modified, below is the original definition 
-//void(*bhSysTaskJumpTab)()[23];
+SYS_WORK* sys;
+_anon32* rom;
+BH_PWORK* plp;
+
+// void(*bhSysTaskJumpTab)()[23]; 
+typedef void(*fn)(SYS_WORK*);
+fn bhSysTaskJumpTab[23];
+
 _anon24 tbuf[256];
 float crmat[16];
 _anon45 view;
-float mbuf[128][16];
+float mbuf[16][128];
 unsigned char* vwbmemp;
 unsigned char* vebmemp;
 unsigned char* Ps2_PXLCONV;
 unsigned char* njpmemp;
 unsigned char* freemem;
 unsigned int Ps2_sys_cnt;
-unsigned char* keepmem; /* UNUSED */
-unsigned char* fsize; /* UNUSED */
-_anon27 eff[512]; /* UNUSED */
-BH_PWORK ene[128]; /* UNUSED */
-BH_PWORK ply; /* UNUSED */
-_anon18 cam; /* UNUSED */
-_anon32 romp; /* UNUSED */
-_anon46 sysp; /* UNUSED */
-_anon11 hwsp; /* UNUSED */
-char BIO_CURRENT[64]; /* UNUSED */
+unsigned char* keepmem;
+unsigned char* fsize;
+_anon27 eff[512];
+BH_PWORK ene[128];
+BH_PWORK ply;
+_anon18 cam;
+_anon32 romp;
+_anon46 sysp;
+_anon11 hwsp;
+char BIO_CURRENT[64];
 
 // 100% matching!
 void njUserInit(void)
