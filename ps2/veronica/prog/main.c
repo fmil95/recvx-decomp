@@ -1,4 +1,4 @@
-#include "common.h"
+#include "main.h"
 #include "types.h"
 
 float cmat[16]; /* UNUSED */
@@ -33,12 +33,8 @@ _anon46 sysp; /* UNUSED */
 _anon11 hwsp; /* UNUSED */
 char BIO_CURRENT[64]; /* UNUSED */
 
-void njUserInit();
-int njUserMain();
-void njUserExit();
-
 // 100% matching!
-void njUserInit() 
+void njUserInit(void)
 { 
     int temp; // not from the debugging symbols
 
@@ -143,7 +139,7 @@ void njUserInit()
 }
 
 // 100% matching!
-int njUserMain() 
+Sint32 njUserMain(void)
 { 
     int i; 
 
@@ -165,7 +161,7 @@ int njUserMain()
 } 
 
 // 100% matching!
-void njUserExit() 
+void njUserExit(void)
 { 
     ExitSoundProgram();
     
