@@ -1,3 +1,5 @@
+#include "ps2_NaSystem.h"
+
 typedef struct _anon0;
 typedef struct npobj;
 typedef struct _anon1;
@@ -1611,7 +1613,6 @@ void njSetTextureMemorySize(unsigned int size);
 void njSetVertexBuffer();
 void njInitSystem(int mode, int frame, int count);
 void njInitVertexBuffer();
-void njWaitVSync();
 void null_func();
 void Ps2InitFunc();
 void njSetEORFunction(void(*func)());
@@ -1668,7 +1669,7 @@ void njInitVertexBuffer()
 
 // 
 // Start address: 0x2e13c0
-void njWaitVSync()
+void	njWaitVSync( void )
 {
 	// Line 132, Address: 0x2e13c0, Func Offset: 0
 	// Func End, Address: 0x2e13c8, Func Offset: 0x8
