@@ -5,6 +5,8 @@
 #include "sbinit.h"
 #include "ps2_sg_sybt.h"
 #include "sdfunc.h"
+#include "sync.h"
+#include "ps2_dummy.h"
 
 float cmat[16];
 float BHD_ASPECT_X;
@@ -16,7 +18,7 @@ _anon32* rom;
 BH_PWORK* plp;
 
 // void(*bhSysTaskJumpTab)()[23]; 
-typedef void(*fn)(SYS_WORK*);
+typedef void(*fn)(SYS_WORK* sys);
 fn bhSysTaskJumpTab[23];
 
 _anon24 tbuf[256];

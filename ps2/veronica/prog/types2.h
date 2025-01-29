@@ -433,13 +433,13 @@ typedef struct DOOR
 } DOOR;
 
 // similar but not quite like NJS_CAPSULE
-typedef struct NO_NAME_11
+typedef struct CONICAL_FRUSTUM
 {
 	NJS_POINT3 c1;
 	NJS_POINT3 c2;
 	float r1;
 	float r2;
-} NO_NAME_11;
+} CONICAL_FRUSTUM;
 
 typedef struct SYS_WORK
 {
@@ -817,7 +817,7 @@ typedef struct SYS_WORK
 	unsigned char* pdm_pd;
 	int pdm_keytpb;
 	int gat_ct;
-	NO_NAME_11 gatc[16];
+	CONICAL_FRUSTUM gatc[16];
 	int ght_ct;
 	unsigned int ghtc[32];
 	NJS_POINT3 ghtp[32];
