@@ -1,4 +1,10 @@
 #include "main.h"
+#include "backup.h"
+#include "ps2_NaTextureFunction.h"
+#include "ps2_NaDebugFontFunction.h"
+#include "sbinit.h"
+#include "ps2_sg_sybt.h"
+#include "sdfunc.h"
 
 float cmat[16];
 float BHD_ASPECT_X;
