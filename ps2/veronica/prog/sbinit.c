@@ -10,9 +10,6 @@ unsigned char gMapleSendBuf[49184];
 unsigned char gMapleRecvBuf[49184];
 unsigned char* _BSG_END;
 
-void sbInitSystem(int mode, int frame, int count);
-void sbExitSystem();
-
 // 100% matching!
 void sbInitSystem(int mode, int frame, int count) 
 { 
@@ -47,7 +44,7 @@ void sbInitSystem(int mode, int frame, int count)
 }
 
 // 100% matching!
-void sbExitSystem() 
+void sbExitSystem(void)
 { 
     ExitGdSystem(); 
     
