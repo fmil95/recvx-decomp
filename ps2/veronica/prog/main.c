@@ -7,6 +7,9 @@
 #include "sdfunc.h"
 #include "sync.h"
 #include "ps2_dummy.h"
+#include "njplus.h"
+#include "expand.h"
+#include "system.h"
 
 float cmat[16];
 float BHD_ASPECT_X;
