@@ -10,6 +10,9 @@
 #include "njplus.h"
 #include "expand.h"
 #include "system.h"
+#include "ps2_NaView.h"
+#include "ps2_NinjaCnk.h"
+#include "ps2_NaMatrix.h"
 
 float cmat[16];
 float BHD_ASPECT_X;
