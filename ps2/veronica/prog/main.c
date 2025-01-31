@@ -14,6 +14,9 @@
 #include "ps2_NinjaCnk.h"
 #include "ps2_NaMatrix.h"
 #include "ps2_NaSystem.h"
+#include "ps2_sg_maloc.h"
+#include "ps2_sg_pad.h"
+#include "ps2_sg_sycbl.h"
 
 float cmat[16];
 float BHD_ASPECT_X;
