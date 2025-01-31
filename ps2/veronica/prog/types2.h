@@ -848,3 +848,23 @@ typedef struct SYS_WORK
 	float sfyn;
 	float sfct;
 } SYS_WORK;
+
+typedef struct NO_NAME_12
+{
+	unsigned short* scd0;
+	unsigned short* scd1;
+	unsigned short* evd;
+} NO_NAME_12;
+
+typedef struct NO_NAME_13
+{
+	int mode;
+	int frame;
+	int count;
+	int vtx_opq_a;
+	int vtx_opq_b;
+	int vtx_trs_a;
+	int vtx_trs_b;
+	int vtx_punch;
+	int vtx_total;
+} NO_NAME_13;

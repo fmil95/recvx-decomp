@@ -345,3 +345,49 @@ typedef struct {
 	NJS_TEXNAME     *textures;  /* texture array                */
 	Uint32          nbTexture;  /* texture count                */
 } NJS_TEXLIST;
+
+typedef union {
+	Uint32		work;	/* work	*/
+	Uint32		clip;	/* clip	*/
+
+} NJS_CLIP_BUF;
+
+typedef struct {
+	NJS_CLIP_BUF a;			/* union			: 32		*/
+	Float		sx,sy;		/* screen point		: 36 40		*/
+	Float		oow;		/* 1/w				: 44		*/
+	NJS_POINT3	point;		/* vertex point		:  0  4  8	*/
+	Uint32		reserve;	/* clip				: 28		*/
+	Float		u,v;		/* U, V				: 48 52		*/
+	Float		inten[2];	/* Intensity		: 56 60		*/
+	NJS_VECTOR	vector;		/* vertex normal	: 12 16 20	*/
+	Uint32		flag;		/* flag				: 24		*/
+} NJS_VERTEX_BUF;			/* TotalSize		: 64		*/
+
+typedef struct {
+	Uint32			globalIndex;/* global unique texture ID     */
+	Uint32			bank;		/* palette bank 				*/
+	Uint32			tspparambuffer;/* TSPParambuffer			*/
+	Uint32			texparambuffer;/* TextureParambuffer		*/
+	Uint32			texaddr;	/* texture flag					*/
+	NJS_TEXINFO		texinfo;	/* texinfo						*/
+	Uint16			count;		/* texture count  				*/
+	Uint16			dummy;
+} NJS_TEXMEMLIST;
+
+typedef struct {
+	NJS_MATRIX m;
+	Float   px,py,pz;
+	Float   vx,vy,vz;
+	Angle   roll;
+	Float   apx,apy,apz;
+	Float   avx,avy,avz;
+	Angle   aroll;
+} NJS_VIEW;
+
+typedef enum SYE_CBL_TAG {
+	SYE_CBL_NTSC = 0,
+	SYE_CBL_VGA = 1,
+	SYE_CBL_PAL = 2,
+	SYE_CBL_MAX
+} SYE_CBL;

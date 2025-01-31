@@ -12,7 +12,7 @@ float cmat[16];
 float BHD_ASPECT_X;
 float BHD_ASPECT_Y;
 int pd_port;
-_anon11* hws;
+NO_NAME_13* hws;
 SYS_WORK* sys;
 _anon32* rom;
 BH_PWORK* plp;
@@ -21,10 +21,10 @@ BH_PWORK* plp;
 typedef void(*fn)(SYS_WORK* sys);
 fn bhSysTaskJumpTab[23];
 
-_anon24 tbuf[256];
+NJS_TEXMEMLIST tbuf[256];
 float crmat[16];
-_anon45 view;
-float mbuf[16][128];
+NO_NAME_12 view;
+float mbuf[128][16]; 
 unsigned char* vwbmemp;
 unsigned char* vebmemp;
 unsigned char* Ps2_PXLCONV;
@@ -45,8 +45,6 @@ char BIO_CURRENT[64];
 // 100% matching!
 void njUserInit(void)
 { 
-    int temp; // not from the debugging symbols
-
     switch (syCblCheck())
     {              
     case 1:
@@ -83,49 +81,48 @@ void njUserInit(void)
     
     InitFirstSofdec(); 
     
-    njSetBorderColor(0);
+    njSetBorderColor(0x00000000);
     
     sbInitSystem(hws->mode, hws->frame, hws->count); 
     
     pdSetMode(0); 
     
-    npSetMemory((unsigned char*)sys, sizeof(System), 0); 
+    // npSetMemory((unsigned char*)sys, sizeof(SYS_WORK), 0); 
+    npSetMemory((unsigned char*)sys, 0x2ACF0, 0); 
     
     sys->ss_flg = 0x30000; 
    
     freemem = syMalloc(12845056); 
     
-    temp = hws->vtx_total; 
-    
-    njpmemp = freemem + (12255232 - temp); 
+    njpmemp = freemem + (12255232 - hws->vtx_total); 
     
     Ps2_PXLCONV = njpmemp + 4294639616;
     
     vwbmemp = freemem + (12517376 - hws->vtx_total); 
     vebmemp = freemem + (12845056 - hws->vtx_total); 
     
-    njInitTextureBuffer(vwbmemp, 327680, temp, hws);
+    njInitTextureBuffer((signed char*)vwbmemp, 327680);
     
-    njSetVertexBuffer((VertexBuffer*)vebmemp, hws->vtx_total); 
+    njSetVertexBuffer((unsigned long*)vebmemp, hws->vtx_total); 
 
     njInitVertexBuffer(hws->vtx_opq_a, hws->vtx_opq_b, hws->vtx_trs_a, hws->vtx_trs_b, hws->vtx_punch);
-    njInit3D(vwbmemp, 8192); 
-    njInitMatrix(&mbuf[0][0], 128, 0);
-    njInitPrint(0, 0, 0); 
+    njInit3D((NJS_VERTEX_BUF*)vwbmemp, 8192); 
+    njInitMatrix((NJS_MATRIX*)&mbuf, 128, 0);
+    njInitPrint(NULL, 0, 0); 
     
     njPolygonCullingMode(0);
     
     njTextureShadingMode(2);
     
-    njInitView(&view);
+    njInitView((NJS_VIEW*)&view);
     
-    njSetView(&view); 
+    njSetView((NJS_VIEW*)&view); 
     
-    njGetMatrix(&crmat[0]); 
+    njGetMatrix(&crmat); 
     
     npPlusInit(); 
     
-    njInitTexture(&tbuf, 256); 
+    njInitTexture((NJS_TEXMEMLIST*)&tbuf, 256); 
     
     njSetPaletteMode(2); 
     
@@ -135,7 +132,7 @@ void njUserInit(void)
     
     njClipZ(-2.0f, -20000.0f); 
     
-    njSetBackColor(0, 0, 0); 
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000); 
     
     sys->ss_flg = 0;
     sys->tk_flg = 0x1; 
