@@ -391,3 +391,5 @@ typedef enum SYE_CBL_TAG {
 	SYE_CBL_PAL = 2,
 	SYE_CBL_MAX
 } SYE_CBL;
+
+#define set_imask(mask)             _builtin_set_imask(mask)

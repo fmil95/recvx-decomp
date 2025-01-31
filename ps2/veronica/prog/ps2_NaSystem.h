@@ -7,3 +7,4 @@ void	njSetBackColor( Uint32 col1, Uint32 col2, Uint32 col3 );
 void	njSetBorderColor(Uint32 color );
 void	njSetVertexBuffer(Uint32 *buffer,Sint32 size);
 void    njTextureShadingMode( Int mode );
+void	njExitSystem( void );

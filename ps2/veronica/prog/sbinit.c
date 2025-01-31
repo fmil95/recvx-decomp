@@ -1,5 +1,10 @@
 #include "common.h"
-#include "types.h"
+#include "gdlib.h"
+#include "ps2_NaSystem.h"
+#include "ps2_sg_pad.h"
+#include "ps2_sg_syhw.h"
+#include "ps2_sg_maloc.h"
+#include "ps2_sg_syrtc.h"
 
 unsigned char gMapleSendBuf[49184];
 unsigned char gMapleRecvBuf[49184];
@@ -55,5 +60,5 @@ void sbExitSystem()
     syMallocFinish(); 
     syHwFinish(); 
     
-    _builtin_set_imask(0xF); 
-}
+    set_imask(15); 
+} 
