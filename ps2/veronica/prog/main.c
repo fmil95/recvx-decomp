@@ -13,6 +13,7 @@
 #include "ps2_NaView.h"
 #include "ps2_NinjaCnk.h"
 #include "ps2_NaMatrix.h"
+#include "ps2_NaSystem.h"
 
 float cmat[16];
 float BHD_ASPECT_X;
