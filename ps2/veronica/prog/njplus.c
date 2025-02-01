@@ -438,8 +438,8 @@ int npCollisionCheckCCEx(_anon4* cpa, _anon4* cpb, _anon1* pos);
 int npCollisionCheckSC(_anon6* sa, _anon4* cpb);
 void npDistanceP2C(_anon1* pos, _anon4* cap, _anon1* htp);
 void npDrawPlane(_anon1* ps0, _anon1* ps1, _anon1* ps2, _anon1* ps3, unsigned int argb);
-void npCalcMorphing(npobj* obj_a, npobj* obj_b, float no, int obj_n);
-void npTransform(npobj* srcobj, npobj* dstobj, float no, int ono);
+void npCalcMorphing(NJS_CNK_OBJECT* obj_a, NJS_CNK_OBJECT* obj_b, float no, int obj_n);
+void npTransform(NJS_CNK_OBJECT* srcobj, NJS_CNK_OBJECT* dstobj, float no, int ono);
 void npPushMdlstr(npobj* objp, int obj_n);
 void npPopMdlstr(npobj* objp, int obj_n);
 void npPushMdlstr2(npobj* objp, int obj_n);
@@ -1029,45 +1029,40 @@ void npDrawPlane(_anon1* ps0, _anon1* ps1, _anon1* ps2, _anon1* ps3, unsigned in
 	// Func End, Address: 0x12c960, Func Offset: 0xd0
 }
 
-// 
-// Start address: 0x12c960
-void npCalcMorphing(npobj* obj_a, npobj* obj_b, float no, int obj_n)
+// 99.57% matching
+void npCalcMorphing(NJS_CNK_OBJECT* obj_a, NJS_CNK_OBJECT* obj_b, float no, int obj_n)
 {
-	unsigned int ulSize;
-	int nb;
+    unsigned int ulSize; 
+	int nb; 
 	int i;
-	// Line 1794, Address: 0x12c960, Func Offset: 0
-	// Line 1800, Address: 0x12c990, Func Offset: 0x30
-	// Line 1801, Address: 0x12c998, Func Offset: 0x38
-	// Line 1802, Address: 0x12c9a8, Func Offset: 0x48
-	// Line 1813, Address: 0x12c9bc, Func Offset: 0x5c
-	// Line 1814, Address: 0x12c9d8, Func Offset: 0x78
-	// Line 1823, Address: 0x12c9ec, Func Offset: 0x8c
-	// Line 1825, Address: 0x12c9f0, Func Offset: 0x90
-	// Line 1814, Address: 0x12c9f4, Func Offset: 0x94
-	// Line 1827, Address: 0x12c9f8, Func Offset: 0x98
-	// Line 1814, Address: 0x12ca04, Func Offset: 0xa4
-	// Line 1816, Address: 0x12ca14, Func Offset: 0xb4
-	// Line 1827, Address: 0x12ca1c, Func Offset: 0xbc
-	// Line 1816, Address: 0x12ca20, Func Offset: 0xc0
-	// Line 1818, Address: 0x12ca34, Func Offset: 0xd4
-	// Line 1822, Address: 0x12ca50, Func Offset: 0xf0
-	// Line 1823, Address: 0x12ca54, Func Offset: 0xf4
-	// Line 1822, Address: 0x12ca58, Func Offset: 0xf8
-	// Line 1826, Address: 0x12ca5c, Func Offset: 0xfc
-	// Line 1822, Address: 0x12ca60, Func Offset: 0x100
-	// Line 1823, Address: 0x12ca64, Func Offset: 0x104
-	// Line 1824, Address: 0x12ca68, Func Offset: 0x108
-	// Line 1826, Address: 0x12ca70, Func Offset: 0x110
-	// Line 1825, Address: 0x12ca74, Func Offset: 0x114
-	// Line 1826, Address: 0x12ca80, Func Offset: 0x120
-	// Line 1827, Address: 0x12ca88, Func Offset: 0x128
-	// Line 1829, Address: 0x12ca90, Func Offset: 0x130
-	// Line 1827, Address: 0x12ca94, Func Offset: 0x134
-	// Line 1829, Address: 0x12ca98, Func Offset: 0x138
-	// Line 1830, Address: 0x12caa8, Func Offset: 0x148
-	// Line 1831, Address: 0x12cab0, Func Offset: 0x150
-	// Func End, Address: 0x12cad4, Func Offset: 0x174
+    
+    njPushMatrix(NULL);
+    
+    np.mxp[128][2] = np.mxp[128][1];
+    
+    for (i = 0; i < obj_n; i++) 
+    {
+        if ((obj_a[i].model != NULL) && (!(obj_a[i].evalflags & 0x8))) 
+        {
+            obj_a[i].pos[0] = (no * (0.001f * (obj_b[i].pos[0] - obj_a[i].pos[0]))) + obj_a[i].pos[0];
+            obj_a[i].pos[1] = (no * (0.001f * (obj_b[i].pos[1] - obj_a[i].pos[1]))) + obj_a[i].pos[1];
+            obj_a[i].pos[2] = (no * (0.001f * (obj_b[i].pos[2] - obj_a[i].pos[2]))) + obj_a[i].pos[2];
+
+            nb = ((unsigned short*)obj_a[i].model->vlist)[3];
+
+            np.vlp2[i] = (int*)np.mxp[128][2]; 
+            
+            ulSize = (nb << 5) + 76;
+            
+            ulSize += 64 - (ulSize & 0x3F);
+            
+            np.mxp[128][2] = (NJS_MATRIX*)((int)np.mxp[128][2] + ulSize);
+            
+            npTransform(&obj_a[i], &obj_b[i], no, i);
+        }
+    } 
+    
+    njPopMatrix(1);
 }
 
 // 
