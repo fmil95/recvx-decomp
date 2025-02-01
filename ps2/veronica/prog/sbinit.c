@@ -5,23 +5,19 @@
 #include "ps2_sg_syhw.h"
 #include "ps2_sg_maloc.h"
 #include "ps2_sg_syrtc.h"
+#include "ps2_sg_sybt.h"
 
-unsigned char gMapleSendBuf[49184];
-unsigned char gMapleRecvBuf[49184];
-unsigned char* _BSG_END;
+unsigned char gMapleSendBuf[1024 * 24 * 2 + 32];
+unsigned char gMapleRecvBuf[1024 * 24 * 2 + 32];
+Uint8* _BSG_END;
 
 // 100% matching!
-void sbInitSystem(int mode, int frame, int count) 
-{ 
-    int temp; // not from the debugging symbols
-
-    _builtin_set_imask(0xF); 
+void sbInitSystem(Int mode, Int frame, Int count)
+{
+    set_imask(15); 
     
-    syHwInit(); 
-    
-    temp = (((int)_BSG_END | 0x80000000) & ~0x1F) + 32; 
-    
-    syMallocInit(temp, (((int)_BSG_END & 0xE0000000) | 0xD000000) - temp, _BSG_END);
+    syHwInit();
+    syMallocInit(HEAP_AREA, HEAP_SIZE);
     
     njSetTextureMemorySize(1310720); 
     
@@ -33,7 +29,7 @@ void sbInitSystem(int mode, int frame, int count)
     
     syRtcInit(); 
 
-    _builtin_set_imask(0); 
+    set_imask(0); 
     
     if (InitGdSystemEx(256) != 0) 
     { 

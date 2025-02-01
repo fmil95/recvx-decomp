@@ -17,11 +17,11 @@ typedef signed short    Sint16;         /*  signed 2 byte integer       */
 #endif
 #ifndef _TYPEDEF_Uint32
 #define _TYPEDEF_Uint32
-typedef unsigned long   Uint32;         /*  unsigned 4 byte integer     */
+typedef unsigned int   Uint32;         /*  unsigned 4 byte integer     */
 #endif
 #ifndef _TYPEDEF_Sint32
 #define _TYPEDEF_Sint32
-typedef signed long     Sint32;         /*  signed 4 byte integer       */
+typedef signed int     Sint32;         /*  signed 4 byte integer       */
 #endif
 #ifndef _TYPEDEF_Float32
 #define _TYPEDEF_Float32
@@ -393,3 +393,21 @@ typedef enum SYE_CBL_TAG {
 } SYE_CBL;
 
 #define set_imask(mask)             _builtin_set_imask(mask)
+
+extern Uint8* _BSG_END;   /* End of BSG/BSG32 section (start of free memory). */
+
+/* SH-4 program area address. */
+#define P1AREA   0x80000000
+
+/* Define work RAM end address (16 MB). */
+#define WORK_END (((Uint32) _BSG_END) & 0xe0000000 | 0x0d000000)
+
+#define HEAP_AREA ((void*) ((((Uint32) _BSG_END | P1AREA) & 0xffffffe0) + 0x20))
+#define HEAP_SIZE (WORK_END - (Uint32) HEAP_AREA)
+
+/******** �_�����[�h�萔 ***************************************************/
+/******** Logic mode *******************************************************/
+#define PDD_PLOGIC_ACTIVE    0             /* ���_��(�f�t�H���g)           */
+                                           /* Active logic(default)        */
+#define PDD_PLOGIC_NEGATIVE  1             /* ���_��                       */
+                                           /* Negative logic               */

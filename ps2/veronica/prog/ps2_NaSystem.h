@@ -8,3 +8,5 @@ void	njSetBorderColor(Uint32 color );
 void	njSetVertexBuffer(Uint32 *buffer,Sint32 size);
 void    njTextureShadingMode( Int mode );
 void	njExitSystem( void );
+void	njSetTextureMemorySize(Uint32 size );
+void	njInitSystem( Int, Int, Int );
