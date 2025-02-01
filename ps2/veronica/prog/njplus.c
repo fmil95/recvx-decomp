@@ -453,13 +453,13 @@ void npGetWHDSizeSub(npobj* objp, _anon1* whd);
 void npGetWHDSize(npobj* objp, _anon1* whd);
 void npSkinConvPreparation(npobj* objp);
 void npSkinConvSub(NJS_CNK_OBJECT* objp);
-void npSkinConvMain(npobj* objp);
+void npSkinConvMain(NJS_CNK_OBJECT* objp);
 void npSkinConvert(npobj* objp, int* sknp);
 void npRetSkinConvMain(npobj* objp);
 void npRetSkinConvert(npobj* objp, int* sknp);
 unsigned int npGetMatColor(npobj* objp, int obj_n);
 void npSetAllMatColor(npobj* objp, int obj_n, unsigned int argb);
-void npChangeMatAlphaColor(npobj* objp, int obj_n, unsigned char alpha);
+void npChangeMatAlphaColor(NJS_CNK_OBJECT* objp, int obj_n, unsigned char alpha);
 void npSetAllMatAlphaColor(npobj* objp, int obj_n, unsigned char alpha);
 void npSetOffsetUV(_anon16* mdlp, short offu, short offv);
 void npSetOffsetUV2(_anon16* mdlp, short offu, short offv);
@@ -1637,21 +1637,27 @@ void npSetAllMatColor(npobj* objp, int obj_n, unsigned int argb)
 	// Func End, Address: 0x12dc48, Func Offset: 0x1d8
 }
 
-// 
-// Start address: 0x12dc50
-void npChangeMatAlphaColor(npobj* objp, int obj_n, unsigned char alpha)
+// 100% matching!
+void npChangeMatAlphaColor(NJS_CNK_OBJECT* objp, int obj_n, unsigned char alpha)
 {
-	unsigned char* pnt;
+    unsigned char* pnt;
 	int i;
-	// Line 2941, Address: 0x12dc50, Func Offset: 0
-	// Line 2942, Address: 0x12dc5c, Func Offset: 0xc
-	// Line 2943, Address: 0x12dc78, Func Offset: 0x28
-	// Line 2944, Address: 0x12dc7c, Func Offset: 0x2c
-	// Line 2945, Address: 0x12dc80, Func Offset: 0x30
-	// Line 2946, Address: 0x12dc84, Func Offset: 0x34
-	// Line 2947, Address: 0x12dc88, Func Offset: 0x38
-	// Line 2948, Address: 0x12dc98, Func Offset: 0x48
-	// Func End, Address: 0x12dca0, Func Offset: 0x50
+    
+    for (i = 0; i < obj_n; i++)
+    {
+        if ((objp[i].model != NULL) && (!(objp[i].evalflags & 0x8))) 
+        {
+            pnt = (unsigned char*)objp[i].model->plist;
+
+            pnt += 7;
+            
+            *pnt = alpha;
+
+            pnt += 4;
+            
+            *pnt = alpha;
+        }
+    } 
 }
 
 // 
