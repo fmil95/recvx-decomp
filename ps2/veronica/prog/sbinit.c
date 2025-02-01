@@ -1,4 +1,4 @@
-#include "common.h"
+#include "sbinit.h"
 #include "gdlib.h"
 #include "ps2_NaSystem.h"
 #include "ps2_sg_pad.h"

@@ -868,3 +868,31 @@ typedef struct NO_NAME_13
 	int vtx_punch;
 	int vtx_total;
 } NO_NAME_13;
+
+typedef struct NO_NAME_14
+{
+	float pos[3];
+	int* vlist;
+	short* plist;
+} NO_NAME_14;
+
+typedef struct NP_WORK
+{
+	int* sknp;
+	int obj_now;
+	int obj_cnt;
+	unsigned char* buff;
+	unsigned char* bp;
+	int* vlist[128];
+	NJS_POINT3 op[128];
+	NJS_CNK_OBJECT* cobj[128];
+	int* sktp[128];
+	int* vlp[128];
+	NJS_MATRIX* mxp[128][10];
+	void* wkp;
+	unsigned char* buff2;
+	unsigned char* bp2;
+	NO_NAME_14 mdlstr2[128];
+	int* vlp2[128];
+	char mes[256];
+} NP_WORK;
