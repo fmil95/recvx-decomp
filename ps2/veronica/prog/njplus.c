@@ -1,4 +1,5 @@
 #include "njplus.h"
+#include "ps2_NaMatrix.h"
 
 typedef struct npobj;
 typedef struct _anon0;
@@ -429,8 +430,7 @@ struct _anon21
 
 NP_WORK np;
 unsigned char* njpmemp;
-float lcmat[16][0];
-float lcmat[16][0];
+float lcmat[1][16];
 
 void npPlusInit();
 int npCollisionCheckCC(_anon4* cpa, _anon4* cpb);
@@ -1238,22 +1238,16 @@ void npCnkFlatOff(npobj* objp)
 	// Func End, Address: 0x12cf08, Func Offset: 0x118
 }
 
-// 
-// Start address: 0x12cf10
-void npClrTranslate()
+// 100% matching!
+void npClrTranslate() 
 {
-	// Line 2337, Address: 0x12cf10, Func Offset: 0
-	// Line 2339, Address: 0x12cf14, Func Offset: 0x4
-	// Line 2337, Address: 0x12cf18, Func Offset: 0x8
-	// Line 2339, Address: 0x12cf1c, Func Offset: 0xc
-	// Line 2340, Address: 0x12cf24, Func Offset: 0x14
-	// Line 2341, Address: 0x12cf2c, Func Offset: 0x1c
-	// Line 2343, Address: 0x12cf30, Func Offset: 0x20
-	// Line 2341, Address: 0x12cf34, Func Offset: 0x24
-	// Line 2342, Address: 0x12cf38, Func Offset: 0x28
-	// Line 2343, Address: 0x12cf3c, Func Offset: 0x2c
-	// Line 2344, Address: 0x12cf4c, Func Offset: 0x3c
-	// Func End, Address: 0x12cf58, Func Offset: 0x48
+    njGetMatrix(lcmat);
+   
+    lcmat[0][12] = 0;
+    lcmat[0][13] = 0;
+    lcmat[0][14] = 0;
+    
+    njSetMatrix(NULL, lcmat); 
 }
 
 // 100% matching!
