@@ -1,16 +1,8 @@
-#include "types.h"
+#include "vibman.h"
 
 char PortIdTbl[4];
 int EnadleVibrationFlag;
 unsigned int VibStopTime;
-
-void InitVibrationUnit();
-void ExitVibrationUnit();
-void SetUseVibrationUnit(int Flag);
-int GetUseVibrationUnit();
-int CheckVibrationUnit(unsigned int PortId);
-int StartVibration(unsigned int PortId, VibrationInfo* vpp);
-int StopVibration(unsigned int PortId);
 
 /* 100% match */
 void InitVibrationUnit() { // Line 16, Address: 0x2c84e0
