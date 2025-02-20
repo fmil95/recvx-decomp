@@ -63,8 +63,8 @@ float _fNaViwClipNear;
 float _fNaViwClipFar;*/
 float ClipDispW;
 float ClipDispH;
-/*_anon2 _nj_screen_;*/
-float NaViewScreenMatrix[16];
+NJS_SCREEN	_nj_screen_;
+NJS_MATRIX NaViewScreenMatrix;
 /*float fNaViwHalfH;
 float fNaViwHalfW;
 float NaViwViewMatrix[16];
@@ -81,7 +81,7 @@ void njInitView(_anon3* pView);
 void njSetView();
 void njClipZ(float fNear, float fFar);
 int njCalcScreen(_anon0* pPoint, float* fpScreenX, float* fpScreenY);*/
-void njViewScreenMatrix(float vs[16]);
+void njViewScreenMatrix(NJS_MATRIX* vs);
 /*void _Make_ClipMatrix(float sc[4], float scr, float near, float far);
 void _Make_ClipVolume(float x, float y);
 
@@ -159,10 +159,10 @@ void    njSetAspect(Float ax, Float ay)
     fNaViwAspectW = ax; 
     fNaViwAspectH = ay; 
     
-    njViewScreenMatrix(NaViewScreenMatrix); 
+    njViewScreenMatrix(&NaViewScreenMatrix); 
     
     vu1SetScreenAspect(ax, ay); 
-}
+} 
 
 // 100% matching!
 void    njInitView(NJS_VIEW *v)
@@ -271,24 +271,20 @@ int njCalcScreen(_anon0* pPoint, float* fpScreenX, float* fpScreenY)
 	// Func End, Address: 0x2e2e74, Func Offset: 0x144
 }*/
 
-// 
-// Start address: 0x2e2e80
-void njViewScreenMatrix(float vs[16])
-{
-	// Line 521, Address: 0x2e2e80, Func Offset: 0
-	// Line 548, Address: 0x2e2e8c, Func Offset: 0xc
-	// Line 549, Address: 0x2e2e94, Func Offset: 0x14
-	// Line 551, Address: 0x2e2e9c, Func Offset: 0x1c
-	// Line 549, Address: 0x2e2ea0, Func Offset: 0x20
-	// Line 550, Address: 0x2e2ea4, Func Offset: 0x24
-	// Line 551, Address: 0x2e2eb0, Func Offset: 0x30
-	// Line 552, Address: 0x2e2eb4, Func Offset: 0x34
-	// Line 553, Address: 0x2e2eb8, Func Offset: 0x38
-	// Line 554, Address: 0x2e2ebc, Func Offset: 0x3c
-	// Line 555, Address: 0x2e2ec0, Func Offset: 0x40
-	// Line 557, Address: 0x2e2ecc, Func Offset: 0x4c
-	// Func End, Address: 0x2e2edc, Func Offset: 0x5c
-	scePrintf("njViewScreenMatrix - UNIMPLEMENTED!\n");
+// 100% matching!
+void njViewScreenMatrix(NJS_MATRIX* vs) // this function is not on this KATANA release
+{ 
+    njUnitMatrix(vs); 
+    
+    (*vs)[0] = fNaViwAspectW; 
+    (*vs)[5] = fNaViwAspectH; 
+    
+    (*vs)[10] = 1.0f; 
+    (*vs)[12] = 0; 
+    (*vs)[13] = 0; 
+    (*vs)[14] = 0; 
+    
+    (*vs)[15] = _nj_screen_.dist; 
 }
 
 /*// 
