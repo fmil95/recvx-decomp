@@ -1,1 +1,4 @@
-.vscode/
+ps2/veronica/prog/main.o
+compiling/report.txt
+compiling/compile_commands.json
+main.elf
