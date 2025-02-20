@@ -314,7 +314,7 @@ void	njUnitMatrix(register NJS_MATRIX *m)
     
     asm volatile 
     {
-    .set noreorder;
+    .set noreorder
 
         vmulw.xyzw $vf4xyzw, $vf0xyzw, $vf0w;
 
@@ -374,7 +374,7 @@ void	njGetMatrix(NJS_MATRIX *m)
     
     asm volatile 
     {
-    .set noreorder;
+    .set noreorder
         
         lqc2       $vf4, 0x0(fpSrc); 
         lqc2       $vf5, 0x10(fpSrc); 
