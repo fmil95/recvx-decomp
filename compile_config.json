@@ -1,0 +1,28 @@
+{
+  "compiler": "Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwccps2.exe",
+  "linker": "Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwldps2.exe",
+  "includes": [
+      "Metrowerks/CodeWarrior/PS2 Support",
+      "usr/local/sce/ee/include",
+      "usr/local/sce/ee/gcc/ee/include",
+      "usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111/include",
+      "KATANA/Include",
+      "cri/mwlib/include",
+      "cri/mwlib/ee/include"
+  ],
+  "libraries": [
+      "usr/local/sce/ee/lib",
+      "usr/local/sce/ee/gcc/lib",
+      "usr/local/sce/ee/gcc/ee/lib",
+      "usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111"
+  ],
+  "defines": [
+    "DEBUG"
+  ],
+  "compiler_flags": ["--gcc-compat","-nosyspath"],
+  "linker_flags": ["compiling/linker.lcf"],
+  "libs": ["-lgcc", "-lgraph", "-ldma", "-ldev", "-lpkt", "-lpad", "-lvu0", "-lkernl", "-lc"],
+  "source_files": [
+      "ps2/veronica/prog/main.c"
+  ]
+}
