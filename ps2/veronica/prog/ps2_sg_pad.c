@@ -189,16 +189,16 @@ void pdExitPeripheral()
 	// Line 90, Address: 0x2d9cd0, Func Offset: 0x20
 	// Line 91, Address: 0x2d9cdc, Func Offset: 0x2c
 	// Func End, Address: 0x2d9ce8, Func Offset: 0x38
-}
+}*/
 
 // 
 // Start address: 0x2d9cf0
-_anon1* pdGetPeripheral(unsigned int port)
+const PDS_PERIPHERAL* pdGetPeripheral(Uint32 port)
 {
-	unsigned char* pad_data;
-	_anon0* pad_wk;
-	_anon1 pp;
-	_anon2 pp_info;
+	//unsigned char* pad_data;
+	//_anon0* pad_wk;
+	//_anon1 pp;
+	//_anon2 pp_info;
 	// Line 104, Address: 0x2d9cf0, Func Offset: 0
 	// Line 107, Address: 0x2d9d00, Func Offset: 0x10
 	// Line 108, Address: 0x2d9d08, Func Offset: 0x18
@@ -243,9 +243,10 @@ _anon1* pdGetPeripheral(unsigned int port)
 	// Line 150, Address: 0x2d9e4c, Func Offset: 0x15c
 	// Line 153, Address: 0x2d9e54, Func Offset: 0x164
 	// Func End, Address: 0x2d9e68, Func Offset: 0x178
+	scePrintf("pdGetPeripheral - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d9e70
 _anon2* pdGetPeripheralInfo()
 {

@@ -1696,7 +1696,7 @@ void njSetEORFunction(void(*func)())
 	// Line 159, Address: 0x2e142c, Func Offset: 0x1c
 	// Line 161, Address: 0x2e1434, Func Offset: 0x24
 	// Func End, Address: 0x2e143c, Func Offset: 0x2c
-}
+}*/
 
 // 
 // Start address: 0x2e1440
@@ -1721,9 +1721,10 @@ void Ps2SwapDBuff()
 	// Line 216, Address: 0x2e14fc, Func Offset: 0xbc
 	// Line 217, Address: 0x2e150c, Func Offset: 0xcc
 	// Func End, Address: 0x2e151c, Func Offset: 0xdc
+	scePrintf("Ps2SwapDBuff - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e1520
 void vsync_func()
 {

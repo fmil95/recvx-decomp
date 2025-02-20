@@ -913,17 +913,13 @@ void Card_init()
 	// Func End, Address: 0x2cb5b8, Func Offset: 0x8
 }*/
 
-// 
-// Start address: 0x2cb5c0
+// 100% matching!
 void PS2_jikken()
 { 
-    // Line 417, Address: 0x2cb5c0, Func Offset: 0
-	// Line 424, Address: 0x2cb5c8, Func Offset: 0x8
-	// Line 554, Address: 0x2cb5d0, Func Offset: 0x10
-	// Line 573, Address: 0x2cb5d8, Func Offset: 0x18
-	// Func End, Address: 0x2cb5e4, Func Offset: 0x24
-	scePrintf("PS2_jikken - UNIMPLEMENTED!\n");
-}
+    pdGetPeripheral(PDD_PORT_A0); 
+    
+    Ps2SwapDBuff(); 
+} 
 
 /*// 
 // Start address: 0x2cb5f0
