@@ -423,11 +423,11 @@ struct _anon21
 	float vx;
 	float vy;
 	float vz;
-};
+};*/
 
-_anon20 np;
+NP_WORK np;
 unsigned char* njpmemp;
-float lcmat[16][0];
+/*float lcmat[16][0];
 float lcmat[16][0];
 
 void npPlusInit();
@@ -468,29 +468,28 @@ void npCalcSkin(void* pwp, int obj_n, int* sknp);
 void npInitCalcSkinFM(void* pwp, int obj_n, int* sknp);
 void npCalcSkinFM(void* pwp, int obj_n, int* sknp);*/
 
-// 
-// Start address: 0x12b670
-void npPlusInit()
+// 100% matching!
+void npPlusInit() 
 {
-	int j;
-	int i;
-	// Line 67, Address: 0x12b670, Func Offset: 0
-	// Line 73, Address: 0x12b680, Func Offset: 0x10
-	// Line 67, Address: 0x12b684, Func Offset: 0x14
-	// Line 68, Address: 0x12b68c, Func Offset: 0x1c
-	// Line 70, Address: 0x12b69c, Func Offset: 0x2c
-	// Line 71, Address: 0x12b6ac, Func Offset: 0x3c
-	// Line 74, Address: 0x12b6bc, Func Offset: 0x4c
-	// Line 75, Address: 0x12b6c8, Func Offset: 0x58
-	// Line 77, Address: 0x12b6d0, Func Offset: 0x60
-	// Line 75, Address: 0x12b6d8, Func Offset: 0x68
-	// Line 76, Address: 0x12b6dc, Func Offset: 0x6c
-	// Line 77, Address: 0x12b6f0, Func Offset: 0x80
-	// Line 78, Address: 0x12b6f8, Func Offset: 0x88
-	// Line 79, Address: 0x12b708, Func Offset: 0x98
-	// Func End, Address: 0x12b710, Func Offset: 0xa0
-	scePrintf("npPlusInit - UNIMPLEMENTED!\n");
-}
+    int i;
+    int j;
+    
+    np.buff = njpmemp; 
+    np.buff2 = njpmemp + 131072;
+    
+    np.bp = np.buff; 
+    np.bp2 = np.buff2; 
+    
+    for (i = 0; i < 128; i++) 
+    { 
+        for (j = 0; j < 2; j++) 
+        { 
+            np.mxp[i][j] = (NJS_MATRIX*)np.bp; 
+            
+            np.bp += sizeof(NJS_MATRIX);  
+        } 
+    } 
+} 
 
 /*// 
 // Start address: 0x12b710
