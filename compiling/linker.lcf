@@ -1,0 +1,139 @@
+MEMORY
+{
+	main	(RWX)	: ORIGIN = 0x100000,	LENGTH = 0x0
+	heap	(RW)	: ORIGIN = AFTER(main),	LENGTH = 0x0
+}
+
+#FORCE_ACTIVE
+#{
+#}
+
+KEEP_SECTION
+{
+	.vutext,
+	.vudata,
+	.vubss
+}
+
+#REF_INCLUDE
+#{
+
+SECTIONS
+{
+		#	define for crt0
+		_heap_size	= -1;
+		_stack	= -1;
+		_stack_size	= 0x00100000;
+		#	define for lcf
+		_align_segment	= 0x80;
+
+	.main	:
+	{
+		#	text sections
+		.	= ALIGN(0x80);
+		main.o	(.text)
+		.	= ALIGN(0x10);
+		ALIGNALL(0x8);
+		GROUP(ROOT)	(.text)
+		WRITEW	0x0;	# text section patch for EE pipeline
+		WRITEW	0x0;	# text section patch for EE pipeline
+		.	= ALIGN(0x80);
+		ALIGNALL(0x8);
+		GROUP(ROOT)	(.vutext)
+
+		#	.reginfo
+		main.o	(.reginfo)
+
+		#	data sections
+		__data_start	= .;
+		.	= ALIGN(0x80);
+		ALIGNALL(0x8);
+		GROUP(ROOT)	(.data)
+		.	= ALIGN(0x80);
+		ALIGNALL(0x8);
+		GROUP(ROOT)	(.vudata)
+		.	= ALIGN(0x80);
+		ALIGNALL(0x8);
+		GROUP(ROOT)	(.rodata)
+		.	= ALIGN(0x80);
+		ALIGNALL(0x8);
+		GROUP(ROOT)	(.rdata)
+
+		#	static initializers
+		.	= ALIGN(0x10);
+		ALIGNALL(0x4);
+		GROUP(ROOT)	(.init)
+		.	= ALIGN(0x10);
+		ALIGNALL(0x4);
+		__static_init	= .;
+		GROUP(ROOT)	(.ctor)
+		__static_init_end	= .;
+
+		#	.vtables
+		.	= ALIGN(0x10);
+		ALIGNALL(0x4);
+		*	(.vtables)
+
+		#	exception table
+		.	= ALIGN(0x10);
+		__exception_table_start__	= .;
+		__exception_table_end__	= .;
+
+		#	addresses for each overlay module
+		.	= ALIGN(0x10);
+		_overlay_group_addresses	= .;
+		WRITEW ADDR(.main);	#
+
+		__data_end	= .;
+		__data_size	= __data_end - __data_start;
+
+		#	the address of gp register
+		_gp	= ALIGN(128) + 0x7FF0;
+
+		#	literal
+		.	= ALIGN(0x80);
+		ALIGNALL(0x8);
+		LITERAL
+
+		#	small data sections
+		.	= ALIGN(0x80);
+		ALIGNALL(0x4);
+		*	(.sdata)
+		.	= ALIGN(0x80);
+		_fbss	= .;
+		ALIGNALL(0x4);
+		*	(.sbss)
+		ALIGNALL(0x4);
+		*	(.scommon)
+		ALIGNALL(0x4);
+		*	(SCOMMON)
+
+		#	bss sections
+		__bss_start	= .;
+		.	= ALIGN(0x80);
+		ALIGNALL(0x8);
+		GROUP(ROOT)	(.bss)
+		ALIGNALL(0x8);
+		GROUP(ROOT)	(.common)
+		ALIGNALL(0x8);
+		GROUP(ROOT)	(COMMON)
+		.	= ALIGN(0x80);
+		ALIGNALL(0x8);
+		GROUP(ROOT)	(.vubss)
+		ALIGNALL(0x8);
+		__bss_end	= .;
+		__bss_size	= __bss_end - __bss_start;
+
+		.	= ALIGN(_align_segment);
+
+	}	>	main
+
+	.heap	:
+	{
+		#	to get the address for heap
+		end	= .;
+		_end	= .;
+	}	>	heap
+
+
+}
