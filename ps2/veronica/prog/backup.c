@@ -1,0 +1,199 @@
+/*typedef struct _anon0;
+typedef struct _anon1;
+typedef struct _anon2;
+typedef struct _SYS_RTC_DATE;
+typedef struct _anon3;
+
+typedef int(*type_3)(int, int, int, unsigned int);
+typedef int(*type_4)(int, int, int, int);
+typedef void(*type_7)();
+
+typedef char type_0[18];
+typedef char type_1[34];
+typedef unsigned char type_2[16];
+typedef int type_5[4];
+typedef _anon0 type_6[8];
+typedef unsigned char type_8[32];
+
+struct _anon0
+{
+	unsigned short Ready;
+	unsigned short IsFormat;
+	unsigned int LastError;
+	unsigned int ProgressCount;
+	unsigned int ProgressMax;
+	unsigned int Operation;
+	_anon3 DiskInfo;
+	unsigned int Connect;
+	void* Work;
+	unsigned int WorkSize;
+	unsigned int Capacity;
+	int MemMode;
+};
+
+struct _anon1
+{
+	unsigned short year;
+	unsigned char month;
+	unsigned char day;
+	unsigned char hour;
+	unsigned char minute;
+	unsigned char second;
+	unsigned char dayofweek;
+};
+
+struct _anon2
+{
+	char vms_comment[18];
+	char btr_comment[34];
+	unsigned char game_name[16];
+	void* icon_palette;
+	void* icon_data;
+	unsigned short icon_num;
+	unsigned short icon_speed;
+	void* visual_data;
+	unsigned short visual_type;
+	unsigned short reserved;
+	void* save_data;
+	unsigned int save_size;
+};
+
+struct _SYS_RTC_DATE
+{
+	unsigned short year;
+	unsigned char month;
+	unsigned char day;
+	unsigned char hour;
+	unsigned char minute;
+	unsigned char second;
+	unsigned char dayofweek;
+	unsigned char ageofmoon;
+};
+
+struct _anon3
+{
+	unsigned char volume[32];
+	unsigned short total_blocks;
+	unsigned short total_user_blocks;
+	unsigned short free_blocks;
+	unsigned short free_user_blocks;
+	unsigned short total_exe_blocks;
+	unsigned short free_exe_blocks;
+	unsigned short block_size;
+	unsigned short icon_no;
+	_anon1 time;
+};
+
+void(*BupInitCallback)();
+_anon0 gBupInfo[8];
+int(*BupProgress)(int, int, int, int);
+int(*BupComplete)(int, int, int, unsigned int);
+
+void BupInit();
+void BupExit();
+void ClearInfo(int drive);
+int BupComplete(int drive, int op, int stat);
+int BupProgress(int drive, int op, int count, int max);
+void BupInitCallback();*/
+
+void BupInit(void)  
+{
+	// Line 16, Address: 0x2c9a60, Func Offset: 0
+	// Line 17, Address: 0x2c9a64, Func Offset: 0x4
+	// Line 16, Address: 0x2c9a70, Func Offset: 0x10
+	// Line 17, Address: 0x2c9a74, Func Offset: 0x14
+	// Line 18, Address: 0x2c9a7c, Func Offset: 0x1c
+	// Line 19, Address: 0x2c9a94, Func Offset: 0x34
+	// Func End, Address: 0x2c9aa0, Func Offset: 0x40
+	scePrintf("BupInit - UNIMPLEMENTED!\n");
+} 
+
+void BupExit(void)
+{
+	// Line 23, Address: 0x2c9aa0, Func Offset: 0
+	// Line 25, Address: 0x2c9aa8, Func Offset: 0x8
+	// Line 26, Address: 0x2c9ac8, Func Offset: 0x28
+	// Func End, Address: 0x2c9ad4, Func Offset: 0x34
+	scePrintf("BupExit - UNIMPLEMENTED!\n");
+} 
+
+/*// 
+// Start address: 0x2c9ae0
+void ClearInfo(int drive)
+{
+	_anon0* info;
+	// Line 206, Address: 0x2c9ae0, Func Offset: 0
+	// Line 207, Address: 0x2c9af8, Func Offset: 0x18
+	// Line 208, Address: 0x2c9afc, Func Offset: 0x1c
+	// Line 209, Address: 0x2c9b00, Func Offset: 0x20
+	// Line 210, Address: 0x2c9b04, Func Offset: 0x24
+	// Line 211, Address: 0x2c9b08, Func Offset: 0x28
+	// Line 213, Address: 0x2c9b0c, Func Offset: 0x2c
+	// Line 212, Address: 0x2c9b14, Func Offset: 0x34
+	// Line 213, Address: 0x2c9b18, Func Offset: 0x38
+	// Func End, Address: 0x2c9b20, Func Offset: 0x40
+}
+
+// 
+// Start address: 0x2c9b20
+int BupComplete(int drive, int op, int stat)
+{
+	int ret;
+	_anon0* info;
+	// Line 222, Address: 0x2c9b20, Func Offset: 0
+	// Line 218, Address: 0x2c9b28, Func Offset: 0x8
+	// Line 222, Address: 0x2c9b2c, Func Offset: 0xc
+	// Line 218, Address: 0x2c9b30, Func Offset: 0x10
+	// Line 222, Address: 0x2c9b38, Func Offset: 0x18
+	// Line 218, Address: 0x2c9b40, Func Offset: 0x20
+	// Line 222, Address: 0x2c9b44, Func Offset: 0x24
+	// Line 224, Address: 0x2c9b48, Func Offset: 0x28
+	// Line 228, Address: 0x2c9b8c, Func Offset: 0x6c
+	// Line 227, Address: 0x2c9b94, Func Offset: 0x74
+	// Line 228, Address: 0x2c9b98, Func Offset: 0x78
+	// Line 230, Address: 0x2c9b9c, Func Offset: 0x7c
+	// Line 233, Address: 0x2c9ba4, Func Offset: 0x84
+	// Line 235, Address: 0x2c9bac, Func Offset: 0x8c
+	// Line 236, Address: 0x2c9bb8, Func Offset: 0x98
+	// Line 237, Address: 0x2c9bc0, Func Offset: 0xa0
+	// Line 242, Address: 0x2c9bc8, Func Offset: 0xa8
+	// Line 245, Address: 0x2c9bd0, Func Offset: 0xb0
+	// Line 246, Address: 0x2c9bdc, Func Offset: 0xbc
+	// Line 247, Address: 0x2c9be8, Func Offset: 0xc8
+	// Line 250, Address: 0x2c9bf0, Func Offset: 0xd0
+	// Line 252, Address: 0x2c9bfc, Func Offset: 0xdc
+	// Line 255, Address: 0x2c9c04, Func Offset: 0xe4
+	// Line 258, Address: 0x2c9c0c, Func Offset: 0xec
+	// Line 264, Address: 0x2c9c14, Func Offset: 0xf4
+	// Line 268, Address: 0x2c9c20, Func Offset: 0x100
+	// Line 271, Address: 0x2c9c24, Func Offset: 0x104
+	// Line 270, Address: 0x2c9c30, Func Offset: 0x110
+	// Line 271, Address: 0x2c9c34, Func Offset: 0x114
+	// Func End, Address: 0x2c9c3c, Func Offset: 0x11c
+}
+
+// 
+// Start address: 0x2c9c40
+int BupProgress(int drive, int op, int count, int max)
+{
+	_anon0* info;
+	// Line 278, Address: 0x2c9c40, Func Offset: 0
+	// Line 281, Address: 0x2c9c58, Func Offset: 0x18
+	// Line 282, Address: 0x2c9c5c, Func Offset: 0x1c
+	// Line 283, Address: 0x2c9c60, Func Offset: 0x20
+	// Line 286, Address: 0x2c9c64, Func Offset: 0x24
+	// Func End, Address: 0x2c9c6c, Func Offset: 0x2c
+}
+
+// 
+// Start address: 0x2c9c70
+void BupInitCallback()
+{
+	// Line 290, Address: 0x2c9c70, Func Offset: 0
+	// Line 294, Address: 0x2c9c74, Func Offset: 0x4
+	// Line 290, Address: 0x2c9c78, Func Offset: 0x8
+	// Line 294, Address: 0x2c9c7c, Func Offset: 0xc
+	// Line 295, Address: 0x2c9c84, Func Offset: 0x14
+	// Line 296, Address: 0x2c9c90, Func Offset: 0x20
+	// Func End, Address: 0x2c9c9c, Func Offset: 0x2c
+}*/
