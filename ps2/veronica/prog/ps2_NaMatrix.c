@@ -67,7 +67,7 @@ struct _anon5
 _anon5 TempMatrix0;
 _anon5 TempMatrix1;
 float pNaMatMatrixStuckTop[16];*/
-float pNaMatMatrixStuckPtr[16];
+NJS_MATRIX* pNaMatMatrixStuckPtr;
 /*int lNaMatMatrixStuckCnt;
 int lNaMatMatrixStuckMax;
 int lNaMatIsUnitMatrix;
@@ -302,26 +302,36 @@ int njPopMatrix(unsigned int ulNumber)
 	// Line 819, Address: 0x2d69b4, Func Offset: 0x34
 	// Line 822, Address: 0x2d69c0, Func Offset: 0x40
 	// Func End, Address: 0x2d69c8, Func Offset: 0x48
-}
+}*/
 
-// 
-// Start address: 0x2d69d0
-void njUnitMatrix(float pMatrix[16])
+// 100% matching!
+void	njUnitMatrix(register NJS_MATRIX *m)
 {
-	// Line 839, Address: 0x2d69d0, Func Offset: 0
-	// Line 891, Address: 0x2d69e4, Func Offset: 0x14
-	// Line 892, Address: 0x2d69e8, Func Offset: 0x18
-	// Line 893, Address: 0x2d69ec, Func Offset: 0x1c
-	// Line 894, Address: 0x2d69f0, Func Offset: 0x20
-	// Line 895, Address: 0x2d69f4, Func Offset: 0x24
-	// Line 896, Address: 0x2d69f8, Func Offset: 0x28
-	// Line 897, Address: 0x2d69fc, Func Offset: 0x2c
-	// Line 898, Address: 0x2d6a00, Func Offset: 0x30
-	// Line 905, Address: 0x2d6a04, Func Offset: 0x34
-	// Func End, Address: 0x2d6a0c, Func Offset: 0x3c
+    if (m == NULL) 
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+    
+    asm volatile 
+    {
+    .set noreorder;
+
+        vmulw.xyzw $vf4xyzw, $vf0xyzw, $vf0w;
+
+        vmr32.xyzw $vf5xyzw, $vf4xyzw;
+        vmr32.xyzw $vf6xyzw, $vf5xyzw;
+        vmr32.xyzw $vf7xyzw, $vf6xyzw;
+    
+        sqc2       $vf4, 0x30($m); 
+        sqc2       $vf5, 0x20($m); 
+        sqc2       $vf6, 0x10($m); 
+        sqc2       $vf7,  0x0($m); 
+        
+    .set reorder
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2d6a10
 void njSetMatrix(float pDst[16], float pSrc[16])
 {
@@ -356,11 +366,11 @@ void njSetMatrixCN(float pMat[16])
 // 100% matching!
 void	njGetMatrix(NJS_MATRIX *m)
 {
-    register float* fpSrc; 
-    register float* fpDst; 
+    register NJS_MATRIX* fpSrc; 
+    register NJS_MATRIX* fpDst; 
 
-    fpSrc = (float*)pNaMatMatrixStuckPtr;
-    fpDst = (float*)m; 
+    fpSrc = pNaMatMatrixStuckPtr;
+    fpDst = m; 
     
     asm volatile 
     {
