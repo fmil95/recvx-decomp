@@ -1,4 +1,5 @@
 ps2/veronica/prog/main.o
 compiling/report.txt
 compiling/compile_commands.json
+compile_config.json
 main.elf
