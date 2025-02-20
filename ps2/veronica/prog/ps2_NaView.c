@@ -1,3 +1,5 @@
+#include "ps2_Vu1Strip.c"
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -52,18 +54,18 @@ struct _anon3
 };
 
 float fNaViwOffsetX;
-float fNaViwOffsetY;
+float fNaViwOffsetY;*/
 float fNaViwAspectW;
 float fNaViwAspectH;
-float fNaViwClipNear;
+/*float fNaViwClipNear;
 float fNaViwClipFar;
 float _fNaViwClipNear;
 float _fNaViwClipFar;*/
 float ClipDispW;
 float ClipDispH;
-/*_anon2 _nj_screen_;
+/*_anon2 _nj_screen_;*/
 float NaViewScreenMatrix[16];
-float fNaViwHalfH;
+/*float fNaViwHalfH;
 float fNaViwHalfW;
 float NaViwViewMatrix[16];
 _anon1 ClipVolume;
@@ -78,9 +80,9 @@ void njSetAspect(float fW, float fH);
 void njInitView(_anon3* pView);
 void njSetView();
 void njClipZ(float fNear, float fFar);
-int njCalcScreen(_anon0* pPoint, float* fpScreenX, float* fpScreenY);
+int njCalcScreen(_anon0* pPoint, float* fpScreenX, float* fpScreenY);*/
 void njViewScreenMatrix(float vs[16]);
-void _Make_ClipMatrix(float sc[4], float scr, float near, float far);
+/*void _Make_ClipMatrix(float sc[4], float scr, float near, float far);
 void _Make_ClipVolume(float x, float y);
 
 // 
@@ -151,22 +153,16 @@ void njSetScreenProjection(float dist)
 	// Func End, Address: 0x2e2b38, Func Offset: 0x38
 }*/
 
-// 
-// Start address: 0x2e2b40 
-void    njSetAspect(Float ax, Float ay) 
+// 100% matching!
+void    njSetAspect(Float ax, Float ay)
 { 
-    // Line 221, Address: 0x2e2b40, Func Offset: 0
-	// Line 222, Address: 0x2e2b50, Func Offset: 0x10
-	// Line 226, Address: 0x2e2b58, Func Offset: 0x18
-	// Line 223, Address: 0x2e2b5c, Func Offset: 0x1c
-	// Line 226, Address: 0x2e2b60, Func Offset: 0x20
-	// Line 223, Address: 0x2e2b68, Func Offset: 0x28
-	// Line 226, Address: 0x2e2b6c, Func Offset: 0x2c
-	// Line 228, Address: 0x2e2b74, Func Offset: 0x34
-	// Line 230, Address: 0x2e2b80, Func Offset: 0x40
-	// Func End, Address: 0x2e2b94, Func Offset: 0x54
-	scePrintf("njSetAspect - UNIMPLEMENTED!\n");
-} 
+    fNaViwAspectW = ax; 
+    fNaViwAspectH = ay; 
+    
+    njViewScreenMatrix(NaViewScreenMatrix); 
+    
+    vu1SetScreenAspect(ax, ay); 
+}
 
 // 100% matching!
 void    njInitView(NJS_VIEW *v)
@@ -273,7 +269,7 @@ int njCalcScreen(_anon0* pPoint, float* fpScreenX, float* fpScreenY)
 	// Line 456, Address: 0x2e2e44, Func Offset: 0x114
 	// Line 458, Address: 0x2e2e60, Func Offset: 0x130
 	// Func End, Address: 0x2e2e74, Func Offset: 0x144
-}
+}*/
 
 // 
 // Start address: 0x2e2e80
@@ -292,9 +288,10 @@ void njViewScreenMatrix(float vs[16])
 	// Line 555, Address: 0x2e2ec0, Func Offset: 0x40
 	// Line 557, Address: 0x2e2ecc, Func Offset: 0x4c
 	// Func End, Address: 0x2e2edc, Func Offset: 0x5c
+	scePrintf("njViewScreenMatrix - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e2ee0
 void _Make_ClipMatrix(float sc[4], float scr, float near, float far)
 {
