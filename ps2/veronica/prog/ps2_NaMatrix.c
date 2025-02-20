@@ -356,8 +356,8 @@ void njSetMatrixCN(float pMat[16])
 // 100% matching!
 void	njGetMatrix(NJS_MATRIX *m)
 {
-    register float* fpDst; 
     register float* fpSrc; 
+    register float* fpDst; 
 
     fpSrc = (float*)pNaMatMatrixStuckPtr;
     fpDst = (float*)m; 
