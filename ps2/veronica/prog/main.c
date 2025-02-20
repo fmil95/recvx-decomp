@@ -189,7 +189,7 @@ Sint32 njUserMain(void)
         } 
     } 
     
-    PS2_jikken(); 
+    //PS2_jikken(); TODO: this function, if uncommented, causes stack overflow. Needs full implementation.
     
     bhCheckSoftReset(); 
     
