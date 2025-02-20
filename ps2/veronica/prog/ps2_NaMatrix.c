@@ -66,9 +66,9 @@ struct _anon5
 
 _anon5 TempMatrix0;
 _anon5 TempMatrix1;
-float pNaMatMatrixStuckTop[16];
+float pNaMatMatrixStuckTop[16];*/
 float pNaMatMatrixStuckPtr[16];
-int lNaMatMatrixStuckCnt;
+/*int lNaMatMatrixStuckCnt;
 int lNaMatMatrixStuckMax;
 int lNaMatIsUnitMatrix;
 float NaViwViewMatrix[16];
@@ -353,22 +353,31 @@ void njSetMatrixCN(float pMat[16])
 	// Func End, Address: 0x2d6a78, Func Offset: 0x18
 }*/
 
+// 100% matching!
 void	njGetMatrix(NJS_MATRIX *m)
 {
-	float* fpDst;
-	float* fpSrc;
-	// Line 1056, Address: 0x2d6a80, Func Offset: 0
-	// Line 1087, Address: 0x2d6a8c, Func Offset: 0xc
-	// Line 1088, Address: 0x2d6a90, Func Offset: 0x10
-	// Line 1089, Address: 0x2d6a94, Func Offset: 0x14
-	// Line 1090, Address: 0x2d6a98, Func Offset: 0x18
-	// Line 1091, Address: 0x2d6a9c, Func Offset: 0x1c
-	// Line 1092, Address: 0x2d6aa0, Func Offset: 0x20
-	// Line 1093, Address: 0x2d6aa4, Func Offset: 0x24
-	// Line 1094, Address: 0x2d6aa8, Func Offset: 0x28
-	// Line 1100, Address: 0x2d6aac, Func Offset: 0x2c
-	// Func End, Address: 0x2d6ab4, Func Offset: 0x34
-	scePrintf("njGetMatrix - UNIMPLEMENTED!\n");
+    register float* fpDst; 
+    register float* fpSrc; 
+
+    fpSrc = (float*)pNaMatMatrixStuckPtr;
+    fpDst = (float*)m; 
+    
+    asm volatile 
+    {
+    .set noreorder;
+        
+        lqc2       $vf4, 0x0(fpSrc); 
+        lqc2       $vf5, 0x10(fpSrc); 
+        lqc2       $vf6, 0x20(fpSrc); 
+        lqc2       $vf7, 0x30(fpSrc); 
+    
+        sqc2       $vf4, 0x0($fpDst); 
+        sqc2       $vf5, 0x10($fpDst); 
+        sqc2       $vf6, 0x20($fpDst); 
+        sqc2       $vf7, 0x30($fpDst); 
+        
+    .set reorder
+    }
 }
 
 /*// 
