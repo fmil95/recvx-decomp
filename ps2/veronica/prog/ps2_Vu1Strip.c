@@ -142,10 +142,10 @@ float fVu1InvNearClip;
 float fVu1NearClip;
 float fVu1FarClip;
 float fVu1OffsetY;
-float fVu1OffsetX;
+float fVu1OffsetX;*/
 float fVu1AspectH;
 float fVu1AspectW;
-tagVU1_PRIM_BUF vu1ScessorBuf[16];
+/*tagVU1_PRIM_BUF vu1ScessorBuf[16];
 unsigned char Ps2_DRAW_TMP[16384];
 float Ps2AddPrimPrio;
 
@@ -231,20 +231,25 @@ void vu1SetScreenOffset(float fOffsetX, float fOffsetY)
 	// Func End, Address: 0x2d399c, Func Offset: 0x2c
 }*/
 
-// 
-// Start address: 0x2d39a0
+// 100% matching!
 void vu1SetScreenAspect(float fAspectW, float fAspectH)
 {
-	// Line 306, Address: 0x2d39a0, Func Offset: 0
-	// Line 307, Address: 0x2d39a8, Func Offset: 0x8
-	// Line 313, Address: 0x2d39b0, Func Offset: 0x10
-	// Line 314, Address: 0x2d39b4, Func Offset: 0x14
-	// Line 315, Address: 0x2d39b8, Func Offset: 0x18
-	// Line 316, Address: 0x2d39bc, Func Offset: 0x1c
-	// Line 317, Address: 0x2d39c0, Func Offset: 0x20
-	// Line 324, Address: 0x2d39c4, Func Offset: 0x24
-	// Func End, Address: 0x2d39cc, Func Offset: 0x2c
-	scePrintf("vu1SetScreenAspect - UNIMPLEMENTED!\n");
+    fVu1AspectW = fAspectW;
+    fVu1AspectH = fAspectH;
+
+    asm volatile 
+    {
+        
+        mfc1     t0, $f12;
+        mfc1     t1, $f13;
+
+        qmtc2    t0, $vf4;
+        qmtc2    t1, $vf5;
+
+        vaddx.x  $vf17x, $vf0x, $vf4x;
+        vaddx.y  $vf17y, $vf0y, $vf5x;
+        
+    }
 }
 
 /*// 
