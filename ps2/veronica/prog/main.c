@@ -175,7 +175,7 @@ void njUserInit(void)
 }
 
 // 100% matching!
-Sint32 njUserMain(void)
+Sint32 njUserMain(void) 
 { 
     int i; 
 
