@@ -23,6 +23,7 @@
 #include "njloop.c"
 #include "njplus.c"
 #include "ps2_NaDebugFontFunction.c"
+#include "ps2_NaDraw2D.c"
 #include "ps2_NaMatrix.c"
 #include "ps2_NaSystem.c"
 #include "ps2_NaTextureFunction.c"
