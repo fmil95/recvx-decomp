@@ -66,9 +66,9 @@ float ClipDispH;
 NJS_SCREEN	_nj_screen_;
 NJS_MATRIX NaViewScreenMatrix;
 /*float fNaViwHalfH;
-float fNaViwHalfW;
-float NaViwViewMatrix[16];
-_anon1 ClipVolume;
+float fNaViwHalfW;*/
+NJS_MATRIX NaViwViewMatrix;
+/*_anon1 ClipVolume;
 float ClipScreenMatrix[4][4];
 float ClipMatrix2[4][4];
 float fVu1Projection;
@@ -191,31 +191,28 @@ void    njInitView(NJS_VIEW *v)
     ClipDispH = 2047.0f; 
 } 
 
-// 
-// Start address: 0x2e2c00
+// 100% matching!
 void    njSetView(NJS_VIEW *v)
 { 
-	// Line 302, Address: 0x2e2c00, Func Offset: 0
-	// Line 353, Address: 0x2e2c08, Func Offset: 0x8
-	// Line 354, Address: 0x2e2c14, Func Offset: 0x14
-	// Line 355, Address: 0x2e2c1c, Func Offset: 0x1c
-	// Line 356, Address: 0x2e2c24, Func Offset: 0x24
-	// Line 357, Address: 0x2e2c2c, Func Offset: 0x2c
-	// Line 358, Address: 0x2e2c38, Func Offset: 0x38
-	// Line 359, Address: 0x2e2c40, Func Offset: 0x40
-	// Line 360, Address: 0x2e2c48, Func Offset: 0x48
-	// Line 361, Address: 0x2e2c50, Func Offset: 0x50
-	// Line 362, Address: 0x2e2c58, Func Offset: 0x58
-	// Line 363, Address: 0x2e2c60, Func Offset: 0x60
-	// Line 368, Address: 0x2e2c64, Func Offset: 0x64
-	// Line 363, Address: 0x2e2c68, Func Offset: 0x68
-	// Line 364, Address: 0x2e2c6c, Func Offset: 0x6c
-	// Line 368, Address: 0x2e2c70, Func Offset: 0x70
-	// Line 371, Address: 0x2e2c7c, Func Offset: 0x7c
-	// Line 374, Address: 0x2e2c84, Func Offset: 0x84
-	// Func End, Address: 0x2e2c90, Func Offset: 0x90
-    scePrintf("njSetView - UNIMPLEMENTED!\n");
-} 
+    NaViwViewMatrix[0] = 1.0f; 
+    NaViwViewMatrix[1] = 0; 
+    NaViwViewMatrix[2] = 0; 
+    NaViwViewMatrix[4] = 0; 
+    
+    NaViwViewMatrix[5] = -1.0f; 
+    NaViwViewMatrix[6] = 0; 
+    NaViwViewMatrix[8] = 0; 
+    NaViwViewMatrix[9] = 0; 
+    
+    NaViwViewMatrix[10] = -1.0f; 
+    NaViwViewMatrix[12] = 0; 
+    NaViwViewMatrix[13] = 0; 
+    NaViwViewMatrix[14] = 0; 
+
+    njViewScreenMatrix(&NaViewScreenMatrix); 
+
+    njClearMatrix(); 
+}
 
 // 
 // Start address: 0x2e2c90
