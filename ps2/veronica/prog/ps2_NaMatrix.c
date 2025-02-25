@@ -314,42 +314,49 @@ void	njUnitMatrix(register NJS_MATRIX *m)
     {
     .set noreorder
 
-        vmulw.xyzw $vf4xyzw, $vf0xyzw, $vf0w;
+        vmulw.xyzw $vf4xyzw, $vf0xyzw, $vf0w
 
-        vmr32.xyzw $vf5xyzw, $vf4xyzw;
-        vmr32.xyzw $vf6xyzw, $vf5xyzw;
-        vmr32.xyzw $vf7xyzw, $vf6xyzw;
+        vmr32.xyzw $vf5xyzw, $vf4xyzw
+        vmr32.xyzw $vf6xyzw, $vf5xyzw
+        vmr32.xyzw $vf7xyzw, $vf6xyzw
     
-        sqc2       $vf4, 0x30($m); 
-        sqc2       $vf5, 0x20($m); 
-        sqc2       $vf6, 0x10($m); 
-        sqc2       $vf7,  0x0($m); 
+        sqc2       $vf4, 0x30(m)
+        sqc2       $vf5, 0x20(m)
+        sqc2       $vf6, 0x10(m) 
+        sqc2       $vf7,  0x0(m)
+        
+    .set reorder
+    }
+}
+
+// 100% matching!
+void	njSetMatrix(NJS_MATRIX *md, NJS_MATRIX *ms)
+{
+    register NJS_MATRIX* fpSrc; 
+    register NJS_MATRIX* fpDst; 
+
+    fpSrc = ms;
+    fpDst = md ? md : pNaMatMatrixStuckPtr;
+
+    asm volatile 
+    {
+    .set noreorder
+        
+        lqc2       $vf4, 0x0(fpSrc) 
+        lqc2       $vf5, 0x10(fpSrc) 
+        lqc2       $vf6, 0x20(fpSrc) 
+        lqc2       $vf7, 0x30(fpSrc) 
+    
+        sqc2       $vf4, 0x0(fpDst) 
+        sqc2       $vf5, 0x10(fpDst) 
+        sqc2       $vf6, 0x20(fpDst) 
+        sqc2       $vf7, 0x30(fpDst) 
         
     .set reorder
     }
 }
 
 /*// 
-// Start address: 0x2d6a10
-void njSetMatrix(float pDst[16], float pSrc[16])
-{
-	float* fpDst;
-	float* fpSrc;
-	// Line 944, Address: 0x2d6a10, Func Offset: 0
-	// Line 945, Address: 0x2d6a20, Func Offset: 0x10
-	// Line 975, Address: 0x2d6a2c, Func Offset: 0x1c
-	// Line 976, Address: 0x2d6a30, Func Offset: 0x20
-	// Line 977, Address: 0x2d6a34, Func Offset: 0x24
-	// Line 978, Address: 0x2d6a38, Func Offset: 0x28
-	// Line 979, Address: 0x2d6a3c, Func Offset: 0x2c
-	// Line 980, Address: 0x2d6a40, Func Offset: 0x30
-	// Line 981, Address: 0x2d6a44, Func Offset: 0x34
-	// Line 982, Address: 0x2d6a48, Func Offset: 0x38
-	// Line 989, Address: 0x2d6a4c, Func Offset: 0x3c
-	// Func End, Address: 0x2d6a54, Func Offset: 0x44
-}
-
-// 
 // Start address: 0x2d6a60
 void njSetMatrixCN(float pMat[16])
 {
@@ -374,15 +381,15 @@ void	njGetMatrix(NJS_MATRIX *m)
     {
     .set noreorder
         
-        lqc2       $vf4, 0x0(fpSrc); 
-        lqc2       $vf5, 0x10(fpSrc); 
-        lqc2       $vf6, 0x20(fpSrc); 
-        lqc2       $vf7, 0x30(fpSrc); 
+        lqc2       $vf4, 0x0(fpSrc)
+        lqc2       $vf5, 0x10(fpSrc)
+        lqc2       $vf6, 0x20(fpSrc)
+        lqc2       $vf7, 0x30(fpSrc)
     
-        sqc2       $vf4, 0x0($fpDst); 
-        sqc2       $vf5, 0x10($fpDst); 
-        sqc2       $vf6, 0x20($fpDst); 
-        sqc2       $vf7, 0x30($fpDst); 
+        sqc2       $vf4, 0x0(fpDst)
+        sqc2       $vf5, 0x10(fpDst)
+        sqc2       $vf6, 0x20(fpDst)
+        sqc2       $vf7, 0x30(fpDst)
         
     .set reorder
     }
