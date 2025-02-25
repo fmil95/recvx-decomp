@@ -65,14 +65,14 @@ struct _anon5
 };
 
 _anon5 TempMatrix0;
-_anon5 TempMatrix1;
-float pNaMatMatrixStuckTop[16];*/
+_anon5 TempMatrix1;*/
+NJS_MATRIX* pNaMatMatrixStuckTop;
 NJS_MATRIX* pNaMatMatrixStuckPtr;
-/*int lNaMatMatrixStuckCnt;
-int lNaMatMatrixStuckMax;
-int lNaMatIsUnitMatrix;
-float NaViwViewMatrix[16];
-_anon4 _nj_screen_;
+int lNaMatMatrixStuckCnt;
+/*int lNaMatMatrixStuckMax;
+int lNaMatIsUnitMatrix;*/
+NJS_MATRIX NaViwViewMatrix;
+/*_anon4 _nj_screen_;
 float NaViewScreenMatrix[16];
 
 void njInitMatrix(float pMatrix[16], int lSize, int lFlag);
@@ -252,21 +252,19 @@ void njUnitRotPortion(float pMatrix[16])
 	// Line 670, Address: 0x2d68ac, Func Offset: 0x2c
 	// Line 677, Address: 0x2d68b0, Func Offset: 0x30
 	// Func End, Address: 0x2d68b8, Func Offset: 0x38
-}
+}*/
 
-// 
-// Start address: 0x2d68c0
-void njClearMatrix()
+// 100% matching!
+void    njClearMatrix()
 {
-	// Line 712, Address: 0x2d68c0, Func Offset: 0
-	// Line 711, Address: 0x2d68c8, Func Offset: 0x8
-	// Line 714, Address: 0x2d68d0, Func Offset: 0x10
-	// Line 711, Address: 0x2d68dc, Func Offset: 0x1c
-	// Line 714, Address: 0x2d68e0, Func Offset: 0x20
-	// Func End, Address: 0x2d68e8, Func Offset: 0x28
+    lNaMatMatrixStuckCnt = 0;
+
+    pNaMatMatrixStuckPtr = pNaMatMatrixStuckTop;
+    
+    njSetMatrix(NULL, &NaViwViewMatrix);
 }
 
-// 
+/*// 
 // Start address: 0x2d68f0
 int njPushMatrix(float pMatrix[16])
 {
