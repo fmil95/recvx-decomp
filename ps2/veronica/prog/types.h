@@ -1463,3 +1463,10 @@ typedef struct NO_NAME_11 /* @anon20 */ {
         signed long testbaddr; // offset 0x58, size 0x4
     } clear1; // offset 0x2D0, size 0x60
 } NO_NAME_11; // size: 0x330, address: 0x112C7B0
+
+typedef struct NO_NAME_17
+{
+	unsigned int num;
+	NJS_TEXMEMLIST tmem[256];
+	void* addr[256];
+} NO_NAME_17;
