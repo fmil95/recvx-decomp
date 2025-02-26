@@ -42,6 +42,7 @@
 #include "ps2_sg_pad.c"
 #include "ps2_sg_sybt.c"
 #include "ps2_sg_sycbl.c"
+#include "ps2_sg_syhw.c"
 #include "ps2_sg_syrtc.c"
 #include "sbinit.c"
 #include "sdfunc.c"
