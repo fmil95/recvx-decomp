@@ -1632,15 +1632,13 @@ void njGetSystemAttr(char attr[192]);
 void njSetSystemAttr(char attr[192]);
 void njChangeSystem();
 void njAdjustDisplay(int xadjust, int yadjust);
-void njSetBorderColor();
+void njSetBorderColor();*/
 
-// 
-// Start address: 0x2e1380
-void njSetTextureMemorySize()
+// 100% matching!
+void	njSetTextureMemorySize(Uint32 size )
 {
-	// Line 73, Address: 0x2e1380, Func Offset: 0
-	// Func End, Address: 0x2e1388, Func Offset: 0x8
-}*/
+
+}
 
 // 100% matching!
 void	njSetVertexBuffer(Uint32 *buffer,Sint32 size)
