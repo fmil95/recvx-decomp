@@ -157,7 +157,74 @@ struct _anon10
 	unsigned int* pSurface;
 	unsigned int* pVirtual;
 	unsigned int* pPhysical;
-};
+};*/
+
+typedef struct TIM2_PICTUREHEADER /* @anon4 */ {
+    // total size: 0xD0
+    signed char FileId[4]; // offset 0x0, size 0x4
+    unsigned char FormatVersion; // offset 0x4, size 0x1
+    unsigned char FormatId; // offset 0x5, size 0x1
+    unsigned short Pictures; // offset 0x6, size 0x2
+    unsigned int Gindex; // offset 0x8, size 0x4
+    unsigned char OrgColorType; // offset 0xC, size 0x1
+    unsigned char OrgTexType; // offset 0xD, size 0x1
+    unsigned short ClutChange; // offset 0xE, size 0x2
+    unsigned int PalNum; // offset 0x10, size 0x4
+    unsigned int PalData[27]; // offset 0x14, size 0x6C
+    unsigned int TotalSize; // offset 0x80, size 0x4
+    unsigned int ClutSize; // offset 0x84, size 0x4
+    unsigned int ImageSize; // offset 0x88, size 0x4
+    unsigned short HeaderSize; // offset 0x8C, size 0x2
+    unsigned short ClutColors; // offset 0x8E, size 0x2
+    unsigned char PictFormat; // offset 0x90, size 0x1
+    unsigned char MipMapTextures; // offset 0x91, size 0x1
+    unsigned char ClutType; // offset 0x92, size 0x1
+    unsigned char ImageType; // offset 0x93, size 0x1
+    unsigned short ImageWidth; // offset 0x94, size 0x2
+    unsigned short ImageHeight; // offset 0x96, size 0x2
+    struct /* @anon6 */ {
+        // total size: 0x8
+        unsigned long TBP0 : 14; // offset 0x0, size 0x4
+        unsigned long TBW : 6; // offset 0x0, size 0x4
+        unsigned long PSM : 6; // offset 0x0, size 0x4
+        unsigned long TW : 4; // offset 0x0, size 0x4
+        unsigned long TH : 4; // offset 0x0, size 0x4
+        unsigned long TCC : 1; // offset 0x0, size 0x4
+        unsigned long TFX : 2; // offset 0x0, size 0x4
+        unsigned long CBP : 14; // offset 0x0, size 0x4
+        unsigned long CPSM : 4; // offset 0x0, size 0x4
+        unsigned long CSM : 1; // offset 0x0, size 0x4
+        unsigned long CSA : 5; // offset 0x0, size 0x4
+        unsigned long CLD : 3; // offset 0x0, size 0x4
+    } GsTex0; // offset 0x98, size 0x8
+    struct /* @anon9 */ {
+        // total size: 0x8
+        unsigned long LCM : 1; // offset 0x0, size 0x4
+        unsigned long pad01 : 1; // offset 0x0, size 0x4
+        unsigned long MXL : 3; // offset 0x0, size 0x4
+        unsigned long MMAG : 1; // offset 0x0, size 0x4
+        unsigned long MMIN : 3; // offset 0x0, size 0x4
+        unsigned long MTBA : 1; // offset 0x0, size 0x4
+        unsigned long pad10 : 9; // offset 0x0, size 0x4
+        unsigned long L : 2; // offset 0x0, size 0x4
+        unsigned long pad21 : 11; // offset 0x0, size 0x4
+        unsigned long K : 12; // offset 0x0, size 0x4
+        unsigned long pad44 : 20; // offset 0x0, size 0x4
+    } GsTex1; // offset 0xA0, size 0x8
+    unsigned int GsRegs; // offset 0xA8, size 0x4
+    unsigned int GsTexClut; // offset 0xAC, size 0x4
+    struct /* @anon8 */ {
+        // total size: 0x18
+        unsigned int gindex; // offset 0x0, size 0x4
+        unsigned int size; // offset 0x4, size 0x4
+        unsigned int count; // offset 0x8, size 0x4
+        void * addr; // offset 0xC, size 0x4
+        void * before; // offset 0x10, size 0x4
+        void * after; // offset 0x14, size 0x4
+    } admin; // offset 0xB0, size 0x18
+    unsigned int TpFlag; // offset 0xC8, size 0x4
+    unsigned int ClampFlag; // offset 0xCC, size 0x4
+} TIM2_PICTUREHEADER;
 
 unsigned int Ps2_current_texbreak;
 unsigned int Ps2_current_gindex;
@@ -165,14 +232,14 @@ unsigned int Ps2_texcontinue_no;
 void* Ps2_free_last;
 unsigned int Ps2_free_texmemsize;
 void* Ps2_now_free;
-_anon1 Ps2_last_tmlist;
-_anon1 Ps2_1st_tmlist;
+NJS_TEXMEMLIST Ps2_last_tmlist;
+NJS_TEXMEMLIST Ps2_1st_tmlist;
 unsigned int Ps2_texmemlist_num;
-_anon1* Ps2_tex_info;
-_anon4 Ps2_tm_list_last;
-_anon4 Ps2_tm_list_1st;
+NJS_TEXMEMLIST* Ps2_tex_info;
+TIM2_PICTUREHEADER Ps2_tm_list_last;
+TIM2_PICTUREHEADER Ps2_tm_list_1st;
 void* Ps2_tex_buff;
-unsigned int Ps2_current_texno;
+/*unsigned int Ps2_current_texno;
 _anon2* Ps2_current_texlist;
 _anon1* Ps2_current_texmemlist;
 char*(*index)(char*, int);
@@ -243,66 +310,92 @@ void	njInitTextureBuffer(Sint8 *addr,Uint32 size)
 
 }
 
-// 
-// Start address: 0x2e1bc0
-void	njInitTexture(NJS_TEXMEMLIST *addr,Uint32 n)
-{
-	int i;
-	// Line 182, Address: 0x2e1bc0, Func Offset: 0
-	// Line 186, Address: 0x2e1bd4, Func Offset: 0x14
-	// Line 211, Address: 0x2e1bdc, Func Offset: 0x1c
-	// Line 212, Address: 0x2e1be4, Func Offset: 0x24
-	// Line 213, Address: 0x2e1bec, Func Offset: 0x2c
-	// Line 223, Address: 0x2e1bf4, Func Offset: 0x34
-	// Line 224, Address: 0x2e1bfc, Func Offset: 0x3c
-	// Line 190, Address: 0x2e1c04, Func Offset: 0x44
-	// Line 188, Address: 0x2e1c0c, Func Offset: 0x4c
-	// Line 189, Address: 0x2e1c18, Func Offset: 0x58
-	// Line 193, Address: 0x2e1c20, Func Offset: 0x60
-	// Line 194, Address: 0x2e1c28, Func Offset: 0x68
-	// Line 195, Address: 0x2e1c30, Func Offset: 0x70
-	// Line 190, Address: 0x2e1c38, Func Offset: 0x78
-	// Line 191, Address: 0x2e1c40, Func Offset: 0x80
-	// Line 214, Address: 0x2e1c48, Func Offset: 0x88
-	// Line 215, Address: 0x2e1c50, Func Offset: 0x90
-	// Line 217, Address: 0x2e1c58, Func Offset: 0x98
-	// Line 220, Address: 0x2e1c60, Func Offset: 0xa0
-	// Line 222, Address: 0x2e1c68, Func Offset: 0xa8
-	// Line 192, Address: 0x2e1c78, Func Offset: 0xb8
-	// Line 196, Address: 0x2e1c88, Func Offset: 0xc8
-	// Line 197, Address: 0x2e1c98, Func Offset: 0xd8
-	// Line 216, Address: 0x2e1c9c, Func Offset: 0xdc
-	// Line 197, Address: 0x2e1ca0, Func Offset: 0xe0
-	// Line 216, Address: 0x2e1ca4, Func Offset: 0xe4
-	// Line 218, Address: 0x2e1cb0, Func Offset: 0xf0
-	// Line 219, Address: 0x2e1cc0, Func Offset: 0x100
-	// Line 221, Address: 0x2e1cc8, Func Offset: 0x108
-	// Line 225, Address: 0x2e1cd4, Func Offset: 0x114
-	// Line 229, Address: 0x2e1ce0, Func Offset: 0x120
-	// Line 230, Address: 0x2e1cec, Func Offset: 0x12c
-	// Line 231, Address: 0x2e1cf0, Func Offset: 0x130
-	// Line 232, Address: 0x2e1cf4, Func Offset: 0x134
-	// Line 233, Address: 0x2e1cf8, Func Offset: 0x138
-	// Line 234, Address: 0x2e1cfc, Func Offset: 0x13c
-	// Line 235, Address: 0x2e1d00, Func Offset: 0x140
-	// Line 236, Address: 0x2e1d04, Func Offset: 0x144
-	// Line 237, Address: 0x2e1d08, Func Offset: 0x148
-	// Line 238, Address: 0x2e1d0c, Func Offset: 0x14c
-	// Line 239, Address: 0x2e1d10, Func Offset: 0x150
-	// Line 240, Address: 0x2e1d14, Func Offset: 0x154
-	// Line 241, Address: 0x2e1d18, Func Offset: 0x158
-	// Line 242, Address: 0x2e1d1c, Func Offset: 0x15c
-	// Line 243, Address: 0x2e1d20, Func Offset: 0x160
-	// Line 244, Address: 0x2e1d24, Func Offset: 0x164
-	// Line 245, Address: 0x2e1d28, Func Offset: 0x168
-	// Line 246, Address: 0x2e1d2c, Func Offset: 0x16c
-	// Line 248, Address: 0x2e1d30, Func Offset: 0x170
-	// Line 247, Address: 0x2e1d34, Func Offset: 0x174
-	// Line 248, Address: 0x2e1d38, Func Offset: 0x178
-	// Line 249, Address: 0x2e1d48, Func Offset: 0x188
-	// Func End, Address: 0x2e1d5c, Func Offset: 0x19c
-	scePrintf("njInitTexture - UNIMPLEMENTED!\n");
-}	
+// 62.33% matching
+void	njInitTexture(NJS_TEXMEMLIST *addr,Uint32 n) // TODO: use 100% matching version with unsigned int casts
+{	
+    int i;
+    
+    Init_PS2_SAVE_TEX();
+
+    Ps2_tm_list_1st.admin.gindex = -1; 
+    
+    Ps2_tm_list_1st.admin.size = 0;                  
+    
+    Ps2_tm_list_1st.admin.addr = Ps2_tex_buff;      
+    
+    Ps2_tm_list_1st.admin.before = (void*)-1;
+    Ps2_tm_list_1st.admin.after = &Ps2_tm_list_last;   
+    
+    Ps2_tm_list_last.admin.gindex = -1;                
+    
+    Ps2_tm_list_last.admin.size = 0;               
+    
+    Ps2_tm_list_last.admin.addr = (void*)-1;           
+    
+    Ps2_tm_list_last.admin.before = &Ps2_tm_list_1st;  
+    Ps2_tm_list_last.admin.after = (void*)-1;
+    
+    Ps2_tex_info = addr;  
+    
+    Ps2_texmemlist_num = n;                  
+    
+    Ps2_1st_tmlist.texinfo.texsurface.TextureSize = 0;                  
+    
+    Ps2_1st_tmlist.texinfo.texsurface.pSurface = Ps2_tex_buff;       
+    Ps2_1st_tmlist.texinfo.texsurface.pVirtual = (unsigned long*)-1;    
+    Ps2_1st_tmlist.texinfo.texsurface.pPhysical = (unsigned long*)&Ps2_last_tmlist;      
+    
+    Ps2_last_tmlist.texinfo.texsurface.pSurface = (unsigned long*)-1;             
+    Ps2_last_tmlist.texinfo.texsurface.pVirtual = (unsigned long*)&Ps2_1st_tmlist;      
+    Ps2_last_tmlist.texinfo.texsurface.pPhysical = (unsigned long*)-1;  
+    
+    Ps2_now_free = Ps2_tex_buff;               
+    
+    Ps2_free_texmemsize = 10485760;             
+    
+    Ps2_free_last = (unsigned char*)Ps2_tex_buff + Ps2_free_texmemsize;    
+    
+    Ps2_texcontinue_no = 0;                      
+    
+    Ps2_current_gindex = 0;                      
+    
+    Ps2_current_texbreak = 1;                    
+    
+    for (i = 0; i < n; i++) 
+    {	
+        addr[i].globalIndex = -1;
+        
+        addr[i].bank = -1;
+        
+        addr[i].tspparambuffer = 0;
+        addr[i].texparambuffer = 0;
+        
+        addr[i].texaddr = 0;
+        
+        addr[i].texinfo.texaddr = NULL;
+        
+        addr[i].texinfo.texsurface.Type = 0;
+        
+        addr[i].texinfo.texsurface.BitDepth = 0;
+        
+        addr[i].texinfo.texsurface.PixelFormat = 0;
+        
+        addr[i].texinfo.texsurface.nWidth = 0;
+        addr[i].texinfo.texsurface.nHeight = 0;
+        
+        addr[i].texinfo.texsurface.TextureSize = 0;
+        
+        addr[i].texinfo.texsurface.fSurfaceFlags = 0;
+        
+        addr[i].texinfo.texsurface.pSurface = NULL;
+        addr[i].texinfo.texsurface.pVirtual = NULL;
+        addr[i].texinfo.texsurface.pPhysical = NULL;
+        
+        addr[i].count = 0;
+        
+        addr[i].dummy = 0;
+    }
+}
 
 // 100% matching!
 void	njExitTexture(void)

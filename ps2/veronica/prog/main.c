@@ -28,6 +28,7 @@
 #include "ps2_NaDraw2D.c"
 #include "ps2_NaMatrix.c"
 #include "ps2_NaSystem.c"
+#include "ps2_texture.c"
 #include "ps2_NaTextureFunction.c"
 #include "ps2_NaView.c"
 #include "ps2_NinjaCnk.c"
