@@ -57,10 +57,10 @@ float fNaViwOffsetX;
 float fNaViwOffsetY;*/
 float fNaViwAspectW;
 float fNaViwAspectH;
-/*float fNaViwClipNear;
+float fNaViwClipNear;
 float fNaViwClipFar;
 float _fNaViwClipNear;
-float _fNaViwClipFar;*/
+float _fNaViwClipFar;
 float ClipDispW;
 float ClipDispH;
 NJS_SCREEN	_nj_screen_;
@@ -214,23 +214,28 @@ void    njSetView(NJS_VIEW *v)
     njClearMatrix(); 
 }
 
-// 
-// Start address: 0x2e2c90
+// 100% matching!
 void    njClipZ(Float n, Float f) 
 { 
-	// Line 397, Address: 0x2e2c90, Func Offset: 0
-	// Line 396, Address: 0x2e2c98, Func Offset: 0x8
-	// Line 397, Address: 0x2e2c9c, Func Offset: 0xc
-	// Line 398, Address: 0x2e2cb0, Func Offset: 0x20
-	// Line 400, Address: 0x2e2cd4, Func Offset: 0x44
-	// Line 401, Address: 0x2e2cdc, Func Offset: 0x4c
-	// Line 402, Address: 0x2e2ce4, Func Offset: 0x54
-	// Line 403, Address: 0x2e2cf0, Func Offset: 0x60
-	// Line 405, Address: 0x2e2cfc, Func Offset: 0x6c
-	// Line 407, Address: 0x2e2d10, Func Offset: 0x80
-	// Line 411, Address: 0x2e2d18, Func Offset: 0x88
-	// Func End, Address: 0x2e2d24, Func Offset: 0x94
-	scePrintf("njClipZ - UNIMPLEMENTED!\n");
+    if (-1.0f < n) 
+    { 
+        n = -1.0f; 
+    }
+    
+    if (f < -65535.0f)
+    { 
+        f = -65535.0f; 
+    } 
+    
+    fNaViwClipNear = n; 
+    fNaViwClipFar = f; 
+    
+    _fNaViwClipNear = -n; 
+    _fNaViwClipFar = -f; 
+    
+    vu1SetNearFarClip(_fNaViwClipNear, _fNaViwClipFar);
+    
+    CalcPs2ZbuffAB();
 }
 
 /*// 
