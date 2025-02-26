@@ -109,24 +109,22 @@ void syMallocFinish()
 {
 	// Line 225, Address: 0x2d9b80, Func Offset: 0
 	// Func End, Address: 0x2d9b88, Func Offset: 0x8
-}
+}*/
 
-// 
-// Start address: 0x2d9b90
-void syMallocInit()
+// 100% matching!
+Void syMallocInit(Void *heap, Uint32 size)
 {
-	// Line 257, Address: 0x2d9b90, Func Offset: 0
-	// Line 258, Address: 0x2d9ba0, Func Offset: 0x10
-	// Line 259, Address: 0x2d9ba8, Func Offset: 0x18
-	// Line 258, Address: 0x2d9bb0, Func Offset: 0x20
-	// Line 259, Address: 0x2d9bb4, Func Offset: 0x24
-	// Line 260, Address: 0x2d9bc0, Func Offset: 0x30
-	// Line 261, Address: 0x2d9bcc, Func Offset: 0x3c
-	// Line 262, Address: 0x2d9bd0, Func Offset: 0x40
-	// Func End, Address: 0x2d9bd8, Func Offset: 0x48
+    Ps2_malloc_p = (_HM*)&Ps2_malloc_mem;
+    
+    Ps2_malloc_p->Use_size = 0;
+    Ps2_malloc_p->Total_size = 13422528;
+    
+    Ps2_malloc_p->pNext_work = NULL;
+    
+    __free_malloc_size = 13422528;
 }
 
-// 
+/*// 
 // Start address: 0x2d9be0
 void syMallocStat(unsigned int* wholeFreeSize, unsigned int* biggestFreeBlockSize)
 {
