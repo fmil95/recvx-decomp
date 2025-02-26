@@ -1646,13 +1646,11 @@ void	njSetVertexBuffer(Uint32 *buffer,Sint32 size)
 
 }
 
-/*// 
-// Start address: 0x2e13a0
-void njInitSystem()
+// 100% matching!
+void	njInitSystem( Int, Int, Int )
 {
-	// Line 100, Address: 0x2e13a0, Func Offset: 0
-	// Func End, Address: 0x2e13a8, Func Offset: 0x8
-}*/
+    Ps2Init();
+}
 
 // 100% matching!
 void	njInitVertexBuffer( Sint32 op, Sint32 om, Sint32 tp, Sint32 tm ,Sint32 pt)
