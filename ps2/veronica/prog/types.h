@@ -1486,3 +1486,12 @@ struct _HM
 	_HM* pNext_work;
 	unsigned int dummy64[12];
 };
+
+typedef struct NO_NAME_19
+{
+	unsigned short routine_0;
+	unsigned short type;
+	unsigned short act_lv[2];
+	unsigned short be_flag;
+	unsigned char act_data[8];
+} NO_NAME_19;

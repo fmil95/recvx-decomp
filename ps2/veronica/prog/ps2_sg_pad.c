@@ -134,9 +134,9 @@ struct _anon6
 unsigned int Old_sys_cnt;
 <unknown fundamental type (0xa510)> Padd1[16];
 <unknown fundamental type (0xa510)> Padd2[16];
-_anon5 ButtonInfo[5];
-_anon6 Pad_status;
-unsigned int Ps2_sys_cnt;
+_anon5 ButtonInfo[5];*/
+NO_NAME_19 Pad_status;
+/*unsigned int Ps2_sys_cnt;
 _anon4 Ps2_pad;
 unsigned char Pad_rdata2[32];
 unsigned char Pad_rdata1[32];
@@ -159,26 +159,26 @@ void Ps2_pad_read();
 void Ps2_Read_Key(_anon1* per, _anon0* pad_wk);
 void Ps2_MakeRepeatKey(unsigned int Id, _anon0* pad_wk);
 void Pad_set(_anon0* pbt, unsigned short pad_num);
-void Pad_init();
+void Pad_init();*/
 
-// 
-// Start address: 0x2d9c50
-void pdInitPeripheral()
+// 100% matching!
+void pdInitPeripheral(Sint32 logic, void* recvbuf, void* sendbuf)
 {
-	// Line 67, Address: 0x2d9c50, Func Offset: 0
-	// Line 68, Address: 0x2d9c58, Func Offset: 0x8
-	// Line 69, Address: 0x2d9c60, Func Offset: 0x10
-	// Line 70, Address: 0x2d9c68, Func Offset: 0x18
-	// Line 71, Address: 0x2d9c70, Func Offset: 0x20
-	// Line 72, Address: 0x2d9c7c, Func Offset: 0x2c
-	// Line 73, Address: 0x2d9c88, Func Offset: 0x38
-	// Line 74, Address: 0x2d9c90, Func Offset: 0x40
-	// Line 75, Address: 0x2d9c98, Func Offset: 0x48
-	// Line 77, Address: 0x2d9c9c, Func Offset: 0x4c
-	// Func End, Address: 0x2d9ca4, Func Offset: 0x54
+    Pad_status.routine_0 = 0;
+    
+    Pad_status.be_flag = 0;
+    
+    Pad_status.type = 0;
+    
+    Pad_status.act_data[0] = 0;
+    Pad_status.act_data[1] = 1;
+    Pad_status.act_data[2] = 255;
+    Pad_status.act_data[3] = 255;
+    Pad_status.act_data[4] = 255;
+    Pad_status.act_data[5] = 255;
 }
 
-// 
+/*// 
 // Start address: 0x2d9cb0
 void pdExitPeripheral()
 {

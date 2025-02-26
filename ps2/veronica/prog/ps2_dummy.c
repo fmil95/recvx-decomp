@@ -776,7 +776,7 @@ void _builtin_set_imask(int mask)
 
 }
 
-/*// 
+// 
 // Start address: 0x2cb070
 void Ps2Init()
 {
@@ -875,9 +875,10 @@ void Ps2Init()
 	// Line 366, Address: 0x2cb52c, Func Offset: 0x4bc
 	// Line 367, Address: 0x2cb534, Func Offset: 0x4c4
 	// Func End, Address: 0x2cb540, Func Offset: 0x4d0
+	scePrintf("Ps2Init - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cb540
 void Ps2LoadModule(char* p)
 {

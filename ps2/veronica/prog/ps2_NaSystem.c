@@ -1646,6 +1646,7 @@ void	njSetVertexBuffer(Uint32 *buffer,Sint32 size)
 
 }
 
+void Ps2Init(); // TODO: remove this declaration
 // 100% matching!
 void	njInitSystem( Int, Int, Int )
 {
