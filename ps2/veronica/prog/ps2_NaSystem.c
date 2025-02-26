@@ -1600,9 +1600,9 @@ void(*VsyncFunc)();
 void(*null_func)();
 void(*EorFunc)();
 unsigned int Ps2_vcount;
-unsigned int Ps2_dbuff;
-_anon34 Db;
-_anon8* sys;
+unsigned int Ps2_dbuff;*/
+NO_NAME_11 Db;
+/*_anon8* sys;
 void(*vsync_func)();
 _anon1 Ps2_nj_save_current;
 _anon45 Ps2_gs_save;
@@ -1768,18 +1768,19 @@ void njExitSystem()
 	// Func End, Address: 0x2e1628, Func Offset: 0x8
 }*/
 
-// 
-// Start address: 0x2e1630
-void	njSetBackColor( Uint32 col1, Uint32 col2, Uint32 col3 )
+#define UNCACHED_BASE 0x20000000
+#define UNCACHED(x) ((u_int)(x)|UNCACHED_BASE)
+
+// 100% matching!
+void	njSetBackColor( Uint32 col1, Uint32 col2, Uint32 col3 ) 
 {
-	unsigned long tmp;
-	// Line 283, Address: 0x2e1630, Func Offset: 0
-	// Line 284, Address: 0x2e1664, Func Offset: 0x34
-	// Line 285, Address: 0x2e1678, Func Offset: 0x48
-	// Line 286, Address: 0x2e1684, Func Offset: 0x54
-	// Func End, Address: 0x2e168c, Func Offset: 0x5c
-	scePrintf("njSetBackColor - UNIMPLEMENTED!\n");
-}
+    unsigned long tmp; 
+
+    tmp = SCE_GS_SET_RGBAQ((col1 >> 16) & 0xFF, (col1 >> 8) & 0xFF, col1 & 0xFF, (col1 >> 24) & 0xFF, 0); 
+    
+    *(unsigned long*)UNCACHED(&Db.clear0.rgbaq) = tmp; 
+    *(unsigned long*)UNCACHED(&Db.clear1.rgbaq) = tmp; 
+} 
 
 /*// 
 // Start address: 0x2e1690
