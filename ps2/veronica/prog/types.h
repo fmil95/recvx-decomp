@@ -1470,3 +1470,9 @@ typedef struct NO_NAME_17
 	NJS_TEXMEMLIST tmem[256];
 	void* addr[256];
 } NO_NAME_17;
+
+typedef struct NO_NAME_18
+{
+	unsigned int Flag;
+	GDFS_HANDLE* GdFs;
+} NO_NAME_18;
