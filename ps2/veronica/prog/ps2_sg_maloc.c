@@ -11,14 +11,14 @@ struct _HM
 	unsigned int dummy;
 	_HM* pNext_work;
 	unsigned int dummy64[12];
-};
+};*/
 
 unsigned int __free_malloc_size;
 _HM* Ps2_malloc_p;
 unsigned char Ps2_malloc_mem[13422592];
 unsigned int __max_malloc_size;
 
-void syFree(void* ap);
+/*void syFree(void* ap);
 void* syMalloc(unsigned int nbytes);
 void syMallocFinish();
 void syMallocInit();
@@ -45,38 +45,63 @@ void syFree(void* ap)
 	// Func End, Address: 0x2d9a6c, Func Offset: 0x7c
 }*/
 
-// 
-// Start address: 0x2d9a70
-void* syMalloc(unsigned int nbytes)
+#define ALIGN(x, y) (((((int)x) + (y-1)) / y) * y)
+#define GET_DATA_PTR(x) ((void*)(((unsigned int)x) + sizeof(struct _HM)))
+#define GET_NEXT_WRK(x) ((int)search_work) + (int)search_work->Use_size + (int)sizeof(struct _HM)
+
+// 100% matching!
+void* syMalloc(unsigned int nbytes) // this function might have actually been based on njMalloc
 {
-	//_HM* search_work;
-	// Line 144, Address: 0x2d9a70, Func Offset: 0
-	// Line 147, Address: 0x2d9a74, Func Offset: 0x4
-	// Line 144, Address: 0x2d9a78, Func Offset: 0x8
-	// Line 147, Address: 0x2d9a7c, Func Offset: 0xc
-	// Line 151, Address: 0x2d9a84, Func Offset: 0x14
-	// Line 153, Address: 0x2d9a8c, Func Offset: 0x1c
-	// Line 158, Address: 0x2d9aa4, Func Offset: 0x34
-	// Line 160, Address: 0x2d9aa8, Func Offset: 0x38
-	// Line 162, Address: 0x2d9ab4, Func Offset: 0x44
-	// Line 174, Address: 0x2d9ad0, Func Offset: 0x60
-	// Line 181, Address: 0x2d9ad8, Func Offset: 0x68
-	// Line 183, Address: 0x2d9ae0, Func Offset: 0x70
-	// Line 184, Address: 0x2d9af8, Func Offset: 0x88
-	// Line 185, Address: 0x2d9afc, Func Offset: 0x8c
-	// Line 191, Address: 0x2d9b04, Func Offset: 0x94
-	// Line 192, Address: 0x2d9b1c, Func Offset: 0xac
-	// Line 195, Address: 0x2d9b24, Func Offset: 0xb4
-	// Line 201, Address: 0x2d9b30, Func Offset: 0xc0
-	// Line 195, Address: 0x2d9b38, Func Offset: 0xc8
-	// Line 196, Address: 0x2d9b44, Func Offset: 0xd4
-	// Line 198, Address: 0x2d9b4c, Func Offset: 0xdc
-	// Line 201, Address: 0x2d9b54, Func Offset: 0xe4
-	// Line 203, Address: 0x2d9b64, Func Offset: 0xf4
-	// Line 204, Address: 0x2d9b6c, Func Offset: 0xfc
-	// Func End, Address: 0x2d9b74, Func Offset: 0x104
-	scePrintf("syMalloc - UNIMPLEMENTED!\n");
-}
+    _HM* search_work; 
+    
+    nbytes = ALIGN(nbytes, sizeof(_HM)); 
+
+    search_work = Ps2_malloc_p; 
+
+    while (search_work->pNext_work != NULL) 
+    { 
+        if ((search_work->Total_size - search_work->Use_size) >= (nbytes + sizeof(_HM))) 
+        { 
+            goto label;
+        } 
+        else
+        {
+            search_work = search_work->pNext_work;
+        }
+    } 
+    
+    if ((search_work->Total_size - search_work->Use_size) < (nbytes + sizeof(_HM))) 
+    { 
+        return NULL; 
+    }
+
+    label:
+    if (search_work->pNext_work == NULL) 
+    { 
+        search_work->pNext_work = (_HM*)ALIGN(GET_NEXT_WRK(search_work), 4);
+        
+        search_work->pNext_work->pNext_work = NULL; 
+    } 
+    else 
+    { 
+        _HM* temp; // not from the debugging symbols
+
+        temp = search_work->pNext_work;
+        
+        search_work->pNext_work = (_HM*)ALIGN(GET_NEXT_WRK(search_work), 4); 
+        
+        search_work->pNext_work->pNext_work = temp; 
+    }
+    
+    search_work->pNext_work->Total_size = search_work->Total_size - (search_work->Use_size + sizeof(_HM));
+    search_work->pNext_work->Use_size = nbytes; 
+    
+    search_work->Total_size = search_work->Use_size; 
+    
+    __free_malloc_size -= nbytes + sizeof(_HM);
+    
+    return GET_DATA_PTR(search_work->pNext_work); 
+} 
 
 /*// 
 // Start address: 0x2d9b80

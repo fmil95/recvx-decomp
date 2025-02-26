@@ -1476,3 +1476,13 @@ typedef struct NO_NAME_18
 	unsigned int Flag;
 	GDFS_HANDLE* GdFs;
 } NO_NAME_18;
+
+typedef struct _HM _HM; 
+struct _HM
+{
+	unsigned int Use_size;
+	unsigned int Total_size;
+	unsigned int dummy;
+	_HM* pNext_work;
+	unsigned int dummy64[12];
+};
