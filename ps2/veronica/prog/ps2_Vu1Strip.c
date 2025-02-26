@@ -133,15 +133,15 @@ tagVU1_COLOR vu1Ambient;
 float fVu1AlphaRatio;
 _anon5 planeset;
 _anon2 scissorflip;
-_anon4 node;
+_anon4 node;*/
 float _fNaViwClipFar;
 float _fNaViwClipNear;
 float fVu1Projection;
-float ClipMatrix2[4][4];
+sceVu0FMATRIX ClipMatrix2;
 float fVu1InvNearClip;
 float fVu1NearClip;
 float fVu1FarClip;
-float fVu1OffsetY;
+/*float fVu1OffsetY;
 float fVu1OffsetX;*/
 float fVu1AspectH;
 float fVu1AspectW;
@@ -197,26 +197,34 @@ void vu1SetScreenProjection(float fProjection)
 	// Line 208, Address: 0x2d38d4, Func Offset: 0x14
 	// Line 216, Address: 0x2d38d8, Func Offset: 0x18
 	// Func End, Address: 0x2d38fc, Func Offset: 0x3c
-}
+}*/
 
-// 
-// Start address: 0x2d3900
+// 100% matching!
 void vu1SetNearFarClip(float fNear, float fFar)
 {
-	// Line 233, Address: 0x2d3900, Func Offset: 0
-	// Line 234, Address: 0x2d3908, Func Offset: 0x8
-	// Line 236, Address: 0x2d3910, Func Offset: 0x10
-	// Line 241, Address: 0x2d3930, Func Offset: 0x30
-	// Line 242, Address: 0x2d3934, Func Offset: 0x34
-	// Line 243, Address: 0x2d3938, Func Offset: 0x38
-	// Line 244, Address: 0x2d393c, Func Offset: 0x3c
-	// Line 245, Address: 0x2d3940, Func Offset: 0x40
-	// Line 246, Address: 0x2d3944, Func Offset: 0x44
-	// Line 253, Address: 0x2d3948, Func Offset: 0x48
-	// Func End, Address: 0x2d396c, Func Offset: 0x6c
+    fVu1NearClip = fNear;
+    fVu1FarClip = fFar;
+    
+    fVu1InvNearClip = 1.0f / fVu1NearClip;
+
+    asm volatile 
+    {
+        
+        mfc1     t0, $f12
+        mfc1     t1, $f13
+
+        qmtc2    t0, $vf4
+        qmtc2    t1, $vf5
+
+        vaddx.x  $vf23x, $vf0x, $vf4x
+        vaddx.y  $vf23y, $vf0y, $vf5x
+        
+    }
+    
+    _Make_ClipMatrix(ClipMatrix2[0], fVu1Projection, _fNaViwClipNear, _fNaViwClipFar);
 }
 
-// 
+/*// 
 // Start address: 0x2d3970
 void vu1SetScreenOffset(float fOffsetX, float fOffsetY)
 {
@@ -240,14 +248,14 @@ void vu1SetScreenAspect(float fAspectW, float fAspectH)
     asm volatile 
     {
         
-        mfc1     t0, $f12;
-        mfc1     t1, $f13;
+        mfc1     t0, $f12
+        mfc1     t1, $f13
 
-        qmtc2    t0, $vf4;
-        qmtc2    t1, $vf5;
+        qmtc2    t0, $vf4
+        qmtc2    t1, $vf5
 
-        vaddx.x  $vf17x, $vf0x, $vf4x;
-        vaddx.y  $vf17y, $vf0y, $vf5x;
+        vaddx.x  $vf17x, $vf0x, $vf4x
+        vaddx.y  $vf17y, $vf0y, $vf5x
         
     }
 }
