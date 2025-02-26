@@ -1,11 +1,11 @@
-/*typedef struct GDS_DCF;
+/*typedef struct GDS_DCF;*/
 typedef struct _anon0;
-typedef struct GDS_FS_WORK;
+/*typedef struct GDS_FS_WORK;
 typedef struct GDS_FS_LIF;
 typedef struct GDS_FS_HANDLE;
-typedef struct _anon1;
+typedef struct _anon1;*/
 typedef struct _anon2;
-typedef struct GDS_FS_DIRREC_ENT;
+/*typedef struct GDS_FS_DIRREC_ENT;
 typedef struct GDS_FS_DIRREC_TBL;
 typedef struct GDS_FS_DIRINFO;
 
@@ -30,17 +30,17 @@ typedef unsigned int type_16[1040];
 
 struct GDS_DCF
 {
-};
+};*/
 
-struct _anon0
+typedef struct _anon0
 {
 	unsigned char trycount;
 	unsigned char spindlctrl;
 	unsigned char datapattern;
 	unsigned char pad;
-};
+} _anon0;
 
-struct GDS_FS_WORK
+/*struct GDS_FS_WORK
 {
 	int max_open;
 	int pathtbl_fad;
@@ -99,17 +99,17 @@ struct _anon1
 {
 	char* file_name;
 	char* link_file;
-};
+};*/
 
-struct _anon2
+typedef struct _anon2
 {
 	unsigned int lsn;
 	unsigned int size;
 	char name[16];
 	unsigned char date[8];
-};
+} _anon2;
 
-struct GDS_FS_DIRREC_ENT
+/*struct GDS_FS_DIRREC_ENT
 {
 	int fad;
 	int fsize;
@@ -233,14 +233,14 @@ int gdFsGetFileSize(GDS_FS_HANDLE* gdfs, int* fsize)
 	// Line 291, Address: 0x2d8f18, Func Offset: 0x18
 	// Line 295, Address: 0x2d8f1c, Func Offset: 0x1c
 	// Func End, Address: 0x2d8f24, Func Offset: 0x24
-}
+}*/
 
 // 
 // Start address: 0x2d8f30
-int gdFsInit(int max_open, void* gdfs_work, int max_dirent, void* dirbuf)
+Sint32  gdFsInit(Sint32 max_open, void *gdfs_work, Sint32 max_dirent, void *dirbuf)
 {
 	int loop;
-	int loop;
+	//int loop;
 	_anon0 file_read_mode;
 	int file_count;
 	int file_size;
@@ -421,9 +421,10 @@ int gdFsInit(int max_open, void* gdfs_work, int max_dirent, void* dirbuf)
 	// Line 670, Address: 0x2d96f8, Func Offset: 0x7c8
 	// Line 673, Address: 0x2d96fc, Func Offset: 0x7cc
 	// Func End, Address: 0x2d9720, Func Offset: 0x7f0
+	scePrintf("gdFsInit - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d9720
 GDS_FS_HANDLE* gdFsOpen(char* fname)
 {

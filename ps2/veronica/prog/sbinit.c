@@ -1,35 +1,53 @@
 /*
 
 typedef unsigned char type_0[49184];
-typedef unsigned char type_1[49184];
+typedef unsigned char type_1[49184];*/
 
-unsigned char gMapleSendBuf[49184];
-unsigned char gMapleRecvBuf[49184];
-unsigned char* _BSG_END;
+unsigned char gMapleSendBuf[1024 * 24 * 2 + 32];
+unsigned char gMapleRecvBuf[1024 * 24 * 2 + 32];
+Uint8* _BSG_END;
 
-void sbInitSystem(int mode, int frame, int count);
+/*void sbInitSystem(int mode, int frame, int count);
 void sbExitSystem();*/
 
-// 
-// Start address: 0x12b530
+#define set_imask(mask)             _builtin_set_imask(mask)
+
+/* SH-4 program area address. */
+#define P1AREA   0x80000000
+
+/* Define work RAM end address (16 MB). */
+#define WORK_END (((Uint32) _BSG_END) & 0xe0000000 | 0x0d000000)
+
+#define HEAP_AREA ((void*) ((((Uint32) _BSG_END | P1AREA) & 0xffffffe0) + 0x20))
+#define HEAP_SIZE (WORK_END - (Uint32) HEAP_AREA)
+
+void sbExitSystem(void); // TODO: remove this declaration
+// 100% matching!
 void sbInitSystem(Int mode, Int frame, Int count)
 {
-    // Line 99, Address: 0x12b530, Func Offset: 0
-	// Line 108, Address: 0x12b548, Func Offset: 0x18
-	// Line 111, Address: 0x12b558, Func Offset: 0x28
-	// Line 114, Address: 0x12b560, Func Offset: 0x30
-	// Line 122, Address: 0x12b594, Func Offset: 0x64
-	// Line 125, Address: 0x12b59c, Func Offset: 0x6c
-	// Line 128, Address: 0x12b5ac, Func Offset: 0x7c
-	// Line 131, Address: 0x12b5b4, Func Offset: 0x84
-	// Line 134, Address: 0x12b5cc, Func Offset: 0x9c
-	// Line 137, Address: 0x12b5d4, Func Offset: 0xa4
-	// Line 145, Address: 0x12b5dc, Func Offset: 0xac
-	// Line 146, Address: 0x12b5ec, Func Offset: 0xbc
-	// Line 147, Address: 0x12b5f4, Func Offset: 0xc4
-	// Line 171, Address: 0x12b5fc, Func Offset: 0xcc
-	// Func End, Address: 0x12b614, Func Offset: 0xe4
-	scePrintf("sbInitSystem - UNIMPLEMENTED!\n");
+    set_imask(15); 
+    
+    syHwInit();
+    syMallocInit(HEAP_AREA, HEAP_SIZE);
+    
+    njSetTextureMemorySize(1310720); 
+    
+    njInitSystem(mode, frame, count); 
+    
+    syHwInit2(); 
+    
+    pdInitPeripheral(PDD_PLOGIC_ACTIVE, &gMapleRecvBuf, &gMapleSendBuf); 
+    
+    syRtcInit(); 
+
+    set_imask(0); 
+    
+    if (InitGdSystemEx(256) != 0) 
+    { 
+        sbExitSystem(); 
+        
+        syBtExit(); 
+    }
 }
 
 // 
