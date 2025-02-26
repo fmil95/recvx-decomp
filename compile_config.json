@@ -21,7 +21,7 @@
   ],
   "compiler_flags": ["--gcc-compat","-nosyspath"],
   "linker_flags": ["compiling/linker.lcf"],
-  "libs": ["-lgcc", "-lgraph", "-ldma", "-ldev", "-lpkt", "-lpad", "-lvu0", "-lkernl", "-lc"],
+  "libs": ["-lgcc", "-lgraph", "-ldma", "-ldev", "-lpkt", "-lpad", "-lvu0", "-lkernl", "-lc", "-lmc"],
   "source_files": [
       "ps2/veronica/prog/main.c"
   ]

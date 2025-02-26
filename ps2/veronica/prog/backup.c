@@ -82,11 +82,54 @@ struct _anon3
 	unsigned short block_size;
 	unsigned short icon_no;
 	_anon1 time;
-};
+};*/
 
-void(*BupInitCallback)();
-_anon0 gBupInfo[8];
-int(*BupProgress)(int, int, int, int);
+/******** �������J�[�h���\���� *******************************************/
+/******** Memory card information structure ********************************/
+typedef struct {
+	Uint16 Ready;               /* �������J�[�h���}�E���g����Ă��邩      */
+	                            /* Is memory card mounted ?                */
+	Uint16 IsFormat;            /* �t�H�[�}�b�g����Ă��邩�ǂ���          */
+	                            /* Is memory card formatted ?              */
+	Uint32 LastError;           /* �Ō�ɔ��������G���[�R�[�h              */
+	                            /* Error code which occured last.          */
+	Uint32 ProgressCount;       /* �����o�߃J�E���g                        */
+	                            /* Operation progress count.               */
+	Uint32 ProgressMax;         /* �����o�߃J�E���g�ő�                    */
+	                            /* Operattion progress count maximum.      */
+	Uint32 Operation;           /* �������̃I�y���[�V�����R�[�h            */
+	                            /* Operation code in handling now.         */
+	BUS_DISKINFO DiskInfo;      /* �h���C�u���                            */
+	                            /* Drive information.                      */
+	Uint32 Connect;             /* �������[�J�[�h���ڑ�����Ă��邩        */
+	                            /* Is memory card connected ?              */
+	void* Work;                 /* ���[�N�A�h���X                          */
+	                            /* Work address.                           */
+	Uint32 WorkSize;            /* ���[�N�T�C�Y                            */
+	                            /* Work size (bytes).                      */
+	Uint32 Capacity;            /* �������J�[�h�̗e�ʃt���O(BUD_CAPACITY)  */
+	                            /* Capacity flag of memory card.           */
+    Sint32 MemMode;             // manually added
+} BACKUPINFO;
+
+/*===============================================================*/
+/* �Ή����郁�����[�J�[�h�̍ő�e��                              */
+/* Mamimum volume to use.                                        */
+/*===============================================================*/
+
+#define MAX_CAPS BUD_CAPACITY_1MB
+
+/*===============================================================*/
+/* �Ή����郁�����[�J�[�h�̃h���C�u��                            */
+/* Number of memory card to use.                                 */
+/*===============================================================*/
+
+#define MAX_DRIVES 8
+#define USE_DRIVES BUD_USE_DRIVE_ALL
+
+static void BupInitCallback(void);
+BACKUPINFO gBupInfo[8];
+/*int(*BupProgress)(int, int, int, int);
 int(*BupComplete)(int, int, int, unsigned int);
 
 void BupInit();
@@ -96,17 +139,13 @@ int BupComplete(int drive, int op, int stat);
 int BupProgress(int drive, int op, int count, int max);
 void BupInitCallback();*/
 
-void BupInit(void)  
+// 100% matching!
+void BupInit(void)
 {
-	// Line 16, Address: 0x2c9a60, Func Offset: 0
-	// Line 17, Address: 0x2c9a64, Func Offset: 0x4
-	// Line 16, Address: 0x2c9a70, Func Offset: 0x10
-	// Line 17, Address: 0x2c9a74, Func Offset: 0x14
-	// Line 18, Address: 0x2c9a7c, Func Offset: 0x1c
-	// Line 19, Address: 0x2c9a94, Func Offset: 0x34
-	// Func End, Address: 0x2c9aa0, Func Offset: 0x40
-	scePrintf("BupInit - UNIMPLEMENTED!\n");
-} 
+	memset(gBupInfo, 0, sizeof(gBupInfo));
+    
+	buInit(MAX_CAPS, USE_DRIVES, 0, BupInitCallback);
+}
 
 void BupExit(void)
 {
@@ -183,7 +222,7 @@ int BupProgress(int drive, int op, int count, int max)
 	// Line 283, Address: 0x2c9c60, Func Offset: 0x20
 	// Line 286, Address: 0x2c9c64, Func Offset: 0x24
 	// Func End, Address: 0x2c9c6c, Func Offset: 0x2c
-}
+}*/
 
 // 
 // Start address: 0x2c9c70
@@ -196,4 +235,5 @@ void BupInitCallback()
 	// Line 295, Address: 0x2c9c84, Func Offset: 0x14
 	// Line 296, Address: 0x2c9c90, Func Offset: 0x20
 	// Func End, Address: 0x2c9c9c, Func Offset: 0x2c
-}*/
+	scePrintf("BupInitCallback - UNIMPLEMENTED!\n");
+}

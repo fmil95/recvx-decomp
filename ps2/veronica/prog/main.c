@@ -11,6 +11,7 @@
 #include <libpkt.h>
 #include <libvu0.h>
 #include <sifdev.h>
+#include <libmc.h>
 
 // KATANA library
 #include <ninja.h>
