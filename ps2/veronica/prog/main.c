@@ -15,6 +15,7 @@
 // KATANA library
 #include <ninja.h>
 #include <sg_syCbl.h>
+#include <sg_bup.h>
 
 #include "types.h"
 
@@ -31,6 +32,7 @@
 #include "ps2_NinjaCnk.c"
 #include "ps2_dummy.c"
 #include "ps2_sfd_mw.c"
+#include "ps2_sg_bup.c"
 #include "ps2_sg_maloc.c"
 #include "ps2_sg_pad.c"
 #include "ps2_sg_sybt.c"
