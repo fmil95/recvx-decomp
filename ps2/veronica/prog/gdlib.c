@@ -120,21 +120,21 @@ struct _anon0
 {
 	unsigned int Flag;
 	GDS_FS_HANDLE* GdFs;
-};
+};*/
 
 unsigned int MaxDirectoryEntry;
-unsigned int DiscOpenTrayFlag;
+/*unsigned int DiscOpenTrayFlag;
 unsigned int NewDiscCheckSw;
 unsigned int GdErrorFlag;*/
 NO_NAME_18 LfOpenInfo[14];
-/*GDS_FS_DIRREC_TBL* GdDirRec;
-void(*CallbackGdErrorFunc)(void*, int);
+GDFS_DIRREC_TBL* GdDirRec;
+/*void(*CallbackGdErrorFunc)(void*, int);*/
 unsigned char* pDirTbl;
 unsigned char* pDirWork;
 unsigned int RequestMultiReadFlag;
 unsigned int RequestReadBufferFlag;
 unsigned int RequestReadFlag;
-GDS_FS_HANDLE* CurrentGdFs;
+/*GDS_FS_HANDLE* CurrentGdFs;
 GDS_FS_HANDLE* CurrentGdFsBuf;
 unsigned int StatusUpdateCounter;
 GDS_FS_HANDLE* LfGdFs;
@@ -159,7 +159,7 @@ void LfInitLib()
     } 
 } 
 
-/*// 
+// 
 // Start address: 0x28e9d0
 void CallbackGdErrorFunc(int err)
 {
@@ -169,35 +169,47 @@ void CallbackGdErrorFunc(int err)
 	// Func End, Address: 0x28e9fc, Func Offset: 0x2c
 }
 
-// 
-// Start address: 0x28ea00
-unsigned int InitGdSystem()
-{
-	int GdErrorCode;
-	unsigned int i;
-	// Line 137, Address: 0x28ea00, Func Offset: 0
-	// Line 141, Address: 0x28ea08, Func Offset: 0x8
-	// Line 142, Address: 0x28ea1c, Func Offset: 0x1c
-	// Line 144, Address: 0x28ea48, Func Offset: 0x48
-	// Line 145, Address: 0x28ea50, Func Offset: 0x50
-	// Line 146, Address: 0x28ea58, Func Offset: 0x58
-	// Line 148, Address: 0x28ea5c, Func Offset: 0x5c
-	// Line 150, Address: 0x28ea64, Func Offset: 0x64
-	// Line 151, Address: 0x28ea68, Func Offset: 0x68
-	// Line 153, Address: 0x28ea88, Func Offset: 0x88
-	// Line 156, Address: 0x28eaa0, Func Offset: 0xa0
-	// Line 157, Address: 0x28eaa8, Func Offset: 0xa8
-	// Line 158, Address: 0x28eac4, Func Offset: 0xc4
-	// Line 159, Address: 0x28ead8, Func Offset: 0xd8
-	// Line 161, Address: 0x28eae4, Func Offset: 0xe4
-	// Line 163, Address: 0x28eaf4, Func Offset: 0xf4
-	// Line 165, Address: 0x28eafc, Func Offset: 0xfc
-	// Line 167, Address: 0x28eb10, Func Offset: 0x110
-	// Line 168, Address: 0x28eb14, Func Offset: 0x114
-	// Func End, Address: 0x28eb24, Func Offset: 0x124
-}
+// 99.18% matching
+unsigned int InitGdSystem() 
+{ 
+    unsigned int i;
+    int GdErrorCode;
 
-// 
+    pDirWork = syMalloc(5484); 
+    pDirTbl = syMalloc((MaxDirectoryEntry * 44) + 16);
+
+    RequestReadFlag = 0; 
+    RequestReadBufferFlag = 0; 
+    RequestMultiReadFlag = 0; 
+
+    LfInitLib();
+
+    for (i = 0; i < 128; i++) 
+    { 
+        GdErrorCode = gdFsInit(14, pDirWork, MaxDirectoryEntry, pDirTbl); 
+
+        if ((GdErrorCode == -23) || (GdErrorCode == -33)) 
+        {
+            break;
+        }
+
+        if (GdErrorCode == 0) 
+        {
+            GdDirRec = gdFsCreateDirhn(pDirTbl, MaxDirectoryEntry);
+            
+            gdFsLoadDir("\\", GdDirRec); 
+            gdFsSetDir(GdDirRec);
+
+            gdFsEntryErrFuncAll((GDFS_ERRFUNC)CallbackGdErrorFunc, NULL); 
+
+            return 0; 
+        }
+    } 
+
+    return 1; 
+} 
+
+/*// 
 // Start address: 0x28eb30
 unsigned int InitGdSystemEx(unsigned int MaxDirNum)
 {

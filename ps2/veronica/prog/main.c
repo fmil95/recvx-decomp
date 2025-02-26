@@ -38,6 +38,7 @@
 #include "ps2_sg_bup.c"
 #include "ps2_sg_gd.c"
 #include "ps2_sg_maloc.c"
+#include "gdlib.c"
 #include "ps2_sg_pad.c"
 #include "ps2_sg_sybt.c"
 #include "ps2_sg_sycbl.c"
