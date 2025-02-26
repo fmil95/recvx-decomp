@@ -137,9 +137,9 @@ struct GDS_FS_DIRINFO
 };
 
 GDS_FS_HANDLE* __file_handle;
-GDS_FS_WORK* __gds_fs_work;
-GDS_FS_DIRREC_TBL* __current_dir;
-GDS_FS_DIRREC_ENT* __gdfs_dir_ent;
+GDS_FS_WORK* __gds_fs_work;*/
+GDFS_DIRREC_TBL* __current_dir;
+/*GDS_FS_DIRREC_ENT* __gdfs_dir_ent;
 int dvd_image_data_max;
 _anon1 dvd_image_data[0];
 
@@ -166,18 +166,15 @@ void gdFsClose(GDS_FS_HANDLE* gdfs)
 	// Line 80, Address: 0x2d8d58, Func Offset: 0x8
 	// Line 82, Address: 0x2d8d5c, Func Offset: 0xc
 	// Func End, Address: 0x2d8d64, Func Offset: 0x14
-}
+}*/
 
-// 
-// Start address: 0x2d8d70
-GDS_FS_DIRREC_TBL* gdFsCreateDirhn()
+// 100% matching!
+GDFS_DIRREC  gdFsCreateDirhn(void *dirbuf, Sint32 max_dirent)
 {
-	// Line 106, Address: 0x2d8d70, Func Offset: 0
-	// Line 107, Address: 0x2d8d74, Func Offset: 0x4
-	// Func End, Address: 0x2d8d7c, Func Offset: 0xc
+    return __current_dir;
 }
 
-// 
+/*// 
 // Start address: 0x2d8d80
 void gdFsFinish()
 {
