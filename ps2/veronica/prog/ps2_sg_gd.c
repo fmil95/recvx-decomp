@@ -482,15 +482,13 @@ void  gdFsEntryErrFuncAll(GDFS_ERRFUNC erfunc, void *obj)
 
 }
 
-/*// 
-// Start address: 0x2d9930
-int gdFsLoadDir()
+// 100% matching!
+Sint32  gdFsLoadDir(const char *dirname, GDFS_DIRREC gf_dirrec)
 {
-	// Line 884, Address: 0x2d9930, Func Offset: 0
-	// Func End, Address: 0x2d9938, Func Offset: 0x8
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x2d9940
 int gdFsRead(GDS_FS_HANDLE* gdfs, int nsct, void* buf)
 {
