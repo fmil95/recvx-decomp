@@ -199,6 +199,7 @@ void vu1SetScreenProjection(float fProjection)
 	// Func End, Address: 0x2d38fc, Func Offset: 0x3c
 }*/
 
+void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far); // TODO: remove this declaration
 // 100% matching!
 void vu1SetNearFarClip(float fNear, float fFar)
 {
@@ -221,7 +222,7 @@ void vu1SetNearFarClip(float fNear, float fFar)
         
     }
     
-    _Make_ClipMatrix(ClipMatrix2[0], fVu1Projection, _fNaViwClipNear, _fNaViwClipFar);
+    _Make_ClipMatrix(&ClipMatrix2[0], fVu1Projection, _fNaViwClipNear, _fNaViwClipFar);
 }
 
 /*// 

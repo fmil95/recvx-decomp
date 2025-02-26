@@ -68,10 +68,10 @@ NJS_MATRIX NaViewScreenMatrix;
 /*float fNaViwHalfH;
 float fNaViwHalfW;*/
 NJS_MATRIX NaViwViewMatrix;
-/*_anon1 ClipVolume;
-float ClipScreenMatrix[4][4];
-float ClipMatrix2[4][4];
-float fVu1Projection;
+NO_NAME_16 ClipVolume;
+sceVu0FMATRIX ClipScreenMatrix;
+sceVu0FMATRIX ClipMatrix2;
+/*float fVu1Projection;
 
 void njSetScreen(_anon2* pScreen);
 void njSetPerspective(int lAngle);
@@ -82,8 +82,8 @@ void njSetView();
 void njClipZ(float fNear, float fFar);
 int njCalcScreen(_anon0* pPoint, float* fpScreenX, float* fpScreenY);*/
 void njViewScreenMatrix(NJS_MATRIX* vs);
-/*void _Make_ClipMatrix(float sc[4], float scr, float near, float far);
-void _Make_ClipVolume(float x, float y);
+void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far);
+/*void _Make_ClipVolume(float x, float y);
 
 // 
 // Start address: 0x2e2970
@@ -284,57 +284,68 @@ void njViewScreenMatrix(NJS_MATRIX* vs) // this function is not on this KATANA r
     (*vs)[15] = _nj_screen_.dist; 
 }
 
-/*// 
-// Start address: 0x2e2ee0
-void _Make_ClipMatrix(float sc[4], float scr, float near, float far)
-{
-	_anon1* cv;
-	float gsy;
+// 100% matching!
+void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far)
+{ 
 	float gsx;
-	// Line 581, Address: 0x2e2ee0, Func Offset: 0
-	// Line 589, Address: 0x2e2f04, Func Offset: 0x24
-	// Line 590, Address: 0x2e2f14, Func Offset: 0x34
-	// Line 607, Address: 0x2e2f1c, Func Offset: 0x3c
-	// Line 608, Address: 0x2e2f20, Func Offset: 0x40
-	// Line 615, Address: 0x2e2f24, Func Offset: 0x44
-	// Line 607, Address: 0x2e2f28, Func Offset: 0x48
-	// Line 608, Address: 0x2e2f34, Func Offset: 0x54
-	// Line 615, Address: 0x2e2f44, Func Offset: 0x64
-	// Line 617, Address: 0x2e2f4c, Func Offset: 0x6c
-	// Line 624, Address: 0x2e2f54, Func Offset: 0x74
-	// Line 617, Address: 0x2e2f58, Func Offset: 0x78
-	// Line 628, Address: 0x2e2f5c, Func Offset: 0x7c
-	// Line 625, Address: 0x2e2f60, Func Offset: 0x80
-	// Line 628, Address: 0x2e2f64, Func Offset: 0x84
-	// Line 617, Address: 0x2e2f68, Func Offset: 0x88
-	// Line 618, Address: 0x2e2f6c, Func Offset: 0x8c
-	// Line 617, Address: 0x2e2f70, Func Offset: 0x90
-	// Line 624, Address: 0x2e2f74, Func Offset: 0x94
-	// Line 617, Address: 0x2e2f78, Func Offset: 0x98
-	// Line 618, Address: 0x2e2f7c, Func Offset: 0x9c
-	// Line 624, Address: 0x2e2f80, Func Offset: 0xa0
-	// Line 618, Address: 0x2e2f84, Func Offset: 0xa4
-	// Line 624, Address: 0x2e2f88, Func Offset: 0xa8
-	// Line 623, Address: 0x2e2f8c, Func Offset: 0xac
-	// Line 624, Address: 0x2e2f98, Func Offset: 0xb8
-	// Line 623, Address: 0x2e2f9c, Func Offset: 0xbc
-	// Line 624, Address: 0x2e2fa0, Func Offset: 0xc0
-	// Line 625, Address: 0x2e2fa4, Func Offset: 0xc4
-	// Line 626, Address: 0x2e2fa8, Func Offset: 0xc8
-	// Line 629, Address: 0x2e2fac, Func Offset: 0xcc
-	// Line 630, Address: 0x2e2fb0, Func Offset: 0xd0
-	// Line 631, Address: 0x2e2fb4, Func Offset: 0xd4
-	// Line 632, Address: 0x2e2fb8, Func Offset: 0xd8
-	// Line 669, Address: 0x2e2fbc, Func Offset: 0xdc
-	// Line 670, Address: 0x2e2fd4, Func Offset: 0xf4
-	// Line 671, Address: 0x2e2fd8, Func Offset: 0xf8
-	// Line 672, Address: 0x2e2fdc, Func Offset: 0xfc
-	// Line 673, Address: 0x2e2fe0, Func Offset: 0x100
-	// Line 681, Address: 0x2e2fe4, Func Offset: 0x104
-	// Func End, Address: 0x2e3004, Func Offset: 0x124
-}
+	float gsy;
+    NO_NAME_16* cv;
+    float (*mp)[4]; // not from the debugging symbols
+    register float (*mp2)[4], *fM, *fw, *fh; // not from the debugging symbols
 
-// 
+    mp = sc;
+    
+    if (mp == NULL) 
+    {
+        mp = &ClipMatrix2[0];
+    }
+    
+    cv = &ClipVolume; 
+    
+    gsx = (near * cv->x) / scr; 
+    gsy = (near * cv->y) / scr; 
+    
+    sceVu0UnitMatrix(mp); 
+
+    mp[0][0] = (2.0f * near) / (gsx + gsx); 
+    mp[1][1] = (2.0f * near) / (gsy + gsy); 
+    
+    mp[2][2] = (far + near) / (far - near); 
+    mp[3][2] = (-2.0f * far * near) / (far - near);
+    
+    mp[2][3] = 1.0f; 
+    mp[3][3] = 0; 
+
+    mp2 = &ClipMatrix2[0]; 
+    
+    asm volatile 
+    { 
+        
+        lqc2 $vf24, 0x0(mp2) 
+        lqc2 $vf25, 0x10(mp2) 
+        lqc2 $vf26, 0x20(mp2) 
+        lqc2 $vf27, 0x30(mp2)
+    
+    }
+
+    fM = ClipScreenMatrix[0];
+    
+    fw = &ClipDispW; 
+    fh = &ClipDispH; 
+
+    asm volatile 
+    { 
+        
+        lwc1 $f8, 0x0(fw) 
+        lwc1 $f9, 0x0(fh) 
+        
+        swc1 $f8, 0x2C(fM) 
+        swc1 $f9, 0x28(fM)
+    
+    }
+} 
+
+/*// 
 // Start address: 0x2e3010
 void _Make_ClipVolume(float x, float y)
 {
