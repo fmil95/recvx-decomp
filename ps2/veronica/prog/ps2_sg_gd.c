@@ -468,18 +468,16 @@ int gdFsReqDrvStat()
 {
 	// Line 806, Address: 0x2d9900, Func Offset: 0
 	// Func End, Address: 0x2d9908, Func Offset: 0x8
-}
-
-// 
-// Start address: 0x2d9910
-int gdFsSetDir()
-{
-	// Line 833, Address: 0x2d9910, Func Offset: 0
-	// Func End, Address: 0x2d9918, Func Offset: 0x8
 }*/
 
 // 100% matching!
-void gdFsEntryErrFuncAll() 
+Sint32  gdFsSetDir(GDFS_DIRREC gf_dirrec)
+{
+    return 0;
+}
+
+// 100% matching!
+void  gdFsEntryErrFuncAll(GDFS_ERRFUNC erfunc, void *obj)
 {
 
 }

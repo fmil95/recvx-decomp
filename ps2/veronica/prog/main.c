@@ -17,6 +17,7 @@
 #include <ninja.h>
 #include <sg_syCbl.h>
 #include <sg_bup.h>
+#include <sg_gd.h>
 
 #include "types.h"
 
