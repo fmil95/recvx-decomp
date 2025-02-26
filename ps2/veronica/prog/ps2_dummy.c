@@ -878,19 +878,18 @@ void Ps2Init()
 	scePrintf("Ps2Init - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2cb540
+// 100% matching!
 void Ps2LoadModule(char* p)
 {
-	// Line 371, Address: 0x2cb540, Func Offset: 0
-	// Line 372, Address: 0x2cb550, Func Offset: 0x10
-	// Line 373, Address: 0x2cb564, Func Offset: 0x24
-	// Line 374, Address: 0x2cb574, Func Offset: 0x34
-	// Line 376, Address: 0x2cb57c, Func Offset: 0x3c
-	// Func End, Address: 0x2cb58c, Func Offset: 0x4c
+    if (sceSifLoadModule(p, 0, NULL) < 0) 
+    {
+        printf("LOAD ERROR!!! %s\n", p); 
+        
+        exit(0);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2cb590
 void Snd_init()
 {
