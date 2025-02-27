@@ -1552,3 +1552,58 @@ typedef struct VU1_STRIP_BUF
 	float fIz;
 	float fNz;
 } VU1_STRIP_BUF;
+
+typedef struct PAD_WORK
+{
+	// total size: 0x42
+    unsigned short on; // offset 0x0, size 0x2
+    unsigned short old; // offset 0x2, size 0x2
+    unsigned short push; // offset 0x4, size 0x2
+    unsigned short release; // offset 0x6, size 0x2
+    short send; // offset 0x8, size 0x2
+    unsigned short ad_flag; // offset 0xA, size 0x2
+    unsigned char buff[2]; // offset 0xC, size 0x2
+    unsigned short onon; // offset 0xE, size 0x2
+    unsigned short repeat; // offset 0x10, size 0x2
+    char time1[16]; // offset 0x12, size 0x10
+    char time2[16]; // offset 0x22, size 0x10
+    unsigned char rh; // offset 0x32, size 0x1
+    unsigned char rv; // offset 0x33, size 0x1
+    unsigned char lh; // offset 0x34, size 0x1
+    unsigned char lv; // offset 0x35, size 0x1
+    unsigned char au; // offset 0x36, size 0x1
+    unsigned char ad; // offset 0x37, size 0x1
+    unsigned char al; // offset 0x38, size 0x1
+    unsigned char ar; // offset 0x39, size 0x1
+    unsigned char abu; // offset 0x3A, size 0x1
+    unsigned char abd; // offset 0x3B, size 0x1
+    unsigned char abl; // offset 0x3C, size 0x1
+    unsigned char abr; // offset 0x3D, size 0x1
+    unsigned char al1; // offset 0x3E, size 0x1
+    unsigned char al2; // offset 0x3F, size 0x1
+    unsigned char ar1; // offset 0x40, size 0x1
+    unsigned char ar2; // offset 0x41, size 0x1
+} PAD_WORK;
+
+typedef struct PAD
+{
+	// total size: 0x3C
+    int PerType; // offset 0x0, size 0x4
+    int OldPerType; // offset 0x4, size 0x4
+    int PerTypeEx; // offset 0x8, size 0x4
+    unsigned int Flag; // offset 0xC, size 0x4
+    int SoftReset; // offset 0x10, size 0x4
+    unsigned int on; // offset 0x14, size 0x4
+    unsigned int press; // offset 0x18, size 0x4
+    unsigned int Rept; // offset 0x1C, size 0x4
+    unsigned int on2; // offset 0x20, size 0x4
+    unsigned int on2old; // offset 0x24, size 0x4
+    unsigned int press2; // offset 0x28, size 0x4
+    unsigned short l; // offset 0x2C, size 0x2
+    unsigned short r; // offset 0x2E, size 0x2
+    short x1; // offset 0x30, size 0x2
+    short y1; // offset 0x32, size 0x2
+    short x2; // offset 0x34, size 0x2
+    short y2; // offset 0x36, size 0x2
+    short Calibrate; // offset 0x38, size 0x2
+} PAD;

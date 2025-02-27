@@ -144,9 +144,9 @@ unsigned char ChkCnt;
 unsigned char PadCnt;
 _anon2 pgp_info;
 unsigned int Pad_state[2];
-int SoftResetFlag;
-_anon3 Pad[0];
-int CurrentPortId;
+int SoftResetFlag;*/
+PAD Pad[4];
+/*int CurrentPortId;
 _anon4 Pad_info;
 _anon6 Pad_status2;
 
@@ -464,18 +464,14 @@ void Ps2_Read_Key(_anon1* per, _anon0* pad_wk)
 	// Line 682, Address: 0x2da748, Func Offset: 0x348
 	// Line 696, Address: 0x2da754, Func Offset: 0x354
 	// Func End, Address: 0x2da770, Func Offset: 0x370
-}
+}*/
 
-// 
-// Start address: 0x2da770
-void Ps2_MakeRepeatKey(unsigned int Id, _anon0* pad_wk)
+void Ps2_MakeRepeatKey(unsigned int Id, PAD_WORK* pad_wk)
 {
-	// Line 700, Address: 0x2da770, Func Offset: 0
-	// Line 701, Address: 0x2da78c, Func Offset: 0x1c
-	// Func End, Address: 0x2da794, Func Offset: 0x24
+    Pad[Id].Rept = pad_wk->onon;
 }
 
-// 
+/*// 
 // Start address: 0x2da7a0
 void Pad_set(_anon0* pbt, unsigned short pad_num)
 {
