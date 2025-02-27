@@ -130,10 +130,10 @@ void(*pColorCalcFuncTbl)(tagVU1_STRIP_BUF*, tagVU1_PRIM_BUF*)[11];
 tagVU1_COLOR vu1Diffuse;
 tagVU1_COLOR vu1Specula;
 tagVU1_COLOR vu1Ambient;
-float fVu1AlphaRatio;
-_anon5 planeset;
-_anon2 scissorflip;
-_anon4 node;*/
+float fVu1AlphaRatio;*/
+SCISSOR_PLANE planeset;
+SCISSOR scissorflip;
+/*_anon4 node;*/
 float _fNaViwClipFar;
 float _fNaViwClipNear;
 float fVu1Projection;
@@ -373,20 +373,14 @@ void InitScissorPlane(SCISSOR_PLANE* sp)
     sp->plane[4].xyzflag = 0;
 }
 
-/*// 
-// Start address: 0x2d4080
+// 100% matching!
 void _Init_ScissorSystem()
 {
-	// Line 520, Address: 0x2d4080, Func Offset: 0
-	// Line 521, Address: 0x2d4084, Func Offset: 0x4
-	// Line 520, Address: 0x2d4088, Func Offset: 0x8
-	// Line 521, Address: 0x2d408c, Func Offset: 0xc
-	// Line 522, Address: 0x2d4094, Func Offset: 0x14
-	// Line 523, Address: 0x2d40a0, Func Offset: 0x20
-	// Func End, Address: 0x2d40ac, Func Offset: 0x2c
+    InitScissorPlane(&planeset);
+    InitNodeArraySet(&scissorflip);
 }
 
-// 
+/*// 
 // Start address: 0x2d40b0
 int _Clip_ViewVolume(float* clip, float local_clip[4], float* vertex)
 {
