@@ -1507,3 +1507,28 @@ typedef struct SCISSOR_PLANE
 	PLANE plane[5];
 	unsigned int planeNum;
 } SCISSOR_PLANE;
+
+typedef struct NODE
+{
+	sceVu0FVECTOR vertex;
+	sceVu0FVECTOR color;
+	sceVu0FVECTOR texUV;
+	sceVu0FVECTOR clipV;
+} NODE;
+
+typedef struct SCISSOR_NODE
+{
+	NODE node[12];
+	unsigned int nodeNum;
+	float pad[3]; 
+} SCISSOR_NODE;
+
+typedef struct SCISSOR
+{
+	SCISSOR_NODE triangle;
+	SCISSOR_NODE narray[2];
+	SCISSOR_NODE* in;
+	SCISSOR_NODE* out;
+	unsigned int rotflag;
+	unsigned int flipflag;
+} SCISSOR;
