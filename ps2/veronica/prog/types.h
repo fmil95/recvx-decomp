@@ -1607,3 +1607,10 @@ typedef struct PAD
     short y2; // offset 0x36, size 0x2
     short Calibrate; // offset 0x38, size 0x2
 } PAD;
+
+typedef struct DVDISO_DATA
+{
+	char* file_name;
+	//char* link_file; original field from the debugging symbols, the below version matches better
+    char** link_file;
+} DVDISO_DATA;

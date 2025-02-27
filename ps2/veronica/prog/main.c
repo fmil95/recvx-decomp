@@ -12,6 +12,7 @@
 #include <libvu0.h>
 #include <sifdev.h>
 #include <libmc.h>
+#include <libcdvd.h>
 
 // KATANA library
 #include <ninja.h>

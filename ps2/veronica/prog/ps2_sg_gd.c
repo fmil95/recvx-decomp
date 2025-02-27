@@ -134,16 +134,16 @@ struct GDS_FS_DIRINFO
 	int fsize;
 	unsigned char flag;
 	unsigned char pad[3];
-};
+};*/
 
-GDS_FS_HANDLE* __file_handle;
-GDS_FS_WORK* __gds_fs_work;*/
+GDFS_HANDLE* __file_handle;
+GDFS_WORK* __gds_fs_work;
 GDFS_DIRREC_TBL* __current_dir;
-/*GDS_FS_DIRREC_ENT* __gdfs_dir_ent;
+GDFS_DIRREC_ENT* __gdfs_dir_ent;
 int dvd_image_data_max;
-_anon1 dvd_image_data[0];
+DVDISO_DATA dvd_image_data[19];
 
-void gdFsClose(GDS_FS_HANDLE* gdfs);
+/*void gdFsClose(GDS_FS_HANDLE* gdfs);
 GDS_FS_DIRREC_TBL* gdFsCreateDirhn();
 void gdFsFinish();
 int gdFsGetDirInfo(char* name, GDS_FS_DIRINFO* dirinfo);
@@ -235,193 +235,243 @@ int gdFsGetFileSize(GDS_FS_HANDLE* gdfs, int* fsize)
 	// Func End, Address: 0x2d8f24, Func Offset: 0x24
 }*/
 
-// 
-// Start address: 0x2d8f30
+// 100% matching!
 Sint32  gdFsInit(Sint32 max_open, void *gdfs_work, Sint32 max_dirent, void *dirbuf)
 {
-	int loop;
-	//int loop;
-	_anon0 file_read_mode;
-	int file_count;
-	int file_size;
-	int sector_size;
-	int sector_top;
-	int link_file_max;
-	unsigned int j;
-	unsigned int i;
-	_anon2 file_data;
-	char read_f_name[2048];
-	char local_sector_buffer[2048];
-	// Line 319, Address: 0x2d8f30, Func Offset: 0
-	// Line 330, Address: 0x2d8f4c, Func Offset: 0x1c
-	// Line 319, Address: 0x2d8f54, Func Offset: 0x24
-	// Line 330, Address: 0x2d8f58, Func Offset: 0x28
-	// Line 349, Address: 0x2d8f60, Func Offset: 0x30
-	// Line 330, Address: 0x2d8f68, Func Offset: 0x38
-	// Line 349, Address: 0x2d8f6c, Func Offset: 0x3c
-	// Line 348, Address: 0x2d8f70, Func Offset: 0x40
-	// Line 362, Address: 0x2d8f74, Func Offset: 0x44
-	// Line 348, Address: 0x2d8f78, Func Offset: 0x48
-	// Line 362, Address: 0x2d8f7c, Func Offset: 0x4c
-	// Line 351, Address: 0x2d8f80, Func Offset: 0x50
-	// Line 365, Address: 0x2d8f88, Func Offset: 0x58
-	// Line 369, Address: 0x2d8f8c, Func Offset: 0x5c
-	// Line 351, Address: 0x2d8f90, Func Offset: 0x60
-	// Line 352, Address: 0x2d8f94, Func Offset: 0x64
-	// Line 353, Address: 0x2d8fa0, Func Offset: 0x70
-	// Line 354, Address: 0x2d8fac, Func Offset: 0x7c
-	// Line 355, Address: 0x2d8fb8, Func Offset: 0x88
-	// Line 356, Address: 0x2d8fc4, Func Offset: 0x94
-	// Line 357, Address: 0x2d8fd0, Func Offset: 0xa0
-	// Line 358, Address: 0x2d8fdc, Func Offset: 0xac
-	// Line 359, Address: 0x2d8fe8, Func Offset: 0xb8
-	// Line 360, Address: 0x2d8ff4, Func Offset: 0xc4
-	// Line 361, Address: 0x2d9000, Func Offset: 0xd0
-	// Line 362, Address: 0x2d900c, Func Offset: 0xdc
-	// Line 363, Address: 0x2d9018, Func Offset: 0xe8
-	// Line 364, Address: 0x2d9024, Func Offset: 0xf4
-	// Line 365, Address: 0x2d9030, Func Offset: 0x100
-	// Line 366, Address: 0x2d903c, Func Offset: 0x10c
-	// Line 367, Address: 0x2d9048, Func Offset: 0x118
-	// Line 369, Address: 0x2d9050, Func Offset: 0x120
-	// Line 370, Address: 0x2d9058, Func Offset: 0x128
-	// Line 371, Address: 0x2d9064, Func Offset: 0x134
-	// Line 370, Address: 0x2d9068, Func Offset: 0x138
-	// Line 371, Address: 0x2d9070, Func Offset: 0x140
-	// Line 373, Address: 0x2d907c, Func Offset: 0x14c
-	// Line 374, Address: 0x2d9084, Func Offset: 0x154
-	// Line 398, Address: 0x2d90a0, Func Offset: 0x170
-	// Line 374, Address: 0x2d90a4, Func Offset: 0x174
-	// Line 375, Address: 0x2d90ac, Func Offset: 0x17c
-	// Line 376, Address: 0x2d90bc, Func Offset: 0x18c
-	// Line 377, Address: 0x2d90cc, Func Offset: 0x19c
-	// Line 378, Address: 0x2d90dc, Func Offset: 0x1ac
-	// Line 379, Address: 0x2d90ec, Func Offset: 0x1bc
-	// Line 380, Address: 0x2d90fc, Func Offset: 0x1cc
-	// Line 381, Address: 0x2d910c, Func Offset: 0x1dc
-	// Line 382, Address: 0x2d911c, Func Offset: 0x1ec
-	// Line 383, Address: 0x2d912c, Func Offset: 0x1fc
-	// Line 384, Address: 0x2d913c, Func Offset: 0x20c
-	// Line 385, Address: 0x2d914c, Func Offset: 0x21c
-	// Line 386, Address: 0x2d915c, Func Offset: 0x22c
-	// Line 387, Address: 0x2d916c, Func Offset: 0x23c
-	// Line 388, Address: 0x2d917c, Func Offset: 0x24c
-	// Line 389, Address: 0x2d918c, Func Offset: 0x25c
-	// Line 390, Address: 0x2d919c, Func Offset: 0x26c
-	// Line 391, Address: 0x2d91ac, Func Offset: 0x27c
-	// Line 392, Address: 0x2d91bc, Func Offset: 0x28c
-	// Line 393, Address: 0x2d91cc, Func Offset: 0x29c
-	// Line 394, Address: 0x2d91dc, Func Offset: 0x2ac
-	// Line 395, Address: 0x2d91ec, Func Offset: 0x2bc
-	// Line 396, Address: 0x2d91fc, Func Offset: 0x2cc
-	// Line 397, Address: 0x2d920c, Func Offset: 0x2dc
-	// Line 398, Address: 0x2d921c, Func Offset: 0x2ec
-	// Line 401, Address: 0x2d922c, Func Offset: 0x2fc
-	// Line 404, Address: 0x2d9234, Func Offset: 0x304
-	// Line 402, Address: 0x2d923c, Func Offset: 0x30c
-	// Line 409, Address: 0x2d9240, Func Offset: 0x310
-	// Line 402, Address: 0x2d9244, Func Offset: 0x314
-	// Line 404, Address: 0x2d924c, Func Offset: 0x31c
-	// Line 405, Address: 0x2d9250, Func Offset: 0x320
-	// Line 406, Address: 0x2d925c, Func Offset: 0x32c
-	// Line 409, Address: 0x2d9264, Func Offset: 0x334
-	// Line 411, Address: 0x2d926c, Func Offset: 0x33c
-	// Line 416, Address: 0x2d9288, Func Offset: 0x358
-	// Line 411, Address: 0x2d928c, Func Offset: 0x35c
-	// Line 412, Address: 0x2d9294, Func Offset: 0x364
-	// Line 413, Address: 0x2d92a4, Func Offset: 0x374
-	// Line 414, Address: 0x2d92b4, Func Offset: 0x384
-	// Line 415, Address: 0x2d92c4, Func Offset: 0x394
-	// Line 416, Address: 0x2d92d4, Func Offset: 0x3a4
-	// Line 429, Address: 0x2d92e4, Func Offset: 0x3b4
-	// Line 432, Address: 0x2d92ec, Func Offset: 0x3bc
-	// Line 433, Address: 0x2d92f0, Func Offset: 0x3c0
-	// Line 435, Address: 0x2d92f8, Func Offset: 0x3c8
-	// Line 437, Address: 0x2d9300, Func Offset: 0x3d0
-	// Line 438, Address: 0x2d934c, Func Offset: 0x41c
-	// Line 440, Address: 0x2d9380, Func Offset: 0x450
-	// Line 441, Address: 0x2d93ac, Func Offset: 0x47c
-	// Line 443, Address: 0x2d93c0, Func Offset: 0x490
-	// Line 441, Address: 0x2d93c8, Func Offset: 0x498
-	// Line 443, Address: 0x2d93cc, Func Offset: 0x49c
-	// Line 441, Address: 0x2d93d0, Func Offset: 0x4a0
-	// Line 443, Address: 0x2d93d4, Func Offset: 0x4a4
-	// Line 449, Address: 0x2d93f0, Func Offset: 0x4c0
-	// Line 454, Address: 0x2d93f8, Func Offset: 0x4c8
-	// Line 455, Address: 0x2d9400, Func Offset: 0x4d0
-	// Line 456, Address: 0x2d9404, Func Offset: 0x4d4
-	// Line 457, Address: 0x2d9408, Func Offset: 0x4d8
-	// Line 458, Address: 0x2d940c, Func Offset: 0x4dc
-	// Line 459, Address: 0x2d9410, Func Offset: 0x4e0
-	// Line 460, Address: 0x2d9424, Func Offset: 0x4f4
-	// Line 461, Address: 0x2d9434, Func Offset: 0x504
-	// Line 475, Address: 0x2d944c, Func Offset: 0x51c
-	// Line 478, Address: 0x2d9468, Func Offset: 0x538
-	// Line 482, Address: 0x2d9488, Func Offset: 0x558
-	// Line 478, Address: 0x2d948c, Func Offset: 0x55c
-	// Line 482, Address: 0x2d9490, Func Offset: 0x560
-	// Line 478, Address: 0x2d9494, Func Offset: 0x564
-	// Line 479, Address: 0x2d9498, Func Offset: 0x568
-	// Line 482, Address: 0x2d94a0, Func Offset: 0x570
-	// Line 479, Address: 0x2d94a4, Func Offset: 0x574
-	// Line 482, Address: 0x2d94a8, Func Offset: 0x578
-	// Line 479, Address: 0x2d94b0, Func Offset: 0x580
-	// Line 480, Address: 0x2d94b8, Func Offset: 0x588
-	// Line 481, Address: 0x2d94c8, Func Offset: 0x598
-	// Line 482, Address: 0x2d94d8, Func Offset: 0x5a8
-	// Line 492, Address: 0x2d94f0, Func Offset: 0x5c0
-	// Line 496, Address: 0x2d94f8, Func Offset: 0x5c8
-	// Line 497, Address: 0x2d9500, Func Offset: 0x5d0
-	// Line 498, Address: 0x2d9504, Func Offset: 0x5d4
-	// Line 499, Address: 0x2d9508, Func Offset: 0x5d8
-	// Line 500, Address: 0x2d950c, Func Offset: 0x5dc
-	// Line 501, Address: 0x2d9510, Func Offset: 0x5e0
-	// Line 502, Address: 0x2d9524, Func Offset: 0x5f4
-	// Line 505, Address: 0x2d9544, Func Offset: 0x614
-	// Line 508, Address: 0x2d954c, Func Offset: 0x61c
-	// Line 513, Address: 0x2d955c, Func Offset: 0x62c
-	// Line 518, Address: 0x2d9564, Func Offset: 0x634
-	// Line 515, Address: 0x2d9568, Func Offset: 0x638
-	// Line 518, Address: 0x2d956c, Func Offset: 0x63c
-	// Line 521, Address: 0x2d9574, Func Offset: 0x644
-	// Line 524, Address: 0x2d9578, Func Offset: 0x648
-	// Line 521, Address: 0x2d957c, Func Offset: 0x64c
-	// Line 524, Address: 0x2d9588, Func Offset: 0x658
-	// Line 522, Address: 0x2d95b0, Func Offset: 0x680
-	// Line 525, Address: 0x2d95b4, Func Offset: 0x684
-	// Line 522, Address: 0x2d95bc, Func Offset: 0x68c
-	// Line 528, Address: 0x2d95c0, Func Offset: 0x690
-	// Line 525, Address: 0x2d95d0, Func Offset: 0x6a0
-	// Line 526, Address: 0x2d95d8, Func Offset: 0x6a8
-	// Line 528, Address: 0x2d95e0, Func Offset: 0x6b0
-	// Line 526, Address: 0x2d95ec, Func Offset: 0x6bc
-	// Line 527, Address: 0x2d95f4, Func Offset: 0x6c4
-	// Line 528, Address: 0x2d9604, Func Offset: 0x6d4
-	// Line 531, Address: 0x2d9624, Func Offset: 0x6f4
-	// Line 534, Address: 0x2d9628, Func Offset: 0x6f8
-	// Line 535, Address: 0x2d962c, Func Offset: 0x6fc
-	// Line 536, Address: 0x2d963c, Func Offset: 0x70c
-	// Line 538, Address: 0x2d9644, Func Offset: 0x714
-	// Line 542, Address: 0x2d9664, Func Offset: 0x734
-	// Line 538, Address: 0x2d9668, Func Offset: 0x738
-	// Line 542, Address: 0x2d966c, Func Offset: 0x73c
-	// Line 538, Address: 0x2d9670, Func Offset: 0x740
-	// Line 539, Address: 0x2d9674, Func Offset: 0x744
-	// Line 542, Address: 0x2d967c, Func Offset: 0x74c
-	// Line 539, Address: 0x2d9680, Func Offset: 0x750
-	// Line 542, Address: 0x2d9684, Func Offset: 0x754
-	// Line 539, Address: 0x2d968c, Func Offset: 0x75c
-	// Line 540, Address: 0x2d9694, Func Offset: 0x764
-	// Line 541, Address: 0x2d96a4, Func Offset: 0x774
-	// Line 542, Address: 0x2d96b4, Func Offset: 0x784
-	// Line 545, Address: 0x2d96cc, Func Offset: 0x79c
-	// Line 547, Address: 0x2d96d0, Func Offset: 0x7a0
-	// Line 670, Address: 0x2d96ec, Func Offset: 0x7bc
-	// Line 672, Address: 0x2d96f4, Func Offset: 0x7c4
-	// Line 670, Address: 0x2d96f8, Func Offset: 0x7c8
-	// Line 673, Address: 0x2d96fc, Func Offset: 0x7cc
-	// Func End, Address: 0x2d9720, Func Offset: 0x7f0
-	scePrintf("gdFsInit - UNIMPLEMENTED!\n");
+	char local_sector_buffer[2048]; 
+	char read_f_name[2048]; 
+	sceCdlFILE file_data; 
+	unsigned int i; 
+	unsigned int j; 
+	int link_file_max; 
+	int sector_top; 
+	int sector_size; 
+	int file_size; 
+	int file_count; 
+    sceCdRMode file_read_mode = 
+    {
+        0,
+        1,
+        0,
+        0
+    }; 
+    
+    __file_handle = (GDFS_HANDLE*)((int)gdfs_work + 4308);
+    
+    __gds_fs_work = gdfs_work;
+    
+    __gds_fs_work->max_open = max_open;
+    
+    __gds_fs_work->pathtbl_fad = 0;
+    __gds_fs_work->pathtbl_size = 0;
+    
+    __gds_fs_work->dcf = NULL;
+    
+    __gds_fs_work->curdir = dirbuf;
+    
+    __gds_fs_work->syshdl = NULL;
+    
+    __gds_fs_work->hndtbl = NULL;
+    
+    __gds_fs_work->now_work = NULL;
+    
+    __gds_fs_work->f_svr = 0;
+    
+    __gds_fs_work->g_errcb = NULL;
+    __gds_fs_work->g_errcb_1st = NULL;
+    
+    __gds_fs_work->gdc_ver = 65792;
+    
+    __gds_fs_work->errstat = 0;
+    
+    __gds_fs_work->istray = 0;
+    
+    __gds_fs_work->f_init = 1;
+    
+    __gds_fs_work->daplayed = 0;
+    
+    __gds_fs_work->liftbl = NULL;
+
+    for (i = 0; i < 1040; i++) 
+    {
+        __gds_fs_work->sctbuf[i] = 0;
+    }
+    
+    for (i = 0; i < max_open; i++) 
+    {
+        __file_handle[i].wk = gdfs_work;
+        
+        __file_handle[i].fid = 0;
+        __file_handle[i].fad = 0;
+        
+        __file_handle[i].fsize = 0;
+        __file_handle[i].fsctsize = 0;
+        
+        __file_handle[i].ofs = 0;
+        
+        __file_handle[i].trnsed = 0;
+        
+        __file_handle[i].rsize = 0;
+        __file_handle[i].trsize = 0;
+        
+        __file_handle[i].rdendcb = NULL;
+        __file_handle[i].rdcb_1st = NULL;
+        
+        __file_handle[i].trendcb = NULL;
+        __file_handle[i].trcb_1st = NULL;
+        
+        __file_handle[i].errcb = NULL;
+        __file_handle[i].errcb_1st = NULL;
+        
+        __file_handle[i].gdchn = 0;
+        __file_handle[i].gdchn_wait = 0;
+        
+        __file_handle[i].ex_errcode = 0;
+        
+        __file_handle[i].act = 0;
+        
+        __file_handle[i].trflag = 0;
+        
+        __file_handle[i].used = 0;
+        
+        __file_handle[i].tmode = 0;
+        
+        __file_handle[i].stat = 0;
+        
+        __file_handle[i].err = 0;
+    }
+    
+    __current_dir = dirbuf;
+    
+    __gdfs_dir_ent = (GDFS_DIRREC_ENT*)((int)dirbuf + 104);
+    
+    __current_dir->dir_num = 0;
+    
+    __current_dir->max_ent = max_dirent;
+    
+    __current_dir->dir_fad = 0;
+    
+    for (i = 0; i < max_dirent; i++) 
+    {
+        __gdfs_dir_ent[i].fad = 0;
+        
+        __gdfs_dir_ent[i].fsize = 0;
+        
+        __gdfs_dir_ent[i].flag = 0;
+        
+        __gdfs_dir_ent[i].sid = 0;
+        
+        __gdfs_dir_ent[i].fname[0] = 0; 
+    }
+    
+    sceCdDiskReady(0);
+    
+    file_count = 0;
+
+    for (i = 0; i < dvd_image_data_max; i++) 
+    {
+        for (j = 0; j < strlen(dvd_image_data[i].file_name); j++) 
+        {
+            if ((dvd_image_data[i].file_name[j] >= 'a') && (dvd_image_data[i].file_name[j] <= 'z')) 
+            {
+                dvd_image_data[i].file_name[j] = dvd_image_data[i].file_name[j] - 32;
+            }
+        }
+        
+        dvd_image_data[i].file_name[j] = 0;
+        
+        sprintf(read_f_name, "%s%s;1", "\\", dvd_image_data[i].file_name);
+        
+        while (sceCdSearchFile(&file_data, read_f_name) == 0) 
+        {
+            int loop;
+            
+            for (loop = 0; loop < 20; loop++) 
+            {
+                asm("nop");
+                asm("nop");
+                asm("nop");
+                asm("nop");
+            }
+            
+            printf("found_serach %s\n", read_f_name);
+        }
+        
+        if (dvd_image_data[i].link_file != 0) 
+        {
+            __gdfs_dir_ent[file_count].fad = file_data.lsn;
+            
+            __gdfs_dir_ent[file_count].fsize = file_data.size;
+            
+            __gdfs_dir_ent[file_count].flag = 0;
+            
+            __gdfs_dir_ent[file_count].sid = 0;
+            
+            sprintf((char*)__gdfs_dir_ent[file_count].fname, "%s", dvd_image_data[i].file_name);
+            
+            file_count++;
+            
+            do 
+            {
+                while (sceCdRead(file_data.lsn, 1, &local_sector_buffer, &file_read_mode) == 0) 
+                {
+                    int loop;
+                    
+                    for (loop = 0; loop < 20; loop++) 
+                    {
+                        asm("nop");
+                        asm("nop");
+                        asm("nop");
+                        asm("nop");
+                    }
+                }
+                
+                sceCdSync(0);
+            } while (sceCdGetError() != 0);
+            
+            link_file_max = ((int*)local_sector_buffer)[1];
+            
+            sector_top = ((int*)local_sector_buffer)[2] / 2048; 
+            
+            for (j = 0; j < link_file_max; j++) 
+            {
+                file_size = ((int*)local_sector_buffer)[(j * 2) + 3]; // fuck knows
+                sector_size = (file_size + 2047) / 2048;
+                
+                __gdfs_dir_ent[file_count].fad = file_data.lsn + sector_top;
+                
+                __gdfs_dir_ent[file_count].fsize = file_size;
+                
+                __gdfs_dir_ent[file_count].flag = 0;
+                
+                __gdfs_dir_ent[file_count].sid = i;
+                
+                sprintf((char*)__gdfs_dir_ent[file_count].fname, "%s", dvd_image_data[i].link_file[j]);
+                
+                sector_top += sector_size;
+                
+                file_count++;
+            }
+        }
+        else
+        {
+            __gdfs_dir_ent[file_count].fad = file_data.lsn;
+            
+            __gdfs_dir_ent[file_count].fsize = file_data.size;
+            
+            __gdfs_dir_ent[file_count].flag = 0;
+            
+            __gdfs_dir_ent[file_count].sid = 0; 
+            
+            sprintf((char*)__gdfs_dir_ent[file_count].fname, "%s", dvd_image_data[i].file_name);
+            
+            file_count++;
+        }
+    }
+    
+    __current_dir->dir_num = file_count;
+    
+    return 0;
 }
 
 /*// 
