@@ -550,7 +550,7 @@ void Pad_set(_anon0* pbt, unsigned short pad_num)
 	// Line 944, Address: 0x2daa30, Func Offset: 0x290
 	// Line 946, Address: 0x2daa44, Func Offset: 0x2a4
 	// Func End, Address: 0x2daa4c, Func Offset: 0x2ac
-}
+}*/
 
 // 
 // Start address: 0x2daa50
@@ -562,4 +562,5 @@ void Pad_init()
 	// Line 956, Address: 0x2daa88, Func Offset: 0x38
 	// Line 958, Address: 0x2daa9c, Func Offset: 0x4c
 	// Func End, Address: 0x2daaa8, Func Offset: 0x58
-}*/
+	scePrintf("Pad_init - UNIMPLEMENTED!\n");
+}

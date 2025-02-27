@@ -1785,7 +1785,7 @@ unsigned int Ps2BitCount(unsigned int value)
 	// Line 2516, Address: 0x2cd34c, Func Offset: 0xc
 	// Line 2520, Address: 0x2cd350, Func Offset: 0x10
 	// Func End, Address: 0x2cd358, Func Offset: 0x18
-}
+}*/
 
 // 
 // Start address: 0x2cd360
@@ -1800,9 +1800,10 @@ void Ps2InitTexCache()
 	// Line 2530, Address: 0x2cd390, Func Offset: 0x30
 	// Line 2531, Address: 0x2cd398, Func Offset: 0x38
 	// Func End, Address: 0x2cd3a0, Func Offset: 0x40
+	scePrintf("Ps2InitTexCache - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cd3a0
 int Ps2GlobalIndexTexLoad(unsigned int index)
 {
@@ -2071,7 +2072,7 @@ int Ps2CheckTextureAlpha(void* pp)
 	// Line 2956, Address: 0x2cddd8, Func Offset: 0x268
 	// Line 3026, Address: 0x2cdddc, Func Offset: 0x26c
 	// Func End, Address: 0x2cddf8, Func Offset: 0x288
-}
+}*/
 
 // 
 // Start address: 0x2cde00
@@ -2106,6 +2107,7 @@ void Ps2InitPS2_GS_SAVE()
 	// Line 3484, Address: 0x2cdef4, Func Offset: 0xf4
 	// Line 3486, Address: 0x2cdef8, Func Offset: 0xf8
 	// Func End, Address: 0x2cdf04, Func Offset: 0x104
+	scePrintf("Ps2InitPS2_GS_SAVE - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2141,6 +2143,7 @@ void Ps2ScreenClear()
 	// Line 3530, Address: 0x2ce010, Func Offset: 0x100
 	// Line 3531, Address: 0x2ce018, Func Offset: 0x108
 	// Func End, Address: 0x2ce024, Func Offset: 0x114
+	scePrintf("Ps2ScreenClear - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2176,9 +2179,10 @@ void Ps2DispScreenClear()
 	// Line 3574, Address: 0x2ce134, Func Offset: 0x104
 	// Line 3575, Address: 0x2ce13c, Func Offset: 0x10c
 	// Func End, Address: 0x2ce148, Func Offset: 0x118
+	scePrintf("Ps2DispScreenClear - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ce150
 void Ps2ZbuffOff()
 {
@@ -2433,7 +2437,7 @@ void Ps2ShadowEnd()
 	// Line 3945, Address: 0x2cea9c, Func Offset: 0xac
 	// Line 3946, Address: 0x2ceaa4, Func Offset: 0xb4
 	// Func End, Address: 0x2ceab0, Func Offset: 0xc0
-}
+}*/
 
 // 
 // Start address: 0x2ceab0
@@ -2448,6 +2452,7 @@ void Ps2Vu0ProgSend(unsigned int prog_no)
 	// Line 4030, Address: 0x2cead8, Func Offset: 0x28
 	// Line 4048, Address: 0x2ceaec, Func Offset: 0x3c
 	// Func End, Address: 0x2ceaf8, Func Offset: 0x48
+	scePrintf("Ps2Vu0ProgSend - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2463,9 +2468,10 @@ void Ps2Vu1ProgSend(unsigned int prog_no)
 	// Line 4067, Address: 0x2ceb28, Func Offset: 0x28
 	// Line 4068, Address: 0x2ceb3c, Func Offset: 0x3c
 	// Func End, Address: 0x2ceb48, Func Offset: 0x48
+	scePrintf("Ps2Vu1ProgSend - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ceb50
 void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num)
 {

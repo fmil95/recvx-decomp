@@ -1671,7 +1671,7 @@ void null_func()
 {
 	// Line 138, Address: 0x2e13d0, Func Offset: 0
 	// Func End, Address: 0x2e13d8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2e13e0
@@ -1681,9 +1681,10 @@ void Ps2InitFunc()
 	// Line 143, Address: 0x2e13f0, Func Offset: 0x10
 	// Line 144, Address: 0x2e13fc, Func Offset: 0x1c
 	// Func End, Address: 0x2e1404, Func Offset: 0x24
+	scePrintf("Ps2InitFunc - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e1410
 void njSetEORFunction(void(*func)())
 {
@@ -1730,7 +1731,7 @@ void vsync_func()
 	// Line 226, Address: 0x2e159c, Func Offset: 0x7c
 	// Line 228, Address: 0x2e15a4, Func Offset: 0x84
 	// Func End, Address: 0x2e15ac, Func Offset: 0x8c
-}
+}*/
 
 // 
 // Start address: 0x2e15b0
@@ -1742,9 +1743,10 @@ void Ps2SetVSyncCounter()
 	// Line 235, Address: 0x2e15d4, Func Offset: 0x24
 	// Line 236, Address: 0x2e15dc, Func Offset: 0x2c
 	// Func End, Address: 0x2e15e8, Func Offset: 0x38
+	scePrintf("Ps2SetVSyncCounter - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e15f0
 void njSetVSyncFunction(void(*func)())
 {
