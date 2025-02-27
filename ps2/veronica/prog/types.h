@@ -1495,3 +1495,15 @@ typedef struct NO_NAME_19
 	unsigned short be_flag;
 	unsigned char act_data[8];
 } NO_NAME_19;
+
+typedef struct PLANE
+{
+	unsigned int xyzflag;
+	unsigned int clipmask;
+} PLANE;
+
+typedef struct SCISSOR_PLANE
+{
+	PLANE plane[5];
+	unsigned int planeNum;
+} SCISSOR_PLANE;
