@@ -445,11 +445,11 @@ struct _anon26
 	_anon2* out;
 	unsigned int rotflag;
 	unsigned int flipflag;
-};
+};*/
 
-tagVU1_STRIP_BUF* pNaCnkVerBufTop;
+VU1_STRIP_BUF* pNaCnkVerBufTop;
 int iNaCnkVerBufMax;
-tagVU1_STRIP_BUF NaCnkStrBufTop[200];
+/*tagVU1_STRIP_BUF NaCnkStrBufTop[200];
 unsigned int Vu0ClipFlag;
 int lCnkModClipFace;
 tagCHUNK_HEAD*(*pCnkFuncTbl)(tagCHUNK_HEAD*)[76];
@@ -599,13 +599,11 @@ void njCnkEasyMultiDrawObjectI(cnkobj* pObject);*/
 // 100% matching!
 void	njInit3D( NJS_VERTEX_BUF *vbuf, Int vn )
 {
-    /*pNaCnkVerBufTop = (VU1_STRIP_BUF*)vbuf; 
+    pNaCnkVerBufTop = (VU1_STRIP_BUF*)vbuf; 
     
     iNaCnkVerBufMax = vn; 
     
-    _Init_ScissorSystem();*/
-
-	scePrintf("njInit3D - UNIMPLEMENTED!\n");
+    _Init_ScissorSystem(); 
 }
 
 /*// 

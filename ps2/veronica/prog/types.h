@@ -1532,3 +1532,23 @@ typedef struct SCISSOR
 	unsigned int rotflag;
 	unsigned int flipflag;
 } SCISSOR;
+
+typedef struct VU1_STRIP_BUF
+{
+	float fU;
+	float fV;
+	float fPad0;
+	float fPad1;
+	float fIr;
+	float fIg;
+	float fIb;
+	float fA;
+	float fVx;
+	float fVy;
+	float fVz;
+	float fFog;
+	float fSx;
+	float fSy;
+	float fIz;
+	float fNz;
+} VU1_STRIP_BUF;
