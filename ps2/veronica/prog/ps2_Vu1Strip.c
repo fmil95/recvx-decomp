@@ -201,6 +201,7 @@ void vu1SetScreenProjection(float fProjection)
 
 void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far); // TODO: remove this declaration
 // 100% matching!
+// 100% matching!
 void vu1SetNearFarClip(float fNear, float fFar)
 {
     fVu1NearClip = fNear;
@@ -210,6 +211,7 @@ void vu1SetNearFarClip(float fNear, float fFar)
 
     asm volatile 
     {
+    .set noreorder
         
         mfc1     t0, $f12
         mfc1     t1, $f13
@@ -220,6 +222,7 @@ void vu1SetNearFarClip(float fNear, float fFar)
         vaddx.x  $vf23x, $vf0x, $vf4x
         vaddx.y  $vf23y, $vf0y, $vf5x
         
+    .set reorder
     }
     
     _Make_ClipMatrix(&ClipMatrix2[0], fVu1Projection, _fNaViwClipNear, _fNaViwClipFar);

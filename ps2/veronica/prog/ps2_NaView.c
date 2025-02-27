@@ -325,12 +325,14 @@ void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far)
     
     asm volatile 
     { 
+    .set noreorder
         
         lqc2 $vf24, 0x0(mp2) 
         lqc2 $vf25, 0x10(mp2) 
         lqc2 $vf26, 0x20(mp2) 
         lqc2 $vf27, 0x30(mp2)
-    
+
+    .set reorder
     }
 
     fM = ClipScreenMatrix[0];
@@ -340,13 +342,15 @@ void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far)
 
     asm volatile 
     { 
+    .set noreorder
         
         lwc1 $f8, 0x0(fw) 
         lwc1 $f9, 0x0(fh) 
         
         swc1 $f8, 0x2C(fM) 
         swc1 $f9, 0x28(fM)
-    
+
+    .set reorder
     }
 } 
 
