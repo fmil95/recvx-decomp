@@ -889,29 +889,23 @@ void Ps2LoadModule(char* p)
     }
 }
 
-/*// 
-// Start address: 0x2cb590
+// 100% matching! 
 void Snd_init()
 {
-	// Line 387, Address: 0x2cb590, Func Offset: 0
-	// Func End, Address: 0x2cb598, Func Offset: 0x8
+
 }
 
-// 
-// Start address: 0x2cb5a0
+// 100% matching! 
 void Cd_init()
 {
-	// Line 392, Address: 0x2cb5a0, Func Offset: 0
-	// Func End, Address: 0x2cb5a8, Func Offset: 0x8
+
 }
 
-// 
-// Start address: 0x2cb5b0
+// 100% matching! 
 void Card_init()
 {
-	// Line 397, Address: 0x2cb5b0, Func Offset: 0
-	// Func End, Address: 0x2cb5b8, Func Offset: 0x8
-}*/
+
+}
 
 // 100% matching!
 void PS2_jikken()
