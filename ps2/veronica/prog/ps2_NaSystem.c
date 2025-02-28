@@ -1598,11 +1598,11 @@ struct _anon56
 
 void(*VsyncFunc)();
 void(*null_func)();
-void(*EorFunc)();
+void(*EorFunc)();*/
 unsigned int Ps2_vcount;
-unsigned int Ps2_dbuff;*/
+/*unsigned int Ps2_dbuff;*/
 sceGsDBuffDc Db;
-/*_anon8* sys;*/
+SYS_WORK* sys;
 int vsync_func(int);
 /*_anon1 Ps2_nj_save_current;
 _anon45 Ps2_gs_save;
@@ -1722,17 +1722,22 @@ void Ps2SwapDBuff()
 	scePrintf("Ps2SwapDBuff - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2e1520
-int vsync_func(int)
+#pragma optimization_level 0
+
+// 100% matching! 
+int vsync_func(int) 
 {
-	// Line 221, Address: 0x2e1520, Func Offset: 0
-	// Line 223, Address: 0x2e1534, Func Offset: 0x14
-	// Line 226, Address: 0x2e159c, Func Offset: 0x7c
-	// Line 228, Address: 0x2e15a4, Func Offset: 0x84
-	// Func End, Address: 0x2e15ac, Func Offset: 0x8c
-	scePrintf("vsync_func - UNIMPLEMENTED!\n");
-}
+    Ps2_vcount++; 
+    
+    if ((((sys->tk_flg & 0x80)) && ((sys->gm_flg & 0x80000000))) && (sys->time < 216000000)) 
+    {
+        sys->time++;
+    }
+    
+    ExitHandler(); 
+} 
+
+#pragma optimization_level reset
 
 // 100% matching! 
 void Ps2SetVSyncCounter()
