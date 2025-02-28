@@ -1,0 +1,3 @@
+[submodule "recvx-decomp-mwcc"]
+	path = recvx-decomp-mwcc
+	url = https://github.com/fmil95/recvx-decomp-mwcc
