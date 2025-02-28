@@ -131,10 +131,10 @@ struct _anon6
 	unsigned char act_data[8];
 };
 
-unsigned int Old_sys_cnt;
-<unknown fundamental type (0xa510)> Padd1[16];
-<unknown fundamental type (0xa510)> Padd2[16];
-_anon5 ButtonInfo[5];*/
+unsigned int Old_sys_cnt;*/
+static u_long128 Padd1[16];
+static u_long128 Padd2[16];
+/*_anon5 ButtonInfo[5];*/
 NO_NAME_19 Pad_status;
 /*unsigned int Ps2_sys_cnt;
 _anon4 Ps2_pad;
@@ -552,15 +552,11 @@ void Pad_set(_anon0* pbt, unsigned short pad_num)
 	// Func End, Address: 0x2daa4c, Func Offset: 0x2ac
 }*/
 
-// 
-// Start address: 0x2daa50
+// 100% matching! 
 void Pad_init()
 {
-	// Line 951, Address: 0x2daa50, Func Offset: 0
-	// Line 952, Address: 0x2daa58, Func Offset: 0x8
-	// Line 954, Address: 0x2daa74, Func Offset: 0x24
-	// Line 956, Address: 0x2daa88, Func Offset: 0x38
-	// Line 958, Address: 0x2daa9c, Func Offset: 0x4c
-	// Func End, Address: 0x2daaa8, Func Offset: 0x58
-	scePrintf("Pad_init - UNIMPLEMENTED!\n");
+    while (scePadInit(0) == 0);
+    
+    scePadPortOpen(0, 0, Padd1);
+    scePadPortOpen(1, 0, Padd2);
 }

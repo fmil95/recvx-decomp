@@ -1731,6 +1731,7 @@ int vsync_func(int)
 	// Line 226, Address: 0x2e159c, Func Offset: 0x7c
 	// Line 228, Address: 0x2e15a4, Func Offset: 0x84
 	// Func End, Address: 0x2e15ac, Func Offset: 0x8c
+	scePrintf("vsync_func - UNIMPLEMENTED!\n");
 }
 
 // 100% matching! 
