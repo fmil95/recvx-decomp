@@ -2464,20 +2464,13 @@ void Ps2ShadowEnd()
 	// Func End, Address: 0x2ceab0, Func Offset: 0xc0
 }*/
 
-// 
-// Start address: 0x2ceab0
+// 99.44% matching
 void Ps2Vu0ProgSend(unsigned int prog_no)
 {
-	void* prog_table[3];
-	// Line 4029, Address: 0x2ceab0, Func Offset: 0
-	// Line 4022, Address: 0x2ceab8, Func Offset: 0x8
-	// Line 4029, Address: 0x2ceabc, Func Offset: 0xc
-	// Line 4022, Address: 0x2ceac4, Func Offset: 0x14
-	// Line 4029, Address: 0x2ceac8, Func Offset: 0x18
-	// Line 4030, Address: 0x2cead8, Func Offset: 0x28
-	// Line 4048, Address: 0x2ceaec, Func Offset: 0x3c
-	// Func End, Address: 0x2ceaf8, Func Offset: 0x48
-	scePrintf("Ps2Vu0ProgSend - UNIMPLEMENTED!\n");
+    static void* prog_table[3];
+    
+    sceDmaSend((sceDmaChan*)0x10008000, prog_table[prog_no]);
+    sceDmaSync((sceDmaChan*)0x10008000, 0, 0);
 }
 
 // 
