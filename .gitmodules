@@ -4,3 +4,6 @@
 [submodule "recvx-decomp-katana"]
 	path = recvx-decomp-katana
 	url = https://github.com/fmil95/recvx-decomp-katana
+[submodule "recvx-decomp-cri"]
+	path = recvx-decomp-cri
+	url = https://github.com/fmil95/recvx-decomp-cri
