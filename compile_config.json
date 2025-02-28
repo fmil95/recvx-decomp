@@ -4,12 +4,12 @@
   "includes": [
 	    "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2 Support",
       "recvx-decomp-katana/KATANA/Include",
+      "recvx-decomp-cri/cri/mwlib/include",
+      "recvx-decomp-cri/cri/mwlib/ee/include",
       "usr/local/sce/ee/include",
       "usr/local/sce/common/include",
       "usr/local/sce/ee/gcc/ee/include",
-      "usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111/include",
-      "cri/mwlib/include",
-      "cri/mwlib/ee/include"
+      "usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111/include"
   ],
   "libraries": [
       "usr/local/sce/ee/lib",
