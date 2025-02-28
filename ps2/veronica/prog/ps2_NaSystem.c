@@ -1594,11 +1594,11 @@ struct _anon56
 		unsigned int p0 : 28;
 	};
 	unsigned int p1;
-};
+};*/
 
-void(*VsyncFunc)();
-void(*null_func)();
-void(*EorFunc)();*/
+void *VsyncFunc;
+void *null_func;
+void *EorFunc;
 unsigned int Ps2_vcount;
 /*unsigned int Ps2_dbuff;*/
 sceGsDBuffDc Db;
@@ -1673,16 +1673,12 @@ void null_func()
 	// Func End, Address: 0x2e13d8, Func Offset: 0x8
 }*/
 
-// 
-// Start address: 0x2e13e0
+// 100% matching! 
 void Ps2InitFunc()
-{
-	// Line 142, Address: 0x2e13e0, Func Offset: 0
-	// Line 143, Address: 0x2e13f0, Func Offset: 0x10
-	// Line 144, Address: 0x2e13fc, Func Offset: 0x1c
-	// Func End, Address: 0x2e1404, Func Offset: 0x24
-	scePrintf("Ps2InitFunc - UNIMPLEMENTED!\n");
-}
+{ 
+    EorFunc = &null_func; 
+    VsyncFunc = &null_func; 
+} 
 
 /*// 
 // Start address: 0x2e1410
