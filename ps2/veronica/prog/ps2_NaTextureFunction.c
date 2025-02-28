@@ -310,8 +310,8 @@ void	njInitTextureBuffer(Sint8 *addr,Uint32 size)
 
 }
 
-// 62.33% matching
-void	njInitTexture(NJS_TEXMEMLIST *addr,Uint32 n) // TODO: use 100% matching version with unsigned int casts
+// 100% matching!
+void	njInitTexture(NJS_TEXMEMLIST *addr,Uint32 n)
 {	
     int i;
     
@@ -342,12 +342,12 @@ void	njInitTexture(NJS_TEXMEMLIST *addr,Uint32 n) // TODO: use 100% matching ver
     Ps2_1st_tmlist.texinfo.texsurface.TextureSize = 0;                  
     
     Ps2_1st_tmlist.texinfo.texsurface.pSurface = Ps2_tex_buff;       
-    Ps2_1st_tmlist.texinfo.texsurface.pVirtual = (unsigned long*)-1;    
-    Ps2_1st_tmlist.texinfo.texsurface.pPhysical = (unsigned long*)&Ps2_last_tmlist;      
+    Ps2_1st_tmlist.texinfo.texsurface.pVirtual = (unsigned int*)-1;    
+    Ps2_1st_tmlist.texinfo.texsurface.pPhysical = (unsigned int*)&Ps2_last_tmlist;      
     
-    Ps2_last_tmlist.texinfo.texsurface.pSurface = (unsigned long*)-1;             
-    Ps2_last_tmlist.texinfo.texsurface.pVirtual = (unsigned long*)&Ps2_1st_tmlist;      
-    Ps2_last_tmlist.texinfo.texsurface.pPhysical = (unsigned long*)-1;  
+    Ps2_last_tmlist.texinfo.texsurface.pSurface = (unsigned int*)-1;             
+    Ps2_last_tmlist.texinfo.texsurface.pVirtual = (unsigned int*)&Ps2_1st_tmlist;      
+    Ps2_last_tmlist.texinfo.texsurface.pPhysical = (unsigned int*)-1;  
     
     Ps2_now_free = Ps2_tex_buff;               
     

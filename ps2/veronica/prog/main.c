@@ -15,6 +15,7 @@
 #include <libcdvd.h>
 //#include <stdlib.h>
 
+#include "override_katana.h"
 // KATANA library
 #include <ninja.h>
 #include <sg_syCbl.h>
@@ -147,7 +148,7 @@ void njUserInit(void)
     
     njInitTextureBuffer((signed char*)vwbmemp, 327680);
     
-    njSetVertexBuffer((unsigned long*)vebmemp, hws->vtx_total); 
+    njSetVertexBuffer((unsigned int*)vebmemp, hws->vtx_total); 
 
     njInitVertexBuffer(hws->vtx_opq_a, hws->vtx_opq_b, hws->vtx_trs_a, hws->vtx_trs_b, hws->vtx_punch);
     njInit3D((NJS_VERTEX_BUF*)vwbmemp, 8192); 
