@@ -3,11 +3,11 @@
   "linker": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwldps2.exe",
   "includes": [
 	    "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2 Support",
+      "recvx-decomp-katana/KATANA/Include",
       "usr/local/sce/ee/include",
       "usr/local/sce/common/include",
       "usr/local/sce/ee/gcc/ee/include",
       "usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111/include",
-      "KATANA/Include",
       "cri/mwlib/include",
       "cri/mwlib/ee/include"
   ],
