@@ -675,11 +675,11 @@ unsigned int Ps2_highlight;
 float Ps2_rand_seed[4];
 unsigned int PS2_Render_tex_sub_flag;
 unsigned int Ps2_ice_flag;
-unsigned int Ps2_albinoid_flag;
-_anon20 Db;
+unsigned int Ps2_albinoid_flag;*/
+sceGsDBuffDc Db;
 void* Ps2_tex_buff;
 unsigned char Ps2_tex_mem[10485760];
-_anon36 MovieInfo;
+/*_anon36 MovieInfo;
 float Ps2_zbuff_a;
 float Ps2_zbuff_b;
 _anon1 Ps2_gs_save;
@@ -727,12 +727,12 @@ void(*VsyncFunc)();
 void(*EorFunc)();
 
 int _builtin_set_imask();
-void Ps2Init();
+void Ps2Init();*/
 void Ps2LoadModule(char* p);
 void Snd_init();
 void Cd_init();
 void Card_init();
-void PS2_jikken();
+/*void PS2_jikken();
 void PS2_swap();
 void Ps2AddPrim(unsigned long prim, void* dp, unsigned int num, unsigned int clip_3d_on);
 void Ps2AddPrim2D(unsigned long prim, void* dp, unsigned int num);
@@ -744,30 +744,30 @@ void Ps2ClearOT();
 void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim);
 void Ps2DrawOTag();
 int Ps2DrawOTagSub(int start_no);
-unsigned int Ps2BitCount(unsigned int value);
+unsigned int Ps2BitCount(unsigned int value);*/
 void Ps2InitTexCache();
-int Ps2GlobalIndexTexLoad(unsigned int index);
+/*int Ps2GlobalIndexTexLoad(unsigned int index);
 int Ps2TexLoad(_anon4* addr);
 void Ps2SetFogColor();
 void Ps2SetFogColorSys(unsigned int r, unsigned int g, unsigned int b);
 void Ps2AlphaIs000(unsigned int* cp, unsigned int num);
 unsigned int Ps2AlphaIsHalf(unsigned int* cp, unsigned int num);
 unsigned int Ps2Alpha4to8(unsigned int* cp, unsigned int num);
-int Ps2CheckTextureAlpha(void* pp);
+int Ps2CheckTextureAlpha(void* pp);*/
 void Ps2InitPS2_GS_SAVE();
 void Ps2ScreenClear();
 void Ps2DispScreenClear();
-void Ps2ZbuffOff();
+/*void Ps2ZbuffOff();
 void Ps2ZbuffOff2();
 void Ps2ZbuffOn();
 void Ps2ShadowStart();
 void Ps2ShadowDraw();
 void Ps2ShadowMain0();
 void Ps2ShadowMain1();
-void Ps2ShadowEnd();
+void Ps2ShadowEnd();*/
 void Ps2Vu0ProgSend(unsigned int prog_no);
 void Ps2Vu1ProgSend(unsigned int prog_no);
-void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num);
+/*void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num);
 void PS2_Render_Tex_Sub();*/
 
 // 100% matching!
@@ -776,106 +776,131 @@ void _builtin_set_imask(int mask)
 
 }
 
-// 
-// Start address: 0x2cb070
-void Ps2Init()
-{
-	// Line 206, Address: 0x2cb070, Func Offset: 0
-	// Line 211, Address: 0x2cb074, Func Offset: 0x4
-	// Line 206, Address: 0x2cb07c, Func Offset: 0xc
-	// Line 211, Address: 0x2cb080, Func Offset: 0x10
-	// Line 213, Address: 0x2cb084, Func Offset: 0x14
-	// Line 214, Address: 0x2cb090, Func Offset: 0x20
-	// Line 215, Address: 0x2cb098, Func Offset: 0x28
-	// Line 221, Address: 0x2cb0a0, Func Offset: 0x30
-	// Line 223, Address: 0x2cb0b4, Func Offset: 0x44
-	// Line 226, Address: 0x2cb0bc, Func Offset: 0x4c
-	// Line 228, Address: 0x2cb0e0, Func Offset: 0x70
-	// Line 229, Address: 0x2cb0e8, Func Offset: 0x78
-	// Line 228, Address: 0x2cb0ec, Func Offset: 0x7c
-	// Line 229, Address: 0x2cb0f0, Func Offset: 0x80
-	// Line 228, Address: 0x2cb0f4, Func Offset: 0x84
-	// Line 229, Address: 0x2cb108, Func Offset: 0x98
-	// Line 230, Address: 0x2cb118, Func Offset: 0xa8
-	// Line 231, Address: 0x2cb11c, Func Offset: 0xac
-	// Line 229, Address: 0x2cb120, Func Offset: 0xb0
-	// Line 230, Address: 0x2cb130, Func Offset: 0xc0
-	// Line 246, Address: 0x2cb138, Func Offset: 0xc8
-	// Line 231, Address: 0x2cb140, Func Offset: 0xd0
-	// Line 232, Address: 0x2cb144, Func Offset: 0xd4
-	// Line 247, Address: 0x2cb148, Func Offset: 0xd8
-	// Line 246, Address: 0x2cb14c, Func Offset: 0xdc
-	// Line 230, Address: 0x2cb154, Func Offset: 0xe4
-	// Line 231, Address: 0x2cb164, Func Offset: 0xf4
-	// Line 232, Address: 0x2cb17c, Func Offset: 0x10c
-	// Line 233, Address: 0x2cb194, Func Offset: 0x124
-	// Line 234, Address: 0x2cb1ac, Func Offset: 0x13c
-	// Line 235, Address: 0x2cb1c4, Func Offset: 0x154
-	// Line 237, Address: 0x2cb1dc, Func Offset: 0x16c
-	// Line 238, Address: 0x2cb1f4, Func Offset: 0x184
-	// Line 239, Address: 0x2cb20c, Func Offset: 0x19c
-	// Line 240, Address: 0x2cb224, Func Offset: 0x1b4
-	// Line 241, Address: 0x2cb23c, Func Offset: 0x1cc
-	// Line 242, Address: 0x2cb254, Func Offset: 0x1e4
-	// Line 243, Address: 0x2cb26c, Func Offset: 0x1fc
-	// Line 244, Address: 0x2cb284, Func Offset: 0x214
-	// Line 246, Address: 0x2cb29c, Func Offset: 0x22c
-	// Line 247, Address: 0x2cb2b4, Func Offset: 0x244
-	// Line 256, Address: 0x2cb2c8, Func Offset: 0x258
-	// Line 264, Address: 0x2cb2d0, Func Offset: 0x260
-	// Line 267, Address: 0x2cb2dc, Func Offset: 0x26c
-	// Line 271, Address: 0x2cb2e4, Func Offset: 0x274
-	// Line 275, Address: 0x2cb2ec, Func Offset: 0x27c
-	// Line 280, Address: 0x2cb308, Func Offset: 0x298
-	// Line 285, Address: 0x2cb310, Func Offset: 0x2a0
-	// Line 287, Address: 0x2cb32c, Func Offset: 0x2bc
-	// Line 289, Address: 0x2cb350, Func Offset: 0x2e0
-	// Line 290, Address: 0x2cb358, Func Offset: 0x2e8
-	// Line 295, Address: 0x2cb374, Func Offset: 0x304
-	// Line 298, Address: 0x2cb37c, Func Offset: 0x30c
-	// Line 302, Address: 0x2cb384, Func Offset: 0x314
-	// Line 303, Address: 0x2cb394, Func Offset: 0x324
-	// Line 304, Address: 0x2cb3a0, Func Offset: 0x330
-	// Line 307, Address: 0x2cb3a8, Func Offset: 0x338
-	// Line 308, Address: 0x2cb3b4, Func Offset: 0x344
-	// Line 311, Address: 0x2cb3c0, Func Offset: 0x350
-	// Line 312, Address: 0x2cb3cc, Func Offset: 0x35c
-	// Line 315, Address: 0x2cb3d8, Func Offset: 0x368
-	// Line 316, Address: 0x2cb3e4, Func Offset: 0x374
-	// Line 317, Address: 0x2cb3f0, Func Offset: 0x380
-	// Line 318, Address: 0x2cb3fc, Func Offset: 0x38c
-	// Line 320, Address: 0x2cb408, Func Offset: 0x398
-	// Line 323, Address: 0x2cb414, Func Offset: 0x3a4
-	// Line 324, Address: 0x2cb41c, Func Offset: 0x3ac
-	// Line 325, Address: 0x2cb424, Func Offset: 0x3b4
-	// Line 326, Address: 0x2cb42c, Func Offset: 0x3bc
-	// Line 335, Address: 0x2cb434, Func Offset: 0x3c4
-	// Line 336, Address: 0x2cb43c, Func Offset: 0x3cc
-	// Line 339, Address: 0x2cb444, Func Offset: 0x3d4
-	// Line 340, Address: 0x2cb44c, Func Offset: 0x3dc
-	// Line 342, Address: 0x2cb454, Func Offset: 0x3e4
-	// Line 344, Address: 0x2cb468, Func Offset: 0x3f8
-	// Line 342, Address: 0x2cb46c, Func Offset: 0x3fc
-	// Line 343, Address: 0x2cb47c, Func Offset: 0x40c
-	// Line 344, Address: 0x2cb490, Func Offset: 0x420
-	// Line 345, Address: 0x2cb498, Func Offset: 0x428
-	// Line 346, Address: 0x2cb4a0, Func Offset: 0x430
-	// Line 348, Address: 0x2cb4b0, Func Offset: 0x440
-	// Line 346, Address: 0x2cb4b4, Func Offset: 0x444
-	// Line 347, Address: 0x2cb4c4, Func Offset: 0x454
-	// Line 348, Address: 0x2cb4d8, Func Offset: 0x468
-	// Line 355, Address: 0x2cb4e0, Func Offset: 0x470
-	// Line 356, Address: 0x2cb4e8, Func Offset: 0x478
-	// Line 359, Address: 0x2cb4f0, Func Offset: 0x480
-	// Line 360, Address: 0x2cb4fc, Func Offset: 0x48c
-	// Line 362, Address: 0x2cb508, Func Offset: 0x498
-	// Line 363, Address: 0x2cb514, Func Offset: 0x4a4
-	// Line 364, Address: 0x2cb51c, Func Offset: 0x4ac
-	// Line 365, Address: 0x2cb524, Func Offset: 0x4b4
-	// Line 366, Address: 0x2cb52c, Func Offset: 0x4bc
-	// Line 367, Address: 0x2cb534, Func Offset: 0x4c4
-	// Func End, Address: 0x2cb540, Func Offset: 0x4d0
-	scePrintf("Ps2Init - UNIMPLEMENTED!\n");
+#define	DISP_WIDTH          640
+#define	DISP_HEIGHT         480
+
+// 100% matching! 
+void Ps2Init() 
+{ 
+    Ps2_tex_buff = &Ps2_tex_mem; 
+    
+    sceDmaReset(1); 
+    sceVpu0Reset(); 
+    
+    sceGsResetPath(); 
+    sceGsResetGraph(0, SCE_GS_INTERLACE, SCE_GS_NTSC, SCE_GS_FIELD); 
+    
+    sceGsSyncV(0); 
+    
+    sceGsSetDefDBuffDc(&Db, SCE_GS_PSMCT32, DISP_WIDTH, DISP_HEIGHT, SCE_GS_ZGEQUAL, SCE_GS_PSMZ16S, 1); 
+    
+    Db.disp[0].dispfb.FBP = 150; 
+    Db.disp[0].dispfb.PSM = SCE_GS_PSMCT32;
+    
+    Db.draw01.frame1.FBP = 0; 
+    Db.draw01.frame1.PSM = SCE_GS_PSMCT32;
+    
+    Db.draw01.zbuf1.ZBP = 300;
+    
+    Db.draw02.frame2.FBP = 0; 
+    Db.draw02.frame2.PSM = SCE_GS_PSMCT32;
+    
+    Db.draw02.zbuf2.ZBP = 300; 
+    
+    Db.disp[1].dispfb.FBP = 150; 
+    Db.disp[1].dispfb.PSM = SCE_GS_PSMCT32;
+    
+    Db.draw11.frame1.FBP = 0; 
+    Db.draw11.frame1.PSM = SCE_GS_PSMCT32; 
+    
+    Db.draw11.zbuf1.ZBP = 300; 
+    
+    Db.draw12.frame2.FBP = 0; 
+    Db.draw12.frame2.PSM = SCE_GS_PSMCT32; 
+    
+    Db.draw12.zbuf2.ZBP = 300; 
+    
+    Db.disp[0].display.DY = 636; 
+    Db.disp[1].display.DY = 32; 
+    
+    ClearVram(); 
+    
+    *T0_MODE = 139; 
+    
+    FlushCache(0); 
+    
+    sceSifInitRpc(0); 
+    
+    while (sceCdInit(SCECdINIT) == 0); 
+    
+    sceCdMmode(SCECdDVD); 
+    
+    while (sceSifRebootIop("cdrom0:\\PS2_DATA\\MODULES\\IOPRP213.IMG;1") == 0); 
+    
+    while (sceSifSyncIop() == 0); 
+    
+    sceSifInitRpc(0); 
+    
+    while (sceCdInit(SCECdINIT) == 0); 
+    
+    sceCdMmode(SCECdDVD); 
+    
+    sceFsReset(); 
+    
+    if (sceSifInitIopHeap() != 0)
+    { 
+        printf("Error:sceSifInitIopHeap Error\n");
+        
+        // exit(-1); TODO: uncomment this function via proper inclusion of stdlib.h in main.c
+    }
+    
+    Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\SIO2MAN.IRX;1"); 
+    Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\PADMAN.IRX;1"); 
+    Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\MCMAN.IRX;1"); 
+    Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\MCSERV.IRX;1"); 
+    Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\LIBSD.IRX;1"); 
+    Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\MODHSYN.IRX;1"); 
+    Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\MODMIDI.IRX;1"); 
+    Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\MODMSIN.IRX;1"); 
+    Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\TSNDDRV.IRX;1"); 
+    
+    Snd_init(); 
+    Cd_init(); 
+    Card_init(); 
+    Pad_init();
+    
+    Ps2SetVSyncCounter(); 
+    
+    Ps2InitFunc(); 
+    
+    Ps2DispScreenClear(); 
+    Ps2ScreenClear(); 
+    
+    Db.disp[0].pmode.EN2 = 0; 
+    Db.disp[1].pmode.EN2 = 0;
+    
+    FlushCache(0); 
+    
+    Ps2SwapDBuff(); 
+    
+    Db.disp[0].pmode.EN2 = 1; 
+    Db.disp[1].pmode.EN2 = 1; 
+    
+    FlushCache(0); 
+    
+    Ps2InitTexCache(); 
+    Ps2InitPS2_GS_SAVE(); 
+    
+    njColorBlendingMode(0, 8); 
+    njColorBlendingMode(1, 6); 
+
+    njUserClipping(0, NULL); 
+    
+    _Make_SinTable(); 
+    
+    Ps2Vu0ProgSend(0); 
+    Ps2Vu1ProgSend(0); 
+    Ps2Vu1ProgSend(1); 
 }
 
 // 100% matching!
@@ -885,7 +910,7 @@ void Ps2LoadModule(char* p)
     {
         printf("LOAD ERROR!!! %s\n", p); 
         
-        exit(0);
+        // exit(0); TODO: uncomment this function via proper inclusion of stdlib.h in main.c
     }
 }
 

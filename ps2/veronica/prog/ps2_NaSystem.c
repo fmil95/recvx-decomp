@@ -1601,7 +1601,7 @@ void(*null_func)();
 void(*EorFunc)();
 unsigned int Ps2_vcount;
 unsigned int Ps2_dbuff;*/
-NO_NAME_11 Db;
+sceGsDBuffDc Db;
 /*_anon8* sys;
 void(*vsync_func)();
 _anon1 Ps2_nj_save_current;
@@ -1836,18 +1836,19 @@ void njColorBlendingModeSys(int s_mode, int d_mode)
 	// Line 488, Address: 0x2e1840, Func Offset: 0x190
 	// Line 489, Address: 0x2e1848, Func Offset: 0x198
 	// Func End, Address: 0x2e1858, Func Offset: 0x1a8
-}
+}*/
 
 // 
 // Start address: 0x2e1860
-void njColorBlendingMode(int target, int mode)
+void    njColorBlendingMode( Int target, Int mode )
 {
 	// Line 530, Address: 0x2e1860, Func Offset: 0
 	// Line 531, Address: 0x2e1870, Func Offset: 0x10
 	// Line 532, Address: 0x2e1878, Func Offset: 0x18
 	// Line 534, Address: 0x2e1880, Func Offset: 0x20
 	// Func End, Address: 0x2e1894, Func Offset: 0x34
-}*/
+	scePrintf("njColorBlendingMode - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void    njTextureShadingMode( Int mode )
@@ -1861,15 +1862,15 @@ void njSetCheapShadowMode()
 {
 	// Line 565, Address: 0x2e18b0, Func Offset: 0
 	// Func End, Address: 0x2e18b8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2e18c0
-void njUserClipping(int mode, _anon15* np)
+void	njUserClipping(Int mode ,NJS_POINT2 *p)
 {
 	int posi[4];
 	float posf[4];
-	unsigned long* p;
+	//unsigned long* p;
 	// Line 588, Address: 0x2e18c0, Func Offset: 0
 	// Line 596, Address: 0x2e18dc, Func Offset: 0x1c
 	// Line 598, Address: 0x2e18e4, Func Offset: 0x24
@@ -1898,9 +1899,10 @@ void njUserClipping(int mode, _anon15* np)
 	// Line 624, Address: 0x2e1a14, Func Offset: 0x154
 	// Line 625, Address: 0x2e1a1c, Func Offset: 0x15c
 	// Func End, Address: 0x2e1a34, Func Offset: 0x174
+	scePrintf("njUserClipping - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e1a40
 void njGetSystemAttr(char attr[192])
 {

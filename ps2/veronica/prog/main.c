@@ -13,6 +13,7 @@
 #include <sifdev.h>
 #include <libmc.h>
 #include <libcdvd.h>
+//#include <stdlib.h>
 
 // KATANA library
 #include <ninja.h>
@@ -35,14 +36,14 @@
 #include "ps2_NaTextureFunction.c"
 #include "ps2_NaView.c"
 #include "ps2_NinjaCnk.c"
-#include "ps2_dummy.c"
-#include "ps2_loadtim2.c"
 #include "ps2_sfd_mw.c"
 #include "ps2_sg_bup.c"
 #include "ps2_sg_gd.c"
 #include "ps2_sg_maloc.c"
 #include "gdlib.c"
 #include "ps2_sg_pad.c"
+#include "ps2_loadtim2.c"
+#include "ps2_dummy.c"
 #include "ps2_sg_sybt.c"
 #include "ps2_sg_sycbl.c"
 #include "ps2_sg_syhw.c"
