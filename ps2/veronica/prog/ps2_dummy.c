@@ -2473,20 +2473,13 @@ void Ps2Vu0ProgSend(unsigned int prog_no)
     sceDmaSync((sceDmaChan*)0x10008000, 0, 0);
 }
 
-// 
-// Start address: 0x2ceb00
+// 99.44% matching
 void Ps2Vu1ProgSend(unsigned int prog_no)
 {
-	void* prog_table[2];
-	// Line 4066, Address: 0x2ceb00, Func Offset: 0
-	// Line 4059, Address: 0x2ceb08, Func Offset: 0x8
-	// Line 4066, Address: 0x2ceb0c, Func Offset: 0xc
-	// Line 4059, Address: 0x2ceb14, Func Offset: 0x14
-	// Line 4066, Address: 0x2ceb18, Func Offset: 0x18
-	// Line 4067, Address: 0x2ceb28, Func Offset: 0x28
-	// Line 4068, Address: 0x2ceb3c, Func Offset: 0x3c
-	// Func End, Address: 0x2ceb48, Func Offset: 0x48
-	scePrintf("Ps2Vu1ProgSend - UNIMPLEMENTED!\n");
+    static void* prog_table[2];
+    
+    sceDmaSend((sceDmaChan*)0x10009000, prog_table[prog_no]);
+    sceDmaSync((sceDmaChan*)0x10009000, 0, 0);
 }
 
 /*// 
