@@ -6,16 +6,16 @@
       "recvx-decomp-katana/KATANA/Include",
       "recvx-decomp-cri/cri/mwlib/include",
       "recvx-decomp-cri/cri/mwlib/ee/include",
-      "usr/local/sce/ee/include",
-      "usr/local/sce/common/include",
-      "usr/local/sce/ee/gcc/ee/include",
-      "usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111/include"
+      "recvx-decomp-ps2_sdk/usr/local/sce/ee/include",
+      "recvx-decomp-ps2_sdk/usr/local/sce/common/include",
+      "recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/ee/include",
+      "recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111/include"
   ],
   "libraries": [
-      "usr/local/sce/ee/lib",
-      "usr/local/sce/ee/gcc/lib",
-      "usr/local/sce/ee/gcc/ee/lib",
-      "usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111"
+      "recvx-decomp-ps2_sdk/usr/local/sce/ee/lib",
+      "recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/lib",
+      "recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/ee/lib",
+      "recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111"
   ],
   "defines": [
     "DEBUG"
