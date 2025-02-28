@@ -7,3 +7,6 @@
 [submodule "recvx-decomp-cri"]
 	path = recvx-decomp-cri
 	url = https://github.com/fmil95/recvx-decomp-cri
+[submodule "recvx-decomp-ps2_sdk"]
+	path = recvx-decomp-ps2_sdk
+	url = https://github.com/fmil95/recvx-decomp-ps2_sdk
