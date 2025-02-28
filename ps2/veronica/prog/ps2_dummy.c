@@ -835,9 +835,9 @@ void Ps2Init()
     
     sceCdMmode(SCECdDVD); 
     
-    while (sceSifRebootIop("cdrom0:\\PS2_DATA\\MODULES\\IOPRP213.IMG;1") == 0); 
+    //while (sceSifRebootIop("cdrom0:\\PS2_DATA\\MODULES\\IOPRP213.IMG;1") == 0); TODO: gotta find an effective way to repack the compiled binary with the ISO first
     
-    while (sceSifSyncIop() == 0); 
+    //while (sceSifSyncIop() == 0);  
     
     sceSifInitRpc(0); 
     
@@ -851,7 +851,7 @@ void Ps2Init()
     { 
         printf("Error:sceSifInitIopHeap Error\n");
         
-        Exit(-1);
+        //Exit(-1); 
     }
     
     Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\SIO2MAN.IRX;1"); 
@@ -867,7 +867,7 @@ void Ps2Init()
     Snd_init(); 
     Cd_init(); 
     Card_init(); 
-    Pad_init();
+    //Pad_init(); TODO: for some reason, this function causes the next lines of code to not be triggered
     
     Ps2SetVSyncCounter(); 
     
@@ -910,7 +910,7 @@ void Ps2LoadModule(char* p)
     {
         printf("LOAD ERROR!!! %s\n", p); 
         
-        Exit(0);
+        //Exit(0); TODO: need to find a way to get the IRX modules to load at all
     }
 }
 
