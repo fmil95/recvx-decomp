@@ -176,11 +176,11 @@ struct _anon8
 		unsigned long REGS14 : 4;
 		unsigned long REGS15 : 4;
 	};
-};
+};*/
 
 unsigned char clear_buff[1024];
 
-int Tim2CalcBufWidth(int psm, int w);
+/*int Tim2CalcBufWidth(int psm, int w);
 void Set_GsTex(_anon0* ph, unsigned long send_image_adr, unsigned long send_clut_adr);
 <unknown fundamental type (0xa510)>* MakeRenderTexHeader(void* tex_adr);
 void StoreRenderTex(void* tex_adr);
@@ -667,28 +667,28 @@ void loadImage(void* tags)
 	// Func End, Address: 0x2e7cc8, Func Offset: 0x58
 }*/
 
-// 
-// Start address: 0x2e7cd0
+// 100% matching!
 void ClearVram()
 {
-	int i;
-	//<unknown fundamental type (0xa510)>* p;
-	//_anon1 li;
-	// Line 3043, Address: 0x2e7cd0, Func Offset: 0
-	// Line 3053, Address: 0x2e7cec, Func Offset: 0x1c
-	// Line 3055, Address: 0x2e7cf0, Func Offset: 0x20
-	// Line 3054, Address: 0x2e7cf4, Func Offset: 0x24
-	// Line 3055, Address: 0x2e7cf8, Func Offset: 0x28
-	// Line 3054, Address: 0x2e7cfc, Func Offset: 0x2c
-	// Line 3055, Address: 0x2e7d00, Func Offset: 0x30
-	// Line 3062, Address: 0x2e7d0c, Func Offset: 0x3c
-	// Line 3064, Address: 0x2e7d14, Func Offset: 0x44
-	// Line 3065, Address: 0x2e7d20, Func Offset: 0x50
-	// Line 3066, Address: 0x2e7d48, Func Offset: 0x78
-	// Line 3067, Address: 0x2e7d50, Func Offset: 0x80
-	// Line 3068, Address: 0x2e7d5c, Func Offset: 0x8c
-	// Line 3070, Address: 0x2e7d6c, Func Offset: 0x9c
-	// Line 3071, Address: 0x2e7d84, Func Offset: 0xb4
-	// Func End, Address: 0x2e7d9c, Func Offset: 0xcc
-	scePrintf("ClearVram - UNIMPLEMENTED!\n");
+    long128* p;
+    int i;
+    sceGsLoadImage li;
+
+    for (i = 0; i < 1024; i++)
+    {
+        clear_buff[i] = 0;
+    }
+    
+    p = (long128*)&clear_buff;
+    
+    for (i = 0; i < 16384UL; i++)
+    {
+        sceGsSetDefLoadImage(&li, i * 4, 4, 0, 0, 0, 16, 16);
+        
+        FlushCache(0);
+        
+        sceGsExecLoadImage(&li, p);
+        
+        sceGsSyncPath(0, 0);
+    }
 }
