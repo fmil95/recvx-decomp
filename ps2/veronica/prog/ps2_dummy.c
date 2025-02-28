@@ -779,7 +779,7 @@ void _builtin_set_imask(int mask)
 #define	DISP_WIDTH          640
 #define	DISP_HEIGHT         480
 
-// 100% matching! 
+// 99.98% matching! 
 void Ps2Init() 
 { 
     Ps2_tex_buff = &Ps2_tex_mem; 
@@ -851,7 +851,7 @@ void Ps2Init()
     { 
         printf("Error:sceSifInitIopHeap Error\n");
         
-        // exit(-1); TODO: uncomment this function via proper inclusion of stdlib.h in main.c
+        Exit(-1);
     }
     
     Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\SIO2MAN.IRX;1"); 
@@ -903,14 +903,14 @@ void Ps2Init()
     Ps2Vu1ProgSend(1); 
 }
 
-// 100% matching!
+// 99.74% matching!
 void Ps2LoadModule(char* p)
 {
     if (sceSifLoadModule(p, 0, NULL) < 0) 
     {
         printf("LOAD ERROR!!! %s\n", p); 
         
-        // exit(0); TODO: uncomment this function via proper inclusion of stdlib.h in main.c
+        Exit(0);
     }
 }
 
