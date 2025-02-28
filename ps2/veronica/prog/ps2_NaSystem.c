@@ -1602,9 +1602,9 @@ void(*EorFunc)();
 unsigned int Ps2_vcount;
 unsigned int Ps2_dbuff;*/
 sceGsDBuffDc Db;
-/*_anon8* sys;
-void(*vsync_func)();
-_anon1 Ps2_nj_save_current;
+/*_anon8* sys;*/
+int vsync_func(int);
+/*_anon1 Ps2_nj_save_current;
 _anon45 Ps2_gs_save;
 
 void njSetTextureMemorySize();
@@ -1722,28 +1722,25 @@ void Ps2SwapDBuff()
 	scePrintf("Ps2SwapDBuff - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2e1520
-void vsync_func()
+int vsync_func(int)
 {
 	// Line 221, Address: 0x2e1520, Func Offset: 0
 	// Line 223, Address: 0x2e1534, Func Offset: 0x14
 	// Line 226, Address: 0x2e159c, Func Offset: 0x7c
 	// Line 228, Address: 0x2e15a4, Func Offset: 0x84
 	// Func End, Address: 0x2e15ac, Func Offset: 0x8c
-}*/
+}
 
-// 
-// Start address: 0x2e15b0
+// 100% matching! 
 void Ps2SetVSyncCounter()
 {
-	// Line 232, Address: 0x2e15b0, Func Offset: 0
-	// Line 233, Address: 0x2e15b8, Func Offset: 0x8
-	// Line 234, Address: 0x2e15c0, Func Offset: 0x10
-	// Line 235, Address: 0x2e15d4, Func Offset: 0x24
-	// Line 236, Address: 0x2e15dc, Func Offset: 0x2c
-	// Func End, Address: 0x2e15e8, Func Offset: 0x38
-	scePrintf("Ps2SetVSyncCounter - UNIMPLEMENTED!\n");
+    DisableIntc(2);
+    
+    AddIntcHandler(2, vsync_func, 0);
+    
+    EnableIntc(2);
 }
 
 /*// 
