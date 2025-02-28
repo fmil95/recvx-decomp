@@ -1,8 +1,8 @@
 {
-  "compiler": "Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwccps2.exe",
-  "linker": "Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwldps2.exe",
+  "compiler": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwccps2.exe",
+  "linker": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwldps2.exe",
   "includes": [
-      "Metrowerks/CodeWarrior/PS2 Support",
+	    "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2 Support",
       "usr/local/sce/ee/include",
       "usr/local/sce/common/include",
       "usr/local/sce/ee/gcc/ee/include",
