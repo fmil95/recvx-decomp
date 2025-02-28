@@ -1596,9 +1596,8 @@ struct _anon56
 	unsigned int p1;
 };*/
 
-void *VsyncFunc;
-void *null_func;
-void *EorFunc;
+void (* VsyncFunc)();
+void (* EorFunc)();
 unsigned int Ps2_vcount;
 /*unsigned int Ps2_dbuff;*/
 sceGsDBuffDc Db;
@@ -1611,9 +1610,9 @@ void njSetTextureMemorySize();
 void njSetVertexBuffer();
 void njInitSystem();
 void njInitVertexBuffer();
-void njWaitVSync();
+void njWaitVSync();*/
 void null_func();
-void Ps2InitFunc();
+/*void Ps2InitFunc();
 void njSetEORFunction(void(*func)());
 void Ps2SwapDBuff();
 void vsync_func();
@@ -1665,13 +1664,14 @@ void njWaitVSync(void)
 
 }
 
-/*// 
+// 
 // Start address: 0x2e13d0
 void null_func()
 {
 	// Line 138, Address: 0x2e13d0, Func Offset: 0
 	// Func End, Address: 0x2e13d8, Func Offset: 0x8
-}*/
+	scePrintf("null_func - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void Ps2InitFunc()
