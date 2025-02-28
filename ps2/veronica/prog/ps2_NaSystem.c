@@ -1664,20 +1664,17 @@ void njWaitVSync(void)
 
 }
 
-// 
-// Start address: 0x2e13d0
+// 100% matching! 
 void null_func()
 {
-	// Line 138, Address: 0x2e13d0, Func Offset: 0
-	// Func End, Address: 0x2e13d8, Func Offset: 0x8
-	scePrintf("null_func - UNIMPLEMENTED!\n");
+
 }
 
 // 100% matching! 
 void Ps2InitFunc()
 { 
-    EorFunc = &null_func; 
-    VsyncFunc = &null_func; 
+    EorFunc = null_func; 
+    VsyncFunc = null_func; 
 } 
 
 /*// 
