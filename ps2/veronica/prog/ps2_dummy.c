@@ -770,6 +770,10 @@ void Ps2Vu1ProgSend(unsigned int prog_no);
 /*void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num);
 void PS2_Render_Tex_Sub();*/
 
+int ps2_vu0sub0; 
+int ps2_vu1sub0;
+int ps2_vu1sub1;
+
 // 100% matching!
 void _builtin_set_imask(int mask) 
 {
@@ -2467,7 +2471,11 @@ void Ps2ShadowEnd()
 // 99.44% matching
 void Ps2Vu0ProgSend(unsigned int prog_no)
 {
-    static void* prog_table[3];
+    static void* prog_table[3] = {
+        &ps2_vu0sub0,
+        &ps2_vu0sub0, 
+        &ps2_vu0sub0
+    };
     
     sceDmaSend((sceDmaChan*)0x10008000, prog_table[prog_no]);
     sceDmaSync((sceDmaChan*)0x10008000, 0, 0);
@@ -2476,7 +2484,10 @@ void Ps2Vu0ProgSend(unsigned int prog_no)
 // 99.44% matching
 void Ps2Vu1ProgSend(unsigned int prog_no)
 {
-    static void* prog_table[2];
+    static void* prog_table[2] = {
+        &ps2_vu1sub0,
+        &ps2_vu1sub1
+    };
     
     sceDmaSend((sceDmaChan*)0x10009000, prog_table[prog_no]);
     sceDmaSync((sceDmaChan*)0x10009000, 0, 0);
