@@ -654,21 +654,25 @@ void D2_SyncTag()
 	scePrintf("D2_SyncTag - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2e7c70
+// 100% matching! 
 void loadImage(void* tags)
 {
-	// Line 3000, Address: 0x2e7c70, Func Offset: 0
-	// Line 3005, Address: 0x2e7c78, Func Offset: 0x8
-	// Line 3006, Address: 0x2e7c94, Func Offset: 0x24
-	// Line 3011, Address: 0x2e7c98, Func Offset: 0x28
-	// Line 3013, Address: 0x2e7ca8, Func Offset: 0x38
-	// Line 3015, Address: 0x2e7cb0, Func Offset: 0x40
-	// Line 3020, Address: 0x2e7cb8, Func Offset: 0x48
-	// Line 3022, Address: 0x2e7cc0, Func Offset: 0x50
-	// Func End, Address: 0x2e7cc8, Func Offset: 0x58
-	scePrintf("loadImage - UNIMPLEMENTED!\n");
-}
+    asm volatile (bc0t label_0f); 
+    
+label_0b:
+    asm volatile 
+    {
+        bc0f label_0b
+        nop
+    }
+
+label_0f:
+    DPUT_D_PCR(4); 
+    DPUT_D_STAT(4); 
+
+    DPUT_D2_TADR((int)tags); 
+    DPUT_D2_CHCR(261); 
+} 
 
 // 100% matching!
 void ClearVram()
