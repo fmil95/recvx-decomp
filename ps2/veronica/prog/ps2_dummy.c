@@ -783,7 +783,7 @@ void _builtin_set_imask(int mask)
 #define	DISP_WIDTH          640
 #define	DISP_HEIGHT         480
 
-// 99.98% matching! 
+// 100% matching! 
 void Ps2Init() 
 { 
     Ps2_tex_buff = &Ps2_tex_mem; 
@@ -839,7 +839,7 @@ void Ps2Init()
     
     sceCdMmode(SCECdDVD); 
     
-    //while (sceSifRebootIop("cdrom0:\\PS2_DATA\\MODULES\\IOPRP213.IMG;1") == 0); TODO: gotta find an effective way to repack the compiled binary with the ISO first
+    //while (sceSifRebootIop("cdrom0:\\PS2_DATA\\MODULES\\IOPRP213.IMG;1") == 0); // TODO: gotta find an effective way to repack the compiled binary with the ISO first
     
     //while (sceSifSyncIop() == 0);  
     
@@ -855,7 +855,7 @@ void Ps2Init()
     { 
         printf("Error:sceSifInitIopHeap Error\n");
         
-        //Exit(-1); 
+        //exit(-1);
     }
     
     Ps2LoadModule("cdrom0:\\PS2_DATA\\MODULES\\SIO2MAN.IRX;1"); 
@@ -871,7 +871,7 @@ void Ps2Init()
     Snd_init(); 
     Cd_init(); 
     Card_init(); 
-    //Pad_init(); TODO: for some reason, this function causes the next lines of code to not be triggered
+    //Pad_init(); // TODO: for some reason, this function causes the next lines of code to not be triggered
     
     Ps2SetVSyncCounter(); 
     
@@ -907,14 +907,14 @@ void Ps2Init()
     Ps2Vu1ProgSend(1); 
 }
 
-// 99.74% matching!
+// 100% matching!
 void Ps2LoadModule(char* p)
 {
     if (sceSifLoadModule(p, 0, NULL) < 0) 
     {
         printf("LOAD ERROR!!! %s\n", p); 
         
-        //Exit(0); TODO: need to find a way to get the IRX modules to load at all
+        //exit(0); // TODO: need to find a way to get the IRX modules to load at all
     }
 }
 

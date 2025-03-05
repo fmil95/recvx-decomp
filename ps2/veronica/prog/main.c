@@ -225,9 +225,3 @@ void njUserExit(void)
     
     syBtExit(); 
 } 
-
-// TODO: get rid of this, it's just wrong
-int __start(int argc, char *argv[])
-{
-    main(argc, argv);
-}

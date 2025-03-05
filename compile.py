@@ -43,7 +43,7 @@ def run_command(command, env_vars, log_file='compiling/report.txt'):
         return False  # Return False on failure
     
     return True  # Return True on success
-
+    
 
 def create_compile_command_entry(compiler, source, object_file, include_dirs, defines):
     """Create a compile command entry for compile_commands.json."""
@@ -69,6 +69,7 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
 
     for source in sources:
         object_file = source.replace(".c", ".o")
+        objects.append("crt0.o")
         objects.append(object_file)
 
         compile_command = [compiler] + compiler_flags + ['-c', source, '-o', object_file] + \
@@ -83,10 +84,31 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
     return objects, compile_commands, build_failed
 
 
+def compile_assembly_files(assembler, sources, assembler_flags, include_dirs, defines, env_vars):
+    """Compile all assembly files and return object file list and compile commands."""
+    objects = []
+    compile_commands = []
+    build_failed = False  # Track if any compilation fails
+
+    for source in sources:
+        object_file = source.replace(".s", ".o")
+        objects.append(object_file)
+
+        compile_command = [assembler] + assembler_flags + ['-o', object_file , source]
+
+        # Continue compiling even if one source fails
+        if not run_command(compile_command, env_vars):
+            build_failed = True  # Mark the build as failed if any command fails
+
+        compile_commands.append(create_compile_command_entry(assembler, source, object_file, include_dirs, defines))
+
+    return objects, compile_commands, build_failed
+
+
 def link_objects(linker, objects, linker_flags, libraries, library_dirs, env_vars):
     """Link object files into the final executable."""
     output_elf = "main.elf"
-    link_command = [linker] + linker_flags + objects + ['-o', output_elf] + \
+    link_command = [linker] + linker_flags + objects + ['-m', '_start', '-o', output_elf] + \
                    [f'-L{lib}' for lib in library_dirs] + libraries
 
     if not run_command(link_command, env_vars):
@@ -112,16 +134,23 @@ def main(args):
     linker_flags = env_vars["linker_flags"]
     libraries = env_vars["libs"]
     sources = env_vars["source_files"]
+    assembly = env_vars.get("assembly_files", [])
     defines = env_vars.get("defines", [])
-    
+
     print(f"Performing compilation with the following parameters:\n");
-    
-    # Compile source files
+
     compiler_env = {
         "MWLibraries": ";".join(library_dirs),
         "MWLibraryFiles": ""
     }
+
+    assembler = env_vars.get("assembler", "as")
+
+    asm_objects, asm_compile_commands, asm_build_failed = compile_assembly_files(assembler, assembly, [], include_dirs, defines, compiler_env)
+
     objects, compile_commands, build_failed = compile_source_files(compiler, sources, compiler_flags, include_dirs, defines, compiler_env)
+
+    objects += asm_objects
 
     # Even if the compilation fails, we want to generate the compile_commands.json for IDEs
     write_json('compiling/compile_commands.json', compile_commands)

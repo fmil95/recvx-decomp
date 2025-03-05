@@ -1,6 +1,7 @@
 {
   "compiler": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwccps2.exe",
   "linker": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwldps2.exe",
+  "assembler": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/asm_r5900_elf.exe",
   "includes": [
       "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2 Support",
       "recvx-decomp-katana/KATANA/Include",
@@ -23,6 +24,9 @@
   "compiler_flags": ["--gcc-compat","-nosyspath"],
   "linker_flags": ["compiling/linker.lcf"],
   "libs": ["-lgcc", "-lgraph", "-ldma", "-ldev", "-lpkt", "-lpad", "-lvu0", "-lkernl", "-lc", "-lmc", "-lcdvd"],
+  "assembly_files": [
+      "crt0.s"
+  ],
   "source_files": [
       "ps2/veronica/prog/main.c"
   ]
