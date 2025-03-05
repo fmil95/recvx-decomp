@@ -72,7 +72,7 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
         objects.append("crt0.o")
         objects.append(object_file)
 
-        compile_command = [compiler] + compiler_flags + ['-c', source, '-o', object_file] + \
+        compile_command = [compiler] + compiler_flags + ['-sdatathreshold 0', '-O3,p', '-c', source, '-o', object_file] + \
                           [f'-I{inc}' for inc in include_dirs] + [f'-D{d}' for d in defines]
 
         # Continue compiling even if one source fails
