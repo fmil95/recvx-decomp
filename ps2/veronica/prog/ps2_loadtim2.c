@@ -637,21 +637,29 @@ void SyncPath()
 	scePrintf("SyncPath - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2e7c00
+// 100% matching! 
 void D2_SyncTag()
 {
-	unsigned int tmp;
-	// Line 2967, Address: 0x2e7c00, Func Offset: 0
-	// Line 2969, Address: 0x2e7c0c, Func Offset: 0xc
-	// Line 2971, Address: 0x2e7c18, Func Offset: 0x18
-	// Line 2973, Address: 0x2e7c28, Func Offset: 0x28
-	// Line 2975, Address: 0x2e7c30, Func Offset: 0x30
-	// Line 2976, Address: 0x2e7c4c, Func Offset: 0x4c
-	// Line 2981, Address: 0x2e7c50, Func Offset: 0x50
-	// Line 2983, Address: 0x2e7c60, Func Offset: 0x60
-	// Func End, Address: 0x2e7c68, Func Offset: 0x68
-	scePrintf("D2_SyncTag - UNIMPLEMENTED!\n");
+    unsigned int tmp;
+
+    tmp = DGET_D_PCR(); 
+    
+    DPUT_D_PCR(DGET_D_PCR() & 0x4); 
+    
+    if ((DGET_D_PCR() & 0x4)) 
+    { 
+        asm volatile (bc0t label_0f); 
+    
+    label_0b:
+        asm volatile 
+        {
+            bc0f label_0b
+            nop
+        }
+    }
+
+label_0f:
+    DPUT_D_PCR(DGET_D_PCR() | tmp); 
 }
 
 // 100% matching! 
