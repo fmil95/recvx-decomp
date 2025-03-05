@@ -610,32 +610,56 @@ void Ps2PxlconvCheck(void* timadr)
 	// Func End, Address: 0x2e7ae8, Func Offset: 0x88
 }*/
 
-// 
-// Start address: 0x2e7af0
+// 100% matching! 
 void SyncPath()
 {
-	unsigned int tmp;
-	// Line 2897, Address: 0x2e7af0, Func Offset: 0
-	// Line 2899, Address: 0x2e7afc, Func Offset: 0xc
-	// Line 2902, Address: 0x2e7b04, Func Offset: 0x14
-	// Line 2904, Address: 0x2e7b0c, Func Offset: 0x1c
-	// Line 2905, Address: 0x2e7b28, Func Offset: 0x38
-	// Line 2909, Address: 0x2e7b2c, Func Offset: 0x3c
-	// Line 2913, Address: 0x2e7b40, Func Offset: 0x50
-	// Line 2915, Address: 0x2e7b44, Func Offset: 0x54
-	// Line 2918, Address: 0x2e7b4c, Func Offset: 0x5c
-	// Line 2920, Address: 0x2e7b54, Func Offset: 0x64
-	// Line 2921, Address: 0x2e7b70, Func Offset: 0x80
-	// Line 2925, Address: 0x2e7b74, Func Offset: 0x84
-	// Line 2930, Address: 0x2e7b88, Func Offset: 0x98
-	// Line 2937, Address: 0x2e7bb0, Func Offset: 0xc0
-	// Line 2938, Address: 0x2e7bb4, Func Offset: 0xc4
-	// Line 2939, Address: 0x2e7bb8, Func Offset: 0xc8
-	// Line 2945, Address: 0x2e7bcc, Func Offset: 0xdc
-	// Line 2947, Address: 0x2e7bf0, Func Offset: 0x100
-	// Func End, Address: 0x2e7bf8, Func Offset: 0x108
-	scePrintf("SyncPath - UNIMPLEMENTED!\n");
-}
+    unsigned int tmp;
+
+    tmp = DGET_D_PCR(); 
+    
+    DPUT_D_PCR(DGET_D_PCR() & 0x2); 
+    
+    asm volatile (bc0t label_0f1); 
+
+label_0b1:
+    asm volatile 
+    {
+        bc0f label_0b1
+        nop
+    }
+
+label_0f1:    
+    DPUT_D_PCR(DGET_D_PCR() | tmp); 
+
+    tmp = DGET_D_PCR(); 
+
+    DPUT_D_PCR(DGET_D_PCR() & 0x4); 
+    
+    asm volatile (bc0t label_0f2); 
+
+label_0b2:
+    asm volatile 
+    {
+        bc0f label_0b2
+        nop
+    }
+    
+label_0f2:
+    DPUT_D_PCR(DGET_D_PCR() | tmp); 
+
+    while (DGET_VIF1_STAT() & 0x1F000003); 
+
+    asm volatile 
+    {
+        loop:
+        cfc2 a2, vi29
+        
+        andi v0, a2, 0x100
+        bnez v0, loop
+    }
+    
+    while (DGET_GIF_STAT() & 0xC00); 
+} 
 
 // 100% matching! 
 void D2_SyncTag()
