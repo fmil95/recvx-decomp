@@ -608,7 +608,7 @@ void Ps2PxlconvCheck(void* timadr)
 	// Line 2873, Address: 0x2e7ad4, Func Offset: 0x74
 	// Line 2876, Address: 0x2e7adc, Func Offset: 0x7c
 	// Func End, Address: 0x2e7ae8, Func Offset: 0x88
-}
+}*/
 
 // 
 // Start address: 0x2e7af0
@@ -634,6 +634,7 @@ void SyncPath()
 	// Line 2945, Address: 0x2e7bcc, Func Offset: 0xdc
 	// Line 2947, Address: 0x2e7bf0, Func Offset: 0x100
 	// Func End, Address: 0x2e7bf8, Func Offset: 0x108
+	scePrintf("SyncPath - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -650,6 +651,7 @@ void D2_SyncTag()
 	// Line 2981, Address: 0x2e7c50, Func Offset: 0x50
 	// Line 2983, Address: 0x2e7c60, Func Offset: 0x60
 	// Func End, Address: 0x2e7c68, Func Offset: 0x68
+	scePrintf("D2_SyncTag - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -665,7 +667,8 @@ void loadImage(void* tags)
 	// Line 3020, Address: 0x2e7cb8, Func Offset: 0x48
 	// Line 3022, Address: 0x2e7cc0, Func Offset: 0x50
 	// Func End, Address: 0x2e7cc8, Func Offset: 0x58
-}*/
+	scePrintf("loadImage - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void ClearVram()

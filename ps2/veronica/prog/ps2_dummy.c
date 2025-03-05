@@ -2175,40 +2175,62 @@ void Ps2ScreenClear()
 	scePrintf("Ps2ScreenClear - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ce030
+#define SCR_WIDTH 640
+#define SCR_HEIGHT 224
+
+#define GS_X_COORD(x) ((2048 - (SCR_WIDTH / 2) + x) * 16)
+#define GS_Y_COORD(y) ((2048 - (SCR_HEIGHT / 2) + y) * 16)
+
+#define WORKBASE (0x70000000)
+
+#define DMAend  (7<<28)
+
+#define    SCE_GS_FALSE         (0)
+#define    SCE_GS_TRUE          (1)
+
+#define SCE_GS_ALPHA_NEVER      (0)
+
+#define    SCE_GS_AFAIL_KEEP    (0)
+
+#define SCE_GS_DEPTH_ALWAYS     (1)
+#define SCE_GS_DEPTH_GEQUAL     (2)
+
+// 100% matching! 
 void Ps2DispScreenClear()
 {
-	// Line 3537, Address: 0x2ce030, Func Offset: 0
-	// Line 3542, Address: 0x2ce038, Func Offset: 0x8
-	// Line 3545, Address: 0x2ce040, Func Offset: 0x10
-	// Line 3548, Address: 0x2ce050, Func Offset: 0x20
-	// Line 3546, Address: 0x2ce054, Func Offset: 0x24
-	// Line 3548, Address: 0x2ce058, Func Offset: 0x28
-	// Line 3546, Address: 0x2ce05c, Func Offset: 0x2c
-	// Line 3548, Address: 0x2ce060, Func Offset: 0x30
-	// Line 3549, Address: 0x2ce070, Func Offset: 0x40
-	// Line 3551, Address: 0x2ce07c, Func Offset: 0x4c
-	// Line 3552, Address: 0x2ce08c, Func Offset: 0x5c
-	// Line 3554, Address: 0x2ce098, Func Offset: 0x68
-	// Line 3555, Address: 0x2ce0a4, Func Offset: 0x74
-	// Line 3557, Address: 0x2ce0b0, Func Offset: 0x80
-	// Line 3558, Address: 0x2ce0bc, Func Offset: 0x8c
-	// Line 3560, Address: 0x2ce0c4, Func Offset: 0x94
-	// Line 3561, Address: 0x2ce0cc, Func Offset: 0x9c
-	// Line 3563, Address: 0x2ce0d8, Func Offset: 0xa8
-	// Line 3566, Address: 0x2ce0e8, Func Offset: 0xb8
-	// Line 3564, Address: 0x2ce0f0, Func Offset: 0xc0
-	// Line 3566, Address: 0x2ce0fc, Func Offset: 0xcc
-	// Line 3567, Address: 0x2ce108, Func Offset: 0xd8
-	// Line 3569, Address: 0x2ce110, Func Offset: 0xe0
-	// Line 3570, Address: 0x2ce11c, Func Offset: 0xec
-	// Line 3572, Address: 0x2ce124, Func Offset: 0xf4
-	// Line 3573, Address: 0x2ce12c, Func Offset: 0xfc
-	// Line 3574, Address: 0x2ce134, Func Offset: 0x104
-	// Line 3575, Address: 0x2ce13c, Func Offset: 0x10c
-	// Func End, Address: 0x2ce148, Func Offset: 0x118
-	scePrintf("Ps2DispScreenClear - UNIMPLEMENTED!\n");
+    SyncPath();
+
+    ((u_long*)WORKBASE)[0] = DMAend | 0x8; 
+    ((u_long*)WORKBASE)[1] = 0;
+
+    ((u_long*)WORKBASE)[2] = SCE_GIF_SET_TAG(7, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1);
+    ((u_long*)WORKBASE)[3] = SCE_GIF_PACKED_AD;
+    
+    ((u_long*)WORKBASE)[4] = SCE_GS_SET_FRAME_2(0, 10, SCE_GS_PSMCT32, 0) | 0x96;
+    ((u_long*)WORKBASE)[5] = SCE_GS_FRAME_2;
+    
+    ((u_long*)WORKBASE)[6] = SCE_GS_SET_TEST_2(0, SCE_GS_ALPHA_NEVER, 0, SCE_GS_AFAIL_KEEP, 0, 0, 1, SCE_GS_DEPTH_ALWAYS);
+    ((u_long*)WORKBASE)[7] = SCE_GS_TEST_2;
+    
+    ((u_long*)WORKBASE)[8] = SCE_GS_SET_PRIM(SCE_GS_PRIM_SPRITE, 0, 0, 0, 0, 0, 0, 1, 0);
+    ((u_long*)WORKBASE)[9] = SCE_GS_PRIM;
+    
+    ((u_long*)WORKBASE)[10] = SCE_GS_SET_RGBAQ(0, 0, 0, 0, 0);
+    ((u_long*)WORKBASE)[11] = SCE_GS_RGBAQ;
+    
+    ((u_long*)WORKBASE)[12] = SCE_GS_SET_XYZF(GS_X_COORD(0), GS_Y_COORD(-128), 0, 0);
+    ((u_long*)WORKBASE)[13] = SCE_GS_XYZF2;
+    
+    ((u_long*)WORKBASE)[14] = SCE_GS_SET_XYZF(GS_X_COORD(640), GS_Y_COORD(352), 0, 0);
+    ((u_long*)WORKBASE)[15] = SCE_GS_XYZF2;
+    
+    ((u_long*)WORKBASE)[16] = SCE_GS_SET_TEST_2(0, SCE_GS_ALPHA_NEVER, 0, SCE_GS_AFAIL_KEEP, 0, 0, 1, SCE_GS_DEPTH_GEQUAL);
+    ((u_long*)WORKBASE)[17] = SCE_GS_TEST_2;
+    
+    loadImage((void*)0xF0000000);
+ 
+    D2_SyncTag();
+    SyncPath();
 }
 
 /*// 
