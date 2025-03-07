@@ -1645,10 +1645,10 @@ void Ps2DrawOTag()
 
     Ps2ZbuffOff();
     
-    for (i = 0; i < 4096; )
+ /* for (i = 0; i < 4096; )
     {
         i = Ps2DrawOTagSub(i);
-    } 
+    } TODO: uncomment this loop after Ps2DrawOTagSub is properly implemented */
     
     Ps2ZbuffOn();
     
