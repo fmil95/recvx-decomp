@@ -692,8 +692,8 @@ PS2_OT Ps2_ot_list[8192];
 PS2_OT* Ps2_OT[4096][2];
 /*float Ps2AddPrimPrio;*/
 unsigned char Ps2_PBUFF[1835008];
-/*unsigned int Ps2_current_texbreak;
-_anon16 Ps2_tp_tag[64];
+unsigned int Ps2_current_texbreak;
+/*_anon16 Ps2_tp_tag[64];
 _anon31 ps2_tp_cache[64];
 unsigned int Ps2_tex_cache_num;
 unsigned int Ps2_tex_cache_beflag[4];
@@ -757,10 +757,10 @@ int Ps2CheckTextureAlpha(void* pp);*/
 void Ps2InitPS2_GS_SAVE();
 void Ps2ScreenClear();
 void Ps2DispScreenClear();
-/*void Ps2ZbuffOff();
-void Ps2ZbuffOff2();
+void Ps2ZbuffOff();
+/*void Ps2ZbuffOff2();*/
 void Ps2ZbuffOn();
-void Ps2ShadowStart();
+/*void Ps2ShadowStart();
 void Ps2ShadowDraw();
 void Ps2ShadowMain0();
 void Ps2ShadowMain1();
@@ -1638,24 +1638,24 @@ void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim)
 	// Func End, Address: 0x2ccd04, Func Offset: 0x454
 }*/
 
-// 
-// Start address: 0x2ccd10
+// 100% matching! 
 void Ps2DrawOTag()
 {
-	int i;
-	// Line 2352, Address: 0x2ccd10, Func Offset: 0
-	// Line 2355, Address: 0x2ccd18, Func Offset: 0x8
-	// Line 2356, Address: 0x2ccd20, Func Offset: 0x10
-	// Line 2357, Address: 0x2ccd24, Func Offset: 0x14
-	// Line 2358, Address: 0x2ccd30, Func Offset: 0x20
-	// Line 2359, Address: 0x2ccd44, Func Offset: 0x34
-	// Line 2360, Address: 0x2ccd4c, Func Offset: 0x3c
-	// Line 2361, Address: 0x2ccd58, Func Offset: 0x48
-	// Func End, Address: 0x2ccd64, Func Offset: 0x54
-	scePrintf("Ps2DrawOTag - UNIMPLEMENTED!\n");
+    int i;
+
+    Ps2ZbuffOff();
+    
+    for (i = 0; i < 4096; )
+    {
+        i = Ps2DrawOTagSub(i);
+    } 
+    
+    Ps2ZbuffOn();
+    
+    Ps2_current_texbreak = 1;
 }
 
-/*// 
+// 
 // Start address: 0x2ccd70
 int Ps2DrawOTagSub(int start_no)
 {
@@ -1668,10 +1668,10 @@ int Ps2DrawOTagSub(int start_no)
 	unsigned int p_flag;
 	unsigned int t_flag;
 	unsigned int tex_cache_num;
-	_anon0* timp;
+	//_anon0* timp;
 	int save_alpha[3];
-	_anon17* old_p;
-	_anon17* p;
+	//_anon17* old_p;
+	//_anon17* p;
 	int j;
 	int i;
 	// Line 2365, Address: 0x2ccd70, Func Offset: 0
@@ -1800,9 +1800,10 @@ int Ps2DrawOTagSub(int start_no)
 	// Line 2505, Address: 0x2cd300, Func Offset: 0x590
 	// Line 2506, Address: 0x2cd304, Func Offset: 0x594
 	// Func End, Address: 0x2cd334, Func Offset: 0x5c4
+	scePrintf("Ps2DrawOTagSub - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cd340
 unsigned int Ps2BitCount(unsigned int value)
 {
@@ -2213,7 +2214,7 @@ void Ps2DispScreenClear()
     SyncPath();
 }
 
-/*// 
+// 
 // Start address: 0x2ce150
 void Ps2ZbuffOff()
 {
@@ -2232,9 +2233,10 @@ void Ps2ZbuffOff()
 	// Line 3636, Address: 0x2ce1c0, Func Offset: 0x70
 	// Line 3637, Address: 0x2ce1c8, Func Offset: 0x78
 	// Func End, Address: 0x2ce1d4, Func Offset: 0x84
+	scePrintf("Ps2ZbuffOff - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ce1e0
 void Ps2ZbuffOff2()
 {
@@ -2255,7 +2257,7 @@ void Ps2ZbuffOff2()
 	// Line 3660, Address: 0x2ce278, Func Offset: 0x98
 	// Line 3661, Address: 0x2ce280, Func Offset: 0xa0
 	// Func End, Address: 0x2ce28c, Func Offset: 0xac
-}
+}*/
 
 // 
 // Start address: 0x2ce290
@@ -2278,9 +2280,10 @@ void Ps2ZbuffOn()
 	// Line 3683, Address: 0x2ce31c, Func Offset: 0x8c
 	// Line 3684, Address: 0x2ce324, Func Offset: 0x94
 	// Func End, Address: 0x2ce330, Func Offset: 0xa0
+	scePrintf("Ps2ZbuffOn - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ce330
 void Ps2ShadowStart()
 {
