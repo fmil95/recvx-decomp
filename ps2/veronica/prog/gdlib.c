@@ -122,7 +122,7 @@ struct _anon0
 	GDS_FS_HANDLE* GdFs;
 };*/
 
-unsigned int MaxDirectoryEntry;
+unsigned int MaxDirectoryEntry = 512;
 /*unsigned int DiscOpenTrayFlag;
 unsigned int NewDiscCheckSw;
 unsigned int GdErrorFlag;*/

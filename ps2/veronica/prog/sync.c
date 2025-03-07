@@ -1557,9 +1557,8 @@ struct _anon43
 };
 
 void(*bhControlEOR)();
-void(*bhControlVSync)();*/
-SYS_WORK* sys;
-/*int OpenDriveTrayFlag;
+void(*bhControlVSync)();
+int OpenDriveTrayFlag;
 _anon17* rom;
 _anon43 cam;
 unsigned char BackColorFlag;
