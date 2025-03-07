@@ -1880,42 +1880,54 @@ void njSetCheapShadowMode()
 	// Func End, Address: 0x2e18b8, Func Offset: 0x8
 }*/
 
-// 
-// Start address: 0x2e18c0
+#define DISP_WIDTH 640
+#define DISP_HEIGHT 480
+
+// 99.95% matching 
 void	njUserClipping(Int mode ,NJS_POINT2 *p)
-{
-	int posi[4];
-	float posf[4];
-	//unsigned long* p;
-	// Line 588, Address: 0x2e18c0, Func Offset: 0
-	// Line 596, Address: 0x2e18dc, Func Offset: 0x1c
-	// Line 598, Address: 0x2e18e4, Func Offset: 0x24
-	// Line 601, Address: 0x2e18f4, Func Offset: 0x34
-	// Line 599, Address: 0x2e18f8, Func Offset: 0x38
-	// Line 601, Address: 0x2e18fc, Func Offset: 0x3c
-	// Line 599, Address: 0x2e1900, Func Offset: 0x40
-	// Line 601, Address: 0x2e1904, Func Offset: 0x44
-	// Line 602, Address: 0x2e1914, Func Offset: 0x54
-	// Line 604, Address: 0x2e1920, Func Offset: 0x60
-	// Line 605, Address: 0x2e192c, Func Offset: 0x6c
-	// Line 609, Address: 0x2e1938, Func Offset: 0x78
-	// Line 605, Address: 0x2e1940, Func Offset: 0x80
-	// Line 606, Address: 0x2e1948, Func Offset: 0x88
-	// Line 607, Address: 0x2e1954, Func Offset: 0x94
-	// Line 608, Address: 0x2e1960, Func Offset: 0xa0
-	// Line 609, Address: 0x2e1968, Func Offset: 0xa8
-	// Line 613, Address: 0x2e1970, Func Offset: 0xb0
-	// Line 615, Address: 0x2e19bc, Func Offset: 0xfc
-	// Line 616, Address: 0x2e19cc, Func Offset: 0x10c
-	// Line 617, Address: 0x2e19e8, Func Offset: 0x128
-	// Line 618, Address: 0x2e19f0, Func Offset: 0x130
-	// Line 619, Address: 0x2e19fc, Func Offset: 0x13c
-	// Line 621, Address: 0x2e1a04, Func Offset: 0x144
-	// Line 623, Address: 0x2e1a0c, Func Offset: 0x14c
-	// Line 624, Address: 0x2e1a14, Func Offset: 0x154
-	// Line 625, Address: 0x2e1a1c, Func Offset: 0x15c
-	// Func End, Address: 0x2e1a34, Func Offset: 0x174
-	scePrintf("njUserClipping - UNIMPLEMENTED!\n");
+{ 
+    unsigned long* np; // changed the original var name from the debugging symbols 
+    sceVu0FVECTOR posf;
+    sceVu0IVECTOR posi;
+
+    np = (unsigned long*)WORKBASE;
+    
+    D2_SyncTag(); 
+    
+    *np++ = DMAend | 0x2; 
+    *np++ = 0; 
+    
+    *np++ = SCE_GIF_SET_TAG(1, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1); 
+    *np++ = SCE_GIF_PACKED_AD; 
+
+    if (mode == 2)
+    { 
+        posf[0] = p[0].x * 32.0f; 
+        posf[1] = p[0].y * 32.0f; 
+        
+        posf[2] = p[1].x * 32.0f; 
+        posf[3] = p[1].y * 32.0f; 
+        
+        sceVu0FTOI0Vector(posi, posf); 
+        
+        *np++ = Ps2_gs_save.SCISSOR = SCE_GS_SET_SCISSOR(posi[0], posi[2] + 32, posi[1], posi[3] + 32); 
+    } 
+    else if (mode == 0) 
+    { 
+        *np++ = Ps2_gs_save.SCISSOR = SCE_GS_SET_SCISSOR(0, DISP_WIDTH, 0, DISP_HEIGHT); 
+    } 
+    else
+    { 
+        printf("njUserClipping ERROR!\n"); 
+        
+        exit(0); 
+    }
+    
+    *np++ = SCE_GS_SCISSOR_1; 
+    
+    loadImage((void*)0xF0000000); 
+    
+    D2_SyncTag(); 
 }
 
 /*// 
