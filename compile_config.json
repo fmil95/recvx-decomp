@@ -16,7 +16,7 @@
       "recvx-decomp-ps2_sdk/usr/local/sce/ee/lib",
       "recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/lib",
       "recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/ee/lib",
-      "recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111-01"
+      "recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111-01" 
   ],
   "defines": [
     "DEBUG"
