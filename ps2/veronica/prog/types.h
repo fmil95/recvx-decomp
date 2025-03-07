@@ -1622,3 +1622,52 @@ typedef struct PS2_NJ_SAVE
     unsigned char dc_alpha; // offset 0x3, size 0x1
     int mode; // offset 0x4, size 0x4
 } PS2_NJ_SAVE;
+
+typedef struct PS2_GS_SAVE
+{
+	unsigned long SC_TAG[2]; // offset 0x0, size 0x8
+    unsigned long GIF_TAG[2]; // offset 0x10, size 0x8
+    unsigned long TEX0; // offset 0x20, size 0x4
+    unsigned long TEX0_TAG; // offset 0x28, size 0x4
+    unsigned long TEX0_NEXT; // offset 0x30, size 0x4
+    unsigned long TEX0_NEXT_TAG; // offset 0x38, size 0x4
+    unsigned long TEX1; // offset 0x40, size 0x4
+    unsigned long TEX1_TAG; // offset 0x48, size 0x4
+    unsigned long CLAMP; // offset 0x50, size 0x4
+    unsigned long CLAMP_TAG; // offset 0x58, size 0x4
+    unsigned long TEST; // offset 0x60, size 0x4
+    unsigned long TEST_TAG; // offset 0x68, size 0x4
+    unsigned long FOGCOL; // offset 0x70, size 0x4
+    unsigned long FOGCOL_TAG; // offset 0x78, size 0x4
+    unsigned long ALPHA; // offset 0x80, size 0x4
+    unsigned long ALPHA_TAG; // offset 0x88, size 0x4
+    unsigned long FBA; // offset 0x90, size 0x4
+    unsigned long FBA_TAG; // offset 0x98, size 0x4
+    unsigned long SCISSOR; // offset 0xA0, size 0x4
+    unsigned long SCISSOR_TAG; // offset 0xA8, size 0x4
+    unsigned char mode_bk[2]; // offset 0xB0, size 0x2
+    unsigned char set_last; // offset 0xB2, size 0x1
+    unsigned char dc_alpha; // offset 0xB3, size 0x1
+    unsigned int pad32; // offset 0xB4, size 0x4
+    unsigned long pad64; // offset 0xB8, size 0x4
+} PS2_GS_SAVE;
+
+#define SCR_WIDTH 640
+#define SCR_HEIGHT 224
+
+#define GS_X_COORD(x) ((2048 - (SCR_WIDTH / 2) + x) * 16)
+#define GS_Y_COORD(y) ((2048 - (SCR_HEIGHT / 2) + y) * 16)
+
+#define WORKBASE (0x70000000)
+
+#define DMAend  (7<<28)
+
+#define    SCE_GS_FALSE         (0)
+#define    SCE_GS_TRUE          (1)
+
+#define SCE_GS_ALPHA_NEVER      (0)
+
+#define    SCE_GS_AFAIL_KEEP    (0)
+
+#define SCE_GS_DEPTH_ALWAYS     (1)
+#define SCE_GS_DEPTH_GEQUAL     (2)

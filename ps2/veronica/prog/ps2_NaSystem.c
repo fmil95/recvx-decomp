@@ -1604,9 +1604,9 @@ sceGsDBuffDc Db;
 SYS_WORK* sys;
 int vsync_func(int);
 PS2_NJ_SAVE Ps2_nj_save_current;
-/*_anon45 Ps2_gs_save;
+PS2_GS_SAVE Ps2_gs_save;
 
-void njSetTextureMemorySize();
+/*void njSetTextureMemorySize();
 void njSetVertexBuffer();
 void njInitSystem();
 void njInitVertexBuffer();
@@ -1792,48 +1792,67 @@ void    njPolygonCullingMode( Int mode )
 
 }
 
-// 
-// Start address: 0x2e16b0
-void njColorBlendingModeSys(int s_mode, int d_mode)
-{
-	unsigned long alpha_value;
-	unsigned long alpha_tbl[12][13];
-	// Line 346, Address: 0x2e16b0, Func Offset: 0
-	// Line 447, Address: 0x2e16bc, Func Offset: 0xc
-	// Line 448, Address: 0x2e16c4, Func Offset: 0x14
-	// Line 450, Address: 0x2e16cc, Func Offset: 0x1c
-	// Line 452, Address: 0x2e16d4, Func Offset: 0x24
-	// Line 450, Address: 0x2e16dc, Func Offset: 0x2c
-	// Line 451, Address: 0x2e16e4, Func Offset: 0x34
-	// Line 452, Address: 0x2e16ec, Func Offset: 0x3c
-	// Line 453, Address: 0x2e1708, Func Offset: 0x58
-	// Line 455, Address: 0x2e1710, Func Offset: 0x60
-	// Line 458, Address: 0x2e1718, Func Offset: 0x68
-	// Line 459, Address: 0x2e1720, Func Offset: 0x70
-	// Line 460, Address: 0x2e1748, Func Offset: 0x98
-	// Line 463, Address: 0x2e1774, Func Offset: 0xc4
-	// Line 464, Address: 0x2e1788, Func Offset: 0xd8
-	// Line 465, Address: 0x2e17a0, Func Offset: 0xf0
-	// Line 470, Address: 0x2e17a8, Func Offset: 0xf8
-	// Line 472, Address: 0x2e17b0, Func Offset: 0x100
-	// Line 475, Address: 0x2e17c0, Func Offset: 0x110
-	// Line 473, Address: 0x2e17c4, Func Offset: 0x114
-	// Line 475, Address: 0x2e17c8, Func Offset: 0x118
-	// Line 473, Address: 0x2e17cc, Func Offset: 0x11c
-	// Line 475, Address: 0x2e17d0, Func Offset: 0x120
-	// Line 476, Address: 0x2e17e0, Func Offset: 0x130
-	// Line 478, Address: 0x2e17ec, Func Offset: 0x13c
-	// Line 479, Address: 0x2e17fc, Func Offset: 0x14c
-	// Line 481, Address: 0x2e1808, Func Offset: 0x158
-	// Line 482, Address: 0x2e1810, Func Offset: 0x160
-	// Line 484, Address: 0x2e181c, Func Offset: 0x16c
-	// Line 485, Address: 0x2e182c, Func Offset: 0x17c
-	// Line 487, Address: 0x2e1838, Func Offset: 0x188
-	// Line 488, Address: 0x2e1840, Func Offset: 0x190
-	// Line 489, Address: 0x2e1848, Func Offset: 0x198
-	// Func End, Address: 0x2e1858, Func Offset: 0x1a8
-	scePrintf("njColorBlendingModeSys - UNIMPLEMENTED!\n");
-}
+// 99.91% matching 
+void njColorBlendingModeSys(int s_mode, int d_mode) // this function is not on this KATANA release
+{ 
+    static unsigned long alpha_tbl[13][12];
+    unsigned long alpha_value;
+    
+    Ps2_gs_save.mode_bk[0] = s_mode; 
+    Ps2_gs_save.mode_bk[1] = d_mode; 
+    
+    Ps2_gs_save.set_last = Ps2_nj_save_current.set_last;
+    
+    Ps2_gs_save.dc_alpha = 0; 
+    
+    if (Ps2_gs_save.mode_bk[Ps2_gs_save.set_last] < 2) 
+    { 
+        if (Ps2_gs_save.mode_bk[Ps2_gs_save.set_last] == 0)
+        { 
+            alpha_value = 1; 
+        }
+        else
+        { 
+            alpha_value = 68; 
+        }
+    } 
+    else if ((Ps2_gs_save.mode_bk[0] < 2) || (Ps2_gs_save.mode_bk[1] < 2)) 
+    { 
+        return;
+    }
+    else 
+    {
+        alpha_value = alpha_tbl[Ps2_gs_save.mode_bk[0]][Ps2_gs_save.mode_bk[1]]; 
+    }
+    
+    if (alpha_value == ULONG_MAX) 
+    { 
+        printf("CALL ISHIKAWA ! ALPHA ERROR !!!!!!! MODE %d %d", Ps2_gs_save.mode_bk[0], Ps2_gs_save.mode_bk[1]); 
+        
+        while (TRUE); 
+    }
+    
+    D2_SyncTag(); 
+    
+    ((u_long*)WORKBASE)[0] = DMAend | 0x4; 
+    ((u_long*)WORKBASE)[1] = 0; 
+
+    ((u_long*)WORKBASE)[2] = SCE_GIF_SET_TAG(3, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1); 
+    ((u_long*)WORKBASE)[3] = SCE_GIF_PACKED_AD; 
+    
+    ((u_long*)WORKBASE)[4] = Ps2_gs_save.ALPHA = alpha_value; 
+    ((u_long*)WORKBASE)[5] = SCE_GS_ALPHA_1; 
+    
+    ((u_long*)WORKBASE)[6] = 0; 
+    ((u_long*)WORKBASE)[7] = SCE_GS_PABE; 
+    
+    ((u_long*)WORKBASE)[8] = Ps2_gs_save.FBA = 0; 
+    ((u_long*)WORKBASE)[9] = SCE_GS_FBA_1; 
+    
+    loadImage((void*)0xF0000000); 
+    
+    SyncPath(); 
+} 
 
 // 100% matching! 
 void    njColorBlendingMode( Int target, Int mode ) 

@@ -2139,26 +2139,6 @@ void Ps2InitPS2_GS_SAVE()
 	scePrintf("Ps2InitPS2_GS_SAVE - UNIMPLEMENTED!\n");
 }
 
-#define SCR_WIDTH 640
-#define SCR_HEIGHT 224
-
-#define GS_X_COORD(x) ((2048 - (SCR_WIDTH / 2) + x) * 16)
-#define GS_Y_COORD(y) ((2048 - (SCR_HEIGHT / 2) + y) * 16)
-
-#define WORKBASE (0x70000000)
-
-#define DMAend  (7<<28)
-
-#define    SCE_GS_FALSE         (0)
-#define    SCE_GS_TRUE          (1)
-
-#define SCE_GS_ALPHA_NEVER      (0)
-
-#define    SCE_GS_AFAIL_KEEP    (0)
-
-#define SCE_GS_DEPTH_ALWAYS     (1)
-#define SCE_GS_DEPTH_GEQUAL     (2)
-
 // 100% matching! 
 void Ps2ScreenClear()
 {

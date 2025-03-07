@@ -21,6 +21,7 @@
 #include <sg_syCbl.h>
 #include <sg_bup.h>
 #include <sg_gd.h>
+#include <limits.h>
 
 #include "types.h"
 
@@ -32,6 +33,7 @@
 #include "ps2_NaDraw2D.c"
 #include "ps2_NaMath.c"
 #include "ps2_NaMatrix.c"
+#include "ps2_loadtim2.c"
 #include "ps2_NaSystem.c"
 #include "ps2_texture.c"
 #include "ps2_NaTextureFunction.c"
@@ -43,7 +45,6 @@
 #include "ps2_sg_maloc.c"
 #include "gdlib.c"
 #include "ps2_sg_pad.c"
-#include "ps2_loadtim2.c"
 #include "ps2_dummy.c"
 #include "ps2_sg_sybt.c"
 #include "ps2_sg_sycbl.c"
