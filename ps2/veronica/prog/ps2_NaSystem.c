@@ -1599,7 +1599,7 @@ struct _anon56
 void (* VsyncFunc)();
 void (* EorFunc)();
 unsigned int Ps2_vcount;
-/*unsigned int Ps2_dbuff;*/
+unsigned int Ps2_dbuff;
 sceGsDBuffDc Db;
 SYS_WORK* sys;
 int vsync_func(int);
@@ -1689,33 +1689,47 @@ void njSetEORFunction(void(*func)())
 	// Func End, Address: 0x2e143c, Func Offset: 0x2c
 }*/
 
-// 
-// Start address: 0x2e1440
-void Ps2SwapDBuff()
-{
-	// Line 170, Address: 0x2e1440, Func Offset: 0
-	// Line 171, Address: 0x2e1448, Func Offset: 0x8
-	// Line 172, Address: 0x2e1450, Func Offset: 0x10
-	// Line 173, Address: 0x2e1458, Func Offset: 0x18
-	// Line 174, Address: 0x2e1460, Func Offset: 0x20
-	// Line 184, Address: 0x2e1468, Func Offset: 0x28
-	// Line 195, Address: 0x2e1478, Func Offset: 0x38
-	// Line 197, Address: 0x2e1480, Func Offset: 0x40
-	// Line 198, Address: 0x2e1484, Func Offset: 0x44
-	// Line 200, Address: 0x2e1488, Func Offset: 0x48
-	// Line 204, Address: 0x2e149c, Func Offset: 0x5c
-	// Line 205, Address: 0x2e14a4, Func Offset: 0x64
-	// Line 206, Address: 0x2e14bc, Func Offset: 0x7c
-	// Line 207, Address: 0x2e14d4, Func Offset: 0x94
-	// Line 213, Address: 0x2e14dc, Func Offset: 0x9c
-	// Line 214, Address: 0x2e14f4, Func Offset: 0xb4
-	// Line 216, Address: 0x2e14fc, Func Offset: 0xbc
-	// Line 217, Address: 0x2e150c, Func Offset: 0xcc
-	// Func End, Address: 0x2e151c, Func Offset: 0xdc
-	scePrintf("Ps2SwapDBuff - UNIMPLEMENTED!\n");
-}
+// TODO: include the following define from cpureg.h
+#define	SR_CU0		0x10000000	/* Coprocessor 0 usable */
 
 #pragma optimization_level 0
+
+// TODO: remove these function declarations
+void Ps2DrawOTag();
+void Ps2ClearOT();
+void PS2_swap();
+// 100% matching!
+void Ps2SwapDBuff() 
+{ 
+    SyncPath(); 
+    
+    Ps2DrawOTag(); 
+    Ps2ClearOT(); 
+    
+    SyncPath(); 
+
+    EorFunc(); 
+    
+    while (Ps2_vcount < 2) 
+    { 
+        asm("nop");
+        asm("nop");
+    } 
+    
+    PS2_swap(); 
+    
+    sceGsSwapDBuffDc(&Db, Ps2_dbuff);
+    
+    Ps2_dbuff = (Ps2_dbuff + 1) & 0x1;
+    
+    Ps2_vcount = 0; 
+
+    printf("TICK = %d\n", *(volatile unsigned int*)SR_CU0); 
+    
+    *(volatile unsigned int*)SR_CU0 = 0; 
+    
+    VsyncFunc(); 
+} 
 
 // 100% matching! 
 int vsync_func(int) 

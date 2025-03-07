@@ -944,7 +944,7 @@ void PS2_jikken()
     Ps2SwapDBuff(); 
 } 
 
-/*// 
+// 
 // Start address: 0x2cb5f0
 void PS2_swap()
 {
@@ -1005,9 +1005,10 @@ void PS2_swap()
 	// Line 755, Address: 0x2cb7b8, Func Offset: 0x1c8
 	// Line 756, Address: 0x2cb7c0, Func Offset: 0x1d0
 	// Func End, Address: 0x2cb7d0, Func Offset: 0x1e0
+	scePrintf("PS2_swap - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cb7d0
 void Ps2AddPrim(unsigned long prim, void* dp, unsigned int num, unsigned int clip_3d_on)
 {
@@ -1537,7 +1538,7 @@ void Ps2AddPrim3DMod(unsigned long prim, void* dp, unsigned int num)
 	// Line 2151, Address: 0x2cc824, Func Offset: 0x204
 	// Line 2154, Address: 0x2cc82c, Func Offset: 0x20c
 	// Func End, Address: 0x2cc844, Func Offset: 0x224
-}
+}*/
 
 // 
 // Start address: 0x2cc850
@@ -1558,9 +1559,10 @@ void Ps2ClearOT()
 	// Line 2171, Address: 0x2cc894, Func Offset: 0x44
 	// Line 2172, Address: 0x2cc8a0, Func Offset: 0x50
 	// Func End, Address: 0x2cc8a8, Func Offset: 0x58
+	scePrintf("Ps2ClearOT - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cc8b0
 void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim)
 {
@@ -1639,7 +1641,7 @@ void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim)
 	// Line 2265, Address: 0x2cccec, Func Offset: 0x43c
 	// Line 2267, Address: 0x2cccfc, Func Offset: 0x44c
 	// Func End, Address: 0x2ccd04, Func Offset: 0x454
-}
+}*/
 
 // 
 // Start address: 0x2ccd10
@@ -1655,9 +1657,10 @@ void Ps2DrawOTag()
 	// Line 2360, Address: 0x2ccd4c, Func Offset: 0x3c
 	// Line 2361, Address: 0x2ccd58, Func Offset: 0x48
 	// Func End, Address: 0x2ccd64, Func Offset: 0x54
+	scePrintf("Ps2DrawOTag - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ccd70
 int Ps2DrawOTagSub(int start_no)
 {
