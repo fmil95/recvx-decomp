@@ -684,15 +684,15 @@ float Ps2_zbuff_a;
 float Ps2_zbuff_b;
 _anon1 Ps2_gs_save;
 unsigned int Ps2_use_pt_flag;
-_anon4* Ps2_now_tex;
+_anon4* Ps2_now_tex;*/
 unsigned int Ps2_ot_list_no;
 void* Ps2_PP;
-_anon17 Ps2_ot_list[8192];
-unsigned int Ps2_now_bank;
-_anon17* Ps2_OT[2][4096];
-float Ps2AddPrimPrio;
+PS2_OT Ps2_ot_list[8192];
+/*unsigned int Ps2_now_bank;*/
+PS2_OT* Ps2_OT[4096][2];
+/*float Ps2AddPrimPrio;*/
 unsigned char Ps2_PBUFF[1835008];
-unsigned int Ps2_current_texbreak;
+/*unsigned int Ps2_current_texbreak;
 _anon16 Ps2_tp_tag[64];
 _anon31 ps2_tp_cache[64];
 unsigned int Ps2_tex_cache_num;
@@ -1540,26 +1540,21 @@ void Ps2AddPrim3DMod(unsigned long prim, void* dp, unsigned int num)
 	// Func End, Address: 0x2cc844, Func Offset: 0x224
 }*/
 
-// 
-// Start address: 0x2cc850
+// 100% matching! 
 void Ps2ClearOT()
 {
-	int i;
-	// Line 2165, Address: 0x2cc850, Func Offset: 0
-	// Line 2164, Address: 0x2cc854, Func Offset: 0x4
-	// Line 2165, Address: 0x2cc858, Func Offset: 0x8
-	// Line 2164, Address: 0x2cc85c, Func Offset: 0xc
-	// Line 2166, Address: 0x2cc860, Func Offset: 0x10
-	// Line 2164, Address: 0x2cc868, Func Offset: 0x18
-	// Line 2168, Address: 0x2cc880, Func Offset: 0x30
-	// Line 2171, Address: 0x2cc884, Func Offset: 0x34
-	// Line 2170, Address: 0x2cc888, Func Offset: 0x38
-	// Line 2171, Address: 0x2cc88c, Func Offset: 0x3c
-	// Line 2170, Address: 0x2cc890, Func Offset: 0x40
-	// Line 2171, Address: 0x2cc894, Func Offset: 0x44
-	// Line 2172, Address: 0x2cc8a0, Func Offset: 0x50
-	// Func End, Address: 0x2cc8a8, Func Offset: 0x58
-	scePrintf("Ps2ClearOT - UNIMPLEMENTED!\n");
+    int i;
+
+    Ps2_ot_list->tp = NULL;
+    
+    Ps2_ot_list_no = 0;
+    
+    Ps2_PP = (void*)((int)&Ps2_PBUFF | 0x30000000); 
+    
+    for (i = 0; i < 4096; i++) 
+    {
+        *(unsigned long*)&Ps2_OT[i][0] = 0;
+    } 
 }
 
 /*// 

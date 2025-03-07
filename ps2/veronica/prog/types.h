@@ -1671,3 +1671,23 @@ typedef struct PS2_GS_SAVE
 
 #define SCE_GS_DEPTH_ALWAYS     (1)
 #define SCE_GS_DEPTH_GEQUAL     (2)
+
+typedef struct PS2_OT_LIST
+{
+    int pad; // TODO: this is actually an empty struct 
+} PS2_OT_LIST;
+
+typedef struct PS2_OT
+{
+	NJS_TEXMEMLIST* tp;
+	unsigned char mode_bk[2];
+	unsigned char set_last;
+	unsigned char dc_alpha;
+	PS2_OT_LIST* op;
+	void* p;
+	unsigned long ALPHA;
+	unsigned long TEX0;
+	unsigned long TEX0_NEXT;
+	unsigned int bank;
+	unsigned int pad;
+} PS2_OT;
