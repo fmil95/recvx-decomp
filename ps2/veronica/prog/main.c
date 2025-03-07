@@ -62,7 +62,8 @@ BH_PWORK ply;
 BH_PWORK* plp;
 NJS_TEXMEMLIST tbuf[256];
 NJS_VIEW view;
-NO_NAME_13* hws;
+NO_NAME_13 hwsp;
+NO_NAME_13* hws = &hwsp;
 SYS_WORK* sys;
 char BIO_CURRENT[64];
 float BHD_ASPECT_X;
@@ -81,7 +82,6 @@ unsigned char* vebmemp;
 unsigned char* vwbmemp;
 unsigned int Ps2_sys_cnt;
 
-//_anon11 hwsp;
 //_anon18 cam;
 //_anon27 eff[512];
 //_anon32 romp;
