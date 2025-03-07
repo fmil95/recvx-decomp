@@ -1603,8 +1603,8 @@ unsigned int Ps2_vcount;
 sceGsDBuffDc Db;
 SYS_WORK* sys;
 int vsync_func(int);
-/*_anon1 Ps2_nj_save_current;
-_anon45 Ps2_gs_save;
+PS2_NJ_SAVE Ps2_nj_save_current;
+/*_anon45 Ps2_gs_save;
 
 void njSetTextureMemorySize();
 void njSetVertexBuffer();
@@ -1792,7 +1792,7 @@ void    njPolygonCullingMode( Int mode )
 
 }
 
-/*// 
+// 
 // Start address: 0x2e16b0
 void njColorBlendingModeSys(int s_mode, int d_mode)
 {
@@ -1832,18 +1832,19 @@ void njColorBlendingModeSys(int s_mode, int d_mode)
 	// Line 488, Address: 0x2e1840, Func Offset: 0x190
 	// Line 489, Address: 0x2e1848, Func Offset: 0x198
 	// Func End, Address: 0x2e1858, Func Offset: 0x1a8
-}*/
+	scePrintf("njColorBlendingModeSys - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x2e1860
-void    njColorBlendingMode( Int target, Int mode )
+// 100% matching! 
+void    njColorBlendingMode( Int target, Int mode ) 
 {
-	// Line 530, Address: 0x2e1860, Func Offset: 0
-	// Line 531, Address: 0x2e1870, Func Offset: 0x10
-	// Line 532, Address: 0x2e1878, Func Offset: 0x18
-	// Line 534, Address: 0x2e1880, Func Offset: 0x20
-	// Func End, Address: 0x2e1894, Func Offset: 0x34
-	scePrintf("njColorBlendingMode - UNIMPLEMENTED!\n");
+    Ps2_nj_save_current.mode_bk[target] = mode; 
+    
+    Ps2_nj_save_current.set_last = target; 
+    
+    Ps2_nj_save_current.dc_alpha = 0; 
+    
+    njColorBlendingModeSys(Ps2_nj_save_current.mode_bk[0], Ps2_nj_save_current.mode_bk[1]); 
 }
 
 // 100% matching!

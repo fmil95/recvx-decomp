@@ -1614,3 +1614,11 @@ typedef struct DVDISO_DATA
 	//char* link_file; original field from the debugging symbols, the below version matches better
     char** link_file;
 } DVDISO_DATA;
+
+typedef struct PS2_NJ_SAVE
+{
+	unsigned char mode_bk[2]; // offset 0x0, size 0x2
+    unsigned char set_last; // offset 0x2, size 0x1
+    unsigned char dc_alpha; // offset 0x3, size 0x1
+    int mode; // offset 0x4, size 0x4
+} PS2_NJ_SAVE;
