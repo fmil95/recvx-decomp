@@ -64,7 +64,8 @@ NJS_TEXMEMLIST tbuf[256];
 NJS_VIEW view;
 NO_NAME_13 hwsp;
 NO_NAME_13* hws = &hwsp;
-SYS_WORK* sys;
+SYS_WORK sysp;
+SYS_WORK* sys = &sysp;
 char BIO_CURRENT[64];
 float BHD_ASPECT_X;
 float BHD_ASPECT_Y;
@@ -86,7 +87,6 @@ unsigned int Ps2_sys_cnt;
 //_anon27 eff[512];
 //_anon32 romp;
 //_anon32* rom;
-//_anon46 sysp;
 
 // 100% matching!
 void njUserInit(void)
