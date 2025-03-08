@@ -694,11 +694,11 @@ PS2_OT* Ps2_OT[4096][2];
 unsigned char Ps2_PBUFF[1835008];
 unsigned int Ps2_current_texbreak;
 /*_anon16 Ps2_tp_tag[64];
-_anon31 ps2_tp_cache[64];
+_anon31 ps2_tp_cache[64];*/
 unsigned int Ps2_tex_cache_num;
 unsigned int Ps2_tex_cache_beflag[4];
 void* Ps2_tex_cache_buff[4];
-_anon4* Ps2_tex_info;
+/*_anon4* Ps2_tex_info;
 unsigned long ulNaFogB;
 unsigned long ulNaFogG;
 unsigned long ulNaFogR;
@@ -1815,20 +1815,19 @@ unsigned int Ps2BitCount(unsigned int value)
 	// Func End, Address: 0x2cd358, Func Offset: 0x18
 }*/
 
-// 
-// Start address: 0x2cd360
+// 100% matching!
 void Ps2InitTexCache()
 {
-	unsigned int i;
-	// Line 2526, Address: 0x2cd370, Func Offset: 0x10
-	// Line 2527, Address: 0x2cd374, Func Offset: 0x14
-	// Line 2529, Address: 0x2cd378, Func Offset: 0x18
-	// Line 2528, Address: 0x2cd37c, Func Offset: 0x1c
-	// Line 2529, Address: 0x2cd384, Func Offset: 0x24
-	// Line 2530, Address: 0x2cd390, Func Offset: 0x30
-	// Line 2531, Address: 0x2cd398, Func Offset: 0x38
-	// Func End, Address: 0x2cd3a0, Func Offset: 0x40
-	scePrintf("Ps2InitTexCache - UNIMPLEMENTED!\n");
+    unsigned int i;
+
+    for (i = 0; i < 4; i++) 
+    {
+        Ps2_tex_cache_buff[i] = NULL;
+        
+        Ps2_tex_cache_beflag[i] = 0;
+    } 
+    
+    Ps2_tex_cache_num = 4;
 }
 
 /*// 
