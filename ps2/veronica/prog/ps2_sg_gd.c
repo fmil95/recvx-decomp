@@ -141,7 +141,27 @@ GDFS_WORK* __gds_fs_work;
 GDFS_DIRREC_TBL* __current_dir;
 GDFS_DIRREC_ENT* __gdfs_dir_ent;
 int dvd_image_data_max = 19;
-DVDISO_DATA dvd_image_data[19]; // TODO: assign the corresponding .data values to this variable 
+DVDISO_DATA dvd_image_data[19] = {
+	{ "RDX_LNK.AFS", rdx_files },
+    { "SYSTEM.AFS" , 0 },
+    { 0            , 0 },
+    { 0            , 0 },
+	{ 0            , 0 },
+	{ 0            , 0 },
+	{ 0            , 0 },
+	{ 0            , 0 },
+	{ 0            , 0 },
+	{ "DISCID.BIN" , 0 },
+	{ "MANATEE.DRV", 0 },
+	{ "COMMON.MLT" , 0 },
+	{ "SYSMES.ALD" , 0 },
+	{ 0            , 0 },
+	{ 0            , 0 },
+	{ 0            , 0 },
+	{ 0            , 0 },
+	{ 0            , 0 },
+	{ 0            , 0 }
+}; 
 
 /*void gdFsClose(GDS_FS_HANDLE* gdfs);
 GDS_FS_DIRREC_TBL* gdFsCreateDirhn();

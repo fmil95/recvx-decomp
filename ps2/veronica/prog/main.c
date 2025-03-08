@@ -42,6 +42,7 @@
 #include "ps2_NinjaCnk.c"
 #include "ps2_sfd_mw.c"
 #include "ps2_sg_bup.c"
+#include "ps2_dvd_image.c"
 #include "ps2_sg_gd.c"
 #include "ps2_sg_maloc.c"
 #include "gdlib.c"
