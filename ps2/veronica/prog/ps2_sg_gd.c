@@ -236,7 +236,7 @@ int gdFsGetFileSize(GDS_FS_HANDLE* gdfs, int* fsize)
 }*/
 
 // 100% matching!
-Sint32  gdFsInit(Sint32 max_open, void *gdfs_work, Sint32 max_dirent, void *dirbuf)
+Sint32  gdFsInit(Sint32 max_open, void *gdfs_work, Sint32 max_dirent, void *dirbuf) 
 {
 	char local_sector_buffer[2048]; 
 	char read_f_name[2048]; 
