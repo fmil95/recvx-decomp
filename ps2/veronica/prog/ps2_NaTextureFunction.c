@@ -311,7 +311,7 @@ void	njInitTextureBuffer(Sint8 *addr,Uint32 size)
 }
 
 // 100% matching!
-void	njInitTexture(NJS_TEXMEMLIST *addr,Uint32 n)
+void	njInitTexture(NJS_TEXMEMLIST *addr,Uint32 n) 
 {	
     int i;
     
