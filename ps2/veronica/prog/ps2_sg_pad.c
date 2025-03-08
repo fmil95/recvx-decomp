@@ -132,8 +132,8 @@ struct _anon6
 };
 
 unsigned int Old_sys_cnt;*/
-static u_long128 Padd1[16];
-static u_long128 Padd2[16];
+static u_long128 Padd1[scePadDmaBufferMax];
+static u_long128 Padd2[scePadDmaBufferMax];
 /*_anon5 ButtonInfo[5];*/
 NO_NAME_19 Pad_status;
 /*unsigned int Ps2_sys_cnt;

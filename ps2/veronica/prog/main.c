@@ -13,6 +13,7 @@
 #include <sifdev.h>
 #include <libmc.h>
 #include <libcdvd.h>
+#include <libpad.h>
 //#include <stdlib.h>
 
 #include "override_katana.h"
