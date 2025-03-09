@@ -679,8 +679,8 @@ unsigned int Ps2_albinoid_flag;*/
 sceGsDBuffDc Db;
 void* Ps2_tex_buff;
 unsigned char Ps2_tex_mem[10485760];
-/*_anon36 MovieInfo;
-float Ps2_zbuff_a;
+MOV_INFO MovieInfo;
+/*float Ps2_zbuff_a;
 float Ps2_zbuff_b;
 _anon1 Ps2_gs_save;
 unsigned int Ps2_use_pt_flag;
@@ -944,68 +944,75 @@ void PS2_jikken()
     Ps2SwapDBuff(); 
 } 
 
-// 
-// Start address: 0x2cb5f0
+// 99.92% matching 
 void PS2_swap()
 {
-	unsigned long* p;
-	// Line 660, Address: 0x2cb5f0, Func Offset: 0
-	// Line 684, Address: 0x2cb5fc, Func Offset: 0xc
-	// Line 686, Address: 0x2cb604, Func Offset: 0x14
-	// Line 689, Address: 0x2cb614, Func Offset: 0x24
-	// Line 687, Address: 0x2cb618, Func Offset: 0x28
-	// Line 689, Address: 0x2cb61c, Func Offset: 0x2c
-	// Line 687, Address: 0x2cb620, Func Offset: 0x30
-	// Line 689, Address: 0x2cb624, Func Offset: 0x34
-	// Line 690, Address: 0x2cb634, Func Offset: 0x44
-	// Line 692, Address: 0x2cb640, Func Offset: 0x50
-	// Line 693, Address: 0x2cb650, Func Offset: 0x60
-	// Line 695, Address: 0x2cb65c, Func Offset: 0x6c
-	// Line 696, Address: 0x2cb664, Func Offset: 0x74
-	// Line 697, Address: 0x2cb670, Func Offset: 0x80
-	// Line 698, Address: 0x2cb678, Func Offset: 0x88
-	// Line 700, Address: 0x2cb684, Func Offset: 0x94
-	// Line 701, Address: 0x2cb68c, Func Offset: 0x9c
-	// Line 711, Address: 0x2cb698, Func Offset: 0xa8
-	// Line 712, Address: 0x2cb6a8, Func Offset: 0xb8
-	// Line 713, Address: 0x2cb6c0, Func Offset: 0xd0
-	// Line 714, Address: 0x2cb6c8, Func Offset: 0xd8
-	// Line 717, Address: 0x2cb6e4, Func Offset: 0xf4
-	// Line 723, Address: 0x2cb6ec, Func Offset: 0xfc
-	// Line 719, Address: 0x2cb6f0, Func Offset: 0x100
-	// Line 723, Address: 0x2cb6f8, Func Offset: 0x108
-	// Line 720, Address: 0x2cb6fc, Func Offset: 0x10c
-	// Line 723, Address: 0x2cb700, Func Offset: 0x110
-	// Line 720, Address: 0x2cb70c, Func Offset: 0x11c
-	// Line 723, Address: 0x2cb710, Func Offset: 0x120
-	// Line 724, Address: 0x2cb714, Func Offset: 0x124
-	// Line 726, Address: 0x2cb71c, Func Offset: 0x12c
-	// Line 736, Address: 0x2cb724, Func Offset: 0x134
-	// Line 727, Address: 0x2cb72c, Func Offset: 0x13c
-	// Line 736, Address: 0x2cb730, Func Offset: 0x140
-	// Line 738, Address: 0x2cb738, Func Offset: 0x148
-	// Line 740, Address: 0x2cb740, Func Offset: 0x150
-	// Line 742, Address: 0x2cb74c, Func Offset: 0x15c
-	// Line 741, Address: 0x2cb754, Func Offset: 0x164
-	// Line 742, Address: 0x2cb758, Func Offset: 0x168
-	// Line 741, Address: 0x2cb760, Func Offset: 0x170
-	// Line 742, Address: 0x2cb764, Func Offset: 0x174
-	// Line 743, Address: 0x2cb76c, Func Offset: 0x17c
-	// Line 745, Address: 0x2cb770, Func Offset: 0x180
-	// Line 743, Address: 0x2cb774, Func Offset: 0x184
-	// Line 745, Address: 0x2cb778, Func Offset: 0x188
-	// Line 747, Address: 0x2cb780, Func Offset: 0x190
-	// Line 746, Address: 0x2cb78c, Func Offset: 0x19c
-	// Line 747, Address: 0x2cb790, Func Offset: 0x1a0
-	// Line 748, Address: 0x2cb798, Func Offset: 0x1a8
-	// Line 750, Address: 0x2cb79c, Func Offset: 0x1ac
-	// Line 751, Address: 0x2cb7a4, Func Offset: 0x1b4
-	// Line 753, Address: 0x2cb7a8, Func Offset: 0x1b8
-	// Line 754, Address: 0x2cb7b0, Func Offset: 0x1c0
-	// Line 755, Address: 0x2cb7b8, Func Offset: 0x1c8
-	// Line 756, Address: 0x2cb7c0, Func Offset: 0x1d0
-	// Func End, Address: 0x2cb7d0, Func Offset: 0x1e0
-	scePrintf("PS2_swap - UNIMPLEMENTED!\n");
+    unsigned long *p;
+
+    p = (unsigned long*)WORKBASE;
+
+    D2_SyncTag();
+
+    *p++ = DMAend | 0xF;
+    *p++ = 0;
+
+    *p++ = SCE_GIF_SET_TAG(14, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1);
+    *p++ = SCE_GIF_PACKED_AD;
+
+    *p++ = SCE_GS_SET_FRAME_2(150, 10, SCE_GS_PSMCT32, 0);
+    *p++ = SCE_GS_FRAME_2;
+
+    *p++ = 0;
+    *p++ = SCE_GS_TEXFLUSH;
+
+    *p++ = SCE_GS_SET_TEX1_2(0, 0, SCE_GS_NEAREST, SCE_GS_NEAREST, 0, 0, 0);
+    *p++ = SCE_GS_TEX1_2;
+
+    *p++ = SCE_GS_SET_PABE(0);
+    *p++ = SCE_GS_PABE;
+
+    if (MovieInfo.ExecMovieSystemFlag != 0)
+    {
+        *p++ = SCE_GS_SET_ALPHA_2(SCE_GS_ALPHA_CS, SCE_GS_ALPHA_CD, SCE_GS_ALPHA_FIX, SCE_GS_ALPHA_CD, 128);
+    }
+    else
+    {
+        *p++ = SCE_GS_SET_ALPHA_2(SCE_GS_ALPHA_CS, SCE_GS_ALPHA_CD, SCE_GS_ALPHA_FIX, SCE_GS_ALPHA_CD, 96);
+    }
+
+    *p++ = SCE_GS_ALPHA_2;
+
+    *p++ = SCE_GS_SET_TEST_2(0, SCE_GS_ALPHA_NEVER, 0, SCE_GS_AFAIL_KEEP, 0, 0, 1, SCE_GS_DEPTH_ALWAYS);
+    *p++ = SCE_GS_TEST_2;
+
+    *p++ = SCE_GS_SET_TEX0_2(0, 10, SCE_GS_PSMCT32, 10, 9, 1, SCE_GS_MODULATE, 0, SCE_GS_PSMCT32, 0, 0, 0);
+    *p++ = SCE_GS_TEX0_2;
+
+    *p++ = SCE_GS_SET_PRIM(SCE_GS_PRIM_SPRITE, 0, 1, 0, 1, 0, 1, 1, 0);
+    *p++ = SCE_GS_PRIM;
+
+    *p++ = SCE_GS_SET_RGBAQ(128, 128, 128, 128, 0);
+    *p++ = SCE_GS_RGBAQ;
+
+    *p++ = SCE_GS_SET_UV(8, 8);
+    *p++ = SCE_GS_UV;
+
+    *p++ = SCE_GS_SET_XYZF2(GS_X_COORD(0), GS_Y_COORD(-128), 256, 0);
+    *p++ = SCE_GS_XYZF2;
+
+    *p++ = SCE_GS_SET_UV(8 + (DISP_WIDTH * 16), 8 + (DISP_HEIGHT * 16));
+    *p++ = SCE_GS_UV;
+
+    *p++ = SCE_GS_SET_XYZF2(GS_X_COORD(SCR_WIDTH), GS_Y_COORD(352), 256, 0);
+    *p++ = SCE_GS_XYZF2;
+
+    *p++ = SCE_GS_SET_TEST_2(0, SCE_GS_ALPHA_NEVER, 0, SCE_GS_AFAIL_KEEP, 0, 0, 1, SCE_GS_DEPTH_GEQUAL);
+    *p++ = SCE_GS_TEST_2;
+    
+    loadImage((void*)0xF0000000);
+    
+    D2_SyncTag();
+    SyncPath();
 }
 
 /*// 

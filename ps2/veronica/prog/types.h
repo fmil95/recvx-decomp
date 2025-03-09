@@ -1675,6 +1675,11 @@ typedef struct PS2_GS_SAVE
 #define SCE_GS_ALPHA_GEQUAL     (5)
 #define SCE_GS_ALPHA_GREATER    (6)
 
+#define SCE_GS_ALPHA_CS         (0)
+#define SCE_GS_ALPHA_CD         (1)
+
+#define SCE_GS_ALPHA_FIX        (2)
+
 typedef struct PS2_OT_LIST
 {
     int pad; // TODO: this is actually an empty struct 
@@ -1694,3 +1699,18 @@ typedef struct PS2_OT
 	unsigned int bank;
 	unsigned int pad;
 } PS2_OT;
+
+typedef struct MOV_INFO
+{
+	unsigned char * mmp; // offset 0x0, size 0x4
+    float Vol; // offset 0x4, size 0x4
+    float VolSpeed; // offset 0x8, size 0x4
+    float Fade; // offset 0xC, size 0x4
+    float FadeSpeed; // offset 0x10, size 0x4
+    short FrameCnt; // offset 0x14, size 0x2
+    char ExecMovieSystemFlag; // offset 0x16, size 0x1
+    char MovieCancelFlag; // offset 0x17, size 0x1
+    char MovieFadeFlag; // offset 0x18, size 0x1
+    char MovieFadeMode; // offset 0x19, size 0x1
+    char MovieSystemLastError; // offset 0x1A, size 0x1
+} MOV_INFO;
