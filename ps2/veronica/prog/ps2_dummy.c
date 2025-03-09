@@ -2108,40 +2108,46 @@ int Ps2CheckTextureAlpha(void* pp)
 	// Func End, Address: 0x2cddf8, Func Offset: 0x288
 }*/
 
-// 
-// Start address: 0x2cde00
+// 96.92% matching 
 void Ps2InitPS2_GS_SAVE()
 {
-	// Line 3450, Address: 0x2cde00, Func Offset: 0
-	// Line 3453, Address: 0x2cde10, Func Offset: 0x10
-	// Line 3451, Address: 0x2cde14, Func Offset: 0x14
-	// Line 3453, Address: 0x2cde18, Func Offset: 0x18
-	// Line 3451, Address: 0x2cde1c, Func Offset: 0x1c
-	// Line 3453, Address: 0x2cde20, Func Offset: 0x20
-	// Line 3454, Address: 0x2cde30, Func Offset: 0x30
-	// Line 3456, Address: 0x2cde3c, Func Offset: 0x3c
-	// Line 3457, Address: 0x2cde44, Func Offset: 0x44
-	// Line 3459, Address: 0x2cde50, Func Offset: 0x50
-	// Line 3460, Address: 0x2cde58, Func Offset: 0x58
-	// Line 3462, Address: 0x2cde60, Func Offset: 0x60
-	// Line 3463, Address: 0x2cde68, Func Offset: 0x68
-	// Line 3465, Address: 0x2cde74, Func Offset: 0x74
-	// Line 3466, Address: 0x2cde7c, Func Offset: 0x7c
-	// Line 3468, Address: 0x2cde88, Func Offset: 0x88
-	// Line 3469, Address: 0x2cde90, Func Offset: 0x90
-	// Line 3471, Address: 0x2cde9c, Func Offset: 0x9c
-	// Line 3472, Address: 0x2cdea4, Func Offset: 0xa4
-	// Line 3474, Address: 0x2cdeb0, Func Offset: 0xb0
-	// Line 3475, Address: 0x2cdeb8, Func Offset: 0xb8
-	// Line 3477, Address: 0x2cdec4, Func Offset: 0xc4
-	// Line 3478, Address: 0x2cdecc, Func Offset: 0xcc
-	// Line 3480, Address: 0x2cded8, Func Offset: 0xd8
-	// Line 3481, Address: 0x2cdee0, Func Offset: 0xe0
-	// Line 3483, Address: 0x2cdeec, Func Offset: 0xec
-	// Line 3484, Address: 0x2cdef4, Func Offset: 0xf4
-	// Line 3486, Address: 0x2cdef8, Func Offset: 0xf8
-	// Func End, Address: 0x2cdf04, Func Offset: 0x104
-	scePrintf("Ps2InitPS2_GS_SAVE - UNIMPLEMENTED!\n");
+    Ps2_gs_save.SC_TAG[0] = DMAend | 0xA;
+    Ps2_gs_save.SC_TAG[1] = 0;
+    
+    Ps2_gs_save.GIF_TAG[0] = SCE_GIF_SET_TAG(9, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1);
+    Ps2_gs_save.GIF_TAG[1] = SCE_GIF_PACKED_AD;
+    
+    Ps2_gs_save.TEX0 = 0;
+    Ps2_gs_save.TEX0_TAG = SCE_GS_TEX0_1;
+    
+    Ps2_gs_save.TEX0_NEXT = 0;
+    Ps2_gs_save.TEX0_NEXT_TAG = SCE_GS_TEX0_1;
+    
+    Ps2_gs_save.TEX1 = 0;
+    Ps2_gs_save.TEX1_TAG = SCE_GS_TEX1_1;
+    
+    Ps2_gs_save.CLAMP = 0;
+    Ps2_gs_save.CLAMP_TAG = SCE_GS_CLAMP_1;
+    
+    Ps2_gs_save.TEST = 0;
+    Ps2_gs_save.TEST_TAG = SCE_GS_TEST_1;
+    
+    Ps2_gs_save.FOGCOL = 0;
+    Ps2_gs_save.FOGCOL_TAG = SCE_GS_FOGCOL;
+    
+    Ps2_gs_save.ALPHA = 0;
+    Ps2_gs_save.ALPHA_TAG = SCE_GS_ALPHA_1;
+    
+    Ps2_gs_save.FBA = 0;
+    Ps2_gs_save.FBA_TAG = SCE_GS_FBA_1;
+    
+    Ps2_gs_save.SCISSOR = 0;
+    Ps2_gs_save.SCISSOR_TAG = SCE_GS_SCISSOR_1;
+
+    Ps2_gs_save.mode_bk[0] = 0;
+    Ps2_gs_save.pad64 = 0;
+    
+    FlushCache(0);
 }
 
 // 100% matching! 
