@@ -1668,10 +1668,11 @@ typedef struct PS2_GS_SAVE
 #define SCE_GS_ALPHA_NEVER      (0)
 
 #define    SCE_GS_AFAIL_KEEP    (0)
+#define    SCE_GS_AFAIL_FB_ONLY (1)
 
 #define SCE_GS_DEPTH_ALWAYS     (1)
 #define SCE_GS_DEPTH_GEQUAL     (2)
-
+#define SCE_GS_ALPHA_GEQUAL     (5)
 #define SCE_GS_ALPHA_GREATER    (6)
 
 typedef struct PS2_OT_LIST

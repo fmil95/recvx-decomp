@@ -2213,26 +2213,23 @@ void Ps2DispScreenClear()
     SyncPath();
 }
 
-// 
-// Start address: 0x2ce150
+// 100% matching! 
 void Ps2ZbuffOff()
 {
-	// Line 3613, Address: 0x2ce150, Func Offset: 0
-	// Line 3618, Address: 0x2ce158, Func Offset: 0x8
-	// Line 3620, Address: 0x2ce160, Func Offset: 0x10
-	// Line 3623, Address: 0x2ce170, Func Offset: 0x20
-	// Line 3621, Address: 0x2ce174, Func Offset: 0x24
-	// Line 3623, Address: 0x2ce178, Func Offset: 0x28
-	// Line 3621, Address: 0x2ce17c, Func Offset: 0x2c
-	// Line 3623, Address: 0x2ce180, Func Offset: 0x30
-	// Line 3624, Address: 0x2ce190, Func Offset: 0x40
-	// Line 3631, Address: 0x2ce19c, Func Offset: 0x4c
-	// Line 3632, Address: 0x2ce1ac, Func Offset: 0x5c
-	// Line 3635, Address: 0x2ce1b8, Func Offset: 0x68
-	// Line 3636, Address: 0x2ce1c0, Func Offset: 0x70
-	// Line 3637, Address: 0x2ce1c8, Func Offset: 0x78
-	// Func End, Address: 0x2ce1d4, Func Offset: 0x84
-	scePrintf("Ps2ZbuffOff - UNIMPLEMENTED!\n");
+    D2_SyncTag();
+    
+    ((u_long*)WORKBASE)[0] = DMAend | 0x2;
+    ((u_long*)WORKBASE)[1] = 0;
+    
+    ((u_long*)WORKBASE)[2] = SCE_GIF_SET_TAG(1, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1);
+    ((u_long*)WORKBASE)[3] = SCE_GIF_PACKED_AD;
+    
+    ((u_long*)WORKBASE)[4] = SCE_GS_SET_TEST_1(1, SCE_GS_ALPHA_GEQUAL, 128, SCE_GS_AFAIL_FB_ONLY, 0, 0, 1, SCE_GS_DEPTH_GEQUAL);
+    ((u_long*)WORKBASE)[5] = SCE_GS_TEST_1;
+    
+    loadImage((void*)0xF0000000);
+    
+    D2_SyncTag();
 }
 
 /*// 

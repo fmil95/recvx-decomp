@@ -164,4 +164,5 @@ int Expand(char* s, unsigned char* d)
 	// Line 262, Address: 0x2cb040, Func Offset: 0x1a0
 	// Line 353, Address: 0x2cb044, Func Offset: 0x1a4
 	// Func End, Address: 0x2cb04c, Func Offset: 0x1ac
+	scePrintf("Expand - UNIMPLEMENTED!\n");
 }
