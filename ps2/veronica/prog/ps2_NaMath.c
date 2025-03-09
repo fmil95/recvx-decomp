@@ -8,11 +8,11 @@ struct _anon0
 	int keys;
 	int* iparam;
 	float* fparam;
-};
+};*/
 
 float SinTable[16384];
 
-void _Make_SinTable();
+/*void _Make_SinTable();
 float njSin(int lAngle);
 float njCos(int lAngle);
 void njSinCos(int lAngle, float* sin, float* cos);
@@ -24,21 +24,16 @@ void njOverhauserSpline(float* fpIdata, float* fpOdata, _anon0* pAttr, float fT)
 void njBezierSpline(float* fpIdata, float* fpOdata, _anon0* pAttr, float fFrame);
 unsigned int njFactorial(unsigned int ulN);*/
 
-// 
-// Start address: 0x2d7c50
+// 100% matching! 
 void _Make_SinTable()
-{
-	int i;
-	// Line 51, Address: 0x2d7c50, Func Offset: 0
-	// Line 54, Address: 0x2d7c68, Func Offset: 0x18
-	// Line 55, Address: 0x2d7c6c, Func Offset: 0x1c
-	// Line 56, Address: 0x2d7c88, Func Offset: 0x38
-	// Line 55, Address: 0x2d7c8c, Func Offset: 0x3c
-	// Line 56, Address: 0x2d7c90, Func Offset: 0x40
-	// Line 58, Address: 0x2d7c9c, Func Offset: 0x4c
-	// Func End, Address: 0x2d7cb0, Func Offset: 0x60
-	scePrintf("_Make_SinTable - UNIMPLEMENTED!\n");
-}
+{ 
+    int i;
+
+    for (i = 0; i < 16384; i++) 
+    { 
+        SinTable[i] = sinf(0.0000958738f * i); 
+    } 
+}  
 
 /*// 
 // Start address: 0x2d7cb0

@@ -23,7 +23,7 @@
   ],
   "compiler_flags": ["--gcc-compat","-nosyspath"],
   "linker_flags": ["compiling/linker.lcf"],
-  "libs": ["-lgcc", "-lgraph", "-ldma", "-ldev", "-lpkt", "-lpad", "-lvu0", "-lkernl", "-lc", "-lmc", "-lcdvd"],
+  "libs": ["-lgcc", "-lgraph", "-ldma", "-ldev", "-lpkt", "-lpad", "-lvu0", "-lkernl", "-lc", "-lmc", "-lcdvd", "-lm"],
   "assembly_files": [
       "crt0.s"
   ],
