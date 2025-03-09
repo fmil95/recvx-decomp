@@ -142,25 +142,25 @@ GDFS_DIRREC_TBL* __current_dir;
 GDFS_DIRREC_ENT* __gdfs_dir_ent;
 int dvd_image_data_max = 19;
 DVDISO_DATA dvd_image_data[19] = {
-	{ "RDX_LNK.AFS", rdx_files },
-    { "SYSTEM.AFS" , 0 },
-    { 0            , 0 },
-    { 0            , 0 },
-	{ 0            , 0 },
-	{ 0            , 0 },
-	{ 0            , 0 },
-	{ 0            , 0 },
-	{ 0            , 0 },
-	{ "DISCID.BIN" , 0 },
-	{ "MANATEE.DRV", 0 },
-	{ "COMMON.MLT" , 0 },
-	{ "SYSMES.ALD" , 0 },
-	{ 0            , 0 },
-	{ 0            , 0 },
-	{ 0            , 0 },
-	{ 0            , 0 },
-	{ 0            , 0 },
-	{ 0            , 0 }
+	{ "RDX_LNK.AFS" , rdx_files },
+    { "SYSTEM.AFS"  , 0 },
+    { "MRY.AFS"     , 0 },
+    { "ADV.AFS"     , 0 },
+	{ "BGM1.AFS"    , 0 },
+	{ "ITEM1.AFS"   , 0 },
+	{ "MULTSPQ1.AFS", 0 },
+	{ "VOICE1.AFS"  , 0 },
+	{ "MULTSPQ1.IDX", 0 },
+	{ "DISCID.BIN"  , 0 },
+	{ "MANATEE.DRV" , 0 },
+	{ "COMMON.MLT"  , 0 },
+	{ "SYSMES.ALD"  , 0 },
+	{ "BIO_CV.ICO"  , 0 },
+	{ "BGM2.AFS"    , 0 },
+	{ "ITEM2.AFS"   , 0 },
+	{ "MULTSPQ2.AFS", 0 },
+	{ "VOICE2.AFS"  , 0 },
+	{ "MULTSPQ2.IDX", 0 }
 }; 
 
 /*void gdFsClose(GDS_FS_HANDLE* gdfs);

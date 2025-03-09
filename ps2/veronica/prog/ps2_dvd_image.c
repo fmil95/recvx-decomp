@@ -11,7 +11,7 @@ struct _anon0
 	char* link_file;
 };*/
 
-char* rdx_files[205];
+char* rdx_files[205] = { 0 };
 /*char* pss_files[18];
 _anon0 dvd_image_data[19];
 int dvd_image_data_max;
