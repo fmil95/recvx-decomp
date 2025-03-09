@@ -2258,28 +2258,26 @@ void Ps2ZbuffOff2()
 	// Func End, Address: 0x2ce28c, Func Offset: 0xac
 }*/
 
-// 
-// Start address: 0x2ce290
+// 100% matching! 
 void Ps2ZbuffOn()
 {
-	// Line 3664, Address: 0x2ce290, Func Offset: 0
-	// Line 3669, Address: 0x2ce298, Func Offset: 0x8
-	// Line 3671, Address: 0x2ce2a0, Func Offset: 0x10
-	// Line 3674, Address: 0x2ce2b0, Func Offset: 0x20
-	// Line 3672, Address: 0x2ce2b4, Func Offset: 0x24
-	// Line 3674, Address: 0x2ce2b8, Func Offset: 0x28
-	// Line 3672, Address: 0x2ce2bc, Func Offset: 0x2c
-	// Line 3674, Address: 0x2ce2c0, Func Offset: 0x30
-	// Line 3675, Address: 0x2ce2d0, Func Offset: 0x40
-	// Line 3677, Address: 0x2ce2dc, Func Offset: 0x4c
-	// Line 3678, Address: 0x2ce2ec, Func Offset: 0x5c
-	// Line 3679, Address: 0x2ce2f8, Func Offset: 0x68
-	// Line 3680, Address: 0x2ce308, Func Offset: 0x78
-	// Line 3682, Address: 0x2ce314, Func Offset: 0x84
-	// Line 3683, Address: 0x2ce31c, Func Offset: 0x8c
-	// Line 3684, Address: 0x2ce324, Func Offset: 0x94
-	// Func End, Address: 0x2ce330, Func Offset: 0xa0
-	scePrintf("Ps2ZbuffOn - UNIMPLEMENTED!\n");
+    D2_SyncTag();
+    
+    ((u_long*)WORKBASE)[0] = DMAend | 0x3;
+    ((u_long*)WORKBASE)[1] = 0;
+    
+    ((u_long*)WORKBASE)[2] = SCE_GIF_SET_TAG(2, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1);
+    ((u_long*)WORKBASE)[3] = SCE_GIF_PACKED_AD;
+    
+    ((u_long*)WORKBASE)[4] = SCE_GS_SET_ZBUF_1(300, SCE_GS_PSMCT16S, 0);
+    ((u_long*)WORKBASE)[5] = SCE_GS_ZBUF_1;
+    
+    ((u_long*)WORKBASE)[6] = SCE_GS_SET_TEST_1(1, SCE_GS_ALPHA_GREATER, 0, SCE_GS_AFAIL_KEEP, 0, 0, 1, SCE_GS_DEPTH_GEQUAL);
+    ((u_long*)WORKBASE)[7] = SCE_GS_TEST_1;
+    
+    loadImage((void*)0xF0000000);
+    
+    D2_SyncTag();
 }
 
 /*// 
