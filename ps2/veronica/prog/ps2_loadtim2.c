@@ -468,13 +468,13 @@ int Send_1024_Clut_data(void* clt_adr, unsigned long send_clut_adr)
 	// Line 2134, Address: 0x2e75b4, Func Offset: 0x194
 	// Line 2135, Address: 0x2e75c4, Func Offset: 0x1a4
 	// Func End, Address: 0x2e75ec, Func Offset: 0x1cc
-}
+}*/
 
 // 
 // Start address: 0x2e75f0
 int Send_Tim2_dataEx(void* tim2_top_adr, unsigned long send_image_adr, unsigned long send_clut_adr)
 {
-	_anon0* pPhead;
+	//_anon0* pPhead;
 	// Line 2154, Address: 0x2e75f0, Func Offset: 0
 	// Line 2167, Address: 0x2e7604, Func Offset: 0x14
 	// Line 2170, Address: 0x2e7620, Func Offset: 0x30
@@ -491,9 +491,10 @@ int Send_Tim2_dataEx(void* tim2_top_adr, unsigned long send_image_adr, unsigned 
 	// Line 2195, Address: 0x2e76e8, Func Offset: 0xf8
 	// Line 2196, Address: 0x2e76ec, Func Offset: 0xfc
 	// Func End, Address: 0x2e7704, Func Offset: 0x114
+	scePrintf("Send_Tim2_dataEx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e7710
 int Clut_Load_Func(_anon0* ph, unsigned long clut_addr)
 {

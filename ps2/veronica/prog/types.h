@@ -1714,3 +1714,26 @@ typedef struct MOV_INFO
     char MovieFadeMode; // offset 0x19, size 0x1
     char MovieSystemLastError; // offset 0x1A, size 0x1
 } MOV_INFO;
+
+typedef struct PS2_TP_TAG
+{
+	unsigned long GIF_TAG[2]; // offset 0x0, size 0x8
+    unsigned long TEX0; // offset 0x10, size 0x4
+    unsigned long TEX0_TAG; // offset 0x18, size 0x4
+    unsigned long TEX0_NEXT; // offset 0x20, size 0x4
+    unsigned long TEX0_NEXT_TAG; // offset 0x28, size 0x4
+    unsigned long CLAMP; // offset 0x30, size 0x4
+    unsigned long CLAMP_TAG; // offset 0x38, size 0x4
+} PS2_TP_TAG;
+
+typedef struct PS2_TP_CACHE
+{
+	void * tp; // offset 0x0, size 0x4
+    unsigned int bank; // offset 0x4, size 0x4
+    unsigned int tex_addr; // offset 0x8, size 0x4
+    unsigned int clt_addr; // offset 0xC, size 0x4
+} PS2_TP_CACHE;
+
+#define DMAref              (3<<28)
+
+#define SCE_GS_CLAMP            (1)

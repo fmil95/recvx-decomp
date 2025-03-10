@@ -693,8 +693,8 @@ PS2_OT* Ps2_OT[4096][2];
 /*float Ps2AddPrimPrio;*/
 unsigned char Ps2_PBUFF[1835008];
 unsigned int Ps2_current_texbreak;
-/*_anon16 Ps2_tp_tag[64];
-_anon31 ps2_tp_cache[64];*/
+PS2_TP_TAG Ps2_tp_tag[64];
+PS2_TP_CACHE ps2_tp_cache[64];
 unsigned int Ps2_tex_cache_num;
 unsigned int Ps2_tex_cache_beflag[4];
 void* Ps2_tex_cache_buff[4];
@@ -1652,163 +1652,209 @@ void Ps2DrawOTag()
 
     Ps2ZbuffOff();
     
- /* for (i = 0; i < 4096; )
+    for (i = 0; i < 4096; )
     {
         i = Ps2DrawOTagSub(i);
-    } TODO: uncomment this loop after Ps2DrawOTagSub is properly implemented */
+    } 
     
     Ps2ZbuffOn();
     
     Ps2_current_texbreak = 1;
 }
 
-// 
-// Start address: 0x2ccd70
+// 98.76% matching
 int Ps2DrawOTagSub(int start_no)
-{
-	void* start_addr;
-	unsigned int exit_no;
-	unsigned int clt_addr;
-	unsigned int tex_addr;
-	unsigned int np_no;
-	unsigned int t_no;
-	unsigned int p_flag;
-	unsigned int t_flag;
-	unsigned int tex_cache_num;
-	//_anon0* timp;
-	int save_alpha[3];
-	//_anon17* old_p;
-	//_anon17* p;
-	int j;
-	int i;
-	// Line 2365, Address: 0x2ccd70, Func Offset: 0
-	// Line 2371, Address: 0x2ccd74, Func Offset: 0x4
-	// Line 2365, Address: 0x2ccd78, Func Offset: 0x8
-	// Line 2371, Address: 0x2ccd80, Func Offset: 0x10
-	// Line 2365, Address: 0x2ccd88, Func Offset: 0x18
-	// Line 2371, Address: 0x2ccd90, Func Offset: 0x20
-	// Line 2365, Address: 0x2ccd94, Func Offset: 0x24
-	// Line 2372, Address: 0x2ccd98, Func Offset: 0x28
-	// Line 2365, Address: 0x2ccd9c, Func Offset: 0x2c
-	// Line 2372, Address: 0x2ccda4, Func Offset: 0x34
-	// Line 2365, Address: 0x2ccda8, Func Offset: 0x38
-	// Line 2367, Address: 0x2ccdbc, Func Offset: 0x4c
-	// Line 2370, Address: 0x2ccdc0, Func Offset: 0x50
-	// Line 2377, Address: 0x2ccdc8, Func Offset: 0x58
-	// Line 2378, Address: 0x2ccdcc, Func Offset: 0x5c
-	// Line 2380, Address: 0x2ccdd0, Func Offset: 0x60
-	// Line 2379, Address: 0x2ccdd4, Func Offset: 0x64
-	// Line 2380, Address: 0x2ccdd8, Func Offset: 0x68
-	// Line 2379, Address: 0x2ccddc, Func Offset: 0x6c
-	// Line 2380, Address: 0x2ccde0, Func Offset: 0x70
-	// Line 2381, Address: 0x2ccdec, Func Offset: 0x7c
-	// Line 2382, Address: 0x2cce24, Func Offset: 0xb4
-	// Line 2385, Address: 0x2cce40, Func Offset: 0xd0
-	// Line 2386, Address: 0x2cce4c, Func Offset: 0xdc
-	// Line 2387, Address: 0x2cce68, Func Offset: 0xf8
-	// Line 2388, Address: 0x2cce70, Func Offset: 0x100
-	// Line 2391, Address: 0x2cce78, Func Offset: 0x108
-	// Line 2390, Address: 0x2cce7c, Func Offset: 0x10c
-	// Line 2391, Address: 0x2cce80, Func Offset: 0x110
-	// Line 2392, Address: 0x2cce90, Func Offset: 0x120
-	// Line 2394, Address: 0x2cce9c, Func Offset: 0x12c
-	// Line 2395, Address: 0x2ccea8, Func Offset: 0x138
-	// Line 2396, Address: 0x2ccebc, Func Offset: 0x14c
-	// Line 2398, Address: 0x2ccec0, Func Offset: 0x150
-	// Line 2401, Address: 0x2ccec8, Func Offset: 0x158
-	// Line 2403, Address: 0x2cced0, Func Offset: 0x160
-	// Line 2404, Address: 0x2ccee8, Func Offset: 0x178
-	// Line 2407, Address: 0x2ccef4, Func Offset: 0x184
-	// Line 2405, Address: 0x2ccefc, Func Offset: 0x18c
-	// Line 2407, Address: 0x2ccf00, Func Offset: 0x190
-	// Line 2408, Address: 0x2ccf08, Func Offset: 0x198
-	// Line 2409, Address: 0x2ccf0c, Func Offset: 0x19c
-	// Line 2412, Address: 0x2ccf10, Func Offset: 0x1a0
-	// Line 2413, Address: 0x2ccf20, Func Offset: 0x1b0
-	// Line 2414, Address: 0x2ccf28, Func Offset: 0x1b8
-	// Line 2415, Address: 0x2ccf30, Func Offset: 0x1c0
-	// Line 2416, Address: 0x2ccf48, Func Offset: 0x1d8
-	// Line 2417, Address: 0x2ccf4c, Func Offset: 0x1dc
-	// Line 2419, Address: 0x2ccf54, Func Offset: 0x1e4
-	// Line 2420, Address: 0x2ccf84, Func Offset: 0x214
-	// Line 2422, Address: 0x2ccf88, Func Offset: 0x218
-	// Line 2423, Address: 0x2ccf90, Func Offset: 0x220
-	// Line 2425, Address: 0x2ccfac, Func Offset: 0x23c
-	// Line 2426, Address: 0x2ccfb4, Func Offset: 0x244
-	// Line 2427, Address: 0x2ccfc4, Func Offset: 0x254
-	// Line 2430, Address: 0x2ccfcc, Func Offset: 0x25c
-	// Line 2435, Address: 0x2ccfdc, Func Offset: 0x26c
-	// Line 2437, Address: 0x2ccfe4, Func Offset: 0x274
-	// Line 2438, Address: 0x2ccfec, Func Offset: 0x27c
-	// Line 2440, Address: 0x2ccff4, Func Offset: 0x284
-	// Line 2439, Address: 0x2ccff8, Func Offset: 0x288
-	// Line 2440, Address: 0x2ccffc, Func Offset: 0x28c
-	// Line 2439, Address: 0x2cd000, Func Offset: 0x290
-	// Line 2442, Address: 0x2cd010, Func Offset: 0x2a0
-	// Line 2443, Address: 0x2cd014, Func Offset: 0x2a4
-	// Line 2445, Address: 0x2cd018, Func Offset: 0x2a8
-	// Line 2443, Address: 0x2cd028, Func Offset: 0x2b8
-	// Line 2445, Address: 0x2cd02c, Func Offset: 0x2bc
-	// Line 2446, Address: 0x2cd030, Func Offset: 0x2c0
-	// Line 2448, Address: 0x2cd038, Func Offset: 0x2c8
-	// Line 2449, Address: 0x2cd054, Func Offset: 0x2e4
-	// Line 2451, Address: 0x2cd068, Func Offset: 0x2f8
-	// Line 2449, Address: 0x2cd06c, Func Offset: 0x2fc
-	// Line 2451, Address: 0x2cd094, Func Offset: 0x324
-	// Line 2452, Address: 0x2cd098, Func Offset: 0x328
-	// Line 2455, Address: 0x2cd0d4, Func Offset: 0x364
-	// Line 2456, Address: 0x2cd0dc, Func Offset: 0x36c
-	// Line 2458, Address: 0x2cd0fc, Func Offset: 0x38c
-	// Line 2456, Address: 0x2cd100, Func Offset: 0x390
-	// Line 2458, Address: 0x2cd114, Func Offset: 0x3a4
-	// Line 2459, Address: 0x2cd118, Func Offset: 0x3a8
-	// Line 2461, Address: 0x2cd13c, Func Offset: 0x3cc
-	// Line 2464, Address: 0x2cd140, Func Offset: 0x3d0
-	// Line 2465, Address: 0x2cd150, Func Offset: 0x3e0
-	// Line 2467, Address: 0x2cd158, Func Offset: 0x3e8
-	// Line 2468, Address: 0x2cd170, Func Offset: 0x400
-	// Line 2467, Address: 0x2cd174, Func Offset: 0x404
-	// Line 2468, Address: 0x2cd178, Func Offset: 0x408
-	// Line 2467, Address: 0x2cd18c, Func Offset: 0x41c
-	// Line 2468, Address: 0x2cd190, Func Offset: 0x420
-	// Line 2470, Address: 0x2cd194, Func Offset: 0x424
-	// Line 2468, Address: 0x2cd198, Func Offset: 0x428
-	// Line 2472, Address: 0x2cd1a0, Func Offset: 0x430
-	// Line 2473, Address: 0x2cd1a8, Func Offset: 0x438
-	// Line 2474, Address: 0x2cd1d8, Func Offset: 0x468
-	// Line 2477, Address: 0x2cd1e0, Func Offset: 0x470
-	// Line 2478, Address: 0x2cd1e4, Func Offset: 0x474
-	// Line 2479, Address: 0x2cd1e8, Func Offset: 0x478
-	// Line 2480, Address: 0x2cd1fc, Func Offset: 0x48c
-	// Line 2482, Address: 0x2cd218, Func Offset: 0x4a8
-	// Line 2484, Address: 0x2cd224, Func Offset: 0x4b4
-	// Line 2488, Address: 0x2cd228, Func Offset: 0x4b8
-	// Line 2484, Address: 0x2cd22c, Func Offset: 0x4bc
-	// Line 2488, Address: 0x2cd234, Func Offset: 0x4c4
-	// Line 2484, Address: 0x2cd238, Func Offset: 0x4c8
-	// Line 2488, Address: 0x2cd23c, Func Offset: 0x4cc
-	// Line 2484, Address: 0x2cd254, Func Offset: 0x4e4
-	// Line 2485, Address: 0x2cd264, Func Offset: 0x4f4
-	// Line 2488, Address: 0x2cd274, Func Offset: 0x504
-	// Line 2491, Address: 0x2cd27c, Func Offset: 0x50c
-	// Line 2493, Address: 0x2cd284, Func Offset: 0x514
-	// Line 2495, Address: 0x2cd288, Func Offset: 0x518
-	// Line 2492, Address: 0x2cd28c, Func Offset: 0x51c
-	// Line 2491, Address: 0x2cd294, Func Offset: 0x524
-	// Line 2493, Address: 0x2cd298, Func Offset: 0x528
-	// Line 2492, Address: 0x2cd2a0, Func Offset: 0x530
-	// Line 2495, Address: 0x2cd2a4, Func Offset: 0x534
-	// Line 2497, Address: 0x2cd2ac, Func Offset: 0x53c
-	// Line 2498, Address: 0x2cd2b4, Func Offset: 0x544
-	// Line 2499, Address: 0x2cd2c4, Func Offset: 0x554
-	// Line 2500, Address: 0x2cd2cc, Func Offset: 0x55c
-	// Line 2501, Address: 0x2cd2e4, Func Offset: 0x574
-	// Line 2503, Address: 0x2cd2f8, Func Offset: 0x588
-	// Line 2505, Address: 0x2cd300, Func Offset: 0x590
-	// Line 2506, Address: 0x2cd304, Func Offset: 0x594
-	// Func End, Address: 0x2cd334, Func Offset: 0x5c4
-	scePrintf("Ps2DrawOTagSub - UNIMPLEMENTED!\n");
-}
+{ 
+    int i; 
+    int j; 
+    PS2_OT* p; 
+    PS2_OT* old_p; 
+    int save_alpha[3]; 
+    TIM2_PICTUREHEADER* timp; 
+    unsigned int tex_cache_num; 
+    unsigned int t_flag;
+    unsigned int p_flag; 
+    unsigned int t_no; 
+    unsigned int np_no; 
+    unsigned int tex_addr;
+    unsigned int clt_addr;
+    unsigned int exit_no; 
+    void* start_addr;
+    
+    old_p = NULL;
+    
+    t_no = 0; 
+    np_no = 0;
+    
+    tex_cache_num = 0; 
+    
+    tex_addr = 0x2F80; 
+    clt_addr = 0x2E44;
+    
+    exit_no = 4096; 
+    
+    for (i = 0; i < 64; i++) 
+    { 
+        *(u_long128*)&ps2_tp_cache[i] = 0; 
+    } 
+    
+    for (i = start_no; i < 4096; i++) 
+    { 
+        for (p = Ps2_OT[i][0]; p != NULL; ) 
+        { 
+            if (old_p != NULL) 
+            { 
+                ((long*)old_p->p)[2] |= ((unsigned long)p->p & 0xFFFFFFF) << 32; 
+            }
+            else
+            { 
+                start_addr = p->p; 
+            }
+            
+            p_flag = 0; 
+            t_flag = 0; 
+            
+            if (p->tp == NULL)
+            {
+                return 4096;
+            }
+            
+            if ((int)p->tp != -1) 
+            { 
+                if (tex_cache_num >= 64) 
+                { 
+                    printf("Ps2DrawOTag ERROR!\n");
+                    
+                    exit(0); 
+                }
+
+                timp = (TIM2_PICTUREHEADER*)p->tp->texinfo.texsurface.pSurface; 
+                
+                if (timp != NULL) 
+                { 
+                    for (j = 0; j < tex_cache_num; j++) 
+                    { 
+                        if (ps2_tp_cache[j].tp == p->tp->texinfo.texsurface.pSurface) 
+                        { 
+                            t_flag = 1; 
+                            
+                            np_no = j;
+                            
+                            if (ps2_tp_cache[j].bank == p->bank) 
+                            { 
+                                p_flag = 1;
+                                
+                                t_no = j; 
+                            }
+                        }
+                    } 
+                    
+                    if (t_flag != 0)
+                    { 
+                        if (p_flag == 0) 
+                        { 
+                            ps2_tp_cache[tex_cache_num].tex_addr = ps2_tp_cache[np_no].tex_addr; 
+                            ps2_tp_cache[tex_cache_num].clt_addr = ps2_tp_cache[np_no].clt_addr; 
+                        } 
+                        else 
+                        { 
+                            ((long*)p->p)[0] = DMAref | 0x4 | ((long)&Ps2_tp_tag[t_no] << 32); 
+                            ((long*)p->p)[1] = 0; 
+                            
+                            goto loop_end; 
+                        }
+                    } 
+                    else if ((tex_addr + (timp->ImageSize >> 8)) >= 0x3F80) 
+                    { 
+                        exit_no = i; 
+                        
+                        Ps2_OT[i][0] = p; 
+                        
+                        goto block; 
+                    } 
+                    else 
+                    {
+                        Send_Tim2_dataEx(timp, (int)tex_addr, (int)clt_addr); 
+                        
+                        timp->TpFlag = 1; 
+                        
+                        ps2_tp_cache[tex_cache_num].tex_addr = tex_addr; 
+                        ps2_tp_cache[tex_cache_num].clt_addr = clt_addr; 
+                        
+                        tex_addr += timp->ImageSize >> 8; 
+                        clt_addr += 8; 
+                    }
+                    
+                    ps2_tp_cache[tex_cache_num].tp = timp; 
+                    ps2_tp_cache[tex_cache_num].bank = p->bank; 
+                    
+                    Ps2_tp_tag[tex_cache_num].GIF_TAG[0] = SCE_GIF_SET_TAG(3, SCE_GS_FALSE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1); 
+                    Ps2_tp_tag[tex_cache_num].GIF_TAG[1] = SCE_GIF_PACKED_AD; 
+                    
+                    if ((timp->PictFormat >= 5) && (timp->PictFormat < 9)) 
+                    { 
+                        Ps2_tp_tag[tex_cache_num].TEX0 = p->TEX0 | SCE_GS_SET_TEX0_1(ps2_tp_cache[tex_cache_num].tex_addr, 0, SCE_GS_PSMCT32, 0, 0, 0, SCE_GS_MODULATE, ((p->bank & 0x30) >> 2) + 0x3FF0, SCE_GS_PSMCT32, 0, 0, 2); 
+                        Ps2_tp_tag[tex_cache_num].TEX0_TAG = SCE_GS_TEX0_1; 
+                        Ps2_tp_tag[tex_cache_num].TEX0_NEXT = p->TEX0_NEXT | SCE_GS_SET_TEX0_1(ps2_tp_cache[tex_cache_num].tex_addr, 0, SCE_GS_PSMCT32, 0, 0, 0, SCE_GS_MODULATE, ((p->bank & 0x30) >> 2) + 0x3FF0, SCE_GS_PSMCT32, 0, p->bank & 0xF, 0);
+                        Ps2_tp_tag[tex_cache_num].TEX0_NEXT_TAG = SCE_GS_TEX0_1;
+                    } 
+                    else 
+                    { 
+                        Ps2_tp_tag[tex_cache_num].TEX0 = p->TEX0 | SCE_GS_SET_TEX0_1(ps2_tp_cache[tex_cache_num].tex_addr, 0, SCE_GS_PSMCT32, 0, 0, 1, SCE_GS_MODULATE, ps2_tp_cache[tex_cache_num].clt_addr, SCE_GS_PSMCT32, 0, 0, 2); 
+                        Ps2_tp_tag[tex_cache_num].TEX0_TAG = SCE_GS_TEX0_1; 
+                        Ps2_tp_tag[tex_cache_num].TEX0_NEXT = p->TEX0_NEXT | SCE_GS_SET_TEX0_1(ps2_tp_cache[tex_cache_num].tex_addr, 0, SCE_GS_PSMCT32, 0, 0, 1, SCE_GS_MODULATE, ps2_tp_cache[tex_cache_num].clt_addr, SCE_GS_PSMCT32, 0, 0, 2); 
+                        Ps2_tp_tag[tex_cache_num].TEX0_NEXT_TAG = SCE_GS_TEX0_1; 
+                    }
+
+                    Ps2_tp_tag[tex_cache_num].CLAMP = SCE_GS_SET_CLAMP_1(SCE_GS_CLAMP, SCE_GS_CLAMP, 255, 0, 255, 0); 
+                    Ps2_tp_tag[tex_cache_num].CLAMP_TAG = SCE_GS_CLAMP_1; 
+                    
+                    ((long*)p->p)[0] = DMAref | 0x4 | ((long)&Ps2_tp_tag[tex_cache_num] << 32); 
+                    ((long*)p->p)[1] = 0; 
+                    
+                    tex_cache_num++; 
+                }
+            } 
+            else 
+            { 
+                ((long*)p->p)[0] = DMAref | 0x4 | ((long)&Ps2_tp_tag[t_no] << 32); 
+                ((long*)p->p)[1] = 0; 
+            }
+            
+        loop_end:
+            old_p = p; 
+            p = (PS2_OT*)p->op; 
+        } 
+    } 
+
+    if (old_p != NULL) 
+    { 
+    block:
+        ((long*)old_p->p)[2] = (((long*)old_p->p)[2] & 0xFFFFFFF) | 0x70000000; 
+        ((long*)old_p->p)[8] = ((long*)old_p->p)[8] | 0x8000; 
+        
+        printf("TEX %05d:%05d]", 0x3F80 - tex_addr, 0x3FCC - clt_addr); 
+        
+        save_alpha[0] = Ps2_gs_save.mode_bk[0]; 
+        save_alpha[1] = Ps2_gs_save.mode_bk[1]; 
+        save_alpha[2] = Ps2_gs_save.set_last; 
+        
+        FlushCache(0); 
+        
+        SyncPath();
+        
+        loadImage((void*)((int)start_addr & 0xFFFFFF));
+        
+        SyncPath(); 
+        
+        njColorBlendingMode(save_alpha[2] ^ 1, save_alpha[save_alpha[2] ^ 1]); 
+        njColorBlendingMode(save_alpha[2], save_alpha[save_alpha[2]]); 
+        
+        return exit_no; 
+    }
+    
+    return 4096; 
+} 
 
 /*// 
 // Start address: 0x2cd340
