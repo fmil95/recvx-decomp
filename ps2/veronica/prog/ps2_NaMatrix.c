@@ -69,8 +69,8 @@ _anon5 TempMatrix1;*/
 NJS_MATRIX* pNaMatMatrixStuckTop;
 NJS_MATRIX* pNaMatMatrixStuckPtr;
 int lNaMatMatrixStuckCnt;
-/*int lNaMatMatrixStuckMax;
-int lNaMatIsUnitMatrix;*/
+int lNaMatMatrixStuckMax;
+int lNaMatIsUnitMatrix;
 NJS_MATRIX NaViwViewMatrix;
 /*_anon4 _nj_screen_;
 float NaViewScreenMatrix[16];
@@ -125,53 +125,84 @@ void njPers(tagNJS_SCRVECTOR* pScreen);
 void njCopyMatrix(float pDstMat[16], float pSrcMat[16]);
 void njMulMatrixCN(float pSrcMat1[16], float pSrcMat2[16]);*/
 
+#define VU0_INIT_CALC_PROCESS 0xB68
+
+// TODO: needs to have the VU0 microprogram inserted at the 0xB68 address of the binary
+// 100% matching! 
 void	njInitMatrix(NJS_MATRIX *m, Sint32 n, Int flag)
 {
-	float pi;
-	// Line 127, Address: 0x2d66b0, Func Offset: 0
-	// Line 130, Address: 0x2d66bc, Func Offset: 0xc
-	// Line 131, Address: 0x2d66c4, Func Offset: 0x14
-	// Line 132, Address: 0x2d66cc, Func Offset: 0x1c
-	// Line 133, Address: 0x2d66d4, Func Offset: 0x24
-	// Line 141, Address: 0x2d66d8, Func Offset: 0x28
-	// Line 133, Address: 0x2d66dc, Func Offset: 0x2c
-	// Line 141, Address: 0x2d66e0, Func Offset: 0x30
-	// Line 134, Address: 0x2d66e4, Func Offset: 0x34
-	// Line 141, Address: 0x2d66e8, Func Offset: 0x38
-	// Line 134, Address: 0x2d66ec, Func Offset: 0x3c
-	// Line 145, Address: 0x2d66f0, Func Offset: 0x40
-	// Line 146, Address: 0x2d66f4, Func Offset: 0x44
-	// Line 147, Address: 0x2d66f8, Func Offset: 0x48
-	// Line 148, Address: 0x2d66fc, Func Offset: 0x4c
-	// Line 149, Address: 0x2d6700, Func Offset: 0x50
-	// Line 150, Address: 0x2d6704, Func Offset: 0x54
-	// Line 151, Address: 0x2d670c, Func Offset: 0x5c
-	// Line 152, Address: 0x2d6710, Func Offset: 0x60
-	// Line 153, Address: 0x2d6714, Func Offset: 0x64
-	// Line 154, Address: 0x2d6718, Func Offset: 0x68
-	// Line 155, Address: 0x2d671c, Func Offset: 0x6c
-	// Line 156, Address: 0x2d6720, Func Offset: 0x70
-	// Line 157, Address: 0x2d6724, Func Offset: 0x74
-	// Line 158, Address: 0x2d6728, Func Offset: 0x78
-	// Line 159, Address: 0x2d672c, Func Offset: 0x7c
-	// Line 160, Address: 0x2d6730, Func Offset: 0x80
-	// Line 161, Address: 0x2d6734, Func Offset: 0x84
-	// Line 163, Address: 0x2d6738, Func Offset: 0x88
-	// Line 164, Address: 0x2d673c, Func Offset: 0x8c
-	// Line 165, Address: 0x2d6740, Func Offset: 0x90
-	// Line 166, Address: 0x2d6744, Func Offset: 0x94
-	// Line 167, Address: 0x2d6748, Func Offset: 0x98
-	// Line 168, Address: 0x2d674c, Func Offset: 0x9c
-	// Line 169, Address: 0x2d6750, Func Offset: 0xa0
-	// Line 170, Address: 0x2d6754, Func Offset: 0xa4
-	// Line 173, Address: 0x2d6758, Func Offset: 0xa8
-	// Line 174, Address: 0x2d675c, Func Offset: 0xac
-	// Line 175, Address: 0x2d6760, Func Offset: 0xb0
-	// Line 176, Address: 0x2d6764, Func Offset: 0xb4
-	// Line 178, Address: 0x2d6768, Func Offset: 0xb8
-	// Line 182, Address: 0x2d6770, Func Offset: 0xc0
-	// Func End, Address: 0x2d6780, Func Offset: 0xd0
-	scePrintf("njInitMatrix - UNIMPLEMENTED!\n");
+    register float pi;
+
+    pNaMatMatrixStuckTop = m;
+    pNaMatMatrixStuckPtr = m; 
+    
+    lNaMatMatrixStuckCnt = 0; 
+    lNaMatMatrixStuckMax = n; 
+    
+    lNaMatIsUnitMatrix = flag; 
+    
+    pi = 3.141592f;
+    
+    asm volatile 
+    {
+    .set noreorder
+    
+        vaddw.xyz  vf1, vf0, vf0w   
+        
+        vmul.w     vf1, vf0, vf0                     
+
+        sub        t5, t5, t5     
+        
+        addi       t0, t5, 0x80                       
+        addi       t1, t5, 0x100          
+        
+        mult       zero, t1, t1        
+        
+        mflo       t2               
+        
+        mfc1       t3, pi           
+        
+        qmtc2      t0, vf3                          
+        qmtc2      t1, vf9                               
+        qmtc2      t2, vf10                             
+        qmtc2      t3, vf11                              
+
+        vitof0.xyzw vf3, vf3                        
+        vitof0.xyzw vf9, vf9                 
+        vitof0.xyzw vf10, vf10         
+        
+        vaddx.y    vf3, vf0, vf9x                     
+        vaddx.z    vf3, vf0, vf10x       
+        
+        vmulx.w    vf3, vf0, vf11x        
+        
+        vaddw.xyzw vf2, vf0, vf0w        
+        
+        vdiv       Q, vf0w, vf2w        
+        
+        vaddw.xyzw vf2, vf2, vf0w                    
+        vaddw.xyzw vf2, vf2, vf0w                     
+        vaddw.yzw  vf2, vf2, vf0w                     
+        vaddw.zw   vf2, vf2, vf0w   
+        
+        vwaitq                     
+        
+        vmulq.w    vf2, vf0, Q                        
+        
+        addi       t0, zero, 0xFFF      
+        
+        qmtc2      t0, vf4                               
+        
+        vitof0.xyz vf4, vf4      
+        
+        vaddx.z    vf16, vf0, vf4x          
+        
+        vcallms    VU0_INIT_CALC_PROCESS                          
+        
+        nop       
+    
+    .set reorder
+    }
 }
 
 /*// 
