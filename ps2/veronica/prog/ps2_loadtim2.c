@@ -194,24 +194,41 @@ void Ps2PxlconvCheck(void* timadr);
 void SyncPath();
 void D2_SyncTag();
 void loadImage(void* tags);
-void ClearVram();
+void ClearVram();*/
 
-// 
-// Start address: 0x2e6be0
+// 100% matching! 
 int Tim2CalcBufWidth(int psm, int w)
 {
-	// Line 304, Address: 0x2e6be0, Func Offset: 0
-	// Line 317, Address: 0x2e6c80, Func Offset: 0xa0
-	// Line 322, Address: 0x2e6c8c, Func Offset: 0xac
-	// Line 323, Address: 0x2e6c94, Func Offset: 0xb4
-	// Line 324, Address: 0x2e6ca0, Func Offset: 0xc0
-	// Line 326, Address: 0x2e6ca4, Func Offset: 0xc4
-	// Line 329, Address: 0x2e6cb0, Func Offset: 0xd0
-	// Line 330, Address: 0x2e6cb4, Func Offset: 0xd4
-	// Func End, Address: 0x2e6cbc, Func Offset: 0xdc
+    switch (psm) 
+    {
+		case SCE_GS_PSMT8H:
+		case SCE_GS_PSMT4HL:
+		case SCE_GS_PSMT4HH:
+		case SCE_GS_PSMCT32:
+		case SCE_GS_PSMCT24:
+		case SCE_GS_PSMZ32:
+		case SCE_GS_PSMZ24:
+		case SCE_GS_PSMCT16:
+		case SCE_GS_PSMCT16S:
+		case SCE_GS_PSMZ16:
+		case SCE_GS_PSMZ16S:
+			return (w + 63) / 64;
+		case SCE_GS_PSMT8:
+		case SCE_GS_PSMT4:
+			w = (w + 63) / 64;
+			
+            if ((w & 0x1)) 
+            {
+				w++;
+			}
+            
+			return w;
+	}
+    
+	return 0;
 }
 
-// 
+/*// 
 // Start address: 0x2e6cc0
 void Set_GsTex(_anon0* ph, unsigned long send_image_adr, unsigned long send_clut_adr)
 {

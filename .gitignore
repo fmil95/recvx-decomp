@@ -4,3 +4,5 @@ compiling/compile_commands.json
 compile_config.json
 main.elf
 crt0.o
+RE_CVX.iso
+iso/
