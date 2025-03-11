@@ -86,9 +86,9 @@ struct _anon5
 	unsigned char dayofweek;
 };
 
-unsigned short visula_size[4];
+unsigned short visula_size[4];*/
 int(*__bu_completecallback_func)(int, int, int, unsigned int);
-int(*__bu_progresscallback_func)(int, int, int, int);
+/*int(*__bu_progresscallback_func)(int, int, int, int);
 
 int buExit();
 int buGetDiskInfo();
@@ -155,16 +155,13 @@ Sint32 buInit(Sint32 capacity, Sint32 drives, void* work, BU_INITCALLBACK func)
     return -256;
 }
 
-/*// 
-// Start address: 0x2d8d30
+// 100% matching! 
 void buSetCompleteCallback(int(*func)(int, int, int, unsigned int))
 {
-	// Line 726, Address: 0x2d8d30, Func Offset: 0
-	// Line 727, Address: 0x2d8d34, Func Offset: 0x4
-	// Func End, Address: 0x2d8d3c, Func Offset: 0xc
+    __bu_completecallback_func = func;
 }
 
-// 
+/*// 
 // Start address: 0x2d8d40
 void buSetProgressCallback(int(*func)(int, int, int, int))
 {
