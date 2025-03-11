@@ -16,15 +16,15 @@ This work couldn't have been possible without the contributions of the following
 
 * [benoitren](https://git.sr.ht/~benoitren): First to tag along when mentioning an interest to reverse-engineer the game in the PS1/PS2 Decompilation server. Decompiled several files on his own.
 * [Mc-Muffin](https://github.com/Mc-Muffin): Created the splat config for the game binary, solved an important issue with the compiler, tested the build environment on WSL, developed the script for rebuilding the game ISO and provided the most help with matching the functions, in quality and quantity.   
-* [karas84](https://github.com/karas84): Helped to match very important functions like PS2DrawOTagSub which involved complex logic for rendering graphics on the PS2, as well as many others.
+* [karas84](https://github.com/karas84): Helped to match very important functions like PS2DrawOTagSub which involved complex logic for rendering graphics on the PS2, as well as many other ones.
 
 Additionally, some appreciation must go to:
 
 * [ethteck](https://github.com/ethteck): For creating decomp.me, splat and also adding support for MIPSEE to m2c.
 * [simonlindholm](https://github.com/simonlindholm): For his brilliant asm-differ, m2c and permuter tools.
-* [Fothsid](https://github.com/Fothsid): For sharing his experience from reversing RE: Outbreak. 
+* [Fothsid](https://github.com/Fothsid): For sharing his experience with reversing RE: Outbreak. 
 * [GirianSeed](https://github.com/GirianSeed): For providing knowledge of the many different versions of the PS2 API.
-* [patope](https://github.com/patope) and [ThirstyWraith](https://github.com/ThirstyWraith): For supplying additional help with function matching.
+* [patope](https://github.com/patope) and [ThirstyWraith](https://github.com/ThirstyWraith): For giving additional help with function matching.
 
 ## Community
 
