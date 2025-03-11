@@ -22,7 +22,7 @@ unsigned int __max_malloc_size;
 void* syMalloc(unsigned int nbytes);
 void syMallocFinish();
 void syMallocInit();
-void syMallocStat(unsigned int* wholeFreeSize, unsigned int* biggestFreeBlockSize);
+void syMallocStat(unsigned int* wholeFreeSize, unsigned int* biggestFreeBlockSize);*/
 
 // 
 // Start address: 0x2d99f0
@@ -43,7 +43,8 @@ void syFree(void* ap)
 	// Line 112, Address: 0x2d9a58, Func Offset: 0x68
 	// Line 116, Address: 0x2d9a64, Func Offset: 0x74
 	// Func End, Address: 0x2d9a6c, Func Offset: 0x7c
-}*/
+    scePrintf("syFree - UNIMPLEMENTED!\n");
+}
 
 #define ALIGN(x, y) (((((int)x) + (y-1)) / y) * y)
 #define GET_DATA_PTR(x) ((void*)(((unsigned int)x) + sizeof(struct _HM)))

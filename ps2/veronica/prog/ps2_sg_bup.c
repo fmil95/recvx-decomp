@@ -105,13 +105,14 @@ int buExit()
 	scePrintf("buExit - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2d8c60
 int buGetDiskInfo()
 {
 	// Line 240, Address: 0x2d8c60, Func Offset: 0
 	// Func End, Address: 0x2d8c68, Func Offset: 0x8
-}*/
+	scePrintf("buGetDiskInfo - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 Sint32 buInit(Sint32 capacity, Sint32 drives, void* work, BU_INITCALLBACK func)

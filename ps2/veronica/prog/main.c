@@ -27,6 +27,7 @@
 
 #include "types.h"
 
+#include "ps2_sg_maloc.c"
 #include "backup.c"
 #include "expand.c"
 #include "njloop.c"
@@ -45,7 +46,6 @@
 #include "ps2_sg_bup.c"
 #include "ps2_dvd_image.c"
 #include "ps2_sg_gd.c"
-#include "ps2_sg_maloc.c"
 #include "gdlib.c"
 #include "ps2_sg_pad.c"
 #include "ps2_dummy.c"
