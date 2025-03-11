@@ -22,6 +22,7 @@
 #include <sg_syCbl.h>
 #include <sg_bup.h>
 #include <sg_gd.h>
+#include <sg_syrtc.h>
 #include <limits.h>
 
 #include "types.h"
