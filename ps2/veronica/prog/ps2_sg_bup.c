@@ -88,9 +88,9 @@ struct _anon5
 
 unsigned short visula_size[4];*/
 int(*__bu_completecallback_func)(int, int, int, unsigned int);
-/*int(*__bu_progresscallback_func)(int, int, int, int);
+int(*__bu_progresscallback_func)(int, int, int, int);
 
-int buExit();
+/*int buExit();
 int buGetDiskInfo();
 int buInit(void(*func)());
 void buSetCompleteCallback(int(*func)(int, int, int, unsigned int));
@@ -161,12 +161,8 @@ void buSetCompleteCallback(int(*func)(int, int, int, unsigned int))
     __bu_completecallback_func = func;
 }
 
-/*// 
-// Start address: 0x2d8d40
+// 100% matching! 
 void buSetProgressCallback(int(*func)(int, int, int, int))
 {
-	// Line 1218, Address: 0x2d8d40, Func Offset: 0
-	// Line 1219, Address: 0x2d8d44, Func Offset: 0x4
-	// Func End, Address: 0x2d8d4c, Func Offset: 0xc
-}*/
-
+    __bu_progresscallback_func = func;
+}
