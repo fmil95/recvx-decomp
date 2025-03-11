@@ -1,17 +1,11 @@
+void syHwFinish(void);
+void syHwInit(void);
+void syHwInit2(void);
 
-
-
-
-void syHwFinish();
-void syHwInit();
-void syHwInit2();
-
-// 
-// Start address: 0x2ddf50
-void syHwFinish()
+// 100% matching! 
+void syHwFinish(void)
 {
-	// Line 5, Address: 0x2ddf50, Func Offset: 0
-	// Func End, Address: 0x2ddf58, Func Offset: 0x8
+
 }
 
 // 100% matching!
