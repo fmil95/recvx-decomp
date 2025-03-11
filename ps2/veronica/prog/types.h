@@ -1737,3 +1737,11 @@ typedef struct PS2_TP_CACHE
 #define DMAref              (3<<28)
 
 #define SCE_GS_CLAMP            (1)
+
+// TODO: include sg_sybt.h and remove the below struct
+struct tag_SYS_BT_SYSTEMID{                   /*                    */
+    Sint32 nNo ;                              /*                    */
+    Sint32 nAll ;                             /*                    */
+    Sint8  szProduct[16];                     /*                    */
+} ;                                           /*                    */
+typedef struct tag_SYS_BT_SYSTEMID SYS_BT_SYSTEMID ;
