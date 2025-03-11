@@ -30,17 +30,15 @@ struct _SYS_RTC_DATE
 
 void syRtcFinish();
 int syRtcGetDate(_SYS_RTC_DATE* date);
-int syRtcInit();
+int syRtcInit();*/
 
-// 
-// Start address: 0x2ddf80
-void syRtcFinish()
+// 100% matching! 
+void syRtcFinish( void )
 {
-	// Line 38, Address: 0x2ddf80, Func Offset: 0
-	// Func End, Address: 0x2ddf88, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x2ddf90
 int syRtcGetDate(_SYS_RTC_DATE* date)
 {
