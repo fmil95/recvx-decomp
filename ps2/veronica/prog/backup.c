@@ -149,12 +149,12 @@ void BupInit(void)
 
 // 100% matching!
 void BupExit(void)
-{ 
-    while (buExit() != 0) 
+{
+	do 
     {
         
-    } 
-} 
+    } while (buExit() != BUD_ERR_OK);
+}
 
 /*// 
 // Start address: 0x2c9ae0
