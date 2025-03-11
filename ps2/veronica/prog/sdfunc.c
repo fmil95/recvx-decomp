@@ -2206,17 +2206,15 @@ void bhReleaseFreeMemory(void* mp)
 	// Line 236, Address: 0x292410, Func Offset: 0
 	// Line 237, Address: 0x292420, Func Offset: 0x10
 	// Func End, Address: 0x292428, Func Offset: 0x18
-}
+}*/
 
-// 
-// Start address: 0x292430
+// 100% matching!
 void ExitApplication()
-{
-	// Line 241, Address: 0x292430, Func Offset: 0
-	// Func End, Address: 0x292438, Func Offset: 0x8
+{ 
+    njUserExit();
 }
 
-// 
+/*// 
 // Start address: 0x292440
 void QuickGetDiscTrayStatus()
 {
