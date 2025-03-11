@@ -147,13 +147,13 @@ void BupInit(void)
 	buInit(MAX_CAPS, USE_DRIVES, 0, BupInitCallback);
 }
 
+// 100% matching!
 void BupExit(void)
-{
-	// Line 23, Address: 0x2c9aa0, Func Offset: 0
-	// Line 25, Address: 0x2c9aa8, Func Offset: 0x8
-	// Line 26, Address: 0x2c9ac8, Func Offset: 0x28
-	// Func End, Address: 0x2c9ad4, Func Offset: 0x34
-	scePrintf("BupExit - UNIMPLEMENTED!\n");
+{ 
+    while (buExit() != 0) 
+    {
+        
+    } 
 } 
 
 /*// 
