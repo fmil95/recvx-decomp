@@ -173,18 +173,19 @@ static Sint32 BupComplete(Sint32 drive, Sint32 op, Sint32 stat, Uint32 param)
 	scePrintf("BupComplete - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c9c40
+// 100% matching! 
 static Sint32 BupProgress(Sint32 drive, Sint32 op, Sint32 count, Sint32 max)
 {
-	//_anon0* info;
-	// Line 278, Address: 0x2c9c40, Func Offset: 0
-	// Line 281, Address: 0x2c9c58, Func Offset: 0x18
-	// Line 282, Address: 0x2c9c5c, Func Offset: 0x1c
-	// Line 283, Address: 0x2c9c60, Func Offset: 0x20
-	// Line 286, Address: 0x2c9c64, Func Offset: 0x24
-	// Func End, Address: 0x2c9c6c, Func Offset: 0x2c
-	scePrintf("BupProgress - UNIMPLEMENTED!\n");
+	BACKUPINFO* info;
+
+	info = &gBupInfo[drive];
+
+	info->ProgressCount = count;
+	info->ProgressMax = max;
+    
+	info->Operation = op;
+
+	return BUD_CBRET_OK; 
 }
 
 // 100% matching! 
