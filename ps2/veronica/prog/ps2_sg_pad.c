@@ -466,6 +466,7 @@ void Ps2_Read_Key(_anon1* per, _anon0* pad_wk)
 	// Func End, Address: 0x2da770, Func Offset: 0x370
 }*/
 
+// 100% matching!
 void Ps2_MakeRepeatKey(unsigned int Id, PAD_WORK* pad_wk)
 {
     Pad[Id].Rept = pad_wk->onon;
