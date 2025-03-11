@@ -156,13 +156,13 @@ Sint32 buInit(Sint32 capacity, Sint32 drives, void* work, BU_INITCALLBACK func)
 }
 
 // 100% matching! 
-void buSetCompleteCallback(int(*func)(int, int, int, unsigned int))
+void buSetCompleteCallback(BU_COMPLETECALLBACK func)
 {
     __bu_completecallback_func = func;
 }
 
 // 100% matching! 
-void buSetProgressCallback(int(*func)(int, int, int, int))
+void buSetProgressCallback(BU_PROGRESSCALLBACK func)
 {
     __bu_progresscallback_func = func;
 }

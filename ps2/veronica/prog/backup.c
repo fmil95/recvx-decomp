@@ -171,14 +171,14 @@ void ClearInfo(int drive)
 	// Line 212, Address: 0x2c9b14, Func Offset: 0x34
 	// Line 213, Address: 0x2c9b18, Func Offset: 0x38
 	// Func End, Address: 0x2c9b20, Func Offset: 0x40
-}
+}*/
 
 // 
 // Start address: 0x2c9b20
-int BupComplete(int drive, int op, int stat)
+static Sint32 BupComplete(Sint32 drive, Sint32 op, Sint32 stat, Uint32 param)
 {
 	int ret;
-	_anon0* info;
+	//_anon0* info;
 	// Line 222, Address: 0x2c9b20, Func Offset: 0
 	// Line 218, Address: 0x2c9b28, Func Offset: 0x8
 	// Line 222, Address: 0x2c9b2c, Func Offset: 0xc
@@ -209,31 +209,26 @@ int BupComplete(int drive, int op, int stat)
 	// Line 270, Address: 0x2c9c30, Func Offset: 0x110
 	// Line 271, Address: 0x2c9c34, Func Offset: 0x114
 	// Func End, Address: 0x2c9c3c, Func Offset: 0x11c
+	scePrintf("BupComplete - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2c9c40
-int BupProgress(int drive, int op, int count, int max)
+static Sint32 BupProgress(Sint32 drive, Sint32 op, Sint32 count, Sint32 max)
 {
-	_anon0* info;
+	//_anon0* info;
 	// Line 278, Address: 0x2c9c40, Func Offset: 0
 	// Line 281, Address: 0x2c9c58, Func Offset: 0x18
 	// Line 282, Address: 0x2c9c5c, Func Offset: 0x1c
 	// Line 283, Address: 0x2c9c60, Func Offset: 0x20
 	// Line 286, Address: 0x2c9c64, Func Offset: 0x24
 	// Func End, Address: 0x2c9c6c, Func Offset: 0x2c
-}*/
-
-// 
-// Start address: 0x2c9c70
-void BupInitCallback()
-{
-	// Line 290, Address: 0x2c9c70, Func Offset: 0
-	// Line 294, Address: 0x2c9c74, Func Offset: 0x4
-	// Line 290, Address: 0x2c9c78, Func Offset: 0x8
-	// Line 294, Address: 0x2c9c7c, Func Offset: 0xc
-	// Line 295, Address: 0x2c9c84, Func Offset: 0x14
-	// Line 296, Address: 0x2c9c90, Func Offset: 0x20
-	// Func End, Address: 0x2c9c9c, Func Offset: 0x2c
-	scePrintf("BupInitCallback - UNIMPLEMENTED!\n");
+	scePrintf("BupProgress - UNIMPLEMENTED!\n");
 }
+
+// 100% matching! 
+static void BupInitCallback(void)
+{ 
+    buSetCompleteCallback(BupComplete); 
+    buSetProgressCallback(BupProgress); 
+} 
