@@ -1788,3 +1788,44 @@ typedef struct {
 
 #define MAX_DRIVES 8
 #define USE_DRIVES BUD_USE_DRIVE_ALL
+
+typedef struct BUF_QUEUE 
+{
+    char* from;               
+    unsigned char* to;        
+} BUF_QUEUE;
+
+typedef struct EXPAND_STATUS 
+{
+    char active;              
+    char mode;                
+} EXPAND_STATUS;
+
+typedef union EXPAND_CTRL 
+{
+    EXPAND_STATUS sb;      
+    short check;              
+} EXPAND_CTRL;
+
+typedef union EXPAND_FLAG
+{
+    struct 
+    {
+        EXPAND_CTRL uw; 
+        char in;              
+        char out;             
+    } sl;
+    int abort;               
+} EXPAND_FLAG;
+
+typedef struct EXPAND_CTRL_BUF
+{
+    EXPAND_FLAG flag;        
+    int code;                    
+    int counter;                 
+    int repeat;                  
+    unsigned char* offset;       
+    char* source;               
+    unsigned char* destination;  
+    BUF_QUEUE que[2];         
+} EXPAND_CTRL_BUF;

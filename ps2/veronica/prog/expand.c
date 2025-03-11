@@ -49,21 +49,17 @@ union _anon5
 {
 	_anon4 sl;
 	int abort;
-};
+};*/
 
-_anon3 ExpandCtrlBuf;
+EXPAND_CTRL_BUF ExpandCtrlBuf;
 
-void Init_Expand();
+/*void Init_Expand();
 int Expand(char* s, unsigned char* d);*/
 
-// 
-// Start address: 0x2cae90
-void Init_Expand()
-{
-	// Line 47, Address: 0x2cae90, Func Offset: 0
-	// Line 48, Address: 0x2cae94, Func Offset: 0x4
-	// Func End, Address: 0x2cae9c, Func Offset: 0xc
-	scePrintf("Init_Expand - UNIMPLEMENTED!\n");
+// 100% matching!
+void Init_Expand() 
+{ 
+    ExpandCtrlBuf.flag.abort = 0; 
 }
 
 // 
