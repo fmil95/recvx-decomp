@@ -113,22 +113,26 @@ void BupExit(void)
     } while (buExit() != BUD_ERR_OK);
 }
 
-/*// 
-// Start address: 0x2c9ae0
-void ClearInfo(int drive)
+// 100% matching! 
+static void ClearInfo(Sint32 drive)
 {
-	_anon0* info;
-	// Line 206, Address: 0x2c9ae0, Func Offset: 0
-	// Line 207, Address: 0x2c9af8, Func Offset: 0x18
-	// Line 208, Address: 0x2c9afc, Func Offset: 0x1c
-	// Line 209, Address: 0x2c9b00, Func Offset: 0x20
-	// Line 210, Address: 0x2c9b04, Func Offset: 0x24
-	// Line 211, Address: 0x2c9b08, Func Offset: 0x28
-	// Line 213, Address: 0x2c9b0c, Func Offset: 0x2c
-	// Line 212, Address: 0x2c9b14, Func Offset: 0x34
-	// Line 213, Address: 0x2c9b18, Func Offset: 0x38
-	// Func End, Address: 0x2c9b20, Func Offset: 0x40
-}*/
+	BACKUPINFO* info;
+
+	info = &gBupInfo[drive];
+    
+	info->ProgressCount = 0;
+	info->ProgressMax = 0;
+    
+	info->Operation = 0;
+    
+	info->Ready = FALSE;
+    
+	info->IsFormat = FALSE;
+    
+	info->Work = NULL;
+    
+	memset(&info->DiskInfo, 0, sizeof(BUS_DISKINFO));
+}
 
 // 
 // Start address: 0x2c9b20
