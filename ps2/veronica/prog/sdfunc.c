@@ -1971,9 +1971,12 @@ struct _anon68
 };
 
 int PatId[4];
-_anon46 SoundAfsPatDef[8];
-_anon40 AdxDef[2];
-SDE_DATA_TYPE SdTypeDef[5];
+_anon46 SoundAfsPatDef[8];*/
+ADX_WORK AdxDef[2] = {
+    { 2, 48000, 2, -1 },
+    { 1, 48000, 2, -1 }
+};
+/*SDE_DATA_TYPE SdTypeDef[5];
 int PlayerFootStepSwitch[3];
 int SystemSeSlotSwitch;
 int WeaponSeSlotSwitch;
@@ -1985,9 +1988,9 @@ int RoomSoundCaseNo;
 short DefBg[3];
 short DefObj[5];
 short DefEvt[5];
-short DefEne[6];
+short DefEne[6];*/
 int SoundInitLevel;
-int SdReadMode;
+/*int SdReadMode;
 int SpqFileReadRequestFlag;
 int TransSoundPackDataFlag;
 int ReadFileRequestFlag;
@@ -1997,11 +2000,11 @@ _anon56* sys;
 unsigned int DiscOpenTrayFlag;
 unsigned int StatusUpdateCounter;
 tag_SYS_BT_SYSTEMID BootDiscSystemId;
-_anon23* hws;
-_anon41 SoundCommand;
-_anon12 MovieInfo;
+_anon23* hws;*/
+SND_CMD SoundCommand;
+/*_anon12 MovieInfo;*/
 unsigned char* pConfigWork;
-unsigned short* pSpqList;
+/*unsigned short* pSpqList;
 unsigned char* pSoundAfs;
 char SpqFileName[32];
 int EventVibrationMode;
@@ -2092,9 +2095,9 @@ void RequestPlayerVoiceSoundBank(int PlayerNo);
 int CheckTransEndSoundBank();
 void SetRoomSoundCaseNo(int CaseNo);
 int GetRoomSoundCaseNo();
-int CustomMidiSlotDef(int ObjectSlot, int EventSlot);
+int CustomMidiSlotDef(int ObjectSlot, int EventSlot);*/
 void ResetRoomSoundEnvParam();
-int wadGetAngle(_anon16* pPos1, int Ang, _anon16* pPos2);
+/*int wadGetAngle(_anon16* pPos1, int Ang, _anon16* pPos2);
 int CheckCollision4Sound(_anon16* pP2);
 int Get3DSoundParameter(_anon16* pP1, _anon16* pP2, char* pPan, char* pVol, float* pDist, int Mode);
 int SetupSeGenericParm(int SlotNo, int SeNo, _anon16* pPos, int Flag, unsigned int Flag2);
@@ -2163,9 +2166,9 @@ void RegistObjectSlot(int SlotNo, int ObjectNo, int SeNo);
 void ResetObjectSeInfo();
 void ExecObjectSeManager();
 void RequestSoundFade(int Func, int Attr, short Timer);
-void RequestAllStopSoundEx(int AdxFlag, int InSoundFlag, int FadeCount);
+void RequestAllStopSoundEx(int AdxFlag, int InSoundFlag, int FadeCount);*/
 void ResetSoundComInfo();
-void Com_ExecRoomFadeIn();
+/*void Com_ExecRoomFadeIn();
 void Com_ExecRoomFadeOut();
 void Com_ExecCallBgm_And_BgSe();
 void Com_StartInitScript();
@@ -2191,11 +2194,11 @@ void StartVibrationBasic(int PortNo, int AtrbId, int VibNo);
 void StartVibrationEx(int AtrbId, int VibNo);
 void StopVibrationBasic(int PortNo);
 void StopVibrationEx();
-void SetAdjustDisplay();
+void SetAdjustDisplay();*/
 void RequestAdjustDisplay(int AdjustX, int AdjustY);
-void ExecAdjustDisplay();
+/*void ExecAdjustDisplay();*/
 void InitPlayLogSystem();
-void ExitPlayLogSystem();
+/*void ExitPlayLogSystem();
 void ReadPlayLog();
 void WritePlayLog();
 
@@ -2235,7 +2238,7 @@ void InitFirstSofdec()
     mwPlyPreInitSofdec();
 }
 
-/*// 
+// 
 // Start address: 0x292490
 int GetBootDiscId()
 {
@@ -2254,13 +2257,14 @@ int GetBootDiscId()
 	// Line 299, Address: 0x2924e8, Func Offset: 0x58
 	// Line 300, Address: 0x2924ec, Func Offset: 0x5c
 	// Func End, Address: 0x292500, Func Offset: 0x70
+	scePrintf("GetBootDiscId - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x292500
 void InitSofdecSystem(int Mode)
 {
-	_anon30 iprm;
+	//_anon30 iprm;
 	// Line 308, Address: 0x292500, Func Offset: 0
 	// Line 312, Address: 0x292510, Func Offset: 0x10
 	// Line 313, Address: 0x292520, Func Offset: 0x20
@@ -2273,9 +2277,10 @@ void InitSofdecSystem(int Mode)
 	// Line 321, Address: 0x2925c4, Func Offset: 0xc4
 	// Line 324, Address: 0x2925cc, Func Offset: 0xcc
 	// Func End, Address: 0x2925dc, Func Offset: 0xdc
+	scePrintf("InitSofdecSystem - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2925e0
 void ExitSofdecSystem()
 {
@@ -2286,49 +2291,77 @@ void ExitSofdecSystem()
 	// Func End, Address: 0x29260c, Func Offset: 0x2c
 }*/
 
-// 
-// Start address: 0x292610
+// 97.61% matching
 void InitSoundProgram()
 {
-	int i;
-	// Line 347, Address: 0x292610, Func Offset: 0
-	// Line 352, Address: 0x292618, Func Offset: 0x8
-	// Line 354, Address: 0x29263c, Func Offset: 0x2c
-	// Line 355, Address: 0x292650, Func Offset: 0x40
-	// Line 357, Address: 0x292658, Func Offset: 0x48
-	// Line 363, Address: 0x29266c, Func Offset: 0x5c
-	// Line 364, Address: 0x292680, Func Offset: 0x70
-	// Line 365, Address: 0x29268c, Func Offset: 0x7c
-	// Line 371, Address: 0x292698, Func Offset: 0x88
-	// Line 373, Address: 0x2926ac, Func Offset: 0x9c
-	// Line 376, Address: 0x2926b8, Func Offset: 0xa8
-	// Line 377, Address: 0x2926bc, Func Offset: 0xac
-	// Line 378, Address: 0x2926c4, Func Offset: 0xb4
-	// Line 379, Address: 0x2926d8, Func Offset: 0xc8
-	// Line 380, Address: 0x2926dc, Func Offset: 0xcc
-	// Line 381, Address: 0x2926e4, Func Offset: 0xd4
-	// Line 382, Address: 0x2926f8, Func Offset: 0xe8
-	// Line 385, Address: 0x292704, Func Offset: 0xf4
-	// Line 386, Address: 0x29270c, Func Offset: 0xfc
-	// Line 387, Address: 0x292714, Func Offset: 0x104
-	// Line 390, Address: 0x29271c, Func Offset: 0x10c
-	// Line 394, Address: 0x292724, Func Offset: 0x114
-	// Line 396, Address: 0x292738, Func Offset: 0x128
-	// Line 397, Address: 0x292748, Func Offset: 0x138
-	// Line 399, Address: 0x292750, Func Offset: 0x140
-	// Line 402, Address: 0x292758, Func Offset: 0x148
-	// Line 403, Address: 0x292764, Func Offset: 0x154
-	// Line 406, Address: 0x292770, Func Offset: 0x160
-	// Line 414, Address: 0x292778, Func Offset: 0x168
-	// Line 418, Address: 0x292780, Func Offset: 0x170
-	// Line 421, Address: 0x29278c, Func Offset: 0x17c
-	// Line 422, Address: 0x292794, Func Offset: 0x184
-	// Line 423, Address: 0x29279c, Func Offset: 0x18c
-	// Line 426, Address: 0x2927b0, Func Offset: 0x1a0
-	// Line 428, Address: 0x2927b8, Func Offset: 0x1a8
-	// Line 429, Address: 0x2927c4, Func Offset: 0x1b4
-	// Func End, Address: 0x2927d4, Func Offset: 0x1c4
-	scePrintf("InitSoundProgram - UNIMPLEMENTED!\n");
+    int i;
+
+    switch (GetBootDiscId()) 
+    {                         
+    case 0:
+        sys->ss_flg &= ~0x1;
+        break;
+    case 1:
+        sys->ss_flg |= 0x1;
+        break;
+    }
+    
+    pConfigWork = syMalloc(16384);
+    
+    syCfgInit(pConfigWork);
+    
+    SoundInitLevel = 1;
+    
+    InitSoundDriver("MANATEE.DRV", "COMMON.MLT");
+    
+    SoundInitLevel = 2;
+    
+    for (i = 0; i < 8; i++) 
+    {
+        RegistMidiSlot(i);
+    } 
+    
+    for (i = 0; i < 20; i++)
+    {
+        RegistSeSlot(i);
+    } 
+    
+    SetFxProgram(0, 0);
+    
+    InitSofdecSystem(0);
+    
+    MovieInfo.ExecMovieSystemFlag = 0;
+    
+    SoundInitLevel = 3;
+    
+    InitAdx();
+    
+    RegistAdxStreamEx(2, 4, &AdxDef[0]);
+    
+    if (MountSoundAfs() != 0) 
+    {
+        ExitApplication();
+    }
+    
+    SoundInitLevel = 4;
+    
+    InitReadKeyEx(1);
+    
+    SetRepeatKeyTimer(5, 2);
+    
+    InitVibrationUnit();
+    InitPlayLogSystem();
+    
+    RequestAdjustDisplay(0, 0);
+    
+    ResetRoomSoundEnvParam();
+    ResetSoundComInfo();
+    
+    memset(&SoundCommand, 0, 8);
+    
+    InitAdvSystem();
+    
+    SoundInitLevel = -1;
 }
 
 // 
@@ -2351,7 +2384,7 @@ void ExitSoundProgram()
 	scePrintf("ExitSoundProgram - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x292890
 int MountSoundAfs()
 {
@@ -2409,9 +2442,10 @@ int MountSoundAfs()
 	// Line 550, Address: 0x292acc, Func Offset: 0x23c
 	// Line 563, Address: 0x292ae0, Func Offset: 0x250
 	// Func End, Address: 0x292af0, Func Offset: 0x260
+	scePrintf("MountSoundAfs - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x292af0
 void UnmountSoundAfs()
 {
@@ -2707,7 +2741,7 @@ int CustomMidiSlotDef(int ObjectSlot, int EventSlot)
 	// Line 1190, Address: 0x293514, Func Offset: 0x64
 	// Line 1193, Address: 0x293518, Func Offset: 0x68
 	// Func End, Address: 0x293520, Func Offset: 0x70
-}
+}*/
 
 // 
 // Start address: 0x293520
@@ -2715,9 +2749,10 @@ void ResetRoomSoundEnvParam()
 {
 	// Line 1202, Address: 0x293520, Func Offset: 0
 	// Func End, Address: 0x293534, Func Offset: 0x14
+	scePrintf("ResetRoomSoundEnvParam - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x293540
 int wadGetAngle(_anon16* pPos1, int Ang, _anon16* pPos2)
 {
@@ -4389,7 +4424,7 @@ void RequestAllStopSoundEx(int AdxFlag, int InSoundFlag, int FadeCount)
 	// Line 3876, Address: 0x296dc4, Func Offset: 0x184
 	// Line 3877, Address: 0x296dc8, Func Offset: 0x188
 	// Func End, Address: 0x296de4, Func Offset: 0x1a4
-}
+}*/
 
 // 
 // Start address: 0x296df0
@@ -4397,9 +4432,10 @@ void ResetSoundComInfo()
 {
 	// Line 3939, Address: 0x296df0, Func Offset: 0
 	// Func End, Address: 0x296df8, Func Offset: 0x8
+	scePrintf("ResetSoundComInfo - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x296e00
 void Com_ExecRoomFadeIn()
 {
@@ -4890,7 +4926,7 @@ void SetAdjustDisplay()
 	// Line 4918, Address: 0x297d40, Func Offset: 0
 	// Line 4919, Address: 0x297d48, Func Offset: 0x8
 	// Func End, Address: 0x297d50, Func Offset: 0x10
-}
+}*/
 
 // 
 // Start address: 0x297d50
@@ -4900,9 +4936,10 @@ void RequestAdjustDisplay(int AdjustX, int AdjustY)
 	// Line 4924, Address: 0x297d5c, Func Offset: 0xc
 	// Line 4925, Address: 0x297d64, Func Offset: 0x14
 	// Func End, Address: 0x297d6c, Func Offset: 0x1c
+	scePrintf("RequestAdjustDisplay - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x297d70
 void ExecAdjustDisplay()
 {
@@ -4912,7 +4949,7 @@ void ExecAdjustDisplay()
 	// Line 4932, Address: 0x297da0, Func Offset: 0x30
 	// Line 4934, Address: 0x297da8, Func Offset: 0x38
 	// Func End, Address: 0x297db4, Func Offset: 0x44
-}
+}*/
 
 // 
 // Start address: 0x297dc0
@@ -4920,9 +4957,10 @@ void InitPlayLogSystem()
 {
 	// Line 4958, Address: 0x297dc0, Func Offset: 0
 	// Func End, Address: 0x297dc8, Func Offset: 0x8
+	scePrintf("InitPlayLogSystem - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x297dd0
 void ExitPlayLogSystem()
 {

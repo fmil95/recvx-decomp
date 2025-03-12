@@ -1829,3 +1829,17 @@ typedef struct EXPAND_CTRL_BUF
     unsigned char* destination;  
     BUF_QUEUE que[2];         
 } EXPAND_CTRL_BUF;
+
+typedef struct ADX_WORK
+{
+	unsigned int MaxChannel; // offset 0x0, size 0x4
+    unsigned int MaxSampleRate; // offset 0x4, size 0x4
+    int RecoverType; // offset 0x8, size 0x4
+    int ReloadSector; // offset 0xC, size 0x4
+} ADX_WORK;
+
+typedef struct SND_CMD
+{
+	int MaxCommand; // offset 0x0, size 0x4
+    unsigned char ComTbl[2]; // offset 0x4, size 0x2
+} SND_CMD;
