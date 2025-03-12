@@ -2,7 +2,7 @@
   "compiler": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwccps2.exe",
   "compiler_flags": ["--gcc-compat", "-nosyspath", "-sdatathreshold 0", "-O3,p"],
   "linker": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwldps2.exe",
-  "linker_script": ["compiling/linker.lcf"],
+  "linker_script": ["recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2 Support/PS2LinkSegment.lcf"],
   "linker_flags": [""],
   "assembler": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/asm_r5900_elf.exe",
   "includes": [
