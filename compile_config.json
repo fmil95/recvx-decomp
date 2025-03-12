@@ -1,6 +1,8 @@
 {
   "compiler": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwccps2.exe",
   "linker": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/mwldps2.exe",
+  "linker_script": ["compiling/linker.lcf"],
+  "linker_flags": [""],
   "assembler": "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2_Tools/Command_Line_Tools/asm_r5900_elf.exe",
   "includes": [
       "recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2 Support",
@@ -22,7 +24,6 @@
     "DEBUG"
   ],
   "compiler_flags": ["--gcc-compat","-nosyspath"],
-  "linker_flags": ["compiling/linker.lcf"],
   "libs": ["-lgcc", "-lgraph", "-ldma", "-ldev", "-lpkt", "-lpad", "-lvu0", "-lkernl", "-lc", "-lmc", "-lcdvd", "-lm"],
   "assembly_files": [
       "recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.s"

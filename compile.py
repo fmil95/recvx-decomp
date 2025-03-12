@@ -105,10 +105,10 @@ def compile_assembly_files(assembler, sources, assembler_flags, include_dirs, de
     return objects, compile_commands, build_failed
 
 
-def link_objects(linker, objects, linker_flags, libraries, library_dirs, env_vars):
+def link_objects(linker, objects, linker_script, linker_flags, libraries, library_dirs, env_vars):
     """Link object files into the final executable."""
     output_elf = "main.elf"
-    link_command = [linker] + linker_flags + objects + ['-m', '_start', '-o', output_elf] + \
+    link_command = [linker] + linker_script + linker_flags + objects + ['-m', '_start', '-o', output_elf] + \
                    [f'-L{lib}' for lib in library_dirs] + libraries
 
     if not run_command(link_command, env_vars):
@@ -131,6 +131,7 @@ def main(args):
     include_dirs = env_vars["includes"]
     library_dirs = env_vars["libraries"]
     compiler_flags = env_vars["compiler_flags"]
+    linker_script = env_vars["linker_script"]
     linker_flags = env_vars["linker_flags"]
     libraries = env_vars["libs"]
     sources = env_vars["source_files"]
@@ -166,7 +167,7 @@ def main(args):
 
         print(f"Performing linkage with the following parameters:\n");
 
-        output_elf = link_objects(linker, objects, linker_flags, libraries, library_dirs, linker_env)
+        output_elf = link_objects(linker, objects, linker_script, linker_flags, libraries, library_dirs, linker_env)
 
         if output_elf:
             print(f"\nBuild steps have been successfully completed.")
