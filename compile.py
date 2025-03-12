@@ -16,7 +16,7 @@ def write_json(filename, data):
         json.dump(data, f, indent=4)
 
 
-def run_command(command, env_vars, log_file='compiling/report.txt'):
+def run_command(command, env_vars, log_file='report.txt'):
     """Run a shell command with specified environment variables and log output."""
     for cmd in command:
         # Tidy up the output a little
@@ -154,7 +154,7 @@ def main(args):
     objects += asm_objects
 
     # Even if the compilation fails, we want to generate the compile_commands.json for IDEs
-    write_json('compiling/compile_commands.json', compile_commands)
+    write_json('compile_commands.json', compile_commands)
 
     print(f"\nInitializing linker ...\n");
 
