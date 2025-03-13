@@ -4426,13 +4426,10 @@ void RequestAllStopSoundEx(int AdxFlag, int InSoundFlag, int FadeCount)
 	// Func End, Address: 0x296de4, Func Offset: 0x1a4
 }*/
 
-// 
-// Start address: 0x296df0
+// 100% matching! 
 void ResetSoundComInfo()
 {
-	// Line 3939, Address: 0x296df0, Func Offset: 0
-	// Func End, Address: 0x296df8, Func Offset: 0x8
-	scePrintf("ResetSoundComInfo - UNIMPLEMENTED!\n");
+
 }
 
 /*// 
