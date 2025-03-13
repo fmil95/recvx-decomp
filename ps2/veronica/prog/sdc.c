@@ -111,10 +111,10 @@ unsigned int TransCompleteFlag;
 SDS_MEMBLK* SdMemBlk;
 void(*TransWaitCallBackFunction)();
 char SdcMasterVolume;
-char SdcGdDaVolume;
-_anon0 MidiInfo[8];
+char SdcGdDaVolume;*/
+NO_NAME_20 MidiInfo[8];
 SDS_PORT_REF** MidiHandle[8];
-char SdcSeDefaultVolume;
+/*char SdcSeDefaultVolume;
 char SdcMidiDefaultVolume;*/
 NO_NAME_20 SeInfo[20];
 SDS_PORT_REF** SeHandle[20];
@@ -346,24 +346,19 @@ void InitMidiInfo()
 	// Func End, Address: 0x28f0b4, Func Offset: 0x74
 }*/
 
-// 
-// Start address: 0x28f0c0
-unsigned int RegistMidiSlot(unsigned int SlotNo)
+// 100% matching! 
+unsigned int RegistMidiSlot(unsigned int SlotNo) 
 {
-	// Line 172, Address: 0x28f0c0, Func Offset: 0
-	// Line 171, Address: 0x28f0c8, Func Offset: 0x8
-	// Line 172, Address: 0x28f0cc, Func Offset: 0xc
-	// Line 171, Address: 0x28f0d4, Func Offset: 0x14
-	// Line 172, Address: 0x28f0d8, Func Offset: 0x18
-	// Line 171, Address: 0x28f0dc, Func Offset: 0x1c
-	// Line 172, Address: 0x28f0e0, Func Offset: 0x20
-	// Line 173, Address: 0x28f0f0, Func Offset: 0x30
-	// Line 178, Address: 0x28f0f8, Func Offset: 0x38
-	// Line 179, Address: 0x28f10c, Func Offset: 0x4c
-	// Line 183, Address: 0x28f114, Func Offset: 0x54
-	// Line 184, Address: 0x28f118, Func Offset: 0x58
-	// Func End, Address: 0x28f128, Func Offset: 0x68
-	scePrintf("RegistMidiSlot - UNIMPLEMENTED!\n");
+    if (MidiInfo[SlotNo].Flag != 0) 
+    {
+        return 1;
+    }
+    
+    sdMidiOpenPort(&MidiHandle[SlotNo]);
+
+    MidiInfo[SlotNo].Flag = 1;
+    
+    return 0;
 }
 
 /*// 

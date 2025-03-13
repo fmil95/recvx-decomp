@@ -531,13 +531,13 @@ SDE_ERR sdMidiGetStat(SDS_PORT_REF** handle, SDS_MIDI_STAT* midi_stat)
 	// Line 1165, Address: 0x2db710, Func Offset: 0x70
 	// Line 1167, Address: 0x2db718, Func Offset: 0x78
 	// Func End, Address: 0x2db720, Func Offset: 0x80
-}
+}*/
 
 // 
 // Start address: 0x2db720
 SDE_ERR sdMidiOpenPort(SDS_PORT_REF*** handle)
 {
-	_anon0* check_snd_work;
+	//_anon0* check_snd_work;
 	int i;
 	// Line 1194, Address: 0x2db720, Func Offset: 0
 	// Line 1196, Address: 0x2db730, Func Offset: 0x10
@@ -565,9 +565,10 @@ SDE_ERR sdMidiOpenPort(SDS_PORT_REF*** handle)
 	// Line 1230, Address: 0x2db7e8, Func Offset: 0xc8
 	// Line 1232, Address: 0x2db7f0, Func Offset: 0xd0
 	// Func End, Address: 0x2db7f8, Func Offset: 0xd8
+	scePrintf("sdMidiOpenPort - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2db800
 SDE_ERR sdMidiPlay(SDS_PORT_REF** handle, char bank_num, char data_num)
 {
