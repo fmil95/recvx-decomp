@@ -1843,3 +1843,19 @@ typedef struct SND_CMD
 	int MaxCommand; // offset 0x0, size 0x4
     unsigned char ComTbl[2]; // offset 0x4, size 0x2
 } SND_CMD;
+
+typedef struct NO_NAME_20
+{
+	unsigned int Flag; // offset 0x0, size 0x4
+    int FadeFunc; // offset 0x4, size 0x4
+    int FadeCntMax; // offset 0x8, size 0x4
+    float Volume; // offset 0xC, size 0x4
+    float VolSpeed; // offset 0x10, size 0x4
+    float VolLast; // offset 0x14, size 0x4
+    float LimitMaxVol; // offset 0x18, size 0x4
+    int PanFunc; // offset 0x1C, size 0x4
+    int PanCntMax; // offset 0x20, size 0x4
+    float Pan; // offset 0x24, size 0x4
+    float PanSpeed; // offset 0x28, size 0x4
+    float PanLast; // offset 0x2C, size 0x4
+} NO_NAME_20;

@@ -115,11 +115,11 @@ char SdcGdDaVolume;
 _anon0 MidiInfo[8];
 SDS_PORT_REF** MidiHandle[8];
 char SdcSeDefaultVolume;
-char SdcMidiDefaultVolume;
-_anon0 SeInfo[20];
+char SdcMidiDefaultVolume;*/
+NO_NAME_20 SeInfo[20];
 SDS_PORT_REF** SeHandle[20];
 
-void TransWaitCallBackFunction();
+/*void TransWaitCallBackFunction();
 unsigned int CheckTransComplete();
 void SetupSoundDriver(void* pSndDrv, unsigned int SndDrvSize);
 void ExitSoundDriver();
@@ -593,24 +593,19 @@ void InitSeInfo()
 	// Func End, Address: 0x28f874, Func Offset: 0x74
 }*/
 
-// 
-// Start address: 0x28f880
+// 100% matching! 
 unsigned int RegistSeSlot(unsigned int SlotNo)
 {
-	// Line 402, Address: 0x28f880, Func Offset: 0
-	// Line 401, Address: 0x28f888, Func Offset: 0x8
-	// Line 402, Address: 0x28f88c, Func Offset: 0xc
-	// Line 401, Address: 0x28f894, Func Offset: 0x14
-	// Line 402, Address: 0x28f898, Func Offset: 0x18
-	// Line 401, Address: 0x28f89c, Func Offset: 0x1c
-	// Line 402, Address: 0x28f8a0, Func Offset: 0x20
-	// Line 403, Address: 0x28f8b0, Func Offset: 0x30
-	// Line 407, Address: 0x28f8b8, Func Offset: 0x38
-	// Line 408, Address: 0x28f8cc, Func Offset: 0x4c
-	// Line 412, Address: 0x28f8d4, Func Offset: 0x54
-	// Line 413, Address: 0x28f8d8, Func Offset: 0x58
-	// Func End, Address: 0x28f8e8, Func Offset: 0x68
-	scePrintf("RegistSeSlot - UNIMPLEMENTED!\n");
+    if (SeInfo[SlotNo].Flag != 0) 
+    {
+        return 1;
+    }
+    
+    sdShotOpenPort(&SeHandle[SlotNo]);
+
+    SeInfo[SlotNo].Flag = 1;
+    
+    return 0;
 }
 
 /*// 

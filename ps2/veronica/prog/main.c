@@ -23,6 +23,7 @@
 #include <sg_bup.h>
 #include <sg_gd.h>
 #include <sg_syrtc.h>
+#include <sg_sd.h>
 #include <limits.h>
 
 #include "types.h"
@@ -57,6 +58,7 @@
 #include "vibman.c"
 #include "adxwrap.c"
 #include "ps2_sg_sycfg.c"
+#include "ps2_sg_sd.c"
 #include "sdcwrap.c"
 #include "sdc.c"
 #include "adv.c"
