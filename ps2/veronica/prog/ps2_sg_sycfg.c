@@ -28,13 +28,10 @@ int syCfgGetSoundMode(int* pnMode)
 	scePrintf("syCfgGetSoundMode - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ddf30
-int syCfgInit()
+// 100% matching! 
+Sint32 syCfgInit( Void* )
 {
-	// Line 18, Address: 0x2ddf30, Func Offset: 0
-	// Func End, Address: 0x2ddf38, Func Offset: 0x8
-	scePrintf("syCfgInit - UNIMPLEMENTED!\n");
+
 }
 
 // 
