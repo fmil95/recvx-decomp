@@ -103,9 +103,9 @@ struct SDS_SHOT_STAT
 	unsigned int m_Flg;
 };
 
-unsigned int SddFirstFlag;
+unsigned int SddFirstFlag;*/
 unsigned int ExecFxFlag;
-int SdcSoundMode;
+/*int SdcSoundMode;
 void(*TransCallBackFunc)(void*);
 unsigned int TransCompleteFlag;
 SDS_MEMBLK* SdMemBlk;
@@ -113,11 +113,11 @@ void(*TransWaitCallBackFunction)();
 char SdcMasterVolume;
 char SdcGdDaVolume;*/
 NO_NAME_20 MidiInfo[8];
-SDS_PORT_REF** MidiHandle[8];
+SDMIDI MidiHandle[8];
 /*char SdcSeDefaultVolume;
 char SdcMidiDefaultVolume;*/
 NO_NAME_20 SeInfo[20];
-SDS_PORT_REF** SeHandle[20];
+SDSHOT SeHandle[20];
 
 /*void TransWaitCallBackFunction();
 unsigned int CheckTransComplete();
@@ -793,16 +793,12 @@ void SetSeDefaultVolume(char Volume)
 	// Func End, Address: 0x28ff0c, Func Offset: 0xc
 }*/
 
-// 
-// Start address: 0x28ff10
+// 100% matching! 
 void SetFxProgram(char FxProgramNo, char FxOutputNo)
 {
-	// Line 629, Address: 0x28ff10, Func Offset: 0
-	// Line 630, Address: 0x28ff18, Func Offset: 0x8
-	// Line 631, Address: 0x28ff20, Func Offset: 0x10
-	// Line 632, Address: 0x28ff2c, Func Offset: 0x1c
-	// Func End, Address: 0x28ff38, Func Offset: 0x28
-	scePrintf("SetFxProgram - UNIMPLEMENTED!\n");
+    sdSndSetFxPrg(FxProgramNo, FxOutputNo);
+    
+    ExecFxFlag = 1;
 }
 
 /*// 

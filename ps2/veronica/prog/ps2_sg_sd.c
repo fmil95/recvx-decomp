@@ -1070,18 +1070,19 @@ SDE_ERR sdSndClearFxPrg()
 	// Line 2552, Address: 0x2dc980, Func Offset: 0
 	// Line 2557, Address: 0x2dc994, Func Offset: 0x14
 	// Func End, Address: 0x2dc99c, Func Offset: 0x1c
-}
+}*/
 
 // 
 // Start address: 0x2dc9a0
-SDE_ERR sdSndSetFxPrg()
+SDE_ERR	sdSndSetFxPrg( const Sint8 new_fx_prg_num, const Sint8 new_fx_out_num)
 {
 	// Line 2585, Address: 0x2dc9a0, Func Offset: 0
 	// Line 2590, Address: 0x2dc9b4, Func Offset: 0x14
 	// Func End, Address: 0x2dc9bc, Func Offset: 0x1c
+	scePrintf("sdSndSetFxPrg - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dc9c0
 SDE_ERR sdSndSetMasterVol(char vol)
 {
