@@ -4951,13 +4951,10 @@ void ExecAdjustDisplay()
 	// Func End, Address: 0x297db4, Func Offset: 0x44
 }*/
 
-// 
-// Start address: 0x297dc0
+// 100% matching! 
 void InitPlayLogSystem()
 {
-	// Line 4958, Address: 0x297dc0, Func Offset: 0
-	// Func End, Address: 0x297dc8, Func Offset: 0x8
-	scePrintf("InitPlayLogSystem - UNIMPLEMENTED!\n");
+
 }
 
 /*// 
