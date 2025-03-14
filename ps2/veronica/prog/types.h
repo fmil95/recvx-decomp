@@ -1859,3 +1859,23 @@ typedef struct NO_NAME_20
     float PanSpeed; // offset 0x28, size 0x4
     float PanLast; // offset 0x2C, size 0x4
 } NO_NAME_20;
+
+typedef struct RM_SNDENV
+{
+	char VolPlayerVoice; // offset 0x0, size 0x1
+    char VolPlayerAction; // offset 0x1, size 0x1
+    char VolWeaponSe; // offset 0x2, size 0x1
+    char VolCartridgeSe; // offset 0x3, size 0x1
+    char VolEnemySe; // offset 0x4, size 0x1
+    char VolBgSe0; // offset 0x5, size 0x1
+    char VolBgSe1; // offset 0x6, size 0x1
+    char VolObjectSe; // offset 0x7, size 0x1
+    char VolEventSe; // offset 0x8, size 0x1
+    char RoomFxLevel; // offset 0x9, size 0x1
+    char RoomFxProg; // offset 0xA, size 0x1
+    char MaxEventSeSlots; // offset 0xB, size 0x1
+    char MaxObjectSeSlots; // offset 0xC, size 0x1
+    char Dummy1; // offset 0xD, size 0x1
+    char Dummy2; // offset 0xE, size 0x1
+    char Dummy3; // offset 0xF, size 0x1
+} RM_SNDENV;

@@ -2017,9 +2017,9 @@ unsigned char* pSdReadBuf;
 _anon22* pSpqHeader;
 int AddFxLevel;
 int CurrentFxLevel;
-int RoomFxLevel;
-_anon49 Room_SoundEnv;
-char FxLevelTimer;
+int RoomFxLevel;*/
+RM_SNDENV Room_SoundEnv;
+/*char FxLevelTimer;
 unsigned short SpqKeyCode;
 char CurrentDoorNo;
 int MaxSlotEventSe;
@@ -2743,13 +2743,10 @@ int CustomMidiSlotDef(int ObjectSlot, int EventSlot)
 	// Func End, Address: 0x293520, Func Offset: 0x70
 }*/
 
-// 
-// Start address: 0x293520
+// 100% matching! 
 void ResetRoomSoundEnvParam()
 {
-	// Line 1202, Address: 0x293520, Func Offset: 0
-	// Func End, Address: 0x293534, Func Offset: 0x14
-	scePrintf("ResetRoomSoundEnvParam - UNIMPLEMENTED!\n");
+    memset(&Room_SoundEnv, 0, sizeof(RM_SNDENV));
 }
 
 /*// 
