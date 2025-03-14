@@ -167,9 +167,9 @@ enum SDE_ERR
 	SDE_ERR_UNKNOW_NUM = 0x7fffffff
 };
 
-char sound_flag;
+char sound_flag;*/
 int __sg_sd_snd_init__;
-void(*__snd_set_end_func__)(void*);
+/*void(*__snd_set_end_func__)(void*);
 void* __snd_end_func_arg__;
 int snd_data_down_load;
 unsigned int iop_packet_flag;
@@ -1072,14 +1072,10 @@ SDE_ERR sdSndClearFxPrg()
 	// Func End, Address: 0x2dc99c, Func Offset: 0x1c
 }*/
 
-// 
-// Start address: 0x2dc9a0
+// 100% matching! 
 SDE_ERR	sdSndSetFxPrg( const Sint8 new_fx_prg_num, const Sint8 new_fx_out_num)
 {
-	// Line 2585, Address: 0x2dc9a0, Func Offset: 0
-	// Line 2590, Address: 0x2dc9b4, Func Offset: 0x14
-	// Func End, Address: 0x2dc9bc, Func Offset: 0x1c
-	scePrintf("sdSndSetFxPrg - UNIMPLEMENTED!\n");
+    return (__sg_sd_snd_init__ != 0) ? 0 : 218103809;
 }
 
 /*// 
