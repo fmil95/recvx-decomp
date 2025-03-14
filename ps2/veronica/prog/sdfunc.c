@@ -2000,7 +2000,7 @@ _anon56* sys;*/
 unsigned int DiscOpenTrayFlag;
 unsigned int StatusUpdateCounter;
 SYS_BT_SYSTEMID BootDiscSystemId;
-/*_anon23* hws;*/
+NO_NAME_13* hws;
 SND_CMD SoundCommand;
 /*_anon12 MovieInfo;*/
 unsigned char* pConfigWork;
@@ -2260,24 +2260,55 @@ int GetBootDiscId()
     return ReturnCode;
 }
 
-// 
-// Start address: 0x292500
+// 100% matching! 
 void InitSofdecSystem(int Mode)
 {
-	//_anon30 iprm;
-	// Line 308, Address: 0x292500, Func Offset: 0
-	// Line 312, Address: 0x292510, Func Offset: 0x10
-	// Line 313, Address: 0x292520, Func Offset: 0x20
-	// Line 314, Address: 0x292530, Func Offset: 0x30
-	// Line 315, Address: 0x292538, Func Offset: 0x38
-	// Line 316, Address: 0x292540, Func Offset: 0x40
-	// Line 318, Address: 0x2925a8, Func Offset: 0xa8
-	// Line 319, Address: 0x2925b0, Func Offset: 0xb0
-	// Line 320, Address: 0x2925bc, Func Offset: 0xbc
-	// Line 321, Address: 0x2925c4, Func Offset: 0xc4
-	// Line 324, Address: 0x2925cc, Func Offset: 0xcc
-	// Func End, Address: 0x2925dc, Func Offset: 0xdc
-	scePrintf("InitSofdecSystem - UNIMPLEMENTED!\n");
+    PRM_INFO iprm;
+    int temp; // not from the debugging symbols
+
+    memset(&iprm, 0, sizeof(PRM_INFO));
+    
+    iprm.mode = hws->mode;
+    
+    iprm.frame = hws->frame; 
+    
+    iprm.count = hws->count; 
+    
+    if (hws->vtx_opq_a < 0) 
+    {
+        temp = 2;
+    }
+    else if (hws->vtx_opq_b < 0) 
+    {
+        temp = 2;
+    }
+    else if (hws->vtx_trs_a < 0) 
+    {
+        temp = 2;
+    } 
+    else if (hws->vtx_trs_b < 0)
+    {
+        temp = 2;
+    }
+    else if (hws->vtx_punch < 0) 
+    {
+        temp = 2;
+    }
+    else 
+    {
+        temp = 3;
+    }
+
+    iprm.latency = temp; 
+    
+    if (Mode == 0) 
+    {
+        InitMwSystem(0, &iprm);
+    }
+    else 
+    {
+        ReinitMwSystem((PRM_INFO*)&iprm);
+    }
 }
 
 /*// 

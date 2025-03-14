@@ -1879,3 +1879,12 @@ typedef struct RM_SNDENV
     char Dummy2; // offset 0xE, size 0x1
     char Dummy3; // offset 0xF, size 0x1
 } RM_SNDENV;
+
+typedef struct PRM_INFO
+{
+	int mode; // offset 0x0, size 0x4
+    int frame; // offset 0x4, size 0x4
+    int count; // offset 0x8, size 0x4
+    int latency; // offset 0xC, size 0x4
+    int rsv[4]; // offset 0x10, size 0x10
+} PRM_INFO;

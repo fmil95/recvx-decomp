@@ -62,6 +62,7 @@
 #include "sdc.c"
 #include "adv.c"
 #include "padman.c"
+#include "mwwrap.c"
 #include "sdfunc.c"
 #include "sdcwrap.c"
 #include "sync.c"
