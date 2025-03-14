@@ -1998,9 +1998,9 @@ int FileReadStatus;
 int KeyReadSwitch;
 _anon56* sys;
 unsigned int DiscOpenTrayFlag;
-unsigned int StatusUpdateCounter;
-tag_SYS_BT_SYSTEMID BootDiscSystemId;
-_anon23* hws;*/
+unsigned int StatusUpdateCounter;*/
+SYS_BT_SYSTEMID BootDiscSystemId;
+/*_anon23* hws;*/
 SND_CMD SoundCommand;
 /*_anon12 MovieInfo;*/
 unsigned char* pConfigWork;
@@ -2071,9 +2071,9 @@ float xDist;
 _anon6 NextSoundInfo;
 
 void bhReleaseFreeMemory(void* mp);
-void ExitApplication();
+void ExitApplication();*/
 void QuickGetDiscTrayStatus();
-void InitFirstSofdec();
+/*void InitFirstSofdec();
 int GetBootDiscId();
 void InitSofdecSystem(int Mode);
 void ExitSofdecSystem();
@@ -2217,7 +2217,7 @@ void ExitApplication()
     njUserExit();
 }
 
-/*// 
+// 
 // Start address: 0x292440
 void QuickGetDiscTrayStatus()
 {
@@ -2230,7 +2230,8 @@ void QuickGetDiscTrayStatus()
 	// Line 249, Address: 0x29246c, Func Offset: 0x2c
 	// Line 251, Address: 0x292474, Func Offset: 0x34
 	// Func End, Address: 0x292480, Func Offset: 0x40
-}*/
+	scePrintf("QuickGetDiscTrayStatus - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void InitFirstSofdec()
@@ -2238,26 +2239,28 @@ void InitFirstSofdec()
     mwPlyPreInitSofdec();
 }
 
-// 
-// Start address: 0x292490
+// 100% matching! 
 int GetBootDiscId()
 {
-	int ReturnCode;
-	unsigned char* p;
-	// Line 277, Address: 0x292490, Func Offset: 0
-	// Line 281, Address: 0x292494, Func Offset: 0x4
-	// Line 277, Address: 0x292498, Func Offset: 0x8
-	// Line 281, Address: 0x2924a0, Func Offset: 0x10
-	// Line 291, Address: 0x2924ac, Func Offset: 0x1c
-	// Line 292, Address: 0x2924b4, Func Offset: 0x24
-	// Line 293, Address: 0x2924bc, Func Offset: 0x2c
-	// Line 294, Address: 0x2924d4, Func Offset: 0x44
-	// Line 296, Address: 0x2924dc, Func Offset: 0x4c
-	// Line 297, Address: 0x2924e0, Func Offset: 0x50
-	// Line 299, Address: 0x2924e8, Func Offset: 0x58
-	// Line 300, Address: 0x2924ec, Func Offset: 0x5c
-	// Func End, Address: 0x292500, Func Offset: 0x70
-	scePrintf("GetBootDiscId - UNIMPLEMENTED!\n");
+    unsigned char* p; 
+    int ReturnCode; 
+
+    syBtGetBootSystemID(&BootDiscSystemId);
+    
+    p = syMalloc(16384);
+    
+    QuickGetDiscTrayStatus();
+    
+    if (ReadFileEx("DISCID.BIN", p) != 0) 
+    {
+        ExitApplication();
+    }
+    
+    ReturnCode = *p;
+    
+    syFree(p);
+    
+    return ReturnCode;
 }
 
 // 

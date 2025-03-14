@@ -238,14 +238,14 @@ int GetFileSize(char* FileName)
 	// Line 194, Address: 0x28eb88, Func Offset: 0x8
 	// Line 198, Address: 0x28eba4, Func Offset: 0x24
 	// Func End, Address: 0x28ebb0, Func Offset: 0x30
-}
+}*/
 
 // 
 // Start address: 0x28ebb0
 int ReadFileEx(char* FileName, void* ReadAddress)
 {
 	int FileSize;
-	GDS_FS_HANDLE* GdFs;
+	//GDS_FS_HANDLE* GdFs;
 	// Line 201, Address: 0x28ebb0, Func Offset: 0
 	// Line 206, Address: 0x28ebc0, Func Offset: 0x10
 	// Line 207, Address: 0x28ebd4, Func Offset: 0x24
@@ -258,9 +258,10 @@ int ReadFileEx(char* FileName, void* ReadAddress)
 	// Line 222, Address: 0x28ec38, Func Offset: 0x88
 	// Line 223, Address: 0x28ec3c, Func Offset: 0x8c
 	// Func End, Address: 0x28ec50, Func Offset: 0xa0
+	scePrintf("ReadFileEx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28ec50
 unsigned int CheckOpenTray()
 {
