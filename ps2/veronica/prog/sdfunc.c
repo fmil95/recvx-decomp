@@ -1996,9 +1996,9 @@ int TransSoundPackDataFlag;
 int ReadFileRequestFlag;
 int FileReadStatus;
 int KeyReadSwitch;
-_anon56* sys;
+_anon56* sys;*/
 unsigned int DiscOpenTrayFlag;
-unsigned int StatusUpdateCounter;*/
+unsigned int StatusUpdateCounter;
 SYS_BT_SYSTEMID BootDiscSystemId;
 /*_anon23* hws;*/
 SND_CMD SoundCommand;
@@ -2217,21 +2217,18 @@ void ExitApplication()
     njUserExit();
 }
 
-// 
-// Start address: 0x292440
-void QuickGetDiscTrayStatus()
-{
-	// Line 245, Address: 0x292440, Func Offset: 0
-	// Line 246, Address: 0x292444, Func Offset: 0x4
-	// Line 245, Address: 0x292448, Func Offset: 0x8
-	// Line 246, Address: 0x29244c, Func Offset: 0xc
-	// Line 247, Address: 0x292450, Func Offset: 0x10
-	// Line 248, Address: 0x292458, Func Offset: 0x18
-	// Line 249, Address: 0x29246c, Func Offset: 0x2c
-	// Line 251, Address: 0x292474, Func Offset: 0x34
-	// Func End, Address: 0x292480, Func Offset: 0x40
-	scePrintf("QuickGetDiscTrayStatus - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+void QuickGetDiscTrayStatus() 
+{ 
+    StatusUpdateCounter = 1; 
+    
+    njWaitVSync(); 
+    
+    if (DiscOpenTrayFlag == -1)
+    { 
+        ExitApplication(DiscOpenTrayFlag); 
+    }
+} 
 
 // 100% matching!
 void InitFirstSofdec()
