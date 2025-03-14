@@ -193,7 +193,7 @@ unsigned int CheckTransComplete()
 	// Line 35, Address: 0x28ed00, Func Offset: 0
 	// Line 36, Address: 0x28ed04, Func Offset: 0x4
 	// Func End, Address: 0x28ed0c, Func Offset: 0xc
-}
+}*/
 
 // 
 // Start address: 0x28ed10
@@ -214,9 +214,10 @@ void SetupSoundDriver(void* pSndDrv, unsigned int SndDrvSize)
 	// Line 53, Address: 0x28ed9c, Func Offset: 0x8c
 	// Line 55, Address: 0x28edb0, Func Offset: 0xa0
 	// Func End, Address: 0x28edc4, Func Offset: 0xb4
+	scePrintf("SetupSoundDriver - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28edd0
 void ExitSoundDriver()
 {
@@ -226,7 +227,7 @@ void ExitSoundDriver()
 	// Line 61, Address: 0x28ede8, Func Offset: 0x18
 	// Line 62, Address: 0x28edf0, Func Offset: 0x20
 	// Func End, Address: 0x28edfc, Func Offset: 0x2c
-}
+}*/
 
 // 
 // Start address: 0x28ee00
@@ -247,9 +248,10 @@ void SetMultiUnit(void* pMulUni, unsigned int MulUniSize)
 	// Line 77, Address: 0x28ee58, Func Offset: 0x58
 	// Line 78, Address: 0x28ee64, Func Offset: 0x64
 	// Func End, Address: 0x28ee78, Func Offset: 0x78
+	scePrintf("SetMultiUnit - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28ee80
 void SetSoundData(SDE_DATA_TYPE DataType, int BankNo, void* pSndDat, unsigned int SndDatSize)
 {

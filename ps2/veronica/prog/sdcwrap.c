@@ -41,33 +41,46 @@ void InitSdcParameter()
 	scePrintf("InitSdcParameter - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x290870
+// 100% matching! 
 int InitSoundDriver(char* SddFileName, char* MufFileName)
-{
-	int FileSize;
-	unsigned int* Address;
-	// Line 49, Address: 0x290870, Func Offset: 0
-	// Line 53, Address: 0x29088c, Func Offset: 0x1c
-	// Line 54, Address: 0x290898, Func Offset: 0x28
-	// Line 55, Address: 0x2908a0, Func Offset: 0x30
-	// Line 56, Address: 0x2908a8, Func Offset: 0x38
-	// Line 57, Address: 0x2908bc, Func Offset: 0x4c
-	// Line 59, Address: 0x2908c4, Func Offset: 0x54
-	// Line 60, Address: 0x2908d0, Func Offset: 0x60
-	// Line 62, Address: 0x2908d8, Func Offset: 0x68
-	// Line 63, Address: 0x2908e0, Func Offset: 0x70
-	// Line 64, Address: 0x2908ec, Func Offset: 0x7c
-	// Line 65, Address: 0x2908f4, Func Offset: 0x84
-	// Line 66, Address: 0x2908fc, Func Offset: 0x8c
-	// Line 67, Address: 0x290910, Func Offset: 0xa0
-	// Line 69, Address: 0x290918, Func Offset: 0xa8
-	// Line 70, Address: 0x290924, Func Offset: 0xb4
-	// Line 73, Address: 0x29092c, Func Offset: 0xbc
-	// Line 76, Address: 0x290934, Func Offset: 0xc4
-	// Line 75, Address: 0x290948, Func Offset: 0xd8
-	// Line 76, Address: 0x29094c, Func Offset: 0xdc
-	// Func End, Address: 0x290954, Func Offset: 0xe4
-	scePrintf("InitSoundDriver - UNIMPLEMENTED!\n");
-}
+{ 
+    unsigned int* Address;
+    int FileSize;
 
+    FileSize = GetFileSize(SddFileName);
+    
+    Address = syMalloc(FileSize); 
+    
+    QuickGetDiscTrayStatus(); 
+    
+    if (ReadFileEx(SddFileName, Address) != 0) 
+    { 
+        ExitApplication(); 
+    }
+    
+    SetupSoundDriver(Address, FileSize); 
+    
+    syFree(Address); 
+    
+    if (MufFileName != NULL)
+    { 
+        FileSize = GetFileSize(MufFileName); 
+        
+        Address = syMalloc(FileSize); 
+        
+        QuickGetDiscTrayStatus(); 
+        
+        if (ReadFileEx(MufFileName, Address) != 0)
+        { 
+            ExitApplication(); 
+        }
+        
+        SetMultiUnit(Address, FileSize); 
+        
+        syFree(Address); 
+    }
+    
+    InitSdcParameter(); 
+    
+    return 0; 
+} 

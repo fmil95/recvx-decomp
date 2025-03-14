@@ -227,18 +227,19 @@ void ExitGdSystem()
 	// Line 181, Address: 0x28eb60, Func Offset: 0x20
 	// Line 182, Address: 0x28eb68, Func Offset: 0x28
 	// Func End, Address: 0x28eb74, Func Offset: 0x34
-}
+}*/
 
 // 
 // Start address: 0x28eb80
 int GetFileSize(char* FileName)
 {
-	GDS_FS_DIRINFO DirInfo;
+	//GDS_FS_DIRINFO DirInfo;
 	// Line 190, Address: 0x28eb80, Func Offset: 0
 	// Line 194, Address: 0x28eb88, Func Offset: 0x8
 	// Line 198, Address: 0x28eba4, Func Offset: 0x24
 	// Func End, Address: 0x28ebb0, Func Offset: 0x30
-}*/
+	scePrintf("GetFileSize - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x28ebb0

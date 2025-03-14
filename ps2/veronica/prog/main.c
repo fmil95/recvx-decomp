@@ -59,11 +59,11 @@
 #include "adxwrap.c"
 #include "ps2_sg_sycfg.c"
 #include "ps2_sg_sd.c"
-#include "sdcwrap.c"
 #include "sdc.c"
 #include "adv.c"
 #include "padman.c"
 #include "sdfunc.c"
+#include "sdcwrap.c"
 #include "sync.c"
 #include "system.c"
 
