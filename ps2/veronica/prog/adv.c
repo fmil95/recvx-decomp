@@ -1953,12 +1953,12 @@ struct _anon56
 };
 
 unsigned char SaveLoadMessage[10956];
-_anon53 OptionDef[7];
+_anon53 OptionDef[7];*/
 int AdvFirstInitFlag;
-_anon6 AdvTexList[2];
-int PatId[0];
-_anon8 AdvWork;
-_anon40* sys;
+/*_anon6 AdvTexList[2];
+int PatId[0];*/
+ADV_WORK AdvWork;
+/*_anon40* sys;
 _anon27 tbuf[0];
 _anon34* rom;
 unsigned int palbuf[0];
@@ -1986,9 +1986,9 @@ void CallPlayerDeadVoice(int PlayerNo);
 void CallSystemVoice(int VoiceNo);
 float GetSamurai(int Time);
 void InitAdvSystem();
-void ResetAdvSystem();
+void ResetAdvSystem();*/
 void MountAdvAfs();
-unsigned char* AdvGetResourcePtr(unsigned char* bp, unsigned int ResId);
+/*unsigned char* AdvGetResourcePtr(unsigned char* bp, unsigned int ResId);
 void AdvSetSoundMode();
 void AdvCheckSoftReset(int Flag);
 void AdvPushRoomTexture();
@@ -2092,24 +2092,26 @@ float GetSamurai(int Time)
 	// Func End, Address: 0x2c0e0c, Func Offset: 0x8c
 }*/
 
-// 
-// Start address: 0x2c0e10
+// 100% matching! 
 void InitAdvSystem()
-{
-	//_anon8* ap;
-	// Line 245, Address: 0x2c0e10, Func Offset: 0
-	// Line 246, Address: 0x2c0e1c, Func Offset: 0xc
-	// Line 248, Address: 0x2c0e24, Func Offset: 0x14
-	// Line 249, Address: 0x2c0e34, Func Offset: 0x24
-	// Line 250, Address: 0x2c0e48, Func Offset: 0x38
-	// Line 252, Address: 0x2c0e50, Func Offset: 0x40
-	// Line 251, Address: 0x2c0e54, Func Offset: 0x44
-	// Line 252, Address: 0x2c0e58, Func Offset: 0x48
-	// Line 255, Address: 0x2c0e60, Func Offset: 0x50
-	// Line 256, Address: 0x2c0e68, Func Offset: 0x58
-	// Func End, Address: 0x2c0e78, Func Offset: 0x68
-	scePrintf("InitAdvSystem - UNIMPLEMENTED!\n");
-}
+{ 
+    ADV_WORK* ap;
+
+    ap = &AdvWork;
+
+    if (AdvFirstInitFlag == 0) 
+    { 
+        memset(&AdvWork, 0, sizeof(ADV_WORK)); 
+        
+        ap->PatId = -1; 
+        
+        ap->Active = 0; 
+        
+        AdvFirstInitFlag = 1; 
+    } 
+    
+    MountAdvAfs(); 
+} 
 
 /*// 
 // Start address: 0x2c0e80
@@ -2165,7 +2167,7 @@ void ResetAdvSystem()
 	// Line 345, Address: 0x2c0f84, Func Offset: 0x104
 	// Line 346, Address: 0x2c0f8c, Func Offset: 0x10c
 	// Func End, Address: 0x2c0f9c, Func Offset: 0x11c
-}
+}*/
 
 // 
 // Start address: 0x2c0fa0
@@ -2174,9 +2176,10 @@ void MountAdvAfs()
 	// Line 360, Address: 0x2c0fa0, Func Offset: 0
 	// Line 362, Address: 0x2c0fb0, Func Offset: 0x10
 	// Func End, Address: 0x2c0fb8, Func Offset: 0x18
+	scePrintf("MountAdvAfs - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c0fc0
 unsigned char* AdvGetResourcePtr(unsigned char* bp, unsigned int ResId)
 {
