@@ -2388,7 +2388,7 @@ void InitSoundProgram()
     ResetRoomSoundEnvParam();
     ResetSoundComInfo();
     
-    memset(&SoundCommand, 0, 8);
+    memset(&SoundCommand, 0, sizeof(SND_CMD));
     
     InitAdvSystem();
     
