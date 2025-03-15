@@ -1995,8 +1995,8 @@ int SpqFileReadRequestFlag;
 int TransSoundPackDataFlag;
 int ReadFileRequestFlag;
 int FileReadStatus;
-int KeyReadSwitch;
-_anon56* sys;*/
+int KeyReadSwitch;*/
+SYS_WORK* sys;
 unsigned int DiscOpenTrayFlag;
 unsigned int StatusUpdateCounter;
 SYS_BT_SYSTEMID BootDiscSystemId;
@@ -4942,7 +4942,7 @@ void StopVibrationEx()
 {
 	// Line 4907, Address: 0x297d30, Func Offset: 0
 	// Func End, Address: 0x297d3c, Func Offset: 0xc
-}
+}*/
 
 // 
 // Start address: 0x297d40
@@ -4951,17 +4951,16 @@ void SetAdjustDisplay()
 	// Line 4918, Address: 0x297d40, Func Offset: 0
 	// Line 4919, Address: 0x297d48, Func Offset: 0x8
 	// Func End, Address: 0x297d50, Func Offset: 0x10
-}*/
+	scePrintf("SetAdjustDisplay - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x297d50
+// 100% matching! 
 void RequestAdjustDisplay(int AdjustX, int AdjustY)
-{
-	// Line 4923, Address: 0x297d50, Func Offset: 0
-	// Line 4924, Address: 0x297d5c, Func Offset: 0xc
-	// Line 4925, Address: 0x297d64, Func Offset: 0x14
-	// Func End, Address: 0x297d6c, Func Offset: 0x1c
-	scePrintf("RequestAdjustDisplay - UNIMPLEMENTED!\n");
+{ 
+    sys->adjust_x = AdjustX;
+    sys->adjust_y = AdjustY; 
+    
+    SetAdjustDisplay(); 
 }
 
 /*// 
