@@ -334,11 +334,11 @@ void DeletePartition(unsigned int PartitionId)
 	// Line 312, Address: 0x291154, Func Offset: 0x44
 	// Line 314, Address: 0x291158, Func Offset: 0x48
 	// Func End, Address: 0x291168, Func Offset: 0x58
-}
+}*/
 
 // 
 // Start address: 0x291170
-int CreatePartitionEx(_anon4* ap)
+int CreatePartitionEx(AFS_PATINFO* ap)
 {
 	int ret;
 	char chg_AfsFile[256];
@@ -380,7 +380,7 @@ int CreatePartitionEx(_anon4* ap)
 	// Func End, Address: 0x291324, Func Offset: 0x1b4
 }
 
-// 
+/*// 
 // Start address: 0x291330
 void DeletePartitionEx(_anon4* ap)
 {

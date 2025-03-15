@@ -26,6 +26,9 @@
 #include <sg_sd.h>
 #include <limits.h>
 
+// CRIWARE library
+#include <cri_adxf.h>
+
 #include "types.h"
 
 #include "ps2_sg_maloc.c"

@@ -1968,10 +1968,21 @@ struct _anon68
 	unsigned int* pSurface;
 	unsigned int* pVirtual;
 	unsigned int* pPhysical;
-};
+};*/
 
-int PatId[4];
-_anon46 SoundAfsPatDef[8];*/
+int PatId[4] = {
+    -1, -1, -1, -1
+};
+AFS_PATINFO SoundAfsPatDef[8] = {
+    { "BGM?.AFS"    , 0, 128, NULL },
+    { "VOICE?.AFS"  , 1, 768, NULL },
+    { "MULTSPQ?.AFS", 2, 512, NULL },
+    { "ADV.AFS"     , 3, 128, NULL },
+    { "ITEM?.AFS"   , 4, 512, NULL },
+    { "MRY.AFS"     , 5, 160, NULL },
+    { "SYSTEM.AFS"  , 6, 256, NULL },
+    { NULL          , 0, 0  , NULL }
+};
 ADX_WORK AdxDef[2] = {
     { 2, 48000, 2, -1 },
     { 1, 48000, 2, -1 }
@@ -2004,9 +2015,9 @@ NO_NAME_13* hws;
 SND_CMD SoundCommand;
 /*_anon12 MovieInfo;*/
 unsigned char* pConfigWork;
-/*unsigned short* pSpqList;
+unsigned short* pSpqList;
 unsigned char* pSoundAfs;
-char SpqFileName[32];
+/*char SpqFileName[32];
 int EventVibrationMode;
 _anon4 BgSePrmBuf[2];
 int ReqFadeBgSe[2];
@@ -2415,65 +2426,89 @@ void ExitSoundProgram()
 	scePrintf("ExitSoundProgram - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x292890
+// 100% matching! 
 int MountSoundAfs()
 {
-	unsigned char* p;
-	int WorkSize;
-	int i;
-	// Line 469, Address: 0x292890, Func Offset: 0
-	// Line 481, Address: 0x29289c, Func Offset: 0xc
-	// Line 482, Address: 0x2928b4, Func Offset: 0x24
-	// Line 483, Address: 0x2928c4, Func Offset: 0x34
-	// Line 484, Address: 0x2928d0, Func Offset: 0x40
-	// Line 485, Address: 0x2928dc, Func Offset: 0x4c
-	// Line 486, Address: 0x2928e4, Func Offset: 0x54
-	// Line 489, Address: 0x2928ec, Func Offset: 0x5c
-	// Line 490, Address: 0x2928fc, Func Offset: 0x6c
-	// Line 491, Address: 0x292908, Func Offset: 0x78
-	// Line 492, Address: 0x292914, Func Offset: 0x84
-	// Line 498, Address: 0x292928, Func Offset: 0x98
-	// Line 499, Address: 0x292934, Func Offset: 0xa4
-	// Line 500, Address: 0x292938, Func Offset: 0xa8
-	// Line 499, Address: 0x29293c, Func Offset: 0xac
-	// Line 500, Address: 0x292958, Func Offset: 0xc8
-	// Line 502, Address: 0x292964, Func Offset: 0xd4
-	// Line 504, Address: 0x292974, Func Offset: 0xe4
-	// Line 505, Address: 0x29297c, Func Offset: 0xec
-	// Line 507, Address: 0x292984, Func Offset: 0xf4
-	// Line 511, Address: 0x29298c, Func Offset: 0xfc
-	// Line 512, Address: 0x2929a4, Func Offset: 0x114
-	// Line 513, Address: 0x2929c0, Func Offset: 0x130
-	// Line 515, Address: 0x2929c8, Func Offset: 0x138
-	// Line 517, Address: 0x2929d0, Func Offset: 0x140
-	// Line 518, Address: 0x2929ec, Func Offset: 0x15c
-	// Line 531, Address: 0x2929fc, Func Offset: 0x16c
-	// Line 532, Address: 0x292a04, Func Offset: 0x174
-	// Line 533, Address: 0x292a08, Func Offset: 0x178
-	// Line 534, Address: 0x292a0c, Func Offset: 0x17c
-	// Line 533, Address: 0x292a10, Func Offset: 0x180
-	// Line 534, Address: 0x292a2c, Func Offset: 0x19c
-	// Line 536, Address: 0x292a3c, Func Offset: 0x1ac
-	// Line 537, Address: 0x292a44, Func Offset: 0x1b4
-	// Line 538, Address: 0x292a58, Func Offset: 0x1c8
-	// Line 544, Address: 0x292a60, Func Offset: 0x1d0
-	// Line 545, Address: 0x292a68, Func Offset: 0x1d8
-	// Line 546, Address: 0x292a70, Func Offset: 0x1e0
-	// Line 547, Address: 0x292a78, Func Offset: 0x1e8
-	// Line 548, Address: 0x292a80, Func Offset: 0x1f0
-	// Line 544, Address: 0x292a90, Func Offset: 0x200
-	// Line 545, Address: 0x292a98, Func Offset: 0x208
-	// Line 546, Address: 0x292aa0, Func Offset: 0x210
-	// Line 547, Address: 0x292aa8, Func Offset: 0x218
-	// Line 548, Address: 0x292ab0, Func Offset: 0x220
-	// Line 549, Address: 0x292ab4, Func Offset: 0x224
-	// Line 562, Address: 0x292abc, Func Offset: 0x22c
-	// Line 549, Address: 0x292ac0, Func Offset: 0x230
-	// Line 550, Address: 0x292acc, Func Offset: 0x23c
-	// Line 563, Address: 0x292ae0, Func Offset: 0x250
-	// Func End, Address: 0x292af0, Func Offset: 0x260
-	scePrintf("MountSoundAfs - UNIMPLEMENTED!\n");
+    int i; 
+    int WorkSize; 
+    unsigned char* p; 
+    
+    if (!(sys->ss_flg & 0x1))
+    {
+        SoundAfsPatDef[0].AfsFileName[3] = '1';
+        SoundAfsPatDef[1].AfsFileName[5] = '1';
+        SoundAfsPatDef[2].AfsFileName[7] = '1';
+        SoundAfsPatDef[4].AfsFileName[4] = '1';
+    }
+    else
+    {
+        SoundAfsPatDef[0].AfsFileName[3] = '2';
+        SoundAfsPatDef[1].AfsFileName[5] = '2';
+        SoundAfsPatDef[2].AfsFileName[7] = '2';
+        SoundAfsPatDef[4].AfsFileName[4] = '2';
+    }
+    
+    i = 0;
+
+    WorkSize = 0;
+    
+    while (SoundAfsPatDef[i].AfsFileName != NULL) 
+    {
+        WorkSize += ADXF_CALC_PTINFO_SIZE(SoundAfsPatDef[i].MaxInsideFileNum); 
+        
+        i++;
+    }
+    
+    pSoundAfs = syMalloc(WorkSize + ADXF_DEF_SCT_SIZE);
+    
+    p = pSoundAfs;
+    
+    pSpqList = (unsigned short*)p;
+    
+    p += ADXF_DEF_SCT_SIZE;
+    
+    QuickGetDiscTrayStatus();
+    
+    if (!(sys->ss_flg & 0x1)) 
+    {
+        if (ReadFileEx("MULTSPQ1.IDX", pSpqList) != 0) 
+        {
+            ExitApplication();
+        }
+    }
+    else if (ReadFileEx("MULTSPQ2.IDX", pSpqList) != 0)
+    {
+        ExitApplication();
+    }
+    
+    i = 0; 
+    
+    while (SoundAfsPatDef[i].AfsFileName != NULL)
+    {
+        SoundAfsPatDef[i].pInfoWork = p;
+        
+        p += ADXF_CALC_PTINFO_SIZE(SoundAfsPatDef[i].MaxInsideFileNum); 
+        
+        i++; 
+    }
+    
+    QuickGetDiscTrayStatus();
+    
+    if (CreatePartitionEx(SoundAfsPatDef) != 0) 
+    {
+        ExitApplication();
+    }
+    
+    PatId[0] = SoundAfsPatDef[0].PartitionId;
+    PatId[1] = SoundAfsPatDef[1].PartitionId;
+    PatId[2] = SoundAfsPatDef[2].PartitionId;
+    PatId[3] = SoundAfsPatDef[3].PartitionId;
+    
+    sys->itm_partid = SoundAfsPatDef[4].PartitionId;
+    sys->dor_partid = SoundAfsPatDef[5].PartitionId;
+    sys->sys_partid = SoundAfsPatDef[6].PartitionId;
+    
+    return 0;
 }
 
 /*// 

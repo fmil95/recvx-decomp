@@ -1965,3 +1965,12 @@ typedef struct ADV_WORK
     char CursorFlag[4][4]; // offset 0xC2, size 0x10
     char ModeCommandId[4]; // offset 0xD2, size 0x4
 } ADV_WORK;
+
+typedef struct AFS_PATINFO
+{
+    // total size: 0x10
+    char * AfsFileName; // offset 0x0, size 0x4
+    int PartitionId; // offset 0x4, size 0x4
+    int MaxInsideFileNum; // offset 0x8, size 0x4
+    unsigned char * pInfoWork; // offset 0xC, size 0x4
+} AFS_PATINFO;
