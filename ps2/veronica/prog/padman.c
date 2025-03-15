@@ -81,11 +81,11 @@ struct _anon4
 {
 	int Type;
 	unsigned int Button;
-};
+};*/
 
 unsigned int KeyWaitFirst;
 unsigned int KeyWaitNext;
-_anon4 ButtonInfo[5];
+/*_anon4 ButtonInfo[5];
 int SoftResetFlag;
 int CurrentPortId;
 _anon1 Pad[4];
@@ -141,16 +141,12 @@ void InitReadKeyEx(int MaxPlayer)
 	scePrintf("InitReadKeyEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x297ef0
+// 100% matching! 
 void SetRepeatKeyTimer(unsigned int FirstTimer, unsigned int NextTimer)
 {
-	// Line 126, Address: 0x297ef0, Func Offset: 0
-	// Line 127, Address: 0x297ef8, Func Offset: 0x8
-	// Line 128, Address: 0x297efc, Func Offset: 0xc
-	// Func End, Address: 0x297f04, Func Offset: 0x14
-	scePrintf("SetRepeatKeyTimer - UNIMPLEMENTED!\n");
-}
+    KeyWaitFirst = FirstTimer; 
+    KeyWaitNext = NextTimer; 
+} 
 
 /*// 
 // Start address: 0x297f10
