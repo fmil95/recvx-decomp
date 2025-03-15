@@ -145,7 +145,7 @@ unsigned char PadCnt;
 _anon2 pgp_info;
 unsigned int Pad_state[2];
 int SoftResetFlag;*/
-PAD Pad[4];
+PAD_INFO Pad[4];
 /*int CurrentPortId;
 _anon4 Pad_info;
 _anon6 Pad_status2;

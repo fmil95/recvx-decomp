@@ -85,61 +85,60 @@ struct _anon4
 
 unsigned int KeyWaitFirst;
 unsigned int KeyWaitNext;
-/*_anon4 ButtonInfo[5];
+/*_anon4 ButtonInfo[5];*/
 int SoftResetFlag;
 int CurrentPortId;
-_anon1 Pad[4];
+PAD_INFO Pad[4];
 int MaxContorolPlayer;
-_anon2 RepeatInfo[6][4];
+REPEAT_INFO RepeatInfo[4][6];
 
 void InitReadKeyEx(int MaxPlayer);
 void SetRepeatKeyTimer(unsigned int FirstTimer, unsigned int NextTimer);
 int CheckSoftResetKeyFlag(int ControllerId);
-void ClearSoftResetKeyFlag(int ControllerId);*/
+void ClearSoftResetKeyFlag(int ControllerId);
 
-// 
-// Start address: 0x297e00
-void InitReadKeyEx(int MaxPlayer)
+// 100% matching! 
+void InitReadKeyEx(int MaxPlayer) 
 {
-	unsigned int j;
-	unsigned int i;
-	// Line 60, Address: 0x297e10, Func Offset: 0x10
-	// Line 73, Address: 0x297e14, Func Offset: 0x14
-	// Line 74, Address: 0x297e18, Func Offset: 0x18
-	// Line 62, Address: 0x297e1c, Func Offset: 0x1c
-	// Line 63, Address: 0x297e20, Func Offset: 0x20
-	// Line 64, Address: 0x297e24, Func Offset: 0x24
-	// Line 65, Address: 0x297e28, Func Offset: 0x28
-	// Line 66, Address: 0x297e2c, Func Offset: 0x2c
-	// Line 61, Address: 0x297e30, Func Offset: 0x30
-	// Line 62, Address: 0x297e38, Func Offset: 0x38
-	// Line 63, Address: 0x297e3c, Func Offset: 0x3c
-	// Line 64, Address: 0x297e40, Func Offset: 0x40
-	// Line 65, Address: 0x297e44, Func Offset: 0x44
-	// Line 66, Address: 0x297e48, Func Offset: 0x48
-	// Line 67, Address: 0x297e4c, Func Offset: 0x4c
-	// Line 68, Address: 0x297e58, Func Offset: 0x58
-	// Line 70, Address: 0x297e5c, Func Offset: 0x5c
-	// Line 69, Address: 0x297e60, Func Offset: 0x60
-	// Line 70, Address: 0x297e68, Func Offset: 0x68
-	// Line 71, Address: 0x297e74, Func Offset: 0x74
-	// Line 72, Address: 0x297e78, Func Offset: 0x78
-	// Line 73, Address: 0x297e7c, Func Offset: 0x7c
-	// Line 74, Address: 0x297e80, Func Offset: 0x80
-	// Line 76, Address: 0x297e84, Func Offset: 0x84
-	// Line 75, Address: 0x297e88, Func Offset: 0x88
-	// Line 76, Address: 0x297e90, Func Offset: 0x90
-	// Line 78, Address: 0x297e9c, Func Offset: 0x9c
-	// Line 80, Address: 0x297ea4, Func Offset: 0xa4
-	// Line 82, Address: 0x297eb8, Func Offset: 0xb8
-	// Line 81, Address: 0x297ebc, Func Offset: 0xbc
-	// Line 82, Address: 0x297ec4, Func Offset: 0xc4
-	// Line 84, Address: 0x297ed8, Func Offset: 0xd8
-	// Line 85, Address: 0x297ee0, Func Offset: 0xe0
-	// Line 86, Address: 0x297ee4, Func Offset: 0xe4
-	// Func End, Address: 0x297eec, Func Offset: 0xec
-	scePrintf("InitReadKeyEx - UNIMPLEMENTED!\n");
-}
+    unsigned int i; 
+    unsigned int j; 
+
+    for (i = 0; i < 4; i++) 
+    { 
+        RepeatInfo[i][0].Key = 0x8000; 
+        RepeatInfo[i][1].Key = 0x2000; 
+        RepeatInfo[i][2].Key = 0x1000; 
+        RepeatInfo[i][3].Key = 0x4000; 
+        RepeatInfo[i][4].Key = 0x4; 
+        RepeatInfo[i][5].Key = 0x8; 
+        
+        for (j = 0; j < 6; j++)
+        { 
+            RepeatInfo[i][j].WaitFlag = 0; 
+            RepeatInfo[i][j].WaitCnt = 0; 
+        } 
+        
+        Pad[i].on2 = 0; 
+        Pad[i].press2 = 0; 
+        
+        Pad[i].Calibrate = 64; 
+        
+        Pad[i].Flag = 1; 
+        
+        Pad[i].SoftReset = 0; 
+    }   
+
+    MaxContorolPlayer = MaxPlayer; 
+
+    for (i = 0; i < MaxPlayer; i++) 
+    { 
+        Pad[i].Flag = 0; 
+    } 
+    
+    CurrentPortId = 0; 
+    
+    SoftResetFlag = 0; 
+} 
 
 // 100% matching! 
 void SetRepeatKeyTimer(unsigned int FirstTimer, unsigned int NextTimer)

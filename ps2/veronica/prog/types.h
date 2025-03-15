@@ -1585,7 +1585,7 @@ typedef struct PAD_WORK
     unsigned char ar2; // offset 0x41, size 0x1
 } PAD_WORK;
 
-typedef struct PAD
+typedef struct PAD_INFO
 {
 	// total size: 0x3C
     int PerType; // offset 0x0, size 0x4
@@ -1606,7 +1606,7 @@ typedef struct PAD
     short x2; // offset 0x34, size 0x2
     short y2; // offset 0x36, size 0x2
     short Calibrate; // offset 0x38, size 0x2
-} PAD;
+} PAD_INFO;
 
 typedef struct DVDISO_DATA
 {
@@ -1888,3 +1888,11 @@ typedef struct PRM_INFO
     int latency; // offset 0xC, size 0x4
     int rsv[4]; // offset 0x10, size 0x10
 } PRM_INFO;
+
+typedef struct REPEAT_INFO
+{
+	// total size: 0xC
+    unsigned int WaitFlag; // offset 0x0, size 0x4
+    unsigned int WaitCnt; // offset 0x4, size 0x4
+    unsigned int Key; // offset 0x8, size 0x4
+} REPEAT_INFO;
