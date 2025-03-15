@@ -54,6 +54,7 @@
 #include "ps2_sg_sycbl.c"
 #include "ps2_sg_syhw.c"
 #include "ps2_sg_syrtc.c"
+#include "ps2_sg_pdvib.c"
 #include "sbinit.c"
 #include "vibman.c"
 #include "adxwrap.c"

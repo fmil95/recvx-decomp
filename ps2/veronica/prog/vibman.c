@@ -12,37 +12,39 @@ struct _anon0
 	unsigned char freq;
 	unsigned char inc;
 	unsigned char reserved[3];
-};
+};*/
 
-char PortIdTbl[4];
+char PortIdTbl[4] = {
+    0x02, 0x08, 0x0E, 0x14
+};
 int EnadleVibrationFlag;
 unsigned int VibStopTime;
 
-void InitVibrationUnit();
+/*void InitVibrationUnit();
 void ExitVibrationUnit();
 void SetUseVibrationUnit(int Flag);
-int GetUseVibrationUnit();
+int GetUseVibrationUnit();*/
 int CheckVibrationUnit(unsigned int PortId);
-int StartVibration(unsigned int PortId, _anon0* vpp);
+/*int StartVibration(unsigned int PortId, _anon0* vpp);
 int StopVibration(unsigned int PortId);*/
 
-// 
-// Start address: 0x2c84e0
+// 100% matching! 
 void InitVibrationUnit()
-{
-	int i;
-	// Line 16, Address: 0x2c84e0, Func Offset: 0
-	// Line 19, Address: 0x2c84f0, Func Offset: 0x10
-	// Line 21, Address: 0x2c8504, Func Offset: 0x24
-	// Line 22, Address: 0x2c8508, Func Offset: 0x28
-	// Line 23, Address: 0x2c851c, Func Offset: 0x3c
-	// Line 24, Address: 0x2c852c, Func Offset: 0x4c
-	// Line 25, Address: 0x2c8530, Func Offset: 0x50
-	// Line 27, Address: 0x2c8540, Func Offset: 0x60
-	// Line 28, Address: 0x2c8548, Func Offset: 0x68
-	// Func End, Address: 0x2c855c, Func Offset: 0x7c
-	scePrintf("InitVibrationUnit - UNIMPLEMENTED!\n");
-}
+{ 
+    int i;
+
+    VibStopTime = 20;
+
+    for (i = 0; i < 4; i++) 
+    { 
+        if (CheckVibrationUnit(PortIdTbl[i]) == 1) 
+        { 
+            pdVibMxSetStopTime(PortIdTbl[i], VibStopTime); 
+        } 
+    } 
+
+    EnadleVibrationFlag = 0; 
+} 
 
 /*// 
 // Start address: 0x2c8560
@@ -74,7 +76,7 @@ int GetUseVibrationUnit()
 	// Line 48, Address: 0x2c85d0, Func Offset: 0
 	// Line 49, Address: 0x2c85d4, Func Offset: 0x4
 	// Func End, Address: 0x2c85dc, Func Offset: 0xc
-}
+}*/
 
 // 
 // Start address: 0x2c85e0
@@ -82,9 +84,10 @@ int CheckVibrationUnit(unsigned int PortId)
 {
 	// Line 53, Address: 0x2c85e0, Func Offset: 0
 	// Func End, Address: 0x2c85e8, Func Offset: 0x8
+	scePrintf("CheckVibrationUnit - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c85f0
 int StartVibration(unsigned int PortId, _anon0* vpp)
 {
