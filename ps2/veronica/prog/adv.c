@@ -3131,7 +3131,7 @@ void DefaultSetOption()
 	// Line 2102, Address: 0x2c29c4, Func Offset: 0x54
 	// Line 2103, Address: 0x2c29d4, Func Offset: 0x64
 	// Func End, Address: 0x2c29e0, Func Offset: 0x70
-}
+}*/
 
 // 
 // Start address: 0x2c29e0
@@ -3139,7 +3139,7 @@ int Adv_FirstWarningMessage()
 {
 	int ReturnCode;
 	int TexNoDef[3];
-	_anon8* ap;
+	//_anon8* ap;
 	int LoadCheck;
 	int lState;
 	// Line 2113, Address: 0x2c29e0, Func Offset: 0
@@ -3254,9 +3254,10 @@ int Adv_FirstWarningMessage()
 	// Line 2501, Address: 0x2c2e94, Func Offset: 0x4b4
 	// Line 2502, Address: 0x2c2e98, Func Offset: 0x4b8
 	// Func End, Address: 0x2c2eac, Func Offset: 0x4cc
+	scePrintf("Adv_FirstWarningMessage - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c2eb0
 int Adv_CapcomLogo()
 {

@@ -1974,19 +1974,18 @@ void bhSysCallSoundMuseum()
 	scePrintf("bhSysCallSoundMuseum - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1325c0
+// 100% matching! 
 void bhSysCallWarning()
-{
-	// Line 660, Address: 0x1325c0, Func Offset: 0
-	// Line 662, Address: 0x1325c8, Func Offset: 0x8
-	// Line 663, Address: 0x1325d0, Func Offset: 0x10
-	// Line 664, Address: 0x1325e0, Func Offset: 0x20
-	// Line 669, Address: 0x1325f0, Func Offset: 0x30
-	// Line 676, Address: 0x132604, Func Offset: 0x44
-	// Func End, Address: 0x132610, Func Offset: 0x50
-	scePrintf("bhSysCallWarning - UNIMPLEMENTED!\n");
-}
+{ 
+    njFogDisable(); 
+    
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+    
+    if (Adv_FirstWarningMessage() != 0)
+    { 
+        sys->tk_flg = 0x300004; 
+    }
+} 
 
 // 
 // Start address: 0x132610
