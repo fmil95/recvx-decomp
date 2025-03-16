@@ -66,6 +66,7 @@
 #include "adxwrap.c"
 #include "ps2_sg_sycfg.c"
 #include "ps2_sg_sd.c"
+#include "ps2_sg_sytmr.c"
 #include "sdc.c"
 #include "adv.c"
 #include "pad.c"
