@@ -2048,18 +2048,15 @@ void bhSysCallFirstmovie()
 	scePrintf("bhSysCallFirstmovie - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1327e0
-void bhSysCallTitle()
-{
-	// Line 768, Address: 0x1327e0, Func Offset: 0
-	// Line 769, Address: 0x1327e8, Func Offset: 0x8
-	// Line 770, Address: 0x1327f0, Func Offset: 0x10
-	// Line 780, Address: 0x132800, Func Offset: 0x20
-	// Line 782, Address: 0x132814, Func Offset: 0x34
-	// Func End, Address: 0x132820, Func Offset: 0x40
-	scePrintf("bhSysCallTitle - UNIMPLEMENTED!\n");
-}
+// 100% matching! 
+void bhSysCallTitle() 
+{ 
+    njFogDisable(); 
+    
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000);
+    
+    sys->tk_flg = 0x300020; 
+} 
 
 // 100% matching! 
 void bhSysCallOpening() 
