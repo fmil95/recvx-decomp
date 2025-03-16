@@ -75,6 +75,7 @@
 #include "sync.c"
 #include "ps2_NaFog.c"
 #include "gameover.c"
+#include "ranking.c"
 #include "system.c"
 
 typedef void(*fn)();
