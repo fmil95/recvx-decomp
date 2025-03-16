@@ -3764,20 +3764,20 @@ int CheckStartButton()
 	// Line 3587, Address: 0x2c446c, Func Offset: 0x5c
 	// Line 3588, Address: 0x2c4470, Func Offset: 0x60
 	// Func End, Address: 0x2c447c, Func Offset: 0x6c
-}
+}*/
 
 // 
 // Start address: 0x2c4480
 int Adv_BioCvTitle()
 {
 	unsigned int a;
-	_anon13 poly[4];
+	//_anon13 poly[4];
 	unsigned int McCrntResult;
 	int TitleSoftResetFlag;
 	int j;
 	int i;
 	int ReturnCode;
-	_anon8* ap;
+	//_anon8* ap;
 	unsigned int ulFrame;
 	unsigned int McPrevResult;
 	// Line 3635, Address: 0x2c4480, Func Offset: 0
@@ -4035,9 +4035,10 @@ int Adv_BioCvTitle()
 	// Line 4228, Address: 0x2c4e8c, Func Offset: 0xa0c
 	// Line 4229, Address: 0x2c4e90, Func Offset: 0xa10
 	// Func End, Address: 0x2c4eac, Func Offset: 0xa2c
+	scePrintf("Adv_BioCvTitle - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c4eb0
 void ResetOptionMenuParam(int Mode)
 {

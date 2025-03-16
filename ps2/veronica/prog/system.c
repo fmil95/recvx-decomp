@@ -2000,52 +2000,47 @@ void bhSysCallIpl()
     }
 } 
 
-// 
-// Start address: 0x132660
-void bhSysCallFirstmovie()
+// 100% matching! 
+void bhSysCallFirstmovie() 
 {
-	// Line 700, Address: 0x132660, Func Offset: 0
-	// Line 701, Address: 0x132668, Func Offset: 0x8
-	// Line 702, Address: 0x132670, Func Offset: 0x10
-	// Line 705, Address: 0x132680, Func Offset: 0x20
-	// Line 709, Address: 0x1326b0, Func Offset: 0x50
-	// Line 716, Address: 0x1326c0, Func Offset: 0x60
-	// Line 709, Address: 0x1326c8, Func Offset: 0x68
-	// Line 710, Address: 0x1326cc, Func Offset: 0x6c
-	// Line 709, Address: 0x1326d0, Func Offset: 0x70
-	// Line 710, Address: 0x1326d8, Func Offset: 0x78
-	// Line 712, Address: 0x1326ec, Func Offset: 0x8c
-	// Line 716, Address: 0x1326f8, Func Offset: 0x98
-	// Line 720, Address: 0x132700, Func Offset: 0xa0
-	// Line 723, Address: 0x132708, Func Offset: 0xa8
-	// Line 724, Address: 0x132710, Func Offset: 0xb0
-	// Line 723, Address: 0x132718, Func Offset: 0xb8
-	// Line 724, Address: 0x132720, Func Offset: 0xc0
-	// Line 723, Address: 0x132724, Func Offset: 0xc4
-	// Line 724, Address: 0x13272c, Func Offset: 0xcc
-	// Line 729, Address: 0x132730, Func Offset: 0xd0
-	// Line 732, Address: 0x132738, Func Offset: 0xd8
-	// Line 733, Address: 0x132740, Func Offset: 0xe0
-	// Line 732, Address: 0x132748, Func Offset: 0xe8
-	// Line 733, Address: 0x13274c, Func Offset: 0xec
-	// Line 732, Address: 0x132750, Func Offset: 0xf0
-	// Line 733, Address: 0x132758, Func Offset: 0xf8
-	// Line 734, Address: 0x132760, Func Offset: 0x100
-	// Line 735, Address: 0x132768, Func Offset: 0x108
-	// Line 738, Address: 0x132770, Func Offset: 0x110
-	// Line 739, Address: 0x132780, Func Offset: 0x120
-	// Line 740, Address: 0x132788, Func Offset: 0x128
-	// Line 743, Address: 0x132790, Func Offset: 0x130
-	// Line 744, Address: 0x13279c, Func Offset: 0x13c
-	// Line 747, Address: 0x1327a4, Func Offset: 0x144
-	// Line 748, Address: 0x1327ac, Func Offset: 0x14c
-	// Line 747, Address: 0x1327b4, Func Offset: 0x154
-	// Line 748, Address: 0x1327bc, Func Offset: 0x15c
-	// Line 747, Address: 0x1327c0, Func Offset: 0x160
-	// Line 748, Address: 0x1327c8, Func Offset: 0x168
-	// Line 762, Address: 0x1327d0, Func Offset: 0x170
-	// Func End, Address: 0x1327dc, Func Offset: 0x17c
-	scePrintf("bhSysCallFirstmovie - UNIMPLEMENTED!\n");
+    njFogDisable();
+    
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000);
+    
+    switch (Adv_BioCvTitle()) 
+    {
+    case 1:
+        sys->ss_flg |= 0x400200;
+        
+        sys->pdm_keytpb = sys->keytype;
+        
+        sys->keytype = 0;
+        
+        sys->tk_flg = 0x300010;
+        break;
+    case 2:
+        sys->ss_flg &= ~0x200;
+        sys->tk_flg = 0x300010;
+        break;
+    case 3:
+        sys->ss_flg |= 0x200;
+        sys->tk_flg = 0x308040;
+        
+        *(int*)&sys->typ_md0 = 0;
+        break;
+    case 4:
+        sys->tk_flg = 0x310000;
+        
+        *(int*)&sys->typ_md0 = 0;
+        break;
+    case 5:
+        sys->tk_flg = 0x380000;
+        break;
+    case 6:
+        sys->ss_flg &= ~0x200;
+        sys->tk_flg = 0x300010;
+        break;
+    }
 }
 
 // 100% matching! 
