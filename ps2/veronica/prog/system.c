@@ -1713,7 +1713,7 @@ void bhSysCallIpl();
 void bhSysCallFirstmovie();
 void bhSysCallTitle();
 void bhSysCallOpening();
-/*void bhFirstGameStart();*/
+void bhFirstGameStart();
 void bhSysCallPad();
 void bhSysCallGame();
 /*void bhCheckSubTask();*/
@@ -2062,26 +2062,23 @@ void bhSysCallTitle()
 	scePrintf("bhSysCallTitle - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x132820
-void bhSysCallOpening()
-{
-	// Line 788, Address: 0x132820, Func Offset: 0
-	// Line 789, Address: 0x132828, Func Offset: 0x8
-	// Line 790, Address: 0x132830, Func Offset: 0x10
-	// Line 793, Address: 0x132840, Func Offset: 0x20
-	// Line 794, Address: 0x132848, Func Offset: 0x28
-	// Func End, Address: 0x132854, Func Offset: 0x34
-	scePrintf("bhSysCallOpening - UNIMPLEMENTED!\n");
-}
+// 100% matching! 
+void bhSysCallOpening() 
+{ 
+    njFogDisable(); 
+    
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+    
+    bhFirstGameStart(); 
+} 
 
-/*// 
+// 
 // Start address: 0x132860
 void bhFirstGameStart()
 {
 	int hp;
 	int i;
-	_anon7 scrn;
+	//_anon7 scrn;
 	// Line 800, Address: 0x132860, Func Offset: 0
 	// Line 808, Address: 0x132868, Func Offset: 0x8
 	// Line 809, Address: 0x132870, Func Offset: 0x10
@@ -2160,7 +2157,8 @@ void bhFirstGameStart()
 	// Line 926, Address: 0x132b58, Func Offset: 0x2f8
 	// Line 929, Address: 0x132b64, Func Offset: 0x304
 	// Func End, Address: 0x132b70, Func Offset: 0x310
-}*/
+	scePrintf("bhFirstGameStart - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x132b70
