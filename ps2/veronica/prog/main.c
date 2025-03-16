@@ -68,6 +68,7 @@
 #include "ps2_sg_sd.c"
 #include "sdc.c"
 #include "adv.c"
+#include "pad.c"
 #include "padman.c"
 #include "mwwrap.c"
 #include "sdfunc.c"

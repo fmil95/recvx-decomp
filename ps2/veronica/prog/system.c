@@ -2156,23 +2156,30 @@ void bhFirstGameStart()
 	scePrintf("bhFirstGameStart - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x132b70
-void bhSysCallPad()
-{
-	// Line 935, Address: 0x132b70, Func Offset: 0
-	// Line 936, Address: 0x132b78, Func Offset: 0x8
-	// Line 937, Address: 0x132b94, Func Offset: 0x24
-	// Line 938, Address: 0x132b9c, Func Offset: 0x2c
-	// Line 941, Address: 0x132bb8, Func Offset: 0x48
-	// Line 943, Address: 0x132be0, Func Offset: 0x70
-	// Line 946, Address: 0x132bec, Func Offset: 0x7c
-	// Line 947, Address: 0x132c24, Func Offset: 0xb4
-	// Line 952, Address: 0x132c48, Func Offset: 0xd8
-	// Line 1004, Address: 0x132c6c, Func Offset: 0xfc
-	// Func End, Address: 0x132c78, Func Offset: 0x108
-	scePrintf("bhSysCallPad - UNIMPLEMENTED!\n");
-}
+// 100% matching! 
+void bhSysCallPad() 
+{ 
+    if ((sys->ss_flg & 0x40000000)) 
+    { 
+        sys->sp_flg = ~0x0; 
+        sys->ss_flg &= ~0x40000000;
+    }
+    
+    if ((sys->sp_flg & 0x20))
+    {
+        bhSetPad();
+    }
+    else
+    {
+        sys->pad_on = 0; 
+    }
+
+    if (((sys->cb_flg & 0x4)) || (((sys->tk_flg & 0x1000)) && (!(sys->ts_flg & 0x1000))))
+    { 
+        sys->pad_on &= 0x1188F; 
+        sys->pad_ps &= 0x1188F; 
+    }
+} 
 
 // 
 // Start address: 0x132c80
