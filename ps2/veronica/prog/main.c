@@ -74,6 +74,7 @@
 #include "sdcwrap.c"
 #include "sync.c"
 #include "system.c"
+#include "ps2_NaFog.c"
 
 typedef void(*fn)();
 
