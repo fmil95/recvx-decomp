@@ -2746,13 +2746,10 @@ void bhSysCallOption()
 	scePrintf("bhSysCallOption - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1346a0
-void bhSysCallCompEvent()
-{
-	// Line 1912, Address: 0x1346a0, Func Offset: 0
-	// Func End, Address: 0x1346a8, Func Offset: 0x8
-	scePrintf("bhSysCallCompEvent - UNIMPLEMENTED!\n");
+// 100% matching! 
+void bhSysCallCompEvent() 
+{ 
+    bhControlSpEvtComputer();
 }
 
 // 
