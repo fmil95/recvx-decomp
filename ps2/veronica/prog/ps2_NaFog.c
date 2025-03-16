@@ -27,16 +27,13 @@ void njSetFogColor(unsigned int ulColor);
 void njSetFogTable(float* FogTbl);
 void njGenerateFogTable3(float near, float far);
 float njCalcFogPowerEx(float INVZ);
-float njCalcFogPower(float fVSZ);
+float njCalcFogPower(float fVSZ);*/
 
-// 
-// Start address: 0x2d5f60
-void njFogEnable()
-{
-	// Line 82, Address: 0x2d5f60, Func Offset: 0
-	// Line 83, Address: 0x2d5f68, Func Offset: 0x8
-	// Func End, Address: 0x2d5f70, Func Offset: 0x10
-}*/
+// 100% matching! 
+void	njFogEnable()
+{ 
+    ulNaFogState = 1; 
+} 
 
 // 100% matching! 
 void	njFogDisable()
