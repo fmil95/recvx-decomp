@@ -73,8 +73,9 @@
 #include "sdfunc.c"
 #include "sdcwrap.c"
 #include "sync.c"
-#include "system.c"
 #include "ps2_NaFog.c"
+#include "gameover.c"
+#include "system.c"
 
 typedef void(*fn)();
 

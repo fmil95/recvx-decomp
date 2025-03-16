@@ -2681,13 +2681,10 @@ void bhSysCallEnding()
 	scePrintf("bhSysCallEnding - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x134470
+// 100% matching! 
 void bhSysCallGameover()
-{
-	// Line 1847, Address: 0x134470, Func Offset: 0
-	// Func End, Address: 0x134478, Func Offset: 0x8
-	scePrintf("bhSysCallGameover - UNIMPLEMENTED!\n");
+{ 
+    bhControlGameOver();
 }
 
 // 
