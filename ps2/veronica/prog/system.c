@@ -1667,9 +1667,9 @@ union _anon52
 
 unsigned short pause_mes[6];
 unsigned char FileWait;
-unsigned char VibWait;
-_anon37* sys;
-unsigned char* njpmemp;
+unsigned char VibWait;*/
+SYS_WORK* sys;
+/*unsigned char* njpmemp;
 _anon43* hws;
 _anon11* _nj_vertex_buf_;
 unsigned char* vwbmemp;
@@ -1796,7 +1796,7 @@ void bhChangeHWSetting()
 	// Line 400, Address: 0x131e20, Func Offset: 0x280
 	// Line 405, Address: 0x131e3c, Func Offset: 0x29c
 	// Func End, Address: 0x131e48, Func Offset: 0x2a8
-}
+}*/
 
 // 
 // Start address: 0x131e50
@@ -1859,9 +1859,10 @@ void bhInitSystem()
 	// Line 490, Address: 0x13208c, Func Offset: 0x23c
 	// Line 492, Address: 0x132094, Func Offset: 0x244
 	// Func End, Address: 0x1320a0, Func Offset: 0x250
+	scePrintf("bhInitSystem - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1320a0
 void bhInitRoomChangeSystem()
 {
@@ -1934,17 +1935,13 @@ void bhInitRoomChangeSystem()
 	// Func End, Address: 0x1324b8, Func Offset: 0x418
 }*/
 
-// 
-// Start address: 0x1324c0
-void bhSysCallInit()
-{
-	// Line 592, Address: 0x1324c0, Func Offset: 0
-	// Line 593, Address: 0x1324c8, Func Offset: 0x8
-	// Line 596, Address: 0x1324d0, Func Offset: 0x10
-	// Line 604, Address: 0x1324e4, Func Offset: 0x24
-	// Func End, Address: 0x1324f0, Func Offset: 0x30
-	scePrintf("bhSysCallInit - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+void bhSysCallInit() 
+{ 
+    bhInitSystem(); 
+
+    sys->tk_flg = 0x300002; 
+} 
 
 // 
 // Start address: 0x1324f0
