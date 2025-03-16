@@ -75,7 +75,7 @@
 #include "sync.c"
 #include "system.c"
 
-typedef void(*fn)(SYS_WORK* sys);
+typedef void(*fn)();
 
 BH_PWORK ene[128];
 BH_PWORK ply;
@@ -92,7 +92,31 @@ float BHD_ASPECT_Y;
 float cmat[16];
 float crmat[16];
 float mbuf[128][16];
-fn bhSysTaskJumpTab[23];
+fn bhSysTaskJumpTab[23] = {
+    bhSysCallInit,
+    bhSysCallWarning,
+    bhSysCallIpl,
+    bhSysCallFirstmovie,
+    bhSysCallTitle,
+    bhSysCallOpening,
+    bhSysCallPad,
+    bhSysCallGame,
+    bhSysCallEvent, 
+    bhSysCallItemselect, 
+    bhSysCallMap,
+    bhSysCallDoordemo,
+    bhSysCallMovie,
+    bhSysCallEnding,
+    bhSysCallGameover,
+    bhSysCallTypewriter,
+    bhSysCallOption,
+    bhSysCallCompEvent,
+    bhSysCallDiscChange,
+    bhSysCallSoundMuseum,
+    bhSysCallMonitor,
+    bhSysCallSndMonitor,
+    bhSysCallScreenSaver
+};
 int pd_port;
 unsigned char* Ps2_PXLCONV;
 unsigned char* freemem;
@@ -221,11 +245,11 @@ Sint32 njUserMain(void)
     { 
         if (((sys->tk_flg & (1 << i))) && (!(sys->ts_flg & (1 << i)))) 
         { 
-            bhSysTaskJumpTab[i](sys); 
+            bhSysTaskJumpTab[i](); 
         } 
     } 
     
-    //PS2_jikken(); TODO: this function, if uncommented, causes stack overflow. Needs full implementation.
+    // PS2_jikken(); // TODO: this function, if uncommented, causes stack overflow. Needs full implementation.
     
     bhCheckSoftReset(); 
     

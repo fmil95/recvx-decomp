@@ -1704,7 +1704,7 @@ unsigned char FontSz[0];
 int bhCalcVtxBuffer();
 void bhChangeHWSetting();
 void bhInitSystem();
-void bhInitRoomChangeSystem();
+void bhInitRoomChangeSystem();*/
 void bhSysCallInit();
 void bhSysCallDiscChange();
 void bhSysCallSoundMuseum();
@@ -1713,10 +1713,10 @@ void bhSysCallIpl();
 void bhSysCallFirstmovie();
 void bhSysCallTitle();
 void bhSysCallOpening();
-void bhFirstGameStart();
+/*void bhFirstGameStart();*/
 void bhSysCallPad();
 void bhSysCallGame();
-void bhCheckSubTask();
+/*void bhCheckSubTask();*/
 void bhSysCallEvent();
 void bhSysCallMap();
 void bhSysCallItemselect();
@@ -1730,7 +1730,7 @@ void bhSysCallCompEvent();
 void bhSysCallMonitor();
 void bhSysCallSndMonitor();
 void bhSysCallScreenSaver();
-void bhReturnTitle();
+/*void bhReturnTitle();
 void bhExitGame();
 void bhSetEventTimer(int mode);
 void EasyDispMessage(float PosY, unsigned int MessageNo);*/
@@ -1932,7 +1932,7 @@ void bhInitRoomChangeSystem()
 	// Line 585, Address: 0x13249c, Func Offset: 0x3fc
 	// Line 586, Address: 0x1324ac, Func Offset: 0x40c
 	// Func End, Address: 0x1324b8, Func Offset: 0x418
-}
+}*/
 
 // 
 // Start address: 0x1324c0
@@ -1943,6 +1943,7 @@ void bhSysCallInit()
 	// Line 596, Address: 0x1324d0, Func Offset: 0x10
 	// Line 604, Address: 0x1324e4, Func Offset: 0x24
 	// Func End, Address: 0x1324f0, Func Offset: 0x30
+	scePrintf("bhSysCallInit - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1959,6 +1960,7 @@ void bhSysCallDiscChange()
 	// Line 621, Address: 0x132548, Func Offset: 0x58
 	// Line 636, Address: 0x132560, Func Offset: 0x70
 	// Func End, Address: 0x13256c, Func Offset: 0x7c
+	scePrintf("bhSysCallDiscChange - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1972,6 +1974,7 @@ void bhSysCallSoundMuseum()
 	// Line 648, Address: 0x1325a0, Func Offset: 0x30
 	// Line 654, Address: 0x1325b4, Func Offset: 0x44
 	// Func End, Address: 0x1325c0, Func Offset: 0x50
+	scePrintf("bhSysCallSoundMuseum - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1985,6 +1988,7 @@ void bhSysCallWarning()
 	// Line 669, Address: 0x1325f0, Func Offset: 0x30
 	// Line 676, Address: 0x132604, Func Offset: 0x44
 	// Func End, Address: 0x132610, Func Offset: 0x50
+	scePrintf("bhSysCallWarning - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1998,6 +2002,7 @@ void bhSysCallIpl()
 	// Line 688, Address: 0x132640, Func Offset: 0x30
 	// Line 694, Address: 0x132654, Func Offset: 0x44
 	// Func End, Address: 0x132660, Func Offset: 0x50
+	scePrintf("bhSysCallIpl - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2045,6 +2050,7 @@ void bhSysCallFirstmovie()
 	// Line 748, Address: 0x1327c8, Func Offset: 0x168
 	// Line 762, Address: 0x1327d0, Func Offset: 0x170
 	// Func End, Address: 0x1327dc, Func Offset: 0x17c
+	scePrintf("bhSysCallFirstmovie - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2057,6 +2063,7 @@ void bhSysCallTitle()
 	// Line 780, Address: 0x132800, Func Offset: 0x20
 	// Line 782, Address: 0x132814, Func Offset: 0x34
 	// Func End, Address: 0x132820, Func Offset: 0x40
+	scePrintf("bhSysCallTitle - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2069,9 +2076,10 @@ void bhSysCallOpening()
 	// Line 793, Address: 0x132840, Func Offset: 0x20
 	// Line 794, Address: 0x132848, Func Offset: 0x28
 	// Func End, Address: 0x132854, Func Offset: 0x34
+	scePrintf("bhSysCallOpening - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x132860
 void bhFirstGameStart()
 {
@@ -2156,7 +2164,7 @@ void bhFirstGameStart()
 	// Line 926, Address: 0x132b58, Func Offset: 0x2f8
 	// Line 929, Address: 0x132b64, Func Offset: 0x304
 	// Func End, Address: 0x132b70, Func Offset: 0x310
-}
+}*/
 
 // 
 // Start address: 0x132b70
@@ -2173,6 +2181,7 @@ void bhSysCallPad()
 	// Line 952, Address: 0x132c48, Func Offset: 0xd8
 	// Line 1004, Address: 0x132c6c, Func Offset: 0xfc
 	// Func End, Address: 0x132c78, Func Offset: 0x108
+	scePrintf("bhSysCallPad - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2197,9 +2206,10 @@ void bhSysCallGame()
 	// Line 1160, Address: 0x132d64, Func Offset: 0xe4
 	// Line 1176, Address: 0x132d84, Func Offset: 0x104
 	// Func End, Address: 0x132d90, Func Offset: 0x110
+	scePrintf("bhSysCallGame - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x132d90
 void bhCheckSubTask()
 {
@@ -2296,7 +2306,7 @@ void bhCheckSubTask()
 	// Line 1290, Address: 0x13318c, Func Offset: 0x3fc
 	// Line 1310, Address: 0x133194, Func Offset: 0x404
 	// Func End, Address: 0x1331a0, Func Offset: 0x410
-}
+}*/
 
 // 
 // Start address: 0x1331a0
@@ -2381,6 +2391,7 @@ void bhSysCallEvent()
 	// Line 1461, Address: 0x133664, Func Offset: 0x4c4
 	// Line 1466, Address: 0x133674, Func Offset: 0x4d4
 	// Func End, Address: 0x133684, Func Offset: 0x4e4
+	scePrintf("bhSysCallEvent - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2388,7 +2399,7 @@ void bhSysCallEvent()
 void bhSysCallMap()
 {
 	int bol;
-	int bol;
+	//int bol;
 	// Line 1472, Address: 0x133690, Func Offset: 0
 	// Line 1473, Address: 0x13369c, Func Offset: 0xc
 	// Line 1476, Address: 0x1336d8, Func Offset: 0x48
@@ -2468,6 +2479,7 @@ void bhSysCallMap()
 	// Line 1557, Address: 0x133a70, Func Offset: 0x3e0
 	// Line 1558, Address: 0x133a78, Func Offset: 0x3e8
 	// Func End, Address: 0x133a88, Func Offset: 0x3f8
+	scePrintf("bhSysCallMap - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2488,6 +2500,7 @@ void bhSysCallItemselect()
 	// Line 1577, Address: 0x133b40, Func Offset: 0xb0
 	// Line 1578, Address: 0x133b60, Func Offset: 0xd0
 	// Func End, Address: 0x133b6c, Func Offset: 0xdc
+	scePrintf("bhSysCallItemselect - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2496,7 +2509,7 @@ void bhSysCallDoordemo()
 {
 	unsigned int argb;
 	int code;
-	_anon29* ddp;
+	//_anon29* ddp;
 	// Line 1584, Address: 0x133b70, Func Offset: 0
 	// Line 1586, Address: 0x133b84, Func Offset: 0x14
 	// Line 1587, Address: 0x133b98, Func Offset: 0x28
@@ -2564,6 +2577,7 @@ void bhSysCallDoordemo()
 	// Line 1697, Address: 0x133eb8, Func Offset: 0x348
 	// Line 1719, Address: 0x133ec8, Func Offset: 0x358
 	// Func End, Address: 0x133ee0, Func Offset: 0x370
+	scePrintf("bhSysCallDoordemo - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2659,6 +2673,7 @@ void bhSysCallMovie()
 	// Line 1829, Address: 0x134430, Func Offset: 0x550
 	// Line 1832, Address: 0x134448, Func Offset: 0x568
 	// Func End, Address: 0x134454, Func Offset: 0x574
+	scePrintf("bhSysCallMovie - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2667,6 +2682,7 @@ void bhSysCallEnding()
 {
 	// Line 1839, Address: 0x134460, Func Offset: 0
 	// Func End, Address: 0x134468, Func Offset: 0x8
+	scePrintf("bhSysCallEnding - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2675,6 +2691,7 @@ void bhSysCallGameover()
 {
 	// Line 1847, Address: 0x134470, Func Offset: 0
 	// Func End, Address: 0x134478, Func Offset: 0x8
+	scePrintf("bhSysCallGameover - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2686,6 +2703,7 @@ void bhSysCallTypewriter()
 	// Line 1856, Address: 0x1344a8, Func Offset: 0x28
 	// Line 1857, Address: 0x1344b0, Func Offset: 0x30
 	// Func End, Address: 0x1344bc, Func Offset: 0x3c
+	scePrintf("bhSysCallTypewriter - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2735,6 +2753,7 @@ void bhSysCallOption()
 	// Line 1902, Address: 0x134674, Func Offset: 0x1b4
 	// Line 1905, Address: 0x134688, Func Offset: 0x1c8
 	// Func End, Address: 0x134694, Func Offset: 0x1d4
+	scePrintf("bhSysCallOption - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2743,6 +2762,7 @@ void bhSysCallCompEvent()
 {
 	// Line 1912, Address: 0x1346a0, Func Offset: 0
 	// Func End, Address: 0x1346a8, Func Offset: 0x8
+	scePrintf("bhSysCallCompEvent - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2755,7 +2775,7 @@ void bhSysCallMonitor()
 	unsigned char* datp;
 	int sz;
 	int i;
-	_anon47* rh;
+	//_anon47* rh;
 	// Line 1922, Address: 0x1346b0, Func Offset: 0
 	// Line 1930, Address: 0x1346c0, Func Offset: 0x10
 	// Line 1931, Address: 0x1346fc, Func Offset: 0x4c
@@ -3286,6 +3306,7 @@ void bhSysCallMonitor()
 	// Line 2878, Address: 0x136904, Func Offset: 0x2254
 	// Line 2903, Address: 0x136930, Func Offset: 0x2280
 	// Func End, Address: 0x136944, Func Offset: 0x2294
+	scePrintf("bhSysCallMonitor - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3343,15 +3364,16 @@ void bhSysCallSndMonitor()
 	// Line 2988, Address: 0x136c6c, Func Offset: 0x31c
 	// Line 2989, Address: 0x136c74, Func Offset: 0x324
 	// Func End, Address: 0x136c84, Func Offset: 0x334
+	scePrintf("bhSysCallSndMonitor - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x136c90
 void bhSysCallScreenSaver()
 {
-	_anon28 pos;
+	//_anon28 pos;
 	int col;
-	_anon28 pos;
+	//_anon28 pos;
 	// Line 2997, Address: 0x136c90, Func Offset: 0
 	// Line 3001, Address: 0x136c9c, Func Offset: 0xc
 	// Line 3006, Address: 0x136ce4, Func Offset: 0x54
@@ -3406,9 +3428,10 @@ void bhSysCallScreenSaver()
 	// Line 3146, Address: 0x137140, Func Offset: 0x4b0
 	// Line 3149, Address: 0x13715c, Func Offset: 0x4cc
 	// Func End, Address: 0x13716c, Func Offset: 0x4dc
+	scePrintf("bhSysCallScreenSaver - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x137170
 void bhReturnTitle()
 {
