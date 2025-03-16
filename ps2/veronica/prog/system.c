@@ -2684,16 +2684,15 @@ void bhSysCallGameover()
     bhControlGameOver();
 }
 
-// 
-// Start address: 0x134480
-void bhSysCallTypewriter()
-{
-	// Line 1854, Address: 0x134480, Func Offset: 0
-	// Line 1855, Address: 0x134488, Func Offset: 0x8
-	// Line 1856, Address: 0x1344a8, Func Offset: 0x28
-	// Line 1857, Address: 0x1344b0, Func Offset: 0x30
-	// Func End, Address: 0x1344bc, Func Offset: 0x3c
-	scePrintf("bhSysCallTypewriter - UNIMPLEMENTED!\n");
+// 100% matching! 
+void bhSysCallTypewriter() 
+{ 
+    if ((sys->ts_flg & 0x80))
+    { 
+        njFogDisable(); 
+    } 
+    
+    ControlTypewriter();
 }
 
 // 
