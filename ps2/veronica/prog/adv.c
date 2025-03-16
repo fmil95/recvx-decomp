@@ -4883,13 +4883,13 @@ int Adv_GameOptionScreen()
 	// Line 5770, Address: 0x2c83c8, Func Offset: 0x638
 	// Line 5771, Address: 0x2c83cc, Func Offset: 0x63c
 	// Func End, Address: 0x2c83e0, Func Offset: 0x650
-}
+}*/
 
 // 
 // Start address: 0x2c83e0
 int Adv_ChangeDiscScreen()
 {
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 5818, Address: 0x2c83e0, Func Offset: 0
 	// Line 5819, Address: 0x2c83ec, Func Offset: 0xc
 	// Line 5896, Address: 0x2c83f0, Func Offset: 0x10
@@ -4918,9 +4918,10 @@ int Adv_ChangeDiscScreen()
 	// Line 5979, Address: 0x2c84b8, Func Offset: 0xd8
 	// Line 5980, Address: 0x2c84bc, Func Offset: 0xdc
 	// Func End, Address: 0x2c84cc, Func Offset: 0xec
+	scePrintf("Adv_ChangeDiscScreen - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c84d0
 int Adv_SoundMuseum()
 {

@@ -1943,22 +1943,23 @@ void bhSysCallInit()
     sys->tk_flg = 0x300002; 
 } 
 
-// 
-// Start address: 0x1324f0
+// 100% matching! 
 void bhSysCallDiscChange()
-{
-	// Line 610, Address: 0x1324f0, Func Offset: 0
-	// Line 611, Address: 0x1324f8, Func Offset: 0x8
-	// Line 612, Address: 0x132500, Func Offset: 0x10
-	// Line 616, Address: 0x132510, Func Offset: 0x20
-	// Line 618, Address: 0x132520, Func Offset: 0x30
-	// Line 619, Address: 0x132528, Func Offset: 0x38
-	// Line 620, Address: 0x132530, Func Offset: 0x40
-	// Line 621, Address: 0x132548, Func Offset: 0x58
-	// Line 636, Address: 0x132560, Func Offset: 0x70
-	// Func End, Address: 0x13256c, Func Offset: 0x7c
-	scePrintf("bhSysCallDiscChange - UNIMPLEMENTED!\n");
-}
+{ 
+    njFogDisable(); 
+    
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+
+    if (Adv_ChangeDiscScreen() != 0) 
+    { 
+        njWaitVSync(); 
+        
+        njSetPaletteMode(2); 
+        
+        sys->tk_flg = sys->dcg_tkbak; 
+        sys->ts_flg = sys->dcg_tsbak; 
+    }
+} 
 
 // 
 // Start address: 0x132570
