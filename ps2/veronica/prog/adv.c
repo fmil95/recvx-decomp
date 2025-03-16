@@ -4922,12 +4922,8 @@ int Adv_ChangeDiscScreen()
 	scePrintf("Adv_ChangeDiscScreen - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c84d0
+// 100% matching! 
 int Adv_SoundMuseum()
-{
-	// Line 6907, Address: 0x2c84d0, Func Offset: 0
-	// Func End, Address: 0x2c84d8, Func Offset: 0x8
-	scePrintf("Adv_SoundMuseum - UNIMPLEMENTED!\n");
-}
-
+{ 
+    return 1;
+} 
