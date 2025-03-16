@@ -3257,12 +3257,12 @@ int Adv_FirstWarningMessage()
 	scePrintf("Adv_FirstWarningMessage - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2c2eb0
 int Adv_CapcomLogo()
 {
 	int ReturnCode;
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 2512, Address: 0x2c2eb0, Func Offset: 0
 	// Line 2513, Address: 0x2c2ec0, Func Offset: 0x10
 	// Line 2516, Address: 0x2c2ec8, Func Offset: 0x18
@@ -3320,9 +3320,10 @@ int Adv_CapcomLogo()
 	// Line 2645, Address: 0x2c3140, Func Offset: 0x290
 	// Line 2646, Address: 0x2c3144, Func Offset: 0x294
 	// Func End, Address: 0x2c3158, Func Offset: 0x2a8
+	scePrintf("Adv_CapcomLogo - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c3160
 void ResetFlushPlate()
 {
