@@ -1716,7 +1716,7 @@ void bhSysCallOpening();
 void bhFirstGameStart();
 void bhSysCallPad();
 void bhSysCallGame();
-/*void bhCheckSubTask();*/
+void bhCheckSubTask();
 void bhSysCallEvent();
 void bhSysCallMap();
 void bhSysCallItemselect();
@@ -2181,32 +2181,28 @@ void bhSysCallPad()
     }
 } 
 
-// 
-// Start address: 0x132c80
+// 100% matching! 
 void bhSysCallGame()
 {
-	// Line 1010, Address: 0x132c80, Func Offset: 0
-	// Line 1021, Address: 0x132c88, Func Offset: 0x8
-	// Line 1047, Address: 0x132c98, Func Offset: 0x18
-	// Line 1044, Address: 0x132c9c, Func Offset: 0x1c
-	// Line 1047, Address: 0x132ca0, Func Offset: 0x20
-	// Line 1021, Address: 0x132ca4, Func Offset: 0x24
-	// Line 1044, Address: 0x132cb0, Func Offset: 0x30
-	// Line 1047, Address: 0x132cc4, Func Offset: 0x44
-	// Line 1054, Address: 0x132d00, Func Offset: 0x80
-	// Line 1055, Address: 0x132d2c, Func Offset: 0xac
-	// Line 1059, Address: 0x132d38, Func Offset: 0xb8
-	// Line 1064, Address: 0x132d40, Func Offset: 0xc0
-	// Line 1066, Address: 0x132d48, Func Offset: 0xc8
-	// Line 1160, Address: 0x132d58, Func Offset: 0xd8
-	// Line 1066, Address: 0x132d5c, Func Offset: 0xdc
-	// Line 1160, Address: 0x132d64, Func Offset: 0xe4
-	// Line 1176, Address: 0x132d84, Func Offset: 0x104
-	// Func End, Address: 0x132d90, Func Offset: 0x110
-	scePrintf("bhSysCallGame - UNIMPLEMENTED!\n");
+    sys->pfm_cts = syTmrGetCount();
+    
+    sys->loop_ct = 1;
+    
+    if (((!(sys->st_flg & 0x1C040008)) && (!(sys->ss_flg & 0x80000000))) && (((sys->cb_flg & 0x4)) && ((sys->pad_ps & 0x10000)) && (!(sys->cb_flg & 0x10000000)))) 
+    {
+        sys->cb_flg |= 0x10000000;
+    }
+    
+    bhCheckSubTask();
+    
+    bhMainSequence();
+    
+    sys->gm_flg |= 0x20000000;
+    
+    sys->gfrm_ct++;
 }
 
-/*// 
+// 
 // Start address: 0x132d90
 void bhCheckSubTask()
 {
@@ -2303,7 +2299,8 @@ void bhCheckSubTask()
 	// Line 1290, Address: 0x13318c, Func Offset: 0x3fc
 	// Line 1310, Address: 0x133194, Func Offset: 0x404
 	// Func End, Address: 0x1331a0, Func Offset: 0x410
-}*/
+	scePrintf("bhCheckSubTask - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x1331a0

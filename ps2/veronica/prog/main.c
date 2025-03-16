@@ -76,6 +76,7 @@
 #include "sdcwrap.c"
 #include "sync.c"
 #include "ps2_NaFog.c"
+#include "game.c"
 #include "gameover.c"
 #include "ranking.c"
 #include "sp_evt.c"
