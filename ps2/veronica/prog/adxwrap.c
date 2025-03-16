@@ -225,22 +225,24 @@ char adx_status;
 int RDX_SIZE;
 unsigned int RDX_CHECK_SAM;
 int RDX_TOP;
-unsigned int READ_RDX_NO;
-_adxt_sprm cf_prm;
-short AdxVolTbl[128];
+unsigned int READ_RDX_NO;*/
+char cf_area[5628];
+ADXT_SPRM cf_prm = {
+    "\\cf_rom.txt", cf_area, 5092, 0, 0, 0, 0
+};
+/*short AdxVolTbl[128];*/
 int AdxStreamSleepFlag;
 int MaxAdxStreamCnt;
-_anon0 AdxTInfo[4];
-_anon6 AdxFInfo[8];
-_anon5 AfsInfo[16];
-unsigned char RDX_FILE_PARTISION[880];
+ADXT_INFO AdxTInfo[4];
+ADXF_INFO AdxFInfo[8];
+AFS_INFO AfsInfo[16];
+/*unsigned char RDX_FILE_PARTISION[880];
 int rdx_image_data_max;
 char* rdx_files[0];
 int ADX_STREAM_BUFF_OFFSET[2];
-char ADX_STREAM_BUFFER[471040];
-char cf_area[5628];
+char ADX_STREAM_BUFFER[471040];*/
 
-void InitAdx();
+/*void InitAdx();
 void ExitAdx();
 void DeletePartition(unsigned int PartitionId);
 int CreatePartitionEx(_anon4* ap);
@@ -274,41 +276,47 @@ void RequestAdxFadeFunction(int SlotNo, int Func, int Timer);
 void RequestAdxFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame);
 int ExecAdxFadeManager();*/
 
-// 
-// Start address: 0x291020
+// 100% matching!
 void InitAdx()
 {
-	unsigned int i;
-	// Line 150, Address: 0x291020, Func Offset: 0
-	// Line 157, Address: 0x291024, Func Offset: 0x4
-	// Line 150, Address: 0x291028, Func Offset: 0x8
-	// Line 157, Address: 0x29102c, Func Offset: 0xc
-	// Line 158, Address: 0x291034, Func Offset: 0x14
-	// Line 185, Address: 0x291040, Func Offset: 0x20
-	// Line 193, Address: 0x29104c, Func Offset: 0x2c
-	// Line 194, Address: 0x291054, Func Offset: 0x34
-	// Line 197, Address: 0x29105c, Func Offset: 0x3c
-	// Line 213, Address: 0x29106c, Func Offset: 0x4c
-	// Line 215, Address: 0x291070, Func Offset: 0x50
-	// Line 214, Address: 0x291074, Func Offset: 0x54
-	// Line 215, Address: 0x29107c, Func Offset: 0x5c
-	// Line 216, Address: 0x291094, Func Offset: 0x74
-	// Line 218, Address: 0x291098, Func Offset: 0x78
-	// Line 217, Address: 0x29109c, Func Offset: 0x7c
-	// Line 218, Address: 0x2910a4, Func Offset: 0x84
-	// Line 219, Address: 0x2910bc, Func Offset: 0x9c
-	// Line 220, Address: 0x2910c0, Func Offset: 0xa0
-	// Line 221, Address: 0x2910c4, Func Offset: 0xa4
-	// Line 222, Address: 0x2910c8, Func Offset: 0xa8
-	// Line 223, Address: 0x2910cc, Func Offset: 0xac
-	// Line 225, Address: 0x2910d0, Func Offset: 0xb0
-	// Line 224, Address: 0x2910d4, Func Offset: 0xb4
-	// Line 225, Address: 0x2910d8, Func Offset: 0xb8
-	// Line 227, Address: 0x2910e4, Func Offset: 0xc4
-	// Line 228, Address: 0x2910ec, Func Offset: 0xcc
-	// Line 229, Address: 0x2910f4, Func Offset: 0xd4
-	// Func End, Address: 0x291100, Func Offset: 0xe0
-	scePrintf("InitAdx - UNIMPLEMENTED!\n");
+    unsigned int i;
+    
+    printf("Setup host file system.\n");
+    
+    ADXT_SetupHostFs(&cf_prm);
+    ADXT_SetupDvdFs(&cf_prm);
+    
+    ADXPS2_SetupThrd(NULL);
+    
+    ADXT_Init();
+    
+    ADXT_SetNumRetry(-1);
+    
+    for (i = 0; i < 16; i++)
+    {
+        AfsInfo[i].Flag = 0;
+    }
+    
+    for (i = 0; i < 8; i++)
+    {
+        AdxFInfo[i].Flag = 0;
+    }
+    
+    for (i = 0; i < 4; i++) 
+    {
+        AdxTInfo[i].Volume = 0;
+        
+        AdxTInfo[i].LimitMaxVol = 0;
+        
+        AdxTInfo[i].FadeFunc = 0;
+        AdxTInfo[i].PanFunc = 0;
+        
+        AdxTInfo[i].Flag = 0;
+    }
+    
+    MaxAdxStreamCnt = 0;
+    
+    AdxStreamSleepFlag = 0;
 }
 
 /*// 

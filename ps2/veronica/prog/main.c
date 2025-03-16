@@ -28,6 +28,8 @@
 
 // CRIWARE library
 #include <cri_adxf.h>
+#include <cri_adxt.h>
+#include <adx_ps2.h>
 
 #include "types.h"
 
@@ -60,6 +62,7 @@
 #include "ps2_sg_pdvib.c"
 #include "sbinit.c"
 #include "vibman.c"
+#include "cri_placeholders.c"
 #include "adxwrap.c"
 #include "ps2_sg_sycfg.c"
 #include "ps2_sg_sd.c"
