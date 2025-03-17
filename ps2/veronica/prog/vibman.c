@@ -1,31 +1,15 @@
-/*typedef struct _anon0;
-
-
-typedef unsigned char type_0[3];
-typedef char type_1[4];
-
-struct _anon0
-{
-	unsigned char unit;
-	unsigned char flag;
-	char power;
-	unsigned char freq;
-	unsigned char inc;
-	unsigned char reserved[3];
-};*/
-
 char PortIdTbl[4] = {
     0x02, 0x08, 0x0E, 0x14
 };
 int EnadleVibrationFlag;
 unsigned int VibStopTime;
 
-/*void InitVibrationUnit();
+void InitVibrationUnit();
 void ExitVibrationUnit();
 void SetUseVibrationUnit(int Flag);
-int GetUseVibrationUnit();*/
+int GetUseVibrationUnit();
 int CheckVibrationUnit(unsigned int PortId);
-/*int StartVibration(unsigned int PortId, _anon0* vpp);*/
+int StartVibration(unsigned int PortId, PDS_VIBPARAM* vpp);
 int StopVibration(unsigned int PortId);
 
 // 100% matching! 

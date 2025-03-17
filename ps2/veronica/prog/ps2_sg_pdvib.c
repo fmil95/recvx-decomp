@@ -70,13 +70,10 @@ Sint32 pdVibMxIsReady(Uint32 port)
 	scePrintf("pdVibMxIsReady - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2dab70
-int pdVibMxSetStopTime()
+// 100% matching! 
+Sint32 pdVibMxSetStopTime(Uint32 port, Uint32 time)
 {
-	// Line 131, Address: 0x2dab70, Func Offset: 0
-	// Func End, Address: 0x2dab78, Func Offset: 0x8
-	scePrintf("pdVibMxSetStopTime - UNIMPLEMENTED!\n");
+    return 0;
 }
 
 // 
