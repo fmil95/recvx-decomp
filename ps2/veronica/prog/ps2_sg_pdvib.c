@@ -29,19 +29,19 @@ struct _anon1
 	unsigned char freq;
 	unsigned char inc;
 	unsigned char reserved[3];
-};
+};*/
 
 unsigned char Pad_vibe_call_num;
-unsigned char Ps2_pad_motor[6];*/
+unsigned char Ps2_pad_motor[6];
 PAD_ACT Pad_act[20];
 
 /*int pdVibMxIsReady();
 int pdVibMxSetStopTime();
 int pdVibMxStart(_anon1* param);
 int pdVibMxStop();
-void Ps2_pad_actuater();
-void Ps2_pad_act_start(_anon0* pPact);
-void Ps2_pad_act_stop(_anon0* pPact);*/
+void Ps2_pad_actuater();*/
+void Ps2_pad_act_start(PAD_ACT* pPact);
+void Ps2_pad_act_stop(PAD_ACT* pPact);
 void Ps2_pad_act_all_stop();
 
 // 
@@ -111,41 +111,48 @@ Sint32 pdVibMxStop(Uint32 port)
     return 0;
 }
 
-/*// 
-// Start address: 0x2dac60
+// 100% matching! 
 void Ps2_pad_actuater()
 {
-	unsigned int cnt;
-	_anon0* pPact;
-	// Line 240, Address: 0x2dac60, Func Offset: 0
-	// Line 245, Address: 0x2dac70, Func Offset: 0x10
-	// Line 241, Address: 0x2dac78, Func Offset: 0x18
-	// Line 247, Address: 0x2dac7c, Func Offset: 0x1c
-	// Line 241, Address: 0x2dac80, Func Offset: 0x20
-	// Line 247, Address: 0x2dac84, Func Offset: 0x24
-	// Line 242, Address: 0x2dac88, Func Offset: 0x28
-	// Line 254, Address: 0x2dac8c, Func Offset: 0x2c
-	// Line 255, Address: 0x2dac9c, Func Offset: 0x3c
-	// Line 256, Address: 0x2daca8, Func Offset: 0x48
-	// Line 257, Address: 0x2dacac, Func Offset: 0x4c
-	// Line 259, Address: 0x2dacb4, Func Offset: 0x54
-	// Line 261, Address: 0x2dacc0, Func Offset: 0x60
-	// Line 262, Address: 0x2dacc8, Func Offset: 0x68
-	// Line 263, Address: 0x2dacd0, Func Offset: 0x70
-	// Line 265, Address: 0x2dacd8, Func Offset: 0x78
-	// Line 268, Address: 0x2dace4, Func Offset: 0x84
-	// Line 270, Address: 0x2dace8, Func Offset: 0x88
-	// Line 271, Address: 0x2dacec, Func Offset: 0x8c
-	// Line 275, Address: 0x2dacf8, Func Offset: 0x98
-	// Line 273, Address: 0x2dad00, Func Offset: 0xa0
-	// Line 275, Address: 0x2dad04, Func Offset: 0xa4
-	// Line 277, Address: 0x2dad14, Func Offset: 0xb4
-	// Func End, Address: 0x2dad28, Func Offset: 0xc8
+    PAD_ACT* pPact;
+    unsigned int cnt;
+
+    pPact = Pad_act;
+    
+    Ps2_pad_motor[0] = 0;
+    Ps2_pad_motor[1] = 0;
+    
+    for (cnt = 0; cnt < 19; cnt++) 
+    {
+        if ((pPact->be_flag & 0x3)) 
+        {
+            if (pPact->delay > 0) 
+            {
+                pPact->delay--;
+            }
+            else if (pPact->time > 0) 
+            {
+                Ps2_pad_act_start(pPact);
+                
+                pPact->time--;
+            } 
+            else
+            {
+                Ps2_pad_act_stop(pPact);
+            }
+        }
+        
+        pPact++;
+    } 
+    
+    Pad_vibe_call_num = 0;
+    
+    scePadSetActDirect(0, 0, Ps2_pad_motor);
 }
 
 // 
 // Start address: 0x2dad30
-void Ps2_pad_act_start(_anon0* pPact)
+void Ps2_pad_act_start(PAD_ACT* pPact)
 {
 	// Line 296, Address: 0x2dad30, Func Offset: 0
 	// Line 298, Address: 0x2dad40, Func Offset: 0x10
@@ -158,7 +165,8 @@ void Ps2_pad_act_start(_anon0* pPact)
 	// Line 311, Address: 0x2dadb4, Func Offset: 0x84
 	// Line 314, Address: 0x2dadc0, Func Offset: 0x90
 	// Func End, Address: 0x2dadc8, Func Offset: 0x98
-}*/
+	scePrintf("Ps2_pad_act_start - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void Ps2_pad_act_stop(PAD_ACT* pPact)
