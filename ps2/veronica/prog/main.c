@@ -95,10 +95,10 @@ NO_NAME_13* hws = &hwsp;
 SYS_WORK sysp;
 SYS_WORK* sys = &sysp;
 char BIO_CURRENT[64];
-float BHD_ASPECT_X;
-float BHD_ASPECT_Y;
+float BHD_ASPECT_X = 1.174000025f;
+float BHD_ASPECT_Y = 1.0f;
 float cmat[16];
-float crmat[16];
+NJS_MATRIX crmat;
 float mbuf[128][16];
 fn bhSysTaskJumpTab[23] = {
     bhSysCallInit,
@@ -185,8 +185,7 @@ void njUserInit(void)
     
     pdSetMode(0); 
     
-    // npSetMemory((unsigned char*)sys, sizeof(SYS_WORK), 0); 
-    npSetMemory((unsigned char*)sys, 0x2ACF0, 0); 
+    npSetMemory((unsigned char*)sys, sizeof(SYS_WORK), 0); 
     
     sys->ss_flg = 0x30000; 
    
