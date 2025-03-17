@@ -95,17 +95,23 @@ int StartVibration(unsigned int PortId, _anon0* vpp)
 	// Func End, Address: 0x2c8684, Func Offset: 0x94
 }*/
 
-// 
-// Start address: 0x2c8690
+// 100% matching! 
 int StopVibration(unsigned int PortId)
 {
-	// Line 86, Address: 0x2c8690, Func Offset: 0
-	// Line 87, Address: 0x2c869c, Func Offset: 0xc
-	// Line 88, Address: 0x2c86ac, Func Offset: 0x1c
-	// Line 91, Address: 0x2c86b4, Func Offset: 0x24
-	// Line 92, Address: 0x2c86d4, Func Offset: 0x44
-	// Line 96, Address: 0x2c86dc, Func Offset: 0x4c
-	// Line 100, Address: 0x2c8704, Func Offset: 0x74
-	// Func End, Address: 0x2c8714, Func Offset: 0x84
-	scePrintf("StopVibration - UNIMPLEMENTED!\n");
+    if (EnadleVibrationFlag == 0)
+    { 
+        return 0; 
+    }
+    
+    if ((PortId % 6) != 2) 
+    { 
+        return -3;
+    }
+
+    if (CheckVibrationUnit(PortId) != 1) 
+    {
+        return -2;
+    }
+    
+    return pdVibMxStop(PortId);
 }
