@@ -87,7 +87,7 @@ typedef void(*fn)();
 
 BH_PWORK ene[128];
 BH_PWORK ply;
-BH_PWORK* plp;
+BH_PWORK* plp = &ply;
 NJS_TEXMEMLIST tbuf[256];
 NJS_VIEW view;
 NO_NAME_13 hwsp;
@@ -256,7 +256,7 @@ Sint32 njUserMain(void)
         } 
     } 
     
-    // PS2_jikken(); // TODO: this function, if uncommented, causes stack overflow. Needs full implementation.
+    PS2_jikken(); 
     
     bhCheckSoftReset(); 
     
