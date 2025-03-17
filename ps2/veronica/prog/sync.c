@@ -1568,26 +1568,20 @@ unsigned char Pause_Flag;*/
 int SoftResetFlag;
 
 /*void bhInitVSync();
-void bhClearVSync();
+void bhClearVSync();*/
 void bhControlVSync();
 void bhControlEOR();
-void bhCheckPadPort();
-void bhCheckSoftReset();
+/*void bhCheckPadPort();
+void bhCheckSoftReset();*/
 
-// 
-// Start address: 0x2ca4c0
+// 100% matching! 
 void bhInitVSync()
 {
-	// Line 74, Address: 0x2ca4c0, Func Offset: 0
-	// Line 76, Address: 0x2ca4c4, Func Offset: 0x4
-	// Line 74, Address: 0x2ca4c8, Func Offset: 0x8
-	// Line 76, Address: 0x2ca4cc, Func Offset: 0xc
-	// Line 78, Address: 0x2ca4d4, Func Offset: 0x14
-	// Line 79, Address: 0x2ca4e0, Func Offset: 0x20
-	// Func End, Address: 0x2ca4ec, Func Offset: 0x2c
+    njSetVSyncFunction(bhControlVSync);
+    njSetEORFunction(bhControlEOR);
 }
 
-// 
+/*// 
 // Start address: 0x2ca4f0
 void bhClearVSync()
 {
@@ -1596,7 +1590,7 @@ void bhClearVSync()
 	// Line 89, Address: 0x2ca500, Func Offset: 0x10
 	// Line 90, Address: 0x2ca508, Func Offset: 0x18
 	// Func End, Address: 0x2ca514, Func Offset: 0x24
-}
+}*/
 
 // 
 // Start address: 0x2ca520
@@ -1635,6 +1629,7 @@ void bhControlVSync()
 	// Line 199, Address: 0x2ca7e8, Func Offset: 0x2c8
 	// Line 218, Address: 0x2ca7fc, Func Offset: 0x2dc
 	// Func End, Address: 0x2ca808, Func Offset: 0x2e8
+	scePrintf("bhControlVSync - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1713,9 +1708,10 @@ void bhControlEOR()
 	// Line 422, Address: 0x2cacf0, Func Offset: 0x4e0
 	// Line 428, Address: 0x2cad08, Func Offset: 0x4f8
 	// Func End, Address: 0x2cad14, Func Offset: 0x504
+	scePrintf("bhControlEOR - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cad20
 void bhCheckPadPort()
 {

@@ -1677,9 +1677,9 @@ void Ps2InitFunc()
     VsyncFunc = null_func; 
 } 
 
-/*// 
+// 
 // Start address: 0x2e1410
-void njSetEORFunction(void(*func)())
+void 	njSetEORFunction( void (*func)(void) )
 {
 	// Line 156, Address: 0x2e1410, Func Offset: 0
 	// Line 157, Address: 0x2e1418, Func Offset: 0x8
@@ -1687,7 +1687,8 @@ void njSetEORFunction(void(*func)())
 	// Line 159, Address: 0x2e142c, Func Offset: 0x1c
 	// Line 161, Address: 0x2e1434, Func Offset: 0x24
 	// Func End, Address: 0x2e143c, Func Offset: 0x2c
-}*/
+	scePrintf("njSetEORFunction - UNIMPLEMENTED!\n");
+}
 
 // TODO: include the following define from cpureg.h
 #define	SR_CU0		0x10000000	/* Coprocessor 0 usable */
@@ -1756,9 +1757,9 @@ void Ps2SetVSyncCounter()
     EnableIntc(2);
 }
 
-/*// 
+// 
 // Start address: 0x2e15f0
-void njSetVSyncFunction(void(*func)())
+void	njSetVSyncFunction( void (*func)(void) )
 {
 	// Line 251, Address: 0x2e15f0, Func Offset: 0
 	// Line 253, Address: 0x2e15f4, Func Offset: 0x4
@@ -1767,7 +1768,8 @@ void njSetVSyncFunction(void(*func)())
 	// Line 256, Address: 0x2e1610, Func Offset: 0x20
 	// Line 259, Address: 0x2e1618, Func Offset: 0x28
 	// Func End, Address: 0x2e1620, Func Offset: 0x30
-}*/
+	scePrintf("njSetVSyncFunction - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2e1620
