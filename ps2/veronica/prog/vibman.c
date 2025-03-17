@@ -78,13 +78,10 @@ int GetUseVibrationUnit()
 	// Func End, Address: 0x2c85dc, Func Offset: 0xc
 }*/
 
-// 
-// Start address: 0x2c85e0
+// 100% matching!
 int CheckVibrationUnit(unsigned int PortId)
 {
-	// Line 53, Address: 0x2c85e0, Func Offset: 0
-	// Func End, Address: 0x2c85e8, Func Offset: 0x8
-	scePrintf("CheckVibrationUnit - UNIMPLEMENTED!\n");
+    return pdVibMxIsReady(PortId); 
 }
 
 /*// 

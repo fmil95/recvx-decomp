@@ -42,11 +42,11 @@ int pdVibMxStop();
 void Ps2_pad_actuater();
 void Ps2_pad_act_start(_anon0* pPact);
 void Ps2_pad_act_stop(_anon0* pPact);
-void Ps2_pad_act_all_stop();
+void Ps2_pad_act_all_stop();*/
 
 // 
 // Start address: 0x2daab0
-int pdVibMxIsReady()
+Sint32 pdVibMxIsReady(Uint32 port)
 {
 	unsigned char i;
 	unsigned int pad_info;
@@ -67,7 +67,8 @@ int pdVibMxIsReady()
 	// Line 72, Address: 0x2dab5c, Func Offset: 0xac
 	// Line 73, Address: 0x2dab60, Func Offset: 0xb0
 	// Func End, Address: 0x2dab6c, Func Offset: 0xbc
-}*/
+	scePrintf("pdVibMxIsReady - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2dab70
