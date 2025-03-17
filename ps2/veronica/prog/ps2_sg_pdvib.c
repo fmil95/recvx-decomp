@@ -158,15 +158,13 @@ void Ps2_pad_act_start(_anon0* pPact)
 	// Line 311, Address: 0x2dadb4, Func Offset: 0x84
 	// Line 314, Address: 0x2dadc0, Func Offset: 0x90
 	// Func End, Address: 0x2dadc8, Func Offset: 0x98
-}
-
-// 
-// Start address: 0x2dadd0
-void Ps2_pad_act_stop(_anon0* pPact)
-{
-	// Line 328, Address: 0x2dadd0, Func Offset: 0
-	// Func End, Address: 0x2dadd8, Func Offset: 0x8
 }*/
+
+// 100% matching! 
+void Ps2_pad_act_stop(PAD_ACT* pPact)
+{
+    pPact->be_flag = 0;
+}
 
 // 
 // Start address: 0x2dade0
