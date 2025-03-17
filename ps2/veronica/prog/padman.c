@@ -147,14 +147,18 @@ void SetRepeatKeyTimer(unsigned int FirstTimer, unsigned int NextTimer)
     KeyWaitNext = NextTimer; 
 } 
 
-/*// 
-// Start address: 0x297f10
+// 100% matching! 
 int CheckSoftResetKeyFlag(int ControllerId)
 {
-	// Line 133, Address: 0x297f10, Func Offset: 0
-	// Line 137, Address: 0x297f60, Func Offset: 0x50
-	// Func End, Address: 0x297f68, Func Offset: 0x58
-}*/
+    if (ControllerId < 0) 
+    {
+        return Pad[CurrentPortId].SoftReset; 
+    }
+    else 
+    {
+        return Pad[ControllerId].SoftReset;
+    }
+}
 
 // 
 // Start address: 0x297f70
