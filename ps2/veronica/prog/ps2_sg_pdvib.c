@@ -41,8 +41,8 @@ int pdVibMxStart(_anon1* param);
 int pdVibMxStop();
 void Ps2_pad_actuater();
 void Ps2_pad_act_start(_anon0* pPact);
-void Ps2_pad_act_stop(_anon0* pPact);
-void Ps2_pad_act_all_stop();*/
+void Ps2_pad_act_stop(_anon0* pPact);*/
+void Ps2_pad_act_all_stop();
 
 // 
 // Start address: 0x2daab0
@@ -103,19 +103,15 @@ Sint32 pdVibMxStart(Uint32 port, const PDS_VIBPARAM* param)
 	scePrintf("pdVibMxStart - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2dac40
-int pdVibMxStop()
+// 100% matching! 
+Sint32 pdVibMxStop(Uint32 port)
 {
-	// Line 211, Address: 0x2dac40, Func Offset: 0
-	// Line 228, Address: 0x2dac48, Func Offset: 0x8
-	// Line 231, Address: 0x2dac50, Func Offset: 0x10
-	// Line 230, Address: 0x2dac54, Func Offset: 0x14
-	// Line 231, Address: 0x2dac58, Func Offset: 0x18
-	// Func End, Address: 0x2dac60, Func Offset: 0x20
+    Ps2_pad_act_all_stop();
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x2dac60
 void Ps2_pad_actuater()
 {
@@ -170,14 +166,14 @@ void Ps2_pad_act_stop(_anon0* pPact)
 {
 	// Line 328, Address: 0x2dadd0, Func Offset: 0
 	// Func End, Address: 0x2dadd8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2dade0
 void Ps2_pad_act_all_stop()
 {
 	int i;
-	_anon0* pPact;
+	//_anon0* pPact;
 	// Line 338, Address: 0x2dade0, Func Offset: 0
 	// Line 339, Address: 0x2dade8, Func Offset: 0x8
 	// Line 350, Address: 0x2dadec, Func Offset: 0xc
@@ -186,5 +182,5 @@ void Ps2_pad_act_all_stop()
 	// Line 352, Address: 0x2dadf8, Func Offset: 0x18
 	// Line 358, Address: 0x2dae08, Func Offset: 0x28
 	// Func End, Address: 0x2dae10, Func Offset: 0x30
-}*/
-
+	scePrintf("Ps2_pad_act_all_stop - UNIMPLEMENTED!\n");
+}
