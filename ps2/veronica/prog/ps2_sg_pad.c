@@ -178,9 +178,9 @@ void pdInitPeripheral(Sint32 logic, void* recvbuf, void* sendbuf)
     Pad_status.act_data[5] = 255;
 }
 
-/*// 
+// 
 // Start address: 0x2d9cb0
-void pdExitPeripheral()
+void pdExitPeripheral(void)
 {
 	int ret2;
 	int ret1;
@@ -189,7 +189,8 @@ void pdExitPeripheral()
 	// Line 90, Address: 0x2d9cd0, Func Offset: 0x20
 	// Line 91, Address: 0x2d9cdc, Func Offset: 0x2c
 	// Func End, Address: 0x2d9ce8, Func Offset: 0x38
-}*/
+	scePrintf("pdExitPeripheral - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2d9cf0

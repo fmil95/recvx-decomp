@@ -1767,15 +1767,16 @@ void njSetVSyncFunction(void(*func)())
 	// Line 256, Address: 0x2e1610, Func Offset: 0x20
 	// Line 259, Address: 0x2e1618, Func Offset: 0x28
 	// Func End, Address: 0x2e1620, Func Offset: 0x30
-}
+}*/
 
 // 
 // Start address: 0x2e1620
-void njExitSystem()
+void	njExitSystem( void )
 {
 	// Line 265, Address: 0x2e1620, Func Offset: 0
 	// Func End, Address: 0x2e1628, Func Offset: 0x8
-}*/
+	scePrintf("njExitSystem - UNIMPLEMENTED!\n");
+}
 
 #define UNCACHED_BASE 0x20000000
 #define UNCACHED(x) ((u_int)(x)|UNCACHED_BASE)

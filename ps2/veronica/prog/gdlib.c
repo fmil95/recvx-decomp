@@ -217,7 +217,7 @@ unsigned int InitGdSystemEx(unsigned int MaxDirNum)
     InitGdSystem(); 
 }
 
-/*// 
+// 
 // Start address: 0x28eb40
 void ExitGdSystem()
 {
@@ -227,7 +227,8 @@ void ExitGdSystem()
 	// Line 181, Address: 0x28eb60, Func Offset: 0x20
 	// Line 182, Address: 0x28eb68, Func Offset: 0x28
 	// Func End, Address: 0x28eb74, Func Offset: 0x34
-}*/
+	scePrintf("ExitGdSystem - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x28eb80

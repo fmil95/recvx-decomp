@@ -1748,48 +1748,59 @@ struct tag_SYS_BT_SYSTEMID{                   /*                    */
 } ;                                           /*                    */
 typedef struct tag_SYS_BT_SYSTEMID SYS_BT_SYSTEMID ;
 
-/******** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½[ï¿½hï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ *******************************************/
+/******** ?¿½?¿½?¿½?¿½?¿½?¿½?¿½J?¿½[?¿½h?¿½?¿½?¿½\?¿½?¿½?¿½?¿½ *******************************************/
 /******** Memory card information structure ********************************/
 typedef struct {
-	Uint16 Ready;               /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½[ï¿½hï¿½ï¿½ï¿½}ï¿½Eï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©      */
+	Uint16 Ready;               /* ?¿½?¿½?¿½?¿½?¿½?¿½?¿½J?¿½[?¿½h?¿½?¿½?¿½}?¿½E?¿½?¿½?¿½g?¿½?¿½?¿½?¿½Ä‚ï¿½?¿½é‚©      */
 	                            /* Is memory card mounted ?                */
-	Uint16 IsFormat;            /* ï¿½tï¿½Hï¿½[ï¿½}ï¿½bï¿½gï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½          */
+	Uint16 IsFormat;            /* ?¿½t?¿½H?¿½[?¿½}?¿½b?¿½g?¿½?¿½?¿½?¿½Ä‚ï¿½?¿½é‚©?¿½Ç‚ï¿½?¿½?¿½          */
 	                            /* Is memory card formatted ?              */
-	Uint32 LastError;           /* ï¿½ÅŒï¿½É”ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½[ï¿½Rï¿½[ï¿½h              */
+	Uint32 LastError;           /* ?¿½ÅŒï¿½É”ï¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½G?¿½?¿½?¿½[?¿½R?¿½[?¿½h              */
 	                            /* Error code which occured last.          */
-	Uint32 ProgressCount;       /* ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ßƒJï¿½Eï¿½ï¿½ï¿½g                        */
+	Uint32 ProgressCount;       /* ?¿½?¿½?¿½?¿½?¿½o?¿½ßƒJ?¿½E?¿½?¿½?¿½g                        */
 	                            /* Operation progress count.               */
-	Uint32 ProgressMax;         /* ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ßƒJï¿½Eï¿½ï¿½ï¿½gï¿½Å‘ï¿½                    */
+	Uint32 ProgressMax;         /* ?¿½?¿½?¿½?¿½?¿½o?¿½ßƒJ?¿½E?¿½?¿½?¿½g?¿½Å‘ï¿½                    */
 	                            /* Operattion progress count maximum.      */
-	Uint32 Operation;           /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌƒIï¿½yï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½[ï¿½h            */
+	Uint32 Operation;           /* ?¿½?¿½?¿½?¿½?¿½?¿½?¿½ÌƒI?¿½y?¿½?¿½?¿½[?¿½V?¿½?¿½?¿½?¿½?¿½R?¿½[?¿½h            */
 	                            /* Operation code in handling now.         */
-	BUS_DISKINFO DiskInfo;      /* ï¿½hï¿½ï¿½ï¿½Cï¿½uï¿½ï¿½ï¿½                            */
+	BUS_DISKINFO DiskInfo;      /* ?¿½h?¿½?¿½?¿½C?¿½u?¿½?¿½?¿½                            */
 	                            /* Drive information.                      */
-	Uint32 Connect;             /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½Jï¿½[ï¿½hï¿½ï¿½ï¿½Ú‘ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©        */
+	Uint32 Connect;             /* ?¿½?¿½?¿½?¿½?¿½?¿½?¿½[?¿½J?¿½[?¿½h?¿½?¿½?¿½Ú‘ï¿½?¿½?¿½?¿½?¿½Ä‚ï¿½?¿½é‚©        */
 	                            /* Is memory card connected ?              */
-	void* Work;                 /* ï¿½ï¿½ï¿½[ï¿½Nï¿½Aï¿½hï¿½ï¿½ï¿½X                          */
+	void* Work;                 /* ?¿½?¿½?¿½[?¿½N?¿½A?¿½h?¿½?¿½?¿½X                          */
 	                            /* Work address.                           */
-	Uint32 WorkSize;            /* ï¿½ï¿½ï¿½[ï¿½Nï¿½Tï¿½Cï¿½Y                            */
+	Uint32 WorkSize;            /* ?¿½?¿½?¿½[?¿½N?¿½T?¿½C?¿½Y                            */
 	                            /* Work size (bytes).                      */
-	Uint32 Capacity;            /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½[ï¿½hï¿½Ì—eï¿½Êƒtï¿½ï¿½ï¿½O(BUD_CAPACITY)  */
+	Uint32 Capacity;            /* ?¿½?¿½?¿½?¿½?¿½?¿½?¿½J?¿½[?¿½h?¿½Ì—e?¿½Êƒt?¿½?¿½?¿½O(BUD_CAPACITY)  */
 	                            /* Capacity flag of memory card.           */
     Sint32 MemMode;             // manually added
 } BACKUPINFO;
 
 /*===============================================================*/
-/* ï¿½Î‰ï¿½ï¿½ï¿½ï¿½éƒï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½Jï¿½[ï¿½hï¿½ÌÅ‘ï¿½eï¿½ï¿½                              */
+/* ?¿½Î‰ï¿½?¿½?¿½?¿½éƒ??¿½?¿½?¿½?¿½?¿½[?¿½J?¿½[?¿½h?¿½ÌÅ‘ï¿½e?¿½?¿½                              */
 /* Mamimum volume to use.                                        */
 /*===============================================================*/
 
 #define MAX_CAPS BUD_CAPACITY_1MB
 
 /*===============================================================*/
-/* ï¿½Î‰ï¿½ï¿½ï¿½ï¿½éƒï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½Jï¿½[ï¿½hï¿½Ìƒhï¿½ï¿½ï¿½Cï¿½uï¿½ï¿½                            */
+/* ?¿½Î‰ï¿½?¿½?¿½?¿½éƒ??¿½?¿½?¿½?¿½?¿½[?¿½J?¿½[?¿½h?¿½Ìƒh?¿½?¿½?¿½C?¿½u?¿½?¿½                            */
 /* Number of memory card to use.                                 */
 /*===============================================================*/
 
 #define MAX_DRIVES 8
 #define USE_DRIVES BUD_USE_DRIVE_ALL
+
+#define set_imask(mask)             _builtin_set_imask(mask)
+
+/* SH-4 program area address. */
+#define P1AREA   0x80000000
+
+/* Define work RAM end address (16 MB). */
+#define WORK_END (((Uint32) _BSG_END) & 0xe0000000 | 0x0d000000)
+
+#define HEAP_AREA ((void*) ((((Uint32) _BSG_END | P1AREA) & 0xffffffe0) + 0x20))
+#define HEAP_SIZE (WORK_END - (Uint32) HEAP_AREA)
 
 typedef struct BUF_QUEUE 
 {
