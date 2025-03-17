@@ -32,10 +32,10 @@ struct _anon1
 };
 
 unsigned char Pad_vibe_call_num;
-unsigned char Ps2_pad_motor[6];
-_anon0 Pad_act[20];
+unsigned char Ps2_pad_motor[6];*/
+PAD_ACT Pad_act[20];
 
-int pdVibMxIsReady();
+/*int pdVibMxIsReady();
 int pdVibMxSetStopTime();
 int pdVibMxStart(_anon1* param);
 int pdVibMxStop();
@@ -166,19 +166,20 @@ void Ps2_pad_act_stop(PAD_ACT* pPact)
     pPact->be_flag = 0;
 }
 
-// 
-// Start address: 0x2dade0
+// 100% matching! 
 void Ps2_pad_act_all_stop()
 {
-	int i;
-	//_anon0* pPact;
-	// Line 338, Address: 0x2dade0, Func Offset: 0
-	// Line 339, Address: 0x2dade8, Func Offset: 0x8
-	// Line 350, Address: 0x2dadec, Func Offset: 0xc
-	// Line 352, Address: 0x2dadf0, Func Offset: 0x10
-	// Line 351, Address: 0x2dadf4, Func Offset: 0x14
-	// Line 352, Address: 0x2dadf8, Func Offset: 0x18
-	// Line 358, Address: 0x2dae08, Func Offset: 0x28
-	// Func End, Address: 0x2dae10, Func Offset: 0x30
-	scePrintf("Ps2_pad_act_all_stop - UNIMPLEMENTED!\n");
+    PAD_ACT* pPact; 
+    int i; 
+    
+    pPact = Pad_act;
+    
+    i = 19;
+    
+    do
+    {
+        pPact->be_flag = 0;
+        
+        pPact++; 
+    } while (i--);
 }
