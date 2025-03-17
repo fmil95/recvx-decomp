@@ -154,7 +154,7 @@ int CheckSoftResetKeyFlag(int ControllerId)
 	// Line 133, Address: 0x297f10, Func Offset: 0
 	// Line 137, Address: 0x297f60, Func Offset: 0x50
 	// Func End, Address: 0x297f68, Func Offset: 0x58
-}
+}*/
 
 // 
 // Start address: 0x297f70
@@ -173,5 +173,5 @@ void ClearSoftResetKeyFlag(int ControllerId)
 	// Line 151, Address: 0x297fc4, Func Offset: 0x54
 	// Line 152, Address: 0x297fc8, Func Offset: 0x58
 	// Func End, Address: 0x297fd0, Func Offset: 0x60
-}*/
-
+	scePrintf("ClearSoftResetKeyFlag - UNIMPLEMENTED!\n");
+}

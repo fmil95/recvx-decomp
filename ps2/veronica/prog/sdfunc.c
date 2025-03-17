@@ -2709,7 +2709,7 @@ void ExecTransSoundData()
 	// Line 965, Address: 0x2932b4, Func Offset: 0xc4
 	// Line 972, Address: 0x2932b8, Func Offset: 0xc8
 	// Func End, Address: 0x2932c4, Func Offset: 0xd4
-}
+}*/
 
 // 
 // Start address: 0x2932d0
@@ -2722,6 +2722,7 @@ void RequestRoomSoundBank(int StageNo, int RoomNo, int CaseNo)
 	// Line 1019, Address: 0x293344, Func Offset: 0x74
 	// Line 1020, Address: 0x293350, Func Offset: 0x80
 	// Func End, Address: 0x293368, Func Offset: 0x98
+	scePrintf("RequestRoomSoundBank - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2734,9 +2735,10 @@ void RequestArmsSoundBank(int ArmsNo)
 	// Line 1037, Address: 0x2933a4, Func Offset: 0x34
 	// Line 1038, Address: 0x2933b0, Func Offset: 0x40
 	// Func End, Address: 0x2933c0, Func Offset: 0x50
+	scePrintf("RequestArmsSoundBank - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2933c0
 void RequestDoorSoundBank(int DoorNo)
 {
@@ -2747,7 +2749,7 @@ void RequestDoorSoundBank(int DoorNo)
 	// Line 1057, Address: 0x2933fc, Func Offset: 0x3c
 	// Line 1058, Address: 0x293408, Func Offset: 0x48
 	// Func End, Address: 0x293418, Func Offset: 0x58
-}
+}*/
 
 // 
 // Start address: 0x293420
@@ -2759,6 +2761,7 @@ void RequestPlayerVoiceSoundBank(int PlayerNo)
 	// Line 1076, Address: 0x293454, Func Offset: 0x34
 	// Line 1077, Address: 0x293460, Func Offset: 0x40
 	// Func End, Address: 0x293470, Func Offset: 0x50
+	scePrintf("RequestPlayerVoiceSoundBank - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2768,16 +2771,17 @@ int CheckTransEndSoundBank()
 	// Line 1135, Address: 0x293470, Func Offset: 0
 	// Line 1137, Address: 0x293474, Func Offset: 0x4
 	// Func End, Address: 0x29347c, Func Offset: 0xc
+	scePrintf("CheckTransEndSoundBank - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x293480
 void SetRoomSoundCaseNo(int CaseNo)
 {
 	// Line 1146, Address: 0x293480, Func Offset: 0
 	// Line 1147, Address: 0x293484, Func Offset: 0x4
 	// Func End, Address: 0x29348c, Func Offset: 0xc
-}
+}*/
 
 // 
 // Start address: 0x293490
@@ -2788,9 +2792,10 @@ int GetRoomSoundCaseNo()
 	// Line 1160, Address: 0x293498, Func Offset: 0x8
 	// Line 1163, Address: 0x29349c, Func Offset: 0xc
 	// Func End, Address: 0x2934a4, Func Offset: 0x14
+	scePrintf("GetRoomSoundCaseNo - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2934b0
 int CustomMidiSlotDef(int ObjectSlot, int EventSlot)
 {
@@ -4436,7 +4441,7 @@ void RequestSoundFade(int Func, int Attr, short Timer)
 	// Line 3812, Address: 0x296bfc, Func Offset: 0x23c
 	// Line 3814, Address: 0x296c10, Func Offset: 0x250
 	// Func End, Address: 0x296c34, Func Offset: 0x274
-}
+}*/
 
 // 
 // Start address: 0x296c40
@@ -4487,7 +4492,8 @@ void RequestAllStopSoundEx(int AdxFlag, int InSoundFlag, int FadeCount)
 	// Line 3876, Address: 0x296dc4, Func Offset: 0x184
 	// Line 3877, Address: 0x296dc8, Func Offset: 0x188
 	// Func End, Address: 0x296de4, Func Offset: 0x1a4
-}*/
+	scePrintf("RequestAllStopSoundEx - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void ResetSoundComInfo()
@@ -4623,7 +4629,7 @@ void SendSoundCommand(unsigned int CommandNo)
 	// Line 4190, Address: 0x29717c, Func Offset: 0x3c
 	// Line 4191, Address: 0x297184, Func Offset: 0x44
 	// Func End, Address: 0x297190, Func Offset: 0x50
-}
+}*/
 
 // 
 // Start address: 0x297190
@@ -4651,9 +4657,10 @@ void ExecSoundSystemMonitor()
 	// Line 4231, Address: 0x297260, Func Offset: 0xd0
 	// Line 4240, Address: 0x297268, Func Offset: 0xd8
 	// Func End, Address: 0x29727c, Func Offset: 0xec
+	scePrintf("ExecSoundSystemMonitor - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x297280
 int RequestReadIsoFile(char* FileName, void* DestPtr)
 {
@@ -4809,7 +4816,7 @@ int PlayStartMovieEx(int MovieNo, int MovieType, int PauseFlag)
 	// Line 4593, Address: 0x297834, Func Offset: 0x394
 	// Line 4596, Address: 0x29783c, Func Offset: 0x39c
 	// Func End, Address: 0x29785c, Func Offset: 0x3bc
-}
+}*/
 
 // 
 // Start address: 0x297860
@@ -4826,9 +4833,10 @@ void PlayStopMovieEx(int Mode)
 	// Line 4628, Address: 0x2978c4, Func Offset: 0x64
 	// Line 4631, Address: 0x2978d4, Func Offset: 0x74
 	// Func End, Address: 0x2978e0, Func Offset: 0x80
+	scePrintf("PlayStopMovieEx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2978e0
 void PlayStopMovie()
 {

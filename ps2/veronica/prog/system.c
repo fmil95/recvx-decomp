@@ -1678,10 +1678,10 @@ unsigned char* freemem;
 unsigned char PauseBtn;
 unsigned char NowLoadDisp;
 unsigned char Pause_Flag;
-unsigned char pl_sleep_cnt;
-BH_PWORK* plp;
+unsigned char pl_sleep_cnt;*/
 BH_PWORK ply;
-unsigned char* keepmem;
+BH_PWORK *plp = &ply;
+/*unsigned char* keepmem;
 float BHD_ASPECT_Y;
 float BHD_ASPECT_X;
 unsigned char BackColorFlag;
@@ -1695,9 +1695,9 @@ float GameNear;
 _anon20 Pad_act[0];
 unsigned int Ps2_rendertex_initflag;
 unsigned int Ps2_albinoid_flag;
-unsigned int Ps2_ice_flag;
-_anon30 WpnTab[0];
-float FontScaleCR;
+unsigned int Ps2_ice_flag;*/
+WPN_TAB WpnTab[23];
+/*float FontScaleCR;
 float FontScaleX;
 unsigned char FontSz[0];
 
@@ -1730,8 +1730,8 @@ void bhSysCallCompEvent();
 void bhSysCallMonitor();
 void bhSysCallSndMonitor();
 void bhSysCallScreenSaver();
-/*void bhReturnTitle();
-void bhExitGame();
+void bhReturnTitle();
+/*void bhExitGame();
 void bhSetEventTimer(int mode);
 void EasyDispMessage(float PosY, unsigned int MessageNo);*/
 
@@ -3288,62 +3288,102 @@ void bhSysCallMonitor()
 	scePrintf("bhSysCallMonitor - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x136950
+// 100% matching! 
 void bhSysCallSndMonitor()
 {
-	// Line 2909, Address: 0x136950, Func Offset: 0
-	// Line 2913, Address: 0x13695c, Func Offset: 0xc
-	// Line 2921, Address: 0x136988, Func Offset: 0x38
-	// Line 2922, Address: 0x13699c, Func Offset: 0x4c
-	// Line 2928, Address: 0x1369ac, Func Offset: 0x5c
-	// Line 2929, Address: 0x1369b4, Func Offset: 0x64
-	// Line 2930, Address: 0x1369c4, Func Offset: 0x74
-	// Line 2931, Address: 0x1369cc, Func Offset: 0x7c
-	// Line 2932, Address: 0x1369d8, Func Offset: 0x88
-	// Line 2931, Address: 0x1369dc, Func Offset: 0x8c
-	// Line 2932, Address: 0x1369e4, Func Offset: 0x94
-	// Line 2933, Address: 0x1369ec, Func Offset: 0x9c
-	// Line 2934, Address: 0x1369fc, Func Offset: 0xac
-	// Line 2933, Address: 0x136a00, Func Offset: 0xb0
-	// Line 2934, Address: 0x136a04, Func Offset: 0xb4
-	// Line 2933, Address: 0x136a08, Func Offset: 0xb8
-	// Line 2934, Address: 0x136a10, Func Offset: 0xc0
-	// Line 2940, Address: 0x136a20, Func Offset: 0xd0
-	// Line 2941, Address: 0x136a44, Func Offset: 0xf4
-	// Line 2943, Address: 0x136aac, Func Offset: 0x15c
-	// Line 2945, Address: 0x136ab8, Func Offset: 0x168
-	// Line 2947, Address: 0x136ac0, Func Offset: 0x170
-	// Line 2948, Address: 0x136ad0, Func Offset: 0x180
-	// Line 2949, Address: 0x136aec, Func Offset: 0x19c
-	// Line 2950, Address: 0x136b00, Func Offset: 0x1b0
-	// Line 2952, Address: 0x136b08, Func Offset: 0x1b8
-	// Line 2953, Address: 0x136b18, Func Offset: 0x1c8
-	// Line 2954, Address: 0x136b2c, Func Offset: 0x1dc
-	// Line 2956, Address: 0x136b34, Func Offset: 0x1e4
-	// Line 2958, Address: 0x136b40, Func Offset: 0x1f0
-	// Line 2960, Address: 0x136b48, Func Offset: 0x1f8
-	// Line 2961, Address: 0x136b58, Func Offset: 0x208
-	// Line 2962, Address: 0x136b68, Func Offset: 0x218
-	// Line 2963, Address: 0x136b7c, Func Offset: 0x22c
-	// Line 2965, Address: 0x136b84, Func Offset: 0x234
-	// Line 2966, Address: 0x136b94, Func Offset: 0x244
-	// Line 2967, Address: 0x136ba8, Func Offset: 0x258
-	// Line 2969, Address: 0x136bb0, Func Offset: 0x260
-	// Line 2971, Address: 0x136bbc, Func Offset: 0x26c
-	// Line 2973, Address: 0x136bc4, Func Offset: 0x274
-	// Line 2974, Address: 0x136bd4, Func Offset: 0x284
-	// Line 2975, Address: 0x136c08, Func Offset: 0x2b8
-	// Line 2976, Address: 0x136c1c, Func Offset: 0x2cc
-	// Line 2978, Address: 0x136c24, Func Offset: 0x2d4
-	// Line 2979, Address: 0x136c34, Func Offset: 0x2e4
-	// Line 2980, Address: 0x136c48, Func Offset: 0x2f8
-	// Line 2982, Address: 0x136c50, Func Offset: 0x300
-	// Line 2983, Address: 0x136c54, Func Offset: 0x304
-	// Line 2988, Address: 0x136c6c, Func Offset: 0x31c
-	// Line 2989, Address: 0x136c74, Func Offset: 0x324
-	// Func End, Address: 0x136c84, Func Offset: 0x334
-	scePrintf("bhSysCallSndMonitor - UNIMPLEMENTED!\n");
+    if (((!(sys->ss_flg & 0x120000)) && (!(sys->tk_flg & 0x3F))) && (SoftResetFlag == 1)) 
+    {
+        if ((sys->ss_flg & 0x400000))
+        {
+            return;
+        }
+        
+        PlayStopMovieEx(0);
+        
+        RequestAllStopSoundEx(1, 1, 0);
+        
+        bhReturnTitle();
+        
+        sys->ss_flg &= ~0x1000;
+        
+        ClearSoftResetKeyFlag(-1);
+        
+        sys->ss_flg &= ~0x80000;
+        sys->ss_flg |= 0x100000; 
+    }
+    
+    if ((sys->sdm_flg & 0x1)) 
+    {
+        switch (sys->sdm_mode) 
+        {
+        case 0:
+            if (!(sys->sdm_flg & 0x2)) 
+            {
+                sys->sdm_mode = 2;
+            }
+            else if (CheckTransEndSoundBank() == 0)
+            {
+                RequestRoomSoundBank(sys->stg_no, sys->rom_no, GetRoomSoundCaseNo());
+                
+                sys->sdm_mode = 1;
+            }
+            
+            break;
+        case 1:
+            if (CheckTransEndSoundBank() == 0) 
+            {
+                sys->sdm_mode = 2;
+            }
+            
+            break;
+        case 2:
+            if (!(sys->sdm_flg & 0x4)) 
+            {
+                sys->sdm_mode = 4;
+            } 
+            else if (CheckTransEndSoundBank() == 0) 
+            {
+                RequestPlayerVoiceSoundBank(sys->ply_id);
+                
+                sys->sdm_mode = 3;
+            }
+            
+            break;
+        case 3:
+            if (CheckTransEndSoundBank() == 0) 
+            {
+                sys->sdm_mode = 4;
+            }
+            
+            break;
+        case 4:
+            if (!(sys->sdm_flg & 0x8)) 
+            {
+                sys->sdm_mode = 10;
+            } 
+            else if (CheckTransEndSoundBank() == 0) 
+            {
+                RequestArmsSoundBank(WpnTab[plp->wpnr_no].snd_wpno);
+                
+                sys->sdm_mode = 5;
+            }
+            
+            break;
+        case 5:
+            if (CheckTransEndSoundBank() == 0) 
+            {
+                sys->sdm_mode = 10;
+            }
+            
+            break;
+        case 10:
+            sys->sdm_flg = 0;
+            *(unsigned int*)&sys->sdm_mode = 0;
+            break;
+        }
+    }
+
+    ExecSoundSystemMonitor();
 }
 
 // 
@@ -3410,7 +3450,7 @@ void bhSysCallScreenSaver()
 	scePrintf("bhSysCallScreenSaver - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x137170
 void bhReturnTitle()
 {
@@ -3433,9 +3473,10 @@ void bhReturnTitle()
 	// Line 3166, Address: 0x137214, Func Offset: 0xa4
 	// Line 3167, Address: 0x137224, Func Offset: 0xb4
 	// Func End, Address: 0x137230, Func Offset: 0xc0
+	scePrintf("bhReturnTitle - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x137230
 void bhExitGame()
 {
