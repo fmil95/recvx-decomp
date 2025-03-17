@@ -79,11 +79,11 @@ int pdVibMxSetStopTime()
 	scePrintf("pdVibMxSetStopTime - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2dab80
-int pdVibMxStart(_anon1* param)
+Sint32 pdVibMxStart(Uint32 port, const PDS_VIBPARAM* param)
 {
-	_anon0* pPact;
+	//_anon0* pPact;
 	unsigned char cnt;
 	// Line 148, Address: 0x2dab80, Func Offset: 0
 	// Line 159, Address: 0x2dab88, Func Offset: 0x8
@@ -103,9 +103,10 @@ int pdVibMxStart(_anon1* param)
 	// Line 192, Address: 0x2dac24, Func Offset: 0xa4
 	// Line 200, Address: 0x2dac2c, Func Offset: 0xac
 	// Func End, Address: 0x2dac34, Func Offset: 0xb4
+	scePrintf("pdVibMxStart - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dac40
 int pdVibMxStop()
 {

@@ -78,22 +78,28 @@ int CheckVibrationUnit(unsigned int PortId)
     return pdVibMxIsReady(PortId); 
 }
 
-/*// 
-// Start address: 0x2c85f0
-int StartVibration(unsigned int PortId, _anon0* vpp)
-{
-	// Line 62, Address: 0x2c85f0, Func Offset: 0
-	// Line 65, Address: 0x2c8600, Func Offset: 0x10
-	// Line 66, Address: 0x2c8614, Func Offset: 0x24
-	// Line 69, Address: 0x2c861c, Func Offset: 0x2c
-	// Line 70, Address: 0x2c863c, Func Offset: 0x4c
-	// Line 73, Address: 0x2c8644, Func Offset: 0x54
-	// Line 74, Address: 0x2c8658, Func Offset: 0x68
-	// Line 81, Address: 0x2c8660, Func Offset: 0x70
-	// Line 82, Address: 0x2c8664, Func Offset: 0x74
-	// Line 83, Address: 0x2c8670, Func Offset: 0x80
-	// Func End, Address: 0x2c8684, Func Offset: 0x94
-}*/
+// 100% matching! 
+int StartVibration(unsigned int PortId, PDS_VIBPARAM* vpp) 
+{ 
+    if (EnadleVibrationFlag == 0) 
+    { 
+        return 0; 
+    }
+
+    if ((PortId % 6) != 2) 
+    { 
+        return -3; 
+    }
+
+    if (CheckVibrationUnit(PortId) != 1)
+    { 
+        return -2; 
+    }
+
+    vpp->unit = 1; 
+    
+    pdVibMxStart(PortId, vpp); 
+} 
 
 // 100% matching! 
 int StopVibration(unsigned int PortId)
