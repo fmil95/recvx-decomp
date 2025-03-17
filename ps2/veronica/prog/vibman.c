@@ -67,16 +67,13 @@ void SetUseVibrationUnit(int Flag)
 	// Line 43, Address: 0x2c85c0, Func Offset: 0
 	// Line 44, Address: 0x2c85c4, Func Offset: 0x4
 	// Func End, Address: 0x2c85cc, Func Offset: 0xc
-}
+}*/
 
-// 
-// Start address: 0x2c85d0
+// 100% matching! 
 int GetUseVibrationUnit()
 {
-	// Line 48, Address: 0x2c85d0, Func Offset: 0
-	// Line 49, Address: 0x2c85d4, Func Offset: 0x4
-	// Func End, Address: 0x2c85dc, Func Offset: 0xc
-}*/
+    return EnadleVibrationFlag; 
+} 
 
 // 100% matching!
 int CheckVibrationUnit(unsigned int PortId)
