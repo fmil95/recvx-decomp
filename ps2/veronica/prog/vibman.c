@@ -58,16 +58,13 @@ void ExitVibrationUnit()
 	// Line 38, Address: 0x2c8598, Func Offset: 0x38
 	// Line 39, Address: 0x2c85a8, Func Offset: 0x48
 	// Func End, Address: 0x2c85bc, Func Offset: 0x5c
-}
+}*/
 
-// 
-// Start address: 0x2c85c0
+// 100% matching! 
 void SetUseVibrationUnit(int Flag)
 {
-	// Line 43, Address: 0x2c85c0, Func Offset: 0
-	// Line 44, Address: 0x2c85c4, Func Offset: 0x4
-	// Func End, Address: 0x2c85cc, Func Offset: 0xc
-}*/
+    EnadleVibrationFlag = Flag;
+}
 
 // 100% matching! 
 int GetUseVibrationUnit()
