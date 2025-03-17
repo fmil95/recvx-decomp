@@ -2082,3 +2082,10 @@ typedef struct WPN_TAB
     char reserve1; // offset 0x66, size 0x1
     char reserve2; // offset 0x67, size 0x1
 } WPN_TAB;
+
+typedef struct BUTTON_INFO
+{
+	// total size: 0x8
+    int Type; // offset 0x0, size 0x4
+    unsigned int Button; // offset 0x4, size 0x4
+} BUTTON_INFO;
