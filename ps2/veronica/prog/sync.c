@@ -1581,16 +1581,12 @@ void bhInitVSync()
     njSetEORFunction(bhControlEOR);
 }
 
-/*// 
-// Start address: 0x2ca4f0
+// 100% matching! 
 void bhClearVSync()
 {
-	// Line 85, Address: 0x2ca4f0, Func Offset: 0
-	// Line 87, Address: 0x2ca4f8, Func Offset: 0x8
-	// Line 89, Address: 0x2ca500, Func Offset: 0x10
-	// Line 90, Address: 0x2ca508, Func Offset: 0x18
-	// Func End, Address: 0x2ca514, Func Offset: 0x24
-}*/
+    njSetVSyncFunction(NULL);
+    njSetEORFunction(NULL);
+}
 
 // 
 // Start address: 0x2ca520
