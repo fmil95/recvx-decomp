@@ -25,8 +25,8 @@ void ExitVibrationUnit();
 void SetUseVibrationUnit(int Flag);
 int GetUseVibrationUnit();*/
 int CheckVibrationUnit(unsigned int PortId);
-/*int StartVibration(unsigned int PortId, _anon0* vpp);
-int StopVibration(unsigned int PortId);*/
+/*int StartVibration(unsigned int PortId, _anon0* vpp);*/
+int StopVibration(unsigned int PortId);
 
 // 100% matching! 
 void InitVibrationUnit()
@@ -46,19 +46,19 @@ void InitVibrationUnit()
     EnadleVibrationFlag = 0; 
 } 
 
-/*// 
-// Start address: 0x2c8560
+// 100% matching! 
 void ExitVibrationUnit()
-{
-	int i;
-	// Line 31, Address: 0x2c8560, Func Offset: 0
-	// Line 34, Address: 0x2c8578, Func Offset: 0x18
-	// Line 35, Address: 0x2c857c, Func Offset: 0x1c
-	// Line 36, Address: 0x2c8590, Func Offset: 0x30
-	// Line 38, Address: 0x2c8598, Func Offset: 0x38
-	// Line 39, Address: 0x2c85a8, Func Offset: 0x48
-	// Func End, Address: 0x2c85bc, Func Offset: 0x5c
-}*/
+{ 
+    int i;
+
+    for (i = 0; i < 4; i++) 
+    { 
+        if (CheckVibrationUnit(PortIdTbl[i]) == 1) 
+        { 
+            StopVibration(PortIdTbl[i]); 
+        }
+    } 
+} 
 
 // 100% matching! 
 void SetUseVibrationUnit(int Flag)
@@ -93,7 +93,7 @@ int StartVibration(unsigned int PortId, _anon0* vpp)
 	// Line 82, Address: 0x2c8664, Func Offset: 0x74
 	// Line 83, Address: 0x2c8670, Func Offset: 0x80
 	// Func End, Address: 0x2c8684, Func Offset: 0x94
-}
+}*/
 
 // 
 // Start address: 0x2c8690
@@ -107,5 +107,5 @@ int StopVibration(unsigned int PortId)
 	// Line 96, Address: 0x2c86dc, Func Offset: 0x4c
 	// Line 100, Address: 0x2c8704, Func Offset: 0x74
 	// Func End, Address: 0x2c8714, Func Offset: 0x84
-}*/
-
+	scePrintf("StopVibration - UNIMPLEMENTED!\n");
+}
