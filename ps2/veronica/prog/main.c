@@ -97,8 +97,8 @@ SYS_WORK* sys = &sysp;
 char BIO_CURRENT[64];
 float BHD_ASPECT_X = 1.174000025f;
 float BHD_ASPECT_Y = 1.0f;
-float cmat[16];
-NJS_MATRIX crmat;
+float (* cmat)[16];
+NJS_MATRIX crmat; // TODO: needs .data definition 
 float mbuf[128][16];
 fn bhSysTaskJumpTab[23] = {
     bhSysCallInit,
@@ -125,7 +125,7 @@ fn bhSysTaskJumpTab[23] = {
     bhSysCallSndMonitor,
     bhSysCallScreenSaver
 };
-int pd_port;
+int pd_port = -1;
 unsigned char* Ps2_PXLCONV;
 unsigned char* freemem;
 unsigned char* fsize;

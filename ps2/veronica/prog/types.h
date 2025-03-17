@@ -1833,6 +1833,7 @@ typedef struct EXPAND_CTRL_BUF
 
 typedef struct ADX_WORK
 {
+	// total size: 0x10
 	unsigned int MaxChannel; // offset 0x0, size 0x4
     unsigned int MaxSampleRate; // offset 0x4, size 0x4
     int RecoverType; // offset 0x8, size 0x4
@@ -1841,12 +1842,14 @@ typedef struct ADX_WORK
 
 typedef struct SND_CMD
 {
+	// total size: 0x8
 	int MaxCommand; // offset 0x0, size 0x4
     unsigned char ComTbl[2]; // offset 0x4, size 0x2
 } SND_CMD;
 
 typedef struct NO_NAME_20
 {
+	// total size: 0x30
 	unsigned int Flag; // offset 0x0, size 0x4
     int FadeFunc; // offset 0x4, size 0x4
     int FadeCntMax; // offset 0x8, size 0x4
@@ -1863,6 +1866,7 @@ typedef struct NO_NAME_20
 
 typedef struct RM_SNDENV
 {
+	// total size: 0x10
 	char VolPlayerVoice; // offset 0x0, size 0x1
     char VolPlayerAction; // offset 0x1, size 0x1
     char VolWeaponSe; // offset 0x2, size 0x1
@@ -1883,6 +1887,7 @@ typedef struct RM_SNDENV
 
 typedef struct PRM_INFO
 {
+	// total size: 0x20
 	int mode; // offset 0x0, size 0x4
     int frame; // offset 0x4, size 0x4
     int count; // offset 0x8, size 0x4
