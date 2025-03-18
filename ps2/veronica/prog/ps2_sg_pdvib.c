@@ -1,73 +1,45 @@
-/*typedef struct _anon0;
-typedef struct _anon1;
-
-
-typedef char type_0[2];
-typedef unsigned char type_1[3];
-typedef _anon0 type_2[20];
-typedef unsigned char type_3[6];
-
-struct _anon0
-{
-	unsigned char be_flag;
-	unsigned char level;
-	unsigned char start;
-	unsigned char end;
-	unsigned short delay;
-	unsigned short time;
-	unsigned short add;
-	short f_level;
-	short f_add;
-	char data[2];
-};
-
-struct _anon1
-{
-	unsigned char unit;
-	unsigned char flag;
-	char power;
-	unsigned char freq;
-	unsigned char inc;
-	unsigned char reserved[3];
-};*/
-
 unsigned char Pad_vibe_call_num;
 unsigned char Ps2_pad_motor[6];
 PAD_ACT Pad_act[20];
 
-/*int pdVibMxIsReady();
-int pdVibMxSetStopTime();
-int pdVibMxStart(_anon1* param);
-int pdVibMxStop();
-void Ps2_pad_actuater();*/
+Sint32 pdVibMxIsReady(Uint32 port);
+Sint32 pdVibMxSetStopTime(Uint32 port, Uint32 time);
+Sint32 pdVibMxStart(Uint32 port, const PDS_VIBPARAM* param);
+Sint32 pdVibMxStop(Uint32 port);
+void Ps2_pad_actuater();
 void Ps2_pad_act_start(PAD_ACT* pPact);
 void Ps2_pad_act_stop(PAD_ACT* pPact);
 void Ps2_pad_act_all_stop();
 
-// 
-// Start address: 0x2daab0
+// 100% matching! 
 Sint32 pdVibMxIsReady(Uint32 port)
-{
-	unsigned char i;
-	unsigned int pad_info;
-	unsigned int pad_stat;
-	// Line 38, Address: 0x2daab0, Func Offset: 0
-	// Line 44, Address: 0x2daab8, Func Offset: 0x8
-	// Line 47, Address: 0x2daac4, Func Offset: 0x14
-	// Line 49, Address: 0x2daadc, Func Offset: 0x2c
-	// Line 52, Address: 0x2daae4, Func Offset: 0x34
-	// Line 54, Address: 0x2daae8, Func Offset: 0x38
-	// Line 56, Address: 0x2dab08, Func Offset: 0x58
-	// Line 57, Address: 0x2dab0c, Func Offset: 0x5c
-	// Line 56, Address: 0x2dab14, Func Offset: 0x64
-	// Line 57, Address: 0x2dab18, Func Offset: 0x68
-	// Line 60, Address: 0x2dab28, Func Offset: 0x78
-	// Line 63, Address: 0x2dab3c, Func Offset: 0x8c
-	// Line 64, Address: 0x2dab54, Func Offset: 0xa4
-	// Line 72, Address: 0x2dab5c, Func Offset: 0xac
-	// Line 73, Address: 0x2dab60, Func Offset: 0xb0
-	// Func End, Address: 0x2dab6c, Func Offset: 0xbc
-	scePrintf("pdVibMxIsReady - UNIMPLEMENTED!\n");
+{ 
+    unsigned int pad_info; 
+    unsigned int pad_stat; 
+    unsigned char i; 
+
+    pad_stat = scePadGetState(0, 0);
+
+    if ((pad_stat != scePadStateStable) && (pad_stat != scePadStateFindCTP1))
+    {
+        return 0; 
+    }
+
+    i = 6;
+    
+    while (i--) 
+    { 
+        Ps2_pad_motor[i] = 0; 
+    }
+
+    pad_info = scePadInfoMode(0, 0, InfoModeCurExID, 0);
+
+    if ((pad_info != 7) && (pad_info != 4))
+    {
+        return 0;
+    }
+
+    return 1; 
 }
 
 // 100% matching! 
