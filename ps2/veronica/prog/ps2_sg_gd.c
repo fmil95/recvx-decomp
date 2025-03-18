@@ -194,15 +194,13 @@ GDFS_DIRREC  gdFsCreateDirhn(void *dirbuf, Sint32 max_dirent)
     return __current_dir;
 }
 
-/*// 
-// Start address: 0x2d8d80
-void gdFsFinish()
+// 100% matching! 
+void  gdFsFinish(void)
 {
-	// Line 132, Address: 0x2d8d80, Func Offset: 0
-	// Func End, Address: 0x2d8d88, Func Offset: 0x8
+    sceCdInit(SCECdEXIT);
 }
 
-// 
+/*// 
 // Start address: 0x2d8d90
 int gdFsGetDirInfo(char* name, GDS_FS_DIRINFO* dirinfo)
 {
