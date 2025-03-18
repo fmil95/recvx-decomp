@@ -2090,9 +2090,9 @@ void InitSofdecSystem(int Mode);
 void ExitSofdecSystem();
 void InitSoundProgram();
 void ExitSoundProgram();
-int MountSoundAfs();
+int MountSoundAfs();*/
 void UnmountSoundAfs();
-void ExecSoundSynchProgram();
+/*void ExecSoundSynchProgram();
 void InitGameSoundSystem();
 int SearchAfsInsideFileId(unsigned short KeyCode);
 void StopThePsgSound();
@@ -2209,8 +2209,8 @@ void SetAdjustDisplay();*/
 void RequestAdjustDisplay(int AdjustX, int AdjustY);
 /*void ExecAdjustDisplay();*/
 void InitPlayLogSystem();
-/*void ExitPlayLogSystem();
-void ReadPlayLog();
+void ExitPlayLogSystem();
+/*void ReadPlayLog();
 void WritePlayLog();
 
 // 
@@ -2322,7 +2322,7 @@ void InitSofdecSystem(int Mode)
     }
 }
 
-/*// 
+// 
 // Start address: 0x2925e0
 void ExitSofdecSystem()
 {
@@ -2331,7 +2331,8 @@ void ExitSofdecSystem()
 	// Line 335, Address: 0x2925f8, Func Offset: 0x18
 	// Line 338, Address: 0x292600, Func Offset: 0x20
 	// Func End, Address: 0x29260c, Func Offset: 0x2c
-}*/
+	scePrintf("ExitSofdecSystem - UNIMPLEMENTED!\n");
+}
 
 // 97.61% matching
 void InitSoundProgram()
@@ -2406,25 +2407,29 @@ void InitSoundProgram()
     SoundInitLevel = -1;
 }
 
-// 
-// Start address: 0x2927e0
-void ExitSoundProgram()
-{
-	// Line 438, Address: 0x2927e0, Func Offset: 0
-	// Line 441, Address: 0x2927e8, Func Offset: 0x8
-	// Line 444, Address: 0x292834, Func Offset: 0x54
-	// Line 446, Address: 0x29283c, Func Offset: 0x5c
-	// Line 448, Address: 0x292844, Func Offset: 0x64
-	// Line 449, Address: 0x29284c, Func Offset: 0x6c
-	// Line 450, Address: 0x292854, Func Offset: 0x74
-	// Line 452, Address: 0x29285c, Func Offset: 0x7c
-	// Line 454, Address: 0x292864, Func Offset: 0x84
-	// Line 456, Address: 0x29286c, Func Offset: 0x8c
-	// Line 457, Address: 0x292874, Func Offset: 0x94
-	// Line 459, Address: 0x292880, Func Offset: 0xa0
-	// Func End, Address: 0x29288c, Func Offset: 0xac
-	scePrintf("ExitSoundProgram - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+void ExitSoundProgram() 
+{ 
+    switch (SoundInitLevel)
+    {       
+    case -1:
+        ExitPlayLogSystem(); 
+        ExitVibrationUnit(); 
+    case 4:
+        UnmountSoundAfs(); 
+        
+        FreeAdxStream(); 
+        
+        ExitAdx(); 
+    case 3:
+        ExitSofdecSystem(); 
+    case 2:
+        ExitSoundDriver(); 
+    case 1:
+        syCfgExit(); 
+        syFree(pConfigWork); 
+    }
+} 
 
 // 100% matching! 
 int MountSoundAfs()
@@ -2511,7 +2516,7 @@ int MountSoundAfs()
     return 0;
 }
 
-/*// 
+// 
 // Start address: 0x292af0
 void UnmountSoundAfs()
 {
@@ -2522,9 +2527,10 @@ void UnmountSoundAfs()
 	// Line 578, Address: 0x292b24, Func Offset: 0x34
 	// Line 591, Address: 0x292b48, Func Offset: 0x58
 	// Func End, Address: 0x292b54, Func Offset: 0x64
+	scePrintf("UnmountSoundAfs - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x292b60
 void ExecSoundSynchProgram()
 {
@@ -5020,15 +5026,16 @@ void InitPlayLogSystem()
 
 }
 
-/*// 
+// 
 // Start address: 0x297dd0
 void ExitPlayLogSystem()
 {
 	// Line 4970, Address: 0x297dd0, Func Offset: 0
 	// Func End, Address: 0x297dd8, Func Offset: 0x8
+	scePrintf("ExitPlayLogSystem - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x297de0
 void ReadPlayLog()
 {

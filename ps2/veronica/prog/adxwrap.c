@@ -593,7 +593,7 @@ void RegistAdxStreamEx(int MaxStream, int DummyStream, ADX_WORK* pAdx)
 	scePrintf("RegistAdxStreamEx - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x291b10
 void FreeAdxStream()
 {
@@ -613,9 +613,10 @@ void FreeAdxStream()
 	// Line 1107, Address: 0x291ba8, Func Offset: 0x98
 	// Line 1108, Address: 0x291bb0, Func Offset: 0xa0
 	// Func End, Address: 0x291bc4, Func Offset: 0xb4
+	scePrintf("FreeAdxStream - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x291bd0
 void SleepAdxStream()
 {

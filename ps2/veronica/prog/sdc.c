@@ -217,7 +217,7 @@ void SetupSoundDriver(void* pSndDrv, unsigned int SndDrvSize)
 	scePrintf("SetupSoundDriver - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x28edd0
 void ExitSoundDriver()
 {
@@ -227,7 +227,8 @@ void ExitSoundDriver()
 	// Line 61, Address: 0x28ede8, Func Offset: 0x18
 	// Line 62, Address: 0x28edf0, Func Offset: 0x20
 	// Func End, Address: 0x28edfc, Func Offset: 0x2c
-}*/
+	scePrintf("ExitSoundDriver - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x28ee00

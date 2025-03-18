@@ -24,3 +24,8 @@ void ADXT_SetNumRetry(Sint32 num)
 {
     scePrintf("ADXT_SetNumRetry - UNIMPLEMENTED!\n");
 }
+
+void ADXT_Finish(void) 
+{
+    scePrintf("ADXT_Finish - UNIMPLEMENTED!\n");
+}
