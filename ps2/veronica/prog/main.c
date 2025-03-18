@@ -27,6 +27,8 @@
 #include <sg_pdvib.h>
 #include <limits.h>
 
+#include <katana_extra.h>
+
 // CRIWARE library
 #include <cri_adxf.h>
 #include <cri_adxt.h>
