@@ -217,18 +217,14 @@ unsigned int InitGdSystemEx(unsigned int MaxDirNum)
     InitGdSystem(); 
 }
 
-// 
-// Start address: 0x28eb40
-void ExitGdSystem()
-{
-	// Line 177, Address: 0x28eb40, Func Offset: 0
-	// Line 178, Address: 0x28eb48, Func Offset: 0x8
-	// Line 179, Address: 0x28eb54, Func Offset: 0x14
-	// Line 181, Address: 0x28eb60, Func Offset: 0x20
-	// Line 182, Address: 0x28eb68, Func Offset: 0x28
-	// Func End, Address: 0x28eb74, Func Offset: 0x34
-	scePrintf("ExitGdSystem - UNIMPLEMENTED!\n");
-}
+// 100% matching! 
+void ExitGdSystem() 
+{ 
+    syFree(pDirTbl); 
+    syFree(pDirWork); 
+
+    gdFsFinish(); 
+} 
 
 // 100% matching! 
 int GetFileSize(char* FileName)
