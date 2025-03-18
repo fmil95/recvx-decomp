@@ -1771,13 +1771,10 @@ void	njSetVSyncFunction( void (*func)(void) )
 	scePrintf("njSetVSyncFunction - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2e1620
+// 100% matching!
 void	njExitSystem( void )
 {
-	// Line 265, Address: 0x2e1620, Func Offset: 0
-	// Func End, Address: 0x2e1628, Func Offset: 0x8
-	scePrintf("njExitSystem - UNIMPLEMENTED!\n");
+
 }
 
 #define UNCACHED_BASE 0x20000000
