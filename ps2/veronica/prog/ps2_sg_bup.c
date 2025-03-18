@@ -96,13 +96,10 @@ int buInit(void(*func)());
 void buSetCompleteCallback(int(*func)(int, int, int, unsigned int));
 void buSetProgressCallback(int(*func)(int, int, int, int));*/
 
-// 
-// Start address: 0x2d8c50
-int buExit()
+// 100% matching! 
+Sint32 buExit(void)
 {
-	// Line 132, Address: 0x2d8c50, Func Offset: 0
-	// Func End, Address: 0x2d8c58, Func Offset: 0x8
-	scePrintf("buExit - UNIMPLEMENTED!\n");
+    return 0;
 }
 
 // 
