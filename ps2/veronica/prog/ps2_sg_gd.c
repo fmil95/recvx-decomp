@@ -200,37 +200,42 @@ void  gdFsFinish(void)
     sceCdInit(SCECdEXIT);
 }
 
-/*// 
-// Start address: 0x2d8d90
-int gdFsGetDirInfo(char* name, GDS_FS_DIRINFO* dirinfo)
+// 100% matching! 
+Sint32  gdFsGetDirInfo(const char *name, GDFS_DIRINFO *dirinfo)
 {
-	char read_name[256];
-	int i;
-	// Line 156, Address: 0x2d8d90, Func Offset: 0
-	// Line 161, Address: 0x2d8db0, Func Offset: 0x20
-	// Line 163, Address: 0x2d8dc8, Func Offset: 0x38
-	// Line 164, Address: 0x2d8de8, Func Offset: 0x58
-	// Line 165, Address: 0x2d8dec, Func Offset: 0x5c
-	// Line 167, Address: 0x2d8df4, Func Offset: 0x64
-	// Line 169, Address: 0x2d8dfc, Func Offset: 0x6c
-	// Line 170, Address: 0x2d8e18, Func Offset: 0x88
-	// Line 174, Address: 0x2d8e20, Func Offset: 0x90
-	// Line 177, Address: 0x2d8e2c, Func Offset: 0x9c
-	// Line 179, Address: 0x2d8e4c, Func Offset: 0xbc
-	// Line 182, Address: 0x2d8e68, Func Offset: 0xd8
-	// Line 179, Address: 0x2d8e6c, Func Offset: 0xdc
-	// Line 180, Address: 0x2d8e74, Func Offset: 0xe4
-	// Line 179, Address: 0x2d8e78, Func Offset: 0xe8
-	// Line 180, Address: 0x2d8e7c, Func Offset: 0xec
-	// Line 181, Address: 0x2d8e88, Func Offset: 0xf8
-	// Line 180, Address: 0x2d8e8c, Func Offset: 0xfc
-	// Line 181, Address: 0x2d8e90, Func Offset: 0x100
-	// Line 182, Address: 0x2d8e9c, Func Offset: 0x10c
-	// Line 184, Address: 0x2d8ea8, Func Offset: 0x118
-	// Line 185, Address: 0x2d8ec8, Func Offset: 0x138
-	// Line 186, Address: 0x2d8ecc, Func Offset: 0x13c
-	// Func End, Address: 0x2d8ee8, Func Offset: 0x158
-}*/
+    int i; 
+    char read_name[256]; 
+
+    for (i = 0; i < (unsigned int)strlen(name); i++) 
+    {
+        if ((name[i] >= 'a') && (name[i] <= 'z')) 
+        {
+            read_name[i] = name[i] - ' ';
+        } 
+        else
+        {
+            read_name[i] = name[i];
+        }
+    } 
+
+    read_name[i] = 0; 
+    
+    for (i = 0; i < __current_dir->dir_num; i++) 
+    {
+        if (strcmp(&read_name, __gdfs_dir_ent[i].fname) == 0)
+        {
+            dirinfo->fad = __gdfs_dir_ent[i].fad;
+            
+            dirinfo->fsize = __gdfs_dir_ent[i].fsize;
+            
+            dirinfo->flag = __gdfs_dir_ent[i].flag;
+            
+            return 0;
+        }
+    }
+    
+    return -8; 
+}
 
 // 100% matching! 
 Sint32  gdFsGetDrvStat(void)
