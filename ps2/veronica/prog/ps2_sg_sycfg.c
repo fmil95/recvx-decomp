@@ -1,20 +1,17 @@
 
 
 
-int SoundMode;
+/*int SoundMode;
 
 int syCfgExit();
 int syCfgGetSoundMode(int* pnMode);
 int syCfgInit();
-int syCfgSetSoundMode(int nMode);
+int syCfgSetSoundMode(int nMode);*/
 
-// 
-// Start address: 0x2ddf00
-int syCfgExit()
+// 100% matching! 
+Sint32 syCfgExit( Void  )
 {
-	// Line 7, Address: 0x2ddf00, Func Offset: 0
-	// Func End, Address: 0x2ddf08, Func Offset: 0x8
-	scePrintf("syCfgExit - UNIMPLEMENTED!\n");
+
 }
 
 // 
