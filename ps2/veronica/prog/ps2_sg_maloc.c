@@ -13,32 +13,28 @@ Void syMallocFinish(Void);
 Void syMallocInit(Void *heap, Uint32 size);
 Void syMallocStat(Uint32 *wholeFreeSize, Uint32 *biggestFreeBlockSize);
 
-// for some reason, the next function was compiled without the speed preference
-
-#pragma optimize_for_size on
-
 // 100% matching! 
 void syFree(void* ap)
 {
     _HM* search_work;
 
-    if (ap != NULL) 
+    if (ap == NULL) 
     {
-        for (search_work = Ps2_malloc_p; search_work->pNext_work != NULL; search_work = search_work->pNext_work) 
+        return;
+    }
+    
+    for (search_work = Ps2_malloc_p; search_work->pNext_work != NULL; search_work = search_work->pNext_work) 
+    {
+        if (ap == (search_work->pNext_work + 1)) 
         {
-            if (ap == (search_work->pNext_work + 1)) 
-            {
-                search_work->Total_size += search_work->pNext_work->Total_size + sizeof(_HM);
-                __free_malloc_size += search_work->pNext_work->Use_size + sizeof(_HM);
-                
-                search_work->pNext_work = search_work->pNext_work->pNext_work;
-                break;
-            }
+            search_work->Total_size += search_work->pNext_work->Total_size + sizeof(_HM);
+            __free_malloc_size += search_work->pNext_work->Use_size + sizeof(_HM);
+            
+            search_work->pNext_work = search_work->pNext_work->pNext_work;
+            return;
         }
     }
 }
-
-#pragma optimize_for_size reset
 
 // 100% matching!
 void* syMalloc(unsigned int nbytes) // this function might have actually been based on njMalloc
