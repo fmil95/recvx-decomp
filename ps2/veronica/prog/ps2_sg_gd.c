@@ -1,141 +1,3 @@
-/*typedef struct GDS_DCF;*/
-typedef struct _anon0;
-/*typedef struct GDS_FS_WORK;
-typedef struct GDS_FS_LIF;
-typedef struct GDS_FS_HANDLE;
-typedef struct _anon1;*/
-typedef struct _anon2;
-/*typedef struct GDS_FS_DIRREC_ENT;
-typedef struct GDS_FS_DIRREC_TBL;
-typedef struct GDS_FS_DIRINFO;
-
-typedef void(*type_1)(void*);
-typedef void(*type_4)(void*);
-typedef void(*type_6)(void*, int);
-typedef void(*type_15)(void*, int);
-
-typedef GDS_FS_HANDLE type_0[1];
-typedef char type_2[16];
-typedef unsigned char type_3[8];
-typedef char type_5[2048];
-typedef char type_7[2048];
-typedef _anon1 type_8[0];
-typedef char type_9[256];
-typedef char type_10[32];
-typedef char type_11[2];
-typedef GDS_FS_DIRREC_ENT type_12[1];
-typedef unsigned char type_13[3];
-typedef char type_14[256];
-typedef unsigned int type_16[1040];
-
-struct GDS_DCF
-{
-};*/
-
-typedef struct _anon0
-{
-	unsigned char trycount;
-	unsigned char spindlctrl;
-	unsigned char datapattern;
-	unsigned char pad;
-} _anon0;
-
-/*struct GDS_FS_WORK
-{
-	int max_open;
-	int pathtbl_fad;
-	int pathtbl_size;
-	GDS_DCF* dcf;
-	GDS_FS_DIRREC_TBL* curdir;
-	GDS_FS_HANDLE* syshdl;
-	GDS_FS_HANDLE* hndtbl;
-	GDS_FS_HANDLE* now_work;
-	int f_svr;
-	void(*g_errcb)(void*, int);
-	void* g_errcb_1st;
-	int gdc_ver;
-	int errstat;
-	int istray;
-	short f_init;
-	short daplayed;
-	GDS_FS_LIF* liftbl;
-	unsigned int sctbuf[1040];
-	GDS_FS_HANDLE hndlist[1];
-};
-
-struct GDS_FS_LIF
-{
-};
-
-struct GDS_FS_HANDLE
-{
-	GDS_FS_WORK* wk;
-	int fid;
-	int fad;
-	int fsize;
-	int fsctsize;
-	int ofs;
-	int trnsed;
-	int rsize;
-	int trsize;
-	void(*rdendcb)(void*);
-	void* rdcb_1st;
-	void(*trendcb)(void*);
-	void* trcb_1st;
-	void(*errcb)(void*, int);
-	void* errcb_1st;
-	int gdchn;
-	int gdchn_wait;
-	int ex_errcode;
-	short act;
-	short trflag;
-	short used;
-	short tmode;
-	short stat;
-	short err;
-};
-
-struct _anon1
-{
-	char* file_name;
-	char* link_file;
-};*/
-
-typedef struct _anon2
-{
-	unsigned int lsn;
-	unsigned int size;
-	char name[16];
-	unsigned char date[8];
-} _anon2;
-
-/*struct GDS_FS_DIRREC_ENT
-{
-	int fad;
-	int fsize;
-	unsigned char flag;
-	unsigned char sid;
-	char fname[32];
-	char pad[2];
-};
-
-struct GDS_FS_DIRREC_TBL
-{
-	int dir_num;
-	int max_ent;
-	int dir_fad;
-	int pad;
-	GDS_FS_DIRREC_ENT dirrec_tbl[1];
-};
-
-struct GDS_FS_DIRINFO
-{
-	int fad;
-	int fsize;
-	unsigned char flag;
-	unsigned char pad[3];
-};*/
-
 GDFS_HANDLE* __file_handle;
 GDFS_WORK* __gds_fs_work;
 GDFS_DIRREC_TBL* __current_dir;
@@ -163,19 +25,19 @@ DVDISO_DATA dvd_image_data[19] = {
 	{ "MULTSPQ2.IDX", 0 }
 }; 
 
-/*void gdFsClose(GDS_FS_HANDLE* gdfs);
-GDS_FS_DIRREC_TBL* gdFsCreateDirhn();
-void gdFsFinish();
-int gdFsGetDirInfo(char* name, GDS_FS_DIRINFO* dirinfo);
-int gdFsGetDrvStat();
-int gdFsGetFileSize(GDS_FS_HANDLE* gdfs, int* fsize);
-int gdFsInit(int max_open, void* gdfs_work, int max_dirent, void* dirbuf);
-GDS_FS_HANDLE* gdFsOpen(char* fname);
-int gdFsReqDrvStat();
-int gdFsSetDir();
-void gdFsEntryErrFuncAll();
-int gdFsLoadDir();
-int gdFsRead(GDS_FS_HANDLE* gdfs, int nsct, void* buf);*/
+void  gdFsClose(GDFS gdfs);
+GDFS_DIRREC  gdFsCreateDirhn(void *dirbuf, Sint32 max_dirent);
+void  gdFsFinish(void);
+Sint32  gdFsGetDirInfo(const char *name, GDFS_DIRINFO *dirinfo);
+Sint32  gdFsGetDrvStat(void);
+Bool  gdFsGetFileSize(GDFS gdfs, Sint32 *fsize);
+Sint32  gdFsInit(Sint32 max_open, void *gdfs_work, Sint32 max_dirent, void *dirbuf);
+GDFS  gdFsOpen(const char *fname, GDFS_DIRREC gf_dirrec);
+Sint32  gdFsReqDrvStat(void);
+Sint32  gdFsSetDir(GDFS_DIRREC gf_dirrec);
+void  gdFsEntryErrFuncAll(GDFS_ERRFUNC erfunc, void *obj);
+Sint32  gdFsLoadDir(const char *dirname, GDFS_DIRREC gf_dirrec);
+Sint32  gdFsRead(GDFS gdfs, Sint32 nsct, void *buf);
 
 // 100% matching! 
 void  gdFsClose(GDFS gdfs)
@@ -395,7 +257,7 @@ Sint32  gdFsInit(Sint32 max_open, void *gdfs_work, Sint32 max_dirent, void *dirb
         {
             if ((dvd_image_data[i].file_name[j] >= 'a') && (dvd_image_data[i].file_name[j] <= 'z')) 
             {
-                dvd_image_data[i].file_name[j] = dvd_image_data[i].file_name[j] - 32;
+                dvd_image_data[i].file_name[j] = dvd_image_data[i].file_name[j] - ' ';
             }
         }
         
@@ -495,41 +357,48 @@ Sint32  gdFsInit(Sint32 max_open, void *gdfs_work, Sint32 max_dirent, void *dirb
     return 0;
 }
 
-/*// 
-// Start address: 0x2d9720
-GDS_FS_HANDLE* gdFsOpen(char* fname)
+// 100% matching! 
+GDFS  gdFsOpen(const char *fname, GDFS_DIRREC gf_dirrec)
 {
-	char read_name[256];
-	int j;
-	int i;
-	// Line 695, Address: 0x2d9720, Func Offset: 0
-	// Line 701, Address: 0x2d9738, Func Offset: 0x18
-	// Line 703, Address: 0x2d9750, Func Offset: 0x30
-	// Line 704, Address: 0x2d9770, Func Offset: 0x50
-	// Line 705, Address: 0x2d9774, Func Offset: 0x54
-	// Line 707, Address: 0x2d977c, Func Offset: 0x5c
-	// Line 709, Address: 0x2d9784, Func Offset: 0x64
-	// Line 710, Address: 0x2d97a0, Func Offset: 0x80
-	// Line 714, Address: 0x2d97a8, Func Offset: 0x88
-	// Line 717, Address: 0x2d97b4, Func Offset: 0x94
-	// Line 720, Address: 0x2d97d4, Func Offset: 0xb4
-	// Line 723, Address: 0x2d97f4, Func Offset: 0xd4
-	// Line 725, Address: 0x2d9800, Func Offset: 0xe0
-	// Line 729, Address: 0x2d9820, Func Offset: 0x100
-	// Line 730, Address: 0x2d9850, Func Offset: 0x130
-	// Line 729, Address: 0x2d9854, Func Offset: 0x134
-	// Line 730, Address: 0x2d9858, Func Offset: 0x138
-	// Line 731, Address: 0x2d9870, Func Offset: 0x150
-	// Line 730, Address: 0x2d9874, Func Offset: 0x154
-	// Line 731, Address: 0x2d9878, Func Offset: 0x158
-	// Line 751, Address: 0x2d989c, Func Offset: 0x17c
-	// Line 753, Address: 0x2d98b0, Func Offset: 0x190
-	// Line 754, Address: 0x2d98c4, Func Offset: 0x1a4
-	// Line 753, Address: 0x2d98c8, Func Offset: 0x1a8
-	// Line 755, Address: 0x2d98cc, Func Offset: 0x1ac
-	// Line 756, Address: 0x2d98e8, Func Offset: 0x1c8
-	// Func End, Address: 0x2d9900, Func Offset: 0x1e0
-}*/
+    int i;
+    int j;
+    char read_name[256];
+
+    for (i = 0; i < (unsigned int)strlen(fname); i++) 
+    {
+        if ((fname[i] >= 'a') && (fname[i] <= 'z')) 
+        {
+            read_name[i] = fname[i] - ' ';
+        } 
+        else
+        {
+            read_name[i] = fname[i];
+        }
+    } 
+
+    read_name[i] = 0; 
+    
+    for (i = 0; i < __current_dir->dir_num; i++) 
+    {
+        if (strcmp(&read_name, __gdfs_dir_ent[i].fname) == 0) 
+        {
+            for (j = 0; j < __gds_fs_work->max_open; j++) 
+            {
+               if (__file_handle[j].used == 0) 
+               {
+                    __file_handle[j].used = 1;
+                   
+                    __file_handle[j].fad = __gdfs_dir_ent[i].fad;
+                   
+                    __file_handle[j].fsize = __gdfs_dir_ent[i].fsize;
+                    __file_handle[j].fsctsize = (__gdfs_dir_ent[i].fsize + 2047) / 2048;
+                   
+                    return &__file_handle[j];
+                }
+            }
+        }
+    }
+}
 
 // 100% matching! 
 Sint32  gdFsReqDrvStat(void)
