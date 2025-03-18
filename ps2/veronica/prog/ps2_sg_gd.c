@@ -550,28 +550,33 @@ Sint32  gdFsLoadDir(const char *dirname, GDFS_DIRREC gf_dirrec)
     return 0;
 }
 
-/*// 
-// Start address: 0x2d9940
-int gdFsRead(GDS_FS_HANDLE* gdfs, int nsct, void* buf)
+// 100% matching! 
+Sint32  gdFsRead(GDFS gdfs, Sint32 nsct, void *buf)
 {
-	int loop;
-	_anon0 read_mode;
-	// Line 907, Address: 0x2d9940, Func Offset: 0
-	// Line 913, Address: 0x2d9954, Func Offset: 0x14
-	// Line 912, Address: 0x2d9958, Func Offset: 0x18
-	// Line 913, Address: 0x2d995c, Func Offset: 0x1c
-	// Line 924, Address: 0x2d996c, Func Offset: 0x2c
-	// Line 928, Address: 0x2d9974, Func Offset: 0x34
-	// Line 929, Address: 0x2d997c, Func Offset: 0x3c
-	// Line 930, Address: 0x2d9980, Func Offset: 0x40
-	// Line 931, Address: 0x2d9984, Func Offset: 0x44
-	// Line 932, Address: 0x2d9988, Func Offset: 0x48
-	// Line 933, Address: 0x2d998c, Func Offset: 0x4c
-	// Line 934, Address: 0x2d999c, Func Offset: 0x5c
-	// Line 938, Address: 0x2d99bc, Func Offset: 0x7c
-	// Line 941, Address: 0x2d99c4, Func Offset: 0x84
-	// Line 956, Address: 0x2d99d4, Func Offset: 0x94
-	// Line 955, Address: 0x2d99e4, Func Offset: 0xa4
-	// Line 956, Address: 0x2d99e8, Func Offset: 0xa8
-	// Func End, Address: 0x2d99f0, Func Offset: 0xb0
-}*/
+    sceCdRMode read_mode;
+    int loop;
+
+    read_mode.trycount = 0;
+    
+    read_mode.spindlctrl = 1;
+    
+    read_mode.datapattern = 0;
+    
+    do 
+    {
+        while (sceCdRead(gdfs->fad, nsct, buf, &read_mode) == 0)
+        {
+            for (loop = 0; loop < 20; loop++) 
+            {
+                asm("nop");
+                asm("nop");
+                asm("nop");
+                asm("nop");
+            }
+        }
+        
+        sceCdSync(0);
+    } while (sceCdGetError() != 0);
+    
+    return 0;
+}
