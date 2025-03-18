@@ -524,15 +524,13 @@ GDS_FS_HANDLE* gdFsOpen(char* fname)
 	// Line 755, Address: 0x2d98cc, Func Offset: 0x1ac
 	// Line 756, Address: 0x2d98e8, Func Offset: 0x1c8
 	// Func End, Address: 0x2d9900, Func Offset: 0x1e0
-}
-
-// 
-// Start address: 0x2d9900
-int gdFsReqDrvStat()
-{
-	// Line 806, Address: 0x2d9900, Func Offset: 0
-	// Func End, Address: 0x2d9908, Func Offset: 0x8
 }*/
+
+// 100% matching! 
+Sint32  gdFsReqDrvStat(void)
+{
+    return 0;
+}
 
 // 100% matching!
 Sint32  gdFsSetDir(GDFS_DIRREC gf_dirrec)
