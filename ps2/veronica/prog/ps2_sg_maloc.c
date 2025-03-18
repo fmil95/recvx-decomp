@@ -104,13 +104,10 @@ void* syMalloc(unsigned int nbytes) // this function might have actually been ba
     return GET_DATA_PTR(search_work->pNext_work); 
 } 
 
-// 
-// Start address: 0x2d9b80
+// 100% matching!
 Void syMallocFinish(Void)
 {
-	// Line 225, Address: 0x2d9b80, Func Offset: 0
-	// Func End, Address: 0x2d9b88, Func Offset: 0x8
-    scePrintf("syMallocFinish - UNIMPLEMENTED!\n");
+
 }
 
 // 100% matching!
