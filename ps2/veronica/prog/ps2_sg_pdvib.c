@@ -76,31 +76,50 @@ Sint32 pdVibMxSetStopTime(Uint32 port, Uint32 time)
     return 0;
 }
 
-// 
-// Start address: 0x2dab80
+// 100% matching! 
 Sint32 pdVibMxStart(Uint32 port, const PDS_VIBPARAM* param)
 {
-	//_anon0* pPact;
-	unsigned char cnt;
-	// Line 148, Address: 0x2dab80, Func Offset: 0
-	// Line 159, Address: 0x2dab88, Func Offset: 0x8
-	// Line 161, Address: 0x2dab90, Func Offset: 0x10
-	// Line 162, Address: 0x2daba4, Func Offset: 0x24
-	// Line 164, Address: 0x2dabac, Func Offset: 0x2c
-	// Line 167, Address: 0x2dabb8, Func Offset: 0x38
-	// Line 174, Address: 0x2dabc0, Func Offset: 0x40
-	// Line 175, Address: 0x2dabd0, Func Offset: 0x50
-	// Line 176, Address: 0x2dabd8, Func Offset: 0x58
-	// Line 178, Address: 0x2dabe0, Func Offset: 0x60
-	// Line 187, Address: 0x2dabf0, Func Offset: 0x70
-	// Line 188, Address: 0x2dac00, Func Offset: 0x80
-	// Line 189, Address: 0x2dac04, Func Offset: 0x84
-	// Line 190, Address: 0x2dac18, Func Offset: 0x98
-	// Line 191, Address: 0x2dac1c, Func Offset: 0x9c
-	// Line 192, Address: 0x2dac24, Func Offset: 0xa4
-	// Line 200, Address: 0x2dac2c, Func Offset: 0xac
-	// Func End, Address: 0x2dac34, Func Offset: 0xb4
-	scePrintf("pdVibMxStart - UNIMPLEMENTED!\n");
+    unsigned char cnt;
+    PAD_ACT* pPact;
+
+    pPact = Pad_act;
+    
+    cnt = 0;
+    
+    while (pPact->be_flag != 0)
+    {
+        cnt++;
+        pPact++;
+        
+        if (cnt >= 20) 
+        {
+            return -1;
+        }
+    }
+
+    pPact->be_flag = 3;
+    
+    if (param->power > 85) 
+    {
+        pPact->level = pPact->start = 255;
+    } 
+    else
+    {
+        pPact->level = pPact->start = param->power + 170;
+    }
+
+    if (param->flag == 1) 
+    {
+        pPact->time = 9;
+    } 
+    else if (param->flag == 8) 
+    {
+        pPact->time = 6;
+    }
+    else 
+    {
+        pPact->time = 4;
+    }
 }
 
 // 100% matching! 
