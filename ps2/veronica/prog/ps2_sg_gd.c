@@ -238,18 +238,18 @@ Sint32  gdFsGetDrvStat(void)
     return 2;
 }
 
-/*// 
-// Start address: 0x2d8f00
-int gdFsGetFileSize(GDS_FS_HANDLE* gdfs, int* fsize)
+// 100% matching! 
+Bool  gdFsGetFileSize(GDFS gdfs, Sint32 *fsize)
 {
-	// Line 284, Address: 0x2d8f00, Func Offset: 0
-	// Line 286, Address: 0x2d8f08, Func Offset: 0x8
-	// Line 291, Address: 0x2d8f10, Func Offset: 0x10
-	// Line 293, Address: 0x2d8f14, Func Offset: 0x14
-	// Line 291, Address: 0x2d8f18, Func Offset: 0x18
-	// Line 295, Address: 0x2d8f1c, Func Offset: 0x1c
-	// Func End, Address: 0x2d8f24, Func Offset: 0x24
-}*/
+    if (gdfs == NULL) 
+    {
+        return 0;
+    }
+    
+    *fsize = gdfs->fsize;
+    
+    return 1;
+}
 
 // 100% matching!
 Sint32  gdFsInit(Sint32 max_open, void *gdfs_work, Sint32 max_dirent, void *dirbuf) 
