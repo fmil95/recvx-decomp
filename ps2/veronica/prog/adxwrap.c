@@ -319,15 +319,13 @@ void InitAdx()
     AdxStreamSleepFlag = 0;
 }
 
-/*// 
-// Start address: 0x291100
+// 100% matching! 
 void ExitAdx()
-{
-	// Line 233, Address: 0x291100, Func Offset: 0
-	// Func End, Address: 0x291108, Func Offset: 0x8
+{ 
+    ADXT_Finish();
 }
 
-// 
+/*// 
 // Start address: 0x291110
 void DeletePartition(unsigned int PartitionId)
 {
