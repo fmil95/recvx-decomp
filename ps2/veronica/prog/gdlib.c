@@ -2,9 +2,8 @@ unsigned int MaxDirectoryEntry = 512;
 unsigned int DiscOpenTrayFlag;
 unsigned int NewDiscCheckSw;
 unsigned int GdErrorFlag;
-NO_NAME_18 LfOpenInfo[14];
+LFOPEN_INFO LfOpenInfo[14];
 GDFS_DIRREC GdDirRec;
-/*void(*CallbackGdErrorFunc)(void*, int);*/
 unsigned char* pDirTbl;
 unsigned char* pDirWork;
 unsigned int RequestMultiReadFlag;

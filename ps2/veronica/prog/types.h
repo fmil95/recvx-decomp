@@ -1473,11 +1473,12 @@ typedef struct NO_NAME_17
 	void* addr[256];
 } NO_NAME_17;
 
-typedef struct NO_NAME_18
+typedef struct LFOPEN_INFO
 {
-	unsigned int Flag;
-	GDFS_HANDLE* GdFs;
-} NO_NAME_18;
+	// total size: 0x8
+    unsigned int Flag; // offset 0x0, size 0x4
+    GDFS GdFs; // offset 0x4, size 0x4
+} LFOPEN_INFO;
 
 typedef struct _HM _HM; 
 struct _HM
