@@ -150,22 +150,35 @@ void Ps2_pad_actuater()
     scePadSetActDirect(0, 0, Ps2_pad_motor);
 }
 
-// 
-// Start address: 0x2dad30
+// 100% matching! 
 void Ps2_pad_act_start(PAD_ACT* pPact)
 {
-	// Line 296, Address: 0x2dad30, Func Offset: 0
-	// Line 298, Address: 0x2dad40, Func Offset: 0x10
-	// Line 299, Address: 0x2dad4c, Func Offset: 0x1c
-	// Line 302, Address: 0x2dad70, Func Offset: 0x40
-	// Line 304, Address: 0x2dad88, Func Offset: 0x58
-	// Line 306, Address: 0x2dad90, Func Offset: 0x60
-	// Line 307, Address: 0x2dad9c, Func Offset: 0x6c
-	// Line 310, Address: 0x2dada8, Func Offset: 0x78
-	// Line 311, Address: 0x2dadb4, Func Offset: 0x84
-	// Line 314, Address: 0x2dadc0, Func Offset: 0x90
-	// Func End, Address: 0x2dadc8, Func Offset: 0x98
-	scePrintf("Ps2_pad_act_start - UNIMPLEMENTED!\n");
+    unsigned char temp; // not from the debugging symbols
+
+    if ((pPact->be_flag & 0x2)) 
+    {
+        if (pPact->f_add != 0) 
+        {
+            pPact->level = (((short)pPact->start * 16) - (short)pPact->f_add) / 16;
+        }
+        
+        temp = pPact->level;
+        
+        if (Ps2_pad_motor[1] < temp)
+        {
+            Ps2_pad_motor[1] = temp;
+        }
+        
+        if (pPact->f_level != 0) 
+        {
+            pPact->f_add += pPact->f_level;
+        }
+    }
+    
+    if (pPact->f_level != 0) 
+    {
+        pPact->f_add += pPact->f_level;
+    }
 }
 
 // 100% matching! 
