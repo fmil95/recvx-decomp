@@ -230,17 +230,15 @@ int gdFsGetDirInfo(char* name, GDS_FS_DIRINFO* dirinfo)
 	// Line 185, Address: 0x2d8ec8, Func Offset: 0x138
 	// Line 186, Address: 0x2d8ecc, Func Offset: 0x13c
 	// Func End, Address: 0x2d8ee8, Func Offset: 0x158
-}
+}*/
 
-// 
-// Start address: 0x2d8ef0
-int gdFsGetDrvStat()
+// 100% matching! 
+Sint32  gdFsGetDrvStat(void)
 {
-	// Line 260, Address: 0x2d8ef0, Func Offset: 0
-	// Func End, Address: 0x2d8ef8, Func Offset: 0x8
+    return 2;
 }
 
-// 
+/*// 
 // Start address: 0x2d8f00
 int gdFsGetFileSize(GDS_FS_HANDLE* gdfs, int* fsize)
 {
