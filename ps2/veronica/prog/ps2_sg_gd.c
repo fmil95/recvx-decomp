@@ -175,18 +175,18 @@ int gdFsReqDrvStat();
 int gdFsSetDir();
 void gdFsEntryErrFuncAll();
 int gdFsLoadDir();
-int gdFsRead(GDS_FS_HANDLE* gdfs, int nsct, void* buf);
+int gdFsRead(GDS_FS_HANDLE* gdfs, int nsct, void* buf);*/
 
-// 
-// Start address: 0x2d8d50
-void gdFsClose(GDS_FS_HANDLE* gdfs)
+// 100% matching! 
+void  gdFsClose(GDFS gdfs)
 {
-	// Line 71, Address: 0x2d8d50, Func Offset: 0
-	// Line 79, Address: 0x2d8d54, Func Offset: 0x4
-	// Line 80, Address: 0x2d8d58, Func Offset: 0x8
-	// Line 82, Address: 0x2d8d5c, Func Offset: 0xc
-	// Func End, Address: 0x2d8d64, Func Offset: 0x14
-}*/
+    gdfs->used = 0;
+    
+    gdfs->fad = 0;
+    
+    gdfs->fsize = 0;
+    gdfs->fsctsize = 0;
+}
 
 // 100% matching!
 GDFS_DIRREC  gdFsCreateDirhn(void *dirbuf, Sint32 max_dirent)
