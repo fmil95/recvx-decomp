@@ -123,20 +123,21 @@ Void syMallocInit(Void *heap, Uint32 size)
     __free_malloc_size = 13422528;
 }
 
-/*// 
-// Start address: 0x2d9be0
-void syMallocStat(unsigned int* wholeFreeSize, unsigned int* biggestFreeBlockSize)
+// 100% matching!
+Void syMallocStat(Uint32 *wholeFreeSize, Uint32 *biggestFreeBlockSize)
 {
-	_HM* search_work;
-	// Line 292, Address: 0x2d9be0, Func Offset: 0
-	// Line 290, Address: 0x2d9be8, Func Offset: 0x8
-	// Line 293, Address: 0x2d9bf0, Func Offset: 0x10
-	// Line 294, Address: 0x2d9bf8, Func Offset: 0x18
-	// Line 295, Address: 0x2d9c18, Func Offset: 0x38
-	// Line 298, Address: 0x2d9c20, Func Offset: 0x40
-	// Line 299, Address: 0x2d9c24, Func Offset: 0x44
-	// Line 300, Address: 0x2d9c30, Func Offset: 0x50
-	// Line 301, Address: 0x2d9c3c, Func Offset: 0x5c
-	// Line 302, Address: 0x2d9c44, Func Offset: 0x64
-	// Func End, Address: 0x2d9c4c, Func Offset: 0x6c
-}*/
+    _HM* search_work;
+
+    __max_malloc_size = 0;
+    
+    for (search_work = Ps2_malloc_p; search_work != NULL; search_work = search_work->pNext_work) 
+    {
+        if (__max_malloc_size < (search_work->Total_size - search_work->Use_size)) 
+        {
+            __max_malloc_size = search_work->Total_size - search_work->Use_size;
+        }
+    }
+    
+    *wholeFreeSize = __free_malloc_size;
+    *biggestFreeBlockSize = __max_malloc_size;
+}
