@@ -124,8 +124,8 @@ struct _anon0
 
 unsigned int MaxDirectoryEntry = 512;
 /*unsigned int DiscOpenTrayFlag;
-unsigned int NewDiscCheckSw;
-unsigned int GdErrorFlag;*/
+unsigned int NewDiscCheckSw;*/
+unsigned int GdErrorFlag;
 NO_NAME_18 LfOpenInfo[14];
 GDFS_DIRREC_TBL* GdDirRec;
 /*void(*CallbackGdErrorFunc)(void*, int);*/
@@ -159,14 +159,13 @@ void LfInitLib()
     } 
 } 
 
-// 
-// Start address: 0x28e9d0
-void CallbackGdErrorFunc(int err)
+// 100% matching! 
+void CallbackGdErrorFunc(int param, int err) // first parameter is not present on the debugging symbols
 {
-	// Line 131, Address: 0x28e9d0, Func Offset: 0
-	// Line 132, Address: 0x28e9e8, Func Offset: 0x18
-	// Line 134, Address: 0x28e9f4, Func Offset: 0x24
-	// Func End, Address: 0x28e9fc, Func Offset: 0x2c
+    if ((err == -23) || (err == -33)) 
+    { 
+        GdErrorFlag = 1; 
+    }
 }
 
 // 99.18% matching
