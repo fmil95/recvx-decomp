@@ -230,17 +230,20 @@ void ExitGdSystem()
 	scePrintf("ExitGdSystem - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x28eb80
+// 100% matching! 
 int GetFileSize(char* FileName)
-{
-	//GDS_FS_DIRINFO DirInfo;
-	// Line 190, Address: 0x28eb80, Func Offset: 0
-	// Line 194, Address: 0x28eb88, Func Offset: 0x8
-	// Line 198, Address: 0x28eba4, Func Offset: 0x24
-	// Func End, Address: 0x28ebb0, Func Offset: 0x30
-	scePrintf("GetFileSize - UNIMPLEMENTED!\n");
-}
+{ 
+    GDFS_DIRINFO DirInfo;
+
+    if (gdFsGetDirInfo(FileName, &DirInfo) == 0) 
+    {
+        return DirInfo.fsize;
+    }
+    else 
+    {
+        return 0;
+    }
+} 
 
 // 
 // Start address: 0x28ebb0
