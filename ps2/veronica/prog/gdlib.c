@@ -123,8 +123,8 @@ struct _anon0
 };*/
 
 unsigned int MaxDirectoryEntry = 512;
-/*unsigned int DiscOpenTrayFlag;
-unsigned int NewDiscCheckSw;*/
+unsigned int DiscOpenTrayFlag;
+/*unsigned int NewDiscCheckSw;*/
 unsigned int GdErrorFlag;
 NO_NAME_18 LfOpenInfo[14];
 GDFS_DIRREC_TBL* GdDirRec;
@@ -135,13 +135,13 @@ unsigned int RequestMultiReadFlag;
 unsigned int RequestReadBufferFlag;
 unsigned int RequestReadFlag;
 /*GDS_FS_HANDLE* CurrentGdFs;
-GDS_FS_HANDLE* CurrentGdFsBuf;
+GDS_FS_HANDLE* CurrentGdFsBuf;*/
 unsigned int StatusUpdateCounter;
-GDS_FS_HANDLE* LfGdFs;
+/*GDS_FS_HANDLE* LfGdFs;*/
 
-void LfInitLib();
-void CallbackGdErrorFunc(int err);
-unsigned int InitGdSystem();
+/*void LfInitLib();*/
+void CallbackGdErrorFunc(int param, int err);
+/*unsigned int InitGdSystem();
 unsigned int InitGdSystemEx(unsigned int MaxDirNum);
 void ExitGdSystem();
 int GetFileSize(char* FileName);
@@ -261,21 +261,28 @@ int ReadFileEx(char* FileName, void* ReadAddress)
 	scePrintf("ReadFileEx - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x28ec50
+// 100% matching! 
 unsigned int CheckOpenTray()
-{
-	int Stat;
-	// Line 375, Address: 0x28ec50, Func Offset: 0
-	// Line 378, Address: 0x28ec58, Func Offset: 0x8
-	// Line 380, Address: 0x28ec60, Func Offset: 0x10
-	// Line 381, Address: 0x28ec78, Func Offset: 0x28
-	// Line 382, Address: 0x28ec80, Func Offset: 0x30
-	// Line 386, Address: 0x28ec88, Func Offset: 0x38
-	// Line 387, Address: 0x28ec9c, Func Offset: 0x4c
-	// Line 388, Address: 0x28ecb0, Func Offset: 0x60
-	// Line 403, Address: 0x28ecb8, Func Offset: 0x68
-	// Line 404, Address: 0x28ecc0, Func Offset: 0x70
-	// Line 405, Address: 0x28ecc4, Func Offset: 0x74
-	// Func End, Address: 0x28ecd0, Func Offset: 0x80
-}*/
+{ 
+    int Stat;
+
+    Stat = gdFsGetDrvStat(); 
+
+    if ((Stat == 6) || (Stat == 9))
+    {
+        DiscOpenTrayFlag = -1; 
+        
+        return -1; 
+    }
+
+    StatusUpdateCounter--; 
+    
+    if (!(StatusUpdateCounter & 0x1F)) 
+    { 
+        gdFsReqDrvStat(); 
+    }
+
+    DiscOpenTrayFlag = 0;
+    
+    return 0; 
+} 
