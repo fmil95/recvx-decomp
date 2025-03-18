@@ -283,7 +283,7 @@ void SetSoundModeEx(int Mode, int Flag)
 	// Line 116, Address: 0x28ef78, Func Offset: 0x58
 	// Line 118, Address: 0x28ef80, Func Offset: 0x60
 	// Func End, Address: 0x28ef94, Func Offset: 0x74
-}
+}*/
 
 // 
 // Start address: 0x28efa0
@@ -291,6 +291,7 @@ void SetSoundMode(int Mode)
 {
 	// Line 122, Address: 0x28efa0, Func Offset: 0
 	// Func End, Address: 0x28efa8, Func Offset: 0x8
+	scePrintf("SetSoundMode - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -306,6 +307,7 @@ int GetSoundMode()
 	// Line 134, Address: 0x28efe4, Func Offset: 0x34
 	// Line 135, Address: 0x28efec, Func Offset: 0x3c
 	// Func End, Address: 0x28eff4, Func Offset: 0x44
+	scePrintf("GetSoundMode - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -317,6 +319,7 @@ void SetMasterVolume(char Volume)
 	// Line 140, Address: 0x28f014, Func Offset: 0x14
 	// Line 141, Address: 0x28f01c, Func Offset: 0x1c
 	// Func End, Address: 0x28f02c, Func Offset: 0x2c
+	scePrintf("SetMasterVolume - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -326,6 +329,7 @@ void SetGdDaVolume(char Volume)
 	// Line 150, Address: 0x28f030, Func Offset: 0
 	// Line 151, Address: 0x28f034, Func Offset: 0x4
 	// Func End, Address: 0x28f03c, Func Offset: 0xc
+	scePrintf("SetGdDaVolume - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -346,7 +350,8 @@ void InitMidiInfo()
 	// Line 167, Address: 0x28f094, Func Offset: 0x54
 	// Line 168, Address: 0x28f0a0, Func Offset: 0x60
 	// Func End, Address: 0x28f0b4, Func Offset: 0x74
-}*/
+	scePrintf("InitMidiInfo - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 unsigned int RegistMidiSlot(unsigned int SlotNo) 
@@ -559,7 +564,7 @@ void SetFxLevelMidi(unsigned int SlotNo, char FxLevel)
 	// Line 374, Address: 0x28f7cc, Func Offset: 0x2c
 	// Line 376, Address: 0x28f7e4, Func Offset: 0x44
 	// Func End, Address: 0x28f7f0, Func Offset: 0x50
-}
+}*/
 
 // 
 // Start address: 0x28f7f0
@@ -568,6 +573,7 @@ void SetMidiDefaultVolume(char Volume)
 	// Line 380, Address: 0x28f7f0, Func Offset: 0
 	// Line 381, Address: 0x28f7f4, Func Offset: 0x4
 	// Func End, Address: 0x28f7fc, Func Offset: 0xc
+	scePrintf("SetMidiDefaultVolume - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -588,7 +594,8 @@ void InitSeInfo()
 	// Line 397, Address: 0x28f854, Func Offset: 0x54
 	// Line 398, Address: 0x28f860, Func Offset: 0x60
 	// Func End, Address: 0x28f874, Func Offset: 0x74
-}*/
+	scePrintf("InitSeInfo - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 unsigned int RegistSeSlot(unsigned int SlotNo)
@@ -784,7 +791,7 @@ void SetFxLevelSe(unsigned int SlotNo, char FxLevel)
 	// Line 619, Address: 0x28fedc, Func Offset: 0x2c
 	// Line 621, Address: 0x28fef4, Func Offset: 0x44
 	// Func End, Address: 0x28ff00, Func Offset: 0x50
-}
+}*/
 
 // 
 // Start address: 0x28ff00
@@ -793,7 +800,8 @@ void SetSeDefaultVolume(char Volume)
 	// Line 625, Address: 0x28ff00, Func Offset: 0
 	// Line 626, Address: 0x28ff04, Func Offset: 0x4
 	// Func End, Address: 0x28ff0c, Func Offset: 0xc
-}*/
+	scePrintf("SetSeDefaultVolume - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void SetFxProgram(char FxProgramNo, char FxOutputNo)
