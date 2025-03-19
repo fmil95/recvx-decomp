@@ -1686,8 +1686,8 @@ float BHD_ASPECT_Y;
 float BHD_ASPECT_X;
 unsigned char BackColorFlag;
 _anon16 Ps2_pad;
-int pd_port;
-_anon22* rom;*/
+int pd_port;*/
+ROM_WORK* rom;
 NJS_TEXMEMLIST tbuf[256];
 int SoftResetFlag;
 float GameFar;
@@ -2570,100 +2570,152 @@ void bhSysCallDoordemo()
 	scePrintf("bhSysCallDoordemo - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x133ee0
+// 100% matching!
 void bhSysCallMovie()
 {
-	unsigned int sz;
-	// Line 1725, Address: 0x133ee0, Func Offset: 0
-	// Line 1727, Address: 0x133ee8, Func Offset: 0x8
-	// Line 1731, Address: 0x133f24, Func Offset: 0x44
-	// Line 1732, Address: 0x133f2c, Func Offset: 0x4c
-	// Line 1733, Address: 0x133f3c, Func Offset: 0x5c
-	// Line 1734, Address: 0x133f54, Func Offset: 0x74
-	// Line 1735, Address: 0x133f64, Func Offset: 0x84
-	// Line 1736, Address: 0x133f6c, Func Offset: 0x8c
-	// Line 1742, Address: 0x133f80, Func Offset: 0xa0
-	// Line 1745, Address: 0x133f9c, Func Offset: 0xbc
-	// Line 1742, Address: 0x133fa0, Func Offset: 0xc0
-	// Line 1745, Address: 0x133fac, Func Offset: 0xcc
-	// Line 1746, Address: 0x133fc8, Func Offset: 0xe8
-	// Line 1747, Address: 0x133fe8, Func Offset: 0x108
-	// Line 1749, Address: 0x133ff0, Func Offset: 0x110
-	// Line 1750, Address: 0x134004, Func Offset: 0x124
-	// Line 1751, Address: 0x13400c, Func Offset: 0x12c
-	// Line 1753, Address: 0x13401c, Func Offset: 0x13c
-	// Line 1754, Address: 0x134030, Func Offset: 0x150
-	// Line 1755, Address: 0x13405c, Func Offset: 0x17c
-	// Line 1756, Address: 0x13406c, Func Offset: 0x18c
-	// Line 1758, Address: 0x13407c, Func Offset: 0x19c
-	// Line 1760, Address: 0x134084, Func Offset: 0x1a4
-	// Line 1764, Address: 0x1340b4, Func Offset: 0x1d4
-	// Line 1765, Address: 0x1340d4, Func Offset: 0x1f4
-	// Line 1767, Address: 0x1340dc, Func Offset: 0x1fc
-	// Line 1768, Address: 0x1340f0, Func Offset: 0x210
-	// Line 1769, Address: 0x1340f8, Func Offset: 0x218
-	// Line 1771, Address: 0x134108, Func Offset: 0x228
-	// Line 1773, Address: 0x134130, Func Offset: 0x250
-	// Line 1774, Address: 0x134150, Func Offset: 0x270
-	// Line 1776, Address: 0x134158, Func Offset: 0x278
-	// Line 1777, Address: 0x13416c, Func Offset: 0x28c
-	// Line 1778, Address: 0x134174, Func Offset: 0x294
-	// Line 1780, Address: 0x134184, Func Offset: 0x2a4
-	// Line 1782, Address: 0x1341c4, Func Offset: 0x2e4
-	// Line 1783, Address: 0x1341cc, Func Offset: 0x2ec
-	// Line 1786, Address: 0x1341d0, Func Offset: 0x2f0
-	// Line 1782, Address: 0x1341dc, Func Offset: 0x2fc
-	// Line 1783, Address: 0x1341e0, Func Offset: 0x300
-	// Line 1782, Address: 0x1341e4, Func Offset: 0x304
-	// Line 1783, Address: 0x1341ec, Func Offset: 0x30c
-	// Line 1784, Address: 0x1341f4, Func Offset: 0x314
-	// Line 1783, Address: 0x1341f8, Func Offset: 0x318
-	// Line 1784, Address: 0x134200, Func Offset: 0x320
-	// Line 1786, Address: 0x13420c, Func Offset: 0x32c
-	// Line 1788, Address: 0x134214, Func Offset: 0x334
-	// Line 1790, Address: 0x134234, Func Offset: 0x354
-	// Line 1792, Address: 0x13423c, Func Offset: 0x35c
-	// Line 1793, Address: 0x134248, Func Offset: 0x368
-	// Line 1792, Address: 0x13424c, Func Offset: 0x36c
-	// Line 1793, Address: 0x134250, Func Offset: 0x370
-	// Line 1792, Address: 0x134254, Func Offset: 0x374
-	// Line 1793, Address: 0x13425c, Func Offset: 0x37c
-	// Line 1794, Address: 0x134268, Func Offset: 0x388
-	// Line 1797, Address: 0x134270, Func Offset: 0x390
-	// Line 1798, Address: 0x13427c, Func Offset: 0x39c
-	// Line 1799, Address: 0x13428c, Func Offset: 0x3ac
-	// Line 1800, Address: 0x134294, Func Offset: 0x3b4
-	// Line 1801, Address: 0x1342a0, Func Offset: 0x3c0
-	// Line 1800, Address: 0x1342a4, Func Offset: 0x3c4
-	// Line 1801, Address: 0x1342ac, Func Offset: 0x3cc
-	// Line 1802, Address: 0x1342b4, Func Offset: 0x3d4
-	// Line 1805, Address: 0x1342cc, Func Offset: 0x3ec
-	// Line 1807, Address: 0x1342d4, Func Offset: 0x3f4
-	// Line 1808, Address: 0x1342dc, Func Offset: 0x3fc
-	// Line 1809, Address: 0x1342ec, Func Offset: 0x40c
-	// Line 1810, Address: 0x1342fc, Func Offset: 0x41c
-	// Line 1811, Address: 0x13430c, Func Offset: 0x42c
-	// Line 1810, Address: 0x134310, Func Offset: 0x430
-	// Line 1811, Address: 0x134318, Func Offset: 0x438
-	// Line 1813, Address: 0x134334, Func Offset: 0x454
-	// Line 1815, Address: 0x13433c, Func Offset: 0x45c
-	// Line 1816, Address: 0x134344, Func Offset: 0x464
-	// Line 1817, Address: 0x134354, Func Offset: 0x474
-	// Line 1819, Address: 0x134370, Func Offset: 0x490
-	// Line 1821, Address: 0x13438c, Func Offset: 0x4ac
-	// Line 1822, Address: 0x1343ac, Func Offset: 0x4cc
-	// Line 1823, Address: 0x1343cc, Func Offset: 0x4ec
-	// Line 1825, Address: 0x1343d4, Func Offset: 0x4f4
-	// Line 1826, Address: 0x1343e4, Func Offset: 0x504
-	// Line 1827, Address: 0x1343f0, Func Offset: 0x510
-	// Line 1826, Address: 0x1343f4, Func Offset: 0x514
-	// Line 1827, Address: 0x1343fc, Func Offset: 0x51c
-	// Line 1828, Address: 0x134418, Func Offset: 0x538
-	// Line 1829, Address: 0x134430, Func Offset: 0x550
-	// Line 1832, Address: 0x134448, Func Offset: 0x568
-	// Func End, Address: 0x134454, Func Offset: 0x574
-	scePrintf("bhSysCallMovie - UNIMPLEMENTED!\n");
+    unsigned int sz;
+
+    switch (sys->mvi_md) 
+    {
+    case 0:
+        if (njCalcTexture(0) < 1048576) 
+        {
+            sys->mvi_flg = 1;
+            
+            sys->ts_flg |= 0x80;
+        } 
+        else 
+        {
+            sys->mvi_flg = 0;
+        }
+        
+        sys->memp = (unsigned char*)(((int)sys->memp + 63) & ~0x3F);
+        sys->mvi_memp = sys->memp;
+        
+        sys->mvi_md++;
+        break;
+    case 1:
+        if (sys->mvi_flg != 0) 
+        {
+            njFogDisable();
+            
+            njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+            
+            if (rom->mdl.texP != NULL) 
+            {
+                sys->memp = (unsigned char*)bhCopyTexmem2MainmemSub((NJS_TEXLIST*)rom->mdl.texP, (char*)sys->memp);
+               
+                njReleaseTexture((NJS_TEXLIST*)rom->mdl.texP);
+                
+                bhGarbageTexture(tbuf, 256);
+               
+                Ps2ClearOT();
+               
+                if (sys->fade_an > 0) 
+                {
+                    bhDrawScreenFade();
+                }
+            }
+        }
+        
+        sys->mvi_md++;
+        break;
+    case 2:
+        if (sys->mvi_flg != 0)
+        {
+            njFogDisable();
+            
+            njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+        }
+        
+        PlayStartMovieEx(sys->mvi_no, sys->mvi_tp, 1);
+        
+        sys->mvi_md++;
+        break;
+    case 3:
+        if (sys->mvi_flg != 0)
+        {
+            njFogDisable();
+            
+            njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+        }
+
+        switch (WaitPrePlayMovie(0)) 
+        {
+        case 0:
+            sys->ts_flg |= 0x80;
+            sys->ts_flg &= ~0x100;
+            
+            sys->sp_flg |= 0x30;
+            
+            njSetBackColor(0x00000000, 0x00000000, 0x00000000); 
+            
+            sys->mvi_md++;
+            break;
+        case 1:
+            break;
+        case 2:
+            sys->ts_flg &= ~0x40;
+            
+            sys->mvi_md = 5;
+            break;
+        case 3:
+            PlayStopMovieEx(0);
+            
+            RequestAllStopSoundEx(1, 1, 0);
+            
+            bhReturnTitle();
+            
+            sys->ss_flg &= ~0x1000;
+            
+            ClearSoftResetKeyFlag(-1);
+            
+            sys->ss_flg &= ~0x80000;
+            break;
+        }
+        
+        break;
+    case 4:
+        njFogDisable();
+        
+        njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+        
+        if (PlayMovieMain(0) != 0) 
+        {
+            sys->ts_flg &= ~0x40;
+            
+            sys->mvi_md++;
+        }
+        
+        break;
+    case 5:
+        njFogDisable();
+        
+        njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+        
+        if ((sys->mvi_flg != 0) && (rom->mdl.texP != NULL))
+        {
+            bhCopyMainmem2Texmem((NJS_TEXLIST*)rom->mdl.texP);
+        }
+        
+        sys->memp = sys->mvi_memp;
+        
+        sys->mvi_md++;
+        break;
+    case 6:
+        sys->bcl_ct = 1;
+        
+        sys->gm_flg |= 0x8000;
+        
+        if ((sys->st_flg & 0x2))
+        {
+            njFogEnable(); 
+        }
+        
+        sys->sp_flg = sys->mvi_spb;
+        sys->ts_flg = sys->mvi_tsb;
+        break;
+    }
 }
 
 // 100% matching! 

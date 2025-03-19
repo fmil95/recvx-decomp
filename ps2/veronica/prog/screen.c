@@ -1440,16 +1440,16 @@ void bhControlScreenFade()
 	// Line 142, Address: 0x26c040, Func Offset: 0x2d0
 	// Line 146, Address: 0x26c060, Func Offset: 0x2f0
 	// Func End, Address: 0x26c068, Func Offset: 0x2f8
-}
+}*/
 
 // 
 // Start address: 0x26c070
 void bhDrawScreenFade()
 {
 	unsigned int argb;
-	_anon14 col[4];
-	_anon25 p[4];
-	_anon30 p2c;
+	//_anon14 col[4];
+	//_anon25 p[4];
+	//_anon30 p2c;
 	// Line 153, Address: 0x26c070, Func Offset: 0
 	// Line 158, Address: 0x26c080, Func Offset: 0x10
 	// Line 159, Address: 0x26c090, Func Offset: 0x20
@@ -1485,9 +1485,10 @@ void bhDrawScreenFade()
 	// Line 186, Address: 0x26c18c, Func Offset: 0x11c
 	// Line 187, Address: 0x26c198, Func Offset: 0x128
 	// Func End, Address: 0x26c1b0, Func Offset: 0x140
+	scePrintf("bhDrawScreenFade - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x26c1b0
 void bhInitScreenSaver()
 {

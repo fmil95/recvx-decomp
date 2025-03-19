@@ -4753,7 +4753,7 @@ void ExecFileManager()
 	// Line 4436, Address: 0x29748c, Func Offset: 0x9c
 	// Line 4441, Address: 0x297494, Func Offset: 0xa4
 	// Func End, Address: 0x2974a0, Func Offset: 0xb0
-}
+}*/
 
 // 
 // Start address: 0x2974a0
@@ -4761,7 +4761,7 @@ int PlayStartMovieEx(int MovieNo, int MovieType, int PauseFlag)
 {
 	unsigned int Type;
 	char FileName[16];
-	_anon33 CprmSfd;
+	//_anon33 CprmSfd;
 	// Line 4527, Address: 0x2974a0, Func Offset: 0
 	// Line 4532, Address: 0x2974bc, Func Offset: 0x1c
 	// Line 4533, Address: 0x2974d4, Func Offset: 0x34
@@ -4822,7 +4822,8 @@ int PlayStartMovieEx(int MovieNo, int MovieType, int PauseFlag)
 	// Line 4593, Address: 0x297834, Func Offset: 0x394
 	// Line 4596, Address: 0x29783c, Func Offset: 0x39c
 	// Func End, Address: 0x29785c, Func Offset: 0x3bc
-}*/
+	scePrintf("PlayStartMovieEx - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x297860
@@ -4867,7 +4868,7 @@ int GetTimeMoive()
 	// Line 4663, Address: 0x297908, Func Offset: 0x8
 	// Line 4667, Address: 0x29792c, Func Offset: 0x2c
 	// Func End, Address: 0x297938, Func Offset: 0x38
-}
+}*/
 
 // 
 // Start address: 0x297940
@@ -4893,6 +4894,7 @@ int WaitPrePlayMovie()
 	// Line 4715, Address: 0x297a2c, Func Offset: 0xec
 	// Line 4716, Address: 0x297a30, Func Offset: 0xf0
 	// Func End, Address: 0x297a3c, Func Offset: 0xfc
+	scePrintf("WaitPrePlayMovie - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4930,9 +4932,10 @@ int PlayMovieMain()
 	// Line 4790, Address: 0x297bf8, Func Offset: 0x1b8
 	// Line 4791, Address: 0x297bfc, Func Offset: 0x1bc
 	// Func End, Address: 0x297c08, Func Offset: 0x1c8
+	scePrintf("PlayMovieMain - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x297c10
 void SetEventVibrationMode(int Mode)
 {

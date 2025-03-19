@@ -579,11 +579,11 @@ void	njReleaseTextureAll(void)
 	scePrintf("njReleaseTextureAll - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2e22b0
-int njReleaseTexture(_anon2* texlist)
+Sint32	njReleaseTexture(NJS_TEXLIST *texlist)
 {
-	_anon1* p;
+	//_anon1* p;
 	unsigned int tex_num;
 	int i;
 	// Line 517, Address: 0x2e22b0, Func Offset: 0
@@ -616,17 +616,19 @@ int njReleaseTexture(_anon2* texlist)
 	// Line 612, Address: 0x2e2388, Func Offset: 0xd8
 	// Line 613, Address: 0x2e2390, Func Offset: 0xe0
 	// Func End, Address: 0x2e23b0, Func Offset: 0x100
+	scePrintf("njReleaseTexture - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e23b0
-unsigned int njCalcTexture()
+Uint32	njCalcTexture(Uint32 flag)
 {
 	// Line 628, Address: 0x2e23b0, Func Offset: 0
 	// Func End, Address: 0x2e23b8, Func Offset: 0x8
+	scePrintf("njCalcTexture - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e23c0
 void njSetTextureInfo(_anon0* info, unsigned short* tex, int Type, int nWidth, int nHeight)
 {

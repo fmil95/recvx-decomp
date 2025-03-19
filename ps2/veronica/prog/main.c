@@ -140,11 +140,10 @@ unsigned char* njpmemp;
 unsigned char* vebmemp;
 unsigned char* vwbmemp;
 unsigned int Ps2_sys_cnt;
-
 //_anon18 cam;
 //_anon27 eff[512];
-//_anon32 romp;
-//_anon32* rom;
+ROM_WORK romp;
+ROM_WORK* rom = &romp;
 
 // 100% matching!
 void njUserInit(void)

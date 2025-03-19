@@ -1808,13 +1808,13 @@ char* bhCopyTexmem2Mainmem(_anon3* tlp, char* adr)
 	// Line 467, Address: 0x2e68e4, Func Offset: 0x24
 	// Line 468, Address: 0x2e68e8, Func Offset: 0x28
 	// Func End, Address: 0x2e68fc, Func Offset: 0x3c
-}
+}*/
 
 // 
 // Start address: 0x2e6900
-char* bhCopyTexmem2MainmemSub(_anon3* tlp, char* adr)
+char* bhCopyTexmem2MainmemSub(NJS_TEXLIST* tlp, char* adr)
 {
-	_anon23* tmp;
+	//_anon23* tmp;
 	unsigned int num;
 	unsigned int i;
 	// Line 474, Address: 0x2e6900, Func Offset: 0
@@ -1835,15 +1835,16 @@ char* bhCopyTexmem2MainmemSub(_anon3* tlp, char* adr)
 	// Line 504, Address: 0x2e69e0, Func Offset: 0xe0
 	// Line 505, Address: 0x2e69e4, Func Offset: 0xe4
 	// Func End, Address: 0x2e6a08, Func Offset: 0x108
+	scePrintf("bhCopyTexmem2MainmemSub - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e6a10
-void bhCopyMainmem2Texmem(_anon3* tlp)
+void bhCopyMainmem2Texmem(NJS_TEXLIST* tlp)
 {
-	_anon23* tmp;
+	//_anon23* tmp;
 	int no;
-	_anon23* addr;
+	//_anon23* addr;
 	unsigned int num;
 	unsigned int i;
 	// Line 515, Address: 0x2e6a10, Func Offset: 0
@@ -1870,9 +1871,10 @@ void bhCopyMainmem2Texmem(_anon3* tlp)
 	// Line 559, Address: 0x2e6b78, Func Offset: 0x168
 	// Line 560, Address: 0x2e6b80, Func Offset: 0x170
 	// Func End, Address: 0x2e6bac, Func Offset: 0x19c
+	scePrintf("bhCopyMainmem2Texmem - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e6bb0
 void bhPushAllTexture()
 {
@@ -1886,13 +1888,14 @@ void bhPopAllTexture()
 {
 	// Line 686, Address: 0x2e6bc0, Func Offset: 0
 	// Func End, Address: 0x2e6bc8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2e6bd0
-void bhGarbageTexture(_anon23* addr, unsigned int n)
+void bhGarbageTexture(NJS_TEXMEMLIST* addr, unsigned int n)
 {
 	// Line 717, Address: 0x2e6bd0, Func Offset: 0
 	// Func End, Address: 0x2e6bd8, Func Offset: 0x8
-}*/
+	scePrintf("bhGarbageTexture - UNIMPLEMENTED!\n");
+}
 
