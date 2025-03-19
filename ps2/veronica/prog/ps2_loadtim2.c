@@ -201,28 +201,28 @@ int Tim2CalcBufWidth(int psm, int w)
 {
     switch (psm) 
     {
-		case SCE_GS_PSMT8H:
-		case SCE_GS_PSMT4HL:
-		case SCE_GS_PSMT4HH:
-		case SCE_GS_PSMCT32:
-		case SCE_GS_PSMCT24:
-		case SCE_GS_PSMZ32:
-		case SCE_GS_PSMZ24:
-		case SCE_GS_PSMCT16:
-		case SCE_GS_PSMCT16S:
-		case SCE_GS_PSMZ16:
-		case SCE_GS_PSMZ16S:
-			return (w + 63) / 64;
-		case SCE_GS_PSMT8:
-		case SCE_GS_PSMT4:
-			w = (w + 63) / 64;
-			
-            if ((w & 0x1)) 
-            {
-				w++;
-			}
-            
-			return w;
+    case SCE_GS_PSMT8H:
+    case SCE_GS_PSMT4HL:
+    case SCE_GS_PSMT4HH:
+    case SCE_GS_PSMCT32:
+    case SCE_GS_PSMCT24:
+    case SCE_GS_PSMZ32:
+    case SCE_GS_PSMZ24:
+    case SCE_GS_PSMCT16:
+    case SCE_GS_PSMCT16S:
+    case SCE_GS_PSMZ16:
+    case SCE_GS_PSMZ16S:
+        return (w + 63) / 64;
+    case SCE_GS_PSMT8:
+    case SCE_GS_PSMT4:
+        w = (w + 63) / 64;
+        
+        if ((w & 0x1)) 
+        {
+            w++;
+        }
+        
+        return w;
 	}
     
 	return 0;

@@ -3499,40 +3499,41 @@ void bhExitGame()
     bhInitSystem(); 
 } 
 
-/*// 
-// Start address: 0x1372c0
+// 100% matching! 
 void bhSetEventTimer(int mode)
-{
-	// Line 3204, Address: 0x1372c0, Func Offset: 0
-	// Line 3205, Address: 0x1372c8, Func Offset: 0x8
-	// Line 3206, Address: 0x1372d4, Func Offset: 0x14
-	// Line 3205, Address: 0x1372d8, Func Offset: 0x18
-	// Line 3206, Address: 0x1372e0, Func Offset: 0x20
-	// Line 3208, Address: 0x137304, Func Offset: 0x44
-	// Line 3209, Address: 0x137318, Func Offset: 0x58
-	// Line 3210, Address: 0x137324, Func Offset: 0x64
-	// Line 3209, Address: 0x137328, Func Offset: 0x68
-	// Line 3210, Address: 0x137334, Func Offset: 0x74
-	// Line 3211, Address: 0x137344, Func Offset: 0x84
-	// Line 3213, Address: 0x13734c, Func Offset: 0x8c
-	// Line 3214, Address: 0x137360, Func Offset: 0xa0
-	// Line 3215, Address: 0x13736c, Func Offset: 0xac
-	// Line 3214, Address: 0x137370, Func Offset: 0xb0
-	// Line 3215, Address: 0x13737c, Func Offset: 0xbc
-	// Line 3216, Address: 0x13738c, Func Offset: 0xcc
-	// Line 3218, Address: 0x137394, Func Offset: 0xd4
-	// Line 3219, Address: 0x1373a8, Func Offset: 0xe8
-	// Line 3220, Address: 0x1373b4, Func Offset: 0xf4
-	// Line 3221, Address: 0x1373b8, Func Offset: 0xf8
-	// Line 3219, Address: 0x1373bc, Func Offset: 0xfc
-	// Line 3220, Address: 0x1373c8, Func Offset: 0x108
-	// Line 3221, Address: 0x1373dc, Func Offset: 0x11c
-	// Line 3222, Address: 0x1373f0, Func Offset: 0x130
-	// Line 3225, Address: 0x137404, Func Offset: 0x144
-	// Func End, Address: 0x137410, Func Offset: 0x150
-}
+{ 
+    sys->evt_tmd = mode + 1; 
+    
+    switch (mode) 
+    { 
+    case 0:
+        bhStFlg(sys->ev_flg, 0x45); 
+        
+        sys->evt_tim = 2700; 
+        
+        sys->evt_tdg = 900; 
+        break; 
+    case 1:
+        bhStFlg(sys->ev_flg, 0x43); 
+        
+        sys->evt_tim = 18000; 
+        
+        sys->evt_tdg = 3600; 
+        break; 
+    case 2:
+        bhStFlg(sys->ev_flg, 0x46); 
+        
+        sys->evt_tim = 18000; 
+        
+        sys->evt_tdg = 3600; 
+        
+        sys->evt_fcd = 900; 
+        sys->evt_fcdct = 0; 
+        break;
+    }
+} 
 
-// 
+/*// 
 // Start address: 0x137410
 void EasyDispMessage(float PosY, unsigned int MessageNo)
 {
