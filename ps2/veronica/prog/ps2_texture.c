@@ -1738,7 +1738,7 @@ int bhSetMemPvpTexture(_anon3* tlp, unsigned char* datp, int offset)
 	// Line 382, Address: 0x2e654c, Func Offset: 0x4ac
 	// Line 383, Address: 0x2e6550, Func Offset: 0x4b0
 	// Func End, Address: 0x2e6580, Func Offset: 0x4e0
-}
+}*/
 
 // 
 // Start address: 0x2e6580
@@ -1746,7 +1746,7 @@ void bhReleaseMainTexture()
 {
 	int j;
 	int i;
-	_anon0* op;
+	//_anon0* op;
 	BH_PWORK* pp;
 	// Line 392, Address: 0x2e6580, Func Offset: 0
 	// Line 397, Address: 0x2e659c, Func Offset: 0x1c
@@ -1785,7 +1785,8 @@ void bhReleaseMainTexture()
 	// Line 437, Address: 0x2e6858, Func Offset: 0x2d8
 	// Line 438, Address: 0x2e6868, Func Offset: 0x2e8
 	// Func End, Address: 0x2e6888, Func Offset: 0x308
-}*/
+	scePrintf("bhReleaseMainTexture - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void Init_PS2_SAVE_TEX()

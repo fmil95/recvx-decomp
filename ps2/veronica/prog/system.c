@@ -1675,9 +1675,9 @@ _anon11* _nj_vertex_buf_;
 unsigned char* vwbmemp;
 unsigned char* vebmemp;
 unsigned char* freemem;
-unsigned char PauseBtn;
+unsigned char PauseBtn;*/
 unsigned char NowLoadDisp;
-unsigned char Pause_Flag;
+/*unsigned char Pause_Flag;
 unsigned char pl_sleep_cnt;*/
 BH_PWORK ply;
 BH_PWORK *plp = &ply;
@@ -2493,81 +2493,129 @@ void bhSysCallItemselect()
 	scePrintf("bhSysCallItemselect - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x133b70
+// 100% matching! 
 void bhSysCallDoordemo()
 {
-	unsigned int argb;
-	int code;
-	//_anon29* ddp;
-	// Line 1584, Address: 0x133b70, Func Offset: 0
-	// Line 1586, Address: 0x133b84, Func Offset: 0x14
-	// Line 1587, Address: 0x133b98, Func Offset: 0x28
-	// Line 1590, Address: 0x133bc4, Func Offset: 0x54
-	// Line 1591, Address: 0x133bf0, Func Offset: 0x80
-	// Line 1592, Address: 0x133bf4, Func Offset: 0x84
-	// Line 1594, Address: 0x133bfc, Func Offset: 0x8c
-	// Line 1595, Address: 0x133c04, Func Offset: 0x94
-	// Line 1602, Address: 0x133c10, Func Offset: 0xa0
-	// Line 1603, Address: 0x133c20, Func Offset: 0xb0
-	// Line 1604, Address: 0x133c2c, Func Offset: 0xbc
-	// Line 1605, Address: 0x133c34, Func Offset: 0xc4
-	// Line 1606, Address: 0x133c3c, Func Offset: 0xcc
-	// Line 1610, Address: 0x133c48, Func Offset: 0xd8
-	// Line 1611, Address: 0x133c50, Func Offset: 0xe0
-	// Line 1620, Address: 0x133c54, Func Offset: 0xe4
-	// Line 1623, Address: 0x133c5c, Func Offset: 0xec
-	// Line 1625, Address: 0x133c6c, Func Offset: 0xfc
-	// Line 1626, Address: 0x133c74, Func Offset: 0x104
-	// Line 1627, Address: 0x133c84, Func Offset: 0x114
-	// Line 1628, Address: 0x133c8c, Func Offset: 0x11c
-	// Line 1629, Address: 0x133c90, Func Offset: 0x120
-	// Line 1627, Address: 0x133c94, Func Offset: 0x124
-	// Line 1628, Address: 0x133c98, Func Offset: 0x128
-	// Line 1627, Address: 0x133c9c, Func Offset: 0x12c
-	// Line 1628, Address: 0x133ca4, Func Offset: 0x134
-	// Line 1629, Address: 0x133cac, Func Offset: 0x13c
-	// Line 1628, Address: 0x133cb0, Func Offset: 0x140
-	// Line 1629, Address: 0x133cb8, Func Offset: 0x148
-	// Line 1630, Address: 0x133cc8, Func Offset: 0x158
-	// Line 1632, Address: 0x133cd0, Func Offset: 0x160
-	// Line 1635, Address: 0x133cd8, Func Offset: 0x168
-	// Line 1636, Address: 0x133ce8, Func Offset: 0x178
-	// Line 1638, Address: 0x133cf0, Func Offset: 0x180
-	// Line 1640, Address: 0x133cf8, Func Offset: 0x188
-	// Line 1642, Address: 0x133d28, Func Offset: 0x1b8
-	// Line 1643, Address: 0x133d30, Func Offset: 0x1c0
-	// Line 1647, Address: 0x133d38, Func Offset: 0x1c8
-	// Line 1648, Address: 0x133d40, Func Offset: 0x1d0
-	// Line 1652, Address: 0x133d4c, Func Offset: 0x1dc
-	// Line 1654, Address: 0x133d5c, Func Offset: 0x1ec
-	// Line 1655, Address: 0x133d64, Func Offset: 0x1f4
-	// Line 1661, Address: 0x133d70, Func Offset: 0x200
-	// Line 1662, Address: 0x133d80, Func Offset: 0x210
-	// Line 1667, Address: 0x133d88, Func Offset: 0x218
-	// Line 1670, Address: 0x133d98, Func Offset: 0x228
-	// Line 1674, Address: 0x133da4, Func Offset: 0x234
-	// Line 1678, Address: 0x133dfc, Func Offset: 0x28c
-	// Line 1681, Address: 0x133e08, Func Offset: 0x298
-	// Line 1683, Address: 0x133e10, Func Offset: 0x2a0
-	// Line 1685, Address: 0x133e18, Func Offset: 0x2a8
-	// Line 1687, Address: 0x133e48, Func Offset: 0x2d8
-	// Line 1688, Address: 0x133e58, Func Offset: 0x2e8
-	// Line 1689, Address: 0x133e60, Func Offset: 0x2f0
-	// Line 1690, Address: 0x133e6c, Func Offset: 0x2fc
-	// Line 1689, Address: 0x133e70, Func Offset: 0x300
-	// Line 1690, Address: 0x133e74, Func Offset: 0x304
-	// Line 1689, Address: 0x133e78, Func Offset: 0x308
-	// Line 1690, Address: 0x133e80, Func Offset: 0x310
-	// Line 1691, Address: 0x133e90, Func Offset: 0x320
-	// Line 1693, Address: 0x133e98, Func Offset: 0x328
-	// Line 1696, Address: 0x133ea0, Func Offset: 0x330
-	// Line 1697, Address: 0x133eac, Func Offset: 0x33c
-	// Line 1696, Address: 0x133eb0, Func Offset: 0x340
-	// Line 1697, Address: 0x133eb8, Func Offset: 0x348
-	// Line 1719, Address: 0x133ec8, Func Offset: 0x358
-	// Func End, Address: 0x133ee0, Func Offset: 0x370
-	scePrintf("bhSysCallDoordemo - UNIMPLEMENTED!\n");
+    DOOR_WORK* ddp;
+    int code;
+    unsigned int argb;
+
+    ddp = &sys->door;
+
+    switch (ddp->mode0)
+    {
+    case 0:
+        if (((ddp->flg & 0x80000000)) || (sys->door.dor_tp == 255))
+        {
+            ddp->mode0 = 10;
+            break;
+        }
+        
+        bhInitDoor();
+        
+        ddp->mode0++;
+    case 1:
+        code = bhReadDoorData();
+        
+        if (code != 0)
+        {
+            if (code == 1) 
+            {
+                ddp->mode0++;
+            } 
+            else if (code != 2) 
+            {
+                bhExitDoor();
+                
+                ddp->mode0 = 10;
+            }
+        }
+        
+        break;
+    case 2:
+        if (!(sys->cb_flg & 0x2))
+        {
+            njFogDisable();
+            
+            njSetBackColor(0x00000000, 0x00000000, 0x00000000);
+            
+            sys->ts_flg |= 0x100 | 0x80;
+            
+            sys->st_flg &= ~0x2;
+            
+            sys->gm_flg &= ~0x10;
+            
+            ddp->mode0++;
+        }
+        
+        break;
+    case 3:
+        sys->ts_flg &= ~0x100000;
+        
+        bhReleaseMainTexture();
+        
+        Ps2ClearOT();
+        
+        if (sys->fade_an > 0) 
+        {
+            bhDrawScreenFade();
+        }
+        
+        ddp->mode0++;
+        break;
+    case 4:
+        bhSetDoor();
+        
+        ddp->mode0++;
+    case 5:
+        code = bhControlDoor();
+        
+        if (code != 0) 
+        {
+            break;
+        }
+        
+        bhExitDoor();
+        
+        ddp->mode0++;
+    case 6:
+        sys->ts_flg |= 0x800;
+        break;
+    case 10:
+        if (!(sys->cb_flg & 0x2)) 
+        {
+            NowLoadDisp = 1;
+            
+            argb = ((unsigned int)sys->fade_ap << 24) | ((unsigned int)sys->fade_rp << 16) | ((unsigned int)sys->fade_gp << 8) | (unsigned int)sys->fade_bp;
+          
+            njSetBackColor(argb, argb, argb);
+            
+            bhReleaseMainTexture();
+            
+            Ps2ClearOT();
+            
+            if (sys->fade_an > 0) 
+            {
+                bhDrawScreenFade();
+            }
+            
+            sys->ts_flg |= 0x100 | 0x80;
+            
+            njFogDisable();
+            
+            sys->st_flg &= ~0x2;
+            
+            sys->gm_flg &= ~0x10;
+            
+            ddp->mode0++;
+        }
+        
+        break;
+    case 11:
+        sys->ts_flg &= ~0x100000;
+        sys->ts_flg |= 0x800;
+        break;
+    }
 }
 
 // 100% matching!

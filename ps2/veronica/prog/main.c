@@ -87,6 +87,7 @@
 #include "message.c"
 #include "player.c"
 #include "screen.c"
+#include "door.c"
 #include "system.c"
 
 typedef void(*fn)();

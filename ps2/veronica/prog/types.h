@@ -414,7 +414,7 @@ typedef struct NO_NAME_10
 	unsigned char prm3;
 } NO_NAME_10; 
 
-typedef struct DOOR
+typedef struct DOOR_WORK
 {
 	unsigned int flg;
 	char stg_no;
@@ -429,7 +429,7 @@ typedef struct DOOR
 	int ct1;
 	int ct2;
 	int ct3;
-} DOOR;
+} DOOR_WORK;
 
 // similar but not quite like NJS_CAPSULE
 typedef struct CONICAL_FRUSTUM
@@ -774,7 +774,7 @@ typedef struct SYS_WORK
     void * sb_ppp; // offset 0x2A680, size 0x4
 	NJS_TEXLIST* sb_tlist; // offset 0x2A684, size 0x4
 	int ddmd; // offset 0x2A688, size 0x4
-	DOOR door; // offset 0x2A68C, size 0x1C
+	DOOR_WORK door; // offset 0x2A68C, size 0x1C
 	int mpmd; // offset 0x2A6A8, size 0x4
     int mp_prm[4]; // offset 0x2A6AC, size 0x10
     unsigned short gov_md0; // offset 0x2A6BC, size 0x2
