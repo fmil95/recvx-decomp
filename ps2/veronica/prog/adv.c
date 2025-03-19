@@ -1955,8 +1955,8 @@ struct _anon56
 unsigned char SaveLoadMessage[10956];
 _anon53 OptionDef[7];*/
 int AdvFirstInitFlag;
-/*_anon6 AdvTexList[2];
-int PatId[0];*/
+/*_anon6 AdvTexList[2];*/
+int PatId[4];
 ADV_WORK AdvWork;
 /*_anon40* sys;
 _anon27 tbuf[0];
@@ -2169,14 +2169,14 @@ void ResetAdvSystem()
 	// Func End, Address: 0x2c0f9c, Func Offset: 0x11c
 }*/
 
-// 
-// Start address: 0x2c0fa0
-void MountAdvAfs()
-{
-	// Line 360, Address: 0x2c0fa0, Func Offset: 0
-	// Line 362, Address: 0x2c0fb0, Func Offset: 0x10
-	// Func End, Address: 0x2c0fb8, Func Offset: 0x18
-	scePrintf("MountAdvAfs - UNIMPLEMENTED!\n");
+// 100% matching! 
+void MountAdvAfs() 
+{ 
+    ADV_WORK* temp; // not from the debugging symbols
+
+    temp = (ADV_WORK*)&AdvWork;
+    
+    temp->PatId = PatId[3]; 
 }
 
 /*// 
