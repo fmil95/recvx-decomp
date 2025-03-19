@@ -2472,25 +2472,38 @@ void bhSysCallMap()
 	scePrintf("bhSysCallMap - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x133a90
+// 100% matching! 
 void bhSysCallItemselect()
 {
-	// Line 1564, Address: 0x133a90, Func Offset: 0
-	// Line 1565, Address: 0x133a98, Func Offset: 0x8
-	// Line 1566, Address: 0x133aa0, Func Offset: 0x10
-	// Line 1567, Address: 0x133aa8, Func Offset: 0x18
-	// Line 1568, Address: 0x133ab0, Func Offset: 0x20
-	// Line 1570, Address: 0x133ad8, Func Offset: 0x48
-	// Line 1571, Address: 0x133ae0, Func Offset: 0x50
-	// Line 1572, Address: 0x133b00, Func Offset: 0x70
-	// Line 1573, Address: 0x133b08, Func Offset: 0x78
-	// Line 1574, Address: 0x133b20, Func Offset: 0x90
-	// Line 1576, Address: 0x133b34, Func Offset: 0xa4
-	// Line 1577, Address: 0x133b40, Func Offset: 0xb0
-	// Line 1578, Address: 0x133b60, Func Offset: 0xd0
-	// Func End, Address: 0x133b6c, Func Offset: 0xdc
-	scePrintf("bhSysCallItemselect - UNIMPLEMENTED!\n");
+    njFogDisable();
+    
+    njPrintSize(16);
+    
+    ItemTaskCheck();
+    
+    if (!(sys->ts_flg & 0x200)) 
+    {
+        StatusMain();
+    } 
+    else 
+    {
+        bhDeleteYakkyou();
+        
+        bhSetScreenFade(3.0f, sys->fade_pbk);
+        
+        bhDrawScreenFade();
+        
+        sys->bcl_ct = 1;
+        
+        sys->gm_flg |= 0x8000;
+    }
+    
+    njPrintSize(13);
+    
+    if ((sys->st_flg & 0x2))
+    {
+        njFogEnable();
+    }
 }
 
 // 100% matching! 

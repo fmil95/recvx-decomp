@@ -88,6 +88,8 @@
 #include "player.c"
 #include "screen.c"
 #include "door.c"
+#include "sub1.c"
+#include "effect.c"
 #include "system.c"
 
 typedef void(*fn)();
