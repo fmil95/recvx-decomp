@@ -1731,8 +1731,8 @@ void bhSysCallMonitor();
 void bhSysCallSndMonitor();
 void bhSysCallScreenSaver();
 void bhReturnTitle();
-/*void bhExitGame();
-void bhSetEventTimer(int mode);
+void bhExitGame();
+/*void bhSetEventTimer(int mode);
 void EasyDispMessage(float PosY, unsigned int MessageNo);*/
 
 // 100% matching!
@@ -3450,33 +3450,30 @@ void bhSysCallScreenSaver()
 	scePrintf("bhSysCallScreenSaver - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x137170
+// 100% matching! 
 void bhReturnTitle()
-{
-	// Line 3155, Address: 0x137170, Func Offset: 0
-	// Line 3156, Address: 0x137178, Func Offset: 0x8
-	// Line 3157, Address: 0x13718c, Func Offset: 0x1c
-	// Line 3158, Address: 0x137194, Func Offset: 0x24
-	// Line 3159, Address: 0x1371b0, Func Offset: 0x40
-	// Line 3160, Address: 0x1371b8, Func Offset: 0x48
-	// Line 3161, Address: 0x1371c0, Func Offset: 0x50
-	// Line 3162, Address: 0x1371cc, Func Offset: 0x5c
-	// Line 3161, Address: 0x1371d8, Func Offset: 0x68
-	// Line 3162, Address: 0x1371e0, Func Offset: 0x70
-	// Line 3164, Address: 0x1371e8, Func Offset: 0x78
-	// Line 3165, Address: 0x1371f0, Func Offset: 0x80
-	// Line 3164, Address: 0x1371f8, Func Offset: 0x88
-	// Line 3165, Address: 0x1371fc, Func Offset: 0x8c
-	// Line 3166, Address: 0x137208, Func Offset: 0x98
-	// Line 3165, Address: 0x13720c, Func Offset: 0x9c
-	// Line 3166, Address: 0x137214, Func Offset: 0xa4
-	// Line 3167, Address: 0x137224, Func Offset: 0xb4
-	// Func End, Address: 0x137230, Func Offset: 0xc0
-	scePrintf("bhReturnTitle - UNIMPLEMENTED!\n");
-}
+{ 
+    sys->ss_flg |= 0x20000; 
+    
+    bhExitGame(); 
+    
+    if (!(sys->ss_flg & 0x200000))
+    { 
+        sys->tk_flg = 0x300008;
+    } 
+    else 
+    { 
+        sys->ss_flg &= ~0x200000; 
+        sys->tk_flg = 0x300004; 
+    }
+    
+    sys->ts_flg = 0; 
+    
+    sys->ss_flg &= ~0x20000; 
+    sys->ss_flg |= 0x1000; 
+} 
 
-/*// 
+// 
 // Start address: 0x137230
 void bhExitGame()
 {
@@ -3494,9 +3491,10 @@ void bhExitGame()
 	// Line 3192, Address: 0x1372a8, Func Offset: 0x78
 	// Line 3193, Address: 0x1372b0, Func Offset: 0x80
 	// Func End, Address: 0x1372bc, Func Offset: 0x8c
+	scePrintf("bhExitGame - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1372c0
 void bhSetEventTimer(int mode)
 {
