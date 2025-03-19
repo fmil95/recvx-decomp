@@ -4730,14 +4730,14 @@ int DisplayOptionPlate(int PortId, int Level, int Flag)
 	// Line 5444, Address: 0x2c7d74, Func Offset: 0x84
 	// Line 5446, Address: 0x2c7d78, Func Offset: 0x88
 	// Func End, Address: 0x2c7d84, Func Offset: 0x94
-}
+}*/
 
 // 
 // Start address: 0x2c7d90
 int Adv_GameOptionScreen()
 {
 	int ReturnCode;
-	_anon8* ap;
+	//_anon8* ap;
 	int SaveCheck;
 	int ulState;
 	// Line 5465, Address: 0x2c7d90, Func Offset: 0
@@ -4885,7 +4885,8 @@ int Adv_GameOptionScreen()
 	// Line 5770, Address: 0x2c83c8, Func Offset: 0x638
 	// Line 5771, Address: 0x2c83cc, Func Offset: 0x63c
 	// Func End, Address: 0x2c83e0, Func Offset: 0x650
-}*/
+	scePrintf("Adv_GameOptionScreen - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2c83e0

@@ -1689,10 +1689,10 @@ _anon16 Ps2_pad;
 int pd_port;
 _anon22* rom;*/
 NJS_TEXMEMLIST tbuf[256];
-/*int SoftResetFlag;
+int SoftResetFlag;
 float GameFar;
 float GameNear;
-_anon20 Pad_act[0];
+/*_anon20 Pad_act[0];
 unsigned int Ps2_rendertex_initflag;
 unsigned int Ps2_albinoid_flag;
 unsigned int Ps2_ice_flag;*/
@@ -2689,55 +2689,71 @@ void bhSysCallTypewriter()
     ControlTypewriter();
 }
 
-// 
-// Start address: 0x1344c0
+// 100% matching! 
 void bhSysCallOption()
-{
-	// Line 1863, Address: 0x1344c0, Func Offset: 0
-	// Line 1865, Address: 0x1344c8, Func Offset: 0x8
-	// Line 1866, Address: 0x1344e0, Func Offset: 0x20
-	// Line 1868, Address: 0x1344f8, Func Offset: 0x38
-	// Line 1869, Address: 0x134508, Func Offset: 0x48
-	// Line 1870, Address: 0x134510, Func Offset: 0x50
-	// Line 1871, Address: 0x134518, Func Offset: 0x58
-	// Line 1879, Address: 0x134530, Func Offset: 0x70
-	// Line 1881, Address: 0x134540, Func Offset: 0x80
-	// Line 1883, Address: 0x134554, Func Offset: 0x94
-	// Line 1884, Address: 0x134560, Func Offset: 0xa0
-	// Line 1883, Address: 0x134568, Func Offset: 0xa8
-	// Line 1884, Address: 0x134570, Func Offset: 0xb0
-	// Line 1885, Address: 0x134574, Func Offset: 0xb4
-	// Line 1886, Address: 0x134578, Func Offset: 0xb8
-	// Line 1888, Address: 0x13457c, Func Offset: 0xbc
-	// Line 1884, Address: 0x134580, Func Offset: 0xc0
-	// Line 1885, Address: 0x134584, Func Offset: 0xc4
-	// Line 1886, Address: 0x134590, Func Offset: 0xd0
-	// Line 1885, Address: 0x134594, Func Offset: 0xd4
-	// Line 1886, Address: 0x13459c, Func Offset: 0xdc
-	// Line 1887, Address: 0x1345a4, Func Offset: 0xe4
-	// Line 1886, Address: 0x1345a8, Func Offset: 0xe8
-	// Line 1887, Address: 0x1345b0, Func Offset: 0xf0
-	// Line 1888, Address: 0x1345b8, Func Offset: 0xf8
-	// Line 1887, Address: 0x1345bc, Func Offset: 0xfc
-	// Line 1888, Address: 0x1345c4, Func Offset: 0x104
-	// Line 1889, Address: 0x1345d4, Func Offset: 0x114
-	// Line 1890, Address: 0x1345e0, Func Offset: 0x120
-	// Line 1889, Address: 0x1345e4, Func Offset: 0x124
-	// Line 1890, Address: 0x1345ec, Func Offset: 0x12c
-	// Line 1891, Address: 0x134608, Func Offset: 0x148
-	// Line 1892, Address: 0x134628, Func Offset: 0x168
-	// Line 1894, Address: 0x134630, Func Offset: 0x170
-	// Line 1896, Address: 0x134644, Func Offset: 0x184
-	// Line 1898, Address: 0x13464c, Func Offset: 0x18c
-	// Line 1899, Address: 0x13465c, Func Offset: 0x19c
-	// Line 1900, Address: 0x134664, Func Offset: 0x1a4
-	// Line 1899, Address: 0x134668, Func Offset: 0x1a8
-	// Line 1900, Address: 0x13466c, Func Offset: 0x1ac
-	// Line 1902, Address: 0x134674, Func Offset: 0x1b4
-	// Line 1905, Address: 0x134688, Func Offset: 0x1c8
-	// Func End, Address: 0x134694, Func Offset: 0x1d4
-	scePrintf("bhSysCallOption - UNIMPLEMENTED!\n");
-}
+{ 
+    void bhSetScreenFade(float ct, unsigned int argb); // TODO: find a way to get a complete match without having to include this definition
+    
+    if ((sys->tk_flg & 0x80)) 
+    { 
+        if (sys->opt_md0 != 0) 
+        {
+            asm("nop"); 
+        } 
+        else if (!(sys->cb_flg & 0x2))
+        { 
+            sys->ts_flg |= 0x180; 
+            
+            njFogDisable(); 
+            
+            sys->opt_md0 = 1;
+        } 
+        else
+        {
+            return;
+        }
+    } 
+    
+    if (Adv_GameOptionScreen() != 0) 
+    { 
+        if ((sys->tk_flg & 0x80))
+        { 
+            sys->st_flg &= ~0x10000000; 
+            sys->sp_flg = ~0x0; 
+            
+            sys->ts_flg |= 0x10000; 
+            sys->ts_flg &= ~0x180; 
+            
+            sys->gm_flg |= 0x10; 
+            
+            sys->bcl_ct = 1; 
+            
+            sys->gm_flg |= 0x8000; 
+            
+            if ((sys->st_flg & 0x2))
+            {
+                njFogEnable(); 
+            }
+            
+            bhSetScreenFade(3.0f, sys->fade_pbk); 
+            
+            bhStandPlayerMotion(); 
+            
+            njClipZ(GameNear, GameFar); 
+        } 
+        else 
+        { 
+            if (SoftResetFlag == 1) 
+            { 
+                sys->ss_flg |= 0x100000; 
+                
+                ClearSoftResetKeyFlag(-1); 
+            }
+            
+            sys->tk_flg = 0x300008; 
+        }
+    }
+} 
 
 // 100% matching! 
 void bhSysCallCompEvent() 

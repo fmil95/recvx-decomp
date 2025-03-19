@@ -85,6 +85,8 @@
 #include "sp_evt.c"
 #include "bup_00.c"
 #include "message.c"
+#include "player.c"
+#include "screen.c"
 #include "system.c"
 
 typedef void(*fn)();
@@ -101,8 +103,8 @@ SYS_WORK* sys = &sysp;
 char BIO_CURRENT[64];
 float BHD_ASPECT_X = 1.174000025f;
 float BHD_ASPECT_Y = 1.0f;
-float (* cmat)[16];
-NJS_MATRIX crmat; // TODO: needs .data definition 
+NJS_MATRIX crmat;
+NJS_MATRIX* cmat = &crmat;
 float mbuf[128][16];
 fn bhSysTaskJumpTab[23] = {
     bhSysCallInit,
