@@ -2689,11 +2689,9 @@ void bhSysCallTypewriter()
     ControlTypewriter();
 }
 
-// 100% matching! 
+// 83.89% matching
 void bhSysCallOption()
 { 
-    void bhSetScreenFade(float ct, unsigned int argb); // TODO: find a way to get a complete match without having to include this definition
-    
     if ((sys->tk_flg & 0x80)) 
     { 
         if (sys->opt_md0 != 0) 
