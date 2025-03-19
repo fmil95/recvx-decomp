@@ -1687,9 +1687,9 @@ float BHD_ASPECT_X;
 unsigned char BackColorFlag;
 _anon16 Ps2_pad;
 int pd_port;
-_anon22* rom;
-_anon25 tbuf[0];
-int SoftResetFlag;
+_anon22* rom;*/
+NJS_TEXMEMLIST tbuf[256];
+/*int SoftResetFlag;
 float GameFar;
 float GameNear;
 _anon20 Pad_act[0];
@@ -1701,10 +1701,10 @@ WPN_TAB WpnTab[23];
 float FontScaleX;
 unsigned char FontSz[0];
 
-int bhCalcVtxBuffer();
+int bhCalcVtxBuffer();*/
 void bhChangeHWSetting();
 void bhInitSystem();
-void bhInitRoomChangeSystem();*/
+/*void bhInitRoomChangeSystem();*/
 void bhSysCallInit();
 void bhSysCallDiscChange();
 void bhSysCallSoundMuseum();
@@ -1741,7 +1741,7 @@ int bhCalcVtxBuffer()
     return 0;
 }
 
-/*// 
+// 
 // Start address: 0x131ba0
 void bhChangeHWSetting()
 {
@@ -1796,7 +1796,8 @@ void bhChangeHWSetting()
 	// Line 400, Address: 0x131e20, Func Offset: 0x280
 	// Line 405, Address: 0x131e3c, Func Offset: 0x29c
 	// Func End, Address: 0x131e48, Func Offset: 0x2a8
-}*/
+	scePrintf("bhChangeHWSetting - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x131e50
@@ -3473,26 +3474,30 @@ void bhReturnTitle()
     sys->ss_flg |= 0x1000; 
 } 
 
-// 
-// Start address: 0x137230
+// 100% matching! 
 void bhExitGame()
-{
-	// Line 3173, Address: 0x137230, Func Offset: 0
-	// Line 3174, Address: 0x137238, Func Offset: 0x8
-	// Line 3175, Address: 0x137250, Func Offset: 0x20
-	// Line 3176, Address: 0x137258, Func Offset: 0x28
-	// Line 3177, Address: 0x137260, Func Offset: 0x30
-	// Line 3178, Address: 0x137268, Func Offset: 0x38
-	// Line 3179, Address: 0x137270, Func Offset: 0x40
-	// Line 3180, Address: 0x137278, Func Offset: 0x48
-	// Line 3186, Address: 0x137280, Func Offset: 0x50
-	// Line 3187, Address: 0x137288, Func Offset: 0x58
-	// Line 3191, Address: 0x137298, Func Offset: 0x68
-	// Line 3192, Address: 0x1372a8, Func Offset: 0x78
-	// Line 3193, Address: 0x1372b0, Func Offset: 0x80
-	// Func End, Address: 0x1372bc, Func Offset: 0x8c
-	scePrintf("bhExitGame - UNIMPLEMENTED!\n");
-}
+{ 
+    if ((sys->ss_flg & 0x2)) 
+    { 
+        njWaitVSync();
+        njWaitVSync();
+        njWaitVSync(); 
+        
+        bhChangeHWSetting(); 
+    } 
+    else
+    { 
+        njWaitVSync(); 
+    }
+    
+    njReleaseTextureAll(); 
+    
+    njGarbageTexture(tbuf, 256); 
+    
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+    
+    bhInitSystem(); 
+} 
 
 /*// 
 // Start address: 0x1372c0

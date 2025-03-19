@@ -568,17 +568,18 @@ int njSetTextureNumSys(unsigned int n)
 {
 	// Line 500, Address: 0x2e2260, Func Offset: 0
 	// Func End, Address: 0x2e2284, Func Offset: 0x24
-}
+}*/
 
 // 
 // Start address: 0x2e2290
-void njReleaseTextureAll()
+void	njReleaseTextureAll(void)
 {
 	// Line 509, Address: 0x2e2290, Func Offset: 0
 	// Func End, Address: 0x2e22a4, Func Offset: 0x14
+	scePrintf("njReleaseTextureAll - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e22b0
 int njReleaseTexture(_anon2* texlist)
 {
@@ -707,17 +708,18 @@ void njSetPaletteData()
 {
 	// Line 793, Address: 0x2e24f0, Func Offset: 0
 	// Func End, Address: 0x2e2500, Func Offset: 0x10
-}
+}*/
 
 // 
 // Start address: 0x2e2500
-void njGarbageTexture()
+void	njGarbageTexture(NJS_TEXMEMLIST *addr,Uint32 n)
 {
 	// Line 825, Address: 0x2e2500, Func Offset: 0
 	// Func End, Address: 0x2e2508, Func Offset: 0x8
+	scePrintf("njGarbageTexture - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e2510
 unsigned int Ps2GetTim2Size(void* p)
 {
