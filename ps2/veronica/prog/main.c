@@ -84,6 +84,7 @@
 #include "ranking.c"
 #include "sp_evt.c"
 #include "bup_00.c"
+#include "message.c"
 #include "system.c"
 
 typedef void(*fn)();

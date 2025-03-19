@@ -1697,11 +1697,11 @@ unsigned int Ps2_rendertex_initflag;
 unsigned int Ps2_albinoid_flag;
 unsigned int Ps2_ice_flag;*/
 WPN_TAB WpnTab[23];
-/*float FontScaleCR;
+float FontScaleCR;
 float FontScaleX;
-unsigned char FontSz[0];
+unsigned char FontSz[126];
 
-int bhCalcVtxBuffer();*/
+/*int bhCalcVtxBuffer();*/
 void bhChangeHWSetting();
 void bhInitSystem();
 /*void bhInitRoomChangeSystem();*/
@@ -3533,62 +3533,68 @@ void bhSetEventTimer(int mode)
     }
 } 
 
-/*// 
-// Start address: 0x137410
+// 100% matching! 
 void EasyDispMessage(float PosY, unsigned int MessageNo)
-{
-	unsigned int* mes_dp;
-	float SizeX;
-	int SearchFlag;
-	int LoopFlag;
-	float sy;
-	int y;
-	int x;
-	unsigned short* nmp;
-	unsigned short* mp;
-	unsigned char* dmp;
-	unsigned char* smp;
-	// Line 3232, Address: 0x137410, Func Offset: 0
-	// Line 3243, Address: 0x13742c, Func Offset: 0x1c
-	// Line 3244, Address: 0x137434, Func Offset: 0x24
-	// Line 3245, Address: 0x137438, Func Offset: 0x28
-	// Line 3237, Address: 0x137440, Func Offset: 0x30
-	// Line 3243, Address: 0x137444, Func Offset: 0x34
-	// Line 3244, Address: 0x137450, Func Offset: 0x40
-	// Line 3245, Address: 0x137458, Func Offset: 0x48
-	// Line 3246, Address: 0x137464, Func Offset: 0x54
-	// Line 3248, Address: 0x137474, Func Offset: 0x64
-	// Line 3249, Address: 0x137478, Func Offset: 0x68
-	// Line 3252, Address: 0x13747c, Func Offset: 0x6c
-	// Line 3267, Address: 0x137490, Func Offset: 0x80
-	// Line 3264, Address: 0x137498, Func Offset: 0x88
-	// Line 3253, Address: 0x1374a0, Func Offset: 0x90
-	// Line 3255, Address: 0x1374d0, Func Offset: 0xc0
-	// Line 3257, Address: 0x1374d4, Func Offset: 0xc4
-	// Line 3260, Address: 0x1374dc, Func Offset: 0xcc
-	// Line 3259, Address: 0x1374e0, Func Offset: 0xd0
-	// Line 3262, Address: 0x1374e4, Func Offset: 0xd4
-	// Line 3264, Address: 0x1374ec, Func Offset: 0xdc
-	// Line 3265, Address: 0x1374f8, Func Offset: 0xe8
-	// Line 3267, Address: 0x137500, Func Offset: 0xf0
-	// Line 3269, Address: 0x13754c, Func Offset: 0x13c
-	// Line 3267, Address: 0x137550, Func Offset: 0x140
-	// Line 3270, Address: 0x137554, Func Offset: 0x144
-	// Line 3274, Address: 0x13755c, Func Offset: 0x14c
-	// Line 3273, Address: 0x137564, Func Offset: 0x154
-	// Line 3274, Address: 0x137568, Func Offset: 0x158
-	// Line 3273, Address: 0x13756c, Func Offset: 0x15c
-	// Line 3274, Address: 0x137570, Func Offset: 0x160
-	// Line 3273, Address: 0x137584, Func Offset: 0x174
-	// Line 3274, Address: 0x13758c, Func Offset: 0x17c
-	// Line 3273, Address: 0x137590, Func Offset: 0x180
-	// Line 3274, Address: 0x137594, Func Offset: 0x184
-	// Line 3275, Address: 0x1375a8, Func Offset: 0x198
-	// Line 3276, Address: 0x1375b8, Func Offset: 0x1a8
-	// Line 3277, Address: 0x1375bc, Func Offset: 0x1ac
-	// Line 3275, Address: 0x1375c0, Func Offset: 0x1b0
-	// Line 3278, Address: 0x1375c4, Func Offset: 0x1b4
-	// Line 3280, Address: 0x1375cc, Func Offset: 0x1bc
-	// Line 3281, Address: 0x1375d4, Func Offset: 0x1c4
-	// Func End, Address: 0x1375f4, Func Offset: 0x1e4
-}*/
+{ 
+    unsigned char* dmp;
+    unsigned char* smp;
+    unsigned short* mp;
+    unsigned short* nmp;
+    unsigned int* mes_dp;
+    int x;
+    int y;
+    float sy;
+    int LoopFlag = 1;
+    int SearchFlag;
+    float SizeX;
+    
+    smp = (unsigned char*)sys->mes_sp; 
+    smp = (unsigned char*)(smp + sys->mes_sp[MessageNo + 1]); 
+    
+    dmp = syMalloc(1024); 
+    
+    memcpy(dmp, smp, 1024); 
+
+    nmp = (unsigned short*)dmp; 
+    
+    for (y = 0; LoopFlag != 0; y++)
+    { 
+        SizeX = 0; 
+        
+        SearchFlag = 1;
+        
+        for (x = 0; SearchFlag != 0; x++) 
+        { 
+            switch (nmp[x]) 
+            { 
+            case 65535:
+                LoopFlag = 0; 
+                SearchFlag = 0;
+                break; 
+            case 65280:
+                nmp[x] = 65535; 
+                
+                mes_dp = (unsigned int*)(&nmp[x] + 1); 
+                
+                SearchFlag = 0; 
+                break; 
+            case 65281:
+                SizeX += 14.0f * FontScaleX; 
+                break; 
+            default: 
+                SizeX += FontScaleX * FontSz[nmp[x]]; 
+                break; 
+            } 
+        } 
+        
+        sys->mes_tp = nmp; 
+        
+        bhDispMessage(320.0f - (SizeX / 2.0f), PosY, -1.0f, 2, 0, 0, 0);    
+        
+        PosY += 30.0f * FontScaleCR;
+        
+        nmp = (unsigned short*)mes_dp; 
+    } 
+    
+    syFree(dmp); 
+} 
