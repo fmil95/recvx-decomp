@@ -1662,7 +1662,7 @@ void Ps2DrawOTag()
     Ps2_current_texbreak = 1;
 }
 
-// 98.76% matching
+// 98.96% matching
 int Ps2DrawOTagSub(int start_no)
 { 
     int i; 
@@ -1672,6 +1672,7 @@ int Ps2DrawOTagSub(int start_no)
     int save_alpha[3]; 
     TIM2_PICTUREHEADER* timp; 
     unsigned int tex_cache_num; 
+    PS2_OT *temp; // not from the debugging symbols 
     unsigned int t_flag;
     unsigned int p_flag; 
     unsigned int t_no; 
@@ -1830,7 +1831,7 @@ int Ps2DrawOTagSub(int start_no)
     if (old_p != NULL) 
     { 
     block:
-        ((long*)old_p->p)[2] = (((long*)old_p->p)[2] & 0xFFFFFFF) | 0x70000000; 
+        ((long*)old_p->p)[2] = (((long*)(temp = old_p)->p)[2] & 0xFFFFFFF) | 0x70000000; 
         ((long*)old_p->p)[8] = ((long*)old_p->p)[8] | 0x8000; 
         
         printf("TEX %05d:%05d]", 0x3F80 - tex_addr, 0x3FCC - clt_addr); 
