@@ -353,15 +353,16 @@ void mwPlyPreInitSofdec()
 
 }
 
-/*// 
+// 
 // Start address: 0x2d89d0
 void mwPlySetDispMode()
 {
 	// Line 602, Address: 0x2d89d0, Func Offset: 0
 	// Func End, Address: 0x2d89d8, Func Offset: 0x8
+	scePrintf("mwPlySetDispMode - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d89e0
 void mwPlySetDispPos(float lx, float ly)
 {

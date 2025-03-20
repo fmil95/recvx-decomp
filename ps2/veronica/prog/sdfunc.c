@@ -2011,7 +2011,7 @@ SYS_WORK* sys;
 unsigned int DiscOpenTrayFlag;
 unsigned int StatusUpdateCounter;
 SYS_BT_SYSTEMID BootDiscSystemId;
-NO_NAME_13* hws;
+HWS_WORK* hws;
 SND_CMD SoundCommand;
 /*_anon12 MovieInfo;*/
 unsigned char* pConfigWork;

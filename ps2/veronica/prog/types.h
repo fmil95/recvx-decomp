@@ -856,7 +856,7 @@ typedef struct NO_NAME_12
 	unsigned short* evd;
 } NO_NAME_12;
 
-typedef struct NO_NAME_13
+typedef struct HWS_WORK
 {
 	int mode;
 	int frame;
@@ -867,7 +867,7 @@ typedef struct NO_NAME_13
 	int vtx_trs_b;
 	int vtx_punch;
 	int vtx_total;
-} NO_NAME_13;
+} HWS_WORK;
 
 typedef struct NO_NAME_14
 {

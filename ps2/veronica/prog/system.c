@@ -1669,11 +1669,11 @@ unsigned short pause_mes[6];
 unsigned char FileWait;
 unsigned char VibWait;*/
 SYS_WORK* sys;
-/*unsigned char* njpmemp;
-_anon43* hws;
-_anon11* _nj_vertex_buf_;
+unsigned char* njpmemp;
+HWS_WORK* hws;
+NJS_VERTEX_BUF* _nj_vertex_buf_;
 unsigned char* vwbmemp;
-unsigned char* vebmemp;*/
+unsigned char* vebmemp;
 unsigned char* freemem;
 unsigned char PauseBtn;
 unsigned char NowLoadDisp;
@@ -1701,10 +1701,10 @@ float FontScaleCR;
 float FontScaleX;
 unsigned char FontSz[126];
 
-/*int bhCalcVtxBuffer();*/
+int bhCalcVtxBuffer();
 void bhChangeHWSetting();
 void bhInitSystem();
-/*void bhInitRoomChangeSystem();*/
+void bhInitRoomChangeSystem();
 void bhSysCallInit();
 void bhSysCallDiscChange();
 void bhSysCallSoundMuseum();
@@ -1732,8 +1732,8 @@ void bhSysCallSndMonitor();
 void bhSysCallScreenSaver();
 void bhReturnTitle();
 void bhExitGame();
-/*void bhSetEventTimer(int mode);
-void EasyDispMessage(float PosY, unsigned int MessageNo);*/
+void bhSetEventTimer(int mode);
+void EasyDispMessage(float PosY, unsigned int MessageNo);
 
 // 100% matching!
 int bhCalcVtxBuffer()
@@ -1741,63 +1741,63 @@ int bhCalcVtxBuffer()
     return 0;
 }
 
-// 
-// Start address: 0x131ba0
+// 100% matching! 
 void bhChangeHWSetting()
-{
-	// Line 350, Address: 0x131ba0, Func Offset: 0
-	// Line 351, Address: 0x131ba8, Func Offset: 0x8
-	// Line 352, Address: 0x131bb4, Func Offset: 0x14
-	// Line 351, Address: 0x131bb8, Func Offset: 0x18
-	// Line 352, Address: 0x131bc0, Func Offset: 0x20
-	// Line 354, Address: 0x131bd4, Func Offset: 0x34
-	// Line 355, Address: 0x131be4, Func Offset: 0x44
-	// Line 356, Address: 0x131bf0, Func Offset: 0x50
-	// Line 357, Address: 0x131bf4, Func Offset: 0x54
-	// Line 359, Address: 0x131bf8, Func Offset: 0x58
-	// Line 355, Address: 0x131bfc, Func Offset: 0x5c
-	// Line 356, Address: 0x131c00, Func Offset: 0x60
-	// Line 357, Address: 0x131c0c, Func Offset: 0x6c
-	// Line 358, Address: 0x131c18, Func Offset: 0x78
-	// Line 359, Address: 0x131c24, Func Offset: 0x84
-	// Line 360, Address: 0x131c2c, Func Offset: 0x8c
-	// Line 362, Address: 0x131c34, Func Offset: 0x94
-	// Line 363, Address: 0x131c44, Func Offset: 0xa4
-	// Line 364, Address: 0x131c50, Func Offset: 0xb0
-	// Line 365, Address: 0x131c54, Func Offset: 0xb4
-	// Line 367, Address: 0x131c58, Func Offset: 0xb8
-	// Line 363, Address: 0x131c5c, Func Offset: 0xbc
-	// Line 364, Address: 0x131c60, Func Offset: 0xc0
-	// Line 365, Address: 0x131c6c, Func Offset: 0xcc
-	// Line 366, Address: 0x131c78, Func Offset: 0xd8
-	// Line 367, Address: 0x131c84, Func Offset: 0xe4
-	// Line 369, Address: 0x131c90, Func Offset: 0xf0
-	// Line 371, Address: 0x131ca0, Func Offset: 0x100
-	// Line 369, Address: 0x131ca4, Func Offset: 0x104
-	// Line 371, Address: 0x131ca8, Func Offset: 0x108
-	// Line 372, Address: 0x131cc8, Func Offset: 0x128
-	// Line 374, Address: 0x131cd0, Func Offset: 0x130
-	// Line 376, Address: 0x131cdc, Func Offset: 0x13c
-	// Line 374, Address: 0x131ce0, Func Offset: 0x140
-	// Line 382, Address: 0x131cec, Func Offset: 0x14c
-	// Line 374, Address: 0x131cf4, Func Offset: 0x154
-	// Line 376, Address: 0x131d04, Func Offset: 0x164
-	// Line 382, Address: 0x131d18, Func Offset: 0x178
-	// Line 383, Address: 0x131d28, Func Offset: 0x188
-	// Line 384, Address: 0x131d30, Func Offset: 0x190
-	// Line 385, Address: 0x131d38, Func Offset: 0x198
-	// Line 388, Address: 0x131d40, Func Offset: 0x1a0
-	// Line 390, Address: 0x131d58, Func Offset: 0x1b8
-	// Line 391, Address: 0x131d70, Func Offset: 0x1d0
-	// Line 396, Address: 0x131d90, Func Offset: 0x1f0
-	// Line 399, Address: 0x131d98, Func Offset: 0x1f8
-	// Line 396, Address: 0x131da0, Func Offset: 0x200
-	// Line 399, Address: 0x131da8, Func Offset: 0x208
-	// Line 400, Address: 0x131e20, Func Offset: 0x280
-	// Line 405, Address: 0x131e3c, Func Offset: 0x29c
-	// Func End, Address: 0x131e48, Func Offset: 0x2a8
-	scePrintf("bhChangeHWSetting - UNIMPLEMENTED!\n");
-}
+{ 
+    sys->ss_flg ^= 2; 
+    
+    if ((sys->ss_flg & 0x2)) 
+    { 
+        sys->fog_cngct = 3;
+        
+        hws->vtx_opq_a = 589824; 
+        hws->vtx_opq_b = 16384; 
+        
+        hws->vtx_trs_a = 196608; 
+        hws->vtx_trs_b = 16384; 
+        
+        hws->vtx_punch = 16128; 
+    }
+    else 
+    {
+        sys->fog_cngct = 2; 
+        
+        hws->vtx_opq_a = -589824; 
+        hws->vtx_opq_b = 32768; 
+        
+        hws->vtx_trs_a = 327680; 
+        hws->vtx_trs_b = 32768; 
+        
+        hws->vtx_punch = 32512; 
+    }
+    
+    hws->vtx_total = bhCalcVtxBuffer(); 
+
+    njpmemp = &freemem[12255232 - hws->vtx_total]; 
+    
+    npPlusInit(); 
+
+    vwbmemp = &freemem[12517376 - hws->vtx_total]; 
+    vebmemp = &freemem[12845056 - hws->vtx_total]; 
+
+    if ((sys->gm_flg & 0x1)) 
+    { 
+        njWaitVSync(); 
+        njWaitVSync(); 
+        njWaitVSync(); 
+    }
+
+    njChangeSystem(hws->mode, hws->frame, hws->count); 
+
+    njSetVertexBuffer((unsigned int*)vebmemp, hws->vtx_total); 
+    njInitVertexBuffer(hws->vtx_opq_a, hws->vtx_opq_b, hws->vtx_trs_a, hws->vtx_trs_b, hws->vtx_punch); 
+
+    _nj_vertex_buf_ = (NJS_VERTEX_BUF*)vwbmemp; 
+
+    mwPlySetDispMode(hws->mode, hws->frame, hws->count, (hws->vtx_opq_a < 0) ? 2 : (hws->vtx_opq_b < 0) ? 2 : (hws->vtx_trs_a < 0) ? 2 : (hws->vtx_trs_b < 0) ? 2 : (hws->vtx_punch < 0) ? 2 : 3); 
+    
+    sys->endp = njpmemp; 
+} 
 
 // 99.93% matching
 void bhInitSystem()

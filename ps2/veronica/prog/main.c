@@ -101,8 +101,8 @@ BH_PWORK ene[128];
 //BH_PWORK* plp = &ply; // TODO: needs to be accessed from here
 NJS_TEXMEMLIST tbuf[256];
 NJS_VIEW view;
-NO_NAME_13 hwsp;
-NO_NAME_13* hws = &hwsp;
+HWS_WORK hwsp;
+HWS_WORK* hws = &hwsp;
 SYS_WORK sysp;
 SYS_WORK* sys = &sysp;
 char BIO_CURRENT[64];
