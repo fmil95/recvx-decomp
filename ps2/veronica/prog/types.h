@@ -2287,3 +2287,10 @@ typedef struct ROM_WORK
     float amb_g[4]; // offset 0x3CC, size 0x10
     float amb_b[4]; // offset 0x3DC, size 0x10
 } ROM_WORK;
+
+typedef enum _enum_2
+{
+	MP_SET_GAME,
+	MP_SET_EVENT,
+	MP_SET_SUB
+} _enum_2;

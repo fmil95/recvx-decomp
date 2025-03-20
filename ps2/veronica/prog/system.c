@@ -2384,92 +2384,139 @@ void bhSysCallEvent()
 	scePrintf("bhSysCallEvent - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x133690
+// 100% matching! 
 void bhSysCallMap()
 {
-	int bol;
-	//int bol;
-	// Line 1472, Address: 0x133690, Func Offset: 0
-	// Line 1473, Address: 0x13369c, Func Offset: 0xc
-	// Line 1476, Address: 0x1336d8, Func Offset: 0x48
-	// Line 1477, Address: 0x1336e8, Func Offset: 0x58
-	// Line 1478, Address: 0x1336ec, Func Offset: 0x5c
-	// Line 1477, Address: 0x1336f0, Func Offset: 0x60
-	// Line 1478, Address: 0x1336f8, Func Offset: 0x68
-	// Line 1479, Address: 0x133704, Func Offset: 0x74
-	// Line 1481, Address: 0x13370c, Func Offset: 0x7c
-	// Line 1482, Address: 0x133738, Func Offset: 0xa8
-	// Line 1483, Address: 0x133744, Func Offset: 0xb4
-	// Line 1485, Address: 0x13374c, Func Offset: 0xbc
-	// Line 1487, Address: 0x13376c, Func Offset: 0xdc
-	// Line 1491, Address: 0x133774, Func Offset: 0xe4
-	// Line 1493, Address: 0x133780, Func Offset: 0xf0
-	// Line 1494, Address: 0x1337a0, Func Offset: 0x110
-	// Line 1495, Address: 0x1337d0, Func Offset: 0x140
-	// Line 1497, Address: 0x1337d8, Func Offset: 0x148
-	// Line 1498, Address: 0x1337e0, Func Offset: 0x150
-	// Line 1504, Address: 0x133804, Func Offset: 0x174
-	// Line 1505, Address: 0x133814, Func Offset: 0x184
-	// Line 1509, Address: 0x133818, Func Offset: 0x188
-	// Line 1504, Address: 0x13381c, Func Offset: 0x18c
-	// Line 1505, Address: 0x133820, Func Offset: 0x190
-	// Line 1511, Address: 0x133824, Func Offset: 0x194
-	// Line 1504, Address: 0x133828, Func Offset: 0x198
-	// Line 1505, Address: 0x133830, Func Offset: 0x1a0
-	// Line 1506, Address: 0x133838, Func Offset: 0x1a8
-	// Line 1508, Address: 0x133844, Func Offset: 0x1b4
-	// Line 1506, Address: 0x133848, Func Offset: 0x1b8
-	// Line 1508, Address: 0x133850, Func Offset: 0x1c0
-	// Line 1509, Address: 0x133858, Func Offset: 0x1c8
-	// Line 1508, Address: 0x13385c, Func Offset: 0x1cc
-	// Line 1509, Address: 0x133864, Func Offset: 0x1d4
-	// Line 1510, Address: 0x13386c, Func Offset: 0x1dc
-	// Line 1509, Address: 0x133870, Func Offset: 0x1e0
-	// Line 1510, Address: 0x133878, Func Offset: 0x1e8
-	// Line 1511, Address: 0x133880, Func Offset: 0x1f0
-	// Line 1510, Address: 0x133884, Func Offset: 0x1f4
-	// Line 1511, Address: 0x13388c, Func Offset: 0x1fc
-	// Line 1512, Address: 0x13389c, Func Offset: 0x20c
-	// Line 1513, Address: 0x1338a8, Func Offset: 0x218
-	// Line 1512, Address: 0x1338ac, Func Offset: 0x21c
-	// Line 1513, Address: 0x1338b4, Func Offset: 0x224
-	// Line 1514, Address: 0x1338d0, Func Offset: 0x240
-	// Line 1515, Address: 0x1338f0, Func Offset: 0x260
-	// Line 1516, Address: 0x1338f8, Func Offset: 0x268
-	// Line 1521, Address: 0x133900, Func Offset: 0x270
-	// Line 1523, Address: 0x133908, Func Offset: 0x278
-	// Line 1524, Address: 0x133910, Func Offset: 0x280
-	// Line 1523, Address: 0x133914, Func Offset: 0x284
-	// Line 1524, Address: 0x13391c, Func Offset: 0x28c
-	// Line 1525, Address: 0x133924, Func Offset: 0x294
-	// Line 1526, Address: 0x13392c, Func Offset: 0x29c
-	// Line 1531, Address: 0x133950, Func Offset: 0x2c0
-	// Line 1533, Address: 0x13395c, Func Offset: 0x2cc
-	// Line 1534, Address: 0x13397c, Func Offset: 0x2ec
-	// Line 1535, Address: 0x1339ac, Func Offset: 0x31c
-	// Line 1537, Address: 0x1339b4, Func Offset: 0x324
-	// Line 1538, Address: 0x1339bc, Func Offset: 0x32c
-	// Line 1544, Address: 0x1339e0, Func Offset: 0x350
-	// Line 1546, Address: 0x133a00, Func Offset: 0x370
-	// Line 1551, Address: 0x133a10, Func Offset: 0x380
-	// Line 1546, Address: 0x133a14, Func Offset: 0x384
-	// Line 1547, Address: 0x133a18, Func Offset: 0x388
-	// Line 1546, Address: 0x133a1c, Func Offset: 0x38c
-	// Line 1547, Address: 0x133a24, Func Offset: 0x394
-	// Line 1550, Address: 0x133a2c, Func Offset: 0x39c
-	// Line 1547, Address: 0x133a30, Func Offset: 0x3a0
-	// Line 1550, Address: 0x133a38, Func Offset: 0x3a8
-	// Line 1551, Address: 0x133a40, Func Offset: 0x3b0
-	// Line 1550, Address: 0x133a44, Func Offset: 0x3b4
-	// Line 1551, Address: 0x133a4c, Func Offset: 0x3bc
-	// Line 1552, Address: 0x133a54, Func Offset: 0x3c4
-	// Line 1551, Address: 0x133a58, Func Offset: 0x3c8
-	// Line 1552, Address: 0x133a60, Func Offset: 0x3d0
-	// Line 1557, Address: 0x133a70, Func Offset: 0x3e0
-	// Line 1558, Address: 0x133a78, Func Offset: 0x3e8
-	// Func End, Address: 0x133a88, Func Offset: 0x3f8
-	scePrintf("bhSysCallMap - UNIMPLEMENTED!\n");
+    switch (sys->mpmd) 
+    {
+    case 0:
+        if (!(sys->cb_flg & 0x2))
+        {
+            sys->sp_flg |= 0x20;
+            
+            sys->ts_flg |= 0x180;
+            
+            njFogDisable();
+            
+            if ((sys->cb_flg & 0x10000)) 
+            {
+                bhInitMap(MP_SET_EVENT);
+            } 
+            else 
+            {
+                bhInitMap(MP_SET_GAME);
+            }
+            
+            bhSetMap();
+            
+            sys->mpmd++;
+        }
+        
+        break;
+    case 1:
+    {
+        int bol;
+        
+        bol = bhControlMap();
+        
+        if ((sys->cb_flg & 0x2)) 
+        {
+            bhControlScreenFade();
+        }
+        
+        if (sys->fade_an > 0) 
+        {
+            bhDrawScreenFade();
+        }
+        
+        if (bol != 0) 
+        {
+            break;
+        }
+        
+        bhExitMap();
+        
+        sys->mpmd++;
+    }
+    case 2:
+        sys->st_flg &= ~0x40000;
+        
+        sys->sp_flg = ~0x0;
+        
+        sys->st_flg &= ~0x40000;
+        
+        sys->ts_flg |= 0x400;
+        sys->ts_flg &= ~0x180;
+        
+        sys->gm_flg |= 0x10;
+        
+        sys->bcl_ct = 1;
+        
+        sys->gm_flg |= 0x8000;
+        
+        if ((sys->st_flg & 0x2))
+        {
+            njFogEnable();
+        }
+        
+        bhSetScreenFade(sys->fade_pbk, 3.0f);
+        
+        bhStandPlayerMotion();
+        break;
+    case 4:
+        njFogDisable();
+        
+        sys->fade_pbk = 0;
+        
+        bhInitMap(MP_SET_SUB);
+        
+        bhSetMap();
+        
+        sys->mpmd++;
+    case 5:
+    {
+        int bol;
+       
+        bol = bhControlMap();
+        
+        if ((sys->cb_flg & 0x2)) 
+        {
+            bhControlScreenFade();
+        }
+        
+        if (sys->fade_an > 0) 
+        {
+            bhDrawScreenFade();
+        }
+        
+        if (bol != 0) 
+        {
+            break;
+        }
+        
+        bhExitMap();
+        
+        sys->mpmd++;
+    }
+    case 6:
+        if ((sys->st_flg & 0x2))
+        {
+            njFogEnable();
+        }
+        
+        sys->st_flg &= ~0x40000;
+        
+        sys->ts_flg |= 0x400;
+        
+        sys->tk_flg |= 0x200;
+        
+        sys->ts_flg &= ~0x200;
+        
+        sys->st_flg |= 0x8;
+        break;
+    }
+    
+    StatusMapFlagInit();
 }
 
 // 100% matching! 

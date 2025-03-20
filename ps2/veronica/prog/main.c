@@ -89,6 +89,7 @@
 #include "screen.c"
 #include "door.c"
 #include "sub1.c"
+#include "map.c"
 #include "effect.c"
 #include "system.c"
 

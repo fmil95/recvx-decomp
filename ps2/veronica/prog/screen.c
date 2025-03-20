@@ -1406,7 +1406,7 @@ void bhSetScreenFade(unsigned int argb, float ct)
 	scePrintf("bhSetScreenFade - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x26bd70
 void bhControlScreenFade()
 {
@@ -1440,7 +1440,8 @@ void bhControlScreenFade()
 	// Line 142, Address: 0x26c040, Func Offset: 0x2d0
 	// Line 146, Address: 0x26c060, Func Offset: 0x2f0
 	// Func End, Address: 0x26c068, Func Offset: 0x2f8
-}*/
+	scePrintf("bhControlScreenFade - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x26c070
