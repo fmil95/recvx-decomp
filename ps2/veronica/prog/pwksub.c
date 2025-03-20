@@ -1649,9 +1649,9 @@ struct _anon47
 	_anon23 v[8];
 };
 
-_anon12* sys;
+_anon12* sys;*/
 unsigned char* freemem;
-BH_PWORK* plp;
+/*BH_PWORK* plp;
 char PlyFlip[0];
 float PlyInfo[2][0];
 _anon1 eff[0];
@@ -1688,24 +1688,27 @@ void bhSetYakkyou(BH_PWORK* pp, int wno, int jno, int hand);
 void bhSetMagazine(BH_PWORK* pp, int wno, int jno, int hand, int ang);
 void bhSetLighterFire(_anon1* op, int flg);*/
 
-// 
-// Start address: 0x14dfb0
+// 100% matching! 
 unsigned char* bhGetFreeMemory(int size, int param) // second parameter is not present on the debugging symbols  
 {
-	// Line 111, Address: 0x14dfb0, Func Offset: 0
-	// Line 121, Address: 0x14dfc0, Func Offset: 0x10
-	// Line 123, Address: 0x14dfdc, Func Offset: 0x2c
-	// Line 121, Address: 0x14dfe0, Func Offset: 0x30
-	// Line 123, Address: 0x14dfec, Func Offset: 0x3c
-	// Line 127, Address: 0x14e028, Func Offset: 0x78
-	// Line 128, Address: 0x14e038, Func Offset: 0x88
-	// Line 129, Address: 0x14e040, Func Offset: 0x90
-	// Line 128, Address: 0x14e048, Func Offset: 0x98
-	// Line 129, Address: 0x14e064, Func Offset: 0xb4
-	// Line 130, Address: 0x14e07c, Func Offset: 0xcc
-	// Line 131, Address: 0x14e080, Func Offset: 0xd0
-	// Func End, Address: 0x14e094, Func Offset: 0xe4
-	scePrintf("bhGetFreeMemory - UNIMPLEMENTED!\n");
+    unsigned char *temp; // not from the debugging symbols
+    
+    sys->memp = (unsigned char*)(((int)sys->memp + 63) & ~0x3F);
+    
+    if (((sys->memp + size) - freemem) > 12845056) 
+    {
+        return NULL;
+    } 
+    
+    temp = sys->memp;
+    
+    npSetMemory(temp, size, 0);
+    
+    sys->memp += size;
+    
+    printf("malloc area = %x\n", sys->memp);
+    
+    return temp;
 }
 
 /*// 
