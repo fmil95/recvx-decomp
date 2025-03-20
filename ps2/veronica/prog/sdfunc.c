@@ -3624,13 +3624,13 @@ int ChechPlayEnemySe(int EnemyNo, int SeNo)
 	// Line 2648, Address: 0x2952b8, Func Offset: 0x58
 	// Line 2649, Address: 0x2952bc, Func Offset: 0x5c
 	// Func End, Address: 0x2952c4, Func Offset: 0x64
-}
+}*/
 
 // 
 // Start address: 0x2952d0
 void AllStopEnemySe()
 {
-	_anon0* esp;
+	//_anon0* esp;
 	int i;
 	// Line 2658, Address: 0x2952d0, Func Offset: 0
 	// Line 2662, Address: 0x2952e0, Func Offset: 0x10
@@ -3650,9 +3650,10 @@ void AllStopEnemySe()
 	// Line 2672, Address: 0x295348, Func Offset: 0x78
 	// Line 2673, Address: 0x295350, Func Offset: 0x80
 	// Func End, Address: 0x295368, Func Offset: 0x98
+	scePrintf("AllStopEnemySe - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x295370
 void CallEnemySe(int SlotNo, _anon16* pPos, int SeNo)
 {

@@ -1715,7 +1715,7 @@ void bhControlSpEvtComputer()
 	scePrintf("bhControlSpEvtComputer - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2bd080
 void bhKeepSpEvtComputer()
 {
@@ -1725,9 +1725,10 @@ void bhKeepSpEvtComputer()
 	// Line 104, Address: 0x2bd0b4, Func Offset: 0x34
 	// Line 106, Address: 0x2bd0d4, Func Offset: 0x54
 	// Func End, Address: 0x2bd0e0, Func Offset: 0x60
+	scePrintf("bhKeepSpEvtComputer - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2bd0e0
 void bhInitSpEvtComputer()
 {
