@@ -1674,19 +1674,19 @@ _anon43* hws;
 _anon11* _nj_vertex_buf_;
 unsigned char* vwbmemp;
 unsigned char* vebmemp;
-unsigned char* freemem;
-unsigned char PauseBtn;*/
+unsigned char* freemem;*/
+unsigned char PauseBtn;
 unsigned char NowLoadDisp;
-/*unsigned char Pause_Flag;
-unsigned char pl_sleep_cnt;*/
+unsigned char Pause_Flag;
+/*unsigned char pl_sleep_cnt;*/
 BH_PWORK ply;
 BH_PWORK *plp = &ply;
 /*unsigned char* keepmem;
 float BHD_ASPECT_Y;
 float BHD_ASPECT_X;
-unsigned char BackColorFlag;
-_anon16 Ps2_pad;
-int pd_port;*/
+unsigned char BackColorFlag;*/
+PAD_WRK Ps2_pad;
+int pd_port;
 ROM_WORK* rom;
 NJS_TEXMEMLIST tbuf[256];
 int SoftResetFlag;
@@ -2298,90 +2298,115 @@ void bhCheckSubTask()
 	scePrintf("bhCheckSubTask - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1331a0
+// 100% matching! 
 void bhSysCallEvent()
 {
-	unsigned int cb_flg;
-	// Line 1316, Address: 0x1331a0, Func Offset: 0
-	// Line 1318, Address: 0x1331ac, Func Offset: 0xc
-	// Line 1325, Address: 0x1331cc, Func Offset: 0x2c
-	// Line 1368, Address: 0x1332ac, Func Offset: 0x10c
-	// Line 1370, Address: 0x1332b4, Func Offset: 0x114
-	// Line 1377, Address: 0x1332bc, Func Offset: 0x11c
-	// Line 1368, Address: 0x1332c0, Func Offset: 0x120
-	// Line 1370, Address: 0x1332c8, Func Offset: 0x128
-	// Line 1372, Address: 0x1332cc, Func Offset: 0x12c
-	// Line 1373, Address: 0x1332e4, Func Offset: 0x144
-	// Line 1374, Address: 0x133304, Func Offset: 0x164
-	// Line 1375, Address: 0x133324, Func Offset: 0x184
-	// Line 1376, Address: 0x133344, Func Offset: 0x1a4
-	// Line 1377, Address: 0x133350, Func Offset: 0x1b0
-	// Line 1378, Address: 0x133360, Func Offset: 0x1c0
-	// Line 1381, Address: 0x133368, Func Offset: 0x1c8
-	// Line 1384, Address: 0x13337c, Func Offset: 0x1dc
-	// Line 1385, Address: 0x133390, Func Offset: 0x1f0
-	// Line 1395, Address: 0x133394, Func Offset: 0x1f4
-	// Line 1396, Address: 0x13339c, Func Offset: 0x1fc
-	// Line 1399, Address: 0x1333c0, Func Offset: 0x220
-	// Line 1409, Address: 0x1333c4, Func Offset: 0x224
-	// Line 1399, Address: 0x1333c8, Func Offset: 0x228
-	// Line 1400, Address: 0x1333cc, Func Offset: 0x22c
-	// Line 1399, Address: 0x1333d0, Func Offset: 0x230
-	// Line 1400, Address: 0x1333dc, Func Offset: 0x23c
-	// Line 1401, Address: 0x1333f0, Func Offset: 0x250
-	// Line 1402, Address: 0x133410, Func Offset: 0x270
-	// Line 1403, Address: 0x133430, Func Offset: 0x290
-	// Line 1404, Address: 0x133450, Func Offset: 0x2b0
-	// Line 1405, Address: 0x133464, Func Offset: 0x2c4
-	// Line 1406, Address: 0x133478, Func Offset: 0x2d8
-	// Line 1409, Address: 0x13348c, Func Offset: 0x2ec
-	// Line 1408, Address: 0x133494, Func Offset: 0x2f4
-	// Line 1418, Address: 0x13349c, Func Offset: 0x2fc
-	// Line 1419, Address: 0x1334b4, Func Offset: 0x314
-	// Line 1420, Address: 0x1334d4, Func Offset: 0x334
-	// Line 1423, Address: 0x1334dc, Func Offset: 0x33c
-	// Line 1424, Address: 0x1334e4, Func Offset: 0x344
-	// Line 1428, Address: 0x1334ec, Func Offset: 0x34c
-	// Line 1429, Address: 0x133510, Func Offset: 0x370
-	// Line 1430, Address: 0x133520, Func Offset: 0x380
-	// Line 1431, Address: 0x133524, Func Offset: 0x384
-	// Line 1429, Address: 0x13352c, Func Offset: 0x38c
-	// Line 1430, Address: 0x133530, Func Offset: 0x390
-	// Line 1429, Address: 0x133534, Func Offset: 0x394
-	// Line 1430, Address: 0x13353c, Func Offset: 0x39c
-	// Line 1431, Address: 0x133544, Func Offset: 0x3a4
-	// Line 1430, Address: 0x133548, Func Offset: 0x3a8
-	// Line 1431, Address: 0x133550, Func Offset: 0x3b0
-	// Line 1432, Address: 0x133558, Func Offset: 0x3b8
-	// Line 1431, Address: 0x13355c, Func Offset: 0x3bc
-	// Line 1432, Address: 0x133564, Func Offset: 0x3c4
-	// Line 1435, Address: 0x13356c, Func Offset: 0x3cc
-	// Line 1436, Address: 0x133590, Func Offset: 0x3f0
-	// Line 1439, Address: 0x1335a8, Func Offset: 0x408
-	// Line 1440, Address: 0x1335c4, Func Offset: 0x424
-	// Line 1449, Address: 0x1335c8, Func Offset: 0x428
-	// Line 1441, Address: 0x1335d0, Func Offset: 0x430
-	// Line 1447, Address: 0x1335d4, Func Offset: 0x434
-	// Line 1440, Address: 0x1335d8, Func Offset: 0x438
-	// Line 1441, Address: 0x1335e0, Func Offset: 0x440
-	// Line 1461, Address: 0x1335e4, Func Offset: 0x444
-	// Line 1451, Address: 0x1335e8, Func Offset: 0x448
-	// Line 1461, Address: 0x1335ec, Func Offset: 0x44c
-	// Line 1441, Address: 0x1335f0, Func Offset: 0x450
-	// Line 1442, Address: 0x1335fc, Func Offset: 0x45c
-	// Line 1443, Address: 0x133614, Func Offset: 0x474
-	// Line 1447, Address: 0x13362c, Func Offset: 0x48c
-	// Line 1449, Address: 0x133638, Func Offset: 0x498
-	// Line 1451, Address: 0x133644, Func Offset: 0x4a4
-	// Line 1449, Address: 0x133648, Func Offset: 0x4a8
-	// Line 1451, Address: 0x133650, Func Offset: 0x4b0
-	// Line 1461, Address: 0x133658, Func Offset: 0x4b8
-	// Line 1451, Address: 0x13365c, Func Offset: 0x4bc
-	// Line 1461, Address: 0x133664, Func Offset: 0x4c4
-	// Line 1466, Address: 0x133674, Func Offset: 0x4d4
-	// Func End, Address: 0x133684, Func Offset: 0x4e4
-	scePrintf("bhSysCallEvent - UNIMPLEMENTED!\n");
+    unsigned int cb_flg;
+    
+    if (sys->loop_ct >= 2) 
+    {
+        return;
+    }
+    
+    if (((sys->tk_flg & 0x80)) && ((!(sys->ts_flg & 0x80)) && ((sys->ts_flg & 0x3DE00) == 0x3DE00)) && (!(sys->tk_flg & 0x40000)) && (!(sys->cb_flg & 0x7)) && (!(sys->st_flg & 0x1C040208)) && ((!(sys->ss_flg & 0x20000000)) && (!(sys->ss_flg & 0x80400000))) && ((Pause_Flag != 0) || (((sys->pad_on & 0x80)) && ((sys->pad_ps & 0x20000)) && (PauseBtn == 0))))
+    {
+        sys->ss_flg |= 0x80000000;
+        
+        Pause_Flag = 1;
+        
+        sys->pau_spbak = sys->sp_flg;
+        
+        sys->pau_pad_on = sys->pad_on;
+        sys->pau_pad_ps = sys->pad_ps;
+        sys->pau_pad_old = sys->pad_old;
+        
+        sys->sp_flg = 0;
+        
+        sys->ssv_md0 = 10;
+        return;
+    }
+    
+    if (PauseBtn != 0) 
+    {
+        PauseBtn = 0;
+    }
+    
+    if ((sys->ss_flg & 0x80000000)) 
+    {
+        sys->sp_flg = 0;
+        
+        pdGetPeripheral(0);
+        
+        if ((pd_port != -1) && ((Ps2_pad.pad1.push & 0x800))) 
+        {
+            sys->ss_flg &= ~0x80000000;
+            
+            sys->sp_flg = sys->pau_spbak;
+            
+            sys->pad_on = sys->pau_pad_on;
+            sys->pad_ps = sys->pau_pad_ps;
+            sys->pad_old = sys->pau_pad_old;
+            
+            sys->ssv_md0 = 0;
+            sys->ssv_tim = 0;
+            sys->ssv_an = 0;
+            
+            PauseBtn = 1;
+            Pause_Flag = 0;
+        }
+        else
+        {
+            return;
+        }
+    }
+    
+    if ((sys->st_flg & 0x200))
+    {
+        if ((sys->ts_flg & 0x200)) 
+        {
+            bhControlMessage(0);
+        } 
+        else 
+        {
+            bhControlMessage(1);
+        }
+    }
+    
+    cb_flg = sys->cb_flg;
+    
+    bhControlEvent();
+    
+    if ((!(sys->cb_flg & 0x4)) && ((cb_flg & 0x4))) 
+    {
+        plp->flg &= ~0x10000;
+        plp->stflg &= ~0x18000;
+        
+        sys->cb_flg &= ~0x10000000;
+        
+        plp->mode3 = 0;
+    }
+    
+    if ((!(sys->cb_flg & 0x1)) && ((cb_flg & 0x1))) 
+    {
+        plp->stflg  &= ~0x80000000;
+    }
+    
+    if ((sys->cb_flg & 0x4000000)) 
+    {
+        sys->sp_flg |= 0x20;
+        
+        sys->mvi_md = 0;
+        
+        sys->mvi_tsb = sys->ts_flg;
+        sys->mvi_spb = sys->sp_flg;
+        
+        sys->sp_flg = 4;
+        
+        sys->cb_flg &= ~0x4000000;
+        
+        sys->ts_flg &= ~0x1000;
+        sys->ts_flg |= 0x7CF00;
+    }
 }
 
 // 100% matching! 

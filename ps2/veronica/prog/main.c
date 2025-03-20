@@ -91,6 +91,7 @@
 #include "sub1.c"
 #include "map.c"
 #include "effect.c"
+#include "event.c"
 #include "system.c"
 
 typedef void(*fn)();

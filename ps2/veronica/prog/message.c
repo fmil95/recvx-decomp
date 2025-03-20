@@ -1569,7 +1569,7 @@ void bhSetMessage(int mes_typ, int mes_idx)
 	// Line 146, Address: 0x2b7658, Func Offset: 0x148
 	// Line 147, Address: 0x2b7668, Func Offset: 0x158
 	// Func End, Address: 0x2b7670, Func Offset: 0x160
-}
+}*/
 
 // 
 // Start address: 0x2b7670
@@ -1582,7 +1582,7 @@ void bhControlMessage(int mode)
 	unsigned short id;
 	unsigned short cd;
 	unsigned short* dt;
-	_anon2 pos;
+	//_anon2 pos;
 	// Line 160, Address: 0x2b7670, Func Offset: 0
 	// Line 164, Address: 0x2b7698, Func Offset: 0x28
 	// Line 165, Address: 0x2b76ac, Func Offset: 0x3c
@@ -1762,9 +1762,10 @@ void bhControlMessage(int mode)
 	// Line 393, Address: 0x2b8158, Func Offset: 0xae8
 	// Line 395, Address: 0x2b815c, Func Offset: 0xaec
 	// Func End, Address: 0x2b8188, Func Offset: 0xb18
+	scePrintf("bhControlMessage - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2b8190
 void bhDispFont(_anon2* pos, int code, int color, float pri)
 {

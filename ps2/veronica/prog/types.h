@@ -2294,3 +2294,10 @@ typedef enum _enum_2
 	MP_SET_EVENT,
 	MP_SET_SUB
 } _enum_2;
+
+typedef struct PAD_WRK
+{
+    // total size: 0x84
+	PAD_WORK pad1; // offset 0x0, size 0x42
+	PAD_WORK pad2; // offset 0x42, size 0x42
+} PAD_WRK;
