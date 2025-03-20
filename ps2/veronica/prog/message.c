@@ -1521,12 +1521,12 @@ struct _anon46
 float mes_spos[4][3];
 unsigned char FontSz[126];
 _anon28* sys;
-_anon10* rom;
+_anon10* rom;*/
 float FontScaleX;
 float FontScaleCR;
 float FontScaleY;
 
-void bhSetMessage(int mes_typ, int mes_idx);
+/*void bhSetMessage(int mes_typ, int mes_idx);
 void bhControlMessage(int mode);
 void bhDispFont(_anon2* pos, int code, int color, float pri);
 void bhDispFontEx(_anon2* pos, int code, unsigned int argb, float pri);
@@ -2315,15 +2315,11 @@ float bhMesLen(unsigned short* dp)
 	// Func End, Address: 0x2b9a48, Func Offset: 0x198
 }*/
 
-// 
-// Start address: 0x2b9a50
-void bhFontScaleSet(float ScaleX, float ScaleY, float ScaleCR)
+// 100% matching! 
+void bhFontScaleSet(float ScaleX, float ScaleY, float ScaleCR) 
 {
-	// Line 1235, Address: 0x2b9a50, Func Offset: 0
-	// Line 1236, Address: 0x2b9a58, Func Offset: 0x8
-	// Line 1237, Address: 0x2b9a60, Func Offset: 0x10
-	// Line 1238, Address: 0x2b9a64, Func Offset: 0x14
-	// Func End, Address: 0x2b9a6c, Func Offset: 0x1c
-	scePrintf("bhFontScaleSet - UNIMPLEMENTED!\n");
+    FontScaleX = ScaleX; 
+    FontScaleY = ScaleY; 
+    
+    FontScaleCR = ScaleCR; 
 }
-
