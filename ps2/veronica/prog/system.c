@@ -1673,16 +1673,16 @@ SYS_WORK* sys;
 _anon43* hws;
 _anon11* _nj_vertex_buf_;
 unsigned char* vwbmemp;
-unsigned char* vebmemp;
-unsigned char* freemem;*/
+unsigned char* vebmemp;*/
+unsigned char* freemem;
 unsigned char PauseBtn;
 unsigned char NowLoadDisp;
 unsigned char Pause_Flag;
-/*unsigned char pl_sleep_cnt;*/
+unsigned char pl_sleep_cnt;
 BH_PWORK ply;
 BH_PWORK *plp = &ply;
-/*unsigned char* keepmem;
-float BHD_ASPECT_Y;
+unsigned char* keepmem;
+/*float BHD_ASPECT_Y;
 float BHD_ASPECT_X;*/
 unsigned char BackColorFlag;
 PAD_WRK Ps2_pad;
@@ -1799,68 +1799,69 @@ void bhChangeHWSetting()
 	scePrintf("bhChangeHWSetting - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x131e50
+// 99.93% matching
 void bhInitSystem()
-{
-	unsigned int size;
-	unsigned int free;
-	// Line 411, Address: 0x131e50, Func Offset: 0
-	// Line 419, Address: 0x131e58, Func Offset: 0x8
-	// Line 421, Address: 0x131e60, Func Offset: 0x10
-	// Line 423, Address: 0x131e70, Func Offset: 0x20
-	// Line 421, Address: 0x131e7c, Func Offset: 0x2c
-	// Line 423, Address: 0x131e80, Func Offset: 0x30
-	// Line 421, Address: 0x131e84, Func Offset: 0x34
-	// Line 423, Address: 0x131e8c, Func Offset: 0x3c
-	// Line 424, Address: 0x131e98, Func Offset: 0x48
-	// Line 425, Address: 0x131eb4, Func Offset: 0x64
-	// Line 427, Address: 0x131ed0, Func Offset: 0x80
-	// Line 429, Address: 0x131efc, Func Offset: 0xac
-	// Line 430, Address: 0x131f04, Func Offset: 0xb4
-	// Line 461, Address: 0x131f0c, Func Offset: 0xbc
-	// Line 432, Address: 0x131f10, Func Offset: 0xc0
-	// Line 455, Address: 0x131f14, Func Offset: 0xc4
-	// Line 430, Address: 0x131f18, Func Offset: 0xc8
-	// Line 457, Address: 0x131f24, Func Offset: 0xd4
-	// Line 461, Address: 0x131f28, Func Offset: 0xd8
-	// Line 463, Address: 0x131f2c, Func Offset: 0xdc
-	// Line 430, Address: 0x131f30, Func Offset: 0xe0
-	// Line 432, Address: 0x131f44, Func Offset: 0xf4
-	// Line 467, Address: 0x131f4c, Func Offset: 0xfc
-	// Line 432, Address: 0x131f54, Func Offset: 0x104
-	// Line 438, Address: 0x131f60, Func Offset: 0x110
-	// Line 455, Address: 0x131f74, Func Offset: 0x124
-	// Line 456, Address: 0x131f80, Func Offset: 0x130
-	// Line 455, Address: 0x131f84, Func Offset: 0x134
-	// Line 456, Address: 0x131f8c, Func Offset: 0x13c
-	// Line 457, Address: 0x131f94, Func Offset: 0x144
-	// Line 456, Address: 0x131f98, Func Offset: 0x148
-	// Line 457, Address: 0x131fa0, Func Offset: 0x150
-	// Line 461, Address: 0x131fa8, Func Offset: 0x158
-	// Line 457, Address: 0x131fac, Func Offset: 0x15c
-	// Line 461, Address: 0x131fb4, Func Offset: 0x164
-	// Line 462, Address: 0x131fb8, Func Offset: 0x168
-	// Line 463, Address: 0x131fd4, Func Offset: 0x184
-	// Line 467, Address: 0x131fe4, Func Offset: 0x194
-	// Line 468, Address: 0x131fec, Func Offset: 0x19c
-	// Line 471, Address: 0x131ff4, Func Offset: 0x1a4
-	// Line 468, Address: 0x131ffc, Func Offset: 0x1ac
-	// Line 471, Address: 0x132000, Func Offset: 0x1b0
-	// Line 468, Address: 0x132008, Func Offset: 0x1b8
-	// Line 471, Address: 0x132010, Func Offset: 0x1c0
-	// Line 473, Address: 0x13201c, Func Offset: 0x1cc
-	// Line 474, Address: 0x132048, Func Offset: 0x1f8
-	// Line 475, Address: 0x132058, Func Offset: 0x208
-	// Line 485, Address: 0x132060, Func Offset: 0x210
-	// Line 479, Address: 0x132068, Func Offset: 0x218
-	// Line 485, Address: 0x13206c, Func Offset: 0x21c
-	// Line 488, Address: 0x13207c, Func Offset: 0x22c
-	// Line 489, Address: 0x132084, Func Offset: 0x234
-	// Line 490, Address: 0x13208c, Func Offset: 0x23c
-	// Line 492, Address: 0x132094, Func Offset: 0x244
-	// Func End, Address: 0x1320a0, Func Offset: 0x250
-	scePrintf("bhInitSystem - UNIMPLEMENTED!\n");
+{ 
+    unsigned int free;
+    unsigned int size;
+    
+    bhClearVSync(); 
+    
+    sys->ss_flg &= ~0x40440; 
+    
+    npSetMemory((unsigned char*)&sys->tk_flg, 175260, 0); 
+    
+    sys->memp = freemem; 
+    sys->endp = njpmemp;
+    
+    sys->memp += (int)&sys->save_end - (int)&sys->version;
+    
+    TypewriterKeepMemory();
+    
+    keepmem = sys->mempb = sys->memp; 
+    
+    sys->loop_ct = 1; 
+    
+    sys->p1per = NULL; 
+        
+    sys->pt_flg |= ~0x0; 
+    
+    sys->sp_flg |= ~0x0;
+    
+    sys->ss_flg &= ~0x300; 
+    
+    plp = &ply; 
+    
+    sys->plp = plp; 
+    
+    sys->ef_pbnk = 32; 
+    
+    syMallocStat(&free, &size); 
+    
+    sys->fsize = free; 
+    
+    njClipZ(-2.0f, -20000.0f); 
+    
+    if ((sys->ss_flg & 0x2)) 
+    { 
+        sys->fog_cngct = 3; 
+    } 
+    else 
+    {
+        sys->fog_cngct = 2; 
+    }
+
+    bhInitVSync(); 
+
+    pl_sleep_cnt = 0; 
+    
+    bhFontScaleSet(1.0f, 1.0f, 1.0f); 
+    
+    Pause_Flag = 0; 
+    
+    NowLoadDisp = 0; 
+    
+    PauseBtn = 0;
 }
 
 /*// 

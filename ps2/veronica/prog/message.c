@@ -2313,7 +2313,7 @@ float bhMesLen(unsigned short* dp)
 	// Line 1152, Address: 0x2b9a30, Func Offset: 0x180
 	// Line 1153, Address: 0x2b9a34, Func Offset: 0x184
 	// Func End, Address: 0x2b9a48, Func Offset: 0x198
-}
+}*/
 
 // 
 // Start address: 0x2b9a50
@@ -2324,5 +2324,6 @@ void bhFontScaleSet(float ScaleX, float ScaleY, float ScaleCR)
 	// Line 1237, Address: 0x2b9a60, Func Offset: 0x10
 	// Line 1238, Address: 0x2b9a64, Func Offset: 0x14
 	// Func End, Address: 0x2b9a6c, Func Offset: 0x1c
-}*/
+	scePrintf("bhFontScaleSet - UNIMPLEMENTED!\n");
+}
 

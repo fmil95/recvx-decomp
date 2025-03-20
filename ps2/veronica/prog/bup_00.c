@@ -1989,7 +1989,7 @@ void ControlTypewriter()
 	scePrintf("ControlTypewriter - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2c8b50
 void TypewriterKeepMemory()
 {
@@ -1999,9 +1999,10 @@ void TypewriterKeepMemory()
 	// Line 1119, Address: 0x2c8b5c, Func Offset: 0xc
 	// Line 1128, Address: 0x2c8b70, Func Offset: 0x20
 	// Func End, Address: 0x2c8b7c, Func Offset: 0x2c
+	scePrintf("TypewriterKeepMemory - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c8b80
 void CountDisplay(int disppoint, _anon5* pos, unsigned int col)
 {
