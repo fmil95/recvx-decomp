@@ -1989,17 +1989,10 @@ void ControlTypewriter()
 	scePrintf("ControlTypewriter - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c8b50
+// 100% matching! 
 void TypewriterKeepMemory()
 {
-	// Line 1118, Address: 0x2c8b50, Func Offset: 0
-	// Line 1119, Address: 0x2c8b54, Func Offset: 0x4
-	// Line 1118, Address: 0x2c8b58, Func Offset: 0x8
-	// Line 1119, Address: 0x2c8b5c, Func Offset: 0xc
-	// Line 1128, Address: 0x2c8b70, Func Offset: 0x20
-	// Func End, Address: 0x2c8b7c, Func Offset: 0x2c
-	scePrintf("TypewriterKeepMemory - UNIMPLEMENTED!\n");
+    sys->typ_exp = bhGetFreeMemory(800, 32);
 }
 
 /*// 

@@ -83,6 +83,7 @@
 #include "gameover.c"
 #include "ranking.c"
 #include "sp_evt.c"
+#include "pwksub.c"
 #include "bup_00.c"
 #include "message.c"
 #include "player.c"
