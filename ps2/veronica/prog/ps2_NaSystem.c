@@ -1677,18 +1677,18 @@ void Ps2InitFunc()
     VsyncFunc = null_func; 
 } 
 
-// 
-// Start address: 0x2e1410
+// 100% matching! 
 void 	njSetEORFunction( void (*func)(void) )
 {
-	// Line 156, Address: 0x2e1410, Func Offset: 0
-	// Line 157, Address: 0x2e1418, Func Offset: 0x8
-	// Line 158, Address: 0x2e1424, Func Offset: 0x14
-	// Line 159, Address: 0x2e142c, Func Offset: 0x1c
-	// Line 161, Address: 0x2e1434, Func Offset: 0x24
-	// Func End, Address: 0x2e143c, Func Offset: 0x2c
-	scePrintf("njSetEORFunction - UNIMPLEMENTED!\n");
-}
+    if (func == NULL) 
+    { 
+        EorFunc = null_func; 
+    } 
+    else 
+    {
+        EorFunc = func; 
+    }
+} 
 
 // TODO: include the following define from cpureg.h
 #define	SR_CU0		0x10000000	/* Coprocessor 0 usable */
