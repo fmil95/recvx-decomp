@@ -1757,19 +1757,20 @@ void Ps2SetVSyncCounter()
     EnableIntc(2);
 }
 
-// 
-// Start address: 0x2e15f0
+// 100% matching! 
 void	njSetVSyncFunction( void (*func)(void) )
 {
-	// Line 251, Address: 0x2e15f0, Func Offset: 0
-	// Line 253, Address: 0x2e15f4, Func Offset: 0x4
-	// Line 254, Address: 0x2e15fc, Func Offset: 0xc
-	// Line 255, Address: 0x2e1608, Func Offset: 0x18
-	// Line 256, Address: 0x2e1610, Func Offset: 0x20
-	// Line 259, Address: 0x2e1618, Func Offset: 0x28
-	// Func End, Address: 0x2e1620, Func Offset: 0x30
-	scePrintf("njSetVSyncFunction - UNIMPLEMENTED!\n");
-}
+    Ps2_vcount = 0; 
+    
+    if (func == NULL)
+    { 
+        VsyncFunc = null_func; 
+    }
+    else 
+    {
+        VsyncFunc = func; 
+    }
+} 
 
 // 100% matching!
 void	njExitSystem( void )
