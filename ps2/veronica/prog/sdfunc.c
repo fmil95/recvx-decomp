@@ -2530,7 +2530,7 @@ void UnmountSoundAfs()
 	scePrintf("UnmountSoundAfs - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x292b60
 void ExecSoundSynchProgram()
 {
@@ -2550,9 +2550,10 @@ void ExecSoundSynchProgram()
 	// Line 663, Address: 0x292c04, Func Offset: 0xa4
 	// Line 664, Address: 0x292c0c, Func Offset: 0xac
 	// Func End, Address: 0x292c18, Func Offset: 0xb8
+	scePrintf("ExecSoundSynchProgram - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x292c20
 void InitGameSoundSystem()
 {

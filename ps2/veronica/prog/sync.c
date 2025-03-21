@@ -1557,9 +1557,9 @@ struct _anon43
 };
 
 void(*bhControlEOR)();
-void(*bhControlVSync)();
+void(*bhControlVSync)();*/
 int OpenDriveTrayFlag;
-_anon17* rom;
+/*_anon17* rom;
 _anon43 cam;
 unsigned char BackColorFlag;
 int pd_port;
@@ -1588,44 +1588,78 @@ void bhClearVSync()
     njSetEORFunction(NULL);
 }
 
-// 
-// Start address: 0x2ca520
+// 100% matching! 
 void bhControlVSync()
 {
-	// Line 120, Address: 0x2ca520, Func Offset: 0
-	// Line 122, Address: 0x2ca528, Func Offset: 0x8
-	// Line 125, Address: 0x2ca530, Func Offset: 0x10
-	// Line 126, Address: 0x2ca54c, Func Offset: 0x2c
-	// Line 127, Address: 0x2ca570, Func Offset: 0x50
-	// Line 128, Address: 0x2ca578, Func Offset: 0x58
-	// Line 129, Address: 0x2ca580, Func Offset: 0x60
-	// Line 130, Address: 0x2ca594, Func Offset: 0x74
-	// Line 152, Address: 0x2ca5b4, Func Offset: 0x94
-	// Line 154, Address: 0x2ca5d8, Func Offset: 0xb8
-	// Line 155, Address: 0x2ca5fc, Func Offset: 0xdc
-	// Line 156, Address: 0x2ca620, Func Offset: 0x100
-	// Line 157, Address: 0x2ca624, Func Offset: 0x104
-	// Line 158, Address: 0x2ca644, Func Offset: 0x124
-	// Line 163, Address: 0x2ca658, Func Offset: 0x138
-	// Line 170, Address: 0x2ca670, Func Offset: 0x150
-	// Line 171, Address: 0x2ca6a8, Func Offset: 0x188
-	// Line 176, Address: 0x2ca6b4, Func Offset: 0x194
-	// Line 181, Address: 0x2ca6f8, Func Offset: 0x1d8
-	// Line 183, Address: 0x2ca700, Func Offset: 0x1e0
-	// Line 185, Address: 0x2ca740, Func Offset: 0x220
-	// Line 186, Address: 0x2ca754, Func Offset: 0x234
-	// Line 187, Address: 0x2ca768, Func Offset: 0x248
-	// Line 189, Address: 0x2ca778, Func Offset: 0x258
-	// Line 191, Address: 0x2ca780, Func Offset: 0x260
-	// Line 192, Address: 0x2ca794, Func Offset: 0x274
-	// Line 193, Address: 0x2ca7a8, Func Offset: 0x288
-	// Line 195, Address: 0x2ca7b8, Func Offset: 0x298
-	// Line 197, Address: 0x2ca7c0, Func Offset: 0x2a0
-	// Line 198, Address: 0x2ca7d4, Func Offset: 0x2b4
-	// Line 199, Address: 0x2ca7e8, Func Offset: 0x2c8
-	// Line 218, Address: 0x2ca7fc, Func Offset: 0x2dc
-	// Func End, Address: 0x2ca808, Func Offset: 0x2e8
-	scePrintf("bhControlVSync - UNIMPLEMENTED!\n");
+    ExecSoundSynchProgram();
+    
+    if (!(sys->ss_flg & 0x10000))
+    {
+        if ((OpenDriveTrayFlag == -1) || ((sys->ss_flg & 0x40000))) 
+        {
+            njUserExit();
+        }
+    } 
+    else if ((!(sys->tk_flg & 0x40000)) && (OpenDriveTrayFlag == -1))
+    {
+        sys->ss_flg |= 0x40000;
+    }
+    
+    sys->vsyc_flg++;
+    sys->vsyc_ct++;
+    
+    if (sys->vsyc_ct >= 60) 
+    {
+        sys->vsyc_ct = 0;
+        
+        sys->gframe = sys->gfrm_ct;
+        
+        sys->gfrm_ct = 0;
+    }
+    
+    if ((sys->tk_flg & 0x80))
+    {
+        if (bhCkFlg(sys->ev_flg, 3) != 0) 
+        {
+            if (sys->stv_tm < 216000000)
+            {
+                sys->stv_tm++;
+            }
+        }
+        
+        if (((sys->sp_flg & 0x200)) && (sys->evt_tim != 0) && (!(sys->ss_flg & 0x80000000))) 
+        {
+            sys->evt_tim -= 2;
+            
+            switch (sys->evt_tmd) 
+            {                  
+            case 1:
+                if (bhCkFlg(sys->ev_flg, 69) == 0)
+                {
+                    sys->evt_tmd = 0;
+                    sys->evt_tim = 0;
+                }
+                
+                break;
+            case 2:
+                if (bhCkFlg(sys->ev_flg, 67) == 0)
+                {
+                    sys->evt_tmd = 0;
+                    sys->evt_tim = 0;
+                }
+                
+                break;
+            case 3:
+                if (bhCkFlg(sys->ev_flg, 70) == 0) 
+                {
+                    sys->evt_tmd = 0;
+                    sys->evt_tim = 0;
+                }
+                
+                break;
+            }
+        }
+    }
 }
 
 // 
