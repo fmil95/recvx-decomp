@@ -1561,10 +1561,10 @@ void(*bhControlVSync)();*/
 int OpenDriveTrayFlag;
 /*_anon17* rom;
 _anon43 cam;
-unsigned char BackColorFlag;
+unsigned char BackColorFlag;*/
 int pd_port;
-unsigned int palbuf[0];
-unsigned char Pause_Flag;*/
+/*unsigned int palbuf[0];*/
+unsigned char Pause_Flag;
 int SoftResetFlag;
 
 /*void bhInitVSync();
@@ -1741,23 +1741,27 @@ void bhControlEOR()
 	scePrintf("bhControlEOR - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2cad20
+// 100% matching! 
 void bhCheckPadPort()
 {
-	_anon26* info;
-	// Line 437, Address: 0x2cad20, Func Offset: 0
-	// Line 441, Address: 0x2cad28, Func Offset: 0x8
-	// Line 443, Address: 0x2cad30, Func Offset: 0x10
-	// Line 501, Address: 0x2cad40, Func Offset: 0x20
-	// Line 511, Address: 0x2cad44, Func Offset: 0x24
-	// Line 515, Address: 0x2cad4c, Func Offset: 0x2c
-	// Line 513, Address: 0x2cad54, Func Offset: 0x34
-	// Line 515, Address: 0x2cad60, Func Offset: 0x40
-	// Line 543, Address: 0x2cadf0, Func Offset: 0xd0
-	// Line 562, Address: 0x2cadfc, Func Offset: 0xdc
-	// Func End, Address: 0x2cae08, Func Offset: 0xe8
-}*/
+    const PDS_PERIPHERALINFO* info;
+    
+    info = pdGetPeripheralInfo(0);
+
+    if ((info->type & 0x1)) 
+    {
+        pd_port = 0;
+    }
+    else 
+    {
+        pd_port = -1;
+        
+        if (((sys->tk_flg & 0x80)) && ((!(sys->ts_flg & 0x80)) && ((sys->ts_flg & 0x3DE00) == 0x3DE00)) && (!(sys->st_flg & 0x1C040208)) && (!(sys->cb_flg & 0x7)) && (!(sys->tk_flg & 0x40000)) && ((!(sys->ss_flg & 0x20000000)) && (!(sys->ss_flg & 0x80400000)))) 
+        {
+            Pause_Flag = 1;
+        }
+    }
+}
 
 // 100% matching!
 void bhCheckSoftReset()
