@@ -1963,13 +1963,10 @@ void njSetSystemAttr(char attr[192])
 	// Func End, Address: 0x2e1a7c, Func Offset: 0x1c
 }*/
 
-// 
-// Start address: 0x2e1a80
+// 100% matching! 
 void    njChangeSystem( Int mode, Int frame, Int count )
 {
-	// Line 666, Address: 0x2e1a80, Func Offset: 0
-	// Func End, Address: 0x2e1a8c, Func Offset: 0xc
-	scePrintf("njChangeSystem - UNIMPLEMENTED!\n");
+    printf("ChangeSystem\n");
 }
 
 /*// 
