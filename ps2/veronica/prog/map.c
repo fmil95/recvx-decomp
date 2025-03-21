@@ -2175,13 +2175,10 @@ void bhInitMap(_enum_2 set_mod)
 	scePrintf("bhInitMap - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2b23b0
+// 100% matching! 
 void bhSetMap()
 {
-	// Line 521, Address: 0x2b23b0, Func Offset: 0
-	// Func End, Address: 0x2b23b8, Func Offset: 0x8
-	scePrintf("bhSetMap - UNIMPLEMENTED!\n");
+
 }
 
 // 
