@@ -2073,7 +2073,7 @@ void CallPlayerDeadVoice(int PlayerNo)
 {
 	// Line 211, Address: 0x2c0d40, Func Offset: 0
 	// Func End, Address: 0x2c0d5c, Func Offset: 0x1c
-}
+}*/
 
 // 
 // Start address: 0x2c0d60
@@ -2081,9 +2081,10 @@ void CallSystemVoice(int VoiceNo)
 {
 	// Line 223, Address: 0x2c0d60, Func Offset: 0
 	// Func End, Address: 0x2c0d80, Func Offset: 0x20
+	scePrintf("CallSystemVoice - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c0d80
 float GetSamurai(int Time)
 {

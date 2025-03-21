@@ -1663,10 +1663,10 @@ union _anon52
 {
 	unsigned int work;
 	unsigned int clip;
-};
+};*/
 
 unsigned short pause_mes[6];
-unsigned char FileWait;
+/*unsigned char FileWait;
 unsigned char VibWait;*/
 SYS_WORK* sys;
 unsigned char* njpmemp;
@@ -3586,68 +3586,116 @@ void bhSysCallSndMonitor()
     ExecSoundSystemMonitor();
 }
 
-// 
-// Start address: 0x136c90
+// 96.48% matching
 void bhSysCallScreenSaver()
 {
-	//_anon28 pos;
-	int col;
-	//_anon28 pos;
-	// Line 2997, Address: 0x136c90, Func Offset: 0
-	// Line 3001, Address: 0x136c9c, Func Offset: 0xc
-	// Line 3006, Address: 0x136ce4, Func Offset: 0x54
-	// Line 3007, Address: 0x136cf8, Func Offset: 0x68
-	// Line 3020, Address: 0x136d74, Func Offset: 0xe4
-	// Line 3022, Address: 0x136d84, Func Offset: 0xf4
-	// Line 3023, Address: 0x136d9c, Func Offset: 0x10c
-	// Line 3024, Address: 0x136da4, Func Offset: 0x114
-	// Line 3033, Address: 0x136dc0, Func Offset: 0x130
-	// Line 3038, Address: 0x136de0, Func Offset: 0x150
-	// Line 3041, Address: 0x136df0, Func Offset: 0x160
-	// Line 3043, Address: 0x136df8, Func Offset: 0x168
-	// Line 3052, Address: 0x136e00, Func Offset: 0x170
-	// Line 3057, Address: 0x136e1c, Func Offset: 0x18c
-	// Line 3063, Address: 0x136e60, Func Offset: 0x1d0
-	// Line 3067, Address: 0x136e68, Func Offset: 0x1d8
-	// Line 3071, Address: 0x136e70, Func Offset: 0x1e0
-	// Line 3072, Address: 0x136e80, Func Offset: 0x1f0
-	// Line 3080, Address: 0x136e90, Func Offset: 0x200
-	// Line 3072, Address: 0x136ea4, Func Offset: 0x214
-	// Line 3080, Address: 0x136ea8, Func Offset: 0x218
-	// Line 3072, Address: 0x136eac, Func Offset: 0x21c
-	// Line 3080, Address: 0x136eb4, Func Offset: 0x224
-	// Line 3081, Address: 0x136ecc, Func Offset: 0x23c
-	// Line 3082, Address: 0x136ee0, Func Offset: 0x250
-	// Line 3083, Address: 0x136ef0, Func Offset: 0x260
-	// Line 3084, Address: 0x136ef8, Func Offset: 0x268
-	// Line 3085, Address: 0x136f14, Func Offset: 0x284
-	// Line 3086, Address: 0x136f24, Func Offset: 0x294
-	// Line 3105, Address: 0x136f3c, Func Offset: 0x2ac
-	// Line 3107, Address: 0x136f6c, Func Offset: 0x2dc
-	// Line 3110, Address: 0x136fa8, Func Offset: 0x318
-	// Line 3112, Address: 0x136fdc, Func Offset: 0x34c
-	// Line 3113, Address: 0x136ffc, Func Offset: 0x36c
-	// Line 3117, Address: 0x137004, Func Offset: 0x374
-	// Line 3119, Address: 0x13702c, Func Offset: 0x39c
-	// Line 3120, Address: 0x13703c, Func Offset: 0x3ac
-	// Line 3125, Address: 0x137060, Func Offset: 0x3d0
-	// Line 3122, Address: 0x137068, Func Offset: 0x3d8
-	// Line 3123, Address: 0x137070, Func Offset: 0x3e0
-	// Line 3125, Address: 0x137078, Func Offset: 0x3e8
-	// Line 3129, Address: 0x13708c, Func Offset: 0x3fc
-	// Line 3125, Address: 0x137090, Func Offset: 0x400
-	// Line 3129, Address: 0x13709c, Func Offset: 0x40c
-	// Line 3125, Address: 0x1370a0, Func Offset: 0x410
-	// Line 3129, Address: 0x1370a4, Func Offset: 0x414
-	// Line 3130, Address: 0x1370b4, Func Offset: 0x424
-	// Line 3140, Address: 0x1370e4, Func Offset: 0x454
-	// Line 3142, Address: 0x13711c, Func Offset: 0x48c
-	// Line 3144, Address: 0x137130, Func Offset: 0x4a0
-	// Line 3145, Address: 0x137138, Func Offset: 0x4a8
-	// Line 3146, Address: 0x137140, Func Offset: 0x4b0
-	// Line 3149, Address: 0x13715c, Func Offset: 0x4cc
-	// Func End, Address: 0x13716c, Func Offset: 0x4dc
-	scePrintf("bhSysCallScreenSaver - UNIMPLEMENTED!\n");
+    NJS_POINT2 pos; 
+    int col; 
+    
+    switch (sys->ssv_md0) 
+    {                        
+    case 0:
+        if (sys->p1per != NULL)
+        {
+            if ((sys->p1per->on != 0) || ((sys->p1per->x1 > 48) || (sys->p1per->x1 < -48) || (sys->p1per->y1 > 48) || (sys->p1per->y1 < -48)) || (((sys->cb_flg & 0x4)) && (!(sys->cb_flg & 0x40))) || ((plp->stflg & 0x40000)))
+            {
+                sys->ssv_tim = 0;
+            }
+            else 
+            {
+                sys->ssv_tim++;
+            }
+        } 
+        else 
+        {
+            sys->ssv_tim++;
+        }
+        
+        if (sys->ssv_tim >= 10800) 
+        {
+            bhSetScreenSaver(128, 300.0f);
+        }
+        
+        break;
+    case 1:
+        bhControlScreenSaver();
+    case 2:
+        if ((sys->p1per != NULL) && ((sys->p1per->on != 0) || ((sys->p1per->x1 > 48) || (sys->p1per->x1 < -48) || (sys->p1per->y1 > 48) || (sys->p1per->y1 < -48))))
+        {
+            bhInitScreenSaver();
+        }
+        
+        break;
+    case 10:
+        sys->ssv_an = 64.0f;
+        
+        sys->mes_tp = pause_mes;
+        
+        bhDispMessage(280.0f, 188.0f, -0.9f, 2, 0, 0, 0);
+        
+        if (pd_port != -1) 
+        {
+            EasyDispMessage(244.0f, 493);
+        } 
+        else 
+        {
+            bhFontScaleSet(0.71f, 1.0f, 1.0f);
+            
+            EasyDispMessage(244.0f, 492);
+            
+            bhFontScaleSet(1.0f, 1.0f, 1.0f);
+        }
+    }
+    
+    if (sys->ssv_an > 0) 
+    {
+        bhDrawScreenSaver();
+    }
+    
+    if ((sys->evt_tim != 0) && (((sys->sp_flg & 0x200)) && ((sys->ss_flg & 0x40)))) 
+    {
+        if (sys->evt_tmd == 3)
+        {
+            if (sys->evt_fcd >= sys->evt_tim) 
+            {
+                if (sys->evt_fcdct == 0) 
+                {
+                    sys->evt_fcd = 600;
+                }
+                else 
+                {
+                    sys->evt_fcd -= 60;
+                }
+                
+                if ((!(sys->ts_flg & 0x80)) && (!(sys->cb_flg & 0x1))) 
+                {
+                    CallSystemVoice(sys->evt_fcdct);
+                }
+                
+                sys->evt_fcdct++;
+            }
+        }
+        
+        pos.x = 222.0f;
+        pos.y = 76.0f;
+        
+        col = (sys->evt_tim < sys->evt_tdg) ? 2 : 3;
+        
+        if (bhCkFlg(sys->ed_flg, 349) == 0)
+        {
+            bhDispTime(&pos, 7, sys->evt_tim, col, -0.9f);
+        }
+    }
+    
+    if ((sys->gm_mode == 3) && (((sys->sp_flg & 0x200)) && (!(sys->ts_flg & 0x80)) && ((sys->gm_flg & 0x80000000)))) 
+    {
+        NJS_POINT2 pos; 
+        
+        pos.x = 222.0f;
+        pos.y = 76.0f;  
+        
+        bhDispTime(&pos, 7, sys->time, 3, -0.9f); 
+    }
 }
 
 // 100% matching! 

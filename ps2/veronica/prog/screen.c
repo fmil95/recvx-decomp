@@ -1489,7 +1489,7 @@ void bhDrawScreenFade()
 	scePrintf("bhDrawScreenFade - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x26c1b0
 void bhInitScreenSaver()
 {
@@ -1500,6 +1500,7 @@ void bhInitScreenSaver()
 	// Line 285, Address: 0x26c204, Func Offset: 0x54
 	// Line 286, Address: 0x26c23c, Func Offset: 0x8c
 	// Func End, Address: 0x26c244, Func Offset: 0x94
+	scePrintf("bhInitScreenSaver - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1513,6 +1514,7 @@ void bhSetScreenSaver(unsigned int alpha, float ct)
 	// Line 301, Address: 0x26c2ac, Func Offset: 0x5c
 	// Line 302, Address: 0x26c2ec, Func Offset: 0x9c
 	// Func End, Address: 0x26c2f4, Func Offset: 0xa4
+	scePrintf("bhSetScreenSaver - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1528,6 +1530,7 @@ void bhControlScreenSaver()
 	// Line 314, Address: 0x26c3c8, Func Offset: 0xc8
 	// Line 316, Address: 0x26c3e8, Func Offset: 0xe8
 	// Func End, Address: 0x26c3f0, Func Offset: 0xf0
+	scePrintf("bhControlScreenSaver - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1535,7 +1538,7 @@ void bhControlScreenSaver()
 void bhDrawScreenSaver()
 {
 	unsigned int argb;
-	_anon29 pol[4];
+	//_anon29 pol[4];
 	// Line 323, Address: 0x26c3f0, Func Offset: 0
 	// Line 328, Address: 0x26c3f4, Func Offset: 0x4
 	// Line 323, Address: 0x26c3f8, Func Offset: 0x8
@@ -1565,9 +1568,10 @@ void bhDrawScreenSaver()
 	// Line 356, Address: 0x26c494, Func Offset: 0xa4
 	// Line 357, Address: 0x26c4a0, Func Offset: 0xb0
 	// Func End, Address: 0x26c4ac, Func Offset: 0xbc
+	scePrintf("bhDrawScreenSaver - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x26c4b0
 void bhControlCinesco()
 {

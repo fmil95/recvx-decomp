@@ -2058,18 +2058,18 @@ int bhDispMessageEx(float px, float py, float pri, int mes_typ, int mes_idx, uns
 	// Line 767, Address: 0x2b8c40, Func Offset: 0x260
 	// Line 771, Address: 0x2b8c48, Func Offset: 0x268
 	// Func End, Address: 0x2b8c78, Func Offset: 0x298
-}
+}*/
 
 // 
 // Start address: 0x2b8c80
-void bhDispTime(_anon2* pos, unsigned int flg, int time, int color, float pri)
+void bhDispTime(NJS_POINT2* pos, unsigned int flg, int time, int color, float pri)
 {
 	unsigned short cd;
 	int msc;
 	int sec;
 	int min;
 	int hour;
-	_anon2 dps;
+	//_anon2 dps;
 	int ntb[10];
 	// Line 784, Address: 0x2b8c80, Func Offset: 0
 	// Line 800, Address: 0x2b8ca8, Func Offset: 0x28
@@ -2169,9 +2169,10 @@ void bhDispTime(_anon2* pos, unsigned int flg, int time, int color, float pri)
 	// Line 921, Address: 0x2b920c, Func Offset: 0x58c
 	// Line 924, Address: 0x2b922c, Func Offset: 0x5ac
 	// Func End, Address: 0x2b9258, Func Offset: 0x5d8
+	scePrintf("bhDispTime - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2b9260
 void bhDispTimeEx(_anon2* pos, unsigned int flg, int time, unsigned int argb, float pri)
 {
