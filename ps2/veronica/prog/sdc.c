@@ -105,7 +105,7 @@ struct SDS_SHOT_STAT
 
 unsigned int SddFirstFlag;*/
 unsigned int ExecFxFlag;
-/*int SdcSoundMode;*/
+int SdcSoundMode = -1;
 void(*TransCallBackFunc)(void*) = (void*)-1;
 unsigned int TransCompleteFlag;
 SDS_MEMBLK* SdMemBlk;
@@ -286,20 +286,19 @@ void SetSoundMode(int Mode)
     SetSoundModeEx(Mode, 1);
 }
 
-// 
-// Start address: 0x28efb0
+// 100% matching!
 int GetSoundMode()
 {
-	int Mode;
-	// Line 126, Address: 0x28efb0, Func Offset: 0
-	// Line 129, Address: 0x28efb8, Func Offset: 0x8
-	// Line 130, Address: 0x28efcc, Func Offset: 0x1c
-	// Line 131, Address: 0x28efd4, Func Offset: 0x24
-	// Line 135, Address: 0x28efe0, Func Offset: 0x30
-	// Line 134, Address: 0x28efe4, Func Offset: 0x34
-	// Line 135, Address: 0x28efec, Func Offset: 0x3c
-	// Func End, Address: 0x28eff4, Func Offset: 0x44
-	scePrintf("GetSoundMode - UNIMPLEMENTED!\n");
+    int Mode;
+
+    if (SdcSoundMode == -1) 
+    {
+        syCfgGetSoundMode(&Mode);
+        
+        SdcSoundMode = Mode;
+    }
+    
+    return SdcSoundMode;
 }
 
 // 100% matching!
