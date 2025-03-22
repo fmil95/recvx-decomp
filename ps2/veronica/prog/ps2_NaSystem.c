@@ -1969,9 +1969,9 @@ void    njChangeSystem( Int mode, Int frame, Int count )
     printf("ChangeSystem\n");
 }
 
-/*// 
+// 
 // Start address: 0x2e1a90
-void njAdjustDisplay(int xadjust, int yadjust)
+void	njAdjustDisplay(Sint32 xadjust,Sint32 yadjust )
 {
 	// Line 677, Address: 0x2e1a90, Func Offset: 0
 	// Line 678, Address: 0x2e1aa0, Func Offset: 0x10
@@ -1988,7 +1988,8 @@ void njAdjustDisplay(int xadjust, int yadjust)
 	// Line 684, Address: 0x2e1b48, Func Offset: 0xb8
 	// Line 685, Address: 0x2e1b5c, Func Offset: 0xcc
 	// Func End, Address: 0x2e1b64, Func Offset: 0xd4
-}*/
+	scePrintf("njAdjustDisplay - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void	njSetBorderColor(Uint32 color )
