@@ -105,12 +105,12 @@ struct SDS_SHOT_STAT
 
 unsigned int SddFirstFlag;*/
 unsigned int ExecFxFlag;
-/*int SdcSoundMode;
-void(*TransCallBackFunc)(void*);*/
+/*int SdcSoundMode;*/
+void(*TransCallBackFunc)(void*) = (void*)-1;
 unsigned int TransCompleteFlag;
 SDS_MEMBLK* SdMemBlk;
-/*void(*TransWaitCallBackFunction)();
-char SdcMasterVolume;
+void(*TransWaitCallBackFunction)();
+/*char SdcMasterVolume;
 char SdcGdDaVolume;*/
 NO_NAME_20 MidiInfo[8];
 SDMIDI MidiHandle[8];
@@ -195,26 +195,30 @@ unsigned int CheckTransComplete()
 	// Func End, Address: 0x28ed0c, Func Offset: 0xc
 }*/
 
-// 
-// Start address: 0x28ed10
+// 100% matching!
 void SetupSoundDriver(void* pSndDrv, unsigned int SndDrvSize)
 {
-	// Line 39, Address: 0x28ed10, Func Offset: 0
-	// Line 40, Address: 0x28ed28, Func Offset: 0x18
-	// Line 41, Address: 0x28ed38, Func Offset: 0x28
-	// Line 44, Address: 0x28ed44, Func Offset: 0x34
-	// Line 43, Address: 0x28ed4c, Func Offset: 0x3c
-	// Line 44, Address: 0x28ed50, Func Offset: 0x40
-	// Line 43, Address: 0x28ed58, Func Offset: 0x48
-	// Line 44, Address: 0x28ed60, Func Offset: 0x50
-	// Line 45, Address: 0x28ed70, Func Offset: 0x60
-	// Line 47, Address: 0x28ed7c, Func Offset: 0x6c
-	// Line 49, Address: 0x28ed88, Func Offset: 0x78
-	// Line 50, Address: 0x28ed90, Func Offset: 0x80
-	// Line 53, Address: 0x28ed9c, Func Offset: 0x8c
-	// Line 55, Address: 0x28edb0, Func Offset: 0xa0
-	// Func End, Address: 0x28edc4, Func Offset: 0xb4
-	scePrintf("SetupSoundDriver - UNIMPLEMENTED!\n");
+    void* temp; // not from the debugging symbols
+
+    temp = &TransWaitCallBackFunction;
+    
+    sdLibInit(NULL, 0, 0); 
+    
+    sdMemBlkCreate(&SdMemBlk);
+    
+    TransCompleteFlag = 1;
+    
+    sdMemBlkSetPrm(SdMemBlk, pSndDrv, SndDrvSize, TransCallBackFunc, NULL);
+    
+    sdDrvInit(SdMemBlk);
+    
+    sdMemBlkDestroy(SdMemBlk);
+    
+    sdMemBlkSetTransferMode(SDE_MEMBLK_TRANSFER_MODE_DMA);
+    
+    TransCallBackFunc = temp;
+    
+    sdSysSetSlotMax(36, 20, 8); 
 }
 
 // 100% matching! 

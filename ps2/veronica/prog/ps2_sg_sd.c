@@ -347,11 +347,11 @@ SDE_ERR sdBankDownload(SDS_MEMBLK* handle, SDE_DATA_TYPE bank_type, char bank_nu
 	// Line 738, Address: 0x2db1b4, Func Offset: 0x3a4
 	// Line 740, Address: 0x2db1bc, Func Offset: 0x3ac
 	// Func End, Address: 0x2db1e0, Func Offset: 0x3d0
-}
+}*/
 
 // 
 // Start address: 0x2db1e0
-SDE_ERR sdDrvInit()
+SDE_ERR	sdDrvInit( SDMEMBLK handle)
 {
 	char* _0_buf;
 	char trans_0_buff[2175];
@@ -389,9 +389,10 @@ SDE_ERR sdDrvInit()
 	// Line 857, Address: 0x2db3a0, Func Offset: 0x1c0
 	// Line 858, Address: 0x2db3a4, Func Offset: 0x1c4
 	// Func End, Address: 0x2db3b4, Func Offset: 0x1d4
+	scePrintf("sdDrvInit - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2db3c0
 SDE_ERR sdGddaSetPan()
 {
@@ -402,11 +403,11 @@ SDE_ERR sdGddaSetPan()
 	// Line 890, Address: 0x2db3ec, Func Offset: 0x2c
 	// Line 892, Address: 0x2db3f4, Func Offset: 0x34
 	// Func End, Address: 0x2db400, Func Offset: 0x40
-}
+}*/
 
 // 
 // Start address: 0x2db400
-SDE_ERR sdLibInit()
+SDE_ERR	sdLibInit( Void *wrk_ptr, Sint32 mem_blk_handle_max, Sint32 second_host_cmd_max)
 {
 	int j;
 	int i;
@@ -428,7 +429,8 @@ SDE_ERR sdLibInit()
 	// Line 930, Address: 0x2db474, Func Offset: 0x74
 	// Line 933, Address: 0x2db47c, Func Offset: 0x7c
 	// Func End, Address: 0x2db484, Func Offset: 0x84
-}*/
+	scePrintf("sdLibInit - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2db490
@@ -1406,9 +1408,9 @@ SDE_ERR	sdSysServer( Void)
 	scePrintf("sdSysServer - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2dda10
-SDE_ERR sdSysSetSlotMax(int shot_slot_max, int pstm_slot_max)
+SDE_ERR	sdSysSetSlotMax( const Sint32 midi_slot_max, const Sint32 shot_slot_max, const Sint32 pstm_slot_max)
 {
 	int i;
 	// Line 4043, Address: 0x2dda10, Func Offset: 0
@@ -1443,16 +1445,18 @@ SDE_ERR sdSysSetSlotMax(int shot_slot_max, int pstm_slot_max)
 	// Line 4078, Address: 0x2ddbbc, Func Offset: 0x1ac
 	// Line 4080, Address: 0x2ddbc4, Func Offset: 0x1b4
 	// Func End, Address: 0x2ddbcc, Func Offset: 0x1bc
+	scePrintf("sdSysSetSlotMax - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2ddbd0
-SDE_ERR sdMemBlkSetTransferMode()
+SDE_ERR	sdMemBlkSetTransferMode( SDE_MEMBLK_TRANSFER_MODE transfer_mode)
 {
 	// Line 4105, Address: 0x2ddbd0, Func Offset: 0
 	// Line 4110, Address: 0x2ddbe4, Func Offset: 0x14
 	// Func End, Address: 0x2ddbec, Func Offset: 0x1c
-}*/
+	scePrintf("sdMemBlkSetTransferMode - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2ddbf0
