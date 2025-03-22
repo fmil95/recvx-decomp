@@ -1083,9 +1083,9 @@ SDE_ERR	sdSndSetFxPrg( const Sint8 new_fx_prg_num, const Sint8 new_fx_out_num)
     return (__sg_sd_snd_init__ != 0) ? 0 : 218103809;
 }
 
-/*// 
+// 
 // Start address: 0x2dc9c0
-SDE_ERR sdSndSetMasterVol(char vol)
+SDE_ERR	sdSndSetMasterVol( const Sint8 vol)
 {
 	// Line 2614, Address: 0x2dc9c0, Func Offset: 0
 	// Line 2616, Address: 0x2dc9c8, Func Offset: 0x8
@@ -1097,9 +1097,10 @@ SDE_ERR sdSndSetMasterVol(char vol)
 	// Line 2641, Address: 0x2dca7c, Func Offset: 0xbc
 	// Line 2643, Address: 0x2dca84, Func Offset: 0xc4
 	// Func End, Address: 0x2dca90, Func Offset: 0xd0
+	scePrintf("sdSndSetMasterVol - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dca90
 SDE_ERR sdSndSetPanMode(SDE_PAN_MODE pan_mode)
 {

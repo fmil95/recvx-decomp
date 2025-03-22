@@ -110,7 +110,7 @@ void(*TransCallBackFunc)(void*) = (void*)-1;
 unsigned int TransCompleteFlag;
 SDS_MEMBLK* SdMemBlk;
 void(*TransWaitCallBackFunction)();
-/*char SdcMasterVolume;*/
+char SdcMasterVolume;
 char SdcGdDaVolume;
 NO_NAME_20 MidiInfo[8];
 SDMIDI MidiHandle[8];
@@ -304,16 +304,12 @@ int GetSoundMode()
 	scePrintf("GetSoundMode - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x28f000
+// 100% matching!
 void SetMasterVolume(char Volume)
 {
-	// Line 138, Address: 0x28f000, Func Offset: 0
-	// Line 139, Address: 0x28f00c, Func Offset: 0xc
-	// Line 140, Address: 0x28f014, Func Offset: 0x14
-	// Line 141, Address: 0x28f01c, Func Offset: 0x1c
-	// Func End, Address: 0x28f02c, Func Offset: 0x2c
-	scePrintf("SetMasterVolume - UNIMPLEMENTED!\n");
+    sdSndSetMasterVol(Volume);
+    
+    SdcMasterVolume = Volume;
 }
 
 // 100% matching!
