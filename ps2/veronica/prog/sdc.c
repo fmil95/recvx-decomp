@@ -935,14 +935,14 @@ int CheckFadeEndSe(int SlotNo)
 	// Line 760, Address: 0x290380, Func Offset: 0
 	// Line 761, Address: 0x2903a4, Func Offset: 0x24
 	// Func End, Address: 0x2903ac, Func Offset: 0x2c
-}
+}*/
 
 // 
 // Start address: 0x2903b0
 int ExecSoundFadeManager()
 {
-	_anon0* sp;
-	_anon0* mp;
+	//_anon0* sp;
+	//_anon0* mp;
 	int ReturnCode;
 	int i;
 	// Line 764, Address: 0x2903b0, Func Offset: 0
@@ -978,9 +978,10 @@ int ExecSoundFadeManager()
 	// Line 813, Address: 0x290538, Func Offset: 0x188
 	// Line 814, Address: 0x29053c, Func Offset: 0x18c
 	// Func End, Address: 0x290554, Func Offset: 0x1a4
+	scePrintf("ExecSoundFadeManager - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x290560
 void RequestMidiPanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 {
@@ -1024,13 +1025,13 @@ void RequestSePanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 	// Line 851, Address: 0x2906c0, Func Offset: 0xa0
 	// Line 852, Address: 0x2906c8, Func Offset: 0xa8
 	// Func End, Address: 0x2906e0, Func Offset: 0xc0
-}
+}*/
 
 // 
 // Start address: 0x2906e0
 int ExecSoundPanManager()
 {
-	_anon0* sp;
+	//_anon0* sp;
 	int ReturnCode;
 	int i;
 	// Line 855, Address: 0x2906e0, Func Offset: 0
@@ -1060,5 +1061,6 @@ int ExecSoundPanManager()
 	// Line 889, Address: 0x2907e8, Func Offset: 0x108
 	// Line 890, Address: 0x2907ec, Func Offset: 0x10c
 	// Func End, Address: 0x290804, Func Offset: 0x124
-}*/
+	scePrintf("ExecSoundPanManager - UNIMPLEMENTED!\n");
+}
 

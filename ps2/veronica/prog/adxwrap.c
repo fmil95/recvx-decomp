@@ -863,13 +863,13 @@ void RequestAdxFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 	// Line 1526, Address: 0x2922c4, Func Offset: 0x84
 	// Line 1527, Address: 0x2922cc, Func Offset: 0x8c
 	// Func End, Address: 0x2922e4, Func Offset: 0xa4
-}
+}*/
 
 // 
 // Start address: 0x2922f0
 int ExecAdxFadeManager()
 {
-	_anon0* tp;
+	//_anon0* tp;
 	int ReturnCode;
 	int i;
 	// Line 1583, Address: 0x2922f0, Func Offset: 0
@@ -899,5 +899,6 @@ int ExecAdxFadeManager()
 	// Line 1617, Address: 0x2923f0, Func Offset: 0x100
 	// Line 1618, Address: 0x2923f4, Func Offset: 0x104
 	// Func End, Address: 0x29240c, Func Offset: 0x11c
-}*/
+	scePrintf("ExecAdxFadeManager - UNIMPLEMENTED!\n");
+}
 

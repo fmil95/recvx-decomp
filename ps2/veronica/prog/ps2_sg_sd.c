@@ -1305,17 +1305,17 @@ int sndr_trans_func()
 	// Line 3147, Address: 0x2dd5b0, Func Offset: 0xa00
 	// Line 3152, Address: 0x2dd5b8, Func Offset: 0xa08
 	// Func End, Address: 0x2dd5c8, Func Offset: 0xa18
-}
+}*/
 
 // 
 // Start address: 0x2dd5d0
-SDE_ERR sdSysServer()
+SDE_ERR	sdSysServer( Void)
 {
 	unsigned int req;
 	short pitch;
 	unsigned char pan;
 	unsigned char vol;
-	_anon0* chk_snd_work;
+	//_anon0* chk_snd_work;
 	int i;
 	// Line 3651, Address: 0x2dd5d0, Func Offset: 0
 	// Line 3665, Address: 0x2dd5e8, Func Offset: 0x18
@@ -1399,9 +1399,10 @@ SDE_ERR sdSysServer()
 	// Line 4008, Address: 0x2dd9e4, Func Offset: 0x414
 	// Line 4011, Address: 0x2dd9ec, Func Offset: 0x41c
 	// Func End, Address: 0x2dda08, Func Offset: 0x438
+	scePrintf("sdSysServer - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dda10
 SDE_ERR sdSysSetSlotMax(int shot_slot_max, int pstm_slot_max)
 {

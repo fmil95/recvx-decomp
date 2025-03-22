@@ -2001,12 +2001,12 @@ short DefObj[5];
 short DefEvt[5];
 short DefEne[6];*/
 int SoundInitLevel;
-/*int SdReadMode;
+/*int SdReadMode;*/
 int SpqFileReadRequestFlag;
-int TransSoundPackDataFlag;
+/*int TransSoundPackDataFlag;
 int ReadFileRequestFlag;
-int FileReadStatus;
-int KeyReadSwitch;*/
+int FileReadStatus;*/
+int KeyReadSwitch;
 SYS_WORK* sys;
 unsigned int DiscOpenTrayFlag;
 unsigned int StatusUpdateCounter;
@@ -2017,8 +2017,8 @@ SND_CMD SoundCommand;
 unsigned char* pConfigWork;
 unsigned short* pSpqList;
 unsigned char* pSoundAfs;
-/*char SpqFileName[32];
-int EventVibrationMode;
+char SpqFileName[32];
+/*int EventVibrationMode;
 _anon4 BgSePrmBuf[2];
 int ReqFadeBgSe[2];
 int ReqFadeBgmNo;
@@ -2097,9 +2097,9 @@ void InitGameSoundSystem();
 int SearchAfsInsideFileId(unsigned short KeyCode);
 void StopThePsgSound();
 int CheckSpecialBank(int Type, int BankNo);
-int LoadSoundPackFile(char* SpqFile);
+int LoadSoundPackFile(char* SpqFile);*/
 void ExecTransSoundData();
-void RequestRoomSoundBank(int StageNo, int RoomNo, int CaseNo);
+/*void RequestRoomSoundBank(int StageNo, int RoomNo, int CaseNo);
 void RequestArmsSoundBank(int ArmsNo);
 void RequestDoorSoundBank(int DoorNo);
 void RequestPlayerVoiceSoundBank(int PlayerNo);
@@ -2191,9 +2191,9 @@ int RequestReadIsoFile(char* FileName, void* DestPtr);
 int RequestReadInsideFile(unsigned int PartitionId, unsigned int FileId, void* DestPtr);
 int GetIsoFileSize(char* FileName);
 int GetInsideFileSize(unsigned int PartitionId, unsigned int FileId);
-int GetReadFileStatus();
+int GetReadFileStatus();*/
 void ExecFileManager();
-int PlayStartMovieEx(int MovieNo, int MovieType, int PauseFlag);
+/*int PlayStartMovieEx(int MovieNo, int MovieType, int PauseFlag);
 void PlayStopMovieEx(int Mode);
 void PlayStopMovie();
 int CheckPlayEndMovie();
@@ -2207,7 +2207,7 @@ void StopVibrationBasic(int PortNo);
 void StopVibrationEx();
 void SetAdjustDisplay();*/
 void RequestAdjustDisplay(int AdjustX, int AdjustY);
-/*void ExecAdjustDisplay();*/
+void ExecAdjustDisplay();
 void InitPlayLogSystem();
 void ExitPlayLogSystem();
 /*void ReadPlayLog();
@@ -2530,27 +2530,34 @@ void UnmountSoundAfs()
 	scePrintf("UnmountSoundAfs - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x292b60
+// 100% matching! 
 void ExecSoundSynchProgram()
 {
-	// Line 601, Address: 0x292b60, Func Offset: 0
-	// Line 602, Address: 0x292b68, Func Offset: 0x8
-	// Line 607, Address: 0x292b78, Func Offset: 0x18
-	// Line 611, Address: 0x292b80, Func Offset: 0x20
-	// Line 612, Address: 0x292b90, Func Offset: 0x30
-	// Line 613, Address: 0x292ba4, Func Offset: 0x44
-	// Line 623, Address: 0x292bac, Func Offset: 0x4c
-	// Line 626, Address: 0x292bb4, Func Offset: 0x54
-	// Line 627, Address: 0x292bbc, Func Offset: 0x5c
-	// Line 628, Address: 0x292bc4, Func Offset: 0x64
-	// Line 629, Address: 0x292be0, Func Offset: 0x80
-	// Line 647, Address: 0x292be8, Func Offset: 0x88
-	// Line 660, Address: 0x292bfc, Func Offset: 0x9c
-	// Line 663, Address: 0x292c04, Func Offset: 0xa4
-	// Line 664, Address: 0x292c0c, Func Offset: 0xac
-	// Func End, Address: 0x292c18, Func Offset: 0xb8
-	scePrintf("ExecSoundSynchProgram - UNIMPLEMENTED!\n");
+    if (SoundInitLevel < 0) 
+    {
+        sdSysServer();
+        
+        if ((SpqFileReadRequestFlag != 0) && (LoadSoundPackFile(SpqFileName) <= 0)) 
+        {
+            SpqFileReadRequestFlag = 0;
+        }
+        
+        ExecTransSoundData();
+        
+        ExecSoundFadeManager();
+        ExecSoundPanManager();
+        
+        if (!(sys->ss_flg & 0x4000000)) 
+        {
+            ExecAdxFadeManager();
+        }
+        
+        KeyReadSwitch = (KeyReadSwitch != 0) ^ 1;
+        
+        ExecFileManager();
+        
+        ExecAdjustDisplay();
+    }
 }
 
 /*// 
@@ -2632,7 +2639,7 @@ int CheckSpecialBank(int Type, int BankNo)
 	// Line 798, Address: 0x292e68, Func Offset: 0xa8
 	// Line 799, Address: 0x292e6c, Func Offset: 0xac
 	// Func End, Address: 0x292e78, Func Offset: 0xb8
-}
+}*/
 
 // 
 // Start address: 0x292e80
@@ -2697,6 +2704,7 @@ int LoadSoundPackFile(char* SpqFile)
 	// Line 940, Address: 0x2931d8, Func Offset: 0x358
 	// Line 941, Address: 0x2931dc, Func Offset: 0x35c
 	// Func End, Address: 0x2931f0, Func Offset: 0x370
+	scePrintf("LoadSoundPackFile - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2716,7 +2724,8 @@ void ExecTransSoundData()
 	// Line 965, Address: 0x2932b4, Func Offset: 0xc4
 	// Line 972, Address: 0x2932b8, Func Offset: 0xc8
 	// Func End, Address: 0x2932c4, Func Offset: 0xd4
-}*/
+	scePrintf("ExecTransSoundData - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2932d0
@@ -4735,7 +4744,7 @@ int GetReadFileStatus()
 	// Line 4415, Address: 0x2973e0, Func Offset: 0
 	// Line 4416, Address: 0x2973e4, Func Offset: 0x4
 	// Func End, Address: 0x2973ec, Func Offset: 0xc
-}
+}*/
 
 // 
 // Start address: 0x2973f0
@@ -4755,7 +4764,8 @@ void ExecFileManager()
 	// Line 4436, Address: 0x29748c, Func Offset: 0x9c
 	// Line 4441, Address: 0x297494, Func Offset: 0xa4
 	// Func End, Address: 0x2974a0, Func Offset: 0xb0
-}*/
+	scePrintf("ExecFileManager - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2974a0
@@ -5013,7 +5023,7 @@ void RequestAdjustDisplay(int AdjustX, int AdjustY)
     SetAdjustDisplay(); 
 }
 
-/*// 
+// 
 // Start address: 0x297d70
 void ExecAdjustDisplay()
 {
@@ -5023,7 +5033,8 @@ void ExecAdjustDisplay()
 	// Line 4932, Address: 0x297da0, Func Offset: 0x30
 	// Line 4934, Address: 0x297da8, Func Offset: 0x38
 	// Func End, Address: 0x297db4, Func Offset: 0x44
-}*/
+	scePrintf("ExecAdjustDisplay - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void InitPlayLogSystem()
