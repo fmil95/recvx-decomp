@@ -190,7 +190,7 @@ void ReinitMwSystem(PRM_INFO* pPrm)
 	scePrintf("ReinitMwSystem - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x290a20
 void ExitMwSystem()
 {
@@ -202,9 +202,10 @@ void ExitMwSystem()
 	// Line 89, Address: 0x290a64, Func Offset: 0x44
 	// Line 90, Address: 0x290a70, Func Offset: 0x50
 	// Func End, Address: 0x290a7c, Func Offset: 0x5c
+	scePrintf("ExitMwSystem - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x290a80
 void SetMwSoundMode()
 {

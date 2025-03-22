@@ -1991,9 +1991,9 @@ ADX_WORK AdxDef[2] = {
 int PlayerFootStepSwitch[3];
 int SystemSeSlotSwitch;
 int WeaponSeSlotSwitch;
-int EnemyBackGroundSeFlag;
+int EnemyBackGroundSeFlag;*/
 char MoviePlayTrayOpenFlag;
-int CurrentBgmNo;
+/*int CurrentBgmNo;
 int CurrentBgSeNo[2];
 int RoomSoundCaseNo;
 short DefBg[3];
@@ -2322,16 +2322,13 @@ void InitSofdecSystem(int Mode)
     }
 }
 
-// 
-// Start address: 0x2925e0
+// 100% matching! 
 void ExitSofdecSystem()
 {
-	// Line 332, Address: 0x2925e0, Func Offset: 0
-	// Line 334, Address: 0x2925e8, Func Offset: 0x8
-	// Line 335, Address: 0x2925f8, Func Offset: 0x18
-	// Line 338, Address: 0x292600, Func Offset: 0x20
-	// Func End, Address: 0x29260c, Func Offset: 0x2c
-	scePrintf("ExitSofdecSystem - UNIMPLEMENTED!\n");
+    if (MoviePlayTrayOpenFlag == 0) 
+    {
+        ExitMwSystem();
+    }
 }
 
 // 97.61% matching
