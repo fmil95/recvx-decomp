@@ -2211,16 +2211,13 @@ void ExecAdjustDisplay();
 void InitPlayLogSystem();
 void ExitPlayLogSystem();
 /*void ReadPlayLog();
-void WritePlayLog();
+void WritePlayLog();*/
 
-// 
-// Start address: 0x292410
+// 100% matching!
 void bhReleaseFreeMemory(void* mp)
-{
-	// Line 236, Address: 0x292410, Func Offset: 0
-	// Line 237, Address: 0x292420, Func Offset: 0x10
-	// Func End, Address: 0x292428, Func Offset: 0x18
-}*/
+{ 
+    sys->memp = mp; 
+}
 
 // 100% matching!
 void ExitApplication()
