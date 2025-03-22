@@ -129,18 +129,18 @@ struct _anon6
 	unsigned short act_lv[2];
 	unsigned short be_flag;
 	unsigned char act_data[8];
-};
+};*/
 
-unsigned int Old_sys_cnt;*/
+unsigned int Old_sys_cnt;
 static u_long128 Padd1[scePadDmaBufferMax];
 static u_long128 Padd2[scePadDmaBufferMax];
 /*_anon5 ButtonInfo[5];*/
 NO_NAME_19 Pad_status;
-/*unsigned int Ps2_sys_cnt;
-_anon4 Ps2_pad;
+unsigned int Ps2_sys_cnt;
+PAD_WRK Ps2_pad;
 unsigned char Pad_rdata2[32];
 unsigned char Pad_rdata1[32];
-unsigned char ChkCnt;
+/*unsigned char ChkCnt;
 unsigned char PadCnt;
 _anon2 pgp_info;
 unsigned int Pad_state[2];
@@ -154,10 +154,10 @@ void pdInitPeripheral();
 void pdExitPeripheral();
 _anon1* pdGetPeripheral(unsigned int port);
 _anon2* pdGetPeripheralInfo();
-void pdSetMode();
+void pdSetMode();*/
 void Ps2_pad_read();
-void Ps2_Read_Key(_anon1* per, _anon0* pad_wk);
-void Ps2_MakeRepeatKey(unsigned int Id, _anon0* pad_wk);
+void Ps2_Read_Key(PDS_PERIPHERAL* per, PAD_WORK* pad_wk);
+/*void Ps2_MakeRepeatKey(unsigned int Id, _anon0* pad_wk);
 void Pad_set(_anon0* pbt, unsigned short pad_num);
 void Pad_init();*/
 
@@ -199,59 +199,70 @@ void pdExitPeripheral(void)
     }
 } 
 
-// 
-// Start address: 0x2d9cf0
+// 97.66% matching
 const PDS_PERIPHERAL* pdGetPeripheral(Uint32 port)
 {
-	//unsigned char* pad_data;
-	//_anon0* pad_wk;
-	//_anon1 pp;
-	//_anon2 pp_info;
-	// Line 104, Address: 0x2d9cf0, Func Offset: 0
-	// Line 107, Address: 0x2d9d00, Func Offset: 0x10
-	// Line 108, Address: 0x2d9d08, Func Offset: 0x18
-	// Line 113, Address: 0x2d9d10, Func Offset: 0x20
-	// Line 114, Address: 0x2d9d1c, Func Offset: 0x2c
-	// Line 115, Address: 0x2d9d24, Func Offset: 0x34
-	// Line 118, Address: 0x2d9d2c, Func Offset: 0x3c
-	// Line 119, Address: 0x2d9d44, Func Offset: 0x54
-	// Line 144, Address: 0x2d9d4c, Func Offset: 0x5c
-	// Line 121, Address: 0x2d9d54, Func Offset: 0x64
-	// Line 142, Address: 0x2d9d58, Func Offset: 0x68
-	// Line 122, Address: 0x2d9d60, Func Offset: 0x70
-	// Line 121, Address: 0x2d9d64, Func Offset: 0x74
-	// Line 122, Address: 0x2d9d70, Func Offset: 0x80
-	// Line 123, Address: 0x2d9d78, Func Offset: 0x88
-	// Line 146, Address: 0x2d9d7c, Func Offset: 0x8c
-	// Line 123, Address: 0x2d9d80, Func Offset: 0x90
-	// Line 146, Address: 0x2d9d84, Func Offset: 0x94
-	// Line 138, Address: 0x2d9d88, Func Offset: 0x98
-	// Line 123, Address: 0x2d9d8c, Func Offset: 0x9c
-	// Line 124, Address: 0x2d9d90, Func Offset: 0xa0
-	// Line 146, Address: 0x2d9d98, Func Offset: 0xa8
-	// Line 124, Address: 0x2d9d9c, Func Offset: 0xac
-	// Line 125, Address: 0x2d9da4, Func Offset: 0xb4
-	// Line 126, Address: 0x2d9db0, Func Offset: 0xc0
-	// Line 128, Address: 0x2d9dbc, Func Offset: 0xcc
-	// Line 129, Address: 0x2d9dc8, Func Offset: 0xd8
-	// Line 131, Address: 0x2d9dd4, Func Offset: 0xe4
-	// Line 132, Address: 0x2d9de4, Func Offset: 0xf4
-	// Line 138, Address: 0x2d9de8, Func Offset: 0xf8
-	// Line 144, Address: 0x2d9df0, Func Offset: 0x100
-	// Line 132, Address: 0x2d9df8, Func Offset: 0x108
-	// Line 133, Address: 0x2d9e04, Func Offset: 0x114
-	// Line 134, Address: 0x2d9e0c, Func Offset: 0x11c
-	// Line 135, Address: 0x2d9e14, Func Offset: 0x124
-	// Line 136, Address: 0x2d9e1c, Func Offset: 0x12c
-	// Line 142, Address: 0x2d9e24, Func Offset: 0x134
-	// Line 139, Address: 0x2d9e2c, Func Offset: 0x13c
-	// Line 140, Address: 0x2d9e34, Func Offset: 0x144
-	// Line 146, Address: 0x2d9e38, Func Offset: 0x148
-	// Line 148, Address: 0x2d9e40, Func Offset: 0x150
-	// Line 150, Address: 0x2d9e4c, Func Offset: 0x15c
-	// Line 153, Address: 0x2d9e54, Func Offset: 0x164
-	// Func End, Address: 0x2d9e68, Func Offset: 0x178
-	scePrintf("pdGetPeripheral - UNIMPLEMENTED!\n");
+    static PDS_PERIPHERALINFO pp_info;
+    static PDS_PERIPHERAL pp;
+    PAD_WORK *pad_wk; 
+    unsigned char *pad_data; 
+    int temp; // not from the debugging symbols
+
+    pad_wk = &Ps2_pad.pad1;
+    
+    pad_data = Pad_rdata1;
+    
+    if (port == 1) 
+    {
+        pad_data = Pad_rdata2;
+        
+        pad_wk = &Ps2_pad.pad2;
+    }
+    
+    if (Ps2_sys_cnt != Old_sys_cnt) 
+    {
+        Ps2_pad_read();
+        
+        temp = 55541;
+        
+        pp.id = pad_data[1] / 16;
+        
+        pp.support = temp;
+        
+        pp.on = pad_wk->on;
+        pp.off = ~pad_wk->on;
+        
+        pp.press = pad_wk->push;
+        pp.release = pad_wk->release;
+        
+        pp.l = pad_data[16];
+        pp.r = pad_data[17];
+        
+        pp.x1 = pad_data[6] - 128;
+        pp.y1 = pad_data[7] - 128;
+        
+        pp_info.type = 1;
+          
+        pp.x2 = 0;
+        pp.y2 = 0;
+        
+        pp.name = NULL;
+        
+        pp.old = 0;
+        
+        pp.info = &pp_info;
+
+        Old_sys_cnt = Ps2_sys_cnt;
+        
+        pp_info.connector_dir[0] = 0;
+        pp_info.connector_dir[1] = 0;
+        
+        Ps2_Read_Key(&pp, pad_wk);
+        
+        return &pp;
+    }
+    
+    return &pp;
 }
 
 /*// 
@@ -296,11 +307,11 @@ void pdSetMode(Sint32 mode)
 
 }
 
-/*// 
+// 
 // Start address: 0x2d9f80
 void Ps2_pad_read()
 {
-	_anon4* pad;
+	//_anon4* pad;
 	unsigned int info;
 	// Line 220, Address: 0x2d9f80, Func Offset: 0
 	// Line 222, Address: 0x2d9f90, Func Offset: 0x10
@@ -388,13 +399,14 @@ void Ps2_pad_read()
 	// Line 516, Address: 0x2da3e4, Func Offset: 0x464
 	// Line 518, Address: 0x2da3ec, Func Offset: 0x46c
 	// Func End, Address: 0x2da400, Func Offset: 0x480
+	scePrintf("Ps2_pad_read - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2da400
-void Ps2_Read_Key(_anon1* per, _anon0* pad_wk)
+void Ps2_Read_Key(PDS_PERIPHERAL* per, PAD_WORK* pad_wk)
 {
-	_anon3* pp;
+	//_anon3* pp;
 	unsigned int j;
 	unsigned int i;
 	// Line 527, Address: 0x2da400, Func Offset: 0
@@ -472,7 +484,8 @@ void Ps2_Read_Key(_anon1* per, _anon0* pad_wk)
 	// Line 682, Address: 0x2da748, Func Offset: 0x348
 	// Line 696, Address: 0x2da754, Func Offset: 0x354
 	// Func End, Address: 0x2da770, Func Offset: 0x370
-}*/
+	scePrintf("Ps2_Read_Key - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void Ps2_MakeRepeatKey(unsigned int Id, PAD_WORK* pad_wk)
