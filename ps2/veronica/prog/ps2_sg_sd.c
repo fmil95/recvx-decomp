@@ -1120,11 +1120,11 @@ SDE_ERR sdSndSetPanMode(SDE_PAN_MODE pan_mode)
 	// Line 2710, Address: 0x2dcb3c, Func Offset: 0xac
 	// Line 2712, Address: 0x2dcb44, Func Offset: 0xb4
 	// Func End, Address: 0x2dcb54, Func Offset: 0xc4
-}
+}*/
 
 // 
 // Start address: 0x2dcb60
-SDE_ERR sdSndStopAll()
+SDE_ERR	sdSndStopAll( Void)
 {
 	// Line 2734, Address: 0x2dcb60, Func Offset: 0
 	// Line 2736, Address: 0x2dcb68, Func Offset: 0x8
@@ -1132,9 +1132,10 @@ SDE_ERR sdSndStopAll()
 	// Line 2745, Address: 0x2dcb98, Func Offset: 0x38
 	// Line 2747, Address: 0x2dcba0, Func Offset: 0x40
 	// Func End, Address: 0x2dcbac, Func Offset: 0x4c
+	scePrintf("sdSndStopAll - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dcbb0
 int sndr_trans_func()
 {
@@ -1483,18 +1484,19 @@ SDE_ERR sdMultiUnitDownload(SDS_MEMBLK* handle)
 	// Line 4188, Address: 0x2ddcf0, Func Offset: 0x100
 	// Line 4190, Address: 0x2ddcf8, Func Offset: 0x108
 	// Func End, Address: 0x2ddd0c, Func Offset: 0x11c
-}
+}*/
 
 // 
 // Start address: 0x2ddd10
-SDE_ERR sdSysFinish()
+SDE_ERR	sdSysFinish( Void)
 {
 	// Line 4215, Address: 0x2ddd10, Func Offset: 0
 	// Line 4220, Address: 0x2ddd24, Func Offset: 0x14
 	// Func End, Address: 0x2ddd2c, Func Offset: 0x1c
+	scePrintf("sdSysFinish - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ddd30
 unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned int size, unsigned int mode, unsigned int flag)
 {

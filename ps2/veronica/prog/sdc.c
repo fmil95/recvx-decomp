@@ -161,9 +161,9 @@ void SetVolumeSe2(unsigned int SlotNo, float Volume, short DelayTime);
 void SetPitchSe(unsigned int SlotNo, short Pitch, short DelayTime);
 void SetFxLevelSe(unsigned int SlotNo, char FxLevel);
 void SetSeDefaultVolume(char Volume);
-void SetFxProgram(char FxProgramNo, char FxOutputNo);
+void SetFxProgram(char FxProgramNo, char FxOutputNo);*/
 void StopFxProgram();
-void RequestMidiFadeFunction(int SlotNo, int Func, short Timer);
+/*void RequestMidiFadeFunction(int SlotNo, int Func, short Timer);
 void RequestMidiFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame);
 void StopFadeMidi(int SlotNo);
 void RequestSeFadeFunction(int SlotNo, int Func, short Timer);
@@ -217,17 +217,14 @@ void SetupSoundDriver(void* pSndDrv, unsigned int SndDrvSize)
 	scePrintf("SetupSoundDriver - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x28edd0
+// 100% matching! 
 void ExitSoundDriver()
 {
-	// Line 58, Address: 0x28edd0, Func Offset: 0
-	// Line 59, Address: 0x28edd8, Func Offset: 0x8
-	// Line 60, Address: 0x28ede0, Func Offset: 0x10
-	// Line 61, Address: 0x28ede8, Func Offset: 0x18
-	// Line 62, Address: 0x28edf0, Func Offset: 0x20
-	// Func End, Address: 0x28edfc, Func Offset: 0x2c
-	scePrintf("ExitSoundDriver - UNIMPLEMENTED!\n");
+    StopFxProgram();
+    
+    sdSndStopAll();
+    
+    sdSysFinish();
 }
 
 // 
@@ -812,7 +809,7 @@ void SetFxProgram(char FxProgramNo, char FxOutputNo)
     ExecFxFlag = 1;
 }
 
-/*// 
+// 
 // Start address: 0x28ff40
 void StopFxProgram()
 {
@@ -822,9 +819,10 @@ void StopFxProgram()
 	// Line 644, Address: 0x28ff60, Func Offset: 0x20
 	// Line 645, Address: 0x28ff68, Func Offset: 0x28
 	// Func End, Address: 0x28ff74, Func Offset: 0x34
+	scePrintf("StopFxProgram - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28ff80
 void RequestMidiFadeFunction(int SlotNo, int Func, short Timer)
 {
