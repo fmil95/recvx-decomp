@@ -1067,16 +1067,17 @@ SDE_ERR sdShotStop(SDS_PORT_REF** handle)
 	// Line 2523, Address: 0x2dc964, Func Offset: 0x54
 	// Line 2525, Address: 0x2dc96c, Func Offset: 0x5c
 	// Func End, Address: 0x2dc978, Func Offset: 0x68
-}
+}*/
 
 // 
 // Start address: 0x2dc980
-SDE_ERR sdSndClearFxPrg()
+SDE_ERR	sdSndClearFxPrg( Void)
 {
 	// Line 2552, Address: 0x2dc980, Func Offset: 0
 	// Line 2557, Address: 0x2dc994, Func Offset: 0x14
 	// Func End, Address: 0x2dc99c, Func Offset: 0x1c
-}*/
+	scePrintf("sdSndClearFxPrg - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 SDE_ERR	sdSndSetFxPrg( const Sint8 new_fx_prg_num, const Sint8 new_fx_out_num)

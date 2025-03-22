@@ -791,17 +791,15 @@ void SetFxProgram(char FxProgramNo, char FxOutputNo)
     ExecFxFlag = 1;
 }
 
-// 
-// Start address: 0x28ff40
+// 100% matching!
 void StopFxProgram()
 {
-	// Line 640, Address: 0x28ff40, Func Offset: 0
-	// Line 641, Address: 0x28ff48, Func Offset: 0x8
-	// Line 642, Address: 0x28ff58, Func Offset: 0x18
-	// Line 644, Address: 0x28ff60, Func Offset: 0x20
-	// Line 645, Address: 0x28ff68, Func Offset: 0x28
-	// Func End, Address: 0x28ff74, Func Offset: 0x34
-	scePrintf("StopFxProgram - UNIMPLEMENTED!\n");
+    if (ExecFxFlag != 0) 
+    {
+        sdSndClearFxPrg();
+    }
+    
+    ExecFxFlag = 0;
 }
 
 /*// 
