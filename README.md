@@ -32,6 +32,13 @@ The primary way to discuss the project is through the `PS1/PS2 Decompilation` se
 
 [![Join the Discord](https://dcbadge.limes.pink/api/server/https://discord.gg/tch8h5Vw8E)](https://discord.gg/https://discord.gg/tch8h5Vw8E)
 
+## Resources
+
+Associated decomp projects:
+- [Legacy of Kain: Soul Reaver](https://github.com/fmil95/soul-re)
+- [Fatal Frame](https://github.com/Mikompilation/Himuro)
+- [Silent Hill](https://github.com/Vatuu/silent-hill-decomp)
+
 ## Disclaimer
 
 This repository and the code therein, is made public on this site by fmil95 for preservational and educational purposes. I do not claim to hold any affiliation to the Resident Evil franchise, Capcom Co., Ltd or any other related party, nor mean to infringe upon the copyright of Resident Evil: Code: Veronica X.
