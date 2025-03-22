@@ -386,9 +386,9 @@ int CreatePartitionEx(AFS_PATINFO* ap)
 	// Func End, Address: 0x291324, Func Offset: 0x1b4
 }
 
-/*// 
+// 
 // Start address: 0x291330
-void DeletePartitionEx(_anon4* ap)
+void DeletePartitionEx(AFS_PATINFO* ap)
 {
 	// Line 467, Address: 0x291330, Func Offset: 0
 	// Line 464, Address: 0x291338, Func Offset: 0x8
@@ -397,9 +397,10 @@ void DeletePartitionEx(_anon4* ap)
 	// Line 469, Address: 0x29135c, Func Offset: 0x2c
 	// Line 470, Address: 0x291364, Func Offset: 0x34
 	// Func End, Address: 0x29136c, Func Offset: 0x3c
+	scePrintf("DeletePartitionEx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x291370
 int SearchAdxFSlot()
 {

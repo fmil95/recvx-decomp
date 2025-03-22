@@ -2510,19 +2510,18 @@ int MountSoundAfs()
     return 0;
 }
 
-// 
-// Start address: 0x292af0
+// 100% matching!
 void UnmountSoundAfs()
-{
-	// Line 572, Address: 0x292af0, Func Offset: 0
-	// Line 575, Address: 0x292af8, Func Offset: 0x8
-	// Line 576, Address: 0x292b0c, Func Offset: 0x1c
-	// Line 577, Address: 0x292b18, Func Offset: 0x28
-	// Line 578, Address: 0x292b24, Func Offset: 0x34
-	// Line 591, Address: 0x292b48, Func Offset: 0x58
-	// Func End, Address: 0x292b54, Func Offset: 0x64
-	scePrintf("UnmountSoundAfs - UNIMPLEMENTED!\n");
-}
+{ 
+    if (PatId[0] != -1) 
+    { 
+        DeletePartitionEx(SoundAfsPatDef); 
+        
+        syFree(pSoundAfs); 
+        
+        PatId[0] = PatId[1] = PatId[2] = PatId[3] = -1; 
+    }
+} 
 
 // 100% matching! 
 void ExecSoundSynchProgram()
