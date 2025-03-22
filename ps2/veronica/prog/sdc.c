@@ -101,9 +101,9 @@ struct SDS_SHOT_STAT
 	int m_CurAdr;
 	unsigned int m_Err;
 	unsigned int m_Flg;
-};
+};*/
 
-unsigned int SddFirstFlag;*/
+unsigned int SddFirstFlag;
 unsigned int ExecFxFlag;
 int SdcSoundMode = -1;
 void(*TransCallBackFunc)(void*) = (void*)-1;
@@ -147,9 +147,9 @@ void SetSpeedMidi(unsigned int SlotNo, short Speed, short DelayTime);
 void SetFxLevelMidi(unsigned int SlotNo, char FxLevel);
 void SetMidiDefaultVolume(char Volume);
 void InitSeInfo();
-unsigned int RegistSeSlot(unsigned int SlotNo);
+unsigned int RegistSeSlot(unsigned int SlotNo);*/
 void FreeSeSlot(unsigned int SlotNo);
-unsigned int CheckPlaySe(unsigned int SlotNo);
+/*unsigned int CheckPlaySe(unsigned int SlotNo);
 void PlaySe(unsigned int SlotNo, char BankNo, char ListNo, char Priority);
 void ExPlaySe(_anon1* pRequestInfo);
 void StopSe(unsigned int SlotNo);
@@ -560,25 +560,29 @@ void SetMidiDefaultVolume(char Volume)
     SdcMidiDefaultVolume = Volume;
 }
 
-// 
-// Start address: 0x28f800
+// 100% matching!
 void InitSeInfo()
 {
-	unsigned int i;
-	// Line 384, Address: 0x28f800, Func Offset: 0
-	// Line 387, Address: 0x28f818, Func Offset: 0x18
-	// Line 388, Address: 0x28f81c, Func Offset: 0x1c
-	// Line 390, Address: 0x28f82c, Func Offset: 0x2c
-	// Line 391, Address: 0x28f834, Func Offset: 0x34
-	// Line 393, Address: 0x28f840, Func Offset: 0x40
-	// Line 394, Address: 0x28f844, Func Offset: 0x44
-	// Line 395, Address: 0x28f848, Func Offset: 0x48
-	// Line 397, Address: 0x28f84c, Func Offset: 0x4c
-	// Line 396, Address: 0x28f850, Func Offset: 0x50
-	// Line 397, Address: 0x28f854, Func Offset: 0x54
-	// Line 398, Address: 0x28f860, Func Offset: 0x60
-	// Func End, Address: 0x28f874, Func Offset: 0x74
-	scePrintf("InitSeInfo - UNIMPLEMENTED!\n");
+    unsigned int i;
+    
+    for (i = 0; i < 20; i++)
+    {
+        if (SddFirstFlag == 0) 
+        {
+            SeInfo[i].Flag = 0;
+        } 
+        else 
+        {
+            FreeSeSlot(i);
+        }
+        
+        SeInfo[i].Volume = 0;
+        
+        SeInfo[i].LimitMaxVol = 0;
+        
+        SeInfo[i].FadeFunc = 0;
+        SeInfo[i].PanFunc = 0;
+    } 
 }
 
 // 100% matching! 
@@ -596,7 +600,7 @@ unsigned int RegistSeSlot(unsigned int SlotNo)
     return 0;
 }
 
-/*// 
+// 
 // Start address: 0x28f8f0
 void FreeSeSlot(unsigned int SlotNo)
 {
@@ -611,9 +615,10 @@ void FreeSeSlot(unsigned int SlotNo)
 	// Line 424, Address: 0x28f938, Func Offset: 0x48
 	// Line 425, Address: 0x28f93c, Func Offset: 0x4c
 	// Func End, Address: 0x28f94c, Func Offset: 0x5c
+	scePrintf("FreeSeSlot - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28f950
 unsigned int CheckPlaySe(unsigned int SlotNo)
 {
