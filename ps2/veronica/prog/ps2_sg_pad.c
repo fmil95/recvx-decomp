@@ -140,10 +140,10 @@ unsigned int Ps2_sys_cnt;
 PAD_WRK Ps2_pad;
 unsigned char Pad_rdata2[32];
 unsigned char Pad_rdata1[32];
-/*unsigned char ChkCnt;
+unsigned char ChkCnt;
 unsigned char PadCnt;
-_anon2 pgp_info;
-unsigned int Pad_state[2];
+PDS_PERIPHERALINFO pgp_info;
+/*unsigned int Pad_state[2];
 int SoftResetFlag;*/
 PAD_INFO Pad[4];
 /*int CurrentPortId;
@@ -265,41 +265,45 @@ const PDS_PERIPHERAL* pdGetPeripheral(Uint32 port)
     return &pp;
 }
 
-/*// 
-// Start address: 0x2d9e70
-_anon2* pdGetPeripheralInfo()
+// 100% matching! 
+const PDS_PERIPHERALINFO* pdGetPeripheralInfo(Uint32 port)
 {
-	int md;
-	int st;
-	// Line 177, Address: 0x2d9e70, Func Offset: 0
-	// Line 180, Address: 0x2d9e74, Func Offset: 0x4
-	// Line 177, Address: 0x2d9e78, Func Offset: 0x8
-	// Line 180, Address: 0x2d9e7c, Func Offset: 0xc
-	// Line 181, Address: 0x2d9e84, Func Offset: 0x14
-	// Line 182, Address: 0x2d9e90, Func Offset: 0x20
-	// Line 183, Address: 0x2d9e9c, Func Offset: 0x2c
-	// Line 184, Address: 0x2d9eb0, Func Offset: 0x40
-	// Line 185, Address: 0x2d9eb4, Func Offset: 0x44
-	// Line 187, Address: 0x2d9ebc, Func Offset: 0x4c
-	// Line 189, Address: 0x2d9ec8, Func Offset: 0x58
-	// Line 190, Address: 0x2d9ed0, Func Offset: 0x60
-	// Line 191, Address: 0x2d9ed8, Func Offset: 0x68
-	// Line 192, Address: 0x2d9ee8, Func Offset: 0x78
-	// Line 193, Address: 0x2d9ef4, Func Offset: 0x84
-	// Line 194, Address: 0x2d9ef8, Func Offset: 0x88
-	// Line 195, Address: 0x2d9f00, Func Offset: 0x90
-	// Line 196, Address: 0x2d9f14, Func Offset: 0xa4
-	// Line 197, Address: 0x2d9f20, Func Offset: 0xb0
-	// Line 198, Address: 0x2d9f24, Func Offset: 0xb4
-	// Line 199, Address: 0x2d9f2c, Func Offset: 0xbc
-	// Line 200, Address: 0x2d9f40, Func Offset: 0xd0
-	// Line 202, Address: 0x2d9f44, Func Offset: 0xd4
-	// Line 203, Address: 0x2d9f4c, Func Offset: 0xdc
-	// Line 209, Address: 0x2d9f54, Func Offset: 0xe4
-	// Line 208, Address: 0x2d9f58, Func Offset: 0xe8
-	// Line 209, Address: 0x2d9f60, Func Offset: 0xf0
-	// Func End, Address: 0x2d9f68, Func Offset: 0xf8
-}*/
+    pgp_info.type = 1;
+    
+    if (scePadGetState(0, 0) != 6) 
+    {
+        if (ChkCnt >= 3)
+        {
+            pgp_info.type = 0;
+        } 
+        else
+        {
+            ChkCnt++;
+        }
+        
+        PadCnt = 3;
+    } 
+    else if (PadCnt != 0) 
+    {
+        PadCnt--;
+        
+        pgp_info.type = 0;
+    }
+    else if (scePadInfoMode(0, 0, 1, 0) != 7) 
+    {
+        pgp_info.type = 0;
+    }
+    else if (scePadInfoPressMode(0, 0) != 0) 
+    {
+        ChkCnt = 0;
+    } 
+    else 
+    {
+        pgp_info.type = 0;
+    }
+    
+    return &pgp_info;
+}
 
 // 100% matching!
 void pdSetMode(Sint32 mode)
