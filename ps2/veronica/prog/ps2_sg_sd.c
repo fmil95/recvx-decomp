@@ -428,11 +428,11 @@ SDE_ERR sdLibInit()
 	// Line 930, Address: 0x2db474, Func Offset: 0x74
 	// Line 933, Address: 0x2db47c, Func Offset: 0x7c
 	// Func End, Address: 0x2db484, Func Offset: 0x84
-}
+}*/
 
 // 
 // Start address: 0x2db490
-SDE_ERR sdMemBlkCreate(SDS_MEMBLK** handle)
+SDE_ERR	sdMemBlkCreate( SDMEMBLK *handle)
 {
 	int i;
 	// Line 958, Address: 0x2db490, Func Offset: 0
@@ -447,11 +447,12 @@ SDE_ERR sdMemBlkCreate(SDS_MEMBLK** handle)
 	// Line 977, Address: 0x2db504, Func Offset: 0x74
 	// Line 979, Address: 0x2db50c, Func Offset: 0x7c
 	// Func End, Address: 0x2db514, Func Offset: 0x84
+	scePrintf("sdMemBlkCreate - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2db520
-SDE_ERR sdMemBlkDestroy(SDS_MEMBLK* handle)
+SDE_ERR	sdMemBlkDestroy( SDMEMBLK handle)
 {
 	int i;
 	// Line 1005, Address: 0x2db520, Func Offset: 0
@@ -467,11 +468,12 @@ SDE_ERR sdMemBlkDestroy(SDS_MEMBLK* handle)
 	// Line 1015, Address: 0x2db56c, Func Offset: 0x4c
 	// Line 1017, Address: 0x2db574, Func Offset: 0x54
 	// Func End, Address: 0x2db57c, Func Offset: 0x5c
+	scePrintf("sdMemBlkDestroy - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2db580
-SDE_ERR sdMemBlkSetPrm(SDS_MEMBLK* handle, void* src_blk_ptr, int src_blk_sz, void(*callback_func)(void*), void* callback_first_arg)
+SDE_ERR	sdMemBlkSetPrm( SDMEMBLK handle, const Void *src_blk_ptr, const Sint32 src_blk_sz, const SD_MEMBLK_CALLBACK_FUNC callback_func, const Void *callback_first_arg)
 {
 	// Line 1046, Address: 0x2db580, Func Offset: 0
 	// Line 1048, Address: 0x2db590, Func Offset: 0x10
@@ -484,9 +486,10 @@ SDE_ERR sdMemBlkSetPrm(SDS_MEMBLK* handle, void* src_blk_ptr, int src_blk_sz, vo
 	// Line 1059, Address: 0x2db5c4, Func Offset: 0x44
 	// Line 1061, Address: 0x2db5cc, Func Offset: 0x4c
 	// Func End, Address: 0x2db5d4, Func Offset: 0x54
+	scePrintf("sdMemBlkSetPrm - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2db5e0
 SDE_ERR sdMidiClosePort(SDS_PORT_REF** handle)
 {
@@ -1449,11 +1452,11 @@ SDE_ERR sdMemBlkSetTransferMode()
 	// Line 4105, Address: 0x2ddbd0, Func Offset: 0
 	// Line 4110, Address: 0x2ddbe4, Func Offset: 0x14
 	// Func End, Address: 0x2ddbec, Func Offset: 0x1c
-}
+}*/
 
 // 
 // Start address: 0x2ddbf0
-SDE_ERR sdMultiUnitDownload(SDS_MEMBLK* handle)
+SDE_ERR	sdMultiUnitDownload( SDMEMBLK handle)
 {
 	char* UnitAddress;
 	// Line 4136, Address: 0x2ddbf0, Func Offset: 0
@@ -1484,7 +1487,8 @@ SDE_ERR sdMultiUnitDownload(SDS_MEMBLK* handle)
 	// Line 4188, Address: 0x2ddcf0, Func Offset: 0x100
 	// Line 4190, Address: 0x2ddcf8, Func Offset: 0x108
 	// Func End, Address: 0x2ddd0c, Func Offset: 0x11c
-}*/
+	scePrintf("sdMultiUnitDownload - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2ddd10

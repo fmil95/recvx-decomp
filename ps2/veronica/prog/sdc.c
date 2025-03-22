@@ -106,10 +106,10 @@ struct SDS_SHOT_STAT
 unsigned int SddFirstFlag;*/
 unsigned int ExecFxFlag;
 /*int SdcSoundMode;
-void(*TransCallBackFunc)(void*);
+void(*TransCallBackFunc)(void*);*/
 unsigned int TransCompleteFlag;
 SDS_MEMBLK* SdMemBlk;
-void(*TransWaitCallBackFunction)();
+/*void(*TransWaitCallBackFunction)();
 char SdcMasterVolume;
 char SdcGdDaVolume;*/
 NO_NAME_20 MidiInfo[8];
@@ -227,26 +227,18 @@ void ExitSoundDriver()
     sdSysFinish();
 }
 
-// 
-// Start address: 0x28ee00
+// 100% matching!
 void SetMultiUnit(void* pMulUni, unsigned int MulUniSize)
 {
-	// Line 65, Address: 0x28ee00, Func Offset: 0
-	// Line 66, Address: 0x28ee10, Func Offset: 0x10
-	// Line 65, Address: 0x28ee14, Func Offset: 0x14
-	// Line 66, Address: 0x28ee18, Func Offset: 0x18
-	// Line 70, Address: 0x28ee24, Func Offset: 0x24
-	// Line 68, Address: 0x28ee2c, Func Offset: 0x2c
-	// Line 70, Address: 0x28ee30, Func Offset: 0x30
-	// Line 68, Address: 0x28ee38, Func Offset: 0x38
-	// Line 70, Address: 0x28ee3c, Func Offset: 0x3c
-	// Line 68, Address: 0x28ee40, Func Offset: 0x40
-	// Line 70, Address: 0x28ee44, Func Offset: 0x44
-	// Line 72, Address: 0x28ee4c, Func Offset: 0x4c
-	// Line 77, Address: 0x28ee58, Func Offset: 0x58
-	// Line 78, Address: 0x28ee64, Func Offset: 0x64
-	// Func End, Address: 0x28ee78, Func Offset: 0x78
-	scePrintf("SetMultiUnit - UNIMPLEMENTED!\n");
+    sdMemBlkCreate(&SdMemBlk);
+    
+    TransCompleteFlag = 1;
+    
+    sdMemBlkSetPrm(SdMemBlk, pMulUni, MulUniSize, (SD_MEMBLK_CALLBACK_FUNC)-1, NULL);
+    
+    sdMultiUnitDownload(SdMemBlk);
+    
+    sdMemBlkDestroy(SdMemBlk);
 }
 
 /*// 

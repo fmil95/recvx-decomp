@@ -23,7 +23,7 @@
 #include <sg_bup.h>
 #include <sg_gd.h>
 #include <sg_syrtc.h>
-#include <sg_sd.h>
+#include <sg_sd2.h>
 #include <sg_pdvib.h>
 #include <limits.h>
 
