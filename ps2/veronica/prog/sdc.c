@@ -131,9 +131,9 @@ int GetSoundMode();
 void SetMasterVolume(char Volume);
 void SetGdDaVolume(char Volume);
 void InitMidiInfo();
-unsigned int RegistMidiSlot(unsigned int SlotNo);
+unsigned int RegistMidiSlot(unsigned int SlotNo);*/
 void FreeMidiSlot(unsigned int SlotNo);
-unsigned int CheckPlayMidi(unsigned int SlotNo);
+/*unsigned int CheckPlayMidi(unsigned int SlotNo);
 void PlayMidi(unsigned int SlotNo, char BankNo, char ListNo, char Priority);
 void ExPlayMidi(_anon1* pRequestInfo);
 void StopMidi(unsigned int SlotNo);
@@ -320,25 +320,29 @@ void SetGdDaVolume(char Volume)
     SdcGdDaVolume = Volume;
 }
 
-// 
-// Start address: 0x28f040
+// 100% matching!
 void InitMidiInfo()
 {
-	unsigned int i;
-	// Line 154, Address: 0x28f040, Func Offset: 0
-	// Line 157, Address: 0x28f058, Func Offset: 0x18
-	// Line 158, Address: 0x28f05c, Func Offset: 0x1c
-	// Line 160, Address: 0x28f06c, Func Offset: 0x2c
-	// Line 161, Address: 0x28f074, Func Offset: 0x34
-	// Line 163, Address: 0x28f080, Func Offset: 0x40
-	// Line 164, Address: 0x28f084, Func Offset: 0x44
-	// Line 165, Address: 0x28f088, Func Offset: 0x48
-	// Line 167, Address: 0x28f08c, Func Offset: 0x4c
-	// Line 166, Address: 0x28f090, Func Offset: 0x50
-	// Line 167, Address: 0x28f094, Func Offset: 0x54
-	// Line 168, Address: 0x28f0a0, Func Offset: 0x60
-	// Func End, Address: 0x28f0b4, Func Offset: 0x74
-	scePrintf("InitMidiInfo - UNIMPLEMENTED!\n");
+    unsigned int i;
+    
+    for (i = 0; i < 8; i++)
+    {
+        if (SddFirstFlag == 0) 
+        {
+            MidiInfo[i].Flag = 0;
+        } 
+        else 
+        {
+            FreeMidiSlot(i);
+        }
+        
+        MidiInfo[i].Volume = 0;
+        
+        MidiInfo[i].LimitMaxVol = 0;
+        
+        MidiInfo[i].FadeFunc = 0;
+        MidiInfo[i].PanFunc = 0;
+    } 
 }
 
 // 100% matching! 
@@ -356,7 +360,7 @@ unsigned int RegistMidiSlot(unsigned int SlotNo)
     return 0;
 }
 
-/*// 
+// 
 // Start address: 0x28f130
 void FreeMidiSlot(unsigned int SlotNo)
 {
@@ -371,9 +375,10 @@ void FreeMidiSlot(unsigned int SlotNo)
 	// Line 195, Address: 0x28f178, Func Offset: 0x48
 	// Line 196, Address: 0x28f17c, Func Offset: 0x4c
 	// Func End, Address: 0x28f18c, Func Offset: 0x5c
+	scePrintf("FreeMidiSlot - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28f190
 unsigned int CheckPlayMidi(unsigned int SlotNo)
 {
