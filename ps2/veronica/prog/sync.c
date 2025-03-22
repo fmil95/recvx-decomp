@@ -104,7 +104,7 @@ void bhControlVSync()
     }
 }
 
-// 99.16% matching
+// 99.98% matching
 void bhControlEOR()
 {
     sys->eor_ct++;
@@ -184,11 +184,17 @@ void bhControlEOR()
         } 
         else if ((cam.flg & 0x2))
         {
+            NO_NAME_21 *temp; // not from the debugging symbols
+            
             if (sys->fog_ct != 0)
             {
                 sys->fog_ct--;
+                return;
             }
-            else if ((rom->evcp[cam.evc_no].keyf[cam.keyf_no].flg & 0x8)) 
+
+            temp = &rom->evcp[cam.evc_no].keyf[cam.keyf_no];
+            
+            if ((temp->flg & 0x8)) 
             {
                 if (!(sys->st_flg & 0x100000)) 
                 {
@@ -223,9 +229,13 @@ void bhControlEOR()
             
             if (sys->fog_ct <= 0) 
             {
-                sys->gm_flg &= ~0x10;
+                NO_NAME_23 *temp; // not from the debugging symbols
                 
-                if ((rom->cutp[cam.ncut].cam[cam.camver].flg & 0x8)) 
+                sys->gm_flg &= ~0x10;
+
+                temp = &rom->cutp[cam.ncut].cam[cam.camver];
+                
+                if ((temp->flg & 0x8)) 
                 {
                     if (!(sys->st_flg & 0x100000)) 
                     {
