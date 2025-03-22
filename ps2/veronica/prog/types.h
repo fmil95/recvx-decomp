@@ -2301,3 +2301,74 @@ typedef struct PAD_WRK
 	PAD_WORK pad1; // offset 0x0, size 0x42
 	PAD_WORK pad2; // offset 0x42, size 0x42
 } PAD_WRK;
+
+typedef struct CAM_WORK 
+{
+    // total size: 0x4AC
+    unsigned int flg; // offset 0x0, size 0x4
+    int camver; // offset 0x4, size 0x4
+    unsigned char mode0; // offset 0x8, size 0x1
+    unsigned char mode1; // offset 0x9, size 0x1
+    unsigned char mode2; // offset 0xA, size 0x1
+    unsigned char mode3; // offset 0xB, size 0x1
+    float px; // offset 0xC, size 0x4
+    float py; // offset 0x10, size 0x4
+    float pz; // offset 0x14, size 0x4
+    float vx; // offset 0x18, size 0x4
+    float vy; // offset 0x1C, size 0x4
+    float vz; // offset 0x20, size 0x4
+    float wpx; // offset 0x24, size 0x4
+    float wpy; // offset 0x28, size 0x4
+    float wpz; // offset 0x2C, size 0x4
+    float plx; // offset 0x30, size 0x4
+    float ply; // offset 0x34, size 0x4
+    float plz; // offset 0x38, size 0x4
+    float pxp; // offset 0x3C, size 0x4
+    float pyp; // offset 0x40, size 0x4
+    float pzp; // offset 0x44, size 0x4
+    float ofx; // offset 0x48, size 0x4
+    float ofy; // offset 0x4C, size 0x4
+    float ofz; // offset 0x50, size 0x4
+    int ax; // offset 0x54, size 0x4
+    int ay; // offset 0x58, size 0x4
+    int az; // offset 0x5C, size 0x4
+    int axp; // offset 0x60, size 0x4
+    int ayp; // offset 0x64, size 0x4
+    int azp; // offset 0x68, size 0x4
+    float ln; // offset 0x6C, size 0x4
+    float pln; // offset 0x70, size 0x4
+    float xr; // offset 0x74, size 0x4
+    float xn; // offset 0x78, size 0x4
+    float yr; // offset 0x7C, size 0x4
+    float yn; // offset 0x80, size 0x4
+    int pers; // offset 0x84, size 0x4
+    int ppers; // offset 0x88, size 0x4
+    int ncut; // offset 0x8C, size 0x4
+    int ocut; // offset 0x90, size 0x4
+    unsigned int ocflg; // offset 0x94, size 0x4
+    unsigned int attr; // offset 0x98, size 0x4
+    float (* mtx)[16]; // offset 0x9C, size 0x4
+    float (* mtxb)[16]; // offset 0xA0, size 0x4
+    int evc_no; // offset 0xA4, size 0x4
+    int hct; // offset 0xA8, size 0x4
+    int ct0; // offset 0xAC, size 0x4
+    int ct1; // offset 0xB0, size 0x4
+    int keyf_no; // offset 0xB4, size 0x4
+    float frm; // offset 0xB8, size 0x4
+    float spd; // offset 0xBC, size 0x4
+    float pxn; // offset 0xC0, size 0x4
+    float pyn; // offset 0xC4, size 0x4
+    float pzn; // offset 0xC8, size 0x4
+    int axn; // offset 0xCC, size 0x4
+    int ayn; // offset 0xD0, size 0x4
+    int azn; // offset 0xD4, size 0x4
+    int pe_ax; // offset 0xD8, size 0x4
+    int pe_pers; // offset 0xDC, size 0x4
+    unsigned int fog_col; // offset 0xE0, size 0x4
+    float fog_nr; // offset 0xE4, size 0x4
+    float fog_fr; // offset 0xE8, size 0x4
+    float ips[20][3]; // offset 0xEC, size 0xF0
+    float ian[20][3]; // offset 0x1DC, size 0xF0
+    float ipf[20][3]; // offset 0x2CC, size 0xF0
+    float icr[20][3]; // offset 0x3BC, size 0xF0
+} CAM_WORK;

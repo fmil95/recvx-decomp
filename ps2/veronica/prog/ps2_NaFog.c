@@ -41,9 +41,9 @@ void	njFogDisable()
     ulNaFogState = 0; 
 } 
 
-/*// 
+// 
 // Start address: 0x2d5f80
-void njSetFogColor(unsigned int ulColor)
+void	njSetFogColor(Uint32 c)
 {
 	// Line 114, Address: 0x2d5f80, Func Offset: 0
 	// Line 115, Address: 0x2d5f90, Func Offset: 0x10
@@ -67,20 +67,22 @@ void njSetFogColor(unsigned int ulColor)
 	// Line 121, Address: 0x2d60a8, Func Offset: 0x128
 	// Line 122, Address: 0x2d60f0, Func Offset: 0x170
 	// Func End, Address: 0x2d60f8, Func Offset: 0x178
+	scePrintf("njSetFogColor - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d6100
-void njSetFogTable(float* FogTbl)
+void	njSetFogTable(NJS_FOG_TABLE fog)
 {
 	// Line 140, Address: 0x2d6100, Func Offset: 0
 	// Line 141, Address: 0x2d6104, Func Offset: 0x4
 	// Func End, Address: 0x2d610c, Func Offset: 0xc
+	scePrintf("njSetFogTable - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d6110
-void njGenerateFogTable3(float near, float far)
+void	njGenerateFogTable3(NJS_FOG_TABLE fog, Float n, Float f)
 {
 	int exp[4];
 	int count;
@@ -142,9 +144,10 @@ void njGenerateFogTable3(float near, float far)
 	// Line 253, Address: 0x2d63ac, Func Offset: 0x29c
 	// Line 256, Address: 0x2d63b4, Func Offset: 0x2a4
 	// Func End, Address: 0x2d63cc, Func Offset: 0x2bc
+	scePrintf("njGenerateFogTable3 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d63d0
 float njCalcFogPowerEx(float INVZ)
 {

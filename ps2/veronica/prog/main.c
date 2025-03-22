@@ -41,6 +41,7 @@
 #include "expand.c"
 #include "njloop.c"
 #include "njplus.c"
+#include "ps2_event.c"
 #include "ps2_NaDebugFontFunction.c"
 #include "ps2_NaDraw2D.c"
 #include "ps2_NaMath.c"

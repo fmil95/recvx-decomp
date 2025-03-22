@@ -702,15 +702,16 @@ unsigned int njGetPaletteMode()
 {
 	// Line 782, Address: 0x2e24e0, Func Offset: 0
 	// Func End, Address: 0x2e24e8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2e24f0
-void njSetPaletteData()
+void 	njSetPaletteData(Sint32 offset,Sint32 count,void* data)
 {
 	// Line 793, Address: 0x2e24f0, Func Offset: 0
 	// Func End, Address: 0x2e2500, Func Offset: 0x10
-}*/
+	scePrintf("njSetPaletteData - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2e2500
