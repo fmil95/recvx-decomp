@@ -114,8 +114,8 @@ char SdcMasterVolume;
 char SdcGdDaVolume;*/
 NO_NAME_20 MidiInfo[8];
 SDMIDI MidiHandle[8];
-/*char SdcSeDefaultVolume;
-char SdcMidiDefaultVolume;*/
+char SdcSeDefaultVolume;
+/*char SdcMidiDefaultVolume;*/
 NO_NAME_20 SeInfo[20];
 SDSHOT SeHandle[20];
 
@@ -791,14 +791,10 @@ void SetFxLevelSe(unsigned int SlotNo, char FxLevel)
 	// Func End, Address: 0x28ff00, Func Offset: 0x50
 }*/
 
-// 
-// Start address: 0x28ff00
-void SetSeDefaultVolume(char Volume)
+// 100% matching! 
+void SetSeDefaultVolume(char Volume) 
 {
-	// Line 625, Address: 0x28ff00, Func Offset: 0
-	// Line 626, Address: 0x28ff04, Func Offset: 0x4
-	// Func End, Address: 0x28ff0c, Func Offset: 0xc
-	scePrintf("SetSeDefaultVolume - UNIMPLEMENTED!\n");
+    SdcSeDefaultVolume = Volume;
 }
 
 // 100% matching! 
