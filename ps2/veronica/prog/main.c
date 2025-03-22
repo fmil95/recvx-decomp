@@ -19,7 +19,7 @@
 #include "override_katana.h"
 // KATANA library
 #include <ninja.h>
-#include <sg_syCbl.h>
+#include <sg_sycbl.h>
 #include <sg_bup.h>
 #include <sg_gd.h>
 #include <sg_syrtc.h>
