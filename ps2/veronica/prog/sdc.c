@@ -261,23 +261,28 @@ void SetSoundData(SDE_DATA_TYPE DataType, int BankNo, void* pSndDat, unsigned in
 	// Func End, Address: 0x28ef14, Func Offset: 0x94
 }*/
 
-// 
-// Start address: 0x28ef20
+// 100% matching!
 void SetSoundModeEx(int Mode, int Flag)
 {
-	// Line 97, Address: 0x28ef20, Func Offset: 0
-	// Line 98, Address: 0x28ef34, Func Offset: 0x14
-	// Line 100, Address: 0x28ef3c, Func Offset: 0x1c
-	// Line 104, Address: 0x28ef44, Func Offset: 0x24
-	// Line 105, Address: 0x28ef50, Func Offset: 0x30
-	// Line 107, Address: 0x28ef58, Func Offset: 0x38
-	// Line 111, Address: 0x28ef60, Func Offset: 0x40
-	// Line 113, Address: 0x28ef6c, Func Offset: 0x4c
-	// Line 115, Address: 0x28ef70, Func Offset: 0x50
-	// Line 116, Address: 0x28ef78, Func Offset: 0x58
-	// Line 118, Address: 0x28ef80, Func Offset: 0x60
-	// Func End, Address: 0x28ef94, Func Offset: 0x74
-	scePrintf("SetSoundModeEx - UNIMPLEMENTED!\n");
+    if (Mode == 0)
+    {
+        sdSndSetPanMode(SDE_PAN_MODE_STEREO);
+        
+        sdGddaSetPan(127, -127);
+    } 
+    else
+    {
+        sdSndSetPanMode(SDE_PAN_MODE_MONO);
+        
+        sdGddaSetPan(0, 0);
+    }
+    
+    SdcSoundMode = Mode;
+    
+    if (Flag != 0) 
+    {
+        syCfgSetSoundMode(Mode);
+    }
 }
 
 // 100% matching!

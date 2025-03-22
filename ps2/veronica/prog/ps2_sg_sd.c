@@ -392,9 +392,9 @@ SDE_ERR	sdDrvInit( SDMEMBLK handle)
 	scePrintf("sdDrvInit - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2db3c0
-SDE_ERR sdGddaSetPan()
+SDE_ERR	sdGddaSetPan( const Sint8 left_pan, const Sint8 right_pan)
 {
 	// Line 883, Address: 0x2db3c0, Func Offset: 0
 	// Line 885, Address: 0x2db3c8, Func Offset: 0x8
@@ -403,7 +403,8 @@ SDE_ERR sdGddaSetPan()
 	// Line 890, Address: 0x2db3ec, Func Offset: 0x2c
 	// Line 892, Address: 0x2db3f4, Func Offset: 0x34
 	// Func End, Address: 0x2db400, Func Offset: 0x40
-}*/
+	scePrintf("sdGddaSetPan - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2db400
@@ -1100,9 +1101,9 @@ SDE_ERR	sdSndSetMasterVol( const Sint8 vol)
 	scePrintf("sdSndSetMasterVol - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2dca90
-SDE_ERR sdSndSetPanMode(SDE_PAN_MODE pan_mode)
+SDE_ERR	sdSndSetPanMode( const SDE_PAN_MODE pan_mode)
 {
 	int ret;
 	// Line 2668, Address: 0x2dca90, Func Offset: 0
@@ -1126,7 +1127,8 @@ SDE_ERR sdSndSetPanMode(SDE_PAN_MODE pan_mode)
 	// Line 2710, Address: 0x2dcb3c, Func Offset: 0xac
 	// Line 2712, Address: 0x2dcb44, Func Offset: 0xb4
 	// Func End, Address: 0x2dcb54, Func Offset: 0xc4
-}*/
+	scePrintf("sdSndSetPanMode - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2dcb60
