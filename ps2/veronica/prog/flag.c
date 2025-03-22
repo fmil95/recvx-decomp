@@ -24,13 +24,8 @@ void bhCrFlg(unsigned int* flg, unsigned int bit)
 	// Func End, Address: 0x280e9c, Func Offset: 0x2c
 }*/
 
-// 
-// Start address: 0x280ea0
+// 100% matching! 
 int bhCkFlg(unsigned int* flg, unsigned int bit)
 {
-	// Line 53, Address: 0x280ea0, Func Offset: 0
-	// Line 54, Address: 0x280ebc, Func Offset: 0x1c
-	// Func End, Address: 0x280ec4, Func Offset: 0x24
-	scePrintf("bhCkFlg - UNIMPLEMENTED!\n");
-}
-
+    return flg[bit / 32] & (0x80000000 >> (bit & 31)); 
+} 
