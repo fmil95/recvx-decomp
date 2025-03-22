@@ -259,7 +259,7 @@ void SetSoundData(SDE_DATA_TYPE DataType, int BankNo, void* pSndDat, unsigned in
 	// Line 87, Address: 0x28eee0, Func Offset: 0x60
 	// Line 94, Address: 0x28eef8, Func Offset: 0x78
 	// Func End, Address: 0x28ef14, Func Offset: 0x94
-}
+}*/
 
 // 
 // Start address: 0x28ef20
@@ -277,15 +277,13 @@ void SetSoundModeEx(int Mode, int Flag)
 	// Line 116, Address: 0x28ef78, Func Offset: 0x58
 	// Line 118, Address: 0x28ef80, Func Offset: 0x60
 	// Func End, Address: 0x28ef94, Func Offset: 0x74
-}*/
+	scePrintf("SetSoundModeEx - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x28efa0
+// 100% matching!
 void SetSoundMode(int Mode)
 {
-	// Line 122, Address: 0x28efa0, Func Offset: 0
-	// Func End, Address: 0x28efa8, Func Offset: 0x8
-	scePrintf("SetSoundMode - UNIMPLEMENTED!\n");
+    SetSoundModeEx(Mode, 1);
 }
 
 // 
