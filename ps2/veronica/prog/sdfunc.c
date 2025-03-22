@@ -2557,7 +2557,7 @@ void ExecSoundSynchProgram()
     }
 }
 
-/*// 
+// 
 // Start address: 0x292c20
 void InitGameSoundSystem()
 {
@@ -2588,9 +2588,10 @@ void InitGameSoundSystem()
 	// Line 709, Address: 0x292cfc, Func Offset: 0xdc
 	// Line 710, Address: 0x292d04, Func Offset: 0xe4
 	// Func End, Address: 0x292d10, Func Offset: 0xf0
+	scePrintf("InitGameSoundSystem - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x292d10
 int SearchAfsInsideFileId(unsigned short KeyCode)
 {

@@ -83,11 +83,11 @@ void njClipZ(float fNear, float fFar);
 int njCalcScreen(_anon0* pPoint, float* fpScreenX, float* fpScreenY);*/
 void njViewScreenMatrix(NJS_MATRIX* vs);
 void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far);
-/*void _Make_ClipVolume(float x, float y);
+/*void _Make_ClipVolume(float x, float y);*/
 
 // 
 // Start address: 0x2e2970
-void njSetScreen(_anon2* pScreen)
+void    njSetScreen(NJS_SCREEN *s)
 {
 	// Line 122, Address: 0x2e2970, Func Offset: 0
 	// Line 123, Address: 0x2e297c, Func Offset: 0xc
@@ -123,9 +123,10 @@ void njSetScreen(_anon2* pScreen)
 	// Line 148, Address: 0x2e2a54, Func Offset: 0xe4
 	// Line 150, Address: 0x2e2a68, Func Offset: 0xf8
 	// Func End, Address: 0x2e2a78, Func Offset: 0x108
+	scePrintf("njSetScreen - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e2a80
 void njSetPerspective(int lAngle)
 {

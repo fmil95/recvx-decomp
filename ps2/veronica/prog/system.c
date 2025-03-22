@@ -1682,8 +1682,8 @@ unsigned char pl_sleep_cnt;
 BH_PWORK ply;
 BH_PWORK *plp = &ply;
 unsigned char* keepmem;
-/*float BHD_ASPECT_Y;
-float BHD_ASPECT_X;*/
+float BHD_ASPECT_Y;
+float BHD_ASPECT_X;
 unsigned char BackColorFlag;
 PAD_WRK Ps2_pad;
 int pd_port;
@@ -2065,92 +2065,102 @@ void bhSysCallOpening()
     bhFirstGameStart(); 
 } 
 
-// 
-// Start address: 0x132860
+// 100% matching! 
 void bhFirstGameStart()
 {
-	int hp;
-	int i;
-	//_anon7 scrn;
-	// Line 800, Address: 0x132860, Func Offset: 0
-	// Line 808, Address: 0x132868, Func Offset: 0x8
-	// Line 809, Address: 0x132870, Func Offset: 0x10
-	// Line 808, Address: 0x132878, Func Offset: 0x18
-	// Line 809, Address: 0x13287c, Func Offset: 0x1c
-	// Line 808, Address: 0x132880, Func Offset: 0x20
-	// Line 809, Address: 0x132888, Func Offset: 0x28
-	// Line 811, Address: 0x132894, Func Offset: 0x34
-	// Line 812, Address: 0x13289c, Func Offset: 0x3c
-	// Line 813, Address: 0x1328a4, Func Offset: 0x44
-	// Line 814, Address: 0x1328ac, Func Offset: 0x4c
-	// Line 815, Address: 0x1328b4, Func Offset: 0x54
-	// Line 816, Address: 0x1328bc, Func Offset: 0x5c
-	// Line 817, Address: 0x1328c4, Func Offset: 0x64
-	// Line 818, Address: 0x1328c8, Func Offset: 0x68
-	// Line 819, Address: 0x1328d4, Func Offset: 0x74
-	// Line 821, Address: 0x1328e4, Func Offset: 0x84
-	// Line 820, Address: 0x1328e8, Func Offset: 0x88
-	// Line 821, Address: 0x1328f0, Func Offset: 0x90
-	// Line 823, Address: 0x1328fc, Func Offset: 0x9c
-	// Line 824, Address: 0x132904, Func Offset: 0xa4
-	// Line 823, Address: 0x13290c, Func Offset: 0xac
-	// Line 824, Address: 0x13291c, Func Offset: 0xbc
-	// Line 825, Address: 0x13292c, Func Offset: 0xcc
-	// Line 824, Address: 0x132934, Func Offset: 0xd4
-	// Line 825, Address: 0x13293c, Func Offset: 0xdc
-	// Line 854, Address: 0x13294c, Func Offset: 0xec
-	// Line 880, Address: 0x132954, Func Offset: 0xf4
-	// Line 891, Address: 0x13295c, Func Offset: 0xfc
-	// Line 825, Address: 0x132960, Func Offset: 0x100
-	// Line 826, Address: 0x13296c, Func Offset: 0x10c
-	// Line 854, Address: 0x13298c, Func Offset: 0x12c
-	// Line 880, Address: 0x132998, Func Offset: 0x138
-	// Line 854, Address: 0x13299c, Func Offset: 0x13c
-	// Line 880, Address: 0x1329a4, Func Offset: 0x144
-	// Line 891, Address: 0x1329ac, Func Offset: 0x14c
-	// Line 892, Address: 0x1329d0, Func Offset: 0x170
-	// Line 893, Address: 0x1329dc, Func Offset: 0x17c
-	// Line 892, Address: 0x1329e0, Func Offset: 0x180
-	// Line 893, Address: 0x1329e4, Func Offset: 0x184
-	// Line 892, Address: 0x1329e8, Func Offset: 0x188
-	// Line 893, Address: 0x1329f0, Func Offset: 0x190
-	// Line 895, Address: 0x132a00, Func Offset: 0x1a0
-	// Line 897, Address: 0x132a08, Func Offset: 0x1a8
-	// Line 901, Address: 0x132a10, Func Offset: 0x1b0
-	// Line 898, Address: 0x132a14, Func Offset: 0x1b4
-	// Line 901, Address: 0x132a18, Func Offset: 0x1b8
-	// Line 897, Address: 0x132a1c, Func Offset: 0x1bc
-	// Line 898, Address: 0x132a28, Func Offset: 0x1c8
-	// Line 899, Address: 0x132a3c, Func Offset: 0x1dc
-	// Line 900, Address: 0x132a50, Func Offset: 0x1f0
-	// Line 901, Address: 0x132a64, Func Offset: 0x204
-	// Line 908, Address: 0x132a7c, Func Offset: 0x21c
-	// Line 909, Address: 0x132a94, Func Offset: 0x234
-	// Line 910, Address: 0x132a98, Func Offset: 0x238
-	// Line 912, Address: 0x132aa4, Func Offset: 0x244
-	// Line 911, Address: 0x132aa8, Func Offset: 0x248
-	// Line 912, Address: 0x132ab8, Func Offset: 0x258
-	// Line 913, Address: 0x132ac0, Func Offset: 0x260
-	// Line 912, Address: 0x132ac4, Func Offset: 0x264
-	// Line 913, Address: 0x132acc, Func Offset: 0x26c
-	// Line 914, Address: 0x132ad8, Func Offset: 0x278
-	// Line 913, Address: 0x132adc, Func Offset: 0x27c
-	// Line 914, Address: 0x132ae0, Func Offset: 0x280
-	// Line 917, Address: 0x132aec, Func Offset: 0x28c
-	// Line 918, Address: 0x132b04, Func Offset: 0x2a4
-	// Line 919, Address: 0x132b08, Func Offset: 0x2a8
-	// Line 920, Address: 0x132b14, Func Offset: 0x2b4
-	// Line 921, Address: 0x132b20, Func Offset: 0x2c0
-	// Line 922, Address: 0x132b28, Func Offset: 0x2c8
-	// Line 923, Address: 0x132b30, Func Offset: 0x2d0
-	// Line 924, Address: 0x132b38, Func Offset: 0x2d8
-	// Line 926, Address: 0x132b44, Func Offset: 0x2e4
-	// Line 924, Address: 0x132b48, Func Offset: 0x2e8
-	// Line 925, Address: 0x132b4c, Func Offset: 0x2ec
-	// Line 926, Address: 0x132b58, Func Offset: 0x2f8
-	// Line 929, Address: 0x132b64, Func Offset: 0x304
-	// Func End, Address: 0x132b70, Func Offset: 0x310
-	scePrintf("bhFirstGameStart - UNIMPLEMENTED!\n");
+    int i; 
+    NJS_SCREEN scrn; 
+    int hp; 
+    
+    sys->ss_flg |= 0x100;
+    sys->ss_flg &= ~0xA0004000;
+    
+    njWaitVSync();
+    
+    njSetPaletteMode(2);
+    
+    scrn.dist = 500.0f;
+    
+    scrn.w = 640.0f;
+    scrn.h = 480.0f;
+    
+    scrn.cx = 320.0f;
+    scrn.cy = 240.0f;
+    
+    njSetScreen(&scrn);
+    
+    BHD_ASPECT_X = 1.174f;
+    BHD_ASPECT_Y = 1.0f;
+    
+    njSetAspect(BHD_ASPECT_X, BHD_ASPECT_Y);
+    
+    sys->memp = keepmem;
+    
+    sys->obwp = (NO_NAME_4*)bhGetFreeMemory(39936, 32);
+    sys->itwp = (NO_NAME_4*)bhGetFreeMemory(39936, 32);
+    
+    sys->mempb = sys->memp;
+    
+    sys->tk_flg |= 0x73DFC0;
+    
+    sys->ts_flg = 0x3DF80;
+    
+    if ((sys->ss_flg & 0x400000)) 
+    {
+        sys->ts_flg |= 0x40;
+    }
+    
+    sys->tk_flg &= ~0x20;
+    
+    *(int*)&sys->mn_mode0 = 1;
+    
+    InitGameSoundSystem();
+    
+    sys->ond_cx = 0;
+    
+    sys->ond_n[0] = 1;
+    sys->ond_n[1] = 0;
+    sys->ond_n[2] = 0;
+    
+    if (!(sys->ss_flg & 0x400200))
+    {
+        if (sys->gm_mode == 2) 
+        {
+            hp = 320;
+        }
+        else 
+        {
+            hp = 160; 
+        }
+        
+        for (i = 0; i < 4; i++)
+        {
+            sys->ply_hp[i] = hp;
+            
+            sys->ply_stflg[i] = 0x40000000;
+            
+            sys->ply_wno[i] = 0;
+        } 
+        
+        if (sys->gm_mode < 3) 
+        {
+            sys->stg_no = 0;
+            sys->rom_no = 0;
+            
+            sys->rcase = 0;
+            
+            sys->ply_id = 0;
+        }
+        else 
+        {
+            sys->stg_no = 5;
+            sys->rom_no = 50;
+            
+            sys->rcase = 0;
+            
+            sys->ply_id = 3;
+        }
+    }
 }
 
 // 100% matching! 
