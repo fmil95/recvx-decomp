@@ -1967,9 +1967,9 @@ _anon27* Ps2_current_texmemlist;
 _anon0 Qtex[16];
 _anon16 AdvTexInfo[8][2];
 _anon20 AdvTexName[8][2];
-char AdvTexPalBank[8][2];
+char AdvTexPalBank[8][2];*/
 int CurrentPortId;
-unsigned char FontSz[0];
+/*unsigned char FontSz[0];
 float FontScaleCR;
 float FontScaleX;
 _anon31 AdvVmMsgDef[21];*/
@@ -2956,15 +2956,11 @@ void AdvEasyReleaseAllTexture()
 	scePrintf("AdvEasyReleaseAllTexture - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c2340
+// 100% matching!
 int AdvGetCurrentPort()
-{
-	// Line 1554, Address: 0x2c2340, Func Offset: 0
-	// Line 1555, Address: 0x2c2344, Func Offset: 0x4
-	// Func End, Address: 0x2c234c, Func Offset: 0xc
-	scePrintf("AdvGetCurrentPort - UNIMPLEMENTED!\n");
-}
+{ 
+    return CurrentPortId;
+} 
 
 /*// 
 // Start address: 0x2c2350
