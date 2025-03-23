@@ -5,7 +5,7 @@ options:
   target_path: SLUS_201.84
   base_path: .
   platform: ps2
-  compiler: MWCC
+  compiler: MWCCPS2
 
   # asm_path: asm
   # src_path: src
