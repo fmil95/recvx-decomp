@@ -321,17 +321,15 @@ void mwPlyExecServer()
 	// Line 396, Address: 0x2d8968, Func Offset: 0x68
 	// Line 399, Address: 0x2d897c, Func Offset: 0x7c
 	// Func End, Address: 0x2d8988, Func Offset: 0x88
-}
+}*/
 
-// 
-// Start address: 0x2d8990
-void mwPlyFinishSofdec()
+// 100% matching!
+void mwPlyFinishSofdec(void)
 {
-	// Line 426, Address: 0x2d8990, Func Offset: 0
-	// Func End, Address: 0x2d8998, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x2d89a0
 int mwPlyGetBright()
 {
