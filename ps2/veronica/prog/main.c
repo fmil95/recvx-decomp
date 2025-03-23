@@ -37,6 +37,7 @@
 
 #include "types.h"
 
+#include "ps2_SystemLoadScreen.c"
 #include "ps2_sg_maloc.c"
 #include "backup.c"
 #include "expand.c"
@@ -74,7 +75,6 @@
 #include "ps2_sg_sytmr.c"
 #include "flag.c"
 #include "sdc.c"
-#include "adv.c"
 #include "pad.c"
 #include "padman.c"
 #include "mwwrap.c"
@@ -96,6 +96,7 @@
 #include "map.c"
 #include "effect.c"
 #include "event.c"
+#include "adv.c"
 #include "system.c"
 
 typedef void(*fn)();

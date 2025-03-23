@@ -1972,10 +1972,10 @@ int CurrentPortId;
 unsigned char FontSz[0];
 float FontScaleCR;
 float FontScaleX;
-_anon31 AdvVmMsgDef[21];
-tagSYSLOAD_SCREEN* pSysLoad;
-tagSYSLOAD_SCREEN SysLoad;
-float ColorBarSizeY;
+_anon31 AdvVmMsgDef[21];*/
+struct tagSYSLOAD_SCREEN* pSysLoad;
+struct tagSYSLOAD_SCREEN SysLoad;
+/*float ColorBarSizeY;
 float RedLinePosY;
 unsigned int ColorBarBright;
 tagSYSSAVE_SCREEN* pSysSave;
@@ -2084,14 +2084,15 @@ void CallSystemVoice(int VoiceNo)
 	scePrintf("CallSystemVoice - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2c0d80
 float GetSamurai(int Time)
 {
 	// Line 234, Address: 0x2c0d80, Func Offset: 0
 	// Line 235, Address: 0x2c0e04, Func Offset: 0x84
 	// Func End, Address: 0x2c0e0c, Func Offset: 0x8c
-}*/
+	scePrintf("GetSamurai - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void InitAdvSystem()
@@ -2114,12 +2115,12 @@ void InitAdvSystem()
     MountAdvAfs(); 
 } 
 
-/*// 
+// 
 // Start address: 0x2c0e80
 void ResetAdvSystem()
 {
 	int i;
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 266, Address: 0x2c0e80, Func Offset: 0
 	// Line 267, Address: 0x2c0e8c, Func Offset: 0xc
 	// Line 270, Address: 0x2c0e94, Func Offset: 0x14
@@ -2168,7 +2169,8 @@ void ResetAdvSystem()
 	// Line 345, Address: 0x2c0f84, Func Offset: 0x104
 	// Line 346, Address: 0x2c0f8c, Func Offset: 0x10c
 	// Func End, Address: 0x2c0f9c, Func Offset: 0x11c
-}*/
+	scePrintf("ResetAdvSystem - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void MountAdvAfs() 
@@ -2180,16 +2182,17 @@ void MountAdvAfs()
     temp->PatId = PatId[3]; 
 }
 
-/*// 
+// 
 // Start address: 0x2c0fc0
 unsigned char* AdvGetResourcePtr(unsigned char* bp, unsigned int ResId)
 {
 	// Line 389, Address: 0x2c0fc0, Func Offset: 0
 	// Line 390, Address: 0x2c0fcc, Func Offset: 0xc
 	// Func End, Address: 0x2c0fd4, Func Offset: 0x14
+	scePrintf("AdvGetResourcePtr - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c0fe0
 void AdvSetSoundMode()
 {
@@ -2201,13 +2204,13 @@ void AdvSetSoundMode()
 	// Line 404, Address: 0x2c1008, Func Offset: 0x28
 	// Line 406, Address: 0x2c1010, Func Offset: 0x30
 	// Func End, Address: 0x2c1020, Func Offset: 0x40
-}
+}*/
 
 // 
 // Start address: 0x2c1020
 void AdvCheckSoftReset(int Flag)
 {
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 415, Address: 0x2c1020, Func Offset: 0
 	// Line 416, Address: 0x2c1030, Func Offset: 0x10
 	// Line 418, Address: 0x2c1038, Func Offset: 0x18
@@ -2220,9 +2223,10 @@ void AdvCheckSoftReset(int Flag)
 	// Line 426, Address: 0x2c108c, Func Offset: 0x6c
 	// Line 430, Address: 0x2c1094, Func Offset: 0x74
 	// Func End, Address: 0x2c10a8, Func Offset: 0x88
+	scePrintf("AdvCheckSoftReset - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c10b0
 void AdvPushRoomTexture()
 {
@@ -2287,22 +2291,23 @@ void AdvPopPaletteData()
 	// Line 506, Address: 0x2c1284, Func Offset: 0x64
 	// Line 507, Address: 0x2c1298, Func Offset: 0x78
 	// Func End, Address: 0x2c12a4, Func Offset: 0x84
-}
+}*/
 
 // 
 // Start address: 0x2c12b0
 void RequestAdvInsideFileEx(int InsideFileId, int MemoryBlockNo)
 {
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 517, Address: 0x2c12b0, Func Offset: 0
 	// Line 518, Address: 0x2c12c4, Func Offset: 0x14
 	// Line 520, Address: 0x2c12d0, Func Offset: 0x20
 	// Line 521, Address: 0x2c12f8, Func Offset: 0x48
 	// Line 522, Address: 0x2c1308, Func Offset: 0x58
 	// Func End, Address: 0x2c1320, Func Offset: 0x70
+	scePrintf("RequestAdvInsideFileEx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c1320
 void RequestAdvInsideFile(int InsideFileId)
 {
@@ -2325,7 +2330,7 @@ void FreeAdvMemoryEx(int MemoryBlockNo)
 	// Line 547, Address: 0x2c1360, Func Offset: 0x30
 	// Line 549, Address: 0x2c1364, Func Offset: 0x34
 	// Func End, Address: 0x2c1374, Func Offset: 0x44
-}
+}*/
 
 // 
 // Start address: 0x2c1380
@@ -2338,9 +2343,10 @@ void AllFreeAdvMemory()
 	// Line 563, Address: 0x2c1398, Func Offset: 0x18
 	// Line 564, Address: 0x2c13ac, Func Offset: 0x2c
 	// Func End, Address: 0x2c13bc, Func Offset: 0x3c
+	scePrintf("AllFreeAdvMemory - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c13c0
 int CheckReadEndAdvInsideFile()
 {
@@ -2370,7 +2376,7 @@ void CheckReadEndAdvInsideFile2Ex(int NextMode, int Flag)
 	// Line 611, Address: 0x2c1478, Func Offset: 0x78
 	// Line 616, Address: 0x2c147c, Func Offset: 0x7c
 	// Func End, Address: 0x2c1494, Func Offset: 0x94
-}
+}*/
 
 // 
 // Start address: 0x2c14a0
@@ -2378,13 +2384,14 @@ void CheckReadEndAdvInsideFile2(int NextMode)
 {
 	// Line 626, Address: 0x2c14a0, Func Offset: 0
 	// Func End, Address: 0x2c14a8, Func Offset: 0x8
+	scePrintf("CheckReadEndAdvInsideFile2 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2c14b0
 void RequestAdvFade(int FadeType, float FadeSpeed)
 {
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 641, Address: 0x2c14b0, Func Offset: 0
 	// Line 646, Address: 0x2c14b8, Func Offset: 0x8
 	// Line 643, Address: 0x2c14bc, Func Offset: 0xc
@@ -2395,6 +2402,7 @@ void RequestAdvFade(int FadeType, float FadeSpeed)
 	// Line 654, Address: 0x2c14fc, Func Offset: 0x4c
 	// Line 657, Address: 0x2c1500, Func Offset: 0x50
 	// Func End, Address: 0x2c1508, Func Offset: 0x58
+	scePrintf("RequestAdvFade - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2404,9 +2412,10 @@ int CheckAdvFade()
 	// Line 670, Address: 0x2c1510, Func Offset: 0
 	// Line 671, Address: 0x2c1518, Func Offset: 0x8
 	// Func End, Address: 0x2c1520, Func Offset: 0x10
+	scePrintf("CheckAdvFade - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c1520
 void AdvDrawFadePolygon(int Type, float Rate, unsigned int BaseColor)
 {
@@ -2466,7 +2475,7 @@ void ExecuteAdvFadeEx(int Type)
 	// Line 747, Address: 0x2c1694, Func Offset: 0xa4
 	// Line 750, Address: 0x2c16a0, Func Offset: 0xb0
 	// Func End, Address: 0x2c16ac, Func Offset: 0xbc
-}
+}*/
 
 // 
 // Start address: 0x2c16b0
@@ -2474,9 +2483,10 @@ void ExecuteAdvFade()
 {
 	// Line 760, Address: 0x2c16b0, Func Offset: 0
 	// Func End, Address: 0x2c16b8, Func Offset: 0x8
+	scePrintf("ExecuteAdvFade - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c16c0
 void StopAdvScreenSaver(int Flag)
 {
@@ -2487,13 +2497,13 @@ void StopAdvScreenSaver(int Flag)
 	// Line 778, Address: 0x2c16dc, Func Offset: 0x1c
 	// Line 780, Address: 0x2c16e0, Func Offset: 0x20
 	// Func End, Address: 0x2c16e8, Func Offset: 0x28
-}
+}*/
 
 // 
 // Start address: 0x2c16f0
 void ExecuteAdvScreenSaver()
 {
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 790, Address: 0x2c16f0, Func Offset: 0
 	// Line 792, Address: 0x2c16f8, Func Offset: 0x8
 	// Line 793, Address: 0x2c1704, Func Offset: 0x14
@@ -2515,6 +2525,7 @@ void ExecuteAdvScreenSaver()
 	// Line 808, Address: 0x2c17ac, Func Offset: 0xbc
 	// Line 812, Address: 0x2c17b0, Func Offset: 0xc0
 	// Func End, Address: 0x2c17c0, Func Offset: 0xd0
+	scePrintf("ExecuteAdvScreenSaver - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2529,9 +2540,10 @@ void CheckAdvScreenSaverStopKey(int PortId)
 	// Line 824, Address: 0x2c181c, Func Offset: 0x5c
 	// Line 826, Address: 0x2c1828, Func Offset: 0x68
 	// Func End, Address: 0x2c1834, Func Offset: 0x74
+	scePrintf("CheckAdvScreenSaverStopKey - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c1840
 unsigned int AdvGetOkButton()
 {
@@ -2576,13 +2588,13 @@ void SetPvrInfo(_anon20* np, _anon16* ip, unsigned char* pp)
 	// Line 938, Address: 0x2c1914, Func Offset: 0x54
 	// Line 940, Address: 0x2c1928, Func Offset: 0x68
 	// Func End, Address: 0x2c1948, Func Offset: 0x88
-}
+}*/
 
 // 
 // Start address: 0x2c1950
 int TransPvpData(unsigned char* pp, int Mode)
 {
-	_anon11* pPvp;
+	//_anon11* pPvp;
 	// Line 951, Address: 0x2c1950, Func Offset: 0
 	// Line 959, Address: 0x2c1960, Func Offset: 0x10
 	// Line 951, Address: 0x2c1964, Func Offset: 0x14
@@ -2594,9 +2606,10 @@ int TransPvpData(unsigned char* pp, int Mode)
 	// Line 978, Address: 0x2c199c, Func Offset: 0x4c
 	// Line 979, Address: 0x2c19a4, Func Offset: 0x54
 	// Func End, Address: 0x2c19b8, Func Offset: 0x68
+	scePrintf("TransPvpData - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c19c0
 void AdvTransShadowPalette()
 {
@@ -2789,7 +2802,7 @@ void AdvDwawOnePictureEx(int TexNo, unsigned int BaseColor)
 	// Line 1306, Address: 0x2c1fe0, Func Offset: 0x90
 	// Line 1307, Address: 0x2c1fe8, Func Offset: 0x98
 	// Func End, Address: 0x2c2000, Func Offset: 0xb0
-}
+}*/
 
 // 
 // Start address: 0x2c2000
@@ -2797,6 +2810,7 @@ void AdvDwawOnePicture(int TexNo)
 {
 	// Line 1317, Address: 0x2c2000, Func Offset: 0
 	// Func End, Address: 0x2c2008, Func Offset: 0x8
+	scePrintf("AdvDwawOnePicture - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2804,7 +2818,7 @@ void AdvDwawOnePicture(int TexNo)
 void AdvEasySetupTextureBasic(unsigned char* xp, int ListNo, int TexNo)
 {
 	unsigned int* lp;
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 1350, Address: 0x2c2010, Func Offset: 0
 	// Line 1351, Address: 0x2c202c, Func Offset: 0x1c
 	// Line 1356, Address: 0x2c2034, Func Offset: 0x24
@@ -2816,9 +2830,10 @@ void AdvEasySetupTextureBasic(unsigned char* xp, int ListNo, int TexNo)
 	// Line 1367, Address: 0x2c208c, Func Offset: 0x7c
 	// Line 1368, Address: 0x2c2100, Func Offset: 0xf0
 	// Func End, Address: 0x2c2120, Func Offset: 0x110
+	scePrintf("AdvEasySetupTextureBasic - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c2120
 void AdvEasySetupTextureEx(int ListNo)
 {
@@ -2837,7 +2852,7 @@ void AdvEasySetupTexture()
 {
 	// Line 1394, Address: 0x2c2170, Func Offset: 0
 	// Func End, Address: 0x2c2178, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2c2180
@@ -2851,13 +2866,14 @@ void AdvEasySetTextureList(int ListNo)
 	// Line 1407, Address: 0x2c219c, Func Offset: 0x1c
 	// Line 1408, Address: 0x2c21a4, Func Offset: 0x24
 	// Func End, Address: 0x2c21b0, Func Offset: 0x30
+	scePrintf("AdvEasySetTextureList - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2c21b0
 void AdvEasyTransTextureBasic(int ListNo, int TexNum, int Flag)
 {
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 1422, Address: 0x2c21b0, Func Offset: 0
 	// Line 1423, Address: 0x2c21bc, Func Offset: 0xc
 	// Line 1425, Address: 0x2c21c4, Func Offset: 0x14
@@ -2874,9 +2890,10 @@ void AdvEasyTransTextureBasic(int ListNo, int TexNum, int Flag)
 	// Line 1434, Address: 0x2c221c, Func Offset: 0x6c
 	// Line 1435, Address: 0x2c2220, Func Offset: 0x70
 	// Func End, Address: 0x2c2238, Func Offset: 0x88
+	scePrintf("AdvEasyTransTextureBasic - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c2240
 void AdvEasyTransTextureEx(int ListNo)
 {
@@ -2916,14 +2933,14 @@ void AdvEasyReleaseTexture()
 {
 	// Line 1492, Address: 0x2c22d0, Func Offset: 0
 	// Func End, Address: 0x2c22d8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2c22e0
 void AdvEasyReleaseAllTexture()
 {
 	int i;
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 1503, Address: 0x2c22e0, Func Offset: 0
 	// Line 1504, Address: 0x2c22e4, Func Offset: 0x4
 	// Line 1503, Address: 0x2c22ec, Func Offset: 0xc
@@ -2936,6 +2953,7 @@ void AdvEasyReleaseAllTexture()
 	// Line 1511, Address: 0x2c2318, Func Offset: 0x38
 	// Line 1512, Address: 0x2c2330, Func Offset: 0x50
 	// Func End, Address: 0x2c233c, Func Offset: 0x5c
+	scePrintf("AdvEasyReleaseAllTexture - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2945,9 +2963,10 @@ int AdvGetCurrentPort()
 	// Line 1554, Address: 0x2c2340, Func Offset: 0
 	// Line 1555, Address: 0x2c2344, Func Offset: 0x4
 	// Func End, Address: 0x2c234c, Func Offset: 0xc
+	scePrintf("AdvGetCurrentPort - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c2350
 int CheckConnectVmDrive(int SlotNo)
 {
@@ -3091,14 +3110,14 @@ float AutoSaveLoadEasyDispMessage(float PosX, float PosY, unsigned char* ucpMsbT
 	// Line 1993, Address: 0x2c283c, Func Offset: 0x1ec
 	// Line 1997, Address: 0x2c2878, Func Offset: 0x228
 	// Func End, Address: 0x2c28a4, Func Offset: 0x254
-}
+}*/
 
 // 
 // Start address: 0x2c28b0
 int DispVmWarningMessage(int MsgId)
 {
-	_anon31* mp;
-	_anon8* ap;
+	//_anon31* mp;
+	//_anon8* ap;
 	// Line 2071, Address: 0x2c28b0, Func Offset: 0
 	// Line 2072, Address: 0x2c28b8, Func Offset: 0x8
 	// Line 2070, Address: 0x2c28c0, Func Offset: 0x10
@@ -3119,6 +3138,7 @@ int DispVmWarningMessage(int MsgId)
 	// Line 2086, Address: 0x2c295c, Func Offset: 0xac
 	// Line 2087, Address: 0x2c2960, Func Offset: 0xb0
 	// Func End, Address: 0x2c2970, Func Offset: 0xc0
+	scePrintf("DispVmWarningMessage - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3132,131 +3152,218 @@ void DefaultSetOption()
 	// Line 2102, Address: 0x2c29c4, Func Offset: 0x54
 	// Line 2103, Address: 0x2c29d4, Func Offset: 0x64
 	// Func End, Address: 0x2c29e0, Func Offset: 0x70
-}*/
-
-// 
-// Start address: 0x2c29e0
-int Adv_FirstWarningMessage()
-{
-	int ReturnCode;
-	int TexNoDef[3];
-	//_anon8* ap;
-	int LoadCheck;
-	int lState;
-	// Line 2113, Address: 0x2c29e0, Func Offset: 0
-	// Line 2114, Address: 0x2c29f0, Func Offset: 0x10
-	// Line 2118, Address: 0x2c29f8, Func Offset: 0x18
-	// Line 2120, Address: 0x2c2a0c, Func Offset: 0x2c
-	// Line 2118, Address: 0x2c2a10, Func Offset: 0x30
-	// Line 2131, Address: 0x2c2a14, Func Offset: 0x34
-	// Line 2132, Address: 0x2c2a1c, Func Offset: 0x3c
-	// Line 2133, Address: 0x2c2a24, Func Offset: 0x44
-	// Line 2134, Address: 0x2c2a2c, Func Offset: 0x4c
-	// Line 2135, Address: 0x2c2a34, Func Offset: 0x54
-	// Line 2137, Address: 0x2c2a3c, Func Offset: 0x5c
-	// Line 2139, Address: 0x2c2a68, Func Offset: 0x88
-	// Line 2143, Address: 0x2c2a70, Func Offset: 0x90
-	// Line 2144, Address: 0x2c2a74, Func Offset: 0x94
-	// Line 2147, Address: 0x2c2a7c, Func Offset: 0x9c
-	// Line 2148, Address: 0x2c2aa0, Func Offset: 0xc0
-	// Line 2149, Address: 0x2c2ab8, Func Offset: 0xd8
-	// Line 2150, Address: 0x2c2abc, Func Offset: 0xdc
-	// Line 2152, Address: 0x2c2ac4, Func Offset: 0xe4
-	// Line 2153, Address: 0x2c2acc, Func Offset: 0xec
-	// Line 2155, Address: 0x2c2ad4, Func Offset: 0xf4
-	// Line 2156, Address: 0x2c2adc, Func Offset: 0xfc
-	// Line 2157, Address: 0x2c2ae4, Func Offset: 0x104
-	// Line 2161, Address: 0x2c2aec, Func Offset: 0x10c
-	// Line 2162, Address: 0x2c2af8, Func Offset: 0x118
-	// Line 2163, Address: 0x2c2afc, Func Offset: 0x11c
-	// Line 2165, Address: 0x2c2b04, Func Offset: 0x124
-	// Line 2166, Address: 0x2c2b0c, Func Offset: 0x12c
-	// Line 2168, Address: 0x2c2b14, Func Offset: 0x134
-	// Line 2169, Address: 0x2c2b24, Func Offset: 0x144
-	// Line 2170, Address: 0x2c2b40, Func Offset: 0x160
-	// Line 2171, Address: 0x2c2b5c, Func Offset: 0x17c
-	// Line 2172, Address: 0x2c2b74, Func Offset: 0x194
-	// Line 2171, Address: 0x2c2b7c, Func Offset: 0x19c
-	// Line 2172, Address: 0x2c2b80, Func Offset: 0x1a0
-	// Line 2183, Address: 0x2c2b88, Func Offset: 0x1a8
-	// Line 2186, Address: 0x2c2b8c, Func Offset: 0x1ac
-	// Line 2231, Address: 0x2c2b94, Func Offset: 0x1b4
-	// Line 2232, Address: 0x2c2b98, Func Offset: 0x1b8
-	// Line 2270, Address: 0x2c2ba0, Func Offset: 0x1c0
-	// Line 2280, Address: 0x2c2ba4, Func Offset: 0x1c4
-	// Line 2283, Address: 0x2c2bac, Func Offset: 0x1cc
-	// Line 2289, Address: 0x2c2bd0, Func Offset: 0x1f0
-	// Line 2292, Address: 0x2c2be8, Func Offset: 0x208
-	// Line 2291, Address: 0x2c2bf0, Func Offset: 0x210
-	// Line 2294, Address: 0x2c2bf8, Func Offset: 0x218
-	// Line 2296, Address: 0x2c2c00, Func Offset: 0x220
-	// Line 2297, Address: 0x2c2c14, Func Offset: 0x234
-	// Line 2299, Address: 0x2c2c28, Func Offset: 0x248
-	// Line 2300, Address: 0x2c2c30, Func Offset: 0x250
-	// Line 2301, Address: 0x2c2c38, Func Offset: 0x258
-	// Line 2302, Address: 0x2c2c3c, Func Offset: 0x25c
-	// Line 2303, Address: 0x2c2c44, Func Offset: 0x264
-	// Line 2304, Address: 0x2c2c4c, Func Offset: 0x26c
-	// Line 2306, Address: 0x2c2c58, Func Offset: 0x278
-	// Line 2307, Address: 0x2c2c60, Func Offset: 0x280
-	// Line 2308, Address: 0x2c2c68, Func Offset: 0x288
-	// Line 2309, Address: 0x2c2c70, Func Offset: 0x290
-	// Line 2311, Address: 0x2c2c74, Func Offset: 0x294
-	// Line 2314, Address: 0x2c2c98, Func Offset: 0x2b8
-	// Line 2315, Address: 0x2c2ca4, Func Offset: 0x2c4
-	// Line 2317, Address: 0x2c2cac, Func Offset: 0x2cc
-	// Line 2323, Address: 0x2c2cb4, Func Offset: 0x2d4
-	// Line 2408, Address: 0x2c2cbc, Func Offset: 0x2dc
-	// Line 2410, Address: 0x2c2cc0, Func Offset: 0x2e0
-	// Line 2413, Address: 0x2c2cc8, Func Offset: 0x2e8
-	// Line 2432, Address: 0x2c2ccc, Func Offset: 0x2ec
-	// Line 2434, Address: 0x2c2cd4, Func Offset: 0x2f4
-	// Line 2435, Address: 0x2c2cdc, Func Offset: 0x2fc
-	// Line 2436, Address: 0x2c2ce4, Func Offset: 0x304
-	// Line 2438, Address: 0x2c2cec, Func Offset: 0x30c
-	// Line 2439, Address: 0x2c2cf0, Func Offset: 0x310
-	// Line 2441, Address: 0x2c2cf8, Func Offset: 0x318
-	// Line 2442, Address: 0x2c2d04, Func Offset: 0x324
-	// Line 2447, Address: 0x2c2d0c, Func Offset: 0x32c
-	// Line 2449, Address: 0x2c2d24, Func Offset: 0x344
-	// Line 2448, Address: 0x2c2d28, Func Offset: 0x348
-	// Line 2451, Address: 0x2c2d2c, Func Offset: 0x34c
-	// Line 2453, Address: 0x2c2d34, Func Offset: 0x354
-	// Line 2458, Address: 0x2c2d44, Func Offset: 0x364
-	// Line 2463, Address: 0x2c2d4c, Func Offset: 0x36c
-	// Line 2465, Address: 0x2c2d54, Func Offset: 0x374
-	// Line 2466, Address: 0x2c2d60, Func Offset: 0x380
-	// Line 2467, Address: 0x2c2d74, Func Offset: 0x394
-	// Line 2469, Address: 0x2c2d7c, Func Offset: 0x39c
-	// Line 2470, Address: 0x2c2d88, Func Offset: 0x3a8
-	// Line 2469, Address: 0x2c2d90, Func Offset: 0x3b0
-	// Line 2470, Address: 0x2c2d94, Func Offset: 0x3b4
-	// Line 2471, Address: 0x2c2da4, Func Offset: 0x3c4
-	// Line 2472, Address: 0x2c2db8, Func Offset: 0x3d8
-	// Line 2474, Address: 0x2c2dc0, Func Offset: 0x3e0
-	// Line 2475, Address: 0x2c2dc8, Func Offset: 0x3e8
-	// Line 2476, Address: 0x2c2ddc, Func Offset: 0x3fc
-	// Line 2478, Address: 0x2c2de4, Func Offset: 0x404
-	// Line 2479, Address: 0x2c2df4, Func Offset: 0x414
-	// Line 2480, Address: 0x2c2e00, Func Offset: 0x420
-	// Line 2481, Address: 0x2c2e18, Func Offset: 0x438
-	// Line 2482, Address: 0x2c2e1c, Func Offset: 0x43c
-	// Line 2483, Address: 0x2c2e24, Func Offset: 0x444
-	// Line 2484, Address: 0x2c2e3c, Func Offset: 0x45c
-	// Line 2486, Address: 0x2c2e40, Func Offset: 0x460
-	// Line 2487, Address: 0x2c2e48, Func Offset: 0x468
-	// Line 2488, Address: 0x2c2e54, Func Offset: 0x474
-	// Line 2493, Address: 0x2c2e68, Func Offset: 0x488
-	// Line 2494, Address: 0x2c2e78, Func Offset: 0x498
-	// Line 2495, Address: 0x2c2e80, Func Offset: 0x4a0
-	// Line 2496, Address: 0x2c2e88, Func Offset: 0x4a8
-	// Line 2498, Address: 0x2c2e8c, Func Offset: 0x4ac
-	// Line 2497, Address: 0x2c2e90, Func Offset: 0x4b0
-	// Line 2501, Address: 0x2c2e94, Func Offset: 0x4b4
-	// Line 2502, Address: 0x2c2e98, Func Offset: 0x4b8
-	// Func End, Address: 0x2c2eac, Func Offset: 0x4cc
-	scePrintf("Adv_FirstWarningMessage - UNIMPLEMENTED!\n");
+	scePrintf("DefaultSetOption - UNIMPLEMENTED!\n");
 }
+
+// 99.72% matching
+int Adv_FirstWarningMessage()
+{ 
+	ADV_WORK* ap = (ADV_WORK*)&AdvWork; 
+    int ReturnCode;
+	int TexNoDef[3] = {0, 1, -1}; 
+	static int lState;
+	static int LoadCheck;
+    
+    ReturnCode = 0; 
+    
+    ap->PortId = AdvGetCurrentPort(); 
+    
+    ExecuteAdvFade(); 
+    ExecuteAdvScreenSaver(); 
+    
+    CheckAdvScreenSaverStopKey(ap->PortId); 
+    
+    AdvCheckSoftReset(0); 
+
+    switch (ap->Mode) 
+    { 
+    case 0:
+        ResetAdvSystem(); 
+        
+        ap->Mode = 1; 
+        break; 
+    case 1:
+        ap->ptr[0] = bhGetFreeMemory(GetInsideFileSize(sys->sys_partid, 1), 32);
+        
+        RequestReadInsideFile(sys->sys_partid, 1, ap->ptr[0]); 
+        
+        ap->Mode = 2; 
+        break; 
+    case 2:
+        CheckReadEndAdvInsideFile2(3); 
+        break; 
+    case 3:
+        bhSetFontTexture(ap->ptr[0]); 
+        
+        AllFreeAdvMemory(); 
+        
+        ap->Mode = 4; 
+    case 4:
+        RequestAdvInsideFileEx(0, 0); 
+        
+        ap->Mode = 5; 
+        break; 
+    case 5:
+        CheckReadEndAdvInsideFile2(6); 
+        break; 
+    case 6:
+        ap->MsgPtr = AdvGetResourcePtr(ap->ptr[0], 0); 
+        
+        AdvEasySetupTextureBasic(AdvGetResourcePtr(ap->ptr[0], 2), 0, 0); 
+        AdvEasySetupTextureBasic(AdvGetResourcePtr(ap->ptr[0], 3), 0, 1); 
+        
+        ap->PalNo = TransPvpData(AdvGetResourcePtr(ap->ptr[0], 1), ap->PalFlag); 
+        
+        AdvEasyTransTextureBasic(0, 2, 1); 
+        
+        ap->Mode = 8; 
+        break; 
+    case 8:
+    case 9:
+        ap->Mode = 11; 
+        break; 
+    case 10:
+        ap->Mode = 11; 
+        break; 
+    case 11:
+        switch (lState)
+        { 
+        case 0:
+            pSysLoad = CreateSysLoadScreen(&SysLoad, NULL); 
+            
+            lState = 1; 
+            
+            LoadCheck = 0; 
+            break;
+        case 1:
+            LoadCheck = ExecuteSysLoadScreen(pSysLoad); 
+            
+            if (LoadCheck == 1) 
+            { 
+                ap->Mode = 15;
+                
+                lState = 0; 
+                
+                LoadCheck = 0; 
+                
+                DefaultSetOption(1); 
+            }
+            else if (LoadCheck == 2) 
+            { 
+                ap->Mode = 15; 
+                
+                lState = 0; 
+                
+                LoadCheck = 0;
+                
+                ap->GenFlag = 1; 
+                
+                switch (sys->ssd_reserve) 
+                { 
+                case 0:
+                    SetSoundMode(0); 
+                    break; 
+                case 1:
+                    SetSoundMode(1); 
+                    break;
+                }
+            } 
+        }
+        
+        break; 
+    case 12:
+        ap->Mode = 15; 
+        break; 
+    case 13:
+        ap->Mode = 15; 
+        break; 
+    case 14:
+        CheckAdvScreenSaverStopKey(ap->PortId); 
+        
+        DispVmWarningMessage(ap->MsgNo); 
+        break; 
+    case 15:
+        ap->Mode = 16; 
+        break; 
+    case 16:
+        if (ap->GenFlag != 0) 
+        {
+            SetAdjustDisplay(); 
+        }
+
+        RequestAdvFade(2, GetSamurai(50)); 
+        
+        ap->Count = 0; 
+        
+        ap->Mode = 17; 
+        break; 
+    case 17:
+        if (CheckAdvFade() == 0) 
+        { 
+            ap->Timer = 150.0f; 
+            
+            ap->Mode = 18; 
+        }
+        
+        AdvEasySetTextureList(0); 
+        
+        AdvDwawOnePicture(TexNoDef[ap->Count]); 
+        break; 
+    case 18:
+        ap->Timer--; 
+        
+        if (ap->Timer < 0) 
+        { 
+            RequestAdvFade(3, GetSamurai(50));
+            
+            ap->Mode = 19; 
+        }
+        
+        AdvEasySetTextureList(0); 
+        
+        AdvDwawOnePicture(TexNoDef[ap->Count]); 
+        break; 
+    case 19:
+        if (CheckAdvFade() == 0) 
+        { 
+            ap->Count++; 
+            
+            if (TexNoDef[ap->Count] < 0)
+            { 
+                ap->Mode = -1; 
+            } 
+            else 
+            { 
+                RequestAdvFade(2, GetSamurai(50)); 
+                
+                ap->Mode = 17; 
+            }
+        }
+        else 
+        { 
+            AdvEasySetTextureList(0); 
+            
+            AdvDwawOnePicture(TexNoDef[ap->Count]); 
+        }
+        
+        break;
+    }
+    
+    if (ap->Mode == -1) 
+    { 
+        AdvEasyReleaseAllTexture(); 
+        
+        AllFreeAdvMemory(); 
+        
+        ap->Mode = 0; 
+        
+        ap->Active = 0; 
+        
+        ReturnCode = 1;
+    }
+    
+    return ReturnCode; 
+} 
 
 // 
 // Start address: 0x2c2eb0

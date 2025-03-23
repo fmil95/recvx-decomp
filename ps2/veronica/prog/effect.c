@@ -1759,7 +1759,7 @@ void bhInitEffect()
 	// Line 239, Address: 0x21be98, Func Offset: 0x338
 	// Line 244, Address: 0x21beac, Func Offset: 0x34c
 	// Func End, Address: 0x21bedc, Func Offset: 0x37c
-}
+}*/
 
 // 
 // Start address: 0x21bee0
@@ -1796,9 +1796,10 @@ void bhSetFontTexture(void* datp)
 	// Line 273, Address: 0x21bfcc, Func Offset: 0xec
 	// Line 274, Address: 0x21bfe0, Func Offset: 0x100
 	// Func End, Address: 0x21bfec, Func Offset: 0x10c
+	scePrintf("bhSetFontTexture - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x21bff0
 void bhClearEffect()
 {

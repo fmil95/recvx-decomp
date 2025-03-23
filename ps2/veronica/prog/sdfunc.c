@@ -2328,6 +2328,7 @@ void ExitSofdecSystem()
     }
 }
 
+void InitAdvSystem(); // TODO: remove this declaration
 // 97.61% matching
 void InitSoundProgram()
 {
@@ -4687,7 +4688,7 @@ int RequestReadIsoFile(char* FileName, void* DestPtr)
 	// Line 4266, Address: 0x2972ec, Func Offset: 0x6c
 	// Line 4267, Address: 0x2972f0, Func Offset: 0x70
 	// Func End, Address: 0x297300, Func Offset: 0x80
-}
+}*/
 
 // 
 // Start address: 0x297300
@@ -4705,15 +4706,16 @@ int RequestReadInsideFile(unsigned int PartitionId, unsigned int FileId, void* D
 	// Line 4291, Address: 0x29736c, Func Offset: 0x6c
 	// Line 4292, Address: 0x297370, Func Offset: 0x70
 	// Func End, Address: 0x297380, Func Offset: 0x80
+	scePrintf("RequestReadInsideFile - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x297380
 int GetIsoFileSize(char* FileName)
 {
 	// Line 4382, Address: 0x297380, Func Offset: 0
 	// Func End, Address: 0x297388, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x297390
@@ -4729,9 +4731,10 @@ int GetInsideFileSize(unsigned int PartitionId, unsigned int FileId)
 	// Line 4403, Address: 0x2973c8, Func Offset: 0x38
 	// Line 4404, Address: 0x2973cc, Func Offset: 0x3c
 	// Func End, Address: 0x2973e0, Func Offset: 0x50
+	scePrintf("GetInsideFileSize - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2973e0
 int GetReadFileStatus()
 {

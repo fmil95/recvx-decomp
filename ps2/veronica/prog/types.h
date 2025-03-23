@@ -2372,3 +2372,149 @@ typedef struct CAM_WORK
     float ipf[20][3]; // offset 0x2CC, size 0xF0
     float icr[20][3]; // offset 0x3BC, size 0xF0
 } CAM_WORK;
+
+struct tagCONFIGFILE {
+    // total size: 0x34
+    unsigned int ssd_ver; // offset 0x0, size 0x4
+    unsigned int ssd_flg; // offset 0x4, size 0x4
+    unsigned int ssd_reserve; // offset 0x8, size 0x4
+    signed char keytype; // offset 0xC, size 0x1
+    signed char adjust_x; // offset 0xD, size 0x1
+    signed char adjust_y; // offset 0xE, size 0x1
+    signed char vibration; // offset 0xF, size 0x1
+    signed int best_tm[8]; // offset 0x10, size 0x20
+    unsigned int Check_Sam; // offset 0x30, size 0x4
+};
+
+struct tagSAVEFILE {
+    // total size: 0x838
+    unsigned int version; // offset 0x0, size 0x4
+    signed int save_ct; // offset 0x4, size 0x4
+    signed char ply_id; // offset 0x8, size 0x1
+    signed char stg_no; // offset 0x9, size 0x1
+    signed char rom_no; // offset 0xA, size 0x1
+    signed char rcase; // offset 0xB, size 0x1
+    signed char pos_no; // offset 0xC, size 0x1
+    signed char cut_no; // offset 0xD, size 0x1
+    signed char flr_no; // offset 0xE, size 0x1
+    signed char reserve0; // offset 0xF, size 0x1
+    signed int gm_mode; // offset 0x10, size 0x4
+    unsigned int ev_flg[32]; // offset 0x14, size 0x80
+    unsigned int it_flg[16]; // offset 0x94, size 0x40
+    unsigned int ic_flg[16]; // offset 0xD4, size 0x40
+    unsigned int ed_flg[32]; // offset 0x114, size 0x80
+    unsigned int ky_flg[16]; // offset 0x194, size 0x40
+    unsigned int mp_flg[8]; // offset 0x1D4, size 0x20
+    unsigned int itm[384]; // offset 0x1F4, size 0x600
+    unsigned int ply_stflg[4]; // offset 0x7F4, size 0x10
+    struct /* @anon32 */ {
+        // total size: 0xC
+        float x; // offset 0x0, size 0x4
+        float y; // offset 0x4, size 0x4
+        float z; // offset 0x8, size 0x4
+    } ply_pos; // offset 0x804, size 0xC
+    signed int ply_ang; // offset 0x810, size 0x4
+    signed char ply_wno[4]; // offset 0x814, size 0x4
+    signed short ply_hp[4]; // offset 0x818, size 0x8
+    unsigned char evt_posno[4]; // offset 0x820, size 0x4
+    signed int time; // offset 0x824, size 0x4
+    signed int stv_tm; // offset 0x828, size 0x4
+    signed short spray_ct; // offset 0x82C, size 0x2
+    signed short retry_ct; // offset 0x82E, size 0x2
+    signed short clear_ct; // offset 0x830, size 0x2
+    signed short reserve1; // offset 0x832, size 0x2
+    unsigned int CheckSam; // offset 0x834, size 0x4
+};
+
+struct tagICONINFORMATION {
+    // total size: 0x3C4
+    struct /* @anon18 */ {
+        // total size: 0x3C4
+        unsigned char Head[4]; // offset 0x0, size 0x4
+        unsigned short Reserv1; // offset 0x4, size 0x2
+        unsigned short OffsLF; // offset 0x6, size 0x2
+        unsigned int Reserv2; // offset 0x8, size 0x4
+        unsigned int TransRate; // offset 0xC, size 0x4
+        signed int BgColor[4][4]; // offset 0x10, size 0x40
+        float LightDir[3][4]; // offset 0x50, size 0x30
+        float LightColor[3][4]; // offset 0x80, size 0x30
+        float Ambient[4]; // offset 0xB0, size 0x10
+        unsigned char TitleName[68]; // offset 0xC0, size 0x44
+        unsigned char FnameView[64]; // offset 0x104, size 0x40
+        unsigned char FnameCopy[64]; // offset 0x144, size 0x40
+        unsigned char FnameDel[64]; // offset 0x184, size 0x40
+        unsigned char Reserve3[512]; // offset 0x1C4, size 0x200
+    } icon; // offset 0x0, size 0x3C4
+};
+
+struct tagMEMORYCARDPORT {
+    // total size: 0x10
+    signed int lCrntType; // offset 0x0, size 0x4
+    signed int lPrevType; // offset 0x4, size 0x4
+    signed int lFreeSize; // offset 0x8, size 0x4
+    signed int lFormatType; // offset 0xC, size 0x4
+};
+
+struct tagMEMORYCARDSTATE {
+    // total size: 0xA0
+    unsigned int ulState; // offset 0x0, size 0x4
+    unsigned int ulError; // offset 0x4, size 0x4
+    unsigned int ulMcSubState; // offset 0x8, size 0x4
+    unsigned int ulFileSize; // offset 0xC, size 0x4
+    signed int lCurrentPort; // offset 0x10, size 0x4
+    signed int lOpenFileNumber; // offset 0x14, size 0x4
+    signed int lSelectFileNumber; // offset 0x18, size 0x4
+    signed int lOpenMode; // offset 0x1C, size 0x4
+    unsigned short usMcSysState; // offset 0x20, size 0x2
+    void * vpAddr; // offset 0x24, size 0x4
+    signed char cCurrentDir[50]; // offset 0x28, size 0x32
+    signed char cOpenFileName[32]; // offset 0x5A, size 0x20
+    signed char cRetryCount; // offset 0x7A, size 0x1
+    signed char cMcCheckFlag; // offset 0x7B, size 0x1
+    signed char cCheckMcFlag; // offset 0x7C, size 0x1
+    struct tagMEMORYCARDPORT Port[2]; // offset 0x80, size 0x20
+};
+
+struct tagSELECTFILEINFO {
+    // total size: 0x10
+    signed int FileNumber; // offset 0x0, size 0x4
+    signed int save_ct; // offset 0x4, size 0x4
+    signed int gm_mode; // offset 0x8, size 0x4
+    signed char ply_id; // offset 0xC, size 0x1
+    signed char saveroom; // offset 0xD, size 0x1
+};
+
+struct tagSELECTFILEWINDOW {
+    // total size: 0x28
+    unsigned int ulFileState; // offset 0x0, size 0x4
+    struct tagSELECTFILEINFO * pRecordTop; // offset 0x4, size 0x4
+    signed int lRecordMax; // offset 0x8, size 0x4
+    signed short slDispTopNumber; // offset 0xC, size 0x2
+    signed short slDispRecordNumber; // offset 0xE, size 0x2
+    signed short sMesCur; // offset 0x10, size 0x2
+    signed short sCursol; // offset 0x12, size 0x2
+    signed short sWaitMesTimer; // offset 0x14, size 0x2
+    float slLineNumber; // offset 0x18, size 0x4
+    signed int slDispWriteMesMax; // offset 0x1C, size 0x4
+    signed int slDispWriteMes; // offset 0x20, size 0x4
+    unsigned int ulfoundationColor; // offset 0x24, size 0x4
+};
+
+struct tagSYSLOAD_SCREEN {
+    // total size: 0x38
+    unsigned int ulState; // offset 0x0, size 0x4
+    unsigned int ulSubState; // offset 0x4, size 0x4
+    unsigned int ulMemCheckCountTimer; // offset 0x8, size 0x4
+    unsigned int ulFileSize; // offset 0xC, size 0x4
+    unsigned short usExitFlag; // offset 0x10, size 0x2
+    unsigned short usLoopCount; // offset 0x12, size 0x2
+    signed int lCardState; // offset 0x14, size 0x4
+    signed char cMesFlag; // offset 0x18, size 0x1
+    struct tagCONFIGFILE * pConfigFile; // offset 0x1C, size 0x4
+    struct tagSAVEFILE * pSaveFile; // offset 0x20, size 0x4
+    struct tagICONINFORMATION * pIconInfo; // offset 0x24, size 0x4
+    struct tagMEMORYCARDSTATE * pMcState; // offset 0x28, size 0x4
+    struct tagSELECTFILEINFO * pSelectFileInfo; // offset 0x2C, size 0x4
+    struct tagSELECTFILEWINDOW * pSelectFileWindow; // offset 0x30, size 0x4
+    void * vpReadBuffer; // offset 0x34, size 0x4
+};
