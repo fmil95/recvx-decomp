@@ -132,11 +132,11 @@ struct _mwply_if
 	int(*GetOutPan)(_anon2*, int);
 	void(*StartSj)(_anon2*, _anon1*);
 	void(*StartMem)(_anon2*, void*, int);
-};
+};*/
 
-int MwMode;
+int MwMode = -1;
 int MwPlayFlag;
-_anon2* MwPly;
+/*_anon2* MwPly;
 _anon4 MwsCprmSfd;
 int MwMemoryMode;
 int MwPlayMode;
@@ -162,20 +162,22 @@ void SetMwVolume(int Volume);
 int GetSfdFadeRate();
 void SetSfdDislpaySize(float PosX, float PosY, float SizeX, float SizeY);*/
 
-// 
-// Start address: 0x290960
+// 100% matching!
 void InitMwSystem(unsigned int Mode, void* pPrm)
 {
-	// Line 29, Address: 0x290960, Func Offset: 0
-	// Line 30, Address: 0x29096c, Func Offset: 0xc
-	// Line 32, Address: 0x29098c, Func Offset: 0x2c
-	// Line 33, Address: 0x290998, Func Offset: 0x38
-	// Line 40, Address: 0x2909a0, Func Offset: 0x40
-	// Line 52, Address: 0x2909ac, Func Offset: 0x4c
-	// Line 50, Address: 0x2909b4, Func Offset: 0x54
-	// Line 53, Address: 0x2909bc, Func Offset: 0x5c
-	// Func End, Address: 0x2909cc, Func Offset: 0x6c
-	scePrintf("InitMwSystem - UNIMPLEMENTED!\n");
+    switch (Mode)
+    {
+    case 0:
+        mwPlyInitSofdec(pPrm);
+        break;
+    case 2:
+        mwPlyInitSofdec(pPrm);
+        break;
+    }
+    
+    MwMode = Mode;
+    
+    MwPlayFlag = 0;
 }
 
 // 

@@ -337,7 +337,7 @@ int mwPlyGetBright()
 {
 	// Line 459, Address: 0x2d89a0, Func Offset: 0
 	// Func End, Address: 0x2d89a8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2d89b0
@@ -345,7 +345,8 @@ void mwPlyInitSofdec()
 {
 	// Line 518, Address: 0x2d89b0, Func Offset: 0
 	// Func End, Address: 0x2d89b8, Func Offset: 0x8
-}*/
+	scePrintf("mwPlyInitSofdec - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void mwPlyPreInitSofdec() 
