@@ -29,3 +29,28 @@ void ADXT_Finish(void)
 {
     scePrintf("ADXT_Finish - UNIMPLEMENTED!\n");
 }
+
+void ADXPS2_Lock(void)
+{
+    scePrintf("ADXPS2_Lock - UNIMPLEMENTED!\n");
+}
+
+void ADXPS2_Unlock(void)
+{
+    scePrintf("ADXPS2_Unlock - UNIMPLEMENTED!\n");
+}
+
+ADXT ADXT_Create(long maxnch, void *work, long worksize)
+{
+    scePrintf("ADXT_Create - UNIMPLEMENTED!\n");
+}
+
+void ADXT_SetAutoRcvr(ADXT adxt, long rmode)
+{
+    scePrintf("ADXT_SetAutoRcvr - UNIMPLEMENTED!\n");
+}
+
+void ADXT_SetReloadSct(ADXT adxt, long minsct)
+{
+    scePrintf("ADXT_SetReloadSct - UNIMPLEMENTED!\n");
+}

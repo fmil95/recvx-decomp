@@ -238,9 +238,12 @@ ADXF_INFO AdxFInfo[8];
 AFS_INFO AfsInfo[16];
 /*unsigned char RDX_FILE_PARTISION[880];
 int rdx_image_data_max;
-char* rdx_files[0];
-int ADX_STREAM_BUFF_OFFSET[2];
-char ADX_STREAM_BUFFER[471040];*/
+char* rdx_files[0];*/
+int ADX_STREAM_BUFF_OFFSET[2] = {
+    0,
+    307456
+}; 
+char ADX_STREAM_BUFFER[471040];
 
 /*void InitAdx();
 void ExitAdx();
@@ -559,39 +562,49 @@ void StopAfsInsideFile(int SlotNo)
 	// Func End, Address: 0x29196c, Func Offset: 0x6c
 }*/
 
-// 
-// Start address: 0x291970
+// 92.03% matching
 void RegistAdxStreamEx(int MaxStream, int DummyStream, ADX_WORK* pAdx)
 {
-	//_anon0* tp;
-	int i;
-	// Line 998, Address: 0x291970, Func Offset: 0
-	// Line 1002, Address: 0x291998, Func Offset: 0x28
-	// Line 1003, Address: 0x2919a0, Func Offset: 0x30
-	// Line 1008, Address: 0x2919a4, Func Offset: 0x34
-	// Line 1012, Address: 0x2919bc, Func Offset: 0x4c
-	// Line 1015, Address: 0x2919d8, Func Offset: 0x68
-	// Line 1016, Address: 0x291a1c, Func Offset: 0xac
-	// Line 1015, Address: 0x291a24, Func Offset: 0xb4
-	// Line 1016, Address: 0x291a54, Func Offset: 0xe4
-	// Line 1018, Address: 0x291a5c, Func Offset: 0xec
-	// Line 1020, Address: 0x291a64, Func Offset: 0xf4
-	// Line 1022, Address: 0x291a74, Func Offset: 0x104
-	// Line 1024, Address: 0x291a7c, Func Offset: 0x10c
-	// Line 1025, Address: 0x291a8c, Func Offset: 0x11c
-	// Line 1026, Address: 0x291a94, Func Offset: 0x124
-	// Line 1027, Address: 0x291a98, Func Offset: 0x128
-	// Line 1028, Address: 0x291aa4, Func Offset: 0x134
-	// Line 1029, Address: 0x291aac, Func Offset: 0x13c
-	// Line 1030, Address: 0x291ab0, Func Offset: 0x140
-	// Line 1052, Address: 0x291ab4, Func Offset: 0x144
-	// Line 1031, Address: 0x291ab8, Func Offset: 0x148
-	// Line 1052, Address: 0x291ac4, Func Offset: 0x154
-	// Line 1056, Address: 0x291ad0, Func Offset: 0x160
-	// Line 1055, Address: 0x291ad8, Func Offset: 0x168
-	// Line 1071, Address: 0x291ae0, Func Offset: 0x170
-	// Func End, Address: 0x291b04, Func Offset: 0x194
-	scePrintf("RegistAdxStreamEx - UNIMPLEMENTED!\n");
+    int i;
+    ADXT_INFO* tp;
+
+    if (DummyStream < 0)
+    {
+        DummyStream = MaxStream;
+    }
+
+    memset(ADX_STREAM_BUFFER, 0, sizeof(ADX_STREAM_BUFFER));
+
+    for (i = 0; i < MaxStream; i++)
+    {
+        AdxTInfo[i].WorkSize = ADXT_CALC_WORK(pAdx[i].MaxChannel, 1, DummyStream, pAdx[i].MaxSampleRate);
+        
+        AdxTInfo[i].pAdxTWork = (unsigned char*)&ADX_STREAM_BUFFER[ADX_STREAM_BUFF_OFFSET[i]];
+
+        ADXPS2_Lock();
+
+        AdxTInfo[i].Handle = ADXT_Create(pAdx[i].MaxChannel, AdxTInfo[i].pAdxTWork, AdxTInfo[i].WorkSize);
+
+        ADXPS2_Unlock();
+
+        if (pAdx[i].RecoverType != -1)
+        {
+            ADXT_SetAutoRcvr(AdxTInfo[i].Handle, pAdx[i].RecoverType);
+        }
+
+        if (pAdx[i].ReloadSector >= 0)
+        {
+            ADXT_SetReloadSct(AdxTInfo[i].Handle, pAdx[i].ReloadSector);
+        }
+
+        AdxTInfo[i].FadeFunc = 0;
+        
+        AdxTInfo[i].Flag = 0;
+    }
+
+    MaxAdxStreamCnt = MaxStream;
+    
+    AdxStreamSleepFlag = 0;
 }
 
 // 
