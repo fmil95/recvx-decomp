@@ -192,19 +192,20 @@ void ReinitMwSystem(PRM_INFO* pPrm)
 	scePrintf("ReinitMwSystem - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x290a20
+// 100% matching!
 void ExitMwSystem()
 {
-	// Line 66, Address: 0x290a20, Func Offset: 0
-	// Line 69, Address: 0x290a28, Func Offset: 0x8
-	// Line 71, Address: 0x290a4c, Func Offset: 0x2c
-	// Line 72, Address: 0x290a54, Func Offset: 0x34
-	// Line 79, Address: 0x290a5c, Func Offset: 0x3c
-	// Line 89, Address: 0x290a64, Func Offset: 0x44
-	// Line 90, Address: 0x290a70, Func Offset: 0x50
-	// Func End, Address: 0x290a7c, Func Offset: 0x5c
-	scePrintf("ExitMwSystem - UNIMPLEMENTED!\n");
+    switch (MwMode) 
+    {                              
+    case 0:
+        mwPlyFinishSofdec();
+        break;
+    case 2:
+        mwPlyFinishSofdec();
+        break;
+    }
+    
+    MwMode = -1;
 }
 
 /*// 
