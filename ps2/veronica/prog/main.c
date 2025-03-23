@@ -25,6 +25,7 @@
 #include <sg_syrtc.h>
 #include <sg_sd2.h>
 #include <sg_pdvib.h>
+#include <sg_mw.h>
 #include <limits.h>
 
 #include <katana_extra.h>
