@@ -2192,11 +2192,11 @@ unsigned char* AdvGetResourcePtr(unsigned char* bp, unsigned int ResId)
 	scePrintf("AdvGetResourcePtr - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2c0fe0
 void AdvSetSoundMode()
 {
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 399, Address: 0x2c0fe0, Func Offset: 0
 	// Line 400, Address: 0x2c0fec, Func Offset: 0xc
 	// Line 402, Address: 0x2c0ff4, Func Offset: 0x14
@@ -2204,27 +2204,30 @@ void AdvSetSoundMode()
 	// Line 404, Address: 0x2c1008, Func Offset: 0x28
 	// Line 406, Address: 0x2c1010, Func Offset: 0x30
 	// Func End, Address: 0x2c1020, Func Offset: 0x40
-}*/
-
-// 
-// Start address: 0x2c1020
-void AdvCheckSoftReset(int Flag)
-{
-	//_anon8* ap;
-	// Line 415, Address: 0x2c1020, Func Offset: 0
-	// Line 416, Address: 0x2c1030, Func Offset: 0x10
-	// Line 418, Address: 0x2c1038, Func Offset: 0x18
-	// Line 419, Address: 0x2c1044, Func Offset: 0x24
-	// Line 420, Address: 0x2c1060, Func Offset: 0x40
-	// Line 421, Address: 0x2c1070, Func Offset: 0x50
-	// Line 422, Address: 0x2c1078, Func Offset: 0x58
-	// Line 423, Address: 0x2c107c, Func Offset: 0x5c
-	// Line 424, Address: 0x2c1084, Func Offset: 0x64
-	// Line 426, Address: 0x2c108c, Func Offset: 0x6c
-	// Line 430, Address: 0x2c1094, Func Offset: 0x74
-	// Func End, Address: 0x2c10a8, Func Offset: 0x88
-	scePrintf("AdvCheckSoftReset - UNIMPLEMENTED!\n");
+	scePrintf("AdvSetSoundMode - UNIMPLEMENTED!\n");
 }
+
+// 100% matching!
+void AdvCheckSoftReset(int Flag)
+{ 
+    ADV_WORK* ap; 
+
+    ap = (ADV_WORK*)&AdvWork; 
+    
+    if ((ap->SrFlag == 0) && (!(sys->ss_flg & 0x20000)) && (CheckSoftResetKeyFlag(-1) != 0)) 
+    {
+        if (Flag == 0) 
+        { 
+            ap->Mode = -1;
+        }
+        else 
+        { 
+            ap->Mode2 = -1; 
+        } 
+        
+        AdvSetSoundMode(); 
+    } 
+} 
 
 /*// 
 // Start address: 0x2c10b0
