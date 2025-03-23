@@ -2192,20 +2192,20 @@ unsigned char* AdvGetResourcePtr(unsigned char* bp, unsigned int ResId)
 	scePrintf("AdvGetResourcePtr - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c0fe0
-void AdvSetSoundMode()
-{
-	//_anon8* ap;
-	// Line 399, Address: 0x2c0fe0, Func Offset: 0
-	// Line 400, Address: 0x2c0fec, Func Offset: 0xc
-	// Line 402, Address: 0x2c0ff4, Func Offset: 0x14
-	// Line 403, Address: 0x2c1000, Func Offset: 0x20
-	// Line 404, Address: 0x2c1008, Func Offset: 0x28
-	// Line 406, Address: 0x2c1010, Func Offset: 0x30
-	// Func End, Address: 0x2c1020, Func Offset: 0x40
-	scePrintf("AdvSetSoundMode - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+void AdvSetSoundMode() 
+{ 
+    ADV_WORK* ap; 
+
+    ap = (ADV_WORK*)&AdvWork; 
+    
+    if (ap->SoundMode >= 0) 
+    { 
+        syCfgSetSoundMode(ap->SoundMode); 
+        
+        ap->SoundMode = -1; 
+    }
+} 
 
 // 100% matching!
 void AdvCheckSoftReset(int Flag)
