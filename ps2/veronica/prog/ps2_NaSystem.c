@@ -1969,26 +1969,36 @@ void    njChangeSystem( Int mode, Int frame, Int count )
     printf("ChangeSystem\n");
 }
 
-// 
-// Start address: 0x2e1a90
+// 100% matching!
 void	njAdjustDisplay(Sint32 xadjust,Sint32 yadjust )
-{
-	// Line 677, Address: 0x2e1a90, Func Offset: 0
-	// Line 678, Address: 0x2e1aa0, Func Offset: 0x10
-	// Line 679, Address: 0x2e1ab0, Func Offset: 0x20
-	// Line 680, Address: 0x2e1ac0, Func Offset: 0x30
-	// Line 682, Address: 0x2e1ad0, Func Offset: 0x40
-	// Line 681, Address: 0x2e1adc, Func Offset: 0x4c
-	// Line 682, Address: 0x2e1ae0, Func Offset: 0x50
-	// Line 681, Address: 0x2e1ae4, Func Offset: 0x54
-	// Line 682, Address: 0x2e1b0c, Func Offset: 0x7c
-	// Line 685, Address: 0x2e1b1c, Func Offset: 0x8c
-	// Line 682, Address: 0x2e1b20, Func Offset: 0x90
-	// Line 683, Address: 0x2e1b30, Func Offset: 0xa0
-	// Line 684, Address: 0x2e1b48, Func Offset: 0xb8
-	// Line 685, Address: 0x2e1b5c, Func Offset: 0xcc
-	// Func End, Address: 0x2e1b64, Func Offset: 0xd4
-	scePrintf("njAdjustDisplay - UNIMPLEMENTED!\n");
+{ 
+    if (xadjust < -100) 
+    {
+        xadjust = -100;
+    }
+    
+    if (xadjust > 640) 
+    {
+        xadjust = 640; 
+    }
+    
+    if (yadjust < -15) 
+    {
+        yadjust = -15; 
+    }
+    
+    if (yadjust > 240) 
+    {
+        yadjust = 240; 
+    }
+    
+    Db.disp[0].display.DX = (xadjust * 3) + 636; 
+    Db.disp[0].display.DY = (yadjust * 2) + 32; 
+    
+    Db.disp[1].display.DX = (xadjust * 3) + 636; 
+    Db.disp[1].display.DY = (yadjust * 2) + 32; 
+    
+    FlushCache(0);
 }
 
 // 100% matching!
