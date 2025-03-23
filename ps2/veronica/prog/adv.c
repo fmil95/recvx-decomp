@@ -2447,13 +2447,13 @@ void AdvDrawFadePolygon(int Type, float Rate, unsigned int BaseColor)
 	// Line 709, Address: 0x2c15c0, Func Offset: 0xa0
 	// Line 710, Address: 0x2c15d4, Func Offset: 0xb4
 	// Func End, Address: 0x2c15e8, Func Offset: 0xc8
-}
+}*/
 
 // 
 // Start address: 0x2c15f0
 void ExecuteAdvFadeEx(int Type)
 {
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 719, Address: 0x2c15f0, Func Offset: 0
 	// Line 720, Address: 0x2c15f4, Func Offset: 0x4
 	// Line 719, Address: 0x2c15fc, Func Offset: 0xc
@@ -2475,15 +2475,13 @@ void ExecuteAdvFadeEx(int Type)
 	// Line 747, Address: 0x2c1694, Func Offset: 0xa4
 	// Line 750, Address: 0x2c16a0, Func Offset: 0xb0
 	// Func End, Address: 0x2c16ac, Func Offset: 0xbc
-}*/
+	scePrintf("ExecuteAdvFadeEx - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x2c16b0
-void ExecuteAdvFade()
+// 100% matching!
+void ExecuteAdvFade() 
 {
-	// Line 760, Address: 0x2c16b0, Func Offset: 0
-	// Func End, Address: 0x2c16b8, Func Offset: 0x8
-	scePrintf("ExecuteAdvFade - UNIMPLEMENTED!\n");
+    ExecuteAdvFadeEx(0);
 }
 
 /*// 
