@@ -101,8 +101,8 @@
 typedef void(*fn)();
 
 BH_PWORK ene[128];
-//BH_PWORK ply;
-//BH_PWORK* plp = &ply; // TODO: needs to be accessed from here
+BH_PWORK ply;
+BH_PWORK* plp = &ply;
 NJS_TEXMEMLIST tbuf[256];
 NJS_VIEW view;
 HWS_WORK hwsp;

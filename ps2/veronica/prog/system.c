@@ -1680,7 +1680,7 @@ unsigned char NowLoadDisp;
 unsigned char Pause_Flag;
 unsigned char pl_sleep_cnt;
 BH_PWORK ply;
-BH_PWORK *plp = &ply;
+BH_PWORK* plp;
 unsigned char* keepmem;
 float BHD_ASPECT_Y;
 float BHD_ASPECT_X;
