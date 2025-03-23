@@ -55,20 +55,20 @@ struct _anon3
 
 float fNaViwOffsetX;
 float fNaViwOffsetY;*/
-float fNaViwAspectW;
-float fNaViwAspectH;
-float fNaViwClipNear;
-float fNaViwClipFar;
-float _fNaViwClipNear;
-float _fNaViwClipFar;
-float ClipDispW;
-float ClipDispH;
+float fNaViwAspectW = 1.174000025f;
+float fNaViwAspectH = 1.0f;
+float fNaViwClipNear = -1.0f;
+float fNaViwClipFar = -65535.0f;
+float _fNaViwClipNear = 1.0f;
+float _fNaViwClipFar = 65535.0f;
+float ClipDispW = 2047.0f;
+float ClipDispH = 2047.0f;
 NJS_SCREEN	_nj_screen_;
 NJS_MATRIX NaViewScreenMatrix;
 /*float fNaViwHalfH;
 float fNaViwHalfW;*/
 NJS_MATRIX NaViwViewMatrix;
-NO_NAME_16 ClipVolume;
+NO_NAME_16 ClipVolume = { 320.0f, 240.0f, 1.0f, 512.0f };
 sceVu0FMATRIX ClipScreenMatrix;
 sceVu0FMATRIX ClipMatrix2;
 /*float fVu1Projection;
