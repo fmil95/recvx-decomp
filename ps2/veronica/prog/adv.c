@@ -2006,9 +2006,9 @@ void RequestAdvFade(int FadeType, float FadeSpeed);
 int CheckAdvFade();
 void AdvDrawFadePolygon(int Type, float Rate, unsigned int BaseColor);
 void ExecuteAdvFadeEx(int Type);
-void ExecuteAdvFade();
+void ExecuteAdvFade();*/
 void StopAdvScreenSaver(int Flag);
-void ExecuteAdvScreenSaver();
+/*void ExecuteAdvScreenSaver();
 void CheckAdvScreenSaverStopKey(int PortId);
 unsigned int AdvGetOkButton();
 unsigned int AdvGetCancelButton();
@@ -2115,62 +2115,79 @@ void InitAdvSystem()
     MountAdvAfs(); 
 } 
 
-// 
-// Start address: 0x2c0e80
+// 100% matching!
 void ResetAdvSystem()
-{
-	int i;
-	//_anon8* ap;
-	// Line 266, Address: 0x2c0e80, Func Offset: 0
-	// Line 267, Address: 0x2c0e8c, Func Offset: 0xc
-	// Line 270, Address: 0x2c0e94, Func Offset: 0x14
-	// Line 271, Address: 0x2c0ea0, Func Offset: 0x20
-	// Line 273, Address: 0x2c0ea8, Func Offset: 0x28
-	// Line 275, Address: 0x2c0eb0, Func Offset: 0x30
-	// Line 276, Address: 0x2c0ec0, Func Offset: 0x40
-	// Line 278, Address: 0x2c0ec8, Func Offset: 0x48
-	// Line 280, Address: 0x2c0ed0, Func Offset: 0x50
-	// Line 279, Address: 0x2c0ed4, Func Offset: 0x54
-	// Line 280, Address: 0x2c0ed8, Func Offset: 0x58
-	// Line 279, Address: 0x2c0edc, Func Offset: 0x5c
-	// Line 280, Address: 0x2c0ee0, Func Offset: 0x60
-	// Line 281, Address: 0x2c0eec, Func Offset: 0x6c
-	// Line 282, Address: 0x2c0ef0, Func Offset: 0x70
-	// Line 283, Address: 0x2c0ef4, Func Offset: 0x74
-	// Line 282, Address: 0x2c0ef8, Func Offset: 0x78
-	// Line 283, Address: 0x2c0efc, Func Offset: 0x7c
-	// Line 284, Address: 0x2c0f0c, Func Offset: 0x8c
-	// Line 285, Address: 0x2c0f10, Func Offset: 0x90
-	// Line 286, Address: 0x2c0f14, Func Offset: 0x94
-	// Line 285, Address: 0x2c0f18, Func Offset: 0x98
-	// Line 286, Address: 0x2c0f1c, Func Offset: 0x9c
-	// Line 288, Address: 0x2c0f2c, Func Offset: 0xac
-	// Line 289, Address: 0x2c0f30, Func Offset: 0xb0
-	// Line 290, Address: 0x2c0f34, Func Offset: 0xb4
-	// Line 291, Address: 0x2c0f38, Func Offset: 0xb8
-	// Line 292, Address: 0x2c0f3c, Func Offset: 0xbc
-	// Line 294, Address: 0x2c0f40, Func Offset: 0xc0
-	// Line 295, Address: 0x2c0f44, Func Offset: 0xc4
-	// Line 296, Address: 0x2c0f48, Func Offset: 0xc8
-	// Line 297, Address: 0x2c0f4c, Func Offset: 0xcc
-	// Line 298, Address: 0x2c0f50, Func Offset: 0xd0
-	// Line 299, Address: 0x2c0f54, Func Offset: 0xd4
-	// Line 301, Address: 0x2c0f58, Func Offset: 0xd8
-	// Line 300, Address: 0x2c0f5c, Func Offset: 0xdc
-	// Line 301, Address: 0x2c0f60, Func Offset: 0xe0
-	// Line 302, Address: 0x2c0f64, Func Offset: 0xe4
-	// Line 304, Address: 0x2c0f68, Func Offset: 0xe8
-	// Line 303, Address: 0x2c0f6c, Func Offset: 0xec
-	// Line 304, Address: 0x2c0f70, Func Offset: 0xf0
-	// Line 305, Address: 0x2c0f74, Func Offset: 0xf4
-	// Line 306, Address: 0x2c0f78, Func Offset: 0xf8
-	// Line 307, Address: 0x2c0f7c, Func Offset: 0xfc
-	// Line 308, Address: 0x2c0f80, Func Offset: 0x100
-	// Line 345, Address: 0x2c0f84, Func Offset: 0x104
-	// Line 346, Address: 0x2c0f8c, Func Offset: 0x10c
-	// Func End, Address: 0x2c0f9c, Func Offset: 0x11c
-	scePrintf("ResetAdvSystem - UNIMPLEMENTED!\n");
-}
+{ 
+	ADV_WORK* ap; 
+    int i;
+
+    ap = (ADV_WORK*)&AdvWork; 
+
+    if (ap->Active != 0) 
+    {
+        ExitApplication();
+    }
+    
+    ap->Active = 1; 
+    
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+    
+    njFogDisable(); 
+    
+    for (i = 0; i < 8; i++) 
+    { 
+        ap->ptr[i] = NULL; 
+    } 
+    
+    for (i = 0; i < 2; i++) 
+    { 
+        ap->SetTexture[i] = 0; 
+    } 
+    
+    for (i = 0; i < 7; i++) 
+    { 
+        ap->KeyCommandCount[i] = 0; 
+    } 
+  
+    ap->NextReturnCode = 0; 
+    
+    ap->Count = 0; 
+    
+    ap->OptIndex = 0; 
+    
+    ap->ErrorId = 0; 
+    ap->ErrorMsgFlushCount = 0; 
+    
+    ap->ExtraFlag = 0; 
+    
+    ap->Mode2 = 0; 
+    ap->NextMode = 0; 
+    
+    ap->DepthLevel = 0; 
+    
+    ap->GenFlag = 0; 
+    
+    ap->OptFadeType = 0; 
+    
+    ap->PalNo = 0; 
+    ap->PalFlag = 1; 
+    
+    ap->TexFlag = 0; 
+    
+    ap->SrFlag = 0; 
+    
+    ap->SoundMode = -1; 
+    
+    ap->OptSaveFlag = 0; 
+    
+    ap->vMode = 0; 
+    
+    ap->DriveNo = 0;  
+    
+    ap->VmOpMode = ap->OldVmOpMode = 0; 
+
+    StopAdvScreenSaver(1); 
+} 
 
 // 100% matching! 
 void MountAdvAfs() 
