@@ -2487,18 +2487,21 @@ void ExecuteAdvFade()
     ExecuteAdvFadeEx(0);
 }
 
-// 
-// Start address: 0x2c16c0
+// 100% matching!
 void StopAdvScreenSaver(int Flag)
 {
-	//_anon8* ap;
-	// Line 773, Address: 0x2c16c0, Func Offset: 0
-	// Line 775, Address: 0x2c16c8, Func Offset: 0x8
-	// Line 777, Address: 0x2c16d4, Func Offset: 0x14
-	// Line 778, Address: 0x2c16dc, Func Offset: 0x1c
-	// Line 780, Address: 0x2c16e0, Func Offset: 0x20
-	// Func End, Address: 0x2c16e8, Func Offset: 0x28
-	scePrintf("StopAdvScreenSaver - UNIMPLEMENTED!\n");
+    ADV_WORK* ap; 
+
+    ap = (ADV_WORK*)&AdvWork; 
+    
+    ap->SaverTimer = 9000.0f;
+    
+    ap->SaverCommand = 0; 
+    
+    if (Flag != 0) 
+    { 
+        ap->SaverRate = 0;
+    } 
 }
 
 // 
