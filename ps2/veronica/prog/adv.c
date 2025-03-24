@@ -2487,18 +2487,19 @@ void ExecuteAdvFade()
     ExecuteAdvFadeEx(0);
 }
 
-/*// 
+// 
 // Start address: 0x2c16c0
 void StopAdvScreenSaver(int Flag)
 {
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 773, Address: 0x2c16c0, Func Offset: 0
 	// Line 775, Address: 0x2c16c8, Func Offset: 0x8
 	// Line 777, Address: 0x2c16d4, Func Offset: 0x14
 	// Line 778, Address: 0x2c16dc, Func Offset: 0x1c
 	// Line 780, Address: 0x2c16e0, Func Offset: 0x20
 	// Func End, Address: 0x2c16e8, Func Offset: 0x28
-}*/
+	scePrintf("StopAdvScreenSaver - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2c16f0
@@ -2529,20 +2530,14 @@ void ExecuteAdvScreenSaver()
 	scePrintf("ExecuteAdvScreenSaver - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c17c0
+// 100% matching!
 void CheckAdvScreenSaverStopKey(int PortId)
-{
-	// Line 823, Address: 0x2c17c0, Func Offset: 0
-	// Line 822, Address: 0x2c17d4, Func Offset: 0x14
-	// Line 823, Address: 0x2c17d8, Func Offset: 0x18
-	// Line 822, Address: 0x2c17dc, Func Offset: 0x1c
-	// Line 823, Address: 0x2c17e0, Func Offset: 0x20
-	// Line 824, Address: 0x2c181c, Func Offset: 0x5c
-	// Line 826, Address: 0x2c1828, Func Offset: 0x68
-	// Func End, Address: 0x2c1834, Func Offset: 0x74
-	scePrintf("CheckAdvScreenSaverStopKey - UNIMPLEMENTED!\n");
-}
+{ 
+    if ((Pad[PortId].on != 0) || ((Pad[PortId].x1 != 0) || (Pad[PortId].y1 != 0))) 
+    { 
+        StopAdvScreenSaver(0); 
+    }
+} 
 
 /*// 
 // Start address: 0x2c1840
