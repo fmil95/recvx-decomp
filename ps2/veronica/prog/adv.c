@@ -2435,12 +2435,12 @@ int CheckAdvFade()
 	scePrintf("CheckAdvFade - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2c1520
 void AdvDrawFadePolygon(int Type, float Rate, unsigned int BaseColor)
 {
 	float PosZ[4];
-	_anon13 poly[4];
+	//_anon13 poly[4];
 	// Line 686, Address: 0x2c1520, Func Offset: 0
 	// Line 688, Address: 0x2c152c, Func Offset: 0xc
 	// Line 686, Address: 0x2c1530, Func Offset: 0x10
@@ -2467,7 +2467,8 @@ void AdvDrawFadePolygon(int Type, float Rate, unsigned int BaseColor)
 	// Line 709, Address: 0x2c15c0, Func Offset: 0xa0
 	// Line 710, Address: 0x2c15d4, Func Offset: 0xb4
 	// Func End, Address: 0x2c15e8, Func Offset: 0xc8
-}*/
+	scePrintf("AdvDrawFadePolygon - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2c15f0
@@ -2521,34 +2522,46 @@ void StopAdvScreenSaver(int Flag)
     } 
 }
 
-// 
-// Start address: 0x2c16f0
+// 100% matching!
 void ExecuteAdvScreenSaver()
-{
-	//_anon8* ap;
-	// Line 790, Address: 0x2c16f0, Func Offset: 0
-	// Line 792, Address: 0x2c16f8, Func Offset: 0x8
-	// Line 793, Address: 0x2c1704, Func Offset: 0x14
-	// Line 794, Address: 0x2c1710, Func Offset: 0x20
-	// Line 793, Address: 0x2c1718, Func Offset: 0x28
-	// Line 794, Address: 0x2c171c, Func Offset: 0x2c
-	// Line 795, Address: 0x2c172c, Func Offset: 0x3c
-	// Line 796, Address: 0x2c1734, Func Offset: 0x44
-	// Line 800, Address: 0x2c1738, Func Offset: 0x48
-	// Line 801, Address: 0x2c1748, Func Offset: 0x58
-	// Line 802, Address: 0x2c1758, Func Offset: 0x68
-	// Line 801, Address: 0x2c175c, Func Offset: 0x6c
-	// Line 802, Address: 0x2c1760, Func Offset: 0x70
-	// Line 805, Address: 0x2c1778, Func Offset: 0x88
-	// Line 806, Address: 0x2c1780, Func Offset: 0x90
-	// Line 807, Address: 0x2c1790, Func Offset: 0xa0
-	// Line 806, Address: 0x2c1798, Func Offset: 0xa8
-	// Line 807, Address: 0x2c179c, Func Offset: 0xac
-	// Line 808, Address: 0x2c17ac, Func Offset: 0xbc
-	// Line 812, Address: 0x2c17b0, Func Offset: 0xc0
-	// Func End, Address: 0x2c17c0, Func Offset: 0xd0
-	scePrintf("ExecuteAdvScreenSaver - UNIMPLEMENTED!\n");
-}
+{ 
+    ADV_WORK* ap; 
+
+    ap = (ADV_WORK*)&AdvWork; 
+    
+    if (ap->SaverCommand == 0) 
+    { 
+        ap->SaverTimer -= 1.0f; 
+        
+        if (ap->SaverTimer < 0) 
+        { 
+            ap->SaverCommand = 1; 
+            
+            ap->SaverRate = 0;
+        }
+    }
+    
+    if (ap->SaverCommand == 1) 
+    { 
+        ap->SaverRate += 0.01f;
+        
+        if (ap->SaverRate >= 0.5f)
+        { 
+            ap->SaverRate = 0.5f;
+        }
+    } 
+    else 
+    { 
+        ap->SaverRate -= 0.05f; 
+        
+        if (ap->SaverRate <= 0) 
+        { 
+            ap->SaverRate = 0; 
+        }
+    }
+    
+    AdvDrawFadePolygon(2, ap->SaverRate, 0xF);
+} 
 
 // 100% matching!
 void CheckAdvScreenSaverStopKey(int PortId)
