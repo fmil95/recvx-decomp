@@ -1856,17 +1856,23 @@ int Ps2DrawOTagSub(int start_no)
     return 4096; 
 } 
 
-/*// 
-// Start address: 0x2cd340
-unsigned int Ps2BitCount(unsigned int value)
+// 100% matching!
+unsigned int Ps2BitCount(register unsigned int value)
 {
-	// Line 2513, Address: 0x2cd340, Func Offset: 0
-	// Line 2514, Address: 0x2cd344, Func Offset: 0x4
-	// Line 2515, Address: 0x2cd348, Func Offset: 0x8
-	// Line 2516, Address: 0x2cd34c, Func Offset: 0xc
-	// Line 2520, Address: 0x2cd350, Func Offset: 0x10
-	// Func End, Address: 0x2cd358, Func Offset: 0x18
-}*/
+    asm volatile
+    {
+        
+        addi  v0, value, -1
+        addi  v1, zero, 0x1F
+            
+        plzcw v0, v0
+            
+        subu  v0, v1, v0
+        
+        nop
+            
+    }
+}
 
 // 100% matching!
 void Ps2InitTexCache()
