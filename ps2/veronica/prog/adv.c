@@ -2435,40 +2435,37 @@ int CheckAdvFade()
 	scePrintf("CheckAdvFade - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c1520
+// 98.60% matching
 void AdvDrawFadePolygon(int Type, float Rate, unsigned int BaseColor)
-{
-	float PosZ[4];
-	//_anon13 poly[4];
-	// Line 686, Address: 0x2c1520, Func Offset: 0
-	// Line 688, Address: 0x2c152c, Func Offset: 0xc
-	// Line 686, Address: 0x2c1530, Func Offset: 0x10
-	// Line 688, Address: 0x2c1534, Func Offset: 0x14
-	// Line 697, Address: 0x2c1548, Func Offset: 0x28
-	// Line 688, Address: 0x2c1550, Func Offset: 0x30
-	// Line 697, Address: 0x2c1554, Func Offset: 0x34
-	// Line 707, Address: 0x2c155c, Func Offset: 0x3c
-	// Line 697, Address: 0x2c1568, Func Offset: 0x48
-	// Line 699, Address: 0x2c156c, Func Offset: 0x4c
-	// Line 697, Address: 0x2c1570, Func Offset: 0x50
-	// Line 699, Address: 0x2c1574, Func Offset: 0x54
-	// Line 697, Address: 0x2c1578, Func Offset: 0x58
-	// Line 700, Address: 0x2c157c, Func Offset: 0x5c
-	// Line 703, Address: 0x2c1580, Func Offset: 0x60
-	// Line 701, Address: 0x2c1584, Func Offset: 0x64
-	// Line 702, Address: 0x2c1588, Func Offset: 0x68
-	// Line 703, Address: 0x2c1590, Func Offset: 0x70
-	// Line 704, Address: 0x2c1598, Func Offset: 0x78
-	// Line 705, Address: 0x2c159c, Func Offset: 0x7c
-	// Line 706, Address: 0x2c15a0, Func Offset: 0x80
-	// Line 707, Address: 0x2c15a4, Func Offset: 0x84
-	// Line 708, Address: 0x2c15b4, Func Offset: 0x94
-	// Line 709, Address: 0x2c15c0, Func Offset: 0xa0
-	// Line 710, Address: 0x2c15d4, Func Offset: 0xb4
-	// Func End, Address: 0x2c15e8, Func Offset: 0xc8
-	scePrintf("AdvDrawFadePolygon - UNIMPLEMENTED!\n");
-}
+{ 
+	NJS_POLYGON_VTX poly[4];
+    float PosZ[4] = { 
+        0.98f,
+        0.90f,
+        1.99f,
+        1.98f
+    };
+    
+    BaseColor |= ((unsigned int)(255.0f * Rate) & 0xFF) << 24;
+    
+    poly[0].x = -2.0f; 
+    poly[0].y = -2.0f; 
+    
+    poly[1].x = -2.0f; 
+    poly[1].y = 482.0f; 
+    
+    poly[2].x = 642.0f; 
+    poly[2].y = -2.0f; 
+    
+    poly[3].x = 642.0f; 
+    poly[3].y = 482.0f; 
+    
+    poly[0].z = poly[1].z = poly[2].z = poly[3].z = PosZ[Type]; 
+    
+    poly[0].col = poly[1].col = poly[2].col = poly[3].col = BaseColor; 
+    
+    njDrawPolygon(poly, 4, 1); 
+} 
 
 // 100% matching!
 void ExecuteAdvFadeEx(int Type)

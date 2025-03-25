@@ -37,6 +37,7 @@
 
 #include "types.h"
 
+#include "ps2_NaDraw.c"
 #include "ps2_SystemLoadScreen.c"
 #include "ps2_sg_maloc.c"
 #include "backup.c"
