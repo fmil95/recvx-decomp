@@ -1015,7 +1015,7 @@ void PS2_swap()
     SyncPath();
 }
 
-/*// 
+// 
 // Start address: 0x2cb7d0
 void Ps2AddPrim(unsigned long prim, void* dp, unsigned int num, unsigned int clip_3d_on)
 {
@@ -1113,17 +1113,16 @@ void Ps2AddPrim(unsigned long prim, void* dp, unsigned int num, unsigned int cli
 	// Line 1121, Address: 0x2cbc50, Func Offset: 0x480
 	// Line 1128, Address: 0x2cbc58, Func Offset: 0x488
 	// Func End, Address: 0x2cbc8c, Func Offset: 0x4bc
+	scePrintf("Ps2AddPrim - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2cbc90
+// 100% matching!
 void Ps2AddPrim2D(unsigned long prim, void* dp, unsigned int num)
 {
-	// Line 1198, Address: 0x2cbc90, Func Offset: 0
-	// Func End, Address: 0x2cbc98, Func Offset: 0x8
+    Ps2AddPrim(prim, dp, num, 0);
 }
 
-// 
+/*// 
 // Start address: 0x2cbca0
 void Ps2AddPrim3D(unsigned long prim, void* dp, unsigned int num)
 {
