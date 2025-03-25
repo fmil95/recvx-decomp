@@ -141,50 +141,57 @@ void njQuadTextureEnd();
 void njSetQuadTexture(int texid, unsigned int col);
 void njDrawQuadTexture(_anon4* q, float z);*/
 
-// 
-// Start address: 0x2de160
+// 100% matching!
 void    njDrawPolygon( NJS_POLYGON_VTX *polygon, Int count, Int trans )
 {
-	unsigned int i;
-	float bp[4];
-	float buff[4][64];
-	float sz;
-	// Line 73, Address: 0x2de160, Func Offset: 0
-	// Line 83, Address: 0x2de164, Func Offset: 0x4
-	// Line 73, Address: 0x2de16c, Func Offset: 0xc
-	// Line 83, Address: 0x2de170, Func Offset: 0x10
-	// Line 102, Address: 0x2de178, Func Offset: 0x18
-	// Line 101, Address: 0x2de180, Func Offset: 0x20
-	// Line 103, Address: 0x2de184, Func Offset: 0x24
-	// Line 95, Address: 0x2de18c, Func Offset: 0x2c
-	// Line 103, Address: 0x2de194, Func Offset: 0x34
-	// Line 96, Address: 0x2de198, Func Offset: 0x38
-	// Line 85, Address: 0x2de1a0, Func Offset: 0x40
-	// Line 86, Address: 0x2de1a4, Func Offset: 0x44
-	// Line 87, Address: 0x2de1a8, Func Offset: 0x48
-	// Line 88, Address: 0x2de1ac, Func Offset: 0x4c
-	// Line 90, Address: 0x2de1b0, Func Offset: 0x50
-	// Line 91, Address: 0x2de1bc, Func Offset: 0x5c
-	// Line 92, Address: 0x2de1c8, Func Offset: 0x68
-	// Line 93, Address: 0x2de1d0, Func Offset: 0x70
-	// Line 95, Address: 0x2de1dc, Func Offset: 0x7c
-	// Line 96, Address: 0x2de1e8, Func Offset: 0x88
-	// Line 101, Address: 0x2de1f4, Func Offset: 0x94
-	// Line 102, Address: 0x2de208, Func Offset: 0xa8
-	// Line 103, Address: 0x2de21c, Func Offset: 0xbc
-	// Line 104, Address: 0x2de22c, Func Offset: 0xcc
-	// Line 105, Address: 0x2de234, Func Offset: 0xd4
-	// Line 107, Address: 0x2de238, Func Offset: 0xd8
-	// Line 109, Address: 0x2de23c, Func Offset: 0xdc
-	// Line 108, Address: 0x2de240, Func Offset: 0xe0
-	// Line 109, Address: 0x2de248, Func Offset: 0xe8
-	// Line 111, Address: 0x2de258, Func Offset: 0xf8
-	// Line 112, Address: 0x2de264, Func Offset: 0x104
-	// Line 114, Address: 0x2de278, Func Offset: 0x118
-	// Line 115, Address: 0x2de280, Func Offset: 0x120
-	// Line 118, Address: 0x2de294, Func Offset: 0x134
-	// Func End, Address: 0x2de2a0, Func Offset: 0x140
-	scePrintf("njDrawPolygon - UNIMPLEMENTED!\n");
+    float sz;          
+    float buff[64][4]; 
+    float (* bp)[4];   
+    unsigned int i;    
+
+    bp = buff;
+    
+    for (i = 0; i < count; i++, bp += 3) 
+    {
+        bp[0][0] = 0;
+        bp[0][1] = 0;
+        bp[0][2] = 0;
+        bp[0][3] = 0;
+        
+        *(int*)&bp[1][0] = polygon[i].col >> 16;
+        *(int*)&bp[1][1] = polygon[i].col >> 8;
+        *(int*)&bp[1][2] = polygon[i].col;
+        *(int*)&bp[1][3] = polygon[i].col >> 25;
+        
+        bp[2][0] = 1728.0f + polygon[i].x;
+        bp[2][1] = 1808.0f + polygon[i].y;
+        
+        if (polygon[i].z) 
+        {
+            sz = -1.0f / polygon[i].z;
+            
+            if (sz < -65534.0f)
+            {
+                sz = -65534.0f; 
+            }
+        }
+        else 
+        {
+            sz = -65534.0f;
+        }
+        
+        bp[2][2] = sz;
+        bp[2][3] = 0;
+    }
+    
+    if (trans == 1) 
+    {
+        Ps2AddPrim2D(0x26000000000000, buff, count);
+    } 
+    else 
+    {
+        Ps2AddPrim2D(0x6000000000000, buff, count);
+    }
 }
 
 /*// 
