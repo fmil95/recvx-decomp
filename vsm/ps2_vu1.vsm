@@ -1,0 +1,1099 @@
+.global ps2_vu1sub0
+.global ps2_vu1sub1
+
+ps2_vu1sub0:
+
+/* .dma.1 */
+dmacnt *
+ /*  0 */ /* dmacnt 0x150 */
+ /*  4 */ /* vifnop */
+ /*  8 */ vifnop
+ /*  c */ vifnop
+ /* 10 */ vifnop
+
+/* .vif.2 */
+mpg 0, *
+ /*  14 */ /* mpg 0x0,0x100 */
+
+/* .vu.5 - instr 43 */
+DoubleMain:
+ /*   18 */    nop     iaddiu vi14,vi00,0x400
+ /*   20 */    nop     lq.xyzw vf24xyzw,896(vi00)
+ /*   28 */    nop     lq.xyzw vf21xyzw,887(vi00)
+ /*   30 */    nop     lq.xyzw vf22xyzw,893(vi00)
+ /*   38 */    nop     lq.xyzw vf23xyzw,892(vi00)
+ /*   40 */    addw.x vf01x,vf00x,vf24w        nop
+ /*   48 */    nop     div q,vf01x,vf00x
+ /*   50 */    nop     lq.xyzw vf28xyzw,888(vi00)
+ /*   58 */    nop     lq.xyzw vf29xyzw,889(vi00)
+ /*   60 */    nop     lq.xyzw vf30xyzw,890(vi00)
+ /*   68 */    nop     lq.xyzw vf31xyzw,891(vi00)
+ /*   70 */    nop[i]  loi 65536
+ /*   78 */    muli.x vf10x,vf21x,i    nop
+ /*   80 */    subx.y vf11y,vf21y,vf21x        nop
+ /*   88 */    mulq.w vf22w,vf00w,q    waitq
+ /*   90 */    nop     iaddiu vi01,vi00,vu1GetVertexColor
+ /*   98 */    nop     iaddiu vi02,vi00,vu1GetVertexColorCM
+ /*   a0 */    nop     iaddiu vi03,vi00,vu1GetVertexColorIgnore
+ /*   a8 */    muly.x vf13x,vf10x,vf21y        div q,vf10x,vf00x
+ /*   b0 */    nop     iaddiu vi04,vi00,vu1GetVertexColorDif
+ /*   b8 */    nop     iaddiu vi05,vi00,vu1GetVertexColorDifAmb
+ /*   c0 */    nop     iaddiu vi06,vi00,vu1GetVertexColorDifSpe1
+ /*   c8 */    nop     iaddiu vi07,vi00,vu1GetVertexColorDifSpe2
+ /*   d0 */    nop     iaddiu vi08,vi00,vu1GetVertexColorDifSpe3
+ /*   d8 */    nop     iaddiu vi09,vi00,vu1GetVertexColorDifSpe1Amb
+ /*   e0 */    nop     iaddiu vi10,vi00,vu1GetVertexColorDifSpe2Amb
+ /*   e8 */    addq.z vf12z,vf00z,q    waitq
+ /*   f0 */    nop     iaddiu vi11,vi00,vu1GetVertexColorDifSpe3Amb
+ /*   f8 */    nop     isw.x vi11,-11(vi14)x
+ /*  100 */    nop     isw.x vi10,-10(vi14)x
+ /*  108 */    nop     div q,vf13x,vf00x
+ /*  110 */    nop     isw.x vi09,-9(vi14)x
+ /*  118 */    nop     isw.x vi08,-8(vi14)x
+ /*  120 */    nop     isw.x vi07,-7(vi14)x
+ /*  128 */    nop     isw.x vi06,-6(vi14)x
+ /*  130 */    nop     isw.x vi05,-5(vi14)x
+ /*  138 */    nop     isw.x vi04,-4(vi14)x
+ /*  140 */    nop     isw.x vi03,-3(vi14)x
+ /*  148 */    addq.x vf13x,vf00x,q    waitq
+ /*  150 */    nop     isw.x vi02,-2(vi14)x
+ /*  158 */    nop     isw.x vi01,-1(vi14)x
+ /*  160 */    nop     sq.xyzw vf12xyzw,894(vi00)
+ /*  168 */    nop     sq.xyzw vf13xyzw,895(vi00)
+
+/* .vu.6 - instr 29 */
+DOUBLE_START:
+ /*  170 */    nop     xtop vi01
+ /*  178 */    nop     iaddiu vi02,vi00,0x7fff
+ /*  180 */    nop     ilwr.x vi07,(vi01)x
+ /*  188 */    nop     iand vi07,vi07,vi02
+ /*  190 */    nop     lq.xyzw vf02xyzw,0(vi01)
+ /*  198 */    nop     lq.xyzw vf03xyzw,898(vi00)
+ /*  1a0 */    nop     iaddiu vi08,vi01,1
+ /*  1a8 */    nop     iaddi vi10,vi00,-2
+ /*  1b0 */    nop     iaddi vi11,vi00,-2
+ /*  1b8 */    nop     iaddi vi12,vi00,-2
+ /*  1c0 */    nop     iaddiu vi06,vi01,0xf1
+ /*  1c8 */    nop     sq.xyzw vf02xyzw,0(vi06)
+ /*  1d0 */    nop     sq.xyzw vf03xyzw,844(vi00)
+ /*  1d8 */    nop     iaddiu vi09,vi06,1
+ /*  1e0 */    nop     ilw.w vi04,0(vi08)w
+ /*  1e8 */    nop     iaddiu vi04,vi04,1
+ /*  1f0 */    nop     isub vi05,vi14,vi04
+ /*  1f8 */    nop     ilw.x vi05,0(vi05)x
+ /*  200 */    nop     iaddiu vi03,vi00,0x3eb
+ /*  208 */    nop     iswr.x vi05,(vi03)x
+ /*  210 */    nop     iaddi vi13,vi00,-2
+ /*  218 */    nop     lq.xyzw vf18xyzw,885(vi00)
+ /*  220 */    nop     lq.xyzw vf19xyzw,884(vi00)
+ /*  228 */    nop     lq.xyzw vf20xyzw,886(vi00)
+ /*  230 */    nop     move.xyzw vf15xyzw,vf00xyzw
+ /*  238 */    nop     move.xyzw vf16xyzw,vf00xyzw
+ /*  240 */    nop     move.xyzw vf17xyzw,vf00xyzw
+ /*  248 */    nop     lq.xyzw vf04xyzw,3(vi08)
+ /*  250 */    nop     lq.xyzw vf06xyzw,0(vi08)
+
+/* .vu.7 - instr 20 */
+DOUBLE_LOOP:
+ /*  258 */    mulw.xyzw vf07xyzw,vf04xyzw,vf00w       lq.xyzw vf10xyzw,2(vi08)
+ /*  260 */    add[i].xy vf04xy,vf04xy,vf23xy  loi 1
+ /*  268 */    mulz.xy vf06xy,vf06xy,vf06z     move.xyzw vf15xyzw,vf16xyzw
+ /*  270 */    addi[i].z vf08z,vf00z,i         loi 65535
+ /*  278 */    addi.z vf09z,vf00z,i    iaddiu vi04,vi00,1
+ /*  280 */    ftoi4.xyzw vf05xyzw,vf04xyzw    lq.xyzw vf01xyzw,1(vi08)
+ /*  288 */    clipw.xyz vf07xyz,vf22w         iaddiu vi03,vi00,0x20
+ /*  290 */    mulax.xyzw accxyzw,vf28xyzw,vf10x       jalr vi15,vi05
+ /*  298 */    madday.xyzw accxyzw,vf29xyzw,vf10y      move.xyzw vf16xyzw,vf17xyzw
+ /*  2a0 */    ftoi0.xyzw vf01xyzw,vf01xyzw    fcand vi01,15
+ /*  2a8 */    sub.z vf08z,vf10z,vf08z         sq.xyzw vf06xyzw,0(vi09)
+ /*  2b0 */    maddaz.xyzw accxyzw,vf30xyzw,vf10z      sq.xyzw vf05xyzw,2(vi09)
+ /*  2b8 */    sub.z vf09z,vf09z,vf10z         ibne vi01,vi00,_Double_DisplayAreaPoint_False
+ /*  2c0 */    maddw.xyzw vf17xyzw,vf31xyzw,vf00w      sq.xyzw vf01xyzw,1(vi09)
+ /*  2c8 */    nop     fmand vi01,vi03
+ /*  2d0 */    nop     ibne vi01,vi00,_Double_DisplayAreaPoint_False
+ /*  2d8 */    nop     fmand vi01,vi03
+ /*  2e0 */    nop     ibne vi01,vi00,_Double_DisplayAreaPoint_False
+ /*  2e8 */    nop     nop
+ /*  2f0 */    nop     iadd vi04,vi00,vi00
+
+/* .vu.8 - instr 14 */
+_Double_DisplayAreaPoint_False:
+ /*  2f8 */    clipw.xyz vf15xyz,vf15w         ior vi13,vi13,vi04
+ /*  300 */    clipw.xyz vf16xyz,vf16w         iaddiu vi04,vi00,7
+ /*  308 */    clipw.xyz vf17xyz,vf17w         iand vi13,vi13,vi04
+ /*  310 */    nop     iadd vi10,vi00,vi11
+ /*  318 */    nop     iadd vi11,vi00,vi12
+ /*  320 */    nop     nop
+ /*  328 */    nop     ibeq vi13,vi00,DOUBLE_XYZ2
+ /*  330 */    nop     fcand vi01,0x3f
+ /*  338 */    nop     iadd vi12,vi00,vi01
+ /*  340 */    nop     iadd vi10,vi10,vi11
+ /*  348 */    nop     iadd vi10,vi10,vi12
+ /*  350 */    nop     nop
+ /*  358 */    nop     iblez vi10,DOUBLE_XYZ2
+ /*  360 */    nop     nop
+
+/* .vu.9 - instr 24 */
+DOUBLE_XYZ3:
+ /*  368 */    nop     fcor vi01,0xdf7df
+ /*  370 */    nop     ibne vi01,vi00,DOUBLE_XYZ3_ONLY
+ /*  378 */    nop     nop
+ /*  380 */    nop     fcor vi01,0xefbef
+ /*  388 */    nop     ibne vi01,vi00,DOUBLE_XYZ3_ONLY
+ /*  390 */    nop     nop
+ /*  398 */    nop     fcor vi01,0x7df7
+ /*  3a0 */    nop     ibne vi01,vi00,DOUBLE_XYZ3_ONLY
+ /*  3a8 */    nop     nop
+ /*  3b0 */    nop     fcor vi01,0xbefb
+ /*  3b8 */    nop     ibne vi01,vi00,DOUBLE_XYZ3_ONLY
+ /*  3c0 */    nop     nop
+ /*  3c8 */    nop     fcor vi01,0xdf7d
+ /*  3d0 */    nop     ibne vi01,vi00,DOUBLE_XYZ3_ONLY
+ /*  3d8 */    nop     nop
+ /*  3e0 */    nop     fcor vi01,0xefbe
+ /*  3e8 */    nop     ibne vi01,vi00,DOUBLE_XYZ3_ONLY
+ /*  3f0 */    nop     nop
+ /*  3f8 */    nop     bal vi15,PushStackIFRegs
+ /*  400 */    nop     nop
+ /*  408 */    nop     bal vi15,PUSHTRIANGLE
+ /*  410 */    nop     nop
+ /*  418 */    nop     bal vi15,PopStackIFRegs
+ /*  420 */    nop     nop
+
+/* .vu.10 - instr 5 */
+DOUBLE_XYZ3_ONLY:
+ /*  428 */    nop     ilw.w vi04,2(vi09)w
+ /*  430 */    nop     iaddiu vi03,vi00,0x7fff
+ /*  438 */    nop     iaddi vi03,vi03,1
+ /*  440 */    nop     ior vi03,vi03,vi04
+ /*  448 */    nop     isw.w vi03,2(vi09)w
+
+/* .vu.11 - instr 12 */
+DOUBLE_XYZ2:
+ /*  450 */    nop     iadd vi13,vi13,vi13
+ /*  458 */    nop     iaddiu vi08,vi08,4
+ /*  460 */    nop     iaddi vi07,vi07,-1
+ /*  468 */    nop     lq.xyzw vf04xyzw,3(vi08)
+ /*  470 */    nop     lq.xyzw vf06xyzw,0(vi08)
+ /*  478 */    nop     ibne vi07,vi00,DOUBLE_LOOP
+ /*  480 */    nop     iaddiu vi09,vi09,3
+ /*  488 */    nop     xgkick vi06
+ /*  490 */    nop[e]  nop
+ /*  498 */    nop     nop
+ /*  4a0 */    nop     b DOUBLE_START
+ /*  4a8 */    nop     nop
+
+/* .vu.12 - instr 29 */
+PUSHTRIANGLE:
+SCISSOR:
+ /*  4b0 */    mulx.xyzw vf11xyzw,vf11xyzw,vf00x       iaddiu vi06,vi00,0x383
+ /*  4b8 */    nop     sq.xyzw vf15xyzw,0(vi06)
+ /*  4c0 */    nop     sq.xyzw vf16xyzw,4(vi06)
+ /*  4c8 */    nop     sq.xyzw vf17xyzw,8(vi06)
+ /*  4d0 */    nop     sq.xyzw vf15xyzw,12(vi06)
+ /*  4d8 */    nop     lq.xyzw vf18xyzw,-6(vi08)
+ /*  4e0 */    nop     lq.xyzw vf19xyzw,-2(vi08)
+ /*  4e8 */    nop     lq.xyzw vf20xyzw,2(vi08)
+ /*  4f0 */    nop     sq.xyzw vf18xyzw,1(vi06)
+ /*  4f8 */    nop     sq.xyzw vf19xyzw,5(vi06)
+ /*  500 */    nop     sq.xyzw vf20xyzw,9(vi06)
+ /*  508 */    nop     sq.xyzw vf18xyzw,13(vi06)
+ /*  510 */    nop     lq.xyzw vf15xyzw,-8(vi08)
+ /*  518 */    nop     lq.xyzw vf16xyzw,-4(vi08)
+ /*  520 */    nop     lq.xyzw vf17xyzw,0(vi08)
+ /*  528 */    nop     sq.xyzw vf15xyzw,2(vi06)
+ /*  530 */    nop     sq.xyzw vf16xyzw,6(vi06)
+ /*  538 */    nop     sq.xyzw vf17xyzw,10(vi06)
+ /*  540 */    nop     sq.xyzw vf15xyzw,14(vi06)
+ /*  548 */    nop     lq.xyzw vf18xyzw,-5(vi09)
+ /*  550 */    nop     lq.xyzw vf19xyzw,-2(vi09)
+ /*  558 */    nop     lq.xyzw vf20xyzw,1(vi09)
+ /*  560 */    itof0.xyzw vf18xyzw,vf18xyzw    nop
+ /*  568 */    itof0.xyzw vf19xyzw,vf19xyzw    nop
+ /*  570 */    itof0.xyzw vf20xyzw,vf20xyzw    nop
+ /*  578 */    nop     sq.xyzw vf18xyzw,3(vi06)
+ /*  580 */    nop     sq.xyzw vf19xyzw,7(vi06)
+ /*  588 */    nop     sq.xyzw vf20xyzw,11(vi06)
+ /*  590 */    nop     sq.xyzw vf18xyzw,15(vi06)
+
+/* .vu.13 - instr 11 */
+ZMINUS:
+PLANE_START:
+ /*  598 */    nop     iaddiu vi03,vi00,0x800
+ /*  5a0 */    nop     iaddiu vi04,vi00,0x20
+ /*  5a8 */    nop     iaddiu vi05,vi00,2
+ /*  5b0 */    nop     iaddiu vi06,vi00,0x383
+ /*  5b8 */    nop     iaddiu vi07,vi00,0x3b7
+ /*  5c0 */    nop     iaddiu vi08,vi00,3
+ /*  5c8 */    subw.x vf10x,vf00x,vf00w        iaddiu vi09,vi00,0
+ /*  5d0 */    nop     lqi.xyzw vf16xyzw,(vi06++)
+ /*  5d8 */    nop     lqi.xyzw vf17xyzw,(vi06++)
+ /*  5e0 */    nop     lqi.xyzw vf18xyzw,(vi06++)
+ /*  5e8 */    nop     lqi.xyzw vf19xyzw,(vi06++)
+
+/* .vu.14 - instr 15 */
+LOOP_ZM:
+ /*  5f0 */    nop     bal vi02,CLIP_INTER
+ /*  5f8 */    nop     nop
+ /*  600 */    nop     isubiu vi08,vi08,1
+ /*  608 */    nop     nop
+ /*  610 */    nop     ibne vi08,vi00,LOOP_ZM
+ /*  618 */    nop     nop
+ /*  620 */    nop     iaddiu vi06,vi00,0x3b7
+ /*  628 */    nop     lq.xyzw vf16xyzw,0(vi06)
+ /*  630 */    nop     lq.xyzw vf17xyzw,1(vi06)
+ /*  638 */    nop     lq.xyzw vf18xyzw,2(vi06)
+ /*  640 */    nop     lq.xyzw vf19xyzw,3(vi06)
+ /*  648 */    nop     sqi.xyzw vf16xyzw,(vi07++)
+ /*  650 */    nop     sqi.xyzw vf17xyzw,(vi07++)
+ /*  658 */    nop     sqi.xyzw vf18xyzw,(vi07++)
+ /*  660 */    nop     sqi.xyzw vf19xyzw,(vi07++)
+
+/* .vu.15 - instr 2 */
+END_ZM:
+ /*  668 */    nop     ibeq vi09,vi00,END_ALL
+ /*  670 */    nop     nop
+
+/* .vu.16 - instr 11 */
+ZPLUS:
+ /*  678 */    nop     iaddiu vi03,vi00,0x400
+ /*  680 */    nop     iaddiu vi04,vi00,0x10
+ /*  688 */    nop     iaddiu vi05,vi00,2
+ /*  690 */    nop     iaddiu vi06,vi00,0x3b7
+ /*  698 */    nop     iaddiu vi07,vi00,0x383
+ /*  6a0 */    nop     iadd vi08,vi00,vi09
+ /*  6a8 */    addw.x vf10x,vf00x,vf00w        iaddiu vi09,vi00,0
+ /*  6b0 */    nop     lqi.xyzw vf16xyzw,(vi06++)
+ /*  6b8 */    nop     lqi.xyzw vf17xyzw,(vi06++)
+ /*  6c0 */    nop     lqi.xyzw vf18xyzw,(vi06++)
+ /*  6c8 */    nop     lqi.xyzw vf19xyzw,(vi06++)
+
+/* .vu.17 - instr 15 */
+LOOP_ZP:
+ /*  6d0 */    nop     bal vi02,CLIP_INTER
+ /*  6d8 */    nop     nop
+ /*  6e0 */    nop     isubiu vi08,vi08,1
+ /*  6e8 */    nop     nop
+ /*  6f0 */    nop     ibne vi08,vi00,LOOP_ZP
+ /*  6f8 */    nop     nop
+ /*  700 */    nop     iaddiu vi06,vi00,0x383
+ /*  708 */    nop     lq.xyzw vf16xyzw,0(vi06)
+ /*  710 */    nop     lq.xyzw vf17xyzw,1(vi06)
+ /*  718 */    nop     lq.xyzw vf18xyzw,2(vi06)
+ /*  720 */    nop     lq.xyzw vf19xyzw,3(vi06)
+ /*  728 */    nop     sqi.xyzw vf16xyzw,(vi07++)
+ /*  730 */    nop     sqi.xyzw vf17xyzw,(vi07++)
+ /*  738 */    nop     sqi.xyzw vf18xyzw,(vi07++)
+ /*  740 */    nop     sqi.xyzw vf19xyzw,(vi07++)
+
+/* .vu.18 - instr 2 */
+END_ZP:
+ /*  748 */    nop     ibeq vi09,vi00,END_ALL
+ /*  750 */    nop     nop
+
+/* .vu.19 - instr 11 */
+XMINUS:
+ /*  758 */    nop     iaddiu vi03,vi00,0x80
+ /*  760 */    nop     iaddiu vi04,vi00,2
+ /*  768 */    nop     iaddiu vi05,vi00,0
+ /*  770 */    nop     iaddiu vi06,vi00,0x383
+ /*  778 */    nop     iaddiu vi07,vi00,0x3b7
+ /*  780 */    nop     iadd vi08,vi00,vi09
+ /*  788 */    subw.x vf10x,vf00x,vf00w        iaddiu vi09,vi00,0
+ /*  790 */    nop     lqi.xyzw vf16xyzw,(vi06++)
+ /*  798 */    nop     lqi.xyzw vf17xyzw,(vi06++)
+ /*  7a0 */    nop     lqi.xyzw vf18xyzw,(vi06++)
+ /*  7a8 */    nop     lqi.xyzw vf19xyzw,(vi06++)
+
+/* .vu.20 - instr 13 */
+LOOP_XM:
+ /*  7b0 */    nop     bal vi02,CLIP_INTER
+ /*  7b8 */    nop     nop
+ /*  7c0 */    nop     isubiu vi08,vi08,1
+ /*  7c8 */    nop     nop
+ /*  7d0 */    nop     ibne vi08,vi00,LOOP_XM
+ /*  7d8 */    nop     nop
+ /*  7e0 */    nop     iaddiu vi06,vi00,0x3b7
+ /*  7e8 */    nop     lq.xyzw vf16xyzw,0(vi06)
+ /*  7f0 */    nop     lq.xyzw vf17xyzw,1(vi06)
+ /*  7f8 */    nop     lq.xyzw vf18xyzw,2(vi06)
+ /*  800 */    nop     lq.xyzw vf19xyzw,3(vi06)
+ /*  808 */    nop     sqi.xyzw vf16xyzw,(vi07++)
+ /*  810 */    nop     sqi.xyzw vf17xyzw,(vi07++)
+
+ /* .endmpg
+ /* .vif.21 */
+ /* mpg 0, * */
+ /*  818 */ /* vifnop */
+ /*  81C */ /* mpg 0x100,0x100 */
+
+ /* .vu.24 - instr 2 */
+ /*  820 */    nop     sqi.xyzw vf18xyzw,(vi07++)
+ /*  828 */    nop     sqi.xyzw vf19xyzw,(vi07++)
+
+/* .vu.25 - instr 2 */
+END_XM:
+ /*  830 */    nop     ibeq vi09,vi00,END_ALL
+ /*  838 */    nop     nop
+
+/* .vu.26 - instr 11 */
+XPLUS:
+ /*  840 */    nop     iaddiu vi03,vi00,0x40
+ /*  848 */    nop     iaddiu vi04,vi00,1
+ /*  850 */    nop     iaddiu vi05,vi00,0
+ /*  858 */    nop     iaddiu vi06,vi00,0x3b7
+ /*  860 */    nop     iaddiu vi07,vi00,0x383
+ /*  868 */    nop     iadd vi08,vi00,vi09
+ /*  870 */    addw.x vf10x,vf00x,vf00w        iaddiu vi09,vi00,0
+ /*  878 */    nop     lqi.xyzw vf16xyzw,(vi06++)
+ /*  880 */    nop     lqi.xyzw vf17xyzw,(vi06++)
+ /*  888 */    nop     lqi.xyzw vf18xyzw,(vi06++)
+ /*  890 */    nop     lqi.xyzw vf19xyzw,(vi06++)
+
+/* .vu.27 - instr 15 */
+LOOP_XP:
+ /*  898 */    nop     bal vi02,CLIP_INTER
+ /*  8a0 */    nop     nop
+ /*  8a8 */    nop     isubiu vi08,vi08,1
+ /*  8b0 */    nop     nop
+ /*  8b8 */    nop     ibne vi08,vi00,LOOP_XP
+ /*  8c0 */    nop     nop
+ /*  8c8 */    nop     iaddiu vi06,vi00,0x383
+ /*  8d0 */    nop     lq.xyzw vf16xyzw,0(vi06)
+ /*  8d8 */    nop     lq.xyzw vf17xyzw,1(vi06)
+ /*  8e0 */    nop     lq.xyzw vf18xyzw,2(vi06)
+ /*  8e8 */    nop     lq.xyzw vf19xyzw,3(vi06)
+ /*  8f0 */    nop     sqi.xyzw vf16xyzw,(vi07++)
+ /*  8f8 */    nop     sqi.xyzw vf17xyzw,(vi07++)
+ /*  900 */    nop     sqi.xyzw vf18xyzw,(vi07++)
+ /*  908 */    nop     sqi.xyzw vf19xyzw,(vi07++)
+
+/* .vu.28 - instr 2 */
+END_XP:
+ /*  910 */    nop     ibeq vi09,vi00,END_ALL
+ /*  918 */    nop     nop
+
+/* .vu.29 - instr 11 */
+YMINUS:
+ /*  920 */    nop     iaddiu vi03,vi00,0x200
+ /*  928 */    nop     iaddiu vi04,vi00,8
+ /*  930 */    nop     iaddiu vi05,vi00,1
+ /*  938 */    nop     iaddiu vi06,vi00,0x383
+ /*  940 */    nop     iaddiu vi07,vi00,0x3b7
+ /*  948 */    nop     iadd vi08,vi00,vi09
+ /*  950 */    subw.x vf10x,vf00x,vf00w        iaddiu vi09,vi00,0
+ /*  958 */    nop     lqi.xyzw vf16xyzw,(vi06++)
+ /*  960 */    nop     lqi.xyzw vf17xyzw,(vi06++)
+ /*  968 */    nop     lqi.xyzw vf18xyzw,(vi06++)
+ /*  970 */    nop     lqi.xyzw vf19xyzw,(vi06++)
+
+/* .vu.30 - instr 15 */
+LOOP_YM:
+ /*  978 */    nop     bal vi02,CLIP_INTER
+ /*  980 */    nop     nop
+ /*  988 */    nop     isubiu vi08,vi08,1
+ /*  990 */    nop     nop
+ /*  998 */    nop     ibne vi08,vi00,LOOP_YM
+ /*  9a0 */    nop     nop
+ /*  9a8 */    nop     iaddiu vi06,vi00,0x3b7
+ /*  9b0 */    nop     lq.xyzw vf16xyzw,0(vi06)
+ /*  9b8 */    nop     lq.xyzw vf17xyzw,1(vi06)
+ /*  9c0 */    nop     lq.xyzw vf18xyzw,2(vi06)
+ /*  9c8 */    nop     lq.xyzw vf19xyzw,3(vi06)
+ /*  9d0 */    nop     sqi.xyzw vf16xyzw,(vi07++)
+ /*  9d8 */    nop     sqi.xyzw vf17xyzw,(vi07++)
+ /*  9e0 */    nop     sqi.xyzw vf18xyzw,(vi07++)
+ /*  9e8 */    nop     sqi.xyzw vf19xyzw,(vi07++)
+
+/* .vu.31 - instr 2 */
+END_YM:
+ /*  9f0 */    nop     ibeq vi09,vi00,END_ALL
+ /*  9f8 */    nop     nop
+
+/* .vu.32 - instr 11 */
+YPLUS:
+ /*  a00 */    nop     iaddiu vi03,vi00,0x100
+ /*  a08 */    nop     iaddiu vi04,vi00,4
+ /*  a10 */    nop     iaddiu vi05,vi00,1
+ /*  a18 */    nop     iaddiu vi06,vi00,0x3b7
+ /*  a20 */    nop     iaddiu vi07,vi00,0x383
+ /*  a28 */    nop     iadd vi08,vi00,vi09
+ /*  a30 */    addw.x vf10x,vf00x,vf00w        iaddiu vi09,vi00,0
+ /*  a38 */    nop     lqi.xyzw vf16xyzw,(vi06++)
+ /*  a40 */    nop     lqi.xyzw vf17xyzw,(vi06++)
+ /*  a48 */    nop     lqi.xyzw vf18xyzw,(vi06++)
+ /*  a50 */    nop     lqi.xyzw vf19xyzw,(vi06++)
+
+/* .vu.33 - instr 15 */
+LOOP_YP:
+ /*  a58 */    nop     bal vi02,CLIP_INTER
+ /*  a60 */    nop     nop
+ /*  a68 */    nop     isubiu vi08,vi08,1
+ /*  a70 */    nop     nop
+ /*  a78 */    nop     ibne vi08,vi00,LOOP_YP
+ /*  a80 */    nop     nop
+ /*  a88 */    nop     iaddiu vi06,vi00,0x383
+ /*  a90 */    nop     lq.xyzw vf16xyzw,0(vi06)
+ /*  a98 */    nop     lq.xyzw vf17xyzw,1(vi06)
+ /*  aa0 */    nop     lq.xyzw vf18xyzw,2(vi06)
+ /*  aa8 */    nop     lq.xyzw vf19xyzw,3(vi06)
+ /*  ab0 */    nop     sqi.xyzw vf16xyzw,(vi07++)
+ /*  ab8 */    nop     sqi.xyzw vf17xyzw,(vi07++)
+ /*  ac0 */    nop     sqi.xyzw vf18xyzw,(vi07++)
+ /*  ac8 */    nop     sqi.xyzw vf19xyzw,(vi07++)
+
+/* .vu.34 - instr 9 */
+END_YP:
+ /*  ad0 */    nop     ibeq vi09,vi00,END_ALL
+ /*  ad8 */    nop     nop
+ /*  ae0 */    nop     iaddiu vi06,vi00,0x383
+ /*  ae8 */    nop     iaddiu vi07,vi00,0x3b7
+ /*  af0 */    nop     iadd vi08,vi00,vi09
+ /*  af8 */    nop     iaddiu vi09,vi00,0
+ /*  b00 */    nop     nop
+ /*  b08 */    nop     bal vi05,START2
+ /*  b10 */    nop     nop
+
+/* .vu.35 - instr 2 */
+END_ALL:
+ /*  b18 */    nop     jr vi15
+ /*  b20 */    nop     nop
+
+/* .vu.36 - instr 10 */
+SAVE_LAST_LOOP:
+ /*  b28 */    nop     lq.xyzw vf16xyzw,0(vi06)
+ /*  b30 */    nop     lq.xyzw vf17xyzw,1(vi06)
+ /*  b38 */    nop     lq.xyzw vf18xyzw,2(vi06)
+ /*  b40 */    nop     lq.xyzw vf19xyzw,3(vi06)
+ /*  b48 */    nop     sqi.xyzw vf16xyzw,(vi07++)
+ /*  b50 */    nop     sqi.xyzw vf17xyzw,(vi07++)
+ /*  b58 */    nop     sqi.xyzw vf18xyzw,(vi07++)
+ /*  b60 */    nop     sqi.xyzw vf19xyzw,(vi07++)
+ /*  b68 */    nop     jr vi02
+ /*  b70 */    nop     nop
+
+/* .vu.37 - instr 14 */
+CLIP_INTER:
+ /*  b78 */    add.xyzw vf12xyzw,vf11xyzw,vf16xyzw     lqi.xyzw vf16xyzw,(vi06++)
+ /*  b80 */    add.xyzw vf13xyzw,vf11xyzw,vf17xyzw     lqi.xyzw vf17xyzw,(vi06++)
+ /*  b88 */    add.xyzw vf14xyzw,vf11xyzw,vf18xyzw     lqi.xyzw vf18xyzw,(vi06++)
+ /*  b90 */    add.xyzw vf15xyzw,vf11xyzw,vf19xyzw     lqi.xyzw vf19xyzw,(vi06++)
+ /*  b98 */    clipw.xyz vf12xyz,vf12w         nop
+ /*  ba0 */    clipw.xyz vf16xyz,vf16w         nop
+ /*  ba8 */    nop     nop
+ /*  bb0 */    nop     nop
+ /*  bb8 */    nop     nop
+ /*  bc0 */    nop     fcget vi01
+ /*  bc8 */    nop     iand vi10,vi01,vi03
+ /*  bd0 */    nop     nop
+ /*  bd8 */    nop     ibeq vi10,vi00,CUR_IN
+ /*  be0 */    nop     nop
+
+/* .vu.38 - instr 4 */
+CUR_OUT:
+ /*  be8 */    nop     iand vi10,vi01,vi04
+ /*  bf0 */    nop     nop
+ /*  bf8 */    nop     ibeq vi10,vi00,CO_NEXT_IN
+ /*  c00 */    nop     nop
+
+/* .vu.39 - instr 2 */
+CO_NEXT_OUT:
+ /*  c08 */    nop     b CLIP_INTER_END
+ /*  c10 */    nop     nop
+
+/* .vu.40 - instr 9 */
+CO_NEXT_IN:
+ /*  c18 */    nop     bal vi01,INTERPOLATE
+ /*  c20 */    nop     nop
+ /*  c28 */    nop     sqi.xyzw vf20xyzw,(vi07++)
+ /*  c30 */    nop     sqi.xyzw vf21xyzw,(vi07++)
+ /*  c38 */    nop     sqi.xyzw vf22xyzw,(vi07++)
+ /*  c40 */    nop     sqi.xyzw vf23xyzw,(vi07++)
+ /*  c48 */    nop     iaddiu vi09,vi09,1
+ /*  c50 */    nop     b CLIP_INTER_END
+ /*  c58 */    nop     nop
+
+/* .vu.41 - instr 4 */
+CUR_IN:
+ /*  c60 */    nop     iand vi10,vi01,vi04
+ /*  c68 */    nop     nop
+ /*  c70 */    nop     ibeq vi10,vi00,CI_NEXT_IN
+ /*  c78 */    nop     nop
+
+/* .vu.42 - instr 13 */
+CI_NEXT_OUT:
+ /*  c80 */    nop     bal vi01,INTERPOLATE
+ /*  c88 */    nop     nop
+ /*  c90 */    nop     sqi.xyzw vf12xyzw,(vi07++)
+ /*  c98 */    nop     sqi.xyzw vf13xyzw,(vi07++)
+ /*  ca0 */    nop     sqi.xyzw vf14xyzw,(vi07++)
+ /*  ca8 */    nop     sqi.xyzw vf15xyzw,(vi07++)
+ /*  cb0 */    nop     sqi.xyzw vf20xyzw,(vi07++)
+ /*  cb8 */    nop     sqi.xyzw vf21xyzw,(vi07++)
+ /*  cc0 */    nop     sqi.xyzw vf22xyzw,(vi07++)
+ /*  cc8 */    nop     sqi.xyzw vf23xyzw,(vi07++)
+ /*  cd0 */    nop     iaddiu vi09,vi09,2
+ /*  cd8 */    nop     b CLIP_INTER_END
+ /*  ce0 */    nop     nop
+
+/* .vu.43 - instr 5 */
+CI_NEXT_IN:
+ /*  ce8 */    nop     sqi.xyzw vf12xyzw,(vi07++)
+ /*  cf0 */    nop     sqi.xyzw vf13xyzw,(vi07++)
+ /*  cf8 */    nop     sqi.xyzw vf14xyzw,(vi07++)
+ /*  d00 */    nop     sqi.xyzw vf15xyzw,(vi07++)
+ /*  d08 */    nop     iaddiu vi09,vi09,1
+
+/* .vu.44 - instr 2 */
+CLIP_INTER_END:
+ /*  d10 */    nop     jr vi02
+ /*  d18 */    nop     nop
+
+/* .vu.45 - instr 4 */
+INTERPOLATE:
+ /*  d20 */    mulx.w vf01w,vf12w,vf10x        iadd vi12,vi00,vi05
+ /*  d28 */    mulx.w vf02w,vf16w,vf10x        nop
+ /*  d30 */    subw.xyzw vf01xyzw,vf12xyzw,vf01w       nop
+ /*  d38 */    subw.xyzw vf02xyzw,vf16xyzw,vf02w       nop
+
+/* .vu.46 - instr 8 */
+LOOP_ROT:
+ /*  d40 */    nop     ibeq vi12,vi00,LOOP_ROT_END
+ /*  d48 */    nop     nop
+ /*  d50 */    nop     mr32.xyzw vf01xyzw,vf01xyzw
+ /*  d58 */    nop     mr32.xyzw vf02xyzw,vf02xyzw
+ /*  d60 */    nop     isubiu vi12,vi12,1
+ /*  d68 */    nop     nop
+ /*  d70 */    nop     b LOOP_ROT
+ /*  d78 */    nop     nop
+
+/* .vu.47 - instr 22 */
+LOOP_ROT_END:
+ /*  d80 */    sub.xyz vf03xyz,vf02xyz,vf01xyz         nop
+ /*  d88 */    nop     nop
+ /*  d90 */    nop     nop
+ /*  d98 */    nop     nop
+ /*  da0 */    nop     div q,vf01x,vf00x
+ /*  da8 */    sub.xyzw vf20xyzw,vf16xyzw,vf12xyzw     nop
+ /*  db0 */    sub.xyzw vf21xyzw,vf17xyzw,vf13xyzw     nop
+ /*  db8 */    sub.xyzw vf22xyzw,vf18xyzw,vf14xyzw     nop
+ /*  dc0 */    sub.xyzw vf23xyzw,vf19xyzw,vf15xyzw     nop
+ /*  dc8 */    nop     waitq
+ /*  dd0 */    addq.x vf04x,vf00x,q    nop
+ /*  dd8 */    abs.x vf04x,vf04x       nop
+ /*  de0 */    mulx.xyzw vf20xyzw,vf20xyzw,vf04x       nop
+ /*  de8 */    mulx.xyzw vf21xyzw,vf21xyzw,vf04x       nop
+ /*  df0 */    mulx.xyzw vf22xyzw,vf22xyzw,vf04x       nop
+ /*  df8 */    mulx.xyzw vf23xyzw,vf23xyzw,vf04x       nop
+ /*  e00 */    add.xyzw vf20xyzw,vf20xyzw,vf12xyzw     nop
+ /*  e08 */    add.xyzw vf21xyzw,vf21xyzw,vf13xyzw     nop
+ /*  e10 */    add.xyzw vf22xyzw,vf22xyzw,vf14xyzw     nop
+ /*  e18 */    add.xyzw vf23xyzw,vf23xyzw,vf15xyzw     nop
+ /*  e20 */    nop     jr vi01
+ /*  e28 */    nop     nop
+
+/* .vu.48 - instr 24 */
+START2:
+DrawScissorPolygon:
+ /*  e30 */    nop     iaddiu vi02,vi00,0x34c
+ /*  e38 */    nop     iadd vi03,vi00,vi06
+ /*  e40 */    nop     iaddiu vi04,vi02,1
+ /*  e48 */    nop     iaddiu vi11,vi00,0x7fff
+ /*  e50 */    nop     iaddiu vi11,vi11,1
+ /*  e58 */    nop     lq.xyzw vf01xyzw,1(vi03)
+ /*  e60 */    nop     isw.x vi11,0(vi02)x
+ /*  e68 */    nop     nop
+ /*  e70 */    nop     xgkick vi02
+ /*  e78 */    nop     nop
+ /*  e80 */    nop     div q,vf00w,vf00x
+ /*  e88 */    nop     lq.xyzw vf21xyzw,887(vi00)
+ /*  e90 */    nop     lq.xyzw vf22xyzw,893(vi00)
+ /*  e98 */    nop     lq.xyzw vf23xyzw,892(vi00)
+ /*  ea0 */    nop     iaddiu vi11,vi08,0x7fff
+ /*  ea8 */    nop     iaddiu vi11,vi11,1
+ /*  eb0 */    nop     isw.x vi11,0(vi02)x
+ /*  eb8 */    nop     lq.xyzw vf12xyzw,894(vi00)
+ /*  ec0 */    nop     lq.xyzw vf13xyzw,895(vi00)
+ /*  ec8 */    nop[i]  loi 65534
+ /*  ed0 */    addz.x vf02x,vf00x,vf21z        nop
+ /*  ed8 */    mul.xy vf05xy,vf01xy,vf22xy     nop
+ /*  ee0 */    adda.z accz,vf00z,vf12z         nop
+ /*  ee8 */    mul.w vf05w,vf01w,vf00w         nop
+
+/* .vu.49 - instr 25 */
+LOOP2:
+ /*  ef0 */    addq.z vf04z,vf00z,q    waitq
+ /*  ef8 */    mulq.x vf03x,vf02x,q    nop
+ /*  f00 */    nop     lq.xyzw vf07xyzw,2(vi03)
+ /*  f08 */    nop     lq.xyzw vf06xyzw,3(vi03)
+ /*  f10 */    mulx.xy vf05xy,vf05xy,vf03x     nop
+ /*  f18 */    mulq.xy vf07xy,vf07xy,q         iaddi vi08,vi08,-1
+ /*  f20 */    addq.z vf07z,vf00z,q    iaddiu vi03,vi03,4
+ /*  f28 */    ftoi0.xyzw vf06xyzw,vf06xyzw    nop
+ /*  f30 */    add.xy vf05xy,vf05xy,vf23xy     nop
+ /*  f38 */    maddx.z vf05z,vf04z,vf13x       nop
+ /*  f40 */    nop     sq.xyzw vf07xyzw,0(vi04)
+ /*  f48 */    nop     sq.xyzw vf06xyzw,1(vi04)
+ /*  f50 */    minii.z vf05z,vf05z,i   nop
+ /*  f58 */    maxw.z vf05z,vf05z,vf00w        lq.xyzw vf01xyzw,1(vi03)
+ /*  f60 */    nop     iaddiu vi04,vi04,3
+ /*  f68 */    ftoi4.xyzw vf08xyzw,vf05xyzw    div q,vf00w,vf00x
+ /*  f70 */    mul.xy vf05xy,vf01xy,vf22xy     nop
+ /*  f78 */    adda.z accz,vf00z,vf12z         nop
+ /*  f80 */    mul.w vf05w,vf01w,vf00w         nop
+ /*  f88 */    nop     ibne vi08,vi00,LOOP2
+ /*  f90 */    nop     sq.xyzw vf08xyzw,-1(vi04)
+ /*  f98 */    nop     xgkick vi02
+ /*  fa0 */    nop     nop
+ /*  fa8 */    nop     jr vi05
+ /*  fb0 */    nop     nop
+
+/* .vu.50 - instr 7 */
+vu1GetVertexColorDifAmb:
+ /*  fb8 */    add.xyz vf01xyz,vf01xyz,vf18xyz         nop
+ /*  fc0 */    maxx.xyz vf01xyz,vf01xyz,vf00x  nop
+ /*  fc8 */    miniw.xyz vf01xyz,vf01xyz,vf00w         nop
+ /*  fd0 */    mul.xyz vf01xyz,vf01xyz,vf19xyz         nop
+ /*  fd8 */    mul.w vf01w,vf00w,vf21w         nop
+ /*  fe0 */    nop     jr vi15
+ /*  fe8 */    nop     nop
+
+/* .vu.51 - instr 5 */
+vu1GetVertexColor:
+ /*  ff0 */    nop[i]  loi 128
+ /*  ff8 */    muli[i].xyz vf01xyz,vf01xyz,i   loi 255
+ /* 1000 */    muli.w vf01w,vf01w,i    nop
+ /* 1008 */    nop     jr vi15
+ /* 1010 */    nop     nop
+
+/* .vu.52 - instr 1 */
+vu1GetVertexColorCM:
+ /* 1018 */    add.xyz vf01xyz,vf00xyz,vf19xyz         nop
+
+ /* .endmpg
+ /* .vif.27 */
+ /* mpg 0, * */
+ /* 1020 */ /* vifnop */
+ /* 1024 */ /* mpg 0x200,0x9d */
+
+ /* .vu.56 - instr 3 */
+ /* 1028 */    mul.w vf01w,vf00w,vf21w         nop
+ /* 1030 */    nop     jr vi15
+ /* 1038 */    nop     nop
+
+/* .vu.57 - instr 5 */
+vu1GetVertexColorIgnore:
+ /* 1040 */    nop[i]  loi 128
+ /* 1048 */    addi.xyz vf01xyz,vf00xyz,i      nop
+ /* 1050 */    mul.w vf01w,vf00w,vf21w         nop
+ /* 1058 */    nop     jr vi15
+ /* 1060 */    nop     nop
+
+/* .vu.58 - instr 6 */
+vu1GetVertexColorDif:
+ /* 1068 */    miniw.xyz vf01xyz,vf01xyz,vf00w         nop
+ /* 1070 */    maxx.xyz vf01xyz,vf01xyz,vf00x  nop
+ /* 1078 */    mul.xyz vf01xyz,vf01xyz,vf19xyz         nop
+ /* 1080 */    mul.w vf01w,vf00w,vf21w         nop
+ /* 1088 */    nop     jr vi15
+ /* 1090 */    nop     nop
+
+/* .vu.59 - instr 11 */
+vu1GetVertexColorDifSpe1:
+ /* 1098 */    subw.xyz vf11xyz,vf01xyz,vf00w  nop
+ /* 10a0 */    miniw.xyz vf01xyz,vf01xyz,vf00w         nop
+ /* 10a8 */    maxx.xyz vf01xyz,vf01xyz,vf00x  nop
+ /* 10b0 */    miniw.xyz vf11xyz,vf11xyz,vf00w         nop
+ /* 10b8 */    maxx.xyz vf11xyz,vf11xyz,vf00x  nop
+ /* 10c0 */    mul.xyz vf01xyz,vf01xyz,vf19xyz         nop
+ /* 10c8 */    mul.xyz vf11xyz,vf11xyz,vf20xyz         nop
+ /* 10d0 */    add.xyz vf01xyz,vf01xyz,vf11xyz         nop
+ /* 10d8 */    mul.w vf01w,vf00w,vf21w         nop
+ /* 10e0 */    nop     jr vi15
+ /* 10e8 */    nop     nop
+
+/* .vu.60 - instr 12 */
+vu1GetVertexColorDifSpe2:
+ /* 10f0 */    add.xyz vf11xyz,vf01xyz,vf18xyz         nop
+ /* 10f8 */    subw.xyz vf11xyz,vf11xyz,vf00w  nop
+ /* 1100 */    miniw.xyz vf01xyz,vf01xyz,vf00w         nop
+ /* 1108 */    maxx.xyz vf01xyz,vf01xyz,vf00x  nop
+ /* 1110 */    miniw.xyz vf11xyz,vf11xyz,vf00w         nop
+ /* 1118 */    maxx.xyz vf11xyz,vf11xyz,vf00x  nop
+ /* 1120 */    mul.xyz vf01xyz,vf01xyz,vf19xyz         nop
+ /* 1128 */    mul.xyz vf11xyz,vf11xyz,vf20xyz         nop
+ /* 1130 */    add.xyz vf01xyz,vf01xyz,vf11xyz         nop
+ /* 1138 */    mul.w vf01w,vf00w,vf21w         nop
+ /* 1140 */    nop     jr vi15
+ /* 1148 */    nop     nop
+
+/* .vu.61 - instr 2 */
+vu1GetVertexColorDifSpe3:
+ /* 1150 */    nop     iaddiu vi01,vi00,0x11
+ /* 1158 */    addw.xyz vf11xyz,vf00xyz,vf00w  nop
+
+/* .vu.62 - instr 14 */
+vu1GetVertexColorDifSpe3_Loop:
+ /* 1160 */    mul.xyz vf11xyz,vf11xyz,vf01xyz         isubiu vi01,vi01,1
+ /* 1168 */    nop     nop
+ /* 1170 */    nop     ibne vi01,vi00,vu1GetVertexColorDifSpe3_Loop
+ /* 1178 */    nop     nop
+ /* 1180 */    miniw.xyz vf01xyz,vf01xyz,vf00w         nop
+ /* 1188 */    maxx.xyz vf01xyz,vf01xyz,vf00x  nop
+ /* 1190 */    miniw.xyz vf11xyz,vf11xyz,vf00w         nop
+ /* 1198 */    maxx.xyz vf11xyz,vf11xyz,vf00x  nop
+ /* 11a0 */    mul.xyz vf01xyz,vf01xyz,vf19xyz         nop
+ /* 11a8 */    mul.xyz vf11xyz,vf11xyz,vf20xyz         nop
+ /* 11b0 */    add.xyz vf01xyz,vf01xyz,vf11xyz         nop
+ /* 11b8 */    mul.w vf01w,vf00w,vf21w         nop
+ /* 11c0 */    nop     jr vi15
+ /* 11c8 */    nop     nop
+
+/* .vu.63 - instr 12 */
+vu1GetVertexColorDifSpe1Amb:
+ /* 11d0 */    subw.xyz vf11xyz,vf01xyz,vf00w  nop
+ /* 11d8 */    miniw.xyz vf11xyz,vf11xyz,vf00w         nop
+ /* 11e0 */    maxx.xyz vf11xyz,vf11xyz,vf00x  nop
+ /* 11e8 */    add.xyz vf01xyz,vf01xyz,vf18xyz         nop
+ /* 11f0 */    miniw.xyz vf01xyz,vf01xyz,vf00w         nop
+ /* 11f8 */    maxx.xyz vf01xyz,vf01xyz,vf00x  nop
+ /* 1200 */    mul.xyz vf01xyz,vf01xyz,vf19xyz         nop
+ /* 1208 */    mul.xyz vf11xyz,vf11xyz,vf20xyz         nop
+ /* 1210 */    add.xyz vf01xyz,vf01xyz,vf11xyz         nop
+ /* 1218 */    mul.w vf01w,vf00w,vf21w         nop
+ /* 1220 */    nop     jr vi15
+ /* 1228 */    nop     nop
+
+/* .vu.64 - instr 12 */
+vu1GetVertexColorDifSpe2Amb:
+ /* 1230 */    add.xyz vf01xyz,vf01xyz,vf18xyz         nop
+ /* 1238 */    subw.xyz vf11xyz,vf01xyz,vf00w  nop
+ /* 1240 */    miniw.xyz vf01xyz,vf01xyz,vf00w         nop
+ /* 1248 */    maxx.xyz vf01xyz,vf01xyz,vf00x  nop
+ /* 1250 */    miniw.xyz vf11xyz,vf11xyz,vf00w         nop
+ /* 1258 */    maxx.xyz vf11xyz,vf11xyz,vf00x  nop
+ /* 1260 */    mul.xyz vf01xyz,vf01xyz,vf19xyz         nop
+ /* 1268 */    mul.xyz vf11xyz,vf11xyz,vf20xyz         nop
+ /* 1270 */    add.xyz vf01xyz,vf01xyz,vf11xyz         nop
+ /* 1278 */    mul.w vf01w,vf00w,vf21w         nop
+ /* 1280 */    nop     jr vi15
+ /* 1288 */    nop     nop
+
+/* .vu.65 - instr 3 */
+vu1GetVertexColorDifSpe3Amb:
+ /* 1290 */    add.xyz vf01xyz,vf01xyz,vf18xyz         nop
+ /* 1298 */    nop     iaddiu vi01,vi00,0x11
+ /* 12a0 */    addw.xyz vf11xyz,vf01xyz,vf00w  nop
+
+/* .vu.66 - instr 14 */
+vu1GetVertexColorDifSpe3Amb_Loop:
+ /* 12a8 */    mul.xyz vf11xyz,vf11xyz,vf01xyz         isubiu vi01,vi01,1
+ /* 12b0 */    nop     nop
+ /* 12b8 */    nop     ibne vi01,vi00,vu1GetVertexColorDifSpe3Amb_Loop
+ /* 12c0 */    nop     nop
+ /* 12c8 */    miniw.xyz vf01xyz,vf01xyz,vf00w         nop
+ /* 12d0 */    maxx.xyz vf01xyz,vf01xyz,vf00x  nop
+ /* 12d8 */    miniw.xyz vf11xyz,vf11xyz,vf00w         nop
+ /* 12e0 */    maxx.xyz vf11xyz,vf11xyz,vf00x  nop
+ /* 12e8 */    mul.xyz vf01xyz,vf01xyz,vf19xyz         nop
+ /* 12f0 */    mul.xyz vf11xyz,vf11xyz,vf20xyz         nop
+ /* 12f8 */    add.xyz vf01xyz,vf01xyz,vf11xyz         nop
+ /* 1300 */    mul.w vf01w,vf00w,vf21w         nop
+ /* 1308 */    nop     jr vi15
+ /* 1310 */    nop     nop
+
+/* .vu.67 - instr 31 */
+PushStackIFRegs:
+ /* 1318 */    nop     sqd.xyzw vf14xyzw,(--vi14)
+ /* 1320 */    nop     sqd.xyzw vf15xyzw,(--vi14)
+ /* 1328 */    nop     sqd.xyzw vf16xyzw,(--vi14)
+ /* 1330 */    nop     sqd.xyzw vf17xyzw,(--vi14)
+ /* 1338 */    nop     sqd.xyzw vf18xyzw,(--vi14)
+ /* 1340 */    nop     sqd.xyzw vf19xyzw,(--vi14)
+ /* 1348 */    nop     sqd.xyzw vf20xyzw,(--vi14)
+ /* 1350 */    nop     sqd.xyzw vf21xyzw,(--vi14)
+ /* 1358 */    nop     sqd.xyzw vf22xyzw,(--vi14)
+ /* 1360 */    nop     sqd.xyzw vf23xyzw,(--vi14)
+ /* 1368 */    nop     isubiu vi14,vi14,1
+ /* 1370 */    nop     iswr.x vi02,(vi14)x
+ /* 1378 */    nop     iswr.y vi03,(vi14)y
+ /* 1380 */    nop     iswr.z vi04,(vi14)z
+ /* 1388 */    nop     iswr.w vi05,(vi14)w
+ /* 1390 */    nop     isubiu vi14,vi14,1
+ /* 1398 */    nop     iswr.x vi06,(vi14)x
+ /* 13a0 */    nop     iswr.y vi07,(vi14)y
+ /* 13a8 */    nop     iswr.z vi08,(vi14)z
+ /* 13b0 */    nop     iswr.w vi09,(vi14)w
+ /* 13b8 */    nop     isubiu vi14,vi14,1
+ /* 13c0 */    nop     iswr.x vi10,(vi14)x
+ /* 13c8 */    nop     iswr.y vi11,(vi14)y
+ /* 13d0 */    nop     iswr.z vi12,(vi14)z
+ /* 13d8 */    nop     iswr.w vi13,(vi14)w
+ /* 13e0 */    nop     isubiu vi14,vi14,1
+ /* 13e8 */    nop     iswr.x vi14,(vi14)x
+ /* 13f0 */    nop     iswr.y vi15,(vi14)y
+ /* 13f8 */    nop     nop
+ /* 1400 */    nop     jr vi15
+ /* 1408 */    nop     nop
+
+/* .vu.68 - instr 32 */
+PopStackIFRegs:
+ /* 1410 */    nop     iadd vi01,vi00,vi15
+ /* 1418 */    nop     iswr.x vi14,(vi14)x
+ /* 1420 */    nop     iswr.y vi15,(vi14)y
+ /* 1428 */    nop     iaddiu vi14,vi14,1
+ /* 1430 */    nop     ilwr.x vi10,(vi14)x
+ /* 1438 */    nop     ilwr.y vi11,(vi14)y
+ /* 1440 */    nop     ilwr.z vi12,(vi14)z
+ /* 1448 */    nop     ilwr.w vi13,(vi14)w
+ /* 1450 */    nop     iaddiu vi14,vi14,1
+ /* 1458 */    nop     ilwr.x vi06,(vi14)x
+ /* 1460 */    nop     ilwr.y vi07,(vi14)y
+ /* 1468 */    nop     ilwr.z vi08,(vi14)z
+ /* 1470 */    nop     ilwr.w vi09,(vi14)w
+ /* 1478 */    nop     iaddiu vi14,vi14,1
+ /* 1480 */    nop     ilwr.x vi02,(vi14)x
+ /* 1488 */    nop     ilwr.y vi03,(vi14)y
+ /* 1490 */    nop     ilwr.z vi04,(vi14)z
+ /* 1498 */    nop     ilwr.w vi05,(vi14)w
+ /* 14a0 */    nop     iaddiu vi14,vi14,1
+ /* 14a8 */    nop     lqi.xyzw vf23xyzw,(vi14++)
+ /* 14b0 */    nop     lqi.xyzw vf22xyzw,(vi14++)
+ /* 14b8 */    nop     lqi.xyzw vf21xyzw,(vi14++)
+ /* 14c0 */    nop     lqi.xyzw vf20xyzw,(vi14++)
+ /* 14c8 */    nop     lqi.xyzw vf19xyzw,(vi14++)
+ /* 14d0 */    nop     lqi.xyzw vf18xyzw,(vi14++)
+ /* 14d8 */    nop     lqi.xyzw vf17xyzw,(vi14++)
+ /* 14e0 */    nop     lqi.xyzw vf16xyzw,(vi14++)
+ /* 14e8 */    nop     lqi.xyzw vf15xyzw,(vi14++)
+ /* 14f0 */    nop     lqi.xyzw vf14xyzw,(vi14++)
+ /* 14f8 */    nop     nop
+ /* 1500 */    nop     jr vi01
+ /* 1508 */    nop     nop
+
+.endmpg
+
+.EndDmaData
+
+DMAend
+/* .dma.69 */
+ /* 1510 */ /* dmaend 0 */
+ /* 1514 */ /* .word 0  */
+
+/* .vif.70 */
+ /* 1518 */ /* vifnop */
+ /* 151c */ /* vifnop */
+
+ps2_vu1sub1:
+
+/* .dma.72 */
+dmacnt *
+ /* 1520 */ /* dmacnt 0x54 */
+ /* 1524 */ /* vifnop */
+ /* 1528 */ vifnop
+ /* 152C */ vifnop
+ /* 1530 */ vifnop
+
+/* .vif.73 */
+mpg 0x2BC, *
+ /* 1534 */ /* mpg 0x2BC,0xA6 */
+
+/* .vu.76 - instr 43 */
+SingleMain:
+ /* 1538 */    nop     iaddiu vi14,vi00,0x400
+ /* 1540 */    nop     lq.xyzw vf21xyzw,887(vi00)
+ /* 1548 */    nop     lq.xyzw vf22xyzw,893(vi00)
+ /* 1550 */    nop     lq.xyzw vf23xyzw,892(vi00)
+ /* 1558 */    nop[i]  loi 2047
+ /* 1560 */    addi.x vf01x,vf00x,i    nop
+ /* 1568 */    nop     div q,vf01x,vf00x
+ /* 1570 */    nop     lq.xyzw vf28xyzw,888(vi00)
+ /* 1578 */    nop     lq.xyzw vf29xyzw,889(vi00)
+ /* 1580 */    nop     lq.xyzw vf30xyzw,890(vi00)
+ /* 1588 */    nop     lq.xyzw vf31xyzw,891(vi00)
+ /* 1590 */    nop[i]  loi 65536
+ /* 1598 */    muli.x vf10x,vf21x,i    nop
+ /* 15A0 */    subx.y vf11y,vf21y,vf21x        nop
+ /* 15A8 */    mulq.w vf22w,vf00w,q    waitq
+ /* 15B0 */    nop     iaddiu vi01,vi00,0x1fa
+ /* 15B8 */    nop     iaddiu vi02,vi00,0x1ff
+ /* 15C0 */    nop     iaddiu vi03,vi00,0x203
+ /* 15C8 */    muly.x vf13x,vf10x,vf21y        div q,vf10x,vf00x
+ /* 15D0 */    nop     iaddiu vi04,vi00,0x208
+ /* 15D8 */    nop     iaddiu vi05,vi00,0x1f3
+ /* 15E0 */    nop     iaddiu vi06,vi00,0x20e
+ /* 15E8 */    nop     iaddiu vi07,vi00,0x219
+ /* 15F0 */    nop     iaddiu vi08,vi00,0x225
+ /* 15F8 */    nop     iaddiu vi09,vi00,0x235
+ /* 1600 */    nop     iaddiu vi10,vi00,0x241
+ /* 1608 */    addq.z vf12z,vf00z,q    waitq
+ /* 1610 */    nop     iaddiu vi11,vi00,0x24d
+ /* 1618 */    nop     isw.x vi11,-11(vi14)x
+ /* 1620 */    nop     isw.x vi10,-10(vi14)x
+ /* 1628 */    nop     div q,vf13x,vf00x
+ /* 1630 */    nop     isw.x vi09,-9(vi14)x
+ /* 1638 */    nop     isw.x vi08,-8(vi14)x
+ /* 1640 */    nop     isw.x vi07,-7(vi14)x
+ /* 1648 */    nop     isw.x vi06,-6(vi14)x
+ /* 1650 */    nop     isw.x vi05,-5(vi14)x
+ /* 1658 */    nop     isw.x vi04,-4(vi14)x
+ /* 1660 */    nop     isw.x vi03,-3(vi14)x
+ /* 1668 */    addq.x vf13x,vf00x,q    waitq
+ /* 1670 */    nop     isw.x vi02,-2(vi14)x
+ /* 1678 */    nop     isw.x vi01,-1(vi14)x
+ /* 1680 */    nop     sq.xyzw vf12xyzw,894(vi00)
+ /* 1688 */    nop     sq.xyzw vf13xyzw,895(vi00)
+
+/* .vu.77 - instr 26 */
+SINGLE_START:
+ /* 1690 */    nop     xtop vi01
+ /* 1698 */    nop     iaddiu vi02,vi00,0x7fff
+ /* 16A0 */    nop     ilwr.x vi07,(vi01)x
+ /* 16A8 */    nop     iand vi07,vi07,vi02
+ /* 16B0 */    nop     lq.xyzw vf02xyzw,0(vi01)
+ /* 16B8 */    nop     lq.xyzw vf03xyzw,898(vi00)
+ /* 16C0 */    nop     iaddiu vi08,vi01,1
+ /* 16C8 */    nop     iaddi vi10,vi00,-2
+ /* 16D0 */    nop     iaddi vi11,vi00,-2
+ /* 16D8 */    nop     iaddi vi12,vi00,-2
+ /* 16E0 */    nop     iaddiu vi06,vi01,0xf1
+ /* 16E8 */    nop     sq.xyzw vf02xyzw,0(vi06)
+ /* 16F0 */    nop     sq.xyzw vf03xyzw,844(vi00)
+ /* 16F8 */    nop     iaddiu vi09,vi06,1
+ /* 1700 */    nop     ilw.w vi04,0(vi08)w
+ /* 1708 */    nop     iaddiu vi04,vi04,1
+ /* 1710 */    nop     isub vi05,vi14,vi04
+ /* 1718 */    nop     ilw.x vi05,0(vi05)x
+ /* 1720 */    nop     iaddiu vi03,vi00,0x3eb
+ /* 1728 */    nop     iswr.x vi05,(vi03)x
+ /* 1730 */    nop     iaddi vi13,vi00,-2
+ /* 1738 */    nop     lq.xyzw vf18xyzw,885(vi00)
+ /* 1740 */    nop     lq.xyzw vf19xyzw,884(vi00)
+ /* 1748 */    nop     lq.xyzw vf20xyzw,886(vi00)
+ /* 1750 */    nop     move.xyzw vf15xyzw,vf00xyzw
+ /* 1758 */    nop     move.xyzw vf16xyzw,vf00xyzw
+ /* 1760 */    subw.xyz vf14xyz,vf00xyz,vf00w  move.xyzw vf17xyzw,vf00xyzw
+
+/* .vu.78 - instr 27 */
+SINGLE_LOOP:
+ /* 1768 */    nop     lq.xyzw vf04xyzw,3(vi08)
+ /* 1770 */    nop     lq.xyzw vf06xyzw,0(vi08)
+ /* 1778 */    nop     lq.xyzw vf10xyzw,2(vi08)
+ /* 1780 */    nop[i]  loi 1
+ /* 1788 */    add.xy vf04xy,vf04xy,vf23xy     move.xyzw vf15xyzw,vf16xyzw
+ /* 1790 */    mulz.xy vf06xy,vf06xy,vf06z     move.xyzw vf16xyzw,vf17xyzw
+ /* 1798 */    addi[i].z vf08z,vf00z,i         loi 65535
+ /* 17A0 */    addi.z vf09z,vf00z,i    iaddiu vi04,vi00,1
+ /* 17A8 */    ftoi4.xyzw vf05xyzw,vf04xyzw    lq.xyzw vf01xyzw,1(vi08)
+ /* 17B0 */    clipw.xyz vf04xyz,vf22w         iaddiu vi03,vi00,0x20
+ /* 17B8 */    nop     jalr vi15,vi05
+ /* 17C0 */    nop     sq.xyzw vf06xyzw,0(vi09)
+ /* 17C8 */    ftoi0.xyzw vf01xyzw,vf01xyzw    sq.xyzw vf05xyzw,2(vi09)
+ /* 17D0 */    sub.z vf00z,vf10z,vf08z         fcand vi01,15
+ /* 17D8 */    mulax.xyzw accxyzw,vf28xyzw,vf10x       nop
+ /* 17E0 */    madday.xyzw accxyzw,vf29xyzw,vf10y      lq.xyzw vf06xyzw,1(vi08)
+ /* 17E8 */    maddaz.xyzw accxyzw,vf30xyzw,vf10z      sq.xyzw vf01xyzw,1(vi09)
+ /* 17F0 */    maddw.xyzw vf17xyzw,vf31xyzw,vf00w      ibne vi01,vi00,_Single_DisplayAreaPoint_False
+ /* 17F8 */    nop     fmand vi01,vi03
+ /* 1800 */    sub.z vf09z,vf09z,vf10z         ibne vi01,vi00,_Single_DisplayAreaPoint_False
+ /* 1808 */    nop     nop
+ /* 1810 */    nop     nop
+ /* 1818 */    nop     nop
+ /* 1820 */    nop     fmand vi01,vi03
+ /* 1828 */    nop     ibne vi01,vi00,_Single_DisplayAreaPoint_False
+ /* 1830 */    nop     nop
+ /* 1838 */    nop     iadd vi04,vi00,vi00
+
+/* .vu.79 - instr 26 */
+_Single_DisplayAreaPoint_False:
+ /* 1840 */    clipw.xyz vf15xyz,vf15w         ior vi13,vi13,vi04
+ /* 1848 */    clipw.xyz vf16xyz,vf16w         iaddiu vi04,vi00,7
+ /* 1850 */    clipw.xyz vf17xyz,vf17w         iand vi13,vi13,vi04
+ /* 1858 */    nop     mr32.xyzw vf14xyzw,vf14xyzw
+ /* 1860 */    nop     iadd vi10,vi00,vi11
+ /* 1868 */    nop     iadd vi11,vi00,vi12
+ /* 1870 */    nop     fcand vi01,0x3f
+ /* 1878 */    nop     iadd vi12,vi00,vi01
+ /* 1880 */    addw.z vf14z,vf00z,vf06w        iaddiu vi03,vi00,0xe0
+ /* 1888 */    nop     nop
+ /* 1890 */    nop     nop
+ /* 1898 */    nop     nop
+ /* 18A0 */    sub.xyz vf00xyz,vf00xyz,vf14xyz         nop
+ /* 18A8 */    nop     nop
+ /* 18B0 */    nop     nop
+ /* 18B8 */    nop     nop
+ /* 18C0 */    nop     fmand vi01,vi03
+ /* 18C8 */    nop     ibeq vi01,vi03,SINGLE_XYZ3_ONLY
+ /* 18D0 */    nop     nop
+ /* 18D8 */    nop     ibeq vi13,vi00,SINGLE_XYZ2
+ /* 18E0 */    nop     nop
+ /* 18E8 */    nop     iadd vi10,vi10,vi11
+ /* 18F0 */    nop     iadd vi10,vi10,vi12
+ /* 18F8 */    nop     nop
+ /* 1900 */    nop     ibgtz vi10,SINGLE_XYZ3
+ /* 1908 */    nop     nop
+
+/* .vu.80 - instr 12 */
+SINGLE_XYZ2:
+ /* 1910 */    nop     iadd vi13,vi13,vi13
+ /* 1918 */    nop     iaddiu vi08,vi08,4
+ /* 1920 */    nop     iaddiu vi09,vi09,3
+ /* 1928 */    nop     iaddi vi07,vi07,-1
+ /* 1930 */    nop     nop
+ /* 1938 */    nop     ibne vi07,vi00,SINGLE_LOOP
+ /* 1940 */    nop     nop
+ /* 1948 */    nop     xgkick vi06
+ /* 1950 */    nop[e]  nop
+ /* 1958 */    nop     nop
+ /* 1960 */    nop     b SINGLE_START
+ /* 1968 */    nop     nop
+
+/* .vu.81 - instr 24 */
+SINGLE_XYZ3:
+ /* 1970 */    nop     fcor vi01,0xdf7df
+ /* 1978 */    nop     ibne vi01,vi00,SINGLE_XYZ3_ONLY
+ /* 1980 */    nop     nop
+ /* 1988 */    nop     fcor vi01,0xefbef
+ /* 1990 */    nop     ibne vi01,vi00,SINGLE_XYZ3_ONLY
+ /* 1998 */    nop     nop
+ /* 19A0 */    nop     fcor vi01,0x7df7
+ /* 19A8 */    nop     ibne vi01,vi00,SINGLE_XYZ3_ONLY
+ /* 19B0 */    nop     nop
+ /* 19B8 */    nop     fcor vi01,0xbefb
+ /* 19C0 */    nop     ibne vi01,vi00,SINGLE_XYZ3_ONLY
+ /* 19C8 */    nop     nop
+ /* 19D0 */    nop     fcor vi01,0xdf7d
+ /* 19D8 */    nop     ibne vi01,vi00,SINGLE_XYZ3_ONLY
+ /* 19E0 */    nop     nop
+ /* 19E8 */    nop     fcor vi01,0xefbe
+ /* 19F0 */    nop     ibne vi01,vi00,SINGLE_XYZ3_ONLY
+ /* 19F8 */    nop     nop
+ /* 1A00 */    nop     bal vi15,PushStackIFRegs
+ /* 1A08 */    nop     nop
+ /* 1A10 */    nop     bal vi15,DOUBLE_XYZ2
+ /* 1A18 */    nop     nop
+ /* 1A20 */    nop     bal vi15,PopStackIFRegs
+ /* 1A28 */    nop     nop
+
+/* .vu.82 - instr 7 */
+SINGLE_XYZ3_ONLY:
+ /* 1A30 */    nop     ilw.w vi04,2(vi09)w
+ /* 1A38 */    nop     iaddiu vi03,vi00,0x7fff
+ /* 1A40 */    nop     iaddi vi03,vi03,1
+ /* 1A48 */    nop     ior vi03,vi03,vi04
+ /* 1A50 */    nop     isw.w vi03,2(vi09)w
+ /* 1A58 */    nop     b SINGLE_XYZ2
+ /* 1A60 */    nop     nop
+
+.endmpg
+
+.EndDmaData
+
+DMAend
+/* .dma.83 */
+ /* 1A70 */ /* dmaend 0 */
+ /* 1A74 */ /* .word 0  */
+
+/* .vif.84 */
+ /* 1A78 */ /* vifnop */
+ /* 1A7C */ /* vifnop */
