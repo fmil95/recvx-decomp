@@ -2333,7 +2333,7 @@ void RequestAdvInsideFile(int InsideFileId)
 {
 	// Line 532, Address: 0x2c1320, Func Offset: 0
 	// Func End, Address: 0x2c1328, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2c1330
@@ -2350,21 +2350,19 @@ void FreeAdvMemoryEx(int MemoryBlockNo)
 	// Line 547, Address: 0x2c1360, Func Offset: 0x30
 	// Line 549, Address: 0x2c1364, Func Offset: 0x34
 	// Func End, Address: 0x2c1374, Func Offset: 0x44
-}*/
-
-// 
-// Start address: 0x2c1380
-void AllFreeAdvMemory()
-{
-	int i;
-	// Line 558, Address: 0x2c1380, Func Offset: 0
-	// Line 561, Address: 0x2c138c, Func Offset: 0xc
-	// Line 562, Address: 0x2c1390, Func Offset: 0x10
-	// Line 563, Address: 0x2c1398, Func Offset: 0x18
-	// Line 564, Address: 0x2c13ac, Func Offset: 0x2c
-	// Func End, Address: 0x2c13bc, Func Offset: 0x3c
-	scePrintf("AllFreeAdvMemory - UNIMPLEMENTED!\n");
+	scePrintf("FreeAdvMemoryEx - UNIMPLEMENTED!\n");
 }
+
+// 100% matching!
+void AllFreeAdvMemory()
+{ 
+    int i;
+
+    for (i = 7; i >= 0; i--) 
+    { 
+        FreeAdvMemoryEx(i); 
+    } 
+} 
 
 /*// 
 // Start address: 0x2c13c0
