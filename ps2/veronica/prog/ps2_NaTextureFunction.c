@@ -637,19 +637,19 @@ void njSetTextureInfo(_anon0* info, unsigned short* tex, int Type, int nWidth, i
 	// Line 660, Address: 0x2e23cc, Func Offset: 0xc
 	// Line 662, Address: 0x2e23d0, Func Offset: 0x10
 	// Func End, Address: 0x2e23d8, Func Offset: 0x18
-}
+}*/
 
-// 
-// Start address: 0x2e23e0
-void njSetTextureName(_anon3* texname, void* addr, unsigned int globalIndex, unsigned int attr)
+// 100% matching!
+void	njSetTextureName(NJS_TEXNAME *texname,void *addr,Uint32 globalIndex,Uint32 attr) 
 {
-	// Line 679, Address: 0x2e23e0, Func Offset: 0
-	// Line 680, Address: 0x2e23e4, Func Offset: 0x4
-	// Line 683, Address: 0x2e23e8, Func Offset: 0x8
-	// Func End, Address: 0x2e23f0, Func Offset: 0x10
+    texname->filename = addr;
+    
+    texname->attr = attr;
+    
+    texname->texaddr = globalIndex;
 }
 
-// 
+/*// 
 // Start address: 0x2e23f0
 void njRenderTextureNum()
 {
