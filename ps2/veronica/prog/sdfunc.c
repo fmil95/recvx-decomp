@@ -2004,8 +2004,8 @@ int SoundInitLevel;
 /*int SdReadMode;*/
 int SpqFileReadRequestFlag;
 /*int TransSoundPackDataFlag;
-int ReadFileRequestFlag;
-int FileReadStatus;*/
+int ReadFileRequestFlag;*/
+int FileReadStatus;
 int KeyReadSwitch;
 SYS_WORK* sys;
 unsigned int DiscOpenTrayFlag;
@@ -4734,14 +4734,11 @@ int GetInsideFileSize(unsigned int PartitionId, unsigned int FileId)
 	scePrintf("GetInsideFileSize - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2973e0
-int GetReadFileStatus()
-{
-	// Line 4415, Address: 0x2973e0, Func Offset: 0
-	// Line 4416, Address: 0x2973e4, Func Offset: 0x4
-	// Func End, Address: 0x2973ec, Func Offset: 0xc
-}*/
+// 100% matching!
+int GetReadFileStatus() 
+{ 
+    return FileReadStatus; 
+}
 
 // 
 // Start address: 0x2973f0
