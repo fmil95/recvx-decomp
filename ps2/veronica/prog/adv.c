@@ -2376,23 +2376,40 @@ int CheckReadEndAdvInsideFile()
     return ReturnCode; 
 } 
 
-// 
-// Start address: 0x2c1400
-void CheckReadEndAdvInsideFile2Ex(int NextMode, int Flag)
-{
-	//_anon8* ap;
-	// Line 596, Address: 0x2c1400, Func Offset: 0
-	// Line 597, Address: 0x2c1414, Func Offset: 0x14
-	// Line 599, Address: 0x2c1420, Func Offset: 0x20
-	// Line 601, Address: 0x2c1450, Func Offset: 0x50
-	// Line 603, Address: 0x2c1458, Func Offset: 0x58
-	// Line 606, Address: 0x2c1460, Func Offset: 0x60
-	// Line 608, Address: 0x2c1468, Func Offset: 0x68
-	// Line 610, Address: 0x2c1470, Func Offset: 0x70
-	// Line 611, Address: 0x2c1478, Func Offset: 0x78
-	// Line 616, Address: 0x2c147c, Func Offset: 0x7c
-	// Func End, Address: 0x2c1494, Func Offset: 0x94
-	scePrintf("CheckReadEndAdvInsideFile2Ex - UNIMPLEMENTED!\n");
+// 100% matching!
+void CheckReadEndAdvInsideFile2Ex(int NextMode, int Flag) 
+{ 
+    ADV_WORK* ap; 
+
+    ap = (ADV_WORK*)&AdvWork; 
+
+    switch (CheckReadEndAdvInsideFile()) 
+    {               
+    case -1:
+        if (Flag == 0) 
+        { 
+            ap->Mode = -1;
+        }
+        else
+        { 
+            ap->Mode2 = -1;
+        }
+        
+        break; 
+    case 0:
+        if (Flag == 0) 
+        { 
+            ap->Mode = NextMode;
+        } 
+        else
+        { 
+            ap->Mode2 = NextMode; 
+        }
+        
+        break;
+    case 1:
+        break;
+    } 
 }
 
 // 100% matching!
