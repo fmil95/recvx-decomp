@@ -1,14 +1,16 @@
 .global ps2_vu0sub0
 
+.data
+
 ps2_vu0sub0:
 
 /* .dma.1 */
 dmacnt *
- /*  0 */ /* dmacnt 0xf5 */
- /*  4 */ /* vifnop */
- /*  8 */ vifnop
- /*  c */ vifnop
- /* 10 */ vifnop
+ /*   0 */ /* dmacnt 0xf5 */
+ /*   4 */ /* vifnop */
+ /*   8 */ vifnop
+ /*   c */ vifnop
+ /*  10 */ vifnop
 
 /* .vif.2 */
 mpg 0, *
@@ -111,7 +113,7 @@ VU0_CALCPOINT:
 
 /* .vu.10 - instr 7 */
 LIGHT0:
- /* 288 */    mulx.xyz vf10xyz,vf19xyz,vf27x  rsqrt q,vf00w,vf00x
+ /* 288 */    mulx.xyz vf10xyz,vf19xyz,vf27x  rsqrt q,vf00w,vf05x
  /* 290 */    nop     iand vi01,vi14,vi07
  /* 298 */    nop     iand vi15,vi14,vi08
  /* 2a0 */    nop     ibeq vi01,vi00,LIGHT1
@@ -137,7 +139,7 @@ LIGHT0_POINT:
  /* 310 */    nop     nop
  /* 318 */    nop     nop
  /* 320 */    nop     ibeq vi15,vi00,LIGHT1
- /* 328 */    mulq.x vf08x,vf04x,q    div q,vf12x,vf00x
+ /* 328 */    mulq.x vf08x,vf04x,q    div q,vf12x,vf05x
  /* 330 */    nop     nop
  /* 338 */    nop     nop
  /* 340 */    nop     nop
@@ -148,7 +150,7 @@ LIGHT0_POINT:
 
 /* .vu.13 - instr 7 */
 LIGHT1:
- /* 368 */    muly.xyz vf10xyz,vf19xyz,vf27y  rsqrt q,vf00w,vf00x
+ /* 368 */    muly.xyz vf10xyz,vf19xyz,vf27y  rsqrt q,vf00w,vf05y
  /* 370 */    nop     iand vi01,vi14,vi07
  /* 378 */    nop     iand vi15,vi14,vi08
  /* 380 */    nop     ibeq vi01,vi00,LIGHT2
@@ -174,7 +176,7 @@ LIGHT1_POINT:
  /* 3f0 */    nop     nop
  /* 3f8 */    nop     nop
  /* 400 */    nop     ibeq vi15,vi00,LIGHT2
- /* 408 */    mulq.y vf08y,vf04y,q    div q,vf12y,vf00x
+ /* 408 */    mulq.y vf08y,vf04y,q    div q,vf12y,vf05y
  /* 410 */    nop     nop
  /* 418 */    nop     nop
  /* 420 */    nop     nop
@@ -211,7 +213,7 @@ LIGHT2_POINT:
  /* 4d0 */    nop     nop
  /* 4d8 */    nop     nop
  /* 4e0 */    nop     ibeq vi15,vi00,LIGHT3
- /* 4e8 */    mulq.z vf08z,vf04z,q    div q,vf12z,vf00x
+ /* 4e8 */    mulq.z vf08z,vf04z,q    div q,vf12z,vf05z
  /* 4f0 */    nop     nop
  /* 4f8 */    nop     nop
  /* 500 */    nop     nop
@@ -222,7 +224,7 @@ LIGHT2_POINT:
 
 /* .vu.19 - instr 7 */
 LIGHT3:
- /* 528 */    mulw.xyz vf10xyz,vf19xyz,vf27w  rsqrt q,vf00w,vf00x
+ /* 528 */    mulw.xyz vf10xyz,vf19xyz,vf27w  rsqrt q,vf00w,vf05w
  /* 530 */    nop     iand vi01,vi14,vi07
  /* 538 */    nop     iand vi15,vi14,vi08
  /* 540 */    nop     ibeq vi01,vi00,LIGHT4
@@ -248,7 +250,7 @@ LIGHT3_POINT:
  /* 5b0 */    nop     nop
  /* 5b8 */    nop     nop
  /* 5c0 */    nop     ibeq vi15,vi00,LIGHT4
- /* 5c8 */    mulq.w vf08w,vf04w,q    div q,vf12w,vf00x
+ /* 5c8 */    mulq.w vf08w,vf04w,q    div q,vf12w,vf05w
  /* 5d0 */    nop     nop
  /* 5d8 */    nop     nop
  /* 5e0 */    nop     nop
@@ -330,13 +332,13 @@ VU0_CLIP_VIEW_VOLUME_ALL:
  /* 7c8 */    nop     nop
  /* 7d0 */    nop     iaddiu vi02,vi00,0
  /* 7d8 */    nop     fcor vi01,0xdf7df
- /* 7e0 */    nop     ibne vi01,vi00,0x870
+ /* 7e0 */    nop     ibne vi01,vi00,VU0_XYZ3_ONLY0
  /* 7e8 */    nop     nop
  /* 7f0 */    nop     fcor vi01,0xefbef
- /* 7f8 */    nop     ibne vi01,vi00,0x870
+ /* 7f8 */    nop     ibne vi01,vi00,VU0_XYZ3_ONLY0
  /* 800 */    nop     nop
  /* 808 */    nop     fcor vi01,0x7df7
- /* 810 */    nop     ibne vi01,vi00,0x870
+ /* 810 */    nop     ibne vi01,vi00,VU0_XYZ3_ONLY0
 
  /* .endmpg
  /* .vif.27 */
@@ -483,7 +485,7 @@ VU0_WAVE_CALC:
  /* b50 */    abs.xyz vf11xyz,vf10xyz         nop
  /* b58 */    addy.x vf11x,vf11x,vf11y        nop
  /* b60 */    addz.x vf11x,vf11x,vf11z        nop
- /* b68 */    nop     div q,vf00w,vf00x
+ /* b68 */    nop     div q,vf00w,vf11x
  /* b70 */    sub.xz vf10xz,vf00xz,vf10xz     nop
  /* b78 */    nop[e]  nop
  /* b80 */    nop     nop
@@ -651,18 +653,18 @@ vu0GetVertexColorDifSpe3Amb:
 
 /* .vu.58 - instr 12 */
 vu0GetVertexColorDifSpe3Amb_Loop:
- /* f08 */    mul.xyz vf05xyz,vf05xyz,vf04xyz         isubiu vi01,vi01,1
- /* f10 */    nop     nop
- /* f18 */    nop     ibne vi01,vi00,vu0GetVertexColorDifSpe3Amb_Loop
- /* f20 */    nop     nop
- /* f28 */    miniw.xyz vf04xyz,vf04xyz,vf00w         nop
- /* f30 */    maxx.xyz vf04xyz,vf04xyz,vf00x  nop
- /* f38 */    miniw.xyz vf05xyz,vf05xyz,vf00w         nop
- /* f40 */    maxx.xyz vf05xyz,vf05xyz,vf00x  nop
- /* f48 */    mul.xyz vf04xyz,vf04xyz,vf20xyz         nop
- /* f50 */    mul.xyz vf05xyz,vf05xyz,vf21xyz         nop
- /* f58 */    add.xyz vf04xyz,vf04xyz,vf05xyz         jr vi15
- /* f60 */    mul.w vf04w,vf00w,vf23w         nop
+ /* f08 */    mul.xyz   vf05xyz, vf05xyz, vf04xyz     isubiu vi01,vi01,1
+ /* f10 */    nop                                     nop
+ /* f18 */    nop                                     ibne vi01,vi00,vu0GetVertexColorDifSpe3Amb_Loop
+ /* f20 */    nop                                     nop
+ /* f28 */    miniw.xyz vf04xyz, vf04xyz, vf00w       nop
+ /* f30 */    maxx.xyz  vf04xyz, vf04xyz, vf00x       nop
+ /* f38 */    miniw.xyz vf05xyz, vf05xyz, vf00w       nop
+ /* f40 */    maxx.xyz  vf05xyz, vf05xyz, vf00x       nop
+ /* f48 */    mul.xyz   vf04xyz, vf04xyz, vf20xyz     nop
+ /* f50 */    mul.xyz   vf05xyz, vf05xyz, vf21xyz     nop
+ /* f58 */    add.xyz   vf04xyz, vf04xyz, vf05xyz     jr vi15
+ /* f60 */    mul.w     vf04w  , vf00w  , vf23w       nop
 
 .endmpg
 .EndDmaData

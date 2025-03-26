@@ -1,6 +1,8 @@
 .global ps2_vu1sub0
 .global ps2_vu1sub1
 
+.data
+
 ps2_vu1sub0:
 
 /* .dma.1 */
@@ -23,7 +25,7 @@ DoubleMain:
  /*   30 */    nop     lq.xyzw vf22xyzw,893(vi00)
  /*   38 */    nop     lq.xyzw vf23xyzw,892(vi00)
  /*   40 */    addw.x vf01x,vf00x,vf24w        nop
- /*   48 */    nop     div q,vf01x,vf00x
+ /*   48 */    nop     div q,vf01x,vf22y
  /*   50 */    nop     lq.xyzw vf28xyzw,888(vi00)
  /*   58 */    nop     lq.xyzw vf29xyzw,889(vi00)
  /*   60 */    nop     lq.xyzw vf30xyzw,890(vi00)
@@ -35,7 +37,7 @@ DoubleMain:
  /*   90 */    nop     iaddiu vi01,vi00,vu1GetVertexColor
  /*   98 */    nop     iaddiu vi02,vi00,vu1GetVertexColorCM
  /*   a0 */    nop     iaddiu vi03,vi00,vu1GetVertexColorIgnore
- /*   a8 */    muly.x vf13x,vf10x,vf21y        div q,vf10x,vf00x
+ /*   a8 */    muly.x vf13x,vf10x,vf21y        div q,vf10x,vf11y
  /*   b0 */    nop     iaddiu vi04,vi00,vu1GetVertexColorDif
  /*   b8 */    nop     iaddiu vi05,vi00,vu1GetVertexColorDifAmb
  /*   c0 */    nop     iaddiu vi06,vi00,vu1GetVertexColorDifSpe1
@@ -47,7 +49,7 @@ DoubleMain:
  /*   f0 */    nop     iaddiu vi11,vi00,vu1GetVertexColorDifSpe3Amb
  /*   f8 */    nop     isw.x vi11,-11(vi14)x
  /*  100 */    nop     isw.x vi10,-10(vi14)x
- /*  108 */    nop     div q,vf13x,vf00x
+ /*  108 */    nop     div q,vf13x,vf11y
  /*  110 */    nop     isw.x vi09,-9(vi14)x
  /*  118 */    nop     isw.x vi08,-8(vi14)x
  /*  120 */    nop     isw.x vi07,-7(vi14)x
@@ -573,7 +575,7 @@ LOOP_ROT_END:
  /*  d88 */    nop     nop
  /*  d90 */    nop     nop
  /*  d98 */    nop     nop
- /*  da0 */    nop     div q,vf01x,vf00x
+ /*  da0 */    nop     div q,vf01x,vf03x
  /*  da8 */    sub.xyzw vf20xyzw,vf16xyzw,vf12xyzw     nop
  /*  db0 */    sub.xyzw vf21xyzw,vf17xyzw,vf13xyzw     nop
  /*  db8 */    sub.xyzw vf22xyzw,vf18xyzw,vf14xyzw     nop
@@ -605,7 +607,7 @@ DrawScissorPolygon:
  /*  e68 */    nop     nop
  /*  e70 */    nop     xgkick vi02
  /*  e78 */    nop     nop
- /*  e80 */    nop     div q,vf00w,vf00x
+ /*  e80 */    nop     div q,vf00w,vf01z
  /*  e88 */    nop     lq.xyzw vf21xyzw,887(vi00)
  /*  e90 */    nop     lq.xyzw vf22xyzw,893(vi00)
  /*  e98 */    nop     lq.xyzw vf23xyzw,892(vi00)
@@ -637,7 +639,7 @@ LOOP2:
  /*  f50 */    minii.z vf05z,vf05z,i   nop
  /*  f58 */    maxw.z vf05z,vf05z,vf00w        lq.xyzw vf01xyzw,1(vi03)
  /*  f60 */    nop     iaddiu vi04,vi04,3
- /*  f68 */    ftoi4.xyzw vf08xyzw,vf05xyzw    div q,vf00w,vf00x
+ /*  f68 */    ftoi4.xyzw vf08xyzw,vf05xyzw    div q,vf00w,vf01z
  /*  f70 */    mul.xy vf05xy,vf01xy,vf22xy     nop
  /*  f78 */    adda.z accz,vf00z,vf12z         nop
  /*  f80 */    mul.w vf05w,vf01w,vf00w         nop
@@ -906,7 +908,7 @@ SingleMain:
  /* 1550 */    nop     lq.xyzw vf23xyzw,892(vi00)
  /* 1558 */    nop[i]  loi 2047
  /* 1560 */    addi.x vf01x,vf00x,i    nop
- /* 1568 */    nop     div q,vf01x,vf00x
+ /* 1568 */    nop     div q,vf01x,vf22y
  /* 1570 */    nop     lq.xyzw vf28xyzw,888(vi00)
  /* 1578 */    nop     lq.xyzw vf29xyzw,889(vi00)
  /* 1580 */    nop     lq.xyzw vf30xyzw,890(vi00)
@@ -918,7 +920,7 @@ SingleMain:
  /* 15B0 */    nop     iaddiu vi01,vi00,0x1fa
  /* 15B8 */    nop     iaddiu vi02,vi00,0x1ff
  /* 15C0 */    nop     iaddiu vi03,vi00,0x203
- /* 15C8 */    muly.x vf13x,vf10x,vf21y        div q,vf10x,vf00x
+ /* 15C8 */    muly.x vf13x,vf10x,vf21y        div q,vf10x,vf11y
  /* 15D0 */    nop     iaddiu vi04,vi00,0x208
  /* 15D8 */    nop     iaddiu vi05,vi00,0x1f3
  /* 15E0 */    nop     iaddiu vi06,vi00,0x20e
@@ -930,7 +932,7 @@ SingleMain:
  /* 1610 */    nop     iaddiu vi11,vi00,0x24d
  /* 1618 */    nop     isw.x vi11,-11(vi14)x
  /* 1620 */    nop     isw.x vi10,-10(vi14)x
- /* 1628 */    nop     div q,vf13x,vf00x
+ /* 1628 */    nop     div q,vf13x,vf11y
  /* 1630 */    nop     isw.x vi09,-9(vi14)x
  /* 1638 */    nop     isw.x vi08,-8(vi14)x
  /* 1640 */    nop     isw.x vi07,-7(vi14)x
@@ -1070,7 +1072,7 @@ SINGLE_XYZ3:
  /* 19F8 */    nop     nop
  /* 1A00 */    nop     bal vi15,PushStackIFRegs
  /* 1A08 */    nop     nop
- /* 1A10 */    nop     bal vi15,DOUBLE_XYZ2
+ /* 1A10 */    nop     bal vi15,SCISSOR
  /* 1A18 */    nop     nop
  /* 1A20 */    nop     bal vi15,PopStackIFRegs
  /* 1A28 */    nop     nop
