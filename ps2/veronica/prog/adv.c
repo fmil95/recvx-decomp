@@ -2335,23 +2335,20 @@ void RequestAdvInsideFile(int InsideFileId)
 	// Func End, Address: 0x2c1328, Func Offset: 0x8
 }*/
 
-// 
-// Start address: 0x2c1330
+// 100% matching!
 void FreeAdvMemoryEx(int MemoryBlockNo)
-{
-	// Line 545, Address: 0x2c1330, Func Offset: 0
-	// Line 542, Address: 0x2c1338, Func Offset: 0x8
-	// Line 545, Address: 0x2c133c, Func Offset: 0xc
-	// Line 542, Address: 0x2c1340, Func Offset: 0x10
-	// Line 545, Address: 0x2c1344, Func Offset: 0x14
-	// Line 542, Address: 0x2c1348, Func Offset: 0x18
-	// Line 545, Address: 0x2c134c, Func Offset: 0x1c
-	// Line 546, Address: 0x2c1358, Func Offset: 0x28
-	// Line 547, Address: 0x2c1360, Func Offset: 0x30
-	// Line 549, Address: 0x2c1364, Func Offset: 0x34
-	// Func End, Address: 0x2c1374, Func Offset: 0x44
-	scePrintf("FreeAdvMemoryEx - UNIMPLEMENTED!\n");
-}
+{ 
+    ADV_WORK* temp; // not from the debugging symbols
+
+    temp = (ADV_WORK*)&AdvWork; 
+
+    if (temp->ptr[MemoryBlockNo] != NULL) 
+    { 
+        bhReleaseFreeMemory(temp->ptr[MemoryBlockNo]); 
+        
+        temp->ptr[MemoryBlockNo] = NULL; 
+    } 
+} 
 
 // 100% matching!
 void AllFreeAdvMemory()
