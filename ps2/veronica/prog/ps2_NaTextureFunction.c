@@ -628,16 +628,16 @@ Uint32	njCalcTexture(Uint32 flag)
 	scePrintf("njCalcTexture - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2e23c0
-void njSetTextureInfo(_anon0* info, unsigned short* tex, int Type, int nWidth, int nHeight)
+// 100% matching!
+void	njSetTextureInfo(NJS_TEXINFO *info,Uint16 *tex,Sint32 Type,Sint32 nWidth,Sint32 nHeight) 
 {
-	// Line 658, Address: 0x2e23c0, Func Offset: 0
-	// Line 659, Address: 0x2e23c4, Func Offset: 0x4
-	// Line 660, Address: 0x2e23cc, Func Offset: 0xc
-	// Line 662, Address: 0x2e23d0, Func Offset: 0x10
-	// Func End, Address: 0x2e23d8, Func Offset: 0x18
-}*/
+    info->texaddr = tex;
+    
+    info->texsurface.Type = Type << 16;
+    
+    info->texsurface.nWidth = nWidth;
+    info->texsurface.nHeight = nHeight;
+}
 
 // 100% matching!
 void	njSetTextureName(NJS_TEXNAME *texname,void *addr,Uint32 globalIndex,Uint32 attr) 
