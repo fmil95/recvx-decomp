@@ -54,3 +54,8 @@ void ADXT_SetReloadSct(ADXT adxt, long minsct)
 {
     scePrintf("ADXT_SetReloadSct - UNIMPLEMENTED!\n");
 }
+
+void ADXF_Close(ADXF adxf)
+{
+    scePrintf("ADXF_Close - UNIMPLEMENTED!\n");
+}

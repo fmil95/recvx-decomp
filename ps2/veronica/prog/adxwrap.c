@@ -528,25 +528,24 @@ int CheckReadEndAfsInsideFile(int SlotNo)
 	// Line 946, Address: 0x291878, Func Offset: 0x78
 	// Line 948, Address: 0x29187c, Func Offset: 0x7c
 	// Func End, Address: 0x291890, Func Offset: 0x90
-}
+}*/
 
-// 
-// Start address: 0x291890
+// 100% matching!
 void CloseAfsInsideFile(int SlotNo)
 {
-	// Line 951, Address: 0x291890, Func Offset: 0
-	// Line 952, Address: 0x29189c, Func Offset: 0xc
-	// Line 951, Address: 0x2918a0, Func Offset: 0x10
-	// Line 952, Address: 0x2918a4, Func Offset: 0x14
-	// Line 959, Address: 0x2918bc, Func Offset: 0x2c
-	// Line 961, Address: 0x2918c4, Func Offset: 0x34
-	// Line 963, Address: 0x2918d8, Func Offset: 0x48
-	// Line 965, Address: 0x2918e0, Func Offset: 0x50
-	// Line 967, Address: 0x2918e4, Func Offset: 0x54
-	// Func End, Address: 0x2918f8, Func Offset: 0x68
+    if (AdxFInfo[SlotNo].Flag != 0)
+    {
+        ADXPS2_Lock();
+        
+        ADXF_Close(AdxFInfo[SlotNo].Handle);
+        
+        ADXPS2_Unlock();
+        
+        AdxFInfo[SlotNo].Flag = 0;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x291900
 void StopAfsInsideFile(int SlotNo)
 {
