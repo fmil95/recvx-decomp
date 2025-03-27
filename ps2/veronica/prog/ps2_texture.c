@@ -1890,12 +1890,8 @@ void bhPopAllTexture()
 
 }
 
-// 
-// Start address: 0x2e6bd0
-void bhGarbageTexture(NJS_TEXMEMLIST* addr, unsigned int n)
+// 100% matching!
+void bhGarbageTexture(NJS_TEXMEMLIST* addr, unsigned int n) 
 {
-	// Line 717, Address: 0x2e6bd0, Func Offset: 0
-	// Func End, Address: 0x2e6bd8, Func Offset: 0x8
-	scePrintf("bhGarbageTexture - UNIMPLEMENTED!\n");
+    njGarbageTexture(addr, n);
 }
-
