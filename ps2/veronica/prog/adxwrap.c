@@ -415,7 +415,7 @@ int SearchAdxFSlot()
 	// Line 482, Address: 0x2913a0, Func Offset: 0x30
 	// Line 483, Address: 0x2913a4, Func Offset: 0x34
 	// Func End, Address: 0x2913ac, Func Offset: 0x3c
-}
+}*/
 
 // 
 // Start address: 0x2913b0
@@ -435,9 +435,10 @@ int OpenAfsInsideFile(unsigned int PartitionId, unsigned int FileId)
 	// Line 520, Address: 0x291438, Func Offset: 0x88
 	// Line 523, Address: 0x29143c, Func Offset: 0x8c
 	// Func End, Address: 0x291454, Func Offset: 0xa4
+	scePrintf("OpenAfsInsideFile - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x291460
 int OpenAfsIsoFile(char* FileName)
 {
@@ -482,7 +483,7 @@ int OpenAfsIsoFile(char* FileName)
 	// Line 675, Address: 0x2916e8, Func Offset: 0x288
 	// Line 841, Address: 0x2916ec, Func Offset: 0x28c
 	// Func End, Address: 0x291708, Func Offset: 0x2a8
-}
+}*/
 
 // 
 // Start address: 0x291710
@@ -495,9 +496,10 @@ int GetAfsInsideFileSize(int SlotNo)
 	// Line 846, Address: 0x291728, Func Offset: 0x18
 	// Line 850, Address: 0x291754, Func Offset: 0x44
 	// Func End, Address: 0x291760, Func Offset: 0x50
+	scePrintf("GetAfsInsideFileSize - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x291760
 void RequestReadAfsInsideFile(int SlotNo, unsigned char* Address)
 {

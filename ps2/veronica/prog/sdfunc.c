@@ -4717,21 +4717,27 @@ int GetIsoFileSize(char* FileName)
 	// Func End, Address: 0x297388, Func Offset: 0x8
 }*/
 
-// 
-// Start address: 0x297390
+// 100% matching!
 int GetInsideFileSize(unsigned int PartitionId, unsigned int FileId)
 {
-	int FileSize;
-	int SlotNo;
-	// Line 4393, Address: 0x297390, Func Offset: 0
-	// Line 4397, Address: 0x29739c, Func Offset: 0xc
-	// Line 4398, Address: 0x2973ac, Func Offset: 0x1c
-	// Line 4400, Address: 0x2973b4, Func Offset: 0x24
-	// Line 4401, Address: 0x2973c0, Func Offset: 0x30
-	// Line 4403, Address: 0x2973c8, Func Offset: 0x38
-	// Line 4404, Address: 0x2973cc, Func Offset: 0x3c
-	// Func End, Address: 0x2973e0, Func Offset: 0x50
-	scePrintf("GetInsideFileSize - UNIMPLEMENTED!\n");
+    unsigned int temp; // not from the debugging symbols
+    int SlotNo;
+    int FileSize;
+    
+    SlotNo = OpenAfsInsideFile(PartitionId, FileId);
+    
+    temp = SlotNo;
+    
+    if (SlotNo < 0)
+    {
+        return 0;
+    }
+    
+    FileSize = GetAfsInsideFileSize(temp);
+
+    CloseAfsInsideFile(temp);
+    
+    return FileSize;
 }
 
 // 100% matching!
