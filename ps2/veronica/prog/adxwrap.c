@@ -389,19 +389,19 @@ int CreatePartitionEx(AFS_PATINFO* ap)
 	// Func End, Address: 0x291324, Func Offset: 0x1b4
 }
 
-// 
-// Start address: 0x291330
+// 100% matching!
 void DeletePartitionEx(AFS_PATINFO* ap)
 {
-	// Line 467, Address: 0x291330, Func Offset: 0
-	// Line 464, Address: 0x291338, Func Offset: 0x8
-	// Line 467, Address: 0x291344, Func Offset: 0x14
-	// Line 468, Address: 0x291358, Func Offset: 0x28
-	// Line 469, Address: 0x29135c, Func Offset: 0x2c
-	// Line 470, Address: 0x291364, Func Offset: 0x34
-	// Func End, Address: 0x29136c, Func Offset: 0x3c
-	scePrintf("DeletePartitionEx - UNIMPLEMENTED!\n");
-}
+    for ( ; ; ap++) 
+    {
+        if (ap->AfsFileName == NULL)
+        {
+            break;
+        }
+        
+        AfsInfo[ap->PartitionId].Flag = 0; 
+    } 
+} 
 
 /*// 
 // Start address: 0x291370
