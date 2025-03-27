@@ -2065,15 +2065,13 @@ int DisplayOptionPlateLevel3(int PortId, int Flag);
 int DisplayOptionPlate(int PortId, int Level, int Flag);
 int Adv_GameOptionScreen();
 int Adv_ChangeDiscScreen();
-int Adv_SoundMuseum();
+int Adv_SoundMuseum();*/
 
-// 
-// Start address: 0x2c0d40
+// 100% matching! 
 void CallPlayerDeadVoice(int PlayerNo)
-{
-	// Line 211, Address: 0x2c0d40, Func Offset: 0
-	// Func End, Address: 0x2c0d5c, Func Offset: 0x1c
-}*/
+{ 
+    PlayBgmEx2(PatId[3], PlayerNo + 8, 1, -45);
+}
 
 // 
 // Start address: 0x2c0d60

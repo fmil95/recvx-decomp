@@ -3829,7 +3829,7 @@ void FreeObjectSe(int ObjectNo)
 	// Line 2961, Address: 0x29580c, Func Offset: 0xac
 	// Line 2963, Address: 0x295824, Func Offset: 0xc4
 	// Func End, Address: 0x295830, Func Offset: 0xd0
-}
+}*/
 
 // 
 // Start address: 0x295830
@@ -3849,9 +3849,10 @@ void PlayBgmEx2(unsigned int PatId, int BgmNo, int FadeInRate, int Volume)
 	// Line 2992, Address: 0x2958e8, Func Offset: 0xb8
 	// Line 2995, Address: 0x2958f4, Func Offset: 0xc4
 	// Func End, Address: 0x295910, Func Offset: 0xe0
+	scePrintf("PlayBgmEx2 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x295910
 void PlayBgmEx(int BgmNo, int FadeInRate, int Volume)
 {
