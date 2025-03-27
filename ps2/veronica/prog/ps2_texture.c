@@ -1878,13 +1878,11 @@ void bhCopyMainmem2Texmem(NJS_TEXLIST* tlp)
 	scePrintf("bhCopyMainmem2Texmem - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2e6bb0
+// 100% matching!
 void bhPushAllTexture()
 {
-	// Line 627, Address: 0x2e6bb0, Func Offset: 0
-	// Func End, Address: 0x2e6bb8, Func Offset: 0x8
-}*/
+
+}
 
 // 100% matching!
 void bhPopAllTexture() 
