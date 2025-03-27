@@ -1527,28 +1527,25 @@ char* bhCopyTexmem2MainmemSub(_anon3* tlp, char* adr);
 void bhCopyMainmem2Texmem(_anon3* tlp);
 void bhPushAllTexture();
 void bhPopAllTexture();
-void bhGarbageTexture(_anon23* addr, unsigned int n);
+void bhGarbageTexture(_anon23* addr, unsigned int n);*/
 
-// 
-// Start address: 0x2e5f50
+// 100% matching!
 void ClutCopy(void* data, void* org_data)
 {
-	unsigned int i;
-	// Line 136, Address: 0x2e5f50, Func Offset: 0
-	// Line 137, Address: 0x2e5f5c, Func Offset: 0xc
-	// Line 138, Address: 0x2e5f60, Func Offset: 0x10
-	// Line 137, Address: 0x2e5f68, Func Offset: 0x18
-	// Line 138, Address: 0x2e5f70, Func Offset: 0x20
-	// Line 139, Address: 0x2e5f80, Func Offset: 0x30
-	// Line 140, Address: 0x2e5f84, Func Offset: 0x34
-	// Line 141, Address: 0x2e5f88, Func Offset: 0x38
-	// Line 140, Address: 0x2e5f90, Func Offset: 0x40
-	// Line 141, Address: 0x2e5f98, Func Offset: 0x48
-	// Line 142, Address: 0x2e5fa0, Func Offset: 0x50
-	// Func End, Address: 0x2e5fa8, Func Offset: 0x58
+    unsigned int i;
+    
+    for (i = 0; i < 8; i++) 
+    {
+        ((int*)data)[i] = ((int*)org_data)[i];
+    }
+    
+    for (i = 8; i < 16; i++) 
+    {
+        ((int*)data)[i] = ((int*)org_data)[i + 8];
+    } 
 }
 
-// 
+/*// 
 // Start address: 0x2e5fb0
 void ClutCopy256(void* data, void* org_data)
 {
