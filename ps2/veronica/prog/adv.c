@@ -2199,14 +2199,10 @@ void MountAdvAfs()
     temp->PatId = PatId[3]; 
 }
 
-// 
-// Start address: 0x2c0fc0
-unsigned char* AdvGetResourcePtr(unsigned char* bp, unsigned int ResId)
-{
-	// Line 389, Address: 0x2c0fc0, Func Offset: 0
-	// Line 390, Address: 0x2c0fcc, Func Offset: 0xc
-	// Func End, Address: 0x2c0fd4, Func Offset: 0x14
-	scePrintf("AdvGetResourcePtr - UNIMPLEMENTED!\n");
+// 100% matching!
+unsigned char* AdvGetResourcePtr(unsigned char* bp, unsigned int ResId) 
+{ 
+    return &bp[((int*)bp)[ResId]]; 
 }
 
 // 100% matching!
