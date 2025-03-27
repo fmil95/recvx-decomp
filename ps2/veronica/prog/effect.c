@@ -1649,10 +1649,10 @@ void(*bhJumpEffect)()[150];
 void(*bhJumpEffect0)()[100];
 void(*bhJumpEffect2)()[50];
 void(*bhJumpEffect3)()[50];
-void(*bhJumpEffect4)()[50];
-_anon45 ef_info[21];
-_anon0* ef_Zanzo[6];
-_anon4* sys;
+void(*bhJumpEffect4)()[50];*/
+EFFECT_INFO ef_info[21];
+/*_anon0* ef_Zanzo[6];
+SYS_WORK* sys;
 _anon0 eff[0];
 _anon7* rom;
 BH_PWORK ene[0];
@@ -1761,42 +1761,42 @@ void bhInitEffect()
 	// Func End, Address: 0x21bedc, Func Offset: 0x37c
 }*/
 
-// 
-// Start address: 0x21bee0
-void bhSetFontTexture(void* datp)
-{
-	unsigned char* dp;
-	int sz;
+// 100% matching!
+void bhSetFontTexture(void* datp) 
+{	
+    unsigned char* dp;
 	int i;
-	// Line 250, Address: 0x21bee0, Func Offset: 0
-	// Line 253, Address: 0x21bee8, Func Offset: 0x8
-	// Line 255, Address: 0x21bf00, Func Offset: 0x20
-	// Line 258, Address: 0x21bf0c, Func Offset: 0x2c
-	// Line 256, Address: 0x21bf10, Func Offset: 0x30
-	// Line 258, Address: 0x21bf14, Func Offset: 0x34
-	// Line 259, Address: 0x21bf1c, Func Offset: 0x3c
-	// Line 261, Address: 0x21bf28, Func Offset: 0x48
-	// Line 262, Address: 0x21bf2c, Func Offset: 0x4c
-	// Line 263, Address: 0x21bf30, Func Offset: 0x50
-	// Line 264, Address: 0x21bf34, Func Offset: 0x54
-	// Line 263, Address: 0x21bf38, Func Offset: 0x58
-	// Line 265, Address: 0x21bf3c, Func Offset: 0x5c
-	// Line 266, Address: 0x21bf40, Func Offset: 0x60
-	// Line 268, Address: 0x21bf4c, Func Offset: 0x6c
-	// Line 269, Address: 0x21bf54, Func Offset: 0x74
-	// Line 268, Address: 0x21bf58, Func Offset: 0x78
-	// Line 269, Address: 0x21bf5c, Func Offset: 0x7c
-	// Line 270, Address: 0x21bf70, Func Offset: 0x90
-	// Line 271, Address: 0x21bf78, Func Offset: 0x98
-	// Line 270, Address: 0x21bf7c, Func Offset: 0x9c
-	// Line 271, Address: 0x21bf88, Func Offset: 0xa8
-	// Line 272, Address: 0x21bfa8, Func Offset: 0xc8
-	// Line 271, Address: 0x21bfac, Func Offset: 0xcc
-	// Line 272, Address: 0x21bfb8, Func Offset: 0xd8
-	// Line 273, Address: 0x21bfcc, Func Offset: 0xec
-	// Line 274, Address: 0x21bfe0, Func Offset: 0x100
-	// Func End, Address: 0x21bfec, Func Offset: 0x10c
-	scePrintf("bhSetFontTexture - UNIMPLEMENTED!\n");
+    int sz;
+    
+    if (!(sys->ss_flg & 0x40)) 
+    { 	
+        sz = *(int*)datp; 
+        
+        dp = (unsigned char*)datp + 4;
+        
+        for (i = 0; ef_info[i].flg != -1; i++)
+        { 	
+            if ((ef_info[i].flg & 0x1)) 
+            {	
+                dp += sz;           
+                
+                sz = *(int*)dp;         
+                
+                dp += 4;                
+            }                          
+        }                              
+        
+        dp = (unsigned char*)(((int)dp + 31) & ~0x1F);
+        
+        sys->ef_tlist.textures = sys->ef_tex;                  
+        sys->ef_tlist.nbTexture = 0;                                        
+        
+        sys->ef_ct = bhSetMemPvpTexture(&sys->ef_tlist, dp, 0);
+        
+        sys->ef_tlist.nbTexture = 4;	                                      
+        
+        sys->ss_flg |= 0x40;	                            
+    }
 }
 
 /*// 

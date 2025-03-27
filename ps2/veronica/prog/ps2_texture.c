@@ -1591,11 +1591,11 @@ int isVQ(unsigned char type)
 	// Line 205, Address: 0x2e6070, Func Offset: 0
 	// Line 206, Address: 0x2e6098, Func Offset: 0x28
 	// Func End, Address: 0x2e60a0, Func Offset: 0x30
-}
+}*/
 
 // 
 // Start address: 0x2e60a0
-int bhSetMemPvpTexture(_anon3* tlp, unsigned char* datp, int offset)
+int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset)
 {
 	unsigned char* palp;
 	unsigned char* dp;
@@ -1613,7 +1613,7 @@ int bhSetMemPvpTexture(_anon3* tlp, unsigned char* datp, int offset)
 	int nbTex;
 	int end;
 	int sz;
-	_anon20* tnp;
+	//_anon20* tnp;
 	unsigned int* clutp;
 	unsigned int TEXflag;
 	unsigned int VQflag;
@@ -1738,7 +1738,8 @@ int bhSetMemPvpTexture(_anon3* tlp, unsigned char* datp, int offset)
 	// Line 382, Address: 0x2e654c, Func Offset: 0x4ac
 	// Line 383, Address: 0x2e6550, Func Offset: 0x4b0
 	// Func End, Address: 0x2e6580, Func Offset: 0x4e0
-}*/
+	scePrintf("bhSetMemPvpTexture - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2e6580

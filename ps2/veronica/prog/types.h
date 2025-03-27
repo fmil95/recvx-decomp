@@ -2518,3 +2518,10 @@ struct tagSYSLOAD_SCREEN {
     struct tagSELECTFILEWINDOW * pSelectFileWindow; // offset 0x30, size 0x4
     void * vpReadBuffer; // offset 0x34, size 0x4
 };
+
+typedef struct EFFECT_INFO
+{
+	// total size: 0x8
+    unsigned int flg; // offset 0x0, size 0x4
+    int nbAnim; // offset 0x4, size 0x4
+} EFFECT_INFO;
