@@ -1582,16 +1582,18 @@ void ClutCopy256(void* data, void* org_data)
 	// Line 168, Address: 0x2e605c, Func Offset: 0xac
 	// Line 169, Address: 0x2e6068, Func Offset: 0xb8
 	// Func End, Address: 0x2e6070, Func Offset: 0xc0
-}
+}*/
 
-// 
-// Start address: 0x2e6070
+// 100% matching!
 int isVQ(unsigned char type)
 {
-	// Line 205, Address: 0x2e6070, Func Offset: 0
-	// Line 206, Address: 0x2e6098, Func Offset: 0x28
-	// Func End, Address: 0x2e60a0, Func Offset: 0x30
-}*/
+    if ((type >= 5) && (type < 9))
+    { 
+        return 0;
+    }
+    
+    return 1; 
+} 
 
 // 
 // Start address: 0x2e60a0
