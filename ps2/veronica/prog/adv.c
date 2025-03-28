@@ -2300,19 +2300,17 @@ void AdvPopPaletteData()
 	// Func End, Address: 0x2c12a4, Func Offset: 0x84
 }*/
 
-// 
-// Start address: 0x2c12b0
+// 100% matching!
 void RequestAdvInsideFileEx(int InsideFileId, int MemoryBlockNo)
-{
-	//_anon8* ap;
-	// Line 517, Address: 0x2c12b0, Func Offset: 0
-	// Line 518, Address: 0x2c12c4, Func Offset: 0x14
-	// Line 520, Address: 0x2c12d0, Func Offset: 0x20
-	// Line 521, Address: 0x2c12f8, Func Offset: 0x48
-	// Line 522, Address: 0x2c1308, Func Offset: 0x58
-	// Func End, Address: 0x2c1320, Func Offset: 0x70
-	scePrintf("RequestAdvInsideFileEx - UNIMPLEMENTED!\n");
-}
+{ 
+    ADV_WORK* ap; 
+
+    ap = (ADV_WORK*)&AdvWork; 
+
+    ap->ptr[MemoryBlockNo] = bhGetFreeMemory(GetInsideFileSize(ap->PatId, InsideFileId), 32); 
+    
+    RequestReadInsideFile(ap->PatId, InsideFileId, ap->ptr[MemoryBlockNo]); 
+} 
 
 // 100% matching! 
 void RequestAdvInsideFile(int InsideFileId) 
