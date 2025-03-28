@@ -59,3 +59,8 @@ void ADXF_Close(ADXF adxf)
 {
     scePrintf("ADXF_Close - UNIMPLEMENTED!\n");
 }
+
+long ADXT_GetStat(ADXT adxt) 
+{
+    scePrintf("ADXT_GetStat - UNIMPLEMENTED!\n");
+}

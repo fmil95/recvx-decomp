@@ -744,17 +744,15 @@ void ContinueAdx(unsigned int SlotNo)
 	// Line 1315, Address: 0x291f10, Func Offset: 0x30
 	// Line 1318, Address: 0x291f18, Func Offset: 0x38
 	// Func End, Address: 0x291f28, Func Offset: 0x48
-}
+}*/
 
-// 
-// Start address: 0x291f30
+// 100% matching!
 int GetAdxStatus(unsigned int SlotNo)
 {
-	// Line 1325, Address: 0x291f30, Func Offset: 0
-	// Func End, Address: 0x291f48, Func Offset: 0x18
+    ADXT_GetStat(AdxTInfo[SlotNo].Handle);
 }
 
-// 
+/*// 
 // Start address: 0x291f50
 void SetVolumeAdx(unsigned int SlotNo, int Volume)
 {
