@@ -2825,13 +2825,13 @@ void SetQuadUv2(float u, float v, float SizeX, float SizeY, unsigned int TexNo, 
 {
 	// Line 1263, Address: 0x2c1f44, Func Offset: 0x4
 	// Func End, Address: 0x2c1f50, Func Offset: 0x10
-}
+}*/
 
 // 
 // Start address: 0x2c1f50
 void AdvDwawOnePictureEx(int TexNo, unsigned int BaseColor)
 {
-	_anon0* qp;
+	//_anon0* qp;
 	// Line 1297, Address: 0x2c1f50, Func Offset: 0
 	// Line 1300, Address: 0x2c1f68, Func Offset: 0x18
 	// Line 1302, Address: 0x2c1f70, Func Offset: 0x20
@@ -2841,15 +2841,13 @@ void AdvDwawOnePictureEx(int TexNo, unsigned int BaseColor)
 	// Line 1306, Address: 0x2c1fe0, Func Offset: 0x90
 	// Line 1307, Address: 0x2c1fe8, Func Offset: 0x98
 	// Func End, Address: 0x2c2000, Func Offset: 0xb0
-}*/
+	scePrintf("AdvDwawOnePictureEx - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x2c2000
+// 100% matching!
 void AdvDwawOnePicture(int TexNo)
-{
-	// Line 1317, Address: 0x2c2000, Func Offset: 0
-	// Func End, Address: 0x2c2008, Func Offset: 0x8
-	scePrintf("AdvDwawOnePicture - UNIMPLEMENTED!\n");
+{ 
+    AdvDwawOnePictureEx(TexNo, -1);
 }
 
 // 100% matching!
