@@ -2604,23 +2604,23 @@ unsigned int AdvGetCancelButton()
 	// Func End, Address: 0x2c18c0, Func Offset: 0x40
 }*/
 
-// 
-// Start address: 0x2c18c0
+// 100% matching!
 void SetPvrInfo(NJS_TEXNAME* np, NJS_TEXINFO* ip, unsigned char* pp, int param1, unsigned int param2) // fourth and fifth parameters are not present on the debugging symbols
-{
-	unsigned int GlobalIndex;
-	//_anon23* pPichd;
-	// Line 889, Address: 0x2c18c0, Func Offset: 0
-	// Line 932, Address: 0x2c18dc, Func Offset: 0x1c
-	// Line 933, Address: 0x2c18e0, Func Offset: 0x20
-	// Line 930, Address: 0x2c18f0, Func Offset: 0x30
-	// Line 935, Address: 0x2c18f4, Func Offset: 0x34
-	// Line 937, Address: 0x2c18fc, Func Offset: 0x3c
-	// Line 938, Address: 0x2c1914, Func Offset: 0x54
-	// Line 940, Address: 0x2c1928, Func Offset: 0x68
-	// Func End, Address: 0x2c1948, Func Offset: 0x88
-	scePrintf("SetPvrInfo - UNIMPLEMENTED!\n");
-}
+{ 
+    TIM2_PICTUREHEADER_SMALL* pPichd;
+    unsigned int GlobalIndex;
+    
+    ((TIM2_PICTUREHEADER*)pp)->PictFormat = 0; 
+    
+    GlobalIndex = ((TIM2_PICTUREHEADER*)pp)->Gindex; 
+    
+    pPichd = (TIM2_PICTUREHEADER_SMALL*)&((TIM2_PICTUREHEADER*)pp)->TotalSize; 
+    
+    Ps2CheckTextureAlpha(pp); 
+    
+    njSetTextureInfo(ip, (unsigned short*)pp, pPichd->PictFormat, pPichd->ImageWidth, pPichd->ImageHeight); 
+    njSetTextureName(np, ip, GlobalIndex, 0x40800000); 
+} 
 
 // 100% matching!
 int TransPvpData(unsigned char* pp, int Mode) 

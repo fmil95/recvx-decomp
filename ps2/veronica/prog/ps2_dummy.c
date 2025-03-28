@@ -2103,7 +2103,7 @@ unsigned int Ps2Alpha4to8(unsigned int* cp, unsigned int num)
     }
 }
 
-/*// 
+// 
 // Start address: 0x2cdb70
 int Ps2CheckTextureAlpha(void* pp)
 {
@@ -2157,7 +2157,8 @@ int Ps2CheckTextureAlpha(void* pp)
 	// Line 2956, Address: 0x2cddd8, Func Offset: 0x268
 	// Line 3026, Address: 0x2cdddc, Func Offset: 0x26c
 	// Func End, Address: 0x2cddf8, Func Offset: 0x288
-}*/
+	scePrintf("Ps2CheckTextureAlpha - UNIMPLEMENTED!\n");
+}
 
 // 96.92% matching 
 void Ps2InitPS2_GS_SAVE()
