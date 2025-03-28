@@ -2079,15 +2079,11 @@ void CallSystemVoice(int VoiceNo)
     PlayVoiceEx2(PatId[3], VoiceNo + 16, NULL, 1, 0, 0);
 }
 
-// 
-// Start address: 0x2c0d80
+// 100% matching! 
 float GetSamurai(int Time)
-{
-	// Line 234, Address: 0x2c0d80, Func Offset: 0
-	// Line 235, Address: 0x2c0e04, Func Offset: 0x84
-	// Func End, Address: 0x2c0e0c, Func Offset: 0x8c
-	scePrintf("GetSamurai - UNIMPLEMENTED!\n");
-}
+{ 
+    return 1.0f / (((Time / 100) * 30) + (((Time % 100) * 6) / 10));
+} 
 
 // 100% matching! 
 void InitAdvSystem()
