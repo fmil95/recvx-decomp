@@ -548,21 +548,19 @@ void CloseAfsInsideFile(int SlotNo)
     }
 }
 
-// 
-// Start address: 0x291900
-void StopAfsInsideFile(int SlotNo)
+// 100% matching! 
+void StopAfsInsideFile(int SlotNo) 
 {
-	// Line 970, Address: 0x291900, Func Offset: 0
-	// Line 971, Address: 0x29190c, Func Offset: 0xc
-	// Line 970, Address: 0x291918, Func Offset: 0x18
-	// Line 971, Address: 0x29191c, Func Offset: 0x1c
-	// Line 973, Address: 0x29192c, Func Offset: 0x2c
-	// Line 974, Address: 0x291934, Func Offset: 0x34
-	// Line 975, Address: 0x291948, Func Offset: 0x48
-	// Line 976, Address: 0x291950, Func Offset: 0x50
-	// Line 979, Address: 0x291958, Func Offset: 0x58
-	// Func End, Address: 0x29196c, Func Offset: 0x6c
-	scePrintf("StopAfsInsideFile - UNIMPLEMENTED!\n");
+    if (AdxFInfo[SlotNo].Flag != 0) 
+    {
+        ADXPS2_Lock();
+        
+        ADXF_Stop(AdxFInfo[SlotNo].Handle);
+        
+        ADXPS2_Unlock();
+        
+        CloseAfsInsideFile(SlotNo);
+    }
 }
 
 // 92.03% matching
