@@ -2087,24 +2087,23 @@ unsigned int Ps2AlphaIsHalf(unsigned int* cp, unsigned int num)
 	// Line 2807, Address: 0x2cdb14, Func Offset: 0x24
 	// Line 2808, Address: 0x2cdb20, Func Offset: 0x30
 	// Func End, Address: 0x2cdb28, Func Offset: 0x38
-}
+}*/
 
-// 
-// Start address: 0x2cdb30
+// 100% matching!
 unsigned int Ps2Alpha4to8(unsigned int* cp, unsigned int num)
 {
-	unsigned int val;
-	unsigned int i;
-	// Line 2815, Address: 0x2cdb30, Func Offset: 0
-	// Line 2817, Address: 0x2cdb3c, Func Offset: 0xc
-	// Line 2819, Address: 0x2cdb40, Func Offset: 0x10
-	// Line 2818, Address: 0x2cdb48, Func Offset: 0x18
-	// Line 2819, Address: 0x2cdb54, Func Offset: 0x24
-	// Line 2820, Address: 0x2cdb60, Func Offset: 0x30
-	// Func End, Address: 0x2cdb68, Func Offset: 0x38
+    unsigned int i;
+    unsigned int val;
+    
+    for (i = 0; i < num; i++, cp++)
+    {
+        val = ((unsigned char*)cp)[3];
+        
+        ((unsigned char*)cp)[3] = val | (val >> 4);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2cdb70
 int Ps2CheckTextureAlpha(void* pp)
 {
