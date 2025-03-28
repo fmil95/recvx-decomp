@@ -1955,7 +1955,6 @@ struct _anon56
 unsigned char SaveLoadMessage[10956];
 _anon53 OptionDef[7];*/
 int AdvFirstInitFlag;
-/*_anon6 AdvTexList[2];*/
 int PatId[4];
 ADV_WORK AdvWork;
 /*_anon40* sys;
@@ -1967,6 +1966,11 @@ _anon27* Ps2_current_texmemlist;
 _anon0 Qtex[16];*/
 NJS_TEXINFO AdvTexInfo[2][8];
 NJS_TEXNAME AdvTexName[2][8];
+NJS_TEXLIST AdvTexList[2] = 
+{
+    {&AdvTexName[0][0], 8},
+    {&AdvTexName[1][0], 8}
+};
 char AdvTexPalBank[2][8];
 int CurrentPortId;
 /*unsigned char FontSz[0];
@@ -2896,20 +2900,13 @@ void AdvEasySetupTexture()
 	// Func End, Address: 0x2c2178, Func Offset: 0x8
 }*/
 
-// 
-// Start address: 0x2c2180
+// 100% matching!
 void AdvEasySetTextureList(int ListNo)
-{
-	// Line 1406, Address: 0x2c2180, Func Offset: 0
-	// Line 1405, Address: 0x2c2188, Func Offset: 0x8
-	// Line 1406, Address: 0x2c218c, Func Offset: 0xc
-	// Line 1405, Address: 0x2c2190, Func Offset: 0x10
-	// Line 1406, Address: 0x2c2194, Func Offset: 0x14
-	// Line 1407, Address: 0x2c219c, Func Offset: 0x1c
-	// Line 1408, Address: 0x2c21a4, Func Offset: 0x24
-	// Func End, Address: 0x2c21b0, Func Offset: 0x30
-	scePrintf("AdvEasySetTextureList - UNIMPLEMENTED!\n");
-}
+{ 
+    njSetTexture(&AdvTexList[ListNo]); 
+    
+    njSetTextureNum(0); 
+} 
 
 // 
 // Start address: 0x2c21b0

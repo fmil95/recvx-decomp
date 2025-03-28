@@ -517,22 +517,23 @@ int njLoadTexture(_anon2* texlist)
 	// Line 400, Address: 0x2e2140, Func Offset: 0x300
 	// Line 401, Address: 0x2e2144, Func Offset: 0x304
 	// Func End, Address: 0x2e214c, Func Offset: 0x30c
-}
+}*/
 
 // 
 // Start address: 0x2e2150
-int njSetTexture(_anon2* texlist)
+Sint32	njSetTexture(NJS_TEXLIST *texlist)
 {
 	// Line 409, Address: 0x2e2150, Func Offset: 0
 	// Line 410, Address: 0x2e2158, Func Offset: 0x8
 	// Line 411, Address: 0x2e2160, Func Offset: 0x10
 	// Line 412, Address: 0x2e2168, Func Offset: 0x18
 	// Func End, Address: 0x2e2170, Func Offset: 0x20
+	scePrintf("njSetTexture - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e2170
-int njSetTextureNum(unsigned int n)
+Sint32	njSetTextureNum(Uint32 n)
 {
 	// Line 430, Address: 0x2e2170, Func Offset: 0
 	// Line 441, Address: 0x2e2188, Func Offset: 0x18
@@ -541,9 +542,10 @@ int njSetTextureNum(unsigned int n)
 	// Line 447, Address: 0x2e21b4, Func Offset: 0x44
 	// Line 451, Address: 0x2e21c8, Func Offset: 0x58
 	// Func End, Address: 0x2e21d0, Func Offset: 0x60
+	scePrintf("njSetTextureNum - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e21d0
 int njSetTextureNumG(unsigned int globalIndex)
 {
