@@ -438,13 +438,13 @@ int SearchNullNumber()
 	// Line 291, Address: 0x2e1e30, Func Offset: 0x40
 	// Line 292, Address: 0x2e1e34, Func Offset: 0x44
 	// Func End, Address: 0x2e1e3c, Func Offset: 0x4c
-}
+}*/
 
 // 
 // Start address: 0x2e1e40
-int njLoadTexture(_anon2* texlist)
+Sint32	njLoadTexture(NJS_TEXLIST *texlist)
 {
-	_anon1* addr;
+	//_anon1* addr;
 	unsigned int attr;
 	unsigned int bank;
 	unsigned int g_index;
@@ -517,7 +517,8 @@ int njLoadTexture(_anon2* texlist)
 	// Line 400, Address: 0x2e2140, Func Offset: 0x300
 	// Line 401, Address: 0x2e2144, Func Offset: 0x304
 	// Func End, Address: 0x2e214c, Func Offset: 0x30c
-}*/
+	scePrintf("njLoadTexture - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2e2150
