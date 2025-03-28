@@ -2525,3 +2525,14 @@ typedef struct EFFECT_INFO
     unsigned int flg; // offset 0x0, size 0x4
     int nbAnim; // offset 0x4, size 0x4
 } EFFECT_INFO;
+
+typedef struct PVP_INFO 
+{
+    // total size: 0x10
+    char ppStrPvpl[4]; // offset 0x0, size 0x4
+    unsigned int ppNextTag; // offset 0x4, size 0x4
+    unsigned short ppCategoryCode; // offset 0x8, size 0x2
+    unsigned short ppBankId; // offset 0xA, size 0x2
+    unsigned short ppEntryOffset; // offset 0xC, size 0x2
+    unsigned short ppEntryCount; // offset 0xE, size 0x2
+} PVP_INFO;

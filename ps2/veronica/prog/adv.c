@@ -2618,24 +2618,31 @@ void SetPvrInfo(NJS_TEXNAME* np, NJS_TEXINFO* ip, unsigned char* pp, int param1,
 	scePrintf("SetPvrInfo - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c1950
-int TransPvpData(unsigned char* pp, int Mode)
-{
-	//_anon11* pPvp;
-	// Line 951, Address: 0x2c1950, Func Offset: 0
-	// Line 959, Address: 0x2c1960, Func Offset: 0x10
-	// Line 951, Address: 0x2c1964, Func Offset: 0x14
-	// Line 959, Address: 0x2c1968, Func Offset: 0x18
-	// Line 960, Address: 0x2c1980, Func Offset: 0x30
-	// Line 964, Address: 0x2c1988, Func Offset: 0x38
-	// Line 969, Address: 0x2c198c, Func Offset: 0x3c
-	// Line 970, Address: 0x2c1994, Func Offset: 0x44
-	// Line 978, Address: 0x2c199c, Func Offset: 0x4c
-	// Line 979, Address: 0x2c19a4, Func Offset: 0x54
-	// Func End, Address: 0x2c19b8, Func Offset: 0x68
-	scePrintf("TransPvpData - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+int TransPvpData(unsigned char* pp, int Mode) 
+{ 
+    PVP_INFO* pPvp;
+    unsigned short temp; // not from the debugging symbols
+    short temp2; // not from the debugging symbols
+
+    pPvp = (PVP_INFO*)pp;
+
+    if (strncmp(&pPvp->ppStrPvpl, "PVPL", 4) != 0)
+    { 
+        return -1; 
+    }
+    
+    temp = pPvp->ppCategoryCode; 
+    
+    temp2 = pPvp->ppBankId;
+    
+    if (Mode != 0) 
+    { 
+        njSetPaletteMode(temp); 
+    } 
+    
+    return temp2; 
+} 
 
 /*// 
 // Start address: 0x2c19c0
