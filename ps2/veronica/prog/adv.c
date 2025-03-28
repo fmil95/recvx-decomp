@@ -3455,18 +3455,18 @@ int Adv_CapcomLogo()
 	scePrintf("Adv_CapcomLogo - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2c3160
-void ResetFlushPlate()
+// 100% matching!
+void ResetFlushPlate() 
 {
-	_anon8* ap;
-	// Line 2653, Address: 0x2c3160, Func Offset: 0
-	// Line 2655, Address: 0x2c3168, Func Offset: 0x8
-	// Line 2656, Address: 0x2c316c, Func Offset: 0xc
-	// Func End, Address: 0x2c3174, Func Offset: 0x14
+    ADV_WORK* ap; 
+
+    ap = (ADV_WORK*)&AdvWork;
+    
+    ap->FlushSpeed2 = 0; 
+    ap->FlushCount2 = 0; 
 }
 
-// 
+/*// 
 // Start address: 0x2c3180
 void FlushPlate()
 {
