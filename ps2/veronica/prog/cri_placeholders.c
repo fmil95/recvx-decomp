@@ -69,3 +69,8 @@ long ADXF_Stop(ADXF adxf)
 {
     scePrintf("ADXF_Stop - UNIMPLEMENTED!\n");
 }
+
+long ADXF_GetStat(ADXF adxf)
+{
+    scePrintf("ADXF_GetStat - UNIMPLEMENTED!\n");
+}

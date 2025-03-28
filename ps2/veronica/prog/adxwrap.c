@@ -255,9 +255,9 @@ int OpenAfsInsideFile(unsigned int PartitionId, unsigned int FileId);
 int OpenAfsIsoFile(char* FileName);
 int GetAfsInsideFileSize(int SlotNo);
 void RequestReadAfsInsideFile(int SlotNo, unsigned char* Address);
-int CheckReadEndAfsInsideFile(int SlotNo);
+int CheckReadEndAfsInsideFile(int SlotNo);*/
 void CloseAfsInsideFile(int SlotNo);
-void StopAfsInsideFile(int SlotNo);
+/*void StopAfsInsideFile(int SlotNo);
 void RegistAdxStreamEx(int MaxStream, int DummyStream, _anon3* pAdx);
 void FreeAdxStream();
 void SleepAdxStream();
@@ -516,21 +516,20 @@ void RequestReadAfsInsideFile(int SlotNo, unsigned char* Address)
 	// Func End, Address: 0x2917f4, Func Offset: 0x94
 }*/
 
-// 
-// Start address: 0x291800
+// 100% matching!
 int CheckReadEndAfsInsideFile(int SlotNo)
 {
-	// Line 938, Address: 0x291800, Func Offset: 0
-	// Line 939, Address: 0x29180c, Func Offset: 0xc
-	// Line 938, Address: 0x291810, Func Offset: 0x10
-	// Line 939, Address: 0x291814, Func Offset: 0x14
-	// Line 940, Address: 0x29184c, Func Offset: 0x4c
-	// Line 941, Address: 0x291864, Func Offset: 0x64
-	// Line 944, Address: 0x29186c, Func Offset: 0x6c
-	// Line 946, Address: 0x291878, Func Offset: 0x78
-	// Line 948, Address: 0x29187c, Func Offset: 0x7c
-	// Func End, Address: 0x291890, Func Offset: 0x90
-	scePrintf("CheckReadEndAfsInsideFile - UNIMPLEMENTED!\n");
+    if ((AdxFInfo[SlotNo].Flag != 0) && (ADXF_GetStat(AdxFInfo[SlotNo].Handle) == 3)) 
+    {
+        if (AdxFInfo[SlotNo].Mode == 0) 
+        {
+            CloseAfsInsideFile(SlotNo);
+        }
+        
+        return 1;
+    }
+    
+    return 0;
 }
 
 // 100% matching!
