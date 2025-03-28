@@ -2073,13 +2073,10 @@ void CallPlayerDeadVoice(int PlayerNo)
     PlayBgmEx2(PatId[3], PlayerNo + 8, 1, -45);
 }
 
-// 
-// Start address: 0x2c0d60
-void CallSystemVoice(int VoiceNo)
-{
-	// Line 223, Address: 0x2c0d60, Func Offset: 0
-	// Func End, Address: 0x2c0d80, Func Offset: 0x20
-	scePrintf("CallSystemVoice - UNIMPLEMENTED!\n");
+// 100% matching! 
+void CallSystemVoice(int VoiceNo) 
+{ 
+    PlayVoiceEx2(PatId[3], VoiceNo + 16, NULL, 1, 0, 0);
 }
 
 // 

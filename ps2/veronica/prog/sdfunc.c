@@ -3910,11 +3910,11 @@ void StopBgm2()
 	// Line 3074, Address: 0x295a14, Func Offset: 0x24
 	// Line 3075, Address: 0x295a18, Func Offset: 0x28
 	// Func End, Address: 0x295a20, Func Offset: 0x30
-}
+}*/
 
 // 
 // Start address: 0x295a20
-void PlayVoiceEx2(int PatId, int VoiceNo, _anon16* pPos, int Mode, int FadeInRate, int PauseFlag)
+void PlayVoiceEx2(int PatId, int VoiceNo, NJS_POINT3* pPos, int Mode, int FadeInRate, int PauseFlag)
 {
 	float Dist;
 	char Vol;
@@ -3944,9 +3944,10 @@ void PlayVoiceEx2(int PatId, int VoiceNo, _anon16* pPos, int Mode, int FadeInRat
 	// Line 3125, Address: 0x295b94, Func Offset: 0x174
 	// Line 3126, Address: 0x295ba0, Func Offset: 0x180
 	// Func End, Address: 0x295bc4, Func Offset: 0x1a4
+	scePrintf("PlayVoiceEx2 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x295bd0
 void PlayVoiceEx(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate, int PauseFlag)
 {
