@@ -1964,10 +1964,10 @@ _anon34* rom;
 unsigned int palbuf[0];
 _anon47 Pad[0];
 _anon27* Ps2_current_texmemlist;
-_anon0 Qtex[16];
-_anon16 AdvTexInfo[8][2];
-_anon20 AdvTexName[8][2];
-char AdvTexPalBank[8][2];*/
+_anon0 Qtex[16];*/
+NJS_TEXINFO AdvTexInfo[2][8];
+NJS_TEXNAME AdvTexName[2][8];
+char AdvTexPalBank[2][8];
 int CurrentPortId;
 /*unsigned char FontSz[0];
 float FontScaleCR;
@@ -2598,14 +2598,14 @@ unsigned int AdvGetCancelButton()
 	// Line 875, Address: 0x2c18a4, Func Offset: 0x24
 	// Line 876, Address: 0x2c18b8, Func Offset: 0x38
 	// Func End, Address: 0x2c18c0, Func Offset: 0x40
-}
+}*/
 
 // 
 // Start address: 0x2c18c0
-void SetPvrInfo(_anon20* np, _anon16* ip, unsigned char* pp)
+void SetPvrInfo(NJS_TEXNAME* np, NJS_TEXINFO* ip, unsigned char* pp, int param1, unsigned int param2) // fourth and fifth parameters are not present on the debugging symbols
 {
 	unsigned int GlobalIndex;
-	_anon23* pPichd;
+	//_anon23* pPichd;
 	// Line 889, Address: 0x2c18c0, Func Offset: 0
 	// Line 932, Address: 0x2c18dc, Func Offset: 0x1c
 	// Line 933, Address: 0x2c18e0, Func Offset: 0x20
@@ -2615,7 +2615,8 @@ void SetPvrInfo(_anon20* np, _anon16* ip, unsigned char* pp)
 	// Line 938, Address: 0x2c1914, Func Offset: 0x54
 	// Line 940, Address: 0x2c1928, Func Offset: 0x68
 	// Func End, Address: 0x2c1948, Func Offset: 0x88
-}*/
+	scePrintf("SetPvrInfo - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2c1950
@@ -2840,25 +2841,32 @@ void AdvDwawOnePicture(int TexNo)
 	scePrintf("AdvDwawOnePicture - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c2010
-void AdvEasySetupTextureBasic(unsigned char* xp, int ListNo, int TexNo)
-{
-	unsigned int* lp;
-	//_anon8* ap;
-	// Line 1350, Address: 0x2c2010, Func Offset: 0
-	// Line 1351, Address: 0x2c202c, Func Offset: 0x1c
-	// Line 1356, Address: 0x2c2034, Func Offset: 0x24
-	// Line 1357, Address: 0x2c2054, Func Offset: 0x44
-	// Line 1359, Address: 0x2c2064, Func Offset: 0x54
-	// Line 1360, Address: 0x2c2074, Func Offset: 0x64
-	// Line 1361, Address: 0x2c2080, Func Offset: 0x70
-	// Line 1363, Address: 0x2c2084, Func Offset: 0x74
-	// Line 1367, Address: 0x2c208c, Func Offset: 0x7c
-	// Line 1368, Address: 0x2c2100, Func Offset: 0xf0
-	// Func End, Address: 0x2c2120, Func Offset: 0x110
-	scePrintf("AdvEasySetupTextureBasic - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+void AdvEasySetupTextureBasic(unsigned char* xp, int ListNo, int TexNo) 
+{ 
+    ADV_WORK* ap; 
+    unsigned int* lp;
+
+    ap = (ADV_WORK*)&AdvWork; 
+    
+    lp = (unsigned int*)xp; 
+    
+    AdvTexPalBank[ListNo][TexNo] = -1; 
+    
+    if (lp[0] != 0)
+    { 
+        ap->PalNo = TransPvpData(xp + lp[0], ap->PalFlag); 
+        
+        if (ap->PalFlag != 0)
+        { 
+            ap->PalFlag = 0;
+        } 
+        
+        AdvTexPalBank[ListNo][TexNo] = ap->PalNo;
+    }
+    
+    SetPvrInfo(&AdvTexName[ListNo][TexNo], &AdvTexInfo[ListNo][TexNo], xp + lp[1], -1, ap->PalNo); 
+} 
 
 /*// 
 // Start address: 0x2c2120
