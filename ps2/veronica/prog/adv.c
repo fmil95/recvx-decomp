@@ -2314,13 +2314,11 @@ void RequestAdvInsideFileEx(int InsideFileId, int MemoryBlockNo)
 	scePrintf("RequestAdvInsideFileEx - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2c1320
-void RequestAdvInsideFile(int InsideFileId)
-{
-	// Line 532, Address: 0x2c1320, Func Offset: 0
-	// Func End, Address: 0x2c1328, Func Offset: 0x8
-}*/
+// 100% matching! 
+void RequestAdvInsideFile(int InsideFileId) 
+{ 
+    RequestAdvInsideFileEx(InsideFileId, 0);
+}
 
 // 100% matching!
 void FreeAdvMemoryEx(int MemoryBlockNo)
