@@ -514,7 +514,7 @@ void RequestReadAfsInsideFile(int SlotNo, unsigned char* Address)
 	// Line 890, Address: 0x2917cc, Func Offset: 0x6c
 	// Line 906, Address: 0x2917dc, Func Offset: 0x7c
 	// Func End, Address: 0x2917f4, Func Offset: 0x94
-}
+}*/
 
 // 
 // Start address: 0x291800
@@ -530,7 +530,8 @@ int CheckReadEndAfsInsideFile(int SlotNo)
 	// Line 946, Address: 0x291878, Func Offset: 0x78
 	// Line 948, Address: 0x29187c, Func Offset: 0x7c
 	// Func End, Address: 0x291890, Func Offset: 0x90
-}*/
+	scePrintf("CheckReadEndAfsInsideFile - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void CloseAfsInsideFile(int SlotNo)
@@ -547,7 +548,7 @@ void CloseAfsInsideFile(int SlotNo)
     }
 }
 
-/*// 
+// 
 // Start address: 0x291900
 void StopAfsInsideFile(int SlotNo)
 {
@@ -561,7 +562,8 @@ void StopAfsInsideFile(int SlotNo)
 	// Line 976, Address: 0x291950, Func Offset: 0x50
 	// Line 979, Address: 0x291958, Func Offset: 0x58
 	// Func End, Address: 0x29196c, Func Offset: 0x6c
-}*/
+	scePrintf("StopAfsInsideFile - UNIMPLEMENTED!\n");
+}
 
 // 92.03% matching
 void RegistAdxStreamEx(int MaxStream, int DummyStream, ADX_WORK* pAdx)

@@ -2003,8 +2003,8 @@ short DefEne[6];*/
 int SoundInitLevel;
 /*int SdReadMode;*/
 int SpqFileReadRequestFlag;
-/*int TransSoundPackDataFlag;
-int ReadFileRequestFlag;*/
+/*int TransSoundPackDataFlag;*/
+int ReadFileRequestFlag;
 int FileReadStatus;
 int KeyReadSwitch;
 SYS_WORK* sys;
@@ -2066,10 +2066,10 @@ unsigned char RequestList[128];
 _anon11 ObjectSlotInfo[3];
 _anon65 SdComFuncTbl[10];
 BH_PWORK* plp;
-unsigned char* DestReadPtr;
+unsigned char* DestReadPtr;*/
 int GenAdxfSlot;
 int OpenDriveTrayFlag;
-unsigned char MovieTypeDef[22];
+/*unsigned char MovieTypeDef[22];
 short MovieVolDef[22];
 _anon37 MovieDef[4];
 _anon51 rmi;
@@ -4748,25 +4748,28 @@ int GetReadFileStatus()
     return FileReadStatus; 
 }
 
-// 
-// Start address: 0x2973f0
+// 100% matching! 
 void ExecFileManager()
 {
-	// Line 4424, Address: 0x2973f0, Func Offset: 0
-	// Line 4425, Address: 0x2973f8, Func Offset: 0x8
-	// Line 4427, Address: 0x297408, Func Offset: 0x18
-	// Line 4428, Address: 0x297418, Func Offset: 0x28
-	// Line 4429, Address: 0x297438, Func Offset: 0x48
-	// Line 4430, Address: 0x297444, Func Offset: 0x54
-	// Line 4431, Address: 0x29744c, Func Offset: 0x5c
-	// Line 4432, Address: 0x297454, Func Offset: 0x64
-	// Line 4433, Address: 0x29745c, Func Offset: 0x6c
-	// Line 4434, Address: 0x297470, Func Offset: 0x80
-	// Line 4435, Address: 0x297484, Func Offset: 0x94
-	// Line 4436, Address: 0x29748c, Func Offset: 0x9c
-	// Line 4441, Address: 0x297494, Func Offset: 0xa4
-	// Func End, Address: 0x2974a0, Func Offset: 0xb0
-	scePrintf("ExecFileManager - UNIMPLEMENTED!\n");
+    OpenDriveTrayFlag = CheckOpenTray();
+    
+    if (ReadFileRequestFlag != 0)
+    {
+        if ((OpenDriveTrayFlag != 0) || (CheckSoftResetKeyFlag(-1) != 0))
+        {
+            StopAfsInsideFile(GenAdxfSlot);
+            
+            ReadFileRequestFlag = 0;
+            
+            FileReadStatus = -1;
+        }
+        else if ((FileReadStatus == 1) && (CheckReadEndAfsInsideFile(GenAdxfSlot) != 0)) 
+        {
+            ReadFileRequestFlag = 0;
+            
+            FileReadStatus = 0;
+        }
+    }
 }
 
 // 
