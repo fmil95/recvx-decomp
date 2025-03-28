@@ -2936,7 +2936,7 @@ void AdvEasyTransTexture()
 {
 	// Line 1460, Address: 0x2c2260, Func Offset: 0
 	// Func End, Address: 0x2c2268, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2c2270
@@ -2954,15 +2954,14 @@ void AdvEasyReleaseTextureEx(int ListNo)
 	// Line 1479, Address: 0x2c22b0, Func Offset: 0x40
 	// Line 1481, Address: 0x2c22bc, Func Offset: 0x4c
 	// Func End, Address: 0x2c22cc, Func Offset: 0x5c
+	scePrintf("AdvEasyReleaseTextureEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c22d0
+// 100% matching!
 void AdvEasyReleaseTexture()
-{
-	// Line 1492, Address: 0x2c22d0, Func Offset: 0
-	// Func End, Address: 0x2c22d8, Func Offset: 0x8
-}*/
+{ 
+    AdvEasyReleaseTextureEx(0);
+}
 
 // 
 // Start address: 0x2c22e0
