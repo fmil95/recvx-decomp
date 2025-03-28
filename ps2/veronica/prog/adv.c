@@ -2879,19 +2879,17 @@ void AdvEasySetupTextureBasic(unsigned char* xp, int ListNo, int TexNo)
     SetPvrInfo(&AdvTexName[ListNo][TexNo], &AdvTexInfo[ListNo][TexNo], xp + lp[1], -1, ap->PalNo); 
 } 
 
-// 
-// Start address: 0x2c2120
-void AdvEasySetupTextureEx(int ListNo)
-{
-	//_anon8* ap;
-	// Line 1378, Address: 0x2c2120, Func Offset: 0
-	// Line 1379, Address: 0x2c212c, Func Offset: 0xc
-	// Line 1381, Address: 0x2c2134, Func Offset: 0x14
-	// Line 1382, Address: 0x2c214c, Func Offset: 0x2c
-	// Line 1383, Address: 0x2c2158, Func Offset: 0x38
-	// Func End, Address: 0x2c2168, Func Offset: 0x48
-	scePrintf("AdvEasySetupTextureEx - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+void AdvEasySetupTextureEx(int ListNo) 
+{ 
+    ADV_WORK* ap;
+
+    ap = (ADV_WORK*)&AdvWork;
+    
+    AdvEasySetupTextureBasic(ap->ptr[ap->Count], ListNo, ap->Count); 
+    
+    ap->Count++; 
+} 
 
 // 100% matching!
 void AdvEasySetupTexture()
