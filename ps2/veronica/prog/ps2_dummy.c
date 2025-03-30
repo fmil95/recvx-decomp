@@ -770,9 +770,9 @@ void Ps2Vu1ProgSend(unsigned int prog_no);
 /*void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num);
 void PS2_Render_Tex_Sub();*/
 
-int ps2_vu0sub0; 
-int ps2_vu1sub0;
-int ps2_vu1sub1;
+extern int ps2_vu0sub0 __attribute__((section(".vudata")));
+extern int ps2_vu1sub0 __attribute__((section(".vudata")));
+extern int ps2_vu1sub1 __attribute__((section(".vudata")));
 
 // 100% matching!
 void _builtin_set_imask(int mask) 
