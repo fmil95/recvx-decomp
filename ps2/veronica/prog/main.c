@@ -47,7 +47,6 @@
 #include "ps2_sg_maloc.c"
 #include "backup.c"
 #include "expand.c"
-#include "njloop.c"
 #include "njplus.c"
 #include "ps2_event.c"
 #include "ps2_NaDebugFontFunction.c"

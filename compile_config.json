@@ -31,6 +31,7 @@
   "source_files": [
       "ps2/veronica/prog/main.c",
       "ps2/veronica/prog/vibman.c",
-      "ps2/veronica/prog/flag.c"
+      "ps2/veronica/prog/flag.c",
+      "ps2/veronica/prog/njloop.c"
   ]
 }
