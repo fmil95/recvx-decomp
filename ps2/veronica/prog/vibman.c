@@ -1,16 +1,10 @@
+#include "vibman.h"
+
 char PortIdTbl[4] = {
     0x02, 0x08, 0x0E, 0x14
 };
 int EnadleVibrationFlag;
 unsigned int VibStopTime;
-
-void InitVibrationUnit();
-void ExitVibrationUnit();
-void SetUseVibrationUnit(int Flag);
-int GetUseVibrationUnit();
-int CheckVibrationUnit(unsigned int PortId);
-int StartVibration(unsigned int PortId, PDS_VIBPARAM* vpp);
-int StopVibration(unsigned int PortId);
 
 // 100% matching! 
 void InitVibrationUnit()
