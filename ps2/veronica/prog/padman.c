@@ -1,6 +1,6 @@
 unsigned int KeyWaitFirst = 10;
 unsigned int KeyWaitNext = 4;
-BUTTON_INFO ButtonInfo[5]; // TODO: needs .data definition
+BUTTON_INFO ButtonInfo[5]; 
 int SoftResetFlag;
 int CurrentPortId;
 PAD_INFO Pad[4];

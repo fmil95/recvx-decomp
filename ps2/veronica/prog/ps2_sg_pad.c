@@ -134,7 +134,14 @@ struct _anon6
 unsigned int Old_sys_cnt;
 static u_long128 Padd1[scePadDmaBufferMax];
 static u_long128 Padd2[scePadDmaBufferMax];
-/*_anon5 ButtonInfo[5];*/
+BUTTON_INFO ButtonInfo[5] = 
+{
+    { 1, 55541},
+    { 2, 55541},
+    { 3, 55541},
+    { 4, 55541},
+    {-1, 0    }
+}; 
 NO_NAME_19 Pad_status;
 unsigned int Ps2_sys_cnt;
 PAD_WRK Ps2_pad;
@@ -143,11 +150,11 @@ unsigned char Pad_rdata1[32];
 unsigned char ChkCnt;
 unsigned char PadCnt;
 PDS_PERIPHERALINFO pgp_info;
-/*unsigned int Pad_state[2];
-int SoftResetFlag;*/
+/*unsigned int Pad_state[2];*/
+int SoftResetFlag;
 PAD_INFO Pad[4];
-/*int CurrentPortId;
-_anon4 Pad_info;
+int CurrentPortId;
+/*_anon4 Pad_info;
 _anon6 Pad_status2;
 
 void pdInitPeripheral();
@@ -157,8 +164,8 @@ _anon2* pdGetPeripheralInfo();
 void pdSetMode();*/
 void Ps2_pad_read();
 void Ps2_Read_Key(PDS_PERIPHERAL* per, PAD_WORK* pad_wk);
-/*void Ps2_MakeRepeatKey(unsigned int Id, _anon0* pad_wk);
-void Pad_set(_anon0* pbt, unsigned short pad_num);
+void Ps2_MakeRepeatKey(unsigned int Id, PAD_WORK* pad_wk);
+/*void Pad_set(_anon0* pbt, unsigned short pad_num);
 void Pad_init();*/
 
 // 100% matching!
@@ -406,89 +413,143 @@ void Ps2_pad_read()
 	scePrintf("Ps2_pad_read - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2da400
+// 100% matching!
 void Ps2_Read_Key(PDS_PERIPHERAL* per, PAD_WORK* pad_wk)
 {
-	//_anon3* pp;
-	unsigned int j;
-	unsigned int i;
-	// Line 527, Address: 0x2da400, Func Offset: 0
-	// Line 532, Address: 0x2da414, Func Offset: 0x14
-	// Line 527, Address: 0x2da418, Func Offset: 0x18
-	// Line 532, Address: 0x2da41c, Func Offset: 0x1c
-	// Line 533, Address: 0x2da42c, Func Offset: 0x2c
-	// Line 535, Address: 0x2da434, Func Offset: 0x34
-	// Line 537, Address: 0x2da444, Func Offset: 0x44
-	// Line 538, Address: 0x2da44c, Func Offset: 0x4c
-	// Line 539, Address: 0x2da458, Func Offset: 0x58
-	// Line 540, Address: 0x2da45c, Func Offset: 0x5c
-	// Line 541, Address: 0x2da464, Func Offset: 0x64
-	// Line 542, Address: 0x2da470, Func Offset: 0x70
-	// Line 543, Address: 0x2da474, Func Offset: 0x74
-	// Line 544, Address: 0x2da47c, Func Offset: 0x7c
-	// Line 545, Address: 0x2da484, Func Offset: 0x84
-	// Line 546, Address: 0x2da4a0, Func Offset: 0xa0
-	// Line 547, Address: 0x2da4a8, Func Offset: 0xa8
-	// Line 548, Address: 0x2da4b8, Func Offset: 0xb8
-	// Line 549, Address: 0x2da4cc, Func Offset: 0xcc
-	// Line 551, Address: 0x2da4d8, Func Offset: 0xd8
-	// Line 555, Address: 0x2da4ec, Func Offset: 0xec
-	// Line 560, Address: 0x2da4f0, Func Offset: 0xf0
-	// Line 562, Address: 0x2da500, Func Offset: 0x100
-	// Line 563, Address: 0x2da504, Func Offset: 0x104
-	// Line 564, Address: 0x2da50c, Func Offset: 0x10c
-	// Line 565, Address: 0x2da514, Func Offset: 0x114
-	// Line 566, Address: 0x2da51c, Func Offset: 0x11c
-	// Line 567, Address: 0x2da524, Func Offset: 0x124
-	// Line 568, Address: 0x2da52c, Func Offset: 0x12c
-	// Line 569, Address: 0x2da534, Func Offset: 0x134
-	// Line 570, Address: 0x2da53c, Func Offset: 0x13c
-	// Line 589, Address: 0x2da544, Func Offset: 0x144
-	// Line 590, Address: 0x2da550, Func Offset: 0x150
-	// Line 612, Address: 0x2da554, Func Offset: 0x154
-	// Line 590, Address: 0x2da558, Func Offset: 0x158
-	// Line 591, Address: 0x2da55c, Func Offset: 0x15c
-	// Line 612, Address: 0x2da560, Func Offset: 0x160
-	// Line 613, Address: 0x2da578, Func Offset: 0x178
-	// Line 614, Address: 0x2da584, Func Offset: 0x184
-	// Line 616, Address: 0x2da588, Func Offset: 0x188
-	// Line 617, Address: 0x2da5a0, Func Offset: 0x1a0
-	// Line 618, Address: 0x2da5ac, Func Offset: 0x1ac
-	// Line 620, Address: 0x2da5b0, Func Offset: 0x1b0
-	// Line 621, Address: 0x2da5cc, Func Offset: 0x1cc
-	// Line 624, Address: 0x2da5d8, Func Offset: 0x1d8
-	// Line 625, Address: 0x2da5f0, Func Offset: 0x1f0
-	// Line 626, Address: 0x2da5fc, Func Offset: 0x1fc
-	// Line 631, Address: 0x2da600, Func Offset: 0x200
-	// Line 632, Address: 0x2da614, Func Offset: 0x214
-	// Line 633, Address: 0x2da624, Func Offset: 0x224
-	// Line 634, Address: 0x2da640, Func Offset: 0x240
-	// Line 635, Address: 0x2da64c, Func Offset: 0x24c
-	// Line 636, Address: 0x2da650, Func Offset: 0x250
-	// Line 637, Address: 0x2da66c, Func Offset: 0x26c
-	// Line 639, Address: 0x2da678, Func Offset: 0x278
-	// Line 640, Address: 0x2da688, Func Offset: 0x288
-	// Line 641, Address: 0x2da6a4, Func Offset: 0x2a4
-	// Line 643, Address: 0x2da6b0, Func Offset: 0x2b0
-	// Line 644, Address: 0x2da6cc, Func Offset: 0x2cc
-	// Line 660, Address: 0x2da6d4, Func Offset: 0x2d4
-	// Line 661, Address: 0x2da6dc, Func Offset: 0x2dc
-	// Line 662, Address: 0x2da6e0, Func Offset: 0x2e0
-	// Line 663, Address: 0x2da6e4, Func Offset: 0x2e4
-	// Line 664, Address: 0x2da6e8, Func Offset: 0x2e8
-	// Line 665, Address: 0x2da6ec, Func Offset: 0x2ec
-	// Line 666, Address: 0x2da6f0, Func Offset: 0x2f0
-	// Line 667, Address: 0x2da6f4, Func Offset: 0x2f4
-	// Line 668, Address: 0x2da6f8, Func Offset: 0x2f8
-	// Line 669, Address: 0x2da6fc, Func Offset: 0x2fc
-	// Line 675, Address: 0x2da700, Func Offset: 0x300
-	// Line 678, Address: 0x2da70c, Func Offset: 0x30c
-	// Line 681, Address: 0x2da71c, Func Offset: 0x31c
-	// Line 682, Address: 0x2da748, Func Offset: 0x348
-	// Line 696, Address: 0x2da754, Func Offset: 0x354
-	// Func End, Address: 0x2da770, Func Offset: 0x370
-	scePrintf("Ps2_Read_Key - UNIMPLEMENTED!\n");
+    unsigned int i; 
+    unsigned int j; 
+    PAD_INFO* pp;   
+    
+    pp = Pad;
+    
+    for (i = 0; i < 4; i++) 
+    {
+        pp[i].OldPerType = pp[i].PerType;
+        
+        if (per->info->type == 0) 
+        {
+            pp[i].PerType = 0;
+        } 
+        else if ((per->info->type & 0x40)) 
+        {
+            pp[i].PerType = 6;
+        } 
+        else if ((per->info->type & 0x80))
+        {
+            pp[i].PerType = 5;
+        } 
+        else
+        {
+            pp[i].PerType = -1;
+            
+            if ((per->info->type & 0x1)) 
+            { 
+                for (j = 0; ButtonInfo[j].Button != 0; j++)
+                {
+                    if (ButtonInfo[j].Button == (ButtonInfo[j].Button & per->support)) 
+                    {
+                        pp[i].PerType = ButtonInfo[j].Type;
+                        break;
+                    }
+                } 
+            }
+        }
+        
+        if (pp[i].PerType == 1) 
+        {
+            pp[i].PerTypeEx = 1;
+            
+            pp[i].on = per->on;
+            
+            pp[i].press = per->press;
+            
+            pp[i].l = per->l;
+            pp[i].r = per->r;
+            
+            pp[i].x1 = per->x1;
+            pp[i].y1 = per->y1;
+            
+            pp[i].x2 = per->x2;
+            pp[i].y2 = per->y2;
+            
+            if (pp[i].Calibrate >= 0) 
+            {
+                pp[i].on2old = pp[i].on2;
+                
+                pp[i].on2 = 0;
+                
+                if (pp[i].x1 < (-64 - pp[i].Calibrate)) 
+                {
+                    pp[i].on2 |= 0x2000;
+                }
+                
+                if (pp[i].x1 > (pp[i].Calibrate + 64)) 
+                {
+                    pp[i].on2 |= 0x8000;
+                }
+                
+                if (pp[i].y1 < (-64 - pp[i].Calibrate)) 
+                {
+                    pp[i].on2 |= 0x4000;
+                }
+                
+                if (pp[i].y1 < (pp[i].Calibrate + 64)) 
+                {
+                    pp[i].on2 |= 0x1000;
+                }
+                
+                pp[i].press2 = ~pp[i].on2old & pp[i].on2;
+                
+                pp[i].on |= pp[i].on2;
+                
+                if (((pp[i].on & 0x1000)) && ((pp[i].on & 0x4000))) 
+                {
+                    pp[i].on &= ~0x4000;
+                }
+                
+                if (((pp[i].on & 0x8000)) && ((pp[i].on & 0x2000))) 
+                {
+                    pp[i].on &= ~0x2000;
+                }
+                
+                pp[i].press |= pp[i].press2;
+                
+                if (((pp[i].press & 0x1000)) && ((pp[i].press & 0x4000))) 
+                {
+                    pp[i].press &= ~0x4000;
+                }
+                
+                if (((pp[i].press & 0x8000)) && ((pp[i].press & 0x2000))) 
+                {
+                    pp[i].press &= ~0x2000;
+                }
+            }
+        }
+        else
+        {
+            pp[i].PerTypeEx = 0;
+            
+            pp[i].on = 0;
+            
+            pp[i].press = 0;
+            
+            pp[i].l = 0;
+            pp[i].r = 0;
+            
+            pp[i].x1 = 0;
+            pp[i].y1 = 0;
+            
+            pp[i].x2 = 0;
+            pp[i].y2 = 0;
+        }
+        
+        Ps2_MakeRepeatKey(i, pad_wk);
+    } 
+    
+    if (Pad[CurrentPortId].SoftReset != 0)
+    {
+        SoftResetFlag = 1;
+    }
 }
 
 // 100% matching!
