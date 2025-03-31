@@ -1,4 +1,4 @@
-ps2/veronica/prog/main.o
+ps2/veronica/prog/*.o
 report.txt
 compile_commands.json
 compile_config.json
