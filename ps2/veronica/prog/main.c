@@ -36,7 +36,14 @@
 #include <adx_ps2.h>
 
 #include "types.h"
+#include "macros.h"
 
+#include "ps2_NaMem.c"
+#include "camera.c"
+#include "eneset.c"
+#include "objitm.c"
+#include "room.c"
+#include "dread.c"
 #include "ps2_SystemLoadScreen.c"
 #include "ps2_sg_maloc.c"
 #include "backup.c"

@@ -2131,7 +2131,7 @@ unsigned int bhFlagSet(unsigned char type, unsigned int cnt, unsigned char flag)
 void bhChangeViewClip(char stg_no, char rom_no, char rcase, int evc_no);
 void bhChangeViewClipRM();
 void bhChangeClipVolume(char stg_no, char rom_no, char rcase, int evc_no);
-void bhChangeClipVolumeRM();
+void bhChangeClipVolumeRM();*/
 
 // 
 // Start address: 0x1559c0
@@ -2168,7 +2168,8 @@ void bhInitEvent()
 	// Line 275, Address: 0x155ab4, Func Offset: 0xf4
 	// Line 276, Address: 0x155abc, Func Offset: 0xfc
 	// Func End, Address: 0x155ac8, Func Offset: 0x108
-}*/
+	scePrintf("bhInitEvent - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x155ad0

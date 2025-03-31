@@ -1687,7 +1687,7 @@ void bhDrawOpqEffect3D(unsigned int* owp, int ct);
 void bhDrawThlEffect3D(unsigned int* owp, int ct);
 void bhDrawNtxEffect2D(unsigned int* owp, int ct);
 void bhDrawTrsEffect2D(unsigned int* owp, int ct);
-void bhDrawThunder();
+void bhDrawThunder();*/
 
 // 
 // Start address: 0x21bb60
@@ -1759,7 +1759,8 @@ void bhInitEffect()
 	// Line 239, Address: 0x21be98, Func Offset: 0x338
 	// Line 244, Address: 0x21beac, Func Offset: 0x34c
 	// Func End, Address: 0x21bedc, Func Offset: 0x37c
-}*/
+	scePrintf("bhInitEffect - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhSetFontTexture(void* datp) 
@@ -2239,7 +2240,7 @@ void bhLinkBlood()
 {
 	// Line 1161, Address: 0x21cc60, Func Offset: 0
 	// Func End, Address: 0x21cc68, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x21cc70
@@ -2247,9 +2248,9 @@ void bhControlEffect()
 {
 	int* entp;
 	int i;
-	_anon23* owp;
-	BH_PWORK* pp;
-	_anon0* op;
+	//_anon23* owp;
+	//BH_PWORK* pp;
+	//_anon0* op;
 	// Line 1167, Address: 0x21cc70, Func Offset: 0
 	// Line 1172, Address: 0x21cc80, Func Offset: 0x10
 	// Line 1174, Address: 0x21cca8, Func Offset: 0x38
@@ -2300,9 +2301,10 @@ void bhControlEffect()
 	// Line 1246, Address: 0x21cf3c, Func Offset: 0x2cc
 	// Line 1247, Address: 0x21cf50, Func Offset: 0x2e0
 	// Func End, Address: 0x21cf64, Func Offset: 0x2f4
+	scePrintf("bhControlEffect - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x21cf70
 void bhDrawEffect()
 {

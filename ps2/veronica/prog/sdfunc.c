@@ -4630,7 +4630,7 @@ void ExecuteSoundCommand()
 	// Line 4173, Address: 0x29711c, Func Offset: 0x6c
 	// Line 4174, Address: 0x297124, Func Offset: 0x74
 	// Func End, Address: 0x297138, Func Offset: 0x88
-}
+}*/
 
 // 
 // Start address: 0x297140
@@ -4643,7 +4643,8 @@ void SendSoundCommand(unsigned int CommandNo)
 	// Line 4190, Address: 0x29717c, Func Offset: 0x3c
 	// Line 4191, Address: 0x297184, Func Offset: 0x44
 	// Func End, Address: 0x297190, Func Offset: 0x50
-}*/
+	scePrintf("SendSoundCommand - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x297190
@@ -4674,7 +4675,7 @@ void ExecSoundSystemMonitor()
 	scePrintf("ExecSoundSystemMonitor - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x297280
 int RequestReadIsoFile(char* FileName, void* DestPtr)
 {
@@ -4690,7 +4691,8 @@ int RequestReadIsoFile(char* FileName, void* DestPtr)
 	// Line 4266, Address: 0x2972ec, Func Offset: 0x6c
 	// Line 4267, Address: 0x2972f0, Func Offset: 0x70
 	// Func End, Address: 0x297300, Func Offset: 0x80
-}*/
+	scePrintf("RequestReadIsoFile - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x297300
@@ -4711,13 +4713,14 @@ int RequestReadInsideFile(unsigned int PartitionId, unsigned int FileId, void* D
 	scePrintf("RequestReadInsideFile - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x297380
 int GetIsoFileSize(char* FileName)
 {
 	// Line 4382, Address: 0x297380, Func Offset: 0
 	// Func End, Address: 0x297388, Func Offset: 0x8
-}*/
+	scePrintf("GetIsoFileSize - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int GetInsideFileSize(unsigned int PartitionId, unsigned int FileId)

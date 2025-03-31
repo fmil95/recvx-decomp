@@ -6679,11 +6679,11 @@ void NameChangeSet(_anon4* st)
 	// Line 6590, Address: 0x2a6ac8, Func Offset: 0x8
 	// Line 6591, Address: 0x2a6acc, Func Offset: 0xc
 	// Func End, Address: 0x2a6ad4, Func Offset: 0x14
-}
+}*/
 
 // 
 // Start address: 0x2a6ae0
-void AllItemInit()
+void AllItemInit(int param) // parameter is not present on the debugging symbols
 {
 	int temp;
 	unsigned int j;
@@ -6773,9 +6773,10 @@ void AllItemInit()
 	// Line 6772, Address: 0x2a6ea0, Func Offset: 0x3c0
 	// Line 6774, Address: 0x2a6eac, Func Offset: 0x3cc
 	// Func End, Address: 0x2a6eb8, Func Offset: 0x3d8
+	scePrintf("AllItemInit - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2a6ec0
 void ExtraGameItemInit()
 {
@@ -7167,7 +7168,7 @@ void PopPalletBuffer()
 	// Line 7226, Address: 0x2a7ca0, Func Offset: 0x10
 	// Line 7227, Address: 0x2a7cb8, Func Offset: 0x28
 	// Func End, Address: 0x2a7cc4, Func Offset: 0x34
-}
+}*/
 
 // 
 // Start address: 0x2a7cd0
@@ -7183,9 +7184,10 @@ void SbsTextureInit()
 	// Line 7241, Address: 0x2a7d1c, Func Offset: 0x4c
 	// Line 7243, Address: 0x2a7d24, Func Offset: 0x54
 	// Func End, Address: 0x2a7d30, Func Offset: 0x60
+	scePrintf("SbsTextureInit - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2a7d30
 void PulseInit()
 {

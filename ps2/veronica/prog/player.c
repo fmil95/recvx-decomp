@@ -1819,7 +1819,7 @@ void bhControlPlayerHead();
 void bhLookNearEnemy();
 void bhSetHeadRotation(short ax, short ay);
 void bhCalcHair(_anon0* op, BH_PWORK* pp);
-void* bhGetTransZ(int mtn_no);
+void* bhGetTransZ(int mtn_no);*/
 
 // 
 // Start address: 0x1386d0
@@ -1885,9 +1885,10 @@ void bhInitPlayer()
 	// Line 100, Address: 0x1389c0, Func Offset: 0x2f0
 	// Line 102, Address: 0x1389cc, Func Offset: 0x2fc
 	// Func End, Address: 0x1389d8, Func Offset: 0x308
+	scePrintf("bhInitPlayer - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1389e0
 void bhSetPlayer()
 {
@@ -2174,7 +2175,7 @@ void bhInitRoomChangePlayer()
 	// Line 298, Address: 0x1396c4, Func Offset: 0x494
 	// Line 299, Address: 0x1396dc, Func Offset: 0x4ac
 	// Func End, Address: 0x1396e8, Func Offset: 0x4b8
-}
+}*/
 
 // 
 // Start address: 0x1396f0
@@ -2267,9 +2268,10 @@ void bhResetPlayer()
 	// Line 373, Address: 0x139ba8, Func Offset: 0x4b8
 	// Line 374, Address: 0x139bc0, Func Offset: 0x4d0
 	// Func End, Address: 0x139bcc, Func Offset: 0x4dc
+	scePrintf("bhResetPlayer - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x139bd0
 void bhCheckMothEgg()
 {
