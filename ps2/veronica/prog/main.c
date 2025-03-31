@@ -14,7 +14,6 @@
 #include <libmc.h>
 #include <libcdvd.h>
 #include <libpad.h>
-//#include <stdlib.h>
 
 #include "override_katana.h"
 // KATANA library
@@ -80,7 +79,6 @@
 #include "ps2_sg_sycfg.c"
 #include "ps2_sg_sd.c"
 #include "ps2_sg_sytmr.c"
-#include "flag.c"
 #include "sdc.c"
 #include "pad.c"
 #include "padman.c"

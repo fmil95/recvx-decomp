@@ -1,6 +1,4 @@
-void bhStFlg(unsigned int* flg, unsigned int bit);
-void bhCrFlg(unsigned int* flg, unsigned int bit);
-int bhCkFlg(unsigned int* flg, unsigned int bit);
+#include "flag.h"
 
 // 100% matching! 
 void bhStFlg(unsigned int* flg, unsigned int bit)
