@@ -669,9 +669,9 @@ struct _anon39
 	_anon33 texsurface;
 };
 
-unsigned char* Ps2_MOVIE;
+unsigned char* Ps2_MOVIE;*/
 unsigned int Ps2_tex_load_tp_cancel;
-unsigned int Ps2_highlight;
+/*unsigned int Ps2_highlight;
 float Ps2_rand_seed[4];
 unsigned int PS2_Render_tex_sub_flag;
 unsigned int Ps2_ice_flag;
@@ -682,9 +682,9 @@ unsigned char Ps2_tex_mem[10485760];
 MOV_INFO MovieInfo;
 /*float Ps2_zbuff_a;
 float Ps2_zbuff_b;
-_anon1 Ps2_gs_save;
+_anon1 Ps2_gs_save;*/
 unsigned int Ps2_use_pt_flag;
-_anon4* Ps2_now_tex;*/
+NJS_TEXMEMLIST* Ps2_now_tex;
 unsigned int Ps2_ot_list_no;
 void* Ps2_PP;
 PS2_OT Ps2_ot_list[8192];
@@ -740,9 +740,9 @@ void Ps2AddPrim3D(unsigned long prim, void* dp, unsigned int num);
 void Ps2AddPrim3DEx(unsigned long prim, void* dp, unsigned int num);
 void Ps2AddPrim3DEx1P(unsigned long prim, void* dp, unsigned int num);
 void Ps2AddPrim3DMod(unsigned long prim, void* dp, unsigned int num);
-void Ps2ClearOT();
+void Ps2ClearOT();*/
 void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim);
-void Ps2DrawOTag();
+/*void Ps2DrawOTag();
 int Ps2DrawOTagSub(int start_no);
 unsigned int Ps2BitCount(unsigned int value);*/
 void Ps2InitTexCache();
@@ -1015,106 +1015,176 @@ void PS2_swap()
     SyncPath();
 }
 
-// 
-// Start address: 0x2cb7d0
+// 99.93% matching
 void Ps2AddPrim(unsigned long prim, void* dp, unsigned int num, unsigned int clip_3d_on)
 {
-	float y;
-	float x;
-	float sz;
-	float invz;
-	float z;
-	unsigned int nf_flag;
-	unsigned int st_clip_flag;
-	unsigned int out_clip_flag;
-	unsigned int sc_flag;
-	unsigned int clip_flag;
-	unsigned int i;
-	unsigned long* p;
-	// Line 890, Address: 0x2cb7d0, Func Offset: 0
-	// Line 904, Address: 0x2cb800, Func Offset: 0x30
-	// Line 890, Address: 0x2cb80c, Func Offset: 0x3c
-	// Line 895, Address: 0x2cb81c, Func Offset: 0x4c
-	// Line 904, Address: 0x2cb820, Func Offset: 0x50
-	// Line 895, Address: 0x2cb824, Func Offset: 0x54
-	// Line 904, Address: 0x2cb82c, Func Offset: 0x5c
-	// Line 906, Address: 0x2cb834, Func Offset: 0x64
-	// Line 915, Address: 0x2cb844, Func Offset: 0x74
-	// Line 919, Address: 0x2cb85c, Func Offset: 0x8c
-	// Line 921, Address: 0x2cb86c, Func Offset: 0x9c
-	// Line 929, Address: 0x2cb894, Func Offset: 0xc4
-	// Line 931, Address: 0x2cb8ac, Func Offset: 0xdc
-	// Line 932, Address: 0x2cb8bc, Func Offset: 0xec
-	// Line 933, Address: 0x2cb8c4, Func Offset: 0xf4
-	// Line 934, Address: 0x2cb8cc, Func Offset: 0xfc
-	// Line 956, Address: 0x2cb8d4, Func Offset: 0x104
-	// Line 957, Address: 0x2cb8d8, Func Offset: 0x108
-	// Line 960, Address: 0x2cb8e0, Func Offset: 0x110
-	// Line 963, Address: 0x2cb904, Func Offset: 0x134
-	// Line 961, Address: 0x2cb90c, Func Offset: 0x13c
-	// Line 963, Address: 0x2cb910, Func Offset: 0x140
-	// Line 961, Address: 0x2cb914, Func Offset: 0x144
-	// Line 963, Address: 0x2cb918, Func Offset: 0x148
-	// Line 964, Address: 0x2cb924, Func Offset: 0x154
-	// Line 967, Address: 0x2cb930, Func Offset: 0x160
-	// Line 969, Address: 0x2cb948, Func Offset: 0x178
-	// Line 970, Address: 0x2cb960, Func Offset: 0x190
-	// Line 971, Address: 0x2cb968, Func Offset: 0x198
-	// Line 973, Address: 0x2cb984, Func Offset: 0x1b4
-	// Line 984, Address: 0x2cb98c, Func Offset: 0x1bc
-	// Line 985, Address: 0x2cb9b8, Func Offset: 0x1e8
-	// Line 986, Address: 0x2cb9d0, Func Offset: 0x200
-	// Line 987, Address: 0x2cb9d8, Func Offset: 0x208
-	// Line 988, Address: 0x2cb9e0, Func Offset: 0x210
-	// Line 991, Address: 0x2cb9ec, Func Offset: 0x21c
-	// Line 997, Address: 0x2cb9f8, Func Offset: 0x228
-	// Line 1010, Address: 0x2cb9fc, Func Offset: 0x22c
-	// Line 992, Address: 0x2cba00, Func Offset: 0x230
-	// Line 993, Address: 0x2cba04, Func Offset: 0x234
-	// Line 997, Address: 0x2cba08, Func Offset: 0x238
-	// Line 998, Address: 0x2cba0c, Func Offset: 0x23c
-	// Line 999, Address: 0x2cba10, Func Offset: 0x240
-	// Line 998, Address: 0x2cba14, Func Offset: 0x244
-	// Line 1002, Address: 0x2cba18, Func Offset: 0x248
-	// Line 1005, Address: 0x2cba20, Func Offset: 0x250
-	// Line 1007, Address: 0x2cba28, Func Offset: 0x258
-	// Line 1008, Address: 0x2cba2c, Func Offset: 0x25c
-	// Line 1010, Address: 0x2cba30, Func Offset: 0x260
-	// Line 1011, Address: 0x2cba88, Func Offset: 0x2b8
-	// Line 1015, Address: 0x2cba94, Func Offset: 0x2c4
-	// Line 1016, Address: 0x2cbad0, Func Offset: 0x300
-	// Line 1017, Address: 0x2cbad4, Func Offset: 0x304
-	// Line 1019, Address: 0x2cbad8, Func Offset: 0x308
-	// Line 1023, Address: 0x2cbae0, Func Offset: 0x310
-	// Line 1025, Address: 0x2cbae8, Func Offset: 0x318
-	// Line 1023, Address: 0x2cbaec, Func Offset: 0x31c
-	// Line 1025, Address: 0x2cbb00, Func Offset: 0x330
-	// Line 1027, Address: 0x2cbb18, Func Offset: 0x348
-	// Line 1029, Address: 0x2cbb40, Func Offset: 0x370
-	// Line 1031, Address: 0x2cbb48, Func Offset: 0x378
-	// Line 1032, Address: 0x2cbb50, Func Offset: 0x380
-	// Line 1031, Address: 0x2cbb54, Func Offset: 0x384
-	// Line 1032, Address: 0x2cbb68, Func Offset: 0x398
-	// Line 1034, Address: 0x2cbb80, Func Offset: 0x3b0
-	// Line 1035, Address: 0x2cbba8, Func Offset: 0x3d8
-	// Line 1041, Address: 0x2cbbac, Func Offset: 0x3dc
-	// Line 1042, Address: 0x2cbbb0, Func Offset: 0x3e0
-	// Line 1044, Address: 0x2cbbbc, Func Offset: 0x3ec
-	// Line 1045, Address: 0x2cbbd0, Func Offset: 0x400
-	// Line 1046, Address: 0x2cbbe8, Func Offset: 0x418
-	// Line 1047, Address: 0x2cbbec, Func Offset: 0x41c
-	// Line 1086, Address: 0x2cbc08, Func Offset: 0x438
-	// Line 1053, Address: 0x2cbc0c, Func Offset: 0x43c
-	// Line 1086, Address: 0x2cbc10, Func Offset: 0x440
-	// Line 1102, Address: 0x2cbc20, Func Offset: 0x450
-	// Line 1110, Address: 0x2cbc2c, Func Offset: 0x45c
-	// Line 1112, Address: 0x2cbc40, Func Offset: 0x470
-	// Line 1120, Address: 0x2cbc48, Func Offset: 0x478
-	// Line 1121, Address: 0x2cbc50, Func Offset: 0x480
-	// Line 1128, Address: 0x2cbc58, Func Offset: 0x488
-	// Func End, Address: 0x2cbc8c, Func Offset: 0x4bc
-	scePrintf("Ps2AddPrim - UNIMPLEMENTED!\n");
-}
+    unsigned long* p;           
+    unsigned int i;             
+    unsigned int clip_flag;     
+    unsigned int sc_flag;       
+    unsigned int out_clip_flag; 
+    unsigned int st_clip_flag;  
+    unsigned int nf_flag;       
+    float z;                    
+    float invz;                 
+    float sz;                   
+    float x;                   
+    float y;                    
+
+    clip_flag = 0; 
+    sc_flag = 0;
+    st_clip_flag = 0x8000;
+    nf_flag = 0; 
+    
+    if ((prim & 0x8000000000000))
+    { 
+        if (Ps2_now_tex == NULL) 
+        { 
+            return;
+        }
+        
+        if (((prim & 0x20000000000000)) && (Ps2_use_pt_flag != 0)) 
+        { 
+            prim &= ~0x20000000000000; 
+        }
+        
+        if ((!(prim & 0x20000000000000)) && (((TIM2_PICTUREHEADER*)(Ps2_now_tex->texinfo.texsurface.pSurface))->TpFlag != 0)) 
+        { 
+            Ps2_tex_load_tp_cancel = 1; 
+            
+            Ps2TexLoad(Ps2_now_tex);
+            
+            Ps2_tex_load_tp_cancel = 0; 
+        }
+    } 
+    
+    p = (unsigned long*)WORKBASE; 
+    
+    D2_SyncTag(); 
+    
+    *p++ = DMAend | ((num * 3) + 3); 
+    *p++ = 0; 
+    
+    *p++ = SCE_GIF_SET_TAG(1, 0, 0, 0, 0, 1); 
+    *p++ = SCE_GIF_PACKED_AD; 
+    
+    if ((prim & 0x20000000000000)) 
+    { 
+        *p++ = Ps2_gs_save.TEST = SCE_GS_SET_TEST(1, 6, 0, 0, 0, 0, 1, 2); 
+    }
+    else
+    { 
+        *p++ = Ps2_gs_save.TEST = SCE_GS_SET_TEST(1, 6, 0, 0, 0, 0, 1, 2); 
+    }
+    
+    *p++ = SCE_GS_TEST_1; 
+    *p++ = SCE_GIF_SET_TAG(prim, 1, 1, 0, 0, 3) | num; // should be SCE_GIF_SET_TAG(num, ...) - maybe it's a custom macro and not the official one?
+    
+    if ((prim & 0x80000000000000)) 
+    {
+        *p++ = SCE_GS_UV << (0 * 4) | SCE_GS_RGBAQ << (1 * 4) | SCE_GS_XYZF2 << (2 * 4); 
+    } 
+    else 
+    { 
+        *p++ = SCE_GS_ST << (0 * 4) | SCE_GS_RGBAQ << (1 * 4) | SCE_GS_XYZF2 << (2 * 4); 
+    }
+    
+    for (i = 0; i < num; i++) 
+    { 
+        clip_flag >>= 1; 
+        nf_flag >>= 1; 
+        
+        ((u_long128*)p)[0] = ((u_long128*)dp)[0]; 
+        
+        out_clip_flag = ((UNKNOWN*)p)->unkC; 
+        
+        invz = ((float*)p)[2]; 
+        
+        ((u_long128*)p)[1] = ((u_long128*)dp)[1]; 
+        ((u_long128*)p)[2] = ((u_long128*)dp)[2]; 
+        
+        x = ((float*)p)[8]; 
+        y = ((float*)p)[9]; 
+            
+        sc_flag >>= 4;
+
+        if (((x < 0) || (x > 4095.0f)) || ((y < 0) || (y > 4095.0f))) 
+        { 
+            clip_flag |= 0x4;
+        }
+
+        z = ((float*)p)[3] = ((UNKNOWN*)(p + 4))->unk8;
+        
+        if ((z < 1.0f) || (z > 65535.0f)) 
+        { 
+            clip_flag |= 0x4;
+            nf_flag |= 0x4; 
+        }
+        
+        if (clip_3d_on != 0)
+        { 
+            sz = (-Ps2_zbuff_b * invz) - Ps2_zbuff_a; 
+            
+            if (sz < 0) 
+            {
+                sz = 0;
+            }
+            
+            if (sz > 65534.0f) 
+            {
+                sz = 65534.0f; 
+            }
+            
+            ((UNKNOWN*)(p + 4))->unk8 = sz; 
+        } 
+        else 
+        { 
+            sz = Ps2_zbuff_a + (Ps2_zbuff_b / z); 
+            
+            if (sz < 0) 
+            {
+                sz = 0; 
+            }
+            
+            if (sz > 65534.0f) 
+            {
+                sz = 65534.0f; 
+            }
+               
+            ((UNKNOWN*)(p + 4))->unk8 = sz; 
+        } 
+        
+        sceVu0FTOI4Vector((void*)(p + 4), (void*)(p + 4)); 
+        
+        if (clip_flag != 0) 
+        { 
+            ((UNKNOWN*)(p + 4))->unkC |= 0x8000;
+        }
+        
+        ((UNKNOWN*)(p + 4))->unkC |= out_clip_flag; 
+        
+        st_clip_flag &= ((UNKNOWN*)(p + 4))->unkC; 
+        
+        if (clip_3d_on == 0) 
+        { 
+            ((UNKNOWN*)(p + 4))->unkC &= ~0x8000;
+        }
+        
+        p = (unsigned long*)((int)p + 48); 
+        dp = (unsigned long*)((int)dp + 48);
+    } 
+    
+    if ((prim & 0x20000000000000)) 
+    { 
+        Ps2AddOT((void*)WORKBASE, num, sz, prim); 
+    } 
+    else
+    { 
+        SyncPath(); 
+        
+        loadImage((void*)0xF0000000); 
+    }
+} 
 
 // 100% matching!
 void Ps2AddPrim2D(unsigned long prim, void* dp, unsigned int num)
@@ -1563,7 +1633,7 @@ void Ps2ClearOT()
     } 
 }
 
-/*// 
+// 
 // Start address: 0x2cc8b0
 void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim)
 {
@@ -1642,7 +1712,8 @@ void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim)
 	// Line 2265, Address: 0x2cccec, Func Offset: 0x43c
 	// Line 2267, Address: 0x2cccfc, Func Offset: 0x44c
 	// Func End, Address: 0x2ccd04, Func Offset: 0x454
-}*/
+	scePrintf("Ps2AddOT - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void Ps2DrawOTag()
@@ -1902,14 +1973,14 @@ int Ps2GlobalIndexTexLoad(unsigned int index)
 	// Line 2541, Address: 0x2cd3e4, Func Offset: 0x44
 	// Line 2544, Address: 0x2cd3f4, Func Offset: 0x54
 	// Func End, Address: 0x2cd404, Func Offset: 0x64
-}
+}*/
 
 // 
 // Start address: 0x2cd410
-int Ps2TexLoad(_anon4* addr)
+int Ps2TexLoad(NJS_TEXMEMLIST* addr)
 {
 	unsigned int cache_flag;
-	_anon0* timp;
+	//_anon0* timp;
 	unsigned long* p;
 	unsigned int i;
 	unsigned int th;
@@ -2013,9 +2084,10 @@ int Ps2TexLoad(_anon4* addr)
 	// Line 2733, Address: 0x2cd8e8, Func Offset: 0x4d8
 	// Line 2734, Address: 0x2cd8ec, Func Offset: 0x4dc
 	// Func End, Address: 0x2cd910, Func Offset: 0x500
+	scePrintf("Ps2TexLoad - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cd910
 void Ps2SetFogColor()
 {

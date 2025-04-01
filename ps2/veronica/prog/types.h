@@ -2586,3 +2586,12 @@ typedef struct RDT_WORK
     unsigned int hed19; // offset 0x5C, size 0x4
     char usrname[32]; // offset 0x60, size 0x20
 } RDT_WORK;
+
+// TODO: find a struct on the debugging symbols similar to this one that could fit in Ps2AddPrim()
+typedef struct UNKNOWN 
+{
+    int unk0;
+    int unk4;
+    float unk8;
+    int unkC;
+} UNKNOWN;
