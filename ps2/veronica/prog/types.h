@@ -1663,6 +1663,7 @@ typedef struct PS2_GS_SAVE
 
 #define WORKBASE (0x70000000)
 
+#define DMAnext             (2<<28)
 #define DMAend  (7<<28)
 
 #define    SCE_GS_FALSE         (0)
