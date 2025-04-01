@@ -239,9 +239,9 @@ NJS_TEXMEMLIST* Ps2_tex_info;
 TIM2_PICTUREHEADER Ps2_tm_list_last;
 TIM2_PICTUREHEADER Ps2_tm_list_1st;
 void* Ps2_tex_buff;
-/*unsigned int Ps2_current_texno;
-_anon2* Ps2_current_texlist;
-_anon1* Ps2_current_texmemlist;
+unsigned int Ps2_current_texno;
+NJS_TEXLIST* Ps2_current_texlist;
+/*_anon1* Ps2_current_texmemlist;
 char*(*index)(char*, int);
 unsigned int Ps2_render_width;
 unsigned int palbuf[4096];
@@ -520,16 +520,15 @@ Sint32	njLoadTexture(NJS_TEXLIST *texlist)
 	scePrintf("njLoadTexture - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2e2150
+// 100% matching! 
 Sint32	njSetTexture(NJS_TEXLIST *texlist)
 {
-	// Line 409, Address: 0x2e2150, Func Offset: 0
-	// Line 410, Address: 0x2e2158, Func Offset: 0x8
-	// Line 411, Address: 0x2e2160, Func Offset: 0x10
-	// Line 412, Address: 0x2e2168, Func Offset: 0x18
-	// Func End, Address: 0x2e2170, Func Offset: 0x20
-	scePrintf("njSetTexture - UNIMPLEMENTED!\n");
+    if (texlist != NULL) 
+    {
+        Ps2_current_texlist = texlist;
+        
+        Ps2_current_texno = 0;
+    }
 }
 
 // 
