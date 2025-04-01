@@ -673,9 +673,9 @@ unsigned char* Ps2_MOVIE;*/
 unsigned int Ps2_tex_load_tp_cancel;
 /*unsigned int Ps2_highlight;
 float Ps2_rand_seed[4];
-unsigned int PS2_Render_tex_sub_flag;
+unsigned int PS2_Render_tex_sub_flag;*/
 unsigned int Ps2_ice_flag;
-unsigned int Ps2_albinoid_flag;*/
+/*unsigned int Ps2_albinoid_flag;*/
 sceGsDBuffDc Db;
 void* Ps2_tex_buff;
 unsigned char Ps2_tex_mem[10485760];
@@ -688,7 +688,7 @@ NJS_TEXMEMLIST* Ps2_now_tex;
 unsigned int Ps2_ot_list_no;
 void* Ps2_PP;
 PS2_OT Ps2_ot_list[8192];
-/*unsigned int Ps2_now_bank;*/
+unsigned int Ps2_now_bank;
 PS2_OT* Ps2_OT[4096][2];
 /*float Ps2AddPrimPrio;*/
 unsigned char Ps2_PBUFF[1835008];
@@ -1633,87 +1633,100 @@ void Ps2ClearOT()
     } 
 }
 
-// 
-// Start address: 0x2cc8b0
+// 97.83% matching
 void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim)
 {
-	unsigned int id;
-	unsigned int otz;
-	unsigned int size;
-	unsigned int i;
-	// Line 2193, Address: 0x2cc8b0, Func Offset: 0
-	// Line 2194, Address: 0x2cc8c0, Func Offset: 0x10
-	// Line 2195, Address: 0x2cc8d4, Func Offset: 0x24
-	// Line 2197, Address: 0x2cc8fc, Func Offset: 0x4c
-	// Line 2198, Address: 0x2cc900, Func Offset: 0x50
-	// Line 2202, Address: 0x2cc904, Func Offset: 0x54
-	// Line 2204, Address: 0x2cc90c, Func Offset: 0x5c
-	// Line 2205, Address: 0x2cc910, Func Offset: 0x60
-	// Line 2210, Address: 0x2cc914, Func Offset: 0x64
-	// Line 2213, Address: 0x2cc91c, Func Offset: 0x6c
-	// Line 2214, Address: 0x2cc920, Func Offset: 0x70
-	// Line 2215, Address: 0x2cc928, Func Offset: 0x78
-	// Line 2222, Address: 0x2cc92c, Func Offset: 0x7c
-	// Line 2225, Address: 0x2cc93c, Func Offset: 0x8c
-	// Line 2226, Address: 0x2cc958, Func Offset: 0xa8
-	// Line 2227, Address: 0x2cc988, Func Offset: 0xd8
-	// Line 2226, Address: 0x2cc98c, Func Offset: 0xdc
-	// Line 2227, Address: 0x2cc990, Func Offset: 0xe0
-	// Line 2228, Address: 0x2cc9bc, Func Offset: 0x10c
-	// Line 2229, Address: 0x2cc9cc, Func Offset: 0x11c
-	// Line 2230, Address: 0x2cc9d4, Func Offset: 0x124
-	// Line 2231, Address: 0x2cca14, Func Offset: 0x164
-	// Line 2233, Address: 0x2cca28, Func Offset: 0x178
-	// Line 2234, Address: 0x2cca3c, Func Offset: 0x18c
-	// Line 2235, Address: 0x2cca4c, Func Offset: 0x19c
-	// Line 2234, Address: 0x2cca54, Func Offset: 0x1a4
-	// Line 2235, Address: 0x2cca70, Func Offset: 0x1c0
-	// Line 2236, Address: 0x2cca90, Func Offset: 0x1e0
-	// Line 2237, Address: 0x2cca98, Func Offset: 0x1e8
-	// Line 2240, Address: 0x2ccac0, Func Offset: 0x210
-	// Line 2241, Address: 0x2ccad0, Func Offset: 0x220
-	// Line 2240, Address: 0x2ccad8, Func Offset: 0x228
-	// Line 2241, Address: 0x2ccae0, Func Offset: 0x230
-	// Line 2240, Address: 0x2ccae4, Func Offset: 0x234
-	// Line 2241, Address: 0x2ccaf8, Func Offset: 0x248
-	// Line 2242, Address: 0x2ccb24, Func Offset: 0x274
-	// Line 2241, Address: 0x2ccb2c, Func Offset: 0x27c
-	// Line 2242, Address: 0x2ccb40, Func Offset: 0x290
-	// Line 2243, Address: 0x2ccb48, Func Offset: 0x298
-	// Line 2253, Address: 0x2ccb50, Func Offset: 0x2a0
-	// Line 2242, Address: 0x2ccb58, Func Offset: 0x2a8
-	// Line 2253, Address: 0x2ccb60, Func Offset: 0x2b0
-	// Line 2242, Address: 0x2ccb64, Func Offset: 0x2b4
-	// Line 2255, Address: 0x2ccb68, Func Offset: 0x2b8
-	// Line 2242, Address: 0x2ccb6c, Func Offset: 0x2bc
-	// Line 2243, Address: 0x2ccb80, Func Offset: 0x2d0
-	// Line 2257, Address: 0x2ccb88, Func Offset: 0x2d8
-	// Line 2243, Address: 0x2ccb98, Func Offset: 0x2e8
-	// Line 2254, Address: 0x2ccbb4, Func Offset: 0x304
-	// Line 2258, Address: 0x2ccbbc, Func Offset: 0x30c
-	// Line 2260, Address: 0x2ccbc0, Func Offset: 0x310
-	// Line 2262, Address: 0x2ccbc4, Func Offset: 0x314
-	// Line 2254, Address: 0x2ccbc8, Func Offset: 0x318
-	// Line 2255, Address: 0x2ccbd4, Func Offset: 0x324
-	// Line 2261, Address: 0x2ccbf8, Func Offset: 0x348
-	// Line 2255, Address: 0x2ccbfc, Func Offset: 0x34c
-	// Line 2256, Address: 0x2ccc08, Func Offset: 0x358
-	// Line 2257, Address: 0x2ccc28, Func Offset: 0x378
-	// Line 2258, Address: 0x2ccc48, Func Offset: 0x398
-	// Line 2259, Address: 0x2ccc5c, Func Offset: 0x3ac
-	// Line 2258, Address: 0x2ccc64, Func Offset: 0x3b4
-	// Line 2259, Address: 0x2ccc70, Func Offset: 0x3c0
-	// Line 2260, Address: 0x2ccc90, Func Offset: 0x3e0
-	// Line 2262, Address: 0x2cccac, Func Offset: 0x3fc
-	// Line 2263, Address: 0x2cccb4, Func Offset: 0x404
-	// Line 2264, Address: 0x2cccc0, Func Offset: 0x410
-	// Line 2263, Address: 0x2cccc4, Func Offset: 0x414
-	// Line 2264, Address: 0x2ccce0, Func Offset: 0x430
-	// Line 2265, Address: 0x2cccec, Func Offset: 0x43c
-	// Line 2267, Address: 0x2cccfc, Func Offset: 0x44c
-	// Func End, Address: 0x2ccd04, Func Offset: 0x454
-	scePrintf("Ps2AddOT - UNIMPLEMENTED!\n");
-}
+    unsigned int i; 
+    unsigned int size; 
+    register unsigned int otz = 0; 
+    unsigned int id; 
+
+    if (Ps2_ice_flag != 0)
+    { 
+        id = Ps2_now_tex->globalIndex & 0xFFFFF; 
+        
+        if (((id >= 26510) && (id <= 26614)) || (id == 107170)) 
+        { 
+            asm volatile (trunc.w.s f12, f12); 
+            asm volatile (mfc1      otz, f12); 
+            
+            otz >>= 12;
+        } 
+        else 
+        { 
+            asm volatile (trunc.w.s f12, f12); 
+            asm volatile (mfc1      otz, f12); 
+            
+            otz >>= 4;
+        }
+    } 
+    else 
+    { 
+        asm volatile (trunc.w.s f12, f12); 
+        asm volatile (mfc1      otz, f12); 
+        
+        otz >>= 4; 
+    }
+        
+    if (otz > 4095) 
+    {
+        otz = 4095; 
+    }
+        
+    if (Ps2_OT[otz][0] != NULL) 
+    { 
+        Ps2_OT[otz][1]->op = (void*)&Ps2_ot_list[Ps2_ot_list_no]; 
+        
+        Ps2_OT[otz][1] = &Ps2_ot_list[Ps2_ot_list_no]; 
+        
+        Ps2_OT[otz][1]->op = NULL; 
+    } 
+    else 
+    { 
+        Ps2_OT[otz][0] = Ps2_OT[otz][1] = &Ps2_ot_list[Ps2_ot_list_no]; 
+        
+        Ps2_OT[otz][1]->op = NULL; 
+    }
+        
+    if ((prim & 0x8000000000000)) 
+    { 
+        Ps2_ot_list[Ps2_ot_list_no].tp = Ps2_now_tex; 
+        Ps2_ot_list[Ps2_ot_list_no].bank = Ps2_now_bank; 
+    }
+    else 
+    { 
+        Ps2_ot_list[Ps2_ot_list_no].tp = (void*)-1; 
+    }
+        
+    Ps2_ot_list[Ps2_ot_list_no].p = Ps2_PP; 
+    
+    Ps2_ot_list[Ps2_ot_list_no].TEX0 = Ps2_gs_save.TEX0 & 0xE0F8001FFFFFC000; 
+    Ps2_ot_list[Ps2_ot_list_no].TEX0_NEXT = Ps2_gs_save.TEX0_NEXT & 0xE0F8001FFFFFC000; 
+    
+    Ps2_ot_list[Ps2_ot_list_no].ALPHA = Ps2_gs_save.ALPHA; 
+    
+    num = (num * 3) + 1; 
+    
+    (char*)Ps2_PP += 16; 
+        
+    *((long*)Ps2_PP)++ = DMAnext | ((*(long*)p) & 0xFFFFFFF); 
+    *((long*)Ps2_PP)++ = 0; 
+    
+    *((long*)Ps2_PP)++ = SCE_GIF_SET_TAG(1, 0, 0, 0, 0, 1); 
+    *((long*)Ps2_PP)++ = SCE_GIF_PACKED_AD; 
+    
+    *((long*)Ps2_PP)++ = Ps2_gs_save.ALPHA; 
+    *((long*)Ps2_PP)++ = SCE_GS_ALPHA_1; 
+    
+    (char*)p += 48; 
+    
+    for (i = 0; i < num; i++) 
+    { 
+        *((u_long128*)Ps2_PP)++ = *((u_long128*)p)++; 
+    } 
+    
+    Ps2_ot_list_no++; 
+} 
 
 // 100% matching! 
 void Ps2DrawOTag()
