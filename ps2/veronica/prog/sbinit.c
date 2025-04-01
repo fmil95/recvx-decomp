@@ -1,9 +1,8 @@
+#include "sbinit.h"
+
 unsigned char gMapleSendBuf[1024 * 24 * 2 + 32];
 unsigned char gMapleRecvBuf[1024 * 24 * 2 + 32];
 Uint8* _BSG_END;
-
-void sbInitSystem(Int mode, Int frame, Int count);
-void sbExitSystem(void);
 
 // 100% matching!
 void sbInitSystem(Int mode, Int frame, Int count)

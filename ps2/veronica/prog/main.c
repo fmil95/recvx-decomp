@@ -72,7 +72,6 @@
 #include "ps2_sg_syhw.c"
 #include "ps2_sg_syrtc.c"
 #include "ps2_sg_pdvib.c"
-#include "sbinit.c"
 #include "cri_placeholders.c"
 #include "adxwrap.c"
 #include "ps2_sg_sycfg.c"

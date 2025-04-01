@@ -1,3 +1,5 @@
+#include <sg_bup.h>
+
 // TODO: include sg_sybt.h and remove the below struct
 struct tag_SYS_BT_SYSTEMID{                   /*                    */
     Sint32 nNo ;                              /*                    */
