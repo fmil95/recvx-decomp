@@ -241,8 +241,8 @@ TIM2_PICTUREHEADER Ps2_tm_list_1st;
 void* Ps2_tex_buff;
 unsigned int Ps2_current_texno;
 NJS_TEXLIST* Ps2_current_texlist;
-/*_anon1* Ps2_current_texmemlist;
-char*(*index)(char*, int);
+NJS_TEXMEMLIST* Ps2_current_texmemlist;
+/*char*(*index)(char*, int);
 unsigned int Ps2_render_width;
 unsigned int palbuf[4096];
 unsigned int Ps2_clut[1024];
@@ -531,18 +531,21 @@ Sint32	njSetTexture(NJS_TEXLIST *texlist)
     }
 }
 
-// 
-// Start address: 0x2e2170
+// 100% matching! 
 Sint32	njSetTextureNum(Uint32 n)
 {
-	// Line 430, Address: 0x2e2170, Func Offset: 0
-	// Line 441, Address: 0x2e2188, Func Offset: 0x18
-	// Line 444, Address: 0x2e218c, Func Offset: 0x1c
-	// Line 445, Address: 0x2e2194, Func Offset: 0x24
-	// Line 447, Address: 0x2e21b4, Func Offset: 0x44
-	// Line 451, Address: 0x2e21c8, Func Offset: 0x58
-	// Func End, Address: 0x2e21d0, Func Offset: 0x60
-	scePrintf("njSetTextureNum - UNIMPLEMENTED!\n");
+    if (Ps2_current_texlist->nbTexture <= n) 
+    {
+        n = 0;
+    }
+    
+    Ps2_current_texno = n;
+    
+    Ps2_current_texmemlist = (NJS_TEXMEMLIST*)Ps2_current_texlist->textures[n].texaddr;
+    
+    Ps2_current_gindex = ((TIM2_PICTUREHEADER*)(Ps2_current_texmemlist->texinfo.texsurface.pSurface))->Gindex; 
+    
+    Ps2TexLoad(Ps2_current_texmemlist);
 }
 
 /*// 
