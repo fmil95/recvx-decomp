@@ -1462,14 +1462,10 @@ SDE_ERR	sdSysSetSlotMax( const Sint32 midi_slot_max, const Sint32 shot_slot_max,
 	scePrintf("sdSysSetSlotMax - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ddbd0
+// 100% matching! 
 SDE_ERR	sdMemBlkSetTransferMode( SDE_MEMBLK_TRANSFER_MODE transfer_mode)
 {
-	// Line 4105, Address: 0x2ddbd0, Func Offset: 0
-	// Line 4110, Address: 0x2ddbe4, Func Offset: 0x14
-	// Func End, Address: 0x2ddbec, Func Offset: 0x1c
-	scePrintf("sdMemBlkSetTransferMode - UNIMPLEMENTED!\n");
+    return (__sg_sd_snd_init__ != 0) ? SDE_ERR_NOTHING : SDE_ERR_NO_INIT;
 }
 
 // 
