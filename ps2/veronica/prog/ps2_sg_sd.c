@@ -169,9 +169,9 @@ enum SDE_ERR
 
 char sound_flag;*/
 int __sg_sd_snd_init__;
-/*void(*__snd_set_end_func__)(void*);
+void(*__snd_set_end_func__)(void*);
 void* __snd_end_func_arg__;
-int snd_data_down_load;
+/*int snd_data_down_load;
 unsigned int iop_packet_flag;
 unsigned int trans_level;
 unsigned int trans_type;
@@ -486,22 +486,27 @@ SDE_ERR	sdMemBlkDestroy( SDMEMBLK handle)
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2db580
-SDE_ERR	sdMemBlkSetPrm( SDMEMBLK handle, const Void *src_blk_ptr, const Sint32 src_blk_sz, const SD_MEMBLK_CALLBACK_FUNC callback_func, const Void *callback_first_arg)
+// 100% matching!
+SDE_ERR	sdMemBlkSetPrm( SDMEMBLK handle, const Void *src_blk_ptr, const Sint32 src_blk_sz, const SD_MEMBLK_CALLBACK_FUNC callback_func, const Void *callback_first_arg) 
 {
-	// Line 1046, Address: 0x2db580, Func Offset: 0
-	// Line 1048, Address: 0x2db590, Func Offset: 0x10
-	// Line 1049, Address: 0x2db598, Func Offset: 0x18
-	// Line 1051, Address: 0x2db5a4, Func Offset: 0x24
-	// Line 1052, Address: 0x2db5a8, Func Offset: 0x28
-	// Line 1054, Address: 0x2db5ac, Func Offset: 0x2c
-	// Line 1055, Address: 0x2db5b4, Func Offset: 0x34
-	// Line 1056, Address: 0x2db5bc, Func Offset: 0x3c
-	// Line 1059, Address: 0x2db5c4, Func Offset: 0x44
-	// Line 1061, Address: 0x2db5cc, Func Offset: 0x4c
-	// Func End, Address: 0x2db5d4, Func Offset: 0x54
-	scePrintf("sdMemBlkSetPrm - UNIMPLEMENTED!\n");
+    if (__sg_sd_snd_init__ != 0)
+    {
+        if (handle == NULL) 
+        {
+            return SDE_ERR_HANDLE_NULL;
+        }
+        
+        handle->m_Member[1] = (unsigned int)src_blk_ptr;
+        handle->m_Member[2] = src_blk_sz;
+        
+        __snd_set_end_func__ = callback_func;
+        
+        __snd_end_func_arg__ = (void*)callback_first_arg;
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 /*// 
