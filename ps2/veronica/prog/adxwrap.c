@@ -701,25 +701,24 @@ void PlayAdx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileId)
 {
 	// Line 1227, Address: 0x291e10, Func Offset: 0
 	// Func End, Address: 0x291e18, Func Offset: 0x8
-}
+}*/
 
-// 
-// Start address: 0x291e20
+// 100% matching!
 void StopAdx(unsigned int SlotNo)
 {
-	// Line 1231, Address: 0x291e20, Func Offset: 0
-	// Line 1234, Address: 0x291e2c, Func Offset: 0xc
-	// Line 1231, Address: 0x291e30, Func Offset: 0x10
-	// Line 1234, Address: 0x291e34, Func Offset: 0x14
-	// Line 1240, Address: 0x291e4c, Func Offset: 0x2c
-	// Line 1261, Address: 0x291e54, Func Offset: 0x34
-	// Line 1272, Address: 0x291e68, Func Offset: 0x48
-	// Line 1283, Address: 0x291e70, Func Offset: 0x50
-	// Line 1284, Address: 0x291e74, Func Offset: 0x54
-	// Func End, Address: 0x291e88, Func Offset: 0x68
+    if (AdxTInfo[SlotNo].Flag != 0) 
+    {
+        ADXPS2_Lock();
+        
+        ADXT_Stop(AdxTInfo[SlotNo].Handle);
+        
+        ADXPS2_Unlock();
+    }
+    
+    AdxTInfo[SlotNo].Flag = 0;
 }
 
-// 
+/*// 
 // Start address: 0x291e90
 void PauseAdx(unsigned int SlotNo)
 {
