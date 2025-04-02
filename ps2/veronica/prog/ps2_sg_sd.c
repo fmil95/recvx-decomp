@@ -431,24 +431,36 @@ SDE_ERR	sdLibInit( Void *wrk_ptr, Sint32 mem_blk_handle_max, Sint32 second_host_
     return SDE_ERR_NOTHING;
 }
 
-// 
-// Start address: 0x2db490
+// 100% matching!
 SDE_ERR	sdMemBlkCreate( SDMEMBLK *handle)
 {
-	int i;
-	// Line 958, Address: 0x2db490, Func Offset: 0
-	// Line 959, Address: 0x2db4a8, Func Offset: 0x18
-	// Line 962, Address: 0x2db4ac, Func Offset: 0x1c
-	// Line 965, Address: 0x2db4b8, Func Offset: 0x28
-	// Line 967, Address: 0x2db4c8, Func Offset: 0x38
-	// Line 968, Address: 0x2db4d4, Func Offset: 0x44
-	// Line 971, Address: 0x2db4e0, Func Offset: 0x50
-	// Line 973, Address: 0x2db4f8, Func Offset: 0x68
-	// Line 974, Address: 0x2db4fc, Func Offset: 0x6c
-	// Line 977, Address: 0x2db504, Func Offset: 0x74
-	// Line 979, Address: 0x2db50c, Func Offset: 0x7c
-	// Func End, Address: 0x2db514, Func Offset: 0x84
-	scePrintf("sdMemBlkCreate - UNIMPLEMENTED!\n");
+    int i;
+    
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        for (i = 0; i < 20; i++) 
+        {
+            if (__snd_mem_blk__[i].m_Member[0] == 0) 
+            {
+                break;
+            }
+        } 
+        
+        if (i == 20) 
+        {
+            return SDE_ERR_HANDLE_NO_ENOUGH;
+        }
+        else 
+        {
+            __snd_mem_blk__[i].m_Member[0] = 1;
+        
+            handle[0] = &__snd_mem_blk__[i];
+            
+            return SDE_ERR_NOTHING;
+        }
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 
