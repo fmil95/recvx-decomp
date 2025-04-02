@@ -1514,14 +1514,10 @@ SDE_ERR	sdMultiUnitDownload( SDMEMBLK handle)
 	scePrintf("sdMultiUnitDownload - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ddd10
+// 100% matching! 
 SDE_ERR	sdSysFinish( Void)
 {
-	// Line 4215, Address: 0x2ddd10, Func Offset: 0
-	// Line 4220, Address: 0x2ddd24, Func Offset: 0x14
-	// Func End, Address: 0x2ddd2c, Func Offset: 0x1c
-	scePrintf("sdSysFinish - UNIMPLEMENTED!\n");
+    return (__sg_sd_snd_init__ != 0) ? SDE_ERR_NOTHING : SDE_ERR_NO_INIT;
 }
 
 /*// 
