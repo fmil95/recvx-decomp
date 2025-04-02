@@ -2037,19 +2037,19 @@ int MaxSlotEventSe;
 int MaxSlotObjectSe;
 char ThreeDVolTbl[510];
 char PanTbl360[68];
-char PanTbl360Vol[68];
-_anon31 cam;
-_anon61* rom;
+char PanTbl360Vol[68];*/
+CAM_WORK cam;
+/*_anon61* rom;
 char CurrentRoomFxLevel;
 int AngBak;
-_anon34 RequestInfo;
-_anon16 CameraPos;
-_anon44 GsSlotInfoAx[2];
+_anon34 RequestInfo;*/
+NJS_POINT3 CameraPos;
+/*_anon44 GsSlotInfoAx[2];
 _anon35 ObjectInfo[16];
 _anon44 GsSlotInfoMi[8];
-_anon44 GsSlotInfoSe[20];
-_anon16 PlayerPos;
-int xAng;
+_anon44 GsSlotInfoSe[20];*/
+NJS_POINT3 PlayerPos;
+/*int xAng;
 int xVol;
 int xPan;
 SDS_PORT_REF** MidiHandle[0];
@@ -2058,15 +2058,15 @@ _anon19 MidiInfo[0];
 _anon2 EnemyInfo[128];
 _anon0 EnemySlotInfo[6];
 int MaxObjectReqList;
-unsigned char ObjectReqList[16];
+unsigned char ObjectReqList[16];*/
 unsigned int AdxPlayFlag[2];
-char CurrentRoomFxProgNo;
+/*char CurrentRoomFxProgNo;
 int MaxRequestList;
 unsigned char RequestList[128];
 _anon11 ObjectSlotInfo[3];
-_anon65 SdComFuncTbl[10];
+_anon65 SdComFuncTbl[10];*/
 BH_PWORK* plp;
-unsigned char* DestReadPtr;*/
+/*unsigned char* DestReadPtr;*/
 int GenAdxfSlot;
 int OpenDriveTrayFlag;
 /*unsigned char MovieTypeDef[22];
@@ -4155,7 +4155,7 @@ void ResetEnemySeInfo()
 {
 	// Line 3373, Address: 0x2960a0, Func Offset: 0
 	// Func End, Address: 0x2960a8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2960b0
@@ -4167,9 +4167,9 @@ void ExecEnemySeManager()
 	unsigned char a;
 	unsigned char* rlp2;
 	unsigned char* rlp1;
-	_anon2* eip2;
-	_anon2* eip;
-	_anon0* esp;
+	//_anon2* eip2;
+	//_anon2* eip;
+	//_anon0* esp;
 	int j;
 	int i;
 	// Line 3382, Address: 0x2960b0, Func Offset: 0
@@ -4253,9 +4253,10 @@ void ExecEnemySeManager()
 	// Line 3514, Address: 0x296430, Func Offset: 0x380
 	// Line 3515, Address: 0x296444, Func Offset: 0x394
 	// Func End, Address: 0x296464, Func Offset: 0x3b4
+	scePrintf("ExecEnemySeManager - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x296470
 int SearchPlayingObjectSeEx(int ObjectNo, int Mode)
 {
@@ -4365,15 +4366,15 @@ void ResetObjectSeInfo()
 	// Line 3621, Address: 0x296790, Func Offset: 0x30
 	// Line 3622, Address: 0x296798, Func Offset: 0x38
 	// Func End, Address: 0x2967a4, Func Offset: 0x44
-}
+}*/
 
 // 
 // Start address: 0x2967b0
 void ExecObjectSeManager()
 {
 	int SlotNo;
-	_anon11* osp;
-	_anon35* oip;
+	//_anon11* osp;
+	//_anon35* oip;
 	int j;
 	int i;
 	// Line 3630, Address: 0x2967b0, Func Offset: 0
@@ -4414,9 +4415,10 @@ void ExecObjectSeManager()
 	// Line 3728, Address: 0x296978, Func Offset: 0x1c8
 	// Line 3741, Address: 0x296994, Func Offset: 0x1e4
 	// Func End, Address: 0x2969b4, Func Offset: 0x204
+	scePrintf("ExecObjectSeManager - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2969c0
 void RequestSoundFade(int Func, int Attr, short Timer)
 {
@@ -4646,33 +4648,31 @@ void SendSoundCommand(unsigned int CommandNo)
 	scePrintf("SendSoundCommand - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x297190
+// 100% matching!
 void ExecSoundSystemMonitor()
 {
-	int i;
-	// Line 4199, Address: 0x297190, Func Offset: 0
-	// Line 4204, Address: 0x2971a0, Func Offset: 0x10
-	// Line 4217, Address: 0x2971b0, Func Offset: 0x20
-	// Line 4205, Address: 0x2971b4, Func Offset: 0x24
-	// Line 4206, Address: 0x2971bc, Func Offset: 0x2c
-	// Line 4207, Address: 0x2971c4, Func Offset: 0x34
-	// Line 4204, Address: 0x2971cc, Func Offset: 0x3c
-	// Line 4205, Address: 0x2971d4, Func Offset: 0x44
-	// Line 4206, Address: 0x2971dc, Func Offset: 0x4c
-	// Line 4207, Address: 0x2971e4, Func Offset: 0x54
-	// Line 4208, Address: 0x2971f0, Func Offset: 0x60
-	// Line 4209, Address: 0x2971fc, Func Offset: 0x6c
-	// Line 4218, Address: 0x297208, Func Offset: 0x78
-	// Line 4220, Address: 0x297214, Func Offset: 0x84
-	// Line 4221, Address: 0x297238, Func Offset: 0xa8
-	// Line 4222, Address: 0x297244, Func Offset: 0xb4
-	// Line 4225, Address: 0x297248, Func Offset: 0xb8
-	// Line 4228, Address: 0x297258, Func Offset: 0xc8
-	// Line 4231, Address: 0x297260, Func Offset: 0xd0
-	// Line 4240, Address: 0x297268, Func Offset: 0xd8
-	// Func End, Address: 0x29727c, Func Offset: 0xec
-	scePrintf("ExecSoundSystemMonitor - UNIMPLEMENTED!\n");
+    int i;
+    
+    CameraPos.x = cam.wpx;
+    CameraPos.y = cam.wpy;
+    CameraPos.z = cam.wpz;
+    
+    PlayerPos.x = plp->px;
+    PlayerPos.y = plp->py;
+    PlayerPos.z = plp->pz;
+    
+    for (i = 0; i < 2; i++)
+    {
+        if ((AdxPlayFlag[i] != 0) && ((GetAdxStatus(i) == 5) || (GetAdxStatus(i) == 0)))
+        {
+            StopAdx(i);
+                
+            AdxPlayFlag[i] = 0;
+        }
+    } 
+    
+    ExecEnemySeManager();
+    ExecObjectSeManager();
 }
 
 // 
