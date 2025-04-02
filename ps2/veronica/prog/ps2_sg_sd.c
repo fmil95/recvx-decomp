@@ -198,11 +198,11 @@ int RoomFxLevel;
 int iRingBufNum;
 int iop_read_buff;
 int iop_zero_buff;
-int iop_buff;
+int iop_buff;*/
 unsigned short req_se_info[6];
 unsigned short use_se_info[6];
 SDS_MEMBLK __snd_mem_blk__[20];
-SDS_PORT_REF* __shot_handle_top;
+/*SDS_PORT_REF* __shot_handle_top;
 short SE_BANK[5];
 unsigned int ee_trans_cue;
 short SE_HD_CHECK[5];
@@ -406,31 +406,29 @@ SDE_ERR	sdGddaSetPan( const Sint8 left_pan, const Sint8 right_pan)
 	scePrintf("sdGddaSetPan - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2db400
-SDE_ERR	sdLibInit( Void *wrk_ptr, Sint32 mem_blk_handle_max, Sint32 second_host_cmd_max)
+// 100% matching!
+SDE_ERR	sdLibInit( Void *wrk_ptr, Sint32 mem_blk_handle_max, Sint32 second_host_cmd_max) 
 {
-	int j;
-	int i;
-	// Line 920, Address: 0x2db400, Func Offset: 0
-	// Line 922, Address: 0x2db414, Func Offset: 0x14
-	// Line 923, Address: 0x2db418, Func Offset: 0x18
-	// Line 925, Address: 0x2db420, Func Offset: 0x20
-	// Line 924, Address: 0x2db424, Func Offset: 0x24
-	// Line 925, Address: 0x2db428, Func Offset: 0x28
-	// Line 924, Address: 0x2db42c, Func Offset: 0x2c
-	// Line 925, Address: 0x2db430, Func Offset: 0x30
-	// Line 926, Address: 0x2db43c, Func Offset: 0x3c
-	// Line 927, Address: 0x2db45c, Func Offset: 0x5c
-	// Line 930, Address: 0x2db460, Func Offset: 0x60
-	// Line 928, Address: 0x2db464, Func Offset: 0x64
-	// Line 929, Address: 0x2db468, Func Offset: 0x68
-	// Line 930, Address: 0x2db46c, Func Offset: 0x6c
-	// Line 929, Address: 0x2db470, Func Offset: 0x70
-	// Line 930, Address: 0x2db474, Func Offset: 0x74
-	// Line 933, Address: 0x2db47c, Func Offset: 0x7c
-	// Func End, Address: 0x2db484, Func Offset: 0x84
-	scePrintf("sdLibInit - UNIMPLEMENTED!\n");
+    int i;
+    int j;
+	
+    __sg_sd_snd_init__ = 1;
+    
+    for (i = 0; i < 20; i++) 
+    {
+        for (j = 0; j < 16; j++) 
+        {
+            __snd_mem_blk__[i].m_Member[j] = 0;
+        }
+    }
+    
+    for (i = 0; i < 6; i++) 
+    {
+        use_se_info[i] = 0;
+        req_se_info[i] = 0;
+    }
+    
+    return SDE_ERR_NOTHING;
 }
 
 // 
