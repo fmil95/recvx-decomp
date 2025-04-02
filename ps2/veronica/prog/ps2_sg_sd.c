@@ -392,18 +392,17 @@ SDE_ERR	sdDrvInit( SDMEMBLK handle)
 	scePrintf("sdDrvInit - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2db3c0
-SDE_ERR	sdGddaSetPan( const Sint8 left_pan, const Sint8 right_pan)
+// 100% matching!
+SDE_ERR	sdGddaSetPan( const Sint8 leftPan, const Sint8 right_pan)
 {
-	// Line 883, Address: 0x2db3c0, Func Offset: 0
-	// Line 885, Address: 0x2db3c8, Func Offset: 0x8
-	// Line 886, Address: 0x2db3d8, Func Offset: 0x18
-	// Line 887, Address: 0x2db3e4, Func Offset: 0x24
-	// Line 890, Address: 0x2db3ec, Func Offset: 0x2c
-	// Line 892, Address: 0x2db3f4, Func Offset: 0x34
-	// Func End, Address: 0x2db400, Func Offset: 0x40
-	scePrintf("sdGddaSetPan - UNIMPLEMENTED!\n");
+    if (__sg_sd_snd_init__ != 0)
+    {
+        printf("sdGddaSetPan NOT USED!\n");
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching!
