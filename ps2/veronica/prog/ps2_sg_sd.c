@@ -1085,14 +1085,10 @@ SDE_ERR sdShotStop(SDS_PORT_REF** handle)
 	// Func End, Address: 0x2dc978, Func Offset: 0x68
 }*/
 
-// 
-// Start address: 0x2dc980
+// 100% matching! 
 SDE_ERR	sdSndClearFxPrg( Void)
 {
-	// Line 2552, Address: 0x2dc980, Func Offset: 0
-	// Line 2557, Address: 0x2dc994, Func Offset: 0x14
-	// Func End, Address: 0x2dc99c, Func Offset: 0x1c
-	scePrintf("sdSndClearFxPrg - UNIMPLEMENTED!\n");
+    return (__sg_sd_snd_init__ != 0) ? SDE_ERR_NOTHING : SDE_ERR_NO_INIT;
 }
 
 // 100% matching! 
