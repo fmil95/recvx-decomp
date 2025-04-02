@@ -1098,7 +1098,7 @@ SDE_ERR	sdSndClearFxPrg( Void)
 // 100% matching! 
 SDE_ERR	sdSndSetFxPrg( const Sint8 new_fx_prg_num, const Sint8 new_fx_out_num)
 {
-    return (__sg_sd_snd_init__ != 0) ? 0 : 218103809;
+    return (__sg_sd_snd_init__ != 0) ? SDE_ERR_NOTHING : SDE_ERR_NO_INIT;
 }
 
 // 
