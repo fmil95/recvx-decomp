@@ -432,7 +432,7 @@ int SdrSeAllStop()
 	scePrintf("SdrSeAllStop - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2ea150
 int SdrMasterVol(unsigned short mvol)
 {
@@ -445,9 +445,10 @@ int SdrMasterVol(unsigned short mvol)
 	// Line 3696, Address: 0x2ea1dc, Func Offset: 0x8c
 	// Line 3697, Address: 0x2ea1e0, Func Offset: 0x90
 	// Func End, Address: 0x2ea1ec, Func Offset: 0x9c
+	scePrintf("SdrMasterVol - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ea1f0
 int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigned char block)
 {

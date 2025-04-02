@@ -1097,21 +1097,38 @@ SDE_ERR	sdSndSetFxPrg( const Sint8 new_fx_prg_num, const Sint8 new_fx_out_num)
     return (__sg_sd_snd_init__ != 0) ? SDE_ERR_NOTHING : SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2dc9c0
+// 100% matching! 
 SDE_ERR	sdSndSetMasterVol( const Sint8 vol)
 {
-	// Line 2614, Address: 0x2dc9c0, Func Offset: 0
-	// Line 2616, Address: 0x2dc9c8, Func Offset: 0x8
-	// Line 2618, Address: 0x2dc9d8, Func Offset: 0x18
-	// Line 2619, Address: 0x2dc9e0, Func Offset: 0x20
-	// Line 2620, Address: 0x2dc9fc, Func Offset: 0x3c
-	// Line 2624, Address: 0x2dca08, Func Offset: 0x48
-	// Line 2633, Address: 0x2dca4c, Func Offset: 0x8c
-	// Line 2641, Address: 0x2dca7c, Func Offset: 0xbc
-	// Line 2643, Address: 0x2dca84, Func Offset: 0xc4
-	// Func End, Address: 0x2dca90, Func Offset: 0xd0
-	scePrintf("sdSndSetMasterVol - UNIMPLEMENTED!\n");
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        if (vol) 
+        {
+            if ((vol < 0) || (vol > 15)) 
+            {
+                return SDE_ERR_PRM_OVER_RANGE;
+            }
+            else if (SdrMasterVol((vol * 1092) + 3) == -1) 
+            {
+                return SDE_ERR_HOST_CMD_BUF_NO_ENOUGH;
+            }
+            else 
+            {
+                return SDE_ERR_NOTHING;
+            }
+        }
+        
+        if (SdrMasterVol(0) == -1) 
+        {
+            return SDE_ERR_HOST_CMD_BUF_NO_ENOUGH;
+        }
+        else 
+        {
+            return SDE_ERR_NOTHING;
+        }
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 
