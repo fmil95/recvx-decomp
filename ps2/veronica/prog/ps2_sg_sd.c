@@ -1143,17 +1143,15 @@ SDE_ERR	sdSndSetPanMode( const SDE_PAN_MODE pan_mode)
 	scePrintf("sdSndSetPanMode - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2dcb60
+// 100% matching! 
 SDE_ERR	sdSndStopAll( Void)
 {
-	// Line 2734, Address: 0x2dcb60, Func Offset: 0
-	// Line 2736, Address: 0x2dcb68, Func Offset: 0x8
-	// Line 2738, Address: 0x2dcb78, Func Offset: 0x18
-	// Line 2745, Address: 0x2dcb98, Func Offset: 0x38
-	// Line 2747, Address: 0x2dcba0, Func Offset: 0x40
-	// Func End, Address: 0x2dcbac, Func Offset: 0x4c
-	scePrintf("sdSndStopAll - UNIMPLEMENTED!\n");
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        return (SdrSeAllStop() == 0) ? SDE_ERR_NOTHING : SDE_ERR_HOST_CMD_BUF_NO_ENOUGH;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 /*// 

@@ -75,6 +75,7 @@
 #include "cri_placeholders.c"
 #include "adxwrap.c"
 #include "ps2_sg_sycfg.c"
+#include "ps2_snddrv.c"
 #include "ps2_sg_sd.c"
 #include "sdc.c"
 #include "pad.c"
