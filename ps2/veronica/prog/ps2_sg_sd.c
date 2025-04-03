@@ -190,15 +190,15 @@ SDMIDI __midi_handle_top;
 int __midi_value;
 /*unsigned int iop_trans_sq_address;
 unsigned int ee_trans_sq_size;
-unsigned int ee_trans_sq_address;
+unsigned int ee_trans_sq_address;*/
 int CurrentFxLevel;
 int AddFxLevel;
 char FxLevelTimer;
 int RoomFxLevel;
-int iRingBufNum;
+int iRingBufNum = 20; 
 int iop_read_buff;
 int iop_zero_buff;
-int iop_buff;*/
+int iop_buff;
 unsigned short req_se_info[6];
 unsigned short use_se_info[6];
 SDS_MEMBLK __snd_mem_blk__[20];
@@ -349,47 +349,79 @@ SDE_ERR sdBankDownload(SDS_MEMBLK* handle, SDE_DATA_TYPE bank_type, char bank_nu
 	// Func End, Address: 0x2db1e0, Func Offset: 0x3d0
 }*/
 
-// 
-// Start address: 0x2db1e0
+// 100% matching! 
 SDE_ERR	sdDrvInit( SDMEMBLK handle)
 {
-	char* _0_buf;
-	char trans_0_buff[2175];
-	// Line 768, Address: 0x2db1e0, Func Offset: 0
-	// Line 785, Address: 0x2db1e8, Func Offset: 0x8
-	// Line 787, Address: 0x2db1f0, Func Offset: 0x10
-	// Line 790, Address: 0x2db1f8, Func Offset: 0x18
-	// Line 793, Address: 0x2db204, Func Offset: 0x24
-	// Line 794, Address: 0x2db214, Func Offset: 0x34
-	// Line 796, Address: 0x2db224, Func Offset: 0x44
-	// Line 798, Address: 0x2db230, Func Offset: 0x50
-	// Line 801, Address: 0x2db238, Func Offset: 0x58
-	// Line 804, Address: 0x2db248, Func Offset: 0x68
-	// Line 805, Address: 0x2db258, Func Offset: 0x78
-	// Line 807, Address: 0x2db268, Func Offset: 0x88
-	// Line 809, Address: 0x2db274, Func Offset: 0x94
-	// Line 812, Address: 0x2db27c, Func Offset: 0x9c
-	// Line 816, Address: 0x2db28c, Func Offset: 0xac
-	// Line 817, Address: 0x2db298, Func Offset: 0xb8
-	// Line 819, Address: 0x2db2a8, Func Offset: 0xc8
-	// Line 825, Address: 0x2db2bc, Func Offset: 0xdc
-	// Line 828, Address: 0x2db2c8, Func Offset: 0xe8
-	// Line 829, Address: 0x2db2dc, Func Offset: 0xfc
-	// Line 831, Address: 0x2db2ec, Func Offset: 0x10c
-	// Line 833, Address: 0x2db2f8, Func Offset: 0x118
-	// Line 836, Address: 0x2db300, Func Offset: 0x120
-	// Line 840, Address: 0x2db31c, Func Offset: 0x13c
-	// Line 841, Address: 0x2db334, Func Offset: 0x154
-	// Line 844, Address: 0x2db34c, Func Offset: 0x16c
-	// Line 845, Address: 0x2db354, Func Offset: 0x174
-	// Line 846, Address: 0x2db35c, Func Offset: 0x17c
-	// Line 847, Address: 0x2db364, Func Offset: 0x184
-	// Line 850, Address: 0x2db368, Func Offset: 0x188
-	// Line 851, Address: 0x2db384, Func Offset: 0x1a4
-	// Line 857, Address: 0x2db3a0, Func Offset: 0x1c0
-	// Line 858, Address: 0x2db3a4, Func Offset: 0x1c4
-	// Func End, Address: 0x2db3b4, Func Offset: 0x1d4
-	scePrintf("sdDrvInit - UNIMPLEMENTED!\n");
+    char trans_0_buff[2175]; 
+    char* _0_buf; 
+
+    SdrInit();
+    
+    sceSdRemoteInit();
+    
+    SdrGetStateSend(16, 2048);
+    
+    iop_buff = (int)sceSifAllocIopHeap(12288);
+    
+    if (iop_buff < 0) 
+    {
+        printf("Cannot allocate IOP memory\n", iop_buff);
+        
+        return SDE_ERR_NOTHING;
+    }
+    else 
+    {
+        printf("IOP memory 0x%08x(size:%d) is allocated\n", iop_buff, 12288);
+        
+        iop_zero_buff = (int)sceSifAllocIopHeap(2048);
+    }
+    
+    if (iop_zero_buff < 0)
+    {
+        printf("Cannot allocate IOP memory\n", iop_zero_buff);
+        
+        return SDE_ERR_NOTHING;
+    }
+    else 
+    {
+        printf("IOP memory 0x%08x(size:%d) is allocated\n", iop_zero_buff, 2048);
+        
+        _0_buf = (char*)((int)&trans_0_buff[127] & ~0x7F);
+        
+        memset(_0_buf, 0, 2048);
+        
+        sendToIOP(iop_zero_buff, (unsigned char*)_0_buf, 2048);
+        
+        iRingBufNum = 10;
+        
+        iop_read_buff = (int)sceSifAllocIopHeap(327696);
+    }
+    
+    if (iop_read_buff < 0)
+    {
+        printf("Cannot allocate IOP memory\n", iop_read_buff);
+        
+        while (1);
+    }
+    else 
+    {
+        printf("IOP memory 0x%08x(size:%d) is allocated\n", iop_read_buff, (iRingBufNum * 32768) + 16);
+        
+        SdrSetRev(0, 0, 0, 0, 0);
+        SdrSetRev(1, 0, 0, 0, 0);
+        
+        RoomFxLevel = 0;
+        
+        FxLevelTimer = 0;
+        
+        CurrentFxLevel = 0;
+        AddFxLevel = 0;
+        
+        SdrSetRev(0, 5, 0, 0, 0);
+        SdrSetRev(1, 5, CurrentFxLevel, 0, 0);
+        
+        return SDE_ERR_NOTHING;
+    }
 }
 
 // 100% matching!

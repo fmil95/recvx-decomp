@@ -16,6 +16,7 @@
 #include <libpad.h>
 #include <csl.h>
 #include <libssyn.h>
+#include <libsdr.h>
 
 #include "override_katana.h"
 // KATANA library
@@ -78,6 +79,7 @@
 #include "adxwrap.c"
 #include "ps2_sg_sycfg.c"
 #include "ps2_snddrv.c"
+#include "ps2_MovieFunc.c"
 #include "ps2_sg_sd.c"
 #include "sdc.c"
 #include "pad.c"

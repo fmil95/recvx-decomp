@@ -261,14 +261,14 @@ int sdr_initDev(_sif_client_data* cd_p, unsigned int dev)
 	// Line 3194, Address: 0x2e9a00, Func Offset: 0x80
 	// Line 3195, Address: 0x2e9a04, Func Offset: 0x84
 	// Func End, Address: 0x2e9a1c, Func Offset: 0x9c
-}
+}*/
 
 // 
 // Start address: 0x2e9a20
 int SdrInit()
 {
-	_sif_receive_data rd;
-	SemaParam sem;
+	//_sif_receive_data rd;
+	//SemaParam sem;
 	int id;
 	int flag_1st;
 	// Line 3223, Address: 0x2e9a20, Func Offset: 0
@@ -360,9 +360,10 @@ int SdrInit()
 	// Line 3329, Address: 0x2e9d58, Func Offset: 0x338
 	// Line 3336, Address: 0x2e9d6c, Func Offset: 0x34c
 	// Func End, Address: 0x2e9d78, Func Offset: 0x358
+	scePrintf("SdrInit - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e9d80
 int SdrSeReq(int req, char vol, char pan, short pitch)
 {
@@ -627,11 +628,11 @@ int SdrSetOutputMode(int mode)
 	scePrintf("SdrSetOutputMode - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2ea990
 int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char delay, unsigned char feedback)
 {
-	_anon0* sqd_p;
+	//_anon0* sqd_p;
 	// Line 4744, Address: 0x2ea990, Func Offset: 0
 	// Line 4748, Address: 0x2ea994, Func Offset: 0x4
 	// Line 4749, Address: 0x2ea9a0, Func Offset: 0x10
@@ -654,9 +655,10 @@ int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char d
 	// Line 4770, Address: 0x2eaa78, Func Offset: 0xe8
 	// Line 4771, Address: 0x2eaa7c, Func Offset: 0xec
 	// Func End, Address: 0x2eaa88, Func Offset: 0xf8
+	scePrintf("SdrSetRev - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2eaa90
 int SdrSendReq(int mode)
 {
@@ -711,7 +713,7 @@ void cb_sifRpc_snd(int smid)
 	// Line 4955, Address: 0x2eac40, Func Offset: 0x10
 	// Line 4958, Address: 0x2eac48, Func Offset: 0x18
 	// Func End, Address: 0x2eac54, Func Offset: 0x24
-}
+}*/
 
 // 
 // Start address: 0x2eac60
@@ -728,9 +730,10 @@ int SdrGetStateSend(int command, int data)
 	// Line 5188, Address: 0x2eacf4, Func Offset: 0x94
 	// Line 5189, Address: 0x2eacf8, Func Offset: 0x98
 	// Func End, Address: 0x2ead0c, Func Offset: 0xac
+	scePrintf("SdrGetStateSend - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ead10
 int SdrGetStateReceive(int mode)
 {
