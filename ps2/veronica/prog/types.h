@@ -2588,6 +2588,29 @@ typedef struct RDT_WORK
     char usrname[32]; // offset 0x60, size 0x20
 } RDT_WORK;
 
+typedef struct SND_WORK
+{
+	// total size: 0x2C
+    unsigned char port_check; // offset 0x0, size 0x1
+    unsigned char vol; // offset 0x1, size 0x1
+    unsigned char vol_old; // offset 0x2, size 0x1
+    unsigned char pan; // offset 0x3, size 0x1
+    short pitch_old; // offset 0x4, size 0x2
+    short pitch; // offset 0x6, size 0x2
+    unsigned int vol_timer; // offset 0x8, size 0x4
+    unsigned int vol_set_time; // offset 0xC, size 0x4
+    unsigned int pan_timer; // offset 0x10, size 0x4
+    unsigned int pan_set_time; // offset 0x14, size 0x4
+    unsigned int pitch_timer; // offset 0x18, size 0x4
+    unsigned int pitch_set_time; // offset 0x1C, size 0x4
+    unsigned int port_num; // offset 0x20, size 0x4
+    unsigned int bank_num; // offset 0x24, size 0x4
+    char channel_num; // offset 0x28, size 0x1
+    unsigned char pan_old; // offset 0x29, size 0x1
+    char priority; // offset 0x2A, size 0x1
+    unsigned char req; // offset 0x2B, size 0x1
+} SND_WORK;
+
 // TODO: find a struct on the debugging symbols similar to this one that could fit in Ps2AddPrim()
 typedef struct UNKNOWN 
 {

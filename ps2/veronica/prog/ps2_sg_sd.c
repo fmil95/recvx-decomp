@@ -183,9 +183,9 @@ unsigned int ee_trans_bd_size;
 unsigned int ee_trans_hd_size;
 unsigned int iop_trans_offset;
 unsigned int ee_trans_bd_address;
-unsigned int ee_trans_hd_address;
+unsigned int ee_trans_hd_address;*/
 int __shot_value;
-_SND_STATUS get_iop_snddata;
+/*_SND_STATUS get_iop_snddata;
 SDS_PORT_REF* __midi_handle_top;
 int __midi_value;
 unsigned int iop_trans_sq_address;
@@ -202,8 +202,8 @@ int iop_buff;*/
 unsigned short req_se_info[6];
 unsigned short use_se_info[6];
 SDS_MEMBLK __snd_mem_blk__[20];
-/*SDS_PORT_REF* __shot_handle_top;
-short SE_BANK[5];
+SDSHOT __shot_handle_top;
+/*short SE_BANK[5];
 unsigned int ee_trans_cue;
 short SE_HD_CHECK[5];
 short MIDI_BANK[4];
@@ -800,37 +800,50 @@ SDE_ERR sdShotGetStat(SDS_PORT_REF** handle, SDS_SHOT_STAT* shot_stat)
 	// Func End, Address: 0x2dbe60, Func Offset: 0x90
 }*/
 
-// 
-// Start address: 0x2dbe60
-SDE_ERR sdShotOpenPort(SDS_PORT_REF*** handle)
+// 100% matching! 
+SDE_ERR	sdShotOpenPort( SDSHOT *handle)
 {
-	//_anon0* check_snd_work;
-	int i;
-	// Line 1864, Address: 0x2dbe60, Func Offset: 0
-	// Line 1866, Address: 0x2dbe70, Func Offset: 0x10
-	// Line 1867, Address: 0x2dbe78, Func Offset: 0x18
-	// Line 1866, Address: 0x2dbe80, Func Offset: 0x20
-	// Line 1867, Address: 0x2dbe84, Func Offset: 0x24
-	// Line 1869, Address: 0x2dbe8c, Func Offset: 0x2c
-	// Line 1872, Address: 0x2dbe98, Func Offset: 0x38
-	// Line 1873, Address: 0x2dbeb0, Func Offset: 0x50
-	// Line 1874, Address: 0x2dbeb8, Func Offset: 0x58
-	// Line 1877, Address: 0x2dbec4, Func Offset: 0x64
-	// Line 1878, Address: 0x2dbecc, Func Offset: 0x6c
-	// Line 1879, Address: 0x2dbed4, Func Offset: 0x74
-	// Line 1880, Address: 0x2dbedc, Func Offset: 0x7c
-	// Line 1882, Address: 0x2dbee4, Func Offset: 0x84
-	// Line 1881, Address: 0x2dbee8, Func Offset: 0x88
-	// Line 1882, Address: 0x2dbeec, Func Offset: 0x8c
-	// Line 1883, Address: 0x2dbef0, Func Offset: 0x90
-	// Line 1885, Address: 0x2dbef8, Func Offset: 0x98
-	// Line 1886, Address: 0x2dbf04, Func Offset: 0xa4
-	// Line 1885, Address: 0x2dbf08, Func Offset: 0xa8
-	// Line 1886, Address: 0x2dbf0c, Func Offset: 0xac
-	// Line 1889, Address: 0x2dbf14, Func Offset: 0xb4
-	// Line 1891, Address: 0x2dbf1c, Func Offset: 0xbc
-	// Func End, Address: 0x2dbf24, Func Offset: 0xc4
-	scePrintf("sdShotOpenPort - UNIMPLEMENTED!\n");
+    int i;
+    SND_WORK* check_snd_work;
+	
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        check_snd_work = (SND_WORK*)*__shot_handle_top;
+        
+        for (i = 0; i < __shot_value; i++, check_snd_work++) 
+        {
+            if (check_snd_work->port_check == 0) 
+            {
+                break;
+            }
+        } 
+        
+        if (i == __shot_value) 
+        {
+            return SDE_ERR_HANDLE_NO_ENOUGH;
+        }
+        else 
+        {
+            check_snd_work->port_check = 1;
+            
+            check_snd_work->vol = 127;
+            
+            check_snd_work->pan = 64;
+            
+            check_snd_work->pitch = 8192;
+            
+            check_snd_work->port_num = 0;
+            check_snd_work->channel_num = -1;
+            
+            check_snd_work->req = 255;
+            
+            *handle = &__shot_handle_top[i];
+            
+            return SDE_ERR_NOTHING;
+        }
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 /*// 
