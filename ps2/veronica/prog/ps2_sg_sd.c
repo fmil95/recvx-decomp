@@ -185,10 +185,10 @@ unsigned int iop_trans_offset;
 unsigned int ee_trans_bd_address;
 unsigned int ee_trans_hd_address;*/
 int __shot_value;
-/*_SND_STATUS get_iop_snddata;
-SDS_PORT_REF* __midi_handle_top;
+/*_SND_STATUS get_iop_snddata;*/
+SDMIDI __midi_handle_top;
 int __midi_value;
-unsigned int iop_trans_sq_address;
+/*unsigned int iop_trans_sq_address;
 unsigned int ee_trans_sq_size;
 unsigned int ee_trans_sq_address;
 int CurrentFxLevel;
@@ -207,12 +207,12 @@ SDSHOT __shot_handle_top;
 unsigned int ee_trans_cue;
 short SE_HD_CHECK[5];
 short MIDI_BANK[4];
-short MIDI_HD_CHECK[4];
+short MIDI_HD_CHECK[4];*/
 int __pstm_value;
-SDS_PORT_REF* __pstm_handle_top;
-_anon0 __snd_work__[40];
-SDS_PORT_REF* __snd_handle__[40];
-int AdxTInfoBack[10][4];
+SDPSTM __pstm_handle_top;
+SND_WORK __snd_work__[40];
+SDHANDLE* __snd_handle__[40];
+/*int AdxTInfoBack[10][4];
 unsigned int old_trans_size;
 unsigned int ee_trans_type;
 
@@ -1473,44 +1473,45 @@ SDE_ERR	sdSysServer( Void)
 	scePrintf("sdSysServer - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2dda10
-SDE_ERR	sdSysSetSlotMax( const Sint32 midi_slot_max, const Sint32 shot_slot_max, const Sint32 pstm_slot_max)
+// 100% matching! 
+SDE_ERR	sdSysSetSlotMax(const Sint32 midi_slot_max, const Sint32 shot_slot_max, const Sint32 pstm_slot_max)
 {
-	int i;
-	// Line 4043, Address: 0x2dda10, Func Offset: 0
-	// Line 4052, Address: 0x2dda20, Func Offset: 0x10
-	// Line 4053, Address: 0x2dda28, Func Offset: 0x18
-	// Line 4056, Address: 0x2dda2c, Func Offset: 0x1c
-	// Line 4053, Address: 0x2dda30, Func Offset: 0x20
-	// Line 4051, Address: 0x2dda34, Func Offset: 0x24
-	// Line 4056, Address: 0x2dda3c, Func Offset: 0x2c
-	// Line 4051, Address: 0x2dda40, Func Offset: 0x30
-	// Line 4056, Address: 0x2dda44, Func Offset: 0x34
-	// Line 4057, Address: 0x2dda50, Func Offset: 0x40
-	// Line 4061, Address: 0x2dda5c, Func Offset: 0x4c
-	// Line 4062, Address: 0x2dda6c, Func Offset: 0x5c
-	// Line 4063, Address: 0x2dda7c, Func Offset: 0x6c
-	// Line 4065, Address: 0x2dda9c, Func Offset: 0x8c
-	// Line 4066, Address: 0x2ddaa8, Func Offset: 0x98
-	// Line 4067, Address: 0x2ddab0, Func Offset: 0xa0
-	// Line 4066, Address: 0x2ddab4, Func Offset: 0xa4
-	// Line 4067, Address: 0x2ddac4, Func Offset: 0xb4
-	// Line 4068, Address: 0x2ddadc, Func Offset: 0xcc
-	// Line 4069, Address: 0x2ddaf0, Func Offset: 0xe0
-	// Line 4070, Address: 0x2ddb24, Func Offset: 0x114
-	// Line 4069, Address: 0x2ddb28, Func Offset: 0x118
-	// Line 4070, Address: 0x2ddb2c, Func Offset: 0x11c
-	// Line 4071, Address: 0x2ddb44, Func Offset: 0x134
-	// Line 4072, Address: 0x2ddb58, Func Offset: 0x148
-	// Line 4073, Address: 0x2ddb98, Func Offset: 0x188
-	// Line 4072, Address: 0x2ddb9c, Func Offset: 0x18c
-	// Line 4073, Address: 0x2ddba0, Func Offset: 0x190
-	// Line 4074, Address: 0x2ddbb4, Func Offset: 0x1a4
-	// Line 4078, Address: 0x2ddbbc, Func Offset: 0x1ac
-	// Line 4080, Address: 0x2ddbc4, Func Offset: 0x1b4
-	// Func End, Address: 0x2ddbcc, Func Offset: 0x1bc
-	scePrintf("sdSysSetSlotMax - UNIMPLEMENTED!\n");
+    int i;
+
+	if (__sg_sd_snd_init__ != 0) 
+    {
+        __shot_value = shot_slot_max;
+        __pstm_value = pstm_slot_max;
+        __midi_value = 10;
+
+        if ((pstm_slot_max + (shot_slot_max + 10)) > 40) 
+        {
+            return SDE_ERR_PRM_OVER_RANGE;
+        }
+
+        __midi_handle_top = (SDMIDI)&__snd_handle__[0];
+        __shot_handle_top = (SDSHOT)&__snd_handle__[10];
+        __pstm_handle_top = (SDPSTM)&__snd_handle__[shot_slot_max + 10];
+
+        for (i = 0; i < __midi_value; i++)
+        {
+            __midi_handle_top[i] = (SDHANDLE)&__snd_work__[i];
+        }
+
+        for (i = 0; i < __shot_value; i++) 
+        {
+            __shot_handle_top[i] = (SDHANDLE)&__snd_work__[__midi_value + i];
+        }
+
+        for (i = 0; i < __pstm_value; i++) 
+        {
+            __pstm_handle_top[i] = (SDHANDLE)&__snd_work__[__midi_value + __shot_value + i];
+        }
+
+        return SDE_ERR_NOTHING;
+    }
+
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching! 
