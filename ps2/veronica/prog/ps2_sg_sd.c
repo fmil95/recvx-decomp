@@ -165,9 +165,9 @@ enum SDE_ERR
 	SDE_ERR_MAIN_MEM_ADR_ERR = 0xf010001,
 	SDE_ERR_SND_MEM_ADR_ERR = 0xf010101,
 	SDE_ERR_UNKNOW_NUM = 0x7fffffff
-};
+};*/
 
-char sound_flag;*/
+char sound_flag;
 int __sg_sd_snd_init__;
 void(*__snd_set_end_func__)(void*);
 void* __snd_end_func_arg__;
@@ -1131,33 +1131,54 @@ SDE_ERR	sdSndSetMasterVol( const Sint8 vol)
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2dca90
-SDE_ERR	sdSndSetPanMode( const SDE_PAN_MODE pan_mode)
+// 100% matching! 
+SDE_ERR	sdSndSetPanMode( const SDE_PAN_MODE pan_mode) 
 {
-	int ret;
-	// Line 2668, Address: 0x2dca90, Func Offset: 0
-	// Line 2671, Address: 0x2dca9c, Func Offset: 0xc
-	// Line 2674, Address: 0x2dcaac, Func Offset: 0x1c
-	// Line 2675, Address: 0x2dcab8, Func Offset: 0x28
-	// Line 2676, Address: 0x2dcac0, Func Offset: 0x30
-	// Line 2680, Address: 0x2dcacc, Func Offset: 0x3c
-	// Line 2683, Address: 0x2dcad4, Func Offset: 0x44
-	// Line 2685, Address: 0x2dcad8, Func Offset: 0x48
-	// Line 2687, Address: 0x2dcae0, Func Offset: 0x50
-	// Line 2688, Address: 0x2dcae8, Func Offset: 0x58
-	// Line 2689, Address: 0x2dcaf4, Func Offset: 0x64
-	// Line 2693, Address: 0x2dcafc, Func Offset: 0x6c
-	// Line 2696, Address: 0x2dcb04, Func Offset: 0x74
-	// Line 2698, Address: 0x2dcb0c, Func Offset: 0x7c
-	// Line 2700, Address: 0x2dcb14, Func Offset: 0x84
-	// Line 2702, Address: 0x2dcb20, Func Offset: 0x90
-	// Line 2703, Address: 0x2dcb28, Func Offset: 0x98
-	// Line 2706, Address: 0x2dcb30, Func Offset: 0xa0
-	// Line 2710, Address: 0x2dcb3c, Func Offset: 0xac
-	// Line 2712, Address: 0x2dcb44, Func Offset: 0xb4
-	// Func End, Address: 0x2dcb54, Func Offset: 0xc4
-	scePrintf("sdSndSetPanMode - UNIMPLEMENTED!\n");
+    int ret;
+
+    if (__sg_sd_snd_init__ != 0)
+    {
+        if (pan_mode == 1) 
+        {
+            ret = SdrSetOutputMode(1);
+            
+            sceSSyn_SetOutputMode(1);
+            
+            ADXT_SetOutputMono(0);
+            
+            sound_flag = 0;
+            
+            goto label;
+        }
+        else if (pan_mode == 0) 
+        {
+            ret = SdrSetOutputMode(0);
+            
+            sceSSyn_SetOutputMode(0);
+            
+            ADXT_SetOutputMono(1);
+            
+            sound_flag = 1;
+            
+            goto label;
+        }
+        else 
+        {
+            return SDE_ERR_PRM_OVER_RANGE;
+        }
+
+        label:
+        if (ret == 0) 
+        {
+            return SDE_ERR_NOTHING;
+        }
+        else 
+        {
+            return SDE_ERR_HOST_CMD_BUF_NO_ENOUGH;
+        }
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching! 

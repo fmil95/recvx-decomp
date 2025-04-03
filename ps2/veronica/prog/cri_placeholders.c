@@ -79,3 +79,8 @@ void ADXT_Stop(ADXT adxt)
 {
     scePrintf("ADXT_Stop - UNIMPLEMENTED!\n");
 }
+
+void ADXT_SetOutputMono(Sint32 flag)
+{
+    scePrintf("ADXT_SetOutputMono - UNIMPLEMENTED!\n");
+}

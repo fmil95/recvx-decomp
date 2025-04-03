@@ -609,7 +609,7 @@ int SdrSetIopData()
 	// Line 4129, Address: 0x2ea8d8, Func Offset: 0xa8
 	// Line 4130, Address: 0x2ea8dc, Func Offset: 0xac
 	// Func End, Address: 0x2ea8e8, Func Offset: 0xb8
-}
+}*/
 
 // 
 // Start address: 0x2ea8f0
@@ -624,9 +624,10 @@ int SdrSetOutputMode(int mode)
 	// Line 4647, Address: 0x2ea980, Func Offset: 0x90
 	// Line 4648, Address: 0x2ea984, Func Offset: 0x94
 	// Func End, Address: 0x2ea990, Func Offset: 0xa0
+	scePrintf("SdrSetOutputMode - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ea990
 int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char delay, unsigned char feedback)
 {

@@ -14,6 +14,8 @@
 #include <libmc.h>
 #include <libcdvd.h>
 #include <libpad.h>
+#include <csl.h>
+#include <libssyn.h>
 
 #include "override_katana.h"
 // KATANA library
