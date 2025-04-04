@@ -403,11 +403,11 @@ void	njExitTexture(void)
 
 }
 
-/*// 
+// 
 // Start address: 0x2e1d70
 int SearchNumber(unsigned int global_index, unsigned int bank)
 {
-	_anon1* addr;
+	//_anon1* addr;
 	unsigned int n;
 	unsigned int i;
 	// Line 264, Address: 0x2e1d70, Func Offset: 0
@@ -421,13 +421,14 @@ int SearchNumber(unsigned int global_index, unsigned int bank)
 	// Line 276, Address: 0x2e1dd8, Func Offset: 0x68
 	// Line 277, Address: 0x2e1ddc, Func Offset: 0x6c
 	// Func End, Address: 0x2e1de4, Func Offset: 0x74
+	scePrintf("SearchNumber - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e1df0
 int SearchNullNumber()
 {
-	_anon1* addr;
+	//_anon1* addr;
 	unsigned int n;
 	unsigned int i;
 	// Line 285, Address: 0x2e1df0, Func Offset: 0
@@ -438,86 +439,142 @@ int SearchNullNumber()
 	// Line 291, Address: 0x2e1e30, Func Offset: 0x40
 	// Line 292, Address: 0x2e1e34, Func Offset: 0x44
 	// Func End, Address: 0x2e1e3c, Func Offset: 0x4c
-}*/
+	scePrintf("SearchNullNumber - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x2e1e40
+// 100% matching!
 Sint32	njLoadTexture(NJS_TEXLIST *texlist)
 {
-	//_anon1* addr;
-	unsigned int attr;
-	unsigned int bank;
-	unsigned int g_index;
-	unsigned int tex_num;
-	int cont_no;
-	int no;
-	int j;
-	// Line 308, Address: 0x2e1e40, Func Offset: 0
-	// Line 315, Address: 0x2e1e6c, Func Offset: 0x2c
-	// Line 317, Address: 0x2e1e74, Func Offset: 0x34
-	// Line 316, Address: 0x2e1e78, Func Offset: 0x38
-	// Line 322, Address: 0x2e1e80, Func Offset: 0x40
-	// Line 323, Address: 0x2e1e88, Func Offset: 0x48
-	// Line 326, Address: 0x2e1e9c, Func Offset: 0x5c
-	// Line 327, Address: 0x2e1ea0, Func Offset: 0x60
-	// Line 326, Address: 0x2e1ea4, Func Offset: 0x64
-	// Line 327, Address: 0x2e1eac, Func Offset: 0x6c
-	// Line 328, Address: 0x2e1eb8, Func Offset: 0x78
-	// Line 330, Address: 0x2e1ec8, Func Offset: 0x88
-	// Line 331, Address: 0x2e1ee0, Func Offset: 0xa0
-	// Line 332, Address: 0x2e1ef0, Func Offset: 0xb0
-	// Line 333, Address: 0x2e1ef4, Func Offset: 0xb4
-	// Line 334, Address: 0x2e1f04, Func Offset: 0xc4
-	// Line 335, Address: 0x2e1f1c, Func Offset: 0xdc
-	// Line 336, Address: 0x2e1f24, Func Offset: 0xe4
-	// Line 337, Address: 0x2e1f2c, Func Offset: 0xec
-	// Line 339, Address: 0x2e1f30, Func Offset: 0xf0
-	// Line 340, Address: 0x2e1f74, Func Offset: 0x134
-	// Line 343, Address: 0x2e1f7c, Func Offset: 0x13c
-	// Line 341, Address: 0x2e1f8c, Func Offset: 0x14c
-	// Line 343, Address: 0x2e1f90, Func Offset: 0x150
-	// Line 345, Address: 0x2e1f9c, Func Offset: 0x15c
-	// Line 347, Address: 0x2e1fa4, Func Offset: 0x164
-	// Line 348, Address: 0x2e1fa8, Func Offset: 0x168
-	// Line 349, Address: 0x2e1fac, Func Offset: 0x16c
-	// Line 351, Address: 0x2e1fb4, Func Offset: 0x174
-	// Line 357, Address: 0x2e1fb8, Func Offset: 0x178
-	// Line 358, Address: 0x2e1fcc, Func Offset: 0x18c
-	// Line 360, Address: 0x2e1fe8, Func Offset: 0x1a8
-	// Line 362, Address: 0x2e1ff8, Func Offset: 0x1b8
-	// Line 363, Address: 0x2e2000, Func Offset: 0x1c0
-	// Line 364, Address: 0x2e2008, Func Offset: 0x1c8
-	// Line 365, Address: 0x2e2018, Func Offset: 0x1d8
-	// Line 366, Address: 0x2e2030, Func Offset: 0x1f0
-	// Line 367, Address: 0x2e2038, Func Offset: 0x1f8
-	// Line 369, Address: 0x2e2040, Func Offset: 0x200
-	// Line 370, Address: 0x2e2058, Func Offset: 0x218
-	// Line 371, Address: 0x2e205c, Func Offset: 0x21c
-	// Line 373, Address: 0x2e2060, Func Offset: 0x220
-	// Line 375, Address: 0x2e2064, Func Offset: 0x224
-	// Line 374, Address: 0x2e2068, Func Offset: 0x228
-	// Line 375, Address: 0x2e206c, Func Offset: 0x22c
-	// Line 376, Address: 0x2e2070, Func Offset: 0x230
-	// Line 377, Address: 0x2e2084, Func Offset: 0x244
-	// Line 378, Address: 0x2e2098, Func Offset: 0x258
-	// Line 379, Address: 0x2e209c, Func Offset: 0x25c
-	// Line 380, Address: 0x2e20a0, Func Offset: 0x260
-	// Line 381, Address: 0x2e20b4, Func Offset: 0x274
-	// Line 382, Address: 0x2e20c8, Func Offset: 0x288
-	// Line 383, Address: 0x2e20cc, Func Offset: 0x28c
-	// Line 384, Address: 0x2e20d0, Func Offset: 0x290
-	// Line 385, Address: 0x2e20d4, Func Offset: 0x294
-	// Line 388, Address: 0x2e20d8, Func Offset: 0x298
-	// Line 389, Address: 0x2e20e8, Func Offset: 0x2a8
-	// Line 392, Address: 0x2e20f0, Func Offset: 0x2b0
-	// Line 393, Address: 0x2e20f8, Func Offset: 0x2b8
-	// Line 395, Address: 0x2e2100, Func Offset: 0x2c0
-	// Line 396, Address: 0x2e2110, Func Offset: 0x2d0
-	// Line 401, Address: 0x2e2118, Func Offset: 0x2d8
-	// Line 400, Address: 0x2e2140, Func Offset: 0x300
-	// Line 401, Address: 0x2e2144, Func Offset: 0x304
-	// Func End, Address: 0x2e214c, Func Offset: 0x30c
-	scePrintf("njLoadTexture - UNIMPLEMENTED!\n");
+    int j;
+    int no; 
+    int cont_no;
+    unsigned int tex_num;
+    unsigned int g_index;
+    unsigned int bank; 
+    unsigned int attr;
+    NJS_TEXMEMLIST* addr; 
+    
+    no = Ps2_texcontinue_no;
+    
+    tex_num = texlist->nbTexture;
+    
+    addr = Ps2_tex_info;
+    
+    ring_check();
+    
+    g_index = -1;
+    
+    for (j = 0; j < tex_num; j++) 
+    {
+        attr = texlist->textures[j].attr;
+        
+        cont_no = -1;
+        
+        if ((attr & 0x40000000))
+        {
+            if ((attr & 0x800000))
+            {
+                g_index = texlist->textures[j].texaddr;
+            } 
+            else if ((attr & 0x1000000)) 
+            {
+                if ((attr & 0x10000)) 
+                {
+                    bank = texlist->textures[j].texaddr >> 26;
+                    
+                    if ((cont_no = SearchNullNumber()) >= 0)
+                    {
+                        texlist->textures[j].texaddr = (unsigned int)&addr[cont_no];
+                    }
+                    else 
+                    {
+                        exit(0);
+                    }
+
+                    addr[cont_no] = *(NJS_TEXMEMLIST*)texlist->textures[j - 1].texaddr;
+                    
+                    addr[cont_no].count = 1;
+                    
+                    addr[cont_no].bank = bank;
+                    
+                    ((TIM2_PICTUREHEADER*)addr[no].texinfo.texsurface.pSurface)->admin.count++;
+                    
+                    continue;
+                }
+                else
+                {
+                    g_index = texlist->textures[j].texaddr;
+                    
+                    cont_no = texlist->textures[j].texaddr >> 26;
+                    
+                    g_index &= 0x3FFFFFF;
+                }
+            }
+
+            if ((no = SearchNumber(g_index, cont_no)) >= 0) 
+            {
+                addr[no].count++;
+                
+                ((TIM2_PICTUREHEADER*)addr[no].texinfo.texsurface.pSurface)->admin.count++;
+                
+                texlist->textures[j].texaddr = (unsigned int)&addr[no];
+            } 
+            else 
+            {
+                if ((no = SearchNullNumber()) >= 0) 
+                {
+                    texlist->textures[j].texaddr = (unsigned int)&addr[no];
+                } 
+                else
+                {
+                    exit(0);
+                }
+
+                addr[no].count = 1;
+                
+                addr[no].globalIndex = g_index;
+                
+                addr[no].bank = cont_no;
+                
+                addr[no].tspparambuffer = 0;
+                addr[no].texparambuffer = 0;
+                
+                addr[no].texaddr = 2;
+                
+                addr[no].texinfo.texaddr = ((NJS_TEXINFO*)texlist->textures[j].filename)->texaddr;
+               
+                addr[no].texinfo.texsurface.Type = ((NJS_TEXINFO*)texlist->textures[j].filename)->texsurface.Type;
+               
+                addr[no].texinfo.texsurface.BitDepth = 0;
+              
+                addr[no].texinfo.texsurface.PixelFormat = 0;
+               
+                addr[no].texinfo.texsurface.nWidth = ((NJS_TEXINFO*)texlist->textures[j].filename)->texsurface.nWidth;
+                addr[no].texinfo.texsurface.nHeight = ((NJS_TEXINFO*)texlist->textures[j].filename)->texsurface.nHeight;
+             
+                addr[no].texinfo.texsurface.TextureSize = 0;
+                
+                addr[no].texinfo.texsurface.fSurfaceFlags = 0;
+                
+                addr[no].texinfo.texsurface.pSurface = NULL;
+                addr[no].texinfo.texsurface.pVirtual = NULL;
+                addr[no].texinfo.texsurface.pPhysical = NULL;
+                
+                if (Ps2TextureMalloc(&addr[no]) < 0) 
+                {
+                    exit(0);
+                }
+            }
+        } 
+        else 
+        {
+            exit(0);
+        }
+    }
+    
+    ring_check();
+    
+    return 1;
 }
 
 // 100% matching! 
@@ -734,14 +791,14 @@ unsigned int Ps2GetTim2Size(void* p)
 	// Line 874, Address: 0x2e2510, Func Offset: 0
 	// Line 875, Address: 0x2e2514, Func Offset: 0x4
 	// Func End, Address: 0x2e251c, Func Offset: 0xc
-}
+}*/
 
 // 
 // Start address: 0x2e2520
-int Ps2TextureMalloc(_anon1* p)
+int Ps2TextureMalloc(NJS_TEXMEMLIST* p)
 {
-	_anon4* last2;
-	_anon4* timp;
+	//_anon4* last2;
+	//_anon4* timp;
 	unsigned int size;
 	// Line 882, Address: 0x2e2520, Func Offset: 0
 	// Line 886, Address: 0x2e2534, Func Offset: 0x14
@@ -800,9 +857,10 @@ int Ps2TextureMalloc(_anon1* p)
 	// Line 937, Address: 0x2e271c, Func Offset: 0x1fc
 	// Line 940, Address: 0x2e2728, Func Offset: 0x208
 	// Func End, Address: 0x2e2740, Func Offset: 0x220
+	scePrintf("Ps2TextureMalloc - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e2740
 int Ps2TextureFree(_anon1* p)
 {
