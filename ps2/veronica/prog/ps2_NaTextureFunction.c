@@ -424,22 +424,26 @@ int SearchNumber(unsigned int global_index, unsigned int bank)
 	scePrintf("SearchNumber - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2e1df0
-int SearchNullNumber()
+// 100% matching!
+int SearchNullNumber() 
 {
-	//_anon1* addr;
-	unsigned int n;
-	unsigned int i;
-	// Line 285, Address: 0x2e1df0, Func Offset: 0
-	// Line 286, Address: 0x2e1df8, Func Offset: 0x8
-	// Line 288, Address: 0x2e1e00, Func Offset: 0x10
-	// Line 289, Address: 0x2e1e0c, Func Offset: 0x1c
-	// Line 290, Address: 0x2e1e20, Func Offset: 0x30
-	// Line 291, Address: 0x2e1e30, Func Offset: 0x40
-	// Line 292, Address: 0x2e1e34, Func Offset: 0x44
-	// Func End, Address: 0x2e1e3c, Func Offset: 0x4c
-	scePrintf("SearchNullNumber - UNIMPLEMENTED!\n");
+    unsigned int i;
+    unsigned int n;
+    NJS_TEXMEMLIST* addr;
+    
+    addr = Ps2_tex_info;
+
+    n = n = Ps2_texmemlist_num;
+    
+    for (i = 0; i < n; ++i) 
+    {
+        if (addr[i].count == 0) 
+        {
+            return i;
+        }
+    }
+    
+    return -1;
 }
 
 // 100% matching!
