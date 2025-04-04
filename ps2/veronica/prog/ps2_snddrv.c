@@ -658,7 +658,7 @@ int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char d
 	scePrintf("SdrSetRev - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2eaa90
 int SdrSendReq(int mode)
 {
@@ -694,9 +694,10 @@ int SdrSendReq(int mode)
 	// Line 4885, Address: 0x2eac00, Func Offset: 0x170
 	// Line 4886, Address: 0x2eac04, Func Offset: 0x174
 	// Func End, Address: 0x2eac1c, Func Offset: 0x18c
+	scePrintf("SdrSendReq - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2eac20
 void cb_sifRpc(int smid)
 {

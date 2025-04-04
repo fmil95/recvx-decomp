@@ -171,8 +171,8 @@ char sound_flag;
 int __sg_sd_snd_init__;
 void(*__snd_set_end_func__)(void*);
 void* __snd_end_func_arg__;
-/*int snd_data_down_load;
-unsigned int iop_packet_flag;
+int snd_data_down_load;
+/*unsigned int iop_packet_flag;
 unsigned int trans_level;
 unsigned int trans_type;
 unsigned int trans_bank_num;
@@ -203,11 +203,11 @@ unsigned short req_se_info[6];
 unsigned short use_se_info[6];
 SDS_MEMBLK __snd_mem_blk__[20];
 SDSHOT __shot_handle_top;
-/*short SE_BANK[5];
-unsigned int ee_trans_cue;
-short SE_HD_CHECK[5];
+short SE_BANK[5];
+/*unsigned int ee_trans_cue;
+short SE_HD_CHECK[5];*/
 short MIDI_BANK[4];
-short MIDI_HD_CHECK[4];*/
+/*short MIDI_HD_CHECK[4];*/
 int __pstm_value;
 SDPSTM __pstm_handle_top;
 SND_WORK __snd_work__[40];
@@ -257,14 +257,14 @@ SDE_ERR sdMemBlkSetTransferMode();
 SDE_ERR sdMultiUnitDownload(SDS_MEMBLK* handle);
 SDE_ERR sdSysFinish();
 unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned int size, unsigned int mode, unsigned int flag);
-void CpEEWait(int val);
+void CpEEWait(int val);*/
 
 // 
 // Start address: 0x2dae10
-SDE_ERR sdBankDownload(SDS_MEMBLK* handle, SDE_DATA_TYPE bank_type, char bank_num)
+SDE_ERR	sdBankDownload( SDMEMBLK handle, const SDE_DATA_TYPE bank_type, const Sint8 bank_num)
 {
 	int i;
-	_anon0* chk_snd_work;
+	//_anon0* chk_snd_work;
 	unsigned int* snd_data;
 	// Line 438, Address: 0x2dae10, Func Offset: 0
 	// Line 445, Address: 0x2dae30, Func Offset: 0x20
@@ -347,7 +347,8 @@ SDE_ERR sdBankDownload(SDS_MEMBLK* handle, SDE_DATA_TYPE bank_type, char bank_nu
 	// Line 738, Address: 0x2db1b4, Func Offset: 0x3a4
 	// Line 740, Address: 0x2db1bc, Func Offset: 0x3ac
 	// Func End, Address: 0x2db1e0, Func Offset: 0x3d0
-}*/
+	scePrintf("sdBankDownload - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 SDE_ERR	sdDrvInit( SDMEMBLK handle)
@@ -1237,12 +1238,12 @@ SDE_ERR	sdSndStopAll( Void)
     return SDE_ERR_NO_INIT;
 }
 
-/*// 
+// 
 // Start address: 0x2dcbb0
 int sndr_trans_func()
 {
 	int i;
-	int i;
+	//int i;
 	int current_trans_size;
 	// Line 2879, Address: 0x2dcbb0, Func Offset: 0
 	// Line 2881, Address: 0x2dcbbc, Func Offset: 0xc
@@ -1408,7 +1409,8 @@ int sndr_trans_func()
 	// Line 3147, Address: 0x2dd5b0, Func Offset: 0xa00
 	// Line 3152, Address: 0x2dd5b8, Func Offset: 0xa08
 	// Func End, Address: 0x2dd5c8, Func Offset: 0xa18
-}*/
+	scePrintf("sndr_trans_func - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2dd5d0
@@ -1552,40 +1554,50 @@ SDE_ERR	sdMemBlkSetTransferMode( SDE_MEMBLK_TRANSFER_MODE transfer_mode)
     return (__sg_sd_snd_init__ != 0) ? SDE_ERR_NOTHING : SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2ddbf0
+// 100% matching! 
 SDE_ERR	sdMultiUnitDownload( SDMEMBLK handle)
 {
-	char* UnitAddress;
-	// Line 4136, Address: 0x2ddbf0, Func Offset: 0
-	// Line 4139, Address: 0x2ddc00, Func Offset: 0x10
-	// Line 4140, Address: 0x2ddc10, Func Offset: 0x20
-	// Line 4141, Address: 0x2ddc18, Func Offset: 0x28
-	// Line 4142, Address: 0x2ddc24, Func Offset: 0x34
-	// Line 4143, Address: 0x2ddc30, Func Offset: 0x40
-	// Line 4144, Address: 0x2ddc3c, Func Offset: 0x4c
-	// Line 4146, Address: 0x2ddc48, Func Offset: 0x58
-	// Line 4147, Address: 0x2ddc54, Func Offset: 0x64
-	// Line 4148, Address: 0x2ddc60, Func Offset: 0x70
-	// Line 4153, Address: 0x2ddc6c, Func Offset: 0x7c
-	// Line 4150, Address: 0x2ddc70, Func Offset: 0x80
-	// Line 4153, Address: 0x2ddc74, Func Offset: 0x84
-	// Line 4158, Address: 0x2ddc80, Func Offset: 0x90
-	// Line 4159, Address: 0x2ddc88, Func Offset: 0x98
-	// Line 4160, Address: 0x2ddc90, Func Offset: 0xa0
-	// Line 4167, Address: 0x2ddca0, Func Offset: 0xb0
-	// Line 4171, Address: 0x2ddca4, Func Offset: 0xb4
-	// Line 4167, Address: 0x2ddcb4, Func Offset: 0xc4
-	// Line 4168, Address: 0x2ddcbc, Func Offset: 0xcc
-	// Line 4171, Address: 0x2ddcc0, Func Offset: 0xd0
-	// Line 4176, Address: 0x2ddcc8, Func Offset: 0xd8
-	// Line 4177, Address: 0x2ddcd0, Func Offset: 0xe0
-	// Line 4178, Address: 0x2ddcd8, Func Offset: 0xe8
-	// Line 4185, Address: 0x2ddce8, Func Offset: 0xf8
-	// Line 4188, Address: 0x2ddcf0, Func Offset: 0x100
-	// Line 4190, Address: 0x2ddcf8, Func Offset: 0x108
-	// Func End, Address: 0x2ddd0c, Func Offset: 0x11c
-	scePrintf("sdMultiUnitDownload - UNIMPLEMENTED!\n");
+    char* UnitAddress;
+    
+    if (__sg_sd_snd_init__ != 0)
+    {
+        SE_BANK[0] = 0;
+        SE_BANK[1] = 4;
+        SE_BANK[2] = 5;
+        SE_BANK[3] = 6;
+        SE_BANK[4] = 7;
+        
+        MIDI_BANK[1] = 1;
+        MIDI_BANK[2] = 2;
+        MIDI_BANK[3] = 3;
+        
+        UnitAddress = (char*)handle->m_Member[1];
+        
+        sdBankDownload(handle, SDE_DATA_TYPE_SHOT_BANK, 0);
+        
+        do 
+        {
+            sndr_trans_func();
+            
+            SdrSendReq(0);
+        } while (snd_data_down_load != 0);
+        
+        handle->m_Member[1] = (int)(UnitAddress + ((int*)UnitAddress)[4]);
+        handle->m_Member[2] = ((int*)UnitAddress)[5];
+        
+        sdBankDownload(handle, SDE_DATA_TYPE_MIDI_SEQ_BANK, 1);
+        
+        do
+        {
+            sndr_trans_func();
+            
+            SdrSendReq(0);
+        } while (snd_data_down_load != 0);
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching! 
