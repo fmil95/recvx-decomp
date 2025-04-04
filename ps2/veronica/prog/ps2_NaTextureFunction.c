@@ -965,7 +965,7 @@ int ring_check()
         {
             return;
         }
-    } while (*(int*)p->FileId == 843925844);
+    } while (*(int*)p->FileId == MAKE_MAGIC('T', 'I', 'M', '2'));
 
     after = p;
     
