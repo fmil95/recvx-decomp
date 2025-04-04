@@ -403,25 +403,33 @@ void	njExitTexture(void)
 
 }
 
-// 
-// Start address: 0x2e1d70
+// 100% matching!
 int SearchNumber(unsigned int global_index, unsigned int bank)
 {
-	//_anon1* addr;
-	unsigned int n;
-	unsigned int i;
-	// Line 264, Address: 0x2e1d70, Func Offset: 0
-	// Line 266, Address: 0x2e1d84, Func Offset: 0x14
-	// Line 267, Address: 0x2e1d88, Func Offset: 0x18
-	// Line 269, Address: 0x2e1d90, Func Offset: 0x20
-	// Line 270, Address: 0x2e1d9c, Func Offset: 0x2c
-	// Line 271, Address: 0x2e1da8, Func Offset: 0x38
-	// Line 272, Address: 0x2e1dc0, Func Offset: 0x50
-	// Line 275, Address: 0x2e1dc8, Func Offset: 0x58
-	// Line 276, Address: 0x2e1dd8, Func Offset: 0x68
-	// Line 277, Address: 0x2e1ddc, Func Offset: 0x6c
-	// Func End, Address: 0x2e1de4, Func Offset: 0x74
-	scePrintf("SearchNumber - UNIMPLEMENTED!\n");
+    unsigned int i;
+    unsigned int n;
+    NJS_TEXMEMLIST* addr;
+
+    n = i = -1;
+    
+    if (global_index == n) 
+    {
+        return -1;   
+    }
+
+    addr = Ps2_tex_info;
+    
+    n = Ps2_texmemlist_num;
+    
+    for (i = 0; i < n; ++i) 
+    {
+        if ((global_index == addr[i].globalIndex) && ((bank == addr[i].bank) || (bank == -1)))
+        {
+            return i;
+        }
+    }
+    
+    return -1;
 }
 
 // 100% matching!
