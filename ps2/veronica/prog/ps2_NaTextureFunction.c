@@ -889,25 +889,27 @@ int Ps2TextureGarbageCollectionAll()
 	// Line 1038, Address: 0x2e28e8, Func Offset: 0xa8
 	// Line 1042, Address: 0x2e28f8, Func Offset: 0xb8
 	// Func End, Address: 0x2e2908, Func Offset: 0xc8
-}
+}*/
 
-// 
-// Start address: 0x2e2910
+// 100% matching!
 int ring_check()
 {
-	_anon4* p;
-	_anon4* after;
-	// Line 1079, Address: 0x2e2910, Func Offset: 0
-	// Line 1084, Address: 0x2e2914, Func Offset: 0x4
-	// Line 1079, Address: 0x2e291c, Func Offset: 0xc
-	// Line 1087, Address: 0x2e2920, Func Offset: 0x10
-	// Line 1089, Address: 0x2e2924, Func Offset: 0x14
-	// Line 1087, Address: 0x2e2928, Func Offset: 0x18
-	// Line 1089, Address: 0x2e292c, Func Offset: 0x1c
-	// Line 1086, Address: 0x2e2930, Func Offset: 0x20
-	// Line 1087, Address: 0x2e2934, Func Offset: 0x24
-	// Line 1089, Address: 0x2e293c, Func Offset: 0x2c
-	// Line 1090, Address: 0x2e2948, Func Offset: 0x38
-	// Line 1098, Address: 0x2e2958, Func Offset: 0x48
-	// Func End, Address: 0x2e2964, Func Offset: 0x54
-}*/
+    TIM2_PICTUREHEADER* after;
+    TIM2_PICTUREHEADER* p;
+
+    p = &Ps2_tm_list_1st;
+  
+    do 
+    {
+        p = p->admin.after;
+        
+        if (p == &Ps2_tm_list_last) 
+        {
+            return;
+        }
+    } while (*(int*)p->FileId == 843925844);
+
+    after = p;
+    
+    return printf("RING ERROR %x\n", after->admin.addr);
+}
