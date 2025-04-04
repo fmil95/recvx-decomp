@@ -2158,21 +2158,18 @@ void Ps2AlphaIs000(unsigned int* cp, unsigned int num)
 	// Line 2794, Address: 0x2cdad0, Func Offset: 0x40
 	// Line 2795, Address: 0x2cdae0, Func Offset: 0x50
 	// Func End, Address: 0x2cdae8, Func Offset: 0x58
-}
+}*/
 
-// 
-// Start address: 0x2cdaf0
+// 100% matching!
 unsigned int Ps2AlphaIsHalf(unsigned int* cp, unsigned int num)
 {
-	unsigned int i;
-	// Line 2802, Address: 0x2cdaf0, Func Offset: 0
-	// Line 2806, Address: 0x2cdafc, Func Offset: 0xc
-	// Line 2807, Address: 0x2cdb00, Func Offset: 0x10
-	// Line 2806, Address: 0x2cdb08, Func Offset: 0x18
-	// Line 2807, Address: 0x2cdb14, Func Offset: 0x24
-	// Line 2808, Address: 0x2cdb20, Func Offset: 0x30
-	// Func End, Address: 0x2cdb28, Func Offset: 0x38
-}*/
+    unsigned int i;
+    
+    for (i = 0; i < num; i++, cp++)
+    {
+        ((unsigned char*)cp)[3] = (((unsigned char*)cp)[3] + 1) >> 1;
+    }
+}
 
 // 100% matching!
 unsigned int Ps2Alpha4to8(unsigned int* cp, unsigned int num)
