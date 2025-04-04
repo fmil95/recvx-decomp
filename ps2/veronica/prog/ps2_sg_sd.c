@@ -588,39 +588,58 @@ SDE_ERR sdMidiGetStat(SDS_PORT_REF** handle, SDS_MIDI_STAT* midi_stat)
 	// Func End, Address: 0x2db720, Func Offset: 0x80
 }*/
 
-// 
-// Start address: 0x2db720
-SDE_ERR sdMidiOpenPort(SDS_PORT_REF*** handle)
+// 100% matching! 
+SDE_ERR	sdMidiOpenPort( SDMIDI *handle)
 {
-	//_anon0* check_snd_work;
-	int i;
-	// Line 1194, Address: 0x2db720, Func Offset: 0
-	// Line 1196, Address: 0x2db730, Func Offset: 0x10
-	// Line 1197, Address: 0x2db738, Func Offset: 0x18
-	// Line 1196, Address: 0x2db740, Func Offset: 0x20
-	// Line 1197, Address: 0x2db744, Func Offset: 0x24
-	// Line 1199, Address: 0x2db74c, Func Offset: 0x2c
-	// Line 1202, Address: 0x2db758, Func Offset: 0x38
-	// Line 1203, Address: 0x2db770, Func Offset: 0x50
-	// Line 1204, Address: 0x2db778, Func Offset: 0x58
-	// Line 1207, Address: 0x2db784, Func Offset: 0x64
-	// Line 1208, Address: 0x2db78c, Func Offset: 0x6c
-	// Line 1209, Address: 0x2db794, Func Offset: 0x74
-	// Line 1210, Address: 0x2db79c, Func Offset: 0x7c
-	// Line 1213, Address: 0x2db7a4, Func Offset: 0x84
-	// Line 1212, Address: 0x2db7a8, Func Offset: 0x88
-	// Line 1217, Address: 0x2db7ac, Func Offset: 0x8c
-	// Line 1218, Address: 0x2db7b8, Func Offset: 0x98
-	// Line 1220, Address: 0x2db7c4, Func Offset: 0xa4
-	// Line 1222, Address: 0x2db7c8, Func Offset: 0xa8
-	// Line 1226, Address: 0x2db7cc, Func Offset: 0xac
-	// Line 1227, Address: 0x2db7d8, Func Offset: 0xb8
-	// Line 1226, Address: 0x2db7dc, Func Offset: 0xbc
-	// Line 1227, Address: 0x2db7e0, Func Offset: 0xc0
-	// Line 1230, Address: 0x2db7e8, Func Offset: 0xc8
-	// Line 1232, Address: 0x2db7f0, Func Offset: 0xd0
-	// Func End, Address: 0x2db7f8, Func Offset: 0xd8
-	scePrintf("sdMidiOpenPort - UNIMPLEMENTED!\n");
+    int i;
+    SND_WORK* check_snd_work;
+    SND_WORK* temp; // not from the debugging symbols
+	
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        check_snd_work = (SND_WORK*)*__midi_handle_top;
+        
+        for (i = 0; i < __midi_value; i++, check_snd_work++) 
+        {
+            if (check_snd_work->port_check == 0) 
+            {
+                break;
+            }
+        } 
+        
+        if (i == __midi_value) 
+        {
+            return SDE_ERR_HANDLE_NO_ENOUGH;
+        }
+        else 
+        {
+            check_snd_work->port_check = 1;
+            
+            check_snd_work->vol = 127;
+            
+            check_snd_work->pan = 64;
+            
+            check_snd_work->pitch = 8192;
+            
+            check_snd_work->port_num = i;
+            
+            check_snd_work->req = 255;
+
+            if (i == 2) 
+            {
+                temp = (SND_WORK*)*__midi_handle_top; 
+                
+                temp[8].port_num = 255;  // TODO: rewrite these two lines, likely wrong cast
+                temp[9].port_num = 255;
+            }
+            
+            *handle = &__midi_handle_top[i];
+            
+            return SDE_ERR_NOTHING;
+        }
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 /*// 
