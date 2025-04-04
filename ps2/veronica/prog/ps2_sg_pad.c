@@ -150,7 +150,7 @@ unsigned char Pad_rdata1[32];
 unsigned char ChkCnt;
 unsigned char PadCnt;
 PDS_PERIPHERALINFO pgp_info;
-/*unsigned int Pad_state[2];*/
+unsigned int Pad_state[2];
 int SoftResetFlag;
 PAD_INFO Pad[4];
 int CurrentPortId;
@@ -165,8 +165,8 @@ void pdSetMode();*/
 void Ps2_pad_read();
 void Ps2_Read_Key(PDS_PERIPHERAL* per, PAD_WORK* pad_wk);
 void Ps2_MakeRepeatKey(unsigned int Id, PAD_WORK* pad_wk);
-/*void Pad_set(_anon0* pbt, unsigned short pad_num);
-void Pad_init();*/
+void Pad_set(PAD_WORK* pbt, unsigned short pad_num);
+/*void Pad_init();*/
 
 // 100% matching!
 void pdInitPeripheral(Sint32 logic, void* recvbuf, void* sendbuf)
@@ -318,99 +318,192 @@ void pdSetMode(Sint32 mode)
 
 }
 
-// 
-// Start address: 0x2d9f80
+// 99.87% matching
 void Ps2_pad_read()
 {
-	//_anon4* pad;
-	unsigned int info;
-	// Line 220, Address: 0x2d9f80, Func Offset: 0
-	// Line 222, Address: 0x2d9f90, Func Offset: 0x10
-	// Line 223, Address: 0x2d9f98, Func Offset: 0x18
-	// Line 225, Address: 0x2d9fac, Func Offset: 0x2c
-	// Line 226, Address: 0x2d9fcc, Func Offset: 0x4c
-	// Line 227, Address: 0x2d9fe0, Func Offset: 0x60
-	// Line 228, Address: 0x2da004, Func Offset: 0x84
-	// Line 229, Address: 0x2da00c, Func Offset: 0x8c
-	// Line 231, Address: 0x2da014, Func Offset: 0x94
-	// Line 232, Address: 0x2da028, Func Offset: 0xa8
-	// Line 233, Address: 0x2da030, Func Offset: 0xb0
-	// Line 235, Address: 0x2da060, Func Offset: 0xe0
-	// Line 256, Address: 0x2da074, Func Offset: 0xf4
-	// Line 257, Address: 0x2da08c, Func Offset: 0x10c
-	// Line 258, Address: 0x2da098, Func Offset: 0x118
-	// Line 265, Address: 0x2da0a8, Func Offset: 0x128
-	// Line 268, Address: 0x2da0b0, Func Offset: 0x130
-	// Line 270, Address: 0x2da0c4, Func Offset: 0x144
-	// Line 271, Address: 0x2da0d0, Func Offset: 0x150
-	// Line 274, Address: 0x2da0e4, Func Offset: 0x164
-	// Line 275, Address: 0x2da0ec, Func Offset: 0x16c
-	// Line 278, Address: 0x2da0f4, Func Offset: 0x174
-	// Line 279, Address: 0x2da114, Func Offset: 0x194
-	// Line 281, Address: 0x2da11c, Func Offset: 0x19c
-	// Line 284, Address: 0x2da124, Func Offset: 0x1a4
-	// Line 286, Address: 0x2da14c, Func Offset: 0x1cc
-	// Line 287, Address: 0x2da154, Func Offset: 0x1d4
-	// Line 290, Address: 0x2da15c, Func Offset: 0x1dc
-	// Line 291, Address: 0x2da168, Func Offset: 0x1e8
-	// Line 297, Address: 0x2da178, Func Offset: 0x1f8
-	// Line 300, Address: 0x2da180, Func Offset: 0x200
-	// Line 301, Address: 0x2da19c, Func Offset: 0x21c
-	// Line 303, Address: 0x2da1a4, Func Offset: 0x224
-	// Line 306, Address: 0x2da1ac, Func Offset: 0x22c
-	// Line 308, Address: 0x2da1d4, Func Offset: 0x254
-	// Line 309, Address: 0x2da1dc, Func Offset: 0x25c
-	// Line 312, Address: 0x2da1e4, Func Offset: 0x264
-	// Line 313, Address: 0x2da1f0, Func Offset: 0x270
-	// Line 319, Address: 0x2da200, Func Offset: 0x280
-	// Line 322, Address: 0x2da208, Func Offset: 0x288
-	// Line 323, Address: 0x2da228, Func Offset: 0x2a8
-	// Line 325, Address: 0x2da23c, Func Offset: 0x2bc
-	// Line 326, Address: 0x2da244, Func Offset: 0x2c4
-	// Line 329, Address: 0x2da24c, Func Offset: 0x2cc
-	// Line 330, Address: 0x2da260, Func Offset: 0x2e0
-	// Line 331, Address: 0x2da274, Func Offset: 0x2f4
-	// Line 332, Address: 0x2da27c, Func Offset: 0x2fc
-	// Line 331, Address: 0x2da280, Func Offset: 0x300
-	// Line 332, Address: 0x2da28c, Func Offset: 0x30c
-	// Line 340, Address: 0x2da290, Func Offset: 0x310
-	// Line 343, Address: 0x2da298, Func Offset: 0x318
-	// Line 345, Address: 0x2da2c0, Func Offset: 0x340
-	// Line 346, Address: 0x2da2c8, Func Offset: 0x348
-	// Line 349, Address: 0x2da2d0, Func Offset: 0x350
-	// Line 355, Address: 0x2da2d8, Func Offset: 0x358
-	// Line 358, Address: 0x2da2e0, Func Offset: 0x360
-	// Line 359, Address: 0x2da2e8, Func Offset: 0x368
-	// Line 358, Address: 0x2da2ec, Func Offset: 0x36c
-	// Line 359, Address: 0x2da2f0, Func Offset: 0x370
-	// Line 361, Address: 0x2da308, Func Offset: 0x388
-	// Line 364, Address: 0x2da310, Func Offset: 0x390
-	// Line 366, Address: 0x2da31c, Func Offset: 0x39c
-	// Line 368, Address: 0x2da324, Func Offset: 0x3a4
-	// Line 369, Address: 0x2da32c, Func Offset: 0x3ac
-	// Line 371, Address: 0x2da334, Func Offset: 0x3b4
-	// Line 370, Address: 0x2da338, Func Offset: 0x3b8
-	// Line 371, Address: 0x2da33c, Func Offset: 0x3bc
-	// Line 370, Address: 0x2da340, Func Offset: 0x3c0
-	// Line 371, Address: 0x2da344, Func Offset: 0x3c4
-	// Line 372, Address: 0x2da34c, Func Offset: 0x3cc
-	// Line 373, Address: 0x2da35c, Func Offset: 0x3dc
-	// Line 376, Address: 0x2da364, Func Offset: 0x3e4
-	// Line 377, Address: 0x2da374, Func Offset: 0x3f4
-	// Line 380, Address: 0x2da388, Func Offset: 0x408
-	// Line 381, Address: 0x2da39c, Func Offset: 0x41c
-	// Line 384, Address: 0x2da3b0, Func Offset: 0x430
-	// Line 385, Address: 0x2da3bc, Func Offset: 0x43c
-	// Line 387, Address: 0x2da3c4, Func Offset: 0x444
-	// Line 384, Address: 0x2da3c8, Func Offset: 0x448
-	// Line 385, Address: 0x2da3d0, Func Offset: 0x450
-	// Line 387, Address: 0x2da3d4, Func Offset: 0x454
-	// Line 385, Address: 0x2da3d8, Func Offset: 0x458
-	// Line 387, Address: 0x2da3dc, Func Offset: 0x45c
-	// Line 516, Address: 0x2da3e4, Func Offset: 0x464
-	// Line 518, Address: 0x2da3ec, Func Offset: 0x46c
-	// Func End, Address: 0x2da400, Func Offset: 0x480
-	scePrintf("Ps2_pad_read - UNIMPLEMENTED!\n");
+	unsigned int info; 
+    PAD_WRK* pad; 
+    int* temp; // not from the debugging symbols
+    
+    pad = &Ps2_pad;
+    
+    Pad_state[0] = scePadGetState(0, 0);
+    
+    if ((Pad_state[0] == 6) || (Pad_state[0] == 2))
+    {
+        if ((Pad_status.be_flag & 0x1))
+        {
+            info = Pad_status.type;
+            
+            if (info != scePadInfoMode(0, 0, 1, 0))
+            {
+                Pad_status.be_flag = 0;
+                
+                Pad_status.routine_0 = 0;
+            }
+            
+            scePadRead(0, 0, Pad_rdata1);
+        } 
+        else 
+        {
+            switch (Pad_status.routine_0)
+            {
+            case 0:
+                info = scePadInfoMode(0, 0, 1, 0);
+                
+                if ((info == 7) || (info == 4))
+                {
+                    Pad_status.routine_0 = 1;
+                    
+                    Pad_status.be_flag |= 0x2;
+                }
+                
+                break;
+            case 1:
+                info = scePadInfoMode(0, 0, 2, 0);
+                
+                if (info == 2)
+                {
+                    Pad_status.be_flag |= 0x8;
+                }
+                
+                Pad_status.routine_0 = 2;
+                break;
+            case 2:
+                info = scePadSetMainMode(0, 0, 1, 3);
+                
+                if (info == 1)
+                {
+                    Pad_status.routine_0 = 3;
+                }
+                
+                break;
+            case 3:
+                info = scePadGetReqState(0, 0);
+                
+                switch (info) 
+                {
+                case 1:
+                    Pad_status.routine_0 = 2;
+                    break;
+                case 0:
+                    Pad_status.routine_0 = 4;
+                    
+                    Pad_status.be_flag |= 0x10;
+                    break;
+                }
+               
+                break;
+            case 4:
+                info = scePadSetActAlign(0, 0, Pad_status.act_data);
+                
+                if (info != 0)
+                {
+                    Pad_status.routine_0 = 5;
+                }
+                
+                break;
+            case 5:
+                info = scePadGetReqState(0, 0);
+                
+                switch (info) 
+                {
+                case 1:
+                    Pad_status.routine_0 = 4;
+                    break;
+                case 0:
+                    Pad_status.routine_0 = 6;
+                    
+                    Pad_status.be_flag |= 0x20;
+                    break;
+                }
+            
+                break;
+            case 6:
+                info = scePadInfoMode(0, 0, 1, 0);
+                
+                if (info == 7)
+                {
+                    Pad_status.be_flag |= 0x4;
+                }
+                
+                Pad_status.routine_0 = 7;
+                break;
+            case 7:
+                info = scePadInfoPressMode(0, 0);
+                
+                if (info != 0)
+                {
+                    info = scePadEnterPressMode(0, 0);
+                    
+                    if (info != 0) 
+                    {
+                        Pad_status.be_flag |= 0x4;
+                    
+                        Pad_status.routine_0 = 8;
+                    }
+                }
+                
+                break;
+            case 8:
+                info = scePadGetReqState(0, 0);
+            
+                switch (info) 
+                {
+                case 1:
+                    Pad_status.routine_0 = 7;
+                    break;
+                case 0:
+                    Pad_status.routine_0 = 9;
+                    break;
+                }
+                
+                break;
+            case 9:
+                Pad_status.be_flag |= 0x1;
+                
+                info = scePadInfoMode(0, 0, 1, 0);
+                
+                Pad_status.type = info;
+                
+                Pad_status.routine_0 = 0;
+                break;
+            }
+            
+            *(unsigned short*)(Pad_rdata1 + 2) = 65535;
+        }
+    }
+    else if (Pad_state[0] == 0)
+    {
+        Pad_status.routine_0 = 0;
+        
+        Pad_status.be_flag = 0;
+        
+        *(unsigned short*)(Pad_rdata1 + 2) = 65535;
+        
+        *(int*)(Pad_rdata1 + 4) = 0x80808080;
+    }
+    else
+    {
+        *(unsigned short*)(Pad_rdata1 + 2) = 65535;
+        
+        *(int*)(Pad_rdata1 + 4) = 0x80808080;
+    }
+    
+    if (!(Pad_status.be_flag & 0x4))
+    {
+        *(int*)(Pad_rdata1 + 4) = 0x80808080;
+    }
+    
+    *(unsigned short*)(Pad_rdata1 + 2) ^= 65535;
+    
+    temp = (int*)(Pad_rdata1 + 4);
+    
+    *temp = ~*temp;
+    
+    Pad_set(&pad->pad1, 1);
+    
+    Ps2_pad_actuater();
 }
 
 // 100% matching!
@@ -558,9 +651,9 @@ void Ps2_MakeRepeatKey(unsigned int Id, PAD_WORK* pad_wk)
     Pad[Id].Rept = pad_wk->onon;
 }
 
-/*// 
+// 
 // Start address: 0x2da7a0
-void Pad_set(_anon0* pbt, unsigned short pad_num)
+void Pad_set(PAD_WORK* pbt, unsigned short pad_num)
 {
 	unsigned char* pad_data;
 	short i;
@@ -637,7 +730,8 @@ void Pad_set(_anon0* pbt, unsigned short pad_num)
 	// Line 944, Address: 0x2daa30, Func Offset: 0x290
 	// Line 946, Address: 0x2daa44, Func Offset: 0x2a4
 	// Func End, Address: 0x2daa4c, Func Offset: 0x2ac
-}*/
+	scePrintf("Pad_set - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void Pad_init()
