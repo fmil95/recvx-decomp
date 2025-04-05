@@ -2619,3 +2619,5 @@ typedef struct UNKNOWN
     float unk8;
     int unkC;
 } UNKNOWN;
+
+#define SCE_GS_REPEAT           (0)
