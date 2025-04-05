@@ -287,22 +287,25 @@ int Ps2TextureMalloc(_anon1* p);
 int Ps2TextureFree(_anon1* p);
 int Ps2ReplaceTexAddr(unsigned int gindex, void* rep_addr);
 int Ps2TextureGarbageCollectionAll();
-int ring_check();
+int ring_check();*/
 
-// 
-// Start address: 0x2e1b80
+// 100% matching!
 void Ps2MemCopy4(void* vpDst, void* vpSrc, int lNum)
 {
-	unsigned int* lpDst;
-	unsigned int* lpSrc;
-	// Line 128, Address: 0x2e1b80, Func Offset: 0
-	// Line 129, Address: 0x2e1b8c, Func Offset: 0xc
-	// Line 130, Address: 0x2e1b90, Func Offset: 0x10
-	// Line 129, Address: 0x2e1b98, Func Offset: 0x18
-	// Line 130, Address: 0x2e1ba0, Func Offset: 0x20
-	// Line 131, Address: 0x2e1ba8, Func Offset: 0x28
-	// Func End, Address: 0x2e1bb0, Func Offset: 0x30
-}*/
+    unsigned int* lpSrc;
+    unsigned int* lpDst;
+	
+    lpDst = vpDst;
+    lpSrc = vpSrc;
+    
+    while (lNum-- != 0)
+    {
+        *lpDst = *lpSrc;
+        
+        lpSrc++;
+        lpDst++;
+    } 
+}
 
 // 100% matching!
 void	njInitTextureBuffer(Sint8 *addr,Uint32 size)
