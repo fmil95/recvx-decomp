@@ -358,17 +358,17 @@ void Set_GsTex(_anon0* ph, unsigned long send_image_adr, unsigned long send_clut
 	// Line 1564, Address: 0x2e7164, Func Offset: 0x184
 	// Line 1565, Address: 0x2e7168, Func Offset: 0x188
 	// Func End, Address: 0x2e7178, Func Offset: 0x198
-}
+}*/
 
 // 
 // Start address: 0x2e7180
 void StoreRenderTex(void* tex_adr)
 {
-	<unknown fundamental type (0xa510)>* imagetop;
-	<unknown fundamental type (0xa510)>* p;
+	//<unknown fundamental type (0xa510)>* imagetop;
+	//<unknown fundamental type (0xa510)>* p;
 	int l;
 	int loop;
-	_anon5 gs_simage;
+	//_anon5 gs_simage;
 	// Line 1623, Address: 0x2e7180, Func Offset: 0
 	// Line 1634, Address: 0x2e7194, Func Offset: 0x14
 	// Line 1645, Address: 0x2e719c, Func Offset: 0x1c
@@ -384,9 +384,10 @@ void StoreRenderTex(void* tex_adr)
 	// Line 1665, Address: 0x2e7218, Func Offset: 0x98
 	// Line 1666, Address: 0x2e7220, Func Offset: 0xa0
 	// Func End, Address: 0x2e723c, Func Offset: 0xbc
+	scePrintf("StoreRenderTex - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e7240
 int LoadToVram(unsigned long tbp, <unknown fundamental type (0xa510)>* addr, int tbw, int psm, int pos, int width, int height, int size)
 {

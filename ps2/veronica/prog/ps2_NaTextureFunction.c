@@ -245,9 +245,9 @@ NJS_TEXMEMLIST* Ps2_current_texmemlist;
 /*char*(*index)(char*, int);
 unsigned int Ps2_render_width;
 unsigned int palbuf[4096];
-unsigned int Ps2_clut[1024];
+unsigned int Ps2_clut[1024];*/
 void* Ps2_render_p;
-int Ps2_tex3DEx_count;
+/*int Ps2_tex3DEx_count;
 _anon7* Ps2_tex3DEx_p;
 int Ps2_tex3DEx_trans;
 int Ps2_3DEx_count;
@@ -805,71 +805,89 @@ unsigned int Ps2GetTim2Size(void* p)
     return ((TIM2_PICTUREHEADER*)p)->TotalSize + 128;
 }
 
-// 
-// Start address: 0x2e2520
+// 100% matching!
 int Ps2TextureMalloc(NJS_TEXMEMLIST* p)
 {
-	//_anon4* last2;
-	//_anon4* timp;
-	unsigned int size;
-	// Line 882, Address: 0x2e2520, Func Offset: 0
-	// Line 886, Address: 0x2e2534, Func Offset: 0x14
-	// Line 890, Address: 0x2e2548, Func Offset: 0x28
-	// Line 891, Address: 0x2e2578, Func Offset: 0x58
-	// Line 892, Address: 0x2e2580, Func Offset: 0x60
-	// Line 893, Address: 0x2e2588, Func Offset: 0x68
-	// Line 898, Address: 0x2e2590, Func Offset: 0x70
-	// Line 892, Address: 0x2e2598, Func Offset: 0x78
-	// Line 893, Address: 0x2e259c, Func Offset: 0x7c
-	// Line 894, Address: 0x2e25a4, Func Offset: 0x84
-	// Line 896, Address: 0x2e25a8, Func Offset: 0x88
-	// Line 908, Address: 0x2e25ac, Func Offset: 0x8c
-	// Line 901, Address: 0x2e25b0, Func Offset: 0x90
-	// Line 906, Address: 0x2e25b4, Func Offset: 0x94
-	// Line 894, Address: 0x2e25b8, Func Offset: 0x98
-	// Line 896, Address: 0x2e25bc, Func Offset: 0x9c
-	// Line 908, Address: 0x2e25c0, Func Offset: 0xa0
-	// Line 897, Address: 0x2e25c4, Func Offset: 0xa4
-	// Line 898, Address: 0x2e25c8, Func Offset: 0xa8
-	// Line 899, Address: 0x2e25cc, Func Offset: 0xac
-	// Line 900, Address: 0x2e25d8, Func Offset: 0xb8
-	// Line 901, Address: 0x2e25e8, Func Offset: 0xc8
-	// Line 903, Address: 0x2e25ec, Func Offset: 0xcc
-	// Line 904, Address: 0x2e25fc, Func Offset: 0xdc
-	// Line 906, Address: 0x2e260c, Func Offset: 0xec
-	// Line 908, Address: 0x2e2610, Func Offset: 0xf0
-	// Line 909, Address: 0x2e2618, Func Offset: 0xf8
-	// Line 908, Address: 0x2e2620, Func Offset: 0x100
-	// Line 909, Address: 0x2e262c, Func Offset: 0x10c
-	// Line 911, Address: 0x2e263c, Func Offset: 0x11c
-	// Line 914, Address: 0x2e2644, Func Offset: 0x124
-	// Line 915, Address: 0x2e2648, Func Offset: 0x128
-	// Line 917, Address: 0x2e2650, Func Offset: 0x130
-	// Line 915, Address: 0x2e2658, Func Offset: 0x138
-	// Line 917, Address: 0x2e265c, Func Offset: 0x13c
-	// Line 920, Address: 0x2e267c, Func Offset: 0x15c
-	// Line 921, Address: 0x2e2684, Func Offset: 0x164
-	// Line 925, Address: 0x2e2688, Func Offset: 0x168
-	// Line 923, Address: 0x2e2690, Func Offset: 0x170
-	// Line 928, Address: 0x2e2694, Func Offset: 0x174
-	// Line 921, Address: 0x2e2698, Func Offset: 0x178
-	// Line 923, Address: 0x2e269c, Func Offset: 0x17c
-	// Line 924, Address: 0x2e26a0, Func Offset: 0x180
-	// Line 925, Address: 0x2e26a4, Func Offset: 0x184
-	// Line 926, Address: 0x2e26a8, Func Offset: 0x188
-	// Line 927, Address: 0x2e26b4, Func Offset: 0x194
-	// Line 928, Address: 0x2e26c4, Func Offset: 0x1a4
-	// Line 930, Address: 0x2e26c8, Func Offset: 0x1a8
-	// Line 932, Address: 0x2e26d8, Func Offset: 0x1b8
-	// Line 934, Address: 0x2e26ec, Func Offset: 0x1cc
-	// Line 936, Address: 0x2e26fc, Func Offset: 0x1dc
-	// Line 939, Address: 0x2e2704, Func Offset: 0x1e4
-	// Line 937, Address: 0x2e2708, Func Offset: 0x1e8
-	// Line 936, Address: 0x2e2710, Func Offset: 0x1f0
-	// Line 937, Address: 0x2e271c, Func Offset: 0x1fc
-	// Line 940, Address: 0x2e2728, Func Offset: 0x208
-	// Func End, Address: 0x2e2740, Func Offset: 0x220
-	scePrintf("Ps2TextureMalloc - UNIMPLEMENTED!\n");
+	unsigned int size; 
+    TIM2_PICTUREHEADER* timp; 
+    TIM2_PICTUREHEADER* last2; 
+
+    if ((p->texinfo.texsurface.Type >> 24) == 11) 
+    {
+        size = 1048832;
+        
+        if ((unsigned int)((int)Ps2_now_free + size) >= (unsigned int)Ps2_free_last)
+        {
+            return -1;
+        }
+        
+        StoreRenderTex(Ps2_now_free);
+        
+        timp = p->texinfo.texaddr = Ps2_now_free;
+        
+        timp->admin.size = p->texinfo.texsurface.TextureSize = size;
+        
+        timp->admin.gindex = p->globalIndex;
+        
+        last2 = Ps2_tm_list_last.admin.before;
+        
+        timp->admin.before = Ps2_tm_list_last.admin.before;
+        timp->admin.after = &Ps2_tm_list_last;
+        
+        last2->admin.after = Ps2_now_free;
+        
+        Ps2_tm_list_last.admin.before = Ps2_now_free;
+        
+        timp->admin.count = 1;
+        
+        timp->admin.addr = p->texinfo.texsurface.pSurface = Ps2_now_free;
+        
+        Ps2_render_p = Ps2_now_free;
+        
+        p->tspparambuffer = 16384;
+        
+        Ps2_free_texmemsize -= size;
+        
+        Ps2_now_free = (void*)((char*)Ps2_now_free + size);
+        
+        return 1;
+    }
+    
+    timp = p->texinfo.texaddr;
+    
+    size = Ps2GetTim2Size(timp);
+    
+    if ((unsigned int)((int)Ps2_now_free + size) >= (unsigned int)Ps2_free_last) 
+    {
+        return -1;
+    }
+    
+    timp->admin.size = p->texinfo.texsurface.TextureSize = size;
+    
+    timp->admin.gindex = p->globalIndex;
+    
+    last2 = Ps2_tm_list_last.admin.before;
+    
+    timp->admin.before = last2;
+    timp->admin.after = &Ps2_tm_list_last;
+    
+    last2->admin.after = Ps2_now_free;
+    
+    Ps2_tm_list_last.admin.before = Ps2_now_free;
+    
+    timp->admin.count = 1;
+    
+    timp->admin.addr = p->texinfo.texsurface.pSurface = Ps2_now_free;
+    
+    Ps2MemCopy4(Ps2_now_free, p->texinfo.texaddr, size >> 2);
+    
+    p->tspparambuffer = Ps2CheckTextureAlpha(Ps2_now_free);
+    
+    Ps2_free_texmemsize -= size;
+    
+    Ps2_now_free = (void*)((int)Ps2_now_free + size);
+    
+    return 1;
 }
 
 /*// 
