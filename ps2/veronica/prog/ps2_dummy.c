@@ -2214,61 +2214,117 @@ unsigned int Ps2Alpha4to8(unsigned int* cp, unsigned int num)
     }
 }
 
-// 
-// Start address: 0x2cdb70
+// 100% matching!
 int Ps2CheckTextureAlpha(void* pp)
 {
-	unsigned int flag;
-	unsigned int num;
-	unsigned int* cp;
-	// Line 2859, Address: 0x2cdb70, Func Offset: 0
-	// Line 2871, Address: 0x2cdb88, Func Offset: 0x18
-	// Line 2872, Address: 0x2cdb9c, Func Offset: 0x2c
-	// Line 2873, Address: 0x2cdba0, Func Offset: 0x30
-	// Line 2874, Address: 0x2cdba4, Func Offset: 0x34
-	// Line 2872, Address: 0x2cdba8, Func Offset: 0x38
-	// Line 2874, Address: 0x2cdbb0, Func Offset: 0x40
-	// Line 2876, Address: 0x2cdbc0, Func Offset: 0x50
-	// Line 2879, Address: 0x2cdbf8, Func Offset: 0x88
-	// Line 2880, Address: 0x2cdc08, Func Offset: 0x98
-	// Line 2883, Address: 0x2cdc10, Func Offset: 0xa0
-	// Line 2884, Address: 0x2cdc20, Func Offset: 0xb0
-	// Line 2887, Address: 0x2cdc28, Func Offset: 0xb8
-	// Line 2888, Address: 0x2cdc38, Func Offset: 0xc8
-	// Line 2889, Address: 0x2cdc44, Func Offset: 0xd4
-	// Line 2890, Address: 0x2cdc50, Func Offset: 0xe0
-	// Line 2893, Address: 0x2cdc58, Func Offset: 0xe8
-	// Line 2894, Address: 0x2cdc68, Func Offset: 0xf8
-	// Line 2895, Address: 0x2cdc74, Func Offset: 0x104
-	// Line 2897, Address: 0x2cdc7c, Func Offset: 0x10c
-	// Line 2899, Address: 0x2cdc88, Func Offset: 0x118
-	// Line 2901, Address: 0x2cdc90, Func Offset: 0x120
-	// Line 2904, Address: 0x2cdcc8, Func Offset: 0x158
-	// Line 2905, Address: 0x2cdcd8, Func Offset: 0x168
-	// Line 2906, Address: 0x2cdce4, Func Offset: 0x174
-	// Line 2909, Address: 0x2cdcec, Func Offset: 0x17c
-	// Line 2910, Address: 0x2cdcfc, Func Offset: 0x18c
-	// Line 2911, Address: 0x2cdd08, Func Offset: 0x198
-	// Line 2914, Address: 0x2cdd10, Func Offset: 0x1a0
-	// Line 2915, Address: 0x2cdd20, Func Offset: 0x1b0
-	// Line 2916, Address: 0x2cdd2c, Func Offset: 0x1bc
-	// Line 2917, Address: 0x2cdd38, Func Offset: 0x1c8
-	// Line 2918, Address: 0x2cdd44, Func Offset: 0x1d4
-	// Line 2921, Address: 0x2cdd4c, Func Offset: 0x1dc
-	// Line 2922, Address: 0x2cdd5c, Func Offset: 0x1ec
-	// Line 2923, Address: 0x2cdd68, Func Offset: 0x1f8
-	// Line 2924, Address: 0x2cdd74, Func Offset: 0x204
-	// Line 2926, Address: 0x2cdd7c, Func Offset: 0x20c
-	// Line 2929, Address: 0x2cdd88, Func Offset: 0x218
-	// Line 2933, Address: 0x2cdd8c, Func Offset: 0x21c
-	// Line 2948, Address: 0x2cddb4, Func Offset: 0x244
-	// Line 2949, Address: 0x2cddbc, Func Offset: 0x24c
-	// Line 2950, Address: 0x2cddc4, Func Offset: 0x254
-	// Line 2954, Address: 0x2cddd0, Func Offset: 0x260
-	// Line 2956, Address: 0x2cddd8, Func Offset: 0x268
-	// Line 3026, Address: 0x2cdddc, Func Offset: 0x26c
-	// Func End, Address: 0x2cddf8, Func Offset: 0x288
-	scePrintf("Ps2CheckTextureAlpha - UNIMPLEMENTED!\n");
+    unsigned int *cp;  
+    unsigned int num;  
+    unsigned int flag; 
+    unsigned int temp; // not from the debugging symbols
+    TIM2_PICTUREHEADER* temp2; // not from the debugging symbols
+
+    temp2 = pp;
+    
+    if (temp2->ClutChange != 0)
+    {
+        return (unsigned short)temp2->ClutChange;
+    }
+    
+    cp = (unsigned int*)((int)pp + temp2->ImageSize + 256);
+    
+    num = temp2->ClutSize >> 2;
+    
+    if (isVQ(temp2->PictFormat) != 0) 
+    {
+        switch (temp2->OrgColorType) 
+        {                       
+        case 0:                                     
+            flag = 0x8000;
+            
+            printf("ARGB1555\n", temp2->OrgColorType);
+            break;
+        case 1:                                    
+            flag = 0x8000;
+            
+            printf("RGB565\n", temp2->OrgColorType);
+            break;
+        case 2:                                    
+            flag = 0x8000;
+            
+            Ps2Alpha4to8(cp, num);
+            Ps2AlphaIsHalf(cp, num);
+            
+            printf("ARGB4444\n");
+            break;
+        case 6:                                  
+            flag = 0x8000;
+            
+            Ps2AlphaIsHalf(cp, num);
+            
+            printf("ARGB8888\n");
+            break;
+        default:                                   
+            printf("ERROR ERROR ERROR ERROR ERROR %04x\n", temp2->OrgColorType);
+            break;
+        }
+    } 
+    else 
+    {
+        switch (temp2->OrgColorType)
+        {                       
+        case 0:
+            flag = 0x8000;
+            
+            Ps2AlphaIs000(cp, num);
+            
+            printf("ARGB1555\n");
+            break;
+        case 1:
+            flag = 0x8000;
+            
+            Ps2AlphaIs000(cp, num);
+            
+            printf("RGB565\n");
+            break;
+        case 2:
+            flag = 0x8000;
+            
+            Ps2AlphaIs000(cp, num);
+            Ps2Alpha4to8(cp, num);
+            Ps2AlphaIsHalf(cp, num);
+            
+            printf("ARGB4444\n");
+            break;
+        case 6:
+            flag = 0x8000;
+            
+            Ps2AlphaIs000(cp, num);
+            Ps2AlphaIsHalf(cp, num);
+            
+            printf("ARGB8888\n");
+            break;
+        default:
+            printf("ERROR ERROR ERROR ERROR ERROR %04x\n", temp2->OrgColorType);
+            break;
+        }
+    }
+    
+    temp2->ClutChange = flag;
+    
+    temp = temp2->Gindex & 0xFFFFF;
+    
+    if ((temp == 20500) || (temp == 15205) || (temp == 15206) || (temp == 15207) || (temp == 15208) || (temp == 15209))
+    {
+        temp2->ClampFlag = 0xFF000FF0;
+    }
+    else 
+    {
+        temp2->ClampFlag = 0xFF000FF5;
+    }
+ 
+    Ps2PxlconvCheck(pp);
+    
+    return flag;
 }
 
 // 96.92% matching 
