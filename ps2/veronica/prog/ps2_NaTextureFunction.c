@@ -796,14 +796,11 @@ void	njGarbageTexture(NJS_TEXMEMLIST *addr,Uint32 n)
 	scePrintf("njGarbageTexture - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2e2510
-unsigned int Ps2GetTim2Size(void* p)
+// 100% matching!
+unsigned int Ps2GetTim2Size(void* p) 
 {
-	// Line 874, Address: 0x2e2510, Func Offset: 0
-	// Line 875, Address: 0x2e2514, Func Offset: 0x4
-	// Func End, Address: 0x2e251c, Func Offset: 0xc
-}*/
+    return ((TIM2_PICTUREHEADER*)p)->TotalSize + 128;
+}
 
 // 
 // Start address: 0x2e2520
