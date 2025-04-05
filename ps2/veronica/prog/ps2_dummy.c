@@ -2144,21 +2144,21 @@ void Ps2SetFogColorSys(unsigned int r, unsigned int g, unsigned int b)
 	// Line 2780, Address: 0x2cda6c, Func Offset: 0xac
 	// Line 2781, Address: 0x2cda74, Func Offset: 0xb4
 	// Func End, Address: 0x2cda8c, Func Offset: 0xcc
-}
+}*/
 
-// 
-// Start address: 0x2cda90
+// 100% matching!
 void Ps2AlphaIs000(unsigned int* cp, unsigned int num)
 {
-	unsigned int i;
-	// Line 2788, Address: 0x2cda90, Func Offset: 0
-	// Line 2789, Address: 0x2cda9c, Func Offset: 0xc
-	// Line 2790, Address: 0x2cdaa8, Func Offset: 0x18
-	// Line 2791, Address: 0x2cdacc, Func Offset: 0x3c
-	// Line 2794, Address: 0x2cdad0, Func Offset: 0x40
-	// Line 2795, Address: 0x2cdae0, Func Offset: 0x50
-	// Func End, Address: 0x2cdae8, Func Offset: 0x58
-}*/
+    unsigned int i;
+    
+    for (i = 0; i < num; i++, cp++)
+    {
+        if ((((unsigned char*)cp)[3] != 0) && (((unsigned char*)cp)[0] == 0) && (((unsigned char*)cp)[1] == 0) && (((unsigned char*)cp)[2] == 0)) 
+        {
+            ((unsigned char*)cp)[3] = 0;
+        }
+    }
+}
 
 // 100% matching!
 unsigned int Ps2AlphaIsHalf(unsigned int* cp, unsigned int num)
