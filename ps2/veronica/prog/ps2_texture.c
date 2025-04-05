@@ -1545,41 +1545,43 @@ void ClutCopy(void* data, void* org_data)
     } 
 }
 
-/*// 
-// Start address: 0x2e5fb0
-void ClutCopy256(void* data, void* org_data)
+// 100% matching!
+void ClutCopy256(void* data, void* org_data) 
 {
-	unsigned int loop;
-	unsigned int i;
-	unsigned int* op;
-	unsigned int* dp;
-	// Line 153, Address: 0x2e5fb0, Func Offset: 0
-	// Line 154, Address: 0x2e5fb4, Func Offset: 0x4
-	// Line 155, Address: 0x2e5fc0, Func Offset: 0x10
-	// Line 156, Address: 0x2e5fc4, Func Offset: 0x14
-	// Line 155, Address: 0x2e5fcc, Func Offset: 0x1c
-	// Line 156, Address: 0x2e5fd4, Func Offset: 0x24
-	// Line 157, Address: 0x2e5fdc, Func Offset: 0x2c
-	// Line 158, Address: 0x2e5fe8, Func Offset: 0x38
-	// Line 159, Address: 0x2e5fec, Func Offset: 0x3c
-	// Line 158, Address: 0x2e5ff4, Func Offset: 0x44
-	// Line 159, Address: 0x2e5ffc, Func Offset: 0x4c
-	// Line 160, Address: 0x2e6004, Func Offset: 0x54
-	// Line 161, Address: 0x2e6010, Func Offset: 0x60
-	// Line 162, Address: 0x2e6014, Func Offset: 0x64
-	// Line 161, Address: 0x2e601c, Func Offset: 0x6c
-	// Line 162, Address: 0x2e6024, Func Offset: 0x74
-	// Line 163, Address: 0x2e602c, Func Offset: 0x7c
-	// Line 164, Address: 0x2e6038, Func Offset: 0x88
-	// Line 165, Address: 0x2e603c, Func Offset: 0x8c
-	// Line 164, Address: 0x2e6044, Func Offset: 0x94
-	// Line 165, Address: 0x2e604c, Func Offset: 0x9c
-	// Line 168, Address: 0x2e6054, Func Offset: 0xa4
-	// Line 166, Address: 0x2e6058, Func Offset: 0xa8
-	// Line 168, Address: 0x2e605c, Func Offset: 0xac
-	// Line 169, Address: 0x2e6068, Func Offset: 0xb8
-	// Func End, Address: 0x2e6070, Func Offset: 0xc0
-}*/
+    unsigned int i;   
+    unsigned int *op;  
+    unsigned int *dp;  
+    unsigned int loop; 
+
+    dp = data;
+    op = org_data;
+    
+    for (loop = 0; loop < 8; loop++) 
+    {
+        for (i = 0; i < 8; i++)
+        {
+            dp[i] = op[i];
+        }
+        
+        for (i = 8; i < 16; i++)
+        {
+            dp[i] = op[i + 8];
+        }
+        
+        for (i = 16; i < 24; i++)
+        {
+            dp[i] = op[i - 8];
+        } 
+        
+        for (i = 24; i < 32; i++)
+        {
+            dp[i] = op[i];
+        }
+        
+        dp += 32;
+        op += 32;
+    }
+}
 
 // 100% matching!
 int isVQ(unsigned char type)
