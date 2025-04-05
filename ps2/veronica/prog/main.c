@@ -56,6 +56,7 @@
 #include "ps2_NaDraw2D.c"
 #include "ps2_NaMath.c"
 #include "ps2_NaMatrix.c"
+#include "ps2_pxlconv.c"
 #include "ps2_loadtim2.c"
 #include "ps2_NaSystem.c"
 #include "ps2_texture.c"

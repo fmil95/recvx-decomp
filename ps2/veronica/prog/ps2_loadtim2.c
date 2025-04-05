@@ -612,21 +612,27 @@ int Tim2_Image_Load(_anon0* ph, unsigned long image_addr)
 	// Line 2383, Address: 0x2e7a54, Func Offset: 0x1c4
 	// Line 2384, Address: 0x2e7a58, Func Offset: 0x1c8
 	// Func End, Address: 0x2e7a60, Func Offset: 0x1d0
-}
+}*/
 
-// 
-// Start address: 0x2e7a60
+// 100% matching!
 void Ps2PxlconvCheck(void* timadr)
 {
-	_anon0* ph;
-	// Line 2856, Address: 0x2e7a60, Func Offset: 0
-	// Line 2865, Address: 0x2e7a68, Func Offset: 0x8
-	// Line 2868, Address: 0x2e7a80, Func Offset: 0x20
-	// Line 2872, Address: 0x2e7ab8, Func Offset: 0x58
-	// Line 2873, Address: 0x2e7ad4, Func Offset: 0x74
-	// Line 2876, Address: 0x2e7adc, Func Offset: 0x7c
-	// Func End, Address: 0x2e7ae8, Func Offset: 0x88
-}*/
+    TIM2_PICTUREHEADER_SMALL* ph; 
+
+    if (((unsigned char*)timadr)[5] == 0) 
+    {
+        ph = (TIM2_PICTUREHEADER_SMALL*)((int)timadr + 16);
+    }
+    else 
+    {
+        ph = (TIM2_PICTUREHEADER_SMALL*)((int)timadr + 128);
+    }
+    
+    if (((ph->ImageWidth < 1024) && (ph->ImageHeight < 1024)) && ((ph->ImageWidth > 128) && (ph->ImageHeight > 128)) && ((ph->ImageType == 5) || (ph->ImageType == 4)))
+    {
+        Tim2_Format_Check(timadr); 
+    }
+}
 
 // 100% matching! 
 void SyncPath()
