@@ -75,6 +75,7 @@
 #include "ps2_sg_pad.c"
 #include "ps2_dummy.c"
 #include "ps2_NaDraw.c"
+#include "ps2_sg_sycfg.c" // TODO: find out why this file crashes when including it amongst the other source files in compile_config.json
 #include "ps2_sg_sybt.c"
 #include "ps2_sg_sycbl.c"
 #include "cri_placeholders.c"

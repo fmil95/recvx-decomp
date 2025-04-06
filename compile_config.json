@@ -36,7 +36,6 @@
       "ps2/veronica/prog/ps2_sg_sytmr.c",
       "ps2/veronica/prog/sbinit.c",
       "ps2/veronica/prog/ps2_sg_syhw.c",
-      "ps2/veronica/prog/ps2_sg_syrtc.c",
-      "ps2/veronica/prog/ps2_sg_sycfg.c"
+      "ps2/veronica/prog/ps2_sg_syrtc.c"
   ]
 }
