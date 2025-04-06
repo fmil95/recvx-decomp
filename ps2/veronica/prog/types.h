@@ -2510,6 +2510,73 @@ typedef struct PVP_INFO
     unsigned short ppEntryCount; // offset 0xE, size 0x2
 } PVP_INFO;
 
+typedef struct TIM2_PICTUREHEADER /* @anon4 */ {
+    // total size: 0xD0
+    signed char FileId[4]; // offset 0x0, size 0x4
+    unsigned char FormatVersion; // offset 0x4, size 0x1
+    unsigned char FormatId; // offset 0x5, size 0x1
+    unsigned short Pictures; // offset 0x6, size 0x2
+    unsigned int Gindex; // offset 0x8, size 0x4
+    unsigned char OrgColorType; // offset 0xC, size 0x1
+    unsigned char OrgTexType; // offset 0xD, size 0x1
+    unsigned short ClutChange; // offset 0xE, size 0x2
+    unsigned int PalNum; // offset 0x10, size 0x4
+    unsigned int PalData[27]; // offset 0x14, size 0x6C
+    unsigned int TotalSize; // offset 0x80, size 0x4
+    unsigned int ClutSize; // offset 0x84, size 0x4
+    unsigned int ImageSize; // offset 0x88, size 0x4
+    unsigned short HeaderSize; // offset 0x8C, size 0x2
+    unsigned short ClutColors; // offset 0x8E, size 0x2
+    unsigned char PictFormat; // offset 0x90, size 0x1
+    unsigned char MipMapTextures; // offset 0x91, size 0x1
+    unsigned char ClutType; // offset 0x92, size 0x1
+    unsigned char ImageType; // offset 0x93, size 0x1
+    unsigned short ImageWidth; // offset 0x94, size 0x2
+    unsigned short ImageHeight; // offset 0x96, size 0x2
+    struct /* @anon6 */ {
+        // total size: 0x8
+        unsigned long TBP0 : 14; // offset 0x0, size 0x4
+        unsigned long TBW : 6; // offset 0x0, size 0x4
+        unsigned long PSM : 6; // offset 0x0, size 0x4
+        unsigned long TW : 4; // offset 0x0, size 0x4
+        unsigned long TH : 4; // offset 0x0, size 0x4
+        unsigned long TCC : 1; // offset 0x0, size 0x4
+        unsigned long TFX : 2; // offset 0x0, size 0x4
+        unsigned long CBP : 14; // offset 0x0, size 0x4
+        unsigned long CPSM : 4; // offset 0x0, size 0x4
+        unsigned long CSM : 1; // offset 0x0, size 0x4
+        unsigned long CSA : 5; // offset 0x0, size 0x4
+        unsigned long CLD : 3; // offset 0x0, size 0x4
+    } GsTex0; // offset 0x98, size 0x8
+    struct /* @anon9 */ {
+        // total size: 0x8
+        unsigned long LCM : 1; // offset 0x0, size 0x4
+        unsigned long pad01 : 1; // offset 0x0, size 0x4
+        unsigned long MXL : 3; // offset 0x0, size 0x4
+        unsigned long MMAG : 1; // offset 0x0, size 0x4
+        unsigned long MMIN : 3; // offset 0x0, size 0x4
+        unsigned long MTBA : 1; // offset 0x0, size 0x4
+        unsigned long pad10 : 9; // offset 0x0, size 0x4
+        unsigned long L : 2; // offset 0x0, size 0x4
+        unsigned long pad21 : 11; // offset 0x0, size 0x4
+        unsigned long K : 12; // offset 0x0, size 0x4
+        unsigned long pad44 : 20; // offset 0x0, size 0x4
+    } GsTex1; // offset 0xA0, size 0x8
+    unsigned int GsRegs; // offset 0xA8, size 0x4
+    unsigned int GsTexClut; // offset 0xAC, size 0x4
+    struct /* @anon8 */ {
+        // total size: 0x18
+        unsigned int gindex; // offset 0x0, size 0x4
+        unsigned int size; // offset 0x4, size 0x4
+        unsigned int count; // offset 0x8, size 0x4
+        void * addr; // offset 0xC, size 0x4
+        void * before; // offset 0x10, size 0x4
+        void * after; // offset 0x14, size 0x4
+    } admin; // offset 0xB0, size 0x18
+    unsigned int TpFlag; // offset 0xC8, size 0x4
+    unsigned int ClampFlag; // offset 0xCC, size 0x4
+} TIM2_PICTUREHEADER;
+
 typedef struct TIM2_PICTUREHEADER_SMALL
 {
 	// total size: 0x30

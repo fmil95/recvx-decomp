@@ -3077,7 +3077,7 @@ float AdvEasyDispMessage(float PosX, float PosY, unsigned int MessageNo)
 	// Line 1913, Address: 0x2c25f0, Func Offset: 0x1d0
 	// Line 1917, Address: 0x2c2624, Func Offset: 0x204
 	// Func End, Address: 0x2c2650, Func Offset: 0x230
-}
+}*/
 
 // 
 // Start address: 0x2c2650
@@ -3138,7 +3138,8 @@ float AutoSaveLoadEasyDispMessage(float PosX, float PosY, unsigned char* ucpMsbT
 	// Line 1993, Address: 0x2c283c, Func Offset: 0x1ec
 	// Line 1997, Address: 0x2c2878, Func Offset: 0x228
 	// Func End, Address: 0x2c28a4, Func Offset: 0x254
-}*/
+	scePrintf("AutoSaveLoadEasyDispMessage - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2c28b0
