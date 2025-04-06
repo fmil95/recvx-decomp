@@ -780,9 +780,6 @@ void _builtin_set_imask(int mask)
 
 }
 
-#define	DISP_WIDTH          640
-#define	DISP_HEIGHT         480
-
 // 100% matching! 
 void Ps2Init() 
 { 

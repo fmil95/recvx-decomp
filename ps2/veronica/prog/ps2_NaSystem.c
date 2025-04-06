@@ -1690,9 +1690,6 @@ void 	njSetEORFunction( void (*func)(void) )
     }
 } 
 
-// TODO: include the following define from cpureg.h
-#define	SR_CU0		0x10000000	/* Coprocessor 0 usable */
-
 #pragma optimization_level 0
 
 // TODO: remove these function declarations
@@ -1777,9 +1774,6 @@ void	njExitSystem( void )
 {
 
 }
-
-#define UNCACHED_BASE 0x20000000
-#define UNCACHED(x) ((u_int)(x)|UNCACHED_BASE)
 
 // 100% matching!
 void	njSetBackColor( Uint32 col1, Uint32 col2, Uint32 col3 ) 
@@ -1894,9 +1888,6 @@ void njSetCheapShadowMode()
 	// Line 565, Address: 0x2e18b0, Func Offset: 0
 	// Func End, Address: 0x2e18b8, Func Offset: 0x8
 }*/
-
-#define DISP_WIDTH 640
-#define DISP_HEIGHT 480
 
 // 99.95% matching 
 void	njUserClipping(Int mode ,NJS_POINT2 *p)

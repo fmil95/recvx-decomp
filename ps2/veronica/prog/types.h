@@ -2636,3 +2636,12 @@ typedef struct UNKNOWN
 #define SCE_GS_CLAMP            (1)
 
 #define SCE_GS_REPEAT           (0)
+
+#define DISP_WIDTH 640
+#define DISP_HEIGHT 480
+
+#define UNCACHED_BASE 0x20000000
+#define UNCACHED(x) ((u_int)(x)|UNCACHED_BASE)
+
+// TODO: include the following define from cpureg.h
+#define	SR_CU0		0x10000000	/* Coprocessor 0 usable */
