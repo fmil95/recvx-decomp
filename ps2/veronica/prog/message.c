@@ -1518,9 +1518,9 @@ struct _anon46
 	unsigned char* recp;
 };
 
-float mes_spos[4][3];
+float mes_spos[4][3];*/
 unsigned char FontSz[126];
-_anon28* sys;
+/*_anon28* sys;
 _anon10* rom;*/
 float FontScaleX;
 float FontScaleCR;
@@ -2281,18 +2281,20 @@ void bhDispTimeEx(_anon2* pos, unsigned int flg, int time, unsigned int argb, fl
 	// Line 1074, Address: 0x2b97ec, Func Offset: 0x58c
 	// Line 1077, Address: 0x2b980c, Func Offset: 0x5ac
 	// Func End, Address: 0x2b9838, Func Offset: 0x5d8
-}
+}*/
 
-// 
-// Start address: 0x2b9840
+// 100% matching!
 float bhGetFontSize(unsigned short code)
 {
-	// Line 1088, Address: 0x2b9840, Func Offset: 0
-	// Line 1093, Address: 0x2b989c, Func Offset: 0x5c
-	// Func End, Address: 0x2b98a4, Func Offset: 0x64
+    if (code >= 108) 
+    {
+        return 0;
+    }
+    
+    return FontSz[code];
 }
 
-// 
+/*// 
 // Start address: 0x2b98b0
 float bhMesLen(unsigned short* dp)
 {
