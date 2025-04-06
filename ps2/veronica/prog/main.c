@@ -38,6 +38,7 @@
 #include <adx_ps2.h>
 
 #include "types.h"
+#include "enums.h"
 #include "macros.h"
 
 #include "ps2_NaMem.c"
