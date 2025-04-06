@@ -1,6 +1,4 @@
-void syRtcFinish( void );
-Sint32 syRtcGetDate( SYS_RTC_DATE *date );
-Sint32 syRtcInit( void );
+#include "ps2_sg_syrtc.h"
 
 // 100% matching! 
 void syRtcFinish( void )

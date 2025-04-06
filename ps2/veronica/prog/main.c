@@ -77,7 +77,6 @@
 #include "ps2_NaDraw.c"
 #include "ps2_sg_sybt.c"
 #include "ps2_sg_sycbl.c"
-#include "ps2_sg_syrtc.c"
 #include "cri_placeholders.c"
 #include "adxwrap.c"
 #include "ps2_sg_sycfg.c"
