@@ -3,7 +3,7 @@ unsigned int KeyWaitNext = 4;
 BUTTON_INFO ButtonInfo[5]; 
 int SoftResetFlag;
 int CurrentPortId;
-PAD_INFO Pad[4];
+PAD_WRK Pad[4];
 int MaxContorolPlayer;
 REPEAT_INFO RepeatInfo[4][6];
 

@@ -1685,7 +1685,7 @@ unsigned char* keepmem;
 float BHD_ASPECT_Y;
 float BHD_ASPECT_X;
 unsigned char BackColorFlag;
-PAD_WRK Ps2_pad;
+PAD_INFO Ps2_pad;
 int pd_port;
 ROM_WORK* rom;
 NJS_TEXMEMLIST tbuf[256];

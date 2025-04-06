@@ -11,7 +11,7 @@ BUTTON_INFO ButtonInfo[5] =
 }; 
 NO_NAME_19 Pad_status;
 unsigned int Ps2_sys_cnt;
-PAD_WRK Ps2_pad;
+PAD_INFO Ps2_pad;
 unsigned char Pad_rdata2[32];
 unsigned char Pad_rdata1[32];
 unsigned char ChkCnt;
@@ -19,9 +19,9 @@ unsigned char PadCnt;
 PDS_PERIPHERALINFO pgp_info;
 unsigned int Pad_state[2];
 int SoftResetFlag;
-PAD_INFO Pad[4];
+PAD_WRK Pad[4]; 
 int CurrentPortId;
-PAD_WRK Pad_info;
+PAD_INFO Pad_info;
 NO_NAME_19 Pad_status2;
 
 void pdInitPeripheral(Sint32 logic, void* recvbuf, void* sendbuf);
@@ -189,7 +189,7 @@ void pdSetMode(Sint32 mode)
 void Ps2_pad_read()
 {
 	unsigned int info; 
-    PAD_WRK* pad; 
+    PAD_INFO* pad; 
     int* temp; // not from the debugging symbols
     
     pad = &Ps2_pad;
@@ -378,7 +378,7 @@ void Ps2_Read_Key(PDS_PERIPHERAL* per, PAD_WORK* pad_wk)
 {
     unsigned int i; 
     unsigned int j; 
-    PAD_INFO* pp;   
+    PAD_WRK* pp;   
     
     pp = Pad;
     

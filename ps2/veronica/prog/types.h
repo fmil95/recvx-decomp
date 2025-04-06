@@ -1588,7 +1588,7 @@ typedef struct PAD_WORK
     unsigned char ar2; // offset 0x41, size 0x1
 } PAD_WORK;
 
-typedef struct PAD_INFO
+typedef struct PAD_WRK
 {
 	// total size: 0x3C
     int PerType; // offset 0x0, size 0x4
@@ -1609,7 +1609,7 @@ typedef struct PAD_INFO
     short x2; // offset 0x34, size 0x2
     short y2; // offset 0x36, size 0x2
     short Calibrate; // offset 0x38, size 0x2
-} PAD_INFO;
+} PAD_WRK;
 
 // the link_file field in the struct below was originally char* but got turned into char** because it matches gdFsInit() higher
 typedef struct DVD_IMAGE_DATA
@@ -2257,12 +2257,12 @@ typedef struct ROM_WORK
     float amb_b[4]; // offset 0x3DC, size 0x10
 } ROM_WORK;
 
-typedef struct PAD_WRK
+typedef struct PAD_INFO
 {
     // total size: 0x84
 	PAD_WORK pad1; // offset 0x0, size 0x42
 	PAD_WORK pad2; // offset 0x42, size 0x42
-} PAD_WRK;
+} PAD_INFO;
 
 typedef struct CAM_WORK 
 {
