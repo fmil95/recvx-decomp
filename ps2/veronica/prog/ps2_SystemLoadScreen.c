@@ -1403,16 +1403,21 @@ struct _anon34
 	float vx;
 	float vy;
 	float vz;
-};
+};*/
 
-tagSELECTFILEWINDOW SelectFileWindow;
-tagSELECTFILEINFO SelectFileInfo[15];
-char* cpNameList;
-tagICONINFORMATION IconInfo;
-tagMEMORYCARDSTATE McState;
-tagSAVEFILE SaveFile;
-tagCONFIGFILE ConfigFile;
-unsigned char SaveLoadMessage[10956];
+SELECTFILEWINDOW SelectFileWindow;
+SELECTFILEINFO SelectFileInfo[15];
+char* cpNameList[18] = 
+{
+    "icon.sys", "bio_cv.ico", "BASLUS-20184", "SAVEDATA-00", "SAVEDATA-01", "SAVEDATA-02", "SAVEDATA-03",
+    "SAVEDATA-04", "SAVEDATA-05", "SAVEDATA-06", "SAVEDATA-07", "SAVEDATA-08", "SAVEDATA-09", "SAVEDATA-10",
+    "SAVEDATA-11", "SAVEDATA-12", "SAVEDATA-13", "SAVEDATA-14"
+}; 
+ICONINFORMATION IconInfo;
+MEMORYCARDSTATE McState;
+SAVEFILE SaveFile;
+CONFIGFILE ConfigFile;
+/*unsigned char SaveLoadMessage[10956];
 _anon14 Pad[0];
 _anon3* sys;
 
@@ -1440,31 +1445,39 @@ void ExecuteStateSysLoadScreenErrCardRead(tagSYSLOAD_SCREEN* pSysLoad);
 void SetStateSysLoadScreenTitleExit(tagSYSLOAD_SCREEN* pSysLoad);
 void ExecuteStateSysLoadScreenTitleExit();*/
 
-// 
-// Start address: 0x2770c0
-struct tagSYSLOAD_SCREEN* CreateSysLoadScreen(struct tagSYSLOAD_SCREEN* pSysLoad, void* vpWorkPtrSys)
+// 100% matching!
+SYSLOAD_SCREEN* CreateSysLoadScreen(SYSLOAD_SCREEN* pSysLoad, void* vpWorkPtrSys)
 {
-	// Line 71, Address: 0x2770c0, Func Offset: 0
-	// Line 72, Address: 0x2770d0, Func Offset: 0x10
-	// Line 73, Address: 0x2770d4, Func Offset: 0x14
-	// Line 74, Address: 0x2770d8, Func Offset: 0x18
-	// Line 75, Address: 0x2770dc, Func Offset: 0x1c
-	// Line 76, Address: 0x2770e0, Func Offset: 0x20
-	// Line 77, Address: 0x2770e4, Func Offset: 0x24
-	// Line 78, Address: 0x2770e8, Func Offset: 0x28
-	// Line 79, Address: 0x2770ec, Func Offset: 0x2c
-	// Line 80, Address: 0x2770f4, Func Offset: 0x34
-	// Line 81, Address: 0x277108, Func Offset: 0x48
-	// Line 82, Address: 0x277118, Func Offset: 0x58
-	// Line 83, Address: 0x277128, Func Offset: 0x68
-	// Line 84, Address: 0x277144, Func Offset: 0x84
-	// Line 85, Address: 0x277154, Func Offset: 0x94
-	// Line 86, Address: 0x27716c, Func Offset: 0xac
-	// Line 89, Address: 0x277170, Func Offset: 0xb0
-	// Line 91, Address: 0x277178, Func Offset: 0xb8
-	// Line 92, Address: 0x27717c, Func Offset: 0xbc
-	// Func End, Address: 0x277190, Func Offset: 0xd0
-	scePrintf("CreateSysLoadScreen - UNIMPLEMENTED!\n");
+    pSysLoad->ulState = 0;
+    pSysLoad->ulSubState = 0;
+    
+    pSysLoad->ulFileSize = 0;
+    
+    pSysLoad->ulMemCheckCountTimer = 0;
+    
+    pSysLoad->lCardState = 0;
+    
+    pSysLoad->usExitFlag = 0;
+    
+    pSysLoad->usLoopCount = 0;
+    
+    pSysLoad->cMesFlag = 0;
+    
+    pSysLoad->pConfigFile = mcCreateConfigInit(&ConfigFile);
+    pSysLoad->pSaveFile = mcCreateSaveFileInit(&SaveFile);
+    
+    pSysLoad->pMcState = CreateMemoryCard(&McState);
+    
+    pSysLoad->pIconInfo = mcCreateIconInit(&IconInfo, cpNameList, 1);
+    
+    pSysLoad->pSelectFileInfo = mcSelectFileInfoInit(SelectFileInfo);
+    pSysLoad->pSelectFileWindow = mcCreateFileSelectWindow(&SelectFileWindow, pSysLoad->pSelectFileInfo, 15);
+    
+    pSysLoad->vpReadBuffer = vpWorkPtrSys;
+    
+    AnalyzeMemoryCardAll(pSysLoad->pMcState);
+    
+    return pSysLoad;
 }
 
 /*// 
@@ -1507,7 +1520,7 @@ void DispSysLoadMessageSelect(int slSelectMes)
 
 // 
 // Start address: 0x2773c0
-int ExecuteSysLoadScreen(struct tagSYSLOAD_SCREEN* pSysLoad)
+int ExecuteSysLoadScreen(SYSLOAD_SCREEN* pSysLoad)
 {
 	// Line 178, Address: 0x2773c0, Func Offset: 0
 	// Line 181, Address: 0x2773d0, Func Offset: 0x10

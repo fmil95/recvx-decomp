@@ -1977,8 +1977,8 @@ int CurrentPortId;
 float FontScaleCR;
 float FontScaleX;
 _anon31 AdvVmMsgDef[21];*/
-struct tagSYSLOAD_SCREEN* pSysLoad;
-struct tagSYSLOAD_SCREEN SysLoad;
+SYSLOAD_SCREEN* pSysLoad;
+SYSLOAD_SCREEN SysLoad;
 /*float ColorBarSizeY;
 float RedLinePosY;
 unsigned int ColorBarBright;

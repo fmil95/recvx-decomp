@@ -47,6 +47,8 @@
 #include "objitm.c"
 #include "room.c"
 #include "dread.c"
+#include "ps2_MemoryCard.c"
+#include "ps2_McSaveFile.c"
 #include "ps2_SystemLoadScreen.c"
 #include "ps2_sg_maloc.c"
 #include "backup.c"
