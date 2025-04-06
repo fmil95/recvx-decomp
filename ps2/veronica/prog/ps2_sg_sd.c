@@ -185,7 +185,7 @@ unsigned int iop_trans_offset;
 unsigned int ee_trans_bd_address;
 unsigned int ee_trans_hd_address;*/
 int __shot_value;
-/*_SND_STATUS get_iop_snddata;*/
+SND_STATUS get_iop_snddata;
 SDMIDI __midi_handle_top;
 int __midi_value;
 /*unsigned int iop_trans_sq_address;
@@ -980,11 +980,11 @@ SDE_ERR sdShotSetPan(SDS_PORT_REF** handle, char pan, int fade_time)
 	// Line 2190, Address: 0x2dc22c, Func Offset: 0x8c
 	// Line 2192, Address: 0x2dc234, Func Offset: 0x94
 	// Func End, Address: 0x2dc240, Func Offset: 0xa0
-}
+}*/
 
 // 
 // Start address: 0x2dc240
-unsigned char Panpot_Control(_anon0* set_snd_work)
+unsigned char Panpot_Control(SND_WORK* set_snd_work)
 {
 	float dpan;
 	float shift_pan;
@@ -1013,9 +1013,10 @@ unsigned char Panpot_Control(_anon0* set_snd_work)
 	// Line 2221, Address: 0x2dc400, Func Offset: 0x1c0
 	// Line 2223, Address: 0x2dc408, Func Offset: 0x1c8
 	// Func End, Address: 0x2dc414, Func Offset: 0x1d4
+	scePrintf("Panpot_Control - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dc420
 SDE_ERR sdShotSetPitch(SDS_PORT_REF** handle, short pitch, int fade_time)
 {
@@ -1042,11 +1043,11 @@ SDE_ERR sdShotSetPitch(SDS_PORT_REF** handle, short pitch, int fade_time)
 	// Line 2312, Address: 0x2dc4cc, Func Offset: 0xac
 	// Line 2314, Address: 0x2dc4d4, Func Offset: 0xb4
 	// Func End, Address: 0x2dc4e0, Func Offset: 0xc0
-}
+}*/
 
 // 
 // Start address: 0x2dc4e0
-short Pitch_Control(_anon0* set_snd_work)
+short Pitch_Control(SND_WORK* set_snd_work)
 {
 	float dpitch;
 	float pitch_bend;
@@ -1076,9 +1077,10 @@ short Pitch_Control(_anon0* set_snd_work)
 	// Line 2343, Address: 0x2dc660, Func Offset: 0x180
 	// Line 2345, Address: 0x2dc668, Func Offset: 0x188
 	// Func End, Address: 0x2dc674, Func Offset: 0x194
+	scePrintf("Pitch_Control - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dc680
 SDE_ERR sdShotSetVol(SDS_PORT_REF** handle, char vol, int fade_time)
 {
@@ -1103,11 +1105,11 @@ SDE_ERR sdShotSetVol(SDS_PORT_REF** handle, char vol, int fade_time)
 	// Line 2452, Address: 0x2dc704, Func Offset: 0x84
 	// Line 2454, Address: 0x2dc70c, Func Offset: 0x8c
 	// Func End, Address: 0x2dc718, Func Offset: 0x98
-}
+}*/
 
 // 
 // Start address: 0x2dc720
-unsigned char Volume_Control(_anon0* set_snd_work)
+unsigned char Volume_Control(SND_WORK* set_snd_work)
 {
 	float dvol;
 	float fade_vol;
@@ -1134,9 +1136,10 @@ unsigned char Volume_Control(_anon0* set_snd_work)
 	// Line 2483, Address: 0x2dc8f0, Func Offset: 0x1d0
 	// Line 2485, Address: 0x2dc8f8, Func Offset: 0x1d8
 	// Func End, Address: 0x2dc90c, Func Offset: 0x1ec
+	scePrintf("Volume_Control - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dc910
 SDE_ERR sdShotStop(SDS_PORT_REF** handle)
 {
@@ -1431,99 +1434,157 @@ int sndr_trans_func()
 	scePrintf("sndr_trans_func - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2dd5d0
+// 100% matching!
 SDE_ERR	sdSysServer( Void)
 {
-	unsigned int req;
-	short pitch;
-	unsigned char pan;
-	unsigned char vol;
-	//_anon0* chk_snd_work;
-	int i;
-	// Line 3651, Address: 0x2dd5d0, Func Offset: 0
-	// Line 3665, Address: 0x2dd5e8, Func Offset: 0x18
-	// Line 3667, Address: 0x2dd5f8, Func Offset: 0x28
-	// Line 3682, Address: 0x2dd608, Func Offset: 0x38
-	// Line 3704, Address: 0x2dd610, Func Offset: 0x40
-	// Line 3729, Address: 0x2dd618, Func Offset: 0x48
-	// Line 3730, Address: 0x2dd628, Func Offset: 0x58
-	// Line 3731, Address: 0x2dd634, Func Offset: 0x64
-	// Line 3732, Address: 0x2dd644, Func Offset: 0x74
-	// Line 3733, Address: 0x2dd650, Func Offset: 0x80
-	// Line 3735, Address: 0x2dd658, Func Offset: 0x88
-	// Line 3737, Address: 0x2dd674, Func Offset: 0xa4
-	// Line 3738, Address: 0x2dd690, Func Offset: 0xc0
-	// Line 3741, Address: 0x2dd6ac, Func Offset: 0xdc
-	// Line 3742, Address: 0x2dd6b8, Func Offset: 0xe8
-	// Line 3746, Address: 0x2dd6c0, Func Offset: 0xf0
-	// Line 3751, Address: 0x2dd6d0, Func Offset: 0x100
-	// Line 3752, Address: 0x2dd6fc, Func Offset: 0x12c
-	// Line 3753, Address: 0x2dd720, Func Offset: 0x150
-	// Line 3752, Address: 0x2dd724, Func Offset: 0x154
-	// Line 3754, Address: 0x2dd72c, Func Offset: 0x15c
-	// Line 3755, Address: 0x2dd734, Func Offset: 0x164
-	// Line 3761, Address: 0x2dd760, Func Offset: 0x190
-	// Line 3769, Address: 0x2dd788, Func Offset: 0x1b8
-	// Line 3777, Address: 0x2dd7b0, Func Offset: 0x1e0
-	// Line 3782, Address: 0x2dd7d4, Func Offset: 0x204
-	// Line 3777, Address: 0x2dd7dc, Func Offset: 0x20c
-	// Line 3788, Address: 0x2dd7e0, Func Offset: 0x210
-	// Line 3782, Address: 0x2dd7e4, Func Offset: 0x214
-	// Line 3788, Address: 0x2dd7e8, Func Offset: 0x218
-	// Line 3782, Address: 0x2dd7ec, Func Offset: 0x21c
-	// Line 3777, Address: 0x2dd7f8, Func Offset: 0x228
-	// Line 3788, Address: 0x2dd7fc, Func Offset: 0x22c
-	// Line 3789, Address: 0x2dd804, Func Offset: 0x234
-	// Line 3793, Address: 0x2dd808, Func Offset: 0x238
-	// Line 3795, Address: 0x2dd81c, Func Offset: 0x24c
-	// Line 3796, Address: 0x2dd820, Func Offset: 0x250
-	// Line 3798, Address: 0x2dd828, Func Offset: 0x258
-	// Line 3799, Address: 0x2dd834, Func Offset: 0x264
-	// Line 3800, Address: 0x2dd848, Func Offset: 0x278
-	// Line 3803, Address: 0x2dd850, Func Offset: 0x280
-	// Line 3808, Address: 0x2dd86c, Func Offset: 0x29c
-	// Line 3809, Address: 0x2dd878, Func Offset: 0x2a8
-	// Line 3813, Address: 0x2dd880, Func Offset: 0x2b0
-	// Line 3814, Address: 0x2dd890, Func Offset: 0x2c0
-	// Line 3818, Address: 0x2dd8a4, Func Offset: 0x2d4
-	// Line 3820, Address: 0x2dd8b4, Func Offset: 0x2e4
-	// Line 3818, Address: 0x2dd8b8, Func Offset: 0x2e8
-	// Line 3820, Address: 0x2dd8c8, Func Offset: 0x2f8
-	// Line 3821, Address: 0x2dd8cc, Func Offset: 0x2fc
-	// Line 3826, Address: 0x2dd8d0, Func Offset: 0x300
-	// Line 3829, Address: 0x2dd8f0, Func Offset: 0x320
-	// Line 3830, Address: 0x2dd8fc, Func Offset: 0x32c
-	// Line 3831, Address: 0x2dd904, Func Offset: 0x334
-	// Line 3834, Address: 0x2dd908, Func Offset: 0x338
-	// Line 3835, Address: 0x2dd914, Func Offset: 0x344
-	// Line 3836, Address: 0x2dd91c, Func Offset: 0x34c
-	// Line 3839, Address: 0x2dd920, Func Offset: 0x350
-	// Line 3840, Address: 0x2dd92c, Func Offset: 0x35c
-	// Line 3841, Address: 0x2dd934, Func Offset: 0x364
-	// Line 3843, Address: 0x2dd938, Func Offset: 0x368
-	// Line 3844, Address: 0x2dd94c, Func Offset: 0x37c
-	// Line 3845, Address: 0x2dd950, Func Offset: 0x380
-	// Line 3846, Address: 0x2dd958, Func Offset: 0x388
-	// Line 3850, Address: 0x2dd968, Func Offset: 0x398
-	// Line 3852, Address: 0x2dd96c, Func Offset: 0x39c
-	// Line 3850, Address: 0x2dd970, Func Offset: 0x3a0
-	// Line 3852, Address: 0x2dd980, Func Offset: 0x3b0
-	// Line 3853, Address: 0x2dd984, Func Offset: 0x3b4
-	// Line 3854, Address: 0x2dd988, Func Offset: 0x3b8
-	// Line 3856, Address: 0x2dd9a4, Func Offset: 0x3d4
-	// Line 3857, Address: 0x2dd9ac, Func Offset: 0x3dc
-	// Line 3863, Address: 0x2dd9bc, Func Offset: 0x3ec
-	// Line 3865, Address: 0x2dd9c0, Func Offset: 0x3f0
-	// Line 3864, Address: 0x2dd9c4, Func Offset: 0x3f4
-	// Line 3865, Address: 0x2dd9c8, Func Offset: 0x3f8
-	// Line 3864, Address: 0x2dd9cc, Func Offset: 0x3fc
-	// Line 3865, Address: 0x2dd9d0, Func Offset: 0x400
-	// Line 4005, Address: 0x2dd9dc, Func Offset: 0x40c
-	// Line 4008, Address: 0x2dd9e4, Func Offset: 0x414
-	// Line 4011, Address: 0x2dd9ec, Func Offset: 0x41c
-	// Func End, Address: 0x2dda08, Func Offset: 0x438
-	scePrintf("sdSysServer - UNIMPLEMENTED!\n");
+    int i;                  
+    SND_WORK* chk_snd_work; 
+    unsigned char vol;      
+    unsigned char pan;      
+    short pitch;           
+    unsigned int req;      
+    
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        if (snd_data_down_load != 0) 
+        {
+            sndr_trans_func();
+        }
+        
+        get_iopsnd_info();
+        
+        if (FxLevelTimer != 0)
+        {
+            FxLevelTimer--;
+            
+            if (FxLevelTimer == 0) 
+            {
+                CurrentFxLevel = RoomFxLevel;
+            }
+            else 
+            {
+                CurrentFxLevel += AddFxLevel;
+            }
+            
+            SdrSetRev(0, 5, CurrentFxLevel, 0, 0);
+            SdrSetRev(1, 5, CurrentFxLevel, 0, 0);
+        }
+        
+        chk_snd_work = (SND_WORK*)*__shot_handle_top;
+        
+        for (i = 0; i < __shot_value; i++, chk_snd_work++) 
+        {
+            if (chk_snd_work->req == 1) 
+            {
+                SdrSeReq(chk_snd_work->channel_num | ((chk_snd_work->port_num << 16) | (chk_snd_work->bank_num << 8)), chk_snd_work->vol, chk_snd_work->pan, chk_snd_work->pitch);
+                
+                get_iop_snddata.se_info[chk_snd_work->port_num] |= 1 << chk_snd_work->channel_num;
+               
+                chk_snd_work->req = 254;
+            }
+            else if (((1 << chk_snd_work->channel_num) & get_iop_snddata.se_info[chk_snd_work->port_num])) 
+            {
+                if (chk_snd_work->vol_timer != 0) 
+                {
+                    vol = Volume_Control(chk_snd_work);
+                } 
+                else 
+                {
+                    vol = chk_snd_work->vol;
+                }
+                
+                if (chk_snd_work->pan_timer != 0) 
+                {
+                    pan = Panpot_Control(chk_snd_work);
+                }
+                else 
+                {
+                    pan = chk_snd_work->pan;
+                }
+                
+                if (chk_snd_work->pitch_timer != 0)
+                {
+                    pitch = Pitch_Control(chk_snd_work);
+                }
+                else 
+                {
+                    pitch = chk_snd_work->pitch;
+                }
+                
+                req = (chk_snd_work->port_num << 16) | (chk_snd_work->bank_num << 8) | chk_snd_work->channel_num;
+                
+                if (sound_flag != 0) 
+                {
+                    pan = 64;
+                }
+                
+                SdrSeChg(req, vol, pan, pitch);
+                
+                chk_snd_work->req = 255;
+            }
+            else if (chk_snd_work->req == 254)
+            {
+                get_iop_snddata.se_info[chk_snd_work->port_num] |= 1 << chk_snd_work->channel_num;
+                
+                chk_snd_work->req = 255;
+            }
+        }
+        
+        chk_snd_work = (SND_WORK*)*__midi_handle_top;
+        
+        for (i = 0; i < __midi_value; i++, chk_snd_work++) 
+        {
+            if (chk_snd_work->req == 1) 
+            {
+                SdrBgmReq(chk_snd_work->port_num, chk_snd_work->bank_num, chk_snd_work->vol, chk_snd_work->channel_num);
+                
+                get_iop_snddata.midi_info |= 1 << chk_snd_work->port_num;
+                
+                chk_snd_work->req = 254;
+            }
+            
+            if ((get_iop_snddata.midi_info & (1 << chk_snd_work->port_num))) 
+            {
+                if (chk_snd_work->vol_timer != 0) 
+                {
+                    chk_snd_work->vol = Volume_Control(chk_snd_work);
+                }
+                
+                if (chk_snd_work->pan_timer != 0) 
+                {
+                    chk_snd_work->pan = Panpot_Control(chk_snd_work);
+                }
+                
+                if (chk_snd_work->pitch_timer != 0) 
+                {
+                    chk_snd_work->pitch = Pitch_Control(chk_snd_work);
+                }
+                
+                SdrBgmChg(chk_snd_work->port_num, chk_snd_work->vol, chk_snd_work->pan, chk_snd_work->pitch);
+                
+                chk_snd_work->req = 255;
+            } 
+            else if (chk_snd_work->req == 254) 
+            {
+                get_iop_snddata.midi_info |= 1 << chk_snd_work->port_num;
+                
+                chk_snd_work->req = 255;
+            }
+        }
+        
+        SdrSetIopData();
+        
+        SdrSendReq(1);
+        
+        for (i = 0; i < 6; i++) 
+        {
+            req_se_info[i] = 0;
+        }
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching! 

@@ -2621,3 +2621,14 @@ typedef struct UNKNOWN
 } UNKNOWN;
 
 #define SCE_GS_REPEAT           (0)
+
+typedef struct SND_STATUS 
+{
+    // total size: 0x42
+    unsigned short se_info[6]; // offset 0x0, size 0xC
+    unsigned short midi_info; // offset 0xC, size 0x2
+    short port_info[8]; // offset 0xE, size 0x10
+    short midi_sum[4]; // offset 0x1E, size 0x8
+    short se_sum[5]; // offset 0x26, size 0xA
+    unsigned short dummy[9]; // offset 0x30, size 0x12
+} SND_STATUS;

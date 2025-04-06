@@ -363,7 +363,7 @@ int SdrInit()
 	scePrintf("SdrInit - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2e9d80
 int SdrSeReq(int req, char vol, char pan, short pitch)
 {
@@ -380,9 +380,10 @@ int SdrSeReq(int req, char vol, char pan, short pitch)
 	// Line 3439, Address: 0x2e9eac, Func Offset: 0x12c
 	// Line 3440, Address: 0x2e9eb0, Func Offset: 0x130
 	// Func End, Address: 0x2e9ebc, Func Offset: 0x13c
+	scePrintf("SdrSeReq - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e9ec0
 int SdrSeCancel(int req)
 {
@@ -395,7 +396,7 @@ int SdrSeCancel(int req)
 	// Line 3522, Address: 0x2e9f44, Func Offset: 0x84
 	// Line 3523, Address: 0x2e9f48, Func Offset: 0x88
 	// Func End, Address: 0x2e9f54, Func Offset: 0x94
-}
+}*/
 
 // 
 // Start address: 0x2e9f60
@@ -415,7 +416,8 @@ int SdrSeChg(int req, char vol, char pan, short pitch)
 	// Line 3574, Address: 0x2ea0a4, Func Offset: 0x144
 	// Line 3575, Address: 0x2ea0a8, Func Offset: 0x148
 	// Func End, Address: 0x2ea0b4, Func Offset: 0x154
-}*/
+	scePrintf("SdrSeChg - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2ea0c0
@@ -449,7 +451,7 @@ int SdrMasterVol(unsigned short mvol)
 	scePrintf("SdrMasterVol - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2ea1f0
 int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigned char block)
 {
@@ -463,9 +465,10 @@ int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigne
 	// Line 3803, Address: 0x2ea294, Func Offset: 0xa4
 	// Line 3804, Address: 0x2ea298, Func Offset: 0xa8
 	// Func End, Address: 0x2ea2a4, Func Offset: 0xb4
+	scePrintf("SdrBgmReq - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ea2b0
 int SdrBgmStop(unsigned char port)
 {
@@ -478,7 +481,7 @@ int SdrBgmStop(unsigned char port)
 	// Line 3833, Address: 0x2ea33c, Func Offset: 0x8c
 	// Line 3834, Address: 0x2ea340, Func Offset: 0x90
 	// Func End, Address: 0x2ea34c, Func Offset: 0x9c
-}
+}*/
 
 // 
 // Start address: 0x2ea350
@@ -496,9 +499,10 @@ int SdrBgmChg(int req, char vol, char pan, short pitch)
 	// Line 4007, Address: 0x2ea418, Func Offset: 0xc8
 	// Line 4008, Address: 0x2ea41c, Func Offset: 0xcc
 	// Func End, Address: 0x2ea428, Func Offset: 0xd8
+	scePrintf("SdrBgmChg - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ea430
 int SdrHDDataSet(int port, int size)
 {
@@ -592,7 +596,7 @@ int SdrSQDataSet(int port, int size)
 	// Line 4088, Address: 0x2ea81c, Func Offset: 0x8c
 	// Line 4089, Address: 0x2ea820, Func Offset: 0x90
 	// Func End, Address: 0x2ea82c, Func Offset: 0x9c
-}
+}*/
 
 // 
 // Start address: 0x2ea830
@@ -610,7 +614,8 @@ int SdrSetIopData()
 	// Line 4129, Address: 0x2ea8d8, Func Offset: 0xa8
 	// Line 4130, Address: 0x2ea8dc, Func Offset: 0xac
 	// Func End, Address: 0x2ea8e8, Func Offset: 0xb8
-}*/
+	scePrintf("SdrSetIopData - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2ea8f0
@@ -922,13 +927,13 @@ int sending_req(_anon1* sq_p)
 	// Line 5727, Address: 0x2eb514, Func Offset: 0x314
 	// Line 5730, Address: 0x2eb518, Func Offset: 0x318
 	// Func End, Address: 0x2eb524, Func Offset: 0x324
-}
+}*/
 
 // 
 // Start address: 0x2eb530
 int get_iopsnd_info()
 {
-	_sif_receive_data rd;
+	//_sif_receive_data rd;
 	// Line 5753, Address: 0x2eb530, Func Offset: 0
 	// Line 5762, Address: 0x2eb538, Func Offset: 0x8
 	// Line 5764, Address: 0x2eb560, Func Offset: 0x30
@@ -936,5 +941,6 @@ int get_iopsnd_info()
 	// Line 5768, Address: 0x2eb580, Func Offset: 0x50
 	// Line 5770, Address: 0x2eb584, Func Offset: 0x54
 	// Func End, Address: 0x2eb590, Func Offset: 0x60
-}*/
+	scePrintf("get_iopsnd_info - UNIMPLEMENTED!\n");
+}
 
