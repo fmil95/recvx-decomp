@@ -1,6 +1,4 @@
-void syHwFinish(void);
-void syHwInit(void);
-void syHwInit2(void);
+#include "ps2_sg_syhw.h"
 
 // 100% matching! 
 void syHwFinish(void)
