@@ -1418,8 +1418,8 @@ MEMORYCARDSTATE McState;
 SAVEFILE SaveFile;
 CONFIGFILE ConfigFile;
 /*unsigned char SaveLoadMessage[10956];
-_anon14 Pad[0];
-_anon3* sys;*/
+_anon14 Pad[0];*/
+SYS_WORK* sys;
 
 SYSLOAD_SCREEN* CreateSysLoadScreen(SYSLOAD_SCREEN* pSysLoad, void* vpWorkPtrSys);
 void DispSysLoadMessageSelect(int slSelectMes);
@@ -1918,14 +1918,13 @@ void SetStateSysLoadScreenTitleExit(tagSYSLOAD_SCREEN* pSysLoad)
 	// Func End, Address: 0x277f04, Func Offset: 0x44
 }*/
 
-// 
-// Start address: 0x277f10
+// 100% matching!
 void ExecuteStateSysLoadScreenTitleExit()
 {
-	// Line 964, Address: 0x277f10, Func Offset: 0
-	// Line 966, Address: 0x277f1c, Func Offset: 0xc
-	// Line 968, Address: 0x277f34, Func Offset: 0x24
-	// Line 970, Address: 0x277f38, Func Offset: 0x28
-	// Func End, Address: 0x277f40, Func Offset: 0x30
-	scePrintf("ExecuteStateSysLoadScreenTitleExit - UNIMPLEMENTED!\n");
+    sys->typ_md1 = 0;
+
+    if (!(sys->tk_flg & 0x2000)) 
+    {
+        sys->typ_md0 = 0;
+    }
 }
