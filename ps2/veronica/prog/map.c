@@ -2084,7 +2084,7 @@ int GetGameMode();*/
 
 // 
 // Start address: 0x2b1ef0
-void bhInitMap(_enum_2 set_mod)
+void bhInitMap(enum_2 set_mod)
 {
 	//_anon2* texP;
 	// Line 402, Address: 0x2b1ef0, Func Offset: 0

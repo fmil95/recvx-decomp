@@ -1655,35 +1655,6 @@ typedef struct PS2_GS_SAVE
     unsigned long pad64; // offset 0xB8, size 0x4
 } PS2_GS_SAVE;
 
-#define SCR_WIDTH 640
-#define SCR_HEIGHT 224
-
-#define GS_X_COORD(x) ((2048 - (SCR_WIDTH / 2) + x) * 16)
-#define GS_Y_COORD(y) ((2048 - (SCR_HEIGHT / 2) + y) * 16)
-
-#define WORKBASE (0x70000000)
-
-#define DMAnext             (2<<28)
-#define DMAend  (7<<28)
-
-#define    SCE_GS_FALSE         (0)
-#define    SCE_GS_TRUE          (1)
-
-#define SCE_GS_ALPHA_NEVER      (0)
-
-#define    SCE_GS_AFAIL_KEEP    (0)
-#define    SCE_GS_AFAIL_FB_ONLY (1)
-
-#define SCE_GS_DEPTH_ALWAYS     (1)
-#define SCE_GS_DEPTH_GEQUAL     (2)
-#define SCE_GS_ALPHA_GEQUAL     (5)
-#define SCE_GS_ALPHA_GREATER    (6)
-
-#define SCE_GS_ALPHA_CS         (0)
-#define SCE_GS_ALPHA_CD         (1)
-
-#define SCE_GS_ALPHA_FIX        (2)
-
 typedef struct PS2_OT_LIST
 {
     int pad; // TODO: this is actually an empty struct 
@@ -1737,10 +1708,6 @@ typedef struct PS2_TP_CACHE
     unsigned int tex_addr; // offset 0x8, size 0x4
     unsigned int clt_addr; // offset 0xC, size 0x4
 } PS2_TP_CACHE;
-
-#define DMAref              (3<<28)
-
-#define SCE_GS_CLAMP            (1)
 
 typedef struct BUF_QUEUE 
 {
@@ -2614,17 +2581,6 @@ typedef struct SND_WORK
     unsigned char req; // offset 0x2B, size 0x1
 } SND_WORK;
 
-// TODO: find a struct on the debugging symbols similar to this one that could fit in Ps2AddPrim()
-typedef struct UNKNOWN 
-{
-    int unk0;
-    int unk4;
-    float unk8;
-    int unkC;
-} UNKNOWN;
-
-#define SCE_GS_REPEAT           (0)
-
 typedef struct SND_STATUS 
 {
     // total size: 0x42
@@ -2635,3 +2591,47 @@ typedef struct SND_STATUS
     short se_sum[5]; // offset 0x26, size 0xA
     unsigned short dummy[9]; // offset 0x30, size 0x12
 } SND_STATUS;
+
+// TODO: find a struct on the debugging symbols similar to this one that could fit in Ps2AddPrim()
+typedef struct UNKNOWN 
+{
+    int unk0;
+    int unk4;
+    float unk8;
+    int unkC;
+} UNKNOWN;
+
+#define SCR_WIDTH 640
+#define SCR_HEIGHT 224
+
+#define GS_X_COORD(x) ((2048 - (SCR_WIDTH / 2) + x) * 16)
+#define GS_Y_COORD(y) ((2048 - (SCR_HEIGHT / 2) + y) * 16)
+
+#define WORKBASE (0x70000000)
+
+#define DMAnext             (2<<28)
+#define DMAend  (7<<28)
+
+#define    SCE_GS_FALSE         (0)
+#define    SCE_GS_TRUE          (1)
+
+#define SCE_GS_ALPHA_NEVER      (0)
+
+#define    SCE_GS_AFAIL_KEEP    (0)
+#define    SCE_GS_AFAIL_FB_ONLY (1)
+
+#define SCE_GS_DEPTH_ALWAYS     (1)
+#define SCE_GS_DEPTH_GEQUAL     (2)
+#define SCE_GS_ALPHA_GEQUAL     (5)
+#define SCE_GS_ALPHA_GREATER    (6)
+
+#define SCE_GS_ALPHA_CS         (0)
+#define SCE_GS_ALPHA_CD         (1)
+
+#define SCE_GS_ALPHA_FIX        (2)
+
+#define DMAref              (3<<28)
+
+#define SCE_GS_CLAMP            (1)
+
+#define SCE_GS_REPEAT           (0)
