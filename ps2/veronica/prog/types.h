@@ -1611,12 +1611,13 @@ typedef struct PAD_INFO
     short Calibrate; // offset 0x38, size 0x2
 } PAD_INFO;
 
-typedef struct DVDISO_DATA
+// the link_file field in the struct below was originally char* but got turned into char** because it matches gdFsInit() higher
+typedef struct DVD_IMAGE_DATA
 {
-	char* file_name;
-	//char* link_file; original field from the debugging symbols, the below version matches better
-    char** link_file;
-} DVDISO_DATA;
+	// total size: 0x8
+    char* file_name; // offset 0x0, size 0x4
+    char** link_file; // offset 0x4, size 0x4
+} DVD_IMAGE_DATA;
 
 typedef struct PS2_NJ_SAVE
 {
