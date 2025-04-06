@@ -296,19 +296,20 @@ int RecoveryMemoryCardAnalyzeAllEnd(tagMEMORYCARDSTATE* pCard)
 	// Line 426, Address: 0x273a38, Func Offset: 0x38
 	// Line 430, Address: 0x273a3c, Func Offset: 0x3c
 	// Func End, Address: 0x273a48, Func Offset: 0x48
-}
+}*/
 
 // 
 // Start address: 0x273a50
-void SetCheckMcFlag(tagMEMORYCARDSTATE* pCard, unsigned int ulFlag)
+void SetCheckMcFlag(MEMORYCARDSTATE* pCard, unsigned int ulFlag)
 {
 	// Line 450, Address: 0x273a50, Func Offset: 0
 	// Line 452, Address: 0x273a5c, Func Offset: 0xc
 	// Line 454, Address: 0x273a60, Func Offset: 0x10
 	// Func End, Address: 0x273a68, Func Offset: 0x18
+	scePrintf("SetCheckMcFlag - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x273a70
 int ExecuteMemoryCardRead(tagMEMORYCARDSTATE* pCard)
 {
@@ -488,18 +489,19 @@ unsigned int GetMemoryCardError(tagMEMORYCARDSTATE* pCard)
 {
 	// Line 861, Address: 0x273f50, Func Offset: 0
 	// Func End, Address: 0x273f58, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x273f60
-void RecoveryMemoryCardError(tagMEMORYCARDSTATE* pCard)
+void RecoveryMemoryCardError(MEMORYCARDSTATE* pCard)
 {
 	// Line 879, Address: 0x273f60, Func Offset: 0
 	// Line 882, Address: 0x273f64, Func Offset: 0x4
 	// Func End, Address: 0x273f6c, Func Offset: 0xc
+	scePrintf("RecoveryMemoryCardError - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x273f70
 void SetMemoryCardCurrentPort(tagMEMORYCARDSTATE* pCard, int lPort)
 {

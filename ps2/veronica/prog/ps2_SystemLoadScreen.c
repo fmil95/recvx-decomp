@@ -1905,18 +1905,17 @@ void ExecuteStateSysLoadScreenErrCardRead(SYSLOAD_SCREEN* pSysLoad)
 	scePrintf("ExecuteStateSysLoadScreenErrCardRead - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x277ec0
-void SetStateSysLoadScreenTitleExit(tagSYSLOAD_SCREEN* pSysLoad)
-{
-	// Line 941, Address: 0x277ec0, Func Offset: 0
-	// Line 943, Address: 0x277ecc, Func Offset: 0xc
-	// Line 945, Address: 0x277ed4, Func Offset: 0x14
-	// Line 947, Address: 0x277ee0, Func Offset: 0x20
-	// Line 949, Address: 0x277eec, Func Offset: 0x2c
-	// Line 950, Address: 0x277ef4, Func Offset: 0x34
-	// Func End, Address: 0x277f04, Func Offset: 0x44
-}*/
+// 100% matching!
+void SetStateSysLoadScreenTitleExit(SYSLOAD_SCREEN* pSysLoad) 
+{ 
+    pSysLoad->ulState = 40; 
+
+    pSysLoad->ulMemCheckCountTimer = 1; 
+
+    SetCheckMcFlag(pSysLoad->pMcState, 0); 
+    
+    RecoveryMemoryCardError(pSysLoad->pMcState); 
+} 
 
 // 100% matching!
 void ExecuteStateSysLoadScreenTitleExit()
