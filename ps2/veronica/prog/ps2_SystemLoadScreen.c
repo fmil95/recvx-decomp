@@ -1417,8 +1417,8 @@ ICONINFORMATION IconInfo;
 MEMORYCARDSTATE McState;
 SAVEFILE SaveFile;
 CONFIGFILE ConfigFile;
-/*unsigned char SaveLoadMessage[10956];
-_anon14 Pad[0];*/
+/*unsigned char SaveLoadMessage[10956];*/
+PAD_WRK Pad[4];
 SYS_WORK* sys;
 
 SYSLOAD_SCREEN* CreateSysLoadScreen(SYSLOAD_SCREEN* pSysLoad, void* vpWorkPtrSys);
@@ -1563,9 +1563,9 @@ int ExecuteSysLoadScreen(SYSLOAD_SCREEN* pSysLoad)
     return pSysLoad->usExitFlag; 
 } 
 
-/*// 
+// 
 // Start address: 0x277540
-void SetStateSysLoadScreenAwarenessCard(tagSYSLOAD_SCREEN* pSysLoad)
+void SetStateSysLoadScreenAwarenessCard(SYSLOAD_SCREEN* pSysLoad)
 {
 	// Line 260, Address: 0x277540, Func Offset: 0
 	// Line 262, Address: 0x27754c, Func Offset: 0xc
@@ -1574,7 +1574,8 @@ void SetStateSysLoadScreenAwarenessCard(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 268, Address: 0x277560, Func Offset: 0x20
 	// Line 269, Address: 0x277568, Func Offset: 0x28
 	// Func End, Address: 0x277578, Func Offset: 0x38
-}*/
+	scePrintf("SetStateSysLoadScreenAwarenessCard - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x277580
@@ -1889,20 +1890,19 @@ void SetStateSysLoadScreenErrCardRead(tagSYSLOAD_SCREEN* pSysLoad)
 	// Func End, Address: 0x277e54, Func Offset: 0x14
 }*/
 
-// 
-// Start address: 0x277e60
+// 100% matching!
 void ExecuteStateSysLoadScreenErrCardRead(SYSLOAD_SCREEN* pSysLoad)
 {
-	// Line 907, Address: 0x277e60, Func Offset: 0
-	// Line 909, Address: 0x277e68, Func Offset: 0x8
-	// Line 912, Address: 0x277e7c, Func Offset: 0x1c
-	// Line 914, Address: 0x277e80, Func Offset: 0x20
-	// Line 915, Address: 0x277e88, Func Offset: 0x28
-	// Line 919, Address: 0x277e90, Func Offset: 0x30
-	// Line 922, Address: 0x277eac, Func Offset: 0x4c
-	// Line 925, Address: 0x277eb4, Func Offset: 0x54
-	// Func End, Address: 0x277ec0, Func Offset: 0x60
-	scePrintf("ExecuteStateSysLoadScreenErrCardRead - UNIMPLEMENTED!\n");
+    if ((Pad->press & 0x800))
+    {
+        pSysLoad->usExitFlag = 1;
+        
+        SetStateSysLoadScreenTitleExit(pSysLoad);
+    }
+    else if ((pSysLoad->lCardState > 100) && (pSysLoad->lCardState < 104)) 
+    {
+        SetStateSysLoadScreenAwarenessCard(pSysLoad);
+    }
 }
 
 // 100% matching!
