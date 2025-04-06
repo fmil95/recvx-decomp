@@ -1597,49 +1597,86 @@ void ExecuteStateSysLoadScreenAwarenessCard(SYSLOAD_SCREEN* pSysLoad)
 	scePrintf("ExecuteStateSysLoadScreenAwarenessCard - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x277620
-void SetStateSysLoadScreenErrAwareness(tagSYSLOAD_SCREEN* pSysLoad)
+// 99.90% matching
+void SetStateSysLoadScreenErrAwareness(SYSLOAD_SCREEN* pSysLoad) 
 {
-	char cFormat2;
-	char cFormat1;
-	int lDir2;
-	int lFree2;
-	int lType2;
-	int lType1;
-	int lSlot2;
-	int lSlot1;
-	unsigned char MesTbl[5][3];
-	// Line 328, Address: 0x277620, Func Offset: 0
-	// Line 339, Address: 0x277644, Func Offset: 0x24
-	// Line 341, Address: 0x277650, Func Offset: 0x30
-	// Line 343, Address: 0x277660, Func Offset: 0x40
-	// Line 341, Address: 0x277664, Func Offset: 0x44
-	// Line 343, Address: 0x277668, Func Offset: 0x48
-	// Line 345, Address: 0x277670, Func Offset: 0x50
-	// Line 343, Address: 0x277674, Func Offset: 0x54
-	// Line 345, Address: 0x277678, Func Offset: 0x58
-	// Line 347, Address: 0x277684, Func Offset: 0x64
-	// Line 345, Address: 0x277688, Func Offset: 0x68
-	// Line 347, Address: 0x27768c, Func Offset: 0x6c
-	// Line 350, Address: 0x277698, Func Offset: 0x78
-	// Line 352, Address: 0x2776a8, Func Offset: 0x88
-	// Line 355, Address: 0x2776b0, Func Offset: 0x90
-	// Line 356, Address: 0x2776c0, Func Offset: 0xa0
-	// Line 357, Address: 0x2776dc, Func Offset: 0xbc
-	// Line 365, Address: 0x2776ec, Func Offset: 0xcc
-	// Line 366, Address: 0x2776fc, Func Offset: 0xdc
-	// Line 367, Address: 0x277718, Func Offset: 0xf8
-	// Line 368, Address: 0x277730, Func Offset: 0x110
-	// Line 369, Address: 0x277740, Func Offset: 0x120
-	// Line 370, Address: 0x277764, Func Offset: 0x144
-	// Line 378, Address: 0x277778, Func Offset: 0x158
-	// Line 381, Address: 0x277794, Func Offset: 0x174
-	// Line 378, Address: 0x277798, Func Offset: 0x178
-	// Line 381, Address: 0x27779c, Func Offset: 0x17c
-	// Line 382, Address: 0x2777a0, Func Offset: 0x180
-	// Func End, Address: 0x2777c4, Func Offset: 0x1a4
-}*/
+    static unsigned char MesTbl[3][5] =
+    { 
+        { 1, 1, 5, 2, 2 }, 
+        { 1, 1, 5, 2, 2 }, 
+        { 6, 6, 6, 6, 6 } 
+    };
+    int lType1;
+    int lType2;
+    int lSlot1;
+    int lSlot2;
+    int lFree2;
+    int lDir2;
+    char cFormat1;
+    char cFormat2;
+
+    lSlot1 = GetMemoryCardSelectPortState(pSysLoad->pMcState, 0);
+    lSlot2 = GetMemoryCardSelectPortState(pSysLoad->pMcState, 1);
+    
+    cFormat1 = GetMemoryCardSelectPortFormatType(pSysLoad->pMcState, 0);
+    cFormat2 = GetMemoryCardSelectPortFormatType(pSysLoad->pMcState, 1);
+    
+    lFree2 = GetMemoryCardSelectPortFreeCapacity(pSysLoad->pMcState, 1);
+    
+    SetMemoryCardCurrentPort(pSysLoad->pMcState, 1);
+    
+    lDir2 = CheckMemoryCardExistSubDirectory(pSysLoad->pMcState);
+    
+    if (lSlot1 == 0)
+    {
+        lType1 = 0;
+    }
+    else if ((lSlot1 != 0) && (lSlot1 != 2))
+    {
+        lType1 = 1;
+    } 
+    else if (cFormat1 == 0)
+    {
+        lType1 = 2;
+    } 
+    else 
+    {
+        lType1 = 0;
+    }
+
+    if (lSlot2 == 0) 
+    {
+        lType2 = 0;
+    }
+    else if ((lSlot2 != 0) && (lSlot2 != 2))
+    {
+        lType2 = 1;
+    } 
+    else if (cFormat2 == 0) 
+    {
+        lType2 = 4;
+    } 
+    else if (lDir2 == 1)
+    {
+        lType2 = 3;
+    }
+    else if ((0 <= lFree2) && (lFree2 < mcGetFreeCapacitySize())) 
+    {
+        lType2 = 2;
+    } 
+    else if (lFree2 >= mcGetFreeCapacitySize())
+    {
+        lType2 = 3;
+    } 
+    else 
+    {
+        lType2 = 0;
+    }
+    
+    pSysLoad->cMesFlag = MesTbl[lType1][lType2];
+    
+    pSysLoad->ulState = 1;
+}
 
 // 
 // Start address: 0x2777d0

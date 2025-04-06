@@ -1890,7 +1890,7 @@ int mcWriteIconData(tagMEMORYCARDSTATE* pCard, void* vpWriteAddr, unsigned int u
 	// Line 935, Address: 0x272130, Func Offset: 0x10
 	// Line 939, Address: 0x272154, Func Offset: 0x34
 	// Func End, Address: 0x272160, Func Offset: 0x40
-}
+}*/
 
 // 
 // Start address: 0x272160
@@ -1910,9 +1910,10 @@ int mcGetFreeCapacitySize()
 	// Line 967, Address: 0x2721c0, Func Offset: 0x60
 	// Line 968, Address: 0x2721c4, Func Offset: 0x64
 	// Func End, Address: 0x2721d0, Func Offset: 0x70
+	scePrintf("mcGetFreeCapacitySize - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2721d0
 void mcGetPortSelectDirInfo(tagSAVEFILE* pSaveFile, tagSELECTFILEWINDOW* pWin, unsigned int ulCheckCounter)
 {

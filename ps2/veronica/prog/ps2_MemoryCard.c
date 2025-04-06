@@ -501,15 +501,16 @@ void RecoveryMemoryCardError(MEMORYCARDSTATE* pCard)
 	scePrintf("RecoveryMemoryCardError - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x273f70
-void SetMemoryCardCurrentPort(tagMEMORYCARDSTATE* pCard, int lPort)
+void SetMemoryCardCurrentPort(MEMORYCARDSTATE* pCard, int lPort)
 {
 	// Line 917, Address: 0x273f70, Func Offset: 0
 	// Func End, Address: 0x273f78, Func Offset: 0x8
+	scePrintf("SetMemoryCardCurrentPort - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x273f80
 int GetMemoryCardCurrentPort(tagMEMORYCARDSTATE* pCard)
 {
@@ -542,18 +543,19 @@ int CompMemoryCardSelectPortState(tagMEMORYCARDSTATE* pCard, unsigned int ulPort
 	// Line 1063, Address: 0x273fc0, Func Offset: 0
 	// Line 1067, Address: 0x273fe0, Func Offset: 0x20
 	// Func End, Address: 0x273fe8, Func Offset: 0x28
-}
+}*/
 
 // 
 // Start address: 0x273ff0
-int GetMemoryCardSelectPortState(tagMEMORYCARDSTATE* pCard, unsigned int ulPort)
+int GetMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort)
 {
 	// Line 1089, Address: 0x273ff0, Func Offset: 0
 	// Line 1090, Address: 0x273ff8, Func Offset: 0x8
 	// Func End, Address: 0x274000, Func Offset: 0x10
+	scePrintf("GetMemoryCardSelectPortState - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x274000
 int GetMemoryCardFileNumber(tagMEMORYCARDSTATE* pCard)
 {
@@ -758,18 +760,19 @@ int GetMemoryCardFreeCapacity(tagMEMORYCARDSTATE* pCard)
 	// Line 1868, Address: 0x274554, Func Offset: 0x44
 	// Line 1875, Address: 0x27456c, Func Offset: 0x5c
 	// Func End, Address: 0x27457c, Func Offset: 0x6c
-}
+}*/
 
 // 
 // Start address: 0x274580
-int GetMemoryCardSelectPortFreeCapacity(tagMEMORYCARDSTATE* pCard, unsigned int ulPort)
+int GetMemoryCardSelectPortFreeCapacity(MEMORYCARDSTATE* pCard, unsigned int ulPort)
 {
 	// Line 1893, Address: 0x274580, Func Offset: 0
 	// Line 1894, Address: 0x274588, Func Offset: 0x8
 	// Func End, Address: 0x274590, Func Offset: 0x10
+	scePrintf("GetMemoryCardSelectPortFreeCapacity - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x274590
 int CheckMemoryCardFormatStatus(tagMEMORYCARDSTATE* pCard)
 {
@@ -798,11 +801,11 @@ int CreateMemoryCardSubDirectory(tagMEMORYCARDSTATE* pCard)
 	// Line 1972, Address: 0x274630, Func Offset: 0x40
 	// Line 1976, Address: 0x274634, Func Offset: 0x44
 	// Func End, Address: 0x274644, Func Offset: 0x54
-}
+}*/
 
 // 
 // Start address: 0x274650
-int CheckMemoryCardExistSubDirectory(tagMEMORYCARDSTATE* pCard)
+int CheckMemoryCardExistSubDirectory(MEMORYCARDSTATE* pCard)
 {
 	// Line 2106, Address: 0x274650, Func Offset: 0
 	// Line 2108, Address: 0x27465c, Func Offset: 0xc
@@ -811,9 +814,10 @@ int CheckMemoryCardExistSubDirectory(tagMEMORYCARDSTATE* pCard)
 	// Line 2117, Address: 0x274680, Func Offset: 0x30
 	// Line 2118, Address: 0x274690, Func Offset: 0x40
 	// Func End, Address: 0x2746a0, Func Offset: 0x50
+	scePrintf("CheckMemoryCardExistSubDirectory - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2746a0
 int CheckMemoryCardExistFile(tagMEMORYCARDSTATE* pCard)
 {
@@ -873,18 +877,19 @@ int MemoryCardGetSum(unsigned char* ucpTop, unsigned int ulSize)
 	// Line 2261, Address: 0x274888, Func Offset: 0x18
 	// Line 2265, Address: 0x274898, Func Offset: 0x28
 	// Func End, Address: 0x2748a0, Func Offset: 0x30
-}
+}*/
 
 // 
 // Start address: 0x2748a0
-int GetMemoryCardSelectPortFormatType(tagMEMORYCARDSTATE* pCard, unsigned int ulPort)
+int GetMemoryCardSelectPortFormatType(MEMORYCARDSTATE* pCard, unsigned int ulPort)
 {
 	// Line 2285, Address: 0x2748a0, Func Offset: 0
 	// Line 2286, Address: 0x2748a8, Func Offset: 0x8
 	// Func End, Address: 0x2748b0, Func Offset: 0x10
+	scePrintf("GetMemoryCardSelectPortFormatType - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2748b0
 int CheckMcSelectPortInfoType(unsigned int ulPort)
 {
