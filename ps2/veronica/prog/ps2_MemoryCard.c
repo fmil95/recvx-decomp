@@ -283,11 +283,11 @@ int ExecuteAnalyzeMemoryCardAll(tagMEMORYCARDSTATE* pCard)
 	// Line 393, Address: 0x2739e4, Func Offset: 0x234
 	// Line 394, Address: 0x2739e8, Func Offset: 0x238
 	// Func End, Address: 0x2739f8, Func Offset: 0x248
-}
+}*/
 
 // 
 // Start address: 0x273a00
-int RecoveryMemoryCardAnalyzeAllEnd(tagMEMORYCARDSTATE* pCard)
+int RecoveryMemoryCardAnalyzeAllEnd(MEMORYCARDSTATE* pCard)
 {
 	// Line 411, Address: 0x273a00, Func Offset: 0
 	// Line 413, Address: 0x273a08, Func Offset: 0x8
@@ -296,7 +296,8 @@ int RecoveryMemoryCardAnalyzeAllEnd(tagMEMORYCARDSTATE* pCard)
 	// Line 426, Address: 0x273a38, Func Offset: 0x38
 	// Line 430, Address: 0x273a3c, Func Offset: 0x3c
 	// Func End, Address: 0x273a48, Func Offset: 0x48
-}*/
+	scePrintf("RecoveryMemoryCardAnalyzeAllEnd - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x273a50
