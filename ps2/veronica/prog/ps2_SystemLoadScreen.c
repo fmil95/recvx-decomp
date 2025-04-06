@@ -1419,31 +1419,31 @@ SAVEFILE SaveFile;
 CONFIGFILE ConfigFile;
 /*unsigned char SaveLoadMessage[10956];
 _anon14 Pad[0];
-_anon3* sys;
+_anon3* sys;*/
 
-tagSYSLOAD_SCREEN* CreateSysLoadScreen(tagSYSLOAD_SCREEN* pSysLoad, void* vpWorkPtrSys);
+SYSLOAD_SCREEN* CreateSysLoadScreen(SYSLOAD_SCREEN* pSysLoad, void* vpWorkPtrSys);
 void DispSysLoadMessageSelect(int slSelectMes);
-int ExecuteSysLoadScreen(tagSYSLOAD_SCREEN* pSysLoad);
-void SetStateSysLoadScreenAwarenessCard(tagSYSLOAD_SCREEN* pSysLoad);
-void ExecuteStateSysLoadScreenAwarenessCard(tagSYSLOAD_SCREEN* pSysLoad);
-void SetStateSysLoadScreenErrAwareness(tagSYSLOAD_SCREEN* pSysLoad);
-void ExecuteStateSysLoadScreenErrAwareness(tagSYSLOAD_SCREEN* pSysLoad);
-void SetStateSysLoadScreenDirCheck(tagSYSLOAD_SCREEN* pSysLoad);
-void ExecuteStateSysLoadScreenDirCheck(tagSYSLOAD_SCREEN* pSysLoad);
-void SetStateSysLoadScreenFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad);
-void ExecuteStateSysLoadScreenFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad);
-void SetStateSysLoadScreenErrFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad);
-void ExecuteStateSysLoadScreenErrFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad);
-void SetStateSysLoadScreenNoSysFile(tagSYSLOAD_SCREEN* pSysLoad);
-void ExecuteStateSysLoadScreenNoSysFile(tagSYSLOAD_SCREEN* pSysLoad);
-void SetStateSysLoadScreenSysLoad(tagSYSLOAD_SCREEN* pSysLoad);
-void ExecuteStateSysLoadScreenSysLoad(tagSYSLOAD_SCREEN* pSysLoad);
-void SetStateSysLoadScreenFileBroken(tagSYSLOAD_SCREEN* pSysLoad);
-void ExecuteStateSysLoadScreenFileBroken(tagSYSLOAD_SCREEN* pSysLoad);
-void SetStateSysLoadScreenErrCardRead(tagSYSLOAD_SCREEN* pSysLoad);
-void ExecuteStateSysLoadScreenErrCardRead(tagSYSLOAD_SCREEN* pSysLoad);
-void SetStateSysLoadScreenTitleExit(tagSYSLOAD_SCREEN* pSysLoad);
-void ExecuteStateSysLoadScreenTitleExit();*/
+int ExecuteSysLoadScreen(SYSLOAD_SCREEN* pSysLoad);
+void SetStateSysLoadScreenAwarenessCard(SYSLOAD_SCREEN* pSysLoad);
+void ExecuteStateSysLoadScreenAwarenessCard(SYSLOAD_SCREEN* pSysLoad);
+void SetStateSysLoadScreenErrAwareness(SYSLOAD_SCREEN* pSysLoad);
+void ExecuteStateSysLoadScreenErrAwareness(SYSLOAD_SCREEN* pSysLoad);
+void SetStateSysLoadScreenDirCheck(SYSLOAD_SCREEN* pSysLoad);
+void ExecuteStateSysLoadScreenDirCheck(SYSLOAD_SCREEN* pSysLoad);
+void SetStateSysLoadScreenFreeCapacity(SYSLOAD_SCREEN* pSysLoad);
+void ExecuteStateSysLoadScreenFreeCapacity(SYSLOAD_SCREEN* pSysLoad);
+void SetStateSysLoadScreenErrFreeCapacity(SYSLOAD_SCREEN* pSysLoad);
+void ExecuteStateSysLoadScreenErrFreeCapacity(SYSLOAD_SCREEN* pSysLoad);
+void SetStateSysLoadScreenNoSysFile(SYSLOAD_SCREEN* pSysLoad);
+void ExecuteStateSysLoadScreenNoSysFile(SYSLOAD_SCREEN* pSysLoad);
+void SetStateSysLoadScreenSysLoad(SYSLOAD_SCREEN* pSysLoad);
+void ExecuteStateSysLoadScreenSysLoad(SYSLOAD_SCREEN* pSysLoad);
+void SetStateSysLoadScreenFileBroken(SYSLOAD_SCREEN* pSysLoad);
+void ExecuteStateSysLoadScreenFileBroken(SYSLOAD_SCREEN* pSysLoad);
+void SetStateSysLoadScreenErrCardRead(SYSLOAD_SCREEN* pSysLoad);
+void ExecuteStateSysLoadScreenErrCardRead(SYSLOAD_SCREEN* pSysLoad);
+void SetStateSysLoadScreenTitleExit(SYSLOAD_SCREEN* pSysLoad);
+void ExecuteStateSysLoadScreenTitleExit();
 
 // 100% matching!
 SYSLOAD_SCREEN* CreateSysLoadScreen(SYSLOAD_SCREEN* pSysLoad, void* vpWorkPtrSys)
@@ -1480,7 +1480,7 @@ SYSLOAD_SCREEN* CreateSysLoadScreen(SYSLOAD_SCREEN* pSysLoad, void* vpWorkPtrSys
     return pSysLoad;
 }
 
-/*// 
+// 
 // Start address: 0x277190
 void DispSysLoadMessageSelect(int slSelectMes)
 {
@@ -1516,40 +1516,52 @@ void DispSysLoadMessageSelect(int slSelectMes)
 	// Line 159, Address: 0x277394, Func Offset: 0x204
 	// Line 162, Address: 0x2773ac, Func Offset: 0x21c
 	// Func End, Address: 0x2773bc, Func Offset: 0x22c
-}*/
-
-// 
-// Start address: 0x2773c0
-int ExecuteSysLoadScreen(SYSLOAD_SCREEN* pSysLoad)
-{
-	// Line 178, Address: 0x2773c0, Func Offset: 0
-	// Line 181, Address: 0x2773d0, Func Offset: 0x10
-	// Line 183, Address: 0x2773dc, Func Offset: 0x1c
-	// Line 186, Address: 0x27745c, Func Offset: 0x9c
-	// Line 187, Address: 0x277468, Func Offset: 0xa8
-	// Line 189, Address: 0x277470, Func Offset: 0xb0
-	// Line 190, Address: 0x27747c, Func Offset: 0xbc
-	// Line 192, Address: 0x277484, Func Offset: 0xc4
-	// Line 193, Address: 0x277490, Func Offset: 0xd0
-	// Line 195, Address: 0x277498, Func Offset: 0xd8
-	// Line 196, Address: 0x2774a4, Func Offset: 0xe4
-	// Line 198, Address: 0x2774ac, Func Offset: 0xec
-	// Line 199, Address: 0x2774b8, Func Offset: 0xf8
-	// Line 201, Address: 0x2774c0, Func Offset: 0x100
-	// Line 202, Address: 0x2774cc, Func Offset: 0x10c
-	// Line 204, Address: 0x2774d4, Func Offset: 0x114
-	// Line 205, Address: 0x2774e0, Func Offset: 0x120
-	// Line 207, Address: 0x2774e8, Func Offset: 0x128
-	// Line 208, Address: 0x2774f4, Func Offset: 0x134
-	// Line 210, Address: 0x2774fc, Func Offset: 0x13c
-	// Line 211, Address: 0x277508, Func Offset: 0x148
-	// Line 213, Address: 0x277510, Func Offset: 0x150
-	// Line 218, Address: 0x277518, Func Offset: 0x158
-	// Line 220, Address: 0x277524, Func Offset: 0x164
-	// Line 221, Address: 0x277528, Func Offset: 0x168
-	// Func End, Address: 0x277538, Func Offset: 0x178
-	scePrintf("ExecuteSysLoadScreen - UNIMPLEMENTED!\n");
+	scePrintf("DispSysLoadMessageSelect - UNIMPLEMENTED!\n");
 }
+
+// 100% matching!
+int ExecuteSysLoadScreen(SYSLOAD_SCREEN* pSysLoad) 
+{ 
+    pSysLoad->lCardState = ExecuteMemoryCard(pSysLoad->pMcState); 
+    
+    switch (pSysLoad->ulState) 
+    { 
+    case 0:
+        ExecuteStateSysLoadScreenAwarenessCard(pSysLoad); 
+        break; 
+    case 1:
+        ExecuteStateSysLoadScreenErrAwareness(pSysLoad); 
+        break; 
+    case 10:
+        ExecuteStateSysLoadScreenDirCheck(pSysLoad); 
+        break; 
+    case 11:
+        ExecuteStateSysLoadScreenFreeCapacity(pSysLoad); 
+        break; 
+    case 12:
+        ExecuteStateSysLoadScreenErrFreeCapacity(pSysLoad); 
+        break; 
+    case 13:
+        ExecuteStateSysLoadScreenNoSysFile(pSysLoad); 
+        break; 
+    case 30:
+        ExecuteStateSysLoadScreenSysLoad(pSysLoad); 
+        break; 
+    case 31:
+        ExecuteStateSysLoadScreenFileBroken(pSysLoad); 
+        break; 
+    case 32:
+        ExecuteStateSysLoadScreenErrCardRead(pSysLoad); 
+        break; 
+    case 40:
+        ExecuteStateSysLoadScreenTitleExit(); 
+        break;
+    }
+
+    DispSysLoadMessageSelect(pSysLoad->cMesFlag); 
+
+    return pSysLoad->usExitFlag; 
+} 
 
 /*// 
 // Start address: 0x277540
@@ -1562,11 +1574,11 @@ void SetStateSysLoadScreenAwarenessCard(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 268, Address: 0x277560, Func Offset: 0x20
 	// Line 269, Address: 0x277568, Func Offset: 0x28
 	// Func End, Address: 0x277578, Func Offset: 0x38
-}
+}*/
 
 // 
 // Start address: 0x277580
-void ExecuteStateSysLoadScreenAwarenessCard(tagSYSLOAD_SCREEN* pSysLoad)
+void ExecuteStateSysLoadScreenAwarenessCard(SYSLOAD_SCREEN* pSysLoad)
 {
 	int lResult;
 	// Line 284, Address: 0x277580, Func Offset: 0
@@ -1581,9 +1593,10 @@ void ExecuteStateSysLoadScreenAwarenessCard(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 310, Address: 0x2775fc, Func Offset: 0x7c
 	// Line 313, Address: 0x277608, Func Offset: 0x88
 	// Func End, Address: 0x277618, Func Offset: 0x98
+	scePrintf("ExecuteStateSysLoadScreenAwarenessCard - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x277620
 void SetStateSysLoadScreenErrAwareness(tagSYSLOAD_SCREEN* pSysLoad)
 {
@@ -1625,11 +1638,11 @@ void SetStateSysLoadScreenErrAwareness(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 381, Address: 0x27779c, Func Offset: 0x17c
 	// Line 382, Address: 0x2777a0, Func Offset: 0x180
 	// Func End, Address: 0x2777c4, Func Offset: 0x1a4
-}
+}*/
 
 // 
 // Start address: 0x2777d0
-void ExecuteStateSysLoadScreenErrAwareness(tagSYSLOAD_SCREEN* pSysLoad)
+void ExecuteStateSysLoadScreenErrAwareness(SYSLOAD_SCREEN* pSysLoad)
 {
 	// Line 397, Address: 0x2777d0, Func Offset: 0
 	// Line 399, Address: 0x2777d8, Func Offset: 0x8
@@ -1640,9 +1653,10 @@ void ExecuteStateSysLoadScreenErrAwareness(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 411, Address: 0x27781c, Func Offset: 0x4c
 	// Line 423, Address: 0x277824, Func Offset: 0x54
 	// Func End, Address: 0x277830, Func Offset: 0x60
+	scePrintf("ExecuteStateSysLoadScreenErrAwareness - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x277830
 void SetStateSysLoadScreenDirCheck(tagSYSLOAD_SCREEN* pSysLoad)
 {
@@ -1655,11 +1669,11 @@ void SetStateSysLoadScreenDirCheck(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 453, Address: 0x277860, Func Offset: 0x30
 	// Line 454, Address: 0x27786c, Func Offset: 0x3c
 	// Func End, Address: 0x27787c, Func Offset: 0x4c
-}
+}*/
 
 // 
 // Start address: 0x277880
-void ExecuteStateSysLoadScreenDirCheck(tagSYSLOAD_SCREEN* pSysLoad)
+void ExecuteStateSysLoadScreenDirCheck(SYSLOAD_SCREEN* pSysLoad)
 {
 	int lResult;
 	// Line 469, Address: 0x277880, Func Offset: 0
@@ -1688,20 +1702,21 @@ void ExecuteStateSysLoadScreenDirCheck(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 528, Address: 0x2779a4, Func Offset: 0x124
 	// Line 530, Address: 0x2779ac, Func Offset: 0x12c
 	// Func End, Address: 0x2779bc, Func Offset: 0x13c
+	scePrintf("ExecuteStateSysLoadScreenDirCheck - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2779c0
 void SetStateSysLoadScreenFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad)
 {
 	// Line 547, Address: 0x2779c0, Func Offset: 0
 	// Line 550, Address: 0x2779c8, Func Offset: 0x8
 	// Func End, Address: 0x2779d0, Func Offset: 0x10
-}
+}*/
 
 // 
 // Start address: 0x2779d0
-void ExecuteStateSysLoadScreenFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad)
+void ExecuteStateSysLoadScreenFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
 {
 	int lFree1;
 	// Line 565, Address: 0x2779d0, Func Offset: 0
@@ -1712,9 +1727,10 @@ void ExecuteStateSysLoadScreenFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 579, Address: 0x277a14, Func Offset: 0x44
 	// Line 581, Address: 0x277a20, Func Offset: 0x50
 	// Func End, Address: 0x277a34, Func Offset: 0x64
+	scePrintf("ExecuteStateSysLoadScreenFreeCapacity - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x277a40
 void SetStateSysLoadScreenErrFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad)
 {
@@ -1744,11 +1760,11 @@ void SetStateSysLoadScreenErrFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 628, Address: 0x277b48, Func Offset: 0x108
 	// Line 629, Address: 0x277b4c, Func Offset: 0x10c
 	// Func End, Address: 0x277b68, Func Offset: 0x128
-}
+}*/
 
 // 
 // Start address: 0x277b70
-void ExecuteStateSysLoadScreenErrFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad)
+void ExecuteStateSysLoadScreenErrFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
 {
 	// Line 644, Address: 0x277b70, Func Offset: 0
 	// Line 646, Address: 0x277b78, Func Offset: 0x8
@@ -1759,9 +1775,10 @@ void ExecuteStateSysLoadScreenErrFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 658, Address: 0x277bbc, Func Offset: 0x4c
 	// Line 661, Address: 0x277bc4, Func Offset: 0x54
 	// Func End, Address: 0x277bd0, Func Offset: 0x60
+	scePrintf("ExecuteStateSysLoadScreenErrFreeCapacity - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x277bd0
 void SetStateSysLoadScreenNoSysFile(tagSYSLOAD_SCREEN* pSysLoad)
 {
@@ -1769,11 +1786,11 @@ void SetStateSysLoadScreenNoSysFile(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 680, Address: 0x277bd8, Func Offset: 0x8
 	// Line 681, Address: 0x277bdc, Func Offset: 0xc
 	// Func End, Address: 0x277be4, Func Offset: 0x14
-}
+}*/
 
 // 
 // Start address: 0x277bf0
-void ExecuteStateSysLoadScreenNoSysFile(tagSYSLOAD_SCREEN* pSysLoad)
+void ExecuteStateSysLoadScreenNoSysFile(SYSLOAD_SCREEN* pSysLoad)
 {
 	// Line 696, Address: 0x277bf0, Func Offset: 0
 	// Line 698, Address: 0x277bf8, Func Offset: 0x8
@@ -1784,9 +1801,10 @@ void ExecuteStateSysLoadScreenNoSysFile(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 710, Address: 0x277c3c, Func Offset: 0x4c
 	// Line 713, Address: 0x277c44, Func Offset: 0x54
 	// Func End, Address: 0x277c50, Func Offset: 0x60
+	scePrintf("ExecuteStateSysLoadScreenNoSysFile - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x277c50
 void SetStateSysLoadScreenSysLoad(tagSYSLOAD_SCREEN* pSysLoad)
 {
@@ -1797,11 +1815,11 @@ void SetStateSysLoadScreenSysLoad(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 737, Address: 0x277c64, Func Offset: 0x14
 	// Line 738, Address: 0x277c68, Func Offset: 0x18
 	// Func End, Address: 0x277c70, Func Offset: 0x20
-}
+}*/
 
 // 
 // Start address: 0x277c70
-void ExecuteStateSysLoadScreenSysLoad(tagSYSLOAD_SCREEN* pSysLoad)
+void ExecuteStateSysLoadScreenSysLoad(SYSLOAD_SCREEN* pSysLoad)
 {
 	int ulLoadResult;
 	// Line 753, Address: 0x277c70, Func Offset: 0
@@ -1832,9 +1850,10 @@ void ExecuteStateSysLoadScreenSysLoad(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 817, Address: 0x277da8, Func Offset: 0x138
 	// Line 821, Address: 0x277db0, Func Offset: 0x140
 	// Func End, Address: 0x277dc0, Func Offset: 0x150
+	scePrintf("ExecuteStateSysLoadScreenSysLoad - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x277dc0
 void SetStateSysLoadScreenFileBroken(tagSYSLOAD_SCREEN* pSysLoad)
 {
@@ -1842,11 +1861,11 @@ void SetStateSysLoadScreenFileBroken(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 840, Address: 0x277dc8, Func Offset: 0x8
 	// Line 841, Address: 0x277dcc, Func Offset: 0xc
 	// Func End, Address: 0x277dd4, Func Offset: 0x14
-}
+}*/
 
 // 
 // Start address: 0x277de0
-void ExecuteStateSysLoadScreenFileBroken(tagSYSLOAD_SCREEN* pSysLoad)
+void ExecuteStateSysLoadScreenFileBroken(SYSLOAD_SCREEN* pSysLoad)
 {
 	// Line 855, Address: 0x277de0, Func Offset: 0
 	// Line 857, Address: 0x277de8, Func Offset: 0x8
@@ -1857,9 +1876,10 @@ void ExecuteStateSysLoadScreenFileBroken(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 870, Address: 0x277e2c, Func Offset: 0x4c
 	// Line 873, Address: 0x277e34, Func Offset: 0x54
 	// Func End, Address: 0x277e40, Func Offset: 0x60
+	scePrintf("ExecuteStateSysLoadScreenFileBroken - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x277e40
 void SetStateSysLoadScreenErrCardRead(tagSYSLOAD_SCREEN* pSysLoad)
 {
@@ -1867,11 +1887,11 @@ void SetStateSysLoadScreenErrCardRead(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 892, Address: 0x277e48, Func Offset: 0x8
 	// Line 893, Address: 0x277e4c, Func Offset: 0xc
 	// Func End, Address: 0x277e54, Func Offset: 0x14
-}
+}*/
 
 // 
 // Start address: 0x277e60
-void ExecuteStateSysLoadScreenErrCardRead(tagSYSLOAD_SCREEN* pSysLoad)
+void ExecuteStateSysLoadScreenErrCardRead(SYSLOAD_SCREEN* pSysLoad)
 {
 	// Line 907, Address: 0x277e60, Func Offset: 0
 	// Line 909, Address: 0x277e68, Func Offset: 0x8
@@ -1882,9 +1902,10 @@ void ExecuteStateSysLoadScreenErrCardRead(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 922, Address: 0x277eac, Func Offset: 0x4c
 	// Line 925, Address: 0x277eb4, Func Offset: 0x54
 	// Func End, Address: 0x277ec0, Func Offset: 0x60
+	scePrintf("ExecuteStateSysLoadScreenErrCardRead - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x277ec0
 void SetStateSysLoadScreenTitleExit(tagSYSLOAD_SCREEN* pSysLoad)
 {
@@ -1895,7 +1916,7 @@ void SetStateSysLoadScreenTitleExit(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 949, Address: 0x277eec, Func Offset: 0x2c
 	// Line 950, Address: 0x277ef4, Func Offset: 0x34
 	// Func End, Address: 0x277f04, Func Offset: 0x44
-}
+}*/
 
 // 
 // Start address: 0x277f10
@@ -1906,4 +1927,5 @@ void ExecuteStateSysLoadScreenTitleExit()
 	// Line 968, Address: 0x277f34, Func Offset: 0x24
 	// Line 970, Address: 0x277f38, Func Offset: 0x28
 	// Func End, Address: 0x277f40, Func Offset: 0x30
-}*/
+	scePrintf("ExecuteStateSysLoadScreenTitleExit - UNIMPLEMENTED!\n");
+}

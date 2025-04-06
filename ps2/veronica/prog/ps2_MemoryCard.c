@@ -159,9 +159,9 @@ MEMORYCARDSTATE* CreateMemoryCard(MEMORYCARDSTATE* pCard)
 	scePrintf("CreateMemoryCard - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x273630
-int ExecuteMemoryCard(tagMEMORYCARDSTATE* pCard)
+int ExecuteMemoryCard(MEMORYCARDSTATE* pCard)
 {
 	// Line 140, Address: 0x273630, Func Offset: 0
 	// Line 142, Address: 0x273638, Func Offset: 0x8
@@ -182,9 +182,10 @@ int ExecuteMemoryCard(tagMEMORYCARDSTATE* pCard)
 	// Line 178, Address: 0x273710, Func Offset: 0xe0
 	// Line 179, Address: 0x273714, Func Offset: 0xe4
 	// Func End, Address: 0x273720, Func Offset: 0xf0
+	scePrintf("ExecuteMemoryCard - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x273720
 int ExecuteMemoryCardStandby(tagMEMORYCARDSTATE* pCard)
 {
