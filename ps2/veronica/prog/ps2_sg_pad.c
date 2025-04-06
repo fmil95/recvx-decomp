@@ -9,7 +9,7 @@ BUTTON_INFO ButtonInfo[5] =
     { 4, 55541},
     {-1, 0    }
 }; 
-NO_NAME_19 Pad_status;
+PAD_STATUS Pad_status;
 unsigned int Ps2_sys_cnt;
 PAD_INFO Ps2_pad;
 unsigned char Pad_rdata2[32];
@@ -22,7 +22,7 @@ int SoftResetFlag;
 PAD_WRK Pad[4]; 
 int CurrentPortId;
 PAD_INFO Pad_info;
-NO_NAME_19 Pad_status2;
+PAD_STATUS Pad_status2;
 
 void pdInitPeripheral(Sint32 logic, void* recvbuf, void* sendbuf);
 void pdExitPeripheral(void);

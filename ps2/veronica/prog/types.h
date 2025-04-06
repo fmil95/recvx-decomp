@@ -1490,14 +1490,15 @@ struct _HM
 	unsigned int dummy64[12];
 };
 
-typedef struct NO_NAME_19
+typedef struct PAD_STATUS
 {
-	unsigned short routine_0;
-	unsigned short type;
-	unsigned short act_lv[2];
-	unsigned short be_flag;
-	unsigned char act_data[8];
-} NO_NAME_19;
+	// total size: 0x12
+    unsigned short routine_0; // offset 0x0, size 0x2
+    unsigned short type; // offset 0x2, size 0x2
+    unsigned short act_lv[2]; // offset 0x4, size 0x4
+    unsigned short be_flag; // offset 0x8, size 0x2
+    unsigned char act_data[8]; // offset 0xA, size 0x8
+} PAD_STATUS;
 
 typedef struct PLANE
 {
