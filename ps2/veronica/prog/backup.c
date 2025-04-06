@@ -1,3 +1,5 @@
+// TODO: compile and link this file separatedly to remove the "backup.c" include in main.c  
+
 BACKUPINFO gBupInfo[8];
 
 void BupInit(void);

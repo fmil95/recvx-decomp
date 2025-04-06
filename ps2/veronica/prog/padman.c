@@ -1,3 +1,5 @@
+// TODO: compile and link this file separatedly to remove the "padman.c" include in main.c  
+
 unsigned int KeyWaitFirst = 10;
 unsigned int KeyWaitNext = 4;
 BUTTON_INFO ButtonInfo[5]; 

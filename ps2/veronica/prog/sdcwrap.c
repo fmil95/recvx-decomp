@@ -1,3 +1,5 @@
+// TODO: compile and link this file separatedly to remove the "sdcwrap.c" include in main.c  
+
 int GdDaPlayFlag;
 unsigned int SddFirstFlag;
 char SdcGdDaVolume;

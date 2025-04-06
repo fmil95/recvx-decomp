@@ -1,3 +1,5 @@
+// TODO: compile and link this file separatedly to remove the "sync.c" include in main.c  
+
 //void(*bhControlEOR)();
 //void(*bhControlVSync)();
 int OpenDriveTrayFlag;

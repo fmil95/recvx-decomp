@@ -1,3 +1,5 @@
+// TODO: compile and link this file separatedly to remove the "gdlib.c" include in main.c  
+
 unsigned int MaxDirectoryEntry = 512;
 unsigned int DiscOpenTrayFlag;
 unsigned int NewDiscCheckSw;

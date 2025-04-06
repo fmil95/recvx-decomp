@@ -1,9 +1,6 @@
-int SoundMode;
+#include "ps2_sg_sycfg.h"
 
-Sint32 syCfgExit( Void  ) ;
-Sint32 syCfgGetSoundMode( Sint32* pnMode ) ;
-Sint32 syCfgInit( Void* ) ;
-Sint32 syCfgSetSoundMode( Sint32 nMode ) ;
+int SoundMode;
 
 // 100% matching! 
 Sint32 syCfgExit( Void  )

@@ -79,7 +79,6 @@
 #include "ps2_sg_sycbl.c"
 #include "cri_placeholders.c"
 #include "adxwrap.c"
-#include "ps2_sg_sycfg.c"
 #include "ps2_snddrv.c"
 #include "ps2_MovieFunc.c"
 #include "ps2_sg_sd.c"
