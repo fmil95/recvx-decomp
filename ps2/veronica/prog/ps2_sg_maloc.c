@@ -3,10 +3,6 @@ _HM* Ps2_malloc_p;
 unsigned char Ps2_malloc_mem[13422592];
 unsigned int __max_malloc_size;
 
-#define ALIGN(x, y) (((((int)x) + (y-1)) / y) * y)
-#define GET_DATA_PTR(x) ((void*)(((unsigned int)x) + sizeof(struct _HM)))
-#define GET_NEXT_WRK(x) ((int)search_work) + (int)search_work->Use_size + (int)sizeof(struct _HM)
-
 void syFree(void* ap);
 void* syMalloc(unsigned int nbytes);
 Void syMallocFinish(Void);
