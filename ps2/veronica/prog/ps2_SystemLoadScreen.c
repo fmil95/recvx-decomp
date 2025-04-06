@@ -1417,7 +1417,7 @@ ICONINFORMATION IconInfo;
 MEMORYCARDSTATE McState;
 SAVEFILE SaveFile;
 CONFIGFILE ConfigFile;
-/*unsigned char SaveLoadMessage[10956];*/
+unsigned char SaveLoadMessage[10956] = {0}; // needs .data defined (and a lot of it). 
 PAD_WRK Pad[4];
 SYS_WORK* sys;
 
@@ -1480,44 +1480,54 @@ SYSLOAD_SCREEN* CreateSysLoadScreen(SYSLOAD_SCREEN* pSysLoad, void* vpWorkPtrSys
     return pSysLoad;
 }
 
-// 
-// Start address: 0x277190
+float AutoSaveLoadEasyDispMessage(float PosX, float PosY, unsigned char* ucpMsbTop, unsigned int MessageNo); // TODO: remove this function declaration
+// 99.37% matching
 void DispSysLoadMessageSelect(int slSelectMes)
-{
-	// Line 110, Address: 0x277190, Func Offset: 0
-	// Line 107, Address: 0x27719c, Func Offset: 0xc
-	// Line 110, Address: 0x2771a0, Func Offset: 0x10
-	// Line 107, Address: 0x2771a4, Func Offset: 0x14
-	// Line 110, Address: 0x2771a8, Func Offset: 0x18
-	// Line 107, Address: 0x2771ac, Func Offset: 0x1c
-	// Line 110, Address: 0x2771b0, Func Offset: 0x20
-	// Line 113, Address: 0x2771bc, Func Offset: 0x2c
-	// Line 117, Address: 0x2771e4, Func Offset: 0x54
-	// Line 118, Address: 0x277204, Func Offset: 0x74
-	// Line 120, Address: 0x27720c, Func Offset: 0x7c
-	// Line 121, Address: 0x27722c, Func Offset: 0x9c
-	// Line 123, Address: 0x277234, Func Offset: 0xa4
-	// Line 124, Address: 0x277254, Func Offset: 0xc4
-	// Line 126, Address: 0x27725c, Func Offset: 0xcc
-	// Line 127, Address: 0x27727c, Func Offset: 0xec
-	// Line 129, Address: 0x277284, Func Offset: 0xf4
-	// Line 130, Address: 0x2772a4, Func Offset: 0x114
-	// Line 132, Address: 0x2772ac, Func Offset: 0x11c
-	// Line 133, Address: 0x2772cc, Func Offset: 0x13c
-	// Line 135, Address: 0x2772d4, Func Offset: 0x144
-	// Line 136, Address: 0x2772f4, Func Offset: 0x164
-	// Line 139, Address: 0x2772fc, Func Offset: 0x16c
-	// Line 140, Address: 0x27731c, Func Offset: 0x18c
-	// Line 143, Address: 0x277324, Func Offset: 0x194
-	// Line 144, Address: 0x277344, Func Offset: 0x1b4
-	// Line 147, Address: 0x27734c, Func Offset: 0x1bc
-	// Line 148, Address: 0x27736c, Func Offset: 0x1dc
-	// Line 151, Address: 0x277374, Func Offset: 0x1e4
-	// Line 159, Address: 0x277394, Func Offset: 0x204
-	// Line 162, Address: 0x2773ac, Func Offset: 0x21c
-	// Func End, Address: 0x2773bc, Func Offset: 0x22c
-	scePrintf("DispSysLoadMessageSelect - UNIMPLEMENTED!\n");
-}
+{ 
+    bhFontScaleSet(0.71f, 0.71f, 0.75f); 
+
+    switch (slSelectMes) 
+    {  
+    case 0:
+        AutoSaveLoadEasyDispMessage(-1.0f, 176.0f, SaveLoadMessage, 0);
+        break; 
+    case 1:
+        AutoSaveLoadEasyDispMessage(-1.0f, 88.0f, SaveLoadMessage, 10); 
+        break;
+    case 2:
+        AutoSaveLoadEasyDispMessage(-1.0f, 88.0f, SaveLoadMessage, 11);
+        break;
+    case 3:
+        AutoSaveLoadEasyDispMessage(-1.0f, 56.0f, SaveLoadMessage, 12);
+        break;
+    case 4:
+        AutoSaveLoadEasyDispMessage(-1.0f, 56.0f, SaveLoadMessage, 13);
+        break;
+    case 5:
+        AutoSaveLoadEasyDispMessage(-1.0f, 56.0f, SaveLoadMessage, 14);
+        break;
+    case 6:
+        AutoSaveLoadEasyDispMessage(-1.0f, 132.0f, SaveLoadMessage, 15);
+        break;
+    case 7:
+    case 8:
+        AutoSaveLoadEasyDispMessage(-1.0f, 88.0f, SaveLoadMessage, 16);
+        break;
+    case 9:
+        AutoSaveLoadEasyDispMessage(-1.0f, 176.0f, SaveLoadMessage, 17);
+        break;
+    case 10:
+        AutoSaveLoadEasyDispMessage(-1.0f, 132.0f, SaveLoadMessage, 18);
+        break;
+    case 11:
+        AutoSaveLoadEasyDispMessage(-1.0f, 132.0f, SaveLoadMessage, 19);
+        break;
+    case 12:
+        break;
+    }
+    
+    bhFontScaleSet(1.0f, 1.0f, 1.0f); 
+} 
 
 // 100% matching!
 int ExecuteSysLoadScreen(SYSLOAD_SCREEN* pSysLoad) 
