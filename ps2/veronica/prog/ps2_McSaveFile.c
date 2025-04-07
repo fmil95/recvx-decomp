@@ -1507,10 +1507,10 @@ struct _anon38
 	float vx;
 	float vy;
 	float vz;
-};
+};*/
 
-char cSubDirName[13];
-int Type_Space[3][18];
+static char cSubDirName[13] = "BASLUS-20184";
+/*int Type_Space[3][18];
 unsigned short MesNumTbl[10];*/
 SYS_WORK* sys;
 
@@ -1769,17 +1769,15 @@ int mcGetConfigCapacitySize()
     return sizeof(CONFIGFILE);
 } 
 
-// 
-// Start address: 0x271ce0
+// 100% matching!
 int mcReadStartConfigFile(MEMORYCARDSTATE* pCard, CONFIGFILE* pConfigFile)
 {
-	// Line 579, Address: 0x271ce0, Func Offset: 0
-	// Line 583, Address: 0x271ce4, Func Offset: 0x4
-	// Line 579, Address: 0x271cf0, Func Offset: 0x10
-	// Line 583, Address: 0x271cf4, Func Offset: 0x14
-	// Line 587, Address: 0x271d14, Func Offset: 0x34
-	// Func End, Address: 0x271d20, Func Offset: 0x40
-	scePrintf("mcReadStartConfigFile - UNIMPLEMENTED!\n");
+    if (ReadMemoryCard(pCard, pConfigFile, sizeof(CONFIGFILE), cSubDirName, 1) == 1) 
+    {
+        return 1;
+    }
+    
+    return 0;
 }
 
 // 
