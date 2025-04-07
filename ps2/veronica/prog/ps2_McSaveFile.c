@@ -1511,10 +1511,10 @@ struct _anon38
 
 char cSubDirName[13];
 int Type_Space[3][18];
-unsigned short MesNumTbl[10];
-_anon13* sys;
+unsigned short MesNumTbl[10];*/
+SYS_WORK* sys;
 
-tagSELECTFILEINFO* mcSelectFileInfoInit(tagSELECTFILEINFO* pFileInfo);
+/*tagSELECTFILEINFO* mcSelectFileInfoInit(tagSELECTFILEINFO* pFileInfo);
 tagSAVEFILE* mcCreateSaveFileInit(tagSAVEFILE* pSaveFile);
 tagCONFIGFILE* mcCreateConfigInit(tagCONFIGFILE* pConfigFile);
 int mcGetSaveFileCapacitySize();
@@ -1638,28 +1638,40 @@ int mcReadStartSaveFile(SAVEFILE* pSaveFile, MEMORYCARDSTATE* pCard, char** cppF
     return 0;
 }
 
-/*// 
-// Start address: 0x271980
-int mcCheckReadStartSaveFile(tagSAVEFILE* pSaveFile, tagMEMORYCARDSTATE* pCard, char cMode)
+// 100% matching!
+int mcCheckReadStartSaveFile(SAVEFILE* pSaveFile, MEMORYCARDSTATE* pCard, char cMode) 
 {
-	int lResult;
-	unsigned int ulDataSize;
-	// Line 337, Address: 0x271980, Func Offset: 0
-	// Line 343, Address: 0x27199c, Func Offset: 0x1c
-	// Line 345, Address: 0x2719a8, Func Offset: 0x28
-	// Line 350, Address: 0x2719b4, Func Offset: 0x34
-	// Line 348, Address: 0x2719b8, Func Offset: 0x38
-	// Line 350, Address: 0x2719c0, Func Offset: 0x40
-	// Line 353, Address: 0x2719d4, Func Offset: 0x54
-	// Line 359, Address: 0x2719dc, Func Offset: 0x5c
-	// Line 366, Address: 0x2719f0, Func Offset: 0x70
-	// Line 369, Address: 0x271a08, Func Offset: 0x88
-	// Line 375, Address: 0x271a14, Func Offset: 0x94
-	// Line 378, Address: 0x271a2c, Func Offset: 0xac
-	// Func End, Address: 0x271a48, Func Offset: 0xc8
+    unsigned int ulDataSize; 
+    int lResult; 
+
+    lResult = RecoveryMemoryCardReadEnd(pCard);
+    
+    if (lResult == 1) 
+    {
+        ulDataSize = (char*)&pSaveFile->CheckSam - (char*)pSaveFile;
+        
+        if (pSaveFile->CheckSam != MemoryCardGetSum((unsigned char*)pSaveFile, ulDataSize))
+        {
+            return -2;
+        }
+        
+        if (cMode == 1) 
+        {
+            memcpy(&sys->version, pSaveFile, ulDataSize);
+        }
+        
+        return 1;
+    }
+    
+    if (lResult == -1) 
+    {
+        return -1;
+    }
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x271a50
 int mcWriteStartSaveFile(tagSAVEFILE* pSaveFile, tagMEMORYCARDSTATE* pCard, char** cppFileName, unsigned int ulCreatSaveCount)
 {
