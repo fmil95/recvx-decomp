@@ -1939,20 +1939,19 @@ void SetStateSysLoadScreenFileBroken(SYSLOAD_SCREEN* pSysLoad)
     pSysLoad->cMesFlag = 11; 
 }
 
-// 
-// Start address: 0x277de0
+// 100% matching!
 void ExecuteStateSysLoadScreenFileBroken(SYSLOAD_SCREEN* pSysLoad)
 {
-	// Line 855, Address: 0x277de0, Func Offset: 0
-	// Line 857, Address: 0x277de8, Func Offset: 0x8
-	// Line 860, Address: 0x277dfc, Func Offset: 0x1c
-	// Line 862, Address: 0x277e00, Func Offset: 0x20
-	// Line 863, Address: 0x277e08, Func Offset: 0x28
-	// Line 867, Address: 0x277e10, Func Offset: 0x30
-	// Line 870, Address: 0x277e2c, Func Offset: 0x4c
-	// Line 873, Address: 0x277e34, Func Offset: 0x54
-	// Func End, Address: 0x277e40, Func Offset: 0x60
-	scePrintf("ExecuteStateSysLoadScreenFileBroken - UNIMPLEMENTED!\n");
+    if ((Pad->press & 0x800)) 
+    {
+        pSysLoad->usExitFlag = 1;
+        
+        SetStateSysLoadScreenTitleExit(pSysLoad);
+    }
+    else if ((pSysLoad->lCardState > 100) && (pSysLoad->lCardState < 104)) 
+    {
+        SetStateSysLoadScreenAwarenessCard(pSysLoad);
+    }
 }
 
 // 100% matching!
