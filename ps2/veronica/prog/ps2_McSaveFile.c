@@ -1578,16 +1578,12 @@ SELECTFILEINFO* mcSelectFileInfoInit(SELECTFILEINFO* pFileInfo)
 	scePrintf("mcSelectFileInfoInit - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x271870
+// 100% matching!
 SAVEFILE* mcCreateSaveFileInit(SAVEFILE* pSaveFile)
 {
-	// Line 220, Address: 0x271870, Func Offset: 0
-	// Line 225, Address: 0x27187c, Func Offset: 0xc
-	// Line 227, Address: 0x27188c, Func Offset: 0x1c
-	// Line 228, Address: 0x271890, Func Offset: 0x20
-	// Func End, Address: 0x2718a0, Func Offset: 0x30
-	scePrintf("mcCreateSaveFileInit - UNIMPLEMENTED!\n");
+    memset(pSaveFile, 0, sizeof(SAVEFILE));
+    
+    return pSaveFile;
 }
 
 // 
