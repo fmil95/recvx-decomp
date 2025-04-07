@@ -1812,21 +1812,27 @@ int mcWriteStartConfigFile(tagMEMORYCARDSTATE* pCard, tagCONFIGFILE* pConfigFile
 	// Line 672, Address: 0x271df8, Func Offset: 0x48
 	// Line 676, Address: 0x271e2c, Func Offset: 0x7c
 	// Func End, Address: 0x271e44, Func Offset: 0x94
-}
-
-// 
-// Start address: 0x271e50
-int mcCheckWriteStartConfigFile(tagMEMORYCARDSTATE* pCard)
-{
-	int lResult;
-	// Line 693, Address: 0x271e50, Func Offset: 0
-	// Line 697, Address: 0x271e58, Func Offset: 0x8
-	// Line 699, Address: 0x271e60, Func Offset: 0x10
-	// Line 701, Address: 0x271e6c, Func Offset: 0x1c
-	// Line 705, Address: 0x271e74, Func Offset: 0x24
-	// Line 709, Address: 0x271e8c, Func Offset: 0x3c
-	// Func End, Address: 0x271e98, Func Offset: 0x48
 }*/
+
+// 100% matching!
+int mcCheckWriteStartConfigFile(MEMORYCARDSTATE* pCard) 
+{
+    int lResult;
+    
+    lResult = RecoveryMemoryCardWriteEnd(pCard);
+    
+    if (lResult == 1)
+    {
+        return 1;
+    }
+    
+    if (lResult == -1) 
+    {
+        return -1;
+    }
+    
+    return 0;
+}
 
 // 100% matching!
 int mcNewCreateConfigFile(MEMORYCARDSTATE* pCard, CONFIGFILE* pConfigFile)
