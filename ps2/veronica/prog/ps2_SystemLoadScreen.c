@@ -1788,25 +1788,26 @@ void SetStateSysLoadScreenFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
     pSysLoad->cMesFlag = 0;
 }
 
-// 
-// Start address: 0x2779d0
+// 100% matching! 
 void ExecuteStateSysLoadScreenFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
 {
-	int lFree1;
-	// Line 565, Address: 0x2779d0, Func Offset: 0
-	// Line 568, Address: 0x2779e4, Func Offset: 0x14
-	// Line 570, Address: 0x2779f0, Func Offset: 0x20
-	// Line 573, Address: 0x277a04, Func Offset: 0x34
-	// Line 574, Address: 0x277a0c, Func Offset: 0x3c
-	// Line 579, Address: 0x277a14, Func Offset: 0x44
-	// Line 581, Address: 0x277a20, Func Offset: 0x50
-	// Func End, Address: 0x277a34, Func Offset: 0x64
-	scePrintf("ExecuteStateSysLoadScreenFreeCapacity - UNIMPLEMENTED!\n");
+    int lFree1;
+
+    lFree1 = GetMemoryCardSelectPortFreeCapacity(pSysLoad->pMcState, 0);
+    
+    if (lFree1 < mcGetFreeCapacitySize()) 
+    {
+        SetStateSysLoadScreenErrFreeCapacity(pSysLoad);
+    }
+    else 
+    {
+        SetStateSysLoadScreenNoSysFile(pSysLoad);
+    }
 }
 
-/*// 
+// 
 // Start address: 0x277a40
-void SetStateSysLoadScreenErrFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad)
+void SetStateSysLoadScreenErrFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
 {
 	char cFormat2;
 	int lDir2;
@@ -1834,7 +1835,8 @@ void SetStateSysLoadScreenErrFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 628, Address: 0x277b48, Func Offset: 0x108
 	// Line 629, Address: 0x277b4c, Func Offset: 0x10c
 	// Func End, Address: 0x277b68, Func Offset: 0x128
-}*/
+	scePrintf("SetStateSysLoadScreenErrFreeCapacity - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x277b70
@@ -1852,15 +1854,16 @@ void ExecuteStateSysLoadScreenErrFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
 	scePrintf("ExecuteStateSysLoadScreenErrFreeCapacity - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x277bd0
-void SetStateSysLoadScreenNoSysFile(tagSYSLOAD_SCREEN* pSysLoad)
+void SetStateSysLoadScreenNoSysFile(SYSLOAD_SCREEN* pSysLoad)
 {
 	// Line 678, Address: 0x277bd0, Func Offset: 0
 	// Line 680, Address: 0x277bd8, Func Offset: 0x8
 	// Line 681, Address: 0x277bdc, Func Offset: 0xc
 	// Func End, Address: 0x277be4, Func Offset: 0x14
-}*/
+	scePrintf("SetStateSysLoadScreenNoSysFile - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x277bf0
