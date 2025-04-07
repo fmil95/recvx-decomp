@@ -1692,20 +1692,19 @@ void SetStateSysLoadScreenErrAwareness(SYSLOAD_SCREEN* pSysLoad)
     pSysLoad->ulState = 1;
 }
 
-// 
-// Start address: 0x2777d0
+// 100% matching! 
 void ExecuteStateSysLoadScreenErrAwareness(SYSLOAD_SCREEN* pSysLoad)
 {
-	// Line 397, Address: 0x2777d0, Func Offset: 0
-	// Line 399, Address: 0x2777d8, Func Offset: 0x8
-	// Line 401, Address: 0x2777ec, Func Offset: 0x1c
-	// Line 403, Address: 0x2777f0, Func Offset: 0x20
-	// Line 404, Address: 0x2777f8, Func Offset: 0x28
-	// Line 408, Address: 0x277800, Func Offset: 0x30
-	// Line 411, Address: 0x27781c, Func Offset: 0x4c
-	// Line 423, Address: 0x277824, Func Offset: 0x54
-	// Func End, Address: 0x277830, Func Offset: 0x60
-	scePrintf("ExecuteStateSysLoadScreenErrAwareness - UNIMPLEMENTED!\n");
+    if ((Pad->press & 0x800)) 
+    {
+        pSysLoad->usExitFlag = 1;
+        
+        SetStateSysLoadScreenTitleExit(pSysLoad);
+    }
+    else if ((pSysLoad->lCardState > 100) && (pSysLoad->lCardState < 104)) 
+    {
+        SetStateSysLoadScreenAwarenessCard(pSysLoad);
+    }
 }
 
 // 
