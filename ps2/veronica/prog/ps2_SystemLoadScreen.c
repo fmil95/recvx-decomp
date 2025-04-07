@@ -1707,20 +1707,18 @@ void ExecuteStateSysLoadScreenErrAwareness(SYSLOAD_SCREEN* pSysLoad)
     }
 }
 
-// 
-// Start address: 0x277830
+// 100% matching! 
 void SetStateSysLoadScreenDirCheck(SYSLOAD_SCREEN* pSysLoad)
 {
-	// Line 441, Address: 0x277830, Func Offset: 0
-	// Line 443, Address: 0x27783c, Func Offset: 0xc
-	// Line 445, Address: 0x277844, Func Offset: 0x14
-	// Line 447, Address: 0x277848, Func Offset: 0x18
-	// Line 449, Address: 0x277850, Func Offset: 0x20
-	// Line 451, Address: 0x277854, Func Offset: 0x24
-	// Line 453, Address: 0x277860, Func Offset: 0x30
-	// Line 454, Address: 0x27786c, Func Offset: 0x3c
-	// Func End, Address: 0x27787c, Func Offset: 0x4c
-	scePrintf("SetStateSysLoadScreenDirCheck - UNIMPLEMENTED!\n");
+    pSysLoad->ulState = 10;
+    pSysLoad->ulSubState = 0;
+    
+    pSysLoad->cMesFlag = 0;
+    
+    pSysLoad->ulMemCheckCountTimer = 10;
+    
+    SetMemoryCardCurrentPort(pSysLoad->pMcState, 0);
+    SetCheckMcFlag(pSysLoad->pMcState, 1);
 }
 
 // 
