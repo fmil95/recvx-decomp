@@ -1559,23 +1559,28 @@ void DispBackGroundTexture();
 void DispMemoryCardTexture(float fx, float fy, unsigned int type, unsigned int mode);
 void mcDispWindowFoundtion(float fx, float fy, float fSizeW, float fSizeH, unsigned int Argb);*/
 
-// 
-// Start address: 0x271830
+// 100% matching!
 SELECTFILEINFO* mcSelectFileInfoInit(SELECTFILEINFO* pFileInfo)
 {
-	SELECTFILEINFO* pBackUpInfo;
-	unsigned int ulCnt;
-	// Line 174, Address: 0x271830, Func Offset: 0
-	// Line 172, Address: 0x271834, Func Offset: 0x4
-	// Line 176, Address: 0x271838, Func Offset: 0x8
-	// Line 177, Address: 0x27183c, Func Offset: 0xc
-	// Line 178, Address: 0x271840, Func Offset: 0x10
-	// Line 179, Address: 0x271844, Func Offset: 0x14
-	// Line 180, Address: 0x271848, Func Offset: 0x18
-	// Line 183, Address: 0x27184c, Func Offset: 0x1c
-	// Line 187, Address: 0x27185c, Func Offset: 0x2c
-	// Func End, Address: 0x271864, Func Offset: 0x34
-	scePrintf("mcSelectFileInfoInit - UNIMPLEMENTED!\n");
+    unsigned int ulCnt; 
+    SELECTFILEINFO* pBackUpInfo; 
+
+    pBackUpInfo = pFileInfo;
+
+    for (ulCnt = 1; ulCnt < 16; ulCnt++, pFileInfo++) 
+    {
+        pFileInfo->save_ct = 0;
+        
+        pFileInfo->gm_mode = 0;
+        
+        pFileInfo->ply_id = 0;
+        
+        pFileInfo->saveroom = 0;
+        
+        pFileInfo->FileNumber = ulCnt;
+    }
+    
+    return pBackUpInfo;
 }
 
 // 100% matching!
