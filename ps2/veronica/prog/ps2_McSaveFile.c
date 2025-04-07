@@ -1885,13 +1885,11 @@ ICONINFORMATION* mcCreateIconInit(ICONINFORMATION* pIcon, char** cppFileName, un
 	scePrintf("mcCreateIconInit - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x271ff0
+// 100% matching!
 int mcGetIconCapacitySize()
 {
-	// Line 812, Address: 0x271ff0, Func Offset: 0
-	// Func End, Address: 0x271ff8, Func Offset: 0x8
-}*/
+    return sizeof(ICONINFORMATION);
+}
 
 // 100% matching!
 int mcGetIconFileCapacitySize()
