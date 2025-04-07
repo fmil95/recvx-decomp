@@ -1671,41 +1671,66 @@ int mcCheckReadStartSaveFile(SAVEFILE* pSaveFile, MEMORYCARDSTATE* pCard, char c
     return 0;
 }
 
-/*// 
-// Start address: 0x271a50
-int mcWriteStartSaveFile(tagSAVEFILE* pSaveFile, tagMEMORYCARDSTATE* pCard, char** cppFileName, unsigned int ulCreatSaveCount)
+// 100% matching!
+int mcWriteStartSaveFile(SAVEFILE* pSaveFile, MEMORYCARDSTATE* pCard, char** cppFileName, unsigned int ulCreatSaveCount)
 {
-	unsigned int ulDataSize;
-	unsigned int itemid;
-	unsigned int* wp;
-	// Line 404, Address: 0x271a50, Func Offset: 0
-	// Line 411, Address: 0x271a6c, Func Offset: 0x1c
-	// Line 413, Address: 0x271a98, Func Offset: 0x48
-	// Line 415, Address: 0x271ab4, Func Offset: 0x64
-	// Line 418, Address: 0x271ac0, Func Offset: 0x70
-	// Line 419, Address: 0x271acc, Func Offset: 0x7c
-	// Line 421, Address: 0x271ad4, Func Offset: 0x84
-	// Line 422, Address: 0x271ad8, Func Offset: 0x88
-	// Line 425, Address: 0x271ae8, Func Offset: 0x98
-	// Line 428, Address: 0x271af8, Func Offset: 0xa8
-	// Line 431, Address: 0x271b00, Func Offset: 0xb0
-	// Line 436, Address: 0x271b0c, Func Offset: 0xbc
-	// Line 440, Address: 0x271b14, Func Offset: 0xc4
-	// Line 441, Address: 0x271b28, Func Offset: 0xd8
-	// Line 442, Address: 0x271b38, Func Offset: 0xe8
-	// Line 443, Address: 0x271b44, Func Offset: 0xf4
-	// Line 444, Address: 0x271b50, Func Offset: 0x100
-	// Line 447, Address: 0x271b5c, Func Offset: 0x10c
-	// Line 452, Address: 0x271b64, Func Offset: 0x114
-	// Line 447, Address: 0x271b68, Func Offset: 0x118
-	// Line 452, Address: 0x271b74, Func Offset: 0x124
-	// Line 455, Address: 0x271b7c, Func Offset: 0x12c
-	// Line 460, Address: 0x271b8c, Func Offset: 0x13c
-	// Line 469, Address: 0x271bc4, Func Offset: 0x174
-	// Func End, Address: 0x271be4, Func Offset: 0x194
+    unsigned int* wp; 
+    unsigned int itemid; 
+    unsigned int ulDataSize; 
+    
+    if (bhCkFlg(sys->ev_flg, 56) == 0)
+    {
+        if (sys->save_ct != 99) 
+        {
+            sys->save_ct++;
+        }
+        
+        itemid = 31;
+        
+        wp = ItemSearch(itemid);
+        
+        if (wp != NULL) 
+        {
+            if (!((*wp >> 16) & 0x800)) 
+            {
+                if (((*wp - 1) & 0xFF)) 
+                {
+                    *wp -= 1;
+                } 
+                else 
+                {
+                    EraseItem(wp);
+                }
+            }
+        }
+    }
+    else 
+    {
+        bhCrFlg(sys->ev_flg, 56);
+        
+        sys->stg_no = 6;
+        sys->rom_no = 0;
+        
+        sys->rcase = 0;
+        
+        sys->pos_no = 0;
+    }
+    
+    ulDataSize = (char*)&sys->save_end - (char*)&sys->version;
+    
+    memcpy(pSaveFile, &sys->version, ulDataSize);
+    
+    pSaveFile->CheckSam = MemoryCardGetSum((unsigned char*)pSaveFile, ulDataSize);
+    
+    if (WriteMemoryCard(pCard, pSaveFile, sizeof(SAVEFILE), cppFileName[ulCreatSaveCount + 3], 2) == 1) 
+    {
+        return 1;
+    }
+    
+    return -1;
 }
 
-// 
+/*// 
 // Start address: 0x271bf0
 int mcCheckWriteStartSaveFile(tagMEMORYCARDSTATE* pCard)
 {

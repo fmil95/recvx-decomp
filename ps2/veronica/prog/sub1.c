@@ -7106,7 +7106,7 @@ void CursorInit(_anon7* disp_a00, _anon3* disp_b00, _anon4* st)
 	// Line 7178, Address: 0x2a7b7c, Func Offset: 0xbc
 	// Line 7181, Address: 0x2a7b80, Func Offset: 0xc0
 	// Func End, Address: 0x2a7b88, Func Offset: 0xc8
-}
+}*/
 
 // 
 // Start address: 0x2a7b90
@@ -7127,13 +7127,14 @@ unsigned int* ItemSearch(unsigned short itemid)
 	// Line 7198, Address: 0x2a7be0, Func Offset: 0x50
 	// Line 7199, Address: 0x2a7be4, Func Offset: 0x54
 	// Func End, Address: 0x2a7bec, Func Offset: 0x5c
+	scePrintf("ItemSearch - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2a7bf0
 void EraseItem(unsigned int* wp)
 {
-	_anon4* st;
+	//_anon4* st;
 	// Line 7203, Address: 0x2a7bf0, Func Offset: 0
 	// Line 7206, Address: 0x2a7bf8, Func Offset: 0x8
 	// Line 7207, Address: 0x2a7bfc, Func Offset: 0xc
@@ -7143,9 +7144,10 @@ void EraseItem(unsigned int* wp)
 	// Line 7209, Address: 0x2a7c30, Func Offset: 0x40
 	// Line 7211, Address: 0x2a7c38, Func Offset: 0x48
 	// Func End, Address: 0x2a7c44, Func Offset: 0x54
+	scePrintf("EraseItem - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2a7c50
 void PushPalletBuffer()
 {

@@ -625,9 +625,9 @@ int RecoveryMemoryCardReadEnd(MEMORYCARDSTATE* pCard)
 	scePrintf("RecoveryMemoryCardReadEnd - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x274170
-int WriteMemoryCard(tagMEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode)
+int WriteMemoryCard(MEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode)
 {
 	// Line 1321, Address: 0x274170, Func Offset: 0
 	// Line 1323, Address: 0x27418c, Func Offset: 0x1c
@@ -648,9 +648,10 @@ int WriteMemoryCard(tagMEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ul
 	// Line 1349, Address: 0x27420c, Func Offset: 0x9c
 	// Line 1350, Address: 0x274210, Func Offset: 0xa0
 	// Func End, Address: 0x274230, Func Offset: 0xc0
+	scePrintf("WriteMemoryCard - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x274230
 int RecoveryMemoryCardWriteEnd(tagMEMORYCARDSTATE* pCard)
 {
