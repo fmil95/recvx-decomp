@@ -1798,21 +1798,24 @@ int mcCheckReadStartConfigFile(MEMORYCARDSTATE* pCard, CONFIGFILE* pConfigFile)
 	scePrintf("mcCheckReadStartConfigFile - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x271db0
-int mcWriteStartConfigFile(tagMEMORYCARDSTATE* pCard, tagCONFIGFILE* pConfigFile)
+// 100% matching!
+int mcWriteStartConfigFile(MEMORYCARDSTATE* pCard, CONFIGFILE* pConfigFile) 
 {
-	unsigned int ulDataSize;
-	// Line 655, Address: 0x271db0, Func Offset: 0
-	// Line 660, Address: 0x271dc8, Func Offset: 0x18
-	// Line 665, Address: 0x271dd4, Func Offset: 0x24
-	// Line 660, Address: 0x271dd8, Func Offset: 0x28
-	// Line 665, Address: 0x271de0, Func Offset: 0x30
-	// Line 667, Address: 0x271de8, Func Offset: 0x38
-	// Line 672, Address: 0x271df8, Func Offset: 0x48
-	// Line 676, Address: 0x271e2c, Func Offset: 0x7c
-	// Func End, Address: 0x271e44, Func Offset: 0x94
-}*/
+    unsigned int ulDataSize;
+    
+    ulDataSize = (char*)&sys->sys_partid - (char*)sys;
+    
+    memcpy(pConfigFile, sys, ulDataSize);
+    
+    pConfigFile->Check_Sam = MemoryCardGetSum((unsigned char*)pConfigFile, ulDataSize);
+    
+    if (WriteMemoryCard(pCard, pConfigFile, sizeof(CONFIGFILE), cSubDirName, 2) == 1) 
+    {
+        return 1;
+    }
+    
+    return 0;
+}
 
 // 100% matching!
 int mcCheckWriteStartConfigFile(MEMORYCARDSTATE* pCard) 
