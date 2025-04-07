@@ -1752,18 +1752,18 @@ int mcCheckWriteStartSaveFile(MEMORYCARDSTATE* pCard)
     return 0;
 }
 
-/*// 
-// Start address: 0x271c50
-int mcNewCreateSaveFile(tagMEMORYCARDSTATE* pCard, tagSAVEFILE* pSaveFile, char** cppFileName, unsigned int ulCreatSaveCount)
+// 100% matching!
+int mcNewCreateSaveFile(MEMORYCARDSTATE* pCard, SAVEFILE* pSaveFile, char** cppFileName, unsigned int ulCreatSaveCount)
 {
-	// Line 530, Address: 0x271c50, Func Offset: 0
-	// Line 532, Address: 0x271c70, Func Offset: 0x20
-	// Line 536, Address: 0x271c78, Func Offset: 0x28
-	// Line 541, Address: 0x271cb0, Func Offset: 0x60
-	// Func End, Address: 0x271cc8, Func Offset: 0x78
+    if (WriteMemoryCard(pCard, mcCreateSaveFileInit(pSaveFile), sizeof(SAVEFILE), cppFileName[ulCreatSaveCount + 3], 514) == 1)
+    {
+        return 1;
+    }
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x271cd0
 int mcGetConfigCapacitySize()
 {
