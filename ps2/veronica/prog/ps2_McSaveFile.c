@@ -1908,19 +1908,18 @@ int mcGetIconFileCapacitySize()
     return 0xB3F8; // TODO: find the adecuate sizeof() calculation
 }
 
-/*// 
-// Start address: 0x272010
-int mcNewCreateIcon(tagICONINFORMATION* pIcon, tagMEMORYCARDSTATE* pCard, char** cppFileName, unsigned int ulCreatSaveCount)
+// 100% matching!
+int mcNewCreateIcon(ICONINFORMATION* pIcon, MEMORYCARDSTATE* pCard, char** cppFileName, unsigned int ulCreatSaveCount) 
 {
-	// Line 851, Address: 0x272010, Func Offset: 0
-	// Line 857, Address: 0x272014, Func Offset: 0x4
-	// Line 851, Address: 0x27201c, Func Offset: 0xc
-	// Line 857, Address: 0x272024, Func Offset: 0x14
-	// Line 861, Address: 0x272054, Func Offset: 0x44
-	// Func End, Address: 0x272060, Func Offset: 0x50
+    if (WriteMemoryCard(pCard, pIcon, sizeof(ICONINFORMATION), cppFileName[ulCreatSaveCount], 514) == 1) 
+    {
+        return 1;
+    }
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x272060
 int mcReadIconData(void* vpReadAddr, char** cppIconFileName, int lFileNum)
 {
