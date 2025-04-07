@@ -584,11 +584,11 @@ int SetMemoryCardCurrentDirectoryAbsolute(tagMEMORYCARDSTATE* pCard, char* cpPat
 	// Line 1176, Address: 0x274048, Func Offset: 0x28
 	// Line 1179, Address: 0x27404c, Func Offset: 0x2c
 	// Func End, Address: 0x274054, Func Offset: 0x34
-}
+}*/
 
 // 
 // Start address: 0x274060
-int ReadMemoryCard(tagMEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode)
+int ReadMemoryCard(MEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode)
 {
 	// Line 1231, Address: 0x274060, Func Offset: 0
 	// Line 1233, Address: 0x27407c, Func Offset: 0x1c
@@ -608,9 +608,10 @@ int ReadMemoryCard(tagMEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulF
 	// Line 1259, Address: 0x2740f8, Func Offset: 0x98
 	// Line 1262, Address: 0x2740fc, Func Offset: 0x9c
 	// Func End, Address: 0x27411c, Func Offset: 0xbc
+	scePrintf("ReadMemoryCard - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x274120
 int RecoveryMemoryCardReadEnd(tagMEMORYCARDSTATE* pCard)
 {
