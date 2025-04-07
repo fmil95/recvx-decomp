@@ -1573,18 +1573,16 @@ int ExecuteSysLoadScreen(SYSLOAD_SCREEN* pSysLoad)
     return pSysLoad->usExitFlag; 
 } 
 
-// 
-// Start address: 0x277540
+// 100% matching! 
 void SetStateSysLoadScreenAwarenessCard(SYSLOAD_SCREEN* pSysLoad)
 {
-	// Line 260, Address: 0x277540, Func Offset: 0
-	// Line 262, Address: 0x27754c, Func Offset: 0xc
-	// Line 264, Address: 0x277550, Func Offset: 0x10
-	// Line 266, Address: 0x277558, Func Offset: 0x18
-	// Line 268, Address: 0x277560, Func Offset: 0x20
-	// Line 269, Address: 0x277568, Func Offset: 0x28
-	// Func End, Address: 0x277578, Func Offset: 0x38
-	scePrintf("SetStateSysLoadScreenAwarenessCard - UNIMPLEMENTED!\n");
+    pSysLoad->ulState = 0;
+    
+    pSysLoad->cMesFlag = 0;
+    
+    RecoveryMemoryCardError(pSysLoad->pMcState);
+    
+    AnalyzeMemoryCardAll(pSysLoad->pMcState);
 }
 
 // 100% matching!
