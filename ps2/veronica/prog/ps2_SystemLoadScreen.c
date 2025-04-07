@@ -1838,20 +1838,19 @@ void SetStateSysLoadScreenErrFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
 	scePrintf("SetStateSysLoadScreenErrFreeCapacity - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x277b70
+// 100% matching!
 void ExecuteStateSysLoadScreenErrFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
 {
-	// Line 644, Address: 0x277b70, Func Offset: 0
-	// Line 646, Address: 0x277b78, Func Offset: 0x8
-	// Line 648, Address: 0x277b8c, Func Offset: 0x1c
-	// Line 650, Address: 0x277b90, Func Offset: 0x20
-	// Line 651, Address: 0x277b98, Func Offset: 0x28
-	// Line 655, Address: 0x277ba0, Func Offset: 0x30
-	// Line 658, Address: 0x277bbc, Func Offset: 0x4c
-	// Line 661, Address: 0x277bc4, Func Offset: 0x54
-	// Func End, Address: 0x277bd0, Func Offset: 0x60
-	scePrintf("ExecuteStateSysLoadScreenErrFreeCapacity - UNIMPLEMENTED!\n");
+    if ((Pad->press & 0x800)) 
+    {
+        pSysLoad->usExitFlag = 1;
+        
+        SetStateSysLoadScreenTitleExit(pSysLoad);
+    }
+    else if ((pSysLoad->lCardState > 100) && (pSysLoad->lCardState < 104)) 
+    {
+        SetStateSysLoadScreenAwarenessCard(pSysLoad);
+    }
 }
 
 // 100% matching!
