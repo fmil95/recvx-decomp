@@ -1858,31 +1858,42 @@ int mcNewCreateConfigFile(MEMORYCARDSTATE* pCard, CONFIGFILE* pConfigFile)
     return 0;
 }
 
-// 
-// Start address: 0x271f00
+// 99.33% matching
 ICONINFORMATION* mcCreateIconInit(ICONINFORMATION* pIcon, char** cppFileName, unsigned int ulFileNamber)
 {
-	float ambient[4];
-	float lightcol[4][3];
-	float lightdir[4][3];
-	int bgcolor[4][4];
-	// Line 756, Address: 0x271f00, Func Offset: 0
-	// Line 777, Address: 0x271f1c, Func Offset: 0x1c
-	// Line 778, Address: 0x271f2c, Func Offset: 0x2c
-	// Line 783, Address: 0x271f3c, Func Offset: 0x3c
-	// Line 784, Address: 0x271f4c, Func Offset: 0x4c
-	// Line 786, Address: 0x271f54, Func Offset: 0x54
-	// Line 787, Address: 0x271f58, Func Offset: 0x58
-	// Line 788, Address: 0x271f6c, Func Offset: 0x6c
-	// Line 789, Address: 0x271f80, Func Offset: 0x80
-	// Line 790, Address: 0x271f94, Func Offset: 0x94
-	// Line 791, Address: 0x271fa8, Func Offset: 0xa8
-	// Line 792, Address: 0x271fbc, Func Offset: 0xbc
-	// Line 793, Address: 0x271fc8, Func Offset: 0xc8
-	// Line 795, Address: 0x271fd4, Func Offset: 0xd4
-	// Line 796, Address: 0x271fd8, Func Offset: 0xd8
-	// Func End, Address: 0x271ff0, Func Offset: 0xf0
-	scePrintf("mcCreateIconInit - UNIMPLEMENTED!\n");
+    static int bgcolor[4][4] = {0}; 
+    static float lightdir[3][4] = 
+    {
+        {0.5f, 0.5f, 0.5f, 0}, {-0.5f, -0.5f, -0.5f, 0}, {0, 0, 0, 0}
+    }; 
+    static float lightcol[3][4] = 
+    {
+        {0.5f, 0.5f, 0.6f, 0}, {0.5f, 0.5f, 0.6f, 0}, {0, 0, 0, 0}
+    }; 
+    static float ambient[4] = {0.2f, 0.2f, 0, 0}; 
+    
+    memset(pIcon, 0, sizeof(ICONINFORMATION));
+    
+    strcpy(pIcon, "PS2D");
+    
+    strcpy(pIcon->icon.TitleName, "‚q‚d‚r‚h‚c‚d‚m‚s@‚d‚u‚h‚k?‚b‚n‚c‚dF‚u‚…‚’‚‚Ž‚‰‚ƒ‚?‚w"); 
+    
+    pIcon->icon.OffsLF = 26;
+    
+    pIcon->icon.TransRate = 64;
+    
+    memcpy(pIcon->icon.BgColor, bgcolor, sizeof(int) * (4 * 4));
+    
+    memcpy(pIcon->icon.LightDir, lightdir, sizeof(float) * (3 * 4));
+    memcpy(pIcon->icon.LightColor, lightcol, sizeof(float) * (3 * 4));
+    
+    memcpy(pIcon->icon.Ambient, ambient, sizeof(float) * 4);
+    
+    strcpy(pIcon->icon.FnameView, cppFileName[ulFileNamber]);
+    strcpy(pIcon->icon.FnameCopy, cppFileName[ulFileNamber]);
+    strcpy(pIcon->icon.FnameDel, cppFileName[ulFileNamber]);
+    
+    return pIcon;
 }
 
 // 100% matching!
