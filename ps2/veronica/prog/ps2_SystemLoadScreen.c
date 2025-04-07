@@ -1721,38 +1721,63 @@ void SetStateSysLoadScreenDirCheck(SYSLOAD_SCREEN* pSysLoad)
     SetCheckMcFlag(pSysLoad->pMcState, 1);
 }
 
-// 
-// Start address: 0x277880
+// 100% matching! 
 void ExecuteStateSysLoadScreenDirCheck(SYSLOAD_SCREEN* pSysLoad)
 {
-	int lResult;
-	// Line 469, Address: 0x277880, Func Offset: 0
-	// Line 472, Address: 0x27788c, Func Offset: 0xc
-	// Line 475, Address: 0x2778c4, Func Offset: 0x44
-	// Line 476, Address: 0x2778cc, Func Offset: 0x4c
-	// Line 480, Address: 0x2778d8, Func Offset: 0x58
-	// Line 481, Address: 0x2778e0, Func Offset: 0x60
-	// Line 484, Address: 0x2778e8, Func Offset: 0x68
-	// Line 486, Address: 0x2778f4, Func Offset: 0x74
-	// Line 488, Address: 0x2778f8, Func Offset: 0x78
-	// Line 492, Address: 0x277900, Func Offset: 0x80
-	// Line 493, Address: 0x277914, Func Offset: 0x94
-	// Line 496, Address: 0x27791c, Func Offset: 0x9c
-	// Line 498, Address: 0x277928, Func Offset: 0xa8
-	// Line 499, Address: 0x27792c, Func Offset: 0xac
-	// Line 500, Address: 0x277934, Func Offset: 0xb4
-	// Line 503, Address: 0x277940, Func Offset: 0xc0
-	// Line 505, Address: 0x277948, Func Offset: 0xc8
-	// Line 508, Address: 0x277950, Func Offset: 0xd0
-	// Line 511, Address: 0x277960, Func Offset: 0xe0
-	// Line 513, Address: 0x277968, Func Offset: 0xe8
-	// Line 516, Address: 0x277970, Func Offset: 0xf0
-	// Line 520, Address: 0x277980, Func Offset: 0x100
-	// Line 525, Address: 0x277988, Func Offset: 0x108
-	// Line 528, Address: 0x2779a4, Func Offset: 0x124
-	// Line 530, Address: 0x2779ac, Func Offset: 0x12c
-	// Func End, Address: 0x2779bc, Func Offset: 0x13c
-	scePrintf("ExecuteStateSysLoadScreenDirCheck - UNIMPLEMENTED!\n");
+    int lResult;
+    
+    switch (pSysLoad->ulSubState) 
+    {                           
+    case 0:
+        lResult = CheckMemoryCardExistSubDirectory(pSysLoad->pMcState);
+        
+        if (lResult == 1)
+        {
+            pSysLoad->ulSubState = 1;
+        }
+        else if (lResult < 0)
+        {
+            SetCheckMcFlag(pSysLoad->pMcState, 0);
+            
+            pSysLoad->ulSubState = 2;
+        }
+        
+        break;
+    case 1:
+        lResult = CheckMemoryCardExistFileList(pSysLoad->pMcState, cpNameList, 18);
+        
+        if (lResult < 0)
+        {
+            SetCheckMcFlag(pSysLoad->pMcState, 0);
+            
+            pSysLoad->ulSubState = 3;
+        } 
+        else if (lResult == 1)
+        {
+            SetStateSysLoadScreenSysLoad(pSysLoad);
+        }
+        
+        break;
+    case 2:
+        if (pSysLoad->lCardState == 100) 
+        {
+            SetStateSysLoadScreenFreeCapacity(pSysLoad);
+        }
+        
+        break;
+    case 3:
+        if (pSysLoad->lCardState == 100) 
+        {
+            SetStateSysLoadScreenFileBroken(pSysLoad);
+        }
+        
+        break;
+    }
+    
+    if ((pSysLoad->lCardState > 100) && (pSysLoad->lCardState < 104))
+    {
+        SetStateSysLoadScreenAwarenessCard(pSysLoad);
+    }
 }
 
 // 100% matching! 
@@ -1853,9 +1878,9 @@ void ExecuteStateSysLoadScreenNoSysFile(SYSLOAD_SCREEN* pSysLoad)
 	scePrintf("ExecuteStateSysLoadScreenNoSysFile - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x277c50
-void SetStateSysLoadScreenSysLoad(tagSYSLOAD_SCREEN* pSysLoad)
+void SetStateSysLoadScreenSysLoad(SYSLOAD_SCREEN* pSysLoad)
 {
 	// Line 731, Address: 0x277c50, Func Offset: 0
 	// Line 735, Address: 0x277c58, Func Offset: 0x8
@@ -1864,7 +1889,8 @@ void SetStateSysLoadScreenSysLoad(tagSYSLOAD_SCREEN* pSysLoad)
 	// Line 737, Address: 0x277c64, Func Offset: 0x14
 	// Line 738, Address: 0x277c68, Func Offset: 0x18
 	// Func End, Address: 0x277c70, Func Offset: 0x20
-}*/
+	scePrintf("SetStateSysLoadScreenSysLoad - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x277c70

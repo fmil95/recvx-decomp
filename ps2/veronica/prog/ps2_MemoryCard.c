@@ -831,17 +831,17 @@ int CheckMemoryCardExistFile(tagMEMORYCARDSTATE* pCard)
 	// Line 2162, Address: 0x27470c, Func Offset: 0x6c
 	// Line 2166, Address: 0x274710, Func Offset: 0x70
 	// Func End, Address: 0x274720, Func Offset: 0x80
-}
+}*/
 
 // 
 // Start address: 0x274720
-int CheckMemoryCardExistFileList(tagMEMORYCARDSTATE* pCard, char** cppPathList, unsigned int FileCount)
+int CheckMemoryCardExistFileList(MEMORYCARDSTATE* pCard, char** cppPathList, unsigned int FileCount)
 {
 	char cEntryName[32];
 	unsigned short usCheckCounter;
 	unsigned short usCheckFileNameCounter;
 	int lResult;
-	_anon1 CardInfo[21];
+	//_anon1 CardInfo[21];
 	// Line 2188, Address: 0x274720, Func Offset: 0
 	// Line 2195, Address: 0x274748, Func Offset: 0x28
 	// Line 2198, Address: 0x27475c, Func Offset: 0x3c
@@ -864,9 +864,10 @@ int CheckMemoryCardExistFileList(tagMEMORYCARDSTATE* pCard, char** cppPathList, 
 	// Line 2236, Address: 0x27483c, Func Offset: 0x11c
 	// Line 2237, Address: 0x274840, Func Offset: 0x120
 	// Func End, Address: 0x27486c, Func Offset: 0x14c
+	scePrintf("CheckMemoryCardExistFileList - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x274870
 int MemoryCardGetSum(unsigned char* ucpTop, unsigned int ulSize)
 {
