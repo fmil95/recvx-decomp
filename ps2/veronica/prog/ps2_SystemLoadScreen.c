@@ -1805,37 +1805,61 @@ void ExecuteStateSysLoadScreenFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
     }
 }
 
-// 
-// Start address: 0x277a40
+// 99.86% match
 void SetStateSysLoadScreenErrFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
 {
-	char cFormat2;
-	int lDir2;
-	int lFree2;
-	int lType2;
-	int lSlot2;
-	unsigned char MesTbl[5][1];
-	// Line 596, Address: 0x277a40, Func Offset: 0
-	// Line 602, Address: 0x277a5c, Func Offset: 0x1c
-	// Line 604, Address: 0x277a68, Func Offset: 0x28
-	// Line 606, Address: 0x277a78, Func Offset: 0x38
-	// Line 608, Address: 0x277a88, Func Offset: 0x48
-	// Line 606, Address: 0x277a8c, Func Offset: 0x4c
-	// Line 608, Address: 0x277a90, Func Offset: 0x50
-	// Line 610, Address: 0x277a9c, Func Offset: 0x5c
-	// Line 613, Address: 0x277aa4, Func Offset: 0x64
-	// Line 614, Address: 0x277ab4, Func Offset: 0x74
-	// Line 615, Address: 0x277ad0, Func Offset: 0x90
-	// Line 616, Address: 0x277ae8, Func Offset: 0xa8
-	// Line 617, Address: 0x277af8, Func Offset: 0xb8
-	// Line 618, Address: 0x277b1c, Func Offset: 0xdc
-	// Line 626, Address: 0x277b30, Func Offset: 0xf0
-	// Line 628, Address: 0x277b40, Func Offset: 0x100
-	// Line 626, Address: 0x277b44, Func Offset: 0x104
-	// Line 628, Address: 0x277b48, Func Offset: 0x108
-	// Line 629, Address: 0x277b4c, Func Offset: 0x10c
-	// Func End, Address: 0x277b68, Func Offset: 0x128
-	scePrintf("SetStateSysLoadScreenErrFreeCapacity - UNIMPLEMENTED!\n");
+    static unsigned char MesTbl[1][5] =
+    { 
+        { 4, 4, 3, 4, 4 } 
+    };
+    int lType2;
+    int lSlot2;
+    int lFree2;
+    int lDir2;
+    char cFormat2;
+
+    lSlot2 = GetMemoryCardSelectPortState(pSysLoad->pMcState, 1);
+    
+    lFree2 = GetMemoryCardSelectPortFreeCapacity(pSysLoad->pMcState, 1);
+
+    cFormat2 = GetMemoryCardSelectPortFormatType(pSysLoad->pMcState, 1);
+    
+    SetMemoryCardCurrentPort(pSysLoad->pMcState, 1);
+    
+    lDir2 = CheckMemoryCardExistSubDirectory(pSysLoad->pMcState);
+    
+    if (lSlot2 == 0) 
+    {
+        lType2 = 0;
+    }
+    else if ((lSlot2 != 0) && (lSlot2 != 2))
+    {
+        lType2 = 1;
+    } 
+    else if (cFormat2 == 0) 
+    {
+        lType2 = 4;
+    } 
+    else if (lDir2 == 1)
+    {
+        lType2 = 3;
+    }
+    else if ((0 <= lFree2) && (lFree2 < mcGetFreeCapacitySize())) 
+    {
+        lType2 = 2;
+    } 
+    else if (lFree2 >= mcGetFreeCapacitySize())
+    {
+        lType2 = 3;
+    } 
+    else 
+    {
+        lType2 = 0;
+    }
+    
+    pSysLoad->cMesFlag = MesTbl[0][lType2];
+    
+    pSysLoad->ulState = 12;
 }
 
 // 100% matching!
