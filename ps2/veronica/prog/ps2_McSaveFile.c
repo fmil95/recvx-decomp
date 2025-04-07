@@ -1780,22 +1780,32 @@ int mcReadStartConfigFile(MEMORYCARDSTATE* pCard, CONFIGFILE* pConfigFile)
     return 0;
 }
 
-// 
-// Start address: 0x271d20
+// 100% matching!
 int mcCheckReadStartConfigFile(MEMORYCARDSTATE* pCard, CONFIGFILE* pConfigFile)
 {
-	int lResult;
 	unsigned int ulDataSize;
-	// Line 607, Address: 0x271d20, Func Offset: 0
-	// Line 612, Address: 0x271d34, Func Offset: 0x14
-	// Line 614, Address: 0x271d3c, Func Offset: 0x1c
-	// Line 622, Address: 0x271d48, Func Offset: 0x28
-	// Line 617, Address: 0x271d4c, Func Offset: 0x2c
-	// Line 622, Address: 0x271d54, Func Offset: 0x34
-	// Line 633, Address: 0x271d74, Func Offset: 0x54
-	// Line 636, Address: 0x271d8c, Func Offset: 0x6c
-	// Func End, Address: 0x271da4, Func Offset: 0x84
-	scePrintf("mcCheckReadStartConfigFile - UNIMPLEMENTED!\n");
+    int lResult;
+
+    lResult = RecoveryMemoryCardReadEnd(pCard);
+    
+    if (lResult == 1) 
+    {
+        ulDataSize = (char*)&pConfigFile->Check_Sam - (char*)pConfigFile;
+        
+        if (pConfigFile->Check_Sam != MemoryCardGetSum((unsigned char*)pConfigFile, ulDataSize)) 
+        {
+            return -2;
+        }
+        
+        return ulDataSize;
+    }
+    
+    if (lResult == -1)
+    {
+        return -1;
+    }
+    
+    return 0;
 }
 
 // 100% matching!
