@@ -1619,15 +1619,13 @@ CONFIGFILE* mcCreateConfigInit(CONFIGFILE* pConfigFile)
 	scePrintf("mcCreateConfigInit - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x271920
+// 100% matching!
 int mcGetSaveFileCapacitySize()
 {
-	// Line 281, Address: 0x271920, Func Offset: 0
-	// Func End, Address: 0x271928, Func Offset: 0x8
+    return sizeof(SAVEFILE);
 }
 
-// 
+/*// 
 // Start address: 0x271930
 int mcReadStartSaveFile(tagSAVEFILE* pSaveFile, tagMEMORYCARDSTATE* pCard, char** cppFileName, unsigned int ulCreatSaveCount)
 {
