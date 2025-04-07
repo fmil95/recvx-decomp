@@ -1730,24 +1730,29 @@ int mcWriteStartSaveFile(SAVEFILE* pSaveFile, MEMORYCARDSTATE* pCard, char** cpp
     return -1;
 }
 
-/*// 
-// Start address: 0x271bf0
-int mcCheckWriteStartSaveFile(tagMEMORYCARDSTATE* pCard)
+// 100% matching!
+int mcCheckWriteStartSaveFile(MEMORYCARDSTATE* pCard)
 {
-	int lResult;
-	// Line 486, Address: 0x271bf0, Func Offset: 0
-	// Line 490, Address: 0x271bf8, Func Offset: 0x8
-	// Line 493, Address: 0x271c00, Func Offset: 0x10
-	// Line 496, Address: 0x271c0c, Func Offset: 0x1c
-	// Line 498, Address: 0x271c14, Func Offset: 0x24
-	// Line 501, Address: 0x271c20, Func Offset: 0x30
-	// Line 503, Address: 0x271c34, Func Offset: 0x44
-	// Line 506, Address: 0x271c3c, Func Offset: 0x4c
-	// Line 507, Address: 0x271c40, Func Offset: 0x50
-	// Func End, Address: 0x271c4c, Func Offset: 0x5c
+    int lResult;
+    
+    lResult = RecoveryMemoryCardWriteEnd(pCard);
+    
+    if (lResult == 1)
+    {
+        return 1;
+    }
+    
+    if (lResult == -1) 
+    {
+        bhStFlg(sys->ev_flg, 56);
+        
+        return -1;
+    }
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x271c50
 int mcNewCreateSaveFile(tagMEMORYCARDSTATE* pCard, tagSAVEFILE* pSaveFile, char** cppFileName, unsigned int ulCreatSaveCount)
 {
