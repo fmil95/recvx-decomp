@@ -1891,17 +1891,15 @@ int mcGetIconCapacitySize()
 {
 	// Line 812, Address: 0x271ff0, Func Offset: 0
 	// Func End, Address: 0x271ff8, Func Offset: 0x8
-}
+}*/
 
-// 
-// Start address: 0x272000
+// 100% matching!
 int mcGetIconFileCapacitySize()
 {
-	// Line 829, Address: 0x272000, Func Offset: 0
-	// Func End, Address: 0x272008, Func Offset: 0x8
+    return 0xB3F8; // TODO: find the adecuate sizeof() calculation
 }
 
-// 
+/*// 
 // Start address: 0x272010
 int mcNewCreateIcon(tagICONINFORMATION* pIcon, tagMEMORYCARDSTATE* pCard, char** cppFileName, unsigned int ulCreatSaveCount)
 {
