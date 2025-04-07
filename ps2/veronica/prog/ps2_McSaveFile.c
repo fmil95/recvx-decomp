@@ -1728,11 +1728,11 @@ int mcGetConfigCapacitySize()
 {
 	// Line 557, Address: 0x271cd0, Func Offset: 0
 	// Func End, Address: 0x271cd8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x271ce0
-int mcReadStartConfigFile(tagMEMORYCARDSTATE* pCard, tagCONFIGFILE* pConfigFile)
+int mcReadStartConfigFile(MEMORYCARDSTATE* pCard, CONFIGFILE* pConfigFile)
 {
 	// Line 579, Address: 0x271ce0, Func Offset: 0
 	// Line 583, Address: 0x271ce4, Func Offset: 0x4
@@ -1740,11 +1740,12 @@ int mcReadStartConfigFile(tagMEMORYCARDSTATE* pCard, tagCONFIGFILE* pConfigFile)
 	// Line 583, Address: 0x271cf4, Func Offset: 0x14
 	// Line 587, Address: 0x271d14, Func Offset: 0x34
 	// Func End, Address: 0x271d20, Func Offset: 0x40
+	scePrintf("mcReadStartConfigFile - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x271d20
-int mcCheckReadStartConfigFile(tagMEMORYCARDSTATE* pCard, tagCONFIGFILE* pConfigFile)
+int mcCheckReadStartConfigFile(MEMORYCARDSTATE* pCard, CONFIGFILE* pConfigFile)
 {
 	int lResult;
 	unsigned int ulDataSize;
@@ -1757,9 +1758,10 @@ int mcCheckReadStartConfigFile(tagMEMORYCARDSTATE* pCard, tagCONFIGFILE* pConfig
 	// Line 633, Address: 0x271d74, Func Offset: 0x54
 	// Line 636, Address: 0x271d8c, Func Offset: 0x6c
 	// Func End, Address: 0x271da4, Func Offset: 0x84
+	scePrintf("mcCheckReadStartConfigFile - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x271db0
 int mcWriteStartConfigFile(tagMEMORYCARDSTATE* pCard, tagCONFIGFILE* pConfigFile)
 {
