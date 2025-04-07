@@ -1755,14 +1755,13 @@ void ExecuteStateSysLoadScreenDirCheck(SYSLOAD_SCREEN* pSysLoad)
 	scePrintf("ExecuteStateSysLoadScreenDirCheck - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2779c0
-void SetStateSysLoadScreenFreeCapacity(tagSYSLOAD_SCREEN* pSysLoad)
+// 100% matching! 
+void SetStateSysLoadScreenFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
 {
-	// Line 547, Address: 0x2779c0, Func Offset: 0
-	// Line 550, Address: 0x2779c8, Func Offset: 0x8
-	// Func End, Address: 0x2779d0, Func Offset: 0x10
-}*/
+    pSysLoad->ulState = 11;
+    
+    pSysLoad->cMesFlag = 0;
+}
 
 // 
 // Start address: 0x2779d0
