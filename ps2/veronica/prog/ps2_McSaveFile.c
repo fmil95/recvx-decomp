@@ -1591,33 +1591,34 @@ SAVEFILE* mcCreateSaveFileInit(SAVEFILE* pSaveFile)
     return pSaveFile;
 }
 
-// 
-// Start address: 0x2718a0
+// 100% matching!
 CONFIGFILE* mcCreateConfigInit(CONFIGFILE* pConfigFile)
 {
-	// Line 244, Address: 0x2718a0, Func Offset: 0
-	// Line 247, Address: 0x2718ac, Func Offset: 0xc
-	// Line 248, Address: 0x2718b0, Func Offset: 0x10
-	// Line 249, Address: 0x2718b4, Func Offset: 0x14
-	// Line 250, Address: 0x2718b8, Func Offset: 0x18
-	// Line 251, Address: 0x2718bc, Func Offset: 0x1c
-	// Line 253, Address: 0x2718c0, Func Offset: 0x20
-	// Line 252, Address: 0x2718c4, Func Offset: 0x24
-	// Line 253, Address: 0x2718c8, Func Offset: 0x28
-	// Line 254, Address: 0x2718cc, Func Offset: 0x2c
-	// Line 255, Address: 0x2718d0, Func Offset: 0x30
-	// Line 256, Address: 0x2718d4, Func Offset: 0x34
-	// Line 257, Address: 0x2718d8, Func Offset: 0x38
-	// Line 258, Address: 0x2718e0, Func Offset: 0x40
-	// Line 259, Address: 0x2718e4, Func Offset: 0x44
-	// Line 262, Address: 0x2718e8, Func Offset: 0x48
-	// Line 260, Address: 0x2718ec, Func Offset: 0x4c
-	// Line 261, Address: 0x2718f0, Func Offset: 0x50
-	// Line 262, Address: 0x2718f4, Func Offset: 0x54
-	// Line 264, Address: 0x271900, Func Offset: 0x60
-	// Line 265, Address: 0x271904, Func Offset: 0x64
-	// Func End, Address: 0x271914, Func Offset: 0x74
-	scePrintf("mcCreateConfigInit - UNIMPLEMENTED!\n");
+    pConfigFile->ssd_ver = 0;     
+    
+    pConfigFile->ssd_flg = 0;      
+    
+    pConfigFile->ssd_reserve = 0;    
+    
+    pConfigFile->keytype = 0;        
+    
+    pConfigFile->adjust_x = 0;       
+    pConfigFile->adjust_y = 0;       
+    
+    pConfigFile->vibration = 1;      
+    
+    pConfigFile->best_tm[0] = 0;    
+    pConfigFile->best_tm[1] = 0;    
+    pConfigFile->best_tm[2] = 0;     
+    pConfigFile->best_tm[3] = 0;    
+    pConfigFile->best_tm[4] = 0;    
+    pConfigFile->best_tm[5] = 0;     
+    pConfigFile->best_tm[6] = 0;     
+    pConfigFile->best_tm[7] = 0;   
+    
+    pConfigFile->Check_Sam = MemoryCardGetSum((unsigned char*)pConfigFile, (char*)&pConfigFile->Check_Sam - (char*)pConfigFile);
+   
+    return pConfigFile;
 }
 
 // 100% matching!
