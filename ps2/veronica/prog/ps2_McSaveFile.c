@@ -1763,13 +1763,11 @@ int mcNewCreateSaveFile(MEMORYCARDSTATE* pCard, SAVEFILE* pSaveFile, char** cppF
     return 0;
 }
 
-/*// 
-// Start address: 0x271cd0
-int mcGetConfigCapacitySize()
+// 100% matching!
+int mcGetConfigCapacitySize() 
 {
-	// Line 557, Address: 0x271cd0, Func Offset: 0
-	// Func End, Address: 0x271cd8, Func Offset: 0x8
-}*/
+    return sizeof(CONFIGFILE);
+} 
 
 // 
 // Start address: 0x271ce0
