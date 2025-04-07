@@ -1854,15 +1854,12 @@ void ExecuteStateSysLoadScreenErrFreeCapacity(SYSLOAD_SCREEN* pSysLoad)
 	scePrintf("ExecuteStateSysLoadScreenErrFreeCapacity - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x277bd0
+// 100% matching!
 void SetStateSysLoadScreenNoSysFile(SYSLOAD_SCREEN* pSysLoad)
 {
-	// Line 678, Address: 0x277bd0, Func Offset: 0
-	// Line 680, Address: 0x277bd8, Func Offset: 0x8
-	// Line 681, Address: 0x277bdc, Func Offset: 0xc
-	// Func End, Address: 0x277be4, Func Offset: 0x14
-	scePrintf("SetStateSysLoadScreenNoSysFile - UNIMPLEMENTED!\n");
+    pSysLoad->ulState = 13;
+    
+    pSysLoad->cMesFlag = 8;
 }
 
 // 
