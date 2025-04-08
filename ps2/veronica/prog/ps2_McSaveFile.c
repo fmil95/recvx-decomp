@@ -1919,29 +1919,37 @@ int mcNewCreateIcon(ICONINFORMATION* pIcon, MEMORYCARDSTATE* pCard, char** cppFi
     return 0;
 }
 
-/*// 
-// Start address: 0x272060
+// 100% matching!
 int mcReadIconData(void* vpReadAddr, char** cppIconFileName, int lFileNum)
 {
-	int lFileSize;
-	GDS_FS_HANDLE* FileHandle;
-	// Line 878, Address: 0x272060, Func Offset: 0
-	// Line 883, Address: 0x27206c, Func Offset: 0xc
-	// Line 878, Address: 0x272074, Func Offset: 0x14
-	// Line 883, Address: 0x27207c, Func Offset: 0x1c
-	// Line 884, Address: 0x27208c, Func Offset: 0x2c
-	// Line 886, Address: 0x272094, Func Offset: 0x34
-	// Line 889, Address: 0x27209c, Func Offset: 0x3c
-	// Line 891, Address: 0x2720b0, Func Offset: 0x50
-	// Line 893, Address: 0x2720b8, Func Offset: 0x58
-	// Line 896, Address: 0x2720c0, Func Offset: 0x60
-	// Line 898, Address: 0x2720e0, Func Offset: 0x80
-	// Line 900, Address: 0x2720e8, Func Offset: 0x88
-	// Line 903, Address: 0x2720f0, Func Offset: 0x90
-	// Line 905, Address: 0x2720fc, Func Offset: 0x9c
-	// Line 906, Address: 0x272104, Func Offset: 0xa4
-	// Func End, Address: 0x272118, Func Offset: 0xb8
-}*/
+    GDFS_HANDLE* FileHandle; 
+    int lFileSize; 
+    
+    FileHandle = gdFsOpen(cppIconFileName[lFileNum], NULL);
+    
+    if (FileHandle == NULL) 
+    {
+        return 0;
+    }
+    
+    if (gdFsGetFileSize(FileHandle, &lFileSize) == FALSE)
+    {
+        gdFsClose(FileHandle);
+        
+        return 0;
+    }
+    
+    if (gdFsRead(FileHandle, (lFileSize + 2047) / 2048, vpReadAddr) != 0) 
+    {
+        gdFsClose(FileHandle);
+        
+        return 0;
+    }
+    
+    gdFsClose(FileHandle);
+    
+    return lFileSize;
+}
 
 // 100% matching!
 int mcWriteIconData(MEMORYCARDSTATE* pCard, void* vpWriteAddr, unsigned int ulDataSize, char** cppFileName, unsigned int ulCreatSaveCount)
