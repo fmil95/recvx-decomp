@@ -1977,27 +1977,26 @@ int mcGetFreeCapacitySize()
 	scePrintf("mcGetFreeCapacitySize - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2721d0
-void mcGetPortSelectDirInfo(tagSAVEFILE* pSaveFile, tagSELECTFILEWINDOW* pWin, unsigned int ulCheckCounter)
+// 100% matching!
+void mcGetPortSelectDirInfo(SAVEFILE* pSaveFile, SELECTFILEWINDOW* pWin, unsigned int ulCheckCounter)
 {
-	int lCount;
-	tagSELECTFILEINFO* pFileInfo;
-	// Line 987, Address: 0x2721d0, Func Offset: 0
-	// Line 992, Address: 0x2721e0, Func Offset: 0x10
-	// Line 994, Address: 0x2721e4, Func Offset: 0x14
-	// Line 997, Address: 0x2721f4, Func Offset: 0x24
-	// Line 996, Address: 0x2721f8, Func Offset: 0x28
-	// Line 997, Address: 0x2721fc, Func Offset: 0x2c
-	// Line 1000, Address: 0x272210, Func Offset: 0x40
-	// Line 1001, Address: 0x272238, Func Offset: 0x68
-	// Line 1002, Address: 0x272240, Func Offset: 0x70
-	// Line 1003, Address: 0x272248, Func Offset: 0x78
-	// Line 1004, Address: 0x272250, Func Offset: 0x80
-	// Func End, Address: 0x272264, Func Offset: 0x94
+    SELECTFILEINFO* pFileInfo; 
+    int lCount; 
+    
+    pFileInfo = pWin->pRecordTop;
+    
+    for (lCount = 0; lCount < ulCheckCounter; lCount++, pFileInfo++);
+    
+    pFileInfo->saveroom = RoomNameSwitch(pSaveFile->rom_no + (pSaveFile->stg_no * 100));
+    
+    pFileInfo->gm_mode = pSaveFile->gm_mode;
+    
+    pFileInfo->save_ct = pSaveFile->save_ct;
+    
+    pFileInfo->ply_id = pSaveFile->ply_id;
 }
 
-// 
+/*// 
 // Start address: 0x272270
 int mcSelectSaveFileCheck(tagSELECTFILEWINDOW* pWin, unsigned short ulSaveCount)
 {

@@ -2043,7 +2043,7 @@ void CountDisplay(int disppoint, _anon5* pos, unsigned int col)
 	// Line 2800, Address: 0x2c8cb4, Func Offset: 0x134
 	// Line 2803, Address: 0x2c8cbc, Func Offset: 0x13c
 	// Func End, Address: 0x2c8cd4, Func Offset: 0x154
-}
+}*/
 
 // 
 // Start address: 0x2c8ce0
@@ -2069,9 +2069,10 @@ unsigned int RoomNameSwitch(unsigned int name)
 	// Line 2864, Address: 0x2c8e40, Func Offset: 0x160
 	// Line 2873, Address: 0x2c8e48, Func Offset: 0x168
 	// Func End, Address: 0x2c8e50, Func Offset: 0x170
+	scePrintf("RoomNameSwitch - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c8e50
 void TypeWriterTextureInit()
 {
