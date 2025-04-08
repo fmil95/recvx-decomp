@@ -2316,24 +2316,26 @@ int mcSetStringSaveFile(tagSELECTFILEINFO* pFileInfo)
 	// Line 1753, Address: 0x272f40, Func Offset: 0
 	// Line 1757, Address: 0x272f64, Func Offset: 0x24
 	// Func End, Address: 0x272f6c, Func Offset: 0x2c
-}
+}*/
 
-// 
-// Start address: 0x272f70
-int mcGetStringEnd(tagSELECTFILEWINDOW* pWin, unsigned short usSaveEnd)
+// 100% matching!
+int mcGetStringEnd(SELECTFILEWINDOW* pWin, unsigned short usSaveEnd) 
 {
-	// Line 1775, Address: 0x272f70, Func Offset: 0
-	// Line 1777, Address: 0x272f84, Func Offset: 0x14
-	// Line 1779, Address: 0x272f88, Func Offset: 0x18
-	// Line 1778, Address: 0x272f8c, Func Offset: 0x1c
-	// Line 1779, Address: 0x272f90, Func Offset: 0x20
-	// Line 1780, Address: 0x272f94, Func Offset: 0x24
-	// Line 1783, Address: 0x272f98, Func Offset: 0x28
-	// Line 1784, Address: 0x272f9c, Func Offset: 0x2c
-	// Func End, Address: 0x272fa4, Func Offset: 0x34
+    if (pWin->slDispWriteMes > pWin->slDispWriteMesMax)
+    {
+        pWin->slDispWriteMes = 0;
+        
+        pWin->ulFileState = 0;
+        
+        pWin->sWaitMesTimer = -6;
+        
+        usSaveEnd = 0;
+    }
+    
+    return usSaveEnd;
 }
 
-// 
+/*// 
 // Start address: 0x272fb0
 void mcDispWindowCurSol(tagSELECTFILEWINDOW* pWin, float fx, float fy)
 {
