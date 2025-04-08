@@ -2075,15 +2075,13 @@ void mcSetFileSelectWindowCursol(SELECTFILEWINDOW* pWin, int lCurInfo)
     }
 }
 
-/*// 
-// Start address: 0x2723c0
-int mcGetFileSelectWindowCursol(tagSELECTFILEWINDOW* pWin)
+// 100% matching!
+int mcGetFileSelectWindowCursol(SELECTFILEWINDOW* pWin) 
 {
-	// Line 1165, Address: 0x2723c0, Func Offset: 0
-	// Func End, Address: 0x2723c8, Func Offset: 0x8
+    return pWin->sCursol;
 }
 
-// 
+/*// 
 // Start address: 0x2723d0
 void mcDisplayFileSelectWindow(tagSELECTFILEWINDOW* pWin, float fX, float fY, unsigned int port)
 {
