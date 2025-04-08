@@ -2303,15 +2303,13 @@ void mcDispFileName(SELECTFILEINFO* pFileInfo, float fy)
 	scePrintf("mcDispFileName - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x272f30
-void mcSetTyepWriteMode(tagSELECTFILEWINDOW* pWin, unsigned int SetState)
+// 100% matching!
+void mcSetTyepWriteMode(SELECTFILEWINDOW* pWin, unsigned int SetState)
 {
-	// Line 1734, Address: 0x272f30, Func Offset: 0
-	// Func End, Address: 0x272f38, Func Offset: 0x8
+    pWin->ulFileState = SetState;
 }
 
-// 
+/*// 
 // Start address: 0x272f40
 int mcSetStringSaveFile(tagSELECTFILEINFO* pFileInfo)
 {
