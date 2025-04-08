@@ -2045,17 +2045,17 @@ SELECTFILEWINDOW* mcCreateFileSelectWindow(SELECTFILEWINDOW* pWin, SELECTFILEINF
     return pWin;
 }
 
-/*// 
-// Start address: 0x272340
-void mcSetFileSelectWindowCursolInit(tagSELECTFILEWINDOW* pWin)
+// 100% matching!
+void mcSetFileSelectWindowCursolInit(SELECTFILEWINDOW* pWin)
 {
-	// Line 1115, Address: 0x272340, Func Offset: 0
-	// Line 1116, Address: 0x272344, Func Offset: 0x4
-	// Line 1118, Address: 0x272348, Func Offset: 0x8
-	// Func End, Address: 0x272350, Func Offset: 0x10
+    pWin->sCursol = 0;
+    
+    pWin->sMesCur = 0;
+    
+    pWin->slDispTopNumber = 0;
 }
 
-// 
+/*// 
 // Start address: 0x272350
 void mcSetFileSelectWindowCursol(tagSELECTFILEWINDOW* pWin, int lCurInfo)
 {
