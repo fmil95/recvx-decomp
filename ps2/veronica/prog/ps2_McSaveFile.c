@@ -2121,27 +2121,36 @@ void mcDisplayFileSelectWindow(tagSELECTFILEWINDOW* pWin, float fX, float fY, un
 	// Line 1248, Address: 0x272630, Func Offset: 0x260
 	// Line 1249, Address: 0x272648, Func Offset: 0x278
 	// Func End, Address: 0x272668, Func Offset: 0x298
-}
-
-// 
-// Start address: 0x272670
-void mcMoveFileSelectWindowCursor(tagSELECTFILEWINDOW* pWin, short slCur)
-{
-	// Line 1268, Address: 0x272670, Func Offset: 0
-	// Line 1271, Address: 0x27267c, Func Offset: 0xc
-	// Line 1273, Address: 0x272690, Func Offset: 0x20
-	// Line 1275, Address: 0x272698, Func Offset: 0x28
-	// Line 1277, Address: 0x2726a4, Func Offset: 0x34
-	// Line 1278, Address: 0x2726ac, Func Offset: 0x3c
-	// Line 1280, Address: 0x2726b0, Func Offset: 0x40
-	// Line 1282, Address: 0x2726b8, Func Offset: 0x48
-	// Line 1284, Address: 0x2726cc, Func Offset: 0x5c
-	// Line 1286, Address: 0x2726d4, Func Offset: 0x64
-	// Line 1288, Address: 0x2726ec, Func Offset: 0x7c
-	// Line 1289, Address: 0x2726f0, Func Offset: 0x80
-	// Line 1292, Address: 0x2726f4, Func Offset: 0x84
-	// Func End, Address: 0x2726fc, Func Offset: 0x8c
 }*/
+
+// 100% matching!
+void mcMoveFileSelectWindowCursor(SELECTFILEWINDOW* pWin, short slCur)
+{
+    pWin->sMesCur += slCur;
+    
+    if (pWin->sMesCur < pWin->slDispTopNumber) 
+    {
+        pWin->slDispTopNumber--;
+        
+        if (pWin->slDispTopNumber < 0) 
+        {
+            pWin->slDispTopNumber = 10;
+            
+            pWin->sMesCur = 14;
+        }
+    }
+    else if ((pWin->slDispTopNumber + pWin->slDispRecordNumber) <= pWin->sMesCur) 
+    {
+        pWin->slDispTopNumber++;
+        
+        if ((pWin->slDispTopNumber + pWin->slDispRecordNumber) > 15) 
+        {
+            pWin->slDispTopNumber = 0;
+            
+            pWin->sMesCur = 0;
+        }
+    }
+}
 
 // 100% matching!
 void mcDisplaySelectFileInfo(SELECTFILEINFO* pFileInfo, float fx, float fy)
