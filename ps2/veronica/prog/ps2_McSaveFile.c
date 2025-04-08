@@ -1546,10 +1546,10 @@ void mcDisplayFileSelectWindow(tagSELECTFILEWINDOW* pWin, float fX, float fY, un
 void mcMoveFileSelectWindowCursor(tagSELECTFILEWINDOW* pWin, short slCur);
 void mcDisplaySelectFileInfo(tagSELECTFILEINFO* pFileInfo, float fx, float fy);
 void mcDisplaySelectFileInfoMesCount(tagSELECTFILEINFO* pFileInfo, float fx, float fy, unsigned int CountMes);
-void mcCallMessageTypeSe(tagSELECTFILEINFO* pFileInfo, int CountMes);
-void mcDispFileNumber(tagSELECTFILEINFO* pFileInfo, float fx, float fy);
-void mcDispFileName(tagSELECTFILEINFO* pFileInfo, float fy);
-void mcSetTyepWriteMode(tagSELECTFILEWINDOW* pWin, unsigned int SetState);
+void mcCallMessageTypeSe(tagSELECTFILEINFO* pFileInfo, int CountMes);*/
+void mcDispFileNumber(SELECTFILEINFO* pFileInfo, float fx, float fy);
+void mcDispFileName(SELECTFILEINFO* pFileInfo, float fy);
+/*void mcSetTyepWriteMode(tagSELECTFILEWINDOW* pWin, unsigned int SetState);
 int mcSetStringSaveFile(tagSELECTFILEINFO* pFileInfo);
 int mcGetStringEnd(tagSELECTFILEWINDOW* pWin, unsigned short usSaveEnd);
 void mcDispWindowCurSol(tagSELECTFILEWINDOW* pWin, float fx, float fy);
@@ -2141,20 +2141,17 @@ void mcMoveFileSelectWindowCursor(tagSELECTFILEWINDOW* pWin, short slCur)
 	// Line 1289, Address: 0x2726f0, Func Offset: 0x80
 	// Line 1292, Address: 0x2726f4, Func Offset: 0x84
 	// Func End, Address: 0x2726fc, Func Offset: 0x8c
-}
+}*/
 
-// 
-// Start address: 0x272700
-void mcDisplaySelectFileInfo(tagSELECTFILEINFO* pFileInfo, float fx, float fy)
+// 100% matching!
+void mcDisplaySelectFileInfo(SELECTFILEINFO* pFileInfo, float fx, float fy)
 {
-	// Line 1311, Address: 0x272700, Func Offset: 0
-	// Line 1313, Address: 0x272714, Func Offset: 0x14
-	// Line 1315, Address: 0x27271c, Func Offset: 0x1c
-	// Line 1316, Address: 0x272728, Func Offset: 0x28
-	// Func End, Address: 0x27273c, Func Offset: 0x3c
+    mcDispFileNumber(pFileInfo, fx, fy);
+    
+    mcDispFileName(pFileInfo, fy);
 }
 
-// 
+/*// 
 // Start address: 0x272740
 void mcDisplaySelectFileInfoMesCount(tagSELECTFILEINFO* pFileInfo, float fx, float fy, unsigned int CountMes)
 {
@@ -2231,15 +2228,15 @@ void mcCallMessageTypeSe(tagSELECTFILEINFO* pFileInfo, int CountMes)
 	// Line 1538, Address: 0x272bb8, Func Offset: 0xd8
 	// Line 1573, Address: 0x272bc4, Func Offset: 0xe4
 	// Func End, Address: 0x272bd0, Func Offset: 0xf0
-}
+}*/
 
 // 
 // Start address: 0x272bd0
-void mcDispFileNumber(tagSELECTFILEINFO* pFileInfo, float fx, float fy)
+void mcDispFileNumber(SELECTFILEINFO* pFileInfo, float fx, float fy)
 {
 	unsigned int col;
 	unsigned int ulTenfigure;
-	_anon33 pos;
+	//_anon33 pos;
 	// Line 1592, Address: 0x272bd0, Func Offset: 0
 	// Line 1596, Address: 0x272be4, Func Offset: 0x14
 	// Line 1598, Address: 0x272c18, Func Offset: 0x48
@@ -2261,14 +2258,15 @@ void mcDispFileNumber(tagSELECTFILEINFO* pFileInfo, float fx, float fy)
 	// Line 1630, Address: 0x272ce8, Func Offset: 0x118
 	// Line 1632, Address: 0x272cfc, Func Offset: 0x12c
 	// Func End, Address: 0x272d14, Func Offset: 0x144
+	scePrintf("mcDispFileNumber - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x272d20
-void mcDispFileName(tagSELECTFILEINFO* pFileInfo, float fy)
+void mcDispFileName(SELECTFILEINFO* pFileInfo, float fy)
 {
 	unsigned int col;
-	_anon33 pos;
+	//_anon33 pos;
 	// Line 1649, Address: 0x272d20, Func Offset: 0
 	// Line 1653, Address: 0x272d34, Func Offset: 0x14
 	// Line 1655, Address: 0x272d68, Func Offset: 0x48
@@ -2293,9 +2291,10 @@ void mcDispFileName(tagSELECTFILEINFO* pFileInfo, float fy)
 	// Line 1712, Address: 0x272ee0, Func Offset: 0x1c0
 	// Line 1714, Address: 0x272f0c, Func Offset: 0x1ec
 	// Func End, Address: 0x272f24, Func Offset: 0x204
+	scePrintf("mcDispFileName - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x272f30
 void mcSetTyepWriteMode(tagSELECTFILEWINDOW* pWin, unsigned int SetState)
 {
