@@ -1956,25 +1956,22 @@ int mcWriteIconData(tagMEMORYCARDSTATE* pCard, void* vpWriteAddr, unsigned int u
 	// Func End, Address: 0x272160, Func Offset: 0x40
 }*/
 
-// 
-// Start address: 0x272160
+// 100% matching!
 int mcGetFreeCapacitySize()
 {
-	unsigned int ulGetFileSize;
-	unsigned int ulGetFileSizeMax;
-	// Line 953, Address: 0x272160, Func Offset: 0
-	// Line 957, Address: 0x27216c, Func Offset: 0xc
-	// Line 958, Address: 0x27217c, Func Offset: 0x1c
-	// Line 959, Address: 0x272184, Func Offset: 0x24
-	// Line 960, Address: 0x272194, Func Offset: 0x34
-	// Line 961, Address: 0x2721a4, Func Offset: 0x44
-	// Line 968, Address: 0x2721b0, Func Offset: 0x50
-	// Line 961, Address: 0x2721b4, Func Offset: 0x54
-	// Line 965, Address: 0x2721bc, Func Offset: 0x5c
-	// Line 967, Address: 0x2721c0, Func Offset: 0x60
-	// Line 968, Address: 0x2721c4, Func Offset: 0x64
-	// Func End, Address: 0x2721d0, Func Offset: 0x70
-	scePrintf("mcGetFreeCapacitySize - UNIMPLEMENTED!\n");
+    unsigned int ulGetFileSizeMax; 
+    unsigned int ulGetFileSize;
+    
+    ulGetFileSizeMax = 0;
+    
+    ulGetFileSizeMax += ((mcGetSaveFileCapacitySize() + 1023) / 1024) * 15;
+    ulGetFileSizeMax += (mcGetConfigCapacitySize() + 1023) / 1024;
+    ulGetFileSizeMax += (mcGetIconCapacitySize() + 1023) / 1024;
+    ulGetFileSizeMax += (mcGetIconFileCapacitySize() + 1023) / 1024;
+
+    ulGetFileSizeMax += 11;
+    
+    return ulGetFileSizeMax;
 }
 
 // 100% matching!
