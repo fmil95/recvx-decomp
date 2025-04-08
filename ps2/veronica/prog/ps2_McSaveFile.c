@@ -1941,20 +1941,18 @@ int mcReadIconData(void* vpReadAddr, char** cppIconFileName, int lFileNum)
 	// Line 905, Address: 0x2720fc, Func Offset: 0x9c
 	// Line 906, Address: 0x272104, Func Offset: 0xa4
 	// Func End, Address: 0x272118, Func Offset: 0xb8
-}
-
-// 
-// Start address: 0x272120
-int mcWriteIconData(tagMEMORYCARDSTATE* pCard, void* vpWriteAddr, unsigned int ulDataSize, char** cppFileName, unsigned int ulCreatSaveCount)
-{
-	// Line 935, Address: 0x272120, Func Offset: 0
-	// Line 931, Address: 0x272124, Func Offset: 0x4
-	// Line 935, Address: 0x272128, Func Offset: 0x8
-	// Line 931, Address: 0x27212c, Func Offset: 0xc
-	// Line 935, Address: 0x272130, Func Offset: 0x10
-	// Line 939, Address: 0x272154, Func Offset: 0x34
-	// Func End, Address: 0x272160, Func Offset: 0x40
 }*/
+
+// 100% matching!
+int mcWriteIconData(MEMORYCARDSTATE* pCard, void* vpWriteAddr, unsigned int ulDataSize, char** cppFileName, unsigned int ulCreatSaveCount)
+{
+    if (WriteMemoryCard(pCard, vpWriteAddr, ulDataSize, cppFileName[ulCreatSaveCount], 514) == 1) 
+    {
+        return 1;
+    }
+    
+    return 0;
+}
 
 // 100% matching!
 int mcGetFreeCapacitySize()
