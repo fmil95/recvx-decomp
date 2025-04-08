@@ -2526,36 +2526,36 @@ void DispMemoryCardTexture(float fx, float fy, unsigned int type, unsigned int m
 	// Line 2040, Address: 0x273504, Func Offset: 0x104
 	// Line 2042, Address: 0x27350c, Func Offset: 0x10c
 	// Func End, Address: 0x273528, Func Offset: 0x128
-}
-
-// 
-// Start address: 0x273530
-void mcDispWindowFoundtion(float fx, float fy, float fSizeW, float fSizeH, unsigned int Argb)
-{
-	_anon20 poly[4];
-	// Line 2065, Address: 0x273530, Func Offset: 0
-	// Line 2070, Address: 0x273538, Func Offset: 0x8
-	// Line 2069, Address: 0x27353c, Func Offset: 0xc
-	// Line 2068, Address: 0x273540, Func Offset: 0x10
-	// Line 2069, Address: 0x273544, Func Offset: 0x14
-	// Line 2070, Address: 0x273548, Func Offset: 0x18
-	// Line 2071, Address: 0x273550, Func Offset: 0x20
-	// Line 2072, Address: 0x273554, Func Offset: 0x24
-	// Line 2084, Address: 0x273558, Func Offset: 0x28
-	// Line 2072, Address: 0x273560, Func Offset: 0x30
-	// Line 2073, Address: 0x273564, Func Offset: 0x34
-	// Line 2074, Address: 0x273568, Func Offset: 0x38
-	// Line 2075, Address: 0x27356c, Func Offset: 0x3c
-	// Line 2076, Address: 0x273570, Func Offset: 0x40
-	// Line 2077, Address: 0x273574, Func Offset: 0x44
-	// Line 2078, Address: 0x27357c, Func Offset: 0x4c
-	// Line 2079, Address: 0x273580, Func Offset: 0x50
-	// Line 2080, Address: 0x273584, Func Offset: 0x54
-	// Line 2081, Address: 0x273588, Func Offset: 0x58
-	// Line 2082, Address: 0x27358c, Func Offset: 0x5c
-	// Line 2083, Address: 0x273590, Func Offset: 0x60
-	// Line 2084, Address: 0x273594, Func Offset: 0x64
-	// Line 2085, Address: 0x27359c, Func Offset: 0x6c
-	// Func End, Address: 0x2735a8, Func Offset: 0x78
 }*/
 
+// 100% matching!
+void mcDispWindowFoundtion(float fx, float fy, float fSizeW, float fSizeH, unsigned int Argb)
+{
+    NJS_POLYGON_VTX poly[4];
+
+    poly[0].x = fx;
+    poly[0].y = fy;
+    poly[0].z = 0.1f;
+    
+    poly[0].col = Argb;
+
+    poly[1].x = poly[0].x;
+    poly[1].y = fSizeH;
+    poly[1].z = 0.1f;
+    
+    poly[1].col = Argb;
+
+    poly[2].x = fSizeW;
+    poly[2].y = poly[0].y;
+    poly[2].z = 0.1f;
+    
+    poly[2].col = Argb;
+
+    poly[3].x = fSizeW;
+    poly[3].y = fSizeH;
+    poly[3].z = 0.1f;
+    
+    poly[3].col = Argb;
+    
+    njDrawPolygon(poly, 4, 1);
+}
