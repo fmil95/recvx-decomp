@@ -1999,23 +1999,23 @@ void mcGetPortSelectDirInfo(SAVEFILE* pSaveFile, SELECTFILEWINDOW* pWin, unsigne
     pFileInfo->ply_id = pSaveFile->ply_id;
 }
 
-/*// 
-// Start address: 0x272270
-int mcSelectSaveFileCheck(tagSELECTFILEWINDOW* pWin, unsigned short ulSaveCount)
+// 100% matching!
+int mcSelectSaveFileCheck(SELECTFILEWINDOW* pWin, unsigned short ulSaveCount)
 {
-	unsigned short sCnt;
-	tagSELECTFILEINFO* pFileInfo;
-	// Line 1026, Address: 0x272270, Func Offset: 0
-	// Line 1028, Address: 0x272278, Func Offset: 0x8
-	// Line 1031, Address: 0x272280, Func Offset: 0x10
-	// Line 1030, Address: 0x272284, Func Offset: 0x14
-	// Line 1031, Address: 0x272288, Func Offset: 0x18
-	// Line 1034, Address: 0x2722a0, Func Offset: 0x30
-	// Line 1037, Address: 0x2722d0, Func Offset: 0x60
-	// Line 1043, Address: 0x2722d8, Func Offset: 0x68
-	// Line 1045, Address: 0x2722dc, Func Offset: 0x6c
-	// Func End, Address: 0x2722e4, Func Offset: 0x74
-}*/
+    SELECTFILEINFO* pFileInfo; 
+    unsigned short sCnt; 
+    
+    pFileInfo = pWin->pRecordTop;
+
+    for (sCnt = 0; sCnt < ulSaveCount; sCnt++, pFileInfo++);
+    
+    if ((pFileInfo->save_ct == 0) && (pFileInfo->gm_mode == 0) && (pFileInfo->ply_id == 0) && (pFileInfo->saveroom == 0)) 
+    {
+        return 1;
+    }
+    
+    return 0;
+}
 
 // 
 // Start address: 0x2722f0
