@@ -2017,28 +2017,32 @@ int mcSelectSaveFileCheck(SELECTFILEWINDOW* pWin, unsigned short ulSaveCount)
     return 0;
 }
 
-// 
-// Start address: 0x2722f0
-SELECTFILEWINDOW* mcCreateFileSelectWindow(SELECTFILEWINDOW* pWin, SELECTFILEINFO* pFileInfo, unsigned int ulRecord)
+// 100% matching!
+SELECTFILEWINDOW* mcCreateFileSelectWindow(SELECTFILEWINDOW* pWin, SELECTFILEINFO* pFileInfo, unsigned int ulRecord) 
 {
-	// Line 1067, Address: 0x2722f0, Func Offset: 0
-	// Line 1068, Address: 0x2722f4, Func Offset: 0x4
-	// Line 1069, Address: 0x2722f8, Func Offset: 0x8
-	// Line 1071, Address: 0x2722fc, Func Offset: 0xc
-	// Line 1070, Address: 0x272300, Func Offset: 0x10
-	// Line 1071, Address: 0x272304, Func Offset: 0x14
-	// Line 1072, Address: 0x272308, Func Offset: 0x18
-	// Line 1074, Address: 0x27230c, Func Offset: 0x1c
-	// Line 1073, Address: 0x272310, Func Offset: 0x20
-	// Line 1074, Address: 0x272314, Func Offset: 0x24
-	// Line 1075, Address: 0x272318, Func Offset: 0x28
-	// Line 1076, Address: 0x272320, Func Offset: 0x30
-	// Line 1079, Address: 0x272324, Func Offset: 0x34
-	// Line 1077, Address: 0x272328, Func Offset: 0x38
-	// Line 1079, Address: 0x27232c, Func Offset: 0x3c
-	// Line 1082, Address: 0x272334, Func Offset: 0x44
-	// Func End, Address: 0x27233c, Func Offset: 0x4c
-	scePrintf("mcCreateFileSelectWindow - UNIMPLEMENTED!\n");
+    pWin->pRecordTop = pFileInfo;
+    
+    pWin->lRecordMax = ulRecord;
+    
+    pWin->ulFileState = 0;
+    
+    pWin->slDispTopNumber = 0;
+    pWin->slDispRecordNumber = 5;
+    
+    pWin->sMesCur = 0;
+    
+    pWin->sCursol = 0;
+    
+    pWin->sWaitMesTimer = 6;
+    
+    pWin->slLineNumber = 40;
+    
+    pWin->slDispWriteMesMax = 0;
+    pWin->slDispWriteMes = 0;
+    
+    pWin->ulfoundationColor = 0x18808080;
+    
+    return pWin;
 }
 
 /*// 
