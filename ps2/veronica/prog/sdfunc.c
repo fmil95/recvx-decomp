@@ -3219,17 +3219,18 @@ void CallSystemSeEx(int SeNo, int Volume)
 {
 	// Line 2053, Address: 0x2946b0, Func Offset: 0
 	// Func End, Address: 0x2946b8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2946c0
-void CallSystemSe(int SeNo)
+void CallSystemSe(int SeNo, int param) // second parameter is not present on the debugging symbols
 {
 	// Line 2065, Address: 0x2946c0, Func Offset: 0
 	// Func End, Address: 0x2946cc, Func Offset: 0xc
+	scePrintf("CallSystemSe - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2946d0
 void StopSystemSe()
 {

@@ -1555,21 +1555,21 @@ void mcSetFileSelectWindowCursolInit(tagSELECTFILEWINDOW* pWin);
 void mcSetFileSelectWindowCursol(tagSELECTFILEWINDOW* pWin, int lCurInfo);
 int mcGetFileSelectWindowCursol(tagSELECTFILEWINDOW* pWin);
 void mcDisplayFileSelectWindow(tagSELECTFILEWINDOW* pWin, float fX, float fY, unsigned int port);
-void mcMoveFileSelectWindowCursor(tagSELECTFILEWINDOW* pWin, short slCur);
-void mcDisplaySelectFileInfo(tagSELECTFILEINFO* pFileInfo, float fx, float fy);
-void mcDisplaySelectFileInfoMesCount(tagSELECTFILEINFO* pFileInfo, float fx, float fy, unsigned int CountMes);
-void mcCallMessageTypeSe(tagSELECTFILEINFO* pFileInfo, int CountMes);*/
+void mcMoveFileSelectWindowCursor(tagSELECTFILEWINDOW* pWin, short slCur);*/
+void mcDisplaySelectFileInfo(SELECTFILEINFO* pFileInfo, float fx, float fy);
+void mcDisplaySelectFileInfoMesCount(SELECTFILEINFO* pFileInfo, float fx, float fy, unsigned int CountMes);
+void mcCallMessageTypeSe(SELECTFILEINFO* pFileInfo, int CountMes);
 void mcDispFileNumber(SELECTFILEINFO* pFileInfo, float fx, float fy);
 void mcDispFileName(SELECTFILEINFO* pFileInfo, float fy);
 /*void mcSetTyepWriteMode(tagSELECTFILEWINDOW* pWin, unsigned int SetState);
 int mcSetStringSaveFile(tagSELECTFILEINFO* pFileInfo);
-int mcGetStringEnd(tagSELECTFILEWINDOW* pWin, unsigned short usSaveEnd);
-void mcDispWindowCurSol(tagSELECTFILEWINDOW* pWin, float fx, float fy);*/
+int mcGetStringEnd(tagSELECTFILEWINDOW* pWin, unsigned short usSaveEnd);*/
+void mcDispWindowCurSol(SELECTFILEWINDOW* pWin, float fx, float fy);
 void DispCursolTexture(float pos_x, float pos_y, unsigned int color);
 /*void DispUpDownCursol(float fx, float fy, unsigned int mode);
 void DispBackGroundTexture();
-void DispMemoryCardTexture(float fx, float fy, unsigned int type, unsigned int mode);
-void mcDispWindowFoundtion(float fx, float fy, float fSizeW, float fSizeH, unsigned int Argb);*/
+void DispMemoryCardTexture(float fx, float fy, unsigned int type, unsigned int mode);*/
+void mcDispWindowFoundtion(float fx, float fy, float fSizeW, float fSizeH, unsigned int Argb);
 
 // 100% matching!
 SELECTFILEINFO* mcSelectFileInfoInit(SELECTFILEINFO* pFileInfo)
@@ -2093,47 +2093,57 @@ int mcGetFileSelectWindowCursol(SELECTFILEWINDOW* pWin)
     return pWin->sCursol;
 }
 
-/*// 
-// Start address: 0x2723d0
-void mcDisplayFileSelectWindow(tagSELECTFILEWINDOW* pWin, float fX, float fY, unsigned int port)
+// 99.82% matching
+void mcDisplayFileSelectWindow(SELECTFILEWINDOW* pWin, float fX, float fY, unsigned int port)
 {
-	unsigned int ulDispCount;
-	tagSELECTFILEINFO* pFileInfo;
-	unsigned int ulCall;
-	// Line 1188, Address: 0x2723d0, Func Offset: 0
-	// Line 1198, Address: 0x2723d4, Func Offset: 0x4
-	// Line 1188, Address: 0x2723d8, Func Offset: 0x8
-	// Line 1198, Address: 0x2723f0, Func Offset: 0x20
-	// Line 1188, Address: 0x2723f8, Func Offset: 0x28
-	// Line 1198, Address: 0x272408, Func Offset: 0x38
-	// Line 1199, Address: 0x272424, Func Offset: 0x54
-	// Line 1206, Address: 0x27244c, Func Offset: 0x7c
-	// Line 1208, Address: 0x272464, Func Offset: 0x94
-	// Line 1210, Address: 0x27248c, Func Offset: 0xbc
-	// Line 1212, Address: 0x272490, Func Offset: 0xc0
-	// Line 1214, Address: 0x272498, Func Offset: 0xc8
-	// Line 1216, Address: 0x2724b4, Func Offset: 0xe4
-	// Line 1218, Address: 0x2724c4, Func Offset: 0xf4
-	// Line 1220, Address: 0x2724dc, Func Offset: 0x10c
-	// Line 1221, Address: 0x2724e4, Func Offset: 0x114
-	// Line 1223, Address: 0x2724e8, Func Offset: 0x118
-	// Line 1226, Address: 0x272540, Func Offset: 0x170
-	// Line 1229, Address: 0x272560, Func Offset: 0x190
-	// Line 1230, Address: 0x272578, Func Offset: 0x1a8
-	// Line 1231, Address: 0x272580, Func Offset: 0x1b0
-	// Line 1233, Address: 0x272588, Func Offset: 0x1b8
-	// Line 1236, Address: 0x27259c, Func Offset: 0x1cc
-	// Line 1238, Address: 0x2725a8, Func Offset: 0x1d8
-	// Line 1240, Address: 0x2725b8, Func Offset: 0x1e8
-	// Line 1241, Address: 0x2725c4, Func Offset: 0x1f4
-	// Line 1242, Address: 0x2725c8, Func Offset: 0x1f8
-	// Line 1243, Address: 0x2725d0, Func Offset: 0x200
-	// Line 1246, Address: 0x2725d8, Func Offset: 0x208
-	// Line 1247, Address: 0x27262c, Func Offset: 0x25c
-	// Line 1248, Address: 0x272630, Func Offset: 0x260
-	// Line 1249, Address: 0x272648, Func Offset: 0x278
-	// Func End, Address: 0x272668, Func Offset: 0x298
-}*/
+    static unsigned int ulCall = 1; 
+    SELECTFILEINFO* pFileInfo; 
+    unsigned int ulDispCount; 
+
+    bhDispMessage(140.0f, 32.0f, 0, 1, 463, 0, 0);
+    bhDispMessage(420.0f, 32.0f, 0, 1, port + 464, 0, 0);
+
+    mcDispWindowCurSol(pWin, 32.0f, 103.0f); 
+    mcDispWindowFoundtion(16.0f, 96.0f, 616.0f, 310.0f, pWin->ulfoundationColor);
+
+    pFileInfo = pWin->pRecordTop;
+
+    for (ulDispCount = 0; ulDispCount < pWin->slDispRecordNumber; ulDispCount++) 
+    {
+        if ((pWin->ulFileState == 1) && (pWin->sCursol == ulDispCount)) 
+        {
+            if (ulCall == 1) 
+            {
+                pWin->slDispWriteMesMax = mcSetStringSaveFile(&pFileInfo[pWin->slDispTopNumber + ulDispCount]);
+                
+                ulCall = 0;
+            }
+
+            mcDisplaySelectFileInfoMesCount(&pFileInfo[pWin->slDispTopNumber + ulDispCount], fX, fY + (pWin->slLineNumber * ulDispCount), pWin->slDispWriteMes);
+            
+            if ((pWin->sWaitMesTimer % 6) == 0) 
+            {
+                mcCallMessageTypeSe(&pFileInfo[pWin->slDispTopNumber + ulDispCount], pWin->slDispWriteMes);
+                
+                pWin->slDispWriteMes++;
+            } 
+            else if (pWin->slDispWriteMes >= pWin->slDispWriteMesMax) 
+            {
+                ulCall = 1;
+                
+                CallSystemSe(0, 0x80000244); 
+                
+                pWin->slDispWriteMes++;
+            }
+            
+            pWin->sWaitMesTimer++;
+        } 
+        else 
+        {
+            mcDisplaySelectFileInfo(&pFileInfo[pWin->slDispTopNumber + ulDispCount], fX, fY + (pWin->slLineNumber * ulDispCount));
+        }
+    }
+}
 
 // 100% matching!
 void mcMoveFileSelectWindowCursor(SELECTFILEWINDOW* pWin, short slCur)
@@ -2256,9 +2266,9 @@ void mcDisplaySelectFileInfoMesCount(SELECTFILEINFO* pFileInfo, float fx, float 
     }
 }
 
-/*// 
+// 
 // Start address: 0x272ae0
-void mcCallMessageTypeSe(tagSELECTFILEINFO* pFileInfo, int CountMes)
+void mcCallMessageTypeSe(SELECTFILEINFO* pFileInfo, int CountMes)
 {
 	// Line 1496, Address: 0x272ae0, Func Offset: 0
 	// Line 1511, Address: 0x272ae8, Func Offset: 0x8
@@ -2277,7 +2287,8 @@ void mcCallMessageTypeSe(tagSELECTFILEINFO* pFileInfo, int CountMes)
 	// Line 1538, Address: 0x272bb8, Func Offset: 0xd8
 	// Line 1573, Address: 0x272bc4, Func Offset: 0xe4
 	// Func End, Address: 0x272bd0, Func Offset: 0xf0
-}*/
+	scePrintf("mcCallMessageTypeSe - UNIMPLEMENTED!\n");
+}
 
 // 92.35% matching 
 void mcDispFileNumber(SELECTFILEINFO* pFileInfo, float fx, float fy)
