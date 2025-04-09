@@ -1510,8 +1510,8 @@ struct _anon38
 };*/
 
 static char cSubDirName[13] = "BASLUS-20184";
-/*int Type_Space[3][18];
-unsigned short MesNumTbl[10];*/
+int Type_Space[18][3];
+/*unsigned short MesNumTbl[10];*/
 SYS_WORK* sys;
 
 /*tagSELECTFILEINFO* mcSelectFileInfoInit(tagSELECTFILEINFO* pFileInfo);
@@ -1552,9 +1552,9 @@ void mcDispFileName(SELECTFILEINFO* pFileInfo, float fy);
 /*void mcSetTyepWriteMode(tagSELECTFILEWINDOW* pWin, unsigned int SetState);
 int mcSetStringSaveFile(tagSELECTFILEINFO* pFileInfo);
 int mcGetStringEnd(tagSELECTFILEWINDOW* pWin, unsigned short usSaveEnd);
-void mcDispWindowCurSol(tagSELECTFILEWINDOW* pWin, float fx, float fy);
+void mcDispWindowCurSol(tagSELECTFILEWINDOW* pWin, float fx, float fy);*/
 void DispCursolTexture(float pos_x, float pos_y, unsigned int color);
-void DispUpDownCursol(float fx, float fy, unsigned int mode);
+/*void DispUpDownCursol(float fx, float fy, unsigned int mode);
 void DispBackGroundTexture();
 void DispMemoryCardTexture(float fx, float fy, unsigned int type, unsigned int mode);
 void mcDispWindowFoundtion(float fx, float fy, float fSizeW, float fSizeH, unsigned int Argb);*/
@@ -2309,14 +2309,11 @@ void mcSetTyepWriteMode(SELECTFILEWINDOW* pWin, unsigned int SetState)
     pWin->ulFileState = SetState;
 }
 
-/*// 
-// Start address: 0x272f40
-int mcSetStringSaveFile(tagSELECTFILEINFO* pFileInfo)
+// 100% matching!
+int mcSetStringSaveFile(SELECTFILEINFO* pFileInfo)
 {
-	// Line 1753, Address: 0x272f40, Func Offset: 0
-	// Line 1757, Address: 0x272f64, Func Offset: 0x24
-	// Func End, Address: 0x272f6c, Func Offset: 0x2c
-}*/
+    return Type_Space[pFileInfo->saveroom][0] - pFileInfo->ply_id;
+}
 
 // 100% matching!
 int mcGetStringEnd(SELECTFILEWINDOW* pWin, unsigned short usSaveEnd) 
