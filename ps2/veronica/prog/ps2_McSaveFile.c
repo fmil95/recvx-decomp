@@ -1511,7 +1511,19 @@ struct _anon38
 
 static char cSubDirName[13] = "BASLUS-20184";
 int Type_Space[18][3];
-/*unsigned short MesNumTbl[10];*/
+unsigned short MesNumTbl[10] = 
+{
+    0x0010,
+    0x0011,
+    0x0012,
+    0x0013,
+    0x0014,
+    0x0015,
+    0x0016,
+    0x0017,
+    0x0018,
+    0x0019
+};
 SYS_WORK* sys;
 
 /*tagSELECTFILEINFO* mcSelectFileInfoInit(tagSELECTFILEINFO* pFileInfo);
@@ -2239,35 +2251,39 @@ void mcCallMessageTypeSe(tagSELECTFILEINFO* pFileInfo, int CountMes)
 	// Func End, Address: 0x272bd0, Func Offset: 0xf0
 }*/
 
-// 
-// Start address: 0x272bd0
+// 92.35% matching 
 void mcDispFileNumber(SELECTFILEINFO* pFileInfo, float fx, float fy)
 {
-	unsigned int col;
-	unsigned int ulTenfigure;
-	//_anon33 pos;
-	// Line 1592, Address: 0x272bd0, Func Offset: 0
-	// Line 1596, Address: 0x272be4, Func Offset: 0x14
-	// Line 1598, Address: 0x272c18, Func Offset: 0x48
-	// Line 1599, Address: 0x272c1c, Func Offset: 0x4c
-	// Line 1602, Address: 0x272c24, Func Offset: 0x54
-	// Line 1605, Address: 0x272c28, Func Offset: 0x58
-	// Line 1606, Address: 0x272c2c, Func Offset: 0x5c
-	// Line 1609, Address: 0x272c30, Func Offset: 0x60
-	// Line 1614, Address: 0x272c60, Func Offset: 0x90
-	// Line 1618, Address: 0x272c88, Func Offset: 0xb8
-	// Line 1623, Address: 0x272c90, Func Offset: 0xc0
-	// Line 1618, Address: 0x272c94, Func Offset: 0xc4
-	// Line 1623, Address: 0x272c98, Func Offset: 0xc8
-	// Line 1618, Address: 0x272ca0, Func Offset: 0xd0
-	// Line 1623, Address: 0x272ca4, Func Offset: 0xd4
-	// Line 1626, Address: 0x272cd8, Func Offset: 0x108
-	// Line 1630, Address: 0x272ce0, Func Offset: 0x110
-	// Line 1626, Address: 0x272ce4, Func Offset: 0x114
-	// Line 1630, Address: 0x272ce8, Func Offset: 0x118
-	// Line 1632, Address: 0x272cfc, Func Offset: 0x12c
-	// Func End, Address: 0x272d14, Func Offset: 0x144
-	scePrintf("mcDispFileNumber - UNIMPLEMENTED!\n");
+    NJS_POINT2 pos; 
+    unsigned int ulTenfigure;
+    unsigned int col; 
+    
+    if ((pFileInfo->save_ct == 0) && (pFileInfo->gm_mode == 0) && (pFileInfo->ply_id == 0) && (pFileInfo->saveroom == 0))
+    {
+        col = 0xFF606060;
+    }
+    else
+    {
+        col = -1;
+    }
+    
+    pos.x = fx;
+    pos.y = fy;
+    
+    ulTenfigure = pFileInfo->FileNumber / 10;
+
+    if (ulTenfigure != 0)
+    {
+        bhDispFontEx(&pos, MesNumTbl[ulTenfigure], col, -1.0f);
+    }
+    
+    pos.x = 26.0f + fx; 
+    
+    bhDispFontEx(&pos, MesNumTbl[pFileInfo->FileNumber % 10], col, -1.0f);
+    
+    pos.x = 58.0f + fx;
+    
+    CountDisplay(14, &pos, col, 0);
 }
 
 // 

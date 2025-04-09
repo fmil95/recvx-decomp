@@ -1848,16 +1848,16 @@ void bhDispFont(_anon2* pos, int code, int color, float pri)
 	// Line 474, Address: 0x2b8408, Func Offset: 0x278
 	// Line 476, Address: 0x2b8410, Func Offset: 0x280
 	// Func End, Address: 0x2b842c, Func Offset: 0x29c
-}
+}*/
 
 // 
 // Start address: 0x2b8430
-void bhDispFontEx(_anon2* pos, int code, unsigned int argb, float pri)
+void bhDispFontEx(NJS_POINT2* pos, int code, unsigned int argb, float pri)
 {
-	_anon23 uv[4];
-	_anon23 col[4];
-	_anon2 p[4];
-	_anon39 p2c;
+	//_anon23 uv[4];
+	//_anon23 col[4];
+	//_anon2 p[4];
+	//_anon39 p2c;
 	// Line 488, Address: 0x2b8430, Func Offset: 0
 	// Line 496, Address: 0x2b8458, Func Offset: 0x28
 	// Line 497, Address: 0x2b8460, Func Offset: 0x30
@@ -1918,9 +1918,10 @@ void bhDispFontEx(_anon2* pos, int code, unsigned int argb, float pri)
 	// Line 527, Address: 0x2b85fc, Func Offset: 0x1cc
 	// Line 529, Address: 0x2b8604, Func Offset: 0x1d4
 	// Func End, Address: 0x2b8620, Func Offset: 0x1f0
+	scePrintf("bhDispFontEx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2b8620
 int bhDispItemName(_anon2* pos, int id, int color, int count, float pri)
 {

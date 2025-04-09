@@ -1995,14 +1995,14 @@ void TypewriterKeepMemory()
     sys->typ_exp = bhGetFreeMemory(800, 32);
 }
 
-/*// 
+// 
 // Start address: 0x2c8b80
-void CountDisplay(int disppoint, _anon5* pos, unsigned int col)
+void CountDisplay(int disppoint, NJS_POINT2* pos, unsigned int col, int param) // fourth parameter is not present on the debugging symbols      
 {
-	_anon26 uv[4];
-	_anon26 col_[4];
-	_anon5 p[4];
-	_anon43 p2c;
+	//_anon26 uv[4];
+	//_anon26 col_[4];
+	//_anon5 p[4];
+	//_anon43 p2c;
 	// Line 2757, Address: 0x2c8b80, Func Offset: 0
 	// Line 2764, Address: 0x2c8b94, Func Offset: 0x14
 	// Line 2765, Address: 0x2c8bb8, Func Offset: 0x38
@@ -2043,7 +2043,8 @@ void CountDisplay(int disppoint, _anon5* pos, unsigned int col)
 	// Line 2800, Address: 0x2c8cb4, Func Offset: 0x134
 	// Line 2803, Address: 0x2c8cbc, Func Offset: 0x13c
 	// Func End, Address: 0x2c8cd4, Func Offset: 0x154
-}*/
+	scePrintf("CountDisplay - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2c8ce0
