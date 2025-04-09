@@ -615,7 +615,7 @@ void njDrawTexture3DHEx(_anon0* p, int count, int trans)
 	// Line 882, Address: 0x2defc8, Func Offset: 0xf8
 	// Line 883, Address: 0x2defd0, Func Offset: 0x100
 	// Func End, Address: 0x2defe8, Func Offset: 0x118
-}
+}*/
 
 // 
 // Start address: 0x2deff0
@@ -628,6 +628,7 @@ void njQuadTextureStart(int trans)
 	// Line 897, Address: 0x2df010, Func Offset: 0x20
 	// Line 898, Address: 0x2df014, Func Offset: 0x24
 	// Func End, Address: 0x2df01c, Func Offset: 0x2c
+	scePrintf("njQuadTextureStart - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -640,6 +641,7 @@ void njQuadTextureEnd()
 	// Line 907, Address: 0x2df038, Func Offset: 0x18
 	// Line 908, Address: 0x2df03c, Func Offset: 0x1c
 	// Func End, Address: 0x2df044, Func Offset: 0x24
+	scePrintf("njQuadTextureEnd - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -649,11 +651,12 @@ void njSetQuadTexture(int texid, unsigned int col)
 	// Line 922, Address: 0x2df050, Func Offset: 0
 	// Line 923, Address: 0x2df054, Func Offset: 0x4
 	// Func End, Address: 0x2df05c, Func Offset: 0xc
+	scePrintf("njSetQuadTexture - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2df060
-void njDrawQuadTexture(_anon4* q, float z)
+void njDrawQuadTexture(QUAD* q, float z)
 {
 	unsigned int rgba;
 	float buff[4][6];
@@ -710,5 +713,5 @@ void njDrawQuadTexture(_anon4* q, float z)
 	// Line 996, Address: 0x2df1d0, Func Offset: 0x170
 	// Line 999, Address: 0x2df1e4, Func Offset: 0x184
 	// Func End, Address: 0x2df1f0, Func Offset: 0x190
-}*/
-
+	scePrintf("njDrawQuadTexture - UNIMPLEMENTED!\n");
+}

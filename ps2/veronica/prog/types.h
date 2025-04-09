@@ -2661,6 +2661,114 @@ typedef struct SND_STATUS
     unsigned short dummy[9]; // offset 0x30, size 0x12
 } SND_STATUS;
 
+typedef struct QUAD 
+{
+    // total size: 0x20
+    float x1; // offset 0x0, size 0x4
+    float y1; // offset 0x4, size 0x4
+    float x2; // offset 0x8, size 0x4
+    float y2; // offset 0xC, size 0x4
+    float u1; // offset 0x10, size 0x4
+    float v1; // offset 0x14, size 0x4
+    float u2; // offset 0x18, size 0x4
+    float v2; // offset 0x1C, size 0x4
+} QUAD;
+
+// TODO: reimplement this struct properly
+typedef struct COM_EVT_WORK {
+    // total size: 0x5D88
+    struct /* @anon29 */ {
+        // total size: 0xC
+        void * filename; // offset 0x0, size 0x4
+        unsigned int attr; // offset 0x4, size 0x4
+        unsigned int texaddr; // offset 0x8, size 0x4
+    } com_tex[3]; // offset 0x0, size 0x24
+    struct /* @anon1 */ {
+        // total size: 0x8
+        struct /* @anon29 */ {
+            // total size: 0xC
+            void * filename; // offset 0x0, size 0x4
+            unsigned int attr; // offset 0x4, size 0x4
+            unsigned int texaddr; // offset 0x8, size 0x4
+        } * textures; // offset 0x0, size 0x4
+        unsigned int nbTexture; // offset 0x4, size 0x4
+    } com_tlist; // offset 0x24, size 0x8
+    unsigned int fcol; // offset 0x2C, size 0x4
+    float fsrc; // offset 0x30, size 0x4
+    float fdst; // offset 0x34, size 0x4
+    float fcal; // offset 0x38, size 0x4
+    float fcnt; // offset 0x3C, size 0x4
+    signed int ct0; // offset 0x40, size 0x4
+    signed int ct1; // offset 0x44, size 0x4
+    struct /* @anon20 */ {
+        // total size: 0x20
+        float x1; // offset 0x0, size 0x4
+        float y1; // offset 0x4, size 0x4
+        float x2; // offset 0x8, size 0x4
+        float y2; // offset 0xC, size 0x4
+        float u1; // offset 0x10, size 0x4
+        float v1; // offset 0x14, size 0x4
+        float u2; // offset 0x18, size 0x4
+        float v2; // offset 0x1C, size 0x4
+    } qt[512]; // offset 0x48, size 0x4000
+    unsigned int qtbcol[512]; // offset 0x4048, size 0x800
+    signed int qten[3]; // offset 0x4848, size 0xC
+    signed int lnfg[128]; // offset 0x4854, size 0x200
+    struct /* @anon41 */ {
+        // total size: 0x18
+        float px; // offset 0x0, size 0x4
+        float py; // offset 0x4, size 0x4
+        float pz; // offset 0x8, size 0x4
+        float vx; // offset 0xC, size 0x4
+        float vy; // offset 0x10, size 0x4
+        float vz; // offset 0x14, size 0x4
+    } line[128]; // offset 0x4A54, size 0xC00
+    signed short lnct[128]; // offset 0x5654, size 0x100
+    signed short mwin_alp; // offset 0x5754, size 0x2
+    signed short swin_alp; // offset 0x5756, size 0x2
+    signed short cwin_alp; // offset 0x5758, size 0x2
+    signed short chr_no; // offset 0x575A, size 0x2
+    signed short mtn_no; // offset 0x575C, size 0x2
+    signed short frm_no; // offset 0x575E, size 0x2
+    float cox; // offset 0x5760, size 0x4
+    float coy; // offset 0x5764, size 0x4
+    float coz; // offset 0x5768, size 0x4
+    signed short cax; // offset 0x576C, size 0x2
+    signed short cay; // offset 0x576E, size 0x2
+    signed short caz; // offset 0x5770, size 0x2
+    signed short caxn; // offset 0x5772, size 0x2
+    signed short cayn; // offset 0x5774, size 0x2
+    signed short cazn; // offset 0x5776, size 0x2
+    unsigned int txt[11][29]; // offset 0x5778, size 0x4FC
+    unsigned int txflg; // offset 0x5C74, size 0x4
+    signed int txwait; // offset 0x5C78, size 0x4
+    signed int txmes; // offset 0x5C7C, size 0x4
+    signed short tx; // offset 0x5C80, size 0x2
+    signed short ty; // offset 0x5C82, size 0x2
+    unsigned int txcol; // offset 0x5C84, size 0x4
+    signed int txsct; // offset 0x5C88, size 0x4
+    signed int curct; // offset 0x5C8C, size 0x4
+    unsigned int lcflg; // offset 0x5C90, size 0x4
+    signed short kx; // offset 0x5C94, size 0x2
+    signed short ky; // offset 0x5C96, size 0x2
+    signed short khk; // offset 0x5C98, size 0x2
+    signed short krep; // offset 0x5C9A, size 0x2
+    signed short kbn; // offset 0x5C9C, size 0x2
+    signed char wordmax; // offset 0x5C9E, size 0x1
+    signed char wordn; // offset 0x5C9F, size 0x1
+    signed short wdx; // offset 0x5CA0, size 0x2
+    signed short wdy; // offset 0x5CA2, size 0x2
+    unsigned char word[2][16]; // offset 0x5CA4, size 0x20
+    unsigned char * mesp; // offset 0x5CC4, size 0x4
+    unsigned char * scp; // offset 0x5CC8, size 0x4
+    unsigned char * sclb[32]; // offset 0x5CCC, size 0x80
+    signed int mes_no; // offset 0x5D4C, size 0x4
+    signed int mes_ln; // offset 0x5D50, size 0x4
+    signed int flash; // offset 0x5D54, size 0x4
+    float bar[3][3]; // offset 0x5D58, size 0x24
+    signed int bar_ct[3]; // offset 0x5D7C, size 0xC
+} COM_EVT_WORK;
+
 // TODO: find a struct on the debugging symbols similar to this one that could fit in Ps2AddPrim()
 typedef struct UNKNOWN 
 {

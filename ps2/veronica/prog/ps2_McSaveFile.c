@@ -2484,45 +2484,53 @@ void DispBackGroundTexture()
 	// Line 1976, Address: 0x2733e4, Func Offset: 0xe4
 	// Line 1978, Address: 0x2733ec, Func Offset: 0xec
 	// Func End, Address: 0x2733fc, Func Offset: 0xfc
-}
+}*/
 
-// 
-// Start address: 0x273400
+// 100% matching!
 void DispMemoryCardTexture(float fx, float fy, unsigned int type, unsigned int mode)
 {
-	_anon37 twt[18];
-	// Line 1999, Address: 0x273400, Func Offset: 0
-	// Line 2005, Address: 0x273418, Func Offset: 0x18
-	// Line 2007, Address: 0x27343c, Func Offset: 0x3c
-	// Line 2009, Address: 0x273448, Func Offset: 0x48
-	// Line 2010, Address: 0x273450, Func Offset: 0x50
-	// Line 2013, Address: 0x273458, Func Offset: 0x58
-	// Line 2016, Address: 0x273464, Func Offset: 0x64
-	// Line 2017, Address: 0x273468, Func Offset: 0x68
-	// Line 2016, Address: 0x27346c, Func Offset: 0x6c
-	// Line 2017, Address: 0x273470, Func Offset: 0x70
-	// Line 2018, Address: 0x273474, Func Offset: 0x74
-	// Line 2019, Address: 0x273480, Func Offset: 0x80
-	// Line 2018, Address: 0x27348c, Func Offset: 0x8c
-	// Line 2021, Address: 0x273490, Func Offset: 0x90
-	// Line 2018, Address: 0x273494, Func Offset: 0x94
-	// Line 2019, Address: 0x273498, Func Offset: 0x98
-	// Line 2021, Address: 0x2734a0, Func Offset: 0xa0
-	// Line 2023, Address: 0x2734a8, Func Offset: 0xa8
-	// Line 2024, Address: 0x2734ac, Func Offset: 0xac
-	// Line 2025, Address: 0x2734b0, Func Offset: 0xb0
-	// Line 2026, Address: 0x2734b8, Func Offset: 0xb8
-	// Line 2027, Address: 0x2734bc, Func Offset: 0xbc
-	// Line 2030, Address: 0x2734c4, Func Offset: 0xc4
-	// Line 2031, Address: 0x2734cc, Func Offset: 0xcc
-	// Line 2032, Address: 0x2734d0, Func Offset: 0xd0
-	// Line 2033, Address: 0x2734d8, Func Offset: 0xd8
-	// Line 2036, Address: 0x2734e0, Func Offset: 0xe0
-	// Line 2038, Address: 0x2734f0, Func Offset: 0xf0
-	// Line 2040, Address: 0x273504, Func Offset: 0x104
-	// Line 2042, Address: 0x27350c, Func Offset: 0x10c
-	// Func End, Address: 0x273528, Func Offset: 0x128
-}*/
+    QUAD twt[18]; 
+
+    njSetTexture((NJS_TEXLIST*)&((COM_EVT_WORK*)sys->typ_exp)->com_tlist);
+    
+    if (mode == 2)
+    {
+        njQuadTextureStart(0);
+    }
+    else 
+    {
+        njQuadTextureStart(1);
+    }
+    
+    twt[2].x1 = fx;
+    twt[2].y1 = fy;
+    
+    twt[2].x2 = 109.0f + twt[2].x1;
+    twt[2].y2 = 148.0f + twt[2].y1;
+    
+    if (type == 1) 
+    {
+        twt[2].u1 = 0; 
+        twt[2].v1 = 0;
+        
+        twt[2].u2 = 0.21679688f;
+        twt[2].v2 = 0.296875f;
+    } 
+    else 
+    {
+        twt[2].u1 = 0.21875f;
+        twt[2].v1 = 0;
+        
+        twt[2].u2 = 0.4375f;
+        twt[2].v2 = 0.296875f;
+    }
+    
+    njSetQuadTexture(2, 0xFF646464);
+    
+    njDrawQuadTexture(&twt[2], 0.2f);
+    
+    njQuadTextureEnd();
+}
 
 // 100% matching!
 void mcDispWindowFoundtion(float fx, float fy, float fSizeW, float fSizeH, unsigned int Argb)
