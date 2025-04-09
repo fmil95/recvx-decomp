@@ -2338,38 +2338,32 @@ void mcDispWindowCurSol(SELECTFILEWINDOW* pWin, float fx, float fy)
     DispCursolTexture(fx, fy + (pWin->sCursol * 40.0f), 0xFF808080);
 }
 
-// 
-// Start address: 0x272fe0
+// 100% matching!
 void DispCursolTexture(float pos_x, float pos_y, unsigned int color)
 {
-	//_anon37 twt[18];
-	// Line 1824, Address: 0x272fe0, Func Offset: 0
-	// Line 1827, Address: 0x272ff4, Func Offset: 0x14
-	// Line 1829, Address: 0x273014, Func Offset: 0x34
-	// Line 1839, Address: 0x27301c, Func Offset: 0x3c
-	// Line 1830, Address: 0x273020, Func Offset: 0x40
-	// Line 1831, Address: 0x273024, Func Offset: 0x44
-	// Line 1830, Address: 0x273028, Func Offset: 0x48
-	// Line 1831, Address: 0x27302c, Func Offset: 0x4c
-	// Line 1832, Address: 0x273030, Func Offset: 0x50
-	// Line 1835, Address: 0x27303c, Func Offset: 0x5c
-	// Line 1833, Address: 0x273040, Func Offset: 0x60
-	// Line 1832, Address: 0x27304c, Func Offset: 0x6c
-	// Line 1837, Address: 0x273050, Func Offset: 0x70
-	// Line 1838, Address: 0x273058, Func Offset: 0x78
-	// Line 1832, Address: 0x27305c, Func Offset: 0x7c
-	// Line 1833, Address: 0x273060, Func Offset: 0x80
-	// Line 1839, Address: 0x273064, Func Offset: 0x84
-	// Line 1833, Address: 0x273068, Func Offset: 0x88
-	// Line 1835, Address: 0x273070, Func Offset: 0x90
-	// Line 1836, Address: 0x273074, Func Offset: 0x94
-	// Line 1837, Address: 0x273078, Func Offset: 0x98
-	// Line 1839, Address: 0x27307c, Func Offset: 0x9c
-	// Line 1840, Address: 0x273084, Func Offset: 0xa4
-	// Line 1842, Address: 0x273098, Func Offset: 0xb8
-	// Line 1843, Address: 0x2730a0, Func Offset: 0xc0
-	// Func End, Address: 0x2730b8, Func Offset: 0xd8
-	scePrintf("DispCursolTexture - UNIMPLEMENTED!\n");
+    QUAD twt[18]; 
+
+    njSetTexture((NJS_TEXLIST*)&((COM_EVT_WORK*)sys->typ_exp)->com_tlist);
+    
+    njQuadTextureStart(1);
+    
+    twt[12].x1 = pos_x;
+    twt[12].y1 = pos_y;
+    
+    twt[12].x2 = 16.0f + twt[12].x1;
+    twt[12].y2 = 30.0f + twt[12].y1;
+    
+    twt[12].u1 = 0.47070313f;
+    twt[12].v1 = 0;
+    
+    twt[12].u2 = 0.5019531f;
+    twt[12].v2 = 0.0625f;
+    
+    njSetQuadTexture(2, color);
+    
+    njDrawQuadTexture(&twt[12], 0.3f);
+    
+    njQuadTextureEnd();
 }
 
 /*// 
