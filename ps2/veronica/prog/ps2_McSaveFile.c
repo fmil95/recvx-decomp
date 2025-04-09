@@ -2325,37 +2325,51 @@ void mcDispFileNumber(SELECTFILEINFO* pFileInfo, float fx, float fy)
     CountDisplay(14, &pos, col, 0);
 }
 
-// 
-// Start address: 0x272d20
+// 93.22% matching
 void mcDispFileName(SELECTFILEINFO* pFileInfo, float fy)
 {
-	unsigned int col;
-	//_anon33 pos;
-	// Line 1649, Address: 0x272d20, Func Offset: 0
-	// Line 1653, Address: 0x272d34, Func Offset: 0x14
-	// Line 1655, Address: 0x272d68, Func Offset: 0x48
-	// Line 1656, Address: 0x272d94, Func Offset: 0x74
-	// Line 1660, Address: 0x272d9c, Func Offset: 0x7c
-	// Line 1663, Address: 0x272dc8, Func Offset: 0xa8
-	// Line 1664, Address: 0x272dcc, Func Offset: 0xac
-	// Line 1666, Address: 0x272dd4, Func Offset: 0xb4
-	// Line 1667, Address: 0x272dd8, Func Offset: 0xb8
-	// Line 1669, Address: 0x272de0, Func Offset: 0xc0
-	// Line 1674, Address: 0x272de8, Func Offset: 0xc8
-	// Line 1677, Address: 0x272e14, Func Offset: 0xf4
-	// Line 1682, Address: 0x272e1c, Func Offset: 0xfc
-	// Line 1687, Address: 0x272e34, Func Offset: 0x114
-	// Line 1692, Address: 0x272e3c, Func Offset: 0x11c
-	// Line 1695, Address: 0x272e84, Func Offset: 0x164
-	// Line 1700, Address: 0x272e8c, Func Offset: 0x16c
-	// Line 1704, Address: 0x272ec4, Func Offset: 0x1a4
-	// Line 1708, Address: 0x272ec8, Func Offset: 0x1a8
-	// Line 1704, Address: 0x272ed4, Func Offset: 0x1b4
-	// Line 1708, Address: 0x272ed8, Func Offset: 0x1b8
-	// Line 1712, Address: 0x272ee0, Func Offset: 0x1c0
-	// Line 1714, Address: 0x272f0c, Func Offset: 0x1ec
-	// Func End, Address: 0x272f24, Func Offset: 0x204
-	scePrintf("mcDispFileName - UNIMPLEMENTED!\n");
+	NJS_POINT2 pos; 
+    unsigned int col; 
+    
+    if ((pFileInfo->save_ct == 0) && (pFileInfo->gm_mode == 0) && (pFileInfo->ply_id == 0) && (pFileInfo->saveroom == 0)) 
+    {
+        bhDispMessageEx(132.0f, fy, -1.0f, 1, 215, 0xFF606060, 0);
+        return;
+    }
+    
+    switch (pFileInfo->gm_mode) 
+    {                          
+    case 0:
+        col = -1;
+        break;
+    case 1:
+        col = 0xFF20FF20;
+        break;
+    case 2:
+        col = 0xFFFF2020;
+        break;
+    }
+    
+    bhDispMessageEx(132.0f, fy, -1.0f, 1, pFileInfo->ply_id + 208, col, 0);
+    
+    pos.x = 230.0f;
+    pos.y = fy;
+    
+    CountDisplay(15, &pos, col, 1);
+    
+    pos.x = 262.0f;
+    
+    bhDispFontEx(&pos, MesNumTbl[pFileInfo->save_ct / 10], col, -1.0f);
+    
+    pos.x = 288.0f;
+    
+    bhDispFontEx(&pos, MesNumTbl[pFileInfo->save_ct % 10], col, -1.0f);
+    
+    pos.x = 320.0f;
+    
+    CountDisplay(15, &pos, col, 1);
+    
+    bhDispMessageEx(352.0f, fy, -1.0f, 1, pFileInfo->saveroom + 215, col, 0);
 }
 
 // 100% matching!
