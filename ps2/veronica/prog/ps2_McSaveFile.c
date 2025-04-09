@@ -2172,63 +2172,91 @@ void mcDisplaySelectFileInfo(SELECTFILEINFO* pFileInfo, float fx, float fy)
     mcDispFileName(pFileInfo, fy);
 }
 
-/*// 
-// Start address: 0x272740
-void mcDisplaySelectFileInfoMesCount(tagSELECTFILEINFO* pFileInfo, float fx, float fy, unsigned int CountMes)
+// 93.88% matching
+void mcDisplaySelectFileInfoMesCount(SELECTFILEINFO* pFileInfo, float fx, float fy, unsigned int CountMes)
 {
-	unsigned int ulMaxMes;
-	unsigned int ulMesPlace;
-	unsigned int ulMesIncrease;
-	unsigned int col;
-	_anon33 pos;
-	// Line 1338, Address: 0x272740, Func Offset: 0
-	// Line 1344, Address: 0x272764, Func Offset: 0x24
-	// Line 1346, Address: 0x272778, Func Offset: 0x38
-	// Line 1344, Address: 0x27277c, Func Offset: 0x3c
-	// Line 1346, Address: 0x272788, Func Offset: 0x48
-	// Line 1344, Address: 0x272794, Func Offset: 0x54
-	// Line 1348, Address: 0x27279c, Func Offset: 0x5c
-	// Line 1351, Address: 0x2727ac, Func Offset: 0x6c
-	// Line 1355, Address: 0x2727b4, Func Offset: 0x74
-	// Line 1358, Address: 0x2727e0, Func Offset: 0xa0
-	// Line 1359, Address: 0x2727e4, Func Offset: 0xa4
-	// Line 1361, Address: 0x2727ec, Func Offset: 0xac
-	// Line 1362, Address: 0x2727f0, Func Offset: 0xb0
-	// Line 1364, Address: 0x2727f8, Func Offset: 0xb8
-	// Line 1425, Address: 0x272800, Func Offset: 0xc0
-	// Line 1427, Address: 0x272824, Func Offset: 0xe4
-	// Line 1428, Address: 0x27284c, Func Offset: 0x10c
-	// Line 1429, Address: 0x272854, Func Offset: 0x114
-	// Line 1431, Address: 0x27286c, Func Offset: 0x12c
-	// Line 1433, Address: 0x272894, Func Offset: 0x154
-	// Line 1435, Address: 0x2728c0, Func Offset: 0x180
-	// Line 1436, Address: 0x2728c4, Func Offset: 0x184
-	// Line 1435, Address: 0x2728d0, Func Offset: 0x190
-	// Line 1436, Address: 0x2728d4, Func Offset: 0x194
-	// Line 1439, Address: 0x2728dc, Func Offset: 0x19c
-	// Line 1442, Address: 0x2728f4, Func Offset: 0x1b4
-	// Line 1444, Address: 0x2728fc, Func Offset: 0x1bc
-	// Line 1446, Address: 0x272944, Func Offset: 0x204
-	// Line 1449, Address: 0x27295c, Func Offset: 0x21c
-	// Line 1451, Address: 0x272964, Func Offset: 0x224
-	// Line 1454, Address: 0x27299c, Func Offset: 0x25c
-	// Line 1457, Address: 0x2729b4, Func Offset: 0x274
-	// Line 1458, Address: 0x2729b8, Func Offset: 0x278
-	// Line 1457, Address: 0x2729c4, Func Offset: 0x284
-	// Line 1458, Address: 0x2729c8, Func Offset: 0x288
-	// Line 1461, Address: 0x2729d0, Func Offset: 0x290
-	// Line 1463, Address: 0x2729fc, Func Offset: 0x2bc
-	// Line 1466, Address: 0x272a08, Func Offset: 0x2c8
-	// Line 1467, Address: 0x272a38, Func Offset: 0x2f8
-	// Line 1471, Address: 0x272a40, Func Offset: 0x300
-	// Line 1473, Address: 0x272a74, Func Offset: 0x334
-	// Line 1474, Address: 0x272a7c, Func Offset: 0x33c
-	// Line 1476, Address: 0x272a8c, Func Offset: 0x34c
-	// Line 1479, Address: 0x272ab8, Func Offset: 0x378
-	// Func End, Address: 0x272ae0, Func Offset: 0x3a0
+    NJS_POINT2 pos; 
+    unsigned int col; 
+    unsigned int ulMesIncrease; 
+    unsigned int ulMesPlace; 
+    unsigned int ulMaxMes; 
+
+    ulMaxMes = Type_Space[pFileInfo->saveroom - 1][0];
+    
+    ulMesPlace = Type_Space[pFileInfo->saveroom - 1][1];
+    
+    ulMesIncrease = Type_Space[pFileInfo->saveroom - 1][2];
+
+    mcDispFileNumber(pFileInfo, fx, fy);
+
+    switch (pFileInfo->gm_mode) 
+    {
+    case 0:
+        col = 0xFFFFFFFF;
+        break;
+    case 1:
+        col = 0xFF20FF20;
+        break;
+    case 2:
+        col = 0xFFFF2020;
+        break;
+    }
+
+    pos.y = fy;
+
+    if ((CountMes >= 3) && (CountMes <= (8 - pFileInfo->ply_id))) 
+    {
+        bhDispMessageEx(132.0f, fy, -1.0f, 1, pFileInfo->ply_id + 208, col, CountMes - 2);
+    }
+    else if (CountMes >= (9 - pFileInfo->ply_id))
+    {
+        bhDispMessageEx(132.0f, fy, -1.0f, 1, pFileInfo->ply_id + 208, col, 0);
+        bhDispMessageEx(132.0f, fy, -1.0f, 1, pFileInfo->ply_id + 208, col, 0);
+        
+        pos.x = 230.0f;
+        
+        CountDisplay(15, &pos, col, 1);
+    }
+
+    if (CountMes >= (11 - pFileInfo->ply_id))
+    {
+        pos.x = 262.0f;
+        
+        bhDispFontEx(&pos, MesNumTbl[pFileInfo->save_ct / 10], col, -1);
+    }
+    
+    if (CountMes >= (12 - pFileInfo->ply_id)) 
+    {
+        pos.x = 288.0f;
+        
+        bhDispFontEx(&pos, MesNumTbl[pFileInfo->save_ct % 10], col, -1);
+    }
+    
+    if (CountMes >= (13 - pFileInfo->ply_id)) 
+    {
+        pos.x = 320.0f;
+        
+        CountDisplay(15, &pos, col, 1);
+    }
+
+    if ((CountMes >= (15 - pFileInfo->ply_id)) && (CountMes <= ((ulMaxMes - 1) - pFileInfo->ply_id))) 
+    {
+        if (CountMes >= ulMesPlace) 
+        {
+            bhDispMessageEx(352.0f, fy, -1.0f, 1, pFileInfo->saveroom + 215, col, (CountMes + ulMesIncrease) - 14);
+        } 
+        else 
+        {
+            bhDispMessageEx(352.0f, fy, -1.0f, 1, pFileInfo->saveroom + 215, col, CountMes - (14 - pFileInfo->ply_id));
+        }
+    } 
+    else if (CountMes >= (ulMaxMes - pFileInfo->ply_id)) 
+    {
+        bhDispMessageEx(352.0f, fy, -1.0f, 1, pFileInfo->saveroom + 215, col, 0);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x272ae0
 void mcCallMessageTypeSe(tagSELECTFILEINFO* pFileInfo, int CountMes)
 {

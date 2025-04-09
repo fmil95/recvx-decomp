@@ -2005,7 +2005,7 @@ int bhDispMessage(float px, float py, float pri, int mes_typ, int mes_idx, int c
 	scePrintf("bhDispMessage - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2b89e0
 int bhDispMessageEx(float px, float py, float pri, int mes_typ, int mes_idx, unsigned int argb, int count)
 {
@@ -2016,7 +2016,7 @@ int bhDispMessageEx(float px, float py, float pri, int mes_typ, int mes_idx, uns
 	int cflg;
 	unsigned short cd;
 	unsigned short* dp;
-	_anon2 pos;
+	//_anon2 pos;
 	// Line 688, Address: 0x2b89e0, Func Offset: 0
 	// Line 694, Address: 0x2b8a0c, Func Offset: 0x2c
 	// Line 696, Address: 0x2b8a34, Func Offset: 0x54
@@ -2059,7 +2059,8 @@ int bhDispMessageEx(float px, float py, float pri, int mes_typ, int mes_idx, uns
 	// Line 767, Address: 0x2b8c40, Func Offset: 0x260
 	// Line 771, Address: 0x2b8c48, Func Offset: 0x268
 	// Func End, Address: 0x2b8c78, Func Offset: 0x298
-}*/
+	scePrintf("bhDispMessageEx - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2b8c80
