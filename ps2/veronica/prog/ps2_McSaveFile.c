@@ -2450,41 +2450,51 @@ void DispUpDownCursol(float fx, float fy, unsigned int mode)
 	// Line 1928, Address: 0x2732dc, Func Offset: 0x21c
 	// Line 1929, Address: 0x2732f4, Func Offset: 0x234
 	// Func End, Address: 0x273300, Func Offset: 0x240
-}
+}*/
 
-// 
-// Start address: 0x273300
+// 100% matching!
 void DispBackGroundTexture()
 {
-	_anon37 twt[18];
-	// Line 1943, Address: 0x273300, Func Offset: 0
-	// Line 1948, Address: 0x27330c, Func Offset: 0xc
-	// Line 1950, Address: 0x273320, Func Offset: 0x20
-	// Line 1951, Address: 0x273328, Func Offset: 0x28
-	// Line 1952, Address: 0x27332c, Func Offset: 0x2c
-	// Line 1953, Address: 0x273330, Func Offset: 0x30
-	// Line 1954, Address: 0x273338, Func Offset: 0x38
-	// Line 1956, Address: 0x273340, Func Offset: 0x40
-	// Line 1957, Address: 0x273344, Func Offset: 0x44
-	// Line 1958, Address: 0x273348, Func Offset: 0x48
-	// Line 1959, Address: 0x273350, Func Offset: 0x50
-	// Line 1961, Address: 0x27335c, Func Offset: 0x5c
-	// Line 1962, Address: 0x27336c, Func Offset: 0x6c
-	// Line 1964, Address: 0x273380, Func Offset: 0x80
-	// Line 1965, Address: 0x27338c, Func Offset: 0x8c
-	// Line 1966, Address: 0x273390, Func Offset: 0x90
-	// Line 1967, Address: 0x273398, Func Offset: 0x98
-	// Line 1969, Address: 0x2733a0, Func Offset: 0xa0
-	// Line 1971, Address: 0x2733a4, Func Offset: 0xa4
-	// Line 1970, Address: 0x2733a8, Func Offset: 0xa8
-	// Line 1971, Address: 0x2733ac, Func Offset: 0xac
-	// Line 1972, Address: 0x2733b4, Func Offset: 0xb4
-	// Line 1974, Address: 0x2733c0, Func Offset: 0xc0
-	// Line 1975, Address: 0x2733d0, Func Offset: 0xd0
-	// Line 1976, Address: 0x2733e4, Func Offset: 0xe4
-	// Line 1978, Address: 0x2733ec, Func Offset: 0xec
-	// Func End, Address: 0x2733fc, Func Offset: 0xfc
-}*/
+    QUAD twt[18]; 
+
+    njSetTexture((NJS_TEXLIST*)&((COM_EVT_WORK*)sys->typ_exp)->com_tlist);
+    
+    njQuadTextureStart(0);
+    
+    twt[0].x1 = 0;
+    twt[0].y1 = 0;
+    
+    twt[0].x2 = 512.0f;
+    twt[0].y2 = 480.0f;
+    
+    twt[0].u1 = 0;
+    twt[0].v1 = 0;
+    
+    twt[0].u2 = 1.0f;
+    twt[0].v2 = 0.93f;
+    
+    njSetQuadTexture(0, 0xFF909090);
+    
+    njDrawQuadTexture(&twt[0], 0.1f);
+    
+    twt[1].x1 = 512.0f;
+    twt[1].y1 = 0;
+    
+    twt[1].x2 = 640.0f;
+    twt[1].y2 = 480.0f;
+    
+    twt[1].u1 = 0;
+    twt[1].v1 = 0;
+    
+    twt[1].u2 = 0.24f;
+    twt[1].v2 = 0.93f;
+    
+    njSetQuadTexture(1, 0xFF909090);
+    
+    njDrawQuadTexture(&twt[1], 0.1f);
+    
+    njQuadTextureEnd();
+}
 
 // 100% matching!
 void DispMemoryCardTexture(float fx, float fy, unsigned int type, unsigned int mode)
