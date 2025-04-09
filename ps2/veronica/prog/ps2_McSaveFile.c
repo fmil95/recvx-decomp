@@ -2366,85 +2366,84 @@ void DispCursolTexture(float pos_x, float pos_y, unsigned int color)
     njQuadTextureEnd();
 }
 
-/*// 
-// Start address: 0x2730c0
+// 100% matching! 
 void DispUpDownCursol(float fx, float fy, unsigned int mode)
 {
-	_anon26 col[4];
-	_anon33 p[4];
-	_anon36 p2c;
-	// Line 1862, Address: 0x2730c0, Func Offset: 0
-	// Line 1869, Address: 0x2730c4, Func Offset: 0x4
-	// Line 1862, Address: 0x2730c8, Func Offset: 0x8
-	// Line 1869, Address: 0x2730cc, Func Offset: 0xc
-	// Line 1870, Address: 0x2730d0, Func Offset: 0x10
-	// Line 1872, Address: 0x2730d8, Func Offset: 0x18
-	// Line 1871, Address: 0x2730dc, Func Offset: 0x1c
-	// Line 1872, Address: 0x2730e0, Func Offset: 0x20
-	// Line 1875, Address: 0x2730e4, Func Offset: 0x24
-	// Line 1880, Address: 0x273118, Func Offset: 0x58
-	// Line 1879, Address: 0x27311c, Func Offset: 0x5c
-	// Line 1880, Address: 0x273120, Func Offset: 0x60
-	// Line 1881, Address: 0x273124, Func Offset: 0x64
-	// Line 1885, Address: 0x273130, Func Offset: 0x70
-	// Line 1881, Address: 0x27313c, Func Offset: 0x7c
-	// Line 1882, Address: 0x273144, Func Offset: 0x84
-	// Line 1883, Address: 0x27314c, Func Offset: 0x8c
-	// Line 1884, Address: 0x273158, Func Offset: 0x98
-	// Line 1885, Address: 0x273160, Func Offset: 0xa0
-	// Line 1886, Address: 0x27316c, Func Offset: 0xac
-	// Line 1887, Address: 0x273174, Func Offset: 0xb4
-	// Line 1891, Address: 0x27317c, Func Offset: 0xbc
-	// Line 1892, Address: 0x273184, Func Offset: 0xc4
-	// Line 1891, Address: 0x273188, Func Offset: 0xc8
-	// Line 1896, Address: 0x27318c, Func Offset: 0xcc
-	// Line 1891, Address: 0x273190, Func Offset: 0xd0
-	// Line 1890, Address: 0x273194, Func Offset: 0xd4
-	// Line 1891, Address: 0x273198, Func Offset: 0xd8
-	// Line 1892, Address: 0x27319c, Func Offset: 0xdc
-	// Line 1896, Address: 0x2731a4, Func Offset: 0xe4
-	// Line 1892, Address: 0x2731ac, Func Offset: 0xec
-	// Line 1893, Address: 0x2731b4, Func Offset: 0xf4
-	// Line 1894, Address: 0x2731bc, Func Offset: 0xfc
-	// Line 1895, Address: 0x2731c8, Func Offset: 0x108
-	// Line 1896, Address: 0x2731d0, Func Offset: 0x110
-	// Line 1897, Address: 0x2731dc, Func Offset: 0x11c
-	// Line 1898, Address: 0x2731e4, Func Offset: 0x124
-	// Line 1902, Address: 0x2731ec, Func Offset: 0x12c
-	// Line 1901, Address: 0x2731f0, Func Offset: 0x130
-	// Line 1902, Address: 0x2731f4, Func Offset: 0x134
-	// Line 1903, Address: 0x2731f8, Func Offset: 0x138
-	// Line 1908, Address: 0x273204, Func Offset: 0x144
-	// Line 1903, Address: 0x273210, Func Offset: 0x150
-	// Line 1904, Address: 0x273218, Func Offset: 0x158
-	// Line 1905, Address: 0x273224, Func Offset: 0x164
-	// Line 1906, Address: 0x273230, Func Offset: 0x170
-	// Line 1907, Address: 0x27323c, Func Offset: 0x17c
-	// Line 1908, Address: 0x273244, Func Offset: 0x184
-	// Line 1909, Address: 0x27324c, Func Offset: 0x18c
-	// Line 1913, Address: 0x273254, Func Offset: 0x194
-	// Line 1914, Address: 0x27325c, Func Offset: 0x19c
-	// Line 1913, Address: 0x273260, Func Offset: 0x1a0
-	// Line 1919, Address: 0x273264, Func Offset: 0x1a4
-	// Line 1913, Address: 0x273268, Func Offset: 0x1a8
-	// Line 1912, Address: 0x27326c, Func Offset: 0x1ac
-	// Line 1913, Address: 0x273270, Func Offset: 0x1b0
-	// Line 1914, Address: 0x273274, Func Offset: 0x1b4
-	// Line 1919, Address: 0x27327c, Func Offset: 0x1bc
-	// Line 1914, Address: 0x273284, Func Offset: 0x1c4
-	// Line 1915, Address: 0x27328c, Func Offset: 0x1cc
-	// Line 1916, Address: 0x273298, Func Offset: 0x1d8
-	// Line 1917, Address: 0x2732a4, Func Offset: 0x1e4
-	// Line 1918, Address: 0x2732b0, Func Offset: 0x1f0
-	// Line 1919, Address: 0x2732b8, Func Offset: 0x1f8
-	// Line 1923, Address: 0x2732c4, Func Offset: 0x204
-	// Line 1924, Address: 0x2732d0, Func Offset: 0x210
-	// Line 1925, Address: 0x2732d4, Func Offset: 0x214
-	// Line 1926, Address: 0x2732d8, Func Offset: 0x218
-	// Line 1928, Address: 0x2732dc, Func Offset: 0x21c
-	// Line 1929, Address: 0x2732f4, Func Offset: 0x234
-	// Func End, Address: 0x273300, Func Offset: 0x240
-}*/
+    NJS_POINT2COL p2c; 
+    NJS_POINT2 p[4]; 
+    NJS_COLOR col[4]; 
+    
+    p2c.p = p;
+    
+    p2c.col = col;
+    
+    p2c.tex = NULL;
+    
+    p2c.num = 4;
+    
+    switch (mode)
+    {                              
+    case 0:
+        p[0].x = fx;
+        p[0].y = fy;
+        
+        p[1].x = 16.0f + p[0].x;
+        p[1].y = p[0].y;
+        
+        p[2].x = 16.0f + p[0].x;
+        p[2].y = p[0].y;
+        
+        p[3].x = 8.0f + p[0].x;
+        p[3].y = p[0].y - 8.0f;
+        break;
+    case 1:
+        p[0].x = fx;
+        p[0].y = 226.0f + fy;
+        
+        p[1].x = 16.0f + p[0].x;
+        p[1].y = p[0].y;
+        
+        p[2].x = 16.0f + p[0].x;
+        p[2].y = p[0].y;
+        
+        p[3].x = 8.0f + p[0].x;
+        p[3].y = 8.0f + p[0].y;
+        break;
+    case 2:
+        p[0].x = fx;
+        p[0].y = fy;
+        
+        p[1].x = 8.0f + p[0].x;
+        p[1].y = 8.0f + p[0].y;
+        
+        p[2].x = 8.0f + p[0].x;
+        p[2].y = 8.0f + p[0].y;
+        
+        p[3].x = p[0].x;
+        p[3].y = 16.0f + p[0].y;
+        break;
+    case 3:
+        p[0].x = fx;
+        p[0].y = 22.0f + fy;
+        
+        p[1].x = 8.0f + p[0].x;
+        p[1].y = 8.0f + p[0].y;
+        
+        p[2].x = 8.0f + p[0].x;
+        p[2].y = 8.0f + p[0].y;
+        
+        p[3].x = p[0].x;
+        p[3].y = 16.0f + p[0].y;
+        break;
+    }
+    
+    col[0].color = 0xFFC0C0C0;
+    col[1].color = 0xFFC0C0C0;
+    col[2].color = 0xFFC0C0C0;
+    col[3].color = 0xFFC0C0C0;
+    
+    njDrawPolygon2D(&p2c, 4, -1.0f, 96);
+}
 
 // 100% matching!
 void DispBackGroundTexture()
