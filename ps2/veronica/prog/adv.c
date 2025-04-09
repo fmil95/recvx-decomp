@@ -1973,10 +1973,10 @@ NJS_TEXLIST AdvTexList[2] =
 };
 char AdvTexPalBank[2][8];
 int CurrentPortId;
-/*unsigned char FontSz[0];
+unsigned char FontSz[126];
 float FontScaleCR;
 float FontScaleX;
-_anon31 AdvVmMsgDef[21];*/
+/*_anon31 AdvVmMsgDef[21];*/
 SYSLOAD_SCREEN* pSysLoad;
 SYSLOAD_SCREEN SysLoad;
 /*float ColorBarSizeY;
@@ -3079,67 +3079,91 @@ float AdvEasyDispMessage(float PosX, float PosY, unsigned int MessageNo)
 	// Func End, Address: 0x2c2650, Func Offset: 0x230
 }*/
 
-// 
-// Start address: 0x2c2650
+// 100% matching! 
 float AutoSaveLoadEasyDispMessage(float PosX, float PosY, unsigned char* ucpMsbTop, unsigned int MessageNo)
-{
-	float SizeX;
-	int SearchFlag;
-	int LoopFlag;
-	float sy;
-	float sx;
-	int y;
-	int x;
-	unsigned short* nmp;
-	unsigned short* mp;
-	unsigned char* dmp;
-	unsigned char* smp;
-	// Line 1935, Address: 0x2c2650, Func Offset: 0
-	// Line 1945, Address: 0x2c2670, Func Offset: 0x20
-	// Line 1935, Address: 0x2c2674, Func Offset: 0x24
-	// Line 1945, Address: 0x2c2678, Func Offset: 0x28
-	// Line 1935, Address: 0x2c2680, Func Offset: 0x30
-	// Line 1945, Address: 0x2c2684, Func Offset: 0x34
-	// Line 1940, Address: 0x2c268c, Func Offset: 0x3c
-	// Line 1945, Address: 0x2c2690, Func Offset: 0x40
-	// Line 1946, Address: 0x2c2694, Func Offset: 0x44
-	// Line 1947, Address: 0x2c26a0, Func Offset: 0x50
-	// Line 1949, Address: 0x2c26b0, Func Offset: 0x60
-	// Line 1950, Address: 0x2c26b4, Func Offset: 0x64
-	// Line 1951, Address: 0x2c26b8, Func Offset: 0x68
-	// Line 1954, Address: 0x2c26bc, Func Offset: 0x6c
-	// Line 1975, Address: 0x2c26d0, Func Offset: 0x80
-	// Line 1966, Address: 0x2c26d8, Func Offset: 0x88
-	// Line 1955, Address: 0x2c26e0, Func Offset: 0x90
-	// Line 1957, Address: 0x2c2710, Func Offset: 0xc0
-	// Line 1959, Address: 0x2c2714, Func Offset: 0xc4
-	// Line 1962, Address: 0x2c271c, Func Offset: 0xcc
-	// Line 1961, Address: 0x2c2720, Func Offset: 0xd0
-	// Line 1964, Address: 0x2c2724, Func Offset: 0xd4
-	// Line 1966, Address: 0x2c272c, Func Offset: 0xdc
-	// Line 1967, Address: 0x2c2738, Func Offset: 0xe8
-	// Line 1975, Address: 0x2c2740, Func Offset: 0xf0
-	// Line 1978, Address: 0x2c278c, Func Offset: 0x13c
-	// Line 1975, Address: 0x2c2790, Func Offset: 0x140
-	// Line 1979, Address: 0x2c2794, Func Offset: 0x144
-	// Line 1981, Address: 0x2c279c, Func Offset: 0x14c
-	// Line 1982, Address: 0x2c27b4, Func Offset: 0x164
-	// Line 1983, Address: 0x2c27d4, Func Offset: 0x184
-	// Line 1984, Address: 0x2c27d8, Func Offset: 0x188
-	// Line 1985, Address: 0x2c27e0, Func Offset: 0x190
-	// Line 1984, Address: 0x2c27f4, Func Offset: 0x1a4
-	// Line 1985, Address: 0x2c2800, Func Offset: 0x1b0
-	// Line 1986, Address: 0x2c2810, Func Offset: 0x1c0
-	// Line 1987, Address: 0x2c2820, Func Offset: 0x1d0
-	// Line 1988, Address: 0x2c2824, Func Offset: 0x1d4
-	// Line 1986, Address: 0x2c2828, Func Offset: 0x1d8
-	// Line 1989, Address: 0x2c282c, Func Offset: 0x1dc
-	// Line 1991, Address: 0x2c2834, Func Offset: 0x1e4
-	// Line 1993, Address: 0x2c283c, Func Offset: 0x1ec
-	// Line 1997, Address: 0x2c2878, Func Offset: 0x228
-	// Func End, Address: 0x2c28a4, Func Offset: 0x254
-	scePrintf("AutoSaveLoadEasyDispMessage - UNIMPLEMENTED!\n");
-}
+{ 
+    unsigned char* dmp;
+    unsigned char* smp;
+    unsigned short* mp;
+    unsigned short* nmp;
+    unsigned int* temp; // not from the debugging symbols
+    int x;
+    int y;
+    int LoopFlag = 1;
+    int SearchFlag;
+    float sx;
+    float SizeX;
+    float sy;
+
+    sy = PosY;
+    
+    smp = (unsigned char*)((int)ucpMsbTop + ((int*)ucpMsbTop)[MessageNo + 1]); 
+    
+    dmp = syMalloc(1024); 
+    
+    memcpy(dmp, smp, 1024); 
+
+    nmp = (unsigned short*)dmp; 
+
+    y = 0; 
+
+    sx = PosX;
+    
+    for ( ; LoopFlag != 0; y++)
+    { 
+        SizeX = 0; 
+        
+        SearchFlag = 1;
+        
+        for (x = 0; SearchFlag != 0; x++) 
+        { 
+            switch (nmp[x]) 
+            { 
+            case 65535:
+                LoopFlag = 0; 
+                SearchFlag = 0;
+                break; 
+            case 65280:
+                nmp[x] = 65535; 
+                
+                temp = (unsigned int*)(&nmp[x] + 1); 
+                
+                SearchFlag = 0; 
+                break; 
+            case 65281:
+                SizeX += 14.0f * FontScaleX; 
+                break; 
+            default: 
+                SizeX += FontScaleX * FontSz[nmp[x]]; 
+                break; 
+            } 
+        } 
+
+        if (PosX < 0) 
+        { 
+            sx = 320.0f - (SizeX / 2.0f); 
+        } 
+        
+        sys->mes_tp = nmp; 
+        
+        bhDispMessage(sx, sy, -1.0f, 2, 0, 0, 0);    
+        
+        sy += 30.0f * FontScaleCR;
+        
+        nmp = (unsigned short*)temp; 
+    } 
+    
+    syFree(dmp); 
+
+    if (PosX < 0) 
+    {
+        return y * 30 * FontScaleCR; 
+    } 
+    else 
+    {
+        return SizeX;
+    }
+} 
 
 // 
 // Start address: 0x2c28b0
