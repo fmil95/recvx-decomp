@@ -2335,19 +2335,17 @@ int mcGetStringEnd(SELECTFILEWINDOW* pWin, unsigned short usSaveEnd)
     return usSaveEnd;
 }
 
-/*// 
-// Start address: 0x272fb0
-void mcDispWindowCurSol(tagSELECTFILEWINDOW* pWin, float fx, float fy)
+// 100% matching!
+void mcDispWindowCurSol(SELECTFILEWINDOW* pWin, float fx, float fy)
 {
-	// Line 1804, Address: 0x272fb0, Func Offset: 0
-	// Func End, Address: 0x272fd8, Func Offset: 0x28
+    DispCursolTexture(fx, fy + (pWin->sCursol * 40.0f), 0xFF808080);
 }
 
 // 
 // Start address: 0x272fe0
 void DispCursolTexture(float pos_x, float pos_y, unsigned int color)
 {
-	_anon37 twt[18];
+	//_anon37 twt[18];
 	// Line 1824, Address: 0x272fe0, Func Offset: 0
 	// Line 1827, Address: 0x272ff4, Func Offset: 0x14
 	// Line 1829, Address: 0x273014, Func Offset: 0x34
@@ -2374,9 +2372,10 @@ void DispCursolTexture(float pos_x, float pos_y, unsigned int color)
 	// Line 1842, Address: 0x273098, Func Offset: 0xb8
 	// Line 1843, Address: 0x2730a0, Func Offset: 0xc0
 	// Func End, Address: 0x2730b8, Func Offset: 0xd8
+	scePrintf("DispCursolTexture - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2730c0
 void DispUpDownCursol(float fx, float fy, unsigned int mode)
 {
