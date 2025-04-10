@@ -172,7 +172,7 @@ int __sg_sd_snd_init__;
 void(*__snd_set_end_func__)(void*);
 void* __snd_end_func_arg__;
 int snd_data_down_load;
-/*unsigned int iop_packet_flag;
+unsigned int iop_packet_flag;
 unsigned int trans_level;
 unsigned int trans_type;
 unsigned int trans_bank_num;
@@ -183,14 +183,14 @@ unsigned int ee_trans_bd_size;
 unsigned int ee_trans_hd_size;
 unsigned int iop_trans_offset;
 unsigned int ee_trans_bd_address;
-unsigned int ee_trans_hd_address;*/
+unsigned int ee_trans_hd_address;
 int __shot_value;
 SND_STATUS get_iop_snddata;
 SDMIDI __midi_handle_top;
 int __midi_value;
-/*unsigned int iop_trans_sq_address;
+unsigned int iop_trans_sq_address;
 unsigned int ee_trans_sq_size;
-unsigned int ee_trans_sq_address;*/
+unsigned int ee_trans_sq_address;
 int CurrentFxLevel;
 int AddFxLevel;
 char FxLevelTimer;
@@ -259,95 +259,126 @@ SDE_ERR sdSysFinish();
 unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned int size, unsigned int mode, unsigned int flag);
 void CpEEWait(int val);*/
 
-// 
-// Start address: 0x2dae10
+// 100% matching! 
 SDE_ERR	sdBankDownload( SDMEMBLK handle, const SDE_DATA_TYPE bank_type, const Sint8 bank_num)
 {
-	int i;
-	//_anon0* chk_snd_work;
-	unsigned int* snd_data;
-	// Line 438, Address: 0x2dae10, Func Offset: 0
-	// Line 445, Address: 0x2dae30, Func Offset: 0x20
-	// Line 453, Address: 0x2dae48, Func Offset: 0x38
-	// Line 472, Address: 0x2dae98, Func Offset: 0x88
-	// Line 475, Address: 0x2daea4, Func Offset: 0x94
-	// Line 472, Address: 0x2daea8, Func Offset: 0x98
-	// Line 475, Address: 0x2daeac, Func Offset: 0x9c
-	// Line 476, Address: 0x2daeb4, Func Offset: 0xa4
-	// Line 477, Address: 0x2daed0, Func Offset: 0xc0
-	// Line 478, Address: 0x2daedc, Func Offset: 0xcc
-	// Line 480, Address: 0x2daee4, Func Offset: 0xd4
-	// Line 481, Address: 0x2daee8, Func Offset: 0xd8
-	// Line 484, Address: 0x2daf04, Func Offset: 0xf4
-	// Line 494, Address: 0x2daf0c, Func Offset: 0xfc
-	// Line 492, Address: 0x2daf14, Func Offset: 0x104
-	// Line 495, Address: 0x2daf18, Func Offset: 0x108
-	// Line 492, Address: 0x2daf20, Func Offset: 0x110
-	// Line 493, Address: 0x2daf28, Func Offset: 0x118
-	// Line 494, Address: 0x2daf34, Func Offset: 0x124
-	// Line 495, Address: 0x2daf3c, Func Offset: 0x12c
-	// Line 496, Address: 0x2daf44, Func Offset: 0x134
-	// Line 497, Address: 0x2daf4c, Func Offset: 0x13c
-	// Line 505, Address: 0x2daf50, Func Offset: 0x140
-	// Line 539, Address: 0x2daf58, Func Offset: 0x148
-	// Line 542, Address: 0x2daf64, Func Offset: 0x154
-	// Line 539, Address: 0x2daf68, Func Offset: 0x158
-	// Line 542, Address: 0x2daf6c, Func Offset: 0x15c
-	// Line 543, Address: 0x2daf74, Func Offset: 0x164
-	// Line 544, Address: 0x2daf90, Func Offset: 0x180
-	// Line 545, Address: 0x2daf9c, Func Offset: 0x18c
-	// Line 547, Address: 0x2dafa4, Func Offset: 0x194
-	// Line 548, Address: 0x2dafa8, Func Offset: 0x198
-	// Line 551, Address: 0x2dafc4, Func Offset: 0x1b4
-	// Line 561, Address: 0x2dafcc, Func Offset: 0x1bc
-	// Line 567, Address: 0x2dafd0, Func Offset: 0x1c0
-	// Line 569, Address: 0x2dafd8, Func Offset: 0x1c8
-	// Line 562, Address: 0x2dafe0, Func Offset: 0x1d0
-	// Line 563, Address: 0x2daff0, Func Offset: 0x1e0
-	// Line 564, Address: 0x2db000, Func Offset: 0x1f0
-	// Line 565, Address: 0x2db008, Func Offset: 0x1f8
-	// Line 566, Address: 0x2db014, Func Offset: 0x204
-	// Line 569, Address: 0x2db020, Func Offset: 0x210
-	// Line 570, Address: 0x2db028, Func Offset: 0x218
-	// Line 567, Address: 0x2db030, Func Offset: 0x220
-	// Line 568, Address: 0x2db038, Func Offset: 0x228
-	// Line 571, Address: 0x2db040, Func Offset: 0x230
-	// Line 572, Address: 0x2db048, Func Offset: 0x238
-	// Line 604, Address: 0x2db04c, Func Offset: 0x23c
-	// Line 634, Address: 0x2db054, Func Offset: 0x244
-	// Line 635, Address: 0x2db058, Func Offset: 0x248
-	// Line 636, Address: 0x2db06c, Func Offset: 0x25c
-	// Line 637, Address: 0x2db078, Func Offset: 0x268
-	// Line 639, Address: 0x2db084, Func Offset: 0x274
-	// Line 637, Address: 0x2db088, Func Offset: 0x278
-	// Line 639, Address: 0x2db08c, Func Offset: 0x27c
-	// Line 640, Address: 0x2db094, Func Offset: 0x284
-	// Line 641, Address: 0x2db0c4, Func Offset: 0x2b4
-	// Line 644, Address: 0x2db0cc, Func Offset: 0x2bc
-	// Line 646, Address: 0x2db0ec, Func Offset: 0x2dc
-	// Line 647, Address: 0x2db0f0, Func Offset: 0x2e0
-	// Line 650, Address: 0x2db10c, Func Offset: 0x2fc
-	// Line 660, Address: 0x2db114, Func Offset: 0x304
-	// Line 665, Address: 0x2db118, Func Offset: 0x308
-	// Line 667, Address: 0x2db120, Func Offset: 0x310
-	// Line 660, Address: 0x2db128, Func Offset: 0x318
-	// Line 661, Address: 0x2db134, Func Offset: 0x324
-	// Line 662, Address: 0x2db144, Func Offset: 0x334
-	// Line 663, Address: 0x2db14c, Func Offset: 0x33c
-	// Line 664, Address: 0x2db158, Func Offset: 0x348
-	// Line 667, Address: 0x2db164, Func Offset: 0x354
-	// Line 668, Address: 0x2db16c, Func Offset: 0x35c
-	// Line 665, Address: 0x2db174, Func Offset: 0x364
-	// Line 666, Address: 0x2db17c, Func Offset: 0x36c
-	// Line 669, Address: 0x2db184, Func Offset: 0x374
-	// Line 670, Address: 0x2db18c, Func Offset: 0x37c
-	// Line 724, Address: 0x2db194, Func Offset: 0x384
-	// Line 727, Address: 0x2db1a0, Func Offset: 0x390
-	// Line 735, Address: 0x2db1ac, Func Offset: 0x39c
-	// Line 738, Address: 0x2db1b4, Func Offset: 0x3a4
-	// Line 740, Address: 0x2db1bc, Func Offset: 0x3ac
-	// Func End, Address: 0x2db1e0, Func Offset: 0x3d0
-	scePrintf("sdBankDownload - UNIMPLEMENTED!\n");
+    SND_WORK* chk_snd_work; 
+    unsigned int* snd_data; 
+    int i;                  
+    unsigned int *temp; // not from the debugging symbols
+
+    if (__sg_sd_snd_init__ != 0)
+    {
+        switch (bank_type) 
+        {                          
+        case SDE_DATA_TYPE_MIDI_SEQ_BANK:
+            chk_snd_work = (SND_WORK*)*__midi_handle_top;
+            
+            for (i = 0; i < __midi_value; i++, chk_snd_work++)
+            {
+                if (((get_iop_snddata.midi_info & (1 << i))) && (chk_snd_work->bank_num == bank_num)) 
+                {
+                    SdrBgmStop(chk_snd_work->port_num);
+                }
+            }
+            
+            SdrSendReq(0);
+            
+            ee_trans_sq_address = handle->m_Member[1];
+            ee_trans_sq_size = handle->m_Member[2];
+            
+            iop_trans_sq_address = iop_data_buff;
+            
+            trans_bank_num = bank_num;
+            trans_type = bank_type;
+            
+            trans_level = 0;
+            break; 
+        case SDE_DATA_TYPE_MIDI_PRG_BANK:
+            chk_snd_work = (SND_WORK*)*__midi_handle_top;
+            
+            for (i = 0; i < __midi_value; i++, chk_snd_work++)
+            {
+                if (((get_iop_snddata.midi_info & (1 << i))) && (chk_snd_work->bank_num == bank_num)) 
+                {
+                    SdrBgmStop(chk_snd_work->port_num);
+                }
+            }
+            
+            SdrSendReq(0);
+            
+            snd_data = (void*)handle->m_Member[1];
+            
+            ee_trans_hd_address = (unsigned int)snd_data + ((unsigned int*)snd_data)[0];
+            ee_trans_bd_address = (unsigned int)snd_data + ((unsigned int*)snd_data)[2];
+            
+            iop_trans_offset = 0;
+            
+            ee_trans_hd_size = ((unsigned int*)snd_data)[1];
+            ee_trans_bd_size = ((unsigned int*)snd_data)[3];
+            
+            trans_bank_num = bank_num;
+            trans_type = bank_type;
+            
+            iop_trans_hd_address = iop_data_buff;
+            iop_trans_bd_address = iop_data_buff;
+            
+            trans_level = 0;
+            
+            iop_packet_flag = 0;
+            break;
+        case SDE_DATA_TYPE_SHOT_BANK:
+            snd_data = (void*)handle->m_Member[1];
+            
+            temp = (unsigned int*)((char*)snd_data + ((unsigned int*)snd_data)[0]);
+            
+            if ((!((unsigned int)temp & 0x3)) && (*temp != 0)) 
+            {
+                chk_snd_work = (SND_WORK*)*__midi_handle_top;
+                
+                for (i = 0; i < __shot_value; i++, chk_snd_work++) 
+                {
+                    if ((((1 << chk_snd_work->channel_num) & get_iop_snddata.se_info[chk_snd_work->port_num])) && (bank_num == chk_snd_work->port_num))
+                    {
+                        SdrSeCancel((char)chk_snd_work->channel_num | ((chk_snd_work->port_num << 16) | (chk_snd_work->bank_num << 8)));
+                    }
+                }
+                
+                SdrSendReq(0);
+                
+                ee_trans_hd_address = (int)snd_data + ((unsigned int*)snd_data)[0];
+                ee_trans_bd_address = (int)snd_data + ((unsigned int*)snd_data)[2];
+                
+                iop_trans_offset = 0;
+                
+                ee_trans_hd_size = ((unsigned int*)snd_data)[1];
+                ee_trans_bd_size = ((unsigned int*)snd_data)[3];
+                
+                trans_bank_num = bank_num;
+                trans_type = bank_type;
+                
+                iop_trans_hd_address = iop_data_buff;
+                iop_trans_bd_address = iop_data_buff;
+                
+                trans_level = 0;
+                
+                iop_packet_flag = 0;
+            }
+            
+            break;
+        case SDE_DATA_TYPE_FX_OUT_BANK:
+        case SDE_DATA_TYPE_FX_PRG_BANK:
+            break;
+        }
+        
+        SdrSendReq(0);
+        
+        snd_data_down_load = 1;
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching! 

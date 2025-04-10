@@ -383,7 +383,7 @@ int SdrSeReq(int req, char vol, char pan, short pitch)
 	scePrintf("SdrSeReq - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2e9ec0
 int SdrSeCancel(int req)
 {
@@ -396,7 +396,8 @@ int SdrSeCancel(int req)
 	// Line 3522, Address: 0x2e9f44, Func Offset: 0x84
 	// Line 3523, Address: 0x2e9f48, Func Offset: 0x88
 	// Func End, Address: 0x2e9f54, Func Offset: 0x94
-}*/
+	scePrintf("SdrSeCancel - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2e9f60
@@ -468,7 +469,7 @@ int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigne
 	scePrintf("SdrBgmReq - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2ea2b0
 int SdrBgmStop(unsigned char port)
 {
@@ -481,7 +482,8 @@ int SdrBgmStop(unsigned char port)
 	// Line 3833, Address: 0x2ea33c, Func Offset: 0x8c
 	// Line 3834, Address: 0x2ea340, Func Offset: 0x90
 	// Func End, Address: 0x2ea34c, Func Offset: 0x9c
-}*/
+	scePrintf("SdrBgmStop - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2ea350
