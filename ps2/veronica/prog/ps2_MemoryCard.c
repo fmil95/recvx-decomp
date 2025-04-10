@@ -810,19 +810,18 @@ int CreateMemoryCardSubDirectory(tagMEMORYCARDSTATE* pCard)
 	// Func End, Address: 0x274644, Func Offset: 0x54
 }*/
 
-// 
-// Start address: 0x274650
-int CheckMemoryCardExistSubDirectory(MEMORYCARDSTATE* pCard)
-{
-	// Line 2106, Address: 0x274650, Func Offset: 0
-	// Line 2108, Address: 0x27465c, Func Offset: 0xc
-	// Line 2111, Address: 0x274668, Func Offset: 0x18
-	// Line 2115, Address: 0x274670, Func Offset: 0x20
-	// Line 2117, Address: 0x274680, Func Offset: 0x30
-	// Line 2118, Address: 0x274690, Func Offset: 0x40
-	// Func End, Address: 0x2746a0, Func Offset: 0x50
-	scePrintf("CheckMemoryCardExistSubDirectory - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+int CheckMemoryCardExistSubDirectory(MEMORYCARDSTATE* pCard) 
+{ 
+    if (pCard->ulState != 0)  
+    {
+        return 0; 
+    }
+    
+    strcpy(pCard->cCurrentDir, "/BASLUS-20184");
+    
+    return ChangeMemoryCardDir(pCard, pCard->cCurrentDir, NULL); 
+} 
 
 /*// 
 // Start address: 0x2746a0
