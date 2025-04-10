@@ -678,9 +678,9 @@ int(*mpegError)(_anon0*, _anon1*, void*);
 unsigned char* mpegWork;
 int frd;
 _anon41 mdSize;
-int movie_draw;
+int movie_draw;*/
 char sound_flag;
-char ADX_STREAM_BUFFER[0];
+/*char ADX_STREAM_BUFFER[0];
 unsigned char* Ps2_MOVIE;
 <unknown fundamental type (0xa510)> test_tag[1400];
 _anon24 db;
@@ -1167,43 +1167,60 @@ int sendToIOP2area(int pd0, int d0, int pd1, int d1, unsigned char* ps0, int s0,
 	// Func End, Address: 0x2ec5cc, Func Offset: 0x15c
 }*/
 
-// 
-// Start address: 0x2ec5d0
-int sendToIOP(int dst, unsigned char* src, int size)
+// 100% matching! 
+static int sendToIOP(int dst, u_char *src, int size)
 {
-	unsigned int* copy;
-	unsigned int* data;
-	int j;
-	int i;
-	unsigned int did;
-	//_anon34 transData;
-	// Line 915, Address: 0x2ec5d0, Func Offset: 0
-	// Line 919, Address: 0x2ec5ec, Func Offset: 0x1c
-	// Line 920, Address: 0x2ec5f4, Func Offset: 0x24
-	// Line 926, Address: 0x2ec5fc, Func Offset: 0x2c
-	// Line 932, Address: 0x2ec60c, Func Offset: 0x3c
-	// Line 935, Address: 0x2ec614, Func Offset: 0x44
-	// Line 934, Address: 0x2ec618, Func Offset: 0x48
-	// Line 936, Address: 0x2ec61c, Func Offset: 0x4c
-	// Line 937, Address: 0x2ec628, Func Offset: 0x58
-	// Line 938, Address: 0x2ec630, Func Offset: 0x60
-	// Line 939, Address: 0x2ec634, Func Offset: 0x64
-	// Line 938, Address: 0x2ec63c, Func Offset: 0x6c
-	// Line 939, Address: 0x2ec644, Func Offset: 0x74
-	// Line 940, Address: 0x2ec64c, Func Offset: 0x7c
-	// Line 941, Address: 0x2ec650, Func Offset: 0x80
-	// Line 942, Address: 0x2ec654, Func Offset: 0x84
-	// Line 964, Address: 0x2ec664, Func Offset: 0x94
-	// Line 968, Address: 0x2ec668, Func Offset: 0x98
-	// Line 969, Address: 0x2ec66c, Func Offset: 0x9c
-	// Line 970, Address: 0x2ec670, Func Offset: 0xa0
-	// Line 972, Address: 0x2ec674, Func Offset: 0xa4
-	// Line 974, Address: 0x2ec680, Func Offset: 0xb0
-	// Line 977, Address: 0x2ec690, Func Offset: 0xc0
-	// Line 978, Address: 0x2ec6ac, Func Offset: 0xdc
-	// Line 979, Address: 0x2ec6b0, Func Offset: 0xe0
-	// Func End, Address: 0x2ec6c8, Func Offset: 0xf8
-	scePrintf("sendToIOP - UNIMPLEMENTED!\n");
+    sceSifDmaData transData; 
+    unsigned int did; 
+    int i; 
+    int j; 
+    unsigned int* data; 
+    unsigned int* copy; 
+    
+    did = (unsigned int)src;
+    
+    if (size <= 0) 
+    {
+        return 0;
+    }
+    
+    if (sound_flag != 0) 
+    {
+        FlushCache(0);
+        
+        copy = (unsigned int*)did + 128;
+        
+        data = (unsigned int*)did;
+        
+        for (i = 0; i < (size >> 10); i++) 
+        {
+            for (j = 0; j < 128; j++) 
+            {
+                *copy = *data;
+                
+                data++;
+                copy++;
+            }
+            
+            data += 128;
+            copy += 128;
+        }
+    }
+    
+    transData.data = (unsigned int)src;
+    transData.addr = (unsigned int)dst;
+    
+    transData.size = size;
+    
+    transData.mode = 0; 
+    
+    FlushCache(0);
+
+    did = sceSifSetDma(&transData, 1);
+
+    while (sceSifDmaStat(did) >= 0);
+
+    return size;
 }
 
 /*// 
