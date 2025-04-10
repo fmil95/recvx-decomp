@@ -963,10 +963,11 @@ int CheckMcSelectPortInfoState(unsigned int ulPort)
             }
             
             lRetry--; 
-            continue; 
         }
-        
-        lRetry--; 
+        else 
+        {
+            lRetry--; 
+        }
     } 
     
     return 0; 
@@ -1034,10 +1035,11 @@ int ChangeMemoryCardDir(MEMORYCARDSTATE* pCard, char* cpPath, char* cpbuff)
             }
     
             lRetry--;     
-            continue;     
         }
-        
-        lRetry--;    
+        else 
+        {
+            lRetry--; 
+        }   
     }
     
     return -1;     
