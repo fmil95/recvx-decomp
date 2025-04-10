@@ -1014,31 +1014,35 @@ int GetMemoryCardDir(tagMEMORYCARDSTATE* pCard, char* cpPath, int lFlag, int lMa
 	// Line 2639, Address: 0x274c20, Func Offset: 0xb0
 	// Line 2640, Address: 0x274c24, Func Offset: 0xb4
 	// Func End, Address: 0x274c48, Func Offset: 0xd8
-}
+}*/
 
-// 
-// Start address: 0x274c50
-int ChangeMemoryCardDir(tagMEMORYCARDSTATE* pCard, char* cpPath, char* cpbuff)
-{
-	int lRetry;
-	int lResult;
-	int lCmd;
-	// Line 2661, Address: 0x274c50, Func Offset: 0
-	// Line 2664, Address: 0x274c68, Func Offset: 0x18
-	// Line 2667, Address: 0x274c78, Func Offset: 0x28
-	// Line 2669, Address: 0x274c94, Func Offset: 0x44
-	// Line 2673, Address: 0x274cb0, Func Offset: 0x60
-	// Line 2682, Address: 0x274cc4, Func Offset: 0x74
-	// Line 2684, Address: 0x274cc8, Func Offset: 0x78
-	// Line 2687, Address: 0x274cd0, Func Offset: 0x80
-	// Line 2688, Address: 0x274cd4, Func Offset: 0x84
-	// Line 2689, Address: 0x274cd8, Func Offset: 0x88
-	// Line 2691, Address: 0x274ce0, Func Offset: 0x90
-	// Line 2692, Address: 0x274ce4, Func Offset: 0x94
-	// Func End, Address: 0x274d00, Func Offset: 0xb0
-}
+// 100% matching!
+int ChangeMemoryCardDir(MEMORYCARDSTATE* pCard, char* cpPath, char* cpbuff)
+{   
+    int lCmd;
+    int lResult;
+    int lRetry;  
 
-// 
+    for (lRetry = 5; lRetry != 0; ) 
+    { 
+        if (sceMcChdir(pCard->lCurrentPort, 0, cpPath, cpbuff) == 0)    
+        {
+            if (sceMcSync(0, &lCmd, &lResult) == 1)
+            {    
+                return (lResult == 0) ? 1 : -1;   
+            }
+    
+            lRetry--;     
+            continue;     
+        }
+        
+        lRetry--;    
+    }
+    
+    return -1;     
+} 
+
+/*// 
 // Start address: 0x274d00
 int MakeMemoryCardDir(tagMEMORYCARDSTATE* pCard)
 {
