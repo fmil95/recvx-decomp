@@ -475,29 +475,34 @@ int ExecuteMemoryCardWrite(MEMORYCARDSTATE* pCard)
 	scePrintf("ExecuteMemoryCardWrite - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x273ce0
+// 100% matching!
 int ExecuteMemoryCardFormat(MEMORYCARDSTATE* pCard)
-{
-	int lResult;
-	// Line 660, Address: 0x273ce0, Func Offset: 0
-	// Line 664, Address: 0x273cec, Func Offset: 0xc
-	// Line 666, Address: 0x273cf4, Func Offset: 0x14
-	// Line 671, Address: 0x273d00, Func Offset: 0x20
-	// Line 669, Address: 0x273d04, Func Offset: 0x24
-	// Line 668, Address: 0x273d08, Func Offset: 0x28
-	// Line 669, Address: 0x273d0c, Func Offset: 0x2c
-	// Line 670, Address: 0x273d10, Func Offset: 0x30
-	// Line 671, Address: 0x273d14, Func Offset: 0x34
-	// Line 673, Address: 0x273d1c, Func Offset: 0x3c
-	// Line 680, Address: 0x273d28, Func Offset: 0x48
-	// Line 676, Address: 0x273d2c, Func Offset: 0x4c
-	// Line 680, Address: 0x273d34, Func Offset: 0x54
-	// Line 684, Address: 0x273d3c, Func Offset: 0x5c
-	// Line 685, Address: 0x273d40, Func Offset: 0x60
-	// Func End, Address: 0x273d50, Func Offset: 0x70
-	scePrintf("ExecuteMemoryCardFormat - UNIMPLEMENTED!\n");
-}
+{ 
+    int lResult;
+
+    lResult = MemoryCardFormat(pCard); 
+
+    if (lResult == -1)
+    { 
+        pCard->ulState = 0;
+        
+        pCard->ulError = 4; 
+        
+        pCard->cRetryCount = 5;
+        
+        return -1; 
+    } 
+    else if (lResult == 1) 
+    { 
+        pCard->ulState = 12; 
+        
+        pCard->ulError = 0; 
+
+        return 1; 
+    }   
+    
+    return 0; 
+} 
 
 // 
 // Start address: 0x273d50
@@ -1256,9 +1261,9 @@ int MakeMemoryCardDir(MEMORYCARDSTATE* pCard)
 	scePrintf("MakeMemoryCardDir - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x274d90
-int MemoryCardFormat(tagMEMORYCARDSTATE* pCard)
+int MemoryCardFormat(MEMORYCARDSTATE* pCard)
 {
 	int lSyncResult;
 	int lResult;
@@ -1283,9 +1288,10 @@ int MemoryCardFormat(tagMEMORYCARDSTATE* pCard)
 	// Line 2809, Address: 0x274e68, Func Offset: 0xd8
 	// Line 2810, Address: 0x274e6c, Func Offset: 0xdc
 	// Func End, Address: 0x274e7c, Func Offset: 0xec
+	scePrintf("MemoryCardFormat - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x274e80
 int MemoryCardUnFormat()
 {
