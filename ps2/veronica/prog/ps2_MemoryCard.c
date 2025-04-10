@@ -958,14 +958,7 @@ int CheckMcSelectPortInfoState(unsigned int ulPort)
         { 
             if (sceMcSync(0, &lCmd, &lResult) == 1) 
             {  
-                if (lPortResult == 2)
-                {
-                    return 1;  
-                }
-                else
-                {
-                    return 0;
-                }
+                return (lPortResult == 2) ? 1 : 0;  
             }
             
             lRetry--; 
