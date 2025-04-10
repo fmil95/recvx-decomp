@@ -816,22 +816,25 @@ int CheckMemoryCardFormatStatus(tagMEMORYCARDSTATE* pCard)
 	// Line 1931, Address: 0x2745c4, Func Offset: 0x34
 	// Line 1939, Address: 0x2745dc, Func Offset: 0x4c
 	// Func End, Address: 0x2745e8, Func Offset: 0x58
-}
-
-// 
-// Start address: 0x2745f0
-int CreateMemoryCardSubDirectory(tagMEMORYCARDSTATE* pCard)
-{
-	// Line 1956, Address: 0x2745f0, Func Offset: 0
-	// Line 1959, Address: 0x2745fc, Func Offset: 0xc
-	// Line 1962, Address: 0x274608, Func Offset: 0x18
-	// Line 1965, Address: 0x274610, Func Offset: 0x20
-	// Line 1967, Address: 0x274620, Func Offset: 0x30
-	// Line 1971, Address: 0x274628, Func Offset: 0x38
-	// Line 1972, Address: 0x274630, Func Offset: 0x40
-	// Line 1976, Address: 0x274634, Func Offset: 0x44
-	// Func End, Address: 0x274644, Func Offset: 0x54
 }*/
+
+// 100% matching!
+int CreateMemoryCardSubDirectory(MEMORYCARDSTATE* pCard)
+{ 
+    if (pCard->ulState != 0) 
+    { 
+        return 0;
+    }
+    
+    if (MakeMemoryCardDir(pCard) == 0) 
+    {
+        return -1; 
+    }
+    
+    pCard->cRetryCount = 5;
+    
+    return 1; 
+} 
 
 // 100% matching!
 int CheckMemoryCardExistSubDirectory(MEMORYCARDSTATE* pCard) 
@@ -1094,9 +1097,9 @@ int ChangeMemoryCardDir(MEMORYCARDSTATE* pCard, char* cpPath, char* cpbuff)
     return -1;     
 } 
 
-/*// 
+// 
 // Start address: 0x274d00
-int MakeMemoryCardDir(tagMEMORYCARDSTATE* pCard)
+int MakeMemoryCardDir(MEMORYCARDSTATE* pCard)
 {
 	int lRetry;
 	int lResult;
@@ -1114,9 +1117,10 @@ int MakeMemoryCardDir(tagMEMORYCARDSTATE* pCard)
 	// Line 2738, Address: 0x274d78, Func Offset: 0x78
 	// Line 2739, Address: 0x274d7c, Func Offset: 0x7c
 	// Func End, Address: 0x274d90, Func Offset: 0x90
+	scePrintf("MakeMemoryCardDir - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x274d90
 int MemoryCardFormat(tagMEMORYCARDSTATE* pCard)
 {
