@@ -846,20 +846,30 @@ int CheckMemoryCardExistSubDirectory(MEMORYCARDSTATE* pCard)
     return ChangeMemoryCardDir(pCard, pCard->cCurrentDir, NULL); 
 } 
 
-/*// 
-// Start address: 0x2746a0
-int CheckMemoryCardExistFile(tagMEMORYCARDSTATE* pCard)
-{
-	_anon1 CardInfo;
-	// Line 2136, Address: 0x2746a0, Func Offset: 0
-	// Line 2140, Address: 0x2746b0, Func Offset: 0x10
-	// Line 2143, Address: 0x2746d0, Func Offset: 0x30
-	// Line 2148, Address: 0x2746d8, Func Offset: 0x38
-	// Line 2152, Address: 0x2746f0, Func Offset: 0x50
-	// Line 2162, Address: 0x27470c, Func Offset: 0x6c
-	// Line 2166, Address: 0x274710, Func Offset: 0x70
-	// Func End, Address: 0x274720, Func Offset: 0x80
-}*/
+// 99.06% matching
+int CheckMemoryCardExistFile(MEMORYCARDSTATE* pCard) 
+{ 
+    static sceMcTblGetDir CardInfo; 
+    
+    if (GetMemoryCardDir(pCard, pCard->cCurrentDir, 0, 1, &CardInfo) < 0)
+    { 
+        return -1; 
+    }
+    
+    if (strcmp(&CardInfo.EntryName, pCard->cOpenFileName) == 0)  
+    {
+        if ((CardInfo.AttrFile & 0x80)) 
+        {
+            return 1; 
+        }
+        else 
+        {
+            return -1;
+        }
+    }
+    
+    return -1; 
+} 
 
 // 
 // Start address: 0x274720
@@ -1023,11 +1033,11 @@ int CheckMemoryCardInfoUnformat(tagMEMORYCARDSTATE* pCard)
 	// Line 2582, Address: 0x274b58, Func Offset: 0xa8
 	// Line 2583, Address: 0x274b5c, Func Offset: 0xac
 	// Func End, Address: 0x274b70, Func Offset: 0xc0
-}
+}*/
 
 // 
 // Start address: 0x274b70
-int GetMemoryCardDir(tagMEMORYCARDSTATE* pCard, char* cpPath, int lFlag, int lMaxent, _anon1* pbuff)
+int GetMemoryCardDir(MEMORYCARDSTATE* pCard, char* cpPath, int lFlag, int lMaxent, sceMcTblGetDir* pbuff)
 {
 	int lResult;
 	int lRetry;
@@ -1044,7 +1054,8 @@ int GetMemoryCardDir(tagMEMORYCARDSTATE* pCard, char* cpPath, int lFlag, int lMa
 	// Line 2639, Address: 0x274c20, Func Offset: 0xb0
 	// Line 2640, Address: 0x274c24, Func Offset: 0xb4
 	// Func End, Address: 0x274c48, Func Offset: 0xd8
-}*/
+	scePrintf("GetMemoryCardDir - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int ChangeMemoryCardDir(MEMORYCARDSTATE* pCard, char* cpPath, char* cpbuff)
