@@ -534,39 +534,60 @@ int ExecuteMemoryCardUnFormat(MEMORYCARDSTATE* pCard)
 	scePrintf("ExecuteMemoryCardUnFormat - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x273e50
+// 100% matching!
 int ExecuteMemoryCardDelete(MEMORYCARDSTATE* pCard)
 {
-	int lResult;
-	int lCmd;
-	// Line 775, Address: 0x273e50, Func Offset: 0
-	// Line 778, Address: 0x273e5c, Func Offset: 0xc
-	// Line 781, Address: 0x273e7c, Func Offset: 0x2c
-	// Line 782, Address: 0x273e88, Func Offset: 0x38
-	// Line 785, Address: 0x273e94, Func Offset: 0x44
-	// Line 787, Address: 0x273eb0, Func Offset: 0x60
-	// Line 792, Address: 0x273eb8, Func Offset: 0x68
-	// Line 791, Address: 0x273ebc, Func Offset: 0x6c
-	// Line 792, Address: 0x273ec0, Func Offset: 0x70
-	// Line 793, Address: 0x273ec4, Func Offset: 0x74
-	// Line 794, Address: 0x273ecc, Func Offset: 0x7c
-	// Line 799, Address: 0x273ed4, Func Offset: 0x84
-	// Line 800, Address: 0x273edc, Func Offset: 0x8c
-	// Line 802, Address: 0x273ee0, Func Offset: 0x90
-	// Line 805, Address: 0x273ee8, Func Offset: 0x98
-	// Line 807, Address: 0x273f04, Func Offset: 0xb4
-	// Line 812, Address: 0x273f10, Func Offset: 0xc0
-	// Line 810, Address: 0x273f14, Func Offset: 0xc4
-	// Line 812, Address: 0x273f18, Func Offset: 0xc8
-	// Line 813, Address: 0x273f1c, Func Offset: 0xcc
-	// Line 820, Address: 0x273f24, Func Offset: 0xd4
-	// Line 818, Address: 0x273f28, Func Offset: 0xd8
-	// Line 820, Address: 0x273f30, Func Offset: 0xe0
-	// Line 825, Address: 0x273f38, Func Offset: 0xe8
-	// Line 826, Address: 0x273f3c, Func Offset: 0xec
-	// Func End, Address: 0x273f4c, Func Offset: 0xfc
-	scePrintf("ExecuteMemoryCardDelete - UNIMPLEMENTED!\n");
+    int lCmd;
+    int lResult;
+
+    switch (pCard->ulMcSubState)
+    {
+    case 0:
+        lResult = DeleteMemoryCard(pCard);
+
+        if (lResult != 0) 
+        {
+            if (--pCard->cRetryCount != 0)
+            {
+                return 0;
+            }
+            
+            pCard->ulState = 0;
+            
+            pCard->ulError = 7;
+            
+            pCard->cRetryCount = 5;
+            
+            return -1; 
+        } 
+        
+        pCard->ulMcSubState = 1;
+        
+        pCard->cRetryCount = 5;
+        break;
+    case 1:
+        if (sceMcSync(1, &lCmd, &lResult) == 1)
+        {
+            if (lResult < 0) 
+            {
+                pCard->ulState = 0;
+                
+                pCard->ulError = 7;
+                
+                return -1; 
+            }
+            else 
+            {
+                pCard->ulState = 15; 
+            
+                pCard->ulError = 0;
+                
+                return 1; 
+            }
+        }
+    }
+    
+    return 0;
 }
 
 /*// 
