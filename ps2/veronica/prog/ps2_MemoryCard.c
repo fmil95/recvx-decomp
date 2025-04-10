@@ -167,35 +167,44 @@ MEMORYCARDSTATE* CreateMemoryCard(MEMORYCARDSTATE* pCard)
     return pCard; 
 } 
 
-// 
-// Start address: 0x273630
+// 100% matching!
 int ExecuteMemoryCard(MEMORYCARDSTATE* pCard)
-{
-	// Line 140, Address: 0x273630, Func Offset: 0
-	// Line 142, Address: 0x273638, Func Offset: 0x8
-	// Line 144, Address: 0x273644, Func Offset: 0x14
-	// Line 147, Address: 0x27364c, Func Offset: 0x1c
-	// Line 150, Address: 0x2736a8, Func Offset: 0x78
-	// Line 153, Address: 0x2736b8, Func Offset: 0x88
-	// Line 154, Address: 0x2736c0, Func Offset: 0x90
-	// Line 156, Address: 0x2736c8, Func Offset: 0x98
-	// Line 157, Address: 0x2736d0, Func Offset: 0xa0
-	// Line 159, Address: 0x2736d8, Func Offset: 0xa8
-	// Line 160, Address: 0x2736e0, Func Offset: 0xb0
-	// Line 162, Address: 0x2736e8, Func Offset: 0xb8
-	// Line 163, Address: 0x2736f0, Func Offset: 0xc0
-	// Line 170, Address: 0x2736f8, Func Offset: 0xc8
-	// Line 171, Address: 0x273700, Func Offset: 0xd0
-	// Line 174, Address: 0x273708, Func Offset: 0xd8
-	// Line 178, Address: 0x273710, Func Offset: 0xe0
-	// Line 179, Address: 0x273714, Func Offset: 0xe4
-	// Func End, Address: 0x273720, Func Offset: 0xf0
-	scePrintf("ExecuteMemoryCard - UNIMPLEMENTED!\n");
-}
+{ 
+    if (pCard->ulError != 0) 
+    {
+        return -1; 
+    }
+    
+    switch (pCard->ulState) 
+    {
+    case 0:
+        return ExecuteMemoryCardStandby(pCard);
+    case 1:
+        ExecuteMemoryCardRead(pCard); 
+        break; 
+    case 2:
+        ExecuteMemoryCardWrite(pCard);
+        break;
+    case 4:
+        ExecuteMemoryCardFormat(pCard); 
+        break; 
+    case 5:
+        ExecuteMemoryCardUnFormat(pCard); 
+        break; 
+    case 7:
+        ExecuteMemoryCardDelete(pCard);  
+        break; 
+    case 17:
+        ExecuteAnalyzeMemoryCardAll(pCard);  
+        break;
+    }
+    
+    return 104; 
+} 
 
-/*// 
+// 
 // Start address: 0x273720
-int ExecuteMemoryCardStandby(tagMEMORYCARDSTATE* pCard)
+int ExecuteMemoryCardStandby(MEMORYCARDSTATE* pCard)
 {
 	int lResult;
 	int lCmd;
@@ -206,7 +215,8 @@ int ExecuteMemoryCardStandby(tagMEMORYCARDSTATE* pCard)
 	// Line 209, Address: 0x273764, Func Offset: 0x44
 	// Line 210, Address: 0x273768, Func Offset: 0x48
 	// Func End, Address: 0x273778, Func Offset: 0x58
-}*/
+	scePrintf("ExecuteMemoryCardStandby - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int AnalyzeMemoryCardAll(MEMORYCARDSTATE* pCard)
@@ -380,9 +390,9 @@ void SetCheckMcFlag(MEMORYCARDSTATE* pCard, unsigned int ulFlag)
 	scePrintf("SetCheckMcFlag - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x273a70
-int ExecuteMemoryCardRead(tagMEMORYCARDSTATE* pCard)
+int ExecuteMemoryCardRead(MEMORYCARDSTATE* pCard)
 {
 	int lResult;
 	// Line 474, Address: 0x273a70, Func Offset: 0
@@ -414,11 +424,12 @@ int ExecuteMemoryCardRead(tagMEMORYCARDSTATE* pCard)
 	// Line 538, Address: 0x273b60, Func Offset: 0xf0
 	// Line 539, Address: 0x273b64, Func Offset: 0xf4
 	// Func End, Address: 0x273b74, Func Offset: 0x104
+	scePrintf("ExecuteMemoryCardRead - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x273b80
-int ExecuteMemoryCardWrite(tagMEMORYCARDSTATE* pCard)
+int ExecuteMemoryCardWrite(MEMORYCARDSTATE* pCard)
 {
 	int lResult;
 	// Line 558, Address: 0x273b80, Func Offset: 0
@@ -461,11 +472,12 @@ int ExecuteMemoryCardWrite(tagMEMORYCARDSTATE* pCard)
 	// Line 640, Address: 0x273cc8, Func Offset: 0x148
 	// Line 641, Address: 0x273ccc, Func Offset: 0x14c
 	// Func End, Address: 0x273cdc, Func Offset: 0x15c
+	scePrintf("ExecuteMemoryCardWrite - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x273ce0
-int ExecuteMemoryCardFormat(tagMEMORYCARDSTATE* pCard)
+int ExecuteMemoryCardFormat(MEMORYCARDSTATE* pCard)
 {
 	int lResult;
 	// Line 660, Address: 0x273ce0, Func Offset: 0
@@ -484,11 +496,12 @@ int ExecuteMemoryCardFormat(tagMEMORYCARDSTATE* pCard)
 	// Line 684, Address: 0x273d3c, Func Offset: 0x5c
 	// Line 685, Address: 0x273d40, Func Offset: 0x60
 	// Func End, Address: 0x273d50, Func Offset: 0x70
+	scePrintf("ExecuteMemoryCardFormat - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x273d50
-int ExecuteMemoryCardUnFormat(tagMEMORYCARDSTATE* pCard)
+int ExecuteMemoryCardUnFormat(MEMORYCARDSTATE* pCard)
 {
 	int lResult;
 	int lCmd;
@@ -518,11 +531,12 @@ int ExecuteMemoryCardUnFormat(tagMEMORYCARDSTATE* pCard)
 	// Line 755, Address: 0x273e34, Func Offset: 0xe4
 	// Line 756, Address: 0x273e38, Func Offset: 0xe8
 	// Func End, Address: 0x273e48, Func Offset: 0xf8
+	scePrintf("ExecuteMemoryCardUnFormat - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x273e50
-int ExecuteMemoryCardDelete(tagMEMORYCARDSTATE* pCard)
+int ExecuteMemoryCardDelete(MEMORYCARDSTATE* pCard)
 {
 	int lResult;
 	int lCmd;
@@ -552,9 +566,10 @@ int ExecuteMemoryCardDelete(tagMEMORYCARDSTATE* pCard)
 	// Line 825, Address: 0x273f38, Func Offset: 0xe8
 	// Line 826, Address: 0x273f3c, Func Offset: 0xec
 	// Func End, Address: 0x273f4c, Func Offset: 0xfc
+	scePrintf("ExecuteMemoryCardDelete - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x273f50
 unsigned int GetMemoryCardError(tagMEMORYCARDSTATE* pCard)
 {
