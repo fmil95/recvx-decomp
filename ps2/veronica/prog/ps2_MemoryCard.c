@@ -390,42 +390,70 @@ void SetCheckMcFlag(MEMORYCARDSTATE* pCard, unsigned int ulFlag)
 	scePrintf("SetCheckMcFlag - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x273a70
-int ExecuteMemoryCardRead(MEMORYCARDSTATE* pCard)
-{
-	int lResult;
-	// Line 474, Address: 0x273a70, Func Offset: 0
-	// Line 477, Address: 0x273a7c, Func Offset: 0xc
-	// Line 481, Address: 0x273aa8, Func Offset: 0x38
-	// Line 483, Address: 0x273ab0, Func Offset: 0x40
-	// Line 490, Address: 0x273abc, Func Offset: 0x4c
-	// Line 488, Address: 0x273ac0, Func Offset: 0x50
-	// Line 486, Address: 0x273ac4, Func Offset: 0x54
-	// Line 490, Address: 0x273ac8, Func Offset: 0x58
-	// Line 492, Address: 0x273ad0, Func Offset: 0x60
-	// Line 497, Address: 0x273adc, Func Offset: 0x6c
-	// Line 500, Address: 0x273ae4, Func Offset: 0x74
-	// Line 502, Address: 0x273aec, Func Offset: 0x7c
-	// Line 505, Address: 0x273af8, Func Offset: 0x88
-	// Line 506, Address: 0x273afc, Func Offset: 0x8c
-	// Line 507, Address: 0x273b04, Func Offset: 0x94
-	// Line 510, Address: 0x273b10, Func Offset: 0xa0
-	// Line 515, Address: 0x273b18, Func Offset: 0xa8
-	// Line 517, Address: 0x273b20, Func Offset: 0xb0
-	// Line 524, Address: 0x273b2c, Func Offset: 0xbc
-	// Line 522, Address: 0x273b30, Func Offset: 0xc0
-	// Line 520, Address: 0x273b34, Func Offset: 0xc4
-	// Line 524, Address: 0x273b38, Func Offset: 0xc8
-	// Line 526, Address: 0x273b40, Func Offset: 0xd0
-	// Line 533, Address: 0x273b4c, Func Offset: 0xdc
-	// Line 529, Address: 0x273b50, Func Offset: 0xe0
-	// Line 533, Address: 0x273b58, Func Offset: 0xe8
-	// Line 538, Address: 0x273b60, Func Offset: 0xf0
-	// Line 539, Address: 0x273b64, Func Offset: 0xf4
-	// Func End, Address: 0x273b74, Func Offset: 0x104
-	scePrintf("ExecuteMemoryCardRead - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+int ExecuteMemoryCardRead(MEMORYCARDSTATE* pCard) 
+{ 
+    int lResult;
+
+    switch (pCard->ulMcSubState)
+    {
+    case 0:
+        lResult = MemoryCardFileOpen(pCard); 
+        
+        if (lResult == -1) 
+        {
+            pCard->ulState = 0; 
+            
+            pCard->ulError = 3; 
+            
+            return -1; 
+        }
+        
+        if (lResult == 1) 
+        {
+            pCard->ulMcSubState = 1;
+        }
+        
+        break; 
+    case 1:
+        lResult = MemoryCardFileRead(pCard);
+        
+        if (lResult == 1)
+        {
+            pCard->ulMcSubState = 2; 
+        } 
+        else if (lResult == -1) 
+        {
+            return -1; 
+        }
+        
+        break;
+    case 2:
+        lResult = MemoryCardFileClose(pCard); 
+        
+        if (lResult == -1) 
+        {
+            pCard->ulState = 0; 
+            
+            pCard->ulError = 8;  
+            
+            return -1;
+        }
+        
+        if (lResult == 1) 
+        {
+            pCard->ulState = 9;
+            
+            pCard->ulError = 0;
+            
+            return 1; 
+        }
+        
+        break;
+    }
+    
+    return 0; 
+} 
 
 // 
 // Start address: 0x273b80
@@ -1305,9 +1333,9 @@ int DeleteMemoryCard()
     return 0;
 }
 
-/*// 
+// 
 // Start address: 0x274ea0
-int MemoryCardFileOpen(tagMEMORYCARDSTATE* pCard)
+int MemoryCardFileOpen(MEMORYCARDSTATE* pCard)
 {
 	int lSyncResult;
 	int lResult;
@@ -1332,11 +1360,12 @@ int MemoryCardFileOpen(tagMEMORYCARDSTATE* pCard)
 	// Line 2973, Address: 0x274f80, Func Offset: 0xe0
 	// Line 2974, Address: 0x274f84, Func Offset: 0xe4
 	// Func End, Address: 0x274f94, Func Offset: 0xf4
+	scePrintf("MemoryCardFileOpen - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x274fa0
-int MemoryCardFileClose(tagMEMORYCARDSTATE* pCard)
+int MemoryCardFileClose(MEMORYCARDSTATE* pCard)
 {
 	int lSyncResult;
 	int lResult;
@@ -1375,11 +1404,12 @@ int MemoryCardFileClose(tagMEMORYCARDSTATE* pCard)
 	// Line 3067, Address: 0x2750b8, Func Offset: 0x118
 	// Line 3068, Address: 0x2750bc, Func Offset: 0x11c
 	// Func End, Address: 0x2750cc, Func Offset: 0x12c
+	scePrintf("MemoryCardFileClose - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2750d0
-int MemoryCardFileRead(tagMEMORYCARDSTATE* pCard)
+int MemoryCardFileRead(MEMORYCARDSTATE* pCard)
 {
 	int lSyncResult;
 	int lResult;
@@ -1416,9 +1446,10 @@ int MemoryCardFileRead(tagMEMORYCARDSTATE* pCard)
 	// Line 3162, Address: 0x2751e8, Func Offset: 0x118
 	// Line 3163, Address: 0x2751ec, Func Offset: 0x11c
 	// Func End, Address: 0x2751fc, Func Offset: 0x12c
+	scePrintf("MemoryCardFileRead - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x275200
 int MemoryCardFileWrite(tagMEMORYCARDSTATE* pCard)
 {
@@ -1460,4 +1491,3 @@ int MemoryCardFileWrite(tagMEMORYCARDSTATE* pCard)
 	// Line 3258, Address: 0x275324, Func Offset: 0x124
 	// Func End, Address: 0x275334, Func Offset: 0x134
 }*/
-
