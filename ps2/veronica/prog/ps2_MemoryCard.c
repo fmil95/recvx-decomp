@@ -809,20 +809,22 @@ int RecoveryMemoryCardWriteEnd(MEMORYCARDSTATE* pCard)
 	scePrintf("RecoveryMemoryCardWriteEnd - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x274280
-int FormatMemoryCard(tagMEMORYCARDSTATE* pCard)
-{
-	// Line 1407, Address: 0x274280, Func Offset: 0
-	// Line 1410, Address: 0x27428c, Func Offset: 0xc
-	// Line 1414, Address: 0x274294, Func Offset: 0x14
-	// Line 1418, Address: 0x27429c, Func Offset: 0x1c
-	// Line 1416, Address: 0x2742a0, Func Offset: 0x20
-	// Line 1419, Address: 0x2742a4, Func Offset: 0x24
-	// Func End, Address: 0x2742ac, Func Offset: 0x2c
-}
+// 100% matching!
+int FormatMemoryCard(MEMORYCARDSTATE* pCard) 
+{ 
+    if (pCard->ulState != 0) 
+    { 
+        return 0; 
+    }
+    
+    pCard->ulState = 4; 
+    
+    pCard->ulMcSubState = 0; 
+    
+    return 1; 
+} 
 
-// 
+/*// 
 // Start address: 0x2742b0
 int RecoveryMemoryCardFormatEnd(tagMEMORYCARDSTATE* pCard)
 {
