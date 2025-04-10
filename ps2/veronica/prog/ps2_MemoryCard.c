@@ -530,39 +530,60 @@ int ExecuteMemoryCardFormat(MEMORYCARDSTATE* pCard)
     return 0; 
 } 
 
-// 
-// Start address: 0x273d50
+// 100% matching!
 int ExecuteMemoryCardUnFormat(MEMORYCARDSTATE* pCard)
 {
-	int lResult;
-	int lCmd;
-	// Line 704, Address: 0x273d50, Func Offset: 0
-	// Line 707, Address: 0x273d5c, Func Offset: 0xc
-	// Line 711, Address: 0x273d7c, Func Offset: 0x2c
-	// Line 713, Address: 0x273d88, Func Offset: 0x38
-	// Line 716, Address: 0x273d94, Func Offset: 0x44
-	// Line 718, Address: 0x273db0, Func Offset: 0x60
-	// Line 723, Address: 0x273db8, Func Offset: 0x68
-	// Line 722, Address: 0x273dbc, Func Offset: 0x6c
-	// Line 723, Address: 0x273dc0, Func Offset: 0x70
-	// Line 724, Address: 0x273dc4, Func Offset: 0x74
-	// Line 725, Address: 0x273dc8, Func Offset: 0x78
-	// Line 730, Address: 0x273dd0, Func Offset: 0x80
-	// Line 731, Address: 0x273dd8, Func Offset: 0x88
-	// Line 733, Address: 0x273ddc, Func Offset: 0x8c
-	// Line 735, Address: 0x273de4, Func Offset: 0x94
-	// Line 737, Address: 0x273e00, Func Offset: 0xb0
-	// Line 742, Address: 0x273e0c, Func Offset: 0xbc
-	// Line 740, Address: 0x273e10, Func Offset: 0xc0
-	// Line 742, Address: 0x273e14, Func Offset: 0xc4
-	// Line 743, Address: 0x273e18, Func Offset: 0xc8
-	// Line 750, Address: 0x273e20, Func Offset: 0xd0
-	// Line 748, Address: 0x273e24, Func Offset: 0xd4
-	// Line 750, Address: 0x273e2c, Func Offset: 0xdc
-	// Line 755, Address: 0x273e34, Func Offset: 0xe4
-	// Line 756, Address: 0x273e38, Func Offset: 0xe8
-	// Func End, Address: 0x273e48, Func Offset: 0xf8
-	scePrintf("ExecuteMemoryCardUnFormat - UNIMPLEMENTED!\n");
+    int lCmd;
+    int lResult;
+
+    switch (pCard->ulMcSubState)
+    {
+    case 0:
+        lResult = MemoryCardUnFormat(pCard);
+
+        if (lResult != 0) 
+        {
+            if (--pCard->cRetryCount != 0)
+            {
+                return 0;
+            }
+            
+            pCard->ulState = 0;
+            
+            pCard->ulError = 5;
+            
+            pCard->cRetryCount = 5;
+            
+            return -1; 
+        } 
+        
+        pCard->ulMcSubState = 1;
+        
+        pCard->cRetryCount = 5;
+        break;
+    case 1:
+        if (sceMcSync(1, &lCmd, &lResult) == 1)
+        {
+            if (lResult < 0) 
+            {
+                pCard->ulState = 0;
+                
+                pCard->ulError = 5;
+                
+                return -1; 
+            }
+            else 
+            {
+                pCard->ulState = 13; 
+            
+                pCard->ulError = 0;
+                
+                return 1; 
+            }
+        }
+    }
+    
+    return 0;
 }
 
 // 100% matching!
@@ -1319,13 +1340,14 @@ int MemoryCardFormat(MEMORYCARDSTATE* pCard)
 	scePrintf("MemoryCardFormat - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x274e80
 int MemoryCardUnFormat()
 {
 	// Line 2859, Address: 0x274e80, Func Offset: 0
 	// Func End, Address: 0x274e88, Func Offset: 0x8
-}*/
+	scePrintf("MemoryCardUnFormat - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int DeleteMemoryCard() 
