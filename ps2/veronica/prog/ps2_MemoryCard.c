@@ -519,34 +519,37 @@ int GetMemoryCardCurrentPort(tagMEMORYCARDSTATE* pCard)
 {
 	// Line 935, Address: 0x273f80, Func Offset: 0
 	// Func End, Address: 0x273f88, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x273f90
-void SetMemoryCardSelectPortState(tagMEMORYCARDSTATE* pCard, unsigned int ulPort, unsigned int ulResult)
+void SetMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort, unsigned int ulResult)
 {
 	// Line 1020, Address: 0x273f90, Func Offset: 0
 	// Line 1021, Address: 0x273f98, Func Offset: 0x8
 	// Func End, Address: 0x273fa0, Func Offset: 0x10
+	scePrintf("SetMemoryCardSelectPortState - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x273fa0
-void SaveMemoryCardSelectPortState(tagMEMORYCARDSTATE* pCard, unsigned int ulPort)
+void SaveMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort)
 {
 	// Line 1040, Address: 0x273fa0, Func Offset: 0
 	// Line 1041, Address: 0x273fac, Func Offset: 0xc
 	// Func End, Address: 0x273fb4, Func Offset: 0x14
+	scePrintf("SaveMemoryCardSelectPortState - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x273fc0
-int CompMemoryCardSelectPortState(tagMEMORYCARDSTATE* pCard, unsigned int ulPort)
+int CompMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort)
 {
 	// Line 1063, Address: 0x273fc0, Func Offset: 0
 	// Line 1067, Address: 0x273fe0, Func Offset: 0x20
 	// Func End, Address: 0x273fe8, Func Offset: 0x28
-}*/
+	scePrintf("CompMemoryCardSelectPortState - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x273ff0
@@ -711,39 +714,59 @@ int GetMcSelectPortType(tagMEMORYCARDSTATE* pCard, unsigned int ulPort)
 	// Line 1674, Address: 0x274378, Func Offset: 0x78
 	// Line 1676, Address: 0x27437c, Func Offset: 0x7c
 	// Func End, Address: 0x274394, Func Offset: 0x94
-}
+}*/
 
-// 
-// Start address: 0x2743a0
-int CheckMemoryCardChangeConnectTypeAll(tagMEMORYCARDSTATE* pCard)
+// 100% matching!
+int CheckMemoryCardChangeConnectTypeAll(MEMORYCARDSTATE* pCard)
 {
-	int lPort1Result;
+    int lPort1Result;
 	int lPort0Result;
-	// Line 1750, Address: 0x2743a0, Func Offset: 0
-	// Line 1754, Address: 0x2743b4, Func Offset: 0x14
-	// Line 1756, Address: 0x2743c0, Func Offset: 0x20
-	// Line 1759, Address: 0x2743c8, Func Offset: 0x28
-	// Line 1763, Address: 0x2743d4, Func Offset: 0x34
-	// Line 1765, Address: 0x2743dc, Func Offset: 0x3c
-	// Line 1767, Address: 0x2743e4, Func Offset: 0x44
-	// Line 1769, Address: 0x2743f4, Func Offset: 0x54
-	// Line 1771, Address: 0x2743fc, Func Offset: 0x5c
-	// Line 1776, Address: 0x274404, Func Offset: 0x64
-	// Line 1778, Address: 0x274410, Func Offset: 0x70
-	// Line 1779, Address: 0x27441c, Func Offset: 0x7c
-	// Line 1781, Address: 0x27442c, Func Offset: 0x8c
-	// Line 1786, Address: 0x27443c, Func Offset: 0x9c
-	// Line 1788, Address: 0x274468, Func Offset: 0xc8
-	// Line 1791, Address: 0x274470, Func Offset: 0xd0
-	// Line 1793, Address: 0x274484, Func Offset: 0xe4
-	// Line 1796, Address: 0x274490, Func Offset: 0xf0
-	// Line 1798, Address: 0x2744b4, Func Offset: 0x114
-	// Line 1803, Address: 0x2744c0, Func Offset: 0x120
-	// Line 1807, Address: 0x2744c4, Func Offset: 0x124
-	// Func End, Address: 0x2744dc, Func Offset: 0x13c
+
+    if (pCard->ulState != 0)
+    {
+        return 0;
+    }
+
+    if (pCard->cMcCheckFlag == 0)
+    {
+        SaveMemoryCardSelectPortState(pCard, 0);
+        
+        SetMemoryCardSelectPortState(pCard, 0, CheckMcSelectPortInfoType(0));
+        
+        pCard->cMcCheckFlag = 1;
+        
+        return 104;
+    }
+
+    SaveMemoryCardSelectPortState(pCard, 1);
+    
+    lPort0Result = GetMemoryCardSelectPortState(pCard, 0);
+    
+    lPort1Result = CheckMcSelectPortInfoType(1);
+    
+    SetMemoryCardSelectPortState(pCard, 1, lPort1Result);
+    
+    pCard->cMcCheckFlag = 0;
+
+    if ((CompMemoryCardSelectPortState(pCard, 0) == 0) && (CompMemoryCardSelectPortState(pCard, 1) == 0))
+    {
+        return 100;
+    }
+
+    if ((lPort0Result == 2) || (lPort1Result == 2))
+    {
+        return 101;
+    }
+
+    if (((lPort0Result != 2) && (lPort0Result != 0)) || ((lPort1Result != 2) && (lPort1Result != 0))) 
+    {
+        return 102;
+    } 
+    
+    return 103;
 }
 
-// 
+/*// 
 // Start address: 0x2744e0
 int SetMemoryCardFreeCapacity(tagMEMORYCARDSTATE* pCard, int Free)
 {
