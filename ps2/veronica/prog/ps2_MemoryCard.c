@@ -225,75 +225,135 @@ int AnalyzeMemoryCardAll(MEMORYCARDSTATE* pCard)
     return 1; 
 } 
 
-/*// 
-// Start address: 0x2737b0
-int ExecuteAnalyzeMemoryCardAll(tagMEMORYCARDSTATE* pCard)
-{
-	int lSyncResult;
-	int lResult;
-	int lCmd;
-	// Line 263, Address: 0x2737b0, Func Offset: 0
-	// Line 266, Address: 0x2737bc, Func Offset: 0xc
-	// Line 269, Address: 0x2737e8, Func Offset: 0x38
-	// Line 270, Address: 0x2737f0, Func Offset: 0x40
-	// Line 272, Address: 0x2737f8, Func Offset: 0x48
-	// Line 276, Address: 0x273814, Func Offset: 0x64
-	// Line 278, Address: 0x273824, Func Offset: 0x74
-	// Line 280, Address: 0x27382c, Func Offset: 0x7c
-	// Line 282, Address: 0x273840, Func Offset: 0x90
-	// Line 283, Address: 0x273844, Func Offset: 0x94
-	// Line 286, Address: 0x27384c, Func Offset: 0x9c
-	// Line 288, Address: 0x273850, Func Offset: 0xa0
-	// Line 291, Address: 0x273858, Func Offset: 0xa8
-	// Line 293, Address: 0x273868, Func Offset: 0xb8
-	// Line 295, Address: 0x273874, Func Offset: 0xc4
-	// Line 300, Address: 0x273884, Func Offset: 0xd4
-	// Line 303, Address: 0x27388c, Func Offset: 0xdc
-	// Line 304, Address: 0x273898, Func Offset: 0xe8
-	// Line 306, Address: 0x2738a4, Func Offset: 0xf4
-	// Line 311, Address: 0x2738a8, Func Offset: 0xf8
-	// Line 309, Address: 0x2738ac, Func Offset: 0xfc
-	// Line 313, Address: 0x2738b0, Func Offset: 0x100
-	// Line 314, Address: 0x2738b8, Func Offset: 0x108
-	// Line 324, Address: 0x2738c4, Func Offset: 0x114
-	// Line 319, Address: 0x2738c8, Func Offset: 0x118
-	// Line 317, Address: 0x2738cc, Func Offset: 0x11c
-	// Line 319, Address: 0x2738d0, Func Offset: 0x120
-	// Line 321, Address: 0x2738d4, Func Offset: 0x124
-	// Line 324, Address: 0x2738d8, Func Offset: 0x128
-	// Line 329, Address: 0x2738e0, Func Offset: 0x130
-	// Line 330, Address: 0x2738e8, Func Offset: 0x138
-	// Line 332, Address: 0x2738f0, Func Offset: 0x140
-	// Line 336, Address: 0x27390c, Func Offset: 0x15c
-	// Line 338, Address: 0x27391c, Func Offset: 0x16c
-	// Line 340, Address: 0x273924, Func Offset: 0x174
-	// Line 342, Address: 0x273938, Func Offset: 0x188
-	// Line 343, Address: 0x27393c, Func Offset: 0x18c
-	// Line 346, Address: 0x273944, Func Offset: 0x194
-	// Line 348, Address: 0x273948, Func Offset: 0x198
-	// Line 351, Address: 0x273950, Func Offset: 0x1a0
-	// Line 353, Address: 0x273960, Func Offset: 0x1b0
-	// Line 355, Address: 0x27396c, Func Offset: 0x1bc
-	// Line 359, Address: 0x27397c, Func Offset: 0x1cc
-	// Line 360, Address: 0x273980, Func Offset: 0x1d0
-	// Line 363, Address: 0x273988, Func Offset: 0x1d8
-	// Line 364, Address: 0x273994, Func Offset: 0x1e4
-	// Line 366, Address: 0x2739a0, Func Offset: 0x1f0
-	// Line 369, Address: 0x2739a4, Func Offset: 0x1f4
-	// Line 371, Address: 0x2739ac, Func Offset: 0x1fc
-	// Line 373, Address: 0x2739b0, Func Offset: 0x200
-	// Line 377, Address: 0x2739b4, Func Offset: 0x204
-	// Line 378, Address: 0x2739bc, Func Offset: 0x20c
-	// Line 388, Address: 0x2739c8, Func Offset: 0x218
-	// Line 383, Address: 0x2739cc, Func Offset: 0x21c
-	// Line 381, Address: 0x2739d0, Func Offset: 0x220
-	// Line 383, Address: 0x2739d4, Func Offset: 0x224
-	// Line 385, Address: 0x2739d8, Func Offset: 0x228
-	// Line 388, Address: 0x2739dc, Func Offset: 0x22c
-	// Line 393, Address: 0x2739e4, Func Offset: 0x234
-	// Line 394, Address: 0x2739e8, Func Offset: 0x238
-	// Func End, Address: 0x2739f8, Func Offset: 0x248
-}*/
+// 100% matching!
+int ExecuteAnalyzeMemoryCardAll(MEMORYCARDSTATE* pCard)
+{ 
+    int lCmd;
+    int lResult;
+    int lSyncResult;
+    
+    switch (pCard->usMcSysState) 
+    {
+    case 0:
+        pCard->cRetryCount = 5; 
+        
+        pCard->usMcSysState = 1;
+    case 1:
+        lResult = sceMcGetInfo(0, 0, &pCard->Port[0].lCrntType, &pCard->Port[0].lFreeSize, &pCard->Port[0].lFormatType); 
+        
+        if (lResult == -1) 
+        { 
+            return 0; 
+        }
+        else if ((lResult == 0) || (pCard->cRetryCount == 0)) 
+        { 
+            pCard->usMcSysState = 2; 
+            break;
+        } 
+        
+        pCard->cRetryCount--; 
+        break; 
+    case 2:
+        lSyncResult = sceMcSync(1, &lCmd, &lResult); 
+
+        if (lSyncResult == 1) 
+        { 
+            if (pCard->cRetryCount < 5) 
+            { 
+                pCard->usMcSysState = 0;
+            } 
+            else 
+            { 
+                pCard->Port[0].lFreeSize -= 2; 
+                
+                if (pCard->Port[0].lFreeSize < 0) 
+                { 
+                    pCard->Port[0].lFreeSize = 0; 
+                }
+                
+                pCard->cRetryCount = 0; 
+                
+                pCard->usMcSysState = 3; 
+            }
+        } 
+        else if (lSyncResult == -1)
+        { 
+            pCard->ulState = 0; 
+            
+            pCard->ulError = 9; 
+            
+            pCard->usMcSysState = 0; 
+            
+            pCard->cRetryCount = 0;
+            
+            return -1; 
+        }
+        
+        break;
+    case 3:
+        pCard->cRetryCount = 5; 
+        
+        pCard->usMcSysState = 4;
+    case 4:
+        lResult = sceMcGetInfo(1, 0, &pCard->Port[1].lCrntType, &pCard->Port[1].lFreeSize, &pCard->Port[1].lFormatType); 
+        
+        if (lResult == -1) 
+        { 
+            return 0; 
+        } 
+        else if ((lResult == 0) || (pCard->cRetryCount == 0)) 
+        { 
+            pCard->usMcSysState = 5; 
+            break;
+        } 
+        
+        pCard->cRetryCount--; 
+        break; 
+    case 5:
+        lSyncResult = sceMcSync(1, &lCmd, &lResult); 
+        
+        if (lSyncResult == 1) 
+        { 
+            if (pCard->cRetryCount < 5) 
+            { 
+                pCard->usMcSysState = 3; 
+            } 
+            else
+            { 
+                pCard->Port[1].lFreeSize -= 2; 
+                
+                if (pCard->Port[1].lFreeSize < 0) 
+                {
+                    pCard->Port[1].lFreeSize = 0;
+                }
+                
+                pCard->ulState = 18; 
+                
+                pCard->ulError = 0; 
+                
+                pCard->cRetryCount = 0; 
+                
+                pCard->usMcSysState = 0;
+            }
+        } 
+        else if (lSyncResult == -1)
+        { 
+            pCard->ulState = 0;  
+            
+            pCard->ulError = 9; 
+            
+            pCard->cRetryCount = 0; 
+            
+            pCard->usMcSysState = 0;
+            
+            return -1; 
+        }
+        
+        break;
+    }
+    
+    return 0; 
+} 
 
 // 
 // Start address: 0x273a00
