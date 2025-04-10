@@ -812,21 +812,29 @@ int GetMemoryCardSelectPortFreeCapacity(MEMORYCARDSTATE* pCard, unsigned int ulP
 	scePrintf("GetMemoryCardSelectPortFreeCapacity - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x274590
-int CheckMemoryCardFormatStatus(tagMEMORYCARDSTATE* pCard)
-{
-	int lResult;
-	// Line 1912, Address: 0x274590, Func Offset: 0
-	// Line 1915, Address: 0x274598, Func Offset: 0x8
-	// Line 1918, Address: 0x2745a4, Func Offset: 0x14
-	// Line 1922, Address: 0x2745ac, Func Offset: 0x1c
-	// Line 1924, Address: 0x2745b4, Func Offset: 0x24
-	// Line 1926, Address: 0x2745bc, Func Offset: 0x2c
-	// Line 1931, Address: 0x2745c4, Func Offset: 0x34
-	// Line 1939, Address: 0x2745dc, Func Offset: 0x4c
-	// Func End, Address: 0x2745e8, Func Offset: 0x58
-}*/
+// 100% matching!
+int CheckMemoryCardFormatStatus(MEMORYCARDSTATE* pCard) 
+{ 
+    int lResult;
+
+    if (pCard->ulState != 0)  
+    {
+        return 0; 
+    }
+    
+    lResult = CheckMemoryCardInfoUnformat(pCard); 
+    
+    if (lResult == 0) 
+    {
+        return 1; 
+    }
+    else if (lResult == 1)   
+    { 
+        return 2; 
+    }
+    
+    return -1;
+} 
 
 // 100% matching!
 int CreateMemoryCardSubDirectory(MEMORYCARDSTATE* pCard)
