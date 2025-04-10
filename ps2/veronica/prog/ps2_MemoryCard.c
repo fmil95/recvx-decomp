@@ -202,21 +202,19 @@ int ExecuteMemoryCard(MEMORYCARDSTATE* pCard)
     return 104; 
 } 
 
-// 
-// Start address: 0x273720
-int ExecuteMemoryCardStandby(MEMORYCARDSTATE* pCard)
-{
-	int lResult;
-	int lCmd;
-	// Line 198, Address: 0x273720, Func Offset: 0
-	// Line 201, Address: 0x27372c, Func Offset: 0xc
-	// Line 203, Address: 0x273738, Func Offset: 0x18
-	// Line 205, Address: 0x273754, Func Offset: 0x34
-	// Line 209, Address: 0x273764, Func Offset: 0x44
-	// Line 210, Address: 0x273768, Func Offset: 0x48
-	// Func End, Address: 0x273778, Func Offset: 0x58
-	scePrintf("ExecuteMemoryCardStandby - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+int ExecuteMemoryCardStandby(MEMORYCARDSTATE* pCard) 
+{ 
+    int lCmd;
+    int lResult;
+	
+    if ((pCard->cCheckMcFlag == 0) && (sceMcSync(1, &lCmd, &lResult) == -1))  
+    {
+        return CheckMemoryCardChangeConnectTypeAll(pCard); 
+    }
+    
+    return 0; 
+} 
 
 // 100% matching!
 int AnalyzeMemoryCardAll(MEMORYCARDSTATE* pCard)
