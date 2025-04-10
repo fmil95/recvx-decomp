@@ -200,20 +200,22 @@ int ExecuteMemoryCardStandby(tagMEMORYCARDSTATE* pCard)
 	// Func End, Address: 0x273778, Func Offset: 0x58
 }*/
 
-// 
-// Start address: 0x273780
+// 100% matching!
 int AnalyzeMemoryCardAll(MEMORYCARDSTATE* pCard)
 {
-	// Line 233, Address: 0x273780, Func Offset: 0
-	// Line 236, Address: 0x27378c, Func Offset: 0xc
-	// Line 240, Address: 0x273794, Func Offset: 0x14
-	// Line 242, Address: 0x27379c, Func Offset: 0x1c
-	// Line 248, Address: 0x2737a0, Func Offset: 0x20
-	// Line 245, Address: 0x2737a4, Func Offset: 0x24
-	// Line 249, Address: 0x2737a8, Func Offset: 0x28
-	// Func End, Address: 0x2737b0, Func Offset: 0x30
-	scePrintf("AnalyzeMemoryCardAll - UNIMPLEMENTED!\n");
-}
+    if (pCard->ulState != 0)  
+    {
+        return 0;
+    }
+    
+    pCard->ulState = 17; 
+    
+    pCard->ulError = 0; 
+
+    pCard->ulMcSubState = 0; 
+    
+    return 1; 
+} 
 
 /*// 
 // Start address: 0x2737b0
