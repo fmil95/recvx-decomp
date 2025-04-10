@@ -871,38 +871,48 @@ int CheckMemoryCardExistFile(MEMORYCARDSTATE* pCard)
     return -1; 
 } 
 
-// 
-// Start address: 0x274720
+// 99.76% matching
 int CheckMemoryCardExistFileList(MEMORYCARDSTATE* pCard, char** cppPathList, unsigned int FileCount)
 {
-	char cEntryName[32];
-	unsigned short usCheckCounter;
-	unsigned short usCheckFileNameCounter;
-	int lResult;
-	//_anon1 CardInfo[21];
-	// Line 2188, Address: 0x274720, Func Offset: 0
-	// Line 2195, Address: 0x274748, Func Offset: 0x28
-	// Line 2198, Address: 0x27475c, Func Offset: 0x3c
-	// Line 2202, Address: 0x274764, Func Offset: 0x44
-	// Line 2203, Address: 0x274774, Func Offset: 0x54
-	// Line 2206, Address: 0x274784, Func Offset: 0x64
-	// Line 2209, Address: 0x2747a0, Func Offset: 0x80
-	// Line 2213, Address: 0x2747ac, Func Offset: 0x8c
-	// Line 2218, Address: 0x2747bc, Func Offset: 0x9c
-	// Line 2221, Address: 0x2747c8, Func Offset: 0xa8
-	// Line 2223, Address: 0x2747d4, Func Offset: 0xb4
-	// Line 2227, Address: 0x2747e8, Func Offset: 0xc8
-	// Line 2230, Address: 0x2747f4, Func Offset: 0xd4
-	// Line 2232, Address: 0x2747fc, Func Offset: 0xdc
-	// Line 2230, Address: 0x274800, Func Offset: 0xe0
-	// Line 2232, Address: 0x274804, Func Offset: 0xe4
-	// Line 2233, Address: 0x274818, Func Offset: 0xf8
-	// Line 2232, Address: 0x27481c, Func Offset: 0xfc
-	// Line 2233, Address: 0x274820, Func Offset: 0x100
-	// Line 2236, Address: 0x27483c, Func Offset: 0x11c
-	// Line 2237, Address: 0x274840, Func Offset: 0x120
-	// Func End, Address: 0x27486c, Func Offset: 0x14c
-	scePrintf("CheckMemoryCardExistFileList - UNIMPLEMENTED!\n");
+    static sceMcTblGetDir CardInfo[21];
+    int lResult;
+    unsigned short usCheckFileNameCounter;
+    unsigned short usCheckCounter;
+    char cEntryName[32];
+    
+    if (pCard->ulState != 0) 
+    {
+        return 0;
+    }
+
+    strcpy(cEntryName, "/BASLUS-20184");
+    
+    strcat(cEntryName, "/*");
+
+    lResult = GetMemoryCardDir(pCard, cEntryName, 0, FileCount + 2, CardInfo);
+
+    if (lResult != (FileCount + 2))
+    {
+        return -1;
+    }
+
+    for (usCheckCounter = 2; usCheckCounter < (FileCount + 2); usCheckCounter++) 
+    {
+        for (usCheckFileNameCounter = 0; usCheckFileNameCounter < FileCount; usCheckFileNameCounter++) 
+        {
+            if (strcmp(CardInfo[usCheckCounter].EntryName, cppPathList[usCheckFileNameCounter]) == 0)
+            {
+                break;
+            }
+            
+            if (usCheckFileNameCounter >= 17) 
+            {
+                return -1;
+            }
+        }
+    }
+
+    return 1;
 }
 
 // 
