@@ -131,33 +131,41 @@ int MemoryCardFileClose(tagMEMORYCARDSTATE* pCard);
 int MemoryCardFileRead(tagMEMORYCARDSTATE* pCard);
 int MemoryCardFileWrite(tagMEMORYCARDSTATE* pCard);*/
 
-// 
-// Start address: 0x2735b0
+// 100% matching!
 MEMORYCARDSTATE* CreateMemoryCard(MEMORYCARDSTATE* pCard)
-{
-	// Line 97, Address: 0x2735b0, Func Offset: 0
-	// Line 98, Address: 0x2735bc, Func Offset: 0xc
-	// Line 99, Address: 0x2735c0, Func Offset: 0x10
-	// Line 100, Address: 0x2735c4, Func Offset: 0x14
-	// Line 101, Address: 0x2735c8, Func Offset: 0x18
-	// Line 102, Address: 0x2735cc, Func Offset: 0x1c
-	// Line 103, Address: 0x2735d0, Func Offset: 0x20
-	// Line 104, Address: 0x2735d4, Func Offset: 0x24
-	// Line 105, Address: 0x2735d8, Func Offset: 0x28
-	// Line 106, Address: 0x2735dc, Func Offset: 0x2c
-	// Line 107, Address: 0x2735e0, Func Offset: 0x30
-	// Line 108, Address: 0x2735e4, Func Offset: 0x34
-	// Line 113, Address: 0x2735e8, Func Offset: 0x38
-	// Line 109, Address: 0x2735ec, Func Offset: 0x3c
-	// Line 113, Address: 0x2735f0, Func Offset: 0x40
-	// Line 110, Address: 0x2735f4, Func Offset: 0x44
-	// Line 113, Address: 0x2735f8, Func Offset: 0x48
-	// Line 116, Address: 0x273600, Func Offset: 0x50
-	// Line 118, Address: 0x273610, Func Offset: 0x60
-	// Line 119, Address: 0x273614, Func Offset: 0x64
-	// Func End, Address: 0x273624, Func Offset: 0x74
-	scePrintf("CreateMemoryCard - UNIMPLEMENTED!\n");
-}
+{ 
+    pCard->ulState = 0; 
+    
+    pCard->ulError = 0; 
+    
+    pCard->ulMcSubState = 0;  
+    
+    pCard->ulFileSize = 0; 
+    
+    pCard->lCurrentPort = 0; 
+    
+    pCard->lOpenFileNumber = 0; 
+    
+    pCard->lSelectFileNumber = 0;
+    
+    pCard->lOpenMode = 0; 
+    
+    pCard->usMcSysState = 0; 
+    
+    pCard->vpAddr = NULL; 
+    
+    pCard->cRetryCount = 0; 
+    
+    pCard->cMcCheckFlag = 0; 
+    
+    pCard->cCheckMcFlag = 0; 
+    
+    SetMemoryCardCurrentDirectoryAbsolute(pCard, "/BASLUS-20184"); 
+    
+    strcpy(pCard->cOpenFileName, "BASLUS-20184"); 
+    
+    return pCard; 
+} 
 
 // 
 // Start address: 0x273630
@@ -575,11 +583,11 @@ void SetMemoryCardFileNumber(tagMEMORYCARDSTATE* pCard, int lFileNumber)
 {
 	// Line 1150, Address: 0x274010, Func Offset: 0
 	// Func End, Address: 0x274018, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x274020
-int SetMemoryCardCurrentDirectoryAbsolute(tagMEMORYCARDSTATE* pCard, char* cpPath)
+int SetMemoryCardCurrentDirectoryAbsolute(MEMORYCARDSTATE* pCard, char* cpPath)
 {
 	char* src;
 	char* dest;
@@ -589,7 +597,8 @@ int SetMemoryCardCurrentDirectoryAbsolute(tagMEMORYCARDSTATE* pCard, char* cpPat
 	// Line 1176, Address: 0x274048, Func Offset: 0x28
 	// Line 1179, Address: 0x27404c, Func Offset: 0x2c
 	// Func End, Address: 0x274054, Func Offset: 0x34
-}*/
+	scePrintf("SetMemoryCardCurrentDirectoryAbsolute - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x274060
