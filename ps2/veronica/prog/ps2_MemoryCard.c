@@ -989,30 +989,40 @@ int CheckMcSelectPortInfoType(unsigned int ulPort)
     return 0; 
 } 
 
-/*// 
-// Start address: 0x274940
-int CheckMemoryCardInfoFree(tagMEMORYCARDSTATE* pCard)
-{
+// 100% matching!
+int CheckMemoryCardInfoFree(MEMORYCARDSTATE* pCard)
+{  
+    int lCmd;
+    int lRetry;
+    int lResult;
 	int lResultFreeCapacity;
-	int lResult;
-	int lRetry;
-	int lCmd;
-	// Line 2439, Address: 0x274940, Func Offset: 0
-	// Line 2442, Address: 0x274950, Func Offset: 0x10
-	// Line 2445, Address: 0x274958, Func Offset: 0x18
-	// Line 2447, Address: 0x274978, Func Offset: 0x38
-	// Line 2450, Address: 0x274994, Func Offset: 0x54
-	// Line 2457, Address: 0x2749a4, Func Offset: 0x64
-	// Line 2470, Address: 0x2749c0, Func Offset: 0x80
-	// Line 2475, Address: 0x2749cc, Func Offset: 0x8c
-	// Line 2477, Address: 0x2749d0, Func Offset: 0x90
-	// Line 2480, Address: 0x2749d8, Func Offset: 0x98
-	// Line 2481, Address: 0x2749dc, Func Offset: 0x9c
-	// Line 2482, Address: 0x2749e0, Func Offset: 0xa0
-	// Line 2484, Address: 0x2749e8, Func Offset: 0xa8
-	// Line 2485, Address: 0x2749ec, Func Offset: 0xac
-	// Func End, Address: 0x274a00, Func Offset: 0xc0
-}*/
+    
+    for (lRetry = 5; lRetry != 0; )
+    {
+        if (sceMcGetInfo(pCard->lCurrentPort, 0, NULL, &lResultFreeCapacity, NULL) == 0)
+        {
+            if (sceMcSync(0, &lCmd, &lResult) == 1) 
+            {
+                if (lResult >= -2)
+                {
+                    lResultFreeCapacity -= 2;
+                    
+                    return (lResultFreeCapacity < 0) ? 0 : lResultFreeCapacity; 
+                }
+                
+                return -1;   
+            }
+            
+            lRetry--;    
+        }
+        else 
+        {
+            lRetry--;   
+        }
+    }   
+
+    return -1; 
+} 
 
 // 100% matching!
 int CheckMcSelectPortInfoState(unsigned int ulPort)
