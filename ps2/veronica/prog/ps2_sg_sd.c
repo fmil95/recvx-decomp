@@ -1684,7 +1684,7 @@ SDE_ERR	sdMultiUnitDownload( SDMEMBLK handle)
         
         UnitAddress = (char*)handle->m_Member[1];
         
-        sdBankDownload(handle, SDE_DATA_TYPE_SHOT_BANK, 0);
+        //sdBankDownload(handle, SDE_DATA_TYPE_SHOT_BANK, 0); // TODO: causes stack overflow, probably requires sndr_trans_func() and SdrSendReq() decompiled
         
         do 
         {
@@ -1696,7 +1696,7 @@ SDE_ERR	sdMultiUnitDownload( SDMEMBLK handle)
         handle->m_Member[1] = (int)(UnitAddress + ((int*)UnitAddress)[4]);
         handle->m_Member[2] = ((int*)UnitAddress)[5];
         
-        sdBankDownload(handle, SDE_DATA_TYPE_MIDI_SEQ_BANK, 1);
+        //sdBankDownload(handle, SDE_DATA_TYPE_MIDI_SEQ_BANK, 1); 
         
         do
         {
