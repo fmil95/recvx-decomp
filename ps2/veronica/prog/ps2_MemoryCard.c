@@ -1332,28 +1332,32 @@ int ChangeMemoryCardDir(MEMORYCARDSTATE* pCard, char* cpPath, char* cpbuff)
     return -1;     
 } 
 
-// 
-// Start address: 0x274d00
-int MakeMemoryCardDir(MEMORYCARDSTATE* pCard)
-{
-	int lRetry;
-	int lResult;
-	int lCmd;
-	// Line 2708, Address: 0x274d00, Func Offset: 0
-	// Line 2711, Address: 0x274d10, Func Offset: 0x10
-	// Line 2714, Address: 0x274d18, Func Offset: 0x18
-	// Line 2716, Address: 0x274d30, Func Offset: 0x30
-	// Line 2720, Address: 0x274d4c, Func Offset: 0x4c
-	// Line 2729, Address: 0x274d5c, Func Offset: 0x5c
-	// Line 2731, Address: 0x274d60, Func Offset: 0x60
-	// Line 2734, Address: 0x274d68, Func Offset: 0x68
-	// Line 2735, Address: 0x274d6c, Func Offset: 0x6c
-	// Line 2736, Address: 0x274d70, Func Offset: 0x70
-	// Line 2738, Address: 0x274d78, Func Offset: 0x78
-	// Line 2739, Address: 0x274d7c, Func Offset: 0x7c
-	// Func End, Address: 0x274d90, Func Offset: 0x90
-	scePrintf("MakeMemoryCardDir - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+int MakeMemoryCardDir(MEMORYCARDSTATE* pCard) 
+{ 
+    int lCmd;
+    int lResult;
+    int lRetry;
+
+    for (lRetry = 5; lRetry != 0; ) 
+    {
+        if (sceMcMkdir(pCard->lCurrentPort, 0, pCard->cCurrentDir) == 0)  
+        {
+            if (sceMcSync(0, &lCmd, &lResult) == 1)
+            {
+                return (lResult == 0) ? 1 : 0; 
+            }
+            
+            lRetry--; 
+        } 
+        else 
+        { 
+            lRetry--; 
+        } 
+    }
+        
+    return 0; 
+} 
 
 // 
 // Start address: 0x274d90
