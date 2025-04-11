@@ -121,7 +121,7 @@ HWS_WORK* hws = &hwsp;
 SYS_WORK sysp;
 SYS_WORK* sys = &sysp;
 char BIO_CURRENT[64];
-float BHD_ASPECT_X = 1.174000025f;
+float BHD_ASPECT_X = 1.174f;
 float BHD_ASPECT_Y = 1.0f;
 NJS_MATRIX crmat;
 NJS_MATRIX* cmat = &crmat;
