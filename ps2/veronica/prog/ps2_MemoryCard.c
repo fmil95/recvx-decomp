@@ -748,15 +748,13 @@ int GetMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort)
 	scePrintf("GetMemoryCardSelectPortState - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x274000
-int GetMemoryCardFileNumber(tagMEMORYCARDSTATE* pCard)
+// 100% matching!
+int GetMemoryCardFileNumber(MEMORYCARDSTATE* pCard) 
 {
-	// Line 1131, Address: 0x274000, Func Offset: 0
-	// Func End, Address: 0x274008, Func Offset: 0x8
+    return pCard->lSelectFileNumber;
 }
 
-// 
+/*// 
 // Start address: 0x274010
 void SetMemoryCardFileNumber(tagMEMORYCARDSTATE* pCard, int lFileNumber)
 {
