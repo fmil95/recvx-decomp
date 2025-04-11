@@ -676,13 +676,11 @@ int ExecuteMemoryCardDelete(MEMORYCARDSTATE* pCard)
     return 0;
 }
 
-/*// 
-// Start address: 0x273f50
-unsigned int GetMemoryCardError(tagMEMORYCARDSTATE* pCard)
+// 100% matching!
+unsigned int GetMemoryCardError(MEMORYCARDSTATE* pCard) 
 {
-	// Line 861, Address: 0x273f50, Func Offset: 0
-	// Func End, Address: 0x273f58, Func Offset: 0x8
-}*/
+    return pCard->ulError;
+}
 
 // 
 // Start address: 0x273f60
