@@ -703,13 +703,11 @@ void SetMemoryCardCurrentPort(MEMORYCARDSTATE* pCard, int lPort)
 	scePrintf("SetMemoryCardCurrentPort - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x273f80
-int GetMemoryCardCurrentPort(tagMEMORYCARDSTATE* pCard)
+// 100% matching!
+int GetMemoryCardCurrentPort(MEMORYCARDSTATE* pCard) 
 {
-	// Line 935, Address: 0x273f80, Func Offset: 0
-	// Func End, Address: 0x273f88, Func Offset: 0x8
-}*/
+    return pCard->lCurrentPort;
+}
 
 // 
 // Start address: 0x273f90
