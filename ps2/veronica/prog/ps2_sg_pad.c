@@ -1,3 +1,5 @@
+// TODO: compile and link this file separatedly to remove the "ps2_sg_pad.c" include in main.c  
+
 unsigned int Old_sys_cnt;
 static u_long128 Padd1[scePadDmaBufferMax];
 static u_long128 Padd2[scePadDmaBufferMax];

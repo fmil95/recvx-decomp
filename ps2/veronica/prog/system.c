@@ -1,3 +1,5 @@
+// TODO: compile and link this file separatedly to remove the "system.c" include in main.c  
+
 unsigned short pause_mes[6];
 unsigned char FileWait;
 unsigned char VibWait;

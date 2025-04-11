@@ -1,3 +1,5 @@
+// TODO: compile and link this file separatedly to remove the "ps2_sg_maloc.c" include in main.c  
+
 unsigned int __free_malloc_size;
 _HM* Ps2_malloc_p;
 unsigned char Ps2_malloc_mem[13422592];
@@ -58,7 +60,7 @@ void* syMalloc(unsigned int nbytes) // this function might have actually been ba
         return NULL; 
     }
 
-    label:
+label:
     if (search_work->pNext_work == NULL) 
     { 
         search_work->pNext_work = (_HM*)ALIGN(GET_NEXT_WRK(search_work), 4);

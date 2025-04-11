@@ -1,3 +1,5 @@
+// TODO: compile and link this file separatedly to remove the "ps2_sg_pdvib.c" include in main.c  
+
 unsigned char Pad_vibe_call_num;
 unsigned char Ps2_pad_motor[6];
 PAD_ACT Pad_act[20];
