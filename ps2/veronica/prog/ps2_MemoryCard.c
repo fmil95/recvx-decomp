@@ -1144,15 +1144,11 @@ int MemoryCardGetSum(unsigned char* ucpTop, unsigned int ulSize)
 	scePrintf("MemoryCardGetSum - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2748a0
+// 100% matching!
 int GetMemoryCardSelectPortFormatType(MEMORYCARDSTATE* pCard, unsigned int ulPort)
 {
-	// Line 2285, Address: 0x2748a0, Func Offset: 0
-	// Line 2286, Address: 0x2748a8, Func Offset: 0x8
-	// Func End, Address: 0x2748b0, Func Offset: 0x10
-	scePrintf("GetMemoryCardSelectPortFormatType - UNIMPLEMENTED!\n");
-}
+    return pCard->Port[ulPort].lFormatType; 
+} 
 
 // 100% matching!
 int CheckMcSelectPortInfoType(unsigned int ulPort)
