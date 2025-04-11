@@ -888,27 +888,36 @@ int RecoveryMemoryCardFormatEnd(tagMEMORYCARDSTATE* pCard)
 	// Line 1450, Address: 0x2742e8, Func Offset: 0x38
 	// Line 1454, Address: 0x2742ec, Func Offset: 0x3c
 	// Func End, Address: 0x2742f8, Func Offset: 0x48
-}
-
-// 
-// Start address: 0x274300
-int GetMcSelectPortType(tagMEMORYCARDSTATE* pCard, unsigned int ulPort)
-{
-	int lResult;
-	// Line 1644, Address: 0x274300, Func Offset: 0
-	// Line 1648, Address: 0x274314, Func Offset: 0x14
-	// Line 1651, Address: 0x274324, Func Offset: 0x24
-	// Line 1654, Address: 0x27432c, Func Offset: 0x2c
-	// Line 1657, Address: 0x274338, Func Offset: 0x38
-	// Line 1660, Address: 0x274340, Func Offset: 0x40
-	// Line 1662, Address: 0x274350, Func Offset: 0x50
-	// Line 1664, Address: 0x274358, Func Offset: 0x58
-	// Line 1667, Address: 0x274360, Func Offset: 0x60
-	// Line 1669, Address: 0x274370, Func Offset: 0x70
-	// Line 1674, Address: 0x274378, Func Offset: 0x78
-	// Line 1676, Address: 0x27437c, Func Offset: 0x7c
-	// Func End, Address: 0x274394, Func Offset: 0x94
 }*/
+
+// 100% matching!
+int GetMcSelectPortType(MEMORYCARDSTATE* pCard, unsigned int ulPort) 
+{ 
+    int lResult;
+
+    if (pCard->ulState != 0)  
+    {
+        return 0; 
+    }
+    
+    lResult = CheckMcSelectPortInfoType(ulPort); 
+
+    if (lResult > 0)
+    { 
+        SetMemoryCardSelectPortState(pCard, ulPort, lResult); 
+        
+        return lResult;
+    }
+    
+    if (lResult <= 0)  
+    { 
+        SetMemoryCardSelectPortState(pCard, ulPort, 0); 
+        
+        return 4; 
+    }
+    
+    return -1; 
+}  
 
 // 100% matching!
 int CheckMemoryCardChangeConnectTypeAll(MEMORYCARDSTATE* pCard)
