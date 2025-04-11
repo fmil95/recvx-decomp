@@ -1520,8 +1520,8 @@ struct _anon46
 
 float mes_spos[4][3];*/
 unsigned char FontSz[126];
-/*_anon28* sys;
-_anon10* rom;*/
+SYS_WORK* sys;
+ROM_WORK* rom;
 float FontScaleX;
 float FontScaleCR;
 float FontScaleY;
@@ -1534,9 +1534,9 @@ int bhDispItemName(_anon2* pos, int id, int color, int count, float pri);
 int bhDispMessage(float px, float py, float pri, int mes_typ, int mes_idx, int color, int count);
 int bhDispMessageEx(float px, float py, float pri, int mes_typ, int mes_idx, unsigned int argb, int count);
 void bhDispTime(_anon2* pos, unsigned int flg, int time, int color, float pri);
-void bhDispTimeEx(_anon2* pos, unsigned int flg, int time, unsigned int argb, float pri);
+void bhDispTimeEx(_anon2* pos, unsigned int flg, int time, unsigned int argb, float pri);*/
 float bhGetFontSize(unsigned short code);
-float bhMesLen(unsigned short* dp);
+/*float bhMesLen(unsigned short* dp);
 void bhFontScaleSet(float ScaleX, float ScaleY, float ScaleCR);
 
 // 
@@ -1765,14 +1765,14 @@ void bhControlMessage(int mode)
 	scePrintf("bhControlMessage - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2b8190
-void bhDispFont(_anon2* pos, int code, int color, float pri)
+void bhDispFont(NJS_POINT2* pos, int code, int color, float pri)
 {
-	_anon23 uv[4];
-	_anon23 col[4];
-	_anon2 p[4];
-	_anon39 p2c;
+	//_anon23 uv[4];
+	//_anon23 col[4];
+	//_anon2 p[4];
+	//_anon39 p2c;
 	// Line 407, Address: 0x2b8190, Func Offset: 0
 	// Line 415, Address: 0x2b81b8, Func Offset: 0x28
 	// Line 416, Address: 0x2b81c0, Func Offset: 0x30
@@ -1848,7 +1848,8 @@ void bhDispFont(_anon2* pos, int code, int color, float pri)
 	// Line 474, Address: 0x2b8408, Func Offset: 0x278
 	// Line 476, Address: 0x2b8410, Func Offset: 0x280
 	// Func End, Address: 0x2b842c, Func Offset: 0x29c
-}*/
+	scePrintf("bhDispFont - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2b8430
@@ -1950,59 +1951,108 @@ int bhDispItemName(_anon2* pos, int id, int color, int count, float pri)
 	// Func End, Address: 0x2b8744, Func Offset: 0x124
 }*/
 
-// 
-// Start address: 0x2b8750
+// 100% matching! 
 int bhDispMessage(float px, float py, float pri, int mes_typ, int mes_idx, int color, int count)
 {
-	float sty;
-	float stx;
-	unsigned int* mes_dp;
-	int num;
-	int cflg;
-	unsigned short cd;
-	unsigned short* dp;
-	//_anon2 pos;
-	// Line 591, Address: 0x2b8750, Func Offset: 0
-	// Line 597, Address: 0x2b877c, Func Offset: 0x2c
-	// Line 599, Address: 0x2b87a4, Func Offset: 0x54
-	// Line 600, Address: 0x2b87a8, Func Offset: 0x58
-	// Line 599, Address: 0x2b87ac, Func Offset: 0x5c
-	// Line 600, Address: 0x2b87b0, Func Offset: 0x60
-	// Line 601, Address: 0x2b87b8, Func Offset: 0x68
-	// Line 603, Address: 0x2b87c0, Func Offset: 0x70
-	// Line 604, Address: 0x2b87c8, Func Offset: 0x78
-	// Line 603, Address: 0x2b87cc, Func Offset: 0x7c
-	// Line 604, Address: 0x2b87d8, Func Offset: 0x88
-	// Line 605, Address: 0x2b87e0, Func Offset: 0x90
-	// Line 607, Address: 0x2b87e8, Func Offset: 0x98
-	// Line 614, Address: 0x2b87fc, Func Offset: 0xac
-	// Line 611, Address: 0x2b8800, Func Offset: 0xb0
-	// Line 610, Address: 0x2b8804, Func Offset: 0xb4
-	// Line 611, Address: 0x2b8808, Func Offset: 0xb8
-	// Line 612, Address: 0x2b880c, Func Offset: 0xbc
-	// Line 616, Address: 0x2b8814, Func Offset: 0xc4
-	// Line 618, Address: 0x2b8818, Func Offset: 0xc8
-	// Line 621, Address: 0x2b88e4, Func Offset: 0x194
-	// Line 620, Address: 0x2b88ec, Func Offset: 0x19c
-	// Line 621, Address: 0x2b88f0, Func Offset: 0x1a0
-	// Line 622, Address: 0x2b8900, Func Offset: 0x1b0
-	// Line 625, Address: 0x2b8908, Func Offset: 0x1b8
-	// Line 626, Address: 0x2b8920, Func Offset: 0x1d0
-	// Line 630, Address: 0x2b8928, Func Offset: 0x1d8
-	// Line 634, Address: 0x2b8930, Func Offset: 0x1e0
-	// Line 637, Address: 0x2b8938, Func Offset: 0x1e8
-	// Line 638, Address: 0x2b8950, Func Offset: 0x200
-	// Line 660, Address: 0x2b8958, Func Offset: 0x208
-	// Line 661, Address: 0x2b8960, Func Offset: 0x210
-	// Line 662, Address: 0x2b8970, Func Offset: 0x220
-	// Line 663, Address: 0x2b8984, Func Offset: 0x234
-	// Line 662, Address: 0x2b8988, Func Offset: 0x238
-	// Line 664, Address: 0x2b8990, Func Offset: 0x240
-	// Line 665, Address: 0x2b8998, Func Offset: 0x248
-	// Line 666, Address: 0x2b899c, Func Offset: 0x24c
-	// Line 670, Address: 0x2b89a4, Func Offset: 0x254
-	// Func End, Address: 0x2b89d4, Func Offset: 0x284
-	scePrintf("bhDispMessage - UNIMPLEMENTED!\n");
+    NJS_POINT2 pos;      
+    unsigned short* dp;  
+    unsigned short cd;   
+    int cflg;            
+    int num;             
+    unsigned int* mes_dp;
+    float stx;          
+    float sty;          
+
+    switch (mes_typ) 
+    {                           
+    case 0:
+        mes_dp = rom->mesp;
+        
+        dp = (unsigned short*)((char*)mes_dp + rom->mesp[mes_idx + 1]);
+        break;
+    case 1:
+        mes_dp = sys->mes_sp;
+        
+        dp = (unsigned short*)((char*)mes_dp + sys->mes_sp[mes_idx + 1]);
+        break;
+    default:
+        dp = sys->mes_tp;
+        break;
+    }
+    
+    pos.x = px;
+    pos.y = py;
+    
+    num = 0;
+    
+    if (count == 0) 
+    {
+        cflg = 0;
+    }
+    else 
+    {
+        cflg = 1;
+    }
+    
+    while (TRUE) 
+    {
+        cd = *dp++;
+        
+        switch (cd)
+        {
+        case 65280:
+            pos.x = px;
+            pos.y += 30.0f * FontScaleCR;
+            continue;
+        case 65281:
+            pos.x += 14.0f * FontScaleX;
+            continue;
+        case 65282:
+            dp++;
+            continue;
+        case 65283:
+            dp++;
+            continue;
+        case 65284:
+            pos.x += 28.0f * FontScaleX;
+            continue;
+        case 65024:
+        case 65025:
+        case 65026:
+        case 65027:
+        case 65028:
+        case 65029:
+        case 65030:
+        case 65031:
+        case 65032:
+        case 65033:
+        case 65034:
+        case 65035:
+        case 65036:
+        case 65037:
+        case 65038:
+        case 65039:   
+            continue;
+        }
+        
+        if (cd == 65535) 
+        {
+            break;
+        }
+        
+        bhDispFont(&pos, cd, color, pri);
+        
+        pos.x += FontScaleX * bhGetFontSize(cd);
+        
+        num++;
+        
+        if ((cflg != 0) && (--count <= 0)) 
+        {
+            return 0;
+        }
+    }
+    
+    return num;
 }
 
 // 
