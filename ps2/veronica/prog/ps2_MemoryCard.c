@@ -738,15 +738,11 @@ int CompMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort)
     return 1;
 }
 
-// 
-// Start address: 0x273ff0
-int GetMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort)
+// 100% matching!
+int GetMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort) 
 {
-	// Line 1089, Address: 0x273ff0, Func Offset: 0
-	// Line 1090, Address: 0x273ff8, Func Offset: 0x8
-	// Func End, Address: 0x274000, Func Offset: 0x10
-	scePrintf("GetMemoryCardSelectPortState - UNIMPLEMENTED!\n");
-}
+    return pCard->Port[ulPort].lCrntType; 
+} 
 
 // 100% matching!
 int GetMemoryCardFileNumber(MEMORYCARDSTATE* pCard) 
