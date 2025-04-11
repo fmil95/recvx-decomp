@@ -1434,48 +1434,77 @@ int MemoryCardFileOpen(MEMORYCARDSTATE* pCard)
 	scePrintf("MemoryCardFileOpen - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x274fa0
+// 100% matching!
 int MemoryCardFileClose(MEMORYCARDSTATE* pCard)
 {
-	int lSyncResult;
-	int lResult;
-	int lCmd;
-	// Line 2991, Address: 0x274fa0, Func Offset: 0
-	// Line 2994, Address: 0x274fac, Func Offset: 0xc
-	// Line 2998, Address: 0x274fd0, Func Offset: 0x30
-	// Line 3000, Address: 0x274fdc, Func Offset: 0x3c
-	// Line 3003, Address: 0x274fe8, Func Offset: 0x48
-	// Line 3005, Address: 0x275004, Func Offset: 0x64
-	// Line 3012, Address: 0x27500c, Func Offset: 0x6c
-	// Line 3010, Address: 0x275010, Func Offset: 0x70
-	// Line 3012, Address: 0x275014, Func Offset: 0x74
-	// Line 3014, Address: 0x275018, Func Offset: 0x78
-	// Line 3015, Address: 0x275020, Func Offset: 0x80
-	// Line 3018, Address: 0x275028, Func Offset: 0x88
-	// Line 3021, Address: 0x275030, Func Offset: 0x90
-	// Line 3025, Address: 0x275038, Func Offset: 0x98
-	// Line 3027, Address: 0x275040, Func Offset: 0xa0
-	// Line 3029, Address: 0x275044, Func Offset: 0xa4
-	// Line 3032, Address: 0x27504c, Func Offset: 0xac
-	// Line 3033, Address: 0x275058, Func Offset: 0xb8
-	// Line 3035, Address: 0x275064, Func Offset: 0xc4
-	// Line 3040, Address: 0x275070, Func Offset: 0xd0
-	// Line 3038, Address: 0x275074, Func Offset: 0xd4
-	// Line 3040, Address: 0x275078, Func Offset: 0xd8
-	// Line 3044, Address: 0x27507c, Func Offset: 0xdc
-	// Line 3049, Address: 0x275088, Func Offset: 0xe8
-	// Line 3051, Address: 0x27508c, Func Offset: 0xec
-	// Line 3054, Address: 0x275094, Func Offset: 0xf4
-	// Line 3063, Address: 0x2750a0, Func Offset: 0x100
-	// Line 3059, Address: 0x2750a4, Func Offset: 0x104
-	// Line 3057, Address: 0x2750a8, Func Offset: 0x108
-	// Line 3059, Address: 0x2750ac, Func Offset: 0x10c
-	// Line 3063, Address: 0x2750b0, Func Offset: 0x110
-	// Line 3067, Address: 0x2750b8, Func Offset: 0x118
-	// Line 3068, Address: 0x2750bc, Func Offset: 0x11c
-	// Func End, Address: 0x2750cc, Func Offset: 0x12c
-	scePrintf("MemoryCardFileClose - UNIMPLEMENTED!\n");
+    int lCmd;
+    int lResult;
+    int lSyncResult;
+
+    switch (pCard->usMcSysState) 
+    {                          
+    case 0:
+        lResult = sceMcClose(pCard->lOpenFileNumber);
+        
+        if (lResult < 0) 
+        {
+            if (--pCard->cRetryCount) 
+            {
+                return 0;
+            }
+            
+            pCard->ulState = 0;
+            
+            pCard->ulError = 8;
+            
+            pCard->cRetryCount = 5;
+            
+            return -1;
+        }
+        
+        if (lResult > 0) 
+        {
+            return 0;
+        }
+        
+        pCard->usMcSysState = 1; 
+        
+        pCard->cRetryCount = 5;
+        break;
+    case 1:
+        lSyncResult = sceMcSync(1, &lCmd, &lResult);
+        
+        if (lSyncResult == 1) 
+        {
+            if (lResult < 0) 
+            {
+                pCard->ulState = 0;
+                
+                pCard->ulError = 8;
+                
+                pCard->usMcSysState = 0;
+                
+                return -1;
+            }
+            
+            pCard->usMcSysState = 0;
+            
+            return 1;
+        }
+        
+        if (lSyncResult == -1) 
+        {
+            pCard->ulState = 0;
+            
+            pCard->ulError = 8;
+            
+            pCard->usMcSysState = 0;
+            
+            return -1;
+        }
+    }
+    
+    return 0;
 }
 
 // 
