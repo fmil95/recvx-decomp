@@ -63,17 +63,17 @@ void CalcPs2ZbuffAB()
     Ps2_zbuff_b = (65536.0f * fNaViwClipNear * fNaViwClipFar) / (fNaViwClipFar - fNaViwClipNear); 
 }
 
-/*// 
-// Start address: 0x2df240
-void sceVu0ITOF12Vector(float* v0, float* v1)
+// 100% matching! 
+void sceVu0ITOF12Vector(sceVu0FVECTOR v0, sceVu0IVECTOR v1)
 {
-	// Line 66, Address: 0x2df240, Func Offset: 0
-	// Line 67, Address: 0x2df244, Func Offset: 0x4
-	// Line 70, Address: 0x2df248, Func Offset: 0x8
-	// Func End, Address: 0x2df250, Func Offset: 0x10
+	asm __volatile__("
+	lqc2    vf4,0x0(%1)
+	vitof12.xyzw vf5,vf4
+	sqc2    vf5,0x0(%0)
+	": : "r" (v0) , "r" (v1));
 }
 
-// 
+/*// 
 // Start address: 0x2df250
 void njDrawLine2D(_anon2* p, int n, float pri, unsigned int attr)
 {
