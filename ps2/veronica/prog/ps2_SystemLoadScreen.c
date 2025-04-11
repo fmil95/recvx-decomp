@@ -1,3 +1,5 @@
+// TODO: compile and link this file separatedly to remove the "ps2_SystemLoadScreen.c" include in main.c  
+
 SELECTFILEWINDOW SelectFileWindow;
 SELECTFILEINFO SelectFileInfo[15];
 char* cpNameList[18] = 

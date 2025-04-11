@@ -58,7 +58,7 @@ void* syMalloc(unsigned int nbytes) // this function might have actually been ba
         return NULL; 
     }
 
-    label:
+label:
     if (search_work->pNext_work == NULL) 
     { 
         search_work->pNext_work = (_HM*)ALIGN(GET_NEXT_WRK(search_work), 4);

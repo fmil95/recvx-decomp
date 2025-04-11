@@ -433,7 +433,7 @@ SDE_ERR	sdDrvInit( SDMEMBLK handle)
     {
         printf("Cannot allocate IOP memory\n", iop_read_buff);
         
-        while (1);
+        while (TRUE);
     }
     else 
     {
@@ -1266,7 +1266,7 @@ SDE_ERR	sdSndSetPanMode( const SDE_PAN_MODE pan_mode)
             return SDE_ERR_PRM_OVER_RANGE;
         }
 
-        label:
+    label:
         if (ret == 0) 
         {
             return SDE_ERR_NOTHING;
