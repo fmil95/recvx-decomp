@@ -229,7 +229,7 @@ void bhControlEOR()
             
             if (sys->fog_ct <= 0) 
             {
-                NO_NAME_23 *temp; // not from the debugging symbols
+                CAM_WRK *temp; // not from the debugging symbols
                 
                 sys->gm_flg &= ~0x10;
 

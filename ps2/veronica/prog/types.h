@@ -2051,43 +2051,44 @@ typedef struct NO_NAME_22
 	CAM_KEYF_WORK keyf[16];
 } NO_NAME_22;
 
-typedef struct NO_NAME_23
+typedef struct CAM_WRK
 {
-	unsigned short flg;
-	unsigned char lgtclip;
-	char spd;
-	float px;
-	float py;
-	float pz;
-	float ln;
-	float w;
-	float h;
-	float d;
-	float y0;
-	float y1;
-	float y2;
-	float y3;
-	float am_spd;
-	int ax;
-	int ay;
-	int az;
-	int lax;
-	int lay;
-	short laz0;
-	short laz1;
-	short laz2;
-	short laz3;
-	char aa_spd;
-	char fil_no;
-	char fil_rt;
-	char reserve;
-	int pers;
-	unsigned int hidobj[16];
-	unsigned int hidlgt[8];
-	unsigned int fog_col;
-	float fog_nr;
-	float fog_fr;
-} NO_NAME_23;
+	// total size: 0xC4
+    unsigned short flg; // offset 0x0, size 0x2
+    unsigned char lgtclip; // offset 0x2, size 0x1
+    char spd; // offset 0x3, size 0x1
+    float px; // offset 0x4, size 0x4
+    float py; // offset 0x8, size 0x4
+    float pz; // offset 0xC, size 0x4
+    float ln; // offset 0x10, size 0x4
+    float w; // offset 0x14, size 0x4
+    float h; // offset 0x18, size 0x4
+    float d; // offset 0x1C, size 0x4
+    float y0; // offset 0x20, size 0x4
+    float y1; // offset 0x24, size 0x4
+    float y2; // offset 0x28, size 0x4
+    float y3; // offset 0x2C, size 0x4
+    float am_spd; // offset 0x30, size 0x4
+    int ax; // offset 0x34, size 0x4
+    int ay; // offset 0x38, size 0x4
+    int az; // offset 0x3C, size 0x4
+    int lax; // offset 0x40, size 0x4
+    int lay; // offset 0x44, size 0x4
+    short laz0; // offset 0x48, size 0x2
+    short laz1; // offset 0x4A, size 0x2
+    short laz2; // offset 0x4C, size 0x2
+    short laz3; // offset 0x4E, size 0x2
+    char aa_spd; // offset 0x50, size 0x1
+    char fil_no; // offset 0x51, size 0x1
+    char fil_rt; // offset 0x52, size 0x1
+    char reserve; // offset 0x53, size 0x1
+    int pers; // offset 0x54, size 0x4
+    unsigned int hidobj[16]; // offset 0x58, size 0x40
+    unsigned int hidlgt[8]; // offset 0x98, size 0x20
+    unsigned int fog_col; // offset 0xB8, size 0x4
+    float fog_nr; // offset 0xBC, size 0x4
+    float fog_fr; // offset 0xC0, size 0x4
+} CAM_WRK;
 
 typedef struct NO_NAME_24
 {
@@ -2117,7 +2118,7 @@ typedef struct NO_NAME_25
 	float cw;
 	float ch;
 	float cd;
-	NO_NAME_23 cam[2];
+	CAM_WRK cam[2];
 	unsigned char exd[256];
 } NO_NAME_25;
 
