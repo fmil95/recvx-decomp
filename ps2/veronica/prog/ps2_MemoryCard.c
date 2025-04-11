@@ -986,15 +986,11 @@ int GetMemoryCardFreeCapacity(tagMEMORYCARDSTATE* pCard)
 	// Func End, Address: 0x27457c, Func Offset: 0x6c
 }*/
 
-// 
-// Start address: 0x274580
-int GetMemoryCardSelectPortFreeCapacity(MEMORYCARDSTATE* pCard, unsigned int ulPort)
+// 100% matching!
+int GetMemoryCardSelectPortFreeCapacity(MEMORYCARDSTATE* pCard, unsigned int ulPort) 
 {
-	// Line 1893, Address: 0x274580, Func Offset: 0
-	// Line 1894, Address: 0x274588, Func Offset: 0x8
-	// Func End, Address: 0x274590, Func Offset: 0x10
-	scePrintf("GetMemoryCardSelectPortFreeCapacity - UNIMPLEMENTED!\n");
-}
+    return pCard->Port[ulPort].lFreeSize; 
+} 
 
 // 100% matching!
 int CheckMemoryCardFormatStatus(MEMORYCARDSTATE* pCard) 
