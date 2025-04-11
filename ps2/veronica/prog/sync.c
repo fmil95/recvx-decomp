@@ -1,7 +1,5 @@
 // TODO: compile and link this file separatedly to remove the "sync.c" include in main.c  
 
-//void(*bhControlEOR)();
-//void(*bhControlVSync)();
 int OpenDriveTrayFlag;
 ROM_WORK* rom;
 CAM_WORK cam;
@@ -186,7 +184,7 @@ void bhControlEOR()
         } 
         else if ((cam.flg & 0x2))
         {
-            NO_NAME_21 *temp; // not from the debugging symbols
+            CAM_KEYF_WORK *temp; // not from the debugging symbols
             
             if (sys->fog_ct != 0)
             {

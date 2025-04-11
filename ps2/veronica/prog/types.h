@@ -2010,36 +2010,37 @@ typedef struct BUTTON_INFO
     unsigned int Button; // offset 0x4, size 0x4
 } BUTTON_INFO;
 
-typedef struct NO_NAME_21
+typedef struct CAM_KEYF_WORK
 {
-	unsigned short flg;
-	short frame;
-	float px;
-	float py;
-	float pz;
-	short ax;
-	short ay;
-	short az;
-	short pers;
-	unsigned int hidobj[8];
-	unsigned int hidlgt[4];
-	unsigned int fog_col;
-	float fog_nr;
-	float fog_fr;
-	short lkflg;
-	short lkno;
-	short lkono;
-	short nxt_no;
-	float lx;
-	float ly;
-	float lz;
-	float prm_0;
-	float prm_1;
-	float prm_2;
-	float prm_3;
-	float prm_4;
-	unsigned char* recp;
-} NO_NAME_21;
+	// total size: 0x80
+    unsigned short flg; // offset 0x0, size 0x2
+    short frame; // offset 0x2, size 0x2
+    float px; // offset 0x4, size 0x4
+    float py; // offset 0x8, size 0x4
+    float pz; // offset 0xC, size 0x4
+    short ax; // offset 0x10, size 0x2
+    short ay; // offset 0x12, size 0x2
+    short az; // offset 0x14, size 0x2
+    short pers; // offset 0x16, size 0x2
+    unsigned int hidobj[8]; // offset 0x18, size 0x20
+    unsigned int hidlgt[4]; // offset 0x38, size 0x10
+    unsigned int fog_col; // offset 0x48, size 0x4
+    float fog_nr; // offset 0x4C, size 0x4
+    float fog_fr; // offset 0x50, size 0x4
+    short lkflg; // offset 0x54, size 0x2
+    short lkno; // offset 0x56, size 0x2
+    short lkono; // offset 0x58, size 0x2
+    short nxt_no; // offset 0x5A, size 0x2
+    float lx; // offset 0x5C, size 0x4
+    float ly; // offset 0x60, size 0x4
+    float lz; // offset 0x64, size 0x4
+    float prm_0; // offset 0x68, size 0x4
+    float prm_1; // offset 0x6C, size 0x4
+    float prm_2; // offset 0x70, size 0x4
+    float prm_3; // offset 0x74, size 0x4
+    float prm_4; // offset 0x78, size 0x4
+    unsigned char* recp; // offset 0x7C, size 0x4
+} CAM_KEYF_WORK;
 
 typedef struct NO_NAME_22
 {
@@ -2047,7 +2048,7 @@ typedef struct NO_NAME_22
 	unsigned short type;
 	short nxt_no;
 	short keyf_n;
-	NO_NAME_21 keyf[16];
+	CAM_KEYF_WORK keyf[16];
 } NO_NAME_22;
 
 typedef struct NO_NAME_23
