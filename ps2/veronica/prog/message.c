@@ -1765,90 +1765,92 @@ void bhControlMessage(int mode)
 	scePrintf("bhControlMessage - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2b8190
+// 100% matching! 
 void bhDispFont(NJS_POINT2* pos, int code, int color, float pri)
 {
-	//_anon23 uv[4];
-	//_anon23 col[4];
-	//_anon2 p[4];
-	//_anon39 p2c;
-	// Line 407, Address: 0x2b8190, Func Offset: 0
-	// Line 415, Address: 0x2b81b8, Func Offset: 0x28
-	// Line 416, Address: 0x2b81c0, Func Offset: 0x30
-	// Line 417, Address: 0x2b81cc, Func Offset: 0x3c
-	// Line 418, Address: 0x2b81d8, Func Offset: 0x48
-	// Line 419, Address: 0x2b81f0, Func Offset: 0x60
-	// Line 420, Address: 0x2b8214, Func Offset: 0x84
-	// Line 421, Address: 0x2b821c, Func Offset: 0x8c
-	// Line 426, Address: 0x2b8224, Func Offset: 0x94
-	// Line 422, Address: 0x2b8228, Func Offset: 0x98
-	// Line 426, Address: 0x2b822c, Func Offset: 0x9c
-	// Line 422, Address: 0x2b8230, Func Offset: 0xa0
-	// Line 423, Address: 0x2b8234, Func Offset: 0xa4
-	// Line 426, Address: 0x2b823c, Func Offset: 0xac
-	// Line 424, Address: 0x2b8244, Func Offset: 0xb4
-	// Line 429, Address: 0x2b8248, Func Offset: 0xb8
-	// Line 426, Address: 0x2b824c, Func Offset: 0xbc
-	// Line 429, Address: 0x2b8250, Func Offset: 0xc0
-	// Line 432, Address: 0x2b8254, Func Offset: 0xc4
-	// Line 424, Address: 0x2b8258, Func Offset: 0xc8
-	// Line 425, Address: 0x2b825c, Func Offset: 0xcc
-	// Line 429, Address: 0x2b8260, Func Offset: 0xd0
-	// Line 425, Address: 0x2b8264, Func Offset: 0xd4
-	// Line 426, Address: 0x2b8268, Func Offset: 0xd8
-	// Line 427, Address: 0x2b8274, Func Offset: 0xe4
-	// Line 428, Address: 0x2b827c, Func Offset: 0xec
-	// Line 429, Address: 0x2b8288, Func Offset: 0xf8
-	// Line 430, Address: 0x2b8294, Func Offset: 0x104
-	// Line 431, Address: 0x2b829c, Func Offset: 0x10c
-	// Line 432, Address: 0x2b82a4, Func Offset: 0x114
-	// Line 434, Address: 0x2b82d4, Func Offset: 0x144
-	// Line 435, Address: 0x2b82e0, Func Offset: 0x150
-	// Line 436, Address: 0x2b82e4, Func Offset: 0x154
-	// Line 438, Address: 0x2b82e8, Func Offset: 0x158
-	// Line 440, Address: 0x2b82f0, Func Offset: 0x160
-	// Line 441, Address: 0x2b82fc, Func Offset: 0x16c
-	// Line 442, Address: 0x2b8300, Func Offset: 0x170
-	// Line 444, Address: 0x2b8304, Func Offset: 0x174
-	// Line 446, Address: 0x2b830c, Func Offset: 0x17c
-	// Line 447, Address: 0x2b8318, Func Offset: 0x188
-	// Line 448, Address: 0x2b831c, Func Offset: 0x18c
-	// Line 450, Address: 0x2b8320, Func Offset: 0x190
-	// Line 452, Address: 0x2b8328, Func Offset: 0x198
-	// Line 453, Address: 0x2b8334, Func Offset: 0x1a4
-	// Line 454, Address: 0x2b8338, Func Offset: 0x1a8
-	// Line 456, Address: 0x2b833c, Func Offset: 0x1ac
-	// Line 458, Address: 0x2b8344, Func Offset: 0x1b4
-	// Line 459, Address: 0x2b834c, Func Offset: 0x1bc
-	// Line 460, Address: 0x2b8350, Func Offset: 0x1c0
-	// Line 461, Address: 0x2b8354, Func Offset: 0x1c4
-	// Line 464, Address: 0x2b8358, Func Offset: 0x1c8
-	// Line 474, Address: 0x2b835c, Func Offset: 0x1cc
-	// Line 464, Address: 0x2b8360, Func Offset: 0x1d0
-	// Line 474, Address: 0x2b8364, Func Offset: 0x1d4
-	// Line 465, Address: 0x2b8368, Func Offset: 0x1d8
-	// Line 474, Address: 0x2b836c, Func Offset: 0x1dc
-	// Line 464, Address: 0x2b8378, Func Offset: 0x1e8
-	// Line 466, Address: 0x2b837c, Func Offset: 0x1ec
-	// Line 465, Address: 0x2b8384, Func Offset: 0x1f4
-	// Line 466, Address: 0x2b8388, Func Offset: 0x1f8
-	// Line 465, Address: 0x2b8390, Func Offset: 0x200
-	// Line 466, Address: 0x2b8394, Func Offset: 0x204
-	// Line 465, Address: 0x2b8398, Func Offset: 0x208
-	// Line 466, Address: 0x2b83a4, Func Offset: 0x214
-	// Line 465, Address: 0x2b83a8, Func Offset: 0x218
-	// Line 466, Address: 0x2b83b0, Func Offset: 0x220
-	// Line 467, Address: 0x2b83cc, Func Offset: 0x23c
-	// Line 468, Address: 0x2b83d8, Func Offset: 0x248
-	// Line 469, Address: 0x2b83e0, Func Offset: 0x250
-	// Line 470, Address: 0x2b83ec, Func Offset: 0x25c
-	// Line 471, Address: 0x2b83f8, Func Offset: 0x268
-	// Line 472, Address: 0x2b8400, Func Offset: 0x270
-	// Line 474, Address: 0x2b8408, Func Offset: 0x278
-	// Line 476, Address: 0x2b8410, Func Offset: 0x280
-	// Func End, Address: 0x2b842c, Func Offset: 0x29c
-	scePrintf("bhDispFont - UNIMPLEMENTED!\n");
+    NJS_POINT2COL p2c; 
+    NJS_POINT2 p[4];   
+    NJS_COLOR col[4];  
+    NJS_COLOR uv[4];  
+    
+    njTextureFilterMode(0);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njSetTexture(&sys->ef_tlist);
+    
+    njSetTextureNum(code / 324);
+    
+    p2c.p = p;
+    
+    p2c.col = col;
+    
+    p2c.tex = uv;
+    
+    p2c.num = 1;
+    
+    p[0].x = pos->x;
+    p[0].y = pos->y;
+    
+    p[1].x = pos->x + (28.0f * FontScaleX);
+    p[1].y = pos->y;
+    
+    p[2].x = pos->x + (28.0f * FontScaleX);
+    p[2].y = pos->y + (28.0f * FontScaleY);
+    
+    p[3].x = pos->x;
+    p[3].y = pos->y + (28.0f * FontScaleY);
+    
+    switch (color) 
+    {                              
+    case 1:
+        col[0].color = 0xFF20E0FF;
+        col[1].color = 0xFF20E0FF;
+        col[2].color = 0xFF20E0FF;
+        col[3].color = 0xFF20E0FF;
+        break;
+    case 2:
+        col[0].color = 0xFFFF2020;
+        col[1].color = 0xFFFF2020;
+        col[2].color = 0xFFFF2020;
+        col[3].color = 0xFFFF2020;
+        break;
+    case 3:
+        col[0].color = 0xFF20FF20;
+        col[1].color = 0xFF20FF20;
+        col[2].color = 0xFF20FF20;
+        col[3].color = 0xFF20FF20;
+        break;
+    case 4:
+        col[0].color = 0xFF606060;
+        col[1].color = 0xFF606060;
+        col[2].color = 0xFF606060;
+        col[3].color = 0xFF606060;
+        break;
+    default:
+        col[0].color = 0xFFFFFFFF;
+        col[1].color = 0xFFFFFFFF;
+        col[2].color = 0xFFFFFFFF;
+        col[3].color = 0xFFFFFFFF;
+        break;
+    }
+
+    code %= 324;
+    
+    uv[0].tex.u = (code % 18) * 14;
+    uv[0].tex.v = (code / 18) * 14;
+    
+    uv[1].tex.u = uv[0].tex.u + 14;
+    uv[1].tex.v = uv[0].tex.v;
+    
+    uv[2].tex.u = uv[0].tex.u + 14;
+    uv[2].tex.v = uv[0].tex.v + 14;
+    
+    uv[3].tex.u = uv[0].tex.u; 
+    uv[3].tex.v = uv[0].tex.v + 14;
+    
+    njDrawPolygon2DM(&p2c, 4, pri, 0x80000060);
 }
 
 // 

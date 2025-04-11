@@ -190,9 +190,9 @@ void	njDrawPolygon2D(NJS_POINT2COL *p, Int n, Float pri, Uint32 attr)
 	scePrintf("njDrawPolygon2D - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2df6c0
-void njDrawPolygon2DM(_anon2* p, int n, float pri, unsigned int attr)
+void njDrawPolygon2DM(NJS_POINT2COL* p, int n, float pri, unsigned int attr)
 {
 	unsigned long prim;
 	unsigned int i;
@@ -255,5 +255,5 @@ void njDrawPolygon2DM(_anon2* p, int n, float pri, unsigned int attr)
 	// Line 279, Address: 0x2df9bc, Func Offset: 0x2fc
 	// Line 280, Address: 0x2df9c8, Func Offset: 0x308
 	// Func End, Address: 0x2df9f8, Func Offset: 0x338
-}*/
-
+	scePrintf("njDrawPolygon2DM - UNIMPLEMENTED!\n");
+}
