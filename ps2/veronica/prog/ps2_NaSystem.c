@@ -1786,14 +1786,11 @@ void	njSetBackColor( Uint32 col1, Uint32 col2, Uint32 col3 )
     *(unsigned long*)UNCACHED(&Db.clear1.rgbaq) = tmp; 
 } 
 
-/*// 
-// Start address: 0x2e1690
-void njTextureFilterMode(int mode)
+// 100% matching! 
+void	njTextureFilterMode( Int mode )
 {
-	// Line 297, Address: 0x2e1690, Func Offset: 0
-	// Line 299, Address: 0x2e1694, Func Offset: 0x4
-	// Func End, Address: 0x2e169c, Func Offset: 0xc
-}*/
+    Ps2_nj_save_current.mode = mode;
+}
 
 // 100% matching!
 void    njPolygonCullingMode( Int mode )
