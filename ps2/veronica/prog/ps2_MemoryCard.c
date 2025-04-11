@@ -1275,27 +1275,37 @@ int CheckMemoryCardInfoUnformat(MEMORYCARDSTATE* pCard)
     return -1;
 }
 
-// 
-// Start address: 0x274b70
+// 100% matching!
 int GetMemoryCardDir(MEMORYCARDSTATE* pCard, char* cpPath, int lFlag, int lMaxent, sceMcTblGetDir* pbuff)
-{
-	int lResult;
-	int lRetry;
-	int lCmd;
-	// Line 2608, Address: 0x274b70, Func Offset: 0
-	// Line 2611, Address: 0x274b90, Func Offset: 0x20
-	// Line 2614, Address: 0x274ba8, Func Offset: 0x38
-	// Line 2616, Address: 0x274bcc, Func Offset: 0x5c
-	// Line 2620, Address: 0x274be8, Func Offset: 0x78
-	// Line 2630, Address: 0x274c08, Func Offset: 0x98
-	// Line 2632, Address: 0x274c0c, Func Offset: 0x9c
-	// Line 2635, Address: 0x274c14, Func Offset: 0xa4
-	// Line 2637, Address: 0x274c18, Func Offset: 0xa8
-	// Line 2639, Address: 0x274c20, Func Offset: 0xb0
-	// Line 2640, Address: 0x274c24, Func Offset: 0xb4
-	// Func End, Address: 0x274c48, Func Offset: 0xd8
-	scePrintf("GetMemoryCardDir - UNIMPLEMENTED!\n");
-}
+{ 
+    int lCmd;
+    int lRetry;
+    int lResult;
+    
+    for (lRetry = 5; lRetry != 0; )  
+    {
+        if (sceMcGetDir(pCard->lCurrentPort, 0, cpPath, lFlag, lMaxent, pbuff) == 0)  
+        {
+            if (sceMcSync(0, &lCmd, &lResult) == 1) 
+            {
+                if (lResult >= 0)  
+                {
+                    return lResult;  
+                }
+                    
+                return -1;  
+            }
+            
+            lRetry--;  
+        } 
+        else
+        {
+            lRetry--;  
+        }
+    }
+
+    return -2; 
+}  
 
 // 100% matching!
 int ChangeMemoryCardDir(MEMORYCARDSTATE* pCard, char* cpPath, char* cpbuff)
