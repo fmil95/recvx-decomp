@@ -1480,13 +1480,13 @@ typedef struct LFOPEN_INFO
     GDFS GdFs; // offset 0x4, size 0x4
 } LFOPEN_INFO;
 
-typedef struct _HM _HM; 
-struct _HM
+typedef struct HM HM; 
+struct HM
 {
 	unsigned int Use_size;
 	unsigned int Total_size;
 	unsigned int dummy;
-	_HM* pNext_work;
+	HM* pNext_work;
 	unsigned int dummy64[12];
 };
 
