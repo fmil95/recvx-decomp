@@ -963,31 +963,41 @@ int CheckMemoryCardChangeConnectTypeAll(MEMORYCARDSTATE* pCard)
     return 103;
 }
 
-/*// 
+// 
 // Start address: 0x2744e0
-int SetMemoryCardFreeCapacity(tagMEMORYCARDSTATE* pCard, int Free)
+int SetMemoryCardFreeCapacity(MEMORYCARDSTATE* pCard, int Free)
 {
 	// Line 1826, Address: 0x2744e0, Func Offset: 0
 	// Line 1829, Address: 0x2744f0, Func Offset: 0x10
 	// Line 1830, Address: 0x2744fc, Func Offset: 0x1c
 	// Func End, Address: 0x274504, Func Offset: 0x24
+	scePrintf("SetMemoryCardFreeCapacity - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x274510
-int GetMemoryCardFreeCapacity(tagMEMORYCARDSTATE* pCard)
-{
-	int lResult;
-	// Line 1848, Address: 0x274510, Func Offset: 0
-	// Line 1852, Address: 0x27451c, Func Offset: 0xc
-	// Line 1855, Address: 0x274528, Func Offset: 0x18
-	// Line 1858, Address: 0x274530, Func Offset: 0x20
-	// Line 1861, Address: 0x274538, Func Offset: 0x28
-	// Line 1863, Address: 0x274540, Func Offset: 0x30
-	// Line 1868, Address: 0x274554, Func Offset: 0x44
-	// Line 1875, Address: 0x27456c, Func Offset: 0x5c
-	// Func End, Address: 0x27457c, Func Offset: 0x6c
-}*/
+// 100% matching!
+int GetMemoryCardFreeCapacity(MEMORYCARDSTATE* pCard)
+{ 
+    int lResult;
+
+    if (pCard->ulState != 0) 
+    {
+        return -2; 
+    }
+
+    lResult = CheckMemoryCardInfoFree(pCard); 
+
+    if (lResult > 0) 
+    { 
+        return SetMemoryCardFreeCapacity(pCard, lResult); 
+    }
+
+    if (lResult == -1) 
+    {
+        return -1; 
+    }
+
+    return 0;
+} 
 
 // 100% matching!
 int GetMemoryCardSelectPortFreeCapacity(MEMORYCARDSTATE* pCard, unsigned int ulPort) 
