@@ -1853,75 +1853,63 @@ void bhDispFont(NJS_POINT2* pos, int code, int color, float pri)
     njDrawPolygon2DM(&p2c, 4, pri, 0x80000060);
 }
 
-// 
-// Start address: 0x2b8430
+// 100% matching! 
 void bhDispFontEx(NJS_POINT2* pos, int code, unsigned int argb, float pri)
 {
-	//_anon23 uv[4];
-	//_anon23 col[4];
-	//_anon2 p[4];
-	//_anon39 p2c;
-	// Line 488, Address: 0x2b8430, Func Offset: 0
-	// Line 496, Address: 0x2b8458, Func Offset: 0x28
-	// Line 497, Address: 0x2b8460, Func Offset: 0x30
-	// Line 498, Address: 0x2b846c, Func Offset: 0x3c
-	// Line 499, Address: 0x2b8478, Func Offset: 0x48
-	// Line 500, Address: 0x2b8490, Func Offset: 0x60
-	// Line 501, Address: 0x2b84b4, Func Offset: 0x84
-	// Line 527, Address: 0x2b84b8, Func Offset: 0x88
-	// Line 501, Address: 0x2b84bc, Func Offset: 0x8c
-	// Line 502, Address: 0x2b84c0, Func Offset: 0x90
-	// Line 503, Address: 0x2b84c8, Func Offset: 0x98
-	// Line 504, Address: 0x2b84d0, Func Offset: 0xa0
-	// Line 507, Address: 0x2b84d8, Func Offset: 0xa8
-	// Line 517, Address: 0x2b84e4, Func Offset: 0xb4
-	// Line 507, Address: 0x2b84e8, Func Offset: 0xb8
-	// Line 517, Address: 0x2b84ec, Func Offset: 0xbc
-	// Line 505, Address: 0x2b84f0, Func Offset: 0xc0
-	// Line 527, Address: 0x2b84f4, Func Offset: 0xc4
-	// Line 518, Address: 0x2b84f8, Func Offset: 0xc8
-	// Line 510, Address: 0x2b84fc, Func Offset: 0xcc
-	// Line 507, Address: 0x2b8504, Func Offset: 0xd4
-	// Line 505, Address: 0x2b8508, Func Offset: 0xd8
-	// Line 527, Address: 0x2b850c, Func Offset: 0xdc
-	// Line 510, Address: 0x2b8514, Func Offset: 0xe4
-	// Line 527, Address: 0x2b8518, Func Offset: 0xe8
-	// Line 506, Address: 0x2b851c, Func Offset: 0xec
-	// Line 507, Address: 0x2b8524, Func Offset: 0xf4
-	// Line 508, Address: 0x2b8530, Func Offset: 0x100
-	// Line 517, Address: 0x2b8534, Func Offset: 0x104
-	// Line 519, Address: 0x2b8538, Func Offset: 0x108
-	// Line 518, Address: 0x2b8540, Func Offset: 0x110
-	// Line 508, Address: 0x2b8544, Func Offset: 0x114
-	// Line 509, Address: 0x2b8548, Func Offset: 0x118
-	// Line 519, Address: 0x2b854c, Func Offset: 0x11c
-	// Line 509, Address: 0x2b8550, Func Offset: 0x120
-	// Line 510, Address: 0x2b8558, Func Offset: 0x128
-	// Line 511, Address: 0x2b8564, Func Offset: 0x134
-	// Line 512, Address: 0x2b856c, Func Offset: 0x13c
-	// Line 518, Address: 0x2b8570, Func Offset: 0x140
-	// Line 512, Address: 0x2b8574, Func Offset: 0x144
-	// Line 513, Address: 0x2b8578, Func Offset: 0x148
-	// Line 518, Address: 0x2b857c, Func Offset: 0x14c
-	// Line 519, Address: 0x2b8588, Func Offset: 0x158
-	// Line 518, Address: 0x2b858c, Func Offset: 0x15c
-	// Line 514, Address: 0x2b8590, Func Offset: 0x160
-	// Line 515, Address: 0x2b8594, Func Offset: 0x164
-	// Line 519, Address: 0x2b8598, Func Offset: 0x168
-	// Line 512, Address: 0x2b85a0, Func Offset: 0x170
-	// Line 519, Address: 0x2b85a4, Func Offset: 0x174
-	// Line 516, Address: 0x2b85b4, Func Offset: 0x184
-	// Line 519, Address: 0x2b85b8, Func Offset: 0x188
-	// Line 520, Address: 0x2b85c0, Func Offset: 0x190
-	// Line 521, Address: 0x2b85cc, Func Offset: 0x19c
-	// Line 522, Address: 0x2b85d4, Func Offset: 0x1a4
-	// Line 523, Address: 0x2b85e0, Func Offset: 0x1b0
-	// Line 524, Address: 0x2b85ec, Func Offset: 0x1bc
-	// Line 525, Address: 0x2b85f4, Func Offset: 0x1c4
-	// Line 527, Address: 0x2b85fc, Func Offset: 0x1cc
-	// Line 529, Address: 0x2b8604, Func Offset: 0x1d4
-	// Func End, Address: 0x2b8620, Func Offset: 0x1f0
-	scePrintf("bhDispFontEx - UNIMPLEMENTED!\n");
+    NJS_POINT2COL p2c; 
+    NJS_POINT2 p[4];   
+    NJS_COLOR col[4];  
+    NJS_COLOR uv[4];  
+    
+    njTextureFilterMode(0);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njSetTexture(&sys->ef_tlist);
+    
+    njSetTextureNum(code / 324);
+    
+    p2c.p = p;
+    
+    p2c.col = col;
+    
+    p2c.tex = uv;
+    
+    p2c.num = 1;
+    
+    p[0].x = pos->x;
+    p[0].y = pos->y;
+    
+    p[1].x = pos->x + (28.0f * FontScaleX);
+    p[1].y = pos->y;
+    
+    p[2].x = pos->x + (28.0f * FontScaleX);
+    p[2].y = pos->y + (28.0f * FontScaleY);
+    
+    p[3].x = pos->x;
+    p[3].y = pos->y + (28.0f * FontScaleY);
+    
+    code %= 324;
+
+    col[0].color = argb;
+    col[1].color = argb;
+    col[2].color = argb;
+    col[3].color = argb;
+    
+    uv[0].tex.u = (code % 18) * 14;
+    uv[0].tex.v = (code / 18) * 14;
+    
+    uv[1].tex.u = uv[0].tex.u + 14;
+    uv[1].tex.v = uv[0].tex.v;
+    
+    uv[2].tex.u = uv[0].tex.u + 14;
+    uv[2].tex.v = uv[0].tex.v + 14;
+    
+    uv[3].tex.u = uv[0].tex.u; 
+    uv[3].tex.v = uv[0].tex.v + 14;
+    
+    njDrawPolygon2DM(&p2c, 4, pri, 0x80000060);
 }
 
 /*// 
