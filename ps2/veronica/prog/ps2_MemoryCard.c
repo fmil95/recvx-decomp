@@ -1533,47 +1533,76 @@ int MemoryCardFileClose(MEMORYCARDSTATE* pCard)
     return 0;
 }
 
-// 
-// Start address: 0x2750d0
+// 100% matching! 
 int MemoryCardFileRead(MEMORYCARDSTATE* pCard)
-{
-	int lSyncResult;
-	int lResult;
-	int lCmd;
-	// Line 3087, Address: 0x2750d0, Func Offset: 0
-	// Line 3090, Address: 0x2750dc, Func Offset: 0xc
-	// Line 3093, Address: 0x275100, Func Offset: 0x30
-	// Line 3095, Address: 0x275114, Func Offset: 0x44
-	// Line 3098, Address: 0x275120, Func Offset: 0x50
-	// Line 3100, Address: 0x27513c, Func Offset: 0x6c
-	// Line 3107, Address: 0x275144, Func Offset: 0x74
-	// Line 3105, Address: 0x275148, Func Offset: 0x78
-	// Line 3107, Address: 0x27514c, Func Offset: 0x7c
-	// Line 3109, Address: 0x275150, Func Offset: 0x80
-	// Line 3110, Address: 0x275158, Func Offset: 0x88
-	// Line 3113, Address: 0x275160, Func Offset: 0x90
-	// Line 3116, Address: 0x275168, Func Offset: 0x98
-	// Line 3120, Address: 0x275170, Func Offset: 0xa0
-	// Line 3121, Address: 0x275178, Func Offset: 0xa8
-	// Line 3123, Address: 0x27517c, Func Offset: 0xac
-	// Line 3126, Address: 0x275184, Func Offset: 0xb4
-	// Line 3127, Address: 0x275190, Func Offset: 0xc0
-	// Line 3129, Address: 0x27519c, Func Offset: 0xcc
-	// Line 3132, Address: 0x2751a8, Func Offset: 0xd8
-	// Line 3134, Address: 0x2751ac, Func Offset: 0xdc
-	// Line 3138, Address: 0x2751b0, Func Offset: 0xe0
-	// Line 3143, Address: 0x2751bc, Func Offset: 0xec
-	// Line 3145, Address: 0x2751c0, Func Offset: 0xf0
-	// Line 3148, Address: 0x2751c8, Func Offset: 0xf8
-	// Line 3151, Address: 0x2751d4, Func Offset: 0x104
-	// Line 3153, Address: 0x2751d8, Func Offset: 0x108
-	// Line 3155, Address: 0x2751dc, Func Offset: 0x10c
-	// Line 3157, Address: 0x2751e0, Func Offset: 0x110
-	// Line 3162, Address: 0x2751e8, Func Offset: 0x118
-	// Line 3163, Address: 0x2751ec, Func Offset: 0x11c
-	// Func End, Address: 0x2751fc, Func Offset: 0x12c
-	scePrintf("MemoryCardFileRead - UNIMPLEMENTED!\n");
-}
+{ 
+    int lCmd;
+    int lResult;
+    int lSyncResult;
+
+    switch (pCard->usMcSysState) 
+    {  
+    case 0:
+        lResult = sceMcRead(pCard->lOpenFileNumber, pCard->vpAddr, pCard->ulFileSize); 
+        
+        if (lResult < 0)
+        {  
+            if (--pCard->cRetryCount != 0)
+            { 
+                return 0; 
+            } 
+            
+            pCard->ulState = 0; 
+            
+            pCard->ulError = 1; 
+            
+            pCard->cRetryCount = 5; 
+            
+            return -1; 
+        }
+        else if (lResult > 0) 
+        {
+            return 0;
+        }
+        
+        pCard->usMcSysState = 1; 
+        
+        pCard->cRetryCount = 5;
+        break;
+    case 1:
+        lSyncResult = sceMcSync(1, &lCmd, &lResult);
+        
+        if (lSyncResult == 1) 
+        {
+            if (lResult < 0) 
+            { 
+                pCard->ulState = 0; 
+                
+                pCard->ulError = 1; 
+                
+                pCard->usMcSysState = 0;
+                
+                return -1;
+            }
+            
+            pCard->usMcSysState = 0; 
+            
+            return 1; 
+        }
+        else if (lSyncResult == -1) 
+        { 
+            pCard->ulState = 0;
+            
+            pCard->ulError = 1; 
+            
+            pCard->usMcSysState = 0; 
+            
+            return -1; 
+        }
+    }
+    
+    return 0; 
+} 
 
 // 100% matching! 
 int MemoryCardFileWrite(MEMORYCARDSTATE* pCard) 

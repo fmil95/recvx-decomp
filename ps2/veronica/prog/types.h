@@ -2512,6 +2512,7 @@ typedef struct PVP_INFO
     unsigned short ppEntryCount; // offset 0xE, size 0x2
 } PVP_INFO;
 
+// TODO: use the proper struct definition from the TIM2 samples 
 typedef struct TIM2_PICTUREHEADER /* @anon4 */ {
     // total size: 0xD0
     signed char FileId[4]; // offset 0x0, size 0x4
