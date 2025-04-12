@@ -689,14 +689,11 @@ void RecoveryMemoryCardError(MEMORYCARDSTATE* pCard)
     pCard->ulError = 0;
 }
 
-// 
-// Start address: 0x273f70
-void SetMemoryCardCurrentPort(MEMORYCARDSTATE* pCard, int lPort)
+// 100% matching! 
+void SetMemoryCardCurrentPort(MEMORYCARDSTATE* pCard, int lPort) 
 {
-	// Line 917, Address: 0x273f70, Func Offset: 0
-	// Func End, Address: 0x273f78, Func Offset: 0x8
-	scePrintf("SetMemoryCardCurrentPort - UNIMPLEMENTED!\n");
-}
+    pCard->lCurrentPort = lPort;
+} 
 
 // 100% matching!
 int GetMemoryCardCurrentPort(MEMORYCARDSTATE* pCard) 
