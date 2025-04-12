@@ -688,14 +688,12 @@ unsigned int GetMemoryCardError(MEMORYCARDSTATE* pCard)
     return pCard->ulError;
 }
 
-// 
-// Start address: 0x273f60
+// 100% matching! 
 void RecoveryMemoryCardError(MEMORYCARDSTATE* pCard)
 {
-	// Line 879, Address: 0x273f60, Func Offset: 0
-	// Line 882, Address: 0x273f64, Func Offset: 0x4
-	// Func End, Address: 0x273f6c, Func Offset: 0xc
-	scePrintf("RecoveryMemoryCardError - UNIMPLEMENTED!\n");
+    pCard->ulState = 0;
+    
+    pCard->ulError = 0;
 }
 
 // 
