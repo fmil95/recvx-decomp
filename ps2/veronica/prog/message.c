@@ -2114,116 +2114,118 @@ int bhDispMessageEx(float px, float py, float pri, int mes_typ, int mes_idx, uns
 	scePrintf("bhDispMessageEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2b8c80
-void bhDispTime(NJS_POINT2* pos, unsigned int flg, int time, int color, float pri)
-{
-	unsigned short cd;
-	int msc;
-	int sec;
-	int min;
-	int hour;
-	//_anon2 dps;
-	int ntb[10];
-	// Line 784, Address: 0x2b8c80, Func Offset: 0
-	// Line 800, Address: 0x2b8ca8, Func Offset: 0x28
-	// Line 802, Address: 0x2b8cac, Func Offset: 0x2c
-	// Line 800, Address: 0x2b8cc0, Func Offset: 0x40
-	// Line 801, Address: 0x2b8cc4, Func Offset: 0x44
-	// Line 803, Address: 0x2b8cc8, Func Offset: 0x48
-	// Line 802, Address: 0x2b8cd0, Func Offset: 0x50
-	// Line 801, Address: 0x2b8cdc, Func Offset: 0x5c
-	// Line 802, Address: 0x2b8ce0, Func Offset: 0x60
-	// Line 803, Address: 0x2b8ce4, Func Offset: 0x64
-	// Line 802, Address: 0x2b8ce8, Func Offset: 0x68
-	// Line 803, Address: 0x2b8cec, Func Offset: 0x6c
-	// Line 804, Address: 0x2b8cf8, Func Offset: 0x78
-	// Line 807, Address: 0x2b8d00, Func Offset: 0x80
-	// Line 809, Address: 0x2b8d04, Func Offset: 0x84
-	// Line 806, Address: 0x2b8d08, Func Offset: 0x88
-	// Line 810, Address: 0x2b8d0c, Func Offset: 0x8c
-	// Line 812, Address: 0x2b8d14, Func Offset: 0x94
-	// Line 811, Address: 0x2b8d24, Func Offset: 0xa4
-	// Line 812, Address: 0x2b8d28, Func Offset: 0xa8
-	// Line 813, Address: 0x2b8d2c, Func Offset: 0xac
-	// Line 812, Address: 0x2b8d34, Func Offset: 0xb4
-	// Line 816, Address: 0x2b8d44, Func Offset: 0xc4
-	// Line 812, Address: 0x2b8d4c, Func Offset: 0xcc
-	// Line 813, Address: 0x2b8d50, Func Offset: 0xd0
-	// Line 816, Address: 0x2b8d7c, Func Offset: 0xfc
-	// Line 822, Address: 0x2b8da8, Func Offset: 0x128
-	// Line 823, Address: 0x2b8db0, Func Offset: 0x130
-	// Line 826, Address: 0x2b8dbc, Func Offset: 0x13c
-	// Line 825, Address: 0x2b8dc0, Func Offset: 0x140
-	// Line 828, Address: 0x2b8dc4, Func Offset: 0x144
-	// Line 829, Address: 0x2b8dcc, Func Offset: 0x14c
-	// Line 830, Address: 0x2b8de4, Func Offset: 0x164
-	// Line 829, Address: 0x2b8dec, Func Offset: 0x16c
-	// Line 830, Address: 0x2b8e08, Func Offset: 0x188
-	// Line 834, Address: 0x2b8e34, Func Offset: 0x1b4
-	// Line 884, Address: 0x2b8e74, Func Offset: 0x1f4
-	// Line 885, Address: 0x2b8e80, Func Offset: 0x200
-	// Line 886, Address: 0x2b8ec0, Func Offset: 0x240
-	// Line 887, Address: 0x2b8ecc, Func Offset: 0x24c
-	// Line 886, Address: 0x2b8ed0, Func Offset: 0x250
-	// Line 887, Address: 0x2b8ed4, Func Offset: 0x254
-	// Line 886, Address: 0x2b8ed8, Func Offset: 0x258
-	// Line 887, Address: 0x2b8edc, Func Offset: 0x25c
-	// Line 886, Address: 0x2b8ee4, Func Offset: 0x264
-	// Line 887, Address: 0x2b8ef0, Func Offset: 0x270
-	// Line 888, Address: 0x2b8f10, Func Offset: 0x290
-	// Line 890, Address: 0x2b8f24, Func Offset: 0x2a4
-	// Line 888, Address: 0x2b8f2c, Func Offset: 0x2ac
-	// Line 890, Address: 0x2b8f30, Func Offset: 0x2b0
-	// Line 888, Address: 0x2b8f38, Func Offset: 0x2b8
-	// Line 890, Address: 0x2b8f3c, Func Offset: 0x2bc
-	// Line 891, Address: 0x2b8f44, Func Offset: 0x2c4
-	// Line 894, Address: 0x2b8f64, Func Offset: 0x2e4
-	// Line 895, Address: 0x2b8f70, Func Offset: 0x2f0
-	// Line 896, Address: 0x2b8fa8, Func Offset: 0x328
-	// Line 897, Address: 0x2b8fe8, Func Offset: 0x368
-	// Line 898, Address: 0x2b8ff4, Func Offset: 0x374
-	// Line 897, Address: 0x2b8ff8, Func Offset: 0x378
-	// Line 898, Address: 0x2b8ffc, Func Offset: 0x37c
-	// Line 897, Address: 0x2b9000, Func Offset: 0x380
-	// Line 898, Address: 0x2b9004, Func Offset: 0x384
-	// Line 897, Address: 0x2b900c, Func Offset: 0x38c
-	// Line 898, Address: 0x2b9018, Func Offset: 0x398
-	// Line 899, Address: 0x2b9038, Func Offset: 0x3b8
-	// Line 901, Address: 0x2b904c, Func Offset: 0x3cc
-	// Line 902, Address: 0x2b9050, Func Offset: 0x3d0
-	// Line 899, Address: 0x2b9054, Func Offset: 0x3d4
-	// Line 901, Address: 0x2b9058, Func Offset: 0x3d8
-	// Line 899, Address: 0x2b9064, Func Offset: 0x3e4
-	// Line 902, Address: 0x2b9068, Func Offset: 0x3e8
-	// Line 903, Address: 0x2b907c, Func Offset: 0x3fc
-	// Line 906, Address: 0x2b909c, Func Offset: 0x41c
-	// Line 907, Address: 0x2b90a8, Func Offset: 0x428
-	// Line 908, Address: 0x2b90e8, Func Offset: 0x468
-	// Line 909, Address: 0x2b90f4, Func Offset: 0x474
-	// Line 908, Address: 0x2b90f8, Func Offset: 0x478
-	// Line 909, Address: 0x2b90fc, Func Offset: 0x47c
-	// Line 908, Address: 0x2b9100, Func Offset: 0x480
-	// Line 909, Address: 0x2b9104, Func Offset: 0x484
-	// Line 908, Address: 0x2b910c, Func Offset: 0x48c
-	// Line 909, Address: 0x2b9118, Func Offset: 0x498
-	// Line 910, Address: 0x2b9138, Func Offset: 0x4b8
-	// Line 911, Address: 0x2b9154, Func Offset: 0x4d4
-	// Line 913, Address: 0x2b915c, Func Offset: 0x4dc
-	// Line 914, Address: 0x2b9170, Func Offset: 0x4f0
-	// Line 918, Address: 0x2b9190, Func Offset: 0x510
-	// Line 919, Address: 0x2b919c, Func Offset: 0x51c
-	// Line 920, Address: 0x2b91dc, Func Offset: 0x55c
-	// Line 921, Address: 0x2b91e8, Func Offset: 0x568
-	// Line 920, Address: 0x2b91ec, Func Offset: 0x56c
-	// Line 921, Address: 0x2b91f0, Func Offset: 0x570
-	// Line 920, Address: 0x2b91f4, Func Offset: 0x574
-	// Line 921, Address: 0x2b91f8, Func Offset: 0x578
-	// Line 920, Address: 0x2b9200, Func Offset: 0x580
-	// Line 921, Address: 0x2b920c, Func Offset: 0x58c
-	// Line 924, Address: 0x2b922c, Func Offset: 0x5ac
-	// Func End, Address: 0x2b9258, Func Offset: 0x5d8
-	scePrintf("bhDispTime - UNIMPLEMENTED!\n");
+// 99.79% matching
+void bhDispTime(NJS_POINT2 *pos, unsigned int flg, int time, int color, float pri) 
+{ 
+    static int ntb[10] = { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 };
+    NJS_POINT2 dps;
+    int hour;
+    int min;
+    int sec;
+    int msc;
+    unsigned short cd;
+
+    dps.x = pos->x; 
+    dps.y = pos->y; 
+    
+    hour = time / 216000; 
+    
+    if (sys->gm_mode == 3) 
+    { 
+        if (hour >= 1) 
+        {
+            hour = 0; 
+            
+            min = 59; 
+            sec = 59;
+            msc = 99; 
+        } 
+        else
+        {
+            hour = 0;
+            
+            min = (time / 3600) % 60; 
+            sec = (time / 60) % 60; 
+            msc = ((time % 60) * 10) / 6; 
+        }
+    } 
+    else 
+    {
+        if (hour > 99) 
+        {
+            hour = 99; 
+            
+            min = 59; 
+            sec = 59;
+        } 
+        else 
+        { 
+            min = (time / 3600) % 60; 
+            sec = (time / 60) % 60; 
+        }
+        
+        msc = ((time % 60) * 10) / 6; 
+    }
+
+    if ((flg & 0x8)) 
+    { 
+        bhDispFont(&dps, ntb[hour / 10], color, pri); 
+        dps.x += FontScaleX * 20.0f; 
+        
+        bhDispFont(&dps, ntb[hour % 10], color, pri); 
+        dps.x += FontScaleX * 20.0f; 
+        
+        bhDispFont(&dps, 26, color, pri); 
+        dps.x += FontScaleX * bhGetFontSize(26);       
+    }
+    
+    if ((flg & 0x4)) 
+    { 
+        if (((!(flg & 0x8)) && (min / 10)) || ((flg & 0x8))) 
+        { 
+            bhDispFont(&dps, ntb[min / 10], color, pri);
+        }
+        
+        dps.x += FontScaleX * 20.0f;
+        
+        bhDispFont(&dps, ntb[min % 10], color, pri); 
+        dps.x += FontScaleX * 20.0f; 
+        
+        if ((flg & 0x8)) 
+        {
+            cd = 26;
+        }
+        else 
+        {
+            cd = 7;
+        }
+        
+        bhDispFont(&dps, cd, color, pri); 
+        dps.x += FontScaleX * bhGetFontSize(cd); 
+    }
+    
+    if ((flg & 0x2)) 
+    { 
+        bhDispFont(&dps, ntb[sec / 10], color, pri);
+        dps.x += FontScaleX * 20.0f;
+        
+        bhDispFont(&dps, ntb[sec % 10], color, pri);
+        dps.x += FontScaleX * 20.0f;
+        
+        if (!(flg & 0x8)) 
+        {
+            bhDispFont(&dps, 2, color, pri);
+            dps.x += FontScaleX * bhGetFontSize(2);
+        }
+    }
+    
+    if ((flg & 0x1))
+    { 
+        bhDispFont(&dps, ntb[msc / 10], color, pri);
+        dps.x += FontScaleX * 20.0f;
+        
+        bhDispFont(&dps, ntb[msc % 10], color, pri);
+    }
 }
 
 /*// 
