@@ -1,135 +1,60 @@
-/*typedef struct _anon0;
-typedef struct tagMEMORYCARDSTATE;
-typedef struct _anon1;
-typedef struct tagMEMORYCARDPORT;
-typedef struct _anon2;
+// TODO: compile and link this file separatedly to remove the "ps2_MemoryCard.c" include in main.c  
 
-
-typedef char type_0[32];
-typedef unsigned char type_1[32];
-typedef char type_2[50];
-typedef char type_3[32];
-typedef tagMEMORYCARDPORT type_4[2];
-typedef _anon1 type_5[21];
-
-struct _anon0
-{
-	unsigned char Resv2;
-	unsigned char Sec;
-	unsigned char Min;
-	unsigned char Hour;
-	unsigned char Day;
-	unsigned char Month;
-	unsigned short Year;
-};
-
-struct tagMEMORYCARDSTATE
-{
-	unsigned int ulState;
-	unsigned int ulError;
-	unsigned int ulMcSubState;
-	unsigned int ulFileSize;
-	int lCurrentPort;
-	int lOpenFileNumber;
-	int lSelectFileNumber;
-	int lOpenMode;
-	unsigned short usMcSysState;
-	void* vpAddr;
-	char cCurrentDir[50];
-	char cOpenFileName[32];
-	char cRetryCount;
-	char cMcCheckFlag;
-	char cCheckMcFlag;
-	tagMEMORYCARDPORT Port[2];
-};
-
-struct _anon1
-{
-	_anon2 _Create;
-	_anon0 _Modify;
-	unsigned int FileSizeByte;
-	unsigned short AttrFile;
-	unsigned short Reserve1;
-	unsigned int Reserve2;
-	unsigned int PdaAplNo;
-	unsigned char EntryName[32];
-};
-
-struct tagMEMORYCARDPORT
-{
-	int lCrntType;
-	int lPrevType;
-	int lFreeSize;
-	int lFormatType;
-};
-
-struct _anon2
-{
-	unsigned char Resv2;
-	unsigned char Sec;
-	unsigned char Min;
-	unsigned char Hour;
-	unsigned char Day;
-	unsigned char Month;
-	unsigned short Year;
-};
-
-
-tagMEMORYCARDSTATE* CreateMemoryCard(tagMEMORYCARDSTATE* pCard);
-int ExecuteMemoryCard(tagMEMORYCARDSTATE* pCard);
-int ExecuteMemoryCardStandby(tagMEMORYCARDSTATE* pCard);
-int AnalyzeMemoryCardAll(tagMEMORYCARDSTATE* pCard);
-int ExecuteAnalyzeMemoryCardAll(tagMEMORYCARDSTATE* pCard);
-int RecoveryMemoryCardAnalyzeAllEnd(tagMEMORYCARDSTATE* pCard);
-void SetCheckMcFlag(tagMEMORYCARDSTATE* pCard, unsigned int ulFlag);
-int ExecuteMemoryCardRead(tagMEMORYCARDSTATE* pCard);
-int ExecuteMemoryCardWrite(tagMEMORYCARDSTATE* pCard);
-int ExecuteMemoryCardFormat(tagMEMORYCARDSTATE* pCard);
-int ExecuteMemoryCardUnFormat(tagMEMORYCARDSTATE* pCard);
-int ExecuteMemoryCardDelete(tagMEMORYCARDSTATE* pCard);*/
+MEMORYCARDSTATE* CreateMemoryCard(MEMORYCARDSTATE* pCard);
+int ExecuteMemoryCard(MEMORYCARDSTATE* pCard);
+int ExecuteMemoryCardStandby(MEMORYCARDSTATE* pCard);
+int AnalyzeMemoryCardAll(MEMORYCARDSTATE* pCard);
+int ExecuteAnalyzeMemoryCardAll(MEMORYCARDSTATE* pCard);
+int RecoveryMemoryCardAnalyzeAllEnd(MEMORYCARDSTATE* pCard);
+void SetCheckMcFlag(MEMORYCARDSTATE* pCard, unsigned int ulFlag);
+int ExecuteMemoryCardRead(MEMORYCARDSTATE* pCard);
+int ExecuteMemoryCardWrite(MEMORYCARDSTATE* pCard);
+int ExecuteMemoryCardFormat(MEMORYCARDSTATE* pCard);
+int ExecuteMemoryCardUnFormat(MEMORYCARDSTATE* pCard);
+int ExecuteMemoryCardDelete(MEMORYCARDSTATE* pCard);
 unsigned int GetMemoryCardError(MEMORYCARDSTATE* pCard);
-/*void RecoveryMemoryCardError(tagMEMORYCARDSTATE* pCard);
-void SetMemoryCardCurrentPort(tagMEMORYCARDSTATE* pCard, int lPort);
-int GetMemoryCardCurrentPort(tagMEMORYCARDSTATE* pCard);
-void SetMemoryCardSelectPortState(tagMEMORYCARDSTATE* pCard, unsigned int ulPort, unsigned int ulResult);
-void SaveMemoryCardSelectPortState(tagMEMORYCARDSTATE* pCard, unsigned int ulPort);
-int CompMemoryCardSelectPortState(tagMEMORYCARDSTATE* pCard, unsigned int ulPort);
-int GetMemoryCardSelectPortState(tagMEMORYCARDSTATE* pCard, unsigned int ulPort);
-int GetMemoryCardFileNumber(tagMEMORYCARDSTATE* pCard);
-void SetMemoryCardFileNumber(tagMEMORYCARDSTATE* pCard, int lFileNumber);
-int SetMemoryCardCurrentDirectoryAbsolute(tagMEMORYCARDSTATE* pCard, char* cpPath);
-int ReadMemoryCard(tagMEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode);
-int RecoveryMemoryCardReadEnd(tagMEMORYCARDSTATE* pCard);
-int WriteMemoryCard(tagMEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode);
-int RecoveryMemoryCardWriteEnd(tagMEMORYCARDSTATE* pCard);
-int FormatMemoryCard(tagMEMORYCARDSTATE* pCard);
-int RecoveryMemoryCardFormatEnd(tagMEMORYCARDSTATE* pCard);
-int GetMcSelectPortType(tagMEMORYCARDSTATE* pCard, unsigned int ulPort);
-int CheckMemoryCardChangeConnectTypeAll(tagMEMORYCARDSTATE* pCard);
-int SetMemoryCardFreeCapacity(tagMEMORYCARDSTATE* pCard, int Free);
-int GetMemoryCardFreeCapacity(tagMEMORYCARDSTATE* pCard);
-int GetMemoryCardSelectPortFreeCapacity(tagMEMORYCARDSTATE* pCard, unsigned int ulPort);
-int CheckMemoryCardFormatStatus(tagMEMORYCARDSTATE* pCard);
-int CreateMemoryCardSubDirectory(tagMEMORYCARDSTATE* pCard);
-int CheckMemoryCardExistSubDirectory(tagMEMORYCARDSTATE* pCard);
-int CheckMemoryCardExistFile(tagMEMORYCARDSTATE* pCard);
-int CheckMemoryCardExistFileList(tagMEMORYCARDSTATE* pCard, char** cppPathList, unsigned int FileCount);
+void RecoveryMemoryCardError(MEMORYCARDSTATE* pCard);
+void SetMemoryCardCurrentPort(MEMORYCARDSTATE* pCard, int lPort);
+int GetMemoryCardCurrentPort(MEMORYCARDSTATE* pCard);
+void SetMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort, unsigned int ulResult);
+void SaveMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort);
+int CompMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort);
+int GetMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort);
+int GetMemoryCardFileNumber(MEMORYCARDSTATE* pCard);
+void SetMemoryCardFileNumber(MEMORYCARDSTATE* pCard, int lFileNumber);
+int SetMemoryCardCurrentDirectoryAbsolute(MEMORYCARDSTATE* pCard, char* cpPath);
+int ReadMemoryCard(MEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode);
+int RecoveryMemoryCardReadEnd(MEMORYCARDSTATE* pCard);
+int WriteMemoryCard(MEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode);
+int RecoveryMemoryCardWriteEnd(MEMORYCARDSTATE* pCard);
+int FormatMemoryCard(MEMORYCARDSTATE* pCard);
+int RecoveryMemoryCardFormatEnd(MEMORYCARDSTATE* pCard);
+int GetMcSelectPortType(MEMORYCARDSTATE* pCard, unsigned int ulPort);
+int CheckMemoryCardChangeConnectTypeAll(MEMORYCARDSTATE* pCard);
+int SetMemoryCardFreeCapacity(MEMORYCARDSTATE* pCard, int Free);
+int GetMemoryCardFreeCapacity(MEMORYCARDSTATE* pCard);
+int GetMemoryCardSelectPortFreeCapacity(MEMORYCARDSTATE* pCard, unsigned int ulPort);
+int CheckMemoryCardFormatStatus(MEMORYCARDSTATE* pCard);
+int CreateMemoryCardSubDirectory(MEMORYCARDSTATE* pCard);
+int CheckMemoryCardExistSubDirectory(MEMORYCARDSTATE* pCard);
+int CheckMemoryCardExistFile(MEMORYCARDSTATE* pCard);
+int CheckMemoryCardExistFileList(MEMORYCARDSTATE* pCard, char** cppPathList, unsigned int FileCount);
 int MemoryCardGetSum(unsigned char* ucpTop, unsigned int ulSize);
-int GetMemoryCardSelectPortFormatType(tagMEMORYCARDSTATE* pCard, unsigned int ulPort);
+int GetMemoryCardSelectPortFormatType(MEMORYCARDSTATE* pCard, unsigned int ulPort);
 int CheckMcSelectPortInfoType(unsigned int ulPort);
-int CheckMemoryCardInfoFree(tagMEMORYCARDSTATE* pCard);
+int CheckMemoryCardInfoFree(MEMORYCARDSTATE* pCard);
 int CheckMcSelectPortInfoState(unsigned int ulPort);
-int CheckMemoryCardInfoUnformat(tagMEMORYCARDSTATE* pCard);
-int GetMemoryCardDir(tagMEMORYCARDSTATE* pCard, char* cpPath, int lFlag, int lMaxent, _anon1* pbuff);
-int ChangeMemoryCardDir(tagMEMORYCARDSTATE* pCard, char* cpPath, char* cpbuff);
-int MakeMemoryCardDir(tagMEMORYCARDSTATE* pCard);
-int MemoryCardFormat(tagMEMORYCARDSTATE* pCard);
+int CheckMemoryCardInfoUnformat(MEMORYCARDSTATE* pCard);
+int GetMemoryCardDir(MEMORYCARDSTATE* pCard, char* cpPath, int lFlag, int lMaxent, sceMcTblGetDir* pbuff);
+int ChangeMemoryCardDir(MEMORYCARDSTATE* pCard, char* cpPath, char* cpbuff);
+int MakeMemoryCardDir(MEMORYCARDSTATE* pCard);
+int MemoryCardFormat(MEMORYCARDSTATE* pCard);
 int MemoryCardUnFormat();
 int DeleteMemoryCard();
-int MemoryCardFileOpen(tagMEMORYCARDSTATE* pCard);
-int MemoryCardFileClose(tagMEMORYCARDSTATE* pCard);
-int MemoryCardFileRead(tagMEMORYCARDSTATE* pCard);
-int MemoryCardFileWrite(tagMEMORYCARDSTATE* pCard);*/
+int MemoryCardFileOpen(MEMORYCARDSTATE* pCard);
+int MemoryCardFileClose(MEMORYCARDSTATE* pCard);
+int MemoryCardFileRead(MEMORYCARDSTATE* pCard);
+int MemoryCardFileWrite(MEMORYCARDSTATE* pCard);
 
 // 100% matching!
 MEMORYCARDSTATE* CreateMemoryCard(MEMORYCARDSTATE* pCard)
@@ -701,15 +626,11 @@ int GetMemoryCardCurrentPort(MEMORYCARDSTATE* pCard)
     return pCard->lCurrentPort;
 }
 
-// 
-// Start address: 0x273f90
-void SetMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort, unsigned int ulResult)
+// 100% matching! 
+void SetMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort, unsigned int ulResult) 
 {
-	// Line 1020, Address: 0x273f90, Func Offset: 0
-	// Line 1021, Address: 0x273f98, Func Offset: 0x8
-	// Func End, Address: 0x273fa0, Func Offset: 0x10
-	scePrintf("SetMemoryCardSelectPortState - UNIMPLEMENTED!\n");
-}
+    pCard->Port[ulPort].lCrntType = ulResult; 
+} 
 
 // 100% matching!
 void SaveMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort) 
