@@ -714,15 +714,11 @@ void SetMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort, u
 	scePrintf("SetMemoryCardSelectPortState - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x273fa0
-void SaveMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort)
+// 100% matching!
+void SaveMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort) 
 {
-	// Line 1040, Address: 0x273fa0, Func Offset: 0
-	// Line 1041, Address: 0x273fac, Func Offset: 0xc
-	// Func End, Address: 0x273fb4, Func Offset: 0x14
-	scePrintf("SaveMemoryCardSelectPortState - UNIMPLEMENTED!\n");
-}
+    pCard->Port[ulPort].lPrevType = pCard->Port[ulPort].lCrntType; 
+} 
 
 // 100% matching!
 int CompMemoryCardSelectPortState(MEMORYCARDSTATE* pCard, unsigned int ulPort)
