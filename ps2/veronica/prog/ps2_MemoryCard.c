@@ -1359,35 +1359,61 @@ int MakeMemoryCardDir(MEMORYCARDSTATE* pCard)
     return 0; 
 } 
 
-// 
-// Start address: 0x274d90
-int MemoryCardFormat(MEMORYCARDSTATE* pCard)
+// 100% matching! 
+int MemoryCardFormat(MEMORYCARDSTATE* pCard) 
 {
-	int lSyncResult;
-	int lResult;
-	int lCmd;
-	// Line 2755, Address: 0x274d90, Func Offset: 0
-	// Line 2758, Address: 0x274d9c, Func Offset: 0xc
-	// Line 2761, Address: 0x274dc0, Func Offset: 0x30
-	// Line 2763, Address: 0x274dd0, Func Offset: 0x40
-	// Line 2768, Address: 0x274ddc, Func Offset: 0x4c
-	// Line 2775, Address: 0x274e00, Func Offset: 0x70
-	// Line 2777, Address: 0x274e08, Func Offset: 0x78
-	// Line 2779, Address: 0x274e0c, Func Offset: 0x7c
-	// Line 2782, Address: 0x274e14, Func Offset: 0x84
-	// Line 2784, Address: 0x274e20, Func Offset: 0x90
-	// Line 2786, Address: 0x274e2c, Func Offset: 0x9c
-	// Line 2790, Address: 0x274e38, Func Offset: 0xa8
-	// Line 2795, Address: 0x274e44, Func Offset: 0xb4
-	// Line 2797, Address: 0x274e48, Func Offset: 0xb8
-	// Line 2800, Address: 0x274e50, Func Offset: 0xc0
-	// Line 2803, Address: 0x274e5c, Func Offset: 0xcc
-	// Line 2804, Address: 0x274e60, Func Offset: 0xd0
-	// Line 2809, Address: 0x274e68, Func Offset: 0xd8
-	// Line 2810, Address: 0x274e6c, Func Offset: 0xdc
-	// Func End, Address: 0x274e7c, Func Offset: 0xec
-	scePrintf("MemoryCardFormat - UNIMPLEMENTED!\n");
-}
+    int lCmd;
+    int lResult;
+    int lSyncResult;
+
+    switch (pCard->usMcSysState) 
+    {
+    case 0:
+        lResult = sceMcFormat(pCard->lCurrentPort, 0); 
+        
+        if (lResult < 0) 
+        {
+            if (--pCard->cRetryCount != 0)
+            {
+                return 0;
+            }
+               
+            return -1;
+        }
+        else if (lResult == 0)
+        {
+            pCard->usMcSysState = 1; 
+        }
+        
+        break; 
+    case 1:
+        lSyncResult = sceMcSync(1, &lCmd, &lResult); 
+        
+        if (lSyncResult == 1) 
+        {
+            if (lResult < 0) 
+            {
+                pCard->usMcSysState = 0;
+                
+                return -1; 
+            }
+            else 
+            {
+                pCard->usMcSysState = 0;
+            
+                return 1; 
+            }
+        }
+        else if (lSyncResult == -1) 
+        {
+            pCard->usMcSysState = 0; 
+            
+            return -1; 
+        }
+    }
+
+    return 0; 
+} 
 
 // 
 // Start address: 0x274e80
