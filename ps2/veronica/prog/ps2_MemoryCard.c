@@ -1430,34 +1430,62 @@ int DeleteMemoryCard()
     return 0;
 }
 
-// 
-// Start address: 0x274ea0
+// 100% matching! 
 int MemoryCardFileOpen(MEMORYCARDSTATE* pCard)
 {
-	int lSyncResult;
-	int lResult;
-	int lCmd;
-	// Line 2918, Address: 0x274ea0, Func Offset: 0
-	// Line 2921, Address: 0x274eac, Func Offset: 0xc
-	// Line 2926, Address: 0x274ed0, Func Offset: 0x30
-	// Line 2927, Address: 0x274ee8, Func Offset: 0x48
-	// Line 2932, Address: 0x274ef4, Func Offset: 0x54
-	// Line 2939, Address: 0x274f18, Func Offset: 0x78
-	// Line 2941, Address: 0x274f20, Func Offset: 0x80
-	// Line 2943, Address: 0x274f24, Func Offset: 0x84
-	// Line 2946, Address: 0x274f2c, Func Offset: 0x8c
-	// Line 2947, Address: 0x274f38, Func Offset: 0x98
-	// Line 2949, Address: 0x274f44, Func Offset: 0xa4
-	// Line 2953, Address: 0x274f50, Func Offset: 0xb0
-	// Line 2958, Address: 0x274f5c, Func Offset: 0xbc
-	// Line 2960, Address: 0x274f60, Func Offset: 0xc0
-	// Line 2965, Address: 0x274f68, Func Offset: 0xc8
-	// Line 2967, Address: 0x274f74, Func Offset: 0xd4
-	// Line 2969, Address: 0x274f78, Func Offset: 0xd8
-	// Line 2973, Address: 0x274f80, Func Offset: 0xe0
-	// Line 2974, Address: 0x274f84, Func Offset: 0xe4
-	// Func End, Address: 0x274f94, Func Offset: 0xf4
-	scePrintf("MemoryCardFileOpen - UNIMPLEMENTED!\n");
+    int lCmd;
+    int lResult;
+    int lSyncResult;
+
+    switch (pCard->usMcSysState)
+    {
+    case 0:
+        lResult = sceMcOpen(pCard->lCurrentPort, 0, pCard->cCurrentDir, pCard->lOpenMode);
+        
+        if (lResult < 0)
+        {
+            if (--pCard->cRetryCount != 0)
+            {
+                return 0;
+            }
+            
+            return -1;
+        }
+        else if (lResult == 0)
+        {
+            pCard->usMcSysState = 1;
+        }
+        
+        break;
+    case 1:
+        lSyncResult = sceMcSync(1, &lCmd, &lResult);
+        
+        if (lSyncResult == 1)
+        {
+            if (lResult < 0)
+            {
+                pCard->usMcSysState = 0;
+                
+                return -1;
+            }
+            else 
+            {
+                pCard->usMcSysState = 0;
+                
+                return 1;
+            }
+        }
+        else if (lSyncResult == -1)
+        {
+            pCard->usMcSysState = 0;
+            
+            return -1;
+        }
+        
+        break;
+    }
+
+    return 0;
 }
 
 // 100% matching!
