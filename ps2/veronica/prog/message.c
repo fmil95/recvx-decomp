@@ -2228,116 +2228,119 @@ void bhDispTime(NJS_POINT2 *pos, unsigned int flg, int time, int color, float pr
     }
 }
 
-/*// 
-// Start address: 0x2b9260
-void bhDispTimeEx(_anon2* pos, unsigned int flg, int time, unsigned int argb, float pri)
-{
-	unsigned short cd;
-	int msc;
-	int sec;
-	int min;
-	int hour;
-	_anon2 dps;
-	int ntb[10];
-	// Line 937, Address: 0x2b9260, Func Offset: 0
-	// Line 953, Address: 0x2b9288, Func Offset: 0x28
-	// Line 955, Address: 0x2b928c, Func Offset: 0x2c
-	// Line 953, Address: 0x2b92a0, Func Offset: 0x40
-	// Line 954, Address: 0x2b92a4, Func Offset: 0x44
-	// Line 956, Address: 0x2b92a8, Func Offset: 0x48
-	// Line 955, Address: 0x2b92b0, Func Offset: 0x50
-	// Line 954, Address: 0x2b92bc, Func Offset: 0x5c
-	// Line 955, Address: 0x2b92c0, Func Offset: 0x60
-	// Line 956, Address: 0x2b92c4, Func Offset: 0x64
-	// Line 955, Address: 0x2b92c8, Func Offset: 0x68
-	// Line 956, Address: 0x2b92cc, Func Offset: 0x6c
-	// Line 957, Address: 0x2b92d8, Func Offset: 0x78
-	// Line 960, Address: 0x2b92e0, Func Offset: 0x80
-	// Line 962, Address: 0x2b92e4, Func Offset: 0x84
-	// Line 959, Address: 0x2b92e8, Func Offset: 0x88
-	// Line 963, Address: 0x2b92ec, Func Offset: 0x8c
-	// Line 965, Address: 0x2b92f4, Func Offset: 0x94
-	// Line 964, Address: 0x2b9304, Func Offset: 0xa4
-	// Line 965, Address: 0x2b9308, Func Offset: 0xa8
-	// Line 966, Address: 0x2b930c, Func Offset: 0xac
-	// Line 965, Address: 0x2b9314, Func Offset: 0xb4
-	// Line 969, Address: 0x2b9324, Func Offset: 0xc4
-	// Line 965, Address: 0x2b932c, Func Offset: 0xcc
-	// Line 966, Address: 0x2b9330, Func Offset: 0xd0
-	// Line 969, Address: 0x2b935c, Func Offset: 0xfc
-	// Line 975, Address: 0x2b9388, Func Offset: 0x128
-	// Line 976, Address: 0x2b9390, Func Offset: 0x130
-	// Line 979, Address: 0x2b939c, Func Offset: 0x13c
-	// Line 978, Address: 0x2b93a0, Func Offset: 0x140
-	// Line 981, Address: 0x2b93a4, Func Offset: 0x144
-	// Line 982, Address: 0x2b93ac, Func Offset: 0x14c
-	// Line 983, Address: 0x2b93c4, Func Offset: 0x164
-	// Line 982, Address: 0x2b93cc, Func Offset: 0x16c
-	// Line 983, Address: 0x2b93e8, Func Offset: 0x188
-	// Line 987, Address: 0x2b9414, Func Offset: 0x1b4
-	// Line 1037, Address: 0x2b9454, Func Offset: 0x1f4
-	// Line 1038, Address: 0x2b9460, Func Offset: 0x200
-	// Line 1039, Address: 0x2b94a0, Func Offset: 0x240
-	// Line 1040, Address: 0x2b94ac, Func Offset: 0x24c
-	// Line 1039, Address: 0x2b94b0, Func Offset: 0x250
-	// Line 1040, Address: 0x2b94b4, Func Offset: 0x254
-	// Line 1039, Address: 0x2b94b8, Func Offset: 0x258
-	// Line 1040, Address: 0x2b94bc, Func Offset: 0x25c
-	// Line 1039, Address: 0x2b94c4, Func Offset: 0x264
-	// Line 1040, Address: 0x2b94d0, Func Offset: 0x270
-	// Line 1041, Address: 0x2b94f0, Func Offset: 0x290
-	// Line 1043, Address: 0x2b9504, Func Offset: 0x2a4
-	// Line 1041, Address: 0x2b950c, Func Offset: 0x2ac
-	// Line 1043, Address: 0x2b9510, Func Offset: 0x2b0
-	// Line 1041, Address: 0x2b9518, Func Offset: 0x2b8
-	// Line 1043, Address: 0x2b951c, Func Offset: 0x2bc
-	// Line 1044, Address: 0x2b9524, Func Offset: 0x2c4
-	// Line 1047, Address: 0x2b9544, Func Offset: 0x2e4
-	// Line 1048, Address: 0x2b9550, Func Offset: 0x2f0
-	// Line 1049, Address: 0x2b9588, Func Offset: 0x328
-	// Line 1050, Address: 0x2b95c8, Func Offset: 0x368
-	// Line 1051, Address: 0x2b95d4, Func Offset: 0x374
-	// Line 1050, Address: 0x2b95d8, Func Offset: 0x378
-	// Line 1051, Address: 0x2b95dc, Func Offset: 0x37c
-	// Line 1050, Address: 0x2b95e0, Func Offset: 0x380
-	// Line 1051, Address: 0x2b95e4, Func Offset: 0x384
-	// Line 1050, Address: 0x2b95ec, Func Offset: 0x38c
-	// Line 1051, Address: 0x2b95f8, Func Offset: 0x398
-	// Line 1052, Address: 0x2b9618, Func Offset: 0x3b8
-	// Line 1054, Address: 0x2b962c, Func Offset: 0x3cc
-	// Line 1055, Address: 0x2b9630, Func Offset: 0x3d0
-	// Line 1052, Address: 0x2b9634, Func Offset: 0x3d4
-	// Line 1054, Address: 0x2b9638, Func Offset: 0x3d8
-	// Line 1052, Address: 0x2b9644, Func Offset: 0x3e4
-	// Line 1055, Address: 0x2b9648, Func Offset: 0x3e8
-	// Line 1056, Address: 0x2b965c, Func Offset: 0x3fc
-	// Line 1059, Address: 0x2b967c, Func Offset: 0x41c
-	// Line 1060, Address: 0x2b9688, Func Offset: 0x428
-	// Line 1061, Address: 0x2b96c8, Func Offset: 0x468
-	// Line 1062, Address: 0x2b96d4, Func Offset: 0x474
-	// Line 1061, Address: 0x2b96d8, Func Offset: 0x478
-	// Line 1062, Address: 0x2b96dc, Func Offset: 0x47c
-	// Line 1061, Address: 0x2b96e0, Func Offset: 0x480
-	// Line 1062, Address: 0x2b96e4, Func Offset: 0x484
-	// Line 1061, Address: 0x2b96ec, Func Offset: 0x48c
-	// Line 1062, Address: 0x2b96f8, Func Offset: 0x498
-	// Line 1063, Address: 0x2b9718, Func Offset: 0x4b8
-	// Line 1064, Address: 0x2b9734, Func Offset: 0x4d4
-	// Line 1066, Address: 0x2b973c, Func Offset: 0x4dc
-	// Line 1067, Address: 0x2b9750, Func Offset: 0x4f0
-	// Line 1071, Address: 0x2b9770, Func Offset: 0x510
-	// Line 1072, Address: 0x2b977c, Func Offset: 0x51c
-	// Line 1073, Address: 0x2b97bc, Func Offset: 0x55c
-	// Line 1074, Address: 0x2b97c8, Func Offset: 0x568
-	// Line 1073, Address: 0x2b97cc, Func Offset: 0x56c
-	// Line 1074, Address: 0x2b97d0, Func Offset: 0x570
-	// Line 1073, Address: 0x2b97d4, Func Offset: 0x574
-	// Line 1074, Address: 0x2b97d8, Func Offset: 0x578
-	// Line 1073, Address: 0x2b97e0, Func Offset: 0x580
-	// Line 1074, Address: 0x2b97ec, Func Offset: 0x58c
-	// Line 1077, Address: 0x2b980c, Func Offset: 0x5ac
-	// Func End, Address: 0x2b9838, Func Offset: 0x5d8
-}*/
+// 99.79% matching
+void bhDispTimeEx(NJS_POINT2* pos, unsigned int flg, int time, unsigned int argb, float pri)
+{ 
+    static int ntb[10] = { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 };
+    NJS_POINT2 dps;
+    int hour;
+    int min;
+    int sec;
+    int msc;
+    unsigned short cd;
+
+    dps.x = pos->x; 
+    dps.y = pos->y; 
+    
+    hour = time / 216000; 
+    
+    if (sys->gm_mode == 3) 
+    { 
+        if (hour >= 1) 
+        {
+            hour = 0; 
+            
+            min = 59; 
+            sec = 59;
+            msc = 99; 
+        } 
+        else
+        {
+            hour = 0;
+            
+            min = (time / 3600) % 60; 
+            sec = (time / 60) % 60; 
+            msc = ((time % 60) * 10) / 6; 
+        }
+    } 
+    else 
+    {
+        if (hour > 99) 
+        {
+            hour = 99; 
+            
+            min = 59; 
+            sec = 59;
+        } 
+        else 
+        { 
+            min = (time / 3600) % 60; 
+            sec = (time / 60) % 60; 
+        }
+        
+        msc = ((time % 60) * 10) / 6; 
+    }
+
+    if ((flg & 0x8)) 
+    { 
+        bhDispFontEx(&dps, ntb[hour / 10], argb, pri); 
+        dps.x += FontScaleX * 20.0f; 
+        
+        bhDispFontEx(&dps, ntb[hour % 10], argb, pri); 
+        dps.x += FontScaleX * 20.0f; 
+        
+        bhDispFontEx(&dps, 26, argb, pri); 
+        dps.x += FontScaleX * bhGetFontSize(26);       
+    }
+    
+    if ((flg & 0x4)) 
+    { 
+        if (((!(flg & 0x8)) && (min / 10)) || ((flg & 0x8))) 
+        { 
+            bhDispFontEx(&dps, ntb[min / 10], argb, pri);
+        }
+        
+        dps.x += FontScaleX * 20.0f;
+        
+        bhDispFontEx(&dps, ntb[min % 10], argb, pri); 
+        dps.x += FontScaleX * 20.0f; 
+        
+        if ((flg & 0x8)) 
+        {
+            cd = 26;
+        }
+        else 
+        {
+            cd = 7;
+        }
+        
+        bhDispFontEx(&dps, cd, argb, pri); 
+        dps.x += FontScaleX * bhGetFontSize(cd); 
+    }
+    
+    if ((flg & 0x2)) 
+    { 
+        bhDispFontEx(&dps, ntb[sec / 10], argb, pri);
+        dps.x += FontScaleX * 20.0f;
+        
+        bhDispFontEx(&dps, ntb[sec % 10], argb, pri);
+        dps.x += FontScaleX * 20.0f;
+        
+        if (!(flg & 0x8)) 
+        {
+            bhDispFontEx(&dps, 2, argb, pri);
+            dps.x += FontScaleX * bhGetFontSize(2);
+        }
+    }
+    
+    if ((flg & 0x1))
+    { 
+        bhDispFontEx(&dps, ntb[msc / 10], argb, pri);
+        dps.x += FontScaleX * 20.0f;
+        
+        bhDispFontEx(&dps, ntb[msc % 10], argb, pri);
+    }
+}
 
 // 100% matching!
 float bhGetFontSize(unsigned short code)
