@@ -86,9 +86,9 @@ int ExecuteMemoryCardRead(tagMEMORYCARDSTATE* pCard);
 int ExecuteMemoryCardWrite(tagMEMORYCARDSTATE* pCard);
 int ExecuteMemoryCardFormat(tagMEMORYCARDSTATE* pCard);
 int ExecuteMemoryCardUnFormat(tagMEMORYCARDSTATE* pCard);
-int ExecuteMemoryCardDelete(tagMEMORYCARDSTATE* pCard);
-unsigned int GetMemoryCardError(tagMEMORYCARDSTATE* pCard);
-void RecoveryMemoryCardError(tagMEMORYCARDSTATE* pCard);
+int ExecuteMemoryCardDelete(tagMEMORYCARDSTATE* pCard);*/
+unsigned int GetMemoryCardError(MEMORYCARDSTATE* pCard);
+/*void RecoveryMemoryCardError(tagMEMORYCARDSTATE* pCard);
 void SetMemoryCardCurrentPort(tagMEMORYCARDSTATE* pCard, int lPort);
 int GetMemoryCardCurrentPort(tagMEMORYCARDSTATE* pCard);
 void SetMemoryCardSelectPortState(tagMEMORYCARDSTATE* pCard, unsigned int ulPort, unsigned int ulResult);
@@ -363,18 +363,24 @@ int ExecuteAnalyzeMemoryCardAll(MEMORYCARDSTATE* pCard)
     return 0; 
 } 
 
-// 
-// Start address: 0x273a00
-int RecoveryMemoryCardAnalyzeAllEnd(MEMORYCARDSTATE* pCard)
+// 100% matching! 
+int RecoveryMemoryCardAnalyzeAllEnd(MEMORYCARDSTATE* pCard) 
 {
-	// Line 411, Address: 0x273a00, Func Offset: 0
-	// Line 413, Address: 0x273a08, Func Offset: 0x8
-	// Line 417, Address: 0x273a18, Func Offset: 0x18
-	// Line 429, Address: 0x273a34, Func Offset: 0x34
-	// Line 426, Address: 0x273a38, Func Offset: 0x38
-	// Line 430, Address: 0x273a3c, Func Offset: 0x3c
-	// Func End, Address: 0x273a48, Func Offset: 0x48
-	scePrintf("RecoveryMemoryCardAnalyzeAllEnd - UNIMPLEMENTED!\n");
+    if (pCard->ulState != 18) 
+    {
+        if (GetMemoryCardError(pCard) == 0) 
+        {
+            return 0;
+        } 
+        else
+        {
+            return -1;
+        }
+    }
+    
+    pCard->ulState = 0;
+    
+    return 1;
 }
 
 // 
