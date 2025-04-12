@@ -1413,13 +1413,10 @@ int MemoryCardFormat(MEMORYCARDSTATE* pCard)
     return 0; 
 } 
 
-// 
-// Start address: 0x274e80
+// 100% matching! 
 int MemoryCardUnFormat()
 {
-	// Line 2859, Address: 0x274e80, Func Offset: 0
-	// Func End, Address: 0x274e88, Func Offset: 0x8
-	scePrintf("MemoryCardUnFormat - UNIMPLEMENTED!\n");
+    return 0;
 }
 
 // 100% matching!
