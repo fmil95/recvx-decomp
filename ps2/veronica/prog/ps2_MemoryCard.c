@@ -773,30 +773,37 @@ int SetMemoryCardCurrentDirectoryAbsolute(MEMORYCARDSTATE* pCard, char* cpPath)
 	scePrintf("SetMemoryCardCurrentDirectoryAbsolute - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x274060
-int ReadMemoryCard(MEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode)
-{
-	// Line 1231, Address: 0x274060, Func Offset: 0
-	// Line 1233, Address: 0x27407c, Func Offset: 0x1c
-	// Line 1236, Address: 0x274098, Func Offset: 0x38
-	// Line 1240, Address: 0x2740a0, Func Offset: 0x40
-	// Line 1241, Address: 0x2740b0, Func Offset: 0x50
-	// Line 1243, Address: 0x2740c0, Func Offset: 0x60
-	// Line 1245, Address: 0x2740cc, Func Offset: 0x6c
-	// Line 1247, Address: 0x2740d8, Func Offset: 0x78
-	// Line 1249, Address: 0x2740dc, Func Offset: 0x7c
-	// Line 1253, Address: 0x2740e0, Func Offset: 0x80
-	// Line 1251, Address: 0x2740e4, Func Offset: 0x84
-	// Line 1253, Address: 0x2740e8, Func Offset: 0x88
-	// Line 1255, Address: 0x2740ec, Func Offset: 0x8c
-	// Line 1259, Address: 0x2740f0, Func Offset: 0x90
-	// Line 1257, Address: 0x2740f4, Func Offset: 0x94
-	// Line 1259, Address: 0x2740f8, Func Offset: 0x98
-	// Line 1262, Address: 0x2740fc, Func Offset: 0x9c
-	// Func End, Address: 0x27411c, Func Offset: 0xbc
-	scePrintf("ReadMemoryCard - UNIMPLEMENTED!\n");
-}
+// 100% matching! 
+int ReadMemoryCard(MEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode) 
+{ 
+    if (pCard->ulState != 0) 
+    {
+        return 0;               
+    }
+    
+    strcpy(pCard->cCurrentDir, "/BASLUS-20184"); 
+    
+    strcat(pCard->cCurrentDir, "/"); 
+    strcat(pCard->cCurrentDir, cpFileName); 
+    
+    strcpy(pCard->cOpenFileName, cpFileName); 
+    
+    pCard->lOpenMode = lMode; 
+    
+    pCard->ulFileSize = ulFileSize; 
+    
+    pCard->vpAddr = pvReadFile; 
+    
+    pCard->ulState = 1; 
+    
+    pCard->ulMcSubState = 0; 
+    
+    pCard->usMcSysState = 0; 
+    
+    pCard->cRetryCount = 5; 
+    
+    return 1; 
+} 
 
 // 
 // Start address: 0x274120
