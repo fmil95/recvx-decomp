@@ -871,18 +871,18 @@ int FormatMemoryCard(MEMORYCARDSTATE* pCard)
     return 1; 
 } 
 
-/*// 
-// Start address: 0x2742b0
-int RecoveryMemoryCardFormatEnd(tagMEMORYCARDSTATE* pCard)
+// 100% matching! 
+int RecoveryMemoryCardFormatEnd(MEMORYCARDSTATE* pCard)
 {
-	// Line 1435, Address: 0x2742b0, Func Offset: 0
-	// Line 1437, Address: 0x2742b8, Func Offset: 0x8
-	// Line 1441, Address: 0x2742c8, Func Offset: 0x18
-	// Line 1453, Address: 0x2742e4, Func Offset: 0x34
-	// Line 1450, Address: 0x2742e8, Func Offset: 0x38
-	// Line 1454, Address: 0x2742ec, Func Offset: 0x3c
-	// Func End, Address: 0x2742f8, Func Offset: 0x48
-}*/
+    if (pCard->ulState != 12) 
+    {
+        return (GetMemoryCardError(pCard) == 0) ? 0 : -1;
+    }
+    
+    pCard->ulState = 0;
+    
+    return 1;
+}
 
 // 100% matching!
 int GetMcSelectPortType(MEMORYCARDSTATE* pCard, unsigned int ulPort) 
