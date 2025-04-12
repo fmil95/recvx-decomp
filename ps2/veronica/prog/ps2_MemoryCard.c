@@ -376,16 +376,16 @@ int RecoveryMemoryCardAnalyzeAllEnd(MEMORYCARDSTATE* pCard)
     return 1;
 }
 
-// 
-// Start address: 0x273a50
+// 100% matching! 
 void SetCheckMcFlag(MEMORYCARDSTATE* pCard, unsigned int ulFlag)
 {
-	// Line 450, Address: 0x273a50, Func Offset: 0
-	// Line 452, Address: 0x273a5c, Func Offset: 0xc
-	// Line 454, Address: 0x273a60, Func Offset: 0x10
-	// Func End, Address: 0x273a68, Func Offset: 0x18
-	scePrintf("SetCheckMcFlag - UNIMPLEMENTED!\n");
-}
+    pCard->cCheckMcFlag = ulFlag;
+
+    if (ulFlag == 1) 
+    { 
+        pCard->cMcCheckFlag = 0; 
+    }
+} 
 
 // 100% matching!
 int ExecuteMemoryCardRead(MEMORYCARDSTATE* pCard) 
