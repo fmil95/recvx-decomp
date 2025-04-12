@@ -2348,29 +2348,61 @@ float bhGetFontSize(unsigned short code)
     return FontSz[code];
 }
 
-/*// 
-// Start address: 0x2b98b0
+// 100% matching!
 float bhMesLen(unsigned short* dp)
 {
-	float len;
-	unsigned short cd;
-	// Line 1103, Address: 0x2b98b0, Func Offset: 0
-	// Line 1106, Address: 0x2b98c0, Func Offset: 0x10
-	// Line 1108, Address: 0x2b98c8, Func Offset: 0x18
-	// Line 1110, Address: 0x2b98cc, Func Offset: 0x1c
-	// Line 1115, Address: 0x2b99d0, Func Offset: 0x120
-	// Line 1116, Address: 0x2b99e8, Func Offset: 0x138
-	// Line 1119, Address: 0x2b99f0, Func Offset: 0x140
-	// Line 1120, Address: 0x2b99f4, Func Offset: 0x144
-	// Line 1123, Address: 0x2b99fc, Func Offset: 0x14c
-	// Line 1124, Address: 0x2b9a00, Func Offset: 0x150
-	// Line 1149, Address: 0x2b9a08, Func Offset: 0x158
-	// Line 1150, Address: 0x2b9a14, Func Offset: 0x164
-	// Line 1151, Address: 0x2b9a28, Func Offset: 0x178
-	// Line 1152, Address: 0x2b9a30, Func Offset: 0x180
-	// Line 1153, Address: 0x2b9a34, Func Offset: 0x184
-	// Func End, Address: 0x2b9a48, Func Offset: 0x198
-}*/
+    unsigned short cd; 
+    float len; 
+    
+    len = 0;
+
+    while (TRUE) 
+    {
+        cd = *dp++;
+
+        switch (cd) 
+        {
+        case 65280:
+            continue;
+        case 65281:
+            len += FontScaleX * 14.0f;
+            continue;
+        case 65282:
+            dp++;
+            continue;
+        case 65283:
+            dp++;
+            continue;
+        case 65284:
+        case 65024:
+        case 65025:
+        case 65026:
+        case 65027:
+        case 65028:
+        case 65029:
+        case 65030:
+        case 65031:
+        case 65032:
+        case 65033:
+        case 65034:
+        case 65035:
+        case 65036:
+        case 65037:
+        case 65038:
+        case 65039:  
+            continue;
+        }
+
+        if (cd == 65535) 
+        {
+            break;
+        }
+        
+        len += FontScaleX * bhGetFontSize(cd);
+    }
+
+    return len;
+}
 
 // 100% matching! 
 void bhFontScaleSet(float ScaleX, float ScaleY, float ScaleCR) 
