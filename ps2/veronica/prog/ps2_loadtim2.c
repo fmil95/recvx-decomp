@@ -228,9 +228,9 @@ int Tim2CalcBufWidth(int psm, int w)
 	return 0;
 }
 
-/*// 
+// 
 // Start address: 0x2e6cc0
-void Set_GsTex(_anon0* ph, unsigned long send_image_adr, unsigned long send_clut_adr)
+void Set_GsTex(TIM2_PICTUREHEADER_SMALL* ph, unsigned long send_image_adr, unsigned long send_clut_adr)
 {
 	unsigned int i;
 	// Line 430, Address: 0x2e6cc0, Func Offset: 0
@@ -285,9 +285,10 @@ void Set_GsTex(_anon0* ph, unsigned long send_image_adr, unsigned long send_clut
 	// Line 477, Address: 0x2e6f84, Func Offset: 0x2c4
 	// Line 478, Address: 0x2e6fc0, Func Offset: 0x300
 	// Func End, Address: 0x2e6fd4, Func Offset: 0x314
+	scePrintf("Set_GsTex - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e6fe0
 <unknown fundamental type (0xa510)>* MakeRenderTexHeader(void* tex_adr)
 {
@@ -488,37 +489,49 @@ int Send_1024_Clut_data(void* clt_adr, unsigned long send_clut_adr)
 	// Func End, Address: 0x2e75ec, Func Offset: 0x1cc
 }*/
 
-// 
-// Start address: 0x2e75f0
+// 100% matching! 
 int Send_Tim2_dataEx(void* tim2_top_adr, unsigned long send_image_adr, unsigned long send_clut_adr)
 {
-	//_anon0* pPhead;
-	// Line 2154, Address: 0x2e75f0, Func Offset: 0
-	// Line 2167, Address: 0x2e7604, Func Offset: 0x14
-	// Line 2170, Address: 0x2e7620, Func Offset: 0x30
-	// Line 2171, Address: 0x2e762c, Func Offset: 0x3c
-	// Line 2172, Address: 0x2e7640, Func Offset: 0x50
-	// Line 2173, Address: 0x2e764c, Func Offset: 0x5c
-	// Line 2178, Address: 0x2e7654, Func Offset: 0x64
-	// Line 2182, Address: 0x2e768c, Func Offset: 0x9c
-	// Line 2184, Address: 0x2e76a8, Func Offset: 0xb8
-	// Line 2186, Address: 0x2e76b4, Func Offset: 0xc4
-	// Line 2187, Address: 0x2e76c4, Func Offset: 0xd4
-	// Line 2191, Address: 0x2e76cc, Func Offset: 0xdc
-	// Line 2193, Address: 0x2e76d8, Func Offset: 0xe8
-	// Line 2195, Address: 0x2e76e8, Func Offset: 0xf8
-	// Line 2196, Address: 0x2e76ec, Func Offset: 0xfc
-	// Func End, Address: 0x2e7704, Func Offset: 0x114
-	scePrintf("Send_Tim2_dataEx - UNIMPLEMENTED!\n");
+    TIM2_PICTUREHEADER_SMALL* pPhead;
+
+    if (((unsigned char*)tim2_top_adr)[5] != 0) 
+    {
+        pPhead = (TIM2_PICTUREHEADER_SMALL*)((int)tim2_top_adr + 128);
+    }
+    else
+    {
+        pPhead = (TIM2_PICTUREHEADER_SMALL*)((int)tim2_top_adr + 16);
+    }
+    
+    if ((pPhead->ClutType != 0) && (Clut_Load_Func(pPhead, send_clut_adr) < 0)) 
+    {
+        printf("Can't Load Clut\n");
+        
+        return -1;
+    }
+    else if (((pPhead->ImageWidth < 1024) && (pPhead->ImageHeight < 1024)) && ((pPhead->ImageWidth > 128) && (pPhead->ImageHeight > 128)) && ((pPhead->ImageType == 4) || (pPhead->ImageType == 5))) 
+    {
+        P32_Image_Load(pPhead, send_image_adr);
+        
+        Set_GsTex(pPhead, send_image_adr, send_clut_adr);
+        
+        return 1;
+    }
+    
+    Tim2_Image_Load(pPhead, send_image_adr);
+    
+    Set_GsTex(pPhead, send_image_adr, send_clut_adr);
+    
+    return 2;
 }
 
-/*// 
+// 
 // Start address: 0x2e7710
-int Clut_Load_Func(_anon0* ph, unsigned long clut_addr)
+int Clut_Load_Func(TIM2_PICTUREHEADER_SMALL* ph, unsigned long clut_addr)
 {
 	int h;
 	int loop;
-	<unknown fundamental type (0xa510)>* pClut;
+	//<unknown fundamental type (0xa510)>* pClut;
 	// Line 2215, Address: 0x2e7710, Func Offset: 0
 	// Line 2221, Address: 0x2e772c, Func Offset: 0x1c
 	// Line 2224, Address: 0x2e7734, Func Offset: 0x24
@@ -533,11 +546,12 @@ int Clut_Load_Func(_anon0* ph, unsigned long clut_addr)
 	// Line 2245, Address: 0x2e77e4, Func Offset: 0xd4
 	// Line 2246, Address: 0x2e77e8, Func Offset: 0xd8
 	// Func End, Address: 0x2e7804, Func Offset: 0xf4
+	scePrintf("Clut_Load_Func - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e7810
-int P32_Image_Load(_anon0* ph, unsigned long image_addr)
+int P32_Image_Load(TIM2_PICTUREHEADER_SMALL* ph, unsigned long image_addr)
 {
 	int size;
 	int rrh;
@@ -545,7 +559,7 @@ int P32_Image_Load(_anon0* ph, unsigned long image_addr)
 	int tbw;
 	int h;
 	int w;
-	<unknown fundamental type (0xa510)>* pImage;
+	//<unknown fundamental type (0xa510)>* pImage;
 	// Line 2261, Address: 0x2e7810, Func Offset: 0
 	// Line 2269, Address: 0x2e7818, Func Offset: 0x8
 	// Line 2273, Address: 0x2e781c, Func Offset: 0xc
@@ -564,11 +578,12 @@ int P32_Image_Load(_anon0* ph, unsigned long image_addr)
 	// Line 2294, Address: 0x2e7878, Func Offset: 0x68
 	// Line 2295, Address: 0x2e787c, Func Offset: 0x6c
 	// Func End, Address: 0x2e7884, Func Offset: 0x74
+	scePrintf("P32_Image_Load - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e7890
-int Tim2_Image_Load(_anon0* ph, unsigned long image_addr)
+int Tim2_Image_Load(TIM2_PICTUREHEADER_SMALL* ph, unsigned long image_addr)
 {
 	int param;
 	int tbw;
@@ -578,8 +593,8 @@ int Tim2_Image_Load(_anon0* ph, unsigned long image_addr)
 	int h;
 	int w;
 	int psm;
-	<unknown fundamental type (0xa510)>* p;
-	<unknown fundamental type (0xa510)>* pImage;
+	//<unknown fundamental type (0xa510)>* p;
+	//<unknown fundamental type (0xa510)>* pImage;
 	int psmtbl[3];
 	// Line 2310, Address: 0x2e7890, Func Offset: 0
 	// Line 2324, Address: 0x2e78c0, Func Offset: 0x30
@@ -613,7 +628,8 @@ int Tim2_Image_Load(_anon0* ph, unsigned long image_addr)
 	// Line 2383, Address: 0x2e7a54, Func Offset: 0x1c4
 	// Line 2384, Address: 0x2e7a58, Func Offset: 0x1c8
 	// Func End, Address: 0x2e7a60, Func Offset: 0x1d0
-}*/
+	scePrintf("Tim2_Image_Load - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void Ps2PxlconvCheck(void* timadr)

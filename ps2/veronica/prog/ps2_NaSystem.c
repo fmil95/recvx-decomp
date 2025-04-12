@@ -1801,7 +1801,7 @@ void    njPolygonCullingMode( Int mode )
 // 99.91% matching 
 void njColorBlendingModeSys(int s_mode, int d_mode) // this function is not on this KATANA release
 { 
-    static unsigned long alpha_tbl[13][12];
+    static unsigned long alpha_tbl[13][12]; // TODO: define this
     unsigned long alpha_value;
     
     Ps2_gs_save.mode_bk[0] = s_mode; 
