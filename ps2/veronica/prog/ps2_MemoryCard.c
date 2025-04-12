@@ -751,20 +751,25 @@ void SetMemoryCardFileNumber(tagMEMORYCARDSTATE* pCard, int lFileNumber)
 	// Func End, Address: 0x274018, Func Offset: 0x8
 }*/
 
-// 
-// Start address: 0x274020
-int SetMemoryCardCurrentDirectoryAbsolute(MEMORYCARDSTATE* pCard, char* cpPath)
+// 100% matching! 
+int SetMemoryCardCurrentDirectoryAbsolute(MEMORYCARDSTATE *pCard, char *cpPath)
 {
-	char* src;
-	char* dest;
-	// Line 1172, Address: 0x274020, Func Offset: 0
-	// Line 1174, Address: 0x274028, Func Offset: 0x8
-	// Line 1175, Address: 0x274034, Func Offset: 0x14
-	// Line 1176, Address: 0x274048, Func Offset: 0x28
-	// Line 1179, Address: 0x27404c, Func Offset: 0x2c
-	// Func End, Address: 0x274054, Func Offset: 0x34
-	scePrintf("SetMemoryCardCurrentDirectoryAbsolute - UNIMPLEMENTED!\n");
-}
+    char* dest;
+    char* src;
+	
+    dest = pCard->cCurrentDir;
+
+    src = cpPath;
+    
+    while (*src != 0)
+    {     
+        *dest++ = *src++;
+    } 
+    
+    *dest = 0;
+    
+    return 0;
+} 
 
 // 100% matching! 
 int ReadMemoryCard(MEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode) 
