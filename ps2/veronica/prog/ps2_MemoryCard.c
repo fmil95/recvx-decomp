@@ -368,14 +368,7 @@ int RecoveryMemoryCardAnalyzeAllEnd(MEMORYCARDSTATE* pCard)
 {
     if (pCard->ulState != 18) 
     {
-        if (GetMemoryCardError(pCard) == 0) 
-        {
-            return 0;
-        } 
-        else
-        {
-            return -1;
-        }
+        return (GetMemoryCardError(pCard) == 0) ? 0 : -1;
     }
     
     pCard->ulState = 0;
