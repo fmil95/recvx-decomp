@@ -802,18 +802,17 @@ int ReadMemoryCard(MEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFile
     return 1; 
 } 
 
-// 
-// Start address: 0x274120
+// 100% matching! 
 int RecoveryMemoryCardReadEnd(MEMORYCARDSTATE* pCard)
 {
-	// Line 1279, Address: 0x274120, Func Offset: 0
-	// Line 1280, Address: 0x274128, Func Offset: 0x8
-	// Line 1284, Address: 0x274138, Func Offset: 0x18
-	// Line 1296, Address: 0x274154, Func Offset: 0x34
-	// Line 1293, Address: 0x274158, Func Offset: 0x38
-	// Line 1297, Address: 0x27415c, Func Offset: 0x3c
-	// Func End, Address: 0x274168, Func Offset: 0x48
-	scePrintf("RecoveryMemoryCardReadEnd - UNIMPLEMENTED!\n");
+    if (pCard->ulState != 9) 
+    {
+        return (GetMemoryCardError(pCard) == 0) ? 0 : -1;
+    }
+    
+    pCard->ulState = 0;
+    
+    return 1;
 }
 
 // 
