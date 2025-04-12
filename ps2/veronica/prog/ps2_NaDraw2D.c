@@ -190,70 +190,96 @@ void	njDrawPolygon2D(NJS_POINT2COL *p, Int n, Float pri, Uint32 attr)
 	scePrintf("njDrawPolygon2D - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2df6c0
+void Ps2AddPrim2D(unsigned long prim, void* dp, unsigned int num);
+// 100% matching! 
 void njDrawPolygon2DM(NJS_POINT2COL* p, int n, float pri, unsigned int attr)
 {
-	unsigned long prim;
-	unsigned int i;
-	float bp[4];
-	float buff[4][32];
-	// Line 207, Address: 0x2df6c0, Func Offset: 0
-	// Line 219, Address: 0x2df6e8, Func Offset: 0x28
-	// Line 207, Address: 0x2df6ec, Func Offset: 0x2c
-	// Line 219, Address: 0x2df6f0, Func Offset: 0x30
-	// Line 220, Address: 0x2df70c, Func Offset: 0x4c
-	// Line 222, Address: 0x2df710, Func Offset: 0x50
-	// Line 224, Address: 0x2df730, Func Offset: 0x70
-	// Line 225, Address: 0x2df738, Func Offset: 0x78
-	// Line 227, Address: 0x2df76c, Func Offset: 0xac
-	// Line 228, Address: 0x2df784, Func Offset: 0xc4
-	// Line 229, Address: 0x2df798, Func Offset: 0xd8
-	// Line 231, Address: 0x2df7a0, Func Offset: 0xe0
-	// Line 232, Address: 0x2df7b8, Func Offset: 0xf8
-	// Line 233, Address: 0x2df7cc, Func Offset: 0x10c
-	// Line 235, Address: 0x2df7d4, Func Offset: 0x114
-	// Line 236, Address: 0x2df7ec, Func Offset: 0x12c
-	// Line 237, Address: 0x2df800, Func Offset: 0x140
-	// Line 239, Address: 0x2df808, Func Offset: 0x148
-	// Line 240, Address: 0x2df820, Func Offset: 0x160
-	// Line 243, Address: 0x2df838, Func Offset: 0x178
-	// Line 245, Address: 0x2df840, Func Offset: 0x180
-	// Line 246, Address: 0x2df850, Func Offset: 0x190
-	// Line 247, Address: 0x2df858, Func Offset: 0x198
-	// Line 248, Address: 0x2df85c, Func Offset: 0x19c
-	// Line 249, Address: 0x2df860, Func Offset: 0x1a0
-	// Line 250, Address: 0x2df864, Func Offset: 0x1a4
-	// Line 253, Address: 0x2df868, Func Offset: 0x1a8
-	// Line 254, Address: 0x2df870, Func Offset: 0x1b0
-	// Line 255, Address: 0x2df884, Func Offset: 0x1c4
-	// Line 256, Address: 0x2df898, Func Offset: 0x1d8
-	// Line 257, Address: 0x2df8ac, Func Offset: 0x1ec
-	// Line 258, Address: 0x2df8c0, Func Offset: 0x200
-	// Line 259, Address: 0x2df8c8, Func Offset: 0x208
-	// Line 260, Address: 0x2df8d8, Func Offset: 0x218
-	// Line 261, Address: 0x2df8e8, Func Offset: 0x228
-	// Line 262, Address: 0x2df8f8, Func Offset: 0x238
-	// Line 265, Address: 0x2df910, Func Offset: 0x250
-	// Line 266, Address: 0x2df91c, Func Offset: 0x25c
-	// Line 269, Address: 0x2df924, Func Offset: 0x264
-	// Line 268, Address: 0x2df928, Func Offset: 0x268
-	// Line 265, Address: 0x2df92c, Func Offset: 0x26c
-	// Line 269, Address: 0x2df938, Func Offset: 0x278
-	// Line 265, Address: 0x2df93c, Func Offset: 0x27c
-	// Line 266, Address: 0x2df940, Func Offset: 0x280
-	// Line 268, Address: 0x2df94c, Func Offset: 0x28c
-	// Line 266, Address: 0x2df950, Func Offset: 0x290
-	// Line 267, Address: 0x2df958, Func Offset: 0x298
-	// Line 268, Address: 0x2df95c, Func Offset: 0x29c
-	// Line 269, Address: 0x2df960, Func Offset: 0x2a0
-	// Line 270, Address: 0x2df968, Func Offset: 0x2a8
-	// Line 271, Address: 0x2df974, Func Offset: 0x2b4
-	// Line 272, Address: 0x2df980, Func Offset: 0x2c0
-	// Line 276, Address: 0x2df988, Func Offset: 0x2c8
-	// Line 278, Address: 0x2df9a0, Func Offset: 0x2e0
-	// Line 279, Address: 0x2df9bc, Func Offset: 0x2fc
-	// Line 280, Address: 0x2df9c8, Func Offset: 0x308
-	// Func End, Address: 0x2df9f8, Func Offset: 0x338
-	scePrintf("njDrawPolygon2DM - UNIMPLEMENTED!\n");
+    float buff[32][4];  
+    float (* bp)[4];  
+    unsigned int i;    
+    unsigned long prim; 
+
+    if (pri > -1.0f) 
+    {
+        pri = -1.0f;
+    }
+    
+    bp = buff;
+    
+    for (i = 0; i < n; i++, bp += 3) 
+    {
+        if ((attr & 0x80000000)) 
+        {
+            switch (i) 
+            {                 
+            case 0:
+                *(int*)&bp[0][0] = (p->tex[i].tex.u * 16) + 8;
+                *(int*)&bp[0][1] = (p->tex[i].tex.v * 16) + 8;
+                break;
+            case 1:
+                *(int*)&bp[0][0] = (p->tex[i].tex.u * 16) + 4;
+                *(int*)&bp[0][1] = (p->tex[i].tex.v * 16) + 8;
+                break;
+            case 2:
+                *(int*)&bp[0][0] = (p->tex[i].tex.u * 16) + 4;
+                *(int*)&bp[0][1] = (p->tex[i].tex.v * 16) + 4;
+                break;
+            case 3:
+                *(int*)&bp[0][0] = (p->tex[i].tex.u * 16) + 8;
+                *(int*)&bp[0][1] = (p->tex[i].tex.v * 16) + 4;
+                break;
+            }
+            
+            *(int*)&bp[0][2] = 4096;
+            *(int*)&bp[0][3] = 0;
+            
+            sceVu0ITOF12Vector((float*)bp, (int*)bp);
+        } 
+        else 
+        {
+            bp[0][0] = 0;
+            bp[0][1] = 0;
+            bp[0][2] = 0;
+            bp[0][3] = 0;
+        }
+        
+        if ((attr & 0x80000000)) 
+        {
+            *(int*)&bp[1][0] = p->col[i].argb.r >> 1;
+            *(int*)&bp[1][1] = p->col[i].argb.g >> 1;
+            *(int*)&bp[1][2] = p->col[i].argb.b >> 1;
+            *(int*)&bp[1][3] = (p->col[i].argb.a + 1) >> 1;
+        } 
+        else 
+        {
+            *(int*)&bp[1][0] = p->col[i].argb.r;
+            *(int*)&bp[1][1] = p->col[i].argb.g;
+            *(int*)&bp[1][2] = p->col[i].argb.b;
+            *(int*)&bp[1][3] = (p->col[i].argb.a + 1) >> 1;
+        }
+        
+        bp[2][0] = 1728.0f + p->p[i].x;
+        bp[2][1] = 1808.0f + p->p[i].y;
+        bp[2][2] = pri;
+        bp[2][3] = 0;
+    }
+    
+    prim = 0x6800000000000;
+    
+    if (!(attr & 0x20)) 
+    {
+        prim = 0x5000000000000;
+    }
+    
+    if ((attr & 0x40)) 
+    {
+        prim |= 0x20000000000000;
+    }
+    
+    if ((attr & 0x80000000)) 
+    {
+        prim |= 0x8000000000000; 
+    }
+    
+    Ps2AddPrim2D(prim, buff, n);
 }
