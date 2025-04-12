@@ -740,13 +740,11 @@ int GetMemoryCardFileNumber(MEMORYCARDSTATE* pCard)
     return pCard->lSelectFileNumber;
 }
 
-/*// 
-// Start address: 0x274010
-void SetMemoryCardFileNumber(tagMEMORYCARDSTATE* pCard, int lFileNumber)
+// 100% matching! 
+void SetMemoryCardFileNumber(MEMORYCARDSTATE* pCard, int lFileNumber) 
 {
-	// Line 1150, Address: 0x274010, Func Offset: 0
-	// Func End, Address: 0x274018, Func Offset: 0x8
-}*/
+    pCard->lSelectFileNumber = lFileNumber;
+} 
 
 // 100% matching! 
 int SetMemoryCardCurrentDirectoryAbsolute(MEMORYCARDSTATE *pCard, char *cpPath)
