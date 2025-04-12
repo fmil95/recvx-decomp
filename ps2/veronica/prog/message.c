@@ -2057,61 +2057,114 @@ int bhDispMessage(float px, float py, float pri, int mes_typ, int mes_idx, int c
     return num;
 }
 
-// 
-// Start address: 0x2b89e0
+// 100% matching! 
 int bhDispMessageEx(float px, float py, float pri, int mes_typ, int mes_idx, unsigned int argb, int count)
 {
-	float sty;
-	float stx;
-	unsigned int* mes_dp;
-	int num;
-	int cflg;
-	unsigned short cd;
-	unsigned short* dp;
-	//_anon2 pos;
-	// Line 688, Address: 0x2b89e0, Func Offset: 0
-	// Line 694, Address: 0x2b8a0c, Func Offset: 0x2c
-	// Line 696, Address: 0x2b8a34, Func Offset: 0x54
-	// Line 697, Address: 0x2b8a38, Func Offset: 0x58
-	// Line 696, Address: 0x2b8a3c, Func Offset: 0x5c
-	// Line 697, Address: 0x2b8a40, Func Offset: 0x60
-	// Line 698, Address: 0x2b8a48, Func Offset: 0x68
-	// Line 700, Address: 0x2b8a50, Func Offset: 0x70
-	// Line 701, Address: 0x2b8a58, Func Offset: 0x78
-	// Line 700, Address: 0x2b8a5c, Func Offset: 0x7c
-	// Line 701, Address: 0x2b8a68, Func Offset: 0x88
-	// Line 702, Address: 0x2b8a70, Func Offset: 0x90
-	// Line 704, Address: 0x2b8a78, Func Offset: 0x98
-	// Line 711, Address: 0x2b8a8c, Func Offset: 0xac
-	// Line 708, Address: 0x2b8a90, Func Offset: 0xb0
-	// Line 707, Address: 0x2b8a94, Func Offset: 0xb4
-	// Line 708, Address: 0x2b8a98, Func Offset: 0xb8
-	// Line 709, Address: 0x2b8a9c, Func Offset: 0xbc
-	// Line 713, Address: 0x2b8aa4, Func Offset: 0xc4
-	// Line 715, Address: 0x2b8aa8, Func Offset: 0xc8
-	// Line 718, Address: 0x2b8b74, Func Offset: 0x194
-	// Line 717, Address: 0x2b8b7c, Func Offset: 0x19c
-	// Line 718, Address: 0x2b8b80, Func Offset: 0x1a0
-	// Line 719, Address: 0x2b8b90, Func Offset: 0x1b0
-	// Line 722, Address: 0x2b8b98, Func Offset: 0x1b8
-	// Line 723, Address: 0x2b8bb0, Func Offset: 0x1d0
-	// Line 724, Address: 0x2b8bb8, Func Offset: 0x1d8
-	// Line 725, Address: 0x2b8bbc, Func Offset: 0x1dc
-	// Line 731, Address: 0x2b8bcc, Func Offset: 0x1ec
-	// Line 735, Address: 0x2b8bd4, Func Offset: 0x1f4
-	// Line 738, Address: 0x2b8bdc, Func Offset: 0x1fc
-	// Line 739, Address: 0x2b8bf4, Func Offset: 0x214
-	// Line 761, Address: 0x2b8bfc, Func Offset: 0x21c
-	// Line 762, Address: 0x2b8c04, Func Offset: 0x224
-	// Line 763, Address: 0x2b8c14, Func Offset: 0x234
-	// Line 764, Address: 0x2b8c28, Func Offset: 0x248
-	// Line 763, Address: 0x2b8c2c, Func Offset: 0x24c
-	// Line 765, Address: 0x2b8c34, Func Offset: 0x254
-	// Line 766, Address: 0x2b8c3c, Func Offset: 0x25c
-	// Line 767, Address: 0x2b8c40, Func Offset: 0x260
-	// Line 771, Address: 0x2b8c48, Func Offset: 0x268
-	// Func End, Address: 0x2b8c78, Func Offset: 0x298
-	scePrintf("bhDispMessageEx - UNIMPLEMENTED!\n");
+    NJS_POINT2 pos;      
+    unsigned short* dp;  
+    unsigned short cd;   
+    int cflg;            
+    int num;             
+    unsigned int* mes_dp;
+    float stx;          
+    float sty;          
+
+    switch (mes_typ) 
+    {                           
+    case 0:
+        mes_dp = rom->mesp;
+        
+        dp = (unsigned short*)((char*)mes_dp + rom->mesp[mes_idx + 1]);
+        break;
+    case 1:
+        mes_dp = sys->mes_sp;
+        
+        dp = (unsigned short*)((char*)mes_dp + sys->mes_sp[mes_idx + 1]);
+        break;
+    default:
+        dp = sys->mes_tp;
+        break;
+    }
+    
+    pos.x = px;
+    pos.y = py;
+    
+    num = 0;
+    
+    if (count == 0) 
+    {
+        cflg = 0;
+    }
+    else 
+    {
+        cflg = 1;
+    }
+    
+    while (TRUE) 
+    {
+        cd = *dp++;
+        
+        switch (cd)
+        {
+        case 65280:
+            pos.x = px;
+            pos.y += 30.0f * FontScaleCR;
+            continue;
+        case 65281:
+            pos.x += 14.0f * FontScaleX;
+            
+            if ((cflg != 0) && (--count <= 0)) 
+            {
+                return 0;
+            }
+            
+            continue;
+        case 65282:
+            dp++;
+            continue;
+        case 65283:
+            dp++;
+            continue;
+        case 65284:
+            pos.x += 28.0f * FontScaleX;
+            continue;
+        case 65024:
+        case 65025:
+        case 65026:
+        case 65027:
+        case 65028:
+        case 65029:
+        case 65030:
+        case 65031:
+        case 65032:
+        case 65033:
+        case 65034:
+        case 65035:
+        case 65036:
+        case 65037:
+        case 65038:
+        case 65039:   
+            continue;
+        }
+        
+        if (cd == 65535) 
+        {
+            break;
+        }
+        
+        bhDispFontEx(&pos, cd, argb, pri);
+        
+        pos.x += FontScaleX * bhGetFontSize(cd);
+        
+        num++;
+        
+        if ((cflg != 0) && (--count <= 0)) 
+        {
+            return 0;
+        }
+    }
+    
+    return num;
 }
 
 // 99.79% matching
