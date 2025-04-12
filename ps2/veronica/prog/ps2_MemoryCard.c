@@ -811,31 +811,37 @@ int RecoveryMemoryCardReadEnd(MEMORYCARDSTATE* pCard)
     return 1;
 }
 
-// 
-// Start address: 0x274170
+// 100% matching! 
 int WriteMemoryCard(MEMORYCARDSTATE* pCard, void* pvReadFile, unsigned int ulFileSize, char* cpFileName, int lMode)
-{
-	// Line 1321, Address: 0x274170, Func Offset: 0
-	// Line 1323, Address: 0x27418c, Func Offset: 0x1c
-	// Line 1325, Address: 0x2741a8, Func Offset: 0x38
-	// Line 1329, Address: 0x2741b0, Func Offset: 0x40
-	// Line 1330, Address: 0x2741c0, Func Offset: 0x50
-	// Line 1331, Address: 0x2741d0, Func Offset: 0x60
-	// Line 1333, Address: 0x2741dc, Func Offset: 0x6c
-	// Line 1335, Address: 0x2741e8, Func Offset: 0x78
-	// Line 1337, Address: 0x2741ec, Func Offset: 0x7c
-	// Line 1341, Address: 0x2741f0, Func Offset: 0x80
-	// Line 1339, Address: 0x2741f4, Func Offset: 0x84
-	// Line 1341, Address: 0x2741f8, Func Offset: 0x88
-	// Line 1343, Address: 0x2741fc, Func Offset: 0x8c
-	// Line 1347, Address: 0x274200, Func Offset: 0x90
-	// Line 1345, Address: 0x274204, Func Offset: 0x94
-	// Line 1347, Address: 0x274208, Func Offset: 0x98
-	// Line 1349, Address: 0x27420c, Func Offset: 0x9c
-	// Line 1350, Address: 0x274210, Func Offset: 0xa0
-	// Func End, Address: 0x274230, Func Offset: 0xc0
-	scePrintf("WriteMemoryCard - UNIMPLEMENTED!\n");
-}
+{ 
+    if (pCard->ulState != 0) 
+    {
+        return 0;               
+    }
+    
+    strcpy(pCard->cCurrentDir, "/BASLUS-20184"); 
+    
+    strcat(pCard->cCurrentDir, "/"); 
+    strcat(pCard->cCurrentDir, cpFileName); 
+    
+    strcpy(pCard->cOpenFileName, cpFileName); 
+    
+    pCard->lOpenMode = lMode; 
+    
+    pCard->ulFileSize = ulFileSize; 
+    
+    pCard->vpAddr = pvReadFile; 
+    
+    pCard->ulState = 2; 
+    
+    pCard->ulMcSubState = 0; 
+    
+    pCard->usMcSysState = 0; 
+    
+    pCard->cRetryCount = 5; 
+    
+    return 1; 
+} 
 
 // 100% matching! 
 int RecoveryMemoryCardWriteEnd(MEMORYCARDSTATE* pCard)
