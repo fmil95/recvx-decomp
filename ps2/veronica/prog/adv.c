@@ -2801,25 +2801,23 @@ void SetQuadPos(float StartX, float StartY, float SizeX, float SizeY, QUAD* qp)
 	scePrintf("SetQuadPos - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c1e60
+// 100% matching!
 void SetQuadUv2Ex(float u, float v, float SizeX, float SizeY, unsigned int ListNo, unsigned int TexNo, QUAD* qp)
-{
-	float TexY;
-	float TexX;
-	// Line 1240, Address: 0x2c1e60, Func Offset: 0
-	// Line 1241, Address: 0x2c1ebc, Func Offset: 0x5c
-	// Line 1243, Address: 0x2c1ef0, Func Offset: 0x90
-	// Line 1245, Address: 0x2c1efc, Func Offset: 0x9c
-	// Line 1243, Address: 0x2c1f00, Func Offset: 0xa0
-	// Line 1244, Address: 0x2c1f04, Func Offset: 0xa4
-	// Line 1245, Address: 0x2c1f08, Func Offset: 0xa8
-	// Line 1244, Address: 0x2c1f10, Func Offset: 0xb0
-	// Line 1245, Address: 0x2c1f14, Func Offset: 0xb4
-	// Line 1246, Address: 0x2c1f24, Func Offset: 0xc4
-	// Line 1247, Address: 0x2c1f38, Func Offset: 0xd8
-	// Func End, Address: 0x2c1f40, Func Offset: 0xe0
-	scePrintf("SetQuadUv2Ex - UNIMPLEMENTED!\n");
+{ 
+    float TexX;
+    float TexY;
+    NJS_TEXMEMLIST* temp; // not from the debugging symbols
+
+    temp = (NJS_TEXMEMLIST*)AdvTexList[ListNo].textures[TexNo].texaddr; 
+    
+    TexX = (temp->texinfo.texsurface.nWidth >= 0) ? temp->texinfo.texsurface.nWidth : temp->texinfo.texsurface.nWidth / 3; 
+    TexY = (temp->texinfo.texsurface.nHeight >= 0) ? temp->texinfo.texsurface.nHeight : temp->texinfo.texsurface.nHeight / 3; 
+   
+    qp->u1 = u / TexX; 
+    qp->v1 = v / TexY; 
+    
+    qp->u2 = (u + (SizeX - 1.0f)) / TexX; 
+    qp->v2 = (v + (SizeY - 1.0f)) / TexY;
 }
 
 // 100% matching!
