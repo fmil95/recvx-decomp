@@ -1961,8 +1961,8 @@ ADV_WORK AdvWork;
 _anon27 tbuf[0];
 _anon34* rom;
 unsigned int palbuf[0];
-_anon47 Pad[0];
-_anon27* Ps2_current_texmemlist;*/
+_anon47 Pad[0];*/
+NJS_TEXMEMLIST* Ps2_current_texmemlist;
 QUAD Qtex[16];
 NJS_TEXINFO AdvTexInfo[2][8];
 NJS_TEXNAME AdvTexName[2][8];
@@ -2748,21 +2748,22 @@ void AdvEasyDrawWindow(_anon32* tlp, _anon32* brp, unsigned int WindowColor, uns
 	// Func End, Address: 0x2c1cc8, Func Offset: 0x288
 }*/
 
-// 
-// Start address: 0x2c1cd0
+// 100% matching!
 void AdvEasyDrawTexture(int TexNo, unsigned int BaseColor, QUAD* qp, float PosZ, int TransFlag)
-{
-	// Line 1073, Address: 0x2c1cd0, Func Offset: 0
-	// Line 1108, Address: 0x2c1cf4, Func Offset: 0x24
-	// Line 1109, Address: 0x2c1cfc, Func Offset: 0x2c
-	// Line 1113, Address: 0x2c1d14, Func Offset: 0x44
-	// Line 1114, Address: 0x2c1d1c, Func Offset: 0x4c
-	// Line 1115, Address: 0x2c1d28, Func Offset: 0x58
-	// Line 1116, Address: 0x2c1d34, Func Offset: 0x64
-	// Line 1117, Address: 0x2c1d3c, Func Offset: 0x6c
-	// Func End, Address: 0x2c1d58, Func Offset: 0x88
-	scePrintf("AdvEasyDrawTexture - UNIMPLEMENTED!\n");
-}
+{ 
+    if (TransFlag != 0) 
+    { 
+        ((TIM2_PICTUREHEADER*)Ps2_current_texmemlist->texinfo.texsurface.pSurface)->ClutChange |= 0x8000; 
+    }
+    
+    njQuadTextureStart(TransFlag); 
+    
+    njSetQuadTexture(TexNo, BaseColor); 
+    
+    njDrawQuadTexture(qp, PosZ); 
+    
+    njQuadTextureEnd(); 
+} 
 
 /*// 
 // Start address: 0x2c1d60
