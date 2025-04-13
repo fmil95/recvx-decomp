@@ -2405,22 +2405,29 @@ void CheckReadEndAdvInsideFile2(int NextMode)
     CheckReadEndAdvInsideFile2Ex(NextMode, 0);
 }
 
-// 
-// Start address: 0x2c14b0
-void RequestAdvFade(int FadeType, float FadeSpeed)
-{
-	//_anon8* ap;
-	// Line 641, Address: 0x2c14b0, Func Offset: 0
-	// Line 646, Address: 0x2c14b8, Func Offset: 0x8
-	// Line 643, Address: 0x2c14bc, Func Offset: 0xc
-	// Line 646, Address: 0x2c14c0, Func Offset: 0x10
-	// Line 649, Address: 0x2c14e8, Func Offset: 0x38
-	// Line 651, Address: 0x2c14f0, Func Offset: 0x40
-	// Line 652, Address: 0x2c14f4, Func Offset: 0x44
-	// Line 654, Address: 0x2c14fc, Func Offset: 0x4c
-	// Line 657, Address: 0x2c1500, Func Offset: 0x50
-	// Func End, Address: 0x2c1508, Func Offset: 0x58
-	scePrintf("RequestAdvFade - UNIMPLEMENTED!\n");
+// 100% matching!
+void RequestAdvFade(int FadeType, float FadeSpeed) 
+{ 
+    ADV_WORK* ap; 
+
+    ap = (ADV_WORK*)&AdvWork; 
+    
+    ap->FadeType = FadeType; 
+    
+    ap->FadeSpeed = FadeSpeed; 
+    
+    switch (FadeType) 
+    {              
+    case 1:
+        ap->FadeType = 0; 
+        break; 
+    case 2:
+        ap->FadeRate = 1.0f;
+        break;
+    case 3:
+        ap->FadeRate = 0; 
+        break;
+    }
 }
 
 // 100% matching!
