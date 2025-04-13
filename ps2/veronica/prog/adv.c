@@ -2969,25 +2969,22 @@ void AdvEasyReleaseTexture()
     AdvEasyReleaseTextureEx(0);
 }
 
-// 
-// Start address: 0x2c22e0
-void AdvEasyReleaseAllTexture()
-{
-	int i;
-	//_anon8* ap;
-	// Line 1503, Address: 0x2c22e0, Func Offset: 0
-	// Line 1504, Address: 0x2c22e4, Func Offset: 0x4
-	// Line 1503, Address: 0x2c22ec, Func Offset: 0xc
-	// Line 1507, Address: 0x2c22f0, Func Offset: 0x10
-	// Line 1508, Address: 0x2c22f4, Func Offset: 0x14
-	// Line 1509, Address: 0x2c22f8, Func Offset: 0x18
-	// Line 1508, Address: 0x2c22fc, Func Offset: 0x1c
-	// Line 1509, Address: 0x2c2300, Func Offset: 0x20
-	// Line 1510, Address: 0x2c2310, Func Offset: 0x30
-	// Line 1511, Address: 0x2c2318, Func Offset: 0x38
-	// Line 1512, Address: 0x2c2330, Func Offset: 0x50
-	// Func End, Address: 0x2c233c, Func Offset: 0x5c
-	scePrintf("AdvEasyReleaseAllTexture - UNIMPLEMENTED!\n");
+// 100% matching!
+void AdvEasyReleaseAllTexture() 
+{ 
+    ADV_WORK* ap; 
+    int i;
+
+    ap = (ADV_WORK*)&AdvWork; 
+
+    for (i = 0; i < 2; i++) 
+    { 
+        ap->SetTexture[i] = 0; 
+    } 
+    
+    njReleaseTextureAll(); 
+    
+    sys->ss_flg &= ~0x40; 
 }
 
 // 100% matching!
