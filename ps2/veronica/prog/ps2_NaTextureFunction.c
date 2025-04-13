@@ -578,13 +578,10 @@ int njSetTextureNumSys(unsigned int n)
     Ps2TexLoad((NJS_TEXMEMLIST*)Ps2_current_texlist->textures[n].texaddr);
 }
 
-// 
-// Start address: 0x2e2290
+// 100% matching!
 void	njReleaseTextureAll(void)
 {
-	// Line 509, Address: 0x2e2290, Func Offset: 0
-	// Func End, Address: 0x2e22a4, Func Offset: 0x14
-	scePrintf("njReleaseTextureAll - UNIMPLEMENTED!\n");
+    njInitTexture(Ps2_tex_info, Ps2_texmemlist_num);
 }
 
 // 
