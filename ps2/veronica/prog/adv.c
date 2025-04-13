@@ -2786,19 +2786,14 @@ void AdvEasyDrawTextureS(int TexNo, unsigned int BaseColor, _anon0* qp, float Po
 	// Func End, Address: 0x2c1e24, Func Offset: 0xc4
 }*/
 
-// 
-// Start address: 0x2c1e30
+// 100% matching!
 void SetQuadPos(float StartX, float StartY, float SizeX, float SizeY, QUAD* qp)
-{
-	// Line 1221, Address: 0x2c1e30, Func Offset: 0
-	// Line 1219, Address: 0x2c1e38, Func Offset: 0x8
-	// Line 1221, Address: 0x2c1e3c, Func Offset: 0xc
-	// Line 1220, Address: 0x2c1e40, Func Offset: 0x10
-	// Line 1221, Address: 0x2c1e44, Func Offset: 0x14
-	// Line 1222, Address: 0x2c1e4c, Func Offset: 0x1c
-	// Line 1223, Address: 0x2c1e54, Func Offset: 0x24
-	// Func End, Address: 0x2c1e5c, Func Offset: 0x2c
-	scePrintf("SetQuadPos - UNIMPLEMENTED!\n");
+{ 
+    qp->x1 = StartX; 
+    qp->y1 = StartY; 
+    
+    qp->x2 = StartX + (SizeX - 1.0f); 
+    qp->y2 = StartY + (SizeY - 1.0f);
 }
 
 // 100% matching!
