@@ -570,7 +570,7 @@ int njSetTextureNumG(unsigned int globalIndex)
 	// Line 481, Address: 0x2e222c, Func Offset: 0x5c
 	// Line 483, Address: 0x2e2248, Func Offset: 0x78
 	// Func End, Address: 0x2e2258, Func Offset: 0x88
-}
+}*/
 
 // 
 // Start address: 0x2e2260
@@ -578,7 +578,8 @@ int njSetTextureNumSys(unsigned int n)
 {
 	// Line 500, Address: 0x2e2260, Func Offset: 0
 	// Func End, Address: 0x2e2284, Func Offset: 0x24
-}*/
+    scePrintf("njSetTextureNumSys - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2e2290

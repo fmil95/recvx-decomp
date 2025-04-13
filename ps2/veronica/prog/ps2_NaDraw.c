@@ -114,9 +114,9 @@ unsigned int Ps2_current_texno;
 NJS_TEXLIST* Ps2_current_texlist_bk;
 NJS_TEXLIST* Ps2_current_texlist;
 int Ps2_quad_trans;
-/*unsigned int Ps2_quad_color;
+unsigned int Ps2_quad_color;
 
-void njDrawPolygon(_anon5* polygon, int count, int trans);
+/*void njDrawPolygon(_anon5* polygon, int count, int trans);
 void njDrawTextureSub(_anon3* polygon, int count, int flag);
 void njDrawTexture(_anon3* polygon, int count, int tex, int flag);
 void njDrawTextureSubH(_anon0* polygon, int count, int flag);
@@ -639,14 +639,12 @@ void njQuadTextureEnd()
 	scePrintf("njQuadTextureEnd - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2df050
+// 100% matching!
 void njSetQuadTexture(int texid, unsigned int col)
 {
-	// Line 922, Address: 0x2df050, Func Offset: 0
-	// Line 923, Address: 0x2df054, Func Offset: 0x4
-	// Func End, Address: 0x2df05c, Func Offset: 0xc
-	scePrintf("njSetQuadTexture - UNIMPLEMENTED!\n");
+    Ps2_quad_color = col; 
+    
+    njSetTextureNumSys(texid);
 }
 
 // 
