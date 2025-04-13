@@ -2801,9 +2801,9 @@ void SetQuadPos(float StartX, float StartY, float SizeX, float SizeY, QUAD* qp)
 	scePrintf("SetQuadPos - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2c1e60
-void SetQuadUv2Ex(float u, float v, float SizeX, float SizeY, unsigned int ListNo, unsigned int TexNo, _anon0* qp)
+void SetQuadUv2Ex(float u, float v, float SizeX, float SizeY, unsigned int ListNo, unsigned int TexNo, QUAD* qp)
 {
 	float TexY;
 	float TexX;
@@ -2819,15 +2819,13 @@ void SetQuadUv2Ex(float u, float v, float SizeX, float SizeY, unsigned int ListN
 	// Line 1246, Address: 0x2c1f24, Func Offset: 0xc4
 	// Line 1247, Address: 0x2c1f38, Func Offset: 0xd8
 	// Func End, Address: 0x2c1f40, Func Offset: 0xe0
-}*/
+	scePrintf("SetQuadUv2Ex - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x2c1f40
+// 100% matching!
 void SetQuadUv2(float u, float v, float SizeX, float SizeY, unsigned int TexNo, QUAD* qp)
 {
-	// Line 1263, Address: 0x2c1f44, Func Offset: 0x4
-	// Func End, Address: 0x2c1f50, Func Offset: 0x10
-	scePrintf("SetQuadUv2 - UNIMPLEMENTED!\n");
+    SetQuadUv2Ex(u, v, SizeX, SizeY, 0, TexNo, qp);
 }
 
 // 98.75% matching
