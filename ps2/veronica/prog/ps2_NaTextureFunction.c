@@ -572,13 +572,10 @@ int njSetTextureNumG(unsigned int globalIndex)
 	// Func End, Address: 0x2e2258, Func Offset: 0x88
 }*/
 
-// 
-// Start address: 0x2e2260
+// 100% matching!
 int njSetTextureNumSys(unsigned int n)
 {
-	// Line 500, Address: 0x2e2260, Func Offset: 0
-	// Func End, Address: 0x2e2284, Func Offset: 0x24
-    scePrintf("njSetTextureNumSys - UNIMPLEMENTED!\n");
+    Ps2TexLoad((NJS_TEXMEMLIST*)Ps2_current_texlist->textures[n].texaddr);
 }
 
 // 
