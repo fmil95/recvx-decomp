@@ -1962,8 +1962,8 @@ _anon27 tbuf[0];
 _anon34* rom;
 unsigned int palbuf[0];
 _anon47 Pad[0];
-_anon27* Ps2_current_texmemlist;
-_anon0 Qtex[16];*/
+_anon27* Ps2_current_texmemlist;*/
+QUAD Qtex[16];
 NJS_TEXINFO AdvTexInfo[2][8];
 NJS_TEXNAME AdvTexName[2][8];
 NJS_TEXLIST AdvTexList[2] = 
@@ -2746,11 +2746,11 @@ void AdvEasyDrawWindow(_anon32* tlp, _anon32* brp, unsigned int WindowColor, uns
 	// Line 1057, Address: 0x2c1c90, Func Offset: 0x250
 	// Line 1058, Address: 0x2c1c98, Func Offset: 0x258
 	// Func End, Address: 0x2c1cc8, Func Offset: 0x288
-}
+}*/
 
 // 
 // Start address: 0x2c1cd0
-void AdvEasyDrawTexture(int TexNo, unsigned int BaseColor, _anon0* qp, float PosZ, int TransFlag)
+void AdvEasyDrawTexture(int TexNo, unsigned int BaseColor, QUAD* qp, float PosZ, int TransFlag)
 {
 	// Line 1073, Address: 0x2c1cd0, Func Offset: 0
 	// Line 1108, Address: 0x2c1cf4, Func Offset: 0x24
@@ -2761,9 +2761,10 @@ void AdvEasyDrawTexture(int TexNo, unsigned int BaseColor, _anon0* qp, float Pos
 	// Line 1116, Address: 0x2c1d34, Func Offset: 0x64
 	// Line 1117, Address: 0x2c1d3c, Func Offset: 0x6c
 	// Func End, Address: 0x2c1d58, Func Offset: 0x88
+	scePrintf("AdvEasyDrawTexture - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c1d60
 void AdvEasyDrawTextureS(int TexNo, unsigned int BaseColor, _anon0* qp, float PosZ, int TransFlag, unsigned int ShadowAlpha)
 {
@@ -2783,11 +2784,11 @@ void AdvEasyDrawTextureS(int TexNo, unsigned int BaseColor, _anon0* qp, float Po
 	// Line 1149, Address: 0x2c1dfc, Func Offset: 0x9c
 	// Line 1151, Address: 0x2c1e04, Func Offset: 0xa4
 	// Func End, Address: 0x2c1e24, Func Offset: 0xc4
-}
+}*/
 
 // 
 // Start address: 0x2c1e30
-void SetQuadPos(float StartX, float StartY, float SizeX, float SizeY, _anon0* qp)
+void SetQuadPos(float StartX, float StartY, float SizeX, float SizeY, QUAD* qp)
 {
 	// Line 1221, Address: 0x2c1e30, Func Offset: 0
 	// Line 1219, Address: 0x2c1e38, Func Offset: 0x8
@@ -2797,9 +2798,10 @@ void SetQuadPos(float StartX, float StartY, float SizeX, float SizeY, _anon0* qp
 	// Line 1222, Address: 0x2c1e4c, Func Offset: 0x1c
 	// Line 1223, Address: 0x2c1e54, Func Offset: 0x24
 	// Func End, Address: 0x2c1e5c, Func Offset: 0x2c
+	scePrintf("SetQuadPos - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2c1e60
 void SetQuadUv2Ex(float u, float v, float SizeX, float SizeY, unsigned int ListNo, unsigned int TexNo, _anon0* qp)
 {
@@ -2817,32 +2819,33 @@ void SetQuadUv2Ex(float u, float v, float SizeX, float SizeY, unsigned int ListN
 	// Line 1246, Address: 0x2c1f24, Func Offset: 0xc4
 	// Line 1247, Address: 0x2c1f38, Func Offset: 0xd8
 	// Func End, Address: 0x2c1f40, Func Offset: 0xe0
-}
-
-// 
-// Start address: 0x2c1f40
-void SetQuadUv2(float u, float v, float SizeX, float SizeY, unsigned int TexNo, _anon0* qp)
-{
-	// Line 1263, Address: 0x2c1f44, Func Offset: 0x4
-	// Func End, Address: 0x2c1f50, Func Offset: 0x10
 }*/
 
 // 
-// Start address: 0x2c1f50
-void AdvDwawOnePictureEx(int TexNo, unsigned int BaseColor)
+// Start address: 0x2c1f40
+void SetQuadUv2(float u, float v, float SizeX, float SizeY, unsigned int TexNo, QUAD* qp)
 {
-	//_anon0* qp;
-	// Line 1297, Address: 0x2c1f50, Func Offset: 0
-	// Line 1300, Address: 0x2c1f68, Func Offset: 0x18
-	// Line 1302, Address: 0x2c1f70, Func Offset: 0x20
-	// Line 1303, Address: 0x2c1f7c, Func Offset: 0x2c
-	// Line 1304, Address: 0x2c1f9c, Func Offset: 0x4c
-	// Line 1305, Address: 0x2c1fc0, Func Offset: 0x70
-	// Line 1306, Address: 0x2c1fe0, Func Offset: 0x90
-	// Line 1307, Address: 0x2c1fe8, Func Offset: 0x98
-	// Func End, Address: 0x2c2000, Func Offset: 0xb0
-	scePrintf("AdvDwawOnePictureEx - UNIMPLEMENTED!\n");
+	// Line 1263, Address: 0x2c1f44, Func Offset: 0x4
+	// Func End, Address: 0x2c1f50, Func Offset: 0x10
+	scePrintf("SetQuadUv2 - UNIMPLEMENTED!\n");
 }
+
+// 98.75% matching
+void AdvDwawOnePictureEx(int TexNo, unsigned int BaseColor)
+{ 
+    QUAD* qp; 
+
+    qp = (QUAD*)Qtex; 
+    
+    njTextureFilterMode(1); 
+    
+    SetQuadPos(0, 0, 1024.0f, 512.0f, qp);
+    SetQuadUv2(0, 0, 1024.0f, 512.0f, TexNo, qp);
+    
+    AdvEasyDrawTexture(TexNo, BaseColor, qp, 0.01f, 0);
+    
+    njTextureFilterMode(0);
+} 
 
 // 100% matching!
 void AdvDwawOnePicture(int TexNo)
