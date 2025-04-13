@@ -2423,14 +2423,14 @@ void RequestAdvFade(int FadeType, float FadeSpeed)
 	scePrintf("RequestAdvFade - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c1510
-int CheckAdvFade()
-{
-	// Line 670, Address: 0x2c1510, Func Offset: 0
-	// Line 671, Address: 0x2c1518, Func Offset: 0x8
-	// Func End, Address: 0x2c1520, Func Offset: 0x10
-	scePrintf("CheckAdvFade - UNIMPLEMENTED!\n");
+// 100% matching!
+int CheckAdvFade() 
+{ 
+    ADV_WORK* temp; // not from the debugging symbols
+
+    temp = (ADV_WORK*)&AdvWork; 
+    
+    return temp->FadeType;
 }
 
 // 98.60% matching
