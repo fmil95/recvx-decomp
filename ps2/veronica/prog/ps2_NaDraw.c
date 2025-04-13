@@ -641,64 +641,60 @@ void njSetQuadTexture(int texid, unsigned int col)
     njSetTextureNumSys(texid);
 }
 
-// 
-// Start address: 0x2df060
+// 100% matching!
 void njDrawQuadTexture(QUAD* q, float z)
 {
-	unsigned int rgba;
-	float buff[4][6];
-	float sz;
-	// Line 943, Address: 0x2df060, Func Offset: 0
-	// Line 938, Address: 0x2df064, Func Offset: 0x4
-	// Line 943, Address: 0x2df068, Func Offset: 0x8
-	// Line 944, Address: 0x2df078, Func Offset: 0x18
-	// Line 945, Address: 0x2df088, Func Offset: 0x28
-	// Line 946, Address: 0x2df0a8, Func Offset: 0x48
-	// Line 947, Address: 0x2df0b0, Func Offset: 0x50
-	// Line 956, Address: 0x2df0bc, Func Offset: 0x5c
-	// Line 954, Address: 0x2df0c0, Func Offset: 0x60
-	// Line 958, Address: 0x2df0c8, Func Offset: 0x68
-	// Line 977, Address: 0x2df0cc, Func Offset: 0x6c
-	// Line 956, Address: 0x2df0d0, Func Offset: 0x70
-	// Line 957, Address: 0x2df0d4, Func Offset: 0x74
-	// Line 977, Address: 0x2df0d8, Func Offset: 0x78
-	// Line 957, Address: 0x2df0e8, Func Offset: 0x88
-	// Line 958, Address: 0x2df0ec, Func Offset: 0x8c
-	// Line 959, Address: 0x2df0f0, Func Offset: 0x90
-	// Line 960, Address: 0x2df0f4, Func Offset: 0x94
-	// Line 978, Address: 0x2df0f8, Func Offset: 0x98
-	// Line 960, Address: 0x2df108, Func Offset: 0xa8
-	// Line 961, Address: 0x2df10c, Func Offset: 0xac
-	// Line 979, Address: 0x2df110, Func Offset: 0xb0
-	// Line 980, Address: 0x2df11c, Func Offset: 0xbc
-	// Line 961, Address: 0x2df120, Func Offset: 0xc0
-	// Line 962, Address: 0x2df124, Func Offset: 0xc4
-	// Line 980, Address: 0x2df128, Func Offset: 0xc8
-	// Line 963, Address: 0x2df12c, Func Offset: 0xcc
-	// Line 980, Address: 0x2df130, Func Offset: 0xd0
-	// Line 978, Address: 0x2df138, Func Offset: 0xd8
-	// Line 977, Address: 0x2df13c, Func Offset: 0xdc
-	// Line 983, Address: 0x2df140, Func Offset: 0xe0
-	// Line 979, Address: 0x2df148, Func Offset: 0xe8
-	// Line 978, Address: 0x2df14c, Func Offset: 0xec
-	// Line 980, Address: 0x2df150, Func Offset: 0xf0
-	// Line 979, Address: 0x2df154, Func Offset: 0xf4
-	// Line 980, Address: 0x2df158, Func Offset: 0xf8
-	// Line 983, Address: 0x2df15c, Func Offset: 0xfc
-	// Line 984, Address: 0x2df160, Func Offset: 0x100
-	// Line 992, Address: 0x2df168, Func Offset: 0x108
-	// Line 983, Address: 0x2df174, Func Offset: 0x114
-	// Line 984, Address: 0x2df17c, Func Offset: 0x11c
-	// Line 985, Address: 0x2df188, Func Offset: 0x128
-	// Line 986, Address: 0x2df18c, Func Offset: 0x12c
-	// Line 987, Address: 0x2df190, Func Offset: 0x130
-	// Line 988, Address: 0x2df19c, Func Offset: 0x13c
-	// Line 989, Address: 0x2df1a8, Func Offset: 0x148
-	// Line 992, Address: 0x2df1ac, Func Offset: 0x14c
-	// Line 993, Address: 0x2df1b4, Func Offset: 0x154
-	// Line 995, Address: 0x2df1c8, Func Offset: 0x168
-	// Line 996, Address: 0x2df1d0, Func Offset: 0x170
-	// Line 999, Address: 0x2df1e4, Func Offset: 0x184
-	// Func End, Address: 0x2df1f0, Func Offset: 0x190
-	scePrintf("njDrawQuadTexture - UNIMPLEMENTED!\n");
+    float sz;     
+    float buff[6][4];  
+    unsigned int rgba; 
+    
+    if (z) 
+    {
+        sz = -1.0f / z;
+        
+        if (sz < -65535.0f) 
+        {
+            sz = -65535.0f;
+        }
+    }
+    else 
+    {
+        sz = -65535.0f;
+    }
+
+    rgba = Ps2_quad_color; 
+    
+    buff[0][0] = q->u1;
+    buff[0][1] = q->v1;
+    buff[0][2] = 1.0f;
+    buff[0][3] = 0;
+    
+    buff[3][0] = q->u2;
+    buff[3][1] = q->v2;
+    buff[3][2] = 1.0f;
+    buff[3][3] = 0;
+    
+    *(int*)&buff[4][0] = (((rgba >> 16) & 0xFF) + 1) >> 1;
+    *(int*)&buff[4][1] = (((rgba >> 8) & 0xFF) + 1) >> 1;
+    *(int*)&buff[4][2] = ((rgba & 0xFF) + 1) >> 1;
+    *(int*)&buff[4][3] = (((rgba >> 24) & 0xFF) + 1) >> 1;  
+    
+    buff[2][0] = 1728.0f + q->x1;
+    buff[2][1] = 1808.0f + q->y1;
+    buff[2][2] = sz;
+    buff[2][3] = 0;
+    
+    buff[5][0] = 1728.0f + q->x2;
+    buff[5][1] = 1808.0f + q->y2;
+    buff[5][2] = sz;
+    buff[5][3] = 0;
+    
+    if (Ps2_quad_trans == 1) 
+    {
+        Ps2AddPrim2D(0x2B000000000000, buff, 2);
+    }
+    else 
+    {
+        Ps2AddPrim2D(0xB000000000000, buff, 2);
+    }
 }
