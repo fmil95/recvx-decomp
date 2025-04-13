@@ -108,13 +108,13 @@ int Ps2_3DEx_count;
 _anon5* Ps2_3DEx_p;
 int Ps2_tex3DEx_trans;
 int Ps2_tex3DEx_count;
-_anon3* Ps2_tex3DEx_p;
+_anon3* Ps2_tex3DEx_p;*/
 unsigned int Ps2_current_texno_bk;
 unsigned int Ps2_current_texno;
-_anon2* Ps2_current_texlist_bk;
-_anon2* Ps2_current_texlist;
+NJS_TEXLIST* Ps2_current_texlist_bk;
+NJS_TEXLIST* Ps2_current_texlist;
 int Ps2_quad_trans;
-unsigned int Ps2_quad_color;
+/*unsigned int Ps2_quad_color;
 
 void njDrawPolygon(_anon5* polygon, int count, int trans);
 void njDrawTextureSub(_anon3* polygon, int count, int flag);
@@ -617,18 +617,13 @@ void njDrawTexture3DHEx(_anon0* p, int count, int trans)
 	// Func End, Address: 0x2defe8, Func Offset: 0x118
 }*/
 
-// 
-// Start address: 0x2deff0
+// 100% matching!
 void njQuadTextureStart(int trans)
 {
-	// Line 894, Address: 0x2deff0, Func Offset: 0
-	// Line 896, Address: 0x2deff8, Func Offset: 0x8
-	// Line 897, Address: 0x2df000, Func Offset: 0x10
-	// Line 896, Address: 0x2df008, Func Offset: 0x18
-	// Line 897, Address: 0x2df010, Func Offset: 0x20
-	// Line 898, Address: 0x2df014, Func Offset: 0x24
-	// Func End, Address: 0x2df01c, Func Offset: 0x2c
-	scePrintf("njQuadTextureStart - UNIMPLEMENTED!\n");
+    Ps2_quad_trans = trans;
+    
+    Ps2_current_texlist_bk = Ps2_current_texlist;
+    Ps2_current_texno_bk = Ps2_current_texno;
 }
 
 // 
