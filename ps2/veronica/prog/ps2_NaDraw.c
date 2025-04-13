@@ -626,17 +626,11 @@ void njQuadTextureStart(int trans)
     Ps2_current_texno_bk = Ps2_current_texno;
 }
 
-// 
-// Start address: 0x2df020
+// 100% matching!
 void njQuadTextureEnd()
 {
-	// Line 906, Address: 0x2df020, Func Offset: 0
-	// Line 907, Address: 0x2df028, Func Offset: 0x8
-	// Line 906, Address: 0x2df030, Func Offset: 0x10
-	// Line 907, Address: 0x2df038, Func Offset: 0x18
-	// Line 908, Address: 0x2df03c, Func Offset: 0x1c
-	// Func End, Address: 0x2df044, Func Offset: 0x24
-	scePrintf("njQuadTextureEnd - UNIMPLEMENTED!\n");
+    Ps2_current_texlist = Ps2_current_texlist_bk;
+    Ps2_current_texno = Ps2_current_texno_bk;
 }
 
 // 100% matching!
