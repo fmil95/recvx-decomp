@@ -2889,15 +2889,17 @@ void AdvEasyTransTextureBasic(int ListNo, int TexNum, int Flag)
     ap->SetTexture[ListNo] = 1; 
 } 
 
-/*// 
-// Start address: 0x2c2240
+// 100% matching!
 void AdvEasyTransTextureEx(int ListNo)
-{
-	// Line 1448, Address: 0x2c2240, Func Offset: 0
-	// Func End, Address: 0x2c2254, Func Offset: 0x14
+{ 
+    ADV_WORK* temp; // not from the debugging symbols
+
+    temp = (ADV_WORK*)&AdvWork;
+    
+    AdvEasyTransTextureBasic(ListNo, temp->Count, 0);
 }
 
-// 
+/*// 
 // Start address: 0x2c2260
 void AdvEasyTransTexture()
 {
