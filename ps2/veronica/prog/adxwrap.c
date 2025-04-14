@@ -269,9 +269,9 @@ void PauseAdx(unsigned int SlotNo);
 void ContinueAdx(unsigned int SlotNo);
 int GetAdxStatus(unsigned int SlotNo);
 void SetVolumeAdx(unsigned int SlotNo, int Volume);
-void SetVolumeAdxEx(unsigned int SlotNo, float Volume, float MaxVolume);
+void SetVolumeAdxEx(unsigned int SlotNo, float Volume, float MaxVolume);*/
 void SetVolumeAdx2(unsigned int SlotNo, float Volume);
-void SetPanAdx2(unsigned int SlotNo, float Pan);
+/*void SetPanAdx2(unsigned int SlotNo, float Pan);
 void SetPanAdx(unsigned int SlotNo, int Channel, int Pan);
 int GetAdxPlayTime(unsigned int SlotNo);
 void RequestAdxFadeFunction2(int SlotNo, int Func, int Timer, int FirstVolume);
@@ -747,15 +747,13 @@ int GetAdxStatus(unsigned int SlotNo)
     ADXT_GetStat(AdxTInfo[SlotNo].Handle);
 }
 
-/*// 
-// Start address: 0x291f50
+// 100% matching!
 void SetVolumeAdx(unsigned int SlotNo, int Volume)
 {
-	// Line 1334, Address: 0x291f50, Func Offset: 0
-	// Func End, Address: 0x291f5c, Func Offset: 0xc
+    SetVolumeAdx2(SlotNo, Volume);
 }
 
-// 
+/*// 
 // Start address: 0x291f60
 void SetVolumeAdxEx(unsigned int SlotNo, float Volume, float MaxVolume)
 {
@@ -766,7 +764,7 @@ void SetVolumeAdxEx(unsigned int SlotNo, float Volume, float MaxVolume)
 	// Line 1347, Address: 0x291f90, Func Offset: 0x30
 	// Line 1348, Address: 0x291fa0, Func Offset: 0x40
 	// Func End, Address: 0x291fa8, Func Offset: 0x48
-}
+}*/
 
 // 
 // Start address: 0x291fb0
@@ -782,7 +780,8 @@ void SetVolumeAdx2(unsigned int SlotNo, float Volume)
 	// Line 1380, Address: 0x292018, Func Offset: 0x68
 	// Line 1383, Address: 0x292028, Func Offset: 0x78
 	// Func End, Address: 0x292040, Func Offset: 0x90
-}*/
+	scePrintf("SetVolumeAdx2 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void SetPanAdx2(unsigned int SlotNo, float Pan)
