@@ -1957,10 +1957,10 @@ _anon53 OptionDef[7];*/
 int AdvFirstInitFlag;
 int PatId[4];
 ADV_WORK AdvWork;
-/*_anon40* sys;
-_anon27 tbuf[0];
-_anon34* rom;
-unsigned int palbuf[0];
+SYS_WORK* sys;
+NJS_TEXMEMLIST tbuf[256];
+ROM_WORK* rom;
+/*unsigned int palbuf[0];
 _anon47 Pad[0];*/
 NJS_TEXMEMLIST* Ps2_current_texmemlist;
 QUAD Qtex[16];
@@ -2237,25 +2237,30 @@ void AdvCheckSoftReset(int Flag)
     } 
 } 
 
-/*// 
-// Start address: 0x2c10b0
-void AdvPushRoomTexture()
-{
-	_anon8* ap;
-	// Line 439, Address: 0x2c10b0, Func Offset: 0
-	// Line 440, Address: 0x2c10bc, Func Offset: 0xc
-	// Line 442, Address: 0x2c10c4, Func Offset: 0x14
-	// Line 444, Address: 0x2c10c8, Func Offset: 0x18
-	// Line 445, Address: 0x2c10dc, Func Offset: 0x2c
-	// Line 446, Address: 0x2c10f4, Func Offset: 0x44
-	// Line 447, Address: 0x2c112c, Func Offset: 0x7c
-	// Line 448, Address: 0x2c113c, Func Offset: 0x8c
-	// Line 449, Address: 0x2c114c, Func Offset: 0x9c
-	// Line 452, Address: 0x2c1154, Func Offset: 0xa4
-	// Func End, Address: 0x2c1164, Func Offset: 0xb4
-}
+// 100% matching!
+void AdvPushRoomTexture() 
+{ 
+    ADV_WORK* ap; 
 
-// 
+    ap = (ADV_WORK*)&AdvWork; 
+    
+    ap->TexFlag = 0; 
+    
+    if (rom->mdl.texP != NULL)
+    { 
+        ap->SysMemPtr = sys->memp; 
+        
+        sys->memp = (unsigned char*)bhCopyTexmem2MainmemSub(rom->mdl.texP, (char*)sys->memp); 
+        
+        njReleaseTexture(rom->mdl.texP); 
+        
+        bhGarbageTexture(tbuf, 256); 
+        
+        ap->TexFlag = 1; 
+    }
+} 
+
+/*// 
 // Start address: 0x2c1170
 void AdvPopRoomTexture()
 {
