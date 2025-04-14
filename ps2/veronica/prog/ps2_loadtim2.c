@@ -1,3 +1,5 @@
+#include "ps2_loadtim2.h"
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;

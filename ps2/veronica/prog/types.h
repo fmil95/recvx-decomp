@@ -2824,3 +2824,6 @@ typedef struct UNKNOWN
 
 // TODO: include the following define from cpureg.h
 #define	SR_CU0		0x10000000	/* Coprocessor 0 usable */
+
+#define UNCMASK 0x0fffffff
+#define UNCBASE 0x20000000
