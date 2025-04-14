@@ -814,13 +814,13 @@ int GetAdxPlayTime(unsigned int SlotNo)
 	// Line 1430, Address: 0x2920ac, Func Offset: 0x3c
 	// Line 1431, Address: 0x2920e4, Func Offset: 0x74
 	// Func End, Address: 0x2920f4, Func Offset: 0x84
-}
+}*/
 
 // 
 // Start address: 0x292100
 void RequestAdxFadeFunction2(int SlotNo, int Func, int Timer, int FirstVolume)
 {
-	_anon0* tp;
+	//_anon0* tp;
 	float Cnt;
 	// Line 1465, Address: 0x292100, Func Offset: 0
 	// Line 1467, Address: 0x292110, Func Offset: 0x10
@@ -841,17 +841,16 @@ void RequestAdxFadeFunction2(int SlotNo, int Func, int Timer, int FirstVolume)
 	// Line 1501, Address: 0x292220, Func Offset: 0x120
 	// Line 1503, Address: 0x292228, Func Offset: 0x128
 	// Func End, Address: 0x292230, Func Offset: 0x130
+	scePrintf("RequestAdxFadeFunction2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x292230
+// 100% matching!
 void RequestAdxFadeFunction(int SlotNo, int Func, int Timer)
-{
-	// Line 1507, Address: 0x292230, Func Offset: 0
-	// Func End, Address: 0x292238, Func Offset: 0x8
+{ 
+    RequestAdxFadeFunction2(SlotNo, Func, Timer, 1);
 }
 
-// 
+/*// 
 // Start address: 0x292240
 void RequestAdxFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 {
@@ -911,4 +910,3 @@ int ExecAdxFadeManager()
 	// Func End, Address: 0x29240c, Func Offset: 0x11c
 	scePrintf("ExecAdxFadeManager - UNIMPLEMENTED!\n");
 }
-
