@@ -701,13 +701,14 @@ void 	njSetPaletteMode(Uint32 mode)
 
 }
 
-/*// 
+// 
 // Start address: 0x2e24e0
-unsigned int njGetPaletteMode()
+Uint32	njGetPaletteMode(void)
 {
 	// Line 782, Address: 0x2e24e0, Func Offset: 0
 	// Func End, Address: 0x2e24e8, Func Offset: 0x8
-}*/
+    scePrintf("njGetPaletteMode - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2e24f0

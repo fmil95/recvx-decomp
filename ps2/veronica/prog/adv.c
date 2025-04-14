@@ -1960,8 +1960,8 @@ ADV_WORK AdvWork;
 SYS_WORK* sys;
 NJS_TEXMEMLIST tbuf[256];
 ROM_WORK* rom;
-/*unsigned int palbuf[0];
-_anon47 Pad[0];*/
+unsigned int palbuf[4096];
+/*_anon47 Pad[0];*/
 NJS_TEXMEMLIST* Ps2_current_texmemlist;
 QUAD Qtex[16];
 NJS_TEXINFO AdvTexInfo[2][8];
@@ -2277,21 +2277,19 @@ void AdvPopRoomTexture()
     ap->TexFlag = 0; 
 } 
 
-/*// 
-// Start address: 0x2c11e0
-void AdvPushPaletteData()
-{
-	// Line 484, Address: 0x2c11e0, Func Offset: 0
-	// Line 480, Address: 0x2c11e8, Func Offset: 0x8
-	// Line 484, Address: 0x2c11ec, Func Offset: 0xc
-	// Line 480, Address: 0x2c11f4, Func Offset: 0x14
-	// Line 484, Address: 0x2c11f8, Func Offset: 0x18
-	// Line 485, Address: 0x2c1200, Func Offset: 0x20
-	// Line 486, Address: 0x2c1214, Func Offset: 0x34
-	// Func End, Address: 0x2c1220, Func Offset: 0x40
+// 100% matching!
+void AdvPushPaletteData() 
+{ 
+    ADV_WORK* temp; // not from the debugging symbols
+
+    temp = (ADV_WORK*)&AdvWork;
+    
+    njMemCopy4(&palbuf[3072], palbuf, 1024); 
+    
+    temp->PalMode = njGetPaletteMode(); 
 }
 
-// 
+/*// 
 // Start address: 0x2c1220
 void AdvPopPaletteData()
 {
