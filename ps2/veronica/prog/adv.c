@@ -2905,24 +2905,22 @@ void AdvEasyTransTexture()
     AdvEasyTransTextureEx(0);
 }
 
-// 
-// Start address: 0x2c2270
-void AdvEasyReleaseTextureEx(int ListNo)
-{
-	// Line 1474, Address: 0x2c2270, Func Offset: 0
-	// Line 1471, Address: 0x2c2274, Func Offset: 0x4
-	// Line 1474, Address: 0x2c2278, Func Offset: 0x8
-	// Line 1471, Address: 0x2c227c, Func Offset: 0xc
-	// Line 1474, Address: 0x2c2280, Func Offset: 0x10
-	// Line 1471, Address: 0x2c2284, Func Offset: 0x14
-	// Line 1474, Address: 0x2c2288, Func Offset: 0x18
-	// Line 1475, Address: 0x2c2298, Func Offset: 0x28
-	// Line 1476, Address: 0x2c22ac, Func Offset: 0x3c
-	// Line 1479, Address: 0x2c22b0, Func Offset: 0x40
-	// Line 1481, Address: 0x2c22bc, Func Offset: 0x4c
-	// Func End, Address: 0x2c22cc, Func Offset: 0x5c
-	scePrintf("AdvEasyReleaseTextureEx - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+void AdvEasyReleaseTextureEx(int ListNo) 
+{ 
+    ADV_WORK* temp; // not from the debugging symbols
+
+    temp = (ADV_WORK*)&AdvWork;
+
+    if (temp->SetTexture[ListNo] != 0) 
+    { 
+        njReleaseTexture(&AdvTexList[ListNo]); 
+        
+        temp->SetTexture[ListNo] = 0;
+    }
+    
+    bhGarbageTexture(NULL, 0); 
+} 
 
 // 100% matching!
 void AdvEasyReleaseTexture()
