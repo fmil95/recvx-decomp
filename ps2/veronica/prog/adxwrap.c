@@ -784,14 +784,10 @@ void SetVolumeAdx2(unsigned int SlotNo, float Volume)
 	// Func End, Address: 0x292040, Func Offset: 0x90
 }*/
 
-// 
-// Start address: 0x292040
+// 100% matching!
 void SetPanAdx2(unsigned int SlotNo, float Pan)
 {
-	// Line 1387, Address: 0x292040, Func Offset: 0
-	// Line 1401, Address: 0x292050, Func Offset: 0x10
-	// Func End, Address: 0x292058, Func Offset: 0x18
-	scePrintf("SetPanAdx2 - UNIMPLEMENTED!\n");
+    AdxTInfo[SlotNo].Pan = Pan;
 }
 
 // 100% matching!
