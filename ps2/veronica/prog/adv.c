@@ -2260,23 +2260,24 @@ void AdvPushRoomTexture()
     }
 } 
 
-/*// 
-// Start address: 0x2c1170
+// 100% matching!
 void AdvPopRoomTexture()
-{
-	_anon8* ap;
-	// Line 461, Address: 0x2c1170, Func Offset: 0
-	// Line 462, Address: 0x2c117c, Func Offset: 0xc
-	// Line 464, Address: 0x2c1184, Func Offset: 0x14
-	// Line 465, Address: 0x2c1190, Func Offset: 0x20
-	// Line 466, Address: 0x2c11a4, Func Offset: 0x34
-	// Line 467, Address: 0x2c11ac, Func Offset: 0x3c
-	// Line 470, Address: 0x2c11c4, Func Offset: 0x54
-	// Line 471, Address: 0x2c11c8, Func Offset: 0x58
-	// Func End, Address: 0x2c11d8, Func Offset: 0x68
-}
+{ 
+    ADV_WORK* ap; 
 
-// 
+    ap = (ADV_WORK*)&AdvWork; 
+
+    if ((ap->TexFlag != 0) && (rom->mdl.texP != NULL)) 
+    { 
+        bhCopyMainmem2Texmem(rom->mdl.texP); 
+        
+        sys->memp = ap->SysMemPtr; 
+    }
+    
+    ap->TexFlag = 0; 
+} 
+
+/*// 
 // Start address: 0x2c11e0
 void AdvPushPaletteData()
 {
