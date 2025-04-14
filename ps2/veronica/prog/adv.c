@@ -2595,20 +2595,13 @@ unsigned int AdvGetOkButton()
     return ButtonDef[sys->keytype]; 
 }
 
-/*// 
-// Start address: 0x2c1880
-unsigned int AdvGetCancelButton()
-{
-	unsigned int ButtonDef[3];
-	// Line 864, Address: 0x2c1880, Func Offset: 0
-	// Line 861, Address: 0x2c1890, Func Offset: 0x10
-	// Line 864, Address: 0x2c1894, Func Offset: 0x14
-	// Line 875, Address: 0x2c1898, Func Offset: 0x18
-	// Line 864, Address: 0x2c189c, Func Offset: 0x1c
-	// Line 875, Address: 0x2c18a4, Func Offset: 0x24
-	// Line 876, Address: 0x2c18b8, Func Offset: 0x38
-	// Func End, Address: 0x2c18c0, Func Offset: 0x40
-}*/
+// 100% matching!
+unsigned int AdvGetCancelButton() 
+{ 
+    unsigned int ButtonDef[3] = {32, 128, 64}; 
+    
+    return ButtonDef[sys->keytype]; 
+} 
 
 // 100% matching!
 void SetPvrInfo(NJS_TEXNAME* np, NJS_TEXINFO* ip, unsigned char* pp, int param1, unsigned int param2) // fourth and fifth parameters are not present on the debugging symbols
