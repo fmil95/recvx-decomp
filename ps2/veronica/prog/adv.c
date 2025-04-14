@@ -2587,22 +2587,15 @@ void CheckAdvScreenSaverStopKey(int PortId)
     }
 } 
 
-/*// 
-// Start address: 0x2c1840
+// 100% matching!
 unsigned int AdvGetOkButton()
-{
-	unsigned int ButtonDef[3];
-	// Line 839, Address: 0x2c1840, Func Offset: 0
-	// Line 836, Address: 0x2c1850, Func Offset: 0x10
-	// Line 839, Address: 0x2c1854, Func Offset: 0x14
-	// Line 850, Address: 0x2c1858, Func Offset: 0x18
-	// Line 839, Address: 0x2c185c, Func Offset: 0x1c
-	// Line 850, Address: 0x2c1864, Func Offset: 0x24
-	// Line 851, Address: 0x2c1878, Func Offset: 0x38
-	// Func End, Address: 0x2c1880, Func Offset: 0x40
+{ 
+    unsigned int ButtonDef[3] = {192, 96, 160}; 
+    
+    return ButtonDef[sys->keytype]; 
 }
 
-// 
+/*// 
 // Start address: 0x2c1880
 unsigned int AdvGetCancelButton()
 {
