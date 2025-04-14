@@ -753,18 +753,22 @@ void SetVolumeAdx(unsigned int SlotNo, int Volume)
     SetVolumeAdx2(SlotNo, Volume);
 }
 
-/*// 
-// Start address: 0x291f60
+// 100% matching!
 void SetVolumeAdxEx(unsigned int SlotNo, float Volume, float MaxVolume)
 {
-	// Line 1340, Address: 0x291f60, Func Offset: 0
-	// Line 1341, Address: 0x291f7c, Func Offset: 0x1c
-	// Line 1342, Address: 0x291f84, Func Offset: 0x24
-	// Line 1344, Address: 0x291f8c, Func Offset: 0x2c
-	// Line 1347, Address: 0x291f90, Func Offset: 0x30
-	// Line 1348, Address: 0x291fa0, Func Offset: 0x40
-	// Func End, Address: 0x291fa8, Func Offset: 0x48
-}*/
+    if (MaxVolume < -20.0f) 
+    {
+        MaxVolume += 20.0f;
+    }
+    else 
+    {
+        MaxVolume = 0;
+    }
+
+    AdxTInfo[SlotNo].LimitMaxVol = MaxVolume;
+    
+    SetVolumeAdx2(SlotNo, Volume);
+}
 
 // 
 // Start address: 0x291fb0
