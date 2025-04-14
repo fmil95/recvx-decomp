@@ -782,7 +782,7 @@ void SetVolumeAdx2(unsigned int SlotNo, float Volume)
 	// Line 1380, Address: 0x292018, Func Offset: 0x68
 	// Line 1383, Address: 0x292028, Func Offset: 0x78
 	// Func End, Address: 0x292040, Func Offset: 0x90
-}
+}*/
 
 // 
 // Start address: 0x292040
@@ -791,17 +791,16 @@ void SetPanAdx2(unsigned int SlotNo, float Pan)
 	// Line 1387, Address: 0x292040, Func Offset: 0
 	// Line 1401, Address: 0x292050, Func Offset: 0x10
 	// Func End, Address: 0x292058, Func Offset: 0x18
+	scePrintf("SetPanAdx2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x292060
-void SetPanAdx(unsigned int SlotNo, int Channel, int Pan)
-{
-	// Line 1405, Address: 0x292060, Func Offset: 0
-	// Func End, Address: 0x29206c, Func Offset: 0xc
+// 100% matching!
+void SetPanAdx(unsigned int SlotNo, int Channel, int Pan) 
+{ 
+    SetPanAdx2(SlotNo, Pan);
 }
 
-// 
+/*// 
 // Start address: 0x292070
 int GetAdxPlayTime(unsigned int SlotNo)
 {
