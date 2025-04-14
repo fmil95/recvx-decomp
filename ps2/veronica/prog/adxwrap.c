@@ -328,22 +328,16 @@ void ExitAdx()
     ADXT_Finish();
 }
 
-/*// 
-// Start address: 0x291110
+// 100% matching!
 void DeletePartition(unsigned int PartitionId)
 {
-	// Line 310, Address: 0x291110, Func Offset: 0
-	// Line 309, Address: 0x291118, Func Offset: 0x8
-	// Line 310, Address: 0x29111c, Func Offset: 0xc
-	// Line 309, Address: 0x291124, Func Offset: 0x14
-	// Line 310, Address: 0x291128, Func Offset: 0x18
-	// Line 309, Address: 0x29112c, Func Offset: 0x1c
-	// Line 310, Address: 0x291130, Func Offset: 0x20
-	// Line 311, Address: 0x291140, Func Offset: 0x30
-	// Line 312, Address: 0x291154, Func Offset: 0x44
-	// Line 314, Address: 0x291158, Func Offset: 0x48
-	// Func End, Address: 0x291168, Func Offset: 0x58
-}*/
+    if (AfsInfo[PartitionId].Flag != 0)
+    {
+        syFree(AfsInfo[PartitionId].pInfoPart);
+        
+        AfsInfo[PartitionId].Flag = 0;
+    }
+}
 
 // 
 // Start address: 0x291170
