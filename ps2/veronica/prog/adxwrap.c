@@ -677,7 +677,7 @@ void WakeupAdxStream(_anon3* pAdx)
 	// Line 1168, Address: 0x291d44, Func Offset: 0xb4
 	// Line 1170, Address: 0x291d4c, Func Offset: 0xbc
 	// Func End, Address: 0x291d64, Func Offset: 0xd4
-}
+}*/
 
 // 
 // Start address: 0x291d70
@@ -693,15 +693,14 @@ void PlayAdxEx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileI
 	// Line 1222, Address: 0x291ddc, Func Offset: 0x6c
 	// Line 1223, Address: 0x291df0, Func Offset: 0x80
 	// Func End, Address: 0x291e0c, Func Offset: 0x9c
+	scePrintf("PlayAdxEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x291e10
+// 100% matching!
 void PlayAdx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileId)
-{
-	// Line 1227, Address: 0x291e10, Func Offset: 0
-	// Func End, Address: 0x291e18, Func Offset: 0x8
-}*/
+{ 
+    PlayAdxEx(SlotNo, PartitionId, FileId, 0);
+}
 
 // 100% matching!
 void StopAdx(unsigned int SlotNo)
