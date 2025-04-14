@@ -397,19 +397,21 @@ void DeletePartitionEx(AFS_PATINFO* ap)
     } 
 } 
 
-/*// 
-// Start address: 0x291370
-int SearchAdxFSlot()
+// 100% matching!
+int SearchAdxFSlot() 
 {
-	unsigned int i;
-	// Line 476, Address: 0x291378, Func Offset: 0x8
-	// Line 477, Address: 0x29137c, Func Offset: 0xc
-	// Line 478, Address: 0x291388, Func Offset: 0x18
-	// Line 480, Address: 0x291390, Func Offset: 0x20
-	// Line 482, Address: 0x2913a0, Func Offset: 0x30
-	// Line 483, Address: 0x2913a4, Func Offset: 0x34
-	// Func End, Address: 0x2913ac, Func Offset: 0x3c
-}*/
+    unsigned int i;
+    
+    for (i = 0; i < 8; i++) 
+    { 
+        if (AdxFInfo[i].Flag == 0)
+        { 
+            return i; 
+        }
+    } 
+    
+    return -1; 
+} 
 
 // 
 // Start address: 0x2913b0
