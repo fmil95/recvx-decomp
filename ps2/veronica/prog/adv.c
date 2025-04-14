@@ -2289,24 +2289,26 @@ void AdvPushPaletteData()
     temp->PalMode = njGetPaletteMode(); 
 }
 
-/*// 
-// Start address: 0x2c1220
-void AdvPopPaletteData()
-{
-	// Line 495, Address: 0x2c1220, Func Offset: 0
-	// Line 498, Address: 0x2c1224, Func Offset: 0x4
-	// Line 495, Address: 0x2c122c, Func Offset: 0xc
-	// Line 498, Address: 0x2c1230, Func Offset: 0x10
-	// Line 500, Address: 0x2c1238, Func Offset: 0x18
-	// Line 501, Address: 0x2c1250, Func Offset: 0x30
-	// Line 503, Address: 0x2c125c, Func Offset: 0x3c
-	// Line 501, Address: 0x2c1260, Func Offset: 0x40
-	// Line 503, Address: 0x2c1268, Func Offset: 0x48
-	// Line 504, Address: 0x2c127c, Func Offset: 0x5c
-	// Line 506, Address: 0x2c1284, Func Offset: 0x64
-	// Line 507, Address: 0x2c1298, Func Offset: 0x78
-	// Func End, Address: 0x2c12a4, Func Offset: 0x84
-}*/
+// 100% matching!
+void AdvPopPaletteData() 
+{ 
+    ADV_WORK* temp; // not from the debugging symbols
+
+    temp = (ADV_WORK*)&AdvWork;
+    
+    njSetPaletteMode(temp->PalMode); 
+    
+    njMemCopy4(palbuf, &palbuf[3072], 1024); 
+    
+    sys->gm_flg |= 0x4; 
+    
+    if ((sys->st_flg & 0x2)) 
+    { 
+        njFogEnable(); 
+    } 
+    
+    sys->gm_flg |= 0x8000; 
+} 
 
 // 100% matching!
 void RequestAdvInsideFileEx(int InsideFileId, int MemoryBlockNo)
