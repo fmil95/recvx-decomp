@@ -114,3 +114,13 @@ void ADXT_Pause(ADXT adxt, long sw)
 {
     scePrintf("ADXT_Pause - UNIMPLEMENTED!\n");
 }
+
+void ADXT_SetSvrFreq(ADXT adxt, long freq)
+{
+    scePrintf("ADXT_SetSvrFreq - UNIMPLEMENTED!\n");
+}
+
+void ADXT_StartAfs(ADXT adxt, long patid, long fid)
+{
+    scePrintf("ADXT_StartAfs - UNIMPLEMENTED!\n");
+}

@@ -264,9 +264,9 @@ void SleepAdxStream();
 void WakeupAdxStream(_anon3* pAdx);
 void PlayAdxEx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileId, int Flag);
 void PlayAdx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileId);
-void StopAdx(unsigned int SlotNo);
+void StopAdx(unsigned int SlotNo);*/
 void PauseAdx(unsigned int SlotNo);
-void ContinueAdx(unsigned int SlotNo);
+/*void ContinueAdx(unsigned int SlotNo);
 int GetAdxStatus(unsigned int SlotNo);
 void SetVolumeAdx(unsigned int SlotNo, int Volume);
 void SetVolumeAdxEx(unsigned int SlotNo, float Volume, float MaxVolume);*/
@@ -676,21 +676,23 @@ void WakeupAdxStream(_anon3* pAdx)
 	// Func End, Address: 0x291d64, Func Offset: 0xd4
 }*/
 
-// 
-// Start address: 0x291d70
+// 84.62% matching
 void PlayAdxEx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileId, int Flag)
 {
-	// Line 1178, Address: 0x291d70, Func Offset: 0
-	// Line 1179, Address: 0x291d90, Func Offset: 0x20
-	// Line 1180, Address: 0x291d98, Func Offset: 0x28
-	// Line 1185, Address: 0x291da0, Func Offset: 0x30
-	// Line 1191, Address: 0x291da8, Func Offset: 0x38
-	// Line 1209, Address: 0x291dc4, Func Offset: 0x54
-	// Line 1218, Address: 0x291dd4, Func Offset: 0x64
-	// Line 1222, Address: 0x291ddc, Func Offset: 0x6c
-	// Line 1223, Address: 0x291df0, Func Offset: 0x80
-	// Func End, Address: 0x291e0c, Func Offset: 0x9c
-	scePrintf("PlayAdxEx - UNIMPLEMENTED!\n");
+    if (Flag != 0)
+    {
+        PauseAdx(SlotNo);
+    }
+    
+    ADXPS2_Lock();
+    
+    ADXT_SetSvrFreq(AdxTInfo[SlotNo].Handle, 12);
+    
+    ADXT_StartAfs(AdxTInfo[SlotNo].Handle, PartitionId, FileId);
+    
+    ADXPS2_Unlock();
+    
+    AdxTInfo[SlotNo].Flag = 1;
 }
 
 // 100% matching!
