@@ -84,3 +84,8 @@ void ADXT_SetOutputMono(Sint32 flag)
 {
     scePrintf("ADXT_SetOutputMono - UNIMPLEMENTED!\n");
 }
+
+ADXF ADXF_OpenAfs(long ptid, long flid) 
+{
+    scePrintf("ADXF_OpenAfs - UNIMPLEMENTED!\n");
+}

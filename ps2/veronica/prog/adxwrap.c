@@ -413,25 +413,29 @@ int SearchAdxFSlot()
     return -1; 
 } 
 
-// 
-// Start address: 0x2913b0
+// 85.37% matching
 int OpenAfsInsideFile(unsigned int PartitionId, unsigned int FileId)
 {
-	unsigned int SlotNo;
-	// Line 486, Address: 0x2913b0, Func Offset: 0
-	// Line 489, Address: 0x2913c8, Func Offset: 0x18
-	// Line 500, Address: 0x2913d0, Func Offset: 0x20
-	// Line 502, Address: 0x2913d8, Func Offset: 0x28
-	// Line 504, Address: 0x2913f4, Func Offset: 0x44
-	// Line 506, Address: 0x2913fc, Func Offset: 0x4c
-	// Line 512, Address: 0x291408, Func Offset: 0x58
-	// Line 519, Address: 0x291410, Func Offset: 0x60
-	// Line 520, Address: 0x291424, Func Offset: 0x74
-	// Line 521, Address: 0x291434, Func Offset: 0x84
-	// Line 520, Address: 0x291438, Func Offset: 0x88
-	// Line 523, Address: 0x29143c, Func Offset: 0x8c
-	// Func End, Address: 0x291454, Func Offset: 0xa4
-	scePrintf("OpenAfsInsideFile - UNIMPLEMENTED!\n");
+    unsigned int SlotNo; 
+    
+    SlotNo = SearchAdxFSlot();
+    
+    ADXPS2_Lock();
+    
+    AdxFInfo[SlotNo].Handle = ADXF_OpenAfs(PartitionId, FileId);
+    
+    ADXPS2_Unlock();
+    
+    if (AdxFInfo[SlotNo].Handle == NULL) 
+    {
+        return -1;
+    }
+    
+    AdxFInfo[SlotNo].Mode = -1;
+    
+    AdxFInfo[SlotNo].Flag = 1;
+    
+    return SlotNo;
 }
 
 /*// 
