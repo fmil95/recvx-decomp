@@ -1,4 +1,4 @@
-src/ps2/veronica/prog/*.o
+elf/*.o
 elf/main.elf
 elf/report.txt
 elf/iso/data

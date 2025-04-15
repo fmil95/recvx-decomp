@@ -2,6 +2,7 @@ import os
 import subprocess
 import json
 import argparse
+import shutil
 import sys
 
 def load_json(filename):
@@ -170,6 +171,25 @@ def main(args):
         print(f"Performing linkage with the following parameters:\n");
 
         output_elf = link_objects(linker, objects, linker_script, linker_flags, libraries, library_dirs, linker_env)
+
+        crt0_file = "include/recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.o"       
+
+        destination_directory = "elf/"  
+
+        destination_file = os.path.join(destination_directory, "crt0.o")
+
+        if os.path.exists(destination_file):               
+            os.remove(destination_file)
+            
+        if os.path.exists(crt0_file):         
+            shutil.move(crt0_file, destination_directory)     
+
+        for source in sources:
+            object_file = source.replace(".c", ".o")
+            
+            destination = os.path.join("elf", os.path.basename(object_file))
+          
+            shutil.move(object_file, destination)
 
         if output_elf:
             print(f"\nBuild steps have been successfully completed.")
