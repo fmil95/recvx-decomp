@@ -29,13 +29,13 @@
       "recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.s"
   ],
   "source_files": [
-      "ps2/veronica/prog/main.c",
-      "ps2/veronica/prog/vibman.c",
-      "ps2/veronica/prog/flag.c",
-      "ps2/veronica/prog/njloop.c",
-      "ps2/veronica/prog/ps2_sg_sytmr.c",
-      "ps2/veronica/prog/sbinit.c",
-      "ps2/veronica/prog/ps2_sg_syhw.c",
-      "ps2/veronica/prog/ps2_sg_syrtc.c"
+      "src/ps2/veronica/prog/main.c",
+      "src/ps2/veronica/prog/vibman.c",
+      "src/ps2/veronica/prog/flag.c",
+      "src/ps2/veronica/prog/njloop.c",
+      "src/ps2/veronica/prog/ps2_sg_sytmr.c",
+      "src/ps2/veronica/prog/sbinit.c",
+      "src/ps2/veronica/prog/ps2_sg_syhw.c",
+      "src/ps2/veronica/prog/ps2_sg_syrtc.c"
   ]
 }
