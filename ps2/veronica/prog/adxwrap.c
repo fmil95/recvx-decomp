@@ -714,17 +714,15 @@ void StopAdx(unsigned int SlotNo)
     AdxTInfo[SlotNo].Flag = 0;
 }
 
-/*// 
-// Start address: 0x291e90
+// 100% matching!
 void PauseAdx(unsigned int SlotNo)
 {
-	// Line 1287, Address: 0x291e90, Func Offset: 0
-	// Line 1291, Address: 0x291e9c, Func Offset: 0xc
-	// Line 1294, Address: 0x291ea4, Func Offset: 0x14
-	// Line 1298, Address: 0x291ec0, Func Offset: 0x30
-	// Line 1301, Address: 0x291ec8, Func Offset: 0x38
-	// Func End, Address: 0x291ed8, Func Offset: 0x48
-}*/
+    ADXPS2_Lock();
+    
+    ADXT_Pause(AdxTInfo[SlotNo].Handle, 1);
+    
+    ADXPS2_Unlock();
+}
 
 // 100% matching!
 void ContinueAdx(unsigned int SlotNo)
