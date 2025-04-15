@@ -132,9 +132,9 @@ def get_arguments(argv=None):
         else:
             args.iso = args.iso.resolve()
 
-    args.filelist = curr_dir / "iso" / "RECVX_FILELIST.TXT"
-    args.files = curr_dir / "iso" / "data"
-    args.output = curr_dir / "iso" / "RECVX_NEW.iso"
+    args.filelist = curr_dir / "elf" / "iso" / "RECVX_FILELIST.TXT"
+    args.files = curr_dir / "elf" / "iso" / "data"
+    args.output = curr_dir / "elf" / "iso" / "RECVX_NEW.iso"
 
     return args
 
