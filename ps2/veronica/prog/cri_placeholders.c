@@ -109,3 +109,8 @@ void ADXT_GetTime(ADXT adxt, long *ncount, long *tscale)
 {
     scePrintf("ADXT_GetTime - UNIMPLEMENTED!\n");
 }
+
+void ADXT_Pause(ADXT adxt, long sw)
+{
+    scePrintf("ADXT_Pause - UNIMPLEMENTED!\n");
+}
