@@ -804,7 +804,7 @@ int GetAdxPlayTime(unsigned int SlotNo)
     
     ADXPS2_Unlock();
     
-    dptoli(dpmul(0x4059000000000000, dpdiv(litodp(SampleCount), litodp(SamplingRate))));
+    return ((double)SampleCount / SamplingRate) * 100.0f;
 }
 
 // 
