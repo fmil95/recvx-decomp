@@ -496,22 +496,22 @@ int GetAfsInsideFileSize(int SlotNo)
     return 0;
 }
 
-/*// 
-// Start address: 0x291760
+// 100% matching!
 void RequestReadAfsInsideFile(int SlotNo, unsigned char* Address)
 {
-	// Line 853, Address: 0x291760, Func Offset: 0
-	// Line 854, Address: 0x291770, Func Offset: 0x10
-	// Line 853, Address: 0x291774, Func Offset: 0x14
-	// Line 854, Address: 0x291778, Func Offset: 0x18
-	// Line 876, Address: 0x291790, Func Offset: 0x30
-	// Line 878, Address: 0x291798, Func Offset: 0x38
-	// Line 880, Address: 0x2917a0, Func Offset: 0x40
-	// Line 883, Address: 0x2917c4, Func Offset: 0x64
-	// Line 890, Address: 0x2917cc, Func Offset: 0x6c
-	// Line 906, Address: 0x2917dc, Func Offset: 0x7c
-	// Func End, Address: 0x2917f4, Func Offset: 0x94
-}*/
+    if (AdxFInfo[SlotNo].Flag != 0) 
+    {
+        FlushCache(0);
+        
+        ADXPS2_Lock();
+        
+        ADXF_ReadNw32(AdxFInfo[SlotNo].Handle, ADXF_GetFsizeSct(AdxFInfo[SlotNo].Handle), Address);
+        
+        ADXPS2_Unlock();
+        
+        AdxFInfo[SlotNo].Mode = 0;
+    }
+}
 
 // 100% matching!
 int CheckReadEndAfsInsideFile(int SlotNo)

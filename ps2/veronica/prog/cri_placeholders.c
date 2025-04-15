@@ -94,3 +94,13 @@ long ADXF_GetFsizeByte(ADXF adxf)
 {
     scePrintf("ADXF_GetFsizeByte - UNIMPLEMENTED!\n");
 }
+
+long ADXF_GetFsizeSct(ADXF adxf)
+{
+    scePrintf("ADXF_GetFsizeSct - UNIMPLEMENTED!\n");
+}
+
+long ADXF_ReadNw32(ADXF adxf, long nsct, void *buf)
+{
+    scePrintf("ADXF_ReadNw32 - UNIMPLEMENTED!\n");
+}
