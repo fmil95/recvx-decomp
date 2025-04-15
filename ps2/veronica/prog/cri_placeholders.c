@@ -104,3 +104,8 @@ long ADXF_ReadNw32(ADXF adxf, long nsct, void *buf)
 {
     scePrintf("ADXF_ReadNw32 - UNIMPLEMENTED!\n");
 }
+
+void ADXT_GetTime(ADXT adxt, long *ncount, long *tscale)
+{
+    scePrintf("ADXT_GetTime - UNIMPLEMENTED!\n");
+}

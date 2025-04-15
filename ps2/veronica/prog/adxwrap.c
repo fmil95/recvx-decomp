@@ -796,20 +796,20 @@ void SetPanAdx(unsigned int SlotNo, int Channel, int Pan)
     SetPanAdx2(SlotNo, Pan);
 }
 
-/*// 
-// Start address: 0x292070
+// 100% matching!
 int GetAdxPlayTime(unsigned int SlotNo)
 {
-	int SamplingRate;
-	int SampleCount;
-	// Line 1419, Address: 0x292070, Func Offset: 0
-	// Line 1423, Address: 0x29207c, Func Offset: 0xc
-	// Line 1425, Address: 0x292084, Func Offset: 0x14
-	// Line 1427, Address: 0x2920a4, Func Offset: 0x34
-	// Line 1430, Address: 0x2920ac, Func Offset: 0x3c
-	// Line 1431, Address: 0x2920e4, Func Offset: 0x74
-	// Func End, Address: 0x2920f4, Func Offset: 0x84
-}*/
+    int SampleCount;
+    int SamplingRate;
+    
+    ADXPS2_Lock();
+    
+    ADXT_GetTime(AdxTInfo[SlotNo].Handle, (long*)&SampleCount, (long*)&SamplingRate);
+    
+    ADXPS2_Unlock();
+    
+    dptoli(dpmul(0x4059000000000000, dpdiv(litodp(SampleCount), litodp(SamplingRate))));
+}
 
 // 
 // Start address: 0x292100
