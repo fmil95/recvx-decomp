@@ -485,18 +485,15 @@ int OpenAfsIsoFile(char* FileName)
 	// Func End, Address: 0x291708, Func Offset: 0x2a8
 }*/
 
-// 
-// Start address: 0x291710
+// 84.75% matching
 int GetAfsInsideFileSize(int SlotNo)
 {
-	// Line 846, Address: 0x291710, Func Offset: 0
-	// Line 844, Address: 0x291718, Func Offset: 0x8
-	// Line 846, Address: 0x29171c, Func Offset: 0xc
-	// Line 844, Address: 0x291724, Func Offset: 0x14
-	// Line 846, Address: 0x291728, Func Offset: 0x18
-	// Line 850, Address: 0x291754, Func Offset: 0x44
-	// Func End, Address: 0x291760, Func Offset: 0x50
-	scePrintf("GetAfsInsideFileSize - UNIMPLEMENTED!\n");
+    if (AdxFInfo[SlotNo].Flag != 0) 
+    {
+        return ADXF_GetFsizeByte(AdxFInfo[SlotNo].Handle);
+    }
+    
+    return 0;
 }
 
 /*// 

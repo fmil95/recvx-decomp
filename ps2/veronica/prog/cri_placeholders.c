@@ -89,3 +89,8 @@ ADXF ADXF_OpenAfs(long ptid, long flid)
 {
     scePrintf("ADXF_OpenAfs - UNIMPLEMENTED!\n");
 }
+
+long ADXF_GetFsizeByte(ADXF adxf) 
+{
+    scePrintf("ADXF_GetFsizeByte - UNIMPLEMENTED!\n");
+}
