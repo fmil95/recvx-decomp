@@ -8,15 +8,15 @@ from typing import BinaryIO
 SCRIPT_DIR = Path("./").resolve()
 REPLACEMENTS = {
     "SLUS_201.84"                   : "main.elf",
-    "PS2_DATA/MODULES/IOPRP213.IMG" : "recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/ioprp20.img",
-    "PS2_DATA/MODULES/SIO2MAN.IRX"  : "recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/sio2man.irx",
-    "PS2_DATA/MODULES/PADMAN.IRX"   : "recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/padman.irx",
-    "PS2_DATA/MODULES/MCMAN.IRX"    : "recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/mcman.irx",
-    "PS2_DATA/MODULES/MCSERV.IRX"   : "recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/mcserv.irx",
-    "PS2_DATA/MODULES/LIBSD.IRX"    : "recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/libsd.irx",
-    "PS2_DATA/MODULES/MODHSYN.IRX"  : "recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/modhsyn.irx",
-    "PS2_DATA/MODULES/MODMIDI.IRX"  : "recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/modmidi.irx",
-    "PS2_DATA/MODULES/MODMSIN.IRX"  : "recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/modmsin.irx",
+    "PS2_DATA/MODULES/IOPRP213.IMG" : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/ioprp20.img",
+    "PS2_DATA/MODULES/SIO2MAN.IRX"  : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/sio2man.irx",
+    "PS2_DATA/MODULES/PADMAN.IRX"   : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/padman.irx",
+    "PS2_DATA/MODULES/MCMAN.IRX"    : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/mcman.irx",
+    "PS2_DATA/MODULES/MCSERV.IRX"   : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/mcserv.irx",
+    "PS2_DATA/MODULES/LIBSD.IRX"    : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/libsd.irx",
+    "PS2_DATA/MODULES/MODHSYN.IRX"  : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/modhsyn.irx",
+    "PS2_DATA/MODULES/MODMIDI.IRX"  : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/modmidi.irx",
+    "PS2_DATA/MODULES/MODMSIN.IRX"  : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/modmsin.irx",
     # "PS2_DATA/MODULES/TSNDDRV.IRX"  : "tsnddrv.irx",
 }
 

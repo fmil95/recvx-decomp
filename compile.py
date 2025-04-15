@@ -69,7 +69,7 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
 
     for source in sources:
         object_file = source.replace(".c", ".o")
-        objects.append("recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.o")
+        objects.append("include/recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.o")
         objects.append("vsm/ps2_vu0.o")
         objects.append("vsm/ps2_vu1.o")
         objects.append(object_file)
