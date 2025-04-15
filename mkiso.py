@@ -7,7 +7,7 @@ from typing import BinaryIO
 
 SCRIPT_DIR = Path("./").resolve()
 REPLACEMENTS = {
-    "SLUS_201.84"                   : "main.elf",
+    "SLUS_201.84"                   : "elf/main.elf",
     "PS2_DATA/MODULES/IOPRP213.IMG" : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/ioprp20.img",
     "PS2_DATA/MODULES/SIO2MAN.IRX"  : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/sio2man.irx",
     "PS2_DATA/MODULES/PADMAN.IRX"   : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/padman.irx",

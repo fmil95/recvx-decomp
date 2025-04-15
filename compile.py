@@ -16,7 +16,7 @@ def write_json(filename, data):
         json.dump(data, f, indent=4)
 
 
-def run_command(command, env_vars, log_file='report.txt'):
+def run_command(command, env_vars, log_file='elf/report.txt'):
     """Run a shell command with specified environment variables and log output."""
     for cmd in command:
         # Tidy up the output a little
@@ -109,7 +109,7 @@ def compile_assembly_files(assembler, sources, assembler_flags, include_dirs, de
 
 def link_objects(linker, objects, linker_script, linker_flags, libraries, library_dirs, env_vars):
     """Link object files into the final executable."""
-    output_elf = "main.elf"
+    output_elf = "elf/main.elf"
     link_command = [linker] + linker_script + linker_flags + objects + ['-m', '_start', '-o', output_elf] + \
                    [f'-L{lib}' for lib in library_dirs] + libraries
 
