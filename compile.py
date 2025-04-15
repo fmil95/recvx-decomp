@@ -156,7 +156,7 @@ def main(args):
     objects += asm_objects
 
     # Even if the compilation fails, we want to generate the compile_commands.json for IDEs
-    write_json('compile_commands.json', compile_commands)
+    # write_json('compile_commands.json', compile_commands)
 
     print(f"\nInitializing linker ...\n");
 

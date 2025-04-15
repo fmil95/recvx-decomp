@@ -1,6 +1,5 @@
 src/ps2/veronica/prog/*.o
 report.txt
-compile_commands.json
 compile_config.json
 main.elf
 RE_CVX.iso
