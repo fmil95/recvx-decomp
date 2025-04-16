@@ -783,7 +783,7 @@ void SetVolumeAdx2(unsigned int SlotNo, float Volume)
 }
 
 // 100% matching!
-void SetPanAdx2(unsigned int SlotNo, float Pan)
+void SetPanAdx2(unsigned int SlotNo, int param, float Pan) // second parameter is not present on the debugging symbols
 {
     AdxTInfo[SlotNo].Pan = Pan;
 }
@@ -791,7 +791,7 @@ void SetPanAdx2(unsigned int SlotNo, float Pan)
 // 100% matching!
 void SetPanAdx(unsigned int SlotNo, int Channel, int Pan) 
 { 
-    SetPanAdx2(SlotNo, Pan);
+    SetPanAdx2(SlotNo, Channel, Pan);
 }
 
 // 100% matching!
@@ -867,39 +867,64 @@ void RequestAdxFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 	// Func End, Address: 0x2922e4, Func Offset: 0xa4
 }*/
 
-// 
-// Start address: 0x2922f0
+// 100% matching!
 int ExecAdxFadeManager()
 {
-	//_anon0* tp;
-	int ReturnCode;
-	int i;
-	// Line 1583, Address: 0x2922f0, Func Offset: 0
-	// Line 1585, Address: 0x29230c, Func Offset: 0x1c
-	// Line 1588, Address: 0x292310, Func Offset: 0x20
-	// Line 1590, Address: 0x292314, Func Offset: 0x24
-	// Line 1591, Address: 0x292320, Func Offset: 0x30
-	// Line 1592, Address: 0x292330, Func Offset: 0x40
-	// Line 1593, Address: 0x29233c, Func Offset: 0x4c
-	// Line 1594, Address: 0x292348, Func Offset: 0x58
-	// Line 1595, Address: 0x29234c, Func Offset: 0x5c
-	// Line 1596, Address: 0x292360, Func Offset: 0x70
-	// Line 1599, Address: 0x292368, Func Offset: 0x78
-	// Line 1600, Address: 0x292370, Func Offset: 0x80
-	// Line 1601, Address: 0x292374, Func Offset: 0x84
-	// Line 1602, Address: 0x292378, Func Offset: 0x88
-	// Line 1603, Address: 0x292384, Func Offset: 0x94
-	// Line 1604, Address: 0x292388, Func Offset: 0x98
-	// Line 1605, Address: 0x292394, Func Offset: 0xa4
-	// Line 1606, Address: 0x2923a4, Func Offset: 0xb4
-	// Line 1607, Address: 0x2923b0, Func Offset: 0xc0
-	// Line 1608, Address: 0x2923bc, Func Offset: 0xcc
-	// Line 1610, Address: 0x2923c4, Func Offset: 0xd4
-	// Line 1611, Address: 0x2923cc, Func Offset: 0xdc
-	// Line 1613, Address: 0x2923d0, Func Offset: 0xe0
-	// Line 1615, Address: 0x2923e0, Func Offset: 0xf0
-	// Line 1617, Address: 0x2923f0, Func Offset: 0x100
-	// Line 1618, Address: 0x2923f4, Func Offset: 0x104
-	// Func End, Address: 0x29240c, Func Offset: 0x11c
-	scePrintf("ExecAdxFadeManager - UNIMPLEMENTED!\n");
+    int i;         
+    int ReturnCode; 
+    ADXT_INFO* tp;  
+    
+    tp = AdxTInfo;
+    
+    ReturnCode = 0;
+    
+    for (i = 0; i < 4; i++)
+    {
+        if (tp[i].FadeFunc != 0) 
+        {
+            tp[i].Volume -= tp[i].VolSpeed;
+            
+            tp[i].FadeCntMax--;
+            
+            if (tp[i].FadeCntMax < 0) 
+            {
+                tp[i].Volume = tp[i].VolLast;
+                
+                if ((int)tp[i].Volume == -127) 
+                {
+                    StopAdx(i);
+                }
+                
+                tp[i].FadeFunc = 0;
+            } 
+            else
+            {
+                ReturnCode = 1;
+            }
+            
+            SetVolumeAdx2(i, tp[i].Volume);
+        }
+        
+        if (tp[i].PanFunc != 0)
+        {
+            tp[i].Pan -= tp[i].PanSpeed;
+            
+            tp[i].PanCntMax--;
+            
+            if (tp[i].PanCntMax < 0) 
+            {
+                tp[i].Pan = tp[i].PanLast;
+                
+                tp[i].PanFunc = 0;
+            }
+            else 
+            {
+                ReturnCode = 1;
+            }
+            
+            SetPanAdx2(i, 0, tp[i].Pan);
+        }
+    } 
+    
+    return ReturnCode;
 }
