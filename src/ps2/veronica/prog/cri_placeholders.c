@@ -1,33 +1,8 @@
 
 
-void ADXPS2_SetupThrd(ADXPS2_TPRM *tprm) 
-{
-    scePrintf("ADXPS2_SetupThrd - UNIMPLEMENTED!\n");
-}
-
-void ADXT_Init(void) 
-{
-    scePrintf("ADXT_Init - UNIMPLEMENTED!\n");
-}
-
 void ADXT_SetNumRetry(Sint32 num) 
 {
     scePrintf("ADXT_SetNumRetry - UNIMPLEMENTED!\n");
-}
-
-void ADXT_Finish(void) 
-{
-    scePrintf("ADXT_Finish - UNIMPLEMENTED!\n");
-}
-
-void ADXPS2_Lock(void)
-{
-    scePrintf("ADXPS2_Lock - UNIMPLEMENTED!\n");
-}
-
-void ADXPS2_Unlock(void)
-{
-    scePrintf("ADXPS2_Unlock - UNIMPLEMENTED!\n");
 }
 
 ADXT ADXT_Create(long maxnch, void *work, long worksize)

@@ -43,6 +43,8 @@
 #include "macros.h"
 
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_amp.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_inis.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_mps2.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_sudv.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_suht.c"
 
