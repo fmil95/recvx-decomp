@@ -1,33 +1,8 @@
 
 
-void ADXT_SetNumRetry(Sint32 num) 
-{
-    scePrintf("ADXT_SetNumRetry - UNIMPLEMENTED!\n");
-}
-
-ADXT ADXT_Create(long maxnch, void *work, long worksize)
-{
-    scePrintf("ADXT_Create - UNIMPLEMENTED!\n");
-}
-
-void ADXT_SetAutoRcvr(ADXT adxt, long rmode)
-{
-    scePrintf("ADXT_SetAutoRcvr - UNIMPLEMENTED!\n");
-}
-
-void ADXT_SetReloadSct(ADXT adxt, long minsct)
-{
-    scePrintf("ADXT_SetReloadSct - UNIMPLEMENTED!\n");
-}
-
 void ADXF_Close(ADXF adxf)
 {
     scePrintf("ADXF_Close - UNIMPLEMENTED!\n");
-}
-
-long ADXT_GetStat(ADXT adxt) 
-{
-    scePrintf("ADXT_GetStat - UNIMPLEMENTED!\n");
 }
 
 long ADXF_Stop(ADXF adxf)
@@ -38,16 +13,6 @@ long ADXF_Stop(ADXF adxf)
 long ADXF_GetStat(ADXF adxf)
 {
     scePrintf("ADXF_GetStat - UNIMPLEMENTED!\n");
-}
-
-void ADXT_Stop(ADXT adxt)
-{
-    scePrintf("ADXT_Stop - UNIMPLEMENTED!\n");
-}
-
-void ADXT_SetOutputMono(Sint32 flag)
-{
-    scePrintf("ADXT_SetOutputMono - UNIMPLEMENTED!\n");
 }
 
 ADXF ADXF_OpenAfs(long ptid, long flid) 
@@ -70,27 +35,12 @@ long ADXF_ReadNw32(ADXF adxf, long nsct, void *buf)
     scePrintf("ADXF_ReadNw32 - UNIMPLEMENTED!\n");
 }
 
-void ADXT_GetTime(ADXT adxt, long *ncount, long *tscale)
-{
-    scePrintf("ADXT_GetTime - UNIMPLEMENTED!\n");
-}
-
 void ADXT_Pause(ADXT adxt, long sw)
 {
     scePrintf("ADXT_Pause - UNIMPLEMENTED!\n");
 }
 
-void ADXT_SetSvrFreq(ADXT adxt, long freq)
-{
-    scePrintf("ADXT_SetSvrFreq - UNIMPLEMENTED!\n");
-}
-
 void ADXT_StartAfs(ADXT adxt, long patid, long fid)
 {
     scePrintf("ADXT_StartAfs - UNIMPLEMENTED!\n");
-}
-
-void ADXT_SetOutVol(ADXT adxt, long vol)
-{
-    scePrintf("ADXT_SetOutVol - UNIMPLEMENTED!\n");
 }
