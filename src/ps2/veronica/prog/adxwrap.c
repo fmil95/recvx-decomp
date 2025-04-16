@@ -809,32 +809,52 @@ int GetAdxPlayTime(unsigned int SlotNo)
     return ((double)SampleCount / SamplingRate) * 100.0f;
 }
 
-// 
-// Start address: 0x292100
+// 100% matching!
 void RequestAdxFadeFunction2(int SlotNo, int Func, int Timer, int FirstVolume)
 {
-	//_anon0* tp;
-	float Cnt;
-	// Line 1465, Address: 0x292100, Func Offset: 0
-	// Line 1467, Address: 0x292110, Func Offset: 0x10
-	// Line 1470, Address: 0x292178, Func Offset: 0x78
-	// Line 1471, Address: 0x292184, Func Offset: 0x84
-	// Line 1472, Address: 0x292190, Func Offset: 0x90
-	// Line 1477, Address: 0x292198, Func Offset: 0x98
-	// Line 1478, Address: 0x2921a4, Func Offset: 0xa4
-	// Line 1481, Address: 0x2921b4, Func Offset: 0xb4
-	// Line 1483, Address: 0x2921d4, Func Offset: 0xd4
-	// Line 1484, Address: 0x2921d8, Func Offset: 0xd8
-	// Line 1486, Address: 0x2921e0, Func Offset: 0xe0
-	// Line 1490, Address: 0x2921e8, Func Offset: 0xe8
-	// Line 1493, Address: 0x2921f0, Func Offset: 0xf0
-	// Line 1494, Address: 0x2921fc, Func Offset: 0xfc
-	// Line 1495, Address: 0x292214, Func Offset: 0x114
-	// Line 1497, Address: 0x29221c, Func Offset: 0x11c
-	// Line 1501, Address: 0x292220, Func Offset: 0x120
-	// Line 1503, Address: 0x292228, Func Offset: 0x128
-	// Func End, Address: 0x292230, Func Offset: 0x130
-	scePrintf("RequestAdxFadeFunction2 - UNIMPLEMENTED!\n");
+    float Cnt; 
+    ADXT_INFO* tp; 
+    
+    tp = &AdxTInfo[SlotNo];
+    
+    tp->FadeCntMax = ((Timer / 100) * 30) + (((Timer % 100) * 6) / 10);
+    
+    tp->FadeCntMax /= 2;
+    
+    if (tp->FadeCntMax == 0) 
+    {
+        tp->FadeCntMax = 1;
+    }
+    
+    if (FirstVolume != 1) 
+    {
+        tp->Volume = FirstVolume;
+    }
+    
+    switch (Func) 
+    {                               
+    case 1:
+        tp->VolLast = tp->LimitMaxVol;
+        break;
+    case 2:
+        tp->VolLast = -127.0f;
+        break;
+    }
+    
+    Cnt = tp->Volume - tp->VolLast;
+    
+    if (tp->FadeCntMax != 0) 
+    {
+        tp->VolSpeed = Cnt / tp->FadeCntMax;
+    }
+    else
+    {
+        tp->VolSpeed = 0;
+    }
+    
+    tp->VolSave = tp->Volume;
+    
+    tp->FadeFunc = Func;
 }
 
 // 100% matching!
