@@ -42,6 +42,8 @@
 #include "enums.h"
 #include "macros.h"
 
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_amp.c"
+
 #include "ps2_NaMem.c"
 #include "camera.c"
 #include "eneset.c"
