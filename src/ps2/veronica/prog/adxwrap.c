@@ -230,7 +230,7 @@ char cf_area[5628];
 ADXT_SPRM cf_prm = {
     "\\cf_rom.txt", cf_area, 5092, 0, 0, 0, 0
 };
-/*short AdxVolTbl[128];*/
+short AdxVolTbl[128]; // TODO: define the .data for this
 int AdxStreamSleepFlag;
 int MaxAdxStreamCnt;
 ADXT_INFO AdxTInfo[4];
@@ -765,21 +765,19 @@ void SetVolumeAdxEx(unsigned int SlotNo, float Volume, float MaxVolume)
     SetVolumeAdx2(SlotNo, Volume);
 }
 
-// 
-// Start address: 0x291fb0
+// 100% matching!
 void SetVolumeAdx2(unsigned int SlotNo, float Volume)
 {
-	// Line 1356, Address: 0x291fb0, Func Offset: 0
-	// Line 1359, Address: 0x291fc0, Func Offset: 0x10
-	// Line 1356, Address: 0x291fcc, Func Offset: 0x1c
-	// Line 1359, Address: 0x291fd0, Func Offset: 0x20
-	// Line 1363, Address: 0x291fe4, Func Offset: 0x34
-	// Line 1370, Address: 0x291fec, Func Offset: 0x3c
-	// Line 1374, Address: 0x292010, Func Offset: 0x60
-	// Line 1380, Address: 0x292018, Func Offset: 0x68
-	// Line 1383, Address: 0x292028, Func Offset: 0x78
-	// Func End, Address: 0x292040, Func Offset: 0x90
-	scePrintf("SetVolumeAdx2 - UNIMPLEMENTED!\n");
+    if (AdxTInfo[SlotNo].Handle->used != 0) 
+    {
+        ADXPS2_Lock();
+        
+        ADXT_SetOutVol(AdxTInfo[SlotNo].Handle, AdxVolTbl[(int)-Volume]);
+        
+        ADXPS2_Unlock();
+    }
+    
+    AdxTInfo[SlotNo].Volume = Volume;
 }
 
 // 100% matching!

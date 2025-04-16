@@ -124,3 +124,8 @@ void ADXT_StartAfs(ADXT adxt, long patid, long fid)
 {
     scePrintf("ADXT_StartAfs - UNIMPLEMENTED!\n");
 }
+
+void ADXT_SetOutVol(ADXT adxt, long vol)
+{
+    scePrintf("ADXT_SetOutVol - UNIMPLEMENTED!\n");
+}
