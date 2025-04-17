@@ -30,7 +30,11 @@ long ADXF_GetFsizeSct(ADXF adxf)
 // ADXF_GetNumReadSct
 // ADXF_GetNumReqSct
 // ADXF_GetPtinfoSize
-// ADXF_GetPtStat
+
+Sint32 ADXF_GetPtStat(Sint32 ptid)
+{
+    scePrintf("ADXF_GetPtStat - UNIMPLEMENTED!\n");
+}
 
 long ADXF_GetStat(ADXF adxf)
 {
@@ -40,7 +44,12 @@ long ADXF_GetStat(ADXF adxf)
 // adxf_LoadData
 // ADXF_LoadPartition
 // ADXF_LoadPartitionEx
-// ADXF_LoadPartitionNw
+
+Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
+{
+    scePrintf("ADXF_OpenAfs - UNIMPLEMENTED!\n");
+}
+
 // ADXF_Open
 
 ADXF ADXF_OpenAfs(long ptid, long flid) 

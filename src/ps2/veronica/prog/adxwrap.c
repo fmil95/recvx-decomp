@@ -1,223 +1,3 @@
-/*typedef struct _anon0;
-typedef struct _anon1;
-typedef struct _anon2;
-typedef struct _adx_talk;
-typedef struct _adxt_sprm;
-typedef struct _anon3;
-typedef struct _anon4;
-typedef struct _UUID;
-typedef struct _sj_vtbl;
-typedef struct _anon5;
-typedef struct _adx_fs;
-typedef struct _anon6;
-
-typedef void(*type_0)(_anon1*, int, _anon2*);
-typedef void(*type_1)(_anon1*, int, _anon2*);
-typedef int(*type_4)(_anon1*, int);
-typedef int(*type_6)(_anon1*, int, int, int*);
-typedef void(*type_8)(_anon1*, void(*)(void*, int), void*);
-typedef void(*type_9)(void*, int);
-typedef void(*type_21)();
-typedef void(*type_22)();
-typedef void(*type_23)();
-typedef void(*type_25)(_anon1*);
-typedef _UUID*(*type_27)(_anon1*);
-typedef void(*type_28)(_anon1*);
-typedef void(*type_30)(_anon1*, int, int, _anon2*);
-
-typedef _anon6 type_2[8];
-typedef _anon0 type_3[4];
-typedef char type_5[256];
-typedef short type_7[128];
-typedef char type_10[256];
-typedef _anon1* type_11[2];
-typedef char* type_12[0];
-typedef char type_13[471040];
-typedef char type_14[5628];
-typedef int type_15[2];
-typedef char type_16[256];
-typedef unsigned char type_17[8];
-typedef unsigned char type_18[880];
-typedef short type_19[2];
-typedef char type_20[256];
-typedef _anon1* type_24[2];
-typedef _anon1* type_26[2];
-typedef char type_29[256];
-typedef _anon5 type_31[16];
-
-struct _anon0
-{
-	_adx_talk* Handle;
-	unsigned char* pAdxTWork;
-	int WorkSize;
-	unsigned int Flag;
-	int FadeFunc;
-	int FadeCntMax;
-	float Volume;
-	float VolSpeed;
-	float VolLast;
-	float VolSave;
-	float LimitMaxVol;
-	int PanFunc;
-	int PanCntMax;
-	float Pan;
-	float PanSpeed;
-	float PanLast;
-};
-
-struct _anon1
-{
-	_sj_vtbl* vtbl;
-};
-
-struct _anon2
-{
-	char* data;
-	int len;
-};
-
-struct _adx_talk
-{
-	char used;
-	char stat;
-	char pmode;
-	char maxnch;
-	void* sjd;
-	void* stm;
-	void* rna;
-	_anon1* sjf;
-	_anon1* sji;
-	_anon1* sjo[2];
-	char* ibuf;
-	int ibuflen;
-	int ibufxlen;
-	short* obuf;
-	int obufsize;
-	int obufdist;
-	int svrfreq;
-	short maxsct;
-	short minsct;
-	short outvol;
-	short outpan[2];
-	int maxdecsmpl;
-	int lpcnt;
-	int lp_skiplen;
-	int trp;
-	int wpos;
-	int mofst;
-	short ercode;
-	int edecpos;
-	short edeccnt;
-	short eshrtcnt;
-	char lpflg;
-	char autorcvr;
-	char fltmode;
-	char execflag;
-	char pstwait_flag;
-	char pstready_flag;
-	char pause_flag;
-	void* amp;
-	_anon1* ampsji[2];
-	_anon1* ampsjo[2];
-	int time_ofst;
-	int lesct;
-	int trpnsmpl;
-	void* lsc;
-	char lnkflg;
-	char rsv;
-	short rsv2;
-	unsigned int tvofst;
-	unsigned int svcnt;
-};
-
-struct _adxt_sprm
-{
-	char* fname;
-	char* fpc;
-	int size;
-	int nrtry;
-	int speed;
-	int dtype;
-	int opmode;
-};
-
-struct _anon3
-{
-	unsigned int MaxChannel;
-	unsigned int MaxSampleRate;
-	int RecoverType;
-	int ReloadSector;
-};
-
-struct _anon4
-{
-	char* AfsFileName;
-	int PartitionId;
-	int MaxInsideFileNum;
-	unsigned char* pInfoWork;
-};
-
-struct _UUID
-{
-	unsigned int Data1;
-	unsigned short Data2;
-	unsigned short Data3;
-	unsigned char Data4[8];
-};
-
-struct _sj_vtbl
-{
-	void(*QueryInterface)();
-	void(*AddRef)();
-	void(*Release)();
-	void(*Destroy)(_anon1*);
-	_UUID*(*GetUuid)(_anon1*);
-	void(*Reset)(_anon1*);
-	void(*GetChunk)(_anon1*, int, int, _anon2*);
-	void(*UngetChunk)(_anon1*, int, _anon2*);
-	void(*PutChunk)(_anon1*, int, _anon2*);
-	int(*GetNumData)(_anon1*, int);
-	int(*IsGetChunk)(_anon1*, int, int, int*);
-	void(*EntryErrFunc)(_anon1*, void(*)(void*, int), void*);
-};
-
-struct _anon5
-{
-	unsigned char* pInfoPart;
-	unsigned int PartAreaSize;
-	unsigned int Flag;
-};
-
-struct _adx_fs
-{
-	char used;
-	char stat;
-	char sjflag;
-	char rev;
-	void* stm;
-	_anon1* sj;
-	int fnsct;
-	int fsize;
-	int skpos;
-	int rdstpos;
-	int rqsct;
-	int rdsct;
-	char* buf;
-	int bsize;
-	int rqrdsct;
-	int ofst;
-	char fname[256];
-	void* dir;
-};
-
-struct _anon6
-{
-	_adx_fs* Handle;
-	unsigned char* pAdxFWork;
-	unsigned int Flag;
-	int Mode;
-};
-
 char last_rdx_files[256];
 char last_adx_files[256];
 char last_file_id;
@@ -225,59 +5,54 @@ char adx_status;
 int RDX_SIZE;
 unsigned int RDX_CHECK_SAM;
 int RDX_TOP;
-unsigned int READ_RDX_NO;*/
+unsigned int READ_RDX_NO;
 char cf_area[5628];
-ADXT_SPRM cf_prm = {
-    "\\cf_rom.txt", cf_area, 5092, 0, 0, 0, 0
-};
+ADXT_SPRM cf_prm = { "\\cf_rom.txt", cf_area, 5092, 0, 0, 0, 0 };
 short AdxVolTbl[128]; // TODO: define the .data for this
 int AdxStreamSleepFlag;
 int MaxAdxStreamCnt;
 ADXT_INFO AdxTInfo[4];
 ADXF_INFO AdxFInfo[8];
 AFS_INFO AfsInfo[16];
-/*unsigned char RDX_FILE_PARTISION[880];*/
+unsigned char RDX_FILE_PARTISION[880];
 int rdx_image_data_max = 205;
 char* rdx_files[205];
-int ADX_STREAM_BUFF_OFFSET[2] = {
-    0,
-    307456
-}; 
+int ADX_STREAM_BUFF_OFFSET[2] = { 0, 307456 }; 
 char ADX_STREAM_BUFFER[471040];
 
-/*void InitAdx();
+void InitAdx();
 void ExitAdx();
 void DeletePartition(unsigned int PartitionId);
-int CreatePartitionEx(_anon4* ap);
-void DeletePartitionEx(_anon4* ap);
+int CreatePartitionEx(AFS_PATINFO* ap);
+void DeletePartitionEx(AFS_PATINFO* ap);
 int SearchAdxFSlot();
 int OpenAfsInsideFile(unsigned int PartitionId, unsigned int FileId);
 int OpenAfsIsoFile(char* FileName);
 int GetAfsInsideFileSize(int SlotNo);
 void RequestReadAfsInsideFile(int SlotNo, unsigned char* Address);
-int CheckReadEndAfsInsideFile(int SlotNo);*/
+int CheckReadEndAfsInsideFile(int SlotNo);
 void CloseAfsInsideFile(int SlotNo);
-/*void StopAfsInsideFile(int SlotNo);
-void RegistAdxStreamEx(int MaxStream, int DummyStream, _anon3* pAdx);
+void StopAfsInsideFile(int SlotNo);
+void RegistAdxStreamEx(int MaxStream, int DummyStream, ADX_WORK* pAdx);
 void FreeAdxStream();
 void SleepAdxStream();
-void WakeupAdxStream(_anon3* pAdx);
+void WakeupAdxStream(ADX_WORK* pAdx);
 void PlayAdxEx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileId, int Flag);
 void PlayAdx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileId);
-void StopAdx(unsigned int SlotNo);*/
+void StopAdx(unsigned int SlotNo);
 void PauseAdx(unsigned int SlotNo);
-/*void ContinueAdx(unsigned int SlotNo);
+void ContinueAdx(unsigned int SlotNo);
 int GetAdxStatus(unsigned int SlotNo);
 void SetVolumeAdx(unsigned int SlotNo, int Volume);
-void SetVolumeAdxEx(unsigned int SlotNo, float Volume, float MaxVolume);*/
+void SetVolumeAdxEx(unsigned int SlotNo, float Volume, float MaxVolume);
 void SetVolumeAdx2(unsigned int SlotNo, float Volume);
-/*void SetPanAdx2(unsigned int SlotNo, float Pan);
+void SetPanAdx2(unsigned int SlotNo, int param, float Pan);
 void SetPanAdx(unsigned int SlotNo, int Channel, int Pan);
 int GetAdxPlayTime(unsigned int SlotNo);
 void RequestAdxFadeFunction2(int SlotNo, int Func, int Timer, int FirstVolume);
 void RequestAdxFadeFunction(int SlotNo, int Func, int Timer);
 void RequestAdxFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame);
-int ExecAdxFadeManager();*/
+int ExecAdxFadeManager();
 
 // 100% matching!
 void InitAdx()
@@ -339,49 +114,89 @@ void DeletePartition(unsigned int PartitionId)
     }
 }
 
-// 
-// Start address: 0x291170
+// 100% matching!
 int CreatePartitionEx(AFS_PATINFO* ap)
-{
-	int ret;
+{ 
 	char chg_AfsFile[256];
-	// Line 317, Address: 0x291170, Func Offset: 0
-	// Line 322, Address: 0x291184, Func Offset: 0x14
-	// Line 328, Address: 0x291190, Func Offset: 0x20
-	// Line 329, Address: 0x2911a8, Func Offset: 0x38
-	// Line 331, Address: 0x2911d0, Func Offset: 0x60
-	// Line 333, Address: 0x2911d8, Func Offset: 0x68
-	// Line 335, Address: 0x2911ec, Func Offset: 0x7c
-	// Line 337, Address: 0x2911f4, Func Offset: 0x84
-	// Line 339, Address: 0x2911f8, Func Offset: 0x88
-	// Line 341, Address: 0x291200, Func Offset: 0x90
-	// Line 343, Address: 0x291208, Func Offset: 0x98
-	// Line 345, Address: 0x291210, Func Offset: 0xa0
-	// Line 348, Address: 0x29121c, Func Offset: 0xac
-	// Line 349, Address: 0x291228, Func Offset: 0xb8
-	// Line 350, Address: 0x291238, Func Offset: 0xc8
-	// Line 360, Address: 0x291240, Func Offset: 0xd0
-	// Line 361, Address: 0x29124c, Func Offset: 0xdc
-	// Line 362, Address: 0x291254, Func Offset: 0xe4
-	// Line 382, Address: 0x291278, Func Offset: 0x108
-	// Line 383, Address: 0x29127c, Func Offset: 0x10c
-	// Line 394, Address: 0x291284, Func Offset: 0x114
-	// Line 404, Address: 0x29128c, Func Offset: 0x11c
-	// Line 407, Address: 0x2912a8, Func Offset: 0x138
-	// Line 412, Address: 0x2912b0, Func Offset: 0x140
-	// Line 414, Address: 0x2912b8, Func Offset: 0x148
-	// Line 416, Address: 0x2912c0, Func Offset: 0x150
-	// Line 418, Address: 0x2912c8, Func Offset: 0x158
-	// Line 421, Address: 0x2912d4, Func Offset: 0x164
-	// Line 422, Address: 0x2912e0, Func Offset: 0x170
-	// Line 423, Address: 0x2912f0, Func Offset: 0x180
-	// Line 432, Address: 0x2912f8, Func Offset: 0x188
-	// Line 433, Address: 0x291304, Func Offset: 0x194
-	// Line 459, Address: 0x29130c, Func Offset: 0x19c
-	// Line 458, Address: 0x291318, Func Offset: 0x1a8
-	// Line 459, Address: 0x29131c, Func Offset: 0x1ac
-	// Func End, Address: 0x291324, Func Offset: 0x1b4
-}
+    int ret;
+    
+    while (TRUE) 
+    {
+        if (ap->AfsFileName != NULL) 
+        { 
+            sprintf(chg_AfsFile, "%s%s", "\\", ap->AfsFileName); 
+           
+            if (AfsInfo[ap->PartitionId].Flag == 0) 
+            { 
+                ADXPS2_Lock();
+                
+                ADXF_LoadPartitionNw(ap->PartitionId, chg_AfsFile, NULL, ap->pInfoWork); 
+                
+                ADXPS2_Unlock(); 
+                
+                while (TRUE) 
+                { 
+                    ADXPS2_Lock(); 
+                    
+                    ret = ADXF_GetPtStat(ap->PartitionId); 
+                    
+                    ADXPS2_Unlock(); 
+
+                    if (ret == ADXF_STAT_READEND)
+                    {
+                        break; 
+                    }
+
+                    if (ret != ADXF_STAT_READING)
+                    {
+                        printf("adx load partition error! %s\n", chg_AfsFile);
+                        break; 
+                    }
+                    
+                    sceGsSyncV(0); 
+                } 
+                
+                AfsInfo[ap->PartitionId].Flag = 1; 
+            }
+
+            ap++; 
+        } 
+        else 
+        { 
+            break;
+        }
+    }
+    
+    ADXPS2_Lock(); 
+    
+    ADXF_LoadPartitionNw(17, "\\RDX_LNK.AFS", NULL, RDX_FILE_PARTISION); 
+    
+    ADXPS2_Unlock(); 
+
+    while (TRUE) 
+    {
+        ADXPS2_Lock(); 
+        
+        ret = ADXF_GetPtStat(17); 
+        
+        ADXPS2_Unlock(); 
+
+        if (ret == ADXF_STAT_READEND) 
+        { 
+            break;
+        }
+
+        if (ret != ADXF_STAT_READING) 
+        { 
+            printf("adx load partition error! %s\n", chg_AfsFile); 
+            break; 
+        }
+
+        sceGsSyncV(0); 
+    } 
+    
+    return 0; 
+} 
 
 // 100% matching!
 void DeletePartitionEx(AFS_PATINFO* ap)
