@@ -1,3 +1,7 @@
+Sint32 adxps2_cur_prio;
+volatile Sint32 adxps2_id_safe;
+volatile Sint32 adxps2_lock_count;
+
 // adxps2_adx_thrd_func
 // ADXPS2_ExecServer
 
@@ -18,9 +22,27 @@ void ADXPS2_SetupThrd(ADXPS2_TPRM *tprm)
 // ADXPS2_Shutdown
 // ADXPS2_ShutdownThrd
 
+// 100% matching!
 void ADXPS2_Unlock(void)
 {
-    scePrintf("ADXPS2_Unlock - UNIMPLEMENTED!\n");
+    adxps2_lock_count--;
+    
+    if (adxps2_lock_count == 0) 
+    {
+        if (adxps2_id_safe != 0) 
+        {
+            SuspendThread(adxps2_id_safe);
+            
+            adxps2_id_safe; // fuck knows
+        }
+        
+        ChangeThreadPriority(GetThreadId(), adxps2_cur_prio);
+    }
+    
+    if (adxps2_lock_count < 0) 
+    {
+        adxps2_lock_count = 0;
+    }
 }
 
 // ADXPS2_VsyncCallback
