@@ -236,9 +236,9 @@ int MaxAdxStreamCnt;
 ADXT_INFO AdxTInfo[4];
 ADXF_INFO AdxFInfo[8];
 AFS_INFO AfsInfo[16];
-/*unsigned char RDX_FILE_PARTISION[880];
-int rdx_image_data_max;
-char* rdx_files[0];*/
+/*unsigned char RDX_FILE_PARTISION[880];*/
+int rdx_image_data_max = 205;
+char* rdx_files[205];
 int ADX_STREAM_BUFF_OFFSET[2] = {
     0,
     307456
@@ -438,52 +438,86 @@ int OpenAfsInsideFile(unsigned int PartitionId, unsigned int FileId)
     return SlotNo;
 }
 
-/*// 
-// Start address: 0x291460
+// 98.24% matching
 int OpenAfsIsoFile(char* FileName)
 {
-	int i;
-	char chg_FileName[256];
-	unsigned int SlotNo;
-	// Line 526, Address: 0x291460, Func Offset: 0
-	// Line 530, Address: 0x291478, Func Offset: 0x18
-	// Line 539, Address: 0x291484, Func Offset: 0x24
-	// Line 547, Address: 0x2914f4, Func Offset: 0x94
-	// Line 549, Address: 0x291510, Func Offset: 0xb0
-	// Line 550, Address: 0x291530, Func Offset: 0xd0
-	// Line 551, Address: 0x291534, Func Offset: 0xd4
-	// Line 553, Address: 0x29153c, Func Offset: 0xdc
-	// Line 555, Address: 0x291544, Func Offset: 0xe4
-	// Line 557, Address: 0x291560, Func Offset: 0x100
-	// Line 592, Address: 0x291570, Func Offset: 0x110
-	// Line 594, Address: 0x291578, Func Offset: 0x118
-	// Line 597, Address: 0x291590, Func Offset: 0x130
-	// Line 599, Address: 0x2915b0, Func Offset: 0x150
-	// Line 600, Address: 0x2915c0, Func Offset: 0x160
-	// Line 601, Address: 0x2915cc, Func Offset: 0x16c
-	// Line 602, Address: 0x2915dc, Func Offset: 0x17c
-	// Line 606, Address: 0x2915e4, Func Offset: 0x184
-	// Line 612, Address: 0x2915f4, Func Offset: 0x194
-	// Line 614, Address: 0x2915fc, Func Offset: 0x19c
-	// Line 616, Address: 0x291618, Func Offset: 0x1b8
-	// Line 619, Address: 0x291620, Func Offset: 0x1c0
-	// Line 625, Address: 0x29162c, Func Offset: 0x1cc
-	// Line 640, Address: 0x291634, Func Offset: 0x1d4
-	// Line 641, Address: 0x291648, Func Offset: 0x1e8
-	// Line 642, Address: 0x291658, Func Offset: 0x1f8
-	// Line 646, Address: 0x291664, Func Offset: 0x204
-	// Line 653, Address: 0x291680, Func Offset: 0x220
-	// Line 655, Address: 0x291688, Func Offset: 0x228
-	// Line 657, Address: 0x2916a4, Func Offset: 0x244
-	// Line 661, Address: 0x2916ac, Func Offset: 0x24c
-	// Line 667, Address: 0x2916b8, Func Offset: 0x258
-	// Line 674, Address: 0x2916c0, Func Offset: 0x260
-	// Line 675, Address: 0x2916d4, Func Offset: 0x274
-	// Line 676, Address: 0x2916e4, Func Offset: 0x284
-	// Line 675, Address: 0x2916e8, Func Offset: 0x288
-	// Line 841, Address: 0x2916ec, Func Offset: 0x28c
-	// Func End, Address: 0x291708, Func Offset: 0x2a8
-}*/
+    unsigned int SlotNo;  
+    char chg_FileName[256]; 
+    int i;                
+    
+    SlotNo = SearchAdxFSlot();
+    
+    if ((FileName[strlen(FileName) - 4] == '.') && (FileName[strlen(FileName) - 3] == 'r') && (FileName[strlen(FileName) - 2] == 'd') && (FileName[strlen(FileName) - 1] == 'x')) 
+    {
+        for (i = 0; (unsigned int)i < strlen(FileName); i++) 
+        {
+            if ((FileName[i] >= 'a') && (FileName[i] <= 'z')) 
+            {
+                chg_FileName[i] = FileName[i] - ' ';
+            } 
+            else 
+            {
+                chg_FileName[i] = FileName[i];
+            }
+        } 
+        
+        chg_FileName[i] = 0;
+        
+        for (i = 0; i < rdx_image_data_max; i++) 
+        {
+            if (strcmp(chg_FileName, rdx_files[i]) == 0) 
+            {
+                break;
+            }
+        }
+        
+        if (i == rdx_image_data_max) 
+        {
+            printf("error!\n");
+            printf("not found %s file\n", chg_FileName);
+            
+            while (TRUE);
+        }
+        
+        printf("read file = %s\n", chg_FileName);
+        
+        ADXPS2_Lock();
+        
+        AdxFInfo[SlotNo].Handle = ADXF_OpenAfs(17, i);
+        
+        ADXPS2_Unlock();
+        
+        if (AdxFInfo[SlotNo].Handle == NULL) 
+        {
+            return -1;
+        }
+        
+        AdxFInfo[SlotNo].Mode = -1;
+        
+        AdxFInfo[SlotNo].Flag = 1;
+        
+        return SlotNo;
+    }
+    
+    sprintf(chg_FileName, "%s%s", "\\", FileName);
+    
+    ADXPS2_Lock();
+    
+    AdxFInfo[SlotNo].Handle = ADXF_Open(chg_FileName, NULL);
+    
+    ADXPS2_Unlock();
+    
+    if (AdxFInfo[SlotNo].Handle == NULL) 
+    {
+        return -1;
+    }
+    
+    AdxFInfo[SlotNo].Mode = -1;
+    
+    AdxFInfo[SlotNo].Flag = 1;
+    
+    return SlotNo;
+}
 
 // 84.75% matching
 int GetAfsInsideFileSize(int SlotNo)
