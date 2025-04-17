@@ -627,28 +627,37 @@ void FreeAdxStream()
 	scePrintf("FreeAdxStream - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x291bd0
+// 100% matching!
 void SleepAdxStream()
 {
-	int i;
-	// Line 1111, Address: 0x291bd0, Func Offset: 0
-	// Line 1114, Address: 0x291be0, Func Offset: 0x10
-	// Line 1115, Address: 0x291bf8, Func Offset: 0x28
-	// Line 1117, Address: 0x291c00, Func Offset: 0x30
-	// Line 1120, Address: 0x291c08, Func Offset: 0x38
-	// Line 1123, Address: 0x291c14, Func Offset: 0x44
-	// Line 1126, Address: 0x291c1c, Func Offset: 0x4c
-	// Line 1128, Address: 0x291c24, Func Offset: 0x54
-	// Line 1130, Address: 0x291c2c, Func Offset: 0x5c
-	// Line 1133, Address: 0x291c34, Func Offset: 0x64
-	// Line 1135, Address: 0x291c3c, Func Offset: 0x6c
-	// Line 1137, Address: 0x291c44, Func Offset: 0x74
-	// Line 1139, Address: 0x291c50, Func Offset: 0x80
-	// Line 1140, Address: 0x291c6c, Func Offset: 0x9c
-	// Line 1142, Address: 0x291c78, Func Offset: 0xa8
-	// Func End, Address: 0x291c8c, Func Offset: 0xbc
-}*/
+    int i;
+    
+    if (AdxStreamSleepFlag == 0) 
+    {
+        for (i = 0; i < MaxAdxStreamCnt; i++) 
+        {
+            ADXPS2_Lock();
+            
+            ADXT_SetOutVol(AdxTInfo[i].Handle, -999);
+            
+            ADXPS2_Unlock();
+            
+            ADXPS2_Lock();
+            
+            ADXT_Stop(AdxTInfo[i].Handle);
+            
+            ADXPS2_Unlock();
+            
+            ADXPS2_Lock();
+            
+            ADXT_Destroy(AdxTInfo[i].Handle);
+            
+            ADXPS2_Unlock();
+        }
+        
+        AdxStreamSleepFlag = 1;
+    }
+}
 
 // 81.42% matching
 void WakeupAdxStream(ADX_WORK* pAdx)
