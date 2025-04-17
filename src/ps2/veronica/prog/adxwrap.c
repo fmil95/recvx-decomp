@@ -648,33 +648,42 @@ void SleepAdxStream()
 	// Line 1140, Address: 0x291c6c, Func Offset: 0x9c
 	// Line 1142, Address: 0x291c78, Func Offset: 0xa8
 	// Func End, Address: 0x291c8c, Func Offset: 0xbc
-}
-
-// 
-// Start address: 0x291c90
-void WakeupAdxStream(_anon3* pAdx)
-{
-	_anon0* tp;
-	int i;
-	// Line 1145, Address: 0x291c90, Func Offset: 0
-	// Line 1149, Address: 0x291ca4, Func Offset: 0x14
-	// Line 1150, Address: 0x291cbc, Func Offset: 0x2c
-	// Line 1153, Address: 0x291cc4, Func Offset: 0x34
-	// Line 1155, Address: 0x291ccc, Func Offset: 0x3c
-	// Line 1157, Address: 0x291cdc, Func Offset: 0x4c
-	// Line 1159, Address: 0x291ce4, Func Offset: 0x54
-	// Line 1160, Address: 0x291cf4, Func Offset: 0x64
-	// Line 1161, Address: 0x291cfc, Func Offset: 0x6c
-	// Line 1162, Address: 0x291d00, Func Offset: 0x70
-	// Line 1163, Address: 0x291d0c, Func Offset: 0x7c
-	// Line 1164, Address: 0x291d14, Func Offset: 0x84
-	// Line 1165, Address: 0x291d18, Func Offset: 0x88
-	// Line 1166, Address: 0x291d1c, Func Offset: 0x8c
-	// Line 1167, Address: 0x291d24, Func Offset: 0x94
-	// Line 1168, Address: 0x291d44, Func Offset: 0xb4
-	// Line 1170, Address: 0x291d4c, Func Offset: 0xbc
-	// Func End, Address: 0x291d64, Func Offset: 0xd4
 }*/
+
+// 81.42% matching
+void WakeupAdxStream(ADX_WORK* pAdx)
+{
+    int i;
+    ADXT_INFO* tp;
+
+    if (AdxStreamSleepFlag != 0) 
+    {
+        for (i = 0; i < MaxAdxStreamCnt; i++, pAdx++) 
+        {
+            ADXPS2_Lock();
+            
+            AdxTInfo[i].Handle = ADXT_Create(pAdx->MaxChannel, AdxTInfo[i].pAdxTWork, AdxTInfo[i].WorkSize);
+            
+            ADXPS2_Unlock();
+            
+            if (pAdx->RecoverType != -1) 
+            {
+                ADXT_SetAutoRcvr(AdxTInfo[i].Handle, pAdx->RecoverType);
+            }
+            
+            if (pAdx->ReloadSector >= 0) 
+            {
+                ADXT_SetReloadSct(AdxTInfo[i].Handle, pAdx->ReloadSector);
+            }
+            
+            AdxTInfo[i].FadeFunc = 0;
+            
+            AdxTInfo[i].Flag = 0;
+        }
+        
+        AdxStreamSleepFlag = 0;
+    }
+}
 
 // 84.62% matching
 void PlayAdxEx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileId, int Flag)
