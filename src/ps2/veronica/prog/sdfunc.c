@@ -2066,7 +2066,7 @@ unsigned char RequestList[128];
 _anon11 ObjectSlotInfo[3];
 _anon65 SdComFuncTbl[10];*/
 BH_PWORK* plp;
-/*unsigned char* DestReadPtr;*/
+unsigned char* DestReadPtr;
 int GenAdxfSlot;
 int OpenDriveTrayFlag;
 /*unsigned char MovieTypeDef[22];
@@ -4695,23 +4695,28 @@ int RequestReadIsoFile(char* FileName, void* DestPtr)
 	scePrintf("RequestReadIsoFile - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x297300
+// 100% matching!
 int RequestReadInsideFile(unsigned int PartitionId, unsigned int FileId, void* DestPtr)
 {
-	// Line 4278, Address: 0x297300, Func Offset: 0
-	// Line 4279, Address: 0x29730c, Func Offset: 0xc
-	// Line 4280, Address: 0x29731c, Func Offset: 0x1c
-	// Line 4282, Address: 0x297324, Func Offset: 0x24
-	// Line 4283, Address: 0x297338, Func Offset: 0x38
-	// Line 4286, Address: 0x297340, Func Offset: 0x40
-	// Line 4287, Address: 0x297350, Func Offset: 0x50
-	// Line 4288, Address: 0x297358, Func Offset: 0x58
-	// Line 4289, Address: 0x297364, Func Offset: 0x64
-	// Line 4291, Address: 0x29736c, Func Offset: 0x6c
-	// Line 4292, Address: 0x297370, Func Offset: 0x70
-	// Func End, Address: 0x297380, Func Offset: 0x80
-	scePrintf("RequestReadInsideFile - UNIMPLEMENTED!\n");
+    if (ReadFileRequestFlag != 0) 
+    {
+        return -1;
+    }
+    
+    if ((GenAdxfSlot = OpenAfsInsideFile(PartitionId, FileId)) < 0) 
+    {
+        return -1;
+    }
+    
+    RequestReadAfsInsideFile(GenAdxfSlot, DestPtr);
+    
+    DestReadPtr = DestPtr;
+    
+    ReadFileRequestFlag = 1;
+    
+    FileReadStatus = 1;
+    
+    return 0;
 }
 
 // 
