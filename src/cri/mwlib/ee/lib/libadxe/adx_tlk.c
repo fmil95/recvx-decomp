@@ -1,7 +1,7 @@
 // ADXT_ClearErrCode
 // ADXT_CloseAllHandles
 
-ADXT ADXT_Create(long maxnch, void *work, long worksize)
+ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
 {
     scePrintf("ADXT_Create - UNIMPLEMENTED!\n");
 }
@@ -33,12 +33,12 @@ void ADXT_Destroy(ADXT adxt)
 // ADXT_GetOutVol
 // ADXT_GetSfreq
 
-long ADXT_GetStat(ADXT adxt) 
+Sint32 ADXT_GetStat(ADXT adxt)
 {
     scePrintf("ADXT_GetStat - UNIMPLEMENTED!\n");
 }
 
-void ADXT_GetTime(ADXT adxt, long *ncount, long *tscale)
+void ADXT_GetTime(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
 {
     scePrintf("ADXT_GetTime - UNIMPLEMENTED!\n");
 }
@@ -53,7 +53,7 @@ void ADXT_GetTime(ADXT adxt, long *ncount, long *tscale)
 // ADXT_IsIbufSafety
 // ADXT_IsReadyPlayStart
 
-void ADXT_SetAutoRcvr(ADXT adxt, long rmode)
+void ADXT_SetAutoRcvr(ADXT adxt, Sint32 rmode)
 {
     scePrintf("ADXT_SetAutoRcvr - UNIMPLEMENTED!\n");
 }
@@ -67,21 +67,21 @@ void ADXT_SetOutputMono(Sint32 flag)
     scePrintf("ADXT_SetOutputMono - UNIMPLEMENTED!\n");
 }
 
-void ADXT_SetOutVol(ADXT adxt, long vol)
+void ADXT_SetOutVol(ADXT adxt, Sint32 vol)
 {
     scePrintf("ADXT_SetOutVol - UNIMPLEMENTED!\n");
 }
 
 // ADXT_SetPauseBuf
 
-void ADXT_SetReloadSct(ADXT adxt, long minsct)
+void ADXT_SetReloadSct(ADXT adxt, Sint32 minsct)
 {
     scePrintf("ADXT_SetReloadSct - UNIMPLEMENTED!\n");
 }
 
 // ADXT_SetReloadTime
 
-void ADXT_SetSvrFreq(ADXT adxt, long freq)
+void ADXT_SetSvrFreq(ADXT adxt, Sint32 freq)
 {
     scePrintf("ADXT_SetSvrFreq - UNIMPLEMENTED!\n");
 }

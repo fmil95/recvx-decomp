@@ -17,12 +17,12 @@ void ADXF_Close(ADXF adxf)
 // ADXF_GetFnameRange
 // ADXF_GetFnameRangeEx
 
-long ADXF_GetFsizeByte(ADXF adxf) 
+Sint32 ADXF_GetFsizeByte(ADXF adxf)
 {
     scePrintf("ADXF_GetFsizeByte - UNIMPLEMENTED!\n");
 }
 
-long ADXF_GetFsizeSct(ADXF adxf)
+Sint32 ADXF_GetFsizeSct(ADXF adxf)
 {
     scePrintf("ADXF_GetFsizeSct - UNIMPLEMENTED!\n");
 }
@@ -36,7 +36,7 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
     scePrintf("ADXF_GetPtStat - UNIMPLEMENTED!\n");
 }
 
-long ADXF_GetStat(ADXF adxf)
+Sint32 ADXF_GetStat(ADXF adxf)
 {
     scePrintf("ADXF_GetStat - UNIMPLEMENTED!\n");
 }
@@ -50,9 +50,12 @@ Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
     scePrintf("ADXF_OpenAfs - UNIMPLEMENTED!\n");
 }
 
-// ADXF_Open
+ADXF ADXF_Open(Char8 *fname, void *atr)
+{
+    scePrintf("ADXF_Open - UNIMPLEMENTED!\n");
+}
 
-ADXF ADXF_OpenAfs(long ptid, long flid) 
+ADXF ADXF_OpenAfs(Sint32 ptid, Sint32 flid)
 {
     scePrintf("ADXF_OpenAfs - UNIMPLEMENTED!\n");
 }
@@ -60,7 +63,7 @@ ADXF ADXF_OpenAfs(long ptid, long flid)
 // adxf_read_sj32
 // ADXF_ReadNw
 
-long ADXF_ReadNw32(ADXF adxf, long nsct, void *buf)
+Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
 {
     scePrintf("ADXF_ReadNw32 - UNIMPLEMENTED!\n");
 }
@@ -73,7 +76,7 @@ long ADXF_ReadNw32(ADXF adxf, long nsct, void *buf)
 // ADXF_SetOcbiSw
 // ADXF_SetReqRdSct
 
-long ADXF_Stop(ADXF adxf)
+Sint32 ADXF_Stop(ADXF adxf)
 {
     scePrintf("ADXF_Stop - UNIMPLEMENTED!\n");
 }

@@ -228,7 +228,7 @@ int SearchAdxFSlot()
     return -1; 
 } 
 
-// 85.37% matching
+// 100% matching!
 int OpenAfsInsideFile(unsigned int PartitionId, unsigned int FileId)
 {
     unsigned int SlotNo; 
@@ -253,7 +253,7 @@ int OpenAfsInsideFile(unsigned int PartitionId, unsigned int FileId)
     return SlotNo;
 }
 
-// 98.24% matching
+// 100% matching!
 int OpenAfsIsoFile(char* FileName)
 {
     unsigned int SlotNo;  
@@ -334,7 +334,7 @@ int OpenAfsIsoFile(char* FileName)
     return SlotNo;
 }
 
-// 84.75% matching
+// 100% matching!
 int GetAfsInsideFileSize(int SlotNo)
 {
     if (AdxFInfo[SlotNo].Flag != 0) 
@@ -408,7 +408,7 @@ void StopAfsInsideFile(int SlotNo)
     }
 }
 
-// 92.03% matching
+// 100% matching! 
 void RegistAdxStreamEx(int MaxStream, int DummyStream, ADX_WORK* pAdx)
 {
     int i;
@@ -421,26 +421,26 @@ void RegistAdxStreamEx(int MaxStream, int DummyStream, ADX_WORK* pAdx)
 
     memset(ADX_STREAM_BUFFER, 0, sizeof(ADX_STREAM_BUFFER));
 
-    for (i = 0; i < MaxStream; i++)
+    for (i = 0; i < MaxStream; i++, pAdx++)
     {
-        AdxTInfo[i].WorkSize = ADXT_CALC_WORK(pAdx[i].MaxChannel, 1, DummyStream, pAdx[i].MaxSampleRate);
+        AdxTInfo[i].WorkSize = ADXT_CALC_WORK(pAdx->MaxChannel, 1, DummyStream, pAdx->MaxSampleRate);
         
         AdxTInfo[i].pAdxTWork = (unsigned char*)&ADX_STREAM_BUFFER[ADX_STREAM_BUFF_OFFSET[i]];
 
         ADXPS2_Lock();
 
-        AdxTInfo[i].Handle = ADXT_Create(pAdx[i].MaxChannel, AdxTInfo[i].pAdxTWork, AdxTInfo[i].WorkSize);
+        AdxTInfo[i].Handle = ADXT_Create(pAdx->MaxChannel, AdxTInfo[i].pAdxTWork, AdxTInfo[i].WorkSize);
 
         ADXPS2_Unlock();
 
-        if (pAdx[i].RecoverType != -1)
+        if (pAdx->RecoverType != -1)
         {
-            ADXT_SetAutoRcvr(AdxTInfo[i].Handle, pAdx[i].RecoverType);
+            ADXT_SetAutoRcvr(AdxTInfo[i].Handle, pAdx->RecoverType);
         }
 
-        if (pAdx[i].ReloadSector >= 0)
+        if (pAdx->ReloadSector >= 0)
         {
-            ADXT_SetReloadSct(AdxTInfo[i].Handle, pAdx[i].ReloadSector);
+            ADXT_SetReloadSct(AdxTInfo[i].Handle, pAdx->ReloadSector);
         }
 
         AdxTInfo[i].FadeFunc = 0;
@@ -515,7 +515,7 @@ void SleepAdxStream()
     }
 }
 
-// 81.42% matching
+// 100% matching! 
 void WakeupAdxStream(ADX_WORK* pAdx)
 {
     int i;
@@ -550,7 +550,7 @@ void WakeupAdxStream(ADX_WORK* pAdx)
     }
 }
 
-// 84.62% matching
+// 100% matching! 
 void PlayAdxEx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileId, int Flag)
 {
     if (Flag != 0)
@@ -674,7 +674,7 @@ int GetAdxPlayTime(unsigned int SlotNo)
     
     ADXPS2_Lock();
     
-    ADXT_GetTime(AdxTInfo[SlotNo].Handle, (long*)&SampleCount, (long*)&SamplingRate);
+    ADXT_GetTime(AdxTInfo[SlotNo].Handle, &SampleCount, &SamplingRate);
     
     ADXPS2_Unlock();
     

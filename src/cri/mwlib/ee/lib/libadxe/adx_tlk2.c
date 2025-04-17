@@ -1,6 +1,6 @@
 
 
-void ADXT_StartAfs(ADXT adxt, long patid, long fid)
+void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
 {
     scePrintf("ADXT_StartAfs - UNIMPLEMENTED!\n");
 }

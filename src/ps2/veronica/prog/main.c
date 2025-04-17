@@ -34,8 +34,8 @@
 #include <katana_extra.h>
 
 // CRIWARE library
-#include <cri_adxf.h>
-#include <cri_adxt.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 #include <adx_ps2.h>
 
 #include "types.h"
