@@ -1966,11 +1966,7 @@ NJS_TEXMEMLIST* Ps2_current_texmemlist;
 QUAD Qtex[16];
 NJS_TEXINFO AdvTexInfo[2][8];
 NJS_TEXNAME AdvTexName[2][8];
-NJS_TEXLIST AdvTexList[2] = 
-{
-    {&AdvTexName[0][0], 8},
-    {&AdvTexName[1][0], 8}
-};
+NJS_TEXLIST AdvTexList[2] = { {&AdvTexName[0][0], 8}, {&AdvTexName[1][0], 8} };
 char AdvTexPalBank[2][8];
 int CurrentPortId;
 unsigned char FontSz[126];
