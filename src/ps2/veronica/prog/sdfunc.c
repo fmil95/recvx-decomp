@@ -2074,9 +2074,9 @@ short MovieVolDef[22];
 _anon37 MovieDef[4];
 _anon51 rmi;
 _anon13 Pad[0];
-int CurrentPortId;
-_anon26 VibP[32];
-char VibFlag[5];*/
+int CurrentPortId;*/
+PDS_VIBPARAM_EX VibP[32];
+char VibFlag[5] = { 0x01, 0x08, 0x80, 0x09, 0x81 };
 int SystemAdjustFlag;
 /*float xDist;
 _anon6 NextSoundInfo;
@@ -4962,33 +4962,23 @@ void SetEventVibrationMode(int Mode)
     EventVibrationMode = Mode; 
 }
 
-// 
-// Start address: 0x297c20
+// 100% matching!
 void StartVibrationBasic(int PortNo, int AtrbId, int VibNo)
 {
-	//_anon54 VibPrm;
-	// Line 4855, Address: 0x297c20, Func Offset: 0
-	// Line 4858, Address: 0x297c28, Func Offset: 0x8
-	// Line 4862, Address: 0x297c44, Func Offset: 0x24
-	// Line 4863, Address: 0x297c54, Func Offset: 0x34
-	// Line 4868, Address: 0x297c60, Func Offset: 0x40
-	// Line 4869, Address: 0x297c84, Func Offset: 0x64
-	// Line 4870, Address: 0x297c90, Func Offset: 0x70
-	// Line 4868, Address: 0x297c94, Func Offset: 0x74
-	// Line 4870, Address: 0x297c98, Func Offset: 0x78
-	// Line 4869, Address: 0x297c9c, Func Offset: 0x7c
-	// Line 4870, Address: 0x297ca0, Func Offset: 0x80
-	// Line 4871, Address: 0x297ca4, Func Offset: 0x84
-	// Line 4869, Address: 0x297cac, Func Offset: 0x8c
-	// Line 4871, Address: 0x297cb0, Func Offset: 0x90
-	// Line 4870, Address: 0x297cb4, Func Offset: 0x94
-	// Line 4872, Address: 0x297cb8, Func Offset: 0x98
-	// Line 4870, Address: 0x297cc8, Func Offset: 0xa8
-	// Line 4871, Address: 0x297ccc, Func Offset: 0xac
-	// Line 4872, Address: 0x297cd0, Func Offset: 0xb0
-	// Line 4873, Address: 0x297cdc, Func Offset: 0xbc
-	// Func End, Address: 0x297ce8, Func Offset: 0xc8
-	scePrintf("StartVibrationBasic - UNIMPLEMENTED!\n");
+    PDS_VIBPARAM VibPrm;
+    
+    if ((!(sys->ss_flg & 0x400000)) && ((EventVibrationMode == 0) || (AtrbId == 2))) 
+    {
+        VibPrm.flag = VibFlag[VibP[VibNo].flag];
+        
+        VibPrm.power = VibP[VibNo].power;
+        
+        VibPrm.freq = VibP[VibNo].freq;
+        
+        VibPrm.inc = VibP[VibNo].inc;
+        
+        StartVibration((PortNo * 6) + 2, &VibPrm);
+    }
 }
 
 // 100% matching!

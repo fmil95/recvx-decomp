@@ -2772,6 +2772,15 @@ typedef struct COM_EVT_WORK {
     signed int bar_ct[3]; // offset 0x5D7C, size 0xC
 } COM_EVT_WORK;
 
+typedef struct PDS_VIBPARAM_EX
+{
+	// total size: 0x4
+    unsigned char flag; // offset 0x0, size 0x1
+    char power; // offset 0x1, size 0x1
+    unsigned char freq; // offset 0x2, size 0x1
+    unsigned char inc; // offset 0x3, size 0x1
+} PDS_VIBPARAM_EX;
+
 // TODO: find a struct on the debugging symbols similar to this one that could fit in Ps2AddPrim()
 typedef struct UNKNOWN 
 {
