@@ -109,7 +109,6 @@ int SdcSoundMode = -1;
 void(*TransCallBackFunc)(void*) = (void*)-1;
 unsigned int TransCompleteFlag;
 SDS_MEMBLK* SdMemBlk;
-void(*TransWaitCallBackFunction)();
 char SdcMasterVolume;
 char SdcGdDaVolume;
 NO_NAME_20 MidiInfo[8];
@@ -119,8 +118,8 @@ char SdcMidiDefaultVolume;
 NO_NAME_20 SeInfo[20];
 SDSHOT SeHandle[20];
 
-/*void TransWaitCallBackFunction();
-unsigned int CheckTransComplete();
+void TransWaitCallBackFunction();
+/*unsigned int CheckTransComplete();
 void SetupSoundDriver(void* pSndDrv, unsigned int SndDrvSize);
 void ExitSoundDriver();
 void SetMultiUnit(void* pMulUni, unsigned int MulUniSize);
@@ -173,20 +172,17 @@ int CheckFadeEndSe(int SlotNo);
 int ExecSoundFadeManager();
 void RequestMidiPanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame);
 void RequestSePanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame);
-int ExecSoundPanManager();
+int ExecSoundPanManager();*/
 
-// 
-// Start address: 0x28ecd0
-void TransWaitCallBackFunction()
-{
-	// Line 28, Address: 0x28ecd0, Func Offset: 0
-	// Line 29, Address: 0x28ecd8, Func Offset: 0x8
-	// Line 30, Address: 0x28ece4, Func Offset: 0x14
-	// Line 31, Address: 0x28ecec, Func Offset: 0x1c
-	// Func End, Address: 0x28ecf8, Func Offset: 0x28
+// 100% matching!
+void TransWaitCallBackFunction() 
+{ 
+    sdMemBlkDestroy(SdMemBlk); 
+    
+    TransCompleteFlag = 0; 
 }
 
-// 
+/*// 
 // Start address: 0x28ed00
 unsigned int CheckTransComplete()
 {
@@ -200,7 +196,7 @@ void SetupSoundDriver(void* pSndDrv, unsigned int SndDrvSize)
 {
     void* temp; // not from the debugging symbols
 
-    temp = &TransWaitCallBackFunction;
+    temp = TransWaitCallBackFunction;
     
     sdLibInit(NULL, 0, 0); 
     
