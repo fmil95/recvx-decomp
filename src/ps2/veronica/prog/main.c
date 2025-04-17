@@ -52,6 +52,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_suht.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk2.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/htci.c"
 
 #include "ps2_NaMem.c"
 #include "camera.c"
