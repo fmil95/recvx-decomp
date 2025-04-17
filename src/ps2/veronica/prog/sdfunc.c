@@ -4999,7 +4999,7 @@ void StartVibrationEx(int AtrbId, int VibNo)
 {
 	// Line 4886, Address: 0x297cf4, Func Offset: 0x4
 	// Func End, Address: 0x297d04, Func Offset: 0x14
-}
+}*/
 
 // 
 // Start address: 0x297d10
@@ -5007,15 +5007,14 @@ void StopVibrationBasic(int PortNo)
 {
 	// Line 4897, Address: 0x297d10, Func Offset: 0
 	// Func End, Address: 0x297d24, Func Offset: 0x14
+	scePrintf("StopVibrationBasic - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x297d30
-void StopVibrationEx()
-{
-	// Line 4907, Address: 0x297d30, Func Offset: 0
-	// Func End, Address: 0x297d3c, Func Offset: 0xc
-}*/
+// 100% matching!
+void StopVibrationEx() 
+{ 
+    StopVibrationBasic(CurrentPortId);
+}
 
 // 100% matching!
 void SetAdjustDisplay() 
