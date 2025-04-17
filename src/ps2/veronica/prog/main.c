@@ -43,12 +43,14 @@
 #include "macros.h"
 
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_amp.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_inis.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_mps2.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_sudv.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_suht.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk2.c"
 
 #include "ps2_NaMem.c"
 #include "camera.c"
