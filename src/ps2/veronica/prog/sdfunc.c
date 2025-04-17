@@ -4963,13 +4963,13 @@ void SetEventVibrationMode(int Mode)
 	// Line 4840, Address: 0x297c10, Func Offset: 0
 	// Line 4841, Address: 0x297c14, Func Offset: 0x4
 	// Func End, Address: 0x297c1c, Func Offset: 0xc
-}
+}*/
 
 // 
 // Start address: 0x297c20
 void StartVibrationBasic(int PortNo, int AtrbId, int VibNo)
 {
-	_anon54 VibPrm;
+	//_anon54 VibPrm;
 	// Line 4855, Address: 0x297c20, Func Offset: 0
 	// Line 4858, Address: 0x297c28, Func Offset: 0x8
 	// Line 4862, Address: 0x297c44, Func Offset: 0x24
@@ -4991,15 +4991,14 @@ void StartVibrationBasic(int PortNo, int AtrbId, int VibNo)
 	// Line 4872, Address: 0x297cd0, Func Offset: 0xb0
 	// Line 4873, Address: 0x297cdc, Func Offset: 0xbc
 	// Func End, Address: 0x297ce8, Func Offset: 0xc8
+	scePrintf("StartVibrationBasic - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x297cf0
-void StartVibrationEx(int AtrbId, int VibNo)
-{
-	// Line 4886, Address: 0x297cf4, Func Offset: 0x4
-	// Func End, Address: 0x297d04, Func Offset: 0x14
-}*/
+// 100% matching!
+void StartVibrationEx(int AtrbId, int VibNo) 
+{ 
+    StartVibrationBasic(CurrentPortId, AtrbId, VibNo);
+}
 
 // 100% matching!
 void StopVibrationBasic(int PortNo) 
