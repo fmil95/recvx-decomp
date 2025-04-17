@@ -238,21 +238,17 @@ void SetMultiUnit(void* pMulUni, unsigned int MulUniSize)
     sdMemBlkDestroy(SdMemBlk);
 }
 
-/*// 
-// Start address: 0x28ee80
+// 100% matching!
 void SetSoundData(SDE_DATA_TYPE DataType, int BankNo, void* pSndDat, unsigned int SndDatSize)
 {
-	// Line 81, Address: 0x28ee80, Func Offset: 0
-	// Line 82, Address: 0x28ee9c, Func Offset: 0x1c
-	// Line 86, Address: 0x28eeb4, Func Offset: 0x34
-	// Line 84, Address: 0x28eebc, Func Offset: 0x3c
-	// Line 86, Address: 0x28eec0, Func Offset: 0x40
-	// Line 84, Address: 0x28eec8, Func Offset: 0x48
-	// Line 86, Address: 0x28eed0, Func Offset: 0x50
-	// Line 87, Address: 0x28eee0, Func Offset: 0x60
-	// Line 94, Address: 0x28eef8, Func Offset: 0x78
-	// Func End, Address: 0x28ef14, Func Offset: 0x94
-}*/
+    sdMemBlkCreate(&SdMemBlk);
+    
+    TransCompleteFlag = 1;
+    
+    sdMemBlkSetPrm(SdMemBlk, pSndDat, SndDatSize, TransCallBackFunc, NULL);
+    
+    sdBankDownload(SdMemBlk, DataType, BankNo);
+}
 
 // 100% matching!
 void SetSoundModeEx(int Mode, int Flag)
