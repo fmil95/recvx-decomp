@@ -2018,8 +2018,8 @@ unsigned char* pConfigWork;
 unsigned short* pSpqList;
 unsigned char* pSoundAfs;
 char SpqFileName[32];
-/*int EventVibrationMode;
-_anon4 BgSePrmBuf[2];
+int EventVibrationMode;
+/*_anon4 BgSePrmBuf[2];
 int ReqFadeBgSe[2];
 int ReqFadeBgmNo;
 int NextBgmVolume;
@@ -4956,14 +4956,11 @@ int PlayMovieMain()
 	scePrintf("PlayMovieMain - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x297c10
-void SetEventVibrationMode(int Mode)
-{
-	// Line 4840, Address: 0x297c10, Func Offset: 0
-	// Line 4841, Address: 0x297c14, Func Offset: 0x4
-	// Func End, Address: 0x297c1c, Func Offset: 0xc
-}*/
+// 100% matching!
+void SetEventVibrationMode(int Mode) 
+{ 
+    EventVibrationMode = Mode; 
+}
 
 // 
 // Start address: 0x297c20
