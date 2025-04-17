@@ -87,7 +87,7 @@
 #include "ps2_sg_sycfg.c" // TODO: find out why this file crashes when including it amongst the other source files in compile_config.json
 #include "ps2_sg_sybt.c"
 #include "ps2_sg_sycbl.c"
-#include "cri_placeholders.c"
+#include "ps2_cri_adxt.c"
 #include "adxwrap.c"
 #include "ps2_snddrv.c"
 #include "ps2_MovieFunc.c"
