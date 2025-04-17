@@ -62,9 +62,10 @@ void ADXT_SetAutoRcvr(ADXT adxt, Sint32 rmode)
 // ADXT_SetLpFlg
 // ADXT_SetOutPan
 
+// 100% matching!
 void ADXT_SetOutputMono(Sint32 flag)
 {
-    scePrintf("ADXT_SetOutputMono - UNIMPLEMENTED!\n");
+    ADX_SetDecodeSteAsMonoSw(flag);
 }
 
 void ADXT_SetOutVol(ADXT adxt, Sint32 vol)
