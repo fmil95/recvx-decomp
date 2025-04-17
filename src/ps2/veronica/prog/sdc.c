@@ -182,14 +182,11 @@ void TransWaitCallBackFunction()
     TransCompleteFlag = 0; 
 }
 
-/*// 
-// Start address: 0x28ed00
-unsigned int CheckTransComplete()
-{
-	// Line 35, Address: 0x28ed00, Func Offset: 0
-	// Line 36, Address: 0x28ed04, Func Offset: 0x4
-	// Func End, Address: 0x28ed0c, Func Offset: 0xc
-}*/
+// 100% matching!
+unsigned int CheckTransComplete() 
+{ 
+    return TransCompleteFlag; 
+}
 
 // 100% matching!
 void SetupSoundDriver(void* pSndDrv, unsigned int SndDrvSize)
