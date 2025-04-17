@@ -6,7 +6,11 @@ ADXT ADXT_Create(long maxnch, void *work, long worksize)
     scePrintf("ADXT_Create - UNIMPLEMENTED!\n");
 }
 
-// ADXT_Destroy
+void ADXT_Destroy(ADXT adxt)
+{
+    scePrintf("ADXT_Destroy - UNIMPLEMENTED!\n");
+}
+
 // ADXT_DestroyAll
 // ADXT_DiscardSmpl
 // adxt_disp_rna_stat
