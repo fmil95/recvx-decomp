@@ -861,29 +861,30 @@ void RequestAdxFadeFunction(int SlotNo, int Func, int Timer)
     RequestAdxFadeFunction2(SlotNo, Func, Timer, 1);
 }
 
-/*// 
-// Start address: 0x292240
+// 98.29% matching
 void RequestAdxFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 {
-	_anon0* tp;
-	// Line 1511, Address: 0x292240, Func Offset: 0
-	// Line 1514, Address: 0x292250, Func Offset: 0x10
-	// Line 1511, Address: 0x29225c, Func Offset: 0x1c
-	// Line 1514, Address: 0x292260, Func Offset: 0x20
-	// Line 1516, Address: 0x292268, Func Offset: 0x28
-	// Line 1517, Address: 0x292274, Func Offset: 0x34
-	// Line 1519, Address: 0x292280, Func Offset: 0x40
-	// Line 1520, Address: 0x292284, Func Offset: 0x44
-	// Line 1519, Address: 0x29228c, Func Offset: 0x4c
-	// Line 1520, Address: 0x292290, Func Offset: 0x50
-	// Line 1519, Address: 0x292294, Func Offset: 0x54
-	// Line 1520, Address: 0x292298, Func Offset: 0x58
-	// Line 1522, Address: 0x29229c, Func Offset: 0x5c
-	// Line 1523, Address: 0x2922a4, Func Offset: 0x64
-	// Line 1526, Address: 0x2922c4, Func Offset: 0x84
-	// Line 1527, Address: 0x2922cc, Func Offset: 0x8c
-	// Func End, Address: 0x2922e4, Func Offset: 0xa4
-}*/
+    ADXT_INFO* tp; 
+    
+    tp = &AdxTInfo[SlotNo];
+    
+    if (StartVol == -1)
+    {
+        StartVol = tp->Volume;
+    }
+    
+    tp->Volume = StartVol;
+    tp->VolLast = LastVol;
+    
+    tp->FadeCntMax = Frame;
+    
+    if (Frame != 0) 
+    {
+        tp->VolSpeed = -((tp->VolLast - tp->Volume) / tp->FadeCntMax);
+    }
+    
+    tp->FadeFunc = 1;
+}
 
 // 100% matching!
 int ExecAdxFadeManager()
