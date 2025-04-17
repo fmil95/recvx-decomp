@@ -5001,13 +5001,10 @@ void StartVibrationEx(int AtrbId, int VibNo)
 	// Func End, Address: 0x297d04, Func Offset: 0x14
 }*/
 
-// 
-// Start address: 0x297d10
-void StopVibrationBasic(int PortNo)
-{
-	// Line 4897, Address: 0x297d10, Func Offset: 0
-	// Func End, Address: 0x297d24, Func Offset: 0x14
-	scePrintf("StopVibrationBasic - UNIMPLEMENTED!\n");
+// 100% matching!
+void StopVibrationBasic(int PortNo) 
+{ 
+    StopVibration((PortNo * 6) + 2);
 }
 
 // 100% matching!
