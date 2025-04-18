@@ -1,8 +1,8 @@
 // TODO: compile and link this file separatedly to remove the "ps2_sg_pad.c" include in main.c  
 
 unsigned int Old_sys_cnt;
-static u_long128 Padd1[scePadDmaBufferMax];
-static u_long128 Padd2[scePadDmaBufferMax];
+static u_long128 Padd1[scePadDmaBufferMax] __attribute__((aligned(64)));
+static u_long128 Padd2[scePadDmaBufferMax] __attribute__((aligned(64)));
 BUTTON_INFO ButtonInfo[5] = 
 {
     { 1, 55541},
