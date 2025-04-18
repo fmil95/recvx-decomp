@@ -1630,7 +1630,7 @@ void Ps2ClearOT()
     } 
 }
 
-// 97.83% matching
+// 100% matching!
 void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim)
 {
     unsigned int i; 
@@ -1644,14 +1644,14 @@ void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim)
         
         if (((id >= 26510) && (id <= 26614)) || (id == 107170)) 
         { 
-            asm volatile (trunc.w.s f12, f12); 
+            asm volatile (cvt.w.s f12, f12); 
             asm volatile (mfc1      otz, f12); 
             
             otz >>= 12;
         } 
         else 
         { 
-            asm volatile (trunc.w.s f12, f12); 
+            asm volatile (cvt.w.s f12, f12); 
             asm volatile (mfc1      otz, f12); 
             
             otz >>= 4;
@@ -1659,7 +1659,7 @@ void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim)
     } 
     else 
     { 
-        asm volatile (trunc.w.s f12, f12); 
+        asm volatile (cvt.w.s f12, f12); 
         asm volatile (mfc1      otz, f12); 
         
         otz >>= 4; 
