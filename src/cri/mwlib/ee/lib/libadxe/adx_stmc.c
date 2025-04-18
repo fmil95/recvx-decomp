@@ -1,3 +1,5 @@
+Sint32 adxstmf_num_rtry;
+
 // ADXSTM_Close
 // ADXSTM_EntryEosFunc
 // ADXSTM_EntryErrFunc
@@ -37,9 +39,10 @@
 // ADXSTMF_SetupHandleMember
 // adxstmf_stat_exec
 
+// 100% matching!
 void ADXT_SetNumRetry(Sint32 num) 
 {
-    scePrintf("ADXT_SetNumRetry - UNIMPLEMENTED!\n");
+    adxstmf_num_rtry = num;
 }
 
 // ADXT_SetupNrmlNumStm
