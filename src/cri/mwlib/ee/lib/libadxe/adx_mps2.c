@@ -29,7 +29,10 @@ void ADXPS2_Lock(void)
         {
             ResumeThread(adxps2_id_safe);
             
-            adxps2_id_safe; // fuck knows
+            if (adxps2_id_safe != 0)
+            {
+                
+            }
         }
     }
     
@@ -59,7 +62,10 @@ void ADXPS2_Unlock(void)
         {
             SuspendThread(adxps2_id_safe);
             
-            adxps2_id_safe; // fuck knows
+            if (adxps2_id_safe != 0)
+            {
+                
+            }
         }
         
         ChangeThreadPriority(GetThreadId(), adxps2_cur_prio);
