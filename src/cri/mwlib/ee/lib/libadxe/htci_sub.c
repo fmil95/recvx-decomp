@@ -1,3 +1,5 @@
+Sint32 htg_ci_open_mode;
+
 // analysis_flist
 // close_file_all
 // conv_to_tpath
@@ -10,9 +12,24 @@ void htCiLoadFpCache(Char8* arg0, Char8* arg1, Sint32 arg2)
     scePrintf("htCiLoadFpCache - UNIMPLEMENTED!\n");
 }
 
-void htCiSetOpenMode(Sint32 arg0)
+// 100% matching!
+void htCiSetOpenMode(Sint32 arg0) 
 {
-    scePrintf("htCiSetOpenMode - UNIMPLEMENTED!\n");
+    if (arg0 != 0) 
+    {
+        if (arg0 == 1) 
+        {
+            htg_ci_open_mode = arg0;
+        }
+        else 
+        {
+            htg_ci_open_mode = 0x8001;
+        }
+    }
+    else 
+    {
+        htg_ci_open_mode = 0x8001;
+    }
 }
 
 // load_flist
