@@ -2843,3 +2843,5 @@ typedef struct UNKNOWN
 
 #define UNCMASK 0x0fffffff
 #define UNCBASE 0x20000000
+
+typedef struct ThreadParam ThreadParam; 
