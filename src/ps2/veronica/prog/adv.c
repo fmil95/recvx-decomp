@@ -2948,20 +2948,23 @@ int AdvGetCurrentPort()
     return CurrentPortId;
 } 
 
-/*// 
-// Start address: 0x2c2350
-int CheckConnectVmDrive(int SlotNo)
-{
-	tagMEMORYCARDSTATE* pMcDrive;
-	tagMEMORYCARDSTATE McDrive;
-	// Line 1619, Address: 0x2c2350, Func Offset: 0
-	// Line 1628, Address: 0x2c235c, Func Offset: 0xc
-	// Line 1638, Address: 0x2c2368, Func Offset: 0x18
-	// Line 1669, Address: 0x2c23c0, Func Offset: 0x70
-	// Func End, Address: 0x2c23d0, Func Offset: 0x80
-}
+// 100% matching!
+int CheckConnectVmDrive(int param, int SlotNo) // first parameter is not present on the debugging symbols
+{ 
+    MEMORYCARDSTATE McDrive;
+    MEMORYCARDSTATE* pMcDrive;
+    
+    pMcDrive = CreateMemoryCard(&McDrive); 
+    
+    if (GetMcSelectPortType(pMcDrive, SlotNo - 1) == 2)
+    {
+        return ((SlotNo % 6) - 1) + ((SlotNo / 6) * 2); 
+    }
 
-// 
+    return -1;
+} 
+
+/*// 
 // Start address: 0x2c23d0
 int FindFirstVmDrive()
 {
