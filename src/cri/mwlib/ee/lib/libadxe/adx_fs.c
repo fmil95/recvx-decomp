@@ -1,3 +1,5 @@
+void adxf_SetCmdHstry(Sint32 arg0, Sint32 arg1, Sint32 ptid, Sint32 flid, Sint32 arg4);
+
 // ADXF_AddPartition
 // adxf_AllocAdxFs
 // adxf_ChkPrmGfr
@@ -11,7 +13,12 @@ void ADXF_Close(ADXF adxf)
 // ADXF_CloseAll
 // adxf_CloseLdptnwHn
 // adxf_CloseSjStm
-// adxf_CreateAdxFs
+
+ADXF adxf_CreateAdxFs()
+{
+    scePrintf("adxf_CreateAdxFs - UNIMPLEMENTED!\n");
+}
+
 // adxf_ExecOne
 // ADXF_ExecServer
 // ADXF_GetFnameRange
@@ -55,9 +62,29 @@ ADXF ADXF_Open(Char8 *fname, void *atr)
     scePrintf("ADXF_Open - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 ADXF ADXF_OpenAfs(Sint32 ptid, Sint32 flid)
 {
-    scePrintf("ADXF_OpenAfs - UNIMPLEMENTED!\n");
+    ADXF adxf;
+
+    adxf_SetCmdHstry(2, 0, ptid, flid, -1);
+    
+    ADXCRS_Lock();
+    
+    adxf = adxf_CreateAdxFs();
+    
+    if ((adxf != NULL) && (adxf_SetAfsFileInfo(adxf, ptid, flid) < 0)) 
+    {
+        ADXF_Close(adxf);
+        
+        adxf = NULL;
+    }
+    
+    ADXCRS_Unlock();
+    
+    adxf_SetCmdHstry(2, 1, ptid, flid, -1);
+    
+    return adxf;
 }
 
 // adxf_read_sj32
@@ -70,8 +97,17 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
 
 // ADXF_ReadSj32
 // ADXF_Seek
-// adxf_SetAfsFileInfo
-// adxf_SetCmdHstry
+
+Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
+{
+    scePrintf("adxf_SetAfsFileInfo - UNIMPLEMENTED!\n");
+}
+
+void adxf_SetCmdHstry(Sint32 arg0, Sint32 arg1, Sint32 ptid, Sint32 flid, Sint32 arg4)
+{
+    scePrintf("adxf_SetCmdHstry - UNIMPLEMENTED!\n");
+}
+
 // adxf_SetFileInfoEx
 // ADXF_SetOcbiSw
 // ADXF_SetReqRdSct
