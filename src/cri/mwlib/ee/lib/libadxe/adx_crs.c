@@ -1,5 +1,9 @@
 Sint32 adxcrs_lvl;
 
+void ADXCRS_Init(void);
+void ADXCRS_Lock(void);
+void ADXCRS_Unlock(void);
+
 // 100% matching!
 void ADXCRS_Init(void) 
 {
@@ -17,7 +21,13 @@ void ADXCRS_Lock(void)
     adxcrs_lvl++;
 }
 
-void ADXCRS_Unlock()
+// 100% matching!
+void ADXCRS_Unlock(void) 
 {
-    scePrintf("ADXCRS_Unlock - UNIMPLEMENTED!\n");
+    adxcrs_lvl--;
+    
+    if (adxcrs_lvl == 0) 
+    {
+        ADXPS2_Unlock();
+    }
 }
