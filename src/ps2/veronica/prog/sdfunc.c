@@ -4869,13 +4869,10 @@ void PlayStopMovieEx(int Mode)
 	scePrintf("PlayStopMovieEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2978e0
+// 100% matching!
 void PlayStopMovie()
 {
-	// Line 4640, Address: 0x2978e0, Func Offset: 0
-	// Func End, Address: 0x2978e8, Func Offset: 0x8
-	scePrintf("PlayStopMovie - UNIMPLEMENTED!\n");
+    PlayStopMovieEx(0);
 }
 
 // 100% matching!
