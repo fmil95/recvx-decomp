@@ -4719,13 +4719,10 @@ int RequestReadInsideFile(unsigned int PartitionId, unsigned int FileId, void* D
     return 0;
 }
 
-// 
-// Start address: 0x297380
+// 100% matching!
 int GetIsoFileSize(char* FileName)
 {
-	// Line 4382, Address: 0x297380, Func Offset: 0
-	// Func End, Address: 0x297388, Func Offset: 0x8
-	scePrintf("GetIsoFileSize - UNIMPLEMENTED!\n");
+    GetFileSize(FileName);
 }
 
 // 100% matching!
