@@ -9,7 +9,15 @@ void cvFsAddDev(Sint32* arg0, void* arg1, Sint32 arg2)
     scePrintf("cvFsAddDev - UNIMPLEMENTED!\n");
 }
 
-// cvFsCallUsrErrFn
+// 100% matching!
+void cvFsCallUsrErrFn(Sint32* errobj, Sint32 arg1, Sint32 arg2) 
+{
+    if (cvfs_errfn != NULL) 
+    {
+        cvfs_errfn(cvfs_errobj);
+    }
+}
+
 // cvFsChangeDir
 // cvFsClose
 // cvFsDelDev
