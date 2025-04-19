@@ -1987,8 +1987,8 @@ ADX_WORK AdxDef[2] = {
     { 2, 48000, 2, -1 },
     { 1, 48000, 2, -1 }
 };
-/*SDE_DATA_TYPE SdTypeDef[5];
-int PlayerFootStepSwitch[3];
+SDE_DATA_TYPE SdTypeDef[5] = { SDE_DATA_TYPE_MIDI_SEQ_BANK, SDE_DATA_TYPE_MIDI_PRG_BANK, SDE_DATA_TYPE_SHOT_BANK, SDE_DATA_TYPE_FX_PRG_BANK, SDE_DATA_TYPE_FX_OUT_BANK }; 
+/*int PlayerFootStepSwitch[3];
 int SystemSeSlotSwitch;
 int WeaponSeSlotSwitch;
 int EnemyBackGroundSeFlag;*/
@@ -2001,9 +2001,9 @@ short DefObj[5];
 short DefEvt[5];
 short DefEne[6];*/
 int SoundInitLevel;
-/*int SdReadMode;*/
+int SdReadMode;
 int SpqFileReadRequestFlag;
-/*int TransSoundPackDataFlag;*/
+int TransSoundPackDataFlag;
 int ReadFileRequestFlag;
 int FileReadStatus;
 int KeyReadSwitch;
@@ -2023,10 +2023,10 @@ int EventVibrationMode;
 int ReqFadeBgSe[2];
 int ReqFadeBgmNo;
 int NextBgmVolume;
-int CurrentBgmVolume;
+int CurrentBgmVolume;*/
 unsigned char* pSdReadBuf;
-_anon22* pSpqHeader;
-int AddFxLevel;
+SPQ_HEADER* pSpqHeader;
+/*int AddFxLevel;
 int CurrentFxLevel;
 int RoomFxLevel;*/
 RM_SNDENV Room_SoundEnv;
@@ -2702,24 +2702,34 @@ int LoadSoundPackFile(char* SpqFile)
 	scePrintf("LoadSoundPackFile - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2931f0
+// 100% matching! 
 void ExecTransSoundData()
 {
-	// Line 950, Address: 0x2931f0, Func Offset: 0
-	// Line 951, Address: 0x2931f8, Func Offset: 0x8
-	// Line 952, Address: 0x293208, Func Offset: 0x18
-	// Line 954, Address: 0x293228, Func Offset: 0x38
-	// Line 958, Address: 0x293260, Func Offset: 0x70
-	// Line 959, Address: 0x293270, Func Offset: 0x80
-	// Line 961, Address: 0x293278, Func Offset: 0x88
-	// Line 963, Address: 0x293288, Func Offset: 0x98
-	// Line 962, Address: 0x29328c, Func Offset: 0x9c
-	// Line 964, Address: 0x2932a0, Func Offset: 0xb0
-	// Line 965, Address: 0x2932b4, Func Offset: 0xc4
-	// Line 972, Address: 0x2932b8, Func Offset: 0xc8
-	// Func End, Address: 0x2932c4, Func Offset: 0xd4
-	scePrintf("ExecTransSoundData - UNIMPLEMENTED!\n");
+    if (TransSoundPackDataFlag != 0)
+    {
+        switch (SdReadMode) 
+        {                    
+        case 0:
+            SetSoundData(SdTypeDef[pSpqHeader->Type], pSpqHeader->BankNo, &pSdReadBuf[pSpqHeader->Offset], pSpqHeader->Size);
+            
+            SdReadMode++;
+            return;
+        case 1:
+            if (CheckTransComplete(SdReadMode) == 0)
+            {
+                SdReadMode = 0;
+                
+                pSpqHeader++;
+                
+                if (pSpqHeader->Offset == 0) 
+                {
+                    TransSoundPackDataFlag = 0;
+                }
+            }
+            
+            return;
+        }
+    }
 }
 
 // 

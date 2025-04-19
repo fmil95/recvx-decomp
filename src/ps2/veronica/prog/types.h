@@ -2800,6 +2800,15 @@ typedef struct RMI_WORK
     unsigned int MVCancelButton; // offset 0x50, size 0x4
 } RMI_WORK;
 
+typedef struct SPQ_HEADER
+{
+	// total size: 0x10
+    int Offset; // offset 0x0, size 0x4
+    int Size; // offset 0x4, size 0x4
+    int Type; // offset 0x8, size 0x4
+    int BankNo; // offset 0xC, size 0x4
+} SPQ_HEADER;
+
 // TODO: find a struct on the debugging symbols similar to this one that could fit in Ps2AddPrim()
 typedef struct UNKNOWN 
 {
