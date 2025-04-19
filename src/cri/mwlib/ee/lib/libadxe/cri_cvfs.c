@@ -32,7 +32,12 @@ void cvFsEntryErrFunc(void* arg0, Sint32 arg1)
     }
 }
 
-// cvFsError
+// 100% matching!
+void cvFsError(Sint32 arg0) 
+{
+    cvFsCallUsrErrFn(&cvfs_errobj, arg0, 0);
+}
+
 // cvFsExecServer
 // cvFsFinish
 // cvFsGetDefDev
