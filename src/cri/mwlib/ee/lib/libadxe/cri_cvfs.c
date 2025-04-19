@@ -1,3 +1,6 @@
+void (*cvfs_errfn)(Sint32 arg0);
+Sint32 cvfs_errobj;
+
 // addDevice
 // allocCvFsHn
 
@@ -12,9 +15,21 @@ void cvFsAddDev(Sint32* arg0, void* arg1, Sint32 arg2)
 // cvFsDelDev
 // cvFsDeleteFile
 
-void cvFsEntryErrFunc(Sint32* arg0, Sint32 arg1)
+// 100% matching!
+void cvFsEntryErrFunc(void* arg0, Sint32 arg1) 
 {
-    scePrintf("cvFsEntryErrFunc - UNIMPLEMENTED!\n");
+    if (arg0 == 0)
+    {
+        cvfs_errfn = NULL;
+        
+        cvfs_errobj = 0;
+    }
+    else 
+    {
+        cvfs_errfn = arg0;
+        
+        cvfs_errobj = arg1;
+    }
 }
 
 // cvFsError
