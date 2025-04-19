@@ -2781,6 +2781,25 @@ typedef struct PDS_VIBPARAM_EX
     unsigned char inc; // offset 0x3, size 0x1
 } PDS_VIBPARAM_EX;
 
+typedef struct RMI_WORK
+{
+    // total size: 0x54
+    unsigned char * put_ptr; // offset 0x0, size 0x4
+    unsigned char * get_ptr; // offset 0x4, size 0x4
+    int putsize; // offset 0x8, size 0x4
+    int getsize; // offset 0xC, size 0x4
+    int readrest; // offset 0x10, size 0x4
+    int writerest; // offset 0x14, size 0x4
+    int count; // offset 0x18, size 0x4
+    int proceed; // offset 0x1C, size 0x4
+    unsigned int button_old; // offset 0x20, size 0x4
+    unsigned char cdata[32]; // offset 0x24, size 0x20
+    int iMovieState; // offset 0x44, size 0x4
+    int iMovieFrame; // offset 0x48, size 0x4
+    unsigned int uiContFlag; // offset 0x4C, size 0x4
+    unsigned int MVCancelButton; // offset 0x50, size 0x4
+} RMI_WORK;
+
 // TODO: find a struct on the debugging symbols similar to this one that could fit in Ps2AddPrim()
 typedef struct UNKNOWN 
 {

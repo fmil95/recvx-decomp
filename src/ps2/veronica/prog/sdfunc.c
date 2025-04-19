@@ -2013,7 +2013,7 @@ unsigned int StatusUpdateCounter;
 SYS_BT_SYSTEMID BootDiscSystemId;
 HWS_WORK* hws;
 SND_CMD SoundCommand;
-/*_anon12 MovieInfo;*/
+MOV_INFO MovieInfo;
 unsigned char* pConfigWork;
 unsigned short* pSpqList;
 unsigned char* pSoundAfs;
@@ -2071,10 +2071,10 @@ int GenAdxfSlot;
 int OpenDriveTrayFlag;
 /*unsigned char MovieTypeDef[22];
 short MovieVolDef[22];
-_anon37 MovieDef[4];
-_anon51 rmi;
-_anon13 Pad[0];
-int CurrentPortId;*/
+_anon37 MovieDef[4];*/
+RMI_WORK rmi;
+PAD_WRK Pad[4];
+int CurrentPortId;
 PDS_VIBPARAM_EX VibP[32];
 char VibFlag[5] = { 0x01, 0x08, 0x80, 0x09, 0x81 };
 int SystemAdjustFlag;
@@ -4869,15 +4869,16 @@ void PlayStopMovieEx(int Mode)
 	scePrintf("PlayStopMovieEx - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2978e0
 void PlayStopMovie()
 {
 	// Line 4640, Address: 0x2978e0, Func Offset: 0
 	// Func End, Address: 0x2978e8, Func Offset: 0x8
+	scePrintf("PlayStopMovie - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2978f0
 int CheckPlayEndMovie()
 {
@@ -4923,42 +4924,77 @@ int WaitPrePlayMovie()
 	scePrintf("WaitPrePlayMovie - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x297a40
+// 100% matching!
 int PlayMovieMain()
 {
-	// Line 4727, Address: 0x297a40, Func Offset: 0
-	// Line 4728, Address: 0x297a48, Func Offset: 0x8
-	// Line 4729, Address: 0x297a58, Func Offset: 0x18
-	// Line 4730, Address: 0x297a68, Func Offset: 0x28
-	// Line 4731, Address: 0x297a70, Func Offset: 0x30
-	// Line 4733, Address: 0x297a78, Func Offset: 0x38
-	// Line 4734, Address: 0x297a8c, Func Offset: 0x4c
-	// Line 4735, Address: 0x297a94, Func Offset: 0x54
-	// Line 4737, Address: 0x297a9c, Func Offset: 0x5c
-	// Line 4738, Address: 0x297aa4, Func Offset: 0x64
-	// Line 4741, Address: 0x297ab4, Func Offset: 0x74
-	// Line 4743, Address: 0x297aec, Func Offset: 0xac
-	// Line 4744, Address: 0x297afc, Func Offset: 0xbc
-	// Line 4745, Address: 0x297b04, Func Offset: 0xc4
-	// Line 4748, Address: 0x297b0c, Func Offset: 0xcc
-	// Line 4750, Address: 0x297b20, Func Offset: 0xe0
-	// Line 4753, Address: 0x297b28, Func Offset: 0xe8
-	// Line 4761, Address: 0x297b40, Func Offset: 0x100
-	// Line 4762, Address: 0x297b50, Func Offset: 0x110
-	// Line 4763, Address: 0x297b68, Func Offset: 0x128
-	// Line 4764, Address: 0x297b70, Func Offset: 0x130
-	// Line 4766, Address: 0x297b78, Func Offset: 0x138
-	// Line 4767, Address: 0x297b80, Func Offset: 0x140
-	// Line 4768, Address: 0x297bb0, Func Offset: 0x170
-	// Line 4769, Address: 0x297bc8, Func Offset: 0x188
-	// Line 4785, Address: 0x297bd8, Func Offset: 0x198
-	// Line 4786, Address: 0x297be8, Func Offset: 0x1a8
-	// Line 4787, Address: 0x297bf0, Func Offset: 0x1b0
-	// Line 4790, Address: 0x297bf8, Func Offset: 0x1b8
-	// Line 4791, Address: 0x297bfc, Func Offset: 0x1bc
-	// Func End, Address: 0x297c08, Func Offset: 0x1c8
-	scePrintf("PlayMovieMain - UNIMPLEMENTED!\n");
+    if (MovieInfo.ExecMovieSystemFlag != 0) 
+    {
+        if (OpenDriveTrayFlag != 0) 
+        {
+            PlayStopMovieEx(1);
+            
+            return 3;
+        }
+        
+        if (CheckSoftResetKeyFlag(-1) != 0)
+        {
+            PlayStopMovie();
+            
+            return 3;
+        }
+        
+        mwPlyStartFrame();
+        
+        if (MovieInfo.MovieCancelFlag != 0)
+        {
+            if ((rmi.MVCancelButton & Pad[CurrentPortId].press)) 
+            {
+                if (MovieInfo.MovieFadeFlag == 0) 
+                {
+                    PlayStopMovie();
+                    
+                    return 2;
+                }
+                
+                if (MovieInfo.MovieFadeMode != 1) 
+                {
+                    MovieInfo.MovieFadeMode = 1;
+                    
+                    bhSetScreenFade(0xFF000000, MovieInfo.FrameCnt);
+                }
+            }
+        }
+        
+        if (MovieInfo.MovieFadeMode != 0) 
+        {
+            if (!(sys->cb_flg & 0x2)) 
+            {
+                PlayStopMovie();
+                
+                return 2;
+            }
+            
+            bhControlScreenFade();
+            
+            if (sys->fade_an > 0) 
+            {
+                bhDrawScreenFade();
+            }
+            
+            MovieInfo.Vol -= MovieInfo.VolSpeed;
+            
+            SetMwVolume(MovieInfo.Vol);
+        }
+        
+        if (PlayMwMain() == 0) 
+        {
+            PlayStopMovie();
+            
+            return 1;
+        }
+    }
+    
+    return 0;
 }
 
 // 100% matching!

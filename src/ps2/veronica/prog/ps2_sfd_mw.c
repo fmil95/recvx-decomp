@@ -375,17 +375,18 @@ void mwPlySetFastHalfpel()
 {
 	// Line 662, Address: 0x2d8a20, Func Offset: 0
 	// Func End, Address: 0x2d8a28, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2d8a30
-void mwPlyStartFrame()
+void mwPlyStartFrame(void)
 {
 	// Line 688, Address: 0x2d8a30, Func Offset: 0
 	// Func End, Address: 0x2d8a38, Func Offset: 0x8
+	scePrintf("mwPlyStartFrame - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d8a40
 void mwPlySetDispSize(float sx, float sy)
 {

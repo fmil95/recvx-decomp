@@ -367,7 +367,7 @@ int PlayMwMain2(void(*Func)())
 	// Line 277, Address: 0x290f38, Func Offset: 0x58
 	// Line 278, Address: 0x290f3c, Func Offset: 0x5c
 	// Func End, Address: 0x290f4c, Func Offset: 0x6c
-}
+}*/
 
 // 
 // Start address: 0x290f50
@@ -375,9 +375,10 @@ int PlayMwMain()
 {
 	// Line 282, Address: 0x290f50, Func Offset: 0
 	// Func End, Address: 0x290f58, Func Offset: 0x8
+	scePrintf("PlayMwMain - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x290f60
 void PauseMw()
 {
@@ -391,7 +392,7 @@ void RestartMw()
 {
 	// Line 306, Address: 0x290f80, Func Offset: 0
 	// Func End, Address: 0x290f9c, Func Offset: 0x1c
-}
+}*/
 
 // 
 // Start address: 0x290fa0
@@ -399,9 +400,10 @@ void SetMwVolume(int Volume)
 {
 	// Line 322, Address: 0x290fa4, Func Offset: 0x4
 	// Func End, Address: 0x290fbc, Func Offset: 0x1c
+	scePrintf("SetMwVolume - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x290fc0
 int GetSfdFadeRate()
 {
