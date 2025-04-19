@@ -4878,16 +4878,13 @@ void PlayStopMovie()
 	scePrintf("PlayStopMovie - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2978f0
+// 100% matching!
 int CheckPlayEndMovie()
 {
-	// Line 4651, Address: 0x2978f0, Func Offset: 0
-	// Line 4652, Address: 0x2978f4, Func Offset: 0x4
-	// Func End, Address: 0x2978fc, Func Offset: 0xc
+    return MovieInfo.ExecMovieSystemFlag;
 }
 
-// 
+/*// 
 // Start address: 0x297900
 int GetTimeMoive()
 {
