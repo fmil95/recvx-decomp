@@ -4884,15 +4884,16 @@ int CheckPlayEndMovie()
     return MovieInfo.ExecMovieSystemFlag;
 }
 
-/*// 
-// Start address: 0x297900
+// 100% matching!
 int GetTimeMoive()
 {
-	// Line 4661, Address: 0x297900, Func Offset: 0
-	// Line 4663, Address: 0x297908, Func Offset: 0x8
-	// Line 4667, Address: 0x29792c, Func Offset: 0x2c
-	// Func End, Address: 0x297938, Func Offset: 0x38
-}*/
+    if (MovieInfo.ExecMovieSystemFlag != 0)
+    {
+        return GetMwPlayTimeEx();
+    }
+    
+    return 0;
+}
 
 // 100% matching!
 int WaitPrePlayMovie()

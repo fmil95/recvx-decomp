@@ -222,7 +222,7 @@ void GetMwPlayTime(int* ncount, int* tscale)
 {
 	// Line 107, Address: 0x290a94, Func Offset: 0x4
 	// Func End, Address: 0x290ab0, Func Offset: 0x20
-}
+}*/
 
 // 
 // Start address: 0x290ab0
@@ -237,9 +237,10 @@ int GetMwPlayTimeEx()
 	// Line 116, Address: 0x290ac8, Func Offset: 0x18
 	// Line 117, Address: 0x290b00, Func Offset: 0x50
 	// Func End, Address: 0x290b10, Func Offset: 0x60
+	scePrintf("GetMwPlayTimeEx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x290b10
 void CreateSfdHandle(void* mp, void* pp, char* fname)
 {
