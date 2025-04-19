@@ -6,9 +6,15 @@ void ADXCRS_Init(void)
     adxcrs_lvl = 0;
 }
 
-void ADXCRS_Lock()
+// 100% matching!
+void ADXCRS_Lock(void)
 {
-    scePrintf("ADXCRS_Lock - UNIMPLEMENTED!\n");
+    if (adxcrs_lvl == 0)
+    {
+        ADXPS2_Lock();
+    }
+    
+    adxcrs_lvl++;
 }
 
 void ADXCRS_Unlock()
