@@ -583,55 +583,81 @@ int P32_Image_Load(TIM2_PICTUREHEADER_SMALL* ph, unsigned long image_addr)
 	scePrintf("P32_Image_Load - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2e7890
+#pragma divbyzerocheck on
+
+// 99.91% matching
 int Tim2_Image_Load(TIM2_PICTUREHEADER_SMALL* ph, unsigned long image_addr)
 {
-	int param;
-	int tbw;
-	int i;
-	int l;
-	int n;
-	int h;
-	int w;
-	int psm;
-	//<unknown fundamental type (0xa510)>* p;
-	//<unknown fundamental type (0xa510)>* pImage;
-	int psmtbl[3];
-	// Line 2310, Address: 0x2e7890, Func Offset: 0
-	// Line 2324, Address: 0x2e78c0, Func Offset: 0x30
-	// Line 2327, Address: 0x2e78cc, Func Offset: 0x3c
-	// Line 2331, Address: 0x2e78d0, Func Offset: 0x40
-	// Line 2328, Address: 0x2e78d4, Func Offset: 0x44
-	// Line 2324, Address: 0x2e78d8, Func Offset: 0x48
-	// Line 2331, Address: 0x2e78e4, Func Offset: 0x54
-	// Line 2337, Address: 0x2e78ec, Func Offset: 0x5c
-	// Line 2335, Address: 0x2e78f0, Func Offset: 0x60
-	// Line 2337, Address: 0x2e78f4, Func Offset: 0x64
-	// Line 2338, Address: 0x2e7900, Func Offset: 0x70
-	// Line 2342, Address: 0x2e7910, Func Offset: 0x80
-	// Line 2344, Address: 0x2e7938, Func Offset: 0xa8
-	// Line 2346, Address: 0x2e793c, Func Offset: 0xac
-	// Line 2349, Address: 0x2e7944, Func Offset: 0xb4
-	// Line 2351, Address: 0x2e7948, Func Offset: 0xb8
-	// Line 2354, Address: 0x2e7950, Func Offset: 0xc0
-	// Line 2355, Address: 0x2e7954, Func Offset: 0xc4
-	// Line 2359, Address: 0x2e7958, Func Offset: 0xc8
-	// Line 2360, Address: 0x2e7970, Func Offset: 0xe0
-	// Line 2361, Address: 0x2e7988, Func Offset: 0xf8
-	// Line 2363, Address: 0x2e7994, Func Offset: 0x104
-	// Line 2365, Address: 0x2e799c, Func Offset: 0x10c
-	// Line 2366, Address: 0x2e79ac, Func Offset: 0x11c
-	// Line 2375, Address: 0x2e79b0, Func Offset: 0x120
-	// Line 2376, Address: 0x2e79ec, Func Offset: 0x15c
-	// Line 2377, Address: 0x2e79fc, Func Offset: 0x16c
-	// Line 2381, Address: 0x2e7a04, Func Offset: 0x174
-	// Line 2384, Address: 0x2e7a2c, Func Offset: 0x19c
-	// Line 2383, Address: 0x2e7a54, Func Offset: 0x1c4
-	// Line 2384, Address: 0x2e7a58, Func Offset: 0x1c8
-	// Func End, Address: 0x2e7a60, Func Offset: 0x1d0
-	scePrintf("Tim2_Image_Load - UNIMPLEMENTED!\n");
+    static int psmtbl[3] = { SCE_GS_PSMCT32, SCE_GS_PSMT4, SCE_GS_PSMT8 };
+    u_long128* pImage;   
+    u_long128* p;        
+    int psm;              
+    int w;             
+    int h;                
+    int n;                
+    int l;                
+    int i;               
+    int tbw;           
+    int param;            
+  
+    psm = psmtbl[ph->ImageType - 3];
+
+    w = ph->ImageWidth;
+    h = ph->ImageHeight;
+    
+    tbw = (w + 63) / 64;
+
+    pImage = (u_long128*)((char*)ph + ph->HeaderSize);
+    
+    if (((psm == SCE_GS_PSMT8) || (psm == SCE_GS_PSMT4)) && ((tbw & 0x1))) 
+    {
+        tbw++;
+    }
+    
+    switch (psm) 
+    {                         
+    case SCE_GS_PSMCT32:
+        param = 2;
+        
+        n = w * 4;
+        break;
+    case SCE_GS_PSMT8:
+        param = 4;
+        
+        n = w;
+        break;
+    case SCE_GS_PSMT4:
+        param = 5;
+        
+        n = w / 2;
+        break;
+    }
+    
+    if (ph->ImageSize > (32764 * 16)) 
+    {
+        l = (32764 * 16) / n;
+        
+        for (i = 0; i < h; i += l) 
+        {
+            p = (u_long128*)((char*)pImage + (n * i)); 
+            
+            if ((i + l) > h) 
+            {
+                l = h - i;
+            }
+            
+            LoadToVram(image_addr, p, tbw, psm, i, w, l, (psm == SCE_GS_PSMCT32) ? ((w * l) << 2) >> 4 : (w * l) >> param);
+        } 
+    } 
+    else 
+    {
+        LoadToVram(image_addr, pImage, tbw, psm, 0, w, h, (w * h) >> param);
+    }
+    
+    return 0;
 }
+
+#pragma divbyzerocheck off
 
 // 100% matching!
 void Ps2PxlconvCheck(void* timadr)
