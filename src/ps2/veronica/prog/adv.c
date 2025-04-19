@@ -2964,23 +2964,33 @@ int CheckConnectVmDrive(int param, int SlotNo) // first parameter is not present
     return -1;
 } 
 
-/*// 
-// Start address: 0x2c23d0
-int FindFirstVmDrive()
-{
-	int DriveNo;
-	int j;
-	// Line 1679, Address: 0x2c23d0, Func Offset: 0
-	// Line 1686, Address: 0x2c23dc, Func Offset: 0xc
-	// Line 1688, Address: 0x2c23e0, Func Offset: 0x10
-	// Line 1690, Address: 0x2c23f4, Func Offset: 0x24
-	// Line 1692, Address: 0x2c23fc, Func Offset: 0x2c
-	// Line 1693, Address: 0x2c240c, Func Offset: 0x3c
-	// Line 1722, Address: 0x2c2410, Func Offset: 0x40
-	// Func End, Address: 0x2c2420, Func Offset: 0x50
+// 100% matching!
+int FindFirstVmDrive() 
+{ 
+    int j;
+    int DriveNo;
+
+    for (j = 1; ; ) 
+    { 
+        DriveNo = CheckConnectVmDrive(0, j); 
+        
+        if (DriveNo >= 0) 
+        { 
+            return DriveNo;
+        } 
+        
+        j++;
+        
+        if (j >= 3) 
+        {
+            break;
+        }
+    }
+        
+    return -1; 
 }
 
-// 
+/*// 
 // Start address: 0x2c2420
 float AdvEasyDispMessage(float PosX, float PosY, unsigned int MessageNo)
 {
