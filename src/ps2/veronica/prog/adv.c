@@ -2990,61 +2990,94 @@ int FindFirstVmDrive()
     return -1; 
 }
 
-/*// 
-// Start address: 0x2c2420
+// 100% matching! 
 float AdvEasyDispMessage(float PosX, float PosY, unsigned int MessageNo)
-{
-	float SizeX;
-	int SearchFlag;
-	int LoopFlag;
-	float sy;
-	float sx;
-	int y;
-	int x;
-	unsigned short* nmp;
-	unsigned short* mp;
-	unsigned char* dmp;
-	unsigned char* smp;
-	// Line 1854, Address: 0x2c2420, Func Offset: 0
-	// Line 1865, Address: 0x2c2444, Func Offset: 0x24
-	// Line 1854, Address: 0x2c2450, Func Offset: 0x30
-	// Line 1865, Address: 0x2c2454, Func Offset: 0x34
-	// Line 1860, Address: 0x2c245c, Func Offset: 0x3c
-	// Line 1865, Address: 0x2c2460, Func Offset: 0x40
-	// Line 1866, Address: 0x2c246c, Func Offset: 0x4c
-	// Line 1867, Address: 0x2c247c, Func Offset: 0x5c
-	// Line 1869, Address: 0x2c248c, Func Offset: 0x6c
-	// Line 1870, Address: 0x2c2490, Func Offset: 0x70
-	// Line 1871, Address: 0x2c2494, Func Offset: 0x74
-	// Line 1874, Address: 0x2c2498, Func Offset: 0x78
-	// Line 1895, Address: 0x2c24a8, Func Offset: 0x88
-	// Line 1886, Address: 0x2c24b0, Func Offset: 0x90
-	// Line 1875, Address: 0x2c24b8, Func Offset: 0x98
-	// Line 1877, Address: 0x2c24e8, Func Offset: 0xc8
-	// Line 1879, Address: 0x2c24ec, Func Offset: 0xcc
-	// Line 1882, Address: 0x2c24f4, Func Offset: 0xd4
-	// Line 1881, Address: 0x2c24f8, Func Offset: 0xd8
-	// Line 1884, Address: 0x2c24fc, Func Offset: 0xdc
-	// Line 1886, Address: 0x2c2504, Func Offset: 0xe4
-	// Line 1887, Address: 0x2c2508, Func Offset: 0xe8
-	// Line 1895, Address: 0x2c2510, Func Offset: 0xf0
-	// Line 1899, Address: 0x2c2554, Func Offset: 0x134
-	// Line 1901, Address: 0x2c255c, Func Offset: 0x13c
-	// Line 1902, Address: 0x2c2574, Func Offset: 0x154
-	// Line 1903, Address: 0x2c2594, Func Offset: 0x174
-	// Line 1904, Address: 0x2c2598, Func Offset: 0x178
-	// Line 1905, Address: 0x2c25a0, Func Offset: 0x180
-	// Line 1904, Address: 0x2c25b4, Func Offset: 0x194
-	// Line 1905, Address: 0x2c25c0, Func Offset: 0x1a0
-	// Line 1906, Address: 0x2c25d0, Func Offset: 0x1b0
-	// Line 1907, Address: 0x2c25d8, Func Offset: 0x1b8
-	// Line 1906, Address: 0x2c25dc, Func Offset: 0x1bc
-	// Line 1909, Address: 0x2c25e0, Func Offset: 0x1c0
-	// Line 1911, Address: 0x2c25e8, Func Offset: 0x1c8
-	// Line 1913, Address: 0x2c25f0, Func Offset: 0x1d0
-	// Line 1917, Address: 0x2c2624, Func Offset: 0x204
-	// Func End, Address: 0x2c2650, Func Offset: 0x230
-}*/
+{ 
+    unsigned char* dmp;
+    unsigned char* smp;
+    unsigned short* mp;
+    unsigned short* nmp;
+    unsigned int* temp; // not from the debugging symbols
+    int x;
+    int y;
+    int LoopFlag = 1;
+    int SearchFlag;
+    float sx;
+    float SizeX;
+    float sy;
+    ADV_WORK* temp2; // not from the debugging symbols
+
+    sy = PosY;
+
+    temp2 = (ADV_WORK*)&AdvWork; 
+
+    smp = (unsigned char*)((int)temp2->MsgPtr + ((int*)temp2->MsgPtr)[MessageNo + 1]); 
+    
+    dmp = syMalloc(1024); 
+    
+    memcpy(dmp, smp, 1024); 
+
+    nmp = (unsigned short*)dmp; 
+
+    y = 0; 
+
+    sx = PosX;
+    
+    for ( ; LoopFlag != 0; y++)
+    { 
+        SizeX = 0; 
+        
+        SearchFlag = 1;
+        
+        for (x = 0; SearchFlag != 0; x++) 
+        { 
+            switch (nmp[x]) 
+            { 
+            case 65535:
+                LoopFlag = 0; 
+                SearchFlag = 0;
+                break; 
+            case 65280:
+                nmp[x] = 65535; 
+                
+                temp = (unsigned int*)(&nmp[x] + 1); 
+                
+                SearchFlag = 0; 
+                break; 
+            case 65281:
+                SizeX += 14.0f; 
+                break; 
+            default: 
+                SizeX += FontSz[nmp[x]]; 
+                break; 
+            } 
+        } 
+
+        if (PosX < 0) 
+        { 
+            sx = 320.0f - (SizeX / 2.0f); 
+        } 
+        
+        sys->mes_tp = nmp; 
+        
+        bhDispMessage(sx, sy, -1.0f, 2, 0, 0, 0);    
+        
+        sy += 30.0f;
+        
+        nmp = (unsigned short*)temp; 
+    } 
+    
+    syFree(dmp); 
+
+    if (PosX < 0) 
+    {
+        return y * 30; 
+    } 
+    else 
+    {
+        return SizeX;
+    }
+} 
 
 // 100% matching! 
 float AutoSaveLoadEasyDispMessage(float PosX, float PosY, unsigned char* ucpMsbTop, unsigned int MessageNo)
