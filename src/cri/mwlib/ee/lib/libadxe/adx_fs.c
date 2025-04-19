@@ -1,3 +1,6 @@
+ADXF adxf_ldptnw_hn;
+Sint32 adxf_ldptnw_ptid;
+
 void adxf_SetCmdHstry(Sint32 arg0, Sint32 arg1, Sint32 ptid, Sint32 flid, Sint32 arg4);
 
 // ADXF_AddPartition
@@ -11,7 +14,12 @@ void ADXF_Close(ADXF adxf)
 }
 
 // ADXF_CloseAll
-// adxf_CloseLdptnwHn
+
+void adxf_CloseLdptnwHn()
+{
+    scePrintf("adxf_CloseLdptnwHn - UNIMPLEMENTED!\n");
+}
+
 // adxf_CloseSjStm
 
 ADXF adxf_CreateAdxFs()
@@ -117,7 +125,19 @@ Sint32 ADXF_Stop(ADXF adxf)
     scePrintf("ADXF_Stop - UNIMPLEMENTED!\n");
 }
 
-// ADXF_StopPtLd
+// 100% matching!
+void ADXF_StopPtLd(void)
+{
+    if ((adxf_ldptnw_hn != NULL) && (adxf_ldptnw_ptid >= 0)) 
+    {
+        if (ADXF_GetStat(adxf_ldptnw_hn) != ADXF_STAT_STOP) 
+        {
+            ADXF_Stop(adxf_ldptnw_hn);
+        }
+        
+        adxf_CloseLdptnwHn();
+    }
+}
 
 // 100% matching!
 Sint32 ADXF_Tell(ADXF adxf)
