@@ -340,17 +340,18 @@ void StopMw()
 	// Line 251, Address: 0x290eac, Func Offset: 0x7c
 	// Line 253, Address: 0x290eb4, Func Offset: 0x84
 	// Func End, Address: 0x290ec0, Func Offset: 0x90
-}
+}*/
 
 // 
 // Start address: 0x290ec0
-_mwe_ply_stat GetMwStatus()
+MWE_PLY_STAT GetMwStatus()
 {
 	// Line 257, Address: 0x290ec0, Func Offset: 0
 	// Func End, Address: 0x290ed8, Func Offset: 0x18
+	scePrintf("GetMwStatus - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x290ee0
 int PlayMwMain2(void(*Func)())
 {
@@ -384,7 +385,7 @@ void PauseMw()
 {
 	// Line 288, Address: 0x290f60, Func Offset: 0
 	// Func End, Address: 0x290f7c, Func Offset: 0x1c
-}
+}*/
 
 // 
 // Start address: 0x290f80
@@ -392,7 +393,8 @@ void RestartMw()
 {
 	// Line 306, Address: 0x290f80, Func Offset: 0
 	// Func End, Address: 0x290f9c, Func Offset: 0x1c
-}*/
+	scePrintf("RestartMw - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x290fa0

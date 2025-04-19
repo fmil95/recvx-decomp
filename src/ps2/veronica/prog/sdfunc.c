@@ -4897,31 +4897,45 @@ int GetTimeMoive()
 	// Func End, Address: 0x297938, Func Offset: 0x38
 }*/
 
-// 
-// Start address: 0x297940
+// 100% matching!
 int WaitPrePlayMovie()
 {
-	// Line 4678, Address: 0x297940, Func Offset: 0
-	// Line 4679, Address: 0x297948, Func Offset: 0x8
-	// Line 4680, Address: 0x297958, Func Offset: 0x18
-	// Line 4681, Address: 0x297968, Func Offset: 0x28
-	// Line 4682, Address: 0x297970, Func Offset: 0x30
-	// Line 4684, Address: 0x297978, Func Offset: 0x38
-	// Line 4685, Address: 0x29798c, Func Offset: 0x4c
-	// Line 4686, Address: 0x297994, Func Offset: 0x54
-	// Line 4688, Address: 0x29799c, Func Offset: 0x5c
-	// Line 4691, Address: 0x2979ac, Func Offset: 0x6c
-	// Line 4693, Address: 0x2979e4, Func Offset: 0xa4
-	// Line 4694, Address: 0x2979ec, Func Offset: 0xac
-	// Line 4703, Address: 0x2979f4, Func Offset: 0xb4
-	// Line 4704, Address: 0x2979fc, Func Offset: 0xbc
-	// Line 4708, Address: 0x297a10, Func Offset: 0xd0
-	// Line 4709, Address: 0x297a18, Func Offset: 0xd8
-	// Line 4712, Address: 0x297a20, Func Offset: 0xe0
-	// Line 4715, Address: 0x297a2c, Func Offset: 0xec
-	// Line 4716, Address: 0x297a30, Func Offset: 0xf0
-	// Func End, Address: 0x297a3c, Func Offset: 0xfc
-	scePrintf("WaitPrePlayMovie - UNIMPLEMENTED!\n");
+    if (MovieInfo.ExecMovieSystemFlag != 0)
+    {
+        if (OpenDriveTrayFlag != 0) 
+        {
+            PlayStopMovieEx(1);
+            
+            return 3;
+        }
+        
+        if (CheckSoftResetKeyFlag(-1) != 0)
+        {
+            PlayStopMovie();
+            
+            return 3;
+        }
+        
+        if ((MovieInfo.MovieCancelFlag != 0) && ((rmi.MVCancelButton & Pad[CurrentPortId].press))) 
+        {
+            PlayStopMovie();
+            
+            return 2;
+        }
+        
+        PlayMwMain();
+        
+        if (GetMwStatus() == MWE_PLY_STAT_PLAYING) 
+        {
+            RestartMw();
+            
+            return 0;
+        }
+        
+        return 1;
+    }
+    
+    return 0;
 }
 
 // 100% matching!
