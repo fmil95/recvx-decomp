@@ -118,7 +118,19 @@ Sint32 ADXF_Stop(ADXF adxf)
 }
 
 // ADXF_StopPtLd
-// ADXF_Tell
+
+// 100% matching!
+Sint32 ADXF_Tell(ADXF adxf)
+{
+    if (adxf == NULL) 
+    {
+        ADXERR_CallErrFunc1("E9040827:'adxf' is NULL.(ADXF_Tell)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    return adxf->skpos;
+}
 
 // 100% matching!
 void adxf_wait_1ms(void) 
