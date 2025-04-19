@@ -119,4 +119,11 @@ Sint32 ADXF_Stop(ADXF adxf)
 
 // ADXF_StopPtLd
 // ADXF_Tell
-// adxf_wait_1ms
+
+// 100% matching!
+void adxf_wait_1ms(void) 
+{
+    Sint32 i;
+
+    for (i = 50000; i != 0; i--);
+}
