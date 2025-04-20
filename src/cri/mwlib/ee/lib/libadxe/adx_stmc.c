@@ -26,7 +26,12 @@ Sint32 ADXSTM_GetFileLen(Sint32 fid)
 // ADXSTM_GetStat
 // ADXSTM_Init
 // ADXSTM_OpenFileRange
-// ADXSTM_OpenFileRangeEx
+
+ADXSTM ADXSTM_OpenFileRangeEx(Char8* fname, Sint32* dir, Sint32 ofst, Sint32 fnsct, Sint32 arg4)
+{
+    scePrintf("ADXSTM_OpenFileRangeEx - UNIMPLEMENTED!\n");
+}
+
 // ADXSTM_OpenFileRangeExRt
 // ADXSTM_OpenFname
 

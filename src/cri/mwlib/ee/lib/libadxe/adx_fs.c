@@ -37,7 +37,11 @@ ADXF adxf_CreateAdxFs()
 // adxf_ExecOne
 // ADXF_ExecServer
 // ADXF_GetFnameRange
-// ADXF_GetFnameRangeEx
+
+Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, Sint32 *ofst, Sint32 *fnsct)
+{
+    scePrintf("ADXF_GetFnameRangeEx - UNIMPLEMENTED!\n");
+}
 
 Sint32 ADXF_GetFsizeByte(ADXF adxf)
 {
@@ -169,9 +173,35 @@ Sint32 ADXF_ReadSj32(ADXF adxf, Sint32 nsct, SJ sj)
 
 // ADXF_Seek
 
+// 100% matching!
 Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
 {
-    scePrintf("adxf_SetAfsFileInfo - UNIMPLEMENTED!\n");
+    Char8 fname[256];
+    void *dir;
+    Sint32 ofst;
+    Sint32 fnsct;
+
+    if (ADXF_GetFnameRangeEx(ptid, flid, fname, (void**)&dir, &ofst, &fnsct) < 0) 
+    {
+        return ADXF_ERR_PRM;
+    }
+    
+    adxf->ofst = ofst;
+    
+    adxf->stm = ADXSTM_OpenFileRangeEx(fname, dir, ofst, fnsct, 0);
+    
+    if (adxf->stm == NULL) 
+    {
+        ADXERR_CallErrFunc1("E0110902:can't open file.(ADXF_OpenAfs)");
+        
+        return ADXF_ERR_FATAL;
+    }
+    
+    adxf->fnsct = fnsct;
+    
+    adxf->fsize = fnsct * ADXF_DEF_SCT_SIZE;
+    
+    return ADXF_ERR_OK;
 }
 
 // 100% matching!
