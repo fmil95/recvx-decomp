@@ -14,7 +14,12 @@ Sint32 ADXSTM_GetCurOfst(ADXSTM adxstm, Sint32* arg1)
 
 // ADXSTM_GetCvdfsStat
 // ADXSTM_GetFad
-// ADXSTM_GetFileLen
+
+Sint32 ADXSTM_GetFileLen(Sint32 fid)
+{
+    scePrintf("ADXSTM_GetFileLen - UNIMPLEMENTED!\n");
+}
+
 // ADXSTM_GetFsizeByte
 // ADXSTM_GetFsizeSct
 // ADXSTM_GetSj
@@ -24,7 +29,12 @@ Sint32 ADXSTM_GetCurOfst(ADXSTM adxstm, Sint32* arg1)
 // ADXSTM_OpenFileRangeEx
 // ADXSTM_OpenFileRangeExRt
 // ADXSTM_OpenFname
-// ADXSTM_OpenFnameEx
+
+Sint32 ADXSTM_OpenFnameEx(Sint32 arg0, Sint32 arg1, Sint32 arg2)
+{
+    scePrintf("ADXSTM_OpenFnameEx - UNIMPLEMENTED!\n");
+}
+
 // ADXSTM_Reset
 // ADXSTM_Seek
 // ADXSTM_SetBufSize

@@ -120,7 +120,41 @@ void adxf_SetCmdHstry(Sint32 arg0, Sint32 arg1, Sint32 ptid, Sint32 flid, Sint32
     scePrintf("adxf_SetCmdHstry - UNIMPLEMENTED!\n");
 }
 
-// adxf_SetFileInfoEx
+// 100% matching!
+Sint32 adxf_SetFileInfoEx(ADXF_ROFS rofs, Sint32 arg1, Sint32 arg2) 
+{
+    Sint32 file_id;
+    Sint32 file_size;
+    Char8 sp[24]; 
+
+    if (arg1 == 0)
+    {
+        ADXERR_CallErrFunc1("E9081901:illigal parameter fname=null.(ADXF_Open)");
+        
+        return ADXF_ERR_FATAL;
+    }
+    
+    sp[0] = 0;
+    
+    file_id = ADXSTM_OpenFnameEx(arg1, arg2, 0);
+    
+    if (file_id == 0)
+    {
+        ADXERR_CallErrFunc1("E0110901:can't open file.(ADXF_Open)");
+        
+        return ADXF_ERR_FATAL;
+    }
+    
+    rofs->fid = file_id;
+    
+    file_size = ADXSTM_GetFileLen(file_id);
+
+    rofs->ofs = (file_size + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE; 
+
+    rofs->fsize = file_size;
+    
+    return ADXF_ERR_OK;
+}
 
 // 100% matching!
 void ADXF_SetOcbiSw(Sint32 arg0) 
