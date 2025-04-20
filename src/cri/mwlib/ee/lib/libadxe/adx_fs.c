@@ -102,7 +102,10 @@ ADXF ADXF_OpenAfs(Sint32 ptid, Sint32 flid)
     return adxf;
 }
 
-// adxf_read_sj32
+Sint32 adxf_read_sj32(ADXF adxf, Sint32 nsct, SJ sj)
+{
+    scePrintf("adxf_read_sj32 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 Sint32 ADXF_ReadNw(ADXF adxf, Sint32 nsct, void *buf)
@@ -122,7 +125,48 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
     scePrintf("ADXF_ReadNw32 - UNIMPLEMENTED!\n");
 }
 
-// ADXF_ReadSj32
+// 100% matching!
+Sint32 ADXF_ReadSj32(ADXF adxf, Sint32 nsct, SJ sj)
+{
+    Sint32 sctrs_to_rd;
+
+    if (adxf == NULL) 
+    {
+        ADXERR_CallErrFunc1("E9040811:'adxf' is NULL.(ADXF_ReadSj32)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    if (nsct < 0) 
+    {
+        ADXERR_CallErrFunc1("E9040812:'nsct'is negative.(ADXF_ReadSj32)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    if (sj == NULL)
+    {
+        ADXERR_CallErrFunc1("E9040813:'sj'is NULL.(ADXF_ReadSj32)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    if (adxf->stat == ADXF_STAT_READING)
+    {
+        return ADXF_ERR_OK;
+    }
+
+    ADXCRS_Lock();
+    
+    sctrs_to_rd = adxf_read_sj32(adxf, nsct, sj);
+    
+    adxf->sjflag = 1;
+    
+    ADXCRS_Unlock();
+    
+    return sctrs_to_rd;
+}
+
 // ADXF_Seek
 
 Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
