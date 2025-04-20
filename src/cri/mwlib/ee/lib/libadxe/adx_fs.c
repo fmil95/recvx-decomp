@@ -5,7 +5,7 @@ Sint32 adxf_ocbi_fg;
 ADXF adxf_ldptnw_hn;
 Sint32 adxf_ldptnw_ptid;
 
-void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 arg4);
+void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 type);
 
 // ADXF_AddPartition
 // adxf_AllocAdxFs
@@ -128,7 +128,7 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
 // 100% matching!
 Sint32 ADXF_ReadSj32(ADXF adxf, Sint32 nsct, SJ sj)
 {
-    Sint32 sctrs_to_rd;
+    Sint32 rdsct;
 
     if (adxf == NULL) 
     {
@@ -158,13 +158,13 @@ Sint32 ADXF_ReadSj32(ADXF adxf, Sint32 nsct, SJ sj)
 
     ADXCRS_Lock();
     
-    sctrs_to_rd = adxf_read_sj32(adxf, nsct, sj);
+    rdsct = adxf_read_sj32(adxf, nsct, sj);
     
     adxf->sjflag = 1;
     
     ADXCRS_Unlock();
     
-    return sctrs_to_rd;
+    return rdsct;
 }
 
 // ADXF_Seek
@@ -175,13 +175,13 @@ Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
 }
 
 // 100% matching!
-void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 arg4)
+void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 type)
 {
-    ADXF_CMD_HSTRY* pCmdHstry;
+    ADXF_CMD_HSTRY* cmd_hstry;
 
     adxf_hstry_no %= 256;
     
-    pCmdHstry = &adxf_cmd_hstry[adxf_hstry_no];
+    cmd_hstry = &adxf_cmd_hstry[adxf_hstry_no];
    
     if (fg == 0) 
     {
@@ -190,57 +190,57 @@ void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 
     
     adxf_hstry_no++;
     
-    pCmdHstry->cmdid = ncall;
+    cmd_hstry->cmdid = ncall;
     
-    pCmdHstry->fg = fg;
+    cmd_hstry->fg = fg;
     
-    pCmdHstry->ncall = adxf_cmd_ncall[ncall];
+    cmd_hstry->ncall = adxf_cmd_ncall[ncall];
     
-    pCmdHstry->prm[0] = ptid;
-    pCmdHstry->prm[1] = flid;
-    pCmdHstry->prm[2] = arg4;
+    cmd_hstry->prm[0] = ptid;
+    cmd_hstry->prm[1] = flid;
+    cmd_hstry->prm[2] = type;
 }
 
 // 100% matching!
-Sint32 adxf_SetFileInfoEx(ADXF_ROFS rofs, Sint32 arg1, Sint32 arg2) 
+Sint32 adxf_SetFileInfoEx(ADXF_ROFS rofs, Char8* fname, Sint32 arg2) 
 {
-    Sint32 file_id;
-    Sint32 file_size;
-    Char8 sp[24]; 
+    Sint32 fid;
+    Sint32 fsize;
+    Char8 dirname[24]; 
 
-    if (arg1 == 0)
+    if (fname == NULL)
     {
         ADXERR_CallErrFunc1("E9081901:illigal parameter fname=null.(ADXF_Open)");
         
         return ADXF_ERR_FATAL;
     }
     
-    sp[0] = 0;
+    dirname[0] = '\0';
     
-    file_id = ADXSTM_OpenFnameEx(arg1, arg2, 0);
+    fid = ADXSTM_OpenFnameEx(fname, arg2, 0);
     
-    if (file_id == 0)
+    if (fid == 0)
     {
         ADXERR_CallErrFunc1("E0110901:can't open file.(ADXF_Open)");
         
         return ADXF_ERR_FATAL;
     }
     
-    rofs->fid = file_id;
+    rofs->fid = fid;
     
-    file_size = ADXSTM_GetFileLen(file_id);
+    fsize = ADXSTM_GetFileLen(fid);
 
-    rofs->ofs = (file_size + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE; 
+    rofs->ofs = (fsize + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE; 
 
-    rofs->fsize = file_size;
+    rofs->fsize = fsize;
     
     return ADXF_ERR_OK;
 }
 
 // 100% matching!
-void ADXF_SetOcbiSw(Sint32 arg0) 
+void ADXF_SetOcbiSw(Sint32 fg) 
 {
-    adxf_ocbi_fg = arg0;
+    adxf_ocbi_fg = fg;
 }
 
 // 100% matching!
@@ -259,7 +259,7 @@ void ADXF_SetReqRdSct(ADXF adxf, Sint32 nsct)
 // 100% matching!
 Sint32 ADXF_Stop(ADXF adxf)
 {
-    Sint32 sp;
+    Sint32 nsct;
     
     adxf_SetCmdHstry(5, 0, (Sint32)adxf, -1, -1);
     
@@ -289,9 +289,9 @@ Sint32 ADXF_Stop(ADXF adxf)
             
             ADXSTM_Stop(adxf->stm);
             
-            ADXSTM_GetCurOfst(adxf->stm, &sp);
+            ADXSTM_GetCurOfst(adxf->stm, &nsct);
             
-            adxf->rdsct = sp;
+            adxf->rdsct = nsct;
             
             adxf_CloseSjStm(adxf);
             

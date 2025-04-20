@@ -7,7 +7,7 @@ Sint32 adxstmf_num_rtry;
 // ADXSTM_Finish
 // ADXSTM_GetBufSize
 
-Sint32 ADXSTM_GetCurOfst(ADXSTM adxstm, Sint32* arg1)
+Sint32 ADXSTM_GetCurOfst(ADXSTM adxstm, Sint32* nsct)
 {
     scePrintf("ADXSTM_GetCurOfst - UNIMPLEMENTED!\n");
 }
@@ -30,7 +30,7 @@ Sint32 ADXSTM_GetFileLen(Sint32 fid)
 // ADXSTM_OpenFileRangeExRt
 // ADXSTM_OpenFname
 
-Sint32 ADXSTM_OpenFnameEx(Sint32 arg0, Sint32 arg1, Sint32 arg2)
+Sint32 ADXSTM_OpenFnameEx(Char8* fname, Sint32 arg1, Sint32 arg2)
 {
     scePrintf("ADXSTM_OpenFnameEx - UNIMPLEMENTED!\n");
 }
