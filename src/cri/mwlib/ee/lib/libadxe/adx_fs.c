@@ -157,5 +157,5 @@ void adxf_wait_1ms(void)
 {
     Sint32 i;
 
-    for (i = 50000; i != 0; i--);
+    for (i = 0; i < 50000; i++);
 }
