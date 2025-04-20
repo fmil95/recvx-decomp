@@ -21,7 +21,10 @@ void adxf_CloseLdptnwHn()
     scePrintf("adxf_CloseLdptnwHn - UNIMPLEMENTED!\n");
 }
 
-// adxf_CloseSjStm
+void adxf_CloseSjStm(ADXF adxf)
+{
+    scePrintf("adxf_CloseSjStm - UNIMPLEMENTED!\n");
+}
 
 ADXF adxf_CreateAdxFs()
 {
@@ -63,7 +66,7 @@ Sint32 ADXF_GetStat(ADXF adxf)
 
 Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
 {
-    scePrintf("ADXF_OpenAfs - UNIMPLEMENTED!\n");
+    scePrintf("ADXF_LoadPartitionNw - UNIMPLEMENTED!\n");
 }
 
 ADXF ADXF_Open(Char8 *fname, void *atr)
@@ -138,9 +141,54 @@ void ADXF_SetReqRdSct(ADXF adxf, Sint32 nsct)
     }
 }
 
+// 100% matching!
 Sint32 ADXF_Stop(ADXF adxf)
 {
-    scePrintf("ADXF_Stop - UNIMPLEMENTED!\n");
+    Sint32 sp;
+    
+    adxf_SetCmdHstry(5, 0, (Sint32)adxf, -1, -1);
+    
+    if (adxf == NULL)
+    {
+        ADXERR_CallErrFunc1("E9040822:'adxf' is NULL.(ADXF_Stop)");
+        
+        return ADXF_ERR_PRM;
+    } 
+    else 
+    {
+        switch (adxf->stat) 
+        {                         
+        case 3:
+            adxf->stat = ADXF_STAT_STOP;
+        case 1:
+            return adxf->skpos;
+        default:
+            if (adxf->stm == NULL) 
+            {
+                ADXERR_CallErrFunc1("E9040823:'adxf->stm' is NULL.(ADXF_Stop)");
+                
+                return ADXF_ERR_FATAL;
+            }
+            
+            ADXCRS_Lock();
+            
+            ADXSTM_Stop(adxf->stm);
+            
+            ADXSTM_GetCurOfst(adxf->stm, &sp);
+            
+            adxf->rdsct = sp;
+            
+            adxf_CloseSjStm(adxf);
+            
+            adxf->stat = ADXF_STAT_STOP;
+            
+            ADXCRS_Unlock();
+            
+            adxf_SetCmdHstry(5, 1, (Sint32)adxf, -1, -1);
+            
+            return adxf->skpos;
+        }
+    }
 }
 
 // 100% matching!

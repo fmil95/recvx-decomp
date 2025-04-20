@@ -6,7 +6,12 @@ Sint32 adxstmf_num_rtry;
 // ADXSTM_ExecServer
 // ADXSTM_Finish
 // ADXSTM_GetBufSize
-// ADXSTM_GetCurOfst
+
+Sint32 ADXSTM_GetCurOfst(ADXSTM adxstm, Sint32* arg1)
+{
+    scePrintf("ADXSTM_GetCurOfst - UNIMPLEMENTED!\n");
+}
+
 // ADXSTM_GetCvdfsStat
 // ADXSTM_GetFad
 // ADXSTM_GetFileLen
@@ -30,7 +35,12 @@ Sint32 adxstmf_num_rtry;
 // ADXSTM_SetSj
 // adxstm_sj_internal_error
 // ADXSTM_Start
-// ADXSTM_Stop
+
+void ADXSTM_Stop(ADXSTM adxstm)
+{
+    scePrintf("ADXSTM_Stop - UNIMPLEMENTED!\n");
+}
+
 // ADXSTM_Tell
 // ADXSTMF_CreateCvfs
 // ADXSTMF_CreateCvfsRt
