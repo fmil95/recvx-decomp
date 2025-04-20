@@ -103,7 +103,19 @@ ADXF ADXF_OpenAfs(Sint32 ptid, Sint32 flid)
 }
 
 // adxf_read_sj32
-// ADXF_ReadNw
+
+// 100% matching!
+Sint32 ADXF_ReadNw(ADXF adxf, Sint32 nsct, void *buf)
+{
+    if (((Sint32)buf & 0x3F)) 
+    {
+        ADXERR_CallErrFunc1("E0120401:'buf' isn't 64byte alignment.(ADXF_ReadNw)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    return ADXF_ReadNw32(adxf, nsct, buf);
+}
 
 Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
 {
