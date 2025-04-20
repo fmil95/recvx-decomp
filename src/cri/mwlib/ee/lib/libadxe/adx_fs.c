@@ -1,8 +1,11 @@
+ADXF_CMD_HSTRY adxf_cmd_hstry[1];
+Sint16 adxf_cmd_ncall[1];
+Sint32 adxf_hstry_no;
 Sint32 adxf_ocbi_fg;
 ADXF adxf_ldptnw_hn;
 Sint32 adxf_ldptnw_ptid;
 
-void adxf_SetCmdHstry(Sint32 arg0, Sint32 arg1, Sint32 ptid, Sint32 flid, Sint32 arg4);
+void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 arg4);
 
 // ADXF_AddPartition
 // adxf_AllocAdxFs
@@ -115,9 +118,31 @@ Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
     scePrintf("adxf_SetAfsFileInfo - UNIMPLEMENTED!\n");
 }
 
-void adxf_SetCmdHstry(Sint32 arg0, Sint32 arg1, Sint32 ptid, Sint32 flid, Sint32 arg4)
+// 100% matching!
+void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 arg4)
 {
-    scePrintf("adxf_SetCmdHstry - UNIMPLEMENTED!\n");
+    ADXF_CMD_HSTRY* pCmdHstry;
+
+    adxf_hstry_no %= 256;
+    
+    pCmdHstry = &adxf_cmd_hstry[adxf_hstry_no];
+   
+    if (fg == 0) 
+    {
+        adxf_cmd_ncall[ncall]++;
+    }
+    
+    adxf_hstry_no++;
+    
+    pCmdHstry->cmdid = ncall;
+    
+    pCmdHstry->fg = fg;
+    
+    pCmdHstry->ncall = adxf_cmd_ncall[ncall];
+    
+    pCmdHstry->prm[0] = ptid;
+    pCmdHstry->prm[1] = flid;
+    pCmdHstry->prm[2] = arg4;
 }
 
 // 100% matching!
