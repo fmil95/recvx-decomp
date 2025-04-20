@@ -125,7 +125,18 @@ void ADXF_SetOcbiSw(Sint32 arg0)
     adxf_ocbi_fg = arg0;
 }
 
-// ADXF_SetReqRdSct
+// 100% matching!
+void ADXF_SetReqRdSct(ADXF adxf, Sint32 nsct)
+{
+    if (adxf->stat == ADXF_STAT_READING) 
+    {
+        ADXERR_CallErrFunc1("E0041201:state is reading(ADXF_SetReqRdSct)");
+    }
+    else 
+    {
+        adxf->rqrdsct = nsct;
+    }
+}
 
 Sint32 ADXF_Stop(ADXF adxf)
 {
