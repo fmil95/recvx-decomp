@@ -1,3 +1,4 @@
+Sint32 adxf_ocbi_fg;
 ADXF adxf_ldptnw_hn;
 Sint32 adxf_ldptnw_ptid;
 
@@ -117,7 +118,13 @@ void adxf_SetCmdHstry(Sint32 arg0, Sint32 arg1, Sint32 ptid, Sint32 flid, Sint32
 }
 
 // adxf_SetFileInfoEx
-// ADXF_SetOcbiSw
+
+// 100% matching!
+void ADXF_SetOcbiSw(Sint32 arg0) 
+{
+    adxf_ocbi_fg = arg0;
+}
+
 // ADXF_SetReqRdSct
 
 Sint32 ADXF_Stop(ADXF adxf)
