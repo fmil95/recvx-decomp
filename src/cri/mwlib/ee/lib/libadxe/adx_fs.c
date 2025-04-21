@@ -1,3 +1,6 @@
+typedef	ADX_FS ADXF_OBJ;
+
+ADXF_OBJ adxf_obj[ADXF_OBJ_MAX];
 ADXF_CMD_HSTRY adxf_cmd_hstry[1];
 Sint16 adxf_cmd_ncall[1];
 Sint32 adxf_hstry_no;
@@ -9,9 +12,24 @@ void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 
 
 // ADXF_AddPartition
 
-ADXF adxf_AllocAdxFs()
+// 100% matching!
+ADXF adxf_AllocAdxFs(void) 
 {
-    scePrintf("adxf_AllocAdxFs - UNIMPLEMENTED!\n");
+    Sint32 i;
+    ADXF adxf;
+
+    adxf = NULL;
+    
+    for (i = 0; i < ADXF_OBJ_MAX; i++)
+    {
+        if (adxf_obj[i].used == FALSE) 
+        {
+            adxf = &adxf_obj[i];
+            break;
+        }
+    }
+
+    return adxf;
 }
 
 // adxf_ChkPrmGfr
