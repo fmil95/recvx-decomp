@@ -126,9 +126,20 @@ void adxf_CloseLdptnwHn(void)
     adxf_flno = 0;
 }
 
+// 100% matching!
 void adxf_CloseSjStm(ADXF adxf)
 {
-    scePrintf("adxf_CloseSjStm - UNIMPLEMENTED!\n");
+    if ((adxf->sj != NULL) && (adxf->sjflag == 0)) 
+    {
+        if (adxf_ocbi_fg == 1) 
+        {
+            ADXF_Ocbi(adxf->buf, adxf->bsize);
+        }
+        
+        adxf->sj->vtbl->Destroy(adxf->sj);
+        
+        adxf->sj = NULL;
+    }
 }
 
 // 100% matching!
