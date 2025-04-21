@@ -33,7 +33,26 @@ ADXF adxf_AllocAdxFs(void)
 }
 
 // adxf_ChkPrmGfr
-// adxf_ChkPrmPt
+
+// 100% matching!
+Sint32 adxf_ChkPrmPt(Uint32 ptid, ADXF_PTINFO* ptinfo) 
+{
+    if (ptid >= ADXF_PART_MAX) 
+    {
+        ADXERR_CallErrFunc1("E9040801:'ptid' is range outside.(adxf_ChkPrmPt)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    if (ptinfo == NULL)
+    {
+        ADXERR_CallErrFunc1("E9040802:'ptinfo' is NULL.(adxf_ChkPrmPt)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    return ADXF_ERR_OK;
+}
 
 void ADXF_Close(ADXF adxf)
 {
