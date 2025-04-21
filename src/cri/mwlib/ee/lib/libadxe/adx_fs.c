@@ -6,6 +6,7 @@ ADXF_CMD_HSTRY adxf_cmd_hstry[1];
 Sint16 adxf_cmd_ncall[1];
 Sint32 adxf_hstry_no;
 Sint32 adxf_ocbi_fg;
+Sint32 adxf_flno;
 ADXF adxf_ldptnw_hn;
 Sint32 adxf_ldptnw_ptid;
 
@@ -113,9 +114,16 @@ void ADXF_Close(ADXF adxf)
 
 // ADXF_CloseAll
 
-void adxf_CloseLdptnwHn()
+// 100% matching!
+void adxf_CloseLdptnwHn(void) 
 {
-    scePrintf("adxf_CloseLdptnwHn - UNIMPLEMENTED!\n");
+    ADXF_Close(adxf_ldptnw_hn);
+    
+    adxf_ldptnw_hn = NULL;
+    
+    adxf_ldptnw_ptid = -1;
+    
+    adxf_flno = 0;
 }
 
 void adxf_CloseSjStm(ADXF adxf)
