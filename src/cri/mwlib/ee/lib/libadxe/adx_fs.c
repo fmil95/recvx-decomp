@@ -171,7 +171,57 @@ Sint32 ADXF_ReadSj32(ADXF adxf, Sint32 nsct, SJ sj)
     return rdsct;
 }
 
-// ADXF_Seek
+// 100% matching!
+Sint32 ADXF_Seek(ADXF adxf, Sint32 pos, Sint32 type)
+{
+    adxf_SetCmdHstry(6, 0, (Sint32)adxf, pos, type);
+
+    if (adxf == NULL) 
+    {
+        ADXERR_CallErrFunc1("E9040825:'adxf' is NULL.(ADXF_Seek)");
+        
+        return ADXF_ERR_PRM;
+    }
+
+    if (adxf->stat == ADXF_STAT_READING)
+    {
+        ADXF_Stop(adxf);
+    }
+
+    if (type == 0) 
+    {
+        adxf->skpos = pos;
+    } 
+    else if (type == 1) 
+    {
+        adxf->skpos += pos;
+    } 
+    else if (type == 2) 
+    {
+        adxf->skpos = adxf->fnsct + pos;
+    } 
+    else
+    {
+        ADXERR_CallErrFunc1("E9040826:'type' is illigal.(ADXF_Seek)");
+        
+        return ADXF_ERR_PRM;
+    }
+
+    if (adxf->skpos < 0)
+    {
+        adxf->skpos = 0;
+    }
+    else if (adxf->fnsct < adxf->skpos)
+    {
+        adxf->skpos = adxf->fnsct;
+    }
+
+    ADXSTM_SetOfst(adxf->stm, adxf->ofst + adxf->skpos);
+    
+    adxf_SetCmdHstry(6, 1, (Sint32)adxf, pos, type);
+    
+    return adxf->skpos;
+}
 
 // 100% matching!
 Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
