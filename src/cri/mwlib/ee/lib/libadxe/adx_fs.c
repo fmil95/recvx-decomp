@@ -1,6 +1,7 @@
 typedef	ADX_FS ADXF_OBJ;
 
 ADXF_OBJ adxf_obj[ADXF_OBJ_MAX];
+ADXF_PTINFO *adxf_ptinfo[ADXF_PART_MAX];
 ADXF_CMD_HSTRY adxf_cmd_hstry[1];
 Sint16 adxf_cmd_ncall[1];
 Sint32 adxf_hstry_no;
@@ -32,7 +33,36 @@ ADXF adxf_AllocAdxFs(void)
     return adxf;
 }
 
-// adxf_ChkPrmGfr
+// 100% matching!
+Sint32 adxf_ChkPrmGfr(Uint32 ptid, Sint32 flid)
+{
+    ADXF_PTINFO* ptinfo;
+
+    if (ptid >= ADXF_PART_MAX) 
+    {
+        ADXERR_CallErrFunc1("E9040828:'ptid' is range outside.");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    ptinfo = adxf_ptinfo[ptid];
+    
+    if (ptinfo == NULL) 
+    {
+        ADXERR_CallErrFunc1("E9040828:'ptid' is range outside.");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    if ((flid < 0) || (flid >= ptinfo->nfile))
+    {
+        ADXERR_CallErrFunc1("E9040828:'flid' is range outside.");
+        
+        return ADXF_ERR_PRM;
+    } 
+    
+    return ADXF_ERR_OK;
+}
 
 // 100% matching!
 Sint32 adxf_ChkPrmPt(Uint32 ptid, ADXF_PTINFO* ptinfo) 
