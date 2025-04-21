@@ -1,6 +1,10 @@
 Sint32 adxstmf_num_rtry;
 
-// ADXSTM_Close
+void ADXSTM_Close(ADXSTM adxstm)
+{
+    scePrintf("ADXSTM_Close - UNIMPLEMENTED!\n");
+}
+
 // ADXSTM_EntryEosFunc
 // ADXSTM_EntryErrFunc
 // ADXSTM_ExecServer

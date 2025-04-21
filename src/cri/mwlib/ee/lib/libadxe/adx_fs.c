@@ -54,9 +54,31 @@ Sint32 adxf_ChkPrmPt(Uint32 ptid, ADXF_PTINFO* ptinfo)
     return ADXF_ERR_OK;
 }
 
+// 100% matching!
 void ADXF_Close(ADXF adxf)
 {
-    scePrintf("ADXF_Close - UNIMPLEMENTED!\n");
+    adxf_SetCmdHstry(3, 0, (Sint32)adxf, -1, -1);
+    
+    if (adxf != NULL) 
+    {
+        ADXCRS_Lock();
+        
+        if (adxf->stat == ADXF_STAT_READING) 
+        {
+            ADXF_Stop(adxf);
+        }
+        
+        if (adxf->stm != NULL) 
+        {
+            ADXSTM_Close(adxf->stm);
+        }
+        
+        *adxf = (ADX_FS){0};
+        
+        ADXCRS_Unlock();
+        
+        adxf_SetCmdHstry(3, 1, (Sint32)adxf, -1, -1);
+    }
 }
 
 // ADXF_CloseAll
