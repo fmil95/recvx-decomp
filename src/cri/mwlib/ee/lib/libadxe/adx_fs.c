@@ -8,7 +8,12 @@ Sint32 adxf_ldptnw_ptid;
 void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 type);
 
 // ADXF_AddPartition
-// adxf_AllocAdxFs
+
+ADXF adxf_AllocAdxFs()
+{
+    scePrintf("adxf_AllocAdxFs - UNIMPLEMENTED!\n");
+}
+
 // adxf_ChkPrmGfr
 // adxf_ChkPrmPt
 
@@ -29,9 +34,36 @@ void adxf_CloseSjStm(ADXF adxf)
     scePrintf("adxf_CloseSjStm - UNIMPLEMENTED!\n");
 }
 
-ADXF adxf_CreateAdxFs()
+// 100% matching!
+ADXF adxf_CreateAdxFs(void) 
 {
-    scePrintf("adxf_CreateAdxFs - UNIMPLEMENTED!\n");
+    ADXF adxf;
+
+    adxf = adxf_AllocAdxFs();
+    
+    if (adxf == NULL)
+    {
+        return adxf;
+    }
+    
+    adxf->rqrdsct = ADXF_DEF_REQ_RD_SCT;
+    
+    adxf->stat = ADXF_STAT_STOP;
+    
+    adxf->used = TRUE;
+    
+    adxf->stm = NULL;
+    
+    adxf->rdstpos = 0;
+    
+    adxf->rqsct = 0;
+    adxf->rdsct = 0;
+    
+    adxf->sjflag = 0;
+    
+    adxf->sj = NULL;
+    
+    return adxf;
 }
 
 // adxf_ExecOne
