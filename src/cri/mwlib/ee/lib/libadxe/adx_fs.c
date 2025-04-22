@@ -112,7 +112,19 @@ void ADXF_Close(ADXF adxf)
     }
 }
 
-// ADXF_CloseAll
+// 100% matching!
+void ADXF_CloseAll(void)
+{
+    Sint32 i;
+
+    for (i = 0; i < ADXF_OBJ_MAX; i++)
+    {
+        if (adxf_obj[i].used == TRUE) 
+        {
+            ADXF_Close(&adxf_obj[i]);
+        }
+    }
+}
 
 // 100% matching!
 void adxf_CloseLdptnwHn(void) 
