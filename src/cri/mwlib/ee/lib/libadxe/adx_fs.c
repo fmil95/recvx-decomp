@@ -9,6 +9,7 @@ Sint32 adxf_ocbi_fg;
 Sint32 adxf_flno;
 ADXF adxf_ldptnw_hn;
 Sint32 adxf_ldptnw_ptid;
+void* buf;
 
 void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 type);
 
@@ -295,9 +296,93 @@ Sint32 ADXF_GetPtinfoSize(Sint32 ptid)
     return adxf_ptinfo[ptid]->size;
 }
 
-Sint32 ADXF_GetPtStat(Sint32 ptid)
+// 100% matching!
+Sint32 ADXF_GetPtStat(Sint32 ptid) 
 {
-    scePrintf("ADXF_GetPtStat - UNIMPLEMENTED!\n");
+    Sint32 stat;
+    Sint16* btm;
+    Sint32 rdsct;
+    ADXF_PTINFO* ptinfo;
+
+    if (ptid != adxf_ldptnw_ptid) 
+    {
+        ADXERR_CallErrFunc1("E0041303:illigal parameter 'ptid'.(ADXF_GetPtStat)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    stat = ADXF_GetStat(adxf_ldptnw_hn);
+    
+    if (stat == ADXF_STAT_READEND)
+    {
+        ptinfo = adxf_ptinfo[ptid];
+        
+        btm = ptinfo->btm;
+        
+        if (ptinfo->nfile == 0) 
+        {
+            if (memcmp(buf, "AFS", 3) != 0)
+            {
+                ADXERR_CallErrFunc1("E0040701:Illigal format(not AFS).(ADXF_GetPtStat)");
+                
+                adxf_CloseLdptnwHn();
+                
+                return ADXF_STAT_ERROR;
+            }
+            
+            if (((Sint32*)buf)[1] > ADXF_FILE_MAX)
+            {
+                ADXERR_CallErrFunc1("E0040702:Illigal number of file.(ADXF_GetPtStat)");
+                
+                adxf_CloseLdptnwHn();
+                
+                return ADXF_STAT_ERROR;
+            }
+            
+            ptinfo->nfile = ptinfo->nentry = ((Uint32*)buf)[1];
+            
+            ptinfo->size = (((Uint32)ptinfo->nfile + 140) >> 1) * 4;
+            
+            ptinfo->top = ((Sint32*)buf)[2] / ADXF_DEF_SCT_SIZE;
+            
+            rdsct = 3;
+        }
+        else 
+        {
+            rdsct = 1;
+        }
+        
+        for ( ; rdsct < ADXF_DEF_REQ_RD_SCT; rdsct += 2)
+        {
+            btm[adxf_flno++] = (((Sint32*)buf)[rdsct] + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE;
+            
+            if (adxf_flno >= ptinfo->nfile) 
+            {
+                stat = ADXF_STAT_READEND;
+                
+                adxf_CloseLdptnwHn();
+                break;
+            }
+        }
+        
+        if (rdsct < ADXF_DEF_REQ_RD_SCT)
+        {
+            return stat;
+        }
+        
+        if (ADXF_ReadNw32(adxf_ldptnw_hn, 1, buf) < 0) 
+        {
+            stat = ADXF_STAT_ERROR;
+            
+            adxf_CloseLdptnwHn();
+        } 
+        else 
+        {
+            stat = adxf_ldptnw_hn->stat;
+        }
+    }
+    
+    return stat;
 }
 
 // 100% matching!
