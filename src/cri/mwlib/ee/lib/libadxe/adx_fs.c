@@ -230,7 +230,18 @@ Sint32 ADXF_GetFsizeSct(ADXF adxf)
     return adxf->fnsct;
 }
 
-// ADXF_GetNumReadSct
+// 100% matching!
+Sint32 ADXF_GetNumReadSct(ADXF adxf)
+{
+    if (adxf == NULL) 
+    {
+        ADXERR_CallErrFunc1("E9040831:'adxf' is NULL.(ADXF_GetNumReadSct)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    return adxf->rdsct;
+}
 
 // 100% matching!
 Sint32 ADXF_GetNumReqSct(ADXF adxf, Sint32 *seekpos)
