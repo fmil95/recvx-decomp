@@ -204,9 +204,17 @@ Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, 
     scePrintf("ADXF_GetFnameRangeEx - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 Sint32 ADXF_GetFsizeByte(ADXF adxf)
 {
-    scePrintf("ADXF_GetFsizeByte - UNIMPLEMENTED!\n");
+    if (adxf == NULL) 
+    {
+        ADXERR_CallErrFunc1("E9040829:'adxf' is NULL.(ADXF_GetFsizeByte)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    return adxf->fsize;
 }
 
 // 100% matching!
