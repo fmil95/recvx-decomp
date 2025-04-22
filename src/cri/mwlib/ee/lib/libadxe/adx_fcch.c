@@ -1,6 +1,7 @@
+void ADXF_Ocbi(Sint8* buf, Sint64 bsize);
 
-
-void ADXF_Ocbi(Sint8* buf, Sint32 bsize)
+// 100% matching!
+void ADXF_Ocbi(Sint8* buf, Sint64 bsize)
 {
-    scePrintf("ADXF_Ocbi - UNIMPLEMENTED!\n");
+    InvalidDCache(buf, (buf + bsize) - 1);
 }
