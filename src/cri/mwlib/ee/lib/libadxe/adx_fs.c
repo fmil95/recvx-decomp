@@ -208,7 +208,24 @@ void adxf_ExecOne(ADXF adxf)
     }
 }
 
-// ADXF_ExecServer
+// 100% matching!
+void ADXF_ExecServer(void)
+{
+    Sint32 i;
+    
+    ADXCRS_Lock();
+
+    for (i = 0; i < ADXF_OBJ_MAX; i++)
+    {
+        if (adxf_obj[i].used == TRUE)
+        {
+            adxf_ExecOne(&adxf_obj[i]);
+        }
+    }
+
+    ADXCRS_Unlock();
+}
+
 // ADXF_GetFnameRange
 
 Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, Sint32 *ofst, Sint32 *fnsct)
