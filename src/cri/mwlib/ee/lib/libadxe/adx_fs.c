@@ -244,9 +244,17 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
     scePrintf("ADXF_GetPtStat - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 Sint32 ADXF_GetStat(ADXF adxf)
 {
-    scePrintf("ADXF_GetStat - UNIMPLEMENTED!\n");
+    if (adxf == NULL)
+    {
+        ADXERR_CallErrFunc1("E9040832:'adxf' is NULL.(ADXF_GetStat)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    return adxf->stat;
 }
 
 // adxf_LoadData
