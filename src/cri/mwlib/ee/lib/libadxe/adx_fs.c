@@ -232,7 +232,12 @@ Sint32 ADXF_GetFsizeSct(ADXF adxf)
 
 // ADXF_GetNumReadSct
 // ADXF_GetNumReqSct
-// ADXF_GetPtinfoSize
+
+// 100% matching!
+Sint32 ADXF_GetPtinfoSize(Sint32 ptid)
+{
+    return adxf_ptinfo[ptid]->size;
+}
 
 Sint32 ADXF_GetPtStat(Sint32 ptid)
 {
