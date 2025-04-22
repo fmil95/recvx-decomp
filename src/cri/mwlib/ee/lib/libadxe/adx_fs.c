@@ -209,9 +209,17 @@ Sint32 ADXF_GetFsizeByte(ADXF adxf)
     scePrintf("ADXF_GetFsizeByte - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 Sint32 ADXF_GetFsizeSct(ADXF adxf)
 {
-    scePrintf("ADXF_GetFsizeSct - UNIMPLEMENTED!\n");
+    if (adxf == NULL) 
+    {
+        ADXERR_CallErrFunc1("E9040828:'adxf' is NULL.(ADXF_GetFsizeSct)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    return adxf->fnsct;
 }
 
 // ADXF_GetNumReadSct
