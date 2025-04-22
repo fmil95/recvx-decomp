@@ -174,7 +174,28 @@ ADXF adxf_CreateAdxFs(void)
     return adxf;
 }
 
-// adxf_ExecOne
+// 100% matching!
+void adxf_ExecOne(ADXF adxf) 
+{
+    Sint32 nsct;
+    
+    if (adxf->stat == ADXF_STAT_READING)
+    {
+        adxf->stat = ADXSTM_GetStat(adxf->stm);
+        
+        ADXSTM_GetCurOfst(adxf->stm, &nsct);
+        
+        adxf->rdsct = nsct;
+        
+        if ((adxf->stat == ADXF_STAT_READEND) || (adxf->stat == ADXF_STAT_ERROR)) 
+        {
+            adxf->skpos += nsct;
+        
+            adxf_CloseSjStm(adxf);
+        }
+    }
+}
+
 // ADXF_ExecServer
 // ADXF_GetFnameRange
 

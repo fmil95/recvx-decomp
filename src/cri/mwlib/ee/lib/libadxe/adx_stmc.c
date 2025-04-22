@@ -27,7 +27,12 @@ Sint32 ADXSTM_GetFileLen(Sint32 fid)
 // ADXSTM_GetFsizeByte
 // ADXSTM_GetFsizeSct
 // ADXSTM_GetSj
-// ADXSTM_GetStat
+
+Char8 ADXSTM_GetStat(ADXSTM adxstm)
+{
+    scePrintf("ADXSTM_GetStat - UNIMPLEMENTED!\n");
+}
+
 // ADXSTM_Init
 // ADXSTM_OpenFileRange
 
