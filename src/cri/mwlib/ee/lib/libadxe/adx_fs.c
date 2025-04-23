@@ -407,9 +407,29 @@ Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
     scePrintf("ADXF_LoadPartitionNw - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 ADXF ADXF_Open(Char8 *fname, void *atr)
 {
-    scePrintf("ADXF_Open - UNIMPLEMENTED!\n");
+    ADXF adxf;
+
+    adxf_SetCmdHstry(1, 0, (Sint32)fname, (Sint32)atr, -1);
+    
+    ADXCRS_Lock();
+    
+    adxf = adxf_CreateAdxFs();
+    
+    if ((adxf != NULL) && (adxf_SetFileInfoEx((ADXF_ROFS)adxf, fname, atr) < 0)) 
+    {
+        ADXF_Close(adxf);
+        
+        adxf = NULL;
+    }
+    
+    ADXCRS_Unlock();
+    
+    adxf_SetCmdHstry(1, 1, (Sint32)fname, (Sint32)atr, -1);
+    
+    return adxf;
 }
 
 // 100% matching!
@@ -613,7 +633,7 @@ void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 
 }
 
 // 100% matching!
-Sint32 adxf_SetFileInfoEx(ADXF_ROFS rofs, Char8* fname, Sint32 arg2) 
+Sint32 adxf_SetFileInfoEx(ADXF_ROFS rofs, Char8* fname, void* atr) 
 {
     Sint32 fid;
     Sint32 fsize;
@@ -628,7 +648,7 @@ Sint32 adxf_SetFileInfoEx(ADXF_ROFS rofs, Char8* fname, Sint32 arg2)
     
     dirname[0] = '\0';
     
-    fid = ADXSTM_OpenFnameEx(fname, arg2, 0);
+    fid = ADXSTM_OpenFnameEx(fname, atr, 0);
     
     if (fid == 0)
     {
