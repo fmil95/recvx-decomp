@@ -28,7 +28,7 @@ Sint32 ADXSTM_GetFileLen(Sint32 fid)
 // ADXSTM_GetFsizeSct
 // ADXSTM_GetSj
 
-Char8 ADXSTM_GetStat(ADXSTM adxstm)
+Sint8 ADXSTM_GetStat(ADXSTM adxstm)
 {
     scePrintf("ADXSTM_GetStat - UNIMPLEMENTED!\n");
 }
@@ -59,11 +59,27 @@ void ADXSTM_SetOfst(ADXSTM adxstm, Sint32 ofst)
     scePrintf("ADXSTM_SetOfst - UNIMPLEMENTED!\n");
 }
 
-// ADXSTM_SetRdSct
-// ADXSTM_SetReqRdSize
-// ADXSTM_SetSj
+void ADXSTM_SetRdSct(ADXSTM adxstm, Sint32 rqsct)
+{
+    scePrintf("ADXSTM_SetRdSct - UNIMPLEMENTED!\n");
+}
+
+void ADXSTM_SetReqRdSize(ADXSTM adxstm, Sint32 rqrdsct)
+{
+    scePrintf("ADXSTM_SetReqRdSize - UNIMPLEMENTED!\n");
+}
+
+void ADXSTM_SetSj(ADXSTM adxstm, SJ sj)
+{
+    scePrintf("ADXSTM_SetSj - UNIMPLEMENTED!\n");
+}
+
 // adxstm_sj_internal_error
-// ADXSTM_Start
+
+void ADXSTM_Start(ADXSTM adxstm)
+{
+    scePrintf("ADXSTM_Start - UNIMPLEMENTED!\n");
+}
 
 void ADXSTM_Stop(ADXSTM adxstm)
 {

@@ -457,9 +457,46 @@ ADXF ADXF_OpenAfs(Sint32 ptid, Sint32 flid)
     return adxf;
 }
 
-Sint32 adxf_read_sj32(ADXF adxf, Sint32 nsct, SJ sj)
+// 99.81% matching
+Sint32 adxf_read_sj32(ADXF adxf, Sint32 nsct, SJ sj) 
 {
-    scePrintf("adxf_read_sj32 - UNIMPLEMENTED!\n");
+    Sint32 rdsct;
+
+    if (ADXSTM_GetStat(adxf->stm) != ADXF_STAT_STOP) 
+    {
+        ADXSTM_Stop(adxf->stm);
+    }
+    
+    ADXCRS_Lock();
+    
+    adxf->rdsct = 0;
+    
+    adxf->rdstpos = adxf->ofst + adxf->skpos;
+    
+    adxf->rqsct = (nsct < (adxf->fnsct - adxf->skpos)) ? nsct : adxf->fnsct - adxf->skpos;
+    
+    if (adxf->rqsct == 0)
+    {
+        rdsct = 0;
+        
+        adxf->stat = ADXF_STAT_READEND;
+    } 
+    else 
+    {
+        ADXSTM_SetRdSct(adxf->stm, adxf->rqsct);
+        ADXSTM_SetSj(adxf->stm, sj);
+        ADXSTM_SetReqRdSize(adxf->stm, adxf->rqrdsct);
+        
+        adxf->stat = ADXF_STAT_READING;
+        
+        ADXSTM_Start(adxf->stm);
+        
+        rdsct = adxf->rqsct;
+    }
+    
+    ADXCRS_Unlock();
+    
+    return rdsct;
 }
 
 // 100% matching!
