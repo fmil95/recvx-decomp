@@ -10,6 +10,8 @@ Sint32 adxf_flno;
 ADXF adxf_ldptnw_hn;
 Sint32 adxf_ldptnw_ptid;
 void* buf;
+Sint32* D_01E272F0;
+Sint32* wrk32;
 
 void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 type);
 
@@ -402,9 +404,67 @@ Sint32 ADXF_GetStat(ADXF adxf)
 // ADXF_LoadPartition
 // ADXF_LoadPartitionEx
 
-Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
+// 100% matching!
+Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo) 
 {
-    scePrintf("ADXF_LoadPartitionNw - UNIMPLEMENTED!\n");
+    Sint32 rdsct;
+    Sint32 errmsg;
+
+    errmsg = adxf_ChkPrmPt(ptid, ptinfo);
+    
+    if (errmsg >= ADXF_ERR_OK) 
+    {
+        if (adxf_ldptnw_ptid >= 0) 
+        {
+            ADXERR_CallErrFunc1("E0042401:multi-load partition.(ADXF_LoadPartitionNw)");
+            
+            return ADXF_ERR_FATAL;
+        }
+        
+        adxf_ldptnw_hn = ADXF_Open(fname, dir);
+        
+        if (adxf_ldptnw_hn == NULL) 
+        {
+            ADXERR_CallErrFunc1("E9040804:can't open file.(ADXF_LoaddPartitionNw)");
+            
+            return ADXF_ERR_FATAL;
+        }
+        
+        adxf_ldptnw_ptid = ptid;
+        
+        adxf_flno = 0;
+        
+        memset(ptinfo, 0, sizeof(ADXF_PTINFO));
+        
+        ((ADXF_PTINFO*)ptinfo)->next = 0;
+        
+        adxf_ptinfo[ptid] = ptinfo;
+        
+        strncpy(&((ADXF_PTINFO*)ptinfo)->fname, fname, ADXF_FNAME_MAX);
+        
+        ((ADXF_PTINFO*)ptinfo)->type = 0;
+        
+        ((ADXF_PTINFO*)ptinfo)->curdir = dir;
+        
+        wrk32 = buf = (Sint32*)((Sint32)&D_01E272F0 & 0xFFFFFFC0);
+        
+        rdsct = ADXF_ReadNw32(adxf_ldptnw_hn, 1, buf);
+        
+        if (rdsct >= 0) 
+        {
+            ((ADXF_PTINFO*)ptinfo)->nfile = 0;
+            
+            errmsg = ADXF_ERR_OK;
+        }
+        else 
+        {
+            ADXF_Close(adxf_ldptnw_hn);
+            
+            return rdsct;
+        }
+    }
+    
+    return errmsg;
 }
 
 // 100% matching!
