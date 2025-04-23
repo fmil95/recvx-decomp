@@ -13,13 +13,13 @@ void htCiLoadFpCache(Char8* arg0, Char8* arg1, Sint32 arg2)
 }
 
 // 100% matching!
-void htCiSetOpenMode(Sint32 arg0) 
+void htCiSetOpenMode(Sint32 opmode) 
 {
-    if (arg0 != 0) 
+    if (opmode != 0) 
     {
-        if (arg0 == 1) 
+        if (opmode == 1) 
         {
-            htg_ci_open_mode = arg0;
+            htg_ci_open_mode = opmode;
         }
         else 
         {
