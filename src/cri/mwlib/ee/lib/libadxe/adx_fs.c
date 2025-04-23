@@ -2,7 +2,7 @@ typedef	ADX_FS ADXF_OBJ;
 
 ADXF_OBJ adxf_obj[ADXF_OBJ_MAX];
 ADXF_PTINFO *adxf_ptinfo[ADXF_PART_MAX];
-ADXF_CMD_HSTRY adxf_cmd_hstry[1];
+ADXF_CMD_HSTRY adxf_cmd_hstry[ADXF_CMD_HSTRY_MAX];
 Sint16 adxf_cmd_ncall[1];
 Sint32 adxf_hstry_no;
 Sint32 adxf_ocbi_fg;
@@ -647,7 +647,7 @@ void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 
 {
     ADXF_CMD_HSTRY* cmd_hstry;
 
-    adxf_hstry_no %= 256;
+    adxf_hstry_no %= ADXF_CMD_HSTRY_MAX;
     
     cmd_hstry = &adxf_cmd_hstry[adxf_hstry_no];
    
