@@ -82,9 +82,36 @@ void htCiSetOpenMode(Sint32 opmode)
     }
 }
 
-Sint32 load_flist(Char8* flist, Sint32* rbuf)
+// 100% matching!
+Sint32 load_flist(Char8* flist, Sint32* rbuf) 
 {
-    scePrintf("load_flist - UNIMPLEMENTED!\n");
+    Sint32 fd;
+    Sint32 ofst;
+
+    fd = sceOpen(flist, 1);
+    
+    if (fd < 0)
+    {
+        return 0;
+    }
+    
+    ofst = sceLseek(fd, 0, 2);
+    
+    if ((ofst < 0) || (sceLseek(fd, 0, 0) < 0)) 
+    {
+        return 0;
+    }
+    
+    if (sceRead(fd, rbuf, (ofst < 4097) ? ofst : 4096) < 0) 
+    {
+        sceClose(fd);
+        
+        return 0;
+    }
+    
+    sceClose(fd);
+    
+    return 1;
 }
 
 Sint32 open_file_all(Char8* fpc, Sint32 arg1)
