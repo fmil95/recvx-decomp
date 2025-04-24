@@ -1,3 +1,4 @@
+Sint64 htg_flist_tbl[1];
 Sint32 htg_found;
 Sint32 htg_rbuf[4096];
 Sint32 htg_ci_open_mode;
@@ -20,9 +21,12 @@ void conv_to_tpath(Char8* flist, Char8* fname)
 // get_fstate
 // htci_get_finf
 
-void htci_init_flist()
+// 100% matching!
+void htci_init_flist(void) 
 {
-    scePrintf("htci_init_flist - UNIMPLEMENTED!\n");
+    htg_flist_tbl[0] = 0;
+    
+    htg_found = 0;
 }
 
 // 100% matching!
