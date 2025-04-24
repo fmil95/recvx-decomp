@@ -2,7 +2,12 @@ Sint32 htci_vtbl[1];
 
 // htci_alloc
 // htci_build
-// htci_call_errfn
+
+void htci_call_errfn(Sint32 arg0, Char8* err_msg)
+{
+    scePrintf("htci_call_errfn - UNIMPLEMENTED!\n");
+}
+
 // htci_conv_fname
 // htci_free
 // htci_get_fsize_opened
@@ -10,7 +15,12 @@ Sint32 htci_vtbl[1];
 // htci_is_one_excute
 // htci_wait
 // htci_wait_by_fd
-// htci_wait_io
+
+void htci_wait_io()
+{
+    scePrintf("htci_wait_io - UNIMPLEMENTED!\n");
+}
+
 // htCiClose
 // htCiEntryErrFunc
 // htCiExecHndl
