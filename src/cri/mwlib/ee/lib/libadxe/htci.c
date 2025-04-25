@@ -1,11 +1,17 @@
+void (*htg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
+void* htg_ci_err_obj;
 Sint32 htci_vtbl[1];
 
 // htci_alloc
 // htci_build
 
-void htci_call_errfn(Sint32 arg0, Char8* err_msg)
+// 100% matching!
+void htci_call_errfn(Sint32 arg0, Char8* htg_ci_err_msg)
 {
-    scePrintf("htci_call_errfn - UNIMPLEMENTED!\n");
+    if (htg_ci_err_func != NULL) 
+    { 
+        htg_ci_err_func(htg_ci_err_obj, htg_ci_err_msg, arg0);
+    }
 }
 
 // htci_conv_fname
