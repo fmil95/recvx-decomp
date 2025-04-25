@@ -1,3 +1,4 @@
+Char8 D_00361F30[8] = { 0x68, 0x6F, 0x73, 0x74, 0x3A, 0x00, 0x00, 0x00 };
 Sint64 htg_flist_tbl[1];
 Sint32 htg_found;
 Sint32 htg_rbuf[4096];
@@ -13,9 +14,32 @@ void close_file_all()
     scePrintf("close_file_all - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void conv_to_tpath(Char8* flist, Char8* fname)
 {
-    scePrintf("conv_to_tpath - UNIMPLEMENTED!\n");
+    Uint32 i;
+    Uint32 l;
+
+    memcpy(flist, D_00361F30, 6); 
+    
+    strcat(flist, fname);
+
+    l = strlen(flist);
+    
+    if ((flist[l - 1] == '/') || (flist[l - 1] == '\\')) 
+    {
+        flist[l - 1] = 0;
+    }
+    
+    l = strlen(flist);
+    
+    for (i = 0; i < l; i++) 
+    {
+        if (flist[i] == '\\') 
+        {
+            flist[i] = '/';
+        }
+    } 
 }
 
 // get_fstate
