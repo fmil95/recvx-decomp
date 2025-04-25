@@ -17,14 +17,20 @@ void htci_call_errfn(Sint32 arg0, Char8* htg_ci_err_msg)
 // htci_conv_fname
 // htci_free
 // htci_get_fsize_opened
-// htci_is_all_excute
+
+Sint32 htci_is_all_excute(void)
+{
+    scePrintf("htci_is_all_excute - UNIMPLEMENTED!\n");
+}
+
 // htci_is_one_excute
 // htci_wait
 // htci_wait_by_fd
 
-void htci_wait_io()
+// 100% matching!
+void htci_wait_io(void) 
 {
-    scePrintf("htci_wait_io - UNIMPLEMENTED!\n");
+    while (htci_is_all_excute() == 0);
 }
 
 // htCiClose
