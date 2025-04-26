@@ -7,8 +7,8 @@ typedef struct _htg_ci
     Sint8 unk2;
     Sint8 unk3;
     Sint32 unk4;
-    Sint32 unk8;
-    Sint32 unkC;
+    Sint32 is_end;
+    Sint32 fd;
     Sint32 unk10;
     Sint32 unk14;
     Sint32 unk18;
@@ -98,9 +98,17 @@ Sint32 htci_is_all_excute(void)
     return 1;
 }
 
+// 100% matching!
 Sint32 htci_is_one_excute(HTCI_OBJ* htci_obj)
 {
-    scePrintf("htci_is_one_excute - UNIMPLEMENTED!\n");
+    if (sceIoctl(htci_obj->fd, 1, &htci_obj->is_end) < 0) 
+    {
+        return 0;
+    }
+    else 
+    {
+        return htci_obj->is_end != TRUE;
+    }
 }
 
 // 100% matching!
