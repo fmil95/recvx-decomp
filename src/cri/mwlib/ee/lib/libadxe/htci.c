@@ -63,7 +63,24 @@ void htci_free(HTCI_OBJ* htci_obj)
     *htci_obj = (HTCI_OBJ){0};
 }
 
-// htci_get_fsize_opened
+// 100% matching!
+Sint32 htci_get_fsize_opened(Sint32 fd) 
+{
+    Sint32 fsize;
+
+    htci_wait_by_fd(fd);
+    
+    if (sceLseek(fd, 0, SCE_SEEK_SET) < 0)
+    {
+        return 0;
+    }
+    
+    htci_wait_by_fd(fd);
+        
+    fsize = sceLseek(fd, 0, SCE_SEEK_END);
+    
+    return (fsize <= -1) ? 0 : fsize;
+}
 
 Sint32 htci_is_all_excute(void)
 {
