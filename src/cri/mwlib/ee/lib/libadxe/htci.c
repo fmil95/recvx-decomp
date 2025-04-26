@@ -24,7 +24,15 @@ Sint32 htci_is_all_excute(void)
 }
 
 // htci_is_one_excute
-// htci_wait
+
+// 100% matching!
+void htci_wait(void) 
+{
+    Sint32 i;
+
+    for (i = 0; i < 32768; i++);
+}
+
 // htci_wait_by_fd
 
 // 100% matching!
