@@ -4,7 +4,7 @@ Sint32 cvfs_errobj;
 // addDevice
 // allocCvFsHn
 
-void cvFsAddDev(Sint32* arg0, void* arg1, Sint32 arg2)
+void cvFsAddDev(void* arg0, void* arg1, Sint32 arg2)
 {
     scePrintf("cvFsAddDev - UNIMPLEMENTED!\n");
 }
@@ -70,7 +70,7 @@ void cvFsError(Sint32 arg0)
 // cvFsReqWr
 // cvFsSeek
 
-void cvFsSetDefDev(Sint32* arg0)
+void cvFsSetDefDev(void* arg0)
 {
     scePrintf("cvFsSetDefDev - UNIMPLEMENTED!\n");
 }
