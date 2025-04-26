@@ -82,12 +82,26 @@ Sint32 htci_get_fsize_opened(Sint32 fd)
     return (fsize <= -1) ? 0 : fsize;
 }
 
+// 100% matching!
 Sint32 htci_is_all_excute(void)
 {
-    scePrintf("htci_is_all_excute - UNIMPLEMENTED!\n");
+    Sint32 i;
+    
+    for (i = 0; i < HTCI_OBJ_MAX; i++) 
+    {
+        if ((htg_ci_obj[i].used == 1) && (htci_is_one_excute(&htg_ci_obj[i]) == 0))
+        {
+            return 0; 
+        }
+    }
+  
+    return 1;
 }
 
-// htci_is_one_excute
+Sint32 htci_is_one_excute(HTCI_OBJ* htci_obj)
+{
+    scePrintf("htci_is_one_excute - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void htci_wait(void) 
