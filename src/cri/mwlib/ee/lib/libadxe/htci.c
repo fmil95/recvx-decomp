@@ -28,22 +28,22 @@ void* htci_vtbl;
 void htci_wait_io(void);
 
 // 100% matching!
-HTCI_OBJ* htci_alloc(void) 
+HTCI htci_alloc(void) 
 {
-    HTCI_OBJ* htci_obj;
+    HTCI htci;
     Sint32 i;
     
-    htci_obj = NULL;
+    htci = NULL;
     
     for (i = 0; i < HTCI_OBJ_MAX; i++) 
     {
         if (htg_ci_obj[i].used == 0) 
         {
-            htci_obj = &htg_ci_obj[i];
+            htci = &htg_ci_obj[i];
         }
     }
   
-    return htci_obj;
+    return htci;
 }
 
 // 100% matching!
@@ -58,9 +58,9 @@ void htci_call_errfn(Sint32 arg0, Char8* htg_ci_err_msg)
 // htci_conv_fname
 
 // 100% matching!
-void htci_free(HTCI_OBJ* htci_obj)
+void htci_free(HTCI htci)
 {
-    *htci_obj = (HTCI_OBJ){0};
+    *htci = (HTG_CI){0};
 }
 
 // 100% matching!
@@ -99,15 +99,15 @@ Sint32 htci_is_all_excute(void)
 }
 
 // 100% matching!
-Sint32 htci_is_one_excute(HTCI_OBJ* htci_obj)
+Sint32 htci_is_one_excute(HTCI htci)
 {
-    if (sceIoctl(htci_obj->fd, 1, &htci_obj->is_end) < 0) 
+    if (sceIoctl(htci->fd, 1, &htci->is_end) < 0) 
     {
         return 0;
     }
     else 
     {
-        return htci_obj->is_end != TRUE;
+        return htci->is_end != TRUE;
     }
 }
 
