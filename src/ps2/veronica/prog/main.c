@@ -52,6 +52,8 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_inis.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_mps2.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/dvci.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/dvci_sub.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_sudv.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/cri_cvfs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/htci.c"
