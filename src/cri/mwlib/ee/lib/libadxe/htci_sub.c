@@ -1,5 +1,5 @@
 Char8 D_00361F30[8] = { 0x68, 0x6F, 0x73, 0x74, 0x3A, 0x00, 0x00, 0x00 };
-ADXPS2_FC_HOST htg_flist_tbl[1];
+ADXPS2_FC_HOST htg_flist_tbl;
 Sint32 htg_found;
 Sint32 htg_rbuf[4096];
 Sint32 htg_ci_open_mode;
@@ -49,7 +49,7 @@ void htci_get_finf(Sint32 arg0, ADXPS2_FC_HOST* arg1)
 {
     Sint32 fd;
 
-    fd = htg_flist_tbl->fd;
+    fd = htg_flist_tbl.fd;
     
     arg1->fd = 0;
     
@@ -57,14 +57,14 @@ void htci_get_finf(Sint32 arg0, ADXPS2_FC_HOST* arg1)
 
     if (fd != 0) 
     {
-        get_fstate(arg1, arg0, fd, htg_flist_tbl->size);
+        get_fstate(arg1, arg0, fd, htg_flist_tbl.size);
     } 
 }
 
 // 100% matching!
 void htci_init_flist(void) 
 {
-    *(Sint64*)htg_flist_tbl = 0;
+    *(Sint64*)&htg_flist_tbl = 0;
     
     htg_found = 0;
 }
