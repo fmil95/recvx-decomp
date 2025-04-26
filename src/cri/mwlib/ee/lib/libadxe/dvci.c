@@ -9,7 +9,12 @@
 // dvCiExecHndl
 // dvCiExecServer
 // dvCiGetFileSize
-// dvCiGetInterface
+
+void dvCiGetInterface(void)
+{
+    scePrintf("dvCiGetInterface - UNIMPLEMENTED!\n");
+}
+
 // dvCiGetNumTr
 // dvCiGetSctLen
 // dvCiGetStat
