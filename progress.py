@@ -25,7 +25,7 @@ for directory, info in directories.items():
     dir_count = 0
     for root, _, files in os.walk(directory):
         for file in files:
-            if file.endswith(".c"):
+            if file.endswith((".c", ".h")):
                 file_path = os.path.join(root, file)
                 try:
                     with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
