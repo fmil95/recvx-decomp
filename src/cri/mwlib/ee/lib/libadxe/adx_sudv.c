@@ -1,4 +1,11 @@
-// adxt_err_dvd
+
+
+// 100% matching!
+void adxt_err_dvd(Sint32 arg0, Char8* err_msg)
+{
+    ADXERR_CallErrFunc1(err_msg);
+}
+
 // ADXT_LoadFpCacheDvd
 // ADXT_SetRdMode
 
