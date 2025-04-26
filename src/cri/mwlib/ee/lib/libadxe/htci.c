@@ -2,6 +2,8 @@ void (*htg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
 void* htg_ci_err_obj;
 void* htci_vtbl;
 
+void htci_wait_io(void);
+
 // htci_alloc
 // htci_build
 
@@ -33,7 +35,22 @@ void htci_wait(void)
     for (i = 0; i < 32768; i++);
 }
 
-// htci_wait_by_fd
+// 100% matching!
+Sint32 htci_wait_by_fd(Sint32 fd) 
+{
+    Sint32 is_end;
+
+    is_end = TRUE;
+    
+    while (is_end == TRUE) 
+    {
+        sceIoctl(fd, 1, &is_end);
+    } 
+    
+    htci_wait_io();
+    
+    return 0;
+}
 
 // 100% matching!
 void htci_wait_io(void) 
