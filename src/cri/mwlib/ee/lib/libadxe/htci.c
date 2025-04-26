@@ -20,6 +20,7 @@ typedef HTG_CI  *HTCI;
 typedef HTG_CI HTCI_OBJ;
 
 HTCI_OBJ htg_ci_obj[HTCI_OBJ_MAX];
+Char8* htci_build = "\nhtCi Ver.2.16 Build:Jan 26 2001 09:56:20\n";
 void (*htg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
 void* htg_ci_err_obj;
 void* htci_vtbl;
@@ -44,8 +45,6 @@ HTCI_OBJ* htci_alloc(void)
   
     return htci_obj;
 }
-
-// htci_build
 
 // 100% matching!
 void htci_call_errfn(Sint32 arg0, Char8* htg_ci_err_msg)
