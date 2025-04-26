@@ -1,10 +1,50 @@
+#define HTCI_OBJ_MAX 13
+
+typedef struct _htg_ci 
+{
+    Sint8 used;
+    Sint8 unk1;
+    Sint8 unk2;
+    Sint8 unk3;
+    Sint32 unk4;
+    Sint32 unk8;
+    Sint32 unkC;
+    Sint32 unk10;
+    Sint32 unk14;
+    Sint32 unk18;
+    Sint32 unk1C;
+    Sint32 unk20;
+} HTG_CI;
+typedef HTG_CI  *HTCI;
+
+typedef HTG_CI HTCI_OBJ;
+
+HTCI_OBJ htg_ci_obj[HTCI_OBJ_MAX];
 void (*htg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
 void* htg_ci_err_obj;
 void* htci_vtbl;
 
 void htci_wait_io(void);
 
-// htci_alloc
+// 100% matching!
+HTCI_OBJ* htci_alloc(void) 
+{
+    HTCI_OBJ* htci_obj;
+    Sint32 i;
+    
+    htci_obj = NULL;
+    
+    for (i = 0; i < HTCI_OBJ_MAX; i++) 
+    {
+        if (htg_ci_obj[i].used == 0) 
+        {
+            htci_obj = &htg_ci_obj[i];
+        }
+    }
+  
+    return htci_obj;
+}
+
 // htci_build
 
 // 100% matching!
