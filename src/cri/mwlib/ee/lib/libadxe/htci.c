@@ -56,7 +56,13 @@ void htci_call_errfn(Sint32 arg0, Char8* htg_ci_err_msg)
 }
 
 // htci_conv_fname
-// htci_free
+
+// 100% matching!
+void htci_free(HTCI_OBJ* htci_obj)
+{
+    *htci_obj = (HTCI_OBJ){0};
+}
+
 // htci_get_fsize_opened
 
 Sint32 htci_is_all_excute(void)
