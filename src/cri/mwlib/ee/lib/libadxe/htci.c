@@ -1,6 +1,6 @@
 void (*htg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
 void* htg_ci_err_obj;
-Sint32 htci_vtbl[1];
+void* htci_vtbl;
 
 // htci_alloc
 // htci_build
@@ -40,9 +40,9 @@ void htci_wait_io(void)
 // htCiGetFileSize
 
 // 100% matching!
-Sint32* htCiGetInterface(void)
+void* htCiGetInterface(void)
 {
-    return htci_vtbl;
+    return &htci_vtbl;
 }
 
 // htCiGetNumTr

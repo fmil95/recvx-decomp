@@ -1,11 +1,11 @@
-void (*adxerr_func)(void* adxerr_obj, Char8* adxerr_msg);
+void (*adxerr_func)(void* err_obj, Char8* err_msg);
 Char8 adxerr_msg[255];
 void* adxerr_obj;
 
 // 100% matching!
-void ADXERR_CallErrFunc1(Char8* msg) 
+void ADXERR_CallErrFunc1(Char8* err_msg) 
 {
-    strncpy(adxerr_msg, msg, 255);
+    strncpy(adxerr_msg, err_msg, 255);
 
     if (adxerr_func != NULL)
     {
