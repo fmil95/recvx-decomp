@@ -25,7 +25,7 @@ for directory, info in directories.items():
     dir_count = 0
     for root, _, files in os.walk(directory):
         for file in files:
-            if file.endswith((".c", ".h")):
+            if file.endswith((".c", ".h")):  
                 file_path = os.path.join(root, file)
                 try:
                     with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
@@ -43,8 +43,7 @@ for directory, info in directories.items():
     grand_total += dir_count
     grand_reference_total += reference_total
 
-# Final summary
-print("\n=== Summary ===")
+# Final summary 
 for name, stats in directory_results.items():
     print(f"{name}: {stats['found']} implemented functions / {stats['reference_total']} total "
           f"({stats['percentage']:.2f}%)")
