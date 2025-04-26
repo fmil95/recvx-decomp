@@ -130,7 +130,7 @@ void htCiSetOpenMode(Sint32 opmode)
 Sint32 load_flist(Char8* flist, Sint32* rbuf) 
 {
     Sint32 fd;
-    Sint32 ofst;
+    Sint32 fsize;
 
     fd = sceOpen(flist, 1);
     
@@ -139,14 +139,14 @@ Sint32 load_flist(Char8* flist, Sint32* rbuf)
         return 0;
     }
     
-    ofst = sceLseek(fd, 0, 2);
+    fsize = sceLseek(fd, 0, SCE_SEEK_END);
     
-    if ((ofst < 0) || (sceLseek(fd, 0, 0) < 0)) 
+    if ((fsize < 0) || (sceLseek(fd, 0, SCE_SEEK_SET) < 0)) 
     {
         return 0;
     }
     
-    if (sceRead(fd, rbuf, (ofst < 4097) ? ofst : 4096) < 0) 
+    if (sceRead(fd, rbuf, (fsize < 4097) ? fsize : 4096) < 0) 
     {
         sceClose(fd);
         
