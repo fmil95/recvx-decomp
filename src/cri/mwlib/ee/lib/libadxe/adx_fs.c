@@ -43,6 +43,7 @@ ADXF_TPRM adxf_chkp_tcnt;
 ADXF_TPRM_EX adxf_tcnt;
 
 void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 type);
+void adxf_wait_1ms(void);
 
 // ADXF_AddPartition
 
@@ -429,7 +430,34 @@ Sint32 ADXF_GetStat(ADXF adxf)
     return adxf->stat;
 }
 
-// adxf_LoadData
+// 100% matching!
+void adxf_LoadData(ADXF adxf, Sint32 nsct, void *buf) 
+{
+    while (ADXF_ReadNw32(adxf, nsct, buf) <= 0) 
+    {
+        cvFsExecServer();
+        ADXSTM_ExecServer();
+        ADXF_ExecServer();
+        
+        adxf_wait_1ms();
+    }
+    
+    while (TRUE)
+    {
+        cvFsExecServer();
+        ADXSTM_ExecServer();
+        ADXF_ExecServer();
+        
+        if (ADXF_GetStat(adxf) == ADXF_STAT_READEND) 
+        {
+            ADXF_GetNumReadSct(adxf);
+            break;
+        }
+        
+        adxf_wait_1ms();
+    }
+}
+
 // ADXF_LoadPartition
 // ADXF_LoadPartitionEx
 
