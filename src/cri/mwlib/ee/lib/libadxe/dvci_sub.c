@@ -1,3 +1,5 @@
+sceCdRMode dvg_ci_cdrmode;
+
 // analysis_flist
 // conv_to_tpath
 // dvci_get_fstate
@@ -8,9 +10,14 @@ void dvCiLoadFpCache(Char8* fname, Char8* fpc, Sint32 size)
     scePrintf("dvCiLoadFpCache - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void dvCiSetRdMode(Sint32 nrtry, Sint32 speed, Sint32 dtype)
 {
-    scePrintf("dvCiSetRdMode - UNIMPLEMENTED!\n");
+    dvg_ci_cdrmode.trycount = nrtry;
+    
+    dvg_ci_cdrmode.spindlctrl = speed;
+    
+    dvg_ci_cdrmode.datapattern = dtype;
 }
 
 // get_fp_from_fname
