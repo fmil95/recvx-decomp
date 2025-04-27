@@ -46,7 +46,7 @@ Sint32 close_file_all()
     
     size = htg_flist_tbl.size;
     
-    for (i = 0; i < size; i++) 
+    for (i = 0; i < size; i++) // the loop limit here might not be a size  
     {
         conv_to_tpath(flist, dir[i].fname);
         
@@ -112,7 +112,7 @@ void htci_get_finf(Sint32 arg0, HTCI_DIR arg1)
 {
     HTCI_DIR dir;
 
-    dir = (HTCI_DIR)htg_flist_tbl.fd;
+    dir = (HTCI_DIR)htg_flist_tbl.fd; // maybe htg_flist_tbl is a directory buffer?
     
     arg1->fd = 0;
     
@@ -127,7 +127,7 @@ void htci_get_finf(Sint32 arg0, HTCI_DIR arg1)
 // 100% matching!
 void htci_init_flist(void) 
 {
-    *(Sint64*)&htg_flist_tbl = 0;
+    *(Sint64*)&htg_flist_tbl = 0; // cast doesn't seem valid, furthermore htg_flist_tbl might be a different data type altogether
     
     htg_found = 0;
 }
