@@ -1,3 +1,30 @@
+#define REG_RCNT0_COUNT     (volatile int *)0x10000000
+
+#define getRcnt0CountShort() *REG_RCNT0_COUNT & 0xFFFF
+
+typedef struct ADXF_TPRM 
+{
+    Sint32 unk0;
+    Sint32 unk4;
+    Sint32 unk8;
+    Sint32 unkC;
+    Sint32 unk10;
+    Sint32 unk14;
+    Sint32 unk18;
+} ADXF_TPRM;
+
+typedef struct ADXF_TPRM_EX
+{
+    Sint32 unk0;
+    Sint32 unk4;
+    Sint32 unk8;
+    Sint32 unkC;
+    Sint32 unk10;
+    Sint32 unk14;
+    Sint32 unk18;
+    Sint32 unk1C;
+} ADXF_TPRM_EX;
+
 typedef	ADX_FS ADXF_OBJ;
 
 ADXF_OBJ adxf_obj[ADXF_OBJ_MAX];
@@ -12,6 +39,8 @@ Sint32 adxf_ldptnw_ptid;
 void* buf;
 Sint32* D_01E272F0;
 Sint32* wrk32;
+ADXF_TPRM adxf_chkp_tcnt;
+ADXF_TPRM_EX adxf_tcnt;
 
 void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 type);
 
@@ -572,9 +601,115 @@ Sint32 ADXF_ReadNw(ADXF adxf, Sint32 nsct, void *buf)
     return ADXF_ReadNw32(adxf, nsct, buf);
 }
 
+// 100% matching!
 Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
 {
-    scePrintf("ADXF_ReadNw32 - UNIMPLEMENTED!\n");
+    SJ sj;
+    Sint32 rdsct;
+
+    adxf_tcnt.unk0 = getRcnt0CountShort();
+    
+    adxf_SetCmdHstry(4, 0, (Sint32)adxf, nsct, (Sint32)buf);
+    
+    adxf_tcnt.unk4 = getRcnt0CountShort();
+    
+    adxf_chkp_tcnt.unk0 = getRcnt0CountShort();
+    
+    if (adxf == NULL)
+    {
+        ADXERR_CallErrFunc1("E9040816:'adxf' is NULL.(ADXF_ReadNw32)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    adxf_chkp_tcnt.unk4 = getRcnt0CountShort();
+    
+    if (nsct < 0)  
+    {
+        ADXERR_CallErrFunc1("E9040817:'nsct' is negative.(ADXF_ReadNw32)"); 
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    adxf_chkp_tcnt.unk8 = getRcnt0CountShort();
+    
+    if (buf == NULL) 
+    {
+        ADXERR_CallErrFunc1("E9040818:'buf' is NULL.(ADXF_ReadNw32)");
+        
+        return ADXF_ERR_PRM;
+    }
+    
+    adxf_chkp_tcnt.unkC = getRcnt0CountShort();
+    
+    adxf_chkp_tcnt.unk10 = getRcnt0CountShort();
+    
+    if (adxf->stat != ADXF_STAT_READING) 
+    {
+        adxf_chkp_tcnt.unk14 = getRcnt0CountShort(); 
+        
+        if (adxf->sj != NULL) 
+        {
+            ADXERR_CallErrFunc1("E9040821:'sj' is NULL.(ADXF_ReadNw32)"); 
+            
+            return ADXF_ERR_FATAL;
+        }
+        
+        adxf_chkp_tcnt.unk18 = getRcnt0CountShort();
+        
+        adxf_tcnt.unk8 = getRcnt0CountShort();
+        
+        sj = SJRBF_Create(buf, nsct << 11, 0);
+        
+        if (sj == NULL) 
+        {
+            return ADXF_ERR_INTERNAL;
+        } 
+        else 
+        {
+            adxf->bsize = nsct << 11;
+            
+            adxf->buf = buf; 
+            
+            adxf_tcnt.unkC = getRcnt0CountShort();
+            
+            ADXCRS_Lock();
+            
+            adxf_tcnt.unk10 = getRcnt0CountShort();
+            
+            if (adxf_ocbi_fg == 1) 
+            {
+                ADXF_Ocbi(adxf->buf, adxf->bsize);
+            }
+            
+            adxf_tcnt.unk14 = getRcnt0CountShort();
+            
+            rdsct = adxf_read_sj32(adxf, nsct, sj);
+            
+            if (rdsct <= 0) 
+            {
+                sj->vtbl->Destroy(sj);
+            } 
+            else 
+            {
+                adxf->sj = sj;
+            }
+            
+            adxf_tcnt.unk18 = getRcnt0CountShort();  
+            
+            adxf->sjflag = 0;
+            
+            ADXCRS_Unlock(); 
+            
+            adxf_SetCmdHstry(4, 1, (Sint32)adxf, nsct, (Sint32)buf); 
+            
+            adxf_tcnt.unk1C = getRcnt0CountShort();
+            
+            return rdsct;
+        }
+    }
+    
+    return ADXF_ERR_OK;
 }
 
 // 100% matching!
