@@ -1,5 +1,3 @@
-#define HTCI_OBJ_MAX 13
-
 typedef struct _htg_ci 
 {
     Sint8 used;
@@ -19,7 +17,7 @@ typedef HTG_CI  *HTCI;
 
 typedef HTG_CI HTCI_OBJ;
 
-HTCI_OBJ htg_ci_obj[HTCI_OBJ_MAX];
+HTCI_OBJ htg_ci_obj[ADXPS2_DEF_NUM_FILE_HOST];
 Char8* htci_build = "\nhtCi Ver.2.16 Build:Jan 26 2001 09:56:20\n";
 void (*htg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
 void* htg_ci_err_obj;
@@ -35,7 +33,7 @@ HTCI htci_alloc(void)
     
     htci = NULL;
     
-    for (i = 0; i < HTCI_OBJ_MAX; i++) 
+    for (i = 0; i < ADXPS2_DEF_NUM_FILE_HOST; i++) 
     {
         if (htg_ci_obj[i].used == 0) 
         {
@@ -87,7 +85,7 @@ Sint32 htci_is_all_excute(void)
 {
     Sint32 i;
     
-    for (i = 0; i < HTCI_OBJ_MAX; i++) 
+    for (i = 0; i < ADXPS2_DEF_NUM_FILE_HOST; i++) 
     {
         if ((htg_ci_obj[i].used == 1) && (htci_is_one_excute(&htg_ci_obj[i]) == 0))
         {
