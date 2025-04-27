@@ -102,22 +102,25 @@ void conv_to_tpath(Char8* flist, Char8* fname)
     } 
 }
 
-// get_fstate
+void get_fstate(HTCI_DIR arg0, Sint32 arg1, HTCI_DIR dir, Sint32 fsize)
+{
+    scePrintf("get_fstate - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
-void htci_get_finf(Sint32 arg0, ADXPS2_FC_HOST* arg1) 
+void htci_get_finf(Sint32 arg0, HTCI_DIR arg1) 
 {
-    Sint32 fd;
+    HTCI_DIR dir;
 
-    fd = htg_flist_tbl.fd;
+    dir = (HTCI_DIR)htg_flist_tbl.fd;
     
     arg1->fd = 0;
     
-    arg1->size = 0; 
+    arg1->fsize = 0; 
 
-    if (fd != 0) 
+    if (dir != NULL) 
     {
-        get_fstate(arg1, arg0, fd, htg_flist_tbl.size);
+        get_fstate(arg1, arg0, dir, htg_flist_tbl.size);
     } 
 }
 
