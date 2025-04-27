@@ -1,17 +1,77 @@
+typedef struct _htg_ci_file
+{
+    Sint32 fd;
+    Sint32 fsize;
+    Char8 fname[ADXF_FNAME_MAX]; 
+    Uint8 pad[4];
+} HTG_CI_DIR;
+typedef HTG_CI_DIR  *HTCI_DIR;
+
 static Char8 D_00361F30[8] = { 0x68, 0x6F, 0x73, 0x74, 0x3A, 0x00, 0x00, 0x00 };
 ADXPS2_FC_HOST htg_flist_tbl;
 Sint32 htg_found;
 Sint32 htg_rbuf[4096];
 Sint32 htg_ci_open_mode;
 
+void conv_to_tpath(Char8* flist, Char8* fname);
+void htci_init_flist(void);
+
 Sint32 analysis_flist(Char8* fpc, Sint32* rbuf, Uint32 size)
 {
     scePrintf("analysis_flist - UNIMPLEMENTED!\n");
 }
 
-void close_file_all()
+// 100% matching!
+Sint32 close_file_all()
 {
-    scePrintf("close_file_all - UNIMPLEMENTED!\n");
+    Char8 flist[ADXF_FNAME_MAX];
+    HTCI_DIR dir;
+    Sint32 numf;
+    Uint32 size;
+    Uint32 i;
+
+    dir = (HTCI_DIR)htg_flist_tbl.fd;
+    
+    numf = 0;
+    
+    if (dir == NULL)
+    {
+        if (htg_found != 0)
+        {
+            htci_call_errfn(0, "E0111602:can't found filelist.(htCiLoadDirInfo)");
+        }
+        
+        return 0;
+    }
+    
+    size = htg_flist_tbl.size;
+    
+    for (i = 0; i < size; i++) 
+    {
+        conv_to_tpath(flist, (Char8*)&dir[i].fname);
+        
+        if (dir[i].fname[0] != 0) 
+        {
+            if (sceClose(dir[i].fd) < 0)
+            {
+                printf("HTCI: \"%s\" can't Close.(sceClose)\n", flist);
+            } 
+            else 
+            {
+                numf++;
+                
+                printf("HTCI: \"%s\" Closed.(sceClose)\n", flist);
+            }
+        }
+    } 
+    
+    printf("HTCI: Total %d files\n", numf);
+    
+    htg_found = 0;
+    
+    htci_init_flist();
+    
+    return 1;
 }
 
 // 100% matching!
