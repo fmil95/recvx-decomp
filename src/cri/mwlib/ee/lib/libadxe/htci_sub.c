@@ -48,7 +48,7 @@ Sint32 close_file_all()
     
     for (i = 0; i < size; i++) 
     {
-        conv_to_tpath(flist, (Char8*)&dir[i].fname);
+        conv_to_tpath(flist, dir[i].fname);
         
         if (dir[i].fname[0] != 0) 
         {
@@ -221,7 +221,54 @@ Sint32 load_flist(Char8* flist, Sint32* rbuf)
     return 1;
 }
 
+// 100% matching!
 Sint32 open_file_all(Char8* fpc, Sint32 arg1)
 {
-    scePrintf("open_file_all - UNIMPLEMENTED!\n");
+    Char8 flist[ADXF_FNAME_MAX] = {0};
+    HTCI_DIR dir;
+    Sint32 numf;
+    Sint32 fd;
+    Sint32 i;
+    
+    numf = 0;
+    
+    if (arg1 > ADXPS2_DEF_NUM_FILE_HOST) 
+    {
+        arg1 = ADXPS2_DEF_NUM_FILE_HOST;
+    }
+    
+    for (i = 0; i < arg1; i++)
+    {
+        dir = (HTCI_DIR)fpc;
+        
+        conv_to_tpath(flist, dir[i].fname);
+        
+        if (dir[i].fname[0] != 0) 
+        {
+            fd = sceOpen(flist, SCE_RDONLY);
+            
+            if (fd < 0) 
+            {
+                printf("HTCI: \"%s\" can't Open.(sceOpen)\n", flist);
+            } 
+            else 
+            {
+                dir[i].fd = fd;
+                
+                numf++;
+                
+                dir[i].fsize = htci_get_fsize_opened(fd);
+                
+                printf("HTCI: \"%s\" Opened.(sceOpen)\n", flist);
+                
+                sceClose(fd);
+                
+                htci_wait_by_fd(sceOpen(flist, htg_ci_open_mode));
+            }
+        }
+    } 
+    
+    printf("HTCI: Total %d files\n", numf);
+    
+    return numf;
 }
