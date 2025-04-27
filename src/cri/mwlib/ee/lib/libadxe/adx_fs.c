@@ -674,7 +674,7 @@ Sint32 ADXF_Seek(ADXF adxf, Sint32 pos, Sint32 type)
 // 100% matching!
 Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
 {
-    Char8 fname[256];
+    Char8 fname[ADXF_FNAME_MAX];
     void *dir;
     Sint32 ofst;
     Sint32 fnsct;
