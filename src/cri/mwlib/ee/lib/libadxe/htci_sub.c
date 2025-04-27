@@ -195,7 +195,7 @@ Sint32 load_flist(Char8* flist, Sint32* rbuf)
     Sint32 fd;
     Sint32 fsize;
 
-    fd = sceOpen(flist, 1);
+    fd = sceOpen(flist, SCE_RDONLY);
     
     if (fd < 0)
     {
