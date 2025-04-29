@@ -8,9 +8,26 @@ void dvci_call_errfn(Sint32 arg0, Char8* err_msg)
 // dvci_conv_fname
 // dvci_free
 
-void dvci_to_large_to_yen(Char8* flist)
+// 100% matching!
+void dvci_to_large_to_yen(Char8* flist) 
 {
-    scePrintf("dvci_to_large_to_yen - UNIMPLEMENTED!\n");
+    Uint32 i;
+    Uint32 l;
+
+    l = strlen(flist);
+    
+    for (i = 0; i < l; i++) 
+    {
+        if (flist[i] == '/') 
+        {
+            flist[i] = '\\';
+        }
+        
+        if ((Uint8)(flist[i] - 'a') < 26) 
+        {
+            flist[i] -= ' ';
+        }
+    } 
 }
 
 // dvci_wait
