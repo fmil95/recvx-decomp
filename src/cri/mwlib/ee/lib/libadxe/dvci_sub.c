@@ -2,19 +2,17 @@ void* dvg_flist_tbl;
 Sint32 dvg_rbuf[4096];
 sceCdRMode dvg_ci_cdrmode;
 
-Sint32 analysis_flist(Char8* fpc, Sint32* rbuf, Uint32 size);
-void conv_to_tpath(Char8* flist, Char8* fname);
-Sint32 load_flist(Char8* flist, Sint32* rbuf);
+Sint32 load_flist_dup(Char8* flist, Sint32* rbuf);
 
-/*Sint32 analysis_flist(Char8* fpc, Sint32* rbuf, Uint32 size)
+Sint32 analysis_flist_dup(Char8* fpc, Sint32* rbuf, Uint32 size)
 {
-    scePrintf("analysis_flist - UNIMPLEMENTED!\n");
+    scePrintf("analysis_flist_dup - UNIMPLEMENTED!\n");
 }
 
-void conv_to_tpath(Char8* flist, Char8* fname)
+void conv_to_tpath_dup(Char8* flist, Char8* fname)
 {
-    scePrintf("conv_to_tpath - UNIMPLEMENTED!\n");
-}*/
+    scePrintf("conv_to_tpath_dup - UNIMPLEMENTED!\n");
+}
 
 // dvci_get_fstate
 
@@ -43,16 +41,16 @@ Sint32 dvCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
         return 0;
     }
     
-    conv_to_tpath(flist, fname);
+    conv_to_tpath_dup(flist, fname);
     
-    if (load_flist(flist, dvg_rbuf) == 0)
+    if (load_flist_dup(flist, dvg_rbuf) == 0)
     {
         dvci_call_errfn(0, "E0111501:can't read filelist.(dvCiLoadDirInfo)");
         
         return 0;
     }
     
-    return search_fstate(fpc, analysis_flist(fpc, dvg_rbuf, size / 140)) * 140;
+    return search_fstate(fpc, analysis_flist_dup(fpc, dvg_rbuf, size / 140)) * 140;
 }
 
 // 100% matching!
@@ -67,10 +65,21 @@ void dvCiSetRdMode(Sint32 nrtry, Sint32 speed, Sint32 dtype)
 
 // get_fp_from_fname
 
-/*Sint32 load_flist(Char8* flist, Sint32* rbuf)
+// 100% matching!
+Sint32 load_flist_dup(Char8* flist, Sint32* rbuf)  
 {
-    scePrintf("load_flist - UNIMPLEMENTED!\n");
-}*/
+    sceCdlFILE fp;
+    sceCdRMode mode;
+
+    if ((sceCdSearchFile(&fp, flist) == 0) || (mode.spindlctrl = 1, mode.trycount = 0, mode.datapattern = 0, mode.pad = 0, (sceCdRead(fp.lsn, 2, rbuf, &mode) == 0))) 
+    {
+        return 0;
+    }
+    
+    sceCdSync(0);
+    
+    return 1;
+}
 
 Sint32 search_fstate(Char8* fpc, Sint32 arg1)
 {
