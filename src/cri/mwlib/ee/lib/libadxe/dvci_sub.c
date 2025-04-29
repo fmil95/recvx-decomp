@@ -9,9 +9,17 @@ Sint32 analysis_flist_dup(Char8* fpc, Sint32* rbuf, Uint32 size)
     scePrintf("analysis_flist_dup - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void conv_to_tpath_dup(Char8* flist, Char8* fname)
 {
-    scePrintf("conv_to_tpath_dup - UNIMPLEMENTED!\n");
+    strcpy(flist, fname);
+    
+    if (strcmp(flist + (strlen(flist) - 2), ";1") != 0)
+    {
+        strcat(flist, ";1");
+    }
+    
+    dvci_to_large_to_yen(flist);
 }
 
 // dvci_get_fstate

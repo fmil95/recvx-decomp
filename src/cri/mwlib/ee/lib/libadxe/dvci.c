@@ -7,7 +7,12 @@ void dvci_call_errfn(Sint32 arg0, Char8* err_msg)
 
 // dvci_conv_fname
 // dvci_free
-// dvci_to_large_to_yen
+
+void dvci_to_large_to_yen(Char8* flist)
+{
+    scePrintf("dvci_to_large_to_yen - UNIMPLEMENTED!\n");
+}
+
 // dvci_wait
 // dvCiClose
 // dvCiEntryErrFunc
