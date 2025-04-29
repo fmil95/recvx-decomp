@@ -22,7 +22,7 @@ Sint32 analysis_flist(Char8* fpc, Sint32* rbuf, Uint32 size)
 }
 
 // 100% matching!
-Sint32 close_file_all()
+Sint32 close_file_all(void)
 {
     Char8 flist[ADXF_FNAME_MAX];
     HTCI_DIR dir;
@@ -148,7 +148,7 @@ Sint32 htCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
     
     close_file_all();
     
-    if ((fname == NULL) || ((fpc == NULL) || (size == 0))) 
+    if ((fname == NULL) || (fpc == NULL) || (size == 0)) 
     {
         return 0;
     }
