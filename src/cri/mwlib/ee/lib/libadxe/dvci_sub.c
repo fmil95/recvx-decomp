@@ -1,9 +1,15 @@
 sceCdRMode dvg_ci_cdrmode;
+void* dvg_flist_tbl;
 
 // analysis_flist
 // conv_to_tpath
 // dvci_get_fstate
-// dvci_init_flist
+
+// 100% matching!
+void dvci_init_flist(void) 
+{
+    *(Sint64*)&dvg_flist_tbl = 0;
+}
 
 void dvCiLoadFpCache(Char8* fname, Char8* fpc, Sint32 size)
 {
