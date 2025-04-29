@@ -25,6 +25,8 @@ typedef DVD_CI  *DVCI;
 typedef DVD_CI DVCI_OBJ;
 
 DVCI_OBJ dvg_ci_obj[ADXPS2_DEF_NUM_FILE_DVD];
+void (*dvg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
+void* dvg_ci_err_obj;
 
 // 100% matching!
 DVCI dvci_alloc(void) 
@@ -45,9 +47,13 @@ DVCI dvci_alloc(void)
     return dvci;
 }
 
+// 100% matching!
 void dvci_call_errfn(Sint32 arg0, Char8* err_msg)
 {
-    scePrintf("dvci_call_errfn - UNIMPLEMENTED!\n");
+    if (dvg_ci_err_func != NULL) 
+    {
+        dvg_ci_err_func(dvg_ci_err_obj, err_msg, arg0);
+    }
 }
 
 // dvci_conv_fname
