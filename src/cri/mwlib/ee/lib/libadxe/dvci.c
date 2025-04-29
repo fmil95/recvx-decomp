@@ -57,7 +57,12 @@ void dvci_call_errfn(Sint32 arg0, Char8* err_msg)
 }
 
 // dvci_conv_fname
-// dvci_free
+
+// 100% matching!
+void dvci_free(DVCI dvci)
+{
+    *dvci = (DVD_CI){0};
+}
 
 // 100% matching!
 void dvci_to_large_to_yen(Char8* flist) 
