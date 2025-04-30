@@ -86,7 +86,14 @@ void dvci_to_large_to_yen(Char8* flist)
     } 
 }
 
-// dvci_wait
+// 100% matching!
+void dvci_wait(void)
+{
+    Sint32 i;
+
+    for (i = 0; i < 32768; i++);
+}
+
 // dvCiClose
 // dvCiEntryErrFunc
 // dvCiExecHndl
