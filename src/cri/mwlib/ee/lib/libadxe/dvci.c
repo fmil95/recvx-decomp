@@ -27,6 +27,7 @@ typedef DVD_CI DVCI_OBJ;
 DVCI_OBJ dvg_ci_obj[ADXPS2_DEF_NUM_FILE_DVD];
 void (*dvg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
 void* dvg_ci_err_obj;
+void* dvg_ci_vtbl;
 
 // 100% matching!
 DVCI dvci_alloc(void) 
@@ -100,9 +101,10 @@ void dvci_wait(void)
 // dvCiExecServer
 // dvCiGetFileSize
 
-void dvCiGetInterface(void)
+// 100% matching!
+void* dvCiGetInterface(void) 
 {
-    scePrintf("dvCiGetInterface - UNIMPLEMENTED!\n");
+    return &dvg_ci_vtbl;
 }
 
 // dvCiGetNumTr
