@@ -2,6 +2,15 @@ void* dvg_flist_tbl;
 Sint32 dvg_rbuf[4096];
 sceCdRMode dvg_ci_cdrmode;
 
+typedef struct _dvd_ci_file
+{
+    Sint32 fd;
+    Sint32 fsize;
+    Char8 fname[ADXPS2_DEF_MAXFLEN_DVD]; 
+    Uint8 pad[4];
+} DVD_CI_DIR;
+typedef DVD_CI_DIR  *DVCI_DIR;
+
 Sint32 load_flist_dup(Char8* flist, Sint32* rbuf);
 
 Sint32 analysis_flist_dup(Char8* fpc, Sint32* rbuf, Uint32 size)
@@ -89,7 +98,49 @@ Sint32 load_flist_dup(Char8* flist, Sint32* rbuf)
     return 1;
 }
 
+// 100% matching!
 Sint32 search_fstate(Char8* fpc, Sint32 arg1)
 {
-    scePrintf("search_fstate - UNIMPLEMENTED!\n");
+    Char8 flist[ADXPS2_DEF_MAXFLEN_DVD] = {0};
+    DVCI_DIR dir;
+    Sint32 numf;
+    Sint32 fd;
+    Sint32 i;
+    sceCdlFILE fp;
+
+    numf = 0;
+    
+    for (i = 0; i < arg1; i++) 
+    {
+        dir = (DVCI_DIR)fpc;
+        
+        strcpy(flist, dir[i].fname);
+        
+        if (dir[i].fname[0] != 0)
+        {
+            if (strcmp(flist + (strlen(flist) - 2), ";1") != 0) 
+            {
+                strcat(flist, ";1");
+            }
+            
+            if (sceCdSearchFile(&fp, flist) == 1)
+            {
+                dir[i].fd = fp.lsn;
+                
+                numf++;
+                
+                dir[i].fsize = fp.size;
+                
+                printf("DVCI: \"%s\" found.\n", flist);
+            }
+            else 
+            {
+                printf("DVCI: \"%s\" Not found.\n", flist);
+            }
+        }
+    } 
+    
+    printf("DVCI: Total %d files\n", numf);
+    
+    return numf;
 }
