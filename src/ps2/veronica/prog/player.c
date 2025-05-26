@@ -2417,17 +2417,14 @@ void bhKaidanPlayerMotion(int flg, int idx)
 }
 
 // 
-// Start address: 0x13a1a0
+// 100% match
 void bhFixPositionXYZ(BH_PWORK* ewP, char* datP)
 {
-	_anon35 pos;
-	// Line 510, Address: 0x13a1a0, Func Offset: 0
-	// Line 514, Address: 0x13a1ac, Func Offset: 0xc
-	// Line 516, Address: 0x13a1bc, Func Offset: 0x1c
-	// Line 517, Address: 0x13a1cc, Func Offset: 0x2c
-	// Line 518, Address: 0x13a1dc, Func Offset: 0x3c
-	// Line 520, Address: 0x13a1ec, Func Offset: 0x4c
-	// Func End, Address: 0x13a1fc, Func Offset: 0x5c
+    NJS_POINT3 pos,rtn;
+    bhCalcFixOffset(ewP, datP, NULL, &rtn);
+    ewP->px -= rtn.x;
+    ewP->py -= rtn.y;
+    ewP->pz -= rtn.z;
 }
 
 // 
