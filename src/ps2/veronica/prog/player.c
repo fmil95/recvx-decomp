@@ -2299,22 +2299,36 @@ void bhCheckMothEgg()
 }
 
 // 
-// Start address: 0x139c90
+// 100% matching!
 void bhCheckSubPack()
 {
-	// Line 408, Address: 0x139c90, Func Offset: 0
-	// Line 409, Address: 0x139c98, Func Offset: 0x8
-	// Line 411, Address: 0x139ccc, Func Offset: 0x3c
-	// Line 412, Address: 0x139cfc, Func Offset: 0x6c
-	// Line 413, Address: 0x139d14, Func Offset: 0x84
-	// Line 415, Address: 0x139d1c, Func Offset: 0x8c
-	// Line 416, Address: 0x139d4c, Func Offset: 0xbc
-	// Line 417, Address: 0x139d64, Func Offset: 0xd4
-	// Line 419, Address: 0x139d6c, Func Offset: 0xdc
-	// Line 420, Address: 0x139d9c, Func Offset: 0x10c
-	// Line 423, Address: 0x139db8, Func Offset: 0x128
-	// Func End, Address: 0x139dc4, Func Offset: 0x134
-}*/
+    int ply_id;
+    
+    ply_id = sys->ply_id;
+    switch (ply_id) {                         
+    case 0:
+        if (bhCkFlg(sys->ev_flg, 6) != 0) {
+            sys->gm_flg |= 0x08000000;
+        } else {
+            sys->gm_flg &= 0xF7FFFFFF;
+        }
+        break;
+    case 1:
+        if (bhCkFlg(sys->ev_flg, 7) != 0) {
+            sys->gm_flg |= 0x08000000;
+        } else {
+            sys->gm_flg &= 0xF7FFFFFF;
+        }
+        break;
+    case 2:
+        if (bhCkFlg(sys->ev_flg, 8) != 0) {
+            sys->gm_flg |= 0x08000000;
+        } else {
+            sys->gm_flg &= 0xF7FFFFFF;
+        }
+
+    }
+}
 
 // 
 // Start address: 0x139dd0
