@@ -2305,28 +2305,38 @@ void bhCheckSubPack()
     int ply_id;
     
     ply_id = sys->ply_id;
-    switch (ply_id) {                         
+    switch (ply_id) 
+    {                         
     case 0:
-        if (bhCkFlg(sys->ev_flg, 6) != 0) {
-            sys->gm_flg |= 0x08000000;
-        } else {
-            sys->gm_flg &= 0xF7FFFFFF;
+        if (bhCkFlg(sys->ev_flg, 6) != 0) 
+        {
+            sys->gm_flg |= 0x8000000;
+        } 
+        else 
+        {
+            sys->gm_flg &= ~0x8000000;
         }
         break;
     case 1:
-        if (bhCkFlg(sys->ev_flg, 7) != 0) {
-            sys->gm_flg |= 0x08000000;
-        } else {
-            sys->gm_flg &= 0xF7FFFFFF;
+        if (bhCkFlg(sys->ev_flg, 7) != 0) 
+        {
+            sys->gm_flg |= 0x0800000;
+        } 
+        else 
+        {
+            sys->gm_flg &= ~0x8000000;
         }
         break;
     case 2:
-        if (bhCkFlg(sys->ev_flg, 8) != 0) {
-            sys->gm_flg |= 0x08000000;
-        } else {
-            sys->gm_flg &= 0xF7FFFFFF;
+        if (bhCkFlg(sys->ev_flg, 8) != 0) 
+        {
+            sys->gm_flg |= 0x0800000;
+        } 
+        else 
+        {
+            sys->gm_flg &= ~0x8000000;
         }
-
+        break;
     }
 }
 
