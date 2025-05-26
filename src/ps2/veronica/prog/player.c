@@ -2417,14 +2417,14 @@ void bhKaidanPlayerMotion(int flg, int idx)
 }
 
 // 
-// 100% match
+// 100% matching!
 void bhFixPositionXYZ(BH_PWORK* ewP, char* datP)
 {
-    NJS_POINT3 pos,rtn;
-    bhCalcFixOffset(ewP, datP, NULL, &rtn);
-    ewP->px -= rtn.x;
-    ewP->py -= rtn.y;
-    ewP->pz -= rtn.z;
+    NJS_POINT3 pos;
+    bhCalcFixOffset(ewP, datP, NULL, &pos);
+    ewP->px -= pos.x;
+    ewP->py -= pos.y;
+    ewP->pz -= pos.z;
 }
 
 // 
