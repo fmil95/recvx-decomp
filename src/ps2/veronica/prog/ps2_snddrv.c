@@ -704,15 +704,13 @@ int SdrSendReq(int mode)
 	scePrintf("SdrSendReq - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2eac20
+// 100% matching!
 void cb_sifRpc(int smid)
 {
-	// Line 4946, Address: 0x2eac20, Func Offset: 0
-	// Func End, Address: 0x2eac28, Func Offset: 0x8
+    iSignalSema(smid);
 }
 
-// 
+/*// 
 // Start address: 0x2eac30
 void cb_sifRpc_snd(int smid)
 {
