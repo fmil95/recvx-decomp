@@ -1562,16 +1562,17 @@ void FileViewMain()
 }
 
 // 
-// Start address: 0x2ac3f0
+// 100% matching!
 void FileViewExit()
 {
-	// Line 313, Address: 0x2ac3f0, Func Offset: 0
-	// Line 314, Address: 0x2ac3f8, Func Offset: 0x8
-	// Line 315, Address: 0x2ac414, Func Offset: 0x24
-	// Line 316, Address: 0x2ac41c, Func Offset: 0x2c
-	// Line 317, Address: 0x2ac424, Func Offset: 0x34
-	// Line 319, Address: 0x2ac42c, Func Offset: 0x3c
-	// Func End, Address: 0x2ac438, Func Offset: 0x48
+    if ((sys->cb_flg & 0x20000)) 
+    {
+        FileExit00();
+    }
+    else
+    {
+        FileExit01();
+    }
 }
 
 // 
