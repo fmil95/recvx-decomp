@@ -122,6 +122,7 @@
 #include "message.c"
 #include "ps2_McSaveFile.c"
 #include "ps2_SystemLoadScreen.c"
+#include "Motion.c"
 #include "player.c"
 #include "door.c"
 #include "map.c"

@@ -1761,9 +1761,9 @@ char PlySdwTab[8];
 _anon27 PlyCapColTab[18];
 _anon40 WpnEffTab[4][23];
 char PlyTrsZ[3][6];
-BH_PWORK* plp;
-_anon11* sys;
-_anon10* rom;
+BH_PWORK* plp;*/
+SYS_WORK* sys;
+/*_anon10* rom;
 BH_PWORK ply;
 BH_PWORK ene[0];
 void(*bhCtrPly_mode0)()[9];
@@ -2296,9 +2296,8 @@ void bhCheckMothEgg()
 	// Line 400, Address: 0x139c7c, Func Offset: 0xac
 	// Line 402, Address: 0x139c84, Func Offset: 0xb4
 	// Func End, Address: 0x139c90, Func Offset: 0xc0
-}
+}*/
 
-// 
 // 100% matching!
 void bhCheckSubPack()
 {
@@ -2320,7 +2319,7 @@ void bhCheckSubPack()
     case 1:
         if (bhCkFlg(sys->ev_flg, 7) != 0) 
         {
-            sys->gm_flg |= 0x0800000;
+            sys->gm_flg |= 0x8000000;
         } 
         else 
         {
@@ -2330,7 +2329,7 @@ void bhCheckSubPack()
     case 2:
         if (bhCkFlg(sys->ev_flg, 8) != 0) 
         {
-            sys->gm_flg |= 0x0800000;
+            sys->gm_flg |= 0x8000000;
         } 
         else 
         {
@@ -2438,7 +2437,7 @@ void bhKaidanPlayerMotion(int flg, int idx)
 	// Line 502, Address: 0x13a12c, Func Offset: 0x17c
 	// Line 504, Address: 0x13a18c, Func Offset: 0x1dc
 	// Func End, Address: 0x13a1a0, Func Offset: 0x1f0
-}
+}*/
 
 // 
 // 100% matching!
@@ -2451,7 +2450,7 @@ void bhFixPositionXYZ(BH_PWORK* ewP, char* datP)
     ewP->pz -= pos.z;
 }
 
-// 
+/*// 
 // Start address: 0x13a200
 int bhCheckPlayerKegaMotion(int wpntp, int dmlvl, int num)
 {
@@ -7854,4 +7853,3 @@ void* bhGetTransZ(int mtn_no)
 	// Line 5303, Address: 0x14a5a8, Func Offset: 0x58
 	// Func End, Address: 0x14a5b0, Func Offset: 0x60
 }*/
-

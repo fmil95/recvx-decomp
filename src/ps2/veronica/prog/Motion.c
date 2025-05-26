@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -816,17 +816,17 @@ void bhFixPosition(BH_PWORK* ewP, char* datP)
 	// Line 760, Address: 0x130dbc, Func Offset: 0x2c
 	// Line 762, Address: 0x130dcc, Func Offset: 0x3c
 	// Func End, Address: 0x130ddc, Func Offset: 0x4c
-}
+}*/
 
 // 
 // Start address: 0x130de0
-void bhCalcFixOffset(BH_PWORK* ewP, char* datP, _anon10* offP, _anon10* rtnP)
+void bhCalcFixOffset(BH_PWORK* ewP, char* datP, NJS_POINT3* offP, NJS_POINT3* rtnP)
 {
-	_anon10 dst;
-	_anon10 src;
-	npobj* objP;
-	_anon9* mlwP;
-	_anon10 off;
+	//_anon10 dst;
+	//_anon10 src;
+	//npobj* objP;
+	//_anon9* mlwP;
+	//_anon10 off;
 	// Line 779, Address: 0x130de0, Func Offset: 0
 	// Line 782, Address: 0x130dfc, Func Offset: 0x1c
 	// Line 785, Address: 0x130e0c, Func Offset: 0x2c
@@ -851,9 +851,10 @@ void bhCalcFixOffset(BH_PWORK* ewP, char* datP, _anon10* offP, _anon10* rtnP)
 	// Line 818, Address: 0x130f84, Func Offset: 0x1a4
 	// Line 820, Address: 0x130f8c, Func Offset: 0x1ac
 	// Func End, Address: 0x130fac, Func Offset: 0x1cc
+	scePrintf("bhCalcFixOffset - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x130fb0
 void bhGetObjMotion(BH_PWORK* ewP, int obj_no, float* pos, int* ang)
 {
@@ -940,5 +941,4 @@ void AngYzxToZyx(int* yzx, int* zyx)
 	// Line 932, Address: 0x131264, Func Offset: 0xb4
 	// Line 949, Address: 0x131290, Func Offset: 0xe0
 	// Func End, Address: 0x1312a4, Func Offset: 0xf4
-}
-
+}*/
