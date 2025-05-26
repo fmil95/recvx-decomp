@@ -710,16 +710,13 @@ void cb_sifRpc(int smid)
     iSignalSema(smid);
 }
 
-/*// 
-// Start address: 0x2eac30
+// 100% matching!
 void cb_sifRpc_snd(int smid)
 {
-	// Line 4950, Address: 0x2eac30, Func Offset: 0
-	// Line 4951, Address: 0x2eac38, Func Offset: 0x8
-	// Line 4955, Address: 0x2eac40, Func Offset: 0x10
-	// Line 4958, Address: 0x2eac48, Func Offset: 0x18
-	// Func End, Address: 0x2eac54, Func Offset: 0x24
-}*/
+    iSignalSema(smid);
+    
+    *(int*)0x1E212C8 = 0;
+}
 
 // 
 // Start address: 0x2eac60
