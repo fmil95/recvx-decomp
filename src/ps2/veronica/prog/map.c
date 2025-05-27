@@ -4441,11 +4441,16 @@ _anon1* MapCheckNextMap(_anon1* mnP)
 }
 
 // 
-// Start address: 0x2b74e0
+// 100% matching!
 int GetGameMode()
 {
-	// Line 3751, Address: 0x2b74e0, Func Offset: 0
-	// Line 3752, Address: 0x2b7504, Func Offset: 0x24
-	// Func End, Address: 0x2b750c, Func Offset: 0x2c
-}*/
+    if (sys->stg_no >= 7) 
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
 
