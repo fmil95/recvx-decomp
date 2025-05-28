@@ -2762,16 +2762,22 @@ void LightProc2(_door_wrk* dwP)
 }
 
 // 
-// Start address: 0x2b1880
+// 100% matching!
 int CompareSint32(int val_a, int cmp_typ, int val_b)
 {
-	// Line 2047, Address: 0x2b1880, Func Offset: 0
-	// Line 2049, Address: 0x2b18b4, Func Offset: 0x34
-	// Line 2050, Address: 0x2b18c8, Func Offset: 0x48
-	// Line 2051, Address: 0x2b18dc, Func Offset: 0x5c
-	// Line 2053, Address: 0x2b18e8, Func Offset: 0x68
-	// Line 2055, Address: 0x2b18f4, Func Offset: 0x74
-	// Func End, Address: 0x2b18fc, Func Offset: 0x7c
+    int ret; // not from the debugging symbols
+    switch (cmp_typ) {                                
+    case -1:
+        return (val_a >= val_b) ? 1 : 0;
+    case 0:
+        return (val_a == val_b) ? 1 : 0;
+    case 1:
+        return (val_a <= val_b) ? 1 : 0;
+    case -2:
+    case 2:
+        return (val_a != val_b) ? 1 : 0;
+    }
+    return ret;
 }
 
 // 
