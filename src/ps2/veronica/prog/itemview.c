@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -2300,23 +2300,22 @@ void LighterOpen(npobj* op)
 	// Line 1239, Address: 0x2abcd0, Func Offset: 0
 	// Line 1240, Address: 0x2abcd4, Func Offset: 0x4
 	// Func End, Address: 0x2abcdc, Func Offset: 0xc
-}
+}*/
 
-// 
-// Start address: 0x2abce0
-void FileSyu(npobj* op)
+// 100% matching!
+void FileSyu(NJS_CNK_OBJECT* op)
 {
-	// Line 1243, Address: 0x2abce0, Func Offset: 0
-	// Line 1244, Address: 0x2abce8, Func Offset: 0x8
-	// Line 1245, Address: 0x2abcec, Func Offset: 0xc
-	// Line 1246, Address: 0x2abcf4, Func Offset: 0x14
-	// Line 1247, Address: 0x2abd00, Func Offset: 0x20
-	// Line 1248, Address: 0x2abd08, Func Offset: 0x28
-	// Line 1249, Address: 0x2abd10, Func Offset: 0x30
-	// Func End, Address: 0x2abd18, Func Offset: 0x38
+    op->ang[0] = 32768;
+    op->ang[1] = 32768;
+    
+    op->sibling->ang[0] = 32768;
+    op->sibling->sibling->ang[0] = 32768;
+    
+    op->sibling->ang[1] = 32768;
+    op->sibling->sibling->ang[1] = 32768;
 }
 
-// 
+/*// 
 // Start address: 0x2abd20
 void MakeTag(unsigned short flg)
 {
@@ -2407,5 +2406,4 @@ void MakeTag(unsigned short flg)
 	// Line 1346, Address: 0x2abf88, Func Offset: 0x268
 	// Line 1348, Address: 0x2abf94, Func Offset: 0x274
 	// Func End, Address: 0x2abfbc, Func Offset: 0x29c
-}
-
+}*/
