@@ -88,10 +88,10 @@ struct _anon1
 	float ian[3][20];
 	float ipf[3][20];
 	float icr[3][20];
-};
+};*/
 
-_anon1 cam;
-float cmmat[16][0];
+CAM_WORK cam;
+/*float cmmat[16][0];
 float cmat[16];
 
 void bhInitCamera();
@@ -188,27 +188,24 @@ void bhMakeCameraVector()
 	// Line 151, Address: 0x27a1e4, Func Offset: 0x84
 	// Line 152, Address: 0x27a1f8, Func Offset: 0x98
 	// Func End, Address: 0x27a204, Func Offset: 0xa4
-}
-
-// 
-// Start address: 0x27a210
-void bhGetCameraPosition()
-{
-	_anon0 ps;
-	// Line 158, Address: 0x27a210, Func Offset: 0
-	// Line 160, Address: 0x27a218, Func Offset: 0x8
-	// Line 161, Address: 0x27a220, Func Offset: 0x10
-	// Line 162, Address: 0x27a264, Func Offset: 0x54
-	// Line 163, Address: 0x27a274, Func Offset: 0x64
-	// Line 164, Address: 0x27a284, Func Offset: 0x74
-	// Line 166, Address: 0x27a294, Func Offset: 0x84
-	// Line 165, Address: 0x27a29c, Func Offset: 0x8c
-	// Line 167, Address: 0x27a2a0, Func Offset: 0x90
-	// Line 165, Address: 0x27a2a4, Func Offset: 0x94
-	// Line 167, Address: 0x27a2a8, Func Offset: 0x98
-	// Line 166, Address: 0x27a2ac, Func Offset: 0x9c
-	// Line 167, Address: 0x27a2b0, Func Offset: 0xa0
-	// Line 168, Address: 0x27a2c0, Func Offset: 0xb0
-	// Func End, Address: 0x27a2cc, Func Offset: 0xbc
 }*/
 
+// 100% matching!
+void bhGetCameraPosition()
+{
+    NJS_POINT3 ps;
+
+    njUnitMatrix(NULL);
+    
+    njTranslate(NULL, cam.px + cam.ofx, cam.py + cam.ofy, cam.pz + cam.ofz);
+    
+    njRotateY(NULL, cam.ay);
+    njRotateX(NULL, cam.ax);
+    njRotateZ(NULL, cam.az);
+
+    ps.y = 0;
+    ps.x = 0;
+    ps.z = -cam.ln;
+
+    njCalcPoint(NULL, &ps, (NJS_POINT3*)&cam.wpx);
+}
