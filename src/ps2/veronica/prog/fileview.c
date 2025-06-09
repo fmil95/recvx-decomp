@@ -1559,9 +1559,8 @@ void FileViewMain()
 	// Line 306, Address: 0x2ac3d8, Func Offset: 0x48
 	// Line 309, Address: 0x2ac3e0, Func Offset: 0x50
 	// Func End, Address: 0x2ac3ec, Func Offset: 0x5c
-}
+}*/
 
-// 
 // 100% matching!
 void FileViewExit()
 {
@@ -1575,7 +1574,7 @@ void FileViewExit()
     }
 }
 
-// 
+/*// 
 // Start address: 0x2ac440
 void FileExit00()
 {
