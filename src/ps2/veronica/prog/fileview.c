@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -1380,9 +1380,9 @@ unsigned int fsheader[24];
 unsigned int wallpaper[24];
 void(*FileViewMode)()[5];
 _anon11 fvwork;
-_anon35 parts_22b[0];
-_anon19* sys;
-_anon12 swork;
+_anon35 parts_22b[0];*/
+SYS_WORK* sys;
+/*_anon12 swork;
 char ViewCnt;
 _anon23 tbuf[0];
 unsigned char menuanim[4][0];
@@ -2452,22 +2452,37 @@ unsigned int FileNumberSwitch(unsigned int num)
 	// Line 1426, Address: 0x2aeb40, Func Offset: 0x320
 	// Line 1428, Address: 0x2aeb50, Func Offset: 0x330
 	// Func End, Address: 0x2aeb58, Func Offset: 0x338
-}
+}*/
 
-// 
-// Start address: 0x2aeb60
+// 100% matching!
 int PlayPageCheck()
 {
-	int page_end00;
-	// Line 1442, Address: 0x2aeb60, Func Offset: 0
-	// Line 1460, Address: 0x2aeb68, Func Offset: 0x8
-	// Line 1462, Address: 0x2aeb84, Func Offset: 0x24
-	// Line 1464, Address: 0x2aeba8, Func Offset: 0x48
-	// Line 1466, Address: 0x2aebcc, Func Offset: 0x6c
-	// Line 1468, Address: 0x2aebf0, Func Offset: 0x90
-	// Line 1470, Address: 0x2aec14, Func Offset: 0xb4
-	// Line 1471, Address: 0x2aec1c, Func Offset: 0xbc
-	// Line 1475, Address: 0x2aec20, Func Offset: 0xc0
-	// Func End, Address: 0x2aec2c, Func Offset: 0xcc
-}
+    int page_end00;
 
+    if (bhCkFlg(sys->ev_flg, 0x199) != 0) 
+    {
+        page_end00 = 0;
+    }
+    else if (bhCkFlg(sys->ev_flg, 0x2B) != 0)
+    {
+        page_end00 = 1;
+    }
+    else if (bhCkFlg(sys->ev_flg, 0x129) != 0) 
+    {
+        page_end00 = 2;
+    }
+    else if (bhCkFlg(sys->ev_flg, 0xE0) != 0) 
+    {
+        page_end00 = 4;
+    }
+    else if (bhCkFlg(sys->ev_flg, 0x96) != 0)
+    {
+        page_end00 = 6;
+    } 
+    else 
+    {
+        page_end00 = 7;
+    }
+    
+    return page_end00;
+}

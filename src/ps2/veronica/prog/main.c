@@ -64,6 +64,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk2.c"
 
 #include "itemview.c"
+#include "fileview.c"
 #include "ps2_NaMem.c"
 #include "camera.c"
 #include "eneset.c"
