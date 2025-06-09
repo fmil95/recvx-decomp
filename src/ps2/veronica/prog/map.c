@@ -4438,9 +4438,8 @@ _anon1* MapCheckNextMap(_anon1* mnP)
 	// Line 3738, Address: 0x2b74c8, Func Offset: 0x148
 	// Line 3739, Address: 0x2b74cc, Func Offset: 0x14c
 	// Func End, Address: 0x2b74d4, Func Offset: 0x154
-}
+}*/
 
-// 
 // 100% matching!
 int GetGameMode()
 {
@@ -4453,4 +4452,3 @@ int GetGameMode()
         return 1;
     }
 }
-
