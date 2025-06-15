@@ -91,7 +91,8 @@ struct _anon1
 };*/
 
 CAM_WORK cam;
-/*float cmmat[16][0];
+float cmmat[16];
+/*
 float cmat[16];
 
 void bhInitCamera();
@@ -99,30 +100,20 @@ void bhControlCamera();
 void bhMakeCameraVector();
 void bhGetCameraPosition();*/
 
-// 
-// Start address: 0x279ea0
-void bhInitCamera()
-{
-	// Line 58, Address: 0x279ea0, Func Offset: 0
-	// Line 59, Address: 0x279ea4, Func Offset: 0x4
-	// Line 58, Address: 0x279eb0, Func Offset: 0x10
-	// Line 59, Address: 0x279eb4, Func Offset: 0x14
-	// Line 60, Address: 0x279ebc, Func Offset: 0x1c
-	// Line 61, Address: 0x279ec4, Func Offset: 0x24
-	// Line 62, Address: 0x279ed0, Func Offset: 0x30
-	// Line 63, Address: 0x279edc, Func Offset: 0x3c
-	// Line 64, Address: 0x279ee4, Func Offset: 0x44
-	// Line 65, Address: 0x279ef0, Func Offset: 0x50
-	// Line 66, Address: 0x279ef8, Func Offset: 0x58
-	// Line 67, Address: 0x279efc, Func Offset: 0x5c
-	// Line 66, Address: 0x279f00, Func Offset: 0x60
-	// Line 67, Address: 0x279f04, Func Offset: 0x64
-	// Line 68, Address: 0x279f10, Func Offset: 0x70
-	// Line 69, Address: 0x279f20, Func Offset: 0x80
-	// Line 70, Address: 0x279f2c, Func Offset: 0x8c
-	// Line 71, Address: 0x279f38, Func Offset: 0x98
-	// Func End, Address: 0x279f44, Func Offset: 0xa4
-	scePrintf("bhInitCamera - UNIMPLEMENTED!\n");
+// 100% matching!
+ void bhInitCamera(void) {
+    npSetMemory((unsigned char*)&cam, 0x4AC, 0);
+    cam.flg = 0;
+    cam.ln = 0x100;
+    cam.pers = 0x2000;
+    cam.ncut = 0;
+    cam.ocut = -1;
+    cam.ocflg = 0;
+    cam.attr = 0;
+    cam.mtx = &cmmat;
+    cam.mtxb = (&cmmat + 0x1);
+    njUnitMatrix(cam.mtx);
+    njUnitMatrix(cam.mtxb);
 }
 
 /*// 
