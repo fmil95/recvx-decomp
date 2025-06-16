@@ -1450,9 +1450,12 @@ struct _anon36
 };
 
 void(*RankingMode)()[6];
-_anon13* sys;
-_anon6 fade;
-_anon5 rkw;
+*/
+SYS_WORK* sys;
+RANK_WORK rkw;
+NO_NAME_29 fade;
+
+/*
 tagSYSSAVE_SCREEN* pRankingSys;
 unsigned char* vwbmemp;
 tagSYSSAVE_SCREEN RankingSys;
@@ -1632,29 +1635,20 @@ void RankingInit()
 	// Line 348, Address: 0x2bb7d4, Func Offset: 0x594
 	// Line 351, Address: 0x2bb7d8, Func Offset: 0x598
 	// Func End, Address: 0x2bb7f0, Func Offset: 0x5b0
-}
+}*/
 
-// 
-// Start address: 0x2bb7f0
-void RankingVmsWait()
+// 100% matching
+void RankingVmsWait() 
 {
-	// Line 364, Address: 0x2bb7f0, Func Offset: 0
-	// Line 363, Address: 0x2bb7f8, Func Offset: 0x8
-	// Line 364, Address: 0x2bb804, Func Offset: 0x14
-	// Line 365, Address: 0x2bb80c, Func Offset: 0x1c
-	// Line 377, Address: 0x2bb814, Func Offset: 0x24
-	// Func End, Address: 0x2bb81c, Func Offset: 0x2c
+    rkw.errret = 1;
+    sys->typ_md0 = 3;
+    sys->typ_md1 = 0;
 }
 
-// 
-// Start address: 0x2bb820
-void RankingSave()
-{
-	// Line 386, Address: 0x2bb820, Func Offset: 0
-	// Func End, Address: 0x2bb828, Func Offset: 0x8
-}
+// 100% matching
+void RankingSave() {}
 
-// 
+/*// 
 // Start address: 0x2bb830
 void RankingErrorMessage()
 {
@@ -2202,56 +2196,40 @@ int SaveCountScore()
 	// Line 1323, Address: 0x2bcf0c, Func Offset: 0x2c
 	// Line 1326, Address: 0x2bcf14, Func Offset: 0x34
 	// Func End, Address: 0x2bcf1c, Func Offset: 0x3c
-}
-
-// 
-// Start address: 0x2bcf20
-int RetryCountScore()
-{
-	int retry_ct;
-	int ret;
-	// Line 1335, Address: 0x2bcf20, Func Offset: 0
-	// Line 1336, Address: 0x2bcf2c, Func Offset: 0xc
-	// Line 1338, Address: 0x2bcf34, Func Offset: 0x14
-	// Line 1337, Address: 0x2bcf48, Func Offset: 0x28
-	// Line 1338, Address: 0x2bcf4c, Func Offset: 0x2c
-	// Line 1341, Address: 0x2bcf54, Func Offset: 0x34
-	// Func End, Address: 0x2bcf5c, Func Offset: 0x3c
-}
-
-// 
-// Start address: 0x2bcf60
-void GetMessage(unsigned int mesnum, _anon12* pos)
-{
-	// Line 1350, Address: 0x2bcf60, Func Offset: 0
-	// Func End, Address: 0x2bcf9c, Func Offset: 0x3c
-}
-
-// 
-// Start address: 0x2bcfa0
-void RankingBgmSet()
-{
-	_anon6* sfe;
-	_anon5* rk;
-	// Line 1354, Address: 0x2bcfa0, Func Offset: 0
-	// Line 1355, Address: 0x2bcfa4, Func Offset: 0x4
-	// Line 1354, Address: 0x2bcfac, Func Offset: 0xc
-	// Line 1357, Address: 0x2bcfb0, Func Offset: 0x10
-	// Line 1356, Address: 0x2bcfb4, Func Offset: 0x14
-	// Line 1357, Address: 0x2bcfb8, Func Offset: 0x18
-	// Line 1356, Address: 0x2bcfbc, Func Offset: 0x1c
-	// Line 1357, Address: 0x2bcfc0, Func Offset: 0x20
-	// Line 1358, Address: 0x2bcfd8, Func Offset: 0x38
-	// Line 1359, Address: 0x2bcffc, Func Offset: 0x5c
-	// Line 1360, Address: 0x2bd008, Func Offset: 0x68
-	// Line 1361, Address: 0x2bd010, Func Offset: 0x70
-	// Line 1362, Address: 0x2bd018, Func Offset: 0x78
-	// Line 1363, Address: 0x2bd01c, Func Offset: 0x7c
-	// Line 1361, Address: 0x2bd020, Func Offset: 0x80
-	// Line 1362, Address: 0x2bd028, Func Offset: 0x88
-	// Line 1363, Address: 0x2bd02c, Func Offset: 0x8c
-	// Line 1364, Address: 0x2bd030, Func Offset: 0x90
-	// Line 1366, Address: 0x2bd038, Func Offset: 0x98
-	// Func End, Address: 0x2bd044, Func Offset: 0xa4
 }*/
+
+// 100% matching
+int RetryCountScore() { 
+    int ret = 0;
+    int retry_ct = sys->retry_ct; 
+    if(retry_ct != 0) { 
+        ret = -0x3E8; 
+        ret = (((retry_ct - 1) * -0x32)) + ret; 
+    }
+    return ret;
+}
+
+// 100% matching
+void GetMessage(unsigned int mesnum, NJS_POINT2* pos) {
+    bhDispMessageEx(pos->x, pos->y, -1.0f, 1, mesnum, (rkw.mesalpha << 0x18) | 0xFFFFFF, 0);
+}
+
+// 100% matching
+void RankingBgmSet() {
+    RANK_WORK* rk = &rkw;
+    NO_NAME_29* sfe = &fade;
+
+    if ((sys->gm_mode == 0) || (sys->gm_mode== 3)) {
+        if (rk->ranking & 3) {
+            PlayBgm(0x16, 0);
+            return;
+        }
+        PlayBgm(0x20, 0);
+        return;
+    }
+    sfe->flg &= ~1;
+    rk->mode_01 = 2;
+    rk->mesalpha = 1;
+    rk->mescol= 0xC;
+}
 
