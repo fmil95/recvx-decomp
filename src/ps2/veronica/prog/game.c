@@ -1552,14 +1552,16 @@ struct _anon43
 	float prm_4;
 	unsigned char* recp;
 };
+*/
 
-_anon0* sys;
-_anon10* rom;
-_anon37 cam;
+SYS_WORK* sys;
+ROM_WORK* rom;
+CAM_WORK cam;
 BH_PWORK* plp;
 unsigned char pl_sleep_cnt;
 unsigned int Ps2_albinoid_flag;
 
+/*
 void bhMainSequence();
 void bhAllDrawModel();
 void bhAllEasyDrawModel();
@@ -1734,102 +1736,117 @@ void bhMainSequence()
 	scePrintf("bhMainSequence - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x1380d0
+// 100% matching
 void bhAllDrawModel()
 {
-	// Line 358, Address: 0x1380d0, Func Offset: 0
-	// Line 361, Address: 0x1380d8, Func Offset: 0x8
-	// Line 364, Address: 0x1380e0, Func Offset: 0x10
-	// Line 365, Address: 0x1380e8, Func Offset: 0x18
-	// Line 368, Address: 0x13810c, Func Offset: 0x3c
-	// Line 371, Address: 0x138130, Func Offset: 0x60
-	// Line 372, Address: 0x13815c, Func Offset: 0x8c
-	// Line 374, Address: 0x138164, Func Offset: 0x94
-	// Line 402, Address: 0x138174, Func Offset: 0xa4
-	// Line 403, Address: 0x1381a0, Func Offset: 0xd0
-	// Line 404, Address: 0x1381b0, Func Offset: 0xe0
-	// Line 406, Address: 0x1381c0, Func Offset: 0xf0
-	// Line 410, Address: 0x1381c8, Func Offset: 0xf8
-	// Line 412, Address: 0x1381d4, Func Offset: 0x104
-	// Line 415, Address: 0x138208, Func Offset: 0x138
-	// Line 416, Address: 0x138218, Func Offset: 0x148
-	// Line 417, Address: 0x138230, Func Offset: 0x160
-	// Line 421, Address: 0x138238, Func Offset: 0x168
-	// Line 423, Address: 0x138240, Func Offset: 0x170
-	// Line 424, Address: 0x138248, Func Offset: 0x178
-	// Line 427, Address: 0x13826c, Func Offset: 0x19c
-	// Line 432, Address: 0x138290, Func Offset: 0x1c0
-	// Line 433, Address: 0x1382a0, Func Offset: 0x1d0
-	// Line 434, Address: 0x1382b8, Func Offset: 0x1e8
-	// Line 438, Address: 0x1382c0, Func Offset: 0x1f0
-	// Line 439, Address: 0x1382cc, Func Offset: 0x1fc
-	// Line 440, Address: 0x1382d4, Func Offset: 0x204
-	// Line 442, Address: 0x1382f4, Func Offset: 0x224
-	// Line 447, Address: 0x138300, Func Offset: 0x230
-	// Line 449, Address: 0x138360, Func Offset: 0x290
-	// Line 451, Address: 0x13837c, Func Offset: 0x2ac
-	// Line 461, Address: 0x138394, Func Offset: 0x2c4
-	// Line 462, Address: 0x1383a0, Func Offset: 0x2d0
-	// Line 463, Address: 0x1383bc, Func Offset: 0x2ec
-	// Line 487, Address: 0x1383cc, Func Offset: 0x2fc
-	// Line 488, Address: 0x1383f8, Func Offset: 0x328
-	// Line 490, Address: 0x138400, Func Offset: 0x330
-	// Line 491, Address: 0x138410, Func Offset: 0x340
-	// Line 493, Address: 0x138418, Func Offset: 0x348
-	// Line 494, Address: 0x138420, Func Offset: 0x350
-	// Line 496, Address: 0x138428, Func Offset: 0x358
-	// Func End, Address: 0x138434, Func Offset: 0x364
+    njControl3D(0x2500);
+    njSetCheapShadowMode(0x80);
+    njCnkSetEasyMultiAmbient(rom->amb_r[rom->amb_rom], rom->amb_g[rom->amb_rom], rom->amb_b[rom->amb_rom]);
+    njCnkSetSimpleMultiAmbient(rom->amb_r[rom->amb_rom], rom->amb_g[rom->amb_rom], rom->amb_b[rom->amb_rom]);
+    if ((rom->mdl.texP != 0) && !(sys->error & 2)) {
+        njSetTexture(rom->mdl.texP);
+    }
+    njSetMatrix(0, cam.mtx);
+    if ((rom->mdl.objP != 0) && (sys->pt_flg & 0x20)) {
+        if (sys->gm_flg & 0x80) {
+            njCnkEasyDrawObject(rom->mdl.objP);
+        } else {
+            njCnkEasyMultiDrawObject(rom->mdl.objP);
+        }
+    }
+    njControl3D(0x2400);
+    if ((sys->en_objn != 0) && (sys->pt_flg & 2)) {
+        bhDrawEneObject();
+    }
+    if ((Ps2_albinoid_flag != 0) && (sys->pt_flg & 0x10)) {
+        bhDrawEffect();
+    }
+    bhDrawObjItm();
+    njControl3D(0x100);
+    njCnkSetEasyMultiAmbient(rom->amb_r[rom->amb_chr], rom->amb_g[rom->amb_chr], rom->amb_b[rom->amb_chr]);
+    njCnkSetSimpleMultiAmbient(rom->amb_r[rom->amb_chr], rom->amb_g[rom->amb_chr], rom->amb_b[rom->amb_chr]);
+    if (Ps2_albinoid_flag == 0) {
+        if (sys->pt_flg & 0x10) {
+            bhDrawEffect();
+        }
+    }
+    njControl3D(0);
+    bhSetHalfLight();
+    if (sys->pt_flg & 2) {
+        bhDrawEnemy();
+    }
+    njControl3D(0);
+    if (((sys->pt_flg & 1) && !(plp->stflg & 0x01000000)) || ((plp->stflg & 0x01000000) && (pl_sleep_cnt != 0))) {
+        if (pl_sleep_cnt != 0) {
+            pl_sleep_cnt -= 1;
+        }
+        if (!(plp->mdflg & 1)) {
+            if (!(plp->mdflg & 0x20)) {
+                if (bhCheckClipModel(plp) == 0) {
+                    bhPutModel(plp);
+                }
+            } else {
+                bhPutModel(plp);
+            }
+        }
+    }
+    if ((rom->mdl.texP != 0) && !(sys->error & 2)) {
+        njSetTexture(rom->mdl.texP);
+    }
+    njSetMatrix(0, cam.mtx);
+    njControl3D(0x2400);
+    bhDrawGeneralPurposeWater();
+    njControl3D(0);
 }
 
-// 
-// Start address: 0x138440
+// 100% matching
 void bhAllEasyDrawModel()
 {
-	// Line 502, Address: 0x138440, Func Offset: 0
-	// Line 504, Address: 0x138444, Func Offset: 0x4
-	// Line 502, Address: 0x138448, Func Offset: 0x8
-	// Line 504, Address: 0x13844c, Func Offset: 0xc
-	// Line 507, Address: 0x138454, Func Offset: 0x14
-	// Line 508, Address: 0x13845c, Func Offset: 0x1c
-	// Line 511, Address: 0x138480, Func Offset: 0x40
-	// Line 514, Address: 0x1384a4, Func Offset: 0x64
-	// Line 515, Address: 0x1384d0, Func Offset: 0x90
-	// Line 517, Address: 0x1384d8, Func Offset: 0x98
-	// Line 518, Address: 0x1384e8, Func Offset: 0xa8
-	// Line 519, Address: 0x138514, Func Offset: 0xd4
-	// Line 520, Address: 0x138524, Func Offset: 0xe4
-	// Line 522, Address: 0x138534, Func Offset: 0xf4
-	// Line 525, Address: 0x13853c, Func Offset: 0xfc
-	// Line 532, Address: 0x138544, Func Offset: 0x104
-	// Line 533, Address: 0x13854c, Func Offset: 0x10c
-	// Line 534, Address: 0x138564, Func Offset: 0x124
-	// Line 536, Address: 0x13856c, Func Offset: 0x12c
-	// Func End, Address: 0x138578, Func Offset: 0x138
+    njControl3D(0x18100);
+    njSetCnkBlendMode(0);
+    njCnkSetEasyMultiAmbient(rom->amb_r[rom->amb_rom], rom->amb_g[rom->amb_rom], rom->amb_b[rom->amb_rom]);
+    njCnkSetSimpleMultiAmbient(rom->amb_r[rom->amb_rom], rom->amb_g[rom->amb_rom], rom->amb_b[rom->amb_rom]);
+    if ((rom->mdl.texP != 0) && !(sys->error & 2)) {
+        njSetTexture(rom->mdl.texP);
+    }
+    njSetMatrix(0, cam.mtx);
+    if ((rom->mdl.objP != 0) && (sys->pt_flg & 0x20)) {
+        if (sys->gm_flg & 0x80) {
+            njCnkEasyDrawObject(rom->mdl.objP);
+        } else {
+            njCnkEasyMultiDrawObject(rom->mdl.objP); 
+        }
+    }
+    bhDrawObjItm();
+    njControl3D(0x10000);
+    if (sys->pt_flg & 0x2) {
+        bhDrawEnemy();
+    }
 }
 
-// 
-// Start address: 0x138580
+// 100% matching
 void bhEtcMirrorDrawModel()
 {
-	// Line 542, Address: 0x138580, Func Offset: 0
-	// Line 547, Address: 0x138588, Func Offset: 0x8
-	// Line 548, Address: 0x138590, Func Offset: 0x10
-	// Line 552, Address: 0x13859c, Func Offset: 0x1c
-	// Line 553, Address: 0x1385a4, Func Offset: 0x24
-	// Line 556, Address: 0x1385c8, Func Offset: 0x48
-	// Line 559, Address: 0x1385ec, Func Offset: 0x6c
-	// Line 560, Address: 0x138618, Func Offset: 0x98
-	// Line 562, Address: 0x138620, Func Offset: 0xa0
-	// Line 563, Address: 0x138630, Func Offset: 0xb0
-	// Line 564, Address: 0x13865c, Func Offset: 0xdc
-	// Line 565, Address: 0x13866c, Func Offset: 0xec
-	// Line 567, Address: 0x13867c, Func Offset: 0xfc
-	// Line 569, Address: 0x138684, Func Offset: 0x104
-	// Line 571, Address: 0x138690, Func Offset: 0x110
-	// Line 573, Address: 0x138698, Func Offset: 0x118
-	// Line 574, Address: 0x1386b0, Func Offset: 0x130
-	// Line 576, Address: 0x1386b8, Func Offset: 0x138
-	// Func End, Address: 0x1386c4, Func Offset: 0x144
-}*/
+    bhSetHideObject(4);
+    njControl3D(0x12500);
+    njSetCheapShadowMode(0x80);
+    njCnkSetEasyMultiAmbient(rom->amb_r[rom->amb_rom], rom->amb_g[rom->amb_rom], rom->amb_b[rom->amb_rom]);
+    njCnkSetSimpleMultiAmbient(rom->amb_r[rom->amb_rom], rom->amb_g[rom->amb_rom], rom->amb_b[rom->amb_rom]);
+    if ((rom->mdl.texP != 0) && !(sys->error & 2)) {
+        njSetTexture(rom->mdl.texP);
+    }
+    njSetMatrix(0, cam.mtx);
+    if ((rom->mdl.objP != 0) && (sys->pt_flg & 0x20)) {
+        if (sys->gm_flg & 0x80) {
+            njCnkEasyDrawObject(rom->mdl.objP);
+        } else {
+            njCnkEasyMultiDrawObject(rom->mdl.objP); 
+        }
+    }
+    bhSetHideObject(0);
+    njControl3D(0x100);
+    if (sys->pt_flg & 0x10) {
+        bhDrawEffect();
+    }
+}
 
