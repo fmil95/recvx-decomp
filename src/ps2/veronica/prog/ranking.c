@@ -2132,71 +2132,71 @@ int GameClearScore(int time)
 	// Line 1244, Address: 0x2bcd28, Func Offset: 0x238
 	// Line 1248, Address: 0x2bcd38, Func Offset: 0x248
 	// Func End, Address: 0x2bcd44, Func Offset: 0x254
-}
-
-// 
-// Start address: 0x2bcd50
-int RodorigoEventScore()
-{
-	// Line 1254, Address: 0x2bcd50, Func Offset: 0
-	// Line 1257, Address: 0x2bcd58, Func Offset: 0x8
-	// Line 1259, Address: 0x2bcd6c, Func Offset: 0x1c
-	// Line 1257, Address: 0x2bcd70, Func Offset: 0x20
-	// Line 1259, Address: 0x2bcd7c, Func Offset: 0x2c
-	// Func End, Address: 0x2bcd88, Func Offset: 0x38
-}
-
-// 
-// Start address: 0x2bcd90
-int SteveEventScore()
-{
-	// Line 1265, Address: 0x2bcd90, Func Offset: 0
-	// Line 1272, Address: 0x2bcd98, Func Offset: 0x8
-	// Line 1273, Address: 0x2bcdbc, Func Offset: 0x2c
-	// Line 1285, Address: 0x2bcddc, Func Offset: 0x4c
-	// Func End, Address: 0x2bcde8, Func Offset: 0x58
-}
-
-// 
-// Start address: 0x2bcdf0
-int MapScore()
-{
-	int ret;
-	// Line 1291, Address: 0x2bcdf0, Func Offset: 0
-	// Line 1294, Address: 0x2bcdfc, Func Offset: 0xc
-	// Line 1295, Address: 0x2bce1c, Func Offset: 0x2c
-	// Line 1296, Address: 0x2bce38, Func Offset: 0x48
-	// Line 1297, Address: 0x2bce54, Func Offset: 0x64
-	// Line 1298, Address: 0x2bce70, Func Offset: 0x80
-	// Line 1299, Address: 0x2bce8c, Func Offset: 0x9c
-	// Line 1300, Address: 0x2bcea0, Func Offset: 0xb0
-	// Line 1301, Address: 0x2bcea4, Func Offset: 0xb4
-	// Func End, Address: 0x2bceb4, Func Offset: 0xc4
-}
-
-// 
-// Start address: 0x2bcec0
-int HealItemUseScore()
-{
-	// Line 1309, Address: 0x2bcec0, Func Offset: 0
-	// Line 1311, Address: 0x2bced4, Func Offset: 0x14
-	// Func End, Address: 0x2bcedc, Func Offset: 0x1c
-}
-
-// 
-// Start address: 0x2bcee0
-int SaveCountScore()
-{
-	int save_ct;
-	int ret;
-	// Line 1320, Address: 0x2bcee0, Func Offset: 0
-	// Line 1321, Address: 0x2bceec, Func Offset: 0xc
-	// Line 1323, Address: 0x2bcef4, Func Offset: 0x14
-	// Line 1322, Address: 0x2bcf08, Func Offset: 0x28
-	// Line 1323, Address: 0x2bcf0c, Func Offset: 0x2c
-	// Line 1326, Address: 0x2bcf14, Func Offset: 0x34
-	// Func End, Address: 0x2bcf1c, Func Offset: 0x3c
 }*/
+
+// 100% matching
+int RodorigoEventScore(void) {
+    return (bhCkFlg(sys->ev_flg, 0x60) != 0) ? 0xFA: -0x3E8;
+}
+
+// 100% matching 
+int SteveEventScore(void) {
+    if (bhCkFlg(sys->ev_flg, 0x9B) != 0) {
+        return 0x190;
+    }
+    
+    return (bhCkFlg(sys->ev_flg, 0x9C) != 0) ?  -0x3E8: 0;
+}
+
+// 100% matching
+int MapScore(void) {
+    int ret;
+    int var_s0;
+
+    var_s0  = 0;
+    if (bhFlagCk(8, 6, 0) != 0) {
+        var_s0 += 1;
+    }
+    if (bhFlagCk(8, 7, 0) != 0) {
+        var_s0 += 1;
+    }
+    if (bhFlagCk(8, 0x5D, 0) != 0) {
+        var_s0 += 1;
+    }
+    if (bhFlagCk(8, 0x5E, 0) != 0) {
+        var_s0 += 1;
+    }
+    if (bhFlagCk(8, 0x8F, 0) != 0) {
+        var_s0 += 1;
+    }
+
+    ret = 0;
+    
+    if (var_s0 == 5) {
+        ret = 0x64;
+        return ret;
+    }
+    
+    return ret;
+}
+
+// 100% matching
+int HealItemUseScore(void) {
+    return (sys->spray_ct != 0) ? 0 : 0x708;
+}
+
+// 100% matching
+int SaveCountScore() {
+    int ret = 0;
+    int save_ct = sys->save_ct;
+
+    if(save_ct != 0) { 
+        ret = -0x3E8; 
+        ret = (((save_ct - 1) * -0x32)) + ret; 
+    }
+
+    return ret;
+}
 
 // 100% matching
 int RetryCountScore() { 
