@@ -2854,6 +2854,16 @@ typedef struct NO_NAME_29
 	float cnt02; // offset 0x14, size 0x4
 } NO_NAME_29;
 
+typedef struct SND_QUE
+{
+    // total size: 0x8
+	int cmd; // offset 0x0, size 0x4
+	char vol; // offset 0x4, size 0x1
+	char pan; // offset 0x5, size 0x1
+	short pitch; // offset 0x6, size 0x2
+} SND_QUE;
+
+
 // TODO: find a struct on the debugging symbols similar to this one that could fit in Ps2AddPrim()
 typedef struct UNKNOWN 
 {

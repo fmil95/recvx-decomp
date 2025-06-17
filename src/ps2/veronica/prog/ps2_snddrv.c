@@ -146,9 +146,11 @@ unsigned char sbuff[512];
 unsigned int getbuff[4];
 _sif_client_data ClientData;
 _sif_client_data GetStClientData;
-_anon1 sndque_tbl[128];
 int sque_r_idx;
+*/
+SND_QUE sndque_tbl[128];
 int sque_w_idx;
+/*
 int sbuff_idx;
 int ThId_send;
 int SmId_send;
@@ -163,15 +165,19 @@ int iop_data_adr[16];
 int iop_sq_adr[16];
 int iop_hd_adr[16];
 int iop_data_adr_top;
+*/
 int get_adrs;
-void* _gp;
+/*void* _gp;
 int(*th_sdrSendReq)();
 void(*cb_sifRpc_snd)(int);
 void(*cb_sifRpc)(int);
 void(*cb_sifRpc2)(int*);
-_SND_STATUS get_iop_buff;
-_SND_STATUS get_iop_snddata;
+*/
 
+SND_STATUS get_iop_buff;
+SND_STATUS get_iop_snddata;
+
+/*
 void wait_alarm(int thid);
 int SdrDelayThread(int hsync);
 void sdr_initQue();
@@ -600,23 +606,21 @@ int SdrSQDataSet(int port, int size)
 	// Func End, Address: 0x2ea82c, Func Offset: 0x9c
 }*/
 
-// 
-// Start address: 0x2ea830
-int SdrSetIopData()
-{
-	// Line 4112, Address: 0x2ea830, Func Offset: 0
-	// Line 4116, Address: 0x2ea838, Func Offset: 0x8
-	// Line 4117, Address: 0x2ea85c, Func Offset: 0x2c
-	// Line 4118, Address: 0x2ea868, Func Offset: 0x38
-	// Line 4122, Address: 0x2ea870, Func Offset: 0x40
-	// Line 4123, Address: 0x2ea878, Func Offset: 0x48
-	// Line 4124, Address: 0x2ea888, Func Offset: 0x58
-	// Line 4125, Address: 0x2ea898, Func Offset: 0x68
-	// Line 4127, Address: 0x2ea8a8, Func Offset: 0x78
-	// Line 4129, Address: 0x2ea8d8, Func Offset: 0xa8
-	// Line 4130, Address: 0x2ea8dc, Func Offset: 0xac
-	// Func End, Address: 0x2ea8e8, Func Offset: 0xb8
-	scePrintf("SdrSetIopData - UNIMPLEMENTED!\n");
+// 100% matching
+int SdrSetIopData() {
+    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+        printf("SDR: SdrSetIopData: Warning: sndque overflow!\n");
+        return -1;
+    }
+
+    sndque_tbl[sque_w_idx].cmd = 0x2F000000;
+    sndque_tbl[sque_w_idx].vol= 0;
+    sndque_tbl[sque_w_idx].pan= 0;
+    sndque_tbl[sque_w_idx].pitch= 0;
+    
+    sque_w_idx = ++sque_w_idx % 128;
+    return 0;
+    
 }
 
 // 
@@ -926,18 +930,15 @@ int sending_req(_anon1* sq_p)
 	// Func End, Address: 0x2eb524, Func Offset: 0x324
 }*/
 
-// 
-// Start address: 0x2eb530
-int get_iopsnd_info()
-{
-	//_sif_receive_data rd;
-	// Line 5753, Address: 0x2eb530, Func Offset: 0
-	// Line 5762, Address: 0x2eb538, Func Offset: 0x8
-	// Line 5764, Address: 0x2eb560, Func Offset: 0x30
-	// Line 5765, Address: 0x2eb578, Func Offset: 0x48
-	// Line 5768, Address: 0x2eb580, Func Offset: 0x50
-	// Line 5770, Address: 0x2eb584, Func Offset: 0x54
-	// Func End, Address: 0x2eb590, Func Offset: 0x60
-	scePrintf("get_iopsnd_info - UNIMPLEMENTED!\n");
+// 100% matching
+int get_iopsnd_info() {
+    sceSifReceiveData rd;
+
+    if (!sceSifGetOtherData(&rd, (int*)get_adrs, (void*) (&get_iop_buff), 0x42, 0)) {
+        memcpy(&get_iop_snddata, &get_iop_buff, 0x42);
+        return 0;
+    }
+    
+    return -1;
 }
 
