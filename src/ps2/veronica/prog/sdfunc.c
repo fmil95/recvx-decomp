@@ -4050,14 +4050,14 @@ void SetRoomSoundFxLevel(char FxProgNo, char FxLevel)
 }
 
 // 
-// Start address: 0x295dd0
-void SetRoomSoundFxLevelEx()
+// 100% matching!
+*/
+void SetRoomSoundFxLevelEx() 
 {
-	// Line 3255, Address: 0x295dd0, Func Offset: 0
-	// Func End, Address: 0x295de0, Func Offset: 0x10
+    SetRoomSoundFxLevel(0, Room_SoundEnv.RoomFxLevel);
 }
 
-// 
+/*
 // Start address: 0x295de0
 int SearchPlayingEnemySe(int EnemyNo, int Attrib)
 {
