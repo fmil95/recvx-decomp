@@ -3880,18 +3880,19 @@ void PlayBgm(int BgmNo, int FadeInRate)
 }
 
 // 
-// Start address: 0x295940
+// 100% matching!
 void PlayBgm2(int BgmNo, int Volume)
 {
-	// Line 3033, Address: 0x295940, Func Offset: 0
-	// Line 3034, Address: 0x295950, Func Offset: 0x10
-	// Line 3035, Address: 0x295958, Func Offset: 0x18
-	// Line 3036, Address: 0x295960, Func Offset: 0x20
-	// Line 3037, Address: 0x295968, Func Offset: 0x28
-	// Line 3038, Address: 0x295978, Func Offset: 0x38
-	// Line 3041, Address: 0x295984, Func Offset: 0x44
-	// Line 3042, Address: 0x295988, Func Offset: 0x48
-	// Func End, Address: 0x295990, Func Offset: 0x50
+    if (CurrentBgmNo != BgmNo) 
+    {
+        CurrentBgmNo = BgmNo;
+        ReqFadeBgmNo = 8;
+    }
+    else if (CurrentBgmVolume != Volume) 
+    {
+        ReqFadeBgmNo = 2;
+    }
+    CurrentBgmVolume = Volume;
 }
 
 // 
