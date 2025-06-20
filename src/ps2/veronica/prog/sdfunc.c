@@ -3896,20 +3896,21 @@ void PlayBgm2(int BgmNo, int Volume)
 }
 
 // 
-// Start address: 0x295990
-void StopBgm(int FadeOutRate)
+// 100% matching!
+void StopBgm(int FadeOutRate) 
 {
-	// Line 3051, Address: 0x295990, Func Offset: 0
-	// Line 3052, Address: 0x295998, Func Offset: 0x8
-	// Line 3053, Address: 0x2959a0, Func Offset: 0x10
-	// Line 3054, Address: 0x2959ac, Func Offset: 0x1c
-	// Line 3055, Address: 0x2959b4, Func Offset: 0x24
-	// Line 3056, Address: 0x2959bc, Func Offset: 0x2c
-	// Line 3058, Address: 0x2959c4, Func Offset: 0x34
-	// Line 3059, Address: 0x2959d0, Func Offset: 0x40
-	// Line 3060, Address: 0x2959dc, Func Offset: 0x4c
-	// Line 3061, Address: 0x2959e4, Func Offset: 0x54
-	// Func End, Address: 0x2959f0, Func Offset: 0x60
+    if (FadeOutRate != 0) 
+    {
+        RequestAdxFadeFunction(0, 2, FadeOutRate);
+    } 
+    else 
+    {
+        StopAdx(0);
+        AdxPlayFlag[0] = 0;
+    }
+    CurrentBgmNo = -1;
+    CurrentBgmVolume = -127;
+    NextBgmVolume = -127;
 }
 
 // 
