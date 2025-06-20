@@ -1993,8 +1993,8 @@ int SystemSeSlotSwitch;
 int WeaponSeSlotSwitch;
 int EnemyBackGroundSeFlag;*/
 char MoviePlayTrayOpenFlag;
-/*int CurrentBgmNo;
-int CurrentBgSeNo[2];
+int CurrentBgmNo;
+/*int CurrentBgSeNo[2];
 int RoomSoundCaseNo;
 short DefBg[3];
 short DefObj[5];
@@ -2020,10 +2020,10 @@ unsigned char* pSoundAfs;
 char SpqFileName[32];
 int EventVibrationMode;
 /*_anon4 BgSePrmBuf[2];
-int ReqFadeBgSe[2];
+int ReqFadeBgSe[2];*/
 int ReqFadeBgmNo;
 int NextBgmVolume;
-int CurrentBgmVolume;*/
+int CurrentBgmVolume;
 unsigned char* pSdReadBuf;
 SPQ_HEADER* pSpqHeader;
 /*int AddFxLevel;
@@ -2149,10 +2149,10 @@ void RegistObjectSe(int ObjectNo, _anon16* pPos, int SeNo, int Prio);
 void FreeObjectSe(int ObjectNo);
 void PlayBgmEx2(unsigned int PatId, int BgmNo, int FadeInRate, int Volume);
 void PlayBgmEx(int BgmNo, int FadeInRate, int Volume);
-void PlayBgm(int BgmNo, int FadeInRate);
+void PlayBgm(int BgmNo, int FadeInRate);*/
 void PlayBgm2(int BgmNo, int Volume);
 void StopBgm(int FadeOutRate);
-void StopBgm2();
+/*void StopBgm2();
 void PlayVoiceEx2(int PatId, int VoiceNo, _anon16* pPos, int Mode, int FadeInRate, int PauseFlag);
 void PlayVoiceEx(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate, int PauseFlag);
 void PlayVoice(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate);
@@ -3881,6 +3881,7 @@ void PlayBgm(int BgmNo, int FadeInRate)
 
 // 
 // 100% matching!
+*/
 void PlayBgm2(int BgmNo, int Volume)
 {
     if (CurrentBgmNo != BgmNo) 
@@ -3913,7 +3914,7 @@ void StopBgm(int FadeOutRate)
     NextBgmVolume = -127;
 }
 
-// 
+/*// 
 // Start address: 0x2959f0
 void StopBgm2()
 {
