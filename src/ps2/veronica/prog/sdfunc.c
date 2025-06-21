@@ -1,5 +1,5 @@
-/*typedef struct _anon0;
-typedef struct _anon1;
+typedef struct EnemySlot;
+/*typedef struct _anon1;
 typedef struct _anon2;
 typedef struct _anon3;
 typedef struct _anon4;
@@ -145,7 +145,7 @@ typedef unsigned int type_66[1];
 typedef unsigned int type_67[2];
 typedef unsigned int type_68[4];
 typedef int* type_69[16];
-typedef _anon0 type_70[6];
+typedef EnemySlot type_70[6];
 typedef char type_71[8];
 typedef npobj* type_72[16];
 typedef _anon37 type_73[4];
@@ -259,7 +259,7 @@ typedef unsigned char* type_181[256];
 typedef int type_182[3];
 typedef char type_183[256];
 
-struct _anon0
+struct EnemySlot
 {
 	int SeNo;
 	unsigned short Flag;
@@ -2056,7 +2056,7 @@ SDS_PORT_REF** MidiHandle[0];
 int StartInitScriptFlag;
 _anon19 MidiInfo[0];
 _anon2 EnemyInfo[128];
-_anon0 EnemySlotInfo[6];
+EnemySlot EnemySlotInfo[6];
 int MaxObjectReqList;
 unsigned char ObjectReqList[16];*/
 unsigned int AdxPlayFlag[2];
@@ -3627,7 +3627,7 @@ void RequestEnemySeEx(int EnemyNo, _anon16* pPos, int SeNo, int FadeRate)
 // Start address: 0x295260
 int ChechPlayEnemySe(int EnemyNo, int SeNo)
 {
-	_anon0* esp;
+	EnemySlot* esp;
 	int i;
 	// Line 2634, Address: 0x295260, Func Offset: 0
 	// Line 2635, Address: 0x29526c, Func Offset: 0xc
@@ -3646,7 +3646,7 @@ int ChechPlayEnemySe(int EnemyNo, int SeNo)
 // Start address: 0x2952d0
 void AllStopEnemySe()
 {
-	//_anon0* esp;
+	//EnemySlot* esp;
 	int i;
 	// Line 2658, Address: 0x2952d0, Func Offset: 0
 	// Line 2662, Address: 0x2952e0, Func Offset: 0x10
@@ -4061,7 +4061,7 @@ void SetRoomSoundFxLevelEx()
 // Start address: 0x295de0
 int SearchPlayingEnemySe(int EnemyNo, int Attrib)
 {
-	_anon0* esp;
+	EnemySlot* esp;
 	int i;
 	// Line 3267, Address: 0x295de0, Func Offset: 0
 	// Line 3268, Address: 0x295dec, Func Offset: 0xc
@@ -4078,7 +4078,7 @@ int SearchPlayingEnemySe(int EnemyNo, int Attrib)
 // Start address: 0x295e40
 int SearchFreeEnemySeSlot()
 {
-	_anon0* esp;
+	EnemySlot* esp;
 	int i;
 	// Line 3285, Address: 0x295e40, Func Offset: 0
 	// Line 3286, Address: 0x295e4c, Func Offset: 0xc
@@ -4094,7 +4094,7 @@ int SearchFreeEnemySeSlot()
 int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag)
 {
 	int c;
-	_anon0* esp;
+	EnemySlot* esp;
 	int i;
 	// Line 3301, Address: 0x295e80, Func Offset: 0
 	// Line 3302, Address: 0x295e90, Func Offset: 0x10
@@ -4149,7 +4149,7 @@ void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag
 // Start address: 0x296050
 void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo)
 {
-	_anon0* esp;
+	EnemySlot* esp;
 	// Line 3358, Address: 0x296050, Func Offset: 0
 	// Line 3359, Address: 0x296058, Func Offset: 0x8
 	// Line 3363, Address: 0x296068, Func Offset: 0x18
@@ -4183,7 +4183,7 @@ void ExecEnemySeManager()
 	unsigned char* rlp1;
 	//_anon2* eip2;
 	//_anon2* eip;
-	//_anon0* esp;
+	//EnemySlot* esp;
 	int j;
 	int i;
 	// Line 3382, Address: 0x2960b0, Func Offset: 0
