@@ -2161,10 +2161,10 @@ void StopVoice(int FadeOutRate);
 int CheckPlayEndAdx(int SlotNo);
 int GetTimeAdx(int SlotNo);
 void SetRoomSoundFxLevel(char FxProgNo, char FxLevel);
-void SetRoomSoundFxLevelEx();
+void SetRoomSoundFxLevelEx();*/
 int SearchPlayingEnemySe(int EnemyNo, int Attrib);
 int SearchFreeEnemySeSlot();
-int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag);
+/*int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag);
 void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag, int FadeRate);
 void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo);
 void ResetEnemySeInfo();
@@ -4083,22 +4083,31 @@ int SearchPlayingEnemySe(int EnemyNo, int Attrib)
     }
 }
 
-/* 
-// Start address: 0x295e40
-int SearchFreeEnemySeSlot()
+// 100% matching!
+int SearchFreeEnemySeSlot() 
 {
-	EnemySlot* esp;
-	int i;
-	// Line 3285, Address: 0x295e40, Func Offset: 0
-	// Line 3286, Address: 0x295e4c, Func Offset: 0xc
-	// Line 3287, Address: 0x295e58, Func Offset: 0x18
-	// Line 3289, Address: 0x295e60, Func Offset: 0x20
-	// Line 3291, Address: 0x295e70, Func Offset: 0x30
-	// Line 3292, Address: 0x295e74, Func Offset: 0x34
-	// Func End, Address: 0x295e7c, Func Offset: 0x3c
+    EnemySlot* EnemySlotPtr;
+    int i = 0;
+    EnemySlotPtr = &EnemySlotInfo;
+    
+    while (TRUE)
+    {
+        if (EnemySlotPtr->Flag == 0) 
+        {
+            return i;
+        }
+        
+        i += 1;
+        EnemySlotPtr += 1;
+        
+        if (i >= 6) 
+        {
+            return -1;
+        }
+    }
 }
 
-// 
+/*
 // Start address: 0x295e80
 int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag)
 {
