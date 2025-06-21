@@ -258,7 +258,7 @@ typedef _anon65 type_180[10];
 typedef unsigned char* type_181[256];
 typedef int type_182[3];
 typedef char type_183[256];
-
+*/
 struct EnemySlot
 {
 	int SeNo;
@@ -267,7 +267,7 @@ struct EnemySlot
 	unsigned short Prio;
 	unsigned short EnemyNo;
 };
-
+/*
 struct _anon1
 {
 	unsigned short flg;
@@ -2055,9 +2055,9 @@ int xPan;
 SDS_PORT_REF** MidiHandle[0];
 int StartInitScriptFlag;
 _anon19 MidiInfo[0];
-_anon2 EnemyInfo[128];
+_anon2 EnemyInfo[128];*/
 EnemySlot EnemySlotInfo[6];
-int MaxObjectReqList;
+/*int MaxObjectReqList;
 unsigned char ObjectReqList[16];*/
 unsigned int AdxPlayFlag[2];
 /*char CurrentRoomFxProgNo;
@@ -4058,23 +4058,32 @@ void SetRoomSoundFxLevelEx()
 }
 
 /*
-// Start address: 0x295de0
-int SearchPlayingEnemySe(int EnemyNo, int Attrib)
+// 100% matching!
+*/
+int SearchPlayingEnemySe(int EnemyNo, int Attrib) 
 {
-	EnemySlot* esp;
-	int i;
-	// Line 3267, Address: 0x295de0, Func Offset: 0
-	// Line 3268, Address: 0x295dec, Func Offset: 0xc
-	// Line 3269, Address: 0x295df8, Func Offset: 0x18
-	// Line 3270, Address: 0x295e04, Func Offset: 0x24
-	// Line 3271, Address: 0x295e10, Func Offset: 0x30
-	// Line 3275, Address: 0x295e18, Func Offset: 0x38
-	// Line 3277, Address: 0x295e28, Func Offset: 0x48
-	// Line 3278, Address: 0x295e2c, Func Offset: 0x4c
-	// Func End, Address: 0x295e34, Func Offset: 0x54
+    EnemySlot* EnemySlotPtr;
+    int i = 0;
+    EnemySlotPtr = &EnemySlotInfo;
+    
+    while (TRUE)
+    {
+        if ((EnemySlotPtr->Flag != 0) && (EnemyNo == EnemySlotPtr->EnemyNo) && (Attrib == EnemySlotPtr->Attrib)) 
+        {
+            return i;
+        }
+        
+        i += 1;
+        EnemySlotPtr += 1;
+        
+        if (i >= 6) 
+        {
+            return -1;
+        }
+    }
 }
 
-// 
+/* 
 // Start address: 0x295e40
 int SearchFreeEnemySeSlot()
 {
