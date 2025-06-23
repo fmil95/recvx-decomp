@@ -2164,8 +2164,8 @@ void SetRoomSoundFxLevel(char FxProgNo, char FxLevel);
 void SetRoomSoundFxLevelEx();*/
 int SearchPlayingEnemySe(int EnemyNo, int Attrib);
 int SearchFreeEnemySeSlot();
-/*int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag);
-void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag, int FadeRate);
+int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag);
+/*void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag, int FadeRate);
 void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo);
 void ResetEnemySeInfo();
 void ExecEnemySeManager();
@@ -4107,28 +4107,39 @@ int SearchFreeEnemySeSlot()
     }
 }
 
-/*
-// Start address: 0x295e80
-int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag)
+
+// 100% matching!
+int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag) 
 {
-	int c;
-	EnemySlot* esp;
-	int i;
-	// Line 3301, Address: 0x295e80, Func Offset: 0
-	// Line 3302, Address: 0x295e90, Func Offset: 0x10
-	// Line 3303, Address: 0x295e9c, Func Offset: 0x1c
-	// Line 3304, Address: 0x295ea8, Func Offset: 0x28
-	// Line 3305, Address: 0x295ebc, Func Offset: 0x3c
-	// Line 3309, Address: 0x295ec0, Func Offset: 0x40
-	// Line 3311, Address: 0x295ed0, Func Offset: 0x50
-	// Line 3312, Address: 0x295ed4, Func Offset: 0x54
-	// Line 3313, Address: 0x295edc, Func Offset: 0x5c
-	// Line 3315, Address: 0x295ee4, Func Offset: 0x64
-	// Line 3317, Address: 0x295ef0, Func Offset: 0x70
-	// Func End, Address: 0x295ef8, Func Offset: 0x78
+    int i = 0;
+    EnemySlot* EnemySlotPtr;
+    int SameSeCount = 0;
+    int MaxSeCount = 0;
+    EnemySlotPtr = &EnemySlotInfo;
+    
+    while (i < 6)
+    {
+        if ((EnemySlotPtr->Flag != 0) && (EnemySlotPtr->SeNo == SeNo) && (EnemyNo != EnemySlotPtr->EnemyNo) && (Flag != 0)) 
+        {
+            SameSeCount += 1;
+        }
+        
+        i += 1;
+        EnemySlotPtr += 1;
+    }
+    
+    MaxSeCount = (SeNo >> 12) & 0xF;
+    
+    if (SameSeCount == 0)
+    {
+        return 0;
+    }
+    
+    return (SameSeCount < MaxSeCount) ? 0 : 1;
+
 }
 
-// 
+/*
 // Start address: 0x295f00
 void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag, int FadeRate)
 {
