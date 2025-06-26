@@ -1,5 +1,5 @@
-typedef struct EnemySlot;
-/*typedef struct _anon1;
+/*typedef struct EnemySlot;
+typedef struct _anon1;
 typedef struct _anon2;
 typedef struct _anon3;
 typedef struct _anon4;
@@ -259,14 +259,14 @@ typedef unsigned char* type_181[256];
 typedef int type_182[3];
 typedef char type_183[256];
 */
-struct EnemySlot
+typedef struct 
 {
 	int SeNo;
 	unsigned short Flag;
 	unsigned short Attrib;
 	unsigned short Prio;
 	unsigned short EnemyNo;
-};
+} EnemySlot;
 /*
 struct _anon1
 {
@@ -4064,7 +4064,7 @@ int SearchPlayingEnemySe(int EnemyNo, int Attrib)
 {
     EnemySlot* EnemySlotPtr;
     int i = 0;
-    EnemySlotPtr = &EnemySlotInfo;
+    EnemySlotPtr = &EnemySlotInfo[0];
     
     while (TRUE)
     {
@@ -4088,7 +4088,7 @@ int SearchFreeEnemySeSlot()
 {
     EnemySlot* EnemySlotPtr;
     int i = 0;
-    EnemySlotPtr = &EnemySlotInfo;
+    EnemySlotPtr = &EnemySlotInfo[0];
     
     while (TRUE)
     {
@@ -4115,7 +4115,7 @@ int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag)
     EnemySlot* EnemySlotPtr;
     int SameSeCount = 0;
     int MaxSeCount = 0;
-    EnemySlotPtr = &EnemySlotInfo;
+    EnemySlotPtr = &EnemySlotInfo[0];
     
     while (i < 6)
     {
