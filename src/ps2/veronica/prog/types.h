@@ -2879,6 +2879,29 @@ typedef struct NO_NAME_30 {
 	short ReqFlag;
 } NO_NAME_30;
 
+typedef struct SND_REQ
+{
+	unsigned int SlotNo;
+	short PanDelayTime;
+	short VolumeDelayTime;
+	short Pitch;
+	short PitchDelayTime;
+	short Speed;
+	short SpeedDelayTime;
+	char BankNo;
+	char ListNo;
+	char Priority;
+	char Pan;
+	char Volume;
+	char FxInput;
+	char FxLevel;
+} SND_REQ;
+
+typedef struct NO_NAME_31
+{
+	unsigned char Flag;
+} NO_NAME_31;
+
 // TODO: find a struct on the debugging symbols similar to this one that could fit in Ps2AddPrim()
 typedef struct UNKNOWN 
 {

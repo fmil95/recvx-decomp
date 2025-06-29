@@ -1995,8 +1995,8 @@ int EnemyBackGroundSeFlag;*/
 char MoviePlayTrayOpenFlag;
 int CurrentBgmNo;
 int CurrentBgSeNo[2];
-/*int RoomSoundCaseNo;
-short DefBg[3];
+int RoomSoundCaseNo;
+/*short DefBg[3];
 short DefObj[5];
 short DefEvt[5];
 short DefEne[6];*/
@@ -2033,7 +2033,7 @@ RM_SNDENV Room_SoundEnv;
 /*char FxLevelTimer;*/
 unsigned short SpqKeyCode;
 char CurrentDoorNo;
-/*int MaxSlotEventSe;*/
+int MaxSlotEventSe;
 int MaxSlotObjectSe;
 /*char ThreeDVolTbl[510];
 char PanTbl360[68];
@@ -2041,13 +2041,14 @@ char PanTbl360Vol[68];*/
 CAM_WORK cam;
 /*_anon61* rom;
 char CurrentRoomFxLevel;
-int AngBak;
-_anon34 RequestInfo;*/
+int AngBak;*/
+SND_REQ RequestInfo;
 NJS_POINT3 CameraPos;
 /*_anon44 GsSlotInfoAx[2];
 _anon35 ObjectInfo[16];
 _anon44 GsSlotInfoMi[8];
-_anon44 GsSlotInfoSe[20];*/
+*/
+NO_NAME_31 GsSlotInfoSe[20];
 NJS_POINT3 PlayerPos;
 /*int xAng;
 int xVol;
@@ -2756,45 +2757,38 @@ int CheckTransEndSoundBank() {
     return SpqFileReadRequestFlag;
 }
 
-/*// 
-// Start address: 0x293480
-void SetRoomSoundCaseNo(int CaseNo)
-{
-	// Line 1146, Address: 0x293480, Func Offset: 0
-	// Line 1147, Address: 0x293484, Func Offset: 0x4
-	// Func End, Address: 0x29348c, Func Offset: 0xc
-}*/
-
-// 
-// Start address: 0x293490
-int GetRoomSoundCaseNo()
-{
-	int ReturnCode;
-	// Line 1159, Address: 0x293490, Func Offset: 0
-	// Line 1160, Address: 0x293498, Func Offset: 0x8
-	// Line 1163, Address: 0x29349c, Func Offset: 0xc
-	// Func End, Address: 0x2934a4, Func Offset: 0x14
-	scePrintf("GetRoomSoundCaseNo - UNIMPLEMENTED!\n");
+// 100% matching
+void SetRoomSoundCaseNo(int CaseNo) {
+    RoomSoundCaseNo = CaseNo;
 }
 
-//
-// Start address: 0x2934b0
-int CustomMidiSlotDef(int ObjectSlot, int EventSlot)
-{
-	// Line 1178, Address: 0x2934b0, Func Offset: 0
-	// Line 1179, Address: 0x2934c0, Func Offset: 0x10
-	// Line 1180, Address: 0x2934cc, Func Offset: 0x1c
-	// Line 1181, Address: 0x2934d4, Func Offset: 0x24
-	// Line 1183, Address: 0x2934dc, Func Offset: 0x2c
-	// Line 1184, Address: 0x2934e8, Func Offset: 0x38
-	// Line 1185, Address: 0x2934f4, Func Offset: 0x44
-	// Line 1186, Address: 0x2934fc, Func Offset: 0x4c
-	// Line 1188, Address: 0x293504, Func Offset: 0x54
-	// Line 1189, Address: 0x29350c, Func Offset: 0x5c
-	// Line 1190, Address: 0x293514, Func Offset: 0x64
-	// Line 1193, Address: 0x293518, Func Offset: 0x68
-	// Func End, Address: 0x293520, Func Offset: 0x70
-    scePrintf("CustomMidiSlotDef - UNIMPLEMENTED\n");
+// 100% matching
+int GetRoomSoundCaseNo() {
+    int ReturnCode;
+    
+    ReturnCode = RoomSoundCaseNo;
+    RoomSoundCaseNo = 0;
+    
+    return ReturnCode;
+}
+
+// 100% matching
+int CustomMidiSlotDef(int ObjectSlot, int EventSlot) {
+    if ((ObjectSlot + EventSlot) > 5) {
+        MaxSlotObjectSe = 1;
+        MaxSlotEventSe = 4;
+        return 1;
+    }
+    
+    if (ObjectSlot > 3) {
+        MaxSlotObjectSe = 1;
+        MaxSlotEventSe = 4;
+        return 1;
+    }
+    
+    MaxSlotObjectSe = ObjectSlot;
+    MaxSlotEventSe = EventSlot;
+    return 0;
 }
 
 // 100% matching! 
@@ -2803,19 +2797,12 @@ void ResetRoomSoundEnvParam()
     memset(&Room_SoundEnv, 0, sizeof(RM_SNDENV));
 }
 
-/*// 
-// Start address: 0x293540
-int wadGetAngle(_anon16* pPos1, int Ang, _anon16* pPos2)
-{
-	// Line 1216, Address: 0x293540, Func Offset: 0
-	// Line 1222, Address: 0x29354c, Func Offset: 0xc
-	// Line 1223, Address: 0x293584, Func Offset: 0x44
-	// Line 1222, Address: 0x29358c, Func Offset: 0x4c
-	// Line 1223, Address: 0x293594, Func Offset: 0x54
-	// Func End, Address: 0x29359c, Func Offset: 0x5c
+// 99.13% matching
+int wadGetAngle(NJS_POINT3* pPos1, int Ang, NJS_POINT3* pPos2) {
+    return (short)(Ang + (int)(10430.381f * atan2f(pPos1->x - pPos2->x,  pPos1->z - pPos2->z)));
 }
 
-// 
+/*// 
 // Start address: 0x2935a0
 int CheckCollision4Sound(_anon16* pP2)
 {
@@ -3184,16 +3171,14 @@ void CallSystemSeBasic(int SeNo, int Volume, int FxLevel)
 	// Line 2040, Address: 0x2946a4, Func Offset: 0x104
 	// Func End, Address: 0x2946b0, Func Offset: 0x110
 }
+*/
 
-// 
-// Start address: 0x2946b0
-void CallSystemSeEx(int SeNo, int Volume)
-{
-	// Line 2053, Address: 0x2946b0, Func Offset: 0
-	// Func End, Address: 0x2946b8, Func Offset: 0x8
-}*/
+// 100% matching 
+void CallSystemSeEx(int SeNo, int Volume) {
+    CallSystemSeBasic(SeNo, Volume, 0);
+}
 
-// 
+/*// 
 // Start address: 0x2946c0
 void CallSystemSe(int SeNo, int param) // second parameter is not present on the debugging symbols
 {
@@ -3201,44 +3186,35 @@ void CallSystemSe(int SeNo, int param) // second parameter is not present on the
 	// Func End, Address: 0x2946cc, Func Offset: 0xc
 	scePrintf("CallSystemSe - UNIMPLEMENTED!\n");
 }
+*/
+
+// 100% matching
+void StopSystemSe() {
+    StopMidi(2);
+}
+
+// 100% matching
+void SetSyukanModeSoundParam() {
+    if (sys->gm_flg & 0x01000000) {
+        RequestInfo.Volume = 0;
+        RequestInfo.VolumeDelayTime = 0;
+        RequestInfo.Pan = 0;
+        RequestInfo.PanDelayTime = 0;
+    }
+}
+
+// 100% matching
+void CallPlayerVoice(int SeNo) {
+    SetupSeGenericParm(7, SeNo, &PlayerPos, 1, GsSlotInfoSe[7].Flag);
+    RequestInfo.PitchDelayTime = -2;
+    if (!(GsSlotInfoSe[7].Flag & 2)) {
+        RequestInfo.Volume += Room_SoundEnv.VolPlayerVoice;
+    }
+    ExPlaySe(&RequestInfo);
+}
+
 
 /*// 
-// Start address: 0x2946d0
-void StopSystemSe()
-{
-	// Line 2091, Address: 0x2946d0, Func Offset: 0
-	// Func End, Address: 0x2946d8, Func Offset: 0x8
-}
-
-// 
-// Start address: 0x2946e0
-void SetSyukanModeSoundParam()
-{
-	// Line 2102, Address: 0x2946e0, Func Offset: 0
-	// Line 2103, Address: 0x2946fc, Func Offset: 0x1c
-	// Line 2104, Address: 0x294704, Func Offset: 0x24
-	// Line 2105, Address: 0x29470c, Func Offset: 0x2c
-	// Line 2106, Address: 0x294714, Func Offset: 0x34
-	// Line 2108, Address: 0x29471c, Func Offset: 0x3c
-	// Func End, Address: 0x294724, Func Offset: 0x44
-}
-
-// 
-// Start address: 0x294730
-void CallPlayerVoice(int SeNo)
-{
-	// Line 2116, Address: 0x294730, Func Offset: 0
-	// Line 2117, Address: 0x294738, Func Offset: 0x8
-	// Line 2120, Address: 0x294758, Func Offset: 0x28
-	// Line 2118, Address: 0x294760, Func Offset: 0x30
-	// Line 2120, Address: 0x294768, Func Offset: 0x38
-	// Line 2121, Address: 0x294774, Func Offset: 0x44
-	// Line 2124, Address: 0x294790, Func Offset: 0x60
-	// Line 2125, Address: 0x29479c, Func Offset: 0x6c
-	// Func End, Address: 0x2947a8, Func Offset: 0x78
-}
-
-// 
 // Start address: 0x2947b0
 int GetPlayerActionSeSlotNo(int Type, int Id)
 {
@@ -3331,25 +3307,20 @@ void CallPlayerFootStepSeEx(int FloorType, int Type, int Flag, int Id, _anon16* 
 	// Line 2272, Address: 0x294b74, Func Offset: 0x334
 	// Line 2273, Address: 0x294b80, Func Offset: 0x340
 	// Func End, Address: 0x294b9c, Func Offset: 0x35c
+}*/
+
+// 100% matching 
+void CallPlayerFootStepSe(int FloorType, int Type, int Flag) {
+    CallPlayerFootStepSeEx(FloorType, Type, Flag, 0, &PlayerPos);
 }
 
-// 
-// Start address: 0x294ba0
-void CallPlayerFootStepSe(int FloorType, int Type, int Flag)
-{
-	// Line 2292, Address: 0x294ba0, Func Offset: 0
-	// Func End, Address: 0x294bb0, Func Offset: 0x10
+// 100% matching
+void CallPlayerActionSe(int SeNo, int Flag) {
+    CallPlayerFootStepSeEx(SeNo, 3, Flag, 0, &PlayerPos);
 }
 
-// 
-// Start address: 0x294bb0
-void CallPlayerActionSe(int SeNo, int Flag)
-{
-	// Line 2304, Address: 0x294bb4, Func Offset: 0x4
-	// Func End, Address: 0x294bc8, Func Offset: 0x18
-}
 
-// 
+/*// 
 // Start address: 0x294bd0
 void CallPlayerWeaponSeEx(_anon16* pPos, int SeNo, int SlotNo)
 {
@@ -3474,19 +3445,15 @@ void StopBackGroundSeEx(unsigned int SlotNo, short Timer)
 	// Line 2468, Address: 0x294fd8, Func Offset: 0x68
 	// Line 2469, Address: 0x294ff0, Func Offset: 0x80
 	// Func End, Address: 0x295000, Func Offset: 0x90
+}*/
+
+// 100% matching
+void StopBackGroundSe2(int SlotNo) {
+    ReqFadeBgSe[SlotNo] = 1;
+    CurrentBgSeNo[SlotNo] = -1;
 }
 
-// 
-// Start address: 0x295000
-void StopBackGroundSe2(unsigned int SlotNo)
-{
-	// Line 2489, Address: 0x295000, Func Offset: 0
-	// Line 2490, Address: 0x295018, Func Offset: 0x18
-	// Line 2491, Address: 0x295028, Func Offset: 0x28
-	// Func End, Address: 0x295030, Func Offset: 0x30
-}
-
-// 
+/*// 
 // Start address: 0x295030
 void CallDoorSe(unsigned int No)
 {
