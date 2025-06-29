@@ -2030,10 +2030,10 @@ SPQ_HEADER* pSpqHeader;
 int CurrentFxLevel;
 int RoomFxLevel;*/
 RM_SNDENV Room_SoundEnv;
-/*char FxLevelTimer;
+/*char FxLevelTimer;*/
 unsigned short SpqKeyCode;
 char CurrentDoorNo;
-int MaxSlotEventSe;*/
+/*int MaxSlotEventSe;*/
 int MaxSlotObjectSe;
 /*char ThreeDVolTbl[510];
 char PanTbl360[68];
@@ -2721,67 +2721,39 @@ void ExecTransSoundData()
     }
 }
 
-// 
-// Start address: 0x2932d0
-void RequestRoomSoundBank(int StageNo, int RoomNo, int CaseNo)
-{
-	// Line 1010, Address: 0x2932d0, Func Offset: 0
-	// Line 1011, Address: 0x2932ec, Func Offset: 0x1c
-	// Line 1013, Address: 0x2932f4, Func Offset: 0x24
-	// Line 1016, Address: 0x293314, Func Offset: 0x44
-	// Line 1019, Address: 0x293344, Func Offset: 0x74
-	// Line 1020, Address: 0x293350, Func Offset: 0x80
-	// Func End, Address: 0x293368, Func Offset: 0x98
-	scePrintf("RequestRoomSoundBank - UNIMPLEMENTED!\n");
+// 100% matching 
+void RequestRoomSoundBank(int StageNo, int RoomNo, int CaseNo) {
+    ResetRoomSoundEnvParam();
+    sprintf(SpqFileName, "RM_%01u%02u%01u.SPQ", StageNo, RoomNo, CaseNo);
+    SpqKeyCode = CaseNo + ((StageNo * 0x3E8) + (RoomNo * 0xA));
+    SpqFileReadRequestFlag = 1;
 }
 
-// 
-// Start address: 0x293370
-void RequestArmsSoundBank(int ArmsNo)
-{
-	// Line 1030, Address: 0x293370, Func Offset: 0
-	// Line 1031, Address: 0x293380, Func Offset: 0x10
-	// Line 1034, Address: 0x293398, Func Offset: 0x28
-	// Line 1037, Address: 0x2933a4, Func Offset: 0x34
-	// Line 1038, Address: 0x2933b0, Func Offset: 0x40
-	// Func End, Address: 0x2933c0, Func Offset: 0x50
-	scePrintf("RequestArmsSoundBank - UNIMPLEMENTED!\n");
+// 100% matching
+void RequestArmsSoundBank(int ArmsNo) {
+    sprintf(SpqFileName, "ARMS_%03u.SPQ", ArmsNo);
+    SpqKeyCode = ArmsNo | 0x4000;
+    SpqFileReadRequestFlag = 2;
 }
 
-/*// 
-// Start address: 0x2933c0
-void RequestDoorSoundBank(int DoorNo)
-{
-	// Line 1048, Address: 0x2933c0, Func Offset: 0
-	// Line 1049, Address: 0x2933d0, Func Offset: 0x10
-	// Line 1055, Address: 0x2933e8, Func Offset: 0x28
-	// Line 1052, Address: 0x2933f0, Func Offset: 0x30
-	// Line 1057, Address: 0x2933fc, Func Offset: 0x3c
-	// Line 1058, Address: 0x293408, Func Offset: 0x48
-	// Func End, Address: 0x293418, Func Offset: 0x58
-}*/
-
-// 
-// Start address: 0x293420
-void RequestPlayerVoiceSoundBank(int PlayerNo)
-{
-	// Line 1068, Address: 0x293420, Func Offset: 0
-	// Line 1069, Address: 0x293430, Func Offset: 0x10
-	// Line 1073, Address: 0x293448, Func Offset: 0x28
-	// Line 1076, Address: 0x293454, Func Offset: 0x34
-	// Line 1077, Address: 0x293460, Func Offset: 0x40
-	// Func End, Address: 0x293470, Func Offset: 0x50
-	scePrintf("RequestPlayerVoiceSoundBank - UNIMPLEMENTED!\n");
+// 100% matching
+void RequestDoorSoundBank(int DoorNo) {
+    sprintf(SpqFileName, "DOOR_%03u.SPQ", DoorNo);
+    CurrentDoorNo = DoorNo;
+    SpqKeyCode = DoorNo | 0x8000;
+    SpqFileReadRequestFlag = 3;
 }
 
-// 
-// Start address: 0x293470
-int CheckTransEndSoundBank()
-{
-	// Line 1135, Address: 0x293470, Func Offset: 0
-	// Line 1137, Address: 0x293474, Func Offset: 0x4
-	// Func End, Address: 0x29347c, Func Offset: 0xc
-	scePrintf("CheckTransEndSoundBank - UNIMPLEMENTED!\n");
+// 100% matching
+void RequestPlayerVoiceSoundBank(int PlayerNo) {
+    sprintf(SpqFileName, "CORE_%03u.SPQ", PlayerNo);
+    SpqKeyCode = PlayerNo | 0xFFF0;
+    SpqFileReadRequestFlag = 4;
+}
+
+//  100% matching
+int CheckTransEndSoundBank() {
+    return SpqFileReadRequestFlag;
 }
 
 /*// 
