@@ -2863,6 +2863,21 @@ typedef struct SND_QUE
 	short pitch; // offset 0x6, size 0x2
 } SND_QUE;
 
+typedef struct ObjectSlot
+{
+    // total size: 0xC
+    int SeNo; // offset 0x0, size 0x4
+    short Flag; // offset 0x4, size 0x2
+    short FindFlag; // offset 0x6, size 0x2
+    short Prio; // offset 0x8, size 0x2
+    short ObjectNo; // offset 0xA, size 0x2
+} ObjectSlot;
+
+typedef struct NO_NAME_30 {
+    int SeNo;
+	short Timer;
+	short ReqFlag;
+} NO_NAME_30;
 
 // TODO: find a struct on the debugging symbols similar to this one that could fit in Ps2AddPrim()
 typedef struct UNKNOWN 

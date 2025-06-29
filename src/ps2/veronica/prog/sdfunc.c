@@ -1994,8 +1994,8 @@ int WeaponSeSlotSwitch;
 int EnemyBackGroundSeFlag;*/
 char MoviePlayTrayOpenFlag;
 int CurrentBgmNo;
-/*int CurrentBgSeNo[2];
-int RoomSoundCaseNo;
+int CurrentBgSeNo[2];
+/*int RoomSoundCaseNo;
 short DefBg[3];
 short DefObj[5];
 short DefEvt[5];
@@ -2019,8 +2019,8 @@ unsigned short* pSpqList;
 unsigned char* pSoundAfs;
 char SpqFileName[32];
 int EventVibrationMode;
-/*_anon4 BgSePrmBuf[2];
-int ReqFadeBgSe[2];*/
+NO_NAME_30 BgSePrmBuf[2];
+int ReqFadeBgSe[2];
 int ReqFadeBgmNo;
 int NextBgmVolume;
 int CurrentBgmVolume;
@@ -2033,9 +2033,9 @@ RM_SNDENV Room_SoundEnv;
 /*char FxLevelTimer;
 unsigned short SpqKeyCode;
 char CurrentDoorNo;
-int MaxSlotEventSe;
+int MaxSlotEventSe;*/
 int MaxSlotObjectSe;
-char ThreeDVolTbl[510];
+/*char ThreeDVolTbl[510];
 char PanTbl360[68];
 char PanTbl360Vol[68];*/
 CAM_WORK cam;
@@ -2062,9 +2062,9 @@ unsigned char ObjectReqList[16];*/
 unsigned int AdxPlayFlag[2];
 /*char CurrentRoomFxProgNo;
 int MaxRequestList;
-unsigned char RequestList[128];
-_anon11 ObjectSlotInfo[3];
-_anon65 SdComFuncTbl[10];*/
+unsigned char RequestList[128];*/
+ObjectSlot ObjectSlotInfo[3];
+/*_anon65 SdComFuncTbl[10];*/
 BH_PWORK* plp;
 unsigned char* DestReadPtr;
 int GenAdxfSlot;
@@ -2105,8 +2105,8 @@ void RequestDoorSoundBank(int DoorNo);
 void RequestPlayerVoiceSoundBank(int PlayerNo);
 int CheckTransEndSoundBank();
 void SetRoomSoundCaseNo(int CaseNo);
-int GetRoomSoundCaseNo();
-int CustomMidiSlotDef(int ObjectSlot, int EventSlot);*/
+int GetRoomSoundCaseNo();*/
+int CustomMidiSlotDef(int ObjectSlot, int EventSlot);
 void ResetRoomSoundEnvParam();
 /*int wadGetAngle(_anon16* pPos1, int Ang, _anon16* pPos2);
 int CheckCollision4Sound(_anon16* pP2);
@@ -2166,16 +2166,16 @@ int SearchPlayingEnemySe(int EnemyNo, int Attrib);
 int SearchFreeEnemySeSlot();
 int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag);
 /*void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag, int FadeRate);
-void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo);
+void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo);*/
 void ResetEnemySeInfo();
-void ExecEnemySeManager();
+/*void ExecEnemySeManager();
 int SearchPlayingObjectSeEx(int ObjectNo, int Mode);
 int SearchPlayingObjectSe(int ObjectNo);
 int SearchFreeObjectSeSlot();
 void CallObjectSe2(unsigned int SlotNo, _anon35* oip, int Flag);
-void RegistObjectSlot(int SlotNo, int ObjectNo, int SeNo);
+void RegistObjectSlot(int SlotNo, int ObjectNo, int SeNo);*/
 void ResetObjectSeInfo();
-void ExecObjectSeManager();
+/*void ExecObjectSeManager();
 void RequestSoundFade(int Func, int Attr, short Timer);
 void RequestAllStopSoundEx(int AdxFlag, int InSoundFlag, int FadeCount);*/
 void ResetSoundComInfo();
@@ -2554,38 +2554,30 @@ void ExecSoundSynchProgram()
     }
 }
 
-// 
-// Start address: 0x292c20
-void InitGameSoundSystem()
-{
-	int i;
-	// Line 673, Address: 0x292c20, Func Offset: 0
-	// Line 680, Address: 0x292c24, Func Offset: 0x4
-	// Line 673, Address: 0x292c2c, Func Offset: 0xc
-	// Line 680, Address: 0x292c30, Func Offset: 0x10
-	// Line 681, Address: 0x292c3c, Func Offset: 0x1c
-	// Line 687, Address: 0x292c50, Func Offset: 0x30
-	// Line 684, Address: 0x292c58, Func Offset: 0x38
-	// Line 685, Address: 0x292c64, Func Offset: 0x44
-	// Line 686, Address: 0x292c70, Func Offset: 0x50
-	// Line 690, Address: 0x292c88, Func Offset: 0x68
-	// Line 693, Address: 0x292c8c, Func Offset: 0x6c
-	// Line 691, Address: 0x292c90, Func Offset: 0x70
-	// Line 692, Address: 0x292c94, Func Offset: 0x74
-	// Line 693, Address: 0x292c98, Func Offset: 0x78
-	// Line 692, Address: 0x292c9c, Func Offset: 0x7c
-	// Line 693, Address: 0x292ca0, Func Offset: 0x80
-	// Line 694, Address: 0x292ca8, Func Offset: 0x88
-	// Line 696, Address: 0x292cbc, Func Offset: 0x9c
-	// Line 699, Address: 0x292cc4, Func Offset: 0xa4
-	// Line 702, Address: 0x292ccc, Func Offset: 0xac
-	// Line 704, Address: 0x292ce0, Func Offset: 0xc0
-	// Line 706, Address: 0x292cec, Func Offset: 0xcc
-	// Line 707, Address: 0x292cf4, Func Offset: 0xd4
-	// Line 709, Address: 0x292cfc, Func Offset: 0xdc
-	// Line 710, Address: 0x292d04, Func Offset: 0xe4
-	// Func End, Address: 0x292d10, Func Offset: 0xf0
-	scePrintf("InitGameSoundSystem - UNIMPLEMENTED!\n");
+// 100% matching
+void InitGameSoundSystem() {
+    int i;
+
+    SetVolumeMidi2(0, -127, 0);
+    SetVolumeMidi2(1, -127, 0);
+    ReqFadeBgmNo = 0;
+    CurrentBgmNo = -1;
+    CurrentBgmVolume = -0x7F;
+    NextBgmVolume = -0x7F;
+
+    for(i = 0; i < 2; i++) {
+        CurrentBgSeNo[i] = -1;
+        ReqFadeBgSe[i] = 0;
+    }
+
+    memset(&BgSePrmBuf, 0, 0x10);
+    ResetEnemySeInfo();
+    ResetObjectSeInfo();
+    memset(&SoundCommand, 0, 8);
+    CustomMidiSlotDef(1, 4);
+    ResetRoomSoundEnvParam();
+    ResetSoundComInfo();
+    EventVibrationMode = 0;
 }
 
 /*// 
@@ -2603,22 +2595,19 @@ int SearchAfsInsideFileId(unsigned short KeyCode)
 	// Line 737, Address: 0x292d58, Func Offset: 0x48
 	// Line 738, Address: 0x292d5c, Func Offset: 0x4c
 	// Func End, Address: 0x292d64, Func Offset: 0x54
+}*/
+
+// 100% matching
+void StopThePsgSound(void) {
+    if (CheckPlayMidi(0) != 0) {
+        StopBackGroundSeEx(0, 0);
+    }
+    if (CheckPlayMidi(1) != 0) {
+        StopBackGroundSeEx(1, 0);
+    }
 }
 
-// 
-// Start address: 0x292d70
-void StopThePsgSound()
-{
-	// Line 748, Address: 0x292d70, Func Offset: 0
-	// Line 749, Address: 0x292d78, Func Offset: 0x8
-	// Line 750, Address: 0x292d88, Func Offset: 0x18
-	// Line 752, Address: 0x292d94, Func Offset: 0x24
-	// Line 753, Address: 0x292da8, Func Offset: 0x38
-	// Line 755, Address: 0x292db4, Func Offset: 0x44
-	// Func End, Address: 0x292dc0, Func Offset: 0x50
-}
-
-// 
+/*// 
 // Start address: 0x292dc0
 int CheckSpecialBank(int Type, int BankNo)
 {
@@ -2816,7 +2805,7 @@ int GetRoomSoundCaseNo()
 	scePrintf("GetRoomSoundCaseNo - UNIMPLEMENTED!\n");
 }
 
-/*// 
+//
 // Start address: 0x2934b0
 int CustomMidiSlotDef(int ObjectSlot, int EventSlot)
 {
@@ -2833,7 +2822,8 @@ int CustomMidiSlotDef(int ObjectSlot, int EventSlot)
 	// Line 1190, Address: 0x293514, Func Offset: 0x64
 	// Line 1193, Address: 0x293518, Func Offset: 0x68
 	// Func End, Address: 0x293520, Func Offset: 0x70
-}*/
+    scePrintf("CustomMidiSlotDef - UNIMPLEMENTED\n");
+}
 
 // 100% matching! 
 void ResetRoomSoundEnvParam()
@@ -3479,28 +3469,22 @@ void CallBackGroundSeEx(unsigned int SlotNo, int SeNo, short Timer)
 	// Line 2424, Address: 0x294eec, Func Offset: 0x15c
 	// Line 2425, Address: 0x294efc, Func Offset: 0x16c
 	// Func End, Address: 0x294f14, Func Offset: 0x184
+}*/
+
+// 100% matching
+void CallBackGroundSe(unsigned int SlotNo, int SeNo) {
+    CallBackGroundSeEx(SlotNo, SeNo, 0);
 }
 
-// 
-// Start address: 0x294f20
-void CallBackGroundSe(unsigned int SlotNo, int SeNo)
-{
-	// Line 2435, Address: 0x294f20, Func Offset: 0
-	// Func End, Address: 0x294f28, Func Offset: 0x8
+// 100% matching
+void CallBackGroundSe2(unsigned int SlotNo, int SeNo) {
+    if( SeNo != CurrentBgSeNo[SlotNo]) {
+        ReqFadeBgSe[SlotNo] |= 2;
+        CurrentBgSeNo[SlotNo] = SeNo;
+    }
 }
 
-// 
-// Start address: 0x294f30
-void CallBackGroundSe2(unsigned int SlotNo, int SeNo)
-{
-	// Line 2447, Address: 0x294f30, Func Offset: 0
-	// Line 2448, Address: 0x294f4c, Func Offset: 0x1c
-	// Line 2449, Address: 0x294f64, Func Offset: 0x34
-	// Line 2451, Address: 0x294f68, Func Offset: 0x38
-	// Func End, Address: 0x294f70, Func Offset: 0x40
-}
-
-// 
+/*// 
 // Start address: 0x294f70
 void StopBackGroundSeEx(unsigned int SlotNo, short Timer)
 {
@@ -4190,7 +4174,7 @@ void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo)
 	// Line 3365, Address: 0x296090, Func Offset: 0x40
 	// Line 3366, Address: 0x296094, Func Offset: 0x44
 	// Func End, Address: 0x29609c, Func Offset: 0x4c
-}
+}*/
 
 // 
 // Start address: 0x2960a0
@@ -4198,7 +4182,8 @@ void ResetEnemySeInfo()
 {
 	// Line 3373, Address: 0x2960a0, Func Offset: 0
 	// Func End, Address: 0x2960a8, Func Offset: 0x8
-}*/
+    scePrintf("ResetEnemySeInfo - UNIMPLEMENTED\n");
+}
 
 // 
 // Start address: 0x2960b0
@@ -4299,31 +4284,38 @@ void ExecEnemySeManager()
 	scePrintf("ExecEnemySeManager - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x296470
-int SearchPlayingObjectSeEx(int ObjectNo, int Mode)
-{
-	_anon11* osp;
-	int i;
-	// Line 3526, Address: 0x296470, Func Offset: 0
-	// Line 3527, Address: 0x296488, Func Offset: 0x18
-	// Line 3528, Address: 0x296494, Func Offset: 0x24
-	// Line 3529, Address: 0x2964a0, Func Offset: 0x30
-	// Line 3532, Address: 0x2964a8, Func Offset: 0x38
-	// Line 3535, Address: 0x2964b0, Func Offset: 0x40
-	// Line 3537, Address: 0x2964c4, Func Offset: 0x54
-	// Line 3538, Address: 0x2964c8, Func Offset: 0x58
-	// Func End, Address: 0x2964d0, Func Offset: 0x60
+// 100% matching
+int SearchPlayingObjectSeEx(int ObjectNo, int Mode) {
+    int i;
+    ObjectSlot* osp;
+    
+    i = 0;
+    osp = &ObjectSlotInfo[i];
+
+    while(i < MaxSlotObjectSe) {
+
+        if ((osp->Flag != 0) && (ObjectNo == osp->ObjectNo)) {
+            if (Mode != 0) {
+                osp->FindFlag = 1;
+            }
+            
+            return i;
+        }
+        
+        i += 1;
+        osp++;
+    }
+    
+    return -1;
 }
 
 // 
-// Start address: 0x2964d0
-int SearchPlayingObjectSe(int ObjectNo)
-{
-	// Line 3542, Address: 0x2964d0, Func Offset: 0
-	// Func End, Address: 0x2964d8, Func Offset: 0x8
+// 100% matching
+int SearchPlayingObjectSe(int ObjectNo) {
+    return SearchPlayingObjectSeEx(ObjectNo, 1);
 }
 
+/*
 // 
 // Start address: 0x2964e0
 int SearchFreeObjectSeSlot()
@@ -4395,7 +4387,7 @@ void RegistObjectSlot(int SlotNo, int ObjectNo, int SeNo)
 	// Line 3613, Address: 0x296754, Func Offset: 0x24
 	// Line 3615, Address: 0x296758, Func Offset: 0x28
 	// Func End, Address: 0x296760, Func Offset: 0x30
-}
+}*/
 
 // 
 // Start address: 0x296760
@@ -4409,7 +4401,8 @@ void ResetObjectSeInfo()
 	// Line 3621, Address: 0x296790, Func Offset: 0x30
 	// Line 3622, Address: 0x296798, Func Offset: 0x38
 	// Func End, Address: 0x2967a4, Func Offset: 0x44
-}*/
+    scePrintf("ResetObjectSeInfo - UNIMPLEMENTED\n");
+}
 
 // 
 // Start address: 0x2967b0

@@ -496,7 +496,7 @@ void SetVolumeMidi(unsigned int SlotNo, char Volume, short DelayTime)
 {
 	// Line 349, Address: 0x28f6b0, Func Offset: 0
 	// Func End, Address: 0x28f6c8, Func Offset: 0x18
-}
+}*/
 
 // 
 // Start address: 0x28f6d0
@@ -504,9 +504,10 @@ void SetVolumeMidi2(unsigned int SlotNo, float Volume, short DelayTime)
 {
 	// Line 354, Address: 0x28f6d0, Func Offset: 0
 	// Func End, Address: 0x28f6d8, Func Offset: 0x8
+    scePrintf("SetVolumeMidi2 - UNIMPLEMENTED\n");
 }
 
-// 
+/*// 
 // Start address: 0x28f6e0
 void SetPitchMidi(unsigned int SlotNo, short Pitch, short DelayTime)
 {
