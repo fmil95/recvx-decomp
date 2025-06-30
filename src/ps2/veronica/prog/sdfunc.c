@@ -2167,7 +2167,7 @@ int SearchPlayingEnemySe(int EnemyNo, int Attrib);
 int SearchFreeEnemySeSlot();
 int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag);
 void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag, int FadeRate);
-/*void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo);*/
+void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo);*/
 void ResetEnemySeInfo();
 /*void ExecEnemySeManager();
 int SearchPlayingObjectSeEx(int ObjectNo, int Mode);
@@ -4112,23 +4112,20 @@ void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag
     }
 }
 
-/*
-// Start address: 0x296050
+
+// 100% matching!
 void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo)
 {
-	EnemySlot* esp;
-	// Line 3358, Address: 0x296050, Func Offset: 0
-	// Line 3359, Address: 0x296058, Func Offset: 0x8
-	// Line 3363, Address: 0x296068, Func Offset: 0x18
-	// Line 3361, Address: 0x29606c, Func Offset: 0x1c
-	// Line 3363, Address: 0x296070, Func Offset: 0x20
-	// Line 3362, Address: 0x296074, Func Offset: 0x24
-	// Line 3363, Address: 0x296078, Func Offset: 0x28
-	// Line 3364, Address: 0x296080, Func Offset: 0x30
-	// Line 3365, Address: 0x296090, Func Offset: 0x40
-	// Line 3366, Address: 0x296094, Func Offset: 0x44
-	// Func End, Address: 0x29609c, Func Offset: 0x4c
-}*/
+    EnemySlot* EnemySlotPtr;
+    
+    EnemySlotPtr = &EnemySlotInfo;
+    EnemySlotPtr += (SlotNo * 0x1);
+    EnemySlotPtr->EnemyNo = EnemyNo;
+    EnemySlotPtr->SeNo = SeNo;
+    EnemySlotPtr->Attrib = (SeNo & 0xF000000) >> 0x18;
+    EnemySlotPtr->Prio = (SeNo & 0xF0000) >> 0x10;
+    EnemySlotPtr->Flag = 1;
+}
 
 // 
 // Start address: 0x2960a0
