@@ -2166,8 +2166,8 @@ void SetRoomSoundFxLevelEx();*/
 int SearchPlayingEnemySe(int EnemyNo, int Attrib);
 int SearchFreeEnemySeSlot();
 int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag);
-/*void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag, int FadeRate);
-void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo);*/
+void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag, int FadeRate);
+/*void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo);*/
 void ResetEnemySeInfo();
 /*void ExecEnemySeManager();
 int SearchPlayingObjectSeEx(int ObjectNo, int Mode);
@@ -4062,42 +4062,57 @@ int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag)
 
 }
 
-/*
-// Start address: 0x295f00
+
+// 100% matching!
 void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag, int FadeRate)
 {
-	// Line 3320, Address: 0x295f00, Func Offset: 0
-	// Line 3321, Address: 0x295f24, Func Offset: 0x24
-	// Line 3322, Address: 0x295f2c, Func Offset: 0x2c
-	// Line 3323, Address: 0x295f44, Func Offset: 0x44
-	// Line 3324, Address: 0x295f4c, Func Offset: 0x4c
-	// Line 3325, Address: 0x295f54, Func Offset: 0x54
-	// Line 3326, Address: 0x295f64, Func Offset: 0x64
-	// Line 3327, Address: 0x295f6c, Func Offset: 0x6c
-	// Line 3328, Address: 0x295f70, Func Offset: 0x70
-	// Line 3329, Address: 0x295f78, Func Offset: 0x78
-	// Line 3331, Address: 0x295f80, Func Offset: 0x80
-	// Line 3332, Address: 0x295f88, Func Offset: 0x88
-	// Line 3333, Address: 0x295f90, Func Offset: 0x90
-	// Line 3334, Address: 0x295fa0, Func Offset: 0xa0
-	// Line 3335, Address: 0x295fa4, Func Offset: 0xa4
-	// Line 3336, Address: 0x295fac, Func Offset: 0xac
-	// Line 3337, Address: 0x295fb4, Func Offset: 0xb4
-	// Line 3338, Address: 0x295fbc, Func Offset: 0xbc
-	// Line 3339, Address: 0x295fc0, Func Offset: 0xc0
-	// Line 3340, Address: 0x295fc8, Func Offset: 0xc8
-	// Line 3343, Address: 0x295fd4, Func Offset: 0xd4
-	// Line 3344, Address: 0x295fdc, Func Offset: 0xdc
-	// Line 3345, Address: 0x295fe4, Func Offset: 0xe4
-	// Line 3346, Address: 0x295ff0, Func Offset: 0xf0
-	// Line 3347, Address: 0x295ff8, Func Offset: 0xf8
-	// Line 3349, Address: 0x296004, Func Offset: 0x104
-	// Line 3350, Address: 0x296014, Func Offset: 0x114
-	// Line 3352, Address: 0x29602c, Func Offset: 0x12c
-	// Func End, Address: 0x296050, Func Offset: 0x150
+    short* var_at;
+    RequestInfo.SlotNo = SlotNo;
+    RequestInfo.Priority = 0;
+    
+    if (Flag == 0) 
+    {
+        RequestInfo.ListNo = -1;
+        if (CheckFadeEndSe(SlotNo) == 0) 
+        {
+            RequestInfo.Volume = Vol;
+            RequestInfo.VolumeDelayTime = 0;
+        } 
+        else 
+        {
+            RequestInfo.VolumeDelayTime = -1;
+        }
+        
+    }
+    else 
+    {
+        StopSe(SlotNo);
+        RequestInfo.BankNo = ((SeNo >> 0x8) & 0xF);
+        RequestInfo.ListNo = SeNo;
+        if (FadeRate == 0) 
+        {
+            StopFadeSe(SlotNo);
+             RequestInfo.Volume = Vol;
+             RequestInfo.VolumeDelayTime = 0;
+        } 
+        else 
+        {
+        block_8:
+            RequestInfo.VolumeDelayTime = -1;
+        }
+    }
+    RequestInfo.Pan = Pan;
+    RequestInfo.PanDelayTime = 0;
+    RequestInfo.PitchDelayTime = -1;
+    RequestInfo.FxInput = -1;
+    ExPlaySe(&RequestInfo);
+    if ((Flag != 0) && (FadeRate != 0)) 
+    {
+        RequestSeFadeFunctionEx(SlotNo, -0x7F, Vol, FadeRate);
+    }
 }
 
-// 
+/*
 // Start address: 0x296050
 void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo)
 {
