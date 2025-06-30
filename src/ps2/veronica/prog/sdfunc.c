@@ -2173,8 +2173,8 @@ void ResetEnemySeInfo();
 int SearchPlayingObjectSeEx(int ObjectNo, int Mode);
 int SearchPlayingObjectSe(int ObjectNo);
 int SearchFreeObjectSeSlot();
-void CallObjectSe2(unsigned int SlotNo, _anon35* oip, int Flag);
-void RegistObjectSlot(int SlotNo, int ObjectNo, int SeNo);*/
+void CallObjectSe2(unsigned int SlotNo, _anon35* oip, int Flag);*/
+void RegistObjectSlot(int SlotNo, int ObjectNo, int SeNo);
 void ResetObjectSeInfo();
 /*void ExecObjectSeManager();
 void RequestSoundFade(int Func, int Attr, short Timer);
@@ -4324,21 +4324,20 @@ void CallObjectSe2(unsigned int SlotNo, _anon35* oip, int Flag)
 	// Line 3602, Address: 0x29670c, Func Offset: 0x1dc
 	// Func End, Address: 0x296724, Func Offset: 0x1f4
 }
+*/
 
-// 
-// Start address: 0x296730
+// 100% matching!
 void RegistObjectSlot(int SlotNo, int ObjectNo, int SeNo)
 {
-	_anon11* osp;
-	// Line 3608, Address: 0x296730, Func Offset: 0
-	// Line 3609, Address: 0x296738, Func Offset: 0x8
-	// Line 3611, Address: 0x296748, Func Offset: 0x18
-	// Line 3612, Address: 0x29674c, Func Offset: 0x1c
-	// Line 3614, Address: 0x296750, Func Offset: 0x20
-	// Line 3613, Address: 0x296754, Func Offset: 0x24
-	// Line 3615, Address: 0x296758, Func Offset: 0x28
-	// Func End, Address: 0x296760, Func Offset: 0x30
-}*/
+    ObjectSlot* ObjectSlotPtr;
+    
+    ObjectSlotPtr = ObjectSlotInfo;
+    ObjectSlotPtr = ObjectSlotPtr + (SlotNo);
+    ObjectSlotPtr->ObjectNo = ObjectNo;
+    ObjectSlotPtr->SeNo = SeNo;
+    ObjectSlotPtr->Prio = 0;
+    ObjectSlotPtr->Flag = 1;
+}
 
 // 
 // Start address: 0x296760
