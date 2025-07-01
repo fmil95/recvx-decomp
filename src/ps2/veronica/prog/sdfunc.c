@@ -624,14 +624,14 @@ struct _anon15
 	short jnt_b;
 	int cap_r;
 };
-
-struct _anon16
+*/
+typedef struct
 {
 	float x;
 	float y;
 	float z;
-};
-
+}_anon16;
+/*
 struct _anon17
 {
 	unsigned int flg;
@@ -917,8 +917,8 @@ struct _anon34
 	char FxInput;
 	char FxLevel;
 };
-
-struct _anon35
+*/
+typedef struct
 {
 	_anon16 Pos;
 	float Dist;
@@ -932,8 +932,8 @@ struct _anon35
 	int Flag;
 	int VolFadeP[3];
 	int PanFadeP[3];
-};
-
+}_anon35;
+/*
 struct _anon36
 {
 	unsigned int flg;
@@ -2044,9 +2044,9 @@ char CurrentRoomFxLevel;
 int AngBak;*/
 SND_REQ RequestInfo;
 NJS_POINT3 CameraPos;
-/*_anon44 GsSlotInfoAx[2];
+/*_anon44 GsSlotInfoAx[2];*/
 _anon35 ObjectInfo[16];
-_anon44 GsSlotInfoMi[8];
+/*_anon44 GsSlotInfoMi[8];
 */
 NO_NAME_31 GsSlotInfoSe[20];
 NJS_POINT3 PlayerPos;
@@ -2058,8 +2058,8 @@ int StartInitScriptFlag;
 _anon19 MidiInfo[0];
 _anon2 EnemyInfo[128];*/
 EnemySlot EnemySlotInfo[6];
-/*int MaxObjectReqList;
-unsigned char ObjectReqList[16];*/
+int MaxObjectReqList;
+/*unsigned char ObjectReqList[16];*/
 unsigned int AdxPlayFlag[2];
 /*char CurrentRoomFxProgNo;
 int MaxRequestList;
@@ -4340,18 +4340,12 @@ void RegistObjectSlot(int SlotNo, int ObjectNo, int SeNo)
 }
 
 // 
-// Start address: 0x296760
+// 100% matching!
 void ResetObjectSeInfo()
 {
-	// Line 3618, Address: 0x296760, Func Offset: 0
-	// Line 3619, Address: 0x296764, Func Offset: 0x4
-	// Line 3618, Address: 0x296770, Func Offset: 0x10
-	// Line 3619, Address: 0x296774, Func Offset: 0x14
-	// Line 3620, Address: 0x29677c, Func Offset: 0x1c
-	// Line 3621, Address: 0x296790, Func Offset: 0x30
-	// Line 3622, Address: 0x296798, Func Offset: 0x38
-	// Func End, Address: 0x2967a4, Func Offset: 0x44
-    scePrintf("ResetObjectSeInfo - UNIMPLEMENTED\n");
+    memset(&ObjectSlotInfo, 0, 0x24);
+    memset(&ObjectInfo, 0, 0x380);
+    MaxObjectReqList = 0;
 }
 
 // 
