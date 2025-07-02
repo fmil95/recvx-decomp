@@ -2167,7 +2167,7 @@ int SearchPlayingEnemySe(int EnemyNo, int Attrib);
 int SearchFreeEnemySeSlot();
 int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag);
 void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag, int FadeRate);
-void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo);*/
+void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo);
 void ResetEnemySeInfo();
 /*void ExecEnemySeManager();
 int SearchPlayingObjectSeEx(int ObjectNo, int Mode);
@@ -4118,7 +4118,7 @@ void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo)
 {
     EnemySlot* EnemySlotPtr;
     
-    EnemySlotPtr = &EnemySlotInfo;
+    EnemySlotPtr = EnemySlotInfo;
     EnemySlotPtr += (SlotNo * 0x1);
     EnemySlotPtr->EnemyNo = EnemyNo;
     EnemySlotPtr->SeNo = SeNo;
