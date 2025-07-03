@@ -127,7 +127,6 @@ void njMulMatrixCN(float pSrcMat1[16], float pSrcMat2[16]);*/
 
 #define VU0_INIT_CALC_PROCESS 0xB68
 
-// TODO: needs to have the VU0 microprogram inserted at the 0xB68 address of the binary
 // 100% matching! 
 void	njInitMatrix(NJS_MATRIX *m, Sint32 n, Int flag)
 {
