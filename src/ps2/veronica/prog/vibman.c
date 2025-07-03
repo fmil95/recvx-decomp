@@ -1,6 +1,6 @@
 #include "vibman.h"
 
-char PortIdTbl[4] = {0x02, 0x08, 0x0E, 0x14};
+char PortIdTbl[4] = {2, 8, 14, 20};
 int EnadleVibrationFlag;
 unsigned int VibStopTime;
 
