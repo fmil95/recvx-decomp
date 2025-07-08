@@ -2096,9 +2096,9 @@ void UnmountSoundAfs();
 /*void ExecSoundSynchProgram();
 void InitGameSoundSystem();
 int SearchAfsInsideFileId(unsigned short KeyCode);
-void StopThePsgSound();
+void StopThePsgSound();*/
 int CheckSpecialBank(int Type, int BankNo);
-int LoadSoundPackFile(char* SpqFile);*/
+/*int LoadSoundPackFile(char* SpqFile);*/
 void ExecTransSoundData();
 /*void RequestRoomSoundBank(int StageNo, int RoomNo, int CaseNo);
 void RequestArmsSoundBank(int ArmsNo);
@@ -2555,7 +2555,7 @@ void ExecSoundSynchProgram()
     }
 }
 
-// 100% matching
+// 100% matching!
 void InitGameSoundSystem() {
     int i;
 
@@ -2598,7 +2598,7 @@ int SearchAfsInsideFileId(unsigned short KeyCode)
 	// Func End, Address: 0x292d64, Func Offset: 0x54
 }*/
 
-// 100% matching
+// 100% matching!
 void StopThePsgSound(void) {
     if (CheckPlayMidi(0) != 0) {
         StopBackGroundSeEx(0, 0);
@@ -2608,23 +2608,40 @@ void StopThePsgSound(void) {
     }
 }
 
-/*// 
-// Start address: 0x292dc0
+// 
+// 100% matching!
 int CheckSpecialBank(int Type, int BankNo)
 {
-	// Line 766, Address: 0x292dc0, Func Offset: 0
-	// Line 775, Address: 0x292dc4, Func Offset: 0x4
-	// Line 776, Address: 0x292df0, Func Offset: 0x30
-	// Line 778, Address: 0x292e18, Func Offset: 0x58
-	// Line 779, Address: 0x292e20, Func Offset: 0x60
-	// Line 781, Address: 0x292e28, Func Offset: 0x68
-	// Line 783, Address: 0x292e4c, Func Offset: 0x8c
-	// Line 784, Address: 0x292e54, Func Offset: 0x94
-	// Line 787, Address: 0x292e5c, Func Offset: 0x9c
-	// Line 798, Address: 0x292e68, Func Offset: 0xa8
-	// Line 799, Address: 0x292e6c, Func Offset: 0xac
-	// Func End, Address: 0x292e78, Func Offset: 0xb8
-}*/
+    while(TRUE)
+    {
+        if ((Type != 0) || (BankNo != 3)) 
+        {
+            if ((Type != 1 || BankNo != 3)) 
+            {
+                break;
+            }
+        }
+        
+        if ((ReqFadeBgSe[0] & 2) || ((ReqFadeBgSe[1]) & 2)) 
+        {
+            StopThePsgSound();
+            return 0;
+        }
+    
+        if (CurrentBgSeNo[0] == -1) 
+        {
+            if (CurrentBgSeNo[1] == -1) 
+            {
+                StopThePsgSound();
+                return 0;
+            }
+        }     
+        
+        return 1;
+    }
+    
+    return 0;
+}
 
 // 
 // Start address: 0x292e80
