@@ -2187,8 +2187,8 @@ void Com_StartInitScript();
 void Com_FinishInitScript();
 void ExecuteSoundCommand();
 void SendSoundCommand(unsigned int CommandNo);
-void ExecSoundSystemMonitor();
-int RequestReadIsoFile(char* FileName, void* DestPtr);
+void ExecSoundSystemMonitor();*/
+int RequestReadIsoFile(char* FileName, void* DestPtr);/*
 int RequestReadInsideFile(unsigned int PartitionId, unsigned int FileId, void* DestPtr);
 int GetIsoFileSize(char* FileName);
 int GetInsideFileSize(unsigned int PartitionId, unsigned int FileId);
@@ -4673,22 +4673,29 @@ void ExecSoundSystemMonitor()
 }
 
 // 
-// Start address: 0x297280
+// 100% matching!
 int RequestReadIsoFile(char* FileName, void* DestPtr)
 {
-	// Line 4253, Address: 0x297280, Func Offset: 0
-	// Line 4254, Address: 0x29728c, Func Offset: 0xc
-	// Line 4255, Address: 0x29729c, Func Offset: 0x1c
-	// Line 4257, Address: 0x2972a4, Func Offset: 0x24
-	// Line 4258, Address: 0x2972b8, Func Offset: 0x38
-	// Line 4261, Address: 0x2972c0, Func Offset: 0x40
-	// Line 4262, Address: 0x2972d0, Func Offset: 0x50
-	// Line 4263, Address: 0x2972d8, Func Offset: 0x58
-	// Line 4264, Address: 0x2972e4, Func Offset: 0x64
-	// Line 4266, Address: 0x2972ec, Func Offset: 0x6c
-	// Line 4267, Address: 0x2972f0, Func Offset: 0x70
-	// Func End, Address: 0x297300, Func Offset: 0x80
-	scePrintf("RequestReadIsoFile - UNIMPLEMENTED!\n");
+    int TempGenAdxfSlot;
+
+    if (ReadFileRequestFlag != 0) 
+    {
+        return -1;
+    }
+    
+    TempGenAdxfSlot = GenAdxfSlot = OpenAfsIsoFile(FileName);
+    
+    if (TempGenAdxfSlot < 0) 
+    {
+        return -1;
+    }
+    
+    RequestReadAfsInsideFile(GenAdxfSlot, DestPtr);
+    
+    DestReadPtr = DestPtr;
+    ReadFileRequestFlag = 1;
+    FileReadStatus = 1;
+    return 0;
 }
 
 // 100% matching!
