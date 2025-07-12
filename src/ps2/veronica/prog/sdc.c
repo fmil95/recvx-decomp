@@ -852,13 +852,13 @@ void StopFadeMidi(int SlotNo)
 	// Line 700, Address: 0x290160, Func Offset: 0
 	// Line 701, Address: 0x290178, Func Offset: 0x18
 	// Func End, Address: 0x290180, Func Offset: 0x20
-}
+}*/
 
 // 
 // Start address: 0x290180
 void RequestSeFadeFunction(int SlotNo, int Func, short Timer)
 {
-	_anon0* sp;
+	NO_NAME_20* sp;
 	// Line 708, Address: 0x290180, Func Offset: 0
 	// Line 709, Address: 0x290198, Func Offset: 0x18
 	// Line 711, Address: 0x2901b8, Func Offset: 0x38
@@ -872,9 +872,10 @@ void RequestSeFadeFunction(int SlotNo, int Func, short Timer)
 	// Line 729, Address: 0x290264, Func Offset: 0xe4
 	// Line 732, Address: 0x290284, Func Offset: 0x104
 	// Func End, Address: 0x29028c, Func Offset: 0x10c
+	scePrintf("RequestSeFadeFunction - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x290290
 void RequestSeFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 {

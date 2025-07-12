@@ -1998,8 +1998,8 @@ int CurrentBgSeNo[2];
 int RoomSoundCaseNo;
 /*short DefBg[3];
 short DefObj[5];
-short DefEvt[5];
-short DefEne[6];*/
+short DefEvt[5];*/
+short DefEne[6];
 int SoundInitLevel;
 int SdReadMode;
 int SpqFileReadRequestFlag;
@@ -2039,8 +2039,8 @@ int MaxSlotObjectSe;
 char PanTbl360[68];
 char PanTbl360Vol[68];*/
 CAM_WORK cam;
-/*_anon61* rom;
-char CurrentRoomFxLevel;
+ROM_WORK* rom;
+/*char CurrentRoomFxLevel;
 int AngBak;*/
 SND_REQ RequestInfo;
 NJS_POINT3 CameraPos;
@@ -2141,9 +2141,9 @@ void RequestEnemySe(int EnemyNo, _anon16* pPos, int SeNo);
 void RequestEnemySeEx(int EnemyNo, _anon16* pPos, int SeNo, int FadeRate);
 int ChechPlayEnemySe(int EnemyNo, int SeNo);
 void AllStopEnemySe();
-void CallEnemySe(int SlotNo, _anon16* pPos, int SeNo);
+void CallEnemySe(int SlotNo, _anon16* pPos, int SeNo);*/
 void StopEnemySe(int SlotNo);
-int CallNativeEventSe(int SlotNo, _anon16* pPos, int SeNo, int Mode);
+/*int CallNativeEventSe(int SlotNo, _anon16* pPos, int SeNo, int Mode);
 int StopNativeEventSe(int SlotNo);
 void RequestObjectSeEx(int ObjectNo, _anon16* pPos, int Type);
 void RegistObjectSe(int ObjectNo, _anon16* pPos, int SeNo, int Prio);
@@ -2204,9 +2204,9 @@ int PlayMovieMain();
 void SetEventVibrationMode(int Mode);
 void StartVibrationBasic(int PortNo, int AtrbId, int VibNo);
 void StartVibrationEx(int AtrbId, int VibNo);
-void StopVibrationBasic(int PortNo);
+void StopVibrationBasic(int PortNo);*/
 void StopVibrationEx();
-void SetAdjustDisplay();*/
+//void SetAdjustDisplay();
 void RequestAdjustDisplay(int AdjustX, int AdjustY);
 void ExecAdjustDisplay();
 void InitPlayLogSystem();
@@ -2819,32 +2819,30 @@ int wadGetAngle(NJS_POINT3* pPos1, int Ang, NJS_POINT3* pPos2) {
     return (short)(Ang + (int)(10430.381f * atan2f(pPos1->x - pPos2->x,  pPos1->z - pPos2->z)));
 }
 
-/*// 
-// Start address: 0x2935a0
-int CheckCollision4Sound(_anon16* pP2)
-{
-	int ReturnCode;
-	_anon55 Capsule;
-	// Line 1374, Address: 0x2935a0, Func Offset: 0
-	// Line 1379, Address: 0x2935ac, Func Offset: 0xc
-	// Line 1383, Address: 0x2935c4, Func Offset: 0x24
-	// Line 1389, Address: 0x2935cc, Func Offset: 0x2c
-	// Line 1384, Address: 0x2935d4, Func Offset: 0x34
-	// Line 1383, Address: 0x2935dc, Func Offset: 0x3c
-	// Line 1385, Address: 0x2935e0, Func Offset: 0x40
-	// Line 1384, Address: 0x2935e8, Func Offset: 0x48
-	// Line 1385, Address: 0x2935ec, Func Offset: 0x4c
-	// Line 1386, Address: 0x2935f0, Func Offset: 0x50
-	// Line 1387, Address: 0x2935f8, Func Offset: 0x58
-	// Line 1388, Address: 0x293600, Func Offset: 0x60
-	// Line 1390, Address: 0x293608, Func Offset: 0x68
-	// Line 1391, Address: 0x29361c, Func Offset: 0x7c
-	// Line 1399, Address: 0x293620, Func Offset: 0x80
-	// Line 1400, Address: 0x293624, Func Offset: 0x84
-	// Func End, Address: 0x293634, Func Offset: 0x94
+// 100% matching
+int CheckCollision4Sound(NJS_POINT3* pP2) {
+    NJS_CAPSULE Capsule;
+    int ReturnCode;
+
+    ReturnCode = 0;
+    if (rom->flg & 2) {
+        Capsule.c1.x = cam.wpx;
+        Capsule.c1.y = cam.wpy;
+        Capsule.c1.z = cam.wpz;
+        Capsule.c2.x = pP2->x;
+        Capsule.c2.y = pP2->y;
+        Capsule.c2.z = pP2->z;
+        Capsule.r =  0.1;
+
+        if (bhCheckC2Wall(&Capsule) != 0) {
+            ReturnCode = -0x1C;
+        }
+    } 
+
+    return ReturnCode;
 }
 
-// 
+/*// 
 // Start address: 0x293640
 int Get3DSoundParameter(_anon16* pP1, _anon16* pP2, char* pPan, char* pVol, float* pDist, int Mode)
 {
@@ -2991,40 +2989,44 @@ void Set3dSoundFlag(int Type, int SlotNo, unsigned int Flag)
 	// Line 1672, Address: 0x293cd4, Func Offset: 0x3d4
 	// Func End, Address: 0x293ce8, Func Offset: 0x3e8
 }
+*/
 
-// 
-// Start address: 0x293cf0
-void Reset3dSoundFlag()
-{
-	int i;
-	// Line 1681, Address: 0x293cf0, Func Offset: 0
-	// Line 1684, Address: 0x293cf8, Func Offset: 0x8
-	// Line 1685, Address: 0x293d0c, Func Offset: 0x1c
-	// Line 1686, Address: 0x293d10, Func Offset: 0x20
-	// Line 1687, Address: 0x293d20, Func Offset: 0x30
-	// Line 1688, Address: 0x293d30, Func Offset: 0x40
-	// Line 1689, Address: 0x293d40, Func Offset: 0x50
-	// Line 1690, Address: 0x293d50, Func Offset: 0x60
-	// Line 1691, Address: 0x293d60, Func Offset: 0x70
-	// Line 1692, Address: 0x293d64, Func Offset: 0x74
-	// Line 1693, Address: 0x293d74, Func Offset: 0x84
-	// Line 1694, Address: 0x293d84, Func Offset: 0x94
-	// Line 1695, Address: 0x293d94, Func Offset: 0xa4
-	// Line 1696, Address: 0x293da4, Func Offset: 0xb4
-	// Line 1697, Address: 0x293db4, Func Offset: 0xc4
-	// Line 1698, Address: 0x293dbc, Func Offset: 0xcc
-	// Line 1699, Address: 0x293dcc, Func Offset: 0xdc
-	// Line 1700, Address: 0x293de4, Func Offset: 0xf4
-	// Line 1701, Address: 0x293dec, Func Offset: 0xfc
-	// Line 1702, Address: 0x293dfc, Func Offset: 0x10c
-	// Line 1703, Address: 0x293e14, Func Offset: 0x124
-	// Line 1704, Address: 0x293e24, Func Offset: 0x134
-	// Line 1705, Address: 0x293e34, Func Offset: 0x144
-	// Line 1706, Address: 0x293e44, Func Offset: 0x154
-	// Func End, Address: 0x293e54, Func Offset: 0x164
+// 100% matching
+void Reset3dSoundFlag(void) {
+    int i;
+    
+    Set3dSoundFlag(0, 0, 0);
+
+    for(i = 0; i < 3; i++) {
+        Set3dSoundFlag(1, i, 0);
+    }
+    
+    Set3dSoundFlag(2, 0, 0);
+    Set3dSoundFlag(3, 0, 0);
+    Set3dSoundFlag(4, 0, 0);
+
+    for(i = 0; i < 6; i++) {
+        Set3dSoundFlag(5, i, 0);
+    }
+    
+    Set3dSoundFlag(6, 0, 0);
+    Set3dSoundFlag(6, 1, 0);
+    Set3dSoundFlag(6, 2, 0);
+
+    for(i = 0; i < MaxSlotObjectSe; i++) {
+        Set3dSoundFlag(7, i, 0);
+    }
+
+    for(i = 0; i < MaxSlotEventSe; i++) {
+        Set3dSoundFlag(8, i, 0);
+    }
+    
+    Set3dSoundFlag(9, 0, 0);
+    Set3dSoundFlag(0xA, 0, 0);
+    Set3dSoundFlag(0xB, 0, 0);
 }
 
-// 
+/*// 
 // Start address: 0x293e60
 void SetUserSoundVolume(int Type, int SlotNo, int StartVol, int LastVol, int Frame)
 {
@@ -3582,31 +3584,25 @@ int ChechPlayEnemySe(int EnemyNo, int SeNo)
 	// Func End, Address: 0x2952c4, Func Offset: 0x64
 }*/
 
-// 
-// Start address: 0x2952d0
-void AllStopEnemySe()
-{
-	//EnemySlot* esp;
-	int i;
-	// Line 2658, Address: 0x2952d0, Func Offset: 0
-	// Line 2662, Address: 0x2952e0, Func Offset: 0x10
-	// Line 2658, Address: 0x2952ec, Func Offset: 0x1c
-	// Line 2662, Address: 0x2952f4, Func Offset: 0x24
-	// Line 2663, Address: 0x2952f8, Func Offset: 0x28
-	// Line 2664, Address: 0x295304, Func Offset: 0x34
-	// Line 2665, Address: 0x295314, Func Offset: 0x44
-	// Line 2666, Address: 0x29531c, Func Offset: 0x4c
-	// Line 2668, Address: 0x295328, Func Offset: 0x58
-	// Line 2671, Address: 0x29532c, Func Offset: 0x5c
-	// Line 2669, Address: 0x295330, Func Offset: 0x60
-	// Line 2670, Address: 0x295334, Func Offset: 0x64
-	// Line 2671, Address: 0x295338, Func Offset: 0x68
-	// Line 2670, Address: 0x29533c, Func Offset: 0x6c
-	// Line 2671, Address: 0x295340, Func Offset: 0x70
-	// Line 2672, Address: 0x295348, Func Offset: 0x78
-	// Line 2673, Address: 0x295350, Func Offset: 0x80
-	// Func End, Address: 0x295368, Func Offset: 0x98
-	scePrintf("AllStopEnemySe - UNIMPLEMENTED!\n");
+// 100% matching
+void AllStopEnemySe(void) {
+    int i;
+    EnemySlot* esp;
+
+    esp = &EnemySlotInfo[0];
+    for(i = 0; i < 6; i++, esp++) {
+        if (esp->Flag != 0) {
+            RequestSeFadeFunction(DefEne[i], 2, 0xC8);
+        } else {
+            StopEnemySe(i);
+        }
+        
+        esp->EnemyNo = 0;
+        esp->SeNo = 0;
+        esp->Flag = 0;
+    }
+
+    StopVibrationEx();
 }
 
 /*// 
@@ -3631,6 +3627,7 @@ void CallEnemySe(int SlotNo, _anon16* pPos, int SeNo)
 	// Line 2698, Address: 0x295410, Func Offset: 0xa0
 	// Func End, Address: 0x295420, Func Offset: 0xb0
 }
+*/
 
 // 
 // Start address: 0x295420
@@ -3638,9 +3635,10 @@ void StopEnemySe(int SlotNo)
 {
 	// Line 2709, Address: 0x295420, Func Offset: 0
 	// Func End, Address: 0x295438, Func Offset: 0x18
+	scePrintf("StopEnemySe - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x295440
 int CallNativeEventSe(int SlotNo, _anon16* pPos, int SeNo, int Mode)
 {
