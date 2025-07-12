@@ -1,12 +1,12 @@
-# Resident Evil: Code: Veronica X Decompile
+# Resident Evil - Code: Veronica X Decompile
 
 <img src="https://i.imgur.com/xj2ujPy.jpeg"/>
 
 ## About
 
-The purpose of this project is to reverse-engineer ***Resident Evil: Code: Veronica X*** in order to rebuild its codebase and allow for multiple different uses of it. More specifically, the PlayStation 2 version of the game released in North America (identifiable by its serial number, **SLUS-20184**) is being decompiled due to the presence of DWARF format debugging data in the PS2 executable, as well as the relative ease of reconstructing MIPS assembly back to the C programming language as opposed to other, more complex types of architectures. 
+The purpose of this project is to reverse-engineer ***Resident Evil - Code: Veronica X*** in order to rebuild its codebase and allow for multiple different uses of it. More specifically, the PlayStation 2 version of the game released in North America (identifiable by its serial number, **SLUS-20184**) is being decompiled due to the presence of DWARF format debugging data in the PS2 executable, as well as the relative ease of reconstructing MIPS assembly back to the C language as opposed to other, more complex types of architectures. 
 
-While function matching via the decomp.me website is the preferred method of decompilation, the project does not compile an ELF binary that's bit for bit identical to the one found on the game disk. RE: CVX was developed with the MetroWerks CodeWarrior IDE, and MWCC does not feature an equivalent to GCC's INCLUDE_ASM functionality which renders the process of building a matching binary more difficult. Instead, the build system produces an executable which only contains the code that has been decompiled so far, and the resulting ELF can be used on a repackaged DVD image of the game that is bootable on the PCSX2 emulator (and technically on an actual PS2 console).
+While function matching via the [decomp.me](https://decomp.me/preset/145) website is the preferred method of decompilation, the project does not compile an ELF binary that's identical bit for bit to the one found on the game disk. RE: CVX was developed with the MetroWerks CodeWarrior IDE, and MWCC does not feature an equivalent to GCC's INCLUDE_ASM functionality which renders the process of building a matching binary more difficult. Instead, the current build system produces an executable which only contains the code that has been decompiled so far, and the resulting ELF can be run on a repackaged DVD image of the game that is bootable on the PCSX2 emulator (and technically should also work on an actual PS2 console).
 
 ## Progress 
 ```
