@@ -9,6 +9,9 @@ The purpose of this project is to reverse-engineer ***Resident Evil - Code: Vero
 While function matching via the [decomp.me](https://decomp.me/preset/145) website is the preferred method of decompilation, the project does not compile an ELF binary that's identical bit for bit to the one found on the game disk. RE: CVX was developed with the MetroWerks CodeWarrior IDE, and MWCC does not feature an equivalent to GCC's INCLUDE_ASM functionality which renders the process of building a matching binary more difficult. Instead, the current build system produces an executable which only contains the code that has been decompiled so far, and the resulting ELF can be run on a repackaged DVD image of the game that is bootable on the PCSX2 emulator (and technically should also work on an actual PS2 console).
 
 ## Progress 
+
+<img src="https://i.imgur.com/qiMejZz.png"/>
+
 ```
 Resident Evil CODE: Veronica X: 626 implemented functions / 3876 total (16.15%)
 CRI ADX (March 13, 2001): 82 implemented functions / 653 total (12.56%)
