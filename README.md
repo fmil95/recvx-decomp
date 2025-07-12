@@ -1,15 +1,20 @@
-# Resident Evil Code: Veronica X (SLUS-20184) Decompilation
+# Resident Evil: Code: Veronica X Decompile
 
 <img src="https://i.imgur.com/xj2ujPy.jpeg"/>
 
 ## About
 
-This project aims to reconstruct the source code for Resident Evil: Code Veronica X, with the main goal of doing a PC port of the game since it's one of the few main installments of the Resident Evil series that hasn't gotten one yet. To achieve this goal, code is being disassembled from the North American PlayStation 2 version of the game, which was specifically chosen for the task due to the following reasons:
+The purpose of this project is to reverse-engineer ***Resident Evil: Code: Veronica X*** in order to rebuild its codebase and allow for multiple different uses of it. More specifically, the PlayStation 2 version of the game released in North America (identifiable by its serial number, **SLUS-20184**) is being decompiled due to the presence of DWARF format debugging data in the PS2 executable, as well as the relative ease of reconstructing MIPS assembly back to the C programming language as opposed to other, more complex types of architectures. 
 
-1) It has a full set of debugging symbols which includes not only function names, but also their signatures and local variables.
-2) You are never required to swap disks at any point during gameplay, as opposed to the GameCube and Dreamcast versions. Since all of the game is contained within a single DVD, this removes the need to decompile some extra code.  
-3) The PS2 uses a MIPS-based CPU, the R5900 a.k.a the Emotion Engine, and thus decompiling the assembly instructions back to the high-level language the game was originally programmed on (C) is relatively easier than doing so with other console ports of the game that use different, more complex Instruction Set Architectures.
+While function matching via the decomp.me website is the preferred method of decompilation, the project does not compile an ELF binary that's bit for bit identical to the one found on the game disk. RE: CVX was developed with the MetroWerks CodeWarrior IDE, and MWCC does not feature an equivalent to GCC's INCLUDE_ASM functionality which renders the process of building a matching binary more difficult. Instead, the build system produces an executable which only contains the code that has been decompiled so far, and the resulting ELF can be used on a repackaged DVD image of the game that is bootable on the PCSX2 emulator (and technically on an actual PS2 console).
 
+## Progress 
+```
+Resident Evil CODE: Veronica X: 626 implemented functions / 3876 total (16.15%)
+CRI ADX (March 13, 2001): 82 implemented functions / 653 total (12.56%)
+
+Decomp progress: 708 implemented functions / 4529 total (15.63%)
+```
 ## Credits
 
 This work couldn't have been possible without the contributions of the following users:
