@@ -8,6 +8,8 @@ The purpose of this project is to reverse-engineer ***Resident Evil - Code: Vero
 
 While function matching via the [decomp.me](https://decomp.me/preset/145) website is the preferred method of decompilation, the project does not compile an ELF binary that's identical bit for bit to the one found on the game disk. RE: CVX was developed with the MetroWerks CodeWarrior IDE, and MWCC does not feature an equivalent to GCC's INCLUDE_ASM functionality which renders the process of building a matching binary more difficult. Instead, the current build system produces an executable which only contains the code that has been decompiled so far, and the resulting ELF can be run on a repackaged DVD image of the game that is bootable on the PCSX2 emulator (and technically should also work on an actual PS2 console).
 
+Additionally, this project also consists of reverse-engineering the CRI Middleware library that was employed by the developers to handle different aspects of the game such as audio and the AFS filesystem. There are no current plans to support any other version of the game in the foreseeable future, but other platform releases of RE: CVX might be used for research purposes to aid with the decompilation process.
+
 ## Progress 
 
 <img src="https://i.imgur.com/qiMejZz.png"/>
