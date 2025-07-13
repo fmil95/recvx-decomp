@@ -13,9 +13,33 @@ void ADXT_StartMem(ADXT adxt, void *adxdat)
     ADXT_StartMem2(adxt, adxdat, ADXT_MAX_DATASIZE);
 }
 
+// 100% matching!
 void ADXT_StartMem2(ADXT adxt, void *adxdat, Sint32 datlen)
 {
-    scePrintf("ADXT_StartMem2 - UNIMPLEMENTED!\n");
+    SJ sj;
+
+    ADXT_Stop(adxt);
+    
+    ADXCRS_Lock();
+    
+    sj = SJMEM_Create(adxdat, datlen);
+    
+    if (sj == NULL) 
+    {
+        ADXCRS_Unlock();
+        
+        ADXERR_CallErrFunc1("E8101207: can't create sj (ADXT_StartMem)\n");
+    } 
+    else 
+    {
+        adxt_start_sj(adxt, sj);
+        
+        adxt->lnkflg = 0;
+        
+        adxt->pmode = ADXT_PMODE_MEM;
+    }
+    
+    ADXCRS_Unlock();
 }
 
 // ADXT_StartMemIdx

@@ -90,7 +90,12 @@ void ADXT_SetSvrFreq(ADXT adxt, Sint32 freq)
 // ADXT_SetTimeMode
 // ADXT_SetTimeOfst
 // ADXT_SetWaitPlayStart
-// adxt_start_sj
+
+void adxt_start_sj(ADXT adxt, SJ sj)
+{
+    scePrintf("adxt_start_sj - UNIMPLEMENTED!\n");
+}
+
 // adxt_start_stm
 // ADXT_StartSj
 
