@@ -3852,17 +3852,16 @@ void StopBgm(int FadeOutRate)
     NextBgmVolume = -127;
 }
 
-/*// 
-// Start address: 0x2959f0
+// 100% matching!
 void StopBgm2()
 {
-	// Line 3071, Address: 0x2959f0, Func Offset: 0
-	// Line 3072, Address: 0x2959fc, Func Offset: 0xc
-	// Line 3073, Address: 0x295a08, Func Offset: 0x18
-	// Line 3074, Address: 0x295a14, Func Offset: 0x24
-	// Line 3075, Address: 0x295a18, Func Offset: 0x28
-	// Func End, Address: 0x295a20, Func Offset: 0x30
-}*/
+    ReqFadeBgmNo = 1;
+    
+    CurrentBgmNo = -1;
+    CurrentBgmVolume = -127;
+    
+    NextBgmVolume = -127;
+}
 
 // 
 // Start address: 0x295a20
