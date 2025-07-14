@@ -4611,7 +4611,7 @@ void Com_FinishInitScript()
 {
 	// Line 4136, Address: 0x2970a0, Func Offset: 0
 	// Func End, Address: 0x2970a8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2970b0
@@ -4627,20 +4627,20 @@ void ExecuteSoundCommand()
 	// Line 4173, Address: 0x29711c, Func Offset: 0x6c
 	// Line 4174, Address: 0x297124, Func Offset: 0x74
 	// Func End, Address: 0x297138, Func Offset: 0x88
-}*/
+	scePrintf("ExecuteSoundCommand - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x297140
+// 100% matching!
 void SendSoundCommand(unsigned int CommandNo)
 {
-	// Line 4183, Address: 0x297140, Func Offset: 0
-	// Line 4184, Address: 0x297148, Func Offset: 0x8
-	// Line 4187, Address: 0x29715c, Func Offset: 0x1c
-	// Line 4188, Address: 0x29716c, Func Offset: 0x2c
-	// Line 4190, Address: 0x29717c, Func Offset: 0x3c
-	// Line 4191, Address: 0x297184, Func Offset: 0x44
-	// Func End, Address: 0x297190, Func Offset: 0x50
-	scePrintf("SendSoundCommand - UNIMPLEMENTED!\n");
+    if (SoundCommand.MaxCommand != 2) 
+    {
+        SoundCommand.ComTbl[SoundCommand.MaxCommand] = CommandNo;
+        
+        SoundCommand.MaxCommand++;
+        
+        ExecuteSoundCommand();
+    }
 }
 
 // 100% matching!
