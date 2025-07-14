@@ -1993,7 +1993,7 @@ int SystemSeSlotSwitch;
 int WeaponSeSlotSwitch;
 int EnemyBackGroundSeFlag;*/
 char MoviePlayTrayOpenFlag;
-int CurrentBgmNo;
+int CurrentBgmNo = -1;
 int CurrentBgSeNo[2];
 int RoomSoundCaseNo;
 /*short DefBg[3];
