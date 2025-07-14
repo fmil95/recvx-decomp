@@ -13,7 +13,11 @@ void ADXERR_CallErrFunc1(Char8* err_msg)
     }
 }
 
-// ADXERR_CallErrFunc2
+void ADXERR_CallErrFunc2(Char8* err_msg, Char8* fname)
+{
+    scePrintf("ADXERR_CallErrFunc2 - UNIMPLEMENTED!\n");
+}
+
 // ADXERR_EntryErrFunc
 // ADXERR_Finish
 // ADXERR_Init

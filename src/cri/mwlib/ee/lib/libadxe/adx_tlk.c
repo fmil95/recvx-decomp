@@ -96,7 +96,11 @@ void adxt_start_sj(ADXT adxt, SJ sj)
     scePrintf("adxt_start_sj - UNIMPLEMENTED!\n");
 }
 
-// adxt_start_stm
+void adxt_start_stm(ADXT adxt)
+{
+    scePrintf("adxt_start_stm - UNIMPLEMENTED!\n");
+}
+
 // ADXT_StartSj
 
 void ADXT_Stop(ADXT adxt)

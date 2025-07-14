@@ -42,7 +42,11 @@ ADXSTM ADXSTM_OpenFileRangeEx(Char8* fname, Sint32* dir, Sint32 ofst, Sint32 fns
 }
 
 // ADXSTM_OpenFileRangeExRt
-// ADXSTM_OpenFname
+
+ADXSTM ADXSTM_OpenFname(Char8* fname, SJ sjf)
+{
+    scePrintf("ADXSTM_OpenFname - UNIMPLEMENTED!\n");
+}
 
 Sint32 ADXSTM_OpenFnameEx(Char8* fname, void* atr, Sint32 arg2)
 {

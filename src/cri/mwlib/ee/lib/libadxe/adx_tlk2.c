@@ -5,7 +5,30 @@ void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
     scePrintf("ADXT_StartAfs - UNIMPLEMENTED!\n");
 }
 
-// ADXT_StartFname
+// 100% matching!
+void ADXT_StartFname(ADXT adxt, Char8 *fname)
+{
+    ADXT_Stop(adxt);
+    
+    ADXCRS_Lock();
+    
+    adxt->stm = ADXSTM_OpenFname(fname, adxt->sjf);
+    
+    if (adxt->stm == NULL) 
+    {
+        ADXCRS_Unlock();
+        
+        ADXERR_CallErrFunc2("E8101205 ADXT_StartFname: can't open ", fname);
+    } 
+    else 
+    {
+        adxt_start_stm(adxt);
+        
+        adxt->lnkflg = 0;
+    }
+    
+    ADXCRS_Unlock();
+}
 
 // 100% matching!
 void ADXT_StartMem(ADXT adxt, void *adxdat)
