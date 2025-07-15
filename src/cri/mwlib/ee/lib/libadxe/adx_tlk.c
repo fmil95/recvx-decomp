@@ -85,9 +85,10 @@ void ADXT_SetReloadSct(ADXT adxt, Sint32 minsct)
 
 // ADXT_SetReloadTime
 
+// 100% matching! 
 void ADXT_SetSvrFreq(ADXT adxt, Sint32 freq)
 {
-    scePrintf("ADXT_SetSvrFreq - UNIMPLEMENTED!\n");
+    adxt->svrfreq = freq;
 }
 
 // 100% matching! 
