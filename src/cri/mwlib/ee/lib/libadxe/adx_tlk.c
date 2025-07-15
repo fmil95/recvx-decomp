@@ -96,9 +96,10 @@ void ADXT_SetOutVol(ADXT adxt, Sint32 vol)
 
 // ADXT_SetPauseBuf
 
+// 100% matching! 
 void ADXT_SetReloadSct(ADXT adxt, Sint32 minsct)
 {
-    scePrintf("ADXT_SetReloadSct - UNIMPLEMENTED!\n");
+    adxt->minsct = minsct;
 }
 
 // ADXT_SetReloadTime
