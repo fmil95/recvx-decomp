@@ -22,4 +22,8 @@ void ADXERR_CallErrFunc2(Char8* err_msg, Char8* fname)
 // ADXERR_Finish
 // ADXERR_Init
 // ADXERR_ItoA
-// ADXERR_ItoA2
+
+void ADXERR_ItoA2(Sint32 ptid, Sint32 flid, Char8* err_msg, Sint32 msg_len)
+{
+    scePrintf("ADXERR_ItoA2 - UNIMPLEMENTED!\n");
+}

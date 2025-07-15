@@ -1,8 +1,38 @@
 
 
+// 100% matching! 
 void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
 {
-    scePrintf("ADXT_StartAfs - UNIMPLEMENTED!\n");
+    static Char8 fname;
+    Char8 error[16];
+    void* dir;
+    Sint32 ofst;
+    Sint32 fnsct;
+
+    ADXT_Stop(adxt);
+    
+    ADXCRS_Lock();
+    
+    if (ADXF_GetFnameRangeEx(patid, fid, &fname, &dir, &ofst, &fnsct) == 0) 
+    {
+        adxt->stm = ADXSTM_OpenFileRangeExRt(&fname, dir, ofst, fnsct, adxt->sjf);
+        
+        if (adxt->stm == NULL) 
+        {
+            ADXCRS_Unlock();
+            
+            ADXERR_ItoA2(patid, fid, error, 16);
+            ADXERR_CallErrFunc2("E8101202 ADXT_StartAfs: can't open ", error);
+        } 
+        else 
+        {
+            adxt_start_stm(adxt);
+            
+            adxt->lnkflg = 0;
+        }
+    }
+    
+    ADXCRS_Unlock();
 }
 
 // 100% matching!
