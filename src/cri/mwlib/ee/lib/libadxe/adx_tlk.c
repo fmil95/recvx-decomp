@@ -1,7 +1,16 @@
 Sint32 adxt_time_unit;
 Sint32 adxt_time_mode;
 
-// ADXT_ClearErrCode
+// 100% matching! 
+void ADXT_ClearErrCode(ADXT adxt)
+{
+    adxt->ercode = 0;
+    
+    adxt->edecpos = 0;
+    adxt->edeccnt = 0;
+    
+    adxt->eshrtcnt = 0;
+}
 
 // 100% matching! 
 void ADXT_CloseAllHandles(void)
