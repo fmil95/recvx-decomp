@@ -50,6 +50,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_fcch.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_rbf.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/sj_mem.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_inis.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_mps2.c"

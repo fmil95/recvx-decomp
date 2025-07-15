@@ -1,4 +1,10 @@
+#define BSWAP_S32(_val) (Sint32)(((Uint32)_val >> 24) | (_val << 24) | (((_val << 8) & 0xFF0000) | ((_val >> 8) & 0xFF00)))
 
+void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
+void ADXT_StartFname(ADXT adxt, Char8 *fname);
+void ADXT_StartMem(ADXT adxt, void *adxdat);
+void ADXT_StartMem2(ADXT adxt, void *adxdat, Sint32 datlen);
+void ADXT_StartMemIdx(ADXT adxt, void *acx, Sint32 no);
 
 // 100% matching! 
 void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
@@ -95,4 +101,34 @@ void ADXT_StartMem2(ADXT adxt, void *adxdat, Sint32 datlen)
     ADXCRS_Unlock();
 }
 
-// ADXT_StartMemIdx
+// 100% matching!
+void ADXT_StartMemIdx(ADXT adxt, void *acx, Sint32 no)
+{
+    SJ sj;
+
+    ADXT_Stop(adxt);
+    
+    if ((no < BSWAP_S32(((Sint32*)acx)[1])) && (no >= 0))
+    {
+        ADXCRS_Lock();
+        
+        sj = SJMEM_Create((Sint8*)acx + BSWAP_S32(((Sint32*)acx + (no * 2))[2]), ADXT_MAX_DATASIZE);
+        
+        if (sj == NULL) 
+        {
+            ADXCRS_Unlock();
+            
+            ADXERR_CallErrFunc1("E8101207: can't create sj (ADXT_StartMemIdx)");
+        }
+        else 
+        {
+            adxt_start_sj(adxt, sj);
+            
+            adxt->lnkflg = 0;
+            
+            adxt->pmode = ADXT_PMODE_MEM;
+        }
+        
+        ADXCRS_Unlock();
+    }
+}
