@@ -2,7 +2,12 @@ Sint32 adxt_time_unit;
 Sint32 adxt_time_mode;
 
 // ADXT_ClearErrCode
-// ADXT_CloseAllHandles
+
+// 100% matching! 
+void ADXT_CloseAllHandles(void)
+{
+    ADXT_DestroyAll();
+}
 
 ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
 {
@@ -14,7 +19,11 @@ void ADXT_Destroy(ADXT adxt)
     scePrintf("ADXT_Destroy - UNIMPLEMENTED!\n");
 }
 
-// ADXT_DestroyAll
+void ADXT_DestroyAll(void)
+{
+    scePrintf("ADXT_DestroyAll - UNIMPLEMENTED!\n");
+}
+
 // ADXT_DiscardSmpl
 // adxt_disp_rna_stat
 // ADXT_EntryErrFunc
