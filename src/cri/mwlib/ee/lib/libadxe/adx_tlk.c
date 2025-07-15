@@ -80,7 +80,12 @@ void ADXT_SetAutoRcvr(ADXT adxt, Sint32 rmode)
     adxt->autorcvr = rmode;
 }
 
-// ADXT_SetLnkSw
+// 100% matching!
+void ADXT_SetLnkSw(ADXT adxt, Sint32 sw)
+{
+    adxt->lnkflg = sw;
+}
+
 // ADXT_SetLpFlg
 // ADXT_SetOutPan
 
