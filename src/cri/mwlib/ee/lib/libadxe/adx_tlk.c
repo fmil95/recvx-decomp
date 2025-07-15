@@ -74,9 +74,10 @@ void ADXT_GetTime(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
 // ADXT_IsIbufSafety
 // ADXT_IsReadyPlayStart
 
+// 100% matching!
 void ADXT_SetAutoRcvr(ADXT adxt, Sint32 rmode)
 {
-    scePrintf("ADXT_SetAutoRcvr - UNIMPLEMENTED!\n");
+    adxt->autorcvr = rmode;
 }
 
 // ADXT_SetLnkSw
