@@ -1,3 +1,6 @@
+Sint32 adxt_time_unit;
+Sint32 adxt_time_mode;
+
 // ADXT_ClearErrCode
 // ADXT_CloseAllHandles
 
@@ -87,7 +90,21 @@ void ADXT_SetSvrFreq(ADXT adxt, Sint32 freq)
     scePrintf("ADXT_SetSvrFreq - UNIMPLEMENTED!\n");
 }
 
-// ADXT_SetTimeMode
+// 100% matching! 
+void ADXT_SetTimeMode(Sint32 mode)
+{
+    if (mode == 1) 
+    {
+        adxt_time_unit = 5994;
+    }
+    else if (mode == 2) 
+    {
+        adxt_time_unit = 5000;
+    }
+    
+    adxt_time_mode = mode;
+}
+
 // ADXT_SetTimeOfst
 // ADXT_SetWaitPlayStart
 
