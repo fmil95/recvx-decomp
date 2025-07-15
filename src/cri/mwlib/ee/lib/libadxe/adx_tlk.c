@@ -111,7 +111,11 @@ void ADXT_SetTimeOfst(ADXT adxt, Sint32 ofst)
     adxt->time_ofst = ofst;
 }
 
-// ADXT_SetWaitPlayStart
+// 100% matching! 
+void ADXT_SetWaitPlayStart(ADXT adxt, Sint32 flg)
+{
+    adxt->pstwait_flag = flg;
+}
 
 void adxt_start_sj(ADXT adxt, SJ sj)
 {
