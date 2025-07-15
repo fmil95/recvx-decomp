@@ -86,7 +86,12 @@ void ADXT_SetLnkSw(ADXT adxt, Sint32 sw)
     adxt->lnkflg = sw;
 }
 
-// ADXT_SetLpFlg
+// 100% matching!
+void ADXT_SetLpFlg(ADXT adxt, Sint32 flg)
+{
+    adxt->lpflg = flg;
+}
+
 // ADXT_SetOutPan
 
 // 100% matching!
