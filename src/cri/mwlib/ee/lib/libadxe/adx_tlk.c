@@ -105,7 +105,12 @@ void ADXT_SetTimeMode(Sint32 mode)
     adxt_time_mode = mode;
 }
 
-// ADXT_SetTimeOfst
+// 100% matching! 
+void ADXT_SetTimeOfst(ADXT adxt, Sint32 ofst)
+{
+    adxt->time_ofst = ofst;
+}
+
 // ADXT_SetWaitPlayStart
 
 void adxt_start_sj(ADXT adxt, SJ sj)
