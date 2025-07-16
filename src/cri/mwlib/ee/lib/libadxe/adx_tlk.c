@@ -68,7 +68,13 @@ void ADXT_GetTime(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
 // ADXT_GetTimeSfreq
 // ADXT_GetTimeSfreq2
 // ADXT_InsertSilence
-// ADXT_IsCompleted
+
+// 100% matching! 
+Sint32 ADXT_IsCompleted(ADXT adxt)
+{
+    return adxt->stat == ADXT_STAT_PLAYEND;
+}
+
 // ADXT_IsEndcode
 // ADXT_IsHeader
 // ADXT_IsIbufSafety
