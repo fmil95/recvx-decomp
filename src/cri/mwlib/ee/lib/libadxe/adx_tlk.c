@@ -77,7 +77,17 @@ Sint32 ADXT_IsCompleted(ADXT adxt)
 
 // ADXT_IsEndcode
 // ADXT_IsHeader
-// ADXT_IsIbufSafety
+
+// 100% matching! 
+Sint32 ADXT_IsIbufSafety(ADXT adxt)
+{
+    if (adxt->sji != NULL) 
+    {
+        return adxt->sji->vtbl->GetNumData(adxt->sji, 1) >= (adxt->minsct * ADXF_DEF_SCT_SIZE);
+    }
+    
+    return FALSE;
+}
 
 // 100% matching! 
 Sint32 ADXT_IsReadyPlayStart(ADXT adxt)
