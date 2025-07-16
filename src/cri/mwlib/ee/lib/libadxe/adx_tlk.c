@@ -121,7 +121,11 @@ void ADXT_SetOutVol(ADXT adxt, Sint32 vol)
     ADXRNA_SetOutVol(adxt->rna, vol);
 }
 
-// ADXT_SetPauseBuf
+// 100% matching!
+Uint32 ADXT_SetPauseBuf(void) 
+{
+    return 16384;
+}
 
 // 100% matching! 
 void ADXT_SetReloadSct(ADXT adxt, Sint32 minsct)
