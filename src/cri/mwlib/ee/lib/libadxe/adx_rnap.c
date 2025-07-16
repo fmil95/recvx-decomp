@@ -15,7 +15,11 @@
 // ADXRNA_Init
 // ADXRNA_SetBitPerSmpl
 // ADXRNA_SetNumChan
-// ADXRNA_SetOutPan
+
+void ADXRNA_SetOutPan(ADXRNA adxrna, Sint32 ch, Sint32 pan)
+{
+    scePrintf("ADXRNA_SetOutPan - UNIMPLEMENTED!\n");
+}
 
 void ADXRNA_SetOutVol(ADXRNA adxrna, Sint32 vol)
 {

@@ -92,7 +92,20 @@ void ADXT_SetLpFlg(ADXT adxt, Sint32 flg)
     adxt->lpflg = flg;
 }
 
-// ADXT_SetOutPan
+// 100% matching!
+void ADXT_SetOutPan(ADXT adxt, Sint32 ch, Sint32 pan)
+{
+    adxt->outpan[ch] = pan;
+    
+    if (ch < adxt->maxnch) 
+    {
+        ADXRNA_SetOutPan(adxt->rna, ch, pan);
+    }
+    else 
+    {
+        ADXERR_CallErrFunc1("E8101208 ADXT_SetOutPan: parameter error");
+    }
+}
 
 // 100% matching!
 void ADXT_SetOutputMono(Sint32 flag)
