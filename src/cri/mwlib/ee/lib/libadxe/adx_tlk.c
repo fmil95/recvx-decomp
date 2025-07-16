@@ -78,7 +78,12 @@ Sint32 ADXT_IsCompleted(ADXT adxt)
 // ADXT_IsEndcode
 // ADXT_IsHeader
 // ADXT_IsIbufSafety
-// ADXT_IsReadyPlayStart
+
+// 100% matching! 
+Sint32 ADXT_IsReadyPlayStart(ADXT adxt)
+{
+    return adxt->pstready_flag;
+}
 
 // 100% matching!
 void ADXT_SetAutoRcvr(ADXT adxt, Sint32 rmode)
