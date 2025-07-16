@@ -133,7 +133,18 @@ void ADXT_SetReloadSct(ADXT adxt, Sint32 minsct)
     adxt->minsct = minsct;
 }
 
-// ADXT_SetReloadTime
+// 100% matching! 
+void ADXT_SetReloadTime(ADXT adxt, float time, Sint32 nch, Sint32 sfreq)
+{
+    Sint32 ch;
+    Sint32 sec;
+
+    ch = nch * 18;
+    
+    sec = (((Sint32)(time * sfreq) / 32) * ch) / ADXF_DEF_SCT_SIZE;
+    
+    adxt->minsct = (sec < adxt->maxsct) ? sec : adxt->maxsct;
+}
 
 // 100% matching! 
 void ADXT_SetSvrFreq(ADXT adxt, Sint32 freq)
