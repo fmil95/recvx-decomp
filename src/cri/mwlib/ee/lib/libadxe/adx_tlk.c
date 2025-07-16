@@ -100,9 +100,12 @@ void ADXT_SetOutputMono(Sint32 flag)
     ADX_SetDecodeSteAsMonoSw(flag);
 }
 
+// 100% matching!
 void ADXT_SetOutVol(ADXT adxt, Sint32 vol)
 {
-    scePrintf("ADXT_SetOutVol - UNIMPLEMENTED!\n");
+    adxt->outvol = vol; 
+    
+    ADXRNA_SetOutVol(adxt->rna, vol);
 }
 
 // ADXT_SetPauseBuf
