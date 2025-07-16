@@ -1,3 +1,5 @@
+#define BSWAP_U16(_val) (Uint16)((*(Uint16*)_val >> 8) | (*(Uint16*)_val << 8))
+
 Sint32 adxt_time_unit;
 Sint32 adxt_time_mode;
 
@@ -75,7 +77,24 @@ Sint32 ADXT_IsCompleted(ADXT adxt)
     return adxt->stat == ADXT_STAT_PLAYEND;
 }
 
-// ADXT_IsEndcode
+// 100% matching! 
+Sint32 ADXT_IsEndcode(Sint8 *adr, Sint32 siz, Sint32 *endsiz)
+{
+    if (siz <= 1) 
+    {
+        return 0;
+    }
+
+    if (BSWAP_U16(adr) != 0x8001) 
+    {
+        return 0;
+    }
+
+    *endsiz = siz;
+
+    return 1;
+}
+
 // ADXT_IsHeader
 
 // 100% matching! 
