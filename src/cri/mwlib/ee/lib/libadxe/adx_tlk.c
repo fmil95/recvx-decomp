@@ -89,7 +89,12 @@ Sint32 ADXT_GetLnkSw(ADXT adxt)
     return adxt->lnkflg;
 }
 
-// ADXT_GetLpCnt
+// 100% matching! 
+Sint32 ADXT_GetLpCnt(ADXT adxt)
+{
+    return adxt->lpcnt;
+}
+
 // ADXT_GetNumChan
 // ADXT_GetNumSctIbuf
 // ADXT_GetNumSmpl
