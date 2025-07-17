@@ -40,7 +40,12 @@ void ADXT_DestroyAll(void)
 // ADXT_EntryErrFunc
 // ADXT_EntryFltFunc
 // ADXT_ExecServer
-// ADXT_GetDecNumSmpl
+
+// 100% matching! 
+Sint32 ADXT_GetDecNumSmpl(ADXT adxt)
+{
+    return ADXSJD_GetDecNumSmpl(adxt->sjd);
+}
 
 // 100% matching! 
 Sint32 ADXT_GetErrCode(ADXT adxt)

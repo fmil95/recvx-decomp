@@ -53,6 +53,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_mem.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_inis.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_sjd.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_rnap.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_mps2.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/cri_cvfs.c"
