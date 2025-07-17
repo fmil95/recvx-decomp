@@ -41,7 +41,13 @@ void ADXT_DestroyAll(void)
 // ADXT_EntryFltFunc
 // ADXT_ExecServer
 // ADXT_GetDecNumSmpl
-// ADXT_GetErrCode
+
+// 100% matching! 
+Sint32 ADXT_GetErrCode(ADXT adxt)
+{
+    return adxt->ercode;
+}
+
 // ADXT_GetFmtBps
 // ADXT_GetHdrLen
 // ADXT_GetIbufRemainTime
