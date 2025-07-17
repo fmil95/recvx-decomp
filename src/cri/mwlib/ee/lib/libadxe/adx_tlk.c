@@ -62,9 +62,10 @@ Sint32 ADXT_GetErrCode(ADXT adxt)
 // ADXT_GetOutVol
 // ADXT_GetSfreq
 
+// 100% matching!
 Sint32 ADXT_GetStat(ADXT adxt)
 {
-    scePrintf("ADXT_GetStat - UNIMPLEMENTED!\n");
+    return adxt->stat;
 }
 
 void ADXT_GetTime(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
