@@ -83,7 +83,12 @@ SJ ADXT_GetInputSj(ADXT adxt)
     return adxt->sji;
 }
 
-// ADXT_GetLnkSw
+// 100% matching! 
+Sint32 ADXT_GetLnkSw(ADXT adxt)
+{
+    return adxt->lnkflg;
+}
+
 // ADXT_GetLpCnt
 // ADXT_GetNumChan
 // ADXT_GetNumSctIbuf
