@@ -64,7 +64,17 @@ Sint32 ADXT_GetFmtBps(ADXT adxt)
     return 0;
 }
 
-// ADXT_GetHdrLen
+// 100% matching! 
+Sint32 ADXT_GetHdrLen(ADXT adxt)
+{
+    if (adxt->stat >= ADXT_STAT_PREP)
+    {
+        return ADXSJD_GetHdrLen(adxt->sjd);
+    }
+    
+    return 0;
+}
+
 // ADXT_GetIbufRemainTime
 // ADXT_GetInputSj
 // ADXT_GetLnkSw
