@@ -53,7 +53,17 @@ Sint32 ADXT_GetErrCode(ADXT adxt)
     return adxt->ercode;
 }
 
-// ADXT_GetFmtBps
+// 100% matching! 
+Sint32 ADXT_GetFmtBps(ADXT adxt)
+{
+    if (adxt->stat >= ADXT_STAT_PREP) 
+    {
+        return ADXSJD_GetFmtBps(adxt->sjd);
+    }
+    
+    return 0;
+}
+
 // ADXT_GetHdrLen
 // ADXT_GetIbufRemainTime
 // ADXT_GetInputSj

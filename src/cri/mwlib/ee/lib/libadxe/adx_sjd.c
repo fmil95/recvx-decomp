@@ -22,7 +22,12 @@ Sint32 ADXSJD_GetDecNumSmpl(ADXSJD adxsjd)
 }
 
 // ADXSJD_GetDecPos
-// ADXSJD_GetFmtBps
+
+Sint32 ADXSJD_GetFmtBps(ADXSJD adxsjd)
+{
+    scePrintf("ADXSJD_GetFmtBps - UNIMPLEMENTED!\n");
+}
+
 // ADXSJD_GetFormat
 // ADXSJD_GetHdrLen
 // ADXSJD_GetLpEndOfst
