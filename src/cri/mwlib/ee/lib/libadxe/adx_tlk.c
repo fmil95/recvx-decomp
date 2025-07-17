@@ -107,7 +107,37 @@ Sint32 ADXT_IsEndcode(Sint8 *adr, Sint32 siz, Sint32 *endsiz)
     return 1;
 }
 
-// ADXT_IsHeader
+// 100% matching! 
+Sint32 ADXT_IsHeader(Sint8 *adr, Sint32 siz, Sint32 *hdrsiz)
+{
+    Sint16 unk0;
+    Sint8 unk1;
+    Sint8 unk2;
+    Sint8 unk3;
+    Sint8 unk4;
+    Sint32 unk5;
+    Sint32 unk6;    
+    Sint32 unk7;
+
+    if (siz < 2) 
+    {
+        return 0;
+    }
+    
+    if (BSWAP_U16(adr) != 0x8000) 
+    {
+        return 0;
+    }
+    
+    if (ADX_DecodeInfo(adr, siz, &unk0, &unk1, &unk2, &unk3, &unk4, &unk5, &unk6, &unk7) < 0) 
+    {  
+        return 0;
+    }
+   
+    *hdrsiz = unk0;
+    
+    return 1;
+}
 
 // 100% matching! 
 Sint32 ADXT_IsIbufSafety(ADXT adxt)
