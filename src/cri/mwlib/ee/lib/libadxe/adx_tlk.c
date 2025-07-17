@@ -76,7 +76,13 @@ Sint32 ADXT_GetHdrLen(ADXT adxt)
 }
 
 // ADXT_GetIbufRemainTime
-// ADXT_GetInputSj
+
+// 100% matching! 
+SJ ADXT_GetInputSj(ADXT adxt)
+{
+    return adxt->sji;
+}
+
 // ADXT_GetLnkSw
 // ADXT_GetLpCnt
 // ADXT_GetNumChan
