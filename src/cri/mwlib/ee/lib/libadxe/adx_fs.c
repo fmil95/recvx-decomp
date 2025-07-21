@@ -503,7 +503,7 @@ Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
         
         ((ADXF_PTINFO*)ptinfo)->curdir = dir;
         
-        wrk32 = buf = (Sint32*)((Sint32)&D_01E272F0 & 0xFFFFFFC0);
+        wrk32 = buf = (Sint32*)((Sint32)&D_01E272F0 & ADXF_DEF_ALIGN_CALC);
         
         rdsct = ADXF_ReadNw32(adxf_ldptnw_hn, 1, buf);
         
