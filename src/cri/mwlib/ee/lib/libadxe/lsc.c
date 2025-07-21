@@ -1,0 +1,24 @@
+// lsc_Alloc
+// LSC_CallStatFunc
+// LSC_Create
+// LSC_Destroy
+// LSC_EntryChgStatFunc
+// LSC_EntryFileRange
+// LSC_EntryFname
+// LSC_ExecServer
+// LSC_GetFlowLimit
+// LSC_GetNumStm
+// LSC_GetStat
+// LSC_GetStmFname
+// LSC_GetStmId
+// LSC_GetStmRdSct
+// LSC_GetStmStat
+// LSC_Pause
+// LSC_SetFlowLimit
+// LSC_SetLpFlg
+// LSC_Start
+
+void LSC_Stop(void* lsc)
+{
+    scePrintf("LSC_Stop - UNIMPLEMENTED!\n");
+}

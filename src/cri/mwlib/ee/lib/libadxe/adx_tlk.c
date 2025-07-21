@@ -3,6 +3,8 @@
 Sint32 adxt_time_unit;
 Sint32 adxt_time_mode;
 
+void ADXT_StopWithoutLsc(ADXT adxt);
+
 // 100% matching! 
 void ADXT_ClearErrCode(ADXT adxt)
 {
@@ -317,9 +319,23 @@ void adxt_start_stm(ADXT adxt)
 
 // ADXT_StartSj
 
+// 100% matching! 
 void ADXT_Stop(ADXT adxt)
 {
-    scePrintf("ADXT_Stop - UNIMPLEMENTED!\n");
+    if (adxt->pmode == ADXT_PMODE_SLFILE) 
+    {
+        LSC_Stop(adxt->lsc);
+        
+        if (adxt->sji != NULL) 
+        {
+            adxt->sji->vtbl->Reset(adxt->sji);
+        }
+    }
+    
+    ADXT_StopWithoutLsc(adxt);
 }
 
-// ADXT_StopWithoutLsc
+void ADXT_StopWithoutLsc(ADXT adxt)
+{
+    scePrintf("ADXT_StopWithoutLsc - UNIMPLEMENTED!\n");
+}

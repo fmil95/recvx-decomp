@@ -64,6 +64,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/htci.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/htci_sub.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_suht.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/lsc.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk2.c"
 
