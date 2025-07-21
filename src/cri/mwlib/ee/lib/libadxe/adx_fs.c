@@ -316,9 +316,67 @@ Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, 
     return ret;
 }
 
+// 100% matching!
 Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, Sint32 *ofst, Sint32 *fnsct)
 {
-    scePrintf("ADXF_GetFnameRangeEx - UNIMPLEMENTED!\n");
+    Sint32 ret;
+    ADXF_PTINFO *ptinfo;
+    Sint32 i;
+    Sint32 ofst2;
+    Uint16 *fnsct2;
+    ADXF_FINFO *finfo;
+    ADXF_FINFO *finfo2;
+    
+    ret = adxf_ChkPrmGfr(ptid, flid);
+    
+    if (ret < 0)
+    {
+        *dir = 0;
+        
+        *ofst = -1;
+        *fnsct = -1;
+        
+        return ret;
+    }
+
+    for (ptinfo = adxf_ptinfo[ptid]; ptinfo->next != NULL; ptinfo = ptinfo->next) 
+    {
+        finfo = ptinfo->finfo;
+
+        for (i = 0; i < ptinfo->nentry; i++) 
+        {
+            finfo2 = &finfo[i];
+            
+            if (finfo2->flid == flid) 
+            {
+                strncpy(fname, ptinfo->fname, ADXF_FNAME_MAX);
+                
+                *dir = ptinfo->curdir;
+                
+                *ofst = finfo2->ofst;
+                *fnsct = finfo2->fnsct;
+                
+                return ret;
+            }
+        }
+    }
+
+    ofst2 = ptinfo->finfo->flid;
+    fnsct2 = &ptinfo->finfo->fnsct;
+
+    for (i = 0; i < flid; i++) 
+    {
+        ofst2 += fnsct2[i];
+    }
+
+    strncpy(fname, ptinfo->fname, ADXF_FNAME_MAX);
+    
+    *dir = ptinfo->curdir; 
+    
+    *ofst = ofst2;
+    *fnsct = fnsct2[flid];
+    
+    return ret;
 }
 
 // 100% matching!
