@@ -52,11 +52,21 @@ Sint32 ADXSJD_GetHdrLen(ADXSJD adxsjd)
 // ADXSJD_GetTrapNumSmpl
 // ADXSJD_Init
 // ADXSJD_SetDecPos
-// ADXSJD_SetInSj
+
+void ADXSJD_SetInSj(ADXSJD adxsjd, SJ sj)
+{
+    scePrintf("ADXSJD_SetInSj - UNIMPLEMENTED!\n");
+}
+
 // ADXSJD_SetMaxDecSmpl
 // ADXSJD_SetOutSj
 // ADXSJD_SetTrapCnt
 // ADXSJD_SetTrapDtLen
 // ADXSJD_SetTrapNumSmpl
-// ADXSJD_Start
+
+void ADXSJD_Start(ADXSJD adxsjd)
+{
+    scePrintf("ADXSJD_Start - UNIMPLEMENTED!\n");
+}
+
 // ADXSJD_Stop

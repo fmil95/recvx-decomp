@@ -2,6 +2,7 @@
 
 Sint32 adxt_time_unit;
 Sint32 adxt_time_mode;
+Sint32 adxt_vsync_cnt;
 
 void ADXT_StopWithoutLsc(ADXT adxt);
 
@@ -317,7 +318,40 @@ void adxt_start_stm(ADXT adxt)
     adxt->pmode = ADXT_PMODE_FNAME;
 }
 
-// ADXT_StartSj
+// 100% matching! 
+void ADXT_StartSj(ADXT adxt, SJ sj)
+{
+    Sint32 ch;
+
+    ADXT_Stop(adxt);
+    
+    ADXCRS_Lock();
+
+    for (ch = 0; ch < adxt->maxnch; ch++) 
+    {
+        adxt->sjo[ch]->vtbl->Reset(adxt->sjo[ch]);
+    }
+
+    ADXSJD_SetInSj(adxt->sjd, sj);
+    
+    adxt->sji = sj;
+    
+    ADXSJD_Start(adxt->sjd);
+    
+    adxt->pmode = ADXT_PMODE_SJ;
+    
+    adxt->lpcnt = 0;
+    
+    adxt->tvofst = 0;
+    
+    adxt->stat = ADXT_STAT_DECINFO;
+    
+    adxt->lnkflg = 1;
+    
+    adxt->svcnt = adxt_vsync_cnt;
+    
+    ADXCRS_Unlock();
+}
 
 // 100% matching! 
 void ADXT_Stop(ADXT adxt)
