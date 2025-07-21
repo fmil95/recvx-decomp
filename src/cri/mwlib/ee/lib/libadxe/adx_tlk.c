@@ -300,9 +300,35 @@ void ADXT_SetWaitPlayStart(ADXT adxt, Sint32 flg)
     adxt->pstwait_flag = flg;
 }
 
+// 100% matching! 
 void adxt_start_sj(ADXT adxt, SJ sj)
 {
-    scePrintf("adxt_start_sj - UNIMPLEMENTED!\n");
+    Sint32 ch;
+
+    for (ch = 0; ch < adxt->maxnch; ch++) 
+    {
+        adxt->sjo[ch]->vtbl->Reset(adxt->sjo[ch]);
+    }
+
+    ADXSJD_SetInSj(adxt->sjd, sj);
+    
+    adxt->sji = sj;
+    
+    ADXSJD_Start(adxt->sjd);
+    
+    adxt->stat = ADXF_STAT_STOP;
+    
+    adxt->lesct = 0x7FFFFFFF;
+    
+    adxt->trpnsmpl = -1;
+    
+    adxt->lpcnt = 0;
+    
+    adxt->pstready_flag = 0;
+    
+    adxt->tvofst = 0;
+    
+    adxt->svcnt = adxt_vsync_cnt;
 }
 
 // 100% matching! 
