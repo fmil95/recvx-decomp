@@ -58,8 +58,16 @@ Sint32 ADXSTM_OpenFnameEx(Char8* fname, void* atr, Sint32 arg2)
 
 // ADXSTM_Reset
 // ADXSTM_Seek
-// ADXSTM_SetBufSize
-// ADXSTM_SetEos
+
+void ADXSTM_SetBufSize(ADXSTM adxstm, Sint32 minsct, Sint32 maxsct)
+{
+    scePrintf("ADXSTM_SetBufSize - UNIMPLEMENTED!\n");
+}
+
+void ADXSTM_SetEos(ADXSTM adxstm, Sint32 nsct)
+{
+    scePrintf("ADXSTM_SetEos - UNIMPLEMENTED!\n");
+}
 
 void ADXSTM_SetOfst(ADXSTM adxstm, Sint32 ofst)
 {

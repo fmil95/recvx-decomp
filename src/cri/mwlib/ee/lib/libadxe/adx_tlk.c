@@ -302,9 +302,17 @@ void adxt_start_sj(ADXT adxt, SJ sj)
     scePrintf("adxt_start_sj - UNIMPLEMENTED!\n");
 }
 
-void adxt_start_stm(ADXT adxt)
+// 100% matching! 
+void adxt_start_stm(ADXT adxt) 
 {
-    scePrintf("adxt_start_stm - UNIMPLEMENTED!\n");
+    ADXSTM_SetBufSize(adxt->stm, adxt->minsct * ADXF_DEF_SCT_SIZE, adxt->maxsct * ADXF_DEF_SCT_SIZE);
+    ADXSTM_SetEos(adxt->stm, ADXT_PREP_RDSCT);
+    
+    ADXSTM_Start(adxt->stm);
+    
+    adxt_start_sj(adxt, adxt->sjf);
+    
+    adxt->pmode = ADXT_PMODE_FNAME;
 }
 
 // ADXT_StartSj
