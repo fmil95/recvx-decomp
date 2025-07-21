@@ -30,7 +30,7 @@ typedef	ADX_FS ADXF_OBJ;
 ADXF_OBJ adxf_obj[ADXF_OBJ_MAX];
 ADXF_PTINFO *adxf_ptinfo[ADXF_PART_MAX];
 ADXF_CMD_HSTRY adxf_cmd_hstry[ADXF_CMD_HSTRY_MAX];
-Sint16 adxf_cmd_ncall[1];
+Sint16 adxf_cmd_ncall[7];
 Sint32 adxf_hstry_no;
 Sint32 adxf_ocbi_fg;
 Sint32 adxf_flno;
