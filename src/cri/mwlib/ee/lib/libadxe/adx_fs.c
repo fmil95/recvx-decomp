@@ -687,7 +687,7 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
         
         adxf_tcnt.unk8 = getRcnt0CountShort();
         
-        sj = SJRBF_Create(buf, nsct << 11, 0);
+        sj = SJRBF_Create(buf, nsct * ADXF_DEF_SCT_SIZE, 0);
         
         if (sj == NULL) 
         {
@@ -695,7 +695,7 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
         } 
         else 
         {
-            adxf->bsize = nsct << 11;
+            adxf->bsize = nsct * ADXF_DEF_SCT_SIZE;
             
             adxf->buf = buf; 
             
