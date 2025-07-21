@@ -332,7 +332,7 @@ Sint32 ADXF_GetPtinfoSize(Sint32 ptid)
 Sint32 ADXF_GetPtStat(Sint32 ptid) 
 {
     Sint32 stat;
-    Sint16* btm;
+    Uint16* fnsct;
     Sint32 rdsct;
     ADXF_PTINFO* ptinfo;
 
@@ -349,7 +349,7 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
     {
         ptinfo = adxf_ptinfo[ptid];
         
-        btm = ptinfo->btm;
+        fnsct = &ptinfo->finfo->fnsct;
         
         if (ptinfo->nfile == 0) 
         {
@@ -375,7 +375,7 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
             
             ptinfo->size = (((Uint32)ptinfo->nfile + 140) >> 1) * 4;
             
-            ptinfo->top = ((Sint32*)buf)[2] / ADXF_DEF_SCT_SIZE;
+            ptinfo->finfo->flid = ((Sint32*)buf)[2] / ADXF_DEF_SCT_SIZE;
             
             rdsct = 3;
         }
@@ -386,7 +386,7 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
         
         for ( ; rdsct < ADXF_DEF_REQ_RD_SCT; rdsct += 2)
         {
-            btm[adxf_flno++] = (((Sint32*)buf)[rdsct] + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE;
+            fnsct[adxf_flno++] = (((Sint32*)buf)[rdsct] + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE;
             
             if (adxf_flno >= ptinfo->nfile) 
             {

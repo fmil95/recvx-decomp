@@ -2,6 +2,12 @@
 /*	Maximum number of file name strings	*/
 #define ADXF_FNAME_MAX    		(256)
 
+typedef struct _adxf_finfo {
+    Uint16 flid;
+    Uint16 fnsct;
+    Sint32 ofst;
+} ADXF_FINFO;
+
 /*	パーティション情報		*/
 /*	Partition information	*/
 #ifndef ADXF_PTINFO_DEFINED
@@ -16,7 +22,7 @@ typedef struct _adxf_ptinfo {
 	/*	ADXSTM_OpenRange -> ADXSTM_OpenFileRange(1999.8.19)	*/
 	Sint8				fname[ADXF_FNAME_MAX];	/*	AFSファイル名			*/
 	void				*curdir;
-	Sint16				top;		/*	ファイル情報の先頭					*/
-	Sint16				btm[1];		
+	// Sint32			top;		/*	ファイル情報の先頭					*/
+    ADXF_FINFO          finfo[0];
 } ADXF_PTINFO;
-#endif
+#endif 
