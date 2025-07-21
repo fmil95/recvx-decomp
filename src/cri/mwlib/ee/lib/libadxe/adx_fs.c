@@ -964,9 +964,9 @@ Sint32 ADXF_Stop(ADXF adxf)
     {
         switch (adxf->stat) 
         {                         
-        case 3:
+        case ADXF_STAT_READEND:
             adxf->stat = ADXF_STAT_STOP;
-        case 1:
+        case ADXF_STAT_STOP:
             return adxf->skpos;
         default:
             if (adxf->stm == NULL) 
