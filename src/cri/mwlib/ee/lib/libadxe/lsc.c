@@ -1,7 +1,12 @@
 // lsc_Alloc
 // LSC_CallStatFunc
 // LSC_Create
-// LSC_Destroy
+
+void LSC_Destroy(void* lsc)
+{
+    scePrintf("LSC_Destroy - UNIMPLEMENTED!\n");
+}
+
 // LSC_EntryChgStatFunc
 // LSC_EntryFileRange
 // LSC_EntryFname

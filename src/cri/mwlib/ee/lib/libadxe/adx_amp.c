@@ -1,5 +1,10 @@
 // ADXAMP_Create
-// ADXAMP_Destroy
+
+void ADXAMP_Destroy(void* adxamp)
+{
+    scePrintf("ADXAMP_Destroy - UNIMPLEMENTED!\n");
+}
+
 // ADXAMP_ExecHndl
 // ADXAMP_ExecServer
 // adxamp_extract

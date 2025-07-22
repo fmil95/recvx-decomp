@@ -1,6 +1,11 @@
 // ADXRNA_ClearBuf
 // ADXRNA_Create
-// ADXRNA_Destroy
+
+void ADXRNA_Destroy(ADXRNA adxrna)
+{
+    scePrintf("ADXRNA_Destroy - UNIMPLEMENTED!\n");
+}
+
 // ADXRNA_DiscardData
 // ADXRNA_ExecServer
 // ADXRNA_Finish

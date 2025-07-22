@@ -4,7 +4,12 @@
 // adxsjd_decexec_start
 // adxsjd_decode_exec
 // adxsjd_decode_prep
-// ADXSJD_Destroy
+
+void ADXSJD_Destroy(ADXSJD adxsjd)
+{
+    scePrintf("ADXSJD_Destroy - UNIMPLEMENTED!\n");
+}
+
 // ADXSJD_EntryFltFunc
 // ADXSJD_EntryTrapFunc
 // ADXSJD_ExecHndl

@@ -28,9 +28,74 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
     scePrintf("ADXT_Create - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void ADXT_Destroy(ADXT adxt)
 {
-    scePrintf("ADXT_Destroy - UNIMPLEMENTED!\n");
+    Sint32 ch;
+
+    if (adxt != NULL)
+    {
+        if (adxt->used == 1) 
+        {
+            ADXT_Stop(adxt);
+        }
+    
+        if (adxt->rna != NULL) 
+        {
+            ADXRNA_Destroy(adxt->rna);
+        }
+    
+        if (adxt->sjd != NULL) 
+        {
+            ADXSJD_Destroy(adxt->sjd);
+        }
+    
+        if (adxt->stm != NULL) 
+        {
+            ADXSTM_Close(adxt->stm);
+        }
+    
+        ADXCRS_Lock();
+    
+        if (adxt->lsc != NULL)
+        {
+            LSC_Destroy(adxt->lsc);
+        }
+    
+        if (adxt->sjf != NULL) 
+        {
+            adxt->sjf->vtbl->Destroy(adxt->sjf);
+        }
+    
+        for (ch = 0; ch < adxt->maxnch; ch++) 
+        {
+            if (adxt->sjo[ch] != NULL) 
+            {
+                adxt->sjo[ch]->vtbl->Destroy(adxt->sjo[ch]);
+            }
+    
+            if (adxt->ampsji[ch] != NULL) 
+            {
+                adxt->ampsji[ch]->vtbl->Destroy(adxt->ampsji[ch]);
+            }
+    
+            if (adxt->ampsjo[ch] != NULL) 
+            {
+                adxt->ampsjo[ch]->vtbl->Destroy(adxt->ampsjo[ch]);
+            }
+        }
+        
+        if (adxt->amp != NULL) 
+        {
+            ADXAMP_Destroy(adxt->amp);
+        }
+    
+        *adxt = (ADX_TALK){ 0 };
+        
+        adxt->used = 0;
+    
+        ADXCRS_Unlock();
+    }
 }
 
 void ADXT_DestroyAll(void)
