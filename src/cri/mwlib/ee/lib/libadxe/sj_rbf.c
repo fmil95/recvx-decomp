@@ -8,7 +8,12 @@ SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize)
 // SJRBF_Destroy
 // SJRBF_EntryErrFunc
 // SJRBF_Error
-// SJRBF_Finish
+
+void SJRBF_Finish(void)
+{
+    scePrintf("SJRBF_Finish - UNIMPLEMENTED!\n");
+}
+
 // SJRBF_GetBufPtr
 // SJRBF_GetBufSize
 // SJRBF_GetChunk

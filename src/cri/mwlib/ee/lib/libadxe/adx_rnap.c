@@ -8,7 +8,12 @@ void ADXRNA_Destroy(ADXRNA adxrna)
 
 // ADXRNA_DiscardData
 // ADXRNA_ExecServer
-// ADXRNA_Finish
+
+void ADXRNA_Finish(void)
+{
+    scePrintf("ADXRNA_Finish - UNIMPLEMENTED!\n");
+}
+
 // ADXRNA_GetBitPerSmpl
 // ADXRNA_GetNumData
 // ADXRNA_GetNumRoom

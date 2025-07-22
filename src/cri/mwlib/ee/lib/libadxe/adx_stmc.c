@@ -8,7 +8,12 @@ void ADXSTM_Close(ADXSTM adxstm)
 // ADXSTM_EntryEosFunc
 // ADXSTM_EntryErrFunc
 // ADXSTM_ExecServer
-// ADXSTM_Finish
+
+void ADXSTM_Finish(void)
+{
+    scePrintf("ADXSTM_Finish - UNIMPLEMENTED!\n");
+}
+
 // ADXSTM_GetBufSize
 
 Sint32 ADXSTM_GetCurOfst(ADXSTM adxstm, Sint32* nsct)

@@ -19,7 +19,12 @@ void ADXERR_CallErrFunc2(Char8* err_msg, Char8* fname)
 }
 
 // ADXERR_EntryErrFunc
-// ADXERR_Finish
+
+void ADXERR_Finish(void)
+{
+    scePrintf("ADXERR_Finish - UNIMPLEMENTED!\n");
+}
+
 // ADXERR_Init
 // ADXERR_ItoA
 

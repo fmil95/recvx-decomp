@@ -8,7 +8,12 @@ SJ SJMEM_Create(Sint8 *data, Sint32 bsize)
 // SJMEM_Destroy
 // SJMEM_EntryErrFunc
 // SJMEM_Error
-// SJMEM_Finish
+
+void SJMEM_Finish(void)
+{
+    scePrintf("SJMEM_Finish - UNIMPLEMENTED!\n");
+}
+
 // SJMEM_GetBufPtr
 // SJMEM_GetBufSize
 // SJMEM_GetChunk
