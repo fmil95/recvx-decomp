@@ -156,9 +156,9 @@ void SetPanSe2(unsigned int SlotNo, float Pan, short DelayTime);
 void SetPanSe(unsigned int SlotNo, char Pan, short DelayTime);
 void SetVolumeSeEx(unsigned int SlotNo, float Volume, short DelayTime, int Flag);
 void SetVolumeSe(unsigned int SlotNo, char Volume, short DelayTime);
-void SetVolumeSe2(unsigned int SlotNo, float Volume, short DelayTime);
+void SetVolumeSe2(unsigned int SlotNo, float Volume, short DelayTime);*/
 void SetPitchSe(unsigned int SlotNo, short Pitch, short DelayTime);
-void SetFxLevelSe(unsigned int SlotNo, char FxLevel);
+/*void SetFxLevelSe(unsigned int SlotNo, char FxLevel);
 void SetSeDefaultVolume(char Volume);
 void SetFxProgram(char FxProgramNo, char FxOutputNo);*/
 void StopFxProgram();
@@ -749,21 +749,17 @@ void SetVolumeSe2(unsigned int SlotNo, float Volume, short DelayTime)
 	// Func End, Address: 0x28fe48, Func Offset: 0x8
 }
 
-// 
-// Start address: 0x28fe50
+*/
+// 100% matching! 
 void SetPitchSe(unsigned int SlotNo, short Pitch, short DelayTime)
 {
-	// Line 602, Address: 0x28fe50, Func Offset: 0
-	// Line 601, Address: 0x28fe64, Func Offset: 0x14
-	// Line 602, Address: 0x28fe68, Func Offset: 0x18
-	// Line 601, Address: 0x28fe6c, Func Offset: 0x1c
-	// Line 602, Address: 0x28fe70, Func Offset: 0x20
-	// Line 603, Address: 0x28fe7c, Func Offset: 0x2c
-	// Line 605, Address: 0x28fe9c, Func Offset: 0x4c
-	// Func End, Address: 0x28fea8, Func Offset: 0x58
+    if (SeInfo[SlotNo].Flag != 0) 
+    {
+        sdShotSetPitch(SeHandle[SlotNo], Pitch, DelayTime);
+    }
 }
 
-// 
+/*/ 
 // Start address: 0x28feb0
 void SetFxLevelSe(unsigned int SlotNo, char FxLevel)
 {
