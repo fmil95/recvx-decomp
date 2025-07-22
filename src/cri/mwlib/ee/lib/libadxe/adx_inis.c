@@ -1,5 +1,6 @@
 Sint32 adxt_vsync_svr_flag;
 Sint32 adxt_init_cnt;
+Sint32 adxt_vsync_cnt;
 
 // 100% matching!
 void adxini_rnaerr_cbfn(void* arg0, Char8* err_msg) 
@@ -31,4 +32,10 @@ void ADXT_ResetLibrary(void)
     ADXT_Init();
 }
 
-// ADXT_VsyncProc
+// 100% matching!
+void ADXT_VsyncProc(void) 
+{
+    adxt_vsync_cnt++; 
+    
+    ADXT_ExecServer();
+}
