@@ -1,4 +1,5 @@
 Sint32 adxt_vsync_svr_flag;
+Sint32 adxt_init_cnt;
 
 // 100% matching!
 void adxini_rnaerr_cbfn(void* arg0, Char8* err_msg) 
@@ -22,5 +23,12 @@ void ADXT_Init(void)
     scePrintf("ADXT_Init - UNIMPLEMENTED!\n");
 }
 
-// ADXT_ResetLibrary
+// 100% matching!
+void ADXT_ResetLibrary(void)
+{
+    adxt_init_cnt = 0;
+    
+    ADXT_Init();
+}
+
 // ADXT_VsyncProc
