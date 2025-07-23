@@ -14,7 +14,12 @@ void ADXSJD_Destroy(ADXSJD adxsjd)
 // ADXSJD_EntryTrapFunc
 // ADXSJD_ExecHndl
 // ADXSJD_ExecServer
-// ADXSJD_Finish
+
+void ADXSJD_Finish(void)
+{
+    scePrintf("ADXSJD_Finish - UNIMPLEMENTED!\n");
+}
+
 // adxsjd_get_wr
 // ADXSJD_GetBlkLen
 // ADXSJD_GetBlkSmpl

@@ -14,9 +14,33 @@ void ADXT_ConfigVsyncSvr(Sint32 flg)
     adxt_vsync_svr_flag = flg;
 }
 
+// 100% matching! 
 void ADXT_Finish(void) 
 {
-    scePrintf("ADXT_Finish - UNIMPLEMENTED!\n");
+    adxt_init_cnt--;
+    
+    if (adxt_init_cnt == 0) 
+    {
+        ADXCRS_Lock();
+        
+        LSC_Finish();
+        
+        ADXCRS_Unlock();
+        
+        ADXRNA_Finish();
+        
+        ADXCRS_Lock();
+        
+        ADXF_Finish();
+        ADXSJD_Finish();
+        ADXSTM_Finish();
+        ADXERR_Finish();
+        SJMEM_Finish();
+        SJRBF_Finish();
+        SJUNI_Finish();
+        
+        ADXCRS_Unlock();
+    }
 }
 
 void ADXT_Init(void) 
