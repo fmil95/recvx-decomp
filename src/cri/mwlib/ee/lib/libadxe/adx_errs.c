@@ -1,5 +1,5 @@
 void (*adxerr_func)(void* err_obj, Char8* err_msg);
-Char8 adxerr_msg[255];
+Char8 adxerr_msg[256];
 void* adxerr_obj;
 
 // 100% matching!
@@ -32,9 +32,13 @@ void ADXERR_EntryErrFunc(void (*err_func)(void* err_obj, Char8* err_msg), void* 
     adxerr_obj = err_obj;
 }
 
-void ADXERR_Finish(void)
+// 100% matching!
+void ADXERR_Finish(void) 
 {
-    scePrintf("ADXERR_Finish - UNIMPLEMENTED!\n");
+    memset(adxerr_msg, 0, sizeof(adxerr_msg));
+    
+    adxerr_func = NULL;
+    adxerr_obj = NULL;
 }
 
 void ADXERR_Init(void)
