@@ -26,3 +26,9 @@ typedef struct _adxf_ptinfo {
     ADXF_FINFO          finfo[0];
 } ADXF_PTINFO;
 #endif 
+
+/*	Å‘å“¯Žž”­‰¹”						*/
+/*	Maximum number of ADXT handle		*/
+//	2001.09.14	S.Hosaka
+//	ƒoƒ“ƒhƒ‹”‚ð8->16
+#define	ADXT_MAX_OBJ		(8)

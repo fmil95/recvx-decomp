@@ -60,7 +60,12 @@ Sint32 ADXSJD_GetHdrLen(ADXSJD adxsjd)
 // ADXSJD_GetTrapCnt
 // ADXSJD_GetTrapDtLen
 // ADXSJD_GetTrapNumSmpl
-// ADXSJD_Init
+
+void ADXSJD_Init(void)
+{
+    scePrintf("ADXSJD_Init - UNIMPLEMENTED!\n");
+}
+
 // ADXSJD_SetDecPos
 
 void ADXSJD_SetInSj(ADXSJD adxsjd, SJ sj)

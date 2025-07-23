@@ -13,7 +13,12 @@ void SJUNI_Finish(void)
 // SJUNI_GetNumChunk
 // SJUNI_GetNumData
 // SJUNI_GetUuid
-// SJUNI_Init
+
+void SJUNI_Init(void)
+{
+    scePrintf("SJUNI_Init - UNIMPLEMENTED!\n");
+}
+
 // SJUNI_IsGetChunk
 // SJUNI_PutChunk
 // SJUNI_Reset

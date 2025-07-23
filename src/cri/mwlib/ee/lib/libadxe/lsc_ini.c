@@ -17,4 +17,7 @@ void LSC_Finish(void)
     scePrintf("LSC_Finish - UNIMPLEMENTED!\n");
 }
 
-// LSC_Init
+void LSC_Init(void)
+{
+    scePrintf("LSC_Init - UNIMPLEMENTED!\n");
+}

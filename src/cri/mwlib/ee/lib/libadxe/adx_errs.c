@@ -37,7 +37,11 @@ void ADXERR_Finish(void)
     scePrintf("ADXERR_Finish - UNIMPLEMENTED!\n");
 }
 
-// ADXERR_Init
+void ADXERR_Init(void)
+{
+    scePrintf("ADXERR_Init - UNIMPLEMENTED!\n");
+}
+
 // ADXERR_ItoA
 
 void ADXERR_ItoA2(Sint32 ptid, Sint32 flid, Char8* err_msg, Sint32 msg_len)

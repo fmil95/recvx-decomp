@@ -22,7 +22,12 @@ void ADXRNA_Finish(void)
 // ADXRNA_GetSfreq
 // ADXRNA_GetStat
 // ADXRNA_GetTime
-// ADXRNA_Init
+
+void ADXRNA_Init(void)
+{
+    scePrintf("ADXRNA_Init - UNIMPLEMENTED!\n");
+}
+
 // ADXRNA_SetBitPerSmpl
 // ADXRNA_SetNumChan
 

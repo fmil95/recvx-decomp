@@ -38,7 +38,11 @@ Sint8 ADXSTM_GetStat(ADXSTM adxstm)
     scePrintf("ADXSTM_GetStat - UNIMPLEMENTED!\n");
 }
 
-// ADXSTM_Init
+void ADXSTM_Init(void)
+{
+    scePrintf("ADXSTM_Init - UNIMPLEMENTED!\n");
+}
+
 // ADXSTM_OpenFileRange
 
 ADXSTM ADXSTM_OpenFileRangeEx(Char8* fname, Sint32* dir, Sint32 ofst, Sint32 fnsct, Sint32 arg4)

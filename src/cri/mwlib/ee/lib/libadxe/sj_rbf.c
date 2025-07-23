@@ -20,7 +20,12 @@ void SJRBF_Finish(void)
 // SJRBF_GetNumData
 // SJRBF_GetUuid
 // SJRBF_GetXtrSize
-// SJRBF_Init
+
+void SJRBF_Init(void)
+{
+    scePrintf("SJRBF_Init - UNIMPLEMENTED!\n");
+}
+
 // SJRBF_IsGetChunk
 // SJRBF_PutChunk
 // SJRBF_Reset

@@ -1,5 +1,6 @@
 Sint32 adxt_vsync_svr_flag;
 Sint32 adxt_init_cnt;
+ADXT adxt_obj[ADXT_MAX_OBJ];
 Sint32 adxt_vsync_cnt;
 
 // 100% matching!
@@ -43,9 +44,34 @@ void ADXT_Finish(void)
     }
 }
 
+// 100% matching! 
 void ADXT_Init(void) 
 {
-    scePrintf("ADXT_Init - UNIMPLEMENTED!\n");
+    if (adxt_init_cnt == 0) 
+    {
+        ADXCRS_Init();
+        
+        ADXCRS_Lock();
+        
+        SJUNI_Init();
+        SJRBF_Init();
+        SJMEM_Init();
+        ADXERR_Init();
+        ADXSTM_Init();
+        ADXSJD_Init();
+        ADXF_Init();
+        ADXRNA_Init();
+        
+        memset(adxt_obj, 0, 1312);
+        
+        LSC_Init();
+        
+        adxt_vsync_cnt = 0;
+        
+        ADXCRS_Unlock();
+    }
+    
+    adxt_init_cnt++;
 }
 
 // 100% matching!

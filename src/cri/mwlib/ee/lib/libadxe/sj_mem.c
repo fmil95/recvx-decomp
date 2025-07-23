@@ -19,7 +19,12 @@ void SJMEM_Finish(void)
 // SJMEM_GetChunk
 // SJMEM_GetNumData
 // SJMEM_GetUuid
-// SJMEM_Init
+
+void SJMEM_Init(void)
+{
+    scePrintf("SJMEM_Init - UNIMPLEMENTED!\n");
+}
+
 // SJMEM_IsGetChunk
 // SJMEM_PutChunk
 // SJMEM_Reset
