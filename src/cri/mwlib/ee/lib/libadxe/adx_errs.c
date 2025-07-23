@@ -25,7 +25,12 @@ void ADXERR_CallErrFunc2(Char8* err_msg, Char8* fname)
     }
 }
 
-// ADXERR_EntryErrFunc
+// 100% matching! 
+void ADXERR_EntryErrFunc(void (*err_func)(void* err_obj, Char8* err_msg), void* err_obj) 
+{
+    adxerr_func = err_func; 
+    adxerr_obj = err_obj;
+}
 
 void ADXERR_Finish(void)
 {
