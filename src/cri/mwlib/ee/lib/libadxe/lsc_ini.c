@@ -6,7 +6,11 @@ void lsc_DeleteSvrInt(void)
 
 }
 
-// lsc_EntrySvrInt
+// 100% matching!
+void lsc_EntrySvrInt(void)
+{
+
+}
 
 void LSC_Finish(void)
 {
