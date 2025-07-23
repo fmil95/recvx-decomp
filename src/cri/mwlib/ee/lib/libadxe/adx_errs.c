@@ -41,9 +41,13 @@ void ADXERR_Finish(void)
     adxerr_obj = NULL;
 }
 
+// 100% matching!
 void ADXERR_Init(void)
 {
-    scePrintf("ADXERR_Init - UNIMPLEMENTED!\n");
+    memset(adxerr_msg, 0, sizeof(adxerr_msg));
+    
+    adxerr_func = NULL;
+    adxerr_obj = NULL;
 }
 
 // ADXERR_ItoA
