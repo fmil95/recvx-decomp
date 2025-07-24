@@ -30,4 +30,3 @@ void SJRBF_Init(void)
 // SJRBF_PutChunk
 // SJRBF_Reset
 // SJRBF_UngetChunk
-// sjrbf_uuid
