@@ -34,7 +34,7 @@ Additionally, some appreciation must go to:
 * [simonlindholm](https://github.com/simonlindholm): For his brilliant asm-differ, m2c and permuter tools.
 * [Fothsid](https://github.com/Fothsid): For sharing his experience with reversing RE: Outbreak. 
 * [GirianSeed](https://github.com/GirianSeed): For providing knowledge of the many different versions of the PS2 API.
-* [patope](https://github.com/patope) and [ThirstyWraith](https://github.com/ThirstyWraith): For giving additional help with function matching.
+* [patope](https://github.com/patope), [Lovey847](https://github.com/Lovey847), [ladysilverberg](https://github.com/ladysilverberg) and [ThirstyWraith](https://github.com/ThirstyWraith): For giving additional help with function matching.
 
 ## Community
 
