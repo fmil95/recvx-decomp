@@ -1,3 +1,5 @@
+#include "sj_crs.h"
+
 Sint32 sjcrs_lvl;
 
 // 100% matching!

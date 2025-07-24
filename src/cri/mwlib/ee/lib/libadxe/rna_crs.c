@@ -1,3 +1,5 @@
+#include "rna_crs.h"
+
 Sint32 rna_crs_lvl;
 
 // 100% matching!
