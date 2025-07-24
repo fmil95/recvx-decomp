@@ -9,13 +9,13 @@ void ADXT_StopWithoutLsc(ADXT adxt);
 // 100% matching! 
 void ADXT_ClearErrCode(ADXT adxt)
 {
-    adxt->ercode = 0;
+    adxt->ercode = ADXT_ERR_OK;
     
     adxt->edecpos = 0;
     adxt->edeccnt = 0;
     
     adxt->eshrtcnt = 0;
-}
+} 
 
 // 100% matching! 
 void ADXT_CloseAllHandles(void)
