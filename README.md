@@ -20,6 +20,21 @@ CRI ADX (March 13, 2001): 138 implemented functions / 653 total (21.13%)
 
 Decomp progress: 770 implemented functions / 4529 total (17.00%)
 ```
+
+## Build
+
+The very first step should be to clone the repository: 
+```
+git clone --recursive https://github.com/fmil95/recvx-decomp.git
+```
+
+Once that is done, use the following command to build the executable if you're on Windows:
+```
+python compile.py
+```
+
+If you are on Linux, you have to run compile_wine.py instead.
+
 ## Credits
 
 This work couldn't have been possible without the contributions of the following users:
@@ -32,7 +47,8 @@ This work couldn't have been possible without the contributions of the following
 Additionally, some appreciation must go to:
 
 * [simonlindholm](https://github.com/simonlindholm): For his brilliant asm-differ, m2c and permuter tools.
-* [Fothsid](https://github.com/Fothsid): For sharing his experience with reversing RE: Outbreak. 
+* [Fothsid](https://github.com/Fothsid): For sharing his experience with reversing Resident Evil Outbreak.
+* [apstygo](https://github.com/apstygo): For his CRI Middleware decompilation work on Street Fighter III: 3rd Strike. 
 * [GirianSeed](https://github.com/GirianSeed): For providing knowledge of the many different versions of the PS2 API.
 * [patope](https://github.com/patope), [Lovey847](https://github.com/Lovey847), [ladysilverberg](https://github.com/ladysilverberg) and [ThirstyWraith](https://github.com/ThirstyWraith): For giving additional help with function matching.
 
