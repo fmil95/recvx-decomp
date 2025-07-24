@@ -228,9 +228,18 @@ void ADXT_Destroy(ADXT adxt)
     }
 }
 
+// 100% matching! 
 void ADXT_DestroyAll(void)
 {
-    scePrintf("ADXT_DestroyAll - UNIMPLEMENTED!\n");
+    Sint32 i;
+
+    for (i = 0; i < ADXT_MAX_OBJ; i++)
+    {
+        if (adxt_obj[i].used == TRUE) 
+        {
+            ADXT_Destroy(&adxt_obj[i]);
+        }
+    }
 }
 
 // ADXT_DiscardSmpl
