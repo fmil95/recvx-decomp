@@ -7,7 +7,11 @@ void ADXSTM_Close(ADXSTM adxstm)
 
 // ADXSTM_EntryEosFunc
 // ADXSTM_EntryErrFunc
-// ADXSTM_ExecServer
+
+void ADXSTM_ExecServer(void)
+{
+    scePrintf("ADXSTM_ExecServer - UNIMPLEMENTED!\n");
+}
 
 void ADXSTM_Finish(void)
 {

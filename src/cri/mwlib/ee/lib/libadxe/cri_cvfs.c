@@ -46,7 +46,11 @@ void cvFsError(Sint32 arg0)
     cvFsCallUsrErrFn(&cvfs_errobj, arg0, 0);
 }
 
-// cvFsExecServer
+void cvFsExecServer(void)
+{
+    scePrintf("cvFsExecServer - UNIMPLEMENTED!\n");
+}
+
 // cvFsFinish
 // cvFsGetDefDev
 // cvFsGetDevName
