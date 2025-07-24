@@ -1,5 +1,10 @@
 // adxsjd_clear
-// ADXSJD_Create
+
+ADXSJD ADXSJD_Create(SJ sjf, Sint32 maxnch, SJ* sjo)
+{
+    scePrintf("ADXSJD_Create - UNIMPLEMENTED!\n");
+}
+
 // adxsjd_decexec_end
 // adxsjd_decexec_start
 // adxsjd_decode_exec

@@ -1,6 +1,10 @@
 // lsc_Alloc
 // LSC_CallStatFunc
-// LSC_Create
+
+void* LSC_Create(SJ sjf)
+{
+    scePrintf("LSC_Create - UNIMPLEMENTED!\n");
+}
 
 void LSC_Destroy(void* lsc)
 {

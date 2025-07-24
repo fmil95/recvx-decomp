@@ -1,5 +1,9 @@
 // ADXRNA_ClearBuf
-// ADXRNA_Create
+
+ADXRNA ADXRNA_Create(SJ* sjo, Sint32 maxnch)
+{
+    scePrintf("ADXRNA_Create - UNIMPLEMENTED!\n");
+}
 
 void ADXRNA_Destroy(ADXRNA adxrna)
 {

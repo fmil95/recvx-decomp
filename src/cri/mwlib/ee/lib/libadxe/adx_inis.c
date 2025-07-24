@@ -1,6 +1,6 @@
 Sint32 adxt_vsync_svr_flag;
 Sint32 adxt_init_cnt;
-ADXT adxt_obj[ADXT_MAX_OBJ];
+ADX_TALK adxt_obj[ADXT_MAX_OBJ];
 Sint32 adxt_vsync_cnt;
 
 // 100% matching!
