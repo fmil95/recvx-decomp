@@ -1,6 +1,6 @@
 # Resident Evil - Code: Veronica X Decompile
 
-<img src="https://i.imgur.com/xj2ujPy.jpeg"/>
+<img src="https://i.imgur.com/3Fl2QNQ.png"/> 
 
 ## About
 
