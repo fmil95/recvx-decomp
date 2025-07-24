@@ -56,6 +56,8 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_rbf.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_mem.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_uni.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/sj_crs.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/lsc_crs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/rna_crs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_rnap.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.c"
