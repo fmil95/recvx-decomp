@@ -6,5 +6,10 @@ void SJCRS_Init(void)
     sjcrs_lvl = 0;
 }
 
-// SJCRS_Lock
+// 100% matching!
+void SJCRS_Lock(void) 
+{
+    sjcrs_lvl++;
+}
+
 // SJCRS_Unlock
