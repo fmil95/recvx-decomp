@@ -18,4 +18,8 @@ void RNACRS_Lock(void)
     rna_crs_lvl++;
 }
 
-// RNACRS_Unlock
+// 100% matching!
+void RNACRS_Unlock(void) 
+{
+    rna_crs_lvl--;
+}
