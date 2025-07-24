@@ -12,4 +12,8 @@ void SJCRS_Lock(void)
     sjcrs_lvl++;
 }
 
-// SJCRS_Unlock
+// 100% matching!
+void SJCRS_Unlock(void) 
+{
+    sjcrs_lvl--;
+}
