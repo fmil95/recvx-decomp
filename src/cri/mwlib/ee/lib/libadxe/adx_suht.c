@@ -7,7 +7,12 @@ void adxt_err_host(Sint32 arg0, Char8* err_msg)
 }
 
 // ADXT_LoadFpCacheHost
-// ADXT_SetOpMode
+
+// 100% matching!
+void ADXT_SetOpMode(ADXT_SPRM *sprm) 
+{
+    htCiSetOpenMode(sprm->opmode);
+}
 
 // 100% matching!
 void ADXT_SetupHostFs(ADXT_SPRM *sprm) 
