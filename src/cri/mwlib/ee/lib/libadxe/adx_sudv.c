@@ -6,7 +6,20 @@ void adxt_err_dvd(Sint32 arg0, Char8* err_msg)
     ADXERR_CallErrFunc1(err_msg);
 }
 
-// ADXT_LoadFpCacheDvd
+// 100% matching!
+Sint32 ADXT_LoadFpCacheDvd(ADXT_SPRM* sprm)
+{
+    Sint32 ret;
+
+    ret = 0;
+    
+    if (sprm != NULL) 
+    {
+        ret = dvCiLoadFpCache(sprm->fname, sprm->fpc, sprm->size);
+    }
+    
+    return ret;
+}
 
 // 100% matching!
 void ADXT_SetRdMode(ADXT_SPRM* sprm)
