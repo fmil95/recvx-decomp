@@ -163,9 +163,9 @@ void SetSeDefaultVolume(char Volume);
 void SetFxProgram(char FxProgramNo, char FxOutputNo);*/
 void StopFxProgram();
 /*void RequestMidiFadeFunction(int SlotNo, int Func, short Timer);
-void RequestMidiFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame);
+void RequestMidiFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame);*/
 void StopFadeMidi(int SlotNo);
-void RequestSeFadeFunction(int SlotNo, int Func, short Timer);
+/*void RequestSeFadeFunction(int SlotNo, int Func, short Timer);
 void RequestSeFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame);
 void StopFadeSe(int SlotNo);
 int CheckFadeEndSe(int SlotNo);
@@ -841,14 +841,12 @@ void RequestMidiFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 	// Func End, Address: 0x290160, Func Offset: 0xd0
 }
 
-// 
-// Start address: 0x290160
+*/ 
+// 100% matching! 
 void StopFadeMidi(int SlotNo)
 {
-	// Line 700, Address: 0x290160, Func Offset: 0
-	// Line 701, Address: 0x290178, Func Offset: 0x18
-	// Func End, Address: 0x290180, Func Offset: 0x20
-}*/
+    MidiInfo[SlotNo].FadeFunc = 0;
+}
 
 // 
 // Start address: 0x290180
