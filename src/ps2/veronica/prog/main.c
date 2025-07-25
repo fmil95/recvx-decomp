@@ -60,6 +60,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/lsc_err.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/lsc_crs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/rna_crs.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/ps2_rna.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_rnap.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/lsc_ini.c"

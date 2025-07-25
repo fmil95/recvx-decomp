@@ -35,9 +35,10 @@ void ADXRNA_Init(void)
 // ADXRNA_SetBitPerSmpl
 // ADXRNA_SetNumChan
 
-void ADXRNA_SetOutPan(ADXRNA adxrna, Sint32 ch, Sint32 pan)
+// 100% matching!
+void ADXRNA_SetOutPan(ADXRNA adxrna, Sint32 ch, Sint32 pan) 
 {
-    scePrintf("ADXRNA_SetOutPan - UNIMPLEMENTED!\n");
+    PS2RNA_SetOutPan(adxrna, ch, pan);
 }
 
 void ADXRNA_SetOutVol(ADXRNA adxrna, Sint32 vol)
