@@ -7,7 +7,12 @@ void adxt_err_dvd(Sint32 arg0, Char8* err_msg)
 }
 
 // ADXT_LoadFpCacheDvd
-// ADXT_SetRdMode
+
+// 100% matching!
+void ADXT_SetRdMode(ADXT_SPRM* sprm)
+{
+    dvCiSetRdMode(sprm->nrtry, sprm->speed, sprm->dtype);
+}
 
 // 100% matching!
 void ADXT_SetupDvdFs(ADXT_SPRM *sprm) 
