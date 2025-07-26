@@ -25,17 +25,6 @@ typedef struct ADXF_TPRM_EX
     Sint32 unk1C;
 } ADXF_TPRM_EX;
 
-typedef	ADX_FS ADXF_OBJ;
-
-ADXF_OBJ adxf_obj[ADXF_OBJ_MAX];
-ADXF_PTINFO *adxf_ptinfo[ADXF_PART_MAX];
-ADXF_CMD_HSTRY adxf_cmd_hstry[ADXF_CMD_HSTRY_MAX];
-Sint16 adxf_cmd_ncall[7];
-Sint32 adxf_hstry_no;
-Sint32 adxf_ocbi_fg;
-Sint32 adxf_flno;
-ADXF adxf_ldptnw_hn;
-Sint32 adxf_ldptnw_ptid;
 void* buf;
 Sint32* D_01E272F0;
 Sint32* wrk32;
