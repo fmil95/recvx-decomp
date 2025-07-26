@@ -1,5 +1,5 @@
 void (*adxerr_func)(void* err_obj, Char8* err_msg);
-Char8 adxerr_msg[256];
+Char8 adxerr_msg[256] = { 0 };
 void* adxerr_obj;
 
 // 100% matching!
