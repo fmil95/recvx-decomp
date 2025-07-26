@@ -2,34 +2,11 @@
 
 #define getRcnt0CountShort() *REG_RCNT0_COUNT & 0xFFFF
 
-typedef struct ADXF_TPRM 
-{
-    Sint32 unk0;
-    Sint32 unk4;
-    Sint32 unk8;
-    Sint32 unkC;
-    Sint32 unk10;
-    Sint32 unk14;
-    Sint32 unk18;
-} ADXF_TPRM;
-
-typedef struct ADXF_TPRM_EX
-{
-    Sint32 unk0;
-    Sint32 unk4;
-    Sint32 unk8;
-    Sint32 unkC;
-    Sint32 unk10;
-    Sint32 unk14;
-    Sint32 unk18;
-    Sint32 unk1C;
-} ADXF_TPRM_EX;
-
 void* buf;
 Sint32* D_01E272F0;
 Sint32* wrk32;
-ADXF_TPRM adxf_chkp_tcnt;
-ADXF_TPRM_EX adxf_tcnt;
+Sint32 adxf_tcnt[10] = { 0 };
+Sint32 adxf_chkp_tcnt[10] = { 0 };
 
 void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 type);
 void adxf_wait_1ms(void);
@@ -737,13 +714,13 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
     SJ sj;
     Sint32 rdsct;
 
-    adxf_tcnt.unk0 = getRcnt0CountShort();
+    adxf_tcnt[0] = getRcnt0CountShort();
     
     adxf_SetCmdHstry(4, 0, (Sint32)adxf, nsct, (Sint32)buf);
     
-    adxf_tcnt.unk4 = getRcnt0CountShort();
+    adxf_tcnt[1] = getRcnt0CountShort();
     
-    adxf_chkp_tcnt.unk0 = getRcnt0CountShort();
+    adxf_chkp_tcnt[0] = getRcnt0CountShort();
     
     if (adxf == NULL)
     {
@@ -752,7 +729,7 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
         return ADXF_ERR_PRM;
     }
     
-    adxf_chkp_tcnt.unk4 = getRcnt0CountShort();
+    adxf_chkp_tcnt[1] = getRcnt0CountShort();
     
     if (nsct < 0)  
     {
@@ -761,7 +738,7 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
         return ADXF_ERR_PRM;
     }
     
-    adxf_chkp_tcnt.unk8 = getRcnt0CountShort();
+    adxf_chkp_tcnt[2] = getRcnt0CountShort();
     
     if (buf == NULL) 
     {
@@ -770,13 +747,12 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
         return ADXF_ERR_PRM;
     }
     
-    adxf_chkp_tcnt.unkC = getRcnt0CountShort();
-    
-    adxf_chkp_tcnt.unk10 = getRcnt0CountShort();
+    adxf_chkp_tcnt[3] = getRcnt0CountShort();
+    adxf_chkp_tcnt[4] = getRcnt0CountShort();
     
     if (adxf->stat != ADXF_STAT_READING) 
     {
-        adxf_chkp_tcnt.unk14 = getRcnt0CountShort(); 
+        adxf_chkp_tcnt[5] = getRcnt0CountShort(); 
         
         if (adxf->sj != NULL) 
         {
@@ -785,9 +761,9 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
             return ADXF_ERR_FATAL;
         }
         
-        adxf_chkp_tcnt.unk18 = getRcnt0CountShort();
+        adxf_chkp_tcnt[6] = getRcnt0CountShort();
         
-        adxf_tcnt.unk8 = getRcnt0CountShort();
+        adxf_tcnt[2] = getRcnt0CountShort();
         
         sj = SJRBF_Create(buf, nsct * ADXF_DEF_SCT_SIZE, 0);
         
@@ -801,18 +777,18 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
             
             adxf->buf = buf; 
             
-            adxf_tcnt.unkC = getRcnt0CountShort();
+            adxf_tcnt[3] = getRcnt0CountShort();
             
             ADXCRS_Lock();
             
-            adxf_tcnt.unk10 = getRcnt0CountShort();
+            adxf_tcnt[4] = getRcnt0CountShort();
             
             if (adxf_ocbi_fg == 1) 
             {
                 ADXF_Ocbi(adxf->buf, adxf->bsize);
             }
             
-            adxf_tcnt.unk14 = getRcnt0CountShort();
+            adxf_tcnt[5] = getRcnt0CountShort();
             
             rdsct = adxf_read_sj32(adxf, nsct, sj);
             
@@ -825,7 +801,7 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
                 adxf->sj = sj;
             }
             
-            adxf_tcnt.unk18 = getRcnt0CountShort();  
+            adxf_tcnt[6] = getRcnt0CountShort();  
             
             adxf->sjflag = 0;
             
@@ -833,7 +809,7 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
             
             adxf_SetCmdHstry(4, 1, (Sint32)adxf, nsct, (Sint32)buf); 
             
-            adxf_tcnt.unk1C = getRcnt0CountShort();
+            adxf_tcnt[7] = getRcnt0CountShort();
             
             return rdsct;
         }
