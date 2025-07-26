@@ -13,9 +13,10 @@ void ADXRNA_Destroy(ADXRNA adxrna)
 // ADXRNA_DiscardData
 // ADXRNA_ExecServer
 
+// 100% matching!
 void ADXRNA_Finish(void)
 {
-    scePrintf("ADXRNA_Finish - UNIMPLEMENTED!\n");
+    PS2RNA_Finish();
 }
 
 // ADXRNA_GetBitPerSmpl

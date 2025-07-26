@@ -7,7 +7,12 @@
 // PS2RNA_DiscardData
 // PS2RNA_ExecHndl
 // PS2RNA_ExecServer
-// PS2RNA_Finish
+
+void PS2RNA_Finish(void)
+{
+    scePrintf("PS2RNA_Finish - UNIMPLEMENTED!\n");
+}
+
 // ps2rna_finish_psj
 // PS2RNA_Flush
 // ps2rna_get_psj
