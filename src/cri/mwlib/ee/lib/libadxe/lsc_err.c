@@ -1,5 +1,6 @@
 void (*lsc_err_func)(void* err_obj, Char8* err_msg);
 void* lsc_err_obj;
+Char8 lsc_err_msg[256] = { 0 }; 
 
 // LSC_CallErrFunc
 
