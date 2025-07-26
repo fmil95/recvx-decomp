@@ -21,7 +21,12 @@
 // PS2RNA_GetSjtmp
 // PS2RNA_GetStartSmpl
 // PS2RNA_GetTime
-// PS2RNA_Init
+
+void PS2RNA_Init(void)
+{
+    scePrintf("PS2RNA_Init - UNIMPLEMENTED!\n");
+}
+
 // ps2rna_init_psj
 // PS2RNA_IsOverflow
 // PS2RNA_IsPlySwOff

@@ -27,9 +27,10 @@ void ADXRNA_Finish(void)
 // ADXRNA_GetStat
 // ADXRNA_GetTime
 
+// 100% matching!
 void ADXRNA_Init(void)
 {
-    scePrintf("ADXRNA_Init - UNIMPLEMENTED!\n");
+    PS2RNA_Init();
 }
 
 // ADXRNA_SetBitPerSmpl
