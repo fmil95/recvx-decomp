@@ -1,5 +1,5 @@
 Sint32 lsc_init_cnt;
-void* lsc_obj[2] = { 0 };
+void* lsc_obj[2] /*= { 0 }*/; // commenting this out crashes
 Char8* lsc_obj_mark = "MARK:lsc_obj"; /* unused */
 
 // 100% matching!
