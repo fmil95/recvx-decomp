@@ -2,7 +2,11 @@
 
 // PS2RNA_ClearBuf
 // PS2RNA_ClearOverflow
-// PS2RNA_Create
+
+void* PS2RNA_Create(SJ* sjo, Sint32 maxnch)
+{
+    scePrintf("PS2RNA_Create - UNIMPLEMENTED!\n");
+}
 
 void PS2RNA_Destroy(void* ps2rna)
 {

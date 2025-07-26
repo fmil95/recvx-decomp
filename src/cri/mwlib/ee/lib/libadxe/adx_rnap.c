@@ -1,8 +1,9 @@
 // ADXRNA_ClearBuf
 
+// 100% matching!
 ADXRNA ADXRNA_Create(SJ* sjo, Sint32 maxnch)
 {
-    scePrintf("ADXRNA_Create - UNIMPLEMENTED!\n");
+    return PS2RNA_Create(sjo, maxnch);
 }
 
 // 100% matching!
