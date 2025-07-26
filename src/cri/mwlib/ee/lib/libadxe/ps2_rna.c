@@ -3,7 +3,12 @@
 // PS2RNA_ClearBuf
 // PS2RNA_ClearOverflow
 // PS2RNA_Create
-// PS2RNA_Destroy
+
+void PS2RNA_Destroy(void* ps2rna)
+{
+    scePrintf("PS2RNA_Destroy - UNIMPLEMENTED!\n");
+}
+
 // PS2RNA_DiscardData
 // PS2RNA_ExecHndl
 // PS2RNA_ExecServer
@@ -51,12 +56,22 @@ void PS2RNA_SetOutVol(void* ps2rna, Sint32 vol)
 }
 
 // PS2RNA_SetPcmType
-// PS2RNA_SetPlaySw
+
+void PS2RNA_SetPlaySw(void* ps2rna, Sint32 sw)
+{
+    scePrintf("PS2RNA_SetPlaySw - UNIMPLEMENTED!\n");
+}
+
 // PS2RNA_SetSfreq
 // PS2RNA_SetStartSmpl
 // PS2RNA_SetStmHdInfo
 // PS2RNA_SetTotalNumSmpl
-// PS2RNA_SetTransSw
+
+void PS2RNA_SetTransSw(void* ps2rna, Sint32 sw)
+{
+    scePrintf("PS2RNA_SetTransSw - UNIMPLEMENTED!\n");
+}
+
 // ps2rna_sndcbf
 // PS2RNA_Start
 // PS2RNA_Stop

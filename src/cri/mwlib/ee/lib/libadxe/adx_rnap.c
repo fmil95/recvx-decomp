@@ -5,9 +5,13 @@ ADXRNA ADXRNA_Create(SJ* sjo, Sint32 maxnch)
     scePrintf("ADXRNA_Create - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void ADXRNA_Destroy(ADXRNA adxrna)
 {
-    scePrintf("ADXRNA_Destroy - UNIMPLEMENTED!\n");
+    PS2RNA_SetPlaySw(adxrna, 0);
+    PS2RNA_SetTransSw(adxrna, 0);
+    
+    PS2RNA_Destroy(adxrna);
 }
 
 // ADXRNA_DiscardData
