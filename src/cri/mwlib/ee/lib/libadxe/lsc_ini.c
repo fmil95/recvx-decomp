@@ -1,5 +1,6 @@
 Sint32 lsc_init_cnt;
-void* lsc_obj[2];
+void* lsc_obj[2] = { 0 };
+Char8* lsc_obj_mark = "MARK:lsc_obj"; /* unused */
 
 // 100% matching!
 void lsc_DeleteSvrInt(void) 
