@@ -20,7 +20,7 @@ void ADXF_Finish(void)
         ADXF_CloseAll();
 
         adxf_ldptnw_ptid = -1; 
-        adxf_ldptnw_hn = 0;
+        adxf_ldptnw_hn = NULL;
 
         adxf_flno = 0;
 
@@ -53,7 +53,7 @@ void ADXF_Init(void)
         
         adxf_flno = 0;
         
-        adxf_ldptnw_hn = 0;
+        adxf_ldptnw_hn = NULL;
         adxf_ldptnw_ptid = -1; 
     }
     
