@@ -1,0 +1,13 @@
+// adxt_eos_entry
+// ADXT_ExecErrChk
+// ADXT_ExecErrChkPS2
+// ADXT_ExecHndl
+// adxt_nlp_trap_entry
+// adxt_RcvrReplay
+// adxt_set_outpan
+// adxt_stat_decend
+// adxt_stat_decinfo
+// adxt_stat_playend
+// adxt_stat_playing
+// adxt_stat_prep
+// adxt_trap_entry

@@ -1,0 +1,15 @@
+// ADXPD_Create
+// ADXPD_Destroy
+// ADXPD_EntryMono
+// ADXPD_EntrySte
+// adxpd_error
+// ADXPD_ExecHndl
+// ADXPD_ExecServer
+// ADXPD_GetNumBlk
+// ADXPD_GetStat
+// ADXPD_Init
+// ADXPD_Reset
+// ADXPD_SetCoef
+// ADXPD_SetMode
+// ADXPD_Start
+// ADXPD_Stop
