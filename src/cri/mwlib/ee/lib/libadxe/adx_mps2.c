@@ -1,8 +1,8 @@
 Sint32 adxps2_cur_prio;
 Sint32 adxps2_cur_tid;
-volatile Sint32 adxps2_id_safe;
-volatile Sint32 adxps2_lock_count;
-ThreadParam adxps2_save_tprm;
+Sint32 volatile adxps2_id_safe;
+Sint32 volatile adxps2_lock_count;
+Sint32 adxps2_save_tprm[4] = { 0 };
 
 // adxps2_adx_thrd_func
 // ADXPS2_ExecServer
@@ -19,7 +19,7 @@ void ADXPS2_Lock(void)
         
         ReferThreadStatus(tid, &tprm);
         
-        ChangeThreadPriority(tid, adxps2_save_tprm.status);
+        ChangeThreadPriority(tid, adxps2_save_tprm[0]);
         
         adxps2_cur_prio = tprm.currentPriority;
         
