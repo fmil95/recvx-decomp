@@ -35,7 +35,11 @@ void PS2RNA_SetOutPan(void* ps2rna, Sint32 ch, Sint32 pan)
     scePrintf("PS2RNA_SetOutPan - UNIMPLEMENTED!\n");
 }
 
-// PS2RNA_SetOutVol
+void PS2RNA_SetOutVol(void* ps2rna, Sint32 vol)
+{
+    scePrintf("PS2RNA_SetOutVol - UNIMPLEMENTED!\n");
+}
+
 // PS2RNA_SetPcmType
 // PS2RNA_SetPlaySw
 // PS2RNA_SetSfreq

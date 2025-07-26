@@ -41,9 +41,10 @@ void ADXRNA_SetOutPan(ADXRNA adxrna, Sint32 ch, Sint32 pan)
     PS2RNA_SetOutPan(adxrna, ch, pan);
 }
 
+// 100% matching!
 void ADXRNA_SetOutVol(ADXRNA adxrna, Sint32 vol)
 {
-    scePrintf("ADXRNA_SetOutVol - UNIMPLEMENTED!\n");
+    PS2RNA_SetOutVol(adxrna, vol);
 }
 
 // ADXRNA_SetPcmType
