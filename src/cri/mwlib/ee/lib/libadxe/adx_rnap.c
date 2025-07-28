@@ -71,7 +71,12 @@ void ADXRNA_SetOutVol(ADXRNA adxrna, Sint32 vol)
 // ADXRNA_SetTotalNumSmpl
 // ADXRNA_SetTransSw
 // ADXRNA_SetWavFname
-// ADXRNA_Start
+
+// 100% matching!
+void ADXRNA_Start(ADXRNA adxrna)
+{
+    PS2RNA_Start(adxrna);
+}
 
 // 100% matching!
 void ADXRNA_Stop(ADXRNA adxrna) 
