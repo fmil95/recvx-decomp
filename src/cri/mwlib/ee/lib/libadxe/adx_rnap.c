@@ -75,7 +75,14 @@ Sint32 ADXRNA_GetSfreq(ADXRNA adxrna)
     return PS2RNA_GetSfreq(adxrna);
 }
 
-// ADXRNA_GetStat
+// 100% matching!
+Sint32 ADXRNA_GetStat(ADXRNA adxrna) 
+{
+    printf("ADXRNA_GetStat: not implemented\n");
+    
+    while (TRUE);
+}
+
 // ADXRNA_GetTime
 
 // 100% matching!
