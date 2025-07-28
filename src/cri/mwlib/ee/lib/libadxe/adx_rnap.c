@@ -79,7 +79,7 @@ void ADXRNA_SetOutVol(ADXRNA adxrna, Sint32 vol)
 }
 
 // 100% matching!
-void ADXRNA_SetPcmType(ADXRNA adxrna, Sint32 pcmtype)
+void ADXRNA_SetPcmType(ADXRNA adxrna, Sint32 type)
 {
 
 }
@@ -97,7 +97,14 @@ void ADXRNA_SetSfreq(ADXRNA adxrna, Sint32 sfreq)
 }
 
 // ADXRNA_SetStartSmpl
-// ADXRNA_SetStmHdInfo
+
+// 100% matching!
+Sint32 ADXRNA_SetStmHdInfo(ADXRNA adxrna, void* hinfo) 
+{
+    PS2RNA_SetStmHdInfo(adxrna, hinfo);
+    
+    return 0;
+}
 
 // 100% matching!
 void ADXRNA_SetTotalNumSmpl(ADXRNA adxrna, Sint32 nsmpl) 

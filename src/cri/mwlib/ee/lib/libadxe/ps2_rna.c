@@ -88,7 +88,12 @@ void PS2RNA_SetSfreq(void* ps2rna, Sint32 sfreq)
 }
 
 // PS2RNA_SetStartSmpl
-// PS2RNA_SetStmHdInfo
+
+void PS2RNA_SetStmHdInfo(void* ps2rna, void* hinfo)
+{
+    scePrintf("PS2RNA_SetStmHdInfo - UNIMPLEMENTED!\n");
+}
+
 // PS2RNA_SetTotalNumSmpl
 
 void PS2RNA_SetTransSw(void* ps2rna, Sint32 sw)
