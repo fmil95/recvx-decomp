@@ -67,7 +67,11 @@ Sint32 PS2RNA_GetSfreq(void* ps2rna)
 // PS2RNA_GetSjiop
 // PS2RNA_GetSjtmp
 // PS2RNA_GetStartSmpl
-// PS2RNA_GetTime
+
+Sint32 PS2RNA_GetTime(void* ps2rna)
+{
+    scePrintf("PS2RNA_GetTime - UNIMPLEMENTED!\n");
+}
 
 void PS2RNA_Init(void)
 {
