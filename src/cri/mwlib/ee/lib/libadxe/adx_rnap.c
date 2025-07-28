@@ -78,7 +78,12 @@ void ADXRNA_SetOutVol(ADXRNA adxrna, Sint32 vol)
     PS2RNA_SetOutVol(adxrna, vol);
 }
 
-// ADXRNA_SetPcmType
+// 100% matching!
+void ADXRNA_SetPcmType(ADXRNA adxrna, Sint32 pcmtype)
+{
+
+}
+
 // ADXRNA_SetPlaySw
 
 // 100% matching!
