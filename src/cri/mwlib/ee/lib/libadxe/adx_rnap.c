@@ -63,7 +63,12 @@ Sint32 ADXRNA_GetOutPan(ADXRNA adxrna)
     return PS2RNA_GetOutPan(adxrna);
 }
 
-// ADXRNA_GetOutVol
+// 100% matching!
+Sint32 ADXRNA_GetOutVol(ADXRNA adxrna)
+{
+    return PS2RNA_GetOutVol(adxrna);
+}
+
 // ADXRNA_GetSfreq
 // ADXRNA_GetStat
 // ADXRNA_GetTime
