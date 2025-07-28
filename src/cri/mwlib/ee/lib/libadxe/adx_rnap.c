@@ -105,7 +105,12 @@ void ADXRNA_SetTotalNumSmpl(ADXRNA adxrna, Sint32 nsmpl)
 
 }
 
-// ADXRNA_SetTransSw
+// 100% matching!
+void ADXRNA_SetTransSw(ADXRNA adxrna, Sint32 transsw) 
+{
+    PS2RNA_SetTransSw(adxrna, transsw);
+}
+
 // ADXRNA_SetWavFname
 
 // 100% matching!
