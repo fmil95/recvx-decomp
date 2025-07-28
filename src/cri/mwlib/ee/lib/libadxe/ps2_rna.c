@@ -74,7 +74,11 @@ void PS2RNA_SetPlaySw(void* ps2rna, Sint32 sw)
     scePrintf("PS2RNA_SetPlaySw - UNIMPLEMENTED!\n");
 }
 
-// PS2RNA_SetSfreq
+void PS2RNA_SetSfreq(void* ps2rna, Sint32 sfreq)
+{
+    scePrintf("PS2RNA_SetSfreq - UNIMPLEMENTED!\n");
+}
+
 // PS2RNA_SetStartSmpl
 // PS2RNA_SetStmHdInfo
 // PS2RNA_SetTotalNumSmpl

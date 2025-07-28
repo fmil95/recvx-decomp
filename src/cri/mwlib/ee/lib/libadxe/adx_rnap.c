@@ -65,7 +65,13 @@ void ADXRNA_SetOutVol(ADXRNA adxrna, Sint32 vol)
 
 // ADXRNA_SetPcmType
 // ADXRNA_SetPlaySw
-// ADXRNA_SetSfreq
+
+// 100% matching!
+void ADXRNA_SetSfreq(ADXRNA adxrna, Sint32 sfreq) 
+{
+    PS2RNA_SetSfreq(adxrna, sfreq);
+}
+
 // ADXRNA_SetStartSmpl
 // ADXRNA_SetStmHdInfo
 
