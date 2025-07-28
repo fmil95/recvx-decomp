@@ -10,7 +10,9 @@ typedef struct _ps2_adxrna
     Sint32 unk18;
     Sint32 unk1C;
     Sint32 unk20;
-    Sint32 unk24;
+    Sint16 unk24;
+    Sint8  nch;
+    Sint8  unk27;
     Sint32 sfreq;
 } PS2_ADXRNA;
 typedef PS2_ADXRNA *PS2RNA;
@@ -104,9 +106,10 @@ void PS2RNA_SetBitPerSmpl(void* ps2rna, Sint32 bps)
     scePrintf("PS2RNA_SetBitPerSmpl - UNIMPLEMENTED!\n");
 }
 
-void PS2RNA_SetNumChan(void* ps2rna, Sint32 nch)
+// 100% matching!
+void PS2RNA_SetNumChan(PS2RNA ps2rna, Sint32 nch)
 {
-    scePrintf("PS2RNA_SetNumChan - UNIMPLEMENTED!\n");
+    ps2rna->nch = nch; 
 }
 
 void PS2RNA_SetOutPan(void* ps2rna, Sint32 ch, Sint32 pan)
