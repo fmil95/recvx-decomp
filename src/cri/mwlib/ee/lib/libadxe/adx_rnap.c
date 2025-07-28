@@ -96,7 +96,11 @@ void ADXRNA_SetSfreq(ADXRNA adxrna, Sint32 sfreq)
     PS2RNA_SetSfreq(adxrna, sfreq);
 }
 
-// ADXRNA_SetStartSmpl
+// 100% matching!
+void ADXRNA_SetStartSmpl(ADXRNA adxrna, Sint32 smpl) 
+{
+    PS2RNA_SetStartSmpl(adxrna, smpl);
+}
 
 // 100% matching!
 Sint32 ADXRNA_SetStmHdInfo(ADXRNA adxrna, void* hinfo) 

@@ -87,7 +87,10 @@ void PS2RNA_SetSfreq(void* ps2rna, Sint32 sfreq)
     scePrintf("PS2RNA_SetSfreq - UNIMPLEMENTED!\n");
 }
 
-// PS2RNA_SetStartSmpl
+void PS2RNA_SetStartSmpl(void* ps2rna, Sint32 smpl)
+{
+    scePrintf("PS2RNA_SetStartSmpl - UNIMPLEMENTED!\n");
+}
 
 void PS2RNA_SetStmHdInfo(void* ps2rna, void* hinfo)
 {
