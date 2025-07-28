@@ -84,7 +84,11 @@ void ADXRNA_SetPcmType(ADXRNA adxrna, Sint32 pcmtype)
 
 }
 
-// ADXRNA_SetPlaySw
+// 100% matching!
+void ADXRNA_SetPlaySw(ADXRNA adxrna, Sint32 playsw) 
+{
+    PS2RNA_SetPlaySw(adxrna, playsw);
+}
 
 // 100% matching!
 void ADXRNA_SetSfreq(ADXRNA adxrna, Sint32 sfreq) 

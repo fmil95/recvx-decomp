@@ -77,7 +77,7 @@ void PS2RNA_SetOutVol(void* ps2rna, Sint32 vol)
 
 // PS2RNA_SetPcmType
 
-void PS2RNA_SetPlaySw(void* ps2rna, Sint32 sw)
+void PS2RNA_SetPlaySw(void* ps2rna, Sint32 playsw)
 {
     scePrintf("PS2RNA_SetPlaySw - UNIMPLEMENTED!\n");
 }
