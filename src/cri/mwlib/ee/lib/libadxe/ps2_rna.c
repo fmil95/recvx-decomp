@@ -15,7 +15,11 @@ void PS2RNA_Destroy(void* ps2rna)
 
 // PS2RNA_DiscardData
 // PS2RNA_ExecHndl
-// PS2RNA_ExecServer
+
+void PS2RNA_ExecServer(void)
+{
+    scePrintf("PS2RNA_ExecServer - UNIMPLEMENTED!\n");
+}
 
 void PS2RNA_Finish(void)
 {
