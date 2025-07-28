@@ -21,7 +21,11 @@ void ADXRNA_Destroy(ADXRNA adxrna)
     PS2RNA_Destroy(adxrna);
 }
 
-// ADXRNA_DiscardData
+// 100% matching!
+Sint32 ADXRNA_DiscardData(void) 
+{
+    return PS2RNA_DiscardData();
+}
 
 // 100% matching!
 void ADXRNA_ExecServer(void) 

@@ -13,7 +13,11 @@ void PS2RNA_Destroy(void* ps2rna)
     scePrintf("PS2RNA_Destroy - UNIMPLEMENTED!\n");
 }
 
-// PS2RNA_DiscardData
+Sint32 PS2RNA_DiscardData(void)
+{
+    scePrintf("PS2RNA_DiscardData - UNIMPLEMENTED!\n");
+}
+
 // PS2RNA_ExecHndl
 
 void PS2RNA_ExecServer(void)
