@@ -44,7 +44,11 @@ Sint32 PS2RNA_GetNumData(void* ps2rna)
     scePrintf("PS2RNA_GetNumData - UNIMPLEMENTED!\n");
 }
 
-// PS2RNA_GetNumRoom
+Sint32 PS2RNA_GetNumRoom(void* ps2rna)
+{
+    scePrintf("PS2RNA_GetNumRoom - UNIMPLEMENTED!\n");
+}
+
 // PS2RNA_GetOutPan
 // PS2RNA_GetOutVol
 // PS2RNA_GetSfreq
