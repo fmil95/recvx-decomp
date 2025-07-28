@@ -68,7 +68,13 @@ void ADXRNA_SetOutVol(ADXRNA adxrna, Sint32 vol)
 // ADXRNA_SetSfreq
 // ADXRNA_SetStartSmpl
 // ADXRNA_SetStmHdInfo
-// ADXRNA_SetTotalNumSmpl
+
+// 100% matching!
+void ADXRNA_SetTotalNumSmpl(ADXRNA adxrna, Sint32 nsmpl) 
+{
+
+}
+
 // ADXRNA_SetTransSw
 // ADXRNA_SetWavFname
 
