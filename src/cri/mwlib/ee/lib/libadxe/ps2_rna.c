@@ -59,7 +59,11 @@ Sint32 PS2RNA_GetOutVol(void* ps2rna)
     scePrintf("PS2RNA_GetOutVol - UNIMPLEMENTED!\n");
 }
 
-// PS2RNA_GetSfreq
+Sint32 PS2RNA_GetSfreq(void* ps2rna)
+{
+    scePrintf("PS2RNA_GetSfreq - UNIMPLEMENTED!\n");
+}
+
 // PS2RNA_GetSjiop
 // PS2RNA_GetSjtmp
 // PS2RNA_GetStartSmpl
