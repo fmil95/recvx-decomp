@@ -86,4 +86,8 @@ void PS2RNA_SetTransSw(void* ps2rna, Sint32 sw)
 
 // ps2rna_sndcbf
 // PS2RNA_Start
-// PS2RNA_Stop
+
+void PS2RNA_Stop(void* ps2rna)
+{
+    scePrintf("PS2RNA_Stop - UNIMPLEMENTED!\n");
+}
