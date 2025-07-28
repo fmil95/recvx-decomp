@@ -33,7 +33,12 @@ void PS2RNA_Finish(void)
 // ps2rna_finish_psj
 // PS2RNA_Flush
 // ps2rna_get_psj
-// PS2RNA_GetBitPerSmpl
+
+Sint32 PS2RNA_GetBitPerSmpl(void* ps2rna)
+{
+    scePrintf("PS2RNA_GetBitPerSmpl - UNIMPLEMENTED!\n");
+}
+
 // PS2RNA_GetNumData
 // PS2RNA_GetNumRoom
 // PS2RNA_GetOutPan

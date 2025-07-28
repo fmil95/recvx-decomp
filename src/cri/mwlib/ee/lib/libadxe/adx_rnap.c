@@ -39,7 +39,12 @@ void ADXRNA_Finish(void)
     PS2RNA_Finish();
 }
 
-// ADXRNA_GetBitPerSmpl
+// 100% matching!
+Sint32 ADXRNA_GetBitPerSmpl(ADXRNA adxrna) 
+{
+    return PS2RNA_GetBitPerSmpl(adxrna);
+}
+
 // ADXRNA_GetNumData
 // ADXRNA_GetNumRoom
 // ADXRNA_GetOutPan
