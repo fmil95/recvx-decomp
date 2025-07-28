@@ -57,7 +57,12 @@ Sint32 ADXRNA_GetNumRoom(ADXRNA adxrna)
     return PS2RNA_GetNumRoom(adxrna);
 }
 
-// ADXRNA_GetOutPan
+// 100% matching!
+Sint32 ADXRNA_GetOutPan(ADXRNA adxrna)
+{
+    return PS2RNA_GetOutPan(adxrna);
+}
+
 // ADXRNA_GetOutVol
 // ADXRNA_GetSfreq
 // ADXRNA_GetStat
