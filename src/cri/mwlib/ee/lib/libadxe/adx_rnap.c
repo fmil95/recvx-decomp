@@ -111,7 +111,11 @@ void ADXRNA_SetTransSw(ADXRNA adxrna, Sint32 transsw)
     PS2RNA_SetTransSw(adxrna, transsw);
 }
 
-// ADXRNA_SetWavFname
+// 100% matching!
+void ADXRNA_SetWavFname(ADXRNA adxrna, Char8* fname)
+{
+
+}
 
 // 100% matching!
 void ADXRNA_Start(ADXRNA adxrna)
