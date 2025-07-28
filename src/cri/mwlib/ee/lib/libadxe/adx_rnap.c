@@ -45,7 +45,12 @@ Sint32 ADXRNA_GetBitPerSmpl(ADXRNA adxrna)
     return PS2RNA_GetBitPerSmpl(adxrna);
 }
 
-// ADXRNA_GetNumData
+// 100% matching!
+Sint32 ADXRNA_GetNumData(ADXRNA adxrna) 
+{
+    return PS2RNA_GetNumData(adxrna);
+}
+
 // ADXRNA_GetNumRoom
 // ADXRNA_GetOutPan
 // ADXRNA_GetOutVol
