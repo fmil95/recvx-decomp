@@ -39,7 +39,11 @@ void ADXRNA_Init(void)
     PS2RNA_Init();
 }
 
-// ADXRNA_SetBitPerSmpl
+// 100% matching!
+void ADXRNA_SetBitPerSmpl(ADXRNA adxrna, Sint32 bps)
+{
+    PS2RNA_SetBitPerSmpl(adxrna, bps);
+}
 
 // 100% matching!
 void ADXRNA_SetNumChan(ADXRNA adxrna, Sint32 nch) 

@@ -46,7 +46,11 @@ void PS2RNA_Init(void)
 // PS2RNA_IsPlySwOff
 // ps2rna_rcvcbf
 // ps2rna_release_psj
-// PS2RNA_SetBitPerSmpl
+
+void PS2RNA_SetBitPerSmpl(void* ps2rna, Sint32 bps)
+{
+    scePrintf("PS2RNA_SetBitPerSmpl - UNIMPLEMENTED!\n");
+}
 
 void PS2RNA_SetNumChan(void* ps2rna, Sint32 nch)
 {
