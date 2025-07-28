@@ -40,7 +40,12 @@ void ADXRNA_Init(void)
 }
 
 // ADXRNA_SetBitPerSmpl
-// ADXRNA_SetNumChan
+
+// 100% matching!
+void ADXRNA_SetNumChan(ADXRNA adxrna, Sint32 nch) 
+{
+    PS2RNA_SetNumChan(adxrna, nch);
+}
 
 // 100% matching!
 void ADXRNA_SetOutPan(ADXRNA adxrna, Sint32 ch, Sint32 pan) 
