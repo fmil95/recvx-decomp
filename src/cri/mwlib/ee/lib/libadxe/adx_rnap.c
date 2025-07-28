@@ -85,9 +85,9 @@ void ADXRNA_SetPcmType(ADXRNA adxrna, Sint32 pcmtype)
 }
 
 // 100% matching!
-void ADXRNA_SetPlaySw(ADXRNA adxrna, Sint32 playsw) 
+void ADXRNA_SetPlaySw(ADXRNA adxrna, Sint32 sw) 
 {
-    PS2RNA_SetPlaySw(adxrna, playsw);
+    PS2RNA_SetPlaySw(adxrna, sw);
 }
 
 // 100% matching!
@@ -106,9 +106,9 @@ void ADXRNA_SetTotalNumSmpl(ADXRNA adxrna, Sint32 nsmpl)
 }
 
 // 100% matching!
-void ADXRNA_SetTransSw(ADXRNA adxrna, Sint32 transsw) 
+void ADXRNA_SetTransSw(ADXRNA adxrna, Sint32 sw) 
 {
-    PS2RNA_SetTransSw(adxrna, transsw);
+    PS2RNA_SetTransSw(adxrna, sw);
 }
 
 // 100% matching!
