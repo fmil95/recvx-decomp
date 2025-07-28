@@ -1,4 +1,19 @@
 
+typedef struct _ps2_adxrna 
+{
+    Sint32 unk0;
+    Sint32 unk4;
+    Sint32 unk8;
+    Sint32 unkC;
+    Sint32 unk10;
+    Sint32 unk14;
+    Sint32 unk18;
+    Sint32 unk1C;
+    Sint32 unk20;
+    Sint32 unk24;
+    Sint32 sfreq;
+} PS2_ADXRNA;
+typedef PS2_ADXRNA *PS2RNA;
 
 // PS2RNA_ClearBuf
 // PS2RNA_ClearOverflow
@@ -111,9 +126,10 @@ void PS2RNA_SetPlaySw(void* ps2rna, Sint32 sw)
     scePrintf("PS2RNA_SetPlaySw - UNIMPLEMENTED!\n");
 }
 
-void PS2RNA_SetSfreq(void* ps2rna, Sint32 sfreq)
+// 100% matching!
+void PS2RNA_SetSfreq(PS2RNA ps2rna, Sint32 sfreq)
 {
-    scePrintf("PS2RNA_SetSfreq - UNIMPLEMENTED!\n");
+    ps2rna->sfreq = sfreq;
 }
 
 void PS2RNA_SetStartSmpl(void* ps2rna, Sint32 smpl)
