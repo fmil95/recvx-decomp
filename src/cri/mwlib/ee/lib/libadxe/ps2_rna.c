@@ -83,9 +83,10 @@ Sint32 PS2RNA_GetOutVol(PS2RNA ps2rna)
     return ps2rna->vol;
 }
 
-Sint32 PS2RNA_GetSfreq(void* ps2rna)
+// 100% matching!
+Sint32 PS2RNA_GetSfreq(PS2RNA ps2rna) 
 {
-    scePrintf("PS2RNA_GetSfreq - UNIMPLEMENTED!\n");
+    return ps2rna->sfreq;
 }
 
 // PS2RNA_GetSjiop
