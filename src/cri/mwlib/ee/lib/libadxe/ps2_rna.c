@@ -71,9 +71,10 @@ Sint32 PS2RNA_GetNumRoom(void* ps2rna)
     scePrintf("PS2RNA_GetNumRoom - UNIMPLEMENTED!\n");
 }
 
-Sint32 PS2RNA_GetOutPan(void* ps2rna)
+// 100% matching!
+Sint32 PS2RNA_GetOutPan(PS2RNA ps2rna, Sint32 ch)
 {
-    scePrintf("PS2RNA_GetOutPan - UNIMPLEMENTED!\n");
+    return ps2rna->pan[ch];
 }
 
 Sint32 PS2RNA_GetOutVol(void* ps2rna)

@@ -10,7 +10,7 @@ void ADXRNA_Finish(void);
 Sint32 ADXRNA_GetBitPerSmpl(ADXRNA adxrna);
 Sint32 ADXRNA_GetNumData(ADXRNA adxrna);
 Sint32 ADXRNA_GetNumRoom(ADXRNA adxrna);
-Sint32 ADXRNA_GetOutPan(ADXRNA adxrna);
+Sint32 ADXRNA_GetOutPan(ADXRNA adxrna, Sint32 ch);
 Sint32 ADXRNA_GetOutVol(ADXRNA adxrna);
 Sint32 ADXRNA_GetSfreq(ADXRNA adxrna);
 Sint32 ADXRNA_GetStat(ADXRNA adxrna);
@@ -89,9 +89,9 @@ Sint32 ADXRNA_GetNumRoom(ADXRNA adxrna)
 }
 
 // 100% matching!
-Sint32 ADXRNA_GetOutPan(ADXRNA adxrna)
+Sint32 ADXRNA_GetOutPan(ADXRNA adxrna, Sint32 ch)
 {
-    return PS2RNA_GetOutPan(adxrna);
+    return PS2RNA_GetOutPan(adxrna, ch);
 }
 
 // 100% matching!
