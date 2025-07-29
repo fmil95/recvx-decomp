@@ -116,9 +116,24 @@ void PS2RNA_SetNumChan(PS2RNA ps2rna, Sint32 nch)
     ps2rna->nch = nch; 
 }
 
-void PS2RNA_SetOutPan(void* ps2rna, Sint32 ch, Sint32 pan)
+// 100% matching!
+void PS2RNA_SetOutPan(PS2RNA ps2rna, Sint32 ch, Sint32 pan)
 {
-    scePrintf("PS2RNA_SetOutPan - UNIMPLEMENTED!\n");
+    Sint32 _pan;
+
+    _pan = pan;
+
+    if (_pan < -15)
+    {
+        _pan = -15;
+    }
+
+    if (_pan > 15) 
+    {
+        _pan = 15;
+    }
+    
+    ps2rna->pan[ch] = _pan;
 }
 
 // 100% matching!
