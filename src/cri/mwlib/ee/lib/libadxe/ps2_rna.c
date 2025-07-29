@@ -91,7 +91,14 @@ Sint32 PS2RNA_GetSfreq(PS2RNA ps2rna)
 
 // PS2RNA_GetSjiop
 // PS2RNA_GetSjtmp
-// PS2RNA_GetStartSmpl
+
+// 100% matching!
+Sint32 PS2RNA_GetStartSmpl(PS2RNA ps2rna) 
+{
+    printf("PS2RNA_GetStartSmpl: not implemented\n");
+    
+    while (TRUE);
+}
 
 Sint32 PS2RNA_GetTime(void* ps2rna)
 {
