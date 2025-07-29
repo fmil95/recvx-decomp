@@ -193,7 +193,13 @@ void PS2RNA_SetStmHdInfo(PS2RNA ps2rna, void* hinfo)
     while (TRUE);
 }
 
-// PS2RNA_SetTotalNumSmpl
+// 100% matching!
+void PS2RNA_SetTotalNumSmpl(PS2RNA ps2rna, Sint32 nsmpl) 
+{
+    printf("PS2RNA_SetTotalNumSmpl: not implemented\n");
+
+    while (TRUE);
+}
 
 void PS2RNA_SetTransSw(void* ps2rna, Sint32 sw)
 {
