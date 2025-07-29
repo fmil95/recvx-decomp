@@ -185,9 +185,12 @@ void PS2RNA_SetStartSmpl(PS2RNA ps2rna, Sint32 smpl)
     while (TRUE);
 }
 
-void PS2RNA_SetStmHdInfo(void* ps2rna, void* hinfo)
+// 100% matching!
+void PS2RNA_SetStmHdInfo(PS2RNA ps2rna, void* hinfo) 
 {
-    scePrintf("PS2RNA_SetStmHdInfo - UNIMPLEMENTED!\n");
+    printf("PS2RNA_SetStmHdInfo: not implemented\n");
+
+    while (TRUE);
 }
 
 // PS2RNA_SetTotalNumSmpl
