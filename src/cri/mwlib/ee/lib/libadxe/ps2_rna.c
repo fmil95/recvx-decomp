@@ -105,9 +105,15 @@ void PS2RNA_Init(void)
 // ps2rna_rcvcbf
 // ps2rna_release_psj
 
-void PS2RNA_SetBitPerSmpl(void* ps2rna, Sint32 bps)
+// 100% matching!
+void PS2RNA_SetBitPerSmpl(PS2RNA ps2rna, Sint32 bps) 
 {
-    scePrintf("PS2RNA_SetBitPerSmpl - UNIMPLEMENTED!\n");
+    if (bps != 16) 
+    {
+        printf("PS2RNA_SetBitPerSmpl: not support %d bps\n");
+        
+        while (TRUE);
+    }
 }
 
 // 100% matching!
