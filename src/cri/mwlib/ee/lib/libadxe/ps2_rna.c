@@ -158,7 +158,13 @@ void PS2RNA_SetOutVol(PS2RNA ps2rna, Sint32 vol)
     ps2rna->vol = vol; 
 }
 
-// PS2RNA_SetPcmType
+// 100% matching!
+void PS2RNA_SetPcmType(PS2RNA ps2rna, Sint32 type)
+{
+    printf("PS2RNA_SetPcmType: not implemented\n");
+
+    while (TRUE);
+}
 
 void PS2RNA_SetPlaySw(void* ps2rna, Sint32 sw)
 {
