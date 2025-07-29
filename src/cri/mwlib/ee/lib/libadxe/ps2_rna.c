@@ -55,9 +55,10 @@ void PS2RNA_Finish(void)
 // PS2RNA_Flush
 // ps2rna_get_psj
 
-Sint32 PS2RNA_GetBitPerSmpl(void* ps2rna)
+// 100% matching!
+Sint32 PS2RNA_GetBitPerSmpl(PS2RNA ps2rna) 
 {
-    scePrintf("PS2RNA_GetBitPerSmpl - UNIMPLEMENTED!\n");
+    return 16;
 }
 
 Sint32 PS2RNA_GetNumData(void* ps2rna)
