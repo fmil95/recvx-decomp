@@ -177,9 +177,12 @@ void PS2RNA_SetSfreq(PS2RNA ps2rna, Sint32 sfreq)
     ps2rna->sfreq = sfreq;
 }
 
-void PS2RNA_SetStartSmpl(void* ps2rna, Sint32 smpl)
+// 100% matching!
+void PS2RNA_SetStartSmpl(PS2RNA ps2rna, Sint32 smpl) 
 {
-    scePrintf("PS2RNA_SetStartSmpl - UNIMPLEMENTED!\n");
+    printf("PS2RNA_SetStartSmpl: not implemented\n");
+
+    while (TRUE);
 }
 
 void PS2RNA_SetStmHdInfo(void* ps2rna, void* hinfo)
