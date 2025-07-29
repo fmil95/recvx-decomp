@@ -14,6 +14,10 @@ typedef struct _ps2_adxrna
     Sint8  nch;
     Sint8  unk27;
     Sint32 sfreq;
+    Sint32 unk2C;
+    Sint32 vol;
+    Sint32 unk34;
+    Sint32 pan[2];
 } PS2_ADXRNA;
 typedef PS2_ADXRNA *PS2RNA;
 
@@ -117,9 +121,20 @@ void PS2RNA_SetOutPan(void* ps2rna, Sint32 ch, Sint32 pan)
     scePrintf("PS2RNA_SetOutPan - UNIMPLEMENTED!\n");
 }
 
-void PS2RNA_SetOutVol(void* ps2rna, Sint32 vol)
+// 100% matching!
+void PS2RNA_SetOutVol(PS2RNA ps2rna, Sint32 vol) 
 {
-    scePrintf("PS2RNA_SetOutVol - UNIMPLEMENTED!\n");
+    if (vol > 0) 
+    {
+        vol = 0;
+    }
+
+    if (vol < -999) 
+    {
+        vol = -999;
+    }
+
+    ps2rna->vol = vol; 
 }
 
 // PS2RNA_SetPcmType
