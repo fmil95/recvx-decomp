@@ -34,9 +34,12 @@ void PS2RNA_Destroy(void* ps2rna)
     scePrintf("PS2RNA_Destroy - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 Sint32 PS2RNA_DiscardData(void)
 {
-    scePrintf("PS2RNA_DiscardData - UNIMPLEMENTED!\n");
+    printf("PS2RNA_DiscardData: not implemented\n");
+
+    while (TRUE); 
 }
 
 // PS2RNA_ExecHndl
