@@ -1,4 +1,16 @@
 
+typedef struct _ps2_psj 
+{
+    Sint32 unk0;
+    void*  sjrtm;
+    SJ     sj;
+    void*  sjx;
+    Sint32 unk10;
+    Sint32 unk14;
+} PS2PSJ_OBJ;
+
+typedef PS2PSJ_OBJ *PS2PSJ; 
+
 typedef struct _ps2_adxrna 
 {
     Sint32 unk0;
@@ -22,6 +34,10 @@ typedef struct _ps2_adxrna
 typedef PS2_ADXRNA *PS2RNA;
 
 Sint32 ps2rna_init_cnt;
+Sint32 ps2rna_max_voice;
+PS2PSJ_OBJ ps2psj_obj[];
+Sint8 ps2psj_alloc_flag;
+void* ps2psj_iop_work0;
 
 // 100% matching!
 void PS2RNA_ClearBuf(PS2RNA ps2rna) 
@@ -75,7 +91,43 @@ void PS2RNA_Finish(void)
     }
 } 
 
-// ps2rna_finish_psj
+// 100% matching!
+void ps2rna_finish_psj()
+{
+    PS2PSJ psj;
+    Sint32 i;
+
+    for (i = 0; i < ps2rna_max_voice; i++) 
+    {
+        psj = &ps2psj_obj[i]; 
+
+        if (psj->sjrtm != NULL) 
+        {
+            SJRMT_Destroy(psj->sjrtm);
+        }
+
+        if (psj->sj != NULL)
+        {
+            SJ_Destroy(psj->sj);
+        }
+
+        if (psj->sjx != NULL)
+        {
+            SJX_Destroy(psj->sjx);
+        }
+
+        memset(psj, 0, sizeof(PS2PSJ_OBJ));
+    }
+
+    if (ps2psj_alloc_flag == 1)
+    {
+        sceSifFreeIopHeap(ps2psj_iop_work0);
+        
+        ps2psj_iop_work0 = NULL;
+        
+        ps2psj_alloc_flag = 0;
+    }
+}
 
 // 100% matching!
 void PS2RNA_Flush(void) 

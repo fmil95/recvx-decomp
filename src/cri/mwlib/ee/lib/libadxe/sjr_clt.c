@@ -2,7 +2,11 @@
 
 // SJMEM_CreateRmt
 // SJRBF_CreateRmt
-// SJRMT_Destroy
+
+void SJRMT_Destroy(void* sjrmt)
+{
+    scePrintf("SJRMT_Destroy - UNIMPLEMENTED!\n");
+}
 
 void SJRMT_Finish(void)
 {
