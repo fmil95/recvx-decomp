@@ -1,7 +1,14 @@
+
+
 // SJMEM_CreateRmt
 // SJRBF_CreateRmt
 // SJRMT_Destroy
-// SJRMT_Finish
+
+void SJRMT_Finish(void)
+{
+    scePrintf("SJRMT_Finish - UNIMPLEMENTED!\n");
+}
+
 // SJRMT_GetChunk
 // SJRMT_GetNumData
 // SJRMT_GetUuid

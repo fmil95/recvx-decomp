@@ -1,3 +1,5 @@
+
+
 // DTX_CallUrpc
 // DTX_Close
 // DTX_Create
@@ -8,7 +10,12 @@
 // dtx_destroy_rmt
 // DTX_ExecHndl
 // DTX_ExecServer
-// DTX_Finish
+
+void DTX_Finish(void)
+{
+    scePrintf("DTX_Finish - UNIMPLEMENTED!\n");
+}
+
 // DTX_Init
 // DTX_Open
 // dtx_rpc_func

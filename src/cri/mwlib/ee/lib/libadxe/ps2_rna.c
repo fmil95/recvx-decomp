@@ -21,6 +21,8 @@ typedef struct _ps2_adxrna
 } PS2_ADXRNA;
 typedef PS2_ADXRNA *PS2RNA;
 
+Sint32 ps2rna_init_cnt;
+
 // PS2RNA_ClearBuf
 // PS2RNA_ClearOverflow
 
@@ -49,10 +51,16 @@ void PS2RNA_ExecServer(void)
     scePrintf("PS2RNA_ExecServer - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void PS2RNA_Finish(void)
 {
-    scePrintf("PS2RNA_Finish - UNIMPLEMENTED!\n");
-}
+    if (--ps2rna_init_cnt == 0)
+    {
+        DTX_Finish();
+        SJX_Finish();
+        SJRMT_Finish();
+    }
+} 
 
 // ps2rna_finish_psj
 // PS2RNA_Flush
