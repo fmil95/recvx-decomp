@@ -19,6 +19,11 @@ void SJRMT_Finish(void)
 // SJRMT_Init
 // SJRMT_IsGetChunk
 // SJRMT_PutChunk
-// SJRMT_Reset
+
+void SJRMT_Reset(void* sjrmt)
+{
+    scePrintf("SJRMT_Reset - UNIMPLEMENTED!\n");
+}
+
 // SJRMT_UngetChunk
 // SJUNI_CreateRmt

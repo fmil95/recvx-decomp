@@ -1,15 +1,17 @@
 
 typedef struct _ps2_psj 
 {
-    Sint32 unk0;
+    Sint8  used;
+    Sint8  unk1;
+    Sint8  unk2;
+    Sint8  unk3;
     void*  sjrtm;
     SJ     sj;
     void*  sjx;
-    Sint32 unk10;
-    Sint32 unk14;
+    SJCK   ck;
 } PS2PSJ_OBJ;
 
-typedef PS2PSJ_OBJ *PS2PSJ; 
+typedef PS2PSJ_OBJ *PS2PSJ;
 
 typedef struct _ps2_adxrna 
 {
@@ -137,7 +139,39 @@ void PS2RNA_Flush(void)
     while (TRUE);
 }
 
-// ps2rna_get_psj
+// 100% matching!
+PS2PSJ ps2rna_get_psj()
+{
+    PS2PSJ psj;
+    Sint32 i;
+
+    psj = NULL;
+
+    for (i = 0; i < ps2rna_max_voice; i++) 
+    {
+        psj = &ps2psj_obj[i];
+
+        if (psj->used == FALSE) 
+        {
+            break;
+        }
+    }
+
+    if (i == 8) 
+    {
+        return NULL;
+    }
+
+    SJ_Reset(psj->sj);
+    
+    SJ_PutChunk(psj->sj, 0, &psj->ck);
+    
+    SJRMT_Reset(psj->sjrtm);
+    
+    psj->used = TRUE;
+    
+    return psj;
+}
 
 // 100% matching!
 Sint32 PS2RNA_GetBitPerSmpl(PS2RNA ps2rna) 
