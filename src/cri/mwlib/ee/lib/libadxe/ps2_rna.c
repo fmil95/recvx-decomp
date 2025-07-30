@@ -347,7 +347,14 @@ void ps2rna_init_psj(void)
     }
 } 
 
-// PS2RNA_IsOverflow
+// 100% matching!
+void PS2RNA_IsOverflow(PS2RNA ps2rna) 
+{
+    printf("PS2RNA_IsOverflow: not implemented\n");
+
+    while (TRUE);
+}
+
 // PS2RNA_IsPlySwOff
 // ps2rna_rcvcbf
 
