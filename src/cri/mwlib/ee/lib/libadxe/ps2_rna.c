@@ -255,9 +255,12 @@ Sint32 PS2RNA_GetStartSmpl(PS2RNA ps2rna)
     while (TRUE);
 }
 
-Sint32 PS2RNA_GetTime(void* ps2rna)
+// 100% matching! 
+void PS2RNA_GetTime(PS2RNA ps2rna, Sint32 *ncount, Sint32 *tscale)
 {
-    scePrintf("PS2RNA_GetTime - UNIMPLEMENTED!\n");
+    *ncount = 0;
+    
+    *tscale = 48000;
 }
 
 void PS2RNA_Init(void)
