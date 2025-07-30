@@ -220,10 +220,11 @@ Sint32 PS2RNA_GetNumData(PS2RNA ps2rna)
     return (Uint32)(16384 - SJ_GetNumData(ps2rna->ps2psj->sji, 0)) >> 1;
 } 
 
-Sint32 PS2RNA_GetNumRoom(void* ps2rna)
+// 100% matching! 
+Sint32 PS2RNA_GetNumRoom(PS2RNA ps2rna)
 {
-    scePrintf("PS2RNA_GetNumRoom - UNIMPLEMENTED!\n");
-}
+    return (Uint32)SJ_GetNumData(ps2rna->ps2psj->sji, 0) >> 1;
+} 
 
 // 100% matching!
 Sint32 PS2RNA_GetOutPan(PS2RNA ps2rna, Sint32 ch)
