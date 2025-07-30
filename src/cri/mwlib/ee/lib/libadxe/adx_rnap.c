@@ -1,7 +1,7 @@
 
 /* There's little here of interest, most of these functions are thunks for the console-specific audio renderer code in ps2_rna. */
 
-void ADXRNA_ClearBuf(void);
+void ADXRNA_ClearBuf(ADXRNA adxrna);
 ADXRNA ADXRNA_Create(SJ* sjo, Sint32 maxnch);
 void ADXRNA_Destroy(ADXRNA adxrna);
 Sint32 ADXRNA_DiscardData(void);
@@ -32,7 +32,7 @@ void ADXRNA_Start(ADXRNA adxrna);
 void ADXRNA_Stop(ADXRNA adxrna);
 
 // 100% matching!
-void ADXRNA_ClearBuf(void) 
+void ADXRNA_ClearBuf(ADXRNA adxrna) 
 {
 
 }

@@ -23,7 +23,14 @@ typedef PS2_ADXRNA *PS2RNA;
 
 Sint32 ps2rna_init_cnt;
 
-// PS2RNA_ClearBuf
+// 100% matching!
+void PS2RNA_ClearBuf(PS2RNA ps2rna) 
+{
+    printf("PS2RNA_ClearBuf: not implemented\n");
+
+    while (TRUE);
+}
+
 // PS2RNA_ClearOverflow
 
 void* PS2RNA_Create(SJ* sjo, Sint32 maxnch)
