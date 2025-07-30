@@ -10,7 +10,10 @@ void SJX_Destroy(void* sjx)
     scePrintf("SJX_Destroy - UNIMPLEMENTED!\n");
 }
 
-// SJX_ExecServer
+void SJX_ExecServer(void)
+{
+    scePrintf("SJX_ExecServer - UNIMPLEMENTED!\n");
+}
 
 void SJX_Finish(void)
 {

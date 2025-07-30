@@ -13,9 +13,12 @@ typedef struct _ps2_psj
 
 typedef PS2PSJ_OBJ *PS2PSJ;
 
-typedef struct _ps2_adxrna 
+typedef struct _ps2_rna 
 {
-    Sint32 unk0;
+    Sint8  used;
+    Sint8  unk1;
+    Sint8  unk2;
+    Sint8  unk3;
     Sint32 unk4;
     Sint32 unk8;
     Sint32 unkC;
@@ -32,11 +35,18 @@ typedef struct _ps2_adxrna
     Sint32 vol;
     Sint32 unk34;
     Sint32 pan[2];
-} PS2_ADXRNA;
-typedef PS2_ADXRNA *PS2RNA;
+    Sint32 unk40;
+    Sint32 unk44;
+    Sint32 unk48;
+    Sint32 unk4C;
+    Sint32 unk50;
+} PS2_RNA_OBJ;
+
+typedef PS2_RNA_OBJ *PS2RNA;
 
 Sint32 ps2rna_init_cnt;
 Sint32 ps2rna_max_voice;
+PS2_RNA_OBJ ps2rna_obj[8];
 PS2PSJ_OBJ ps2psj_obj[8];
 Sint8 ps2psj_alloc_flag;
 void* ps2psj_iop_work0;
@@ -78,11 +88,33 @@ Sint32 PS2RNA_DiscardData(void)
     while (TRUE); 
 }
 
-// PS2RNA_ExecHndl
+void PS2RNA_ExecHndl(PS2RNA ps2rna)
+{
+    scePrintf("PS2RNA_ExecHndl - UNIMPLEMENTED!\n");
+}
 
+// 100% matching!
 void PS2RNA_ExecServer(void)
 {
-    scePrintf("PS2RNA_ExecServer - UNIMPLEMENTED!\n");
+    PS2RNA ps2rna;
+    Sint32 i;
+
+    SJX_ExecServer();
+    DTR_ExecServer();
+
+    RNACRS_Lock();
+
+    for (i = 0; i < 8; i++) 
+    {
+        ps2rna = &ps2rna_obj[i];
+
+        if (ps2rna->used == TRUE)
+        {
+            PS2RNA_ExecHndl(ps2rna);
+        }
+    }
+
+    RNACRS_Unlock();
 }
 
 // 100% matching!
