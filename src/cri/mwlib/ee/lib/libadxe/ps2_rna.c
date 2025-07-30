@@ -232,7 +232,12 @@ void PS2RNA_Init(void)
 // PS2RNA_IsOverflow
 // PS2RNA_IsPlySwOff
 // ps2rna_rcvcbf
-// ps2rna_release_psj
+
+// 100% matching!
+void ps2rna_release_psj(PS2PSJ ps2psj) 
+{
+    ps2psj->used = FALSE;
+}
 
 // 100% matching!
 void PS2RNA_SetBitPerSmpl(PS2RNA ps2rna, Sint32 bps) 
