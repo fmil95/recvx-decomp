@@ -37,7 +37,10 @@ typedef struct _ps2_rna
     Sint32 pan[2];
     Sint32 unk40;
     Sint32 unk44;
-    Sint32 unk48;
+    Sint8  unk48;
+    Sint8  playsw;
+    Sint8  unk4A;
+    Sint8  unk4B; 
     Sint32 unk4C;
     Sint32 unk50;
 } PS2_RNA_OBJ;
@@ -355,7 +358,21 @@ void PS2RNA_IsOverflow(PS2RNA ps2rna)
     while (TRUE);
 }
 
-// PS2RNA_IsPlySwOff
+// 100% matching!
+Sint32 PS2RNA_IsPlySwOff(PS2RNA ps2rna) 
+{
+    Sint32 ret;
+
+    ret = 0;
+    
+    if (PS2RNA_GetNumData(ps2rna) <= 0) 
+    {
+        ret = ps2rna->playsw == 1;
+    }
+    
+    return ret;
+}
+
 // ps2rna_rcvcbf
 
 // 100% matching!
