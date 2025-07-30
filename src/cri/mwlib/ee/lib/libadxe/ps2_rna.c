@@ -238,9 +238,12 @@ void PS2RNA_SetTransSw(PS2RNA ps2rna, Sint32 sw)
 
 // ps2rna_sndcbf
 
-void PS2RNA_Start(void* ps2rna)
+// 100% matching!
+void PS2RNA_Start(PS2RNA ps2rna) 
 {
-    scePrintf("PS2RNA_Start - UNIMPLEMENTED!\n");
+    printf("PS2RNA_Start: not implemented\n");
+
+    while (TRUE);
 }
 
 // 100% matching!
