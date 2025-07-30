@@ -6,12 +6,12 @@ typedef struct _ps2_psj
     Sint8  unk2;
     Sint8  unk3;
     void*  sjrtm;
-    SJ     sj;
+    SJ     sji;
     void*  sjx;
     SJCK   ck;
 } PS2PSJ_OBJ;
 
-typedef PS2PSJ_OBJ *PS2PSJ;
+typedef PS2PSJ_OBJ *PS2PSJ; 
 
 typedef struct _ps2_rna 
 {
@@ -20,7 +20,7 @@ typedef struct _ps2_rna
     Sint8  unk2;
     Sint8  unk3;
     Sint32 unk4;
-    Sint32 unk8;
+    PS2PSJ ps2psj;
     Sint32 unkC;
     Sint32 unk10;
     Sint32 unk14;
@@ -143,9 +143,9 @@ void ps2rna_finish_psj()
             SJRMT_Destroy(psj->sjrtm);
         }
 
-        if (psj->sj != NULL)
+        if (psj->sji != NULL)
         {
-            SJ_Destroy(psj->sj);
+            SJ_Destroy(psj->sji);
         }
 
         if (psj->sjx != NULL)
@@ -197,9 +197,9 @@ PS2PSJ ps2rna_get_psj()
         return NULL;
     }
 
-    SJ_Reset(psj->sj);
+    SJ_Reset(psj->sji);
     
-    SJ_PutChunk(psj->sj, 0, &psj->ck);
+    SJ_PutChunk(psj->sji, 0, &psj->ck);
     
     SJRMT_Reset(psj->sjrtm);
     
@@ -214,10 +214,11 @@ Sint32 PS2RNA_GetBitPerSmpl(PS2RNA ps2rna)
     return 16;
 }
 
-Sint32 PS2RNA_GetNumData(void* ps2rna)
+// 100% matching! 
+Sint32 PS2RNA_GetNumData(PS2RNA ps2rna)
 {
-    scePrintf("PS2RNA_GetNumData - UNIMPLEMENTED!\n");
-}
+    return (Uint32)(16384 - SJ_GetNumData(ps2rna->ps2psj->sji, 0)) >> 1;
+} 
 
 Sint32 PS2RNA_GetNumRoom(void* ps2rna)
 {
@@ -314,9 +315,9 @@ void ps2rna_init_psj(void)
             while (TRUE);
         }
 
-        psj->sj = SJUNI_Create(1, ps2psj_sjuni_eewk[i], 256);
+        psj->sji = SJUNI_Create(1, ps2psj_sjuni_eewk[i], 256);
 
-        if (psj->sj == NULL) 
+        if (psj->sji == NULL) 
         {
             printf("E0110104: ps2rna_init_psj: can't creat SJUNI_Creaet\n");
             
@@ -329,9 +330,9 @@ void ps2rna_init_psj(void)
         
         wk += 16384;
         
-        SJ_PutChunk(psj->sj, 0, &psj->ck);
+        SJ_PutChunk(psj->sji, 0, &psj->ck);
         
-        psj->sjx = SJX_Create(psj->sj, psj->sjrtm, 1);
+        psj->sjx = SJX_Create(psj->sji, psj->sjrtm, 1);
         
         if (psj->sjx == NULL) 
         {
