@@ -63,7 +63,15 @@ void PS2RNA_Finish(void)
 } 
 
 // ps2rna_finish_psj
-// PS2RNA_Flush
+
+// 100% matching!
+void PS2RNA_Flush(void) 
+{
+    printf("PS2RNA_Flush: not implemented\n");
+
+    while (TRUE);
+}
+
 // ps2rna_get_psj
 
 // 100% matching!
