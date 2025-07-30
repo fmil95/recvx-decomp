@@ -196,7 +196,7 @@ void PS2RNA_SetPcmType(PS2RNA ps2rna, Sint32 type)
     while (TRUE);
 }
 
-void PS2RNA_SetPlaySw(void* ps2rna, Sint32 sw)
+void PS2RNA_SetPlaySw(PS2RNA ps2rna, Sint32 sw)
 {
     scePrintf("PS2RNA_SetPlaySw - UNIMPLEMENTED!\n");
 }
@@ -231,7 +231,7 @@ void PS2RNA_SetTotalNumSmpl(PS2RNA ps2rna, Sint32 nsmpl)
     while (TRUE);
 }
 
-void PS2RNA_SetTransSw(void* ps2rna, Sint32 sw)
+void PS2RNA_SetTransSw(PS2RNA ps2rna, Sint32 sw)
 {
     scePrintf("PS2RNA_SetTransSw - UNIMPLEMENTED!\n");
 }
@@ -243,7 +243,9 @@ void PS2RNA_Start(void* ps2rna)
     scePrintf("PS2RNA_Start - UNIMPLEMENTED!\n");
 }
 
-void PS2RNA_Stop(void* ps2rna)
+// 100% matching!
+void PS2RNA_Stop(PS2RNA ps2rna) 
 {
-    scePrintf("PS2RNA_Stop - UNIMPLEMENTED!\n");
+    PS2RNA_SetTransSw(ps2rna, 0);
+    PS2RNA_SetPlaySw(ps2rna, 0);
 }
