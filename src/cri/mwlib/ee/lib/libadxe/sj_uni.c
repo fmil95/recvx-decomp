@@ -1,6 +1,10 @@
 
 
-// SJUNI_Create
+SJ SJUNI_Create(Sint32 mode, Sint8 *work, Sint32 wksize)
+{
+    scePrintf("SJUNI_Create - UNIMPLEMENTED!\n");
+}
+
 // SJUNI_Destroy
 // SJUNI_EntryErrFunc
 // SJUNI_Error

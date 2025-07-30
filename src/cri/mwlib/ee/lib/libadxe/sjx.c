@@ -1,6 +1,9 @@
 
 
-// SJX_Create
+void* SJX_Create(SJ sj, Sint8 *work, Sint32 wksize)
+{
+    scePrintf("SJX_Create - UNIMPLEMENTED!\n");
+}
 
 void SJX_Destroy(void* sjx)
 {

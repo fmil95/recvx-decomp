@@ -26,4 +26,8 @@ void SJRMT_Reset(void* sjrmt)
 }
 
 // SJRMT_UngetChunk
-// SJUNI_CreateRmt
+
+void* SJUNI_CreateRmt(Sint32 mode, Sint8 *work, Sint32 wksize)
+{
+    scePrintf("SJUNI_CreateRmt - UNIMPLEMENTED!\n");
+}

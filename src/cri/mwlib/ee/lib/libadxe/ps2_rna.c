@@ -37,9 +37,12 @@ typedef PS2_ADXRNA *PS2RNA;
 
 Sint32 ps2rna_init_cnt;
 Sint32 ps2rna_max_voice;
-PS2PSJ_OBJ ps2psj_obj[];
+PS2PSJ_OBJ ps2psj_obj[8];
 Sint8 ps2psj_alloc_flag;
 void* ps2psj_iop_work0;
+Sint32 ps2psj_iop_wksize;
+void* ps2psj_iop_work;
+Sint8 ps2psj_sjuni_eewk[][256];
 
 // 100% matching!
 void PS2RNA_ClearBuf(PS2RNA ps2rna) 
@@ -228,7 +231,85 @@ void PS2RNA_Init(void)
     scePrintf("PS2RNA_Init - UNIMPLEMENTED!\n");
 }
 
-// ps2rna_init_psj
+// 100% matching!
+void ps2rna_init_psj(void) 
+{
+    PS2PSJ psj;
+    Sint8* wk;
+    Sint32 i;
+
+    if (ps2psj_iop_work0 == NULL) 
+    {
+        ps2psj_iop_work0 = sceSifAllocIopHeap(ps2psj_iop_wksize + 64);
+        
+        ps2psj_iop_work = (void*)(((Sint32)ps2psj_iop_work0 + 64) & 0xFFFFFFC0);
+        
+        ps2psj_alloc_flag = 1;
+    }
+
+    memset(ps2psj_obj, 0, sizeof(ps2psj_obj));
+    
+    wk = ps2psj_iop_work;
+
+    for (i = 0; i < ps2rna_max_voice; i++) 
+    {
+        psj = &ps2psj_obj[i];
+        
+        psj->used = FALSE;
+
+        if (((Sint32)wk & 0x3F))
+        {
+            printf("E0110101: ps2rna_init_psj wk size error\n");
+            
+            while (TRUE);
+        }
+
+        psj->sjrtm = SJUNI_CreateRmt(1, wk, 256);
+
+        if (psj->sjrtm == NULL) 
+        {
+            printf("E0110102: ps2rna_init_psj: can't creat SJUNI_CreaetRmt\n");
+            
+            while (TRUE);
+        }
+
+        wk += 256;
+        
+        if (((Sint32)wk & 0x3F)) 
+        {
+            printf("E0110103: ps2rna_init_psj: wk size error\n");
+            
+            while (TRUE);
+        }
+
+        psj->sj = SJUNI_Create(1, ps2psj_sjuni_eewk[i], 256);
+
+        if (psj->sj == NULL) 
+        {
+            printf("E0110104: ps2rna_init_psj: can't creat SJUNI_Creaet\n");
+            
+            while (TRUE);
+        }
+
+        psj->ck.len = 16384;
+        
+        psj->ck.data = wk;
+        
+        wk += 16384;
+        
+        SJ_PutChunk(psj->sj, 0, &psj->ck);
+        
+        psj->sjx = SJX_Create(psj->sj, psj->sjrtm, 1);
+        
+        if (psj->sjx == NULL) 
+        {
+            printf("E0110105: ps2rna_init_psj: can't creat SJX_Create\n");
+            
+            while (TRUE);
+        }
+    }
+} 
+
 // PS2RNA_IsOverflow
 // PS2RNA_IsPlySwOff
 // ps2rna_rcvcbf
