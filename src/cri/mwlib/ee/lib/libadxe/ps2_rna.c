@@ -31,7 +31,13 @@ void PS2RNA_ClearBuf(PS2RNA ps2rna)
     while (TRUE);
 }
 
-// PS2RNA_ClearOverflow
+// 100% matching!
+void PS2RNA_ClearOverflow(PS2RNA ps2rna) 
+{
+    printf("PS2RNA_ClearOverflow: not implemented\n");
+    
+    while (TRUE);
+}
 
 void* PS2RNA_Create(SJ* sjo, Sint32 maxnch)
 {
