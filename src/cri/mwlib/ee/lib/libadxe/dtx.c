@@ -1,6 +1,6 @@
 
 
-void DTX_CallUrpc(Sint32 arg0, void* arg1, Sint32 arg2, Sint32 arg3, Sint32 arg4)
+void* DTX_CallUrpc(Sint32 arg0, void* sjrtm, Sint32 arg2, void* arg3, Sint32 arg4)
 {
     scePrintf("DTX_CallUrpc - UNIMPLEMENTED!\n");
 }

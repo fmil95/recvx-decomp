@@ -1,6 +1,9 @@
 
 
-// DTR_Create
+void* DTR_Create(SJ sjo, SJ sji)
+{
+    scePrintf("DTR_Create - UNIMPLEMENTED!\n");
+}
 
 void DTR_Destroy(void* dtr)
 {

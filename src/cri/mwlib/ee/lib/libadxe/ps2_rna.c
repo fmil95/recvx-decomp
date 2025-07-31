@@ -22,33 +22,31 @@ typedef struct _ps2_rna
     Sint32 maxnch;
     PS2PSJ ps2psj[2];
     void*  dtr[2];
-    Sint32 unk18;
-    Sint32 unk1C;
-    Sint32 unk20;
+    SJ     sjo[2];
+    void*  urpc;
     Sint8  playsw;
     Sint8  unk25;
     Sint8  nch;
-    Sint8  unk27;
+    Sint8  nch2;
     Sint32 sfreq;
     Sint32 unk2C;
     Sint32 vol;
     Sint32 unk34;
     Sint32 pan[2];
-    Sint32 unk40;
-    Sint32 unk44;
+    Sint32 pan2[2];
     Sint8  unk48;
     Sint8  plysw;
     Sint8  unk4A;
     Sint8  unk4B; 
     Sint32 unk4C;
-    Sint32 unk50;
-} PS2_RNA_OBJ;
+    Sint32 datano;
+} PS2RNA_OBJ;
 
-typedef PS2_RNA_OBJ *PS2RNA;
+typedef PS2RNA_OBJ *PS2RNA;
 
 Sint32 ps2rna_init_cnt;
 Sint32 ps2rna_max_voice;
-PS2_RNA_OBJ ps2rna_obj[8];
+PS2RNA_OBJ ps2rna_obj[8];
 PS2PSJ_OBJ ps2psj_obj[8];
 Sint8 ps2psj_alloc_flag;
 void* ps2psj_iop_work0;
@@ -56,6 +54,7 @@ Sint32 ps2psj_iop_wksize;
 void* ps2psj_iop_work;
 Sint8 ps2psj_sjuni_eewk[][256];
 
+PS2PSJ ps2rna_get_psj();
 void ps2rna_release_psj(PS2PSJ ps2psj);
 
 // 100% matching!
@@ -74,16 +73,101 @@ void PS2RNA_ClearOverflow(PS2RNA ps2rna)
     while (TRUE);
 }
 
-void* PS2RNA_Create(SJ* sjo, Sint32 maxnch)
+// 100% matching!
+PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
 {
-    scePrintf("PS2RNA_Create - UNIMPLEMENTED!\n");
+    PS2RNA ps2rna;
+    Sint32 i;
+    Sint32 sjrtm[4]; 
+    void*  unk; 
+
+    for (i = 0; i < 8; i++)
+    {
+        ps2rna = &ps2rna_obj[i];
+
+        if (ps2rna->used == FALSE) 
+        {
+            break;
+        }
+    }
+
+    if (i == 8) 
+    {
+        return NULL;
+    }
+    
+    memset(ps2rna, 0, sizeof(PS2RNA_OBJ));
+    
+    ps2rna->maxnch = maxnch;
+    
+    for (i = 0; i < maxnch; i++) 
+    {
+        ps2rna->ps2psj[i] = ps2rna_get_psj();
+    }
+
+    sjrtm[0] = maxnch;
+    
+    sjrtm[1] = 0;
+
+    for (i = 0; i < maxnch; i++) 
+    {
+        sjrtm[2 + i] = (Sint32)ps2rna->ps2psj[i]->sjrtm;
+    }
+     
+    ps2rna->urpc = DTX_CallUrpc(8, sjrtm, 4, &unk, 1);
+
+    if (ps2rna->urpc == NULL)
+    {
+        printf("E0100401: can't create PS2RNA of IOP\n");
+        
+        return NULL;
+    }
+    
+    for (i = 0; i < maxnch; i++)
+    {
+        ps2rna->dtr[i] = DTR_Create(sjo[i], ps2rna->ps2psj[i]->sji);
+    }
+
+    for (i = 0; i < maxnch; i++)
+    {
+        ps2rna->sjo[i] = sjo[i];
+    } 
+    
+    ps2rna->playsw = 0;
+    
+    ps2rna->unk25 = 0;
+    
+    ps2rna->nch = maxnch;
+    ps2rna->nch2 = maxnch; 
+    
+    ps2rna->vol = 0;
+    
+    ps2rna->unk34 = 0;
+
+    for (i = 0; i < maxnch; i++)
+    {
+        ps2rna->pan[i] = 0;
+        ps2rna->pan2[i] = 0;
+    }
+
+    ps2rna->unk48 = 0;
+    
+    ps2rna->plysw = 1;
+    
+    ps2rna->unk4C = 0;
+    
+    ps2rna->datano = SJ_GetNumData(sjo[0], 1) + SJ_GetNumData(sjo[0], 0);
+    
+    ps2rna->used = TRUE;
+    
+    return ps2rna;
 }
 
 // 100% matching!
 void PS2RNA_Destroy(PS2RNA ps2rna)
 {
     Sint32 ch;
-    Sint32 unk[1];
+    Sint32 sjrtm[1];  
 
     for (ch = 0; ch < ps2rna->maxnch; ch++)
     {
@@ -93,10 +177,10 @@ void PS2RNA_Destroy(PS2RNA ps2rna)
         }
     }
     
-    unk[0] = ps2rna->unk20;
+    sjrtm[0] = (Sint32)ps2rna->urpc;  
     
-    DTX_CallUrpc(9, unk, 1, 0, 0);
-
+    DTX_CallUrpc(9, &sjrtm, 1, 0, 0);
+ 
     for (ch = 0; ch < ps2rna->maxnch; ch++) 
     {
         if (ps2rna->ps2psj[ch] != NULL) 
