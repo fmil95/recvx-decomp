@@ -467,9 +467,24 @@ void PS2RNA_SetPcmType(PS2RNA ps2rna, Sint32 type)
     while (TRUE);
 }
 
+// 100% matching!
 void PS2RNA_SetPlaySw(PS2RNA ps2rna, Sint32 sw)
 {
-    scePrintf("PS2RNA_SetPlaySw - UNIMPLEMENTED!\n");
+    Sint32 ch;
+
+    ps2rna->playsw = sw;
+    
+    if (sw == 0) 
+    {
+        for (ch = 0; ch < ps2rna->maxnch; ch++) 
+        {
+            SJ_Reset(ps2rna->ps2psj[ch]->sji);
+            
+            SJ_PutChunk(ps2rna->ps2psj[ch]->sji, 0, &ps2rna->ps2psj[ch]->ck);
+            
+            SJRMT_Reset(ps2rna->ps2psj[ch]->sjrtm); 
+        }
+    }
 }
 
 // 100% matching!
