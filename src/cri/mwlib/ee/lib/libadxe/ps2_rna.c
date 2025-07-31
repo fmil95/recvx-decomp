@@ -356,7 +356,12 @@ Sint32 PS2RNA_GetSfreq(PS2RNA ps2rna)
     return ps2rna->sfreq;
 }
 
-// PS2RNA_GetSjiop
+// 100% matching!
+void* PS2RNA_GetSjiop(PS2RNA ps2rna, Sint32 ch) 
+{
+    return ps2rna->ps2psj[ch]->sjrtm; 
+}
+
 // PS2RNA_GetSjtmp
 
 // 100% matching!
