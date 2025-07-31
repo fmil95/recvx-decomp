@@ -1,6 +1,10 @@
 
 
-// DTX_CallUrpc
+void DTX_CallUrpc(Sint32 arg0, void* arg1, Sint32 arg2, Sint32 arg3, Sint32 arg4)
+{
+    scePrintf("DTX_CallUrpc - UNIMPLEMENTED!\n");
+}
+
 // DTX_Close
 // DTX_Create
 // dtx_create_rmt

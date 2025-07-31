@@ -19,15 +19,14 @@ typedef struct _ps2_rna
     Sint8  unk1;
     Sint8  unk2;
     Sint8  unk3;
-    Sint32 unk4;
-    PS2PSJ ps2psj;
-    Sint32 unkC;
-    Sint32 unk10;
-    Sint32 unk14;
+    Sint32 maxnch;
+    PS2PSJ ps2psj[2];
+    void*  dtr[2];
     Sint32 unk18;
     Sint32 unk1C;
     Sint32 unk20;
-    Sint16 unk24;
+    Sint8  playsw;
+    Sint8  unk25;
     Sint8  nch;
     Sint8  unk27;
     Sint32 sfreq;
@@ -38,7 +37,7 @@ typedef struct _ps2_rna
     Sint32 unk40;
     Sint32 unk44;
     Sint8  unk48;
-    Sint8  playsw;
+    Sint8  plysw;
     Sint8  unk4A;
     Sint8  unk4B; 
     Sint32 unk4C;
@@ -56,6 +55,8 @@ void* ps2psj_iop_work0;
 Sint32 ps2psj_iop_wksize;
 void* ps2psj_iop_work;
 Sint8 ps2psj_sjuni_eewk[][256];
+
+void ps2rna_release_psj(PS2PSJ ps2psj);
 
 // 100% matching!
 void PS2RNA_ClearBuf(PS2RNA ps2rna) 
@@ -78,9 +79,33 @@ void* PS2RNA_Create(SJ* sjo, Sint32 maxnch)
     scePrintf("PS2RNA_Create - UNIMPLEMENTED!\n");
 }
 
-void PS2RNA_Destroy(void* ps2rna)
+// 100% matching!
+void PS2RNA_Destroy(PS2RNA ps2rna)
 {
-    scePrintf("PS2RNA_Destroy - UNIMPLEMENTED!\n");
+    Sint32 ch;
+    Sint32 unk[1];
+
+    for (ch = 0; ch < ps2rna->maxnch; ch++)
+    {
+        if (ps2rna->dtr[ch] != NULL) 
+        {
+            DTR_Destroy(ps2rna->dtr[ch]);
+        }
+    }
+    
+    unk[0] = ps2rna->unk20;
+    
+    DTX_CallUrpc(9, unk, 1, 0, 0);
+
+    for (ch = 0; ch < ps2rna->maxnch; ch++) 
+    {
+        if (ps2rna->ps2psj[ch] != NULL) 
+        {
+            ps2rna_release_psj(ps2rna->ps2psj[ch]);
+        }
+    }
+    
+    ps2rna->used = FALSE;
 }
 
 // 100% matching!
@@ -220,13 +245,13 @@ Sint32 PS2RNA_GetBitPerSmpl(PS2RNA ps2rna)
 // 100% matching! 
 Sint32 PS2RNA_GetNumData(PS2RNA ps2rna)
 {
-    return (Uint32)(16384 - SJ_GetNumData(ps2rna->ps2psj->sji, 0)) >> 1;
-} 
+    return (Uint32)(16384 - SJ_GetNumData(ps2rna->ps2psj[0]->sji, 0)) >> 1;
+}
 
 // 100% matching! 
 Sint32 PS2RNA_GetNumRoom(PS2RNA ps2rna)
 {
-    return (Uint32)SJ_GetNumData(ps2rna->ps2psj->sji, 0) >> 1;
+    return (Uint32)SJ_GetNumData(ps2rna->ps2psj[0]->sji, 0) >> 1;
 } 
 
 // 100% matching!

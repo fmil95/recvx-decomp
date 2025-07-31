@@ -1,7 +1,12 @@
 
 
 // DTR_Create
-// DTR_Destroy
+
+void DTR_Destroy(void* dtr)
+{
+    scePrintf("DTR_Destroy - UNIMPLEMENTED!\n");
+}
+
 // DTR_ExecHndl
 
 void DTR_ExecServer(void)
