@@ -45,7 +45,19 @@ void* DTX_Create(Sint32 maxnch, void* eewk, void* iopwk, Sint32 wklen)
     scePrintf("DTX_Create - UNIMPLEMENTED!\n");
 }
 
-// dtx_create_rmt
+// 100% matching!
+Sint32 dtx_create_rmt(Sint32 id, void* eewk, void* iopwk, Sint32 wklen)
+{
+    dtx_sbuf[0] = id;
+    dtx_sbuf[1] = (Sint32)eewk;
+    dtx_sbuf[2] = (Sint32)iopwk;
+    dtx_sbuf[3] = wklen;
+    
+    sceSifCallRpc(&dtx_cd, 2, 0, dtx_sbuf, 4 * sizeof(u_int), dtx_rbuf, sizeof(u_int), NULL, NULL);
+    
+    return dtx_rbuf[0];
+}
+
 // dtx_def_rcvcbf
 // dtx_def_sndcbf
 // DTX_Destroy
