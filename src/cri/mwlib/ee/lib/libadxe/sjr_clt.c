@@ -16,7 +16,12 @@ void SJRMT_Finish(void)
 // SJRMT_GetChunk
 // SJRMT_GetNumData
 // SJRMT_GetUuid
-// SJRMT_Init
+
+void SJRMT_Init(void)
+{
+    scePrintf("SJRMT_Init - UNIMPLEMENTED!\n");
+}
+
 // SJRMT_IsGetChunk
 // SJRMT_PutChunk
 

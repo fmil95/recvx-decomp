@@ -52,10 +52,19 @@ Sint8 ps2psj_alloc_flag;
 void* ps2psj_iop_work0;
 Sint32 ps2psj_iop_wksize;
 void* ps2psj_iop_work;
-Sint8 ps2psj_sjuni_eewk[][256];
+Sint8 ps2psj_sjuni_eewk[32][256];
+void* ps2rna_dtx;
+void* ps2rna_eewk;
+void* ps2rna_iopwk;
+Sint32 ps2rna_wklen;
+Char8* volatile ps2rna_build;
+Sint32 ps2rna_ee_work[2256];
 
 PS2PSJ ps2rna_get_psj();
 void ps2rna_release_psj(PS2PSJ ps2psj);
+void ps2rna_rcvcbf(void);
+void ps2rna_sndcbf(void);  
+void ps2rna_init_psj(void);
 
 // 100% matching!
 void PS2RNA_ClearBuf(PS2RNA ps2rna) 
@@ -179,7 +188,7 @@ void PS2RNA_Destroy(PS2RNA ps2rna)
     
     sjrtm[0] = (Sint32)ps2rna->urpc;  
     
-    DTX_CallUrpc(9, &sjrtm, 1, 0, 0);
+    DTX_CallUrpc(9, sjrtm, 1, 0, 0);
  
     for (ch = 0; ch < ps2rna->maxnch; ch++) 
     {
@@ -241,7 +250,7 @@ void PS2RNA_Finish(void)
 } 
 
 // 100% matching!
-void ps2rna_finish_psj()
+void ps2rna_finish_psj(void)
 {
     PS2PSJ psj;
     Sint32 i;
@@ -287,7 +296,7 @@ void PS2RNA_Flush(void)
 }
 
 // 100% matching!
-PS2PSJ ps2rna_get_psj()
+PS2PSJ ps2rna_get_psj(void)
 {
     PS2PSJ psj;
     Sint32 i;
@@ -384,9 +393,50 @@ void PS2RNA_GetTime(PS2RNA ps2rna, Sint32 *ncount, Sint32 *tscale)
     *tscale = 48000;
 }
 
+// 100% matching!
 void PS2RNA_Init(void)
 {
-    scePrintf("PS2RNA_Init - UNIMPLEMENTED!\n");
+    ps2rna_build;
+    
+    if (ps2rna_init_cnt == 0) 
+    {
+        SJRMT_Init();
+        SJX_Init();
+        DTX_Init();
+        ps2rna_init_psj();
+        
+        ps2rna_wklen = 2176;
+        
+        ps2rna_eewk = (void*)(((Sint32)ps2rna_ee_work + 64) & 0xFFFFFFC0);
+        
+        if (ps2rna_iopwk == NULL) 
+        {
+            ps2rna_iopwk = sceSifAllocIopHeap(2256);
+            
+            if (ps2rna_iopwk == NULL) 
+            {
+                printf("E0100301: PS2RNA_Init can't allocate IOP Heap\n");
+                
+                while (TRUE);
+            }
+        }
+        
+        ps2rna_iopwk = (void*)(((Sint32)ps2rna_iopwk + 64) & 0xFFFFFFC0); 
+        
+        ps2rna_dtx = DTX_Create(1, ps2rna_eewk, ps2rna_iopwk, ps2rna_wklen);
+        
+        if (ps2rna_dtx == NULL) 
+        {
+            printf("E0100302: PS2RNA_Init can't create DTX\n");
+            
+            while (TRUE); 
+        } 
+        
+        DTX_SetRcvCbf(ps2rna_dtx, ps2rna_rcvcbf, 0);
+        DTX_SetSndCbf(ps2rna_dtx, ps2rna_sndcbf, 0);
+    }
+    
+    ps2rna_init_cnt++;
 }
 
 // 100% matching!
@@ -491,7 +541,10 @@ Sint32 PS2RNA_IsPlySwOff(PS2RNA ps2rna)
     return ret;
 }
 
-// ps2rna_rcvcbf
+void ps2rna_rcvcbf(void)
+{
+    scePrintf("ps2rna_rcvcbf - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void ps2rna_release_psj(PS2PSJ ps2psj) 
@@ -615,7 +668,10 @@ void PS2RNA_SetTransSw(PS2RNA ps2rna, Sint32 sw)
     scePrintf("PS2RNA_SetTransSw - UNIMPLEMENTED!\n");
 }
 
-// ps2rna_sndcbf
+void ps2rna_sndcbf(void)
+{
+    scePrintf("ps2rna_sndcbf - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void PS2RNA_Start(PS2RNA ps2rna) 

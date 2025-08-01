@@ -20,7 +20,11 @@ void SJX_Finish(void)
     scePrintf("SJX_Finish - UNIMPLEMENTED!\n");
 }
 
-// SJX_Init
+void SJX_Init(void)
+{
+    scePrintf("SJX_Init - UNIMPLEMENTED!\n");
+}
+
 // sjx_rcvcbf
 // SJX_Reset
 // sjx_sndcbf
