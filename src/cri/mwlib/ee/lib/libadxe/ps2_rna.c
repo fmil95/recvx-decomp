@@ -62,7 +62,7 @@ Sint32 ps2rna_ee_work[2256];
 
 PS2PSJ ps2rna_get_psj();
 void ps2rna_release_psj(PS2PSJ ps2psj);
-void ps2rna_rcvcbf(void);
+void ps2rna_rcvcbf(void* unused, Sint32* buf);
 void ps2rna_sndcbf(void);  
 void ps2rna_init_psj(void);
 
@@ -541,9 +541,20 @@ Sint32 PS2RNA_IsPlySwOff(PS2RNA ps2rna)
     return ret;
 }
 
-void ps2rna_rcvcbf(void)
+// 100% matching!
+void ps2rna_rcvcbf(void* unused, Sint32* buf) 
 {
-    scePrintf("ps2rna_rcvcbf - UNIMPLEMENTED!\n");
+    Sint32 i;
+
+    if (buf == NULL) 
+    {
+        while (TRUE);
+    }
+
+    for (i = 0; i < buf[0]; i++) 
+    {
+        
+    }
 }
 
 // 100% matching!
