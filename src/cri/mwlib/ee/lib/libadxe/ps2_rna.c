@@ -34,7 +34,7 @@ typedef struct _ps2_rna
     Sint32 unk34;
     Sint32 pan[2];
     Sint32 pan2[2];
-    Sint8  unk48;
+    Sint8  transsw;
     Sint8  plysw;
     Sint8  unk4A;
     Sint8  unk4B; 
@@ -159,7 +159,7 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
         ps2rna->pan2[i] = 0;
     }
 
-    ps2rna->unk48 = 0;
+    ps2rna->transsw = 0;
     
     ps2rna->plysw = 1;
     
@@ -674,9 +674,34 @@ void PS2RNA_SetTotalNumSmpl(PS2RNA ps2rna, Sint32 nsmpl)
     while (TRUE);
 }
 
+// 100% matching!
 void PS2RNA_SetTransSw(PS2RNA ps2rna, Sint32 sw)
 {
-    scePrintf("PS2RNA_SetTransSw - UNIMPLEMENTED!\n");
+    Sint32 i;
+
+    if (ps2rna->transsw == sw)
+    {
+        return;
+    }
+    
+    ps2rna->transsw = sw;
+    
+    if (sw != 1)
+    {
+        return;
+    }
+    
+    if (ps2rna->plysw == sw)
+    {
+        for (i = 0; i < ps2rna->maxnch; i++) 
+        {
+            DTR_Start(ps2rna->dtr[i]);
+        }
+
+        ps2rna->plysw = 0;
+    }
+
+    ps2rna->unk4C = 0;
 }
 
 void ps2rna_sndcbf(void)

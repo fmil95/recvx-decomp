@@ -19,5 +19,10 @@ void DTR_ExecServer(void)
 
 // DTR_Finish
 // DTR_Init
-// DTR_Start
+
+void DTR_Start(void* dtr)
+{
+    scePrintf("DTR_Start - UNIMPLEMENTED!\n");
+}
+
 // DTR_Stop
