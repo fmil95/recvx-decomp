@@ -46,19 +46,19 @@ typedef PS2RNA_OBJ *PS2RNA;
 
 Sint32 ps2rna_init_cnt;
 Sint32 ps2rna_max_voice;
-PS2RNA_OBJ ps2rna_obj[8];
-PS2PSJ_OBJ ps2psj_obj[8];
+PS2RNA_OBJ ps2rna_obj[8] = { 0 };
+PS2PSJ_OBJ ps2psj_obj[8] = { 0 };
 Sint8 ps2psj_alloc_flag;
 void* ps2psj_iop_work0;
 Sint32 ps2psj_iop_wksize;
 void* ps2psj_iop_work;
-Sint8 ps2psj_sjuni_eewk[32][256];
+Sint8 ps2psj_sjuni_eewk[8][256] = { 0 };
 void* ps2rna_dtx;
 void* ps2rna_eewk;
 void* ps2rna_iopwk;
 Sint32 ps2rna_wklen;
-Char8* volatile ps2rna_build;
-Sint32 ps2rna_ee_work[2256];
+Char8* volatile ps2rna_build = "\nPS2RNA Ver 0.98 Build:Jan 26 2001 09:57:43\n";
+Sint32 ps2rna_ee_work[2256] = { 0 };
 
 PS2PSJ ps2rna_get_psj();
 void ps2rna_release_psj(PS2PSJ ps2psj);
