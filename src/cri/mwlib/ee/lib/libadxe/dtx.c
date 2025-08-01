@@ -23,6 +23,9 @@ static sceSifClientData dtx_cd;
 static u_int dtx_rbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 static u_int dtx_sbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 
+Sint32 dtx_init_cnt;
+Sint32 dtx_rpc_id;
+
 void* DTX_CallUrpc(Sint32 arg0, void* sjrtm, Sint32 arg2, void* arg3, Sint32 arg4)
 {
     scePrintf("DTX_CallUrpc - UNIMPLEMENTED!\n");
@@ -46,7 +49,7 @@ void* DTX_Create(Sint32 maxnch, void* eewk, void* iopwk, Sint32 wklen)
 }
 
 // 100% matching!
-Sint32 dtx_create_rmt(Sint32 id, void* eewk, void* iopwk, Sint32 wklen)
+Sint32 dtx_create_rmt(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
 {
     dtx_sbuf[0] = id;
     dtx_sbuf[1] = (Sint32)eewk;
@@ -78,9 +81,32 @@ void DTX_Finish(void)
     scePrintf("DTX_Finish - UNIMPLEMENTED!\n");
 }
 
-void DTX_Init(void)
+// 99.76% matching
+void DTX_Init(void) 
 {
-    scePrintf("DTX_Init - UNIMPLEMENTED!\n");
+    Sint32 i;
+
+    if (dtx_init_cnt == 0)
+    {
+        while (TRUE) 
+        {
+            if (sceSifBindRpc(&dtx_cd, dtx_rpc_id, 0) < 0) 
+            {
+                printf("E0092101: DTX_Init bind errr\n");
+                
+                while (TRUE);
+            }
+    
+            if (dtx_cd.serve != NULL) 
+            {
+                break;
+            }
+
+            for (i = 65536; i != -1; i--);
+        }
+    }
+
+    dtx_init_cnt++;
 }
 
 // DTX_Open
