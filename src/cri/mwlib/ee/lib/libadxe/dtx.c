@@ -1,4 +1,6 @@
 
+#define SSIZE 0x20
+
 typedef struct _dtx 
 {
     Sint32 unk0;
@@ -16,6 +18,10 @@ typedef struct _dtx
 } DTX_OBJ;
 
 typedef DTX_OBJ *DTX;
+
+static sceSifClientData dtx_cd;
+static u_int dtx_rbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
+static u_int dtx_sbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 
 void* DTX_CallUrpc(Sint32 arg0, void* sjrtm, Sint32 arg2, void* arg3, Sint32 arg4)
 {
@@ -43,7 +49,15 @@ void* DTX_Create(Sint32 maxnch, void* eewk, void* iopwk, Sint32 wklen)
 // dtx_def_rcvcbf
 // dtx_def_sndcbf
 // DTX_Destroy
-// dtx_destroy_rmt
+
+// 100% matching!
+void dtx_destroy_rmt(Sint32 no) 
+{
+    dtx_sbuf[0] = no;
+    
+    sceSifCallRpc(&dtx_cd, 3, 0, dtx_sbuf, sizeof(u_int), dtx_rbuf, 0, NULL, NULL);
+}
+
 // DTX_ExecHndl
 // DTX_ExecServer
 
