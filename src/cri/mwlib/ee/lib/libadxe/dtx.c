@@ -36,7 +36,7 @@ Sint32 dtx_init_cnt;
 Sint32 dtx_rpc_id;
 
 void dtx_def_rcvcbf(DTX dtx, void* cbf, Sint32 bfsize);
-void dtx_def_sndcbf(void);
+void dtx_def_sndcbf(DTX dtx, void* cbf, Sint32 bfsize);
 void dtx_destroy_rmt(Uint32 id);
 
 // 100% matching!
@@ -163,14 +163,25 @@ Sint32 dtx_create_rmt(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
 // 100% matching!
 void dtx_def_rcvcbf(DTX dtx, void* cbf, Sint32 bfsize) 
 {
-    static Sint32 cnt;
+    static Sint32 cnt = 0;
     
     cnt++;
 }
 
-void dtx_def_sndcbf(void)
+// 100% matching!
+void dtx_def_sndcbf(DTX dtx, void* cbf, Sint32 bfsize)
 {
-    scePrintf("dtx_def_sndcbf - UNIMPLEMENTED!\n");
+    static Sint32 cnt = 0;
+    Sint32 i;
+
+    for (i = 0; i < bfsize; i++) 
+    {
+        ((Sint8*)cbf)[i] = -86;
+    }
+    
+    sprintf(cbf, "Hello from EE (%d)", cnt);
+    
+    cnt++; 
 }
 
 // 100% matching!
