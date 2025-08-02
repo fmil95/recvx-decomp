@@ -3,18 +3,26 @@
 
 typedef struct _dtx 
 {
-    Sint32 unk0;
-    Sint32 unk4;
+    Sint8  used;
+    Sint8  unk1;
+    Sint8  unk2;
+    Sint8  unk3;
+    Sint32 rmt;
     Sint32 unk8;
-    Sint32 unkC;
-    Sint32 unk10;
+    void*  eewk;
+    Sint32 eewkln;
     Sint32 unk14;
-    Sint32 unk18;
-    Sint32 unk1C;
-    Sint32 unk20;
+    void*  iopwk;
+    Sint32 wklen;
+    void*  rcvcbf;
     Sint32 unk24;
-    Sint32 unk28;
+    void*  sndcbf;
     Sint32 unk2C;
+    Sint32 unk30;
+    Sint32 unk34;
+    Sint32 unk38;
+    Sint32 unk3C;
+    Sint32 unk40;
 } DTX_OBJ;
 
 typedef DTX_OBJ *DTX;
@@ -23,8 +31,12 @@ static sceSifClientData dtx_cd;
 static u_int dtx_rbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 static u_int dtx_sbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 
+DTX_OBJ dtx_clnt[8];
 Sint32 dtx_init_cnt;
 Sint32 dtx_rpc_id;
+
+void dtx_def_rcvcbf(void);
+void dtx_def_sndcbf(void);
 
 void* DTX_CallUrpc(Sint32 arg0, void* sjrtm, Sint32 arg2, void* arg3, Sint32 arg4)
 {
@@ -34,18 +46,90 @@ void* DTX_CallUrpc(Sint32 arg0, void* sjrtm, Sint32 arg2, void* arg3, Sint32 arg
 // 100% matching!
 void DTX_Close(DTX dtx) 
 {
-    dtx->unk20 = 0;
-    
+    dtx->rcvcbf = NULL;
     dtx->unk24 = 0;
     
-    dtx->unk28 = 0;
-    
+    dtx->sndcbf = NULL;
     dtx->unk2C = 0;
 }
 
-void* DTX_Create(Sint32 maxnch, void* eewk, void* iopwk, Sint32 wklen)
+// 100% matching!
+DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
 {
-    scePrintf("DTX_Create - UNIMPLEMENTED!\n");
+    DTX dtx;
+
+    if (((Sint32)eewk & 0x3F)) 
+    {
+        printf("eewk is not alignment 64 byte\n");
+        
+        return NULL;
+    }
+
+    if (((Sint32)iopwk & 0x1F))
+    {
+        printf("iopwk is not alignment 32 byte\n");
+        
+        return NULL;
+    }
+
+    if ((wklen & 0x3F))
+    {
+        printf("wklen=%d is not 64*N\n", wklen);
+        
+        return NULL;
+    }
+
+    if (id >= 8) 
+    {
+        printf("illeagal ID (%d) \n", id);
+        
+        return NULL;
+    }
+
+    dtx = &dtx_clnt[id];
+
+    if (dtx->used != FALSE)
+    {
+        return NULL;
+    }
+
+    dtx->rmt = dtx_create_rmt(id, eewk, iopwk, wklen);
+
+    if (dtx->rmt == 0) 
+    {
+        printf("DTX_Create: can't create DTX of server\n");
+        
+        return NULL;
+    }
+
+    dtx->unk8 = 0;
+    
+    dtx->eewkln = wklen - 64;
+    dtx->wklen = wklen;
+    
+    dtx->iopwk = iopwk;
+    
+    dtx->unk14 = ((Sint32)eewk + dtx->eewkln) | UNCBASE;
+    
+    dtx->eewk = eewk;
+    
+    dtx->unk1 = 0;
+    
+    memset(eewk, 0, dtx->eewkln);
+    
+    SyncDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63));
+    InvalidDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63));
+    
+    dtx->rcvcbf = dtx_def_rcvcbf;
+    dtx->sndcbf = dtx_def_sndcbf;
+    
+    dtx->unk24 = 0;
+    
+    dtx->unk2C = 0;
+    
+    dtx->used = TRUE;
+
+    return dtx;
 }
 
 // 100% matching!
@@ -61,8 +145,16 @@ Sint32 dtx_create_rmt(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
     return dtx_rbuf[0];
 }
 
-// dtx_def_rcvcbf
-// dtx_def_sndcbf
+void dtx_def_rcvcbf(void)
+{
+    scePrintf("dtx_def_rcvcbf - UNIMPLEMENTED!\n");
+}
+
+void dtx_def_sndcbf(void)
+{
+    scePrintf("dtx_def_sndcbf - UNIMPLEMENTED!\n");
+}
+
 // DTX_Destroy
 
 // 100% matching!
