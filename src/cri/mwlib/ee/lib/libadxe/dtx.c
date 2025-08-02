@@ -13,7 +13,7 @@ typedef struct _dtx
     Sint32 eewkln;
     Sint32 unk14;
     void*  iopwk;
-    Sint32 wklen;
+    Sint32 iopwkln;
     void*  rcvcbf;
     Sint32 rcvbfsz;
     void*  sndcbf;
@@ -37,6 +37,7 @@ Sint32 dtx_rpc_id;
 
 void dtx_def_rcvcbf(void);
 void dtx_def_sndcbf(void);
+void dtx_destroy_rmt(Uint32 id);
 
 // 100% matching!
 Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32 rsize)
@@ -120,7 +121,7 @@ DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
     dtx->unk8 = 0;
     
     dtx->eewkln = wklen - 64;
-    dtx->wklen = wklen;
+    dtx->iopwkln = wklen;
     
     dtx->iopwk = iopwk;
     
@@ -169,15 +170,18 @@ void dtx_def_sndcbf(void)
     scePrintf("dtx_def_sndcbf - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void DTX_Destroy(DTX dtx)
 {
-    scePrintf("DTX_Destroy - UNIMPLEMENTED!\n");
+    dtx_destroy_rmt(dtx->rmt);
+    
+    memset(dtx, 0, sizeof(DTX_OBJ)); 
 }
 
 // 100% matching!
-void dtx_destroy_rmt(Sint32 no) 
+void dtx_destroy_rmt(Uint32 id) 
 {
-    dtx_sbuf[0] = no;
+    dtx_sbuf[0] = id;
     
     sceSifCallRpc(&dtx_cd, 3, 0, dtx_sbuf, sizeof(u_int), dtx_rbuf, 0, NULL, NULL);
 }
