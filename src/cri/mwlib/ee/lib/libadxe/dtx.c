@@ -35,7 +35,7 @@ DTX_OBJ dtx_clnt[8] = { 0 };
 Sint32 dtx_init_cnt;
 Sint32 dtx_rpc_id;
 
-void dtx_def_rcvcbf(void);
+void dtx_def_rcvcbf(DTX dtx, void* cbf, Sint32 bfsize);
 void dtx_def_sndcbf(void);
 void dtx_destroy_rmt(Uint32 id);
 
@@ -160,9 +160,12 @@ Sint32 dtx_create_rmt(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
     return dtx_rbuf[0];
 }
 
-void dtx_def_rcvcbf(void)
+// 100% matching!
+void dtx_def_rcvcbf(DTX dtx, void* cbf, Sint32 bfsize) 
 {
-    scePrintf("dtx_def_rcvcbf - UNIMPLEMENTED!\n");
+    static Sint32 cnt;
+    
+    cnt++;
 }
 
 void dtx_def_sndcbf(void)
