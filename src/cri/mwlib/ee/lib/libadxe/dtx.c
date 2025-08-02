@@ -1,28 +1,28 @@
 
 #define SSIZE 0x20
 
+typedef void (*RCVCBF)(Sint32 bfsize, void* eewk, Sint32 eewkln);
+typedef void (*SNDCBF)(Sint32 bfsize, void* eewk, Sint32 eewkln);
+
 typedef struct _dtx 
 {
-    Sint8  used;
-    Sint8  unk1;
-    Sint8  unk2;
-    Sint8  unk3;
-    Sint32 rmt;
-    Sint32 unk8;
-    void*  eewk;
-    Sint32 eewkln;
-    Sint32 unk14;
-    void*  iopwk;
-    Sint32 iopwkln;
-    void*  rcvcbf;
-    Sint32 rcvbfsz;
-    void*  sndcbf;
-    Sint32 sndbfsz;
-    Sint32 unk30;
-    Sint32 unk34;
-    Sint32 unk38;
-    Sint32 unk3C;
-    Sint32 unk40;
+    Sint8         used;
+    Sint8         stat;
+    Sint8         unk2;
+    Sint8         unk3;
+    Sint32        rmt;
+    Sint32        unk8;
+    void*         eewk;
+    Sint32        eewkln;
+    Sint32*       unk14;
+    void*         iopwk;
+    Sint32        iopwkln;
+    RCVCBF        rcvcbf;
+    Sint32        rcvbfsz;
+    RCVCBF        sndcbf;
+    Sint32        sndbfsz;
+    sceSifDmaData transData;
+    Sint32        did;
 } DTX_OBJ;
 
 typedef DTX_OBJ *DTX;
@@ -125,19 +125,19 @@ DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
     
     dtx->iopwk = iopwk;
     
-    dtx->unk14 = ((Sint32)eewk + dtx->eewkln) | UNCBASE;
+    dtx->unk14 = (Sint32*)(((Sint32)eewk + dtx->eewkln) | UNCBASE);
     
     dtx->eewk = eewk;
     
-    dtx->unk1 = 0;
+    dtx->stat = 0;
     
     memset(eewk, 0, dtx->eewkln);
     
     SyncDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63));
     InvalidDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63));
     
-    dtx->rcvcbf = dtx_def_rcvcbf;
-    dtx->sndcbf = dtx_def_sndcbf;
+    dtx->rcvcbf = (void*)dtx_def_rcvcbf;
+    dtx->sndcbf = (void*)dtx_def_sndcbf;
     
     dtx->rcvbfsz = 0;
     dtx->sndbfsz = 0;
