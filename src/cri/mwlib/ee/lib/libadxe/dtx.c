@@ -200,8 +200,31 @@ void dtx_destroy_rmt(Uint32 id)
     sceSifCallRpc(&dtx_cd, 3, 0, dtx_sbuf, sizeof(u_int), dtx_rbuf, 0, NULL, NULL);
 }
 
-// DTX_ExecHndl
-// DTX_ExecServer
+void DTX_ExecHndl(DTX dtx)
+{
+    scePrintf("DTX_ExecHndl - UNIMPLEMENTED!\n");
+}
+
+// 100% matching!
+void DTX_ExecServer(void)
+{
+    DTX dtx;
+    Sint32 i;
+
+    SJCRS_Lock();
+
+    for (i = 0; i < 8; i++) 
+    {
+        dtx = &dtx_clnt[i];
+
+        if (dtx->used == TRUE) 
+        {
+            DTX_ExecHndl(dtx);
+        }
+    }
+
+    SJCRS_Unlock();
+}
 
 // 100% matching!
 void DTX_Finish(void)
