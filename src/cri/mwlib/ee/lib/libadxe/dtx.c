@@ -15,7 +15,7 @@ typedef struct _dtx
     void*  iopwk;
     Sint32 wklen;
     void*  rcvcbf;
-    Sint32 unk24;
+    Sint32 rcvbfsz;
     void*  sndcbf;
     Sint32 unk2C;
     Sint32 unk30;
@@ -47,7 +47,7 @@ void* DTX_CallUrpc(Sint32 arg0, void* sjrtm, Sint32 arg2, void* arg3, Sint32 arg
 void DTX_Close(DTX dtx) 
 {
     dtx->rcvcbf = NULL;
-    dtx->unk24 = 0;
+    dtx->rcvbfsz = 0;
     
     dtx->sndcbf = NULL;
     dtx->unk2C = 0;
@@ -123,8 +123,7 @@ DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
     dtx->rcvcbf = dtx_def_rcvcbf;
     dtx->sndcbf = dtx_def_sndcbf;
     
-    dtx->unk24 = 0;
-    
+    dtx->rcvbfsz = 0;
     dtx->unk2C = 0;
     
     dtx->used = TRUE;
@@ -234,9 +233,11 @@ DTX DTX_Open(Uint32 id)
 
 // dtx_rpc_func
 
-void DTX_SetRcvCbf(void* dtx, void* cbf, Sint32 bfsize)
+// 100% matching!
+void DTX_SetRcvCbf(DTX dtx, void* cbf, Sint32 bfsize) 
 {
-    scePrintf("DTX_SetRcvCbf - UNIMPLEMENTED!\n");
+    dtx->rcvcbf = cbf;
+    dtx->rcvbfsz = bfsize;
 }
 
 void DTX_SetSndCbf(void* dtx, void* cbf, Sint32 bfsize)
