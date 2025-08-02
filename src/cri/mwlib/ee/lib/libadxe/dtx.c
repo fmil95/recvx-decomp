@@ -201,7 +201,17 @@ void DTX_Init(void)
     dtx_init_cnt++;
 }
 
-// DTX_Open
+// 100% matching!
+DTX DTX_Open(Uint32 id)
+{
+    if (id >= 8) 
+    {
+        return NULL;
+    }
+    
+    return &dtx_clnt[id];
+}
+
 // dtx_rpc_func
 
 void DTX_SetRcvCbf(void* dtx, void* cbf, Sint32 bfsize)
