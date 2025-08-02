@@ -23,7 +23,7 @@ typedef struct _ps2_rna
     PS2PSJ ps2psj[2];
     void*  dtr[2];
     SJ     sjo[2];
-    void*  urpc;
+    Sint32 urpc;
     Sint8  playsw;
     Sint8  unk25;
     Sint8  nch;
@@ -87,8 +87,8 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
 {
     PS2RNA ps2rna;
     Sint32 i;
-    Sint32 sjrtm[4]; 
-    void*  unk; 
+    Sint32 sbuf[4]; 
+    Sint32 rbuf[1]; 
 
     for (i = 0; i < 8; i++)
     {
@@ -114,18 +114,17 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
         ps2rna->ps2psj[i] = ps2rna_get_psj();
     }
 
-    sjrtm[0] = maxnch;
-    
-    sjrtm[1] = 0;
+    sbuf[0] = maxnch;
+    sbuf[1] = 0;
 
     for (i = 0; i < maxnch; i++) 
     {
-        sjrtm[2 + i] = (Sint32)ps2rna->ps2psj[i]->sjrtm;
+        sbuf[2 + i] = (Sint32)ps2rna->ps2psj[i]->sjrtm;
     }
      
-    ps2rna->urpc = DTX_CallUrpc(8, sjrtm, 4, &unk, 1);
+    ps2rna->urpc = DTX_CallUrpc(8, sbuf, 4, rbuf, 1);
 
-    if (ps2rna->urpc == NULL)
+    if (ps2rna->urpc == 0)
     {
         printf("E0100401: can't create PS2RNA of IOP\n");
         
@@ -176,7 +175,7 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
 void PS2RNA_Destroy(PS2RNA ps2rna)
 {
     Sint32 ch;
-    Sint32 sjrtm[1];  
+    Sint32 sbuf[1];  
 
     for (ch = 0; ch < ps2rna->maxnch; ch++)
     {
@@ -186,9 +185,9 @@ void PS2RNA_Destroy(PS2RNA ps2rna)
         }
     }
     
-    sjrtm[0] = (Sint32)ps2rna->urpc;  
+    sbuf[0] = ps2rna->urpc; 
     
-    DTX_CallUrpc(9, sjrtm, 1, 0, 0);
+    DTX_CallUrpc(9, sbuf, 1, NULL, 0);
  
     for (ch = 0; ch < ps2rna->maxnch; ch++) 
     {

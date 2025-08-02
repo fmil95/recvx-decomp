@@ -38,7 +38,7 @@ Sint32 dtx_rpc_id;
 void dtx_def_rcvcbf(void);
 void dtx_def_sndcbf(void);
 
-void* DTX_CallUrpc(Sint32 arg0, void* sjrtm, Sint32 arg2, void* arg3, Sint32 arg4)
+Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32 rsize)
 {
     scePrintf("DTX_CallUrpc - UNIMPLEMENTED!\n");
 }
