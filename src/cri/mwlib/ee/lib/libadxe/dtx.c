@@ -155,7 +155,10 @@ void dtx_def_sndcbf(void)
     scePrintf("dtx_def_sndcbf - UNIMPLEMENTED!\n");
 }
 
-// DTX_Destroy
+void DTX_Destroy(DTX dtx)
+{
+    scePrintf("DTX_Destroy - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void dtx_destroy_rmt(Sint32 no) 
@@ -168,9 +171,26 @@ void dtx_destroy_rmt(Sint32 no)
 // DTX_ExecHndl
 // DTX_ExecServer
 
+// 100% matching!
 void DTX_Finish(void)
 {
-    scePrintf("DTX_Finish - UNIMPLEMENTED!\n");
+    DTX dtx;
+    Sint32 i;
+
+    if (--dtx_init_cnt == 0) 
+    {
+        dtx++;
+        
+        for (i = 0; i < 8; i++) 
+        {
+            dtx = &dtx_clnt[i];
+    
+            if (dtx->used == TRUE)
+            {
+                DTX_Destroy(dtx);
+            }
+        }
+    }
 }
 
 // 99.76% matching
