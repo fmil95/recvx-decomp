@@ -200,9 +200,44 @@ void dtx_destroy_rmt(Uint32 id)
     sceSifCallRpc(&dtx_cd, 3, 0, dtx_sbuf, sizeof(u_int), dtx_rbuf, 0, NULL, NULL);
 }
 
+// 99.54% matching
 void DTX_ExecHndl(DTX dtx)
 {
-    scePrintf("DTX_ExecHndl - UNIMPLEMENTED!\n");
+    static Sint32 cnt = 0;
+    
+    cnt++;
+
+    if ((dtx->stat == 1) && (dtx->unk8 < dtx->unk14[15])) 
+    {
+        InvalidDCache(dtx->eewk, (void*)((Sint32)dtx->eewk + (dtx->eewkln - 1))); // remove cast to match 100%
+        
+        dtx->rcvcbf(dtx->rcvbfsz, dtx->eewk, dtx->eewkln);
+        
+        dtx->unk8 = dtx->unk14[15];
+        
+        dtx->stat = 0;
+    }
+
+    if (dtx->stat == 0) 
+    {
+        dtx->sndcbf(dtx->sndbfsz, dtx->eewk, dtx->eewkln);
+        
+        dtx->unk8++;
+        
+        dtx->unk14[15] = dtx->unk8;
+        
+        SyncDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) - 1));
+        InvalidDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63));
+        
+        dtx->transData.data = (Sint32)dtx->eewk & 0xFFFFFFF;
+        dtx->transData.addr = (Sint32)dtx->iopwk;
+        dtx->transData.size = dtx->iopwkln; 
+        dtx->transData.mode = 0;
+        
+        dtx->did = sceSifSetDma(&dtx->transData, 1);
+        
+        dtx->stat = 1;
+    }
 }
 
 // 100% matching!
