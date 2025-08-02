@@ -38,9 +38,24 @@ Sint32 dtx_rpc_id;
 void dtx_def_rcvcbf(void);
 void dtx_def_sndcbf(void);
 
+// 100% matching!
 Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32 rsize)
 {
-    scePrintf("DTX_CallUrpc - UNIMPLEMENTED!\n");
+    Sint32 i;
+
+    for (i = 0; i < ssize; i++)
+    {
+        dtx_sbuf[i] = sbuf[i];
+    }
+
+    sceSifCallRpc(&dtx_cd, cmd + 1024, 0, dtx_sbuf, ssize * sizeof(u_int), dtx_rbuf, rsize * sizeof(u_int), NULL, NULL);
+
+    for (i = 0; i < rsize; i++)
+    {
+        rbuf[i] = dtx_rbuf[i];
+    }
+    
+    return dtx_rbuf[0]; 
 }
 
 // 100% matching!
