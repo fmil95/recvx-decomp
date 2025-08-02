@@ -27,11 +27,11 @@ typedef struct _dtx
 
 typedef DTX_OBJ *DTX;
 
-static sceSifClientData dtx_cd;
+static sceSifClientData dtx_cd = { 0 };
 static u_int dtx_rbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 static u_int dtx_sbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 
-DTX_OBJ dtx_clnt[8];
+DTX_OBJ dtx_clnt[8] = { 0 };
 Sint32 dtx_init_cnt;
 Sint32 dtx_rpc_id;
 
