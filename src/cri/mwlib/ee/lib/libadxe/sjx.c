@@ -1,4 +1,5 @@
 
+static Sint32 sjx_init_cnt;
 
 void* SJX_Create(SJ sj, Sint8 *work, Sint32 wksize)
 {
@@ -15,9 +16,10 @@ void SJX_ExecServer(void)
     scePrintf("SJX_ExecServer - UNIMPLEMENTED!\n");
 }
 
-void SJX_Finish(void)
+// 100% matching!
+void SJX_Finish(void) 
 {
-    scePrintf("SJX_Finish - UNIMPLEMENTED!\n");
+    sjx_init_cnt--;
 }
 
 void SJX_Init(void)
