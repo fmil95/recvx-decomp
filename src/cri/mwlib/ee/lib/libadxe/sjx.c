@@ -73,9 +73,16 @@ SJX SJX_Create(SJ sj, Sint8 *work, Sint32 wksize)
     return sjx;
 }
 
-void SJX_Destroy(void* sjx)
+// 100% matching!
+void SJX_Destroy(SJX sjx)
 {
-    scePrintf("SJX_Destroy - UNIMPLEMENTED!\n");
+    Sint32 sbuf[1];
+
+    sbuf[0] = sjx->urpc;
+    
+    DTX_CallUrpc(1, sbuf, 1, NULL, 0);
+    
+    sjx->used = FALSE;
 }
 
 // 100% matching!
