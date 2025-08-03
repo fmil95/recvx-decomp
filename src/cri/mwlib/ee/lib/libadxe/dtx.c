@@ -27,6 +27,16 @@ typedef struct _dtx
 
 typedef DTX_OBJ *DTX;
 
+typedef struct _dtx_rpc
+{
+    DTX    dtx;
+    void*  eewk;
+    void*  iopwk;
+    Sint32 wklen;
+} DTX_RPC_OBJ;
+
+typedef DTX_RPC_OBJ *DTX_RPC;
+
 static sceSifClientData dtx_cd = { 0 };
 static u_int dtx_rbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 static u_int dtx_sbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
@@ -37,6 +47,8 @@ Uint32 dtx_rpc_id;
 Sint32 volatile dtx_proc_init_flag;
 sceSifServeData dtx_sd;
 Uint32 dtx_svrbuf[64];
+sceSifRpcFunc dtx_urpc_fn[64];
+Uint32 dtx_urpc_obj[64];
 
 void dtx_def_rcvcbf(DTX dtx, void* cbf, Sint32 bfsize);
 void dtx_def_sndcbf(DTX dtx, void* cbf, Sint32 bfsize);
@@ -325,9 +337,41 @@ DTX DTX_Open(Uint32 id)
     return &dtx_clnt[id];
 }
 
-void* dtx_rpc_func(void)
+// 100% matching!
+void* dtx_rpc_func(Uint32 fno, DTX_RPC data, Uint32 size)
 {
-    scePrintf("dtx_rpc_func - UNIMPLEMENTED!\n");
+    sceSifRpcFunc fn;
+
+    SJCRS_Lock();
+
+    switch (fno) 
+    {
+    case 0:
+    case 1:
+        break;
+    default:
+        if ((fno >= 1024) && (fno < 1088)) 
+        {
+            fn = dtx_urpc_fn[fno - 1024];
+            
+            if (fn != NULL) 
+            {
+                fn(dtx_urpc_obj[fno - 1024], data, size / 4);
+            }
+        }         
+        
+        break;
+    case 2:
+        data->dtx = DTX_Create((Sint32)data->dtx, data->eewk, data->iopwk, data->wklen);
+        break;
+    case 3:
+        DTX_Destroy(data->dtx);
+        break;
+    }
+    
+    SJCRS_Unlock();
+    
+    return data; 
 }
 
 // 100% matching!
