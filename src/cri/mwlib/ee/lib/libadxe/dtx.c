@@ -33,7 +33,10 @@ static u_int dtx_sbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 
 DTX_OBJ dtx_clnt[8] = { 0 };
 Sint32 dtx_init_cnt;
-Sint32 dtx_rpc_id;
+Uint32 dtx_rpc_id;
+Sint32 volatile dtx_proc_init_flag;
+sceSifServeData dtx_sd;
+Uint32 dtx_svrbuf[64];
 
 void dtx_def_rcvcbf(DTX dtx, void* cbf, Sint32 bfsize);
 void dtx_def_sndcbf(DTX dtx, void* cbf, Sint32 bfsize);
@@ -322,7 +325,10 @@ DTX DTX_Open(Uint32 id)
     return &dtx_clnt[id];
 }
 
-// dtx_rpc_func
+void* dtx_rpc_func(void)
+{
+    scePrintf("dtx_rpc_func - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void DTX_SetRcvCbf(DTX dtx, void* cbf, Sint32 bfsize) 
@@ -338,4 +344,20 @@ void DTX_SetSndCbf(DTX dtx, void* cbf, Sint32 bfsize)
     dtx->sndbfsz = bfsize;
 }
 
-// dtx_svr_proc
+// 100% matching!
+Sint32 dtx_svr_proc(void)
+{
+    sceSifQueueData qd1;
+    sceSifQueueData qd2;
+
+    sceSifSetRpcQueue(&qd1, GetThreadId());
+    sceSifSetRpcQueue(&qd2, GetThreadId());
+    
+    sceSifRegisterRpc(&dtx_sd, dtx_rpc_id, (sceSifRpcFunc)dtx_rpc_func, dtx_svrbuf, NULL, NULL, &qd1);
+    
+    dtx_proc_init_flag = 1;
+    
+    sceSifRpcLoop(&qd1);
+    
+    return 0;
+}
