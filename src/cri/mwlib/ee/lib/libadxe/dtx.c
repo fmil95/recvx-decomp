@@ -1,17 +1,17 @@
 #include "dtx.h"
 
-DTX_OBJ dtx_clnt[8] = { 0 };
-Sint32 dtx_svr[136] = { 0 }; /* unused */
+static DTX_OBJ dtx_clnt[8] = { 0 };
+static Sint32 dtx_svr[136] = { 0 }; /* unused */
 static sceSifClientData dtx_cd = { 0 };
-sceSifServeData dtx_sd = { 0 };
-Uint32 dtx_svrbuf[64] = { 0 };
-sceSifRpcFunc dtx_urpc_fn[64] = { 0 };
-Uint32 dtx_urpc_obj[64] = { 0 }; 
-static u_int dtx_rbuf[RSIZE/sizeof(u_int)] __attribute__((aligned(64)));
-static u_int dtx_sbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
-Sint32 dtx_init_cnt;
-Uint32 dtx_rpc_id;
-Sint32 volatile dtx_proc_init_flag;
+static sceSifServeData dtx_sd = { 0 };
+static Uint32 dtx_svrbuf[64] = { 0 };
+static sceSifRpcFunc dtx_urpc_fn[64] = { 0 };
+static Uint32 dtx_urpc_obj[64] = { 0 }; 
+static Uint32 dtx_rbuf[RSIZE/sizeof(Uint32)] __attribute__((aligned(64)));
+static Uint32 dtx_sbuf[SSIZE/sizeof(Uint32)] __attribute__((aligned(64)));
+static Sint32 dtx_init_cnt;
+static Uint32 dtx_rpc_id;
+static Sint32 volatile dtx_proc_init_flag;
 
 // 100% matching!
 Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32 rsize)
