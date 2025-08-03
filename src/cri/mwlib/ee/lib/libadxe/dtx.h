@@ -24,8 +24,8 @@ typedef struct _dtx
     Sint32         rcbfsz;
     SNDCBF         sndcbf;
     Sint32         snbfsz;
-    sceSifDmaData  transData;
-    Sint32         did;
+    sceSifDmaData  transdata;
+    Sint32         datano;
 } DTX_OBJ;
 
 typedef DTX_OBJ    *DTX;

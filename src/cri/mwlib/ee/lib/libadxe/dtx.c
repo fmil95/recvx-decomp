@@ -203,12 +203,12 @@ void DTX_ExecHndl(DTX dtx)
         SyncDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) - 1));
         InvalidDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63));
         
-        dtx->transData.data = (Sint32)dtx->eewk & 0xFFFFFFF;
-        dtx->transData.addr = (Sint32)dtx->iopwk;
-        dtx->transData.size = dtx->iopwkln; 
-        dtx->transData.mode = 0;
+        dtx->transdata.data = (Sint32)dtx->eewk & 0xFFFFFFF;
+        dtx->transdata.addr = (Sint32)dtx->iopwk;
+        dtx->transdata.size = dtx->iopwkln; 
+        dtx->transdata.mode = 0;
         
-        dtx->did = sceSifSetDma(&dtx->transData, 1);
+        dtx->datano = sceSifSetDma(&dtx->transdata, 1);
         
         dtx->stat = 1;
     }
