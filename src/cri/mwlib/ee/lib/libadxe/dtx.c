@@ -37,22 +37,36 @@ typedef struct _dtx_rpc
 
 typedef DTX_RPC_OBJ *DTX_RPC;
 
+DTX_OBJ dtx_clnt[8] = { 0 };
+Sint32 dtx_svr[136] = { 0 }; /* unused */
 static sceSifClientData dtx_cd = { 0 };
+sceSifServeData dtx_sd = { 0 };
+Uint32 dtx_svrbuf[64] = { 0 };
+sceSifRpcFunc dtx_urpc_fn[64] = { 0 };
+Uint32 dtx_urpc_obj[64] = { 0 }; 
 static u_int dtx_rbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 static u_int dtx_sbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
-
-DTX_OBJ dtx_clnt[8] = { 0 };
 Sint32 dtx_init_cnt;
 Uint32 dtx_rpc_id;
 Sint32 volatile dtx_proc_init_flag;
-sceSifServeData dtx_sd;
-Uint32 dtx_svrbuf[64];
-sceSifRpcFunc dtx_urpc_fn[64];
-Uint32 dtx_urpc_obj[64];
 
+Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32 rsize);
+void DTX_Close(DTX dtx);
+DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen);
+Sint32 dtx_create_rmt(Uint32 id, void* eewk, void* iopwk, Sint32 wklen);
 void dtx_def_rcvcbf(DTX dtx, void* cbf, Sint32 bfsize);
 void dtx_def_sndcbf(DTX dtx, void* cbf, Sint32 bfsize);
+void DTX_Destroy(DTX dtx);
 void dtx_destroy_rmt(Uint32 id);
+void DTX_ExecHndl(DTX dtx);
+void DTX_ExecServer(void);
+void DTX_Finish(void);
+void DTX_Init(void);
+DTX DTX_Open(Uint32 id);
+void* dtx_rpc_func(Uint32 fno, DTX_RPC data, Uint32 size);
+void DTX_SetRcvCbf(DTX dtx, void* cbf, Sint32 bfsize);
+void DTX_SetSndCbf(DTX dtx, void* cbf, Sint32 bfsize);
+Sint32 dtx_svr_proc(void);
 
 // 100% matching!
 Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32 rsize)
