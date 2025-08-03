@@ -37,10 +37,10 @@ Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32
 void DTX_Close(DTX dtx) 
 {
     dtx->rcvcbf = NULL;
-    dtx->rcvbfsz = 0;
+    dtx->rcbfsz = 0;
     
     dtx->sndcbf = NULL;
-    dtx->sndbfsz = 0;
+    dtx->snbfsz = 0;
 }
 
 // 100% matching!
@@ -113,8 +113,8 @@ DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
     dtx->rcvcbf = (void*)dtx_def_rcvcbf;
     dtx->sndcbf = (void*)dtx_def_sndcbf;
     
-    dtx->rcvbfsz = 0;
-    dtx->sndbfsz = 0;
+    dtx->rcbfsz = 0;
+    dtx->snbfsz = 0;
     
     dtx->used = TRUE;
 
@@ -185,7 +185,7 @@ void DTX_ExecHndl(DTX dtx)
     {
         InvalidDCache(dtx->eewk, (void*)((Sint32)dtx->eewk + (dtx->eewkln - 1))); // remove cast to match 100%
         
-        dtx->rcvcbf(dtx->rcvbfsz, dtx->eewk, dtx->eewkln);
+        dtx->rcvcbf(dtx->rcbfsz, dtx->eewk, dtx->eewkln);
         
         dtx->unk8 = dtx->unk14[15];
         
@@ -194,7 +194,7 @@ void DTX_ExecHndl(DTX dtx)
 
     if (dtx->stat == 0) 
     {
-        dtx->sndcbf(dtx->sndbfsz, dtx->eewk, dtx->eewkln);
+        dtx->sndcbf(dtx->snbfsz, dtx->eewk, dtx->eewkln);
         
         dtx->unk8++;
         
@@ -337,14 +337,14 @@ void* dtx_rpc_func(Uint32 fno, DTX_RPC data, Uint32 size)
 void DTX_SetRcvCbf(DTX dtx, void* buf, Sint32 bfsize) 
 {
     dtx->rcvcbf = buf;
-    dtx->rcvbfsz = bfsize;
+    dtx->rcbfsz = bfsize;
 }
 
 // 100% matching!
 void DTX_SetSndCbf(DTX dtx, void* buf, Sint32 bfsize)
 {
     dtx->sndcbf = buf;
-    dtx->sndbfsz = bfsize;
+    dtx->snbfsz = bfsize;
 }
 
 // 100% matching!

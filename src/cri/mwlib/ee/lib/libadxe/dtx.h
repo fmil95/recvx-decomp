@@ -21,9 +21,9 @@ typedef struct _dtx
     void*          iopwk;
     Sint32         iopwkln;
     RCVCBF         rcvcbf;
-    Sint32         rcvbfsz;
-    RCVCBF         sndcbf;
-    Sint32         sndbfsz;
+    Sint32         rcbfsz;
+    SNDCBF         sndcbf;
+    Sint32         snbfsz;
     sceSifDmaData  transData;
     Sint32         did;
 } DTX_OBJ;
