@@ -1,41 +1,4 @@
-
-#define SSIZE 0x20
-
-typedef void (*RCVCBF)(Sint32 bfsize, void* eewk, Sint32 eewkln);
-typedef void (*SNDCBF)(Sint32 bfsize, void* eewk, Sint32 eewkln);
-
-typedef struct _dtx 
-{
-    Sint8         used;
-    Sint8         stat;
-    Sint8         unk2;
-    Sint8         unk3;
-    Sint32        rmt;
-    Sint32        unk8;
-    void*         eewk;
-    Sint32        eewkln;
-    Sint32*       unk14;
-    void*         iopwk;
-    Sint32        iopwkln;
-    RCVCBF        rcvcbf;
-    Sint32        rcvbfsz;
-    RCVCBF        sndcbf;
-    Sint32        sndbfsz;
-    sceSifDmaData transData;
-    Sint32        did;
-} DTX_OBJ;
-
-typedef DTX_OBJ *DTX;
-
-typedef struct _dtx_rpc
-{
-    DTX    dtx;
-    void*  eewk;
-    void*  iopwk;
-    Sint32 wklen;
-} DTX_RPC_OBJ;
-
-typedef DTX_RPC_OBJ *DTX_RPC;
+#include "dtx.h"
 
 DTX_OBJ dtx_clnt[8] = { 0 };
 Sint32 dtx_svr[136] = { 0 }; /* unused */
@@ -44,29 +7,11 @@ sceSifServeData dtx_sd = { 0 };
 Uint32 dtx_svrbuf[64] = { 0 };
 sceSifRpcFunc dtx_urpc_fn[64] = { 0 };
 Uint32 dtx_urpc_obj[64] = { 0 }; 
-static u_int dtx_rbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
+static u_int dtx_rbuf[RSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 static u_int dtx_sbuf[SSIZE/sizeof(u_int)] __attribute__((aligned(64)));
 Sint32 dtx_init_cnt;
 Uint32 dtx_rpc_id;
 Sint32 volatile dtx_proc_init_flag;
-
-Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32 rsize);
-void DTX_Close(DTX dtx);
-DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen);
-Sint32 dtx_create_rmt(Uint32 id, void* eewk, void* iopwk, Sint32 wklen);
-void dtx_def_rcvcbf(DTX dtx, void* cbf, Sint32 bfsize);
-void dtx_def_sndcbf(DTX dtx, void* cbf, Sint32 bfsize);
-void DTX_Destroy(DTX dtx);
-void dtx_destroy_rmt(Uint32 id);
-void DTX_ExecHndl(DTX dtx);
-void DTX_ExecServer(void);
-void DTX_Finish(void);
-void DTX_Init(void);
-DTX DTX_Open(Uint32 id);
-void* dtx_rpc_func(Uint32 fno, DTX_RPC data, Uint32 size);
-void DTX_SetRcvCbf(DTX dtx, void* cbf, Sint32 bfsize);
-void DTX_SetSndCbf(DTX dtx, void* cbf, Sint32 bfsize);
-Sint32 dtx_svr_proc(void);
 
 // 100% matching!
 Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32 rsize)
@@ -78,7 +23,7 @@ Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32
         dtx_sbuf[i] = sbuf[i];
     }
 
-    sceSifCallRpc(&dtx_cd, cmd + 1024, 0, dtx_sbuf, ssize * sizeof(u_int), dtx_rbuf, rsize * sizeof(u_int), NULL, NULL);
+    sceSifCallRpc(&dtx_cd, cmd + 1024, 0, dtx_sbuf, ssize * sizeof(Uint32), dtx_rbuf, rsize * sizeof(Uint32), NULL, NULL);
 
     for (i = 0; i < rsize; i++)
     {
@@ -190,7 +135,7 @@ Sint32 dtx_create_rmt(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
 }
 
 // 100% matching!
-void dtx_def_rcvcbf(DTX dtx, void* cbf, Sint32 bfsize) 
+void dtx_def_rcvcbf(DTX dtx, void* buf, Sint32 bfsize) 
 {
     static Sint32 cnt = 0;
     
@@ -198,17 +143,17 @@ void dtx_def_rcvcbf(DTX dtx, void* cbf, Sint32 bfsize)
 }
 
 // 100% matching!
-void dtx_def_sndcbf(DTX dtx, void* cbf, Sint32 bfsize)
+void dtx_def_sndcbf(DTX dtx, void* buf, Sint32 bfsize)
 {
     static Sint32 cnt = 0;
     Sint32 i;
 
     for (i = 0; i < bfsize; i++) 
     {
-        ((Sint8*)cbf)[i] = -86;
+        ((Sint8*)buf)[i] = -86;
     }
     
-    sprintf(cbf, "Hello from EE (%d)", cnt);
+    sprintf(buf, "Hello from EE (%d)", cnt);
     
     cnt++; 
 }
@@ -389,16 +334,16 @@ void* dtx_rpc_func(Uint32 fno, DTX_RPC data, Uint32 size)
 }
 
 // 100% matching!
-void DTX_SetRcvCbf(DTX dtx, void* cbf, Sint32 bfsize) 
+void DTX_SetRcvCbf(DTX dtx, void* buf, Sint32 bfsize) 
 {
-    dtx->rcvcbf = cbf;
+    dtx->rcvcbf = buf;
     dtx->rcvbfsz = bfsize;
 }
 
 // 100% matching!
-void DTX_SetSndCbf(DTX dtx, void* cbf, Sint32 bfsize)
+void DTX_SetSndCbf(DTX dtx, void* buf, Sint32 bfsize)
 {
-    dtx->sndcbf = cbf;
+    dtx->sndcbf = buf;
     dtx->sndbfsz = bfsize;
 }
 
