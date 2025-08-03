@@ -11,9 +11,10 @@ void SJX_Destroy(void* sjx)
     scePrintf("SJX_Destroy - UNIMPLEMENTED!\n");
 }
 
-void SJX_ExecServer(void)
+// 100% matching!
+void SJX_ExecServer(void) 
 {
-    scePrintf("SJX_ExecServer - UNIMPLEMENTED!\n");
+    DTX_ExecServer();
 }
 
 // 100% matching!
