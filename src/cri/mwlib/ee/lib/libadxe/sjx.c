@@ -13,11 +13,11 @@ typedef struct _sjx
 
 typedef SJX_OBJ    *SJX;
 
-static SJX_OBJ sjx_obj[16];
+static SJX_OBJ sjx_obj[16] = { 0 };
 static Sint32 sjx_init_cnt;
 static Sint32 sjx_wklen;
 static void* sjx_eewk;
-static Sint32 sjx_ee_work[564];
+static Sint32 sjx_ee_work[564] = { 0 };
 static void* sjx_iopwk;
 static DTX sjx_dtx;
 
