@@ -11,8 +11,8 @@ typedef struct _dtx
 {
     Sint8          used;
     Sint8          stat;
-    Sint8          unk2;
-    Sint8          unk3;
+    Sint8          unk2;      /* unused */
+    Sint8          unk3;      /* unused */
     Sint32         rmt;
     Sint32         unk8;
     void*          eewk;

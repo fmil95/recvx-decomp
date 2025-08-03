@@ -99,7 +99,7 @@ DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
     
     dtx->iopwk = iopwk;
     
-    dtx->unk14 = (Sint32*)(((Sint32)eewk + dtx->eewkln) | UNCBASE);
+    dtx->unk14 = (Sint32*)(((Sint32)eewk + dtx->eewkln) | UNCBASE); // the casts make this code a bit too cumbersome
     
     dtx->eewk = eewk;
     
@@ -107,8 +107,8 @@ DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
     
     memset(eewk, 0, dtx->eewkln);
     
-    SyncDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63));
-    InvalidDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63));
+    SyncDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63));    // same as above, casts overcomplicate these two lines 
+    InvalidDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63)); 
     
     dtx->rcvcbf = (void*)dtx_def_rcvcbf;
     dtx->sndcbf = (void*)dtx_def_sndcbf;
@@ -129,7 +129,7 @@ Sint32 dtx_create_rmt(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
     dtx_sbuf[2] = (Sint32)iopwk;
     dtx_sbuf[3] = wklen;
     
-    sceSifCallRpc(&dtx_cd, 2, 0, dtx_sbuf, 4 * sizeof(u_int), dtx_rbuf, sizeof(u_int), NULL, NULL);
+    sceSifCallRpc(&dtx_cd, 2, 0, dtx_sbuf, 4 * sizeof(Uint32), dtx_rbuf, sizeof(Uint32), NULL, NULL);
     
     return dtx_rbuf[0];
 }
@@ -200,8 +200,8 @@ void DTX_ExecHndl(DTX dtx)
         
         dtx->unk14[15] = dtx->unk8;
         
-        SyncDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) - 1));
-        InvalidDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63));
+        SyncDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) - 1));     // casts look awkward here
+        InvalidDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63)); 
         
         dtx->transdata.data = (Sint32)dtx->eewk & 0xFFFFFFF;
         dtx->transdata.addr = (Sint32)dtx->iopwk;
@@ -243,7 +243,7 @@ void DTX_Finish(void)
 
     if (--dtx_init_cnt == 0) 
     {
-        dtx++;
+        dtx++; // this operation is invalid, it's only allowed for matching purposes
         
         for (i = 0; i < 8; i++) 
         {
@@ -321,7 +321,7 @@ void* dtx_rpc_func(Uint32 fno, DTX_RPC data, Uint32 size)
         
         break;
     case 2:
-        data->dtx = DTX_Create((Sint32)data->dtx, data->eewk, data->iopwk, data->wklen);
+        data->dtx = DTX_Create((Sint32)data->dtx, data->eewk, data->iopwk, data->wklen); // casting data->dtx to int doesn't look quite logical
         break;
     case 3:
         DTX_Destroy(data->dtx);
