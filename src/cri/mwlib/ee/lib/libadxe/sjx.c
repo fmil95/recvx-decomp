@@ -1,39 +1,4 @@
-
-typedef struct _sjx 
-{
-    Sint8   used;
-    Sint8   unk1;
-    Sint16  unk2;
-    SJ      sj;
-    void*   work;
-    Sint32  wksize;
-    Sint32  urpc;
-} SJX_OBJ;
-
-typedef SJX_OBJ       *SJX;
-
-typedef struct _sjx_work
-{
-    Sint8   unk0;
-    Sint8   id;
-    Sint16  unk2;
-    SJX     sjx;
-    SJCK    ck;
-} SJX_WORK_OBJ; 
-
-typedef SJX_WORK_OBJ   *SJX_WORK;
-
-typedef struct _sjx_buf
-{
-    Sint32        size;
-    Sint32        unk4;
-    Sint32        unk8;
-    Sint32        unkC;
-    SJX_WORK_OBJ  wk[0];
-} SJX_BUF_OBJ;
-
-typedef SJX_BUF_OBJ   *SJX_RCVCBF;
-typedef SJX_BUF_OBJ   *SJX_SNDCBF;
+#include "sjx.h"
 
 static SJX_OBJ sjx_obj[16] = { 0 };
 static Sint32 sjx_init_cnt;
@@ -42,9 +7,6 @@ static void* sjx_eewk;
 static Sint32 sjx_ee_work[564] = { 0 };
 static void* sjx_iopwk;
 static DTX sjx_dtx;
-
-void sjx_rcvcbf(SJX sjx, SJX_RCVCBF buf, Sint32 bfsize);
-void sjx_sndcbf(SJX sjx, SJX_SNDCBF buf, Sint32 bfsize);
 
 // 100% matching!
 SJX SJX_Create(SJ sj, Sint8 *work, Sint32 wksize) 
@@ -201,7 +163,7 @@ void SJX_Reset(SJX sjx)
 }
 
 // 100% matching!
-void sjx_sndcbf(SJX sjx, SJX_SNDCBF buf, Sint32 bfsize) 
+void sjx_sndcbf(SJX sjx, SJX_SNDCBF buf, Sint32 bfsize) // it is likely that the first parameter is of a different type here
 {
     SJX _sjx;
     SJX_WORK cur;
@@ -239,7 +201,7 @@ void sjx_sndcbf(SJX sjx, SJX_SNDCBF buf, Sint32 bfsize)
                 
                 cur[j].sjx = (SJX)_sjx->urpc;
                 
-                cur[j].id = _sjx->wksize;
+                cur[j].id = _sjx->wksize; // one of these struct fields needs renaming, assigning a memory size to an ID is not congruent  
                 
                 cur[j].ck = ck;
                 
