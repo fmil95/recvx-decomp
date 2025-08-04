@@ -39,9 +39,12 @@ void SJRMT_Init(void)
 // SJRMT_IsGetChunk
 // SJRMT_PutChunk
 
-void SJRMT_Reset(void* sjrmt)
+// 100% matching!
+void SJRMT_Reset(void* sjrmt) 
 {
-    scePrintf("SJRMT_Reset - UNIMPLEMENTED!\n");
+    sjrmt_sbuf[0] = (Sint32)sjrmt;
+    
+    DTX_CallUrpc(37, sjrmt_sbuf, 1, NULL, 0);
 }
 
 // SJRMT_UngetChunk
