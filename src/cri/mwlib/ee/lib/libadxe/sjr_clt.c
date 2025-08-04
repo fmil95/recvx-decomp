@@ -1,4 +1,4 @@
-
+static Sint32 sjrmt_init_cnt;
 
 // SJMEM_CreateRmt
 // SJRBF_CreateRmt
@@ -17,9 +17,15 @@ void SJRMT_Finish(void)
 // SJRMT_GetNumData
 // SJRMT_GetUuid
 
-void SJRMT_Init(void)
+// 100% matching!
+void SJRMT_Init(void) 
 {
-    scePrintf("SJRMT_Init - UNIMPLEMENTED!\n");
+    if (sjrmt_init_cnt == 0) 
+    {
+        DTX_Init();
+    }
+    
+    sjrmt_init_cnt++;
 }
 
 // SJRMT_IsGetChunk
