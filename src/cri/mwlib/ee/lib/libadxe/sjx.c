@@ -3,8 +3,7 @@ typedef struct _sjx
 {
     Sint8   used;
     Sint8   unk1;
-    Sint8   unk2;
-    Sint8   unk3;
+    Sint16  unk2;
     SJ      sj;
     void*   work;
     Sint32  wksize;
@@ -143,7 +142,16 @@ void sjx_rcvcbf(SJX sjx, void* buf, Sint32 bfsize)
     scePrintf("sjx_rcvcbf - UNIMPLEMENTED!\n");
 }
 
-// SJX_Reset
+// 100% matching!
+void SJX_Reset(SJX sjx)
+{
+    Sint32 sbuf[2];
+
+    sbuf[0] = sjx->urpc;
+    sbuf[1] = (Sint16)++sjx->unk2;
+    
+    DTX_CallUrpc(2, sbuf, 2, NULL, 0);
+}
 
 void sjx_sndcbf(SJX sjx, void* buf, Sint32 bfsize)
 {
