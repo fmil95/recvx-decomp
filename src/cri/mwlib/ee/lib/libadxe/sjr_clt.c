@@ -8,9 +8,13 @@ void SJRMT_Destroy(void* sjrmt)
     scePrintf("SJRMT_Destroy - UNIMPLEMENTED!\n");
 }
 
-void SJRMT_Finish(void)
+// 100% matching!
+void SJRMT_Finish(void) 
 {
-    scePrintf("SJRMT_Finish - UNIMPLEMENTED!\n");
+    if (--sjrmt_init_cnt == 0) 
+    {
+        DTX_Finish();
+    }
 }
 
 // SJRMT_GetChunk
