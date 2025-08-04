@@ -1,6 +1,6 @@
 #include "sj_crs.h"
 
-Sint32 sjcrs_lvl;
+static Sint32 sjcrs_lvl;
 
 // 100% matching!
 void SJCRS_Init(void) 
