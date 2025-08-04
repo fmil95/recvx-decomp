@@ -10,7 +10,7 @@ typedef struct _sjx
     Sint32  urpc;
 } SJX_OBJ;
 
-typedef SJX_OBJ    *SJX;
+typedef SJX_OBJ       *SJX;
 
 typedef struct _sjx_work
 {
@@ -21,18 +21,19 @@ typedef struct _sjx_work
     SJCK    ck;
 } SJX_WORK_OBJ; 
 
-typedef SJX_WORK_OBJ    *SJX_WORK;
+typedef SJX_WORK_OBJ   *SJX_WORK;
 
-typedef struct _sjx_rcvcbf
+typedef struct _sjx_buf
 {
     Sint32        size;
     Sint32        unk4;
     Sint32        unk8;
     Sint32        unkC;
     SJX_WORK_OBJ  wk[0];
-} SJX_RCVCBF_OBJ;
+} SJX_BUF_OBJ;
 
-typedef SJX_RCVCBF_OBJ   *SJX_RCVCBF;
+typedef SJX_BUF_OBJ   *SJX_RCVCBF;
+typedef SJX_BUF_OBJ   *SJX_SNDCBF;
 
 static SJX_OBJ sjx_obj[16] = { 0 };
 static Sint32 sjx_init_cnt;
@@ -43,7 +44,7 @@ static void* sjx_iopwk;
 static DTX sjx_dtx;
 
 void sjx_rcvcbf(SJX sjx, SJX_RCVCBF buf, Sint32 bfsize);
-void sjx_sndcbf(SJX sjx, void* buf, Sint32 bfsize);
+void sjx_sndcbf(SJX sjx, SJX_SNDCBF buf, Sint32 bfsize);
 
 // 100% matching!
 SJX SJX_Create(SJ sj, Sint8 *work, Sint32 wksize) 
@@ -199,7 +200,56 @@ void SJX_Reset(SJX sjx)
     DTX_CallUrpc(2, sbuf, 2, NULL, 0);
 }
 
-void sjx_sndcbf(SJX sjx, void* buf, Sint32 bfsize)
+// 100% matching!
+void sjx_sndcbf(SJX sjx, SJX_SNDCBF buf, Sint32 bfsize) 
 {
-    scePrintf("sjx_sndcbf - UNIMPLEMENTED!\n");
+    SJX _sjx;
+    SJX_WORK cur;
+    SJCK ck;
+    Sint32 i;
+    Sint32 j;
+    
+    cur = buf->wk;
+    
+    j = 0;
+
+    SJCRS_Lock();
+
+    for (i = 0; i < 16; i++)
+    {
+        _sjx = &sjx_obj[i];
+        
+        if (_sjx->used == TRUE) 
+        {
+            for ( ; ; j++) 
+            {
+                if (j == 128) 
+                {
+                    goto end;
+                }
+    
+                SJ_GetChunk(_sjx->sj, _sjx->wksize, SJCK_LEN_MAX, &ck);
+    
+                if (ck.len == 0)
+                {
+                    break;
+                }
+    
+                cur[j].unk0 = 0;
+                
+                cur[j].sjx = (SJX)_sjx->urpc;
+                
+                cur[j].id = _sjx->wksize;
+                
+                cur[j].ck = ck;
+                
+                cur[j].unk2 = _sjx->unk2; 
+            }
+        }
+    }
+
+end:
+    SJCRS_Unlock();  
+    
+    buf->size = j;
 }
