@@ -12,6 +12,28 @@ typedef struct _sjx
 
 typedef SJX_OBJ    *SJX;
 
+typedef struct _sjx_work
+{
+    Sint8   unk0;
+    Sint8   id;
+    Sint16  unk2;
+    SJX     sjx;
+    SJCK    ck;
+} SJX_WORK_OBJ; 
+
+typedef SJX_WORK_OBJ    *SJX_WORK;
+
+typedef struct _sjx_rcvcbf
+{
+    Sint32        size;
+    Sint32        unk4;
+    Sint32        unk8;
+    Sint32        unkC;
+    SJX_WORK_OBJ  wk[0];
+} SJX_RCVCBF_OBJ;
+
+typedef SJX_RCVCBF_OBJ   *SJX_RCVCBF;
+
 static SJX_OBJ sjx_obj[16] = { 0 };
 static Sint32 sjx_init_cnt;
 static Sint32 sjx_wklen;
@@ -20,7 +42,7 @@ static Sint32 sjx_ee_work[564] = { 0 };
 static void* sjx_iopwk;
 static DTX sjx_dtx;
 
-void sjx_rcvcbf(SJX sjx, void* buf, Sint32 bfsize);
+void sjx_rcvcbf(SJX sjx, SJX_RCVCBF buf, Sint32 bfsize);
 void sjx_sndcbf(SJX sjx, void* buf, Sint32 bfsize);
 
 // 100% matching!
@@ -137,9 +159,33 @@ void SJX_Init(void)
     sjx_init_cnt++;
 }
 
-void sjx_rcvcbf(SJX sjx, void* buf, Sint32 bfsize)
+// 100% matching!
+void sjx_rcvcbf(SJX sjx, SJX_RCVCBF buf, Sint32 bfsize) 
 {
-    scePrintf("sjx_rcvcbf - UNIMPLEMENTED!\n");
+    SJX_WORK cur;
+    Sint32 size;
+    Sint32 i;
+
+    if (buf == NULL) 
+    {
+        while (TRUE);
+    }
+
+    size = buf->size;
+    
+    SJCRS_Lock();
+
+    for (i = 0; i < size; i++) 
+    {
+        cur = &buf->wk[i];
+
+        if ((cur->unk0 == 0) && (cur->unk2 == cur->sjx->unk2))
+        {
+            SJ_PutChunk(cur->sjx->sj, cur->id, &cur->ck);
+        }
+    }
+
+    SJCRS_Unlock();
 }
 
 // 100% matching!
