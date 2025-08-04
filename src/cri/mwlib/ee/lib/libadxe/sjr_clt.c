@@ -1,11 +1,15 @@
+static Sint32 sjrmt_sbuf[1];
 static Sint32 sjrmt_init_cnt;
 
 // SJMEM_CreateRmt
 // SJRBF_CreateRmt
 
+// 100% matching!
 void SJRMT_Destroy(void* sjrmt)
 {
-    scePrintf("SJRMT_Destroy - UNIMPLEMENTED!\n");
+    sjrmt_sbuf[0] = (Sint32)sjrmt;
+    
+    DTX_CallUrpc(35, sjrmt_sbuf, 1, NULL, 0);
 }
 
 // 100% matching!
