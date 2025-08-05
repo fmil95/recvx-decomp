@@ -145,9 +145,12 @@ void SJMEM_Init(void)
 // SJMEM_IsGetChunk
 // SJMEM_PutChunk
 
-void SJMEM_Reset(SJMEM sjmem)
+// 100% matching!
+void SJMEM_Reset(SJMEM sjmem) 
 {
-    scePrintf("SJMEM_Reset - UNIMPLEMENTED!\n");
+    sjmem->unk10 = 0;
+    
+    sjmem->datano = sjmem->bfsize;
 }
 
 // SJMEM_UngetChunk
