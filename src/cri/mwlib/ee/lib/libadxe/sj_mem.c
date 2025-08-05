@@ -1,18 +1,18 @@
 
 typedef struct _sjmem 
 {
-    Sint8    unk0;
-    Sint8    unk1;
-    Sint8    unk2;
-    Sint8    unk3;
-    Sint32   unk4;
-    Sint32   unk8;
-    Sint32   unkC;
-    Sint32   unk10;
-    Sint32   unk14;
-    Sint32   unk18;
-    Sint32   unk1C;
-    Sint32   unk20;
+    Sint8   unk0;
+    Sint8   unk1;
+    Sint8   unk2;
+    Sint8   unk3;
+    Sint32  unk4;
+    Sint32  unk8;
+    Sint32  unkC;
+    Sint32  unk10;
+    void*   buf;
+    Sint32  unk18;
+    Sint32  unk1C;
+    Sint32  unk20;
 } SJMEM_OBJ;
 
 typedef SJMEM_OBJ     *SJMEM;
@@ -41,7 +41,12 @@ void SJMEM_Finish(void)
     scePrintf("SJMEM_Finish - UNIMPLEMENTED!\n");
 }
 
-// SJMEM_GetBufPtr
+// 100% matching!
+void* SJMEM_GetBufPtr(SJMEM sjmem) 
+{
+    return sjmem->buf;
+}
+
 // SJMEM_GetBufSize
 // SJMEM_GetChunk
 // SJMEM_GetNumData
