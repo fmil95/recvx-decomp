@@ -1,12 +1,12 @@
 
-typedef void (*SJMEM_ERRFN)(void *obj, Char8 *msg);
+typedef void (*SJMEM_ERRFN)(void *obj, Sint32 errcode);
 
 typedef struct _sjmem 
 {
     SJ           sj;
     Sint32       used;
     Sint32*      uuid;
-    Sint32       unkC;
+    Sint32       datano;
     Sint32       unk10;
     void*        buf;
     Sint32       bfsize;
@@ -108,7 +108,22 @@ Sint32 SJMEM_GetBufSize(SJMEM sjmem)
 }
 
 // SJMEM_GetChunk
-// SJMEM_GetNumData
+
+// 100% matching!
+Sint32 SJMEM_GetNumData(SJMEM sjmem, Sint32 id) 
+{
+    if (id == 1) 
+    {
+        return sjmem->datano;
+    }
+
+    if ((id != 0) && (sjmem->err_func != NULL)) 
+    {
+        sjmem->err_func(sjmem->err_obj, -3);
+    }
+
+    return 0;
+}
 
 // 100% matching!
 Sint32* SJMEM_GetUuid(SJMEM sjmem)
