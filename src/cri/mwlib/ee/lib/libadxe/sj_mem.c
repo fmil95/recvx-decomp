@@ -45,7 +45,11 @@ void SJMEM_EntryErrFunc(SJMEM sjmem, SJMEM_ERRFN func, void* obj)
     sjmem->err_obj = obj;
 }
 
-// SJMEM_Error
+// 99.29% matching
+void SJMEM_Error(void) 
+{
+    while (TRUE);
+}
 
 // 100% matching!
 void SJMEM_Finish(void)
