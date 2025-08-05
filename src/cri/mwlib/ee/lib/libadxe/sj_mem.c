@@ -77,9 +77,15 @@ Sint32 SJMEM_GetUuid(SJMEM sjmem)
     return sjmem->uuid;
 }
 
-void SJMEM_Init(void)
+// 100% matching!
+void SJMEM_Init(void) 
 {
-    scePrintf("SJMEM_Init - UNIMPLEMENTED!\n");
+    if (sjmem_init_cnt == 0) 
+    {
+        memset(sjmem_obj, 0, sizeof(sjmem_obj));
+    }
+    
+    sjmem_init_cnt++;
 }
 
 // SJMEM_IsGetChunk
