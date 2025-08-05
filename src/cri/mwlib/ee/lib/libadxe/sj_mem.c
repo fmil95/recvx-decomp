@@ -19,6 +19,9 @@ typedef struct _sjmem
 
 typedef SJMEM_OBJ     *SJMEM;
 
+static Sint32 sjmem_init_cnt;
+static SJMEM_OBJ sjmem_obj[32];
+
 SJ SJMEM_Create(Sint8 *data, Sint32 bsize)
 {
     scePrintf("SJMEM_Create - UNIMPLEMENTED!\n");
@@ -44,9 +47,13 @@ void SJMEM_EntryErrFunc(SJMEM sjmem, SJMEM_ERRFN func, void* obj)
 
 // SJMEM_Error
 
+// 100% matching!
 void SJMEM_Finish(void)
 {
-    scePrintf("SJMEM_Finish - UNIMPLEMENTED!\n");
+    if (--sjmem_init_cnt == 0)
+    {
+        memset(sjmem_obj, 0, sizeof(sjmem_obj));
+    }
 }
 
 // 100% matching!
