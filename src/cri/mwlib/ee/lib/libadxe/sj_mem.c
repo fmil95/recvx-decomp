@@ -107,7 +107,41 @@ Sint32 SJMEM_GetBufSize(SJMEM sjmem)
     return sjmem->bfsize;
 }
 
-// SJMEM_GetChunk
+// 100% matching!
+void SJMEM_GetChunk(SJMEM sjmem, Sint32 id, Sint32 nbyte, SJCK* ck)
+{
+    SJCRS_Lock();
+    
+    if (id == 0)
+    {
+        ck->len = 0;
+        
+        ck->data = NULL;
+    } 
+    else if (id == 1)
+    {
+        ck->len = MIN(sjmem->datano, nbyte);
+        
+        ck->data = (void*)((Sint32)sjmem->buf + sjmem->unk10);
+        
+        sjmem->unk10 += ck->len;
+        
+        sjmem->datano -= ck->len;
+    }
+    else 
+    {
+        ck->len = 0;
+        
+        ck->data = NULL;
+        
+        if (sjmem->err_func != NULL)
+        {
+            sjmem->err_func(sjmem->err_obj, -3);
+        }
+    }
+    
+    SJCRS_Unlock();
+}
 
 // 100% matching!
 Sint32 SJMEM_GetNumData(SJMEM sjmem, Sint32 id) 

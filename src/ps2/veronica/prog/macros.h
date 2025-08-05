@@ -9,3 +9,5 @@
 #define ALIGN(x, y) (((((int)x) + (y-1)) / y) * y)
 #define GET_DATA_PTR(x) ((void*)(((unsigned int)x) + sizeof(HM)))
 #define GET_NEXT_WRK(x) ((int)search_work) + (int)search_work->Use_size + (int)sizeof(HM)
+
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
