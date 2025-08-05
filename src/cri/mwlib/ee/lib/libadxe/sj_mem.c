@@ -6,7 +6,7 @@ typedef struct _sjmem
     Sint8   unk2;
     Sint8   unk3;
     Sint32  unk4;
-    Sint32  unk8;
+    Sint32  uuid;
     Sint32  unkC;
     Sint32  unk10;
     void*   buf;
@@ -55,7 +55,12 @@ Sint32 SJMEM_GetBufSize(SJMEM sjmem)
 
 // SJMEM_GetChunk
 // SJMEM_GetNumData
-// SJMEM_GetUuid
+
+// 100% matching!
+Sint32 SJMEM_GetUuid(SJMEM sjmem)
+{
+    return sjmem->uuid;
+}
 
 void SJMEM_Init(void)
 {
