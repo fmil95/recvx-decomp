@@ -1,18 +1,20 @@
 
+typedef void (*SJMEM_ERRFN)(void *obj, Char8 *msg);
+
 typedef struct _sjmem 
 {
-    Sint8   unk0;
-    Sint8   unk1;
-    Sint8   unk2;
-    Sint8   unk3;
-    Sint32  unk4;
-    Sint32  uuid;
-    Sint32  unkC;
-    Sint32  unk10;
-    void*   buf;
-    Sint32  bfsize;
-    Sint32  unk1C;
-    Sint32  unk20;
+    Sint8        unk0;
+    Sint8        unk1;
+    Sint8        unk2;
+    Sint8        unk3;
+    Sint32       unk4;
+    Sint32       uuid;
+    Sint32       unkC;
+    Sint32       unk10;
+    void*        buf;
+    Sint32       bfsize;
+    SJMEM_ERRFN  err_func;
+    void*        err_obj;
 } SJMEM_OBJ;
 
 typedef SJMEM_OBJ     *SJMEM;
@@ -33,7 +35,13 @@ void SJMEM_Destroy(SJMEM sjmem)
     }
 }
 
-// SJMEM_EntryErrFunc
+// 100% matching!
+void SJMEM_EntryErrFunc(SJMEM sjmem, SJMEM_ERRFN func, void* obj)
+{
+    sjmem->err_func = func;
+    sjmem->err_obj = obj;
+}
+
 // SJMEM_Error
 
 void SJMEM_Finish(void)
