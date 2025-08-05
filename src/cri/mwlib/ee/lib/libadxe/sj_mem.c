@@ -3,12 +3,9 @@ typedef void (*SJMEM_ERRFN)(void *obj, Char8 *msg);
 
 typedef struct _sjmem 
 {
-    Sint8        unk0;
-    Sint8        unk1;
-    Sint8        unk2;
-    Sint8        unk3;
-    Sint32       unk4;
-    Sint32       uuid;
+    SJ           sj;
+    Sint32       used;
+    Sint32*      uuid;
     Sint32       unkC;
     Sint32       unk10;
     void*        buf;
@@ -19,12 +16,50 @@ typedef struct _sjmem
 
 typedef SJMEM_OBJ     *SJMEM;
 
-static Sint32 sjmem_init_cnt;
 static SJMEM_OBJ sjmem_obj[32];
+static void* sjmem_vtbl[12];
+static Sint32 sjmem_uuid[4];
+static Sint32 sjmem_init_cnt;
 
+void SJMEM_Error(void);
+void SJMEM_Reset(SJMEM sjmem);
+
+// 100% matching!
 SJ SJMEM_Create(Sint8 *data, Sint32 bsize)
 {
-    scePrintf("SJMEM_Create - UNIMPLEMENTED!\n");
+    SJMEM sjmem;
+    Sint32 i;
+
+    for (i = 0; i < 32; i++) 
+    {
+        if (sjmem_obj[i].used == FALSE) 
+        {
+            break;
+        }
+    }
+
+    if (i == 32) 
+    {
+        return NULL;
+    }
+
+    sjmem = &sjmem_obj[i];
+    
+    sjmem->used = TRUE;
+    
+    sjmem->sj = (SJ)sjmem_vtbl;
+    
+    sjmem->buf = data;
+    sjmem->bfsize = bsize;
+    
+    sjmem->uuid = sjmem_uuid;
+    
+    sjmem->err_func = (void*)SJMEM_Error;
+    sjmem->err_obj = sjmem;
+    
+    SJMEM_Reset(sjmem);
+    
+    return (SJ)sjmem;
 }
 
 // 100% matching!
@@ -34,7 +69,7 @@ void SJMEM_Destroy(SJMEM sjmem)
     {
         memset(sjmem, 0, sizeof(SJMEM_OBJ));
         
-        sjmem->unk4 = 0;
+        sjmem->used = FALSE;
     }
 }
 
@@ -76,7 +111,7 @@ Sint32 SJMEM_GetBufSize(SJMEM sjmem)
 // SJMEM_GetNumData
 
 // 100% matching!
-Sint32 SJMEM_GetUuid(SJMEM sjmem)
+Sint32* SJMEM_GetUuid(SJMEM sjmem)
 {
     return sjmem->uuid;
 }
@@ -94,5 +129,10 @@ void SJMEM_Init(void)
 
 // SJMEM_IsGetChunk
 // SJMEM_PutChunk
-// SJMEM_Reset
+
+void SJMEM_Reset(SJMEM sjmem)
+{
+    scePrintf("SJMEM_Reset - UNIMPLEMENTED!\n");
+}
+
 // SJMEM_UngetChunk
