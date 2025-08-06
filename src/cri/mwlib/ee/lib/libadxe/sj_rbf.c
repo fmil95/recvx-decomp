@@ -39,7 +39,12 @@ void SJRBF_Destroy(SJRBF sjrbf)
     SJCRS_Unlock();
 }
 
-// SJRBF_EntryErrFunc
+// 100% matching!
+void SJRBF_EntryErrFunc(SJRBF sjrbf, SJRBF_ERRFN func, void* obj) 
+{
+    sjrbf->err_func = func;
+    sjrbf->err_obj = obj;
+}
 
 // 99.29% matching
 void SJRBF_Error(void) 
