@@ -71,9 +71,15 @@ void SJRBF_Finish(void)
 // SJRBF_GetUuid
 // SJRBF_GetXtrSize
 
-void SJRBF_Init(void)
+// 100% matching!
+void SJRBF_Init(void) 
 {
-    scePrintf("SJRBF_Init - UNIMPLEMENTED!\n");
+    if (sjrbf_init_cnt == 0) 
+    {
+        memset(sjrbf_obj, 0, sizeof(sjrbf_obj));
+    }
+    
+    sjrbf_init_cnt++;
 }
 
 // SJRBF_IsGetChunk
