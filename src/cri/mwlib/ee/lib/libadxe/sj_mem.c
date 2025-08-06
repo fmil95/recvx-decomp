@@ -247,4 +247,43 @@ void SJMEM_Reset(SJMEM sjmem)
     sjmem->datano = sjmem->bfsize;
 }
 
-// SJMEM_UngetChunk
+// 100% matching!
+void SJMEM_UngetChunk(SJMEM sjmem, Sint32 id, SJCK *ck)
+{
+    if ((ck->len > 0) && (ck->data != NULL))
+    {
+        SJCRS_Lock();
+    
+        if (id == 0) 
+        {
+            if (sjmem->err_func != NULL) 
+            {
+                sjmem->err_func(sjmem->err_obj, -3);
+            }
+        } 
+        else if (id == 1) 
+        {
+            sjmem->unk10 = MAX(sjmem->unk10 - ck->len, 0);
+            
+            sjmem->datano = MIN(sjmem->bfsize, sjmem->datano + ck->len);
+            
+            if ((sjmem->unk10 != ((Sint32)ck->data - (Sint32)sjmem->buf)) && (sjmem->err_func != NULL))
+            {
+                sjmem->err_func(sjmem->err_obj, -3);
+            }
+        } 
+        else 
+        {
+            ck->len = 0;
+            
+            ck->data = NULL;
+    
+            if (sjmem->err_func != NULL) 
+            {
+                sjmem->err_func(sjmem->err_obj, -3);
+            }
+        }
+    
+        SJCRS_Unlock();
+    }
+}
