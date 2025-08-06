@@ -19,6 +19,9 @@ typedef struct _sjrbf
 
 typedef SJRBF_OBJ     *SJRBF;
 
+static SJRBF_OBJ sjrbf_obj[64];
+static Sint32 sjrbf_init_cnt;
+
 SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize)
 {
     scePrintf("SJRBF_Create - UNIMPLEMENTED!\n");
@@ -52,9 +55,13 @@ void SJRBF_Error(void)
     while (TRUE);
 }
 
-void SJRBF_Finish(void)
+// 100% matching!
+void SJRBF_Finish(void) 
 {
-    scePrintf("SJRBF_Finish - UNIMPLEMENTED!\n");
+    if (--sjrbf_init_cnt == 0) 
+    {
+        memset(sjrbf_obj, 0, sizeof(sjrbf_obj));
+    }
 }
 
 // SJRBF_GetBufPtr
