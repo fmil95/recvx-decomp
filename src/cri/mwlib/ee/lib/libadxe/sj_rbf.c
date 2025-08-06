@@ -12,7 +12,7 @@ typedef struct _sjrbf
     Sint32       unk18;
     void*        buf;
     Sint32       bfsize;
-    Sint32       unk24;
+    Sint32       xtrsize;
     SJRBF_ERRFN  err_func;
     void*        err_obj;
 } SJRBF_OBJ;
@@ -103,7 +103,11 @@ UUID* SJRBF_GetUuid(SJRBF sjrbf)
     return sjrbf->uuid;
 }
 
-// SJRBF_GetXtrSize
+// 100% matching!
+Sint32 SJRBF_GetXtrSize(SJRBF sjrbf) 
+{
+    return sjrbf->xtrsize;
+}
 
 // 100% matching!
 void SJRBF_Init(void) 
