@@ -208,7 +208,36 @@ Sint32 SJMEM_IsGetChunk(SJMEM sjmem, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
     return len == nbyte;
 }
 
-// SJMEM_PutChunk
+// 100% matching!
+void SJMEM_PutChunk(SJMEM sjmem, Sint32 id, SJCK *ck)
+{
+    if ((ck->len > 0) && (ck->data != NULL))
+    {
+        SJCRS_Lock();
+
+        if (id == 0)
+        {
+            goto end;
+        }
+    
+        if (id == 1) 
+        {
+            goto end;
+        }
+    
+        ck->len = 0;
+        
+        ck->data = NULL;
+    
+        if (sjmem->err_func != NULL) 
+        {
+            sjmem->err_func(sjmem->err_obj, -3);
+        }
+    
+    end:
+        SJCRS_Unlock();
+    }
+}
 
 // 100% matching!
 void SJMEM_Reset(SJMEM sjmem) 
