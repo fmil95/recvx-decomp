@@ -8,10 +8,10 @@ typedef struct _sjrbf
     UUID*        uuid;
     Sint32       datano;
     Sint32       unk10;
+    Sint32       unk14;
+    Sint32       unk18;
     void*        buf;
     Sint32       bfsize;
-    Sint32       unk1C;
-    Sint32       unk20;
     Sint32       unk24;
     SJRBF_ERRFN  err_func;
     void*        err_obj;
@@ -64,7 +64,12 @@ void SJRBF_Finish(void)
     }
 }
 
-// SJRBF_GetBufPtr
+// 100% matching!
+void* SJRBF_GetBufPtr(SJRBF sjrbf)
+{
+    return sjrbf->buf;
+}
+
 // SJRBF_GetBufSize
 // SJRBF_GetChunk
 // SJRBF_GetNumData
