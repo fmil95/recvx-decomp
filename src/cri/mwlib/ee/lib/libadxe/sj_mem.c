@@ -5,7 +5,7 @@ typedef struct _sjmem
 {
     SJ           sj;
     Sint32       used;
-    Sint32*      uuid;
+    UUID*        uuid;
     Sint32       datano;
     Sint32       unk10;
     void*        buf;
@@ -17,8 +17,8 @@ typedef struct _sjmem
 typedef SJMEM_OBJ     *SJMEM;
 
 static SJMEM_OBJ sjmem_obj[32];
-static void* sjmem_vtbl[12];
-static Sint32 sjmem_uuid[4];
+static SJ_IF sjmem_vtbl[12];
+static UUID sjmem_uuid;
 static Sint32 sjmem_init_cnt;
 
 void SJMEM_Error(void);
@@ -52,7 +52,7 @@ SJ SJMEM_Create(Sint8 *data, Sint32 bsize)
     sjmem->buf = data;
     sjmem->bfsize = bsize;
     
-    sjmem->uuid = sjmem_uuid;
+    sjmem->uuid = &sjmem_uuid;
     
     sjmem->err_func = (void*)SJMEM_Error;
     sjmem->err_obj = sjmem;
@@ -160,7 +160,7 @@ Sint32 SJMEM_GetNumData(SJMEM sjmem, Sint32 id)
 }
 
 // 100% matching!
-Sint32* SJMEM_GetUuid(SJMEM sjmem)
+UUID* SJMEM_GetUuid(SJMEM sjmem)
 {
     return sjmem->uuid;
 }
