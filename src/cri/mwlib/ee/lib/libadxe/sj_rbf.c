@@ -77,7 +77,25 @@ Sint32 SJRBF_GetBufSize(SJRBF sjrbf)
 }
 
 // SJRBF_GetChunk
-// SJRBF_GetNumData
+
+// 100% matching!
+Sint32 SJRBF_GetNumData(SJRBF sjrbf, Sint32 id)  
+{
+    if (id == 1) 
+    {
+        return sjrbf->datano;
+    }
+    else if (id == 0) 
+    {
+        return sjrbf->unk10;
+    } 
+    else if (sjrbf->err_func != NULL) 
+    {
+        sjrbf->err_func(sjrbf->err_obj, -3);
+    }
+    
+    return 0;
+}
 
 // 100% matching!
 UUID* SJRBF_GetUuid(SJRBF sjrbf)
