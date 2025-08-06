@@ -1,11 +1,44 @@
 
+typedef void (*SJRBF_ERRFN)(void *obj, Sint32 errcode);
+
+typedef struct _sjrbf 
+{
+    SJ           sj;
+    Sint32       used;
+    UUID*        uuid;
+    Sint32       datano;
+    Sint32       unk10;
+    void*        buf;
+    Sint32       bfsize;
+    Sint32       unk1C;
+    Sint32       unk20;
+    Sint32       unk24;
+    SJRBF_ERRFN  err_func;
+    void*        err_obj;
+} SJRBF_OBJ;
+
+typedef SJRBF_OBJ     *SJRBF;
 
 SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize)
 {
     scePrintf("SJRBF_Create - UNIMPLEMENTED!\n");
 }
 
-// SJRBF_Destroy
+// 100% matching!
+void SJRBF_Destroy(SJRBF sjrbf)
+{
+    SJCRS_Lock();
+    
+    if (sjrbf != NULL) 
+    {
+        memset(sjrbf, 0, sizeof(SJRBF_OBJ));
+        
+        sjrbf->used = FALSE;
+    }
+    
+    SJCRS_Unlock();
+}
+
 // SJRBF_EntryErrFunc
 
 // 99.29% matching
