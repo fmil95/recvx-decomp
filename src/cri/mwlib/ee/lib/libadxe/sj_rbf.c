@@ -70,7 +70,12 @@ void* SJRBF_GetBufPtr(SJRBF sjrbf)
     return sjrbf->buf;
 }
 
-// SJRBF_GetBufSize
+// 100% matching!
+Sint32 SJRBF_GetBufSize(SJRBF sjrbf) 
+{
+    return sjrbf->bfsize;
+}
+
 // SJRBF_GetChunk
 // SJRBF_GetNumData
 // SJRBF_GetUuid
