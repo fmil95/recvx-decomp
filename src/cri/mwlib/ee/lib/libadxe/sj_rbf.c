@@ -78,7 +78,13 @@ Sint32 SJRBF_GetBufSize(SJRBF sjrbf)
 
 // SJRBF_GetChunk
 // SJRBF_GetNumData
-// SJRBF_GetUuid
+
+// 100% matching!
+UUID* SJRBF_GetUuid(SJRBF sjrbf)
+{
+    return sjrbf->uuid;
+}
+
 // SJRBF_GetXtrSize
 
 // 100% matching!
