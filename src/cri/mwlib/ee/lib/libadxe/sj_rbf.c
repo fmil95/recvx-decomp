@@ -7,7 +7,12 @@ SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize)
 
 // SJRBF_Destroy
 // SJRBF_EntryErrFunc
-// SJRBF_Error
+
+// 99.29% matching
+void SJRBF_Error(void) 
+{
+    while (TRUE);
+}
 
 void SJRBF_Finish(void)
 {
