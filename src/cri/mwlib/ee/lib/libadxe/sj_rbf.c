@@ -204,7 +204,40 @@ void SJRBF_Init(void)
     sjrbf_init_cnt++;
 }
 
-// SJRBF_IsGetChunk
+// 100% matching!
+Sint32 SJRBF_IsGetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
+{
+    Sint32 len;
+
+    SJCRS_Lock();
+    
+    if (id == 0) 
+    {
+        len = MIN(sjrbf->unk10, (sjrbf->bfsize - sjrbf->unk14) + sjrbf->xtrsize);
+        len = MIN(len, nbyte);
+    } 
+    else if (id == 1) 
+    {
+        len = MIN(sjrbf->datano, (sjrbf->bfsize - sjrbf->unk18) + sjrbf->xtrsize);
+        len = MIN(len, nbyte);
+    } 
+    else 
+    {
+        len = 0;
+
+        if (sjrbf->err_func != NULL)
+        {
+            sjrbf->err_func(sjrbf->err_obj, -3); 
+        }
+    }
+
+    *rbyte = len;
+    
+    SJCRS_Unlock();
+    
+    return len == nbyte;
+}
+
 // SJRBF_PutChunk
 
 // 100% matching!
