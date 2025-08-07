@@ -169,9 +169,16 @@ void SJRBF_Init(void)
 // SJRBF_IsGetChunk
 // SJRBF_PutChunk
 
-void SJRBF_Reset(SJRBF sjrbf)
+// 100% matching!
+void SJRBF_Reset(SJRBF sjrbf) 
 {
-    scePrintf("SJRBF_Reset - UNIMPLEMENTED!\n");
+    sjrbf->datano = 0;
+    
+    sjrbf->unk14 = 0;
+    
+    sjrbf->unk10 = sjrbf->bfsize;
+    
+    sjrbf->unk18 = 0; 
 }
 
 // SJRBF_UngetChunk
