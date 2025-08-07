@@ -19,13 +19,27 @@ typedef struct _sjrbf
 
 typedef SJRBF_OBJ     *SJRBF;
 
-static SJRBF_OBJ sjrbf_obj[64];
-static SJ_IF sjrbf_vtbl;
+SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize);
+void SJRBF_Destroy(SJRBF sjrbf);
+void SJRBF_EntryErrFunc(SJRBF sjrbf, SJRBF_ERRFN func, void* obj);
+void SJRBF_Error(void);
+void SJRBF_Finish(void);
+void* SJRBF_GetBufPtr(SJRBF sjrbf);
+Sint32 SJRBF_GetBufSize(SJRBF sjrbf);
+void SJRBF_GetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, SJCK *ck);
+Sint32 SJRBF_GetNumData(SJRBF sjrbf, Sint32 id);
+UUID* SJRBF_GetUuid(SJRBF sjrbf);
+Sint32 SJRBF_GetXtrSize(SJRBF sjrbf);
+void SJRBF_Init(void);
+Sint32 SJRBF_IsGetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, Sint32 *rbyte);
+void SJRBF_PutChunk(SJRBF sjrbf, Sint32 id, SJCK *ck);
+void SJRBF_Reset(SJRBF sjrbf);  
+void SJRBF_UngetChunk(SJRBF sjrbf, Sint32 id, SJCK *ck);
+
+static SJRBF_OBJ sjrbf_obj[64] = { 0 };
+static SJ_IF sjrbf_vtbl = { NULL, NULL, NULL, (void*)SJRBF_Destroy, (void*)SJRBF_GetUuid, (void*)SJRBF_Reset, (void*)SJRBF_GetChunk,(void*)SJRBF_UngetChunk, (void*)SJRBF_PutChunk, (void*)SJRBF_GetNumData, (void*)SJRBF_IsGetChunk, (void*)SJRBF_EntryErrFunc };
 static UUID sjrbf_uuid;
 static Sint32 sjrbf_init_cnt;
-
-void SJRBF_Error(void);
-void SJRBF_Reset(SJRBF sjrbf);  
 
 // 100% matching!
 SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize) 
