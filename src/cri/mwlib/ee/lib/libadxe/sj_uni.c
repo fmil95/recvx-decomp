@@ -41,7 +41,12 @@ void SJUNI_Destroy(SJUNI sjuni)
     }
 }
 
-// SJUNI_EntryErrFunc
+// 100% matching!
+void SJUNI_EntryErrFunc(SJUNI sjuni, SJUNI_ERRFN func, void* obj) 
+{
+    sjuni->err_func = func;
+    sjuni->err_obj = obj;
+}
 
 // 99.29% matching
 void SJUNI_Error(void) 
