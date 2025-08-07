@@ -22,6 +22,9 @@ typedef struct _sjuni
 
 typedef SJUNI_OBJ *SJUNI;
 
+static SJUNI_OBJ sjuni_obj[64];
+static Sint32 sjuni_init_cnt;
+
 SJ SJUNI_Create(Sint32 mode, Sint8 *work, Sint32 wksize)
 {
     scePrintf("SJUNI_Create - UNIMPLEMENTED!\n");
@@ -46,9 +49,13 @@ void SJUNI_Error(void)
     while (TRUE);
 }
 
+// 100% matching!
 void SJUNI_Finish(void)
 {
-    scePrintf("SJUNI_Finish - UNIMPLEMENTED!\n");
+    if (--sjuni_init_cnt == 0) 
+    { 
+        memset(sjuni_obj, 0, sizeof(sjuni_obj));
+    }
 }
 
 // SJUNI_GetChunk
