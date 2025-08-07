@@ -28,7 +28,7 @@ typedef struct _dtx
     Sint32         datano;
 } DTX_OBJ;
 
-typedef DTX_OBJ    *DTX;
+typedef DTX_OBJ *DTX;
 
 typedef struct _dtx_rpc
 {

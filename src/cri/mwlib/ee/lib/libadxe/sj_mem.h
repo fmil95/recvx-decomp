@@ -9,14 +9,14 @@ typedef struct _sjmem
     Sint32       used;
     UUID*        uuid;
     Sint32       datano;
-    Sint32       unk10;
+    Sint32       unk10;    // roomno?
     void*        buf;
     Sint32       bfsize;
     SJMEM_ERRFN  err_func;
     void*        err_obj;
 } SJMEM_OBJ;
 
-typedef SJMEM_OBJ     *SJMEM;
+typedef SJMEM_OBJ *SJMEM;
 
 SJ SJMEM_Create(Sint8 *data, Sint32 bsize);
 void SJMEM_Destroy(SJMEM sjmem);

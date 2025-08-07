@@ -91,7 +91,7 @@ void SJX_Init(void)
         
         sjx_wklen = 2176;
         
-        sjx_eewk = (void*)(((Uint32)sjx_ee_work + 64) & ~0x3F);
+        sjx_eewk = (void*)(((Uint32)sjx_ee_work + 64) & ~0x3F); // simplify this line
 
         if (sjx_iopwk == NULL) 
         {
@@ -105,7 +105,7 @@ void SJX_Init(void)
             }
         }
 
-        sjx_iopwk = (void*)(((Uint32)sjx_iopwk + 64) & ~0x3F);
+        sjx_iopwk = (void*)(((Uint32)sjx_iopwk + 64) & ~0x3F); // same as above
         
         sjx_dtx = DTX_Create(0, sjx_eewk, sjx_iopwk, sjx_wklen);
 

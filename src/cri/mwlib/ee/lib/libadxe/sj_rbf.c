@@ -108,9 +108,9 @@ void SJRBF_GetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, SJCK *ck)
 
     if (id == 0)
     {
-        ck->len = MIN(MIN(sjrbf->unk10, (sjrbf->bfsize - sjrbf->unk14) + sjrbf->xtrsize), nbyte);
+        ck->len = MIN(MIN(sjrbf->unk10, (sjrbf->bfsize - sjrbf->unk14) + sjrbf->xtrsize), nbyte); // simplify this line
         
-        ck->data = (void*)((Sint32)sjrbf->buf + sjrbf->unk14);
+        ck->data = (void*)((Sint32)sjrbf->buf + sjrbf->unk14); // simplify this too
         
         sjrbf->unk14 = (sjrbf->unk14 + ck->len) % sjrbf->bfsize;
         
@@ -118,7 +118,7 @@ void SJRBF_GetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, SJCK *ck)
     }
     else if (id == 1) 
     {
-        ck->len = MIN(MIN(sjrbf->datano, (sjrbf->bfsize - sjrbf->unk18) + sjrbf->xtrsize), nbyte);
+        ck->len = MIN(MIN(sjrbf->datano, (sjrbf->bfsize - sjrbf->unk18) + sjrbf->xtrsize), nbyte); // same as above
         
         ck->data = (void*)((Sint32)sjrbf->buf + sjrbf->unk18);
         
@@ -235,7 +235,7 @@ void SJRBF_PutChunk(SJRBF sjrbf, Sint32 id, SJCK *ck)
     
             if (len < sjrbf->xtrsize) 
             {
-                memcpy((void*)((Sint32)sjrbf->buf + (sjrbf->bfsize + len)), ck->data, MIN(ck->len, sjrbf->xtrsize - len));
+                memcpy((void*)((Sint32)sjrbf->buf + (sjrbf->bfsize + len)), ck->data, MIN(ck->len, sjrbf->xtrsize - len)); // simplify this line
             }
      
             len = ((Sint32)ck->data - (Sint32)sjrbf->buf) + ck->len; 
@@ -244,7 +244,7 @@ void SJRBF_PutChunk(SJRBF sjrbf, Sint32 id, SJCK *ck)
             {
                 size = MIN(ck->len, len - sjrbf->bfsize);
                 
-                memcpy(sjrbf->buf, (void*)((Sint32)sjrbf->buf + (len - size)), size);  
+                memcpy(sjrbf->buf, (void*)((Sint32)sjrbf->buf + (len - size)), size); // same as above
             }
         } 
         else if (id == 0)

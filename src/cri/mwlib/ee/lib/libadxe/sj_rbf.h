@@ -11,7 +11,7 @@ typedef struct _sjrbf
     Sint32       datano;
     Sint32       unk10;
     Sint32       unk14;
-    Sint32       unk18;
+    Sint32       unk18;    // roomno?
     void*        buf;
     Sint32       bfsize;
     Sint32       xtrsize;
@@ -19,7 +19,7 @@ typedef struct _sjrbf
     void*        err_obj;
 } SJRBF_OBJ;
 
-typedef SJRBF_OBJ     *SJRBF;
+typedef SJRBF_OBJ *SJRBF;
 
 SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize);
 void SJRBF_Destroy(SJRBF sjrbf);

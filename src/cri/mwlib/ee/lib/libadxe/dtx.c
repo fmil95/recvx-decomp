@@ -242,6 +242,8 @@ void DTX_Finish(void)
     DTX dtx;
     Sint32 i;
 
+    dtx = 0;
+
     if (--dtx_init_cnt == 0) 
     {
         dtx++; // this operation is invalid, it's only allowed for matching purposes

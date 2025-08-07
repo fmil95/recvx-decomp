@@ -103,7 +103,7 @@ void SJMEM_GetChunk(SJMEM sjmem, Sint32 id, Sint32 nbyte, SJCK* ck)
     {
         ck->len = MIN(sjmem->datano, nbyte);
         
-        ck->data = (void*)((Sint32)sjmem->buf + sjmem->unk10);
+        ck->data = (void*)((Sint32)sjmem->buf + sjmem->unk10); // simplify this line 
         
         sjmem->unk10 += ck->len;
         

@@ -12,7 +12,7 @@ typedef struct _sjx
     Sint32  urpc;
 } SJX_OBJ;
 
-typedef SJX_OBJ       *SJX;
+typedef SJX_OBJ *SJX;
 
 typedef struct _sjx_work
 {
@@ -23,7 +23,7 @@ typedef struct _sjx_work
     SJCK    ck;
 } SJX_WORK_OBJ; 
 
-typedef SJX_WORK_OBJ  *SJX_WORK;
+typedef SJX_WORK_OBJ *SJX_WORK;
 
 typedef struct _sjx_buf
 {
@@ -34,8 +34,8 @@ typedef struct _sjx_buf
     SJX_WORK_OBJ  wk[0];
 } SJX_BUF_OBJ;
 
-typedef SJX_BUF_OBJ   *SJX_RCVCBF;
-typedef SJX_BUF_OBJ   *SJX_SNDCBF;
+typedef SJX_BUF_OBJ *SJX_RCVCBF;
+typedef SJX_BUF_OBJ *SJX_SNDCBF;
 
 SJX SJX_Create(SJ sj, Sint8 *work, Sint32 wksize);
 void SJX_Destroy(SJX sjx);
