@@ -39,7 +39,12 @@ void SJUNI_Destroy(SJUNI sjuni)
 }
 
 // SJUNI_EntryErrFunc
-// SJUNI_Error
+
+// 99.29% matching
+void SJUNI_Error(void) 
+{
+    while (TRUE);
+}
 
 void SJUNI_Finish(void)
 {
