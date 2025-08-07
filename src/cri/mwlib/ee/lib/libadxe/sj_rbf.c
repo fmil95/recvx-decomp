@@ -122,7 +122,45 @@ Sint32 SJRBF_GetBufSize(SJRBF sjrbf)
     return sjrbf->bfsize;
 }
 
-// SJRBF_GetChunk
+// 100% matching!
+void SJRBF_GetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, SJCK *ck)
+{
+    SJCRS_Lock();
+
+    if (id == 0)
+    {
+        ck->len = MIN(MIN(sjrbf->unk10, (sjrbf->bfsize - sjrbf->unk14) + sjrbf->xtrsize), nbyte);
+        
+        ck->data = (void*)((Sint32)sjrbf->buf + sjrbf->unk14);
+        
+        sjrbf->unk14 = (sjrbf->unk14 + ck->len) % sjrbf->bfsize;
+        
+        sjrbf->unk10 -= ck->len;
+    }
+    else if (id == 1) 
+    {
+        ck->len = MIN(MIN(sjrbf->datano, (sjrbf->bfsize - sjrbf->unk18) + sjrbf->xtrsize), nbyte);
+        
+        ck->data = (void*)((Sint32)sjrbf->buf + sjrbf->unk18);
+        
+        sjrbf->unk18 = (sjrbf->unk18 + ck->len) % sjrbf->bfsize;
+        
+        sjrbf->datano -= ck->len;
+    }
+    else
+    {
+        ck->len = 0;
+        
+        ck->data = NULL;
+
+        if (sjrbf->err_func != NULL)
+        {
+            sjrbf->err_func(sjrbf->err_obj, -3);
+        }
+    }
+
+    SJCRS_Unlock();
+}
 
 // 100% matching!
 Sint32 SJRBF_GetNumData(SJRBF sjrbf, Sint32 id)  
