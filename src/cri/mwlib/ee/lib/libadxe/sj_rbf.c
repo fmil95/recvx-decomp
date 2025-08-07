@@ -300,4 +300,60 @@ void SJRBF_Reset(SJRBF sjrbf)
     sjrbf->unk18 = 0; 
 }
 
-// SJRBF_UngetChunk
+// 100% matching!
+void SJRBF_UngetChunk(SJRBF sjrbf, Sint32 id, SJCK *ck)
+{
+    Sint32 mod1;
+    Sint32 mod2;
+
+    if ((ck->len > 0) && (ck->data != NULL)) 
+    {
+        SJCRS_Lock();
+
+        if (id == 0) 
+        {
+            mod1 = ((sjrbf->unk14 + sjrbf->bfsize) - ck->len) % sjrbf->bfsize;
+            mod2 = ((Sint32)ck->data - (Sint32)sjrbf->buf) % sjrbf->bfsize;
+    
+            if (mod1 == mod2) 
+            {
+                sjrbf->unk14 = mod1;
+                
+                sjrbf->unk10 += ck->len;
+            }
+            else if (sjrbf->err_func != NULL) 
+            {
+                sjrbf->err_func(sjrbf->err_obj, -3);
+            }
+        }
+        else if (id == 1)
+        {
+            mod1 = ((sjrbf->unk18 + sjrbf->bfsize) - ck->len) % sjrbf->bfsize;
+            mod2 = ((Sint32)ck->data - (Sint32)sjrbf->buf) % sjrbf->bfsize;
+    
+            if (mod1 == mod2) 
+            {
+                sjrbf->unk18 = mod1;
+                
+                sjrbf->datano += ck->len;
+            } 
+            else if (sjrbf->err_func != NULL)  
+            {
+                sjrbf->err_func(sjrbf->err_obj, -3);
+            }
+        } 
+        else 
+        { 
+            ck->len = 0;
+            
+            ck->data = NULL; 
+    
+            if (sjrbf->err_func != NULL) 
+            {
+                sjrbf->err_func(sjrbf->err_obj, -3);
+            }
+        }
+    
+        SJCRS_Unlock();
+    }
+}
