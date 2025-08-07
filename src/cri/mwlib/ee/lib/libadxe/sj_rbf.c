@@ -238,7 +238,55 @@ Sint32 SJRBF_IsGetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
     return len == nbyte;
 }
 
-// SJRBF_PutChunk
+// 100% matching!
+void SJRBF_PutChunk(SJRBF sjrbf, Sint32 id, SJCK *ck)
+{
+    Sint32 len;
+    Sint32 size;
+
+    if ((ck->len > 0) && (ck->data != NULL)) 
+    {
+        SJCRS_Lock();
+    
+        if (id == 1) 
+        {
+            len = (Sint32)ck->data - (Sint32)sjrbf->buf;
+            
+            sjrbf->datano += ck->len;
+    
+            if (len < sjrbf->xtrsize) 
+            {
+                memcpy((void*)((Sint32)sjrbf->buf + (sjrbf->bfsize + len)), ck->data, MIN(ck->len, sjrbf->xtrsize - len));
+            }
+     
+            len = ((Sint32)ck->data - (Sint32)sjrbf->buf) + ck->len; 
+     
+            if (len > sjrbf->bfsize) 
+            {
+                size = MIN(ck->len, len - sjrbf->bfsize);
+                
+                memcpy(sjrbf->buf, (void*)((Sint32)sjrbf->buf + (len - size)), size);  
+            }
+        } 
+        else if (id == 0)
+        {
+            sjrbf->unk10 += ck->len;
+        }
+        else
+        {
+            ck->len = 0;
+            
+            ck->data = NULL;
+    
+            if (sjrbf->err_func != NULL) 
+            {
+                sjrbf->err_func(sjrbf->err_obj, -3);
+            }
+        }
+    
+        SJCRS_Unlock();
+    }
+}
 
 // 100% matching!
 void SJRBF_Reset(SJRBF sjrbf) 
