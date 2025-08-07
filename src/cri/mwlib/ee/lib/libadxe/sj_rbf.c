@@ -20,11 +20,57 @@ typedef struct _sjrbf
 typedef SJRBF_OBJ     *SJRBF;
 
 static SJRBF_OBJ sjrbf_obj[64];
+static SJ_IF sjrbf_vtbl;
+static UUID sjrbf_uuid;
 static Sint32 sjrbf_init_cnt;
 
-SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize)
+void SJRBF_Error(void);
+void SJRBF_Reset(SJRBF sjrbf);  
+
+// 100% matching!
+SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize) 
 {
-    scePrintf("SJRBF_Create - UNIMPLEMENTED!\n");
+    SJRBF sjrbf;
+    Sint32 i;
+
+    SJCRS_Lock();
+
+    for (i = 0; i < 64; i++)
+    {
+        if (sjrbf_obj[i].used == FALSE) 
+        {
+            break;
+        }
+    }
+
+    if (i == 64) 
+    {
+        sjrbf = NULL;
+    }
+    else 
+    {
+        sjrbf = &sjrbf_obj[i];
+        
+        sjrbf->used = TRUE;
+        
+        sjrbf->sj = (SJ)&sjrbf_vtbl;
+        
+        sjrbf->buf = buf;
+        
+        sjrbf->bfsize = bsize;
+        sjrbf->xtrsize = xsize;
+        
+        sjrbf->uuid = &sjrbf_uuid;
+        
+        sjrbf->err_func = (void*)SJRBF_Error;
+        sjrbf->err_obj = sjrbf;
+        
+        SJRBF_Reset(sjrbf);
+    }
+
+    SJCRS_Unlock();
+    
+    return (SJ)sjrbf;
 }
 
 // 100% matching!
@@ -122,5 +168,10 @@ void SJRBF_Init(void)
 
 // SJRBF_IsGetChunk
 // SJRBF_PutChunk
-// SJRBF_Reset
+
+void SJRBF_Reset(SJRBF sjrbf)
+{
+    scePrintf("SJRBF_Reset - UNIMPLEMENTED!\n");
+}
+
 // SJRBF_UngetChunk
