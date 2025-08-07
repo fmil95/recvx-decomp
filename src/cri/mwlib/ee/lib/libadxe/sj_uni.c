@@ -1,11 +1,43 @@
 
+typedef void (*SJUNI_ERRFN)(void *obj, Sint32 errcode);
+
+typedef struct _sjuni 
+{
+    SJ           sj;
+    Sint8        used;
+    Sint8        unk5;
+    Sint8        unk6;
+    Sint8        unk7;
+    UUID*        uuid;
+    Sint32       datano;
+    Sint32       unk10;
+    Sint32       unk14;
+    Sint32       unk18;
+    void*        buf;
+    Sint32       bfsize;
+    Sint32       xtrsize;
+    SJUNI_ERRFN  err_func;
+    void*        err_obj;
+} SJUNI_OBJ;
+
+typedef SJUNI_OBJ *SJUNI;
 
 SJ SJUNI_Create(Sint32 mode, Sint8 *work, Sint32 wksize)
 {
     scePrintf("SJUNI_Create - UNIMPLEMENTED!\n");
 }
 
-// SJUNI_Destroy
+// 100% matching!
+void SJUNI_Destroy(SJUNI sjuni)
+{
+    if (sjuni != NULL) 
+    {
+        memset(sjuni, 0, sizeof(SJUNI_OBJ)); 
+        
+        sjuni->used = FALSE;
+    }
+}
+
 // SJUNI_EntryErrFunc
 // SJUNI_Error
 
