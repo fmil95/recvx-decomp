@@ -67,7 +67,12 @@ void SJUNI_Finish(void)
 // SJUNI_GetNumChainPool
 // SJUNI_GetNumChunk
 // SJUNI_GetNumData
-// SJUNI_GetUuid
+
+// 100% matching!
+UUID* SJUNI_GetUuid(SJUNI sjuni) 
+{
+    return sjuni->uuid;
+}
 
 // 100% matching!
 void SJUNI_Init(void) 
