@@ -21,7 +21,7 @@ typedef struct _sjuni
     UUID*        uuid;
     Sint32       datano;
     Sint32       unk10;
-    Sint32       unk14;
+    void*        unk14;
     SJUNI_WORK   wk[4];
     SJUNI_ERRFN  err_func;
     void*        err_obj;
@@ -71,7 +71,26 @@ void SJUNI_Finish(void)
 }
 
 // SJUNI_GetChunk
-// SJUNI_GetNumChainPool
+
+// 100% matching!
+Sint32 SJUNI_GetNumChainPool(SJ sj)
+{
+    SJUNI sjuni;
+    SJUNI_WORK cur;
+    Sint32 ncpool;
+
+    sjuni = (SJUNI)sj;
+
+    ncpool = 0;
+
+    for (cur = sjuni->unk14; cur != NULL; cur = cur->next) 
+    {
+        ncpool++;
+    }
+
+    return ncpool;
+}
+
 // SJUNI_GetNumChunk
 
 // 100% matching!
