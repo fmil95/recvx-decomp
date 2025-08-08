@@ -5,7 +5,7 @@ typedef void (*SJRBF_ERRFN)(void *obj, Sint32 errcode);
 
 typedef struct _sjrbf 
 {
-    SJ           sj;
+    SJ_OBJ       sj;
     Sint32       used;
     UUID*        uuid;
     Sint32       datano;

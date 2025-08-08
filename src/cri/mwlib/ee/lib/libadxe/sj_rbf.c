@@ -7,7 +7,7 @@ static UUID sjrbf_uuid = { 0x3B9A9E81, 0x0DBB, 0x11D2, { 0xA6, 0xBF, 0x44, 0x45,
 static Sint32 sjrbf_init_cnt;
 
 // 100% matching!
-SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize) 
+SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize) // should return SJRBF, but doing so clashes with the header definition
 {
     SJRBF sjrbf;
     Sint32 i;
@@ -32,7 +32,7 @@ SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize)
         
         sjrbf->used = TRUE;
         
-        sjrbf->sj = (SJ)&sjrbf_vtbl;
+        sjrbf->sj.vtbl = &sjrbf_vtbl;
         
         sjrbf->buf = buf;
         

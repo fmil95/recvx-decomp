@@ -6,7 +6,7 @@ static UUID sjmem_uuid = { 0xDD9EEE41, 0x1679, 0x11D2, { 0x93, 0x6C, 0x00, 0x60,
 static Sint32 sjmem_init_cnt;
 
 // 100% matching!
-SJ SJMEM_Create(Sint8 *data, Sint32 bsize)
+SJ SJMEM_Create(Sint8 *data, Sint32 bsize) // should return SJMEM, but doing so clashes with the header definition
 {
     SJMEM sjmem;
     Sint32 i;
@@ -28,7 +28,7 @@ SJ SJMEM_Create(Sint8 *data, Sint32 bsize)
     
     sjmem->used = TRUE;
     
-    sjmem->sj = (SJ)&sjmem_vtbl;
+    sjmem->sj.vtbl = &sjmem_vtbl; 
     
     sjmem->buf = data;
     sjmem->bfsize = bsize;
