@@ -69,9 +69,15 @@ void SJUNI_Finish(void)
 // SJUNI_GetNumData
 // SJUNI_GetUuid
 
-void SJUNI_Init(void)
-{
-    scePrintf("SJUNI_Init - UNIMPLEMENTED!\n");
+// 100% matching!
+void SJUNI_Init(void) 
+{ 
+    if (sjuni_init_cnt == 0)
+    {
+        memset(sjuni_obj, 0, sizeof(sjuni_obj));
+    }
+    
+    sjuni_init_cnt++;
 }
 
 // SJUNI_IsGetChunk
