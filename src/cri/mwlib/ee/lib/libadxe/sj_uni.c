@@ -1,30 +1,29 @@
 
-typedef struct SJUNI_WORK 
+typedef struct SJUNI_CKLIST 
 {
-    struct SJUNI_WORK  *next;
-    Sint32             unk4;
-    Sint32             unk8;
-    Sint32             len;
-} SJUNI_WORK_OBJ;
+    struct SJUNI_CKLIST*  next; 
+    struct SJUNI_CKLIST*  prev; 
+    SJCK                  ck; 
+} SJUNI_CKLIST_OBJ;
 
-typedef SJUNI_WORK_OBJ *SJUNI_WORK;
+typedef SJUNI_CKLIST_OBJ *SJUNI_CKLIST;
 
 typedef void (*SJUNI_ERRFN)(void *obj, Sint32 errcode);
 
 typedef struct _sjuni 
 {
-    SJ           sj;
-    Sint8        used;
-    Sint8        unk5;
-    Sint8        unk6;
-    Sint8        unk7;
-    UUID*        uuid;
-    Sint32       datano;
-    Sint32       unk10;
-    void*        unk14;
-    SJUNI_WORK   wk[4];
-    SJUNI_ERRFN  err_func;
-    void*        err_obj;
+    SJ            sj;
+    Sint8         used;
+    Sint8         unk5;
+    Sint8         unk6;
+    Sint8         unk7;
+    UUID*         uuid;
+    Sint32        datano;
+    Sint32        unk10;
+    void*         unk14;
+    SJUNI_CKLIST  cklist[4];
+    SJUNI_ERRFN   err_func;
+    void*         err_obj;
 } SJUNI_OBJ;
 
 typedef SJUNI_OBJ *SJUNI;
@@ -76,7 +75,7 @@ void SJUNI_Finish(void)
 Sint32 SJUNI_GetNumChainPool(SJ sj)
 {
     SJUNI sjuni;
-    SJUNI_WORK cur;
+    SJUNI_CKLIST cur;
     Sint32 ncpool;
 
     sjuni = (SJUNI)sj;
@@ -91,12 +90,29 @@ Sint32 SJUNI_GetNumChainPool(SJ sj)
     return ncpool;
 }
 
-// SJUNI_GetNumChunk
+// 100% matching!
+Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id) 
+{
+    SJUNI sjuni;
+    SJUNI_CKLIST cur;
+    Sint32 nck;
+
+    sjuni = (SJUNI)sj;
+
+    nck = 0;
+
+    for (cur = sjuni->cklist[id]; cur != NULL; cur = cur->next) 
+    {
+        nck++;
+    }
+
+    return nck;
+}
 
 // 100% matching!
 Sint32 SJUNI_GetNumData(SJUNI sjuni, Sint32 id)
 {
-    SJUNI_WORK cur;
+    SJUNI_CKLIST cur;
     Sint32 datano;
 
     if ((Uint32)id >= 4) 
@@ -111,9 +127,9 @@ Sint32 SJUNI_GetNumData(SJUNI sjuni, Sint32 id)
     
     datano = 0;
 
-    for (cur = sjuni->wk[id]; cur != NULL; cur = cur->next)
+    for (cur = sjuni->cklist[id]; cur != NULL; cur = cur->next)
     {
-        datano += cur->len; 
+        datano += cur->ck.len; 
     } 
 
     return datano;
