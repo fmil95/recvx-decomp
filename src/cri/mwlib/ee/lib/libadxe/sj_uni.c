@@ -12,14 +12,14 @@ typedef void (*SJUNI_ERRFN)(void *obj, Sint32 errcode);
 
 typedef struct _sjuni 
 {
-    SJ            sj;
+    SJ_OBJ        sj;
     Sint8         used;
-    Sint8         unk5;
+    Sint8         mode;
     Sint8         unk6;
     Sint8         unk7;
     UUID*         uuid;
-    Sint32        datano;
-    Sint32        unk10;
+    void*         work;
+    Sint32        wksize;
     void*         unk14;
     SJUNI_CKLIST  cklist[4];
     SJUNI_ERRFN   err_func;
@@ -28,12 +28,53 @@ typedef struct _sjuni
 
 typedef SJUNI_OBJ *SJUNI;
 
+void SJUNI_Error(void);
+void SJUNI_Reset(SJUNI sjuni);
+
 static SJUNI_OBJ sjuni_obj[64];
+static SJ_IF sjuni_vtbl;
+static UUID sjuni_uuid;
 static Sint32 sjuni_init_cnt;
 
-SJ SJUNI_Create(Sint32 mode, Sint8 *work, Sint32 wksize)
+// 100% matching!
+SJ SJUNI_Create(Sint32 mode, Sint8 *work, Sint32 wksize) // should return SJUNI, but doing so clashes with the header definition
 {
-    scePrintf("SJUNI_Create - UNIMPLEMENTED!\n");
+    SJUNI sjuni;
+    Sint32 i;
+
+    for (i = 0; i < 64; i++)
+    {
+        if (sjuni_obj[i].used == FALSE) 
+        {
+            break;
+        }
+    }
+
+    if (i == 64)
+    {
+        return NULL;
+    }
+    
+    sjuni = &sjuni_obj[i];
+    
+    sjuni->used = TRUE;
+    
+    sjuni->sj.vtbl = &sjuni_vtbl;
+    
+    sjuni->mode = mode;
+    
+    sjuni->uuid = &sjuni_uuid;
+    
+    sjuni->work = work;
+    
+    sjuni->wksize = (Uint32)wksize / 16;
+    
+    sjuni->err_func = (void*)SJUNI_Error;
+    sjuni->err_obj = sjuni;
+    
+    SJUNI_Reset(sjuni);
+    
+    return (SJ)sjuni;
 }
 
 // 100% matching!
@@ -154,5 +195,10 @@ void SJUNI_Init(void)
 
 // SJUNI_IsGetChunk
 // SJUNI_PutChunk
-// SJUNI_Reset
+
+void SJUNI_Reset(SJUNI sjuni)
+{
+    scePrintf("SJUNI_Reset - UNIMPLEMENTED!\n");
+}
+
 // SJUNI_UngetChunk
