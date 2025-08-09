@@ -20,7 +20,7 @@ typedef struct _sjuni
     UUID*         uuid;
     void*         work;
     Sint32        wksize;
-    void*         unk14;
+    void*         data;
     SJUNI_CKLIST  cklist[4];
     SJUNI_ERRFN   err_func;
     void*         err_obj;
@@ -123,7 +123,7 @@ Sint32 SJUNI_GetNumChainPool(SJ sj)
 
     ncpool = 0;
 
-    for (cur = sjuni->unk14; cur != NULL; cur = cur->next) 
+    for (cur = sjuni->data; cur != NULL; cur = cur->next) 
     {
         ncpool++;
     }
@@ -196,9 +196,35 @@ void SJUNI_Init(void)
 // SJUNI_IsGetChunk
 // SJUNI_PutChunk
 
+// 100% matching!
 void SJUNI_Reset(SJUNI sjuni)
 {
-    scePrintf("SJUNI_Reset - UNIMPLEMENTED!\n");
+    Sint32 i;
+    SJUNI_CKLIST cklist;
+
+    cklist = (SJUNI_CKLIST)sjuni->work;
+
+    sjuni->data = cklist;
+
+    for (i = 0; i < (sjuni->wksize - 1); i++)
+    {
+        cklist[i].next = &cklist[i + 1];
+        
+        cklist[i].ck.data = NULL;
+        
+        cklist[i].ck.len = 0;
+    }
+
+    cklist[i].next = NULL;
+    
+    cklist[i].ck.data = NULL;
+    
+    cklist[i].ck.len = 0;
+
+    for (i = 0; i < 4; i++) 
+    {
+        sjuni->cklist[i] = NULL;
+    }
 }
 
 // SJUNI_UngetChunk
