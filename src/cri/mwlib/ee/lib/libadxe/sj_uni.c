@@ -256,7 +256,53 @@ void SJUNI_Init(void)
     sjuni_init_cnt++;
 }
 
-// SJUNI_IsGetChunk
+// 100% matching!
+Sint32 SJUNI_IsGetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
+{
+    SJCK ck;
+
+    *rbyte = 0;
+
+    if ((Uint32)id >= 4) 
+    {
+        if (sjuni->err_func != NULL)
+        {
+            sjuni->err_func(sjuni->err_obj, -3);
+        }
+
+        return 0;
+    }
+
+    if (sjuni->cklist[id] == NULL) 
+    {
+        return 0;
+    }
+
+    ck = sjuni->cklist[id]->ck;
+    
+    *rbyte = ck.len;
+
+    if (sjuni->mode == 1)
+    {
+        if (ck.len >= nbyte) 
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    } 
+    else if (ck.len == nbyte)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 // SJUNI_PutChunk
 
 // 100% matching!
