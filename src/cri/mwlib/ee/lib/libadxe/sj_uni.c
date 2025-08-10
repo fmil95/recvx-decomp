@@ -110,7 +110,70 @@ void SJUNI_Finish(void)
     }
 }
 
-// SJUNI_GetChunk
+// 98.60% matching
+void SJUNI_GetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, SJCK *ck) 
+{
+    SJUNI_CKLIST cklist;
+    SJCK ck1;
+    SJCK ck2;
+
+    if ((Uint32)id >= 4) 
+    {
+        if (sjuni->err_func != NULL)
+        {
+            sjuni->err_func(sjuni->err_obj, -3);
+        }
+
+        ck->data = NULL;
+        
+        ck->len = 0;
+        return;
+    }
+
+    SJCRS_Lock();
+    
+    cklist = sjuni->cklist[id];
+
+    if (cklist != NULL) 
+    {
+        ck1 = cklist->ck;
+        
+        if (nbyte >= ck1.len)
+        {
+            *ck = ck1;
+            
+            sjuni->cklist[id] = cklist->next;
+
+            /* this line is currently causing a matching issue, because it seems that the SJUNI_OBJ struct needs to be 
+               arranged differently. Changing the type of data from void* to SJUNI_CKLIST in the struct gives a higher match. */
+            cklist->next = sjuni->data;
+            
+            sjuni->data = cklist;
+        } 
+        else if (sjuni->mode == 1)
+        {
+            SJ_SplitChunk(&ck1, nbyte, &ck1, &ck2);
+            
+            *ck = ck1;
+            
+            cklist->ck = ck2;
+        }
+        else 
+        {
+            ck->data = NULL;
+            
+            ck->len = 0;
+        }
+    } 
+    else 
+    {
+        ck->data = NULL;
+        
+        ck->len = 0;
+    }
+
+    SJCRS_Unlock();
+}
 
 // 100% matching!
 Sint32 SJUNI_GetNumChainPool(SJ sj)
