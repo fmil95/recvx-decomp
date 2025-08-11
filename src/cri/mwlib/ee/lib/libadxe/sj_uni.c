@@ -303,7 +303,70 @@ Sint32 SJUNI_IsGetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
     }
 }
 
-// SJUNI_PutChunk
+// 97.64% matching
+void SJUNI_PutChunk(SJUNI sjuni, Sint32 id, SJCK *ck)
+{
+    SJUNI_CKLIST cklist1;
+    SJUNI_CKLIST cklist2;
+    SJUNI_CKLIST* pCklist;
+
+    if ((Uint32)id >= 4) 
+    {
+        if (sjuni->err_func != NULL)
+        {
+            sjuni->err_func(sjuni->err_obj, -3);
+        }
+
+        return;
+    }
+
+    if ((ck->len <= 0) || (ck->data == NULL)) 
+    {
+        return;
+    }
+
+    SJCRS_Lock();
+    
+    pCklist = &sjuni->cklist[id];
+    
+    cklist1 = NULL;
+
+    for (cklist2 = *pCklist; cklist2 != NULL; cklist2 = cklist2->next) 
+    {
+        cklist1 = cklist2;
+        
+        pCklist = &cklist1->next;
+    }
+
+    if ((sjuni->mode == 1) && (cklist1 != NULL) && ((cklist1->ck.data + cklist1->ck.len) == ck->data)) 
+    {
+        cklist1->ck.len += ck->len;
+    } 
+    else 
+    {
+        cklist1 = sjuni->data;
+        
+        if (cklist1 == NULL) 
+        {
+            if (sjuni->err_func != NULL) 
+            {
+                sjuni->err_func(sjuni->err_obj, -3);
+            }
+        } 
+        else 
+        {
+            sjuni->data = cklist1->next;
+            
+            cklist1->ck = *ck;
+            
+            cklist1->next = NULL;
+            
+            *pCklist = cklist1;
+        }
+    }
+
+    SJCRS_Unlock();
+}
 
 // 100% matching!
 void SJUNI_Reset(SJUNI sjuni)
