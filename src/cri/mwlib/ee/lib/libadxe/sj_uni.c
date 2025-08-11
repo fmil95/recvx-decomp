@@ -399,4 +399,60 @@ void SJUNI_Reset(SJUNI sjuni)
     }
 }
 
-// SJUNI_UngetChunk
+// 99.36% matching
+void SJUNI_UngetChunk(SJUNI sjuni, Sint32 id, SJCK *ck)
+{
+    SJUNI_CKLIST cklist;
+
+    if ((Uint32)id >= 4)
+    {
+        if (sjuni->err_func != NULL) 
+        {
+            sjuni->err_func(sjuni->err_obj, -3);
+        }
+
+        return;
+    }
+
+    if ((ck->len <= 0) || (ck->data == NULL)) 
+    {
+        return;
+    }
+
+    SJCRS_Lock();
+    
+    cklist = sjuni->cklist[id];
+
+    if ((sjuni->mode == 1) && (cklist != NULL) && ((ck->data + ck->len) == cklist->ck.data)) 
+    {
+        cklist->ck.data = ck->data;
+        
+        cklist->ck.len += ck->len;
+    } 
+    else 
+    {
+        cklist = sjuni->data;
+        
+        if (cklist == NULL)
+        {
+            if (sjuni->err_func != NULL) 
+            {
+                sjuni->err_func(sjuni->err_obj, -3);
+            }
+        }
+        else 
+        {
+            sjuni->data = cklist->next;
+
+            cklist->next = NULL;
+            
+            cklist->ck = *ck;
+            
+            cklist->next = sjuni->cklist[id];
+            
+            sjuni->cklist[id] = cklist;
+        }
+    }
+
+    SJCRS_Unlock();
+}
