@@ -126,7 +126,7 @@ void SJX_Init(void)
 // 100% matching!
 void sjx_rcvcbf(SJX sjx, SJX_RCVCBF buf, Sint32 bfsize) 
 {
-    SJX_WORK cur;
+    SJX_WORK sjxwk;
     Sint32 size;
     Sint32 i;
 
@@ -141,11 +141,11 @@ void sjx_rcvcbf(SJX sjx, SJX_RCVCBF buf, Sint32 bfsize)
 
     for (i = 0; i < size; i++) 
     {
-        cur = &buf->wk[i];
+        sjxwk = &buf->wk[i];
 
-        if ((cur->unk0 == 0) && (cur->unk2 == cur->sjx->unk2))
+        if ((sjxwk->unk0 == 0) && (sjxwk->unk2 == sjxwk->sjx->unk2))
         {
-            SJ_PutChunk(cur->sjx->sj, cur->id, &cur->ck);
+            SJ_PutChunk(sjxwk->sjx->sj, sjxwk->id, &sjxwk->ck);
         }
     }
 
@@ -167,12 +167,12 @@ void SJX_Reset(SJX sjx)
 void sjx_sndcbf(SJX sjx, SJX_SNDCBF buf, Sint32 bfsize) // it is likely that the first parameter is of a different type here
 {
     SJX _sjx;
-    SJX_WORK cur;
+    SJX_WORK sjxwk;
     SJCK ck;
     Sint32 i;
     Sint32 j;
     
-    cur = buf->wk;
+    sjxwk = buf->wk;
     
     j = 0;
 
@@ -188,7 +188,7 @@ void sjx_sndcbf(SJX sjx, SJX_SNDCBF buf, Sint32 bfsize) // it is likely that the
             {
                 if (j == 128) 
                 {
-                    goto end;
+                    goto label;
                 }
     
                 SJ_GetChunk(_sjx->sj, _sjx->wksize, SJCK_LEN_MAX, &ck);
@@ -198,20 +198,20 @@ void sjx_sndcbf(SJX sjx, SJX_SNDCBF buf, Sint32 bfsize) // it is likely that the
                     break;
                 }
     
-                cur[j].unk0 = 0;
+                sjxwk[j].unk0 = 0;
                 
-                cur[j].sjx = (SJX)_sjx->urpc;
+                sjxwk[j].sjx = (SJX)_sjx->urpc;
                 
-                cur[j].id = _sjx->wksize; // one of these struct fields needs renaming, assigning a memory size to an ID is not congruent  
+                sjxwk[j].id = _sjx->wksize;   
                 
-                cur[j].ck = ck;
+                sjxwk[j].ck = ck;
                 
-                cur[j].unk2 = _sjx->unk2; 
+                sjxwk[j].unk2 = _sjx->unk2; 
             }
         }
     }
 
-end:
+label:
     SJCRS_Unlock();  
     
     buf->size = j;
