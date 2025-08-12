@@ -1,3 +1,5 @@
+#include "sjr_clt.h"
+
 static Char8* volatile sjrmt_build = "\nSJRMT Ver 0.93 Build:Jan 26 2001 09:59:44\n";
 static Sint32 sjrmt_rbuf[4];
 static Sint32 sjrmt_sbuf[4];
