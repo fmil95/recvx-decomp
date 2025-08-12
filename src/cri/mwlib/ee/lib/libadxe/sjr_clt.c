@@ -1,5 +1,5 @@
 static Sint32 sjrmt_rbuf[2];
-static Sint32 sjrmt_sbuf[3];
+static Sint32 sjrmt_sbuf[4];
 static Sint32 sjrmt_init_cnt;
 
 // SJMEM_CreateRmt
@@ -64,7 +64,16 @@ Sint32 SJRMT_IsGetChunk(void* sjrmt, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
     return sjrmt_rbuf[0];
 }
 
-// SJRMT_PutChunk
+// 100% matching!
+void SJRMT_PutChunk(void* sjrmt, Sint32 id, SJCK *ck)
+{
+    sjrmt_sbuf[0] = (Sint32)sjrmt;
+    sjrmt_sbuf[1] = id;
+    sjrmt_sbuf[2] = (Sint32)ck->data;
+    sjrmt_sbuf[3] = ck->len; 
+    
+    DTX_CallUrpc(40, sjrmt_sbuf, 4, NULL, 0);
+}
 
 // 100% matching!
 void SJRMT_Reset(void* sjrmt) 
