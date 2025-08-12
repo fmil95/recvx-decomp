@@ -1,9 +1,21 @@
+static Char8* volatile sjrmt_build = "\nSJRMT Ver 0.93 Build:Jan 26 2001 09:59:44\n";
 static Sint32 sjrmt_rbuf[4];
 static Sint32 sjrmt_sbuf[4];
-static Sint32 sjrmt_init_cnt;
+static Sint32 sjrmt_init_cnt = 0;
 
 // SJMEM_CreateRmt
-// SJRBF_CreateRmt
+
+// 100% matching!
+void* SJRBF_CreateRmt(Sint32 mode, Sint8 *work, Sint32 wksize)
+{
+    sjrmt_sbuf[0] = mode;
+    sjrmt_sbuf[1] = (Sint32)work;
+    sjrmt_sbuf[2] = wksize;
+    
+    DTX_CallUrpc(32, sjrmt_sbuf, 3, sjrmt_rbuf, 1);
+    
+    return (void*)sjrmt_rbuf[0];
+}
 
 // 100% matching!
 void SJRMT_Destroy(void* sjrmt)
