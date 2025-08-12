@@ -1,4 +1,5 @@
-static Sint32 sjrmt_sbuf[1];
+static Sint32 sjrmt_rbuf[2];
+static Sint32 sjrmt_sbuf[3];
 static Sint32 sjrmt_init_cnt;
 
 // SJMEM_CreateRmt
@@ -21,7 +22,20 @@ void SJRMT_Finish(void)
     }
 }
 
-// SJRMT_GetChunk
+// 100% matching!
+void SJRMT_GetChunk(void* sjrmt, Sint32 id, Sint32 nbyte, SJCK *ck) 
+{
+    sjrmt_sbuf[0] = (Sint32)sjrmt;
+    sjrmt_sbuf[1] = id;
+    sjrmt_sbuf[2] = nbyte;
+    
+    DTX_CallUrpc(38, sjrmt_sbuf, 3, sjrmt_rbuf, 2);
+    
+    ck->data = (void*)sjrmt_rbuf[0];
+    
+    ck->len = sjrmt_rbuf[1];
+}
+
 // SJRMT_GetNumData
 // SJRMT_GetUuid
 
