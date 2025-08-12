@@ -83,7 +83,16 @@ void SJRMT_Reset(void* sjrmt)
     DTX_CallUrpc(37, sjrmt_sbuf, 1, NULL, 0);
 }
 
-// SJRMT_UngetChunk
+// 100% matching!
+void SJRMT_UngetChunk(void* sjrmt, Sint32 id, SJCK *ck)
+{
+    sjrmt_sbuf[0] = (Sint32)sjrmt;
+    sjrmt_sbuf[1] = id;
+    sjrmt_sbuf[2] = (Sint32)ck->data;
+    sjrmt_sbuf[3] = ck->len; 
+    
+    DTX_CallUrpc(39, sjrmt_sbuf, 4, NULL, 0);
+}
 
 void* SJUNI_CreateRmt(Sint32 mode, Sint8 *work, Sint32 wksize)
 {
