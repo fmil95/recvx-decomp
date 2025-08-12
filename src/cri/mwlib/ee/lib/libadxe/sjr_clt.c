@@ -50,7 +50,20 @@ void SJRMT_Init(void)
     sjrmt_init_cnt++;
 }
 
-// SJRMT_IsGetChunk
+// 100% matching!
+Sint32 SJRMT_IsGetChunk(void* sjrmt, Sint32 id, Sint32 nbyte, Sint32 *rbyte) 
+{
+    sjrmt_sbuf[0] = (Sint32)sjrmt;
+    sjrmt_sbuf[1] = id;
+    sjrmt_sbuf[2] = nbyte;
+    
+    DTX_CallUrpc(42, sjrmt_sbuf, 3, sjrmt_rbuf, 1);
+    
+    *rbyte = sjrmt_rbuf[1];
+
+    return sjrmt_rbuf[0];
+}
+
 // SJRMT_PutChunk
 
 // 100% matching!
