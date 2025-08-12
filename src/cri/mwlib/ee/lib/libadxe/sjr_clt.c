@@ -3,7 +3,16 @@ static Sint32 sjrmt_rbuf[4];
 static Sint32 sjrmt_sbuf[4];
 static Sint32 sjrmt_init_cnt = 0;
 
-// SJMEM_CreateRmt
+// 100% matching!
+void* SJMEM_CreateRmt(Sint32 mode, Sint8 *work, Sint32 wksize)
+{
+    sjrmt_sbuf[0] = mode;
+    sjrmt_sbuf[1] = (Sint32)work;
+    
+    DTX_CallUrpc(33, sjrmt_sbuf, 2, sjrmt_rbuf, 1);
+    
+    return (void*)sjrmt_rbuf[0];
+}
 
 // 100% matching!
 void* SJRBF_CreateRmt(Sint32 mode, Sint8 *work, Sint32 wksize)
