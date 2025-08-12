@@ -189,17 +189,17 @@ void SJUNI_GetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, SJCK *ck)
 }
 
 // 100% matching!
-Sint32 SJUNI_GetNumChainPool(SJ sj)
+Sint32 SJUNI_GetNumChainPool(SJ sj) // parameter should be SJUNI, but changing it causes issues with the header definition
 {
     SJUNI sjuni;
-    SJUNI_CKLIST cur;
+    SJUNI_CKLIST cklist;
     Sint32 ncpool;
 
     sjuni = (SJUNI)sj;
 
     ncpool = 0;
 
-    for (cur = sjuni->data; cur != NULL; cur = cur->next) 
+    for (cklist = sjuni->data; cklist != NULL; cklist = cklist->next) 
     {
         ncpool++;
     }
@@ -208,17 +208,17 @@ Sint32 SJUNI_GetNumChainPool(SJ sj)
 }
 
 // 100% matching!
-Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id) 
+Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id) // first parameter should be SJUNI, but changing it causes issues with the header definition
 {
     SJUNI sjuni;
-    SJUNI_CKLIST cur;
+    SJUNI_CKLIST cklist;
     Sint32 nck;
 
     sjuni = (SJUNI)sj;
 
     nck = 0;
 
-    for (cur = sjuni->cklist[id]; cur != NULL; cur = cur->next) 
+    for (cklist = sjuni->cklist[id]; cklist != NULL; cklist = cklist->next) 
     {
         nck++;
     }
@@ -229,7 +229,7 @@ Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id)
 // 100% matching!
 Sint32 SJUNI_GetNumData(SJUNI sjuni, Sint32 id)
 {
-    SJUNI_CKLIST cur;
+    SJUNI_CKLIST cklist;
     Sint32 datano;
 
     if ((Uint32)id >= 4) 
@@ -244,9 +244,9 @@ Sint32 SJUNI_GetNumData(SJUNI sjuni, Sint32 id)
     
     datano = 0;
 
-    for (cur = sjuni->cklist[id]; cur != NULL; cur = cur->next)
+    for (cklist = sjuni->cklist[id]; cklist != NULL; cklist = cklist->next)
     {
-        datano += cur->ck.len; 
+        datano += cklist->ck.len; 
     } 
 
     return datano;
