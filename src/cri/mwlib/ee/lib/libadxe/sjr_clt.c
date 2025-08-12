@@ -120,7 +120,14 @@ void SJRMT_UngetChunk(void* sjrmt, Sint32 id, SJCK *ck)
     DTX_CallUrpc(39, sjrmt_sbuf, 4, NULL, 0);
 }
 
+// 100% matching!
 void* SJUNI_CreateRmt(Sint32 mode, Sint8 *work, Sint32 wksize)
 {
-    scePrintf("SJUNI_CreateRmt - UNIMPLEMENTED!\n");
+    sjrmt_sbuf[0] = mode;
+    sjrmt_sbuf[1] = (Sint32)work;
+    sjrmt_sbuf[2] = wksize;
+    
+    DTX_CallUrpc(34, sjrmt_sbuf, 3, sjrmt_rbuf, 1);
+    
+    return (void*)sjrmt_rbuf[0];
 }
