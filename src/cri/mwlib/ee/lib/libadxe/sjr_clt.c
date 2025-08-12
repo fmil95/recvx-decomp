@@ -1,4 +1,4 @@
-static Sint32 sjrmt_rbuf[2];
+static Sint32 sjrmt_rbuf[4];
 static Sint32 sjrmt_sbuf[4];
 static Sint32 sjrmt_init_cnt;
 
@@ -47,7 +47,23 @@ Sint32 SJRMT_GetNumData(void* sjrmt, Sint32 id)
     return sjrmt_rbuf[0];
 }
 
-// SJRMT_GetUuid
+// 100% matching!
+UUID* SJRMT_GetUuid(void* sjrmt) 
+{
+    static UUID uuid; 
+    
+    sjrmt_sbuf[0] = (Sint32)sjrmt;
+    
+    DTX_CallUrpc(36, sjrmt_sbuf, 1, sjrmt_rbuf, 4);
+
+    // the following lines are copying bytes manually, but likely there was some use of memcpy here 
+    uuid.Data1 = sjrmt_rbuf[0];
+    *(int*)&uuid.Data2 = sjrmt_rbuf[1];
+    *(int*)&uuid.Data4[0] = sjrmt_rbuf[2];
+    *(int*)&uuid.Data4[4] = sjrmt_rbuf[3];
+    
+    return &uuid; 
+}
 
 // 100% matching!
 void SJRMT_Init(void) 
