@@ -36,7 +36,17 @@ void SJRMT_GetChunk(void* sjrmt, Sint32 id, Sint32 nbyte, SJCK *ck)
     ck->len = sjrmt_rbuf[1];
 }
 
-// SJRMT_GetNumData
+// 100% matching!
+Sint32 SJRMT_GetNumData(void* sjrmt, Sint32 id) 
+{
+    sjrmt_sbuf[0] = (Sint32)sjrmt;
+    sjrmt_sbuf[1] = id;
+    
+    DTX_CallUrpc(41, sjrmt_sbuf, 2, sjrmt_rbuf, 1);
+    
+    return sjrmt_rbuf[0];
+}
+
 // SJRMT_GetUuid
 
 // 100% matching!
