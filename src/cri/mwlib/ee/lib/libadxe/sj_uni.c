@@ -28,11 +28,24 @@ typedef struct _sjuni
 
 typedef SJUNI_OBJ *SJUNI;
 
+SJ SJUNI_Create(Sint32 mode, Sint8 *work, Sint32 wksize);
+void SJUNI_Destroy(SJUNI sjuni);
+void SJUNI_EntryErrFunc(SJUNI sjuni, SJUNI_ERRFN func, void* obj);
 void SJUNI_Error(void);
-void SJUNI_Reset(SJUNI sjuni);
+void SJUNI_Finish(void);
+void SJUNI_GetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, SJCK *ck);
+Sint32 SJUNI_GetNumChainPool(SJ sj);
+Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id);
+Sint32 SJUNI_GetNumData(SJUNI sjuni, Sint32 id);
+UUID* SJUNI_GetUuid(SJUNI sjuni);
+void SJUNI_Init(void);
+Sint32 SJUNI_IsGetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, Sint32 *rbyte);
+void SJUNI_PutChunk(SJUNI sjuni, Sint32 id, SJCK *ck);
+void SJUNI_Reset(SJUNI sjuni);   
+void SJUNI_UngetChunk(SJUNI sjuni, Sint32 id, SJCK *ck);
 
-static SJUNI_OBJ sjuni_obj[64];
-static SJ_IF sjuni_vtbl;
+static SJUNI_OBJ sjuni_obj[64] = { 0 };
+static SJ_IF sjuni_vtbl = { NULL, NULL, NULL, (void*)SJUNI_Destroy, (void*)SJUNI_GetUuid, (void*)SJUNI_Reset, (void*)SJUNI_GetChunk,(void*)SJUNI_UngetChunk, (void*)SJUNI_PutChunk, (void*)SJUNI_GetNumData, (void*)SJUNI_IsGetChunk, (void*)SJUNI_EntryErrFunc };
 static UUID sjuni_uuid;
 static Sint32 sjuni_init_cnt;
 
