@@ -2,7 +2,7 @@
 typedef struct SJUNI_CKLIST 
 {
     struct SJUNI_CKLIST*  next; 
-    struct SJUNI_CKLIST*  prev; 
+    struct SJUNI_CKLIST*  prev; /* unused */ 
     SJCK                  ck; 
 } SJUNI_CKLIST_OBJ;
 
@@ -15,8 +15,8 @@ typedef struct _sjuni
     SJ_OBJ        sj;
     Sint8         used;
     Sint8         mode;
-    Sint8         unk6;
-    Sint8         unk7;
+    Sint8         unk6;      /* unused */ 
+    Sint8         unk7;      /* unused */ 
     UUID*         uuid;
     void*         work;
     Sint32        wksize;
@@ -46,7 +46,7 @@ void SJUNI_UngetChunk(SJUNI sjuni, Sint32 id, SJCK *ck);
 
 static SJUNI_OBJ sjuni_obj[64] = { 0 };
 static SJ_IF sjuni_vtbl = { NULL, NULL, NULL, (void*)SJUNI_Destroy, (void*)SJUNI_GetUuid, (void*)SJUNI_Reset, (void*)SJUNI_GetChunk,(void*)SJUNI_UngetChunk, (void*)SJUNI_PutChunk, (void*)SJUNI_GetNumData, (void*)SJUNI_IsGetChunk, (void*)SJUNI_EntryErrFunc };
-static UUID sjuni_uuid;
+static UUID sjuni_uuid = { 0x2E534FA3, 0xAF97, 0x11D2, { 0xA5, 0x27, 0x00, 0x60, 0x08, 0x94, 0x48, 0xBC } };
 static Sint32 sjuni_init_cnt;
 
 // 100% matching!
