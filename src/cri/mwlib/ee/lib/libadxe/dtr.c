@@ -1,8 +1,78 @@
+
+typedef struct _dtr 
+{
+    Sint8   used;
+    Sint8   unk1; 
+    Sint8   unk2;
+    Sint8   unk3;
+    SJ      sjo;
+    SJ      sji;
+    Sint32  unkC;
+    Sint32  unk10;
+    Sint32  unk14;
+    Sint32  unk18;
+    Sint32  unk1C;
+    Sint32  unk20;
+    Sint32  unk24;
+    Sint32  unk28;
+    Sint32  unk2C;
+    Sint32  unk30;
+    Sint32  unk34;
+    Sint32  unk38;
+    Sint32  unk3C;
+} DTR_OBJ;
+
+typedef DTR_OBJ *DTR;
+
+static DTR_OBJ dtr_obj[16];
 static Sint32 dtr_init_cnt;
 
-void* DTR_Create(SJ sjo, SJ sji)
+// 100% matching!
+DTR DTR_Create(SJ sjo, SJ sji)
 {
-    scePrintf("DTR_Create - UNIMPLEMENTED!\n");
+    DTR dtr;
+    Sint32 i;
+
+    SJCRS_Lock();
+
+    for (i = 0; i < 16; i++)
+    {
+        dtr = &dtr_obj[i];
+
+        if (dtr->used == FALSE) 
+        {
+            break;
+        }
+    }
+
+    if (i == 16) 
+    {
+        dtr = NULL;
+    } 
+    else 
+    {
+        memset(dtr, 0, sizeof(DTR_OBJ));
+        
+        dtr->unk1 = 0;
+        
+        dtr->unk38 = 64;
+        
+        dtr->sjo = sjo;
+        
+        dtr->sji = sji;
+        
+        dtr->unk2 = 0;
+        
+        dtr->unk30 = 1;
+        
+        dtr->used = TRUE;
+        
+        dtr->unk34 = 0;
+    }
+
+    SJCRS_Unlock();
+    
+    return dtr;
 }
 
 void DTR_Destroy(void* dtr)
