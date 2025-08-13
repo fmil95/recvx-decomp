@@ -75,9 +75,14 @@ DTR DTR_Create(SJ sjo, SJ sji)
     return dtr;
 }
 
-void DTR_Destroy(void* dtr)
+// 100% matching!
+void DTR_Destroy(DTR dtr) 
 {
-    scePrintf("DTR_Destroy - UNIMPLEMENTED!\n");
+    SJCRS_Lock();
+    
+    dtr->used = FALSE;
+    
+    SJCRS_Unlock();
 }
 
 // DTR_ExecHndl
