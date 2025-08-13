@@ -119,7 +119,26 @@ void DTR_Start(DTR dtr)
     dtr->stat = 1;
 }
 
-void DTR_Stop(void* dtr)
+// 100% matching!
+void DTR_Stop(DTR dtr)
 {
-    scePrintf("DTR_Stop - UNIMPLEMENTED!\n");
+    dtr->stat = 0;
+
+    if (dtr->ck1.data != NULL)
+    {
+        SJ_UngetChunk(dtr->sjo, 1, &dtr->ck1);
+    
+        dtr->ck1.data = NULL;
+        
+        dtr->ck1.len = 0;
+    }
+
+    if (dtr->ck2.data != NULL)
+    {
+        SJ_UngetChunk(dtr->sji, 0, &dtr->ck2);
+    
+        dtr->ck2.data = NULL;
+        
+        dtr->ck2.len = 0;
+    }
 }
