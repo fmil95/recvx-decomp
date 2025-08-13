@@ -198,12 +198,12 @@ void SJMEM_PutChunk(SJMEM sjmem, Sint32 id, SJCK *ck)
 
         if (id == 0)
         {
-            goto end;
+            goto label;
         }
     
         if (id == 1) 
         {
-            goto end;
+            goto label;
         }
     
         ck->len = 0;
@@ -215,7 +215,7 @@ void SJMEM_PutChunk(SJMEM sjmem, Sint32 id, SJCK *ck)
             sjmem->err_func(sjmem->err_obj, -3);
         }
     
-    end:
+    label:
         SJCRS_Unlock();
     }
 }

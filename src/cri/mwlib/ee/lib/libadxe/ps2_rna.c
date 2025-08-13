@@ -208,9 +208,58 @@ Sint32 PS2RNA_DiscardData(void)
     while (TRUE); 
 }
 
-void PS2RNA_ExecHndl(PS2RNA ps2rna)
+// 100% matching!
+void PS2RNA_ExecHndl(PS2RNA ps2rna) 
 {
-    scePrintf("PS2RNA_ExecHndl - UNIMPLEMENTED!\n");
+    SJCK ck;
+    Sint32 i;
+
+    if ((ps2rna->playsw == 1) && (ps2rna->transsw == 0)) 
+    {
+        if (((unsigned int)SJ_GetNumData(ps2rna->sjo[0], 1) - 1) < 63) // this is likely to be a compiler optimization
+        {
+            for (i = 0; i < ps2rna->maxnch; i++) 
+            {
+                SJ_GetChunk(ps2rna->sjo[i], 0, 1024, &ck);
+                
+                if (ck.len < 1024)
+                {
+                    SJ_UngetChunk(ps2rna->sjo[i], 0, &ck);
+                    return;
+                }
+                else 
+                {
+                    memset(ck.data, 0, ck.len);
+                    
+                    SJ_PutChunk(ps2rna->sjo[i], 1, &ck);
+                }
+            }
+        }
+        
+        if (ps2rna->unk4C < ps2rna->datano)
+        {
+            for (i = 0; i < ps2rna->maxnch; i++) 
+            {
+                SJ_GetChunk(ps2rna->sjo[i], 0, ps2rna->datano, &ck);
+                
+                memset(ck.data, 0, ck.len);
+                
+                SJ_PutChunk(ps2rna->sjo[i], 1, &ck);
+            }
+            
+            ps2rna->unk4C += ck.len;
+        }
+    
+        if ((ps2rna->unk4C >= ps2rna->datano) && (SJ_GetNumData(ps2rna->sjo[0], 1) < 64))
+        {
+            for (i = 0; i < ps2rna->maxnch; i++) 
+            {
+                DTR_Stop(ps2rna->dtr[i]);
+            }
+            
+            ps2rna->plysw = 1;
+        }
+    }
 }
 
 // 100% matching!

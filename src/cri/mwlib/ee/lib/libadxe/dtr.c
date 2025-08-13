@@ -25,4 +25,7 @@ void DTR_Start(void* dtr)
     scePrintf("DTR_Start - UNIMPLEMENTED!\n");
 }
 
-// DTR_Stop
+void DTR_Stop(void* dtr)
+{
+    scePrintf("DTR_Stop - UNIMPLEMENTED!\n");
+}
