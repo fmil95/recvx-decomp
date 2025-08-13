@@ -2,15 +2,13 @@
 typedef struct _dtr 
 {
     Sint8   used;
-    Sint8   unk1; 
+    Sint8   stat; 
     Sint8   unk2;
     Sint8   unk3;
     SJ      sjo;
     SJ      sji;
-    Sint32  unkC;
-    Sint32  unk10;
-    Sint32  unk14;
-    Sint32  unk18;
+    SJCK    ck1;
+    SJCK    ck2;
     Sint32  unk1C;
     Sint32  unk20;
     Sint32  unk24;
@@ -53,7 +51,7 @@ DTR DTR_Create(SJ sjo, SJ sji)
     {
         memset(dtr, 0, sizeof(DTR_OBJ));
         
-        dtr->unk1 = 0;
+        dtr->stat = 0;
         
         dtr->unk38 = 64;
         
@@ -113,9 +111,12 @@ void DTR_Init(void)
     printf("DTR_Init: out\n");
 }
 
-void DTR_Start(void* dtr)
+// 100% matching!
+void DTR_Start(DTR dtr) 
 {
-    scePrintf("DTR_Start - UNIMPLEMENTED!\n");
+    dtr->unk3C = 0;
+    
+    dtr->stat = 1;
 }
 
 void DTR_Stop(void* dtr)
