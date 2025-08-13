@@ -24,7 +24,7 @@ typedef struct _dtr
 
 typedef DTR_OBJ *DTR;
 
-static DTR_OBJ dtr_obj[16];
+static DTR_OBJ dtr_obj[16] = { 0 };
 static Sint32 dtr_init_cnt;
 
 // 100% matching!
@@ -98,7 +98,20 @@ void DTR_Finish(void)
     dtr_init_cnt--;
 }
 
-// DTR_Init
+// 100% matching!
+void DTR_Init(void)
+{
+    printf("DTR_Init: in (%d)\n", dtr_init_cnt);
+    
+    if (dtr_init_cnt == 0)
+    {
+        memset(dtr_obj, 0, sizeof(dtr_obj));
+    }
+    
+    dtr_init_cnt++;
+    
+    printf("DTR_Init: out\n");
+}
 
 void DTR_Start(void* dtr)
 {
