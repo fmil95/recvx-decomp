@@ -83,11 +83,25 @@ void DTR_Destroy(DTR dtr)
     SJCRS_Unlock();
 }
 
-// DTR_ExecHndl
-
-void DTR_ExecServer(void)
+void DTR_ExecHndl(DTR dtr)
 {
-    scePrintf("DTR_ExecServer - UNIMPLEMENTED!\n");
+    scePrintf("DTR_ExecHndl - UNIMPLEMENTED!\n");
+}
+
+// 100% matching!
+void DTR_ExecServer(void) 
+{
+    Sint32 i;
+
+    for (i = 0; i < 16; i++)
+    {
+        if (dtr_obj[i].used == TRUE) 
+        {
+            DTR_ExecHndl(&dtr_obj[i]);
+        } 
+    }
+
+    DTX_ExecServer();
 }
 
 // 100% matching!
