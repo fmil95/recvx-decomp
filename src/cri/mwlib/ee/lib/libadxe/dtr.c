@@ -1,4 +1,4 @@
-
+static Sint32 dtr_init_cnt;
 
 void* DTR_Create(SJ sjo, SJ sji)
 {
@@ -17,7 +17,12 @@ void DTR_ExecServer(void)
     scePrintf("DTR_ExecServer - UNIMPLEMENTED!\n");
 }
 
-// DTR_Finish
+// 100% matching!
+void DTR_Finish(void) 
+{
+    dtr_init_cnt--;
+}
+
 // DTR_Init
 
 void DTR_Start(void* dtr)
