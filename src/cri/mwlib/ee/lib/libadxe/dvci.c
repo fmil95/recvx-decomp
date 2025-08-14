@@ -1,3 +1,4 @@
+
 typedef struct _dvci_obj 
 {
     Sint8   used;
@@ -23,7 +24,7 @@ typedef struct _dvci_obj
 
 typedef DVCI_OBJ *DVCI;
 
-DVCI_OBJ dvg_ci_obj[ADXPS2_DEF_NUM_FILE_DVD];
+static DVCI_OBJ dvg_ci_obj[40];
 void (*dvg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
 void* dvg_ci_err_obj;
 void* dvg_ci_vtbl;
@@ -36,9 +37,9 @@ DVCI dvci_alloc(void)
     
     dvci = NULL;
     
-    for (i = 0; i < ADXPS2_DEF_NUM_FILE_DVD; i++) 
+    for (i = 0; i < 40; i++) 
     {
-        if (dvg_ci_obj[i].used == 0) 
+        if (dvg_ci_obj[i].used == FALSE) 
         {
             dvci = &dvg_ci_obj[i];
         }
@@ -61,7 +62,7 @@ void dvci_call_errfn(Sint32 arg0, Char8* err_msg)
 // 100% matching!
 void dvci_free(DVCI dvci)
 {
-    *dvci = (DVCI_OBJ){0};
+    memset(dvci, 0, sizeof(DVCI_OBJ));
 }
 
 // 100% matching!
