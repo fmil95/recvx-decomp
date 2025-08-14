@@ -1,28 +1,27 @@
-typedef struct _dvd_ci 
+typedef struct _dvci_obj 
 {
-    Sint8 used;
-    Sint8 unk1;
-    Sint8 unk2;
-    Sint8 unk3;
-    Sint32 unk4;
-    Sint32 unk8;
-    Sint32 unkC;
-    Sint32 unk10;
-    Sint32 unk14;
-    Sint32 unk18;
-    Sint32 unk1C;
-    Sint32 unk20;
-    Sint32 unk24;
-    Sint32 unk28;
-    Sint32 unk2C;
-    Sint32 unk30;
-    Sint32 unk34;
-    Sint32 unk38;
-    Sint32 unk3C;
-} DVD_CI;
-typedef DVD_CI  *DVCI;
+    Sint8   used;
+    Sint8   unk1;
+    Sint8   unk2;
+    Sint8   unk3;
+    Sint32  unk4;
+    Sint32  unk8;
+    Sint32  unkC;
+    Sint32  unk10;
+    Sint32  unk14;
+    Sint32  unk18;
+    Sint32  unk1C;
+    Sint32  unk20;
+    Sint32  unk24;
+    Sint32  unk28;
+    Sint32  unk2C;
+    Sint32  unk30;
+    Sint32  unk34;
+    Sint32  unk38;
+    Sint32  unk3C;
+} DVCI_OBJ;
 
-typedef DVD_CI DVCI_OBJ;
+typedef DVCI_OBJ *DVCI;
 
 DVCI_OBJ dvg_ci_obj[ADXPS2_DEF_NUM_FILE_DVD];
 void (*dvg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
@@ -62,7 +61,7 @@ void dvci_call_errfn(Sint32 arg0, Char8* err_msg)
 // 100% matching!
 void dvci_free(DVCI dvci)
 {
-    *dvci = (DVD_CI){0};
+    *dvci = (DVCI_OBJ){0};
 }
 
 // 100% matching!

@@ -1,15 +1,16 @@
-void* dvg_flist_tbl;
-Sint32 dvg_rbuf[4096];
-sceCdRMode dvg_ci_cdrmode;
+static void* dvg_flist_tbl;
+static Sint32 dvg_rbuf[4096];
+static sceCdRMode dvg_ci_cdrmode;
 
-typedef struct _dvd_ci_file
+typedef struct _dvci_dir_obj
 {
-    Sint32 fd;
-    Sint32 fsize;
-    Char8 fname[ADXPS2_DEF_MAXFLEN_DVD]; 
-    Uint8 pad[4];
-} DVD_CI_DIR;
-typedef DVD_CI_DIR  *DVCI_DIR;
+    Sint32  fd;
+    Sint32  fsize;
+    Char8   fname[128]; 
+    Uint8   pad[4];
+} DVCI_DIR_OBJ;
+
+typedef DVCI_DIR_OBJ *DVCI_DIR;
 
 Sint32 load_flist_dup(Char8* flist, Sint32* rbuf);
 
@@ -42,7 +43,7 @@ void dvci_init_flist(void)
 // 100% matching!
 Sint32 dvCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size) 
 {
-    Char8 flist[ADXPS2_DEF_MAXFLEN_DVD] = {0};
+    Char8 flist[128] = { 0 };
     
     memset(dvg_rbuf, 0, 4096);
     
@@ -101,7 +102,7 @@ Sint32 load_flist_dup(Char8* flist, Sint32* rbuf)
 // 100% matching!
 Sint32 search_fstate(Char8* fpc, Sint32 arg1)
 {
-    Char8 flist[ADXPS2_DEF_MAXFLEN_DVD] = {0};
+    Char8 flist[128] = { 0 };
     DVCI_DIR dir;
     Sint32 numf;
     Sint32 fd;
