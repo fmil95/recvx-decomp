@@ -2,12 +2,12 @@
 typedef struct _ps2_psj 
 {
     Sint8  used;
-    Sint8  unk1;
-    Sint8  unk2;
-    Sint8  unk3;
-    void*  sjrtm;
-    SJ     sji;
-    void*  sjx;
+    Sint8  unk1;  /* unused */ 
+    Sint8  unk2;  /* unused */ 
+    Sint8  unk3;  /* unused */ 
+    void*  sjiop;
+    SJ     sjtmp;
+    SJX    sjx; 
     SJCK   ck;
 } PS2PSJ_OBJ;
 
@@ -15,31 +15,31 @@ typedef PS2PSJ_OBJ *PS2PSJ;
 
 typedef struct _ps2_rna 
 {
-    Sint8  used;
-    Sint8  unk1;
-    Sint8  unk2;
-    Sint8  unk3;
-    Sint32 maxnch;
-    PS2PSJ ps2psj[2];
-    void*  dtr[2];
-    SJ     sjo[2];
-    Sint32 urpc;
-    Sint8  playsw;
-    Sint8  unk25;
-    Sint8  nch;
-    Sint8  nch2;
-    Sint32 sfreq;
-    Sint32 unk2C;
-    Sint32 vol;
-    Sint32 unk34;
-    Sint32 pan[2];
-    Sint32 pan2[2];
-    Sint8  transsw;
-    Sint8  plysw;
-    Sint8  unk4A;
-    Sint8  unk4B; 
-    Sint32 unk4C;
-    Sint32 datano;
+    Sint8   used;
+    Sint8   unk1;      /* unused */
+    Sint8   unk2;      /* unused */
+    Sint8   unk3;      /* unused */
+    Sint32  maxnch;
+    PS2PSJ  ps2psj[2];
+    void*   dtr[2];
+    SJ      sjo[2];
+    void*   urpc;
+    Sint8   playsw;
+    Sint8   playsw2;
+    Sint8   nch;
+    Sint8   nch2;
+    Sint32  sfreq;
+    Sint32  sfreq2;
+    Sint32  vol;
+    Sint32  vol2;
+    Sint32  pan[2];
+    Sint32  pan2[2];
+    Sint8   transsw;
+    Sint8   transsw2;
+    Sint8   unk4A;     /* unused */
+    Sint8   unk4B;     /* unused */
+    Sint32  unk4C;     // roomno?
+    Sint32  datano;
 } PS2RNA_OBJ;
 
 typedef PS2RNA_OBJ *PS2RNA;
@@ -119,10 +119,10 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
 
     for (i = 0; i < maxnch; i++) 
     {
-        sbuf[2 + i] = (Sint32)ps2rna->ps2psj[i]->sjrtm;
+        sbuf[2 + i] = (Sint32)ps2rna->ps2psj[i]->sjiop;
     }
      
-    ps2rna->urpc = DTX_CallUrpc(8, sbuf, 4, rbuf, 1);
+    ps2rna->urpc = (void*)DTX_CallUrpc(8, sbuf, 4, rbuf, 1);
 
     if (ps2rna->urpc == 0)
     {
@@ -133,7 +133,7 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
     
     for (i = 0; i < maxnch; i++)
     {
-        ps2rna->dtr[i] = DTR_Create(sjo[i], ps2rna->ps2psj[i]->sji);
+        ps2rna->dtr[i] = DTR_Create(sjo[i], ps2rna->ps2psj[i]->sjtmp);
     }
 
     for (i = 0; i < maxnch; i++)
@@ -142,15 +142,13 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
     } 
     
     ps2rna->playsw = 0;
-    
-    ps2rna->unk25 = 0;
+    ps2rna->playsw2 = 0;
     
     ps2rna->nch = maxnch;
     ps2rna->nch2 = maxnch; 
     
     ps2rna->vol = 0;
-    
-    ps2rna->unk34 = 0;
+    ps2rna->vol2 = 0;
 
     for (i = 0; i < maxnch; i++)
     {
@@ -159,8 +157,7 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
     }
 
     ps2rna->transsw = 0;
-    
-    ps2rna->plysw = 1;
+    ps2rna->transsw2 = 1;
     
     ps2rna->unk4C = 0;
     
@@ -185,7 +182,7 @@ void PS2RNA_Destroy(PS2RNA ps2rna)
         }
     }
     
-    sbuf[0] = ps2rna->urpc; 
+    sbuf[0] = (Sint32)ps2rna->urpc; 
     
     DTX_CallUrpc(9, sbuf, 1, NULL, 0);
  
@@ -257,7 +254,7 @@ void PS2RNA_ExecHndl(PS2RNA ps2rna)
                 DTR_Stop(ps2rna->dtr[i]);
             }
             
-            ps2rna->plysw = 1;
+            ps2rna->transsw2 = 1;
         }
     }
 }
@@ -307,14 +304,14 @@ void ps2rna_finish_psj(void)
     {
         psj = &ps2psj_obj[i]; 
 
-        if (psj->sjrtm != NULL) 
+        if (psj->sjiop != NULL) 
         {
-            SJRMT_Destroy(psj->sjrtm);
+            SJRMT_Destroy(psj->sjiop);
         }
 
-        if (psj->sji != NULL)
+        if (psj->sjtmp != NULL)
         {
-            SJ_Destroy(psj->sji);
+            SJ_Destroy(psj->sjtmp);
         }
 
         if (psj->sjx != NULL)
@@ -366,11 +363,11 @@ PS2PSJ ps2rna_get_psj(void)
         return NULL;
     }
 
-    SJ_Reset(psj->sji);
+    SJ_Reset(psj->sjtmp);
     
-    SJ_PutChunk(psj->sji, 0, &psj->ck);
+    SJ_PutChunk(psj->sjtmp, 0, &psj->ck);
     
-    SJRMT_Reset(psj->sjrtm);
+    SJRMT_Reset(psj->sjiop);
     
     psj->used = TRUE;
     
@@ -386,13 +383,13 @@ Sint32 PS2RNA_GetBitPerSmpl(PS2RNA ps2rna)
 // 100% matching! 
 Sint32 PS2RNA_GetNumData(PS2RNA ps2rna)
 {
-    return (Uint32)(16384 - SJ_GetNumData(ps2rna->ps2psj[0]->sji, 0)) >> 1;
+    return (Uint32)(16384 - SJ_GetNumData(ps2rna->ps2psj[0]->sjtmp, 0)) >> 1;
 }
 
 // 100% matching! 
 Sint32 PS2RNA_GetNumRoom(PS2RNA ps2rna)
 {
-    return (Uint32)SJ_GetNumData(ps2rna->ps2psj[0]->sji, 0) >> 1;
+    return (Uint32)SJ_GetNumData(ps2rna->ps2psj[0]->sjtmp, 0) >> 1;
 } 
 
 // 100% matching!
@@ -416,13 +413,13 @@ Sint32 PS2RNA_GetSfreq(PS2RNA ps2rna)
 // 100% matching!
 void* PS2RNA_GetSjiop(PS2RNA ps2rna, Sint32 ch) 
 {
-    return ps2rna->ps2psj[ch]->sjrtm; 
+    return ps2rna->ps2psj[ch]->sjiop; 
 }
 
 // 100% matching!
 void* PS2RNA_GetSjtmp(PS2RNA ps2rna, Sint32 ch) 
 {
-    return ps2rna->ps2psj[ch]->sji; 
+    return ps2rna->ps2psj[ch]->sjtmp; 
 } 
 
 // 100% matching!
@@ -520,9 +517,9 @@ void ps2rna_init_psj(void)
             while (TRUE);
         }
 
-        psj->sjrtm = SJUNI_CreateRmt(1, wk, 256);
+        psj->sjiop = SJUNI_CreateRmt(1, wk, 256);
 
-        if (psj->sjrtm == NULL) 
+        if (psj->sjiop == NULL) 
         {
             printf("E0110102: ps2rna_init_psj: can't creat SJUNI_CreaetRmt\n");
             
@@ -538,9 +535,9 @@ void ps2rna_init_psj(void)
             while (TRUE);
         }
 
-        psj->sji = SJUNI_Create(1, ps2psj_sjuni_eewk[i], 256);
+        psj->sjtmp = SJUNI_Create(1, ps2psj_sjuni_eewk[i], 256);
 
-        if (psj->sji == NULL) 
+        if (psj->sjtmp == NULL) 
         {
             printf("E0110104: ps2rna_init_psj: can't creat SJUNI_Creaet\n");
             
@@ -553,9 +550,9 @@ void ps2rna_init_psj(void)
         
         wk += 16384;
         
-        SJ_PutChunk(psj->sji, 0, &psj->ck);
+        SJ_PutChunk(psj->sjtmp, 0, &psj->ck);
         
-        psj->sjx = SJX_Create(psj->sji, psj->sjrtm, 1);
+        psj->sjx = SJX_Create(psj->sjtmp, psj->sjiop, 1);
         
         if (psj->sjx == NULL) 
         {
@@ -583,7 +580,7 @@ Sint32 PS2RNA_IsPlySwOff(PS2RNA ps2rna)
     
     if (PS2RNA_GetNumData(ps2rna) <= 0) 
     {
-        ret = ps2rna->playsw == 1;
+        ret = ps2rna->transsw2 == 1;
     }
     
     return ret;
@@ -683,11 +680,11 @@ void PS2RNA_SetPlaySw(PS2RNA ps2rna, Sint32 sw)
     {
         for (ch = 0; ch < ps2rna->maxnch; ch++) 
         {
-            SJ_Reset(ps2rna->ps2psj[ch]->sji);
+            SJ_Reset(ps2rna->ps2psj[ch]->sjtmp);
             
-            SJ_PutChunk(ps2rna->ps2psj[ch]->sji, 0, &ps2rna->ps2psj[ch]->ck);
+            SJ_PutChunk(ps2rna->ps2psj[ch]->sjtmp, 0, &ps2rna->ps2psj[ch]->ck);
             
-            SJRMT_Reset(ps2rna->ps2psj[ch]->sjrtm); 
+            SJRMT_Reset(ps2rna->ps2psj[ch]->sjiop); 
         }
     }
 }
@@ -739,14 +736,14 @@ void PS2RNA_SetTransSw(PS2RNA ps2rna, Sint32 sw)
         return;
     }
     
-    if (ps2rna->plysw == sw)
+    if (ps2rna->transsw2 == sw)
     {
         for (i = 0; i < ps2rna->maxnch; i++) 
         {
             DTR_Start(ps2rna->dtr[i]);
         }
 
-        ps2rna->plysw = 0;
+        ps2rna->transsw2 = 0;
     }
 
     ps2rna->unk4C = 0;
