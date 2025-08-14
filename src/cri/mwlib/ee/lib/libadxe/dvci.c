@@ -65,23 +65,23 @@ void dvci_free(DVCI dvci)
 }
 
 // 100% matching!
-void dvci_to_large_to_yen(Char8* flist) 
+void dvci_to_large_to_yen(Char8* fname) 
 {
     Uint32 i;
     Uint32 l;
 
-    l = strlen(flist);
+    l = strlen(fname);
     
     for (i = 0; i < l; i++) 
     {
-        if (flist[i] == '/') 
+        if (fname[i] == '/') 
         {
-            flist[i] = '\\';
+            fname[i] = '\\';
         }
         
-        if ((Uint8)(flist[i] - 'a') < 26) 
+        if ((Uint8)(fname[i] - 'a') < 26) // probably a compiler optimization
         {
-            flist[i] -= ' ';
+            fname[i] -= ' ';
         }
     } 
 }

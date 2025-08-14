@@ -1,26 +1,8 @@
-
-typedef struct _dvg_flist_tbl 
-{
-    Char8*  fpc;
-    Sint32  size;
-} DVG_FLIST_TBL;
-
-typedef struct _dvci_dir_obj
-{
-    Sint32  fd;
-    Sint32  fsize;
-    Char8   fname[128]; 
-    Uint8   pad[4];
-} DVCI_DIR_OBJ;
-
-typedef DVCI_DIR_OBJ *DVCI_DIR;
+#include "dvci_sub.h"
 
 static DVG_FLIST_TBL dvg_flist_tbl = { 0 };
 static Sint8 dvg_rbuf[4096];
 static sceCdRMode dvg_ci_cdrmode = { 0 };
-
-void get_fp_from_fname(sceCdlFILE* fp, const Char8* fname, DVCI_DIR dir, Sint32 arg3);
-Sint32 load_flist_dup(Char8* flist, Sint8* rbuf);
 
 // 100% matching!
 Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size)
@@ -51,11 +33,11 @@ Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size)
         }
     }
     
-    if (dvg_flist_tbl.fpc == NULL) 
+    if (dvg_flist_tbl.fp == NULL) 
     {
-        dvg_flist_tbl.fpc = fpc;
+        dvg_flist_tbl.fp = fpc;
         
-        dvg_flist_tbl.size = k;
+        dvg_flist_tbl.fsize = k;
     }
     
     return k;
@@ -81,9 +63,9 @@ void dvci_get_fstate(const Char8* fname, sceCdlFILE *fp)
     
     fp->size = 0;
     
-    if (dvg_flist_tbl.fpc != NULL) 
+    if (dvg_flist_tbl.fp != NULL) 
     {
-        get_fp_from_fname(fp, fname, (DVCI_DIR)dvg_flist_tbl.fpc, dvg_flist_tbl.size);
+        get_fp_from_fname(fp, fname, (DVCI_DIR)dvg_flist_tbl.fp, dvg_flist_tbl.fsize);
     }
 }
 
@@ -100,7 +82,7 @@ Sint32 dvCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
     
     memset(dvg_rbuf, 0, sizeof(dvg_rbuf));
     
-    if (dvg_flist_tbl.fpc == NULL)
+    if (dvg_flist_tbl.fp == NULL)
     {
         dvci_init_flist();
     }
@@ -135,21 +117,23 @@ void dvCiSetRdMode(Sint32 nrtry, Sint32 speed, Sint32 dtype)
 }
 
 // 100% matching!
-void get_fp_from_fname(sceCdlFILE* fp, const Char8* fname, DVCI_DIR dir, Sint32 arg3)
+void get_fp_from_fname(sceCdlFILE* fp, const Char8* fname, DVCI_DIR dir, Sint32 size)
 {
     Sint32 i;
 
-    for (i = 0; i < arg3; i++)
+    for (i = 0; i < size; i++)
     {
         if (strcasecmp(fname, (Char8*)&dir[i].fname) == 0)
         {
             fp->lsn = dir[i].fd;
+            
             fp->size = dir[i].fsize;
             return;
         }
     }
 
     fp->lsn = 0;
+    
     fp->size = 0;
 }
 
@@ -170,7 +154,7 @@ Sint32 load_flist_dup(Char8* flist, Sint8* rbuf)
 }
 
 // 100% matching!
-Sint32 search_fstate(Char8* fpc, Sint32 arg1)
+Sint32 search_fstate(Char8* fpc, Sint32 fsize)
 {
     Char8 flist[128] = { 0 };
     DVCI_DIR dir;
@@ -181,7 +165,7 @@ Sint32 search_fstate(Char8* fpc, Sint32 arg1)
 
     numf = 0;
     
-    for (i = 0; i < arg1; i++) 
+    for (i = 0; i < fsize; i++) 
     {
         dir = (DVCI_DIR)fpc;
         
