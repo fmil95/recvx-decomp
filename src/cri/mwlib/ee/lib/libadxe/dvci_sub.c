@@ -1,9 +1,9 @@
 
-typedef struct _dvg_flist_tbl_obj 
+typedef struct _dvg_flist_tbl 
 {
-    Sint32  unk0;
-    Sint32  unk4;
-} DVG_FLIST_TBL_OBJ;
+    Char8*  fpc;
+    Sint32  size;
+} DVG_FLIST_TBL;
 
 typedef struct _dvci_dir_obj
 {
@@ -15,15 +15,49 @@ typedef struct _dvci_dir_obj
 
 typedef DVCI_DIR_OBJ *DVCI_DIR;
 
-static DVG_FLIST_TBL_OBJ dvg_flist_tbl = { 0 };
+static DVG_FLIST_TBL dvg_flist_tbl = { 0 };
 static Sint8 dvg_rbuf[4096];
 static sceCdRMode dvg_ci_cdrmode = { 0 };
 
 Sint32 load_flist_dup(Char8* flist, Sint8* rbuf);
 
-Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size)
+// 100% matching!
+Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Sint32 size)
 {
-    scePrintf("analysis_flist_dup - UNIMPLEMENTED!\n");
+    DVCI_DIR dir;
+    Sint32 i;
+    Sint32 j;
+    Sint32 k;
+
+    for (i = 0, j = 0, k = 0; rbuf[i] != 0; i++)
+    {
+        if ((rbuf[i] == 10) || (rbuf[i] == 0))
+        {
+            dir = (DVCI_DIR)fpc;
+            
+            memcpy(dir[k].fname, &rbuf[j], (i - j) - 1);
+            
+            dvci_to_large_to_yen(dir[k].fname);
+            
+            k++;
+            
+            j = i + 1;
+            
+            if (k == size) 
+            {
+                break;
+            }
+        }
+    }
+    
+    if (dvg_flist_tbl.fpc == NULL) 
+    {
+        dvg_flist_tbl.fpc = fpc;
+        
+        dvg_flist_tbl.size = k;
+    }
+    
+    return k;
 }
 
 // 100% matching!
@@ -54,7 +88,7 @@ Sint32 dvCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
     
     memset(dvg_rbuf, 0, sizeof(dvg_rbuf));
     
-    if (dvg_flist_tbl.unk0 == 0)
+    if (dvg_flist_tbl.fpc == NULL)
     {
         dvci_init_flist();
     }
