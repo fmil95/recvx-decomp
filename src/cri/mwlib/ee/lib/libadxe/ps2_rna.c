@@ -1,94 +1,68 @@
+#include "ps2_rna.h"
 
-typedef struct _ps2_psj 
-{
-    Sint8  used;
-    Sint8  unk1;  /* unused */ 
-    Sint8  unk2;  /* unused */ 
-    Sint8  unk3;  /* unused */ 
-    void*  sjiop;
-    SJ     sjtmp;
-    SJX    sjx; 
-    SJCK   ck;
-} PS2PSJ_OBJ;
-
-typedef PS2PSJ_OBJ *PS2PSJ; 
-
-typedef struct _ps2_rna 
-{
-    Sint8   used;
-    Sint8   unk1;      /* unused */
-    Sint8   unk2;      /* unused */
-    Sint8   unk3;      /* unused */
-    Sint32  maxnch;
-    PS2PSJ  ps2psj[2];
-    void*   dtr[2];
-    SJ      sjo[2];
-    void*   urpc;
-    Sint8   playsw;
-    Sint8   playsw2;
-    Sint8   nch;
-    Sint8   nch2;
-    Sint32  sfreq;
-    Sint32  sfreq2;
-    Sint32  vol;
-    Sint32  vol2;
-    Sint32  pan[2];
-    Sint32  pan2[2];
-    Sint8   transsw;
-    Sint8   transsw2;
-    Sint8   unk4A;     /* unused */
-    Sint8   unk4B;     /* unused */
-    Sint32  unk4C;     // roomno?
-    Sint32  datano;
-} PS2RNA_OBJ;
-
-typedef PS2RNA_OBJ *PS2RNA;
-
-typedef struct _ps2rna_work
-{
-    Sint16  id; 
-    Sint16  unk2; /* unused */ 
-    void*   urpc;
-    Sint32  unk8;
-    Sint32  db;
-} PS2RNA_WORK_OBJ;
-
-typedef PS2RNA_WORK_OBJ *PS2RNA_WORK;
-
-typedef struct _ps2rna_buf
-{
-    Sint32           size;
-    Sint32           unk4;  /* unused */
-    Sint32           unk8;  /* unused */
-    Sint32           unkC;  /* unused */
-    PS2RNA_WORK_OBJ  wk[0];
-} PS2RNA_BUF_OBJ;
-
-typedef PS2RNA_BUF_OBJ *PS2RNA_RCVCBF; 
-typedef PS2RNA_BUF_OBJ *PS2RNA_SNDCBF; 
-
-Sint32 ps2rna_init_cnt;
-Sint32 ps2rna_max_voice;
-PS2RNA_OBJ ps2rna_obj[8] = { 0 };
-PS2PSJ_OBJ ps2psj_obj[8] = { 0 };
-Sint8 ps2psj_alloc_flag;
-void* ps2psj_iop_work0;
-Sint32 ps2psj_iop_wksize;
-void* ps2psj_iop_work;
-Sint8 ps2psj_sjuni_eewk[8][256] = { 0 };
-void* ps2rna_dtx;
-void* ps2rna_eewk;
-void* ps2rna_iopwk;
-Sint32 ps2rna_wklen;
-Char8* volatile ps2rna_build = "\nPS2RNA Ver 0.98 Build:Jan 26 2001 09:57:43\n";
-Sint32 ps2rna_ee_work[2256] = { 0 };
-static Sint32 ps2rna_dbtbl[1000];
-
-PS2PSJ ps2rna_get_psj();
-void ps2rna_release_psj(PS2PSJ ps2psj);
-void ps2rna_rcvcbf(void* unused, PS2RNA_RCVCBF buf);
-void ps2rna_sndcbf(void* unused, PS2RNA_SNDCBF buf);  
-void ps2rna_init_psj(void);
+static Char8* volatile ps2rna_build = "\nPS2RNA Ver 0.98 Build:Jan 26 2001 09:57:43\n";
+static PS2RNA_OBJ ps2rna_obj[8] = { 0 };
+static Sint32 ps2rna_init_cnt;
+static Sint32 ps2rna_max_voice;
+static PS2PSJ_OBJ ps2psj_obj[8] = { 0 };
+static Sint8 ps2psj_alloc_flag;
+static void* ps2psj_iop_work0;
+static void* ps2psj_iop_work;
+static Sint32 ps2psj_iop_wksize;
+static void* ps2rna_eewk;
+static void* ps2rna_iopwk;
+static Sint32 ps2rna_wklen;
+static Sint8 ps2rna_ee_work[2256] = { 0 };
+static DTX ps2rna_dtx;
+static Sint8 ps2psj_sjuni_eewk[8][256] = { 0 };
+static Sint32 ps2rna_dbtbl[1000] = { // need to double-check all values are correct
+    256, 253, 250, 247, 244, 241, 238, 236, 233, 230, 228, 225, 222, 220, 217, 215, 212, 210, 208, 205, 203, 201, 198,
+    196, 194, 191, 189, 187, 185, 183, 181, 179, 177, 175, 173, 171, 169, 167, 165, 163, 161, 159, 157, 156, 154, 152,
+    150, 149, 147, 145, 143, 142, 140, 139, 137, 135, 134, 132, 131, 129, 128, 126, 125, 123, 122, 121, 119, 118, 117,
+    115, 114, 113, 111, 110, 109, 107, 106, 105, 104, 103, 101, 100, 99,  98,  97,  96,  95,  94,  92,  91,  90,  89,
+    88,  87,  86,  85,  84,  83,  82,  81,  80,  80,  79,  78,  77,  76,  75,  74,  73,  72,  72,  71,  70,  69,  68,
+    68,  67,  66,  65,  65,  64,  63,  62,  62,  61,  60,  60,  59,  58,  57,  57,  56,  56,  55,  54,  54,  53,  52,
+    52,  51,  51,  50,  49,  49,  48,  48,  47,  47,  46,  46,  45,  45,  44,  43,  43,  42,  42,  41,  41,  41,  40,
+    40,  39,  39,  38,  38,  37,  37,  37,  36,  36,  35,  35,  34,  34,  34,  33,  33,  32,  32,  32,  31,  31,  31,
+    30,  30,  30,  29,  29,  29,  28,  28,  28,  27,  27,  27,  26,  26,  26,  25,  25,  25,  25,  24,  24,  24,  23,
+    23,  23,  23,  22,  22,  22,  22,  21,  21,  21,  21,  20,  20,  20,  20,  19,  19,  19,  19,  18,  18,  18,  18,
+    18,  17,  17,  17,  17,  17,  16,  16,  16,  16,  16,  15,  15,  15,  15,  15,  15,  14,  14,  14,  14,  14,  14,
+    13,  13,  13,  13,  13,  13,  12,  12,  12,  12,  12,  12,  12,  11,  11,  11,  11,  11,  11,  11,  11,  10,  10,
+    10,  10,  10,  10,  10,  10,  9,   9,   9,   9,   9,   9,   9,   9,   9,   8,   8,   8,   8,   8,   8,   8,   8,
+    8,   8,   8,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   6,   6,   6,   6,   6,   6,   6,   6,   6,
+    6,   6,   6,   6,   6,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   4,   4,   4,
+    4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   3,   3,   3,   3,   3,   3,
+    3,   3,   3,   3,   3,   3,   3,   3,   3,   3,   3,   3,   3,   3,   3,   3,   3,   3,   3,   2,   2,   2,   2,
+    2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,
+    2,   2,   2,   2,   2,   2,   2,   2,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,
+    1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,
+    1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0
+}; 
+static Sint8 ps2psj_sjiop_wk[128] = { 0 }; /* unused */
+static Sint8 ps2psj_sjiop_buf[128] = { 0 }; /* unused */
 
 static inline void PS2RNA_SetWork(PS2RNA_WORK ps2wk, void* urpc, Sint32 unk8, Sint32 db) 
 {
