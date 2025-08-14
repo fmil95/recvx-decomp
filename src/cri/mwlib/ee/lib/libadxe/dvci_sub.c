@@ -81,7 +81,24 @@ void dvCiSetRdMode(Sint32 nrtry, Sint32 speed, Sint32 dtype)
     dvg_ci_cdrmode.datapattern = dtype;
 }
 
-// get_fp_from_fname
+// 100% matching!
+void get_fp_from_fname(sceCdlFILE* fp, const Char8* fname, DVCI_DIR dir, Sint32 arg3)
+{
+    Sint32 i;
+
+    for (i = 0; i < arg3; i++)
+    {
+        if (strcasecmp(fname, (Char8*)&dir[i].fname) == 0)
+        {
+            fp->lsn = dir[i].fd;
+            fp->size = dir[i].fsize;
+            return;
+        }
+    }
+
+    fp->lsn = 0;
+    fp->size = 0;
+}
 
 // 100% matching!
 Sint32 load_flist_dup(Char8* flist, Sint32* rbuf)  
