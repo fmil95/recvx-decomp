@@ -5,8 +5,6 @@ typedef struct _dvg_flist_tbl_obj
     Sint32  unk4;
 } DVG_FLIST_TBL_OBJ;
 
-typedef DVG_FLIST_TBL_OBJ *DVG_FLIST_TBL;
-
 typedef struct _dvci_dir_obj
 {
     Sint32  fd;
@@ -17,7 +15,7 @@ typedef struct _dvci_dir_obj
 
 typedef DVCI_DIR_OBJ *DVCI_DIR;
 
-static DVG_FLIST_TBL dvg_flist_tbl = { 0 };
+static DVG_FLIST_TBL_OBJ dvg_flist_tbl = { 0 };
 static Sint8 dvg_rbuf[4096];
 static sceCdRMode dvg_ci_cdrmode = { 0 };
 
@@ -54,9 +52,9 @@ Sint32 dvCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
 {
     Char8 flist[128] = { 0 };
     
-    memset(dvg_rbuf, 0, 4096);
+    memset(dvg_rbuf, 0, sizeof(dvg_rbuf));
     
-    if (dvg_flist_tbl == NULL)
+    if (dvg_flist_tbl.unk0 == 0)
     {
         dvci_init_flist();
     }
