@@ -44,6 +44,29 @@ typedef struct _ps2_rna
 
 typedef PS2RNA_OBJ *PS2RNA;
 
+typedef struct _ps2rna_work
+{
+    Sint16  id; 
+    Sint16  unk2; /* unused */ 
+    void*   urpc;
+    Sint32  unk8;
+    Sint32  db;
+} PS2RNA_WORK_OBJ;
+
+typedef PS2RNA_WORK_OBJ *PS2RNA_WORK;
+
+typedef struct _ps2rna_buf
+{
+    Sint32           size;
+    Sint32           unk4;  /* unused */
+    Sint32           unk8;  /* unused */
+    Sint32           unkC;  /* unused */
+    PS2RNA_WORK_OBJ  wk[0];
+} PS2RNA_BUF_OBJ;
+
+typedef PS2RNA_BUF_OBJ *PS2RNA_RCVCBF; 
+typedef PS2RNA_BUF_OBJ *PS2RNA_SNDCBF; 
+
 Sint32 ps2rna_init_cnt;
 Sint32 ps2rna_max_voice;
 PS2RNA_OBJ ps2rna_obj[8] = { 0 };
@@ -59,12 +82,24 @@ void* ps2rna_iopwk;
 Sint32 ps2rna_wklen;
 Char8* volatile ps2rna_build = "\nPS2RNA Ver 0.98 Build:Jan 26 2001 09:57:43\n";
 Sint32 ps2rna_ee_work[2256] = { 0 };
+static Sint32 ps2rna_dbtbl[1000];
 
 PS2PSJ ps2rna_get_psj();
 void ps2rna_release_psj(PS2PSJ ps2psj);
-void ps2rna_rcvcbf(void* unused, Sint32* buf);
-void ps2rna_sndcbf(void);  
+void ps2rna_rcvcbf(void* unused, PS2RNA_RCVCBF buf);
+void ps2rna_sndcbf(void* unused, PS2RNA_SNDCBF buf);  
 void ps2rna_init_psj(void);
+
+static inline void PS2RNA_SetWork(PS2RNA_WORK ps2wk, void* urpc, Sint32 unk8, Sint32 db) 
+{
+    ps2wk->id = 5;
+    
+    ps2wk->urpc = urpc;
+    
+    ps2wk->unk8 = unk8;
+    
+    ps2wk->db = db;
+}
 
 // 100% matching!
 void PS2RNA_ClearBuf(PS2RNA ps2rna) 
@@ -587,7 +622,7 @@ Sint32 PS2RNA_IsPlySwOff(PS2RNA ps2rna)
 }
 
 // 100% matching!
-void ps2rna_rcvcbf(void* unused, Sint32* buf) 
+void ps2rna_rcvcbf(void* unused, PS2RNA_RCVCBF buf) 
 {
     Sint32 i;
 
@@ -596,7 +631,7 @@ void ps2rna_rcvcbf(void* unused, Sint32* buf)
         while (TRUE);
     }
 
-    for (i = 0; i < buf[0]; i++) 
+    for (i = 0; i < buf->size; i++) 
     {
         
     }
@@ -749,9 +784,99 @@ void PS2RNA_SetTransSw(PS2RNA ps2rna, Sint32 sw)
     ps2rna->unk4C = 0;
 }
 
-void ps2rna_sndcbf(void)
+// 100% matching!
+void ps2rna_sndcbf(void* unused, PS2RNA_SNDCBF buf)
 {
-    scePrintf("ps2rna_sndcbf - UNIMPLEMENTED!\n");
+    PS2RNA ps2rna;
+    PS2RNA_WORK ps2wk;
+    Sint32 i;
+    Sint32 j;
+    
+    ps2wk = buf->wk;  
+    
+    for (i = 0, j = 0; i < 8; i++) 
+    {
+        ps2rna = &ps2rna_obj[i];
+        
+        if (ps2rna->used == TRUE) 
+        {
+            if (j == 128) 
+            {
+                goto label;
+            }
+            
+            if (ps2rna->playsw != ps2rna->playsw2) 
+            {
+                ps2wk[j].id = 2;
+                
+                ps2wk[j].urpc = ps2rna->urpc;
+                
+                ps2wk[j].unk8 = ps2rna->playsw;
+                
+                ps2rna->playsw2 = ps2rna->playsw;
+                
+                j++;
+            }
+            
+            if (j == 128) 
+            {
+                goto label;
+            }
+            
+            if (ps2rna->nch != ps2rna->nch2) 
+            {
+                ps2wk[j].id = 3;
+                
+                ps2wk[j].urpc = ps2rna->urpc;
+                
+                ps2wk[j].unk8 = ps2rna->nch;
+                
+                ps2rna->nch2 = ps2rna->nch;
+                
+                j++;
+            }
+            
+            if (j == 128) 
+            {
+                goto label;
+            }
+            
+            if (ps2rna->sfreq != ps2rna->sfreq2) 
+            {
+                ps2wk[j].id = 4;
+                
+                ps2wk[j].urpc = ps2rna->urpc;
+                
+                ps2wk[j].unk8 = ps2rna->sfreq;
+                
+                ps2rna->sfreq2 = ps2rna->sfreq;
+                
+                j++;
+            }
+            
+            if (j == 128) 
+            {
+                goto label;
+            }
+            
+            if (ps2rna->vol != ps2rna->vol2) 
+            {
+                PS2RNA_SetWork(&ps2wk[j], ps2rna->urpc, 0, ps2rna_dbtbl[-ps2rna->vol]);
+                
+                ps2rna->vol2 = ps2rna->vol;
+                
+                j++;
+            }
+                
+            if (j == 128) 
+            {
+                goto label;
+            }
+        }
+    } 
+    
+label:
+    buf->size = j;
 }
 
 // 100% matching!
