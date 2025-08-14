@@ -1,26 +1,4 @@
-
-typedef struct _dtr 
-{
-    Sint8   used;
-    Sint8   stat; 
-    Sint8   unk2;
-    Sint8   unk3;
-    SJ      sjo;
-    SJ      sji;
-    SJCK    ck1;
-    SJCK    ck2;
-    Sint32  unk1C;
-    Sint32  unk20;
-    Sint32  unk24;
-    Sint32  unk28;
-    Sint32  unk2C;
-    Sint32  unk30;
-    Sint32  unk34;
-    Sint32  unk38;
-    Sint32  unk3C;
-} DTR_OBJ;
-
-typedef DTR_OBJ *DTR;
+#include "dtr.h"
 
 static DTR_OBJ dtr_obj[16] = { 0 };
 static Sint32 dtr_init_cnt;
@@ -83,9 +61,126 @@ void DTR_Destroy(DTR dtr)
     SJCRS_Unlock();
 }
 
+// 100% matching!
 void DTR_ExecHndl(DTR dtr)
 {
-    scePrintf("DTR_ExecHndl - UNIMPLEMENTED!\n");
+    SJCK cks;
+    SJCK ck1;
+    SJCK ckd;
+    SJCK ck2;
+    Sint32 nbyte;
+    Uint8 temp;
+
+    if (dtr->stat == 1) 
+    {
+        temp = dtr->unk2;
+
+        if (dtr->unk2 == dtr->stat) 
+        {
+            if (sceSifDmaStat(dtr->id) < 0)
+            {
+                SJ_PutChunk(dtr->sjo, 0, &dtr->ck1);
+                
+                dtr->ck1.data = NULL;
+                
+                dtr->ck1.len = 0;
+                
+                SJ_PutChunk(dtr->sji, 1, &dtr->ck2);
+                
+                dtr->ck2.data = NULL;
+                
+                dtr->ck2.len = 0;
+                
+                dtr->unk2 = 0;
+                
+                dtr->unk3C += dtr->ck1.len;
+    
+                if (dtr->ck1.len != 0) 
+                {
+                    printf("DTR_ExecHndl: Internal Error\n");
+    
+                    while (TRUE);
+                }
+    
+                temp = 0;
+            } 
+            else 
+            {
+                temp = dtr->unk2;
+            }
+        }
+    
+        if (temp == 0) 
+        {
+            SJ_GetChunk(dtr->sjo, 1, SJCK_LEN_MAX, &cks);
+            SJ_GetChunk(dtr->sji, 0, SJCK_LEN_MAX, &ckd);
+            
+            nbyte = MIN(cks.len, ckd.len);
+            nbyte = (nbyte / dtr->unk38) * dtr->unk38;
+            
+            SJ_SplitChunk(&cks, nbyte, &cks, &ck1);
+            
+            SJ_UngetChunk(dtr->sjo, 1, &ck1);
+            
+            SJ_SplitChunk(&ckd, nbyte, &ckd, &ck2);
+            
+            SJ_UngetChunk(dtr->sji, 0, &ck2);
+        
+            if (nbyte > 0) 
+            {
+                if ((cks.len & 0x3F))
+                {
+                    printf("DTR_ExecHndl: Internal Error len\n");
+                    printf("cks.data=%08x, ckd.data=%08x, cks.len=%d\n", cks.data, ckd.data, cks.len);
+            
+                    while (TRUE);
+                }
+            
+                if (((Sint32)cks.data & 0x3F)) 
+                {
+                    printf("DTR_ExecHndl: Internal Error cks.data\n");
+                    printf("cks.data=%08x, ckd.data=%08x, cks.len=%d\n", cks.data, ckd.data, cks.len);
+            
+                    while (TRUE);
+                }
+                
+                if (((Sint32)ckd.data & 0x3F)) 
+                {
+                    printf("DTR_ExecHndl: Internal Error ckd.data\n");
+                    printf("cks.data=%08x, ckd.data=%08x, cks.len=%d\n", cks.data, ckd.data, cks.len);
+            
+                    while (TRUE);
+                }
+            
+                SyncDCache(cks.data, cks.data + (cks.len - 1));
+                
+                dtr->sdd.data = (Sint32)cks.data & 0xFFFFFFF;
+                
+                dtr->sdd.addr = (Sint32)ckd.data;
+                
+                dtr->sdd.size = cks.len;
+                
+                dtr->sdd.mode = 0;
+                
+                dtr->id = sceSifSetDma(&dtr->sdd, 1);
+            
+                if (dtr->id == 0) 
+                {
+                    printf("E0101701 DTR_ExecHndl: can't use DMA\n");
+                    
+                    SJ_UngetChunk(dtr->sjo, 1, &cks);
+                    SJ_UngetChunk(dtr->sji, 0, &ckd);
+                } 
+                else 
+                {
+                    dtr->ck1 = cks;
+                    dtr->ck2 = ckd;
+                    
+                    dtr->unk2 = 1;
+                }
+            }
+        }
+    }
 }
 
 // 100% matching!
