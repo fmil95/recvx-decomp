@@ -7,7 +7,7 @@ typedef struct _sjrbf
 {
     SJ_OBJ       sj;
     Sint32       used;
-    UUID*        uuid;
+    const UUID*  uuid;
     Sint32       datano;
     Sint32       unk10;
     Sint32       unk14;

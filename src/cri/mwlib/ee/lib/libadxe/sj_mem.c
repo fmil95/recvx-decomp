@@ -2,7 +2,7 @@
 
 static SJMEM_OBJ sjmem_obj[32] = { 0 };
 static SJ_IF sjmem_vtbl = { NULL, NULL, NULL, (void*)SJMEM_Destroy, (void*)SJMEM_GetUuid, (void*)SJMEM_Reset, (void*)SJMEM_GetChunk,(void*)SJMEM_UngetChunk, (void*)SJMEM_PutChunk, (void*)SJMEM_GetNumData, (void*)SJMEM_IsGetChunk, (void*)SJMEM_EntryErrFunc };
-static UUID sjmem_uuid = { 0xDD9EEE41, 0x1679, 0x11D2, { 0x93, 0x6C, 0x00, 0x60, 0x08, 0x94, 0x48, 0xBC } };
+static const UUID sjmem_uuid = { 0xDD9EEE41, 0x1679, 0x11D2, { 0x93, 0x6C, 0x00, 0x60, 0x08, 0x94, 0x48, 0xBC } };
 static Sint32 sjmem_init_cnt;
 
 // 100% matching!

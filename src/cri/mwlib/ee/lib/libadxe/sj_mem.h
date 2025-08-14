@@ -7,7 +7,7 @@ typedef struct _sjmem
 {
     SJ_OBJ       sj;
     Sint32       used;
-    UUID*        uuid;
+    const UUID*  uuid;
     Sint32       datano;
     Sint32       unk10;    // roomno?
     void*        buf;

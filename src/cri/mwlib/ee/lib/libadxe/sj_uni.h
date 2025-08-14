@@ -19,7 +19,7 @@ typedef struct _sjuni
     Sint8         mode;
     Sint8         unk6;      /* unused */ 
     Sint8         unk7;      /* unused */ 
-    UUID*         uuid;
+    const UUID*   uuid;
     void*         work;
     Sint32        wksize;
     void*         data;
