@@ -19,10 +19,11 @@ static DVG_FLIST_TBL dvg_flist_tbl = { 0 };
 static Sint8 dvg_rbuf[4096];
 static sceCdRMode dvg_ci_cdrmode = { 0 };
 
+void get_fp_from_fname(sceCdlFILE* fp, const Char8* fname, DVCI_DIR dir, Sint32 arg3);
 Sint32 load_flist_dup(Char8* flist, Sint8* rbuf);
 
 // 100% matching!
-Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Sint32 size)
+Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size)
 {
     DVCI_DIR dir;
     Sint32 i;
@@ -61,19 +62,30 @@ Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Sint32 size)
 }
 
 // 100% matching!
-void conv_to_tpath_dup(Char8* flist, Char8* fname)
+void conv_to_tpath_dup(const Char8* fname, Char8* path)
 {
-    strcpy(flist, fname);
+    strcpy(fname, path);
     
-    if (strcmp(flist + (strlen(flist) - 2), ";1") != 0)
+    if (strcmp(fname + (strlen(fname) - 2), ";1") != 0)
     {
-        strcat(flist, ";1");
+        strcat(fname, ";1");
     }
     
-    dvci_to_large_to_yen(flist);
+    dvci_to_large_to_yen(fname);
 }
 
-// dvci_get_fstate
+// 100% matching!
+void dvci_get_fstate(const Char8* fname, sceCdlFILE *fp)
+{
+    fp->lsn = 0;
+    
+    fp->size = 0;
+    
+    if (dvg_flist_tbl.fpc != NULL) 
+    {
+        get_fp_from_fname(fp, fname, (DVCI_DIR)dvg_flist_tbl.fpc, dvg_flist_tbl.size);
+    }
+}
 
 // 100% matching!
 void dvci_init_flist(void) 
