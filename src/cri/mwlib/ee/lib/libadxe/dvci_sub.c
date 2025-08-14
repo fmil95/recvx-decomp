@@ -1,6 +1,11 @@
-static void* dvg_flist_tbl;
-static Sint32 dvg_rbuf[4096];
-static sceCdRMode dvg_ci_cdrmode;
+
+typedef struct _dvg_flist_tbl_obj 
+{
+    Sint32  unk0;
+    Sint32  unk4;
+} DVG_FLIST_TBL_OBJ;
+
+typedef DVG_FLIST_TBL_OBJ *DVG_FLIST_TBL;
 
 typedef struct _dvci_dir_obj
 {
@@ -12,9 +17,13 @@ typedef struct _dvci_dir_obj
 
 typedef DVCI_DIR_OBJ *DVCI_DIR;
 
-Sint32 load_flist_dup(Char8* flist, Sint32* rbuf);
+static DVG_FLIST_TBL dvg_flist_tbl = { 0 };
+static Sint8 dvg_rbuf[4096];
+static sceCdRMode dvg_ci_cdrmode = { 0 };
 
-Sint32 analysis_flist_dup(Char8* fpc, Sint32* rbuf, Uint32 size)
+Sint32 load_flist_dup(Char8* flist, Sint8* rbuf);
+
+Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size)
 {
     scePrintf("analysis_flist_dup - UNIMPLEMENTED!\n");
 }
@@ -101,7 +110,7 @@ void get_fp_from_fname(sceCdlFILE* fp, const Char8* fname, DVCI_DIR dir, Sint32 
 }
 
 // 100% matching!
-Sint32 load_flist_dup(Char8* flist, Sint32* rbuf)  
+Sint32 load_flist_dup(Char8* flist, Sint8* rbuf)  
 {
     sceCdlFILE fp;
     sceCdRMode mode;
