@@ -204,12 +204,15 @@ void DTX_ExecHndl(DTX dtx)
         SyncDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) - 1));     // casts look awkward here
         InvalidDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63)); 
         
-        dtx->transdata.data = (Sint32)dtx->eewk & 0xFFFFFFF;
-        dtx->transdata.addr = (Sint32)dtx->iopwk;
-        dtx->transdata.size = dtx->iopwkln; 
-        dtx->transdata.mode = 0;
+        dtx->sdd.data = (Sint32)dtx->eewk & 0xFFFFFFF;
         
-        dtx->datano = sceSifSetDma(&dtx->transdata, 1);
+        dtx->sdd.addr = (Sint32)dtx->iopwk;
+        
+        dtx->sdd.size = dtx->iopwkln; 
+        
+        dtx->sdd.mode = 0;
+        
+        dtx->did = sceSifSetDma(&dtx->sdd, 1);
         
         dtx->stat = 1;
     }

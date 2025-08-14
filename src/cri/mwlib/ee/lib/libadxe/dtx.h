@@ -4,10 +4,10 @@
 #define SSIZE 32
 #define RSIZE 32
 
-typedef void (*RCVCBF)(Sint32 bfsize, void* eewk, Sint32 eewkln);
-typedef void (*SNDCBF)(Sint32 bfsize, void* eewk, Sint32 eewkln);
+typedef void (*DTX_RCVCBF)(Sint32 bfsize, void* eewk, Sint32 eewkln);
+typedef void (*DTX_SNDCBF)(Sint32 bfsize, void* eewk, Sint32 eewkln);
 
-typedef struct _dtx 
+typedef struct _dtx_obj
 {
     Sint8          used;
     Sint8          stat;
@@ -20,17 +20,17 @@ typedef struct _dtx
     Sint32*        unk14;
     void*          iopwk;
     Sint32         iopwkln;
-    RCVCBF         rcvcbf;
+    DTX_RCVCBF     rcvcbf;
     Sint32         rcbfsz;
-    SNDCBF         sndcbf;
+    DTX_SNDCBF     sndcbf;
     Sint32         snbfsz;
-    sceSifDmaData  transdata;
-    Sint32         datano;
+    sceSifDmaData  sdd;
+    Sint32         did;
 } DTX_OBJ;
 
 typedef DTX_OBJ *DTX;
 
-typedef struct _dtx_rpc
+typedef struct _dtx_rpc_obj
 {
     DTX     dtx;
     void*   eewk;
