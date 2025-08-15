@@ -5,7 +5,7 @@ typedef struct _dvci_obj
 {
     Sint8   used;
     Sint8   unk1;
-    Sint8   unk2;
+    Sint8   stat;
     Sint8   unk3;
     Sint32  unk4;
     Sint32  unk8;
@@ -163,7 +163,19 @@ Sint32 dvCiGetSctLen(void)
     return 2048;
 }
 
-// dvCiGetStat
+// 100% matching!
+Sint8 dvCiGetStat(DVCI dvci)
+{
+    if (dvci == NULL) 
+    {
+        dvci_call_errfn(dvci, "E0092912:handl is null.");
+        
+        return 0;
+    }
+
+    return dvci->stat;
+}
+
 // dvCiOpen
 // dvCiReqRd
 // dvCiSeek
