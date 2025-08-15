@@ -26,6 +26,8 @@ typedef struct _dvci_obj
 
 typedef DVCI_OBJ *DVCI;
 
+void dvci_to_large_to_yen(Char8* path);
+
 static DVCI_OBJ dvg_ci_obj[40];
 static DVCI_ERRFN dvg_ci_err_func;
 static void* dvg_ci_err_obj;
@@ -60,9 +62,19 @@ void dvci_call_errfn(void* obj, const Char8* msg)
     }
 }
 
-void dvci_conv_fname(const Char8* fname, Char8* path)
+// 100% matching!
+void dvci_conv_fname(const Char8* fname, Char8* path) 
 {
-    scePrintf("dvci_conv_fname - UNIMPLEMENTED!\n");
+    memset(path, 0, 297);
+    
+    strcpy(path, fname);
+
+    if (strcmp(fname + (strlen(fname) - 2), ";1") != 0) 
+    {
+        strcat(path, ";1");
+    }
+
+    dvci_to_large_to_yen(path);
 }
 
 // 100% matching!
@@ -72,23 +84,23 @@ void dvci_free(DVCI dvci)
 }
 
 // 100% matching!
-void dvci_to_large_to_yen(Char8* fname) 
+void dvci_to_large_to_yen(Char8* path) 
 {
-    Uint32 i;
+    Sint32 i;
     Uint32 l;
 
-    l = strlen(fname);
+    l = strlen(path);
     
     for (i = 0; i < l; i++) 
     {
-        if (fname[i] == '/') 
+        if (path[i] == '/') 
         {
-            fname[i] = '\\';
+            path[i] = '\\';
         }
         
-        if ((Uint8)(fname[i] - 'a') < 26) // probably a compiler optimization
+        if ((Uint8)(path[i] - 'a') < 26) // probably a compiler optimization
         {
-            fname[i] -= ' ';
+            path[i] -= ' ';
         }
     } 
 }
