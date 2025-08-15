@@ -1,4 +1,6 @@
 
+typedef void (*DVCI_ERRFN)(void* dvci_errobj, const Char8* msg, void* obj);
+
 typedef struct _dvci_obj 
 {
     Sint8   used;
@@ -25,8 +27,8 @@ typedef struct _dvci_obj
 typedef DVCI_OBJ *DVCI;
 
 static DVCI_OBJ dvg_ci_obj[40];
-void (*dvg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
-void* dvg_ci_err_obj;
+static DVCI_ERRFN dvg_ci_err_func;
+static void* dvg_ci_err_obj;
 void* dvg_ci_vtbl;
 
 // 100% matching!
@@ -49,11 +51,11 @@ DVCI dvci_alloc(void)
 }
 
 // 100% matching!
-void dvci_call_errfn(Sint32 arg0, Char8* err_msg)
+void dvci_call_errfn(void* obj, const Char8* msg)
 {
     if (dvg_ci_err_func != NULL) 
     {
-        dvg_ci_err_func(dvg_ci_err_obj, err_msg, arg0);
+        dvg_ci_err_func(dvg_ci_err_obj, msg, obj);
     }
 }
 
