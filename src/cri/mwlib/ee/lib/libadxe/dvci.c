@@ -10,7 +10,7 @@ typedef struct _dvci_obj
     Sint32  unk4;
     Sint32  unk8;
     Sint32  unkC;
-    Sint32  unk10;
+    Sint32  numtr;
     Sint32  unk14;
     Sint32  unk18;
     Sint32  unk1C;
@@ -144,7 +144,19 @@ void* dvCiGetInterface(void)
     return &dvg_ci_vtbl;
 }
 
-// dvCiGetNumTr
+// 100% matching!
+Sint32 dvCiGetNumTr(DVCI dvci)
+{
+    if (dvci == NULL)
+    {
+        dvci_call_errfn(dvci, "E0092912:handl is null.");
+        
+        return 0;
+    }
+
+    return dvci->numtr * 2048;
+}
+
 // dvCiGetSctLen
 // dvCiGetStat
 // dvCiOpen
