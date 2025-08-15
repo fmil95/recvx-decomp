@@ -2160,8 +2160,8 @@ void PlayVoice(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate);
 void ContinuePlayVoice();*/
 void StopVoice(int FadeOutRate);
 int CheckPlayEndAdx(int SlotNo);
-/*int GetTimeAdx(int SlotNo);
-void SetRoomSoundFxLevel(char FxProgNo, char FxLevel);
+int GetTimeAdx(int SlotNo);
+/*void SetRoomSoundFxLevel(char FxProgNo, char FxLevel);
 void SetRoomSoundFxLevelEx();*/
 int SearchPlayingEnemySe(int EnemyNo, int Attrib);
 int SearchFreeEnemySeSlot();
@@ -3941,15 +3941,13 @@ int CheckPlayEndAdx(int SlotNo)
     return AdxPlayFlag[SlotNo];
 }
 
-/*// 
-// Start address: 0x295c80
+// 100% matching!
 int GetTimeAdx(int SlotNo)
 {
-	// Line 3211, Address: 0x295c80, Func Offset: 0
-	// Func End, Address: 0x295c88, Func Offset: 0x8
+    return GetAdxPlayTime(SlotNo);
 }
 
-// 
+/*// 
 // Start address: 0x295c90
 void SetRoomSoundFxLevel(char FxProgNo, char FxLevel)
 {
