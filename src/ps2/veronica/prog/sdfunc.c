@@ -2157,9 +2157,9 @@ void StopBgm(int FadeOutRate);
 void PlayVoiceEx2(int PatId, int VoiceNo, _anon16* pPos, int Mode, int FadeInRate, int PauseFlag);
 void PlayVoiceEx(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate, int PauseFlag);
 void PlayVoice(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate);
-void ContinuePlayVoice();
+void ContinuePlayVoice();*/
 void StopVoice(int FadeOutRate);
-int CheckPlayEndAdx(int SlotNo);
+/*int CheckPlayEndAdx(int SlotNo);
 int GetTimeAdx(int SlotNo);
 void SetRoomSoundFxLevel(char FxProgNo, char FxLevel);
 void SetRoomSoundFxLevelEx();*/
@@ -3922,21 +3922,19 @@ void ContinuePlayVoice()
 	// Func End, Address: 0x295c18, Func Offset: 0x8
 }
 
-// 
-// Start address: 0x295c20
+*/ 
+// 100% matching!
 void StopVoice(int FadeOutRate)
 {
-	// Line 3180, Address: 0x295c20, Func Offset: 0
-	// Line 3181, Address: 0x295c28, Func Offset: 0x8
-	// Line 3182, Address: 0x295c30, Func Offset: 0x10
-	// Line 3183, Address: 0x295c3c, Func Offset: 0x1c
-	// Line 3184, Address: 0x295c44, Func Offset: 0x24
-	// Line 3185, Address: 0x295c4c, Func Offset: 0x2c
-	// Line 3187, Address: 0x295c54, Func Offset: 0x34
-	// Func End, Address: 0x295c60, Func Offset: 0x40
+    if (FadeOutRate != 0) 
+    {
+        RequestAdxFadeFunction(1, 2, FadeOutRate);
+        return;
+    }
+    StopAdx(1);
+    AdxPlayFlag[1] = 0;
 }
-
-// 
+/*// 
 // Start address: 0x295c60
 int CheckPlayEndAdx(int SlotNo)
 {
