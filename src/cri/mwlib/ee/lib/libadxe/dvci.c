@@ -29,6 +29,7 @@ typedef DVCI_OBJ *DVCI;
 static DVCI_OBJ dvg_ci_obj[40];
 static DVCI_ERRFN dvg_ci_err_func;
 static void* dvg_ci_err_obj;
+static Char8 dvg_ci_fname[297];
 void* dvg_ci_vtbl;
 
 // 100% matching!
@@ -59,7 +60,10 @@ void dvci_call_errfn(void* obj, const Char8* msg)
     }
 }
 
-// dvci_conv_fname
+void dvci_conv_fname(const Char8* fname, Char8* path)
+{
+    scePrintf("dvci_conv_fname - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void dvci_free(DVCI dvci)
@@ -101,7 +105,38 @@ void dvci_wait(void)
 // dvCiEntryErrFunc
 // dvCiExecHndl
 // dvCiExecServer
-// dvCiGetFileSize
+
+void dvci_get_fstate(const Char8* fname, sceCdlFILE* fp); // this declaration needs removing
+// 100% matching!
+Sint32 dvCiGetFileSize(const Char8* fname) 
+{
+    sceCdlFILE fp;
+
+    if (fname == NULL) 
+    {
+        dvci_call_errfn(NULL, "E0092901:fname is null.(dvCiGetFileSize)");
+        
+        return 0;
+    }
+
+    dvci_get_fstate(fname, &fp);
+
+    if (fp.lsn == 0) 
+    {
+        sceCdSync(0);
+        
+        dvci_conv_fname(fname, dvg_ci_fname);
+
+        if (sceCdSearchFile(&fp, dvg_ci_fname) == 0) 
+        {
+            dvci_call_errfn(NULL, "E0092902:can't find file.(dvCiGetFileSize)");
+            
+            return 0;
+        }
+    }
+
+    return fp.size;
+}
 
 // 100% matching!
 void* dvCiGetInterface(void) 

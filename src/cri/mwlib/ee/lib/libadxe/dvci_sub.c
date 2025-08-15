@@ -57,7 +57,7 @@ void conv_to_tpath_dup(const Char8* fname, Char8* path)
 }
 
 // 100% matching!
-void dvci_get_fstate(const Char8* fname, sceCdlFILE *fp)
+void dvci_get_fstate(const Char8* fname, sceCdlFILE* fp)
 {
     fp->lsn = 0;
     
