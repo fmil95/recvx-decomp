@@ -2040,8 +2040,8 @@ char PanTbl360[68];
 char PanTbl360Vol[68];*/
 CAM_WORK cam;
 ROM_WORK* rom;
-/*char CurrentRoomFxLevel;
-int AngBak;*/
+char CurrentRoomFxLevel;
+/*int AngBak;*/
 SND_REQ RequestInfo;
 NJS_POINT3 CameraPos;
 /*_anon44 GsSlotInfoAx[2];*/
@@ -2061,8 +2061,8 @@ EnemySlot EnemySlotInfo[6];
 int MaxObjectReqList;
 /*unsigned char ObjectReqList[16];*/
 unsigned int AdxPlayFlag[2];
-/*char CurrentRoomFxProgNo;
-int MaxRequestList;
+char CurrentRoomFxProgNo;
+/*int MaxRequestList;
 unsigned char RequestList[128];*/
 ObjectSlot ObjectSlotInfo[3];
 /*_anon65 SdComFuncTbl[10];*/
@@ -2157,12 +2157,12 @@ void StopBgm(int FadeOutRate);
 void PlayVoiceEx2(int PatId, int VoiceNo, _anon16* pPos, int Mode, int FadeInRate, int PauseFlag);
 void PlayVoiceEx(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate, int PauseFlag);
 void PlayVoice(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate);
-void ContinuePlayVoice();
+void ContinuePlayVoice();*/
 void StopVoice(int FadeOutRate);
 int CheckPlayEndAdx(int SlotNo);
 int GetTimeAdx(int SlotNo);
 void SetRoomSoundFxLevel(char FxProgNo, char FxLevel);
-void SetRoomSoundFxLevelEx();*/
+void SetRoomSoundFxLevelEx();
 int SearchPlayingEnemySe(int EnemyNo, int Attrib);
 int SearchFreeEnemySeSlot();
 int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag);
@@ -3922,73 +3922,64 @@ void ContinuePlayVoice()
 	// Func End, Address: 0x295c18, Func Offset: 0x8
 }
 
-// 
-// Start address: 0x295c20
+*/ 
+// 100% matching!
 void StopVoice(int FadeOutRate)
 {
-	// Line 3180, Address: 0x295c20, Func Offset: 0
-	// Line 3181, Address: 0x295c28, Func Offset: 0x8
-	// Line 3182, Address: 0x295c30, Func Offset: 0x10
-	// Line 3183, Address: 0x295c3c, Func Offset: 0x1c
-	// Line 3184, Address: 0x295c44, Func Offset: 0x24
-	// Line 3185, Address: 0x295c4c, Func Offset: 0x2c
-	// Line 3187, Address: 0x295c54, Func Offset: 0x34
-	// Func End, Address: 0x295c60, Func Offset: 0x40
+    if (FadeOutRate != 0) 
+    {
+        RequestAdxFadeFunction(1, 2, FadeOutRate);
+        return;
+    }
+    StopAdx(1);
+    AdxPlayFlag[1] = 0;
 }
 
-// 
-// Start address: 0x295c60
+// 100% matching!
 int CheckPlayEndAdx(int SlotNo)
 {
-	// Line 3199, Address: 0x295c60, Func Offset: 0
-	// Line 3200, Address: 0x295c70, Func Offset: 0x10
-	// Func End, Address: 0x295c78, Func Offset: 0x18
+    return AdxPlayFlag[SlotNo];
 }
 
-// 
-// Start address: 0x295c80
+// 100% matching!
 int GetTimeAdx(int SlotNo)
 {
-	// Line 3211, Address: 0x295c80, Func Offset: 0
-	// Func End, Address: 0x295c88, Func Offset: 0x8
+    return GetAdxPlayTime(SlotNo);
 }
 
-// 
-// Start address: 0x295c90
+
+// 100% matching!
 void SetRoomSoundFxLevel(char FxProgNo, char FxLevel)
 {
-	// Line 3221, Address: 0x295c90, Func Offset: 0
-	// Line 3222, Address: 0x295ca8, Func Offset: 0x18
-	// Line 3223, Address: 0x295cb0, Func Offset: 0x20
-	// Line 3224, Address: 0x295cbc, Func Offset: 0x2c
-	// Line 3225, Address: 0x295cc8, Func Offset: 0x38
-	// Line 3226, Address: 0x295cd4, Func Offset: 0x44
-	// Line 3227, Address: 0x295ce0, Func Offset: 0x50
-	// Line 3228, Address: 0x295cec, Func Offset: 0x5c
-	// Line 3229, Address: 0x295cf8, Func Offset: 0x68
-	// Line 3231, Address: 0x295d04, Func Offset: 0x74
-	// Line 3232, Address: 0x295d10, Func Offset: 0x80
-	// Line 3233, Address: 0x295d1c, Func Offset: 0x8c
-	// Line 3234, Address: 0x295d28, Func Offset: 0x98
-	// Line 3235, Address: 0x295d34, Func Offset: 0xa4
-	// Line 3236, Address: 0x295d40, Func Offset: 0xb0
-	// Line 3237, Address: 0x295d4c, Func Offset: 0xbc
-	// Line 3238, Address: 0x295d58, Func Offset: 0xc8
-	// Line 3239, Address: 0x295d64, Func Offset: 0xd4
-	// Line 3243, Address: 0x295d70, Func Offset: 0xe0
-	// Line 3244, Address: 0x295d7c, Func Offset: 0xec
-	// Line 3245, Address: 0x295d88, Func Offset: 0xf8
-	// Line 3246, Address: 0x295d94, Func Offset: 0x104
-	// Line 3247, Address: 0x295da0, Func Offset: 0x110
-	// Line 3249, Address: 0x295dac, Func Offset: 0x11c
-	// Line 3250, Address: 0x295db4, Func Offset: 0x124
-	// Line 3251, Address: 0x295dbc, Func Offset: 0x12c
-	// Func End, Address: 0x295dd0, Func Offset: 0x140
+    SetFxLevelSe(0, FxLevel);
+    SetFxLevelSe(1, FxLevel);
+    SetFxLevelSe(2, FxLevel);
+    SetFxLevelSe(3, FxLevel);
+    SetFxLevelSe(4, FxLevel);
+    SetFxLevelSe(5, FxLevel);
+    SetFxLevelSe(0xB, FxLevel);
+    SetFxLevelSe(0xC, FxLevel);
+    SetFxLevelSe(7, FxLevel);
+    SetFxLevelSe(6, FxLevel);
+    SetFxLevelSe(8, FxLevel);
+    SetFxLevelSe(9, FxLevel);
+    SetFxLevelSe(0xA, FxLevel);
+    SetFxLevelSe(0xD, FxLevel);
+    SetFxLevelSe(0xE, FxLevel);
+    SetFxLevelSe(0xF, FxLevel);
+    SetFxLevelSe(0x10, FxLevel);
+    SetFxLevelMidi(3, FxLevel);
+    SetFxLevelMidi(4, FxLevel);
+    SetFxLevelMidi(5, FxLevel);
+    SetFxLevelMidi(7, FxLevel);
+    SetFxLevelMidi(6, FxLevel);
+    CurrentRoomFxProgNo = FxProgNo;
+    CurrentRoomFxLevel = FxLevel;
 }
 
 // 
 // 100% matching!
-*/
+
 void SetRoomSoundFxLevelEx() 
 {
     SetRoomSoundFxLevel(0, Room_SoundEnv.RoomFxLevel);
