@@ -131,7 +131,13 @@ void dvCiClose(DVCI dvci)
     }
 }
 
-// dvCiEntryErrFunc
+// 100% matching!
+void dvCiEntryErrFunc(DVCI_ERRFN func, void* obj) 
+{
+    dvg_ci_err_func = func;
+    dvg_ci_err_obj = obj;
+}
+
 // dvCiExecHndl
 // dvCiExecServer
 
