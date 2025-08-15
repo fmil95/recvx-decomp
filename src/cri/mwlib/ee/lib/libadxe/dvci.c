@@ -27,12 +27,14 @@ typedef struct _dvci_obj
 typedef DVCI_OBJ *DVCI;
 
 void dvci_to_large_to_yen(Char8* path);
+void dvCiStopTr(void);
 
+static Char8* volatile dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
 static DVCI_OBJ dvg_ci_obj[40];
 static DVCI_ERRFN dvg_ci_err_func;
 static void* dvg_ci_err_obj;
 static Char8 dvg_ci_fname[297];
-void* dvg_ci_vtbl;
+static void* dvg_ci_vtbl;
 
 // 100% matching!
 DVCI dvci_alloc(void) 
@@ -113,7 +115,22 @@ void dvci_wait(void)
     for (i = 0; i < 32768; i++);
 }
 
-// dvCiClose
+// 100% matching!
+void dvCiClose(DVCI dvci) 
+{
+    if (dvci != NULL) 
+    {
+        if ((unsigned char)dvci->stat >= 2) 
+        {
+            dvCiStopTr();
+        }
+        
+        dvci->used = FALSE;
+        
+        dvci_free(dvci);
+    }
+}
+
 // dvCiEntryErrFunc
 // dvCiExecHndl
 // dvCiExecServer
@@ -191,6 +208,10 @@ Sint8 dvCiGetStat(DVCI dvci)
 // dvCiOpen
 // dvCiReqRd
 // dvCiSeek
-// dvCiStopTr
+
+void dvCiStopTr(void)
+{
+    scePrintf("dvCiStopTr - UNIMPLEMENTED!\n");
+}
+
 // dvCiTell
-// dvg_ci_build
