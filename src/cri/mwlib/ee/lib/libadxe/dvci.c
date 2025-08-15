@@ -157,7 +157,12 @@ Sint32 dvCiGetNumTr(DVCI dvci)
     return dvci->numtr * 2048;
 }
 
-// dvCiGetSctLen
+// 100% matching!
+Sint32 dvCiGetSctLen(void)
+{
+    return 2048;
+}
+
 // dvCiGetStat
 // dvCiOpen
 // dvCiReqRd
