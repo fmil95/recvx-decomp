@@ -10,7 +10,7 @@ typedef struct _dvci_obj
     Sint32  unk4;
     Sint32  unk8;
     Sint32  unkC;
-    Sint32  numtr;
+    Sint32  tell;
     Sint32  unk14;
     Sint32  unk18;
     Sint32  unk1C;
@@ -208,7 +208,7 @@ Sint32 dvCiGetNumTr(DVCI dvci)
         return 0;
     }
 
-    return dvci->numtr * 2048;
+    return dvci->tell * 2048;
 }
 
 // 100% matching!
@@ -239,4 +239,15 @@ void dvCiStopTr(void)
     scePrintf("dvCiStopTr - UNIMPLEMENTED!\n");
 }
 
-// dvCiTell
+// 100% matching!
+Sint32 dvCiTell(DVCI dvci)
+{
+    if (dvci == NULL) 
+    {
+        dvci_call_errfn(dvci, "E0092912:handl is null.");
+        
+        return 0;
+    }
+
+    return dvci->tell;
+}
