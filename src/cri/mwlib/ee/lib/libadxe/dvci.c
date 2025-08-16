@@ -138,8 +138,27 @@ void dvCiEntryErrFunc(DVCI_ERRFN func, void* obj)
     dvg_ci_err_obj = obj;
 }
 
-// dvCiExecHndl
-// dvCiExecServer
+void dvCiExecHndl(DVCI dvci)
+{
+    scePrintf("dvCiExecHndl - UNIMPLEMENTED!\n");
+}
+
+// 100% matching!
+void dvCiExecServer(void) 
+{
+    DVCI dvci;
+    Sint32 i;
+
+    for (i = 0; i < 40; i++) 
+    {
+        dvci = &dvg_ci_obj[i];
+
+        if (dvci->used == TRUE)
+        {
+            dvCiExecHndl(dvci);
+        }
+    }
+}
 
 void dvci_get_fstate(const Char8* fname, sceCdlFILE* fp); // this declaration needs removing
 // 100% matching!
