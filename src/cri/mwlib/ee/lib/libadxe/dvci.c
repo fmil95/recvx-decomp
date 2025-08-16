@@ -11,8 +11,8 @@ typedef struct _dvci_obj
     Sint32  unk8;
     Sint32  unkC;
     Sint32  tell;
-    Sint32  unk14;
-    Sint32  unk18;
+    Sint8*  buf;
+    Sint32  rdsct;
     Sint32  unk1C;
     Sint32  unk20;
     Sint32  unk24;
@@ -138,9 +138,33 @@ void dvCiEntryErrFunc(DVCI_ERRFN func, void* obj)
     dvg_ci_err_obj = obj;
 }
 
+// 100% matching!
 void dvCiExecHndl(DVCI dvci)
 {
-    scePrintf("dvCiExecHndl - UNIMPLEMENTED!\n");
+    Sint32 rsflg;
+    Sint32 errcode;
+
+    if (dvci->stat == 2) 
+    {
+        rsflg = sceCdSync(1);
+        
+        errcode = sceCdGetError();
+        
+        if (((errcode >= SCECdErREAD) && (errcode <= SCECdErEOM)) || ((errcode == SCECdErCUD) || (errcode == SCECdErCMD) || (errcode == SCECdErOPENS) || (errcode == SCECdErNODISC)))
+        {
+            dvci->stat = 3; 
+            
+            printf("Drive Error (0x%x)\n", errcode);
+        }
+        else if (rsflg == 0) 
+        {
+            InvalidDCache(dvci->buf, (dvci->buf + (dvci->rdsct * 2048)) - 1);
+            
+            dvci->stat = 1;
+            
+            dvci->tell += dvci->rdsct;
+        }
+    }
 }
 
 // 100% matching!
