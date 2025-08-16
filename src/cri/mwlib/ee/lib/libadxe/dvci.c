@@ -256,7 +256,34 @@ Sint8 dvCiGetStat(DVCI dvci)
 
 // dvCiOpen
 // dvCiReqRd
-// dvCiSeek
+
+// 100% matching!
+Sint32 dvCiSeek(DVCI dvci, Sint32 ofst, Sint32 whence)
+{
+    if (dvci == NULL) 
+    {
+        dvci_call_errfn(dvci, "E0092912:handl is null.");
+        
+        return 0;
+    }
+
+    if (whence == 0) 
+    {
+        dvci->tell = ofst;
+    } 
+    else if (whence == 2) 
+    {
+        dvci->tell = dvci->unkC + ofst;
+    } 
+    else if (whence == 1)
+    {
+        dvci->tell += ofst;
+    }
+
+    dvci->tell = CLAMP(dvci->tell, 0, dvci->unkC);
+    
+    return dvci->tell;
+}
 
 void dvCiStopTr(void)
 {
