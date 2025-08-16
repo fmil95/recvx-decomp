@@ -4,6 +4,9 @@ static DVG_FLIST_TBL dvg_flist_tbl = { 0 };
 static Sint8 dvg_rbuf[4096];
 static sceCdRMode dvg_ci_cdrmode = { 0 };
 
+void dvci_to_large_to_yen(Char8* path); // remove these two declarations
+void dvci_call_errfn(void* obj, const Char8* msg);
+
 // 100% matching!
 Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size)
 {
