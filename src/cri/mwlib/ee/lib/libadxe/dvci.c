@@ -1,33 +1,11 @@
-
-typedef void (*DVCI_ERRFN)(void* dvci_errobj, const Char8* msg, void* obj);
-
-typedef struct _dvci_obj 
-{
-    Sint8       used;
-    Sint8       unk1;
-    Sint8       stat;
-    Sint8       unk3;
-    Sint32      unk4;
-    Sint32      fsize;
-    Sint32      ofs;
-    Sint32      tell;
-    Sint8*      buf;
-    Sint32      rdsct;
-    sceCdlFILE  fp;
-    sceCdRMode  cdrmode;
-} DVCI_OBJ;
-
-typedef DVCI_OBJ *DVCI;
-
-void dvci_to_large_to_yen(Char8* path);
-void dvCiStopTr(DVCI dvci);
+#include "dvci.h"
 
 static Char8* volatile dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
-static DVCI_OBJ dvg_ci_obj[40];
-static DVCI_ERRFN dvg_ci_err_func;
-static void* dvg_ci_err_obj;
-static Char8 dvg_ci_fname[297];
-static void* dvg_ci_vtbl;
+static DVCI_OBJ dvg_ci_obj[40] = { 0 };
+static DVCI_ERRFN dvg_ci_err_func = NULL;
+static void* dvg_ci_err_obj = NULL;
+static Char8 dvg_ci_fname[297] = { 0 };
+static DVCI_VTBL dvg_ci_vtbl = { dvCiExecServer, dvCiEntryErrFunc, dvCiGetFileSize, NULL, dvCiOpen, dvCiClose, dvCiSeek, dvCiTell, dvCiReqRd, NULL, dvCiStopTr, dvCiGetStat, dvCiGetSctLen, NULL, dvCiGetNumTr };
 
 // 100% matching!
 DVCI dvci_alloc(void) 
