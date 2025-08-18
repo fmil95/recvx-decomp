@@ -27,7 +27,7 @@ typedef struct _dvci_obj
 typedef DVCI_OBJ *DVCI;
 
 void dvci_to_large_to_yen(Char8* path);
-void dvCiStopTr(void);
+void dvCiStopTr(DVCI dvci);
 
 static Char8* volatile dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
 static DVCI_OBJ dvg_ci_obj[40];
@@ -122,7 +122,7 @@ void dvCiClose(DVCI dvci)
     {
         if ((unsigned char)dvci->stat >= 2) 
         {
-            dvCiStopTr();
+            dvCiStopTr(dvci);
         }
         
         dvci->used = FALSE;
@@ -354,9 +354,44 @@ Sint32 dvCiSeek(DVCI dvci, Sint32 ofst, Sint32 whence)
     return dvci->tell;
 }
 
-void dvCiStopTr(void)
+// 100% matching!
+void dvCiStopTr(DVCI dvci) 
 {
-    scePrintf("dvCiStopTr - UNIMPLEMENTED!\n");
+    Sint32 i;
+
+    if (dvci == NULL) 
+    {
+        dvci_call_errfn(NULL, "E0092912:handl is null.");
+        
+        return;
+    }
+    
+    if (dvci->stat != 0)
+    {
+        dvCiExecHndl(dvci);
+        
+        if (dvci->stat == 2) 
+        {
+            for (i = 0; i < 20; i++) 
+            {
+                if (sceCdBreak() == 1) 
+                {
+                    break;
+                }
+                
+                dvci_wait();
+            } 
+            
+            if (i >= 20) 
+            {
+                sceCdSync(0);
+            }
+        }
+        
+        InvalidDCache(dvci->buf, (dvci->buf + (dvci->rdsct * 2048)) - 1);
+        
+        dvci->stat = 0;
+    }
 }
 
 // 100% matching!
