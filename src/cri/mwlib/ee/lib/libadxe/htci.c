@@ -8,7 +8,7 @@ typedef struct _htci_obj
     Sint8   unk2;
     Sint8   unk3;
     Sint32  unk4;
-    Sint32  is_end;
+    Sint32  isend;
     Sint32  fd;
     Sint32  unk10;
     Sint32  unk14;
@@ -87,9 +87,9 @@ Sint32 htci_is_all_excute(void)
 {
     Sint32 i;
     
-    for (i = 0; i < ADXPS2_DEF_NUM_FILE_HOST; i++) 
+    for (i = 0; i < 13; i++) 
     {
-        if ((htg_ci_obj[i].used == 1) && (htci_is_one_excute(&htg_ci_obj[i]) == 0))
+        if ((htg_ci_obj[i].used == TRUE) && (htci_is_one_excute(&htg_ci_obj[i]) == 0))
         {
             return 0; 
         }
@@ -101,13 +101,13 @@ Sint32 htci_is_all_excute(void)
 // 100% matching!
 Sint32 htci_is_one_excute(HTCI htci)
 {
-    if (sceIoctl(htci->fd, 1, &htci->is_end) < 0) 
+    if (sceIoctl(htci->fd, 1, &htci->isend) < 0) 
     {
         return 0;
     }
     else 
     {
-        return htci->is_end != TRUE;
+        return htci->isend != TRUE;
     }
 }
 
@@ -122,13 +122,13 @@ void htci_wait(void)
 // 100% matching!
 Sint32 htci_wait_by_fd(Sint32 fd) 
 {
-    Sint32 is_end;
+    Sint32 isend;
 
-    is_end = TRUE;
+    isend = TRUE;
     
-    while (is_end == TRUE) 
+    while (isend == TRUE) 
     {
-        sceIoctl(fd, 1, &is_end);
+        sceIoctl(fd, 1, &isend);
     } 
     
     htci_wait_io();
