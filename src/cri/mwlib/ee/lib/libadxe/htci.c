@@ -1,26 +1,28 @@
-typedef struct _htg_ci 
+
+typedef void (*HTCI_ERRFN)(void* htci_errobj, const Char8* msg, void* obj);
+
+typedef struct _htci_obj 
 {
-    Sint8 used;
-    Sint8 unk1;
-    Sint8 unk2;
-    Sint8 unk3;
-    Sint32 unk4;
-    Sint32 is_end;
-    Sint32 fd;
-    Sint32 unk10;
-    Sint32 unk14;
-    Sint32 unk18;
-    Sint32 unk1C;
-    Sint32 unk20;
-} HTG_CI;
-typedef HTG_CI  *HTCI;
+    Sint8   used;
+    Sint8   unk1;
+    Sint8   unk2;
+    Sint8   unk3;
+    Sint32  unk4;
+    Sint32  is_end;
+    Sint32  fd;
+    Sint32  unk10;
+    Sint32  unk14;
+    Sint32  unk18;
+    Sint32  unk1C;
+    Sint32  unk20;
+} HTCI_OBJ;
 
-typedef HTG_CI HTCI_OBJ;
+typedef HTCI_OBJ *HTCI;
 
-HTCI_OBJ htg_ci_obj[ADXPS2_DEF_NUM_FILE_HOST];
-static Char8* htci_build = "\nhtCi Ver.2.16 Build:Jan 26 2001 09:56:20\n";
-void (*htg_ci_err_func)(void* err_obj, Char8* err_msg, Sint32 arg2);
-void* htg_ci_err_obj;
+static Char8* volatile htci_build = "\nhtCi Ver.2.16 Build:Jan 26 2001 09:56:20\n";
+static HTCI_OBJ htg_ci_obj[13];
+static HTCI_ERRFN htg_ci_err_func;
+static void* htg_ci_err_obj;
 void* htci_vtbl;
 
 void htci_wait_io(void);
@@ -33,9 +35,9 @@ HTCI htci_alloc(void)
     
     htci = NULL;
     
-    for (i = 0; i < ADXPS2_DEF_NUM_FILE_HOST; i++) 
+    for (i = 0; i < 13; i++) 
     {
-        if (htg_ci_obj[i].used == 0) 
+        if (htg_ci_obj[i].used == FALSE) 
         {
             htci = &htg_ci_obj[i];
         }
@@ -45,11 +47,11 @@ HTCI htci_alloc(void)
 }
 
 // 100% matching!
-void htci_call_errfn(Sint32 arg0, Char8* htg_ci_err_msg)
+void htci_call_errfn(void* obj, const Char8* msg)
 {
     if (htg_ci_err_func != NULL) 
     { 
-        htg_ci_err_func(htg_ci_err_obj, htg_ci_err_msg, arg0);
+        htg_ci_err_func(htg_ci_err_obj, msg, obj);
     }
 }
 
@@ -58,7 +60,7 @@ void htci_call_errfn(Sint32 arg0, Char8* htg_ci_err_msg)
 // 100% matching!
 void htci_free(HTCI htci)
 {
-    *htci = (HTG_CI){0};
+    *htci = (HTCI_OBJ){0};
 }
 
 // 100% matching!
