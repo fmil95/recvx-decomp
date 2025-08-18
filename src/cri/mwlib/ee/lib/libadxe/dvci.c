@@ -8,19 +8,12 @@ typedef struct _dvci_obj
     Sint8       stat;
     Sint8       unk3;
     Sint32      unk4;
-    Sint32      unk8;
-    Sint32      unkC;
+    Sint32      fsize;
+    Sint32      ofs;
     Sint32      tell;
     Sint8*      buf;
     Sint32      rdsct;
-    Sint32      unk1C;
-    Sint32      unk20;
-    Sint32      unk24;
-    Sint32      unk28;
-    Sint32      unk2C;
-    Sint32      unk30;
-    Sint32      unk34;
-    Sint32      unk38;
+    sceCdlFILE  fp;
     sceCdRMode  cdrmode;
 } DVCI_OBJ;
 
@@ -253,7 +246,74 @@ Sint8 dvCiGetStat(DVCI dvci)
     return dvci->stat;
 }
 
-// dvCiOpen
+// 100% matching!
+DVCI dvCiOpen(Char8* fname, void* unused, Sint32 rw)
+{
+    DVCI dvci;
+
+    if (fname == NULL) 
+    {
+        dvci_call_errfn(fname, "E0092908:fname is null.(dvCiOpen)");
+        
+        return NULL;
+    }
+
+    if (rw != 0)
+    {
+        dvci_call_errfn(NULL, "E0092909:rw is illigal.(dvCis)");
+        
+        return NULL;
+    }
+
+    dvci = dvci_alloc();
+
+    if (dvci == NULL) 
+    {
+        dvci_call_errfn(NULL, "E0092910:not enough handle resource.(dvCiOpen)");
+        
+        return NULL;
+    }
+
+    dvci_get_fstate(fname, &dvci->fp);
+
+    if (dvci->fp.lsn == 0) 
+    {
+        dvci_conv_fname(fname, dvg_ci_fname);
+
+        sceCdSync(0);
+
+        if (sceCdSearchFile(&dvci->fp, dvg_ci_fname) == 0) 
+        {
+            dvci_call_errfn(NULL, "E0092911:sceCdSearchFile fail.(dvCiOpen)");
+            
+            dvci_free(dvci);
+            
+            return NULL;
+        }
+
+        dvci->unk1 = 0;
+    } 
+    else 
+    {
+        dvci->unk1 = 1;
+    }
+
+    dvci->fsize = dvci->fp.size;
+    
+    dvci->used = TRUE;
+    
+    dvci->tell = 0;
+    
+    dvci->buf = NULL;
+    
+    dvci->ofs = ((Sint32)dvci->fp.size + 2047) / 2048;
+    
+    dvci->rdsct = 0;
+    
+    dvci->stat = 0;
+
+    return dvci;
+}
 
 // 100% matching!
 Sint32 dvCiReqRd(DVCI dvci, Sint32 nsct, Sint8* buf) 
@@ -295,7 +355,7 @@ Sint32 dvCiReqRd(DVCI dvci, Sint32 nsct, Sint8* buf)
     
     dvci->buf = buf;
     
-    dvci->rdsct = MIN(nsct, dvci->unkC - dvci->tell);
+    dvci->rdsct = MIN(nsct, dvci->ofs - dvci->tell);
     
     dvci->cdrmode.trycount = dvg_ci_cdrmode.trycount;
     
@@ -310,7 +370,7 @@ Sint32 dvCiReqRd(DVCI dvci, Sint32 nsct, Sint8* buf)
     
     dvCiExecServer();
     
-    lsn = dvci->unk1C + dvci->tell;
+    lsn = dvci->fp.lsn + dvci->tell;
     
     InvalidDCache(dvci->buf, (dvci->buf + (dvci->rdsct * 2048)) - 1);
     
@@ -342,14 +402,14 @@ Sint32 dvCiSeek(DVCI dvci, Sint32 ofst, Sint32 whence)
     } 
     else if (whence == 2) 
     {
-        dvci->tell = dvci->unkC + ofst;
+        dvci->tell = dvci->ofs + ofst;
     } 
     else if (whence == 1)
     {
         dvci->tell += ofst;
     }
 
-    dvci->tell = CLAMP(dvci->tell, 0, dvci->unkC);
+    dvci->tell = CLAMP(dvci->tell, 0, dvci->ofs);
     
     return dvci->tell;
 }
