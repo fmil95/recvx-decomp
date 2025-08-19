@@ -5,7 +5,7 @@ typedef struct _htci_obj
 {
     Sint8   used;
     Sint8   unk1;
-    Sint8   unk2;
+    Sint8   stat;
     Sint8   unk3;
     Sint32  unk4;
     Sint32  isend;
@@ -162,7 +162,19 @@ Sint32 htCiGetSctLen(void)
     return 2048;
 }
 
-// htCiGetStat
+// 100% matching!
+Sint8 htCiGetStat(HTCI htci) 
+{
+    if (htci == NULL)
+    {
+        htci_call_errfn(NULL, "E0092712:handl is null.");
+        
+        return 0;
+    }
+    
+    return htci->stat;
+}
+
 // htCiOpen
 // htCiReqRd
 // htCiSeek
