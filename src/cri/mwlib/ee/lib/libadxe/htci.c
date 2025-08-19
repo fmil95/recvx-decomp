@@ -55,7 +55,40 @@ void htci_call_errfn(void* obj, const Char8* msg)
     }
 }
 
-// htci_conv_fname
+// 100% matching!
+void htci_conv_fname(const Char8* fname, Char8* path)  
+{
+    Uint32 flen;
+    Uint32 dirlen;
+    Sint32 i;
+    Sint32 j;
+
+    memset(path, 0, 297);
+    
+    memcpy(path, "host:", sizeof("host:"));
+    
+    flen = strlen(fname);
+    dirlen = strlen(path);
+    
+    for (i = 0, j = 0; i <= flen; i++) 
+    { 
+        if (((Uint8)fname[i] == '\\') || ((Uint8)fname[i] == '\0'))
+        {
+            memcpy(&path[dirlen], &fname[j], (Uint16)(i - j));
+            
+            dirlen += i - j;
+            j += i - j;
+            
+            if (flen != j) 
+            {
+                path[dirlen] = '/';  
+                
+                dirlen++;
+                j++;
+            }
+        }
+    } 
+}
 
 // 100% matching!
 void htci_free(HTCI htci)
