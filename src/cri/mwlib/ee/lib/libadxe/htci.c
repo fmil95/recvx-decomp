@@ -184,8 +184,28 @@ void htCiEntryErrFunc(HTCI_ERRFN func, void* obj)
     htg_ci_err_obj = obj;
 }
 
-// htCiExecHndl
-// htCiExecServer
+void htCiExecHndl(HTCI htci)
+{
+    scePrintf("htCiExecHndl - UNIMPLEMENTED!\n");
+}
+
+// 100% matching!
+void htCiExecServer(void) 
+{
+    HTCI htci;
+    Sint32 i;
+
+    for (i = 0; i < 13; i++) 
+    {
+        htci = &htg_ci_obj[i];
+
+        if (htci->used == TRUE)
+        {
+            htCiExecHndl(htci);
+        }
+    }
+}
+
 // htCiGetFileSize
 
 // 100% matching!
