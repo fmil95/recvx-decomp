@@ -305,7 +305,34 @@ Sint8 htCiGetStat(HTCI htci)
 
 // htCiOpen
 // htCiReqRd
-// htCiSeek
+
+// 100% matching!
+Sint32 htCiSeek(HTCI htci, Sint32 ofst, Sint32 whence)
+{
+    if (htci == NULL) 
+    {
+        htci_call_errfn(htci, "E0092712:handl is null.");
+        
+        return 0;
+    }
+
+    if (whence == 0) 
+    {
+        htci->tell = ofst;
+    } 
+    else if (whence == 2) 
+    {
+        htci->tell = htci->unk14 + ofst;
+    } 
+    else if (whence == 1)
+    {
+        htci->tell += ofst;
+    }
+
+    htci->tell = CLAMP(htci->tell, 0, htci->unk14);
+    
+    return htci->tell;
+}
 
 // 100% matching!
 void htCiStopTr(HTCI htci)
