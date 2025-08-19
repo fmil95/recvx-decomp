@@ -26,6 +26,7 @@ static void* htg_ci_err_obj;
 void* htci_vtbl;
 
 void htci_wait_io(void);
+void htCiStopTr(void);
 
 // 100% matching!
 HTCI htci_alloc(void) 
@@ -175,7 +176,31 @@ void htci_wait_io(void)
     while (htci_is_all_excute() == 0);
 }
 
-// htCiClose
+// 100% matching!
+void htCiClose(HTCI htci)
+{
+    if (htci != NULL)
+    {
+        if ((unsigned char)htci->stat >= 2)
+        {
+            htCiStopTr();
+        }
+        
+        if (htci->unk1 == 0) 
+        {
+            htci_wait_io();
+            
+            if (sceClose(htci->fd) < 0)
+            {
+                printf("HTCI: Failed sceClose!\n");
+            }
+        }
+        
+        htci->used = FALSE;
+        
+        htci_free(htci);
+    }
+}
 
 // 100% matching!
 void htCiEntryErrFunc(HTCI_ERRFN func, void* obj) 
@@ -249,7 +274,11 @@ Sint8 htCiGetStat(HTCI htci)
 // htCiOpen
 // htCiReqRd
 // htCiSeek
-// htCiStopTr
+
+void htCiStopTr(void)
+{
+    scePrintf("htCiStopTr - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 Sint32 htCiTell(HTCI htci) 
