@@ -26,7 +26,7 @@ static void* htg_ci_err_obj;
 void* htci_vtbl;
 
 void htci_wait_io(void);
-void htCiStopTr(void);
+void htCiStopTr(HTCI htci);
 
 // 100% matching!
 HTCI htci_alloc(void) 
@@ -183,7 +183,7 @@ void htCiClose(HTCI htci)
     {
         if ((unsigned char)htci->stat >= 2)
         {
-            htCiStopTr();
+            htCiStopTr(htci);
         }
         
         if (htci->unk1 == 0) 
@@ -216,7 +216,7 @@ void htCiExecHndl(HTCI htci)
 
     stat = htci->stat;
     
-    if ((stat == 2) && (htci_is_all_excute() != 0) && (htci->isend == 0))
+    if ((stat == 2) && (htci_is_all_excute() != 0) && (htci->isend == FALSE))
     {
         if (htci->unk3 == 0) 
         {
@@ -307,9 +307,36 @@ Sint8 htCiGetStat(HTCI htci)
 // htCiReqRd
 // htCiSeek
 
-void htCiStopTr(void)
+// 100% matching!
+void htCiStopTr(HTCI htci)
 {
-    scePrintf("htCiStopTr - UNIMPLEMENTED!\n");
+    Sint32 i;
+
+    if (htci == NULL) 
+    {
+        htci_call_errfn(NULL, "E0092712:handl is null.");
+        return;
+    }
+    
+    if (htci->stat != 0) 
+    {
+        if ((htci->stat == 2) && (htci->isend == TRUE)) 
+        {
+            for (i = 0; i < 20; i++) 
+            {
+                sceIoctl(htci->fd, 1, &htci->isend);
+                
+                if (htci->isend == FALSE) 
+                {
+                    break;
+                }
+                
+                htci_wait();
+            }
+        }
+        
+        htci->stat = 0;
+    }
 }
 
 // 100% matching!
