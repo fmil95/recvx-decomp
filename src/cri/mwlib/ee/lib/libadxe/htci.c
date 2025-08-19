@@ -176,7 +176,14 @@ void htci_wait_io(void)
 }
 
 // htCiClose
-// htCiEntryErrFunc
+
+// 100% matching!
+void htCiEntryErrFunc(HTCI_ERRFN func, void* obj) 
+{
+    htg_ci_err_func = func;
+    htg_ci_err_obj = obj;
+}
+
 // htCiExecHndl
 // htCiExecServer
 // htCiGetFileSize
