@@ -223,4 +223,16 @@ Sint8 htCiGetStat(HTCI htci)
 // htCiReqRd
 // htCiSeek
 // htCiStopTr
-// htCiTell
+
+// 100% matching!
+Sint32 htCiTell(HTCI htci) 
+{
+    if (htci == NULL) 
+    {
+        htci_call_errfn(NULL, "E0092712:handl is null.");
+        
+        return 0;
+    }
+    
+    return htci->tell;
+}
