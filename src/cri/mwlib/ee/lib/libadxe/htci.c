@@ -155,7 +155,13 @@ void* htCiGetInterface(void)
 }
 
 // htCiGetNumTr
-// htCiGetSctLen
+
+// 100% matching!
+Sint32 htCiGetSctLen(void) 
+{
+    return 2048;
+}
+
 // htCiGetStat
 // htCiOpen
 // htCiReqRd
