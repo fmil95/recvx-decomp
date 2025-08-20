@@ -1,3 +1,4 @@
+
 typedef struct _htg_ci_file
 {
     Sint32 fd;
@@ -6,6 +7,14 @@ typedef struct _htg_ci_file
     Uint8 pad[4];
 } HTG_CI_DIR;
 typedef HTG_CI_DIR  *HTCI_DIR;
+
+typedef struct _htci_finfo
+{
+    Sint32  fd;
+    Sint32  fsize;
+    Char8   fname[256]; 
+    Uint8   pad[4];
+} HTCI_FINFO;
 
 static Char8 D_00361F30[8] = { 0x68, 0x6F, 0x73, 0x74, 0x3A, 0x00, 0x00, 0x00 };
 ADXPS2_FC_HOST htg_flist_tbl;
@@ -21,6 +30,7 @@ Sint32 analysis_flist(Char8* fpc, Sint32* rbuf, Uint32 size)
     scePrintf("analysis_flist - UNIMPLEMENTED!\n");
 }
 
+void htci_call_errfn(void* obj, const Char8* msg); // remove this declaration
 // 100% matching!
 Sint32 close_file_all(void)
 {
@@ -102,25 +112,25 @@ void conv_to_tpath(Char8* flist, Char8* fname)
     } 
 }
 
-void get_fstate(HTCI_DIR arg0, Sint32 arg1, HTCI_DIR dir, Sint32 fsize)
+void get_fstate(HTCI_FINFO* fp, Char8* fname, HTCI_DIR dir, Sint32 fsize)
 {
     scePrintf("get_fstate - UNIMPLEMENTED!\n");
 }
 
 // 100% matching!
-void htci_get_finf(Sint32 arg0, HTCI_DIR arg1) 
+void htci_get_finf(Char8* fname, HTCI_FINFO* finfo) 
 {
     HTCI_DIR dir;
 
     dir = (HTCI_DIR)htg_flist_tbl.fd; // maybe htg_flist_tbl is a directory buffer?
     
-    arg1->fd = 0;
+    finfo->fd = 0;
     
-    arg1->fsize = 0; 
+    finfo->fsize = 0; 
 
     if (dir != NULL) 
     {
-        get_fstate(arg1, arg0, dir, htg_flist_tbl.size);
+        get_fstate(finfo, fname, dir, htg_flist_tbl.size);
     } 
 }
 
@@ -132,6 +142,7 @@ void htci_init_flist(void)
     htg_found = 0;
 }
 
+void htci_wait_io(void); // remove this declaration
 // 100% matching!
 Sint32 htCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
 {

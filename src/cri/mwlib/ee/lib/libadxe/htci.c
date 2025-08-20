@@ -23,6 +23,7 @@ static Char8* volatile htci_build = "\nhtCi Ver.2.16 Build:Jan 26 2001 09:56:20\
 static HTCI_OBJ htg_ci_obj[13];
 static HTCI_ERRFN htg_ci_err_func;
 static void* htg_ci_err_obj;
+static Char8 htg_ci_fname[297];
 void* htci_vtbl;
 
 void htci_wait_io(void);
@@ -135,7 +136,7 @@ Sint32 htci_is_all_excute(void)
 // 100% matching!
 Sint32 htci_is_one_excute(HTCI htci)
 {
-    if (sceIoctl(htci->fd, 1, &htci->isend) < 0) 
+    if (sceIoctl(htci->fd, SCE_FS_EXECUTING, &htci->isend) < 0) 
     {
         return 0;
     }
@@ -162,7 +163,7 @@ Sint32 htci_wait_by_fd(Sint32 fd)
     
     while (isend == TRUE) 
     {
-        sceIoctl(fd, 1, &isend);
+        sceIoctl(fd, SCE_FS_EXECUTING, &isend);
     } 
     
     htci_wait_io();
@@ -263,7 +264,66 @@ void htCiExecServer(void)
     }
 }
 
-// htCiGetFileSize
+// 100% matching!
+Sint32 htCiGetFileSize(const Char8* fname)
+{
+    HTCI_FINFO finfo;
+    Sint32 fd;
+    Sint32 fsize;
+
+    if (fname == NULL) 
+    {
+        htci_call_errfn(NULL, "E0092704:fname is null.(htCiGetFileSize)");
+        
+        return 0;
+    }
+    
+    htci_conv_fname(fname, htg_ci_fname);
+    
+    htci_get_finf(&htg_ci_fname[5], &finfo);
+    
+    if (finfo.fsize == 0) 
+    {
+        htci_wait_io();
+        
+        fd = sceOpen(htg_ci_fname, SCE_RDONLY);
+        
+        if (fd < 0) 
+        {
+            htci_call_errfn(NULL, "E0092705:sceOpen fail.(htCiGetFileSize)");
+            
+            return 0;
+        }
+        
+        htci_wait_by_fd(fd);
+        
+        fsize = sceLseek(fd, 0, SCE_SEEK_END);
+        
+        if (fsize < 0)
+        {
+            htci_call_errfn(NULL, "E0092706:sceLseek fail.(htCiGetFileSize)");
+            
+            sceClose(fd);
+            
+            return 0;
+        }
+        
+        htci_wait_by_fd(fd);
+        
+        if (sceClose(fd) < 0)
+        {
+            htci_call_errfn(NULL, "E0092707:sceClose fail.(htCiGetFileSize)");
+            
+            return 0;
+        }
+    } 
+    else
+    {
+        fsize = finfo.fsize;
+    }
+    
+    return fsize;
+}
 
 // 100% matching!
 void* htCiGetInterface(void)
@@ -351,7 +411,7 @@ void htCiStopTr(HTCI htci)
         {
             for (i = 0; i < 20; i++) 
             {
-                sceIoctl(htci->fd, 1, &htci->isend);
+                sceIoctl(htci->fd, SCE_FS_EXECUTING, &htci->isend);
                 
                 if (htci->isend == FALSE) 
                 {
