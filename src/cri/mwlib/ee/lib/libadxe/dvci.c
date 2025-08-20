@@ -5,7 +5,7 @@ static DVCI_OBJ dvg_ci_obj[40] = { 0 };
 static DVCI_ERRFN dvg_ci_err_func = NULL;
 static void* dvg_ci_err_obj = NULL;
 static Char8 dvg_ci_fname[297] = { 0 };
-static DVCI_VTBL dvg_ci_vtbl = { dvCiExecServer, dvCiEntryErrFunc, dvCiGetFileSize, NULL, dvCiOpen, dvCiClose, dvCiSeek, dvCiTell, dvCiReqRd, NULL, dvCiStopTr, dvCiGetStat, dvCiGetSctLen, NULL, dvCiGetNumTr };
+static DVCI_VTBL dvg_ci_vtbl = { dvCiExecServer, dvCiEntryErrFunc, dvCiGetFileSize, NULL, dvCiOpen, dvCiClose, dvCiSeek, dvCiTell, dvCiReqRd, NULL, dvCiStopTr, dvCiGetStat, dvCiGetSctLen, NULL, dvCiGetNumTr, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 
 // 100% matching!
 DVCI dvci_alloc(void) 
