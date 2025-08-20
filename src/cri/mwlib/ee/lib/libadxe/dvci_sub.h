@@ -18,7 +18,7 @@ typedef struct _dvci_dir_obj
 typedef DVCI_DIR_OBJ *DVCI_DIR;
 
 Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size);
-void conv_to_tpath_dup(const Char8* fname, Char8* path);
+void conv_to_tpath_dup(Char8* fname, Char8* path);
 void dvci_get_fstate(const Char8* fname, sceCdlFILE *fp);
 void dvci_init_flist(void);
 Sint32 dvCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size);

@@ -39,7 +39,7 @@ void SJUNI_GetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, SJCK *ck);
 Sint32 SJUNI_GetNumChainPool(SJ sj);
 Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id);
 Sint32 SJUNI_GetNumData(SJUNI sjuni, Sint32 id);
-UUID* SJUNI_GetUuid(SJUNI sjuni);
+const UUID* SJUNI_GetUuid(SJUNI sjuni);
 void SJUNI_Init(void);
 Sint32 SJUNI_IsGetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, Sint32 *rbyte);
 void SJUNI_PutChunk(SJUNI sjuni, Sint32 id, SJCK *ck);

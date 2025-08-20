@@ -30,7 +30,7 @@ void* SJRBF_GetBufPtr(SJRBF sjrbf);
 Sint32 SJRBF_GetBufSize(SJRBF sjrbf);
 void SJRBF_GetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, SJCK *ck);
 Sint32 SJRBF_GetNumData(SJRBF sjrbf, Sint32 id);
-UUID* SJRBF_GetUuid(SJRBF sjrbf);
+const UUID* SJRBF_GetUuid(SJRBF sjrbf);
 Sint32 SJRBF_GetXtrSize(SJRBF sjrbf);
 void SJRBF_Init(void);
 Sint32 SJRBF_IsGetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, Sint32 *rbyte);

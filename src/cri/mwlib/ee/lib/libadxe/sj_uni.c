@@ -209,7 +209,7 @@ Sint32 SJUNI_GetNumData(SJUNI sjuni, Sint32 id)
 }
 
 // 100% matching!
-UUID* SJUNI_GetUuid(SJUNI sjuni) 
+const UUID* SJUNI_GetUuid(SJUNI sjuni) 
 {
     return sjuni->uuid;
 }

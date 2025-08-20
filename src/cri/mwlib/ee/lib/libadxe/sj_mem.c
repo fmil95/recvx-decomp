@@ -141,7 +141,7 @@ Sint32 SJMEM_GetNumData(SJMEM sjmem, Sint32 id)
 }
 
 // 100% matching!
-UUID* SJMEM_GetUuid(SJMEM sjmem)
+const UUID* SJMEM_GetUuid(SJMEM sjmem)
 {
     return sjmem->uuid;
 }

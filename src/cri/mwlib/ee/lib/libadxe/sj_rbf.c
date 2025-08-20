@@ -161,7 +161,7 @@ Sint32 SJRBF_GetNumData(SJRBF sjrbf, Sint32 id)
 }
 
 // 100% matching!
-UUID* SJRBF_GetUuid(SJRBF sjrbf)
+const UUID* SJRBF_GetUuid(SJRBF sjrbf)
 {
     return sjrbf->uuid;
 }

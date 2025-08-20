@@ -47,7 +47,7 @@ Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size)
 }
 
 // 100% matching!
-void conv_to_tpath_dup(const Char8* fname, Char8* path)
+void conv_to_tpath_dup(Char8* fname, Char8* path)
 {
     strcpy(fname, path);
     

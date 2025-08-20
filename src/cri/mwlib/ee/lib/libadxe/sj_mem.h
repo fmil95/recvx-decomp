@@ -27,7 +27,7 @@ void* SJMEM_GetBufPtr(SJMEM sjmem);
 Sint32 SJMEM_GetBufSize(SJMEM sjmem);
 void SJMEM_GetChunk(SJMEM sjmem, Sint32 id, Sint32 nbyte, SJCK* ck);
 Sint32 SJMEM_GetNumData(SJMEM sjmem, Sint32 id);
-UUID* SJMEM_GetUuid(SJMEM sjmem);
+const UUID* SJMEM_GetUuid(SJMEM sjmem);
 void SJMEM_Init(void);
 Sint32 SJMEM_IsGetChunk(SJMEM sjmem, Sint32 id, Sint32 nbyte, Sint32 *rbyte);
 void SJMEM_PutChunk(SJMEM sjmem, Sint32 id, SJCK *ck);
