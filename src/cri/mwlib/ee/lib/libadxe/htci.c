@@ -10,8 +10,8 @@ typedef struct _htci_obj
     Sint32  unk4;
     Sint32  isend;
     Sint32  fd;
-    Sint32  unk10;
-    Sint32  unk14;
+    Sint32  fsize;
+    Sint32  ofs;
     Sint32  tell;
     void*   buf;
     Sint32  nbyte;
@@ -363,7 +363,94 @@ Sint8 htCiGetStat(HTCI htci)
     return htci->stat;
 }
 
-// htCiOpen
+// 100% matching!
+HTCI htCiOpen(Char8* fname, void* unused, Sint32 rw)
+{
+    HTCI htci;
+    HTCI_FINFO finfo = { 0 };
+
+    if (fname == NULL) 
+    {
+        htci_call_errfn(fname, "E0092708:fname is null.(htCiOpen)");
+        
+        return NULL;
+    }
+
+    if (rw != 0)
+    {
+        htci_call_errfn(NULL, "E0092709:rw is illigal.(htCiOpen)");
+        
+        return NULL;
+    }
+
+    htci = htci_alloc();
+
+    if (htci == NULL) 
+    {
+        htci_call_errfn(NULL, "E0092710:not enough handle resource.(htCiOpen)");
+        
+        return NULL;
+    }
+
+    htci_conv_fname(fname, htg_ci_fname);
+    
+    htci_get_finf(&htg_ci_fname[5], &finfo);
+    
+    if (finfo.fsize == 0) 
+    {
+        htci->fsize = htCiGetFileSize(fname);
+
+        if (htci->fsize == 0) 
+        {
+            htci_call_errfn(NULL, "E0111501:sceLseek fail.(htCiOpen)");
+        }
+    
+        htci_wait_io();
+
+        printf("opmode = %d\n", htg_ci_open_mode);
+        
+        htci->fd = sceOpen(htg_ci_fname, htg_ci_open_mode);
+
+        if (htci->fd < 0) 
+        {
+            htci_call_errfn(NULL, "E0092711:sceOpen fail.(htCiOpen)");
+            
+            htci_free(htci);
+            
+            return NULL;
+        }
+
+        htci_wait_by_fd(htci->fd);
+        
+        htci->unk1 = 0;
+    } 
+    else 
+    {
+        htci->unk1 = 1;
+        
+        htci->fd = finfo.fd;
+        
+        htci->fsize = finfo.fsize;
+    }
+    
+    htci->tell = 0;
+
+    htci->used = TRUE;
+    
+    htci->buf = NULL;
+
+    htci->nbyte = 0; 
+
+    htci->ofs = ((Sint32)htci->fsize + 2047) / 2048;
+
+    htci->unk3 = 0;
+
+    htci->isend = FALSE;
+    
+    htci->stat = 0;
+
+    return htci;
+}
 
 // 100% matching!
 Sint32 htCiReqRd(HTCI htci, Sint32 nsct, Sint8* buf) 
@@ -409,7 +496,7 @@ Sint32 htCiReqRd(HTCI htci, Sint32 nsct, Sint8* buf)
     
     htci->isend = FALSE;
     
-    htci->nbyte = MIN(nsct, htci->unk14 - htci->tell);
+    htci->nbyte = MIN(nsct, htci->ofs - htci->tell);
     
     return htci->nbyte;
 }
@@ -430,14 +517,14 @@ Sint32 htCiSeek(HTCI htci, Sint32 ofst, Sint32 whence)
     } 
     else if (whence == 2) 
     {
-        htci->tell = htci->unk14 + ofst;
+        htci->tell = htci->ofs + ofst;
     } 
     else if (whence == 1)
     {
         htci->tell += ofst;
     }
 
-    htci->tell = CLAMP(htci->tell, 0, htci->unk14);
+    htci->tell = CLAMP(htci->tell, 0, htci->ofs);
     
     return htci->tell;
 }
