@@ -364,7 +364,55 @@ Sint8 htCiGetStat(HTCI htci)
 }
 
 // htCiOpen
-// htCiReqRd
+
+// 100% matching!
+Sint32 htCiReqRd(HTCI htci, Sint32 nsct, Sint8* buf) 
+{
+    if (htci == NULL) 
+    {
+        htci_call_errfn(NULL, "E0092712:handl is null.");
+        
+        return 0;
+    }
+
+    if (nsct < 0) 
+    {
+        htci_call_errfn(htci, "E0092713:nsct < 0.(htCiReqRd)");
+        
+        return 0;
+    }
+
+    if (buf == NULL)
+    {
+        htci_call_errfn(htci, "E0092714:buf is null.(htCiReqRd)");
+        
+        return 0;
+    }
+
+    if ((htci->stat != 0) && (htci->stat != 1)) 
+    {
+        return 0;
+    }
+
+    if (nsct == 0) 
+    {
+        htci->stat = 1;
+        
+        return 0;
+    }
+    
+    htci->stat = 2;
+    
+    htci->buf = buf;
+    
+    htci->unk3 = 0;
+    
+    htci->isend = FALSE;
+    
+    htci->nbyte = MIN(nsct, htci->unk14 - htci->tell);
+    
+    return htci->nbyte;
+}
 
 // 100% matching!
 Sint32 htCiSeek(HTCI htci, Sint32 ofst, Sint32 whence)
