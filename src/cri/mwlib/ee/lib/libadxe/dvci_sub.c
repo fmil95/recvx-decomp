@@ -17,7 +17,7 @@ Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size)
 
     for (i = 0, j = 0, k = 0; rbuf[i] != 0; i++)
     {
-        if ((rbuf[i] == 10) || (rbuf[i] == 0))
+        if ((rbuf[i] == '\n') || (rbuf[i] == '\0'))
         {
             dir = (DVCI_DIR)fpc;
             
@@ -101,7 +101,7 @@ Sint32 dvCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
     
     if (load_flist_dup(flist, dvg_rbuf) == 0)
     {
-        dvci_call_errfn(0, "E0111501:can't read filelist.(dvCiLoadDirInfo)");
+        dvci_call_errfn(NULL, "E0111501:can't read filelist.(dvCiLoadDirInfo)");
         
         return 0;
     }
@@ -174,7 +174,7 @@ Sint32 search_fstate(Char8* fpc, Sint32 fsize)
         
         strcpy(flist, dir[i].fname);
         
-        if (dir[i].fname[0] != 0)
+        if (dir[i].fname[0] != '\0')
         {
             if (strcmp(flist + (strlen(flist) - 2), ";1") != 0) 
             {
