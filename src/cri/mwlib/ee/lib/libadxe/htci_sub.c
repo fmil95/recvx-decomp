@@ -16,7 +16,6 @@ typedef struct _htci_finfo
     Uint8   pad[4];
 } HTCI_FINFO;
 
-static Char8 D_00361F30[8] = { 0x68, 0x6F, 0x73, 0x74, 0x3A, 0x00, 0x00, 0x00 };
 ADXPS2_FC_HOST htg_flist_tbl;
 Sint32 htg_found;
 Sint32 htg_rbuf[4096];
@@ -85,29 +84,29 @@ Sint32 close_file_all(void)
 }
 
 // 100% matching!
-void conv_to_tpath(Char8* flist, Char8* fname)
+void conv_to_tpath(Char8* fname, Char8* path)
 {
     Uint32 i;
-    Uint32 l;
+    Sint32 len;
 
-    memcpy(flist, D_00361F30, 6); 
+    memcpy(fname, "host:", sizeof("host:")); 
     
-    strcat(flist, fname);
+    strcat(fname, path);
 
-    l = strlen(flist);
+    len = strlen(fname);
     
-    if ((flist[l - 1] == '/') || (flist[l - 1] == '\\')) 
+    if ((fname[len - 1] == '/') || (fname[len - 1] == '\\')) 
     {
-        flist[l - 1] = 0;
+        fname[len - 1] = '\0';
     }
     
-    l = strlen(flist);
+    len = strlen(fname);
     
-    for (i = 0; i < l; i++) 
+    for (i = 0; i < len; i++) 
     {
-        if (flist[i] == '\\') 
+        if (fname[i] == '\\') 
         {
-            flist[i] = '/';
+            fname[i] = '/';
         }
     } 
 }
