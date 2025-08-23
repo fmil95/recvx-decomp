@@ -18,7 +18,7 @@ typedef HTCI_DIR_OBJ *HTCI_DIR;
 static HTG_FLIST_TBL htg_flist_tbl;
 static Sint32 htg_found;
 static Sint8 htg_rbuf[4096];
-Sint32 htg_ci_open_mode;
+static Sint32 htg_ci_open_mode;
 
 void conv_to_tpath(Char8* flist, Char8* fname);
 void htci_init_flist(void);
@@ -46,7 +46,7 @@ Sint32 close_file_all(void)
     {
         if (htg_found != FALSE)
         {
-            htci_call_errfn(0, "E0111602:can't found filelist.(htCiLoadDirInfo)");
+            htci_call_errfn(NULL, "E0111602:can't found filelist.(htCiLoadDirInfo)");
         }
         
         return 0;
@@ -58,7 +58,7 @@ Sint32 close_file_all(void)
     {
         conv_to_tpath(flist, dir[i].fname);
         
-        if (dir[i].fname[0] != 0) 
+        if (dir[i].fname[0] != '\0') 
         {
             if (sceClose(dir[i].fd) < 0)
             {
@@ -166,7 +166,7 @@ Sint32 htCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
     
     if (load_flist(flist, htg_rbuf) == 0) 
     {
-        htci_call_errfn(0, "E0111501:can't read filelist.(htCiLoadDirInfo)");
+        htci_call_errfn(NULL, "E0111501:can't read filelist.(htCiLoadDirInfo)");
         
         return 0;
     }
@@ -231,7 +231,7 @@ Sint32 load_flist(Char8* flist, Sint8* rbuf)
 }
 
 // 100% matching!
-Sint32 open_file_all(Char8* fpc, Sint32 arg1)
+Sint32 open_file_all(Char8* fpc, Sint32 fno)
 {
     Char8 flist[256] = { 0 };
     HTCI_DIR dir;
@@ -241,18 +241,18 @@ Sint32 open_file_all(Char8* fpc, Sint32 arg1)
     
     numf = 0;
     
-    if (arg1 > 13) 
+    if (fno > 13) 
     {
-        arg1 = 13;
+        fno = 13;
     }
     
-    for (i = 0; i < arg1; i++)
+    for (i = 0; i < fno; i++)
     {
         dir = (HTCI_DIR)fpc;
         
         conv_to_tpath(flist, dir[i].fname);
         
-        if (dir[i].fname[0] != 0) 
+        if (dir[i].fname[0] != '\0') 
         {
             fd = sceOpen(flist, SCE_RDONLY);
             
