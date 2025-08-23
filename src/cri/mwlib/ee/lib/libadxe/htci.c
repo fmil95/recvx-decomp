@@ -245,7 +245,7 @@ void htCiExecServer(void)
 // 100% matching!
 Sint32 htCiGetFileSize(const Char8* fname)
 {
-    HTCI_FINFO finfo;
+    HTCI_DIR_OBJ dir;
     Sint32 fd;
     Sint32 fsize;
 
@@ -258,9 +258,9 @@ Sint32 htCiGetFileSize(const Char8* fname)
     
     htci_conv_fname(fname, htg_ci_fname);
     
-    htci_get_finf(&htg_ci_fname[5], &finfo);
+    htci_get_finf(&htg_ci_fname[5], (sceCdlFILE*)&dir);
     
-    if (finfo.fsize == 0) 
+    if (dir.fsize == 0) 
     {
         htci_wait_io();
         
@@ -297,7 +297,7 @@ Sint32 htCiGetFileSize(const Char8* fname)
     } 
     else
     {
-        fsize = finfo.fsize;
+        fsize = dir.fsize;
     }
     
     return fsize;
@@ -345,7 +345,7 @@ Sint8 htCiGetStat(HTCI htci)
 HTCI htCiOpen(Char8* fname, void* unused, Sint32 rw)
 {
     HTCI htci;
-    HTCI_FINFO finfo = { 0 };
+    HTCI_DIR_OBJ dir = { 0 };
 
     if (fname == NULL) 
     {
@@ -372,9 +372,9 @@ HTCI htCiOpen(Char8* fname, void* unused, Sint32 rw)
 
     htci_conv_fname(fname, htg_ci_fname);
     
-    htci_get_finf(&htg_ci_fname[5], &finfo);
+    htci_get_finf(&htg_ci_fname[5], (sceCdlFILE*)&dir);
     
-    if (finfo.fsize == 0) 
+    if (dir.fsize == 0) 
     {
         htci->fsize = htCiGetFileSize(fname);
 
@@ -406,9 +406,9 @@ HTCI htCiOpen(Char8* fname, void* unused, Sint32 rw)
     {
         htci->unk1 = 1;
         
-        htci->fd = finfo.fd;
+        htci->fd = dir.fd;
         
-        htci->fsize = finfo.fsize;
+        htci->fsize = dir.fsize;
     }
     
     htci->tell = 0;

@@ -1,20 +1,13 @@
 
-typedef struct _htg_ci_file
-{
-    Sint32 fd;
-    Sint32 fsize;
-    Char8 fname[ADXF_FNAME_MAX]; 
-    Uint8 pad[4];
-} HTG_CI_DIR;
-typedef HTG_CI_DIR  *HTCI_DIR;
-
-typedef struct _htci_finfo
+typedef struct _htci_dir_obj
 {
     Sint32  fd;
     Sint32  fsize;
     Char8   fname[256]; 
     Uint8   pad[4];
-} HTCI_FINFO;
+} HTCI_DIR_OBJ;
+
+typedef HTCI_DIR_OBJ *HTCI_DIR;
 
 ADXPS2_FC_HOST htg_flist_tbl;
 Sint32 htg_found;
@@ -111,25 +104,25 @@ void conv_to_tpath(Char8* fname, Char8* path)
     } 
 }
 
-void get_fstate(HTCI_FINFO* fp, Char8* fname, HTCI_DIR dir, Sint32 fsize)
+void get_fstate(sceCdlFILE* fp, const Char8* fname, HTCI_DIR dir, Sint32 size)
 {
     scePrintf("get_fstate - UNIMPLEMENTED!\n");
 }
 
 // 100% matching!
-void htci_get_finf(Char8* fname, HTCI_FINFO* finfo) 
+void htci_get_finf(Char8* fname, sceCdlFILE* fp) 
 {
     HTCI_DIR dir;
 
     dir = (HTCI_DIR)htg_flist_tbl.fd; // maybe htg_flist_tbl is a directory buffer?
     
-    finfo->fd = 0;
+    fp->lsn = 0;
     
-    finfo->fsize = 0; 
+    fp->size = 0; 
 
     if (dir != NULL) 
     {
-        get_fstate(finfo, fname, dir, htg_flist_tbl.size);
+        get_fstate(fp, fname, dir, htg_flist_tbl.size);
     } 
 }
 
