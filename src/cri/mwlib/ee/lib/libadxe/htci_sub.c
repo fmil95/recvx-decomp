@@ -15,10 +15,10 @@ typedef struct _htci_dir_obj
 
 typedef HTCI_DIR_OBJ *HTCI_DIR;
 
-static HTG_FLIST_TBL htg_flist_tbl;
-static Sint32 htg_found;
+static Sint32 htg_found = FALSE;
+static HTG_FLIST_TBL htg_flist_tbl = { 0 };
 static Sint8 htg_rbuf[4096];
-static Sint32 htg_ci_open_mode;
+static Sint32 htg_ci_open_mode = 0x8001;
 
 void conv_to_tpath(Char8* flist, Char8* fname);
 void htci_init_flist(void);
