@@ -16,14 +16,14 @@ typedef struct _htci_dir_obj
 typedef HTCI_DIR_OBJ *HTCI_DIR;
 
 static HTG_FLIST_TBL htg_flist_tbl;
-Sint32 htg_found;
-Sint32 htg_rbuf[4096];
+static Sint32 htg_found;
+static Sint8 htg_rbuf[4096];
 Sint32 htg_ci_open_mode;
 
 void conv_to_tpath(Char8* flist, Char8* fname);
 void htci_init_flist(void);
 
-Sint32 analysis_flist(Char8* fpc, Sint32* rbuf, Uint32 size)
+Sint32 analysis_flist(Char8* fpc, Sint8* rbuf, Uint32 size)
 {
     scePrintf("analysis_flist - UNIMPLEMENTED!\n");
 }
@@ -44,7 +44,7 @@ Sint32 close_file_all(void)
     
     if (dir == NULL)
     {
-        if (htg_found != 0)
+        if (htg_found != FALSE)
         {
             htci_call_errfn(0, "E0111602:can't found filelist.(htCiLoadDirInfo)");
         }
@@ -54,7 +54,7 @@ Sint32 close_file_all(void)
     
     size = htg_flist_tbl.fsize;
     
-    for (i = 0; i < size; i++) // the loop limit here might not be a size  
+    for (i = 0; i < size; i++) 
     {
         conv_to_tpath(flist, dir[i].fname);
         
@@ -75,7 +75,7 @@ Sint32 close_file_all(void)
     
     printf("HTCI: Total %d files\n", numf);
     
-    htg_found = 0;
+    htg_found = FALSE;
     
     htci_init_flist();
     
@@ -137,7 +137,7 @@ void htci_init_flist(void)
 {
     *(Sint64*)&htg_flist_tbl = 0; // cast doesn't seem valid, furthermore htg_flist_tbl might be a different data type altogether
     
-    htg_found = 0;
+    htg_found = FALSE;
 }
 
 void htci_wait_io(void); // remove this declaration
@@ -146,9 +146,9 @@ Sint32 htCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
 {
     Char8 flist[256] = { 0 };
 
-    memset(htg_rbuf, 0, 4096);
+    memset(htg_rbuf, 0, sizeof(htg_rbuf));
     
-    if (htg_found == 0) 
+    if (htg_found == FALSE) 
     {
         htci_init_flist();
     }
@@ -199,7 +199,7 @@ void htCiSetOpenMode(Sint32 opmode)
 }
 
 // 100% matching!
-Sint32 load_flist(Char8* flist, Sint32* rbuf) 
+Sint32 load_flist(Char8* flist, Sint8* rbuf) 
 {
     Sint32 fd;
     Sint32 fsize;
