@@ -1,29 +1,13 @@
-
-typedef struct _htg_flist_tbl 
-{
-    Char8*  fp;
-    Sint32  fsize;
-} HTG_FLIST_TBL;
-
-typedef struct _htci_dir_obj
-{
-    Sint32  fd;
-    Sint32  fsize;
-    Char8   fname[256]; 
-    Uint8   pad[4];
-} HTCI_DIR_OBJ;
-
-typedef HTCI_DIR_OBJ *HTCI_DIR;
+#include "htci_sub.h"
 
 static Sint32 htg_found = FALSE;
 static HTG_FLIST_TBL htg_flist_tbl = { 0 };
 static Sint8 htg_rbuf[4096];
 static Sint32 htg_ci_open_mode = 0x8001;
 
-void conv_to_tpath(Char8* flist, Char8* fname);
-void htci_init_flist(void);
+void htci_call_errfn(void* obj, const Char8* msg); // remove these two declarations
+void htci_wait_io(void); 
 
-void htci_call_errfn(void* obj, const Char8* msg); // remove this declaration
 // 100% matching!
 Sint32 analysis_flist(Char8* fpc, Sint8* rbuf, Uint32 size)
 {
@@ -202,7 +186,6 @@ void htci_init_flist(void)
     htg_found = FALSE;
 }
 
-void htci_wait_io(void); // remove this declaration
 // 100% matching!
 Sint32 htCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
 {
