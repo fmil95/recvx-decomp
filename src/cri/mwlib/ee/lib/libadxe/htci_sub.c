@@ -1,4 +1,10 @@
 
+typedef struct _htg_flist_tbl 
+{
+    Char8*  fp;
+    Sint32  fsize;
+} HTG_FLIST_TBL;
+
 typedef struct _htci_dir_obj
 {
     Sint32  fd;
@@ -9,7 +15,7 @@ typedef struct _htci_dir_obj
 
 typedef HTCI_DIR_OBJ *HTCI_DIR;
 
-ADXPS2_FC_HOST htg_flist_tbl;
+static HTG_FLIST_TBL htg_flist_tbl;
 Sint32 htg_found;
 Sint32 htg_rbuf[4096];
 Sint32 htg_ci_open_mode;
@@ -32,7 +38,7 @@ Sint32 close_file_all(void)
     Uint32 size;
     Uint32 i;
 
-    dir = (HTCI_DIR)htg_flist_tbl.fd;
+    dir = (HTCI_DIR)htg_flist_tbl.fp;
     
     numf = 0;
     
@@ -46,7 +52,7 @@ Sint32 close_file_all(void)
         return 0;
     }
     
-    size = htg_flist_tbl.size;
+    size = htg_flist_tbl.fsize;
     
     for (i = 0; i < size; i++) // the loop limit here might not be a size  
     {
@@ -114,7 +120,7 @@ void htci_get_finf(Char8* fname, sceCdlFILE* fp)
 {
     HTCI_DIR dir;
 
-    dir = (HTCI_DIR)htg_flist_tbl.fd; // maybe htg_flist_tbl is a directory buffer?
+    dir = (HTCI_DIR)htg_flist_tbl.fp; 
     
     fp->lsn = 0;
     
@@ -122,7 +128,7 @@ void htci_get_finf(Char8* fname, sceCdlFILE* fp)
 
     if (dir != NULL) 
     {
-        get_fstate(fp, fname, dir, htg_flist_tbl.size);
+        get_fstate(fp, fname, dir, htg_flist_tbl.fsize);
     } 
 }
 
