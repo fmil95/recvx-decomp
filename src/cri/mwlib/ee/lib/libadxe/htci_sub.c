@@ -110,9 +110,25 @@ void conv_to_tpath(Char8* fname, Char8* path)
     } 
 }
 
+// 100% matching!
 void get_fstate(sceCdlFILE* fp, const Char8* fname, HTCI_DIR dir, Sint32 size)
 {
-    scePrintf("get_fstate - UNIMPLEMENTED!\n");
+    Sint32 i;
+
+    for (i = 0; i < size; i++)
+    {
+        if (strcasecmp(fname, (Char8*)&dir[i].fname) == 0)
+        {
+            fp->lsn = dir[i].fd;
+            
+            fp->size = dir[i].fsize;
+            return;
+        }
+    }
+
+    fp->lsn = 0;
+    
+    fp->size = 0;
 }
 
 // 100% matching!
