@@ -15,7 +15,7 @@ Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size)
     Sint32 j;
     Sint32 k;
 
-    for (i = 0, j = 0, k = 0; rbuf[i] != 0; i++)
+    for (i = 0, j = 0, k = 0; rbuf[i] != '\0'; i++)
     {
         if ((rbuf[i] == '\n') || (rbuf[i] == '\0'))
         {

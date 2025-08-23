@@ -23,12 +23,58 @@ static Sint32 htg_ci_open_mode = 0x8001;
 void conv_to_tpath(Char8* flist, Char8* fname);
 void htci_init_flist(void);
 
+void htci_call_errfn(void* obj, const Char8* msg); // remove this declaration
+// 100% matching!
 Sint32 analysis_flist(Char8* fpc, Sint8* rbuf, Uint32 size)
 {
-    scePrintf("analysis_flist - UNIMPLEMENTED!\n");
+    HTCI_DIR dir;
+    Sint32 i; 
+    Sint32 j;
+    Sint32 k;
+    
+    for (i = 0, j = 0, k = 0; rbuf[i] != '\0'; i++)
+    {
+        if (rbuf[i] == '\\')
+        {
+            rbuf[i] = '/';
+        }
+        
+        if ((rbuf[i] == '\n') || (rbuf[i] == '\0'))
+        {
+            dir = (HTCI_DIR)fpc;
+            
+            memcpy(dir[k].fname, &rbuf[j], (i - j) - 1);
+            
+            k++;
+            
+            j = i + 1;
+            
+            if (k == size) 
+            {
+                break;
+            }
+        }
+    }
+    
+    if (htg_flist_tbl.fp == NULL) 
+    {
+        if (htg_found != FALSE)
+        {
+            htci_call_errfn(NULL, "E0111601:can't found filelist.(htCiLoadfinfoInfo)");
+        }
+        else 
+        {
+            htg_found = TRUE;
+            
+            htg_flist_tbl.fp = fpc;
+            
+            htg_flist_tbl.fsize = k;
+        }
+    }
+    
+    return k;
 }
 
-void htci_call_errfn(void* obj, const Char8* msg); // remove this declaration
 // 100% matching!
 Sint32 close_file_all(void)
 {
@@ -132,7 +178,7 @@ void get_fstate(sceCdlFILE* fp, const Char8* fname, HTCI_DIR dir, Sint32 size)
 }
 
 // 100% matching!
-void htci_get_finf(Char8* fname, sceCdlFILE* fp) 
+void htci_get_finf(const Char8* fname, sceCdlFILE* fp) 
 {
     HTCI_DIR dir;
 
