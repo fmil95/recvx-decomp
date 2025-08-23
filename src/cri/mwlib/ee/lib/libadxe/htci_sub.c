@@ -26,7 +26,7 @@ void htci_call_errfn(void* obj, const Char8* msg); // remove this declaration
 // 100% matching!
 Sint32 close_file_all(void)
 {
-    Char8 flist[ADXF_FNAME_MAX];
+    Char8 flist[256];
     HTCI_DIR dir;
     Sint32 numf;
     Uint32 size;
@@ -138,7 +138,7 @@ void htci_wait_io(void); // remove this declaration
 // 100% matching!
 Sint32 htCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
 {
-    Char8 flist[ADXF_FNAME_MAX] = {0};
+    Char8 flist[256] = { 0 };
 
     memset(htg_rbuf, 0, 4096);
     
@@ -227,7 +227,7 @@ Sint32 load_flist(Char8* flist, Sint32* rbuf)
 // 100% matching!
 Sint32 open_file_all(Char8* fpc, Sint32 arg1)
 {
-    Char8 flist[ADXF_FNAME_MAX] = {0};
+    Char8 flist[256] = { 0 };
     HTCI_DIR dir;
     Sint32 numf;
     Sint32 fd;
@@ -235,9 +235,9 @@ Sint32 open_file_all(Char8* fpc, Sint32 arg1)
     
     numf = 0;
     
-    if (arg1 > ADXPS2_DEF_NUM_FILE_HOST) 
+    if (arg1 > 13) 
     {
-        arg1 = ADXPS2_DEF_NUM_FILE_HOST;
+        arg1 = 13;
     }
     
     for (i = 0; i < arg1; i++)
