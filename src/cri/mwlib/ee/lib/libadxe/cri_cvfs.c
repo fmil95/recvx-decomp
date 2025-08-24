@@ -34,7 +34,7 @@ typedef struct _cvfs_vtbl
 typedef struct cvfs_obj 
 {
     CVFS_VTBL* vtbl;
-    Sint32     unk4;
+    void*      dev;
 } CVFS_OBJ;
 
 typedef CVFS_OBJ *CVFS;
@@ -116,7 +116,7 @@ Sint32 cvFsGetSctLen(CVFS cvfs)
     
     if (cvfs->vtbl->GetSctLen != NULL) 
     {
-        sctlen = cvfs->vtbl->GetSctLen(cvfs->unk4); 
+        sctlen = cvfs->vtbl->GetSctLen(cvfs->dev); 
     }
     else 
     {
@@ -126,7 +126,32 @@ Sint32 cvFsGetSctLen(CVFS cvfs)
     return sctlen;
 }
 
-// cvFsGetStat
+// 100% matching!
+Sint8 cvFsGetStat(CVFS cvfs)
+{
+    Sint8 stat;
+
+    stat = 3;
+    
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsGetStat #1:handle error");
+        
+        return 3;
+    }
+    
+    if (cvfs->vtbl->GetStat != NULL) 
+    {
+        stat = cvfs->vtbl->GetStat(cvfs->dev); 
+    }
+    else 
+    {
+        cvFsError("cvFsGetStat #2:vtbl error");
+    }
+    
+    return stat;
+}
+
 // cvFsInit
 // cvFsIsExistFile
 // cvFsLoadDirInfo
