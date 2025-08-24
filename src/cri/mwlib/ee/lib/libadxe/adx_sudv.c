@@ -30,7 +30,7 @@ void ADXT_SetRdMode(ADXT_SPRM* sprm)
 // 100% matching!
 void ADXT_SetupDvdFs(ADXT_SPRM *sprm) 
 {
-    cvFsEntryErrFunc(adxt_err_dvd, 0);
+    cvFsEntryErrFunc((void*)adxt_err_dvd, NULL);
     
     cvFsAddDev(&D_00362958, dvCiGetInterface, 0);
     

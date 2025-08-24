@@ -1,5 +1,46 @@
-void (*cvfs_errfn)(Sint32 arg0);
-Sint32 cvfs_errobj;
+
+typedef void (*CVFS_ERRFN)(void* cvfs_errobj, const Char8* msg, void* obj);
+
+typedef struct _cvfs_vtbl
+{
+    void    (*ExecServer)();
+    void    (*EntryErrFunc)(void* func, void* obj);
+    Sint32  (*GetFileSize)(const Char8* fname);
+    void    (*unkC)();
+    void*   (*Open)(Char8* fname, void* unused, Sint32 rw);
+    void    (*Close)(void* dev);
+    Sint32  (*Seek)(void* dev, Sint32 ofst, Sint32 whence);
+    Sint32  (*Tell)(void* dev);
+    Sint32  (*ReqRd)(void* dev, Sint32 nsct, Sint8* buf);
+    void    (*unk24)();
+    void    (*StopTr)(void* dev);
+    Sint8   (*GetStat)(void* dev);
+    Sint32  (*GetSctLen)();
+    void    (*unk34)();
+    Sint32  (*GetNumTr)(void* dev);
+    void    (*unk3C)();
+    void    (*unk40)();
+    void    (*unk44)();
+    void    (*unk48)();
+    void    (*unk4C)();
+    void    (*unk50)();
+    void    (*unk54)();
+    void    (*unk58)();
+    void    (*unk5C)();
+    void    (*unk60)();
+    void    (*unk64)();
+} CVFS_VTBL;
+
+typedef struct cvfs_obj 
+{
+    CVFS_VTBL* vtbl;
+    Sint32     unk4;
+} CVFS_OBJ;
+
+typedef CVFS_OBJ *CVFS;
+
+static CVFS_ERRFN cvfs_errfn;
+static void* cvfs_errobj; 
 
 // addDevice
 // allocCvFsHn
@@ -10,11 +51,11 @@ void cvFsAddDev(void* arg0, void* arg1, Sint32 arg2)
 }
 
 // 100% matching!
-void cvFsCallUsrErrFn(Sint32* errobj, Sint32 arg1, Sint32 arg2) 
+void cvFsCallUsrErrFn(void* errobj, const Char8* msg, void* obj) 
 {
     if (cvfs_errfn != NULL) 
     {
-        cvfs_errfn(cvfs_errobj);
+        cvfs_errfn(cvfs_errobj, msg, obj);
     }
 }
 
@@ -24,26 +65,24 @@ void cvFsCallUsrErrFn(Sint32* errobj, Sint32 arg1, Sint32 arg2)
 // cvFsDeleteFile
 
 // 100% matching!
-void cvFsEntryErrFunc(void* arg0, Sint32 arg1) 
+void cvFsEntryErrFunc(CVFS_ERRFN func, void* obj) 
 {
-    if (arg0 == 0)
+    if (func == NULL)
     {
         cvfs_errfn = NULL;
-        
-        cvfs_errobj = 0;
+        cvfs_errobj = NULL;
     }
     else 
     {
-        cvfs_errfn = arg0;
-        
-        cvfs_errobj = arg1;
+        cvfs_errfn = func;
+        cvfs_errobj = obj;
     }
 }
 
 // 100% matching!
-void cvFsError(Sint32 arg0) 
+void cvFsError(const Char8* msg) 
 {
-    cvFsCallUsrErrFn(&cvfs_errobj, arg0, 0);
+    cvFsCallUsrErrFn(&cvfs_errobj, msg, NULL);
 }
 
 void cvFsExecServer(void)
@@ -60,7 +99,33 @@ void cvFsExecServer(void)
 // cvFsGetMaxByteRate
 // cvFsGetNumFiles
 // cvFsGetNumTr
-// cvFsGetSctLen
+
+// 100% matching!
+Sint32 cvFsGetSctLen(CVFS cvfs)
+{
+    Sint32 sctlen;
+
+    sctlen = 0;
+    
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsGetSctLen #1:handle error");
+        
+        return 0;
+    }
+    
+    if (cvfs->vtbl->GetSctLen != NULL) 
+    {
+        sctlen = cvfs->vtbl->GetSctLen(cvfs->unk4); 
+    }
+    else 
+    {
+        cvFsError("cvFsGetSctLen #2:vtbl error");
+    }
+    
+    return sctlen;
+}
+
 // cvFsGetStat
 // cvFsInit
 // cvFsIsExistFile
