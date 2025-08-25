@@ -98,7 +98,32 @@ void cvFsExecServer(void)
 // cvFsGetFreeSize
 // cvFsGetMaxByteRate
 // cvFsGetNumFiles
-// cvFsGetNumTr
+
+// 100% matching!
+Sint32 cvFsGetNumTr(CVFS cvfs)
+{
+    Sint32 numtr;
+
+    numtr = 0;
+    
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsGetNumTr #1:handle error");
+        
+        return 0;
+    }
+    
+    if (cvfs->vtbl->GetNumTr != NULL) 
+    {
+        numtr = cvfs->vtbl->GetNumTr(cvfs->dev); 
+    }
+    else 
+    {
+        cvFsError("cvFsGetNumTr #2:vtbl error");
+    }
+    
+    return numtr;
+}
 
 // 100% matching!
 Sint32 cvFsGetSctLen(CVFS cvfs)
