@@ -279,4 +279,20 @@ Sint32 getNumFilesAll()
 
 // isExistDev
 // releaseCvFsHn
-// toUpperStr
+
+// 100% matching!
+void toUpperStr(Char8* str) 
+{
+    Uint32 len;
+    Sint32 i;
+
+    len = strlen(str);
+
+    for (i = 0; i < (len + 1); i++)
+    {
+        if ((str[i] >= 'a') && (str[i] <= 'z')) 
+        {
+            str[i] -= 'a' - 'A';
+        }
+    }
+}
