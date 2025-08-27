@@ -247,7 +247,23 @@ void cvFsSetDefDev(void* arg0)
 // cvFsSetSctLen
 // cvFsStopTr
 // cvFsTell
-// getDefDev
+
+// 100% matching!
+void getDefDev(Char8* fname) 
+{
+    Sint32 len;
+
+    len = strlen(cvfs_defdev);
+
+    if (cvfs_defdev[0] == '\0') 
+    {
+        fname[0] = '\0';
+        return; 
+    }
+
+    memcpy(fname, cvfs_defdev, len + 1);
+}
+
 // getDevice
 // getDevName
 
