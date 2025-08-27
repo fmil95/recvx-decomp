@@ -97,7 +97,28 @@ void cvFsExecServer(void)
 // cvFsGetFileSizeEx
 // cvFsGetFreeSize
 // cvFsGetMaxByteRate
-// cvFsGetNumFiles
+
+// 100% matching!
+Sint32 cvFsGetNumFiles(CVFS cvfs) 
+{
+    Sint32 numf;
+
+    if (cvfs == NULL)
+    {
+        numf = getNumFilesAll();
+    } 
+    else
+    {
+        numf = getNumFiles();
+    }
+    
+    if (numf == 0)
+    {
+        cvFsError("cvFsGetNumFiles #1:file info error");
+    }
+    
+    return numf;
+}
 
 // 100% matching!
 Sint32 cvFsGetNumTr(CVFS cvfs)
@@ -200,8 +221,17 @@ void cvFsSetDefDev(void* arg0)
 // getDefDev
 // getDevice
 // getDevName
-// getNumFiles
-// getNumFilesAll
+
+Sint32 getNumFiles()
+{
+    scePrintf("getNumFiles - UNIMPLEMENTED!\n");
+}
+
+Sint32 getNumFilesAll()
+{
+    scePrintf("getNumFilesAll - UNIMPLEMENTED!\n");
+}
+
 // isExistDev
 // releaseCvFsHn
 // toUpperStr
