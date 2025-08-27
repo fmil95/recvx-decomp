@@ -22,7 +22,7 @@ typedef struct _cvfs_vtbl
     void    (*unk40)();
     void    (*unk44)();
     void    (*unk48)();
-    void    (*unk4C)();
+    Sint32  (*GetMaxByteRate)(void* dev);
     void    (*unk50)();
     void    (*unk54)();
     void    (*unk58)();
@@ -96,7 +96,29 @@ void cvFsExecServer(void)
 // cvFsGetFileSize
 // cvFsGetFileSizeEx
 // cvFsGetFreeSize
-// cvFsGetMaxByteRate
+
+// 100% matching!
+Sint32 cvFsGetMaxByteRate(CVFS cvfs)
+{
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsGetMaxByteRate #1:handle error");
+        
+        return 0;
+    }
+    
+    if (cvfs->vtbl->GetMaxByteRate != NULL) 
+    {
+        cvfs->vtbl->GetMaxByteRate(cvfs->dev); 
+        return; 
+    }
+    else 
+    {
+        cvFsError("cvFsGetMaxByteRate #2:vtbl error");
+    }
+    
+    return 0;
+}
 
 // 100% matching!
 Sint32 cvFsGetNumFiles(CVFS cvfs) 
