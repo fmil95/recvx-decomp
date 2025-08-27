@@ -41,6 +41,7 @@ typedef CVFS_OBJ *CVFS;
 
 static CVFS_ERRFN cvfs_errfn;
 static void* cvfs_errobj; 
+static Char8 cvfs_defdev[16];
 
 // addDevice
 // allocCvFsHn
@@ -91,7 +92,13 @@ void cvFsExecServer(void)
 }
 
 // cvFsFinish
-// cvFsGetDefDev
+
+// 100% matching!
+Char8* cvFsGetDefDev(void) 
+{
+    return cvfs_defdev;
+}
+
 // cvFsGetDevName
 // cvFsGetFileSize
 // cvFsGetFileSizeEx
