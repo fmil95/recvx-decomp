@@ -278,7 +278,14 @@ Sint32 getNumFilesAll()
 }
 
 // isExistDev
-// releaseCvFsHn
+
+// 100% matching!
+void releaseCvFsHn(CVFS cvfs) 
+{
+    cvfs->dev = NULL;
+    
+    cvfs->vtbl = NULL;
+}
 
 // 100% matching!
 void toUpperStr(Char8* str) 
