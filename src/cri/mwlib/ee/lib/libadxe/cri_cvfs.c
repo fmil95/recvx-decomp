@@ -110,18 +110,14 @@ Sint32 cvFsGetMaxByteRate(CVFS cvfs)
     if (cvfs == NULL) 
     {
         cvFsError("cvFsGetMaxByteRate #1:handle error");
-        
-        return 0;
     }
-    
-    if (cvfs->vtbl->GetMaxByteRate != NULL) 
-    {
-        cvfs->vtbl->GetMaxByteRate(cvfs->dev); 
-        return; 
-    }
-    else 
+    else if (cvfs->vtbl->GetMaxByteRate == NULL) 
     {
         cvFsError("cvFsGetMaxByteRate #2:vtbl error");
+    }
+    else
+    {
+        return cvfs->vtbl->GetMaxByteRate(cvfs->dev);
     }
     
     return 0;
