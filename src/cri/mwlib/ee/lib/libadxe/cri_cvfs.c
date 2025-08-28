@@ -254,10 +254,11 @@ void getDefDev(Char8* fname)
     if (cvfs_defdev[0] == '\0') 
     {
         fname[0] = '\0';
-        return; 
     }
-
-    memcpy(fname, cvfs_defdev, len + 1);
+    else
+    {
+        memcpy(fname, cvfs_defdev, len + 1);
+    }
 }
 
 // getDevice
