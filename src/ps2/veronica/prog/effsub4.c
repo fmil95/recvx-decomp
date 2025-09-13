@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct npobj;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -3546,5 +3546,5 @@ void bhEff_ModelDraw(_anon1* op)
 	// Line 4569, Address: 0x251b18, Func Offset: 0x2c8
 	// Line 4570, Address: 0x251b20, Func Offset: 0x2d0
 	// Func End, Address: 0x251b38, Func Offset: 0x2e8
-}
+}*/
 

@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
 typedef struct _anon3;
@@ -305,5 +305,5 @@ int bhMnbBinRealize(void* bin_datP, _anon0* mnwP)
 	// Line 256, Address: 0x2c8b00, Func Offset: 0xa0
 	// Line 260, Address: 0x2c8b18, Func Offset: 0xb8
 	// Func End, Address: 0x2c8b20, Func Offset: 0xc0
-}
+}*/
 

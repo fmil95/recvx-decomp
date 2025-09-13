@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -4594,5 +4594,5 @@ void bhEff30cDrw(_anon24* orP)
 	// Line 3442, Address: 0x24c884, Func Offset: 0x44
 	// Line 3443, Address: 0x24c88c, Func Offset: 0x4c
 	// Func End, Address: 0x24c89c, Func Offset: 0x5c
-}
+}*/
 

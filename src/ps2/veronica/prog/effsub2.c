@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -4853,5 +4853,5 @@ void bhClrEff_YG()
 	// Line 4937, Address: 0x2467e8, Func Offset: 0xb8
 	// Line 4938, Address: 0x2467f8, Func Offset: 0xc8
 	// Func End, Address: 0x246800, Func Offset: 0xd0
-}
+}*/
 

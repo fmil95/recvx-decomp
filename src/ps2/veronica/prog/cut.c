@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -3923,5 +3923,5 @@ short bhCalcActivePers(_anon10* cp)
 	// Line 2463, Address: 0x280d94, Func Offset: 0x154
 	// Line 2464, Address: 0x280e1c, Func Offset: 0x1dc
 	// Func End, Address: 0x280e40, Func Offset: 0x200
-}
+}*/
 

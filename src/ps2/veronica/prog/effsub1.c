@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct npobj;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -9263,5 +9263,5 @@ void bhEff132(_anon0* op)
 	// Line 8041, Address: 0x238e78, Func Offset: 0x7f8
 	// Line 8042, Address: 0x238eb0, Func Offset: 0x830
 	// Func End, Address: 0x238ec0, Func Offset: 0x840
-}
+}*/
 

@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct npobj;
 typedef struct tagEFF5UVWHUC;
 typedef struct _anon1;
@@ -5705,5 +5705,5 @@ _anon3* GetEff5SnowRectCurrentWindVector(_anon3* pVector)
 	// Line 6337, Address: 0x25d568, Func Offset: 0x88
 	// Line 6340, Address: 0x25d580, Func Offset: 0xa0
 	// Func End, Address: 0x25d590, Func Offset: 0xb0
-}
+}*/
 
