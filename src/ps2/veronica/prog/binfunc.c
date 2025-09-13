@@ -158,9 +158,9 @@ struct _anon14
 };
 
 
-int bhMlbBinRealize(void* bin_datP, _anon10* mlwP);
-int bhBscBinRealize(_anon12* mdlP, unsigned int dat_off);
-int bhCnkBinRealize(_anon9* mdlP, unsigned int dat_off);
+int bhMlbBinRealize(void* bin_datP, _anon10* mlwP);*/
+int bhBscBinRealize(NJS_MODEL* mdlP, unsigned int dat_off, void* unknown);
+/*int bhCnkBinRealize(_anon9* mdlP, unsigned int dat_off);
 int bhMnbBinRealize(void* bin_datP, _anon0* mnwP);
 
 // 
@@ -221,46 +221,91 @@ int bhMlbBinRealize(void* bin_datP, _anon10* mlwP)
 	// Line 127, Address: 0x2c889c, Func Offset: 0x17c
 	// Line 128, Address: 0x2c88a0, Func Offset: 0x180
 	// Func End, Address: 0x2c88a8, Func Offset: 0x188
-}
+}*/
 
-// 
-// Start address: 0x2c88b0
-int bhBscBinRealize(_anon12* mdlP, unsigned int dat_off)
+// 100% matching!
+int bhBscBinRealize(NJS_MODEL* mdlP, unsigned int dat_off, void* unknown) // third parameter is not present on the debugging symbols 
 {
-	unsigned int i;
-	_anon13* mshP;
-	// Line 144, Address: 0x2c88b0, Func Offset: 0
-	// Line 146, Address: 0x2c88c4, Func Offset: 0x14
-	// Line 148, Address: 0x2c88d0, Func Offset: 0x20
-	// Line 149, Address: 0x2c88e0, Func Offset: 0x30
-	// Line 150, Address: 0x2c88e8, Func Offset: 0x38
-	// Line 151, Address: 0x2c88f8, Func Offset: 0x48
-	// Line 152, Address: 0x2c8900, Func Offset: 0x50
-	// Line 153, Address: 0x2c8910, Func Offset: 0x60
-	// Line 154, Address: 0x2c8918, Func Offset: 0x68
-	// Line 155, Address: 0x2c8928, Func Offset: 0x78
-	// Line 157, Address: 0x2c8930, Func Offset: 0x80
-	// Line 158, Address: 0x2c893c, Func Offset: 0x8c
-	// Line 159, Address: 0x2c8948, Func Offset: 0x98
-	// Line 161, Address: 0x2c8950, Func Offset: 0xa0
-	// Line 162, Address: 0x2c895c, Func Offset: 0xac
-	// Line 164, Address: 0x2c8968, Func Offset: 0xb8
-	// Line 166, Address: 0x2c8970, Func Offset: 0xc0
-	// Line 167, Address: 0x2c897c, Func Offset: 0xcc
-	// Line 169, Address: 0x2c8988, Func Offset: 0xd8
-	// Line 171, Address: 0x2c8990, Func Offset: 0xe0
-	// Line 172, Address: 0x2c899c, Func Offset: 0xec
-	// Line 174, Address: 0x2c89a8, Func Offset: 0xf8
-	// Line 176, Address: 0x2c89b0, Func Offset: 0x100
-	// Line 177, Address: 0x2c89bc, Func Offset: 0x10c
-	// Line 179, Address: 0x2c89c8, Func Offset: 0x118
-	// Line 180, Address: 0x2c89d0, Func Offset: 0x120
-	// Line 184, Address: 0x2c89e8, Func Offset: 0x138
-	// Line 186, Address: 0x2c89ec, Func Offset: 0x13c
-	// Func End, Address: 0x2c89f4, Func Offset: 0x144
+    NJS_MESHSET* mshP;
+    unsigned int i;
+
+    mshP = unknown;
+    
+    if ((mdlP->nbPoint & 0x80000000))
+    {
+        mdlP->nbPoint &= ~0x80000000;
+        
+        if ((int)mdlP->points != -1) 
+        {
+            *(int*)&mdlP->points += dat_off;
+        }
+        
+        if ((int)mdlP->normals != -1) 
+        {
+            *(int*)&mdlP->normals += dat_off;
+        }
+        
+        if ((int)mdlP->meshsets != -1) 
+        {
+            mshP = (NJS_MESHSET*)((int)mdlP->meshsets + dat_off);
+            
+            *(int*)&mdlP->meshsets = (int)mshP;
+        }
+        
+        if ((int)mdlP->mats != -1)
+        {
+            *(int*)&mdlP->mats += dat_off;
+        }
+        
+        for (i = 0; i < mdlP->nbMeshset; i++, mshP++) 
+        {
+            if ((int)mshP->meshes != -1) 
+            {
+                *(int*)&mshP->meshes += dat_off;
+            }
+            
+            if ((int)mshP->attrs != -1) 
+            {
+                *(int*)&mshP->attrs += dat_off;
+            }
+            else 
+            {
+                *(int*)&mshP->attrs = 0;
+            }
+            
+            if ((int)mshP->normals != -1)
+            {
+                *(int*)&mshP->normals += dat_off;
+            } 
+            else
+            {
+                *(int*)&mshP->normals = 0;
+            }
+            
+            if ((int)mshP->vertcolor != -1) 
+            {
+                *(int*)&mshP->vertcolor += dat_off;
+            }
+            else 
+            {
+                *(int*)&mshP->vertcolor = 0;
+            }
+            
+            if ((int)mshP->vertuv != -1) 
+            {
+                *(int*)&mshP->vertuv += dat_off;
+            } 
+            else
+            {
+                *(int*)&mshP->vertuv = 0;
+            }
+        }
+    }
+    
+    return 1;
 }
 
-// 
+/*// 
 // Start address: 0x2c8a00
 int bhCnkBinRealize(_anon9* mdlP, unsigned int dat_off)
 {
@@ -306,4 +351,3 @@ int bhMnbBinRealize(void* bin_datP, _anon0* mnwP)
 	// Line 260, Address: 0x2c8b18, Func Offset: 0xb8
 	// Func End, Address: 0x2c8b20, Func Offset: 0xc0
 }*/
-
