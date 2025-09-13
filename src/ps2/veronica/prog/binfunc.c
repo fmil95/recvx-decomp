@@ -305,22 +305,28 @@ int bhBscBinRealize(NJS_MODEL* mdlP, unsigned int dat_off, void* unknown) // thi
     return 1;
 }
 
-/*// 
-// Start address: 0x2c8a00
-int bhCnkBinRealize(_anon9* mdlP, unsigned int dat_off)
+// 100% matching!
+int bhCnkBinRealize(NJS_CNK_MODEL* mdlP, unsigned int dat_off)
 {
-	// Line 199, Address: 0x2c8a00, Func Offset: 0
-	// Line 200, Address: 0x2c8a1c, Func Offset: 0x1c
-	// Line 202, Address: 0x2c8a24, Func Offset: 0x24
-	// Line 205, Address: 0x2c8a34, Func Offset: 0x34
-	// Line 213, Address: 0x2c8a3c, Func Offset: 0x3c
-	// Line 214, Address: 0x2c8a4c, Func Offset: 0x4c
-	// Line 217, Address: 0x2c8a54, Func Offset: 0x54
-	// Line 219, Address: 0x2c8a58, Func Offset: 0x58
-	// Func End, Address: 0x2c8a60, Func Offset: 0x60
+    if (mdlP->r < 0) 
+    {
+        mdlP->r = -mdlP->r; 
+        
+        if ((int)mdlP->vlist != -1)
+        { 
+            *(int*)&mdlP->vlist += dat_off; 
+        }
+        
+        if ((int)mdlP->plist != -1)
+        {
+            *(int*)&mdlP->plist += dat_off; 
+        }
+    }
+    
+    return 1; 
 }
 
-// 
+/*// 
 // Start address: 0x2c8a60
 int bhMnbBinRealize(void* bin_datP, _anon0* mnwP)
 {
