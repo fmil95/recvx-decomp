@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -1887,5 +1887,5 @@ int bhSearchPlayer2(BH_PWORK* epw, _anon14* pp, int pp_r, int r)
 	// Line 1382, Address: 0x18bc40, Func Offset: 0x60
 	// Line 1385, Address: 0x18bc44, Func Offset: 0x64
 	// Func End, Address: 0x18bc64, Func Offset: 0x84
-}
+}*/
 

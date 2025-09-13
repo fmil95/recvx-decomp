@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -1626,5 +1626,5 @@ void bhEne16_AddEffPos(BH_PWORK* epw, _anon14* pos)
 	// Line 578, Address: 0x1eab04, Func Offset: 0x64
 	// Line 579, Address: 0x1eab28, Func Offset: 0x88
 	// Func End, Address: 0x1eab30, Func Offset: 0x90
-}
+}*/
 

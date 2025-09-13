@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -482,5 +482,5 @@ void bhEne05s_FloorCollision(BH_PWORK* epw)
 	// Line 347, Address: 0x1b9808, Func Offset: 0x168
 	// Line 351, Address: 0x1b9824, Func Offset: 0x184
 	// Func End, Address: 0x1b9834, Func Offset: 0x194
-}
+}*/
 

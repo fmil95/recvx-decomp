@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -560,5 +560,5 @@ void bhEne08_Die()
 {
 	// Line 467, Address: 0x1c6ad0, Func Offset: 0
 	// Func End, Address: 0x1c6ad8, Func Offset: 0x8
-}
+}*/
 

@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -3239,5 +3239,5 @@ void bhEne01Scope_Effect(BH_PWORK* epw)
 	// Line 2680, Address: 0x18f7f8, Func Offset: 0x1e8
 	// Line 2682, Address: 0x18f808, Func Offset: 0x1f8
 	// Func End, Address: 0x18f828, Func Offset: 0x218
-}
+}*/
 

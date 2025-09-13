@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -2670,5 +2670,5 @@ void bhEne13_PlayerControl(BH_PWORK* epw)
 	// Line 1664, Address: 0x1dccd0, Func Offset: 0x7c0
 	// Line 1666, Address: 0x1dcce8, Func Offset: 0x7d8
 	// Func End, Address: 0x1dccf4, Func Offset: 0x7e4
-}
+}*/
 

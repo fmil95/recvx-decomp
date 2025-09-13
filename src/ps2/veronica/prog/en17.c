@@ -1,4 +1,4 @@
-typedef struct BH_PWORK;
+/*typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -3291,5 +3291,5 @@ void bhEne17_SetLight(_anon15* ofs)
 	// Line 3038, Address: 0x1ee6f4, Func Offset: 0x74
 	// Line 3040, Address: 0x1ee6f8, Func Offset: 0x78
 	// Func End, Address: 0x1ee700, Func Offset: 0x80
-}
+}*/
 

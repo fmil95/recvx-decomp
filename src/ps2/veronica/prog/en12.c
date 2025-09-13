@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -3047,5 +3047,5 @@ void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act)
 	// Line 2481, Address: 0x1da314, Func Offset: 0x6e4
 	// Line 2483, Address: 0x1da320, Func Offset: 0x6f0
 	// Func End, Address: 0x1da33c, Func Offset: 0x70c
-}
+}*/
 

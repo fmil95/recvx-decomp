@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -1586,5 +1586,5 @@ void bhEne13B_SetHittab(BH_PWORK* epw)
 	// Line 574, Address: 0x1ddab4, Func Offset: 0x104
 	// Line 576, Address: 0x1ddabc, Func Offset: 0x10c
 	// Func End, Address: 0x1ddac4, Func Offset: 0x114
-}
+}*/
 

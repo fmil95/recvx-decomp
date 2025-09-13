@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -461,5 +461,5 @@ void bhEne17_AxsCheck(BH_PWORK* epw)
 	// Line 364, Address: 0x1eebcc, Func Offset: 0x2bc
 	// Line 367, Address: 0x1eebdc, Func Offset: 0x2cc
 	// Func End, Address: 0x1eebf8, Func Offset: 0x2e8
-}
+}*/
 

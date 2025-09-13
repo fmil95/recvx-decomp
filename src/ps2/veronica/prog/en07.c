@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -3531,5 +3531,5 @@ void bhEne07_CalcAtariOffset(BH_PWORK* epw, _anon5* ofp)
 	// Line 2949, Address: 0x1c5f50, Func Offset: 0x110
 	// Line 2951, Address: 0x1c5f5c, Func Offset: 0x11c
 	// Func End, Address: 0x1c5f70, Func Offset: 0x130
-}
+}*/
 

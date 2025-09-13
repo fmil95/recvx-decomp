@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
 typedef struct _anon3;
@@ -3951,5 +3951,5 @@ void bhEne53(BH_PWORK* epw)
 	// Line 4237, Address: 0x1e9ca0, Func Offset: 0x70
 	// Line 4240, Address: 0x1e9ca8, Func Offset: 0x78
 	// Func End, Address: 0x1e9cb8, Func Offset: 0x88
-}
+}*/
 

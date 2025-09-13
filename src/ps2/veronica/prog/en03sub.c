@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -700,5 +700,5 @@ void bhEne03s_InitCollision(BH_PWORK* epw)
 	// Line 572, Address: 0x1a4e48, Func Offset: 0x358
 	// Line 573, Address: 0x1a4ea0, Func Offset: 0x3b0
 	// Func End, Address: 0x1a4eb8, Func Offset: 0x3c8
-}
+}*/
 

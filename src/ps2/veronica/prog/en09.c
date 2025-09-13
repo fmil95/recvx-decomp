@@ -1,4 +1,4 @@
-typedef struct BH_PWORK;
+/*typedef struct BH_PWORK;
 typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -6274,5 +6274,5 @@ void bhEne09_SetSmokeEffect(BH_PWORK* epw, _anon25* ofs, int rot)
 	// Line 7779, Address: 0x1d2410, Func Offset: 0x270
 	// Line 7780, Address: 0x1d2420, Func Offset: 0x280
 	// Func End, Address: 0x1d243c, Func Offset: 0x29c
-}
+}*/
 

@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -2208,5 +2208,5 @@ int bhEne11_SelectDir(BH_PWORK* epw)
 	// Line 1401, Address: 0x1d564c, Func Offset: 0x58c
 	// Line 1404, Address: 0x1d5658, Func Offset: 0x598
 	// Func End, Address: 0x1d5684, Func Offset: 0x5c4
-}
+}*/
 

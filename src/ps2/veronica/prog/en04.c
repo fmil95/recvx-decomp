@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -4659,5 +4659,5 @@ void bhEne04_SePlay(BH_PWORK* epw, int no)
 	// Line 5837, Address: 0x1ac790, Func Offset: 0x20
 	// Line 5838, Address: 0x1ac7ac, Func Offset: 0x3c
 	// Func End, Address: 0x1ac7b8, Func Offset: 0x48
-}
+}*/
 
