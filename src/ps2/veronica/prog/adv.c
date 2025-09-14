@@ -3554,32 +3554,36 @@ void ResetFlushPlate()
     ap->FlushCount2 = 0; 
 }
 
-/*// 
-// Start address: 0x2c3180
-void FlushPlate()
-{
-	_anon8* ap;
-	// Line 2662, Address: 0x2c3180, Func Offset: 0
-	// Line 2666, Address: 0x2c3184, Func Offset: 0x4
-	// Line 2662, Address: 0x2c3188, Func Offset: 0x8
-	// Line 2663, Address: 0x2c3190, Func Offset: 0x10
-	// Line 2665, Address: 0x2c3198, Func Offset: 0x18
-	// Line 2666, Address: 0x2c31a8, Func Offset: 0x28
-	// Line 2668, Address: 0x2c31bc, Func Offset: 0x3c
-	// Line 2669, Address: 0x2c31dc, Func Offset: 0x5c
-	// Line 2670, Address: 0x2c31e0, Func Offset: 0x60
-	// Line 2672, Address: 0x2c31e4, Func Offset: 0x64
-	// Line 2674, Address: 0x2c31ec, Func Offset: 0x6c
-	// Line 2675, Address: 0x2c3200, Func Offset: 0x80
-	// Line 2676, Address: 0x2c3204, Func Offset: 0x84
-	// Line 2680, Address: 0x2c320c, Func Offset: 0x8c
-	// Line 2681, Address: 0x2c321c, Func Offset: 0x9c
-	// Line 2682, Address: 0x2c3238, Func Offset: 0xb8
-	// Line 2683, Address: 0x2c3254, Func Offset: 0xd4
-	// Func End, Address: 0x2c3264, Func Offset: 0xe4
-}
+// 100% matching! 
+void FlushPlate() 
+{ 
+    ADV_WORK* ap; 
 
-// 
+    ap = (ADV_WORK*)&AdvWork;
+
+    ap->FlushCount2 += ap->FlushSpeed2; 
+    
+    if (ap->FlushSpeed2 < 0) 
+    { 
+        if (ap->FlushCount2 <= -64.0f)
+        { 
+            ap->FlushCount2 = -64.0f; 
+            ap->FlushSpeed2 = 2.0f;
+        }
+    } 
+    else if (ap->FlushCount2 >= 0) 
+    { 
+        ap->FlushCount2 = 0;
+        ap->FlushSpeed2 = -2.0f; 
+    }
+
+    ap->FontBaseColor = (unsigned int)ap->FlushCount2 + 255; 
+    
+    ap->FontBaseColor |= ((unsigned int)ap->FlushCount2 + 255) << 16;
+    ap->FontBaseColor |= ((unsigned int)ap->FlushCount2 + 255) << 8;
+} 
+
+/*// 
 // Start address: 0x2c3270
 void DisplayTitleBg()
 {
