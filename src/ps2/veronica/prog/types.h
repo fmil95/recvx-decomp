@@ -2911,6 +2911,15 @@ typedef struct UNKNOWN
     int unkC;
 } UNKNOWN;
 
+typedef struct ADV_VM_MSG
+{
+    // total size: 0x14
+    float Sx;       // offset 0x0, size 0x4
+    float Sy;       // offset 0x4, size 0x4
+    int StartMsgNo; // offset 0x8, size 0x4
+    int NaviMsgNo;  // offset 0xC, size 0x4
+    int MsgType;    // offset 0x10, size 0x4
+} ADV_VM_MSG;
 
 #define SCR_WIDTH 640
 #define SCR_HEIGHT 224

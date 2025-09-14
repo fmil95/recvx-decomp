@@ -1972,7 +1972,7 @@ int CurrentPortId;
 unsigned char FontSz[126];
 float FontScaleCR;
 float FontScaleX;
-/*_anon31 AdvVmMsgDef[21];*/
+ADV_VM_MSG AdvVmMsgDef[21] = {{-1.0f, 32.0f, 23, 21, 1}, {-1.0f, 176.0f, 25, -1, 0}, {-1.0f, 32.0f, 33, 21, 1}, {-1.0f, 208.0f, 30, 22, 1}, {-1.0f, 224.0f, 27, 22, 1}, {-1.0f, 32.0f, 24, 22, 1}, {-1.0f, 416.0f, 28, -1, 0}, {-1.0f, 32.0f, 24, 21, 1}, {-1.0f, 224.0f, 31, 22, 1}, {-1.0f, 224.0f, 32, 22, 1}, {-1.0f, 32.0f, 23, 22, 1}, {-1.0f, 32.0f, 33, 20, 1}, {-1.0f, 32.0f, 33, 22, 1}, {-1.0f, 32.0f, 34, 20, 1}, {-1.0f, 32.0f, 35, 20, 1}, {-1.0f, 32.0f, 36, 20, 1}, {-1.0f, 32.0f, 37, 20, 1}, {-1.0f, 32.0f, 38, 20, 1}, {-1.0f, 32.0f, 39, 20, 1}, {-1.0f, 32.0f, 40, 20, 1}, {-1.0f, 32.0f, 41, 20, 1}};
 SYSLOAD_SCREEN* pSysLoad;
 SYSLOAD_SCREEN SysLoad;
 /*float ColorBarSizeY;
@@ -3165,34 +3165,32 @@ float AutoSaveLoadEasyDispMessage(float PosX, float PosY, unsigned char* ucpMsbT
     }
 } 
 
-// 
-// Start address: 0x2c28b0
+// 100% matching! 
 int DispVmWarningMessage(int MsgId)
-{
-	//_anon31* mp;
-	//_anon8* ap;
-	// Line 2071, Address: 0x2c28b0, Func Offset: 0
-	// Line 2072, Address: 0x2c28b8, Func Offset: 0x8
-	// Line 2070, Address: 0x2c28c0, Func Offset: 0x10
-	// Line 2072, Address: 0x2c28c4, Func Offset: 0x14
-	// Line 2070, Address: 0x2c28cc, Func Offset: 0x1c
-	// Line 2072, Address: 0x2c28d0, Func Offset: 0x20
-	// Line 2070, Address: 0x2c28d4, Func Offset: 0x24
-	// Line 2072, Address: 0x2c28d8, Func Offset: 0x28
-	// Line 2074, Address: 0x2c28dc, Func Offset: 0x2c
-	// Line 2075, Address: 0x2c28e8, Func Offset: 0x38
-	// Line 2076, Address: 0x2c2914, Func Offset: 0x64
-	// Line 2077, Address: 0x2c2918, Func Offset: 0x68
-	// Line 2076, Address: 0x2c291c, Func Offset: 0x6c
-	// Line 2077, Address: 0x2c2920, Func Offset: 0x70
-	// Line 2081, Address: 0x2c2928, Func Offset: 0x78
-	// Line 2082, Address: 0x2c2938, Func Offset: 0x88
-	// Line 2083, Address: 0x2c2944, Func Offset: 0x94
-	// Line 2086, Address: 0x2c295c, Func Offset: 0xac
-	// Line 2087, Address: 0x2c2960, Func Offset: 0xb0
-	// Func End, Address: 0x2c2970, Func Offset: 0xc0
-	scePrintf("DispVmWarningMessage - UNIMPLEMENTED!\n");
-}
+{ 
+    ADV_WORK* ap; 
+    ADV_VM_MSG* mp; 
+
+    ap = (ADV_WORK*)&AdvWork;
+
+    mp = &AdvVmMsgDef[MsgId]; 
+    
+    if ((mp->MsgType != 0) && ((Pad[ap->PortId].press & 0x800))) 
+    { 
+        ap->Mode = ap->Mode2 = ap->NextMode; 
+        
+        return 1;
+    } 
+    
+    AdvEasyDispMessage(mp->Sx, mp->Sy, mp->StartMsgNo); 
+    
+    if (mp->NaviMsgNo >= 0) 
+    { 
+        AdvEasyDispMessage(-1.0f, 400.0f, mp->NaviMsgNo); 
+    }
+
+    return 0; 
+} 
 
 // 100% matching!
 void DefaultSetOption()
