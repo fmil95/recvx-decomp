@@ -1,4 +1,4 @@
-typedef struct BH_PWORK;
+/*typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -3844,5 +3844,5 @@ void bhEne26_SePlay(BH_PWORK* epw, int no)
 	// Line 4393, Address: 0x20faa4, Func Offset: 0x94
 	// Line 4394, Address: 0x20fac4, Func Offset: 0xb4
 	// Func End, Address: 0x20fad8, Func Offset: 0xc8
-}
+}*/
 

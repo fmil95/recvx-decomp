@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -2251,5 +2251,5 @@ void bhEne30_SetFluidEffect(_anon3* pos, _anon3* vec, int type, float size)
 	// Line 1488, Address: 0x215ee4, Func Offset: 0x144
 	// Line 1490, Address: 0x215ef8, Func Offset: 0x158
 	// Func End, Address: 0x215f08, Func Offset: 0x168
-}
+}*/
 

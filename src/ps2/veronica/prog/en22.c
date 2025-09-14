@@ -1,4 +1,4 @@
-typedef struct BH_PWORK;
+/*typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -3912,5 +3912,5 @@ void bhEne22_ChgDengekiColor(npobj* objp, int no, unsigned int argb)
 	// Line 4282, Address: 0x1fff24, Func Offset: 0x164
 	// Line 4287, Address: 0x1fff2c, Func Offset: 0x16c
 	// Func End, Address: 0x1fff34, Func Offset: 0x174
-}
+}*/
 

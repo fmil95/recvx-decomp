@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -2678,5 +2678,5 @@ void CheckDmgEne(BH_PWORK* ewP, _en29_freework* fwP)
 	// Line 2145, Address: 0x2135f0, Func Offset: 0x130
 	// Line 2147, Address: 0x213604, Func Offset: 0x144
 	// Func End, Address: 0x213624, Func Offset: 0x164
-}
+}*/
 

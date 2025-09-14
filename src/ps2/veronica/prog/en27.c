@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -1950,5 +1950,5 @@ void bhEne27_CallSE(BH_PWORK* epw)
 	// Line 637, Address: 0x2109d8, Func Offset: 0xe8
 	// Line 641, Address: 0x2109ec, Func Offset: 0xfc
 	// Func End, Address: 0x210a00, Func Offset: 0x110
-}
+}*/
 

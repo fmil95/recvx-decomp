@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct BH_PWORK;
@@ -2401,5 +2401,5 @@ void bhEff_E21_Mark(_anon0* op)
 	// Line 1744, Address: 0x1fab70, Func Offset: 0x1e0
 	// Line 1747, Address: 0x1fab94, Func Offset: 0x204
 	// Func End, Address: 0x1fab9c, Func Offset: 0x20c
-}
+}*/
 

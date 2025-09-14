@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -1698,5 +1698,5 @@ int bhEne24_DeadCheck(BH_PWORK* epw)
 	// Line 787, Address: 0x208910, Func Offset: 0x1c0
 	// Line 788, Address: 0x208914, Func Offset: 0x1c4
 	// Func End, Address: 0x208944, Func Offset: 0x1f4
-}
+}*/
 

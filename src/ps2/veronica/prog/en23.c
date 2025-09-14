@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -4447,5 +4447,5 @@ void bhEne23_HitMark(BH_PWORK* epw)
 	// Line 4001, Address: 0x2075dc, Func Offset: 0x4dc
 	// Line 4003, Address: 0x2075f4, Func Offset: 0x4f4
 	// Func End, Address: 0x207618, Func Offset: 0x518
-}
+}*/
 

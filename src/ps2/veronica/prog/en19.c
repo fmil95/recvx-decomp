@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -4601,5 +4601,5 @@ void bhEne19_SetClawPlane(BH_PWORK* ewP, float mtxP[16], int col, int tim, float
 	// Line 4782, Address: 0x1f747c, Func Offset: 0x4c
 	// Line 4783, Address: 0x1f7488, Func Offset: 0x58
 	// Func End, Address: 0x1f7494, Func Offset: 0x64
-}
+}*/
 
