@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct cnkobj;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -1298,5 +1298,5 @@ void fmCnkSetMode(_anon2* fm, unsigned int mode)
 	// Line 2908, Address: 0x29a860, Func Offset: 0x60
 	// Line 2912, Address: 0x29a868, Func Offset: 0x68
 	// Func End, Address: 0x29a870, Func Offset: 0x70
-}
+}*/
 

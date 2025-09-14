@@ -2,7 +2,7 @@
 
 
 
-tagCHUNK_HEAD* njCnkCsUvh(tagCHUNK_HEAD* pCnk);
+/*tagCHUNK_HEAD* njCnkCsUvh(tagCHUNK_HEAD* pCnk);
 tagCHUNK_HEAD* njCnkCsUvn(tagCHUNK_HEAD* pCnk);
 
 // 
@@ -587,5 +587,5 @@ tagCHUNK_HEAD* njCnkCsUvn(tagCHUNK_HEAD* pCnk)
 	// Line 405, Address: 0x2d3748, Func Offset: 0x8b8
 	// Line 406, Address: 0x2d374c, Func Offset: 0x8bc
 	// Func End, Address: 0x2d377c, Func Offset: 0x8ec
-}
+}*/
 

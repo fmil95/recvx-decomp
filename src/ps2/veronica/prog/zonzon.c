@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -2746,5 +2746,5 @@ void bhEne_HitCheckParts(BH_PWORK* pp, _anon4* pos)
 	// Line 2294, Address: 0x218cd8, Func Offset: 0x118
 	// Line 2295, Address: 0x218ce0, Func Offset: 0x120
 	// Func End, Address: 0x218d08, Func Offset: 0x148
-}
+}*/
 

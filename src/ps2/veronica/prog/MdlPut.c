@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -1485,5 +1485,5 @@ void bhCalcTree(float basP[16], _anon7* mlwP)
 	// Line 307, Address: 0x12f4e0, Func Offset: 0xe0
 	// Line 309, Address: 0x12f4e8, Func Offset: 0xe8
 	// Func End, Address: 0x12f504, Func Offset: 0x104
-}
+}*/
 

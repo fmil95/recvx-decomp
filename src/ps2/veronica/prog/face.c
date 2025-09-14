@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct cnkobj;
 typedef struct _anon1;
@@ -1557,5 +1557,5 @@ int bhSetLip(BH_PWORK* pp, int mls_no)
 	// Line 416, Address: 0x298808, Func Offset: 0x78
 	// Line 418, Address: 0x29880c, Func Offset: 0x7c
 	// Func End, Address: 0x298814, Func Offset: 0x84
-}
+}*/
 

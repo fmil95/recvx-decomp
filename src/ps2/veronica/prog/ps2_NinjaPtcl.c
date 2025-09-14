@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct tagNJS_SCRVECTOR;
 typedef struct _anon1;
 
@@ -195,5 +195,5 @@ void njPtclDrawSprite(_anon0* p, int n, float w, float h)
 	// Line 213, Address: 0x2d86b8, Func Offset: 0x1c8
 	// Line 216, Address: 0x2d86cc, Func Offset: 0x1dc
 	// Func End, Address: 0x2d8700, Func Offset: 0x210
-}
+}*/
 

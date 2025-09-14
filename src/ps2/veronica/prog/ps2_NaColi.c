@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
 typedef struct _anon3;
@@ -1190,5 +1190,5 @@ int njCheckPlane4IncludePoint(_anon0* pP1, _anon0* pP2, _anon0* pP3, _anon0* pP4
 	// Line 1447, Address: 0x2e5dbc, Func Offset: 0x2dc
 	// Line 1454, Address: 0x2e5e14, Func Offset: 0x334
 	// Func End, Address: 0x2e5e5c, Func Offset: 0x37c
-}
+}*/
 

@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct BH_PWORK;
@@ -5542,5 +5542,5 @@ int bhCheckWallAttrB89(_anon0* hp)
 	// Line 4912, Address: 0x26935c, Func Offset: 0x7c
 	// Line 4913, Address: 0x269360, Func Offset: 0x80
 	// Func End, Address: 0x269368, Func Offset: 0x88
-}
+}*/
 

@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
 typedef struct _anon3;
@@ -370,5 +370,5 @@ void njDrawSprite2D(_anon5* sp, int n, float pri, unsigned int attr)
 	// Line 348, Address: 0x2e1324, Func Offset: 0x774
 	// Line 350, Address: 0x2e1334, Func Offset: 0x784
 	// Func End, Address: 0x2e1380, Func Offset: 0x7d0
-}
+}*/
 

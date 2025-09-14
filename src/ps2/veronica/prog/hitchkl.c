@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -2320,5 +2320,5 @@ void bhGetHitCollisionNormal(_anon2* n)
 	// Line 1085, Address: 0x26b8b8, Func Offset: 0x18
 	// Line 1086, Address: 0x26b8c0, Func Offset: 0x20
 	// Func End, Address: 0x26b8c8, Func Offset: 0x28
-}
+}*/
 

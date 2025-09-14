@@ -2,7 +2,7 @@
 
 
 
-void DrawScissorPolygonOpaque2(int count, unsigned long ulType);
+/*void DrawScissorPolygonOpaque2(int count, unsigned long ulType);
 void InitNodeArraySet2();
 unsigned int _Clip_ViewVolume2(_anon1* vec);
 unsigned int _Get_ClipViewVolume2();
@@ -255,5 +255,5 @@ int _Check_ScissorPlane()
 	// Line 781, Address: 0x2d3fbc, Func Offset: 0x10c
 	// Line 785, Address: 0x2d3fe0, Func Offset: 0x130
 	// Func End, Address: 0x2d3fec, Func Offset: 0x13c
-}
+}*/
 

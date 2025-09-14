@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -593,5 +593,5 @@ void mv00_subpl10(BH_PWORK* epw)
 	// Line 620, Address: 0x1746d8, Func Offset: 0x28
 	// Line 622, Address: 0x1746dc, Func Offset: 0x2c
 	// Func End, Address: 0x1746e4, Func Offset: 0x34
-}
+}*/
 

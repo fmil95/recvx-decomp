@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct npobj;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -1525,5 +1525,5 @@ unsigned char bhCheckRouteID(_anon25* ps)
 	// Line 113, Address: 0x26bab4, Func Offset: 0xc4
 	// Line 114, Address: 0x26bab8, Func Offset: 0xc8
 	// Func End, Address: 0x26bac0, Func Offset: 0xd0
-}
+}*/
 

@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -2210,5 +2210,5 @@ void bhArmIkMdk(BH_PWORK* ewP, int bas_no, _anon27* effP, int rot)
 	// Line 1293, Address: 0x14d204, Func Offset: 0x2a4
 	// Line 1295, Address: 0x14d20c, Func Offset: 0x2ac
 	// Func End, Address: 0x14d250, Func Offset: 0x2f0
-}
+}*/
 

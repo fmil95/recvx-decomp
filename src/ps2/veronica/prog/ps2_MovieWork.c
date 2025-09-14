@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
 typedef struct _anon3;
@@ -56,6 +56,6 @@ _anon3* readBuf;
 _anon2* voBufData;
 _anon0* voBufTag;
 unsigned char* mpegWork;
-void* vpWorkMemoryTop;
+void* vpWorkMemoryTop;*/
 
 

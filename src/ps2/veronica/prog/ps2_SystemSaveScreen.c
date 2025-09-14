@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct npobj;
 typedef struct tagSYSSAVE_SCREEN;
 typedef struct _anon1;
@@ -2488,5 +2488,5 @@ unsigned int GetCancelButton()
 	// Line 2246, Address: 0x279e84, Func Offset: 0x24
 	// Line 2247, Address: 0x279e98, Func Offset: 0x38
 	// Func End, Address: 0x279ea0, Func Offset: 0x40
-}
+}*/
 

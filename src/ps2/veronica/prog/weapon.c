@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -3236,5 +3236,5 @@ void bhSetExplosionEffectEx(_anon1* pos, float scl)
 	// Line 1861, Address: 0x28e96c, Func Offset: 0x14c
 	// Line 1862, Address: 0x28e980, Func Offset: 0x160
 	// Func End, Address: 0x28e998, Func Offset: 0x178
-}
+}*/
 

@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -1583,5 +1583,5 @@ void bhCPM2_act_scp()
 	// Line 282, Address: 0x14df80, Func Offset: 0xd30
 	// Line 283, Address: 0x14df90, Func Offset: 0xd40
 	// Func End, Address: 0x14dfa8, Func Offset: 0xd58
-}
+}*/
 

@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
 
@@ -52,6 +52,6 @@ unsigned short itemidtbl[16];
 unsigned short getmestbl[16];
 unsigned short idsettbl[16];
 _anon2 hoseipos[10];
-unsigned int getbulletmax[4][156];
+unsigned int getbulletmax[4][156];*/
 
 

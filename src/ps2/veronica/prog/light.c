@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
@@ -2268,5 +2268,5 @@ void bhGetLightVector(int xr, int yr, int zr, _anon4* vec)
 	// Line 1222, Address: 0x283050, Func Offset: 0x70
 	// Line 1223, Address: 0x283060, Func Offset: 0x80
 	// Func End, Address: 0x28307c, Func Offset: 0x9c
-}
+}*/
 

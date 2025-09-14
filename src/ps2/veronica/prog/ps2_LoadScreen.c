@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct tagLOAD_SCREEN;
 typedef struct npobj;
 typedef struct _anon1;
@@ -2277,5 +2277,5 @@ void CheckDispLoadMemoryCard(tagLOAD_SCREEN* pLoad)
 	// Line 1838, Address: 0x277048, Func Offset: 0x128
 	// Line 1839, Address: 0x2770a0, Func Offset: 0x180
 	// Func End, Address: 0x2770b8, Func Offset: 0x198
-}
+}*/
 

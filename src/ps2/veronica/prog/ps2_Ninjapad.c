@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct _anon1;
 
 
@@ -49,5 +49,5 @@ _anon1* njGetPeripheral(unsigned int port)
 {
 	// Line 28, Address: 0x2d82d0, Func Offset: 0
 	// Func End, Address: 0x2d82d8, Func Offset: 0x8
-}
+}*/
 

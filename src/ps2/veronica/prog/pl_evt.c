@@ -1,4 +1,4 @@
-typedef struct npobj;
+/*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -1776,5 +1776,5 @@ void pl_smove08()
 	// Line 837, Address: 0x173ea0, Func Offset: 0x1d0
 	// Line 881, Address: 0x173eb4, Func Offset: 0x1e4
 	// Func End, Address: 0x173ebc, Func Offset: 0x1ec
-}
+}*/
 

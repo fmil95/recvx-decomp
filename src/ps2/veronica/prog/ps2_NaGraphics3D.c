@@ -1,4 +1,4 @@
-typedef union _anon0;
+/*typedef union _anon0;
 typedef struct _anon1;
 typedef struct tagVU1_STRIP_BUF;
 typedef struct _anon2;
@@ -571,5 +571,5 @@ void njDrawPolygon3D(_anon2* p, int n, unsigned int attr)
 	// Line 592, Address: 0x2e0b6c, Func Offset: 0x3fc
 	// Line 594, Address: 0x2e0b7c, Func Offset: 0x40c
 	// Func End, Address: 0x2e0bb0, Func Offset: 0x440
-}
+}*/
 

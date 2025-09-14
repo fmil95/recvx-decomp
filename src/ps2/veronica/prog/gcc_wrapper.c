@@ -2,7 +2,7 @@
 
 
 
-double _d_ulltod(unsigned long long ul);
+/*double _d_ulltod(unsigned long long ul);
 double _d_utod(unsigned int ui);
 int _dpfne(double left, double right);
 int _dpflt(double left, double right);
@@ -77,5 +77,5 @@ int _dpfgt(double left, double right)
 	// Line 106, Address: 0x2e5f44, Func Offset: 0x14
 	// Line 107, Address: 0x2e5f48, Func Offset: 0x18
 	// Func End, Address: 0x2e5f50, Func Offset: 0x20
-}
+}*/
 

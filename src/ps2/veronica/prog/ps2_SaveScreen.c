@@ -1,4 +1,4 @@
-typedef struct _anon0;
+/*typedef struct _anon0;
 typedef struct npobj;
 typedef struct tagSAVE_SCREEN;
 typedef struct _anon1;
@@ -2832,5 +2832,5 @@ void CheckDispMemoryCard(tagSAVE_SCREEN* pSave)
 	// Line 2959, Address: 0x2717b8, Func Offset: 0x128
 	// Line 2960, Address: 0x271810, Func Offset: 0x180
 	// Func End, Address: 0x271828, Func Offset: 0x198
-}
+}*/
 
