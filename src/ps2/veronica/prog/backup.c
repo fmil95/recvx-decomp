@@ -1,13 +1,6 @@
-// TODO: compile and link this file separatedly to remove the "backup.c" include in main.c  
+#include "backup.h"
 
 BACKUPINFO gBupInfo[8];
-
-void BupInit(void);
-void BupExit(void);
-static void ClearInfo(Sint32 drive);
-static Sint32 BupComplete(Sint32 drive, Sint32 op, Sint32 stat, Uint32 param);
-static Sint32 BupProgress(Sint32 drive, Sint32 op, Sint32 count, Sint32 max);
-static void BupInitCallback(void);
 
 // 100% matching!
 void BupInit(void)
