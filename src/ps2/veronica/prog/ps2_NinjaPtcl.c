@@ -38,11 +38,11 @@ unsigned int Ps2_ptcl_spr_col;
 _anon1 _nj_screen_;*/
 
 void	njPtclPolygonStart( Uint32 col );
-void njPtclPolygonEnd();
+void	njPtclPolygonEnd( void );
 /*void njPtclDrawPolygon(_anon0* p, int n, float h);
-void njPtclSpriteStart(int texid, unsigned int col, int flag);
-void njPtclSpriteEnd();
-void njPtclDrawSprite(_anon0* p, int n, float w, float h);*/
+void njPtclSpriteStart(int texid, unsigned int col, int flag);*/
+void	njPtclSpriteEnd( void );
+/*void njPtclDrawSprite(_anon0* p, int n, float w, float h);*/
 
 // 100% matching!
 void	njPtclPolygonStart( Uint32 col ) 
@@ -120,17 +120,15 @@ void njPtclSpriteStart(int texid, unsigned int col, int flag)
 	// Line 141, Address: 0x2d84c8, Func Offset: 0x8
 	// Line 143, Address: 0x2d84cc, Func Offset: 0xc
 	// Func End, Address: 0x2d84d4, Func Offset: 0x14
-}
+}*/
 
-// 
-// Start address: 0x2d84e0
-void njPtclSpriteEnd()
+// 100% matching!
+void	njPtclSpriteEnd( void ) 
 {
-	// Line 153, Address: 0x2d84e0, Func Offset: 0
-	// Func End, Address: 0x2d84e8, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x2d84f0
 void njPtclDrawSprite(_anon0* p, int n, float w, float h)
 {
@@ -191,4 +189,3 @@ void njPtclDrawSprite(_anon0* p, int n, float w, float h)
 	// Line 216, Address: 0x2d86cc, Func Offset: 0x1dc
 	// Func End, Address: 0x2d8700, Func Offset: 0x210
 }*/
-
