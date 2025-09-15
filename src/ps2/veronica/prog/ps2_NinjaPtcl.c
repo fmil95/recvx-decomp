@@ -30,30 +30,27 @@ struct _anon1
 	float h;
 	float cx;
 	float cy;
-};
+};*/
 
 unsigned int Ps2_ptcl_poly_col;
-int Ps2_ptcl_spr_flag;
+/*int Ps2_ptcl_spr_flag;
 unsigned int Ps2_ptcl_spr_col;
-_anon1 _nj_screen_;
+_anon1 _nj_screen_;*/
 
-void njPtclPolygonStart(unsigned int col);
-void njPtclPolygonEnd();
+void	njPtclPolygonStart( Uint32 col );
+/*void njPtclPolygonEnd();
 void njPtclDrawPolygon(_anon0* p, int n, float h);
 void njPtclSpriteStart(int texid, unsigned int col, int flag);
 void njPtclSpriteEnd();
-void njPtclDrawSprite(_anon0* p, int n, float w, float h);
+void njPtclDrawSprite(_anon0* p, int n, float w, float h);*/
 
-// 
-// Start address: 0x2d82e0
-void njPtclPolygonStart(unsigned int col)
+// 100% matching!
+void	njPtclPolygonStart( Uint32 col ) 
 {
-	// Line 46, Address: 0x2d82e0, Func Offset: 0
-	// Line 47, Address: 0x2d82e4, Func Offset: 0x4
-	// Func End, Address: 0x2d82ec, Func Offset: 0xc
+    Ps2_ptcl_poly_col = col; 
 }
 
-// 
+/*// 
 // Start address: 0x2d82f0
 void njPtclPolygonEnd()
 {
