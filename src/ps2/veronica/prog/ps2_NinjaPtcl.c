@@ -33,14 +33,14 @@ struct _anon1
 };*/
 
 unsigned int Ps2_ptcl_poly_col;
-/*int Ps2_ptcl_spr_flag;
+int Ps2_ptcl_spr_flag;
 unsigned int Ps2_ptcl_spr_col;
-_anon1 _nj_screen_;*/
+/*_anon1 _nj_screen_;*/
 
 void	njPtclPolygonStart( Uint32 col );
 void	njPtclPolygonEnd( void );
-/*void njPtclDrawPolygon(_anon0* p, int n, float h);
-void njPtclSpriteStart(int texid, unsigned int col, int flag);*/
+/*void njPtclDrawPolygon(_anon0* p, int n, float h);*/
+void	njPtclSpriteStart( Sint32 texid, Uint32 col, Sint32 flag );
 void	njPtclSpriteEnd( void );
 /*void njPtclDrawSprite(_anon0* p, int n, float w, float h);*/
 
@@ -110,17 +110,16 @@ void njPtclDrawPolygon(_anon0* p, int n, float h)
 	// Line 127, Address: 0x2d8470, Func Offset: 0x170
 	// Line 130, Address: 0x2d8484, Func Offset: 0x184
 	// Func End, Address: 0x2d84b4, Func Offset: 0x1b4
-}
-
-// 
-// Start address: 0x2d84c0
-void njPtclSpriteStart(int texid, unsigned int col, int flag)
-{
-	// Line 140, Address: 0x2d84c0, Func Offset: 0
-	// Line 141, Address: 0x2d84c8, Func Offset: 0x8
-	// Line 143, Address: 0x2d84cc, Func Offset: 0xc
-	// Func End, Address: 0x2d84d4, Func Offset: 0x14
 }*/
+
+// 100% matching!
+void	njPtclSpriteStart( Sint32 texid, Uint32 col, Sint32 flag )
+{ 
+    Ps2_ptcl_spr_col = col; 
+    Ps2_ptcl_spr_flag = flag;
+    
+    njSetTextureNumSys(texid); 
+}
 
 // 100% matching!
 void	njPtclSpriteEnd( void ) 
