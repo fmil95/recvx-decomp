@@ -121,10 +121,6 @@ def link_objects(linker, objects, linker_script, linker_flags, libraries, librar
 
 def main(args):
     """Main entry point for the build process."""
-    
-    # Print system init text 
-    print(f"Starting RE: CVX decompile build system ...\n");
-    print(f"Initializing compiler ...\n");
 
     # Load environment variables from JSON
     env_vars = load_json(args.env_file)
@@ -159,8 +155,6 @@ def main(args):
     # Even if the compilation fails, we want to generate the compile_commands.json for IDEs
     # write_json('compile_commands.json', compile_commands)
 
-    print(f"\nInitializing linker ...\n");
-
     # If the compilation succeeded, attempt to link the objects and print final result
     if not build_failed:
         linker_env = {
@@ -192,8 +186,7 @@ def main(args):
             shutil.move(object_file, destination)
 
         if output_elf:
-            print(f"\nBuild steps have been successfully completed.")
-            print(f"\n{output_elf} was generated.")
+            print(f"\nBuild steps have been successfully completed: {output_elf} was generated.")
         else:
             print(f"\nLinkage fail. See report.txt for more info.")
     else:
