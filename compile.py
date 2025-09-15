@@ -137,7 +137,7 @@ def main(args):
     assembly = env_vars.get("assembly_files", [])
     defines = env_vars.get("defines", [])
 
-    print(f"Performing compilation with the following parameters:\n");
+    print(f"Performing compilation with the following parameters:");
 
     compiler_env = {
         "MWLibraries": ";".join(library_dirs),
@@ -162,7 +162,7 @@ def main(args):
             "MWLibraryFiles": ""
         }
 
-        print(f"Performing linkage with the following parameters:\n");
+        print(f"Performing linkage with the following parameters:");
 
         output_elf = link_objects(linker, objects, linker_script, linker_flags, libraries, library_dirs, linker_env)
 
@@ -186,11 +186,11 @@ def main(args):
             shutil.move(object_file, destination)
 
         if output_elf:
-            print(f"\nBuild steps have been successfully completed: {output_elf} was generated.")
+            print(f"Build steps have been successfully completed: {output_elf} was generated.")
         else:
-            print(f"\nLinkage fail. See report.txt for more info.")
+            print(f"Linkage fail. See report.txt for more info.")
     else:
-        print(f"\nCompilation fail. See report.txt for more info.")
+        print(f"Compilation fail. See report.txt for more info.")
 
 
 if __name__ == "__main__":
