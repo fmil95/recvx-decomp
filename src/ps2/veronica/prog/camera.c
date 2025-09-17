@@ -2,6 +2,11 @@ CAM_WORK cam;
 float cmmat[16];
 float (* cmat)[16];
 
+void bhInitCamera();
+void bhControlCamera();
+void bhMakeCameraVector();
+void bhGetCameraPosition();
+
 // 100% matching!
 void bhInitCamera() {
     npSetMemory((unsigned char*)&cam, 0x4AC, 0);

@@ -1337,11 +1337,11 @@ int njPopMatrixEx()
 {
 	// Line 5459, Address: 0x2d7a20, Func Offset: 0
 	// Func End, Address: 0x2d7a28, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2d7a30
-void njRotTransPers(_anon0* pPoint, tagNJS_SCRVECTOR* pScreen)
+void njRotTransPers(NJS_POINT3* pPoint, NJS_SCRVECTOR* pScreen)
 {
 	// Line 5788, Address: 0x2d7a30, Func Offset: 0
 	// Line 5794, Address: 0x2d7a48, Func Offset: 0x18
@@ -1368,9 +1368,10 @@ void njRotTransPers(_anon0* pPoint, tagNJS_SCRVECTOR* pScreen)
 	// Line 5830, Address: 0x2d7ac0, Func Offset: 0x90
 	// Line 5832, Address: 0x2d7acc, Func Offset: 0x9c
 	// Func End, Address: 0x2d7ae0, Func Offset: 0xb0
+	scePrintf("njRotTransPers - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d7ae0
 void njRotTrans(_anon0* pPoint, _anon0* pOut)
 {

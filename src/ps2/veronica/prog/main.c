@@ -108,7 +108,6 @@
 #include "ps2_NaSprite.c"
 #include "ps2_NinjaCnk_prog.h"
 #include "ps2_Ninjapad.c"
-#include "ps2_NinjaPtcl.c"
 #include "ps2_SaveScreen.c"
 #include "ps2_SystemSaveScreen.c"
 #include "ps2_Vu1Scissor2.c"
@@ -202,6 +201,7 @@
 #include "ps2_sg_pdvib.c"
 #include "ps2_sg_pad.c"
 #include "ps2_dummy.c"
+#include "ps2_NinjaPtcl.c"
 #include "ps2_NaDraw.c"
 #include "ps2_sg_sycfg.c" // TODO: find out why this file crashes when including it amongst the other source files in compile_config.json
 #include "ps2_sg_sybt.c"

@@ -2921,6 +2921,16 @@ typedef struct ADV_VM_MSG
     int MsgType;    // offset 0x10, size 0x4
 } ADV_VM_MSG;
 
+typedef struct NJS_SCRVECTOR 
+{
+    // total size: 0x14
+    float x;   // offset 0x0, size 0x4
+    float y;   // offset 0x4, size 0x4
+    float z;   // offset 0x8, size 0x4
+    float iz;  // offset 0xC, size 0x4
+    float fog; // offset 0x10, size 0x4
+} NJS_SCRVECTOR;
+
 #define SCR_WIDTH 640
 #define SCR_HEIGHT 224
 

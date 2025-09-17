@@ -39,7 +39,7 @@ unsigned int Ps2_ptcl_spr_col;
 
 void	njPtclPolygonStart( Uint32 col );
 void	njPtclPolygonEnd( void );
-/*void njPtclDrawPolygon(_anon0* p, int n, float h);*/
+void	njPtclDrawPolygon( NJS_POINT3 *p, Sint32 n, Float h );
 void	njPtclSpriteStart( Sint32 texid, Uint32 col, Sint32 flag );
 void	njPtclSpriteEnd( void );
 /*void njPtclDrawSprite(_anon0* p, int n, float w, float h);*/
@@ -56,61 +56,68 @@ void	njPtclPolygonEnd( void )
 
 }
 
-/*// 
-// Start address: 0x2d8300
-void njPtclDrawPolygon(_anon0* p, int n, float h)
-{
-	tagNJS_SCRVECTOR scr;
-	unsigned int col;
-	unsigned int i;
-	float bp[4];
-	float buff[4][256];
-	float invz;
-	// Line 67, Address: 0x2d8300, Func Offset: 0
-	// Line 78, Address: 0x2d832c, Func Offset: 0x2c
-	// Line 79, Address: 0x2d8338, Func Offset: 0x38
-	// Line 81, Address: 0x2d8380, Func Offset: 0x80
-	// Line 82, Address: 0x2d8384, Func Offset: 0x84
-	// Line 83, Address: 0x2d8388, Func Offset: 0x88
-	// Line 84, Address: 0x2d838c, Func Offset: 0x8c
-	// Line 85, Address: 0x2d8390, Func Offset: 0x90
-	// Line 86, Address: 0x2d8394, Func Offset: 0x94
-	// Line 87, Address: 0x2d8398, Func Offset: 0x98
-	// Line 90, Address: 0x2d839c, Func Offset: 0x9c
-	// Line 102, Address: 0x2d83ac, Func Offset: 0xac
-	// Line 121, Address: 0x2d83b0, Func Offset: 0xb0
-	// Line 91, Address: 0x2d83b4, Func Offset: 0xb4
-	// Line 103, Address: 0x2d83b8, Func Offset: 0xb8
-	// Line 104, Address: 0x2d83bc, Func Offset: 0xbc
-	// Line 102, Address: 0x2d83c0, Func Offset: 0xc0
-	// Line 105, Address: 0x2d83c4, Func Offset: 0xc4
-	// Line 120, Address: 0x2d83c8, Func Offset: 0xc8
-	// Line 102, Address: 0x2d83cc, Func Offset: 0xcc
-	// Line 103, Address: 0x2d83d0, Func Offset: 0xd0
-	// Line 121, Address: 0x2d83d4, Func Offset: 0xd4
-	// Line 103, Address: 0x2d83d8, Func Offset: 0xd8
-	// Line 104, Address: 0x2d83e0, Func Offset: 0xe0
-	// Line 105, Address: 0x2d83e8, Func Offset: 0xe8
-	// Line 106, Address: 0x2d83f0, Func Offset: 0xf0
-	// Line 107, Address: 0x2d83fc, Func Offset: 0xfc
-	// Line 108, Address: 0x2d8408, Func Offset: 0x108
-	// Line 109, Address: 0x2d8410, Func Offset: 0x110
-	// Line 112, Address: 0x2d8418, Func Offset: 0x118
-	// Line 113, Address: 0x2d841c, Func Offset: 0x11c
-	// Line 114, Address: 0x2d8420, Func Offset: 0x120
-	// Line 115, Address: 0x2d8424, Func Offset: 0x124
-	// Line 117, Address: 0x2d8428, Func Offset: 0x128
-	// Line 118, Address: 0x2d842c, Func Offset: 0x12c
-	// Line 119, Address: 0x2d8430, Func Offset: 0x130
-	// Line 120, Address: 0x2d8434, Func Offset: 0x134
-	// Line 121, Address: 0x2d8438, Func Offset: 0x138
-	// Line 123, Address: 0x2d8440, Func Offset: 0x140
-	// Line 124, Address: 0x2d8454, Func Offset: 0x154
-	// Line 126, Address: 0x2d8468, Func Offset: 0x168
-	// Line 127, Address: 0x2d8470, Func Offset: 0x170
-	// Line 130, Address: 0x2d8484, Func Offset: 0x184
-	// Func End, Address: 0x2d84b4, Func Offset: 0x1b4
-}*/
+// 100% matching!
+void	njPtclDrawPolygon( NJS_POINT3 *p, Sint32 n, Float h ) 
+{ 
+    float invz; 
+    float buff[256][4]; 
+    float (* bp)[4];
+    unsigned int i; 
+    unsigned int col; 
+    NJS_SCRVECTOR scr; 
+    
+    bp = (void*)&buff; 
+    
+    col = Ps2_ptcl_poly_col; 
+    
+    for (i = 0; i < n; i++) 
+    { 
+        *(unsigned int*)&bp[1][0] = ((col >> 16) & 0xFF) + 1; 
+        *(unsigned int*)&bp[1][1] = ((col >> 8) & 0xFF) + 1; 
+        *(unsigned int*)&bp[1][2] = (col & 0xFF) + 1; 
+        *(unsigned int*)&bp[1][3] = (((col >> 24) & 0xFF) + 1) / 2; 
+        
+        *(unsigned int*)&bp[4][0] = ((col >> 16) & 0xFF) + 1; 
+        *(unsigned int*)&bp[4][1] = ((col >> 8) & 0xFF) + 1; 
+        *(unsigned int*)&bp[4][2] = (col & 0xFF) + 1;
+        *(unsigned int*)&bp[4][3] = (((col >> 24) & 0xFF) + 1) / 2; 
+            
+        njRotTransPers(&p[i], &scr); 
+        
+        invz = scr.iz; 
+        
+        bp[2][0] = scr.x - h; 
+        bp[2][1] = scr.y - h;
+        bp[2][2] = scr.z; 
+        bp[2][3] = scr.fog;
+        
+        bp[5][0] = scr.x + h; 
+        bp[5][1] = scr.y + h; 
+        bp[5][2] = scr.z; 
+        bp[5][3] = scr.fog; 
+        
+        bp[0][0] = 0; 
+        bp[0][1] = 0;
+        bp[0][2] = invz; 
+        bp[0][3] = 0; 
+        
+        bp[3][0] = invz; 
+        bp[3][1] = invz; 
+        bp[3][2] = invz;  
+        bp[3][3] = 0; 
+        
+        bp += 6; 
+    }
+    
+    if (Ps2_ptcl_spr_flag == 1) 
+    { 
+        Ps2AddPrim3D(0x33000000000000, &buff, n); 
+    } 
+    else 
+    {
+        Ps2AddPrim3D(0x13000000000000, &buff, n);
+    } 
+}
 
 // 100% matching!
 void	njPtclSpriteStart( Sint32 texid, Uint32 col, Sint32 flag )
