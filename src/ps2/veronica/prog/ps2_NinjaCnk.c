@@ -2021,16 +2021,13 @@ int _CVV(float* v0)
 	// Line 3817, Address: 0x2d258c, Func Offset: 0x2c
 	// Line 3820, Address: 0x2d2590, Func Offset: 0x30
 	// Func End, Address: 0x2d2598, Func Offset: 0x38
-}
-
-// 
-// Start address: 0x2d3780
-tagCHUNK_HEAD* njCnkDefaultLong(tagCHUNK_HEAD* pCnk)
-{
-	// Line 4028, Address: 0x2d3780, Func Offset: 0
-	// Line 4029, Address: 0x2d378c, Func Offset: 0xc
-	// Func End, Address: 0x2d3794, Func Offset: 0x14
 }*/
+
+// 100% matching!
+CHUNK_HEAD* njCnkDefaultLong(CHUNK_HEAD* pCnk)
+{ 
+    return (CHUNK_HEAD*)&((unsigned int*)(pCnk + 1))[pCnk->usSize]; 
+}
 
 // 100% matching!
 CHUNK_HEAD* njCnkDefaultShort(CHUNK_HEAD* pCnk) 
