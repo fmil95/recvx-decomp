@@ -2030,18 +2030,15 @@ tagCHUNK_HEAD* njCnkDefaultLong(tagCHUNK_HEAD* pCnk)
 	// Line 4028, Address: 0x2d3780, Func Offset: 0
 	// Line 4029, Address: 0x2d378c, Func Offset: 0xc
 	// Func End, Address: 0x2d3794, Func Offset: 0x14
+}*/
+
+// 100% matching!
+CHUNK_HEAD* njCnkDefaultShort(CHUNK_HEAD* pCnk) 
+{ 
+    return (CHUNK_HEAD*)&((unsigned short*)(pCnk + 1))[pCnk->usSize]; 
 }
 
-// 
-// Start address: 0x2d37a0
-tagCHUNK_HEAD* njCnkDefaultShort(tagCHUNK_HEAD* pCnk)
-{
-	// Line 4049, Address: 0x2d37a0, Func Offset: 0
-	// Line 4050, Address: 0x2d37ac, Func Offset: 0xc
-	// Func End, Address: 0x2d37b4, Func Offset: 0x14
-}
-
-// 
+/*// 
 // Start address: 0x2d37c0
 void njCnkEasyMultiDrawObjectI(cnkobj* pObject)
 {

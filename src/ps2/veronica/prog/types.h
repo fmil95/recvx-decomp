@@ -2931,6 +2931,14 @@ typedef struct NJS_SCRVECTOR
     float fog; // offset 0x10, size 0x4
 } NJS_SCRVECTOR;
 
+typedef struct CHUNK_HEAD 
+{
+    // total size: 0x4
+    unsigned char ucType;     // offset 0x0, size 0x1
+    unsigned char ucHeadBits; // offset 0x1, size 0x1
+    unsigned short usSize;    // offset 0x2, size 0x2
+} CHUNK_HEAD;
+
 #define SCR_WIDTH 640
 #define SCR_HEIGHT 224
 
