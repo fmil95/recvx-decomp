@@ -484,9 +484,9 @@ tagVU1_COLOR NaCnkAmbientSm;
 tagCNK_LIGHT NaCnkLightEs;
 tagCNK_LIGHT NaCnkLightEm[6];
 tagCNK_LIGHT NaCnkLightSs;
-tagCNK_LIGHT NaCnkLightSm[6];
-tagCNK_LIGHTING NaCnkLighting[4];
-void* vpDummy;
+tagCNK_LIGHT NaCnkLightSm[6];*/
+CNK_LIGHTING NaCnkLighting[4]; // TODO: needs data migration
+/*void* vpDummy;
 unsigned int Ps2_use_pt_flag;
 unsigned int _nj_control_3d_flag_;
 unsigned int Ps2_njControl3D_flag;
@@ -852,20 +852,19 @@ void njCnkSetSimpleLightColor(float fR, float fG, float fB)
 	// Line 1089, Address: 0x2cf890, Func Offset: 0x10
 	// Line 1090, Address: 0x2cf894, Func Offset: 0x14
 	// Func End, Address: 0x2cf89c, Func Offset: 0x1c
-}
+}*/
 
-// 
-// Start address: 0x2cf8a0
-void njCnkSetSimpleMultiLight(int lLightMax)
+// 100% matching!
+void    njCnkSetSimpleMultiLight(Int num)
 {
-	// Line 1108, Address: 0x2cf8a0, Func Offset: 0
-	// Line 1109, Address: 0x2cf8a8, Func Offset: 0x8
-	// Func End, Address: 0x2cf8b4, Func Offset: 0x14
+    NaCnkLighting[3].lLightMax = num;
+    
+    njCnkSetSimpleMultiLightSwitch(0, 1);
 }
 
 // 
 // Start address: 0x2cf8c0
-void njCnkSetSimpleMultiLightSwitch(int iLightNum, int iSwitch)
+void    njCnkSetSimpleMultiLightSwitch(Int light, Int flag)
 {
 	// Line 1133, Address: 0x2cf8c0, Func Offset: 0
 	// Line 1135, Address: 0x2cf8c8, Func Offset: 0x8
@@ -875,9 +874,10 @@ void njCnkSetSimpleMultiLightSwitch(int iLightNum, int iSwitch)
 	// Line 1142, Address: 0x2cf908, Func Offset: 0x48
 	// Line 1144, Address: 0x2cf91c, Func Offset: 0x5c
 	// Func End, Address: 0x2cf924, Func Offset: 0x64
+	scePrintf("njCnkSetSimpleMultiLightSwitch - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cf930
 void njCnkSetSimpleMultiAmbient(float fR, float fG, float fB)
 {

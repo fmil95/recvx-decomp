@@ -2939,6 +2939,47 @@ typedef struct CHUNK_HEAD
     unsigned short usSize;    // offset 0x2, size 0x2
 } CHUNK_HEAD;
 
+typedef struct CNK_LIGHT
+{
+    // total size: 0x40
+    unsigned int ulState; // offset 0x0, size 0x4
+    unsigned int ulMode;  // offset 0x4, size 0x4
+    float fNearRR;        // offset 0x8, size 0x4
+    float fFarRR;         // offset 0xC, size 0x4
+    float fR;             // offset 0x10, size 0x4
+    float fG;             // offset 0x14, size 0x4
+    float fB;             // offset 0x18, size 0x4
+    float fI;             // offset 0x1C, size 0x4
+    float fWx;            // offset 0x20, size 0x4
+    float fWy;            // offset 0x24, size 0x4
+    float fWz;            // offset 0x28, size 0x4
+    float pad0;           // offset 0x2C, size 0x4
+    float fCx;            // offset 0x30, size 0x4
+    float fCy;            // offset 0x34, size 0x4
+    float fCz;            // offset 0x38, size 0x4
+    float pad1;           // offset 0x3C, size 0x4
+} CNK_LIGHT;
+
+typedef struct VU1_COLOR 
+{
+    // total size: 0x10
+    float fR; // offset 0x0, size 0x4
+    float fG; // offset 0x4, size 0x4
+    float fB; // offset 0x8, size 0x4
+    float fA; // offset 0xC, size 0x4
+} VU1_COLOR;
+
+typedef struct CNK_LIGHTING
+{
+    // total size: 0x40
+    CNK_LIGHT* pLightTop; // offset 0x0, size 0x4
+    int lLightMax;        // offset 0x4, size 0x4
+    VU1_COLOR* pDiffuse;  // offset 0x8, size 0x4
+    VU1_COLOR* pSpecula;  // offset 0xC, size 0x4
+    VU1_COLOR* pAmbient;  // offset 0x10, size 0x4
+    unsigned int pad[11]; // offset 0x14, size 0x2C
+} CNK_LIGHTING; 
+
 #define SCR_WIDTH 640
 #define SCR_HEIGHT 224
 
