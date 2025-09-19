@@ -126,20 +126,19 @@ void    njSetScreen(NJS_SCREEN *s)
 	scePrintf("njSetScreen - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2e2a80
-void njSetPerspective(int lAngle)
-{
-	// Line 167, Address: 0x2e2a80, Func Offset: 0
-	// Line 168, Address: 0x2e2a84, Func Offset: 0x4
-	// Line 166, Address: 0x2e2a94, Func Offset: 0x14
-	// Line 168, Address: 0x2e2a9c, Func Offset: 0x1c
-	// Line 170, Address: 0x2e2acc, Func Offset: 0x4c
-	// Line 175, Address: 0x2e2ad4, Func Offset: 0x54
-	// Line 177, Address: 0x2e2ae0, Func Offset: 0x60
-	// Line 178, Address: 0x2e2aec, Func Offset: 0x6c
-	// Func End, Address: 0x2e2af8, Func Offset: 0x78
-}*/
+// 93.17% matching
+void	njSetPerspective(Angle ang)
+{ 
+    ang /= 2; 
+    
+    _nj_screen_.dist = (_nj_screen_.w / 2.0f) / tanf(0.0000958738f * ang);
+    
+    Ps2CalcScreenCone();
+    
+    njViewScreenMatrix(&NaViewScreenMatrix); 
+    
+    vu1SetScreenProjection(_nj_screen_.dist);
+} 
 
 // 100% matching!
 void njSetScreenProjection(float dist)
