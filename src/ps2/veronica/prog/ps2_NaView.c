@@ -139,20 +139,19 @@ void njSetPerspective(int lAngle)
 	// Line 177, Address: 0x2e2ae0, Func Offset: 0x60
 	// Line 178, Address: 0x2e2aec, Func Offset: 0x6c
 	// Func End, Address: 0x2e2af8, Func Offset: 0x78
-}
-
-// 
-// Start address: 0x2e2b00
-void njSetScreenProjection(float dist)
-{
-	// Line 191, Address: 0x2e2b00, Func Offset: 0
-	// Line 192, Address: 0x2e2b08, Func Offset: 0x8
-	// Line 194, Address: 0x2e2b0c, Func Offset: 0xc
-	// Line 199, Address: 0x2e2b14, Func Offset: 0x14
-	// Line 201, Address: 0x2e2b20, Func Offset: 0x20
-	// Line 203, Address: 0x2e2b2c, Func Offset: 0x2c
-	// Func End, Address: 0x2e2b38, Func Offset: 0x38
 }*/
+
+// 100% matching!
+void njSetScreenProjection(float dist)
+{ 
+    _nj_screen_.dist = dist; 
+    
+    Ps2CalcScreenCone(); 
+    
+    njViewScreenMatrix(&NaViewScreenMatrix); 
+    
+    vu1SetScreenProjection(_nj_screen_.dist); 
+} 
 
 // 100% matching!
 void    njSetAspect(Float ax, Float ay)

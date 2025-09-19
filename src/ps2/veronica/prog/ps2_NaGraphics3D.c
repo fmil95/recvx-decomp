@@ -128,7 +128,7 @@ void Ps2SetPlane(_anon1* p, float* v0, float* v1, float* v2)
 	// Line 71, Address: 0x2dfa58, Func Offset: 0x58
 	// Line 72, Address: 0x2dfa64, Func Offset: 0x64
 	// Func End, Address: 0x2dfa78, Func Offset: 0x78
-}
+}*/
 
 // 
 // Start address: 0x2dfa80
@@ -152,9 +152,10 @@ void Ps2CalcScreenCone()
 	// Line 88, Address: 0x2dfb08, Func Offset: 0x88
 	// Line 89, Address: 0x2dfb28, Func Offset: 0xa8
 	// Func End, Address: 0x2dfb34, Func Offset: 0xb4
+	scePrintf("Ps2CalcScreenCone - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dfb40
 float Calc_Intersection2(float* v0, float* v1, _anon1* plane)
 {

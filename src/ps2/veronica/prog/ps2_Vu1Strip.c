@@ -185,7 +185,7 @@ void vu1GetVertexColorDifSpe3Amb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPri
 void vu1RotTransStripBuf(float pMatrix[16], _anon3* pVector, tagVU1_STRIP_BUF* pBuf);
 void vu1DrawTriangleStripTransDoubleI(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode);
 void DrawScissorPolygonTrans1P(_anon2* scissor, unsigned long ulType);
-void vu1DrawTriangleStripTransDouble1P(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode);
+void vu1DrawTriangleStripTransDouble1P(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode);*/
 
 // 
 // Start address: 0x2d38c0
@@ -197,7 +197,8 @@ void vu1SetScreenProjection(float fProjection)
 	// Line 208, Address: 0x2d38d4, Func Offset: 0x14
 	// Line 216, Address: 0x2d38d8, Func Offset: 0x18
 	// Func End, Address: 0x2d38fc, Func Offset: 0x3c
-}*/
+	scePrintf("vu1SetScreenProjection - UNIMPLEMENTED!\n");
+}
 
 void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far); // TODO: remove this declaration
 // 100% matching!
