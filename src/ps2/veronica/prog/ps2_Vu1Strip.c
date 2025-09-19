@@ -229,7 +229,7 @@ void vu1SetNearFarClip(float fNear, float fFar)
     _Make_ClipMatrix(&ClipMatrix2[0], fVu1Projection, _fNaViwClipNear, _fNaViwClipFar);
 }
 
-/*// 
+// 
 // Start address: 0x2d3970
 void vu1SetScreenOffset(float fOffsetX, float fOffsetY)
 {
@@ -242,7 +242,8 @@ void vu1SetScreenOffset(float fOffsetX, float fOffsetY)
 	// Line 282, Address: 0x2d3990, Func Offset: 0x20
 	// Line 289, Address: 0x2d3994, Func Offset: 0x24
 	// Func End, Address: 0x2d399c, Func Offset: 0x2c
-}*/
+	scePrintf("vu1SetScreenOffset - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void vu1SetScreenAspect(float fAspectW, float fAspectH)
