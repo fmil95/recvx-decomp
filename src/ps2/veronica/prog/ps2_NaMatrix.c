@@ -967,11 +967,11 @@ void njMirror(float pMatrix[16], _anon3* pPlane)
 	// Line 4135, Address: 0x2d74ac, Func Offset: 0x24c
 	// Line 4136, Address: 0x2d74b8, Func Offset: 0x258
 	// Func End, Address: 0x2d74d0, Func Offset: 0x270
-}
+}*/
 
 // 
 // Start address: 0x2d74d0
-void njCalcPoint(float pMatrix[16], _anon0* pSrcPoint, _anon0* pDstPoint)
+void	njCalcPoint(NJS_MATRIX *m, NJS_POINT3 *ps, NJS_POINT3 *pd)
 {
 	// Line 4173, Address: 0x2d74d0, Func Offset: 0
 	// Line 4226, Address: 0x2d74e4, Func Offset: 0x14
@@ -994,9 +994,10 @@ void njCalcPoint(float pMatrix[16], _anon0* pSrcPoint, _anon0* pDstPoint)
 	// Line 4246, Address: 0x2d7528, Func Offset: 0x58
 	// Line 4253, Address: 0x2d752c, Func Offset: 0x5c
 	// Func End, Address: 0x2d7534, Func Offset: 0x64
+	scePrintf("njCalcPoint - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d7540
 void njCalcPoint4(float pMatrix[16], _anon1* pSrcPoint, _anon1* pDstPoint)
 {

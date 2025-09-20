@@ -224,40 +224,56 @@ void    njClipZ(Float n, Float f)
     CalcPs2ZbuffAB();
 }
 
-/*// 
-// Start address: 0x2e2d30
-int njCalcScreen(_anon0* pPoint, float* fpScreenX, float* fpScreenY)
-{
-	float fZ;
-	float fSY;
-	float fSX;
-	_anon0 Point;
-	// Line 435, Address: 0x2e2d30, Func Offset: 0
-	// Line 441, Address: 0x2e2d48, Func Offset: 0x18
-	// Line 444, Address: 0x2e2d5c, Func Offset: 0x2c
-	// Line 445, Address: 0x2e2d60, Func Offset: 0x30
-	// Line 444, Address: 0x2e2d64, Func Offset: 0x34
-	// Line 446, Address: 0x2e2d70, Func Offset: 0x40
-	// Line 447, Address: 0x2e2d74, Func Offset: 0x44
-	// Line 444, Address: 0x2e2d78, Func Offset: 0x48
-	// Line 447, Address: 0x2e2d7c, Func Offset: 0x4c
-	// Line 448, Address: 0x2e2d80, Func Offset: 0x50
-	// Line 445, Address: 0x2e2d84, Func Offset: 0x54
-	// Line 447, Address: 0x2e2d88, Func Offset: 0x58
-	// Line 448, Address: 0x2e2d90, Func Offset: 0x60
-	// Line 446, Address: 0x2e2d94, Func Offset: 0x64
-	// Line 448, Address: 0x2e2d98, Func Offset: 0x68
-	// Line 451, Address: 0x2e2d9c, Func Offset: 0x6c
-	// Line 448, Address: 0x2e2da0, Func Offset: 0x70
-	// Line 451, Address: 0x2e2da4, Func Offset: 0x74
-	// Line 452, Address: 0x2e2dc4, Func Offset: 0x94
-	// Line 453, Address: 0x2e2de4, Func Offset: 0xb4
-	// Line 454, Address: 0x2e2e08, Func Offset: 0xd8
-	// Line 455, Address: 0x2e2e20, Func Offset: 0xf0
-	// Line 456, Address: 0x2e2e44, Func Offset: 0x114
-	// Line 458, Address: 0x2e2e60, Func Offset: 0x130
-	// Func End, Address: 0x2e2e74, Func Offset: 0x144
-}*/
+// 100% matching!
+int     njCalcScreen(NJS_POINT3 *p, Float *sx, Float *sy) 
+{ 
+    NJS_POINT3 Point;
+    float fSX;
+    float fSY;
+    float fZ;
+
+    njCalcPoint(&NaViwViewMatrix, p, &Point); 
+
+    fZ = _nj_screen_.dist / Point.z; 
+    
+    fSX = Point.x * fZ; 
+    fSY = Point.y * fZ; 
+    
+    *sx = fNaViwOffsetX + fSX; 
+    *sy = fNaViwOffsetY + fSY; 
+    
+    if (Point.z < _fNaViwClipNear) 
+    { 
+        return -1; 
+    } 
+    
+    if (_fNaViwClipFar < Point.z)
+    { 
+        return -1; 
+    } 
+    
+    if (fSX < -fNaViwHalfW) 
+    {
+        return -1; 
+    }
+    
+    if (fNaViwHalfW < fSX) 
+    {
+        return -1;
+    }
+    
+    if (fSY < -fNaViwHalfH) 
+    {
+        return -1;
+    }
+    
+    if (fNaViwHalfH < fSY) 
+    {
+        return -1;
+    }
+    
+    return 0;
+}
 
 // 100% matching!
 void njViewScreenMatrix(NJS_MATRIX* vs) // this function is not on this KATANA release
