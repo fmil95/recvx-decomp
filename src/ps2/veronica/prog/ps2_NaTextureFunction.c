@@ -175,8 +175,8 @@ void* Ps2_tex_buff;
 unsigned int Ps2_current_texno;
 NJS_TEXLIST* Ps2_current_texlist;
 NJS_TEXMEMLIST* Ps2_current_texmemlist;
-/*char*(*index)(char*, int);
-unsigned int Ps2_render_width;
+char* index(char*, int);
+/*unsigned int Ps2_render_width;
 unsigned int palbuf[4096];
 unsigned int Ps2_clut[1024];*/
 void* Ps2_render_p;
@@ -553,24 +553,27 @@ Sint32	njSetTextureNum(Uint32 n)
     Ps2TexLoad(Ps2_current_texmemlist);
 }
 
-/*// 
-// Start address: 0x2e21d0
-int njSetTextureNumG(unsigned int globalIndex)
+// 100% matching!
+Sint32	njSetTextureNumG(Uint32 globalIndex)
 {
-	int no;
-	// Line 463, Address: 0x2e21d0, Func Offset: 0
-	// Line 469, Address: 0x2e21dc, Func Offset: 0xc
-	// Line 470, Address: 0x2e21e8, Func Offset: 0x18
-	// Line 472, Address: 0x2e21f0, Func Offset: 0x20
-	// Line 474, Address: 0x2e21f4, Func Offset: 0x24
-	// Line 472, Address: 0x2e21f8, Func Offset: 0x28
-	// Line 474, Address: 0x2e21fc, Func Offset: 0x2c
-	// Line 478, Address: 0x2e2218, Func Offset: 0x48
-	// Line 480, Address: 0x2e2224, Func Offset: 0x54
-	// Line 481, Address: 0x2e222c, Func Offset: 0x5c
-	// Line 483, Address: 0x2e2248, Func Offset: 0x78
-	// Func End, Address: 0x2e2258, Func Offset: 0x88
-}*/
+    int no;
+
+    no = SearchNumber(globalIndex, -1);
+    
+    if (no >= 0) 
+    {
+        Ps2_current_gindex = globalIndex;
+        Ps2_current_texmemlist = &Ps2_tex_info[no];
+        
+        Ps2TexLoad(Ps2_current_texmemlist);
+    }
+    else 
+    {
+        printf("Ps2GlobalIndexTexLoad ERROR!!! %08x\n", &index);
+        
+        exit(0);
+    }
+}
 
 // 100% matching!
 int njSetTextureNumSys(unsigned int n)
