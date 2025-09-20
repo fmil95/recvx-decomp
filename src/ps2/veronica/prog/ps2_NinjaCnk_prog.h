@@ -1,6 +1,5 @@
-
-
-
+#ifndef _PS2_NINJACNK_PROG_H_
+#define _PS2_NINJACNK_PROG_H_
 
 /*tagCHUNK_HEAD* njCnkCsUvh(tagCHUNK_HEAD* pCnk);
 tagCHUNK_HEAD* njCnkCsUvn(tagCHUNK_HEAD* pCnk);
@@ -589,3 +588,4 @@ tagCHUNK_HEAD* njCnkCsUvn(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d377c, Func Offset: 0x8ec
 }*/
 
+#endif
