@@ -6,36 +6,8 @@ unsigned int Ps2_vcount;
 unsigned int Ps2_dbuff;
 sceGsDBuffDc Db;
 SYS_WORK* sys;
-int vsync_func(int);
 PS2_NJ_SAVE Ps2_nj_save_current;
 PS2_GS_SAVE Ps2_gs_save;
-
-/*void njSetTextureMemorySize();
-void njSetVertexBuffer();
-void njInitSystem();
-void njInitVertexBuffer();
-void njWaitVSync();*/
-void null_func();
-/*void Ps2InitFunc();
-void njSetEORFunction(void(*func)());
-void Ps2SwapDBuff();
-void vsync_func();
-void Ps2SetVSyncCounter();
-void njSetVSyncFunction(void(*func)());
-void njExitSystem();
-void njSetBackColor(unsigned int col1);
-void njTextureFilterMode(int mode);
-void njPolygonCullingMode();
-void njColorBlendingModeSys(int s_mode, int d_mode);
-void njColorBlendingMode(int target, int mode);
-void njTextureShadingMode();
-void njSetCheapShadowMode();
-void njUserClipping(int mode, _anon15* np);
-void njGetSystemAttr(char attr[192]);
-void njSetSystemAttr(char attr[192]);
-void njChangeSystem();
-void njAdjustDisplay(int xadjust, int yadjust);
-void njSetBorderColor();*/
 
 // 100% matching!
 void	njSetTextureMemorySize(Uint32 size )
@@ -282,13 +254,11 @@ void    njTextureShadingMode( Int mode )
 
 }
 
-/*// 
-// Start address: 0x2e18b0
-void njSetCheapShadowMode()
+// 100% matching! 
+void    njSetCheapShadowMode( Int mode )
 {
-	// Line 565, Address: 0x2e18b0, Func Offset: 0
-	// Func End, Address: 0x2e18b8, Func Offset: 0x8
-}*/
+
+}
 
 // 99.95% matching 
 void	njUserClipping(Int mode ,NJS_POINT2 *p)
