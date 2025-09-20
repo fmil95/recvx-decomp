@@ -716,13 +716,10 @@ void 	njSetPaletteData(Sint32 offset,Sint32 count,void* data)
 	scePrintf("njSetPaletteData - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2e2500
+// 100% matching!
 void	njGarbageTexture(NJS_TEXMEMLIST *addr,Uint32 n)
 {
-	// Line 825, Address: 0x2e2500, Func Offset: 0
-	// Func End, Address: 0x2e2508, Func Offset: 0x8
-	scePrintf("njGarbageTexture - UNIMPLEMENTED!\n");
+    Ps2TextureGarbageCollectionAll();
 }
 
 // 100% matching!
@@ -871,7 +868,7 @@ int Ps2ReplaceTexAddr(unsigned int gindex, void* rep_addr)
 	// Line 996, Address: 0x2e2820, Func Offset: 0x40
 	// Line 998, Address: 0x2e2830, Func Offset: 0x50
 	// Func End, Address: 0x2e2838, Func Offset: 0x58
-}
+}*/
 
 // 
 // Start address: 0x2e2840
@@ -879,8 +876,8 @@ int Ps2TextureGarbageCollectionAll()
 {
 	unsigned char* real_p;
 	unsigned int size;
-	_anon4* after2;
-	_anon4* p;
+	//_anon4* after2;
+	//_anon4* p;
 	// Line 1003, Address: 0x2e2840, Func Offset: 0
 	// Line 1008, Address: 0x2e2848, Func Offset: 0x8
 	// Line 1009, Address: 0x2e2850, Func Offset: 0x10
@@ -903,7 +900,8 @@ int Ps2TextureGarbageCollectionAll()
 	// Line 1038, Address: 0x2e28e8, Func Offset: 0xa8
 	// Line 1042, Address: 0x2e28f8, Func Offset: 0xb8
 	// Func End, Address: 0x2e2908, Func Offset: 0xc8
-}*/
+    scePrintf("Ps2TextureGarbageCollectionAll - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int ring_check()

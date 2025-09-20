@@ -16,29 +16,32 @@ int lNaCnkSrcAlphaMode[8];
 int lNaCnkDstAlphaMode[8];
 int lNaCnkSrcBlendMode;
 int lNaCnkDstBlendMode;
-unsigned char ucNaCnkAttr;
-tagVU1_COLOR NaCnkDefaultOne;
-float fNaCnkConstantA;
+unsigned char ucNaCnkAttr;*/
+VU1_COLOR NaCnkDefaultOne;
+/*float fNaCnkConstantA;
 float fNaCnkConstantR;
 float fNaCnkConstantG;
 float fNaCnkConstantB;
 tagVU1_COLOR NaCnkConstantMaterial;
-float fNaCnkAlphaMaterial;
-tagVU1_COLOR NaCnkDiffuseMaterial;
-float fNaCnkMaterialSpeE;
-tagVU1_COLOR NaCnkSpeculaMaterial;
-tagVU1_COLOR NaCnkAmbientMaterial;
+float fNaCnkAlphaMaterial;*/
+VU1_COLOR NaCnkDiffuseMaterial;
+/*float fNaCnkMaterialSpeE;*/
+VU1_COLOR NaCnkSpeculaMaterial;
+/*tagVU1_COLOR NaCnkAmbientMaterial;
 tagVU1_COLOR NaCnkAmbientFunctionEm;
-tagVU1_COLOR NaCnkAmbientFunctionSm;
-tagVU1_COLOR NaCnkAmbientEs;
-tagVU1_COLOR NaCnkAmbientEm;
-tagVU1_COLOR NaCnkAmbientSs;
-tagVU1_COLOR NaCnkAmbientSm;
-tagCNK_LIGHT NaCnkLightEs;
-tagCNK_LIGHT NaCnkLightEm[6];
-tagCNK_LIGHT NaCnkLightSs;
-tagCNK_LIGHT NaCnkLightSm[6];*/
-CNK_LIGHTING NaCnkLighting[4]; // TODO: needs data migration
+tagVU1_COLOR NaCnkAmbientFunctionSm;*/
+VU1_COLOR NaCnkAmbientEs;
+VU1_COLOR NaCnkAmbientEm;
+VU1_COLOR NaCnkAmbientSs;
+VU1_COLOR NaCnkAmbientSm;
+CNK_LIGHT NaCnkLightEs;
+CNK_LIGHT NaCnkLightEm[6];
+CNK_LIGHT NaCnkLightSs;
+CNK_LIGHT NaCnkLightSm[6];
+CNK_LIGHTING NaCnkLighting[4] = { { &NaCnkLightEs, 1, &NaCnkDefaultOne, &NaCnkSpeculaMaterial, &NaCnkAmbientEs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                                  { NaCnkLightEm, 6, &NaCnkDefaultOne, &NaCnkDefaultOne, &NaCnkAmbientEm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                                  { &NaCnkLightSs, 1, &NaCnkDiffuseMaterial, &NaCnkSpeculaMaterial, &NaCnkAmbientSs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                                  { NaCnkLightSm, 6, &NaCnkDiffuseMaterial, &NaCnkDefaultOne, &NaCnkAmbientSm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 /*void* vpDummy;
 unsigned int Ps2_use_pt_flag;
 unsigned int _nj_control_3d_flag_;
