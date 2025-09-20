@@ -186,7 +186,7 @@ def main(args):
             shutil.move(object_file, destination)
 
         if output_elf:
-            print(f"Build steps have been successfully completed: {output_elf} was generated.")
+            print(f"Build steps have been successfully completed: {os.path.basename(output_elf)} was generated.")
         else:
             print(f"Linkage fail. See report.txt for more info.")
     else:
