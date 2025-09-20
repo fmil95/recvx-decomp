@@ -111,6 +111,7 @@
 #include "ps2_SaveScreen.c"
 #include "ps2_SystemSaveScreen.c"
 #include "ps2_Vu1Scissor2.c"
+#include "ps2_Vu1Strip.c"
 #include "rutchk.c"
 #include "subpl.c"
 #include "weapon.c"

@@ -1,5 +1,4 @@
 #include "ps2_NaView.h"
-#include "ps2_Vu1Strip.c"
 
 float fNaViwOffsetX = 2048.0f;
 float fNaViwOffsetY = 2048.0f;
