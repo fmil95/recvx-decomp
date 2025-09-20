@@ -343,14 +343,11 @@ void    njGetSystemAttr(NJS_SYS_ATTR *attr)
     *(PS2_NJ_SAVE*)attr = Ps2_nj_save_current;
 }
 
-/*// 
-// Start address: 0x2e1a60
-void njSetSystemAttr(char attr[192])
-{
-	// Line 653, Address: 0x2e1a60, Func Offset: 0
-	// Line 655, Address: 0x2e1a74, Func Offset: 0x14
-	// Func End, Address: 0x2e1a7c, Func Offset: 0x1c
-}*/
+// 100% matching!
+void    njSetSystemAttr(NJS_SYS_ATTR *attr)
+{ 
+    Ps2_nj_save_current = *(PS2_NJ_SAVE*)attr; 
+} 
 
 // 100% matching! 
 void    njChangeSystem( Int mode, Int frame, Int count )
