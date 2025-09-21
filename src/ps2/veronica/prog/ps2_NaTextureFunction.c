@@ -69,15 +69,12 @@ void Ps2MemCopy4(void* vpDst, void* vpSrc, int lNum)
     unsigned int* lpSrc;
     unsigned int* lpDst;
 	
-    lpDst = vpDst;
-    lpSrc = vpSrc;
+    lpDst = (unsigned int*)vpDst;
+    lpSrc = (unsigned int*)vpSrc;
     
     while (lNum-- != 0)
     {
-        *lpDst = *lpSrc;
-        
-        lpSrc++;
-        lpDst++;
+        *lpDst++ = *lpSrc++;
     } 
 }
 

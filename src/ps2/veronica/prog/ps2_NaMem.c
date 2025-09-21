@@ -1,5 +1,4 @@
-/*void njMemCopy(void* vpDst, void* vpSrc, int lNum);
-void njMemCopy4(void* vpDst, void* vpSrc, int lNum);*/
+#include "ps2_NaMem.h"
 
 // 100% matching! 
 void	njMemCopy(  void *dst, const void *src, Sint32 num )
@@ -16,14 +15,17 @@ void	njMemCopy(  void *dst, const void *src, Sint32 num )
     } 
 } 
 
-// 
-// Start address: 0x2e3130
+// 100% matching! 
 void	njMemCopy4( void *dst, const void *src, Sint32 num )
-{
-	int* lpDst;
-	int* lpSrc;
-	// Line 106, Address: 0x2e3130, Func Offset: 0
-	// Line 117, Address: 0x2e3158, Func Offset: 0x28
-	// Func End, Address: 0x2e3160, Func Offset: 0x30
-	scePrintf("njMemCopy4 - UNIMPLEMENTED!\n");
+{ 
+    int* lpSrc;
+    int* lpDst;
+
+    lpSrc = (int*)src;
+    lpDst = (int*)dst;
+    
+    for ( ; num != 0; num--)
+    { 
+        *lpDst++ = *lpSrc++;
+    } 
 }
