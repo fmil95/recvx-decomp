@@ -1,14 +1,4 @@
-/*typedef struct _anon0;
-
-
-typedef float type[16384];
-
-struct _anon0
-{
-	int keys;
-	int* iparam;
-	float* fparam;
-};*/
+#include "ps2_NaMath.h"
 
 float SinTable[16384];
 
@@ -151,19 +141,15 @@ void njSinCos(int lAngle, float* sin, float* cos)
 	// Line 334, Address: 0x2d7ea8, Func Offset: 0xd8
 	// Line 338, Address: 0x2d7eac, Func Offset: 0xdc
 	// Func End, Address: 0x2d7eb4, Func Offset: 0xe4
-}
+}*/
 
-// 
-// Start address: 0x2d7ec0
-float njFraction(float fN)
-{
-	// Line 356, Address: 0x2d7ec0, Func Offset: 0
-	// Line 357, Address: 0x2d7ecc, Func Offset: 0xc
-	// Line 358, Address: 0x2d7ed8, Func Offset: 0x18
-	// Func End, Address: 0x2d7ee8, Func Offset: 0x28
-}
+// 79.50% matching 
+Float	njFraction  (Float n) 
+{ 
+    return n - floorf(n); 
+} 
 
-// 
+/*// 
 // Start address: 0x2d7ef0
 float njSqrt(float x)
 {
