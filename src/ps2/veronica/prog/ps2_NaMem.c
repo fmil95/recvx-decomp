@@ -1,21 +1,20 @@
-
-
-
-
 /*void njMemCopy(void* vpDst, void* vpSrc, int lNum);
 void njMemCopy4(void* vpDst, void* vpSrc, int lNum);*/
 
-// 
-// Start address: 0x2e3100
+// 100% matching! 
 void	njMemCopy(  void *dst, const void *src, Sint32 num )
-{
-	char* cpDst;
+{ 
 	char* cpSrc;
-	// Line 66, Address: 0x2e3100, Func Offset: 0
-	// Line 77, Address: 0x2e3128, Func Offset: 0x28
-	// Func End, Address: 0x2e3130, Func Offset: 0x30
-	scePrintf("njMemCopy - UNIMPLEMENTED!\n");
-}
+    char* cpDst;
+
+    cpSrc = (char*)src;
+    cpDst = (char*)dst;
+    
+    for ( ; num != 0; num--) 
+    { 
+        *cpDst++ = *cpSrc++;
+    } 
+} 
 
 // 
 // Start address: 0x2e3130
