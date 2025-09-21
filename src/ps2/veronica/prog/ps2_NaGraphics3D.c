@@ -112,23 +112,23 @@ float Across_Plane(float* v0, float* v1);
 void njDrawLine3D(_anon2* p, int n, unsigned int attr);
 void njDrawLine3DEx(_anon2* p, int n, unsigned int attr);
 void njDrawTriangle3D(_anon2* p, int n, unsigned int attr);
-void njDrawPolygon3D(_anon2* p, int n, unsigned int attr);
+void njDrawPolygon3D(_anon2* p, int n, unsigned int attr);*/
 
-// 
-// Start address: 0x2dfa00
-void Ps2SetPlane(_anon1* p, float* v0, float* v1, float* v2)
+// 100% matching! 
+void Ps2SetPlane(PS2_PLANE* p, sceVu0FVECTOR v0, sceVu0FVECTOR v1, sceVu0FVECTOR v2)
 {
-	float tmp1[4];
-	float tmp0[4];
-	// Line 64, Address: 0x2dfa00, Func Offset: 0
-	// Line 67, Address: 0x2dfa14, Func Offset: 0x14
-	// Line 68, Address: 0x2dfa2c, Func Offset: 0x2c
-	// Line 69, Address: 0x2dfa3c, Func Offset: 0x3c
-	// Line 70, Address: 0x2dfa4c, Func Offset: 0x4c
-	// Line 71, Address: 0x2dfa58, Func Offset: 0x58
-	// Line 72, Address: 0x2dfa64, Func Offset: 0x64
-	// Func End, Address: 0x2dfa78, Func Offset: 0x78
-}*/
+	sceVu0FVECTOR tmp0;
+    sceVu0FVECTOR tmp1;
+
+    sceVu0SubVector(tmp0, v1, v0);
+    sceVu0SubVector(tmp1, v2, v0);
+     
+    sceVu0OuterProduct(tmp0, tmp0, tmp1);
+    
+    sceVu0Normalize(p->norm, tmp0);
+
+    *(long128*)p->pos = *(long128*)&v0;
+}
 
 // 
 // Start address: 0x2dfa80

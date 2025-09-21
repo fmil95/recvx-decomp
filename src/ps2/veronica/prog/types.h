@@ -2980,6 +2980,13 @@ typedef struct CNK_LIGHTING
     unsigned int pad[11]; // offset 0x14, size 0x2C
 } CNK_LIGHTING; 
 
+typedef struct PS2_PLANE
+{
+    // total size: 0x20
+    sceVu0FVECTOR norm; // offset 0x0, size 0x10
+    sceVu0FVECTOR pos;  // offset 0x10, size 0x10
+} PS2_PLANE;
+
 #define SCR_WIDTH 640
 #define SCR_HEIGHT 224
 
