@@ -310,16 +310,19 @@ void njBezierSpline(float* fpIdata, float* fpOdata, _anon0* pAttr, float fFrame)
 	// Line 744, Address: 0x2d8260, Func Offset: 0x1c0
 	// Line 746, Address: 0x2d8268, Func Offset: 0x1c8
 	// Func End, Address: 0x2d829c, Func Offset: 0x1fc
-}
-
-// 
-// Start address: 0x2d82a0
-unsigned int njFactorial(unsigned int ulN)
-{
-	unsigned int ulResult;
-	// Line 804, Address: 0x2d82a0, Func Offset: 0
-	// Line 806, Address: 0x2d82a8, Func Offset: 0x8
-	// Line 807, Address: 0x2d82ac, Func Offset: 0xc
-	// Line 827, Address: 0x2d82c8, Func Offset: 0x28
-	// Func End, Address: 0x2d82d0, Func Offset: 0x30
 }*/
+
+// 100% matching! 
+unsigned int njFactorial(unsigned int ulN) 
+{ 
+    unsigned int ulResult;
+
+    ulResult = 1;
+    
+    for ( ; ulN != 0; ulN--)
+    { 
+        ulResult *= ulN; 
+    }
+    
+    return ulResult; 
+}
