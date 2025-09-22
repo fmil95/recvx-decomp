@@ -539,17 +539,15 @@ void njDrawTexture3DExSetData1P(_anon3* p, int count)
 	// Line 782, Address: 0x2ded48, Func Offset: 0x8
 	// Line 784, Address: 0x2ded50, Func Offset: 0x10
 	// Func End, Address: 0x2ded5c, Func Offset: 0x1c
-}
+}*/
 
-// 
-// Start address: 0x2ded60
-void njDrawTexture3DExEnd()
+// 100% matching!
+void	njDrawTexture3DExEnd(void) 
 {
-	// Line 795, Address: 0x2ded60, Func Offset: 0
-	// Func End, Address: 0x2ded68, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x2ded70
 void njDrawTextureSub3DH(_anon0* polygon, int count, int flag)
 {

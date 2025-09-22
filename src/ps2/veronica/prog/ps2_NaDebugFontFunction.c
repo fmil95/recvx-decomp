@@ -1,4 +1,4 @@
-
+#include "ps2_NaDebugFontFunction.h"
 
 // 100% matching!
 void 	njInitPrint(Uint32 *texture,Uint32 size,Uint32 attr)
