@@ -1,20 +1,15 @@
+#include "ps2_NaFog.h"
 
-
-/*typedef int type_0[4];
-typedef float type_1[8];
-typedef float type_2[128];
-typedef float type_3[8];
-
-float fNaFogTbl[128];*/
+/*float fNaFogTbl[128];*/
 unsigned int ulNaFogState;
-/*float fNaFogB;
+float fNaFogB;
 unsigned int ulNaFogB;
 float fNaFogG;
 unsigned int ulNaFogG;
 float fNaFogR;
 unsigned int ulNaFogR;
 float fNaFogA;
-unsigned int ulNaFogA;*/
+unsigned int ulNaFogA;
 float* fpNaFogTblTop;
 /*float fNaFogNear;
 float fNaFogFar;
@@ -41,33 +36,20 @@ void	njFogDisable()
     ulNaFogState = 0; 
 } 
 
-// 
-// Start address: 0x2d5f80
-void	njSetFogColor(Uint32 c)
+// 100% matching! 
+void	njSetFogColor(Uint32 c) 
 {
-	// Line 114, Address: 0x2d5f80, Func Offset: 0
-	// Line 115, Address: 0x2d5f90, Func Offset: 0x10
-	// Line 116, Address: 0x2d5fa0, Func Offset: 0x20
-	// Line 117, Address: 0x2d5fb0, Func Offset: 0x30
-	// Line 118, Address: 0x2d5fbc, Func Offset: 0x3c
-	// Line 119, Address: 0x2d5ffc, Func Offset: 0x7c
-	// Line 118, Address: 0x2d6000, Func Offset: 0x80
-	// Line 119, Address: 0x2d6004, Func Offset: 0x84
-	// Line 118, Address: 0x2d6008, Func Offset: 0x88
-	// Line 119, Address: 0x2d6010, Func Offset: 0x90
-	// Line 120, Address: 0x2d6048, Func Offset: 0xc8
-	// Line 119, Address: 0x2d604c, Func Offset: 0xcc
-	// Line 120, Address: 0x2d6050, Func Offset: 0xd0
-	// Line 119, Address: 0x2d6054, Func Offset: 0xd4
-	// Line 120, Address: 0x2d605c, Func Offset: 0xdc
-	// Line 121, Address: 0x2d6094, Func Offset: 0x114
-	// Line 120, Address: 0x2d6098, Func Offset: 0x118
-	// Line 121, Address: 0x2d609c, Func Offset: 0x11c
-	// Line 120, Address: 0x2d60a0, Func Offset: 0x120
-	// Line 121, Address: 0x2d60a8, Func Offset: 0x128
-	// Line 122, Address: 0x2d60f0, Func Offset: 0x170
-	// Func End, Address: 0x2d60f8, Func Offset: 0x178
-	scePrintf("njSetFogColor - UNIMPLEMENTED!\n");
+    ulNaFogA = (c >> 24) & 0xFF;
+    ulNaFogR = (c >> 16) & 0xFF;
+    ulNaFogG = (c >> 8) & 0xFF;
+    ulNaFogB = c & 0xFF;
+    
+    fNaFogA = ulNaFogA / 255.0f;
+    fNaFogR = ulNaFogR / 255.0f;
+    fNaFogG = ulNaFogG / 255.0f;
+    fNaFogB = ulNaFogB / 255.0f;
+    
+    Ps2SetFogColor();
 }
 
 // 100% matching! 

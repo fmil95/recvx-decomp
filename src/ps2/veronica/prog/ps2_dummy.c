@@ -2127,7 +2127,7 @@ label:
     return cache_flag;
 }
 
-/*// 
+// 
 // Start address: 0x2cd910
 void Ps2SetFogColor()
 {
@@ -2149,9 +2149,10 @@ void Ps2SetFogColor()
 	// Line 2759, Address: 0x2cd9a8, Func Offset: 0x98
 	// Line 2760, Address: 0x2cd9b0, Func Offset: 0xa0
 	// Func End, Address: 0x2cd9bc, Func Offset: 0xac
+	scePrintf("Ps2SetFogColor - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cd9c0
 void Ps2SetFogColorSys(unsigned int r, unsigned int g, unsigned int b)
 {
