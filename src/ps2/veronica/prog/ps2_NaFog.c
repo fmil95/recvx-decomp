@@ -14,9 +14,9 @@ unsigned int ulNaFogG;
 float fNaFogR;
 unsigned int ulNaFogR;
 float fNaFogA;
-unsigned int ulNaFogA;
+unsigned int ulNaFogA;*/
 float* fpNaFogTblTop;
-float fNaFogNear;
+/*float fNaFogNear;
 float fNaFogFar;
 float fNaFogDensity;
 float fNaFogDist;
@@ -70,15 +70,11 @@ void	njSetFogColor(Uint32 c)
 	scePrintf("njSetFogColor - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d6100
+// 100% matching! 
 void	njSetFogTable(NJS_FOG_TABLE fog)
 {
-	// Line 140, Address: 0x2d6100, Func Offset: 0
-	// Line 141, Address: 0x2d6104, Func Offset: 0x4
-	// Func End, Address: 0x2d610c, Func Offset: 0xc
-	scePrintf("njSetFogTable - UNIMPLEMENTED!\n");
-}
+    fpNaFogTblTop = fog; 
+} 
 
 // 
 // Start address: 0x2d6110
