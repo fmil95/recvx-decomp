@@ -1,109 +1,6 @@
-/*typedef struct _anon0;
-typedef struct _anon1;
-typedef struct _anon2;
-typedef struct _anon3;
-typedef struct _anon4;
-typedef struct _anon5;
-typedef struct tagVU1_STRIP_BUF;
-typedef struct tagNJS_SCRVECTOR;
+#include "ps2_NaDraw.h"
 
-
-typedef _anon0 type_0[32];
-typedef float type_1[4][128];
-typedef float type_2[4];
-typedef float type_3[4][6];
-typedef float type_4[4][64];
-typedef float type_5[4][64];
-typedef tagVU1_STRIP_BUF type_6[256];
-typedef float type_7[4][64];
-typedef _anon0 type_8[4];
-typedef float type_9[4][128];
-typedef float type_10[4][64];
-
-struct _anon0
-{
-	float x;
-	float y;
-	float z;
-	float u;
-	float v;
-	unsigned int bcol;
-	unsigned int ocol;
-};
-
-struct _anon1
-{
-	void* filename;
-	unsigned int attr;
-	unsigned int texaddr;
-};
-
-struct _anon2
-{
-	_anon1* textures;
-	unsigned int nbTexture;
-};
-
-struct _anon3
-{
-	float x;
-	float y;
-	float z;
-	float u;
-	float v;
-	unsigned int col;
-};
-
-struct _anon4
-{
-	float x1;
-	float y1;
-	float x2;
-	float y2;
-	float u1;
-	float v1;
-	float u2;
-	float v2;
-};
-
-struct _anon5
-{
-	float x;
-	float y;
-	float z;
-	unsigned int col;
-};
-
-struct tagVU1_STRIP_BUF
-{
-	float fU;
-	float fV;
-	float fPad0;
-	float fPad1;
-	float fIr;
-	float fIg;
-	float fIb;
-	float fA;
-	float fVx;
-	float fVy;
-	float fVz;
-	float fFog;
-	float fSx;
-	float fSy;
-	float fIz;
-	float fNz;
-};
-
-struct tagNJS_SCRVECTOR
-{
-	float x;
-	float y;
-	float z;
-	float iz;
-	float fog;
-};
-
-int Ps2_3DEx_trans;
+/*int Ps2_3DEx_trans;
 int Ps2_3DEx_count;
 _anon5* Ps2_3DEx_p;
 int Ps2_tex3DEx_trans;
@@ -400,17 +297,15 @@ void njDrawPolygon3DExSetData(_anon5* p, int count)
 	// Line 441, Address: 0x2de8b8, Func Offset: 0x8
 	// Line 443, Address: 0x2de8c0, Func Offset: 0x10
 	// Func End, Address: 0x2de8cc, Func Offset: 0x1c
-}
+}*/
 
-// 
-// Start address: 0x2de8d0
-void njDrawPolygon3DExEnd()
+// 100% matching!
+void	njDrawPolygon3DExEnd(void)
 {
-	// Line 454, Address: 0x2de8d0, Func Offset: 0
-	// Func End, Address: 0x2de8d8, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x2de8e0
 void njDrawTexture3DEx(_anon3* p, int count, int trans)
 {
