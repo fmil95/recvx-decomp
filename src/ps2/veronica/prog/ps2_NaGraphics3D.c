@@ -1,105 +1,6 @@
-/*typedef union _anon0;
-typedef struct _anon1;
-typedef struct tagVU1_STRIP_BUF;
-typedef struct _anon2;
-typedef struct _anon3;
-typedef struct tagNJS_SCRVECTOR;
-typedef struct _anon4;
-typedef struct _anon5;
-typedef struct _anon6;
+#include "ps2_NaGraphics3D.h"
 
-
-typedef float type_0[4][96];
-typedef float type_1[4];
-typedef float type_2[4][32];
-typedef float type_3[4][4];
-typedef _anon1 type_4[5];
-typedef float type_5[4][32];
-typedef float type_6[4][2];
-typedef float type_7[4][64];
-typedef tagVU1_STRIP_BUF type_8[256];
-
-union _anon0
-{
-	unsigned int color;
-	_anon5 tex;
-	_anon6 argb;
-};
-
-struct _anon1
-{
-	float norm[4];
-	float pos[4];
-};
-
-struct tagVU1_STRIP_BUF
-{
-	float fU;
-	float fV;
-	float fPad0;
-	float fPad1;
-	float fIr;
-	float fIg;
-	float fIb;
-	float fA;
-	float fVx;
-	float fVy;
-	float fVz;
-	float fFog;
-	float fSx;
-	float fSy;
-	float fIz;
-	float fNz;
-};
-
-struct _anon2
-{
-	_anon3* p;
-	_anon0* col;
-	_anon0* tex;
-	unsigned int num;
-};
-
-struct _anon3
-{
-	float x;
-	float y;
-	float z;
-};
-
-struct tagNJS_SCRVECTOR
-{
-	float x;
-	float y;
-	float z;
-	float iz;
-	float fog;
-};
-
-struct _anon4
-{
-	float dist;
-	float w;
-	float h;
-	float cx;
-	float cy;
-};
-
-struct _anon5
-{
-	short u;
-	short v;
-};
-
-struct _anon6
-{
-	unsigned char b;
-	unsigned char g;
-	unsigned char r;
-	unsigned char a;
-};
-
-_anon1 sc_plane;
+/*_anon1 sc_plane;
 _anon1 c_plane[5];
 _anon4 _nj_screen_;
 
@@ -155,23 +56,27 @@ void Ps2CalcScreenCone()
 	scePrintf("Ps2CalcScreenCone - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2dfb40
-float Calc_Intersection2(float* v0, float* v1, _anon1* plane)
+// 100% matching! 
+float Calc_Intersection2(sceVu0FVECTOR v0, sceVu0FVECTOR v1, PS2_PLANE* plane)
 {
-	float tmpf;
-	float tmp1[4];
-	float tmp0[4];
-	// Line 112, Address: 0x2dfb40, Func Offset: 0
-	// Line 116, Address: 0x2dfb60, Func Offset: 0x20
-	// Line 117, Address: 0x2dfb74, Func Offset: 0x34
-	// Line 118, Address: 0x2dfb84, Func Offset: 0x44
-	// Line 119, Address: 0x2dfb94, Func Offset: 0x54
-	// Line 121, Address: 0x2dfbd8, Func Offset: 0x98
-	// Func End, Address: 0x2dfbf4, Func Offset: 0xb4
+    sceVu0FVECTOR tmp0;
+    sceVu0FVECTOR tmp1;
+    float tmpf;
+
+    sceVu0SubVector(tmp0, v0, plane->pos);
+    sceVu0SubVector(tmp1, v1, v0);
+    
+    tmpf = sceVu0InnerProduct(plane->norm, tmp1);
+    
+    if (tmpf == 0)
+    {
+        return 10000000.0f;
+    }
+    
+    return -sceVu0InnerProduct(plane->norm, tmp0) / tmpf;
 }
 
-// 
+/*// 
 // Start address: 0x2dfc00
 int CalcIntersectionCone(float* ans, float* v0, float* v1)
 {
