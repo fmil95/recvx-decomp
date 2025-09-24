@@ -2987,6 +2987,27 @@ typedef struct PS2_PLANE
     sceVu0FVECTOR pos;  // offset 0x10, size 0x10
 } PS2_PLANE;
 
+typedef struct IPU_HEADER
+{
+	// total size: 0x10
+    int Frame_rate; // offset 0x0, size 0x4
+    int Data_size;  // offset 0x4, size 0x4
+    short Width;    // offset 0x8, size 0x2
+    short Height;   // offset 0xA, size 0x2
+    int Nframe;     // offset 0xC, size 0x4
+} IPU_HEADER;
+
+typedef struct READ_BUF
+{
+    // total size: 0x4020
+	unsigned char data[16384]; // offset 0x0, size 0x4000
+	IPU_HEADER Ipu_header;     // offset 0x4000, size 0x10
+	int status;                // offset 0x4010, size 0x4
+    int put;                   // offset 0x4014, size 0x4
+    int count;                 // offset 0x4018, size 0x4
+    int size;                  // offset 0x401C, size 0x4
+} READ_BUF;
+
 #define SCR_WIDTH 640
 #define SCR_HEIGHT 224
 
@@ -3042,3 +3063,29 @@ typedef struct PS2_PLANE
 #define UNCBASE 0x20000000
 
 typedef struct ThreadParam ThreadParam; 
+
+typedef struct {
+    long pts;
+    long dts;
+    int pos;
+    int len;
+} TimeStamp;
+
+#define N_VOBUF 5
+
+#define MAX_WIDTH 720
+#define MAX_HEIGHT 480
+
+#define N_LDTAGS (MAX_WIDTH/16 * MAX_HEIGHT/16 * 6 + 10)
+
+#define bound(val, x) ((((val) + (x) - 1) / (x))*(x))
+
+typedef struct {
+    u_char v[MAX_WIDTH * MAX_HEIGHT * 4];
+} VoData;
+
+typedef struct {
+    int status;		// status
+    int dummy[15];	// this is to adjust D$ line
+    u_int v[N_VOBUF][bound((N_LDTAGS+100)*4, 64)];
+} VoTag;

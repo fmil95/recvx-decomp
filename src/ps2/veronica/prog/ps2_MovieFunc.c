@@ -651,38 +651,38 @@ int __image_h__;
 <unknown fundamental type (0xa510)> new_tags[64];
 _anon17 videoDec;
 int videoDecTh;
-void* _gp;
+void* _gp;*/
 char* videoDecStack;
-void(*videoDecMain)(_anon17*);
+/*void(*videoDecMain)(_anon17*);
 _anon35 rmi;
 unsigned int Ps2_vcount;
 _anon30 infile;
-_anon13 voBuf;
-_anon9* voBufTag;
-_anon6* voBufData;
-_anon16* readBuf;
-int(*pcmCallback)(_anon0*, _anon11*, void*);
+_anon13 voBuf;*/
+VoTag* voBufTag;
+VoData* voBufData;
+READ_BUF* readBuf;
+/*int(*pcmCallback)(_anon0*, _anon11*, void*);
 int(*videoCallback)(_anon0*, _anon11*, void*);
 _anon12 audioDec;
 int iop_zero_buff;
-int iop_buff;
+int iop_buff;*/
 unsigned char* audioBuff;
-_anon8* timeStamp;
-<unknown fundamental type (0xa510)>* viBufTag;
-<unknown fundamental type (0xa510)>* viBufData;
-int(*mpegTS)(_anon0*, _anon5*, void*);
+TimeStamp* timeStamp;
+long128* viBufTag;
+long128* viBufData;
+/*int(*mpegTS)(_anon0*, _anon5*, void*);
 int(*mpegRestartDMA)(_anon0*, _anon2*, void*);
 int(*mpegStopDMA)(_anon0*, _anon2*, void*);
 int(*mpegNodata)(_anon0*, _anon2*, void*);
-int(*mpegError)(_anon0*, _anon1*, void*);
+int(*mpegError)(_anon0*, _anon1*, void*);*/
 unsigned char* mpegWork;
-int frd;
+/*int frd;
 _anon41 mdSize;
 int movie_draw;*/
 char sound_flag;
-/*char ADX_STREAM_BUFFER[0];
-unsigned char* Ps2_MOVIE;
-<unknown fundamental type (0xa510)> test_tag[1400];
+char ADX_STREAM_BUFFER[471040];
+unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
+/*<unknown fundamental type (0xa510)> test_tag[1400];
 _anon24 db;
 
 void initAll();
@@ -1560,50 +1560,55 @@ int audioDecDelete()
 	// Line 1439, Address: 0x2ed104, Func Offset: 0x14
 	// Line 1440, Address: 0x2ed108, Func Offset: 0x18
 	// Func End, Address: 0x2ed110, Func Offset: 0x20
-}
+}*/
 
-// 
-// Start address: 0x2ed110
+// 100% matching!
 int GetAllWorkMemory()
-{
-	// Line 1453, Address: 0x2ed110, Func Offset: 0
-	// Line 1456, Address: 0x2ed118, Func Offset: 0x8
-	// Line 1457, Address: 0x2ed120, Func Offset: 0x10
-	// Line 1458, Address: 0x2ed128, Func Offset: 0x18
-	// Line 1460, Address: 0x2ed130, Func Offset: 0x20
-	// Line 1464, Address: 0x2ed138, Func Offset: 0x28
-	// Line 1468, Address: 0x2ed140, Func Offset: 0x30
-	// Line 1471, Address: 0x2ed158, Func Offset: 0x48
-	// Line 1476, Address: 0x2ed160, Func Offset: 0x50
-	// Line 1471, Address: 0x2ed168, Func Offset: 0x58
-	// Line 1472, Address: 0x2ed170, Func Offset: 0x60
-	// Line 1476, Address: 0x2ed180, Func Offset: 0x70
-	// Line 1473, Address: 0x2ed188, Func Offset: 0x78
-	// Line 1477, Address: 0x2ed190, Func Offset: 0x80
-	// Line 1473, Address: 0x2ed198, Func Offset: 0x88
-	// Line 1474, Address: 0x2ed1a0, Func Offset: 0x90
-	// Line 1477, Address: 0x2ed1b0, Func Offset: 0xa0
-	// Line 1478, Address: 0x2ed1c0, Func Offset: 0xb0
-	// Line 1482, Address: 0x2ed1c8, Func Offset: 0xb8
-	// Line 1478, Address: 0x2ed1d8, Func Offset: 0xc8
-	// Line 1479, Address: 0x2ed1e4, Func Offset: 0xd4
-	// Line 1480, Address: 0x2ed1f8, Func Offset: 0xe8
-	// Line 1482, Address: 0x2ed210, Func Offset: 0x100
-	// Line 1483, Address: 0x2ed218, Func Offset: 0x108
-	// Line 1484, Address: 0x2ed234, Func Offset: 0x124
-	// Line 1485, Address: 0x2ed24c, Func Offset: 0x13c
-	// Line 1486, Address: 0x2ed264, Func Offset: 0x154
-	// Line 1487, Address: 0x2ed27c, Func Offset: 0x16c
-	// Line 1488, Address: 0x2ed294, Func Offset: 0x184
-	// Line 1489, Address: 0x2ed2ac, Func Offset: 0x19c
-	// Line 1490, Address: 0x2ed2c4, Func Offset: 0x1b4
-	// Line 1492, Address: 0x2ed2d0, Func Offset: 0x1c0
-	// Line 1491, Address: 0x2ed2d4, Func Offset: 0x1c4
-	// Line 1492, Address: 0x2ed2d8, Func Offset: 0x1c8
-	// Func End, Address: 0x2ed2e0, Func Offset: 0x1d0
+{	              
+    SyncPath();            
+    
+    Ps2DrawOTag();           
+    
+    SyncPath();          
+    
+    Ps2ClearOT();                           
+    
+    FlushCache(0);                          
+    
+    memset(ADX_STREAM_BUFFER, 0, 469120);    
+
+    (char*)voBufData = ADX_STREAM_BUFFER;    
+    
+    (char*)readBuf = &ADX_STREAM_BUFFER[450560];    
+    
+	(char*)viBufTag = &ADX_STREAM_BUFFER[467008];   
+    
+	(char*)timeStamp = &ADX_STREAM_BUFFER[467584];   
+    
+	(unsigned char*)viBufData = Ps2_MOVIE;             
+    
+	audioBuff = (unsigned char*)&viBufData[4096];       
+    
+	(unsigned char*)videoDecStack = &audioBuff[24576];  
+    
+	mpegWork = (unsigned char*)&videoDecStack[16384];     
+    
+	(unsigned char*)voBufTag = &mpegWork[508928];              
+    
+	printf("mpegWorkAddr      = %x :size %x\n", mpegWork, 508928);
+	printf("voBufDataAddr     = %x :size %x\n", voBufData, 450560);
+	printf("viBufTagAddr      = %x :size %x\n", viBufTag, 576);
+	printf("viBufDataAddr     = %x :size %x\n", viBufData, 65536);
+	printf("readBufAddr       = %x :size %x\n", readBuf, 16448);
+	printf("audioBufAddr      = %x :size %x\n", audioBuff, 24576);
+	printf("videoDecStackAddr = %x :size %x\n", videoDecStack, 16384);
+	printf("timeStampAddr     = %x :size %x\n", timeStamp, 1536);
+	printf("---\n");
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x2ed2e0
 void OutPutCdErrorCode(unsigned int* err)
 {
