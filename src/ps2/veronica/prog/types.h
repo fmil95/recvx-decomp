@@ -2594,7 +2594,7 @@ typedef struct TIM2_PICTUREHEADER_SMALL
     unsigned char ImageType; // offset 0x13, size 0x1
     unsigned short ImageWidth; // offset 0x14, size 0x2
     unsigned short ImageHeight; // offset 0x16, size 0x2
-    unsigned int GsTex0[2]; // offset 0x18, size 0x8
+    sceGsTex0 GsTex0; // offset 0x18, size 0x8
     unsigned int GsTex1[2]; // offset 0x20, size 0x8
     unsigned int GsRegs; // offset 0x28, size 0x4
     unsigned int GsTexClut; // offset 0x2C, size 0x4

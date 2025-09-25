@@ -50,64 +50,72 @@ int Tim2CalcBufWidth(int psm, int w)
 	return 0;
 }
 
-// 
-// Start address: 0x2e6cc0
+// 97.97% matching
 void Set_GsTex(TIM2_PICTUREHEADER_SMALL* ph, unsigned long send_image_adr, unsigned long send_clut_adr)
 {
-	unsigned int i;
-	// Line 430, Address: 0x2e6cc0, Func Offset: 0
-	// Line 433, Address: 0x2e6cd0, Func Offset: 0x10
-	// Line 437, Address: 0x2e6cd4, Func Offset: 0x14
-	// Line 433, Address: 0x2e6cdc, Func Offset: 0x1c
-	// Line 434, Address: 0x2e6cf4, Func Offset: 0x34
-	// Line 435, Address: 0x2e6cfc, Func Offset: 0x3c
-	// Line 434, Address: 0x2e6d04, Func Offset: 0x44
-	// Line 436, Address: 0x2e6d14, Func Offset: 0x54
-	// Line 437, Address: 0x2e6d1c, Func Offset: 0x5c
-	// Line 435, Address: 0x2e6d24, Func Offset: 0x64
-	// Line 437, Address: 0x2e6d2c, Func Offset: 0x6c
-	// Line 436, Address: 0x2e6d30, Func Offset: 0x70
-	// Line 435, Address: 0x2e6d34, Func Offset: 0x74
-	// Line 436, Address: 0x2e6d40, Func Offset: 0x80
-	// Line 437, Address: 0x2e6d44, Func Offset: 0x84
-	// Line 438, Address: 0x2e6d54, Func Offset: 0x94
-	// Line 436, Address: 0x2e6d58, Func Offset: 0x98
-	// Line 437, Address: 0x2e6d64, Func Offset: 0xa4
-	// Line 438, Address: 0x2e6d68, Func Offset: 0xa8
-	// Line 439, Address: 0x2e6d70, Func Offset: 0xb0
-	// Line 437, Address: 0x2e6d74, Func Offset: 0xb4
-	// Line 438, Address: 0x2e6d80, Func Offset: 0xc0
-	// Line 439, Address: 0x2e6d84, Func Offset: 0xc4
-	// Line 441, Address: 0x2e6d88, Func Offset: 0xc8
-	// Line 438, Address: 0x2e6d90, Func Offset: 0xd0
-	// Line 439, Address: 0x2e6d9c, Func Offset: 0xdc
-	// Line 441, Address: 0x2e6dac, Func Offset: 0xec
-	// Line 443, Address: 0x2e6dd8, Func Offset: 0x118
-	// Line 444, Address: 0x2e6de0, Func Offset: 0x120
-	// Line 445, Address: 0x2e6dec, Func Offset: 0x12c
-	// Line 446, Address: 0x2e6df4, Func Offset: 0x134
-	// Line 447, Address: 0x2e6dfc, Func Offset: 0x13c
-	// Line 450, Address: 0x2e6e18, Func Offset: 0x158
-	// Line 452, Address: 0x2e6e48, Func Offset: 0x188
-	// Line 453, Address: 0x2e6e50, Func Offset: 0x190
-	// Line 454, Address: 0x2e6e5c, Func Offset: 0x19c
-	// Line 455, Address: 0x2e6e64, Func Offset: 0x1a4
-	// Line 456, Address: 0x2e6e6c, Func Offset: 0x1ac
-	// Line 459, Address: 0x2e6e98, Func Offset: 0x1d8
-	// Line 461, Address: 0x2e6ee0, Func Offset: 0x220
-	// Line 462, Address: 0x2e6ef4, Func Offset: 0x234
-	// Line 464, Address: 0x2e6efc, Func Offset: 0x23c
-	// Line 465, Address: 0x2e6f10, Func Offset: 0x250
-	// Line 467, Address: 0x2e6f18, Func Offset: 0x258
-	// Line 468, Address: 0x2e6f30, Func Offset: 0x270
-	// Line 470, Address: 0x2e6f38, Func Offset: 0x278
-	// Line 471, Address: 0x2e6f4c, Func Offset: 0x28c
-	// Line 473, Address: 0x2e6f54, Func Offset: 0x294
-	// Line 476, Address: 0x2e6f6c, Func Offset: 0x2ac
-	// Line 477, Address: 0x2e6f84, Func Offset: 0x2c4
-	// Line 478, Address: 0x2e6fc0, Func Offset: 0x300
-	// Func End, Address: 0x2e6fd4, Func Offset: 0x314
-	scePrintf("Set_GsTex - UNIMPLEMENTED!\n");
+    unsigned int i; 
+    
+    ph->GsTex0.CLD = 4;
+    
+    ph->GsTex0.CSA = 0;
+    ph->GsTex0.CSM = 0;
+    
+    ph->GsTex0.CPSM = 0;
+    
+    ph->GsTex0.CBP = send_clut_adr;
+    
+    ph->GsTex0.TFX = 0;
+    
+    ph->GsTex0.TCC = 1;
+    
+    for (i = 0; (ph->ImageWidth != (1 << i)) && (i < 10); i++);
+    
+    if (ph->ImageWidth != (1 << i))
+    {
+        printf("This texture is not adequate size!!\n");
+        
+        // exit(0); // TODO: enabling this crashes, find out why
+    }
+    else 
+    {
+        ph->GsTex0.TW = i;
+    }
+    
+    for (i = 0; (ph->ImageHeight != (1 << i)) && (i < 10); i++);
+    
+    if (ph->ImageHeight != (1 << i))
+    {
+        printf("This texture is not adequate size!!\n");
+        
+        // exit(0);
+    }
+    else 
+    {
+        ph->GsTex0.TH = i;
+    }
+    
+    switch (ph->ImageType) 
+    {                            
+    case TIM2_RGB16:
+        ph->GsTex0.PSM = SCE_GS_PSMCT16; 
+        break;
+    case TIM2_RGB24:
+        ph->GsTex0.PSM = SCE_GS_PSMCT24; 
+        break;
+    case TIM2_RGB32:
+        ph->GsTex0.PSM = SCE_GS_PSMCT32; 
+        break;
+    case TIM2_IDTEX4:
+        ph->GsTex0.PSM = SCE_GS_PSMT4; 
+        break;
+    case TIM2_IDTEX8:
+        ph->GsTex0.PSM = SCE_GS_PSMT8;
+        break;
+    }
+
+    ph->GsTex0.TBP0 = send_image_adr;
+    
+    ph->GsTex0.TBW = Tim2CalcBufWidth(ph->GsTex0.PSM, ph->ImageWidth);
 }
 
 // 
