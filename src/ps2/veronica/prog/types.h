@@ -3089,3 +3089,13 @@ typedef struct {
     int dummy[15];	// this is to adjust D$ line
     u_int v[N_VOBUF][bound((N_LDTAGS+100)*4, 64)];
 } VoTag;
+
+// constant definition for ClutType, ImageType in picture header
+enum TIM2_gattr_type {
+	TIM2_NONE = 0,			// no CLUT (for ClutType)
+	TIM2_RGB16,				// 16 bit color (for both of ClutType, ImageType)
+	TIM2_RGB24,				// 24 bit color (for ImageType)
+	TIM2_RGB32,				// 32 bit color (for ClutType, ImageType)
+	TIM2_IDTEX4,			// 16 color texture (for ImageType)
+	TIM2_IDTEX8				// 256 color texture (for ImageType)
+};

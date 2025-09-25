@@ -354,28 +354,39 @@ int Send_Tim2_dataEx(void* tim2_top_adr, unsigned long send_image_adr, unsigned 
     return 2;
 }
 
-// 
-// Start address: 0x2e7710
-int Clut_Load_Func(TIM2_PICTUREHEADER_SMALL* ph, unsigned long clut_addr)
+// 100% matching! 
+int Clut_Load_Func(TIM2_PICTUREHEADER_SMALL* ph, unsigned long clut_addr) 
 {
-	int h;
-	int loop;
-	//<unknown fundamental type (0xa510)>* pClut;
-	// Line 2215, Address: 0x2e7710, Func Offset: 0
-	// Line 2221, Address: 0x2e772c, Func Offset: 0x1c
-	// Line 2224, Address: 0x2e7734, Func Offset: 0x24
-	// Line 2221, Address: 0x2e7744, Func Offset: 0x34
-	// Line 2224, Address: 0x2e774c, Func Offset: 0x3c
-	// Line 2228, Address: 0x2e7770, Func Offset: 0x60
-	// Line 2232, Address: 0x2e777c, Func Offset: 0x6c
-	// Line 2235, Address: 0x2e7784, Func Offset: 0x74
-	// Line 2236, Address: 0x2e77b8, Func Offset: 0xa8
-	// Line 2237, Address: 0x2e77d0, Func Offset: 0xc0
-	// Line 2242, Address: 0x2e77d8, Func Offset: 0xc8
-	// Line 2245, Address: 0x2e77e4, Func Offset: 0xd4
-	// Line 2246, Address: 0x2e77e8, Func Offset: 0xd8
-	// Func End, Address: 0x2e7804, Func Offset: 0xf4
-	scePrintf("Clut_Load_Func - UNIMPLEMENTED!\n");
+    u_long128* pClut;
+    int loop; 
+    int h; 
+
+    pClut = (u_long128*)((char*)ph + ph->HeaderSize + ph->ImageSize);
+
+    switch ((ph->ClutType << 8) | ph->ImageType) 
+    {
+    case (TIM2_RGB32 << 8) | TIM2_IDTEX4:
+    case (TIM2_RGB32 << 8) | TIM2_IDTEX8:
+        for (loop = 0; loop < ph->ClutColors; loop += 256)
+        {
+            if ((ph->ClutColors - loop) < 256) 
+            {
+                h = (ph->ClutColors - loop) / 8;
+            } 
+            else 
+            {
+                h = 16;
+            }
+            
+            LoadToVram(clut_addr, pClut, 1, SCE_GS_PSMCT32, 0, 16, h, 64);
+        }
+        
+        break;
+    default:
+        return -1;
+    }
+
+    return 0;
 }
 
 // 
