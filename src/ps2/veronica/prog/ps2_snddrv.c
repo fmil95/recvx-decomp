@@ -873,30 +873,32 @@ int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5,
 	scePrintf("makebuff8 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2eb090
-int makebuff(unsigned int cmd, int n)
-{
-	int shift_n;
-	// Line 5557, Address: 0x2eb090, Func Offset: 0
-	// Line 5560, Address: 0x2eb094, Func Offset: 0x4
-	// Line 5561, Address: 0x2eb0a0, Func Offset: 0x10
-	// Line 5562, Address: 0x2eb0ac, Func Offset: 0x1c
-	// Line 5564, Address: 0x2eb0b4, Func Offset: 0x24
-	// Line 5566, Address: 0x2eb0d4, Func Offset: 0x44
-	// Line 5567, Address: 0x2eb0d8, Func Offset: 0x48
-	// Line 5568, Address: 0x2eb0ec, Func Offset: 0x5c
-	// Line 5570, Address: 0x2eb0fc, Func Offset: 0x6c
-	// Line 5568, Address: 0x2eb100, Func Offset: 0x70
-	// Line 5569, Address: 0x2eb104, Func Offset: 0x74
-	// Line 5568, Address: 0x2eb108, Func Offset: 0x78
-	// Line 5570, Address: 0x2eb110, Func Offset: 0x80
-	// Line 5572, Address: 0x2eb118, Func Offset: 0x88
-	// Line 5574, Address: 0x2eb130, Func Offset: 0xa0
-	// Line 5572, Address: 0x2eb134, Func Offset: 0xa4
-	// Line 5575, Address: 0x2eb138, Func Offset: 0xa8
-	// Func End, Address: 0x2eb144, Func Offset: 0xb4
-	scePrintf("makebuff - UNIMPLEMENTED!\n");
+// 100% matching!
+int makebuff(unsigned int cmd, int n) {
+    int shift;
+    
+    if (n > 4) {
+        printf("SDR: snddrv.c: makebuff: Error: Length over\n");
+        return -1;
+    }
+
+    if ((sbuff_idx + n) >= 0x200) {
+        return -1;
+    }
+    
+    shift = 0x18;  
+    
+    if (n > 0) {
+        do {
+            sbuff[sbuff_idx] = (cmd >> shift) ;
+            sbuff_idx++;
+            n--;
+            shift -= 8;  
+        } while (n > 0);
+    }
+
+    sbuff[sbuff_idx] = 0xFF;
+    return 0;
 }
 
 // 

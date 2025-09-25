@@ -922,6 +922,7 @@ int CheckFadeEndSe(int SlotNo)
 	// Func End, Address: 0x2903ac, Func Offset: 0x2c
 }*/
 
+// 100% matching!
 int ExecSoundFadeManager() {
     int i;
     int ReturnCode;
@@ -1034,6 +1035,7 @@ void RequestSePanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 	// Func End, Address: 0x2906e0, Func Offset: 0xc0
 }*/
 
+// 100% matching!
 int ExecSoundPanManager() {
     NO_NAME_20* sp;
     int ReturnCode;
