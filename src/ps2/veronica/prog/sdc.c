@@ -441,6 +441,7 @@ void StopMidi(unsigned int SlotNo)
 	// Line 276, Address: 0x28f434, Func Offset: 0x44
 	// Func End, Address: 0x28f440, Func Offset: 0x50
 }
+*/
 
 // 
 // Start address: 0x28f440
@@ -457,9 +458,10 @@ void SetPanMidi2(unsigned int SlotNo, float Pan, short DelayTime)
 	// Line 315, Address: 0x28f4e8, Func Offset: 0xa8
 	// Line 318, Address: 0x28f4f8, Func Offset: 0xb8
 	// Func End, Address: 0x28f514, Func Offset: 0xd4
+	scePrintf("SetPanMidi2 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28f520
 void SetPanMidi(unsigned int SlotNo, char Pan, short DelayTime)
 {
@@ -685,6 +687,7 @@ void StopSe(unsigned int SlotNo)
 	// Line 516, Address: 0x28fbe4, Func Offset: 0x44
 	// Func End, Address: 0x28fbf0, Func Offset: 0x50
 }
+*/
 
 // 
 // Start address: 0x28fbf0
@@ -700,9 +703,10 @@ void SetPanSe2(unsigned int SlotNo, float Pan, short DelayTime)
 	// Line 559, Address: 0x28fc60, Func Offset: 0x70
 	// Line 561, Address: 0x28fc70, Func Offset: 0x80
 	// Func End, Address: 0x28fc8c, Func Offset: 0x9c
+	scePrintf("SetPanSe2 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28fc90
 void SetPanSe(unsigned int SlotNo, char Pan, short DelayTime)
 {
@@ -1000,40 +1004,48 @@ void RequestSePanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 	// Func End, Address: 0x2906e0, Func Offset: 0xc0
 }*/
 
-// 
-// Start address: 0x2906e0
-int ExecSoundPanManager()
-{
-	//_anon0* sp;
-	int ReturnCode;
-	int i;
-	// Line 855, Address: 0x2906e0, Func Offset: 0
-	// Line 857, Address: 0x2906fc, Func Offset: 0x1c
-	// Line 860, Address: 0x290700, Func Offset: 0x20
-	// Line 862, Address: 0x290704, Func Offset: 0x24
-	// Line 863, Address: 0x290710, Func Offset: 0x30
-	// Line 864, Address: 0x290720, Func Offset: 0x40
-	// Line 865, Address: 0x29072c, Func Offset: 0x4c
-	// Line 866, Address: 0x290738, Func Offset: 0x58
-	// Line 868, Address: 0x290740, Func Offset: 0x60
-	// Line 869, Address: 0x290748, Func Offset: 0x68
-	// Line 870, Address: 0x29074c, Func Offset: 0x6c
-	// Line 871, Address: 0x290750, Func Offset: 0x70
-	// Line 873, Address: 0x290760, Func Offset: 0x80
-	// Line 874, Address: 0x290778, Func Offset: 0x98
-	// Line 876, Address: 0x29077c, Func Offset: 0x9c
-	// Line 877, Address: 0x290788, Func Offset: 0xa8
-	// Line 878, Address: 0x290798, Func Offset: 0xb8
-	// Line 879, Address: 0x2907a4, Func Offset: 0xc4
-	// Line 880, Address: 0x2907b0, Func Offset: 0xd0
-	// Line 882, Address: 0x2907b8, Func Offset: 0xd8
-	// Line 883, Address: 0x2907c0, Func Offset: 0xe0
-	// Line 884, Address: 0x2907c4, Func Offset: 0xe4
-	// Line 885, Address: 0x2907c8, Func Offset: 0xe8
-	// Line 887, Address: 0x2907d8, Func Offset: 0xf8
-	// Line 889, Address: 0x2907e8, Func Offset: 0x108
-	// Line 890, Address: 0x2907ec, Func Offset: 0x10c
-	// Func End, Address: 0x290804, Func Offset: 0x124
-	scePrintf("ExecSoundPanManager - UNIMPLEMENTED!\n");
+int ExecSoundPanManager() {
+    NO_NAME_20* sp;
+    int ReturnCode;
+    int i;
+
+    ReturnCode = 0;
+    
+    for(i = 0; i < 8; i++) {
+        sp = &MidiInfo[i];
+        if (sp->PanFunc != 0) {
+            sp->Pan -= sp->PanSpeed;
+            sp->PanCntMax -= 1;
+
+            if (sp->PanCntMax < 0) {
+                sp->Pan = sp->PanLast;
+                sp->PanFunc = 0;
+            } else {
+               ReturnCode = 1; 
+            }
+
+            SetPanMidi2(i, sp->Pan, 0);
+        }
+    }
+
+    for(i = 0; i < 20; i++) {
+        sp = &SeInfo[i];
+        if (sp->PanFunc != 0) {
+            sp->Pan -= sp->PanSpeed;
+            sp->PanCntMax  -= 1;
+
+            if (sp->PanCntMax < 0)  {
+                sp->Pan = sp->PanLast;
+                sp->PanFunc = 0;
+            } else {
+                ReturnCode = 1;
+            }
+
+            SetPanSe2(i, sp->Pan, 0);
+        }
+        
+    }
+
+    return ReturnCode;
 }
 

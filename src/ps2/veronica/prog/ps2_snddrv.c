@@ -923,47 +923,92 @@ int makebuff_ext(unsigned int cmd, int n, int limit)
 	scePrintf("makebuff_ext - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2eb200
-int sending_req(SND_QUE* sq_p)
-{
-	//_anon0* sqd_p;
-	int cd;
-	// Line 5644, Address: 0x2eb200, Func Offset: 0
-	// Line 5648, Address: 0x2eb208, Func Offset: 0x8
-	// Line 5650, Address: 0x2eb20c, Func Offset: 0xc
-	// Line 5648, Address: 0x2eb210, Func Offset: 0x10
-	// Line 5650, Address: 0x2eb214, Func Offset: 0x14
-	// Line 5651, Address: 0x2eb224, Func Offset: 0x24
-	// Line 5653, Address: 0x2eb238, Func Offset: 0x38
-	// Line 5655, Address: 0x2eb288, Func Offset: 0x88
-	// Line 5659, Address: 0x2eb2a4, Func Offset: 0xa4
-	// Line 5664, Address: 0x2eb2d8, Func Offset: 0xd8
-	// Line 5668, Address: 0x2eb2e8, Func Offset: 0xe8
-	// Line 5670, Address: 0x2eb2fc, Func Offset: 0xfc
-	// Line 5671, Address: 0x2eb308, Func Offset: 0x108
-	// Line 5673, Address: 0x2eb31c, Func Offset: 0x11c
-	// Line 5674, Address: 0x2eb324, Func Offset: 0x124
-	// Line 5676, Address: 0x2eb348, Func Offset: 0x148
-	// Line 5681, Address: 0x2eb368, Func Offset: 0x168
-	// Line 5683, Address: 0x2eb38c, Func Offset: 0x18c
-	// Line 5686, Address: 0x2eb3a0, Func Offset: 0x1a0
-	// Line 5692, Address: 0x2eb3c0, Func Offset: 0x1c0
-	// Line 5694, Address: 0x2eb3d4, Func Offset: 0x1d4
-	// Line 5695, Address: 0x2eb3e0, Func Offset: 0x1e0
-	// Line 5697, Address: 0x2eb3f4, Func Offset: 0x1f4
-	// Line 5699, Address: 0x2eb40c, Func Offset: 0x20c
-	// Line 5701, Address: 0x2eb420, Func Offset: 0x220
-	// Line 5702, Address: 0x2eb42c, Func Offset: 0x22c
-	// Line 5704, Address: 0x2eb450, Func Offset: 0x250
-	// Line 5706, Address: 0x2eb460, Func Offset: 0x260
-	// Line 5709, Address: 0x2eb478, Func Offset: 0x278
-	// Line 5721, Address: 0x2eb4c0, Func Offset: 0x2c0
-	// Line 5726, Address: 0x2eb508, Func Offset: 0x308
-	// Line 5727, Address: 0x2eb514, Func Offset: 0x314
-	// Line 5730, Address: 0x2eb518, Func Offset: 0x318
-	// Func End, Address: 0x2eb524, Func Offset: 0x324
-	scePrintf("sending_req - UNIMPLEMENTED!\n");
+// 100% matching!
+int sending_req(SND_QUE* sq_p) {
+    int cd;
+    SND_QUE_DATA* sqd_p;
+
+    sqd_p = (SND_QUE_DATA*)sq_p;
+    cd = sq_p->cmd >> 0x18;
+    
+    if (cd == 0x7F) {
+        return 0;
+    }
+    
+    if (cd == -1) {
+        return 0;
+    }
+    
+    switch (cd & 0xF0) {
+    case 0x0:
+        return makebuff_tq(sq_p->cmd, sq_p->vol, sq_p->pan, sq_p->pitch);
+        
+    case 0x10:
+        if (cd == 0x11) {
+            return makebuff(sq_p->cmd, 3);
+        } else {
+            return makebuff(sq_p->cmd, 1);
+        }
+        
+    case 0x20:
+        if ((cd - 0x22) < 4U) {
+            return makebuff(sq_p->cmd, 3);
+        }
+        
+        if (cd == 0x26) {
+            return makebuff(sq_p->cmd, 4);
+        }
+        
+        if (cd == 0x20) {
+            return makebuff8(sq_p->cmd, 5, sq_p->vol, 0, 0, 0);
+        }
+        
+        if (((cd - 0x27) <= 2U) || ((cd - 0x2C) < 2U)) {
+            return makebuff8(sq_p->cmd, 8, sqd_p->data[0], sqd_p->data[1], sqd_p->data[2], sqd_p->data[3]);
+        }
+        
+        return makebuff(sq_p->cmd, 2);
+        
+    case 0x40:
+        if ( (cd - 0x47) <= 3U ||  (cd - 0x41) < 2U) {
+            return makebuff(sq_p->cmd, 2);
+        }
+        
+        if (cd == 0x4B) {
+            return makebuff(sq_p->cmd, 3);
+        }
+        
+        if (cd == 0x45 || cd == 0x4C) {
+            return makebuff(sq_p->cmd, 4);
+        }
+        
+        if (cd == 0x44) {
+            return makebuff8(sq_p->cmd, 6, sq_p->vol, sq_p->pan, 0, 0);
+        }
+        
+        if ((cd - 0x4D) < 2U) {
+            return makebuff_ext(sq_p->cmd, 3, 0x15);
+        }
+        
+        if (cd == 0x4F) {
+            return makebuff8(*(int*)((char*)sq_p+4), 6, (sq_p->cmd >> 8) & 0xFF, sq_p->cmd & 0xFF, 0, 0);
+        }
+        
+        return makebuff(sq_p->cmd, 1);
+        
+    case 0x60:
+    case 0x50:
+        if ((cd - 0x51) < 4U) {
+            return makebuff8(sq_p->cmd, 8, sqd_p->data[0], sqd_p->data[1], sqd_p->data[2], sqd_p->data[3]);
+        }
+        else {
+            return makebuff(sq_p->cmd, 2);
+        }
+        
+    default:
+        printf("SDR: snddrv.c: sending_req: Error: unknown command\n");
+        return -1;
+    }
 }
 
 // 100% matching

@@ -3008,6 +3008,12 @@ typedef struct READ_BUF
     int size;                  // offset 0x401C, size 0x4
 } READ_BUF;
 
+typedef struct SND_QUE_DATA
+{
+	int cmd; // offset 0x0, size: 0x4
+	char data[4]; // offset: 0x4, size: 0x4
+} SND_QUE_DATA;
+
 #define SCR_WIDTH 640
 #define SCR_HEIGHT 224
 
