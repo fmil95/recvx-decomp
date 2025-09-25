@@ -110,16 +110,16 @@ void Set_GsTex(TIM2_PICTUREHEADER_SMALL* ph, unsigned long send_image_adr, unsig
 	scePrintf("Set_GsTex - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2e6fe0
-<unknown fundamental type (0xa510)>* MakeRenderTexHeader(void* tex_adr)
+u_long128* MakeRenderTexHeader(void* tex_adr)
 {
 	unsigned int loop;
 	unsigned int psize;
 	unsigned int fsize;
 	unsigned char* work;
-	_anon0* pHead;
-	tagTIM2_FILEHEADER* fHead;
+	//_anon0* pHead;
+	//tagTIM2_FILEHEADER* fHead;
 	// Line 1446, Address: 0x2e6fe0, Func Offset: 0
 	// Line 1463, Address: 0x2e6ff0, Func Offset: 0x10
 	// Line 1455, Address: 0x2e6ff4, Func Offset: 0x14
@@ -181,33 +181,40 @@ void Set_GsTex(TIM2_PICTUREHEADER_SMALL* ph, unsigned long send_image_adr, unsig
 	// Line 1564, Address: 0x2e7164, Func Offset: 0x184
 	// Line 1565, Address: 0x2e7168, Func Offset: 0x188
 	// Func End, Address: 0x2e7178, Func Offset: 0x198
-}*/
+	scePrintf("MakeRenderTexHeader - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x2e7180
+void Ps2ScreenClear(); // TODO: remove this declaration
+// 100% matching! 
 void StoreRenderTex(void* tex_adr)
 {
-	//<unknown fundamental type (0xa510)>* imagetop;
-	//<unknown fundamental type (0xa510)>* p;
-	int l;
-	int loop;
-	//_anon5 gs_simage;
-	// Line 1623, Address: 0x2e7180, Func Offset: 0
-	// Line 1634, Address: 0x2e7194, Func Offset: 0x14
-	// Line 1645, Address: 0x2e719c, Func Offset: 0x1c
-	// Line 1634, Address: 0x2e71a0, Func Offset: 0x20
-	// Line 1647, Address: 0x2e71a4, Func Offset: 0x24
-	// Line 1650, Address: 0x2e71a8, Func Offset: 0x28
-	// Line 1652, Address: 0x2e71b0, Func Offset: 0x30
-	// Line 1653, Address: 0x2e71c0, Func Offset: 0x40
-	// Line 1656, Address: 0x2e71c8, Func Offset: 0x48
-	// Line 1659, Address: 0x2e71f4, Func Offset: 0x74
-	// Line 1662, Address: 0x2e71fc, Func Offset: 0x7c
-	// Line 1663, Address: 0x2e7208, Func Offset: 0x88
-	// Line 1665, Address: 0x2e7218, Func Offset: 0x98
-	// Line 1666, Address: 0x2e7220, Func Offset: 0xa0
-	// Func End, Address: 0x2e723c, Func Offset: 0xbc
-	scePrintf("StoreRenderTex - UNIMPLEMENTED!\n");
+    sceGsStoreImage gs_simage; 
+    int loop; 
+    int l;
+    u_long128* p; 
+    u_long128* imagetop; 
+    
+    imagetop = MakeRenderTexHeader(tex_adr);
+    
+    l = 255;
+    
+    for (loop = 0; loop < 512; loop += l) 
+    {
+        p = &imagetop[loop * 128]; 
+        
+        if ((loop + l) > 512) 
+        {
+            l = 512 - loop;
+        }
+        
+        sceGsSetDefStoreImage(&gs_simage, 0, 10, SCE_GS_PSMCT32, 0, loop, 512, l);
+        
+        FlushCache(0);
+        
+        sceGsExecStoreImage(&gs_simage, p);
+    } 
+    
+    Ps2ScreenClear();
 }
 
 // 99.82% matching
