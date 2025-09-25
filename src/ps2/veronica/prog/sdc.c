@@ -427,6 +427,7 @@ void ExPlayMidi(_anon1* pRequestInfo)
 	// Line 269, Address: 0x28f3dc, Func Offset: 0x19c
 	// Func End, Address: 0x28f3ec, Func Offset: 0x1ac
 }
+*/
 
 // 
 // Start address: 0x28f3f0
@@ -440,8 +441,8 @@ void StopMidi(unsigned int SlotNo)
 	// Line 274, Address: 0x28f41c, Func Offset: 0x2c
 	// Line 276, Address: 0x28f434, Func Offset: 0x44
 	// Func End, Address: 0x28f440, Func Offset: 0x50
+	scePrintf("StopMidi - UNIMPLEMENTED!\n");
 }
-*/
 
 // 
 // Start address: 0x28f440
@@ -468,6 +469,7 @@ void SetPanMidi(unsigned int SlotNo, char Pan, short DelayTime)
 	// Line 322, Address: 0x28f520, Func Offset: 0
 	// Func End, Address: 0x28f534, Func Offset: 0x14
 }
+*/
 
 // 
 // Start address: 0x28f540
@@ -490,6 +492,7 @@ void SetVolumeMidiEx(unsigned int SlotNo, float Volume, short DelayTime, int Fla
 	// Line 341, Address: 0x28f65c, Func Offset: 0x11c
 	// Line 345, Address: 0x28f690, Func Offset: 0x150
 	// Func End, Address: 0x28f6ac, Func Offset: 0x16c
+	scePrintf("SetVolumeMidiEx - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -498,7 +501,8 @@ void SetVolumeMidi(unsigned int SlotNo, char Volume, short DelayTime)
 {
 	// Line 349, Address: 0x28f6b0, Func Offset: 0
 	// Func End, Address: 0x28f6c8, Func Offset: 0x18
-}*/
+	scePrintf("SetVolumeMidi - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x28f6d0
@@ -673,6 +677,7 @@ void ExPlaySe(_anon1* pRequestInfo)
 	// Line 509, Address: 0x28fb90, Func Offset: 0x190
 	// Func End, Address: 0x28fba0, Func Offset: 0x1a0
 }
+*/
 
 // 
 // Start address: 0x28fba0
@@ -686,8 +691,8 @@ void StopSe(unsigned int SlotNo)
 	// Line 514, Address: 0x28fbcc, Func Offset: 0x2c
 	// Line 516, Address: 0x28fbe4, Func Offset: 0x44
 	// Func End, Address: 0x28fbf0, Func Offset: 0x50
+	scePrintf("StopSe - UNIMPLEMENTED!\n");
 }
-*/
 
 // 
 // Start address: 0x28fbf0
@@ -706,12 +711,13 @@ void SetPanSe2(unsigned int SlotNo, float Pan, short DelayTime)
 	scePrintf("SetPanSe2 - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x28fc90
 void SetPanSe(unsigned int SlotNo, char Pan, short DelayTime)
 {
 	// Line 565, Address: 0x28fc90, Func Offset: 0
 	// Func End, Address: 0x28fca4, Func Offset: 0x14
+	scePrintf("SetPanSe - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -735,6 +741,7 @@ void SetVolumeSeEx(unsigned int SlotNo, float Volume, short DelayTime, int Flag)
 	// Line 584, Address: 0x28fdcc, Func Offset: 0x11c
 	// Line 588, Address: 0x28fe00, Func Offset: 0x150
 	// Func End, Address: 0x28fe1c, Func Offset: 0x16c
+	scePrintf("SetVolumeSeEx - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -743,6 +750,7 @@ void SetVolumeSe(unsigned int SlotNo, char Volume, short DelayTime)
 {
 	// Line 592, Address: 0x28fe20, Func Offset: 0
 	// Func End, Address: 0x28fe38, Func Offset: 0x18
+	scePrintf("SetVolumeSe - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -751,9 +759,9 @@ void SetVolumeSe2(unsigned int SlotNo, float Volume, short DelayTime)
 {
 	// Line 597, Address: 0x28fe40, Func Offset: 0
 	// Func End, Address: 0x28fe48, Func Offset: 0x8
+	scePrintf("SetVolumeSe2 - UNIMPLEMENTED!\n");
 }
 
-*/
 // 100% matching! 
 void SetPitchSe(unsigned int SlotNo, short Pitch, short DelayTime)
 {
@@ -914,48 +922,70 @@ int CheckFadeEndSe(int SlotNo)
 	// Func End, Address: 0x2903ac, Func Offset: 0x2c
 }*/
 
-// 
-// Start address: 0x2903b0
-int ExecSoundFadeManager()
-{
-	//_anon0* sp;
-	//_anon0* mp;
-	int ReturnCode;
-	int i;
-	// Line 764, Address: 0x2903b0, Func Offset: 0
-	// Line 766, Address: 0x2903cc, Func Offset: 0x1c
-	// Line 770, Address: 0x2903d0, Func Offset: 0x20
-	// Line 772, Address: 0x2903d4, Func Offset: 0x24
-	// Line 775, Address: 0x290400, Func Offset: 0x50
-	// Line 776, Address: 0x290410, Func Offset: 0x60
-	// Line 777, Address: 0x29041c, Func Offset: 0x6c
-	// Line 778, Address: 0x290428, Func Offset: 0x78
-	// Line 779, Address: 0x29042c, Func Offset: 0x7c
-	// Line 780, Address: 0x290440, Func Offset: 0x90
-	// Line 783, Address: 0x290448, Func Offset: 0x98
-	// Line 784, Address: 0x290450, Func Offset: 0xa0
-	// Line 785, Address: 0x290454, Func Offset: 0xa4
-	// Line 786, Address: 0x290458, Func Offset: 0xa8
-	// Line 789, Address: 0x29046c, Func Offset: 0xbc
-	// Line 790, Address: 0x290470, Func Offset: 0xc0
-	// Line 791, Address: 0x290488, Func Offset: 0xd8
-	// Line 793, Address: 0x29048c, Func Offset: 0xdc
-	// Line 796, Address: 0x2904b8, Func Offset: 0x108
-	// Line 797, Address: 0x2904c8, Func Offset: 0x118
-	// Line 798, Address: 0x2904d4, Func Offset: 0x124
-	// Line 799, Address: 0x2904e0, Func Offset: 0x130
-	// Line 800, Address: 0x2904e4, Func Offset: 0x134
-	// Line 801, Address: 0x2904f8, Func Offset: 0x148
-	// Line 804, Address: 0x290500, Func Offset: 0x150
-	// Line 805, Address: 0x290508, Func Offset: 0x158
-	// Line 806, Address: 0x29050c, Func Offset: 0x15c
-	// Line 807, Address: 0x290510, Func Offset: 0x160
-	// Line 810, Address: 0x290524, Func Offset: 0x174
-	// Line 811, Address: 0x290528, Func Offset: 0x178
-	// Line 813, Address: 0x290538, Func Offset: 0x188
-	// Line 814, Address: 0x29053c, Func Offset: 0x18c
-	// Func End, Address: 0x290554, Func Offset: 0x1a4
-	scePrintf("ExecSoundFadeManager - UNIMPLEMENTED!\n");
+int ExecSoundFadeManager() {
+    int i;
+    int ReturnCode;
+    NO_NAME_20* mp;
+    NO_NAME_20* sp;
+    
+    ReturnCode = 0;
+    for(i = 0;i < 8; i++) {
+        mp = &MidiInfo[i];
+        switch(mp->FadeFunc) {
+            case 1:
+            case 2:
+                mp->Volume -= mp->VolSpeed;
+                mp->FadeCntMax--;
+
+                if (mp->FadeCntMax < 0) {
+                    mp->Volume = mp->VolLast;
+                    
+                    if ((int)mp->Volume == -0x7F) {
+                        StopMidi(i);
+                    }
+                    
+                    mp->FadeFunc = 0;
+                } else {
+                    ReturnCode = 1;
+                }
+                
+                SetVolumeMidiEx(i, mp->Volume, 0, 1);  
+            break;
+
+            case 0:
+            break;
+        }
+    }
+
+    for(i = 0; i < 20; i++) {
+        sp = &SeInfo[i];
+        switch(sp->FadeFunc) {
+            case 1: 
+            case 2:
+                sp->Volume -= sp->VolSpeed;
+                sp->FadeCntMax -= 1;
+    
+                if (sp->FadeCntMax < 0) {
+                    sp->Volume = sp->VolLast;
+                    
+                    if ((int)sp->Volume == -0x7F) {
+                        StopSe(i);
+                    }
+                    
+                    sp->FadeFunc = 0;
+                } else {
+                    ReturnCode = 1;
+                }
+                
+                SetVolumeSeEx(i, sp->Volume, 0, 1);
+            break;
+            
+            case 0:
+            break;
+        }
+    }
+
+    return ReturnCode;
 }
 
 /*// 
