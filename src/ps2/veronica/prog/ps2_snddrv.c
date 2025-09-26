@@ -498,23 +498,21 @@ int SdrBgmStop(unsigned char port)
 	scePrintf("SdrBgmStop - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ea350
-int SdrBgmChg(int req, char vol, char pan, short pitch)
-{
-	// Line 3990, Address: 0x2ea350, Func Offset: 0
-	// Line 3994, Address: 0x2ea358, Func Offset: 0x8
-	// Line 3995, Address: 0x2ea37c, Func Offset: 0x2c
-	// Line 3996, Address: 0x2ea388, Func Offset: 0x38
-	// Line 4000, Address: 0x2ea390, Func Offset: 0x40
-	// Line 4001, Address: 0x2ea3a8, Func Offset: 0x58
-	// Line 4002, Address: 0x2ea3b8, Func Offset: 0x68
-	// Line 4003, Address: 0x2ea3c8, Func Offset: 0x78
-	// Line 4005, Address: 0x2ea3e8, Func Offset: 0x98
-	// Line 4007, Address: 0x2ea418, Func Offset: 0xc8
-	// Line 4008, Address: 0x2ea41c, Func Offset: 0xcc
-	// Func End, Address: 0x2ea428, Func Offset: 0xd8
-	scePrintf("SdrBgmChg - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrBgmChg(int req, char vol, char pan, int pitch) {
+
+    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+        printf("SDR: SdrBgmChg: Warning: sndque overflow!\n");
+        return -1;
+    }
+
+    sndque_tbl[sque_w_idx].cmd = ((req << 16) & 0xFFFFFF) | 0x27000000;
+    sndque_tbl[sque_w_idx].vol = vol;
+    sndque_tbl[sque_w_idx].pan = pan;
+    sndque_tbl[sque_w_idx].pitch = ((pitch & 0x3F80) << 1) | (pitch & 0x7F);
+    
+    sque_w_idx = ++sque_w_idx % 128;
+    return 0;
 }
 
 // 
