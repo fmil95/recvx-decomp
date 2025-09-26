@@ -3145,3 +3145,7 @@ enum TIM2_gattr_type {
 	TIM2_IDTEX4,			// 16 color texture (for ImageType)
 	TIM2_IDTEX8				// 256 color texture (for ImageType)
 };
+
+#define SCE_GS_ALPHA_AS         (0)
+#define SCE_GS_ALPHA_AD         (1)
+#define SCE_GS_ALPHA_FIX        (2)
