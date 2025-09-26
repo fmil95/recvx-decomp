@@ -642,20 +642,20 @@ int SdrSetIopData() {
     
 }
 
-// 
-// Start address: 0x2ea8f0
-int SdrSetOutputMode(int mode)
-{
-	// Line 4636, Address: 0x2ea8f0, Func Offset: 0
-	// Line 4637, Address: 0x2ea8f8, Func Offset: 0x8
-	// Line 4638, Address: 0x2ea91c, Func Offset: 0x2c
-	// Line 4639, Address: 0x2ea928, Func Offset: 0x38
-	// Line 4642, Address: 0x2ea930, Func Offset: 0x40
-	// Line 4645, Address: 0x2ea950, Func Offset: 0x60
-	// Line 4647, Address: 0x2ea980, Func Offset: 0x90
-	// Line 4648, Address: 0x2ea984, Func Offset: 0x94
-	// Func End, Address: 0x2ea990, Func Offset: 0xa0
-	scePrintf("SdrSetOutputMode - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrSetOutputMode(int mode) {
+    int temp;
+    
+    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+        printf("SDR: SdrSetOutputMode: Warning: sndque overflow!\n");
+        return -1;
+    }
+    
+    temp = (mode != 0) ? 1 :  0;
+    sndque_tbl[sque_w_idx].cmd = 0x42000000 | ((temp << 16) & 0xFFFFFF);
+    sque_w_idx = ++sque_w_idx % 128;
+    
+    return 0;
 }
 
 // 100% matching!
