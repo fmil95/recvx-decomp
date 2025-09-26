@@ -884,36 +884,54 @@ int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned
 	scePrintf("makebuff_tq - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2eaef0
-int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7)
-{
-	int i;
-	int shift_n;
-	// Line 5515, Address: 0x2eaef0, Func Offset: 0
-	// Line 5518, Address: 0x2eaef4, Func Offset: 0x4
-	// Line 5519, Address: 0x2eaf00, Func Offset: 0x10
-	// Line 5520, Address: 0x2eaf0c, Func Offset: 0x1c
-	// Line 5522, Address: 0x2eaf14, Func Offset: 0x24
-	// Line 5524, Address: 0x2eaf3c, Func Offset: 0x4c
-	// Line 5525, Address: 0x2eaf40, Func Offset: 0x50
-	// Line 5526, Address: 0x2eaf4c, Func Offset: 0x5c
-	// Line 5527, Address: 0x2eaf60, Func Offset: 0x70
-	// Line 5528, Address: 0x2eaf64, Func Offset: 0x74
-	// Line 5526, Address: 0x2eaf68, Func Offset: 0x78
-	// Line 5528, Address: 0x2eaf70, Func Offset: 0x80
-	// Line 5526, Address: 0x2eaf74, Func Offset: 0x84
-	// Line 5528, Address: 0x2eaf78, Func Offset: 0x88
-	// Line 5529, Address: 0x2eaf88, Func Offset: 0x98
-	// Line 5530, Address: 0x2eafc0, Func Offset: 0xd0
-	// Line 5531, Address: 0x2eaff8, Func Offset: 0x108
-	// Line 5532, Address: 0x2eb030, Func Offset: 0x140
-	// Line 5534, Address: 0x2eb064, Func Offset: 0x174
-	// Line 5536, Address: 0x2eb07c, Func Offset: 0x18c
-	// Line 5534, Address: 0x2eb080, Func Offset: 0x190
-	// Line 5537, Address: 0x2eb084, Func Offset: 0x194
-	// Func End, Address: 0x2eb090, Func Offset: 0x1a0
-	scePrintf("makebuff8 - UNIMPLEMENTED!\n");
+// 100% matching!
+int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7) {
+    int shift;
+    int count;
+    
+    if (n > 8) {
+        printf("SDR: snddrv.c: makebuff8: Error: Length over\n");
+        return -1;
+    }
+    
+    if ((sbuff_idx + n) >= 0x200) {
+        return -1;
+    }
+    
+    shift = 0x18;
+    count = 4;
+    
+    while (count > 0 && n > 0) {
+        sbuff[sbuff_idx] = cmd >> shift;
+        sbuff_idx++;
+        shift -= 8;
+        count--;
+        n--;
+    }
+    
+    if (n-- > 0) {
+        sbuff[sbuff_idx] = data4;
+        sbuff_idx++;
+    }
+    
+    if (n-- > 0) {
+        sbuff[sbuff_idx] = data5;
+        sbuff_idx++;
+    }
+    
+    if (n-- > 0) {
+        sbuff[sbuff_idx] = data6;
+        sbuff_idx++;
+    }
+    
+    if (n > 0) {
+        sbuff[sbuff_idx] = data7;
+        sbuff_idx++;
+    }
+    
+    sbuff[sbuff_idx] = 0xFF;
+    
+    return 0;
 }
 
 // 100% matching!
