@@ -153,19 +153,57 @@ int sque_w_idx;
 int sbuff_idx;
 int ThId_send;
 int SmId_send = -1;
-int SmId_get;
+int SmId_get = -1;
 int SendReqFlag;
 /*
 unsigned char Stack_send[2048];
-unsigned int IOP_hd_size[16];
-unsigned int IOP_tq_size[16];
+*/
+
+unsigned int IOP_hd_size[16] = {
+    0x00000700,  
+    0x00000300,  
+    0x00003000,  
+    0x00000B00,  
+    0x00000A00,  
+    0x00000B00,  
+    0x00001800,  
+    0x00000300,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000   
+};
+
+unsigned int IOP_tq_size[16] = {
+    0x00000000,  
+    0x00000200,  
+    0x00002000,  
+    0x00000C00,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000,  
+    0x00000000   
+};
+/*
 void(*wait_alarm)(int, unsigned short, int);
+*/
 int iop_data_buff;
 int iop_data_adr[16];
 int iop_sq_adr[16];
 int iop_hd_adr[16];
 int iop_data_adr_top;
-*/
 int get_adrs;
 /*void* _gp;
 int(*th_sdrSendReq)();
@@ -216,6 +254,8 @@ int makebuff_ext(unsigned int cmd, int n, int limit);
 int sending_req(SND_QUE* sq_p);
 int get_iopsnd_info();
 
+void CpEEWait(int val);
+
 // 
 // Start address: 0x2e98a0
 void wait_alarm(int thid)
@@ -242,138 +282,112 @@ int SdrDelayThread(int hsync)
 	scePrintf("SdrDelayThread - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2e9930
-void sdr_initQue()
-{
+// 100% matching
+void sdr_initQue() {
 	int i;
-	// Line 3156, Address: 0x2e9930, Func Offset: 0
-	// Line 3157, Address: 0x2e9938, Func Offset: 0x8
-	// Line 3158, Address: 0x2e9944, Func Offset: 0x14
-	// Line 3159, Address: 0x2e9948, Func Offset: 0x18
-	// Line 3158, Address: 0x2e9950, Func Offset: 0x20
-	// Line 3159, Address: 0x2e9954, Func Offset: 0x24
-	// Line 3160, Address: 0x2e9974, Func Offset: 0x44
-	// Func End, Address: 0x2e997c, Func Offset: 0x4c
-	scePrintf("sdr_initQue - UNIMPLEMENTED!\n");
-}
 
-// 
-// Start address: 0x2e9980
-int sdr_initDev(sceSifClientData* cd_p, unsigned int dev)
-{
-	int i;
-	// Line 3180, Address: 0x2e9980, Func Offset: 0
-	// Line 3184, Address: 0x2e9994, Func Offset: 0x14
-	// Line 3185, Address: 0x2e99a0, Func Offset: 0x20
-	// Line 3186, Address: 0x2e99c0, Func Offset: 0x40
-	// Line 3191, Address: 0x2e99cc, Func Offset: 0x4c
-	// Line 3192, Address: 0x2e99d8, Func Offset: 0x58
-	// Line 3193, Address: 0x2e99f0, Func Offset: 0x70
-	// Line 3194, Address: 0x2e9a00, Func Offset: 0x80
-	// Line 3195, Address: 0x2e9a04, Func Offset: 0x84
-	// Func End, Address: 0x2e9a1c, Func Offset: 0x9c
-	scePrintf("sdr_initDev - UNIMPLEMENTED!\n");
-}
+	sbuff_idx = 0; 
+	sque_r_idx = 0; 
+	sque_w_idx = 0; 
+	for (i = 127; i >= 0; sndque_tbl[i--].cmd = -1); 
+} 
 
-// 
-// Start address: 0x2e9a20
-int SdrInit()
-{
-	//_sif_receive_data rd;
-	//SemaParam sem;
-	int id;
-	int flag_1st;
-	// Line 3223, Address: 0x2e9a20, Func Offset: 0
-	// Line 3230, Address: 0x2e9a28, Func Offset: 0x8
-	// Line 3232, Address: 0x2e9a40, Func Offset: 0x20
-	// Line 3238, Address: 0x2e9a48, Func Offset: 0x28
-	// Line 3239, Address: 0x2e9a60, Func Offset: 0x40
-	// Line 3240, Address: 0x2e9a6c, Func Offset: 0x4c
-	// Line 3243, Address: 0x2e9a74, Func Offset: 0x54
-	// Line 3244, Address: 0x2e9a8c, Func Offset: 0x6c
-	// Line 3245, Address: 0x2e9a98, Func Offset: 0x78
-	// Line 3252, Address: 0x2e9aa0, Func Offset: 0x80
-	// Line 3248, Address: 0x2e9aa8, Func Offset: 0x88
-	// Line 3249, Address: 0x2e9ab0, Func Offset: 0x90
-	// Line 3252, Address: 0x2e9ab4, Func Offset: 0x94
-	// Line 3253, Address: 0x2e9abc, Func Offset: 0x9c
-	// Line 3255, Address: 0x2e9ac4, Func Offset: 0xa4
-	// Line 3256, Address: 0x2e9acc, Func Offset: 0xac
-	// Line 3257, Address: 0x2e9ad8, Func Offset: 0xb8
-	// Line 3260, Address: 0x2e9ae0, Func Offset: 0xc0
-	// Line 3263, Address: 0x2e9ae8, Func Offset: 0xc8
-	// Line 3264, Address: 0x2e9af8, Func Offset: 0xd8
-	// Line 3266, Address: 0x2e9b00, Func Offset: 0xe0
-	// Line 3267, Address: 0x2e9b08, Func Offset: 0xe8
-	// Line 3268, Address: 0x2e9b14, Func Offset: 0xf4
-	// Line 3271, Address: 0x2e9b1c, Func Offset: 0xfc
-	// Line 3273, Address: 0x2e9b24, Func Offset: 0x104
-	// Line 3298, Address: 0x2e9b30, Func Offset: 0x110
-	// Line 3299, Address: 0x2e9b44, Func Offset: 0x124
-	// Line 3306, Address: 0x2e9b64, Func Offset: 0x144
-	// Line 3308, Address: 0x2e9b74, Func Offset: 0x154
-	// Line 3309, Address: 0x2e9b7c, Func Offset: 0x15c
-	// Line 3310, Address: 0x2e9b84, Func Offset: 0x164
-	// Line 3313, Address: 0x2e9bb0, Func Offset: 0x190
-	// Line 3314, Address: 0x2e9bb8, Func Offset: 0x198
-	// Line 3315, Address: 0x2e9bc0, Func Offset: 0x1a0
-	// Line 3316, Address: 0x2e9bc8, Func Offset: 0x1a8
-	// Line 3317, Address: 0x2e9bd0, Func Offset: 0x1b0
-	// Line 3318, Address: 0x2e9bd8, Func Offset: 0x1b8
-	// Line 3313, Address: 0x2e9be0, Func Offset: 0x1c0
-	// Line 3314, Address: 0x2e9be8, Func Offset: 0x1c8
-	// Line 3319, Address: 0x2e9bf0, Func Offset: 0x1d0
-	// Line 3314, Address: 0x2e9bf8, Func Offset: 0x1d8
-	// Line 3320, Address: 0x2e9bfc, Func Offset: 0x1dc
-	// Line 3322, Address: 0x2e9c04, Func Offset: 0x1e4
-	// Line 3323, Address: 0x2e9c0c, Func Offset: 0x1ec
-	// Line 3324, Address: 0x2e9c14, Func Offset: 0x1f4
-	// Line 3325, Address: 0x2e9c1c, Func Offset: 0x1fc
-	// Line 3314, Address: 0x2e9c24, Func Offset: 0x204
-	// Line 3322, Address: 0x2e9c2c, Func Offset: 0x20c
-	// Line 3315, Address: 0x2e9c34, Func Offset: 0x214
-	// Line 3323, Address: 0x2e9c3c, Func Offset: 0x21c
-	// Line 3315, Address: 0x2e9c44, Func Offset: 0x224
-	// Line 3326, Address: 0x2e9c48, Func Offset: 0x228
-	// Line 3323, Address: 0x2e9c50, Func Offset: 0x230
-	// Line 3327, Address: 0x2e9c54, Func Offset: 0x234
-	// Line 3328, Address: 0x2e9c5c, Func Offset: 0x23c
-	// Line 3329, Address: 0x2e9c64, Func Offset: 0x244
-	// Line 3331, Address: 0x2e9c6c, Func Offset: 0x24c
-	// Line 3315, Address: 0x2e9c74, Func Offset: 0x254
-	// Line 3316, Address: 0x2e9c7c, Func Offset: 0x25c
-	// Line 3323, Address: 0x2e9c84, Func Offset: 0x264
-	// Line 3324, Address: 0x2e9c8c, Func Offset: 0x26c
-	// Line 3316, Address: 0x2e9c94, Func Offset: 0x274
-	// Line 3331, Address: 0x2e9c98, Func Offset: 0x278
-	// Line 3316, Address: 0x2e9ca0, Func Offset: 0x280
-	// Line 3324, Address: 0x2e9ca8, Func Offset: 0x288
-	// Line 3317, Address: 0x2e9cac, Func Offset: 0x28c
-	// Line 3335, Address: 0x2e9cb4, Func Offset: 0x294
-	// Line 3324, Address: 0x2e9cb8, Func Offset: 0x298
-	// Line 3325, Address: 0x2e9cc0, Func Offset: 0x2a0
-	// Line 3317, Address: 0x2e9cc8, Func Offset: 0x2a8
-	// Line 3325, Address: 0x2e9cd4, Func Offset: 0x2b4
-	// Line 3318, Address: 0x2e9cd8, Func Offset: 0x2b8
-	// Line 3325, Address: 0x2e9ce0, Func Offset: 0x2c0
-	// Line 3326, Address: 0x2e9ce8, Func Offset: 0x2c8
-	// Line 3318, Address: 0x2e9cf0, Func Offset: 0x2d0
-	// Line 3326, Address: 0x2e9cfc, Func Offset: 0x2dc
-	// Line 3319, Address: 0x2e9d00, Func Offset: 0x2e0
-	// Line 3326, Address: 0x2e9d08, Func Offset: 0x2e8
-	// Line 3327, Address: 0x2e9d10, Func Offset: 0x2f0
-	// Line 3319, Address: 0x2e9d18, Func Offset: 0x2f8
-	// Line 3327, Address: 0x2e9d24, Func Offset: 0x304
-	// Line 3320, Address: 0x2e9d28, Func Offset: 0x308
-	// Line 3327, Address: 0x2e9d30, Func Offset: 0x310
-	// Line 3328, Address: 0x2e9d38, Func Offset: 0x318
-	// Line 3320, Address: 0x2e9d40, Func Offset: 0x320
-	// Line 3328, Address: 0x2e9d4c, Func Offset: 0x32c
-	// Line 3329, Address: 0x2e9d58, Func Offset: 0x338
-	// Line 3336, Address: 0x2e9d6c, Func Offset: 0x34c
-	// Func End, Address: 0x2e9d78, Func Offset: 0x358
-	scePrintf("SdrInit - UNIMPLEMENTED!\n");
+// 100% matching
+int sdr_initDev(sceSifClientData *cd_p, unsigned int dev) { 
+	int	i;
+    
+	for (i = 1024; i > 0; i--) { 
+		if (sceSifBindRpc(cd_p, dev, 0) < 0) return -1; 
+		if (cd_p->serve != NULL) break; 
+
+		printf("SDR:  BindRpc: Just wait.\n"); 
+		if (SdrDelayThread(1) < 0) return -1; 
+	} 
+
+	return 0; 
+} 
+
+
+// 99.91% matching
+int SdrInit() {
+    static int flag_1st; 
+    struct SemaParam sm;
+    sceSifReceiveData rd;
+    int result;
+
+    if (flag_1st != 0) {
+        return 0;
+    }
+    
+    sdr_initQue();
+    
+    result = sdr_initDev(&ClientData, 0);
+    if (result < 0) {
+        printf("SDR: SdrInit: Error: TSNDDRV_DEV: sceSifBindRpc faild.\n");
+        return -1;
+    }
+    
+    result = sdr_initDev(&GetStClientData, 1);
+    if (result < 0) {
+        printf("SDR: SdrInit: Error: TSNDGET_DEV: sceSifBindRpc faild.\n");
+        return -1;
+    }
+    
+    sm.initCount = 1;
+    sm.maxCount = 1;
+    sm.option = 0;
+    
+    if (SmId_send < 0) {
+        result = CreateSema(&sm);
+        if (result <= 0) {
+            printf("SDR: SdrInit: Error: SmId_send faild.\n");
+            return -1;
+        }
+        SmId_send = result;
+    }
+
+    if (SmId_get < 0) {
+        result = CreateSema(&sm);
+        if (result <= 0) {
+            printf("SDR: SdrInit: Error: SmId_get faild.\n");
+            return -1;
+        }
+        SmId_get = result;
+    }
+    
+    flag_1st = 1;
+    
+    do {
+        get_adrs = SdrGetState(0x12, 0);
+    } while (get_adrs <= 0 || get_adrs >= 0x200000);
+    
+    iop_data_adr_top = SdrGetState(0x13, 0);
+
+    while (sceSifGetOtherData(&rd, (void*)iop_data_adr_top, (void*)iop_data_adr, 0x40, 0) != 0) {
+        CpEEWait(0x3E8);
+    }
+    
+    iop_hd_adr[0] = iop_data_adr[0];
+    iop_hd_adr[1] = iop_hd_adr[0] + IOP_hd_size[0];
+    iop_hd_adr[2] = iop_hd_adr[1] + IOP_hd_size[1]; 
+    iop_hd_adr[3] = iop_hd_adr[2] + IOP_hd_size[2];
+    iop_hd_adr[4] = iop_hd_adr[3] + IOP_hd_size[3];
+    iop_hd_adr[5] = iop_hd_adr[4] + IOP_hd_size[4];
+    iop_hd_adr[6] = iop_hd_adr[5] + IOP_hd_size[5];
+    iop_hd_adr[7] = iop_hd_adr[6] + IOP_hd_size[6];
+    
+    iop_sq_adr[0] = iop_data_adr[1];
+    iop_sq_adr[1] = iop_sq_adr[0] + IOP_tq_size[0];
+    iop_sq_adr[2] = iop_sq_adr[1] + IOP_tq_size[1];
+    iop_sq_adr[3] = iop_sq_adr[2] + IOP_tq_size[2];
+    iop_sq_adr[4] = iop_sq_adr[3] + IOP_tq_size[3];
+    iop_sq_adr[5] = iop_sq_adr[4] + IOP_tq_size[4];
+    iop_sq_adr[6] = iop_sq_adr[5] + IOP_tq_size[5];
+    iop_sq_adr[7] = iop_sq_adr[6] + IOP_tq_size[6];
+    
+    iop_data_buff = iop_data_adr[2];
+
+    return 0;
 }
 
 // 
@@ -644,34 +658,35 @@ int SdrSetOutputMode(int mode)
 	scePrintf("SdrSetOutputMode - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ea990
-int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char delay, unsigned char feedback)
-{
-	//_anon0* sqd_p;
-	// Line 4744, Address: 0x2ea990, Func Offset: 0
-	// Line 4748, Address: 0x2ea994, Func Offset: 0x4
-	// Line 4749, Address: 0x2ea9a0, Func Offset: 0x10
-	// Line 4750, Address: 0x2ea9ac, Func Offset: 0x1c
-	// Line 4753, Address: 0x2ea9b4, Func Offset: 0x24
-	// Line 4754, Address: 0x2ea9c0, Func Offset: 0x30
-	// Line 4755, Address: 0x2ea9cc, Func Offset: 0x3c
-	// Line 4757, Address: 0x2ea9d4, Func Offset: 0x44
-	// Line 4758, Address: 0x2ea9f8, Func Offset: 0x68
-	// Line 4759, Address: 0x2eaa04, Func Offset: 0x74
-	// Line 4762, Address: 0x2eaa0c, Func Offset: 0x7c
-	// Line 4764, Address: 0x2eaa10, Func Offset: 0x80
-	// Line 4762, Address: 0x2eaa14, Func Offset: 0x84
-	// Line 4764, Address: 0x2eaa18, Func Offset: 0x88
-	// Line 4762, Address: 0x2eaa1c, Func Offset: 0x8c
-	// Line 4764, Address: 0x2eaa20, Func Offset: 0x90
-	// Line 4765, Address: 0x2eaa40, Func Offset: 0xb0
-	// Line 4766, Address: 0x2eaa44, Func Offset: 0xb4
-	// Line 4768, Address: 0x2eaa48, Func Offset: 0xb8
-	// Line 4770, Address: 0x2eaa78, Func Offset: 0xe8
-	// Line 4771, Address: 0x2eaa7c, Func Offset: 0xec
-	// Func End, Address: 0x2eaa88, Func Offset: 0xf8
-	scePrintf("SdrSetRev - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char delay, unsigned char feedback) {
+    SND_QUE_DATA* sqd_p;
+    
+    if (core > 2) {
+        printf("SDR: SdrSetRev: Error: core invalid.\n");
+        return -3;
+    }
+    
+    if (mode >= 10) {
+        printf("SDR: SdrSetRev: Error: mode invalid.\n");
+        return -2;
+    }
+
+    
+    sqd_p = (SND_QUE_DATA*)&sndque_tbl[sque_w_idx];
+    if (sqd_p->cmd >= 0) {
+        printf("SDR: SdrSetRev: Warning: sndque overflow!\n");
+        return -1;
+    }
+
+    mode = (mode | ++core << 6);
+    sqd_p->cmd = 0x44000000 | (mode << 16 | depth & 0xFFFF) & 0xFFFFFF;
+    sqd_p->data[0] = delay;
+    sqd_p->data[1] = feedback;
+    
+    sque_w_idx = ++sque_w_idx % 128;
+    
+    return 0;
 }
 
 // 100% matching!
@@ -764,43 +779,51 @@ int SdrGetStateSend(int command, int data) {
       return 0;
 }
 
-// 
-// Start address: 0x2ead10
-int SdrGetStateReceive(int mode)
-{
-	int ret;
-	// Line 5221, Address: 0x2ead10, Func Offset: 0
-	// Line 5225, Address: 0x2ead18, Func Offset: 0x8
-	// Line 5226, Address: 0x2ead20, Func Offset: 0x10
-	// Line 5228, Address: 0x2ead3c, Func Offset: 0x2c
-	// Line 5230, Address: 0x2ead48, Func Offset: 0x38
-	// Line 5231, Address: 0x2ead50, Func Offset: 0x40
-	// Line 5233, Address: 0x2ead5c, Func Offset: 0x4c
-	// Line 5234, Address: 0x2ead60, Func Offset: 0x50
-	// Func End, Address: 0x2ead70, Func Offset: 0x60
-	scePrintf("SdrGetStateReceive - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrGetStateReceive(int mode) {
+    int ret;
+
+    if (mode != 0) {
+        if (PollSema(SmId_get) < 0) {
+            return -1;
+        }
+        goto block_4;
+    }
+    
+    WaitSema(SmId_get);
+    
+block_4:
+    ret = getbuff[0];
+    SignalSema(SmId_get);
+    return ret;
 }
 
-// 
-// Start address: 0x2ead70
-int SdrGetState(int command, int data)
-{
-	int ret;
-	int i;
-	// Line 5261, Address: 0x2ead70, Func Offset: 0
-	// Line 5264, Address: 0x2ead7c, Func Offset: 0xc
-	// Line 5265, Address: 0x2ead84, Func Offset: 0x14
-	// Line 5273, Address: 0x2ead94, Func Offset: 0x24
-	// Line 5274, Address: 0x2ead98, Func Offset: 0x28
-	// Line 5275, Address: 0x2eada4, Func Offset: 0x34
-	// Line 5277, Address: 0x2eadb0, Func Offset: 0x40
-	// Line 5278, Address: 0x2eadc8, Func Offset: 0x58
-	// Line 5279, Address: 0x2eadd8, Func Offset: 0x68
-	// Line 5280, Address: 0x2eade4, Func Offset: 0x74
-	// Line 5282, Address: 0x2eadf0, Func Offset: 0x80
-	// Line 5286, Address: 0x2eadf4, Func Offset: 0x84
-	// Func End, Address: 0x2eae08, Func Offset: 0x98
-	scePrintf("SdrGetState - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrGetState(int command, int data) {
+    int ret2;
+    int i;
+    
+    ret2 = SdrGetStateSend(command, data);
+    
+    if (ret2 < 0) {
+        return ret2;
+    }
+
+    i = 0;
+    do {
+        ret2 = SdrGetStateReceive(1);
+        if (ret2 != -1) {
+            break;
+        }
+        i++;
+    } while (i < 100000);
+    
+    if (i == 100000) {
+        printf("SdrGetState: time out\n");
+        SignalSema(SmId_get);
+    }
+    
+    return ret2;
 }
 
 int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch) {

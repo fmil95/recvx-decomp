@@ -1753,6 +1753,7 @@ unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned i
 	// Line 4732, Address: 0x2dde44, Func Offset: 0x114
 	// Func End, Address: 0x2dde60, Func Offset: 0x130
 }
+*/
 
 // 
 // Start address: 0x2dde60
@@ -1766,5 +1767,6 @@ void CpEEWait(int val)
 	// Line 4744, Address: 0x2dde78, Func Offset: 0x18
 	// Line 4745, Address: 0x2dde84, Func Offset: 0x24
 	// Func End, Address: 0x2dde8c, Func Offset: 0x2c
-}*/
+	scePrintf("CpEEWait - UNIMPLEMENTED!\n");
+}
 
