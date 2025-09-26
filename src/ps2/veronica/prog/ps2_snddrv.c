@@ -463,20 +463,17 @@ int SdrSeAllStop()
 	scePrintf("SdrSeAllStop - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ea150
-int SdrMasterVol(unsigned short mvol)
-{
-	// Line 3686, Address: 0x2ea150, Func Offset: 0
-	// Line 3687, Address: 0x2ea158, Func Offset: 0x8
-	// Line 3688, Address: 0x2ea17c, Func Offset: 0x2c
-	// Line 3689, Address: 0x2ea188, Func Offset: 0x38
-	// Line 3692, Address: 0x2ea190, Func Offset: 0x40
-	// Line 3694, Address: 0x2ea1ac, Func Offset: 0x5c
-	// Line 3696, Address: 0x2ea1dc, Func Offset: 0x8c
-	// Line 3697, Address: 0x2ea1e0, Func Offset: 0x90
-	// Func End, Address: 0x2ea1ec, Func Offset: 0x9c
-	scePrintf("SdrMasterVol - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrMasterVol(unsigned short mvol) {
+    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+        printf("SDR: SdrMasterVol: Warning: sndque overflow!\n");
+        return -1;
+    }
+    
+    sndque_tbl[sque_w_idx].cmd = (0x4B000000 | ((mvol << 0x8) & 0xFFFFFF));
+    sque_w_idx = ++sque_w_idx % 128;
+    
+    return 0;
 }
 
 // 
