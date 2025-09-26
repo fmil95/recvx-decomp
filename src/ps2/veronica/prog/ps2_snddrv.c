@@ -540,6 +540,7 @@ int SdrHDDataSet(int port, int size)
 	// Line 4021, Address: 0x2ea4bc, Func Offset: 0x8c
 	// Line 4022, Address: 0x2ea4c0, Func Offset: 0x90
 	// Func End, Address: 0x2ea4cc, Func Offset: 0x9c
+	scePrintf("SdrHDDataSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -556,6 +557,7 @@ int SdrHDDataSet2(int port, int size)
 	// Line 4035, Address: 0x2ea55c, Func Offset: 0x8c
 	// Line 4036, Address: 0x2ea560, Func Offset: 0x90
 	// Func End, Address: 0x2ea56c, Func Offset: 0x9c
+	scePrintf("SdrHDDataSet2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -571,6 +573,7 @@ int SdrBDDataSet(int port)
 	// Line 4048, Address: 0x2ea5f8, Func Offset: 0x88
 	// Line 4049, Address: 0x2ea5fc, Func Offset: 0x8c
 	// Func End, Address: 0x2ea608, Func Offset: 0x98
+	scePrintf("SdrBDDataSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -586,6 +589,7 @@ int SdrBDDataSet2(int port)
 	// Line 4059, Address: 0x2ea698, Func Offset: 0x88
 	// Line 4060, Address: 0x2ea69c, Func Offset: 0x8c
 	// Func End, Address: 0x2ea6a8, Func Offset: 0x98
+	scePrintf("SdrBDDataSet2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -604,6 +608,7 @@ int SdrBDDataTrans(int port, int adrs, int size, int flag)
 	// Line 4073, Address: 0x2ea77c, Func Offset: 0xcc
 	// Line 4074, Address: 0x2ea780, Func Offset: 0xd0
 	// Func End, Address: 0x2ea78c, Func Offset: 0xdc
+	scePrintf("SdrBDDataTrans - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -620,6 +625,7 @@ int SdrSQDataSet(int port, int size)
 	// Line 4088, Address: 0x2ea81c, Func Offset: 0x8c
 	// Line 4089, Address: 0x2ea820, Func Offset: 0x90
 	// Func End, Address: 0x2ea82c, Func Offset: 0x9c
+	scePrintf("SdrSQDataSet - UNIMPLEMENTED!\n");
 }
 
 // 100% matching
