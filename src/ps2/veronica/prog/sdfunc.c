@@ -2045,7 +2045,7 @@ char CurrentRoomFxLevel;
 SND_REQ RequestInfo;
 NJS_POINT3 CameraPos;
 /*_anon44 GsSlotInfoAx[2];*/
-_anon35 ObjectInfo[16];
+Object ObjectInfo[16];
 /*_anon44 GsSlotInfoMi[8];
 */
 NO_NAME_31 GsSlotInfoSe[20];
@@ -2054,12 +2054,13 @@ NJS_POINT3 PlayerPos;
 int xVol;
 int xPan;
 SDS_PORT_REF** MidiHandle[0];
+*/
 int StartInitScriptFlag;
-_anon19 MidiInfo[0];
+/*_anon19 MidiInfo[0];
 _anon2 EnemyInfo[128];*/
 EnemySlot EnemySlotInfo[6];
 int MaxObjectReqList;
-/*unsigned char ObjectReqList[16];*/
+unsigned char ObjectReqList[16];
 unsigned int AdxPlayFlag[2];
 char CurrentRoomFxProgNo;
 /*int MaxRequestList;
@@ -3697,10 +3698,11 @@ int StopNativeEventSe(int SlotNo)
 	// Line 2837, Address: 0x2955e4, Func Offset: 0x54
 	// Func End, Address: 0x2955f0, Func Offset: 0x60
 }
+*/
 
 // 
 // Start address: 0x2955f0
-void RequestObjectSeEx(int ObjectNo, _anon16* pPos, int Type)
+void RequestObjectSeEx(int ObjectNo, NJS_POINT3* pPos, int SeNo, int Prio, int Type)
 {
 	_anon35* oip;
 	// Line 2851, Address: 0x2955f0, Func Offset: 0
@@ -3716,6 +3718,7 @@ void RequestObjectSeEx(int ObjectNo, _anon16* pPos, int Type)
 	// Line 2873, Address: 0x295684, Func Offset: 0x94
 	// Line 2874, Address: 0x29568c, Func Offset: 0x9c
 	// Func End, Address: 0x2956a0, Func Offset: 0xb0
+	scePrintf("RequestObjectSeEx - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3748,6 +3751,7 @@ void RegistObjectSe(int ObjectNo, _anon16* pPos, int SeNo, int Prio)
 	// Line 2927, Address: 0x295744, Func Offset: 0xa4
 	// Line 2928, Address: 0x295758, Func Offset: 0xb8
 	// Func End, Address: 0x295760, Func Offset: 0xc0
+	scePrintf("RegistObjectSe - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3778,7 +3782,8 @@ void FreeObjectSe(int ObjectNo)
 	// Line 2961, Address: 0x29580c, Func Offset: 0xac
 	// Line 2963, Address: 0x295824, Func Offset: 0xc4
 	// Func End, Address: 0x295830, Func Offset: 0xd0
-}*/
+	scePrintf("FreeObjectSe - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x295830
@@ -4271,12 +4276,11 @@ int SearchPlayingObjectSe(int ObjectNo) {
     return SearchPlayingObjectSeEx(ObjectNo, 1);
 }
 
-/*
 // 
 // Start address: 0x2964e0
 int SearchFreeObjectSeSlot()
 {
-	_anon11* osp;
+	//_anon11* osp;
 	int i;
 	// Line 3550, Address: 0x2964e0, Func Offset: 0
 	// Line 3551, Address: 0x2964f8, Func Offset: 0x18
@@ -4285,11 +4289,12 @@ int SearchFreeObjectSeSlot()
 	// Line 3556, Address: 0x296524, Func Offset: 0x44
 	// Line 3557, Address: 0x296528, Func Offset: 0x48
 	// Func End, Address: 0x296530, Func Offset: 0x50
+	scePrintf("SearchFreeObjectSeSlot - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x296530
-void CallObjectSe2(unsigned int SlotNo, _anon35* oip, int Flag)
+void CallObjectSe2(unsigned int SlotNo, Object* oip, int Flag)
 {
 	// Line 3560, Address: 0x296530, Func Offset: 0
 	// Line 3561, Address: 0x296544, Func Offset: 0x14
@@ -4328,8 +4333,8 @@ void CallObjectSe2(unsigned int SlotNo, _anon35* oip, int Flag)
 	// Line 3599, Address: 0x2966f8, Func Offset: 0x1c8
 	// Line 3602, Address: 0x29670c, Func Offset: 0x1dc
 	// Func End, Address: 0x296724, Func Offset: 0x1f4
+	scePrintf("CallObjectSe2 - UNIMPLEMENTED!\n");
 }
-*/
 
 // 100% matching!
 void RegistObjectSlot(int SlotNo, int ObjectNo, int SeNo)
@@ -4344,7 +4349,6 @@ void RegistObjectSlot(int SlotNo, int ObjectNo, int SeNo)
     ObjectSlotPtr->Flag = 1;
 }
 
-// 
 // 100% matching!
 void ResetObjectSeInfo()
 {
@@ -4353,54 +4357,69 @@ void ResetObjectSeInfo()
     MaxObjectReqList = 0;
 }
 
-// 
-// Start address: 0x2967b0
-void ExecObjectSeManager()
-{
-	int SlotNo;
-	//_anon11* osp;
-	//_anon35* oip;
-	int j;
-	int i;
-	// Line 3630, Address: 0x2967b0, Func Offset: 0
-	// Line 3638, Address: 0x2967cc, Func Offset: 0x1c
-	// Line 3641, Address: 0x2967e4, Func Offset: 0x34
-	// Line 3643, Address: 0x2967ec, Func Offset: 0x3c
-	// Line 3642, Address: 0x2967f0, Func Offset: 0x40
-	// Line 3643, Address: 0x2967f8, Func Offset: 0x48
-	// Line 3644, Address: 0x296808, Func Offset: 0x58
-	// Line 3645, Address: 0x29681c, Func Offset: 0x6c
-	// Line 3685, Address: 0x29683c, Func Offset: 0x8c
-	// Line 3686, Address: 0x296844, Func Offset: 0x94
-	// Line 3687, Address: 0x296848, Func Offset: 0x98
-	// Line 3688, Address: 0x296850, Func Offset: 0xa0
-	// Line 3689, Address: 0x296860, Func Offset: 0xb0
-	// Line 3690, Address: 0x29686c, Func Offset: 0xbc
-	// Line 3691, Address: 0x29687c, Func Offset: 0xcc
-	// Line 3694, Address: 0x296884, Func Offset: 0xd4
-	// Line 3705, Address: 0x2968a4, Func Offset: 0xf4
-	// Line 3706, Address: 0x2968ac, Func Offset: 0xfc
-	// Line 3707, Address: 0x2968b0, Func Offset: 0x100
-	// Line 3708, Address: 0x2968b8, Func Offset: 0x108
-	// Line 3709, Address: 0x2968c8, Func Offset: 0x118
-	// Line 3710, Address: 0x2968d4, Func Offset: 0x124
-	// Line 3711, Address: 0x2968e0, Func Offset: 0x130
-	// Line 3713, Address: 0x2968f0, Func Offset: 0x140
-	// Line 3714, Address: 0x296900, Func Offset: 0x150
-	// Line 3716, Address: 0x296910, Func Offset: 0x160
-	// Line 3718, Address: 0x296918, Func Offset: 0x168
-	// Line 3719, Address: 0x29692c, Func Offset: 0x17c
-	// Line 3720, Address: 0x29693c, Func Offset: 0x18c
-	// Line 3721, Address: 0x296940, Func Offset: 0x190
-	// Line 3722, Address: 0x296944, Func Offset: 0x194
-	// Line 3721, Address: 0x296948, Func Offset: 0x198
-	// Line 3723, Address: 0x29694c, Func Offset: 0x19c
-	// Line 3726, Address: 0x296964, Func Offset: 0x1b4
-	// Line 3727, Address: 0x296974, Func Offset: 0x1c4
-	// Line 3728, Address: 0x296978, Func Offset: 0x1c8
-	// Line 3741, Address: 0x296994, Func Offset: 0x1e4
-	// Func End, Address: 0x2969b4, Func Offset: 0x204
-	scePrintf("ExecObjectSeManager - UNIMPLEMENTED!\n");
+// 100% matching!
+void ExecObjectSeManager() {
+    int i;
+    int j;
+    Object *oip;
+    ObjectSlot *osp;
+    int SlotNo;
+    
+    if (StartInitScriptFlag != 0) {
+        return;
+    }
+    
+    for (i = 0; i < MaxObjectReqList; i++) {
+        oip = ObjectInfo;
+        j = ObjectReqList[i];
+        oip += j;
+
+        RequestObjectSeEx(
+            j,
+            &oip->pos,
+            oip->SeNo,     
+            oip->Prio,     
+            oip->Type      
+        );
+
+    }
+    
+    for (i = 0; i < MaxSlotObjectSe; i++) {
+        oip = ObjectInfo;
+        j = ObjectReqList[i];
+        oip += j;
+        
+        if (oip->ReqFlag != 0) {
+            SlotNo = SearchPlayingObjectSe(j);
+            if (SlotNo >= 0) {
+                oip->SlotNo = SlotNo;
+            }
+        }
+    }
+   
+    for (i = 0; i < MaxSlotObjectSe; i++) {
+        oip = ObjectInfo;
+        j = ObjectReqList[i];
+        oip += j;
+
+        if (oip->ReqFlag != 0) {
+            if (oip->SlotNo < 0) {
+                if ((SlotNo = SearchFreeObjectSeSlot() )>= 0) {
+                    CallObjectSe2(SlotNo, oip, 1);
+                    RegistObjectSlot(SlotNo, j, oip->SeNo);
+                }
+            } else {
+                CallObjectSe2(oip->SlotNo, oip, 0);
+                RegistObjectSlot(oip->SlotNo, j, oip->SeNo);
+            }
+            
+            oip->ReqFlag = 0;
+        }
+    }
+
+    for (i = 0, osp = ObjectSlotInfo; i < MaxSlotObjectSe; i++, osp++) {
+        osp->FindFlag = 0;  
+    }
 }
 
 /*// 

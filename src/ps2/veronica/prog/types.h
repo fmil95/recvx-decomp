@@ -2863,6 +2863,22 @@ typedef struct SND_QUE
 	short pitch; // offset 0x6, size 0x2
 } SND_QUE;
 
+typedef struct Object {
+    // total size: 0x38
+    NJS_POINT3 pos; // offset 0x0, size 0xC
+    float Dist; // offset 0xC, size 0x4
+    signed int SeNo; // offset 0x10, size 0x4
+    signed char ReqFlag; // offset 0x14, size 0x1
+    signed char Prio; // offset 0x15, size 0x1
+    signed char SlotNo; // offset 0x16, size 0x1
+    signed char Type; // offset 0x17, size 0x1
+    signed char Pan; // offset 0x18, size 0x1
+    signed char Vol; // offset 0x19, size 0x1
+    signed int Flag; // offset 0x1C, size 0x4
+    signed int VolFadeP[3]; // offset 0x20, size 0xC
+    signed int PanFadeP[3]; // offset 0x2C, size 0xC
+} Object; 
+
 typedef struct ObjectSlot
 {
     // total size: 0xC
