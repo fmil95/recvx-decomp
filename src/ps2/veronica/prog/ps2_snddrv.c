@@ -152,7 +152,7 @@ SND_QUE sndque_tbl[128];
 int sque_w_idx;
 int sbuff_idx;
 int ThId_send;
-int SmId_send;
+int SmId_send = -1;
 int SmId_get;
 int SendReqFlag;
 /*
@@ -807,35 +807,58 @@ int SdrGetState(int command, int data)
 	scePrintf("SdrGetState - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2eae10
-int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch)
-{
-	unsigned char* sb_p;
-	int len;
-	int cd;
-	// Line 5464, Address: 0x2eae10, Func Offset: 0
-	// Line 5466, Address: 0x2eae14, Func Offset: 0x4
-	// Line 5467, Address: 0x2eae24, Func Offset: 0x14
-	// Line 5468, Address: 0x2eae34, Func Offset: 0x24
-	// Line 5470, Address: 0x2eae44, Func Offset: 0x34
-	// Line 5472, Address: 0x2eae64, Func Offset: 0x54
-	// Line 5473, Address: 0x2eae70, Func Offset: 0x60
-	// Line 5474, Address: 0x2eae74, Func Offset: 0x64
-	// Line 5475, Address: 0x2eae7c, Func Offset: 0x6c
-	// Line 5476, Address: 0x2eae84, Func Offset: 0x74
-	// Line 5478, Address: 0x2eae88, Func Offset: 0x78
-	// Line 5479, Address: 0x2eae98, Func Offset: 0x88
-	// Line 5480, Address: 0x2eaea8, Func Offset: 0x98
-	// Line 5481, Address: 0x2eaeb0, Func Offset: 0xa0
-	// Line 5482, Address: 0x2eaebc, Func Offset: 0xac
-	// Line 5485, Address: 0x2eaec4, Func Offset: 0xb4
-	// Line 5486, Address: 0x2eaecc, Func Offset: 0xbc
-	// Line 5488, Address: 0x2eaed0, Func Offset: 0xc0
-	// Line 5485, Address: 0x2eaed4, Func Offset: 0xc4
-	// Line 5486, Address: 0x2eaee0, Func Offset: 0xd0
-	// Line 5489, Address: 0x2eaee4, Func Offset: 0xd4
-	// Func End, Address: 0x2eaeec, Func Offset: 0xdc
+int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch) {
+    /*
+    int cd;
+    int len;
+    unsigned char* sb_p;
+    
+    cd = (cmd >> 24);
+    
+    len = 4;
+    
+    if (cd & 0x1) {
+        len += 1;
+    }
+    
+    if (cd & 0x2) {
+        len += 1;
+    }
+    
+    if (cd & 0x4) {
+        len += 2;
+    }
+    
+    if ((sbuff_idx + len) >= 0x200) {
+        return -1;
+    }
+    
+    sb_p = &sbuff[sbuff_idx];
+    
+    *sb_p++ = (cmd >> 24);
+    *sb_p++ = (cmd >> 16) & 0xFF;
+    *sb_p++ = (cmd >> 8) & 0xFF;
+    *sb_p++ = cmd & 0xFF;
+    
+    if (cd & 0x1) {
+        *sb_p++ = vol;
+    }
+    
+    if (cd & 0x2) {
+        *sb_p++ = pan;
+    }
+    
+    if (cd & 0x4) {
+        *sb_p++ = (pitch >> 8) & 0xFF;
+        *sb_p++ = pitch & 0xFF;
+    }
+    
+    sbuff_idx += len;
+    
+    *sb_p = 0xFF;
+    
+    return 0;
+    */
 	scePrintf("makebuff_tq - UNIMPLEMENTED!\n");
 }
 
