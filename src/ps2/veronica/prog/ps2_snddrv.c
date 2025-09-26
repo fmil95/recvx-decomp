@@ -750,22 +750,18 @@ void cb_sifRpc_snd(int smid)
     *(int*)0x1E212C8 = 0;
 }
 
-// 
-// Start address: 0x2eac60
-int SdrGetStateSend(int command, int data)
-{
-	// Line 5167, Address: 0x2eac60, Func Offset: 0
-	// Line 5168, Address: 0x2eac74, Func Offset: 0x14
-	// Line 5171, Address: 0x2eac84, Func Offset: 0x24
-	// Line 5169, Address: 0x2eac8c, Func Offset: 0x2c
-	// Line 5171, Address: 0x2eac94, Func Offset: 0x34
-	// Line 5183, Address: 0x2eacd4, Func Offset: 0x74
-	// Line 5184, Address: 0x2eace0, Func Offset: 0x80
-	// Line 5185, Address: 0x2eacec, Func Offset: 0x8c
-	// Line 5188, Address: 0x2eacf4, Func Offset: 0x94
-	// Line 5189, Address: 0x2eacf8, Func Offset: 0x98
-	// Func End, Address: 0x2ead0c, Func Offset: 0xac
-	scePrintf("SdrGetStateSend - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrGetStateSend(int command, int data) {
+      WaitSema(SmId_get);
+      getbuff[0] = data;
+
+      if (sceSifCallRpc(&GetStClientData, command, 1, getbuff, 0x10, getbuff, 0x10, (sceSifEndFunc)&cb_sifRpc, (void*)SmId_get) < 0) {
+          printf("SDR: SdrGetStateSend: Error: Rpc faild.\n");
+          SignalSema(SmId_get);
+          return -9;
+      }
+
+      return 0;
 }
 
 // 
