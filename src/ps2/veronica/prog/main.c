@@ -99,7 +99,6 @@
 #include "light.c"
 #include "MdlPut.c"
 #include "pl_evt.c"
-#include "playpch.c"
 #include "playpch2.c"
 #include "ps2_MovieWork.c"
 #include "ps2_NaColi.c"
@@ -238,6 +237,7 @@
 #include "event.c"
 #include "adv.c"
 #include "system.c"
+#include "playpch.c"
 
 typedef void(*fn)();
 

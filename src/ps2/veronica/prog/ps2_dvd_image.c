@@ -1,15 +1,4 @@
-/*typedef struct _anon0;
-
-
-typedef char* type_0[205];
-typedef _anon0 type_1[19];
-typedef char* type_2[18];
-
-struct _anon0
-{
-	char* file_name;
-	char* link_file;
-};*/
+#include "ps2_dvd_image.h"
 
 char* rdx_files[205] = { 
 	"RM_0000.RDX", "RM_0010.RDX", "RM_0020.RDX", "RM_0021.RDX", "RM_0030.RDX", "RM_0031.RDX", "RM_0040.RDX", "RM_0050.RDX", "RM_0060.RDX", "RM_0070.RDX",
