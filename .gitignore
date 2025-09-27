@@ -8,3 +8,4 @@ elf/iso/RE_CVX.iso
 elf/iso/RECVX_NEW.iso
 elf/iso/RECVX_FILELIST.txt
 compile_config.json
+compile_wibo.py
