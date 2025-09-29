@@ -485,21 +485,19 @@ int SdrMasterVol(unsigned short mvol) {
     return 0;
 }
 
-// 
-// Start address: 0x2ea1f0
-int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigned char block)
-{
-	// Line 3789, Address: 0x2ea1f0, Func Offset: 0
-	// Line 3792, Address: 0x2ea1f8, Func Offset: 0x8
-	// Line 3793, Address: 0x2ea21c, Func Offset: 0x2c
-	// Line 3794, Address: 0x2ea228, Func Offset: 0x38
-	// Line 3797, Address: 0x2ea230, Func Offset: 0x40
-	// Line 3801, Address: 0x2ea260, Func Offset: 0x70
-	// Line 3802, Address: 0x2ea264, Func Offset: 0x74
-	// Line 3803, Address: 0x2ea294, Func Offset: 0xa4
-	// Line 3804, Address: 0x2ea298, Func Offset: 0xa8
-	// Func End, Address: 0x2ea2a4, Func Offset: 0xb4
-	scePrintf("SdrBgmReq - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigned char block) {
+
+    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+        printf("SDR: SdrBgmReq: Warning: sndque overflow!\n");
+        return -1;
+    }
+
+    sndque_tbl[sque_w_idx].cmd =  ((port << 16) & 0xFFFFFF)  | ((bank << 8) & 0xFFFFFF) | (vol & 0xFFFFFF) | 0x20000000;
+    *(unsigned char*)(&sndque_tbl[sque_w_idx].vol) = block;
+    sque_w_idx = ++sque_w_idx % 128;
+    
+    return 0;
 }
 
 // 
