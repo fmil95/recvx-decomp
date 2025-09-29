@@ -256,6 +256,8 @@ int get_iopsnd_info();
 
 void CpEEWait(int val);
 
+#define	CheckCmdReq(vol, pan, pitch)	(0x00|0|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
+
 // 
 // Start address: 0x2e98a0
 void wait_alarm(int thid)
@@ -390,25 +392,26 @@ int SdrInit() {
     return 0;
 }
 
-// 
-// Start address: 0x2e9d80
-int SdrSeReq(int req, char vol, char pan, short pitch)
-{
-	// Line 3418, Address: 0x2e9d80, Func Offset: 0
-	// Line 3422, Address: 0x2e9d88, Func Offset: 0x8
-	// Line 3423, Address: 0x2e9dac, Func Offset: 0x2c
-	// Line 3424, Address: 0x2e9db8, Func Offset: 0x38
-	// Line 3428, Address: 0x2e9dc0, Func Offset: 0x40
-	// Line 3432, Address: 0x2e9e14, Func Offset: 0x94
-	// Line 3433, Address: 0x2e9e4c, Func Offset: 0xcc
-	// Line 3434, Address: 0x2e9e5c, Func Offset: 0xdc
-	// Line 3435, Address: 0x2e9e6c, Func Offset: 0xec
-	// Line 3437, Address: 0x2e9e7c, Func Offset: 0xfc
-	// Line 3439, Address: 0x2e9eac, Func Offset: 0x12c
-	// Line 3440, Address: 0x2e9eb0, Func Offset: 0x130
-	// Func End, Address: 0x2e9ebc, Func Offset: 0x13c
-	scePrintf("SdrSeReq - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+int SdrSeReq(int req, char vol, char pan, short pitch) { 
+	char temp; // not originally outputted by dwarf2cpp
+
+	if (sndque_tbl[sque_w_idx].cmd >= 0) { 
+		printf("SDR: SdrSeReq: Warning: sndque overflow!\n"); 
+		return -1; 
+    }
+    
+	temp = CheckCmdReq((vol >= 0) ? 1 : 0, (pan >= 0) ? 1 : 0, (pitch >= 0) ? 1 : 0); 
+
+    sndque_tbl[sque_w_idx].cmd = (temp << 24) | (req & 0xFFFFFF); 
+    sndque_tbl[sque_w_idx].vol = vol; 
+    sndque_tbl[sque_w_idx].pan = pan;
+	sndque_tbl[sque_w_idx].pitch = pitch;
+
+	sque_w_idx = ++sque_w_idx % 128; 
+
+	return 0; 
+} 
 
 // 
 // Start address: 0x2e9ec0
