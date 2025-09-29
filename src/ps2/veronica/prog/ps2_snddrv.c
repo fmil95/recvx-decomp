@@ -413,20 +413,17 @@ int SdrSeReq(int req, char vol, char pan, short pitch) {
 	return 0; 
 } 
 
-// 
-// Start address: 0x2e9ec0
-int SdrSeCancel(int req)
-{
-	// Line 3461, Address: 0x2e9ec0, Func Offset: 0
-	// Line 3513, Address: 0x2e9ec8, Func Offset: 0x8
-	// Line 3514, Address: 0x2e9eec, Func Offset: 0x2c
-	// Line 3515, Address: 0x2e9ef8, Func Offset: 0x38
-	// Line 3518, Address: 0x2e9f00, Func Offset: 0x40
-	// Line 3520, Address: 0x2e9f14, Func Offset: 0x54
-	// Line 3522, Address: 0x2e9f44, Func Offset: 0x84
-	// Line 3523, Address: 0x2e9f48, Func Offset: 0x88
-	// Func End, Address: 0x2e9f54, Func Offset: 0x94
-	scePrintf("SdrSeCancel - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrSeCancel(int req) {
+    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+        printf("SDR: SdrSeCancel: Warning: sndque overflow!\n");
+        return -1;
+    }
+    
+    sndque_tbl[sque_w_idx].cmd = (0x08000000 | (req & 0xFFFFFF));
+    sque_w_idx = ++sque_w_idx % 128;
+    
+    return 0;
 }
 
 // 
