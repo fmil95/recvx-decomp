@@ -500,20 +500,17 @@ int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigne
     return 0;
 }
 
-// 
-// Start address: 0x2ea2b0
-int SdrBgmStop(unsigned char port)
-{
-	// Line 3823, Address: 0x2ea2b0, Func Offset: 0
-	// Line 3824, Address: 0x2ea2b8, Func Offset: 0x8
-	// Line 3825, Address: 0x2ea2dc, Func Offset: 0x2c
-	// Line 3826, Address: 0x2ea2e8, Func Offset: 0x38
-	// Line 3829, Address: 0x2ea2f0, Func Offset: 0x40
-	// Line 3831, Address: 0x2ea30c, Func Offset: 0x5c
-	// Line 3833, Address: 0x2ea33c, Func Offset: 0x8c
-	// Line 3834, Address: 0x2ea340, Func Offset: 0x90
-	// Func End, Address: 0x2ea34c, Func Offset: 0x9c
-	scePrintf("SdrBgmStop - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrBgmStop(unsigned char port) {
+    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+        printf("SDR: SdrBgmStop: Warning: sndque overflow!\n");
+        return -1;
+    }
+
+    sndque_tbl[sque_w_idx].cmd = (0x21000000 | ((port << 0x10) & 0xFFFFFF));
+    sque_w_idx = ++sque_w_idx % 128;
+    
+    return 0;
 }
 
 // 100% matching!
@@ -533,38 +530,34 @@ int SdrBgmChg(int req, char vol, char pan, int pitch) {
     return 0;
 }
 
-// 
-// Start address: 0x2ea430
-int SdrHDDataSet(int port, int size)
-{
-	// Line 4011, Address: 0x2ea430, Func Offset: 0
-	// Line 4012, Address: 0x2ea438, Func Offset: 0x8
-	// Line 4013, Address: 0x2ea45c, Func Offset: 0x2c
-	// Line 4014, Address: 0x2ea468, Func Offset: 0x38
-	// Line 4017, Address: 0x2ea470, Func Offset: 0x40
-	// Line 4018, Address: 0x2ea488, Func Offset: 0x58
-	// Line 4019, Address: 0x2ea48c, Func Offset: 0x5c
-	// Line 4021, Address: 0x2ea4bc, Func Offset: 0x8c
-	// Line 4022, Address: 0x2ea4c0, Func Offset: 0x90
-	// Func End, Address: 0x2ea4cc, Func Offset: 0x9c
-	scePrintf("SdrHDDataSet - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrHDDataSet(int port, int size) {
+    
+    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+        printf("SDR: SdrLoadReq: Warning: sndque overflow!\n");
+        return -1;
+    }
+
+    sndque_tbl[sque_w_idx].cmd = ((port << 16) & 0xFFFFFF) | 0x28000000;
+    *(int*)(&sndque_tbl[sque_w_idx].vol) = size; 
+    sque_w_idx = ++sque_w_idx % 128;
+    
+    return 0;
 }
 
-// 
-// Start address: 0x2ea4d0
-int SdrHDDataSet2(int port, int size)
-{
-	// Line 4025, Address: 0x2ea4d0, Func Offset: 0
-	// Line 4026, Address: 0x2ea4d8, Func Offset: 0x8
-	// Line 4027, Address: 0x2ea4fc, Func Offset: 0x2c
-	// Line 4028, Address: 0x2ea508, Func Offset: 0x38
-	// Line 4031, Address: 0x2ea510, Func Offset: 0x40
-	// Line 4032, Address: 0x2ea528, Func Offset: 0x58
-	// Line 4033, Address: 0x2ea52c, Func Offset: 0x5c
-	// Line 4035, Address: 0x2ea55c, Func Offset: 0x8c
-	// Line 4036, Address: 0x2ea560, Func Offset: 0x90
-	// Func End, Address: 0x2ea56c, Func Offset: 0x9c
-	scePrintf("SdrHDDataSet2 - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrHDDataSet2(int port, int size) {
+
+    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+        printf("SDR: SdrLoadReq: Warning: sndque overflow!\n");
+        return -1;
+    }
+    
+    sndque_tbl[sque_w_idx].cmd = ((port << 16) & 0xFFFFFF) | 0x29000000;
+    *(int*)(&sndque_tbl[sque_w_idx].vol) = size; 
+    sque_w_idx = ++sque_w_idx % 128;
+    
+    return 0;
 }
 
 // 
