@@ -257,6 +257,13 @@ int get_iopsnd_info();
 void CpEEWait(int val);
 
 #define	CheckCmdReq(vol, pan, pitch)	(0x00|0|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
+#define	isSQUE_EXIST(que_p)			((que_p)->cmd >= 0)
+#define	_ERRMES_SQOVER(proc)	#proc ": Warning: sndque overflow!\n"
+#define	TSDRCODE_TQ					(0x00)
+#define	TSDRCMD_CHG(v_f,p_f,c_f)	(TSDRCODE_TQ|8|((v_f)&1)|(((p_f)&1)<<1)|(((c_f)&1)<<2))
+#define	TSDRCMD_CANCEL				(TSDRCODE_TQ|8)
+#define	SQUE_MAKE_CMD(cmd, arg)		(((cmd)<<24)|((arg)&0x00ffffff))
+
 
 // 
 // Start address: 0x2e98a0
@@ -426,25 +433,30 @@ int SdrSeCancel(int req) {
     return 0;
 }
 
-// 
-// Start address: 0x2e9f60
+// 100% matching!
 int SdrSeChg(int req, char vol, char pan, short pitch)
 {
-	// Line 3551, Address: 0x2e9f60, Func Offset: 0
-	// Line 3555, Address: 0x2e9f68, Func Offset: 0x8
-	// Line 3556, Address: 0x2e9f8c, Func Offset: 0x2c
-	// Line 3557, Address: 0x2e9f98, Func Offset: 0x38
-	// Line 3560, Address: 0x2e9fa0, Func Offset: 0x40
-	// Line 3564, Address: 0x2e9ff4, Func Offset: 0x94
-	// Line 3567, Address: 0x2ea030, Func Offset: 0xd0
-	// Line 3568, Address: 0x2ea044, Func Offset: 0xe4
-	// Line 3569, Address: 0x2ea054, Func Offset: 0xf4
-	// Line 3570, Address: 0x2ea064, Func Offset: 0x104
-	// Line 3572, Address: 0x2ea074, Func Offset: 0x114
-	// Line 3574, Address: 0x2ea0a4, Func Offset: 0x144
-	// Line 3575, Address: 0x2ea0a8, Func Offset: 0x148
-	// Func End, Address: 0x2ea0b4, Func Offset: 0x154
-	scePrintf("SdrSeChg - UNIMPLEMENTED!\n");
+	char	cmd;
+
+	if (isSQUE_EXIST(&sndque_tbl[sque_w_idx])) {
+		printf(_ERRMES_SQOVER(SdrSeChg));
+		return -1;
+	}
+
+	cmd = TSDRCMD_CHG((vol   >= 0)? 1: 0,
+					  (pan   >= 0)? 1: 0,
+					  (pitch >= 0)? 1: 0);
+
+	if (cmd == TSDRCMD_CANCEL) return 1;
+
+	sndque_tbl[sque_w_idx].cmd = SQUE_MAKE_CMD(cmd, req);
+	sndque_tbl[sque_w_idx].vol = vol;
+	sndque_tbl[sque_w_idx].pan = pan;
+	sndque_tbl[sque_w_idx].pitch = pitch;
+
+	sque_w_idx = ++sque_w_idx % 128;
+
+	return 0;
 }
 
 // 
