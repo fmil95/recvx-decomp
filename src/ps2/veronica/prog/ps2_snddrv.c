@@ -459,20 +459,17 @@ int SdrSeChg(int req, char vol, char pan, short pitch)
 	return 0;
 }
 
-// 
-// Start address: 0x2ea0c0
-int SdrSeAllStop()
-{
-	// Line 3594, Address: 0x2ea0c0, Func Offset: 0
-	// Line 3595, Address: 0x2ea0c8, Func Offset: 0x8
-	// Line 3596, Address: 0x2ea0ec, Func Offset: 0x2c
-	// Line 3597, Address: 0x2ea0f8, Func Offset: 0x38
-	// Line 3600, Address: 0x2ea100, Func Offset: 0x40
-	// Line 3602, Address: 0x2ea108, Func Offset: 0x48
-	// Line 3604, Address: 0x2ea138, Func Offset: 0x78
-	// Line 3605, Address: 0x2ea13c, Func Offset: 0x7c
-	// Func End, Address: 0x2ea148, Func Offset: 0x88
-	scePrintf("SdrSeAllStop - UNIMPLEMENTED!\n");
+// 100% matching!
+int SdrSeAllStop() {
+    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+        printf("SDR: SdrSeAllStop: Warning: sndque overflow!\n");
+        return -1;
+    }
+    
+    sndque_tbl[sque_w_idx].cmd = (0x10000000);
+    sque_w_idx = ++sque_w_idx % 128;
+    
+    return 0;
 }
 
 // 100% matching!
