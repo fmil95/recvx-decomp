@@ -991,48 +991,51 @@ void npDistanceP2C(NJS_POINT3* pos, NJS_CAPSULE* cap, NJS_POINT3* htp)
     }
 }
 
-/*// 
-// Start address: 0x12c890
-void npDrawPlane(_anon1* ps0, _anon1* ps1, _anon1* ps2, _anon1* ps3, unsigned int argb)
+// 100% matching!
+void npDrawPlane(NJS_POINT3* ps0, NJS_POINT3* ps1, NJS_POINT3* ps2, NJS_POINT3* ps3, unsigned int argb)
 {
-	_anon10 col[4];
-	_anon1 p3[4];
-	_anon19 p3c;
-	// Line 1112, Address: 0x12c890, Func Offset: 0
-	// Line 1117, Address: 0x12c894, Func Offset: 0x4
-	// Line 1119, Address: 0x12c8a4, Func Offset: 0x14
-	// Line 1120, Address: 0x12c8ac, Func Offset: 0x1c
-	// Line 1122, Address: 0x12c8b8, Func Offset: 0x28
-	// Line 1121, Address: 0x12c8bc, Func Offset: 0x2c
-	// Line 1122, Address: 0x12c8c0, Func Offset: 0x30
-	// Line 1123, Address: 0x12c8c4, Func Offset: 0x34
-	// Line 1124, Address: 0x12c8cc, Func Offset: 0x3c
-	// Line 1125, Address: 0x12c8d4, Func Offset: 0x44
-	// Line 1126, Address: 0x12c8dc, Func Offset: 0x4c
-	// Line 1127, Address: 0x12c8e4, Func Offset: 0x54
-	// Line 1128, Address: 0x12c8ec, Func Offset: 0x5c
-	// Line 1129, Address: 0x12c8f4, Func Offset: 0x64
-	// Line 1130, Address: 0x12c8fc, Func Offset: 0x6c
-	// Line 1139, Address: 0x12c900, Func Offset: 0x70
-	// Line 1130, Address: 0x12c904, Func Offset: 0x74
-	// Line 1131, Address: 0x12c908, Func Offset: 0x78
-	// Line 1132, Address: 0x12c910, Func Offset: 0x80
-	// Line 1133, Address: 0x12c918, Func Offset: 0x88
-	// Line 1139, Address: 0x12c91c, Func Offset: 0x8c
-	// Line 1133, Address: 0x12c920, Func Offset: 0x90
-	// Line 1134, Address: 0x12c924, Func Offset: 0x94
-	// Line 1135, Address: 0x12c92c, Func Offset: 0x9c
-	// Line 1136, Address: 0x12c934, Func Offset: 0xa4
-	// Line 1139, Address: 0x12c938, Func Offset: 0xa8
-	// Line 1136, Address: 0x12c93c, Func Offset: 0xac
-	// Line 1137, Address: 0x12c940, Func Offset: 0xb0
-	// Line 1138, Address: 0x12c948, Func Offset: 0xb8
-	// Line 1139, Address: 0x12c94c, Func Offset: 0xbc
-	// Line 1140, Address: 0x12c954, Func Offset: 0xc4
-	// Func End, Address: 0x12c960, Func Offset: 0xd0
+    NJS_POINT3COL p3c;
+    NJS_POINT3 p3[4];
+    NJS_COLOR col[4];
+
+    if (argb == 0) 
+    {
+        argb = 0x80808080; 
+    }
+    
+    p3c.p = p3;
+    
+    p3c.col = col;
+    
+    p3c.tex = NULL;
+    
+    p3c.num = 1;
+    
+    ((int*)&p3c.col->color)[0] = argb;
+    ((int*)&p3c.col->color)[1] = argb;
+    ((int*)&p3c.col->color)[2] = argb; 
+    ((int*)&p3c.col->color)[3] = argb;
+    
+    p3[0].x = ps0->x;
+    p3[0].y = ps0->y;
+    p3[0].z = ps0->z;
+    
+    p3[1].x = ps1->x;
+    p3[1].y = ps1->y;
+    p3[1].z = ps1->z;
+    
+    p3[2].x = ps2->x;
+    p3[2].y = ps2->y;
+    p3[2].z = ps2->z;
+    
+    p3[3].x = ps3->x;
+    p3[3].y = ps3->y;
+    p3[3].z = ps3->z;
+    
+    njDrawPolygon3D(&p3c, 4, 96);
 }
 
-// 
+/*// 
 // Start address: 0x12c960
 void npCalcMorphing(npobj* obj_a, npobj* obj_b, float no, int obj_n)
 {
