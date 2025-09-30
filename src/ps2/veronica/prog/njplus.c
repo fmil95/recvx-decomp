@@ -921,72 +921,77 @@ int npCollisionCheckSC(_anon6* sa, _anon4* cpb)
 	// Line 538, Address: 0x12c5e8, Func Offset: 0x1a8
 	// Line 540, Address: 0x12c600, Func Offset: 0x1c0
 	// Func End, Address: 0x12c634, Func Offset: 0x1f4
-}
+}*/
 
-// 
-// Start address: 0x12c640
-void npDistanceP2C(_anon1* pos, _anon4* cap, _anon1* htp)
+// 100% matching!
+void npDistanceP2C(NJS_POINT3* pos, NJS_CAPSULE* cap, NJS_POINT3* htp) 
 {
-	float sca;
-	float len;
-	float inn;
-	_anon1 vec;
-	_anon21 ln;
-	// Line 549, Address: 0x12c640, Func Offset: 0
-	// Line 553, Address: 0x12c670, Func Offset: 0x30
-	// Line 554, Address: 0x12c674, Func Offset: 0x34
-	// Line 555, Address: 0x12c678, Func Offset: 0x38
-	// Line 556, Address: 0x12c67c, Func Offset: 0x3c
-	// Line 553, Address: 0x12c680, Func Offset: 0x40
-	// Line 554, Address: 0x12c684, Func Offset: 0x44
-	// Line 555, Address: 0x12c698, Func Offset: 0x58
-	// Line 556, Address: 0x12c6a0, Func Offset: 0x60
-	// Line 557, Address: 0x12c6b0, Func Offset: 0x70
-	// Line 558, Address: 0x12c6c0, Func Offset: 0x80
-	// Line 559, Address: 0x12c6c8, Func Offset: 0x88
-	// Line 558, Address: 0x12c6cc, Func Offset: 0x8c
-	// Line 559, Address: 0x12c6d0, Func Offset: 0x90
-	// Line 560, Address: 0x12c6d8, Func Offset: 0x98
-	// Line 562, Address: 0x12c6e4, Func Offset: 0xa4
-	// Line 563, Address: 0x12c6ec, Func Offset: 0xac
-	// Line 564, Address: 0x12c6f0, Func Offset: 0xb0
-	// Line 565, Address: 0x12c6f4, Func Offset: 0xb4
-	// Line 562, Address: 0x12c6f8, Func Offset: 0xb8
-	// Line 563, Address: 0x12c700, Func Offset: 0xc0
-	// Line 564, Address: 0x12c710, Func Offset: 0xd0
-	// Line 565, Address: 0x12c71c, Func Offset: 0xdc
-	// Line 566, Address: 0x12c724, Func Offset: 0xe4
-	// Line 567, Address: 0x12c730, Func Offset: 0xf0
-	// Line 568, Address: 0x12c738, Func Offset: 0xf8
-	// Line 569, Address: 0x12c744, Func Offset: 0x104
-	// Line 570, Address: 0x12c75c, Func Offset: 0x11c
-	// Line 571, Address: 0x12c76c, Func Offset: 0x12c
-	// Line 572, Address: 0x12c774, Func Offset: 0x134
-	// Line 573, Address: 0x12c77c, Func Offset: 0x13c
-	// Line 575, Address: 0x12c780, Func Offset: 0x140
-	// Line 576, Address: 0x12c788, Func Offset: 0x148
-	// Line 577, Address: 0x12c790, Func Offset: 0x150
-	// Line 578, Address: 0x12c798, Func Offset: 0x158
-	// Line 580, Address: 0x12c7a0, Func Offset: 0x160
-	// Line 583, Address: 0x12c7a8, Func Offset: 0x168
-	// Line 580, Address: 0x12c7ac, Func Offset: 0x16c
-	// Line 581, Address: 0x12c7b4, Func Offset: 0x174
-	// Line 582, Address: 0x12c7c4, Func Offset: 0x184
-	// Line 583, Address: 0x12c7d0, Func Offset: 0x190
-	// Line 584, Address: 0x12c7d8, Func Offset: 0x198
-	// Line 585, Address: 0x12c7ec, Func Offset: 0x1ac
-	// Line 586, Address: 0x12c7f4, Func Offset: 0x1b4
-	// Line 587, Address: 0x12c80c, Func Offset: 0x1cc
-	// Line 588, Address: 0x12c824, Func Offset: 0x1e4
-	// Line 589, Address: 0x12c838, Func Offset: 0x1f8
-	// Line 590, Address: 0x12c840, Func Offset: 0x200
-	// Line 591, Address: 0x12c848, Func Offset: 0x208
-	// Line 592, Address: 0x12c850, Func Offset: 0x210
-	// Line 594, Address: 0x12c858, Func Offset: 0x218
-	// Func End, Address: 0x12c88c, Func Offset: 0x24c
+	NJS_LINE ln;   
+    NJS_VECTOR vec;
+    float inn;    
+    float len;      
+    float sca;     
+
+    ln.px = cap->c1.x;
+    ln.py = cap->c1.y;
+    ln.pz = cap->c1.z;
+
+    ln.vx = cap->c2.x - ln.px;
+    ln.vy = cap->c2.y - ln.py;
+    ln.vz = cap->c2.z - ln.pz;
+    
+    njDistanceP2L(pos, &ln, htp);
+    
+    len = njScalor((NJS_VECTOR*)&ln.vx);
+    
+    vec.x = htp->x - ln.px;
+    vec.y = htp->y - ln.py;
+    vec.z = htp->z - ln.pz; 
+    
+    sca = njScalor(&vec);
+    
+    njUnitVector(&vec);
+    njUnitVector((NJS_VECTOR*)&ln.vx);
+
+    inn = njInnerProduct(&vec, (NJS_VECTOR*)&ln.vx); 
+    
+    if (inn > 0) 
+    {
+        if (sca > len) 
+        {
+            htp->x = cap->c2.x;
+            htp->y = cap->c2.y;
+            htp->z = cap->c2.z;
+        }
+    } 
+    else 
+    {
+        htp->x = cap->c1.x;
+        htp->y = cap->c1.y;
+        htp->z = cap->c1.z;
+    }
+    
+    vec.x = pos->x - htp->x;
+    vec.y = pos->y - htp->y;
+    vec.z = pos->z - htp->z;
+    
+    if (cap->r < njScalor(&vec))
+    {
+        njUnitVector(&vec);
+        
+        htp->x += vec.x * cap->r;
+        htp->y += vec.y * cap->r;
+        htp->z += vec.z * cap->r;
+    } 
+    else 
+    {
+        htp->x = pos->x;
+        htp->y = pos->y;
+        htp->z = pos->z;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x12c890
 void npDrawPlane(_anon1* ps0, _anon1* ps1, _anon1* ps2, _anon1* ps3, unsigned int argb)
 {
