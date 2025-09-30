@@ -8,7 +8,7 @@ The purpose of this project is to reverse-engineer ***Resident Evil - Code: Vero
 
 While function matching via the [decomp.me](https://decomp.me/preset/145) website is the preferred method of decompilation, the project does not compile an ELF binary that's identical bit for bit to the one found on the game disk. RE: CVX was developed with the MetroWerks CodeWarrior IDE, and MWCC does not feature an equivalent to GCC's INCLUDE_ASM functionality which renders the process of building a matching binary more difficult. Instead, the current build system produces an executable which only contains the code that has been decompiled so far, and the resulting ELF can be run on a repackaged DVD image of the game that is bootable on the PCSX2 emulator (and technically should also work on an actual PS2 console).
 
-Additionally, this project also consists of reverse-engineering the CRI Middleware library that was employed by the developers to handle different aspects of the game such as audio and the AFS filesystem. There are no current plans to support any other version of the game in the foreseeable future, but the other platform releases of RE: CVX might be used for research purposes to aid with the decompilation process.
+Additionally, this project also consists of reverse-engineering the CRI Middleware library that was employed by the developers to handle different aspects of the game such as audio and the AFS filesystem. There is also an on-going [decompilation of the Nintendo GameCube version](https://github.com/fmil95/recvx-gc-decomp), which does compile a matching binary so if you prefer that setup and have some knowledge of PowerPC and don't mind working with less debug info, feel free to contribute to that one instead. At some point, research will be done on the Dreamcast version as well. 
 
 ## Progress 
 
@@ -54,13 +54,15 @@ Additionally, some appreciation must go to:
 
 ## Community
 
-The primary way to discuss the project is through the `PS1/PS2 Decompilation` server on Discord, which has a dedicated channel for the decomp called `re-code-veronica`. See you there!
+The primary way to discuss the project is through the `GC/Wii Decompilation` server on Discord, which has a dedicated channel for the decomp called `resident-evil-code-veronica-x`. See you there!
 
-[REDACTED].
+[![Join the Discord](https://dcbadge.limes.pink/api/server/https://discord.gg/hKx3FJJgrV)](https://discord.gg/https://discord.gg/hKx3FJJgrV)
 
 ## Resources
 
 Associated decomp projects:
+- [Resident Evil - Code: Veronica X (Nintendo GameCube)](https://github.com/fmil95/recvx-gc-decomp)
+- Resident Evil - Code: Veronica X (Dreamcast) (no link - but maybe someday...) 
 - [Legacy of Kain: Soul Reaver](https://github.com/fmil95/soul-re)
 - [Fatal Frame](https://github.com/Mikompilation/Himuro)
 - [Silent Hill](https://github.com/Vatuu/silent-hill-decomp)
