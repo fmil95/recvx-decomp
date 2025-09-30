@@ -515,7 +515,7 @@ typedef struct SYS_WORK
 	int loop_ct; // offset 0x1B05C, size 0x4
     int loop_now; // offset 0x1B060, size 0x4
     int cng_pid; // offset 0x1B064, size 0x4
-	PDS_PERIPHERAL* p1per; // offset 0x1B068, size 0x4
+	const PDS_PERIPHERAL* p1per; // offset 0x1B068, size 0x4
 	PDS_PERIPHERAL* p2per; // offset 0x1B06C, size 0x4
 	PDS_PERIPHERAL* kbper; // offset 0x1B070, size 0x4
 	PDS_PERIPHERAL* msper; // offset 0x1B074, size 0x4

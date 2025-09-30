@@ -211,7 +211,6 @@
 #include "ps2_MovieFunc.c"
 #include "ps2_sg_sd.c"
 #include "sdc.c"
-#include "pad.c"
 #include "padman.c"
 #include "mwwrap.c"
 #include "sdfunc.c"
@@ -236,6 +235,7 @@
 #include "effect.c"
 #include "event.c"
 #include "adv.c"
+#include "pad.c"
 #include "system.c"
 #include "playpch.c"
 

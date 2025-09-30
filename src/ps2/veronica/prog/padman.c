@@ -1,4 +1,4 @@
-// TODO: compile and link this file separatedly to remove the "padman.c" include in main.c  
+#include "padman.h"
 
 unsigned int KeyWaitFirst = 10;
 unsigned int KeyWaitNext = 4;
@@ -8,11 +8,6 @@ int CurrentPortId;
 PAD_WRK Pad[4];
 int MaxContorolPlayer;
 REPEAT_INFO RepeatInfo[4][6];
-
-void InitReadKeyEx(int MaxPlayer);
-void SetRepeatKeyTimer(unsigned int FirstTimer, unsigned int NextTimer);
-int CheckSoftResetKeyFlag(int ControllerId);
-void ClearSoftResetKeyFlag(int ControllerId);
 
 // 100% matching! 
 void InitReadKeyEx(int MaxPlayer) 

@@ -25,9 +25,9 @@ void _Make_SinTable()
     } 
 }  
 
-/*// 
+// 
 // Start address: 0x2d7cb0
-float njSin(int lAngle)
+Float	njSin(Angle n)
 {
 	float ret;
 	// Line 79, Address: 0x2d7cb0, Func Offset: 0
@@ -57,9 +57,10 @@ float njSin(int lAngle)
 	// Line 140, Address: 0x2d7d30, Func Offset: 0x80
 	// Line 150, Address: 0x2d7d34, Func Offset: 0x84
 	// Func End, Address: 0x2d7d3c, Func Offset: 0x8c
+	scePrintf("njSin - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d7d40
 float njCos(int lAngle)
 {
