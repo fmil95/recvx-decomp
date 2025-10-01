@@ -1237,42 +1237,61 @@ void npPopMdlstr2(NJS_CNK_OBJECT* objp, int obj_n)
     } 
 }
 
-/*// 
-// Start address: 0x12cdf0
-void npCnkFlatOff(npobj* objp)
+// 100% matching!
+void npCnkFlatOff(NJS_CNK_OBJECT* objp)
 {
-	short head;
-	short* plP;
-	int offset;
-	// Line 2268, Address: 0x12cdf0, Func Offset: 0
-	// Line 2272, Address: 0x12cdfc, Func Offset: 0xc
-	// Line 2273, Address: 0x12ce08, Func Offset: 0x18
-	// Line 2281, Address: 0x12ce10, Func Offset: 0x20
-	// Line 2277, Address: 0x12ce14, Func Offset: 0x24
-	// Line 2291, Address: 0x12ce18, Func Offset: 0x28
-	// Line 2275, Address: 0x12ce1c, Func Offset: 0x2c
-	// Line 2276, Address: 0x12ce28, Func Offset: 0x38
-	// Line 2277, Address: 0x12ce40, Func Offset: 0x50
-	// Line 2278, Address: 0x12ce4c, Func Offset: 0x5c
-	// Line 2279, Address: 0x12ce54, Func Offset: 0x64
-	// Line 2280, Address: 0x12ce58, Func Offset: 0x68
-	// Line 2281, Address: 0x12ce60, Func Offset: 0x70
-	// Line 2283, Address: 0x12ce70, Func Offset: 0x80
-	// Line 2284, Address: 0x12ce88, Func Offset: 0x98
-	// Line 2285, Address: 0x12ce90, Func Offset: 0xa0
-	// Line 2286, Address: 0x12ce94, Func Offset: 0xa4
-	// Line 2287, Address: 0x12ce9c, Func Offset: 0xac
-	// Line 2288, Address: 0x12ceb4, Func Offset: 0xc4
-	// Line 2289, Address: 0x12cebc, Func Offset: 0xcc
-	// Line 2290, Address: 0x12cec0, Func Offset: 0xd0
-	// Line 2291, Address: 0x12cec8, Func Offset: 0xd8
-	// Line 2294, Address: 0x12ced0, Func Offset: 0xe0
-	// Line 2295, Address: 0x12cee4, Func Offset: 0xf4
-	// Line 2296, Address: 0x12cef8, Func Offset: 0x108
-	// Func End, Address: 0x12cf08, Func Offset: 0x118
+    int offset;
+    short* plP;
+    short head; 
+
+    if (objp->model != NULL) 
+    {
+        plP = objp->model->plist;
+        
+        while (TRUE)
+        {
+            head = (unsigned char)*plP++; 
+            
+            if ((head >= 64) && (head < 67)) 
+            { 
+                plP[-1] &= ~0x2000; 
+                
+                offset = *plP++;
+                plP += offset; 
+            } 
+            else if (head == 8) 
+            { 
+                plP++;
+            }
+            else if ((head >= 17) && (head < 24)) 
+            { 
+                offset = *plP++; 
+                plP += offset; 
+            } 
+            else if ((head >= 56) && (head < 59))
+            {
+                offset = *plP++; 
+                plP += offset; 
+            } 
+            else if (head == 255)
+            {  
+                break;
+            }
+        }
+    }
+    
+    if (objp->child != NULL) 
+    {
+        npCnkFlatOff(objp->child);
+    }
+    
+    if (objp->sibling != NULL) 
+    {
+        npCnkFlatOff(objp->sibling);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x12cf10
 void npClrTranslate()
 {
