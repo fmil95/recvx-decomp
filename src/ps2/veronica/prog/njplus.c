@@ -1426,51 +1426,62 @@ void npGetWHDSize(NJS_CNK_OBJECT* objp, NJS_POINT3* whd)
     npGetWHDSizeSub(objp, whd);
 }
 
-/*// 
-// Start address: 0x12d2a0
-void npSkinConvPreparation(npobj* objp)
+// 100% matching!
+void npSkinConvPreparation(NJS_CNK_OBJECT* objp)
 {
-	int nb;
-	int mno;
-	int flg;
-	_anon1 ps;
-	// Line 2539, Address: 0x12d2a0, Func Offset: 0
-	// Line 2540, Address: 0x12d2b0, Func Offset: 0x10
-	// Line 2539, Address: 0x12d2b4, Func Offset: 0x14
-	// Line 2540, Address: 0x12d2b8, Func Offset: 0x18
-	// Line 2539, Address: 0x12d2bc, Func Offset: 0x1c
-	// Line 2540, Address: 0x12d2c0, Func Offset: 0x20
-	// Line 2542, Address: 0x12d2d0, Func Offset: 0x30
-	// Line 2543, Address: 0x12d2dc, Func Offset: 0x3c
-	// Line 2544, Address: 0x12d2f0, Func Offset: 0x50
-	// Line 2545, Address: 0x12d304, Func Offset: 0x64
-	// Line 2546, Address: 0x12d30c, Func Offset: 0x6c
-	// Line 2547, Address: 0x12d318, Func Offset: 0x78
-	// Line 2549, Address: 0x12d320, Func Offset: 0x80
-	// Line 2550, Address: 0x12d328, Func Offset: 0x88
-	// Line 2547, Address: 0x12d330, Func Offset: 0x90
-	// Line 2548, Address: 0x12d340, Func Offset: 0xa0
-	// Line 2549, Address: 0x12d348, Func Offset: 0xa8
-	// Line 2550, Address: 0x12d350, Func Offset: 0xb0
-	// Line 2548, Address: 0x12d354, Func Offset: 0xb4
-	// Line 2549, Address: 0x12d364, Func Offset: 0xc4
-	// Line 2550, Address: 0x12d368, Func Offset: 0xc8
-	// Line 2551, Address: 0x12d370, Func Offset: 0xd0
-	// Line 2550, Address: 0x12d374, Func Offset: 0xd4
-	// Line 2551, Address: 0x12d378, Func Offset: 0xd8
-	// Line 2552, Address: 0x12d388, Func Offset: 0xe8
-	// Line 2553, Address: 0x12d390, Func Offset: 0xf0
-	// Line 2556, Address: 0x12d3a8, Func Offset: 0x108
-	// Line 2558, Address: 0x12d3bc, Func Offset: 0x11c
-	// Line 2559, Address: 0x12d3c8, Func Offset: 0x128
-	// Line 2562, Address: 0x12d3f0, Func Offset: 0x150
-	// Line 2563, Address: 0x12d404, Func Offset: 0x164
-	// Line 2564, Address: 0x12d410, Func Offset: 0x170
-	// Line 2565, Address: 0x12d424, Func Offset: 0x184
-	// Func End, Address: 0x12d43c, Func Offset: 0x19c
+    NJS_POINT3 ps = { 0 }; 
+    int flg;      
+    int mno;       
+    int nb;       
+    
+    njPushMatrix(NULL);
+    
+    if (!(objp->evalflags & 0x20000000)) 
+    {
+        flg = *np.sknp++;
+        
+        if (flg != 0) 
+        {
+            if ((flg & 0x2)) 
+            {
+                mno = *np.sknp++;
+                
+                nb = *np.sknp++;
+
+                np.cobj[mno] = objp;
+                
+                np.sktp[mno] = np.sknp;
+                
+                np.sknp += nb;
+            } 
+            else 
+            {
+                mno = *np.sknp++;
+            }
+        }
+        
+        njTranslate(NULL, objp->pos[0], objp->pos[1], objp->pos[2]);
+        
+        if ((flg & 0x2))
+        {
+            njCalcPoint(NULL, &ps, &np.op[mno]);
+        }
+    }
+    
+    if (objp->child != NULL)
+    {
+        npSkinConvPreparation(objp->child);
+    }
+    
+    njPopMatrix(1);
+    
+    if (objp->sibling != NULL) 
+    {
+        npSkinConvPreparation(objp->sibling);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x12d440
 void npSkinConvSub(npobj* objp)
 {
