@@ -1218,26 +1218,26 @@ void npPushMdlstr2(NJS_CNK_OBJECT* objp, int obj_n)
     } 
 }
 
-/*// 
-// Start address: 0x12cd70
-void npPopMdlstr2(npobj* objp, int obj_n)
+// 100% matching!
+void npPopMdlstr2(NJS_CNK_OBJECT* objp, int obj_n)
 {
-	int i;
-	// Line 2214, Address: 0x12cd70, Func Offset: 0
-	// Line 2215, Address: 0x12cd84, Func Offset: 0x14
-	// Line 2217, Address: 0x12cda0, Func Offset: 0x30
-	// Line 2218, Address: 0x12cda8, Func Offset: 0x38
-	// Line 2219, Address: 0x12cdb0, Func Offset: 0x40
-	// Line 2220, Address: 0x12cdb8, Func Offset: 0x48
-	// Line 2221, Address: 0x12cdc4, Func Offset: 0x54
-	// Line 2223, Address: 0x12cdd0, Func Offset: 0x60
-	// Line 2221, Address: 0x12cdd4, Func Offset: 0x64
-	// Line 2223, Address: 0x12cdd8, Func Offset: 0x68
-	// Line 2224, Address: 0x12cde8, Func Offset: 0x78
-	// Func End, Address: 0x12cdf0, Func Offset: 0x80
+    int i; 
+    
+    for (i = 0; i < obj_n; i++, objp++) 
+    {
+        if ((objp->model != NULL) && (!(objp->evalflags & 0x8))) 
+        {
+            objp->pos[0] = np.mdlstr2[i].pos[0];
+            objp->pos[1] = np.mdlstr2[i].pos[1];
+            objp->pos[2] = np.mdlstr2[i].pos[2];
+            
+            objp->model->vlist = np.mdlstr2[i].vlist;
+            objp->model->plist = np.mdlstr2[i].plist;
+        } 
+    } 
 }
 
-// 
+/*// 
 // Start address: 0x12cdf0
 void npCnkFlatOff(npobj* objp)
 {
