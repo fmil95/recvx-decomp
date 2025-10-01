@@ -1327,53 +1327,96 @@ void npCopyMemory(unsigned char* dst, unsigned char* src, unsigned int size)
     }
 }
 
-/*// 
-// Start address: 0x12cff0
-void npGetWHDSizeSub(npobj* objp, _anon1* whd)
+void njCalcPoint4(NJS_MATRIX* pMatrix, NO_NAME_16* pSrcPoint, NO_NAME_16* pDstPoint); // TODO: remove this function declaration
+// 100% matching!
+void npGetWHDSizeSub(NJS_CNK_OBJECT* objp, NJS_POINT3* whd)
 {
-	_anon3* pHdrPs;
-	_anon2* pHdrCv;
-	int i;
-	_anon0 pd4;
-	_anon0* ps4;
-	_anon1 pd3;
-	_anon1* ps3;
-	// Line 2389, Address: 0x12cff0, Func Offset: 0
-	// Line 2397, Address: 0x12d010, Func Offset: 0x20
-	// Line 2398, Address: 0x12d01c, Func Offset: 0x2c
-	// Line 2399, Address: 0x12d030, Func Offset: 0x40
-	// Line 2402, Address: 0x12d044, Func Offset: 0x54
-	// Line 2404, Address: 0x12d060, Func Offset: 0x70
-	// Line 2420, Address: 0x12d064, Func Offset: 0x74
-	// Line 2424, Address: 0x12d074, Func Offset: 0x84
-	// Line 2423, Address: 0x12d078, Func Offset: 0x88
-	// Line 2425, Address: 0x12d07c, Func Offset: 0x8c
-	// Line 2427, Address: 0x12d084, Func Offset: 0x94
-	// Line 2428, Address: 0x12d094, Func Offset: 0xa4
-	// Line 2429, Address: 0x12d0c0, Func Offset: 0xd0
-	// Line 2430, Address: 0x12d0f0, Func Offset: 0x100
-	// Line 2446, Address: 0x12d120, Func Offset: 0x130
-	// Line 2445, Address: 0x12d124, Func Offset: 0x134
-	// Line 2446, Address: 0x12d128, Func Offset: 0x138
-	// Line 2447, Address: 0x12d130, Func Offset: 0x140
-	// Line 2451, Address: 0x12d138, Func Offset: 0x148
-	// Line 2450, Address: 0x12d13c, Func Offset: 0x14c
-	// Line 2452, Address: 0x12d140, Func Offset: 0x150
-	// Line 2454, Address: 0x12d148, Func Offset: 0x158
-	// Line 2455, Address: 0x12d158, Func Offset: 0x168
-	// Line 2456, Address: 0x12d180, Func Offset: 0x190
-	// Line 2457, Address: 0x12d1b0, Func Offset: 0x1c0
-	// Line 2477, Address: 0x12d1e0, Func Offset: 0x1f0
-	// Line 2476, Address: 0x12d1e4, Func Offset: 0x1f4
-	// Line 2477, Address: 0x12d1e8, Func Offset: 0x1f8
-	// Line 2492, Address: 0x12d1f0, Func Offset: 0x200
-	// Line 2493, Address: 0x12d204, Func Offset: 0x214
-	// Line 2494, Address: 0x12d210, Func Offset: 0x220
-	// Line 2495, Address: 0x12d224, Func Offset: 0x234
-	// Func End, Address: 0x12d244, Func Offset: 0x254
+	NJS_POINT3* ps3;   
+	NJS_POINT3 pd3;    
+	NO_NAME_16* ps4;  
+    NO_NAME_16 pd4;    
+	int i;           
+    NO_NAME_17* pHdrCv; 
+    NO_NAME_15* pHdrPs;
+
+    njPushMatrix(NULL);
+    
+    njTranslate(NULL, objp->pos[0], objp->pos[1], objp->pos[2]);
+    
+    njRotateXYZ(NULL, objp->ang[0], objp->ang[1], objp->ang[2]);
+    
+    if ((objp->model != NULL) && (!(objp->evalflags & 0x8))) 
+    { 
+        pHdrPs = (NO_NAME_15*)objp->model->vlist;
+        
+        if (pHdrPs->ucType == 51)
+        {
+            ps4 = (NO_NAME_16*)((unsigned int)pHdrPs + 64);
+            
+            for (i = pHdrPs->usIndexMax; i-- != 0; )
+            {
+                njCalcPoint4(NULL, ps4, &pd4);
+                
+                if (fabsf(pd4.x) >= whd->x)
+                {
+                    whd->x = fabsf(pd4.x); 
+                }
+                
+                if (fabsf(pd4.y) >= whd->y) 
+                {
+                    whd->y = fabsf(pd4.y);
+                }
+                
+                if (fabsf(pd4.z) >= whd->z) 
+                {
+                    whd->z = fabsf(pd4.z);
+                }
+                
+                ps4 = (NO_NAME_16*)((unsigned int)ps4 + 32);
+            }
+        } 
+        else 
+        {
+            ps3 = (NJS_POINT3*)((unsigned int)pHdrPs + 8);
+            
+            for (i = pHdrPs->usIndexMax; i-- != 0; ) 
+            {
+                njCalcPoint(NULL, ps3, &pd3);
+                
+                if (fabsf(pd3.x) >= whd->x) 
+                {
+                    whd->x = fabsf(pd3.x);
+                }
+                
+                if (fabsf(pd3.y) >= whd->y) 
+                {
+                    whd->y = fabsf(pd3.y);
+                }
+                
+                if (fabsf(pd3.z) >= whd->z)
+                {
+                    whd->z = fabsf(pd3.z);
+                }
+                
+                ps3 = (NJS_POINT3*)((unsigned int)ps3 + 24);
+            }
+        }
+    }
+    
+    if (objp->child != NULL) 
+    {
+        npGetWHDSizeSub(objp->child, whd);
+    }
+    
+    njPopMatrix(1);
+    
+    if (objp->sibling != NULL) 
+    {
+        npGetWHDSizeSub(objp->sibling, whd);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x12d250
 void npGetWHDSize(npobj* objp, _anon1* whd)
 {

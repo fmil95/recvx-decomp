@@ -230,9 +230,9 @@ void    njClearMatrix()
     njSetMatrix(NULL, &NaViwViewMatrix);
 }
 
-/*// 
+// 
 // Start address: 0x2d68f0
-int njPushMatrix(float pMatrix[16])
+Bool	njPushMatrix(NJS_MATRIX *m)
 {
 	float* fpDst;
 	float* fpSrc;
@@ -252,11 +252,12 @@ int njPushMatrix(float pMatrix[16])
 	// Line 791, Address: 0x2d6970, Func Offset: 0x80
 	// Line 792, Address: 0x2d6974, Func Offset: 0x84
 	// Func End, Address: 0x2d697c, Func Offset: 0x8c
+	scePrintf("njPushMatrix - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d6980
-int njPopMatrix(unsigned int ulNumber)
+Bool	njPopMatrix(Uint32 n)
 {
 	int lNumber;
 	// Line 816, Address: 0x2d6980, Func Offset: 0
@@ -266,7 +267,8 @@ int njPopMatrix(unsigned int ulNumber)
 	// Line 819, Address: 0x2d69b4, Func Offset: 0x34
 	// Line 822, Address: 0x2d69c0, Func Offset: 0x40
 	// Func End, Address: 0x2d69c8, Func Offset: 0x48
-}*/
+	scePrintf("njPopMatrix - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void	njUnitMatrix(register NJS_MATRIX *m)
@@ -530,11 +532,11 @@ void njRotateZ(float pMatrix[16], int lAngle)
 	// Line 2189, Address: 0x2d6d9c, Func Offset: 0x7c
 	// Line 2196, Address: 0x2d6da0, Func Offset: 0x80
 	// Func End, Address: 0x2d6db0, Func Offset: 0x90
-}
+}*/
 
 // 
 // Start address: 0x2d6db0
-void njRotateXYZ(float pMatrix[16], int lAngleX, int lAngleY, int lAngleZ)
+void	njRotateXYZ(NJS_MATRIX *m, Angle angx, Angle angy, Angle angz)
 {
 	// Line 2246, Address: 0x2d6db0, Func Offset: 0
 	// Line 2247, Address: 0x2d6dcc, Func Offset: 0x1c
@@ -543,9 +545,10 @@ void njRotateXYZ(float pMatrix[16], int lAngleX, int lAngleY, int lAngleZ)
 	// Line 2252, Address: 0x2d6df8, Func Offset: 0x48
 	// Line 2253, Address: 0x2d6e04, Func Offset: 0x54
 	// Func End, Address: 0x2d6e1c, Func Offset: 0x6c
+	scePrintf("njRotateXYZ - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d6e20
 void njRotXYZ(float pMatrix[16], int lAngleX, int lAngleY, int lAngleZ)
 {
@@ -933,9 +936,9 @@ void	njCalcPoint(NJS_MATRIX *m, NJS_POINT3 *ps, NJS_POINT3 *pd)
 	scePrintf("njCalcPoint - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2d7540
-void njCalcPoint4(float pMatrix[16], _anon1* pSrcPoint, _anon1* pDstPoint)
+void njCalcPoint4(NJS_MATRIX* pMatrix, NO_NAME_16* pSrcPoint, NO_NAME_16* pDstPoint)
 {
 	// Line 4261, Address: 0x2d7540, Func Offset: 0
 	// Line 4266, Address: 0x2d7554, Func Offset: 0x14
@@ -950,9 +953,10 @@ void njCalcPoint4(float pMatrix[16], _anon1* pSrcPoint, _anon1* pDstPoint)
 	// Line 4275, Address: 0x2d7578, Func Offset: 0x38
 	// Line 4280, Address: 0x2d757c, Func Offset: 0x3c
 	// Func End, Address: 0x2d7584, Func Offset: 0x44
+	scePrintf("njCalcPoint4 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d7590
 void njCalcPointCN(_anon0* pSrcPoint, _anon0* pDstPoint)
 {
