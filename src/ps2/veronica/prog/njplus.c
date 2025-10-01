@@ -1171,21 +1171,21 @@ void npTransform(NJS_CNK_OBJECT* srcobj, NJS_CNK_OBJECT* dstobj, register float 
     srcobj->model->vlist = np.vlp2[ono]; 
 } 
 
-/*// 
-// Start address: 0x12cc50
-void npPushMdlstr(npobj* objp, int obj_n)
+// 100% matching!
+void npPushMdlstr(NJS_CNK_OBJECT* objp, int obj_n)
 {
-	int i;
-	// Line 2174, Address: 0x12cc50, Func Offset: 0
-	// Line 2175, Address: 0x12cc64, Func Offset: 0x14
-	// Line 2176, Address: 0x12cc78, Func Offset: 0x28
-	// Line 2175, Address: 0x12cc7c, Func Offset: 0x2c
-	// Line 2176, Address: 0x12cc80, Func Offset: 0x30
-	// Line 2177, Address: 0x12cc90, Func Offset: 0x40
-	// Func End, Address: 0x12cc98, Func Offset: 0x48
+    int i; 
+    
+    for (i = 0; i < obj_n; i++, objp++) 
+    {
+        if (objp->model != NULL) 
+        {
+            np.vlist[i] = objp->model->vlist;
+        } 
+    } 
 }
 
-// 
+/*// 
 // Start address: 0x12cca0
 void npPopMdlstr(npobj* objp, int obj_n)
 {
