@@ -436,9 +436,9 @@ int npCollisionCheckCCEx(_anon4* cpa, _anon4* cpb, _anon1* pos);
 int npCollisionCheckSC(_anon6* sa, _anon4* cpb);
 void npDistanceP2C(_anon1* pos, _anon4* cap, _anon1* htp);
 void npDrawPlane(_anon1* ps0, _anon1* ps1, _anon1* ps2, _anon1* ps3, unsigned int argb);
-void npCalcMorphing(npobj* obj_a, npobj* obj_b, float no, int obj_n);
-void npTransform(npobj* srcobj, npobj* dstobj, float no, int ono);
-void npPushMdlstr(npobj* objp, int obj_n);
+void npCalcMorphing(npobj* obj_a, npobj* obj_b, float no, int obj_n);*/
+void npTransform(NJS_CNK_OBJECT* srcobj, NJS_CNK_OBJECT* dstobj, register float no, int ono);
+/*void npPushMdlstr(npobj* objp, int obj_n);
 void npPopMdlstr(npobj* objp, int obj_n);
 void npPushMdlstr2(npobj* objp, int obj_n);
 void npPopMdlstr2(npobj* objp, int obj_n);
@@ -1071,74 +1071,107 @@ void npCalcMorphing(NJS_CNK_OBJECT* obj_a, NJS_CNK_OBJECT* obj_b, float no, int 
     njPopMatrix(1);
 }
 
-/*// 
-// Start address: 0x12cae0
-void npTransform(npobj* srcobj, npobj* dstobj, float no, int ono)
+// 99.95% matching
+void npTransform(NJS_CNK_OBJECT* srcobj, NJS_CNK_OBJECT* dstobj, register float no, int ono)
 {
-	int s_nb;
-	_anon0* fp;
-	_anon0* dp;
-	_anon0* sp;
-	_anon3* pDst;
-	_anon3* pSrc;
-	// Line 1891, Address: 0x12cae0, Func Offset: 0
-	// Line 1887, Address: 0x12cae4, Func Offset: 0x4
-	// Line 1891, Address: 0x12cae8, Func Offset: 0x8
-	// Line 1887, Address: 0x12caec, Func Offset: 0xc
-	// Line 1895, Address: 0x12caf0, Func Offset: 0x10
-	// Line 1889, Address: 0x12caf4, Func Offset: 0x14
-	// Line 1895, Address: 0x12caf8, Func Offset: 0x18
-	// Line 1909, Address: 0x12cb00, Func Offset: 0x20
-	// Line 1913, Address: 0x12cb08, Func Offset: 0x28
-	// Line 1909, Address: 0x12cb0c, Func Offset: 0x2c
-	// Line 1898, Address: 0x12cb14, Func Offset: 0x34
-	// Line 1909, Address: 0x12cb18, Func Offset: 0x38
-	// Line 1911, Address: 0x12cb1c, Func Offset: 0x3c
-	// Line 1897, Address: 0x12cb20, Func Offset: 0x40
-	// Line 1926, Address: 0x12cb24, Func Offset: 0x44
-	// Line 1911, Address: 0x12cb30, Func Offset: 0x50
-	// Line 1913, Address: 0x12cb34, Func Offset: 0x54
-	// Line 1914, Address: 0x12cb38, Func Offset: 0x58
-	// Line 1926, Address: 0x12cb3c, Func Offset: 0x5c
-	// Line 1914, Address: 0x12cb40, Func Offset: 0x60
-	// Line 1915, Address: 0x12cb44, Func Offset: 0x64
-	// Line 1916, Address: 0x12cb4c, Func Offset: 0x6c
-	// Line 1917, Address: 0x12cb54, Func Offset: 0x74
-	// Line 1928, Address: 0x12cb58, Func Offset: 0x78
-	// Line 1929, Address: 0x12cb60, Func Offset: 0x80
-	// Line 1951, Address: 0x12cba8, Func Offset: 0xc8
-	// Line 1952, Address: 0x12cbac, Func Offset: 0xcc
-	// Line 1953, Address: 0x12cbb0, Func Offset: 0xd0
-	// Line 1954, Address: 0x12cbb4, Func Offset: 0xd4
-	// Line 1955, Address: 0x12cbb8, Func Offset: 0xd8
-	// Line 1956, Address: 0x12cbbc, Func Offset: 0xdc
-	// Line 1957, Address: 0x12cbc0, Func Offset: 0xe0
-	// Line 1958, Address: 0x12cbc4, Func Offset: 0xe4
-	// Line 1959, Address: 0x12cbc8, Func Offset: 0xe8
-	// Line 1960, Address: 0x12cbcc, Func Offset: 0xec
-	// Line 1961, Address: 0x12cbd0, Func Offset: 0xf0
-	// Line 1962, Address: 0x12cbd4, Func Offset: 0xf4
-	// Line 1963, Address: 0x12cbd8, Func Offset: 0xf8
-	// Line 1964, Address: 0x12cbdc, Func Offset: 0xfc
-	// Line 1966, Address: 0x12cbe0, Func Offset: 0x100
-	// Line 1967, Address: 0x12cbe4, Func Offset: 0x104
-	// Line 1970, Address: 0x12cbe8, Func Offset: 0x108
-	// Line 1988, Address: 0x12cbf0, Func Offset: 0x110
-	// Line 1989, Address: 0x12cbf4, Func Offset: 0x114
-	// Line 1990, Address: 0x12cbf8, Func Offset: 0x118
-	// Line 1991, Address: 0x12cbfc, Func Offset: 0x11c
-	// Line 1993, Address: 0x12cc00, Func Offset: 0x120
-	// Line 1994, Address: 0x12cc04, Func Offset: 0x124
-	// Line 1995, Address: 0x12cc08, Func Offset: 0x128
-	// Line 1997, Address: 0x12cc0c, Func Offset: 0x12c
-	// Line 1998, Address: 0x12cc10, Func Offset: 0x130
-	// Line 2000, Address: 0x12cc20, Func Offset: 0x140
-	// Line 2002, Address: 0x12cc28, Func Offset: 0x148
-	// Line 2003, Address: 0x12cc44, Func Offset: 0x164
-	// Func End, Address: 0x12cc4c, Func Offset: 0x16c
-}
+    int s_nb;
+    register NO_NAME_16* dp; 
+    register NO_NAME_16* fp; 
+    register NO_NAME_16* sp; 
+    NO_NAME_15* pSrc;
+    NO_NAME_15* pDst; 
 
-// 
+    pSrc = (NO_NAME_15*)srcobj->model->vlist; 
+    fp = (NO_NAME_16*)dstobj->model->vlist; 
+
+    s_nb = pSrc->usIndexMax; 
+
+    if (s_nb != ((NO_NAME_15*)fp)->usIndexMax)
+    {
+        return; 
+    }
+
+    sp = (NO_NAME_16*)(pSrc + 1); 
+    dp = (NO_NAME_16*)((NO_NAME_15*)fp + 1); 
+    fp = (NO_NAME_16*)np.vlp2[ono]; 
+
+    fp = (NO_NAME_16*)((int)fp | 0x30000000); 
+
+    ((NO_NAME_15*)fp)->ucType = pSrc->ucType; 
+    ((NO_NAME_15*)fp)->ucAttr = pSrc->ucAttr; 
+    
+    ((NO_NAME_15*)fp)->usSize = pSrc->usSize; 
+    
+    ((NO_NAME_15*)fp)->usIndexOfs = pSrc->usIndexOfs; 
+    ((NO_NAME_15*)fp)->usIndexMax = s_nb; 
+
+    no *= 0.001f; 
+    
+    fp = (NO_NAME_16*)((NO_NAME_15*)fp + 1);
+    
+    for ( ; s_nb != 0; s_nb--) 
+    { 
+        if ((sp->x != dp->x) || (sp->y != dp->y) || (sp->z != dp->z)) 
+        { 
+            asm volatile 
+            {
+            .set noreorder
+                
+                mfc1      t0, no 
+                
+                lqc2      vf4, 0x0(sp)
+                lqc2      vf5, 0x0(dp) 
+                lqc2      vf6, 0x10(sp) 
+                lqc2      vf7, 0x10(dp) 
+                
+                qmtc2     t0, vf12 
+                
+                vsub.xyz  vf5xyz, vf5xyz, vf4xyz 
+                vsub.xyz  vf7xyz, vf7xyz, vf6xyz 
+                
+                vmulx.xyz vf5xyz, vf5xyz, vf12x 
+                vmulx.xyz vf7xyz, vf7xyz, vf12x 
+                
+                vadd.xyz  vf5xyz, vf5xyz, vf4xyz 
+                vadd.xyz  vf7xyz, vf7xyz, vf6xyz 
+                
+                sqc2      vf5, 0x0(fp) 
+                sqc2      vf7, 0x10(fp) 
+
+            .set reorder
+            }
+                
+            fp += 2; 
+            sp += 2; 
+            dp += 2;
+        } 
+        else 
+        { 
+            asm volatile
+            {
+                .set noreorder
+                
+                lqc2 vf4, 0x0(sp) 
+                lqc2 vf6, 0x10(sp)
+                    
+                sqc2 vf4, 0x0(fp)
+                sqc2 vf6, 0x10(fp)
+
+                .set reorder
+            }
+            
+            fp += 2; 
+            sp += 2;
+            dp += 2;
+        } 
+    } 
+
+    ((NO_NAME_15*)fp)->ucType = 0xFF; 
+
+    srcobj->model->vlist = np.vlp2[ono]; 
+} 
+
+/*// 
 // Start address: 0x12cc50
 void npPushMdlstr(npobj* objp, int obj_n)
 {
