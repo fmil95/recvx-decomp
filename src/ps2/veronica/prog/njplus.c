@@ -1416,19 +1416,17 @@ void npGetWHDSizeSub(NJS_CNK_OBJECT* objp, NJS_POINT3* whd)
     }
 }
 
-/*// 
-// Start address: 0x12d250
-void npGetWHDSize(npobj* objp, _anon1* whd)
+// 100% matching!
+void npGetWHDSize(NJS_CNK_OBJECT* objp, NJS_POINT3* whd) 
 {
-	// Line 2529, Address: 0x12d250, Func Offset: 0
-	// Line 2530, Address: 0x12d260, Func Offset: 0x10
-	// Line 2531, Address: 0x12d274, Func Offset: 0x24
-	// Line 2532, Address: 0x12d27c, Func Offset: 0x2c
-	// Line 2533, Address: 0x12d288, Func Offset: 0x38
-	// Func End, Address: 0x12d29c, Func Offset: 0x4c
+    whd->x = whd->y = whd->z = 0;
+    
+    njUnitMatrix(NULL);
+    
+    npGetWHDSizeSub(objp, whd);
 }
 
-// 
+/*// 
 // Start address: 0x12d2a0
 void npSkinConvPreparation(npobj* objp)
 {
