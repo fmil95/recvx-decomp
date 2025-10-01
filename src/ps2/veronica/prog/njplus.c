@@ -1542,25 +1542,34 @@ void npSkinConvSub(npobj* objp)
 	// Line 2618, Address: 0x12d610, Func Offset: 0x1d0
 	// Line 2620, Address: 0x12d620, Func Offset: 0x1e0
 	// Func End, Address: 0x12d638, Func Offset: 0x1f8
-}
+}*/
 
-// 
-// Start address: 0x12d640
-void npSkinConvMain(npobj* objp)
+// 100% matching!
+void npSkinConvMain(NJS_CNK_OBJECT* objp)
 {
-	// Line 2674, Address: 0x12d640, Func Offset: 0
-	// Line 2675, Address: 0x12d650, Func Offset: 0x10
-	// Line 2676, Address: 0x12d658, Func Offset: 0x18
-	// Line 2677, Address: 0x12d66c, Func Offset: 0x2c
-	// Line 2678, Address: 0x12d674, Func Offset: 0x34
-	// Line 2680, Address: 0x12d688, Func Offset: 0x48
-	// Line 2681, Address: 0x12d69c, Func Offset: 0x5c
-	// Line 2682, Address: 0x12d6a8, Func Offset: 0x68
-	// Line 2683, Address: 0x12d6bc, Func Offset: 0x7c
-	// Func End, Address: 0x12d6cc, Func Offset: 0x8c
+    njPushMatrix(NULL);
+    
+    if (!(objp->evalflags & 0x20000000)) 
+    {
+        npSkinConvSub(objp);
+        
+        np.obj_now++;
+    }
+    
+    if (objp->child != NULL) 
+    {
+        npSkinConvMain(objp->child);
+    }
+    
+    njPopMatrix(1);
+    
+    if (objp->sibling != NULL) 
+    {
+        npSkinConvMain(objp->sibling);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x12d6d0
 void npSkinConvert(npobj* objp, int* sknp)
 {
