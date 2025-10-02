@@ -1966,25 +1966,31 @@ void npSetOffsetUV2(NJS_CNK_MODEL* mdlp, short offu, short offv)
     }
 }
 
-/*// 
-// Start address: 0x12e020
+// 100% matching!
 int npCopyVlist(int* dstp, int* srcp)
 {
-	int nb;
-	_anon3* pPs;
-	// Line 3180, Address: 0x12e020, Func Offset: 0
-	// Line 3186, Address: 0x12e02c, Func Offset: 0xc
-	// Line 3188, Address: 0x12e03c, Func Offset: 0x1c
-	// Line 3189, Address: 0x12e054, Func Offset: 0x34
-	// Line 3190, Address: 0x12e05c, Func Offset: 0x3c
-	// Line 3193, Address: 0x12e064, Func Offset: 0x44
-	// Line 3194, Address: 0x12e070, Func Offset: 0x50
-	// Line 3196, Address: 0x12e078, Func Offset: 0x58
-	// Line 3197, Address: 0x12e07c, Func Offset: 0x5c
-	// Func End, Address: 0x12e08c, Func Offset: 0x6c
+    NO_NAME_15* pPs;
+    int nb;
+	
+    pPs = (NO_NAME_15*)srcp;
+
+    if (pPs->ucType == 41)
+    {
+        nb = ((*(int*)&pPs->usIndexOfs >> 16) * 24) + 12;
+        
+        njMemCopy4(dstp, srcp, nb / 4);
+    } 
+    else 
+    {
+        nb = (pPs->usIndexMax * 32) + 72;
+        
+        njMemCopy4(dstp, srcp, nb / 4);
+    }
+    
+    return nb;
 }
 
-// 
+/*// 
 // Start address: 0x12e090
 void npCutSkin()
 {
