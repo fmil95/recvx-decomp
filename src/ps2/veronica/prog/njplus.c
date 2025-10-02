@@ -1569,23 +1569,25 @@ void npSkinConvMain(NJS_CNK_OBJECT* objp)
     }
 }
 
-/*// 
-// Start address: 0x12d6d0
-void npSkinConvert(npobj* objp, int* sknp)
+// 100% matching!
+void npSkinConvert(NJS_CNK_OBJECT* objp, int* sknp)
 {
-	// Line 2686, Address: 0x12d6d0, Func Offset: 0
-	// Line 2687, Address: 0x12d6e8, Func Offset: 0x18
-	// Line 2688, Address: 0x12d6ec, Func Offset: 0x1c
-	// Line 2689, Address: 0x12d6f8, Func Offset: 0x28
-	// Line 2690, Address: 0x12d700, Func Offset: 0x30
-	// Line 2691, Address: 0x12d708, Func Offset: 0x38
-	// Line 2692, Address: 0x12d70c, Func Offset: 0x3c
-	// Line 2693, Address: 0x12d718, Func Offset: 0x48
-	// Line 2694, Address: 0x12d720, Func Offset: 0x50
-	// Func End, Address: 0x12d734, Func Offset: 0x64
+    np.sknp = sknp;
+    
+    njUnitMatrix(NULL);
+    
+    npSkinConvPreparation(objp);
+    
+    np.sknp = sknp;
+    
+    np.obj_now = 0;
+    
+    njUnitMatrix(NULL);
+    
+    npSkinConvMain(objp);
 }
 
-// 
+/*// 
 // Start address: 0x12d740
 void npRetSkinConvMain(npobj* objp)
 {
