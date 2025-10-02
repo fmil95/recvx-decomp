@@ -1990,15 +1990,13 @@ int npCopyVlist(int* dstp, int* srcp)
     return nb;
 }
 
-/*// 
-// Start address: 0x12e090
-void npCutSkin()
+// 100% matching!
+void npCutSkin() 
 {
-	// Line 3672, Address: 0x12e090, Func Offset: 0
-	// Func End, Address: 0x12e098, Func Offset: 0x8
+    
 }
 
-// 
+/*// 
 // Start address: 0x12e0a0
 void npInitCalcSkin(void* pwp, int obj_n, int* sknp)
 {
