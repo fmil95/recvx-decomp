@@ -1806,65 +1806,98 @@ void npSetAllMatAlphaColor(npobj* objp, int obj_n, unsigned char alpha)
 	// Line 3001, Address: 0x12ddc8, Func Offset: 0x128
 	// Line 3002, Address: 0x12ddd8, Func Offset: 0x138
 	// Func End, Address: 0x12dde0, Func Offset: 0x140
-}
+}*/
 
-// 
-// Start address: 0x12dde0
-void npSetOffsetUV(_anon16* mdlp, short offu, short offv)
+// 100% matching!
+void npSetOffsetUV(NJS_CNK_MODEL* mdlp, short offu, short offv)
 {
-	short* plp;
-	short head;
-	int usr_num;
-	int srp_num;
-	int offset;
-	// Line 3018, Address: 0x12dde0, Func Offset: 0
-	// Line 3045, Address: 0x12dde8, Func Offset: 0x8
-	// Line 3024, Address: 0x12ddf0, Func Offset: 0x10
-	// Line 3072, Address: 0x12ddf8, Func Offset: 0x18
-	// Line 3025, Address: 0x12ddfc, Func Offset: 0x1c
-	// Line 3084, Address: 0x12de00, Func Offset: 0x20
-	// Line 3045, Address: 0x12de04, Func Offset: 0x24
-	// Line 3020, Address: 0x12de0c, Func Offset: 0x2c
-	// Line 3021, Address: 0x12de18, Func Offset: 0x38
-	// Line 3022, Address: 0x12de38, Func Offset: 0x58
-	// Line 3023, Address: 0x12de40, Func Offset: 0x60
-	// Line 3024, Address: 0x12de48, Func Offset: 0x68
-	// Line 3023, Address: 0x12de4c, Func Offset: 0x6c
-	// Line 3025, Address: 0x12de50, Func Offset: 0x70
-	// Line 3026, Address: 0x12de58, Func Offset: 0x78
-	// Line 3027, Address: 0x12de5c, Func Offset: 0x7c
-	// Line 3047, Address: 0x12de64, Func Offset: 0x84
-	// Line 3048, Address: 0x12de68, Func Offset: 0x88
-	// Line 3049, Address: 0x12de6c, Func Offset: 0x8c
-	// Line 3051, Address: 0x12de74, Func Offset: 0x94
-	// Line 3053, Address: 0x12de78, Func Offset: 0x98
-	// Line 3054, Address: 0x12de7c, Func Offset: 0x9c
-	// Line 3055, Address: 0x12de80, Func Offset: 0xa0
-	// Line 3056, Address: 0x12de84, Func Offset: 0xa4
-	// Line 3057, Address: 0x12de88, Func Offset: 0xa8
-	// Line 3058, Address: 0x12de8c, Func Offset: 0xac
-	// Line 3059, Address: 0x12de90, Func Offset: 0xb0
-	// Line 3060, Address: 0x12de94, Func Offset: 0xb4
-	// Line 3062, Address: 0x12de9c, Func Offset: 0xbc
-	// Line 3063, Address: 0x12dea0, Func Offset: 0xc0
-	// Line 3064, Address: 0x12dea4, Func Offset: 0xc4
-	// Line 3066, Address: 0x12deac, Func Offset: 0xcc
-	// Line 3071, Address: 0x12deb0, Func Offset: 0xd0
-	// Line 3072, Address: 0x12deb8, Func Offset: 0xd8
-	// Line 3074, Address: 0x12ded0, Func Offset: 0xf0
-	// Line 3076, Address: 0x12dee8, Func Offset: 0x108
-	// Line 3077, Address: 0x12def0, Func Offset: 0x110
-	// Line 3078, Address: 0x12def4, Func Offset: 0x114
-	// Line 3079, Address: 0x12defc, Func Offset: 0x11c
-	// Line 3081, Address: 0x12df1c, Func Offset: 0x13c
-	// Line 3082, Address: 0x12df24, Func Offset: 0x144
-	// Line 3083, Address: 0x12df28, Func Offset: 0x148
-	// Line 3084, Address: 0x12df30, Func Offset: 0x150
-	// Line 3086, Address: 0x12df40, Func Offset: 0x160
-	// Func End, Address: 0x12df48, Func Offset: 0x168
+	int offset; 
+    int srp_num; 
+    int usr_num;
+    short head; 
+    short* plp;  
+
+    plp = mdlp->plist; 
+    
+    while (TRUE) 
+    {
+        head = (unsigned char)*plp++; 
+        
+        if ((head >= 64) && (head < 67)) 
+        {
+            offset = *plp++; 
+            
+            usr_num = (*plp >> 14) & 0x3; 
+            srp_num = *plp++ & ~0xC000; 
+            
+            if (head == 64) 
+            { 
+                plp += offset; 
+            } 
+            else 
+            {
+                asm volatile 
+                ("
+                .set noreorder
+                
+                l_0012DE68: 
+                    lh   t2, 0(%0) 
+                    
+                    bgez t2, l_0012DE78
+                    add  %0, %0, 2
+                    
+                    neg  t2, t2
+                    
+                l_0012DE78:
+                    lh   t0, 2(%0)
+                    lh   t1, 4(%0)
+                    
+                    add  t0, t0, %1
+                    add  t1, t1, %2
+                    
+                    sh   t0, 2(%0)
+                    sh   t1, 4(%0)
+                    
+                    add  t2, t2, -1
+
+                    bgtz t2, l_0012DE78
+                    add  %0, %0, 6
+                    
+                    add  %0, %0, %3
+                    add  %4, %4, -1
+                    
+                    bgtz %4, l_0012DE68
+                    add  %0, %0, %3
+                    
+                    add  %0, %0, zero
+                    
+                .set reorder
+                " : "=r"(plp) : "r"(offu), "r"(offv), "r"(usr_num), "r"(srp_num) : "t0", "t1", "t2"
+                );
+            }
+        }
+        else if (head == 8) 
+        { 
+            plp++; 
+        } 
+        else if ((head >= 17) && (head < 24)) 
+        { 
+            offset = *plp++; 
+            plp += offset;
+        } 
+        else if ((head >= 56) && (head < 59)) 
+        { 
+            offset = *plp++; 
+            plp += offset; 
+        }
+        else if (head == 255)
+        { 
+            break;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x12df50
 void npSetOffsetUV2(_anon16* mdlp, short offu, short offv)
 {
