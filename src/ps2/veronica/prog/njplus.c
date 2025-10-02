@@ -1897,50 +1897,76 @@ void npSetOffsetUV(NJS_CNK_MODEL* mdlp, short offu, short offv)
     }
 }
 
-/*// 
-// Start address: 0x12df50
-void npSetOffsetUV2(_anon16* mdlp, short offu, short offv)
+// 100% matching!
+void npSetOffsetUV2(NJS_CNK_MODEL* mdlp, short offu, short offv)
 {
-	short* plp;
-	short head;
-	int usr_num;
-	int srp_num;
-	// Line 3097, Address: 0x12df50, Func Offset: 0
-	// Line 3142, Address: 0x12df58, Func Offset: 0x8
-	// Line 3100, Address: 0x12df5c, Func Offset: 0xc
-	// Line 3099, Address: 0x12df60, Func Offset: 0x10
-	// Line 3100, Address: 0x12df6c, Func Offset: 0x1c
-	// Line 3101, Address: 0x12df74, Func Offset: 0x24
-	// Line 3102, Address: 0x12df7c, Func Offset: 0x2c
-	// Line 3116, Address: 0x12df84, Func Offset: 0x34
-	// Line 3102, Address: 0x12df90, Func Offset: 0x40
-	// Line 3101, Address: 0x12df94, Func Offset: 0x44
-	// Line 3102, Address: 0x12df98, Func Offset: 0x48
-	// Line 3116, Address: 0x12df9c, Func Offset: 0x4c
-	// Line 3101, Address: 0x12dfa0, Func Offset: 0x50
-	// Line 3118, Address: 0x12dfa4, Func Offset: 0x54
-	// Line 3119, Address: 0x12dfa8, Func Offset: 0x58
-	// Line 3120, Address: 0x12dfac, Func Offset: 0x5c
-	// Line 3122, Address: 0x12dfb4, Func Offset: 0x64
-	// Line 3124, Address: 0x12dfb8, Func Offset: 0x68
-	// Line 3125, Address: 0x12dfbc, Func Offset: 0x6c
-	// Line 3126, Address: 0x12dfc0, Func Offset: 0x70
-	// Line 3127, Address: 0x12dfc4, Func Offset: 0x74
-	// Line 3128, Address: 0x12dfc8, Func Offset: 0x78
-	// Line 3129, Address: 0x12dfcc, Func Offset: 0x7c
-	// Line 3130, Address: 0x12dfd0, Func Offset: 0x80
-	// Line 3131, Address: 0x12dfd4, Func Offset: 0x84
-	// Line 3133, Address: 0x12dfdc, Func Offset: 0x8c
-	// Line 3134, Address: 0x12dfe0, Func Offset: 0x90
-	// Line 3135, Address: 0x12dfe4, Func Offset: 0x94
-	// Line 3140, Address: 0x12dfec, Func Offset: 0x9c
-	// Line 3142, Address: 0x12dff4, Func Offset: 0xa4
-	// Line 3145, Address: 0x12e004, Func Offset: 0xb4
-	// Line 3146, Address: 0x12e00c, Func Offset: 0xbc
-	// Func End, Address: 0x12e014, Func Offset: 0xc4
+    int srp_num; 
+    int usr_num;
+    short head; 
+    short* plp;  
+
+    plp = mdlp->plist; 
+    
+    while (TRUE) 
+    {
+        head = (unsigned char)*plp++; 
+        
+        if (head == 66)
+        { 
+            usr_num = (*++plp >> 14) & 0x3; 
+            srp_num = *plp++ & ~0xC000;
+           
+            asm volatile 
+            ("
+            .set noreorder
+            
+            l_0012DFA8: 
+                lh   t2, 0(%0) 
+                
+                bgez t2, l_0012DFB8
+                add  %0, %0, 2
+                
+                neg  t2, t2
+                
+            l_0012DFB8:
+                lh   t0, 2(%0)
+                lh   t1, 4(%0)
+                
+                add  t0, t0, %1
+                add  t1, t1, %2
+                
+                sh   t0, 2(%0)
+                sh   t1, 4(%0)
+                
+                add  t2, t2, -1
+
+                bgtz t2, l_0012DFB8
+                add  %0, %0, 6
+                
+                add  %0, %0, %3
+                add  %4, %4, -1
+                
+                bgtz %4, l_0012DFA8
+                add  %0, %0, %3
+                
+            .set reorder
+            " : "=r"(plp) : "r"(offu), "r"(offv), "r"(usr_num), "r"(srp_num) : "t0", "t1", "t2"
+            );
+
+            break;
+        }
+        else if (head != 255)
+        { 
+            *plp++;  
+        }
+        else 
+        {
+            break;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x12e020
 int npCopyVlist(int* dstp, int* srcp)
 {
