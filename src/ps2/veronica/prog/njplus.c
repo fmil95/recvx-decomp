@@ -1663,23 +1663,26 @@ void npRetSkinConvert(NJS_CNK_OBJECT* objp, int* sknp)
     npRetSkinConvMain(objp);
 }
 
-/*// 
-// Start address: 0x12da10
-unsigned int npGetMatColor(npobj* objp, int obj_n)
+// 100% matching!
+unsigned int npGetMatColor(NJS_CNK_OBJECT* objp, int obj_n)
 {
-	unsigned int* pnt;
 	int i;
-	// Line 2832, Address: 0x12da10, Func Offset: 0
-	// Line 2833, Address: 0x12da1c, Func Offset: 0xc
-	// Line 2834, Address: 0x12da38, Func Offset: 0x28
-	// Line 2835, Address: 0x12da40, Func Offset: 0x30
-	// Line 2837, Address: 0x12da48, Func Offset: 0x38
-	// Line 2838, Address: 0x12da58, Func Offset: 0x48
-	// Line 2839, Address: 0x12da5c, Func Offset: 0x4c
-	// Func End, Address: 0x12da64, Func Offset: 0x54
+    unsigned int* pnt;
+
+    for (i = 0; i < obj_n; i++, objp++) 
+    {
+        if ((objp->model != NULL) && (!(objp->evalflags & 0x8))) 
+        {
+            pnt = (unsigned int*)objp->model->plist;
+        
+            return *++pnt;
+        }
+    }
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x12da70
 void npSetAllMatColor(npobj* objp, int obj_n, unsigned int argb)
 {
