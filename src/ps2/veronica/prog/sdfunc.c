@@ -4856,22 +4856,27 @@ int PlayStartMovieEx(int MovieNo, int MovieType, int PauseFlag)
 	scePrintf("PlayStartMovieEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x297860
+// 100% matching!
 void PlayStopMovieEx(int Mode)
 {
-	// Line 4617, Address: 0x297860, Func Offset: 0
-	// Line 4618, Address: 0x297868, Func Offset: 0x8
-	// Line 4619, Address: 0x297878, Func Offset: 0x18
-	// Line 4620, Address: 0x297880, Func Offset: 0x20
-	// Line 4621, Address: 0x297888, Func Offset: 0x28
-	// Line 4622, Address: 0x297894, Func Offset: 0x34
-	// Line 4624, Address: 0x2978a0, Func Offset: 0x40
-	// Line 4627, Address: 0x2978a8, Func Offset: 0x48
-	// Line 4628, Address: 0x2978c4, Func Offset: 0x64
-	// Line 4631, Address: 0x2978d4, Func Offset: 0x74
-	// Func End, Address: 0x2978e0, Func Offset: 0x80
-	scePrintf("PlayStopMovieEx - UNIMPLEMENTED!\n");
+    if (MovieInfo.ExecMovieSystemFlag != 0) 
+    {
+        if (Mode == 0) 
+        {
+            StopMw();
+            
+            bhReleaseFreeMemory(MovieInfo.mmp);
+            
+            WakeupAdxStream(AdxDef);
+        }
+        
+        MovieInfo.ExecMovieSystemFlag = 0;
+        
+        if ((sys->cb_flg & 0x2)) 
+        {
+            sys->cb_flg &= ~0x2;
+        }
+    }
 }
 
 // 100% matching!

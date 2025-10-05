@@ -325,7 +325,7 @@ void PlayMw2(char* FileName, int Mode, void* mp, void* pp, int PauseFlag)
 {
 	// Line 231, Address: 0x290e20, Func Offset: 0
 	// Func End, Address: 0x290e28, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x290e30
@@ -341,7 +341,8 @@ void StopMw()
 	// Line 251, Address: 0x290eac, Func Offset: 0x7c
 	// Line 253, Address: 0x290eb4, Func Offset: 0x84
 	// Func End, Address: 0x290ec0, Func Offset: 0x90
-}*/
+	scePrintf("StopMw - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x290ec0
