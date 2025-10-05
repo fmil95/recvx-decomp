@@ -1557,6 +1557,21 @@ typedef struct VU1_STRIP_BUF
 	float fNz;
 } VU1_STRIP_BUF;
 
+typedef struct BUTTON_INFO
+{
+	// total size: 0x8
+    int Type;            // offset 0x0, size 0x4
+    unsigned int Button; // offset 0x4, size 0x4
+} BUTTON_INFO;
+
+typedef struct REPEAT_INFO
+{
+	// total size: 0xC
+    unsigned int WaitFlag; // offset 0x0, size 0x4
+    unsigned int WaitCnt;  // offset 0x4, size 0x4
+    unsigned int Key;      // offset 0x8, size 0x4
+} REPEAT_INFO;
+
 typedef struct PAD_WORK
 {
 	// total size: 0x42
@@ -1592,25 +1607,68 @@ typedef struct PAD_WORK
 typedef struct PAD_WRK
 {
 	// total size: 0x3C
-    int PerType; // offset 0x0, size 0x4
-    int OldPerType; // offset 0x4, size 0x4
-    int PerTypeEx; // offset 0x8, size 0x4
-    unsigned int Flag; // offset 0xC, size 0x4
-    int SoftReset; // offset 0x10, size 0x4
-    unsigned int on; // offset 0x14, size 0x4
-    unsigned int press; // offset 0x18, size 0x4
-    unsigned int Rept; // offset 0x1C, size 0x4
-    unsigned int on2; // offset 0x20, size 0x4
+    int PerType;         // offset 0x0, size 0x4
+    int OldPerType;      // offset 0x4, size 0x4
+    int PerTypeEx;       // offset 0x8, size 0x4
+    unsigned int Flag;   // offset 0xC, size 0x4
+    int SoftReset;       // offset 0x10, size 0x4
+    unsigned int on;     // offset 0x14, size 0x4
+    unsigned int press;  // offset 0x18, size 0x4
+    unsigned int Rept;   // offset 0x1C, size 0x4
+    unsigned int on2;    // offset 0x20, size 0x4
     unsigned int on2old; // offset 0x24, size 0x4
     unsigned int press2; // offset 0x28, size 0x4
-    unsigned short l; // offset 0x2C, size 0x2
-    unsigned short r; // offset 0x2E, size 0x2
-    short x1; // offset 0x30, size 0x2
-    short y1; // offset 0x32, size 0x2
-    short x2; // offset 0x34, size 0x2
-    short y2; // offset 0x36, size 0x2
-    short Calibrate; // offset 0x38, size 0x2
+    unsigned short l;    // offset 0x2C, size 0x2
+    unsigned short r;    // offset 0x2E, size 0x2
+    short x1;            // offset 0x30, size 0x2
+    short y1;            // offset 0x32, size 0x2
+    short x2;            // offset 0x34, size 0x2
+    short y2;            // offset 0x36, size 0x2
+    short Calibrate;     // offset 0x38, size 0x2
 } PAD_WRK;
+
+typedef struct MOV_INFO
+{
+	unsigned char* mmp;        // offset 0x0, size 0x4
+    float Vol;                 // offset 0x4, size 0x4
+    float VolSpeed;            // offset 0x8, size 0x4
+    float Fade;                // offset 0xC, size 0x4
+    float FadeSpeed;           // offset 0x10, size 0x4
+    short FrameCnt;            // offset 0x14, size 0x2
+    char ExecMovieSystemFlag;  // offset 0x16, size 0x1
+    char MovieCancelFlag;      // offset 0x17, size 0x1
+    char MovieFadeFlag;        // offset 0x18, size 0x1
+    char MovieFadeMode;        // offset 0x19, size 0x1
+    char MovieSystemLastError; // offset 0x1A, size 0x1
+} MOV_INFO;
+
+typedef struct RMI_WORK
+{
+    // total size: 0x54
+    unsigned char* put_ptr;      // offset 0x0, size 0x4
+    unsigned char* get_ptr;      // offset 0x4, size 0x4
+    int putsize;                 // offset 0x8, size 0x4
+    int getsize;                 // offset 0xC, size 0x4
+    int readrest;                // offset 0x10, size 0x4
+    int writerest;               // offset 0x14, size 0x4
+    int count;                   // offset 0x18, size 0x4
+    int proceed;                 // offset 0x1C, size 0x4
+    unsigned int button_old;     // offset 0x20, size 0x4
+    unsigned char cdata[32];     // offset 0x24, size 0x20
+    int iMovieState;             // offset 0x44, size 0x4
+    int iMovieFrame;             // offset 0x48, size 0x4
+    unsigned int uiContFlag;     // offset 0x4C, size 0x4
+    unsigned int MVCancelButton; // offset 0x50, size 0x4
+} RMI_WORK;
+
+typedef struct PDS_VIBPARAM_EX
+{
+	// total size: 0x4
+    unsigned char flag; // offset 0x0, size 0x1
+    char power;         // offset 0x1, size 0x1
+    unsigned char freq; // offset 0x2, size 0x1
+    unsigned char inc;  // offset 0x3, size 0x1
+} PDS_VIBPARAM_EX;
 
 // the link_file field in the struct below was originally char* but got turned into char** because it matches gdFsInit() higher
 typedef struct DVD_IMAGE_DATA
@@ -1676,21 +1734,6 @@ typedef struct PS2_OT
 	unsigned int bank;
 	unsigned int pad;
 } PS2_OT;
-
-typedef struct MOV_INFO
-{
-	unsigned char * mmp; // offset 0x0, size 0x4
-    float Vol; // offset 0x4, size 0x4
-    float VolSpeed; // offset 0x8, size 0x4
-    float Fade; // offset 0xC, size 0x4
-    float FadeSpeed; // offset 0x10, size 0x4
-    short FrameCnt; // offset 0x14, size 0x2
-    char ExecMovieSystemFlag; // offset 0x16, size 0x1
-    char MovieCancelFlag; // offset 0x17, size 0x1
-    char MovieFadeFlag; // offset 0x18, size 0x1
-    char MovieFadeMode; // offset 0x19, size 0x1
-    char MovieSystemLastError; // offset 0x1A, size 0x1
-} MOV_INFO;
 
 typedef struct PS2_TP_TAG
 {
@@ -1815,14 +1858,6 @@ typedef struct PRM_INFO
     int latency; // offset 0xC, size 0x4
     int rsv[4]; // offset 0x10, size 0x10
 } PRM_INFO;
-
-typedef struct REPEAT_INFO
-{
-	// total size: 0xC
-    unsigned int WaitFlag; // offset 0x0, size 0x4
-    unsigned int WaitCnt; // offset 0x4, size 0x4
-    unsigned int Key; // offset 0x8, size 0x4
-} REPEAT_INFO;
 
 typedef struct ADV_WORK
 {
@@ -2002,13 +2037,6 @@ typedef struct WPN_TAB
     char reserve1; // offset 0x66, size 0x1
     char reserve2; // offset 0x67, size 0x1
 } WPN_TAB;
-
-typedef struct BUTTON_INFO
-{
-	// total size: 0x8
-    int Type; // offset 0x0, size 0x4
-    unsigned int Button; // offset 0x4, size 0x4
-} BUTTON_INFO;
 
 typedef struct CAM_KEYF_WORK
 {
@@ -2771,34 +2799,6 @@ typedef struct COM_EVT_WORK {
     float bar[3][3]; // offset 0x5D58, size 0x24
     signed int bar_ct[3]; // offset 0x5D7C, size 0xC
 } COM_EVT_WORK;
-
-typedef struct PDS_VIBPARAM_EX
-{
-	// total size: 0x4
-    unsigned char flag; // offset 0x0, size 0x1
-    char power; // offset 0x1, size 0x1
-    unsigned char freq; // offset 0x2, size 0x1
-    unsigned char inc; // offset 0x3, size 0x1
-} PDS_VIBPARAM_EX;
-
-typedef struct RMI_WORK
-{
-    // total size: 0x54
-    unsigned char * put_ptr; // offset 0x0, size 0x4
-    unsigned char * get_ptr; // offset 0x4, size 0x4
-    int putsize; // offset 0x8, size 0x4
-    int getsize; // offset 0xC, size 0x4
-    int readrest; // offset 0x10, size 0x4
-    int writerest; // offset 0x14, size 0x4
-    int count; // offset 0x18, size 0x4
-    int proceed; // offset 0x1C, size 0x4
-    unsigned int button_old; // offset 0x20, size 0x4
-    unsigned char cdata[32]; // offset 0x24, size 0x20
-    int iMovieState; // offset 0x44, size 0x4
-    int iMovieFrame; // offset 0x48, size 0x4
-    unsigned int uiContFlag; // offset 0x4C, size 0x4
-    unsigned int MVCancelButton; // offset 0x50, size 0x4
-} RMI_WORK;
 
 typedef struct SPQ_HEADER
 {

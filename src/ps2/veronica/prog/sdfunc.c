@@ -4679,20 +4679,15 @@ void ExecSoundSystemMonitor()
     ExecObjectSeManager();
 }
 
-// 
 // 100% matching!
 int RequestReadIsoFile(char* FileName, void* DestPtr)
 {
-    int TempGenAdxfSlot;
-
     if (ReadFileRequestFlag != 0) 
     {
         return -1;
     }
     
-    TempGenAdxfSlot = GenAdxfSlot = OpenAfsIsoFile(FileName);
-    
-    if (TempGenAdxfSlot < 0) 
+    if ((GenAdxfSlot = OpenAfsIsoFile(FileName)) < 0) 
     {
         return -1;
     }
@@ -4700,8 +4695,11 @@ int RequestReadIsoFile(char* FileName, void* DestPtr)
     RequestReadAfsInsideFile(GenAdxfSlot, DestPtr);
     
     DestReadPtr = DestPtr;
+
     ReadFileRequestFlag = 1;
+
     FileReadStatus = 1;
+
     return 0;
 }
 
