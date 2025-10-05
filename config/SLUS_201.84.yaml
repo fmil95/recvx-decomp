@@ -48,7 +48,7 @@ segments:
     type: code
     start: 0x80
     vram: 0x00100000
-    bss_size: 0x16D881
+    bss_size: 0x1ACA280
     subsegments:
       - [0x000080, hasm, sce/ee/lib/crt0]
       - [0x000140, c, sce/ee/lib/libgraph/graph001]

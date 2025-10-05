@@ -1,3 +1,12 @@
+config/.venv
+config/asm
+config/assets
+config/include
+config/src
+config/SLUS_201.84
+config/SLUS_201.84.ld
+config/undefined_funcs_auto.txt
+config/undefined_syms_auto.txt
 src/ps2/veronica/prog/*.o
 elf/*.o
 elf/*.s
