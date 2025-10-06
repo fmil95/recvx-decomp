@@ -244,17 +244,18 @@ void ps2mwPlyPause(int sw);
 void ps2mwPlySetOutVol(int vol);
 int ps2mwPlyGetOutVol();
 void ps2mwErrorStop();
-void Setps2FuncTbl(_anon0* mwply);
+void Setps2FuncTbl(_anon0* mwply);*/
 
 // 
 // Start address: 0x2d8700
-int mwPlyCalcWorkSofdec()
+Sint32 mwPlyCalcWorkSofdec(Sint32 ftype, Sint32 max_bps, Sint32 max_sx, Sint32 max_sy, Sint32 nfb)
 {
 	// Line 112, Address: 0x2d8700, Func Offset: 0
 	// Func End, Address: 0x2d8708, Func Offset: 0x8
+	scePrintf("mwPlyCalcWorkSofdec - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d8710
 _anon0* ps2mwPlyCreateSofdec(char* fname)
 {

@@ -317,7 +317,7 @@ void PlayMwOpenMain(char* FileName, int Mode, void* mp, void* pp, int PauseFlag)
 	// Line 220, Address: 0x290df8, Func Offset: 0x138
 	// Line 222, Address: 0x290e04, Func Offset: 0x144
 	// Func End, Address: 0x290e1c, Func Offset: 0x15c
-}
+}*/
 
 // 
 // Start address: 0x290e20
@@ -325,7 +325,8 @@ void PlayMw2(char* FileName, int Mode, void* mp, void* pp, int PauseFlag)
 {
 	// Line 231, Address: 0x290e20, Func Offset: 0
 	// Func End, Address: 0x290e28, Func Offset: 0x8
-}*/
+	scePrintf("PlayMw2 - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x290e30
@@ -407,12 +408,13 @@ void SetMwVolume(int Volume)
 	scePrintf("SetMwVolume - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x290fc0
 int GetSfdFadeRate()
 {
 	// Line 327, Address: 0x290fc0, Func Offset: 0
 	// Func End, Address: 0x290fcc, Func Offset: 0xc
+	scePrintf("GetSfdFadeRate - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -424,5 +426,6 @@ void SetSfdDislpaySize(float PosX, float PosY, float SizeX, float SizeY)
 	// Line 340, Address: 0x290ff4, Func Offset: 0x24
 	// Line 341, Address: 0x291008, Func Offset: 0x38
 	// Func End, Address: 0x29101c, Func Offset: 0x4c
-}*/
+	scePrintf("SetSfdDislpaySize - UNIMPLEMENTED!\n");
+}
 

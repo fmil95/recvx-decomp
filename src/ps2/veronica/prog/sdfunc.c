@@ -2066,9 +2066,9 @@ BH_PWORK* plp;
 unsigned char* DestReadPtr;
 int GenAdxfSlot;
 int OpenDriveTrayFlag;
-/*unsigned char MovieTypeDef[22];
-short MovieVolDef[22];
-_anon37 MovieDef[4];*/
+unsigned char MovieTypeDef[22] = { 0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x02, 0x80, 0x42, 0x82, 0x00, 0x80, 0x00, 0x82 };
+short MovieVolDef[22] = { 0 }; 
+MOV_DEF MovieDef[4] = { { 320, 240, 0, 0, 640, 448, 1 }, { 320, 176, 0, 64, 640, 320, 1 }, { 320, 352, 0, 64, 640, 320, 1 }, { 0, 0, 0, 0, 0, 0, 1 } };
 RMI_WORK rmi;
 PAD_WRK Pad[4];
 int CurrentPortId;
@@ -4779,74 +4779,85 @@ void ExecFileManager()
     }
 }
 
-// 
-// Start address: 0x2974a0
+unsigned char* bhGetFreeMemory(int size, int param); // TODO: remove this function declaration
+// 100% matching! 
 int PlayStartMovieEx(int MovieNo, int MovieType, int PauseFlag)
 {
-	unsigned int Type;
-	char FileName[16];
-	//_anon33 CprmSfd;
-	// Line 4527, Address: 0x2974a0, Func Offset: 0
-	// Line 4532, Address: 0x2974bc, Func Offset: 0x1c
-	// Line 4533, Address: 0x2974d4, Func Offset: 0x34
-	// Line 4534, Address: 0x2974dc, Func Offset: 0x3c
-	// Line 4537, Address: 0x2974e4, Func Offset: 0x44
-	// Line 4539, Address: 0x2974f4, Func Offset: 0x54
-	// Line 4540, Address: 0x2974f8, Func Offset: 0x58
-	// Line 4539, Address: 0x297500, Func Offset: 0x60
-	// Line 4537, Address: 0x297504, Func Offset: 0x64
-	// Line 4540, Address: 0x297508, Func Offset: 0x68
-	// Line 4541, Address: 0x29751c, Func Offset: 0x7c
-	// Line 4542, Address: 0x297520, Func Offset: 0x80
-	// Line 4543, Address: 0x297524, Func Offset: 0x84
-	// Line 4541, Address: 0x297528, Func Offset: 0x88
-	// Line 4542, Address: 0x297530, Func Offset: 0x90
-	// Line 4540, Address: 0x297534, Func Offset: 0x94
-	// Line 4542, Address: 0x297538, Func Offset: 0x98
-	// Line 4541, Address: 0x297540, Func Offset: 0xa0
-	// Line 4542, Address: 0x297544, Func Offset: 0xa4
-	// Line 4544, Address: 0x297548, Func Offset: 0xa8
-	// Line 4543, Address: 0x29754c, Func Offset: 0xac
-	// Line 4542, Address: 0x297558, Func Offset: 0xb8
-	// Line 4543, Address: 0x29755c, Func Offset: 0xbc
-	// Line 4544, Address: 0x297560, Func Offset: 0xc0
-	// Line 4543, Address: 0x297564, Func Offset: 0xc4
-	// Line 4544, Address: 0x297568, Func Offset: 0xc8
-	// Line 4545, Address: 0x29756c, Func Offset: 0xcc
-	// Line 4550, Address: 0x29758c, Func Offset: 0xec
-	// Line 4551, Address: 0x2975a4, Func Offset: 0x104
-	// Line 4552, Address: 0x2975ac, Func Offset: 0x10c
-	// Line 4555, Address: 0x2975b4, Func Offset: 0x114
-	// Line 4556, Address: 0x2975bc, Func Offset: 0x11c
-	// Line 4557, Address: 0x2975c4, Func Offset: 0x124
-	// Line 4561, Address: 0x2975cc, Func Offset: 0x12c
-	// Line 4565, Address: 0x2975e0, Func Offset: 0x140
-	// Line 4566, Address: 0x2975fc, Func Offset: 0x15c
-	// Line 4567, Address: 0x297614, Func Offset: 0x174
-	// Line 4573, Address: 0x29770c, Func Offset: 0x26c
-	// Line 4574, Address: 0x297730, Func Offset: 0x290
-	// Line 4575, Address: 0x29773c, Func Offset: 0x29c
-	// Line 4577, Address: 0x297748, Func Offset: 0x2a8
-	// Line 4578, Address: 0x297768, Func Offset: 0x2c8
-	// Line 4579, Address: 0x297774, Func Offset: 0x2d4
-	// Line 4581, Address: 0x297780, Func Offset: 0x2e0
-	// Line 4583, Address: 0x297788, Func Offset: 0x2e8
-	// Line 4584, Address: 0x297794, Func Offset: 0x2f4
-	// Line 4585, Address: 0x2977b0, Func Offset: 0x310
-	// Line 4584, Address: 0x2977b4, Func Offset: 0x314
-	// Line 4585, Address: 0x2977b8, Func Offset: 0x318
-	// Line 4584, Address: 0x2977bc, Func Offset: 0x31c
-	// Line 4585, Address: 0x2977c0, Func Offset: 0x320
-	// Line 4586, Address: 0x2977e8, Func Offset: 0x348
-	// Line 4593, Address: 0x2977fc, Func Offset: 0x35c
-	// Line 4595, Address: 0x297800, Func Offset: 0x360
-	// Line 4586, Address: 0x297804, Func Offset: 0x364
-	// Line 4587, Address: 0x297808, Func Offset: 0x368
-	// Line 4592, Address: 0x29782c, Func Offset: 0x38c
-	// Line 4593, Address: 0x297834, Func Offset: 0x394
-	// Line 4596, Address: 0x29783c, Func Offset: 0x39c
-	// Func End, Address: 0x29785c, Func Offset: 0x3bc
-	scePrintf("PlayStartMovieEx - UNIMPLEMENTED!\n");
+    MWS_PLY_CPRM_SFD CprmSfd;
+    char FileName[16];        
+    unsigned int Type;     
+
+    if (MovieInfo.ExecMovieSystemFlag != 0)
+    {
+        MovieInfo.MovieSystemLastError = 2;
+        
+        return 2;
+    }
+
+    Type = MovieTypeDef[MovieNo] & 0x1F;
+
+    CprmSfd.ftype = 1;
+    CprmSfd.dtype = MovieDef[Type].DispType;
+    
+    CprmSfd.max_bps = 0x384000;
+    
+    CprmSfd.max_width = MovieDef[Type].sSizeX;
+    CprmSfd.max_height = MovieDef[Type].sSizeY;
+    
+    CprmSfd.nfrm_pool_wk = 3;
+    
+    CprmSfd.wksize = mwPlyCalcWorkSofdec(CprmSfd.ftype, CprmSfd.max_bps, CprmSfd.max_width, CprmSfd.max_height, CprmSfd.nfrm_pool_wk);
+
+    if ((MovieInfo.mmp = bhGetFreeMemory(CprmSfd.wksize, sizeof(MWS_PLY_CPRM_SFD))) == NULL)
+    {
+        MovieInfo.MovieSystemLastError = 1;
+        
+        return 1;
+    }
+
+    StopBgm(0);
+    StopVoice(0);
+    
+    SleepAdxStream();
+    
+    sprintf(FileName, "MV_%03u.PSS", MovieNo);
+    
+    PlayMw2(FileName, 0, MovieInfo.mmp, &CprmSfd, PauseFlag);
+
+    if (MovieDef[Type].dSizeX != 0)
+    {
+        SetSfdDislpaySize(MovieDef[Type].dPosX, MovieDef[Type].dPosY, MovieDef[Type].dSizeX, MovieDef[Type].dSizeY);
+    }
+
+    MovieInfo.MovieCancelFlag = ((MovieTypeDef[MovieNo] & 0x80) == 0) ? 1 : 0;
+    
+    if ((MovieType & 0x1))
+    {
+        MovieInfo.MovieCancelFlag = 1;
+    }
+    
+    MovieInfo.MovieFadeFlag = ((MovieTypeDef[MovieNo] & 0x40) == 0) ? 0 : 1;
+    
+    if ((MovieType & 0x2))
+    {
+        MovieInfo.MovieFadeFlag = 1;
+    }
+    
+    MovieInfo.MovieFadeMode = 0;
+    
+    MovieInfo.FrameCnt = 30;
+    
+    MovieInfo.Vol = MovieVolDef[MovieNo];
+    MovieInfo.VolSpeed = (MovieVolDef[MovieNo] - -999.0f) / MovieInfo.FrameCnt;
+    
+    MovieInfo.Fade = GetSfdFadeRate();
+    MovieInfo.FadeSpeed = MovieInfo.Fade / MovieInfo.FrameCnt;
+    
+    MovieInfo.MovieSystemLastError = 0;
+    
+    MovieInfo.ExecMovieSystemFlag = 1;
+
+    return 0;
 }
 
 // 100% matching!

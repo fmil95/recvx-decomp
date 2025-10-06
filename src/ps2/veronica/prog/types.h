@@ -1720,6 +1720,18 @@ typedef struct MOV_INFO
     char MovieSystemLastError; // offset 0x1A, size 0x1
 } MOV_INFO;
 
+typedef struct MOV_DEF
+{
+	// total size: 0xE
+    unsigned short sSizeX;  // offset 0x0, size 0x2
+    unsigned short sSizeY;  // offset 0x2, size 0x2
+    unsigned short dPosX;   // offset 0x4, size 0x2
+    unsigned short dPosY;   // offset 0x6, size 0x2
+    unsigned short dSizeX;  // offset 0x8, size 0x2
+    unsigned short dSizeY;  // offset 0xA, size 0x2
+    unsigned char DispType; // offset 0xC, size 0x1
+} MOV_DEF; 
+
 typedef struct RMI_WORK
 {
     // total size: 0x54
