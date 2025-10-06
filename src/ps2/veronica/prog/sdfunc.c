@@ -1970,9 +1970,7 @@ struct _anon68
 	unsigned int* pPhysical;
 };*/
 
-int PatId[4] = {
-    -1, -1, -1, -1
-};
+int PatId[4] = { -1, -1, -1, -1 };
 AFS_PATINFO SoundAfsPatDef[8] = {
     { "BGM?.AFS"    , 0, 128, NULL },
     { "VOICE?.AFS"  , 1, 768, NULL },
@@ -1983,10 +1981,7 @@ AFS_PATINFO SoundAfsPatDef[8] = {
     { "SYSTEM.AFS"  , 6, 256, NULL },
     { NULL          , 0, 0  , NULL }
 };
-ADX_WORK AdxDef[2] = {
-    { 2, 48000, 2, -1 },
-    { 1, 48000, 2, -1 }
-};
+ADX_WORK AdxDef[2] = { { 2, 48000, 2, -1 }, { 1, 48000, 2, -1 } };
 SDE_DATA_TYPE SdTypeDef[5] = { SDE_DATA_TYPE_MIDI_SEQ_BANK, SDE_DATA_TYPE_MIDI_PRG_BANK, SDE_DATA_TYPE_SHOT_BANK, SDE_DATA_TYPE_FX_PRG_BANK, SDE_DATA_TYPE_FX_OUT_BANK }; 
 /*int PlayerFootStepSwitch[3];
 int SystemSeSlotSwitch;
@@ -4612,15 +4607,13 @@ void Com_StartInitScript()
 	// Line 4125, Address: 0x297084, Func Offset: 0x84
 	// Line 4126, Address: 0x297090, Func Offset: 0x90
 	// Func End, Address: 0x29709c, Func Offset: 0x9c
-}
-
-// 
-// Start address: 0x2970a0
-void Com_FinishInitScript()
-{
-	// Line 4136, Address: 0x2970a0, Func Offset: 0
-	// Func End, Address: 0x2970a8, Func Offset: 0x8
 }*/
+
+// 100% matching!
+void Com_FinishInitScript() 
+{
+
+}
 
 // 
 // Start address: 0x2970b0
