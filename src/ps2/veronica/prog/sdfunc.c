@@ -4576,17 +4576,15 @@ void Com_ExecRoomFadeOut()
 	// Line 4048, Address: 0x296fd0, Func Offset: 0x80
 	// Line 4049, Address: 0x296fd8, Func Offset: 0x88
 	// Func End, Address: 0x296fe4, Func Offset: 0x94
-}
+}*/
 
-// 
-// Start address: 0x296ff0
+// 100% matching!
 void Com_ExecCallBgm_And_BgSe()
 {
-	// Line 4099, Address: 0x296ff0, Func Offset: 0
-	// Func End, Address: 0x296ff8, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x297000
 void Com_StartInitScript()
 {
