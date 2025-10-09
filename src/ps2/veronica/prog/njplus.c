@@ -1960,143 +1960,219 @@ void npInitCalcSkinFM(void* pwp, int obj_n, int* sknp)
     } 
 } 
 
-/*// 
-// Start address: 0x12e830
+// 99.93% matching
 void npCalcSkinFM(void* pwp, int obj_n, int* sknp)
-{
-	_anon3* pHdr1;
-	_anon3* pHdr0;
-	int nb;
-	int rg0;
-	int flg;
-	int j;
-	int i;
-	float* p1;
-	float lv;
-	npobj* op;
-	_anon0* p0;
-	float level[10];
-	// Line 4292, Address: 0x12e830, Func Offset: 0
-	// Line 4312, Address: 0x12e84c, Func Offset: 0x1c
-	// Line 4316, Address: 0x12e854, Func Offset: 0x24
-	// Line 4319, Address: 0x12e85c, Func Offset: 0x2c
-	// Line 4322, Address: 0x12e86c, Func Offset: 0x3c
-	// Line 4323, Address: 0x12e874, Func Offset: 0x44
-	// Line 4324, Address: 0x12e87c, Func Offset: 0x4c
-	// Line 4325, Address: 0x12e884, Func Offset: 0x54
-	// Line 4327, Address: 0x12e8a0, Func Offset: 0x70
-	// Line 4328, Address: 0x12e8b4, Func Offset: 0x84
-	// Line 4329, Address: 0x12e8bc, Func Offset: 0x8c
-	// Line 4331, Address: 0x12e8c8, Func Offset: 0x98
-	// Line 4330, Address: 0x12e8d0, Func Offset: 0xa0
-	// Line 4332, Address: 0x12e8d4, Func Offset: 0xa4
-	// Line 4333, Address: 0x12e8dc, Func Offset: 0xac
-	// Line 4331, Address: 0x12e8e0, Func Offset: 0xb0
-	// Line 4330, Address: 0x12e8e4, Func Offset: 0xb4
-	// Line 4331, Address: 0x12e8e8, Func Offset: 0xb8
-	// Line 4333, Address: 0x12e8f0, Func Offset: 0xc0
-	// Line 4332, Address: 0x12e8f4, Func Offset: 0xc4
-	// Line 4331, Address: 0x12e8f8, Func Offset: 0xc8
-	// Line 4332, Address: 0x12e8fc, Func Offset: 0xcc
-	// Line 4333, Address: 0x12e908, Func Offset: 0xd8
-	// Line 4334, Address: 0x12e90c, Func Offset: 0xdc
-	// Line 4337, Address: 0x12e910, Func Offset: 0xe0
-	// Line 4344, Address: 0x12e914, Func Offset: 0xe4
-	// Line 4332, Address: 0x12e918, Func Offset: 0xe8
-	// Line 4333, Address: 0x12e91c, Func Offset: 0xec
-	// Line 4346, Address: 0x12e920, Func Offset: 0xf0
-	// Line 4334, Address: 0x12e924, Func Offset: 0xf4
-	// Line 4337, Address: 0x12e928, Func Offset: 0xf8
-	// Line 4334, Address: 0x12e92c, Func Offset: 0xfc
-	// Line 4339, Address: 0x12e93c, Func Offset: 0x10c
-	// Line 4345, Address: 0x12e940, Func Offset: 0x110
-	// Line 4339, Address: 0x12e944, Func Offset: 0x114
-	// Line 4340, Address: 0x12e948, Func Offset: 0x118
-	// Line 4341, Address: 0x12e950, Func Offset: 0x120
-	// Line 4342, Address: 0x12e958, Func Offset: 0x128
-	// Line 4343, Address: 0x12e960, Func Offset: 0x130
-	// Line 4346, Address: 0x12e964, Func Offset: 0x134
-	// Line 4347, Address: 0x12e96c, Func Offset: 0x13c
-	// Line 4348, Address: 0x12e974, Func Offset: 0x144
-	// Line 4347, Address: 0x12e97c, Func Offset: 0x14c
-	// Line 4348, Address: 0x12e98c, Func Offset: 0x15c
-	// Line 4349, Address: 0x12e99c, Func Offset: 0x16c
-	// Line 4350, Address: 0x12e9a0, Func Offset: 0x170
-	// Line 4351, Address: 0x12e9b0, Func Offset: 0x180
-	// Line 4363, Address: 0x12e9cc, Func Offset: 0x19c
-	// Line 4365, Address: 0x12e9fc, Func Offset: 0x1cc
-	// Line 4366, Address: 0x12ea00, Func Offset: 0x1d0
-	// Line 4367, Address: 0x12ea04, Func Offset: 0x1d4
-	// Line 4368, Address: 0x12ea08, Func Offset: 0x1d8
-	// Line 4369, Address: 0x12ea0c, Func Offset: 0x1dc
-	// Line 4370, Address: 0x12ea10, Func Offset: 0x1e0
-	// Line 4371, Address: 0x12ea14, Func Offset: 0x1e4
-	// Line 4372, Address: 0x12ea18, Func Offset: 0x1e8
-	// Line 4373, Address: 0x12ea1c, Func Offset: 0x1ec
-	// Line 4374, Address: 0x12ea20, Func Offset: 0x1f0
-	// Line 4375, Address: 0x12ea24, Func Offset: 0x1f4
-	// Line 4376, Address: 0x12ea28, Func Offset: 0x1f8
-	// Line 4377, Address: 0x12ea2c, Func Offset: 0x1fc
-	// Line 4378, Address: 0x12ea30, Func Offset: 0x200
-	// Line 4379, Address: 0x12ea34, Func Offset: 0x204
-	// Line 4380, Address: 0x12ea38, Func Offset: 0x208
-	// Line 4381, Address: 0x12ea3c, Func Offset: 0x20c
-	// Line 4382, Address: 0x12ea40, Func Offset: 0x210
-	// Line 4383, Address: 0x12ea44, Func Offset: 0x214
-	// Line 4384, Address: 0x12ea48, Func Offset: 0x218
-	// Line 4385, Address: 0x12ea4c, Func Offset: 0x21c
-	// Line 4386, Address: 0x12ea50, Func Offset: 0x220
-	// Line 4387, Address: 0x12ea54, Func Offset: 0x224
-	// Line 4403, Address: 0x12ea58, Func Offset: 0x228
-	// Line 4390, Address: 0x12ea68, Func Offset: 0x238
-	// Line 4391, Address: 0x12ea6c, Func Offset: 0x23c
-	// Line 4403, Address: 0x12ea70, Func Offset: 0x240
-	// Line 4405, Address: 0x12ea84, Func Offset: 0x254
-	// Line 4406, Address: 0x12ea88, Func Offset: 0x258
-	// Line 4407, Address: 0x12ea8c, Func Offset: 0x25c
-	// Line 4408, Address: 0x12ea90, Func Offset: 0x260
-	// Line 4409, Address: 0x12ea94, Func Offset: 0x264
-	// Line 4410, Address: 0x12ea98, Func Offset: 0x268
-	// Line 4411, Address: 0x12ea9c, Func Offset: 0x26c
-	// Line 4412, Address: 0x12eaa0, Func Offset: 0x270
-	// Line 4413, Address: 0x12eaa4, Func Offset: 0x274
-	// Line 4414, Address: 0x12eaa8, Func Offset: 0x278
-	// Line 4415, Address: 0x12eaac, Func Offset: 0x27c
-	// Line 4416, Address: 0x12eab0, Func Offset: 0x280
-	// Line 4417, Address: 0x12eab4, Func Offset: 0x284
-	// Line 4418, Address: 0x12eab8, Func Offset: 0x288
-	// Line 4419, Address: 0x12eabc, Func Offset: 0x28c
-	// Line 4420, Address: 0x12eac0, Func Offset: 0x290
-	// Line 4421, Address: 0x12eac4, Func Offset: 0x294
-	// Line 4422, Address: 0x12eac8, Func Offset: 0x298
-	// Line 4423, Address: 0x12eacc, Func Offset: 0x29c
-	// Line 4426, Address: 0x12ead0, Func Offset: 0x2a0
-	// Line 4429, Address: 0x12ead4, Func Offset: 0x2a4
-	// Line 4447, Address: 0x12eadc, Func Offset: 0x2ac
-	// Line 4449, Address: 0x12eafc, Func Offset: 0x2cc
-	// Line 4450, Address: 0x12eb00, Func Offset: 0x2d0
-	// Line 4451, Address: 0x12eb04, Func Offset: 0x2d4
-	// Line 4452, Address: 0x12eb08, Func Offset: 0x2d8
-	// Line 4453, Address: 0x12eb0c, Func Offset: 0x2dc
-	// Line 4454, Address: 0x12eb10, Func Offset: 0x2e0
-	// Line 4455, Address: 0x12eb14, Func Offset: 0x2e4
-	// Line 4456, Address: 0x12eb18, Func Offset: 0x2e8
-	// Line 4457, Address: 0x12eb1c, Func Offset: 0x2ec
-	// Line 4458, Address: 0x12eb20, Func Offset: 0x2f0
-	// Line 4459, Address: 0x12eb24, Func Offset: 0x2f4
-	// Line 4460, Address: 0x12eb28, Func Offset: 0x2f8
-	// Line 4461, Address: 0x12eb2c, Func Offset: 0x2fc
-	// Line 4462, Address: 0x12eb30, Func Offset: 0x300
-	// Line 4463, Address: 0x12eb34, Func Offset: 0x304
-	// Line 4466, Address: 0x12eb38, Func Offset: 0x308
-	// Line 4467, Address: 0x12eb3c, Func Offset: 0x30c
-	// Line 4470, Address: 0x12eb40, Func Offset: 0x310
-	// Line 4471, Address: 0x12eb54, Func Offset: 0x324
-	// Line 4472, Address: 0x12eb58, Func Offset: 0x328
-	// Line 4473, Address: 0x12eb60, Func Offset: 0x330
-	// Line 4474, Address: 0x12eb74, Func Offset: 0x344
-	// Line 4476, Address: 0x12eb78, Func Offset: 0x348
-	// Line 4478, Address: 0x12eb8c, Func Offset: 0x35c
-	// Line 4482, Address: 0x12eb94, Func Offset: 0x364
-	// Func End, Address: 0x12ebac, Func Offset: 0x37c
-}*/
+{ 
+    NO_NAME_16* p0;
+    NJS_CNK_OBJECT* op;
+    float lv;
+    float* p1;
+    int i;
+    int j;
+    int flg;
+    int rg0;
+    int nb;
+    NO_NAME_15* pHdr0;
+    NO_NAME_15* pHdr1;
+    static float level[10] = { 0.1000000015f, 0.200000003f, 0.3000000119f, 0.400000006f, 0.5f, 0.6000000238f, 0.6999999881f, 0.8000000119f, 0.8999999762f, 1.0f };
+
+    if (sknp != NULL)
+    { 
+        njPushMatrixEx(); 
+
+        npInitCalcSkinFM(pwp, obj_n, sknp); 
+        
+        np.sknp = sknp; 
+        
+        op = (NJS_CNK_OBJECT*)((NO_NAME_4*)pwp)->mlwP->objP; 
+        
+        for (i = 0; i < obj_n; i++, op++) 
+        { 
+            if ((i < 11) || (i > 14))
+            {
+                flg = *np.sknp++; 
+                
+                if (flg != 0) 
+                { 
+                    if ((flg & 0x2)) 
+                    { 
+                        pHdr0 = (NO_NAME_15*)op->model->vlist;
+                        
+                        rg0 = *np.sknp++; 
+                        
+                        op->model->vlist = np.vlp[rg0]; 
+                        
+                        pHdr1 = (NO_NAME_15*)np.vlp[rg0]; 
+                        
+                        nb = *np.sknp++;
+        
+                        pHdr1 = (NO_NAME_15*)((int)pHdr1 | 0x30000000); 
+        
+                        pHdr1->ucType = pHdr0->ucType;
+                        pHdr1->ucAttr = pHdr0->ucAttr; 
+                        
+                        pHdr1->usSize = pHdr0->usSize;
+                        
+                        pHdr1->usIndexOfs = pHdr0->usIndexOfs; 
+                        pHdr1->usIndexMax = pHdr0->usIndexMax; 
+                        
+                        p0 = (NO_NAME_16*)(pHdr0 + 1); 
+                        p1 = (float*)(pHdr1 + 1); 
+        
+                        for (j = 0; j < nb; j++) 
+                        { 
+                            rg0 = *np.sknp++; 
+                            
+                            lv = level[(rg0 >> 16) & 0xFF]; 
+                            
+                            rg0 >>= 24;
+
+                            if (rg0 > 10)
+                            {
+                                rg0 += 4;
+                            }
+                            
+                            if (lv != 1.0f) 
+                            { 
+                                asm volatile 
+                                ("
+                                .set noreorder
+                                
+                                    mfc1        t0, %0 
+                                    
+                                    qmtc2       t0, vf13
+                                    
+                                    lqc2        vf4, 0(%1)
+                                    lqc2        vf5, 0(%3)
+                                    lqc2        vf6, 0x10(%3)
+                                    lqc2        vf7, 0x20(%3)
+                                    lqc2        vf8, 0x30(%3)
+                                    
+                                    vmulax.xyz  ACC, vf5, vf4x
+                                    
+                                    vmadday.xyz ACC, vf6, vf4y
+                                    vmaddaz.xyz ACC, vf7, vf4z
+                                    
+                                    vmaddw.xyz  vf9, vf8, vf0w
+                                    
+                                    lqc2        vf5, 0(%4)
+                                    lqc2        vf6, 0x10(%4)
+                                    lqc2        vf7, 0x20(%4)
+                                    lqc2        vf8, 0x30(%4)
+                                    
+                                    vmulax.xyz  ACC, vf5, vf4x
+                                    
+                                    vmadday.xyz ACC, vf6, vf4y
+                                    vmaddaz.xyz ACC, vf7, vf4z
+                                    
+                                    vmaddw.xyz  vf10, vf8, vf0w
+                                    
+                                    vsub.xyz    vf5, vf10, vf9
+                                    
+                                    vmulx.xyz   vf6, vf5, vf13x
+                                    
+                                    vadd.xyz    vf7, vf6, vf9
+                                    
+                                    sqc2        vf7, 0(%2) 
+                                    
+                                .set reorder
+                                " : : "f"(lv), "r"(p0), "r"(p1), "r"(np.mxp[rg0][0]), "r"(np.mxp[rg0][1]) : "t0" 
+                                );
+                                
+                                p1 += 4; 
+                                p0++; 
+                                
+                                asm volatile 
+                                ("
+                                .set noreorder
+                                                 
+                                    mfc1        t0, %0 
+                                    
+                                    qmtc2       t0, vf13
+                                    
+                                    lqc2        vf4, 0(%1)
+                                    lqc2        vf5, 0(%3)
+                                    lqc2        vf6, 0x10(%3)
+                                    lqc2        vf7, 0x20(%3)
+                                    lqc2        vf8, 0(%4)
+                                    lqc2        vf9, 0x10(%4)
+                                    lqc2        vf10, 0x20(%4)
+                                    
+                                    vmulax.xyz  ACC, vf5, vf4x
+                                    
+                                    vmadday.xyz ACC, vf6, vf4y
+                                    
+                                    vmaddz.xyz  vf11, vf7, vf4z
+                                    
+                                    vmulax.xyz  ACC, vf8, vf4x
+                                    
+                                    vmadday.xyz ACC, vf9, vf4y
+                                    
+                                    vmaddz.xyz  vf12, vf10, vf4z
+                                    
+                                    vsub.xyz    vf5, vf12, vf11
+                                    
+                                    vmulx.xyz   vf6, vf5, vf13x
+                                    
+                                    vadd.xyz    vf7, vf6, vf11
+                                    
+                                    sqc2        vf7, 0(%2) 
+                                    
+                                .set reorder
+                                " : : "f"(lv), "r"(p0),  "r"(p1), "r"(np.mxp[rg0][0]), "r"(np.mxp[rg0][1]) : "t0" 
+                                );
+                                
+                                p1 += 4; 
+                                p0++;
+                            } 
+                            else 
+                            { 
+                                asm volatile 
+                                ("
+                                .set noreorder
+                                                  
+                                    lqc2        vf4, 0(%0) 
+                                    lqc2        vf11, 0x10(%0)
+                                    lqc2        vf5, 0(%2)
+                                    lqc2        vf6, 0x10(%2)
+                                    lqc2        vf7, 0x20(%2)
+                                    lqc2        vf8, 0x30(%2)
+                                    
+                                    vmulax.xyz  ACC, vf5xyz, vf4x
+                                    
+                                    vmadday.xyz ACC, vf6xyz, vf4y
+                                    vmaddaz.xyz ACC, vf7xyz, vf4z
+                                    
+                                    vmaddw.xyz  vf9, vf8xyz, vf0w
+                                    
+                                    vmulax.xyz  ACC, vf5xyz, vf11x
+                                    
+                                    vmadday.xyz ACC, vf6xyz, vf11y
+                                    
+                                    vmaddz.xyz  vf10xyz, vf7xyz, vf11z
+                                    
+                                    sqc2        vf9, 0(%1)
+                                    sqc2        vf10, 0x10(%1) 
+                                    
+                                .set reorder
+                                " : : "r"(p0), "r"(p1), "r"(np.mxp[rg0][1]), "r"(op)
+                                ); 
+                                
+                                p0 += 2; 
+                                p1 += 8; 
+                            }
+                        } 
+                        
+                        *(int*)p1 = 255; 
+                    } 
+                    else 
+                    { 
+                        np.sknp++;
+                    } 
+                }
+            }
+        } 
+    
+        njPopMatrixEx(); 
+    }
+} 
