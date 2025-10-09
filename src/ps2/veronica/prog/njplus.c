@@ -1797,75 +1797,100 @@ void npCalcSkin(void* pwp, int obj_n, int* sknp)
 	// Line 4041, Address: 0x12e5dc, Func Offset: 0x32c
 	// Line 4046, Address: 0x12e5e4, Func Offset: 0x334
 	// Func End, Address: 0x12e5fc, Func Offset: 0x34c
-}
+}*/
 
-// 
-// Start address: 0x12e600
+// 100% matching!
 void npInitCalcSkinFM(void* pwp, int obj_n, int* sknp)
-{
-	unsigned int ulSize;
-	int mno;
-	int nb;
-	int flg;
-	int i;
-	npobj* op;
-	_anon9* owp;
-	float mat[16];
-	unsigned char matb[64];
-	// Line 4150, Address: 0x12e600, Func Offset: 0
-	// Line 4168, Address: 0x12e620, Func Offset: 0x20
-	// Line 4169, Address: 0x12e624, Func Offset: 0x24
-	// Line 4168, Address: 0x12e638, Func Offset: 0x38
-	// Line 4169, Address: 0x12e63c, Func Offset: 0x3c
-	// Line 4171, Address: 0x12e644, Func Offset: 0x44
-	// Line 4172, Address: 0x12e650, Func Offset: 0x50
-	// Line 4173, Address: 0x12e658, Func Offset: 0x58
-	// Line 4174, Address: 0x12e660, Func Offset: 0x60
-	// Line 4175, Address: 0x12e668, Func Offset: 0x68
-	// Line 4177, Address: 0x12e680, Func Offset: 0x80
-	// Line 4178, Address: 0x12e694, Func Offset: 0x94
-	// Line 4179, Address: 0x12e69c, Func Offset: 0x9c
-	// Line 4180, Address: 0x12e6a8, Func Offset: 0xa8
-	// Line 4184, Address: 0x12e6b0, Func Offset: 0xb0
-	// Line 4187, Address: 0x12e6b8, Func Offset: 0xb8
-	// Line 4180, Address: 0x12e6bc, Func Offset: 0xbc
-	// Line 4184, Address: 0x12e6cc, Func Offset: 0xcc
-	// Line 4181, Address: 0x12e6d4, Func Offset: 0xd4
-	// Line 4186, Address: 0x12e6ec, Func Offset: 0xec
-	// Line 4187, Address: 0x12e6f4, Func Offset: 0xf4
-	// Line 4182, Address: 0x12e6fc, Func Offset: 0xfc
-	// Line 4187, Address: 0x12e708, Func Offset: 0x108
-	// Line 4182, Address: 0x12e70c, Func Offset: 0x10c
-	// Line 4184, Address: 0x12e718, Func Offset: 0x118
-	// Line 4188, Address: 0x12e724, Func Offset: 0x124
-	// Line 4192, Address: 0x12e734, Func Offset: 0x134
-	// Line 4193, Address: 0x12e73c, Func Offset: 0x13c
-	// Line 4207, Address: 0x12e750, Func Offset: 0x150
-	// Line 4209, Address: 0x12e774, Func Offset: 0x174
-	// Line 4210, Address: 0x12e778, Func Offset: 0x178
-	// Line 4211, Address: 0x12e77c, Func Offset: 0x17c
-	// Line 4212, Address: 0x12e780, Func Offset: 0x180
-	// Line 4213, Address: 0x12e784, Func Offset: 0x184
-	// Line 4214, Address: 0x12e788, Func Offset: 0x188
-	// Line 4215, Address: 0x12e78c, Func Offset: 0x18c
-	// Line 4216, Address: 0x12e790, Func Offset: 0x190
-	// Line 4217, Address: 0x12e794, Func Offset: 0x194
-	// Line 4218, Address: 0x12e798, Func Offset: 0x198
-	// Line 4219, Address: 0x12e79c, Func Offset: 0x19c
-	// Line 4220, Address: 0x12e7a0, Func Offset: 0x1a0
-	// Line 4221, Address: 0x12e7a4, Func Offset: 0x1a4
-	// Line 4222, Address: 0x12e7a8, Func Offset: 0x1a8
-	// Line 4223, Address: 0x12e7ac, Func Offset: 0x1ac
-	// Line 4224, Address: 0x12e7b0, Func Offset: 0x1b0
-	// Line 4225, Address: 0x12e7b4, Func Offset: 0x1b4
-	// Line 4226, Address: 0x12e7b8, Func Offset: 0x1b8
-	// Line 4232, Address: 0x12e7bc, Func Offset: 0x1bc
-	// Line 4235, Address: 0x12e7e8, Func Offset: 0x1e8
-	// Line 4236, Address: 0x12e804, Func Offset: 0x204
-	// Func End, Address: 0x12e824, Func Offset: 0x224
-}
+{ 
+	NJS_MATRIX mat;        
+	NO_NAME_18* owp;     
+	NJS_CNK_OBJECT* op;    
+	int i;                
+	int flg;               
+	int nb;               
+	int mno;              
+    unsigned int ulSize;    
+	unsigned char matb[64]; 
 
-// 
+    owp = (NO_NAME_18*)((BH_PWORK*)pwp)->mlwP->owP; 
+    
+    np.bp = np.buff + (obj_n * 128); 
+    
+    njUnitMatrix(NULL);
+    
+    np.sknp = sknp; 
+    
+    op = ((BH_PWORK*)pwp)->mlwP->objP; 
+    
+    for (i = 0; i < obj_n; i++, op++, owp++)
+    { 
+        if ((i < 11) || (i > 14))
+        {
+            flg = *np.sknp++;
+        
+            if (flg != 0) 
+            { 
+                if ((flg & 0x2)) 
+                { 
+                    mno = *np.sknp++;
+                    
+                    nb = *np.sknp++; 
+                    
+                    np.sknp += nb; 
+                    
+                    np.vlp[mno] = (int*)np.bp;
+                    
+                    ulSize = (nb * 32) + 96;
+                    
+                    ulSize += 64 - (ulSize & 0x3F); 
+                    
+                    np.bp += ulSize; 
+                } 
+                else 
+                { 
+                    np.sknp++; 
+                }
+                
+                asm volatile 
+                ("
+                .set noreorder
+                
+                    ldl      t0, 7(%1) 
+                    ldr      t0, 0(%1)
+                    
+                    lw       t1, 8(%1)
+                    
+                    pcpyld   t0, t1, t0
+                
+                    qmtc2    t0, vf8
+                
+                    lqc2     vf7, 48(%0)
+                    lqc2     vf4, 0(%0)
+                    lqc2     vf5, 16(%0)
+                    lqc2     vf6, 32(%0)
+                    
+                    vsub.xyz vf7xyz, vf7xyz, vf8xyz
+                    
+                    sqc2     vf4, 0(%2)
+                    sqc2     vf5, 16(%2)
+                    sqc2     vf6, 32(%2)
+                    sqc2     vf7, 48(%2)
+                    sqc2     vf4, 64(%2)
+                    sqc2     vf5, 80(%2)
+                    sqc2     vf6, 96(%2)
+                    sqc2     vf7, 112(%2) 
+                
+                .set reorder
+                " : : "r"(&owp->mtx), "r"(&((BH_PWORK*)pwp)->px), "r"(np.mxp[i][0]), "r"(owp) 
+                );
+                    
+                njRotXYZ(np.mxp[i][0], -op->ang[0], -op->ang[1], -op->ang[2]); 
+            }
+        }
+    } 
+} 
+
+/*// 
 // Start address: 0x12e830
 void npCalcSkinFM(void* pwp, int obj_n, int* sknp)
 {
