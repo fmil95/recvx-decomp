@@ -136,8 +136,8 @@ struct _mwply_if
 
 int MwMode = -1;
 int MwPlayFlag;
-/*_anon2* MwPly;
-_anon4 MwsCprmSfd;
+MWPLY MwPly;
+/*_anon4 MwsCprmSfd;
 int MwMemoryMode;
 int MwPlayMode;
 
@@ -214,13 +214,11 @@ void SetMwSoundMode()
 
 }
 
-/*// 
-// Start address: 0x290a90
+// 100% matching!
 void GetMwPlayTime(int* ncount, int* tscale)
-{
-	// Line 107, Address: 0x290a94, Func Offset: 0x4
-	// Func End, Address: 0x290ab0, Func Offset: 0x20
-}*/
+{ 
+    MwPly->vtbl->GetTime(MwPly, ncount, tscale); 
+}
 
 // 
 // Start address: 0x290ab0
