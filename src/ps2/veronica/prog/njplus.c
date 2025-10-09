@@ -1660,144 +1660,214 @@ void npInitCalcSkin(void* pwp, int obj_n, int* sknp)
     } 
 } 
 
-/*// 
-// Start address: 0x12e2b0
+// 99.93% matching
 void npCalcSkin(void* pwp, int obj_n, int* sknp)
-{
-	_anon3* pHdr1;
-	_anon3* pHdr0;
-	int nb;
-	int rg0;
-	int flg;
-	int j;
-	int i;
-	float* p1;
-	float lv;
-	npobj* op;
-	_anon0* p0;
-	float level[10];
-	// Line 3823, Address: 0x12e2b0, Func Offset: 0
-	// Line 3849, Address: 0x12e2cc, Func Offset: 0x1c
-	// Line 3854, Address: 0x12e2d4, Func Offset: 0x24
-	// Line 3860, Address: 0x12e2dc, Func Offset: 0x2c
-	// Line 3866, Address: 0x12e2ec, Func Offset: 0x3c
-	// Line 3867, Address: 0x12e2f4, Func Offset: 0x44
-	// Line 3868, Address: 0x12e2fc, Func Offset: 0x4c
-	// Line 3870, Address: 0x12e304, Func Offset: 0x54
-	// Line 3871, Address: 0x12e318, Func Offset: 0x68
-	// Line 3872, Address: 0x12e320, Func Offset: 0x70
-	// Line 3874, Address: 0x12e32c, Func Offset: 0x7c
-	// Line 3873, Address: 0x12e334, Func Offset: 0x84
-	// Line 3875, Address: 0x12e338, Func Offset: 0x88
-	// Line 3876, Address: 0x12e340, Func Offset: 0x90
-	// Line 3874, Address: 0x12e344, Func Offset: 0x94
-	// Line 3873, Address: 0x12e348, Func Offset: 0x98
-	// Line 3874, Address: 0x12e34c, Func Offset: 0x9c
-	// Line 3876, Address: 0x12e354, Func Offset: 0xa4
-	// Line 3875, Address: 0x12e358, Func Offset: 0xa8
-	// Line 3874, Address: 0x12e35c, Func Offset: 0xac
-	// Line 3875, Address: 0x12e360, Func Offset: 0xb0
-	// Line 3876, Address: 0x12e36c, Func Offset: 0xbc
-	// Line 3877, Address: 0x12e370, Func Offset: 0xc0
-	// Line 3880, Address: 0x12e374, Func Offset: 0xc4
-	// Line 3887, Address: 0x12e378, Func Offset: 0xc8
-	// Line 3875, Address: 0x12e37c, Func Offset: 0xcc
-	// Line 3876, Address: 0x12e380, Func Offset: 0xd0
-	// Line 3899, Address: 0x12e384, Func Offset: 0xd4
-	// Line 3877, Address: 0x12e388, Func Offset: 0xd8
-	// Line 3880, Address: 0x12e38c, Func Offset: 0xdc
-	// Line 3877, Address: 0x12e390, Func Offset: 0xe0
-	// Line 3882, Address: 0x12e3a0, Func Offset: 0xf0
-	// Line 3893, Address: 0x12e3a4, Func Offset: 0xf4
-	// Line 3882, Address: 0x12e3a8, Func Offset: 0xf8
-	// Line 3883, Address: 0x12e3ac, Func Offset: 0xfc
-	// Line 3884, Address: 0x12e3b4, Func Offset: 0x104
-	// Line 3885, Address: 0x12e3bc, Func Offset: 0x10c
-	// Line 3886, Address: 0x12e3c4, Func Offset: 0x114
-	// Line 3899, Address: 0x12e3c8, Func Offset: 0x118
-	// Line 3900, Address: 0x12e3d0, Func Offset: 0x120
-	// Line 3901, Address: 0x12e3d8, Func Offset: 0x128
-	// Line 3903, Address: 0x12e3e0, Func Offset: 0x130
-	// Line 3900, Address: 0x12e3e8, Func Offset: 0x138
-	// Line 3901, Address: 0x12e3f8, Func Offset: 0x148
-	// Line 3903, Address: 0x12e40c, Func Offset: 0x15c
-	// Line 3915, Address: 0x12e41c, Func Offset: 0x16c
-	// Line 3917, Address: 0x12e44c, Func Offset: 0x19c
-	// Line 3918, Address: 0x12e450, Func Offset: 0x1a0
-	// Line 3919, Address: 0x12e454, Func Offset: 0x1a4
-	// Line 3920, Address: 0x12e458, Func Offset: 0x1a8
-	// Line 3921, Address: 0x12e45c, Func Offset: 0x1ac
-	// Line 3922, Address: 0x12e460, Func Offset: 0x1b0
-	// Line 3923, Address: 0x12e464, Func Offset: 0x1b4
-	// Line 3924, Address: 0x12e468, Func Offset: 0x1b8
-	// Line 3925, Address: 0x12e46c, Func Offset: 0x1bc
-	// Line 3926, Address: 0x12e470, Func Offset: 0x1c0
-	// Line 3927, Address: 0x12e474, Func Offset: 0x1c4
-	// Line 3928, Address: 0x12e478, Func Offset: 0x1c8
-	// Line 3929, Address: 0x12e47c, Func Offset: 0x1cc
-	// Line 3930, Address: 0x12e480, Func Offset: 0x1d0
-	// Line 3931, Address: 0x12e484, Func Offset: 0x1d4
-	// Line 3932, Address: 0x12e488, Func Offset: 0x1d8
-	// Line 3933, Address: 0x12e48c, Func Offset: 0x1dc
-	// Line 3934, Address: 0x12e490, Func Offset: 0x1e0
-	// Line 3935, Address: 0x12e494, Func Offset: 0x1e4
-	// Line 3936, Address: 0x12e498, Func Offset: 0x1e8
-	// Line 3937, Address: 0x12e49c, Func Offset: 0x1ec
-	// Line 3938, Address: 0x12e4a0, Func Offset: 0x1f0
-	// Line 3939, Address: 0x12e4a4, Func Offset: 0x1f4
-	// Line 3957, Address: 0x12e4a8, Func Offset: 0x1f8
-	// Line 3942, Address: 0x12e4b8, Func Offset: 0x208
-	// Line 3943, Address: 0x12e4bc, Func Offset: 0x20c
-	// Line 3957, Address: 0x12e4c0, Func Offset: 0x210
-	// Line 3959, Address: 0x12e4d4, Func Offset: 0x224
-	// Line 3960, Address: 0x12e4d8, Func Offset: 0x228
-	// Line 3961, Address: 0x12e4dc, Func Offset: 0x22c
-	// Line 3962, Address: 0x12e4e0, Func Offset: 0x230
-	// Line 3963, Address: 0x12e4e4, Func Offset: 0x234
-	// Line 3964, Address: 0x12e4e8, Func Offset: 0x238
-	// Line 3965, Address: 0x12e4ec, Func Offset: 0x23c
-	// Line 3966, Address: 0x12e4f0, Func Offset: 0x240
-	// Line 3967, Address: 0x12e4f4, Func Offset: 0x244
-	// Line 3968, Address: 0x12e4f8, Func Offset: 0x248
-	// Line 3969, Address: 0x12e4fc, Func Offset: 0x24c
-	// Line 3970, Address: 0x12e500, Func Offset: 0x250
-	// Line 3971, Address: 0x12e504, Func Offset: 0x254
-	// Line 3972, Address: 0x12e508, Func Offset: 0x258
-	// Line 3973, Address: 0x12e50c, Func Offset: 0x25c
-	// Line 3974, Address: 0x12e510, Func Offset: 0x260
-	// Line 3975, Address: 0x12e514, Func Offset: 0x264
-	// Line 3976, Address: 0x12e518, Func Offset: 0x268
-	// Line 3977, Address: 0x12e51c, Func Offset: 0x26c
-	// Line 3980, Address: 0x12e520, Func Offset: 0x270
-	// Line 3992, Address: 0x12e524, Func Offset: 0x274
-	// Line 4010, Address: 0x12e52c, Func Offset: 0x27c
-	// Line 4012, Address: 0x12e54c, Func Offset: 0x29c
-	// Line 4013, Address: 0x12e550, Func Offset: 0x2a0
-	// Line 4014, Address: 0x12e554, Func Offset: 0x2a4
-	// Line 4015, Address: 0x12e558, Func Offset: 0x2a8
-	// Line 4016, Address: 0x12e55c, Func Offset: 0x2ac
-	// Line 4017, Address: 0x12e560, Func Offset: 0x2b0
-	// Line 4018, Address: 0x12e564, Func Offset: 0x2b4
-	// Line 4019, Address: 0x12e568, Func Offset: 0x2b8
-	// Line 4020, Address: 0x12e56c, Func Offset: 0x2bc
-	// Line 4021, Address: 0x12e570, Func Offset: 0x2c0
-	// Line 4022, Address: 0x12e574, Func Offset: 0x2c4
-	// Line 4023, Address: 0x12e578, Func Offset: 0x2c8
-	// Line 4024, Address: 0x12e57c, Func Offset: 0x2cc
-	// Line 4025, Address: 0x12e580, Func Offset: 0x2d0
-	// Line 4026, Address: 0x12e584, Func Offset: 0x2d4
-	// Line 4029, Address: 0x12e588, Func Offset: 0x2d8
-	// Line 4030, Address: 0x12e58c, Func Offset: 0x2dc
-	// Line 4033, Address: 0x12e590, Func Offset: 0x2e0
-	// Line 4034, Address: 0x12e5a4, Func Offset: 0x2f4
-	// Line 4035, Address: 0x12e5a8, Func Offset: 0x2f8
-	// Line 4036, Address: 0x12e5b0, Func Offset: 0x300
-	// Line 4037, Address: 0x12e5c4, Func Offset: 0x314
-	// Line 4039, Address: 0x12e5c8, Func Offset: 0x318
-	// Line 4041, Address: 0x12e5dc, Func Offset: 0x32c
-	// Line 4046, Address: 0x12e5e4, Func Offset: 0x334
-	// Func End, Address: 0x12e5fc, Func Offset: 0x34c
-}*/
+{ 
+    NO_NAME_16* p0;
+    NJS_CNK_OBJECT* op;
+    float lv;
+    float* p1;
+    int i;
+    int j;
+    int flg;
+    int rg0;
+    int nb;
+    NO_NAME_15* pHdr0;
+    NO_NAME_15* pHdr1;
+    static float level[10] = { 0.1000000015f, 0.200000003f, 0.3000000119f, 0.400000006f, 0.5f, 0.6000000238f, 0.6999999881f, 0.8000000119f, 0.8999999762f, 1.0f };
+
+    if (sknp != NULL)
+    { 
+        njPushMatrixEx(); 
+
+        npInitCalcSkin(pwp, obj_n, sknp); 
+        
+        np.sknp = sknp; 
+        
+        op = (NJS_CNK_OBJECT*)((NO_NAME_4*)pwp)->mlwP->objP; 
+        
+        for (i = 0; i < obj_n; i++, op++) 
+        { 
+            flg = *np.sknp++; 
+            
+            if (flg != 0) 
+            { 
+                if ((flg & 0x2)) 
+                { 
+                    pHdr0 = (NO_NAME_15*)op->model->vlist;
+                    
+                    rg0 = *np.sknp++; 
+                    
+                    op->model->vlist = np.vlp[rg0]; 
+                    
+                    pHdr1 = (NO_NAME_15*)np.vlp[rg0]; 
+                    
+                    nb = *np.sknp++;
+    
+                    pHdr1 = (NO_NAME_15*)((int)pHdr1 | 0x30000000); 
+    
+                    pHdr1->ucType = pHdr0->ucType;
+                    pHdr1->ucAttr = pHdr0->ucAttr; 
+                    
+                    pHdr1->usSize = pHdr0->usSize;
+                    
+                    pHdr1->usIndexOfs = pHdr0->usIndexOfs; 
+                    pHdr1->usIndexMax = pHdr0->usIndexMax; 
+                    
+                    p0 = (NO_NAME_16*)(pHdr0 + 1); 
+                    p1 = (float*)(pHdr1 + 1); 
+    
+                    for (j = 0; j < nb; j++) 
+                    { 
+                        rg0 = *np.sknp++; 
+                        
+                        lv = level[(rg0 >> 16) & 0xFF]; 
+                        
+                        rg0 >>= 24;
+                        
+                        if (lv != 1.0f) 
+                        { 
+                            asm volatile 
+                            ("
+                            .set noreorder
+                            
+                                mfc1        t0, %0 
+                                
+                                qmtc2       t0, vf13
+                                
+                                lqc2        vf4, 0(%1)
+                                lqc2        vf5, 0(%3)
+                                lqc2        vf6, 0x10(%3)
+                                lqc2        vf7, 0x20(%3)
+                                lqc2        vf8, 0x30(%3)
+                                
+                                vmulax.xyz  ACC, vf5, vf4x
+                                
+                                vmadday.xyz ACC, vf6, vf4y
+                                vmaddaz.xyz ACC, vf7, vf4z
+                                
+                                vmaddw.xyz  vf9, vf8, vf0w
+                                
+                                lqc2        vf5, 0(%4)
+                                lqc2        vf6, 0x10(%4)
+                                lqc2        vf7, 0x20(%4)
+                                lqc2        vf8, 0x30(%4)
+                                
+                                vmulax.xyz  ACC, vf5, vf4x
+                                
+                                vmadday.xyz ACC, vf6, vf4y
+                                vmaddaz.xyz ACC, vf7, vf4z
+                                
+                                vmaddw.xyz  vf10, vf8, vf0w
+                                
+                                vsub.xyz    vf5, vf10, vf9
+                                
+                                vmulx.xyz   vf6, vf5, vf13x
+                                
+                                vadd.xyz    vf7, vf6, vf9
+                                
+                                sqc2        vf7, 0(%2) 
+                                
+                            .set reorder
+                            " : : "f"(lv), "r"(p0), "r"(p1), "r"(np.mxp[rg0][0]), "r"(np.mxp[rg0][1]) : "t0" 
+                            );
+                            
+                            p1 += 4; 
+                            p0++; 
+                            
+                            asm volatile 
+                            ("
+                            .set noreorder
+                                             
+                                mfc1        t0, %0 
+                                
+                                qmtc2       t0, vf13
+                                
+                                lqc2        vf4, 0(%1)
+                                lqc2        vf5, 0(%3)
+                                lqc2        vf6, 0x10(%3)
+                                lqc2        vf7, 0x20(%3)
+                                lqc2        vf8, 0(%4)
+                                lqc2        vf9, 0x10(%4)
+                                lqc2        vf10, 0x20(%4)
+                                
+                                vmulax.xyz  ACC, vf5, vf4x
+                                
+                                vmadday.xyz ACC, vf6, vf4y
+                                
+                                vmaddz.xyz  vf11, vf7, vf4z
+                                
+                                vmulax.xyz  ACC, vf8, vf4x
+                                
+                                vmadday.xyz ACC, vf9, vf4y
+                                
+                                vmaddz.xyz  vf12, vf10, vf4z
+                                
+                                vsub.xyz    vf5, vf12, vf11
+                                
+                                vmulx.xyz   vf6, vf5, vf13x
+                                
+                                vadd.xyz    vf7, vf6, vf11
+                                
+                                sqc2        vf7, 0(%2) 
+                                
+                            .set reorder
+                            " : : "f"(lv), "r"(p0),  "r"(p1), "r"(np.mxp[rg0][0]), "r"(np.mxp[rg0][1]) : "t0" 
+                            );
+                            
+                            p1 += 4; 
+                            p0++;
+                        } 
+                        else 
+                        { 
+                            asm volatile 
+                            ("
+                            .set noreorder
+                                              
+                                lqc2        vf4, 0(%0) 
+                                lqc2        vf11, 0x10(%0)
+                                lqc2        vf5, 0(%2)
+                                lqc2        vf6, 0x10(%2)
+                                lqc2        vf7, 0x20(%2)
+                                lqc2        vf8, 0x30(%2)
+                                
+                                vmulax.xyz  ACC, vf5xyz, vf4x
+                                
+                                vmadday.xyz ACC, vf6xyz, vf4y
+                                vmaddaz.xyz ACC, vf7xyz, vf4z
+                                
+                                vmaddw.xyz  vf9, vf8xyz, vf0w
+                                
+                                vmulax.xyz  ACC, vf5xyz, vf11x
+                                
+                                vmadday.xyz ACC, vf6xyz, vf11y
+                                
+                                vmaddz.xyz  vf10xyz, vf7xyz, vf11z
+                                
+                                sqc2        vf9, 0(%1)
+                                sqc2        vf10, 0x10(%1) 
+                                
+                            .set reorder
+                            " : : "r"(p0), "r"(p1), "r"(np.mxp[rg0][1]), "r"(op)
+                            ); 
+                            
+                            p0 += 2; 
+                            p1 += 8; 
+                        }
+                    } 
+                    
+                    *(int*)p1 = 255; 
+                } 
+                else 
+                { 
+                    np.sknp++;
+                } 
+            }
+        } 
+    
+        njPopMatrixEx(); 
+    }
+} 
 
 // 100% matching!
 void npInitCalcSkinFM(void* pwp, int obj_n, int* sknp)

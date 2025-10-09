@@ -1263,23 +1263,25 @@ void njScaleEx(_anon0* pScale)
 	// Line 5370, Address: 0x2d7a00, Func Offset: 0x40
 	// Line 5377, Address: 0x2d7a04, Func Offset: 0x44
 	// Func End, Address: 0x2d7a0c, Func Offset: 0x4c
-}
+}*/
 
 // 
 // Start address: 0x2d7a10
-int njPushMatrixEx()
+Bool njPushMatrixEx( void )
 {
 	// Line 5439, Address: 0x2d7a10, Func Offset: 0
 	// Func End, Address: 0x2d7a18, Func Offset: 0x8
+	scePrintf("njPushMatrixEx - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d7a20
-int njPopMatrixEx()
+Bool njPopMatrixEx( void )
 {
 	// Line 5459, Address: 0x2d7a20, Func Offset: 0
 	// Func End, Address: 0x2d7a28, Func Offset: 0x8
-}*/
+	scePrintf("njPopMatrixEx - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2d7a30
