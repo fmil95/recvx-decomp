@@ -208,15 +208,13 @@ void ExitMwSystem()
     MwMode = -1;
 }
 
-/*// 
-// Start address: 0x290a80
+// 100% matching!
 void SetMwSoundMode()
 {
-	// Line 103, Address: 0x290a80, Func Offset: 0
-	// Func End, Address: 0x290a88, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x290a90
 void GetMwPlayTime(int* ncount, int* tscale)
 {
