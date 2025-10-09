@@ -2268,10 +2268,10 @@ int GetBootDiscId()
 // 100% matching! 
 void InitSofdecSystem(int Mode)
 {
-    PRM_INFO iprm;
+    MWS_PLY_INIT_SFD iprm;
     int temp; // not from the debugging symbols
 
-    memset(&iprm, 0, sizeof(PRM_INFO));
+    memset(iprm, 0, sizeof(MWS_PLY_INIT_SFD));
     
     iprm.mode = hws->mode;
     
@@ -2312,7 +2312,7 @@ void InitSofdecSystem(int Mode)
     }
     else 
     {
-        ReinitMwSystem((PRM_INFO*)&iprm);
+        ReinitMwSystem(&iprm);
     }
 }
 

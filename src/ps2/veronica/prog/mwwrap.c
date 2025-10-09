@@ -180,16 +180,16 @@ void InitMwSystem(unsigned int Mode, void* pPrm)
     MwPlayFlag = 0;
 }
 
-// 
-// Start address: 0x2909d0
-void ReinitMwSystem(PRM_INFO* pPrm)
+// 100% matching!
+void ReinitMwSystem(MWS_PLY_INIT_SFD* pPrm)
 {
-	// Line 56, Address: 0x2909d0, Func Offset: 0
-	// Line 57, Address: 0x2909dc, Func Offset: 0xc
-	// Line 60, Address: 0x290a00, Func Offset: 0x30
-	// Line 63, Address: 0x290a14, Func Offset: 0x44
-	// Func End, Address: 0x290a20, Func Offset: 0x50
-	scePrintf("ReinitMwSystem - UNIMPLEMENTED!\n");
+    switch (MwMode)
+    {
+    case 0:
+    case 2:
+        mwPlySetDispMode(pPrm->mode, pPrm->frame, pPrm->count, pPrm->latency);
+        break;
+    }
 }
 
 // 100% matching!
