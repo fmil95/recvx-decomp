@@ -548,9 +548,9 @@ void	njRotateXYZ(NJS_MATRIX *m, Angle angx, Angle angy, Angle angz)
 	scePrintf("njRotateXYZ - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2d6e20
-void njRotXYZ(float pMatrix[16], int lAngleX, int lAngleY, int lAngleZ)
+void njRotXYZ(NJS_MATRIX* pMatrix, int lAngleX, int lAngleY, int lAngleZ)
 {
 	float fCos;
 	float fSin;
@@ -590,9 +590,10 @@ void njRotXYZ(float pMatrix[16], int lAngleX, int lAngleY, int lAngleZ)
 	// Line 2332, Address: 0x2d6ee4, Func Offset: 0xc4
 	// Line 2335, Address: 0x2d6ee8, Func Offset: 0xc8
 	// Func End, Address: 0x2d6f00, Func Offset: 0xe0
+	scePrintf("njRotXYZ - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d6f00
 void njRotate(float pMatrix[16], _anon0* pAxis, int lAngle)
 {

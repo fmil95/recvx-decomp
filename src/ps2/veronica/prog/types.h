@@ -849,25 +849,26 @@ typedef struct SYS_WORK
     float sfct; // offset 0x2ACEC, size 0x4
 } SYS_WORK;
 
+typedef struct HWS_WORK
+{
+	// total size: 0x24
+    int mode;      // offset 0x0, size 0x4
+    int frame;     // offset 0x4, size 0x4
+    int count;     // offset 0x8, size 0x4
+    int vtx_opq_a; // offset 0xC, size 0x4
+    int vtx_opq_b; // offset 0x10, size 0x4
+    int vtx_trs_a; // offset 0x14, size 0x4
+    int vtx_trs_b; // offset 0x18, size 0x4
+    int vtx_punch; // offset 0x1C, size 0x4
+    int vtx_total; // offset 0x20, size 0x4
+} HWS_WORK;
+
 typedef struct NO_NAME_12
 {
 	unsigned short* scd0;
 	unsigned short* scd1;
 	unsigned short* evd;
 } NO_NAME_12;
-
-typedef struct HWS_WORK
-{
-	int mode;
-	int frame;
-	int count;
-	int vtx_opq_a;
-	int vtx_opq_b;
-	int vtx_trs_a;
-	int vtx_trs_b;
-	int vtx_punch;
-	int vtx_total;
-} HWS_WORK;
 
 typedef struct NO_NAME_14
 {
@@ -1473,11 +1474,20 @@ typedef struct NO_NAME_17
 	void* addr[256];
 } NO_NAME_17;
 
+typedef struct NO_NAME_18
+{
+	// total size: 0x50
+    unsigned int flg;      // offset 0x0, size 0x4
+    int dmy;               // offset 0x4, size 0x4
+    unsigned int dummy[2]; // offset 0x8, size 0x8
+    float mtx[16];         // offset 0x10, size 0x40
+} NO_NAME_18;
+
 typedef struct LFOPEN_INFO
 {
 	// total size: 0x8
     unsigned int Flag; // offset 0x0, size 0x4
-    GDFS GdFs; // offset 0x4, size 0x4
+    GDFS GdFs;         // offset 0x4, size 0x4
 } LFOPEN_INFO;
 
 typedef struct HM HM; 
@@ -1935,139 +1945,139 @@ typedef struct RM_SNDENV
 typedef struct PRM_INFO
 {
 	// total size: 0x20
-	int mode; // offset 0x0, size 0x4
-    int frame; // offset 0x4, size 0x4
-    int count; // offset 0x8, size 0x4
+	int mode;    // offset 0x0, size 0x4
+    int frame;   // offset 0x4, size 0x4
+    int count;   // offset 0x8, size 0x4
     int latency; // offset 0xC, size 0x4
-    int rsv[4]; // offset 0x10, size 0x10
+    int rsv[4];  // offset 0x10, size 0x10
 } PRM_INFO;
 
 typedef struct ADV_WORK
 {
 	// total size: 0xD8
-    int PatId; // offset 0x0, size 0x4
-    int Mode; // offset 0x4, size 0x4
-    int Mode2; // offset 0x8, size 0x4
-    int NextMode; // offset 0xC, size 0x4
-    int NextReturnCode; // offset 0x10, size 0x4
-    int PortId; // offset 0x14, size 0x4
-    int OptIndex; // offset 0x18, size 0x4
-    int OptLevel; // offset 0x1C, size 0x4
-    int NextOptLevel; // offset 0x20, size 0x4
-    int OptScrX; // offset 0x24, size 0x4
-    int OptScrY; // offset 0x28, size 0x4
-    unsigned int PalNo; // offset 0x2C, size 0x4
-    unsigned int PalMode; // offset 0x30, size 0x4
-    unsigned int FontBaseColor; // offset 0x34, size 0x4
-    unsigned char * SysMemPtr; // offset 0x38, size 0x4
-    unsigned char * MsgPtr; // offset 0x3C, size 0x4
-    unsigned char * ptr[8]; // offset 0x40, size 0x20
-    float Timer; // offset 0x60, size 0x4
-    float FadeRate; // offset 0x64, size 0x4
-    float FadeSpeed; // offset 0x68, size 0x4
-    float SaverTimer; // offset 0x6C, size 0x4
-    float SaverRate; // offset 0x70, size 0x4
-    float FlushCount; // offset 0x74, size 0x4
-    float FlushSpeed; // offset 0x78, size 0x4
-    float FlushCount2; // offset 0x7C, size 0x4
-    float FlushSpeed2; // offset 0x80, size 0x4
-    float ScrollPlatePosX[2][2]; // offset 0x84, size 0x10
-    char Active; // offset 0x94, size 0x1
-    char AppMode; // offset 0x95, size 0x1
-    char ExtraFlag; // offset 0x96, size 0x1
-    char FadeType; // offset 0x97, size 0x1
-    char SaverCommand; // offset 0x98, size 0x1
-    char Count; // offset 0x99, size 0x1
-    char LastLevel; // offset 0x9A, size 0x1
-    char FromTitle; // offset 0x9B, size 0x1
-    char CurrentDiscId; // offset 0x9C, size 0x1
-    char NextDiscId; // offset 0x9D, size 0x1
-    char ErrorId; // offset 0x9E, size 0x1
+    int PatId;                        // offset 0x0, size 0x4
+    int Mode;                         // offset 0x4, size 0x4
+    int Mode2;                        // offset 0x8, size 0x4
+    int NextMode;                     // offset 0xC, size 0x4
+    int NextReturnCode;               // offset 0x10, size 0x4
+    int PortId;                       // offset 0x14, size 0x4
+    int OptIndex;                     // offset 0x18, size 0x4
+    int OptLevel;                     // offset 0x1C, size 0x4
+    int NextOptLevel;                 // offset 0x20, size 0x4
+    int OptScrX;                      // offset 0x24, size 0x4
+    int OptScrY;                      // offset 0x28, size 0x4
+    unsigned int PalNo;               // offset 0x2C, size 0x4
+    unsigned int PalMode;             // offset 0x30, size 0x4
+    unsigned int FontBaseColor;       // offset 0x34, size 0x4
+    unsigned char* SysMemPtr;         // offset 0x38, size 0x4
+    unsigned char* MsgPtr;            // offset 0x3C, size 0x4
+    unsigned char* ptr[8];            // offset 0x40, size 0x20
+    float Timer;                      // offset 0x60, size 0x4
+    float FadeRate;                   // offset 0x64, size 0x4
+    float FadeSpeed;                  // offset 0x68, size 0x4
+    float SaverTimer;                 // offset 0x6C, size 0x4
+    float SaverRate;                  // offset 0x70, size 0x4
+    float FlushCount;                 // offset 0x74, size 0x4
+    float FlushSpeed;                 // offset 0x78, size 0x4
+    float FlushCount2;                // offset 0x7C, size 0x4
+    float FlushSpeed2;                // offset 0x80, size 0x4
+    float ScrollPlatePosX[2][2];      // offset 0x84, size 0x10
+    char Active;                      // offset 0x94, size 0x1
+    char AppMode;                     // offset 0x95, size 0x1
+    char ExtraFlag;                   // offset 0x96, size 0x1
+    char FadeType;                    // offset 0x97, size 0x1
+    char SaverCommand;                // offset 0x98, size 0x1
+    char Count;                       // offset 0x99, size 0x1
+    char LastLevel;                   // offset 0x9A, size 0x1
+    char FromTitle;                   // offset 0x9B, size 0x1
+    char CurrentDiscId;               // offset 0x9C, size 0x1
+    char NextDiscId;                  // offset 0x9D, size 0x1
+    char ErrorId;                     // offset 0x9E, size 0x1
     unsigned char ErrorMsgFlushCount; // offset 0x9F, size 0x1
-    char AnimId; // offset 0xA0, size 0x1
-    unsigned char AnimTime; // offset 0xA1, size 0x1
-    char GenFlag; // offset 0xA2, size 0x1
-    char PalFlag; // offset 0xA3, size 0x1
-    char SrFlag; // offset 0xA4, size 0x1
-    char OptFadeType; // offset 0xA5, size 0x1
-    char TexFlag; // offset 0xA6, size 0x1
-    char SoundMode; // offset 0xA7, size 0x1
-    char vibration; // offset 0xA8, size 0x1
-    char keytype; // offset 0xA9, size 0x1
-    char adjust_x; // offset 0xAA, size 0x1
-    char adjust_y; // offset 0xAB, size 0x1
-    char OptSaveFlag; // offset 0xAC, size 0x1
-    char vMode; // offset 0xAD, size 0x1
-    char DriveNo; // offset 0xAE, size 0x1
-    char MsgNo; // offset 0xAF, size 0x1
-    char DepthLevel; // offset 0xB0, size 0x1
-    char OldVmOpMode; // offset 0xB1, size 0x1
-    char VmOpMode; // offset 0xB2, size 0x1
-    char SetTexture[2]; // offset 0xB3, size 0x2
-    char KeyCommandCount[7]; // offset 0xB5, size 0x7
-    char Cursor[3]; // offset 0xBC, size 0x3
-    char CursorMax[3]; // offset 0xBF, size 0x3
-    char CursorFlag[4][4]; // offset 0xC2, size 0x10
-    char ModeCommandId[4]; // offset 0xD2, size 0x4
+    char AnimId;                      // offset 0xA0, size 0x1
+    unsigned char AnimTime;           // offset 0xA1, size 0x1
+    char GenFlag;                     // offset 0xA2, size 0x1
+    char PalFlag;                     // offset 0xA3, size 0x1
+    char SrFlag;                      // offset 0xA4, size 0x1
+    char OptFadeType;                 // offset 0xA5, size 0x1
+    char TexFlag;                     // offset 0xA6, size 0x1
+    char SoundMode;                   // offset 0xA7, size 0x1
+    char vibration;                   // offset 0xA8, size 0x1
+    char keytype;                     // offset 0xA9, size 0x1
+    char adjust_x;                    // offset 0xAA, size 0x1
+    char adjust_y;                    // offset 0xAB, size 0x1
+    char OptSaveFlag;                 // offset 0xAC, size 0x1
+    char vMode;                       // offset 0xAD, size 0x1
+    char DriveNo;                     // offset 0xAE, size 0x1
+    char MsgNo;                       // offset 0xAF, size 0x1
+    char DepthLevel;                  // offset 0xB0, size 0x1
+    char OldVmOpMode;                 // offset 0xB1, size 0x1
+    char VmOpMode;                    // offset 0xB2, size 0x1
+    char SetTexture[2];               // offset 0xB3, size 0x2
+    char KeyCommandCount[7];          // offset 0xB5, size 0x7
+    char Cursor[3];                   // offset 0xBC, size 0x3
+    char CursorMax[3];                // offset 0xBF, size 0x3
+    char CursorFlag[4][4];            // offset 0xC2, size 0x10
+    char ModeCommandId[4];            // offset 0xD2, size 0x4
 } ADV_WORK;
 
 typedef struct AFS_PATINFO
 {
     // total size: 0x10
-    char * AfsFileName; // offset 0x0, size 0x4
-    int PartitionId; // offset 0x4, size 0x4
-    int MaxInsideFileNum; // offset 0x8, size 0x4
-    unsigned char * pInfoWork; // offset 0xC, size 0x4
+    char* AfsFileName;        // offset 0x0, size 0x4
+    int PartitionId;          // offset 0x4, size 0x4
+    int MaxInsideFileNum;     // offset 0x8, size 0x4
+    unsigned char* pInfoWork; // offset 0xC, size 0x4
 } AFS_PATINFO;
 
 typedef struct ADXT_SPRM
 {
 	// total size: 0x1C
-    char * fname; // offset 0x0, size 0x4
-    char * fpc; // offset 0x4, size 0x4
-    int size; // offset 0x8, size 0x4
-    int nrtry; // offset 0xC, size 0x4
-    int speed; // offset 0x10, size 0x4
-    int dtype; // offset 0x14, size 0x4
-    int opmode; // offset 0x18, size 0x4
+    char* fname; // offset 0x0, size 0x4
+    char* fpc;   // offset 0x4, size 0x4
+    int size;    // offset 0x8, size 0x4
+    int nrtry;   // offset 0xC, size 0x4
+    int speed;   // offset 0x10, size 0x4
+    int dtype;   // offset 0x14, size 0x4
+    int opmode;  // offset 0x18, size 0x4
 } ADXT_SPRM;
 
 typedef struct AFS_INFO
 {
 	// total size: 0xC
-    unsigned char * pInfoPart; // offset 0x0, size 0x4
+    unsigned char* pInfoPart;  // offset 0x0, size 0x4
     unsigned int PartAreaSize; // offset 0x4, size 0x4
-    unsigned int Flag; // offset 0x8, size 0x4
+    unsigned int Flag;         // offset 0x8, size 0x4
 } AFS_INFO;
 
 typedef struct ADXF_INFO
 {
 	// total size: 0x10
-    ADX_FS * Handle; // offset 0x0, size 0x4
-    unsigned char * pAdxFWork; // offset 0x4, size 0x4
-    unsigned int Flag; // offset 0x8, size 0x4
-    int Mode; // offset 0xC, size 0x4
+    ADX_FS* Handle;           // offset 0x0, size 0x4
+    unsigned char* pAdxFWork; // offset 0x4, size 0x4
+    unsigned int Flag;        // offset 0x8, size 0x4
+    int Mode;                 // offset 0xC, size 0x4
 } ADXF_INFO;
 
 typedef struct ADXT_INFO
 {
 	// total size: 0x40
-    ADX_TALK * Handle; // offset 0x0, size 0x4
-    unsigned char * pAdxTWork; // offset 0x4, size 0x4
-    int WorkSize; // offset 0x8, size 0x4
-    unsigned int Flag; // offset 0xC, size 0x4
-    int FadeFunc; // offset 0x10, size 0x4
-    int FadeCntMax; // offset 0x14, size 0x4
-    float Volume; // offset 0x18, size 0x4
-    float VolSpeed; // offset 0x1C, size 0x4
-    float VolLast; // offset 0x20, size 0x4
-    float VolSave; // offset 0x24, size 0x4
-    float LimitMaxVol; // offset 0x28, size 0x4
-    int PanFunc; // offset 0x2C, size 0x4
-    int PanCntMax; // offset 0x30, size 0x4
-    float Pan; // offset 0x34, size 0x4
-    float PanSpeed; // offset 0x38, size 0x4
-    float PanLast; // offset 0x3C, size 0x4
+    ADX_TALK* Handle;         // offset 0x0, size 0x4
+    unsigned char* pAdxTWork; // offset 0x4, size 0x4
+    int WorkSize;             // offset 0x8, size 0x4
+    unsigned int Flag;        // offset 0xC, size 0x4
+    int FadeFunc;             // offset 0x10, size 0x4
+    int FadeCntMax;           // offset 0x14, size 0x4
+    float Volume;             // offset 0x18, size 0x4
+    float VolSpeed;           // offset 0x1C, size 0x4
+    float VolLast;            // offset 0x20, size 0x4
+    float VolSave;            // offset 0x24, size 0x4
+    float LimitMaxVol;        // offset 0x28, size 0x4
+    int PanFunc;              // offset 0x2C, size 0x4
+    int PanCntMax;            // offset 0x30, size 0x4
+    float Pan;                // offset 0x34, size 0x4
+    float PanSpeed;           // offset 0x38, size 0x4
+    float PanLast;            // offset 0x3C, size 0x4
 } ADXT_INFO;
 
 typedef struct PAD_ACT
