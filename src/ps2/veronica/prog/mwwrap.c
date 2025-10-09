@@ -220,21 +220,16 @@ void GetMwPlayTime(int* ncount, int* tscale)
     MwPly->vtbl->GetTime(MwPly, ncount, tscale); 
 }
 
-// 
-// Start address: 0x290ab0
+// 100% matching!
 int GetMwPlayTimeEx()
 {
-	int SamplingRate;
-	int SampleCount;
-	// Line 111, Address: 0x290ab0, Func Offset: 0
-	// Line 114, Address: 0x290ab4, Func Offset: 0x4
-	// Line 111, Address: 0x290ab8, Func Offset: 0x8
-	// Line 114, Address: 0x290abc, Func Offset: 0xc
-	// Line 116, Address: 0x290ac8, Func Offset: 0x18
-	// Line 117, Address: 0x290b00, Func Offset: 0x50
-	// Func End, Address: 0x290b10, Func Offset: 0x60
-	scePrintf("GetMwPlayTimeEx - UNIMPLEMENTED!\n");
-}
+    int SampleCount;
+    int SamplingRate;
+
+    GetMwPlayTime(&SampleCount, &SamplingRate);
+    
+    return ((double)SampleCount / (double)SamplingRate) * 100; 
+} 
 
 /*// 
 // Start address: 0x290b10
