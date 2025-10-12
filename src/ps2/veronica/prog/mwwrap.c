@@ -21,9 +21,9 @@ void PlayMw2(char* FileName, int Mode, void* mp, void* pp, int PauseFlag);
 void StopMw();
 _mwe_ply_stat GetMwStatus();
 int PlayMwMain2(void(*Func)());
-int PlayMwMain();
+int PlayMwMain();*/
 void PauseMw();
-void RestartMw();
+/*void RestartMw();
 void SetMwVolume(int Volume);
 int GetSfdFadeRate();
 void SetSfdDislpaySize(float PosX, float PosY, float SizeX, float SizeY);*/
@@ -211,13 +211,10 @@ void PlayMwOpenMain(char* FileName, int Mode, void* mp, void* pp, int PauseFlag)
     MwPlayFlag = 1; 
 } 
 
-// 
-// Start address: 0x290e20
+// 100% matching!
 void PlayMw2(char* FileName, int Mode, void* mp, void* pp, int PauseFlag)
 {
-	// Line 231, Address: 0x290e20, Func Offset: 0
-	// Func End, Address: 0x290e28, Func Offset: 0x8
-	scePrintf("PlayMw2 - UNIMPLEMENTED!\n");
+    PlayMwOpenMain(FileName, Mode, mp, pp, PauseFlag);
 }
 
 // 
@@ -274,13 +271,14 @@ int PlayMwMain()
 	scePrintf("PlayMwMain - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x290f60
 void PauseMw()
 {
 	// Line 288, Address: 0x290f60, Func Offset: 0
 	// Func End, Address: 0x290f7c, Func Offset: 0x1c
-}*/
+	scePrintf("PauseMw - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x290f80
