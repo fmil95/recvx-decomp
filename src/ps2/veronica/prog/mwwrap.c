@@ -296,13 +296,10 @@ void SetMwVolume(int Volume)
     MwPly->vtbl->SetOutVol(MwPly, Volume);
 }
 
-// 
-// Start address: 0x290fc0
+// 100% matching!
 int GetSfdFadeRate()
 {
-	// Line 327, Address: 0x290fc0, Func Offset: 0
-	// Func End, Address: 0x290fcc, Func Offset: 0xc
-	scePrintf("GetSfdFadeRate - UNIMPLEMENTED!\n");
+    return mwPlyGetBright(MwPly);
 }
 
 // 
