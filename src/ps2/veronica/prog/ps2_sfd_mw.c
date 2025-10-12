@@ -309,9 +309,9 @@ MWPLY ps2mwPlyCreateSofdec(MWS_PLY_CPRM_SFD *cprm, char* fname)
 	scePrintf("ps2mwPlyCreateSofdec - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2d8900
-void mwPlyExecServer()
+void mwPlyExecServer(void)
 {
 	// Line 366, Address: 0x2d8900, Func Offset: 0
 	// Line 378, Address: 0x2d8908, Func Offset: 0x8
@@ -323,7 +323,8 @@ void mwPlyExecServer()
 	// Line 396, Address: 0x2d8968, Func Offset: 0x68
 	// Line 399, Address: 0x2d897c, Func Offset: 0x7c
 	// Func End, Address: 0x2d8988, Func Offset: 0x88
-}*/
+	scePrintf("mwPlyExecServer - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void mwPlyFinishSofdec(void)

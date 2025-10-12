@@ -245,24 +245,32 @@ MWE_PLY_STAT GetMwStatus()
     return MwPly->vtbl->GetStat(MwPly);
 }
 
-/*// 
-// Start address: 0x290ee0
+// 100% matching!
 int PlayMwMain2(void(*Func)())
 {
-	_mwe_ply_stat MweStat;
-	// Line 261, Address: 0x290ee0, Func Offset: 0
-	// Line 264, Address: 0x290eec, Func Offset: 0xc
-	// Line 265, Address: 0x290efc, Func Offset: 0x1c
-	// Line 266, Address: 0x290f04, Func Offset: 0x24
-	// Line 267, Address: 0x290f10, Func Offset: 0x30
-	// Line 268, Address: 0x290f18, Func Offset: 0x38
-	// Line 270, Address: 0x290f20, Func Offset: 0x40
-	// Line 271, Address: 0x290f28, Func Offset: 0x48
-	// Line 274, Address: 0x290f30, Func Offset: 0x50
-	// Line 277, Address: 0x290f38, Func Offset: 0x58
-	// Line 278, Address: 0x290f3c, Func Offset: 0x5c
-	// Func End, Address: 0x290f4c, Func Offset: 0x6c
-}*/
+    MWE_PLY_STAT MweStat;
+    
+    if (MwPlayFlag != 0)
+    {
+        MweStat = GetMwStatus();
+        
+        if (MweStat == 3)
+        {
+            if (Func != NULL) 
+            {
+                Func();
+            }
+            
+            StopMw();
+            
+            return 0;
+        }
+        
+        mwPlyExecServer();
+    }
+    
+    return 1;
+}
 
 // 
 // Start address: 0x290f50
@@ -320,4 +328,3 @@ void SetSfdDislpaySize(float PosX, float PosY, float SizeX, float SizeY)
 	// Func End, Address: 0x29101c, Func Offset: 0x4c
 	scePrintf("SetSfdDislpaySize - UNIMPLEMENTED!\n");
 }
-
