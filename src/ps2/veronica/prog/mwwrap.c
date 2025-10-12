@@ -281,15 +281,13 @@ void CreateSfdHandle(void* mp, void* pp, char* fname)
     mwPlySetFastHalfpel(MwPly, 0);
 }
 
-/*// 
-// Start address: 0x290ca0
+// 100% matching!
 void CreateWaveHandle()
 {
-	// Line 172, Address: 0x290ca0, Func Offset: 0
-	// Func End, Address: 0x290ca8, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x290cb0
 void CreateTmHandle()
 {
