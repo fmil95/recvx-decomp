@@ -234,13 +234,10 @@ void StopMw()
 	scePrintf("StopMw - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x290ec0
+// 100% matching!
 MWE_PLY_STAT GetMwStatus()
 {
-	// Line 257, Address: 0x290ec0, Func Offset: 0
-	// Func End, Address: 0x290ed8, Func Offset: 0x18
-	scePrintf("GetMwStatus - UNIMPLEMENTED!\n");
+    return MwPly->vtbl->GetStat(MwPly);
 }
 
 /*// 
