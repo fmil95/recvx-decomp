@@ -1657,10 +1657,10 @@ struct _WPNDG_TBL
 	char dmg_type;
 	char blood_type;
 	char mince_type;
-};
+};*/
 
 char dbgout_buf[256];
-_WPNDG_TBL WpnDamageTbl[21];
+/*_WPNDG_TBL WpnDamageTbl[21];
 _anon45 CombWepTbl[21];
 _anon47 CombJointTbl[24];
 _COMBO_EFF Combo_Eff[21];
@@ -1685,9 +1685,9 @@ unsigned char flip_tree[24];
 void(*Mode_func)(BH_PWORK*)[6];
 void(*Move_func)(BH_PWORK*)[5];
 void(*Ply_func)(BH_PWORK*)[8];
-BH_PWORK* plp;
-BH_PWORK ene[0];
-_JOINT_PARE jointTree[11];
+BH_PWORK* plp;*/
+BH_PWORK ene[128];
+/*_JOINT_PARE jointTree[11];
 char joint_tree_buf[12];
 char poison_attack_wait;
 char poison_eff_wait;
@@ -1793,24 +1793,29 @@ float target_distance(BH_PWORK* epw)
 	// Line 965, Address: 0x1e0fb0, Func Offset: 0x30
 	// Line 966, Address: 0x1e0fb8, Func Offset: 0x38
 	// Func End, Address: 0x1e0fc4, Func Offset: 0x44
-}
+}*/
 
-// 
-// Start address: 0x1e0fd0
+// 100% matching!
 int GetLocalEneNo(BH_PWORK* epw)
 {
-	int i;
-	// Line 985, Address: 0x1e0fd0, Func Offset: 0
-	// Line 987, Address: 0x1e0fe0, Func Offset: 0x10
-	// Line 988, Address: 0x1e0fe4, Func Offset: 0x14
-	// Line 989, Address: 0x1e0ff4, Func Offset: 0x24
-	// Line 990, Address: 0x1e1004, Func Offset: 0x34
-	// Line 991, Address: 0x1e102c, Func Offset: 0x5c
-	// Line 992, Address: 0x1e1030, Func Offset: 0x60
-	// Func End, Address: 0x1e103c, Func Offset: 0x6c
+    int i;
+
+    for (i = 0; i < 128; i++) 
+    {
+        if (&ene[i] == epw) 
+        {
+            return i;
+        }
+    }
+    
+    sprintf(dbgout_buf, "GetLocalEneNo : Not Found Enemy Object!!\n");
+    
+    write(1, dbgout_buf, sizeof(dbgout_buf));
+    
+    return -1;
 }
 
-// 
+/*// 
 // Start address: 0x1e1040
 void SetMtnSE(BH_PWORK* epw)
 {
