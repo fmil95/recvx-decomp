@@ -255,12 +255,12 @@ Sint32 mwPlyCalcWorkSofdec(Sint32 ftype, Sint32 max_bps, Sint32 max_sx, Sint32 m
 	scePrintf("mwPlyCalcWorkSofdec - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2d8710
-_anon0* ps2mwPlyCreateSofdec(char* fname)
+MWPLY ps2mwPlyCreateSofdec(MWS_PLY_CPRM_SFD *cprm, char* fname)
 {
 	int loop;
-	_anon9 mode;
+	//_anon9 mode;
 	int i;
 	char read_name[256];
 	// Line 162, Address: 0x2d8710, Func Offset: 0
@@ -306,9 +306,10 @@ _anon0* ps2mwPlyCreateSofdec(char* fname)
 	// Line 330, Address: 0x2d88e8, Func Offset: 0x1d8
 	// Line 335, Address: 0x2d88ec, Func Offset: 0x1dc
 	// Func End, Address: 0x2d88f4, Func Offset: 0x1e4
+	scePrintf("ps2mwPlyCreateSofdec - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d8900
 void mwPlyExecServer()
 {
@@ -368,15 +369,16 @@ void mwPlySetDispPos(float lx, float ly)
 	// Line 631, Address: 0x2d89fc, Func Offset: 0x1c
 	// Line 632, Address: 0x2d8a0c, Func Offset: 0x2c
 	// Func End, Address: 0x2d8a1c, Func Offset: 0x3c
-}
+}*/
 
 // 
 // Start address: 0x2d8a20
-void mwPlySetFastHalfpel()
+void mwPlySetFastHalfpel(MWPLY mwply, Sint32 sw)
 {
 	// Line 662, Address: 0x2d8a20, Func Offset: 0
 	// Func End, Address: 0x2d8a28, Func Offset: 0x8
-}*/
+	scePrintf("mwPlySetFastHalfpel - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2d8a30

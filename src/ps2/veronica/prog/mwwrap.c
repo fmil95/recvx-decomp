@@ -137,9 +137,9 @@ struct _mwply_if
 int MwMode = -1;
 int MwPlayFlag;
 MWPLY MwPly;
-/*_anon4 MwsCprmSfd;
+MWS_PLY_CPRM_SFD MwsCprmSfd;
 int MwMemoryMode;
-int MwPlayMode;
+/*int MwPlayMode;
 
 void InitMwSystem(unsigned int Mode, void* pPrm);
 void ReinitMwSystem(_anon3* pPrm);
@@ -231,40 +231,57 @@ int GetMwPlayTimeEx()
     return ((double)SampleCount / (double)SamplingRate) * 100; 
 } 
 
-/*// 
-// Start address: 0x290b10
+// 100% matching!
 void CreateSfdHandle(void* mp, void* pp, char* fname)
-{
-	// Line 123, Address: 0x290b10, Func Offset: 0
-	// Line 124, Address: 0x290b30, Func Offset: 0x20
-	// Line 125, Address: 0x290b44, Func Offset: 0x34
-	// Line 126, Address: 0x290b4c, Func Offset: 0x3c
-	// Line 127, Address: 0x290b58, Func Offset: 0x48
-	// Line 128, Address: 0x290b60, Func Offset: 0x50
-	// Line 129, Address: 0x290b70, Func Offset: 0x60
-	// Line 130, Address: 0x290b7c, Func Offset: 0x6c
-	// Line 131, Address: 0x290b88, Func Offset: 0x78
-	// Line 132, Address: 0x290b94, Func Offset: 0x84
-	// Line 137, Address: 0x290bc4, Func Offset: 0xb4
-	// Line 138, Address: 0x290bcc, Func Offset: 0xbc
-	// Line 139, Address: 0x290bd8, Func Offset: 0xc8
-	// Line 140, Address: 0x290be4, Func Offset: 0xd4
-	// Line 141, Address: 0x290bf0, Func Offset: 0xe0
-	// Line 142, Address: 0x290bfc, Func Offset: 0xec
-	// Line 143, Address: 0x290c08, Func Offset: 0xf8
-	// Line 144, Address: 0x290c14, Func Offset: 0x104
-	// Line 147, Address: 0x290c20, Func Offset: 0x110
-	// Line 148, Address: 0x290c28, Func Offset: 0x118
-	// Line 149, Address: 0x290c38, Func Offset: 0x128
-	// Line 150, Address: 0x290c40, Func Offset: 0x130
-	// Line 151, Address: 0x290c48, Func Offset: 0x138
-	// Line 155, Address: 0x290c54, Func Offset: 0x144
-	// Line 157, Address: 0x290c6c, Func Offset: 0x15c
-	// Line 158, Address: 0x290c7c, Func Offset: 0x16c
-	// Func End, Address: 0x290c94, Func Offset: 0x184
+{ 
+    memset(MwsCprmSfd, 0, sizeof(MWS_PLY_CPRM_SFD));
+    
+    if (pp == NULL) 
+    {
+        MwsCprmSfd.ftype = 1;
+        MwsCprmSfd.dtype = 0;
+        
+        MwsCprmSfd.max_bps = 3686400;
+        
+        MwsCprmSfd.max_width = 320;
+        MwsCprmSfd.max_height = 240;
+        
+        MwsCprmSfd.nfrm_pool_wk = 3;
+        
+        MwsCprmSfd.wksize = mwPlyCalcWorkSofdec(MwsCprmSfd.ftype, MwsCprmSfd.max_bps, MwsCprmSfd.max_width, MwsCprmSfd.max_height, MwsCprmSfd.nfrm_pool_wk);
+    }
+    else 
+    {
+        MwsCprmSfd.ftype = ((MWS_PLY_CPRM_SFD*)pp)->ftype;
+        MwsCprmSfd.dtype = ((MWS_PLY_CPRM_SFD*)pp)->dtype;
+        
+        MwsCprmSfd.max_bps = ((MWS_PLY_CPRM_SFD*)pp)->max_bps;
+        
+        MwsCprmSfd.max_width = ((MWS_PLY_CPRM_SFD*)pp)->max_width;
+        MwsCprmSfd.max_height = ((MWS_PLY_CPRM_SFD*)pp)->max_height;
+        
+        MwsCprmSfd.nfrm_pool_wk = ((MWS_PLY_CPRM_SFD*)pp)->nfrm_pool_wk;
+        
+        MwsCprmSfd.wksize = ((MWS_PLY_CPRM_SFD*)pp)->wksize;
+    }
+    
+    if (mp == NULL) 
+    {
+        MwsCprmSfd.work = syMalloc(MwsCprmSfd.wksize);
+    }
+    else
+    {
+        MwsCprmSfd.work = mp;
+        
+        MwMemoryMode = 1;
+    }
+    
+    MwPly = ps2mwPlyCreateSofdec(&MwsCprmSfd, fname);
+    
+    mwPlySetFastHalfpel(MwPly, 0);
 }
 
-// 
+/*// 
 // Start address: 0x290ca0
 void CreateWaveHandle()
 {
