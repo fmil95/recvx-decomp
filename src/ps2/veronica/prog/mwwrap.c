@@ -278,13 +278,10 @@ int PlayMwMain()
     PlayMwMain2(NULL);
 }
 
-// 
-// Start address: 0x290f60
+// 100% matching!
 void PauseMw()
 {
-	// Line 288, Address: 0x290f60, Func Offset: 0
-	// Func End, Address: 0x290f7c, Func Offset: 0x1c
-	scePrintf("PauseMw - UNIMPLEMENTED!\n");
+    MwPly->vtbl->Pause(MwPly, 1); 
 }
 
 // 
