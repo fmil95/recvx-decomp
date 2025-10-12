@@ -217,21 +217,26 @@ void PlayMw2(char* FileName, int Mode, void* mp, void* pp, int PauseFlag)
     PlayMwOpenMain(FileName, Mode, mp, pp, PauseFlag);
 }
 
-// 
-// Start address: 0x290e30
+// 100% matching!
 void StopMw()
 {
-	// Line 235, Address: 0x290e30, Func Offset: 0
-	// Line 236, Address: 0x290e38, Func Offset: 0x8
-	// Line 237, Address: 0x290e48, Func Offset: 0x18
-	// Line 238, Address: 0x290e60, Func Offset: 0x30
-	// Line 239, Address: 0x290e78, Func Offset: 0x48
-	// Line 240, Address: 0x290e88, Func Offset: 0x58
-	// Line 242, Address: 0x290ea0, Func Offset: 0x70
-	// Line 251, Address: 0x290eac, Func Offset: 0x7c
-	// Line 253, Address: 0x290eb4, Func Offset: 0x84
-	// Func End, Address: 0x290ec0, Func Offset: 0x90
-	scePrintf("StopMw - UNIMPLEMENTED!\n");
+    if (MwPlayFlag != 0)
+    { 
+        MwPly->vtbl->Stop(MwPly);
+        
+        MwPly->vtbl->Destroy(MwPly);
+        
+        if (MwMemoryMode == 0)
+        {
+            switch (MwPlayMode) 
+            {
+            case 0: 
+                syFree(MwsCprmSfd.work);
+            } 
+        }
+        
+        MwPlayFlag = 0;
+    }
 }
 
 // 100% matching!
