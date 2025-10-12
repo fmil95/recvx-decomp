@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     
     while (TRUE) 
     { 
-        if (njUserMain() < 0) 
+        if (njUserMain() < NJD_USER_CONTINUE) 
         { 
             break;
         } 

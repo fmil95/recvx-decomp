@@ -1,147 +1,13 @@
-/*typedef struct _anon0;
-typedef struct _anon1;
-typedef struct _anon2;
-typedef struct _anon3;
-typedef struct _anon4;
-typedef struct _UUID;
-typedef struct _sj_vtbl;
-typedef enum _mwe_ply_stat;
-typedef struct _mwply_if;
-
-typedef void(*type_0)(_anon1*, int, int, _anon0*);
-typedef void(*type_1)();
-typedef void(*type_2)(_anon1*, int, _anon0*);
-typedef void(*type_3)();
-typedef void(*type_4)();
-typedef void(*type_5)(_anon2*);
-typedef void(*type_6)(_anon1*, int, _anon0*);
-typedef void(*type_7)(_anon2*);
-typedef int(*type_9)(_anon1*, int);
-typedef void(*type_10)(_anon2*);
-typedef void(*type_11)(_anon2*, char*);
-typedef int(*type_12)(_anon1*, int, int, int*);
-typedef void(*type_13)(_anon2*);
-typedef void(*type_14)(_anon1*, void(*)(void*, int), void*);
-typedef _mwe_ply_stat(*type_15)(_anon2*);
-typedef void(*type_16)(void*, int);
-typedef void(*type_17)(_anon2*, int*, int*);
-typedef void(*type_18)(_anon2*, int);
-typedef void(*type_19)(_anon2*, int);
-typedef int(*type_20)(_anon2*);
-typedef void(*type_21)(_anon2*, int, int);
-typedef int(*type_22)(_anon2*, int);
-typedef void(*type_23)(_anon2*, _anon1*);
-typedef void(*type_25)(_anon2*, void*, int);
-typedef void(*type_26)();
-typedef void(*type_27)();
-typedef void(*type_28)();
-typedef void(*type_29)(_anon1*);
-typedef _UUID*(*type_30)(_anon1*);
-typedef void(*type_31)(_anon1*);
-typedef void(*type_32)();
-
-typedef int type_8[4];
-typedef unsigned char type_24[8];
-
-struct _anon0
-{
-	char* data;
-	int len;
-};
-
-struct _anon1
-{
-	_sj_vtbl* vtbl;
-};
-
-struct _anon2
-{
-	_mwply_if* vtbl;
-};
-
-struct _anon3
-{
-	int mode;
-	int frame;
-	int count;
-	int latency;
-	int rsv[4];
-};
-
-struct _anon4
-{
-	int ftype;
-	int max_bps;
-	int max_width;
-	int max_height;
-	int nfrm_pool_wk;
-	char* work;
-	int wksize;
-	int dtype;
-};
-
-struct _UUID
-{
-	unsigned int Data1;
-	unsigned short Data2;
-	unsigned short Data3;
-	unsigned char Data4[8];
-};
-
-struct _sj_vtbl
-{
-	void(*QueryInterface)();
-	void(*AddRef)();
-	void(*Release)();
-	void(*Destroy)(_anon1*);
-	_UUID*(*GetUuid)(_anon1*);
-	void(*Reset)(_anon1*);
-	void(*GetChunk)(_anon1*, int, int, _anon0*);
-	void(*UngetChunk)(_anon1*, int, _anon0*);
-	void(*PutChunk)(_anon1*, int, _anon0*);
-	int(*GetNumData)(_anon1*, int);
-	int(*IsGetChunk)(_anon1*, int, int, int*);
-	void(*EntryErrFunc)(_anon1*, void(*)(void*, int), void*);
-};
-
-enum _mwe_ply_stat
-{
-	MWE_PLY_STAT_STOP,
-	MWE_PLY_STAT_PREP,
-	MWE_PLY_STAT_PLAYING,
-	MWE_PLY_STAT_PLAYEND,
-	MWE_PLY_STAT_ERROR
-};
-
-struct _mwply_if
-{
-	void(*QueryInterface)();
-	void(*AddRef)();
-	void(*Release)();
-	void(*VsyncHndl)(_anon2*);
-	void(*ExecSvrHndl)(_anon2*);
-	void(*Destroy)(_anon2*);
-	void(*StartFname)(_anon2*, char*);
-	void(*Stop)(_anon2*);
-	_mwe_ply_stat(*GetStat)(_anon2*);
-	void(*GetTime)(_anon2*, int*, int*);
-	void(*Pause)(_anon2*, int);
-	void(*SetOutVol)(_anon2*, int);
-	int(*GetOutVol)(_anon2*);
-	void(*SetOutPan)(_anon2*, int, int);
-	int(*GetOutPan)(_anon2*, int);
-	void(*StartSj)(_anon2*, _anon1*);
-	void(*StartMem)(_anon2*, void*, int);
-};*/
+#include "mwwrap.h"
 
 int MwMode = -1;
 int MwPlayFlag;
 MWPLY MwPly;
 MWS_PLY_CPRM_SFD MwsCprmSfd;
 int MwMemoryMode;
-/*int MwPlayMode;
+int MwPlayMode;
 
-void InitMwSystem(unsigned int Mode, void* pPrm);
+/*void InitMwSystem(unsigned int Mode, void* pPrm);
 void ReinitMwSystem(_anon3* pPrm);
 void ExitMwSystem();
 void SetMwSoundMode();
@@ -282,7 +148,7 @@ void CreateSfdHandle(void* mp, void* pp, char* fname)
 }
 
 // 100% matching!
-void CreateWaveHandle()
+void CreateWaveHandle(void* unused) // parameter not present on the debugging symbols 
 {
 
 }
@@ -293,35 +159,57 @@ void CreateTmHandle()
 
 }
 
-/*// 
-// Start address: 0x290cc0
+// 100% matching!
 void PlayMwOpenMain(char* FileName, int Mode, void* mp, void* pp, int PauseFlag)
-{
-	// Line 182, Address: 0x290cc0, Func Offset: 0
-	// Line 183, Address: 0x290cd4, Func Offset: 0x14
-	// Line 184, Address: 0x290cec, Func Offset: 0x2c
-	// Line 185, Address: 0x290cf4, Func Offset: 0x34
-	// Line 189, Address: 0x290d24, Func Offset: 0x64
-	// Line 191, Address: 0x290d34, Func Offset: 0x74
-	// Line 192, Address: 0x290d38, Func Offset: 0x78
-	// Line 194, Address: 0x290d40, Func Offset: 0x80
-	// Line 195, Address: 0x290d4c, Func Offset: 0x8c
-	// Line 196, Address: 0x290d54, Func Offset: 0x94
-	// Line 198, Address: 0x290d5c, Func Offset: 0x9c
-	// Line 202, Address: 0x290d84, Func Offset: 0xc4
-	// Line 204, Address: 0x290d94, Func Offset: 0xd4
-	// Line 206, Address: 0x290d9c, Func Offset: 0xdc
-	// Line 207, Address: 0x290da8, Func Offset: 0xe8
-	// Line 209, Address: 0x290db0, Func Offset: 0xf0
-	// Line 212, Address: 0x290db8, Func Offset: 0xf8
-	// Line 215, Address: 0x290dc0, Func Offset: 0x100
-	// Line 216, Address: 0x290dd0, Func Offset: 0x110
-	// Line 217, Address: 0x290dd8, Func Offset: 0x118
-	// Line 219, Address: 0x290de0, Func Offset: 0x120
-	// Line 220, Address: 0x290df8, Func Offset: 0x138
-	// Line 222, Address: 0x290e04, Func Offset: 0x144
-	// Func End, Address: 0x290e1c, Func Offset: 0x15c
-}*/
+{ 
+    if (MwPlayFlag != 0) 
+    {
+        return; 
+    } 
+    
+    MwMemoryMode = 0;	
+    
+    switch (MwMode) 
+    { 
+    case 0:
+        CreateSfdHandle(mp, pp, FileName); 
+
+        MwPlayMode = 0; 
+        break; 
+    case 1:
+        CreateWaveHandle(NULL); 
+        
+        MwPlayMode = 1; 
+        break; 
+    case 2:
+        switch (Mode) 
+        { 
+        case 0: 
+            CreateSfdHandle(mp, pp, FileName); 
+            break; 
+        case 1: 
+            CreateWaveHandle(NULL); 
+            break; 
+        case 4: 
+            CreateTmHandle(); 
+            break;
+        }
+        
+        MwPlayMode = Mode; 
+        break; 
+    }
+    
+    SetMwSoundMode(GetSoundMode()); 
+    
+    if (PauseFlag != 0)
+    { 
+        PauseMw(); 
+    }
+    
+    MwPly->vtbl->StartFname(MwPly, (signed char*)FileName); 
+    
+    MwPlayFlag = 1; 
+} 
 
 // 
 // Start address: 0x290e20
