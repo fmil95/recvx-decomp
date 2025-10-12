@@ -287,15 +287,13 @@ void CreateWaveHandle()
 
 }
 
-/*// 
-// Start address: 0x290cb0
+// 100% matching!
 void CreateTmHandle()
 {
-	// Line 179, Address: 0x290cb0, Func Offset: 0
-	// Func End, Address: 0x290cb8, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x290cc0
 void PlayMwOpenMain(char* FileName, int Mode, void* mp, void* pp, int PauseFlag)
 {
