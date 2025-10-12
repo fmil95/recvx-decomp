@@ -272,13 +272,10 @@ int PlayMwMain2(void(*Func)())
     return 1;
 }
 
-// 
-// Start address: 0x290f50
+// 100% matching!
 int PlayMwMain()
 {
-	// Line 282, Address: 0x290f50, Func Offset: 0
-	// Func End, Address: 0x290f58, Func Offset: 0x8
-	scePrintf("PlayMwMain - UNIMPLEMENTED!\n");
+    PlayMwMain2(NULL);
 }
 
 // 
