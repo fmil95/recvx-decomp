@@ -290,13 +290,10 @@ void RestartMw()
     MwPly->vtbl->Pause(MwPly, 0); 
 }
 
-// 
-// Start address: 0x290fa0
+// 100% matching!
 void SetMwVolume(int Volume)
 {
-	// Line 322, Address: 0x290fa4, Func Offset: 0x4
-	// Func End, Address: 0x290fbc, Func Offset: 0x1c
-	scePrintf("SetMwVolume - UNIMPLEMENTED!\n");
+    MwPly->vtbl->SetOutVol(MwPly, Volume);
 }
 
 // 
