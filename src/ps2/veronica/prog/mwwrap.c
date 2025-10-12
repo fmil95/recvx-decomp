@@ -284,13 +284,10 @@ void PauseMw()
     MwPly->vtbl->Pause(MwPly, 1); 
 }
 
-// 
-// Start address: 0x290f80
+// 100% matching!
 void RestartMw()
 {
-	// Line 306, Address: 0x290f80, Func Offset: 0
-	// Func End, Address: 0x290f9c, Func Offset: 0x1c
-	scePrintf("RestartMw - UNIMPLEMENTED!\n");
+    MwPly->vtbl->Pause(MwPly, 0); 
 }
 
 // 
