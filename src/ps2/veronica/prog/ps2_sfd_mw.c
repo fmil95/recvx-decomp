@@ -209,7 +209,7 @@ struct _anon11
 
 int iRingBufNum;
 MWPLY MwHandle;
-/*_mwply_if Ps2Func;*/
+MWD_IF Ps2Func;
 StrFile infile;
 int iop_read_buff;
 /*
@@ -252,6 +252,7 @@ Sint32 mwPlyCalcWorkSofdec(Sint32 ftype, Sint32 max_bps, Sint32 max_sx, Sint32 m
 
 }
 
+// 100% matching!
 MWPLY ps2mwPlyCreateSofdec(MWS_PLY_CPRM_SFD* cprm, char* fname) {
     char read_name[256];
     sceCdRMode mode;
@@ -512,12 +513,8 @@ void ps2mwErrorStop()
 }
 */
 
-// 
-// Start address: 0x2d8c40
-void Setps2FuncTbl(MWPLY mwply)
-{
-	// Line 1041, Address: 0x2d8c40, Func Offset: 0
-	// Line 1042, Address: 0x2d8c48, Func Offset: 0x8
-	// Func End, Address: 0x2d8c50, Func Offset: 0x10
-	scePrintf("Setps2FuncTbl - UNIMPLEMENTED!\n");
+// 100% matching!
+void Setps2FuncTbl(MWPLY mwply) {
+    mwply->vtbl = &Ps2Func;
 }
+
