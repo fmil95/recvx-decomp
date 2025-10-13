@@ -1,8 +1,8 @@
 #include "light.h"
 
-/*_anon40 lgttab[5];
-_anon8* rom;
-_anon26* sys;
+/*_anon40 lgttab[5];*/
+ROM_WORK* rom;
+/*_anon26* sys;
 _anon37 cam;
 float fNaViwOffsetY;
 float fNaViwOffsetX;
@@ -15,10 +15,10 @@ void bhSetLightTab(_anon40* lt, int lno);
 void bhSetEasyDirLight(float it);
 void bhControlLight();
 void bhSetLight();
-void bhSetHalfLight();
-void bhGetLightVector(int xr, int yr, int zr, _anon4* vec);
+void bhSetHalfLight();*/
+void bhGetLightVector(int xr, int yr, int zr, NJS_VECTOR* vec);
 
-// 
+/*// 
 // Start address: 0x280ed0
 void bhInitLight()
 {
@@ -36,69 +36,92 @@ void bhInitLight()
 	// Line 83, Address: 0x280f18, Func Offset: 0x48
 	// Line 84, Address: 0x280f38, Func Offset: 0x68
 	// Func End, Address: 0x280f40, Func Offset: 0x70
+}*/
+
+// 100% matching! 
+void bhSetLightTab(NO_NAME_8* lt, int lno) 
+{ 
+    NO_NAME_8* lp;
+
+    lp = &rom->lgtp[lno];
+
+    lp->flg =  lt->flg;
+    
+    lp->type =  lt->type;
+    
+    lp->aspd =  lt->aspd;
+    
+    lp->lkflg =  lt->lkflg;
+    
+    lp->lkno = lt->lkno;
+	lp->lkono = lt->lkono;
+	
+    lp->lsrc = lt->lsrc;
+	
+    lp->px = lt->px;
+	lp->py = lt->py;
+	lp->pz = lt->pz;
+    
+	lp->lx = lt->lx;
+	lp->ly = lt->ly;
+	lp->lz = lt->lz;
+    
+	lp->vx = lt->vx;
+	lp->vy = lt->vy;
+	lp->vz = lt->vz;
+    
+	lp->spc = lt->spc;
+    
+	lp->dif = lt->dif;
+    
+	lp->amb = lt->amb;
+    
+	lp->r = lt->r;
+	lp->g = lt->g;
+	lp->b = lt->b;
+    
+	lp->nr = lt->nr;
+	lp->fr = lt->fr;
+    
+	lp->iang = lt->iang;
+	lp->oang = lt-> oang;
+    
+	lp->ax = lt->ax;
+	lp->ay = lt->ay;
+	lp->az = lt->az;
+    
+    lp->mode = 0;
+    
+    lp->ct0 = lp->ct1 = lp->ct2 = lp->ct3 = 0;
+    
+    lp->wspc = lp->spc;
+    
+    lp->wdif = lp->dif;
+    
+    lp->wamb = lp->amb;
+    
+    lp->wr = lp->r;
+    lp->wg = lp->g;
+    lp->wb = lp->b;
+    
+    lp->wnr = lp->nr;
+    lp->wfr = lp->fr;
+    
+    lp->wiang = lp->iang;
+    lp->woang = lp->oang;
+    
+    lp->wax = lp->ax;
+    lp->way = lp->ay;
+    lp->waz = lp->az;
+    
+    lp->lkwkp =  NULL;
+    
+    lp->light = NULL;
+    
+    bhGetLightVector(lt->ax, lt->ay, lt->az, (NJS_VECTOR*)&lp->vx);
 }
 
-// 
-// Start address: 0x280f40
-void bhSetLightTab(_anon40* lt, int lno)
-{
-	_anon12* lp;
-	// Line 184, Address: 0x280f40, Func Offset: 0
-	// Line 186, Address: 0x280f54, Func Offset: 0x14
-	// Line 184, Address: 0x280f5c, Func Offset: 0x1c
-	// Line 186, Address: 0x280f64, Func Offset: 0x24
-	// Line 187, Address: 0x280f68, Func Offset: 0x28
-	// Line 233, Address: 0x280f6c, Func Offset: 0x2c
-	// Line 187, Address: 0x280f70, Func Offset: 0x30
-	// Line 188, Address: 0x280f74, Func Offset: 0x34
-	// Line 189, Address: 0x280f7c, Func Offset: 0x3c
-	// Line 190, Address: 0x280f84, Func Offset: 0x44
-	// Line 191, Address: 0x280f8c, Func Offset: 0x4c
-	// Line 192, Address: 0x280f94, Func Offset: 0x54
-	// Line 193, Address: 0x280f9c, Func Offset: 0x5c
-	// Line 194, Address: 0x280fa4, Func Offset: 0x64
-	// Line 195, Address: 0x280fac, Func Offset: 0x6c
-	// Line 196, Address: 0x280fb4, Func Offset: 0x74
-	// Line 197, Address: 0x280fbc, Func Offset: 0x7c
-	// Line 198, Address: 0x280fc4, Func Offset: 0x84
-	// Line 199, Address: 0x280fcc, Func Offset: 0x8c
-	// Line 200, Address: 0x280fd4, Func Offset: 0x94
-	// Line 201, Address: 0x280fdc, Func Offset: 0x9c
-	// Line 202, Address: 0x280fe4, Func Offset: 0xa4
-	// Line 203, Address: 0x280fec, Func Offset: 0xac
-	// Line 204, Address: 0x280ff4, Func Offset: 0xb4
-	// Line 205, Address: 0x280ffc, Func Offset: 0xbc
-	// Line 206, Address: 0x281004, Func Offset: 0xc4
-	// Line 207, Address: 0x28100c, Func Offset: 0xcc
-	// Line 208, Address: 0x281014, Func Offset: 0xd4
-	// Line 209, Address: 0x28101c, Func Offset: 0xdc
-	// Line 210, Address: 0x281024, Func Offset: 0xe4
-	// Line 211, Address: 0x28102c, Func Offset: 0xec
-	// Line 212, Address: 0x281034, Func Offset: 0xf4
-	// Line 213, Address: 0x28103c, Func Offset: 0xfc
-	// Line 214, Address: 0x281044, Func Offset: 0x104
-	// Line 216, Address: 0x28104c, Func Offset: 0x10c
-	// Line 217, Address: 0x281050, Func Offset: 0x110
-	// Line 218, Address: 0x281060, Func Offset: 0x120
-	// Line 219, Address: 0x281068, Func Offset: 0x128
-	// Line 220, Address: 0x281070, Func Offset: 0x130
-	// Line 221, Address: 0x281078, Func Offset: 0x138
-	// Line 222, Address: 0x281080, Func Offset: 0x140
-	// Line 223, Address: 0x281088, Func Offset: 0x148
-	// Line 224, Address: 0x281090, Func Offset: 0x150
-	// Line 225, Address: 0x281098, Func Offset: 0x158
-	// Line 226, Address: 0x2810a0, Func Offset: 0x160
-	// Line 227, Address: 0x2810a8, Func Offset: 0x168
-	// Line 228, Address: 0x2810b0, Func Offset: 0x170
-	// Line 229, Address: 0x2810b8, Func Offset: 0x178
-	// Line 230, Address: 0x2810c0, Func Offset: 0x180
-	// Line 231, Address: 0x2810c8, Func Offset: 0x188
-	// Line 232, Address: 0x2810cc, Func Offset: 0x18c
-	// Line 233, Address: 0x2810d0, Func Offset: 0x190
-	// Func End, Address: 0x2810e0, Func Offset: 0x1a0
-}
-
-// 
+/*// 
 // Start address: 0x2810e0
 void bhSetEasyDirLight(float it)
 {
@@ -662,13 +685,13 @@ void bhSetHalfLight()
 	// Line 1206, Address: 0x282fb8, Func Offset: 0x328
 	// Line 1207, Address: 0x282fc0, Func Offset: 0x330
 	// Func End, Address: 0x282fe0, Func Offset: 0x350
-}
+}*/
 
 // 
 // Start address: 0x282fe0
-void bhGetLightVector(int xr, int yr, int zr, _anon4* vec)
+void bhGetLightVector(int xr, int yr, int zr, NJS_VECTOR* vec)
 {
-	_anon4 pos;
+	//_anon4 pos;
 	// Line 1216, Address: 0x282fe0, Func Offset: 0
 	// Line 1217, Address: 0x282ffc, Func Offset: 0x1c
 	// Line 1218, Address: 0x283020, Func Offset: 0x40
@@ -678,5 +701,5 @@ void bhGetLightVector(int xr, int yr, int zr, _anon4* vec)
 	// Line 1222, Address: 0x283050, Func Offset: 0x70
 	// Line 1223, Address: 0x283060, Func Offset: 0x80
 	// Func End, Address: 0x28307c, Func Offset: 0x9c
-}*/
-
+	scePrintf("bhGetLightVector - UNIMPLEMENTED!\n");
+}
