@@ -7,27 +7,6 @@ MWS_PLY_CPRM_SFD MwsCprmSfd;
 int MwMemoryMode;
 int MwPlayMode;
 
-/*void InitMwSystem(unsigned int Mode, void* pPrm);
-void ReinitMwSystem(_anon3* pPrm);
-void ExitMwSystem();
-void SetMwSoundMode();
-void GetMwPlayTime(int* ncount, int* tscale);
-int GetMwPlayTimeEx();
-void CreateSfdHandle(void* mp, void* pp, char* fname);
-void CreateWaveHandle();
-void CreateTmHandle();
-void PlayMwOpenMain(char* FileName, int Mode, void* mp, void* pp, int PauseFlag);
-void PlayMw2(char* FileName, int Mode, void* mp, void* pp, int PauseFlag);
-void StopMw();
-_mwe_ply_stat GetMwStatus();
-int PlayMwMain2(void(*Func)());
-int PlayMwMain();*/
-void PauseMw();
-/*void RestartMw();
-void SetMwVolume(int Volume);
-int GetSfdFadeRate();
-void SetSfdDislpaySize(float PosX, float PosY, float SizeX, float SizeY);*/
-
 // 100% matching!
 void InitMwSystem(unsigned int Mode, void* pPrm)
 {
@@ -302,14 +281,9 @@ int GetSfdFadeRate()
     return mwPlyGetBright(MwPly);
 }
 
-// 
-// Start address: 0x290fd0
+// 100% matching!
 void SetSfdDislpaySize(float PosX, float PosY, float SizeX, float SizeY)
 {
-	// Line 338, Address: 0x290fd0, Func Offset: 0
-	// Line 339, Address: 0x290fe0, Func Offset: 0x10
-	// Line 340, Address: 0x290ff4, Func Offset: 0x24
-	// Line 341, Address: 0x291008, Func Offset: 0x38
-	// Func End, Address: 0x29101c, Func Offset: 0x4c
-	scePrintf("SetSfdDislpaySize - UNIMPLEMENTED!\n");
+    mwPlySetDispPos(MwPly, PosX, PosY);
+    mwPlySetDispSize(MwPly, SizeX, SizeY);
 }

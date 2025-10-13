@@ -362,16 +362,17 @@ void mwPlySetDispMode()
 	scePrintf("mwPlySetDispMode - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2d89e0
-void mwPlySetDispPos(float lx, float ly)
+void mwPlySetDispPos(MWPLY mwply, float lx, float ly)
 {
 	// Line 629, Address: 0x2d89e0, Func Offset: 0
 	// Line 630, Address: 0x2d89ec, Func Offset: 0xc
 	// Line 631, Address: 0x2d89fc, Func Offset: 0x1c
 	// Line 632, Address: 0x2d8a0c, Func Offset: 0x2c
 	// Func End, Address: 0x2d8a1c, Func Offset: 0x3c
-}*/
+	scePrintf("mwPlySetDispPos - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2d8a20
@@ -391,18 +392,19 @@ void mwPlyStartFrame(void)
 	scePrintf("mwPlyStartFrame - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2d8a40
-void mwPlySetDispSize(float sx, float sy)
+void mwPlySetDispSize(MWPLY mwply, float sx, float sy)
 {
 	// Line 715, Address: 0x2d8a40, Func Offset: 0
 	// Line 716, Address: 0x2d8a4c, Func Offset: 0xc
 	// Line 717, Address: 0x2d8a5c, Func Offset: 0x1c
 	// Line 718, Address: 0x2d8a6c, Func Offset: 0x2c
 	// Func End, Address: 0x2d8a7c, Func Offset: 0x3c
+	scePrintf("mwPlySetDispSize - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d8a80
 void ps2mwPlyVsyncHndl()
 {
