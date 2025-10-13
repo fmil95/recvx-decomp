@@ -889,34 +889,31 @@ void bhGetObjMotion(BH_PWORK* ewP, int obj_no, float* pos, int* ang)
 	// Line 868, Address: 0x131090, Func Offset: 0xe0
 	// Line 872, Address: 0x13109c, Func Offset: 0xec
 	// Func End, Address: 0x1310a4, Func Offset: 0xf4
-}
+}*/
 
-// 
-// Start address: 0x1310b0
+// 100% matching!
 void AngZyxToYzx(int* zyx, int* yzx)
-{
-	float b;
-	float fCos2;
-	float fCos1;
-	float fCos0;
-	float fSin2;
-	float fSin1;
+{ 
 	float fSin0;
-	// Line 878, Address: 0x1310b0, Func Offset: 0
-	// Line 885, Address: 0x1310c4, Func Offset: 0x14
-	// Line 886, Address: 0x1310d8, Func Offset: 0x28
-	// Line 887, Address: 0x1310e8, Func Offset: 0x38
-	// Line 890, Address: 0x1310f8, Func Offset: 0x48
-	// Line 893, Address: 0x131100, Func Offset: 0x50
-	// Line 890, Address: 0x13110c, Func Offset: 0x5c
-	// Line 893, Address: 0x131110, Func Offset: 0x60
-	// Line 894, Address: 0x13113c, Func Offset: 0x8c
-	// Line 895, Address: 0x131168, Func Offset: 0xb8
-	// Line 909, Address: 0x131190, Func Offset: 0xe0
-	// Func End, Address: 0x1311a4, Func Offset: 0xf4
-}
+	float fSin1;
+	float fSin2;
+	float fCos0;
+	float fCos1;
+	float fCos2;
+    float b;
+    
+    njSinCos(zyx[0], &fSin0, &fCos0); 
+    njSinCos(zyx[1], &fSin1, &fCos1); 
+    njSinCos(zyx[2], &fSin2, &fCos2); 
 
-// 
+    b = fSin2 * fSin1; 
+    
+    yzx[0] = 10430.381f * atan2f((fCos2 * fSin0) - (b * fCos0), (fCos2 * fCos0) + (b * fSin0)); 
+    yzx[1] = 10430.381f * atan2f(fSin1, fCos2 * fCos1); 
+    yzx[2] = 10430.381f * asinf(fSin2 * fCos1); 
+} 
+
+/*// 
 // Start address: 0x1311b0
 void AngYzxToZyx(int* yzx, int* zyx)
 {

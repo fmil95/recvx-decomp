@@ -92,7 +92,7 @@ float njCos(int lAngle)
 	// Line 235, Address: 0x2d7dc0, Func Offset: 0x80
 	// Line 245, Address: 0x2d7dc4, Func Offset: 0x84
 	// Func End, Address: 0x2d7dcc, Func Offset: 0x8c
-}
+}*/
 
 // 
 // Start address: 0x2d7dd0
@@ -142,7 +142,8 @@ void njSinCos(int lAngle, float* sin, float* cos)
 	// Line 334, Address: 0x2d7ea8, Func Offset: 0xd8
 	// Line 338, Address: 0x2d7eac, Func Offset: 0xdc
 	// Func End, Address: 0x2d7eb4, Func Offset: 0xe4
-}*/
+	scePrintf("njSinCos - UNIMPLEMENTED!\n");
+}
 
 // 79.50% matching 
 Float	njFraction  (Float n) 
