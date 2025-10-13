@@ -371,13 +371,9 @@ void mwPlySetDispPos(MWPLY mwply, float lx, float ly)
 	scePrintf("mwPlySetDispPos - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d8a20
-void mwPlySetFastHalfpel(MWPLY mwply, Sint32 sw)
-{
-	// Line 662, Address: 0x2d8a20, Func Offset: 0
-	// Func End, Address: 0x2d8a28, Func Offset: 0x8
-	scePrintf("mwPlySetFastHalfpel - UNIMPLEMENTED!\n");
+// 100% matching!
+void mwPlySetFastHalfpel(MWPLY mwply, Sint32 sw) {
+
 }
 
 // 
