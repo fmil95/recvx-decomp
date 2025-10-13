@@ -1278,9 +1278,9 @@ struct _anon33
 	float r;
 };
 
-void(*bhJumpCnkDraw)()[4];
-_anon28 cam;
-unsigned int _nj_control_3d_flag_;
+void(*bhJumpCnkDraw)()[4];*/
+CAM_WORK cam;
+/*unsigned int _nj_control_3d_flag_;
 _anon16* sys;
 
 void bhPutModel(BH_PWORK* ewP);
@@ -1402,28 +1402,34 @@ void SimpleMultiDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_nu
 	// Line 201, Address: 0x12f118, Func Offset: 0xa8
 	// Line 203, Address: 0x12f128, Func Offset: 0xb8
 	// Func End, Address: 0x12f144, Func Offset: 0xd4
-}
+}*/
 
-// 
-// Start address: 0x12f150
-void EasyDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num)
+// 100% matching! 
+void EasyDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, NO_NAME_1* owP, int obj_num)
 {
-	// Line 208, Address: 0x12f150, Func Offset: 0
-	// Line 210, Address: 0x12f174, Func Offset: 0x24
-	// Line 211, Address: 0x12f17c, Func Offset: 0x2c
-	// Line 212, Address: 0x12f188, Func Offset: 0x38
-	// Line 213, Address: 0x12f19c, Func Offset: 0x4c
-	// Line 215, Address: 0x12f1b0, Func Offset: 0x60
-	// Line 216, Address: 0x12f1c4, Func Offset: 0x74
-	// Line 217, Address: 0x12f1c8, Func Offset: 0x78
-	// Line 218, Address: 0x12f1e4, Func Offset: 0x94
-	// Line 219, Address: 0x12f1f0, Func Offset: 0xa0
-	// Line 220, Address: 0x12f1f8, Func Offset: 0xa8
-	// Line 222, Address: 0x12f208, Func Offset: 0xb8
-	// Func End, Address: 0x12f224, Func Offset: 0xd4
+    for ( ; obj_num > 0; obj_num--, objP++, owP++) 
+    {
+        njPushMatrix(cam.mtx);
+        
+        if (!(objP->evalflags & 0x80000000))
+        {
+            njMultiMatrix(NULL, &owP->mtx);
+        } 
+        else 
+        {
+            njTranslate(NULL, ewP->px, ewP->py, ewP->pz);
+        }
+        
+        if ((objP->model != NULL) && (!(objP->evalflags & 0x8)))
+        {
+            njCnkEasyDrawModel(objP->model);
+        }
+        
+        njPopMatrixEx();
+    } 
 }
 
-// 
+/*// 
 // Start address: 0x12f230
 void SimpleDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num)
 {
