@@ -3066,6 +3066,14 @@ typedef struct LOAD_SCREEN
     SELECTFILEWINDOW* pSelectFileWindow; // offset 0x38, size 0x4
 } LOAD_SCREEN;
 
+typedef struct {
+    int isOnCD;		
+    int size;
+    sceCdlFILE fp;	
+    unsigned char* iopBuf;
+    int fd;		
+} StrFile;
+
 #define SCR_WIDTH 640
 #define SCR_HEIGHT 224
 

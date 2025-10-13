@@ -205,13 +205,14 @@ struct _anon11
 	unsigned int size;
 	char name[16];
 	unsigned char date[8];
-};
+};*/
 
 int iRingBufNum;
-_anon0* MwHandle;
-_mwply_if Ps2Func;
-_anon1 infile;
+MWPLY MwHandle;
+/*_mwply_if Ps2Func;*/
+StrFile infile;
 int iop_read_buff;
+/*
 _anon8 voBuf;
 <unknown fundamental type (0xa510)> test_tag[1400];
 _anon2 rmi;
@@ -243,67 +244,72 @@ void ps2mwPlyGetTime(int* ncount, int* tscale);
 void ps2mwPlyPause(int sw);
 void ps2mwPlySetOutVol(int vol);
 int ps2mwPlyGetOutVol();
-void ps2mwErrorStop();
-void Setps2FuncTbl(_anon0* mwply);*/
+void ps2mwErrorStop();*/
+void Setps2FuncTbl(MWPLY mwply);
 
 // 100% matching!
 Sint32 mwPlyCalcWorkSofdec(Sint32 ftype, Sint32 max_bps, Sint32 max_sx, Sint32 max_sy, Sint32 nfb){
 
 }
 
+MWPLY ps2mwPlyCreateSofdec(MWS_PLY_CPRM_SFD* cprm, char* fname) {
+    char read_name[256];
+    sceCdRMode mode;
+    int i;
+    int loop;
+    
+    sceGsSyncV(0);
+    sceGsSyncV(0);
 
-// 
-// Start address: 0x2d8710
-MWPLY ps2mwPlyCreateSofdec(MWS_PLY_CPRM_SFD *cprm, char* fname)
-{
-	int loop;
-	//_anon9 mode;
-	int i;
-	char read_name[256];
-	// Line 162, Address: 0x2d8710, Func Offset: 0
-	// Line 274, Address: 0x2d8720, Func Offset: 0x10
-	// Line 275, Address: 0x2d872c, Func Offset: 0x1c
-	// Line 278, Address: 0x2d8734, Func Offset: 0x24
-	// Line 280, Address: 0x2d873c, Func Offset: 0x2c
-	// Line 281, Address: 0x2d875c, Func Offset: 0x4c
-	// Line 284, Address: 0x2d8784, Func Offset: 0x74
-	// Line 287, Address: 0x2d87a0, Func Offset: 0x90
-	// Line 288, Address: 0x2d87a8, Func Offset: 0x98
-	// Line 287, Address: 0x2d87b0, Func Offset: 0xa0
-	// Line 288, Address: 0x2d87b8, Func Offset: 0xa8
-	// Line 292, Address: 0x2d87d4, Func Offset: 0xc4
-	// Line 295, Address: 0x2d87dc, Func Offset: 0xcc
-	// Line 297, Address: 0x2d87ec, Func Offset: 0xdc
-	// Line 299, Address: 0x2d87f4, Func Offset: 0xe4
-	// Line 300, Address: 0x2d8804, Func Offset: 0xf4
-	// Line 301, Address: 0x2d8808, Func Offset: 0xf8
-	// Line 302, Address: 0x2d880c, Func Offset: 0xfc
-	// Line 303, Address: 0x2d8810, Func Offset: 0x100
-	// Line 304, Address: 0x2d8814, Func Offset: 0x104
-	// Line 305, Address: 0x2d8824, Func Offset: 0x114
-	// Line 307, Address: 0x2d8838, Func Offset: 0x128
-	// Line 309, Address: 0x2d8840, Func Offset: 0x130
-	// Line 310, Address: 0x2d8850, Func Offset: 0x140
-	// Line 311, Address: 0x2d8854, Func Offset: 0x144
-	// Line 312, Address: 0x2d8858, Func Offset: 0x148
-	// Line 313, Address: 0x2d885c, Func Offset: 0x14c
-	// Line 314, Address: 0x2d8860, Func Offset: 0x150
-	// Line 316, Address: 0x2d8874, Func Offset: 0x164
-	// Line 318, Address: 0x2d8890, Func Offset: 0x180
-	// Line 319, Address: 0x2d88a0, Func Offset: 0x190
-	// Line 322, Address: 0x2d88a8, Func Offset: 0x198
-	// Line 323, Address: 0x2d88ac, Func Offset: 0x19c
-	// Line 325, Address: 0x2d88b0, Func Offset: 0x1a0
-	// Line 319, Address: 0x2d88b4, Func Offset: 0x1a4
-	// Line 325, Address: 0x2d88bc, Func Offset: 0x1ac
-	// Line 329, Address: 0x2d88cc, Func Offset: 0x1bc
-	// Line 335, Address: 0x2d88d8, Func Offset: 0x1c8
-	// Line 330, Address: 0x2d88dc, Func Offset: 0x1cc
-	// Line 335, Address: 0x2d88e0, Func Offset: 0x1d0
-	// Line 330, Address: 0x2d88e8, Func Offset: 0x1d8
-	// Line 335, Address: 0x2d88ec, Func Offset: 0x1dc
-	// Func End, Address: 0x2d88f4, Func Offset: 0x1e4
-	scePrintf("ps2mwPlyCreateSofdec - UNIMPLEMENTED!\n");
+    i = 0;
+    while (i < strlen(fname)) {
+        
+        if (fname[i] >= 'a' && fname[i] <= 'z') {
+            fname[i] = fname[i] - 0x20;
+        }
+        
+        i++;
+    }
+    
+    sprintf((char*)read_name, "%s%s;1", "\\MOVIE\\", fname);
+    infile.iopBuf = (unsigned char*)iop_read_buff;
+    sceCdStInit(iRingBufNum * 16, iRingBufNum, ((unsigned int)infile.iopBuf + 0xF >> 4) * 16);
+
+     while (!sceCdSearchFile(&infile.fp, read_name)){
+        printf("Cannot open '%s'(sceCdSearchFile)\n", &read_name);
+
+        while (sceCdPause() == 0) {
+            
+            loop = 0;
+             while (loop < 0x186A0){
+                asm("nop");
+                asm("nop");
+                asm("nop");
+                asm("nop");
+                loop++;
+            }
+        }
+
+        sceCdSync(0x10);
+
+        loop = 0;
+        while (loop < 0x186A0) {
+            asm("nop");
+            asm("nop");
+            asm("nop");
+            asm("nop");
+            loop++;
+        }
+    }
+    
+    printf("[%s] is open!\n", read_name);
+    mode.trycount = 0;
+    mode.spindlctrl = 0;
+    mode.datapattern = 0;
+    infile.size = infile.fp.size;
+    sceCdStStart(infile.fp.lsn, &mode);
+    Setps2FuncTbl(MwHandle);
+    return MwHandle;
 }
 
 // 
@@ -504,12 +510,14 @@ void ps2mwErrorStop()
 	// Line 1028, Address: 0x2d8c30, Func Offset: 0
 	// Func End, Address: 0x2d8c3c, Func Offset: 0xc
 }
+*/
 
 // 
 // Start address: 0x2d8c40
-void Setps2FuncTbl(_anon0* mwply)
+void Setps2FuncTbl(MWPLY mwply)
 {
 	// Line 1041, Address: 0x2d8c40, Func Offset: 0
 	// Line 1042, Address: 0x2d8c48, Func Offset: 0x8
 	// Func End, Address: 0x2d8c50, Func Offset: 0x10
-}*/
+	scePrintf("Setps2FuncTbl - UNIMPLEMENTED!\n");
+}
