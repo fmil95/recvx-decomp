@@ -284,9 +284,9 @@ void SetMtnFast(BH_PWORK* ewP, char* datP, int mode);
 void SetMtnFastHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
 void SetMtnSlow(BH_PWORK* ewP, char* datP, int mode);
 void SetMtnSlowHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
-void bhFixPosition(BH_PWORK* ewP, char* datP);
-void bhCalcFixOffset(BH_PWORK* ewP, char* datP, _anon10* offP, _anon10* rtnP);
-void bhGetObjMotion(BH_PWORK* ewP, int obj_no, float* pos, int* ang);
+void bhFixPosition(BH_PWORK* ewP, char* datP);*/
+void bhCalcFixOffset(BH_PWORK* ewP, char* datP, NJS_POINT3* offP, NJS_POINT3* rtnP);
+/*void bhGetObjMotion(BH_PWORK* ewP, int obj_no, float* pos, int* ang);
 void AngZyxToYzx(int* zyx, int* yzx);
 void AngYzxToZyx(int* yzx, int* zyx);
 
@@ -803,20 +803,18 @@ void SetMtnSlowHokan(BH_PWORK* ewP, char* datP, int mode, float rate)
 	// Line 736, Address: 0x130d40, Func Offset: 0x570
 	// Line 738, Address: 0x130d4c, Func Offset: 0x57c
 	// Func End, Address: 0x130d88, Func Offset: 0x5b8
-}
+}*/
 
-// 
-// Start address: 0x130d90
+// 100% matching!
 void bhFixPosition(BH_PWORK* ewP, char* datP)
 {
-	_anon10 pos;
-	// Line 752, Address: 0x130d90, Func Offset: 0
-	// Line 756, Address: 0x130d9c, Func Offset: 0xc
-	// Line 758, Address: 0x130dac, Func Offset: 0x1c
-	// Line 760, Address: 0x130dbc, Func Offset: 0x2c
-	// Line 762, Address: 0x130dcc, Func Offset: 0x3c
-	// Func End, Address: 0x130ddc, Func Offset: 0x4c
-}*/
+    NJS_POINT3 pos; 
+
+    bhCalcFixOffset(ewP, datP, NULL, &pos);
+    
+    ewP->px -= pos.x;
+    ewP->pz -= pos.z;
+}
 
 // 
 // Start address: 0x130de0
