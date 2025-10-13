@@ -2291,16 +2291,13 @@ void FlagErase(npobj* op)
 	// Line 1203, Address: 0x2abca4, Func Offset: 0x44
 	// Line 1204, Address: 0x2abcb8, Func Offset: 0x58
 	// Func End, Address: 0x2abcc8, Func Offset: 0x68
-}
-
-// 
-// Start address: 0x2abcd0
-void LighterOpen(npobj* op)
-{
-	// Line 1239, Address: 0x2abcd0, Func Offset: 0
-	// Line 1240, Address: 0x2abcd4, Func Offset: 0x4
-	// Func End, Address: 0x2abcdc, Func Offset: 0xc
 }*/
+
+// 100% matching!
+void LighterOpen(NJS_CNK_OBJECT* object) 
+{
+    object->ang[2] = 29127;
+}
 
 // 100% matching!
 void FileSyu(NJS_CNK_OBJECT* op)
