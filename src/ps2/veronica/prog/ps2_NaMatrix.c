@@ -202,11 +202,11 @@ void njUnitTransPortion(float pMatrix[16])
 	// Line 582, Address: 0x2d6874, Func Offset: 0x14
 	// Line 589, Address: 0x2d6878, Func Offset: 0x18
 	// Func End, Address: 0x2d6880, Func Offset: 0x20
-}
+}*/
 
 // 
 // Start address: 0x2d6880
-void njUnitRotPortion(float pMatrix[16])
+void    njUnitRotPortion(NJS_MATRIX *m)
 {
 	// Line 618, Address: 0x2d6880, Func Offset: 0
 	// Line 664, Address: 0x2d6894, Func Offset: 0x14
@@ -218,7 +218,8 @@ void njUnitRotPortion(float pMatrix[16])
 	// Line 670, Address: 0x2d68ac, Func Offset: 0x2c
 	// Line 677, Address: 0x2d68b0, Func Offset: 0x30
 	// Func End, Address: 0x2d68b8, Func Offset: 0x38
-}*/
+	scePrintf("njUnitRotPortion - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void    njClearMatrix()
