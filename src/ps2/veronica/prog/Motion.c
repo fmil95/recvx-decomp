@@ -913,27 +913,24 @@ void AngZyxToYzx(int* zyx, int* yzx)
     yzx[2] = 10430.381f * asinf(fSin2 * fCos1); 
 } 
 
-/*// 
-// Start address: 0x1311b0
+// 100% matching!
 void AngYzxToZyx(int* yzx, int* zyx)
-{
-	float b;
-	float fCos2;
-	float fCos1;
-	float fCos0;
-	float fSin2;
-	float fSin1;
+{ 
 	float fSin0;
-	// Line 915, Address: 0x1311b0, Func Offset: 0
-	// Line 922, Address: 0x1311c4, Func Offset: 0x14
-	// Line 923, Address: 0x1311d8, Func Offset: 0x28
-	// Line 924, Address: 0x1311e8, Func Offset: 0x38
-	// Line 927, Address: 0x1311f8, Func Offset: 0x48
-	// Line 930, Address: 0x131200, Func Offset: 0x50
-	// Line 927, Address: 0x13120c, Func Offset: 0x5c
-	// Line 930, Address: 0x131210, Func Offset: 0x60
-	// Line 931, Address: 0x13123c, Func Offset: 0x8c
-	// Line 932, Address: 0x131264, Func Offset: 0xb4
-	// Line 949, Address: 0x131290, Func Offset: 0xe0
-	// Func End, Address: 0x1312a4, Func Offset: 0xf4
-}*/
+	float fSin1;
+	float fSin2;
+	float fCos0;
+	float fCos1;
+	float fCos2;
+    float b;
+    
+    njSinCos(yzx[0], &fSin0, &fCos0); 
+    njSinCos(yzx[1], &fSin1, &fCos1); 
+    njSinCos(yzx[2], &fSin2, &fCos2); 
+
+    b = fSin1 * fSin2;
+    
+    zyx[0] = 10430.381f * atan2f((fCos1 * fSin0) + (b * fCos0), (fCos1 * fCos0) - (b * fSin0));
+    zyx[1] = 10430.381f * asinf(fSin1 * fCos2);
+    zyx[2] = 10430.381f * atan2f(fSin2, fCos1 * fCos2);
+}
