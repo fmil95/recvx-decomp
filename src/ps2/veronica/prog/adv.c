@@ -1631,25 +1631,27 @@ void FlushPlate()
     ap->FontBaseColor |= ((unsigned int)ap->FlushCount2 + 255) << 8;
 } 
 
-/*// 
-// Start address: 0x2c3270
+// 98.31% matching
 void DisplayTitleBg()
-{
-	_anon0* qp;
-	// Line 2692, Address: 0x2c3270, Func Offset: 0
-	// Line 2694, Address: 0x2c327c, Func Offset: 0xc
-	// Line 2696, Address: 0x2c3284, Func Offset: 0x14
-	// Line 2719, Address: 0x2c3290, Func Offset: 0x20
-	// Line 2720, Address: 0x2c32b8, Func Offset: 0x48
-	// Line 2721, Address: 0x2c32e0, Func Offset: 0x70
-	// Line 2723, Address: 0x2c3304, Func Offset: 0x94
-	// Line 2724, Address: 0x2c332c, Func Offset: 0xbc
-	// Line 2725, Address: 0x2c3358, Func Offset: 0xe8
-	// Line 2743, Address: 0x2c337c, Func Offset: 0x10c
-	// Func End, Address: 0x2c338c, Func Offset: 0x11c
-}
+{ 
+    QUAD* qp; 
 
-// 
+    qp = &Qtex[1];
+    
+    AdvDwawOnePictureEx(0, 0xFFFFFFFF); 
+
+    SetQuadPos(20.0f, 396.0f, 352.0f, 54.0f, qp); 
+    SetQuadUv2(0.0f, 460.0f, 352.0f, 54.0f, 1, qp); 
+    
+    AdvEasyDrawTextureS(1, 0xFFFFFFFF, qp, 0.15f, 1, 192); 
+    
+    SetQuadPos(348.0f, 418.0f, 240.0f, 32.0f, qp); 
+    SetQuadUv2(272.0f, 432.0f, 240.0f, 32.0f, 1, qp); 
+    
+    AdvEasyDrawTextureS(1, 0xFFFFFFFF, qp, 0.15f, 1, 192); 
+} 
+
+/*// 
 // Start address: 0x2c3390
 void DisplayPressStartPlate(float FadeRate)
 {
