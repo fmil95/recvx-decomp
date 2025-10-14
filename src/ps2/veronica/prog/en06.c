@@ -1548,32 +1548,7 @@ struct _anon47
 	float prm_3;
 	float prm_4;
 	unsigned char* recp;
-};
-
-int ENE06_HITPOINT[16];
-char junction_tree[6][1];
-char player_junction_tree[8][8];
-char SdwTab[2];
-_anon18 ene06_child;
-char BrokenParts[12];
-_anon18 ene27;
-_anon18 ene06_leader;
-_anon40 BloodParam;
-_anon28 CapColTab[8];
-_anon7 DmgReact[21];
-_anon36 BloodTbl[23];
-void(*bhEne06_Mode0)(BH_PWORK*)[6];
-void(*bhEne06_BrainType)(BH_PWORK*)[1];
-void(*bhEne06_MoveMode2)(BH_PWORK*)[11];
-void(*bhEne06_NageMode2)(BH_PWORK*)[1];
-void(*bhEne06_DamageMode2)(BH_PWORK*)[2];
-void(*bhEne06_DeadMode2)(BH_PWORK*)[5];
-BH_PWORK* plp;
-_anon0 eff[0];
-void(*bhEne06s)(BH_PWORK*);
-_anon12* rom;
-_anon23* sys;
-BH_PWORK ene[0];
+};*/
 
 void bhEne06(BH_PWORK* epw);
 void bhEne06_Init(BH_PWORK* epw);
@@ -1612,7 +1587,33 @@ void bhEne06_SetRinpunEffect(BH_PWORK* epw, int num, int flg);
 void bhEne06_HitMark(BH_PWORK* epw);
 int bhEne06_DeadCheck(BH_PWORK* epw);
 
-// 
+/*int ENE06_HITPOINT[16];
+char junction_tree[6][1];
+char player_junction_tree[8][8];
+char SdwTab[2];
+_anon18 ene06_child;
+char BrokenParts[12];
+_anon18 ene27;
+_anon18 ene06_leader;
+_anon40 BloodParam;
+_anon28 CapColTab[8];
+_anon7 DmgReact[21];
+_anon36 BloodTbl[23];
+void(*bhEne06_Mode0)(BH_PWORK*)[6];*/
+typedef void (*BrainType_proc)(BH_PWORK*);
+BrainType_proc bhEne06_BrainType[4] = { bhEne06_BR00 };
+/*void(*bhEne06_MoveMode2)(BH_PWORK*)[11];
+void(*bhEne06_NageMode2)(BH_PWORK*)[1];
+void(*bhEne06_DamageMode2)(BH_PWORK*)[2];
+void(*bhEne06_DeadMode2)(BH_PWORK*)[5];
+BH_PWORK* plp;
+_anon0 eff[0];
+void(*bhEne06s)(BH_PWORK*);
+_anon12* rom;
+_anon23* sys;
+BH_PWORK ene[0];*/
+
+/*// 
 // Start address: 0x1b9840
 void bhEne06(BH_PWORK* epw)
 {
@@ -1747,17 +1748,15 @@ void bhEne06_Init(BH_PWORK* epw)
 	// Line 584, Address: 0x1b9d90, Func Offset: 0x420
 	// Line 586, Address: 0x1b9da4, Func Offset: 0x434
 	// Func End, Address: 0x1b9dc0, Func Offset: 0x450
-}
+}*/
 
-// 
-// Start address: 0x1b9dc0
+// 100% matching!
 void bhEne06_Brain(BH_PWORK* epw)
-{
-	// Line 597, Address: 0x1b9dc0, Func Offset: 0
-	// Func End, Address: 0x1b9de0, Func Offset: 0x20
+{ 
+    bhEne06_BrainType[epw->type](epw); 
 }
 
-// 
+/*// 
 // Start address: 0x1b9de0
 void bhEne06_BR00(BH_PWORK* epw)
 {
