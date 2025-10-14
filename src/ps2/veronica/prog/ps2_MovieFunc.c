@@ -3,10 +3,10 @@
 /*int isCountVblank;
 int isFrameEnd;
 int oddeven;
-int handler_error;
+int handler_error;*/
 int __image_w__;
 int __image_h__;
-<unknown fundamental type (0xa510)> new_tags[64];
+/*<unknown fundamental type (0xa510)> new_tags[64];
 _anon17 videoDec;
 int videoDecTh;
 void* _gp;*/
@@ -35,8 +35,8 @@ int(*mpegNodata)(_anon0*, _anon2*, void*);
 int(*mpegError)(_anon0*, _anon1*, void*);*/
 unsigned char* mpegWork;
 /*int frd;
-_anon41 mdSize;
-int movie_draw;*/
+_anon41 mdSize;*/
+int movie_draw;
 char sound_flag;
 char ADX_STREAM_BUFFER[471040];
 unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
@@ -369,40 +369,38 @@ void videoDecMain(VideoDec *vd)
     vd->state = VD_STATE_END;
 }
 
-/*// 
-// Start address: 0x2ebfd0
-int decBs0(_anon17* vd)
-{
-	int mpeg_param;
-	int status;
-	// Line 710, Address: 0x2ebfd0, Func Offset: 0
-	// Line 722, Address: 0x2ebfe4, Func Offset: 0x14
-	// Line 724, Address: 0x2ebff4, Func Offset: 0x24
-	// Line 726, Address: 0x2ec004, Func Offset: 0x34
-	// Line 727, Address: 0x2ec014, Func Offset: 0x44
-	// Line 735, Address: 0x2ec01c, Func Offset: 0x4c
-	// Line 737, Address: 0x2ec030, Func Offset: 0x60
-	// Line 739, Address: 0x2ec038, Func Offset: 0x68
-	// Line 740, Address: 0x2ec040, Func Offset: 0x70
-	// Line 741, Address: 0x2ec04c, Func Offset: 0x7c
-	// Line 744, Address: 0x2ec054, Func Offset: 0x84
-	// Line 746, Address: 0x2ec060, Func Offset: 0x90
-	// Line 748, Address: 0x2ec068, Func Offset: 0x98
-	// Line 746, Address: 0x2ec070, Func Offset: 0xa0
-	// Line 748, Address: 0x2ec074, Func Offset: 0xa4
-	// Line 747, Address: 0x2ec07c, Func Offset: 0xac
-	// Line 748, Address: 0x2ec088, Func Offset: 0xb8
-	// Line 751, Address: 0x2ec094, Func Offset: 0xc4
-	// Line 756, Address: 0x2ec098, Func Offset: 0xc8
-	// Line 758, Address: 0x2ec0a4, Func Offset: 0xd4
-	// Line 759, Address: 0x2ec0ac, Func Offset: 0xdc
-	// Line 761, Address: 0x2ec0c0, Func Offset: 0xf0
-	// Line 763, Address: 0x2ec0cc, Func Offset: 0xfc
-	// Line 764, Address: 0x2ec0d0, Func Offset: 0x100
-	// Func End, Address: 0x2ec0e4, Func Offset: 0x114
+// 100% matching!
+int decBs0(VideoDec* vd) {
+    int status;
+    int mpeg_param;
+    status = 1;
+    
+    while (sceMpegIsEnd(&vd->mpeg) == 0) {
+        if (vd->state == VD_STATE_ABORT) {
+            status = -1;
+            printf("decode thread: aborted\n");
+            break;
+        }
+
+        mpeg_param = sceMpegGetPicture(&vd->mpeg, (sceIpuRGB32*)voBuf.data, 0x1B8);
+        movie_draw = 1;
+        if (mpeg_param < 0) {
+            printf("[ Error ] sceMpegGetPicture() decode error\n");
+        }  else if (vd->mpeg.frameCount == 0) {
+                __image_w__ = vd->mpeg.width;
+                __image_h__ = vd->mpeg.height;
+                printf("size %dx%d\n", __image_w__, __image_h__);
+        }
+        
+        voBufIncCount(&voBuf);
+        SleepThread();
+    }
+    
+    sceMpegReset(&vd->mpeg);
+    return status;
 }
 
-// 
+/*// 
 // Start address: 0x2ec0f0
 int copy2area(unsigned char* pd0, int d0, unsigned char* pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1)
 {

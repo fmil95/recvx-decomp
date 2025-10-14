@@ -3165,39 +3165,6 @@ typedef struct {
 } VoBuf;
 
 typedef struct {
-    unsigned int d4madr; // â~µ½Æ«Ì D4_MADR WX^Ìl
-    unsigned int d4tadr; // â~µ½Æ«Ì D4_TADR WX^Ìl
-    unsigned int d4qwc;  // â~µ½Æ«Ì D4_QWC WX^Ìl
-    unsigned int d4chcr; // â~µ½Æ«Ì D4_CHCR WX^Ìl
-    unsigned int d3madr; // â~µ½Æ«Ì D3_MADR WX^Ìl
-    unsigned int d3qwc;  // â~µ½Æ«Ì D3_QWC WX^Ìl
-    unsigned int d3chcr; // â~µ½Æ«Ì D3_CHCR WX^Ìl
-    unsigned int ipubp;  // â~µ½Æ«Ì IPU_BP WX^Ìl
-    unsigned int ipuctrl;// â~µ½Æ«Ì IPU_CTRL WX^Ìl
-} sceIpuDmaEnv;
-
-typedef struct {
-    int width;		// width of decoded image
-    int height;		// height of decoded image
-    int frameCount;	// frame number in the stream
-
-    long pts;		// PTS(Presentation Time Stamp) value 
-    			// pts is valid only when pts >= 0
-
-    long dts;		// DTS(Decoding Time Stamp) value
-    			// dts is valid only when dts >= 0
-
-    unsigned long flags;	// flags
-
-    long pts2nd;	// PTS for 2nd field(for future use)
-    long dts2nd;	// DTS for 2nd field(for future use)
-    unsigned long flags2nd;	// flags for 2nd field(for future use)
-
-    void *sys;		// system data for decoding
-} sceMpeg;
-
-
-typedef struct {
     __int128 *data;	// data array
     __int128 *tag;	// tag array
     int n;		// the number of data/tag element in ViBuf
@@ -3220,6 +3187,9 @@ typedef struct {
     unsigned int *micro[3][2];
 } CscVu1;
 
+#define VD_STATE_NORMAL    0
+#define VD_STATE_ABORT     1
+#define VD_STATE_FLUSH     2
 #define VD_STATE_END       3
 
 typedef struct {

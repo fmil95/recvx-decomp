@@ -18,6 +18,7 @@
 #include <libssyn.h>
 #include <libsdr.h>
 #include <sif.h>
+#include <libmpeg.h>
 
 #include "override_katana.h"
 // KATANA library
