@@ -2155,12 +2155,12 @@ struct _anon82
 	int add_ay;
 	float y_rang;
 	float y_rate;
-};
+};*/
 
 unsigned int owk_scn_noG;
-_anon9 Tex5uv[9];
-_anon1 eff[0];
-_anon11* sys;
+/*_anon9 Tex5uv[9];*/
+NO_NAME_4 eff[512];
+/*_anon11* sys;
 _anon70 cam;
 _anon2 PtclDat00[2];
 _anon2 PtclDat01[2];
@@ -2230,30 +2230,34 @@ _anon24* rySetEffBlood2(float mtxP[16], _anon0* posP, _anon0* dirP, int typ_no);
 void bhEff30b(_anon24* orP);
 void bhEff30bDrw(_anon24* orP);
 void bhEff30c(_anon24* orP);
-void bhEff30cDrw(_anon24* orP);
+void bhEff30cDrw(_anon24* orP);*/
 
-// 
-// Start address: 0x246800
-_anon1* AllocOwork()
+// 100% matching!
+NO_NAME_4* AllocOwork()
 {
-	int o_no;
-	_anon1* oP;
-	// Line 218, Address: 0x246800, Func Offset: 0
-	// Line 222, Address: 0x246810, Func Offset: 0x10
-	// Line 223, Address: 0x246840, Func Offset: 0x40
-	// Line 224, Address: 0x246850, Func Offset: 0x50
-	// Line 225, Address: 0x246860, Func Offset: 0x60
-	// Line 227, Address: 0x246864, Func Offset: 0x64
-	// Line 225, Address: 0x246868, Func Offset: 0x68
-	// Line 227, Address: 0x24686c, Func Offset: 0x6c
-	// Line 229, Address: 0x246874, Func Offset: 0x74
-	// Line 231, Address: 0x24687c, Func Offset: 0x7c
-	// Line 233, Address: 0x246890, Func Offset: 0x90
-	// Line 234, Address: 0x246894, Func Offset: 0x94
-	// Func End, Address: 0x2468a8, Func Offset: 0xa8
+    NO_NAME_4* oP;
+    int o_no;
+
+    o_no = owk_scn_noG;
+    
+    for (oP = &eff[o_no]; o_no < 512; o_no++, oP++) 
+    {
+        if (!(oP->flg & 0x3))
+        {
+            npSetMemory((unsigned char*)oP, sizeof(*oP), 0);
+            
+            oP->flg = 0x2;
+            
+            owk_scn_noG = o_no + 1;
+            
+            return oP;
+        }
+    }
+    
+    return NULL;
 }
 
-// 
+/*// 
 // Start address: 0x2468b0
 _anon1* AllocOworkOne()
 {
