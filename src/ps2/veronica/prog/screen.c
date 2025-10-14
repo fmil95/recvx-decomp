@@ -1571,7 +1571,7 @@ void bhDrawScreenSaver()
 	scePrintf("bhDrawScreenSaver - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x26c4b0
 void bhControlCinesco()
 {
@@ -1583,6 +1583,7 @@ void bhControlCinesco()
 	// Line 368, Address: 0x26c538, Func Offset: 0x88
 	// Line 369, Address: 0x26c580, Func Offset: 0xd0
 	// Func End, Address: 0x26c588, Func Offset: 0xd8
+	scePrintf("bhControlCinesco - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1590,9 +1591,9 @@ void bhControlCinesco()
 void bhDrawCinesco()
 {
 	unsigned int argb;
-	_anon14 col[4];
-	_anon25 p[4];
-	_anon30 p2c;
+	//_anon14 col[4];
+	//_anon25 p[4];
+	//_anon30 p2c;
 	// Line 376, Address: 0x26c590, Func Offset: 0
 	// Line 382, Address: 0x26c5ac, Func Offset: 0x1c
 	// Line 384, Address: 0x26c5c4, Func Offset: 0x34
@@ -1638,6 +1639,7 @@ void bhDrawCinesco()
 	// Line 417, Address: 0x26c6d8, Func Offset: 0x148
 	// Line 418, Address: 0x26c6e4, Func Offset: 0x154
 	// Func End, Address: 0x26c704, Func Offset: 0x174
+	scePrintf("bhDrawCinesco - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1648,12 +1650,12 @@ void bhDrawScope()
 	float px;
 	int i;
 	unsigned int argb;
-	_anon14 uv[4];
-	_anon14 col[4];
-	_anon26 as;
-	_anon26 ps;
-	_anon25 p[4];
-	_anon30 p2c;
+	//_anon14 uv[4];
+	//_anon14 col[4];
+	//_anon26 as;
+	//_anon26 ps;
+	//_anon25 p[4];
+	//_anon30 p2c;
 	// Line 425, Address: 0x26c710, Func Offset: 0
 	// Line 434, Address: 0x26c748, Func Offset: 0x38
 	// Line 435, Address: 0x26c75c, Func Offset: 0x4c
@@ -1870,9 +1872,10 @@ void bhDrawScope()
 	// Line 567, Address: 0x26ce14, Func Offset: 0x704
 	// Line 568, Address: 0x26ce20, Func Offset: 0x710
 	// Func End, Address: 0x26ce5c, Func Offset: 0x74c
+	scePrintf("bhDrawScope - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x26ce60
 void bhDrawScopeNumber(float px, float py, int num)
 {
@@ -1942,7 +1945,7 @@ void bhDrawScopeNumber(float px, float py, int num)
 	// Line 624, Address: 0x26cf98, Func Offset: 0x138
 	// Line 625, Address: 0x26cfa0, Func Offset: 0x140
 	// Func End, Address: 0x26cfac, Func Offset: 0x14c
-}
+}*/
 
 // 
 // Start address: 0x26cfb0
@@ -1951,10 +1954,10 @@ void bhDrawThermometer()
 	float py;
 	float px;
 	unsigned int argb;
-	_anon14 uv[4];
-	_anon14 col[4];
-	_anon25 p[4];
-	_anon30 p2c;
+	//_anon14 uv[4];
+	//_anon14 col[4];
+	//_anon25 p[4];
+	//_anon30 p2c;
 	int ten;
 	// Line 632, Address: 0x26cfb0, Func Offset: 0
 	// Line 641, Address: 0x26cfdc, Func Offset: 0x2c
@@ -2111,9 +2114,10 @@ void bhDrawThermometer()
 	// Line 751, Address: 0x26d4dc, Func Offset: 0x52c
 	// Line 752, Address: 0x26d4e8, Func Offset: 0x538
 	// Func End, Address: 0x26d51c, Func Offset: 0x56c
+	scePrintf("bhDrawThermometer - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x26d520
 void bhDrawThermoNumber(float px, float py, int num, unsigned int argb)
 {
@@ -2185,16 +2189,16 @@ void bhDrawThermoNumber(float px, float py, int num, unsigned int argb)
 	// Line 797, Address: 0x26d658, Func Offset: 0x138
 	// Line 798, Address: 0x26d664, Func Offset: 0x144
 	// Func End, Address: 0x26d670, Func Offset: 0x150
-}
+}*/
 
 // 
 // Start address: 0x26d670
 void bhDrawFullScreenRenderTexture()
 {
-	_anon4 scr_tex;
+	//_anon4 scr_tex;
 	int y1;
 	int y;
-	_anon5 tvh[32];
+	//_anon5 tvh[32];
 	// Line 805, Address: 0x26d670, Func Offset: 0
 	// Line 810, Address: 0x26d698, Func Offset: 0x28
 	// Line 811, Address: 0x26d6a4, Func Offset: 0x34
@@ -2482,17 +2486,18 @@ void bhDrawFullScreenRenderTexture()
 	// Line 883, Address: 0x26e364, Func Offset: 0xcf4
 	// Line 884, Address: 0x26e36c, Func Offset: 0xcfc
 	// Func End, Address: 0x26e39c, Func Offset: 0xd2c
+	scePrintf("bhDrawFullScreenRenderTexture - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x26e3a0
 void bhDrawSmallScreenRenderTexture()
 {
-	_anon4 scr_tex;
+	//_anon4 scr_tex;
 	float dist;
 	unsigned int gm_flg;
-	_anon33 cambk;
-	_anon0* op;
+	//_anon33 cambk;
+	//_anon0* op;
 	// Line 961, Address: 0x26e3a0, Func Offset: 0
 	// Line 980, Address: 0x26e3c0, Func Offset: 0x20
 	// Line 981, Address: 0x26e3d0, Func Offset: 0x30
@@ -2573,5 +2578,5 @@ void bhDrawSmallScreenRenderTexture()
 	// Line 1103, Address: 0x26e868, Func Offset: 0x4c8
 	// Line 1105, Address: 0x26e870, Func Offset: 0x4d0
 	// Func End, Address: 0x26e894, Func Offset: 0x4f4
-}*/
-
+	scePrintf("bhDrawSmallScreenRenderTexture - UNIMPLEMENTED!\n");
+}

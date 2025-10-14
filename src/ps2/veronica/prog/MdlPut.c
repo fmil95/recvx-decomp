@@ -14,14 +14,14 @@ void SimpleDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num);
 void bhCalcModel(BH_PWORK* ewP);*/
 void bhCalcTree(NJS_MATRIX* basP, NO_NAME_2* mlwP);
 
-/*// 
+// 
 // Start address: 0x12ebb0
 void bhPutModel(BH_PWORK* ewP)
 {
 	unsigned int c3df;
 	int draw_tp;
-	_anon10* owP;
-	_anon7* mlwP;
+	//_anon10* owP;
+	//_anon7* mlwP;
 	// Line 65, Address: 0x12ebb0, Func Offset: 0
 	// Line 66, Address: 0x12ebcc, Func Offset: 0x1c
 	// Line 71, Address: 0x12ebd4, Func Offset: 0x24
@@ -70,9 +70,10 @@ void bhPutModel(BH_PWORK* ewP)
 	// Line 131, Address: 0x12eec8, Func Offset: 0x318
 	// Line 134, Address: 0x12eed8, Func Offset: 0x328
 	// Func End, Address: 0x12eef8, Func Offset: 0x348
+	scePrintf("bhPutModel - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x12ef00
 void DrawTreeBsc(npobj* objP, _anon10* owP, int obj_num)
 {

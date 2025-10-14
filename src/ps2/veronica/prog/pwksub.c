@@ -3862,7 +3862,7 @@ int bhCheckC2WallN(_anon40* cap, unsigned int flg)
 	// Line 2343, Address: 0x1531b0, Func Offset: 0x800
 	// Line 2344, Address: 0x1531b4, Func Offset: 0x804
 	// Func End, Address: 0x153210, Func Offset: 0x860
-}
+}*/
 
 // 
 // Start address: 0x153210
@@ -3870,9 +3870,9 @@ int bhCheckClipModel(BH_PWORK* pp)
 {
 	int jno;
 	int i;
-	_anon23 p3;
-	_anon35 p2;
-	_anon15* mlwP;
+	//_anon23 p3;
+	//_anon35 p2;
+	//_anon15* mlwP;
 	// Line 2439, Address: 0x153210, Func Offset: 0
 	// Line 2440, Address: 0x153228, Func Offset: 0x18
 	// Line 2444, Address: 0x15322c, Func Offset: 0x1c
@@ -3886,9 +3886,10 @@ int bhCheckClipModel(BH_PWORK* pp)
 	// Line 2455, Address: 0x153340, Func Offset: 0x130
 	// Line 2456, Address: 0x153344, Func Offset: 0x134
 	// Func End, Address: 0x153360, Func Offset: 0x150
+	scePrintf("bhCheckClipModel - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x153360
 int bhCheckClipPoint(_anon23* pos)
 {

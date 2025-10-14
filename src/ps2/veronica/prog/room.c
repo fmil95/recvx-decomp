@@ -2257,14 +2257,14 @@ void bhSetDoorDemo(unsigned int attr, int stg_no, int rom_no, unsigned int pos_n
 	// Line 957, Address: 0x289e78, Func Offset: 0x1c8
 	// Line 960, Address: 0x289e88, Func Offset: 0x1d8
 	// Func End, Address: 0x289e90, Func Offset: 0x1e0
-}
+}*/
 
 // 
 // Start address: 0x289e90
 void bhStartDoorDemo()
 {
 	int etmf;
-	_anon18* ddp;
+	//_anon18* ddp;
 	// Line 966, Address: 0x289e90, Func Offset: 0
 	// Line 967, Address: 0x289e9c, Func Offset: 0xc
 	// Line 969, Address: 0x289ea4, Func Offset: 0x14
@@ -2326,7 +2326,8 @@ void bhStartDoorDemo()
 	// Line 1029, Address: 0x28a0e8, Func Offset: 0x258
 	// Line 1033, Address: 0x28a0f0, Func Offset: 0x260
 	// Func End, Address: 0x28a100, Func Offset: 0x270
-}*/
+	scePrintf("bhStartDoorDemo - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x28a100

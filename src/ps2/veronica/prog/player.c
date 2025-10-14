@@ -733,13 +733,13 @@ int bhCheckPlayerKegaMotion(int wpntp, int dmlvl, int num)
 	// Line 556, Address: 0x13a39c, Func Offset: 0x19c
 	// Line 557, Address: 0x13a3a0, Func Offset: 0x1a0
 	// Func End, Address: 0x13a3ac, Func Offset: 0x1ac
-}
+}*/
 
 // 
 // Start address: 0x13a3b0
 void bhCheckEvtTimer()
 {
-	_anon49 pnt;
+	//_anon49 pnt;
 	// Line 563, Address: 0x13a3b0, Func Offset: 0
 	// Line 566, Address: 0x13a3b8, Func Offset: 0x8
 	// Line 581, Address: 0x13a464, Func Offset: 0xb4
@@ -818,26 +818,27 @@ void bhCheckEvtTimer()
 	// Line 616, Address: 0x13a6b8, Func Offset: 0x308
 	// Line 620, Address: 0x13a6c8, Func Offset: 0x318
 	// Func End, Address: 0x13a6d4, Func Offset: 0x324
+	scePrintf("bhCheckEvtTimer - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x13a6e0
 void bhControlPlayer()
 {
-	_anon38 gap;
-	_anon22* hp;
+	//_anon38 gap;
+	//_anon22* hp;
 	int bhit;
 	unsigned int stf_bk;
-	_anon35 bps;
-	_anon35 eff1;
-	_anon35 eff0;
-	_anon17* owP;
+	//_anon35 bps;
+	//_anon35 eff1;
+	//_anon35 eff0;
+	//_anon17* owP;
 	int fsnd;
 	float pz;
 	float py;
 	float px;
-	_anon1* expw;
-	_anon5* mnwP;
+	//_anon1* expw;
+	//_anon5* mnwP;
 	// Line 637, Address: 0x13a6e0, Func Offset: 0
 	// Line 643, Address: 0x13a6fc, Func Offset: 0x1c
 	// Line 660, Address: 0x13a704, Func Offset: 0x24
@@ -1184,9 +1185,10 @@ void bhControlPlayer()
 	// Line 1045, Address: 0x13b820, Func Offset: 0x1140
 	// Line 1082, Address: 0x13b83c, Func Offset: 0x115c
 	// Func End, Address: 0x13b85c, Func Offset: 0x117c
+	scePrintf("bhControlPlayer - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x13b860
 void bhCPM0_action()
 {

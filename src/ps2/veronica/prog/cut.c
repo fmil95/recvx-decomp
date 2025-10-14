@@ -1588,7 +1588,7 @@ void bhSetPlEyeCamera();
 void bhControlMonitorCamera();
 float bhCalcActiveYpos(_anon10* cp);
 short bhCalcActiveZang(_anon10* cp);
-short bhCalcActivePers(_anon10* cp);
+short bhCalcActivePers(_anon10* cp);*/
 
 // 
 // Start address: 0x27a2d0
@@ -1687,9 +1687,10 @@ void bhCheckCut(int flg)
 	// Line 215, Address: 0x27a7b8, Func Offset: 0x4e8
 	// Line 218, Address: 0x27a7c0, Func Offset: 0x4f0
 	// Func End, Address: 0x27a7e4, Func Offset: 0x514
+	scePrintf("bhCheckCut - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x27a7f0
 int bhCheckCutArea(float px, float pz, char flr_no)
 {
@@ -1871,13 +1872,13 @@ void bhSetCut(int cno, int flg)
 	// Line 462, Address: 0x27b108, Func Offset: 0x558
 	// Line 463, Address: 0x27b110, Func Offset: 0x560
 	// Func End, Address: 0x27b130, Func Offset: 0x580
-}
+}*/
 
 // 
 // Start address: 0x27b130
 void bhSetFixedCut(int cno)
 {
-	_anon21* ci;
+	//_anon21* ci;
 	// Line 469, Address: 0x27b130, Func Offset: 0
 	// Line 476, Address: 0x27b140, Func Offset: 0x10
 	// Line 488, Address: 0x27b148, Func Offset: 0x18
@@ -1938,9 +1939,10 @@ void bhSetFixedCut(int cno)
 	// Line 545, Address: 0x27b49c, Func Offset: 0x36c
 	// Line 548, Address: 0x27b4a4, Func Offset: 0x374
 	// Func End, Address: 0x27b4b8, Func Offset: 0x388
+	scePrintf("bhSetFixedCut - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x27b4c0
 void bhSetRenderCut(int cno)
 {
@@ -1997,14 +1999,14 @@ void bhSetHideObjLgt(int cno)
 	// Line 605, Address: 0x27b6d0, Func Offset: 0x120
 	// Line 606, Address: 0x27b6f0, Func Offset: 0x140
 	// Func End, Address: 0x27b70c, Func Offset: 0x15c
-}
+}*/
 
 // 
 // Start address: 0x27b710
 void bhSetHideObject(int offset)
 {
 	int i;
-	npobj* obj;
+	//npobj* obj;
 	// Line 612, Address: 0x27b710, Func Offset: 0
 	// Line 619, Address: 0x27b728, Func Offset: 0x18
 	// Line 623, Address: 0x27b754, Func Offset: 0x44
@@ -2028,9 +2030,10 @@ void bhSetHideObject(int offset)
 	// Line 646, Address: 0x27b8c4, Func Offset: 0x1b4
 	// Line 648, Address: 0x27b8e0, Func Offset: 0x1d0
 	// Func End, Address: 0x27b8fc, Func Offset: 0x1ec
+	scePrintf("bhSetHideObject - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x27b900
 void bhInitActiveCamera(int flg)
 {
@@ -2855,13 +2858,13 @@ void bhSetEventCamera(int evc_no, int key_no)
 	// Line 1477, Address: 0x27e038, Func Offset: 0x378
 	// Line 1478, Address: 0x27e040, Func Offset: 0x380
 	// Func End, Address: 0x27e05c, Func Offset: 0x39c
-}
+}*/
 
 // 
 // Start address: 0x27e060
 void bhSetEventFixedCut(int cno, int kno)
 {
-	_anon17* kfp;
+	//_anon17* kfp;
 	// Line 1486, Address: 0x27e060, Func Offset: 0
 	// Line 1493, Address: 0x27e06c, Func Offset: 0xc
 	// Line 1505, Address: 0x27e074, Func Offset: 0x14
@@ -2926,9 +2929,10 @@ void bhSetEventFixedCut(int cno, int kno)
 	// Line 1544, Address: 0x27e330, Func Offset: 0x2d0
 	// Line 1546, Address: 0x27e338, Func Offset: 0x2d8
 	// Func End, Address: 0x27e348, Func Offset: 0x2e8
+	scePrintf("bhSetEventFixedCut - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x27e350
 void bhSetEventHideObjLgt(int cno, int kno)
 {
@@ -3684,15 +3688,15 @@ void bhControlPlEyeCamera(unsigned int attr)
 	// Line 2256, Address: 0x2804b0, Func Offset: 0x780
 	// Line 2260, Address: 0x2804c4, Func Offset: 0x794
 	// Func End, Address: 0x2804d0, Func Offset: 0x7a0
-}
+}*/
 
 // 
 // Start address: 0x2804d0
 void bhInitPlEyeCamera()
 {
 	int i;
-	_anon14* lp;
-	npobj* obj;
+	//_anon14* lp;
+	//npobj* obj;
 	// Line 2267, Address: 0x2804d0, Func Offset: 0
 	// Line 2272, Address: 0x2804d8, Func Offset: 0x8
 	// Line 2274, Address: 0x2804e8, Func Offset: 0x18
@@ -3774,6 +3778,7 @@ void bhInitPlEyeCamera()
 	// Line 2336, Address: 0x280870, Func Offset: 0x3a0
 	// Line 2342, Address: 0x28088c, Func Offset: 0x3bc
 	// Func End, Address: 0x280898, Func Offset: 0x3c8
+	scePrintf("bhInitPlEyeCamera - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3782,7 +3787,7 @@ void bhSetPlEyeCamera()
 {
 	short axn;
 	short ay;
-	_anon28 pos;
+	//_anon28 pos;
 	// Line 2349, Address: 0x2808a0, Func Offset: 0
 	// Line 2352, Address: 0x2808ac, Func Offset: 0xc
 	// Line 2354, Address: 0x2808c8, Func Offset: 0x28
@@ -3830,9 +3835,10 @@ void bhSetPlEyeCamera()
 	// Line 2399, Address: 0x280ad4, Func Offset: 0x234
 	// Line 2402, Address: 0x280adc, Func Offset: 0x23c
 	// Func End, Address: 0x280aec, Func Offset: 0x24c
+	scePrintf("bhSetPlEyeCamera - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x280af0
 void bhControlMonitorCamera()
 {

@@ -2304,7 +2304,7 @@ void bhControlEffect()
 	scePrintf("bhControlEffect - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x21cf70
 void bhDrawEffect()
 {
@@ -2337,9 +2337,10 @@ void bhDrawEffect()
 	// Line 1307, Address: 0x21d270, Func Offset: 0x300
 	// Line 1309, Address: 0x21d2a0, Func Offset: 0x330
 	// Func End, Address: 0x21d2b4, Func Offset: 0x344
+	scePrintf("bhDrawEffect - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x21d2c0
 void bhDrawPolEffect(unsigned int* owp, int ct)
 {

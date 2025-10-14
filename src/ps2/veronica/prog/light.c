@@ -149,15 +149,15 @@ void bhSetEasyDirLight(float it)
 	// Line 277, Address: 0x281238, Func Offset: 0x158
 	// Line 278, Address: 0x28125c, Func Offset: 0x17c
 	// Func End, Address: 0x281270, Func Offset: 0x190
-}
+}*/
 
 // 
 // Start address: 0x281270
 void bhControlLight()
 {
 	float clp;
-	_anon32 lpos;
-	_anon4 npos;
+	//_anon32 lpos;
+	//_anon4 npos;
 	float fl;
 	int dirf;
 	int lct;
@@ -174,10 +174,10 @@ void bhControlLight()
 	float pz;
 	float py;
 	float px;
-	_anon4 vec;
-	_anon17* ci;
-	_anon9* lptb;
-	_anon12* lp;
+	//_anon4 vec;
+	//_anon17* ci;
+	//_anon9* lptb;
+	//_anon12* lp;
 	BH_PWORK* pwp;
 	// Line 284, Address: 0x281270, Func Offset: 0
 	// Line 308, Address: 0x2812cc, Func Offset: 0x5c
@@ -564,6 +564,7 @@ void bhControlLight()
 	// Line 796, Address: 0x2828c4, Func Offset: 0x1654
 	// Line 797, Address: 0x2828cc, Func Offset: 0x165c
 	// Func End, Address: 0x28292c, Func Offset: 0x16bc
+	scePrintf("bhControlLight - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -571,8 +572,8 @@ void bhControlLight()
 void bhSetLight()
 {
 	int i;
-	_anon4 vec;
-	_anon9* lptb;
+	//_anon4 vec;
+	//_anon9* lptb;
 	// Line 1059, Address: 0x282930, Func Offset: 0
 	// Line 1070, Address: 0x282940, Func Offset: 0x10
 	// Line 1071, Address: 0x282958, Func Offset: 0x28
@@ -614,6 +615,7 @@ void bhSetLight()
 	// Line 1125, Address: 0x282c68, Func Offset: 0x338
 	// Line 1126, Address: 0x282c70, Func Offset: 0x340
 	// Func End, Address: 0x282c84, Func Offset: 0x354
+	scePrintf("bhSetLight - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -624,8 +626,8 @@ void bhSetHalfLight()
 	float b;
 	float g;
 	float r;
-	_anon4 vec;
-	_anon9* lptb;
+	//_anon4 vec;
+	//_anon9* lptb;
 	// Line 1134, Address: 0x282c90, Func Offset: 0
 	// Line 1145, Address: 0x282cac, Func Offset: 0x1c
 	// Line 1146, Address: 0x282cc4, Func Offset: 0x34
@@ -685,7 +687,8 @@ void bhSetHalfLight()
 	// Line 1206, Address: 0x282fb8, Func Offset: 0x328
 	// Line 1207, Address: 0x282fc0, Func Offset: 0x330
 	// Func End, Address: 0x282fe0, Func Offset: 0x350
-}*/
+	scePrintf("bhSetHalfLight - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x282fe0

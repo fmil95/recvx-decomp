@@ -146,7 +146,7 @@ _anon0* bhSetItem(_anon18* itp, int no, unsigned char* lkp)
 	// Line 160, Address: 0x2833dc, Func Offset: 0x16c
 	// Line 162, Address: 0x2833e0, Func Offset: 0x170
 	// Func End, Address: 0x2833fc, Func Offset: 0x18c
-}
+}*/
 
 // 
 // Start address: 0x283400
@@ -155,7 +155,7 @@ void bhControlObjItm()
 	int obj_n;
 	int i;
 	BH_PWORK* pp;
-	_anon0* op;
+	//_anon0* op;
 	// Line 168, Address: 0x283400, Func Offset: 0
 	// Line 174, Address: 0x283418, Func Offset: 0x18
 	// Line 176, Address: 0x283430, Func Offset: 0x30
@@ -242,6 +242,7 @@ void bhControlObjItm()
 	// Line 325, Address: 0x2839e4, Func Offset: 0x5e4
 	// Line 326, Address: 0x283a08, Func Offset: 0x608
 	// Func End, Address: 0x283a24, Func Offset: 0x624
+	scePrintf("bhControlObjItm - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -259,6 +260,7 @@ void bhDrawGeneralPurposeWater()
 	// Line 379, Address: 0x283b5c, Func Offset: 0x12c
 	// Line 381, Address: 0x283b80, Func Offset: 0x150
 	// Func End, Address: 0x283b94, Func Offset: 0x164
+	scePrintf("bhDrawGeneralPurposeWater - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -266,9 +268,9 @@ void bhDrawGeneralPurposeWater()
 void bhDrawObjItm()
 {
 	float its;
-	_anon32 vec;
+	//_anon32 vec;
 	int i;
-	_anon0* op;
+	//_anon0* op;
 	// Line 389, Address: 0x283ba0, Func Offset: 0
 	// Line 399, Address: 0x283bbc, Func Offset: 0x1c
 	// Line 401, Address: 0x283bd4, Func Offset: 0x34
@@ -338,9 +340,10 @@ void bhDrawObjItm()
 	// Line 537, Address: 0x284228, Func Offset: 0x688
 	// Line 542, Address: 0x284248, Func Offset: 0x6a8
 	// Func End, Address: 0x284268, Func Offset: 0x6c8
+	scePrintf("bhDrawObjItm - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x284270
 void bhDrawObject(_anon0* op)
 {

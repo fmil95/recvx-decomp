@@ -1622,7 +1622,7 @@ void bhCheckEneWorkNum()
 	// Line 449, Address: 0x174a78, Func Offset: 0x48
 	// Line 450, Address: 0x174a88, Func Offset: 0x58
 	// Func End, Address: 0x174a90, Func Offset: 0x60
-}
+}*/
 
 // 
 // Start address: 0x174a90
@@ -1654,9 +1654,10 @@ void bhControlEnemy()
 	// Line 620, Address: 0x174c04, Func Offset: 0x174
 	// Line 621, Address: 0x174c30, Func Offset: 0x1a0
 	// Func End, Address: 0x174c44, Func Offset: 0x1b4
+	scePrintf("bhControlEnemy - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x174c50
 void bhEne00(BH_PWORK* ep)
 {
@@ -1960,7 +1961,7 @@ void bhEne56(BH_PWORK* ep)
 	// Line 901, Address: 0x1758dc, Func Offset: 0x8ac
 	// Line 932, Address: 0x1758e4, Func Offset: 0x8b4
 	// Func End, Address: 0x1758f8, Func Offset: 0x8c8
-}
+}*/
 
 // 
 // Start address: 0x175900
@@ -2000,6 +2001,7 @@ void bhDrawEnemy()
 	// Line 1065, Address: 0x175b30, Func Offset: 0x230
 	// Line 1066, Address: 0x175b58, Func Offset: 0x258
 	// Func End, Address: 0x175b6c, Func Offset: 0x26c
+	scePrintf("bhDrawEnemy - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2028,9 +2030,10 @@ void bhDrawEneObject()
 	// Line 1128, Address: 0x175c8c, Func Offset: 0x11c
 	// Line 1129, Address: 0x175cb0, Func Offset: 0x140
 	// Func End, Address: 0x175cc8, Func Offset: 0x158
+	scePrintf("bhDrawEneObject - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x175cd0
 void* bhEne_CallocWork(int size)
 {

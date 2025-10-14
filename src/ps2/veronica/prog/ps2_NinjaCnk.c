@@ -169,11 +169,11 @@ void njDrawModel(_anon18* pModel)
 	// Line 593, Address: 0x2cf380, Func Offset: 0
 	// Line 594, Address: 0x2cf384, Func Offset: 0x4
 	// Func End, Address: 0x2cf38c, Func Offset: 0xc
-}
+}*/
 
 // 
 // Start address: 0x2cf390
-void njControl3D(unsigned int ulFlag)
+void	njControl3D( Uint32 flag )
 {
 	// Line 612, Address: 0x2cf390, Func Offset: 0
 	// Line 613, Address: 0x2cf398, Func Offset: 0x8
@@ -183,9 +183,10 @@ void njControl3D(unsigned int ulFlag)
 	// Line 618, Address: 0x2cf3c4, Func Offset: 0x34
 	// Line 619, Address: 0x2cf3cc, Func Offset: 0x3c
 	// Func End, Address: 0x2cf3d4, Func Offset: 0x44
+	scePrintf("njControl3D - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cf3e0
 void njSetConstantAttr(unsigned int ulAnd, unsigned int ulOr)
 {
@@ -289,11 +290,11 @@ void njCnkSetEasyMultiLightSwitch(int iLightNum, int iSwitch)
 	// Line 841, Address: 0x2cf5d8, Func Offset: 0x48
 	// Line 843, Address: 0x2cf5ec, Func Offset: 0x5c
 	// Func End, Address: 0x2cf5f4, Func Offset: 0x64
-}
+}*/
 
 // 
 // Start address: 0x2cf600
-void njCnkSetEasyMultiAmbient(float fR, float fG, float fB)
+void    njCnkSetEasyMultiAmbient(Float ar, Float ag, Float ab)
 {
 	// Line 865, Address: 0x2cf600, Func Offset: 0
 	// Line 866, Address: 0x2cf608, Func Offset: 0x8
@@ -308,9 +309,10 @@ void njCnkSetEasyMultiAmbient(float fR, float fG, float fB)
 	// Line 872, Address: 0x2cf648, Func Offset: 0x48
 	// Line 873, Address: 0x2cf650, Func Offset: 0x50
 	// Func End, Address: 0x2cf658, Func Offset: 0x58
+	scePrintf("njCnkSetEasyMultiAmbient - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cf660
 void njCnkSetEasyMultiLightColor(int iLightNum, float fR, float fG, float fB)
 {
@@ -433,9 +435,9 @@ void    njCnkSetSimpleMultiLightSwitch(Int light, Int flag)
 	scePrintf("njCnkSetSimpleMultiLightSwitch - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2cf930
-void njCnkSetSimpleMultiAmbient(float fR, float fG, float fB)
+void    njCnkSetSimpleMultiAmbient(Float ar, Float ag, Float ab)
 {
 	// Line 1166, Address: 0x2cf930, Func Offset: 0
 	// Line 1167, Address: 0x2cf938, Func Offset: 0x8
@@ -450,9 +452,10 @@ void njCnkSetSimpleMultiAmbient(float fR, float fG, float fB)
 	// Line 1173, Address: 0x2cf978, Func Offset: 0x48
 	// Line 1174, Address: 0x2cf980, Func Offset: 0x50
 	// Func End, Address: 0x2cf988, Func Offset: 0x58
+	scePrintf("njCnkSetSimpleMultiAmbient - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cf990
 void njCnkSetSimpleMultiLightColor(int iLightNum, float fR, float fG, float fB)
 {
@@ -529,11 +532,11 @@ void njCnkEasyDrawModel(_anon5* pModel)
 	// Line 1341, Address: 0x2cfb68, Func Offset: 0x18
 	// Line 1342, Address: 0x2cfb70, Func Offset: 0x20
 	// Func End, Address: 0x2cfb80, Func Offset: 0x30
-}
+}*/
 
 // 
 // Start address: 0x2cfb80
-void njCnkEasyDrawObject(cnkobj* pObject)
+void    njCnkEasyDrawObject( NJS_CNK_OBJECT *model )
 {
 	int lDrawResult;
 	unsigned int ulFlags;
@@ -551,9 +554,10 @@ void njCnkEasyDrawObject(cnkobj* pObject)
 	// Line 1391, Address: 0x2cfc40, Func Offset: 0xc0
 	// Line 1392, Address: 0x2cfc50, Func Offset: 0xd0
 	// Func End, Address: 0x2cfc64, Func Offset: 0xe4
+	scePrintf("njCnkEasyDrawObject - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cfc70
 void njCnkEasyMultiDrawModel(_anon5* pModel)
 {
@@ -562,11 +566,11 @@ void njCnkEasyMultiDrawModel(_anon5* pModel)
 	// Line 1414, Address: 0x2cfc88, Func Offset: 0x18
 	// Line 1415, Address: 0x2cfc90, Func Offset: 0x20
 	// Func End, Address: 0x2cfca0, Func Offset: 0x30
-}
+}*/
 
 // 
 // Start address: 0x2cfca0
-void njCnkEasyMultiDrawObject(cnkobj* pObject)
+void    njCnkEasyMultiDrawObject( NJS_CNK_OBJECT *model )
 {
 	int lDrawResult;
 	unsigned int ulFlags;
@@ -584,9 +588,10 @@ void njCnkEasyMultiDrawObject(cnkobj* pObject)
 	// Line 1462, Address: 0x2cfd60, Func Offset: 0xc0
 	// Line 1463, Address: 0x2cfd70, Func Offset: 0xd0
 	// Func End, Address: 0x2cfd84, Func Offset: 0xe4
+	scePrintf("njCnkEasyMultiDrawObject - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cfd90
 void njCnkSimpleDrawModel(_anon5* pModel)
 {

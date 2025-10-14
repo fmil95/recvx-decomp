@@ -219,7 +219,6 @@
 #include "sdcwrap.c"
 #include "sync.c"
 #include "ps2_NaFog.c"
-#include "game.c"
 #include "gameover.c"
 #include "message.c"
 #include "ranking.c"
@@ -238,6 +237,7 @@
 #include "event.c"
 #include "adv.c"
 #include "pad.c"
+#include "game.c"
 #include "system.c"
 #include "playpch.c"
 

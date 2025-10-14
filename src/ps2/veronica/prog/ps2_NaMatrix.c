@@ -396,11 +396,11 @@ void njMultiMatrix(float pDstMat[16], float pSrcMat[16])
 	// Line 1353, Address: 0x2d6b34, Func Offset: 0x74
 	// Line 1360, Address: 0x2d6b38, Func Offset: 0x78
 	// Func End, Address: 0x2d6b40, Func Offset: 0x80
-}
+}*/
 
 // 
 // Start address: 0x2d6b40
-void njTranslate(float pMatrix[16], float fX, float fY, float fZ)
+void	njTranslate(NJS_MATRIX *m, Float x, Float y, Float z)
 {
 	// Line 1473, Address: 0x2d6b40, Func Offset: 0
 	// Line 1535, Address: 0x2d6b54, Func Offset: 0x14
@@ -420,9 +420,10 @@ void njTranslate(float pMatrix[16], float fX, float fY, float fZ)
 	// Line 1549, Address: 0x2d6b8c, Func Offset: 0x4c
 	// Line 1556, Address: 0x2d6b90, Func Offset: 0x50
 	// Func End, Address: 0x2d6b98, Func Offset: 0x58
+	scePrintf("njTranslate - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d6ba0
 void njTranslateV(float pMatrix[16], _anon0* pVector)
 {
@@ -443,11 +444,11 @@ void njTranslateV(float pMatrix[16], _anon0* pVector)
 	// Line 1682, Address: 0x2d6be8, Func Offset: 0x48
 	// Line 1689, Address: 0x2d6bec, Func Offset: 0x4c
 	// Func End, Address: 0x2d6bf4, Func Offset: 0x54
-}
+}*/
 
 // 
 // Start address: 0x2d6c00
-void njRotateX(float pMatrix[16], int lAngle)
+void	njRotateX(NJS_MATRIX *m, Angle ang)
 {
 	float fCos;
 	float fSin;
@@ -473,11 +474,12 @@ void njRotateX(float pMatrix[16], int lAngle)
 	// Line 1874, Address: 0x2d6c7c, Func Offset: 0x7c
 	// Line 1881, Address: 0x2d6c80, Func Offset: 0x80
 	// Func End, Address: 0x2d6c90, Func Offset: 0x90
+	scePrintf("njRotateX - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d6c90
-void njRotateY(float pMatrix[16], int lAngle)
+void	njRotateY(NJS_MATRIX *m, Angle ang)
 {
 	float fCos;
 	float fSin;
@@ -503,11 +505,12 @@ void njRotateY(float pMatrix[16], int lAngle)
 	// Line 2031, Address: 0x2d6d0c, Func Offset: 0x7c
 	// Line 2039, Address: 0x2d6d10, Func Offset: 0x80
 	// Func End, Address: 0x2d6d20, Func Offset: 0x90
+	scePrintf("njRotateY - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d6d20
-void njRotateZ(float pMatrix[16], int lAngle)
+void	njRotateZ(NJS_MATRIX *m, Angle ang)
 {
 	float fCos;
 	float fSin;
@@ -533,7 +536,8 @@ void njRotateZ(float pMatrix[16], int lAngle)
 	// Line 2189, Address: 0x2d6d9c, Func Offset: 0x7c
 	// Line 2196, Address: 0x2d6da0, Func Offset: 0x80
 	// Func End, Address: 0x2d6db0, Func Offset: 0x90
-}*/
+	scePrintf("njRotateZ - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2d6db0
@@ -786,15 +790,15 @@ float njAtan2b(float a, float b)
 {
 	// Line 3657, Address: 0x2d7210, Func Offset: 0
 	// Func End, Address: 0x2d725c, Func Offset: 0x4c
-}
+}*/
 
 // 
 // Start address: 0x2d7260
-void njMirror(float pMatrix[16], _anon3* pPlane)
+void	njMirror(NJS_MATRIX *m,NJS_PLANE *pl)
 {
 	int lAngleZ;
 	int lAngleX;
-	float mat[16];
+	//float mat[16];
 	// Line 3662, Address: 0x2d7260, Func Offset: 0
 	// Line 3698, Address: 0x2d7278, Func Offset: 0x18
 	// Line 4005, Address: 0x2d728c, Func Offset: 0x2c
@@ -908,7 +912,8 @@ void njMirror(float pMatrix[16], _anon3* pPlane)
 	// Line 4135, Address: 0x2d74ac, Func Offset: 0x24c
 	// Line 4136, Address: 0x2d74b8, Func Offset: 0x258
 	// Func End, Address: 0x2d74d0, Func Offset: 0x270
-}*/
+	scePrintf("njMirror - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2d74d0
@@ -1018,11 +1023,11 @@ void njSubVector(_anon0* pDstVec, _anon0* pSrcVec)
 	// Line 4425, Address: 0x2d763c, Func Offset: 0x2c
 	// Line 4430, Address: 0x2d7640, Func Offset: 0x30
 	// Func End, Address: 0x2d7648, Func Offset: 0x38
-}
+}*/
 
 // 
 // Start address: 0x2d7650
-void njCalcVector(float pMatrix[16], _anon0* pSrcVec, _anon0* pDstVec)
+void	njCalcVector(NJS_MATRIX *m, NJS_VECTOR *vs, NJS_VECTOR *vd)
 {
 	// Line 4484, Address: 0x2d7650, Func Offset: 0
 	// Line 4531, Address: 0x2d7664, Func Offset: 0x14
@@ -1043,9 +1048,10 @@ void njCalcVector(float pMatrix[16], _anon0* pSrcVec, _anon0* pDstVec)
 	// Line 4549, Address: 0x2d76a0, Func Offset: 0x50
 	// Line 4556, Address: 0x2d76a4, Func Offset: 0x54
 	// Func End, Address: 0x2d76ac, Func Offset: 0x5c
+	scePrintf("njCalcVector - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d76b0
 float njUnitVector(_anon0* pVector)
 {
