@@ -14,8 +14,8 @@ char* videoDecStack;
 /*void(*videoDecMain)(_anon17*);
 _anon35 rmi;
 unsigned int Ps2_vcount;
-_anon30 infile;
-_anon13 voBuf;*/
+_anon30 infile;*/
+VoBuf voBuf;
 VoTag* voBufTag;
 VoData* voBufData;
 READ_BUF* readBuf;
@@ -355,24 +355,19 @@ void vbrank_draw()
 	// Line 652, Address: 0x2ebf4c, Func Offset: 0x16c
 	// Line 653, Address: 0x2ebf54, Func Offset: 0x174
 	// Func End, Address: 0x2ebf60, Func Offset: 0x180
-}
+}*/
 
-// 
-// Start address: 0x2ebf60
-void videoDecMain(_anon17* vd)
+void videoDecMain(VideoDec *vd)
 {
-	// Line 686, Address: 0x2ebf60, Func Offset: 0
-	// Line 688, Address: 0x2ebf70, Func Offset: 0x10
-	// Line 690, Address: 0x2ebf78, Func Offset: 0x18
-	// Line 691, Address: 0x2ebf80, Func Offset: 0x20
-	// Line 693, Address: 0x2ebf84, Func Offset: 0x24
-	// Line 697, Address: 0x2ebf90, Func Offset: 0x30
-	// Line 700, Address: 0x2ebfac, Func Offset: 0x4c
-	// Line 701, Address: 0x2ebfb4, Func Offset: 0x54
-	// Func End, Address: 0x2ebfc4, Func Offset: 0x64
+    viBufReset(&vd->vibuf);
+    voBuf.count = 0;
+    voBuf.write = 0;
+    decBs0(vd);
+    while (voBuf.count);
+    vd->state = VD_STATE_END;
 }
 
-// 
+/*// 
 // Start address: 0x2ebfd0
 int decBs0(_anon17* vd)
 {

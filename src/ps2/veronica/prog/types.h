@@ -3156,6 +3156,84 @@ typedef struct {
     u_int v[N_VOBUF][bound((N_LDTAGS+100)*4, 64)];
 } VoTag;
 
+typedef struct {
+    VoData *data;	    // data array
+    VoTag *tag;		    // tag array for path3 transfer
+    volatile int write;	    // write position
+    volatile int count;	    // the number of images in VoBuf
+    int size;		    // total number of elements in VoBuf
+} VoBuf;
+
+typedef struct {
+    unsigned int d4madr; // â~µ½Æ«Ì D4_MADR WX^Ìl
+    unsigned int d4tadr; // â~µ½Æ«Ì D4_TADR WX^Ìl
+    unsigned int d4qwc;  // â~µ½Æ«Ì D4_QWC WX^Ìl
+    unsigned int d4chcr; // â~µ½Æ«Ì D4_CHCR WX^Ìl
+    unsigned int d3madr; // â~µ½Æ«Ì D3_MADR WX^Ìl
+    unsigned int d3qwc;  // â~µ½Æ«Ì D3_QWC WX^Ìl
+    unsigned int d3chcr; // â~µ½Æ«Ì D3_CHCR WX^Ìl
+    unsigned int ipubp;  // â~µ½Æ«Ì IPU_BP WX^Ìl
+    unsigned int ipuctrl;// â~µ½Æ«Ì IPU_CTRL WX^Ìl
+} sceIpuDmaEnv;
+
+typedef struct {
+    int width;		// width of decoded image
+    int height;		// height of decoded image
+    int frameCount;	// frame number in the stream
+
+    long pts;		// PTS(Presentation Time Stamp) value 
+    			// pts is valid only when pts >= 0
+
+    long dts;		// DTS(Decoding Time Stamp) value
+    			// dts is valid only when dts >= 0
+
+    unsigned long flags;	// flags
+
+    long pts2nd;	// PTS for 2nd field(for future use)
+    long dts2nd;	// DTS for 2nd field(for future use)
+    unsigned long flags2nd;	// flags for 2nd field(for future use)
+
+    void *sys;		// system data for decoding
+} sceMpeg;
+
+
+typedef struct {
+    __int128 *data;	// data array
+    __int128 *tag;	// tag array
+    int n;		// the number of data/tag element in ViBuf
+    int dmaStart;	// DMA area start position
+    int dmaN;		// DMA area size
+    int readBytes;	// read area size
+    int buffSize;	// buffer size of ViBuf(bytes)
+    sceIpuDmaEnv env;	// DMA environment
+    int sema;		// semaphore
+    int isActive;	// flag to check CSC period
+    long totalBytes;	// total bytes of data which sent to ViBuf
+
+    TimeStamp *ts;	// time stamp array
+    int n_ts;		// time stamp array size
+    int count_ts;	// the number of time stamps in the array
+    int wt_ts;		// write position of time stamp array
+} ViBuf;
+
+typedef struct {
+    unsigned int *micro[3][2];
+} CscVu1;
+
+#define VD_STATE_END       3
+
+typedef struct {
+    sceMpeg mpeg;	// MPEG decoder
+    ViBuf vibuf;	// video input buffer
+    unsigned int state;	// video decoder state
+    int sema;		// semaphore
+
+    int hid_endimage;	// handler to check the end of image transfer
+    int hid_vblank;	// vlbank handler
+
+    CscVu1 csc;		// color space conversion using vu1
+} VideoDec;
+
 // constant definition for ClutType, ImageType in picture header
 enum TIM2_gattr_type {
 	TIM2_NONE = 0,			// no CLUT (for ClutType)
