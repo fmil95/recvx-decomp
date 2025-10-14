@@ -235,6 +235,7 @@ void readMpeg()
 	// Func End, Address: 0x2ebbf0, Func Offset: 0x2f0
 }*/
 
+// 100% matching!
 int readBufEndGet(READ_BUF* b, int size) {
     int size_ok = MIN(size, b->count);
     b->count -= size_ok;
@@ -357,6 +358,7 @@ void vbrank_draw()
 	// Func End, Address: 0x2ebf60, Func Offset: 0x180
 }*/
 
+// 100% matching!
 void videoDecMain(VideoDec *vd)
 {
     viBufReset(&vd->vibuf);
@@ -569,18 +571,13 @@ static int sendToIOP(int dst, u_char *src, int size)
     return size;
 }
 
-/*// 
-// Start address: 0x2ec6d0
-void changeInputVolume(unsigned int val)
-{
-	// Line 985, Address: 0x2ec6d0, Func Offset: 0
-	// Line 987, Address: 0x2ec6dc, Func Offset: 0xc
-	// Line 988, Address: 0x2ec6f4, Func Offset: 0x24
-	// Line 989, Address: 0x2ec708, Func Offset: 0x38
-	// Func End, Address: 0x2ec718, Func Offset: 0x48
+// 100% matching!
+void changeInputVolume(unsigned int val){
+    sceSdRemote(1, 0x8010, 0xF81, val & 0xFFFF);
+    sceSdRemote(1, 0x8010, 0x1081, val & 0xFFFF);
 }
 
-// 
+/*// 
 // Start address: 0x2ec720
 void setD3_CHCR(unsigned int val)
 {
