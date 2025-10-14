@@ -1,4 +1,4 @@
-// TODO: compile and link this file separatedly to remove the "gdlib.c" include in main.c  
+#include "gdlib.h"
 
 unsigned int MaxDirectoryEntry = 512;
 unsigned int DiscOpenTrayFlag;
@@ -15,15 +15,6 @@ GDFS CurrentGdFs;
 GDFS CurrentGdFsBuf;
 unsigned int StatusUpdateCounter;
 GDFS LfGdFs;
-
-void LfInitLib();
-void CallbackGdErrorFunc(int param, int err);
-unsigned int InitGdSystem();
-unsigned int InitGdSystemEx(unsigned int MaxDirNum);
-void ExitGdSystem();
-int GetFileSize(char* FileName);
-int ReadFileEx(char* FileName, void* ReadAddress);
-unsigned int CheckOpenTray();
 
 // 100% matching!
 void LfInitLib() 
