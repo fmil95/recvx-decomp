@@ -207,11 +207,11 @@ struct _anon11
 	unsigned char date[8];
 };*/
 
-int iRingBufNum;
-MWPLY MwHandle;
-MWD_IF Ps2Func;
+MW_PLY_OBJ MwObj;
 StrFile infile;
 int iop_read_buff;
+MWPLY MwHandle = &MwObj;
+int iRingBufNum;
 /*
 _anon8 voBuf;
 <unknown fundamental type (0xa510)> test_tag[1400];
@@ -220,10 +220,11 @@ int movie_draw;
 _anon5 mdSize;
 unsigned int Ps2_vcount;
 _anon10 __sfd_mw_conf__;
-_anon0 MwObj;
+*/
 
+/*
 int mwPlyCalcWorkSofdec();
-_anon0* ps2mwPlyCreateSofdec(char* fname);
+MWPLY ps2mwPlyCreateSofdec(char* fname);
 void mwPlyExecServer();
 void mwPlyFinishSofdec();
 int mwPlyGetBright();
@@ -234,18 +235,36 @@ void mwPlySetDispPos(float lx, float ly);
 void mwPlySetFastHalfpel();
 void mwPlyStartFrame();
 void mwPlySetDispSize(float sx, float sy);
+*/
 void ps2mwPlyVsyncHndl();
 void ps2mwPlyExecSvrHndl();
 void ps2mwPlyDestroy();
-void ps2mwPlyStartFname(char* fname);
+void ps2mwPlyStartFname(MWPLY mwply, signed char* fname);
 void ps2mwPlyStop();
-_mwe_ply_stat ps2mwPlyGetStat();
-void ps2mwPlyGetTime(int* ncount, int* tscale);
-void ps2mwPlyPause(int sw);
-void ps2mwPlySetOutVol(int vol);
+MWE_PLY_STAT ps2mwPlyGetStat();
+void ps2mwPlyGetTime(MWPLY mwply, int* ncount, int* tscale);
+void ps2mwPlyPause(MWPLY mwply, int sw);
+void ps2mwPlySetOutVol(MWPLY mwply, int vol);
 int ps2mwPlyGetOutVol();
-void ps2mwErrorStop();*/
+void ps2mwErrorStop();
 void Setps2FuncTbl(MWPLY mwply);
+
+extern MWD_IF Ps2Func = { 
+    ps2mwErrorStop, 
+    ps2mwErrorStop, 
+    ps2mwErrorStop, 
+    ps2mwPlyVsyncHndl,  
+    ps2mwPlyExecSvrHndl,
+    ps2mwPlyDestroy,
+    ps2mwPlyStartFname,
+    ps2mwPlyStop,
+    ps2mwPlyGetStat,
+    ps2mwPlyGetTime,
+    ps2mwPlyPause,
+    ps2mwPlySetOutVol,
+    ps2mwPlyGetOutVol,
+    ps2mwErrorStop,
+};
 
 // 100% matching!
 Sint32 mwPlyCalcWorkSofdec(Sint32 ftype, Sint32 max_bps, Sint32 max_sx, Sint32 max_sy, Sint32 nfb){
@@ -404,12 +423,13 @@ void mwPlySetDispSize(MWPLY mwply, float sx, float sy)
 	scePrintf("mwPlySetDispSize - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2d8a80
 void ps2mwPlyVsyncHndl()
 {
 	// Line 744, Address: 0x2d8a80, Func Offset: 0
 	// Func End, Address: 0x2d8a88, Func Offset: 0x8
+	scePrintf("ps2mwPlyVsyncHndl - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -418,6 +438,7 @@ void ps2mwPlyExecSvrHndl()
 {
 	// Line 770, Address: 0x2d8a90, Func Offset: 0
 	// Func End, Address: 0x2d8a98, Func Offset: 0x8
+	scePrintf("ps2mwPlyExecSvrHndl - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -426,11 +447,12 @@ void ps2mwPlyDestroy()
 {
 	// Line 796, Address: 0x2d8aa0, Func Offset: 0
 	// Func End, Address: 0x2d8aa8, Func Offset: 0x8
+	scePrintf("ps2mwPlyDestroy - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d8ab0
-void ps2mwPlyStartFname(char* fname)
+void ps2mwPlyStartFname(MWPLY mwply, signed char* fname)
 {
 	char* src;
 	char* dest;
@@ -445,6 +467,7 @@ void ps2mwPlyStartFname(char* fname)
 	// Line 840, Address: 0x2d8b20, Func Offset: 0x70
 	// Line 842, Address: 0x2d8b2c, Func Offset: 0x7c
 	// Func End, Address: 0x2d8b3c, Func Offset: 0x8c
+	scePrintf("ps2mwPlyStartFname - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -453,47 +476,52 @@ void ps2mwPlyStop()
 {
 	// Line 868, Address: 0x2d8b40, Func Offset: 0
 	// Func End, Address: 0x2d8b48, Func Offset: 0x8
+	scePrintf("ps2mwPlyStop - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d8b50
-_mwe_ply_stat ps2mwPlyGetStat()
+MWE_PLY_STAT ps2mwPlyGetStat()
 {
 	// Line 895, Address: 0x2d8b50, Func Offset: 0
 	// Line 896, Address: 0x2d8b54, Func Offset: 0x4
 	// Func End, Address: 0x2d8b5c, Func Offset: 0xc
+	scePrintf("ps2mwPlyGetStat - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d8b60
-void ps2mwPlyGetTime(int* ncount, int* tscale)
+void ps2mwPlyGetTime(MWPLY ply, int* ncount, int* tscale)
 {
 	// Line 928, Address: 0x2d8b60, Func Offset: 0
 	// Line 931, Address: 0x2d8b68, Func Offset: 0x8
 	// Line 928, Address: 0x2d8b6c, Func Offset: 0xc
 	// Line 932, Address: 0x2d8b7c, Func Offset: 0x1c
 	// Func End, Address: 0x2d8b84, Func Offset: 0x24
+	scePrintf("ps2mwPlyGetTime - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d8b90
-void ps2mwPlyPause(int sw)
+void ps2mwPlyPause(MWPLY ply, int sw)
 {
 	// Line 959, Address: 0x2d8b90, Func Offset: 0
 	// Line 960, Address: 0x2d8b98, Func Offset: 0x8
 	// Line 962, Address: 0x2d8bb0, Func Offset: 0x20
 	// Line 963, Address: 0x2d8bc8, Func Offset: 0x38
 	// Func End, Address: 0x2d8bd0, Func Offset: 0x40
+	scePrintf("ps2mwPlyPause - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d8bd0
-void ps2mwPlySetOutVol(int vol)
+void ps2mwPlySetOutVol(MWPLY ply, int vol)
 {
 	// Line 990, Address: 0x2d8bd0, Func Offset: 0
 	// Line 994, Address: 0x2d8bd8, Func Offset: 0x8
 	// Line 995, Address: 0x2d8c10, Func Offset: 0x40
 	// Func End, Address: 0x2d8c1c, Func Offset: 0x4c
+	scePrintf("ps2mwSetOutVol - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -502,16 +530,16 @@ int ps2mwPlyGetOutVol()
 {
 	// Line 1021, Address: 0x2d8c20, Func Offset: 0
 	// Func End, Address: 0x2d8c28, Func Offset: 0x8
+	scePrintf("ps2mwGetOutVol - UNIMPLEMENTED!\n");
 }
 
-// 
 // Start address: 0x2d8c30
 void ps2mwErrorStop()
 {
 	// Line 1028, Address: 0x2d8c30, Func Offset: 0
 	// Func End, Address: 0x2d8c3c, Func Offset: 0xc
+	scePrintf("ps2mwErrorStop - UNIMPLEMENTED!\n");
 }
-*/
 
 // 100% matching!
 void Setps2FuncTbl(MWPLY mwply) {

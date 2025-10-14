@@ -195,7 +195,7 @@ int CurrentFxLevel;
 int AddFxLevel;
 char FxLevelTimer;
 int RoomFxLevel;
-int iRingBufNum = 20; 
+int iRingBufNum = 20;
 int iop_read_buff;
 int iop_zero_buff;
 int iop_buff;
