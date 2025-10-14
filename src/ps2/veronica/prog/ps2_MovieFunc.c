@@ -233,22 +233,15 @@ void readMpeg()
 	// Line 464, Address: 0x2ebbd8, Func Offset: 0x2d8
 	// Line 466, Address: 0x2ebbe4, Func Offset: 0x2e4
 	// Func End, Address: 0x2ebbf0, Func Offset: 0x2f0
+}*/
+
+int readBufEndGet(READ_BUF* b, int size) {
+    int size_ok = MIN(size, b->count);
+    b->count -= size_ok;
+    return size_ok;
 }
 
-// 
-// Start address: 0x2ebbf0
-int readBufEndGet(_anon16* b, int size)
-{
-	// Line 475, Address: 0x2ebbf0, Func Offset: 0
-	// Line 477, Address: 0x2ebbf4, Func Offset: 0x4
-	// Line 475, Address: 0x2ebbf8, Func Offset: 0x8
-	// Line 477, Address: 0x2ebc00, Func Offset: 0x10
-	// Line 479, Address: 0x2ebc04, Func Offset: 0x14
-	// Line 480, Address: 0x2ebc08, Func Offset: 0x18
-	// Func End, Address: 0x2ebc10, Func Offset: 0x20
-}
-
-// 
+/*// 
 // Start address: 0x2ebc10
 void setImageTag(unsigned int* tags, void* image)
 {
