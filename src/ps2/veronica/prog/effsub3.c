@@ -2273,28 +2273,37 @@ _anon1* AllocOworkOne()
 	// Line 257, Address: 0x246904, Func Offset: 0x54
 	// Line 258, Address: 0x246908, Func Offset: 0x58
 	// Func End, Address: 0x246918, Func Offset: 0x68
-}
+}*/
 
-// 
-// Start address: 0x246920
+// 100% matching!
 void bhClrEff_RY()
 {
+    NO_NAME_4* oP;
 	int i;
-	_anon1* oP;
-	// Line 288, Address: 0x246920, Func Offset: 0
-	// Line 290, Address: 0x246928, Func Offset: 0x8
-	// Line 292, Address: 0x24692c, Func Offset: 0xc
-	// Line 291, Address: 0x246934, Func Offset: 0x14
-	// Line 292, Address: 0x246944, Func Offset: 0x24
-	// Line 295, Address: 0x246960, Func Offset: 0x40
-	// Line 298, Address: 0x246968, Func Offset: 0x48
-	// Line 301, Address: 0x24697c, Func Offset: 0x5c
-	// Line 302, Address: 0x246980, Func Offset: 0x60
-	// Line 303, Address: 0x246990, Func Offset: 0x70
-	// Func End, Address: 0x246998, Func Offset: 0x78
+
+    oP = eff;
+    
+    for (i = 0; i < 512; i++, oP++) 
+    {
+        if ((oP->flg & 0x1))
+        {
+            switch (oP->id) 
+            {                     
+            case 301:
+                oP->flg = 0;
+                break;
+            case 302:
+                *(int*)oP->exp1 = 0;
+                *(int*)oP->exp0 = 0;
+                
+                oP->flg = 0;
+                break;
+            }
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2469a0
 int bhSetBloodPoolLnk(BH_PWORK* ewP, _anon0* posP, int ay, _anon52* tabP, int pal_bnk)
 {
