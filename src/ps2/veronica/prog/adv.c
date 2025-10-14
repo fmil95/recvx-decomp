@@ -1651,24 +1651,25 @@ void DisplayTitleBg()
     AdvEasyDrawTextureS(1, 0xFFFFFFFF, qp, 0.15f, 1, 192); 
 } 
 
-/*// 
-// Start address: 0x2c3390
+// 97.50% matching
 void DisplayPressStartPlate(float FadeRate)
-{
-	_anon0* qp;
-	// Line 2752, Address: 0x2c3390, Func Offset: 0
-	// Line 2753, Address: 0x2c33a0, Func Offset: 0x10
-	// Line 2752, Address: 0x2c33a4, Func Offset: 0x14
-	// Line 2753, Address: 0x2c33a8, Func Offset: 0x18
-	// Line 2755, Address: 0x2c33ac, Func Offset: 0x1c
-	// Line 2757, Address: 0x2c33b4, Func Offset: 0x24
-	// Line 2758, Address: 0x2c33dc, Func Offset: 0x4c
-	// Line 2759, Address: 0x2c3400, Func Offset: 0x70
-	// Line 2760, Address: 0x2c3448, Func Offset: 0xb8
-	// Func End, Address: 0x2c3460, Func Offset: 0xd0
+{ 
+    QUAD* qp; 
+    float temp; // not from the debugging symbols
+
+    qp = &Qtex[1]; 
+
+    DisplayTitleBg();
+    
+    SetQuadPos(64.0f, 512.0f, 304.0f, 32.0f, qp); 
+    SetQuadUv2(0, 512.0f, 32.0f, 32.0f, 1, qp); 
+
+    temp = 0.5f;
+    
+    AdvEasyDrawTextureS(1, ((unsigned int)FadeRate << 24) | 0xFFFFFF, qp, FadeRate, 1, temp);
 }
 
-// 
+/*// 
 // Start address: 0x2c3460
 void DisplayGameModePlate(int Cursor, int CursorMax, float FadeRate, int Flag)
 {
