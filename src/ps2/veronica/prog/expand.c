@@ -1,7 +1,6 @@
-EXPAND_CTRL_BUF ExpandCtrlBuf;
+#include "expand.h"
 
-void Init_Expand();
-int Expand(register char* s, register unsigned char* d);
+EXPAND_CTRL_BUF ExpandCtrlBuf;
 
 // 100% matching!
 void Init_Expand() 

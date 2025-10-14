@@ -279,11 +279,7 @@ struct _anon10
 	_anon9 c1;
 	_anon9 c2;
 	float r;
-};
-
-void(*bhEne08_Mode0)(BH_PWORK*)[6];
-void(*bhEne08_BrainType)(BH_PWORK*)[1];
-void(*bhEne08_MoveMode2)(BH_PWORK*)[3];
+};*/
 
 void bhEne08(BH_PWORK* epw);
 void bhEne08_Init(BH_PWORK* epw);
@@ -295,7 +291,12 @@ void bhEne08_Nage();
 void bhEne08_Damage();
 void bhEne08_Die();
 
-// 
+/*void(*bhEne08_Mode0)(BH_PWORK*)[6];
+void(*bhEne08_BrainType)(BH_PWORK*)[1];*/
+typedef void (*MoveMode2_proc)(BH_PWORK*);
+MoveMode2_proc bhEne08_MoveMode2[3] = { bhEne08_MV00, bhEne08_MV01, bhEne08_MV02 };
+
+/*// 
 // Start address: 0x1c5f70
 void bhEne08(BH_PWORK* epw)
 {
@@ -345,17 +346,15 @@ void bhEne08_Init(BH_PWORK* epw)
 	// Line 182, Address: 0x1c607c, Func Offset: 0x8c
 	// Line 183, Address: 0x1c60d0, Func Offset: 0xe0
 	// Func End, Address: 0x1c60e0, Func Offset: 0xf0
+}*/
+
+// 100% matching! 
+void bhEne08_Move(BH_PWORK* epw) 
+{ 
+    bhEne08_MoveMode2[epw->mode2](epw); 
 }
 
-// 
-// Start address: 0x1c60e0
-void bhEne08_Move(BH_PWORK* epw)
-{
-	// Line 218, Address: 0x1c60e0, Func Offset: 0
-	// Func End, Address: 0x1c6100, Func Offset: 0x20
-}
-
-// 
+/*// 
 // Start address: 0x1c6100
 void bhEne08_MV00(BH_PWORK* epw)
 {

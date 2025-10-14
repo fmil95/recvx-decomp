@@ -7,8 +7,8 @@ void bhMainGameOver();
 void bhExitGameOver();
 /*void bhDrawGameOver();*/
 
-typedef void (*Func)();
-Func bhCtrGov_mode0[4] = { bhSelectContinue, bhInitGameOver, bhMainGameOver, bhExitGameOver };
+typedef void (*mode0_proc)();
+mode0_proc bhCtrGov_mode0[4] = { bhSelectContinue, bhInitGameOver, bhMainGameOver, bhExitGameOver };
 /*float gov_yn[16];
 _anon23 gov_etb[7];
 unsigned short cnt_mes[17];*/
