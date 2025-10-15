@@ -72,7 +72,8 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
 
     for source in sources:
         object_file = source.replace(".c", ".o")
-        objects.append("include/recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.o")
+        crt0_dest = os.path.join("elf", "crt0.o")
+        objects.append(crt0_dest)
         objects.append("elf/ps2_vu0.o")
         objects.append("elf/ps2_vu1.o")
         objects.append(object_file)
@@ -159,35 +160,26 @@ def main(args):
     # Even if the compilation fails, we want to generate the compile_commands.json for IDEs
     # write_json('compile_commands.json', compile_commands)
 
-    # If the compilation succeeded, attempt to link the objects and print final result
+    output_elf = None
+
     if not build_failed:
         linker_env = {
             "MWLibraries": ";".join(library_dirs),
             "MWLibraryFiles": ""
         }
 
-        print(f"Performing linkage with the following parameters:");
+        crt0_src = "include/recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.o"
+        crt0_dest = "elf/crt0.o"
 
-        output_elf = link_objects(linker, objects, linker_script, linker_flags, libraries, library_dirs, linker_env)
+        os.makedirs("elf", exist_ok=True)
 
-        crt0_file = "include/recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.o"       
+        if os.path.exists(crt0_src) and not os.path.exists(crt0_dest):
+            shutil.copy(crt0_src, crt0_dest)
 
-        destination_directory = "elf/"  
+        print(f"Performing linkage with following parameters:")
 
-        destination_file = os.path.join(destination_directory, "crt0.o")
-
-        if os.path.exists(destination_file):               
-            os.remove(destination_file)
-            
-        if os.path.exists(crt0_file):         
-            shutil.move(crt0_file, destination_directory)     
-
-        for source in sources:
-            object_file = source.replace(".c", ".o")
-            
-            destination = os.path.join("elf", os.path.basename(object_file))
-          
-            shutil.move(object_file, destination)
+        output_elf = link_objects(linker, objects, linker_script,
+        linker_flags, libraries, library_dirs, linker_env)
 
         if output_elf:
             print(f"Build steps have been successfully completed: {os.path.basename(output_elf)} was generated.")
@@ -196,6 +188,27 @@ def main(args):
     else:
         print(f"Compilation fail. See report.txt for more info.")
 
+    
+    crt0_file = "include/recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.o"
+
+    destination_directory = "elf/"
+
+    os.makedirs(destination_directory, exist_ok=True)
+
+    destination_file = os.path.join(destination_directory, "crt0.o")
+
+    if os.path.exists(destination_file):
+        os.remove(destination_file)
+    if os.path.exists(crt0_file):
+        shutil.move(crt0_file, destination_directory)
+
+    for source in sources:
+        object_file = source.replace(".c", ".o")
+
+        if os.path.exists(object_file):
+            destination = os.path.join("elf", os.path.basename(object_file))
+
+            shutil.move(object_file, destination)
 
 if __name__ == "__main__":
     # Argument parser setup
