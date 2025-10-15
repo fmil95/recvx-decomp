@@ -1,12 +1,12 @@
 [submodule "recvx-decomp-mwcc"]
 	path = include/recvx-decomp-mwcc
-	url = https://github.com/fmil95/recvx-decomp-mwcc
+	url = https://github.com/SkeletonPicture/recvx-decomp-mwcc
 [submodule "recvx-decomp-katana"]
 	path = include/recvx-decomp-katana
-	url = https://github.com/fmil95/recvx-decomp-katana
+	url = https://github.com/SkeletonPicture/recvx-decomp-katana
 [submodule "recvx-decomp-cri"]
 	path = include/recvx-decomp-cri
-	url = https://github.com/fmil95/recvx-decomp-cri
+	url = https://github.com/SkeletonPicture/recvx-decomp-cri
 [submodule "recvx-decomp-ps2_sdk"]
 	path = include/recvx-decomp-ps2_sdk
-	url = https://github.com/fmil95/recvx-decomp-ps2_sdk
+	url = https://github.com/SkeletonPicture/recvx-decomp-ps2_sdk
