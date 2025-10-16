@@ -168,9 +168,16 @@ def main(args):
         crt0_dest = "elf/crt0.o"
 
         os.makedirs("elf", exist_ok=True)
+
+        if os.path.exists(crt0_src):
+            if not os.path.exists(crt0_dest):
+                shutil.copy(crt0_src, crt0_dest)
+        else:
+            print(f"Warning: {crt0_src} not found ? skipping crt0.o")
+
+        objects = [obj for obj in objects if not obj.endswith("crt0.o")]
         
-        if os.path.exists(crt0_src) and not os.path.exists(crt0_dest):
-            shutil.copy(crt0_src, crt0_dest)
+        objects.insert(0, crt0_dest)
 
         print(f"Performing linkage with the following parameters:")
 
