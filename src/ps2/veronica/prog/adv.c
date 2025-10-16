@@ -2029,23 +2029,26 @@ int CheckButton(int Level, int Flag, int MaxFlag)
 	// Line 3472, Address: 0x2c4400, Func Offset: 0x520
 	// Line 3473, Address: 0x2c4404, Func Offset: 0x524
 	// Func End, Address: 0x2c440c, Func Offset: 0x52c
-}
-
-// 
-// Start address: 0x2c4410
-int CheckStartButton()
-{
-	// Line 3511, Address: 0x2c4410, Func Offset: 0
-	// Line 3564, Address: 0x2c4414, Func Offset: 0x4
-	// Line 3511, Address: 0x2c441c, Func Offset: 0xc
-	// Line 3564, Address: 0x2c4420, Func Offset: 0x10
-	// Line 3578, Address: 0x2c444c, Func Offset: 0x3c
-	// Line 3580, Address: 0x2c445c, Func Offset: 0x4c
-	// Line 3584, Address: 0x2c4464, Func Offset: 0x54
-	// Line 3587, Address: 0x2c446c, Func Offset: 0x5c
-	// Line 3588, Address: 0x2c4470, Func Offset: 0x60
-	// Func End, Address: 0x2c447c, Func Offset: 0x6c
 }*/
+
+// 100% matching! 
+int CheckStartButton() 
+{ 
+    ADV_WORK* temp; // not from the debugging symbols
+
+    temp = (ADV_WORK*)&AdvWork;
+        
+    if ((Pad[temp->PortId].press & 0x800))
+    { 
+        CallSystemSeBasic(3, 0, 0); 
+        
+        StopAdvScreenSaver(0); 
+        
+        return 1;
+    }
+    
+    return 0; 
+} 
 
 // 
 // Start address: 0x2c4480
