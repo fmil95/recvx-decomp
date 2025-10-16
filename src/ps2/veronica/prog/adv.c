@@ -2650,7 +2650,7 @@ void DisplayOptionBg(int Level, int Flag)
 	// Line 4395, Address: 0x2c5480, Func Offset: 0x270
 	// Line 4398, Address: 0x2c5488, Func Offset: 0x278
 	// Func End, Address: 0x2c54bc, Func Offset: 0x2ac
-}
+}*/
 
 // 
 // Start address: 0x2c54c0
@@ -2661,8 +2661,8 @@ int DisplayOptionPlateLevel0(int PortId, int Flag)
 	unsigned int Alpha;
 	int ReturnCode;
 	int i;
-	_anon0* qp;
-	_anon8* ap;
+	//_anon0* qp;
+	//_anon8* ap;
 	// Line 4410, Address: 0x2c54c0, Func Offset: 0
 	// Line 4411, Address: 0x2c54e4, Func Offset: 0x24
 	// Line 4419, Address: 0x2c54ec, Func Offset: 0x2c
@@ -2820,6 +2820,7 @@ int DisplayOptionPlateLevel0(int PortId, int Flag)
 	// Line 4663, Address: 0x2c6164, Func Offset: 0xca4
 	// Line 4664, Address: 0x2c6168, Func Offset: 0xca8
 	// Func End, Address: 0x2c6190, Func Offset: 0xcd0
+	scePrintf("DisplayOptionPlateLevel0 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2835,8 +2836,8 @@ int DisplayOptionPlateLevel1(int PortId, int Flag)
 	int ButtonSet[3][3];
 	int i;
 	int ReturnCode;
-	_anon0* qp;
-	_anon8* ap;
+	//_anon0* qp;
+	//_anon8* ap;
 	// Line 4676, Address: 0x2c6190, Func Offset: 0
 	// Line 4677, Address: 0x2c61bc, Func Offset: 0x2c
 	// Line 4679, Address: 0x2c61c4, Func Offset: 0x34
@@ -2951,6 +2952,7 @@ int DisplayOptionPlateLevel1(int PortId, int Flag)
 	// Line 4901, Address: 0x2c6d18, Func Offset: 0xb88
 	// Line 4902, Address: 0x2c6d1c, Func Offset: 0xb8c
 	// Func End, Address: 0x2c6d4c, Func Offset: 0xbbc
+	scePrintf("DisplayOptionPlateLevel1 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2959,11 +2961,11 @@ int DisplayOptionPlateLevel2(int PortId, int Flag)
 {
 	unsigned int CursorCol[4];
 	char Str[4];
-	_anon32 BotRigt;
-	_anon32 TopLeft;
+	//_anon32 BotRigt;
+	//_anon32 TopLeft;
 	int ReturnCode;
-	_anon0* qp;
-	_anon8* ap;
+	//_anon0* qp;
+	//_anon8* ap;
 	// Line 4914, Address: 0x2c6d50, Func Offset: 0
 	// Line 4915, Address: 0x2c6d6c, Func Offset: 0x1c
 	// Line 4916, Address: 0x2c6d74, Func Offset: 0x24
@@ -3082,6 +3084,7 @@ int DisplayOptionPlateLevel2(int PortId, int Flag)
 	// Line 5284, Address: 0x2c7848, Func Offset: 0xaf8
 	// Line 5285, Address: 0x2c784c, Func Offset: 0xafc
 	// Func End, Address: 0x2c786c, Func Offset: 0xb1c
+	scePrintf("DisplayOptionPlateLevel2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3089,14 +3092,14 @@ int DisplayOptionPlateLevel2(int PortId, int Flag)
 int DisplayOptionPlateLevel3(int PortId, int Flag)
 {
 	unsigned int PolyCol;
-	_anon28 ColorBarDef[8];
-	_anon13 poly[4];
-	_anon32 BotRigt;
-	_anon32 TopLeft;
+	//_anon28 ColorBarDef[8];
+	//_anon13 poly[4];
+	//_anon32 BotRigt;
+	//_anon32 TopLeft;
 	int ReturnCode;
 	int i;
-	_anon0* qp;
-	_anon8* ap;
+	//_anon0* qp;
+	//_anon8* ap;
 	// Line 5302, Address: 0x2c7870, Func Offset: 0
 	// Line 5303, Address: 0x2c789c, Func Offset: 0x2c
 	// Line 5309, Address: 0x2c78a4, Func Offset: 0x34
@@ -3175,22 +3178,26 @@ int DisplayOptionPlateLevel3(int PortId, int Flag)
 	// Line 5415, Address: 0x2c7cbc, Func Offset: 0x44c
 	// Line 5416, Address: 0x2c7cc0, Func Offset: 0x450
 	// Func End, Address: 0x2c7cf0, Func Offset: 0x480
+	scePrintf("DisplayOptionPlateLevel3 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c7cf0
+// 100% matching! 
 int DisplayOptionPlate(int PortId, int Level, int Flag)
-{
-	// Line 5429, Address: 0x2c7cf0, Func Offset: 0
-	// Line 5430, Address: 0x2c7cf4, Func Offset: 0x4
-	// Line 5432, Address: 0x2c7d28, Func Offset: 0x38
-	// Line 5435, Address: 0x2c7d3c, Func Offset: 0x4c
-	// Line 5438, Address: 0x2c7d50, Func Offset: 0x60
-	// Line 5441, Address: 0x2c7d64, Func Offset: 0x74
-	// Line 5444, Address: 0x2c7d74, Func Offset: 0x84
-	// Line 5446, Address: 0x2c7d78, Func Offset: 0x88
-	// Func End, Address: 0x2c7d84, Func Offset: 0x94
-}*/
+{ 
+    switch (Level) 
+    {                  
+    case 0:
+        return DisplayOptionPlateLevel0(PortId, Flag); 
+    case 1:
+        return DisplayOptionPlateLevel1(PortId, Flag); 
+    case 2:
+        return DisplayOptionPlateLevel2(PortId, Flag); 
+    case 3: 
+        return DisplayOptionPlateLevel3(PortId, Flag); 
+    }
+
+    return -1;
+} 
 
 // 
 // Start address: 0x2c7d90
