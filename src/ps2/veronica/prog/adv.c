@@ -1669,7 +1669,7 @@ void DisplayPressStartPlate(float FadeRate)
     AdvEasyDrawTextureS(1, ((unsigned int)FadeRate << 24) | 0xFFFFFF, qp, FadeRate, 1, temp);
 }
 
-/*// 
+// 
 // Start address: 0x2c3460
 void DisplayGameModePlate(int Cursor, int CursorMax, float FadeRate, int Flag)
 {
@@ -1678,8 +1678,8 @@ void DisplayGameModePlate(int Cursor, int CursorMax, float FadeRate, int Flag)
 	int DivTbl[4];
 	unsigned int Alpha;
 	int i;
-	_anon0* qp;
-	_anon8* ap;
+	//_anon0* qp;
+	//_anon8* ap;
 	// Line 2898, Address: 0x2c3460, Func Offset: 0
 	// Line 2899, Address: 0x2c3478, Func Offset: 0x18
 	// Line 2898, Address: 0x2c3480, Func Offset: 0x20
@@ -1736,6 +1736,7 @@ void DisplayGameModePlate(int Cursor, int CursorMax, float FadeRate, int Flag)
 	// Line 3018, Address: 0x2c3768, Func Offset: 0x308
 	// Line 3019, Address: 0x2c3770, Func Offset: 0x310
 	// Func End, Address: 0x2c3798, Func Offset: 0x338
+	scePrintf("DisplayGameModePlate - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1745,8 +1746,8 @@ void DisplayNewGamePlate(int Cursor, float FadeRate, int Flag)
 	int DivTbl[3];
 	unsigned int Alpha;
 	int i;
-	_anon0* qp;
-	_anon8* ap;
+	//_anon0* qp;
+	//_anon8* ap;
 	// Line 3031, Address: 0x2c37a0, Func Offset: 0
 	// Line 3032, Address: 0x2c37bc, Func Offset: 0x1c
 	// Line 3031, Address: 0x2c37c4, Func Offset: 0x24
@@ -1789,6 +1790,7 @@ void DisplayNewGamePlate(int Cursor, float FadeRate, int Flag)
 	// Line 3140, Address: 0x2c3a8c, Func Offset: 0x2ec
 	// Line 3141, Address: 0x2c3a94, Func Offset: 0x2f4
 	// Func End, Address: 0x2c3abc, Func Offset: 0x31c
+	scePrintf("DisplayNewGamePlate - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1798,8 +1800,8 @@ void DisplayExtraGamePlate(int Cursor, float FadeRate, int Flag)
 	int DivTbl[2];
 	unsigned int Alpha;
 	int i;
-	_anon0* qp;
-	_anon8* ap;
+	//_anon0* qp;
+	//_anon8* ap;
 	// Line 3152, Address: 0x2c3ac0, Func Offset: 0
 	// Line 3153, Address: 0x2c3adc, Func Offset: 0x1c
 	// Line 3152, Address: 0x2c3ae4, Func Offset: 0x24
@@ -1838,7 +1840,8 @@ void DisplayExtraGamePlate(int Cursor, float FadeRate, int Flag)
 	// Line 3212, Address: 0x2c3d4c, Func Offset: 0x28c
 	// Line 3213, Address: 0x2c3d54, Func Offset: 0x294
 	// Func End, Address: 0x2c3d7c, Func Offset: 0x2bc
-}*/
+	scePrintf("DisplayExtraGamePlate - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void FadeInPlate(int NextMode)
@@ -1904,7 +1907,7 @@ void TitleCall(int PortId, int ReturnCode)
     ap->GenFlag = 1; 
 } 
 
-/*// 
+// 
 // Start address: 0x2c3ee0
 int CheckButton(int Level, int Flag, int MaxFlag)
 {
@@ -1915,7 +1918,7 @@ int CheckButton(int Level, int Flag, int MaxFlag)
 	unsigned char NewGameDef[3];
 	unsigned int UpKey[3];
 	unsigned int DownKey[3];
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 3273, Address: 0x2c3ee0, Func Offset: 0
 	// Line 3274, Address: 0x2c3efc, Func Offset: 0x1c
 	// Line 3276, Address: 0x2c3f04, Func Offset: 0x24
@@ -2029,7 +2032,8 @@ int CheckButton(int Level, int Flag, int MaxFlag)
 	// Line 3472, Address: 0x2c4400, Func Offset: 0x520
 	// Line 3473, Address: 0x2c4404, Func Offset: 0x524
 	// Func End, Address: 0x2c440c, Func Offset: 0x52c
-}*/
+	scePrintf("CheckButton - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 int CheckStartButton() 
@@ -2050,276 +2054,430 @@ int CheckStartButton()
     return 0; 
 } 
 
-// 
-// Start address: 0x2c4480
-int Adv_BioCvTitle()
-{
-	unsigned int a;
-	//_anon13 poly[4];
-	unsigned int McCrntResult;
-	int TitleSoftResetFlag;
-	int j;
+// 99.79% matching
+int Adv_BioCvTitle() 
+{ 
+    ADV_WORK* ap;
+    int ReturnCode;
 	int i;
-	int ReturnCode;
-	//_anon8* ap;
-	unsigned int ulFrame;
-	unsigned int McPrevResult;
-	// Line 3635, Address: 0x2c4480, Func Offset: 0
-	// Line 3636, Address: 0x2c4498, Func Offset: 0x18
-	// Line 3637, Address: 0x2c44a0, Func Offset: 0x20
-	// Line 3646, Address: 0x2c44a4, Func Offset: 0x24
-	// Line 3647, Address: 0x2c44ac, Func Offset: 0x2c
-	// Line 3648, Address: 0x2c44b4, Func Offset: 0x34
-	// Line 3649, Address: 0x2c44bc, Func Offset: 0x3c
-	// Line 3650, Address: 0x2c44c4, Func Offset: 0x44
-	// Line 3651, Address: 0x2c44d0, Func Offset: 0x50
-	// Line 3653, Address: 0x2c44e0, Func Offset: 0x60
-	// Line 3652, Address: 0x2c44e4, Func Offset: 0x64
-	// Line 3653, Address: 0x2c44e8, Func Offset: 0x68
-	// Line 3657, Address: 0x2c44ec, Func Offset: 0x6c
-	// Line 3659, Address: 0x2c4518, Func Offset: 0x98
-	// Line 3660, Address: 0x2c4528, Func Offset: 0xa8
-	// Line 3661, Address: 0x2c4530, Func Offset: 0xb0
-	// Line 3662, Address: 0x2c4538, Func Offset: 0xb8
-	// Line 3664, Address: 0x2c453c, Func Offset: 0xbc
-	// Line 3666, Address: 0x2c4544, Func Offset: 0xc4
-	// Line 3665, Address: 0x2c4548, Func Offset: 0xc8
-	// Line 3667, Address: 0x2c4550, Func Offset: 0xd0
-	// Line 3666, Address: 0x2c4554, Func Offset: 0xd4
-	// Line 3667, Address: 0x2c4558, Func Offset: 0xd8
-	// Line 3666, Address: 0x2c455c, Func Offset: 0xdc
-	// Line 3667, Address: 0x2c4560, Func Offset: 0xe0
-	// Line 3668, Address: 0x2c456c, Func Offset: 0xec
-	// Line 3669, Address: 0x2c457c, Func Offset: 0xfc
-	// Line 3671, Address: 0x2c4580, Func Offset: 0x100
-	// Line 3670, Address: 0x2c4584, Func Offset: 0x104
-	// Line 3671, Address: 0x2c4588, Func Offset: 0x108
-	// Line 3672, Address: 0x2c458c, Func Offset: 0x10c
-	// Line 3690, Address: 0x2c4594, Func Offset: 0x114
-	// Line 3691, Address: 0x2c45bc, Func Offset: 0x13c
-	// Line 3693, Address: 0x2c45c0, Func Offset: 0x140
-	// Line 3694, Address: 0x2c45d0, Func Offset: 0x150
-	// Line 3693, Address: 0x2c45d4, Func Offset: 0x154
-	// Line 3694, Address: 0x2c45d8, Func Offset: 0x158
-	// Line 3693, Address: 0x2c45dc, Func Offset: 0x15c
-	// Line 3694, Address: 0x2c45e4, Func Offset: 0x164
-	// Line 3700, Address: 0x2c45ec, Func Offset: 0x16c
-	// Line 3694, Address: 0x2c45f0, Func Offset: 0x170
-	// Line 3700, Address: 0x2c45f8, Func Offset: 0x178
-	// Line 3701, Address: 0x2c460c, Func Offset: 0x18c
-	// Line 3704, Address: 0x2c4614, Func Offset: 0x194
-	// Line 3723, Address: 0x2c4620, Func Offset: 0x1a0
-	// Line 3725, Address: 0x2c4628, Func Offset: 0x1a8
-	// Line 3724, Address: 0x2c462c, Func Offset: 0x1ac
-	// Line 3726, Address: 0x2c4630, Func Offset: 0x1b0
-	// Line 3725, Address: 0x2c4634, Func Offset: 0x1b4
-	// Line 3727, Address: 0x2c4638, Func Offset: 0x1b8
-	// Line 3726, Address: 0x2c463c, Func Offset: 0x1bc
-	// Line 3727, Address: 0x2c4640, Func Offset: 0x1c0
-	// Line 3731, Address: 0x2c4644, Func Offset: 0x1c4
-	// Line 3735, Address: 0x2c4670, Func Offset: 0x1f0
-	// Line 3738, Address: 0x2c4678, Func Offset: 0x1f8
-	// Line 3761, Address: 0x2c4680, Func Offset: 0x200
-	// Line 3777, Address: 0x2c4688, Func Offset: 0x208
-	// Line 3779, Address: 0x2c4690, Func Offset: 0x210
-	// Line 3778, Address: 0x2c4694, Func Offset: 0x214
-	// Line 3780, Address: 0x2c4698, Func Offset: 0x218
-	// Line 3779, Address: 0x2c469c, Func Offset: 0x21c
-	// Line 3780, Address: 0x2c46a0, Func Offset: 0x220
-	// Line 3781, Address: 0x2c46a4, Func Offset: 0x224
-	// Line 3785, Address: 0x2c46a8, Func Offset: 0x228
-	// Line 3790, Address: 0x2c46d4, Func Offset: 0x254
-	// Line 3798, Address: 0x2c46dc, Func Offset: 0x25c
-	// Line 3814, Address: 0x2c46e0, Func Offset: 0x260
-	// Line 3815, Address: 0x2c46e4, Func Offset: 0x264
-	// Line 3817, Address: 0x2c46ec, Func Offset: 0x26c
-	// Line 3818, Address: 0x2c4704, Func Offset: 0x284
-	// Line 3819, Address: 0x2c470c, Func Offset: 0x28c
-	// Line 3821, Address: 0x2c472c, Func Offset: 0x2ac
-	// Line 3819, Address: 0x2c4730, Func Offset: 0x2b0
-	// Line 3821, Address: 0x2c4734, Func Offset: 0x2b4
-	// Line 3822, Address: 0x2c473c, Func Offset: 0x2bc
-	// Line 3823, Address: 0x2c4740, Func Offset: 0x2c0
-	// Line 3825, Address: 0x2c4748, Func Offset: 0x2c8
-	// Line 3826, Address: 0x2c4750, Func Offset: 0x2d0
-	// Line 3828, Address: 0x2c4758, Func Offset: 0x2d8
-	// Line 3836, Address: 0x2c4768, Func Offset: 0x2e8
-	// Line 3838, Address: 0x2c4784, Func Offset: 0x304
-	// Line 3839, Address: 0x2c47a0, Func Offset: 0x320
-	// Line 3840, Address: 0x2c47b0, Func Offset: 0x330
-	// Line 3842, Address: 0x2c47b8, Func Offset: 0x338
-	// Line 3843, Address: 0x2c47cc, Func Offset: 0x34c
-	// Line 3844, Address: 0x2c47d0, Func Offset: 0x350
-	// Line 3846, Address: 0x2c47d8, Func Offset: 0x358
-	// Line 3847, Address: 0x2c47e8, Func Offset: 0x368
-	// Line 3853, Address: 0x2c4820, Func Offset: 0x3a0
-	// Line 3854, Address: 0x2c4824, Func Offset: 0x3a4
-	// Line 3861, Address: 0x2c482c, Func Offset: 0x3ac
-	// Line 3862, Address: 0x2c4830, Func Offset: 0x3b0
-	// Line 3863, Address: 0x2c4838, Func Offset: 0x3b8
-	// Line 3867, Address: 0x2c4840, Func Offset: 0x3c0
-	// Line 3869, Address: 0x2c4848, Func Offset: 0x3c8
-	// Line 3871, Address: 0x2c4850, Func Offset: 0x3d0
-	// Line 3872, Address: 0x2c4854, Func Offset: 0x3d4
-	// Line 3873, Address: 0x2c4864, Func Offset: 0x3e4
-	// Line 3872, Address: 0x2c486c, Func Offset: 0x3ec
-	// Line 3875, Address: 0x2c4870, Func Offset: 0x3f0
-	// Line 3877, Address: 0x2c4874, Func Offset: 0x3f4
-	// Line 3872, Address: 0x2c4878, Func Offset: 0x3f8
-	// Line 3873, Address: 0x2c4880, Func Offset: 0x400
-	// Line 3875, Address: 0x2c4898, Func Offset: 0x418
-	// Line 3876, Address: 0x2c489c, Func Offset: 0x41c
-	// Line 3877, Address: 0x2c48a0, Func Offset: 0x420
-	// Line 3878, Address: 0x2c48a4, Func Offset: 0x424
-	// Line 3879, Address: 0x2c48ac, Func Offset: 0x42c
-	// Line 3880, Address: 0x2c48b0, Func Offset: 0x430
-	// Line 3882, Address: 0x2c48b8, Func Offset: 0x438
-	// Line 3883, Address: 0x2c48c0, Func Offset: 0x440
-	// Line 3882, Address: 0x2c48c8, Func Offset: 0x448
-	// Line 3883, Address: 0x2c48d0, Func Offset: 0x450
-	// Line 3885, Address: 0x2c48e4, Func Offset: 0x464
-	// Line 3886, Address: 0x2c4904, Func Offset: 0x484
-	// Line 3887, Address: 0x2c4908, Func Offset: 0x488
-	// Line 3889, Address: 0x2c490c, Func Offset: 0x48c
-	// Line 3891, Address: 0x2c4914, Func Offset: 0x494
-	// Line 3892, Address: 0x2c4934, Func Offset: 0x4b4
-	// Line 3893, Address: 0x2c4938, Func Offset: 0x4b8
-	// Line 3897, Address: 0x2c4940, Func Offset: 0x4c0
-	// Line 3898, Address: 0x2c494c, Func Offset: 0x4cc
-	// Line 3897, Address: 0x2c4954, Func Offset: 0x4d4
-	// Line 3898, Address: 0x2c4958, Func Offset: 0x4d8
-	// Line 3899, Address: 0x2c4968, Func Offset: 0x4e8
-	// Line 3901, Address: 0x2c497c, Func Offset: 0x4fc
-	// Line 3900, Address: 0x2c4980, Func Offset: 0x500
-	// Line 3901, Address: 0x2c4984, Func Offset: 0x504
-	// Line 3902, Address: 0x2c4988, Func Offset: 0x508
-	// Line 3903, Address: 0x2c498c, Func Offset: 0x50c
-	// Line 3917, Address: 0x2c4994, Func Offset: 0x514
-	// Line 3982, Address: 0x2c49a4, Func Offset: 0x524
-	// Line 3983, Address: 0x2c49ac, Func Offset: 0x52c
-	// Line 3984, Address: 0x2c49b4, Func Offset: 0x534
-	// Line 3985, Address: 0x2c49bc, Func Offset: 0x53c
-	// Line 3993, Address: 0x2c49c4, Func Offset: 0x544
-	// Line 3994, Address: 0x2c49cc, Func Offset: 0x54c
-	// Line 3996, Address: 0x2c49d4, Func Offset: 0x554
-	// Line 3997, Address: 0x2c49dc, Func Offset: 0x55c
-	// Line 3998, Address: 0x2c49e4, Func Offset: 0x564
-	// Line 4000, Address: 0x2c49ec, Func Offset: 0x56c
-	// Line 4001, Address: 0x2c49f4, Func Offset: 0x574
-	// Line 4002, Address: 0x2c49fc, Func Offset: 0x57c
-	// Line 4001, Address: 0x2c4a04, Func Offset: 0x584
-	// Line 4006, Address: 0x2c4a08, Func Offset: 0x588
-	// Line 4001, Address: 0x2c4a0c, Func Offset: 0x58c
-	// Line 4006, Address: 0x2c4a10, Func Offset: 0x590
-	// Line 4001, Address: 0x2c4a14, Func Offset: 0x594
-	// Line 4002, Address: 0x2c4a1c, Func Offset: 0x59c
-	// Line 4006, Address: 0x2c4a34, Func Offset: 0x5b4
-	// Line 4007, Address: 0x2c4a38, Func Offset: 0x5b8
-	// Line 4017, Address: 0x2c4a40, Func Offset: 0x5c0
-	// Line 4018, Address: 0x2c4a5c, Func Offset: 0x5dc
-	// Line 4021, Address: 0x2c4a64, Func Offset: 0x5e4
-	// Line 4022, Address: 0x2c4a70, Func Offset: 0x5f0
-	// Line 4023, Address: 0x2c4a84, Func Offset: 0x604
-	// Line 4031, Address: 0x2c4a8c, Func Offset: 0x60c
-	// Line 4033, Address: 0x2c4a9c, Func Offset: 0x61c
-	// Line 4034, Address: 0x2c4aa8, Func Offset: 0x628
-	// Line 4036, Address: 0x2c4ac0, Func Offset: 0x640
-	// Line 4037, Address: 0x2c4acc, Func Offset: 0x64c
-	// Line 4040, Address: 0x2c4ad4, Func Offset: 0x654
-	// Line 4042, Address: 0x2c4ae4, Func Offset: 0x664
-	// Line 4043, Address: 0x2c4aec, Func Offset: 0x66c
-	// Line 4044, Address: 0x2c4af4, Func Offset: 0x674
-	// Line 4046, Address: 0x2c4afc, Func Offset: 0x67c
-	// Line 4048, Address: 0x2c4b08, Func Offset: 0x688
-	// Line 4049, Address: 0x2c4b14, Func Offset: 0x694
-	// Line 4051, Address: 0x2c4b2c, Func Offset: 0x6ac
-	// Line 4052, Address: 0x2c4b38, Func Offset: 0x6b8
-	// Line 4055, Address: 0x2c4b40, Func Offset: 0x6c0
-	// Line 4058, Address: 0x2c4b50, Func Offset: 0x6d0
-	// Line 4059, Address: 0x2c4b58, Func Offset: 0x6d8
-	// Line 4060, Address: 0x2c4b5c, Func Offset: 0x6dc
-	// Line 4064, Address: 0x2c4b64, Func Offset: 0x6e4
-	// Line 4065, Address: 0x2c4b70, Func Offset: 0x6f0
-	// Line 4066, Address: 0x2c4b84, Func Offset: 0x704
-	// Line 4068, Address: 0x2c4b9c, Func Offset: 0x71c
-	// Line 4069, Address: 0x2c4ba8, Func Offset: 0x728
-	// Line 4070, Address: 0x2c4bb0, Func Offset: 0x730
-	// Line 4073, Address: 0x2c4bb8, Func Offset: 0x738
-	// Line 4074, Address: 0x2c4bc8, Func Offset: 0x748
-	// Line 4076, Address: 0x2c4bd0, Func Offset: 0x750
-	// Line 4084, Address: 0x2c4bd8, Func Offset: 0x758
-	// Line 4085, Address: 0x2c4bec, Func Offset: 0x76c
-	// Line 4087, Address: 0x2c4bf4, Func Offset: 0x774
-	// Line 4088, Address: 0x2c4c08, Func Offset: 0x788
-	// Line 4089, Address: 0x2c4c10, Func Offset: 0x790
-	// Line 4091, Address: 0x2c4c18, Func Offset: 0x798
-	// Line 4092, Address: 0x2c4c20, Func Offset: 0x7a0
-	// Line 4093, Address: 0x2c4c30, Func Offset: 0x7b0
-	// Line 4095, Address: 0x2c4c38, Func Offset: 0x7b8
-	// Line 4096, Address: 0x2c4c48, Func Offset: 0x7c8
-	// Line 4097, Address: 0x2c4c58, Func Offset: 0x7d8
-	// Line 4099, Address: 0x2c4c60, Func Offset: 0x7e0
-	// Line 4100, Address: 0x2c4c70, Func Offset: 0x7f0
-	// Line 4101, Address: 0x2c4c78, Func Offset: 0x7f8
-	// Line 4103, Address: 0x2c4c80, Func Offset: 0x800
-	// Line 4104, Address: 0x2c4c88, Func Offset: 0x808
-	// Line 4105, Address: 0x2c4c98, Func Offset: 0x818
-	// Line 4107, Address: 0x2c4ca0, Func Offset: 0x820
-	// Line 4108, Address: 0x2c4cb0, Func Offset: 0x830
-	// Line 4109, Address: 0x2c4cc0, Func Offset: 0x840
-	// Line 4111, Address: 0x2c4cc8, Func Offset: 0x848
-	// Line 4112, Address: 0x2c4cd8, Func Offset: 0x858
-	// Line 4113, Address: 0x2c4ce0, Func Offset: 0x860
-	// Line 4156, Address: 0x2c4ce8, Func Offset: 0x868
-	// Line 4157, Address: 0x2c4cf8, Func Offset: 0x878
-	// Line 4158, Address: 0x2c4cfc, Func Offset: 0x87c
-	// Line 4159, Address: 0x2c4d04, Func Offset: 0x884
-	// Line 4160, Address: 0x2c4d0c, Func Offset: 0x88c
-	// Line 4161, Address: 0x2c4d18, Func Offset: 0x898
-	// Line 4167, Address: 0x2c4d34, Func Offset: 0x8b4
-	// Line 4169, Address: 0x2c4d50, Func Offset: 0x8d0
-	// Line 4171, Address: 0x2c4d58, Func Offset: 0x8d8
-	// Line 4170, Address: 0x2c4d60, Func Offset: 0x8e0
-	// Line 4171, Address: 0x2c4d64, Func Offset: 0x8e4
-	// Line 4172, Address: 0x2c4d68, Func Offset: 0x8e8
-	// Line 4177, Address: 0x2c4d6c, Func Offset: 0x8ec
-	// Line 4173, Address: 0x2c4d70, Func Offset: 0x8f0
-	// Line 4174, Address: 0x2c4d74, Func Offset: 0x8f4
-	// Line 4175, Address: 0x2c4d7c, Func Offset: 0x8fc
-	// Line 4176, Address: 0x2c4d80, Func Offset: 0x900
-	// Line 4177, Address: 0x2c4d84, Func Offset: 0x904
-	// Line 4178, Address: 0x2c4d8c, Func Offset: 0x90c
-	// Line 4179, Address: 0x2c4d90, Func Offset: 0x910
-	// Line 4180, Address: 0x2c4d94, Func Offset: 0x914
-	// Line 4181, Address: 0x2c4d98, Func Offset: 0x918
-	// Line 4182, Address: 0x2c4d9c, Func Offset: 0x91c
-	// Line 4183, Address: 0x2c4da0, Func Offset: 0x920
-	// Line 4184, Address: 0x2c4da4, Func Offset: 0x924
-	// Line 4185, Address: 0x2c4da8, Func Offset: 0x928
-	// Line 4188, Address: 0x2c4db8, Func Offset: 0x938
-	// Line 4189, Address: 0x2c4dc4, Func Offset: 0x944
-	// Line 4188, Address: 0x2c4dcc, Func Offset: 0x94c
-	// Line 4189, Address: 0x2c4dd0, Func Offset: 0x950
-	// Line 4190, Address: 0x2c4de0, Func Offset: 0x960
-	// Line 4198, Address: 0x2c4de4, Func Offset: 0x964
-	// Line 4199, Address: 0x2c4df4, Func Offset: 0x974
-	// Line 4200, Address: 0x2c4dfc, Func Offset: 0x97c
-	// Line 4201, Address: 0x2c4e04, Func Offset: 0x984
-	// Line 4208, Address: 0x2c4e2c, Func Offset: 0x9ac
-	// Line 4210, Address: 0x2c4e38, Func Offset: 0x9b8
-	// Line 4211, Address: 0x2c4e44, Func Offset: 0x9c4
-	// Line 4216, Address: 0x2c4e4c, Func Offset: 0x9cc
-	// Line 4212, Address: 0x2c4e50, Func Offset: 0x9d0
-	// Line 4218, Address: 0x2c4e54, Func Offset: 0x9d4
-	// Line 4219, Address: 0x2c4e5c, Func Offset: 0x9dc
-	// Line 4222, Address: 0x2c4e78, Func Offset: 0x9f8
-	// Line 4223, Address: 0x2c4e7c, Func Offset: 0x9fc
-	// Line 4224, Address: 0x2c4e80, Func Offset: 0xa00
-	// Line 4225, Address: 0x2c4e84, Func Offset: 0xa04
-	// Line 4228, Address: 0x2c4e8c, Func Offset: 0xa0c
-	// Line 4229, Address: 0x2c4e90, Func Offset: 0xa10
-	// Func End, Address: 0x2c4eac, Func Offset: 0xa2c
-	scePrintf("Adv_BioCvTitle - UNIMPLEMENTED!\n");
+	int j;
+	int TitleSoftResetFlag;
+    unsigned int McCrntResult;
+    NJS_POLYGON_VTX poly[4];
+    unsigned int a;
+	static unsigned int ulFrame;
+	static unsigned int McPrevResult;
+
+    ap = (ADV_WORK*)&AdvWork;
+
+    ReturnCode = 0; 
+    
+    TitleSoftResetFlag = 0; 
+    
+    ap->PortId = AdvGetCurrentPort();
+    
+    ExecuteAdvFade(); 
+    ExecuteAdvScreenSaver(); 
+    
+    AdvCheckSoftReset(0); 
+    
+    if ((ap->DepthLevel != 0) && (CheckSoftResetKeyFlag(-1) != 0)) 
+    { 
+        TitleSoftResetFlag = 1; 
+        
+        ap->Mode = -1; 
+    }
+    
+    switch (ap->Mode) 
+    { 
+    case 0:
+        RequestAllStopSoundEx(1, 0, 0); 
+        
+        SetEventVibrationMode(0); 
+        
+        ResetAdvSystem(); 
+        
+        ap->AppMode = 0; 
+         
+        for (i = 0; i < 4; i++) 
+        { 
+            for (j = 0; j < 4; j++) 
+            { 
+                ap->CursorFlag[i][j] = 1; 
+            } 
+        } 
+        
+        ap->Cursor[1] = 0; 
+        ap->Cursor[2] = 0; 
+        
+        ap->CursorMax[1] = 3; 
+        ap->CursorMax[2] = 2; 
+    
+        if (((sys->ss_flg & 0x100000)) || ((sys->ss_flg & 0x1000))) 
+        {
+            ap->FromTitle = 0; 
+        }
+        
+        sys->ss_flg &= ~0x100000; 
+        sys->ss_flg &= ~0x1000; 
+
+        if ((sys->ssd_flg & 0x1)) 
+        { 
+            ap->ExtraFlag = 1; 
+        }
+        
+        if (ap->ExtraFlag != 0)
+        { 
+            ap->CursorMax[0] = 4; 
+            
+            ap->ModeCommandId[0] = 0; 
+            ap->ModeCommandId[1] = 1; 
+            ap->ModeCommandId[2] = 3; 
+            ap->ModeCommandId[3] = 2; 
+
+            switch (ap->FromTitle) 
+            { 
+            case 0:
+            case 1:
+                ap->Cursor[0] = 0; 
+                break;
+            case 3:
+                ap->Cursor[0] = 2; 
+                break;
+            case 2:
+                ap->Cursor[0] = 3; 
+                break;
+            }
+        } 
+        else 
+        {
+            ap->CursorMax[0] = 3; 
+            
+            ap->ModeCommandId[0] = 0; 
+            ap->ModeCommandId[1] = 1; 
+            ap->ModeCommandId[2] = 2; 
+            ap->ModeCommandId[3] = 3; 
+
+            switch (ap->FromTitle)
+            { 
+            case 0:
+            case 1:
+            case 3:
+                ap->Cursor[0] = 0; 
+                break;
+            case 2:
+                ap->Cursor[0] = 2; 
+                break;
+            }
+        }
+ 
+        ap->Mode = 1; 
+        break; 
+    case 1:
+        sys->ss_flg |= 0x20000; 
+        
+        ClearSoftResetKeyFlag(ap->PortId); 
+        
+        Pad[ap->PortId].Flag = 1; 
+        
+        RequestAdvInsideFileEx(2, 0); 
+        
+        ap->Mode = 2; 
+        break; 
+    case 2:
+        CheckReadEndAdvInsideFile2(3); 
+        break; 
+    case 3:
+        RequestAllStopSoundEx(0, 1, 0); 
+
+        AdvEasySetupTextureBasic(AdvGetResourcePtr(ap->ptr[0], 0), 0, 0); 
+        AdvEasySetupTextureBasic(AdvGetResourcePtr(ap->ptr[0], 2), 0, 1); 
+        
+        AdvEasyTransTextureBasic(0, 2, 0); 
+        
+        AdvTransShadowPalette(); 
+        
+        RequestAdvFade(2, GetSamurai(50));
+        
+        ap->Mode = 4; 
+        break; 
+    case 4:
+        if (CheckAdvFade() == 0)
+        { 
+            switch (ap->FromTitle) 
+            { 
+            case 0:
+                ap->Mode = 5; 
+                break; 
+            case 1:
+            case 3:
+            case 2:
+                ap->FlushCount = 0; 
+                ap->FlushSpeed = 32.0f; 
+                
+                ap->Mode = 8; 
+                break;
+            }
+        }
+        
+        DisplayTitleBg(); 
+        break; 
+    case 5:
+        ap->DepthLevel = 0;
+        
+        sys->ss_flg &= ~0x20000; 
+        
+        Pad[ap->PortId].Flag = 0; 
+        
+        ap->Timer = 900.0f; 
+        
+        ap->FlushCount = 0;
+        ap->FlushSpeed = 32.0f; 
+        
+        DisplayPressStartPlate(ap->FlushCount); 
+        
+        ap->Mode = 6; 
+        break; 
+    case 6:
+        ap->FlushCount += ap->FlushSpeed; 
+        
+        if (ap->FlushSpeed < 0) 
+        {
+            if (ap->FlushCount <= 128.0f)
+            { 
+                ap->FlushCount = 128.0f; 
+                ap->FlushSpeed = 4.0f; 
+            }
+        } 
+        else if (ap->FlushCount >= 255.0f) 
+        { 
+            ap->FlushCount = 255.0f; 
+            ap->FlushSpeed = -4.0f; 
+        } 
+
+        ap->Timer--; 
+        
+        if (ap->Timer < 0) 
+        { 
+            RequestAdvFade(3, GetSamurai(50)); 
+            
+            ap->FromTitle = 0; 
+            
+            ap->NextReturnCode = 1; 
+            
+            ap->Mode = 17; 
+        } 
+        else if (CheckStartButton() != 0) 
+        { 
+            ap->FlushCount = 255.0f; 
+            ap->FlushSpeed = 32.0f; 
+            
+            ap->NextMode = 8; 
+            ap->Mode = 7; 
+        } 
+
+        DisplayPressStartPlate(ap->FlushCount); 
+        break; 
+    case 7:
+        DisplayPressStartPlate(ap->FlushCount); 
+        
+        FadeOutPlate(); 
+        break; 
+    case 8:
+        ap->DepthLevel = 1; 
+        
+        sys->ss_flg |= 0x20000; 
+        
+        Pad[ap->PortId].Flag = 0; 
+
+        ulFrame = 2; 
+        
+        McPrevResult = 0; 
+
+        if ((ap->Cursor[0] == 0) && (FindFirstVmDrive() < 0))
+        { 
+            ap->Cursor[0] = 1;
+        } 
+        
+        FadeInPlate(9); 
+        
+        DisplayGameModePlate(ap->Cursor[0], ap->CursorMax[0], ap->FlushCount, 1); 
+        break; 
+    case 9:
+        if (ulFrame == 0) 
+        { 
+            McCrntResult = CheckMcSelectPortInfoState(0); 
+            
+            if ((McCrntResult | McPrevResult) == 1) 
+            {
+                CheckButton(0, 1, 0);
+            } 
+            else
+            { 
+                CheckButton(0, 0, 0);
+            }
+            
+            McPrevResult = McCrntResult; 
+            
+            ulFrame = 1;
+        } 
+        else if (ulFrame == 1)
+        { 
+            McCrntResult = CheckMcSelectPortInfoState(1); 
+            
+            if ((McCrntResult | McPrevResult) == 1) 
+            {
+                CheckButton(0, 1, 0);
+            }
+            else
+            {
+                CheckButton(0, 0, 0); 
+            } 
+            
+            McPrevResult = McCrntResult; 
+            
+            ulFrame = 0; 
+        } 
+        else
+        { 
+            McCrntResult = CheckMcSelectPortInfoState(0);
+            McPrevResult = CheckMcSelectPortInfoState(1);
+            
+            if ((McCrntResult | McPrevResult) == 1) 
+            { 
+                CheckButton(0, 1, 0);
+                
+                McPrevResult = 1;
+            } 
+            else
+            { 
+                CheckButton(0, 0, 0); 
+                
+                McPrevResult = 0; 
+            }
+            
+            ulFrame = 0;
+        }
+        
+        DisplayGameModePlate(ap->Cursor[0], ap->CursorMax[0], ap->FlushCount, 0);
+        break; 
+    case 10:
+        DisplayGameModePlate(ap->Cursor[0], ap->CursorMax[0], ap->FlushCount, 1); 
+        
+        FadeOutPlate(); 
+        break; 
+    case 11:
+        FadeInPlate(12); 
+        
+        DisplayNewGamePlate(ap->Cursor[1], ap->FlushCount, 1);
+        break; 
+    case 12:
+        CheckButton(1, 1, 1); 
+        
+        DisplayNewGamePlate(ap->Cursor[1], ap->FlushCount, 0); 
+        break; 
+    case 13:
+        DisplayNewGamePlate(ap->Cursor[1], ap->FlushCount, 1); 
+        
+        FadeOutPlate(); 
+        break;
+    case 14:
+        FadeInPlate(15); 
+        
+        DisplayExtraGamePlate(ap->Cursor[2], ap->FlushCount, 1); 
+        break; 
+    case 15:
+        CheckButton(2, 1, 1); 
+        
+        DisplayExtraGamePlate(ap->Cursor[2], ap->FlushCount, 0); 
+        break; 
+    case 16:
+        DisplayExtraGamePlate(ap->Cursor[2], ap->FlushCount, 1); 
+        
+        FadeOutPlate(); 
+        break; 
+    case 17:
+        if (CheckAdvFade() == 0) 
+        { 
+            ap->Mode = -1; 
+        } 
+        else
+        { 
+            DisplayTitleBg(); 
+            
+            if ((ap->GenFlag != 0) && (ap->FlushCount != 0)) 
+            { 
+                a = (((unsigned int)ap->FlushCount & 0xFF) << 24) | 0xFFFFFF; 
+                
+                poly[0].x = -2.0f; 
+                poly[0].y = -2.0f; 
+                poly[0].z = 0.9f; 
+                poly[0].col = a; 
+                
+                poly[1].x = -2.0f; 
+                poly[1].y = 482.0f; 
+                poly[1].z = 0.9f; 
+                poly[1].col = a; 
+                
+                poly[2].x = 642.0f; 
+                poly[2].y = -2.0f; 
+                poly[2].z = 0.9f; 
+                poly[2].col = a; 
+                
+                poly[3].x = 642.0f; 
+                poly[3].y = 482.0f; 
+                poly[3].z = 0.9f; 
+                poly[3].col = a; 
+                
+                njDrawPolygon(poly, 4, 1); 
+                
+                ap->FlushCount -= 3.0f; 
+                
+                if (ap->FlushCount < 0)
+                { 
+                    ap->FlushCount = 0;
+                } 
+            } 
+        } 
+        
+        break; 
+    } 
+    
+    if (ap->Mode == -1)
+    {
+        StopVibrationEx();
+        
+        AdvEasyReleaseTexture();
+        
+        if ((ap->NextReturnCode == 3) || (ap->NextReturnCode == 2) || (ap->NextReturnCode == 6)) 
+        {
+            StopAdx(0);
+        }
+        
+        if (ap->DepthLevel != 0) 
+        {
+            if (TitleSoftResetFlag != 0) 
+            {
+                ap->FromTitle = 0;
+                
+                ap->NextReturnCode = 7;
+            } 
+            else
+            {
+                sys->ss_flg &= ~0x20000;
+            }
+        }
+        
+        ap->DepthLevel = 0;
+        
+        ap->Mode = 0;
+        
+        ap->Active = 0;
+        
+        ReturnCode = ap->NextReturnCode;
+    }
+    
+    return ReturnCode;
 }
 
 /*// 

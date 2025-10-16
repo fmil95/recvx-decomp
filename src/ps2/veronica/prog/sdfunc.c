@@ -3143,7 +3143,7 @@ void PlayGameSe4Event(_anon25* gp, _anon16* pPos, int FloorType, int SeType)
 	// Line 1988, Address: 0x29456c, Func Offset: 0x16c
 	// Line 1999, Address: 0x294580, Func Offset: 0x180
 	// Func End, Address: 0x29459c, Func Offset: 0x19c
-}
+}*/
 
 // 
 // Start address: 0x2945a0
@@ -3185,8 +3185,8 @@ void CallSystemSeBasic(int SeNo, int Volume, int FxLevel)
 	// Line 2038, Address: 0x29469c, Func Offset: 0xfc
 	// Line 2040, Address: 0x2946a4, Func Offset: 0x104
 	// Func End, Address: 0x2946b0, Func Offset: 0x110
+	scePrintf("CallSystemSeBasic - UNIMPLEMENTED!\n");
 }
-*/
 
 // 100% matching 
 void CallSystemSeEx(int SeNo, int Volume) {
