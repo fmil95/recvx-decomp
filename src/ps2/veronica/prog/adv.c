@@ -2573,28 +2573,28 @@ void ResetOptionMenuParam(int Mode)
     } 
 } 
 
-/*// 
-// Start address: 0x2c5100
-void DisplayOptionScrollPlate(float PosX, float PosY)
-{
-	_anon0* qp;
-	int i;
-	// Line 4321, Address: 0x2c5100, Func Offset: 0
-	// Line 4324, Address: 0x2c5114, Func Offset: 0x14
-	// Line 4321, Address: 0x2c5118, Func Offset: 0x18
-	// Line 4324, Address: 0x2c511c, Func Offset: 0x1c
-	// Line 4326, Address: 0x2c5124, Func Offset: 0x24
-	// Line 4327, Address: 0x2c5130, Func Offset: 0x30
-	// Line 4328, Address: 0x2c5134, Func Offset: 0x34
-	// Line 4329, Address: 0x2c5168, Func Offset: 0x68
-	// Line 4330, Address: 0x2c5198, Func Offset: 0x98
-	// Line 4331, Address: 0x2c51d4, Func Offset: 0xd4
-	// Line 4332, Address: 0x2c51e4, Func Offset: 0xe4
-	// Line 4333, Address: 0x2c51ec, Func Offset: 0xec
-	// Func End, Address: 0x2c5208, Func Offset: 0x108
-}
+// 99.70% matching
+void DisplayOptionScrollPlate(float PosX, float PosY) 
+{ 
+    int i;
+    QUAD* qp;
 
-// 
+    qp = &Qtex[1];
+
+    njTextureFilterMode(1); 
+    
+    for (i = 0; i < 6; i++)
+    { 
+        SetQuadPos(PosX + (i * 112.0f), PosY, 114.0f, 80.0f, qp); 
+        SetQuadUv2(400.0f, 80.0f * i, 114.0f, 80.0f, 2, qp); 
+        
+        AdvEasyDrawTexture(2, -1, qp, (0.01f * i) + 0.92f, 0); 
+    } 
+    
+    njTextureFilterMode(0); 
+} 
+
+/*// 
 // Start address: 0x2c5210
 void DisplayOptionBg(int Level, int Flag)
 {
