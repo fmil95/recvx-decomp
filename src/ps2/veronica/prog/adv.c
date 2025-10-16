@@ -1880,27 +1880,31 @@ void FadeOutPlate()
     }
 } 
 
-/*// 
-// Start address: 0x2c3e50
-void TitleCall(int PortId, int ReturnCode)
-{
-	_anon8* ap;
-	// Line 3251, Address: 0x2c3e50, Func Offset: 0
-	// Line 3252, Address: 0x2c3e64, Func Offset: 0x14
-	// Line 3254, Address: 0x2c3e6c, Func Offset: 0x1c
-	// Line 3255, Address: 0x2c3e74, Func Offset: 0x24
-	// Line 3256, Address: 0x2c3e80, Func Offset: 0x30
-	// Line 3260, Address: 0x2c3e90, Func Offset: 0x40
-	// Line 3262, Address: 0x2c3ea4, Func Offset: 0x54
-	// Line 3264, Address: 0x2c3eac, Func Offset: 0x5c
-	// Line 3263, Address: 0x2c3eb0, Func Offset: 0x60
-	// Line 3264, Address: 0x2c3eb4, Func Offset: 0x64
-	// Line 3265, Address: 0x2c3eb8, Func Offset: 0x68
-	// Line 3266, Address: 0x2c3ec0, Func Offset: 0x70
-	// Func End, Address: 0x2c3ed4, Func Offset: 0x84
-}
+// 100% matching! 
+void TitleCall(int PortId, int ReturnCode) 
+{ 
+    ADV_WORK* ap; 
 
-// 
+    ap = (ADV_WORK*)&AdvWork; 
+    
+    StartVibrationEx(PortId, 16); 
+    
+    SetVolumeAdx2(0, 0); 
+    
+    PlayAdx(0, ap->PatId, 3); 
+    
+    RequestAdvFade(3, GetSamurai(430)); 
+    
+    ap->FlushCount = 180.0f; 
+    
+    ap->NextReturnCode = ReturnCode; 
+    
+    ap->Mode = 17; 
+    
+    ap->GenFlag = 1; 
+} 
+
+/*// 
 // Start address: 0x2c3ee0
 int CheckButton(int Level, int Flag, int MaxFlag)
 {
