@@ -3355,41 +3355,40 @@ int Adv_GameOptionScreen()
 	scePrintf("Adv_GameOptionScreen - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c83e0
+// 100% matching! 
 int Adv_ChangeDiscScreen()
-{
-	//_anon8* ap;
-	// Line 5818, Address: 0x2c83e0, Func Offset: 0
-	// Line 5819, Address: 0x2c83ec, Func Offset: 0xc
-	// Line 5896, Address: 0x2c83f0, Func Offset: 0x10
-	// Line 5898, Address: 0x2c83f8, Func Offset: 0x18
-	// Line 5899, Address: 0x2c8408, Func Offset: 0x28
-	// Line 5898, Address: 0x2c8410, Func Offset: 0x30
-	// Line 5899, Address: 0x2c8414, Func Offset: 0x34
-	// Line 5898, Address: 0x2c8418, Func Offset: 0x38
-	// Line 5899, Address: 0x2c8420, Func Offset: 0x40
-	// Line 5900, Address: 0x2c8428, Func Offset: 0x48
-	// Line 5899, Address: 0x2c842c, Func Offset: 0x4c
-	// Line 5900, Address: 0x2c8434, Func Offset: 0x54
-	// Line 5901, Address: 0x2c844c, Func Offset: 0x6c
-	// Line 5902, Address: 0x2c8454, Func Offset: 0x74
-	// Line 5903, Address: 0x2c845c, Func Offset: 0x7c
-	// Line 5905, Address: 0x2c846c, Func Offset: 0x8c
-	// Line 5907, Address: 0x2c8470, Func Offset: 0x90
-	// Line 5971, Address: 0x2c8478, Func Offset: 0x98
-	// Line 5972, Address: 0x2c8488, Func Offset: 0xa8
-	// Line 5971, Address: 0x2c8490, Func Offset: 0xb0
-	// Line 5972, Address: 0x2c8494, Func Offset: 0xb4
-	// Line 5971, Address: 0x2c8498, Func Offset: 0xb8
-	// Line 5972, Address: 0x2c84a0, Func Offset: 0xc0
-	// Line 5973, Address: 0x2c84b0, Func Offset: 0xd0
-	// Line 5974, Address: 0x2c84b4, Func Offset: 0xd4
-	// Line 5979, Address: 0x2c84b8, Func Offset: 0xd8
-	// Line 5980, Address: 0x2c84bc, Func Offset: 0xdc
-	// Func End, Address: 0x2c84cc, Func Offset: 0xec
-	scePrintf("Adv_ChangeDiscScreen - UNIMPLEMENTED!\n");
-}
+{ 
+    ADV_WORK* ap;
+
+    ap = &AdvWork;
+
+    UnmountSoundAfs(); 
+
+    sys->ss_flg &= ~0x40000; 
+    sys->ss_flg &= ~0x10000; 
+    
+    if (!(sys->ss_flg & 0x1))
+    {
+        sys->ss_flg |= 0x1;
+    } 
+    else 
+    { 
+        sys->ss_flg &= ~0x1; 
+    }
+    
+    ap->NextReturnCode = 1; 
+
+    MountSoundAfs(); 
+
+    sys->ss_flg &= ~0x20000; 
+    sys->ss_flg &= ~0x10000; 
+    
+    ap->Mode = 0; 
+    
+    ap->Active = 0; 
+
+    return ap->NextReturnCode; 
+} 
 
 // 100% matching! 
 int Adv_SoundMuseum()
