@@ -2949,6 +2949,20 @@ typedef struct ADV_VM_MSG
     int MsgType;    // offset 0x10, size 0x4
 } ADV_VM_MSG;
 
+typedef struct OPTION 
+{
+    // total size: 0x9
+    char Item;         // offset 0x0, size 0x1
+    char MaxItem;      // offset 0x1, size 0x1
+    char Item2;        // offset 0x2, size 0x1
+    char MaxItem2;     // offset 0x3, size 0x1
+    char SelectFlag;   // offset 0x4, size 0x1
+    char NextLevel;    // offset 0x5, size 0x1
+    char ReturnLevel;  // offset 0x6, size 0x1
+    char Switch;       // offset 0x7, size 0x1
+    char NextFadeType; // offset 0x8, size 0x1
+} OPTION;
+
 typedef struct NJS_SCRVECTOR 
 {
     // total size: 0x14
