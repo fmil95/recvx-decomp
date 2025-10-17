@@ -2028,9 +2028,9 @@ unsigned int getbulletmax[4][0];
 short combidata[0];
 unsigned char curedata[0];
 _anon29 pulsework;
-_anon7 parts_21[8];
-unsigned int palbuf[0];
-float x_k;
+_anon7 parts_21[8];*/
+unsigned int palbuf[4096];
+/*float x_k;
 float y_k;
 float xend;
 short u_k;
@@ -7159,18 +7159,15 @@ void PushPalletBuffer()
 	// Line 7221, Address: 0x2a7c70, Func Offset: 0x20
 	// Line 7222, Address: 0x2a7c78, Func Offset: 0x28
 	// Func End, Address: 0x2a7c84, Func Offset: 0x34
-}
-
-// 
-// Start address: 0x2a7c90
-void PopPalletBuffer()
-{
-	// Line 7224, Address: 0x2a7c90, Func Offset: 0
-	// Line 7225, Address: 0x2a7c98, Func Offset: 0x8
-	// Line 7226, Address: 0x2a7ca0, Func Offset: 0x10
-	// Line 7227, Address: 0x2a7cb8, Func Offset: 0x28
-	// Func End, Address: 0x2a7cc4, Func Offset: 0x34
 }*/
+
+// 100% matching!
+void PopPalletBuffer()
+{ 
+    njSetPaletteMode(2); 
+    
+    njMemCopy4(palbuf, &palbuf[3072], 1024); 
+} 
 
 // 
 // Start address: 0x2a7cd0
