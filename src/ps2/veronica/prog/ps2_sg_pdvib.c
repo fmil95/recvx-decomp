@@ -1,17 +1,8 @@
-// TODO: compile and link this file separatedly to remove the "ps2_sg_pdvib.c" include in main.c  
+#include "ps2_sg_pdvib.h"  
 
 unsigned char Pad_vibe_call_num;
 unsigned char Ps2_pad_motor[6];
 PAD_ACT Pad_act[20];
-
-Sint32 pdVibMxIsReady(Uint32 port);
-Sint32 pdVibMxSetStopTime(Uint32 port, Uint32 time);
-Sint32 pdVibMxStart(Uint32 port, const PDS_VIBPARAM* param);
-Sint32 pdVibMxStop(Uint32 port);
-void Ps2_pad_actuater();
-void Ps2_pad_act_start(PAD_ACT* pPact);
-void Ps2_pad_act_stop(PAD_ACT* pPact);
-void Ps2_pad_act_all_stop();
 
 // 100% matching! 
 Sint32 pdVibMxIsReady(Uint32 port)

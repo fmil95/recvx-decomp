@@ -1,5 +1,4 @@
-Void   syBtExit     ( Void );
-Sint32 syBtGetBootSystemID   ( SYS_BT_SYSTEMID* pData ) ;
+#include "ps2_sg_sybt.h"  
 
 // 100% matching!
 Void   syBtExit     ( Void )

@@ -1,4 +1,4 @@
-SYE_CBL syCblCheck( void );
+#include "ps2_sg_sycbl.h"  
 
 // 100% matching!
 SYE_CBL syCblCheck( void )
