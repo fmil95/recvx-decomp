@@ -16,7 +16,7 @@ typedef struct _cvfs_vtbl
     void    (*StopTr)(void* dev);
     Sint8   (*GetStat)(void* dev);
     Sint32  (*GetSctLen)();
-    void    (*unk34)();
+    void    (*SetSctLen)(void* dev);
     Sint32  (*GetNumTr)(void* dev);
     void    (*unk3C)();
     void    (*unk40)();
@@ -250,7 +250,22 @@ void cvFsSetDefDev(void* arg0)
     scePrintf("cvFsSetDefDev - UNIMPLEMENTED!\n");
 }
 
-// cvFsSetSctLen
+// 100% matching!
+void cvFsSetSctLen(CVFS cvfs)
+{
+    if (cvfs == NULL)
+    {
+        cvFsError("cvFsSetSctLen #3:handle error");
+    }
+    else if (cvfs->vtbl->SetSctLen == NULL)
+    {
+        cvFsError("cvFsSetSctLen #4:vtbl error");
+    }
+    else 
+    {
+        cvfs->vtbl->SetSctLen(cvfs->dev);
+    }
+}
 
 // 100% matching!
 void cvFsStopTr(CVFS cvfs) 
