@@ -1,6 +1,4 @@
-
-
-
+#include "ps2_Vu1Scissor2.h"
 
 /*void DrawScissorPolygonOpaque2(int count, unsigned long ulType);
 void InitNodeArraySet2();

@@ -3193,13 +3193,10 @@ void CallSystemSeEx(int SeNo, int Volume) {
     CallSystemSeBasic(SeNo, Volume, 0);
 }
 
-// 
-// Start address: 0x2946c0
-void CallSystemSe(int SeNo, int param) // second parameter is not present on the debugging symbols
+// 100% matching 
+void CallSystemSe(int param, int SeNo) // first parameter is not present on the debugging symbols
 {
-	// Line 2065, Address: 0x2946c0, Func Offset: 0
-	// Func End, Address: 0x2946cc, Func Offset: 0xc
-	scePrintf("CallSystemSe - UNIMPLEMENTED!\n");
+    CallSystemSeEx(SeNo, 0);
 }
 
 // 100% matching
