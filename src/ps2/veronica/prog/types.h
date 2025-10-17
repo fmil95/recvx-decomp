@@ -3254,3 +3254,5 @@ enum TIM2_gattr_type {
 #define SCE_GS_ALPHA_AS         (0)
 #define SCE_GS_ALPHA_AD         (1)
 #define SCE_GS_ALPHA_FIX        (2)
+
+typedef	void (*AlarmCallBack)(int, unsigned short, void *);
