@@ -1,15 +1,9 @@
-// TODO: compile and link this file separatedly to remove the "ps2_sg_maloc.c" include in main.c  
+#include "ps2_sg_maloc.h"
 
 unsigned int __free_malloc_size;
 HM* Ps2_malloc_p;
 unsigned char Ps2_malloc_mem[13422592];
 unsigned int __max_malloc_size;
-
-void syFree(void* ap);
-void* syMalloc(unsigned int nbytes);
-Void syMallocFinish(Void);
-Void syMallocInit(Void *heap, Uint32 size);
-Void syMallocStat(Uint32 *wholeFreeSize, Uint32 *biggestFreeBlockSize);
 
 // 100% matching! 
 void syFree(void* ap)

@@ -1,12 +1,8 @@
+#include "ps2_sg_bup.h"
+
 unsigned short visula_size[4];
 int(*__bu_completecallback_func)(int, int, int, unsigned int);
 int(*__bu_progresscallback_func)(int, int, int, int);
-
-Sint32 buExit(void);
-Sint32 buGetDiskInfo(Sint32 drive, BUS_DISKINFO* info);
-Sint32 buInit(Sint32 capacity, Sint32 drives, void* work, BU_INITCALLBACK func);
-void buSetCompleteCallback(BU_COMPLETECALLBACK func);
-void buSetProgressCallback(BU_PROGRESSCALLBACK func);
 
 // 100% matching! 
 Sint32 buExit(void)

@@ -1,3 +1,5 @@
+#include "ps2_sg_gd.h"
+
 GDFS_HANDLE* __file_handle;
 GDFS_WORK* __gds_fs_work;
 GDFS_DIRREC_TBL* __current_dir;
@@ -24,20 +26,6 @@ DVD_IMAGE_DATA dvd_image_data[19] = {
 	{ "VOICE2.AFS"  , 0 },
 	{ "MULTSPQ2.IDX", 0 }
 }; 
-
-void  gdFsClose(GDFS gdfs);
-GDFS_DIRREC  gdFsCreateDirhn(void *dirbuf, Sint32 max_dirent);
-void  gdFsFinish(void);
-Sint32  gdFsGetDirInfo(const char *name, GDFS_DIRINFO *dirinfo);
-Sint32  gdFsGetDrvStat(void);
-Bool  gdFsGetFileSize(GDFS gdfs, Sint32 *fsize);
-Sint32  gdFsInit(Sint32 max_open, void *gdfs_work, Sint32 max_dirent, void *dirbuf);
-GDFS  gdFsOpen(const char *fname, GDFS_DIRREC gf_dirrec);
-Sint32  gdFsReqDrvStat(void);
-Sint32  gdFsSetDir(GDFS_DIRREC gf_dirrec);
-void  gdFsEntryErrFuncAll(GDFS_ERRFUNC erfunc, void *obj);
-Sint32  gdFsLoadDir(const char *dirname, GDFS_DIRREC gf_dirrec);
-Sint32  gdFsRead(GDFS gdfs, Sint32 nsct, void *buf);
 
 // 100% matching! 
 void  gdFsClose(GDFS gdfs)

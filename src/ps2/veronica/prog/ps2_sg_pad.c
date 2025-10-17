@@ -1,4 +1,4 @@
-// TODO: compile and link this file separatedly to remove the "ps2_sg_pad.c" include in main.c  
+#include "ps2_sg_pad.h" 
 
 unsigned int Old_sys_cnt;
 static u_long128 Padd1[scePadDmaBufferMax] __attribute__((aligned(64)));
@@ -25,17 +25,6 @@ PAD_WRK Pad[4];
 int CurrentPortId;
 PAD_INFO Pad_info;
 PAD_STATUS Pad_status2;
-
-void pdInitPeripheral(Sint32 logic, void* recvbuf, void* sendbuf);
-void pdExitPeripheral(void);
-const PDS_PERIPHERAL* pdGetPeripheral(Uint32 port);
-const PDS_PERIPHERALINFO* pdGetPeripheralInfo(Uint32 port);
-void pdSetMode(Sint32 mode);
-void Ps2_pad_read();
-void Ps2_Read_Key(PDS_PERIPHERAL* per, PAD_WORK* pad_wk);
-void Ps2_MakeRepeatKey(unsigned int Id, PAD_WORK* pad_wk);
-void Pad_set(PAD_WORK* pbt, unsigned short pad_num);
-void Pad_init();
 
 // 100% matching!
 void pdInitPeripheral(Sint32 logic, void* recvbuf, void* sendbuf)
