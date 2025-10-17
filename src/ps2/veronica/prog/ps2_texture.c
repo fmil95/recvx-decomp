@@ -1504,13 +1504,13 @@ struct _anon44
 	unsigned char* recp;
 };
 
-char fname[128];
-_anon24 info;
-_anon3 tlist;
-_anon2* sys;
-char BIO_CURRENT[0];
-unsigned int palbuf[0];
-_anon23 tbuf[0];
+char fname[128];*/
+NJS_TEXINFO info;
+NJS_TEXLIST tlist = { NULL, 1 }; 
+SYS_WORK* sys;
+/*char BIO_CURRENT[0];*/
+unsigned int palbuf[4096];
+/*_anon23 tbuf[0];
 _anon6* rom;
 BH_PWORK ene[0];*/
 NO_NAME_17 Ps2_tex_save[2];
@@ -1594,153 +1594,231 @@ int isVQ(unsigned char type)
     return 1; 
 } 
 
-// 
-// Start address: 0x2e60a0
+// 99.70% matching
 int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset)
 {
-	unsigned char* palp;
-	unsigned char* dp;
-	unsigned char* ap;
-	unsigned short et_ct;
-	unsigned short et_of;
-	unsigned short bk_id;
-	unsigned short h;
-	unsigned short w;
-	unsigned int attr;
-	unsigned int gidx;
-	unsigned int code;
-	int lop;
-	int palno;
-	int nbTex;
-	int end;
-	int sz;
-	//_anon20* tnp;
-	unsigned int* clutp;
-	unsigned int TEXflag;
-	unsigned int VQflag;
-	unsigned int palnum;
-	unsigned int pal[64];
-	// Line 209, Address: 0x2e60a0, Func Offset: 0
-	// Line 210, Address: 0x2e60cc, Func Offset: 0x2c
-	// Line 220, Address: 0x2e60d0, Func Offset: 0x30
-	// Line 222, Address: 0x2e60d4, Func Offset: 0x34
-	// Line 220, Address: 0x2e60d8, Func Offset: 0x38
-	// Line 222, Address: 0x2e60dc, Func Offset: 0x3c
-	// Line 221, Address: 0x2e60ec, Func Offset: 0x4c
-	// Line 218, Address: 0x2e60f0, Func Offset: 0x50
-	// Line 224, Address: 0x2e60f4, Func Offset: 0x54
-	// Line 226, Address: 0x2e60fc, Func Offset: 0x5c
-	// Line 230, Address: 0x2e6100, Func Offset: 0x60
-	// Line 227, Address: 0x2e6108, Func Offset: 0x68
-	// Line 228, Address: 0x2e6114, Func Offset: 0x74
-	// Line 229, Address: 0x2e6118, Func Offset: 0x78
-	// Line 230, Address: 0x2e6120, Func Offset: 0x80
-	// Line 233, Address: 0x2e614c, Func Offset: 0xac
-	// Line 235, Address: 0x2e6154, Func Offset: 0xb4
-	// Line 236, Address: 0x2e615c, Func Offset: 0xbc
-	// Line 239, Address: 0x2e6160, Func Offset: 0xc0
-	// Line 236, Address: 0x2e6168, Func Offset: 0xc8
-	// Line 239, Address: 0x2e616c, Func Offset: 0xcc
-	// Line 243, Address: 0x2e6178, Func Offset: 0xd8
-	// Line 245, Address: 0x2e617c, Func Offset: 0xdc
-	// Line 243, Address: 0x2e6180, Func Offset: 0xe0
-	// Line 245, Address: 0x2e6188, Func Offset: 0xe8
-	// Line 248, Address: 0x2e619c, Func Offset: 0xfc
-	// Line 250, Address: 0x2e61a4, Func Offset: 0x104
-	// Line 254, Address: 0x2e61c0, Func Offset: 0x120
-	// Line 257, Address: 0x2e61c8, Func Offset: 0x128
-	// Line 259, Address: 0x2e61d0, Func Offset: 0x130
-	// Line 261, Address: 0x2e61d8, Func Offset: 0x138
-	// Line 262, Address: 0x2e61e0, Func Offset: 0x140
-	// Line 264, Address: 0x2e61e4, Func Offset: 0x144
-	// Line 262, Address: 0x2e61e8, Func Offset: 0x148
-	// Line 264, Address: 0x2e61ec, Func Offset: 0x14c
-	// Line 267, Address: 0x2e620c, Func Offset: 0x16c
-	// Line 266, Address: 0x2e6210, Func Offset: 0x170
-	// Line 268, Address: 0x2e6214, Func Offset: 0x174
-	// Line 271, Address: 0x2e621c, Func Offset: 0x17c
-	// Line 270, Address: 0x2e6220, Func Offset: 0x180
-	// Line 272, Address: 0x2e6224, Func Offset: 0x184
-	// Line 275, Address: 0x2e622c, Func Offset: 0x18c
-	// Line 277, Address: 0x2e6238, Func Offset: 0x198
-	// Line 278, Address: 0x2e623c, Func Offset: 0x19c
-	// Line 280, Address: 0x2e6240, Func Offset: 0x1a0
-	// Line 281, Address: 0x2e6254, Func Offset: 0x1b4
-	// Line 283, Address: 0x2e626c, Func Offset: 0x1cc
-	// Line 284, Address: 0x2e6274, Func Offset: 0x1d4
-	// Line 285, Address: 0x2e6280, Func Offset: 0x1e0
-	// Line 286, Address: 0x2e628c, Func Offset: 0x1ec
-	// Line 287, Address: 0x2e6290, Func Offset: 0x1f0
-	// Line 286, Address: 0x2e6294, Func Offset: 0x1f4
-	// Line 288, Address: 0x2e6298, Func Offset: 0x1f8
-	// Line 292, Address: 0x2e62a0, Func Offset: 0x200
-	// Line 295, Address: 0x2e62c4, Func Offset: 0x224
-	// Line 294, Address: 0x2e62c8, Func Offset: 0x228
-	// Line 296, Address: 0x2e62cc, Func Offset: 0x22c
-	// Line 299, Address: 0x2e62d4, Func Offset: 0x234
-	// Line 298, Address: 0x2e62d8, Func Offset: 0x238
-	// Line 300, Address: 0x2e62dc, Func Offset: 0x23c
-	// Line 303, Address: 0x2e62e4, Func Offset: 0x244
-	// Line 306, Address: 0x2e62f0, Func Offset: 0x250
-	// Line 305, Address: 0x2e62f4, Func Offset: 0x254
-	// Line 312, Address: 0x2e62f8, Func Offset: 0x258
-	// Line 306, Address: 0x2e6300, Func Offset: 0x260
-	// Line 308, Address: 0x2e6304, Func Offset: 0x264
-	// Line 312, Address: 0x2e6308, Func Offset: 0x268
-	// Line 308, Address: 0x2e630c, Func Offset: 0x26c
-	// Line 310, Address: 0x2e6328, Func Offset: 0x288
-	// Line 312, Address: 0x2e6350, Func Offset: 0x2b0
-	// Line 313, Address: 0x2e6358, Func Offset: 0x2b8
-	// Line 317, Address: 0x2e635c, Func Offset: 0x2bc
-	// Line 313, Address: 0x2e6360, Func Offset: 0x2c0
-	// Line 314, Address: 0x2e6364, Func Offset: 0x2c4
-	// Line 315, Address: 0x2e6368, Func Offset: 0x2c8
-	// Line 316, Address: 0x2e636c, Func Offset: 0x2cc
-	// Line 317, Address: 0x2e6370, Func Offset: 0x2d0
-	// Line 319, Address: 0x2e6378, Func Offset: 0x2d8
-	// Line 320, Address: 0x2e638c, Func Offset: 0x2ec
-	// Line 319, Address: 0x2e6394, Func Offset: 0x2f4
-	// Line 321, Address: 0x2e6398, Func Offset: 0x2f8
-	// Line 320, Address: 0x2e639c, Func Offset: 0x2fc
-	// Line 321, Address: 0x2e63a4, Func Offset: 0x304
-	// Line 322, Address: 0x2e63cc, Func Offset: 0x32c
-	// Line 325, Address: 0x2e63d0, Func Offset: 0x330
-	// Line 324, Address: 0x2e63d4, Func Offset: 0x334
-	// Line 325, Address: 0x2e63dc, Func Offset: 0x33c
-	// Line 333, Address: 0x2e63e4, Func Offset: 0x344
-	// Line 334, Address: 0x2e63f4, Func Offset: 0x354
-	// Line 335, Address: 0x2e6408, Func Offset: 0x368
-	// Line 339, Address: 0x2e6410, Func Offset: 0x370
-	// Line 340, Address: 0x2e6420, Func Offset: 0x380
-	// Line 341, Address: 0x2e6428, Func Offset: 0x388
-	// Line 342, Address: 0x2e642c, Func Offset: 0x38c
-	// Line 343, Address: 0x2e6434, Func Offset: 0x394
-	// Line 344, Address: 0x2e6440, Func Offset: 0x3a0
-	// Line 353, Address: 0x2e6448, Func Offset: 0x3a8
-	// Line 354, Address: 0x2e645c, Func Offset: 0x3bc
-	// Line 357, Address: 0x2e6468, Func Offset: 0x3c8
-	// Line 358, Address: 0x2e6470, Func Offset: 0x3d0
-	// Line 359, Address: 0x2e648c, Func Offset: 0x3ec
-	// Line 362, Address: 0x2e64a4, Func Offset: 0x404
-	// Line 363, Address: 0x2e64ac, Func Offset: 0x40c
-	// Line 364, Address: 0x2e64c8, Func Offset: 0x428
-	// Line 369, Address: 0x2e64e0, Func Offset: 0x440
-	// Line 370, Address: 0x2e64e8, Func Offset: 0x448
-	// Line 371, Address: 0x2e64f4, Func Offset: 0x454
-	// Line 372, Address: 0x2e6500, Func Offset: 0x460
-	// Line 373, Address: 0x2e6504, Func Offset: 0x464
-	// Line 372, Address: 0x2e6508, Func Offset: 0x468
-	// Line 373, Address: 0x2e6510, Func Offset: 0x470
-	// Line 374, Address: 0x2e6518, Func Offset: 0x478
-	// Line 376, Address: 0x2e6530, Func Offset: 0x490
-	// Line 378, Address: 0x2e6538, Func Offset: 0x498
-	// Line 380, Address: 0x2e653c, Func Offset: 0x49c
-	// Line 381, Address: 0x2e6540, Func Offset: 0x4a0
-	// Line 382, Address: 0x2e654c, Func Offset: 0x4ac
-	// Line 383, Address: 0x2e6550, Func Offset: 0x4b0
-	// Func End, Address: 0x2e6580, Func Offset: 0x4e0
-	scePrintf("bhSetMemPvpTexture - UNIMPLEMENTED!\n");
-}
+    unsigned int pal[64]; 
+    unsigned int palnum;  
+    unsigned int VQflag;  
+    unsigned int TEXflag; 
+    unsigned int* clutp; 
+    NJS_TEXNAME* tnp;    
+    int sz;              
+    int end;              
+    int nbTex;            
+    int palno;            
+    int lop;             
+    unsigned int code;    
+    unsigned int gidx;    
+    unsigned int attr;   
+    unsigned short w;     
+    unsigned short h;     
+    unsigned short bk_id;
+    unsigned short et_of; 
+    unsigned short et_ct; 
+    unsigned char* ap;   
+    unsigned char* dp;    
+    unsigned char* palp;  
+    int* temp; // not from the debugging symbols
+
+    palnum = 0; 
+    
+    nbTex = 0; 
+    
+    end = 1; 
+    
+    dp = datp; 
+    
+    tnp = &tlp->textures[offset]; 
+    
+    while (end != 0) 
+    {
+        code = ((int*)dp)[0]; 
+        
+        sz = ((int*)dp)[1];
+        
+        dp += 32; 
+        
+        ap = dp;
+        
+        dp += sz; 
+        
+        switch (code)
+        {                        
+        case -1:
+            end = 0;
+            break; 
+        case MAKE_MAGIC('P', 'L', 'I', 0):
+            if (sz != 0) 
+            { 
+                palnum = *((int*)ap)++; 
+                
+                for (lop = 0; lop < palnum; lop++, ap += 8) 
+                { 
+                    pal[lop] = ((int*)ap)[1]; 
+                } 
+
+                for (lop = 0; lop < palnum; lop++);
+            }
+            
+            break; 
+        case MAKE_MAGIC('T', 'I', 'M', '2'):
+            Ps2CheckTextureAlpha(ap); 
+
+            VQflag = isVQ(((TIM2_PICTUREHEADER*)ap)->PictFormat); 
+            
+            if (VQflag != 0) 
+            {               
+                gidx = ((TIM2_PICTUREHEADER*)ap)->Gindex;
+                
+                switch (((TIM2_PICTUREHEADER*)ap)->ImageType) 
+                {              
+                case 4:                             
+                    attr = 0x500;
+                    
+                    et_ct = 16;
+                    break;
+                case 5:                            
+                    attr = 0x700; 
+                    
+                    et_ct = 256; 
+                    break; 
+                default:                           
+                    exit(0); 
+                    break;
+                }
+
+                w = ((TIM2_PICTUREHEADER*)ap)->ImageWidth; 
+                h = ((TIM2_PICTUREHEADER*)ap)->ImageHeight; 
+                
+                njSetTextureInfo(&info, (unsigned short*)ap, attr, w, h); 
+                njSetTextureName(tnp, &info.texaddr, gidx, 0x40800000); 
+                
+                tlist.textures = tnp;
+                
+                tlist.nbTexture = 1; 
+                
+                njLoadTexture(&tlist);
+                
+                tnp++; 
+                
+                nbTex++; 
+            }
+            else 
+            { 
+                gidx = ((TIM2_PICTUREHEADER*)ap)->Gindex;
+                
+                switch (((TIM2_PICTUREHEADER*)ap)->ImageType) 
+                {               
+                case 4:                            
+                    attr = 0x500; 
+                    
+                    et_ct = 16; 
+                    break; 
+                case 5:                             
+                    attr = 0x700; 
+                    
+                    et_ct = 256; 
+                    break; 
+                default:                           
+                    exit(0); 
+                    break;
+                    
+                    (void)&palnum; // ???
+                }
+                
+                w = ((TIM2_PICTUREHEADER*)ap)->ImageWidth; 
+                h = ((TIM2_PICTUREHEADER*)ap)->ImageHeight; 
+                
+                ((TIM2_PICTUREHEADER*)ap)->PalNum = palnum; 
+                
+                clutp = (unsigned int*)((ap + ((TIM2_PICTUREHEADER*)ap)->ImageSize) + 256); 
+                
+                temp = (int*)((TIM2_PICTUREHEADER*)ap)->PalData;
+                
+                for (lop = 0; lop < palnum; lop++) 
+                {
+                    temp[lop] = ((int*)&pal[lop])[0];  
+                    
+                    TEXflag = ((unsigned char*)&pal[lop])[0]; 
+                    
+                    bk_id = ((unsigned char*)&pal[lop])[1]; 
+                    
+                    et_of = ((unsigned short*)&pal[lop])[1]; 
+                    
+                    if (bk_id == 255) 
+                    { 
+                        bk_id = sys->ef_pbnk; 
+                        
+                        sys->ef_pbnk += et_ct / 16;
+                        
+                        if (sys->ef_pbnk >= 64) 
+                        {
+                            sys->ef_pbnk -= 32; 
+                        }
+                    } 
+                    
+                    gidx &= 0x3FFFFFF; 
+                    
+                    gidx |= bk_id << 26; 
+
+                    palno = et_of + ((bk_id & 0x3F) * 16);
+                    
+                    sz = (int)&palbuf[((bk_id / 64) * 64) * 16]; 
+                    
+                    palno *= 4; 
+                    
+                    palp = (unsigned char*)(palno + sz); 
+
+                    if (et_ct == 256)
+                    {
+                        ClutCopy256(palp, clutp); 
+                        
+                        clutp += et_ct; 
+                    } 
+                    else 
+                    { 
+                        ClutCopy(palp, clutp); 
+                        
+                        clutp += et_ct * 2; 
+                    }
+                    
+                    sys->gm_flg |= 0x4; 
+                    
+                    if (TEXflag == 0)
+                    { 
+                        if (lop == 0) 
+                        { 
+                            njSetTextureInfo(&info, (unsigned short*)ap, attr, w, h); 
+                            njSetTextureName(tnp, &info.texaddr, (0, gidx) /* ??? */, 0x41000000); 
+                        }
+                        else 
+                        { 
+                            njSetTextureInfo(&info, (unsigned short*)ap, attr, w, h); 
+                            njSetTextureName(tnp, &info.texaddr, gidx, 0x41010000);
+                        }
+
+                        tlist.textures = tnp; 
+                        
+                        tlist.nbTexture = 1; 
+                        
+                        njLoadTexture(&tlist); 
+
+                        nbTex++; 
+                        
+                        tnp++;
+                    }
+                } 
+            }
+            
+            break; 
+        default:
+            end = 0; 
+        }
+    } 
+    
+    return nbTex; 
+} 
 
 // 
 // Start address: 0x2e6580

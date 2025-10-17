@@ -1,5 +1,5 @@
-#ifndef _SYCFG_H_
-#define _SYCFG_H_
+#ifndef _PS2_SG_SYCFG_H_
+#define _PS2_SG_SYCFG_H_
 
 #include <ninja.h>
 

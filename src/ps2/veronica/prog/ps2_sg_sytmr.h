@@ -1,5 +1,5 @@
-#ifndef _SYTMR_H_
-#define _SYTMR_H_
+#ifndef _PS2_SG_SYTMR_H_
+#define _PS2_SG_SYTMR_H_
 
 #include <ninja.h>
 

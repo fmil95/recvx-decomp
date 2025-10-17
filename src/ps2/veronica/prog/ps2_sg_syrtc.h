@@ -1,5 +1,5 @@
-#ifndef _SYRTC_H_
-#define _SYRTC_H_
+#ifndef _PS2_SG_SYRTC_H_
+#define _PS2_SG_SYRTC_H_
 
 #include <libcdvd.h>
 
