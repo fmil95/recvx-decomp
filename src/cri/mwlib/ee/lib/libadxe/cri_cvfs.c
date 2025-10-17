@@ -98,10 +98,19 @@ void cvFsError(const Char8* msg)
     cvFsCallUsrErrFn(&cvfs_errobj, msg, NULL);
 }
 
-void cvFsExecServer(void)
+// 100% matching!
+void cvFsExecServer(void) 
 {
-    scePrintf("cvFsExecServer - UNIMPLEMENTED!\n");
-}
+    Sint32 i;
+
+    for (i = 0; i < 32; i++) 
+    {
+        if ((cvfs_tbl[i].vtbl != NULL) && (cvfs_tbl[i].vtbl->ExecServer != NULL)) 
+        {
+            cvfs_tbl[i].vtbl->ExecServer();
+        }
+    }
+} 
 
 // cvFsFinish
 
