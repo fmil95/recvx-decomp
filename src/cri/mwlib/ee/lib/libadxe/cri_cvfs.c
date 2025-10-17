@@ -20,7 +20,7 @@ typedef struct _cvfs_vtbl
     Sint32  (*GetNumTr)(void* dev);
     void    (*unk3C)();
     void    (*unk40)();
-    void    (*unk44)();
+    Sint32  (*GetNumFilesAll)();
     void    (*unk48)();
     Sint32  (*GetMaxByteRate)(void* dev);
     void    (*unk50)();
@@ -35,6 +35,8 @@ typedef struct cvfs_obj
 {
     CVFS_VTBL* vtbl;
     void*      dev;
+    Sint32     unk8;
+    Sint32     unkC;
 } CVFS_OBJ;
 
 typedef CVFS_OBJ *CVFS;
@@ -42,6 +44,7 @@ typedef CVFS_OBJ *CVFS;
 static CVFS_ERRFN cvfs_errfn;
 static void* cvfs_errobj; 
 static Char8 cvfs_defdev[16];
+static CVFS_OBJ cvfs_tbl[32];
 
 // addDevice
 // allocCvFsHn
@@ -269,9 +272,23 @@ Sint32 getNumFiles()
     scePrintf("getNumFiles - UNIMPLEMENTED!\n");
 }
 
-Sint32 getNumFilesAll()
+// 100% matching!
+Sint32 getNumFilesAll(void)
 {
-    scePrintf("getNumFilesAll - UNIMPLEMENTED!\n");
+    Sint32 i;
+    Sint32 numf;
+
+    numf = 0;
+    
+    for (i = 0; i < 32; i++) 
+    {
+        if ((cvfs_tbl[i].vtbl != NULL) && (cvfs_tbl[i].vtbl->GetNumFilesAll != NULL))
+        {
+            numf += cvfs_tbl[i].vtbl->GetNumFilesAll();
+        }
+    }
+    
+    return numf;
 }
 
 // isExistDev
