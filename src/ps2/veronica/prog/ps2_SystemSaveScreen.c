@@ -1466,11 +1466,11 @@ void SetStateSysSaveTitleExit(tagSYSSAVE_SCREEN* pSysSave);
 void ExecuteStateSysSaveTitleExit();
 void SysSaveHikaku(tagCONFIGFILE* pConfig);
 unsigned int GetOkButton();
-unsigned int GetCancelButton();
+unsigned int GetCancelButton();*/
 
 // 
 // Start address: 0x277f40
-tagSYSSAVE_SCREEN* CreateSysSaveScreen(tagSYSSAVE_SCREEN* pSysSave, void* vpWorkPtrSys, unsigned short usSaveMesMode, unsigned short usSaveWriteMode)
+SYSSAVE_SCREEN* CreateSysSaveScreen(SYSSAVE_SCREEN* pSysSave, void* vpWorkPtrSys, unsigned short usSaveMesMode, unsigned short usSaveWriteMode)
 {
 	// Line 78, Address: 0x277f40, Func Offset: 0
 	// Line 79, Address: 0x277f50, Func Offset: 0x10
@@ -1495,9 +1495,10 @@ tagSYSSAVE_SCREEN* CreateSysSaveScreen(tagSYSSAVE_SCREEN* pSysSave, void* vpWork
 	// Line 101, Address: 0x278004, Func Offset: 0xc4
 	// Line 102, Address: 0x278008, Func Offset: 0xc8
 	// Func End, Address: 0x27801c, Func Offset: 0xdc
+	scePrintf("CreateSysSaveScreen - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x278020
 void DispSysSaveMessageSelect(tagSYSSAVE_SCREEN* pSysSave)
 {
@@ -1543,11 +1544,11 @@ void DispSysSaveMessageSelect(tagSYSSAVE_SCREEN* pSysSave)
 	// Line 265, Address: 0x278340, Func Offset: 0x320
 	// Line 269, Address: 0x278358, Func Offset: 0x338
 	// Func End, Address: 0x278368, Func Offset: 0x348
-}
+}*/
 
 // 
 // Start address: 0x278370
-int ExecuteSysSaveScreen(tagSYSSAVE_SCREEN* pSysSave)
+int ExecuteSysSaveScreen(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 284, Address: 0x278370, Func Offset: 0
 	// Line 287, Address: 0x278380, Func Offset: 0x10
@@ -1599,9 +1600,10 @@ int ExecuteSysSaveScreen(tagSYSSAVE_SCREEN* pSysSave)
 	// Line 362, Address: 0x278654, Func Offset: 0x2e4
 	// Line 363, Address: 0x278658, Func Offset: 0x2e8
 	// Func End, Address: 0x278668, Func Offset: 0x2f8
+	scePrintf("ExecuteSysSaveScreen - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x278670
 void SetStateSysSaveAwarenessCard(tagSYSSAVE_SCREEN* pSysSave)
 {

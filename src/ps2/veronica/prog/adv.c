@@ -31,12 +31,12 @@ SYSLOAD_SCREEN* pSysLoad;
 SYSLOAD_SCREEN SysLoad;
 /*float ColorBarSizeY;
 float RedLinePosY;
-unsigned int ColorBarBright;
-tagSYSSAVE_SCREEN* pSysSave;
+unsigned int ColorBarBright;*/
+SYSSAVE_SCREEN* pSysSave;
 unsigned char* vwbmemp;
-tagSYSSAVE_SCREEN SysSave;
+SYSSAVE_SCREEN SysSave;
 
-void CallPlayerDeadVoice(int PlayerNo);
+/*void CallPlayerDeadVoice(int PlayerNo);
 void CallSystemVoice(int VoiceNo);
 float GetSamurai(int Time);
 void InitAdvSystem();
@@ -288,7 +288,7 @@ void AdvCheckSoftReset(int Flag)
 } 
 
 // 100% matching!
-void AdvPushRoomTexture() 
+void AdvPushRoomTexture(int param) // parameter is not present on the debugging symbols
 { 
     ADV_WORK* ap; 
 
@@ -2594,16 +2594,16 @@ void DisplayOptionScrollPlate(float PosX, float PosY)
     njTextureFilterMode(0); 
 } 
 
-/*// 
+// 
 // Start address: 0x2c5210
 void DisplayOptionBg(int Level, int Flag)
 {
-	_anon0* qp;
+	//_anon0* qp;
 	float s[2];
 	float y[2];
 	int j;
 	int i;
-	_anon8* ap;
+	//_anon8* ap;
 	// Line 4342, Address: 0x2c5210, Func Offset: 0
 	// Line 4343, Address: 0x2c522c, Func Offset: 0x1c
 	// Line 4342, Address: 0x2c5230, Func Offset: 0x20
@@ -2650,7 +2650,8 @@ void DisplayOptionBg(int Level, int Flag)
 	// Line 4395, Address: 0x2c5480, Func Offset: 0x270
 	// Line 4398, Address: 0x2c5488, Func Offset: 0x278
 	// Func End, Address: 0x2c54bc, Func Offset: 0x2ac
-}*/
+    scePrintf("DisplayOptionBg - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2c54c0
@@ -3199,160 +3200,290 @@ int DisplayOptionPlate(int PortId, int Level, int Flag)
     return -1;
 } 
 
-// 
-// Start address: 0x2c7d90
+// 99.79% matching
 int Adv_GameOptionScreen()
 {
-	int ReturnCode;
-	//_anon8* ap;
-	int SaveCheck;
-	int ulState;
-	// Line 5465, Address: 0x2c7d90, Func Offset: 0
-	// Line 5466, Address: 0x2c7da0, Func Offset: 0x10
-	// Line 5476, Address: 0x2c7da8, Func Offset: 0x18
-	// Line 5477, Address: 0x2c7db4, Func Offset: 0x24
-	// Line 5478, Address: 0x2c7dbc, Func Offset: 0x2c
-	// Line 5479, Address: 0x2c7dc8, Func Offset: 0x38
-	// Line 5481, Address: 0x2c7dd0, Func Offset: 0x40
-	// Line 5483, Address: 0x2c7ddc, Func Offset: 0x4c
-	// Line 5485, Address: 0x2c7e08, Func Offset: 0x78
-	// Line 5486, Address: 0x2c7e10, Func Offset: 0x80
-	// Line 5492, Address: 0x2c7e18, Func Offset: 0x88
-	// Line 5493, Address: 0x2c7e28, Func Offset: 0x98
-	// Line 5495, Address: 0x2c7e30, Func Offset: 0xa0
-	// Line 5496, Address: 0x2c7e54, Func Offset: 0xc4
-	// Line 5497, Address: 0x2c7e6c, Func Offset: 0xdc
-	// Line 5498, Address: 0x2c7e70, Func Offset: 0xe0
-	// Line 5500, Address: 0x2c7e78, Func Offset: 0xe8
-	// Line 5501, Address: 0x2c7e84, Func Offset: 0xf4
-	// Line 5503, Address: 0x2c7e8c, Func Offset: 0xfc
-	// Line 5504, Address: 0x2c7e94, Func Offset: 0x104
-	// Line 5505, Address: 0x2c7e9c, Func Offset: 0x10c
-	// Line 5506, Address: 0x2c7ea0, Func Offset: 0x110
-	// Line 5508, Address: 0x2c7ea8, Func Offset: 0x118
-	// Line 5509, Address: 0x2c7eb4, Func Offset: 0x124
-	// Line 5510, Address: 0x2c7eb8, Func Offset: 0x128
-	// Line 5512, Address: 0x2c7ec0, Func Offset: 0x130
-	// Line 5513, Address: 0x2c7ed4, Func Offset: 0x144
-	// Line 5515, Address: 0x2c7edc, Func Offset: 0x14c
-	// Line 5516, Address: 0x2c7ee4, Func Offset: 0x154
-	// Line 5517, Address: 0x2c7ee8, Func Offset: 0x158
-	// Line 5519, Address: 0x2c7ef0, Func Offset: 0x160
-	// Line 5520, Address: 0x2c7ef8, Func Offset: 0x168
-	// Line 5521, Address: 0x2c7efc, Func Offset: 0x16c
-	// Line 5523, Address: 0x2c7f04, Func Offset: 0x174
-	// Line 5524, Address: 0x2c7f20, Func Offset: 0x190
-	// Line 5525, Address: 0x2c7f3c, Func Offset: 0x1ac
-	// Line 5526, Address: 0x2c7f58, Func Offset: 0x1c8
-	// Line 5527, Address: 0x2c7f74, Func Offset: 0x1e4
-	// Line 5528, Address: 0x2c7f80, Func Offset: 0x1f0
-	// Line 5527, Address: 0x2c7f88, Func Offset: 0x1f8
-	// Line 5528, Address: 0x2c7f8c, Func Offset: 0x1fc
-	// Line 5530, Address: 0x2c7f94, Func Offset: 0x204
-	// Line 5531, Address: 0x2c7fa4, Func Offset: 0x214
-	// Line 5532, Address: 0x2c7fb0, Func Offset: 0x220
-	// Line 5534, Address: 0x2c7fbc, Func Offset: 0x22c
-	// Line 5535, Address: 0x2c7fc0, Func Offset: 0x230
-	// Line 5537, Address: 0x2c7fc8, Func Offset: 0x238
-	// Line 5538, Address: 0x2c7fd8, Func Offset: 0x248
-	// Line 5539, Address: 0x2c7fe4, Func Offset: 0x254
-	// Line 5540, Address: 0x2c7ff4, Func Offset: 0x264
-	// Line 5542, Address: 0x2c7ff8, Func Offset: 0x268
-	// Line 5544, Address: 0x2c8000, Func Offset: 0x270
-	// Line 5545, Address: 0x2c8008, Func Offset: 0x278
-	// Line 5546, Address: 0x2c801c, Func Offset: 0x28c
-	// Line 5547, Address: 0x2c8028, Func Offset: 0x298
-	// Line 5548, Address: 0x2c8038, Func Offset: 0x2a8
-	// Line 5550, Address: 0x2c8048, Func Offset: 0x2b8
-	// Line 5549, Address: 0x2c804c, Func Offset: 0x2bc
-	// Line 5551, Address: 0x2c8050, Func Offset: 0x2c0
-	// Line 5552, Address: 0x2c8058, Func Offset: 0x2c8
-	// Line 5554, Address: 0x2c8060, Func Offset: 0x2d0
-	// Line 5557, Address: 0x2c80b8, Func Offset: 0x328
-	// Line 5564, Address: 0x2c80c0, Func Offset: 0x330
-	// Line 5565, Address: 0x2c80d0, Func Offset: 0x340
-	// Line 5566, Address: 0x2c80d8, Func Offset: 0x348
-	// Line 5569, Address: 0x2c80dc, Func Offset: 0x34c
-	// Line 5571, Address: 0x2c80e4, Func Offset: 0x354
-	// Line 5572, Address: 0x2c80f4, Func Offset: 0x364
-	// Line 5573, Address: 0x2c8100, Func Offset: 0x370
-	// Line 5575, Address: 0x2c8120, Func Offset: 0x390
-	// Line 5577, Address: 0x2c8158, Func Offset: 0x3c8
-	// Line 5583, Address: 0x2c8164, Func Offset: 0x3d4
-	// Line 5585, Address: 0x2c816c, Func Offset: 0x3dc
-	// Line 5588, Address: 0x2c8178, Func Offset: 0x3e8
-	// Line 5589, Address: 0x2c8184, Func Offset: 0x3f4
-	// Line 5590, Address: 0x2c8194, Func Offset: 0x404
-	// Line 5591, Address: 0x2c8198, Func Offset: 0x408
-	// Line 5590, Address: 0x2c819c, Func Offset: 0x40c
-	// Line 5592, Address: 0x2c81a0, Func Offset: 0x410
-	// Line 5593, Address: 0x2c81a8, Func Offset: 0x418
-	// Line 5598, Address: 0x2c81ac, Func Offset: 0x41c
-	// Line 5594, Address: 0x2c81b0, Func Offset: 0x420
-	// Line 5601, Address: 0x2c81b4, Func Offset: 0x424
-	// Line 5602, Address: 0x2c81bc, Func Offset: 0x42c
-	// Line 5603, Address: 0x2c81cc, Func Offset: 0x43c
-	// Line 5605, Address: 0x2c81d8, Func Offset: 0x448
-	// Line 5607, Address: 0x2c81e0, Func Offset: 0x450
-	// Line 5608, Address: 0x2c81e8, Func Offset: 0x458
-	// Line 5609, Address: 0x2c81ec, Func Offset: 0x45c
-	// Line 5645, Address: 0x2c81f4, Func Offset: 0x464
-	// Line 5647, Address: 0x2c8200, Func Offset: 0x470
-	// Line 5651, Address: 0x2c8224, Func Offset: 0x494
-	// Line 5652, Address: 0x2c8234, Func Offset: 0x4a4
-	// Line 5651, Address: 0x2c8240, Func Offset: 0x4b0
-	// Line 5652, Address: 0x2c8244, Func Offset: 0x4b4
-	// Line 5654, Address: 0x2c825c, Func Offset: 0x4cc
-	// Line 5653, Address: 0x2c8264, Func Offset: 0x4d4
-	// Line 5655, Address: 0x2c826c, Func Offset: 0x4dc
-	// Line 5657, Address: 0x2c8274, Func Offset: 0x4e4
-	// Line 5658, Address: 0x2c8288, Func Offset: 0x4f8
-	// Line 5660, Address: 0x2c829c, Func Offset: 0x50c
-	// Line 5661, Address: 0x2c82a4, Func Offset: 0x514
-	// Line 5662, Address: 0x2c82a8, Func Offset: 0x518
-	// Line 5661, Address: 0x2c82ac, Func Offset: 0x51c
-	// Line 5663, Address: 0x2c82b0, Func Offset: 0x520
-	// Line 5664, Address: 0x2c82b8, Func Offset: 0x528
-	// Line 5666, Address: 0x2c82c4, Func Offset: 0x534
-	// Line 5667, Address: 0x2c82cc, Func Offset: 0x53c
-	// Line 5668, Address: 0x2c82d0, Func Offset: 0x540
-	// Line 5667, Address: 0x2c82d4, Func Offset: 0x544
-	// Line 5672, Address: 0x2c82d8, Func Offset: 0x548
-	// Line 5675, Address: 0x2c82e0, Func Offset: 0x550
-	// Line 5677, Address: 0x2c82e4, Func Offset: 0x554
-	// Line 5730, Address: 0x2c82ec, Func Offset: 0x55c
-	// Line 5731, Address: 0x2c82f4, Func Offset: 0x564
-	// Line 5732, Address: 0x2c82fc, Func Offset: 0x56c
-	// Line 5733, Address: 0x2c8304, Func Offset: 0x574
-	// Line 5735, Address: 0x2c830c, Func Offset: 0x57c
-	// Line 5736, Address: 0x2c8318, Func Offset: 0x588
-	// Line 5737, Address: 0x2c8320, Func Offset: 0x590
-	// Line 5738, Address: 0x2c8324, Func Offset: 0x594
-	// Line 5739, Address: 0x2c832c, Func Offset: 0x59c
-	// Line 5740, Address: 0x2c8334, Func Offset: 0x5a4
-	// Line 5742, Address: 0x2c8338, Func Offset: 0x5a8
-	// Line 5744, Address: 0x2c8340, Func Offset: 0x5b0
-	// Line 5745, Address: 0x2c8348, Func Offset: 0x5b8
-	// Line 5746, Address: 0x2c834c, Func Offset: 0x5bc
-	// Line 5748, Address: 0x2c8354, Func Offset: 0x5c4
-	// Line 5749, Address: 0x2c835c, Func Offset: 0x5cc
-	// Line 5750, Address: 0x2c8360, Func Offset: 0x5d0
-	// Line 5752, Address: 0x2c8368, Func Offset: 0x5d8
-	// Line 5756, Address: 0x2c8370, Func Offset: 0x5e0
-	// Line 5757, Address: 0x2c8380, Func Offset: 0x5f0
-	// Line 5758, Address: 0x2c838c, Func Offset: 0x5fc
-	// Line 5759, Address: 0x2c8394, Func Offset: 0x604
-	// Line 5760, Address: 0x2c839c, Func Offset: 0x60c
-	// Line 5762, Address: 0x2c83a4, Func Offset: 0x614
-	// Line 5763, Address: 0x2c83ac, Func Offset: 0x61c
-	// Line 5764, Address: 0x2c83b4, Func Offset: 0x624
-	// Line 5765, Address: 0x2c83b8, Func Offset: 0x628
-	// Line 5767, Address: 0x2c83c0, Func Offset: 0x630
-	// Line 5766, Address: 0x2c83c4, Func Offset: 0x634
-	// Line 5770, Address: 0x2c83c8, Func Offset: 0x638
-	// Line 5771, Address: 0x2c83cc, Func Offset: 0x63c
-	// Func End, Address: 0x2c83e0, Func Offset: 0x650
-	scePrintf("Adv_GameOptionScreen - UNIMPLEMENTED!\n");
+	ADV_WORK* ap;
+    int ReturnCode;
+	static int ulState;
+	static int SaveCheck;
+
+    ap = (ADV_WORK*)&AdvWork;
+
+    ReturnCode = 0;
+
+    ap->PortId = AdvGetCurrentPort();
+    
+    ExecuteAdvFadeEx(ap->OptFadeType);
+    
+    if (ap->AppMode == 0) 
+    {
+        ExecuteAdvScreenSaver();
+    }
+    
+    AdvCheckSoftReset(1);
+    
+    switch (ap->Mode2) 
+    {
+    case 0:
+        ResetAdvSystem();
+        ResetOptionMenuParam(0);
+        
+        ap->Mode2 = (ap->AppMode == 0) ? 3 : 6;
+        break;
+    case 3:
+        ap->ptr[0] = bhGetFreeMemory(GetInsideFileSize(sys->sys_partid, 1), 32);
+        
+        RequestReadInsideFile(sys->sys_partid, 1, ap->ptr[0]);
+        
+        ap->Mode2 = 4;
+        break;
+    case 4:
+        CheckReadEndAdvInsideFile2Ex(5, 1);
+        break;
+    case 5:
+        bhSetFontTexture(ap->ptr[0]);
+        
+        AllFreeAdvMemory();
+        
+        ap->Mode2 = 6;
+        break;
+    case 6:
+        RequestAdvInsideFileEx(4, 0);
+        
+        ap->Mode2 = 7;
+        break;
+    case 7:
+        CheckReadEndAdvInsideFile2Ex((ap->AppMode == 0) ? 8 : 1, 1);
+        break;
+    case 1:
+        AdvPushPaletteData();
+        
+        ap->Mode2 = 2;
+        break;
+    case 2:
+        AdvPushRoomTexture(0xC0000);
+        
+        ap->Mode2 = 8;
+        break;
+    case 8:
+        AdvEasySetupTextureBasic(AdvGetResourcePtr(ap->ptr[0], 2), 0, 0);
+        AdvEasySetupTextureBasic(AdvGetResourcePtr(ap->ptr[0], 3), 0, 1);
+        AdvEasySetupTextureBasic(AdvGetResourcePtr(ap->ptr[0], 4), 0, 2);
+        
+        ap->PalNo = TransPvpData(AdvGetResourcePtr(ap->ptr[0], 1), ap->PalFlag);
+        
+        ap->MsgPtr = (unsigned char*)AdvGetResourcePtr(ap->ptr[0], 0);
+        
+        AdvEasyTransTextureBasic(0, 3, 1);
+        
+        RequestAdvFade(2, 0.25f);
+        
+        if (ap->AppMode != 0)
+        {
+            CallSystemSe(0, 3);
+        }
+        
+        ap->Mode2 = 9;
+        break;
+    case 9:
+        DisplayOptionPlate(ap->PortId, ap->OptLevel, 0);
+        DisplayOptionBg(ap->OptLevel, 1);
+        
+        if (CheckAdvFade() == 0)
+        {
+            ap->Mode2 = 10;
+        }
+        
+        break;
+    case 10:
+        CheckAdvScreenSaverStopKey(ap->PortId);
+        
+        ap->NextOptLevel = DisplayOptionPlate(ap->PortId, ap->OptLevel, 1);
+        
+        DisplayOptionBg(ap->OptLevel, 1);
+        
+        if (ap->OptLevel != ap->NextOptLevel) 
+        {
+            RequestAdvFade(3, 0.25f);
+            
+            ap->NextReturnCode = 0;
+            
+            ap->Mode2 = 11;
+            break;
+        }
+        
+        if (ap->NextOptLevel < 0) 
+        {
+            if ((ap->vibration != sys->vibration) || (ap->keytype != sys->keytype) || ((ap->adjust_x != sys->adjust_x) || (ap->adjust_y != sys->adjust_y)) || (ap->SoundMode != sys->ssd_reserve)) 
+            {
+                ap->OptSaveFlag = 1;
+            }
+            
+            RequestAdvFade(3, 0.25f);
+            
+            ap->NextReturnCode = 1;
+            
+            ap->Mode2 = 11;
+        }
+        
+        break;
+    case 11:
+        if (CheckAdvFade() == 0) 
+        {
+            if (ap->NextReturnCode == 0) 
+            {
+                switch (ap->OptLevel)
+                {
+                case 0:
+                    switch (ap->NextOptLevel) 
+                    {
+                    case 1:
+                        DisplayOptionBg(ap->OptLevel, 0);
+                        break;
+                    case -1:
+                    case 2:
+                    case 3:
+                        break;
+                    }
+                    
+                    break;
+                case 1:
+                    DisplayOptionBg(ap->OptLevel, 0);
+                    break;
+                }
+                
+                ResetOptionMenuParam(1);
+                
+                RequestAdvFade(2, 0.25f);
+                
+                ap->OptLevel = ap->NextOptLevel;
+                
+                ap->Mode2 = 9;
+            } 
+            else
+            {
+                ap->MsgNo = 0;
+                
+                ap->GenFlag = 0;
+                
+                ap->Mode2 = 15;
+            }
+            
+            break;
+        }
+        
+        DisplayOptionPlate(ap->PortId, ap->OptLevel, 0);
+        DisplayOptionBg(ap->OptLevel, 1);
+        break;
+    case 15:
+        StopAdvScreenSaver(0);
+        
+        ap->Mode2 = 16;
+        break;
+    case 16:
+        if (ap->OptSaveFlag != 0) 
+        {
+            switch (ulState) 
+            {
+            case 0:
+                sys->ssd_reserve = GetSoundMode();
+                
+                pSysSave = CreateSysSaveScreen(&SysSave, vwbmemp, 0, 1);
+                
+                SaveCheck = 0;
+                
+                ulState = 1;
+                break;
+            case 1:
+                SaveCheck = ExecuteSysSaveScreen(pSysSave);
+                
+                if (SaveCheck == 1)
+                {
+                    ulState = 0;
+                    
+                    SaveCheck = 0;
+                    
+                    ap->Mode2 = 12;
+                }
+                else if (SaveCheck == 2) 
+                {
+                    ulState = 0;
+                    
+                    SaveCheck = 0;
+                    
+                    ap->Mode2 = 12;
+                }
+            }
+            
+            break;
+        }
+        
+        ap->Mode2 = 12;
+        break;
+    case 17:
+        CheckAdvScreenSaverStopKey(ap->PortId);
+        
+        ap->NextMode = 12;
+        
+        DispVmWarningMessage(ap->MsgNo);
+        break;
+    case 12:
+        if (ap->AppMode == 0)
+        {
+            AdvEasyReleaseAllTexture();
+            
+            ap->Mode2 = 18;
+        } 
+        else 
+        {
+            AdvEasyReleaseTexture();
+            
+            ap->Mode2 = 13;
+        }
+        
+        break;
+    case 13:
+        AdvPopRoomTexture();
+        
+        ap->Mode2 = 14;
+        break;
+    case 14:
+        AdvPopPaletteData();
+        
+        ap->Mode2 = 18;
+        break;
+    case 18:
+        ap->Mode2 = -1;
+        break;
+    }
+    
+    if (ap->Mode2 == -1)
+    {
+        if (ap->AppMode == 0) 
+        {
+            AdvEasyReleaseAllTexture();
+        } 
+        else 
+        {
+            AdvEasyReleaseTexture();
+        }
+        
+        AllFreeAdvMemory();
+        
+        AdvSetSoundMode();
+        
+        ap->OptFadeType = 0;
+        
+        ap->Mode2 = 0;
+        ap->Mode = 0;
+        
+        ap->Active = 0;
+        
+        ReturnCode = 1;
+    }
+    
+    return ReturnCode;
 }
 
 // 100% matching! 
