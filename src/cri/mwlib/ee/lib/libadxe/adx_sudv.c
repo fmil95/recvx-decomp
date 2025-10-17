@@ -34,7 +34,7 @@ void ADXT_SetupDvdFs(ADXT_SPRM *sprm)
     
     cvFsAddDev(&D_00362958, dvCiGetInterface, 0);
     
-    cvFsSetDefDev(&D_00362958);
+    cvFsSetDefDev((Char8*)&D_00362958);
     
     if (sprm != NULL) 
     {

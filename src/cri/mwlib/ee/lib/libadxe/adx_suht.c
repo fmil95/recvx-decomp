@@ -34,7 +34,7 @@ void ADXT_SetupHostFs(ADXT_SPRM *sprm)
     
     cvFsAddDev(&D_00362960, htCiGetInterface, 0);
     
-    cvFsSetDefDev(&D_00362960);
+    cvFsSetDefDev((Char8*)&D_00362960);
     
     if (sprm != NULL) 
     {

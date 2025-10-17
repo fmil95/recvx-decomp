@@ -53,6 +53,8 @@ static Char8 cvfs_defdev[16];
 static CVFS_OBJ cvfs_tbl[32];
 static CVFS_NAME_OBJ D_01E2A604[32];
 
+void toUpperStr(Char8* str);
+
 // addDevice
 // allocCvFsHn
 
@@ -245,9 +247,34 @@ Sint8 cvFsGetStat(CVFS cvfs)
 // cvFsReqWr
 // cvFsSeek
 
-void cvFsSetDefDev(void* arg0)
+// 100% matching!
+void cvFsSetDefDev(Char8* devname) 
 {
-    scePrintf("cvFsSetDefDev - UNIMPLEMENTED!\n");
+    Sint32 nameln;
+
+    if (devname == NULL) 
+    {
+        cvFsError("cvFsSetDefDev #1:illegal device name");
+        return;
+    }
+
+    nameln = strlen(devname);
+
+    if (nameln == 0) 
+    {
+        cvfs_defdev[0] = '\0';
+        return;
+    }
+    
+    toUpperStr(devname);
+
+    if (isExistDev(devname, nameln) == 1)
+    {
+        memcpy(cvfs_defdev, devname, nameln + 1);
+        return;
+    }
+    
+    cvFsError("cvFsSetDefDev #2:unknown device name");
 }
 
 // 100% matching!
