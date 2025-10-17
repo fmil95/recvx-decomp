@@ -134,17 +134,17 @@ Sint32 cvFsGetMaxByteRate(CVFS cvfs)
 }
 
 // 100% matching!
-Sint32 cvFsGetNumFiles(CVFS cvfs) 
+Sint32 cvFsGetNumFiles(const char* devname) 
 {
     Sint32 numf;
 
-    if (cvfs == NULL)
+    if (devname == NULL)
     {
         numf = getNumFilesAll();
     } 
     else
     {
-        numf = getNumFiles();
+        numf = getNumFiles(devname);
     }
     
     if (numf == 0)
@@ -292,16 +292,37 @@ CVFS getDevice(const Char8 *devname)
 
 // getDevName
 
-Sint32 getNumFiles()
+// 100% matching!
+Sint32 getNumFiles(const char* devname)
 {
-    scePrintf("getNumFiles - UNIMPLEMENTED!\n");
+    CVFS cvfs;
+    Sint32 numf;
+    Sint32 nameln;
+    Sint32 i;
+
+    numf = 0;
+    
+    nameln = strlen(devname);
+    
+    cvfs = cvfs_tbl;
+    
+    for (i = 0; i < 32; cvfs++, i++)
+    {
+        if ((strncmp(devname, &cvfs_tbl[i].dev, nameln) == 0) && ((cvfs->vtbl != NULL) && (cvfs->vtbl->GetNumFilesAll != NULL)))
+        { 
+            numf = cvfs->vtbl->GetNumFilesAll();
+            break; 
+        }
+    }
+    
+    return numf;
 }
 
 // 100% matching!
 Sint32 getNumFilesAll(void)
 {
-    Sint32 i;
     Sint32 numf;
+    Sint32 i;
 
     numf = 0;
     
