@@ -1371,39 +1371,33 @@ void bhDrawThermoNumber(float px, float py, int num, unsigned int argb);
 void bhDrawFullScreenRenderTexture();
 void bhDrawSmallScreenRenderTexture();*/
 
-// 
-// Start address: 0x26bac0
+// 100% matching!
 void bhSetScreenFade(unsigned int argb, float ct)
 {
-	// Line 95, Address: 0x26bac0, Func Offset: 0
-	// Line 96, Address: 0x26bad8, Func Offset: 0x18
-	// Line 97, Address: 0x26bae8, Func Offset: 0x28
-	// Line 96, Address: 0x26baec, Func Offset: 0x2c
-	// Line 97, Address: 0x26baf4, Func Offset: 0x34
-	// Line 101, Address: 0x26bb60, Func Offset: 0xa0
-	// Line 102, Address: 0x26bb68, Func Offset: 0xa8
-	// Line 101, Address: 0x26bb78, Func Offset: 0xb8
-	// Line 102, Address: 0x26bb80, Func Offset: 0xc0
-	// Line 103, Address: 0x26bba0, Func Offset: 0xe0
-	// Line 104, Address: 0x26bbb8, Func Offset: 0xf8
-	// Line 108, Address: 0x26bbc0, Func Offset: 0x100
-	// Line 104, Address: 0x26bbc4, Func Offset: 0x104
-	// Line 105, Address: 0x26bbdc, Func Offset: 0x11c
-	// Line 106, Address: 0x26bbfc, Func Offset: 0x13c
-	// Line 107, Address: 0x26bc1c, Func Offset: 0x15c
-	// Line 108, Address: 0x26bc38, Func Offset: 0x178
-	// Line 109, Address: 0x26bc70, Func Offset: 0x1b0
-	// Line 108, Address: 0x26bc78, Func Offset: 0x1b8
-	// Line 109, Address: 0x26bc80, Func Offset: 0x1c0
-	// Line 110, Address: 0x26bcb8, Func Offset: 0x1f8
-	// Line 109, Address: 0x26bcc0, Func Offset: 0x200
-	// Line 110, Address: 0x26bcc8, Func Offset: 0x208
-	// Line 111, Address: 0x26bd00, Func Offset: 0x240
-	// Line 110, Address: 0x26bd04, Func Offset: 0x244
-	// Line 111, Address: 0x26bd0c, Func Offset: 0x24c
-	// Line 112, Address: 0x26bd50, Func Offset: 0x290
-	// Func End, Address: 0x26bd6c, Func Offset: 0x2ac
-	scePrintf("bhSetScreenFade - UNIMPLEMENTED!\n");
+    sys->cb_flg |= 0x2;
+    
+    sys->fade_pbk = ((unsigned int)sys->fade_ap << 24) | ((unsigned int)sys->fade_rp << 16) | ((unsigned int)sys->fade_gp << 8) | (unsigned int)sys->fade_bp;
+    
+    sys->fade_ct = 0;
+    
+    if (ct <= 1.0f) 
+    {
+        sys->fade_hkn = 1.0f;
+    } 
+    else
+    {
+        sys->fade_hkn = 1.0f + ct;
+    }
+    
+    sys->fade_ao = sys->fade_an;
+    sys->fade_ro = sys->fade_rn;
+    sys->fade_go = sys->fade_gn;
+    sys->fade_bo = sys->fade_bn;
+    
+    sys->fade_ap = (argb >> 24);
+    sys->fade_rp = (argb >> 16) & 0xFF;
+    sys->fade_gp = (argb >> 8) & 0xFF;
+    sys->fade_bp = argb & 0xFF;
 }
 
 // 
