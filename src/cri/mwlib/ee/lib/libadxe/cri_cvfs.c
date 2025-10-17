@@ -271,7 +271,25 @@ void getDefDev(Char8* fname)
     }
 }
 
-// getDevice
+// 100% matching!
+CVFS getDevice(const Char8 *devname) 
+{
+    Sint32 nameln;
+    Uint32 i;
+
+    nameln = strlen(devname);
+
+    for (i = 0; i < 32; i++)
+    {
+        if (strncmp(devname, &D_01E2A604[i].name, nameln) == 0)
+        {
+            return D_01E2A604[i].dev;
+        }
+    }
+
+    return NULL;
+}
+
 // getDevName
 
 Sint32 getNumFiles()
