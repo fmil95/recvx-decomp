@@ -269,7 +269,31 @@ void cvFsStopTr(CVFS cvfs)
     }
 }
 
-// cvFsTell
+// 100% matching!
+Sint32 cvFsTell(CVFS cvfs) 
+{
+    Sint32 ofst;
+
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsTell #1:handle error");
+        
+        return 0;
+    }
+
+    if (cvfs->vtbl->Tell != NULL) 
+    {
+        ofst = cvfs->vtbl->Tell(cvfs->dev);
+    }
+    else 
+    {
+        ofst = 0;
+        
+        cvFsError("cvFsTell #2:vtbl error");
+    }
+
+    return ofst;
+}
 
 // 100% matching!
 void getDefDev(Char8* fname) 
