@@ -355,13 +355,10 @@ void mwPlyFinishSofdec(void)
 
 }
 
-// 
-// Start address: 0x2d89a0
+// 100% matching!
 Sint32 mwPlyGetBright(MWPLY mwply)
 {
-	// Line 459, Address: 0x2d89a0, Func Offset: 0
-	// Func End, Address: 0x2d89a8, Func Offset: 0x8
-	scePrintf("mwPlyGetBright - UNIMPLEMENTED!\n");
+
 }
 
 // 100% matching!
