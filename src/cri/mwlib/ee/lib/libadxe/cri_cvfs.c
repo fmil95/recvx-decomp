@@ -251,7 +251,24 @@ void cvFsSetDefDev(void* arg0)
 }
 
 // cvFsSetSctLen
-// cvFsStopTr
+
+// 100% matching!
+void cvFsStopTr(CVFS cvfs) 
+{
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsStopTr #1:handle error");
+    }
+    else if (cvfs->vtbl->StopTr == NULL) 
+    {
+        cvFsError("cvFsStopTr #2:vtbl error");
+    }
+    else 
+    {
+        cvfs->vtbl->StopTr(cvfs->dev);
+    }
+}
+
 // cvFsTell
 
 // 100% matching!
