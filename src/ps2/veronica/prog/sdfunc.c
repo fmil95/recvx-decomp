@@ -3776,25 +3776,32 @@ void FreeObjectSe(int ObjectNo)
 	scePrintf("FreeObjectSe - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x295830
+// 100% matching!
 void PlayBgmEx2(unsigned int PatId, int BgmNo, int FadeInRate, int Volume)
 {
-	// Line 2976, Address: 0x295830, Func Offset: 0
-	// Line 2977, Address: 0x29584c, Func Offset: 0x1c
-	// Line 2983, Address: 0x295870, Func Offset: 0x40
-	// Line 2984, Address: 0x295884, Func Offset: 0x54
-	// Line 2985, Address: 0x29588c, Func Offset: 0x5c
-	// Line 2987, Address: 0x295894, Func Offset: 0x64
-	// Line 2988, Address: 0x2958a0, Func Offset: 0x70
-	// Line 2989, Address: 0x2958b8, Func Offset: 0x88
-	// Line 2991, Address: 0x2958c8, Func Offset: 0x98
-	// Line 2993, Address: 0x2958d8, Func Offset: 0xa8
-	// Line 2994, Address: 0x2958e0, Func Offset: 0xb0
-	// Line 2992, Address: 0x2958e8, Func Offset: 0xb8
-	// Line 2995, Address: 0x2958f4, Func Offset: 0xc4
-	// Func End, Address: 0x295910, Func Offset: 0xe0
-	scePrintf("PlayBgmEx2 - UNIMPLEMENTED!\n");
+    if (!(sys->ss_flg & 0x4000000)) 
+    {
+        if (GetAdxStatus(0) == 3) 
+        {
+            StopAdx(0);
+            
+            AdxPlayFlag[0] = 0;
+        }
+        
+        if ((FadeInRate + 1) != 0) 
+        {
+            SetVolumeAdxEx(0, -127.0f, Volume);
+            
+            RequestAdxFadeFunction(0, 1, FadeInRate + 1);
+        }
+        
+        PlayAdx(0, PatId, BgmNo);
+        
+        CurrentBgmNo = BgmNo;
+        CurrentBgmVolume = Volume;
+        
+        AdxPlayFlag[0] = 1;
+    }
 }
 
 /*// 
