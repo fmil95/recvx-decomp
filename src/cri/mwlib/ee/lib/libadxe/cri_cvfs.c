@@ -41,10 +41,17 @@ typedef struct cvfs_obj
 
 typedef CVFS_OBJ *CVFS;
 
+typedef struct 
+{
+    CVFS_OBJ*  dev;
+    Char8      name[12];
+} CVFS_NAME_OBJ;
+
 static CVFS_ERRFN cvfs_errfn;
 static void* cvfs_errobj; 
 static Char8 cvfs_defdev[16];
 static CVFS_OBJ cvfs_tbl[32];
+static CVFS_NAME_OBJ D_01E2A604[32];
 
 // addDevice
 // allocCvFsHn
@@ -291,7 +298,21 @@ Sint32 getNumFilesAll(void)
     return numf;
 }
 
-// isExistDev
+// 100% matching!
+Sint32 isExistDev(const Char8* devname, Sint32 nameln) 
+{
+    Sint32 i;
+
+    for (i = 0; i < 32; i++) 
+    {
+        if (strncmp(devname, D_01E2A604[i].name, nameln) == 0)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
 
 // 100% matching!
 void releaseCvFsHn(CVFS cvfs) 
