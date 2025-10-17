@@ -264,18 +264,13 @@ void CpEEWait(int val);
 #define	TSDRCMD_CANCEL				(TSDRCODE_TQ|8)
 #define	SQUE_MAKE_CMD(cmd, arg)		(((cmd)<<24)|((arg)&0x00ffffff))
 
-
-// 
-// Start address: 0x2e98a0
-void wait_alarm(int thid)
-{
-	// Line 3075, Address: 0x2e98a0, Func Offset: 0
-	// Line 3076, Address: 0x2e98a8, Func Offset: 0x8
-	// Line 3077, Address: 0x2e98b0, Func Offset: 0x10
-	// Line 3078, Address: 0x2e98b8, Func Offset: 0x18
-	// Func End, Address: 0x2e98c4, Func Offset: 0x24
-	scePrintf("wait_alarm - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+void wait_alarm(int id, unsigned short time, int thid)
+{ 
+	iWakeupThread(thid); 
+    
+	ExitHandler(); 
+} 
 
 // 
 // Start address: 0x2e98d0
