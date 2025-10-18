@@ -47,9 +47,11 @@ typedef struct _cvfs_name_obj
 
 typedef CVFS_NAME_OBJ *CVFS_NAME;
 
-static CVFS_ERRFN cvfs_errfn;
-static void* cvfs_errobj; 
-static Char8 cvfs_defdev[16];
+static Char8* volatile cvfs_build = "\ncvFs Ver.2.11 Build:Jan 26 2001 09:55:14\n";
+static CVFS_ERRFN cvfs_errfn = NULL;
+static void* cvfs_errobj = NULL; 
+static Sint32 cvfs_init_cnt = 0;
+static Char8 cvfs_defdev[9];
 static CVFS_OBJ cvfs_obj[40];
 static CVFS_NAME_OBJ cvfs_tbl[32];
 static CVFS_NAME_OBJ D_01E2A604[32];
@@ -100,7 +102,7 @@ CVFS addDevice(Char8* devname, void (*getdevif()))
 }
 
 // 100% matching!
-CVFS allocCvFsHn() 
+CVFS allocCvFsHn(void) 
 {
     Sint32 i;
 
@@ -347,7 +349,42 @@ void cvFsExecServer(void)
     }
 } 
 
-// cvFsFinish
+// 100% matching!
+void cvFsFinish(void) 
+{
+    CVFS cvfs1;
+    CVFS cvfs2; // not really needed, probably dead code
+    Sint32 i;
+
+    if (--cvfs_init_cnt == 0)
+    {
+        for (i = 0; i < 40; i++) 
+        {
+            cvfs1 = &cvfs_obj[i];
+            
+            if (cvfs1->vtbl != NULL)
+            {
+                cvfs2 = (CVFS)&cvfs_obj[i].dev; 
+                
+                cvfs1->vtbl->Close(cvfs1->dev);
+            }
+            
+            cvfs2 = (CVFS)&cvfs_obj[i].dev; 
+    
+            cvfs1->vtbl = NULL;
+            cvfs2->vtbl = NULL;
+        } 
+    
+        for (i = 0; i < 32; i++) 
+        {
+            cvfs_tbl[i].name[0] = '\0'; 
+        } 
+        
+        memset(cvfs_defdev, 0, sizeof(cvfs_defdev));
+        
+        cvfs_defdev[0] = '\0';
+    }
+}
 
 // 100% matching!
 Char8* cvFsGetDefDev(void) 
