@@ -392,7 +392,29 @@ Char8* cvFsGetDefDev(void)
     return cvfs_defdev;
 }
 
-// cvFsGetDevName
+// 100% matching!
+CVFS_NAME cvFsGetDevName(CVFS cvfs)
+{
+    Sint32 i;
+
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsGetDevName #1:vtbl error");
+        
+        return NULL;
+    }
+    
+    for (i = 0; i < 32; i++) 
+    {
+        if (((CVFS)&cvfs_tbl[i])->vtbl == cvfs->vtbl) 
+        {
+            break;
+        } 
+    } 
+    
+    return &D_01E2A604[i];
+}
+
 // cvFsGetFileSize
 // cvFsGetFileSizeEx
 // cvFsGetFreeSize
