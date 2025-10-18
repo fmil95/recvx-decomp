@@ -58,6 +58,7 @@ typedef CVFS_TBL_OBJ *CVFS_TBL;
 static CVFS_ERRFN cvfs_errfn;
 static void* cvfs_errobj; 
 static Char8 cvfs_defdev[16];
+static CVFS_OBJ cvfs_obj[40];
 static CVFS_TBL_OBJ cvfs_tbl[32];
 static CVFS_NAME_OBJ D_01E2A604[32];
 
@@ -69,7 +70,27 @@ void releaseCvFsHn(CVFS cvfs);
 void toUpperStr(Char8* str);
 
 // addDevice
-// allocCvFsHn
+
+// 100% matching!
+CVFS allocCvFsHn() 
+{
+    Sint32 i;
+
+    for (i = 0; i < 40; i++) 
+    {
+        if (cvfs_obj[i].dev == NULL) 
+        {
+            break;
+        }
+    }
+
+    if (i == 40) 
+    {
+        return NULL;
+    }
+    
+    return &cvfs_obj[i];
+}
 
 void cvFsAddDev(void* arg0, void* arg1, Sint32 arg2)
 {
