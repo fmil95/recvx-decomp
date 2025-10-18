@@ -57,6 +57,7 @@ void cvFsError(const Char8* msg);
 void getDefDev(Char8* devname);
 CVFS getDevice(const Char8 *devname);
 void getDevName(Char8* devname, Char8* fname, const Char8* dirname);
+void releaseCvFsHn(CVFS cvfs);
 void toUpperStr(Char8* str);
 
 // addDevice
@@ -77,7 +78,26 @@ void cvFsCallUsrErrFn(void* errobj, const Char8* msg, void* obj)
 }
 
 // cvFsChangeDir
-// cvFsClose
+
+// 100% matching!
+void cvFsClose(CVFS cvfs)
+{
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsClose #1:handle error");
+    }
+    else if (cvfs->vtbl->Close != NULL) 
+    {
+        cvfs->vtbl->Close(cvfs->dev);
+        
+        releaseCvFsHn(cvfs);
+    }
+    else 
+    {
+        cvFsError("cvFsClose #2:vtbl error");
+    }
+}
+
 // cvFsDelDev
 
 // 100% matching!
