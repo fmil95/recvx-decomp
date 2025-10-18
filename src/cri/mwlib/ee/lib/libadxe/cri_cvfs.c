@@ -347,7 +347,7 @@ Sint32 cvFsTell(CVFS cvfs)
 }
 
 // 100% matching!
-void getDefDev(Char8* fname) 
+void getDefDev(Char8* devname) 
 {
     Sint32 len;
 
@@ -355,11 +355,11 @@ void getDefDev(Char8* fname)
 
     if (cvfs_defdev[0] == '\0') 
     {
-        fname[0] = '\0';
+        devname[0] = '\0';
     }
     else
     {
-        memcpy(fname, cvfs_defdev, len + 1);
+        memcpy(devname, cvfs_defdev, len + 1);
     }
 }
 
@@ -396,14 +396,17 @@ Sint32 getNumFiles(const char* devname)
     
     nameln = strlen(devname);
     
-    cvfs = cvfs_tbl;
-    
-    for (i = 0; i < 32; cvfs++, i++)
+    for (i = 0; i < 32; i++)
     {
-        if ((strncmp(devname, &cvfs_tbl[i].dev, nameln) == 0) && ((cvfs->vtbl != NULL) && (cvfs->vtbl->GetNumFilesAll != NULL)))
+        if (strncmp(devname, &cvfs_tbl[i].dev, nameln) == 0)
         { 
-            numf = cvfs->vtbl->GetNumFilesAll();
-            break; 
+            cvfs = &cvfs_tbl[i];
+            
+            if ((cvfs->vtbl != NULL) && (cvfs->vtbl->GetNumFilesAll != NULL)) 
+            {
+                numf = cvfs->vtbl->GetNumFilesAll();
+                break; 
+            }
         }
     }
     
