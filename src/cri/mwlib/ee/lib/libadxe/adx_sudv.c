@@ -1,4 +1,4 @@
-void* D_00362958;
+Char8 D_00362958;
 
 // 100% matching!
 void adxt_err_dvd(Sint32 arg0, Char8* err_msg)
@@ -32,9 +32,9 @@ void ADXT_SetupDvdFs(ADXT_SPRM *sprm)
 {
     cvFsEntryErrFunc((void*)adxt_err_dvd, NULL);
     
-    cvFsAddDev(&D_00362958, dvCiGetInterface, 0);
+    cvFsAddDev(&D_00362958, (void*)dvCiGetInterface, NULL);
     
-    cvFsSetDefDev((Char8*)&D_00362958);
+    cvFsSetDefDev(&D_00362958);
     
     if (sprm != NULL) 
     {

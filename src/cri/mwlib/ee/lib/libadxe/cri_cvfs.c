@@ -54,6 +54,7 @@ static CVFS_OBJ cvfs_obj[40];
 static CVFS_NAME_OBJ cvfs_tbl[32];
 static CVFS_NAME_OBJ D_01E2A604[32];
 
+void cvFsCallUsrErrFn(void* errobj, const Char8* msg, void* obj);
 void cvFsError(const Char8* msg);
 void getDefDev(Char8* devname);
 CVFS getDevice(const Char8 *devname);
@@ -61,7 +62,10 @@ void getDevName(Char8* devname, Char8* fname, const Char8* dirname);
 void releaseCvFsHn(CVFS cvfs);
 void toUpperStr(Char8* str);
 
-// addDevice
+CVFS addDevice(Char8* devname, void (*getdevif()))
+{
+    scePrintf("addDevice - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 CVFS allocCvFsHn() 
@@ -84,9 +88,28 @@ CVFS allocCvFsHn()
     return &cvfs_obj[i];
 }
 
-void cvFsAddDev(void* arg0, void* arg1, Sint32 arg2)
+// 100% matching!
+void cvFsAddDev(Char8* devname, void (*getdevif()), void* unused) 
 {
-    scePrintf("cvFsAddDev - UNIMPLEMENTED!\n");
+    CVFS cvfs;
+
+    if (devname == NULL) 
+    {
+        cvFsError("cvFsAddDev #1:illegal device name");
+    }
+    else if (getdevif == NULL) 
+    {
+        cvFsError("cvFsAddDev #2:illegal I/F func name");
+    }
+    else 
+    {
+        cvfs = addDevice(devname, getdevif);
+    
+        if (((CVFS_VTBL*)cvfs)->EntryErrFunc != NULL) 
+        {
+            ((CVFS_VTBL*)cvfs)->EntryErrFunc(cvFsCallUsrErrFn, NULL);
+        }
+    }
 }
 
 // 100% matching!
