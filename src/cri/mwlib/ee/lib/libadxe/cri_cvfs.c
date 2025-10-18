@@ -158,11 +158,12 @@ Sint32 cvFsChangeDir(const Char8* dirname)
 {
     Char8 devname[297];
     Char8 fname[297];
-    CVFS_VTBL* cvfs;
+    CVFS cvfs;
 
     if (dirname == NULL) 
     {
         cvFsError("cvFsChangeDir #1:illegal directory name");
+        
         return -1;
     }
     
@@ -171,6 +172,7 @@ Sint32 cvFsChangeDir(const Char8* dirname)
     if (fname[0] == '\0') 
     {
         cvFsError("cvFsChangeDir #1:illegal directory name");
+        
         return -1;
     }
     
@@ -181,26 +183,29 @@ Sint32 cvFsChangeDir(const Char8* dirname)
         if (devname[0] == '\0') 
         {
             cvFsError("cvFsChangeDir #2:illegal device name");
+            
             return -1;
         }
     }
     
-    cvfs = (CVFS_VTBL*)getDevice(devname); // this is likely a fault in the original code, they probably meant to get a CVFS_OBJ but stored a CVFS_VTBL instead 
+    cvfs = getDevice(devname); 
     
     if (cvfs == NULL) 
     {
         cvFsError("cvFsChangeDir #3:device not found");
+        
         return -1;
     }
     
-    if (cvfs->ChangeDir == NULL) 
+    if (((CVFS_VTBL*)cvfs)->ChangeDir == NULL) 
     {
         cvFsError("cvFsChangeDir #4:vtbl error");
+        
         return -1;
     }
 
     // might not really return here, but a VTBL callback signature is usually the same as that of the function which invokes it  
-    return cvfs->ChangeDir(fname); 
+    return ((CVFS_VTBL*)cvfs)->ChangeDir(fname); 
 }
 
 // 100% matching!
@@ -209,12 +214,15 @@ void cvFsClose(CVFS cvfs)
     if (cvfs == NULL) 
     {
         cvFsError("cvFsClose #1:handle error");
+        return;
     }
-    else if (cvfs->vtbl->Close != NULL) 
+    
+    if (cvfs->vtbl->Close != NULL) 
     {
         cvfs->vtbl->Close(cvfs->dev);
         
         releaseCvFsHn(cvfs);
+        return;
     }
     else 
     {
