@@ -6,7 +6,7 @@ typedef struct _cvfs_vtbl
     void    (*ExecServer)();
     void    (*EntryErrFunc)(void* func, void* obj);
     Sint32  (*GetFileSize)(const Char8* dirname);
-    void    (*unkC)();
+    Sint32  (*GetFreeSize)();
     void*   (*Open)(Char8* fname, void* unused, Sint32 rw);
     void    (*Close)(void* dev);
     Sint32  (*Seek)(void* dev, Sint32 ofst, Sint32 whence);
@@ -525,7 +525,64 @@ Sint32 cvFsGetFileSizeEx(const Char8* dirname, void* unused)
     return ((CVFS_VTBL*)cvfs)->GetFileSizeEx(fname, unused); 
 }
 
-// cvFsGetFreeSize
+// 100% matching!
+Sint32 cvFsGetFreeSize(Char8* fname) 
+{
+    CVFS cvfs;
+    Char8 devname[297];
+    Sint32 size;
+    Sint32 nameln;
+    Sint32 i;
+    
+    size = 0;
+    
+    if ((fname == NULL) || (fname[0] == '\0'))
+    {
+        getDefDev(devname);
+        
+        if (devname[0] == '\0')
+        {
+            cvFsError("cvFsGetFreeSize #5:device not found");
+            
+            return 0;
+        }
+        
+        goto label;
+    }
+
+    memcpy(devname, fname, strlen(fname) + 1);
+label:
+    nameln = strlen(devname);
+    
+    if (nameln <= 0) 
+    {
+        cvFsError("cvFsGetFreeSize #5:device not found");
+        
+        return 0;
+    }
+    
+    for (i = 0; i < 32; i++)
+    {
+        if (strncmp(devname, &D_01E2A604[i].name, nameln) == 0) 
+        {
+            cvfs = (CVFS)&D_01E2A604[i].dev;
+            
+            if (cvfs->vtbl == NULL) 
+            {
+                cvFsError("cvFsGetFreeSize #6:vtbl error");
+                
+                return 0;
+            } 
+
+            if (cvfs->vtbl->GetFreeSize != NULL) 
+            {
+                size = cvfs->vtbl->GetFreeSize();
+            }
+        }
+    }
+    
+    return size;
+}
 
 // 100% matching!
 Sint32 cvFsGetMaxByteRate(CVFS cvfs)
