@@ -230,18 +230,41 @@ void cvFsClose(CVFS cvfs)
     }
 }
 
-// cvFsDelDev
+// 100% matching!
+void cvFsDelDev(Char8* devname)
+{
+    Sint32 nameln;
+    Uint32 i;
+
+    if (devname == NULL)
+    {
+        cvFsError("cvFsDelDev #1:illegal device name");
+        return;
+    }
+    
+    nameln = strlen(devname);
+
+    for (i = 0; i < 32; i++) 
+    {
+        if (strncmp(devname, D_01E2A604[i].name, nameln) == 0) 
+        {
+            D_01E2A604[i].name[0] = '\0';
+            return;
+        }
+    }
+}
 
 // 100% matching!
 Sint32 cvFsDeleteFile(const Char8* dirname) 
 {
     Char8 devname[297];
     Char8 fname[297];
-    CVFS_VTBL* cvfs;
+    CVFS cvfs;
 
     if (dirname == NULL) 
     {
         cvFsError("cvFsDeleteFile #1:illegal file name");
+        
         return -1;
     }
     
@@ -250,6 +273,7 @@ Sint32 cvFsDeleteFile(const Char8* dirname)
     if (fname[0] == '\0') 
     {
         cvFsError("cvFsDeleteFile #1:illegal file name");
+        
         return -1;
     }
     
@@ -260,25 +284,29 @@ Sint32 cvFsDeleteFile(const Char8* dirname)
         if (devname[0] == '\0') 
         {
             cvFsError("cvFsDeleteFile #2:illegal device name");
+            
             return -1;
         }
     }
     
-    cvfs = (CVFS_VTBL*)getDevice(devname); // same situation as cvFsChangeDir()
+    cvfs = getDevice(devname); 
     
     if (cvfs == NULL) 
     {
         cvFsError("cvFsDeleteFile #3:device not found");
+        
         return -1;
     }
     
-    if (cvfs->DeleteFile == NULL) 
+    if (((CVFS_VTBL*)cvfs)->DeleteFile == NULL) 
     {
         cvFsError("cvFsDeleteFile #4:vtbl error");
+        
         return -1;
     }
-    
-    return cvfs->DeleteFile(fname); 
+
+    // same situation as cvFsChangeDir()
+    return ((CVFS_VTBL*)cvfs)->DeleteFile(fname); 
 }
 
 // 100% matching!
