@@ -18,7 +18,7 @@ typedef struct _cvfs_vtbl
     Sint32  (*GetSctLen)();
     void    (*SetSctLen)(void* dev);
     Sint32  (*GetNumTr)(void* dev);
-    void    (*unk3C)();
+    Sint32  (*ChangeDir)(const Char8* dirname);
     void    (*unk40)();
     Sint32  (*GetNumFilesAll)();
     void    (*unk48)();
@@ -77,7 +77,55 @@ void cvFsCallUsrErrFn(void* errobj, const Char8* msg, void* obj)
     }
 }
 
-// cvFsChangeDir
+// 100% matching!
+Sint32 cvFsChangeDir(const Char8* dirname) 
+{
+    Char8 devname[297];
+    Char8 fname[297];
+    CVFS_VTBL* cvfs;
+
+    if (dirname == NULL) 
+    {
+        cvFsError("cvFsChangeDir #1:illegal directory name");
+        return -1;
+    }
+    
+    getDevName(devname, fname, dirname);
+    
+    if (fname[0] == '\0') 
+    {
+        cvFsError("cvFsChangeDir #1:illegal directory name");
+        return -1;
+    }
+    
+    if (devname[0] == '\0') 
+    {
+        getDefDev(devname);
+        
+        if (devname[0] == '\0') 
+        {
+            cvFsError("cvFsChangeDir #2:illegal device name");
+            return -1;
+        }
+    }
+    
+    cvfs = (CVFS_VTBL*)getDevice(devname); // this is likely a fault in the original code, they probably meant to get a CVFS_OBJ but stored a CVFS_VTBL instead 
+    
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsChangeDir #3:device not found");
+        return -1;
+    }
+    
+    if (cvfs->ChangeDir == NULL) 
+    {
+        cvFsError("cvFsChangeDir #4:vtbl error");
+        return -1;
+    }
+
+    // might not really return here, but a VTBL callback signature is usually the same as that of the function which invokes it  
+    return cvfs->ChangeDir(fname); 
+}
 
 // 100% matching!
 void cvFsClose(CVFS cvfs)
@@ -132,7 +180,7 @@ Sint32 cvFsDeleteFile(const Char8* dirname)
         }
     }
     
-    cvfs = (CVFS_VTBL*)getDevice(devname); // this is likely a fault in the original code, they probably meant to get a CVFS_OBJ but stored a CVFS_VTBL instead 
+    cvfs = (CVFS_VTBL*)getDevice(devname); // same situation as cvFsChangeDir()
     
     if (cvfs == NULL) 
     {
