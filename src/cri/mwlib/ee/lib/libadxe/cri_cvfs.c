@@ -25,7 +25,7 @@ typedef struct _cvfs_vtbl
     Sint32  (*GetMaxByteRate)(void* dev);
     void    (*unk50)();
     void    (*unk54)();
-    void    (*unk58)();
+    Sint32  (*DeleteFile)(const Char8* dirname);
     void    (*unk5C)();
     void    (*unk60)();
     void    (*unk64)();
@@ -53,6 +53,10 @@ static Char8 cvfs_defdev[16];
 static CVFS_OBJ cvfs_tbl[32];
 static CVFS_NAME_OBJ D_01E2A604[32];
 
+void cvFsError(const Char8* msg);
+void getDefDev(Char8* devname);
+CVFS getDevice(const Char8 *devname);
+void getDevName(Char8* devname, Char8* fname, const Char8* dirname);
 void toUpperStr(Char8* str);
 
 // addDevice
@@ -75,7 +79,55 @@ void cvFsCallUsrErrFn(void* errobj, const Char8* msg, void* obj)
 // cvFsChangeDir
 // cvFsClose
 // cvFsDelDev
-// cvFsDeleteFile
+
+// 100% matching!
+Sint32 cvFsDeleteFile(const Char8* dirname) 
+{
+    Char8 devname[297];
+    Char8 fname[297];
+    CVFS_VTBL* cvfs;
+
+    if (dirname == NULL) 
+    {
+        cvFsError("cvFsDeleteFile #1:illegal file name");
+        return -1;
+    }
+    
+    getDevName(devname, fname, dirname);
+    
+    if (fname[0] == '\0') 
+    {
+        cvFsError("cvFsDeleteFile #1:illegal file name");
+        return -1;
+    }
+    
+    if (devname[0] == '\0') 
+    {
+        getDefDev(devname);
+        
+        if (devname[0] == '\0') 
+        {
+            cvFsError("cvFsDeleteFile #2:illegal device name");
+            return -1;
+        }
+    }
+    
+    cvfs = (CVFS_VTBL*)getDevice(devname); // this is likely a fault in the original code, they probably meant to get a CVFS_OBJ but stored a CVFS_VTBL instead 
+    
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsDeleteFile #3:device not found");
+        return -1;
+    }
+    
+    if (cvfs->DeleteFile == NULL) 
+    {
+        cvFsError("cvFsDeleteFile #4:vtbl error");
+        return -1;
+    }
+    
+    return cvfs->DeleteFile(fname); 
+}
 
 // 100% matching!
 void cvFsEntryErrFunc(CVFS_ERRFN func, void* obj) 
