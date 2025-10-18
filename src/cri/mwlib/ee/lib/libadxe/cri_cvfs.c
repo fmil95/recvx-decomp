@@ -47,19 +47,11 @@ typedef struct _cvfs_name_obj
 
 typedef CVFS_NAME_OBJ *CVFS_NAME;
 
-typedef struct _cvfs_tbl_obj 
-{
-    CVFS_VTBL* vtbl;
-    Char8      devname[12];
-} CVFS_TBL_OBJ;
-
-typedef CVFS_TBL_OBJ *CVFS_TBL;
-
 static CVFS_ERRFN cvfs_errfn;
 static void* cvfs_errobj; 
 static Char8 cvfs_defdev[16];
 static CVFS_OBJ cvfs_obj[40];
-static CVFS_TBL_OBJ cvfs_tbl[32];
+static CVFS_NAME_OBJ cvfs_tbl[32];
 static CVFS_NAME_OBJ D_01E2A604[32];
 
 void cvFsError(const Char8* msg);
@@ -250,13 +242,16 @@ void cvFsError(const Char8* msg)
 // 100% matching!
 void cvFsExecServer(void) 
 {
+    CVFS cvfs;
     Sint32 i;
 
     for (i = 0; i < 32; i++) 
     {
-        if ((cvfs_tbl[i].vtbl != NULL) && (cvfs_tbl[i].vtbl->ExecServer != NULL)) 
+        cvfs = (CVFS)&cvfs_tbl[i];
+        
+        if ((cvfs->vtbl != NULL) && (cvfs->vtbl->ExecServer != NULL)) 
         {
-            cvfs_tbl[i].vtbl->ExecServer();
+            cvfs->vtbl->ExecServer();
         }
     }
 } 
@@ -585,7 +580,7 @@ Sint32 getNumFiles(const char* devname)
     
     for (i = 0; i < 32; i++)
     {
-        if (strncmp(devname, &cvfs_tbl[i].devname, nameln) == 0)
+        if (strncmp(devname, &cvfs_tbl[i].name, nameln) == 0)
         { 
             cvfs = (CVFS)&cvfs_tbl[i];
             
@@ -603,6 +598,7 @@ Sint32 getNumFiles(const char* devname)
 // 100% matching!
 Sint32 getNumFilesAll(void)
 {
+    CVFS cvfs;
     Sint32 numf;
     Sint32 i;
 
@@ -610,9 +606,11 @@ Sint32 getNumFilesAll(void)
     
     for (i = 0; i < 32; i++) 
     {
-        if ((cvfs_tbl[i].vtbl != NULL) && (cvfs_tbl[i].vtbl->GetNumFilesAll != NULL))
+        cvfs = (CVFS)&cvfs_tbl[i];
+        
+        if ((cvfs->vtbl != NULL) && (cvfs->vtbl->GetNumFilesAll != NULL))
         {
-            numf += cvfs_tbl[i].vtbl->GetNumFilesAll();
+            numf += cvfs->vtbl->GetNumFilesAll();
         }
     }
     
