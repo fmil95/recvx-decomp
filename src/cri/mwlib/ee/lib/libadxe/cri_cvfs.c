@@ -703,7 +703,37 @@ Sint8 cvFsGetStat(CVFS cvfs)
     return stat;
 }
 
-// cvFsInit
+// 100% matching!
+void cvFsInit(void) 
+{
+    CVFS cvfs1;
+    CVFS cvfs2; // same situation as cvFsFinish()
+    Sint32 i;
+
+    if (cvfs_init_cnt == 0)
+    {
+        for (i = 0; i < 40; i++) 
+        {
+            cvfs1 = &cvfs_obj[i];
+            cvfs2 = (CVFS)&cvfs_obj[i].dev; 
+    
+            cvfs1->vtbl = NULL;
+            cvfs2->vtbl = NULL;
+        } 
+    
+        for (i = 0; i < 32; i++) 
+        {
+            cvfs_tbl[i].name[0] = '\0'; 
+        } 
+        
+        memset(cvfs_defdev, 0, sizeof(cvfs_defdev));
+        
+        cvfs_defdev[0] = '\0';
+    }
+
+    cvfs_init_cnt++;
+}
+
 // cvFsIsExistFile
 // cvFsLoadDirInfo
 // cvFsMakeDir
