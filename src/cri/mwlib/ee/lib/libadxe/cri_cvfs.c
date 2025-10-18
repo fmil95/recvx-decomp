@@ -382,7 +382,45 @@ CVFS getDevice(const Char8 *devname)
     return NULL;
 }
 
-// getDevName
+// 100% matching!
+void getDevName(Char8* devname, Char8* fname, const Char8* dirname) 
+{
+    Sint32 i;
+    Sint32 j;
+
+    if (dirname == NULL) 
+    {
+        return;
+    }
+
+    for (i = 0; (i < 297) && ((dirname[i] != ':') && (dirname[i] != '\0')); i++) 
+    {
+        devname[i] = dirname[i];
+    }
+    
+    if (dirname[i] == '\0') 
+    {
+        devname[i] = '\0';
+        
+        memcpy(fname, devname, strlen(devname) + 1);
+        
+        devname[0] = '\0';
+        return;
+    }
+
+    devname[i] = '\0';
+    
+    i++;
+
+    for (j = i; (j < 297) && ((dirname[j] != ':') && (dirname[j] != '\0')); j++) 
+    {
+        fname[j - i] = dirname[j];
+    }
+
+    fname[j - i] = '\0';
+    
+    toUpperStr(devname);
+}
 
 // 100% matching!
 Sint32 getNumFiles(const char* devname)
