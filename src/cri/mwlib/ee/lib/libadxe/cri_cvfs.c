@@ -62,9 +62,41 @@ void getDevName(Char8* devname, Char8* fname, const Char8* dirname);
 void releaseCvFsHn(CVFS cvfs);
 void toUpperStr(Char8* str);
 
+// 100% matching!
 CVFS addDevice(Char8* devname, void (*getdevif()))
 {
-    scePrintf("addDevice - UNIMPLEMENTED!\n");
+    CVFS cvfs;
+    Sint32 i;
+
+    i = 0;
+
+    toUpperStr(devname);
+    
+    cvfs = getdevif();
+
+    if (getDevice(devname) != NULL)
+    {
+        return cvfs;
+    }
+
+    for( ; i < 32; i++) 
+    {
+        if (cvfs_tbl[i].name[0] == '\0')
+        {
+            break;
+        }
+    }
+
+    if (i == 32)
+    {
+        return cvfs; 
+    }
+
+    cvfs_tbl[i].dev = cvfs;
+    
+    memcpy(cvfs_tbl[i].name, devname, strlen(devname) + 1);
+
+    return cvfs;
 }
 
 // 100% matching!
