@@ -5,7 +5,7 @@ typedef struct _cvfs_vtbl
 {
     void    (*ExecServer)();
     void    (*EntryErrFunc)(void* func, void* obj);
-    Sint32  (*GetFileSize)(const Char8* fname);
+    Sint32  (*GetFileSize)(const Char8* dirname);
     void    (*unkC)();
     void*   (*Open)(Char8* fname, void* unused, Sint32 rw);
     void    (*Close)(void* dev);
@@ -415,7 +415,61 @@ CVFS_NAME cvFsGetDevName(CVFS cvfs)
     return &D_01E2A604[i];
 }
 
-// cvFsGetFileSize
+// 100% matching!
+Sint32 cvFsGetFileSize(const Char8* dirname) 
+{
+    Char8 devname[297];
+    Char8 fname[297];
+    CVFS cvfs;
+
+    if (dirname == NULL) 
+    {
+        cvFsError("cvFsGetFileSize #1:illegal file name");
+        
+        return 0;
+    }
+    
+    getDevName(devname, fname, dirname);
+    
+    if (fname[0] == '\0') 
+    {
+        cvFsError("cvFsGetFileSize #1:illegal file name");
+        
+        return 0;
+    }
+    
+    if (devname[0] == '\0') 
+    {
+        getDefDev(devname);
+        
+        if (devname[0] == '\0') 
+        {
+            cvFsError("cvFsGetFileSize #2:illegal device name");
+            
+            return 0;
+        }
+    }
+    
+    cvfs = getDevice(devname); 
+    
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsGetFileSize #3:device not found");
+        
+        return 0;
+    }
+    
+    if (((CVFS_VTBL*)cvfs)->GetFileSize == NULL) 
+    {
+        cvFsError("cvFsGetFileSize #4:vtbl error");
+        
+        return 0;
+    }
+
+    // same situation as cvFsChangeDir()
+    return ((CVFS_VTBL*)cvfs)->GetFileSize(fname); 
+}
+
 // cvFsGetFileSizeEx
 // cvFsGetFreeSize
 
