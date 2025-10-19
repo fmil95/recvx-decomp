@@ -173,7 +173,25 @@ Sint32 LSC_GetStmStat(LSC lsc, Sint32 sid)
     return lsc->sinfo[i].stat;
 }
 
-// LSC_Pause
+// 100% matching!
+void LSC_Pause(LSC lsc, Sint32 sw)
+{
+    if (lsc == NULL)
+    {
+        LSC_CallErrFunc("E0003: Illigal parameter lsc=NULL");
+        return;
+    }
+
+    if (sw == 1) 
+    {
+        lsc->pause = TRUE;
+    } 
+    else
+    {
+        lsc->pause = FALSE;
+    }
+}
+
 // LSC_SetFlowLimit
 // LSC_SetLpFlg
 // LSC_Start
