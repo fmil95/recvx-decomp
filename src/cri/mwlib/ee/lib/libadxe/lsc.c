@@ -192,7 +192,24 @@ void LSC_Pause(LSC lsc, Sint32 sw)
     }
 }
 
-// LSC_SetFlowLimit
+// 100% matching!
+void LSC_SetFlowLimit(LSC lsc, Sint32 min)
+{
+    if (lsc == NULL) 
+    {
+        LSC_CallErrFunc("E0003: Illigal parameter lsc=NULL");
+        return;
+    }
+
+    if ((min < 0) || (min > lsc->bsize)) 
+    {
+        LSC_CallErrFunc("E0012: Can not find stream ID =%d", min);
+        return;
+    }
+    
+    lsc->bufmin = min;
+}
+
 // LSC_SetLpFlg
 // LSC_Start
 
