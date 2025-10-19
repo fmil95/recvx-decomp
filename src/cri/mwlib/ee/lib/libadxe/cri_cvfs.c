@@ -65,7 +65,7 @@ void releaseCvFsHn(CVFS cvfs);
 void toUpperStr(Char8* str);
 
 // 100% matching!
-CVFS addDevice(Char8* devname, void (*getdevif()))
+CVFS addDevice(Char8* devname, void* (*getdevif()))
 {
     CVFS cvfs;
     Sint32 i;
@@ -74,7 +74,7 @@ CVFS addDevice(Char8* devname, void (*getdevif()))
 
     toUpperStr(devname);
     
-    cvfs = getdevif();
+    cvfs = (CVFS)getdevif();
 
     if (getDevice(devname) != NULL)
     {
@@ -123,7 +123,7 @@ CVFS allocCvFsHn(void)
 }
 
 // 100% matching!
-void cvFsAddDev(Char8* devname, void (*getdevif()), void* unused) 
+void cvFsAddDev(Char8* devname, void* (*getdevif()), void* unused) 
 {
     CVFS cvfs;
 
