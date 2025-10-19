@@ -210,7 +210,18 @@ void LSC_SetFlowLimit(LSC lsc, Sint32 min)
     lsc->bufmin = min;
 }
 
-// LSC_SetLpFlg
+// 100% matching!
+void LSC_SetLpFlg(LSC lsc, Sint32 flg)
+{
+    if (lsc == NULL) 
+    {
+        LSC_CallErrFunc("E0003: Illigal parameter lsc=NULL");
+        return;
+    }
+    
+    lsc->lpflg = flg;
+}
+
 // LSC_Start
 
 void LSC_Stop(LSC lsc)

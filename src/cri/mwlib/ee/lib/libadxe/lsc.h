@@ -30,7 +30,8 @@
 #define	LSC_OBJ_MAX			(4)
 
 /*	ファイル名の最大文字数		*/
-#define	LSC_FNAME_MAX		(32)
+//#define	LSC_FNAME_MAX		(32)
+#define	LSC_FNAME_MAX		(52)
 
 /*	動作状態					*/
 #define	LSC_STAT_STOP		(0)
@@ -78,17 +79,42 @@ typedef void	*LSC_FP;
 /*	ハンドル					*/
 #ifndef LSC_DEFINED
 #define LSC_DEFINED
+//typedef struct _lsc_obj {
+	//Sint32		used;						/*	使用中か否か				*/
+	//SJ			sj;							/*	ストリームジョイント		*/
+	//SJCK		ck;
+	//Sint32		stat;						/*	ハンドル状態				*/
+	//Sint32		bufmin;						/*	バッファ流量下限値			*/
+	//Sint32		bsize;
+	//Sint32		wpos;
+	//Sint32		rpos;
+	//Sint32		nstm;						/*	登録ストリーム数			*/
+	//Sint32		pause;
+	//LSC_FP		fp;
+	//Sint32		fsct;
+	//Sint32		reqsct;
+	//Sint32		rdflg;
+	//LSC_SINFO	sinfo[LSC_STM_MAX];			/*	読み込み中のストリーム情報	*/
+//} LSC_OBJ;
 typedef struct _lsc_obj {
-	Sint32		used;						/*	使用中か否か				*/
+	Sint8		used;						/*	使用中か否か				*/
+    Sint8       stat;
+    Sint8       unk2;
+    Sint8       lpflg;
+    Sint8       pause;
+    Sint8       unk4;
+    Sint8       unk5;
+    Sint8       unk6;
+    Sint8       unk7;
 	SJ			sj;							/*	ストリームジョイント		*/
-	SJCK		ck;
-	Sint32		stat;						/*	ハンドル状態				*/
+	//SJCK		ck;
+	Sint32		stat2;						/*	ハンドル状態				*/
 	Sint32		bufmin;						/*	バッファ流量下限値			*/
 	Sint32		bsize;
 	Sint32		wpos;
 	Sint32		rpos;
 	Sint32		nstm;						/*	登録ストリーム数			*/
-	Sint32		pause;
+	//Sint32		pause;
 	LSC_FP		fp;
 	Sint32		fsct;
 	Sint32		reqsct;
