@@ -546,12 +546,12 @@ Sint32 cvFsGetFreeSize(Char8* fname)
             
             return 0;
         }
-        
-        goto label;
+    } 
+    else
+    {
+        memcpy(devname, fname, strlen(fname) + 1);
     }
-
-    memcpy(devname, fname, strlen(fname) + 1);
-label:
+    
     nameln = strlen(devname);
     
     if (nameln <= 0) 
