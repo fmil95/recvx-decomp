@@ -1111,7 +1111,31 @@ Sint32 cvFsReqWr(CVFS cvfs, Sint32 nsct, Sint8* buf)
     return ret;
 }
 
-// cvFsSeek
+// 100% matching!
+Sint32 cvFsSeek(CVFS cvfs, Sint32 ofst, Sint32 whence)
+{
+    Sint32 ret;
+
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsSeek #1:handle error");
+        
+        return 0;
+    }
+    
+    if (cvfs->vtbl->Seek != NULL) 
+    {
+        ret = cvfs->vtbl->Seek(cvfs->dev, ofst, whence);
+    } 
+    else 
+    {
+        ret = 0;
+        
+        cvFsError("cvFsSeek #2:vtbl error");
+    }
+    
+    return ret;
+}
 
 // 100% matching!
 void cvFsSetDefDev(Char8* devname) 
