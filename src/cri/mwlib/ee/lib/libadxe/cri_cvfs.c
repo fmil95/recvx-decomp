@@ -23,7 +23,7 @@ typedef struct _cvfs_vtbl
     Sint32  (*GetNumFilesAll)();
     Sint32  (*LoadDirInfo)(const Char8* dirname, Sint32 arg1, Sint32 arg2);
     Sint32  (*GetMaxByteRate)(void* dev);
-    void    (*unk50)();
+    Sint32  (*MakeDir)(const Char8* dirname);
     void    (*unk54)();
     Sint32  (*DeleteFile)(const Char8* dirname);
     Sint32  (*GetFileSizeEx)(const Char8* dirname, Sint32 arg1);
@@ -816,7 +816,61 @@ Sint32 cvFsLoadDirInfo(const Char8* dirname, Sint32 arg1, Sint32 arg2)
     return ret; 
 }
 
-// cvFsMakeDir
+// 100% matching!
+Sint32 cvFsMakeDir(const Char8* dirname) 
+{
+    CVFS cvfs;
+    Char8 devname[48];
+    Char8 fname[48];
+
+    if (dirname == NULL) 
+    {
+        cvFsError("cvFsMakeDir #1:illegal directory name");
+        
+        return -1;
+    }
+
+    getDevName(devname, fname, dirname);
+    
+    if (fname[0] == '\0') 
+    {
+        cvFsError("cvFsMakeDir #1:illegal directory name");
+        
+        return -1;
+    }
+    
+    if (devname[0] == '\0') 
+    {
+        getDefDev(devname);
+        
+        if (devname[0] == '\0') 
+        {
+            cvFsError("cvFsMakeDir #2:illegal device name");
+            
+            return -1;
+        }
+    }
+    
+    cvfs = getDevice(devname); 
+    
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsMakeDir #3:device not found");
+        
+        return -1;
+    }
+    
+    if (((CVFS_VTBL*)cvfs)->MakeDir == NULL) 
+    {
+        cvFsError("cvFsMakeDir #4:vtbl error");
+        
+        return -1;
+    }
+
+    // same situation as cvFsChangeDir()
+    return ((CVFS_VTBL*)cvfs)->MakeDir(fname); 
+}
+
 // cvFsOpen
 // cvFsOptFn1
 // cvFsOptFn2
