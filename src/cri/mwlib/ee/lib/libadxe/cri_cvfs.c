@@ -1059,7 +1059,32 @@ Sint32 cvFsRemoveDir(const Char8* dirname)
     return ((CVFS_VTBL*)cvfs)->RemoveDir(fname); 
 }
 
-// cvFsReqRd
+// 100% matching!
+Sint32 cvFsReqRd(CVFS cvfs, Sint32 nsct, Sint8* buf)
+{
+    Sint32 ret;
+
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsReqRd #1:handle error");
+        
+        return 0;
+    }
+    
+    if (cvfs->vtbl->ReqRd != NULL) 
+    {
+        ret = cvfs->vtbl->ReqRd(cvfs->dev, nsct, buf);
+    } 
+    else 
+    {
+        ret = 0;
+        
+        cvFsError("cvFsReqRd #2:vtbl error");
+    }
+    
+    return ret;
+}
+
 // cvFsReqWr
 // cvFsSeek
 
