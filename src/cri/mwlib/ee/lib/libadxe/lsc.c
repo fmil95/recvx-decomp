@@ -18,7 +18,28 @@ void LSC_Destroy(LSC lsc)
 // LSC_EntryChgStatFunc
 // LSC_EntryFileRange
 // LSC_EntryFname
-// LSC_ExecServer
+
+// 100% matching!
+void LSC_ExecServer(void)
+{
+    LSC lsc;
+    Sint32 i;
+    Sint32 unused;
+
+    LSC_LockCrs(&unused);
+    
+    for (i = 0; i < LSC_OBJ_MAX; i++) 
+    {
+        lsc = &lsc_obj[i];
+
+        if (lsc->used == TRUE) 
+        {
+            lsc_ExecHndl(lsc);
+        }
+    }
+    
+    LSC_UnlockCrs(&unused);
+}
 
 // 100% matching!
 Sint32 LSC_GetFlowLimit(LSC lsc) 
