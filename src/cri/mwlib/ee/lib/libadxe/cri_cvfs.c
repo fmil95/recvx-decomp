@@ -19,7 +19,7 @@ typedef struct _cvfs_vtbl
     void    (*SetSctLen)(void* dev);
     Sint32  (*GetNumTr)(void* dev);
     Sint32  (*ChangeDir)(const Char8* dirname);
-    void    (*unk40)();
+    Sint32  (*IsExistFile)(const Char8* dirname);
     Sint32  (*GetNumFilesAll)();
     void    (*unk48)();
     Sint32  (*GetMaxByteRate)(void* dev);
@@ -734,7 +734,54 @@ void cvFsInit(void)
     cvfs_init_cnt++;
 }
 
-// cvFsIsExistFile
+// 100% matching!
+Sint32 cvFsIsExistFile(const Char8* dirname) 
+{
+    CVFS cvfs;
+    Char8 devname[297];
+    Char8 fname[297];
+
+    getDevName(devname, fname, dirname);
+    
+    if (fname[0] == '\0') 
+    {
+        cvFsError("cvFsIsExistFile #1:illegal file name");
+        
+        return 0;
+    }
+    
+    if (devname[0] == '\0') 
+    {
+        getDefDev(devname);
+        
+        if (devname[0] == '\0') 
+        {
+            cvFsError("cvFsIsExistFile #2:illegal device name");
+            
+            return 0;
+        }
+    }
+    
+    cvfs = getDevice(devname); 
+    
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsIsExistFile #3:device not found");
+        
+        return 0;
+    }
+    
+    if (((CVFS_VTBL*)cvfs)->IsExistFile == NULL) 
+    {
+        cvFsError("cvFsIsExistFile #4:vtbl error");
+        
+        return 0;
+    }
+
+    // same situation as cvFsChangeDir()
+    return ((CVFS_VTBL*)cvfs)->IsExistFile(fname); 
+}
+
 // cvFsLoadDirInfo
 // cvFsMakeDir
 // cvFsOpen
