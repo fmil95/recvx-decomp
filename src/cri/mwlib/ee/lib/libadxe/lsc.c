@@ -33,7 +33,19 @@ Sint32 LSC_GetFlowLimit(LSC lsc)
     return lsc->bufmin;
 }
 
-// LSC_GetNumStm
+// 100% matching!
+Sint32 LSC_GetNumStm(LSC lsc) 
+{
+    if (lsc == NULL) 
+    {
+        LSC_CallErrFunc("E0003: Illigal parameter lsc=NULL");
+        
+        return -1;
+    }
+    
+    return lsc->nstm;
+}
+
 // LSC_GetStat
 // LSC_GetStmFname
 // LSC_GetStmId
