@@ -7,7 +7,7 @@ typedef struct _cvfs_vtbl
     void    (*EntryErrFunc)(void* func, void* obj);
     Sint32  (*GetFileSize)(const Char8* dirname);
     Sint32  (*GetFreeSize)();
-    void*   (*Open)(Char8* fname, void* unused, Sint32 rw);
+    void*   (*Open)(const Char8* dirname, Sint32 arg1, Sint32 rw); // should return CVFS
     void    (*Close)(void* dev);
     Sint32  (*Seek)(void* dev, Sint32 ofst, Sint32 whence);
     Sint32  (*Tell)(void* dev);
@@ -21,7 +21,7 @@ typedef struct _cvfs_vtbl
     Sint32  (*ChangeDir)(const Char8* dirname);
     Sint32  (*IsExistFile)(const Char8* dirname);
     Sint32  (*GetNumFilesAll)();
-    Sint32  (*LoadDirInfo)(const Char8* dirname, Sint32 arg1, Sint32 arg2);
+    Sint32  (*LoadDirInfo)(const Char8* dirname, Sint32 arg1, Sint32 rw);
     Sint32  (*GetMaxByteRate)(void* dev);
     Sint32  (*MakeDir)(const Char8* dirname);
     void    (*unk54)();
@@ -783,7 +783,7 @@ Sint32 cvFsIsExistFile(const Char8* dirname)
 }
 
 // 100% matching!
-Sint32 cvFsLoadDirInfo(const Char8* dirname, Sint32 arg1, Sint32 arg2) 
+Sint32 cvFsLoadDirInfo(const Char8* dirname, Sint32 arg1, Sint32 rw) 
 {
     CVFS cvfs;
     Char8 devname[297];
@@ -810,7 +810,7 @@ Sint32 cvFsLoadDirInfo(const Char8* dirname, Sint32 arg1, Sint32 arg2)
     
     if ((cvfs != NULL) && (((CVFS_VTBL*)cvfs)->LoadDirInfo != NULL)) 
     {
-        ret = ((CVFS_VTBL*)cvfs)->LoadDirInfo(dirname, arg1, arg2); 
+        ret = ((CVFS_VTBL*)cvfs)->LoadDirInfo(dirname, arg1, rw); 
     }
 
     return ret; 
@@ -871,7 +871,87 @@ Sint32 cvFsMakeDir(const Char8* dirname)
     return ((CVFS_VTBL*)cvfs)->MakeDir(fname); 
 }
 
-// cvFsOpen
+// 100% matching!
+CVFS cvFsOpen(const Char8* dirname, Sint32 arg1, Sint32 rw) 
+{
+    CVFS cvfs1;
+    CVFS_NAME cvfs2;
+    Char8 devname[297];
+    Char8 fname[297];
+
+    if (dirname == NULL) 
+    {
+        cvFsError("cvFsOpen #1:illegal file name");
+        
+        return NULL;
+    }
+
+    getDevName(devname, fname, dirname);
+    
+    if (fname[0] == '\0') 
+    {
+        cvFsError("cvFsOpen #1:illegal file name");
+        
+        return NULL;
+    }
+    
+    if (devname[0] == '\0') 
+    {
+        getDefDev(devname);
+        
+        if (devname[0] == '\0') 
+        {
+            cvFsError("cvFsOpen #2:illegal device name");
+            
+            return NULL;
+        }
+    }
+
+    cvfs2 = (CVFS_NAME)allocCvFsHn(); 
+    
+    if (cvfs2 == NULL) 
+    {
+        cvFsError("cvFsOpen #3:failed handle alloced");
+        
+        return NULL;
+    }
+    
+    cvfs1 = getDevice(devname); 
+
+    cvfs2->dev = cvfs1; 
+    
+    if (cvfs1 == NULL) 
+    {
+        releaseCvFsHn((CVFS)cvfs2);
+        
+        cvFsError("cvFsOpen #4:device not found");
+        
+        return NULL;
+    }
+    
+    if (((CVFS_VTBL*)cvfs1)->Open != NULL) 
+    {
+        ((CVFS)cvfs2)->dev = (void*)((CVFS_VTBL*)cvfs1)->Open(fname, arg1, rw);
+    }
+    else 
+    {
+        cvFsError("cvFsOpen #5:vtbl error");
+            
+        return NULL;
+    }
+    
+    if (((CVFS)cvfs2)->dev == NULL) 
+    {
+        releaseCvFsHn((CVFS)cvfs2);
+        
+        cvFsError("cvFsOpen #6:open failed");
+        
+        return NULL;
+    }
+
+    return (CVFS)cvfs2;
+}
+
 // cvFsOptFn1
 // cvFsOptFn2
 // cvFsRemoveDir
