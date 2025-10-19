@@ -113,7 +113,36 @@ Sint32 LSC_GetStmId(LSC lsc, Sint32 no)
     return lsc->sinfo[i].sid;
 }
 
-// LSC_GetStmRdSct
+// 100% matching!
+Sint32 LSC_GetStmRdSct(LSC lsc, Sint32 sid)
+{
+    Sint32 i;
+
+    if (lsc == NULL)
+    {
+        LSC_CallErrFunc("E0003: Illigal parameter lsc=NULL");
+        
+        return 0;
+    }
+
+    for (i = 0; i < LSC_STM_MAX; i++) 
+    {
+        if (lsc->sinfo[i].sid == sid) 
+        {
+            break;
+        }
+    }
+
+    if (i == LSC_STM_MAX) 
+    {
+        LSC_CallErrFunc("E0012: Can not find stream ID =%d", sid);
+        
+        return 0;
+    }
+
+    return lsc->sinfo[i].rdsct;
+}
+
 // LSC_GetStmStat
 // LSC_Pause
 // LSC_SetFlowLimit
