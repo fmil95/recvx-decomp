@@ -21,12 +21,12 @@ typedef struct _cvfs_vtbl
     Sint32  (*ChangeDir)(const Char8* dirname);
     Sint32  (*IsExistFile)(const Char8* dirname);
     Sint32  (*GetNumFilesAll)();
-    void    (*unk48)();
+    Sint32  (*LoadDirInfo)(const Char8* dirname, Sint32 arg1, Sint32 arg2);
     Sint32  (*GetMaxByteRate)(void* dev);
     void    (*unk50)();
     void    (*unk54)();
     Sint32  (*DeleteFile)(const Char8* dirname);
-    Sint32  (*GetFileSizeEx)(const Char8* dirname, void* unused);
+    Sint32  (*GetFileSizeEx)(const Char8* dirname, Sint32 arg1);
     void    (*unk60)();
     void    (*unk64)();
 } CVFS_VTBL;
@@ -471,11 +471,11 @@ Sint32 cvFsGetFileSize(const Char8* dirname)
 }
 
 // 100% matching!
-Sint32 cvFsGetFileSizeEx(const Char8* dirname, void* unused) 
+Sint32 cvFsGetFileSizeEx(const Char8* dirname, Sint32 arg1) 
 {
+    CVFS cvfs;
     Char8 devname[297];
     Char8 fname[297];
-    CVFS cvfs;
 
     if (dirname == NULL) 
     {
@@ -522,7 +522,7 @@ Sint32 cvFsGetFileSizeEx(const Char8* dirname, void* unused)
     }
 
     // same situation as cvFsChangeDir()
-    return ((CVFS_VTBL*)cvfs)->GetFileSizeEx(fname, unused); 
+    return ((CVFS_VTBL*)cvfs)->GetFileSizeEx(fname, arg1); 
 }
 
 // 100% matching!
@@ -782,7 +782,40 @@ Sint32 cvFsIsExistFile(const Char8* dirname)
     return ((CVFS_VTBL*)cvfs)->IsExistFile(fname); 
 }
 
-// cvFsLoadDirInfo
+// 100% matching!
+Sint32 cvFsLoadDirInfo(const Char8* dirname, Sint32 arg1, Sint32 arg2) 
+{
+    CVFS cvfs;
+    Char8 devname[297];
+    Char8 fname[297];
+    Sint32 ret;
+
+    getDevName(devname, fname, dirname);
+
+    ret = 0;
+    
+    if (devname[0] == '\0') 
+    {
+        getDefDev(devname);
+        
+        if (devname[0] == '\0') 
+        {
+            cvFsError("cvFsIsExistFile #2:illegal device name");
+            
+            return ret;
+        }
+    }
+    
+    cvfs = getDevice(devname); 
+    
+    if ((cvfs != NULL) && (((CVFS_VTBL*)cvfs)->LoadDirInfo != NULL)) 
+    {
+        ret = ((CVFS_VTBL*)cvfs)->LoadDirInfo(dirname, arg1, arg2); 
+    }
+
+    return ret; 
+}
+
 // cvFsMakeDir
 // cvFsOpen
 // cvFsOptFn1
