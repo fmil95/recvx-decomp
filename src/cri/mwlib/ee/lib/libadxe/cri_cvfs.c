@@ -12,7 +12,7 @@ typedef struct _cvfs_vtbl
     Sint32  (*Seek)(void* dev, Sint32 ofst, Sint32 whence);
     Sint32  (*Tell)(void* dev);
     Sint32  (*ReqRd)(void* dev, Sint32 nsct, Sint8* buf);
-    void    (*unk24)();
+    Sint32  (*ReqRw)(void* dev, Sint32 nsct, Sint8* buf);
     void    (*StopTr)(void* dev);
     Sint8   (*GetStat)(void* dev);
     Sint32  (*GetSctLen)();
@@ -1085,7 +1085,32 @@ Sint32 cvFsReqRd(CVFS cvfs, Sint32 nsct, Sint8* buf)
     return ret;
 }
 
-// cvFsReqWr
+// 100% matching!
+Sint32 cvFsReqWr(CVFS cvfs, Sint32 nsct, Sint8* buf)
+{
+    Sint32 ret;
+
+    ret = 0;
+
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsReqWr #1:handle error");
+        
+        return ret;
+    }
+    
+    if (cvfs->vtbl->ReqRw != NULL) 
+    {
+        ret = cvfs->vtbl->ReqRw(cvfs->dev, nsct, buf);
+    } 
+    else 
+    {
+        cvFsError("cvFsReqWr #2:vtbl error");
+    }
+    
+    return ret;
+}
+
 // cvFsSeek
 
 // 100% matching!
