@@ -222,7 +222,35 @@ void LSC_SetLpFlg(LSC lsc, Sint32 flg)
     lsc->lpflg = flg;
 }
 
-// LSC_Start
+// 100% matching!
+void LSC_Start(LSC lsc)
+{
+    Sint32 unused;
+    
+    if (lsc == NULL) 
+    {
+        LSC_CallErrFunc("E0003: Illigal parameter lsc=NULL");
+        return;
+    }
+
+    LSC_LockCrs(&unused);
+
+    if (lsc->stat != LSC_STAT_STOP) 
+    {
+        LSC_Stop(lsc);
+    }
+
+    if (lsc->nstm > 0)
+    {
+        lsc->stat = LSC_STAT_EXEC;
+    } 
+    else 
+    {
+        lsc->stat = LSC_STAT_WAIT;
+    }
+
+    LSC_UnlockCrs(&unused);
+}
 
 void LSC_Stop(LSC lsc)
 {
