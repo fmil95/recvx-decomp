@@ -7,7 +7,7 @@ typedef struct _cvfs_vtbl
     void    (*EntryErrFunc)(void* func, void* obj);
     Sint32  (*GetFileSize)(const Char8* dirname);
     Sint32  (*GetFreeSize)();
-    void*   (*Open)(const Char8* dirname, Sint32 arg1, Sint32 rw); // should return CVFS
+    void*   (*Open)(const Char8* dirname, Sint32 arg1, Sint32 rw); 
     void    (*Close)(void* dev);
     Sint32  (*Seek)(void* dev, Sint32 ofst, Sint32 whence);
     Sint32  (*Tell)(void* dev);
@@ -27,8 +27,8 @@ typedef struct _cvfs_vtbl
     void    (*unk54)();
     Sint32  (*DeleteFile)(const Char8* dirname);
     Sint32  (*GetFileSizeEx)(const Char8* dirname, Sint32 arg1);
-    void    (*unk60)();
-    void    (*unk64)();
+    Sint32  (*OptFn1)(void* dev);
+    Sint32  (*OptFn2)(void* dev);
 } CVFS_VTBL;
 
 typedef struct _cvfs_obj 
@@ -952,7 +952,32 @@ CVFS cvFsOpen(const Char8* dirname, Sint32 arg1, Sint32 rw)
     return (CVFS)cvfs2;
 }
 
-// cvFsOptFn1
+// 100% matching!
+Sint32 cvFsOptFn1(CVFS cvfs) 
+{
+    Sint32 ret;
+
+    ret = 0;
+    
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsOptFn1 #1:handle error");
+        
+        return ret;
+    }
+    
+    if (cvfs->vtbl->OptFn1 != NULL) 
+    {
+        ret = cvfs->vtbl->OptFn1(cvfs->dev);
+    } 
+    else 
+    {
+        cvFsError("cvFsOptFn1 #2:vtbl error");
+    }
+    
+    return ret;
+}
+
 // cvFsOptFn2
 // cvFsRemoveDir
 // cvFsReqRd
