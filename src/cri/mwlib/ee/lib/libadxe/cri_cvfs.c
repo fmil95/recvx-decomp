@@ -978,7 +978,32 @@ Sint32 cvFsOptFn1(CVFS cvfs)
     return ret;
 }
 
-// cvFsOptFn2
+// 100% matching!
+Sint32 cvFsOptFn2(CVFS cvfs) 
+{
+    Sint32 ret;
+
+    ret = 0;
+    
+    if (cvfs == NULL) 
+    {
+        cvFsError("cvFsOptFn2 #1:handle error");
+        
+        return ret;
+    }
+    
+    if (cvfs->vtbl->OptFn2 != NULL) 
+    {
+        ret = cvfs->vtbl->OptFn2(cvfs->dev);
+    } 
+    else 
+    {
+        cvFsError("cvFsOptFn2 #2:vtbl error");
+    }
+    
+    return ret;
+}
+
 // cvFsRemoveDir
 // cvFsReqRd
 // cvFsReqWr
