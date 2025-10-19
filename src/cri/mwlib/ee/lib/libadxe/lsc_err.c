@@ -2,7 +2,10 @@ void (*lsc_err_func)(void* err_obj, Char8* err_msg);
 void* lsc_err_obj;
 Char8 lsc_err_msg[256] = { 0 }; 
 
-// LSC_CallErrFunc
+void LSC_CallErrFunc(const Char8* msg, ...) 
+{
+    scePrintf("LSC_CallErrFunc - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void LSC_EntryErrFunc(void (*err_func)(void* err_obj, Char8* err_msg), void* err_obj) 

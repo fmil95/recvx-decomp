@@ -1,14 +1,16 @@
+#include "lsc.h"
 
+/* The KATANA SDK has a header for this file, cri_lsc.h, while the PS2 CRIware headers don't. */
 
 // lsc_Alloc
 // LSC_CallStatFunc
 
-void* LSC_Create(SJ sjf)
+LSC LSC_Create(SJ sj)
 {
     scePrintf("LSC_Create - UNIMPLEMENTED!\n");
 }
 
-void LSC_Destroy(void* lsc)
+void LSC_Destroy(LSC lsc)
 {
     scePrintf("LSC_Destroy - UNIMPLEMENTED!\n");
 }
@@ -17,7 +19,20 @@ void LSC_Destroy(void* lsc)
 // LSC_EntryFileRange
 // LSC_EntryFname
 // LSC_ExecServer
-// LSC_GetFlowLimit
+
+// 100% matching!
+Sint32 LSC_GetFlowLimit(LSC lsc) 
+{
+    if (lsc == NULL) 
+    {
+        LSC_CallErrFunc("E0003: Illigal parameter lsc=NULL");
+        
+        return -1;
+    }
+    
+    return lsc->bufmin;
+}
+
 // LSC_GetNumStm
 // LSC_GetStat
 // LSC_GetStmFname
@@ -29,7 +44,7 @@ void LSC_Destroy(void* lsc)
 // LSC_SetLpFlg
 // LSC_Start
 
-void LSC_Stop(void* lsc)
+void LSC_Stop(LSC lsc)
 {
     scePrintf("LSC_Stop - UNIMPLEMENTED!\n");
 }
