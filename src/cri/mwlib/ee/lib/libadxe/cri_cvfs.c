@@ -47,6 +47,52 @@ typedef struct _cvfs_name_obj
 
 typedef CVFS_NAME_OBJ *CVFS_NAME;
 
+CVFS addDevice(Char8* devname, void* (*getdevif()));
+CVFS allocCvFsHn(void);
+void cvFsAddDev(Char8* devname, void* (*getdevif()), void* unused);
+void cvFsCallUsrErrFn(void* errobj, const Char8* msg, void* obj);
+Sint32 cvFsChangeDir(const Char8* dirname);
+void cvFsClose(CVFS cvfs);
+void cvFsDelDev(Char8* devname);
+Sint32 cvFsDeleteFile(const Char8* dirname);
+void cvFsEntryErrFunc(CVFS_ERRFN func, void* obj);
+void cvFsError(const Char8* msg);
+void cvFsExecServer(void);
+void cvFsFinish(void);
+Char8* cvFsGetDefDev(void);
+CVFS_NAME cvFsGetDevName(CVFS cvfs);
+Sint32 cvFsGetFileSize(const Char8* dirname);
+Sint32 cvFsGetFileSizeEx(const Char8* dirname, Sint32 arg1);
+Sint32 cvFsGetFreeSize(Char8* fname);
+Sint32 cvFsGetMaxByteRate(CVFS cvfs);
+Sint32 cvFsGetNumFiles(const char* devname);
+Sint32 cvFsGetNumTr(CVFS cvfs);
+Sint32 cvFsGetSctLen(CVFS cvfs);
+Sint8 cvFsGetStat(CVFS cvfs);
+void cvFsInit(void);
+Sint32 cvFsIsExistFile(const Char8* dirname);
+Sint32 cvFsLoadDirInfo(const Char8* dirname, Sint32 arg1, Sint32 rw);
+Sint32 cvFsMakeDir(const Char8* dirname);
+CVFS cvFsOpen(const Char8* dirname, Sint32 arg1, Sint32 rw);
+Sint32 cvFsOptFn1(CVFS cvfs);
+Sint32 cvFsOptFn2(CVFS cvfs);
+Sint32 cvFsRemoveDir(const Char8* dirname);
+Sint32 cvFsReqRd(CVFS cvfs, Sint32 nsct, Sint8* buf);
+Sint32 cvFsReqWr(CVFS cvfs, Sint32 nsct, Sint8* buf);
+Sint32 cvFsSeek(CVFS cvfs, Sint32 ofst, Sint32 whence);
+void cvFsSetDefDev(Char8* devname);
+void cvFsSetSctLen(CVFS cvfs);
+void cvFsStopTr(CVFS cvfs);
+Sint32 cvFsTell(CVFS cvfs);
+void getDefDev(Char8* devname);
+CVFS getDevice(const Char8* devname);
+void getDevName(Char8* devname, Char8* fname, const Char8* dirname);
+Sint32 getNumFiles(const char* devname);
+Sint32 getNumFilesAll(void);
+Sint32 isExistDev(const Char8* devname, Sint32 nameln);
+void releaseCvFsHn(CVFS cvfs);
+void toUpperStr(Char8* str);
+
 static Char8* volatile cvfs_build = "\ncvFs Ver.2.11 Build:Jan 26 2001 09:55:14\n";
 static CVFS_ERRFN cvfs_errfn = NULL;
 static void* cvfs_errobj = NULL; 
@@ -55,14 +101,6 @@ static Char8 cvfs_defdev[9];
 static CVFS_OBJ cvfs_obj[40];
 static CVFS_NAME_OBJ cvfs_tbl[32];
 static CVFS_NAME_OBJ D_01E2A604[32];
-
-void cvFsCallUsrErrFn(void* errobj, const Char8* msg, void* obj);
-void cvFsError(const Char8* msg);
-void getDefDev(Char8* devname);
-CVFS getDevice(const Char8 *devname);
-void getDevName(Char8* devname, Char8* fname, const Char8* dirname);
-void releaseCvFsHn(CVFS cvfs);
-void toUpperStr(Char8* str);
 
 // 100% matching!
 CVFS addDevice(Char8* devname, void* (*getdevif()))
@@ -81,7 +119,7 @@ CVFS addDevice(Char8* devname, void* (*getdevif()))
         return cvfs;
     }
 
-    for( ; i < 32; i++) 
+    for ( ; i < 32; i++) 
     {
         if (cvfs_tbl[i].name[0] == '\0')
         {
@@ -158,9 +196,9 @@ void cvFsCallUsrErrFn(void* errobj, const Char8* msg, void* obj)
 // 100% matching!
 Sint32 cvFsChangeDir(const Char8* dirname) 
 {
+    CVFS cvfs;
     Char8 devname[297];
     Char8 fname[297];
-    CVFS cvfs;
 
     if (dirname == NULL) 
     {
@@ -259,9 +297,9 @@ void cvFsDelDev(Char8* devname)
 // 100% matching!
 Sint32 cvFsDeleteFile(const Char8* dirname) 
 {
+    CVFS cvfs;
     Char8 devname[297];
     Char8 fname[297];
-    CVFS cvfs;
 
     if (dirname == NULL) 
     {
@@ -353,7 +391,7 @@ void cvFsExecServer(void)
 void cvFsFinish(void) 
 {
     CVFS cvfs1;
-    CVFS cvfs2; // not really needed, probably dead code
+    CVFS cvfs2; 
     Sint32 i;
 
     if (--cvfs_init_cnt == 0)
@@ -418,9 +456,9 @@ CVFS_NAME cvFsGetDevName(CVFS cvfs)
 // 100% matching!
 Sint32 cvFsGetFileSize(const Char8* dirname) 
 {
+    CVFS cvfs;
     Char8 devname[297];
     Char8 fname[297];
-    CVFS cvfs;
 
     if (dirname == NULL) 
     {
@@ -707,7 +745,7 @@ Sint8 cvFsGetStat(CVFS cvfs)
 void cvFsInit(void) 
 {
     CVFS cvfs1;
-    CVFS cvfs2; // same situation as cvFsFinish()
+    CVFS cvfs2; 
     Sint32 i;
 
     if (cvfs_init_cnt == 0)
