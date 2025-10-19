@@ -27,7 +27,8 @@
 #define	LSC_STM_MAX			(16)
 
 /*	ハンドルの個数				*/
-#define	LSC_OBJ_MAX			(4)
+//#define	LSC_OBJ_MAX			(4)
+#define	LSC_OBJ_MAX			(8)
 
 /*	ファイル名の最大文字数		*/
 //#define	LSC_FNAME_MAX		(32)

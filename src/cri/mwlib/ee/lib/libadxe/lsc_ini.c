@@ -1,6 +1,8 @@
-Sint32 lsc_init_cnt;
-void* lsc_obj[2] /*= { 0 }*/; // commenting this out crashes
-Char8* lsc_obj_mark = "MARK:lsc_obj"; /* unused */
+#include "cri_lsc.h"
+
+static Char8* lsc_obj_mark = "MARK:lsc_obj"; /* unused */
+static LSC_OBJ lsc_obj[LSC_OBJ_MAX] = { 0 };
+static Sint32 lsc_init_cnt;
 
 // 100% matching!
 void lsc_DeleteSvrInt(void) 
@@ -28,7 +30,7 @@ void LSC_Init(void)
     
     if (lsc_init_cnt == 0) 
     {
-        memset(lsc_obj, 0, 8640);
+        memset(lsc_obj, 0, sizeof(lsc_obj));
         
         lsc_EntrySvrInt();
         LSC_EntryErrFunc(NULL, NULL);
