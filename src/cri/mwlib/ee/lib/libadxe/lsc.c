@@ -46,7 +46,19 @@ Sint32 LSC_GetNumStm(LSC lsc)
     return lsc->nstm;
 }
 
-// LSC_GetStat
+// 100% matching!
+Sint32 LSC_GetStat(LSC lsc) 
+{
+    if (lsc == NULL) 
+    {
+        LSC_CallErrFunc("E0003: Illigal parameter lsc=NULL");
+        
+        return -1;
+    }
+    
+    return lsc->stat;
+}
+
 // LSC_GetStmFname
 // LSC_GetStmId
 // LSC_GetStmRdSct
