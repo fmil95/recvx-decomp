@@ -16,8 +16,37 @@ void LSC_Destroy(LSC lsc)
 }
 
 // LSC_EntryChgStatFunc
-// LSC_EntryFileRange
-// LSC_EntryFname
+
+void LSC_EntryFileRange(LSC lsc, char *fname, Sint32 arg2, Sint32 arg3, Sint32 flen) 
+{
+    scePrintf("LSC_EntryFileRange - UNIMPLEMENTED!\n");
+}
+
+// 100% matching!
+Sint32 LSC_EntryFname(LSC lsc, char *fname) 
+{
+    ADXSTM adxstm;
+    Sint32 flen;
+
+    adxstm = ADXSTM_OpenFname(fname, lsc->sj);
+    
+    if (adxstm == NULL) 
+    {
+        LSC_CallErrFunc("E0004: Can not open '%s'", fname);
+    }
+    
+    flen = (ADXSTM_GetFileLen((Sint32)adxstm) + 2047) / 2048;
+    
+    ADXSTM_Close(adxstm);
+    
+    LSC_EntryFileRange(lsc, fname, 0, 0, flen);
+
+    // this code blocks the compiler from doing the tail call optimization
+    if (0 != 0)
+    {
+        while (TRUE);
+    }
+}
 
 // 100% matching!
 void LSC_ExecServer(void)
