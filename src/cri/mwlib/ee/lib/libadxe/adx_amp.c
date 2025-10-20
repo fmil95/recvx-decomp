@@ -106,4 +106,8 @@ void ADXAMP_Start(ADXAMP amp)
     amp->stat = 2;
 }
 
-// ADXAMP_Stop
+// 100% matching!
+void ADXAMP_Stop(ADXAMP amp)
+{
+    amp->stat = 0;
+}
