@@ -14,9 +14,23 @@ LSC LSC_Create(SJ sj)
     scePrintf("LSC_Create - UNIMPLEMENTED!\n");
 }
 
-void LSC_Destroy(LSC lsc)
+// 100% matching!
+void LSC_Destroy(LSC lsc) 
 {
-    scePrintf("LSC_Destroy - UNIMPLEMENTED!\n");
+    Sint32 unused;
+    
+    if (lsc != NULL) 
+    {
+        LSC_LockCrs(&unused);
+        
+        LSC_Stop(lsc);
+        
+        lsc->used = FALSE;
+        
+        memset(lsc, 0, sizeof(LSC_OBJ));
+
+        LSC_UnlockCrs(&unused);
+    }
 }
 
 // 100% matching!
