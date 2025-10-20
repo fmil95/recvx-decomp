@@ -2,12 +2,20 @@
 
 /* The KATANA SDK has a header for this file, cri_lsc.h, while the PS2 CRIware headers don't. */
 
-static void* lsc_stat_func;
+static void (*lsc_stat_func)(void* obj1, void* obj2);
 static void* lsc_stat_obj1;
 static void* lsc_stat_obj2;
 
 // lsc_Alloc
-// LSC_CallStatFunc
+
+// 100% matching!
+void LSC_CallStatFunc(void) 
+{
+    if (lsc_stat_func != NULL) 
+    {
+        lsc_stat_func(lsc_stat_obj1, lsc_stat_obj2);
+    }
+}
 
 LSC LSC_Create(SJ sj)
 {
