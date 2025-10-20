@@ -27,12 +27,10 @@
 #define	LSC_STM_MAX			(16)
 
 /*	ハンドルの個数				*/
-//#define	LSC_OBJ_MAX			(4)
-#define	LSC_OBJ_MAX			(8)
+#define	LSC_OBJ_MAX			(8) 
 
 /*	ファイル名の最大文字数		*/
-//#define	LSC_FNAME_MAX		(32)
-#define	LSC_FNAME_MAX		(52)
+#define	LSC_FNAME_MAX		(40)
 
 /*	動作状態					*/
 #define	LSC_STAT_STOP		(0)
@@ -65,10 +63,13 @@ typedef void (*LSC_STATFN)(void *obj1, void *obj2);
 #ifndef LSC_SINFO_DEFINED
 #define LSC_SINFO_DEFINED
 typedef struct _lsc_sinfo {
-	Sint32		sid;						/*	ストリームID				*/
-	char		fname[LSC_FNAME_MAX];		/*	ファイル名					*/
-	Sint32		stat;						/*	ストリームの読み込み状態	*/
-	Sint32		rdsct;						/*	読み込みセクタ数			*/
+	Sint32 sid;
+    Sint8 fname[LSC_FNAME_MAX];
+    void *dir;
+    Sint32 ofst;
+    Sint32 fsct;
+    Sint32 stat;
+    Sint32 rdsct;
 } LSC_SINFO;
 #endif
 
@@ -80,47 +81,26 @@ typedef void	*LSC_FP;
 /*	ハンドル					*/
 #ifndef LSC_DEFINED
 #define LSC_DEFINED
-//typedef struct _lsc_obj {
-	//Sint32		used;						/*	使用中か否か				*/
-	//SJ			sj;							/*	ストリームジョイント		*/
-	//SJCK		ck;
-	//Sint32		stat;						/*	ハンドル状態				*/
-	//Sint32		bufmin;						/*	バッファ流量下限値			*/
-	//Sint32		bsize;
-	//Sint32		wpos;
-	//Sint32		rpos;
-	//Sint32		nstm;						/*	登録ストリーム数			*/
-	//Sint32		pause;
-	//LSC_FP		fp;
-	//Sint32		fsct;
-	//Sint32		reqsct;
-	//Sint32		rdflg;
-	//LSC_SINFO	sinfo[LSC_STM_MAX];			/*	読み込み中のストリーム情報	*/
-//} LSC_OBJ;
 typedef struct _lsc_obj {
-	Sint8		used;						/*	使用中か否か				*/
+    Sint8       used;
     Sint8       stat;
-    Sint8       unk2;
+    Sint8       rdflg;
     Sint8       lpflg;
     Sint8       pause;
-    Sint8       unk4;
-    Sint8       unk5;
-    Sint8       unk6;
-    Sint8       unk7;
-	SJ			sj;							/*	ストリームジョイント		*/
-	//SJCK		ck;
-	Sint32		stat2;						/*	ハンドル状態				*/
-	Sint32		bufmin;						/*	バッファ流量下限値			*/
-	Sint32		bsize;
-	Sint32		wpos;
-	Sint32		rpos;
-	Sint32		nstm;						/*	登録ストリーム数			*/
-	//Sint32		pause;
-	LSC_FP		fp;
-	Sint32		fsct;
-	Sint32		reqsct;
-	Sint32		rdflg;
-	LSC_SINFO	sinfo[LSC_STM_MAX];			/*	読み込み中のストリーム情報	*/
+    Sint8       rsv1;
+    Sint16      rsv2;
+    SJ          sj;
+    SJCK        ck;
+    Sint32      bufmin;
+    Sint32      bsize;
+    Sint32      wpos;
+    Sint32      rpos;
+    Sint32      nstm;
+    LSC_FP      fp;
+    Sint32      fsct;
+    Sint32      reqsct;
+    Sint32      errcnt;
+    LSC_SINFO   sinfo[16];
 } LSC_OBJ;
 typedef LSC_OBJ *LSC;
 #endif

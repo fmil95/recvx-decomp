@@ -107,7 +107,7 @@ char *LSC_GetStmFname(LSC lsc, Sint32 sid)
         return NULL;
     }
 
-    return lsc->sinfo[i].fname;
+    return (Char8*)lsc->sinfo[i].fname;
 }
 
 // 100% matching!
@@ -273,7 +273,43 @@ void LSC_Start(LSC lsc)
     LSC_UnlockCrs(&unused);
 }
 
-void LSC_Stop(LSC lsc)
+// 100% matching!
+void LSC_Stop(LSC lsc) 
 {
-    scePrintf("LSC_Stop - UNIMPLEMENTED!\n");
+    Sint32 unused;
+
+    if (lsc == NULL) 
+    {
+        LSC_CallErrFunc("E0003: Illigal parameter lsc=NULL");
+        return;
+    }
+    
+    LSC_LockCrs(&unused);
+    
+    if (lsc->fp != NULL) 
+    {
+        if (lsc->rdflg == 1) 
+        {
+            ADXSTM_Stop(lsc->fp);
+            
+            lsc->rdflg = 0;
+        }
+        
+        ADXSTM_Close(lsc->fp);
+        
+        lsc->fp = NULL;
+    }
+    
+    lsc->fsct = 0;
+    
+    lsc->wpos = 0;
+    lsc->rpos = 0;
+    
+    lsc->nstm = 0;
+    
+    lsc->errcnt = 0;
+    
+    lsc->stat = LSC_STAT_STOP;
+    
+    LSC_UnlockCrs(&unused); 
 }
