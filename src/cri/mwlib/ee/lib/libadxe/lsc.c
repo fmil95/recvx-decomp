@@ -83,11 +83,11 @@ LSC LSC_Create(SJ sj)
 // 100% matching!
 void LSC_Destroy(LSC lsc) 
 {
-    Sint32 unused;
+    LSC_CRS crs;
     
     if (lsc != NULL) 
     {
-        LSC_LockCrs(&unused);
+        LSC_LockCrs(&crs);
         
         LSC_Stop(lsc);
         
@@ -95,14 +95,14 @@ void LSC_Destroy(LSC lsc)
         
         memset(lsc, 0, sizeof(LSC_OBJ));
 
-        LSC_UnlockCrs(&unused);
+        LSC_UnlockCrs(&crs);
     }
 }
 
 // 100% matching!
-void LSC_EntryChgStatFunc(void* func, void* obj1, void* obj2)
+void LSC_EntryChgStatFunc(LSC_STATFN statfn, void *obj1, void *obj2)
 {
-    if (func == NULL) 
+    if (statfn == NULL) 
     {
         lsc_stat_func = NULL;
         
@@ -111,16 +111,74 @@ void LSC_EntryChgStatFunc(void* func, void* obj1, void* obj2)
     }
     else 
     {
-        lsc_stat_func = func;
+        lsc_stat_func = statfn;
         
         lsc_stat_obj1 = obj1;
         lsc_stat_obj2 = obj2;
     }
 }
 
-void LSC_EntryFileRange(LSC lsc, char *fname, Sint32 arg2, Sint32 arg3, Sint32 flen) 
+// 100% matching!
+Sint32 LSC_EntryFileRange(LSC lsc, Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct) 
 {
-    scePrintf("LSC_EntryFileRange - UNIMPLEMENTED!\n");
+    LSC_SINFO *sinfo;
+	Sint32 sid;
+	Sint32 pre_sid; /* unused */
+	Sint32 pos;
+
+    sid = 0;
+
+    if (lsc == NULL) 
+    {
+        LSC_CallErrFunc("E0003: Illigal parameter lsc=NULL");
+        
+        return -1;
+    }
+
+    if (lsc->nstm >= LSC_STM_MAX)
+    {
+        return -1;
+    }
+
+    if (fname == NULL) 
+    {
+        LSC_CallErrFunc("E0011: Illigal parameter fname=%s", fname);
+        
+        return -1;
+    }
+
+    sinfo = &lsc->sinfo[lsc->wpos];
+    
+    pos = (lsc->wpos + 15) % LSC_STM_MAX;
+    
+    sid = ((lsc->sinfo[pos].sid) == 0x7FFFFFFF) ? 0 : lsc->sinfo[pos].sid + 1;
+    
+    sinfo->sid = sid;
+
+    strncpy(sinfo->fname, fname, sizeof(sinfo->fname));
+    
+    sinfo->ofst = ofst;
+    
+    sinfo->fsct = nsct;
+    
+    sinfo->dir = dir;
+    
+    sinfo->stat = LSC_STM_STAT_WAIT;
+    
+    sinfo->rdsct = 0;
+    
+    lsc->nstm++;
+    
+    lsc->wpos++;
+    
+    lsc->wpos %= LSC_STM_MAX;
+
+    if (lsc->stat == LSC_STAT_WAIT)
+    {
+        lsc->stat = LSC_STAT_EXEC;
+    }
+
+    return sid;
 }
 
 // 100% matching!
@@ -140,7 +198,7 @@ Sint32 LSC_EntryFname(LSC lsc, char *fname)
     
     ADXSTM_Close(adxstm);
     
-    LSC_EntryFileRange(lsc, fname, 0, 0, flen);
+    LSC_EntryFileRange(lsc, (Sint8*)fname, 0, 0, flen);
 
     // this code blocks the compiler from doing the tail call optimization
     if (0 != 0)
