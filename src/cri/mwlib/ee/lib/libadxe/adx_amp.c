@@ -91,5 +91,19 @@ void ADXAMP_SetSfreq(ADXAMP amp, Sint32 sfreq)
     amp->sfreq = sfreq;
 }
 
-// ADXAMP_Start
+// 100% matching!
+void ADXAMP_Start(ADXAMP amp) 
+{
+    Sint32 chno;
+
+    for (chno = 0; chno < amp->maxnch; chno++)
+    {
+        amp->total_exsmpl[chno] = 0;
+    }
+    
+    amp->frm_no = 0;
+    
+    amp->stat = 2;
+}
+
 // ADXAMP_Stop
