@@ -2,6 +2,10 @@
 
 /* The KATANA SDK has a header for this file, cri_lsc.h, while the PS2 CRIware headers don't. */
 
+static void* lsc_stat_func;
+static void* lsc_stat_obj1;
+static void* lsc_stat_obj2;
+
 // lsc_Alloc
 // LSC_CallStatFunc
 
@@ -15,7 +19,24 @@ void LSC_Destroy(LSC lsc)
     scePrintf("LSC_Destroy - UNIMPLEMENTED!\n");
 }
 
-// LSC_EntryChgStatFunc
+// 100% matching!
+void LSC_EntryChgStatFunc(void* func, void* obj1, void* obj2)
+{
+    if (func == NULL) 
+    {
+        lsc_stat_func = NULL;
+        
+        lsc_stat_obj1 = NULL;
+        lsc_stat_obj2 = NULL;
+    }
+    else 
+    {
+        lsc_stat_func = func;
+        
+        lsc_stat_obj1 = obj1;
+        lsc_stat_obj2 = obj2;
+    }
+}
 
 void LSC_EntryFileRange(LSC lsc, char *fname, Sint32 arg2, Sint32 arg3, Sint32 flen) 
 {
