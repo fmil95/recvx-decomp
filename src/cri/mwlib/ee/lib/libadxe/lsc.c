@@ -1,4 +1,4 @@
-#include <cri_lsc.h>
+#include "lsc.h"
 
 /* The KATANA SDK has a header for this file, cri_lsc.h, while the PS2 CRIware headers don't. */
 
@@ -298,7 +298,7 @@ Sint8* LSC_GetStmFname(LSC lsc, Sint32 sid)
 // 100% matching!
 Sint32 LSC_GetStmId(LSC lsc, Sint32 no)
 {
-    Sint32 i;
+    Sint32 pos;
     
     if (lsc == NULL) 
     {
@@ -314,9 +314,9 @@ Sint32 LSC_GetStmId(LSC lsc, Sint32 no)
         return -1;
     }
     
-    i = (lsc->rpos + no) % LSC_STM_MAX;
+    pos = (lsc->rpos + no) % LSC_STM_MAX;
     
-    return lsc->sinfo[i].sid;
+    return lsc->sinfo[pos].sid;
 }
 
 // 100% matching!
@@ -431,7 +431,7 @@ void LSC_SetLpFlg(LSC lsc, Sint32 flg)
 // 100% matching!
 void LSC_Start(LSC lsc)
 {
-    Sint32 unused;
+    LSC_CRS crs;
     
     if (lsc == NULL) 
     {
@@ -439,7 +439,7 @@ void LSC_Start(LSC lsc)
         return;
     }
 
-    LSC_LockCrs(&unused);
+    LSC_LockCrs(&crs);
 
     if (lsc->stat != LSC_STAT_STOP) 
     {
@@ -455,13 +455,13 @@ void LSC_Start(LSC lsc)
         lsc->stat = LSC_STAT_WAIT;
     }
 
-    LSC_UnlockCrs(&unused);
+    LSC_UnlockCrs(&crs);
 }
 
 // 100% matching!
 void LSC_Stop(LSC lsc) 
 {
-    Sint32 unused;
+    LSC_CRS crs;
 
     if (lsc == NULL) 
     {
@@ -469,7 +469,7 @@ void LSC_Stop(LSC lsc)
         return;
     }
     
-    LSC_LockCrs(&unused);
+    LSC_LockCrs(&crs);
     
     if (lsc->fp != NULL) 
     {
@@ -496,5 +496,5 @@ void LSC_Stop(LSC lsc)
     
     lsc->stat = LSC_STAT_STOP;
     
-    LSC_UnlockCrs(&unused); 
+    LSC_UnlockCrs(&crs); 
 }
