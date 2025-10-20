@@ -35,7 +35,12 @@ Sint32 ADXAMP_GetExtractNumSmpl(ADXAMP amp)
     return amp->total_exsmpl[0];
 }
 
-// ADXAMP_GetFrmLen
+// 100% matching! 
+Float32 ADXAMP_GetFrmLen(ADXAMP amp)
+{
+    return amp->frm_len;
+}
+
 // ADXAMP_GetFrmPrd
 // ADXAMP_GetSfreq
 // ADXAMP_GetStat
