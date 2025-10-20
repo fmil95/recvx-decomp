@@ -17,6 +17,8 @@ typedef struct
 
 typedef ADX_AMP *ADXAMP;
 
+void adxamp_extract(ADXAMP amp);
+
 static Sint32 adxsmp_init_cnt;
 static ADX_AMP adxamp_obj[8];
 
@@ -35,9 +37,21 @@ void ADXAMP_Destroy(ADXAMP amp)
     }
 }
 
-// ADXAMP_ExecHndl
+// 100% matching!
+void ADXAMP_ExecHndl(ADXAMP amp) 
+{
+    if (amp->stat == 2)
+    {
+        adxamp_extract(amp);
+    }
+}
+
 // ADXAMP_ExecServer
-// adxamp_extract
+
+void adxamp_extract(ADXAMP amp) 
+{
+	scePrintf("adxamp_extract - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void ADXAMP_Finish(void) 
