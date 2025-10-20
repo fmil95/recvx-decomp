@@ -46,7 +46,22 @@ void ADXAMP_ExecHndl(ADXAMP amp)
     }
 }
 
-// ADXAMP_ExecServer
+// 100% matching!
+void ADXAMP_ExecServer(void)
+{
+    ADXAMP amp;
+    Sint32 no;
+
+    for (no = 0; no < 8; no++) 
+    {
+        amp = &adxamp_obj[no];
+        
+        if (amp->used == TRUE)
+        {
+            ADXAMP_ExecHndl(amp);
+        }
+    } 
+}
 
 void adxamp_extract(ADXAMP amp) 
 {
