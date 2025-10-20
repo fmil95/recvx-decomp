@@ -20,9 +20,59 @@ typedef ADX_AMP *ADXAMP;
 void adxamp_extract(ADXAMP amp);
 
 static Sint32 adxsmp_init_cnt;
-static ADX_AMP adxamp_obj[8];
+static ADX_AMP adxamp_obj[8] = { 0 };
 
-// ADXAMP_Create
+// 100% matching!
+ADXAMP ADXAMP_Create(Sint32 maxnch, SJ *sji, SJ *sjo) 
+{
+    ADXAMP amp;
+	Sint32 no;
+	Sint32 i;
+
+    for (no = 0; no < 8; no++) 
+    {
+        if (adxamp_obj[no].used == FALSE)
+        {
+            break;
+        }
+    } 
+
+    if (no != 8) 
+    {
+        ADXCRS_Lock();
+        
+        amp = &adxamp_obj[no];
+        
+        amp->maxnch = maxnch;
+        
+        for (i = 0; i < maxnch; i++) 
+        {
+            amp->sji[i] = sji[i];
+            amp->sjo[i] = sjo[i]; 
+            
+            amp->total_exsmpl[i] = 0;
+        } 
+        
+        amp->nch = maxnch;
+        
+        amp->sfreq = 44100;
+        
+        amp->stat = 0;
+        
+        amp->frm_no = 0; 
+        
+        amp->frm_len = 0.000002503628f;
+        amp->frm_prd = 0.000002503628f;
+        
+        amp->used = TRUE;
+        
+        ADXCRS_Unlock(); 
+
+        return amp;
+    }
+    
+    return NULL;
+}
 
 // 100% matching!
 void ADXAMP_Destroy(ADXAMP amp) 
