@@ -1,10 +1,10 @@
-#include "cri_lsc.h"
+#include <cri_lsc.h>
 
 /* The KATANA SDK has a header for this file, cri_lsc.h, while the PS2 CRIware headers don't. */
 
-static void (*lsc_stat_func)(void* obj1, void* obj2);
-static void* lsc_stat_obj1;
-static void* lsc_stat_obj2;
+static LSC_STATFN lsc_stat_func;
+static void *lsc_stat_obj1;
+static void *lsc_stat_obj2;
 
 // 100% matching!
 LSC lsc_Alloc(void) 
@@ -35,9 +35,49 @@ void LSC_CallStatFunc(void)
     }
 }
 
+// 100% matching!
 LSC LSC_Create(SJ sj)
 {
-    scePrintf("LSC_Create - UNIMPLEMENTED!\n");
+    LSC lsc;
+    LSC_CRS crs;
+    Sint32 i;
+
+    if (sj == NULL)
+    {
+        LSC_CallErrFunc("E0001: Illigal parameter=sj (LSC_Create)");
+        
+        return NULL;
+    }
+    
+    LSC_LockCrs(&crs);
+    
+    lsc = lsc_Alloc();
+
+    if (lsc == NULL) 
+    {
+        LSC_CallErrFunc("E0002: Not enough instance (LSC_Create)");
+    } 
+    else 
+    {
+        lsc->stat = LSC_STAT_STOP;
+        
+        lsc->sj = sj;
+
+        lsc->bsize = SJ_GetNumData(sj, 0) + SJ_GetNumData(sj, 1);
+        
+        lsc->bufmin = (lsc->bsize * 8) / 10;
+
+        for (i = 0; i < LSC_STM_MAX; i++) 
+        {
+            lsc->sinfo[i].stat = LSC_STM_STAT_WAIT;
+        }
+
+        lsc->used = TRUE;
+    }
+
+    LSC_UnlockCrs(&crs);
+    
+    return lsc;
 }
 
 // 100% matching!
