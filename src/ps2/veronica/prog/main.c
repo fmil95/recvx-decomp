@@ -19,6 +19,8 @@
 #include <libsdr.h>
 #include <sif.h>
 #include <libmpeg.h>
+#include <stdarg.h>
+#include <va-mips.h>
 
 #include "override_katana.h"
 // KATANA library

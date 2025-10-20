@@ -58,7 +58,7 @@
 typedef Sint32 LSC_CRS;
 
 /*	エラー登録関数				*/
-typedef void (*LSC_ERRFN)(void *obj, char *msg);
+typedef void (*LSC_ERRFN)(void *obj, Sint8 *msg);
 typedef void (*LSC_STATFN)(void *obj1, void *obj2);
 
 /*	ストリーム情報				*/
