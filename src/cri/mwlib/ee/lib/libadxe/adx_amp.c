@@ -53,7 +53,12 @@ Sint32 ADXAMP_GetSfreq(ADXAMP amp)
     return amp->sfreq;
 }
 
-// ADXAMP_GetStat
+// 100% matching! 
+Sint32 ADXAMP_GetStat(ADXAMP amp)
+{
+    return amp->stat;
+}
+
 // ADXAMP_Init
 // ADXAMP_SetFrmLen
 // ADXAMP_SetFrmPrd
