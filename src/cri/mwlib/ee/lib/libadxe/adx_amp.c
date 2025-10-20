@@ -17,6 +17,9 @@ typedef struct
 
 typedef ADX_AMP *ADXAMP;
 
+static Sint32 adxsmp_init_cnt;
+static ADX_AMP adxamp_obj[8];
+
 // ADXAMP_Create
 
 void ADXAMP_Destroy(void* adxamp)
@@ -59,7 +62,17 @@ Sint32 ADXAMP_GetStat(ADXAMP amp)
     return amp->stat;
 }
 
-// ADXAMP_Init
+// 100% matching! 
+void ADXAMP_Init(void) 
+{
+    if (adxsmp_init_cnt == 0) 
+    {
+        memset(adxamp_obj, 0, sizeof(adxamp_obj));
+    }
+    
+    adxsmp_init_cnt++;
+}
+
 // ADXAMP_SetFrmLen
 // ADXAMP_SetFrmPrd
 // ADXAMP_SetSfreq
