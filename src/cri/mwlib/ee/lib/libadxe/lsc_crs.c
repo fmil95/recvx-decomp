@@ -1,13 +1,16 @@
+#include "lsc_crs.h"
 
-
-// 0% matching - devs made a mistake and defined this function to return an int
-void LSC_LockCrs(Sint32* unused)
+// 100% matching!
+void LSC_LockCrs(LSC_CRS *crs)
 {
     SJCRS_Lock(); 
+
+    // devs made a mistake and defined this function to return the output of SJCRS_Lock(), the following line simulates the return
+    if (0 != 0) { while (TRUE); }
 }
 
 // 100% matching!
-void LSC_UnlockCrs(Sint32* unused)
+void LSC_UnlockCrs(LSC_CRS *crs)
 {
     SJCRS_Unlock();
 }
