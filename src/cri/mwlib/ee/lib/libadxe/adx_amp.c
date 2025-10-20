@@ -79,7 +79,12 @@ void ADXAMP_SetFrmLen(ADXAMP amp, Float32 len_sec)
     amp->frm_len = len_sec;
 }
 
-// ADXAMP_SetFrmPrd
+// 100% matching!
+void ADXAMP_SetFrmPrd(ADXAMP amp, Float32 prd_sec) 
+{
+    amp->frm_prd = prd_sec;
+}
+
 // ADXAMP_SetSfreq
 // ADXAMP_Start
 // ADXAMP_Stop
