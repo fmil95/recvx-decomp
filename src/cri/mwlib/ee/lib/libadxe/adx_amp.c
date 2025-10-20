@@ -22,9 +22,17 @@ static ADX_AMP adxamp_obj[8];
 
 // ADXAMP_Create
 
-void ADXAMP_Destroy(void* adxamp)
+// 100% matching!
+void ADXAMP_Destroy(ADXAMP amp) 
 {
-    scePrintf("ADXAMP_Destroy - UNIMPLEMENTED!\n");
+    if (amp != NULL)
+    {
+        ADXCRS_Lock();
+        
+        memset(amp, 0, sizeof(ADX_AMP));
+        
+        ADXCRS_Unlock();
+    }
 }
 
 // ADXAMP_ExecHndl

@@ -48,6 +48,7 @@
 
 #include "main.h"
 
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_amp.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_baif.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_bau.c"
@@ -61,7 +62,6 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/lsc_svr.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sjr_clt.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sjx.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd3.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.c"
