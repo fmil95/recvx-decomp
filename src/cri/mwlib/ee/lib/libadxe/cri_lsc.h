@@ -136,7 +136,7 @@ LSC LSC_Create(SJ sj);
 void LSC_Destroy(LSC lsc);
 
 /*	ストリームの登録		*/
-Sint32 LSC_EntryFname(LSC lsc, char *fname);
+Sint32 LSC_EntryFname(LSC lsc, Sint8 *fname);
 
 /*	読み込み開始			*/
 void LSC_Start(LSC lsc);
@@ -160,7 +160,7 @@ Sint32 LSC_GetNumStm(LSC lsc);
 Sint32 LSC_GetStmId(LSC lsc, Sint32 no);
 
 /*	ファイル名の取得	*/
-char *LSC_GetStmFname(LSC lsc, Sint32 sid);
+Sint8* LSC_GetStmFname(LSC lsc, Sint32 sid);
 
 /*	ストリーム読み込みの状態取得	*/
 Sint32 LSC_GetStmStat(LSC lsc, Sint32 sid);

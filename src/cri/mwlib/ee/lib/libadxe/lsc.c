@@ -182,39 +182,36 @@ Sint32 LSC_EntryFileRange(LSC lsc, Sint8 *fname, void *dir, Sint32 ofst, Sint32 
 }
 
 // 100% matching!
-Sint32 LSC_EntryFname(LSC lsc, char *fname) 
+Sint32 LSC_EntryFname(LSC lsc, Sint8 *fname) 
 {
-    ADXSTM adxstm;
-    Sint32 flen;
+    void *fp;
+	Sint32 fsize;
+	Sint32 fsct;
 
-    adxstm = ADXSTM_OpenFname(fname, lsc->sj);
+    fp = ADXSTM_OpenFname(fname, lsc->sj);
     
-    if (adxstm == NULL) 
+    if (fp == NULL) 
     {
         LSC_CallErrFunc("E0004: Can not open '%s'", fname);
     }
-    
-    flen = (ADXSTM_GetFileLen((Sint32)adxstm) + 2047) / 2048;
-    
-    ADXSTM_Close(adxstm);
-    
-    LSC_EntryFileRange(lsc, (Sint8*)fname, 0, 0, flen);
 
-    // this code blocks the compiler from doing the tail call optimization
-    if (0 != 0)
-    {
-        while (TRUE);
-    }
+    fsct = (ADXSTM_GetFileLen(fp) + 2047) / 2048;
+        
+    ADXSTM_Close(fp);
+    
+    fsize = LSC_EntryFileRange(lsc, fname, NULL, 0, fsct);
+
+    return fsize;
 }
 
 // 100% matching!
 void LSC_ExecServer(void)
 {
     LSC lsc;
+    LSC_CRS crs;
     Sint32 i;
-    Sint32 unused;
-
-    LSC_LockCrs(&unused);
+    
+    LSC_LockCrs(&crs);
     
     for (i = 0; i < LSC_OBJ_MAX; i++) 
     {
@@ -226,7 +223,7 @@ void LSC_ExecServer(void)
         }
     }
     
-    LSC_UnlockCrs(&unused);
+    LSC_UnlockCrs(&crs);
 }
 
 // 100% matching!
@@ -269,7 +266,7 @@ Sint32 LSC_GetStat(LSC lsc)
 }
 
 // 100% matching!
-char *LSC_GetStmFname(LSC lsc, Sint32 sid)
+Sint8* LSC_GetStmFname(LSC lsc, Sint32 sid)
 {
     Sint32 i;
 
@@ -295,7 +292,7 @@ char *LSC_GetStmFname(LSC lsc, Sint32 sid)
         return NULL;
     }
 
-    return (Char8*)lsc->sinfo[i].fname;
+    return lsc->sinfo[i].fname;
 }
 
 // 100% matching!

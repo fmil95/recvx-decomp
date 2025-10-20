@@ -997,7 +997,7 @@ Sint32 adxf_SetFileInfoEx(ADXF_ROFS rofs, Char8* fname, void* atr)
     
     rofs->fid = fid;
     
-    fsize = ADXSTM_GetFileLen(fid);
+    fsize = ADXSTM_GetFileLen((void*)fid);
 
     rofs->ofs = (fsize + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE; 
 

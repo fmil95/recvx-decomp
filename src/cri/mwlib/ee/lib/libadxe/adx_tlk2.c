@@ -48,7 +48,7 @@ void ADXT_StartFname(ADXT adxt, Char8 *fname)
     
     ADXCRS_Lock();
     
-    adxt->stm = ADXSTM_OpenFname(fname, adxt->sjf);
+    adxt->stm = ADXSTM_OpenFname((Sint8*)fname, adxt->sjf);
     
     if (adxt->stm == NULL) 
     {

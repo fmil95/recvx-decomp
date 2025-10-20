@@ -1,6 +1,6 @@
 Sint32 adxstmf_num_rtry;
 
-void ADXSTM_Close(ADXSTM adxstm)
+void ADXSTM_Close(ADXSTM stm)
 {
     scePrintf("ADXSTM_Close - UNIMPLEMENTED!\n");
 }
@@ -28,7 +28,7 @@ Sint32 ADXSTM_GetCurOfst(ADXSTM adxstm, Sint32* nsct)
 // ADXSTM_GetCvdfsStat
 // ADXSTM_GetFad
 
-Sint32 ADXSTM_GetFileLen(Sint32 fid)
+Sint32 ADXSTM_GetFileLen(ADXSTM stm)
 {
     scePrintf("ADXSTM_GetFileLen - UNIMPLEMENTED!\n");
 }
@@ -59,7 +59,7 @@ ADXSTM ADXSTM_OpenFileRangeExRt(Char8* fname, void** dir, Sint32 ofst, Sint32 fn
     scePrintf("ADXSTM_OpenFileRangeExRt - UNIMPLEMENTED!\n");
 }
 
-ADXSTM ADXSTM_OpenFname(Char8* fname, SJ sjf)
+ADXSTM ADXSTM_OpenFname(Sint8 *fname, SJ sj)
 {
     scePrintf("ADXSTM_OpenFname - UNIMPLEMENTED!\n");
 }
