@@ -30,7 +30,15 @@ void ADXAMP_Destroy(void* adxamp)
 // ADXAMP_ExecHndl
 // ADXAMP_ExecServer
 // adxamp_extract
-// ADXAMP_Finish
+
+// 100% matching!
+void ADXAMP_Finish(void) 
+{
+    if (--adxsmp_init_cnt == 0) 
+    {
+        memset(adxamp_obj, 0, sizeof(adxamp_obj));
+    }
+}
 
 // 100% matching! 
 Sint32 ADXAMP_GetExtractNumSmpl(ADXAMP amp) 
