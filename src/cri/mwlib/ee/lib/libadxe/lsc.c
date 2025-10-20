@@ -6,7 +6,25 @@ static void (*lsc_stat_func)(void* obj1, void* obj2);
 static void* lsc_stat_obj1;
 static void* lsc_stat_obj2;
 
-// lsc_Alloc
+// 100% matching!
+LSC lsc_Alloc(void) 
+{
+    LSC lsc;
+    Sint32 i;
+
+    lsc = NULL;
+
+    for (i = 0; i < LSC_OBJ_MAX; i++) 
+    {
+        if (lsc_obj[i].used == FALSE) 
+        {
+            lsc = &lsc_obj[i];
+            break;
+        }
+    }
+
+    return lsc;
+}
 
 // 100% matching!
 void LSC_CallStatFunc(void) 
