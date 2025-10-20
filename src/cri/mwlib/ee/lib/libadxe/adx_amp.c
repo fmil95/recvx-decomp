@@ -41,7 +41,12 @@ Float32 ADXAMP_GetFrmLen(ADXAMP amp)
     return amp->frm_len;
 }
 
-// ADXAMP_GetFrmPrd
+// 100% matching! 
+Float32 ADXAMP_GetFrmPrd(ADXAMP amp) 
+{
+    return amp->frm_prd;
+}
+
 // ADXAMP_GetSfreq
 // ADXAMP_GetStat
 // ADXAMP_Init
