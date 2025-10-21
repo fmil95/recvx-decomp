@@ -821,7 +821,7 @@ Sint32 cvFsMakeDir(const Char8* dirname)
 }
 
 // 100% matching!
-CVFS cvFsOpen(const Char8* dirname, Sint32 arg1, Sint32 rw) 
+CVFS cvFsOpen(const Sint8* dirname, void* arg1, CVE_FS_OP rw)
 {
     CVFS cvfs1;
     CVFS_NAME cvfs2;
@@ -835,7 +835,7 @@ CVFS cvFsOpen(const Char8* dirname, Sint32 arg1, Sint32 rw)
         return NULL;
     }
 
-    getDevName(devname, fname, dirname);
+    getDevName(devname, fname, (Char8*)dirname);
     
     if (fname[0] == '\0') 
     {
@@ -846,7 +846,7 @@ CVFS cvFsOpen(const Char8* dirname, Sint32 arg1, Sint32 rw)
     
     if (devname[0] == '\0') 
     {
-        getDefDev(devname);
+        getDefDev((Char8*)devname);
         
         if (devname[0] == '\0') 
         {
@@ -865,7 +865,7 @@ CVFS cvFsOpen(const Char8* dirname, Sint32 arg1, Sint32 rw)
         return NULL;
     }
     
-    cvfs1 = getDevice(devname); 
+    cvfs1 = getDevice((Char8*)devname); 
 
     cvfs2->dev = cvfs1; 
     
@@ -880,7 +880,7 @@ CVFS cvFsOpen(const Char8* dirname, Sint32 arg1, Sint32 rw)
     
     if (((CVFS_VTBL*)cvfs1)->Open != NULL) 
     {
-        ((CVFS)cvfs2)->dev = (void*)((CVFS_VTBL*)cvfs1)->Open(fname, arg1, rw);
+        ((CVFS)cvfs2)->dev = (void*)((CVFS_VTBL*)cvfs1)->Open((Sint8*)fname, arg1, rw);
     }
     else 
     {

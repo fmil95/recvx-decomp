@@ -927,7 +927,7 @@ Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
     
     adxf->ofst = ofst;
     
-    adxf->stm = ADXSTM_OpenFileRangeEx(fname, dir, ofst, fnsct, 0);
+    adxf->stm = ADXSTM_OpenFileRangeEx((Sint8*)fname, dir, ofst, fnsct, 0);
     
     if (adxf->stm == NULL) 
     {

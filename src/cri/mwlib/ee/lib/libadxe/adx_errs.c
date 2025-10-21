@@ -14,7 +14,7 @@ void ADXERR_CallErrFunc1(Char8* err_msg)
 }
 
 // 100% matching! 
-void ADXERR_CallErrFunc2(Char8* err_msg, Char8* fname)
+void ADXERR_CallErrFunc2(Char8* err_msg, Sint8* fname)
 {
     strncpy(adxerr_msg, err_msg, 255);
     strncat(adxerr_msg, fname, 255);

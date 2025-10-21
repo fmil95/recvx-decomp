@@ -33,6 +33,7 @@ Sint32 adxstmf_num_rtry;
 void ADXSTMF_Destroy(ADXSTMF stmf);                      
 void ADXSTM_Stop(ADXSTM stm);  
 ADXSTM ADXSTM_OpenFileRangeExRt(const Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct, SJ sj);
+ADXSTMF ADXSTMF_CreateCvfs(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
 
 // 100% matching!
 void ADXSTM_Close(ADXSTM stm) 
@@ -186,9 +187,29 @@ ADXSTM ADXSTM_OpenFileRange(const Sint8 *fname, Sint32 ofst, Sint32 nsct, SJ sj)
     return ADXSTM_OpenFileRangeExRt(fname, NULL, ofst, nsct, sj);
 }
 
-ADXSTM ADXSTM_OpenFileRangeEx(Char8* fname, Sint32* dir, Sint32 ofst, Sint32 fnsct, Sint32 arg4)
+// 100% matching!
+ADXSTM ADXSTM_OpenFileRangeEx(const Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct, SJ sj)
 {
-    scePrintf("ADXSTM_OpenFileRangeEx - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+	CVFS fp;
+
+    fp = cvFsOpen(fname, dir, CVE_FS_OP_READ);
+    
+    if (fp == NULL) 
+    {
+        ADXERR_CallErrFunc2("E0041206 ADXSTM_OpenFnameRang: can't open ", fname);
+        
+        return NULL;
+    }
+    
+    stmf = ADXSTMF_CreateCvfs(fp, ofst, nsct * 2048, sj);
+    
+    if (stmf != NULL)
+    {
+        ADXSTM_Seek(stmf, 0);
+    }
+    
+    return stmf;
 }
 
 ADXSTM ADXSTM_OpenFileRangeExRt(const Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct, SJ sj)
@@ -207,7 +228,11 @@ Sint32 ADXSTM_OpenFnameEx(Char8* fname, void* atr, Sint32 arg2)
 }
 
 // ADXSTM_Reset
-// ADXSTM_Seek
+
+Sint32 ADXSTM_Seek(ADXSTM stm, Sint32 ofst)
+{
+    scePrintf("ADXSTM_Seek - UNIMPLEMENTED!\n");
+}
 
 void ADXSTM_SetBufSize(ADXSTM adxstm, Sint32 minsct, Sint32 maxsct)
 {
@@ -256,7 +281,11 @@ Sint32 ADXSTM_Tell(ADXSTM stm)
     scePrintf("ADXSTM_Tell - UNIMPLEMENTED!\n");
 }
 
-// ADXSTMF_CreateCvfs
+ADXSTMF ADXSTMF_CreateCvfs(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
+{
+    scePrintf("ADXSTMF_CreateCvfs - UNIMPLEMENTED!\n");
+}
+
 // ADXSTMF_CreateCvfsRt
 
 void ADXSTMF_Destroy(ADXSTMF stmf)

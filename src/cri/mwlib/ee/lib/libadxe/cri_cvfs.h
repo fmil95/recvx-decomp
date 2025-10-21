@@ -1,6 +1,13 @@
 #ifndef _CRI_CVFS_H_
 #define _CRI_CVFS_H_
 
+typedef enum 
+{
+	CVE_FS_OP_READ = 0,
+	CVE_FS_OP_WRITE = 1,
+	CVE_FS_OP_NUM = 2
+} CVE_FS_OP;
+
 typedef void (*CVFS_ERRFN)(void* cvfs_errobj, const Char8* msg, void* obj);
 
 typedef struct _cvfs_vtbl
@@ -9,7 +16,7 @@ typedef struct _cvfs_vtbl
     void    (*EntryErrFunc)(void* func, void* obj);
     Sint32  (*GetFileSize)(const Char8* dirname);
     Sint32  (*GetFreeSize)();
-    void*   (*Open)(const Char8* dirname, Sint32 arg1, Sint32 rw); 
+    void*   (*Open)(const Sint8* dirname, void* arg1, CVE_FS_OP rw); 
     void    (*Close)(void* dev);
     Sint32  (*Seek)(void* dev, Sint32 ofst, Sint32 whence);
     Sint32  (*Tell)(void* dev);
@@ -75,7 +82,7 @@ void cvFsInit(void);
 Sint32 cvFsIsExistFile(const Char8* dirname);
 Sint32 cvFsLoadDirInfo(const Char8* dirname, Sint32 arg1, Sint32 rw);
 Sint32 cvFsMakeDir(const Char8* dirname);
-CVFS cvFsOpen(const Char8* dirname, Sint32 arg1, Sint32 rw);
+CVFS cvFsOpen(const Sint8* dirname, void* arg1, CVE_FS_OP rw);
 Sint32 cvFsOptFn1(CVFS cvfs);
 Sint32 cvFsOptFn2(CVFS cvfs);
 Sint32 cvFsRemoveDir(const Char8* dirname);
