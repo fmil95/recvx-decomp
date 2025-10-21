@@ -194,9 +194,12 @@ Sint32 ADXSTM_GetStat(ADXSTM stm)
     return stmf->stat;
 }
 
-void ADXSTM_Init(void)
+// 100% matching!
+Sint32 ADXSTM_Init(void)
 {
-    scePrintf("ADXSTM_Init - UNIMPLEMENTED!\n");
+    memset(adxstmf_obj, 0, sizeof(adxstmf_obj));
+    
+    return 1;
 }
 
 // 100% matching!
