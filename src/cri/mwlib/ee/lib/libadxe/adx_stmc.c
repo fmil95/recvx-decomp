@@ -75,9 +75,10 @@ void ADXSTM_ExecServer(void)
     scePrintf("ADXSTM_ExecServer - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void ADXSTM_Finish(void)
 {
-    scePrintf("ADXSTM_Finish - UNIMPLEMENTED!\n");
+    cvFsFinish();
 }
 
 // ADXSTM_GetBufSize
