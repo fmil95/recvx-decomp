@@ -81,7 +81,18 @@ void ADXSTM_Finish(void)
     cvFsFinish();
 }
 
-// ADXSTM_GetBufSize
+// 100% matching!
+Sint32 ADXSTM_GetBufSize(ADXSTM stm, Sint32 *min, Sint32 *max) 
+{
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    *min = stmf->minsize;
+    *max = stmf->maxsize;
+    
+    return 1;
+}
 
 Sint32 ADXSTM_GetCurOfst(ADXSTM adxstm, Sint32* nsct)
 {
