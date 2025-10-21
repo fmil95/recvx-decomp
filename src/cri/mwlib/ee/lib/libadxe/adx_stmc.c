@@ -21,13 +21,15 @@ typedef struct _adxstm_file
 	Sint32 tbyte;
 	void (*eosfunc)();
 	void *eosobj;
-	Sint32 bsize;
+	/* these fields are likely not present in this version
+    Sint32 bsize;
 	Sint8 pauseflg;
 	Sint8 rsv;
-	Sint16 rsv2;
+	Sint16 rsv2; */
 } ADXSTM_FILE;
 typedef ADXSTM_FILE *ADXSTMF;
 
+static ADXSTM_FILE adxstmf_obj[40];
 static Sint32 adxstm_sj_internal_error_cnt;
 Sint32 adxstmf_num_rtry;
 
@@ -37,6 +39,7 @@ ADXSTM ADXSTM_OpenFileRangeEx(const Sint8 *fname, void *dir, Sint32 ofst, Sint32
 ADXSTM ADXSTM_OpenFileRangeExRt(const Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct, SJ sj);
 ADXSTMF ADXSTMF_CreateCvfs(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
 ADXSTMF ADXSTMF_CreateCvfsRt(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
+void ADXSTMF_ExecHndl(ADXSTMF stmf);
 
 // 100% matching!
 void ADXSTM_Close(ADXSTM stm) 
@@ -75,9 +78,21 @@ void ADXSTM_EntryErrFunc(void (*errfn)(), void *obj)
 
 }
 
+// 100% matching!
 void ADXSTM_ExecServer(void)
 {
-    scePrintf("ADXSTM_ExecServer - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+    Sint32 no;
+
+    for (no = 0; no < 40; no++)
+    {
+        stmf = &adxstmf_obj[no];
+        
+        if (stmf->used == TRUE) 
+        {
+            ADXSTMF_ExecHndl(stmf);
+        }
+    }
 }
 
 // 100% matching!
@@ -433,7 +448,11 @@ void ADXSTMF_Destroy(ADXSTMF stmf)
     scePrintf("ADXSTMF_Destroy - UNIMPLEMENTED!\n");
 }
 
-// ADXSTMF_ExecHndl
+void ADXSTMF_ExecHndl(ADXSTMF stmf)
+{
+    scePrintf("ADXSTMF_ExecHndl - UNIMPLEMENTED!\n");
+}
+
 // ADXSTMF_SetupHandleMember
 // adxstmf_stat_exec
 
