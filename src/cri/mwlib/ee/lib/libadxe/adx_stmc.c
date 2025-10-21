@@ -134,7 +134,14 @@ Sint32 ADXSTM_GetFileLen(ADXSTM stm)
     return stmf->fsize;
 }
 
-// ADXSTM_GetFsizeByte
+// 100% matching!
+Sint32 ADXSTM_GetFsizeByte(const Sint8 *fname, Sint32 *fsize) 
+{
+    *fsize = cvFsGetFileSize(fname);
+    
+    return 1;
+}
+
 // ADXSTM_GetFsizeSct
 // ADXSTM_GetSj
 

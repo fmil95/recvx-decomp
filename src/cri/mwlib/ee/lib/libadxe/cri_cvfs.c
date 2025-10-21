@@ -365,7 +365,7 @@ CVFS_NAME cvFsGetDevName(CVFS cvfs)
 }
 
 // 100% matching!
-Sint32 cvFsGetFileSize(const Char8* dirname) 
+Sint32 cvFsGetFileSize(const Sint8* dirname) 
 {
     CVFS cvfs;
     Char8 devname[297];
@@ -378,7 +378,7 @@ Sint32 cvFsGetFileSize(const Char8* dirname)
         return 0;
     }
     
-    getDevName(devname, fname, dirname);
+    getDevName(devname, fname, (const Char8*)dirname);
     
     if (fname[0] == '\0') 
     {

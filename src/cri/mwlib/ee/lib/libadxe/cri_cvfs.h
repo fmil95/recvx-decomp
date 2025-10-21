@@ -63,7 +63,7 @@ void cvFsExecServer(void);
 void cvFsFinish(void);
 Char8* cvFsGetDefDev(void);
 CVFS_NAME cvFsGetDevName(CVFS cvfs);
-Sint32 cvFsGetFileSize(const Char8* dirname);
+Sint32 cvFsGetFileSize(const Sint8* dirname);
 Sint32 cvFsGetFileSizeEx(const Char8* dirname, Sint32 arg1);
 Sint32 cvFsGetFreeSize(Char8* fname);
 Sint32 cvFsGetMaxByteRate(CVFS cvfs);
