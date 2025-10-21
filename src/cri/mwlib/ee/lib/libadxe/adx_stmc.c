@@ -267,9 +267,39 @@ ADXSTM ADXSTM_OpenFname(const Sint8 *fname, SJ sj)
     return stmf;
 }
 
-Sint32 ADXSTM_OpenFnameEx(Char8* fname, void* atr, Sint32 arg2)
+// 100% matching!
+ADXSTM ADXSTM_OpenFnameEx(const Sint8 *fname, void *dir, SJ sj)
 {
-    scePrintf("ADXSTM_OpenFnameEx - UNIMPLEMENTED!\n");
+    Sint32 fsize;
+    ADXSTMF stmf;
+	CVFS fp;
+
+    if (dir != NULL) 
+    {
+        ADXERR_CallErrFunc1("E0062201 ADXSTM_OpenFname: can't specify dir");
+        
+        return NULL;
+    }
+
+    fsize = cvFsGetFileSize(fname);
+
+    fp = cvFsOpen(fname, NULL, CVE_FS_OP_READ);
+    
+    if (fp == NULL) 
+    {
+        ADXERR_CallErrFunc2("E00041205 ADXSTM_OpenFnameEx: can't open ", fname);
+        
+        return NULL;
+    }
+    
+    stmf = ADXSTMF_CreateCvfs(fp, 0, fsize, sj);
+    
+    if (stmf != NULL)
+    {
+        ADXSTM_Seek(stmf, 0);
+    }
+    
+    return stmf;
 }
 
 // ADXSTM_Reset

@@ -986,7 +986,7 @@ Sint32 adxf_SetFileInfoEx(ADXF_ROFS rofs, Char8* fname, void* atr)
     
     dirname[0] = '\0';
     
-    fid = ADXSTM_OpenFnameEx(fname, atr, 0);
+    fid = (Sint32)ADXSTM_OpenFnameEx((Sint8*)fname, atr, 0);
     
     if (fid == 0)
     {
