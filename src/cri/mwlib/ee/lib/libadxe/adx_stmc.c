@@ -384,9 +384,16 @@ Sint32 ADXSTM_SetReqRdSize(ADXSTM stm, Sint32 sct)
     return 1;
 }
 
-void ADXSTM_SetSj(ADXSTM adxstm, SJ sj)
+// 100% matching!
+void ADXSTM_SetSj(ADXSTM stm, SJ sj)
 {
-    scePrintf("ADXSTM_SetSj - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    stmf->sj = sj;
+    
+    stmf->minsize = stmf->maxsize = SJ_GetNumData(sj, 0);
 }
 
 // adxstm_sj_internal_error
