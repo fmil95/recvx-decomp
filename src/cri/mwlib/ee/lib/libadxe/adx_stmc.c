@@ -124,9 +124,14 @@ Sint32 ADXSTM_GetFad(Sint8 *fname, Sint32 *fad)
     return 1;
 }
 
+// 100% matching!
 Sint32 ADXSTM_GetFileLen(ADXSTM stm)
 {
-    scePrintf("ADXSTM_GetFileLen - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    return stmf->fsize;
 }
 
 // ADXSTM_GetFsizeByte
