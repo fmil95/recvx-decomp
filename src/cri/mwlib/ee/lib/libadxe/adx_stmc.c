@@ -106,7 +106,16 @@ Sint32 ADXSTM_GetCurOfst(ADXSTM stm, Sint32 *ofst)
     return 1;
 }
 
-// ADXSTM_GetCvdfsStat
+// 100% matching!
+void ADXSTM_GetCvdfsStat(ADXSTM stm, Sint32 *cvfsst) 
+{
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    *cvfsst = cvFsGetStat(stmf->fp);
+}
+
 // ADXSTM_GetFad
 
 Sint32 ADXSTM_GetFileLen(ADXSTM stm)
