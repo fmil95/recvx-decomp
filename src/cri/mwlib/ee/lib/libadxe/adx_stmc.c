@@ -333,9 +333,21 @@ Sint32 ADXSTM_SetBufSize(ADXSTM stm, Sint32 min, Sint32 max)
     return 1;
 }
 
-void ADXSTM_SetEos(ADXSTM adxstm, Sint32 nsct)
+// 100% matching!
+void ADXSTM_SetEos(ADXSTM stm, Sint32 esct)
 {
-    scePrintf("ADXSTM_SetEos - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+
+    if (esct >= 0)
+    {
+        stmf->esct = esct;
+    }
+    else 
+    {
+        stmf->esct = (stmf->fsize + 2047) / 2048;
+    }
 }
 
 void ADXSTM_SetOfst(ADXSTM adxstm, Sint32 ofst)
