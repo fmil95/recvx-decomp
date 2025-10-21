@@ -8,6 +8,14 @@ typedef enum
 	CVE_FS_OP_NUM = 2
 } CVE_FS_OP;
 
+typedef enum 
+{
+	CVE_FS_SK_SET = 0,
+	CVE_FS_SK_CUR = 1,
+	CVE_FS_SK_END = 2,
+	CVE_FS_SK_NUM = 3
+} CVE_FS_SK;
+
 typedef void (*CVFS_ERRFN)(void* cvfs_errobj, const Char8* msg, void* obj);
 
 typedef struct _cvfs_vtbl

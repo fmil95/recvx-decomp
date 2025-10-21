@@ -308,9 +308,16 @@ void ADXSTM_Reset(void)
 
 }
 
-Sint32 ADXSTM_Seek(ADXSTM stm, Sint32 ofst)
+// 100% matching!
+Sint32 ADXSTM_Seek(ADXSTM stm, Sint32 ofst) 
 {
-    scePrintf("ADXSTM_Seek - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    cvFsSeek(stmf->fp, stmf->fofst + ofst, CVE_FS_SK_SET);
+    
+    return cvFsTell(stmf->fp) - stmf->fofst;
 }
 
 void ADXSTM_SetBufSize(ADXSTM adxstm, Sint32 minsct, Sint32 maxsct)
