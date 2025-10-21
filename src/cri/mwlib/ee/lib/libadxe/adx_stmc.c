@@ -116,7 +116,13 @@ void ADXSTM_GetCvdfsStat(ADXSTM stm, Sint32 *cvfsst)
     *cvfsst = cvFsGetStat(stmf->fp);
 }
 
-// ADXSTM_GetFad
+// 100% matching!
+Sint32 ADXSTM_GetFad(Sint8 *fname, Sint32 *fad)
+{
+    *fad = 0;
+    
+    return 1;
+}
 
 Sint32 ADXSTM_GetFileLen(ADXSTM stm)
 {
