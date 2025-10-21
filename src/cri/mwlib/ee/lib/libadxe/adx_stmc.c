@@ -29,7 +29,7 @@ typedef struct _adxstm_file
 } ADXSTM_FILE;
 typedef ADXSTM_FILE *ADXSTMF;
 
-static ADXSTM_FILE adxstmf_obj[40];
+static ADXSTM_FILE adxstmf_obj[40] = { 0 };
 static Sint32 adxstm_sj_internal_error_cnt;
 Sint32 adxstmf_num_rtry;
 
