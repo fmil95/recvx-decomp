@@ -164,9 +164,14 @@ SJ ADXSTM_GetSj(ADXSTM stm)
     return stmf->sj;
 }
 
-Sint8 ADXSTM_GetStat(ADXSTM adxstm)
+// 100% matching!
+Sint32 ADXSTM_GetStat(ADXSTM stm) 
 {
-    scePrintf("ADXSTM_GetStat - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    return stmf->stat;
 }
 
 void ADXSTM_Init(void)
