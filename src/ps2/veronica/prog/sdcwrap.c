@@ -1,11 +1,8 @@
-// TODO: compile and link this file separatedly to remove the "sdcwrap.c" include in main.c  
+#include "sdcwrap.h"
 
 int GdDaPlayFlag;
 unsigned int SddFirstFlag;
 char SdcGdDaVolume;
-
-void InitSdcParameter();
-int InitSoundDriver(char* SddFileName, char* MufFileName);
 
 // 100% matching!
 void InitSdcParameter()

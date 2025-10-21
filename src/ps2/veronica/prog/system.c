@@ -1,4 +1,4 @@
-// TODO: compile and link this file separatedly to remove the "system.c" include in main.c  
+#include "system.h"
 
 unsigned short pause_mes[6];
 unsigned char FileWait;
@@ -35,40 +35,6 @@ WPN_TAB WpnTab[23];
 float FontScaleCR;
 float FontScaleX;
 unsigned char FontSz[126];
-
-int bhCalcVtxBuffer();
-void bhChangeHWSetting();
-void bhInitSystem();
-void bhInitRoomChangeSystem();
-void bhSysCallInit();
-void bhSysCallDiscChange();
-void bhSysCallSoundMuseum();
-void bhSysCallWarning();
-void bhSysCallIpl();
-void bhSysCallFirstmovie();
-void bhSysCallTitle();
-void bhSysCallOpening();
-void bhFirstGameStart();
-void bhSysCallPad();
-void bhSysCallGame();
-void bhCheckSubTask();
-void bhSysCallEvent();
-void bhSysCallMap();
-void bhSysCallItemselect();
-void bhSysCallDoordemo();
-void bhSysCallMovie();
-void bhSysCallEnding();
-void bhSysCallGameover();
-void bhSysCallTypewriter();
-void bhSysCallOption();
-void bhSysCallCompEvent();
-void bhSysCallMonitor();
-void bhSysCallSndMonitor();
-void bhSysCallScreenSaver();
-void bhReturnTitle();
-void bhExitGame();
-void bhSetEventTimer(int mode);
-void EasyDispMessage(float PosY, unsigned int MessageNo);
 
 // 100% matching!
 int bhCalcVtxBuffer()

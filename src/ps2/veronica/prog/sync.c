@@ -1,4 +1,4 @@
-// TODO: compile and link this file separatedly to remove the "sync.c" include in main.c  
+#include "sync.h"
 
 int OpenDriveTrayFlag;
 ROM_WORK* rom;
@@ -8,13 +8,6 @@ int pd_port;
 unsigned int palbuf[4096];
 unsigned char Pause_Flag;
 int SoftResetFlag;
-
-void bhInitVSync();
-void bhClearVSync();
-void bhControlVSync();
-void bhControlEOR();
-void bhCheckPadPort();
-void bhCheckSoftReset();
 
 // 100% matching! 
 void bhInitVSync()
