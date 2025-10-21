@@ -320,9 +320,17 @@ Sint32 ADXSTM_Seek(ADXSTM stm, Sint32 ofst)
     return cvFsTell(stmf->fp) - stmf->fofst;
 }
 
-void ADXSTM_SetBufSize(ADXSTM adxstm, Sint32 minsct, Sint32 maxsct)
+// 100% matching!
+Sint32 ADXSTM_SetBufSize(ADXSTM stm, Sint32 min, Sint32 max)
 {
-    scePrintf("ADXSTM_SetBufSize - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    stmf->minsize = min;
+    stmf->maxsize = max;
+    
+    return 1;
 }
 
 void ADXSTM_SetEos(ADXSTM adxstm, Sint32 nsct)
