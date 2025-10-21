@@ -32,6 +32,7 @@ Sint32 adxstmf_num_rtry;
 
 void ADXSTMF_Destroy(ADXSTMF stmf);                      
 void ADXSTM_Stop(ADXSTM stm);  
+ADXSTM ADXSTM_OpenFileRangeExRt(const Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct, SJ sj);
 
 // 100% matching!
 void ADXSTM_Close(ADXSTM stm) 
@@ -179,14 +180,18 @@ void ADXSTM_Init(void)
     scePrintf("ADXSTM_Init - UNIMPLEMENTED!\n");
 }
 
-// ADXSTM_OpenFileRange
+// 100% matching!
+ADXSTM ADXSTM_OpenFileRange(const Sint8 *fname, Sint32 ofst, Sint32 nsct, SJ sj)
+{
+    return ADXSTM_OpenFileRangeExRt(fname, NULL, ofst, nsct, sj);
+}
 
 ADXSTM ADXSTM_OpenFileRangeEx(Char8* fname, Sint32* dir, Sint32 ofst, Sint32 fnsct, Sint32 arg4)
 {
     scePrintf("ADXSTM_OpenFileRangeEx - UNIMPLEMENTED!\n");
 }
 
-ADXSTM ADXSTM_OpenFileRangeExRt(Char8* fname, void** dir, Sint32 ofst, Sint32 fnsct, SJ sjf)
+ADXSTM ADXSTM_OpenFileRangeExRt(const Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct, SJ sj)
 {
     scePrintf("ADXSTM_OpenFileRangeExRt - UNIMPLEMENTED!\n");
 }

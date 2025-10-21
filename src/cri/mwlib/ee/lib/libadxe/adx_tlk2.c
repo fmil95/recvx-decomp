@@ -21,7 +21,7 @@ void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
     
     if (ADXF_GetFnameRangeEx(patid, fid, &fname, &dir, &ofst, &fnsct) == 0) 
     {
-        adxt->stm = ADXSTM_OpenFileRangeExRt(&fname, dir, ofst, fnsct, adxt->sjf);
+        adxt->stm = ADXSTM_OpenFileRangeExRt((Sint8*)&fname, dir, ofst, fnsct, adxt->sjf);
         
         if (adxt->stm == NULL) 
         {
