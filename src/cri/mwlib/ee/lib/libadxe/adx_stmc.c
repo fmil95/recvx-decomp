@@ -350,9 +350,16 @@ void ADXSTM_SetEos(ADXSTM stm, Sint32 esct)
     }
 }
 
-void ADXSTM_SetOfst(ADXSTM adxstm, Sint32 ofst)
+// 100% matching!
+void ADXSTM_SetOfst(ADXSTM stm, Sint32 ofst) 
 {
-    scePrintf("ADXSTM_SetOfst - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    stmf->fofst = ofst;
+    
+    ADXSTM_Seek(stm, 0);
 }
 
 void ADXSTM_SetRdSct(ADXSTM adxstm, Sint32 rqsct)
