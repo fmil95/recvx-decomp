@@ -1,8 +1,56 @@
+
+typedef void *ADXSTM;
+
+typedef struct _adxstm_file 
+{ 
+	Sint8 used;
+	Sint8 stat;
+	Sint8 rdflg;
+	Sint8 errcnt;
+	SJ sj;
+	CVFS fp;
+	Sint32 stpos;
+	Sint32 fofst;
+	Sint32 fsize;
+	Sint32 maxsize;
+	Sint32 minsize;
+	Sint32 reqsct;
+	SJCK reqck;
+	Sint32 rdsct;
+	Sint32 esct;
+	Sint32 tbyte;
+	void (*eosfunc)();
+	void *eosobj;
+	Sint32 bsize;
+	Sint8 pauseflg;
+	Sint8 rsv;
+	Sint16 rsv2;
+} ADXSTM_FILE;
+typedef ADXSTM_FILE *ADXSTMF;
+
 Sint32 adxstmf_num_rtry;
 
-void ADXSTM_Close(ADXSTM stm)
+void ADXSTMF_Destroy(ADXSTMF stmf);                      
+void ADXSTM_Stop(ADXSTM stm);  
+
+// 100% matching!
+void ADXSTM_Close(ADXSTM stm) 
 {
-    scePrintf("ADXSTM_Close - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    if (stm != NULL) 
+    {
+        ADXSTM_Stop(stm);
+        
+        stmf = stm;
+        
+        if (stmf->fp != NULL) 
+        {
+            cvFsClose(stmf->fp);
+        }
+        
+        ADXSTMF_Destroy(stmf);
+    }
 }
 
 // ADXSTM_EntryEosFunc
@@ -109,7 +157,7 @@ void ADXSTM_Start(ADXSTM adxstm)
     scePrintf("ADXSTM_Start - UNIMPLEMENTED!\n");
 }
 
-void ADXSTM_Stop(ADXSTM adxstm)
+void ADXSTM_Stop(ADXSTM stm)
 {
     scePrintf("ADXSTM_Stop - UNIMPLEMENTED!\n");
 }
@@ -117,7 +165,12 @@ void ADXSTM_Stop(ADXSTM adxstm)
 // ADXSTM_Tell
 // ADXSTMF_CreateCvfs
 // ADXSTMF_CreateCvfsRt
-// ADXSTMF_Destroy
+
+void ADXSTMF_Destroy(ADXSTMF stmf)
+{
+    scePrintf("ADXSTMF_Destroy - UNIMPLEMENTED!\n");
+}
+
 // ADXSTMF_ExecHndl
 // ADXSTMF_SetupHandleMember
 // adxstmf_stat_exec
