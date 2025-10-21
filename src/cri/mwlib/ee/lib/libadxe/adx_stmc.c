@@ -28,6 +28,7 @@ typedef struct _adxstm_file
 } ADXSTM_FILE;
 typedef ADXSTM_FILE *ADXSTMF;
 
+static Sint32 adxstm_sj_internal_error_cnt;
 Sint32 adxstmf_num_rtry;
 
 void ADXSTMF_Destroy(ADXSTMF stmf);                      
@@ -396,7 +397,11 @@ void ADXSTM_SetSj(ADXSTM stm, SJ sj)
     stmf->minsize = stmf->maxsize = SJ_GetNumData(sj, 0);
 }
 
-// adxstm_sj_internal_error
+// 100% matching!
+void adxstm_sj_internal_error(void) 
+{
+    adxstm_sj_internal_error_cnt++;
+}
 
 void ADXSTM_Start(ADXSTM adxstm)
 {
