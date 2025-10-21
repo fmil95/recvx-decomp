@@ -239,9 +239,32 @@ ADXSTM ADXSTM_OpenFileRangeExRt(const Sint8 *fname, void *dir, Sint32 ofst, Sint
     return stmf;
 }
 
-ADXSTM ADXSTM_OpenFname(Sint8 *fname, SJ sj)
+// 100% matching!
+ADXSTM ADXSTM_OpenFname(const Sint8 *fname, SJ sj)
 {
-    scePrintf("ADXSTM_OpenFname - UNIMPLEMENTED!\n");
+    Sint32 fsize;
+    ADXSTMF stmf;
+	CVFS fp;
+
+    fsize = cvFsGetFileSize(fname);
+
+    fp = cvFsOpen(fname, NULL, CVE_FS_OP_READ);
+    
+    if (fp == NULL) 
+    {
+        ADXERR_CallErrFunc2("E00041205 ADXSTM_OpenFnameEx: can't open ", fname);
+        
+        return NULL;
+    }
+    
+    stmf = ADXSTMF_CreateCvfsRt(fp, 0, fsize, sj);
+    
+    if (stmf != NULL)
+    {
+        ADXSTM_Seek(stmf, 0);
+    }
+    
+    return stmf;
 }
 
 Sint32 ADXSTM_OpenFnameEx(Char8* fname, void* atr, Sint32 arg2)
