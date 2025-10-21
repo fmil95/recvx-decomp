@@ -302,7 +302,11 @@ ADXSTM ADXSTM_OpenFnameEx(const Sint8 *fname, void *dir, SJ sj)
     return stmf;
 }
 
-// ADXSTM_Reset
+// 100% matching!
+void ADXSTM_Reset(void) 
+{
+
+}
 
 Sint32 ADXSTM_Seek(ADXSTM stm, Sint32 ofst)
 {
