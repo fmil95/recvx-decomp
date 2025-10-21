@@ -94,9 +94,16 @@ Sint32 ADXSTM_GetBufSize(ADXSTM stm, Sint32 *min, Sint32 *max)
     return 1;
 }
 
-Sint32 ADXSTM_GetCurOfst(ADXSTM adxstm, Sint32* nsct)
+// 100% matching!
+Sint32 ADXSTM_GetCurOfst(ADXSTM stm, Sint32 *ofst)
 {
-    scePrintf("ADXSTM_GetCurOfst - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    *ofst = ADXSTM_Tell(stm) - stmf->stpos;
+    
+    return 1;
 }
 
 // ADXSTM_GetCvdfsStat
@@ -188,7 +195,11 @@ void ADXSTM_Stop(ADXSTM stm)
     scePrintf("ADXSTM_Stop - UNIMPLEMENTED!\n");
 }
 
-// ADXSTM_Tell
+Sint32 ADXSTM_Tell(ADXSTM stm)
+{
+    scePrintf("ADXSTM_Tell - UNIMPLEMENTED!\n");
+}
+
 // ADXSTMF_CreateCvfs
 // ADXSTMF_CreateCvfsRt
 
