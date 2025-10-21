@@ -372,9 +372,16 @@ void ADXSTM_SetRdSct(ADXSTM stm, Sint32 nsct)
     stmf->fsize = nsct * 2048;
 }
 
-void ADXSTM_SetReqRdSize(ADXSTM adxstm, Sint32 rqrdsct)
+// 100% matching!
+Sint32 ADXSTM_SetReqRdSize(ADXSTM stm, Sint32 sct) 
 {
-    scePrintf("ADXSTM_SetReqRdSize - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    stmf->rdsct = sct;
+    
+    return 1;
 }
 
 void ADXSTM_SetSj(ADXSTM adxstm, SJ sj)
