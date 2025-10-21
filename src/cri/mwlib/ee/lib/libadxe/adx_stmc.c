@@ -53,7 +53,16 @@ void ADXSTM_Close(ADXSTM stm)
     }
 }
 
-// ADXSTM_EntryEosFunc
+// 100% matching!
+void ADXSTM_EntryEosFunc(ADXSTM stm, void (*fn)(), void *obj)
+{
+    ADXSTMF stmf;
+
+    stmf = stm;
+
+    stmf->eosfunc = fn;
+    stmf->eosobj = obj;
+}
 
 // 100% matching!
 void ADXSTM_EntryErrFunc(void (*errfn)(), void *obj)
