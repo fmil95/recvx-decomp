@@ -154,7 +154,15 @@ Sint32 ADXSTM_GetFsizeSct(const Sint8 *fname, Sint32 *fnsct)
     return 1;
 }
 
-// ADXSTM_GetSj
+// 100% matching!
+SJ ADXSTM_GetSj(ADXSTM stm) 
+{
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    return stmf->sj;
+}
 
 Sint8 ADXSTM_GetStat(ADXSTM adxstm)
 {
