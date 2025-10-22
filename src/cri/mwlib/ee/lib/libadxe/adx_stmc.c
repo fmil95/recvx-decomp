@@ -31,6 +31,8 @@ typedef ADXSTM_FILE *ADXSTMF;
 
 static ADXSTM_FILE adxstmf_obj[40] = { 0 };
 static Sint32 adxstm_sj_internal_error_cnt;
+static Sint32 adxstmf_nrml_num;
+static Sint32 adxstmf_nrml_ofst;
 Sint32 adxstmf_num_rtry;
 
 void ADXSTMF_Destroy(ADXSTMF stmf);                      
@@ -40,6 +42,7 @@ ADXSTM ADXSTM_OpenFileRangeExRt(const Sint8 *fname, void *dir, Sint32 ofst, Sint
 ADXSTMF ADXSTMF_CreateCvfs(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
 ADXSTMF ADXSTMF_CreateCvfsRt(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
 void ADXSTMF_ExecHndl(ADXSTMF stmf);
+void ADXSTMF_SetupHandleMember(ADXSTMF stmf, CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
 
 // 100% matching!
 void ADXSTM_Close(ADXSTM stm) 
@@ -486,9 +489,32 @@ Sint32 ADXSTM_Tell(ADXSTM stm)
     return 0;
 }
 
+// 100% matching!
 ADXSTMF ADXSTMF_CreateCvfs(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
 {
-    scePrintf("ADXSTMF_CreateCvfs - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+	Sint32 no;
+
+    stmf = NULL;
+
+    for (no = 0; no < adxstmf_nrml_num; no++) 
+    {
+        stmf = &adxstmf_obj[adxstmf_nrml_ofst + no];
+
+        if (stmf->used == FALSE) 
+        {
+            break;
+        }
+    }
+
+    if (no == adxstmf_nrml_num) 
+    {
+        return NULL;
+    }
+
+    ADXSTMF_SetupHandleMember(stmf, fp, fofst, fsize, sj);
+    
+    return stmf;
 }
 
 ADXSTMF ADXSTMF_CreateCvfsRt(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
@@ -506,7 +532,11 @@ void ADXSTMF_ExecHndl(ADXSTMF stmf)
     scePrintf("ADXSTMF_ExecHndl - UNIMPLEMENTED!\n");
 }
 
-// ADXSTMF_SetupHandleMember
+void ADXSTMF_SetupHandleMember(ADXSTMF stmf, CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
+{
+    scePrintf("ADXSTMF_SetupHandleMember - UNIMPLEMENTED!\n");
+}
+
 // adxstmf_stat_exec
 
 // 100% matching!
