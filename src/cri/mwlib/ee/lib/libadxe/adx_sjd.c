@@ -129,4 +129,10 @@ void ADXSJD_Start(ADXSJD sjd)
     sjd->stat = 1;
 }
 
-// ADXSJD_Stop
+// 100% matching!
+void ADXSJD_Stop(ADXSJD sjd) 
+{
+    ADXB_Stop(sjd->adxb);
+    
+    sjd->stat = 0;
+}

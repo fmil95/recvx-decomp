@@ -44,5 +44,10 @@ void ADXB_Init(void)
 
 // ADXB_Reset
 // ADXB_Start
-// ADXB_Stop
+
+void ADXB_Stop(ADXB adxb)
+{
+    scePrintf("ADXB_Stop - UNIMPLEMENTED!\n");
+}
+
 // memcpy2
