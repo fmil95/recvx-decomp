@@ -17,7 +17,12 @@
 // ADXB_ExecOneAdx
 // ADXB_ExecServer
 // ADXB_GetAdxpd
-// ADXB_GetBlkLen
+
+Sint32 ADXB_GetBlkLen(ADXB adxb)
+{
+    scePrintf("ADXB_GetBlkLen - UNIMPLEMENTED!\n");
+}
+
 // ADXB_GetBlkSmpl
 // ADXB_GetCof
 // ADXB_GetDecDtLen

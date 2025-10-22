@@ -31,7 +31,13 @@ void ADXSJD_Finish(void)
 }
 
 // adxsjd_get_wr
-// ADXSJD_GetBlkLen
+
+// 100% matching!
+Sint32 ADXSJD_GetBlkLen(ADXSJD sjd)
+{
+    return ADXB_GetBlkLen(sjd->adxb);
+}
+
 // ADXSJD_GetBlkSmpl
 // ADXSJD_GetCof
 // ADXSJD_GetDecDtLen
