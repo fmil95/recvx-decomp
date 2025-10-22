@@ -471,9 +471,19 @@ void ADXSTM_Stop(ADXSTM stm)
     stmf->stat = 1;
 }
 
+// 100% matching!
 Sint32 ADXSTM_Tell(ADXSTM stm)
 {
-    scePrintf("ADXSTM_Tell - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+
+    if (stmf->fp != NULL) 
+    {
+        return cvFsTell(stmf->fp) - stmf->fofst;
+    }
+    
+    return 0;
 }
 
 ADXSTMF ADXSTMF_CreateCvfs(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
