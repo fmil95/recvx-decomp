@@ -517,9 +517,32 @@ ADXSTMF ADXSTMF_CreateCvfs(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
     return stmf;
 }
 
+// 100% matching!
 ADXSTMF ADXSTMF_CreateCvfsRt(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
 {
-    scePrintf("ADXSTMF_CreateCvfsRt - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+	Sint32 no;
+
+    stmf = NULL;
+
+    for (no = 0; no < adxstmf_nrml_num; no++) 
+    {
+        stmf = &adxstmf_obj[adxstmf_nrml_ofst + no];
+
+        if (stmf->used == FALSE) 
+        {
+            break;
+        }
+    }
+
+    if (no == adxstmf_nrml_num) 
+    {
+        return NULL;
+    }
+
+    ADXSTMF_SetupHandleMember(stmf, fp, fofst, fsize, sj);
+    
+    return stmf;
 }
 
 void ADXSTMF_Destroy(ADXSTMF stmf)
