@@ -86,7 +86,12 @@ Sint32 ADXSJD_GetHdrLen(ADXSJD sjd)
     return sjd->hdrlen;
 }
 
-// ADXSJD_GetLpEndOfst
+// 100% matching!
+Sint32 ADXSJD_GetLpEndOfst(ADXSJD sjd)
+{
+    return ADXB_GetLpEndOfst(sjd->adxb);
+}
+
 // ADXSJD_GetLpEndPos
 // ADXSJD_GetLpInsNsmpl
 // ADXSJD_GetLpStartOfst

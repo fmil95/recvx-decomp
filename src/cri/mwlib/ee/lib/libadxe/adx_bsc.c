@@ -46,9 +46,21 @@ Sint32 ADXB_GetFormat(ADXB adxb)
     scePrintf("ADXB_GetFormat - UNIMPLEMENTED!\n");
 }
 
-// ADXB_GetLpEndOfst
-// ADXB_GetLpEndPos
-// ADXB_GetLpInsNsmpl
+Sint32 ADXB_GetLpEndOfst(ADXB adxb)
+{
+    scePrintf("ADXB_GetLpEndOfst - UNIMPLEMENTED!\n");
+}
+
+Sint32 ADXB_GetLpEndPos(ADXB adxb)
+{
+    scePrintf("ADXB_GetLpEndPos - UNIMPLEMENTED!\n");
+}
+
+Sint32 ADXB_GetLpInsNsmpl(ADXB adxb)
+{
+    scePrintf("ADXB_GetLpInsNsmpl - UNIMPLEMENTED!\n");
+}
+
 // ADXB_GetLpStartOfst
 // ADXB_GetLpStartPos
 // ADXB_GetNumChan
