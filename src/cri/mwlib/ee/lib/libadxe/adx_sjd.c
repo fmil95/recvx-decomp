@@ -56,9 +56,10 @@ Sint32 ADXSJD_GetDecDtLen(ADXSJD sjd)
     return sjd->total_decdtlen;
 }
 
-Sint32 ADXSJD_GetDecNumSmpl(ADXSJD adxsjd)
+// 100% matching!
+Sint32 ADXSJD_GetDecNumSmpl(ADXSJD sjd) 
 {
-    scePrintf("ADXSJD_GetDecNumSmpl - UNIMPLEMENTED!\n");
+    return sjd->total_decsmpl;
 }
 
 // ADXSJD_GetDecPos
