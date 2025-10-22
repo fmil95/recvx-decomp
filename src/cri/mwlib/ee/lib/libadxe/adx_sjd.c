@@ -76,7 +76,11 @@ void ADXSJD_Init(void)
     memset(adxsjd_obj, 0, sizeof(adxsjd_obj));
 }
 
-// ADXSJD_SetDecPos
+// 100% matching!
+void ADXSJD_SetDecPos(ADXSJD sjd, Sint32 decpos) 
+{
+    sjd->decpos = decpos;
+}
 
 void ADXSJD_SetInSj(ADXSJD adxsjd, SJ sj)
 {
