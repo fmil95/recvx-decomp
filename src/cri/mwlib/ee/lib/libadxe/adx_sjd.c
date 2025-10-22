@@ -152,7 +152,12 @@ Sint32 ADXSJD_GetStat(ADXSJD sjd)
     return sjd->stat;
 }
 
-// ADXSJD_GetTotalNumSmpl
+// 100% matching!
+Sint32 ADXSJD_GetTotalNumSmpl(ADXSJD sjd)
+{
+    return ADXB_GetTotalNumSmpl(sjd->adxb);
+}
+
 // ADXSJD_GetTrapCnt
 // ADXSJD_GetTrapDtLen
 // ADXSJD_GetTrapNumSmpl

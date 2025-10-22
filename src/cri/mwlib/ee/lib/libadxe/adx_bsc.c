@@ -94,7 +94,11 @@ Sint32 ADXB_GetSfreq(ADXB adxb)
 }
 
 // ADXB_GetStat
-// ADXB_GetTotalNumSmpl
+
+Sint32 ADXB_GetTotalNumSmpl(ADXB adxb)
+{
+    scePrintf("ADXB_GetTotalNumSmpl - UNIMPLEMENTED!\n");
+}
 
 void ADXB_Init(void) 
 {
