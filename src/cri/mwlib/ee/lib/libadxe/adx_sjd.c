@@ -122,7 +122,12 @@ Sint32 ADXSJD_GetNumChan(ADXSJD sjd)
     return ADXB_GetNumChan(sjd->adxb);
 }
 
-// ADXSJD_GetNumLoop
+// 100% matching!
+Sint32 ADXSJD_GetNumLoop(ADXSJD sjd)
+{
+    return ADXB_GetNumLoop(sjd->adxb);
+}
+
 // ADXSJD_GetOutBps
 // ADXSJD_GetSfreq
 // ADXSJD_GetSpsdInfo
