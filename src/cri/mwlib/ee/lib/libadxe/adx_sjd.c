@@ -100,7 +100,12 @@ void ADXSJD_SetOutSj(ADXSJD sjd, Sint32 chno, SJ sj)
     sjd->sjo[chno] = sj;
 }
 
-// ADXSJD_SetTrapCnt
+// 100% matching!
+void ADXSJD_SetTrapCnt(ADXSJD sjd, Sint32 nsmpl)
+{
+    sjd->dtrpcnt = nsmpl;
+}
+
 // ADXSJD_SetTrapDtLen
 // ADXSJD_SetTrapNumSmpl
 
