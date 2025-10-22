@@ -50,7 +50,11 @@ Sint32 ADXSJD_GetCof(ADXSJD sjd)
     return ADXB_GetCof(sjd->adxb);
 }
 
-// ADXSJD_GetDecDtLen
+// 100% matching!
+Sint32 ADXSJD_GetDecDtLen(ADXSJD sjd) 
+{
+    return sjd->total_decdtlen;
+}
 
 Sint32 ADXSJD_GetDecNumSmpl(ADXSJD adxsjd)
 {
