@@ -545,9 +545,10 @@ ADXSTMF ADXSTMF_CreateCvfsRt(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
     return stmf;
 }
 
+// 100% matching!
 void ADXSTMF_Destroy(ADXSTMF stmf)
 {
-    scePrintf("ADXSTMF_Destroy - UNIMPLEMENTED!\n");
+    memset(stmf, 0, sizeof(ADXSTM_FILE));
 }
 
 void ADXSTMF_ExecHndl(ADXSTMF stmf)
