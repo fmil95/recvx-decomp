@@ -116,7 +116,12 @@ Sint32 ADXSJD_GetLpStartPos(ADXSJD sjd)
     return ADXB_GetLpStartPos(sjd->adxb);
 }
 
-// ADXSJD_GetNumChan
+// 100% matching!
+Sint32 ADXSJD_GetNumChan(ADXSJD sjd)
+{
+    return ADXB_GetNumChan(sjd->adxb);
+}
+
 // ADXSJD_GetNumLoop
 // ADXSJD_GetOutBps
 // ADXSJD_GetSfreq
