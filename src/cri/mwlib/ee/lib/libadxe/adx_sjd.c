@@ -164,7 +164,12 @@ Sint32 ADXSJD_GetTrapCnt(ADXSJD sjd)
     return sjd->dtrpcnt;
 }
 
-// ADXSJD_GetTrapDtLen
+// 100% matching!
+Sint32 ADXSJD_GetTrapDtLen(ADXSJD sjd)
+{
+    return sjd->dtrpdtlen;
+}
+
 // ADXSJD_GetTrapNumSmpl
 
 // 100% matching!
