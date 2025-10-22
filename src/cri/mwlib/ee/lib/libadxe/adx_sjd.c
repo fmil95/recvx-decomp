@@ -68,9 +68,10 @@ Sint32 ADXSJD_GetDecPos(ADXSJD sjd)
     return sjd->decpos;
 }
 
-Sint32 ADXSJD_GetFmtBps(ADXSJD adxsjd)
+// 100% matching!
+Sint32 ADXSJD_GetFmtBps(ADXSJD sjd)
 {
-    scePrintf("ADXSJD_GetFmtBps - UNIMPLEMENTED!\n");
+    return ADXB_GetFmtBps(sjd->adxb);
 }
 
 // ADXSJD_GetFormat

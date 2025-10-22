@@ -35,7 +35,12 @@ Sint32 ADXB_GetCof(ADXB adxb)
 
 // ADXB_GetDecDtLen
 // ADXB_GetDecNumSmpl
-// ADXB_GetFmtBps
+
+Sint32 ADXB_GetFmtBps(ADXB adxb)
+{
+    scePrintf("ADXB_GetFmtBps - UNIMPLEMENTED!\n");
+}
+
 // ADXB_GetFormat
 // ADXB_GetLpEndOfst
 // ADXB_GetLpEndPos
