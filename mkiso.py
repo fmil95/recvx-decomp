@@ -381,12 +381,12 @@ def write_new_pvd(iso: BinaryIO, iso_files: Path, add_padding: int, layer_info: 
     for inode in layer_info.meta.files:
 
         start_pos = iso.tell()
-        if str(inode.path) in REPLACEMENTS:
-            fp = SCRIPT_DIR / REPLACEMENTS[str(inode.path)]
-            print(f"Inserting {REPLACEMENTS[str(inode.path)]} (replaces {str(inode.path)})...")
+        if inode.path.as_posix() in REPLACEMENTS:
+            fp = SCRIPT_DIR / REPLACEMENTS[inode.path.as_posix()]
+            print(f"Inserting {REPLACEMENTS[inode.path.as_posix()]} (replaces {inode.path})...")
         else:
             fp = iso_files / inode.path
-            print(f"Inserting {str(inode.path)}...")
+            print(f"Inserting {inode.path}...")
 
         if fp.exists() is False:
             print(f"File '{fp.as_posix()}' not found!")
