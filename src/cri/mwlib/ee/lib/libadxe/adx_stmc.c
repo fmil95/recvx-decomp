@@ -43,6 +43,7 @@ ADXSTMF ADXSTMF_CreateCvfs(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
 ADXSTMF ADXSTMF_CreateCvfsRt(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
 void ADXSTMF_ExecHndl(ADXSTMF stmf);
 void ADXSTMF_SetupHandleMember(ADXSTMF stmf, CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
+void adxstmf_stat_exec(ADXSTMF stmf);
 
 // 100% matching!
 void ADXSTM_Close(ADXSTM stm) 
@@ -551,9 +552,13 @@ void ADXSTMF_Destroy(ADXSTMF stmf)
     memset(stmf, 0, sizeof(ADXSTM_FILE));
 }
 
+// 100% matching!
 void ADXSTMF_ExecHndl(ADXSTMF stmf)
 {
-    scePrintf("ADXSTMF_ExecHndl - UNIMPLEMENTED!\n");
+    if (stmf->stat == 2) 
+    {
+        adxstmf_stat_exec(stmf);
+    }
 }
 
 void ADXSTMF_SetupHandleMember(ADXSTMF stmf, CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
@@ -561,7 +566,10 @@ void ADXSTMF_SetupHandleMember(ADXSTMF stmf, CVFS fp, Sint32 fofst, Sint32 fsize
     scePrintf("ADXSTMF_SetupHandleMember - UNIMPLEMENTED!\n");
 }
 
-// adxstmf_stat_exec
+void adxstmf_stat_exec(ADXSTMF stmf)
+{
+    scePrintf("adxstmf_stat_exec - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void ADXT_SetNumRetry(Sint32 num) 
