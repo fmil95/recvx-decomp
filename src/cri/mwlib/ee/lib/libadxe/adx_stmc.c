@@ -33,7 +33,7 @@ static ADXSTM_FILE adxstmf_obj[40] = { 0 };
 static Sint32 adxstm_sj_internal_error_cnt;
 static Sint32 adxstmf_nrml_num;
 static Sint32 adxstmf_nrml_ofst;
-Sint32 adxstmf_num_rtry;
+static Sint32 adxstmf_num_rtry;
 
 void ADXSTMF_Destroy(ADXSTMF stmf);                      
 void ADXSTM_Stop(ADXSTM stm);  
@@ -577,5 +577,11 @@ void ADXT_SetNumRetry(Sint32 num)
     adxstmf_num_rtry = num;
 }
 
-// ADXT_SetupNrmlNumStm
+// 100% matching!
+void ADXT_SetupNrmlNumStm(Sint32 num)
+{
+    adxstmf_nrml_num = num;
+    adxstmf_nrml_ofst = 40 - num;
+}
+
 // ADXT_SetupRtimeNumStm
