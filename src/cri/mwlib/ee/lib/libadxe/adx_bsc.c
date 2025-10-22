@@ -81,9 +81,18 @@ Sint32 ADXB_GetNumLoop(ADXB adxb)
     scePrintf("ADXB_GetNumLoop - UNIMPLEMENTED!\n");
 }
 
-// ADXB_GetOutBps
+Sint32 ADXB_GetOutBps(ADXB adxb)
+{
+    scePrintf("ADXB_GetOutBps - UNIMPLEMENTED!\n");
+}
+
 // ADXB_GetPcmBuf
-// ADXB_GetSfreq
+
+Sint32 ADXB_GetSfreq(ADXB adxb)
+{
+    scePrintf("ADXB_GetSfreq - UNIMPLEMENTED!\n");
+}
+
 // ADXB_GetStat
 // ADXB_GetTotalNumSmpl
 
