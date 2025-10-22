@@ -44,7 +44,12 @@ Sint32 ADXSJD_GetBlkSmpl(ADXSJD sjd)
     return ADXB_GetBlkSmpl(sjd->adxb);
 }
 
-// ADXSJD_GetCof
+// 100% matching!
+Sint32 ADXSJD_GetCof(ADXSJD sjd)
+{
+    return ADXB_GetCof(sjd->adxb);
+}
+
 // ADXSJD_GetDecDtLen
 
 Sint32 ADXSJD_GetDecNumSmpl(ADXSJD adxsjd)

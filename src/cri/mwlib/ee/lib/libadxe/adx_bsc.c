@@ -28,7 +28,11 @@ Sint32 ADXB_GetBlkSmpl(ADXB adxb)
     scePrintf("ADXB_GetBlkSmpl - UNIMPLEMENTED!\n");
 }
 
-// ADXB_GetCof
+Sint32 ADXB_GetCof(ADXB adxb)
+{
+    scePrintf("ADXB_GetCof - UNIMPLEMENTED!\n");
+}
+
 // ADXB_GetDecDtLen
 // ADXB_GetDecNumSmpl
 // ADXB_GetFmtBps
