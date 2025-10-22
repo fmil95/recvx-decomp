@@ -1,31 +1,4 @@
-
-typedef struct 
-{ 
-	Sint32 val;
-	Sint32 time;
-	Sint32 tunit;
-	Sint32 frmlen;
-} ADXAMP_VAL;
-
-typedef struct 
-{ 
-	Sint8 used;
-	Sint8 stat;
-	Sint8 maxnch;
-	Sint8 rsrv;
-	SJ sji[2];
-	SJ sjo[2];
-	Sint32 total_exsmpl[2];
-	Sint32 nch;
-	Sint32 sfreq;
-	Float32 frm_len;
-	Float32 frm_prd;
-	Sint32 frm_no;
-} ADX_AMP;
-
-typedef ADX_AMP *ADXAMP;
-
-void adxamp_extract(ADXAMP amp);
+#include "adx_amp.h"
 
 static Sint32 adxsmp_init_cnt;
 static ADX_AMP adxamp_obj[8] = { 0 };

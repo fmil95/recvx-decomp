@@ -1,8 +1,6 @@
-Sint32 adxcrs_lvl;
+#include "adx_crs.h"
 
-void ADXCRS_Init(void);
-void ADXCRS_Lock(void);
-void ADXCRS_Unlock(void);
+static Sint32 adxcrs_lvl;
 
 // 100% matching!
 void ADXCRS_Init(void) 
