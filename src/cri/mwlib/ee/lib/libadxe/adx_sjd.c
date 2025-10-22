@@ -1,8 +1,25 @@
 static ADX_SJDEC adxsjd_obj[8];
 
+// 100% matching!
 void adxsjd_clear(ADXSJD sjd)
 {
-    scePrintf("adxsjd_clear - UNIMPLEMENTED!\n");
+    sjd->dtrpsmpl = -1;
+    
+    sjd->maxdecsmpl = 0x7FFFFFFF;
+    
+    sjd->hdrlen = 0;
+    
+    sjd->total_decsmpl = 0;
+    
+    sjd->total_decdtlen = 0;
+    
+    sjd->decpos = 0;
+    
+    sjd->dtrpcnt = 0;
+    
+    sjd->dtrpdtlen = 0;
+    
+    sjd->empty_end = 0;
 }
 
 ADXSJD ADXSJD_Create(SJ sjf, Sint32 maxnch, SJ* sjo)
