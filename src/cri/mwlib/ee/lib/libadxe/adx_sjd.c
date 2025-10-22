@@ -146,7 +146,12 @@ void* ADXSJD_GetSpsdInfo(ADXSJD sjd)
     return sjd->spsdinfo;
 }
 
-// ADXSJD_GetStat
+// 100% matching!
+Sint32 ADXSJD_GetStat(ADXSJD sjd)
+{
+    return sjd->stat;
+}
+
 // ADXSJD_GetTotalNumSmpl
 // ADXSJD_GetTrapCnt
 // ADXSJD_GetTrapDtLen
