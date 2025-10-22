@@ -13,7 +13,11 @@ ADXB ADXB_Create(Sint32 maxnch, Sint16 *obuf, Sint32 bsize, Sint32 bdist)
 // ADXB_Destroy
 // ADXB_EndDecode
 // ADXB_EntryAddWrFunc
-// ADXB_EntryData
+
+void ADXB_EntryData(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
+{
+    scePrintf("ADXB_EntryData - UNIMPLEMENTED!\n");
+}
 
 void ADXB_EntryGetWrFunc(ADXB adxb, void* (*func)(), void *obj)
 {
@@ -116,7 +120,11 @@ void ADXB_Init(void)
 }
 
 // ADXB_Reset
-// ADXB_Start
+
+void ADXB_Start(ADXB adxb)
+{
+    scePrintf("ADXB_Start - UNIMPLEMENTED!\n");
+}
 
 void ADXB_Stop(ADXB adxb)
 {

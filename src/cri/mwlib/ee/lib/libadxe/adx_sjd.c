@@ -1,3 +1,5 @@
+#define BSWAP_U16_EX(_val) (Uint16)(((_val & 0xFF00) >> 8) | ((_val << 8) & 0xFF00))
+
 static ADX_SJDEC adxsjd_obj[8];
 
 void* adxsjd_get_wr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl);
@@ -89,7 +91,58 @@ ADXSJD ADXSJD_Create(SJ sji, Sint32 maxnch, SJ *sjo)
 }
 
 // adxsjd_decexec_end
-// adxsjd_decexec_start
+
+// 100% matching!
+void adxsjd_decexec_start(ADXSJD sjd) 
+{
+    ADXB adxb;
+	SJ sji;
+	Sint32 blksmpl;
+	Sint32 nroom;
+    
+    adxb = sjd->adxb;
+
+    sji = sjd->sji;
+    
+    if ((sjd->empty_end == 1) && (SJ_GetNumData(sji, 1) == 0)) 
+    {
+        sjd->stat = 3;
+        return;
+    }
+
+    SJ_GetChunk(sji, 1, SJCK_LEN_MAX, &sjd->cki);
+
+    if ((ADXB_GetFormat(adxb) == 0) && ((sjd->cki.len >= 2) && (BSWAP_U16_EX(*(Uint16*)sjd->cki.data) == 0x8001))) 
+    {
+        sjd->stat = 3;
+        
+        SJ_UngetChunk(sji, 1, &sjd->cki);
+        return;
+    }
+
+    if (sjd->decpos >= ADXSJD_GetTotalNumSmpl(sjd)) 
+    {
+        sjd->stat = 3;
+        
+        SJ_UngetChunk(sji, 1, &sjd->cki);
+        return;
+    }
+
+    blksmpl = ADXSJD_GetBlkSmpl(sjd);
+    
+    nroom = (Uint32)SJ_GetNumData(sjd->sjo[0], 0) / 2;
+
+    if (nroom < blksmpl) 
+    {
+        SJ_UngetChunk(sji, 1, &sjd->cki);
+        return;   
+    }
+    
+    ADXB_EntryData(adxb, sjd->cki.data, sjd->cki.len);
+    
+    ADXB_Start(adxb);
+}
+
 // adxsjd_decode_exec
 // adxsjd_decode_prep
 
