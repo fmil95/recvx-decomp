@@ -41,7 +41,11 @@ Sint32 ADXB_GetFmtBps(ADXB adxb)
     scePrintf("ADXB_GetFmtBps - UNIMPLEMENTED!\n");
 }
 
-// ADXB_GetFormat
+Sint32 ADXB_GetFormat(ADXB adxb)
+{
+    scePrintf("ADXB_GetFormat - UNIMPLEMENTED!\n");
+}
+
 // ADXB_GetLpEndOfst
 // ADXB_GetLpEndPos
 // ADXB_GetLpInsNsmpl

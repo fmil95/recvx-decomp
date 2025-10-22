@@ -74,7 +74,11 @@ Sint32 ADXSJD_GetFmtBps(ADXSJD sjd)
     return ADXB_GetFmtBps(sjd->adxb);
 }
 
-// ADXSJD_GetFormat
+// 100% matching!
+Sint32 ADXSJD_GetFormat(ADXSJD sjd)
+{
+    return ADXB_GetFormat(sjd->adxb);
+}
 
 Sint32 ADXSJD_GetHdrLen(ADXSJD adxsjd)
 {
