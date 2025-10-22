@@ -450,9 +450,25 @@ Sint32 ADXSTM_Start(ADXSTM stm)
     return 1;
 }
 
-void ADXSTM_Stop(ADXSTM stm)
+// 100% matching!
+void ADXSTM_Stop(ADXSTM stm) 
 {
-    scePrintf("ADXSTM_Stop - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+
+    ADXCRS_Lock();
+    
+    if ((stmf->rdflg == 1) && (stmf->fp != NULL)) 
+    {
+        cvFsStopTr(stmf->fp);
+        
+        stmf->rdflg = 0;
+    }
+    
+    ADXCRS_Unlock();
+    
+    stmf->stat = 1;
 }
 
 Sint32 ADXSTM_Tell(ADXSTM stm)
