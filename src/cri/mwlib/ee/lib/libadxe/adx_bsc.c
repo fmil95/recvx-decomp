@@ -27,7 +27,12 @@ void ADXB_EntryGetWrFunc(ADXB adxb, void* (*func)(), void *obj)
 // ADXB_EvokeDecode
 // ADXB_EvokeExpandMono
 // ADXB_EvokeExpandSte
-// ADXB_ExecHndl
+
+void ADXB_ExecHndl(ADXB adxb)
+{
+    scePrintf("ADXB_ExecHndl - UNIMPLEMENTED!\n");
+}
+
 // ADXB_ExecOneAdx
 // ADXB_ExecServer
 // ADXB_GetAdxpd
@@ -107,7 +112,10 @@ Sint32 ADXB_GetSfreq(ADXB adxb)
     scePrintf("ADXB_GetSfreq - UNIMPLEMENTED!\n");
 }
 
-// ADXB_GetStat
+Sint32 ADXB_GetStat(ADXB adxb)
+{
+    scePrintf("ADXB_GetStat - UNIMPLEMENTED!\n");
+}
 
 Sint32 ADXB_GetTotalNumSmpl(ADXB adxb)
 {

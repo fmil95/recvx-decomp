@@ -90,7 +90,10 @@ ADXSJD ADXSJD_Create(SJ sji, Sint32 maxnch, SJ *sjo)
     return sjd;
 }
 
-// adxsjd_decexec_end
+void adxsjd_decexec_end(ADXSJD sjd)
+{
+    scePrintf("adxsjd_decexec_end - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void adxsjd_decexec_start(ADXSJD sjd) 
@@ -143,7 +146,26 @@ void adxsjd_decexec_start(ADXSJD sjd)
     ADXB_Start(adxb);
 }
 
-// adxsjd_decode_exec
+// 100% matching!
+void adxsjd_decode_exec(ADXSJD sjd)
+{
+    ADXB adxb;
+
+    adxb = sjd->adxb;
+    
+    if (ADXB_GetStat(adxb) == 0) 
+    {
+        adxsjd_decexec_start(sjd);
+    }
+    
+    ADXB_ExecHndl(adxb);
+    
+    if (ADXB_GetStat(adxb) == 3) 
+    {
+        adxsjd_decexec_end(sjd);
+    }
+}
+
 // adxsjd_decode_prep
 
 void ADXSJD_Destroy(ADXSJD adxsjd)
