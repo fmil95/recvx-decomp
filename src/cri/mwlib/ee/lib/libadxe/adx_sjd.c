@@ -1,3 +1,5 @@
+static ADX_SJDEC adxsjd_obj[8];
+
 // adxsjd_clear
 
 ADXSJD ADXSJD_Create(SJ sjf, Sint32 maxnch, SJ* sjo)
@@ -66,9 +68,12 @@ Sint32 ADXSJD_GetHdrLen(ADXSJD adxsjd)
 // ADXSJD_GetTrapDtLen
 // ADXSJD_GetTrapNumSmpl
 
-void ADXSJD_Init(void)
+// 100% matching!
+void ADXSJD_Init(void) 
 {
-    scePrintf("ADXSJD_Init - UNIMPLEMENTED!\n");
+    ADXB_Init();
+    
+    memset(adxsjd_obj, 0, sizeof(adxsjd_obj));
 }
 
 // ADXSJD_SetDecPos

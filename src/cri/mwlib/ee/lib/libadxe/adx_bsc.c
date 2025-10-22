@@ -36,7 +36,12 @@
 // ADXB_GetSfreq
 // ADXB_GetStat
 // ADXB_GetTotalNumSmpl
-// ADXB_Init
+
+void ADXB_Init(void) 
+{
+    scePrintf("ADXB_Init - UNIMPLEMENTED!\n");
+}
+
 // ADXB_Reset
 // ADXB_Start
 // ADXB_Stop
