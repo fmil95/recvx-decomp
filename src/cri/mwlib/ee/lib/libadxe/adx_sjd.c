@@ -82,9 +82,10 @@ void ADXSJD_SetDecPos(ADXSJD sjd, Sint32 decpos)
     sjd->decpos = decpos;
 }
 
-void ADXSJD_SetInSj(ADXSJD adxsjd, SJ sj)
+// 100% matching!
+void ADXSJD_SetInSj(ADXSJD sjd, SJ sj)
 {
-    scePrintf("ADXSJD_SetInSj - UNIMPLEMENTED!\n");
+    sjd->sji = sj;
 }
 
 // ADXSJD_SetMaxDecSmpl
