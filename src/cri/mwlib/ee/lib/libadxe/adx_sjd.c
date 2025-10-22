@@ -140,7 +140,12 @@ Sint32 ADXSJD_GetSfreq(ADXSJD sjd)
     return ADXB_GetSfreq(sjd->adxb);
 }
 
-// ADXSJD_GetSpsdInfo
+// 100% matching!
+void* ADXSJD_GetSpsdInfo(ADXSJD sjd)
+{
+    return sjd->spsdinfo;
+}
+
 // ADXSJD_GetStat
 // ADXSJD_GetTotalNumSmpl
 // ADXSJD_GetTrapCnt
