@@ -94,7 +94,12 @@ void ADXSJD_SetMaxDecSmpl(ADXSJD sjd, Sint32 nsmpl)
     sjd->maxdecsmpl = nsmpl;
 }
 
-// ADXSJD_SetOutSj
+// 100% matching!
+void ADXSJD_SetOutSj(ADXSJD sjd, Sint32 chno, SJ sj)
+{
+    sjd->sjo[chno] = sj;
+}
+
 // ADXSJD_SetTrapCnt
 // ADXSJD_SetTrapDtLen
 // ADXSJD_SetTrapNumSmpl
