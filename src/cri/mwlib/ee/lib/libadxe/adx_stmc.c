@@ -584,4 +584,8 @@ void ADXT_SetupNrmlNumStm(Sint32 num)
     adxstmf_nrml_ofst = 40 - num;
 }
 
-// ADXT_SetupRtimeNumStm
+// 100% matching!
+void ADXT_SetupRtimeNumStm(Sint32 num)
+{
+    adxstmf_nrml_num = num;
+}
