@@ -112,7 +112,11 @@ void ADXSJD_SetTrapDtLen(ADXSJD sjd, Sint32 nbyte)
     sjd->dtrpdtlen = nbyte;
 }
 
-// ADXSJD_SetTrapNumSmpl
+// 100% matching!
+void ADXSJD_SetTrapNumSmpl(ADXSJD sjd, Sint32 nsmpl)
+{
+    sjd->dtrpsmpl = nsmpl;
+}
 
 void ADXSJD_Start(ADXSJD adxsjd)
 {
