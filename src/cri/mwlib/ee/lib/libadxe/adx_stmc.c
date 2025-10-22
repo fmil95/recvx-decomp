@@ -421,9 +421,33 @@ void adxstm_sj_internal_error(void)
     adxstm_sj_internal_error_cnt++;
 }
 
-void ADXSTM_Start(ADXSTM adxstm)
+// 100% matching!
+Sint32 ADXSTM_Start(ADXSTM stm) 
 {
-    scePrintf("ADXSTM_Start - UNIMPLEMENTED!\n");
+    ADXSTMF stmf;
+
+    stmf = stm;
+    
+    if (stmf->fsize == 0) 
+    {
+        stmf->stat = 3;
+        
+        stmf->stpos = 0;
+        
+        stmf->tbyte = 0;
+    } 
+    else
+    {
+        stmf->tbyte = 0;
+        
+        stmf->stat = 2;
+        
+        stmf->stpos = ADXSTM_Tell(stm);
+        
+        stmf->errcnt = 0;
+    }
+    
+    return 1;
 }
 
 void ADXSTM_Stop(ADXSTM stm)
