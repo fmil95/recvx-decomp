@@ -98,7 +98,12 @@ Sint32 ADXSJD_GetLpEndPos(ADXSJD sjd)
     return ADXB_GetLpEndPos(sjd->adxb);
 }
 
-// ADXSJD_GetLpInsNsmpl
+// 100% matching!
+Sint32 ADXSJD_GetLpInsNsmpl(ADXSJD sjd)
+{
+    return ADXB_GetLpInsNsmpl(sjd->adxb);
+}
+
 // ADXSJD_GetLpStartOfst
 // ADXSJD_GetLpStartPos
 // ADXSJD_GetNumChan
