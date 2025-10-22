@@ -61,10 +61,26 @@ Sint32 ADXB_GetLpInsNsmpl(ADXB adxb)
     scePrintf("ADXB_GetLpInsNsmpl - UNIMPLEMENTED!\n");
 }
 
-// ADXB_GetLpStartOfst
-// ADXB_GetLpStartPos
-// ADXB_GetNumChan
-// ADXB_GetNumLoop
+Sint32 ADXB_GetLpStartOfst(ADXB adxb)
+{
+    scePrintf("ADXB_GetLpStartOfst - UNIMPLEMENTED!\n");
+}
+
+Sint32 ADXB_GetLpStartPos(ADXB adxb)
+{
+    scePrintf("ADXB_GetLpStartPos - UNIMPLEMENTED!\n");
+}
+
+Sint32 ADXB_GetNumChan(ADXB adxb)
+{
+    scePrintf("ADXB_GetNumChan - UNIMPLEMENTED!\n");
+}
+
+Sint32 ADXB_GetNumLoop(ADXB adxb)
+{
+    scePrintf("ADXB_GetNumLoop - UNIMPLEMENTED!\n");
+}
+
 // ADXB_GetOutBps
 // ADXB_GetPcmBuf
 // ADXB_GetSfreq

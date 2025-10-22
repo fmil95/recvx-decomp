@@ -104,7 +104,12 @@ Sint32 ADXSJD_GetLpInsNsmpl(ADXSJD sjd)
     return ADXB_GetLpInsNsmpl(sjd->adxb);
 }
 
-// ADXSJD_GetLpStartOfst
+// 100% matching!
+Sint32 ADXSJD_GetLpStartOfst(ADXSJD sjd)
+{
+    return ADXB_GetLpStartOfst(sjd->adxb);
+}
+
 // ADXSJD_GetLpStartPos
 // ADXSJD_GetNumChan
 // ADXSJD_GetNumLoop
