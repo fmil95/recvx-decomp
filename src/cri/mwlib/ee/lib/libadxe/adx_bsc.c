@@ -1,6 +1,11 @@
 // ADXB_CopyExtraBufMono
 // ADXB_CopyExtraBufSte
-// ADXB_Create
+
+ADXB ADXB_Create(Sint32 maxnch, Sint16 *obuf, Sint32 bsize, Sint32 bdist)
+{
+    scePrintf("ADXB_Create - UNIMPLEMENTED!\n");
+}
+
 // ADXB_DecodeHeader
 // ADXB_DecodeHeaderAdx
 // adxb_DefAddWr
@@ -9,7 +14,12 @@
 // ADXB_EndDecode
 // ADXB_EntryAddWrFunc
 // ADXB_EntryData
-// ADXB_EntryGetWrFunc
+
+void ADXB_EntryGetWrFunc(ADXB adxb, void* (*func)(), void *obj)
+{
+    scePrintf("ADXB_EntryGetWrFunc - UNIMPLEMENTED!\n");
+}
+
 // ADXB_EvokeDecode
 // ADXB_EvokeExpandMono
 // ADXB_EvokeExpandSte

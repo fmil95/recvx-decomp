@@ -1,5 +1,7 @@
 static ADX_SJDEC adxsjd_obj[8];
 
+void* adxsjd_get_wr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl);
+
 // 100% matching!
 void adxsjd_clear(ADXSJD sjd)
 {
@@ -22,9 +24,68 @@ void adxsjd_clear(ADXSJD sjd)
     sjd->empty_end = 0;
 }
 
-ADXSJD ADXSJD_Create(SJ sjf, Sint32 maxnch, SJ* sjo)
+// 100% matching!
+ADXSJD ADXSJD_Create(SJ sji, Sint32 maxnch, SJ *sjo)
 {
-    scePrintf("ADXSJD_Create - UNIMPLEMENTED!\n");
+    ADXSJD sjd;
+	Sint32 no;
+	Sint32 i;
+	Sint16 *obuf;
+	Sint32 bsize;
+	SJRBF sjrbf;
+
+    sjrbf = (SJRBF)sjo[0];
+
+    for (i = 0; i < 8; i++) 
+    {
+        if (adxsjd_obj[i].used == FALSE) 
+        {
+            break;
+        }
+    }
+    
+    if (i == 8)
+    { 
+        return NULL;
+    }
+
+    sjd = &adxsjd_obj[i];
+    
+    obuf = (Sint16*)SJRBF_GetBufPtr(sjrbf);
+    
+    bsize = (unsigned int)SJRBF_GetBufSize(sjrbf) / 2;
+    
+    sjd->adxb = ADXB_Create(maxnch, obuf, bsize, bsize + (unsigned int)SJRBF_GetXtrSize(sjrbf) / 2);
+
+    ADXB_EntryGetWrFunc(sjd->adxb, adxsjd_get_wr, sjd);
+    
+    if (sjd->adxb == NULL) 
+    {
+        return NULL;
+    }
+    
+    sjd->sji = sji;
+    
+    sjd->maxnch = maxnch;
+
+    for (no = 0; no < maxnch; no++) 
+    {
+        sjd->sjo[no] = sjo[no];
+    }
+
+    sjd->stat = 0;
+    
+    adxsjd_clear(sjd);
+    
+    sjd->dtrpfunc = NULL;
+    sjd->dtrpobj = NULL;
+    
+    sjd->dfltfunc = NULL;
+    sjd->dfltobj = NULL;
+    
+    sjd->used = TRUE;
+    
+    return sjd;
 }
 
 // adxsjd_decexec_end
@@ -47,7 +108,10 @@ void ADXSJD_Finish(void)
     scePrintf("ADXSJD_Finish - UNIMPLEMENTED!\n");
 }
 
-// adxsjd_get_wr
+void* adxsjd_get_wr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
+{
+    scePrintf("adxsjd_get_wr - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 Sint32 ADXSJD_GetBlkLen(ADXSJD sjd)
