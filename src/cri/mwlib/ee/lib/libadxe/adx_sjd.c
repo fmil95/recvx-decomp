@@ -62,7 +62,11 @@ Sint32 ADXSJD_GetDecNumSmpl(ADXSJD sjd)
     return sjd->total_decsmpl;
 }
 
-// ADXSJD_GetDecPos
+// 100% matching!
+Sint32 ADXSJD_GetDecPos(ADXSJD sjd) 
+{
+    return sjd->decpos;
+}
 
 Sint32 ADXSJD_GetFmtBps(ADXSJD adxsjd)
 {
