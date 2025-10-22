@@ -1,6 +1,9 @@
 static ADX_SJDEC adxsjd_obj[8];
 
-// adxsjd_clear
+void adxsjd_clear(ADXSJD sjd)
+{
+    scePrintf("adxsjd_clear - UNIMPLEMENTED!\n");
+}
 
 ADXSJD ADXSJD_Create(SJ sjf, Sint32 maxnch, SJ* sjo)
 {
@@ -118,9 +121,12 @@ void ADXSJD_SetTrapNumSmpl(ADXSJD sjd, Sint32 nsmpl)
     sjd->dtrpsmpl = nsmpl;
 }
 
-void ADXSJD_Start(ADXSJD adxsjd)
+// 100% matching!
+void ADXSJD_Start(ADXSJD sjd)
 {
-    scePrintf("ADXSJD_Start - UNIMPLEMENTED!\n");
+    adxsjd_clear(sjd);
+    
+    sjd->stat = 1;
 }
 
 // ADXSJD_Stop
