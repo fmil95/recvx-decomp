@@ -55,9 +55,9 @@ ADXSJD ADXSJD_Create(SJ sji, Sint32 maxnch, SJ *sjo)
     
     obuf = (Sint16*)SJRBF_GetBufPtr(sjrbf);
     
-    bsize = (unsigned int)SJRBF_GetBufSize(sjrbf) / 2;
+    bsize = (Uint32)SJRBF_GetBufSize(sjrbf) / 2;
     
-    sjd->adxb = ADXB_Create(maxnch, obuf, bsize, bsize + (unsigned int)SJRBF_GetXtrSize(sjrbf) / 2);
+    sjd->adxb = ADXB_Create(maxnch, obuf, bsize, bsize + (Uint32)SJRBF_GetXtrSize(sjrbf) / 2);
 
     ADXB_EntryGetWrFunc(sjd->adxb, adxsjd_get_wr, sjd);
     

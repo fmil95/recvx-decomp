@@ -561,9 +561,28 @@ void ADXSTMF_ExecHndl(ADXSTMF stmf)
     }
 }
 
+// 100% matching!
 void ADXSTMF_SetupHandleMember(ADXSTMF stmf, CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
 {
-    scePrintf("ADXSTMF_SetupHandleMember - UNIMPLEMENTED!\n");
+    stmf->stat = 1;
+    
+    stmf->sj = sj;
+    
+    stmf->fp = fp;
+    
+    stmf->rdflg = 0;
+    
+    stmf->stpos = 0;
+    
+    stmf->fofst = fofst;
+    
+    stmf->fsize = fsize;
+    
+    stmf->rdsct = 512;
+    
+    stmf->esct = (stmf->fsize + 2047) / 2048;
+    
+    stmf->used = TRUE;
 }
 
 void adxstmf_stat_exec(ADXSTMF stmf)
