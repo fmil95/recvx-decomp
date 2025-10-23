@@ -118,7 +118,49 @@ void lsc_StatRead(LSC lsc)
     }
 }
 
-void lsc_StatWait(LSC lsc) 
+// 100% matching!
+void lsc_StatWait(LSC lsc)
 {
-    scePrintf("lsc_StatWait - UNIMPLEMENTED!\n");
+    LSC_SINFO *sinfo;
+	Sint32 fsct;
+
+    sinfo = &lsc->sinfo[lsc->rpos];
+    
+    if (lsc->nstm > 0)
+    {
+        if (lsc->fp == NULL)
+        {
+            lsc->fp = ADXSTM_OpenFileRangeExRt(sinfo->fname, sinfo->dir, sinfo->ofst, sinfo->fsct, lsc->sj);
+            
+            if (lsc->fp == NULL) 
+            {
+                LSC_CallErrFunc("E0004: Can not open '%s'", &sinfo->fname);
+            }
+            
+            fsct = (ADXSTM_GetFileLen(lsc->fp) + 2047) / 2048;
+            
+            lsc->rdflg = 0;
+            
+            lsc->fsct = fsct;
+            
+            sinfo->rdsct = 0;
+        }
+        
+        if (lsc->rdflg == 0) 
+        {
+            ADXSTM_SetBufSize(lsc->fp, lsc->bufmin, lsc->bsize);
+            
+            ADXSTM_Seek(lsc->fp, 0);
+            
+            ADXSTM_Start(lsc->fp);
+            
+            lsc->rdflg = 1;
+        }
+        
+        sinfo->stat = LSC_STAT_WAIT;
+    } 
+    else if (lsc->fp != NULL)
+    {
+        LSC_CallErrFunc("E0006: Illigal member nstm='%d' fp='%08x'h", lsc->nstm, lsc->fp);
+    }
 }
