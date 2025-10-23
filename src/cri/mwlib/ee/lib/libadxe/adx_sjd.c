@@ -168,9 +168,26 @@ void adxsjd_decode_exec(ADXSJD sjd)
 
 // adxsjd_decode_prep
 
-void ADXSJD_Destroy(ADXSJD adxsjd)
+// 100% matching!
+void ADXSJD_Destroy(ADXSJD sjd) 
 {
-    scePrintf("ADXSJD_Destroy - UNIMPLEMENTED!\n");
+    ADXB adxb;
+
+    if (sjd != NULL) 
+    {
+        adxb = sjd->adxb;
+
+        if (adxb != NULL) 
+        {
+            ADXB_Destroy(adxb);
+        }
+    
+        ADXCRS_Lock();
+        
+        memset(sjd, 0, sizeof(ADX_SJDEC));
+        
+        ADXCRS_Unlock();
+    }
 }
 
 // ADXSJD_EntryFltFunc

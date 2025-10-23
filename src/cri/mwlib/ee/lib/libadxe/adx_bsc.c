@@ -10,7 +10,12 @@ ADXB ADXB_Create(Sint32 maxnch, Sint16 *obuf, Sint32 bsize, Sint32 bdist)
 // ADXB_DecodeHeaderAdx
 // adxb_DefAddWr
 // adxb_DefGetWr
-// ADXB_Destroy
+
+void ADXB_Destroy(ADXB adxb)
+{
+    scePrintf("ADXB_Destroy - UNIMPLEMENTED!\n");
+}
+
 // ADXB_EndDecode
 // ADXB_EntryAddWrFunc
 
