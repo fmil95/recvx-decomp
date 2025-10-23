@@ -190,7 +190,13 @@ void ADXSJD_Destroy(ADXSJD sjd)
     }
 }
 
-// ADXSJD_EntryFltFunc
+// 100% matching!
+void ADXSJD_EntryFltFunc(ADXSJD sjd, void (*f)(), void *obj)
+{
+    sjd->dfltfunc = f;
+    sjd->dfltobj = obj;
+}
+
 // ADXSJD_EntryTrapFunc
 // ADXSJD_ExecHndl
 // ADXSJD_ExecServer
