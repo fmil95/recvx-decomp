@@ -1,5 +1,16 @@
-Sint32 adxps2_cur_tid;
-Sint32 adxps2_save_tprm[4] = { 0 };
+typedef struct 
+{ // 0x1c
+	/* 0x00 */ int prio_lock;
+	/* 0x04 */ int prio_safe;
+	/* 0x08 */ int prio_usrvsync;
+	/* 0x0c */ int prio_vsync;
+	/* 0x10 */ int prio_main;
+	/* 0x14 */ int prio_mwidle;
+	/* 0x18 */ int prio_usridle;
+} ADXPS2_TPRM_EX;
+
+static int adxps2_cur_tid;
+static ADXPS2_TPRM_EX adxps2_save_tprm = { 0 };
 static int adxps2_cur_prio;
 static Sint32 volatile adxps2_lock_count;
 static Sint32 volatile adxps2_exec_svr;
@@ -41,20 +52,20 @@ void ADXPS2_ExecServer(void)
 // 100% matching!
 void ADXPS2_Lock(void)
 {
-    ThreadParam tprm; 
-    Sint32 tid;
+    ThreadParam info; 
+    Sint32 th_id;
 
     if (adxps2_lock_count == 0)
     {
-        tid = GetThreadId();
+        th_id = GetThreadId();
         
-        ReferThreadStatus(tid, &tprm);
+        ReferThreadStatus(th_id, &info);
         
-        ChangeThreadPriority(tid, adxps2_save_tprm[0]);
+        ChangeThreadPriority(th_id, adxps2_save_tprm.prio_lock);
         
-        adxps2_cur_prio = tprm.currentPriority;
+        adxps2_cur_prio = info.currentPriority;
         
-        adxps2_cur_tid = tid;
+        adxps2_cur_tid = th_id;
         
         if (adxps2_id_safe != 0)
         {
@@ -79,11 +90,12 @@ void ADXPS2_RestoreVsyncCallback(void)
 // 99.29% matching
 void adxps2_safe_thrd_func(void) 
 {
-    adxps2_scnt++;
-
-    adxps2_scnt;
-    
-    adxps2_safe_thrd_func();
+    while (TRUE) 
+    {
+        adxps2_scnt++;
+        
+        adxps2_scnt;
+    }
 }
 
 void ADXPS2_SetupThrd(ADXPS2_TPRM *tprm) 
