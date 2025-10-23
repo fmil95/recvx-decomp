@@ -50,9 +50,17 @@ void ADXERR_Init(void)
     adxerr_obj = NULL;
 }
 
-// ADXERR_ItoA
-
-void ADXERR_ItoA2(Sint32 ptid, Sint32 flid, Char8* err_msg, Sint32 msg_len)
+void ADXERR_ItoA(Sint32 val, Sint8 *str, Sint32 len)
 {
-    scePrintf("ADXERR_ItoA2 - UNIMPLEMENTED!\n");
+    scePrintf("ADXERR_ItoA - UNIMPLEMENTED!\n");
+}
+
+// 100% matching!
+void ADXERR_ItoA2(Sint32 val, Sint32 val2, Sint8 *str, Sint32 len) 
+{
+    ADXERR_ItoA(val, str, len);
+    
+    strncat(str, " ", (len - strlen(str)) - 1);
+    
+    ADXERR_ItoA(val2, &str[strlen(str)], 4 - strlen(str));
 }

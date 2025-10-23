@@ -27,7 +27,7 @@ void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
         {
             ADXCRS_Unlock();
             
-            ADXERR_ItoA2(patid, fid, error, 16);
+            ADXERR_ItoA2(patid, fid, (Sint8*)error, 16);
             ADXERR_CallErrFunc2("E8101202 ADXT_StartAfs: can't open ", (Sint8*)error);
         } 
         else 

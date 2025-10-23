@@ -32,7 +32,6 @@ jobs:
             echo "✅ No changes to commit."
           else
             git add README.md
-            git commit -m "Update decomp progress [skip ci]"
+            git commit -m "Update progress status"
             git push
           fi
-          
