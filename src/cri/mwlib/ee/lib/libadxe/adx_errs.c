@@ -50,9 +50,36 @@ void ADXERR_Init(void)
     adxerr_obj = NULL;
 }
 
+// 100% matching!
 void ADXERR_ItoA(Sint32 val, Sint8 *str, Sint32 len)
 {
-    scePrintf("ADXERR_ItoA - UNIMPLEMENTED!\n");
+    static Sint8 buf[32];
+	Sint32 ncol;
+	Sint32 i;
+
+    for (i = 0; i < 32; i++) 
+    {
+        str[i] = val % 10;
+        
+        val /= 10;
+
+        if (val == 0) 
+        {
+            str[i] = '\0';
+            break;
+        }
+    }
+
+    ncol = strlen((const Sint8*)&buf);
+    
+    ncol = (ncol >= (len - 1)) ? len - 1 : ncol;
+    
+    for (i = 0; i < ncol; i++)
+    {
+        str[i] = buf[(ncol - i) - 1];
+    }
+    
+    str[i] = '\0';
 }
 
 // 100% matching!
