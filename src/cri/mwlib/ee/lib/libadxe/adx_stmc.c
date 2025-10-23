@@ -222,7 +222,7 @@ ADXSTM ADXSTM_OpenFileRangeEx(const Sint8 *fname, void *dir, Sint32 ofst, Sint32
     
     if (fp == NULL) 
     {
-        ADXERR_CallErrFunc2("E0041206 ADXSTM_OpenFnameRang: can't open ", fname);
+        ADXERR_CallErrFunc2((const Sint8*)"E0041206 ADXSTM_OpenFnameRang: can't open ", fname);
         
         return NULL;
     }
@@ -247,7 +247,7 @@ ADXSTM ADXSTM_OpenFileRangeExRt(const Sint8 *fname, void *dir, Sint32 ofst, Sint
     
     if (fp == NULL) 
     {
-        ADXERR_CallErrFunc2("E00041205 ADXSTM_OpenFnameRangeExRt: can't open ", fname);
+        ADXERR_CallErrFunc2((const Sint8*)"E00041205 ADXSTM_OpenFnameRangeExRt: can't open ", fname);
         
         return NULL;
     }
@@ -275,7 +275,7 @@ ADXSTM ADXSTM_OpenFname(const Sint8 *fname, SJ sj)
     
     if (fp == NULL) 
     {
-        ADXERR_CallErrFunc2("E00041205 ADXSTM_OpenFnameEx: can't open ", fname);
+        ADXERR_CallErrFunc2((const Sint8*)"E00041205 ADXSTM_OpenFnameEx: can't open ", fname);
         
         return NULL;
     }
@@ -310,7 +310,7 @@ ADXSTM ADXSTM_OpenFnameEx(const Sint8 *fname, void *dir, SJ sj)
     
     if (fp == NULL) 
     {
-        ADXERR_CallErrFunc2("E00041205 ADXSTM_OpenFnameEx: can't open ", fname);
+        ADXERR_CallErrFunc2((const Sint8*)"E00041205 ADXSTM_OpenFnameEx: can't open ", fname);
         
         return NULL;
     }

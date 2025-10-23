@@ -1,6 +1,6 @@
-void (*adxerr_func)(void* err_obj, Char8* err_msg);
-Char8 adxerr_msg[256] = { 0 };
-void* adxerr_obj;
+static Sint8 adxerr_msg[256] = { 0 }; 
+static void (*adxerr_func)(void *obj, const Sint8 *msg);
+static void *adxerr_obj;
 
 // 100% matching!
 void ADXERR_CallErrFunc1(Char8* err_msg) 
@@ -14,10 +14,10 @@ void ADXERR_CallErrFunc1(Char8* err_msg)
 }
 
 // 100% matching! 
-void ADXERR_CallErrFunc2(Char8* err_msg, Sint8* fname)
+void ADXERR_CallErrFunc2(const Sint8 *msg1, const Sint8 *msg2)
 {
-    strncpy(adxerr_msg, err_msg, 255);
-    strncat(adxerr_msg, fname, 255);
+    strncpy(adxerr_msg, msg1, sizeof(adxerr_msg) - 1);
+    strncat(adxerr_msg, msg2, sizeof(adxerr_msg) - 1);
 
     if (adxerr_func != NULL) 
     {
@@ -26,10 +26,10 @@ void ADXERR_CallErrFunc2(Char8* err_msg, Sint8* fname)
 }
 
 // 100% matching! 
-void ADXERR_EntryErrFunc(void (*err_func)(void* err_obj, Char8* err_msg), void* err_obj) 
+void ADXERR_EntryErrFunc(void (*func)(), void *obj)
 {
-    adxerr_func = err_func; 
-    adxerr_obj = err_obj;
+    adxerr_func = func; 
+    adxerr_obj = obj;
 }
 
 // 100% matching!

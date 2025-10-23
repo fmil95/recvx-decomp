@@ -28,7 +28,7 @@ void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
             ADXCRS_Unlock();
             
             ADXERR_ItoA2(patid, fid, (Sint8*)error, 16);
-            ADXERR_CallErrFunc2("E8101202 ADXT_StartAfs: can't open ", (Sint8*)error);
+            ADXERR_CallErrFunc2((const Sint8*)"E8101202 ADXT_StartAfs: can't open ", (Sint8*)error);
         } 
         else 
         {
@@ -54,7 +54,7 @@ void ADXT_StartFname(ADXT adxt, Char8 *fname)
     {
         ADXCRS_Unlock();
         
-        ADXERR_CallErrFunc2("E8101205 ADXT_StartFname: can't open ", (Sint8*)fname);
+        ADXERR_CallErrFunc2((const Sint8*)"E8101205 ADXT_StartFname: can't open ", (Sint8*)fname);
     } 
     else 
     {
