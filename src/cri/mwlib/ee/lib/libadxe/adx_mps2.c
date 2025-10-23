@@ -70,7 +70,11 @@ void ADXPS2_Lock(void)
     adxps2_lock_count++;
 }
 
-// ADXPS2_RestoreVsyncCallback
+// 100% matching!
+void ADXPS2_RestoreVsyncCallback(void) 
+{
+    adxps2_old_cbf = (void*)sceGsSyncVCallback(ADXPS2_VsyncCallback);
+}
 
 // 99.29% matching
 void adxps2_safe_thrd_func(void) 
