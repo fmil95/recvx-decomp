@@ -110,7 +110,10 @@ Sint32 ADXB_GetOutBps(ADXB adxb)
     scePrintf("ADXB_GetOutBps - UNIMPLEMENTED!\n");
 }
 
-// ADXB_GetPcmBuf
+Sint16* ADXB_GetPcmBuf(ADXB adxb)
+{
+    scePrintf("ADXB_GetPcmBuf - UNIMPLEMENTED!\n");
+}
 
 Sint32 ADXB_GetSfreq(ADXB adxb)
 {

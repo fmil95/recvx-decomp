@@ -240,9 +240,47 @@ void ADXSJD_Finish(void)
     memset(adxsjd_obj, 0, sizeof(adxsjd_obj));
 }
 
-void* adxsjd_get_wr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
+// 100% matching!
+void* adxsjd_get_wr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl) 
 {
-    scePrintf("adxsjd_get_wr - UNIMPLEMENTED!\n");
+    ADXSJD sjd;
+    SJRBF sjrbf;
+	Sint32 i;
+	Sint32 tmp;
+    Sint32 tmp2; 
+
+    sjd = obj;
+
+    sjrbf = (SJRBF)sjd->sjo[0];
+
+    for (i = 0; i < ADXB_GetNumChan(sjd->adxb); i++) 
+    {
+        SJ_GetChunk(sjd->sjo[i], 0, 16384, &sjd->cko[i]);
+    }
+    
+    *wpos = (Uint32)(sjd->cko[0].data - SJRBF_GetBufPtr(sjrbf)) / 2;
+    
+    tmp = (Uint32)sjd->cko[0].len / 2;
+    
+    tmp2 = sjd->maxdecsmpl;
+
+    if (tmp < tmp2)
+    {
+        tmp2 = tmp;
+    }
+    
+    *nroom = tmp2;
+
+    if (sjd->dtrpsmpl >= 0) 
+    {
+        *lp_nsmpl = sjd->dtrpsmpl - sjd->dtrpcnt;
+    } 
+    else 
+    {
+        *lp_nsmpl = 0x1FFFFFFF;
+    }
+    
+    return ADXB_GetPcmBuf(sjd->adxb);
 }
 
 // 100% matching!
