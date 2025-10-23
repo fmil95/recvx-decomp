@@ -7,7 +7,7 @@ Sint32 adxt_vsync_cnt;
 // 100% matching!
 void adxini_rnaerr_cbfn(void* arg0, Char8* err_msg) 
 {
-    ADXERR_CallErrFunc1(err_msg);
+    ADXERR_CallErrFunc1((const Sint8*)err_msg);
 }
 
 // 100% matching!

@@ -3,9 +3,9 @@ static void (*adxerr_func)(void *obj, const Sint8 *msg);
 static void *adxerr_obj;
 
 // 100% matching!
-void ADXERR_CallErrFunc1(Char8* err_msg) 
+void ADXERR_CallErrFunc1(const Sint8 *msg) 
 {
-    strncpy(adxerr_msg, err_msg, 255);
+    strncpy(adxerr_msg, msg, sizeof(adxerr_msg) - 1);
 
     if (adxerr_func != NULL)
     {

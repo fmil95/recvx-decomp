@@ -40,7 +40,7 @@ Sint32 adxf_ChkPrmGfr(Uint32 ptid, Sint32 flid)
 
     if (ptid >= ADXF_PART_MAX) 
     {
-        ADXERR_CallErrFunc1("E9040828:'ptid' is range outside.");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040828:'ptid' is range outside.");
         
         return ADXF_ERR_PRM;
     }
@@ -49,14 +49,14 @@ Sint32 adxf_ChkPrmGfr(Uint32 ptid, Sint32 flid)
     
     if (ptinfo == NULL) 
     {
-        ADXERR_CallErrFunc1("E9040828:'ptid' is range outside.");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040828:'ptid' is range outside.");
         
         return ADXF_ERR_PRM;
     }
     
     if ((flid < 0) || (flid >= ptinfo->nfile))
     {
-        ADXERR_CallErrFunc1("E9040828:'flid' is range outside.");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040828:'flid' is range outside.");
         
         return ADXF_ERR_PRM;
     } 
@@ -69,14 +69,14 @@ Sint32 adxf_ChkPrmPt(Uint32 ptid, ADXF_PTINFO* ptinfo)
 {
     if (ptid >= ADXF_PART_MAX) 
     {
-        ADXERR_CallErrFunc1("E9040801:'ptid' is range outside.(adxf_ChkPrmPt)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040801:'ptid' is range outside.(adxf_ChkPrmPt)");
         
         return ADXF_ERR_PRM;
     }
     
     if (ptinfo == NULL)
     {
-        ADXERR_CallErrFunc1("E9040802:'ptinfo' is NULL.(adxf_ChkPrmPt)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040802:'ptinfo' is NULL.(adxf_ChkPrmPt)");
         
         return ADXF_ERR_PRM;
     }
@@ -350,7 +350,7 @@ Sint32 ADXF_GetFsizeByte(ADXF adxf)
 {
     if (adxf == NULL) 
     {
-        ADXERR_CallErrFunc1("E9040829:'adxf' is NULL.(ADXF_GetFsizeByte)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040829:'adxf' is NULL.(ADXF_GetFsizeByte)");
         
         return ADXF_ERR_PRM;
     }
@@ -363,7 +363,7 @@ Sint32 ADXF_GetFsizeSct(ADXF adxf)
 {
     if (adxf == NULL) 
     {
-        ADXERR_CallErrFunc1("E9040828:'adxf' is NULL.(ADXF_GetFsizeSct)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040828:'adxf' is NULL.(ADXF_GetFsizeSct)");
         
         return ADXF_ERR_PRM;
     }
@@ -376,7 +376,7 @@ Sint32 ADXF_GetNumReadSct(ADXF adxf)
 {
     if (adxf == NULL) 
     {
-        ADXERR_CallErrFunc1("E9040831:'adxf' is NULL.(ADXF_GetNumReadSct)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040831:'adxf' is NULL.(ADXF_GetNumReadSct)");
         
         return ADXF_ERR_PRM;
     }
@@ -389,7 +389,7 @@ Sint32 ADXF_GetNumReqSct(ADXF adxf, Sint32 *seekpos)
 {
     if (adxf == NULL) 
     {
-        ADXERR_CallErrFunc1("E9040830:'adxf' is NULL.(ADXF_GetNumReqSct)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040830:'adxf' is NULL.(ADXF_GetNumReqSct)");
         
         *seekpos = 0;
         
@@ -417,7 +417,7 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
 
     if (ptid != adxf_ldptnw_ptid) 
     {
-        ADXERR_CallErrFunc1("E0041303:illigal parameter 'ptid'.(ADXF_GetPtStat)");
+        ADXERR_CallErrFunc1((const Sint8*)"E0041303:illigal parameter 'ptid'.(ADXF_GetPtStat)");
         
         return ADXF_ERR_PRM;
     }
@@ -434,7 +434,7 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
         {
             if (memcmp(buf, "AFS", 3) != 0)
             {
-                ADXERR_CallErrFunc1("E0040701:Illigal format(not AFS).(ADXF_GetPtStat)");
+                ADXERR_CallErrFunc1((const Sint8*)"E0040701:Illigal format(not AFS).(ADXF_GetPtStat)");
                 
                 adxf_CloseLdptnwHn();
                 
@@ -443,7 +443,7 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
             
             if (((Sint32*)buf)[1] > ADXF_FILE_MAX)
             {
-                ADXERR_CallErrFunc1("E0040702:Illigal number of file.(ADXF_GetPtStat)");
+                ADXERR_CallErrFunc1((const Sint8*)"E0040702:Illigal number of file.(ADXF_GetPtStat)");
                 
                 adxf_CloseLdptnwHn();
                 
@@ -501,7 +501,7 @@ Sint32 ADXF_GetStat(ADXF adxf)
 {
     if (adxf == NULL)
     {
-        ADXERR_CallErrFunc1("E9040832:'adxf' is NULL.(ADXF_GetStat)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040832:'adxf' is NULL.(ADXF_GetStat)");
         
         return ADXF_ERR_PRM;
     }
@@ -552,7 +552,7 @@ Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
     {
         if (adxf_ldptnw_ptid >= 0) 
         {
-            ADXERR_CallErrFunc1("E0042401:multi-load partition.(ADXF_LoadPartitionNw)");
+            ADXERR_CallErrFunc1((const Sint8*)"E0042401:multi-load partition.(ADXF_LoadPartitionNw)");
             
             return ADXF_ERR_FATAL;
         }
@@ -561,7 +561,7 @@ Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
         
         if (adxf_ldptnw_hn == NULL) 
         {
-            ADXERR_CallErrFunc1("E9040804:can't open file.(ADXF_LoaddPartitionNw)");
+            ADXERR_CallErrFunc1((const Sint8*)"E9040804:can't open file.(ADXF_LoaddPartitionNw)");
             
             return ADXF_ERR_FATAL;
         }
@@ -700,7 +700,7 @@ Sint32 ADXF_ReadNw(ADXF adxf, Sint32 nsct, void *buf)
 {
     if (((Sint32)buf & 0x3F)) 
     {
-        ADXERR_CallErrFunc1("E0120401:'buf' isn't 64byte alignment.(ADXF_ReadNw)");
+        ADXERR_CallErrFunc1((const Sint8*)"E0120401:'buf' isn't 64byte alignment.(ADXF_ReadNw)");
         
         return ADXF_ERR_PRM;
     }
@@ -724,7 +724,7 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
     
     if (adxf == NULL)
     {
-        ADXERR_CallErrFunc1("E9040816:'adxf' is NULL.(ADXF_ReadNw32)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040816:'adxf' is NULL.(ADXF_ReadNw32)");
         
         return ADXF_ERR_PRM;
     }
@@ -733,7 +733,7 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
     
     if (nsct < 0)  
     {
-        ADXERR_CallErrFunc1("E9040817:'nsct' is negative.(ADXF_ReadNw32)"); 
+        ADXERR_CallErrFunc1((const Sint8*)"E9040817:'nsct' is negative.(ADXF_ReadNw32)"); 
         
         return ADXF_ERR_PRM;
     }
@@ -742,7 +742,7 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
     
     if (buf == NULL) 
     {
-        ADXERR_CallErrFunc1("E9040818:'buf' is NULL.(ADXF_ReadNw32)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040818:'buf' is NULL.(ADXF_ReadNw32)");
         
         return ADXF_ERR_PRM;
     }
@@ -756,7 +756,7 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
         
         if (adxf->sj != NULL) 
         {
-            ADXERR_CallErrFunc1("E9040821:'sj' is NULL.(ADXF_ReadNw32)"); 
+            ADXERR_CallErrFunc1((const Sint8*)"E9040821:'sj' is NULL.(ADXF_ReadNw32)"); 
             
             return ADXF_ERR_FATAL;
         }
@@ -825,21 +825,21 @@ Sint32 ADXF_ReadSj32(ADXF adxf, Sint32 nsct, SJ sj)
 
     if (adxf == NULL) 
     {
-        ADXERR_CallErrFunc1("E9040811:'adxf' is NULL.(ADXF_ReadSj32)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040811:'adxf' is NULL.(ADXF_ReadSj32)");
         
         return ADXF_ERR_PRM;
     }
     
     if (nsct < 0) 
     {
-        ADXERR_CallErrFunc1("E9040812:'nsct'is negative.(ADXF_ReadSj32)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040812:'nsct'is negative.(ADXF_ReadSj32)");
         
         return ADXF_ERR_PRM;
     }
     
     if (sj == NULL)
     {
-        ADXERR_CallErrFunc1("E9040813:'sj'is NULL.(ADXF_ReadSj32)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040813:'sj'is NULL.(ADXF_ReadSj32)");
         
         return ADXF_ERR_PRM;
     }
@@ -867,7 +867,7 @@ Sint32 ADXF_Seek(ADXF adxf, Sint32 pos, Sint32 type)
 
     if (adxf == NULL) 
     {
-        ADXERR_CallErrFunc1("E9040825:'adxf' is NULL.(ADXF_Seek)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040825:'adxf' is NULL.(ADXF_Seek)");
         
         return ADXF_ERR_PRM;
     }
@@ -891,7 +891,7 @@ Sint32 ADXF_Seek(ADXF adxf, Sint32 pos, Sint32 type)
     } 
     else
     {
-        ADXERR_CallErrFunc1("E9040826:'type' is illigal.(ADXF_Seek)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040826:'type' is illigal.(ADXF_Seek)");
         
         return ADXF_ERR_PRM;
     }
@@ -931,7 +931,7 @@ Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
     
     if (adxf->stm == NULL) 
     {
-        ADXERR_CallErrFunc1("E0110902:can't open file.(ADXF_OpenAfs)");
+        ADXERR_CallErrFunc1((const Sint8*)"E0110902:can't open file.(ADXF_OpenAfs)");
         
         return ADXF_ERR_FATAL;
     }
@@ -979,7 +979,7 @@ Sint32 adxf_SetFileInfoEx(ADXF_ROFS rofs, Char8* fname, void* atr)
 
     if (fname == NULL)
     {
-        ADXERR_CallErrFunc1("E9081901:illigal parameter fname=null.(ADXF_Open)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9081901:illigal parameter fname=null.(ADXF_Open)");
         
         return ADXF_ERR_FATAL;
     }
@@ -990,7 +990,7 @@ Sint32 adxf_SetFileInfoEx(ADXF_ROFS rofs, Char8* fname, void* atr)
     
     if (fid == 0)
     {
-        ADXERR_CallErrFunc1("E0110901:can't open file.(ADXF_Open)");
+        ADXERR_CallErrFunc1((const Sint8*)"E0110901:can't open file.(ADXF_Open)");
         
         return ADXF_ERR_FATAL;
     }
@@ -1017,7 +1017,7 @@ void ADXF_SetReqRdSct(ADXF adxf, Sint32 nsct)
 {
     if (adxf->stat == ADXF_STAT_READING) 
     {
-        ADXERR_CallErrFunc1("E0041201:state is reading(ADXF_SetReqRdSct)");
+        ADXERR_CallErrFunc1((const Sint8*)"E0041201:state is reading(ADXF_SetReqRdSct)");
     }
     else 
     {
@@ -1034,7 +1034,7 @@ Sint32 ADXF_Stop(ADXF adxf)
     
     if (adxf == NULL)
     {
-        ADXERR_CallErrFunc1("E9040822:'adxf' is NULL.(ADXF_Stop)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040822:'adxf' is NULL.(ADXF_Stop)");
         
         return ADXF_ERR_PRM;
     } 
@@ -1049,7 +1049,7 @@ Sint32 ADXF_Stop(ADXF adxf)
         default:
             if (adxf->stm == NULL) 
             {
-                ADXERR_CallErrFunc1("E9040823:'adxf->stm' is NULL.(ADXF_Stop)");
+                ADXERR_CallErrFunc1((const Sint8*)"E9040823:'adxf->stm' is NULL.(ADXF_Stop)");
                 
                 return ADXF_ERR_FATAL;
             }
@@ -1094,7 +1094,7 @@ Sint32 ADXF_Tell(ADXF adxf)
 {
     if (adxf == NULL) 
     {
-        ADXERR_CallErrFunc1("E9040827:'adxf' is NULL.(ADXF_Tell)");
+        ADXERR_CallErrFunc1((const Sint8*)"E9040827:'adxf' is NULL.(ADXF_Tell)");
         
         return ADXF_ERR_PRM;
     }

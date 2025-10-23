@@ -87,7 +87,7 @@ void ADXT_StartMem2(ADXT adxt, void *adxdat, Sint32 datlen)
     {
         ADXCRS_Unlock();
         
-        ADXERR_CallErrFunc1("E8101207: can't create sj (ADXT_StartMem)\n");
+        ADXERR_CallErrFunc1((const Sint8*)"E8101207: can't create sj (ADXT_StartMem)\n");
     } 
     else 
     {
@@ -118,7 +118,7 @@ void ADXT_StartMemIdx(ADXT adxt, void *acx, Sint32 no)
         {
             ADXCRS_Unlock();
             
-            ADXERR_CallErrFunc1("E8101207: can't create sj (ADXT_StartMemIdx)");
+            ADXERR_CallErrFunc1((const Sint8*)"E8101207: can't create sj (ADXT_StartMemIdx)");
         }
         else 
         {

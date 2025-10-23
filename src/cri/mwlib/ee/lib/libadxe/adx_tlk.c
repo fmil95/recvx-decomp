@@ -428,7 +428,7 @@ void ADXT_SetOutPan(ADXT adxt, Sint32 ch, Sint32 pan)
     }
     else 
     {
-        ADXERR_CallErrFunc1("E8101208 ADXT_SetOutPan: parameter error");
+        ADXERR_CallErrFunc1((const Sint8*)"E8101208 ADXT_SetOutPan: parameter error");
     }
 }
 

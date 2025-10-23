@@ -3,7 +3,7 @@ Char8 D_00362958;
 // 100% matching!
 void adxt_err_dvd(Sint32 arg0, Char8* err_msg)
 {
-    ADXERR_CallErrFunc1(err_msg);
+    ADXERR_CallErrFunc1((const Sint8*)err_msg);
 }
 
 // 100% matching!

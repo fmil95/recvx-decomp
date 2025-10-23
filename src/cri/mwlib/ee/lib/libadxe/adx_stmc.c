@@ -299,7 +299,7 @@ ADXSTM ADXSTM_OpenFnameEx(const Sint8 *fname, void *dir, SJ sj)
 
     if (dir != NULL) 
     {
-        ADXERR_CallErrFunc1("E0062201 ADXSTM_OpenFname: can't specify dir");
+        ADXERR_CallErrFunc1((const Sint8*)"E0062201 ADXSTM_OpenFname: can't specify dir");
         
         return NULL;
     }
