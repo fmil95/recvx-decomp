@@ -234,9 +234,10 @@ void ADXSJD_ExecServer(void)
     }
 }
 
+// 100% matching!
 void ADXSJD_Finish(void)
 {
-    scePrintf("ADXSJD_Finish - UNIMPLEMENTED!\n");
+    memset(adxsjd_obj, 0, sizeof(adxsjd_obj));
 }
 
 void* adxsjd_get_wr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
