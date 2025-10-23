@@ -31,9 +31,59 @@ void lsc_ExecHndl(LSC lsc)
     lsc_StatWait(lsc); 
 }
 
+void LSC_CallStatFunc(void); // TODO: remove this function declaration
+// 100% matching!
 void lsc_StatEnd(LSC lsc) 
 {
-    scePrintf("lsc_StatEnd - UNIMPLEMENTED!\n");
+    static Sint8 fname[LSC_FNAME_MAX];
+	void *dir;
+	Sint32 ofst;
+	Sint32 nsct;
+	LSC_SINFO *sinfo;
+
+    dir = NULL; 
+    
+    ofst = 0;
+    
+    nsct = 0; 
+    
+    if (lsc->fp != NULL) 
+    {
+        ADXSTM_Close(lsc->fp); 
+        
+        lsc->fp = NULL;
+        
+        if (lsc->lpflg == 1) 
+        {
+            sinfo = &lsc->sinfo[lsc->rpos];
+            
+            memcpy(fname, sinfo->fname, sizeof(fname) - 1);
+            
+            dir = sinfo->dir;
+            
+            ofst = sinfo->ofst;
+            
+            nsct = sinfo->fsct;
+        }
+        
+        lsc->nstm--;
+        
+        lsc->rpos++; 
+        
+        lsc->rpos -= (lsc->rpos / LSC_STM_MAX) * LSC_STM_MAX;
+        
+        if (lsc->nstm <= 0) 
+        {
+            LSC_CallStatFunc();
+            
+            lsc->stat = LSC_STAT_WAIT;
+        }
+        
+        if (lsc->lpflg == 1) 
+        {
+            LSC_EntryFileRange(lsc, &fname, dir, ofst, nsct);
+        }
+    }
 }
 
 // 100% matching! 
