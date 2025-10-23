@@ -204,7 +204,19 @@ void ADXSJD_EntryTrapFunc(ADXSJD sjd, void (*f)(), void *obj)
     sjd->dtrpobj = obj;
 }
 
-// ADXSJD_ExecHndl
+// 100% matching!
+void ADXSJD_ExecHndl(ADXSJD sjd)
+{
+    if (sjd->stat == 2)
+    {
+        adxsjd_decode_exec(sjd);
+    } 
+    else if (sjd->stat == 1)
+    {
+        adxsjd_decode_prep(sjd);
+    }
+}
+
 // ADXSJD_ExecServer
 
 void ADXSJD_Finish(void)
