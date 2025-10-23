@@ -7,7 +7,9 @@ static int volatile adxps2_id_adx;
 static int volatile adxps2_id_main;
 static int volatile adxps2_id_safe;
 static int adxps2_main_prio_def;
+static int (*adxps2_old_cbf)(int arg);
 static long unsigned int volatile adxps2_scnt;
+static long unsigned int volatile adxps2_vcnt;
 
 // 100% matching!
 void adxps2_adx_thrd_func(void)
@@ -147,4 +149,20 @@ void ADXPS2_Unlock(void)
     }
 }
 
-// ADXPS2_VsyncCallback
+// 100% matching!
+int ADXPS2_VsyncCallback(int arg)
+{
+    if ((adxps2_exec_svr == 0) && (adxps2_id_adx != 0)) 
+    {
+        iWakeupThread(adxps2_id_adx);
+    }
+    
+    adxps2_vcnt++;
+    
+    if (adxps2_old_cbf != NULL) 
+    {
+        return adxps2_old_cbf(arg);
+    }
+    
+    return 0;
+}
