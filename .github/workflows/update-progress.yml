@@ -1,0 +1,37 @@
+name: Update Decompilation Progress
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # allows manual runs from the Actions tab
+
+jobs:
+  update-progress:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # needed to push changes to the repo
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run decomp progress script
+        run: python progress.py
+
+      - name: Commit and push README.md if changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet README.md; then
+            echo "✅ No changes to commit."
+          else
+            git add README.md
+            git commit -m "Update decomp progress [skip ci]"
+            git push
+          fi
