@@ -1,12 +1,13 @@
-Sint32 adxps2_cur_prio;
 Sint32 adxps2_cur_tid;
-Sint32 volatile adxps2_lock_count;
 Sint32 adxps2_save_tprm[4] = { 0 };
+static int adxps2_cur_prio;
+static Sint32 volatile adxps2_lock_count;
 static Sint32 volatile adxps2_exec_svr;
 static int volatile adxps2_id_adx;
 static int volatile adxps2_id_main;
 static int volatile adxps2_id_safe;
 static int adxps2_main_prio_def;
+static long unsigned int volatile adxps2_scnt;
 
 // 100% matching!
 void adxps2_adx_thrd_func(void)
@@ -68,7 +69,16 @@ void ADXPS2_Lock(void)
 }
 
 // ADXPS2_RestoreVsyncCallback
-// adxps2_safe_thrd_func
+
+// 99.29% matching
+void adxps2_safe_thrd_func(void) 
+{
+    adxps2_scnt++;
+
+    adxps2_scnt;
+    
+    adxps2_safe_thrd_func();
+}
 
 void ADXPS2_SetupThrd(ADXPS2_TPRM *tprm) 
 {
