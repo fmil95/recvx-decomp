@@ -5,7 +5,13 @@ Sint32 volatile adxps2_lock_count;
 Sint32 adxps2_save_tprm[4] = { 0 };
 
 // adxps2_adx_thrd_func
-// ADXPS2_ExecServer
+
+// 100% matching!
+void ADXPS2_ExecServer(void) 
+{
+    ADXT_ExecServer();
+    ADXT_ExecFsSvr();
+}
 
 // 100% matching!
 void ADXPS2_Lock(void)
