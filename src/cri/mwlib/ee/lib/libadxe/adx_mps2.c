@@ -78,7 +78,12 @@ void ADXPS2_SetupUsvr(void)
 
 }
 
-// ADXPS2_Shutdown
+// 100% matching!
+void ADXPS2_Shutdown(void) 
+{
+
+}
+
 // ADXPS2_ShutdownThrd
 
 // 100% matching!
