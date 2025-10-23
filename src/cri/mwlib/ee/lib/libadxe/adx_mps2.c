@@ -72,7 +72,12 @@ void ADXPS2_SetupThrd(ADXPS2_TPRM *tprm)
     scePrintf("ADXPS2_SetupThrd - UNIMPLEMENTED!\n");
 }
 
-// ADXPS2_SetupUsvr
+// 100% matching!
+void ADXPS2_SetupUsvr(void) 
+{
+
+}
+
 // ADXPS2_Shutdown
 // ADXPS2_ShutdownThrd
 
