@@ -1,9 +1,4 @@
-#include "cri_lsc.h"
-
-void lsc_ExecHndl(LSC lsc);
-void lsc_StatEnd(LSC lsc);
-void lsc_StatRead(LSC lsc);
-void lsc_StatWait(LSC lsc);
+#include "lsc_svr.h"
 
 // 100% matching! 
 void lsc_ExecHndl(LSC lsc) 

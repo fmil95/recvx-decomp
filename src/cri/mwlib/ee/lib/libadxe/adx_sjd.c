@@ -1,6 +1,6 @@
 #define BSWAP_U16_EX(_val) (Uint16)(((_val & 0xFF00) >> 8) | ((_val << 8) & 0xFF00))
 
-static ADX_SJDEC adxsjd_obj[8];
+static ADX_SJDEC adxsjd_obj[8] = { 0 };
 
 void* adxsjd_get_wr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl);
 
