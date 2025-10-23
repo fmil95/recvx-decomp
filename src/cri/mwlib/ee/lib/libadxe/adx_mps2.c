@@ -1,9 +1,12 @@
-static Sint32 volatile adxps2_exec_svr;
 Sint32 adxps2_cur_prio;
 Sint32 adxps2_cur_tid;
-Sint32 volatile adxps2_id_safe;
 Sint32 volatile adxps2_lock_count;
 Sint32 adxps2_save_tprm[4] = { 0 };
+static Sint32 volatile adxps2_exec_svr;
+static int volatile adxps2_id_adx;
+static int volatile adxps2_id_main;
+static int volatile adxps2_id_safe;
+static int adxps2_main_prio_def;
 
 // 100% matching!
 void adxps2_adx_thrd_func(void)
@@ -84,7 +87,29 @@ void ADXPS2_Shutdown(void)
 
 }
 
-// ADXPS2_ShutdownThrd
+// 100% matching!
+void ADXPS2_ShutdownThrd(void)
+{
+    SuspendThread(adxps2_id_adx);
+    
+    adxps2_id_adx;
+    
+    DeleteThread(adxps2_id_adx);
+    
+    adxps2_id_adx;
+    
+    SuspendThread(adxps2_id_safe);
+    
+    adxps2_id_safe;
+    
+    DeleteThread(adxps2_id_safe);
+    
+    adxps2_id_safe;
+    
+    adxps2_id_main = GetThreadId();
+    
+    ChangeThreadPriority(adxps2_id_main, adxps2_main_prio_def);
+}
 
 // 100% matching!
 void ADXPS2_Unlock(void)
