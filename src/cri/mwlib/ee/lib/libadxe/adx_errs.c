@@ -1,6 +1,8 @@
-static Sint8 adxerr_msg[256] = { 0 }; 
+#include "adx_errs.h"
+
 static void (*adxerr_func)(void *obj, const Sint8 *msg);
 static void *adxerr_obj;
+static Sint8 adxerr_msg[256] = { 0 }; 
 
 // 100% matching!
 void ADXERR_CallErrFunc1(const Sint8 *msg) 
