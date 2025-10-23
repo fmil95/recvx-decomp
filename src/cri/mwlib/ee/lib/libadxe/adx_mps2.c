@@ -1,10 +1,29 @@
+static Sint32 volatile adxps2_exec_svr;
 Sint32 adxps2_cur_prio;
 Sint32 adxps2_cur_tid;
 Sint32 volatile adxps2_id_safe;
 Sint32 volatile adxps2_lock_count;
 Sint32 adxps2_save_tprm[4] = { 0 };
 
-// adxps2_adx_thrd_func
+// 100% matching!
+void adxps2_adx_thrd_func(void)
+{
+    while (TRUE) 
+    {
+        adxps2_exec_svr = 1;
+        
+        ADXPS2_Lock();
+        
+        ADXT_ExecServer();
+        ADXT_ExecFsSvr();
+        
+        ADXPS2_Unlock();
+        
+        adxps2_exec_svr = 0;
+        
+        SleepThread(); 
+    }
+}
 
 // 100% matching!
 void ADXPS2_ExecServer(void) 
