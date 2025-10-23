@@ -9,9 +9,6 @@ jobs:
   update-progress:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write  # needed to push changes to the repo
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,14 +21,8 @@ jobs:
       - name: Run decomp progress script
         run: python progress.py
 
-      - name: Commit and push README.md if changed
+      - name: Show updated progress in logs
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet README.md; then
-            echo "✅ No changes to commit."
-          else
-            git add README.md
-            git commit -m "Update decomp progress [skip ci]"
-            git push
-          fi
+          echo "✅ Decomp progress updated locally (no commit made)."
+          echo "Here’s the new progress section from README.md:"
+          awk '/```/,/```/' README.md || true
