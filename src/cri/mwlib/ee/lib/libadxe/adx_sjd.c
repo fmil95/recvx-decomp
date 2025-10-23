@@ -217,7 +217,22 @@ void ADXSJD_ExecHndl(ADXSJD sjd)
     }
 }
 
-// ADXSJD_ExecServer
+// 100% matching!
+void ADXSJD_ExecServer(void) 
+{
+    ADXSJD sjd;
+    Sint32 no;
+
+    for (no = 0; no < 8; no++) 
+    {
+        sjd = &adxsjd_obj[no];
+        
+        if (sjd->used == TRUE) 
+        {
+            ADXSJD_ExecHndl(sjd);
+        }
+    }
+}
 
 void ADXSJD_Finish(void)
 {
