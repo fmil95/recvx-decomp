@@ -2,7 +2,7 @@ name: Update Decompilation Progress
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:  # allows manual runs from the Actions tab
 
 jobs:

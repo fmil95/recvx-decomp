@@ -134,7 +134,7 @@ void lsc_StatWait(LSC lsc)
             
             if (lsc->fp == NULL) 
             {
-                LSC_CallErrFunc("E0004: Can not open '%s'", &sinfo->fname);
+                LSC_CallErrFunc("E0004: Can not open '%s'", sinfo->fname);
             }
             
             fsct = (ADXSTM_GetFileLen(lsc->fp) + 2047) / 2048;
