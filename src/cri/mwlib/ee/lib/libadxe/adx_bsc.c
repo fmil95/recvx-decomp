@@ -121,9 +121,10 @@ Sint32 ADXB_GetLpStartPos(ADXB adxb)
     return adxb->lp_spos;
 }
 
+// 100% matching!
 Sint32 ADXB_GetNumChan(ADXB adxb)
 {
-    scePrintf("ADXB_GetNumChan - UNIMPLEMENTED!\n");
+    return adxb->nch;
 }
 
 Sint32 ADXB_GetNumLoop(ADXB adxb)
