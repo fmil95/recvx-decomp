@@ -172,9 +172,13 @@ void ADXB_Init(void)
 
 // ADXB_Reset
 
+// 100% matching!
 void ADXB_Start(ADXB adxb)
 {
-    scePrintf("ADXB_Start - UNIMPLEMENTED!\n");
+    if (adxb->stat == 0) 
+    {
+        adxb->stat = 1;
+    }
 }
 
 // 100% matching!
