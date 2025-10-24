@@ -1,7 +1,46 @@
 static ADX_XPDOBJ adxpd_obj[8];
 static Sint32 adxpd_internal_error;
 
-// ADXPD_Create
+// 100% matching!
+ADXPD ADXPD_Create(void)
+{
+    Sint32 no;
+	ADXPD xpd1;
+    ADXPD xpd2;
+
+    for (no = 0; no < 8; no++) 
+    {
+        xpd1 = &adxpd_obj[no];
+        
+        if (xpd1->used == FALSE) 
+        {
+            break;
+        }
+    } 
+
+    if (no == 8) 
+    {
+        return NULL;
+    }
+
+    xpd2 = &adxpd_obj[no];
+    
+    memset(xpd2, 0, sizeof(ADX_XPDOBJ));
+    
+    xpd2->used = TRUE;
+    
+    xpd2->xno = no;
+    
+    xpd2->mode = 0;
+    
+    xpd2->stat = 0;
+    
+    ADX_GetCoefficient(500, 44100, &xpd2->k[0], &xpd2->k[1]);
+    
+    memset(xpd2->dly, 0, sizeof(xpd2->dly));
+
+    return xpd2;
+}
 
 // 100% matching!
 void ADXPD_Destroy(ADXPD xpd)
@@ -66,7 +105,7 @@ void ADXPD_ExecHndl(ADXPD xpd)
 }
 
 // 100% matching!
-void ADXPD_ExecServer() 
+void ADXPD_ExecServer(void) 
 {
     ADXPD xpd;
     Sint32 no;
