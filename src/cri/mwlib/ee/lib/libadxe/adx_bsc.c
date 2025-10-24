@@ -177,9 +177,12 @@ void ADXB_Start(ADXB adxb)
     scePrintf("ADXB_Start - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void ADXB_Stop(ADXB adxb)
 {
-    scePrintf("ADXB_Stop - UNIMPLEMENTED!\n");
+    ADXPD_Stop(adxb->xpd);
+    
+    adxb->stat = 0;
 }
 
 // 100% matching!
