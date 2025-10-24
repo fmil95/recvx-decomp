@@ -16,7 +16,7 @@ typedef struct _adx_xpdobj
 	/* 0x0c */ Sint32 stat;
 	/* 0x10 */ Sint32 ndecblk;
 	/* 0x14 */ ADXPDPRM xprm;
-	/* 0x28 */ Sint16 dly[2][2];
+	/* 0x28 */ //Sint16 dly[2][2];
 	/* 0x30 */ Sint16 k[2];
 	/* 0x34 */ Sint16 key;
 	/* 0x36 */ Sint16 km;

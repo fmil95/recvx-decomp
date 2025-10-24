@@ -1,3 +1,5 @@
+static ADX_XPDOBJ adxpd_obj[8];
+
 // ADXPD_Create
 // ADXPD_Destroy
 // ADXPD_EntryMono
@@ -8,9 +10,10 @@
 // ADXPD_GetNumBlk
 // ADXPD_GetStat
 
-void ADXPD_Init(void)
+// 100% matching!
+void ADXPD_Init(void) 
 {
-    scePrintf("ADXPD_Init - UNIMPLEMENTED!\n");
+    memset(adxpd_obj, 0, sizeof(adxpd_obj));
 }
 
 // ADXPD_Reset
