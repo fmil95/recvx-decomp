@@ -88,7 +88,7 @@ Sint32 ADXB_GetFmtBps(ADXB adxb)
 // 100% matching!
 Sint32 ADXB_GetFormat(ADXB adxb)
 {
-    return adxb->fmt;
+    return adxb->fmttype;
 }
 
 // 100% matching!
@@ -138,9 +138,10 @@ Sint32 ADXB_GetOutBps(ADXB adxb)
     scePrintf("ADXB_GetOutBps - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 Sint16* ADXB_GetPcmBuf(ADXB adxb)
 {
-    scePrintf("ADXB_GetPcmBuf - UNIMPLEMENTED!\n");
+    return adxb->pcmbuf;
 }
 
 Sint32 ADXB_GetSfreq(ADXB adxb)
