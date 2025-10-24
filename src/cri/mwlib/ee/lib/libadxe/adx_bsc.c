@@ -84,9 +84,17 @@ void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
     scePrintf("adxb_DefGetWr - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void ADXB_Destroy(ADXB adxb)
 {
-    scePrintf("ADXB_Destroy - UNIMPLEMENTED!\n");
+    if (adxb != NULL) 
+    {
+        ADXPD_Destroy(adxb->xpd);
+        
+        memset(adxb, 0, sizeof(ADX_BASIC));
+        
+        adxb->used = FALSE;
+    }
 }
 
 // ADXB_EndDecode
