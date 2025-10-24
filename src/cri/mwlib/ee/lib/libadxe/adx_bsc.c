@@ -150,9 +150,10 @@ Sint32 ADXB_GetSfreq(ADXB adxb)
     return adxb->sfreq;
 }
 
+// 100% matching!
 Sint32 ADXB_GetStat(ADXB adxb)
 {
-    scePrintf("ADXB_GetStat - UNIMPLEMENTED!\n");
+    return adxb->stat;
 }
 
 Sint32 ADXB_GetTotalNumSmpl(ADXB adxb)
