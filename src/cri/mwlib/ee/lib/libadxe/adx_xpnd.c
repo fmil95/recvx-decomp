@@ -33,7 +33,26 @@ Sint32 ADXPD_EntryMono(ADXPD xpd, Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l)
     return 0;
 }
 
-// ADXPD_EntrySte
+// 100% matching!
+Sint32 ADXPD_EntrySte(ADXPD xpd, Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l, Sint16 *obuf_r)
+{
+    if (xpd->stat == 0)
+    {
+        xpd->xprm.nch = 2;
+        
+        xpd->xprm.ibuf = ibuf;
+        
+        xpd->xprm.nblk = nblk;
+        
+        xpd->xprm.obuf_l = obuf_l;
+        xpd->xprm.obuf_r = obuf_r;
+        
+        return 1;
+    }
+    
+    return 0;
+}
+
 // adxpd_error
 // ADXPD_ExecHndl
 // ADXPD_ExecServer
