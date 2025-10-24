@@ -182,4 +182,11 @@ void ADXB_Stop(ADXB adxb)
     scePrintf("ADXB_Stop - UNIMPLEMENTED!\n");
 }
 
-// memcpy2
+// 100% matching!
+void memcpy2(Sint16 *dst, const Sint16 *src, Sint32 nword)
+{
+    for ( ; nword > 0; nword--) 
+    {
+        *dst++ = *src++;
+    }
+}
