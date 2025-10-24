@@ -60,8 +60,27 @@ void adxpd_error(void)
     adxpd_internal_error = 1;
 }
 
-// ADXPD_ExecHndl
-// ADXPD_ExecServer
+void ADXPD_ExecHndl(ADXPD xpd) 
+{
+    scePrintf("ADXPD_ExecHndl - UNIMPLEMENTED!\n");
+}
+
+// 100% matching!
+void ADXPD_ExecServer() 
+{
+    ADXPD xpd;
+    Sint32 no;
+
+    for (no = 0; no < 8; no++) 
+    {
+        xpd = &adxpd_obj[no];
+
+        if (xpd->used == TRUE)
+        {
+            ADXPD_ExecHndl(xpd);
+        }
+    }
+}
 
 // 100% matching!
 Sint32 ADXPD_GetNumBlk(ADXPD xpd)
