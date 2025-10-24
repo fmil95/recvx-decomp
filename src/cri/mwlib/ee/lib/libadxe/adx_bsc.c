@@ -84,7 +84,6 @@ void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
     scePrintf("adxb_DefGetWr - UNIMPLEMENTED!\n");
 }
 
-// 100% matching!
 void ADXB_Destroy(ADXB adxb)
 {
     if (adxb != NULL) 
