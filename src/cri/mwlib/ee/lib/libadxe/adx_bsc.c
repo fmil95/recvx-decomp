@@ -1,4 +1,4 @@
-static ADX_BASIC adxb_obj[8];
+static ADX_BASIC adxb_obj[8] = { 0 };
 
 // ADXB_CopyExtraBufMono
 // ADXB_CopyExtraBufSte
@@ -115,9 +115,10 @@ Sint32 ADXB_GetLpStartOfst(ADXB adxb)
     return adxb->lp_sofst;
 }
 
-Sint32 ADXB_GetLpStartPos(ADXB adxb)
+// 100% matching!
+Sint32 ADXB_GetLpStartPos(ADXB adxb) 
 {
-    scePrintf("ADXB_GetLpStartPos - UNIMPLEMENTED!\n");
+    return adxb->lp_spos;
 }
 
 Sint32 ADXB_GetNumChan(ADXB adxb)
