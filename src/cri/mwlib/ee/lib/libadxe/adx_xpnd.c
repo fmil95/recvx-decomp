@@ -1,4 +1,5 @@
 static ADX_XPDOBJ adxpd_obj[8];
+static Sint32 adxpd_internal_error;
 
 // ADXPD_Create
 
@@ -53,7 +54,12 @@ Sint32 ADXPD_EntrySte(ADXPD xpd, Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l, Sint1
     return 0;
 }
 
-// adxpd_error
+// 100% matching!
+void adxpd_error(void) 
+{
+    adxpd_internal_error = 1;
+}
+
 // ADXPD_ExecHndl
 // ADXPD_ExecServer
 
