@@ -13,7 +13,26 @@ void ADXPD_Destroy(ADXPD xpd)
     }
 }
 
-// ADXPD_EntryMono
+// 100% matching!
+Sint32 ADXPD_EntryMono(ADXPD xpd, Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l)
+{
+    if (xpd->stat == 0)
+    {
+        xpd->xprm.ibuf = ibuf;
+        
+        xpd->xprm.nch = 1;
+        
+        xpd->xprm.nblk = nblk;
+        
+        xpd->xprm.obuf_l = obuf_l;
+        xpd->xprm.obuf_r = NULL;
+        
+        return 1;
+    }
+    
+    return 0;
+}
+
 // ADXPD_EntrySte
 // adxpd_error
 // ADXPD_ExecHndl
