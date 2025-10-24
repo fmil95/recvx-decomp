@@ -49,9 +49,10 @@ ADXPD ADXB_GetAdxpd(ADXB adxb)
     return adxb->xpd;
 }
 
+// 100% matching!
 Sint32 ADXB_GetBlkLen(ADXB adxb)
 {
-    scePrintf("ADXB_GetBlkLen - UNIMPLEMENTED!\n");
+    return adxb->blklen;
 }
 
 Sint32 ADXB_GetBlkSmpl(ADXB adxb)
