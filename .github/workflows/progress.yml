@@ -25,16 +25,13 @@ jobs:
         run: python progress.py
 
       - name: Commit and push README.md if changed
-        env:
-          SKELETONBOT_TOKEN: ${{ secrets.SKELETONBOT_TOKEN }}
         run: |
-          git config --global user.name "SkeletonPicture"
-          git config --global user.email "12345678+SkeletonPicture@users.noreply.github.com"
-
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           if git diff --quiet README.md; then
-              echo "✅ No changes to commit."
+            echo "✅ No changes to commit."
           else
-              git add README.md
-              git commit --author="SkeletonPicture <12345678+SkeletonPicture@users.noreply.github.com>" -m "Update progress status"
-              git remote set-url origin https://x-access-token:${SKELETONBOT_TOKEN}@github.com/${{ github.repository }}
-              git push origin HEAD:master
+            git add README.md
+            git commit -m "Update progress status"
+            git push
+          fi
