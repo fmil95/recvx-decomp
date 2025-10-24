@@ -73,7 +73,11 @@ Sint32 ADXB_GetDecDtLen(ADXB adxb)
     return adxb->total_decdtlen;
 }
 
-// ADXB_GetDecNumSmpl
+// 100% matching!
+Sint32 ADXB_GetDecNumSmpl(ADXB adxb)
+{
+    return adxb->total_decsmpl;
+}
 
 Sint32 ADXB_GetFmtBps(ADXB adxb)
 {
