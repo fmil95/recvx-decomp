@@ -1,7 +1,18 @@
 static ADX_XPDOBJ adxpd_obj[8];
 
 // ADXPD_Create
-// ADXPD_Destroy
+
+// 100% matching!
+void ADXPD_Destroy(ADXPD xpd)
+{
+    if (xpd != NULL) 
+    {
+        xpd->used = FALSE;
+        
+        memset(xpd, 0, sizeof(ADX_XPDOBJ));
+    }
+}
+
 // ADXPD_EntryMono
 // ADXPD_EntrySte
 // adxpd_error
