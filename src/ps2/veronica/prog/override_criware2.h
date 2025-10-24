@@ -1,27 +1,23 @@
 
 typedef struct _adx_xpnd_param
-{ // 0x14
-	/* 0x00 */ Sint32 nch;
-	/* 0x04 */ Sint8 *ibuf;
-	/* 0x08 */ Sint32 nblk;
-	/* 0x0c */ Sint16 *obuf_l;
-	/* 0x10 */ Sint16 *obuf_r;
+{ 
+	Sint32 nch;
+	Sint8 *ibuf;
+	Sint32 nblk;
+	Sint16 *obuf_l;
+	Sint16 *obuf_r;
 } ADXPDPRM;
 
 typedef struct _adx_xpdobj
-{ // 0x3c
-	/* 0x00 */ Sint32 used;
-	/* 0x04 */ Sint32 xno;
-	/* 0x08 */ Sint32 mode;
-	/* 0x0c */ Sint32 stat;
-	/* 0x10 */ Sint32 ndecblk;
-	/* 0x14 */ ADXPDPRM xprm;
-	/* 0x28 */ Sint16 dly[2][2];
-	/* 0x30 */ Sint16 k[2];
-               /* these fields are likely not present in this version          
-	/* 0x34 */ //Sint16 key;
-	/* 0x36 */ //Sint16 km;
-	/* 0x38 */ //Sint16 ka;
+{ 
+	Sint32 used;
+	Sint32 xno;
+	Sint32 mode;
+	Sint32 stat;
+	Sint32 ndecblk;
+	ADXPDPRM xprm;
+	Sint16 dly[2][2];
+	Sint16 k[2];
 } ADX_XPDOBJ;
 typedef ADX_XPDOBJ *ADXPD;
 

@@ -1,4 +1,6 @@
-static ADX_XPDOBJ adxpd_obj[8];
+#include "adx_xpnd.h"
+
+static ADX_XPDOBJ adxpd_obj[8] = { 0 };
 static Sint32 adxpd_internal_error;
 
 // 100% matching!
@@ -99,9 +101,32 @@ void adxpd_error(void)
     adxpd_internal_error = 1;
 }
 
-void ADXPD_ExecHndl(ADXPD xpd) 
+// 100% matching!
+void ADXPD_ExecHndl(ADXPD xpd)
 {
-    scePrintf("ADXPD_ExecHndl - UNIMPLEMENTED!\n");
+    if (xpd->stat == 1) 
+    {
+        xpd->stat = 2;
+    }
+    
+    if (xpd->stat == 2) 
+    {
+        if (xpd->xprm.nch == 1) 
+        {
+            xpd->ndecblk = ADX_DecodeMonoFloat(xpd->xprm.ibuf, xpd->xprm.nblk, xpd->xprm.obuf_l, &xpd->dly[0][0], xpd->k[0], xpd->k[1]);
+        } 
+        else
+        {
+            xpd->ndecblk = ADX_DecodeSteFloat(xpd->xprm.ibuf, xpd->xprm.nblk, xpd->xprm.obuf_l, &xpd->dly[0][0], xpd->xprm.obuf_r, &xpd->dly[1][0], xpd->k[0], xpd->k[1]);
+           
+            if ((xpd->ndecblk - ((xpd->ndecblk / 2) * 2)) == 1)
+            {
+                adxpd_error();
+            }
+        }
+        
+        xpd->stat = 3;
+    }
 }
 
 // 100% matching!
