@@ -103,9 +103,10 @@ Sint32 ADXB_GetLpEndPos(ADXB adxb)
     return adxb->lp_epos;
 }
 
+// 100% matching!
 Sint32 ADXB_GetLpInsNsmpl(ADXB adxb)
 {
-    scePrintf("ADXB_GetLpInsNsmpl - UNIMPLEMENTED!\n");
+    return adxb->lp_ins_nsmpl;
 }
 
 Sint32 ADXB_GetLpStartOfst(ADXB adxb)
