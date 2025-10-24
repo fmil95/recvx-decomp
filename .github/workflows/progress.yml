@@ -29,7 +29,7 @@ jobs:
           GITHUB_TOKEN_CUSTOM: ${{ secrets.BOT_TOKEN }}
         run: |
           git config --global user.name "SkeletonPicture"
-          git config --global user.email ""12345678+SkeletonPicture@users.noreply.github.com""
+          git config --global user.email "12345678+SkeletonPicture@users.noreply.github.com"
 
           if git diff --quiet README.md; then
             echo "✅ No changes to commit."
