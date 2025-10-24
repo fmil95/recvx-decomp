@@ -3256,3 +3256,8 @@ enum TIM2_gattr_type {
 #define SCE_GS_ALPHA_FIX        (2)
 
 typedef	void (*AlarmCallBack)(int, unsigned short, void *);
+
+#define bss_align(val) \
+    __attribute__ ((aligned(val))) __attribute__ ((section (".bss")))
+
+#define DEF_STACK_SIZE    2048

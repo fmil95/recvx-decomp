@@ -246,7 +246,11 @@ void ADXT_DestroyAll(void)
 // adxt_disp_rna_stat
 // ADXT_EntryErrFunc
 // ADXT_EntryFltFunc
-// ADXT_ExecServer
+
+void ADXT_ExecServer(void)
+{
+    scePrintf("ADXT_ExecServer - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 Sint32 ADXT_GetDecNumSmpl(ADXT adxt)

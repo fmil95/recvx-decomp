@@ -1,16 +1,7 @@
-typedef struct 
-{ // 0x1c
-	/* 0x00 */ int prio_lock;
-	/* 0x04 */ int prio_safe;
-	/* 0x08 */ int prio_usrvsync;
-	/* 0x0c */ int prio_vsync;
-	/* 0x10 */ int prio_main;
-	/* 0x14 */ int prio_mwidle;
-	/* 0x18 */ int prio_usridle;
-} ADXPS2_TPRM_EX;
+#include "adx_mps2.h"
 
 static int adxps2_cur_tid;
-static ADXPS2_TPRM_EX adxps2_save_tprm = { 0 };
+static ADXPS2_TPRM adxps2_save_tprm = { 0 };
 static int adxps2_cur_prio;
 static Sint32 volatile adxps2_lock_count;
 static Sint32 volatile adxps2_exec_svr;
@@ -21,6 +12,8 @@ static int adxps2_main_prio_def;
 static int (*adxps2_old_cbf)(int arg);
 static long unsigned int volatile adxps2_scnt;
 static long unsigned int volatile adxps2_vcnt;
+static char adxps2_stk_adx[DEF_STACK_SIZE] bss_align(64);
+static char adxps2_stk_safe[DEF_STACK_SIZE] bss_align(64);
 
 // 100% matching!
 void adxps2_adx_thrd_func(void)
@@ -98,9 +91,76 @@ void adxps2_safe_thrd_func(void)
     }
 }
 
-void ADXPS2_SetupThrd(ADXPS2_TPRM *tprm) 
+// 99.89% matching
+void ADXPS2_SetupThrd(ADXPS2_TPRM *tprm)
 {
-    scePrintf("ADXPS2_SetupThrd - UNIMPLEMENTED!\n");
+    ThreadParam th0;
+    ThreadParam th1;
+    ThreadParam th2;
+
+    if (tprm == NULL) 
+    {
+        adxps2_save_tprm.prio_main = 24;
+        
+        adxps2_save_tprm.prio_lock = 1;
+        
+        adxps2_save_tprm.prio_safe = 8;
+        
+        adxps2_save_tprm.prio_adx = 16;
+    } 
+    else
+    {
+        adxps2_save_tprm = *tprm;
+    }
+
+    th1.stackSize = DEF_STACK_SIZE;
+    
+    th1.gpReg = &_gp;
+    
+    th1.entry = &adxps2_safe_thrd_func;
+    
+    th1.stack = &adxps2_stk_safe;
+    
+    th1.initPriority = adxps2_save_tprm.prio_safe;
+    
+    adxps2_id_safe = CreateThread(&th1);
+    
+    adxps2_id_safe;
+    
+    StartThread(adxps2_id_safe, NULL);
+    
+    if (adxps2_id_safe != 0) 
+    {
+        SuspendThread(adxps2_id_safe);
+        
+        adxps2_id_safe;
+    }
+
+    th0.stackSize = DEF_STACK_SIZE;
+    
+    th0.gpReg = &_gp;
+    
+    th0.entry = &adxps2_adx_thrd_func;
+    
+    th0.stack = &adxps2_stk_adx;
+    
+    th0.initPriority = adxps2_save_tprm.prio_adx;
+    
+    adxps2_id_adx = CreateThread(&th0);
+    
+    adxps2_id_adx;
+    
+    StartThread(adxps2_id_adx, NULL);
+    
+    adxps2_id_main = GetThreadId();
+    
+    ReferThreadStatus(adxps2_id_main, &th2);
+    
+    adxps2_main_prio_def = th2.currentPriority;
+    
+    ChangeThreadPriority(adxps2_id_main, adxps2_save_tprm.prio_main);
+    
+    ADXPS2_RestoreVsyncCallback();
 }
 
 // 100% matching!
