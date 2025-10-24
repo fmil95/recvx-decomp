@@ -8,7 +8,12 @@ static ADX_XPDOBJ adxpd_obj[8];
 // ADXPD_ExecHndl
 // ADXPD_ExecServer
 // ADXPD_GetNumBlk
-// ADXPD_GetStat
+
+// 100% matching!
+Sint32 ADXPD_GetStat(ADXPD xpd)
+{
+    return xpd->stat;
+}
 
 // 100% matching!
 void ADXPD_Init(void) 
