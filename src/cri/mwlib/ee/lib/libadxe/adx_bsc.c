@@ -144,9 +144,10 @@ Sint16* ADXB_GetPcmBuf(ADXB adxb)
     return adxb->pcmbuf;
 }
 
+// 100% matching!
 Sint32 ADXB_GetSfreq(ADXB adxb)
 {
-    scePrintf("ADXB_GetSfreq - UNIMPLEMENTED!\n");
+    return adxb->sfreq;
 }
 
 Sint32 ADXB_GetStat(ADXB adxb)
