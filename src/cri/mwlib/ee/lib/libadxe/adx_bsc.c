@@ -79,9 +79,10 @@ Sint32 ADXB_GetDecNumSmpl(ADXB adxb)
     return adxb->total_decsmpl;
 }
 
+// 100% matching!
 Sint32 ADXB_GetFmtBps(ADXB adxb)
 {
-    scePrintf("ADXB_GetFmtBps - UNIMPLEMENTED!\n");
+    return adxb->bps;
 }
 
 Sint32 ADXB_GetFormat(ADXB adxb)
