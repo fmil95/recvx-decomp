@@ -1,3 +1,5 @@
+static ADX_BASIC adxb_obj[8];
+
 // ADXB_CopyExtraBufMono
 // ADXB_CopyExtraBufSte
 
@@ -130,9 +132,12 @@ Sint32 ADXB_GetTotalNumSmpl(ADXB adxb)
     scePrintf("ADXB_GetTotalNumSmpl - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void ADXB_Init(void) 
 {
-    scePrintf("ADXB_Init - UNIMPLEMENTED!\n");
+    ADXPD_Init();
+    
+    memset(adxb_obj, 0, sizeof(adxb_obj));
 }
 
 // ADXB_Reset

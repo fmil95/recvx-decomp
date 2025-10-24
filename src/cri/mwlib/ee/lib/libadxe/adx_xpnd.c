@@ -7,7 +7,12 @@
 // ADXPD_ExecServer
 // ADXPD_GetNumBlk
 // ADXPD_GetStat
-// ADXPD_Init
+
+void ADXPD_Init(void)
+{
+    scePrintf("ADXPD_Init - UNIMPLEMENTED!\n");
+}
+
 // ADXPD_Reset
 // ADXPD_SetCoef
 // ADXPD_SetMode

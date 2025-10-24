@@ -83,7 +83,7 @@ typedef struct _adx_intbuf
 	/* 0xa0 */ Sint16 ka;
 	/* 0xa4 */ AHXSJD sjdh;
 	/* 0xa8 */ Sint32 ahxdecsmpl;
-	/* 0xac */ Sint32 ahxsvrfreq;
+	/* 0xac */ //Sint32 ahxsvrfreq;
 } ADX_BASIC;
 typedef ADX_BASIC *ADXB;
 
