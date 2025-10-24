@@ -7,7 +7,12 @@ static ADX_XPDOBJ adxpd_obj[8];
 // adxpd_error
 // ADXPD_ExecHndl
 // ADXPD_ExecServer
-// ADXPD_GetNumBlk
+
+// 100% matching!
+Sint32 ADXPD_GetNumBlk(ADXPD xpd)
+{
+    return xpd->ndecblk;
+}
 
 // 100% matching!
 Sint32 ADXPD_GetStat(ADXPD xpd)
