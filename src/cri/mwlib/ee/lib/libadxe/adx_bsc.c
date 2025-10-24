@@ -85,9 +85,10 @@ Sint32 ADXB_GetFmtBps(ADXB adxb)
     return adxb->bps;
 }
 
+// 100% matching!
 Sint32 ADXB_GetFormat(ADXB adxb)
 {
-    scePrintf("ADXB_GetFormat - UNIMPLEMENTED!\n");
+    return adxb->fmt;
 }
 
 Sint32 ADXB_GetLpEndOfst(ADXB adxb)

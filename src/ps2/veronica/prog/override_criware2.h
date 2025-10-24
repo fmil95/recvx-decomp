@@ -78,7 +78,7 @@ typedef struct _adx_intbuf
 	/* 0x9e */ Sint16 km;
 	           Sint32 total_decdtlen;
 	           Sint32 total_decsmpl;
-			   Sint16 ka;
+			   Sint16 fmt;
 } ADX_BASIC;
 typedef ADX_BASIC *ADXB;
 
