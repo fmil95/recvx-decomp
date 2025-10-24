@@ -16,7 +16,15 @@ void ADXPD_Init(void)
     memset(adxpd_obj, 0, sizeof(adxpd_obj));
 }
 
-// ADXPD_Reset
+// 100% matching!
+void ADXPD_Reset(ADXPD xpd)
+{
+    if (xpd->stat == 3) 
+    {
+        xpd->stat = 0;
+    }
+}
+
 // ADXPD_SetCoef
 // ADXPD_SetMode
 // ADXPD_Start
