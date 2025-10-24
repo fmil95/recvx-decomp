@@ -7,5 +7,10 @@ Sint32 ADX_DecodeInfo(Sint8* adr, Sint32 siz, Sint16* arg2, Sint8* arg3, Sint8* 
 
 // ADX_DecodeInfoExADPCM2
 // ADX_DecodeInfoExLoop
-// ADX_GetCoefficient
+
+void ADX_GetCoefficient(Sint32 cof, Sint32 sfreq, Sint16 *k0, Sint16 *k1)
+{
+    scePrintf("ADX_GetCoefficient - UNIMPLEMENTED!\n");
+}
+
 // ADX_ScanInfoCode
