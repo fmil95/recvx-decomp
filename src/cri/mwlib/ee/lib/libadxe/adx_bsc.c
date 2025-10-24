@@ -8,7 +8,12 @@ void ADXB_CopyExtraBufMono(Sint16 *obuf, Sint32 obsize, Sint32 xsize, Sint32 nxs
     memcpy2(obuf, &obuf[obsize], nxsmpl);
 }
 
-// ADXB_CopyExtraBufSte
+// 100% matching!
+void ADXB_CopyExtraBufSte(Sint16 *obuf, Sint32 obsize, Sint32 obdist, Sint32 nxsmpl)
+{
+    memcpy2(obuf, &obuf[obsize], nxsmpl);
+    memcpy2(&obuf[obdist], &obuf[obdist + obsize], nxsmpl);
+}
 
 ADXB ADXB_Create(Sint32 maxnch, Sint16 *obuf, Sint32 bsize, Sint32 bdist)
 {
