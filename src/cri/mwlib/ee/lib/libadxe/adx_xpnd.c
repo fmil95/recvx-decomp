@@ -31,6 +31,11 @@ void ADXPD_SetCoef(ADXPD xpd, Sint32 sfreq, Sint32 cof)
     ADX_GetCoefficient(cof, sfreq, &xpd->k[0], &xpd->k[1]);
 }
 
-// ADXPD_SetMode
+// 100% matching!
+void ADXPD_SetMode(ADXPD xpd, Sint32 mode)
+{
+    xpd->mode = mode;
+}
+
 // ADXPD_Start
 // ADXPD_Stop
