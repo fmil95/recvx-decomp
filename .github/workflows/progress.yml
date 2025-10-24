@@ -1,9 +1,9 @@
 name: Update Decompilation Progress
 
 on:
-  push:
-    branches: [master]
-  workflow_dispatch:  # allows manual runs from the Actions tab
+  schedule:
+    - cron: "0 * * * *"  # Runs every hour on the hour (UTC)
+  workflow_dispatch:  # still allows manual runs
 
 jobs:
   update-progress:
