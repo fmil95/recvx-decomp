@@ -156,9 +156,10 @@ Sint32 ADXB_GetStat(ADXB adxb)
     return adxb->stat;
 }
 
+// 100% matching!
 Sint32 ADXB_GetTotalNumSmpl(ADXB adxb)
 {
-    scePrintf("ADXB_GetTotalNumSmpl - UNIMPLEMENTED!\n");
+    return adxb->total_nsmpl;
 }
 
 // 100% matching!
