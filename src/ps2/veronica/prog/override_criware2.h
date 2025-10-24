@@ -36,7 +36,6 @@ typedef struct _adx_dec_para
 	/* 0x28 */ Sint32 lp_nsmpl;
 	/* 0x2c */ Sint32 ndecsmpl;
 } AdxDecPara;
-typedef void *AHXSJD;
 
 typedef struct _adx_intbuf 
 { // 0xb0
@@ -78,9 +77,8 @@ typedef struct _adx_intbuf
 	/* 0x9c */ Sint16 k0;
 	/* 0x9e */ Sint16 km;
 	/* 0xa0 */ Sint16 ka;
-	/* 0xa4 */ AHXSJD sjdh;
-	/* 0xa8 */ Sint32 ahxdecsmpl;
-	/* 0xac */ //Sint32 ahxsvrfreq;
+	           Sint32 total_decdtlen;
+	           Sint32 total_decsmpl;
 } ADX_BASIC;
 typedef ADX_BASIC *ADXB;
 
