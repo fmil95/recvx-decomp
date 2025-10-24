@@ -37,5 +37,15 @@ void ADXPD_SetMode(ADXPD xpd, Sint32 mode)
     xpd->mode = mode;
 }
 
-// ADXPD_Start
+// 100% matching!
+void ADXPD_Start(ADXPD xpd)
+{
+    if (xpd->stat == 0)
+    {
+        xpd->ndecblk = 0;
+        
+        xpd->stat = 1;
+    }
+}
+
 // ADXPD_Stop
