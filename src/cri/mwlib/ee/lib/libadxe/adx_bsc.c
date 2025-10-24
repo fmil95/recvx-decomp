@@ -42,7 +42,12 @@ void ADXB_ExecHndl(ADXB adxb)
 
 // ADXB_ExecOneAdx
 // ADXB_ExecServer
-// ADXB_GetAdxpd
+
+// 100% matching!
+ADXPD ADXB_GetAdxpd(ADXB adxb) 
+{
+    return adxb->xpd;
+}
 
 Sint32 ADXB_GetBlkLen(ADXB adxb)
 {
