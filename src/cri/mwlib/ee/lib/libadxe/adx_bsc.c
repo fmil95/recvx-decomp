@@ -127,9 +127,10 @@ Sint32 ADXB_GetNumChan(ADXB adxb)
     return adxb->nch;
 }
 
+// 100% matching!
 Sint32 ADXB_GetNumLoop(ADXB adxb)
 {
-    scePrintf("ADXB_GetNumLoop - UNIMPLEMENTED!\n");
+    return adxb->nloop;
 }
 
 Sint32 ADXB_GetOutBps(ADXB adxb)
