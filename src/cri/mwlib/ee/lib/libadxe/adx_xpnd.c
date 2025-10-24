@@ -48,4 +48,10 @@ void ADXPD_Start(ADXPD xpd)
     }
 }
 
-// ADXPD_Stop
+// 100% matching!
+void ADXPD_Stop(ADXPD xpd)
+{
+    xpd->stat = 0;
+    
+    memset(xpd->dly, 0, sizeof(xpd->dly));
+}
