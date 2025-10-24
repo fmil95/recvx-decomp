@@ -1,5 +1,8 @@
 static ADX_BASIC adxb_obj[8] = { 0 };
 
+void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl);
+void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl);
+void ADXB_Destroy(ADXB adxb);
 void memcpy2(Sint16 *dst, const Sint16 *src, Sint32 nword);
 
 // 100% matching!
@@ -15,15 +18,71 @@ void ADXB_CopyExtraBufSte(Sint16 *obuf, Sint32 obsize, Sint32 obdist, Sint32 nxs
     memcpy2(&obuf[obdist], &obuf[obdist + obsize], nxsmpl);
 }
 
+// 100% matching!
 ADXB ADXB_Create(Sint32 maxnch, Sint16 *obuf, Sint32 bsize, Sint32 bdist)
 {
-    scePrintf("ADXB_Create - UNIMPLEMENTED!\n");
+    Sint32 no;
+	ADXB adxb1;
+    ADXB adxb2;
+
+    for (no = 0; no < 8; no++)
+    {
+        adxb1 = &adxb_obj[no];
+        
+        if (adxb1->used == FALSE) 
+        {  
+            break;
+        }
+    }
+
+    if (no == 8)
+    {
+        return NULL;
+    }
+
+    adxb2 = &adxb_obj[no];
+    
+    memset(adxb2, 0, sizeof(ADX_BASIC));
+    
+    adxb2->used = TRUE;
+    
+    adxb2->xpd = ADXPD_Create();
+
+    if (adxb2->xpd == NULL) 
+    {
+        ADXB_Destroy(adxb2);
+        
+        return NULL;
+    }
+
+    adxb2->maxnch = maxnch;
+    
+    adxb2->pcmbuf = obuf;
+    
+    adxb2->pcmbsize = bsize;
+    adxb2->pcmbdist = bdist;
+    
+    adxb2->getwrfunc = &adxb_DefGetWr;
+    adxb2->addwrfunc = &adxb_DefAddWr;
+    
+    adxb2->getwrobj = adxb2;
+    adxb2->addwrobj = adxb2;
+    
+    return adxb2;
 }
 
 // ADXB_DecodeHeader
 // ADXB_DecodeHeaderAdx
-// adxb_DefAddWr
-// adxb_DefGetWr
+
+void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl)
+{
+    scePrintf("adxb_DefAddWr - UNIMPLEMENTED!\n");
+}
+
+void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
+{
+    scePrintf("adxb_DefGetWr - UNIMPLEMENTED!\n");
+}
 
 void ADXB_Destroy(ADXB adxb)
 {
