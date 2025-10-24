@@ -1,6 +1,13 @@
 static ADX_BASIC adxb_obj[8] = { 0 };
 
-// ADXB_CopyExtraBufMono
+void memcpy2(Sint16 *dst, const Sint16 *src, Sint32 nword);
+
+// 100% matching!
+void ADXB_CopyExtraBufMono(Sint16 *obuf, Sint32 obsize, Sint32 xsize, Sint32 nxsmpl)
+{
+    memcpy2(obuf, &obuf[obsize], nxsmpl);
+}
+
 // ADXB_CopyExtraBufSte
 
 ADXB ADXB_Create(Sint32 maxnch, Sint16 *obuf, Sint32 bsize, Sint32 bdist)
