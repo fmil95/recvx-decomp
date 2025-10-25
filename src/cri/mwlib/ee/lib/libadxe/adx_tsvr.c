@@ -7,7 +7,31 @@ void adxt_stat_playend(ADXT adxt);
 void adxt_stat_playing(ADXT adxt);             
 void adxt_stat_prep(ADXT adxt);  
 
-// adxt_eos_entry
+// 100% matching!
+void adxt_eos_entry(void *obj)
+{
+    ADXT adxt;
+    ADXSTM stm;
+	Sint32 lsofst;
+
+    adxt = obj;
+    
+    stm = adxt->stm;
+
+    lsofst = ADXSJD_GetLpStartOfst(adxt->sjd);
+    
+    if (adxt->lpflg == 0) 
+    {
+        ADXSJD_SetTrapNumSmpl(adxt->sjd, -1);
+        
+        ADXSTM_SetEos(adxt->stm, 0x7FFFFFFF);
+    } 
+    else
+    {
+        ADXSTM_Seek(stm, lsofst / 2048);
+    }
+}
+
 // ADXT_ExecErrChk
 
 void ADXT_ExecErrChkPS2(ADXT adxt) 
