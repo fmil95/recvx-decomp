@@ -164,7 +164,10 @@ void adxsjd_decode_exec(ADXSJD sjd)
     }
 }
 
-// adxsjd_decode_prep
+void adxsjd_decode_prep(ADXSJD sjd) 
+{
+    scePrintf("adxsjd_decode_prep - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void ADXSJD_Destroy(ADXSJD sjd) 

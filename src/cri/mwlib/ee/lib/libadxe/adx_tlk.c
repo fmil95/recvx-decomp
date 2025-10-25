@@ -1,5 +1,9 @@
 #define BSWAP_U16(_val) (Uint16)((*(Uint16*)_val >> 8) | (*(Uint16*)_val << 8))
 
+static Uint32 adxt_svrcnt;
+static Uint32 adxt_svrcnt_sjd;
+static Uint32 adxt_svrcnt_rna;
+static Uint32 adxt_svrcnt_hndl;
 Sint32 adxt_time_unit;
 Sint32 adxt_time_mode;
 
@@ -246,9 +250,35 @@ void ADXT_DestroyAll(void)
 // ADXT_EntryErrFunc
 // ADXT_EntryFltFunc
 
-void ADXT_ExecServer(void)
+// 100% matching!
+void ADXT_ExecServer(void) 
 {
-    scePrintf("ADXT_ExecServer - UNIMPLEMENTED!\n");
+    ADXT adxt;
+    Sint32 no;
+
+    ADXSJD_ExecServer();
+    
+    adxt_svrcnt_sjd = 0;
+    
+    ADXRNA_ExecServer();
+    
+    adxt_svrcnt_rna = 0;
+    
+    for (no = 0; no < ADXT_MAX_OBJ; no++)
+    {
+        adxt = &adxt_obj[no];
+        
+        if (adxt->used == TRUE) 
+        {
+            ADXT_ExecHndl(adxt);
+        }
+    }
+    
+    LSC_ExecServer();
+    
+    adxt_svrcnt_hndl = 0;
+    
+    adxt_svrcnt = 0;
 }
 
 // 100% matching! 
