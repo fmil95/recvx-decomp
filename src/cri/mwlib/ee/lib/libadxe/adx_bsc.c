@@ -136,9 +136,11 @@ void ADXB_EntryData(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     scePrintf("ADXB_EntryData - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void ADXB_EntryGetWrFunc(ADXB adxb, void* (*func)(), void *obj)
 {
-    scePrintf("ADXB_EntryGetWrFunc - UNIMPLEMENTED!\n");
+    adxb->getwrfunc = func;
+    adxb->getwrobj = obj;
 }
 
 // ADXB_EvokeDecode
