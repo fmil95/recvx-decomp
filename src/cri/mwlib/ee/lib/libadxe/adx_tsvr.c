@@ -53,9 +53,10 @@ void adxt_stat_decinfo(ADXT adxt)
     scePrintf("adxt_stat_decinfo - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void adxt_stat_playend(ADXT adxt) 
 {
-    scePrintf("adxt_stat_playend - UNIMPLEMENTED!\n");
+
 }
 
 void adxt_stat_playing(ADXT adxt) 

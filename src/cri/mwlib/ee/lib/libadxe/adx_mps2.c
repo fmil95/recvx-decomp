@@ -1,5 +1,6 @@
 #include "adx_mps2.h"
 
+static char* volatile adxps2_build = "\nADXPS2 Ver.1.01 Build:Mar 14 2001 14:23:33\n";
 static int adxps2_cur_tid;
 static ADXPS2_TPRM adxps2_save_tprm = { 0 };
 static int adxps2_cur_prio;
