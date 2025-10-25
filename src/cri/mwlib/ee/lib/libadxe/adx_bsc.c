@@ -105,9 +105,16 @@ Sint32 ADXB_DecodeHeaderAdx(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     scePrintf("ADXB_DecodeHeaderAdx - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl)
 {
-    scePrintf("adxb_DefAddWr - UNIMPLEMENTED!\n");
+    ADXB adxb;
+
+    adxb = obj;
+    
+    adxb->curwpos += wnsmpl;
+    
+    adxb->total_ndecsmpl += wnsmpl;
 }
 
 void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
