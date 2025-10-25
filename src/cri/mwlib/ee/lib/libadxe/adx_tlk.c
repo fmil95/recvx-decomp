@@ -2,7 +2,6 @@
 
 Sint32 adxt_time_unit;
 Sint32 adxt_time_mode;
-Sint32 adxt_vsync_cnt;
 
 void ADXT_StopWithoutLsc(ADXT adxt);
 

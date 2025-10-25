@@ -1,19 +1,21 @@
-Sint32 adxt_vsync_svr_flag;
-Sint32 adxt_init_cnt;
-ADX_TALK adxt_obj[ADXT_MAX_OBJ] = { 0 };
-Char8* adxt_obj_mark = "MARK:adxt_obj"; /* unused */
-Sint32 adxt_vsync_cnt;
+#include "adx_inis.h"
+
+static Sint32 adxt_vsync_svr_flag;
+static Sint32 adxt_init_cnt;
+static ADX_TALK adxt_obj[ADXT_MAX_OBJ] = { 0 };
+static Uint32 adxt_vsync_cnt;
+static Sint8 adxt_obj_mark[16] = "MARK:adxt_obj"; /* unused */
 
 // 100% matching!
-void adxini_rnaerr_cbfn(void* arg0, Char8* err_msg) 
+void adxini_rnaerr_cbfn(void *obj, const Char8 *msg)
 {
-    ADXERR_CallErrFunc1((const Sint8*)err_msg);
+    ADXERR_CallErrFunc1((const Sint8*)msg);
 }
 
 // 100% matching!
-void ADXT_ConfigVsyncSvr(Sint32 flg) 
+void ADXT_ConfigVsyncSvr(Sint32 vsync_svr_flag)
 {
-    adxt_vsync_svr_flag = flg;
+    adxt_vsync_svr_flag = vsync_svr_flag;
 }
 
 // 100% matching! 
@@ -63,7 +65,7 @@ void ADXT_Init(void)
         ADXF_Init();
         ADXRNA_Init();
         
-        memset(adxt_obj, 0, 1312);
+        memset(adxt_obj, 0, sizeof(adxt_obj));
         
         LSC_Init();
         
