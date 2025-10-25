@@ -1,3 +1,6 @@
+static Sint32 adxt_dbg_nch;
+static Sint32 adxt_dbg_ndt;
+
 void adxt_stat_decend(ADXT adxt);                      
 void adxt_stat_decinfo(ADXT adxt);                  
 void adxt_stat_playend(ADXT adxt);               
@@ -59,9 +62,33 @@ void adxt_stat_playend(ADXT adxt)
 
 }
 
+// 100% matching!
 void adxt_stat_playing(ADXT adxt) 
 {
-    scePrintf("adxt_stat_playing - UNIMPLEMENTED!\n");
+    Sint32 i;
+    Sint32 nch;
+
+    if (ADXSJD_GetStat(adxt->sjd) == 3) 
+    {
+        adxt_dbg_nch = nch = ADXSJD_GetNumChan(adxt->sjd);
+    
+        for (i = 0; i < nch; i++) 
+        {
+            adxt_dbg_ndt = SJ_GetNumData(adxt->sjo[i], 1);
+    
+            if ((adxt_dbg_ndt >= 64) && (ADXRNA_GetNumData(adxt->rna) <= 0)) 
+            {
+                break;
+            }
+        }
+    
+        if (i == nch) 
+        {
+            ADXRNA_SetTransSw(adxt->rna, 0);
+            
+            adxt->stat = ADXT_STAT_DECEND;
+        }
+    }
 }
 
 void adxt_stat_prep(ADXT adxt) 
