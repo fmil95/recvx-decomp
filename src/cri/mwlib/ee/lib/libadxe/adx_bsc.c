@@ -117,9 +117,20 @@ void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl)
     adxb->total_ndecsmpl += wnsmpl;
 }
 
+// 100% matching!
 void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
 {
-    scePrintf("adxb_DefGetWr - UNIMPLEMENTED!\n");
+    ADXB adxb;
+
+    adxb = obj;
+    
+    *wpos = adxb->curwpos;
+    
+    *nroom = adxb->pcmbsize - adxb->curwpos;
+    
+    *lp_nsmpl = adxb->total_nsmpl - adxb->total_ndecsmpl;
+    
+    return adxb->pcmbuf;
 }
 
 // 100% matching!
