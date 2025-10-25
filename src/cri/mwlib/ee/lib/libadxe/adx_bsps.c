@@ -1,4 +1,15 @@
+
+
 // ADX_DecodeInfoSpsd
-// ADXB_CheckSpsd
-// ADXB_DecodeHeaderSpsd
+
+Sint32 ADXB_CheckSpsd(Sint8 *ibuf)
+{
+    scePrintf("ADXB_CheckSpsd - UNIMPLEMENTED!\n");
+}
+
+Sint32 ADXB_DecodeHeaderSpsd(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
+{
+    scePrintf("ADXB_DecodeHeaderSpsd - UNIMPLEMENTED!\n");
+}
+
 // ADXB_ExecOneSpsd

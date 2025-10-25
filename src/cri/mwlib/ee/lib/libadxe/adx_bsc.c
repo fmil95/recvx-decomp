@@ -1,3 +1,5 @@
+#define BSWAP_U16_EX(_val) (Uint16)(((_val & 0xFF00) >> 8) | ((_val << 8) & 0xFF00))
+
 static ADX_BASIC adxb_obj[8] = { 0 };
 
 void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl);
@@ -62,8 +64,8 @@ ADXB ADXB_Create(Sint32 maxnch, Sint16 *obuf, Sint32 bsize, Sint32 bdist)
     adxb2->pcmbsize = bsize;
     adxb2->pcmbdist = bdist;
     
-    adxb2->getwrfunc = &adxb_DefGetWr;
-    adxb2->addwrfunc = &adxb_DefAddWr;
+    adxb2->getwrfunc = adxb_DefGetWr;
+    adxb2->addwrfunc = adxb_DefAddWr;
     
     adxb2->getwrobj = adxb2;
     adxb2->addwrobj = adxb2;
@@ -71,8 +73,37 @@ ADXB ADXB_Create(Sint32 maxnch, Sint16 *obuf, Sint32 bsize, Sint32 bdist)
     return adxb2;
 }
 
-// ADXB_DecodeHeader
-// ADXB_DecodeHeaderAdx
+// 100% matching!
+Sint32 ADXB_DecodeHeader(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
+{
+    if (BSWAP_U16_EX(*(Uint16*)ibuf) == 0x8000) 
+    {
+        return ADXB_DecodeHeaderAdx(adxb, ibuf, ibuflen);
+    }
+    else if (ADXB_CheckSpsd(ibuf) != 0) 
+    {
+        return ADXB_DecodeHeaderSpsd(adxb, ibuf, ibuflen);
+    }
+    else if (ADXB_CheckWav(ibuf) != 0) 
+    {
+        return ADXB_DecodeHeaderWav(adxb, ibuf, ibuflen);
+    }
+    else if (ADXB_CheckAiff(ibuf) != 0) 
+    {
+        return ADXB_DecodeHeaderAiff(adxb, ibuf, ibuflen);
+    }
+    else if (ADXB_CheckAu(ibuf) != 0) 
+    {
+        return ADXB_DecodeHeaderAu(adxb, ibuf, ibuflen);
+    }
+    
+    return 0;
+}
+
+Sint32 ADXB_DecodeHeaderAdx(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
+{
+    scePrintf("ADXB_DecodeHeaderAdx - UNIMPLEMENTED!\n");
+}
 
 void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl)
 {

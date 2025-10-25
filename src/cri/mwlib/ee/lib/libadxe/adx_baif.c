@@ -1,6 +1,17 @@
+
+
 // ADX_DecodeInfoAiff
-// ADXB_CheckAiff
-// ADXB_DecodeHeaderAiff
+
+Sint32 ADXB_CheckAiff(Sint8 *ibuf)
+{
+    scePrintf("ADXB_CheckAiff - UNIMPLEMENTED!\n");
+}
+
+Sint32 ADXB_DecodeHeaderAiff(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
+{
+    scePrintf("ADXB_DecodeHeaderAiff - UNIMPLEMENTED!\n");
+}
+
 // ADXB_ExecOneAiff
 // ADXB_ExecOneAiff8
 // ADXB_ExecOneAiff16
