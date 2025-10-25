@@ -147,7 +147,13 @@ void ADXB_Destroy(ADXB adxb)
 }
 
 // ADXB_EndDecode
-// ADXB_EntryAddWrFunc
+
+// 100% matching!
+void ADXB_EntryAddWrFunc(ADXB adxb, void (*func)(), void *obj)
+{
+    adxb->addwrfunc = func;
+    adxb->addwrobj = obj;
+}
 
 void ADXB_EntryData(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
