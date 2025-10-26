@@ -229,9 +229,9 @@ void adxt_set_outpan(ADXT adxt)
 {
     if (ADXSJD_GetNumChan(adxt->sjd) == 1) 
     {
-        if (adxt->outpan[0] == -128)
+        if (adxt->outpan[0] == ADXT_PAN_AUTO)
         {
-            ADXRNA_SetOutPan(adxt->rna, 0, 0);
+            ADXRNA_SetOutPan(adxt->rna, 0, ADXT_PAN_CENTER);
             return;
         }
         
@@ -239,18 +239,18 @@ void adxt_set_outpan(ADXT adxt)
         return;
     }
     
-    if (adxt->outpan[0] == -128)
+    if (adxt->outpan[0] == ADXT_PAN_AUTO)
     {
-        ADXRNA_SetOutPan(adxt->rna, 0, -15);
+        ADXRNA_SetOutPan(adxt->rna, 0, ADXT_PAN_LEFT);
     } 
     else 
     {
         ADXRNA_SetOutPan(adxt->rna, 0, adxt->outpan[0]);
     }
     
-    if (adxt->outpan[1] == -128) 
+    if (adxt->outpan[1] == ADXT_PAN_AUTO) 
     {
-        ADXRNA_SetOutPan(adxt->rna, 1, 15);
+        ADXRNA_SetOutPan(adxt->rna, 1, ADXT_PAN_RIGHT);
         return;
     }
     
@@ -310,9 +310,61 @@ void adxt_stat_playing(ADXT adxt)
     }
 }
 
+// 100% matching!
 void adxt_stat_prep(ADXT adxt) 
 {
-    scePrintf("adxt_stat_prep - UNIMPLEMENTED!\n");
+    ADXRNA rna;
+	Sint32 npoolsmpl;
+	Sint32 nroomsmpl;
+	ADXSJD sjd;
+	Sint32 nch;
+	Sint32 i;
+	Sint32 nbyte;
+	SJ sj;
+	SJCK ck;
+    
+    rna = adxt->rna;
+    sjd = adxt->sjd;
+
+    npoolsmpl = ADXRNA_GetNumData(rna);
+    nroomsmpl = ADXRNA_GetNumRoom(rna);
+
+    if ((npoolsmpl >= (adxt->maxdecsmpl * 2)) || (ADXSJD_GetBlkSmpl(sjd) >= nroomsmpl) || (ADXSJD_GetStat(adxt->sjd) == 3))
+    {
+        if (adxt->pstwait_flag == 0)
+        {
+            if (adxt->pause_flag == 0) 
+            {
+                ADXRNA_SetPlaySw(rna, 1);
+                
+                adxt->tvofst = 0;
+                
+                adxt->svcnt = adxt_vsync_cnt;
+            }
+
+            adxt->stat = ADXF_STAT_READEND;
+        }
+
+        adxt->pstready_flag = 1;
+    }
+
+    if (ADXSJD_GetStat(adxt->sjd) == 3) 
+    {
+        nch = ADXT_GetNumChan(adxt);
+        
+        nbyte = (adxt->maxdecsmpl * nch) * 2;
+    
+        for (i = 0; i < nch; i++) 
+        {
+            sj = adxt->sjo[i];
+            
+            SJ_GetChunk(sj, 0, nbyte, &ck);
+            
+            memset(ck.data, 0, ck.len);
+            
+            SJ_PutChunk(sj, 1, &ck);
+        }
+    }
 }
 
 // adxt_trap_entry

@@ -335,7 +335,11 @@ Sint32 ADXT_GetLpCnt(ADXT adxt)
     return adxt->lpcnt;
 }
 
-// ADXT_GetNumChan
+Sint32 ADXT_GetNumChan(ADXT adxt) 
+{
+    scePrintf("ADXT_GetNumChan - UNIMPLEMENTED!\n");
+}
+
 // ADXT_GetNumSctIbuf
 // ADXT_GetNumSmpl
 // ADXT_GetNumSmplObuf
