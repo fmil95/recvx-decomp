@@ -83,7 +83,6 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/lsc_ini.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_sjd.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_tsvr.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_inis.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_mps2.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/dvci_sub.c"
@@ -95,6 +94,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/lsc.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk2.c"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_tsvr.c"
 
 #include "face_bh.c"
 #include "face.c"

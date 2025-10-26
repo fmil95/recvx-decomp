@@ -1,6 +1,7 @@
 static Sint32 adxt_dbg_nch;
 static Sint32 adxt_dbg_ndt;
 
+void adxt_RcvrReplay(ADXT adxt);
 void adxt_stat_decend(ADXT adxt);                      
 void adxt_stat_decinfo(ADXT adxt);                  
 void adxt_stat_playend(ADXT adxt);               
@@ -185,7 +186,43 @@ void ADXT_ExecHndl(ADXT adxt)
 }
 
 // adxt_nlp_trap_entry
-// adxt_RcvrReplay
+
+// 100% matching!
+void adxt_RcvrReplay(ADXT adxt) 
+{
+    Sint32 i;
+
+    ADXCRS_Lock();
+    
+    ADXRNA_SetTransSw(adxt->rna, 0);
+    ADXRNA_SetPlaySw(adxt->rna, 0);
+    
+    ADXSJD_Stop(adxt->sjd);
+    
+    if (adxt->stm != NULL) 
+    {
+        ADXSTM_Stop(adxt->stm);
+        
+        SJ_Reset(adxt->sji);
+    }
+
+    for (i = 0; i < adxt->maxnch; i++)
+    {
+        SJ_Reset(adxt->sjo[i]);
+    }
+    
+    if (adxt->stm != NULL) 
+    {
+        ADXSTM_Seek(adxt->stm, 0);
+        
+        ADXSTM_Start(adxt->stm);
+    }
+    
+    adxt_start_sj(adxt, adxt->sji);
+    
+    ADXCRS_Unlock();
+}
+
 // adxt_set_outpan
 
 void adxt_stat_decend(ADXT adxt) 
