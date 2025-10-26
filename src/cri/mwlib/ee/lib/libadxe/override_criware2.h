@@ -23,18 +23,16 @@ typedef ADX_XPDOBJ *ADXPD;
 
 typedef struct _adx_dec_para 
 { 
-    // wpos is missing
-	Sint16 unk0; // ???
-    Sint16 unk2; // ???
-    Sint32 ndecsmpl;
-	Sint8 *ibuf;
-	Sint32 niblk;
+    // ndecsmpl is missing
+    Sint8 *ibuf; 
+    Sint32 niblk;
     Sint32 nch;
 	Sint32 blksize;
 	Sint32 blknsmpl;
 	Sint8 *pcmbuf;
     Sint32 pcmbsize;
-	Sint32 pcmbdist;
+    Sint32 pcmbdist;
+    Sint32 wpos;
 	Sint32 nroom;
 	Sint32 lp_nsmpl;
 } AdxDecPara;
@@ -65,9 +63,11 @@ typedef struct _adx_intbuf
    Sint16 *pcmbuf;
    Sint32 pcmbsize;
    Sint32 pcmbdist;
-   AdxDecPara dp;   
    // k0, km and ka are missing, also ahxdecsmpl and ahxsvrfreq
-   Sint32 unk78;
+   Sint16 unk48;
+   Sint16 unk4A;
+   Sint32 unk4C;
+   AdxDecPara dp;   
    Sint16 unk7C;
    Sint16 unk7E;
    Sint32 ndeclen;

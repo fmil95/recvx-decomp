@@ -136,10 +136,10 @@ Sint32 ADXB_DecodeHeaderAdx(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     adxb->dp.pcmbsize = adxb->pcmbsize;
     adxb->dp.pcmbdist = adxb->pcmbdist;
     
-    adxb->unk7C = adxb->dp.unk0; // no idea what these fields are
-    adxb->unk7E = adxb->dp.unk2;
+    adxb->unk7C = adxb->unk48; // no idea what these fields are
+    adxb->unk7E = adxb->unk4A;
  
-    adxb->ndeclen = (Sint32)&adxb->dp.ndecsmpl; // looks wrong...
+    adxb->ndeclen = (Sint32)&adxb->unk4C; // looks wrong...
 
     memset((void*)adxb->ndeclen, 0, sizeof(Sint32));
 
@@ -187,7 +187,10 @@ void ADXB_Destroy(ADXB adxb)
     }
 }
 
-// ADXB_EndDecode
+void ADXB_EndDecode(ADXB adxb) 
+{
+    scePrintf("ADXB_EndDecode - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void ADXB_EntryAddWrFunc(ADXB adxb, void (*func)(), void *obj)
@@ -230,7 +233,11 @@ void ADXB_EntryGetWrFunc(ADXB adxb, void* (*func)(), void *obj)
     adxb->getwrobj = obj;
 }
 
-// ADXB_EvokeDecode
+void ADXB_EvokeDecode(ADXB adxb)
+{
+    scePrintf("ADXB_EvokeDecode - UNIMPLEMENTED!\n");
+}
+
 // ADXB_EvokeExpandMono
 // ADXB_EvokeExpandSte
 
@@ -259,9 +266,36 @@ void ADXB_ExecHndl(ADXB adxb)
     }
 }
 
-void ADXB_ExecOneAdx(ADXB adxb)
+// 100% matching!
+void ADXB_ExecOneAdx(ADXB adxb) 
 {
-    scePrintf("ADXB_ExecOneAdx - UNIMPLEMENTED!\n");
+    if (adxb->stat == 1)
+    {
+        if (ADXPD_GetStat(adxb->xpd) == 0) 
+        {
+            adxb->getwrfunc(adxb->getwrobj, &adxb->dp.wpos, &adxb->dp.nroom, &adxb->dp.lp_nsmpl);
+            
+            ADXB_EvokeDecode(adxb);
+            
+            adxb->stat = 2;
+        }
+    }
+    
+    if (adxb->stat == 2) 
+    {
+        ADXPD_ExecHndl(adxb->xpd);
+        
+        if (ADXPD_GetStat(adxb->xpd) == 3) 
+        {
+            ADXB_EndDecode(adxb);
+            
+            ADXPD_Reset(adxb->xpd);
+            
+            adxb->addwrfunc(adxb->addwrobj, adxb->total_decdtlen, adxb->total_decsmpl);
+            
+            adxb->stat = 3;
+        }
+    }
 }
 
 // ADXB_ExecServer
