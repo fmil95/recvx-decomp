@@ -195,9 +195,31 @@ void ADXB_EntryAddWrFunc(ADXB adxb, void (*func)(), void *obj)
     adxb->addwrobj = obj;
 }
 
+// 100% matching!
 void ADXB_EntryData(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
-    scePrintf("ADXB_EntryData - UNIMPLEMENTED!\n");
+    if (adxb->fmttype == 0) 
+    {
+        adxb->dp.ibuf = ibuf;
+        
+        adxb->dp.niblk = ibuflen / adxb->blklen;
+        
+        adxb->ndecsmpl = 0;
+
+        adxb->total_decsmpl = 0;
+        adxb->total_decdtlen = 0;
+    } 
+    else 
+    {
+        adxb->dp.ibuf = ibuf;
+        
+        adxb->dp.niblk = ibuflen / ((adxb->bps / 8) * adxb->nch);
+        
+        adxb->ndecsmpl = 0;
+        
+        adxb->total_decsmpl = 0;
+        adxb->total_decdtlen = 0;
+    }
 }
 
 // 100% matching!
