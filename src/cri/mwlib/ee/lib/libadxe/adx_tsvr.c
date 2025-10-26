@@ -34,9 +34,13 @@ void adxt_eos_entry(void *obj)
 
 // ADXT_ExecErrChk
 
-void ADXT_ExecErrChkPS2(ADXT adxt) 
+// 100% matching!
+void ADXT_ExecErrChkPS2(ADXT adxt)  
 {
-    scePrintf("ADXT_ExecErrChkPS2 - UNIMPLEMENTED!\n");
+    if ((adxt->stm != NULL) && (ADXSTM_GetStat(adxt->stm) == 4)) 
+    {
+        adxt->ercode = ADXF_ERR_FATAL;
+    }
 }
 
 // 100% matching!
