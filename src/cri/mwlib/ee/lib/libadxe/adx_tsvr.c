@@ -1,3 +1,4 @@
+static Sint32 adxt_dbg_rna_ndata;
 static Sint32 adxt_dbg_nch;
 static Sint32 adxt_dbg_ndt;
 
@@ -256,9 +257,17 @@ void adxt_set_outpan(ADXT adxt)
     ADXRNA_SetOutPan(adxt->rna, 1, adxt->outpan[1]);
 }
 
-void adxt_stat_decend(ADXT adxt) 
+// 100% matching!
+void adxt_stat_decend(ADXT adxt)
 {
-    scePrintf("adxt_stat_decend - UNIMPLEMENTED!\n");
+    adxt_dbg_rna_ndata = ADXRNA_GetNumData(adxt->rna);
+    
+    if (ADXRNA_GetNumData(adxt->rna) <= 0) 
+    {
+        ADXRNA_SetPlaySw(adxt->rna, 0);
+        
+        adxt->stat = ADXT_STAT_PLAYEND;
+    }
 }
 
 void adxt_stat_decinfo(ADXT adxt) 
