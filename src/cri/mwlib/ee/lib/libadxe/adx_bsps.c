@@ -12,4 +12,7 @@ Sint32 ADXB_DecodeHeaderSpsd(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     scePrintf("ADXB_DecodeHeaderSpsd - UNIMPLEMENTED!\n");
 }
 
-// ADXB_ExecOneSpsd
+void ADXB_ExecOneSpsd(ADXB adxb)
+{
+    scePrintf("ADXB_ExecOneSpsd - UNIMPLEMENTED!\n");
+}

@@ -5,6 +5,7 @@ static ADX_BASIC adxb_obj[8] = { 0 };
 void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl);
 void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl);
 void ADXB_Destroy(ADXB adxb);
+void ADXB_ExecOneAdx(ADXB adxb);
 void memcpy2(Sint16 *dst, const Sint16 *src, Sint32 nword);
 
 // 100% matching!
@@ -233,12 +234,36 @@ void ADXB_EntryGetWrFunc(ADXB adxb, void* (*func)(), void *obj)
 // ADXB_EvokeExpandMono
 // ADXB_EvokeExpandSte
 
-void ADXB_ExecHndl(ADXB adxb)
+// 100% matching!
+void ADXB_ExecHndl(ADXB adxb) 
 {
-    scePrintf("ADXB_ExecHndl - UNIMPLEMENTED!\n");
+    if (adxb->fmttype == 0) 
+    {
+        ADXB_ExecOneAdx(adxb);
+    } 
+    else if (adxb->fmttype == 2) 
+    {
+        ADXB_ExecOneSpsd(adxb);
+    } 
+    else if (adxb->fmttype == 3)
+    {
+        ADXB_ExecOneAiff(adxb);
+    } 
+    else if (adxb->fmttype == 4) 
+    {
+        ADXB_ExecOneAu(adxb);
+    } 
+    else if (adxb->fmttype == 1) 
+    {
+        ADXB_ExecOneWav(adxb);
+    }
 }
 
-// ADXB_ExecOneAdx
+void ADXB_ExecOneAdx(ADXB adxb)
+{
+    scePrintf("ADXB_ExecOneAdx - UNIMPLEMENTED!\n");
+}
+
 // ADXB_ExecServer
 
 // 100% matching!

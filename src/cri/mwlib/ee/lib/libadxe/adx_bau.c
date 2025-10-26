@@ -12,7 +12,11 @@ Sint32 ADXB_DecodeHeaderAu(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     scePrintf("ADXB_DecodeHeaderAu - UNIMPLEMENTED!\n");
 }
 
-// ADXB_ExecOneAu
+void ADXB_ExecOneAu(ADXB adxb)
+{
+    scePrintf("ADXB_ExecOneAu - UNIMPLEMENTED!\n");
+}
+
 // ADXB_ExecOneAu8
 // ADXB_ExecOneAu16
 // ADXB_ExecOneAuUlaw
