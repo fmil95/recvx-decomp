@@ -223,7 +223,38 @@ void adxt_RcvrReplay(ADXT adxt)
     ADXCRS_Unlock();
 }
 
-// adxt_set_outpan
+// 100% matching!
+void adxt_set_outpan(ADXT adxt) 
+{
+    if (ADXSJD_GetNumChan(adxt->sjd) == 1) 
+    {
+        if (adxt->outpan[0] == -128)
+        {
+            ADXRNA_SetOutPan(adxt->rna, 0, 0);
+            return;
+        }
+        
+        ADXRNA_SetOutPan(adxt->rna, 0, adxt->outpan[0]);
+        return;
+    }
+    
+    if (adxt->outpan[0] == -128)
+    {
+        ADXRNA_SetOutPan(adxt->rna, 0, -15);
+    } 
+    else 
+    {
+        ADXRNA_SetOutPan(adxt->rna, 0, adxt->outpan[0]);
+    }
+    
+    if (adxt->outpan[1] == -128) 
+    {
+        ADXRNA_SetOutPan(adxt->rna, 1, 15);
+        return;
+    }
+    
+    ADXRNA_SetOutPan(adxt->rna, 1, adxt->outpan[1]);
+}
 
 void adxt_stat_decend(ADXT adxt) 
 {
