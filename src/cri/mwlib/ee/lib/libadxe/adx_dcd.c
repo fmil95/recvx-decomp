@@ -1,7 +1,10 @@
 #define PI 3.14159265
 #define PI_2 (PI * 2)
 
-// ADX_DecodeFooter
+Sint32 ADX_DecodeFooter(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen) 
+{
+    scePrintf("ADX_DecodeFooter - UNIMPLEMENTED!\n");
+}
 
 Sint32 ADX_DecodeInfo(Sint8* adr, Sint32 siz, Sint16* arg2, Sint8* arg3, Sint8* arg4, Sint8* arg5, Sint8* arg6, Sint32* arg7, Sint32* arg8, Sint32* arg9)
 {
@@ -27,4 +30,7 @@ void ADX_GetCoefficient(Sint32 cof, Sint32 sfreq, Sint16 *k0, Sint16 *k1)
     *k1 = (-r * r) * 4096; 
 }
 
-// ADX_ScanInfoCode
+Sint32 ADX_ScanInfoCode(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen) 
+{
+    scePrintf("ADX_ScanInfoCode - UNIMPLEMENTED!\n");
+}

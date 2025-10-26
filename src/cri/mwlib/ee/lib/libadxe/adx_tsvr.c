@@ -8,6 +8,7 @@ void adxt_stat_decinfo(ADXT adxt);
 void adxt_stat_playend(ADXT adxt);               
 void adxt_stat_playing(ADXT adxt);             
 void adxt_stat_prep(ADXT adxt);  
+void adxt_trap_entry(void *obj);
 
 // 100% matching!
 void adxt_eos_entry(void *obj)
@@ -372,9 +373,127 @@ void adxt_stat_decend(ADXT adxt)
     }
 }
 
-void adxt_stat_decinfo(ADXT adxt) 
+// 100% matching!
+void adxt_stat_decinfo(ADXT adxt)
 {
-    scePrintf("adxt_stat_decinfo - UNIMPLEMENTED!\n");
+    ADXSJD sjd;
+	Sint32 sfreq;
+	Sint32 nch;
+	Sint32 nloop;
+	Sint32 tnsmpl;
+	Sint32 sctsize;
+	Sint32 leofst;
+	Sint32 lepos;
+	Sint8 msg[32];
+    Sint32 blksmpl;
+
+    sjd = adxt->sjd;
+
+    sctsize = 2048;
+
+    if (ADXSJD_GetStat(sjd) == 2) 
+    {
+        nch = ADXSJD_GetNumChan(sjd);
+
+        if (nch > adxt->maxnch) 
+        {
+            ADXERR_ItoA2(nch, adxt->maxnch, msg, 16);
+            
+            ADXERR_CallErrFunc2((const Sint8*)"E9081001 adxt_stat_decinfo: can't play this number of channels", msg);
+            
+            ADXT_Stop(adxt);
+            return;
+        }
+    
+        sfreq = ADXSJD_GetSfreq(sjd);
+        nloop = ADXSJD_GetNumLoop(sjd);
+    
+        if (nloop > 0) 
+        {
+            adxt->maxdecsmpl = (sfreq / adxt->svrfreq) * 3;
+        } 
+        else
+        {
+            adxt->maxdecsmpl = ((sfreq / adxt->svrfreq) * 3) / 2;
+        }
+    
+        blksmpl = ADXSJD_GetBlkSmpl(sjd) * 2;
+        
+        adxt->maxdecsmpl = ((adxt->maxdecsmpl + blksmpl) / blksmpl) * blksmpl;
+        
+        ADXSJD_SetMaxDecSmpl(sjd, adxt->maxdecsmpl);
+    
+        if (nloop > 0) 
+        {
+            if (adxt->pmode == ADXT_PMODE_MEM)
+            {
+                adxt->lp_skiplen = 0;
+            } 
+            else
+            {
+                leofst = ADXSJD_GetLpEndOfst(sjd);
+                
+                adxt->lp_skiplen = sctsize - (leofst % sctsize);
+                
+                leofst += 2047;
+                
+                adxt->lp_skiplen %= sctsize;
+                
+                adxt->lesct = leofst / sctsize;
+                
+                ADXSTM_SetEos(adxt->stm, adxt->lesct);
+                
+                ADXSTM_EntryEosFunc(adxt->stm, adxt_eos_entry, adxt);
+            }
+    
+            adxt->trpnsmpl = ADXSJD_GetLpEndPos(sjd);
+            
+            ADXSJD_SetTrapNumSmpl(sjd, adxt->trpnsmpl);
+            ADXSJD_SetTrapDtLen(sjd, 0);
+            ADXSJD_SetTrapCnt(sjd, 0);
+            
+            ADXSJD_EntryTrapFunc(sjd, adxt_trap_entry, adxt);
+        }
+        else
+        {
+            if (adxt->stm != NULL) 
+            {
+                ADXSTM_SetEos(adxt->stm, SJCK_LEN_MAX);
+            }
+    
+            ADXSJD_SetTrapNumSmpl(sjd, ADXSJD_GetTotalNumSmpl(sjd));
+            ADXSJD_SetTrapDtLen(sjd, 0);
+            ADXSJD_SetTrapCnt(sjd, 0);
+            
+            ADXSJD_EntryTrapFunc(sjd, adxt_nlp_trap_entry, adxt);
+        }
+    
+        sfreq = ADXSJD_GetSfreq(sjd);
+        nch = ADXSJD_GetNumChan(sjd);
+        tnsmpl = ADXSJD_GetTotalNumSmpl(sjd);
+        
+        ADXRNA_SetBitPerSmpl(adxt->rna, ADXSJD_GetOutBps(sjd));
+        ADXRNA_SetSfreq(adxt->rna, sfreq);
+        ADXRNA_SetNumChan(adxt->rna, nch);
+        ADXRNA_SetTotalNumSmpl(adxt->rna, tnsmpl);
+        ADXRNA_SetOutVol(adxt->rna, adxt->outvol);
+    
+        adxt_set_outpan(adxt);
+    
+        if (adxt->amp != NULL)
+        {
+            ADXAMP_SetSfreq(adxt->amp, sfreq);
+        }
+    
+        if (ADXSJD_GetFormat(sjd) == 2) 
+        {
+            ADXRNA_SetStmHdInfo(adxt->rna, ADXSJD_GetSpsdInfo(sjd));
+        }
+    
+        ADXRNA_SetTransSw(adxt->rna, 1);
+        
+        adxt->stat = ADXT_STAT_PREP;
+    }
 }
 
 // 100% matching!
