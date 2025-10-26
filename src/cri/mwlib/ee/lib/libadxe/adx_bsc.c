@@ -298,7 +298,22 @@ void ADXB_ExecOneAdx(ADXB adxb)
     }
 }
 
-// ADXB_ExecServer
+// 100% matching!
+void ADXB_ExecServer(void) 
+{
+    ADXB adxb;
+	Sint32 no;
+    
+    for (no = 0; no < 8; no++) 
+    {
+        adxb = &adxb_obj[no];
+        
+        if (adxb->used == TRUE)
+        {
+            ADXB_ExecHndl(adxb);
+        }
+    }
+}
 
 // 100% matching!
 ADXPD ADXB_GetAdxpd(ADXB adxb) 
