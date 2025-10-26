@@ -186,7 +186,109 @@ void ADXT_ExecHndl(ADXT adxt)
     ADXT_ExecErrChkPS2(adxt);
 }
 
-// adxt_nlp_trap_entry
+// 100% matching!
+void adxt_nlp_trap_entry(void *obj)
+{
+    ADXT adxt;
+	ADXSJD sjd;
+	SJ sji;
+	SJCK ck;
+	SJCK ck2;
+	SJCK ck3;
+	SJCK ck4;
+	Sint32 ret;
+	Sint32 ret2;
+	Sint32 pos;
+	Sint16 dlen;
+	Sint16 dlen2;
+    short temp, temp2;
+
+    adxt = obj;
+    
+    sjd = adxt->sjd;
+    sji = adxt->sji;
+
+    if (adxt->lnkflg != 0)
+    {
+        temp2 = temp = 0;
+        
+        SJ_GetChunk(sji, 1, SJCK_LEN_MAX, &ck);
+        SJ_GetChunk(sji, 1, SJCK_LEN_MAX, &ck3);
+        
+        if (ADX_DecodeFooter(ck.data + temp2, ck.len - temp2, &dlen) != 0)
+        {
+            adxt->lnkflg = 0;
+            
+            SJ_UngetChunk(sji, 1, &ck3);
+            SJ_UngetChunk(sji, 1, &ck);
+            return;
+        }
+    
+        temp += dlen;
+        
+        ret = ADX_ScanInfoCode(ck.data + temp, ck.len - temp, &dlen);
+        
+        if (ret == 0) 
+        {
+            ret2 = -1;
+        } 
+        else 
+        {
+            ret2 = ADX_ScanInfoCode(ck3.data, ck3.len, &dlen2);
+        }
+    
+        temp += dlen;
+        
+        temp2 = dlen2;
+        
+        if ((ret != 0) && (ret2 != 0)) 
+        {
+            SJ_UngetChunk(sji, 1, &ck3);
+            SJ_UngetChunk(sji, 1, &ck);
+            
+            adxt->lnkflg = 0;
+            return;
+        }
+        else if (ret == 0) 
+        {
+            SJ_UngetChunk(sji, 1, &ck3);
+            
+            SJ_SplitChunk(&ck, temp, &ck, &ck2);
+            
+            SJ_PutChunk(sji, 0, &ck);
+            
+            SJ_UngetChunk(sji, 1, &ck2);
+        }
+        else 
+        {
+            SJ_PutChunk(sji, 0, &ck);
+            
+            SJ_SplitChunk(&ck3, temp2, &ck3, &ck4);
+            
+            SJ_PutChunk(sji, 0, &ck3);
+            
+            SJ_UngetChunk(sji, 1, &ck4);
+        }
+        
+        ADXSJD_Stop(sjd);
+        
+        ADXSJD_Start(sjd);
+        
+        ADXSJD_ExecHndl(sjd);
+        
+        if (ADXSJD_GetStat(sjd) != 2) 
+        {
+           adxt->lnkflg = 0;
+        } 
+        else 
+        {
+            ADXSJD_SetMaxDecSmpl(sjd, adxt->maxdecsmpl);
+            ADXSJD_SetTrapNumSmpl(sjd, ADXSJD_GetTotalNumSmpl(sjd));
+            ADXSJD_SetTrapDtLen(sjd, 0);
+            ADXSJD_SetTrapCnt(sjd, 0);
+        }
+    }
+}
 
 // 100% matching!
 void adxt_RcvrReplay(ADXT adxt) 
