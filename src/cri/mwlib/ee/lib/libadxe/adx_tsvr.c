@@ -32,7 +32,121 @@ void adxt_eos_entry(void *obj)
     }
 }
 
-// ADXT_ExecErrChk
+// 100% matching!
+void ADXT_ExecErrChk(ADXT adxt)
+{
+    Sint32 stat;
+	Sint32 pos;
+	Sint32 ndata;
+    
+    stat = adxt->stat;
+    
+    if ((stat == ADXF_STAT_READEND) && (adxt->pause_flag == 0) && (ADXSJD_GetStat(adxt->sjd) != 3))
+    {
+        pos = ADXSJD_GetDecNumSmpl(adxt->sjd);
+        
+        if (adxt->edecpos == pos) 
+        {
+            if (++adxt->edeccnt > (adxt->svrfreq * 5)) 
+            {
+                adxt->ercode = ADXF_ERR_INTERNAL;
+            }
+        }
+        else 
+        {
+            adxt->edeccnt = 0;
+        }
+        
+        adxt->edecpos = pos;
+        
+        if (adxt->ercode != ADXF_ERR_OK) 
+        {
+            if ((adxt->autorcvr == ADXT_RMODE_STOP) || (adxt->autorcvr == ADXT_RMODE_REPLAY)) 
+            {
+                ADXT_Stop(adxt);
+            }
+            
+            if (adxt->autorcvr != ADXT_RMODE_NOACT)
+            {
+                adxt->ercode = ADXF_ERR_OK;
+                
+                adxt->edeccnt = 0;
+            }
+        }
+    }
+    else
+    {
+        adxt->edeccnt = 0;
+    }
+    
+    if (((stat == ADXF_STAT_STOP) || (stat == ADXF_STAT_READING) || (stat == ADXF_STAT_READEND)) && (adxt->pause_flag == 0) && (ADXSJD_GetStat(adxt->sjd) != 3))
+    {
+        ndata = (adxt->sji == NULL) ? 0 : SJ_GetNumData(adxt->sji, 1);
+        
+        if (ndata < 64) 
+        {
+            adxt->eshrtcnt++;
+            
+            if (stat == ADXF_STAT_READEND)
+            {
+                if (adxt->eshrtcnt > (adxt->svrfreq * 5)) 
+                {
+                    adxt->ercode = ADXF_ERR_FATAL;
+                }
+            } 
+            else if (adxt->eshrtcnt > (adxt->svrfreq * 20)) 
+            {
+                adxt->ercode = ADXF_ERR_FATAL;
+            }
+            
+            if (adxt->ercode != ADXF_ERR_OK) 
+            {
+                if (adxt->autorcvr == ADXT_RMODE_STOP) 
+                {
+                    ADXT_Stop(adxt);
+                } 
+                else if (adxt->autorcvr == ADXT_RMODE_REPLAY) 
+                {
+                    adxt_RcvrReplay(adxt);
+                }
+                
+                if (adxt->autorcvr != ADXT_RMODE_NOACT)
+                {
+                    adxt->ercode = ADXF_ERR_OK;
+                    
+                    adxt->eshrtcnt = 0;
+                }
+            }
+        } 
+        else 
+        {
+            adxt->eshrtcnt = 0;
+        }
+    } 
+    else 
+    {
+        adxt->eshrtcnt = 0;
+    }
+    
+    if ((adxt->stm != NULL) && (ADXSTM_GetStat(adxt->stm) == 4)) 
+    {
+        if (adxt->autorcvr == ADXT_RMODE_STOP) 
+        {
+            ADXT_Stop(adxt);
+        } 
+        else if (adxt->autorcvr == ADXT_RMODE_REPLAY) 
+        {
+            adxt_RcvrReplay(adxt);
+        }
+        
+        if (adxt->autorcvr != ADXT_RMODE_NOACT) 
+        {
+            adxt->ercode = ADXF_ERR_OK;
+            
+            adxt->eshrtcnt = 0;
+        }
+    }
+}
 
 // 100% matching!
 void ADXT_ExecErrChkPS2(ADXT adxt)  
