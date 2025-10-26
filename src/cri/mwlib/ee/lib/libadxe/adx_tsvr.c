@@ -367,4 +367,58 @@ void adxt_stat_prep(ADXT adxt)
     }
 }
 
-// adxt_trap_entry
+// 100% matching!
+void adxt_trap_entry(void *obj)
+{
+    ADXT adxt;
+	ADXSJD sjd;
+	SJ sji;
+	Sint32 lspos;
+	Sint32 lsofst;
+	Sint32 lepos;
+	SJCK ck;
+    
+    adxt = obj;
+
+    sjd = adxt->sjd;
+    sji = adxt->sji;
+    
+    lspos = ADXSJD_GetLpStartPos(sjd);
+    lsofst = ADXSJD_GetLpStartOfst(sjd);
+    lepos = ADXSJD_GetLpEndPos(sjd);
+    
+    if ((adxt->stm == NULL) && (adxt->lpflg == 0)) 
+    {
+        ADXSJD_SetTrapNumSmpl(adxt->sjd, -1);
+    }
+    else
+    {
+        SJ_GetChunk(sji, 1, adxt->lp_skiplen, &ck);
+        
+        if (ck.len < adxt->lp_skiplen)
+        {
+            ADXERR_CallErrFunc1((const Sint8*)"E8101201 adxt_trap_entry: not enough data");
+        }
+        
+        SJ_PutChunk(sji, 0, &ck);
+        
+        ADXSJD_SetTrapCnt(sjd, 0);
+        
+        adxt->trpnsmpl = lepos - lspos;
+        
+        ADXSJD_SetTrapNumSmpl(sjd, adxt->trpnsmpl);
+        ADXSJD_SetTrapDtLen(sjd, lsofst);
+        ADXSJD_SetDecPos(sjd, lspos);
+        
+        if (adxt->pmode == ADXT_PMODE_MEM) 
+        {
+            SJ_Reset(sji);
+            
+            SJ_GetChunk(sji, 1, lsofst, &ck);
+            
+            SJ_PutChunk(sji, 0, &ck);
+        }
+        
+        adxt->lpcnt++;
+    }
+}
