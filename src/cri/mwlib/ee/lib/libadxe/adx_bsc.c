@@ -100,9 +100,49 @@ Sint32 ADXB_DecodeHeader(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     return 0;
 }
 
+// 100% matching!
 Sint32 ADXB_DecodeHeaderAdx(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
-    scePrintf("ADXB_DecodeHeaderAdx - UNIMPLEMENTED!\n");
+    Sint16 dlen;
+
+    adxb->hdcdflag = 1;
+
+    if (ADX_DecodeInfo(ibuf, ibuflen, &dlen, &adxb->code, &adxb->bps, &adxb->blklen, &adxb->nch, &adxb->sfreq, &adxb->total_nsmpl, &adxb->blknsmpl) < 0)
+    {
+        return 0;
+    }
+    
+    if (ADX_DecodeInfoExADPCM2(ibuf, ibuflen, &adxb->cof) < 0) 
+    {
+        return 0;
+    }
+    
+    ADXPD_SetCoef(adxb->xpd, adxb->sfreq, adxb->cof);
+    
+    ADX_DecodeInfoExLoop(ibuf, ibuflen, &adxb->lp_ins_nsmpl, &adxb->nloop, &adxb->lp_type, &adxb->lp_spos, &adxb->lp_sofst, &adxb->lp_epos, &adxb->lp_eofst);
+
+    adxb->fmttype = 0;
+    
+    adxb->curwpos = 0;
+    
+    adxb->dp.nch = adxb->nch;
+    
+    adxb->dp.blksize = adxb->blklen;
+    adxb->dp.blknsmpl = adxb->blknsmpl;
+    
+    adxb->dp.pcmbuf = (Sint8*)adxb->pcmbuf;
+    
+    adxb->dp.pcmbsize = adxb->pcmbsize;
+    adxb->dp.pcmbdist = adxb->pcmbdist;
+    
+    adxb->unk7C = adxb->dp.unk0; // no idea what these fields are
+    adxb->unk7E = adxb->dp.unk2;
+ 
+    adxb->ndeclen = (Sint32)&adxb->dp.ndecsmpl; // looks wrong...
+
+    memset((void*)adxb->ndeclen, 0, sizeof(Sint32));
+
+    return dlen;
 }
 
 // 100% matching!

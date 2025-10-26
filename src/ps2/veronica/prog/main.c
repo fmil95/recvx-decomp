@@ -36,10 +36,10 @@
 
 #include <katana_extra.h>
 
-#include "override_criware.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/override_criware.h"
 // CRIWARE library
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
-#include "override_criware2.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/override_criware2.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 #include <adx_ps2.h>
 
