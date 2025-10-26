@@ -239,7 +239,26 @@ void ADXB_EvokeDecode(ADXB adxb)
 }
 
 // ADXB_EvokeExpandMono
-// ADXB_EvokeExpandSte
+
+// 100% matching!
+void ADXB_EvokeExpandSte(ADXB adxb, Sint32 nblk)
+{
+	AdxDecPara *dp;
+	ADXPD xpd;
+	Sint16 *obuf_l;
+
+    dp = &adxb->dp;
+
+    xpd = adxb->xpd;
+    
+    obuf_l = (Sint16*)dp->pcmbuf;
+    
+    obuf_l += dp->wpos;
+    
+    ADXPD_EntrySte(xpd, dp->ibuf, nblk * 2, obuf_l, obuf_l + dp->pcmbdist);
+    
+    ADXPD_Start(xpd);
+}
 
 // 100% matching!
 void ADXB_ExecHndl(ADXB adxb) 
