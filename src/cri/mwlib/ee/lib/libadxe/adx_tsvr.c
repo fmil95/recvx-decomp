@@ -1,14 +1,8 @@
+#include "adx_tsvr.h"
+
 static Sint32 adxt_dbg_rna_ndata;
 static Sint32 adxt_dbg_nch;
 static Sint32 adxt_dbg_ndt;
-
-void adxt_RcvrReplay(ADXT adxt);
-void adxt_stat_decend(ADXT adxt);                      
-void adxt_stat_decinfo(ADXT adxt);                  
-void adxt_stat_playend(ADXT adxt);               
-void adxt_stat_playing(ADXT adxt);             
-void adxt_stat_prep(ADXT adxt);  
-void adxt_trap_entry(void *obj);
 
 // 100% matching!
 void adxt_eos_entry(void *obj)
@@ -44,7 +38,7 @@ void ADXT_ExecErrChk(ADXT adxt)
     
     stat = adxt->stat;
     
-    if ((stat == ADXF_STAT_READEND) && (adxt->pause_flag == 0) && (ADXSJD_GetStat(adxt->sjd) != 3))
+    if ((stat == ADXT_STAT_PLAYING) && (adxt->pause_flag == 0) && (ADXSJD_GetStat(adxt->sjd) != 3))
     {
         pos = ADXSJD_GetDecNumSmpl(adxt->sjd);
         
@@ -52,7 +46,7 @@ void ADXT_ExecErrChk(ADXT adxt)
         {
             if (++adxt->edeccnt > (adxt->svrfreq * 5)) 
             {
-                adxt->ercode = ADXF_ERR_INTERNAL;
+                adxt->ercode = ADXT_ERR_SNDBLK;
             }
         }
         else 
@@ -62,7 +56,7 @@ void ADXT_ExecErrChk(ADXT adxt)
         
         adxt->edecpos = pos;
         
-        if (adxt->ercode != ADXF_ERR_OK) 
+        if (adxt->ercode != ADXT_ERR_OK) 
         {
             if ((adxt->autorcvr == ADXT_RMODE_STOP) || (adxt->autorcvr == ADXT_RMODE_REPLAY)) 
             {
@@ -71,7 +65,7 @@ void ADXT_ExecErrChk(ADXT adxt)
             
             if (adxt->autorcvr != ADXT_RMODE_NOACT)
             {
-                adxt->ercode = ADXF_ERR_OK;
+                adxt->ercode = ADXT_ERR_OK;
                 
                 adxt->edeccnt = 0;
             }
@@ -82,7 +76,7 @@ void ADXT_ExecErrChk(ADXT adxt)
         adxt->edeccnt = 0;
     }
     
-    if (((stat == ADXF_STAT_STOP) || (stat == ADXF_STAT_READING) || (stat == ADXF_STAT_READEND)) && (adxt->pause_flag == 0) && (ADXSJD_GetStat(adxt->sjd) != 3))
+    if (((stat == ADXT_STAT_DECINFO) || (stat == ADXT_STAT_PREP) || (stat == ADXT_STAT_PLAYING)) && (adxt->pause_flag == 0) && (ADXSJD_GetStat(adxt->sjd) != 3))
     {
         ndata = (adxt->sji == NULL) ? 0 : SJ_GetNumData(adxt->sji, 1);
         
@@ -90,19 +84,19 @@ void ADXT_ExecErrChk(ADXT adxt)
         {
             adxt->eshrtcnt++;
             
-            if (stat == ADXF_STAT_READEND)
+            if (stat == ADXT_STAT_PLAYING)
             {
                 if (adxt->eshrtcnt > (adxt->svrfreq * 5)) 
                 {
-                    adxt->ercode = ADXF_ERR_FATAL;
+                    adxt->ercode = ADXT_ERR_SHRTBUF;
                 }
             } 
             else if (adxt->eshrtcnt > (adxt->svrfreq * 20)) 
             {
-                adxt->ercode = ADXF_ERR_FATAL;
+                adxt->ercode = ADXT_ERR_SHRTBUF;
             }
             
-            if (adxt->ercode != ADXF_ERR_OK) 
+            if (adxt->ercode != ADXT_ERR_OK) 
             {
                 if (adxt->autorcvr == ADXT_RMODE_STOP) 
                 {
@@ -115,7 +109,7 @@ void ADXT_ExecErrChk(ADXT adxt)
                 
                 if (adxt->autorcvr != ADXT_RMODE_NOACT)
                 {
-                    adxt->ercode = ADXF_ERR_OK;
+                    adxt->ercode = ADXT_ERR_OK;
                     
                     adxt->eshrtcnt = 0;
                 }
@@ -144,7 +138,7 @@ void ADXT_ExecErrChk(ADXT adxt)
         
         if (adxt->autorcvr != ADXT_RMODE_NOACT) 
         {
-            adxt->ercode = ADXF_ERR_OK;
+            adxt->ercode = ADXT_ERR_OK;
             
             adxt->eshrtcnt = 0;
         }
@@ -156,7 +150,7 @@ void ADXT_ExecErrChkPS2(ADXT adxt)
 {
     if ((adxt->stm != NULL) && (ADXSTM_GetStat(adxt->stm) == 4)) 
     {
-        adxt->ercode = ADXF_ERR_FATAL;
+        adxt->ercode = ADXT_ERR_SHRTBUF;
     }
 }
 
@@ -563,7 +557,7 @@ void adxt_stat_prep(ADXT adxt)
                 adxt->svcnt = adxt_vsync_cnt;
             }
 
-            adxt->stat = ADXF_STAT_READEND;
+            adxt->stat = ADXT_STAT_PLAYING;
         }
 
         adxt->pstready_flag = 1;
