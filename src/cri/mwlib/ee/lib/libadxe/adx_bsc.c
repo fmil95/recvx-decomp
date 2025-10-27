@@ -442,9 +442,33 @@ Sint32 ADXB_GetNumLoop(ADXB adxb)
     return adxb->nloop;
 }
 
+// 100% matching!
 Sint32 ADXB_GetOutBps(ADXB adxb)
 {
-    scePrintf("ADXB_GetOutBps - UNIMPLEMENTED!\n");
+    if (adxb->fmttype == 0) 
+    {
+        return 16;
+    }
+
+    if (adxb->fmttype == 2)
+    {
+        if (adxb->cdctype == 2)
+        {
+            return 4;
+        } 
+        else if (adxb->cdctype == 1) 
+        {
+            return 8;
+        }
+        
+        return 16;
+    }
+    else if (adxb->fmttype == 1) 
+    {
+        return (adxb->cdctype != 2) ? 16 : 4;
+    }
+    
+    return 16;
 }
 
 // 100% matching!
