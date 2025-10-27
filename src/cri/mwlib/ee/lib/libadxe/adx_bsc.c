@@ -189,9 +189,64 @@ void ADXB_Destroy(ADXB adxb)
     }
 }
 
-void ADXB_EndDecode(ADXB adxb) 
+// 100% matching!
+void ADXB_EndDecode(ADXB adxb)
 {
-    scePrintf("ADXB_EndDecode - UNIMPLEMENTED!\n");
+	AdxDecPara *dp;
+	Sint32 blknsmpl;
+	Sint32 blksize;
+	Sint32 lppos;
+	Sint32 wpos;
+	Sint16 *pcmbuf;
+	Sint32 pcmbsize;
+	Sint32 pcmbdist;
+	Sint32 ndecblk;
+	Sint32 ndecsmpl;
+	Sint32 ndelsmpl;
+    
+    dp = &adxb->dp;
+
+    blknsmpl = dp->blknsmpl;
+    blksize = dp->blksize;
+
+    lppos = dp->lp_nsmpl;
+
+    pcmbuf = (Sint16*)dp->pcmbuf;
+
+    pcmbsize = adxb->pcmbsize;
+    pcmbdist = adxb->pcmbdist;
+    
+    wpos = dp->wpos;
+    
+    ndecsmpl = ((dp->lp_nsmpl + blknsmpl) - 1) % blknsmpl;
+    ndelsmpl = (blknsmpl - 1) - ndecsmpl;
+    
+    lppos = ((dp->lp_nsmpl + blknsmpl) - 1) / blknsmpl;
+
+    ndecblk = ADXPD_GetNumBlk(adxb->xpd);
+    
+    blknsmpl = (ndecblk * blknsmpl) / dp->nch;
+    
+    ndecsmpl = (ndecblk < lppos) ? blknsmpl : blknsmpl - ndelsmpl;
+    
+    adxb->total_decsmpl = ndecsmpl;
+    adxb->total_decdtlen = ndecblk * blksize;
+    
+    wpos += adxb->total_decsmpl;
+    
+    if (wpos >= pcmbsize) 
+    {
+        wpos -= pcmbsize;
+        
+        if (dp->nch == 2) 
+        {
+            ADXB_CopyExtraBufSte(pcmbuf, pcmbsize, pcmbdist, wpos);
+        } 
+        else
+        {
+            ADXB_CopyExtraBufMono(pcmbuf, pcmbsize, pcmbdist, wpos);
+        }
+    }
 }
 
 // 100% matching!
