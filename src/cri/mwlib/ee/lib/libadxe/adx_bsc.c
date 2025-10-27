@@ -5,6 +5,8 @@ static ADX_BASIC adxb_obj[8] = { 0 };
 void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl);
 void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl);
 void ADXB_Destroy(ADXB adxb);
+void ADXB_EvokeExpandMono(ADXB adxb, Sint32 nblk);
+void ADXB_EvokeExpandSte(ADXB adxb, Sint32 nblk);
 void ADXB_ExecOneAdx(ADXB adxb);
 void memcpy2(Sint16 *dst, const Sint16 *src, Sint32 nword);
 
@@ -233,9 +235,66 @@ void ADXB_EntryGetWrFunc(ADXB adxb, void* (*func)(), void *obj)
     adxb->getwrobj = obj;
 }
 
+// 100% matching!
 void ADXB_EvokeDecode(ADXB adxb)
 {
-    scePrintf("ADXB_EvokeDecode - UNIMPLEMENTED!\n");
+	AdxDecPara *dp;
+	Sint32 pcmbsize;
+	Sint32 lppos;
+	Sint32 ndelsmpl;
+	Sint32 nroom;
+	Sint32 nendblk;
+	Sint32 nendsmpl;
+	Sint32 wpos;
+	Sint32 niblk;
+	Sint32 blknsmpl;
+    Sint32 temp;
+
+    dp = &adxb->dp;
+
+    niblk = dp->niblk / dp->nch;
+    
+    pcmbsize = dp->pcmbsize;
+    
+    wpos = dp->wpos;
+    
+    nroom = dp->nroom;
+    
+    blknsmpl = dp->blknsmpl;
+    
+    lppos = dp->lp_nsmpl;
+    
+    ndelsmpl = ((lppos + blknsmpl) - 1) / blknsmpl;
+    
+    nendsmpl = ((lppos + blknsmpl) - 1) % blknsmpl;
+    nendsmpl = (blknsmpl - 1) - nendsmpl;
+    
+    nendblk = (((pcmbsize - wpos) + blknsmpl) - 1) / blknsmpl;
+    
+    temp = nendblk * blknsmpl;
+    
+    if ((ndelsmpl < nendblk) && (((wpos + temp) - nendsmpl) < pcmbsize)) 
+    {
+        nendblk++;
+    }
+
+    if (lppos < nroom) 
+    { 
+        nroom += nendsmpl;
+    }
+
+    niblk = MIN(nroom / blknsmpl, niblk);
+    niblk = MIN(ndelsmpl, niblk);
+    niblk = MIN(nendblk, niblk);
+    
+    if (dp->nch == 2) 
+    {
+        ADXB_EvokeExpandSte(adxb, niblk);
+    } 
+    else 
+    {
+        ADXB_EvokeExpandMono(adxb, niblk);
+    }
 }
 
 // 100% matching!
