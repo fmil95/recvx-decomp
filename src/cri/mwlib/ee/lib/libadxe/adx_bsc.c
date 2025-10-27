@@ -503,7 +503,18 @@ void ADXB_Init(void)
     memset(adxb_obj, 0, sizeof(adxb_obj));
 }
 
-// ADXB_Reset
+// 100% matching!
+void ADXB_Reset(ADXB adxb)
+{
+    if (adxb->stat == 3) 
+    {
+        ADXPD_Reset(adxb->xpd);
+        
+        adxb->curwpos = 0;
+        
+        adxb->stat = 0;
+    }
+}
 
 // 100% matching!
 void ADXB_Start(ADXB adxb)
