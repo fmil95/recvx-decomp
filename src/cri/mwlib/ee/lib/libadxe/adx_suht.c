@@ -1,4 +1,4 @@
-Char8 D_00362960;
+
 
 // 100% matching!
 void adxt_err_host(Sint32 arg0, Char8* err_msg) 
@@ -32,9 +32,9 @@ void ADXT_SetupHostFs(ADXT_SPRM *sprm)
 {
     cvFsEntryErrFunc((void*)adxt_err_host, NULL);
     
-    cvFsAddDev(&D_00362960, (void*)htCiGetInterface, NULL);
+    cvFsAddDev("HST", (void*)htCiGetInterface, NULL);
     
-    cvFsSetDefDev(&D_00362960);
+    cvFsSetDefDev("HST");
     
     if (sprm != NULL) 
     {
