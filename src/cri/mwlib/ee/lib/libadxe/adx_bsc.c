@@ -1,14 +1,6 @@
-#define BSWAP_U16_EX(_val) (Uint16)(((_val & 0xFF00) >> 8) | ((_val << 8) & 0xFF00))
+#include "adx_bsc.h"
 
 static ADX_BASIC adxb_obj[8] = { 0 };
-
-void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl);
-void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl);
-void ADXB_Destroy(ADXB adxb);
-void ADXB_EvokeExpandMono(ADXB adxb, Sint32 nblk);
-void ADXB_EvokeExpandSte(ADXB adxb, Sint32 nblk);
-void ADXB_ExecOneAdx(ADXB adxb);
-void memcpy2(Sint16 *dst, const Sint16 *src, Sint32 nword);
 
 // 100% matching!
 void ADXB_CopyExtraBufMono(Sint16 *obuf, Sint32 obsize, Sint32 xsize, Sint32 nxsmpl)
@@ -138,12 +130,12 @@ Sint32 ADXB_DecodeHeaderAdx(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     adxb->dp.pcmbsize = adxb->pcmbsize;
     adxb->dp.pcmbdist = adxb->pcmbdist;
     
-    adxb->unk7C = adxb->unk48; // no idea what these fields are
+    adxb->unk7C = adxb->unk48; // no idea what these fields are, they aren't referenced anywhere else
     adxb->unk7E = adxb->unk4A;
  
-    adxb->ndeclen = (Sint32)&adxb->unk4C; // looks wrong...
+    adxb->unk80 = (Sint32)&adxb->unk4C; 
 
-    memset((void*)adxb->ndeclen, 0, sizeof(Sint32));
+    memset((void*)adxb->unk80, 0, sizeof(Sint32));
 
     return dlen;
 }

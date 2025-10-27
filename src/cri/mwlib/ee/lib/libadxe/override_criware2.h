@@ -1,4 +1,6 @@
 
+/* adx_xpnd */
+
 typedef struct _adx_xpnd_param
 { 
 	Sint32 nch;
@@ -21,9 +23,10 @@ typedef struct _adx_xpdobj
 } ADX_XPDOBJ;
 typedef ADX_XPDOBJ *ADXPD;
 
+/* adx_bsc */
+
 typedef struct _adx_dec_para 
 { 
-    // ndecsmpl is missing
     Sint8 *ibuf; 
     Sint32 niblk;
     Sint32 nch;
@@ -63,14 +66,13 @@ typedef struct _adx_intbuf
    Sint16 *pcmbuf;
    Sint32 pcmbsize;
    Sint32 pcmbdist;
-   // k0, km and ka are missing, also ahxdecsmpl and ahxsvrfreq
    Sint16 unk48;
    Sint16 unk4A;
    Sint32 unk4C;
    AdxDecPara dp;   
    Sint16 unk7C;
    Sint16 unk7E;
-   Sint32 ndeclen;
+   Sint32 unk80;
    Sint32 ndecsmpl;
    void* (*getwrfunc)();
    void *getwrobj;
@@ -84,6 +86,8 @@ typedef struct _adx_intbuf
    Sint16 cdctype;
 } ADX_BASIC;
 typedef ADX_BASIC *ADXB;
+
+/* adx_sjd */
 
 #ifndef ADXSJD_DEFINED
 #define ADXSJD_DEFINED
