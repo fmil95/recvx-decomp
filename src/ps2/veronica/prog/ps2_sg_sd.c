@@ -1588,18 +1588,14 @@ unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned i
 }
 */
 
-// 
-// Start address: 0x2dde60
+// 100% matching!
 void CpEEWait(int val)
 {
-	// Line 4739, Address: 0x2dde60, Func Offset: 0
-	// Line 4740, Address: 0x2dde68, Func Offset: 0x8
-	// Line 4741, Address: 0x2dde6c, Func Offset: 0xc
-	// Line 4742, Address: 0x2dde70, Func Offset: 0x10
-	// Line 4743, Address: 0x2dde74, Func Offset: 0x14
-	// Line 4744, Address: 0x2dde78, Func Offset: 0x18
-	// Line 4745, Address: 0x2dde84, Func Offset: 0x24
-	// Func End, Address: 0x2dde8c, Func Offset: 0x2c
-	scePrintf("CpEEWait - UNIMPLEMENTED!\n");
+    while (val-- > 0) 
+    {
+        asm("nop");
+        asm("nop");
+        asm("nop");
+        asm("nop");
+    }
 }
-
