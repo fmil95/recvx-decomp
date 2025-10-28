@@ -164,9 +164,59 @@ void adxsjd_decode_exec(ADXSJD sjd)
     }
 }
 
-void adxsjd_decode_prep(ADXSJD sjd) 
+// 100% matching!
+void adxsjd_decode_prep(ADXSJD sjd)
 {
-    scePrintf("adxsjd_decode_prep - UNIMPLEMENTED!\n");
+    ADXB adxb;
+	SJ sji;
+	SJCK ck;
+	SJCK ck2;
+	Sint32 len;
+	Sint32 fmt;
+    
+    sji = sjd->sji;
+    
+    adxb = sjd->adxb;
+
+    SJ_GetChunk(sji, 1, 4096, &ck);
+
+    if (ck.len < 16)
+    {
+        SJ_UngetChunk(sji, 1, &ck);
+        return;
+    }
+
+    len = ADXB_DecodeHeader(adxb, ck.data, ck.len);
+
+    if ((len == 0) || (ck.len < len)) 
+    {
+        SJ_UngetChunk(sji, 1, &ck);
+        return;
+    }
+
+    sjd->hdrlen = len;
+
+    fmt = ADXB_GetFormat(adxb);
+
+    if (fmt == 4)
+    {
+        sjd->empty_end = 1;
+    }
+
+    fmt = ADXB_GetFormat(adxb);
+
+    if (fmt == 2)
+    {
+        memcpy(sjd->spsdinfo, ck.data, (ck.len > (Sint32)sizeof(sjd->spsdinfo)) ? (Sint32)sizeof(sjd->spsdinfo) : ck.len);
+    }
+
+    SJ_SplitChunk(&ck, len, &ck, &ck2);
+
+    SJ_PutChunk(sji, 0, &ck);
+    
+    SJ_UngetChunk(sji, 1, &ck2);
+
+    sjd->stat = 2;
 }
 
 // 100% matching!

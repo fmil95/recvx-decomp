@@ -11,8 +11,15 @@ Sint32 ADX_DecodeInfo(Sint8* adr, Sint32 siz, Sint16* arg2, Sint8* arg3, Sint8* 
     scePrintf("ADX_DecodeInfo - UNIMPLEMENTED!\n");
 }
 
-// ADX_DecodeInfoExADPCM2
-// ADX_DecodeInfoExLoop
+Sint32 ADX_DecodeInfoExADPCM2(Sint8 *ibuf, Sint32 ibuflen, Sint16 *cof)
+{
+    scePrintf("ADX_DecodeInfoExADPCM2 - UNIMPLEMENTED!\n");
+}
+
+Sint32 ADX_DecodeInfoExLoop(Sint8 *ibuf, Sint32 ibuflen, Sint32 *lp_ins_nsmpl, Sint16 *nloop, Sint16 *lp_type, Sint32 *lp_spos, Sint32 *lp_sofst, Sint32 *lp_epos, Sint32 *lp_eofst)
+{
+    scePrintf("ADX_DecodeInfoExLoop - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void ADX_GetCoefficient(Sint32 cof, Sint32 sfreq, Sint16 *k0, Sint16 *k1)
