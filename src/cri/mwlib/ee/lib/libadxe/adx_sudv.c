@@ -1,28 +1,28 @@
-
+#include "adx_sudv.h"
 
 // 100% matching!
-void adxt_err_dvd(Sint32 arg0, Char8* err_msg)
+void adxt_err_dvd(void *obj, const char *msg, void *hndl)
 {
-    ADXERR_CallErrFunc1((const Sint8*)err_msg);
+    ADXERR_CallErrFunc1((const Sint8*)msg);
 }
 
 // 100% matching!
-Sint32 ADXT_LoadFpCacheDvd(ADXT_SPRM* sprm)
+Sint32 ADXT_LoadFpCacheDvd(ADXT_SPRM *sprm)
 {
-    Sint32 ret;
+    Sint32 size;
 
-    ret = 0;
+    size = 0;
     
     if (sprm != NULL) 
     {
-        ret = dvCiLoadFpCache(sprm->fname, sprm->fpc, sprm->size);
+        size = dvCiLoadFpCache(sprm->fname, sprm->fpc, sprm->size);
     }
     
-    return ret;
+    return size;
 }
 
 // 100% matching!
-void ADXT_SetRdMode(ADXT_SPRM* sprm)
+void ADXT_SetRdMode(ADXT_SPRM *sprm)
 {
     dvCiSetRdMode(sprm->nrtry, sprm->speed, sprm->dtype);
 }
@@ -30,7 +30,7 @@ void ADXT_SetRdMode(ADXT_SPRM* sprm)
 // 100% matching!
 void ADXT_SetupDvdFs(ADXT_SPRM *sprm) 
 {
-    cvFsEntryErrFunc((void*)adxt_err_dvd, NULL);
+    cvFsEntryErrFunc(adxt_err_dvd, NULL);
     
     cvFsAddDev("CDV", (void*)dvCiGetInterface, NULL);
     
