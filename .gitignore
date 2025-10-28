@@ -11,6 +11,7 @@ src/ps2/veronica/prog/*.o
 elf/*.o
 elf/*.s
 elf/main.elf
+elf/main.elf.xMAP
 elf/report.txt
 elf/iso/data
 elf/iso/RE_CVX.iso
