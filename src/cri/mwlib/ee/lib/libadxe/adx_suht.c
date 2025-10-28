@@ -1,24 +1,24 @@
-
+#include "adx_suht.h"
 
 // 100% matching!
-void adxt_err_host(Sint32 arg0, Char8* err_msg) 
+void adxt_err_host(void *obj, const char *msg, void *hndl)
 {
-    ADXERR_CallErrFunc1((const Sint8*)err_msg);
+    ADXERR_CallErrFunc1((const Sint8*)msg);
 }
 
 // 100% matching!
-Sint32 ADXT_LoadFpCacheHost(ADXT_SPRM* sprm)
+Sint32 ADXT_LoadFpCacheHost(ADXT_SPRM *sprm)
 {
-    Sint32 ret;
+    Sint32 size;
 
-    ret = 0;
+    size = 0;
     
     if (sprm != NULL) 
     {
-        ret = htCiLoadFpCache(sprm->fname, sprm->fpc, sprm->size);
+        size = htCiLoadFpCache(sprm->fname, sprm->fpc, sprm->size);
     }
     
-    return ret;
+    return size;
 }
 
 // 100% matching!
@@ -28,9 +28,9 @@ void ADXT_SetOpMode(ADXT_SPRM *sprm)
 }
 
 // 100% matching!
-void ADXT_SetupHostFs(ADXT_SPRM *sprm) 
+void ADXT_SetupHostFs(ADXT_SPRM *sprm)
 {
-    cvFsEntryErrFunc((void*)adxt_err_host, NULL);
+    cvFsEntryErrFunc(adxt_err_host, NULL);
     
     cvFsAddDev("HST", (void*)htCiGetInterface, NULL);
     
