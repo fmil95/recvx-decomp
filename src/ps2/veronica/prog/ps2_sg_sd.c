@@ -37,10 +37,10 @@ unsigned short use_se_info[6];
 SDS_MEMBLK __snd_mem_blk__[20];
 SDSHOT __shot_handle_top;
 short SE_BANK[5];
-/*unsigned int ee_trans_cue;
-short SE_HD_CHECK[5];*/
+unsigned int ee_trans_cue;
+short SE_HD_CHECK[5];
 short MIDI_BANK[4];
-/*short MIDI_HD_CHECK[4];*/
+short MIDI_HD_CHECK[4];
 int __pstm_value;
 SDPSTM __pstm_handle_top;
 SND_WORK __snd_work__[40];
@@ -88,9 +88,9 @@ SDE_ERR sdSysServer();
 SDE_ERR sdSysSetSlotMax(int shot_slot_max, int pstm_slot_max);
 SDE_ERR sdMemBlkSetTransferMode();
 SDE_ERR sdMultiUnitDownload(SDS_MEMBLK* handle);
-SDE_ERR sdSysFinish();
+SDE_ERR sdSysFinish();*/
 unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned int size, unsigned int mode, unsigned int flag);
-void CpEEWait(int val);*/
+void CpEEWait(int val);
 
 // 100% matching! 
 SDE_ERR	sdBankDownload( SDMEMBLK handle, const SDE_DATA_TYPE bank_type, const Sint8 bank_num)
@@ -1124,178 +1124,317 @@ SDE_ERR	sdSndStopAll( Void)
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2dcbb0
+// 100% matching!
 int sndr_trans_func()
 {
-	int i;
-	//int i;
-	int current_trans_size;
-	// Line 2879, Address: 0x2dcbb0, Func Offset: 0
-	// Line 2881, Address: 0x2dcbbc, Func Offset: 0xc
-	// Line 2883, Address: 0x2dcbf8, Func Offset: 0x48
-	// Line 2887, Address: 0x2dcc1c, Func Offset: 0x6c
-	// Line 2888, Address: 0x2dcc4c, Func Offset: 0x9c
-	// Line 2889, Address: 0x2dcc54, Func Offset: 0xa4
-	// Line 2892, Address: 0x2dcc5c, Func Offset: 0xac
-	// Line 2893, Address: 0x2dcc64, Func Offset: 0xb4
-	// Line 2894, Address: 0x2dcc7c, Func Offset: 0xcc
-	// Line 2895, Address: 0x2dcc90, Func Offset: 0xe0
-	// Line 2896, Address: 0x2dcc98, Func Offset: 0xe8
-	// Line 2897, Address: 0x2dcca8, Func Offset: 0xf8
-	// Line 2898, Address: 0x2dccb4, Func Offset: 0x104
-	// Line 2901, Address: 0x2dccc0, Func Offset: 0x110
-	// Line 2904, Address: 0x2dccc4, Func Offset: 0x114
-	// Line 2906, Address: 0x2dcccc, Func Offset: 0x11c
-	// Line 2911, Address: 0x2dccfc, Func Offset: 0x14c
-	// Line 2913, Address: 0x2dcd18, Func Offset: 0x168
-	// Line 2914, Address: 0x2dcd30, Func Offset: 0x180
-	// Line 2915, Address: 0x2dcd38, Func Offset: 0x188
-	// Line 2914, Address: 0x2dcd3c, Func Offset: 0x18c
-	// Line 2915, Address: 0x2dcd48, Func Offset: 0x198
-	// Line 2919, Address: 0x2dcd54, Func Offset: 0x1a4
-	// Line 2921, Address: 0x2dcd58, Func Offset: 0x1a8
-	// Line 2922, Address: 0x2dcd88, Func Offset: 0x1d8
-	// Line 2923, Address: 0x2dcd90, Func Offset: 0x1e0
-	// Line 2926, Address: 0x2dcd98, Func Offset: 0x1e8
-	// Line 2927, Address: 0x2dcda0, Func Offset: 0x1f0
-	// Line 2928, Address: 0x2dcdb4, Func Offset: 0x204
-	// Line 2929, Address: 0x2dcdc8, Func Offset: 0x218
-	// Line 2930, Address: 0x2dcdd0, Func Offset: 0x220
-	// Line 2931, Address: 0x2dcdd8, Func Offset: 0x228
-	// Line 2935, Address: 0x2dcde0, Func Offset: 0x230
-	// Line 2936, Address: 0x2dcde8, Func Offset: 0x238
-	// Line 2937, Address: 0x2dcdf0, Func Offset: 0x240
-	// Line 2939, Address: 0x2dce14, Func Offset: 0x264
-	// Line 2943, Address: 0x2dce44, Func Offset: 0x294
-	// Line 2944, Address: 0x2dce74, Func Offset: 0x2c4
-	// Line 2945, Address: 0x2dce7c, Func Offset: 0x2cc
-	// Line 2948, Address: 0x2dce84, Func Offset: 0x2d4
-	// Line 2949, Address: 0x2dce9c, Func Offset: 0x2ec
-	// Line 2957, Address: 0x2dcea0, Func Offset: 0x2f0
-	// Line 2961, Address: 0x2dcecc, Func Offset: 0x31c
-	// Line 2962, Address: 0x2dcee4, Func Offset: 0x334
-	// Line 2963, Address: 0x2dceec, Func Offset: 0x33c
-	// Line 2965, Address: 0x2dcef4, Func Offset: 0x344
-	// Line 2967, Address: 0x2dcefc, Func Offset: 0x34c
-	// Line 2970, Address: 0x2dcf04, Func Offset: 0x354
-	// Line 2971, Address: 0x2dcf0c, Func Offset: 0x35c
-	// Line 2973, Address: 0x2dcf24, Func Offset: 0x374
-	// Line 2974, Address: 0x2dcf58, Func Offset: 0x3a8
-	// Line 2976, Address: 0x2dcf60, Func Offset: 0x3b0
-	// Line 2978, Address: 0x2dcf68, Func Offset: 0x3b8
-	// Line 2976, Address: 0x2dcf70, Func Offset: 0x3c0
-	// Line 2979, Address: 0x2dcf74, Func Offset: 0x3c4
-	// Line 2978, Address: 0x2dcf7c, Func Offset: 0x3cc
-	// Line 2980, Address: 0x2dcf84, Func Offset: 0x3d4
-	// Line 2979, Address: 0x2dcf8c, Func Offset: 0x3dc
-	// Line 2976, Address: 0x2dcf94, Func Offset: 0x3e4
-	// Line 2978, Address: 0x2dcf9c, Func Offset: 0x3ec
-	// Line 2982, Address: 0x2dcfa4, Func Offset: 0x3f4
-	// Line 2980, Address: 0x2dcfac, Func Offset: 0x3fc
-	// Line 2979, Address: 0x2dcfb4, Func Offset: 0x404
-	// Line 2980, Address: 0x2dcfbc, Func Offset: 0x40c
-	// Line 2982, Address: 0x2dcfc4, Func Offset: 0x414
-	// Line 2983, Address: 0x2dcfd4, Func Offset: 0x424
-	// Line 2989, Address: 0x2dcfd8, Func Offset: 0x428
-	// Line 2992, Address: 0x2dcfe8, Func Offset: 0x438
-	// Line 2993, Address: 0x2dd020, Func Offset: 0x470
-	// Line 2997, Address: 0x2dd028, Func Offset: 0x478
-	// Line 2998, Address: 0x2dd054, Func Offset: 0x4a4
-	// Line 3001, Address: 0x2dd058, Func Offset: 0x4a8
-	// Line 3002, Address: 0x2dd070, Func Offset: 0x4c0
-	// Line 3003, Address: 0x2dd078, Func Offset: 0x4c8
-	// Line 3005, Address: 0x2dd080, Func Offset: 0x4d0
-	// Line 3007, Address: 0x2dd088, Func Offset: 0x4d8
-	// Line 3010, Address: 0x2dd090, Func Offset: 0x4e0
-	// Line 3011, Address: 0x2dd098, Func Offset: 0x4e8
-	// Line 3012, Address: 0x2dd0ac, Func Offset: 0x4fc
-	// Line 3013, Address: 0x2dd0e4, Func Offset: 0x534
-	// Line 3014, Address: 0x2dd0ec, Func Offset: 0x53c
-	// Line 3015, Address: 0x2dd0f4, Func Offset: 0x544
-	// Line 3017, Address: 0x2dd0fc, Func Offset: 0x54c
-	// Line 3018, Address: 0x2dd108, Func Offset: 0x558
-	// Line 3019, Address: 0x2dd110, Func Offset: 0x560
-	// Line 3020, Address: 0x2dd120, Func Offset: 0x570
-	// Line 3021, Address: 0x2dd12c, Func Offset: 0x57c
-	// Line 3024, Address: 0x2dd138, Func Offset: 0x588
-	// Line 3027, Address: 0x2dd13c, Func Offset: 0x58c
-	// Line 3029, Address: 0x2dd144, Func Offset: 0x594
-	// Line 3034, Address: 0x2dd174, Func Offset: 0x5c4
-	// Line 3036, Address: 0x2dd190, Func Offset: 0x5e0
-	// Line 3037, Address: 0x2dd1a8, Func Offset: 0x5f8
-	// Line 3038, Address: 0x2dd1b0, Func Offset: 0x600
-	// Line 3037, Address: 0x2dd1b4, Func Offset: 0x604
-	// Line 3038, Address: 0x2dd1c0, Func Offset: 0x610
-	// Line 3041, Address: 0x2dd1cc, Func Offset: 0x61c
-	// Line 3043, Address: 0x2dd1d0, Func Offset: 0x620
-	// Line 3044, Address: 0x2dd200, Func Offset: 0x650
-	// Line 3045, Address: 0x2dd208, Func Offset: 0x658
-	// Line 3048, Address: 0x2dd210, Func Offset: 0x660
-	// Line 3049, Address: 0x2dd218, Func Offset: 0x668
-	// Line 3050, Address: 0x2dd22c, Func Offset: 0x67c
-	// Line 3051, Address: 0x2dd240, Func Offset: 0x690
-	// Line 3052, Address: 0x2dd248, Func Offset: 0x698
-	// Line 3053, Address: 0x2dd250, Func Offset: 0x6a0
-	// Line 3057, Address: 0x2dd258, Func Offset: 0x6a8
-	// Line 3058, Address: 0x2dd260, Func Offset: 0x6b0
-	// Line 3059, Address: 0x2dd268, Func Offset: 0x6b8
-	// Line 3061, Address: 0x2dd28c, Func Offset: 0x6dc
-	// Line 3065, Address: 0x2dd2bc, Func Offset: 0x70c
-	// Line 3066, Address: 0x2dd2ec, Func Offset: 0x73c
-	// Line 3067, Address: 0x2dd2f4, Func Offset: 0x744
-	// Line 3070, Address: 0x2dd2fc, Func Offset: 0x74c
-	// Line 3071, Address: 0x2dd314, Func Offset: 0x764
-	// Line 3079, Address: 0x2dd318, Func Offset: 0x768
-	// Line 3083, Address: 0x2dd344, Func Offset: 0x794
-	// Line 3084, Address: 0x2dd35c, Func Offset: 0x7ac
-	// Line 3085, Address: 0x2dd364, Func Offset: 0x7b4
-	// Line 3087, Address: 0x2dd36c, Func Offset: 0x7bc
-	// Line 3089, Address: 0x2dd374, Func Offset: 0x7c4
-	// Line 3092, Address: 0x2dd37c, Func Offset: 0x7cc
-	// Line 3093, Address: 0x2dd384, Func Offset: 0x7d4
-	// Line 3095, Address: 0x2dd39c, Func Offset: 0x7ec
-	// Line 3096, Address: 0x2dd3d0, Func Offset: 0x820
-	// Line 3098, Address: 0x2dd3d8, Func Offset: 0x828
-	// Line 3100, Address: 0x2dd3e0, Func Offset: 0x830
-	// Line 3098, Address: 0x2dd3e8, Func Offset: 0x838
-	// Line 3101, Address: 0x2dd3ec, Func Offset: 0x83c
-	// Line 3100, Address: 0x2dd3f4, Func Offset: 0x844
-	// Line 3102, Address: 0x2dd3fc, Func Offset: 0x84c
-	// Line 3101, Address: 0x2dd404, Func Offset: 0x854
-	// Line 3098, Address: 0x2dd40c, Func Offset: 0x85c
-	// Line 3100, Address: 0x2dd414, Func Offset: 0x864
-	// Line 3104, Address: 0x2dd41c, Func Offset: 0x86c
-	// Line 3102, Address: 0x2dd424, Func Offset: 0x874
-	// Line 3101, Address: 0x2dd42c, Func Offset: 0x87c
-	// Line 3102, Address: 0x2dd434, Func Offset: 0x884
-	// Line 3104, Address: 0x2dd43c, Func Offset: 0x88c
-	// Line 3105, Address: 0x2dd44c, Func Offset: 0x89c
-	// Line 3111, Address: 0x2dd450, Func Offset: 0x8a0
-	// Line 3114, Address: 0x2dd460, Func Offset: 0x8b0
-	// Line 3115, Address: 0x2dd498, Func Offset: 0x8e8
-	// Line 3119, Address: 0x2dd4a0, Func Offset: 0x8f0
-	// Line 3120, Address: 0x2dd4cc, Func Offset: 0x91c
-	// Line 3123, Address: 0x2dd4d0, Func Offset: 0x920
-	// Line 3124, Address: 0x2dd4e8, Func Offset: 0x938
-	// Line 3125, Address: 0x2dd4f0, Func Offset: 0x940
-	// Line 3127, Address: 0x2dd4f8, Func Offset: 0x948
-	// Line 3129, Address: 0x2dd500, Func Offset: 0x950
-	// Line 3132, Address: 0x2dd508, Func Offset: 0x958
-	// Line 3133, Address: 0x2dd510, Func Offset: 0x960
-	// Line 3135, Address: 0x2dd524, Func Offset: 0x974
-	// Line 3136, Address: 0x2dd55c, Func Offset: 0x9ac
-	// Line 3137, Address: 0x2dd564, Func Offset: 0x9b4
-	// Line 3138, Address: 0x2dd56c, Func Offset: 0x9bc
-	// Line 3140, Address: 0x2dd574, Func Offset: 0x9c4
-	// Line 3141, Address: 0x2dd580, Func Offset: 0x9d0
-	// Line 3142, Address: 0x2dd588, Func Offset: 0x9d8
-	// Line 3143, Address: 0x2dd598, Func Offset: 0x9e8
-	// Line 3144, Address: 0x2dd5a4, Func Offset: 0x9f4
-	// Line 3147, Address: 0x2dd5b0, Func Offset: 0xa00
-	// Line 3152, Address: 0x2dd5b8, Func Offset: 0xa08
-	// Func End, Address: 0x2dd5c8, Func Offset: 0xa18
-	scePrintf("sndr_trans_func - UNIMPLEMENTED!\n");
+    int i;                 
+    int current_trans_size; 
+
+    switch (trans_type)
+    {
+    case SDE_DATA_TYPE_MIDI_SEQ_BANK:
+        switch (trans_level)
+        {
+        case 0:
+            while ((ee_trans_cue = CpSifDmaTransEEToIOP(ee_trans_sq_address, iop_trans_sq_address, ee_trans_sq_size, 0, 0)) == 0);
+           
+            trans_level = 1;
+            break;
+        case 1:
+            while (sceSifDmaStat(ee_trans_cue) >= 0)
+            {
+                CpEEWait(10240);
+            }
+            
+            SdrSQDataSet(trans_bank_num, ee_trans_sq_size);
+            
+            SdrSendReq(0);
+            
+            if ((__snd_set_end_func__ != NULL) && ((int)__snd_set_end_func__ != -1))
+            {
+                (*__snd_set_end_func__)(__snd_end_func_arg__);
+            }
+            
+            snd_data_down_load = 0;
+            break;
+        }
+        
+        break;
+    case SDE_DATA_TYPE_MIDI_PRG_BANK:
+        switch (trans_level)
+        {
+        case 0:
+            MIDI_HD_CHECK[trans_bank_num] = 0;
+            
+            current_trans_size = ee_trans_hd_size;
+            
+            for (i = 0; i < ee_trans_hd_size; i++)
+            {
+                MIDI_HD_CHECK[trans_bank_num] += ((char*)ee_trans_hd_address)[i];
+            }
+            
+            while ((ee_trans_cue = CpSifDmaTransEEToIOP(ee_trans_hd_address, iop_trans_hd_address, ee_trans_hd_size, 0, 0)) == 0);
+           
+            trans_level = 1;
+            break;
+        case 1:
+            while (sceSifDmaStat(ee_trans_cue) >= 0)
+            {
+                CpEEWait(10240);
+            }
+            
+            SdrHDDataSet(trans_bank_num, ee_trans_hd_size);
+            
+            SdrSendReq(0);
+            
+            trans_level = 2;
+            break;
+        case 2:
+            while (get_iop_snddata.midi_sum[trans_bank_num] == 0)
+            {
+                CpEEWait(1000);
+                
+                get_iopsnd_info();
+            }
+            
+            if (get_iop_snddata.midi_sum[trans_bank_num] != MIDI_HD_CHECK[trans_bank_num])
+            {
+                while ((ee_trans_cue = CpSifDmaTransEEToIOP(ee_trans_hd_address, iop_trans_hd_address, ee_trans_hd_size, 0, 0)) == 0);
+                
+                trans_level = 1;
+                break;
+            }
+
+            current_trans_size = ee_trans_bd_size;
+            
+            if (ee_trans_bd_size > 49152)
+            {
+                current_trans_size = 49152;
+            }
+            
+            while ((ee_trans_cue = CpSifDmaTransEEToIOP(ee_trans_bd_address, iop_trans_bd_address, current_trans_size, 0, 0)) == 0);
+            
+            if (ee_trans_bd_size > 49152)
+            {
+                trans_level = 3;
+            }
+            else
+            {
+                trans_level = 4;
+            }
+            
+            break;
+        case 3:
+            while (sceSifDmaStat(ee_trans_cue) >= 0)
+            {
+                CpEEWait(10240);
+            }
+            
+            SdrBDDataTrans(MIDI_BANK[trans_bank_num], iop_trans_offset, 49152, iop_packet_flag);
+            
+            SdrSendReq(0);
+            
+            iop_packet_flag ^= 1;
+            
+            ee_trans_bd_size -= 49152;
+            
+            iop_trans_offset += 49152;
+            
+            ee_trans_bd_address += 49152;
+            
+            current_trans_size = ee_trans_bd_size;
+            
+            if (ee_trans_bd_size > 49152)
+            {
+                current_trans_size = 49152;
+            }
+            
+            if (iop_packet_flag != 0)
+            {
+                while ((ee_trans_cue = CpSifDmaTransEEToIOP(ee_trans_bd_address, iop_trans_bd_address + 204800, current_trans_size, 0, 0)) == 0);
+            }
+            else
+            {
+                while ((ee_trans_cue = CpSifDmaTransEEToIOP(ee_trans_bd_address, iop_trans_bd_address, current_trans_size, 0, 0)) == 0);
+            }
+            
+            if (ee_trans_bd_size > 49152)
+            {
+                trans_level = 3;
+            }
+            else
+            {
+                trans_level = 4;
+            }
+            
+            break;
+        case 4:
+            while (sceSifDmaStat(ee_trans_cue) >= 0)
+            {
+                CpEEWait(10240);
+            }
+            
+            SdrBDDataTrans(MIDI_BANK[trans_bank_num], iop_trans_offset, ee_trans_bd_size, iop_packet_flag);
+            
+            SdrSendReq(0);
+            
+            trans_level = 5;
+            break;
+        case 5:
+            SdrBDDataSet(trans_bank_num);
+            
+            SdrSendReq(0);
+            
+            if ((__snd_set_end_func__ != NULL) && ((int)__snd_set_end_func__ != -1))
+            {
+                (*__snd_set_end_func__)(__snd_end_func_arg__);
+            }
+            
+            snd_data_down_load = 0;
+            break;
+        }
+        
+        break;
+    case SDE_DATA_TYPE_SHOT_BANK:
+        switch (trans_level)
+        {
+        case 0:
+        {
+            int i;            
+                
+            SE_HD_CHECK[trans_bank_num] = 0;
+            
+            current_trans_size = ee_trans_hd_size;
+            
+            for (i = 0; i < ee_trans_hd_size; i++)
+            {
+                SE_HD_CHECK[trans_bank_num] += ((char*)ee_trans_hd_address)[i];
+            }
+            
+            while ((ee_trans_cue = CpSifDmaTransEEToIOP(ee_trans_hd_address, iop_trans_hd_address, ee_trans_hd_size, 0, 0)) == 0);
+            
+            trans_level = 1;
+            break;
+        }
+        case 1:
+            while (sceSifDmaStat(ee_trans_cue) >= 0)
+            {
+                CpEEWait(10240);
+            }
+            
+            SdrHDDataSet2(trans_bank_num, ee_trans_hd_size);
+            
+            SdrSendReq(0);
+            
+            trans_level = 2;
+            break;
+        case 2:
+            while (get_iop_snddata.se_sum[trans_bank_num] == 0)
+            {
+                CpEEWait(1000);
+                
+                get_iopsnd_info();
+            }
+            
+            if (get_iop_snddata.se_sum[trans_bank_num] != SE_HD_CHECK[trans_bank_num])
+            {
+                while ((ee_trans_cue = CpSifDmaTransEEToIOP(ee_trans_hd_address, iop_trans_hd_address, ee_trans_hd_size, 0, 0)) == 0);
+                
+                trans_level = 1;
+                break;
+            }
+
+            current_trans_size = ee_trans_bd_size;
+            
+            if (ee_trans_bd_size > 49152)
+            {
+                current_trans_size = 49152;
+            }
+                
+            while ((ee_trans_cue = CpSifDmaTransEEToIOP(ee_trans_bd_address, iop_trans_bd_address, current_trans_size, 0, 0)) == 0);
+
+            if (ee_trans_bd_size > 49152)
+            {
+                trans_level = 3;
+            }
+            else
+            {
+                trans_level = 4;
+            }
+                
+            break;
+        case 3:
+            while (sceSifDmaStat(ee_trans_cue) >= 0)
+            {
+                CpEEWait(10240);
+            }
+            
+            SdrBDDataTrans(SE_BANK[trans_bank_num], iop_trans_offset, 49152, iop_packet_flag);
+            
+            SdrSendReq(0);
+            
+            iop_packet_flag ^= 1;
+            
+            ee_trans_bd_size -= 49152;
+            
+            iop_trans_offset += 49152;
+            
+            ee_trans_bd_address += 49152;
+            
+            current_trans_size = ee_trans_bd_size;
+            
+            if (ee_trans_bd_size > 49152)
+            {
+                current_trans_size = 49152;
+            }
+            
+            if (iop_packet_flag != 0)
+            {
+                while ((ee_trans_cue = CpSifDmaTransEEToIOP(ee_trans_bd_address, iop_trans_bd_address + 204800, current_trans_size, 0, 0)) == 0);
+            }
+            else
+            {
+                while ((ee_trans_cue = CpSifDmaTransEEToIOP(ee_trans_bd_address, iop_trans_bd_address, current_trans_size, 0, 0)) == 0);
+            }
+
+            if (ee_trans_bd_size > 49152)
+            {
+                trans_level = 3;
+            }
+            else
+            {
+                trans_level = 4;
+            }
+            
+            break;
+        case 4:
+            while (sceSifDmaStat(ee_trans_cue) >= 0)
+            {
+                CpEEWait(10240);
+            }
+            
+            SdrBDDataTrans(SE_BANK[trans_bank_num], iop_trans_offset, ee_trans_bd_size, iop_packet_flag);
+            
+            SdrSendReq(0);
+            
+            trans_level = 5;
+            break;
+        case 5:
+            SdrBDDataSet2(trans_bank_num);
+            
+            SdrSendReq(0);
+            
+            if ((__snd_set_end_func__ != NULL) && ((int)__snd_set_end_func__ != -1))
+            {
+                (*__snd_set_end_func__)(__snd_end_func_arg__);
+            }
+            
+            snd_data_down_load = 0;
+            break;
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!
@@ -1517,7 +1656,7 @@ SDE_ERR	sdMultiUnitDownload( SDMEMBLK handle)
         
         UnitAddress = (char*)handle->m_Member[1];
         
-        //sdBankDownload(handle, SDE_DATA_TYPE_SHOT_BANK, 0); // TODO: causes stack overflow, probably requires sndr_trans_func() and SdrSendReq() decompiled
+        sdBankDownload(handle, SDE_DATA_TYPE_SHOT_BANK, 0); 
         
         do 
         {
@@ -1529,7 +1668,7 @@ SDE_ERR	sdMultiUnitDownload( SDMEMBLK handle)
         handle->m_Member[1] = (int)(UnitAddress + ((int*)UnitAddress)[4]);
         handle->m_Member[2] = ((int*)UnitAddress)[5];
         
-        //sdBankDownload(handle, SDE_DATA_TYPE_MIDI_SEQ_BANK, 1); 
+        sdBankDownload(handle, SDE_DATA_TYPE_MIDI_SEQ_BANK, 1); 
         
         do
         {
