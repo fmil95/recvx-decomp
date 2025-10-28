@@ -668,8 +668,8 @@ int SdrGetState(int command, int data) {
     return ret2;
 }
 
+// 100% matching!
 int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch) {
-    /*
     int cd;
     int len;
     unsigned char* sb_p;
@@ -719,8 +719,6 @@ int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned
     *sb_p = 0xFF;
     
     return 0;
-    */
-	scePrintf("makebuff_tq - UNIMPLEMENTED!\n");
 }
 
 // 100% matching!
