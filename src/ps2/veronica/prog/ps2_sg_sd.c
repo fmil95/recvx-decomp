@@ -1550,43 +1550,78 @@ SDE_ERR	sdSysFinish( Void)
     return (__sg_sd_snd_init__ != 0) ? SDE_ERR_NOTHING : SDE_ERR_NO_INIT;
 }
 
-/*// 
-// Start address: 0x2ddd30
-unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned int size, unsigned int mode, unsigned int flag)
+// 98.68% matching
+unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned int size, unsigned int mode, unsigned int flag) 
 {
-	int cueNo;
-	_anon1 transDmaEEToIOP;
-	// Line 4655, Address: 0x2ddd30, Func Offset: 0
-	// Line 4659, Address: 0x2ddd44, Func Offset: 0x14
-	// Line 4655, Address: 0x2ddd48, Func Offset: 0x18
-	// Line 4659, Address: 0x2ddd50, Func Offset: 0x20
-	// Line 4667, Address: 0x2ddd68, Func Offset: 0x38
-	// Line 4670, Address: 0x2ddd70, Func Offset: 0x40
-	// Line 4673, Address: 0x2ddd8c, Func Offset: 0x5c
-	// Line 4674, Address: 0x2ddd94, Func Offset: 0x64
-	// Line 4675, Address: 0x2ddd9c, Func Offset: 0x6c
-	// Line 4676, Address: 0x2ddda4, Func Offset: 0x74
-	// Line 4677, Address: 0x2ddda8, Func Offset: 0x78
-	// Line 4678, Address: 0x2dddb4, Func Offset: 0x84
-	// Line 4679, Address: 0x2dddc4, Func Offset: 0x94
-	// Line 4680, Address: 0x2dddcc, Func Offset: 0x9c
-	// Line 4681, Address: 0x2dddd4, Func Offset: 0xa4
-	// Line 4689, Address: 0x2ddddc, Func Offset: 0xac
-	// Line 4690, Address: 0x2ddde4, Func Offset: 0xb4
-	// Line 4691, Address: 0x2dddec, Func Offset: 0xbc
-	// Line 4692, Address: 0x2dddf4, Func Offset: 0xc4
-	// Line 4693, Address: 0x2dddf8, Func Offset: 0xc8
-	// Line 4694, Address: 0x2dde04, Func Offset: 0xd4
-	// Line 4695, Address: 0x2dde14, Func Offset: 0xe4
-	// Line 4696, Address: 0x2dde1c, Func Offset: 0xec
-	// Line 4697, Address: 0x2dde24, Func Offset: 0xf4
-	// Line 4710, Address: 0x2dde2c, Func Offset: 0xfc
-	// Line 4714, Address: 0x2dde38, Func Offset: 0x108
-	// Line 4721, Address: 0x2dde40, Func Offset: 0x110
-	// Line 4732, Address: 0x2dde44, Func Offset: 0x114
-	// Func End, Address: 0x2dde60, Func Offset: 0x130
+    int cueNo;
+    static sceSifDmaData transDmaEEToIOP;
+
+    cueNo = 0;
+
+    if (size > 1048560) 
+    {
+        return 0;
+    }
+    
+    switch (flag) 
+    {
+    case 0:
+        while (TRUE)
+        {
+            transDmaEEToIOP.data = src;
+            transDmaEEToIOP.addr = dst;
+            
+            transDmaEEToIOP.size = size;
+            
+            transDmaEEToIOP.mode = mode;
+            
+            FlushCache(0);
+            
+            cueNo = sceSifSetDma(&transDmaEEToIOP, 1);
+            
+            if (cueNo != 0) 
+            {
+                break;
+            }
+            
+            CpEEWait(10000);
+        }
+        
+        break;
+    case 1:
+        while (TRUE) 
+        {
+            transDmaEEToIOP.data = src;
+            transDmaEEToIOP.addr = dst;
+            
+            transDmaEEToIOP.size = size;
+            
+            transDmaEEToIOP.mode = mode;
+            
+            FlushCache(0);
+            
+            cueNo = isceSifSetDma(&transDmaEEToIOP, 1);
+            
+            if (cueNo != 0)
+            {
+                break;
+            }
+            
+            CpEEWait(10000);
+        }
+        
+        break;
+    default:
+        return 0;
+    }
+
+    if (cueNo == 0)
+    {
+        return 0;
+    }
+
+    return cueNo;
 }
-*/
 
 // 100% matching!
 void CpEEWait(int val)
