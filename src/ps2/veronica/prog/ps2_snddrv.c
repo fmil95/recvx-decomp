@@ -594,17 +594,17 @@ return_zero:
 }
 
 // 100% matching!
-void cb_sifRpc(int smid)
+static void cb_sifRpc(int smid)
 {
     iSignalSema(smid);
 }
 
 // 100% matching!
-void cb_sifRpc_snd(int smid)
+static void cb_sifRpc_snd(int smid)
 {
     iSignalSema(smid);
     
-    *(int*)0x1E212C8 = 0;
+    SendReqFlag = 0;
 }
 
 // 100% matching!
