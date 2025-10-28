@@ -1,6 +1,6 @@
-static ADX_SJDEC adxsjd_obj[8] = { 0 };
+#include "adx_sjd.h"
 
-void* adxsjd_get_wr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl);
+static ADX_SJDEC adxsjd_obj[8] = { 0 };
 
 // 100% matching!
 void adxsjd_clear(ADXSJD sjd)
@@ -88,9 +88,66 @@ ADXSJD ADXSJD_Create(SJ sji, Sint32 maxnch, SJ *sjo)
     return sjd;
 }
 
-void adxsjd_decexec_end(ADXSJD sjd)
+// 100% matching!
+void adxsjd_decexec_end(ADXSJD sjd) 
 {
-    scePrintf("adxsjd_decexec_end - UNIMPLEMENTED!\n");
+    ADXB adxb;
+	SJCK ck;
+	SJCK ck2;
+	Sint32 dlen;
+	Sint32 i;
+	Sint32 ndecsmpl;
+	Sint32 total_nsmpl;
+	SJ sji;
+    
+    adxb = sjd->adxb;
+
+    sji = sjd->sji;
+
+    total_nsmpl = ADXB_GetTotalNumSmpl(adxb);
+
+    dlen = ADXB_GetDecDtLen(adxb);
+
+    ndecsmpl = ADXB_GetDecNumSmpl(adxb);
+    
+    total_nsmpl -= sjd->decpos;
+
+    ndecsmpl = (ndecsmpl < total_nsmpl) ? ndecsmpl : total_nsmpl;
+    
+    SJ_SplitChunk(&sjd->cki, dlen, &ck, &ck2);
+    
+    SJ_PutChunk(sji, 0, &ck);
+    
+    SJ_UngetChunk(sji, 1, &ck2);
+
+    for (i = 0; i < ADXB_GetNumChan(sjd->adxb); i++) 
+    {
+        SJ_SplitChunk(&sjd->cko[i], ndecsmpl * 2, &ck, &ck2);
+
+        if (sjd->dfltfunc != NULL) 
+        {
+            sjd->dfltfunc(sjd->dfltobj, i, ck.data, ck.len);
+        }
+
+        SJ_PutChunk(sjd->sjo[i], 1, &ck);
+        
+        SJ_UngetChunk(sjd->sjo[i], 0, &ck2);
+    }
+
+    sjd->total_decsmpl += ndecsmpl;
+    sjd->total_decdtlen += dlen;
+    
+    sjd->decpos += ndecsmpl;
+    
+    sjd->dtrpcnt += ndecsmpl;
+    sjd->dtrpdtlen += dlen;
+
+    if (((sjd->dtrpsmpl >= 0) && (sjd->dtrpcnt >= sjd->dtrpsmpl)) && (sjd->dtrpfunc != NULL)) 
+    {
+        sjd->dtrpfunc(sjd->dtrpobj);
+    }
+    
+    ADXB_Reset(adxb);
 }
 
 // 100% matching!
