@@ -1,49 +1,10 @@
-
-typedef void *ADXSTM;
-
-typedef struct _adxstm_file 
-{ 
-	Sint8 used;
-	Sint8 stat;
-	Sint8 rdflg;
-	Sint8 errcnt;
-	SJ sj;
-	CVFS fp;
-	Sint32 stpos;
-	Sint32 fofst;
-	Sint32 fsize;
-	Sint32 maxsize;
-	Sint32 minsize;
-	Sint32 reqsct;
-	SJCK reqck;
-	Sint32 rdsct;
-	Sint32 esct;
-	Sint32 tbyte;
-	void (*eosfunc)();
-	void *eosobj;
-	/* these fields are likely not present in this version
-    Sint32 bsize;
-	Sint8 pauseflg;
-	Sint8 rsv;
-	Sint16 rsv2; */
-} ADXSTM_FILE;
-typedef ADXSTM_FILE *ADXSTMF;
+#include "adx_stmc.h"
 
 static ADXSTM_FILE adxstmf_obj[40] = { 0 };
 static Sint32 adxstm_sj_internal_error_cnt;
 static Sint32 adxstmf_nrml_num;
 static Sint32 adxstmf_nrml_ofst;
 static Sint32 adxstmf_num_rtry;
-
-void ADXSTMF_Destroy(ADXSTMF stmf);                      
-void ADXSTM_Stop(ADXSTM stm);  
-ADXSTM ADXSTM_OpenFileRangeEx(const Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct, SJ sj);
-ADXSTM ADXSTM_OpenFileRangeExRt(const Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct, SJ sj);
-ADXSTMF ADXSTMF_CreateCvfs(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
-ADXSTMF ADXSTMF_CreateCvfsRt(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
-void ADXSTMF_ExecHndl(ADXSTMF stmf);
-void ADXSTMF_SetupHandleMember(ADXSTMF stmf, CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj);
-void adxstmf_stat_exec(ADXSTMF stmf);
 
 // 100% matching!
 void ADXSTM_Close(ADXSTM stm) 
@@ -585,9 +546,129 @@ void ADXSTMF_SetupHandleMember(ADXSTMF stmf, CVFS fp, Sint32 fofst, Sint32 fsize
     stmf->used = TRUE;
 }
 
-void adxstmf_stat_exec(ADXSTMF stmf)
+// 100% matching!
+void adxstmf_stat_exec(ADXSTMF stmf) 
 {
-    scePrintf("adxstmf_stat_exec - UNIMPLEMENTED!\n");
+    SJ sj;
+	Sint32 ndata;
+	Sint32 nsct;
+	Sint32 rbyte;
+	Sint32 stat;
+	Sint32 fsize; /* unused */
+	Sint32 fnsct;
+	Sint32 esct; /* unused */
+	SJCK ck;
+	SJCK ck2;
+    
+    sj = stmf->sj;
+
+    if (stmf->rdflg == 1)
+    {
+        stat = cvFsGetStat(stmf->fp);
+        
+        if (stat == CVE_FS_ST_COMPLETE) 
+        {
+            rbyte = stmf->reqsct * 2048;
+            
+            SJ_SplitChunk(&stmf->reqck, rbyte, &ck, &ck2);
+            
+            SJ_PutChunk(sj, 1, &ck);
+            
+            SJ_UngetChunk(sj, 0, &ck2);
+            
+            if ((ADXSTM_Tell(stmf) == stmf->esct) && (stmf->eosfunc != NULL)) 
+            {
+                stmf->eosfunc(stmf->eosobj);
+            } 
+            
+            stmf->rdflg = 0;
+
+            stmf->tbyte += rbyte;
+
+            if (ADXSTM_Tell(stmf) >= ((stmf->fsize + 2047) / 2048)) 
+            {
+                stmf->stat = 3;
+            }
+            
+            stmf->errcnt = 0;
+        } 
+        else if (stat == CVE_FS_ST_ERR) 
+        {
+            SJ_UngetChunk(sj, 0, &stmf->reqck);
+            
+            if (adxstmf_num_rtry >= 0) 
+            {
+                if (stmf->errcnt >= adxstmf_num_rtry) 
+                {
+                    stmf->stat = 4;
+                } 
+                else
+                {
+                    stmf->errcnt++;
+                }
+            }
+
+            stmf->rdflg = 0;
+        } 
+    } 
+    
+    if (stmf->rdflg != 0) 
+    {
+        return;
+    }
+    
+    if ((sj == NULL) || (sj->vtbl == NULL)) 
+    { 
+        adxstm_sj_internal_error();
+        return;
+    }
+
+    ndata = SJ_GetNumData(sj, 1);
+
+    if (ndata < stmf->minsize) 
+    {
+        SJ_GetChunk(sj, 0, stmf->maxsize, &stmf->reqck);
+        
+        nsct = stmf->reqck.len / 2048;
+        
+        fnsct = stmf->esct;
+        
+        fnsct -= ADXSTM_Tell(stmf);
+        
+        nsct = MIN(nsct, fnsct);
+        nsct = MIN(nsct, stmf->rdsct);
+    
+        if (nsct == 0) 
+        {
+            SJ_UngetChunk(sj, 0, &stmf->reqck);
+        }
+        else 
+        {
+            stmf->reqsct = cvFsReqRd(stmf->fp, nsct, stmf->reqck.data);
+            
+            if (stmf->reqsct <= 0)
+            {
+                SJ_UngetChunk(sj, 0, &stmf->reqck);
+            
+                if ((cvFsGetStat(stmf->fp) == CVE_FS_ST_ERR) && (adxstmf_num_rtry >= 0)) 
+                {
+                    if (stmf->errcnt >= adxstmf_num_rtry)
+                    {
+                        stmf->stat = 4;
+                    } 
+                    else
+                    {
+                        stmf->errcnt++;
+                    }
+                }
+        
+            }
+            else 
+            {
+                stmf->rdflg = 1;
+            }
+        }
+    }
 }
 
 // 100% matching!

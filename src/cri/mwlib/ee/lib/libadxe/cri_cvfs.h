@@ -3,6 +3,15 @@
 
 typedef enum 
 {
+	CVE_FS_ST_IDLE = 0,
+	CVE_FS_ST_COMPLETE = 1,
+	CVE_FS_ST_TRANS = 2,
+	CVE_FS_ST_ERR = 3,
+	CVE_FS_ST_NUM = 4
+} CVE_FS_ST;
+
+typedef enum 
+{
 	CVE_FS_OP_READ = 0,
 	CVE_FS_OP_WRITE = 1,
 	CVE_FS_OP_NUM = 2
