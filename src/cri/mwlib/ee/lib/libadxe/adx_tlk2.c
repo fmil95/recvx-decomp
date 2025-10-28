@@ -1,34 +1,28 @@
-#define BSWAP_S32(_val) (Sint32)(((Uint32)_val >> 24) | (_val << 24) | (((_val << 8) & 0xFF0000) | ((_val >> 8) & 0xFF00)))
-
-void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
-void ADXT_StartFname(ADXT adxt, Char8 *fname);
-void ADXT_StartMem(ADXT adxt, void *adxdat);
-void ADXT_StartMem2(ADXT adxt, void *adxdat, Sint32 datlen);
-void ADXT_StartMemIdx(ADXT adxt, void *acx, Sint32 no);
+#include "adx_tlk2.h"
 
 // 100% matching! 
 void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
 {
-    static Char8 fname;
-    Char8 error[16];
-    void* dir;
     Sint32 ofst;
-    Sint32 fnsct;
+	Sint32 nsct;
+	static Sint8 fname[256];
+	void *dir;
+	Sint8 msg[16];
 
     ADXT_Stop(adxt);
     
     ADXCRS_Lock();
     
-    if (ADXF_GetFnameRangeEx(patid, fid, &fname, &dir, &ofst, &fnsct) == 0) 
+    if (ADXF_GetFnameRangeEx(patid, fid, (Char8*)fname, &dir, &ofst, &nsct) == 0) 
     {
-        adxt->stm = ADXSTM_OpenFileRangeExRt((Sint8*)&fname, dir, ofst, fnsct, adxt->sjf);
+        adxt->stm = ADXSTM_OpenFileRangeExRt(fname, dir, ofst, nsct, adxt->sjf);
         
         if (adxt->stm == NULL) 
         {
             ADXCRS_Unlock();
             
-            ADXERR_ItoA2(patid, fid, (Sint8*)error, 16);
-            ADXERR_CallErrFunc2((const Sint8*)"E8101202 ADXT_StartAfs: can't open ", (Sint8*)error);
+            ADXERR_ItoA2(patid, fid, msg, sizeof(msg));
+            ADXERR_CallErrFunc2((const Sint8*)"E8101202 ADXT_StartAfs: can't open ", msg);
         } 
         else 
         {
@@ -108,11 +102,11 @@ void ADXT_StartMemIdx(ADXT adxt, void *acx, Sint32 no)
 
     ADXT_Stop(adxt);
     
-    if ((no < BSWAP_S32(((Sint32*)acx)[1])) && (no >= 0))
+    if ((no < BSWAP_S32(((Sint32*)acx)[1])) && (no >= 0)) // TODO: simplify this line when GCC is added
     {
         ADXCRS_Lock();
         
-        sj = SJMEM_Create((Sint8*)acx + BSWAP_S32(((Sint32*)acx + (no * 2))[2]), ADXT_MAX_DATASIZE);
+        sj = SJMEM_Create((Sint8*)acx + BSWAP_S32(((Sint32*)acx + (no * 2))[2]), ADXT_MAX_DATASIZE); // this one too
         
         if (sj == NULL) 
         {
