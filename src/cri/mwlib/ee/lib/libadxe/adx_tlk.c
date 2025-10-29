@@ -8,6 +8,7 @@ static Sint32 adxt_time_unit;
 static Sint32 adxt_time_mode;
 static float adxt_diff_av;
 
+void ADXT_GetTimeSfreq2(ADXT adxt, Sint32 *ncount, Sint32 *tscale);
 void ADXT_StopWithoutLsc(ADXT adxt);
 
 // 100% matching! 
@@ -577,7 +578,38 @@ Sint32 ADXT_GetTimeReal(ADXT adxt)
 }
 
 // ADXT_GetTimeSfreq
-// ADXT_GetTimeSfreq2
+
+// 100% matching! 
+void ADXT_GetTimeSfreq2(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
+{
+    Sint32 nsmpl;
+    
+    if ((adxt->stat == ADXT_STAT_PLAYING) || (adxt->stat == ADXT_STAT_DECEND))
+    {
+        *tscale = ADXSJD_GetSfreq(adxt->sjd);
+
+        nsmpl = ADXSJD_GetDecNumSmpl(adxt->sjd) - ADXRNA_GetNumData(adxt->rna);
+        
+        *ncount = nsmpl;
+    } 
+    else if (adxt->stat == ADXT_STAT_PLAYEND) 
+    {
+        *ncount = ADXSJD_GetTotalNumSmpl(adxt->sjd);
+        
+        *tscale = ADXSJD_GetSfreq(adxt->sjd);
+        
+        *ncount *= 16 / ADXSJD_GetOutBps(adxt->sjd);
+    } 
+    else
+    {
+        *ncount = 0;
+        
+        *tscale = 1;
+    }
+
+    *ncount += adxt->time_ofst;
+}
+
 // ADXT_InsertSilence
 
 // 100% matching! 
