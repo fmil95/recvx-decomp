@@ -315,7 +315,11 @@ void ADXT_EntryErrFunc(void (*func)(), void *obj)
     ADXERR_EntryErrFunc(func, obj);
 }
 
-// ADXT_EntryFltFunc
+// 100% matching! 
+void ADXT_EntryFltFunc(ADXT adxt, void (*f)(), void *obj)
+{
+    ADXSJD_EntryFltFunc(adxt->sjd, f, obj);
+}
 
 // 100% matching!
 void ADXT_ExecServer(void) 
