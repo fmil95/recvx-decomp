@@ -478,7 +478,12 @@ Sint32 ADXT_GetOutPan(ADXT adxt, Sint32 ch)
     return adxt->outpan[ch];
 }
 
-// ADXT_GetOutVol
+// 100% matching! 
+Sint32 ADXT_GetOutVol(ADXT adxt) 
+{
+    return adxt->outvol;
+}
+
 // ADXT_GetSfreq
 
 // 100% matching!
