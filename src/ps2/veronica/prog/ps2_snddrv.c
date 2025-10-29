@@ -533,64 +533,52 @@ int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char d
 
 // 100% matching!
 int SdrSendReq(int mode) {
-  int r_idx;
-  int dma_size;
-
-  if (mode != 0) {
-    if (PollSema(SmId_send) < 0) {
-      return -1;
+    int r_idx;
+    int dma_size;
+    
+    if (mode != 0) {
+        if (PollSema(SmId_send) < 0) {
+            return -1;
+        }
+    } else {
+        WaitSema(SmId_send);
     }
-    goto skip_wait;
-  }
-
-  WaitSema(SmId_send);
-
-skip_wait:
-  r_idx = sque_r_idx;
-
-  while (1) {
+    
+    r_idx = sque_r_idx;
+    
     while (sndque_tbl[r_idx].cmd >= 0) {
-      if (sending_req(&sndque_tbl[r_idx]) < 0) {
-        printf("SDR: SdrSendReq: Caution: sbuff overflow.\n     I carry "
-               "forward the request to next time.\n");
-        break;
-      }
-
-      sndque_tbl[r_idx].cmd = -1;
-      r_idx = ++r_idx % 128;
+        if (sending_req(&sndque_tbl[r_idx]) < 0) {
+            printf("SDR: SdrSendReq: Caution: sbuff overflow.\n     I carry forward the request to next time.\n");
+            break;
+        }
+        
+        sndque_tbl[r_idx].cmd = -1;
+        r_idx = ++r_idx % 128;
     }
-
-    break;
-  }
-
-next_loop:
-  sque_r_idx = r_idx;
-
-  if (sbuff_idx != 0) {
-    dma_size = (sbuff_idx + 0x10) & -0x10;
-
-    if (mode != 0) {
-      mode = 1;
+    
+    sque_r_idx = r_idx;
+    
+    if (sbuff_idx != 0) {
+        dma_size = (sbuff_idx + 0x10) & -0x10;
+        if (mode != 0) {
+            mode = 1;
+        }
+        
+        if (sceSifCallRpc(&ClientData, 0, mode, (void*)&sbuff, dma_size, (void*)&sbuff, 0,(sceSifEndFunc)&cb_sifRpc_snd, (void*)SmId_send) < 0) {
+            printf("SDR: SdrSendReq: Error: Rpc faild.\n");
+            SignalSema(SmId_send);
+            return -1;
+        }
+        
+        sbuff_idx = 0;
+        if (mode != 0) {
+            SendReqFlag = 1;
+        }
+    } else {
+        SignalSema(SmId_send);
     }
-
-    if (sceSifCallRpc(&ClientData, 0, mode, (void *)&sbuff, dma_size,
-                      (void *)&sbuff, 0, (sceSifEndFunc)&cb_sifRpc_snd,
-                      (void *)SmId_send) < 0) {
-      printf("SDR: SdrSendReq: Error: Rpc faild.\n");
-      SignalSema(SmId_send);
-      return -1;
-    }
-
-    sbuff_idx = 0;
-    if (mode != 0) {
-      SendReqFlag = 1;
-    }
-    goto return_zero;
-  }
-
-  SignalSema(SmId_send);
-return_zero:
-  return 0;
+    
+    return 0;
 }
 
 // 100% matching!
