@@ -309,7 +309,12 @@ void adxt_disp_rna_stat(ADXT adxt)
     printf("stat=%4d, ttl=%4d\n", adxt->stat, sum + ttl);
 }
 
-// ADXT_EntryErrFunc
+// 100% matching! 
+void ADXT_EntryErrFunc(void (*func)(), void *obj)
+{
+    ADXERR_EntryErrFunc(func, obj);
+}
+
 // ADXT_EntryFltFunc
 
 // 100% matching!
