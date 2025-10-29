@@ -461,7 +461,17 @@ Sint32 ADXT_GetNumSmpl(ADXT adxt)
     return 0;
 }
 
-// ADXT_GetNumSmplObuf
+// 100% matching! 
+Sint32 ADXT_GetNumSmplObuf(ADXT adxt, Sint32 chno)
+{
+    if (adxt->sjo[chno] != NULL) 
+    {
+        return SJ_GetNumData(adxt->sjo[chno], 1) / 2;
+    }
+
+    return 0;
+}
+
 // ADXT_GetOutPan
 // ADXT_GetOutVol
 // ADXT_GetSfreq
