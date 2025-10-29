@@ -624,17 +624,15 @@ int SdrGetStateSend(int command, int data) {
 // 100% matching!
 int SdrGetStateReceive(int mode) {
     int ret;
-
+    
     if (mode != 0) {
         if (PollSema(SmId_get) < 0) {
             return -1;
         }
-        goto block_4;
+    } else {
+        WaitSema(SmId_get);
     }
     
-    WaitSema(SmId_get);
-    
-block_4:
     ret = getbuff[0];
     SignalSema(SmId_get);
     return ret;
