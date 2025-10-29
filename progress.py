@@ -14,7 +14,7 @@ directories = {
     },
     r"src/cri/mwlib/ee/lib/libadxe": {
         "name": "CRI ADX (March 13, 2001)",
-        "total": 653
+        "total": 663
     }
 }
 
