@@ -417,7 +417,17 @@ Sint32 ADXT_GetNumChan(ADXT adxt)
     return 0;
 }
 
-// ADXT_GetNumSctIbuf
+// 100% matching! 
+Sint32 ADXT_GetNumSctIbuf(ADXT adxt)
+{
+    if (adxt->sji != NULL) 
+    {
+        return SJ_GetNumData(adxt->sji, 1) / 2048;
+    }
+    
+    return 0;
+}
+
 // ADXT_GetNumSmpl
 // ADXT_GetNumSmplObuf
 // ADXT_GetOutPan
