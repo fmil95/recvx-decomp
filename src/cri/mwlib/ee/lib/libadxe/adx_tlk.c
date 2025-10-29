@@ -66,7 +66,7 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
     adxt->obufsize = ADXT_OBUF_SIZE;
     adxt->obufdist = ADXT_OBUF_DIST;
    
-    adxt->ibuflen = (((wk64size - ADXT_CALC_OBUFSIZE(maxnch)) - ADXT_IBUF_XLEN) / 2048) * ADXF_DEF_SCT_SIZE;
+    adxt->ibuflen = (((wk64size - ADXT_CALC_OBUFSIZE(maxnch)) - ADXT_IBUF_XLEN) / 2048) * 2048;
 
     adxt->sji = NULL;
     adxt->sjf = SJRBF_Create(adxt->ibuf, adxt->ibuflen, adxt->ibufxlen); 
@@ -117,7 +117,7 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
         return NULL;
     }
 
-    adxt->maxsct = adxt->ibuflen / ADXF_DEF_SCT_SIZE;
+    adxt->maxsct = adxt->ibuflen / 2048;
     
     adxt->svrfreq = ADXT_DEF_SVRFREQ;
     
@@ -145,7 +145,7 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
     adxt->edeccnt = 0;
     adxt->eshrtcnt = 0;
     
-    adxt->autorcvr = 1;
+    adxt->autorcvr = ADXT_RMODE_STOP;
     
     adxt->pause_flag = 0;
     
@@ -265,7 +265,7 @@ Sint32 ADXT_DiscardSmpl(ADXT adxt, Sint32 nsmpl)
     
     adxt->svcnt = adxt_vsync_cnt;
     
-    adxt->tvofst = (Sint32)(((Float32)ncount / tscale) * adxt_time_unit);
+    adxt->tvofst = (Sint32)(((float)ncount / tscale) * adxt_time_unit);
     
     return nd;
 }
@@ -406,9 +406,15 @@ Sint32 ADXT_GetLpCnt(ADXT adxt)
     return adxt->lpcnt;
 }
 
-Sint32 ADXT_GetNumChan(ADXT adxt) 
+// 100% matching! 
+Sint32 ADXT_GetNumChan(ADXT adxt)
 {
-    scePrintf("ADXT_GetNumChan - UNIMPLEMENTED!\n");
+    if (adxt->stat >= ADXT_STAT_PREP) 
+    {
+        return ADXSJD_GetNumChan(adxt->sjd);
+    }
+    
+    return 0;
 }
 
 // ADXT_GetNumSctIbuf
