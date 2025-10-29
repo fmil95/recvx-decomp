@@ -506,7 +506,17 @@ void ADXT_GetTime(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
     scePrintf("ADXT_GetTime - UNIMPLEMENTED!\n");
 }
 
-// ADXT_GetTimeReal
+// 100% matching! 
+Sint32 ADXT_GetTimeReal(ADXT adxt)
+{
+    Sint32 time;
+	Sint32 tunit;
+    
+    ADXT_GetTime(adxt, &time, &tunit);
+    
+    return ((double)time / tunit) * 100.0f;
+}
+
 // ADXT_GetTimeSfreq
 // ADXT_GetTimeSfreq2
 // ADXT_InsertSilence
