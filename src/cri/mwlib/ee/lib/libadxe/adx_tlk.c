@@ -450,7 +450,17 @@ Sint32 ADXT_GetNumSctIbuf(ADXT adxt)
     return 0;
 }
 
-// ADXT_GetNumSmpl
+// 100% matching! 
+Sint32 ADXT_GetNumSmpl(ADXT adxt)
+{
+    if (adxt->stat >= ADXT_STAT_PREP) 
+    {
+        return ADXSJD_GetTotalNumSmpl(adxt->sjd);
+    }
+    
+    return 0;
+}
+
 // ADXT_GetNumSmplObuf
 // ADXT_GetOutPan
 // ADXT_GetOutVol
