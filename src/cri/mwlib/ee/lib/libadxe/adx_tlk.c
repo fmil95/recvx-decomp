@@ -4,7 +4,7 @@ static Uint32 adxt_svrcnt;
 static Uint32 adxt_svrcnt_sjd;
 static Uint32 adxt_svrcnt_rna;
 static Uint32 adxt_svrcnt_hndl;
-Sint32 adxt_time_unit;
+static Sint32 adxt_time_unit;
 Sint32 adxt_time_mode;
 
 void ADXT_StopWithoutLsc(ADXT adxt);
@@ -30,46 +30,43 @@ void ADXT_CloseAllHandles(void)
 ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
 {
     ADXT adxt;
-    Sint32 alignedwrk;
-    Sint32 wrksize;
-    Sint32 i;
-    Sint32 ibuflen;
-    Sint32 ch;
-
-    alignedwrk = ((Uint32)work + (ADXT_MIN_BUFDATA - 1)) & ~(ADXT_MIN_BUFDATA - 1);
+	Sint32 no;
+	Sint32 i;
+	Sint8 *wk64;
+	Sint32 wk64size;
     
-    wrksize = worksize - (alignedwrk - (Uint32)work);
+    wk64 = (Sint8*)(((Uint32)work + (ADXT_MIN_BUFDATA - 1)) & ~(ADXT_MIN_BUFDATA - 1));
+    
+    wk64size = worksize - ((Sint32)wk64 - (Sint32)work);
 
-    for (i = 0; i < ADXT_MAX_OBJ; i++) 
+    for (no = 0; no < ADXT_MAX_OBJ; no++) 
     {
-        if (adxt_obj[i].used == 0) 
+        if (adxt_obj[no].used == FALSE) 
         {
             break;
         }
     }
     
-    if (i == ADXT_MAX_OBJ) 
+    if (no == ADXT_MAX_OBJ) 
     {
         return NULL;
     }
     
-    adxt = &adxt_obj[i];
+    adxt = &adxt_obj[no];
     
     *adxt = (ADX_TALK){ 0 };
 
     adxt->maxnch = maxnch;
     
-    adxt->ibuf = (Sint8*)(alignedwrk + ADXT_CALC_OBUFSIZE(maxnch));
-    adxt->obuf = (Sint16*)alignedwrk;
+    adxt->ibuf = (Sint8*)(wk64 + ADXT_CALC_OBUFSIZE(maxnch));
+    adxt->obuf = (Sint16*)wk64;
     
     adxt->ibufxlen = ADXT_IBUF_XLEN;
     
     adxt->obufsize = ADXT_OBUF_SIZE;
     adxt->obufdist = ADXT_OBUF_DIST;
    
-    ibuflen = wrksize - ADXT_CALC_OBUFSIZE(maxnch) - ADXT_IBUF_XLEN;
-    
-    adxt->ibuflen = ((Uint32)ibuflen >> 11) * ADXF_DEF_SCT_SIZE;
+    adxt->ibuflen = (((wk64size - ADXT_CALC_OBUFSIZE(maxnch)) - ADXT_IBUF_XLEN) / 2048) * ADXF_DEF_SCT_SIZE;
 
     adxt->sji = NULL;
     adxt->sjf = SJRBF_Create(adxt->ibuf, adxt->ibuflen, adxt->ibufxlen); 
@@ -81,11 +78,11 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
         return NULL;
     }
 
-    for (ch = 0; ch < maxnch; ch++) 
+    for (i = 0; i < maxnch; i++) 
     {
-        adxt->sjo[ch] = SJRBF_Create((Sint8*)(adxt->obuf + (adxt->obufdist * ch)), adxt->obufsize * 2, (adxt->obufdist - adxt->obufsize) * 2);
+        adxt->sjo[i] = SJRBF_Create((Sint8*)(adxt->obuf + (adxt->obufdist * i)), adxt->obufsize * 2, (adxt->obufdist - adxt->obufsize) * 2);
 
-        if (adxt->sjo[ch] == NULL) 
+        if (adxt->sjo[i] == NULL) 
         {
             ADXT_Destroy(adxt);
             
@@ -128,9 +125,9 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
     
     adxt->outvol = ADXT_DEF_OUTVOL;
     
-    for (ch = 0; ch < maxnch; ch++)
+    for (i = 0; i < maxnch; i++)
     {
-        adxt->outpan[ch] = ADXT_PAN_AUTO;
+        adxt->outpan[i] = ADXT_PAN_AUTO;
     }
 
     adxt->lpflg = 1;
@@ -156,7 +153,7 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
     
     adxt->lnkflg = 1;
     
-    adxt->used = 1;
+    adxt->used = TRUE;
     
     return adxt;
 }
@@ -164,11 +161,11 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
 // 100% matching!
 void ADXT_Destroy(ADXT adxt)
 {
-    Sint32 ch;
+    Sint32 i;
 
     if (adxt != NULL)
     {
-        if (adxt->used == 1) 
+        if (adxt->used == TRUE) 
         {
             ADXT_Stop(adxt);
         }
@@ -200,21 +197,21 @@ void ADXT_Destroy(ADXT adxt)
             adxt->sjf->vtbl->Destroy(adxt->sjf);
         }
     
-        for (ch = 0; ch < adxt->maxnch; ch++) 
+        for (i = 0; i < adxt->maxnch; i++) 
         {
-            if (adxt->sjo[ch] != NULL) 
+            if (adxt->sjo[i] != NULL) 
             {
-                adxt->sjo[ch]->vtbl->Destroy(adxt->sjo[ch]);
+                adxt->sjo[i]->vtbl->Destroy(adxt->sjo[i]);
             }
     
-            if (adxt->ampsji[ch] != NULL) 
+            if (adxt->ampsji[i] != NULL) 
             {
-                adxt->ampsji[ch]->vtbl->Destroy(adxt->ampsji[ch]);
+                adxt->ampsji[i]->vtbl->Destroy(adxt->ampsji[i]);
             }
     
-            if (adxt->ampsjo[ch] != NULL) 
+            if (adxt->ampsjo[i] != NULL) 
             {
-                adxt->ampsjo[ch]->vtbl->Destroy(adxt->ampsjo[ch]);
+                adxt->ampsjo[i]->vtbl->Destroy(adxt->ampsjo[i]);
             }
         }
         
@@ -225,7 +222,7 @@ void ADXT_Destroy(ADXT adxt)
     
         *adxt = (ADX_TALK){ 0 };
         
-        adxt->used = 0;
+        adxt->used = FALSE;
     
         ADXCRS_Unlock();
     }
@@ -234,18 +231,45 @@ void ADXT_Destroy(ADXT adxt)
 // 100% matching! 
 void ADXT_DestroyAll(void)
 {
+    ADXT adxt;
     Sint32 i;
 
     for (i = 0; i < ADXT_MAX_OBJ; i++)
     {
-        if (adxt_obj[i].used == TRUE) 
+        adxt = &adxt_obj[i];
+        
+        if (adxt->used == TRUE) 
         {
-            ADXT_Destroy(&adxt_obj[i]);
+            ADXT_Destroy(adxt);
         }
     }
 }
 
-// ADXT_DiscardSmpl
+// 100% matching! 
+Sint32 ADXT_DiscardSmpl(ADXT adxt, Sint32 nsmpl)
+{
+    Sint32 nd;
+	Sint32 ncount;
+	Sint32 tscale;
+
+    if (adxt->pause_flag == 0)
+    {
+        return 0;
+    }
+    
+    nd = ADXRNA_DiscardData(adxt->rna, nsmpl);
+    
+    ADXT_ExecServer();
+    
+    ADXRNA_GetTime(adxt->rna, &ncount, &tscale);
+    
+    adxt->svcnt = adxt_vsync_cnt;
+    
+    adxt->tvofst = (Sint32)(((Float32)ncount / tscale) * adxt_time_unit);
+    
+    return nd;
+}
+
 // adxt_disp_rna_stat
 // ADXT_EntryErrFunc
 // ADXT_EntryFltFunc
