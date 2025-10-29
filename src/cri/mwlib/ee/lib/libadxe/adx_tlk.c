@@ -484,7 +484,16 @@ Sint32 ADXT_GetOutVol(ADXT adxt)
     return adxt->outvol;
 }
 
-// ADXT_GetSfreq
+// 100% matching! 
+Sint32 ADXT_GetSfreq(ADXT adxt) 
+{
+    if (adxt->stat >= ADXT_STAT_PREP) 
+    {
+        return ADXSJD_GetSfreq(adxt->sjd);
+    }
+    
+    return 0;
+}
 
 // 100% matching!
 Sint32 ADXT_GetStat(ADXT adxt)
