@@ -5,7 +5,8 @@ static Uint32 adxt_svrcnt_sjd;
 static Uint32 adxt_svrcnt_rna;
 static Uint32 adxt_svrcnt_hndl;
 static Sint32 adxt_time_unit;
-Sint32 adxt_time_mode;
+static Sint32 adxt_time_mode;
+static float adxt_diff_av;
 
 void ADXT_StopWithoutLsc(ADXT adxt);
 
@@ -501,9 +502,67 @@ Sint32 ADXT_GetStat(ADXT adxt)
     return adxt->stat;
 }
 
+// 100% matching! 
 void ADXT_GetTime(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
 {
-    scePrintf("ADXT_GetTime - UNIMPLEMENTED!\n");
+    Sint32 ncount0;
+	Sint32 tscale0;
+	Sint32 tmode;
+    
+    tmode = adxt_time_mode;
+    
+    if (tmode == 0) 
+    {
+        ADXT_GetTimeSfreq2(adxt, ncount, tscale);
+        return;
+    }
+
+    adxt_diff_av = 0;
+
+    if ((adxt->stat == ADXT_STAT_PLAYING) || (adxt->stat == ADXT_STAT_DECEND)) 
+    {
+        if (adxt->pause_flag == 0) 
+        {
+            *ncount = ((adxt_vsync_cnt - adxt->svcnt) * 100) + adxt->tvofst;
+        }
+        else 
+        {
+            *ncount = adxt->tvofst;
+        }
+
+        ADXT_GetTimeSfreq2(adxt, &ncount0, &tscale0);
+        
+        adxt_diff_av = (((float)ncount0 / tscale0) - ((float)*ncount / adxt_time_unit)) * 1000.0f;
+
+        if ((adxt_diff_av > 60.0f) || (adxt_diff_av < -60.0f)) 
+        {
+            ADXRNA_GetTime(adxt->rna, &ncount0, &tscale0);
+
+            adxt->tvofst = (Sint32)(((float)ncount0 / tscale0) * adxt_time_unit);
+            
+            adxt->svcnt = adxt_vsync_cnt;
+        }
+    }
+    else if (adxt->stat == ADXT_STAT_PLAYEND) 
+    {
+        ncount0 = ADXSJD_GetTotalNumSmpl(adxt->sjd);
+        
+        tscale0 = ADXSJD_GetSfreq(adxt->sjd);
+        
+        ncount0 *= 16 / ADXSJD_GetOutBps(adxt->sjd);
+        
+        *ncount = ((float)ncount0 / tscale0) * adxt_time_unit;
+        
+        *ncount += adxt->tvofst + 1;
+    }
+    else 
+    {
+        *ncount = 0;
+    }
+
+    *ncount += adxt->time_ofst;
+
+    *tscale = adxt_time_unit;
 }
 
 // 100% matching! 
