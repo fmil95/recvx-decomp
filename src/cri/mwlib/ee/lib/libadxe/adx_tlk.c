@@ -386,7 +386,29 @@ Sint32 ADXT_GetHdrLen(ADXT adxt)
     return 0;
 }
 
-// ADXT_GetIbufRemainTime
+// 100% matching! 
+float ADXT_GetIbufRemainTime(ADXT adxt) 
+{
+    Sint32 nbyte;
+	Sint32 nch;
+	float sfreq;
+	float time;
+    
+    time = 0;
+    
+    if ((ADXT_GetStat(adxt) >= ADXT_STAT_PREP) && (adxt->sji != NULL))
+    {
+        nbyte = SJ_GetNumData(adxt->sji, 1);
+        
+        nch = ADXT_GetNumChan(adxt);
+        
+        sfreq = ADXT_GetSfreq(adxt);
+        
+        time = ((nbyte / (18 * nch)) * 32) / sfreq;
+    }
+    
+    return time;
+}
 
 // 100% matching! 
 SJ ADXT_GetInputSj(ADXT adxt)
