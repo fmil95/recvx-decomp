@@ -4,7 +4,7 @@
 void ADXRNA_ClearBuf(ADXRNA adxrna);
 ADXRNA ADXRNA_Create(SJ* sjo, Sint32 maxnch);
 void ADXRNA_Destroy(ADXRNA adxrna);
-Sint32 ADXRNA_DiscardData(void);
+Sint32 ADXRNA_DiscardData(ADXRNA rna, Sint32 nsmpl);
 void ADXRNA_ExecServer(void);
 void ADXRNA_Finish(void);
 Sint32 ADXRNA_GetBitPerSmpl(ADXRNA adxrna);
@@ -32,30 +32,30 @@ void ADXRNA_Start(ADXRNA adxrna);
 void ADXRNA_Stop(ADXRNA adxrna);
 
 // 100% matching!
-void ADXRNA_ClearBuf(ADXRNA adxrna) 
+void ADXRNA_ClearBuf(ADXRNA rna)
 {
 
 }
 
 // 100% matching!
-ADXRNA ADXRNA_Create(SJ* sjo, Sint32 maxnch)
+ADXRNA ADXRNA_Create(SJ *sj, Sint32 maxnch)
 {
-    return PS2RNA_Create(sjo, maxnch);
+    return PS2RNA_Create(sj, maxnch);
 }
 
 // 100% matching!
-void ADXRNA_Destroy(ADXRNA adxrna)
+void ADXRNA_Destroy(ADXRNA rna)
 {
-    PS2RNA_SetPlaySw(adxrna, 0);
-    PS2RNA_SetTransSw(adxrna, 0);
+    PS2RNA_SetPlaySw(rna, 0);
+    PS2RNA_SetTransSw(rna, 0);
     
-    PS2RNA_Destroy(adxrna);
+    PS2RNA_Destroy(rna);
 }
 
 // 100% matching!
-Sint32 ADXRNA_DiscardData(void) 
+Sint32 ADXRNA_DiscardData(ADXRNA rna, Sint32 nsmpl)
 {
-    return PS2RNA_DiscardData();
+    return PS2RNA_DiscardData(rna, nsmpl);
 }
 
 // 100% matching!
@@ -71,27 +71,27 @@ void ADXRNA_Finish(void)
 }
 
 // 100% matching!
-Sint32 ADXRNA_GetBitPerSmpl(ADXRNA adxrna) 
+Sint32 ADXRNA_GetBitPerSmpl(ADXRNA rna) 
 {
-    return PS2RNA_GetBitPerSmpl(adxrna);
+    return PS2RNA_GetBitPerSmpl(rna);
 }
 
 // 100% matching!
-Sint32 ADXRNA_GetNumData(ADXRNA adxrna) 
+Sint32 ADXRNA_GetNumData(ADXRNA rna)
 {
-    return PS2RNA_GetNumData(adxrna);
+    return PS2RNA_GetNumData(rna);
 }
 
 // 100% matching!
-Sint32 ADXRNA_GetNumRoom(ADXRNA adxrna) 
+Sint32 ADXRNA_GetNumRoom(ADXRNA rna) 
 {
-    return PS2RNA_GetNumRoom(adxrna);
+    return PS2RNA_GetNumRoom(rna);
 }
 
 // 100% matching!
-Sint32 ADXRNA_GetOutPan(ADXRNA adxrna, Sint32 ch)
+Sint32 ADXRNA_GetOutPan(ADXRNA rna, Sint32 chno)
 {
-    return PS2RNA_GetOutPan(adxrna, ch);
+    return PS2RNA_GetOutPan(rna, chno);
 }
 
 // 100% matching!

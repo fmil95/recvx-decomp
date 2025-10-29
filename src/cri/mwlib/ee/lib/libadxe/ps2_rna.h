@@ -73,7 +73,7 @@ void PS2RNA_ClearBuf(PS2RNA ps2rna);
 void PS2RNA_ClearOverflow(PS2RNA ps2rna);
 PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch);
 void PS2RNA_Destroy(PS2RNA ps2rna);
-Sint32 PS2RNA_DiscardData(void);
+Sint32 PS2RNA_DiscardData(PS2RNA rna, Sint32 nsmpl);
 void PS2RNA_ExecHndl(PS2RNA ps2rna);
 void PS2RNA_ExecServer(void);
 void PS2RNA_Finish(void);

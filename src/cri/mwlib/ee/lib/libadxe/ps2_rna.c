@@ -207,7 +207,7 @@ void PS2RNA_Destroy(PS2RNA ps2rna)
 }
 
 // 100% matching!
-Sint32 PS2RNA_DiscardData(void)
+Sint32 PS2RNA_DiscardData(PS2RNA rna, Sint32 nsmpl)
 {
     printf("PS2RNA_DiscardData: not implemented\n");
 

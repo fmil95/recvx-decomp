@@ -5,7 +5,8 @@ GDFS_WORK* __gds_fs_work;
 GDFS_DIRREC_TBL* __current_dir;
 GDFS_DIRREC_ENT* __gdfs_dir_ent;
 int dvd_image_data_max = 19;
-DVD_IMAGE_DATA dvd_image_data[19] = {
+DVD_IMAGE_DATA dvd_image_data[19] = 
+{
 	{ "RDX_LNK.AFS" , rdx_files },
     { "SYSTEM.AFS"  , 0 },
     { "MRY.AFS"     , 0 },
