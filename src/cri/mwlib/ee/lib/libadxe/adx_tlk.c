@@ -812,7 +812,7 @@ void ADXT_SetOutVol(ADXT adxt, Sint32 vol)
 }
 
 // 100% matching!
-Uint32 ADXT_SetPauseBuf(void) 
+Sint32 ADXT_SetPauseBuf(void) 
 {
     return 16384;
 }
@@ -826,14 +826,14 @@ void ADXT_SetReloadSct(ADXT adxt, Sint32 minsct)
 // 100% matching! 
 void ADXT_SetReloadTime(ADXT adxt, float time, Sint32 nch, Sint32 sfreq)
 {
-    Sint32 ch;
-    Sint32 sec;
+    Sint32 nblk;
+    Sint32 nsct;
 
-    ch = nch * 18;
+    nblk = nch * 18;
     
-    sec = (((Sint32)(time * sfreq) / 32) * ch) / ADXF_DEF_SCT_SIZE;
+    nsct = (((Sint32)(time * sfreq) / 32) * nblk) / 2048;
     
-    adxt->minsct = (sec < adxt->maxsct) ? sec : adxt->maxsct;
+    adxt->minsct = (nsct < adxt->maxsct) ? nsct : adxt->maxsct;
 }
 
 // 100% matching! 
@@ -872,11 +872,11 @@ void ADXT_SetWaitPlayStart(ADXT adxt, Sint32 flg)
 // 100% matching! 
 void adxt_start_sj(ADXT adxt, SJ sj)
 {
-    Sint32 ch;
+    Sint32 i;
 
-    for (ch = 0; ch < adxt->maxnch; ch++) 
+    for (i = 0; i < adxt->maxnch; i++) 
     {
-        adxt->sjo[ch]->vtbl->Reset(adxt->sjo[ch]);
+        SJ_Reset(adxt->sjo[i]);
     }
 
     ADXSJD_SetInSj(adxt->sjd, sj);
@@ -885,7 +885,7 @@ void adxt_start_sj(ADXT adxt, SJ sj)
     
     ADXSJD_Start(adxt->sjd);
     
-    adxt->stat = ADXF_STAT_STOP;
+    adxt->stat = ADXT_STAT_DECINFO;
     
     adxt->lesct = 0x7FFFFFFF;
     
@@ -903,7 +903,7 @@ void adxt_start_sj(ADXT adxt, SJ sj)
 // 100% matching! 
 void adxt_start_stm(ADXT adxt) 
 {
-    ADXSTM_SetBufSize(adxt->stm, adxt->minsct * ADXF_DEF_SCT_SIZE, adxt->maxsct * ADXF_DEF_SCT_SIZE);
+    ADXSTM_SetBufSize(adxt->stm, adxt->minsct * 2048, adxt->maxsct * 2048);
     ADXSTM_SetEos(adxt->stm, ADXT_PREP_RDSCT);
     
     ADXSTM_Start(adxt->stm);
@@ -916,15 +916,15 @@ void adxt_start_stm(ADXT adxt)
 // 100% matching! 
 void ADXT_StartSj(ADXT adxt, SJ sj)
 {
-    Sint32 ch;
+    Sint32 i;
 
     ADXT_Stop(adxt);
     
     ADXCRS_Lock();
 
-    for (ch = 0; ch < adxt->maxnch; ch++) 
+    for (i = 0; i < adxt->maxnch; i++) 
     {
-        adxt->sjo[ch]->vtbl->Reset(adxt->sjo[ch]);
+        SJ_Reset(adxt->sjo[i]);
     }
 
     ADXSJD_SetInSj(adxt->sjd, sj);
@@ -957,7 +957,7 @@ void ADXT_Stop(ADXT adxt)
         
         if (adxt->sji != NULL) 
         {
-            adxt->sji->vtbl->Reset(adxt->sji);
+            SJ_Reset(adxt->sji);
         }
     }
     
