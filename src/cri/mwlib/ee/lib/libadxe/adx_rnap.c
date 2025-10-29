@@ -95,19 +95,19 @@ Sint32 ADXRNA_GetOutPan(ADXRNA rna, Sint32 chno)
 }
 
 // 100% matching!
-Sint32 ADXRNA_GetOutVol(ADXRNA adxrna)
+Sint32 ADXRNA_GetOutVol(ADXRNA rna)
 {
-    return PS2RNA_GetOutVol(adxrna);
+    return PS2RNA_GetOutVol(rna);
 }
 
 // 100% matching!
-Sint32 ADXRNA_GetSfreq(ADXRNA adxrna) 
+Sint32 ADXRNA_GetSfreq(ADXRNA rna)
 {
-    return PS2RNA_GetSfreq(adxrna);
+    return PS2RNA_GetSfreq(rna);
 }
 
 // 100% matching!
-Sint32 ADXRNA_GetStat(ADXRNA adxrna) 
+Sint32 ADXRNA_GetStat(ADXRNA rna)
 {
     printf("ADXRNA_GetStat: not implemented\n");
     
@@ -115,9 +115,9 @@ Sint32 ADXRNA_GetStat(ADXRNA adxrna)
 }
 
 // 100% matching!
-void ADXRNA_GetTime(ADXRNA adxrna, Sint32 *ncount, Sint32 *tscale) 
+void ADXRNA_GetTime(ADXRNA rna, Sint32 *ncount, Sint32 *tscale)
 {
-    PS2RNA_GetTime(adxrna, ncount, tscale);
+    PS2RNA_GetTime(rna, ncount, tscale);
 }
 
 // 100% matching!
@@ -127,31 +127,31 @@ void ADXRNA_Init(void)
 }
 
 // 100% matching!
-void ADXRNA_SetBitPerSmpl(ADXRNA adxrna, Sint32 bps)
+void ADXRNA_SetBitPerSmpl(ADXRNA rna, Sint32 bps)
 {
-    PS2RNA_SetBitPerSmpl(adxrna, bps);
+    PS2RNA_SetBitPerSmpl(rna, bps);
 }
 
 // 100% matching!
-void ADXRNA_SetNumChan(ADXRNA adxrna, Sint32 nch) 
+void ADXRNA_SetNumChan(ADXRNA rna, Sint32 nch) 
 {
-    PS2RNA_SetNumChan(adxrna, nch);
+    PS2RNA_SetNumChan(rna, nch);
 }
 
 // 100% matching!
-void ADXRNA_SetOutPan(ADXRNA adxrna, Sint32 ch, Sint32 pan) 
+void ADXRNA_SetOutPan(ADXRNA rna, Sint32 chno, Sint32 pan)
 {
-    PS2RNA_SetOutPan(adxrna, ch, pan);
+    PS2RNA_SetOutPan(rna, chno, pan);
 }
 
 // 100% matching!
-void ADXRNA_SetOutVol(ADXRNA adxrna, Sint32 vol)
+void ADXRNA_SetOutVol(ADXRNA rna, Sint32 vol)
 {
-    PS2RNA_SetOutVol(adxrna, vol);
+    PS2RNA_SetOutVol(rna, vol);
 }
 
 // 100% matching!
-void ADXRNA_SetPcmType(ADXRNA adxrna, Sint32 type)
+void ADXRNA_SetPcmType(ADXRNA rna, Sint32 type)
 {
 
 }
