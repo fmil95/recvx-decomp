@@ -633,7 +633,63 @@ void ADXT_GetTimeSfreq2(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
     *ncount += adxt->time_ofst;
 }
 
-// ADXT_InsertSilence
+// 100% matching! 
+Sint32 ADXT_InsertSilence(ADXT adxt, Sint32 nch, Sint32 nsmpl)
+{
+    SJ sj;
+	SJCK ck;
+	SJCK ck2;
+	Sint32 nblk; 
+	Sint32 nbyte;
+	Sint32 nbyte2;
+	Sint32 wsize;
+	Sint32 blklen; 
+
+    sj = adxt->sji;
+   
+    if (sj == NULL) 
+    {
+        return 0;
+    }
+    
+    nblk = nch * 18;
+    
+    nbyte = nsmpl / 32;
+    
+    nbyte *= nblk;
+    
+    SJ_GetChunk(sj, 0, nbyte, &ck);
+    
+    nbyte2 = (ck.len / nblk) * nblk;
+    
+    memset(ck.data, 0, nbyte2);
+    
+    SJ_SplitChunk(&ck, nbyte2, &ck, &ck2);
+    
+    blklen = nbyte2;
+    
+    SJ_PutChunk(sj, 1, &ck);
+    
+    SJ_UngetChunk(sj, 0, &ck2);
+    
+    SJ_GetChunk(sj, 0, nbyte - blklen, &ck);
+    
+    nbyte2 = (ck.len / nblk) * nblk;
+    
+    memset(ck.data, 0, nbyte2);
+    
+    SJ_SplitChunk(&ck, nbyte2, &ck, &ck2);
+    
+    blklen += nbyte2;
+    
+    SJ_PutChunk(sj, 1, &ck);
+    
+    SJ_UngetChunk(sj, 0, &ck2);
+    
+    wsize = (blklen / nblk) * 32;
+    
+    return wsize;
+}
 
 // 100% matching! 
 Sint32 ADXT_IsCompleted(ADXT adxt)
