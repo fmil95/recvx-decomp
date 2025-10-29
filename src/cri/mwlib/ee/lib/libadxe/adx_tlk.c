@@ -270,7 +270,45 @@ Sint32 ADXT_DiscardSmpl(ADXT adxt, Sint32 nsmpl)
     return nd;
 }
 
-// adxt_disp_rna_stat
+// 100% matching! 
+void adxt_disp_rna_stat(ADXT adxt)
+{
+    PS2RNA rna;
+	SJ sjiop;
+	SJ sjtmp;
+	Sint32 ntmp0;
+	Sint32 ntmp2;
+	Sint32 niop0;
+	Sint32 niop2;
+    Sint32 sum;
+    Sint32 ttl;
+    
+    rna = adxt->rna;
+    
+    sjiop = PS2RNA_GetSjiop(rna, 0);
+    sjtmp = PS2RNA_GetSjtmp(rna, 0);
+    
+    ntmp0 = SJ_GetNumData(sjtmp, 1);
+    ntmp2 = SJ_GetNumData(sjtmp, 0);
+    
+    niop0 = SJRMT_GetNumData(sjiop, 1);
+    niop2 = SJRMT_GetNumData(sjiop, 0);
+    
+    sum = ntmp0 + ntmp2;
+    
+    printf("ntmp0=%4d, ntmp2=%4d, sum=%4d\n", ntmp0, ntmp2, sum);
+    
+    sum = niop0 + niop2;
+    
+    printf("niop0=%4d, niop2=%4d, sum=%4d\n", niop0, niop2, sum);
+    
+    sum = ntmp0 + niop2;
+    
+    ttl = niop0 + ntmp2;
+    
+    printf("stat=%4d, ttl=%4d\n", adxt->stat, sum + ttl);
+}
+
 // ADXT_EntryErrFunc
 // ADXT_EntryFltFunc
 
