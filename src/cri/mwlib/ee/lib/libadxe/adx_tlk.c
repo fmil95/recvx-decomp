@@ -577,7 +577,30 @@ Sint32 ADXT_GetTimeReal(ADXT adxt)
     return ((double)time / tunit) * 100.0f;
 }
 
-// ADXT_GetTimeSfreq
+// 100% matching! 
+void ADXT_GetTimeSfreq(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
+{
+    if ((adxt->stat == ADXT_STAT_PLAYING) || (adxt->stat == ADXT_STAT_DECEND))
+    {
+        ADXRNA_GetTime(adxt->rna, ncount, tscale);
+    } 
+    else if (adxt->stat == ADXT_STAT_PLAYEND) 
+    {
+        *ncount = ADXSJD_GetTotalNumSmpl(adxt->sjd);
+        
+        *tscale = ADXSJD_GetSfreq(adxt->sjd);
+        
+        *ncount *= 16 / ADXSJD_GetOutBps(adxt->sjd);
+    } 
+    else
+    {
+        *ncount = 0;
+        
+        *tscale = 1;
+    }
+
+    *ncount += adxt->time_ofst;
+}
 
 // 100% matching! 
 void ADXT_GetTimeSfreq2(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
