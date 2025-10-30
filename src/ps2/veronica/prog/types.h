@@ -2889,15 +2889,6 @@ typedef struct NO_NAME_29
 	float cnt02; // offset 0x14, size 0x4
 } NO_NAME_29;
 
-typedef struct SND_QUE
-{
-    // total size: 0x8
-	int cmd;     // offset 0x0, size 0x4
-	char vol;    // offset 0x4, size 0x1
-	char pan;    // offset 0x5, size 0x1
-	short pitch; // offset 0x6, size 0x2
-} SND_QUE;
-
 typedef struct Object {
     // total size: 0x38
     NJS_POINT3 pos; // offset 0x0, size 0xC
@@ -3254,6 +3245,15 @@ enum TIM2_gattr_type {
 #define SCE_GS_ALPHA_AS         (0)
 #define SCE_GS_ALPHA_AD         (1)
 #define SCE_GS_ALPHA_FIX        (2)
+
+typedef struct SNDQUE
+{
+    // total size: 0x8
+	int cmd;     // offset 0x0, size 0x4
+	char vol;    // offset 0x4, size 0x1
+	char pan;    // offset 0x5, size 0x1
+	short pitch; // offset 0x6, size 0x2
+} SNDQUE;
 
 typedef	void (*AlarmCallBack)(int, unsigned short, void*);
 

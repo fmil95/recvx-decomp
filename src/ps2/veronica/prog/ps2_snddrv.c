@@ -5,7 +5,7 @@ static unsigned int getbuff[4] __attribute__((aligned(64)));
 static sceSifClientData ClientData;
 static sceSifClientData GetStClientData;
 static volatile int sque_r_idx;
-static SND_QUE sndque_tbl[128];
+static SNDQUE sndque_tbl[128];
 static int sque_w_idx;
 static int sbuff_idx;
 static int ThId_send;
@@ -33,11 +33,11 @@ int SdrInit();
 int SdrSeReq(int req, char vol, char pan, short pitch);
 int SdrSeCancel(int req);
 int SdrSeChg(int req, char vol, char pan, short pitch);
-/*int SdrSeAllStop();
+int SdrSeAllStop();
 int SdrMasterVol(unsigned short mvol);
 int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigned char block);
 int SdrBgmStop(unsigned char port);
-int SdrBgmChg(int req, char vol, char pan, short pitch);
+/*int SdrBgmChg(int req, char vol, char pan, short pitch);
 int SdrHDDataSet(int port, int size);
 int SdrHDDataSet2(int port, int size);
 int SdrBDDataSet(int port);
@@ -57,7 +57,7 @@ int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned
 int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7);
 int makebuff(unsigned int cmd, int n);
 int makebuff_ext(unsigned int cmd, int n, int limit);*/
-int sending_req(SND_QUE* sq_p);
+int sending_req(SNDQUE* sq_p);
 int get_iopsnd_info();
 
 // 100% matching!
@@ -304,41 +304,53 @@ int SdrSeChg(int req, char vol, char pan, short pitch)
 }
 
 // 100% matching!
-int SdrSeAllStop() {
-    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+int SdrSeAllStop()
+{
+    if (sndque_tbl[sque_w_idx].cmd >= 0)
+    {
         printf("SDR: SdrSeAllStop: Warning: sndque overflow!\n");
+        
         return -1;
     }
     
-    sndque_tbl[sque_w_idx].cmd = (0x10000000);
+    sndque_tbl[sque_w_idx].cmd = 0x10000000;
+    
     sque_w_idx = ++sque_w_idx % 128;
     
     return 0;
 }
 
 // 100% matching!
-int SdrMasterVol(unsigned short mvol) {
-    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+int SdrMasterVol(unsigned short mvol)
+{
+    if (sndque_tbl[sque_w_idx].cmd >= 0) 
+    {
         printf("SDR: SdrMasterVol: Warning: sndque overflow!\n");
+        
         return -1;
     }
     
-    sndque_tbl[sque_w_idx].cmd = (0x4B000000 | ((mvol << 0x8) & 0xFFFFFF));
+    sndque_tbl[sque_w_idx].cmd = 0x4B000000 | ((mvol << 8) & 0xFFFFFF);
+    
     sque_w_idx = ++sque_w_idx % 128;
     
     return 0;
 }
 
 // 100% matching!
-int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigned char block) {
-
-    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigned char block) 
+{
+    if (sndque_tbl[sque_w_idx].cmd >= 0)
+    {
         printf("SDR: SdrBgmReq: Warning: sndque overflow!\n");
+        
         return -1;
     }
 
-    sndque_tbl[sque_w_idx].cmd =  ((port << 16) & 0xFFFFFF)  | ((bank << 8) & 0xFFFFFF) | (vol & 0xFFFFFF) | 0x20000000;
-    *(unsigned char*)(&sndque_tbl[sque_w_idx].vol) = block;
+    sndque_tbl[sque_w_idx].cmd = ((port << 16) & 0xFFFFFF) | ((bank << 8) & 0xFFFFFF) | (vol & 0xFFFFFF) | 0x20000000;
+    
+    *(unsigned char*)&sndque_tbl[sque_w_idx].vol = block; // looks like a mistake
+    
     sque_w_idx = ++sque_w_idx % 128;
     
     return 0;
@@ -805,7 +817,7 @@ int makebuff_ext(unsigned int cmd, int n, int limit) {
 }
 
 // 100% matching!
-int sending_req(SND_QUE* sq_p) {
+int sending_req(SNDQUE* sq_p) {
     int cd;
     SND_QUE_DATA* sqd_p;
 
