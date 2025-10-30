@@ -47,9 +47,9 @@ int SdrSQDataSet(int port, int size);
 int SdrSetIopData();
 int SdrSetOutputMode(int mode);
 int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char delay, unsigned char feedback);
-/*int SdrSendReq(int mode);*/
-void cb_sifRpc(int smid);
-void cb_sifRpc_snd(int smid);
+int SdrSendReq(int mode);
+static void cb_sifRpc(int smid);
+static void cb_sifRpc_snd(int smid);
 /*int SdrGetStateSend(int command, int data);
 int SdrGetStateReceive(int mode);
 int SdrGetState(int command, int data);
@@ -57,7 +57,7 @@ int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned
 int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7);
 int makebuff(unsigned int cmd, int n);
 int makebuff_ext(unsigned int cmd, int n, int limit);*/
-int sending_req(SNDQUE* sq_p);
+static int sending_req(SNDQUE *sq_p);
 int get_iopsnd_info();
 
 // 100% matching!
@@ -586,50 +586,71 @@ int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char d
     return 0;
 }
 
+/* this function is currently responsible for halting the game on the emulator, specifically when called by sndr_trans_func() with 
+   trans_type == SDE_DATA_TYPE_SHOT_BANK and trans_level == 1 (right after calling SdrHDDataSet2()). The reason for this behavior 
+   is not yet known. */
 // 100% matching!
-int SdrSendReq(int mode) {
+int SdrSendReq(int mode) 
+{
     int r_idx;
     int dma_size;
     
-    if (mode != 0) {
-        if (PollSema(SmId_send) < 0) {
+    if (mode != 0) 
+    {
+        if (PollSema(SmId_send) < 0) 
+        {
             return -1;
         }
-    } else {
+    }
+    else 
+    {
         WaitSema(SmId_send);
     }
     
     r_idx = sque_r_idx;
     
-    while (sndque_tbl[r_idx].cmd >= 0) {
-        if (sending_req(&sndque_tbl[r_idx]) < 0) {
+    while (sndque_tbl[r_idx].cmd >= 0)
+    {
+        if (sending_req(&sndque_tbl[r_idx]) < 0) 
+        {
             printf("SDR: SdrSendReq: Caution: sbuff overflow.\n     I carry forward the request to next time.\n");
             break;
         }
         
         sndque_tbl[r_idx].cmd = -1;
+        
         r_idx = ++r_idx % 128;
     }
     
     sque_r_idx = r_idx;
     
-    if (sbuff_idx != 0) {
-        dma_size = (sbuff_idx + 0x10) & -0x10;
-        if (mode != 0) {
+    if (sbuff_idx != 0) 
+    {
+        dma_size = (sbuff_idx + 16) & ~0xF;
+        
+        if (mode != 0)
+        {
             mode = 1;
         }
         
-        if (sceSifCallRpc(&ClientData, 0, mode, (void*)&sbuff, dma_size, (void*)&sbuff, 0,(sceSifEndFunc)&cb_sifRpc_snd, (void*)SmId_send) < 0) {
+        if (sceSifCallRpc(&ClientData, 0, mode, (void*)sbuff, dma_size, (void*)sbuff, 0, (sceSifEndFunc)cb_sifRpc_snd, (void*)SmId_send) < 0)
+        {
             printf("SDR: SdrSendReq: Error: Rpc faild.\n");
+            
             SignalSema(SmId_send);
+            
             return -1;
         }
         
         sbuff_idx = 0;
-        if (mode != 0) {
+        
+        if (mode != 0) 
+        {
             SendReqFlag = 1;
         }
-    } else {
+    } 
+    else 
+    {
         SignalSema(SmId_send);
     }
     
