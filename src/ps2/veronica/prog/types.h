@@ -3064,12 +3064,6 @@ typedef struct READ_BUF
     int size;                  // offset 0x401C, size 0x4
 } READ_BUF;
 
-typedef struct SND_QUE_DATA
-{
-	int cmd; // offset 0x0, size: 0x4
-	char data[4]; // offset: 0x4, size: 0x4
-} SND_QUE_DATA;
-
 typedef struct LOAD_SCREEN 
 {
     // total size: 0x3C
@@ -3254,6 +3248,13 @@ typedef struct SNDQUE
 	char pan;    // offset 0x5, size 0x1
 	short pitch; // offset 0x6, size 0x2
 } SNDQUE;
+
+typedef struct SNDQUE_DATA
+{
+    // total size: 0x8
+    int cmd;      // offset 0x0, size 0x4
+    char data[4]; // offset 0x4, size 0x4
+} SNDQUE_DATA;
 
 typedef	void (*AlarmCallBack)(int, unsigned short, void*);
 
