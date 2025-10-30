@@ -29,10 +29,10 @@ static void wait_alarm(int id, unsigned short time, int thid);
 int SdrDelayThread(int hsync);
 static void sdr_initQue();
 static int sdr_initDev(sceSifClientData* cd_p, unsigned int dev);
-/*int SdrInit();
+/*int SdrInit();*/
 int SdrSeReq(int req, char vol, char pan, short pitch);
 int SdrSeCancel(int req);
-int SdrSeChg(int req, char vol, char pan, short pitch);
+/*int SdrSeChg(int req, char vol, char pan, short pitch);
 int SdrSeAllStop();
 int SdrMasterVol(unsigned short mvol);
 int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigned char block);
@@ -205,20 +205,26 @@ int SdrInit() {
 }
 
 // 100% matching!
-int SdrSeReq(int req, char vol, char pan, short pitch) { 
-	char temp; // not originally outputted by dwarf2cpp
-
-	if (sndque_tbl[sque_w_idx].cmd >= 0) { 
+int SdrSeReq(int req, char vol, char pan, short pitch)
+{ 
+	char temp; // not from the debugging symbols
+    
+	if (sndque_tbl[sque_w_idx].cmd >= 0) 
+    { 
 		printf("SDR: SdrSeReq: Warning: sndque overflow!\n"); 
+        
 		return -1; 
-    }
+	}
     
 	temp = CheckCmdReq((vol >= 0) ? 1 : 0, (pan >= 0) ? 1 : 0, (pitch >= 0) ? 1 : 0); 
-
+    
     sndque_tbl[sque_w_idx].cmd = (temp << 24) | (req & 0xFFFFFF); 
-    sndque_tbl[sque_w_idx].vol = vol; 
-    sndque_tbl[sque_w_idx].pan = pan;
-	sndque_tbl[sque_w_idx].pitch = pitch;
+    
+	sndque_tbl[sque_w_idx].vol = vol; 
+    
+	sndque_tbl[sque_w_idx].pan = pan; 
+    
+	sndque_tbl[sque_w_idx].pitch = pitch; 
 
 	sque_w_idx = ++sque_w_idx % 128; 
 
@@ -226,13 +232,17 @@ int SdrSeReq(int req, char vol, char pan, short pitch) {
 } 
 
 // 100% matching!
-int SdrSeCancel(int req) {
-    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+int SdrSeCancel(int req) 
+{
+    if (sndque_tbl[sque_w_idx].cmd >= 0) 
+    {
         printf("SDR: SdrSeCancel: Warning: sndque overflow!\n");
+        
         return -1;
     }
     
-    sndque_tbl[sque_w_idx].cmd = (0x08000000 | (req & 0xFFFFFF));
+    sndque_tbl[sque_w_idx].cmd = 0x8000000 | (req & 0xFFFFFF);
+    
     sque_w_idx = ++sque_w_idx % 128;
     
     return 0;

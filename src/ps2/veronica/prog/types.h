@@ -2892,9 +2892,9 @@ typedef struct NO_NAME_29
 typedef struct SND_QUE
 {
     // total size: 0x8
-	int cmd; // offset 0x0, size 0x4
-	char vol; // offset 0x4, size 0x1
-	char pan; // offset 0x5, size 0x1
+	int cmd;     // offset 0x0, size 0x4
+	char vol;    // offset 0x4, size 0x1
+	char pan;    // offset 0x5, size 0x1
 	short pitch; // offset 0x6, size 0x2
 } SND_QUE;
 
