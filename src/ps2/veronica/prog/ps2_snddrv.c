@@ -21,7 +21,7 @@ int iop_sq_adr[16];
 int iop_hd_adr[16];
 int iop_data_adr_top;
 int get_adrs;
-void* _gp; /* unused */
+//void* _gp; /* enabling this makes the emulator go potty, and is otherwise unused */
 SND_STATUS get_iop_buff;
 SND_STATUS get_iop_snddata;
 
@@ -29,11 +29,11 @@ static void wait_alarm(int id, unsigned short time, int thid);
 int SdrDelayThread(int hsync);
 static void sdr_initQue();
 static int sdr_initDev(sceSifClientData* cd_p, unsigned int dev);
-/*int SdrInit();*/
+int SdrInit();
 int SdrSeReq(int req, char vol, char pan, short pitch);
 int SdrSeCancel(int req);
-/*int SdrSeChg(int req, char vol, char pan, short pitch);
-int SdrSeAllStop();
+int SdrSeChg(int req, char vol, char pan, short pitch);
+/*int SdrSeAllStop();
 int SdrMasterVol(unsigned short mvol);
 int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigned char block);
 int SdrBgmStop(unsigned char port);
@@ -121,67 +121,89 @@ static int sdr_initDev(sceSifClientData* cd_p, unsigned int dev)
 	return 0; 
 } 
 
-void CpEEWait(int val); // TODO: Remove this function declaration
+void CpEEWait(int val); // TODO: remove this function declaration
 // 99.91% matching
-int SdrInit() {
-    static int flag_1st; 
-    struct SemaParam sm;
+int SdrInit() 
+{
+    static int flag_1st = 0; 
+    int id;
+    struct SemaParam sem;
     sceSifReceiveData rd;
-    int result;
 
-    if (flag_1st != 0) {
+    if (flag_1st != 0) 
+    {
         return 0;
     }
     
     sdr_initQue();
     
-    result = sdr_initDev(&ClientData, 0);
-    if (result < 0) {
+    id = sdr_initDev(&ClientData, 0);
+    
+    if (id < 0) 
+    {
         printf("SDR: SdrInit: Error: TSNDDRV_DEV: sceSifBindRpc faild.\n");
+        
         return -1;
     }
     
-    result = sdr_initDev(&GetStClientData, 1);
-    if (result < 0) {
+    id = sdr_initDev(&GetStClientData, 1);
+    
+    if (id < 0)
+    {
         printf("SDR: SdrInit: Error: TSNDGET_DEV: sceSifBindRpc faild.\n");
+        
         return -1;
     }
     
-    sm.initCount = 1;
-    sm.maxCount = 1;
-    sm.option = 0;
+    sem.initCount = 1;
+    sem.maxCount = 1;
     
-    if (SmId_send < 0) {
-        result = CreateSema(&sm);
-        if (result <= 0) {
+    sem.option = 0;
+    
+    if (SmId_send < 0) 
+    {
+        id = CreateSema(&sem);
+        
+        if (id <= 0) 
+        {
             printf("SDR: SdrInit: Error: SmId_send faild.\n");
+            
             return -1;
         }
-        SmId_send = result;
+        
+        SmId_send = id;
     }
 
-    if (SmId_get < 0) {
-        result = CreateSema(&sm);
-        if (result <= 0) {
+    if (SmId_get < 0)
+    {
+        id = CreateSema(&sem);
+        
+        if (id <= 0) 
+        {
             printf("SDR: SdrInit: Error: SmId_get faild.\n");
+            
             return -1;
         }
-        SmId_get = result;
+        
+        SmId_get = id;
     }
     
     flag_1st = 1;
     
-    do {
-        get_adrs = SdrGetState(0x12, 0);
-    } while (get_adrs <= 0 || get_adrs >= 0x200000);
+    do 
+    {
+        get_adrs = SdrGetState(18, 0);
+    } while ((get_adrs <= 0) || (get_adrs >= 0x200000));
     
-    iop_data_adr_top = SdrGetState(0x13, 0);
+    iop_data_adr_top = SdrGetState(19, 0);
 
-    while (sceSifGetOtherData(&rd, (void*)iop_data_adr_top, (void*)iop_data_adr, 0x40, 0) != 0) {
-        CpEEWait(0x3E8);
+    while (sceSifGetOtherData(&rd, (void*)iop_data_adr_top, (void*)iop_data_adr, 64, 0) != 0)
+    {
+        CpEEWait(1000);
     }
     
     iop_hd_adr[0] = iop_data_adr[0];
+    
     iop_hd_adr[1] = iop_hd_adr[0] + IOP_hd_size[0];
     iop_hd_adr[2] = iop_hd_adr[1] + IOP_hd_size[1]; 
     iop_hd_adr[3] = iop_hd_adr[2] + IOP_hd_size[2];
@@ -191,6 +213,7 @@ int SdrInit() {
     iop_hd_adr[7] = iop_hd_adr[6] + IOP_hd_size[6];
     
     iop_sq_adr[0] = iop_data_adr[1];
+    
     iop_sq_adr[1] = iop_sq_adr[0] + IOP_tq_size[0];
     iop_sq_adr[2] = iop_sq_adr[1] + IOP_tq_size[1];
     iop_sq_adr[3] = iop_sq_adr[2] + IOP_tq_size[2];
@@ -251,22 +274,28 @@ int SdrSeCancel(int req)
 // 100% matching!
 int SdrSeChg(int req, char vol, char pan, short pitch)
 {
-	char	cmd;
+	char temp; // not from the debugging symbols
 
-	if (isSQUE_EXIST(&sndque_tbl[sque_w_idx])) {
-		printf(_ERRMES_SQOVER(SdrSeChg));
+	if (sndque_tbl[sque_w_idx].cmd >= 0)
+    {
+		printf("SDR: SdrSeChg: Warning: sndque overflow!\n");
+        
 		return -1;
 	}
 
-	cmd = TSDRCMD_CHG((vol   >= 0)? 1: 0,
-					  (pan   >= 0)? 1: 0,
-					  (pitch >= 0)? 1: 0);
+	temp = CheckCmdChg((vol >= 0) ? 1 : 0, (pan >= 0) ? 1 : 0, (pitch >= 0) ? 1 : 0);
 
-	if (cmd == TSDRCMD_CANCEL) return 1;
+	if (temp == (0 | 8)) 
+    {
+        return 1;
+    }
 
-	sndque_tbl[sque_w_idx].cmd = SQUE_MAKE_CMD(cmd, req);
+	sndque_tbl[sque_w_idx].cmd = (temp << 24) | (req & 0xFFFFFF);
+    
 	sndque_tbl[sque_w_idx].vol = vol;
+    
 	sndque_tbl[sque_w_idx].pan = pan;
+    
 	sndque_tbl[sque_w_idx].pitch = pitch;
 
 	sque_w_idx = ++sque_w_idx % 128;
