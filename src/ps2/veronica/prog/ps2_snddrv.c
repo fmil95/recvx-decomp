@@ -37,10 +37,10 @@ int SdrSeAllStop();
 int SdrMasterVol(unsigned short mvol);
 int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigned char block);
 int SdrBgmStop(unsigned char port);
-/*int SdrBgmChg(int req, char vol, char pan, short pitch);
+int SdrBgmChg(int req, char vol, char pan, short pitch);
 int SdrHDDataSet(int port, int size);
 int SdrHDDataSet2(int port, int size);
-int SdrBDDataSet(int port);
+/*int SdrBDDataSet(int port);
 int SdrBDDataSet2(int port);
 int SdrBDDataTrans(int port, int adrs, int size, int flag);
 int SdrSQDataSet(int port, int size);
@@ -349,7 +349,7 @@ int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigne
 
     sndque_tbl[sque_w_idx].cmd = ((port << 16) & 0xFFFFFF) | ((bank << 8) & 0xFFFFFF) | (vol & 0xFFFFFF) | 0x20000000;
     
-    *(unsigned char*)&sndque_tbl[sque_w_idx].vol = block; // looks like a mistake
+    *(unsigned char*)&sndque_tbl[sque_w_idx].vol = block; 
     
     sque_w_idx = ++sque_w_idx % 128;
     
@@ -357,60 +357,78 @@ int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigne
 }
 
 // 100% matching!
-int SdrBgmStop(unsigned char port) {
-    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+int SdrBgmStop(unsigned char port) 
+{
+    if (sndque_tbl[sque_w_idx].cmd >= 0) 
+    {
         printf("SDR: SdrBgmStop: Warning: sndque overflow!\n");
+        
         return -1;
     }
 
-    sndque_tbl[sque_w_idx].cmd = (0x21000000 | ((port << 0x10) & 0xFFFFFF));
+    sndque_tbl[sque_w_idx].cmd = 0x21000000 | ((port << 16) & 0xFFFFFF);
+    
     sque_w_idx = ++sque_w_idx % 128;
     
     return 0;
 }
 
 // 100% matching!
-int SdrBgmChg(int req, char vol, char pan, int pitch) {
-
-    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+int SdrBgmChg(int req, char vol, char pan, int pitch) 
+{
+    if (sndque_tbl[sque_w_idx].cmd >= 0) 
+    {
         printf("SDR: SdrBgmChg: Warning: sndque overflow!\n");
+        
         return -1;
     }
 
     sndque_tbl[sque_w_idx].cmd = ((req << 16) & 0xFFFFFF) | 0x27000000;
+    
     sndque_tbl[sque_w_idx].vol = vol;
+    
     sndque_tbl[sque_w_idx].pan = pan;
+    
     sndque_tbl[sque_w_idx].pitch = ((pitch & 0x3F80) << 1) | (pitch & 0x7F);
     
     sque_w_idx = ++sque_w_idx % 128;
+    
     return 0;
 }
 
 // 100% matching!
-int SdrHDDataSet(int port, int size) {
-    
-    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+int SdrHDDataSet(int port, int size) 
+{
+    if (sndque_tbl[sque_w_idx].cmd >= 0) 
+    {
         printf("SDR: SdrLoadReq: Warning: sndque overflow!\n");
+        
         return -1;
     }
 
     sndque_tbl[sque_w_idx].cmd = ((port << 16) & 0xFFFFFF) | 0x28000000;
-    *(int*)(&sndque_tbl[sque_w_idx].vol) = size; 
+    
+    *(int*)&sndque_tbl[sque_w_idx].vol = size; 
+    
     sque_w_idx = ++sque_w_idx % 128;
     
     return 0;
 }
 
 // 100% matching!
-int SdrHDDataSet2(int port, int size) {
-
-    if (sndque_tbl[sque_w_idx].cmd >= 0) {
+int SdrHDDataSet2(int port, int size)
+{
+    if (sndque_tbl[sque_w_idx].cmd >= 0)
+    {
         printf("SDR: SdrLoadReq: Warning: sndque overflow!\n");
+        
         return -1;
     }
     
     sndque_tbl[sque_w_idx].cmd = ((port << 16) & 0xFFFFFF) | 0x29000000;
-    *(int*)(&sndque_tbl[sque_w_idx].vol) = size; 
+    
+    *(int*)&sndque_tbl[sque_w_idx].vol = size; 
+    
     sque_w_idx = ++sque_w_idx % 128;
     
     return 0;
