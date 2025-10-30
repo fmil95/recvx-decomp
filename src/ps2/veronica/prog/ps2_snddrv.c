@@ -25,41 +25,6 @@ int get_adrs;
 SND_STATUS get_iop_buff;
 SND_STATUS get_iop_snddata;
 
-static void wait_alarm(int id, unsigned short time, int thid);
-int SdrDelayThread(int hsync);
-static void sdr_initQue();
-static int sdr_initDev(sceSifClientData* cd_p, unsigned int dev);
-int SdrInit();
-int SdrSeReq(int req, char vol, char pan, short pitch);
-int SdrSeCancel(int req);
-int SdrSeChg(int req, char vol, char pan, short pitch);
-int SdrSeAllStop();
-int SdrMasterVol(unsigned short mvol);
-int SdrBgmReq(unsigned char port, unsigned char bank, unsigned char vol, unsigned char block);
-int SdrBgmStop(unsigned char port);
-int SdrBgmChg(int req, char vol, char pan, short pitch);
-int SdrHDDataSet(int port, int size);
-int SdrHDDataSet2(int port, int size);
-int SdrBDDataSet(int port);
-int SdrBDDataSet2(int port);
-int SdrBDDataTrans(int port, int adrs, int size, int flag);
-int SdrSQDataSet(int port, int size);
-int SdrSetIopData();
-int SdrSetOutputMode(int mode);
-int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char delay, unsigned char feedback);
-int SdrSendReq(int mode);
-static void cb_sifRpc(int smid);
-static void cb_sifRpc_snd(int smid);
-int SdrGetStateSend(int command, int data);
-int SdrGetStateReceive(int mode);
-int SdrGetState(int command, int data);
-static int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch);
-static int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7);
-static int makebuff(unsigned int cmd, int n);
-static int makebuff_ext(unsigned int cmd, int n, int limit);
-static int sending_req(SNDQUE *sq_p);
-int get_iopsnd_info();
-
 // 100% matching!
 static void wait_alarm(int id, unsigned short time, int thid)
 { 
@@ -780,10 +745,10 @@ static int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, u
     
     sb_p = &sbuff[sbuff_idx];
     
-    *sb_p++ = (cmd >> 24);
-    *sb_p++ = (cmd >> 16) & 0xFF;
-    *sb_p++ = (cmd >> 8) & 0xFF;
-    *sb_p++ = cmd & 0xFF;
+    *sb_p++ = cmd >> 24;
+    *sb_p++ = cmd >> 16;
+    *sb_p++ = cmd >> 8;
+    *sb_p++ = cmd;
     
     if ((cd & 0x1)) 
     {
@@ -797,8 +762,8 @@ static int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, u
     
     if ((cd & 0x4)) 
     {
-        *sb_p++ = (pitch >> 8) & 0xFF;
-        *sb_p++ = pitch & 0xFF;
+        *sb_p++ = pitch >> 8;
+        *sb_p++ = pitch;
     }
     
     sbuff_idx += len;
@@ -921,89 +886,105 @@ static int makebuff_ext(unsigned int cmd, int n, int limit)
 }
 
 // 100% matching!
-static int sending_req(SNDQUE* sq_p) {
+static int sending_req(SNDQUE* sq_p)
+{
     int cd;
     SNDQUE_DATA* sqd_p;
 
     sqd_p = (SNDQUE_DATA*)sq_p;
-    cd = sq_p->cmd >> 0x18;
     
-    if (cd == 0x7F) {
+    cd = sq_p->cmd >> 24;
+    
+    if (cd == 127) 
+    {
         return 0;
     }
     
-    if (cd == -1) {
+    if (cd == -1) 
+    {
         return 0;
     }
     
-    switch (cd & 0xF0) {
-    case 0x0:
+    switch (cd & 0xF0) 
+    {
+    case 0:
         return makebuff_tq(sq_p->cmd, sq_p->vol, sq_p->pan, sq_p->pitch);
-        
-    case 0x10:
-        if (cd == 0x11) {
+    case 16:
+        if (cd == 17) 
+        {
             return makebuff(sq_p->cmd, 3);
-        } else {
+        } 
+        else
+        {
             return makebuff(sq_p->cmd, 1);
         }
-        
-    case 0x20:
-        if ((cd - 0x22) < 4U) {
+    case 32:
+        if ((cd == 34) || (cd == 35) || (cd == 36) || (cd == 37)) 
+        {
             return makebuff(sq_p->cmd, 3);
         }
         
-        if (cd == 0x26) {
+        if (cd == 38) 
+        {
             return makebuff(sq_p->cmd, 4);
         }
         
-        if (cd == 0x20) {
+        if (cd == 32) 
+        {
             return makebuff8(sq_p->cmd, 5, sq_p->vol, 0, 0, 0);
         }
         
-        if (((cd - 0x27) <= 2U) || ((cd - 0x2C) < 2U)) {
+        if ((cd == 39) || (cd == 40) || (cd == 41) || (cd == 44) || (cd == 45))
+        {
             return makebuff8(sq_p->cmd, 8, sqd_p->data[0], sqd_p->data[1], sqd_p->data[2], sqd_p->data[3]);
         }
         
         return makebuff(sq_p->cmd, 2);
-        
-    case 0x40:
-        if ( (cd - 0x47) <= 3U ||  (cd - 0x41) < 2U) {
+    case 64:
+        if ((cd == 71) || (cd == 72) || (cd == 73) || (cd == 74) || (cd == 65) || (cd == 66))
+        {
             return makebuff(sq_p->cmd, 2);
         }
         
-        if (cd == 0x4B) {
+        if (cd == 75) 
+        {
             return makebuff(sq_p->cmd, 3);
         }
         
-        if (cd == 0x45 || cd == 0x4C) {
+        if ((cd == 69) || (cd == 76)) 
+        {
             return makebuff(sq_p->cmd, 4);
         }
         
-        if (cd == 0x44) {
+        if (cd == 68) 
+        {
             return makebuff8(sq_p->cmd, 6, sq_p->vol, sq_p->pan, 0, 0);
         }
         
-        if ((cd - 0x4D) < 2U) {
-            return makebuff_ext(sq_p->cmd, 3, 0x15);
+        if ((cd == 77) || (cd == 78)) 
+        {
+            return makebuff_ext(sq_p->cmd, 3, 21);
         }
         
-        if (cd == 0x4F) {
-            return makebuff8(*(int*)((char*)sq_p+4), 6, (sq_p->cmd >> 8) & 0xFF, sq_p->cmd & 0xFF, 0, 0);
+        if (cd == 79) 
+        {
+            return makebuff8(*(int*)&sq_p->vol, 6, sq_p->cmd >> 8, sq_p->cmd, 0, 0);
         }
         
-        return makebuff(sq_p->cmd, 1);
-        
-    case 0x60:
-    case 0x50:
-        if ((cd - 0x51) < 4U) {
+        return makebuff(sq_p->cmd, 1); 
+    case 96:
+    case 80:
+        if ((cd == 81) || (cd == 82) || (cd == 83) || (cd == 84)) 
+        {
             return makebuff8(sq_p->cmd, 8, sqd_p->data[0], sqd_p->data[1], sqd_p->data[2], sqd_p->data[3]);
         }
-        else {
+        else 
+        {
             return makebuff(sq_p->cmd, 2);
         }
-        
     default:
         printf("SDR: snddrv.c: sending_req: Error: unknown command\n");
+        
         return -1;
     }
 }
