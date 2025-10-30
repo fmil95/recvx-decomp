@@ -53,9 +53,9 @@ static void cb_sifRpc_snd(int smid);
 int SdrGetStateSend(int command, int data);
 int SdrGetStateReceive(int mode);
 int SdrGetState(int command, int data);
-/*int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch);
-int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7);
-int makebuff(unsigned int cmd, int n);
+static int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch);
+static int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7);
+/*int makebuff(unsigned int cmd, int n);
 int makebuff_ext(unsigned int cmd, int n, int limit);*/
 static int sending_req(SNDQUE *sq_p);
 int get_iopsnd_info();
@@ -748,28 +748,33 @@ int SdrGetState(int command, int data)
 }
 
 // 100% matching!
-int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch) {
+static int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch) 
+{
     int cd;
     int len;
     unsigned char* sb_p;
     
-    cd = (cmd >> 24);
+    cd = cmd >> 24;
     
     len = 4;
     
-    if (cd & 0x1) {
+    if ((cd & 0x1)) 
+    {
         len += 1;
     }
     
-    if (cd & 0x2) {
+    if ((cd & 0x2)) 
+    {
         len += 1;
     }
     
-    if (cd & 0x4) {
+    if ((cd & 0x4))
+    {
         len += 2;
     }
     
-    if ((sbuff_idx + len) >= 0x200) {
+    if ((sbuff_idx + len) >= 512) 
+    {
         return -1;
     }
     
@@ -780,15 +785,18 @@ int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned
     *sb_p++ = (cmd >> 8) & 0xFF;
     *sb_p++ = cmd & 0xFF;
     
-    if (cd & 0x1) {
+    if ((cd & 0x1)) 
+    {
         *sb_p++ = vol;
     }
     
-    if (cd & 0x2) {
+    if ((cd & 0x2)) 
+    {
         *sb_p++ = pan;
     }
     
-    if (cd & 0x4) {
+    if ((cd & 0x4)) 
+    {
         *sb_p++ = (pitch >> 8) & 0xFF;
         *sb_p++ = pitch & 0xFF;
     }
@@ -801,48 +809,50 @@ int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned
 }
 
 // 100% matching!
-int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7) {
-    int shift;
-    int count;
+static int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7)
+{
+    int shift_n;
+    int i;
     
-    if (n > 8) {
+    if (n > 8) 
+    {
         printf("SDR: snddrv.c: makebuff8: Error: Length over\n");
+        
         return -1;
     }
     
-    if ((sbuff_idx + n) >= 0x200) {
+    if ((sbuff_idx + n) >= 512)
+    {
         return -1;
     }
     
-    shift = 0x18;
-    count = 4;
+    shift_n = 24;
     
-    while (count > 0 && n > 0) {
-        sbuff[sbuff_idx] = cmd >> shift;
-        sbuff_idx++;
-        shift -= 8;
-        count--;
-        n--;
+    for (i = 4; (i > 0) && (n > 0); i--, n--)
+    {
+        sbuff[sbuff_idx++] = cmd >> shift_n;
+        
+        shift_n -= 8;
     }
     
-    if (n-- > 0) {
-        sbuff[sbuff_idx] = data4;
-        sbuff_idx++;
+    if (n-- > 0) 
+    {
+        sbuff[sbuff_idx++] = data4;
     }
     
-    if (n-- > 0) {
-        sbuff[sbuff_idx] = data5;
-        sbuff_idx++;
+    if (n-- > 0) 
+    {
+        sbuff[sbuff_idx++] = data5;
     }
     
-    if (n-- > 0) {
-        sbuff[sbuff_idx] = data6;
-        sbuff_idx++;
+    if (n-- > 0) 
+    {
+        sbuff[sbuff_idx++] = data6;
     }
     
-    if (n > 0) {
-        sbuff[sbuff_idx] = data7;
-        sbuff_idx++;
+    if (n > 0) 
+    {
+        sbuff[sbuff_idx++] = data7;
     }
     
     sbuff[sbuff_idx] = 0xFF;
