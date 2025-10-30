@@ -120,7 +120,7 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
     
     for (i = 0; i < maxnch; i++) 
     {
-        ps2rna->ps2psj[i] = ps2rna_get_psj();
+        ps2rna->psj[i] = ps2rna_get_psj();
     }
 
     sbuf[0] = maxnch;
@@ -128,7 +128,7 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
 
     for (i = 0; i < maxnch; i++) 
     {
-        sbuf[2 + i] = (Sint32)ps2rna->ps2psj[i]->sjiop;
+        sbuf[2 + i] = (Sint32)ps2rna->psj[i]->sjiop;
     }
      
     ps2rna->urpc = (void*)DTX_CallUrpc(8, sbuf, 4, rbuf, 1);
@@ -142,7 +142,7 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
     
     for (i = 0; i < maxnch; i++)
     {
-        ps2rna->dtr[i] = DTR_Create(sjo[i], ps2rna->ps2psj[i]->sjtmp);
+        ps2rna->dtr[i] = DTR_Create(sjo[i], ps2rna->psj[i]->sjtmp);
     }
 
     for (i = 0; i < maxnch; i++)
@@ -165,8 +165,8 @@ PS2RNA PS2RNA_Create(SJ* sjo, Sint32 maxnch)
         ps2rna->pan2[i] = 0;
     }
 
-    ps2rna->transsw = 0;
-    ps2rna->transsw2 = 1;
+    ps2rna->trnsw = 0;
+    ps2rna->dtrstop_flg = 1;
     
     ps2rna->unk4C = 0;
     
@@ -197,9 +197,9 @@ void PS2RNA_Destroy(PS2RNA ps2rna)
  
     for (ch = 0; ch < ps2rna->maxnch; ch++) 
     {
-        if (ps2rna->ps2psj[ch] != NULL) 
+        if (ps2rna->psj[ch] != NULL) 
         {
-            ps2rna_release_psj(ps2rna->ps2psj[ch]);
+            ps2rna_release_psj(ps2rna->psj[ch]);
         }
     }
     
@@ -220,7 +220,7 @@ void PS2RNA_ExecHndl(PS2RNA ps2rna)
     SJCK ck;
     Sint32 i;
 
-    if ((ps2rna->playsw == 1) && (ps2rna->transsw == 0)) 
+    if ((ps2rna->playsw == 1) && (ps2rna->trnsw == 0)) 
     {
         if (((unsigned int)SJ_GetNumData(ps2rna->sjo[0], 1) - 1) < 63) // this is likely to be a compiler optimization
         {
@@ -263,7 +263,7 @@ void PS2RNA_ExecHndl(PS2RNA ps2rna)
                 DTR_Stop(ps2rna->dtr[i]);
             }
             
-            ps2rna->transsw2 = 1;
+            ps2rna->dtrstop_flg = 1;
         }
     }
 }
@@ -392,13 +392,13 @@ Sint32 PS2RNA_GetBitPerSmpl(PS2RNA ps2rna)
 // 100% matching! 
 Sint32 PS2RNA_GetNumData(PS2RNA ps2rna)
 {
-    return (Uint32)(16384 - SJ_GetNumData(ps2rna->ps2psj[0]->sjtmp, 0)) >> 1;
+    return (Uint32)(16384 - SJ_GetNumData(ps2rna->psj[0]->sjtmp, 0)) >> 1;
 }
 
 // 100% matching! 
 Sint32 PS2RNA_GetNumRoom(PS2RNA ps2rna)
 {
-    return (Uint32)SJ_GetNumData(ps2rna->ps2psj[0]->sjtmp, 0) >> 1;
+    return (Uint32)SJ_GetNumData(ps2rna->psj[0]->sjtmp, 0) >> 1;
 } 
 
 // 100% matching!
@@ -422,13 +422,13 @@ Sint32 PS2RNA_GetSfreq(PS2RNA ps2rna)
 // 100% matching!
 void* PS2RNA_GetSjiop(PS2RNA ps2rna, Sint32 ch) 
 {
-    return ps2rna->ps2psj[ch]->sjiop; 
+    return ps2rna->psj[ch]->sjiop; 
 }
 
 // 100% matching!
 void* PS2RNA_GetSjtmp(PS2RNA ps2rna, Sint32 ch) 
 {
-    return ps2rna->ps2psj[ch]->sjtmp; 
+    return ps2rna->psj[ch]->sjtmp; 
 } 
 
 // 100% matching!
@@ -589,7 +589,7 @@ Sint32 PS2RNA_IsPlySwOff(PS2RNA ps2rna)
     
     if (PS2RNA_GetNumData(ps2rna) <= 0) 
     {
-        ret = ps2rna->transsw2 == 1;
+        ret = ps2rna->dtrstop_flg == 1;
     }
     
     return ret;
@@ -689,11 +689,11 @@ void PS2RNA_SetPlaySw(PS2RNA ps2rna, Sint32 sw)
     {
         for (ch = 0; ch < ps2rna->maxnch; ch++) 
         {
-            SJ_Reset(ps2rna->ps2psj[ch]->sjtmp);
+            SJ_Reset(ps2rna->psj[ch]->sjtmp);
             
-            SJ_PutChunk(ps2rna->ps2psj[ch]->sjtmp, 0, &ps2rna->ps2psj[ch]->ck);
+            SJ_PutChunk(ps2rna->psj[ch]->sjtmp, 0, &ps2rna->psj[ch]->ck);
             
-            SJRMT_Reset(ps2rna->ps2psj[ch]->sjiop); 
+            SJRMT_Reset(ps2rna->psj[ch]->sjiop); 
         }
     }
 }
@@ -733,26 +733,26 @@ void PS2RNA_SetTransSw(PS2RNA ps2rna, Sint32 sw)
 {
     Sint32 i;
 
-    if (ps2rna->transsw == sw)
+    if (ps2rna->trnsw == sw)
     {
         return;
     }
     
-    ps2rna->transsw = sw;
+    ps2rna->trnsw = sw;
     
     if (sw != 1)
     {
         return;
     }
     
-    if (ps2rna->transsw2 == sw)
+    if (ps2rna->dtrstop_flg == sw)
     {
         for (i = 0; i < ps2rna->maxnch; i++) 
         {
             DTR_Start(ps2rna->dtr[i]);
         }
 
-        ps2rna->transsw2 = 0;
+        ps2rna->dtrstop_flg = 0;
     }
 
     ps2rna->unk4C = 0;

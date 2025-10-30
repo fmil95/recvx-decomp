@@ -37,7 +37,7 @@ DTR DTR_Create(SJ sjo, SJ sji)
         
         dtr->sji = sji;
         
-        dtr->unk2 = 0;
+        dtr->trnflg = 0;
         
         dtr->unk30 = 1;
         
@@ -73,11 +73,11 @@ void DTR_ExecHndl(DTR dtr)
 
     if (dtr->stat == 1) 
     {
-        temp = dtr->unk2;
+        temp = dtr->trnflg;
 
-        if (dtr->unk2 == dtr->stat) 
+        if (dtr->trnflg == dtr->stat) 
         {
-            if (sceSifDmaStat(dtr->id) < 0)
+            if (sceSifDmaStat(dtr->dma_id) < 0)
             {
                 SJ_PutChunk(dtr->sjo, 0, &dtr->ck1);
                 
@@ -91,7 +91,7 @@ void DTR_ExecHndl(DTR dtr)
                 
                 dtr->ck2.len = 0;
                 
-                dtr->unk2 = 0;
+                dtr->trnflg = 0;
                 
                 dtr->unk3C += dtr->ck1.len;
     
@@ -106,7 +106,7 @@ void DTR_ExecHndl(DTR dtr)
             } 
             else 
             {
-                temp = dtr->unk2;
+                temp = dtr->trnflg;
             }
         }
     
@@ -162,9 +162,9 @@ void DTR_ExecHndl(DTR dtr)
                 
                 dtr->sdd.mode = 0;
                 
-                dtr->id = sceSifSetDma(&dtr->sdd, 1);
+                dtr->dma_id = sceSifSetDma(&dtr->sdd, 1);
             
-                if (dtr->id == 0) 
+                if (dtr->dma_id == 0) 
                 {
                     printf("E0101701 DTR_ExecHndl: can't use DMA\n");
                     
@@ -176,7 +176,7 @@ void DTR_ExecHndl(DTR dtr)
                     dtr->ck1 = cks;
                     dtr->ck2 = ckd;
                     
-                    dtr->unk2 = 1;
+                    dtr->trnflg = 1;
                 }
             }
         }

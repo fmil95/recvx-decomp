@@ -1,4 +1,4 @@
-#define BSWAP_U16(_val) (Uint16)((*(Uint16*)_val >> 8) | (*(Uint16*)_val << 8))
+#include "adx_tlk.h"
 
 static Uint32 adxt_svrcnt;
 static Uint32 adxt_svrcnt_sjd;
@@ -7,9 +7,6 @@ static Uint32 adxt_svrcnt_hndl;
 static Sint32 adxt_time_unit;
 static Sint32 adxt_time_mode;
 static float adxt_diff_av;
-
-void ADXT_GetTimeSfreq2(ADXT adxt, Sint32 *ncount, Sint32 *tscale);
-void ADXT_StopWithoutLsc(ADXT adxt);
 
 // 100% matching! 
 void ADXT_ClearErrCode(ADXT adxt)
@@ -964,7 +961,85 @@ void ADXT_Stop(ADXT adxt)
     ADXT_StopWithoutLsc(adxt);
 }
 
+// 100% matching!
 void ADXT_StopWithoutLsc(ADXT adxt)
 {
-    scePrintf("ADXT_StopWithoutLsc - UNIMPLEMENTED!\n");
+    PS2RNA rna;
+    SJ sjtmp;
+    Sint32 nch;
+    Sint32 i;
+
+    ADXCRS_Lock();
+    
+    ADXRNA_SetTransSw(adxt->rna, 0);
+    
+    ADXSJD_Stop(adxt->sjd);
+    
+    if (adxt->stm != NULL) 
+    {
+        ADXSTM_Stop(adxt->stm);
+        
+        ADXSTM_Close(adxt->stm);
+        
+        if (adxt->sji != NULL) 
+        {
+            SJ_Reset(adxt->sji);
+        }
+        
+        adxt->stm = NULL;
+    }
+    
+    if ((adxt->pmode == ADXT_PMODE_MEM) && (adxt->sji != NULL)) 
+    {
+        SJ_Destroy(adxt->sji);
+    }
+
+    ADXCRS_Unlock();
+    
+    rna = adxt->rna;
+    
+    nch = ADXT_GetNumChan(adxt);
+    
+    for (i = 0; i < nch; i++) 
+    {
+        if (rna->dtr[i]->trnflg == 1)
+        {
+            while (sceSifDmaStat(rna->dtr[i]->dma_id) >= 0);
+        }
+        
+        rna->dtr[i]->trnflg = 0;
+        
+        DTR_Stop(rna->dtr[i]);
+        
+        rna->trnsw = 0;
+        
+        rna->dtrstop_flg = 1;
+    } 
+    
+    for (i = 0; i < nch; i++) 
+    {
+        SJRMT_Reset(PS2RNA_GetSjiop(rna, i));
+    } 
+    
+    for (i = 0; i < nch; i++) 
+    {
+        SJX_Reset(rna->psj[i]->sjx);
+    } 
+    
+    for (i = 0; i < nch; i++) 
+    {
+        sjtmp = PS2RNA_GetSjtmp(rna, i);
+        
+        SJ_Reset(sjtmp);
+    } 
+    
+    ADXCRS_Lock();
+    
+    ADXRNA_SetPlaySw(adxt->rna, 0);
+    
+    adxt->sji = NULL;
+    
+    adxt->stat = ADXT_STAT_STOP;
+    
+    ADXCRS_Unlock();
 }

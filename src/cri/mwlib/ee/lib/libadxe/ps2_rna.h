@@ -22,8 +22,8 @@ typedef struct _ps2_rna
     Sint8   unk2;      /* unused */
     Sint8   unk3;      /* unused */
     Sint32  maxnch;
-    PS2PSJ  ps2psj[2];
-    void*   dtr[2];
+    PS2PSJ  psj[2];
+    DTR     dtr[2];
     SJ      sjo[2];
     void*   urpc;
     Sint8   playsw;
@@ -36,8 +36,8 @@ typedef struct _ps2_rna
     Sint32  vol2;
     Sint32  pan[2];
     Sint32  pan2[2];
-    Sint8   transsw;
-    Sint8   transsw2;
+    Sint8   trnsw;
+    Sint8   dtrstop_flg;
     Sint8   unk4A;     /* unused */
     Sint8   unk4B;     /* unused */
     Sint32  unk4C;     // roomno?

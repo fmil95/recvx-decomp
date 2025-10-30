@@ -5,14 +5,14 @@ typedef struct _dtr_obj
 {
     Sint8          used;
     Sint8          stat; 
-    Sint8          unk2;
+    Sint8          trnflg;
     Sint8          unk3;  /* unused */
     SJ             sjo;
     SJ             sji;
     SJCK           ck1;
     SJCK           ck2;
     sceSifDmaData  sdd;
-    Sint32         id;
+    Sint32         dma_id;
     Sint32         unk30;
     Sint32         unk34; // buf?
     Sint32         unk38; // bufsize?
