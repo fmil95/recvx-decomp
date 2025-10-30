@@ -50,10 +50,10 @@ int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char d
 int SdrSendReq(int mode);
 static void cb_sifRpc(int smid);
 static void cb_sifRpc_snd(int smid);
-/*int SdrGetStateSend(int command, int data);
+int SdrGetStateSend(int command, int data);
 int SdrGetStateReceive(int mode);
 int SdrGetState(int command, int data);
-int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch);
+/*int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch);
 int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7);
 int makebuff(unsigned int cmd, int n);
 int makebuff_ext(unsigned int cmd, int n, int limit);*/
@@ -672,62 +672,79 @@ static void cb_sifRpc_snd(int smid)
 }
 
 // 100% matching!
-int SdrGetStateSend(int command, int data) {
-      WaitSema(SmId_get);
-      getbuff[0] = data;
-
-      if (sceSifCallRpc(&GetStClientData, command, 1, getbuff, 0x10, getbuff, 0x10, (sceSifEndFunc)&cb_sifRpc, (void*)SmId_get) < 0) {
-          printf("SDR: SdrGetStateSend: Error: Rpc faild.\n");
-          SignalSema(SmId_get);
-          return -9;
-      }
-
-      return 0;
+int SdrGetStateSend(int command, int data) 
+{
+    WaitSema(SmId_get);
+    
+    getbuff[0] = data;
+    
+    if (sceSifCallRpc(&GetStClientData, command, 1, (void*)getbuff, 16, (void*)getbuff, 16, (sceSifEndFunc)cb_sifRpc, (void*)SmId_get) < 0)
+    {
+        printf("SDR: SdrGetStateSend: Error: Rpc faild.\n");
+        
+        SignalSema(SmId_get);
+        
+        return -9;
+    }
+    
+    return 0;
 }
 
 // 100% matching!
-int SdrGetStateReceive(int mode) {
+int SdrGetStateReceive(int mode) 
+{
     int ret;
     
-    if (mode != 0) {
-        if (PollSema(SmId_get) < 0) {
+    if (mode != 0) 
+    {
+        if (PollSema(SmId_get) < 0) 
+        {
             return -1;
         }
-    } else {
+    } 
+    else 
+    {
         WaitSema(SmId_get);
     }
     
     ret = getbuff[0];
+    
     SignalSema(SmId_get);
+    
     return ret;
 }
 
 // 100% matching!
-int SdrGetState(int command, int data) {
-    int ret2;
+int SdrGetState(int command, int data) 
+{
+    int ret;
     int i;
     
-    ret2 = SdrGetStateSend(command, data);
+    ret = SdrGetStateSend(command, data);
     
-    if (ret2 < 0) {
-        return ret2;
+    if (ret < 0) 
+    {
+        return ret;
     }
 
-    i = 0;
-    do {
-        ret2 = SdrGetStateReceive(1);
-        if (ret2 != -1) {
+    for (i = 0; i < 100000; i++) 
+    {
+        ret = SdrGetStateReceive(1);
+        
+        if (ret != -1) 
+        {
             break;
         }
-        i++;
-    } while (i < 100000);
+    } 
     
-    if (i == 100000) {
+    if (i == 100000) 
+    {
         printf("SdrGetState: time out\n");
+        
         SignalSema(SmId_get);
     }
     
-    return ret2;
+    return ret;
 }
 
 // 100% matching!
