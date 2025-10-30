@@ -55,8 +55,8 @@ int SdrGetStateReceive(int mode);
 int SdrGetState(int command, int data);
 static int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch);
 static int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7);
-/*int makebuff(unsigned int cmd, int n);
-int makebuff_ext(unsigned int cmd, int n, int limit);*/
+static int makebuff(unsigned int cmd, int n);
+static int makebuff_ext(unsigned int cmd, int n, int limit);
 static int sending_req(SNDQUE *sq_p);
 int get_iopsnd_info();
 
@@ -861,61 +861,67 @@ static int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char
 }
 
 // 100% matching!
-int makebuff(unsigned int cmd, int n) {
-    int shift;
+static int makebuff(unsigned int cmd, int n) 
+{
+    int shift_n;
     
-    if (n > 4) {
+    if (n > 4)
+    {
         printf("SDR: snddrv.c: makebuff: Error: Length over\n");
+        
         return -1;
     }
 
-    if ((sbuff_idx + n) >= 0x200) {
+    if ((sbuff_idx + n) >= 512) 
+    {
         return -1;
     }
     
-    shift = 0x18;  
+    shift_n = 24;  
     
-    if (n > 0) {
-        do {
-            sbuff[sbuff_idx] = (cmd >> shift) ;
-            sbuff_idx++;
-            n--;
-            shift -= 8;  
-        } while (n > 0);
-    }
+    for ( ; n > 0; n--) 
+    {
+		sbuff[sbuff_idx++] = cmd >> shift_n;
+        
+		shift_n -= 8;
+	}
 
     sbuff[sbuff_idx] = 0xFF;
+    
     return 0;
 }
 
 // 100% matching!
-int makebuff_ext(unsigned int cmd, int n, int limit) {
+static int makebuff_ext(unsigned int cmd, int n, int limit) 
+{
     int shift_n;
 
-    if ((n >= limit) || (n > 4)) {
+    if ((n >= limit) || (n > 4)) 
+    {
         printf("SDR: snddrv.c: makebuff_ext: Error: Length invalid\n");
+        
         return -1;
     }
     
-    if ((sbuff_idx + limit) >= 0x200) {
+    if ((sbuff_idx + limit) >= 512)
+    {
         return -1;
     }
     
-    shift_n = 0x18;
+    shift_n = 24;
     
-    if (n > 0) {
-        do {
-            sbuff[sbuff_idx] = cmd >> shift_n;
-            sbuff_idx++;
-            n--;
-            shift_n -= 8;
-        } while (n > 0);
-    }
+    for ( ; n > 0; n--) 
+    {
+		sbuff[sbuff_idx++] = cmd >> shift_n;
+        
+		shift_n -= 8;
+	}
+    
     return 0;
 }
 
 // 100% matching!
-int sending_req(SNDQUE* sq_p) {
+static int sending_req(SNDQUE* sq_p) {
     int cd;
     SNDQUE_DATA* sqd_p;
 
@@ -1002,15 +1008,17 @@ int sending_req(SNDQUE* sq_p) {
     }
 }
 
-// 100% matching
-int get_iopsnd_info() {
+// 100% matching!
+int get_iopsnd_info() 
+{
     sceSifReceiveData rd;
 
-    if (!sceSifGetOtherData(&rd, (int*)get_adrs, (void*) (&get_iop_buff), 0x42, 0)) {
-        memcpy(&get_iop_snddata, &get_iop_buff, 0x42);
+    if (sceSifGetOtherData(&rd, (void*)get_adrs, (void*)&get_iop_buff, sizeof(SND_STATUS), 0) == 0) 
+    {
+        memcpy(get_iop_snddata, get_iop_buff, sizeof(SND_STATUS));
+        
         return 0;
     }
     
     return -1;
 }
-
