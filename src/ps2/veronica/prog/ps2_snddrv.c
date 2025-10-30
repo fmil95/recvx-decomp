@@ -13,64 +13,23 @@ static int SmId_send = -1;
 static int SmId_get = -1;
 int SendReqFlag;
 static unsigned char Stack_send[2048]; /* unused */
-unsigned int IOP_hd_size[16] = 
-{
-    0x00000700,  
-    0x00000300,  
-    0x00003000,  
-    0x00000B00,  
-    0x00000A00,  
-    0x00000B00,  
-    0x00001800,  
-    0x00000300,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000   
-};
-unsigned int IOP_tq_size[16] = 
-{
-    0x00000000,  
-    0x00000200,  
-    0x00002000,  
-    0x00000C00,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000,  
-    0x00000000   
-};
-//void(*wait_alarm)(int, unsigned short, int);
+unsigned int IOP_hd_size[16] = { 1792, 768, 12288, 2816, 2560, 2816, 6144, 768, 0, 0, 0, 0, 0, 0, 0, 0 };
+unsigned int IOP_tq_size[16] = { 0, 512, 8192, 3072, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 int iop_data_buff;
 int iop_data_adr[16];
 int iop_sq_adr[16];
 int iop_hd_adr[16];
 int iop_data_adr_top;
 int get_adrs;
-void* _gp;
-int(*th_sdrSendReq)();
-//void(*cb_sifRpc_snd)(int);
-//void(*cb_sifRpc)(int);
-//void(*cb_sifRpc2)(int*);
+void* _gp; /* unused */
 SND_STATUS get_iop_buff;
 SND_STATUS get_iop_snddata;
 
 static void wait_alarm(int id, unsigned short time, int thid);
 int SdrDelayThread(int hsync);
 static void sdr_initQue();
-/*int sdr_initDev(_sif_client_data* cd_p, unsigned int dev);
-int SdrInit();
+static int sdr_initDev(sceSifClientData* cd_p, unsigned int dev);
+/*int SdrInit();
 int SdrSeReq(int req, char vol, char pan, short pitch);
 int SdrSeCancel(int req);
 int SdrSeChg(int req, char vol, char pan, short pitch);
@@ -134,18 +93,31 @@ static void sdr_initQue()
 	for (i = 127; i >= 0; sndque_tbl[i--].cmd = -1); 
 } 
 
-// 100% matching
-int sdr_initDev(sceSifClientData *cd_p, unsigned int dev) { 
+// 100% matching!
+static int sdr_initDev(sceSifClientData* cd_p, unsigned int dev)
+{
 	int	i;
     
-	for (i = 1024; i > 0; i--) { 
-		if (sceSifBindRpc(cd_p, dev, 0) < 0) return -1; 
-		if (cd_p->serve != NULL) break; 
-
+	for (i = 1024; i > 0; i--) 
+    { 
+		if (sceSifBindRpc(cd_p, dev, 0) < 0) 
+        {
+            return -1;
+        }
+		
+        if (cd_p->serve != NULL) 
+        {
+            break; 
+        }
+        
 		printf("SDR:  BindRpc: Just wait.\n"); 
-		if (SdrDelayThread(1) < 0) return -1; 
+		
+        if (SdrDelayThread(1) < 0) 
+        {
+            return -1;
+        }
 	} 
-
+    
 	return 0; 
 } 
 
