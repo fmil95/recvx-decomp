@@ -3255,7 +3255,15 @@ enum TIM2_gattr_type {
 #define SCE_GS_ALPHA_AD         (1)
 #define SCE_GS_ALPHA_FIX        (2)
 
-typedef	void (*AlarmCallBack)(int, unsigned short, void *);
+typedef	void (*AlarmCallBack)(int, unsigned short, void*);
+
+#define	CheckCmdReq(vol, pan, pitch)	(0x00|0|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
+#define	isSQUE_EXIST(que_p)			((que_p)->cmd >= 0)
+#define	_ERRMES_SQOVER(proc)	#proc ": Warning: sndque overflow!\n"
+#define	TSDRCODE_TQ					(0x00)
+#define	TSDRCMD_CHG(v_f,p_f,c_f)	(TSDRCODE_TQ|8|((v_f)&1)|(((p_f)&1)<<1)|(((c_f)&1)<<2))
+#define	TSDRCMD_CANCEL				(TSDRCODE_TQ|8)
+#define	SQUE_MAKE_CMD(cmd, arg)		(((cmd)<<24)|((arg)&0x00ffffff))
 
 #define bss_align(val) \
     __attribute__ ((aligned(val))) __attribute__ ((section (".bss")))

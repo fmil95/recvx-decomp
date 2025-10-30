@@ -1,22 +1,20 @@
 #include "ps2_snddrv.h"
 
-unsigned char sbuff[512];
-unsigned int getbuff[4];
-sceSifClientData ClientData;
-sceSifClientData GetStClientData;
-int sque_r_idx;
-SND_QUE sndque_tbl[128];
-int sque_w_idx;
-int sbuff_idx;
-int ThId_send;
-int SmId_send = -1;
-int SmId_get = -1;
+static unsigned char sbuff[512] __attribute__((aligned(64)));
+static unsigned int getbuff[4] __attribute__((aligned(64)));
+static sceSifClientData ClientData;
+static sceSifClientData GetStClientData;
+static volatile int sque_r_idx;
+static SND_QUE sndque_tbl[128];
+static int sque_w_idx;
+static int sbuff_idx;
+static int ThId_send;
+static int SmId_send = -1;
+static int SmId_get = -1;
 int SendReqFlag;
-/*
-unsigned char Stack_send[2048];
-*/
-
-unsigned int IOP_hd_size[16] = {
+static unsigned char Stack_send[2048]; /* unused */
+unsigned int IOP_hd_size[16] = 
+{
     0x00000700,  
     0x00000300,  
     0x00003000,  
@@ -34,8 +32,8 @@ unsigned int IOP_hd_size[16] = {
     0x00000000,  
     0x00000000   
 };
-
-unsigned int IOP_tq_size[16] = {
+unsigned int IOP_tq_size[16] = 
+{
     0x00000000,  
     0x00000200,  
     0x00002000,  
@@ -53,30 +51,25 @@ unsigned int IOP_tq_size[16] = {
     0x00000000,  
     0x00000000   
 };
-/*
-void(*wait_alarm)(int, unsigned short, int);
-*/
+//void(*wait_alarm)(int, unsigned short, int);
 int iop_data_buff;
 int iop_data_adr[16];
 int iop_sq_adr[16];
 int iop_hd_adr[16];
 int iop_data_adr_top;
 int get_adrs;
-/*void* _gp;
+void* _gp;
 int(*th_sdrSendReq)();
-void(*cb_sifRpc_snd)(int);
-void(*cb_sifRpc)(int);
-void(*cb_sifRpc2)(int*);
-*/
-
+//void(*cb_sifRpc_snd)(int);
+//void(*cb_sifRpc)(int);
+//void(*cb_sifRpc2)(int*);
 SND_STATUS get_iop_buff;
 SND_STATUS get_iop_snddata;
 
-/*
-void wait_alarm(int thid);
+static void wait_alarm(int id, unsigned short time, int thid);
 int SdrDelayThread(int hsync);
-void sdr_initQue();
-int sdr_initDev(_sif_client_data* cd_p, unsigned int dev);
+static void sdr_initQue();
+/*int sdr_initDev(_sif_client_data* cd_p, unsigned int dev);
 int SdrInit();
 int SdrSeReq(int req, char vol, char pan, short pitch);
 int SdrSeCancel(int req);
@@ -95,34 +88,21 @@ int SdrSQDataSet(int port, int size);
 int SdrSetIopData();
 int SdrSetOutputMode(int mode);
 int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char delay, unsigned char feedback);
-int SdrSendReq(int mode);
-*/
+int SdrSendReq(int mode);*/
 void cb_sifRpc(int smid);
 void cb_sifRpc_snd(int smid);
-/*
-int SdrGetStateSend(int command, int data);
+/*int SdrGetStateSend(int command, int data);
 int SdrGetStateReceive(int mode);
 int SdrGetState(int command, int data);
 int makebuff_tq(unsigned int cmd, unsigned char vol, unsigned char pan, unsigned short pitch);
 int makebuff8(unsigned int cmd, int n, unsigned char data4, unsigned char data5, unsigned char data6, unsigned char data7);
 int makebuff(unsigned int cmd, int n);
-int makebuff_ext(unsigned int cmd, int n, int limit);
-*/
+int makebuff_ext(unsigned int cmd, int n, int limit);*/
 int sending_req(SND_QUE* sq_p);
 int get_iopsnd_info();
 
-void CpEEWait(int val);
-
-#define	CheckCmdReq(vol, pan, pitch)	(0x00|0|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
-#define	isSQUE_EXIST(que_p)			((que_p)->cmd >= 0)
-#define	_ERRMES_SQOVER(proc)	#proc ": Warning: sndque overflow!\n"
-#define	TSDRCODE_TQ					(0x00)
-#define	TSDRCMD_CHG(v_f,p_f,c_f)	(TSDRCODE_TQ|8|((v_f)&1)|(((p_f)&1)<<1)|(((c_f)&1)<<2))
-#define	TSDRCMD_CANCEL				(TSDRCODE_TQ|8)
-#define	SQUE_MAKE_CMD(cmd, arg)		(((cmd)<<24)|((arg)&0x00ffffff))
-
 // 100% matching!
-void wait_alarm(int id, unsigned short time, int thid)
+static void wait_alarm(int id, unsigned short time, int thid)
 { 
 	iWakeupThread(thid); 
     
@@ -142,13 +122,15 @@ int SdrDelayThread(int hsync)
 	return SleepThread(); 
 } 
 
-// 100% matching
-void sdr_initQue() {
+// 100% matching!
+static void sdr_initQue()
+{
 	int i;
 
 	sbuff_idx = 0; 
-	sque_r_idx = 0; 
-	sque_w_idx = 0; 
+    
+	sque_w_idx = sque_r_idx = 0; 
+    
 	for (i = 127; i >= 0; sndque_tbl[i--].cmd = -1); 
 } 
 
@@ -167,7 +149,7 @@ int sdr_initDev(sceSifClientData *cd_p, unsigned int dev) {
 	return 0; 
 } 
 
-
+void CpEEWait(int val); // TODO: Remove this function declaration
 // 99.91% matching
 int SdrInit() {
     static int flag_1st; 
