@@ -1,4 +1,5 @@
 #include "adx_bsc.h"
+#include "adx_xpnd.h"
 
 static ADX_BASIC adxb_obj[8] = { 0 };
 

@@ -1,6 +1,11 @@
 #ifndef _ADX_XPND_H_
 #define _ADX_XPND_H_
 
+#include <cri_xpt.h>
+#include <sj.h>
+#include "override_adxt.h"
+#include <cri_adxt.h>
+
 /* structs are located in the override_criware2 header */
 
 ADXPD ADXPD_Create(void);

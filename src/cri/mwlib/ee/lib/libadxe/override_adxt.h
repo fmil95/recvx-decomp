@@ -1,3 +1,5 @@
+#ifndef _OVERRIDE_ADXT_H_
+#define _OVERRIDE_ADXT_H_
 
 /* adx_xpnd */
 
@@ -117,4 +119,6 @@ typedef struct
 	Sint32 hdrlen;
 } ADX_SJDEC;
 typedef ADX_SJDEC *ADXSJD;
+#endif
+
 #endif
