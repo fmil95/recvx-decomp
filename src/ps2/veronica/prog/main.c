@@ -49,9 +49,6 @@
 
 #include "main.h"
 
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_bsps.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_bwav.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_bsc.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/dtx.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/dtr.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sjr_clt.c"

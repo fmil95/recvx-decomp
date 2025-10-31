@@ -6,7 +6,7 @@
 #include "override_adxt.h"
 #include <cri_adxt.h>
 
-/* structs are located in the override_criware2 header */
+/* structs are located in the override_adxt header */
 
 ADXPD ADXPD_Create(void);
 void ADXPD_Destroy(ADXPD xpd);

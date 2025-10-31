@@ -1,9 +1,15 @@
 #ifndef _ADX_BSC_H_
 #define _ADX_BSC_H_
 
-/* structs are located in the override_criware2 header */
+#include <cri_xpt.h>
+#include <sj.h>
+#include "override_adxt.h"
+#include <cri_adxt.h>
 
-#define BSWAP_U16_EX(_val) (Uint16)(((_val & 0xFF00) >> 8) | ((_val << 8) & 0xFF00)) // TODO: move this macro somewhere else
+#define MIN(a, b) ((a) < (b) ? (a) : (b)) // TODO: move these macros somewhere else
+#define BSWAP_U16_EX(_val) (Uint16)(((_val & 0xFF00) >> 8) | ((_val << 8) & 0xFF00)) 
+
+/* structs are located in the override_adxt header */
 
 void ADXB_CopyExtraBufMono(Sint16 *obuf, Sint32 obsize, Sint32 xsize, Sint32 nxsmpl);
 void ADXB_CopyExtraBufSte(Sint16 *obuf, Sint32 obsize, Sint32 obdist, Sint32 nxsmpl);
