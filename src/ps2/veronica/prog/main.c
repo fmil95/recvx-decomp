@@ -49,11 +49,6 @@
 
 #include "main.h"
 
-#include "../../../cri/mwlib/ee/lib/libadxe/dtr.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/sjr_clt.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/sjx.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_fcch.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/cri_cvfs.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_fsvr.c"

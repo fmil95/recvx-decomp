@@ -1,4 +1,6 @@
 #include "ps2_rna.h"
+#include "dtx.h"
+#include "sjr_clt.h"
 
 static Char8* volatile ps2rna_build = "\nPS2RNA Ver 0.98 Build:Jan 26 2001 09:57:43\n";
 static PS2RNA_OBJ ps2rna_obj[8] = { 0 };

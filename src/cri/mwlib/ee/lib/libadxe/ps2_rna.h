@@ -1,6 +1,9 @@
 #ifndef _PS2_RNA_H_
 #define _PS2_RNA_H_
 
+#include "dtr.h"
+#include "sjx.h"
+
 typedef struct _ps2_psj 
 {
     Sint8  used;
