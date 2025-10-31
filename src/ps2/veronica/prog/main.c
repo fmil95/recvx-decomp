@@ -49,9 +49,6 @@
 
 #include "main.h"
 
-#include "../../../cri/mwlib/ee/lib/libadxe/cri_cvfs.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_fsvr.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_utl.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_rbf.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_mem.c"

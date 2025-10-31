@@ -1,6 +1,14 @@
 #ifndef _ADX_STMC_H_
 #define _ADX_STMC_H_
 
+#include <cri_xpt.h>
+#include <sj.h>
+#include "override_adxf.h"
+#include <cri_adxf.h>
+#include "cri_cvfs.h"
+
+#define MIN(a, b) ((a) < (b) ? (a) : (b)) // TODO: move this macro somewhere else
+
 typedef struct _adxstm_file 
 { 
 	Sint8 used;

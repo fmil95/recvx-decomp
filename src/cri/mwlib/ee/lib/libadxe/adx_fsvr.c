@@ -1,4 +1,5 @@
 #include "adx_fsvr.h"
+#include "adx_stmc.h"
 
 // 100% matching!
 void ADXT_ExecFsSvr(void)
