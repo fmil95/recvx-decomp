@@ -49,8 +49,6 @@
 
 #include "main.h"
 
-#include "../../../cri/mwlib/ee/lib/libadxe/sj_utl.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/sj_rbf.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_mem.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_uni.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_crs.c"

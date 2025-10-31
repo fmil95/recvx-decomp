@@ -644,7 +644,7 @@ void adxstmf_stat_exec(ADXSTMF stmf)
         }
         else 
         {
-            stmf->reqsct = cvFsReqRd(stmf->fp, nsct, (Sint8*)stmf->reqck.data);
+            stmf->reqsct = cvFsReqRd(stmf->fp, nsct, stmf->reqck.data);
             
             if (stmf->reqsct <= 0)
             {

@@ -1,6 +1,11 @@
 #ifndef _SJ_RBF_H_
 #define _SJ_RBF_H_
 
+#include <cri_xpt.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
+
+#define MIN(a, b) ((a) < (b) ? (a) : (b)) // TODO: move this macro somewhere else
+
 typedef void (*SJRBF_ERRFN)(void *obj, Sint32 errcode);
 
 typedef struct _sjrbf 

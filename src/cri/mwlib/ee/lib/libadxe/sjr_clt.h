@@ -2,7 +2,7 @@
 #define _SJR_CLT_H_
 
 #include <cri_xpt.h>
-#include <sj.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 
 void* SJMEM_CreateRmt(Sint32 mode, Sint8 *work, Sint32 wksize);
 void* SJRBF_CreateRmt(Sint32 mode, Sint8 *work, Sint32 wksize);

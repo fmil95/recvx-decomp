@@ -2,10 +2,8 @@
 #define _SJX_H_
 
 #include <cri_xpt.h>
-#include <sj.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include <sifdev.h>
-
-#define	SJCK_LEN_MAX		(0x7fffffff) // TODO: find out why including sj.h isn't enough to make this symbol appear without defining it here
 
 typedef struct _sjx 
 {
