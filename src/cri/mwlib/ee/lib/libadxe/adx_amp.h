@@ -1,6 +1,8 @@
 #ifndef _ADX_AMP_H_
 #define _ADX_AMP_H_
 
+#include <cri_mw.h>
+
 typedef struct 
 { 
 	Sint32 val;

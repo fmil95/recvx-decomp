@@ -49,8 +49,6 @@
 
 #include "main.h"
 
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_amp.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_baif.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_bau.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd.c"

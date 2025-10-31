@@ -29,6 +29,8 @@
       "include/recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.s"
   ],
   "source_files": [
+      "src/cri/mwlib/ee/lib/libadxe/adx_crs.c",
+      "src/cri/mwlib/ee/lib/libadxe/adx_amp.c",
       "src/ps2/veronica/prog/main.c",
       "src/ps2/veronica/prog/vibman.c",
       "src/ps2/veronica/prog/flag.c",
