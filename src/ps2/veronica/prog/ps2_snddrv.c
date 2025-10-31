@@ -553,7 +553,7 @@ int SdrSetRev(unsigned int core, unsigned int mode, short depth, unsigned char d
 
 /* this function is currently responsible for halting the game on the emulator, specifically when called by sndr_trans_func() with 
    trans_type == SDE_DATA_TYPE_SHOT_BANK and trans_level == 1 (right after calling SdrHDDataSet2()). The reason for this behavior 
-   is not yet known. */
+   is not yet known, but is theorized to be due to PS2 API version mismatch (this project uses 2.0, while the game used 2.1.3). */
 // 100% matching!
 int SdrSendReq(int mode) 
 {

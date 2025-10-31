@@ -349,7 +349,7 @@ void PS2RNA_Flush(void)
     while (TRUE);
 }
 
-// 100% matching!
+// 69.57% matching
 PS2PSJ ps2rna_get_psj(void)
 {
     PS2PSJ psj;
@@ -372,9 +372,10 @@ PS2PSJ ps2rna_get_psj(void)
         return NULL;
     }
 
+    /* ERROR: these two lines are writing garbage
     SJ_Reset(psj->sjtmp);
     
-    SJ_PutChunk(psj->sjtmp, 0, &psj->ck);
+    SJ_PutChunk(psj->sjtmp, 0, &psj->ck); */
     
     SJRMT_Reset(psj->sjiop);
     
