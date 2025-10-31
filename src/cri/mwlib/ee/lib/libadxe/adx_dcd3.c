@@ -1,3 +1,5 @@
+#include <cri_mw.h>
+
 Sint32 adx_decode_output_mono_flag;
 
 Sint32 ADX_DecodeMonoFloat(Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l, Sint16 *dly_l, Sint16 k0, Sint16 k1)

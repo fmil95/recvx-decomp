@@ -36,10 +36,10 @@
 
 #include <katana_extra.h>
 
-#include "../../../cri/mwlib/ee/lib/libadxe/override_criware.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/override_adxf.h"
 // CRIWARE library
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
-#include "../../../cri/mwlib/ee/lib/libadxe/override_criware2.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 #include <adx_ps2.h>
 
@@ -49,10 +49,6 @@
 
 #include "main.h"
 
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_baif.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_bau.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd3.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_xpnd.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_bsps.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_bwav.c"

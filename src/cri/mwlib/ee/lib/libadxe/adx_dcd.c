@@ -1,3 +1,5 @@
+#include <cri_mw.h>
+
 #define PI 3.14159265
 #define PI_2 (PI * 2)
 
