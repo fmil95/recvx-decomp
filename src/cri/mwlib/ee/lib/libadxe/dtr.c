@@ -1,4 +1,5 @@
 #include "dtr.h"
+#include "dtx.h"
 
 static DTR_OBJ dtr_obj[16] = { 0 };
 static Sint32 dtr_init_cnt;

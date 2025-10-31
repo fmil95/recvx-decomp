@@ -49,7 +49,6 @@
 
 #include "main.h"
 
-#include "../../../cri/mwlib/ee/lib/libadxe/dtx.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/dtr.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sjr_clt.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/sjx.c"

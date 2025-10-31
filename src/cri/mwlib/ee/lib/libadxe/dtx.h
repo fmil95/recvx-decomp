@@ -1,6 +1,16 @@
 #ifndef _DTX_H_
 #define _DTX_H_
 
+#include <cri_xpt.h>
+#include <sj.h>
+#include <sif.h>
+#include <sifrpc.h>
+
+// TODO: move the following typedef and the three defines below somewhere else
+typedef unsigned int u_int;
+
+#define UNCBASE 0x20000000
+
 #define SSIZE 32
 #define RSIZE 32
 

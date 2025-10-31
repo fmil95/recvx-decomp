@@ -39,6 +39,7 @@
       "src/cri/mwlib/ee/lib/libadxe/adx_bsps.c",
       "src/cri/mwlib/ee/lib/libadxe/adx_bwav.c",
       "src/cri/mwlib/ee/lib/libadxe/adx_bsc.c",
+      "src/cri/mwlib/ee/lib/libadxe/dtx.c",
       "src/ps2/veronica/prog/main.c",
       "src/ps2/veronica/prog/vibman.c",
       "src/ps2/veronica/prog/flag.c",

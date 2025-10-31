@@ -1,4 +1,5 @@
 #include "sjx.h"
+#include "dtx.h"
 
 static Char8* volatile sjx_build = "\nSJX Ver 1.00 Build:Jan 26 2001 09:59:55\n";
 static SJX_OBJ sjx_obj[16] = { 0 };
