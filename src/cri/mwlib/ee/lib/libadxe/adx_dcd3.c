@@ -1,4 +1,4 @@
-#include <cri_mw.h>
+#include "adx_dcd3.h"
 
 Sint32 adx_decode_output_mono_flag;
 

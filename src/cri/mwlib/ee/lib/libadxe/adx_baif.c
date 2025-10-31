@@ -1,5 +1,4 @@
-#include <cri_mw.h>
-#include "override_adxt.h"
+#include "adx_baif.h"
 
 // ADX_DecodeInfoAiff
 

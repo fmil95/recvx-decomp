@@ -1,4 +1,4 @@
-#include <cri_mw.h>
+#include "adx_dcd.h"
 
 #define PI 3.14159265
 #define PI_2 (PI * 2)
