@@ -3,7 +3,6 @@ import subprocess
 import json
 import argparse
 import shutil
-import sys
 
 def load_json(filename):
     """Load JSON data from a file."""
@@ -66,9 +65,54 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
     """Compile all source files and return object file list and compile commands."""
     objects = []
     compile_commands = []
-    build_failed = False  # Track if any compilation fails
+    build_failed = False
+
+    # --- Directory-to-threshold defaults ---
+    threshold_rules = {
+        os.path.join("src", "cri", "mwlib", "ee", "lib", "libadxe"): 4,
+        os.path.join("src", "ps2", "veronica", "prog"): 0,
+    }
+
+    # --- File-specific overrides ---
+    file_specific = {
+        "adx_mps2.c": 8,     # src\cri\mwlib\ee\lib\libadxe\adx_mps2.c
+        # add more if needed:
+        # "other_file.c": 2,
+    }
+
+    log_file = 'elf/report.txt'
 
     for source in sources:
+        normalized_path = source.replace("/", os.sep).replace("\\", os.sep)
+        filename = os.path.basename(source)
+
+        # Default: inherit compiler_flags
+        local_flags = compiler_flags[:]
+        applied_threshold = None
+
+        # Check file-specific rule first
+        if filename in file_specific:
+            applied_threshold = file_specific[filename]
+            local_flags = compiler_flags + [f"-sdatathreshold={applied_threshold}"]
+        else:
+            # Otherwise, check directory-based rule
+            for base, val in threshold_rules.items():
+                if base in normalized_path:
+                    applied_threshold = val
+                    local_flags = compiler_flags + [f"-sdatathreshold={val}"]
+                    break
+
+        # --- Logging info about threshold choice ---
+        threshold_msg = (
+            f"[BUILD] {source} -> using -sdatathreshold={applied_threshold}"
+            if applied_threshold is not None
+            else f"[BUILD] {source} -> using default threshold"
+        )
+        print(threshold_msg)
+        with open(log_file, 'a') as f:
+            f.write(threshold_msg + "\n")
+        # -------------------------------------------
+
         object_file = source.replace(".c", ".o")
         crt0_dest = os.path.join("elf", "crt0.o")
         objects.append(crt0_dest)
@@ -76,12 +120,11 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
         objects.append("elf/ps2_vu1.o")
         objects.append(object_file)
 
-        compile_command = [compiler] + compiler_flags + ['-c', source, '-o', object_file] + \
+        compile_command = [compiler] + local_flags + ['-c', source, '-o', object_file] + \
                           [f'-I{inc}' for inc in include_dirs] + [f'-D{d}' for d in defines]
 
-        # Continue compiling even if one source fails
-        if not run_command(compile_command, env_vars):
-            build_failed = True  # Mark the build as failed if any command fails
+        if not run_command(compile_command, env_vars, log_file):
+            build_failed = True
 
         compile_commands.append(create_compile_command_entry(compiler, source, object_file, include_dirs, defines))
 

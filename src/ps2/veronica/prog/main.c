@@ -19,8 +19,6 @@
 #include <libsdr.h>
 #include <sif.h>
 #include <libmpeg.h>
-#include <stdarg.h>
-#include <va-mips.h>
 
 #include "override_katana.h"
 // KATANA library
@@ -41,7 +39,6 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
-#include <adx_ps2.h>
 
 #include "types.h"
 #include "enums.h"

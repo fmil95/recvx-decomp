@@ -27,7 +27,6 @@ void lsc_ExecHndl(LSC lsc)
     lsc_StatWait(lsc); 
 }
 
-void LSC_CallStatFunc(void); // TODO: remove this function declaration
 // 100% matching!
 void lsc_StatEnd(LSC lsc) 
 {
