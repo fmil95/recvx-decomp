@@ -1,7 +1,7 @@
 #ifndef _ADX_AMP_H_
 #define _ADX_AMP_H_
 
-#include <cri_xpt.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 
 typedef struct 
