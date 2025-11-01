@@ -1,10 +1,13 @@
 #include "adx_inis.h"
 #include "adx_rnap.h"
+#include "adx_sjd.h"
+#include "adx_stmc.h"
+#include "lsc_ini.h"
 
 static Sint32 adxt_vsync_svr_flag;
-static Sint32 adxt_init_cnt;
-static ADX_TALK adxt_obj[ADXT_MAX_OBJ] = { 0 };
-static Uint32 adxt_vsync_cnt;
+Sint32 adxt_init_cnt;
+ADX_TALK adxt_obj[ADXT_MAX_OBJ] = { 0 };
+Uint32 adxt_vsync_cnt;
 static Sint8 adxt_obj_mark[16] = "MARK:adxt_obj"; /* unused */
 
 // 100% matching!

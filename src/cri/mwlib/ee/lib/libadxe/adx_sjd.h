@@ -1,6 +1,11 @@
 #ifndef _ADX_SJD_H_
 #define _ADX_SJD_H_
 
+#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
+#include "override_adxt.h"
+#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
+
 void adxsjd_clear(ADXSJD sjd);
 ADXSJD ADXSJD_Create(SJ sji, Sint32 maxnch, SJ *sjo);
 void adxsjd_decexec_end(ADXSJD sjd);

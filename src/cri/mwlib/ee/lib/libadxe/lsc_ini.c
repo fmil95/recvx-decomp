@@ -1,7 +1,7 @@
 #include "lsc_ini.h"
 
 static Char8* lsc_obj_mark = "MARK:lsc_obj"; /* unused */
-static LSC_OBJ lsc_obj[LSC_OBJ_MAX] = { 0 };
+LSC_OBJ lsc_obj[LSC_OBJ_MAX] = { 0 };
 static Sint32 lsc_init_cnt;
 
 // 100% matching!

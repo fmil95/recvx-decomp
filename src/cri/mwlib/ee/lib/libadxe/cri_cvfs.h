@@ -1,7 +1,7 @@
 #ifndef _CRI_CVFS_H_
 #define _CRI_CVFS_H_
 
-#include <cri_xpt.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 
 typedef enum 
 {

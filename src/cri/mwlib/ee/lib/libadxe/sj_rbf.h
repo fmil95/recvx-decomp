@@ -1,7 +1,7 @@
 #ifndef _SJ_RBF_H_
 #define _SJ_RBF_H_
 
-#include <cri_xpt.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b)) // TODO: move this macro somewhere else

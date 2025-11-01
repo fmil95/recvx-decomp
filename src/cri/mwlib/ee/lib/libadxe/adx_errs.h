@@ -1,7 +1,7 @@
 #ifndef _ADX_ERRS_H_
 #define _ADX_ERRS_H_
 
-#include <cri_xpt.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 
 void ADXERR_CallErrFunc1(const Sint8 *msg);
 void ADXERR_CallErrFunc2(const Sint8 *msg1, const Sint8 *msg2);

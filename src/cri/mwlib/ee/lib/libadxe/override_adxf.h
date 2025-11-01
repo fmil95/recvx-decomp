@@ -25,6 +25,4 @@ typedef struct _adxf_ptinfo {
 } ADXF_PTINFO;
 #endif 
 
-#define	ADXT_MAX_OBJ		(8)
-
 #endif
