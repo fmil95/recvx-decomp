@@ -5,9 +5,15 @@ void ADXB_ExecOneAiff16(ADXB adxb);
 
 // ADX_DecodeInfoAiff
 
+// 100% matching!
 Sint32 ADXB_CheckAiff(Sint8 *ibuf)
 {
-    scePrintf("ADXB_CheckAiff - UNIMPLEMENTED!\n");
+    if ((memcmp(ibuf, "FORM", 4) == 0) && (memcmp(&ibuf[8], "AIFF", 4) == 0))
+    {
+        return 1;
+    }
+    
+    return 0;
 }
 
 Sint32 ADXB_DecodeHeaderAiff(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
