@@ -1,4 +1,5 @@
 #include "adx_rnap.h"
+#include "ps2_rna.h"
 
 /* There's little here of interest, most of these functions are thunks for the console-specific audio renderer code in ps2_rna. */
 

@@ -1,7 +1,7 @@
 #ifndef _SJX_H_
 #define _SJX_H_
 
-#include <cri_xpt.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include <sifdev.h>
 

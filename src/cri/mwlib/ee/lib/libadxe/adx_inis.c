@@ -1,4 +1,5 @@
 #include "adx_inis.h"
+#include "adx_rnap.h"
 
 static Sint32 adxt_vsync_svr_flag;
 static Sint32 adxt_init_cnt;

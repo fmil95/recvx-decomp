@@ -1,6 +1,10 @@
 #ifndef _ADX_RNAP_H_
 #define _ADX_RNAP_H_
 
+#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
+
 void ADXRNA_ClearBuf(ADXRNA rna);
 ADXRNA ADXRNA_Create(SJ *sj, Sint32 maxnch);
 void ADXRNA_Destroy(ADXRNA rna);

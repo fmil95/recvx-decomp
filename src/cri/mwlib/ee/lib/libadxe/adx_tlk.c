@@ -1,4 +1,6 @@
 #include "adx_tlk.h"
+#include "adx_rnap.h"
+#include "ps2_rna.h"
 
 static Uint32 adxt_svrcnt;
 static Uint32 adxt_svrcnt_sjd;
