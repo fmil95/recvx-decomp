@@ -1,6 +1,11 @@
 #ifndef _ADX_TLK2_H_
 #define _ADX_TLK2_H_
 
+#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
+#include "override_adxt.h"
+#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
+
 #define BSWAP_S32(_val) (Sint32)(((Uint32)_val >> 24) | (_val << 24) | (((_val << 8) & 0xFF0000) | ((_val >> 8) & 0xFF00))) // TODO: move this macro somewhere else
 
 void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);

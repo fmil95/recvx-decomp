@@ -1,6 +1,11 @@
 #ifndef _ADX_TLK_H_
 #define _ADX_TLK_H_
 
+#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
+#include "override_adxt.h"
+#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
+
 #define BSWAP_U16(_val) (Uint16)((*(Uint16*)_val >> 8) | (*(Uint16*)_val << 8)) // TODO: move this macro somewhere else
 
 void ADXT_ClearErrCode(ADXT adxt);

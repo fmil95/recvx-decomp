@@ -1,4 +1,6 @@
 #include "adx_tlk2.h"
+#include "adx_stmc.h"
+#include "lsc.h"
 
 static Char8* volatile adxt_build = "\nADXT Ver.6.24 Build:Mar 14 2001 14:23:32\n";
 

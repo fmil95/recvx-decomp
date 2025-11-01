@@ -1,4 +1,5 @@
 #include "adx_tsvr.h"
+#include "adx_inis.h"
 
 static Sint32 adxt_dbg_rna_ndata;
 static Sint32 adxt_dbg_nch;

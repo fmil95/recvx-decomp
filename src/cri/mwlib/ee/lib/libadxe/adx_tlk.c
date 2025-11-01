@@ -2,6 +2,8 @@
 #include "adx_inis.h"
 #include "adx_rnap.h"
 #include "adx_sjd.h"
+#include "adx_stmc.h"
+#include "lsc.h"
 #include "ps2_rna.h"
 
 static Uint32 adxt_svrcnt;

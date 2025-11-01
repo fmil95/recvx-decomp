@@ -49,11 +49,6 @@
 
 #include "main.h"
 
-#include "../../../cri/mwlib/ee/lib/libadxe/lsc.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk2.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_tsvr.c"
-
 #include "face_bh.c"
 #include "face.c"
 #include "gcc_wrapper.c"
