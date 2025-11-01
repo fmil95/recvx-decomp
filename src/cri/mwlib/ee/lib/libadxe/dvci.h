@@ -1,6 +1,14 @@
 #ifndef _DVCI_H_
 #define _DVCI_H_
 
+#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <libcdvd.h>
+
+// TODO: move these three macros somewhere else
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+#define MAX(a, b) ((a) < (b) ? (b) : (a))
+#define CLAMP(val, min, max) (MAX(MIN((val), (max)), (min)))
+
 typedef void (*DVCI_ERRFN)(void* dvci_errobj, const Char8* msg, void* obj);
 
 typedef struct _dvci_obj 
@@ -18,7 +26,6 @@ typedef struct _dvci_obj
     sceCdlFILE  fp;
     sceCdRMode  cdrmode;
 } DVCI_OBJ;
-
 typedef DVCI_OBJ *DVCI;
 
 typedef struct _dvci_vtbl

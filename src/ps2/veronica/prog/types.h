@@ -3150,8 +3150,6 @@ typedef struct {
 #define UNCMASK 0x0fffffff
 #define UNCBASE 0x20000000
 
-typedef struct ThreadParam ThreadParam; 
-
 typedef struct {
     long pts;
     long dts;
@@ -3260,8 +3258,3 @@ typedef	void (*AlarmCallBack)(int, unsigned short, void*);
 
 #define	CheckCmdReq(vol, pan, pitch) (0x00|0|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
 #define	CheckCmdChg(vol, pan, pitch) (0x00|8|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
-
-#define bss_align(val) \
-    __attribute__ ((aligned(val))) __attribute__ ((section (".bss")))
-
-#define DEF_STACK_SIZE    2048

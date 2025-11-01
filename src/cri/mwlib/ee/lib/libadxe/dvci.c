@@ -1,4 +1,5 @@
 #include "dvci.h"
+#include "dvci_sub.h"
 
 static Char8* volatile dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
 static DVCI_OBJ dvg_ci_obj[40] = { 0 };

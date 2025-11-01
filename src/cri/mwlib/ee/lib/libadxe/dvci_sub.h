@@ -1,6 +1,9 @@
 #ifndef _DVCI_SUB_H_
 #define _DVCI_SUB_H_
 
+#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <libcdvd.h>
+
 typedef struct _dvg_flist_tbl 
 {
     Char8*  fp;
@@ -14,8 +17,9 @@ typedef struct _dvci_dir_obj
     Char8   fname[128]; 
     Uint8   pad[4];
 } DVCI_DIR_OBJ;
-
 typedef DVCI_DIR_OBJ *DVCI_DIR;
+
+extern sceCdRMode dvg_ci_cdrmode;
 
 Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size);
 void conv_to_tpath_dup(Char8* fname, Char8* path);

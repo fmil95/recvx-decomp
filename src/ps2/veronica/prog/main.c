@@ -49,10 +49,6 @@
 
 #include "main.h"
 
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_mps2.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/dvci_sub.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/dvci.c"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_sudv.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/htci_sub.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/htci.c"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_suht.c"

@@ -6,6 +6,8 @@
 #include "override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 
+/* structs are located in the override_adxt header */
+
 void adxsjd_clear(ADXSJD sjd);
 ADXSJD ADXSJD_Create(SJ sji, Sint32 maxnch, SJ *sjo);
 void adxsjd_decexec_end(ADXSJD sjd);
