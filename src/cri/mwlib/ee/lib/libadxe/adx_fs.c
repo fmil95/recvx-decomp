@@ -1,3 +1,6 @@
+#include "adx_fs.h"
+#include "adx_stmc.h"
+
 #define REG_RCNT0_COUNT     (volatile int *)0x10000000
 
 #define getRcnt0CountShort() *REG_RCNT0_COUNT & 0xFFFF
