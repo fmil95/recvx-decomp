@@ -3,7 +3,8 @@
 
 #define ADXF_FNAME_MAX    		(256)
 
-typedef struct _adxf_finfo {
+typedef struct _adxf_finfo 
+{
     Uint16 flid;
     Uint16 fnsct;
     Sint32 ofst;
@@ -11,7 +12,8 @@ typedef struct _adxf_finfo {
 
 #ifndef ADXF_PTINFO_DEFINED
 #define ADXF_PTINFO_DEFINED
-typedef struct _adxf_ptinfo {
+typedef struct _adxf_ptinfo 
+{
 	struct _adxf_ptinfo	*next;		
 	Sint32				size;		
 	Sint32				nfile;		

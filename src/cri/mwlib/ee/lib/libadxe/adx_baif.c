@@ -62,9 +62,62 @@ Sint32 ADXB_CheckAiff(Sint8 *ibuf)
     return 0;
 }
 
+// 100% matching!
 Sint32 ADXB_DecodeHeaderAiff(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
-    scePrintf("ADXB_DecodeHeaderAiff - UNIMPLEMENTED!\n");
+	Sint16 dlen;
+    Sint32 temp;
+
+    adxb->hdcdflag = 1;
+
+    if (ADX_DecodeInfoAiff(ibuf, ibuflen, &dlen, &adxb->code, &adxb->bps, &adxb->blklen, &adxb->nch, &adxb->sfreq, &adxb->total_nsmpl, &adxb->blknsmpl) < 0) 
+    {
+        return 0;
+    }
+
+    temp = (Sint32)&adxb->unk4C;
+    
+    adxb->cof = 0;
+    
+    adxb->unk4A = 0;
+    adxb->unk48 = 0;
+    
+    adxb->nloop = adxb->lp_type = 0;
+    
+    adxb->lp_ins_nsmpl = adxb->lp_spos = adxb->lp_sofst = adxb->lp_epos = adxb->lp_eofst = 0; 
+    
+    adxb->dp.nch = adxb->nch;
+    
+    adxb->dp.blksize = adxb->blklen;
+    adxb->dp.blknsmpl = adxb->blknsmpl;
+    
+    adxb->dp.pcmbuf = (Sint8*)adxb->pcmbuf;
+    adxb->dp.pcmbsize = adxb->pcmbsize;
+    adxb->dp.pcmbdist = adxb->pcmbdist;
+    
+    adxb->unk7C = 0;
+    adxb->unk7E = 0;
+    
+    adxb->unk80 = temp; 
+    
+    adxb->curwpos = 0;
+    
+    adxb->total_ndecsmpl = 0;
+    
+    adxb->fmttype = 3;
+    
+    if (adxb->bps == 8) 
+    {
+        adxb->cdctype = 1;
+    }
+    else 
+    {
+        adxb->cdctype = 0;
+    }
+
+    memset((void*)temp, 0, sizeof(Sint32));
+    
+    return dlen;
 }
 
 // 100% matching!

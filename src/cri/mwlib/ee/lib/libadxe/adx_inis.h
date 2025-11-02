@@ -6,7 +6,7 @@
 #include "override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 
-#define	ADXT_MAX_OBJ		(8) // TODO: this should be in override_adxt.h
+#define	ADXT_MAX_OBJ		(8) 
 
 extern Sint32 adxt_init_cnt;
 extern ADX_TALK adxt_obj[ADXT_MAX_OBJ];

@@ -5,9 +5,9 @@
 #include <PREFIX_PS2_DEBUG.h>
 #include <eekernel.h>
 
-// TODO: move these two defines and the typedef below elsewhere
 #define bss_align(val) \
     __attribute__ ((aligned(val))) __attribute__ ((section (".bss"))) 
+
 #define DEF_STACK_SIZE    2048
 
 typedef struct ThreadParam ThreadParam; 

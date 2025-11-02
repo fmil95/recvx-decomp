@@ -4,7 +4,7 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 
-#define	LSC_VER				"0.90" /* update this */
+#define	LSC_VER				"0.90" // TODO: update this
 
 #define	LSC_STM_MAX			(16)
 
