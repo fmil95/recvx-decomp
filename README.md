@@ -17,9 +17,9 @@ Additionally, this project also consists of reverse-engineering the CRI Middlewa
 <!-- PROGRESS-START -->
 ```
 Resident Evil CODE: Veronica X: 807 implemented functions / 3876 total (20.82%)
-CRI ADX (March 13, 2001): 625 implemented functions / 663 total (94.27%)
+CRI ADX (March 13, 2001): 628 implemented functions / 663 total (94.72%)
 
-Decomp progress: 1432 implemented functions / 4539 total (31.55%)
+Decomp progress: 1435 implemented functions / 4539 total (31.61%)
 ```
 <!-- PROGRESS-END -->
 
