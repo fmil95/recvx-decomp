@@ -1,6 +1,8 @@
 #ifndef _PS2_NAGRAPHICS3D_H_
 #define _PS2_NAGRAPHICS3D_H_
 
+#include "types.h"
+
 /*typedef union _anon0;
 typedef struct _anon1;
 typedef struct tagVU1_STRIP_BUF;

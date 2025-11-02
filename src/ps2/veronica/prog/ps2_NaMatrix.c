@@ -7,7 +7,6 @@ NJS_MATRIX* pNaMatMatrixStuckPtr;
 int lNaMatMatrixStuckCnt;
 int lNaMatMatrixStuckMax;
 int lNaMatIsUnitMatrix;
-NJS_MATRIX NaViwViewMatrix;
 /*_anon4 _nj_screen_;
 float NaViewScreenMatrix[16];
 

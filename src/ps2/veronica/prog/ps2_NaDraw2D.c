@@ -2,8 +2,6 @@
 
 float Ps2_zbuff_b;
 float Ps2_zbuff_a;
-float fNaViwClipFar;
-float fNaViwClipNear;
 
 /*void CalcPs2ZbuffAB();
 void sceVu0ITOF12Vector(float* v0, float* v1);

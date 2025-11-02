@@ -1,8 +1,8 @@
 #include "MdlPut.h"
+#include "main.h"
 
-/*void(*bhJumpCnkDraw)()[4];*/
-CAM_WORK cam;
-/*unsigned int _nj_control_3d_flag_;
+/*void(*bhJumpCnkDraw)()[4];
+unsigned int _nj_control_3d_flag_;
 _anon16* sys;
 
 void bhPutModel(BH_PWORK* ewP);

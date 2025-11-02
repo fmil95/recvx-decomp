@@ -8,10 +8,6 @@ float fVu1AlphaRatio;*/
 SCISSOR_PLANE planeset;
 SCISSOR scissorflip;
 /*_anon4 node;*/
-float _fNaViwClipFar;
-float _fNaViwClipNear;
-float fVu1Projection;
-sceVu0FMATRIX ClipMatrix2;
 float fVu1InvNearClip;
 float fVu1NearClip;
 float fVu1FarClip;

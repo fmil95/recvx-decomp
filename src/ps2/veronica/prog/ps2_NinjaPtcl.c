@@ -3,7 +3,6 @@
 unsigned int Ps2_ptcl_poly_col;
 int Ps2_ptcl_spr_flag;
 unsigned int Ps2_ptcl_spr_col;
-NJS_SCREEN _nj_screen_;
 
 // 100% matching!
 void	njPtclPolygonStart( Uint32 col ) 

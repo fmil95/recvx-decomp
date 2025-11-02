@@ -1,6 +1,10 @@
 #ifndef _PS2_SYSTEMSAVESCREEN_H_
 #define _PS2_SYSTEMSAVESCREEN_H_
 
+#include "types.h"
+
+SYSSAVE_SCREEN* CreateSysSaveScreen(SYSSAVE_SCREEN* pSysSave, void* vpWorkPtrSys, unsigned short usSaveMesMode, unsigned short usSaveWriteMode);
+
 /*typedef struct _anon0;
 typedef struct npobj;
 typedef struct tagSYSSAVE_SCREEN;

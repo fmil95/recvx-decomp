@@ -1,6 +1,8 @@
 #ifndef _PS2_NAVIEW_H_
 #define _PS2_NAVIEW_H_
 
+#include "types.h"
+
 void    njSetScreen(NJS_SCREEN *s);
 void	njSetPerspective(Angle ang);
 void njSetScreenProjection(float dist);

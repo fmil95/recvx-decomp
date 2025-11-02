@@ -1,6 +1,8 @@
 #ifndef _MDLPUT_H_
 #define _MDLPUT_H_
 
+#include "types.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

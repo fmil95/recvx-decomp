@@ -52,17 +52,13 @@
 #include "hitchk.c"
 #include "hitchkl.c"
 #include "item.c"
-#include "MdlPut.c"
 #include "pl_evt.c"
 #include "playpch2.c"
 #include "ps2_MovieWork.c"
 #include "ps2_NaColi.c"
-#include "ps2_NaGraphics3D.c"
 #include "ps2_NaSprite.c"
 #include "ps2_NinjaCnk_prog.h"
-#include "ps2_Ninjapad.c"
 #include "ps2_SaveScreen.c"
-#include "ps2_SystemSaveScreen.c"
 #include "ps2_Vu1Scissor2.c"
 #include "ps2_Vu1Strip.c"
 #include "rutchk.c"
@@ -144,7 +140,6 @@
 #include "ps2_NaSystem.c"
 #include "ps2_texture.c"
 #include "ps2_NaTextureFunction.c"
-#include "ps2_NaView.c"
 #include "ps2_NinjaCnk.c"
 #include "screen.c"
 #include "ps2_sfd_mw.c"
@@ -245,7 +240,6 @@ unsigned char* njpmemp;
 unsigned char* vebmemp;
 unsigned char* vwbmemp;
 unsigned int Ps2_sys_cnt;
-//_anon18 cam;
 //_anon27 eff[512];
 ROM_WORK romp;
 ROM_WORK* rom = &romp;
