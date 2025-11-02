@@ -30,20 +30,32 @@ The very first step should be to clone the repository:
 git clone --recursive https://github.com/fmil95/recvx-decomp.git
 ```
 
-Once that is done, use the following command to build the executable if you're on Windows:
+If you plan on contributing, your next step should be to perform a disassembly of the ROM using splat in order to obtain the MIPS required for function matching. And if you are on Windows, you'll have to either install Linux or use WSL for this step, because otherwise the tool won't work. You have to place the SLUS_201.84 file in the config folder, and afterwards install splat with the following bash command: 
+```
+pip install -r config/requirements.txt
+```
+
+Once that is done, use the following command to perform the ASM dump:
+```
+python3 -m splat split config/SLUS_201.84.yaml
+```
+
+You can tell that it worked correctly if you see 100% on all section_headers operations, there will be an error message after that, but it's no problem since splat is asking for a linker script and we won't need that.
+
+Next, and if you were planning to simply building the project all along, use the following command to compile the executable if you're on Windows:
 ```
 python compile.py
 ```
 
-If you are on Linux, you have to run compile_wine.py instead.
+If you are on Linux, you have to run compile_wine.py instead, as the game's version of MWCC has got binaries that are available for Windows only.
 
 ## Credits
 
 This work couldn't have been possible without the contributions of the following users:
 
-* [Fairlightish](https://github.com/Fairlightish) and [WuGambinos](https://github.com/WuGambinos): Officially part of the RE: CVX decompilation team. 
+* [WuGambinos](https://github.com/WuGambinos): Officially part of the RE: CVX decompilation team. Decompiled the Tamsoft Sound Driver, and many other files. 
 * [benoitren](https://git.sr.ht/~benoitren): First to tag along when mentioning an interest to reverse-engineer the game in the PS1/PS2 Decompilation server. Decompiled several files on his own.
-* [Mc-Muffin](https://github.com/Mc-Muffin): Created the splat config for the game binary, solved an important issue with the compiler, tested the build environment on WSL, developed the script for rebuilding the game ISO and provided the most help with matching the functions, in quality and quantity.   
+* [Mc-Muffin](https://github.com/Mc-Muffin): Created the splat config for the game binary, solved an important issue with the compiler, developed the script for rebuilding the game ISO and provided the most help with matching the functions, in quality and quantity.   
 * [karas84](https://github.com/karas84): Helped to match very important functions like PS2DrawOTagSub which involved complex logic for rendering graphics on the PS2, as well as many other ones.
 
 Additionally, some appreciation must go to:
@@ -51,7 +63,7 @@ Additionally, some appreciation must go to:
 * [simonlindholm](https://github.com/simonlindholm): For his brilliant asm-differ, m2c and permuter tools.
 * [Fothsid](https://github.com/Fothsid): For sharing his experience with reversing Resident Evil Outbreak.
 * [apstygo](https://github.com/apstygo): For his CRI Middleware decompilation work on Street Fighter III: 3rd Strike. 
-* [GirianSeed](https://github.com/GirianSeed): For providing knowledge of the many different versions of the PS2 API.
+* [GirianSeed](https://github.com/GirianSeed): For providing knowledge of the many different versions of the PS2 API, and finding additional debug info for CRI ADX not found in the game.
 * [patope](https://github.com/patope), [Lovey847](https://github.com/Lovey847), [ladysilverberg](https://github.com/ladysilverberg) and [ThirstyWraith](https://github.com/ThirstyWraith): For giving additional help with function matching.
 
 ## Community
