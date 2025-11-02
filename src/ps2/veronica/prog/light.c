@@ -1,7 +1,7 @@
 #include "light.h"
+#include "main.h"
 
 /*_anon40 lgttab[5];*/
-ROM_WORK* rom;
 /*_anon26* sys;
 _anon37 cam;
 float fNaViwOffsetY;

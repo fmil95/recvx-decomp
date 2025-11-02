@@ -1,3 +1,20 @@
+#ifndef _TYPES_H_
+#define _TYPES_H_
+
+#include <ninja.h>
+#include <sg_gd.h>
+#include <PREFIX_PS2_DEBUG.h>
+#include <eetypes.h>
+#include <eestruct.h>
+#include <libvu0.h>
+#include <libcdvd.h>
+#include <libipu.h>
+#include <libmpeg.h>
+#include "../../../cri/mwlib/ee/lib/libadxe/override_adxf.h"
+#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
+#include "../../../cri/mwlib/ee/lib/libadxe/override_adxt.h"
+#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
+
 typedef struct NO_NAME_1
 {
 	unsigned int flg;
@@ -3258,3 +3275,5 @@ typedef	void (*AlarmCallBack)(int, unsigned short, void*);
 
 #define	CheckCmdReq(vol, pan, pitch) (0x00|0|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
 #define	CheckCmdChg(vol, pan, pitch) (0x00|8|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
+
+#endif

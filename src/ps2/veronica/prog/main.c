@@ -52,7 +52,6 @@
 #include "hitchk.c"
 #include "hitchkl.c"
 #include "item.c"
-#include "light.c"
 #include "MdlPut.c"
 #include "pl_evt.c"
 #include "playpch2.c"
