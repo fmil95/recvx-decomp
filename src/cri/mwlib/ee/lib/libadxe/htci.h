@@ -4,11 +4,7 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <libcdvd.h>
 #include <sifdev.h>
-
-// TODO: move these three macros somewhere else
-#define MIN(a, b) ((a) < (b) ? (a) : (b))
-#define MAX(a, b) ((a) < (b) ? (b) : (a))
-#define CLAMP(val, min, max) (MAX(MIN((val), (max)), (min)))
+#include "macros.h"
 
 typedef void (*HTCI_ERRFN)(void* htci_errobj, const Char8* msg, void* obj);
 

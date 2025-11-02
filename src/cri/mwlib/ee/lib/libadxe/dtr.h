@@ -4,8 +4,7 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include <sif.h>
-
-#define MIN(a, b) ((a) < (b) ? (a) : (b)) // TODO: move this macro somewhere else
+#include "macros.h"
 
 typedef struct _dtr_obj
 {

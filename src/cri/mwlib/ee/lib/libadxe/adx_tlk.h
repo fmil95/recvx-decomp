@@ -5,8 +5,7 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include "override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
-
-#define BSWAP_U16(_val) (Uint16)((*(Uint16*)_val >> 8) | (*(Uint16*)_val << 8)) // TODO: move this macro somewhere else
+#include "macros.h"
 
 void ADXT_ClearErrCode(ADXT adxt);
 void ADXT_CloseAllHandles(void);

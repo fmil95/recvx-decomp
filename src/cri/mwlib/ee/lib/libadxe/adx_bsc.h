@@ -5,9 +5,7 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include "override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
-
-#define MIN(a, b) ((a) < (b) ? (a) : (b)) // TODO: move these macros somewhere else
-#define BSWAP_U16_EX(_val) (Uint16)(((_val & 0xFF00) >> 8) | ((_val << 8) & 0xFF00)) 
+#include "macros.h"
 
 /* structs are located in the override_adxt header */
 

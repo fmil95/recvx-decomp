@@ -5,8 +5,7 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include "override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
-
-#define BSWAP_S32(_val) (Sint32)(((Uint32)_val >> 24) | (_val << 24) | (((_val << 8) & 0xFF0000) | ((_val >> 8) & 0xFF00))) // TODO: move this macro somewhere else
+#include "macros.h"
 
 void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
 void ADXT_StartFname(ADXT adxt, Char8 *fname);

@@ -6,8 +6,7 @@
 #include "override_adxf.h"
 #include <cri_adxf.h>
 #include "cri_cvfs.h"
-
-#define MIN(a, b) ((a) < (b) ? (a) : (b)) // TODO: move this macro somewhere else
+#include "macros.h"
 
 typedef struct _adxstm_file 
 { 
