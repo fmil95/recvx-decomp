@@ -30,7 +30,7 @@ The very first step should be to clone the repository:
 git clone --recursive https://github.com/fmil95/recvx-decomp.git
 ```
 
-If you plan on contributing, your next step should be to perform a disassembly of the ROM using splat in order to obtain the MIPS required for function matching. And if you are on Windows, you'll have to either install Linux or use WSL for this step, because otherwise the tool won't work. You have to place the SLUS_201.84 file in the config folder, and afterwards install splat with the following bash command: 
+If you plan on contributing, your next step should be to perform a disassembly of the ROM using splat in order to obtain the MIPS required for function matching. And if you are on Windows, you'll have to either install Linux or use WSL for this step, because otherwise the tool won't work. You have to place your copy of the SLUS_201.84 file in the config folder, and afterwards install splat with the following bash command: 
 ```
 pip install -r config/requirements.txt
 ```
@@ -40,14 +40,26 @@ Once that is done, use the following command to perform the ASM dump:
 python3 -m splat split config/SLUS_201.84.yaml
 ```
 
-You can tell that it worked correctly if you see 100% on all section_headers operations, there will be an error message after that, but it's no problem since splat is asking for a linker script and we won't need that.
+You can tell that it worked correctly if you see 100% on all section_headers operations, there will be an error message after that, but it's no problem since splat is asking for a linker script and we won't really need it.
 
-Next, and if you were planning to simply building the project all along, use the following command to compile the executable if you're on Windows:
+Next, and if you were planning to simply building the project all along, type the following command to compile the executable if you're on Windows:
 ```
 python compile.py
 ```
 
-If you are on Linux, you have to run compile_wine.py instead, as the game's version of MWCC has got binaries that are available for Windows only.
+If you are on Linux, you have to run compile_wine.py instead, as the game's version of MWCC has got binaries that are only available for Windows.
+
+With the main.elf from compilation, you can repackage RE: CVX's ISO file with it to see the decompiled code in action. You need to put your copy of the game's DVD on the elf/iso folder, and dump its contents with the following command:
+```
+python mkiso.py -m extract --iso elf/iso/RE_CVX.iso
+```
+
+Then rebuild the disk with:
+```
+python mkiso.py -m insert
+```
+
+If successful, you will now see an ISO called "RECVX_NEW" in the elf/iso folder that you can use to test the results with an emulator (preferrably PCSX2 for its debugging capabilities) or console.  
 
 ## Credits
 
@@ -63,7 +75,7 @@ Additionally, some appreciation must go to:
 * [simonlindholm](https://github.com/simonlindholm): For his brilliant asm-differ, m2c and permuter tools.
 * [Fothsid](https://github.com/Fothsid): For sharing his experience with reversing Resident Evil Outbreak.
 * [apstygo](https://github.com/apstygo): For his CRI Middleware decompilation work on Street Fighter III: 3rd Strike. 
-* [GirianSeed](https://github.com/GirianSeed): For providing knowledge of the many different versions of the PS2 API, and finding additional debug info for CRI ADX not found in the game.
+* [GirianSeed](https://github.com/GirianSeed): For providing knowledge of the many different versions of the PS2 API, and finding extra debug info for CRI ADX not present in the game.
 * [patope](https://github.com/patope), [Lovey847](https://github.com/Lovey847), [ladysilverberg](https://github.com/ladysilverberg) and [ThirstyWraith](https://github.com/ThirstyWraith): For giving additional help with function matching.
 
 ## Community
