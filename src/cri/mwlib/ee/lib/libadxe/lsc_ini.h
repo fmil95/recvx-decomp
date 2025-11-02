@@ -3,7 +3,7 @@
 
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
-#include <cri_lsc.h>
+#include "lsc.h"
 
 extern LSC_OBJ lsc_obj[LSC_OBJ_MAX];
 

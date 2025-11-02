@@ -3,12 +3,11 @@
 
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
+#include <eetypes.h>
 #include <sif.h>
 #include <sifrpc.h>
 
-// TODO: move the following typedef and the three defines below somewhere else
-typedef unsigned int u_int;
-
+// TODO: move the three defines below somewhere else
 #define UNCBASE 0x20000000
 
 #define SSIZE 32

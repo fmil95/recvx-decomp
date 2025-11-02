@@ -76,7 +76,7 @@ void lsc_StatEnd(LSC lsc)
         
         if (lsc->lpflg == 1) 
         {
-            LSC_EntryFileRange(lsc, &fname, dir, ofst, nsct);
+            LSC_EntryFileRange(lsc, fname, dir, ofst, nsct);
         }
     }
 }

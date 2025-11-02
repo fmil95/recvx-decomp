@@ -3,7 +3,7 @@
 
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
-#include <cri_lsc.h>
+#include "lsc.h"
 
 void LSC_LockCrs(LSC_CRS *crs);
 void LSC_UnlockCrs(LSC_CRS *crs);
