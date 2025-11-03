@@ -1,6 +1,8 @@
 #ifndef _PS2_SNDDRV_H_
 #define _PS2_SNDDRV_H_
 
+#include "types.h"
+
 static void wait_alarm(int id, unsigned short time, int thid);
 int SdrDelayThread(int hsync);
 static void sdr_initQue();

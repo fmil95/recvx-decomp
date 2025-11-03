@@ -1,28 +1,16 @@
 #include "ps2_sg_pad.h" 
+#include "main.h"
 
 unsigned int Old_sys_cnt;
 static u_long128 Padd1[scePadDmaBufferMax] __attribute__((aligned(64)));
 static u_long128 Padd2[scePadDmaBufferMax] __attribute__((aligned(64)));
-BUTTON_INFO ButtonInfo[5] = 
-{
-    { 1, 55541},
-    { 2, 55541},
-    { 3, 55541},
-    { 4, 55541},
-    {-1, 0    }
-}; 
 PAD_STATUS Pad_status;
-unsigned int Ps2_sys_cnt;
-PAD_INFO Ps2_pad;
 unsigned char Pad_rdata2[32];
 unsigned char Pad_rdata1[32];
 unsigned char ChkCnt;
 unsigned char PadCnt;
 PDS_PERIPHERALINFO pgp_info;
 unsigned int Pad_state[2];
-int SoftResetFlag;
-PAD_WRK Pad[4]; 
-int CurrentPortId;
 PAD_INFO Pad_info;
 PAD_STATUS Pad_status2;
 

@@ -1,4 +1,5 @@
 #include "ps2_MovieFunc.h"
+#include "main.h"
 
 /*int isCountVblank;
 int isFrameEnd;
@@ -38,7 +39,6 @@ unsigned char* mpegWork;
 _anon41 mdSize;*/
 int movie_draw;
 char sound_flag;
-char ADX_STREAM_BUFFER[471040];
 unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
 /*<unknown fundamental type (0xa510)> test_tag[1400];
 _anon24 db;

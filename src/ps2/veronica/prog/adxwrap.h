@@ -1,6 +1,8 @@
 #ifndef _ADXWRAP_H_
 #define _ADXWRAP_H_
 
+#include "types.h"
+
 void InitAdx();
 void ExitAdx();
 void DeletePartition(unsigned int PartitionId);

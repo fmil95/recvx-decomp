@@ -33,6 +33,15 @@ extern int iop_read_buff;
 extern unsigned int StatusUpdateCounter;
 extern unsigned int DiscOpenTrayFlag;
 extern PAD_ACT Pad_act[20];
+extern BUTTON_INFO ButtonInfo[5];
+extern PAD_WRK Pad[4]; 
+extern int SoftResetFlag;
+extern PAD_INFO Ps2_pad;
+extern unsigned int Ps2_sys_cnt;
+extern int CurrentPortId;
+extern char ADX_STREAM_BUFFER[471040];
+extern int iop_data_buff;
+extern SND_STATUS get_iop_snddata;
 
 void njUserInit(void);
 Sint32 njUserMain(void);

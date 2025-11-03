@@ -1,6 +1,7 @@
 #include "adxwrap.h"
 #include "ps2_dvd_image.h"
 #include "ps2_sg_maloc.h"
+#include "main.h"
 
 char last_rdx_files[256];
 char last_adx_files[256];
@@ -21,7 +22,6 @@ AFS_INFO AfsInfo[16];
 unsigned char RDX_FILE_PARTISION[880];
 int rdx_image_data_max = 205;
 int ADX_STREAM_BUFF_OFFSET[2] = { 0, 307456 }; 
-char ADX_STREAM_BUFFER[471040];
 
 // 100% matching!
 void InitAdx()

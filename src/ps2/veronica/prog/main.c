@@ -116,15 +116,8 @@
 #include "effsub4.c"
 #include "effsub5.c"
 #include "effsub6.c"
-#include "ps2_sg_pad.c"
 #include "ps2_NinjaPtcl.c"
-#include "ps2_NaDraw.c"
-#include "ps2_sg_sycfg.c" // TODO: find out why this file crashes when including it amongst the other source files in compile_config.json
-#include "ps2_sg_sybt.c"
-#include "ps2_sg_sycbl.c"
 #include "ps2_cri_adxt.c"
-#include "adxwrap.c"
-#include "ps2_snddrv.c"
 #include "ps2_MovieFunc.c"
 #include "ps2_sg_sd.c"
 #include "sdc.c"
@@ -225,6 +218,22 @@ int iop_read_buff;
 unsigned int StatusUpdateCounter;
 unsigned int DiscOpenTrayFlag;
 PAD_ACT Pad_act[20];
+BUTTON_INFO ButtonInfo[5] = 
+{
+    { 1, 55541},
+    { 2, 55541},
+    { 3, 55541},
+    { 4, 55541},
+    {-1, 0    }
+}; 
+PAD_WRK Pad[4]; 
+int SoftResetFlag;
+PAD_INFO Ps2_pad;
+unsigned int Ps2_sys_cnt;
+int CurrentPortId;
+char ADX_STREAM_BUFFER[471040];
+int iop_data_buff;
+SND_STATUS get_iop_snddata;
 
 // 100% matching!
 void njUserInit(void)

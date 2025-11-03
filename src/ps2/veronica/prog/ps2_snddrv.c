@@ -1,4 +1,5 @@
 #include "ps2_snddrv.h"
+#include "main.h"
 
 static unsigned char sbuff[512] __attribute__((aligned(64)));
 static unsigned int getbuff[4] __attribute__((aligned(64)));
@@ -15,7 +16,6 @@ int SendReqFlag;
 static unsigned char Stack_send[2048]; /* unused */
 unsigned int IOP_hd_size[16] = { 1792, 768, 12288, 2816, 2560, 2816, 6144, 768, 0, 0, 0, 0, 0, 0, 0, 0 };
 unsigned int IOP_tq_size[16] = { 0, 512, 8192, 3072, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-int iop_data_buff;
 int iop_data_adr[16];
 int iop_sq_adr[16];
 int iop_hd_adr[16];
@@ -23,7 +23,6 @@ int iop_data_adr_top;
 int get_adrs;
 //void* _gp; /* enabling this makes the emulator go potty, and is otherwise unused */
 SND_STATUS get_iop_buff;
-SND_STATUS get_iop_snddata;
 
 // 100% matching!
 static void wait_alarm(int id, unsigned short time, int thid)

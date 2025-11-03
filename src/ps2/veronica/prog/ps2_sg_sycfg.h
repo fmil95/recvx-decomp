@@ -1,7 +1,7 @@
 #ifndef _PS2_SG_SYCFG_H_
 #define _PS2_SG_SYCFG_H_
 
-#include <ninja.h>
+#include "types.h"
 
 Sint32 syCfgExit( Void  );
 Sint32 syCfgGetSoundMode( Sint32* pnMode );

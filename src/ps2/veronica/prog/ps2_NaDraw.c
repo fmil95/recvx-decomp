@@ -1,4 +1,5 @@
 #include "ps2_NaDraw.h"
+#include "main.h"
 
 /*int Ps2_3DEx_trans;
 int Ps2_3DEx_count;
@@ -7,9 +8,7 @@ int Ps2_tex3DEx_trans;
 int Ps2_tex3DEx_count;
 _anon3* Ps2_tex3DEx_p;*/
 unsigned int Ps2_current_texno_bk;
-unsigned int Ps2_current_texno;
 NJS_TEXLIST* Ps2_current_texlist_bk;
-NJS_TEXLIST* Ps2_current_texlist;
 int Ps2_quad_trans;
 unsigned int Ps2_quad_color;
 

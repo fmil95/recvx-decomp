@@ -1,6 +1,8 @@
 #ifndef _PS2_SG_PAD_H_
 #define _PS2_SG_PAD_H_
 
+#include "types.h"
+
 void pdInitPeripheral(Sint32 logic, void* recvbuf, void* sendbuf);
 void pdExitPeripheral(void);
 const PDS_PERIPHERAL* pdGetPeripheral(Uint32 port);
