@@ -1,3 +1,6 @@
+#ifndef	_MACROS_H_
+#define	_MACROS_H_
+
 #define ALIGN_UP(num, n) ((num + (n - 1)) & ~(n - 1))
 #define ALIGN_DOWN(num, n) (num & ~(n - 1))
 
@@ -14,3 +17,5 @@
 #define MAX(a, b) ((a) < (b) ? (b) : (a))
 
 #define CLAMP(val, min, max) (MAX(MIN((val), (max)), (min)))
+
+#endif

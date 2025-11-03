@@ -14,6 +14,9 @@ extern NJS_SCREEN	_nj_screen_;
 extern unsigned char* njpmemp;
 extern NJS_MATRIX* cmat;
 extern unsigned int palbuf[4096];
+extern float Ps2_zbuff_a;
+extern float Ps2_zbuff_b;
+extern float SinTable[16384];
 
 void njUserInit(void);
 Sint32 njUserMain(void);

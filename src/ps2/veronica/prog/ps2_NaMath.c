@@ -1,6 +1,5 @@
 #include "ps2_NaMath.h"
-
-float SinTable[16384];
+#include "main.h"
 
 /*void _Make_SinTable();
 float njSin(int lAngle);

@@ -1,4 +1,5 @@
 #include "ps2_Vu1Strip.h"
+#include "ps2_NaView.h"
 #include "main.h"
 
 /*void(*pColorCalcFuncTbl)(tagVU1_STRIP_BUF*, tagVU1_PRIM_BUF*)[11];
@@ -71,8 +72,6 @@ void vu1SetScreenProjection(float fProjection)
 	scePrintf("vu1SetScreenProjection - UNIMPLEMENTED!\n");
 }
 
-void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far); // TODO: remove this declaration
-// 100% matching!
 // 100% matching!
 void vu1SetNearFarClip(float fNear, float fFar)
 {

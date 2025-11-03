@@ -1,7 +1,5 @@
 #include "ps2_NaDraw2D.h"
-
-float Ps2_zbuff_b;
-float Ps2_zbuff_a;
+#include "main.h"
 
 /*void CalcPs2ZbuffAB();
 void sceVu0ITOF12Vector(float* v0, float* v1);

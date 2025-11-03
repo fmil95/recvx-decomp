@@ -1,6 +1,9 @@
 #ifndef _BACKUP_H_
 #define _BACKUP_H_
 
+#include "types.h"
+#include "katana_extra.h"
+
 void BupInit(void);
 void BupExit(void);
 static void ClearInfo(Sint32 drive);

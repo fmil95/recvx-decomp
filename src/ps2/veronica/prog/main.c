@@ -116,12 +116,6 @@
 #include "effsub4.c"
 #include "effsub5.c"
 #include "effsub6.c"
-#include "backup.c"
-#include "expand.c"
-#include "ps2_event.c"
-#include "ps2_NaDebugFontFunction.c"
-#include "ps2_NaDraw2D.c"
-#include "ps2_NaMath.c"
 #include "ps2_NaMatrix.c"
 #include "ps2_pxlconv.c"
 #include "ps2_loadtim2.c"
@@ -232,6 +226,9 @@ unsigned int Ps2_sys_cnt;
 ROM_WORK romp;
 ROM_WORK* rom = &romp;
 unsigned int palbuf[4096];
+float Ps2_zbuff_a;
+float Ps2_zbuff_b;
+float SinTable[16384];
 
 // 100% matching!
 void njUserInit(void)
