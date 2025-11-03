@@ -1,4 +1,5 @@
 #include "ps2_snddrv.h"
+#include "ps2_sg_sd.h"
 #include "main.h"
 
 static unsigned char sbuff[512] __attribute__((aligned(64)));
@@ -85,7 +86,6 @@ static int sdr_initDev(sceSifClientData* cd_p, unsigned int dev)
 	return 0; 
 } 
 
-void CpEEWait(int val); // TODO: remove this function declaration
 // 99.91% matching
 int SdrInit() 
 {

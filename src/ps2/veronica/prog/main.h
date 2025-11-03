@@ -42,6 +42,9 @@ extern int CurrentPortId;
 extern char ADX_STREAM_BUFFER[471040];
 extern int iop_data_buff;
 extern SND_STATUS get_iop_snddata;
+extern char sound_flag;
+extern unsigned int SddFirstFlag;
+extern char SdcGdDaVolume;
 
 void njUserInit(void);
 Sint32 njUserMain(void);

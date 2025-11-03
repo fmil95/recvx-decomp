@@ -7,6 +7,7 @@
 #include <sg_mw.h>
 #include <sg_pdvib.h>
 #include <sg_sycbl.h>
+#include <sg_sd2.h>
 #include <PREFIX_PS2_DEBUG.h>
 #include <eetypes.h>
 #include <eestruct.h>
@@ -18,6 +19,7 @@
 #include <libgraph.h>
 #include <libdma.h>
 #include <libpad.h>
+#include <sif.h>
 #include <sifrpc.h>
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxf.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>

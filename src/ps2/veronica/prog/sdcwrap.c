@@ -1,9 +1,8 @@
 #include "sdcwrap.h"
 #include "ps2_sg_maloc.h"
+#include "main.h"
 
 int GdDaPlayFlag;
-unsigned int SddFirstFlag;
-char SdcGdDaVolume;
 
 // 100% matching!
 void InitSdcParameter()

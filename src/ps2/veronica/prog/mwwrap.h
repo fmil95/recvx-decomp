@@ -1,6 +1,8 @@
 #ifndef _MWWRAP_H_
 #define _MWWRAP_H_
 
+#include "types.h"
+
 void InitMwSystem(unsigned int Mode, void* pPrm);
 void ReinitMwSystem(MWS_PLY_INIT_SFD* pPrm);
 void ExitMwSystem();

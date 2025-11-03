@@ -1,6 +1,8 @@
 #ifndef _SDC_H_
 #define _SDC_H_
 
+#include "types.h"
+
 /*typedef struct _anon0;
 typedef struct SDS_MEMBLK;
 typedef struct SDS_PORT_REF;

@@ -1,13 +1,12 @@
 #include "sdc.h"
+#include "main.h"
 
-unsigned int SddFirstFlag;
 unsigned int ExecFxFlag;
 int SdcSoundMode = -1;
 void(*TransCallBackFunc)(void*) = (void*)-1;
 unsigned int TransCompleteFlag;
 SDS_MEMBLK* SdMemBlk;
 char SdcMasterVolume;
-char SdcGdDaVolume;
 NO_NAME_20 MidiInfo[8];
 SDMIDI MidiHandle[8];
 char SdcSeDefaultVolume;

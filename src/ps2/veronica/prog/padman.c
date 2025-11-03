@@ -1,11 +1,8 @@
 #include "padman.h"
+#include "main.h"
 
 unsigned int KeyWaitFirst = 10;
 unsigned int KeyWaitNext = 4;
-BUTTON_INFO ButtonInfo[5]; 
-int SoftResetFlag;
-int CurrentPortId;
-PAD_WRK Pad[4];
 int MaxContorolPlayer;
 REPEAT_INFO RepeatInfo[4][6];
 

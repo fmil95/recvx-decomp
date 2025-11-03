@@ -1,6 +1,10 @@
 #ifndef _PS2_MOVIEFUNC_H_
 #define _PS2_MOVIEFUNC_H_
 
+#include "types.h"
+
+int sendToIOP(int dst, u_char *src, int size);
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef union _anon2;

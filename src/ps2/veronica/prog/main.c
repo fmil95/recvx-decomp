@@ -118,11 +118,6 @@
 #include "effsub6.c"
 #include "ps2_NinjaPtcl.c"
 #include "ps2_cri_adxt.c"
-#include "ps2_MovieFunc.c"
-#include "ps2_sg_sd.c"
-#include "sdc.c"
-#include "padman.c"
-#include "mwwrap.c"
 #include "sdfunc.c"
 #include "sdcwrap.c"
 #include "sync.c"
@@ -234,6 +229,9 @@ int CurrentPortId;
 char ADX_STREAM_BUFFER[471040];
 int iop_data_buff;
 SND_STATUS get_iop_snddata;
+char sound_flag;
+unsigned int SddFirstFlag;
+char SdcGdDaVolume;
 
 // 100% matching!
 void njUserInit(void)

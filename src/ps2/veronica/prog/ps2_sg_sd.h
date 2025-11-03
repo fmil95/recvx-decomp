@@ -1,6 +1,8 @@
 #ifndef _PS2_SG_SD_H_
 #define _PS2_SG_SD_H_
 
+#include "types.h"
+
 /*typedef struct SDS_PORT_REF;
 typedef struct _anon0;
 typedef struct SDS_MEMBLK;

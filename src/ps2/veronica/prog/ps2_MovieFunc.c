@@ -38,7 +38,6 @@ unsigned char* mpegWork;
 /*int frd;
 _anon41 mdSize;*/
 int movie_draw;
-char sound_flag;
 unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
 /*<unknown fundamental type (0xa510)> test_tag[1400];
 _anon24 db;
@@ -514,7 +513,7 @@ int sendToIOP2area(int pd0, int d0, int pd1, int d1, unsigned char* ps0, int s0,
 }*/
 
 // 100% matching! 
-static int sendToIOP(int dst, u_char *src, int size)
+int sendToIOP(int dst, u_char *src, int size)
 {
     sceSifDmaData transData; 
     unsigned int did; 

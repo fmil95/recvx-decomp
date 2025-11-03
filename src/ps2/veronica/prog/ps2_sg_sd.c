@@ -1,7 +1,7 @@
 #include "ps2_sg_sd.h"  
+#include "ps2_MovieFunc.h"
 #include "main.h"
 
-char sound_flag;
 int __sg_sd_snd_init__;
 void(*__snd_set_end_func__)(void*);
 void* __snd_end_func_arg__;
