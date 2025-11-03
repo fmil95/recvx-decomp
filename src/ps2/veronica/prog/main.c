@@ -1,44 +1,12 @@
-
-#include <PREFIX_PS2_DEBUG.h>
-
 // EE library
-#include <eekernel.h>
+#include <PREFIX_PS2_DEBUG.h>
 #include <eeregs.h>
-#include <eestruct.h>
-#include <libdev.h>
-#include <libdma.h>
-#include <libgraph.h>
-#include <libpkt.h>
-#include <libvu0.h>
-#include <sifdev.h>
 #include <libmc.h>
-#include <libcdvd.h>
-#include <libpad.h>
-#include <csl.h>
-#include <libssyn.h>
-#include <libsdr.h>
-#include <sif.h>
-#include <libmpeg.h>
 
 #include "override_katana.h"
 // KATANA library
 #include <ninja.h>
-#include <sg_sycbl.h>
-#include <sg_bup.h>
-#include <sg_gd.h>
-#include <sg_syrtc.h>
-#include <sg_sd2.h>
-#include <sg_pdvib.h>
-#include <sg_mw.h>
-#include <limits.h>
-
 #include <katana_extra.h>
-
-#include "../../../cri/mwlib/ee/lib/libadxe/override_adxf.h"
-// CRIWARE library
-#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
-#include "../../../cri/mwlib/ee/lib/libadxe/override_adxt.h"
-#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 
 #include "types.h"
 #include "enums.h"
