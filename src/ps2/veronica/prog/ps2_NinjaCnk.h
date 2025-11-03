@@ -1,6 +1,8 @@
 #ifndef _PS2_NINJACNK_H_
 #define _PS2_NINJACNK_H_
 
+#include "types.h"
+
 /*typedef struct _anon0;
 typedef struct tagCHUNK_HEAD;
 typedef union _anon1;

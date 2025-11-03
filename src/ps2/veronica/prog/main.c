@@ -116,11 +116,6 @@
 #include "effsub4.c"
 #include "effsub5.c"
 #include "effsub6.c"
-#include "ps2_texture.c"
-#include "ps2_NaTextureFunction.c"
-#include "ps2_NinjaCnk.c"
-#include "screen.c"
-#include "ps2_sfd_mw.c"
 #include "ps2_sg_bup.c"
 #include "ps2_dvd_image.c"
 #include "ps2_sg_gd.c"
@@ -227,6 +222,11 @@ float SinTable[16384];
 unsigned char Ps2_PBUFF[1835008];
 sceGsDBuffDc Db;
 PS2_GS_SAVE Ps2_gs_save;
+unsigned int Ps2_current_texno;
+NJS_TEXLIST* Ps2_current_texlist;
+NJS_TEXMEMLIST* Ps2_current_texmemlist;
+int iRingBufNum = 20;
+int iop_read_buff;
 
 // 100% matching!
 void njUserInit(void)

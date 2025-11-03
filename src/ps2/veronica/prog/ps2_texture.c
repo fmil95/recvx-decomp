@@ -1,12 +1,11 @@
 #include "ps2_texture.h"
+#include "main.h"
 
 /*char fname[128];*/
 NJS_TEXINFO info;
 NJS_TEXLIST tlist = { NULL, 1 }; 
-SYS_WORK* sys;
-/*char BIO_CURRENT[0];*/
-unsigned int palbuf[4096];
-/*_anon23 tbuf[0];
+/*char BIO_CURRENT[0];
+_anon23 tbuf[0];
 _anon6* rom;
 BH_PWORK ene[0];*/
 NO_NAME_17 Ps2_tex_save[2];

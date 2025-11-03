@@ -1,6 +1,9 @@
 #ifndef _PS2_TEXTURE_H_
 #define _PS2_TEXTURE_H_
 
+#include "types.h"
+#include "macros.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

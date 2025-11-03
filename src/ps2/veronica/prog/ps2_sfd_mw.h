@@ -1,6 +1,10 @@
 #ifndef _PS2_SFD_MW_H_
 #define _PS2_SFD_MW_H_
 
+#include "types.h"
+
+MWPLY ps2mwPlyCreateSofdec(MWS_PLY_CPRM_SFD* cprm, char* fname);
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _UUID;

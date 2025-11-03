@@ -1,4 +1,5 @@
 #include "ps2_sg_sd.h"  
+#include "main.h"
 
 char sound_flag;
 int __sg_sd_snd_init__;
@@ -28,8 +29,6 @@ int CurrentFxLevel;
 int AddFxLevel;
 char FxLevelTimer;
 int RoomFxLevel;
-int iRingBufNum = 20;
-int iop_read_buff;
 int iop_zero_buff;
 int iop_buff;
 unsigned short req_se_info[6];

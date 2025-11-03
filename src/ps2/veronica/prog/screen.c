@@ -1,4 +1,5 @@
 #include "screen.h"
+#include "main.h"
 
 /*_anon19* sys;
 _anon33 cam;

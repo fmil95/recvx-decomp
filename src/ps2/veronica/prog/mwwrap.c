@@ -1,5 +1,6 @@
 #include "mwwrap.h"
 #include "ps2_sg_maloc.h"
+#include "ps2_sfd_mw.h"
 
 int MwMode = -1;
 int MwPlayFlag;

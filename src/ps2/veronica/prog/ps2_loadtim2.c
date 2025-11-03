@@ -1,4 +1,5 @@
 #include "ps2_loadtim2.h"
+#include "ps2_dummy.h"
 
 unsigned char clear_buff[1024];
 
@@ -192,7 +193,6 @@ u_long128* MakeRenderTexHeader(void* tex_adr)
 	scePrintf("MakeRenderTexHeader - UNIMPLEMENTED!\n");
 }
 
-void Ps2ScreenClear(); // TODO: remove this declaration
 // 100% matching! 
 void StoreRenderTex(void* tex_adr)
 {

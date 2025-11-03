@@ -4,6 +4,8 @@
 #include "override_katana.h"
 #include <ninja.h>
 #include <sg_gd.h>
+#include <sg_mwply.h>
+#include <sfd_mw.h>
 #include <PREFIX_PS2_DEBUG.h>
 #include <eetypes.h>
 #include <eestruct.h>

@@ -1,4 +1,5 @@
 #include "ps2_NaSystem.h"
+#include "ps2_dummy.h"
 #include "main.h"
 
 void (* VsyncFunc)();
@@ -19,7 +20,6 @@ void	njSetVertexBuffer(Uint32 *buffer,Sint32 size)
 
 }
 
-void Ps2Init(); // TODO: remove this declaration
 // 100% matching!
 void	njInitSystem( Int, Int, Int )
 {
@@ -66,10 +66,6 @@ void 	njSetEORFunction( void (*func)(void) )
 
 #pragma optimization_level 0
 
-// TODO: remove these function declarations
-void Ps2DrawOTag();
-void Ps2ClearOT();
-void PS2_swap();
 // 100% matching!
 void Ps2SwapDBuff() 
 { 

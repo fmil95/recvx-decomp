@@ -1,4 +1,5 @@
 #include "njplus.h"
+#include "ps2_NaMatrix.h"
 #include "main.h"
 
 NP_WORK np;
@@ -902,7 +903,6 @@ void npCopyMemory(unsigned char* dst, unsigned char* src, unsigned int size)
     }
 }
 
-void njCalcPoint4(NJS_MATRIX* pMatrix, NO_NAME_16* pSrcPoint, NO_NAME_16* pDstPoint); // TODO: remove this function declaration
 // 100% matching!
 void npGetWHDSizeSub(NJS_CNK_OBJECT* objp, NJS_POINT3* whd)
 {
@@ -1572,7 +1572,6 @@ void npCutSkin()
 }
 
 // 100% matching!
-void njRotXYZ(NJS_MATRIX* pMatrix, int lAngleX, int lAngleY, int lAngleZ); // TODO: remove this function declaration
 void npInitCalcSkin(void* pwp, int obj_n, int* sknp)
 { 
 	NJS_MATRIX mat;        

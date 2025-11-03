@@ -1,4 +1,5 @@
 #include "ps2_NaTextureFunction.h"
+#include "main.h"
 
 unsigned int Ps2_current_texbreak;
 unsigned int Ps2_current_gindex;
@@ -13,9 +14,6 @@ NJS_TEXMEMLIST* Ps2_tex_info;
 TIM2_PICTUREHEADER Ps2_tm_list_last;
 TIM2_PICTUREHEADER Ps2_tm_list_1st;
 void* Ps2_tex_buff;
-unsigned int Ps2_current_texno;
-NJS_TEXLIST* Ps2_current_texlist;
-NJS_TEXMEMLIST* Ps2_current_texmemlist;
 char* index(char*, int);
 /*unsigned int Ps2_render_width;
 unsigned int palbuf[4096];

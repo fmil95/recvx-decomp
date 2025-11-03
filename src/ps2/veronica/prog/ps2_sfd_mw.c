@@ -1,10 +1,9 @@
 #include "ps2_sfd_mw.h"
+#include "main.h"
 
 MW_PLY_OBJ MwObj;
 StrFile infile;
-int iop_read_buff;
 MWPLY MwHandle = &MwObj;
-int iRingBufNum;
 /*
 _anon8 voBuf;
 <unknown fundamental type (0xa510)> test_tag[1400];
