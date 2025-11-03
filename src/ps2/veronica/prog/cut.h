@@ -1,6 +1,8 @@
 #ifndef _CUT_H_
 #define _CUT_H_
 
+#include "types.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;

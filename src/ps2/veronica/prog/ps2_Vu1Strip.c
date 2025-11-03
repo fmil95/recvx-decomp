@@ -1,4 +1,5 @@
 #include "ps2_Vu1Strip.h"
+#include "main.h"
 
 /*void(*pColorCalcFuncTbl)(tagVU1_STRIP_BUF*, tagVU1_PRIM_BUF*)[11];
 tagVU1_COLOR vu1Diffuse;

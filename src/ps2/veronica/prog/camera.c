@@ -1,8 +1,7 @@
 #include "camera.h"
+#include "main.h"
 
-CAM_WORK cam;
 float cmmat[16];
-float (* cmat)[16];
 
 // 100% matching!
 void bhInitCamera() {

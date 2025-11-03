@@ -1,7 +1,7 @@
 #include "njplus.h"
+#include "main.h"
 
 NP_WORK np;
-unsigned char* njpmemp;
 NJS_MATRIX lcmat[1];
 
 /*void npPlusInit();

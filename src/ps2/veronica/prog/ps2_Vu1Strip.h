@@ -1,6 +1,8 @@
 #ifndef _PS2_VU1STRIP_H_
 #define _PS2_VU1STRIP_H_
 
+#include "types.h"
+
 /*typedef struct tagVU1_STRIP_BUF;
 typedef struct tagVU1_PRIM_BUF;
 typedef struct _anon0;

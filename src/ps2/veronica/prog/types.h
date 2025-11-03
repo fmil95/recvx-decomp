@@ -1,6 +1,7 @@
 #ifndef _TYPES_H_
 #define _TYPES_H_
 
+#include "override_katana.h"
 #include <ninja.h>
 #include <sg_gd.h>
 #include <PREFIX_PS2_DEBUG.h>
