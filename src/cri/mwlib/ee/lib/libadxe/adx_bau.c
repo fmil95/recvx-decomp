@@ -1,12 +1,55 @@
 #include "adx_bau.h"
 
-void ADXB_ExecOneAu16(ADXB adxb);                          
-void ADXB_ExecOneAu8(ADXB adxb);                            
+void ADXB_ExecOneAu8(ADXB adxb);             
+void ADXB_ExecOneAu16(ADXB adxb);                   
 void ADXB_ExecOneAuUlaw(ADXB adxb); 
+static void* AU_GetInfo(void *hdr, Sint32 hdrlen, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Sint32 *nsmpl, Sint32 *cdc);
 
-Sint32 ADX_DecodeInfoAu(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk, Sint32 *cdc) 
+// 100% matching!
+Sint32 ADX_DecodeInfoAu(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk, Sint32 *cdc)
 {
-    scePrintf("ADX_DecodeInfoAu - UNIMPLEMENTED!\n");
+	Sint8 *dt;
+	Sint32 lsfreq;
+	Sint32 lnch;
+	Sint32 lbps;
+	Sint32 lnsmpl;
+    
+    if (ibuflen < 8) 
+    {
+        *dlen = 0;
+        
+        return -1;
+    }
+    
+    dt = AU_GetInfo(ibuf, ibuflen, &lsfreq, &lnch, &lbps, &lnsmpl, cdc);
+    
+    if (dt == NULL) 
+    {
+        return -1;
+    }
+
+    *dlen = dt - ibuf;
+    
+    if ((*dlen * 1024) <= 0)
+    {
+        return -1;
+    }
+    
+    *sfreq = lsfreq;
+    
+    *nch = lnch;
+    
+    *bps = lbps;
+    
+    *total_nsmpl = lnsmpl;
+    
+    *code = -1;
+    
+    *blksize = (*nch * *bps) / 8;
+    
+    *nsmpl_blk = 1;
+
+    return 0;
 }
 
 // 100% matching!
@@ -103,4 +146,7 @@ void ADXB_ExecOneAuUlaw(ADXB adxb)
     scePrintf("ADXB_ExecOneAuUlaw - UNIMPLEMENTED!\n");
 }
 
-// AU_GetInfo
+static void* AU_GetInfo(void *hdr, Sint32 hdrlen, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Sint32 *nsmpl, Sint32 *cdc) 
+{
+    scePrintf("AU_GetInfo - UNIMPLEMENTED!\n");
+}
