@@ -1,6 +1,8 @@
 #ifndef	_MACROS_H_
 #define	_MACROS_H_
 
+// TODO: use all these a little bit more throughout the code
+
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define MAX(a, b) ((a) < (b) ? (b) : (a))
 

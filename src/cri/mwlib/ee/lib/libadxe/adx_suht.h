@@ -3,6 +3,7 @@
 
 #include <adx_ps2.h>
 
+// TODO: struct already defined in adx_sudv, define it somewhere else only once
 typedef struct ADXT_SPRM
 {
     char* fname; 

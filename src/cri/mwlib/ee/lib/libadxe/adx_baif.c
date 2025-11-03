@@ -342,16 +342,15 @@ static void* AIFF_GetInfo(void *hdr, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Si
                 
                 pdw += 2;
                 
-                temp4 = READ_INT16(pdw, 0);
-                
-                temp4 = BSWAP_U16_EX(temp4);
+                temp3 = READ_INT16(pdw, 0);
+                temp3 = BSWAP_U16_EX(temp3);
                 
                 pdw += 2;
                 
-                temp3 = READ_INT16(pdw, 0);
+                temp4 = READ_INT16(pdw, 0);
                 
-                *sfreq = BSWAP_U16_EX(temp3);
-                *sfreq = *sfreq >> (0x400E - temp4);
+                *sfreq = BSWAP_U16_EX(temp4);
+                *sfreq = *sfreq >> (0x400E - temp3);
                 
                 pdw += 8;
                 

@@ -6,9 +6,15 @@ void ADXB_ExecOneAuUlaw(ADXB adxb);
 
 // ADX_DecodeInfoAu
 
+// 100% matching!
 Sint32 ADXB_CheckAu(Sint8 *ibuf)
 {
-    scePrintf("ADXB_CheckAu - UNIMPLEMENTED!\n");
+    if ((memcmp(ibuf, ".snd", 4) == 0) || (memcmp(ibuf, ".sd", 4) == 0)) 
+    {
+        return 1;
+    }
+    
+    return 0;
 }
 
 Sint32 ADXB_DecodeHeaderAu(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
