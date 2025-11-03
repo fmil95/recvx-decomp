@@ -116,11 +116,6 @@
 #include "effsub4.c"
 #include "effsub5.c"
 #include "effsub6.c"
-#include "ps2_sg_bup.c"
-#include "ps2_dvd_image.c"
-#include "ps2_sg_gd.c"
-#include "gdlib.c"
-#include "ps2_sg_pdvib.c"
 #include "ps2_sg_pad.c"
 #include "ps2_NinjaPtcl.c"
 #include "ps2_NaDraw.c"
@@ -227,6 +222,9 @@ NJS_TEXLIST* Ps2_current_texlist;
 NJS_TEXMEMLIST* Ps2_current_texmemlist;
 int iRingBufNum = 20;
 int iop_read_buff;
+unsigned int StatusUpdateCounter;
+unsigned int DiscOpenTrayFlag;
+PAD_ACT Pad_act[20];
 
 // 100% matching!
 void njUserInit(void)

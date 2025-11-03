@@ -4,8 +4,8 @@
 #include "override_katana.h"
 #include <ninja.h>
 #include <sg_gd.h>
-#include <sg_mwply.h>
-#include <sfd_mw.h>
+#include <sg_mw.h>
+#include <sg_pdvib.h>
 #include <PREFIX_PS2_DEBUG.h>
 #include <eetypes.h>
 #include <eestruct.h>
@@ -16,6 +16,7 @@
 #include <libmpeg.h>
 #include <libgraph.h>
 #include <libdma.h>
+#include <libpad.h>
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxf.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxt.h"

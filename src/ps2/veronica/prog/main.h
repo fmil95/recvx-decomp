@@ -30,6 +30,9 @@ extern NJS_TEXLIST* Ps2_current_texlist;
 extern NJS_TEXMEMLIST* Ps2_current_texmemlist;
 extern int iRingBufNum;
 extern int iop_read_buff;
+extern unsigned int StatusUpdateCounter;
+extern unsigned int DiscOpenTrayFlag;
+extern PAD_ACT Pad_act[20];
 
 void njUserInit(void);
 Sint32 njUserMain(void);

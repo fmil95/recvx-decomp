@@ -1,6 +1,8 @@
 #ifndef _PS2_DVD_IMAGE_H_
 #define _PS2_DVD_IMAGE_H_
 
+extern char* rdx_files[205];
+
 /*typedef struct _anon0;
 
 

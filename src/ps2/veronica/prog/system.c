@@ -28,7 +28,6 @@ NJS_TEXMEMLIST tbuf[256];
 int SoftResetFlag;
 float GameFar;
 float GameNear;
-PAD_ACT Pad_act[20];
 unsigned int Ps2_rendertex_initflag;
 unsigned int Ps2_albinoid_flag;
 unsigned int Ps2_ice_flag;

@@ -1,8 +1,8 @@
 #include "ps2_sg_pdvib.h"  
+#include "main.h"
 
 unsigned char Pad_vibe_call_num;
 unsigned char Ps2_pad_motor[6];
-PAD_ACT Pad_act[20];
 
 // 100% matching! 
 Sint32 pdVibMxIsReady(Uint32 port)

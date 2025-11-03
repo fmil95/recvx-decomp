@@ -1,8 +1,8 @@
 #include "gdlib.h"
 #include "ps2_sg_maloc.h"
+#include "main.h"
 
 unsigned int MaxDirectoryEntry = 512;
-unsigned int DiscOpenTrayFlag;
 unsigned int NewDiscCheckSw;
 unsigned int GdErrorFlag;
 LFOPEN_INFO LfOpenInfo[14];
@@ -14,7 +14,6 @@ unsigned int RequestReadBufferFlag;
 unsigned int RequestReadFlag;
 GDFS CurrentGdFs;
 GDFS CurrentGdFsBuf;
-unsigned int StatusUpdateCounter;
 GDFS LfGdFs;
 
 // 100% matching!

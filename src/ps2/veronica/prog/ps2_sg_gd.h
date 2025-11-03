@@ -1,6 +1,9 @@
 #ifndef _PS2_SG_GD_H_
 #define _PS2_SG_GD_H_
 
+#include "types.h"
+#include "ps2_dvd_image.h"
+
 void  gdFsClose(GDFS gdfs);
 GDFS_DIRREC  gdFsCreateDirhn(void *dirbuf, Sint32 max_dirent);
 void  gdFsFinish(void);

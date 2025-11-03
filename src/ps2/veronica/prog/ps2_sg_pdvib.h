@@ -1,6 +1,8 @@
 #ifndef _PS2_SG_PDVIB_H_
 #define _PS2_SG_PDVIB_H_
 
+#include "types.h"
+
 Sint32 pdVibMxIsReady(Uint32 port);
 Sint32 pdVibMxSetStopTime(Uint32 port, Uint32 time);
 Sint32 pdVibMxStart(Uint32 port, const PDS_VIBPARAM* param);
