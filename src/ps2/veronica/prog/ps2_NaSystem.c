@@ -1,13 +1,11 @@
 #include "ps2_NaSystem.h"
+#include "main.h"
 
 void (* VsyncFunc)();
 void (* EorFunc)();
 unsigned int Ps2_vcount;
 unsigned int Ps2_dbuff;
-sceGsDBuffDc Db;
-SYS_WORK* sys;
 PS2_NJ_SAVE Ps2_nj_save_current;
-PS2_GS_SAVE Ps2_gs_save;
 
 // 100% matching!
 void	njSetTextureMemorySize(Uint32 size )

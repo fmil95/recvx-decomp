@@ -1,6 +1,8 @@
 #ifndef _PS2_NASYSTEM_H_
 #define _PS2_NASYSTEM_H_
 
+#include "types.h"
+
 void	njSetTextureMemorySize(Uint32 size );
 void	njSetVertexBuffer(Uint32 *buffer,Sint32 size);
 void	njInitSystem( Int, Int, Int );

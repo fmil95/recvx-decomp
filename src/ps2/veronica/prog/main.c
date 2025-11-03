@@ -116,10 +116,6 @@
 #include "effsub4.c"
 #include "effsub5.c"
 #include "effsub6.c"
-#include "ps2_NaMatrix.c"
-#include "ps2_pxlconv.c"
-#include "ps2_loadtim2.c"
-#include "ps2_NaSystem.c"
 #include "ps2_texture.c"
 #include "ps2_NaTextureFunction.c"
 #include "ps2_NinjaCnk.c"
@@ -131,7 +127,6 @@
 #include "gdlib.c"
 #include "ps2_sg_pdvib.c"
 #include "ps2_sg_pad.c"
-#include "ps2_dummy.c"
 #include "ps2_NinjaPtcl.c"
 #include "ps2_NaDraw.c"
 #include "ps2_sg_sycfg.c" // TODO: find out why this file crashes when including it amongst the other source files in compile_config.json
@@ -229,6 +224,9 @@ unsigned int palbuf[4096];
 float Ps2_zbuff_a;
 float Ps2_zbuff_b;
 float SinTable[16384];
+unsigned char Ps2_PBUFF[1835008];
+sceGsDBuffDc Db;
+PS2_GS_SAVE Ps2_gs_save;
 
 // 100% matching!
 void njUserInit(void)

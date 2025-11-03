@@ -1,6 +1,8 @@
 #ifndef _PS2_NAMATRIX_H_
 #define _PS2_NAMATRIX_H_
 
+#include "types.h"
+
 /*typedef struct _anon0;
 typedef struct tagNJS_SCRVECTOR;
 typedef struct _anon1;

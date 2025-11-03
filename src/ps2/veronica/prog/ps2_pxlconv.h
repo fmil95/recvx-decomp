@@ -1,6 +1,8 @@
 #ifndef _PS2_PXLCONV_H_
 #define _PS2_PXLCONV_H_
 
+#include "types.h"
+
 /*typedef struct _anon0;
 typedef struct tagTIM2_FILEHEADER;
 

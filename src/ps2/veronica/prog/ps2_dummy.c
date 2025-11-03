@@ -1,19 +1,15 @@
 #include "ps2_dummy.h"
+#include "main.h"
 
 /*unsigned char* Ps2_MOVIE;*/
 unsigned int Ps2_tex_load_tp_cancel;
 /*unsigned int Ps2_highlight;
 float Ps2_rand_seed[4];*/
 unsigned int PS2_Render_tex_sub_flag;
-unsigned int Ps2_ice_flag;
 /*unsigned int Ps2_albinoid_flag;*/
-sceGsDBuffDc Db;
-void* Ps2_tex_buff;
 unsigned char Ps2_tex_mem[10485760];
-MOV_INFO MovieInfo;
 /*float Ps2_zbuff_a;
 float Ps2_zbuff_b;*/
-PS2_GS_SAVE Ps2_gs_save;
 unsigned int Ps2_use_pt_flag;
 NJS_TEXMEMLIST* Ps2_now_tex;
 unsigned int Ps2_ot_list_no;
@@ -22,8 +18,6 @@ PS2_OT Ps2_ot_list[8192];
 unsigned int Ps2_now_bank;
 PS2_OT* Ps2_OT[4096][2];
 /*float Ps2AddPrimPrio;*/
-unsigned char Ps2_PBUFF[1835008];
-unsigned int Ps2_current_texbreak;
 PS2_TP_TAG Ps2_tp_tag[64];
 PS2_TP_CACHE ps2_tp_cache[64];
 unsigned int Ps2_tex_cache_num;

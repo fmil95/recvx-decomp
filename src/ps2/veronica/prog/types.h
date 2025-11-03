@@ -7,10 +7,13 @@
 #include <PREFIX_PS2_DEBUG.h>
 #include <eetypes.h>
 #include <eestruct.h>
+#include <limits.h>
 #include <libvu0.h>
 #include <libcdvd.h>
 #include <libipu.h>
 #include <libmpeg.h>
+#include <libgraph.h>
+#include <libdma.h>
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxf.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxt.h"

@@ -17,6 +17,14 @@ extern unsigned int palbuf[4096];
 extern float Ps2_zbuff_a;
 extern float Ps2_zbuff_b;
 extern float SinTable[16384];
+extern unsigned char Ps2_PBUFF[1835008];
+extern sceGsDBuffDc Db;
+extern PS2_GS_SAVE Ps2_gs_save;
+extern SYS_WORK* sys;
+extern void* Ps2_tex_buff;
+extern unsigned int Ps2_current_texbreak;
+extern MOV_INFO MovieInfo;
+extern unsigned int Ps2_ice_flag;
 
 void njUserInit(void);
 Sint32 njUserMain(void);

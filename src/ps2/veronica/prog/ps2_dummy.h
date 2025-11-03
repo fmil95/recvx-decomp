@@ -1,6 +1,8 @@
 #ifndef _PS2_DUMMY_H_
 #define _PS2_DUMMY_H_
 
+#include "types.h"
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
