@@ -167,7 +167,7 @@ void ADXB_ExecOneAiff8(ADXB adxb)
             
             for (i = 0; i < ndata; i++) 
             {
-                pcmbuf_l[i] = ibuf[(i * 2) + 0] * 256;
+                pcmbuf_l[i] = ibuf[i * 2] * 256;
                 pcmbuf_r[i] = ibuf[(i * 2) + 1] * 256;
             }
         } 
@@ -228,7 +228,7 @@ void ADXB_ExecOneAiff16(ADXB adxb)
             
             for (i = 0; i < ndata; i++) 
             {
-                tmp = ibuf[(i * 2) + 0];
+                tmp = ibuf[i * 2];
                 
                 pcmbuf_l[i] = (tmp / 256) | (tmp * 256);
                 
