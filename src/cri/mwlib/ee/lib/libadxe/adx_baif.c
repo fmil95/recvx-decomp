@@ -1,9 +1,5 @@
 #include "adx_baif.h"
 
-void ADXB_ExecOneAiff8(ADXB adxb);
-void ADXB_ExecOneAiff16(ADXB adxb);
-static void* AIFF_GetInfo(void *hdr, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Sint32 *nsmpl);
-
 // 100% matching!
 Sint32 ADX_DecodeInfoAiff(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk)
 {
@@ -261,7 +257,136 @@ void ADXB_ExecOneAiff16(ADXB adxb)
     }
 }
 
+// 100% matching!
 static void* AIFF_GetInfo(void *hdr, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Sint32 *nsmpl)
 {
-    scePrintf("AIFF_GetInfo - UNIMPLEMENTED!\n");
+	Uint8 *pdw;
+	Uint8 *pdwEnd;
+	Sint32 ck_id;
+	Sint32 ck_size;
+	Sint32 form_type;
+	Sint32 comm_ck_flag;
+	Sint32 ssnd_ck_flag;
+	Uint32 ssnd_ofst;
+	void *data;
+    Uint32 tmp; 
+    Sint32 temp, temp2, temp3, temp4;
+    
+    ssnd_ck_flag = comm_ck_flag = 0;
+     
+    data = NULL;
+
+    pdw = hdr;
+
+    ck_id = READ_INT32(pdw, 0);
+    
+    pdw += 4;
+    
+    ck_size = READ_INT32(pdw, 0);
+    ck_size = BSWAP_U32(ck_size);
+    
+    pdw += 4;
+    
+    form_type = READ_INT32(pdw, 0);
+    
+    pdw += 4;
+    
+    if (ck_id != FORM_IMAGIC) 
+    {
+        return NULL;
+    }
+    
+    if (form_type != AIFF_IMAGIC) 
+    {
+        return NULL;
+    }
+    
+    pdwEnd = (pdw + ck_size) - 4;
+
+    while (pdw < pdwEnd) 
+    {
+        ck_id = READ_INT32(pdw, 0);
+        
+        pdw += 4;
+        
+        ck_size = READ_INT32(pdw, 0);
+        ck_size = BSWAP_U32(ck_size);
+        
+        pdw += 4;
+        
+        switch (ck_id)
+        {
+        case COMM_IMAGIC:
+            if (comm_ck_flag == 0) 
+            {
+                if (ck_size < 18) 
+                {
+                    return NULL;
+                }
+                
+                ssnd_ofst = READ_INT16(pdw, 0);
+                
+                *nch = BSWAP_U16_EX(ssnd_ofst);
+                
+                pdw += 2;
+                
+                temp = READ_INT32(pdw, 0);
+                
+                *nsmpl = BSWAP_S32(temp);
+                
+                pdw += 4;
+                
+                temp2 = READ_INT16(pdw, 0);
+                
+                *bps = BSWAP_S16(temp2);
+                
+                pdw += 2;
+                
+                temp4 = READ_INT16(pdw, 0);
+                
+                temp4 = BSWAP_U16_EX(temp4);
+                
+                pdw += 2;
+                
+                temp3 = READ_INT16(pdw, 0);
+                
+                *sfreq = BSWAP_U16_EX(temp3);
+                *sfreq = *sfreq >> (0x400E - temp4);
+                
+                pdw += 8;
+                
+                comm_ck_flag = 1;
+                
+                if (ssnd_ck_flag != 0) 
+                {
+                    return data;
+                }
+            }
+            
+            break;
+        case SSND_IMAGIC:
+            if (ssnd_ck_flag == 0)
+            {
+                tmp = READ_INT32(pdw, 0);
+                tmp = BSWAP_U32(tmp);
+                
+                pdw += 4;
+                
+                data = pdw + tmp;
+                
+                ssnd_ck_flag = 1;
+                
+                if (comm_ck_flag != 0) 
+                {
+                    return data;
+                }
+            }
+            
+            break;
+        default:
+            pdw += (ck_size + 1) & ~0x1;
+        }
+    }
+    
+    return data;
 }
