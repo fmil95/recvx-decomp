@@ -1,4 +1,5 @@
 #include "backup.h"
+#include "ps2_sg_maloc.h"
 
 BACKUPINFO gBupInfo[8];
 

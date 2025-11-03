@@ -1,6 +1,8 @@
 #ifndef _ENESET_H_
 #define _ENESET_H_
 
+#include "types.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

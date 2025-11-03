@@ -1,6 +1,8 @@
 #ifndef _DREAD_H_
 #define _DREAD_H_
 
+#include "types.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

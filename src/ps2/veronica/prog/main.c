@@ -48,7 +48,6 @@
 
 #include "face_bh.c"
 #include "face.c"
-#include "gcc_wrapper.c"
 #include "hitchk.c"
 #include "hitchkl.c"
 #include "item.c"
@@ -117,12 +116,6 @@
 #include "effsub4.c"
 #include "effsub5.c"
 #include "effsub6.c"
-#include "eneset.c"
-#include "objitm.c"
-#include "room.c"
-#include "dread.c"
-#include "sub1.c"
-#include "ps2_sg_maloc.c"
 #include "backup.c"
 #include "expand.c"
 #include "ps2_event.c"
@@ -238,6 +231,7 @@ unsigned int Ps2_sys_cnt;
 //_anon27 eff[512];
 ROM_WORK romp;
 ROM_WORK* rom = &romp;
+unsigned int palbuf[4096];
 
 // 100% matching!
 void njUserInit(void)

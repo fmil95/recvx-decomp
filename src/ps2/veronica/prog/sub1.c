@@ -1,4 +1,5 @@
 #include "sub1.h"
+#include "main.h"
 
 /*_anon7 parts_00[8];
 _anon7 parts_01[9];
@@ -75,9 +76,8 @@ unsigned int getbulletmax[4][0];
 short combidata[0];
 unsigned char curedata[0];
 _anon29 pulsework;
-_anon7 parts_21[8];*/
-unsigned int palbuf[4096];
-/*float x_k;
+_anon7 parts_21[8];
+float x_k;
 float y_k;
 float xend;
 short u_k;

@@ -1,4 +1,5 @@
 #include "ps2_McSaveFile.h"
+#include "sub1.h"
 
 static char cSubDirName[13] = "BASLUS-20184";
 int Type_Space[18][3];

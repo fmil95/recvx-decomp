@@ -1,6 +1,8 @@
 #ifndef _OBJITM_H_
 #define _OBJITM_H_
 
+#include "types.h"
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;

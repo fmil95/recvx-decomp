@@ -1,4 +1,5 @@
 #include "sdfunc.h"
+#include "ps2_sg_maloc.h"
 
 typedef struct 
 {

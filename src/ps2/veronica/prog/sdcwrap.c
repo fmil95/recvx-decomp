@@ -1,4 +1,5 @@
 #include "sdcwrap.h"
+#include "ps2_sg_maloc.h"
 
 int GdDaPlayFlag;
 unsigned int SddFirstFlag;

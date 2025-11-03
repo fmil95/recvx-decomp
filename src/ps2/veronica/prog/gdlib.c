@@ -1,4 +1,5 @@
 #include "gdlib.h"
+#include "ps2_sg_maloc.h"
 
 unsigned int MaxDirectoryEntry = 512;
 unsigned int DiscOpenTrayFlag;

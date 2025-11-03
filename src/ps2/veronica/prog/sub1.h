@@ -1,6 +1,10 @@
 #ifndef _SUB1_H_
 #define _SUB1_H_
 
+#include "types.h"
+
+unsigned int* ItemSearch(unsigned short itemid);
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;

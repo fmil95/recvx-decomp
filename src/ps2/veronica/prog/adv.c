@@ -1,4 +1,5 @@
 #include "adv.h"
+#include "ps2_sg_maloc.h"
 #include "ps2_SystemSaveScreen.h"
 
 /*unsigned char SaveLoadMessage[10956];*/

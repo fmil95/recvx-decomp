@@ -13,6 +13,7 @@ extern NJS_MATRIX NaViwViewMatrix;
 extern NJS_SCREEN	_nj_screen_;
 extern unsigned char* njpmemp;
 extern NJS_MATRIX* cmat;
+extern unsigned int palbuf[4096];
 
 void njUserInit(void);
 Sint32 njUserMain(void);

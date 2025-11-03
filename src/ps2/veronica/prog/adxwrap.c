@@ -1,4 +1,5 @@
 #include "adxwrap.h"
+#include "ps2_sg_maloc.h"
 
 char last_rdx_files[256];
 char last_adx_files[256];
