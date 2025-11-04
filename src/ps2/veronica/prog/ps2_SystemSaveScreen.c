@@ -1,4 +1,5 @@
 #include "ps2_SystemSaveScreen.h"
+#include "ps2_MemoryCard.h"
 
 /*tagSYSSAVE_SCREEN* CreateSysSaveScreen(tagSYSSAVE_SCREEN* pSysSave, void* vpWorkPtrSys, unsigned short usSaveMesMode, unsigned short usSaveWriteMode);
 void DispSysSaveMessageSelect(tagSYSSAVE_SCREEN* pSysSave);

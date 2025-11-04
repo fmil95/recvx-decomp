@@ -1,6 +1,8 @@
 #ifndef _PS2_MCSAVEFILE_H_
 #define _PS2_MCSAVEFILE_H_
 
+#include "types.h"
+
 SELECTFILEINFO* mcSelectFileInfoInit(SELECTFILEINFO* pFileInfo);
 SAVEFILE* mcCreateSaveFileInit(SAVEFILE* pSaveFile);
 CONFIGFILE* mcCreateConfigInit(CONFIGFILE* pConfigFile);

@@ -1,10 +1,10 @@
 #include "ps2_McSaveFile.h"
 #include "sub1.h"
+#include "main.h"
 
 static char cSubDirName[13] = "BASLUS-20184";
 int Type_Space[18][3];
 unsigned short MesNumTbl[10] = { 0x0010, 0x0011, 0x0012, 0x0013, 0x0014, 0x0015, 0x0016, 0x0017, 0x0018, 0x0019 };
-SYS_WORK* sys;
 
 // 100% matching!
 SELECTFILEINFO* mcSelectFileInfoInit(SELECTFILEINFO* pFileInfo)

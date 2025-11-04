@@ -1,5 +1,7 @@
 #include "adv.h"
+#include "ps2_MemoryCard.h"
 #include "ps2_sg_maloc.h"
+#include "ps2_SystemLoadScreen.h"
 #include "ps2_SystemSaveScreen.h"
 #include "pwksub.h"
 

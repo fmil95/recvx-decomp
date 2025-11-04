@@ -1,5 +1,6 @@
 #include "sdfunc.h"
 #include "ps2_sg_maloc.h"
+#include "pwksub.h"
 #include "main.h"
 
 typedef struct 
@@ -2830,7 +2831,6 @@ void ExecFileManager()
     }
 }
 
-unsigned char* bhGetFreeMemory(int size, int param); // TODO: remove this function declaration
 // 100% matching! 
 int PlayStartMovieEx(int MovieNo, int MovieType, int PauseFlag)
 {

@@ -1,4 +1,6 @@
 #include "ps2_LoadScreen.h"
+#include "ps2_McSaveFile.h"
+#include "ps2_MemoryCard.h"
 
 SELECTFILEWINDOW SelectFileWindow;
 SELECTFILEINFO SelectFileInfo[15];

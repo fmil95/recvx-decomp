@@ -1,6 +1,8 @@
 #ifndef _PS2_MEMORYCARD_H_
 #define _PS2_MEMORYCARD_H_
 
+#include "types.h"
+
 MEMORYCARDSTATE* CreateMemoryCard(MEMORYCARDSTATE* pCard);
 int ExecuteMemoryCard(MEMORYCARDSTATE* pCard);
 int ExecuteMemoryCardStandby(MEMORYCARDSTATE* pCard);

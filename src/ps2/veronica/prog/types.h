@@ -19,6 +19,7 @@
 #include <libgraph.h>
 #include <libdma.h>
 #include <libpad.h>
+#include <libmc.h>
 #include <sif.h>
 #include <sifrpc.h>
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxf.h"

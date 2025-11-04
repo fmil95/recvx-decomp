@@ -1,6 +1,8 @@
 #ifndef _PS2_SYSTEMLOADSCREEN_H_
 #define _PS2_SYSTEMLOADSCREEN_H_
 
+#include "types.h"
+
 SYSLOAD_SCREEN* CreateSysLoadScreen(SYSLOAD_SCREEN* pSysLoad, void* vpWorkPtrSys);
 void DispSysLoadMessageSelect(int slSelectMes);
 int ExecuteSysLoadScreen(SYSLOAD_SCREEN* pSysLoad);

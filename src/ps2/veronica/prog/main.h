@@ -66,6 +66,13 @@ extern unsigned char FontSz[126];
 extern float FontScaleX;
 extern float FontScaleCR;
 extern unsigned char* freemem;
+extern SELECTFILEWINDOW SelectFileWindow;
+extern SELECTFILEINFO SelectFileInfo[15];
+extern char* cpNameList[18];
+extern ICONINFORMATION IconInfo;
+extern MEMORYCARDSTATE McState;
+extern SAVEFILE SaveFile;
+extern CONFIGFILE ConfigFile;
 
 void njUserInit(void);
 Sint32 njUserMain(void);

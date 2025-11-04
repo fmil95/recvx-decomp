@@ -1,4 +1,5 @@
 #include "player.h"
+#include "main.h"
 
 /*float PlyInfo[2][4];
 _anon18 lkmtab[2];
@@ -16,9 +17,8 @@ char PlySdwTab[8];
 _anon27 PlyCapColTab[18];
 _anon40 WpnEffTab[4][23];
 char PlyTrsZ[3][6];
-BH_PWORK* plp;*/
-SYS_WORK* sys;
-/*_anon10* rom;
+BH_PWORK* plp;
+_anon10* rom;
 BH_PWORK ply;
 BH_PWORK ene[0];
 void(*bhCtrPly_mode0)()[9];

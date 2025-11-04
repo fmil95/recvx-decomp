@@ -86,13 +86,8 @@
 #include "effsub6.c"
 #include "ps2_NinjaPtcl.c"
 #include "ps2_cri_adxt.c"
-#include "ps2_MemoryCard.c"
-#include "ps2_McSaveFile.c"
 #include "ps2_LoadScreen.c"
-#include "ps2_SystemLoadScreen.c"
 #include "Motion.c"
-#include "player.c"
-#include "door.c"
 #include "map.c"
 #include "effect.c"
 #include "event.c"
@@ -199,6 +194,18 @@ unsigned char Pause_Flag;
 unsigned char FontSz[126];
 float FontScaleX;
 float FontScaleCR;
+SELECTFILEWINDOW SelectFileWindow;
+SELECTFILEINFO SelectFileInfo[15];
+char* cpNameList[18] = 
+{
+    "icon.sys", "bio_cv.ico", "BASLUS-20184", "SAVEDATA-00", "SAVEDATA-01", "SAVEDATA-02", "SAVEDATA-03",
+    "SAVEDATA-04", "SAVEDATA-05", "SAVEDATA-06", "SAVEDATA-07", "SAVEDATA-08", "SAVEDATA-09", "SAVEDATA-10",
+    "SAVEDATA-11", "SAVEDATA-12", "SAVEDATA-13", "SAVEDATA-14"
+}; 
+ICONINFORMATION IconInfo;
+MEMORYCARDSTATE McState;
+SAVEFILE SaveFile;
+CONFIGFILE ConfigFile;
 
 // 100% matching!
 void njUserInit(void)

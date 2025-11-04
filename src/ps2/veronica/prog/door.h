@@ -1,6 +1,8 @@
 #ifndef _DOOR_H_
 #define _DOOR_H_
 
+#include "types.h"
+
 /*typedef struct _anon0;
 typedef struct _door_wrk;
 typedef struct _anon1;
