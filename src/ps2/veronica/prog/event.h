@@ -1,6 +1,8 @@
 #ifndef _EVENT_H_
 #define _EVENT_H_
 
+#include "types.h"
+
 /*typedef struct BH_PWORK;
 typedef struct npobj;
 typedef struct _anon0;

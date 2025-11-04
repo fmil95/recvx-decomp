@@ -1,6 +1,8 @@
 #ifndef _ADV_H_
 #define _ADV_H_
 
+#include "types.h"
+
 /*typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;

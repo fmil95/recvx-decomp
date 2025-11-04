@@ -1,4 +1,5 @@
 #include "pad.h"
+#include "main.h"
 
 unsigned int pad_tab_a[18];
 unsigned int pad_tab_b[18];
@@ -7,8 +8,6 @@ unsigned int pad_tab_d[18];
 unsigned int* pad_type[4] = { pad_tab_a, pad_tab_b, pad_tab_c, pad_tab_d };
 unsigned short pdm_mes[10];
 unsigned short pdm_palmes[19];
-SYS_WORK* sys;
-int pd_port;
 
 void bhReturnTitle(); // TODO: remove this function declaration
 // 100% matching!

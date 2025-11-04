@@ -1,6 +1,9 @@
 #ifndef _MAP_H_
 #define _MAP_H_
 
+#include "types.h"
+#include "enums.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

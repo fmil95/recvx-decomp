@@ -1,6 +1,9 @@
 #ifndef _SYSTEM_H_
 #define _SYSTEM_H_
 
+#include "types.h"
+#include "enums.h"
+
 int bhCalcVtxBuffer();
 void bhChangeHWSetting();
 void bhInitSystem();

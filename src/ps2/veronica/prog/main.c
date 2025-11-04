@@ -13,6 +13,8 @@
 #include "macros.h"
 
 #include "main.h"
+#include "system.h"
+#include "ps2_sg_maloc.h"
 
 #include "face_bh.c"
 #include "face.c"
@@ -88,13 +90,6 @@
 #include "ps2_cri_adxt.c"
 #include "ps2_LoadScreen.c"
 #include "Motion.c"
-#include "map.c"
-#include "effect.c"
-#include "event.c"
-#include "adv.c"
-#include "pad.c"
-#include "game.c"
-#include "system.c"
 #include "playpch.c"
 
 typedef void(*fn)();
@@ -206,6 +201,9 @@ ICONINFORMATION IconInfo;
 MEMORYCARDSTATE McState;
 SAVEFILE SaveFile;
 CONFIGFILE ConfigFile;
+unsigned char pl_sleep_cnt;
+unsigned int Ps2_albinoid_flag;
+CAM_WORK cam;
 
 // 100% matching!
 void njUserInit(void)

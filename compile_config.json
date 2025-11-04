@@ -139,7 +139,13 @@
       "src/ps2/veronica/prog/ps2_SystemLoadScreen.c",
       "src/ps2/veronica/prog/player.c",
       "src/ps2/veronica/prog/door.c",
-      "src/ps2/veronica/prog/main.c",
+      "src/ps2/veronica/prog/map.c",
+      "src/ps2/veronica/prog/effect.c",
+      "src/ps2/veronica/prog/event.c",
+      "src/ps2/veronica/prog/adv.c",
+      "src/ps2/veronica/prog/pad.c",
+      "src/ps2/veronica/prog/game.c",
+      "src/ps2/veronica/prog/system.c",
       "src/ps2/veronica/prog/ps2_NaView.c",
       "src/ps2/veronica/prog/vibman.c",
       "src/ps2/veronica/prog/flag.c",
@@ -147,6 +153,7 @@
       "src/ps2/veronica/prog/ps2_sg_sytmr.c",
       "src/ps2/veronica/prog/sbinit.c",
       "src/ps2/veronica/prog/ps2_sg_syhw.c",
-      "src/ps2/veronica/prog/ps2_sg_syrtc.c"
+      "src/ps2/veronica/prog/ps2_sg_syrtc.c",
+      "src/ps2/veronica/prog/main.c"
   ]
 }

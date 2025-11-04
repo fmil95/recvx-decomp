@@ -1,4 +1,5 @@
 #include "effect.h"
+#include "main.h"
 
 /*void(*bhJumpEffect)()[150];
 void(*bhJumpEffect0)()[100];

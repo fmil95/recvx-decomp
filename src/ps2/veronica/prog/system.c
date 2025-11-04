@@ -1,41 +1,19 @@
 #include "system.h"
 #include "ps2_sg_maloc.h"
 #include "pwksub.h"
+#include "main.h"
 
 unsigned short pause_mes[6];
 unsigned char FileWait;
 unsigned char VibWait;
-SYS_WORK* sys;
-unsigned char* njpmemp;
-HWS_WORK* hws;
 NJS_VERTEX_BUF* _nj_vertex_buf_;
-unsigned char* vwbmemp;
-unsigned char* vebmemp;
-unsigned char* freemem;
 unsigned char PauseBtn;
 unsigned char NowLoadDisp;
-unsigned char Pause_Flag;
-unsigned char pl_sleep_cnt;
-BH_PWORK ply;
-BH_PWORK* plp;
-unsigned char* keepmem;
-float BHD_ASPECT_Y;
-float BHD_ASPECT_X;
-unsigned char BackColorFlag;
-PAD_INFO Ps2_pad;
-int pd_port;
-ROM_WORK* rom;
-NJS_TEXMEMLIST tbuf[256];
-int SoftResetFlag;
 float GameFar;
 float GameNear;
 unsigned int Ps2_rendertex_initflag;
-unsigned int Ps2_albinoid_flag;
 unsigned int Ps2_ice_flag;
 WPN_TAB WpnTab[23];
-float FontScaleCR;
-float FontScaleX;
-unsigned char FontSz[126];
 
 // 100% matching!
 int bhCalcVtxBuffer()

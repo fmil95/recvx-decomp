@@ -73,6 +73,16 @@ extern ICONINFORMATION IconInfo;
 extern MEMORYCARDSTATE McState;
 extern SAVEFILE SaveFile;
 extern CONFIGFILE ConfigFile;
+extern unsigned char* vwbmemp;
+extern NJS_TEXMEMLIST tbuf[256];
+extern unsigned char pl_sleep_cnt;
+extern unsigned int Ps2_albinoid_flag;
+extern CAM_WORK cam;
+extern unsigned char* vebmemp;
+extern unsigned char* keepmem;
+extern BH_PWORK ply;
+extern float BHD_ASPECT_X;
+extern float BHD_ASPECT_Y;
 
 void njUserInit(void);
 Sint32 njUserMain(void);

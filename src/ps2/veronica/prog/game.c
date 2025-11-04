@@ -1,11 +1,5 @@
 #include "game.h"
-
-SYS_WORK* sys;
-ROM_WORK* rom;
-CAM_WORK cam;
-BH_PWORK* plp;
-unsigned char pl_sleep_cnt;
-unsigned int Ps2_albinoid_flag;
+#include "main.h"
 
 // 100% matching! 
 void bhMainSequence()
