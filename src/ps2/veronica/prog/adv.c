@@ -1,6 +1,7 @@
 #include "adv.h"
 #include "ps2_sg_maloc.h"
 #include "ps2_SystemSaveScreen.h"
+#include "pwksub.h"
 
 /*unsigned char SaveLoadMessage[10956];*/
 OPTION OptionDef[7] = { { 0, 1, 0, 0, 0,  0,  0, 0, 0 },

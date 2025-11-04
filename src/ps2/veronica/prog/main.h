@@ -62,6 +62,10 @@ extern int OpenDriveTrayFlag;
 extern int pd_port;
 extern unsigned char BackColorFlag;
 extern unsigned char Pause_Flag;
+extern unsigned char FontSz[126];
+extern float FontScaleX;
+extern float FontScaleCR;
+extern unsigned char* freemem;
 
 void njUserInit(void);
 Sint32 njUserMain(void);

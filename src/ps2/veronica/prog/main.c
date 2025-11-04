@@ -86,11 +86,6 @@
 #include "effsub6.c"
 #include "ps2_NinjaPtcl.c"
 #include "ps2_cri_adxt.c"
-#include "message.c"
-#include "ranking.c"
-#include "sp_evt.c"
-#include "pwksub.c"
-#include "bup_00.c"
 #include "ps2_MemoryCard.c"
 #include "ps2_McSaveFile.c"
 #include "ps2_LoadScreen.c"
@@ -201,6 +196,9 @@ int OpenDriveTrayFlag;
 int pd_port;
 unsigned char BackColorFlag;
 unsigned char Pause_Flag;
+unsigned char FontSz[126];
+float FontScaleX;
+float FontScaleCR;
 
 // 100% matching!
 void njUserInit(void)

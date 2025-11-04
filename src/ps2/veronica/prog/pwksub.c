@@ -1,8 +1,8 @@
 #include "pwksub.h"
+#include "main.h"
 
-/*_anon12* sys;*/
-unsigned char* freemem;
-/*BH_PWORK* plp;
+/*_anon12* sys;
+BH_PWORK* plp;
 char PlyFlip[0];
 float PlyInfo[2][0];
 _anon1 eff[0];

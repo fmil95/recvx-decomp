@@ -1,8 +1,8 @@
 #include "ranking.h"
+#include "main.h"
 
 /*void(*RankingMode)()[6];
 */
-SYS_WORK* sys;
 RANK_WORK rkw;
 NO_NAME_29 fade;
 

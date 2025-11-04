@@ -1,6 +1,8 @@
 #ifndef _SP_EVT_H_
 #define _SP_EVT_H_
 
+#include "types.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

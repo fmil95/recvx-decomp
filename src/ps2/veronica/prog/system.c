@@ -1,5 +1,6 @@
 #include "system.h"
 #include "ps2_sg_maloc.h"
+#include "pwksub.h"
 
 unsigned short pause_mes[6];
 unsigned char FileWait;

@@ -1,11 +1,7 @@
 #include "message.h"
+#include "main.h"
 
 /*float mes_spos[4][3];*/
-unsigned char FontSz[126];
-SYS_WORK* sys;
-ROM_WORK* rom;
-float FontScaleX;
-float FontScaleCR;
 float FontScaleY;
 
 /*void bhSetMessage(int mes_typ, int mes_idx);

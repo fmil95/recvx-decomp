@@ -1,6 +1,10 @@
 #ifndef _PWKSUB_H_
 #define _PWKSUB_H_
 
+#include "types.h"
+
+unsigned char* bhGetFreeMemory(int size, int param);
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

@@ -1,6 +1,8 @@
 #ifndef _BUP_00_H_
 #define _BUP_00_H_
 
+#include "types.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct tagSELECTFILEWINDOW;

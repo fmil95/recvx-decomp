@@ -1,4 +1,5 @@
 #include "playpch.h"
+#include "pwksub.h"
 
 /*BH_PWORK* plp;
 _anon10* sys;

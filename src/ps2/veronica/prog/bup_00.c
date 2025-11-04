@@ -1,4 +1,6 @@
 #include "bup_00.h"
+#include "pwksub.h"
+#include "main.h"
 
 /*char vmssyscmttbl[16];
 int old_data_flg;
