@@ -1,4 +1,5 @@
 #include "ps2_SystemLoadScreen.h"
+#include "adv.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard.h"
 #include "main.h"
@@ -40,7 +41,6 @@ SYSLOAD_SCREEN* CreateSysLoadScreen(SYSLOAD_SCREEN* pSysLoad, void* vpWorkPtrSys
     return pSysLoad;
 }
 
-float AutoSaveLoadEasyDispMessage(float PosX, float PosY, unsigned char* ucpMsbTop, unsigned int MessageNo); // TODO: remove this function declaration
 // 99.37% matching
 void DispSysLoadMessageSelect(int slSelectMes)
 { 

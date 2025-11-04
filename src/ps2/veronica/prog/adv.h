@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+float AutoSaveLoadEasyDispMessage(float PosX, float PosY, unsigned char* ucpMsbTop, unsigned int MessageNo);
+
 /*typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;

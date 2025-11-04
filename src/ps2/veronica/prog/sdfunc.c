@@ -376,7 +376,6 @@ void ExitSofdecSystem()
     }
 }
 
-void InitAdvSystem(); // TODO: remove this declaration
 // 97.61% matching
 void InitSoundProgram()
 {
