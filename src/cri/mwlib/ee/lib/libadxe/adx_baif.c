@@ -278,16 +278,16 @@ static void* AIFF_GetInfo(void *hdr, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Si
 
     pdw = hdr;
 
-    ck_id = READ_INT32(pdw, 0);
+    ck_id = READ_INT32_EX(pdw, 0);
     
     pdw += 4;
     
-    ck_size = READ_INT32(pdw, 0);
+    ck_size = READ_INT32_EX(pdw, 0);
     ck_size = BSWAP_U32(ck_size);
     
     pdw += 4;
     
-    form_type = READ_INT32(pdw, 0);
+    form_type = READ_INT32_EX(pdw, 0);
     
     pdw += 4;
     
@@ -305,11 +305,11 @@ static void* AIFF_GetInfo(void *hdr, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Si
 
     while (pdw < pdwEnd) 
     {
-        ck_id = READ_INT32(pdw, 0);
+        ck_id = READ_INT32_EX(pdw, 0);
         
         pdw += 4;
         
-        ck_size = READ_INT32(pdw, 0);
+        ck_size = READ_INT32_EX(pdw, 0);
         ck_size = BSWAP_U32(ck_size);
         
         pdw += 4;
@@ -324,30 +324,30 @@ static void* AIFF_GetInfo(void *hdr, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Si
                     return NULL;
                 }
                 
-                ssnd_ofst = READ_INT16(pdw, 0);
+                ssnd_ofst = READ_INT16_EX(pdw, 0);
                 
                 *nch = BSWAP_U16_EX(ssnd_ofst);
                 
                 pdw += 2;
                 
-                temp = READ_INT32(pdw, 0);
+                temp = READ_INT32_EX(pdw, 0);
                 
                 *nsmpl = BSWAP_S32(temp);
                 
                 pdw += 4;
                 
-                temp2 = READ_INT16(pdw, 0);
+                temp2 = READ_INT16_EX(pdw, 0);
                 
                 *bps = BSWAP_S16(temp2);
                 
                 pdw += 2;
                 
-                temp3 = READ_INT16(pdw, 0);
+                temp3 = READ_INT16_EX(pdw, 0);
                 temp3 = BSWAP_U16_EX(temp3);
                 
                 pdw += 2;
                 
-                temp4 = READ_INT16(pdw, 0);
+                temp4 = READ_INT16_EX(pdw, 0);
                 
                 *sfreq = BSWAP_U16_EX(temp4);
                 *sfreq = *sfreq >> (0x400E - temp3);
@@ -366,7 +366,7 @@ static void* AIFF_GetInfo(void *hdr, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Si
         case SSND_IMAGIC:
             if (ssnd_ck_flag == 0)
             {
-                tmp = READ_INT32(pdw, 0);
+                tmp = READ_INT32_EX(pdw, 0);
                 tmp = BSWAP_U32(tmp);
                 
                 pdw += 4;

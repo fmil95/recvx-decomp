@@ -1,13 +1,5 @@
 #include "sync.h"
-
-int OpenDriveTrayFlag;
-ROM_WORK* rom;
-CAM_WORK cam;
-unsigned char BackColorFlag;
-int pd_port;
-unsigned int palbuf[4096];
-unsigned char Pause_Flag;
-int SoftResetFlag;
+#include "main.h"
 
 // 100% matching! 
 void bhInitVSync()

@@ -1,13 +1,5 @@
 #include <sg_bup.h>
 
-// TODO: include sg_sybt.h and remove the below struct
-struct tag_SYS_BT_SYSTEMID{                   /*                    */
-    Sint32 nNo ;                              /*                    */
-    Sint32 nAll ;                             /*                    */
-    Sint8  szProduct[16];                     /*                    */
-} ;                                           /*                    */
-typedef struct tag_SYS_BT_SYSTEMID SYS_BT_SYSTEMID ;
-
 /******** ?申?申?申?申?申?申?申J?申[?申h?申?申?申\?申?申?申?申 *******************************************/
 /******** Memory card information structure ********************************/
 typedef struct {

@@ -1,5 +1,6 @@
 #include "sdfunc.h"
 #include "ps2_sg_maloc.h"
+#include "main.h"
 
 typedef struct 
 {
@@ -31,7 +32,6 @@ typedef struct
 	int PanFadeP[3];
 }_anon35;
 
-int PatId[4] = { -1, -1, -1, -1 };
 AFS_PATINFO SoundAfsPatDef[8] = {
     { "BGM?.AFS"    , 0, 128, NULL },
     { "VOICE?.AFS"  , 1, 768, NULL },
@@ -63,11 +63,6 @@ int TransSoundPackDataFlag;
 int ReadFileRequestFlag;
 int FileReadStatus;
 int KeyReadSwitch;
-SYS_WORK* sys;
-unsigned int DiscOpenTrayFlag;
-unsigned int StatusUpdateCounter;
-SYS_BT_SYSTEMID BootDiscSystemId;
-HWS_WORK* hws;
 SND_CMD SoundCommand;
 MOV_INFO MovieInfo;
 unsigned char* pConfigWork;
@@ -94,8 +89,6 @@ int MaxSlotObjectSe;
 /*char ThreeDVolTbl[510];
 char PanTbl360[68];
 char PanTbl360Vol[68];*/
-CAM_WORK cam;
-ROM_WORK* rom;
 char CurrentRoomFxLevel;
 /*int AngBak;*/
 SND_REQ RequestInfo;
@@ -123,16 +116,12 @@ char CurrentRoomFxProgNo;
 unsigned char RequestList[128];*/
 ObjectSlot ObjectSlotInfo[3];
 /*_anon65 SdComFuncTbl[10];*/
-BH_PWORK* plp;
 unsigned char* DestReadPtr;
 int GenAdxfSlot;
-int OpenDriveTrayFlag;
 unsigned char MovieTypeDef[22] = { 0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x02, 0x80, 0x42, 0x82, 0x00, 0x80, 0x00, 0x82 };
 short MovieVolDef[22] = { 0 }; 
 MOV_DEF MovieDef[4] = { { 320, 240, 0, 0, 640, 448, 1 }, { 320, 176, 0, 64, 640, 320, 1 }, { 320, 352, 0, 64, 640, 320, 1 }, { 0, 0, 0, 0, 0, 0, 1 } };
 RMI_WORK rmi;
-PAD_WRK Pad[4];
-int CurrentPortId;
 PDS_VIBPARAM_EX VibP[32];
 char VibFlag[5] = { 0x01, 0x08, 0x80, 0x09, 0x81 };
 int SystemAdjustFlag;

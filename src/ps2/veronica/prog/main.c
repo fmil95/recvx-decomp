@@ -86,11 +86,6 @@
 #include "effsub6.c"
 #include "ps2_NinjaPtcl.c"
 #include "ps2_cri_adxt.c"
-#include "sdfunc.c"
-#include "sdcwrap.c"
-#include "sync.c"
-#include "ps2_NaFog.c"
-#include "gameover.c"
 #include "message.c"
 #include "ranking.c"
 #include "sp_evt.c"
@@ -200,6 +195,12 @@ SND_STATUS get_iop_snddata;
 char sound_flag;
 unsigned int SddFirstFlag;
 char SdcGdDaVolume;
+SYS_BT_SYSTEMID BootDiscSystemId;
+int PatId[4] = { -1, -1, -1, -1 };
+int OpenDriveTrayFlag;
+int pd_port;
+unsigned char BackColorFlag;
+unsigned char Pause_Flag;
 
 // 100% matching!
 void njUserInit(void)

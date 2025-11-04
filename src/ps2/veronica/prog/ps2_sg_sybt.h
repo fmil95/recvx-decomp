@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "katana_extra.h"
+#include "main.h"
 
 Void   syBtExit     ( Void );
 Sint32 syBtGetBootSystemID   ( SYS_BT_SYSTEMID* pData );

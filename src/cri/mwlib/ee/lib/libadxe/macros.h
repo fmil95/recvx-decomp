@@ -19,7 +19,9 @@
 #define BSWAP_U32(_val) (((_val >> 24) & 0xFF) | ((_val >> 8) & 0xFF00) | ((_val << 8) & 0xFF0000) | (_val << 24))
 #define BSWAP_S32(_val) (Sint32)(((Uint32)_val >> 24) | (_val << 24) | (((_val << 8) & 0xFF0000) | ((_val >> 8) & 0xFF00))) 
 
-#define READ_INT16(buf, i) (buf[i * 2] | (buf[(i * 2) + 1] << 8))
-#define READ_INT32(buf, i) (buf[i * 4] | (buf[(i * 4) + 1] << 8) | (buf[(i * 4) + 2] << 16) | (buf[(i * 4) + 3] << 24))
+#define READ_INT16(buf) (buf[0] | (buf[1] << 8))
+#define READ_INT16_EX(buf, i) (buf[i * 2] | (buf[(i * 2) + 1] << 8))
+#define READ_INT32(buf) (buf[0] | (buf[1] << 8) | (buf[2] << 16) | (buf[3] << 24))
+#define READ_INT32_EX(buf, i) (buf[i * 4] | (buf[(i * 4) + 1] << 8) | (buf[(i * 4) + 2] << 16) | (buf[(i * 4) + 3] << 24))
 
 #endif

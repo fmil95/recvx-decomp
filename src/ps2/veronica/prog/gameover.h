@@ -1,6 +1,8 @@
 #ifndef _GAMEOVER_H_
 #define _GAMEOVER_H_
 
+#include "types.h"
+
 /*typedef struct _anon0;
 typedef struct npobj;
 typedef struct _anon1;

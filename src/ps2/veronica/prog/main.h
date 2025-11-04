@@ -46,6 +46,23 @@ extern char sound_flag;
 extern unsigned int SddFirstFlag;
 extern char SdcGdDaVolume;
 
+// TODO: include sg_sybt.h and remove the below struct
+struct tag_SYS_BT_SYSTEMID{                   /*                    */
+    Sint32 nNo ;                              /*                    */
+    Sint32 nAll ;                             /*                    */
+    Sint8  szProduct[16];                     /*                    */
+} ;                                           /*                    */
+typedef struct tag_SYS_BT_SYSTEMID SYS_BT_SYSTEMID ;
+
+extern SYS_BT_SYSTEMID BootDiscSystemId;
+extern BH_PWORK* plp;
+extern HWS_WORK* hws;
+extern int PatId[4];
+extern int OpenDriveTrayFlag;
+extern int pd_port;
+extern unsigned char BackColorFlag;
+extern unsigned char Pause_Flag;
+
 void njUserInit(void);
 Sint32 njUserMain(void);
 void njUserExit(void);

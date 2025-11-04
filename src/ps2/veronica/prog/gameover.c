@@ -1,4 +1,5 @@
 #include "gameover.h"
+#include "main.h"
 
 void bhControlGameOver();
 void bhSelectContinue();
@@ -11,9 +12,8 @@ typedef void (*mode0_proc)();
 mode0_proc bhCtrGov_mode0[4] = { bhSelectContinue, bhInitGameOver, bhMainGameOver, bhExitGameOver };
 /*float gov_yn[16];
 _anon23 gov_etb[7];
-unsigned short cnt_mes[17];*/
-SYS_WORK* sys;
-/*float cmat[16];
+unsigned short cnt_mes[17];
+float cmat[16];
 BH_PWORK* plp;
 _anon34 cam;
 unsigned short PlMtnAct[7][3][2];*/

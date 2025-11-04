@@ -1,6 +1,8 @@
 #ifndef _SDFUNC_H_
 #define _SDFUNC_H_
 
+#include "types.h"
+
 /*typedef struct EnemySlot;
 typedef struct _anon1;
 typedef struct _anon2;
