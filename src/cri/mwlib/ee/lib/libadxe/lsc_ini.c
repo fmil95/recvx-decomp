@@ -1,4 +1,8 @@
 #include "lsc_ini.h"
+#include "lsc_crs.h"
+#include "lsc_err.h"
+
+#include <string.h>
 
 static Char8* lsc_obj_mark = "MARK:lsc_obj"; /* unused */
 LSC_OBJ lsc_obj[LSC_OBJ_MAX] = { 0 };

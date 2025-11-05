@@ -1,6 +1,9 @@
 #include "adx_sjd.h"
 #include "adx_bsc.h"
+#include "adx_crs.h"
 #include "sj_rbf.h"
+
+#include <string.h>
 
 static ADX_SJDEC adxsjd_obj[8] = { 0 };
 

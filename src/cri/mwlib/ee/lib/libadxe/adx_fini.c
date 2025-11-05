@@ -1,5 +1,7 @@
 #include "adx_fini.h"
 
+#include <string.h>
+
 static char* volatile adxf_build = "\nADXF Ver 6.07 Build:Mar 13 2001 11:41:26\n";
 static Sint32 adxf_init_cnt = 0;
 ADX_FS adxf_obj[ADXF_OBJ_MAX] = { 0 };

@@ -1,6 +1,11 @@
 #include "adx_fs.h"
+#include "adx_crs.h"
+#include "adx_errs.h"
+#include "adx_fcch.h"
 #include "adx_fini.h"
 #include "adx_stmc.h"
+
+#include <string.h>
 
 #define REG_RCNT0_COUNT     (volatile int *)0x10000000
 
@@ -11,9 +16,6 @@ Sint32* D_01E272F0;
 Sint32* wrk32;
 Sint32 adxf_tcnt[10] = { 0 };
 Sint32 adxf_chkp_tcnt[10] = { 0 };
-
-void adxf_SetCmdHstry(Sint32 ncall, Sint32 fg, Sint32 ptid, Sint32 flid, Sint32 type);
-void adxf_wait_1ms(void);
 
 // ADXF_AddPartition
 
@@ -260,7 +262,7 @@ Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, 
             
             if (finfo2->flid == flid) 
             {
-                strncpy(fname, ptinfo->fname, ADXF_FNAME_MAX);
+                strncpy(fname, (char*)ptinfo->fname, ADXF_FNAME_MAX);
                 
                 *ofst = finfo2->ofst;
                 *fnsct = finfo2->fnsct;
@@ -278,7 +280,7 @@ Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, 
         ofst2 += fnsct2[i];
     }
 
-    strncpy(fname, ptinfo->fname, ADXF_FNAME_MAX);
+    strncpy(fname, (char*)ptinfo->fname, ADXF_FNAME_MAX);
     
     *ofst = ofst2;
     *fnsct = fnsct2[flid];
@@ -319,7 +321,7 @@ Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, 
             
             if (finfo2->flid == flid) 
             {
-                strncpy(fname, ptinfo->fname, ADXF_FNAME_MAX);
+                strncpy(fname, (char*)ptinfo->fname, ADXF_FNAME_MAX);
                 
                 *dir = ptinfo->curdir;
                 
@@ -339,7 +341,7 @@ Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, 
         ofst2 += fnsct2[i];
     }
 
-    strncpy(fname, ptinfo->fname, ADXF_FNAME_MAX);
+    strncpy(fname, (char*)ptinfo->fname, ADXF_FNAME_MAX);
     
     *dir = ptinfo->curdir; 
     
@@ -580,7 +582,7 @@ Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
         
         adxf_ptinfo[ptid] = ptinfo;
         
-        strncpy(&((ADXF_PTINFO*)ptinfo)->fname, fname, ADXF_FNAME_MAX);
+        strncpy((char*)&((ADXF_PTINFO*)ptinfo)->fname, fname, ADXF_FNAME_MAX);
         
         ((ADXF_PTINFO*)ptinfo)->type = 0;
         
