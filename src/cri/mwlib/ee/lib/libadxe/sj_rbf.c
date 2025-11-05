@@ -1,5 +1,7 @@
 #include "sj_rbf.h"
 
+#include <string.h>
+
 static Char8* volatile sj_build = "\nSJ Ver.6.00 Build:Jan 26 2001 09:59:32\n";
 static SJRBF_OBJ sjrbf_obj[64] = { 0 };
 static SJ_IF sjrbf_vtbl = { NULL, NULL, NULL, (void*)SJRBF_Destroy, (void*)SJRBF_GetUuid, (void*)SJRBF_Reset, (void*)SJRBF_GetChunk,(void*)SJRBF_UngetChunk, (void*)SJRBF_PutChunk, (void*)SJRBF_GetNumData, (void*)SJRBF_IsGetChunk, (void*)SJRBF_EntryErrFunc };

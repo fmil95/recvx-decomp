@@ -1,5 +1,8 @@
 #include "lsc_svr.h"
 #include "adx_stmc.h"
+#include "lsc_err.h"
+
+#include <string.h>
 
 // 100% matching! 
 void lsc_ExecHndl(LSC lsc) 

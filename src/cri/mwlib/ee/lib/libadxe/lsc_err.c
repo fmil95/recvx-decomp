@@ -1,5 +1,7 @@
 #include "lsc_err.h"
 
+#include <stdio.h>
+
 static LSC_ERRFN lsc_err_func;
 static void *lsc_err_obj;
 static Sint8 lsc_err_msg[256] = { 0 }; 

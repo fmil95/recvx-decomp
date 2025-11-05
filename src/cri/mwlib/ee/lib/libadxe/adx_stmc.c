@@ -1,4 +1,8 @@
 #include "adx_stmc.h"
+#include "adx_crs.h"
+#include "adx_errs.h"
+
+#include <string.h>
 
 static ADXSTM_FILE adxstmf_obj[40] = { 0 };
 static Sint32 adxstm_sj_internal_error_cnt;

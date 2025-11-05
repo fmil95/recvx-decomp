@@ -1,5 +1,7 @@
 #include "sj_uni.h"
 
+#include <string.h>
+
 static SJUNI_OBJ sjuni_obj[64] = { 0 };
 static SJ_IF sjuni_vtbl = { NULL, NULL, NULL, (void*)SJUNI_Destroy, (void*)SJUNI_GetUuid, (void*)SJUNI_Reset, (void*)SJUNI_GetChunk,(void*)SJUNI_UngetChunk, (void*)SJUNI_PutChunk, (void*)SJUNI_GetNumData, (void*)SJUNI_IsGetChunk, (void*)SJUNI_EntryErrFunc };
 static const UUID sjuni_uuid = { 0x2E534FA3, 0xAF97, 0x11D2, { 0xA5, 0x27, 0x00, 0x60, 0x08, 0x94, 0x48, 0xBC } };

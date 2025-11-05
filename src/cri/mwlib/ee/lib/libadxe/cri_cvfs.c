@@ -1,5 +1,7 @@
 #include "cri_cvfs.h"
 
+#include <string.h>
+
 /* cvFsOpen() looks a bit strange with all the casts, it seems that there is one struct missing for the handle component and cvFsInit() 
    further cements that idea. Additionally, functions like cvFsAddDev() parse the device to its interface instead of manually accessing 
    it from the CVFS_OBJ struct, this could be due to polymorphism but maybe there is some cleaner way to do it? */
@@ -512,7 +514,7 @@ Sint32 cvFsGetFreeSize(Char8* fname)
     
     for (i = 0; i < 32; i++)
     {
-        if (strncmp(devname, &D_01E2A604[i].name, nameln) == 0) 
+        if (strncmp(devname, (char*)&D_01E2A604[i].name, nameln) == 0) 
         {
             cvfs = (CVFS)&D_01E2A604[i].dev;
             
@@ -1203,7 +1205,7 @@ CVFS getDevice(const Char8 *devname)
 
     for (i = 0; i < 32; i++)
     {
-        if (strncmp(devname, &D_01E2A604[i].name, nameln) == 0)
+        if (strncmp((char*)devname, (char*)&D_01E2A604[i].name, nameln) == 0)
         {
             return D_01E2A604[i].dev;
         }
@@ -1266,7 +1268,7 @@ Sint32 getNumFiles(const char* devname)
     
     for (i = 0; i < 32; i++)
     {
-        if (strncmp(devname, &cvfs_tbl[i].name, nameln) == 0)
+        if (strncmp((char*)devname, (char*)&cvfs_tbl[i].name, nameln) == 0)
         { 
             cvfs = (CVFS)&cvfs_tbl[i];
             
