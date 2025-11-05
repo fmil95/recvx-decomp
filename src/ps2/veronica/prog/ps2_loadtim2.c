@@ -75,7 +75,7 @@ void Set_GsTex(TIM2_PICTUREHEADER* ph, unsigned long send_image_adr, unsigned lo
     {
         printf("This texture is not adequate size!!\n");
         
-        // exit(0); // TODO: enabling this crashes, find out why
+        // exit(0); // ERROR: enabling this crashes, see njSetTextureNum() for more information
     }
     else 
     {

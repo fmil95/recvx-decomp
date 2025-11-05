@@ -372,6 +372,8 @@ Sint32	njSetTexture(NJS_TEXLIST *texlist)
     }
 }
 
+/* This function is currently writing garbage in the emulator because Ps2_current_texlist doesn't get properly set, the culprit being 
+   bhSetFontTexture() reading the ef_tex field from the SYS_WORK struct before it is set (likely by BhInitEffect()) */
 // 100% matching! 
 Sint32	njSetTextureNum(Uint32 n)
 {
@@ -423,44 +425,61 @@ void	njReleaseTextureAll(void)
     njInitTexture(Ps2_tex_info, Ps2_texmemlist_num);
 }
 
-// 
-// Start address: 0x2e22b0
+// 100% matching! 
 Sint32	njReleaseTexture(NJS_TEXLIST *texlist)
 {
-	//_anon1* p;
-	unsigned int tex_num;
 	int i;
-	// Line 517, Address: 0x2e22b0, Func Offset: 0
-	// Line 523, Address: 0x2e22cc, Func Offset: 0x1c
-	// Line 553, Address: 0x2e22d8, Func Offset: 0x28
-	// Line 555, Address: 0x2e22e0, Func Offset: 0x30
-	// Line 556, Address: 0x2e22f0, Func Offset: 0x40
-	// Line 557, Address: 0x2e22f4, Func Offset: 0x44
-	// Line 556, Address: 0x2e22f8, Func Offset: 0x48
-	// Line 557, Address: 0x2e2300, Func Offset: 0x50
-	// Line 558, Address: 0x2e230c, Func Offset: 0x5c
-	// Line 560, Address: 0x2e2318, Func Offset: 0x68
-	// Line 561, Address: 0x2e2328, Func Offset: 0x78
-	// Line 562, Address: 0x2e2334, Func Offset: 0x84
-	// Line 564, Address: 0x2e233c, Func Offset: 0x8c
-	// Line 565, Address: 0x2e2344, Func Offset: 0x94
-	// Line 566, Address: 0x2e2348, Func Offset: 0x98
-	// Line 567, Address: 0x2e234c, Func Offset: 0x9c
-	// Line 568, Address: 0x2e2350, Func Offset: 0xa0
-	// Line 569, Address: 0x2e2354, Func Offset: 0xa4
-	// Line 570, Address: 0x2e2358, Func Offset: 0xa8
-	// Line 571, Address: 0x2e235c, Func Offset: 0xac
-	// Line 572, Address: 0x2e2360, Func Offset: 0xb0
-	// Line 573, Address: 0x2e2364, Func Offset: 0xb4
-	// Line 574, Address: 0x2e2368, Func Offset: 0xb8
-	// Line 576, Address: 0x2e236c, Func Offset: 0xbc
-	// Line 580, Address: 0x2e2370, Func Offset: 0xc0
-	// Line 581, Address: 0x2e2374, Func Offset: 0xc4
-	// Line 583, Address: 0x2e2378, Func Offset: 0xc8
-	// Line 612, Address: 0x2e2388, Func Offset: 0xd8
-	// Line 613, Address: 0x2e2390, Func Offset: 0xe0
-	// Func End, Address: 0x2e23b0, Func Offset: 0x100
-	scePrintf("njReleaseTexture - UNIMPLEMENTED!\n");
+    unsigned int tex_num;
+    NJS_TEXMEMLIST* p;
+
+    Ps2_current_texbreak = 1;
+    
+    tex_num = texlist->nbTexture;
+    
+    for (i = 0; i < tex_num; i++)
+    {
+        p = (NJS_TEXMEMLIST*)texlist->textures[i].texaddr;
+        
+        if (p->globalIndex != -1)
+        {
+            p->count--;
+            
+            ((TIM2_PICTUREHEADER_EX*)p->texinfo.texsurface.pSurface)->admin.count--;
+            
+            if (p->count == 0) 
+            {
+                Ps2TextureFree(p);
+                
+                p->globalIndex = -1;
+    
+                p->bank = -1;
+                
+                p->tspparambuffer = 0;
+                p->texparambuffer = 0;
+                
+                p->texaddr = 0;
+                
+                p->texinfo.texaddr = NULL;
+                
+                p->texinfo.texsurface.Type = 0;
+                
+                p->texinfo.texsurface.BitDepth = 0;
+                
+                p->texinfo.texsurface.PixelFormat = 0;
+                
+                p->texinfo.texsurface.nWidth = 0;
+                p->texinfo.texsurface.nHeight = 0;
+                
+                p->texinfo.texsurface.fSurfaceFlags = 0;
+                
+                p->count = 0;
+                
+                p->dummy = 0;
+            }
+        }
+    } 
+    
+    ring_check();
 }
 
 // 
@@ -652,13 +671,13 @@ int Ps2TextureMalloc(NJS_TEXMEMLIST* p)
     return 1;
 }
 
-/*// 
+// 
 // Start address: 0x2e2740
-int Ps2TextureFree(_anon1* p)
+int Ps2TextureFree(NJS_TEXMEMLIST* p)
 {
-	_anon4* timp;
-	_anon4* after;
-	_anon4* before;
+	//_anon4* timp;
+	//_anon4* after;
+	//_anon4* before;
 	unsigned int size;
 	// Line 944, Address: 0x2e2740, Func Offset: 0
 	// Line 948, Address: 0x2e274c, Func Offset: 0xc
@@ -686,9 +705,10 @@ int Ps2TextureFree(_anon1* p)
 	// Line 975, Address: 0x2e27d0, Func Offset: 0x90
 	// Line 976, Address: 0x2e27d4, Func Offset: 0x94
 	// Func End, Address: 0x2e27dc, Func Offset: 0x9c
+    scePrintf("Ps2TextureFree - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e27e0
 int Ps2ReplaceTexAddr(unsigned int gindex, void* rep_addr)
 {

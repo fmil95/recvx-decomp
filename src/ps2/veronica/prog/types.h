@@ -2685,7 +2685,6 @@ typedef struct TIM2_PICTUREHEADER_EX
     unsigned int ClampFlag;       // offset 0xCC, size 0x4
 } TIM2_PICTUREHEADER_EX;
 
-// TODO: use the proper struct definition from the TIM2 samples 
 typedef struct TIM2_PICTUREHEADER
 {
 	// total size: 0x30
