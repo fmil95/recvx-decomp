@@ -1,11 +1,9 @@
 #include "adx_bau.h"
+#include "adx_xpnd.h"
+
+#include <string.h>
 
 static Sint16 ulaw_exp_table[256];
-
-void ADXB_ExecOneAu8(ADXB adxb);             
-void ADXB_ExecOneAu16(ADXB adxb);                   
-void ADXB_ExecOneAuUlaw(ADXB adxb); 
-static void* AU_GetInfo(void *hdr, Sint32 hdrlen, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Sint32 *nsmpl, Sint32 *cdc);
 
 // 100% matching!
 Sint32 ADX_DecodeInfoAu(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk, Sint32 *cdc)

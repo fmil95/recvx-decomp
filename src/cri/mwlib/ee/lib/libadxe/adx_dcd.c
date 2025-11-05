@@ -1,5 +1,7 @@
 #include "adx_dcd.h"
 
+#include <mathf.h>
+
 #define PI 3.14159265
 #define PI_2 (PI * 2)
 

@@ -1,4 +1,8 @@
 #include "adx_xpnd.h"
+#include "adx_dcd.h"
+#include "adx_dcd3.h"
+
+#include <string.h>
 
 static ADX_XPDOBJ adxpd_obj[8] = { 0 };
 static Sint32 adxpd_internal_error;

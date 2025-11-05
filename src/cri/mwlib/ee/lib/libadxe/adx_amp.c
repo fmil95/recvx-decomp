@@ -1,4 +1,7 @@
 #include "adx_amp.h"
+#include "adx_crs.h"
+
+#include <string.h>
 
 static Sint32 adxsmp_init_cnt;
 static ADX_AMP adxamp_obj[8] = { 0 };
