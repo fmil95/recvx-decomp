@@ -1,5 +1,10 @@
 #include "adx_fcch.h"
 
+#include <PREFIX_PS2_DEBUG.h>
+#include <eetypes.h>
+#include <eekernel.h>
+#include <sifrpc.h>
+
 // 100% matching!
 void ADXF_Ocbi(void *address, Uint64 size)
 {

@@ -1,5 +1,7 @@
 #include "adx_errs.h"
 
+#include <string.h>
+
 static void (*adxerr_func)(void *obj, const Sint8 *msg);
 static void *adxerr_obj;
 static Sint8 adxerr_msg[256] = { 0 }; 
@@ -7,7 +9,7 @@ static Sint8 adxerr_msg[256] = { 0 };
 // 100% matching!
 void ADXERR_CallErrFunc1(const Sint8 *msg) 
 {
-    strncpy(adxerr_msg, msg, sizeof(adxerr_msg) - 1);
+    strncpy((char*)adxerr_msg, (char*)msg, sizeof(adxerr_msg) - 1);
 
     if (adxerr_func != NULL)
     {
@@ -18,8 +20,8 @@ void ADXERR_CallErrFunc1(const Sint8 *msg)
 // 100% matching! 
 void ADXERR_CallErrFunc2(const Sint8 *msg1, const Sint8 *msg2)
 {
-    strncpy(adxerr_msg, msg1, sizeof(adxerr_msg) - 1);
-    strncat(adxerr_msg, msg2, sizeof(adxerr_msg) - 1);
+    strncpy((char*)adxerr_msg, (char*)msg1, sizeof(adxerr_msg) - 1);
+    strncat((char*)adxerr_msg, (char*)msg2, sizeof(adxerr_msg) - 1);
 
     if (adxerr_func != NULL) 
     {
@@ -72,7 +74,7 @@ void ADXERR_ItoA(Sint32 val, Sint8 *str, Sint32 len)
         }
     }
 
-    ncol = strlen((const Sint8*)&buf);
+    ncol = strlen((const char*)&buf);
     
     ncol = (ncol >= (len - 1)) ? len - 1 : ncol;
     
@@ -89,7 +91,7 @@ void ADXERR_ItoA2(Sint32 val, Sint32 val2, Sint8 *str, Sint32 len)
 {
     ADXERR_ItoA(val, str, len);
     
-    strncat(str, " ", (len - strlen(str)) - 1);
+    strncat((char*)str, " ", (len - strlen((const char*)str)) - 1);
     
-    ADXERR_ItoA(val2, &str[strlen(str)], 4 - strlen(str));
+    ADXERR_ItoA(val2, &str[strlen((const char*)str)], 4 - strlen((const char*)str));
 }

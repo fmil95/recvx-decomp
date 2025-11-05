@@ -1,6 +1,14 @@
 #include "dtr.h"
 #include "dtx.h"
 
+#include <stdio.h>
+#include <string.h>
+
+#include <PREFIX_PS2_DEBUG.h>
+#include <eetypes.h>
+#include <eekernel.h>
+#include <sifrpc.h>
+
 static DTR_OBJ dtr_obj[16] = { 0 };
 static Sint32 dtr_init_cnt;
 

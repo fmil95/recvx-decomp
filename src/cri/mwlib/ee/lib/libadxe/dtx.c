@@ -1,5 +1,13 @@
 #include "dtx.h"
 
+#include <stdio.h>
+#include <string.h>
+
+#include <PREFIX_PS2_DEBUG.h>
+#include <eetypes.h>
+#include <eekernel.h>
+#include <sifrpc.h>
+
 static Char8* volatile dtx_build = "\nDTX Ver.0.95 Build:Jan 26 2001 09:57:12\n";
 static DTX_OBJ dtx_clnt[8] = { 0 };
 static Sint32 dtx_svr[136] = { 0 }; /* unused */
