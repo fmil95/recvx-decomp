@@ -694,11 +694,11 @@ SDE_ERR sdShotClosePort(SDS_PORT_REF** handle)
 	// Line 1786, Address: 0x2dbdac, Func Offset: 0x10c
 	// Line 1788, Address: 0x2dbdb4, Func Offset: 0x114
 	// Func End, Address: 0x2dbdc4, Func Offset: 0x124
-}
+}*/
 
 // 
 // Start address: 0x2dbdd0
-SDE_ERR sdShotGetStat(SDS_PORT_REF** handle, SDS_SHOT_STAT* shot_stat)
+SDE_ERR	sdShotGetStat( SDSHOT handle, SDS_SHOT_STAT *shot_stat)
 {
 	// Line 1817, Address: 0x2dbdd0, Func Offset: 0
 	// Line 1818, Address: 0x2dbde0, Func Offset: 0x10
@@ -711,7 +711,8 @@ SDE_ERR sdShotGetStat(SDS_PORT_REF** handle, SDS_SHOT_STAT* shot_stat)
 	// Line 1835, Address: 0x2dbe50, Func Offset: 0x80
 	// Line 1837, Address: 0x2dbe58, Func Offset: 0x88
 	// Func End, Address: 0x2dbe60, Func Offset: 0x90
-}*/
+    scePrintf("sdShotGetStat - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 SDE_ERR	sdShotOpenPort( SDSHOT *handle)

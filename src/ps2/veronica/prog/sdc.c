@@ -515,22 +515,14 @@ void FreeSeSlot(unsigned int SlotNo)
 	scePrintf("FreeSeSlot - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x28f950
-unsigned int CheckPlaySe(unsigned int SlotNo)
+// 100% matching! 
+unsigned int CheckPlaySe(unsigned int SlotNo) 
 {
-	SDS_SHOT_STAT Status;
-	// Line 436, Address: 0x28f950, Func Offset: 0
-	// Line 433, Address: 0x28f958, Func Offset: 0x8
-	// Line 436, Address: 0x28f95c, Func Offset: 0xc
-	// Line 433, Address: 0x28f964, Func Offset: 0x14
-	// Line 436, Address: 0x28f968, Func Offset: 0x18
-	// Line 437, Address: 0x28f974, Func Offset: 0x24
-	// Line 438, Address: 0x28f978, Func Offset: 0x28
-	// Line 437, Address: 0x28f97c, Func Offset: 0x2c
-	// Line 438, Address: 0x28f980, Func Offset: 0x30
-	// Func End, Address: 0x28f988, Func Offset: 0x38
-	scePrintf("CheckPlaySe - UNIMPLEMENTED!\n");
+    SDS_SHOT_STAT status;
+    
+    sdShotGetStat(SeHandle[SlotNo], &status);
+    
+    return status.m_Flg & 0x1;
 }
 
 /*// 
