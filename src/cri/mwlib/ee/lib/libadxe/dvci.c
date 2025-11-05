@@ -1,6 +1,12 @@
 #include "dvci.h"
 #include "dvci_sub.h"
 
+#include <PREFIX_PS2_DEBUG.h>
+#include <eetypes.h>
+#include <eekernel.h>
+#include <stdio.h>
+//#include <string.h> /* ERROR: causes linker to fail */
+
 static Char8* volatile dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
 static DVCI_OBJ dvg_ci_obj[40] = { 0 };
 static DVCI_ERRFN dvg_ci_err_func = NULL;

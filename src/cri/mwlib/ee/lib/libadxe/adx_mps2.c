@@ -1,4 +1,7 @@
 #include "adx_mps2.h"
+#include "adx_fsvr.h"
+
+#include <libgraph.h>
 
 static char* volatile adxps2_build = "\nADXPS2 Ver.1.01 Build:Mar 14 2001 14:23:33\n";
 static int adxps2_cur_tid;

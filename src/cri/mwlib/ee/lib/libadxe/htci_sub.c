@@ -1,12 +1,13 @@
 #include "htci_sub.h"
+#include "htci.h"
+
+#include <stdio.h>
+#include <string.h>
 
 static Sint32 htg_found = FALSE;
 static HTG_FLIST_TBL htg_flist_tbl = { 0 };
 static Sint8 htg_rbuf[4096];
 Sint32 htg_ci_open_mode = 0x8001;
-
-void htci_call_errfn(void* obj, const Char8* msg); // remove these two declarations
-void htci_wait_io(void); 
 
 // 100% matching!
 Sint32 analysis_flist(Char8* fpc, Sint8* rbuf, Uint32 size)

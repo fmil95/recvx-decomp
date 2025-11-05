@@ -1,6 +1,8 @@
 #include "adx_sudv.h"
+#include "adx_errs.h"
 #include "cri_cvfs.h"
 #include "dvci.h"
+#include "dvci_sub.h"
 
 // 100% matching!
 void adxt_err_dvd(void *obj, const char *msg, void *hndl)

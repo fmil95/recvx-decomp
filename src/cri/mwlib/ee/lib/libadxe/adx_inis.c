@@ -1,8 +1,12 @@
 #include "adx_inis.h"
+#include "adx_crs.h"
+#include "adx_errs.h"
 #include "adx_rnap.h"
 #include "adx_sjd.h"
 #include "adx_stmc.h"
 #include "lsc_ini.h"
+
+#include <string.h>
 
 static Sint32 adxt_vsync_svr_flag;
 Sint32 adxt_init_cnt;

@@ -1,6 +1,9 @@
 #include "htci.h"
 #include "htci_sub.h"
 
+#include <stdio.h>
+#include <string.h>
+
 static Char8* volatile htci_build = "\nhtCi Ver.2.16 Build:Jan 26 2001 09:56:20\n";
 static HTCI_OBJ htg_ci_obj[13] = { 0 };
 static HTCI_ERRFN htg_ci_err_func = NULL;
