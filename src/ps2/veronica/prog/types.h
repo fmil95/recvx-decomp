@@ -3283,6 +3283,34 @@ typedef struct SNDQUE_DATA
     char data[4]; // offset 0x4, size 0x4
 } SNDQUE_DATA;
 
+typedef struct Enemy 
+{
+    // total size: 0x24
+    NJS_POINT3 Pos;        // offset 0x0, size 0xC
+    float Dist;            // offset 0xC, size 0x4
+    int SeNo;              // offset 0x10, size 0x4
+    int SeNoV;             // offset 0x14, size 0x4
+    int FadeRate;          // offset 0x18, size 0x4
+    char ReqFlag;          // offset 0x1C, size 0x1
+    char ReqFlagV;         // offset 0x1D, size 0x1
+    char CallFlag;         // offset 0x1E, size 0x1
+    char CallFlagV;        // offset 0x1F, size 0x1
+    char Prio;             // offset 0x20, size 0x1
+    char Pan;              // offset 0x21, size 0x1
+    char Vol;              // offset 0x22, size 0x1
+    unsigned char VolType; // offset 0x23, size 0x1
+} Enemy;
+
+typedef struct EnemySlot
+{
+	// total size: 0xC
+    int SeNo;               // offset 0x0, size 0x4
+    unsigned short Flag;    // offset 0x4, size 0x2
+    unsigned short Attrib;  // offset 0x6, size 0x2
+    unsigned short Prio;    // offset 0x8, size 0x2
+    unsigned short EnemyNo; // offset 0xA, size 0x2
+} EnemySlot;
+
 typedef	void (*AlarmCallBack)(int, unsigned short, void*);
 
 #define	CheckCmdReq(vol, pan, pitch) (0x00|0|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))

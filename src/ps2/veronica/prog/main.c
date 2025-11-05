@@ -1,7 +1,6 @@
 // EE library
 #include <PREFIX_PS2_DEBUG.h>
 #include <eeregs.h>
-#include <libmc.h>
 
 #include "override_katana.h"
 // KATANA library

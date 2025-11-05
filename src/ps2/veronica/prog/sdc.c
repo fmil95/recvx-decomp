@@ -515,7 +515,7 @@ void FreeSeSlot(unsigned int SlotNo)
 	scePrintf("FreeSeSlot - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x28f950
 unsigned int CheckPlaySe(unsigned int SlotNo)
 {
@@ -530,9 +530,10 @@ unsigned int CheckPlaySe(unsigned int SlotNo)
 	// Line 437, Address: 0x28f97c, Func Offset: 0x2c
 	// Line 438, Address: 0x28f980, Func Offset: 0x30
 	// Func End, Address: 0x28f988, Func Offset: 0x38
+	scePrintf("CheckPlaySe - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28f990
 void PlaySe(unsigned int SlotNo, char BankNo, char ListNo, char Priority)
 {
@@ -545,11 +546,11 @@ void PlaySe(unsigned int SlotNo, char BankNo, char ListNo, char Priority)
 	// Line 446, Address: 0x28f9d0, Func Offset: 0x40
 	// Line 449, Address: 0x28f9e8, Func Offset: 0x58
 	// Func End, Address: 0x28f9f4, Func Offset: 0x64
-}
+}*/
 
 // 
 // Start address: 0x28fa00
-void ExPlaySe(_anon1* pRequestInfo)
+void ExPlaySe(SND_REQ* pRequestInfo)
 {
 	// Line 452, Address: 0x28fa00, Func Offset: 0
 	// Line 453, Address: 0x28fa10, Func Offset: 0x10
@@ -572,8 +573,8 @@ void ExPlaySe(_anon1* pRequestInfo)
 	// Line 507, Address: 0x28fb7c, Func Offset: 0x17c
 	// Line 509, Address: 0x28fb90, Func Offset: 0x190
 	// Func End, Address: 0x28fba0, Func Offset: 0x1a0
+	scePrintf("ExPlaySe - UNIMPLEMENTED!\n");
 }
-*/
 
 // 
 // Start address: 0x28fba0
@@ -777,11 +778,11 @@ void RequestSeFadeFunction(int SlotNo, int Func, short Timer)
 	scePrintf("RequestSeFadeFunction - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x290290
 void RequestSeFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 {
-	_anon0* sp;
+	//_anon0* sp;
 	// Line 735, Address: 0x290290, Func Offset: 0
 	// Line 738, Address: 0x2902a0, Func Offset: 0x10
 	// Line 735, Address: 0x2902bc, Func Offset: 0x2c
@@ -798,6 +799,7 @@ void RequestSeFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 	// Line 750, Address: 0x29031c, Func Offset: 0x8c
 	// Line 751, Address: 0x290348, Func Offset: 0xb8
 	// Func End, Address: 0x290360, Func Offset: 0xd0
+	scePrintf("RequestSeFadeFunctionEx - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -807,6 +809,7 @@ void StopFadeSe(int SlotNo)
 	// Line 755, Address: 0x290360, Func Offset: 0
 	// Line 756, Address: 0x290378, Func Offset: 0x18
 	// Func End, Address: 0x290380, Func Offset: 0x20
+	scePrintf("StopFadeSe - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -816,7 +819,8 @@ int CheckFadeEndSe(int SlotNo)
 	// Line 760, Address: 0x290380, Func Offset: 0
 	// Line 761, Address: 0x2903a4, Func Offset: 0x24
 	// Func End, Address: 0x2903ac, Func Offset: 0x2c
-}*/
+	scePrintf("CheckFadeEndSe - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int ExecSoundFadeManager() {

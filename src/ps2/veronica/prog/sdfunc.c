@@ -3,14 +3,6 @@
 #include "pwksub.h"
 #include "main.h"
 
-typedef struct 
-{
-	int SeNo;
-	unsigned short Flag;
-	unsigned short Attrib;
-	unsigned short Prio;
-	unsigned short EnemyNo;
-} EnemySlot;
 typedef struct
 {
 	float x;
@@ -106,15 +98,15 @@ int xPan;
 SDS_PORT_REF** MidiHandle[0];
 */
 int StartInitScriptFlag;
-/*_anon19 MidiInfo[0];
-_anon2 EnemyInfo[128];*/
+/*_anon19 MidiInfo[0];*/
+Enemy EnemyInfo[128];
 EnemySlot EnemySlotInfo[6];
 int MaxObjectReqList;
 unsigned char ObjectReqList[16];
 unsigned int AdxPlayFlag[2];
 char CurrentRoomFxProgNo;
-/*int MaxRequestList;
-unsigned char RequestList[128];*/
+int MaxRequestList;
+unsigned char RequestList[128];
 ObjectSlot ObjectSlotInfo[3];
 /*_anon65 SdComFuncTbl[10];*/
 unsigned char* DestReadPtr;
@@ -2194,103 +2186,157 @@ void ResetEnemySeInfo()
     scePrintf("ResetEnemySeInfo - UNIMPLEMENTED\n");
 }
 
-// 
-// Start address: 0x2960b0
+// 99.85% matching
 void ExecEnemySeManager()
 {
-	int FreeEnemySlotCnt;
-	int SlotNo;
-	unsigned char b;
-	unsigned char a;
-	unsigned char* rlp2;
-	unsigned char* rlp1;
-	//_anon2* eip2;
-	//_anon2* eip;
-	//EnemySlot* esp;
-	int j;
-	int i;
-	// Line 3382, Address: 0x2960b0, Func Offset: 0
-	// Line 3392, Address: 0x2960cc, Func Offset: 0x1c
-	// Line 3395, Address: 0x2960dc, Func Offset: 0x2c
-	// Line 3396, Address: 0x2960e8, Func Offset: 0x38
-	// Line 3397, Address: 0x2960f8, Func Offset: 0x48
-	// Line 3398, Address: 0x2960fc, Func Offset: 0x4c
-	// Line 3399, Address: 0x296100, Func Offset: 0x50
-	// Line 3400, Address: 0x296104, Func Offset: 0x54
-	// Line 3402, Address: 0x296108, Func Offset: 0x58
-	// Line 3401, Address: 0x29610c, Func Offset: 0x5c
-	// Line 3404, Address: 0x296110, Func Offset: 0x60
-	// Line 3409, Address: 0x296120, Func Offset: 0x70
-	// Line 3406, Address: 0x29612c, Func Offset: 0x7c
-	// Line 3409, Address: 0x296130, Func Offset: 0x80
-	// Line 3406, Address: 0x296134, Func Offset: 0x84
-	// Line 3409, Address: 0x296138, Func Offset: 0x88
-	// Line 3410, Address: 0x29613c, Func Offset: 0x8c
-	// Line 3411, Address: 0x296158, Func Offset: 0xa8
-	// Line 3413, Address: 0x29615c, Func Offset: 0xac
-	// Line 3412, Address: 0x296164, Func Offset: 0xb4
-	// Line 3413, Address: 0x296168, Func Offset: 0xb8
-	// Line 3414, Address: 0x296174, Func Offset: 0xc4
-	// Line 3415, Address: 0x296178, Func Offset: 0xc8
-	// Line 3418, Address: 0x296188, Func Offset: 0xd8
-	// Line 3419, Address: 0x29619c, Func Offset: 0xec
-	// Line 3420, Address: 0x2961b4, Func Offset: 0x104
-	// Line 3421, Address: 0x2961bc, Func Offset: 0x10c
-	// Line 3422, Address: 0x2961c0, Func Offset: 0x110
-	// Line 3425, Address: 0x2961c4, Func Offset: 0x114
-	// Line 3423, Address: 0x2961c8, Func Offset: 0x118
-	// Line 3424, Address: 0x2961cc, Func Offset: 0x11c
-	// Line 3426, Address: 0x2961d0, Func Offset: 0x120
-	// Line 3428, Address: 0x2961d4, Func Offset: 0x124
-	// Line 3427, Address: 0x2961dc, Func Offset: 0x12c
-	// Line 3428, Address: 0x2961e0, Func Offset: 0x130
-	// Line 3430, Address: 0x2961e8, Func Offset: 0x138
-	// Line 3431, Address: 0x2961f0, Func Offset: 0x140
-	// Line 3429, Address: 0x2961f4, Func Offset: 0x144
-	// Line 3430, Address: 0x2961f8, Func Offset: 0x148
-	// Line 3431, Address: 0x296200, Func Offset: 0x150
-	// Line 3432, Address: 0x296210, Func Offset: 0x160
-	// Line 3434, Address: 0x296214, Func Offset: 0x164
-	// Line 3435, Address: 0x29621c, Func Offset: 0x16c
-	// Line 3436, Address: 0x296234, Func Offset: 0x184
-	// Line 3437, Address: 0x296238, Func Offset: 0x188
-	// Line 3439, Address: 0x29623c, Func Offset: 0x18c
-	// Line 3440, Address: 0x296240, Func Offset: 0x190
-	// Line 3441, Address: 0x29625c, Func Offset: 0x1ac
-	// Line 3470, Address: 0x296280, Func Offset: 0x1d0
-	// Line 3471, Address: 0x296288, Func Offset: 0x1d8
-	// Line 3472, Address: 0x29628c, Func Offset: 0x1dc
-	// Line 3473, Address: 0x296294, Func Offset: 0x1e4
-	// Line 3474, Address: 0x2962a4, Func Offset: 0x1f4
-	// Line 3475, Address: 0x2962c0, Func Offset: 0x210
-	// Line 3477, Address: 0x2962cc, Func Offset: 0x21c
-	// Line 3479, Address: 0x2962e4, Func Offset: 0x234
-	// Line 3481, Address: 0x2962f8, Func Offset: 0x248
-	// Line 3483, Address: 0x296308, Func Offset: 0x258
-	// Line 3484, Address: 0x296318, Func Offset: 0x268
-	// Line 3486, Address: 0x296334, Func Offset: 0x284
-	// Line 3488, Address: 0x29633c, Func Offset: 0x28c
-	// Line 3489, Address: 0x29634c, Func Offset: 0x29c
-	// Line 3492, Address: 0x296368, Func Offset: 0x2b8
-	// Line 3493, Address: 0x29636c, Func Offset: 0x2bc
-	// Line 3494, Address: 0x296370, Func Offset: 0x2c0
-	// Line 3496, Address: 0x29637c, Func Offset: 0x2cc
-	// Line 3498, Address: 0x296394, Func Offset: 0x2e4
-	// Line 3500, Address: 0x2963a8, Func Offset: 0x2f8
-	// Line 3502, Address: 0x2963b8, Func Offset: 0x308
-	// Line 3503, Address: 0x2963c8, Func Offset: 0x318
-	// Line 3505, Address: 0x2963e4, Func Offset: 0x334
-	// Line 3507, Address: 0x2963ec, Func Offset: 0x33c
-	// Line 3508, Address: 0x2963fc, Func Offset: 0x34c
-	// Line 3511, Address: 0x296418, Func Offset: 0x368
-	// Line 3512, Address: 0x29641c, Func Offset: 0x36c
-	// Line 3513, Address: 0x296420, Func Offset: 0x370
-	// Line 3514, Address: 0x296428, Func Offset: 0x378
-	// Line 3513, Address: 0x29642c, Func Offset: 0x37c
-	// Line 3514, Address: 0x296430, Func Offset: 0x380
-	// Line 3515, Address: 0x296444, Func Offset: 0x394
-	// Func End, Address: 0x296464, Func Offset: 0x3b4
-	scePrintf("ExecEnemySeManager - UNIMPLEMENTED!\n");
+    int i;
+    int j;
+    EnemySlot* esp;
+    Enemy* eip;
+    Enemy* eip2;
+    unsigned char* rlp1;
+    unsigned char* rlp2;
+    unsigned char a;
+    unsigned char b;
+    int SlotNo;
+    int FreeEnemySlotCnt;
+
+    FreeEnemySlotCnt = 0;
+    
+    if (StartInitScriptFlag != 0) 
+    {
+        return;
+    }
+    
+    for (i = 0, esp = EnemySlotInfo; i < 6; i++, esp++) 
+    {
+        if (CheckPlaySe(i) == 0) 
+        {
+            esp->Flag = 0;
+            
+            esp->EnemyNo = 0;
+            esp->SeNo = 0;
+            
+            esp->Attrib = 0;
+            
+            esp->Prio = 0;
+            
+            FreeEnemySlotCnt++;
+        }
+    }
+    
+    MaxRequestList = 0;
+    
+    for (i = 0, eip = EnemyInfo; i < 128; i++, eip++) 
+    {
+        if ((eip->ReqFlag != 0) || (eip->ReqFlagV != 0)) 
+        {
+            RequestList[MaxRequestList] = i;
+            
+            MaxRequestList++;
+        }
+    }
+    
+    if (MaxRequestList >= 2) 
+    {
+        for (i = 0; i < (MaxRequestList - 1); i++) 
+        {
+            for (j = i + 1; j < MaxRequestList; j++) 
+            {
+                rlp1 = rlp1 = RequestList;
+                
+                rlp1 += i;
+                
+                a = *rlp1;
+
+                rlp2 = RequestList;
+                
+                rlp2 += j;
+                
+                b = *rlp2;
+
+                eip = EnemyInfo;
+                
+                eip += a;
+
+                eip2 = EnemyInfo;
+                
+                eip2 += b;
+
+                if (eip->Prio > eip2->Prio) 
+                {
+                    *rlp1 = b;
+                    *rlp2 = a;
+                }
+                else if (eip->Dist > eip2->Dist) 
+                {
+                    *rlp1 = b;
+                    *rlp2 = a;
+                }
+            }
+        }
+    }
+    
+    for (i = 0; i < MaxRequestList; i++) 
+    {
+        eip = EnemyInfo;
+        
+        j = RequestList[i];
+        
+        eip += j;
+        
+        eip->Vol += CheckCollision4Sound(&eip->Pos);
+        
+        if (eip->ReqFlag != 0) 
+        {
+            if (CheckPlaySameSe(j, eip->SeNo, eip->CallFlag) == 0) 
+            {
+                if ((SlotNo = SearchPlayingEnemySe(j, 0)) < 0)
+                {
+                    if ((SlotNo = SearchFreeEnemySeSlot()) >= 0) 
+                    {
+                        RegistEnemySlot(SlotNo, j, eip->SeNo);
+                        
+                        CallEnemySeMain(SlotNo, eip->SeNo, eip->Pan, eip->Vol, eip->CallFlag, eip->FadeRate);
+                    }
+                } 
+                else 
+                {
+                    RegistEnemySlot(SlotNo, j, eip->SeNo);
+                    
+                    CallEnemySeMain(SlotNo, eip->SeNo, eip->Pan, eip->Vol, eip->CallFlag, eip->FadeRate);
+                }
+            }
+            
+            eip->ReqFlag = 0;
+        }
+
+        if (eip->ReqFlagV != 0) 
+        {
+            if (CheckPlaySameSe(j, eip->SeNoV, eip->CallFlagV) == 0) 
+            {
+                if ((SlotNo = SearchPlayingEnemySe(j, 1)) < 0)
+                {
+                    if ((SlotNo = SearchFreeEnemySeSlot()) >= 0) 
+                    {
+                        RegistEnemySlot(SlotNo, j, eip->SeNoV);
+                        
+                        CallEnemySeMain(SlotNo, eip->SeNoV, eip->Pan, eip->Vol, eip->CallFlagV, eip->FadeRate);
+                    }
+                } 
+                else 
+                {
+                    RegistEnemySlot(SlotNo, j, eip->SeNoV);
+                    
+                    CallEnemySeMain(SlotNo, eip->SeNoV, eip->Pan, eip->Vol, eip->CallFlagV, eip->FadeRate);
+                }
+            }
+            
+            eip->ReqFlagV = 0;
+        }
+        
+        eip->Prio = 3;
+    }
 }
 
 // 100% matching
