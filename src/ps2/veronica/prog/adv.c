@@ -653,11 +653,11 @@ void SetPvrInfo(NJS_TEXNAME* np, NJS_TEXINFO* ip, unsigned char* pp, int param1,
     TIM2_PICTUREHEADER_SMALL* pPichd;
     unsigned int GlobalIndex;
     
-    ((TIM2_PICTUREHEADER*)pp)->PictFormat = 0; 
+    ((TIM2_PICTUREHEADER_EX*)pp)->PictFormat = 0; 
     
-    GlobalIndex = ((TIM2_PICTUREHEADER*)pp)->Gindex; 
+    GlobalIndex = ((TIM2_PICTUREHEADER_EX*)pp)->Gindex; 
     
-    pPichd = (TIM2_PICTUREHEADER_SMALL*)&((TIM2_PICTUREHEADER*)pp)->TotalSize; 
+    pPichd = (TIM2_PICTUREHEADER_SMALL*)&((TIM2_PICTUREHEADER_EX*)pp)->TotalSize; 
     
     Ps2CheckTextureAlpha(pp); 
     
@@ -767,7 +767,7 @@ void AdvEasyDrawTexture(int TexNo, unsigned int BaseColor, QUAD* qp, float PosZ,
 { 
     if (TransFlag != 0) 
     { 
-        ((TIM2_PICTUREHEADER*)Ps2_current_texmemlist->texinfo.texsurface.pSurface)->ClutChange |= 0x8000; 
+        ((TIM2_PICTUREHEADER_EX*)Ps2_current_texmemlist->texinfo.texsurface.pSurface)->ClutChange |= 0x8000; 
     }
     
     njQuadTextureStart(TransFlag); 

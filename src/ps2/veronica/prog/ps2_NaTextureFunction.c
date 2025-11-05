@@ -11,8 +11,8 @@ NJS_TEXMEMLIST Ps2_last_tmlist;
 NJS_TEXMEMLIST Ps2_1st_tmlist;
 unsigned int Ps2_texmemlist_num;
 NJS_TEXMEMLIST* Ps2_tex_info;
-TIM2_PICTUREHEADER Ps2_tm_list_last;
-TIM2_PICTUREHEADER Ps2_tm_list_1st;
+TIM2_PICTUREHEADER_EX Ps2_tm_list_last;
+TIM2_PICTUREHEADER_EX Ps2_tm_list_1st;
 void* Ps2_tex_buff;
 char* index(char*, int);
 /*unsigned int Ps2_render_width;
@@ -281,7 +281,7 @@ Sint32	njLoadTexture(NJS_TEXLIST *texlist)
                     
                     addr[cont_no].bank = bank;
                     
-                    ((TIM2_PICTUREHEADER*)addr[no].texinfo.texsurface.pSurface)->admin.count++;
+                    ((TIM2_PICTUREHEADER_EX*)addr[no].texinfo.texsurface.pSurface)->admin.count++;
                     
                     continue;
                 }
@@ -299,7 +299,7 @@ Sint32	njLoadTexture(NJS_TEXLIST *texlist)
             {
                 addr[no].count++;
                 
-                ((TIM2_PICTUREHEADER*)addr[no].texinfo.texsurface.pSurface)->admin.count++;
+                ((TIM2_PICTUREHEADER_EX*)addr[no].texinfo.texsurface.pSurface)->admin.count++;
                 
                 texlist->textures[j].texaddr = (unsigned int)&addr[no];
             } 
@@ -384,7 +384,7 @@ Sint32	njSetTextureNum(Uint32 n)
     
     Ps2_current_texmemlist = (NJS_TEXMEMLIST*)Ps2_current_texlist->textures[n].texaddr;
     
-    Ps2_current_gindex = ((TIM2_PICTUREHEADER*)(Ps2_current_texmemlist->texinfo.texsurface.pSurface))->Gindex; 
+    Ps2_current_gindex = ((TIM2_PICTUREHEADER_EX*)(Ps2_current_texmemlist->texinfo.texsurface.pSurface))->Gindex; 
     
     Ps2TexLoad(Ps2_current_texmemlist);
 }
@@ -564,15 +564,15 @@ void	njGarbageTexture(NJS_TEXMEMLIST *addr,Uint32 n)
 // 100% matching!
 unsigned int Ps2GetTim2Size(void* p) 
 {
-    return ((TIM2_PICTUREHEADER*)p)->TotalSize + 128;
+    return ((TIM2_PICTUREHEADER_EX*)p)->TotalSize + 128;
 }
 
 // 100% matching!
 int Ps2TextureMalloc(NJS_TEXMEMLIST* p)
 {
 	unsigned int size; 
-    TIM2_PICTUREHEADER* timp; 
-    TIM2_PICTUREHEADER* last2; 
+    TIM2_PICTUREHEADER_EX* timp; 
+    TIM2_PICTUREHEADER_EX* last2; 
 
     if ((p->texinfo.texsurface.Type >> 24) == 11) 
     {
@@ -745,8 +745,8 @@ int Ps2TextureGarbageCollectionAll()
 // 100% matching!
 int ring_check()
 {
-    TIM2_PICTUREHEADER* after;
-    TIM2_PICTUREHEADER* p;
+    TIM2_PICTUREHEADER_EX* after;
+    TIM2_PICTUREHEADER_EX* p;
 
     p = &Ps2_tm_list_1st;
   

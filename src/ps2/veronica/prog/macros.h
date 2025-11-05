@@ -1,6 +1,11 @@
 #ifndef	_MACROS_H_
 #define	_MACROS_H_
 
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+#define MAX(a, b) ((a) < (b) ? (b) : (a))
+
+#define CLAMP(val, min, max) (MAX(MIN((val), (max)), (min)))
+
 #define ALIGN_UP(num, n) ((num + (n - 1)) & ~(n - 1))
 #define ALIGN_DOWN(num, n) (num & ~(n - 1))
 
@@ -13,9 +18,7 @@
 #define GET_DATA_PTR(x) ((void*)(((unsigned int)x) + sizeof(HM)))
 #define GET_NEXT_WRK(x) ((int)search_work) + (int)search_work->Use_size + (int)sizeof(HM)
 
-#define MIN(a, b) ((a) < (b) ? (a) : (b))
-#define MAX(a, b) ((a) < (b) ? (b) : (a))
-
-#define CLAMP(val, min, max) (MAX(MIN((val), (max)), (min)))
+#define	CheckCmdReq(vol, pan, pitch) (0x00|0|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
+#define	CheckCmdChg(vol, pan, pitch) (0x00|8|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
 
 #endif

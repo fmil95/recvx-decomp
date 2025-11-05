@@ -2604,74 +2604,88 @@ typedef struct PVP_INFO
     unsigned short ppEntryCount; // offset 0xE, size 0x2
 } PVP_INFO;
 
-// TODO: use the proper struct definition from the TIM2 samples 
-typedef struct TIM2_PICTUREHEADER /* @anon4 */ {
-    // total size: 0xD0
-    signed char FileId[4]; // offset 0x0, size 0x4
-    unsigned char FormatVersion; // offset 0x4, size 0x1
-    unsigned char FormatId; // offset 0x5, size 0x1
-    unsigned short Pictures; // offset 0x6, size 0x2
-    unsigned int Gindex; // offset 0x8, size 0x4
-    unsigned char OrgColorType; // offset 0xC, size 0x1
-    unsigned char OrgTexType; // offset 0xD, size 0x1
-    unsigned short ClutChange; // offset 0xE, size 0x2
-    unsigned int PalNum; // offset 0x10, size 0x4
-    unsigned int PalData[27]; // offset 0x14, size 0x6C
-    unsigned int TotalSize; // offset 0x80, size 0x4
-    unsigned int ClutSize; // offset 0x84, size 0x4
-    unsigned int ImageSize; // offset 0x88, size 0x4
-    unsigned short HeaderSize; // offset 0x8C, size 0x2
-    unsigned short ClutColors; // offset 0x8E, size 0x2
-    unsigned char PictFormat; // offset 0x90, size 0x1
-    unsigned char MipMapTextures; // offset 0x91, size 0x1
-    unsigned char ClutType; // offset 0x92, size 0x1
-    unsigned char ImageType; // offset 0x93, size 0x1
-    unsigned short ImageWidth; // offset 0x94, size 0x2
-    unsigned short ImageHeight; // offset 0x96, size 0x2
-    struct /* @anon6 */ {
-        // total size: 0x8
-        unsigned long TBP0 : 14; // offset 0x0, size 0x4
-        unsigned long TBW : 6; // offset 0x0, size 0x4
-        unsigned long PSM : 6; // offset 0x0, size 0x4
-        unsigned long TW : 4; // offset 0x0, size 0x4
-        unsigned long TH : 4; // offset 0x0, size 0x4
-        unsigned long TCC : 1; // offset 0x0, size 0x4
-        unsigned long TFX : 2; // offset 0x0, size 0x4
-        unsigned long CBP : 14; // offset 0x0, size 0x4
-        unsigned long CPSM : 4; // offset 0x0, size 0x4
-        unsigned long CSM : 1; // offset 0x0, size 0x4
-        unsigned long CSA : 5; // offset 0x0, size 0x4
-        unsigned long CLD : 3; // offset 0x0, size 0x4
-    } GsTex0; // offset 0x98, size 0x8
-    struct /* @anon9 */ {
-        // total size: 0x8
-        unsigned long LCM : 1; // offset 0x0, size 0x4
-        unsigned long pad01 : 1; // offset 0x0, size 0x4
-        unsigned long MXL : 3; // offset 0x0, size 0x4
-        unsigned long MMAG : 1; // offset 0x0, size 0x4
-        unsigned long MMIN : 3; // offset 0x0, size 0x4
-        unsigned long MTBA : 1; // offset 0x0, size 0x4
-        unsigned long pad10 : 9; // offset 0x0, size 0x4
-        unsigned long L : 2; // offset 0x0, size 0x4
-        unsigned long pad21 : 11; // offset 0x0, size 0x4
-        unsigned long K : 12; // offset 0x0, size 0x4
-        unsigned long pad44 : 20; // offset 0x0, size 0x4
-    } GsTex1; // offset 0xA0, size 0x8
-    unsigned int GsRegs; // offset 0xA8, size 0x4
-    unsigned int GsTexClut; // offset 0xAC, size 0x4
-    struct /* @anon8 */ {
-        // total size: 0x18
-        unsigned int gindex; // offset 0x0, size 0x4
-        unsigned int size; // offset 0x4, size 0x4
-        unsigned int count; // offset 0x8, size 0x4
-        void * addr; // offset 0xC, size 0x4
-        void * before; // offset 0x10, size 0x4
-        void * after; // offset 0x14, size 0x4
-    } admin; // offset 0xB0, size 0x18
-    unsigned int TpFlag; // offset 0xC8, size 0x4
-    unsigned int ClampFlag; // offset 0xCC, size 0x4
-} TIM2_PICTUREHEADER;
+// constant definition for ClutType, ImageType in picture header
+enum TIM2_gattr_type {
+	TIM2_NONE = 0,			// no CLUT (for ClutType)
+	TIM2_RGB16,				// 16 bit color (for both of ClutType, ImageType)
+	TIM2_RGB24,				// 24 bit color (for ImageType)
+	TIM2_RGB32,				// 32 bit color (for ClutType, ImageType)
+	TIM2_IDTEX4,			// 16 color texture (for ImageType)
+	TIM2_IDTEX8				// 256 color texture (for ImageType)
+};
 
+typedef struct TIM2_PICTUREHEADER_EX 
+{
+    // total size: 0xD0
+    char FileId[4];               // offset 0x0, size 0x4
+    unsigned char FormatVersion;  // offset 0x4, size 0x1
+    unsigned char FormatId;       // offset 0x5, size 0x1
+    unsigned short Pictures;      // offset 0x6, size 0x2
+    unsigned int Gindex;          // offset 0x8, size 0x4
+    unsigned char OrgColorType;   // offset 0xC, size 0x1
+    unsigned char OrgTexType;     // offset 0xD, size 0x1
+    unsigned short ClutChange;    // offset 0xE, size 0x2
+    unsigned int PalNum;          // offset 0x10, size 0x4
+    unsigned int PalData[27];     // offset 0x14, size 0x6C
+    unsigned int TotalSize;       // offset 0x80, size 0x4
+    unsigned int ClutSize;        // offset 0x84, size 0x4
+    unsigned int ImageSize;       // offset 0x88, size 0x4
+    unsigned short HeaderSize;    // offset 0x8C, size 0x2
+    unsigned short ClutColors;    // offset 0x8E, size 0x2
+    unsigned char PictFormat;     // offset 0x90, size 0x1
+    unsigned char MipMapTextures; // offset 0x91, size 0x1
+    unsigned char ClutType;       // offset 0x92, size 0x1
+    unsigned char ImageType;      // offset 0x93, size 0x1
+    unsigned short ImageWidth;    // offset 0x94, size 0x2
+    unsigned short ImageHeight;   // offset 0x96, size 0x2
+    struct
+    {
+        // total size: 0x8
+        unsigned long TBP0 : 14;  // offset 0x0, size 0x4
+        unsigned long TBW : 6;    // offset 0x0, size 0x4
+        unsigned long PSM : 6;    // offset 0x0, size 0x4
+        unsigned long TW : 4;     // offset 0x0, size 0x4
+        unsigned long TH : 4;     // offset 0x0, size 0x4
+        unsigned long TCC : 1;    // offset 0x0, size 0x4
+        unsigned long TFX : 2;    // offset 0x0, size 0x4
+        unsigned long CBP : 14;   // offset 0x0, size 0x4
+        unsigned long CPSM : 4;   // offset 0x0, size 0x4
+        unsigned long CSM : 1;    // offset 0x0, size 0x4
+        unsigned long CSA : 5;    // offset 0x0, size 0x4
+        unsigned long CLD : 3;    // offset 0x0, size 0x4
+    } GsTex0;                     // offset 0x98, size 0x8
+    struct 
+    {
+        // total size: 0x8
+        unsigned long LCM : 1;    // offset 0x0, size 0x4
+        unsigned long pad01 : 1;  // offset 0x0, size 0x4
+        unsigned long MXL : 3;    // offset 0x0, size 0x4
+        unsigned long MMAG : 1;   // offset 0x0, size 0x4
+        unsigned long MMIN : 3;   // offset 0x0, size 0x4
+        unsigned long MTBA : 1;   // offset 0x0, size 0x4
+        unsigned long pad10 : 9;  // offset 0x0, size 0x4
+        unsigned long L : 2;      // offset 0x0, size 0x4
+        unsigned long pad21 : 11; // offset 0x0, size 0x4
+        unsigned long K : 12;     // offset 0x0, size 0x4
+        unsigned long pad44 : 20; // offset 0x0, size 0x4
+    } GsTex1;                     // offset 0xA0, size 0x8
+    unsigned int GsRegs;          // offset 0xA8, size 0x4
+    unsigned int GsTexClut;       // offset 0xAC, size 0x4
+    struct 
+    {
+        // total size: 0x18
+        unsigned int gindex;      // offset 0x0, size 0x4
+        unsigned int size;        // offset 0x4, size 0x4
+        unsigned int count;       // offset 0x8, size 0x4
+        void* addr;               // offset 0xC, size 0x4
+        void* before;             // offset 0x10, size 0x4
+        void* after;              // offset 0x14, size 0x4
+    } admin;                      // offset 0xB0, size 0x18
+    unsigned int TpFlag;          // offset 0xC8, size 0x4
+    unsigned int ClampFlag;       // offset 0xCC, size 0x4
+} TIM2_PICTUREHEADER_EX;
+
+// TODO: use the proper struct definition from the TIM2 samples 
 typedef struct TIM2_PICTUREHEADER_SMALL
 {
 	// total size: 0x30
@@ -2725,24 +2739,24 @@ typedef struct RDT_WORK
 typedef struct SND_WORK
 {
 	// total size: 0x2C
-    unsigned char port_check; // offset 0x0, size 0x1
-    unsigned char vol; // offset 0x1, size 0x1
-    unsigned char vol_old; // offset 0x2, size 0x1
-    unsigned char pan; // offset 0x3, size 0x1
-    short pitch_old; // offset 0x4, size 0x2
-    short pitch; // offset 0x6, size 0x2
-    unsigned int vol_timer; // offset 0x8, size 0x4
-    unsigned int vol_set_time; // offset 0xC, size 0x4
-    unsigned int pan_timer; // offset 0x10, size 0x4
-    unsigned int pan_set_time; // offset 0x14, size 0x4
-    unsigned int pitch_timer; // offset 0x18, size 0x4
+    unsigned char port_check;    // offset 0x0, size 0x1
+    unsigned char vol;           // offset 0x1, size 0x1
+    unsigned char vol_old;       // offset 0x2, size 0x1
+    unsigned char pan;           // offset 0x3, size 0x1
+    short pitch_old;             // offset 0x4, size 0x2
+    short pitch;                 // offset 0x6, size 0x2
+    unsigned int vol_timer;      // offset 0x8, size 0x4
+    unsigned int vol_set_time;   // offset 0xC, size 0x4
+    unsigned int pan_timer;      // offset 0x10, size 0x4
+    unsigned int pan_set_time;   // offset 0x14, size 0x4
+    unsigned int pitch_timer;    // offset 0x18, size 0x4
     unsigned int pitch_set_time; // offset 0x1C, size 0x4
-    unsigned int port_num; // offset 0x20, size 0x4
-    unsigned int bank_num; // offset 0x24, size 0x4
-    char channel_num; // offset 0x28, size 0x1
-    unsigned char pan_old; // offset 0x29, size 0x1
-    char priority; // offset 0x2A, size 0x1
-    unsigned char req; // offset 0x2B, size 0x1
+    unsigned int port_num;       // offset 0x20, size 0x4
+    unsigned int bank_num;       // offset 0x24, size 0x4
+    char channel_num;            // offset 0x28, size 0x1
+    unsigned char pan_old;       // offset 0x29, size 0x1
+    char priority;               // offset 0x2A, size 0x1
+    unsigned char req;           // offset 0x2B, size 0x1
 } SND_WORK;
 
 typedef struct SND_STATUS 
@@ -3117,6 +3131,50 @@ typedef struct LOAD_SCREEN
     SELECTFILEWINDOW* pSelectFileWindow; // offset 0x38, size 0x4
 } LOAD_SCREEN;
 
+typedef struct SNDQUE
+{
+    // total size: 0x8
+	int cmd;     // offset 0x0, size 0x4
+	char vol;    // offset 0x4, size 0x1
+	char pan;    // offset 0x5, size 0x1
+	short pitch; // offset 0x6, size 0x2
+} SNDQUE;
+
+typedef struct SNDQUE_DATA
+{
+    // total size: 0x8
+    int cmd;      // offset 0x0, size 0x4
+    char data[4]; // offset 0x4, size 0x4
+} SNDQUE_DATA;
+
+typedef struct Enemy 
+{
+    // total size: 0x24
+    NJS_POINT3 Pos;        // offset 0x0, size 0xC
+    float Dist;            // offset 0xC, size 0x4
+    int SeNo;              // offset 0x10, size 0x4
+    int SeNoV;             // offset 0x14, size 0x4
+    int FadeRate;          // offset 0x18, size 0x4
+    char ReqFlag;          // offset 0x1C, size 0x1
+    char ReqFlagV;         // offset 0x1D, size 0x1
+    char CallFlag;         // offset 0x1E, size 0x1
+    char CallFlagV;        // offset 0x1F, size 0x1
+    char Prio;             // offset 0x20, size 0x1
+    char Pan;              // offset 0x21, size 0x1
+    char Vol;              // offset 0x22, size 0x1
+    unsigned char VolType; // offset 0x23, size 0x1
+} Enemy;
+
+typedef struct EnemySlot
+{
+	// total size: 0xC
+    int SeNo;               // offset 0x0, size 0x4
+    unsigned short Flag;    // offset 0x4, size 0x2
+    unsigned short Attrib;  // offset 0x6, size 0x2
+    unsigned short Prio;    // offset 0x8, size 0x2
+    unsigned short EnemyNo; // offset 0xA, size 0x2
+} EnemySlot;
+
 typedef struct {
     int isOnCD;		
     int size;
@@ -3124,60 +3182,6 @@ typedef struct {
     unsigned char* iopBuf;
     int fd;		
 } StrFile;
-
-#define SCR_WIDTH 640
-#define SCR_HEIGHT 224
-
-#define GS_X_COORD(x) ((2048 - (SCR_WIDTH / 2) + x) * 16)
-#define GS_Y_COORD(y) ((2048 - (SCR_HEIGHT / 2) + y) * 16)
-
-#define WORKBASE (0x70000000)
-
-#define DMAnext             (2<<28)
-#define DMAend  (7<<28)
-
-#define    SCE_GS_FALSE         (0)
-#define    SCE_GS_TRUE          (1)
-
-#define SCE_GS_ALPHA_NEVER      (0)
-
-#define    SCE_GS_AFAIL_KEEP    (0)
-#define    SCE_GS_AFAIL_FB_ONLY (1)
-
-#define SCE_GS_DEPTH_ALWAYS     (1)
-#define SCE_GS_DEPTH_GEQUAL     (2)
-#define SCE_GS_ALPHA_GEQUAL     (5)
-#define SCE_GS_ALPHA_GREATER    (6)
-
-#define SCE_GS_ALPHA_CS         (0)
-#define SCE_GS_ALPHA_CD         (1)
-
-#define SCE_GS_ALPHA_FIX        (2)
-
-#define DMArefe             (0<<28)
-#define DMAcnt              (1<<28)
-#define DMAnext             (2<<28)
-#define DMAref              (3<<28)
-#define DMArefs             (4<<28)
-#define DMAcall             (5<<28)
-#define DMAret              (6<<28)
-#define DMAend              (7<<28)
-
-#define SCE_GS_CLAMP            (1)
-
-#define SCE_GS_REPEAT           (0)
-
-#define DISP_WIDTH 640
-#define DISP_HEIGHT 480
-
-#define UNCACHED_BASE 0x20000000
-#define UNCACHED(x) ((u_int)(x)|UNCACHED_BASE)
-
-// TODO: include the following define from cpureg.h
-#define	SR_CU0		0x10000000	/* Coprocessor 0 usable */
-
-#define UNCMASK 0x0fffffff
-#define UNCBASE 0x20000000
 
 typedef struct {
     long pts;
@@ -3236,11 +3240,6 @@ typedef struct {
     unsigned int *micro[3][2];
 } CscVu1;
 
-#define VD_STATE_NORMAL    0
-#define VD_STATE_ABORT     1
-#define VD_STATE_FLUSH     2
-#define VD_STATE_END       3
-
 typedef struct {
     sceMpeg mpeg;	// MPEG decoder
     ViBuf vibuf;	// video input buffer
@@ -3253,67 +3252,69 @@ typedef struct {
     CscVu1 csc;		// color space conversion using vu1
 } VideoDec;
 
-// constant definition for ClutType, ImageType in picture header
-enum TIM2_gattr_type {
-	TIM2_NONE = 0,			// no CLUT (for ClutType)
-	TIM2_RGB16,				// 16 bit color (for both of ClutType, ImageType)
-	TIM2_RGB24,				// 24 bit color (for ImageType)
-	TIM2_RGB32,				// 32 bit color (for ClutType, ImageType)
-	TIM2_IDTEX4,			// 16 color texture (for ImageType)
-	TIM2_IDTEX8				// 256 color texture (for ImageType)
-};
+#define VD_STATE_NORMAL    0
+#define VD_STATE_ABORT     1
+#define VD_STATE_FLUSH     2
+#define VD_STATE_END       3
 
 #define SCE_GS_ALPHA_AS         (0)
 #define SCE_GS_ALPHA_AD         (1)
 #define SCE_GS_ALPHA_FIX        (2)
 
-typedef struct SNDQUE
-{
-    // total size: 0x8
-	int cmd;     // offset 0x0, size 0x4
-	char vol;    // offset 0x4, size 0x1
-	char pan;    // offset 0x5, size 0x1
-	short pitch; // offset 0x6, size 0x2
-} SNDQUE;
+#define SCR_WIDTH 640
+#define SCR_HEIGHT 224
 
-typedef struct SNDQUE_DATA
-{
-    // total size: 0x8
-    int cmd;      // offset 0x0, size 0x4
-    char data[4]; // offset 0x4, size 0x4
-} SNDQUE_DATA;
+#define GS_X_COORD(x) ((2048 - (SCR_WIDTH / 2) + x) * 16)
+#define GS_Y_COORD(y) ((2048 - (SCR_HEIGHT / 2) + y) * 16)
 
-typedef struct Enemy 
-{
-    // total size: 0x24
-    NJS_POINT3 Pos;        // offset 0x0, size 0xC
-    float Dist;            // offset 0xC, size 0x4
-    int SeNo;              // offset 0x10, size 0x4
-    int SeNoV;             // offset 0x14, size 0x4
-    int FadeRate;          // offset 0x18, size 0x4
-    char ReqFlag;          // offset 0x1C, size 0x1
-    char ReqFlagV;         // offset 0x1D, size 0x1
-    char CallFlag;         // offset 0x1E, size 0x1
-    char CallFlagV;        // offset 0x1F, size 0x1
-    char Prio;             // offset 0x20, size 0x1
-    char Pan;              // offset 0x21, size 0x1
-    char Vol;              // offset 0x22, size 0x1
-    unsigned char VolType; // offset 0x23, size 0x1
-} Enemy;
+#define WORKBASE (0x70000000)
 
-typedef struct EnemySlot
-{
-	// total size: 0xC
-    int SeNo;               // offset 0x0, size 0x4
-    unsigned short Flag;    // offset 0x4, size 0x2
-    unsigned short Attrib;  // offset 0x6, size 0x2
-    unsigned short Prio;    // offset 0x8, size 0x2
-    unsigned short EnemyNo; // offset 0xA, size 0x2
-} EnemySlot;
+#define DMAnext             (2<<28)
+#define DMAend  (7<<28)
+
+#define    SCE_GS_FALSE         (0)
+#define    SCE_GS_TRUE          (1)
+
+#define SCE_GS_ALPHA_NEVER      (0)
+
+#define    SCE_GS_AFAIL_KEEP    (0)
+#define    SCE_GS_AFAIL_FB_ONLY (1)
+
+#define SCE_GS_DEPTH_ALWAYS     (1)
+#define SCE_GS_DEPTH_GEQUAL     (2)
+#define SCE_GS_ALPHA_GEQUAL     (5)
+#define SCE_GS_ALPHA_GREATER    (6)
+
+#define SCE_GS_ALPHA_CS         (0)
+#define SCE_GS_ALPHA_CD         (1)
+
+#define SCE_GS_ALPHA_FIX        (2)
+
+#define DMArefe             (0<<28)
+#define DMAcnt              (1<<28)
+#define DMAnext             (2<<28)
+#define DMAref              (3<<28)
+#define DMArefs             (4<<28)
+#define DMAcall             (5<<28)
+#define DMAret              (6<<28)
+#define DMAend              (7<<28)
+
+#define SCE_GS_CLAMP            (1)
+
+#define SCE_GS_REPEAT           (0)
+
+#define DISP_WIDTH 640
+#define DISP_HEIGHT 480
+
+#define UNCACHED_BASE 0x20000000
+#define UNCACHED(x) ((u_int)(x)|UNCACHED_BASE)
+
+// TODO: include the following define from cpureg.h
+#define	SR_CU0		0x10000000	/* Coprocessor 0 usable */
+
+#define UNCMASK 0x0fffffff
+#define UNCBASE 0x20000000
 
 typedef	void (*AlarmCallBack)(int, unsigned short, void*);
-
-#define	CheckCmdReq(vol, pan, pitch) (0x00|0|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
-#define	CheckCmdChg(vol, pan, pitch) (0x00|8|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
 
 #endif

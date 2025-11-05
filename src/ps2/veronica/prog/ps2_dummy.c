@@ -370,7 +370,7 @@ void Ps2AddPrim(unsigned long prim, void* dp, unsigned int num, unsigned int cli
             prim &= ~0x20000000000000; 
         }
         
-        if ((!(prim & 0x20000000000000)) && (((TIM2_PICTUREHEADER*)(Ps2_now_tex->texinfo.texsurface.pSurface))->TpFlag != 0)) 
+        if ((!(prim & 0x20000000000000)) && (((TIM2_PICTUREHEADER_EX*)(Ps2_now_tex->texinfo.texsurface.pSurface))->TpFlag != 0)) 
         { 
             Ps2_tex_load_tp_cancel = 1; 
             
@@ -1076,7 +1076,7 @@ int Ps2DrawOTagSub(int start_no)
     PS2_OT* p; 
     PS2_OT* old_p; 
     int save_alpha[3]; 
-    TIM2_PICTUREHEADER* timp; 
+    TIM2_PICTUREHEADER_EX* timp; 
     unsigned int tex_cache_num; 
     PS2_OT *temp; // not from the debugging symbols 
     unsigned int t_flag;
@@ -1135,7 +1135,7 @@ int Ps2DrawOTagSub(int start_no)
                     exit(0); 
                 }
 
-                timp = (TIM2_PICTUREHEADER*)p->tp->texinfo.texsurface.pSurface; 
+                timp = (TIM2_PICTUREHEADER_EX*)p->tp->texinfo.texsurface.pSurface; 
                 
                 if (timp != NULL) 
                 { 
@@ -1320,7 +1320,7 @@ int Ps2TexLoad(NJS_TEXMEMLIST* addr)
     unsigned int th;        
     unsigned int i;          
     unsigned long* p;        
-    TIM2_PICTUREHEADER* timp; 
+    TIM2_PICTUREHEADER_EX* timp; 
     unsigned int cache_flag;  
     unsigned int temp; // not from the debugging symbols
 
@@ -1333,7 +1333,7 @@ int Ps2TexLoad(NJS_TEXMEMLIST* addr)
 
     Ps2_now_tex = addr;
 
-    timp = (TIM2_PICTUREHEADER*)addr->texinfo.texsurface.pSurface;
+    timp = (TIM2_PICTUREHEADER_EX*)addr->texinfo.texsurface.pSurface;
 
     if (Ps2_current_texbreak != 0) 
     {
@@ -1545,7 +1545,7 @@ int Ps2CheckTextureAlpha(void* pp)
     unsigned int num;  
     unsigned int flag; 
     unsigned int temp; // not from the debugging symbols
-    TIM2_PICTUREHEADER* temp2; // not from the debugging symbols
+    TIM2_PICTUREHEADER_EX* temp2; // not from the debugging symbols
 
     temp2 = pp;
     

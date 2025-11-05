@@ -160,13 +160,13 @@ int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset)
         case MAKE_MAGIC('T', 'I', 'M', '2'):
             Ps2CheckTextureAlpha(ap); 
 
-            VQflag = isVQ(((TIM2_PICTUREHEADER*)ap)->PictFormat); 
+            VQflag = isVQ(((TIM2_PICTUREHEADER_EX*)ap)->PictFormat); 
             
             if (VQflag != 0) 
             {               
-                gidx = ((TIM2_PICTUREHEADER*)ap)->Gindex;
+                gidx = ((TIM2_PICTUREHEADER_EX*)ap)->Gindex;
                 
-                switch (((TIM2_PICTUREHEADER*)ap)->ImageType) 
+                switch (((TIM2_PICTUREHEADER_EX*)ap)->ImageType) 
                 {              
                 case 4:                             
                     attr = 0x500;
@@ -183,8 +183,8 @@ int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset)
                     break;
                 }
 
-                w = ((TIM2_PICTUREHEADER*)ap)->ImageWidth; 
-                h = ((TIM2_PICTUREHEADER*)ap)->ImageHeight; 
+                w = ((TIM2_PICTUREHEADER_EX*)ap)->ImageWidth; 
+                h = ((TIM2_PICTUREHEADER_EX*)ap)->ImageHeight; 
                 
                 njSetTextureInfo(&info, (unsigned short*)ap, attr, w, h); 
                 njSetTextureName(tnp, &info.texaddr, gidx, 0x40800000); 
@@ -201,9 +201,9 @@ int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset)
             }
             else 
             { 
-                gidx = ((TIM2_PICTUREHEADER*)ap)->Gindex;
+                gidx = ((TIM2_PICTUREHEADER_EX*)ap)->Gindex;
                 
-                switch (((TIM2_PICTUREHEADER*)ap)->ImageType) 
+                switch (((TIM2_PICTUREHEADER_EX*)ap)->ImageType) 
                 {               
                 case 4:                            
                     attr = 0x500; 
@@ -222,14 +222,14 @@ int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset)
                     (void)&palnum; // ???
                 }
                 
-                w = ((TIM2_PICTUREHEADER*)ap)->ImageWidth; 
-                h = ((TIM2_PICTUREHEADER*)ap)->ImageHeight; 
+                w = ((TIM2_PICTUREHEADER_EX*)ap)->ImageWidth; 
+                h = ((TIM2_PICTUREHEADER_EX*)ap)->ImageHeight; 
                 
-                ((TIM2_PICTUREHEADER*)ap)->PalNum = palnum; 
+                ((TIM2_PICTUREHEADER_EX*)ap)->PalNum = palnum; 
                 
-                clutp = (unsigned int*)((ap + ((TIM2_PICTUREHEADER*)ap)->ImageSize) + 256); 
+                clutp = (unsigned int*)((ap + ((TIM2_PICTUREHEADER_EX*)ap)->ImageSize) + 256); 
                 
-                temp = (int*)((TIM2_PICTUREHEADER*)ap)->PalData;
+                temp = (int*)((TIM2_PICTUREHEADER_EX*)ap)->PalData;
                 
                 for (lop = 0; lop < palnum; lop++) 
                 {
