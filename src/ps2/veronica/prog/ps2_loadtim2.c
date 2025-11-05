@@ -52,7 +52,7 @@ int Tim2CalcBufWidth(int psm, int w)
 }
 
 // 97.97% matching
-void Set_GsTex(TIM2_PICTUREHEADER_SMALL* ph, unsigned long send_image_adr, unsigned long send_clut_adr)
+void Set_GsTex(TIM2_PICTUREHEADER* ph, unsigned long send_image_adr, unsigned long send_clut_adr)
 {
     unsigned int i; 
     
@@ -329,15 +329,15 @@ int Send_1024_Clut_data(void* clt_adr, unsigned long send_clut_adr)
 // 100% matching! 
 int Send_Tim2_dataEx(void* tim2_top_adr, unsigned long send_image_adr, unsigned long send_clut_adr)
 {
-    TIM2_PICTUREHEADER_SMALL* pPhead;
+    TIM2_PICTUREHEADER* pPhead;
 
     if (((unsigned char*)tim2_top_adr)[5] != 0) 
     {
-        pPhead = (TIM2_PICTUREHEADER_SMALL*)((int)tim2_top_adr + 128);
+        pPhead = (TIM2_PICTUREHEADER*)((int)tim2_top_adr + 128);
     }
     else
     {
-        pPhead = (TIM2_PICTUREHEADER_SMALL*)((int)tim2_top_adr + 16);
+        pPhead = (TIM2_PICTUREHEADER*)((int)tim2_top_adr + 16);
     }
     
     if ((pPhead->ClutType != 0) && (Clut_Load_Func(pPhead, send_clut_adr) < 0)) 
@@ -363,7 +363,7 @@ int Send_Tim2_dataEx(void* tim2_top_adr, unsigned long send_image_adr, unsigned 
 }
 
 // 100% matching! 
-int Clut_Load_Func(TIM2_PICTUREHEADER_SMALL* ph, unsigned long clut_addr) 
+int Clut_Load_Func(TIM2_PICTUREHEADER* ph, unsigned long clut_addr) 
 {
     u_long128* pClut;
     int loop; 
@@ -399,7 +399,7 @@ int Clut_Load_Func(TIM2_PICTUREHEADER_SMALL* ph, unsigned long clut_addr)
 
 // 
 // Start address: 0x2e7810
-int P32_Image_Load(TIM2_PICTUREHEADER_SMALL* ph, unsigned long image_addr)
+int P32_Image_Load(TIM2_PICTUREHEADER* ph, unsigned long image_addr)
 {
 	int size;
 	int rrh;
@@ -432,7 +432,7 @@ int P32_Image_Load(TIM2_PICTUREHEADER_SMALL* ph, unsigned long image_addr)
 #pragma divbyzerocheck on
 
 // 99.91% matching
-int Tim2_Image_Load(TIM2_PICTUREHEADER_SMALL* ph, unsigned long image_addr)
+int Tim2_Image_Load(TIM2_PICTUREHEADER* ph, unsigned long image_addr)
 {
     static int psmtbl[3] = { SCE_GS_PSMCT32, SCE_GS_PSMT4, SCE_GS_PSMT8 };
     u_long128* pImage;   
@@ -508,15 +508,15 @@ int Tim2_Image_Load(TIM2_PICTUREHEADER_SMALL* ph, unsigned long image_addr)
 // 100% matching!
 void Ps2PxlconvCheck(void* timadr)
 {
-    TIM2_PICTUREHEADER_SMALL* ph; 
+    TIM2_PICTUREHEADER* ph; 
 
     if (((unsigned char*)timadr)[5] == 0) 
     {
-        ph = (TIM2_PICTUREHEADER_SMALL*)((int)timadr + 16);
+        ph = (TIM2_PICTUREHEADER*)((int)timadr + 16);
     }
     else 
     {
-        ph = (TIM2_PICTUREHEADER_SMALL*)((int)timadr + 128);
+        ph = (TIM2_PICTUREHEADER*)((int)timadr + 128);
     }
     
     if (((ph->ImageWidth < 1024) && (ph->ImageHeight < 1024)) && ((ph->ImageWidth > 128) && (ph->ImageHeight > 128)) && ((ph->ImageType == 5) || (ph->ImageType == 4)))

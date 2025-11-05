@@ -2686,25 +2686,25 @@ typedef struct TIM2_PICTUREHEADER_EX
 } TIM2_PICTUREHEADER_EX;
 
 // TODO: use the proper struct definition from the TIM2 samples 
-typedef struct TIM2_PICTUREHEADER_SMALL
+typedef struct TIM2_PICTUREHEADER
 {
 	// total size: 0x30
-    unsigned int TotalSize; // offset 0x0, size 0x4
-    unsigned int ClutSize; // offset 0x4, size 0x4
-    unsigned int ImageSize; // offset 0x8, size 0x4
-    unsigned short HeaderSize; // offset 0xC, size 0x2
-    unsigned short ClutColors; // offset 0xE, size 0x2
-    unsigned char PictFormat; // offset 0x10, size 0x1
+    unsigned int TotalSize;       // offset 0x0, size 0x4
+    unsigned int ClutSize;        // offset 0x4, size 0x4
+    unsigned int ImageSize;       // offset 0x8, size 0x4
+    unsigned short HeaderSize;    // offset 0xC, size 0x2
+    unsigned short ClutColors;    // offset 0xE, size 0x2
+    unsigned char PictFormat;     // offset 0x10, size 0x1
     unsigned char MipMapTextures; // offset 0x11, size 0x1
-    unsigned char ClutType; // offset 0x12, size 0x1
-    unsigned char ImageType; // offset 0x13, size 0x1
-    unsigned short ImageWidth; // offset 0x14, size 0x2
-    unsigned short ImageHeight; // offset 0x16, size 0x2
-    sceGsTex0 GsTex0; // offset 0x18, size 0x8
-    unsigned int GsTex1[2]; // offset 0x20, size 0x8
-    unsigned int GsRegs; // offset 0x28, size 0x4
-    unsigned int GsTexClut; // offset 0x2C, size 0x4
-} TIM2_PICTUREHEADER_SMALL;
+    unsigned char ClutType;       // offset 0x12, size 0x1
+    unsigned char ImageType;      // offset 0x13, size 0x1
+    unsigned short ImageWidth;    // offset 0x14, size 0x2
+    unsigned short ImageHeight;   // offset 0x16, size 0x2
+    sceGsTex0 GsTex0;             // offset 0x18, size 0x8
+    unsigned int GsTex1[2];       // offset 0x20, size 0x8
+    unsigned int GsRegs;          // offset 0x28, size 0x4
+    unsigned int GsTexClut;       // offset 0x2C, size 0x4
+} TIM2_PICTUREHEADER;
 
 typedef struct RDT_WORK
 {

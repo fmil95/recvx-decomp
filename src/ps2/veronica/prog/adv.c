@@ -650,14 +650,14 @@ unsigned int AdvGetCancelButton()
 // 100% matching!
 void SetPvrInfo(NJS_TEXNAME* np, NJS_TEXINFO* ip, unsigned char* pp, int param1, unsigned int param2) // fourth and fifth parameters are not present on the debugging symbols
 { 
-    TIM2_PICTUREHEADER_SMALL* pPichd;
+    TIM2_PICTUREHEADER* pPichd;
     unsigned int GlobalIndex;
     
     ((TIM2_PICTUREHEADER_EX*)pp)->PictFormat = 0; 
     
     GlobalIndex = ((TIM2_PICTUREHEADER_EX*)pp)->Gindex; 
     
-    pPichd = (TIM2_PICTUREHEADER_SMALL*)&((TIM2_PICTUREHEADER_EX*)pp)->TotalSize; 
+    pPichd = (TIM2_PICTUREHEADER*)&((TIM2_PICTUREHEADER_EX*)pp)->TotalSize; 
     
     Ps2CheckTextureAlpha(pp); 
     
