@@ -696,22 +696,33 @@ SDE_ERR sdShotClosePort(SDS_PORT_REF** handle)
 	// Func End, Address: 0x2dbdc4, Func Offset: 0x124
 }*/
 
-// 
-// Start address: 0x2dbdd0
+// 100% matching! 
 SDE_ERR	sdShotGetStat( SDSHOT handle, SDS_SHOT_STAT *shot_stat)
 {
-	// Line 1817, Address: 0x2dbdd0, Func Offset: 0
-	// Line 1818, Address: 0x2dbde0, Func Offset: 0x10
-	// Line 1819, Address: 0x2dbdec, Func Offset: 0x1c
-	// Line 1825, Address: 0x2dbdf8, Func Offset: 0x28
-	// Line 1826, Address: 0x2dbe28, Func Offset: 0x58
-	// Line 1827, Address: 0x2dbe30, Func Offset: 0x60
-	// Line 1829, Address: 0x2dbe38, Func Offset: 0x68
-	// Line 1832, Address: 0x2dbe48, Func Offset: 0x78
-	// Line 1835, Address: 0x2dbe50, Func Offset: 0x80
-	// Line 1837, Address: 0x2dbe58, Func Offset: 0x88
-	// Func End, Address: 0x2dbe60, Func Offset: 0x90
-    scePrintf("sdShotGetStat - UNIMPLEMENTED!\n");
+    SND_WORK* temp; // not from the debugging symbols
+
+    if (__sg_sd_snd_init__ != 0)
+    {
+        temp = (SND_WORK*)*handle;
+        
+        if (temp == NULL) 
+        {
+            return SDE_ERR_HANDLE_NULL;
+        }
+
+        if (((1 << temp->channel_num) & get_iop_snddata.se_info[temp->port_num])) 
+        {
+            shot_stat->m_Flg |= 0x1;
+        } 
+        else 
+        {
+            shot_stat->m_Flg &= ~0x1;
+        }
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching! 
