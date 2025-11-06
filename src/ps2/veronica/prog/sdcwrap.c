@@ -1,5 +1,8 @@
 #include "sdcwrap.h"
+#include "gdlib.h"
 #include "ps2_sg_maloc.h"
+#include "sdc.h"
+#include "sdfunc.h"
 #include "main.h"
 
 int GdDaPlayFlag;

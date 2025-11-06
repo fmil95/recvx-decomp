@@ -1,4 +1,5 @@
 #include "ps2_NaDraw2D.h"
+#include "ps2_dummy.h"
 #include "main.h"
 
 /*void CalcPs2ZbuffAB();
@@ -141,7 +142,6 @@ void	njDrawPolygon2D(NJS_POINT2COL *p, Int n, Float pri, Uint32 attr)
 	scePrintf("njDrawPolygon2D - UNIMPLEMENTED!\n");
 }
 
-void Ps2AddPrim2D(unsigned long prim, void* dp, unsigned int num);
 // 100% matching! 
 void njDrawPolygon2DM(NJS_POINT2COL* p, int n, float pri, unsigned int attr)
 {

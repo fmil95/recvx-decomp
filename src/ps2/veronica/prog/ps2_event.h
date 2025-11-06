@@ -3,6 +3,9 @@
 
 #include "types.h"
 
+void bhChangeBackColor();
+void bhChangeBackColorEvt();
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct BH_PWORK;

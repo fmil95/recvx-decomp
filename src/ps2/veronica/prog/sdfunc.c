@@ -1,29 +1,22 @@
 #include "sdfunc.h"
+#include "adv.h"
+#include "adxwrap.h"
+#include "gdlib.h"
+#include "mwwrap.h"
 #include "ps2_sg_maloc.h"
+#include "ps2_sg_sybt.h"
+#include "ps2_sg_sycfg.h"
+#include "padman.h"
 #include "pwksub.h"
+#include "screen.h"
+#include "sdc.h"
+#include "sdcwrap.h"
+#include "vibman.h"
 #include "main.h"
 
-typedef struct
-{
-	float x;
-	float y;
-	float z;
-}_anon16;
-typedef struct
-{
-	_anon16 Pos;
-	float Dist;
-	int SeNo;
-	char ReqFlag;
-	char Prio;
-	char SlotNo;
-	char Type;
-	char Pan;
-	char Vol;
-	int Flag;
-	int VolFadeP[3];
-	int PanFadeP[3];
-}_anon35;
+#include <string.h>
+
+#include <mathf.h>
 
 AFS_PATINFO SoundAfsPatDef[8] = {
     { "BGM?.AFS"    , 0, 128, NULL },
@@ -119,139 +112,7 @@ PDS_VIBPARAM_EX VibP[32];
 char VibFlag[5] = { 0x01, 0x08, 0x80, 0x09, 0x81 };
 int SystemAdjustFlag;
 /*float xDist;
-_anon6 NextSoundInfo;
-
-void bhReleaseFreeMemory(void* mp);
-void ExitApplication();*/
-void QuickGetDiscTrayStatus();
-/*void InitFirstSofdec();
-int GetBootDiscId();
-void InitSofdecSystem(int Mode);
-void ExitSofdecSystem();
-void InitSoundProgram();
-void ExitSoundProgram();
-int MountSoundAfs();*/
-void UnmountSoundAfs();
-/*void ExecSoundSynchProgram();
-void InitGameSoundSystem();
-int SearchAfsInsideFileId(unsigned short KeyCode);
-void StopThePsgSound();*/
-int CheckSpecialBank(int Type, int BankNo);
-/*int LoadSoundPackFile(char* SpqFile);*/
-void ExecTransSoundData();
-/*void RequestRoomSoundBank(int StageNo, int RoomNo, int CaseNo);
-void RequestArmsSoundBank(int ArmsNo);
-void RequestDoorSoundBank(int DoorNo);
-void RequestPlayerVoiceSoundBank(int PlayerNo);
-int CheckTransEndSoundBank();
-void SetRoomSoundCaseNo(int CaseNo);
-int GetRoomSoundCaseNo();*/
-int CustomMidiSlotDef(int ObjectSlot, int EventSlot);
-void ResetRoomSoundEnvParam();
-/*int wadGetAngle(_anon16* pPos1, int Ang, _anon16* pPos2);
-int CheckCollision4Sound(_anon16* pP2);
-int Get3DSoundParameter(_anon16* pP1, _anon16* pP2, char* pPan, char* pVol, float* pDist, int Mode);
-int SetupSeGenericParm(int SlotNo, int SeNo, _anon16* pPos, int Flag, unsigned int Flag2);
-void Set3dSoundFlag(int Type, int SlotNo, unsigned int Flag);
-void Reset3dSoundFlag();
-void SetUserSoundVolume(int Type, int SlotNo, int StartVol, int LastVol, int Frame);
-void SetUserSoundPan(int Type, int SlotNo, int StartPan, int LastPan, int Frame);
-void PlayGameSe4Event(_anon25* gp, _anon16* pPos, int FloorType, int SeType);
-void CallSystemSeBasic(int SeNo, int Volume, int FxLevel);
-void CallSystemSeEx(int SeNo, int Volume);
-void CallSystemSe(int SeNo);
-void StopSystemSe();
-void SetSyukanModeSoundParam();
-void CallPlayerVoice(int SeNo);
-int GetPlayerActionSeSlotNo(int Type, int Id);
-void CallPlayerFootStepSeEx(int FloorType, int Type, int Flag, int Id, _anon16* pPos);
-void CallPlayerFootStepSe(int FloorType, int Type, int Flag);
-void CallPlayerActionSe(int SeNo, int Flag);
-void CallPlayerWeaponSeEx(_anon16* pPos, int SeNo, int SlotNo);
-void CallYakkyouSe(_anon16* pPos, int SeNo);
-void CallBackGroundSeEx(unsigned int SlotNo, int SeNo, short Timer);
-void CallBackGroundSe(unsigned int SlotNo, int SeNo);
-void CallBackGroundSe2(unsigned int SlotNo, int SeNo);
-void StopBackGroundSeEx(unsigned int SlotNo, short Timer);
-void StopBackGroundSe2(unsigned int SlotNo);
-void CallDoorSe(unsigned int No);
-void RequestEnemySeBasic(int EnemyNo, _anon16* pPos, int SeNo, int Flag, int FadeRate);
-void RequestEnemySe(int EnemyNo, _anon16* pPos, int SeNo);
-void RequestEnemySeEx(int EnemyNo, _anon16* pPos, int SeNo, int FadeRate);
-int ChechPlayEnemySe(int EnemyNo, int SeNo);
-void AllStopEnemySe();
-void CallEnemySe(int SlotNo, _anon16* pPos, int SeNo);*/
-void StopEnemySe(int SlotNo);
-/*int CallNativeEventSe(int SlotNo, _anon16* pPos, int SeNo, int Mode);
-int StopNativeEventSe(int SlotNo);
-void RequestObjectSeEx(int ObjectNo, _anon16* pPos, int Type);
-void RegistObjectSe(int ObjectNo, _anon16* pPos, int SeNo, int Prio);
-void FreeObjectSe(int ObjectNo);
-void PlayBgmEx2(unsigned int PatId, int BgmNo, int FadeInRate, int Volume);
-void PlayBgmEx(int BgmNo, int FadeInRate, int Volume);
-void PlayBgm(int BgmNo, int FadeInRate);*/
-void PlayBgm2(int BgmNo, int Volume);
-void StopBgm(int FadeOutRate);
-/*void StopBgm2();
-void PlayVoiceEx2(int PatId, int VoiceNo, _anon16* pPos, int Mode, int FadeInRate, int PauseFlag);
-void PlayVoiceEx(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate, int PauseFlag);
-void PlayVoice(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate);
-void ContinuePlayVoice();*/
-void StopVoice(int FadeOutRate);
-int CheckPlayEndAdx(int SlotNo);
-int GetTimeAdx(int SlotNo);
-void SetRoomSoundFxLevel(char FxProgNo, char FxLevel);
-void SetRoomSoundFxLevelEx();
-int SearchPlayingEnemySe(int EnemyNo, int Attrib);
-int SearchFreeEnemySeSlot();
-int CheckPlaySameSe(int EnemyNo, int SeNo, int Flag);
-void CallEnemySeMain(unsigned int SlotNo, int SeNo, char Pan, char Vol, int Flag, int FadeRate);
-void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo);
-void ResetEnemySeInfo();
-/*void ExecEnemySeManager();
-int SearchPlayingObjectSeEx(int ObjectNo, int Mode);
-int SearchPlayingObjectSe(int ObjectNo);
-int SearchFreeObjectSeSlot();
-void CallObjectSe2(unsigned int SlotNo, _anon35* oip, int Flag);*/
-void RegistObjectSlot(int SlotNo, int ObjectNo, int SeNo);
-void ResetObjectSeInfo();
-/*void ExecObjectSeManager();
-void RequestSoundFade(int Func, int Attr, short Timer);
-void RequestAllStopSoundEx(int AdxFlag, int InSoundFlag, int FadeCount);*/
-void ResetSoundComInfo();
-/*void Com_ExecRoomFadeIn();
-void Com_ExecRoomFadeOut();
-void Com_ExecCallBgm_And_BgSe();
-void Com_StartInitScript();
-void Com_FinishInitScript();
-void ExecuteSoundCommand();
-void SendSoundCommand(unsigned int CommandNo);
-void ExecSoundSystemMonitor();*/
-int RequestReadIsoFile(char* FileName, void* DestPtr);/*
-int RequestReadInsideFile(unsigned int PartitionId, unsigned int FileId, void* DestPtr);
-int GetIsoFileSize(char* FileName);
-int GetInsideFileSize(unsigned int PartitionId, unsigned int FileId);
-int GetReadFileStatus();*/
-void ExecFileManager();
-/*int PlayStartMovieEx(int MovieNo, int MovieType, int PauseFlag);
-void PlayStopMovieEx(int Mode);
-void PlayStopMovie();
-int CheckPlayEndMovie();
-int GetTimeMoive();
-int WaitPrePlayMovie();
-int PlayMovieMain();
-void SetEventVibrationMode(int Mode);
-void StartVibrationBasic(int PortNo, int AtrbId, int VibNo);
-void StartVibrationEx(int AtrbId, int VibNo);
-void StopVibrationBasic(int PortNo);*/
-void StopVibrationEx();
-//void SetAdjustDisplay();
-void RequestAdjustDisplay(int AdjustX, int AdjustY);
-void ExecAdjustDisplay();
-void InitPlayLogSystem();
-void ExitPlayLogSystem();
-/*void ReadPlayLog();
-void WritePlayLog();*/
+_anon6 NextSoundInfo;*/
 
 // 100% matching!
 void bhReleaseFreeMemory(void* mp)
@@ -314,7 +175,7 @@ void InitSofdecSystem(int Mode)
     MWS_PLY_INIT_SFD iprm;
     int temp; // not from the debugging symbols
 
-    memset(iprm, 0, sizeof(MWS_PLY_INIT_SFD));
+    memset(&iprm, 0, sizeof(MWS_PLY_INIT_SFD));
     
     iprm.mode = hws->mode;
     
@@ -910,11 +771,11 @@ int Get3DSoundParameter(_anon16* pP1, _anon16* pP2, char* pPan, char* pVol, floa
 	// Line 1456, Address: 0x2937c0, Func Offset: 0x180
 	// Line 1457, Address: 0x2937c4, Func Offset: 0x184
 	// Func End, Address: 0x2937f0, Func Offset: 0x1b0
-}
+}*/
 
 // 
 // Start address: 0x2937f0
-int SetupSeGenericParm(int SlotNo, int SeNo, _anon16* pPos, int Flag, unsigned int Flag2)
+int SetupSeGenericParm(int SlotNo, int SeNo, NJS_POINT3* pPos, int Flag, unsigned int Flag2)
 {
 	float Distance;
 	int ReturnCode;
@@ -943,9 +804,10 @@ int SetupSeGenericParm(int SlotNo, int SeNo, _anon16* pPos, int Flag, unsigned i
 	// Line 1509, Address: 0x2938dc, Func Offset: 0xec
 	// Line 1512, Address: 0x2938e4, Func Offset: 0xf4
 	// Func End, Address: 0x293900, Func Offset: 0x110
+    scePrintf("SetupSeGenericParm - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x293900
 void Set3dSoundFlag(int Type, int SlotNo, unsigned int Flag)
 {
@@ -1501,7 +1363,7 @@ void StopBackGroundSeEx(unsigned int SlotNo, short Timer)
 }*/
 
 // 100% matching
-void StopBackGroundSe2(int SlotNo) {
+void StopBackGroundSe2(unsigned int SlotNo) {
     ReqFadeBgSe[SlotNo] = 1;
     CurrentBgSeNo[SlotNo] = -1;
 }

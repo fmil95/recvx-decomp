@@ -3,6 +3,7 @@
 
 #include "types.h"
 
+void InitAdvSystem();
 float AutoSaveLoadEasyDispMessage(float PosX, float PosY, unsigned char* ucpMsbTop, unsigned int MessageNo);
 
 /*typedef struct _anon0;

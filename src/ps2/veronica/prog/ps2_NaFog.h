@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+void	njFogDisable();
+
 /*typedef int type_0[4];
 typedef float type_1[8];
 typedef float type_2[128];

@@ -13,6 +13,7 @@ void Ps2ClearOT();
 void Ps2DrawOTag();
 int Ps2DrawOTagSub(int start_no);
 int Ps2TexLoad(NJS_TEXMEMLIST* addr);
+void Ps2SetFogColor();
 int Ps2CheckTextureAlpha(void* pp);
 void Ps2ScreenClear();
 

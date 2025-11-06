@@ -4,6 +4,7 @@
 #include "types.h"
 
 unsigned char* bhGetFreeMemory(int size, int param);
+int bhCheckC2Wall(NJS_CAPSULE* cap);
 
 /*typedef struct npobj;
 typedef struct _anon0;

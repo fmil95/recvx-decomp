@@ -1,4 +1,5 @@
 #include "ps2_NaFog.h"
+#include "ps2_dummy.h"
 
 /*float fNaFogTbl[128];*/
 unsigned int ulNaFogState;

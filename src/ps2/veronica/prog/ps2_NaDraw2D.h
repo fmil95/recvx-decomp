@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+void njDrawPolygon2DM(NJS_POINT2COL* p, int n, float pri, unsigned int attr);
+
 /*typedef union _anon0;
 typedef struct _anon1;
 typedef struct _anon2;

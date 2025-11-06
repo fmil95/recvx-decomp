@@ -3,6 +3,10 @@
 
 #include "types.h"
 
+void bhSetScreenFade(unsigned int argb, float ct);
+void bhControlScreenFade();
+void bhDrawScreenFade();
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
