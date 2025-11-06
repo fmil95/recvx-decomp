@@ -1,6 +1,9 @@
 #include "mwwrap.h"
-#include "ps2_sg_maloc.h"
 #include "ps2_sfd_mw.h"
+#include "ps2_sg_maloc.h"
+#include "sdc.h"
+
+#include <string.h>
 
 int MwMode = -1;
 int MwPlayFlag;
@@ -81,7 +84,7 @@ int GetMwPlayTimeEx()
 // 100% matching!
 void CreateSfdHandle(void* mp, void* pp, char* fname)
 { 
-    memset(MwsCprmSfd, 0, sizeof(MWS_PLY_CPRM_SFD));
+    memset(&MwsCprmSfd, 0, sizeof(MWS_PLY_CPRM_SFD));
     
     if (pp == NULL) 
     {

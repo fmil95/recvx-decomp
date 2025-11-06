@@ -3,6 +3,12 @@
 #include "ps2_sg_maloc.h"
 #include "main.h"
 
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_sudv.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_suht.h"
+
+//#include <string.h>
+
 char last_rdx_files[256];
 char last_adx_files[256];
 char last_file_id;

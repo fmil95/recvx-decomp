@@ -1,6 +1,9 @@
 #include "ps2_sg_sd.h"  
 #include "ps2_MovieFunc.h"
+#include "ps2_snddrv.h"
 #include "main.h"
+
+#include <string.h>
 
 int __sg_sd_snd_init__;
 void(*__snd_set_end_func__)(void*);
@@ -87,7 +90,7 @@ SDE_ERR sdMemBlkSetTransferMode();
 SDE_ERR sdMultiUnitDownload(SDS_MEMBLK* handle);
 SDE_ERR sdSysFinish();*/
 unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned int size, unsigned int mode, unsigned int flag);
-void CpEEWait(int val);
+/*void CpEEWait(int val);*/
 
 // 100% matching! 
 SDE_ERR	sdBankDownload( SDMEMBLK handle, const SDE_DATA_TYPE bank_type, const Sint8 bank_num)

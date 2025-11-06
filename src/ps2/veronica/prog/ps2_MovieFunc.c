@@ -1,5 +1,9 @@
 #include "ps2_MovieFunc.h"
+#include "ps2_dummy.h"
+#include "ps2_loadtim2.h"
 #include "main.h"
+
+#include <string.h>
 
 /*int isCountVblank;
 int isFrameEnd;
@@ -613,11 +617,11 @@ void scTag2(_anon22* q, void* addr, unsigned int id, unsigned int qwc)
 	// Line 1026, Address: 0x2ec7e0, Func Offset: 0
 	// Line 1029, Address: 0x2ec808, Func Offset: 0x28
 	// Func End, Address: 0x2ec810, Func Offset: 0x30
-}
+}*/
 
 // 
 // Start address: 0x2ec810
-int viBufReset(_anon7* f)
+int viBufReset(ViBuf *f)
 {
 	int i;
 	// Line 1034, Address: 0x2ec810, Func Offset: 0
@@ -648,9 +652,10 @@ int viBufReset(_anon7* f)
 	// Line 1074, Address: 0x2ec958, Func Offset: 0x148
 	// Line 1075, Address: 0x2ec95c, Func Offset: 0x14c
 	// Func End, Address: 0x2ec964, Func Offset: 0x154
+	scePrintf("viBufReset - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ec980
 void viBufBeginPut(_anon7* f, unsigned char** ptr0, int* len0, unsigned char** ptr1, int* len1)
 {
@@ -760,11 +765,11 @@ int viBufPutTs(_anon7* f, _anon8* ts)
 	// Line 1240, Address: 0x2ecd94, Func Offset: 0x114
 	// Line 1241, Address: 0x2ecd98, Func Offset: 0x118
 	// Func End, Address: 0x2ecdb0, Func Offset: 0x130
-}
+}*/
 
 // 
 // Start address: 0x2ecdb0
-void voBufIncCount(_anon13* f)
+void voBufIncCount(VoBuf *f)
 {
 	unsigned int stat;
 	// Line 1246, Address: 0x2ecdb0, Func Offset: 0
@@ -772,9 +777,10 @@ void voBufIncCount(_anon13* f)
 	// Line 1249, Address: 0x2ecddc, Func Offset: 0x2c
 	// Line 1253, Address: 0x2ecde8, Func Offset: 0x38
 	// Func End, Address: 0x2ecdf0, Func Offset: 0x40
+	scePrintf("voBufIncCount - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ecdf0
 void audioDecResume(_anon12* ad)
 {

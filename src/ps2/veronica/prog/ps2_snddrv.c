@@ -2,6 +2,8 @@
 #include "ps2_sg_sd.h"
 #include "main.h"
 
+#include <string.h>
+
 static unsigned char sbuff[512] __attribute__((aligned(64)));
 static unsigned int getbuff[4] __attribute__((aligned(64)));
 static sceSifClientData ClientData;
@@ -995,7 +997,7 @@ int get_iopsnd_info()
 
     if (sceSifGetOtherData(&rd, (void*)get_adrs, (void*)&get_iop_buff, sizeof(SND_STATUS), 0) == 0) 
     {
-        memcpy(get_iop_snddata, get_iop_buff, sizeof(SND_STATUS));
+        memcpy((void*)&get_iop_snddata, (void*)&get_iop_buff, sizeof(SND_STATUS));
         
         return 0;
     }

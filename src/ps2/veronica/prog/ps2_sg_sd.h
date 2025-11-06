@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+void CpEEWait(int val);
+
 /*typedef struct SDS_PORT_REF;
 typedef struct _anon0;
 typedef struct SDS_MEMBLK;

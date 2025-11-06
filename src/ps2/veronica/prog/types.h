@@ -20,6 +20,9 @@
 #include <libdma.h>
 #include <libpad.h>
 #include <libmc.h>
+#include <libsdr.h>
+#include <csl.h>
+#include <libssyn.h>
 #include <sif.h>
 #include <sifrpc.h>
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxf.h"
@@ -2048,18 +2051,6 @@ typedef struct AFS_PATINFO
     int MaxInsideFileNum;     // offset 0x8, size 0x4
     unsigned char* pInfoWork; // offset 0xC, size 0x4
 } AFS_PATINFO;
-
-typedef struct ADXT_SPRM
-{
-	// total size: 0x1C
-    char* fname; // offset 0x0, size 0x4
-    char* fpc;   // offset 0x4, size 0x4
-    int size;    // offset 0x8, size 0x4
-    int nrtry;   // offset 0xC, size 0x4
-    int speed;   // offset 0x10, size 0x4
-    int dtype;   // offset 0x14, size 0x4
-    int opmode;  // offset 0x18, size 0x4
-} ADXT_SPRM;
 
 typedef struct AFS_INFO
 {

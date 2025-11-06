@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+int GetSoundMode();
+
 /*typedef struct _anon0;
 typedef struct SDS_MEMBLK;
 typedef struct SDS_PORT_REF;

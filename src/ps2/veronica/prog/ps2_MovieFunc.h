@@ -2,8 +2,13 @@
 #define _PS2_MOVIEFUNC_H_
 
 #include "types.h"
+#include "macros.h"
 
+int decBs0(VideoDec* vd);
 int sendToIOP(int dst, u_char *src, int size);
+void changeInputVolume(unsigned int val);
+int viBufReset(ViBuf *f);
+void voBufIncCount(VoBuf *f);
 
 /*typedef struct _anon0;
 typedef struct _anon1;

@@ -1,4 +1,5 @@
 #include "sdc.h"
+#include "ps2_sg_sycfg.h"
 #include "main.h"
 
 unsigned int ExecFxFlag;
