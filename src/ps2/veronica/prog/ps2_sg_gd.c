@@ -1,5 +1,7 @@
 #include "ps2_sg_gd.h"
 
+//#include <string.h> /* ERROR: causes linker to fail */
+
 GDFS_HANDLE* __file_handle;
 GDFS_WORK* __gds_fs_work;
 GDFS_DIRREC_TBL* __current_dir;

@@ -5,6 +5,7 @@
 #include "macros.h"
 
 int isVQ(unsigned char type);
+void Init_PS2_SAVE_TEX();
 
 /*typedef struct npobj;
 typedef struct _anon0;

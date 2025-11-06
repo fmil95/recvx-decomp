@@ -8,10 +8,12 @@ void Snd_init();
 void Cd_init();
 void Card_init();
 void PS2_swap();
+void Ps2AddPrim2D(unsigned long prim, void* dp, unsigned int num);
 void Ps2ClearOT();
 void Ps2DrawOTag();
 int Ps2DrawOTagSub(int start_no);
 int Ps2TexLoad(NJS_TEXMEMLIST* addr);
+int Ps2CheckTextureAlpha(void* pp);
 void Ps2ScreenClear();
 
 /*typedef struct _anon0;

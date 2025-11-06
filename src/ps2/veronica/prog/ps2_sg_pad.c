@@ -1,4 +1,5 @@
 #include "ps2_sg_pad.h" 
+#include "ps2_sg_pdvib.h"
 #include "main.h"
 
 unsigned int Old_sys_cnt;

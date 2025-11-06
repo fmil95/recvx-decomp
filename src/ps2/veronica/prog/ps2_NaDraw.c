@@ -1,4 +1,6 @@
 #include "ps2_NaDraw.h"
+#include "ps2_dummy.h"
+#include "ps2_NaTextureFunction.h"
 #include "main.h"
 
 /*int Ps2_3DEx_trans;

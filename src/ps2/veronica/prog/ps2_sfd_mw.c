@@ -1,6 +1,8 @@
 #include "ps2_sfd_mw.h"
 #include "main.h"
 
+#include <string.h>
+
 MW_PLY_OBJ MwObj;
 StrFile infile;
 MWPLY MwHandle = &MwObj;

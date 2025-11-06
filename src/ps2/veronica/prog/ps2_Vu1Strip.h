@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+void _Init_ScissorSystem();
+
 /*typedef struct tagVU1_STRIP_BUF;
 typedef struct tagVU1_PRIM_BUF;
 typedef struct _anon0;

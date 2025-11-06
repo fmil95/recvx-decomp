@@ -1,4 +1,5 @@
 #include "ps2_NinjaCnk.h"
+#include "ps2_Vu1Strip.h"
 
 VU1_STRIP_BUF* pNaCnkVerBufTop;
 int iNaCnkVerBufMax;

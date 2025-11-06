@@ -4,6 +4,12 @@
 #include "types.h"
 #include "macros.h"
 
+int njSetTextureNumSys(unsigned int n);
+int Ps2TextureMalloc(NJS_TEXMEMLIST* p);
+int Ps2TextureFree(NJS_TEXMEMLIST* p);
+int Ps2TextureGarbageCollectionAll();
+int ring_check();
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
