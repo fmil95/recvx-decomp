@@ -1,10 +1,19 @@
 #include "adx_tlk.h"
+#include "adx_amp.h"
+#include "adx_crs.h"
+#include "adx_dcd.h"
+#include "adx_dcd3.h"
+#include "adx_errs.h"
 #include "adx_inis.h"
 #include "adx_rnap.h"
 #include "adx_sjd.h"
 #include "adx_stmc.h"
 #include "lsc.h"
 #include "ps2_rna.h"
+#include "sjr_clt.h"
+
+#include <stdio.h>
+#include <string.h>
 
 static Uint32 adxt_svrcnt;
 static Uint32 adxt_svrcnt_sjd;

@@ -1,5 +1,15 @@
 #include "adx_tsvr.h"
+#include "adx_amp.h"
+#include "adx_crs.h"
+#include "adx_dcd.h"
+#include "adx_errs.h"
 #include "adx_inis.h"
+#include "adx_rnap.h"
+#include "adx_sjd.h"
+#include "adx_stmc.h"
+#include "adx_tlk.h"
+
+#include <string.h>
 
 static Sint32 adxt_dbg_rna_ndata;
 static Sint32 adxt_dbg_nch;

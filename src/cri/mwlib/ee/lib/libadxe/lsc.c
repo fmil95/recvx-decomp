@@ -1,6 +1,11 @@
 #include "lsc.h"
 #include "adx_stmc.h"
+#include "lsc_crs.h"
+#include "lsc_err.h"
 #include "lsc_ini.h"
+#include "lsc_svr.h"
+
+#include <string.h>
 
 /* The KATANA SDK has a header for this file, cri_lsc.h, while the PS2 CRIware headers don't. */
 
@@ -157,7 +162,7 @@ Sint32 LSC_EntryFileRange(LSC lsc, Sint8 *fname, void *dir, Sint32 ofst, Sint32 
     
     sinfo->sid = sid;
 
-    strncpy(sinfo->fname, fname, sizeof(sinfo->fname));
+    strncpy((char*)sinfo->fname, (char*)fname, sizeof(sinfo->fname));
     
     sinfo->ofst = ofst;
     
