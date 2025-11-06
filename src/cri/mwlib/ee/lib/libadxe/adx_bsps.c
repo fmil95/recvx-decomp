@@ -1,10 +1,13 @@
 #include "adx_bsps.h"
 
+#include <string.h>
+
 // ADX_DecodeInfoSpsd
 
+// 100% matching!
 Sint32 ADXB_CheckSpsd(Sint8 *ibuf)
 {
-    scePrintf("ADXB_CheckSpsd - UNIMPLEMENTED!\n");
+    return memcmp(ibuf, "SPSD", 4) == 0;
 }
 
 Sint32 ADXB_DecodeHeaderSpsd(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
