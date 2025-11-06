@@ -11,6 +11,8 @@
 #define AIFF_IMAGIC (0x46464941) /* 'AIFF', endian swapped */
 #define COMM_IMAGIC (0x4d4d4f43) /* 'COMM', endian swapped */
 #define FORM_IMAGIC (0x4D524F46) /* 'FORM', endian swapped */
+#define SD_IMAGIC (0x0064732E) /* 'SD', endian swapped */
+#define SND_IMAGIC (0x646E732E) /* 'SND', endian swapped */
 #define SSND_IMAGIC (0x444E5353) /* 'SSND', endian swapped */
 
 #define BSWAP_U16(_val) (Uint16)((*(Uint16*)_val >> 8) | (*(Uint16*)_val << 8)) 

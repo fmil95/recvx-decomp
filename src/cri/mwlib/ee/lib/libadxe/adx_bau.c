@@ -319,7 +319,96 @@ void ADXB_ExecOneAuUlaw(ADXB adxb)
     }
 }
 
-static void* AU_GetInfo(void *hdr, Sint32 hdrlen, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Sint32 *nsmpl, Sint32 *cdc) 
+// 100% matching!
+static void* AU_GetInfo(void *hdr, Sint32 hdrlen, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Sint32 *nsmpl, Sint32 *cdc)
 {
-    scePrintf("AU_GetInfo - UNIMPLEMENTED!\n");
+	Uint32 magic;
+	Uint32 hdr_size;
+	Uint32 data_size;
+	Uint32 encoding;
+	Uint8 *pdw;
+    Sint32 temp, temp2;
+
+    pdw = (Uint8*)hdr;
+
+    magic = READ_INT32(pdw);
+    
+    pdw += 4;
+    
+    if ((magic != SD_IMAGIC) && (magic != SND_IMAGIC)) 
+    {
+        return NULL;
+    }
+    
+    hdr_size = READ_INT32(pdw);
+    hdr_size = BSWAP_U32(hdr_size);
+    
+    pdw += 4;
+    
+    if (hdrlen < (Sint32)hdr_size) 
+    {
+        return NULL;
+    }
+    
+    data_size = READ_INT32(pdw);
+    data_size = BSWAP_U32(data_size);
+    
+    pdw += 4;
+
+    encoding = READ_INT32(pdw);
+    encoding = BSWAP_U32(encoding);
+    
+    pdw += 4;
+    
+    switch (encoding) 
+    {
+    case 1:
+        *cdc = 2;
+        
+        *bps = 8;
+        break;
+    case 2:
+        *cdc = 1;
+        
+        *bps = 8;
+        break;
+    case 3:
+        *cdc = 0;
+        
+        *bps = 16;
+        break;
+    default:
+        return NULL;
+    }
+   
+    temp = READ_INT32(pdw);
+    
+    *sfreq = BSWAP_S32(temp);
+    
+    pdw += 4;
+
+    temp2 = READ_INT32(pdw);
+    
+    *nch = BSWAP_S32(temp2);
+    
+    pdw += 4;
+    
+    if (*cdc == 2) 
+    {
+        *nsmpl = data_size / *nch;
+    }
+    else if (*cdc == 1) 
+    { 
+        *nsmpl = data_size / *nch;
+    }
+    else if (*cdc == 0) 
+    {
+        *nsmpl = (data_size / 2) / *nch;
+    }
+    else
+    { 
+        *nsmpl = 0x7FFF0000;
+    }
+    
+    return (void*)((Sint32)hdr + hdr_size); // TODO: simplify this line when adding GCC
 }

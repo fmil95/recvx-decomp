@@ -7,6 +7,7 @@ void bhDispFontEx(NJS_POINT2* pos, int code, unsigned int argb, float pri);
 int bhDispMessage(float px, float py, float pri, int mes_typ, int mes_idx, int color, int count);
 int bhDispMessageEx(float px, float py, float pri, int mes_typ, int mes_idx, unsigned int argb, int count);
 void bhFontScaleSet(float ScaleX, float ScaleY, float ScaleCR);
+float bhMesLen(unsigned short* dp);
 
 /*typedef struct npobj;
 typedef struct _anon0;

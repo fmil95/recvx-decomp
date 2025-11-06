@@ -1,4 +1,5 @@
 #include "effect.h"
+#include "ps2_texture.h"
 #include "main.h"
 
 /*void(*bhJumpEffect)()[150];

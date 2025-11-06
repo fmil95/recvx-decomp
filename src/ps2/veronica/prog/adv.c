@@ -1,10 +1,23 @@
 #include "adv.h"
+#include "adxwrap.h"
+#include "effect.h"
+#include "message.h"
+#include "ps2_dummy.h"
 #include "ps2_MemoryCard.h"
+#include "ps2_NaDraw.h"
 #include "ps2_sg_maloc.h"
+#include "ps2_sg_sycfg.h"
 #include "ps2_SystemLoadScreen.h"
 #include "ps2_SystemSaveScreen.h"
+#include "ps2_texture.h"
 #include "pwksub.h"
+#include "sdc.h"
+#include "sdfunc.h"
+#include "padman.h"
+#include "vibman.h"
 #include "main.h"
+
+#include <string.h>
 
 /*unsigned char SaveLoadMessage[10956];*/
 OPTION OptionDef[7] = { { 0, 1, 0, 0, 0,  0,  0, 0, 0 },
@@ -30,13 +43,13 @@ unsigned int ColorBarBright;*/
 SYSSAVE_SCREEN* pSysSave;
 SYSSAVE_SCREEN SysSave;
 
-/*void CallPlayerDeadVoice(int PlayerNo);
+void CallPlayerDeadVoice(int PlayerNo);
 void CallSystemVoice(int VoiceNo);
 float GetSamurai(int Time);
 void InitAdvSystem();
-void ResetAdvSystem();*/
+void ResetAdvSystem();
 void MountAdvAfs();
-/*unsigned char* AdvGetResourcePtr(unsigned char* bp, unsigned int ResId);
+unsigned char* AdvGetResourcePtr(unsigned char* bp, unsigned int ResId);
 void AdvSetSoundMode();
 void AdvCheckSoftReset(int Flag);
 void AdvPushRoomTexture();
@@ -54,21 +67,21 @@ void RequestAdvFade(int FadeType, float FadeSpeed);
 int CheckAdvFade();
 void AdvDrawFadePolygon(int Type, float Rate, unsigned int BaseColor);
 void ExecuteAdvFadeEx(int Type);
-void ExecuteAdvFade();*/
+void ExecuteAdvFade();
 void StopAdvScreenSaver(int Flag);
-/*void ExecuteAdvScreenSaver();
+void ExecuteAdvScreenSaver();
 void CheckAdvScreenSaverStopKey(int PortId);
 unsigned int AdvGetOkButton();
 unsigned int AdvGetCancelButton();
-void SetPvrInfo(_anon20* np, _anon16* ip, unsigned char* pp);
+/*void SetPvrInfo(_anon20* np, _anon16* ip, unsigned char* pp);*/
 int TransPvpData(unsigned char* pp, int Mode);
 void AdvTransShadowPalette();
-void AdvEasyDrawWindow(_anon32* tlp, _anon32* brp, unsigned int WindowColor, unsigned int BackColor);
+/*void AdvEasyDrawWindow(_anon32* tlp, _anon32* brp, unsigned int WindowColor, unsigned int BackColor);
 void AdvEasyDrawTexture(int TexNo, unsigned int BaseColor, _anon0* qp, float PosZ, int TransFlag);
 void AdvEasyDrawTextureS(int TexNo, unsigned int BaseColor, _anon0* qp, float PosZ, int TransFlag, unsigned int ShadowAlpha);
 void SetQuadPos(float StartX, float StartY, float SizeX, float SizeY, _anon0* qp);
 void SetQuadUv2Ex(float u, float v, float SizeX, float SizeY, unsigned int ListNo, unsigned int TexNo, _anon0* qp);
-void SetQuadUv2(float u, float v, float SizeX, float SizeY, unsigned int TexNo, _anon0* qp);
+void SetQuadUv2(float u, float v, float SizeX, float SizeY, unsigned int TexNo, _anon0* qp);*/
 void AdvDwawOnePictureEx(int TexNo, unsigned int BaseColor);
 void AdvDwawOnePicture(int TexNo);
 void AdvEasySetupTextureBasic(unsigned char* xp, int ListNo, int TexNo);
@@ -82,7 +95,7 @@ void AdvEasyReleaseTextureEx(int ListNo);
 void AdvEasyReleaseTexture();
 void AdvEasyReleaseAllTexture();
 int AdvGetCurrentPort();
-int CheckConnectVmDrive(int SlotNo);
+int CheckConnectVmDrive(int param, int SlotNo);
 int FindFirstVmDrive();
 float AdvEasyDispMessage(float PosX, float PosY, unsigned int MessageNo);
 float AutoSaveLoadEasyDispMessage(float PosX, float PosY, unsigned char* ucpMsbTop, unsigned int MessageNo);
@@ -113,7 +126,7 @@ int DisplayOptionPlateLevel3(int PortId, int Flag);
 int DisplayOptionPlate(int PortId, int Level, int Flag);
 int Adv_GameOptionScreen();
 int Adv_ChangeDiscScreen();
-int Adv_SoundMuseum();*/
+int Adv_SoundMuseum();
 
 // 100% matching! 
 void CallPlayerDeadVoice(int PlayerNo)
@@ -674,7 +687,7 @@ int TransPvpData(unsigned char* pp, int Mode)
 
     pPvp = (PVP_INFO*)pp;
 
-    if (strncmp(&pPvp->ppStrPvpl, "PVPL", 4) != 0)
+    if (strncmp((char*)&pPvp->ppStrPvpl, "PVPL", 4) != 0)
     { 
         return -1; 
     }

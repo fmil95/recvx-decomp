@@ -1,4 +1,8 @@
 #include "pad.h"
+#include "message.h"
+#include "screen.h"
+#include "sdfunc.h"
+#include "system.h"
 #include "main.h"
 
 unsigned int pad_tab_a[18];

@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+void bhSetFontTexture(void* datp);
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

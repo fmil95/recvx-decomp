@@ -5,7 +5,11 @@
 #include "macros.h"
 
 int isVQ(unsigned char type);
+int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset);
 void Init_PS2_SAVE_TEX();
+char* bhCopyTexmem2MainmemSub(NJS_TEXLIST* tlp, char* adr);
+void bhCopyMainmem2Texmem(NJS_TEXLIST* tlp);
+void bhGarbageTexture(NJS_TEXMEMLIST* addr, unsigned int n);
 
 /*typedef struct npobj;
 typedef struct _anon0;

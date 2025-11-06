@@ -4,6 +4,7 @@
 #include "types.h"
 
 SYSSAVE_SCREEN* CreateSysSaveScreen(SYSSAVE_SCREEN* pSysSave, void* vpWorkPtrSys, unsigned short usSaveMesMode, unsigned short usSaveWriteMode);
+int ExecuteSysSaveScreen(SYSSAVE_SCREEN* pSysSave);
 
 /*typedef struct _anon0;
 typedef struct npobj;
