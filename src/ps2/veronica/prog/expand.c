@@ -11,7 +11,9 @@ void Init_Expand()
 // 99.63% matching
 int Expand(register char* s, register unsigned char* d) 
 {
-    int T;
+    register int T;
+
+    T = 0;
 
     asm volatile 
     {
@@ -195,8 +197,10 @@ int Expand(register char* s, register unsigned char* d)
         nop
         
         l_002CB040:
-        sub     v0, d, t3 
+        sub     T, d, t3 
         nop
         
     }	
+
+    return T;
 } 

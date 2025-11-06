@@ -3,5 +3,5 @@
 // 100% matching!
 const NJS_PERIPHERAL* njGetPeripheral(Uint32 port)
 { 
-    pdGetPeripheral(port);
+    return pdGetPeripheral(port);
 }

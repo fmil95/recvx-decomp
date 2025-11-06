@@ -259,7 +259,7 @@ int PlayMwMain2(void(*Func)())
 // 100% matching!
 int PlayMwMain()
 {
-    PlayMwMain2(NULL);
+    return PlayMwMain2(NULL);
 }
 
 // 100% matching!

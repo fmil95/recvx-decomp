@@ -81,7 +81,7 @@ unsigned int InitGdSystemEx(unsigned int MaxDirNum)
 {
     MaxDirectoryEntry = MaxDirNum; 
     
-    InitGdSystem(); 
+    return InitGdSystem(); 
 }
 
 // 100% matching! 

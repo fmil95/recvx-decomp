@@ -2682,7 +2682,7 @@ int RequestReadInsideFile(unsigned int PartitionId, unsigned int FileId, void* D
 // 100% matching!
 int GetIsoFileSize(char* FileName)
 {
-    GetFileSize(FileName);
+    return GetFileSize(FileName);
 }
 
 // 100% matching!
