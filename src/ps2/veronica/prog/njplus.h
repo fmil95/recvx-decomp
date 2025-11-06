@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+void npSetMemory(unsigned char* memp, unsigned int size, char dat);
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

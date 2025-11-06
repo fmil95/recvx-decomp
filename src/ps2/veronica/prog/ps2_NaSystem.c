@@ -1,5 +1,6 @@
 #include "ps2_NaSystem.h"
 #include "ps2_dummy.h"
+#include "ps2_loadtim2.h"
 #include "main.h"
 
 void (* VsyncFunc)();

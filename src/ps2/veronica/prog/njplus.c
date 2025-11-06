@@ -1056,20 +1056,20 @@ void npSkinConvPreparation(NJS_CNK_OBJECT* objp)
     }
 }
 
-/*// 
+// 
 // Start address: 0x12d440
-void npSkinConvSub(npobj* objp)
+void npSkinConvSub(NJS_CNK_OBJECT* objp)
 {
-	_anon3* pHdr;
+	//_anon3* pHdr;
 	int mno;
 	int flg;
 	int dt;
 	int i;
 	int nb;
 	int* skp;
-	_anon0* p0;
-	_anon0 pd;
-	_anon0 ps;
+	//anon0* p0;
+	//_anon0 pd;
+	//_anon0 ps;
 	// Line 2569, Address: 0x12d440, Func Offset: 0
 	// Line 2571, Address: 0x12d44c, Func Offset: 0xc
 	// Line 2569, Address: 0x12d450, Func Offset: 0x10
@@ -1117,7 +1117,8 @@ void npSkinConvSub(npobj* objp)
 	// Line 2618, Address: 0x12d610, Func Offset: 0x1d0
 	// Line 2620, Address: 0x12d620, Func Offset: 0x1e0
 	// Func End, Address: 0x12d638, Func Offset: 0x1f8
-}*/
+    scePrintf("npSkinConvSub - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void npSkinConvMain(NJS_CNK_OBJECT* objp)
@@ -1162,20 +1163,20 @@ void npSkinConvert(NJS_CNK_OBJECT* objp, int* sknp)
     npSkinConvMain(objp);
 }
 
-/*// 
+// 
 // Start address: 0x12d740
-void npRetSkinConvMain(npobj* objp)
+void npRetSkinConvMain(NJS_CNK_OBJECT* objp)
 {
-	_anon3* pHdr;
+	//_anon3* pHdr;
 	int mno;
 	int flg;
 	int dt;
 	int i;
 	int nb;
 	int* skp;
-	_anon0* p0;
-	_anon0 pd;
-	_anon0 ps;
+	//_anon0* p0;
+	//_anon0 pd;
+	//_anon0 ps;
 	// Line 2701, Address: 0x12d740, Func Offset: 0
 	// Line 2703, Address: 0x12d750, Func Offset: 0x10
 	// Line 2701, Address: 0x12d754, Func Offset: 0x14
@@ -1218,7 +1219,8 @@ void npRetSkinConvMain(npobj* objp)
 	// Line 2753, Address: 0x12d964, Func Offset: 0x224
 	// Line 2754, Address: 0x12d978, Func Offset: 0x238
 	// Func End, Address: 0x12d994, Func Offset: 0x254
-}*/
+    scePrintf("npRetSkinConvMain - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void npRetSkinConvert(NJS_CNK_OBJECT* objp, int* sknp) 

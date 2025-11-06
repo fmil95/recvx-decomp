@@ -1,6 +1,8 @@
 #include "backup.h"
 #include "ps2_sg_maloc.h"
 
+#include <string.h>
+
 BACKUPINFO gBupInfo[8];
 
 // 100% matching!

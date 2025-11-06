@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+void Tim2_Format_Check(void* tim2_ptr);
+
 /*typedef struct _anon0;
 typedef struct tagTIM2_FILEHEADER;
 

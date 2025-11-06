@@ -1,4 +1,5 @@
 #include "camera.h"
+#include "njplus.h"
 #include "main.h"
 
 float cmmat[16];

@@ -3,6 +3,17 @@
 
 #include "types.h"
 
+void Ps2Init();
+void Snd_init();
+void Cd_init();
+void Card_init();
+void PS2_swap();
+void Ps2ClearOT();
+void Ps2DrawOTag();
+int Ps2DrawOTagSub(int start_no);
+int Ps2TexLoad(NJS_TEXMEMLIST* addr);
+void Ps2ScreenClear();
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;

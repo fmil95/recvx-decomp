@@ -3,6 +3,18 @@
 
 #include "types.h"
 
+int Send_Tim2_dataEx(void* tim2_top_adr, unsigned long send_image_adr, unsigned long send_clut_adr);
+int Clut_Load_Func(TIM2_PICTUREHEADER* ph, unsigned long clut_addr);
+int P32_Image_Load(TIM2_PICTUREHEADER* ph, unsigned long image_addr);
+int Tim2_Image_Load(TIM2_PICTUREHEADER* ph, unsigned long image_addr);
+void Ps2PxlconvCheck(void* timadr);
+void SyncPath();
+void D2_SyncTag();
+void loadImage(void* tags);
+void ClearVram();
+
+void *UncAddr(void *val);
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
@@ -182,11 +194,5 @@ struct _anon8
 		unsigned long REGS15 : 4;
 	};
 };*/
-
-// 100% matching!
-void *UncAddr(void *val)
-{
-    return (void*)(((u_int)val & UNCMASK)|UNCBASE);
-}
 
 #endif

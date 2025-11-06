@@ -4,6 +4,8 @@
 #include "types.h"
 #include "macros.h"
 
+int isVQ(unsigned char type);
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

@@ -1,5 +1,6 @@
 #include "ps2_loadtim2.h"
 #include "ps2_dummy.h"
+#include "ps2_pxlconv.h"
 
 unsigned char clear_buff[1024];
 
@@ -645,4 +646,11 @@ void ClearVram()
         
         sceGsSyncPath(0, 0);
     }
+}
+
+// TODO: find out where this function might really belong to
+// 100% matching!
+void *UncAddr(void *val)
+{
+    return (void*)(((u_int)val & UNCMASK)|UNCBASE);
 }

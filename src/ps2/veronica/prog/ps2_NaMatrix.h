@@ -3,6 +3,9 @@
 
 #include "types.h"
 
+void njRotXYZ(NJS_MATRIX* pMatrix, int lAngleX, int lAngleY, int lAngleZ);
+void njCalcPoint4(NJS_MATRIX* pMatrix, NO_NAME_16* pSrcPoint, NO_NAME_16* pDstPoint);
+
 /*typedef struct _anon0;
 typedef struct tagNJS_SCRVECTOR;
 typedef struct _anon1;

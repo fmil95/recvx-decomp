@@ -1,4 +1,9 @@
 #include "ps2_dummy.h"
+#include "ps2_loadtim2.h"
+#include "ps2_NaMath.h"
+#include "ps2_NaSystem.h"
+#include "ps2_sg_pad.h"
+#include "ps2_texture.h"
 #include "main.h"
 
 /*unsigned char* Ps2_MOVIE;*/
@@ -54,10 +59,10 @@ void(*EorFunc)();
 int _builtin_set_imask();
 void Ps2Init();*/
 void Ps2LoadModule(char* p);
-void Snd_init();
+/*void Snd_init();
 void Cd_init();
 void Card_init();
-/*void PS2_jikken();
+void PS2_jikken();
 void PS2_swap();
 void Ps2AddPrim(unsigned long prim, void* dp, unsigned int num, unsigned int clip_3d_on);
 void Ps2AddPrim2D(unsigned long prim, void* dp, unsigned int num);
@@ -80,7 +85,7 @@ unsigned int Ps2AlphaIsHalf(unsigned int* cp, unsigned int num);
 unsigned int Ps2Alpha4to8(unsigned int* cp, unsigned int num);
 int Ps2CheckTextureAlpha(void* pp);*/
 void Ps2InitPS2_GS_SAVE();
-void Ps2ScreenClear();
+/*void Ps2ScreenClear();*/
 void Ps2DispScreenClear();
 void Ps2ZbuffOff();
 /*void Ps2ZbuffOff2();*/
