@@ -4,6 +4,7 @@
 #include "types.h"
 
 unsigned int* ItemSearch(unsigned short itemid);
+void EraseItem(unsigned int* wp);
 
 /*typedef struct _anon0;
 typedef struct _anon1;

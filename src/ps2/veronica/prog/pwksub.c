@@ -1,4 +1,5 @@
 #include "pwksub.h"
+#include "njplus.h"
 #include "main.h"
 
 /*_anon12* sys;

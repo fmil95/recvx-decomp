@@ -3,6 +3,11 @@
 
 #include "types.h"
 
+void njQuadTextureStart(int trans);
+void njQuadTextureEnd();
+void njSetQuadTexture(int texid, unsigned int col);
+void njDrawQuadTexture(QUAD* q, float z);
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;

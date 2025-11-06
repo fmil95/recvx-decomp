@@ -1,4 +1,8 @@
 #include "ranking.h"
+#include "event.h"
+#include "flag.h"
+#include "message.h"
+#include "sdfunc.h"
 #include "main.h"
 
 /*void(*RankingMode)()[6];

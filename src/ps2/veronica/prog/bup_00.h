@@ -3,6 +3,9 @@
 
 #include "types.h"
 
+void CountDisplay(int disppoint, NJS_POINT2* pos, unsigned int col, int param);
+unsigned int RoomNameSwitch(unsigned int name);
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct tagSELECTFILEWINDOW;

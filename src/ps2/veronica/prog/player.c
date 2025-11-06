@@ -1,4 +1,6 @@
 #include "player.h"
+#include "flag.h"
+#include "Motion.h"
 #include "main.h"
 
 /*float PlyInfo[2][4];

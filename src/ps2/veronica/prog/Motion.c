@@ -11,9 +11,9 @@ void SetMtnFast(BH_PWORK* ewP, char* datP, int mode);
 void SetMtnFastHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
 void SetMtnSlow(BH_PWORK* ewP, char* datP, int mode);
 void SetMtnSlowHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
-void bhFixPosition(BH_PWORK* ewP, char* datP);*/
+void bhFixPosition(BH_PWORK* ewP, char* datP);
 void bhCalcFixOffset(BH_PWORK* ewP, char* datP, NJS_POINT3* offP, NJS_POINT3* rtnP);
-/*void bhGetObjMotion(BH_PWORK* ewP, int obj_no, float* pos, int* ang);
+void bhGetObjMotion(BH_PWORK* ewP, int obj_no, float* pos, int* ang);
 void AngZyxToYzx(int* zyx, int* yzx);
 void AngYzxToZyx(int* yzx, int* zyx);
 

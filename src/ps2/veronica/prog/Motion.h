@@ -1,6 +1,8 @@
 #ifndef _MOTION_H_
 #define _MOTION_H_
 
+void bhCalcFixOffset(BH_PWORK* ewP, char* datP, NJS_POINT3* offP, NJS_POINT3* rtnP);
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;

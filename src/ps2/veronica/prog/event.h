@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+unsigned int bhFlagCk(unsigned char type, unsigned int cnt, unsigned char flag);
+
 /*typedef struct BH_PWORK;
 typedef struct npobj;
 typedef struct _anon0;
