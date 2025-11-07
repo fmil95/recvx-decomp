@@ -2,9 +2,69 @@
 
 #include <string.h>
 
+// 100% matching!
 Sint32 ADX_DecodeInfoSpsd(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk, Sint16 *cdc)
 {
-    scePrintf("ADX_DecodeInfoSpsd - UNIMPLEMENTED!\n");
+	Uint8 bitsize; 
+    Sint32 temp, temp2;
+
+    *dlen = (Uint8)ibuf[7] * 16;    
+    
+    *nch = (ibuf[9] & 0x3) + 1;
+    
+    *sfreq = *(Uint16*)&ibuf[42];
+    
+    bitsize = ibuf[8];
+    
+    switch (bitsize) 
+    {
+    case 0:
+        *bps = 16;
+        
+        *blksize = *nch * 2;
+        
+        *nsmpl_blk = 1;
+        
+        *total_nsmpl = *(Sint32*)&ibuf[12] / 2;
+        
+        *cdc = 0;
+        break;
+    case 1:
+        *bps = 8;
+        
+        *blksize = temp = (Uint8)*nch;
+        
+        *nsmpl_blk = 1;
+        
+        *total_nsmpl = *(Sint32*)&ibuf[12];
+        
+        *cdc = 1;
+        break;
+    case 2:
+    case 3:
+        *bps = 4;
+        
+        *blksize = temp2 = (Uint8)*nch;
+        
+        *nsmpl_blk = 2;
+        
+        *total_nsmpl = *(Sint32*)&ibuf[12] * 2;
+ 
+        *cdc = 2;
+        break;
+    }
+    
+    *blksize = 2;
+    
+    *nsmpl_blk = 1;
+    
+    *total_nsmpl = *(Sint32*)&ibuf[12] / 2;
+    
+    *bps = 16;
+    
+    *code = -1;
+    
+    return 0;
 }
 
 // 100% matching!
