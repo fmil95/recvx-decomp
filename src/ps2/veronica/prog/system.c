@@ -2054,21 +2054,24 @@ void bhSysCallMonitor()
         switch (sys->mn_md1) 
         {
         case 0:
-            if (GetReadFileStatus() != 1)
+            if (GetReadFileStatus() == 1)
             {
-                sys->sbs_sp = sys->memp;
-                
-                sys->memp = (unsigned char*)ALIGN_UP((int)sys->memp, 64);
-                
-                if (rom->mdl.texP != NULL)
-                {
-                    sys->memp = (unsigned char*)bhCopyTexmem2MainmemSub(rom->mdl.texP, (char*)sys->memp);
-                }
-                
-                bhGarbageTexture(NULL, 0);
-                
-                sys->mn_md1 = 1; 
-        case 1: // this case is nested within case 0
+                break;
+            }
+
+            sys->sbs_sp = sys->memp;
+            
+            sys->memp = (unsigned char*)ALIGN_UP((int)sys->memp, 64);
+            
+            if (rom->mdl.texP != NULL)
+            {
+                sys->memp = (unsigned char*)bhCopyTexmem2MainmemSub(rom->mdl.texP, (char*)sys->memp);
+            }
+            
+            bhGarbageTexture(NULL, 0);
+            
+            sys->mn_md1 = 1; 
+        case 1: 
             if (GetInsideFileSize(sys->sys_partid, 2) != 0) 
             {
                 sys->memp = (unsigned char*)ALIGN_UP((int)sys->memp, 64);
@@ -2079,9 +2082,8 @@ void bhSysCallMonitor()
                 
                 sys->mn_md1 = 2;
             }
-        }
         
-        break;
+            break;
         case 2:
             if ((!(sys->cb_flg & 0x2)) && (!(sys->ts_flg & 0x80)))
             {

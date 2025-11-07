@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "enums.h"
+#include "macros.h"
 
 int bhCalcVtxBuffer();
 void bhChangeHWSetting();
