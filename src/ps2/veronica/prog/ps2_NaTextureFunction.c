@@ -568,13 +568,10 @@ Uint32	njGetPaletteMode(void)
 
 }
 
-// 
-// Start address: 0x2e24f0
+// 100% matching!
 void 	njSetPaletteData(Sint32 offset,Sint32 count,void* data)
 {
-	// Line 793, Address: 0x2e24f0, Func Offset: 0
-	// Func End, Address: 0x2e2500, Func Offset: 0x10
-	scePrintf("njSetPaletteData - UNIMPLEMENTED!\n");
+    Send_1024_Clut_data(palbuf, 0x3FF0);
 }
 
 // 100% matching!

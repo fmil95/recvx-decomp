@@ -4,6 +4,7 @@
 #include "types.h"
 
 void StoreRenderTex(void* tex_adr);
+int Send_1024_Clut_data(void* clt_adr, unsigned long send_clut_adr);
 int Send_Tim2_dataEx(void* tim2_top_adr, unsigned long send_image_adr, unsigned long send_clut_adr);
 int Clut_Load_Func(TIM2_PICTUREHEADER* ph, unsigned long clut_addr);
 int P32_Image_Load(TIM2_PICTUREHEADER* ph, unsigned long image_addr);

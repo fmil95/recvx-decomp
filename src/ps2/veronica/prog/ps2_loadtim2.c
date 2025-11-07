@@ -276,11 +276,11 @@ int LoadToVram(unsigned long tbp, u_long128* addr, int tbw, int psm, int pos, in
     return 0;
 }
 
-/*// 
+// 
 // Start address: 0x2e7420
 int Send_1024_Clut_data(void* clt_adr, unsigned long send_clut_adr)
 {
-	<unknown fundamental type (0xa510)>* pClut;
+	//<unknown fundamental type (0xa510)>* pClut;
 	unsigned int clt_lp;
 	unsigned int loop;
 	unsigned long* pBuff;
@@ -325,7 +325,8 @@ int Send_1024_Clut_data(void* clt_adr, unsigned long send_clut_adr)
 	// Line 2134, Address: 0x2e75b4, Func Offset: 0x194
 	// Line 2135, Address: 0x2e75c4, Func Offset: 0x1a4
 	// Func End, Address: 0x2e75ec, Func Offset: 0x1cc
-}*/
+    scePrintf("Send_1024_Clut_data - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 int Send_Tim2_dataEx(void* tim2_top_adr, unsigned long send_image_adr, unsigned long send_clut_adr)
