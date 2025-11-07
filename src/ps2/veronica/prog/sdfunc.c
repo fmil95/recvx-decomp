@@ -36,7 +36,7 @@ int WeaponSeSlotSwitch;
 int EnemyBackGroundSeFlag;*/
 char MoviePlayTrayOpenFlag;
 int CurrentBgmNo = -1;
-int CurrentBgSeNo[2];
+int CurrentBgSeNo[2] = { -1, -1 };
 int RoomSoundCaseNo;
 /*short DefBg[3];
 short DefObj[5];
@@ -2378,7 +2378,7 @@ void ExecObjectSeManager() {
     }
 }
 
-/*// 
+// 
 // Start address: 0x2969c0
 void RequestSoundFade(int Func, int Attr, short Timer)
 {
@@ -2417,58 +2417,73 @@ void RequestSoundFade(int Func, int Attr, short Timer)
 	// Line 3812, Address: 0x296bfc, Func Offset: 0x23c
 	// Line 3814, Address: 0x296c10, Func Offset: 0x250
 	// Func End, Address: 0x296c34, Func Offset: 0x274
-}*/
+    scePrintf("RequestSoundFade - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x296c40
+// 100% matching!
 void RequestAllStopSoundEx(int AdxFlag, int InSoundFlag, int FadeCount)
 {
-	int i;
-	// Line 3830, Address: 0x296c40, Func Offset: 0
-	// Line 3833, Address: 0x296c58, Func Offset: 0x18
-	// Line 3834, Address: 0x296c6c, Func Offset: 0x2c
-	// Line 3835, Address: 0x296c7c, Func Offset: 0x3c
-	// Line 3836, Address: 0x296c80, Func Offset: 0x40
-	// Line 3837, Address: 0x296c88, Func Offset: 0x48
-	// Line 3838, Address: 0x296c90, Func Offset: 0x50
-	// Line 3839, Address: 0x296c98, Func Offset: 0x58
-	// Line 3840, Address: 0x296cac, Func Offset: 0x6c
-	// Line 3842, Address: 0x296cb0, Func Offset: 0x70
-	// Line 3841, Address: 0x296cb4, Func Offset: 0x74
-	// Line 3842, Address: 0x296cb8, Func Offset: 0x78
-	// Line 3847, Address: 0x296cc4, Func Offset: 0x84
-	// Line 3844, Address: 0x296ccc, Func Offset: 0x8c
-	// Line 3845, Address: 0x296cd8, Func Offset: 0x98
-	// Line 3846, Address: 0x296ce4, Func Offset: 0xa4
-	// Line 3851, Address: 0x296cec, Func Offset: 0xac
-	// Line 3852, Address: 0x296cf4, Func Offset: 0xb4
-	// Line 3854, Address: 0x296cfc, Func Offset: 0xbc
-	// Line 3855, Address: 0x296d00, Func Offset: 0xc0
-	// Line 3856, Address: 0x296d08, Func Offset: 0xc8
-	// Line 3857, Address: 0x296d10, Func Offset: 0xd0
-	// Line 3858, Address: 0x296d18, Func Offset: 0xd8
-	// Line 3859, Address: 0x296d20, Func Offset: 0xe0
-	// Line 3860, Address: 0x296d34, Func Offset: 0xf4
-	// Line 3861, Address: 0x296d38, Func Offset: 0xf8
-	// Line 3862, Address: 0x296d48, Func Offset: 0x108
-	// Line 3863, Address: 0x296d4c, Func Offset: 0x10c
-	// Line 3864, Address: 0x296d54, Func Offset: 0x114
-	// Line 3865, Address: 0x296d5c, Func Offset: 0x11c
-	// Line 3866, Address: 0x296d64, Func Offset: 0x124
-	// Line 3867, Address: 0x296d6c, Func Offset: 0x12c
-	// Line 3869, Address: 0x296d80, Func Offset: 0x140
-	// Line 3872, Address: 0x296da0, Func Offset: 0x160
-	// Line 3873, Address: 0x296da4, Func Offset: 0x164
-	// Line 3875, Address: 0x296da8, Func Offset: 0x168
-	// Line 3873, Address: 0x296dac, Func Offset: 0x16c
-	// Line 3874, Address: 0x296db0, Func Offset: 0x170
-	// Line 3875, Address: 0x296db4, Func Offset: 0x174
-	// Line 3874, Address: 0x296db8, Func Offset: 0x178
-	// Line 3875, Address: 0x296dbc, Func Offset: 0x17c
-	// Line 3876, Address: 0x296dc4, Func Offset: 0x184
-	// Line 3877, Address: 0x296dc8, Func Offset: 0x188
-	// Func End, Address: 0x296de4, Func Offset: 0x1a4
-	scePrintf("RequestAllStopSoundEx - UNIMPLEMENTED!\n");
+    int i;
+
+    if ((MovieInfo.ExecMovieSystemFlag == 0) && (AdxFlag != 0)) 
+    {
+       for (i = 0; i < 2; i++) 
+       {
+            if (FadeCount == 0)
+            {
+                StopAdx(i);
+            } 
+            else 
+            {
+                RequestAdxFadeFunctionEx(i, -1, -127, FadeCount);
+            }
+           
+            AdxPlayFlag[i] = 0;
+        } 
+
+        ReqFadeBgmNo = 0;
+        CurrentBgmNo = -1;
+        
+        NextBgmVolume = CurrentBgmVolume = -127;
+    }
+
+    if (InSoundFlag != 0)
+    {
+        ResetObjectSeInfo();
+        
+        for (i = 0; i < 20; i++)
+        {
+            if (FadeCount == 0) 
+            {
+                StopSe(i);
+                StopFadeSe(i);
+            } 
+            else 
+            {
+                RequestSeFadeFunctionEx(i, -1, -127, FadeCount);
+            }
+        }
+
+        for (i = 0; i < 8; i++) 
+        {
+            if (FadeCount == 0) 
+            {
+                StopMidi(i);
+                StopFadeMidi(i);
+            }
+            else 
+            {
+                RequestMidiFadeFunctionEx(i, -1, -127, FadeCount);
+            }
+        }
+
+        for (i = 0; i < 2; i++)
+        {
+            CurrentBgSeNo[i] = -1;
+            
+            ReqFadeBgSe[i] = 0;
+        }
+    }
 }
 
 // 100% matching! 

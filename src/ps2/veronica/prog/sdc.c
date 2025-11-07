@@ -267,8 +267,7 @@ void ExPlayMidi(_anon1* pRequestInfo)
 	// Line 267, Address: 0x28f3c8, Func Offset: 0x188
 	// Line 269, Address: 0x28f3dc, Func Offset: 0x19c
 	// Func End, Address: 0x28f3ec, Func Offset: 0x1ac
-}
-*/
+}*/
 
 // 
 // Start address: 0x28f3f0
@@ -644,11 +643,11 @@ void StopFxProgram()
     ExecFxFlag = 0;
 }
 
-/*// 
+// 
 // Start address: 0x28ff80
 void RequestMidiFadeFunction(int SlotNo, int Func, short Timer)
 {
-	_anon0* mp;
+	//_anon0* mp;
 	// Line 652, Address: 0x28ff80, Func Offset: 0
 	// Line 653, Address: 0x28ff98, Func Offset: 0x18
 	// Line 655, Address: 0x28ffb8, Func Offset: 0x38
@@ -662,13 +661,14 @@ void RequestMidiFadeFunction(int SlotNo, int Func, short Timer)
 	// Line 674, Address: 0x290064, Func Offset: 0xe4
 	// Line 677, Address: 0x290084, Func Offset: 0x104
 	// Func End, Address: 0x29008c, Func Offset: 0x10c
+	scePrintf("RequestMidiFadeFunction - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x290090
 void RequestMidiFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 {
-	_anon0* mp;
+	//_anon0* mp;
 	// Line 680, Address: 0x290090, Func Offset: 0
 	// Line 683, Address: 0x2900a0, Func Offset: 0x10
 	// Line 680, Address: 0x2900bc, Func Offset: 0x2c
@@ -685,9 +685,9 @@ void RequestMidiFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 	// Line 695, Address: 0x29011c, Func Offset: 0x8c
 	// Line 696, Address: 0x290148, Func Offset: 0xb8
 	// Func End, Address: 0x290160, Func Offset: 0xd0
+	scePrintf("RequestMidiFadeFunctionEx - UNIMPLEMENTED!\n");
 }
-
-*/ 
+ 
 // 100% matching! 
 void StopFadeMidi(int SlotNo)
 {
