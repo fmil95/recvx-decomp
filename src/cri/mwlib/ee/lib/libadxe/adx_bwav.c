@@ -148,9 +148,64 @@ void ADXB_ExecOneWav4(ADXB adxb)
     }
 }
 
+// 100% matching!
 void ADXB_ExecOneWav8(ADXB adxb)
 {
-    scePrintf("ADXB_ExecOneWav8 - UNIMPLEMENTED!\n");
+	AdxDecPara *dp;
+	Uint16 *pcmbuf;
+	Uint16 *pcmbuf_l;
+	Uint16 *pcmbuf_r;
+	Uint8 *ibuf;
+	Sint32 i;
+	Sint32 ndata;
+
+    dp = &adxb->dp;
+
+    ibuf = (Uint8*)dp->ibuf;
+    
+    if ((adxb->stat == 1) && (ADXPD_GetStat(adxb->xpd) == 0)) 
+    {
+        adxb->getwrfunc(adxb->getwrobj, &adxb->dp.wpos, &adxb->dp.nroom, &adxb->dp.lp_nsmpl);
+
+        ndata = dp->pcmbsize - dp->wpos;
+        
+        ndata = (dp->nroom < ndata) ? dp->nroom : ndata;
+        ndata = (dp->niblk < ndata) ? dp->niblk : ndata;
+
+        pcmbuf = (Uint16*)dp->pcmbuf;
+        
+        pcmbuf_l = &pcmbuf[dp->wpos];
+        
+        if (adxb->nch == 2) 
+        {
+            pcmbuf_r = &pcmbuf[dp->pcmbdist + dp->wpos];
+            
+            for (i = 0; i < ndata; i++) 
+            {
+                pcmbuf_l[i] = (ibuf[i * 2] - 128) * 256;
+                pcmbuf_r[i] = (ibuf[(i * 2) + 1] - 128) * 256;
+            }
+        } 
+        else 
+        {
+            for (i = 0; i < ndata; i++)
+            {
+                pcmbuf_l[i] = (ibuf[i] - 128) * 256;
+            }
+        }
+        
+        adxb->total_decsmpl = ndata;
+        adxb->total_decdtlen = ndata * adxb->nch;
+        
+        adxb->stat = 2;
+    }
+    
+    if (adxb->stat == 2)
+    {
+        adxb->addwrfunc(adxb->addwrobj, adxb->total_decdtlen, adxb->total_decsmpl);
+        
+        adxb->stat = 3;
+    }
 }
 
 void ADXB_ExecOneWav16(ADXB adxb)
