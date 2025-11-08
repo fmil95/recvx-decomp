@@ -81,9 +81,70 @@ Sint32 ADX_DecodeInfoExADPCM2(Sint8 *ibuf, Sint32 ibuflen, Sint16 *cof)
     return 0;
 }
 
+// 100% matching!
 Sint32 ADX_DecodeInfoExLoop(Sint8 *ibuf, Sint32 ibuflen, Sint32 *lp_ins_nsmpl, Sint16 *nloop, Sint16 *lp_type, Sint32 *lp_spos, Sint32 *lp_sofst, Sint32 *lp_epos, Sint32 *lp_eofst)
 {
-    scePrintf("ADX_DecodeInfoExLoop - UNIMPLEMENTED!\n");
+	Sint32 dlen;
+	Sint32 lp_inf_len;
+	Sint32 ptr;
+	Uint8 ver;
+	Uint8 rev;
+
+    *nloop = 0;
+    
+    lp_inf_len = 48;
+
+    if (ibuflen < lp_inf_len) 
+    {
+        return -1;
+    }
+    
+    if (BSWAP_U16_EX(((Uint16*)ibuf)[0]) != 0x8000) 
+    {
+        return -2;
+    }
+    
+    if ((Sint16)BSWAP_U16_EX(((Uint16*)ibuf)[1]) < (lp_inf_len - 4)) 
+    {
+        return -1; 
+    }
+    
+    ptr = 20;
+  
+    *lp_ins_nsmpl = (Sint16)BSWAP_S16(*(Uint16*)&ibuf[ptr]);
+    
+    ptr += 2; 
+    
+    *nloop = BSWAP_S16(*(Uint16*)&ibuf[ptr]);
+    
+    ptr += 2;
+    
+    if (*nloop != 1) 
+    {
+        return -2;
+    }
+    
+    ptr += 2;
+
+    *lp_type = BSWAP_S16(*(Uint16*)&ibuf[ptr]);
+    
+    ptr += 2;
+
+    *lp_spos = BSWAP_S32(*(Sint32*)&ibuf[ptr]);
+    
+    ptr += 4;
+
+    *lp_sofst = BSWAP_S32(*(Sint32*)&ibuf[ptr]);
+    
+    ptr += 4;
+
+    *lp_epos = BSWAP_S32(*(Sint32*)&ibuf[ptr]);
+    
+    ptr += 4;
+
+    *lp_eofst = BSWAP_S32(*(Sint32*)&ibuf[ptr]);
+
+    return 0;
 }
 
 // 100% matching!
