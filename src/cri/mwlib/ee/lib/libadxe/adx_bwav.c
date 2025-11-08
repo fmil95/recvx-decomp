@@ -1,14 +1,120 @@
 #include "adx_bwav.h"
+#include "adx_xpnd.h"
 
 #include <string.h>
 
-void ADXB_ExecOneWav4(ADXB adxb);
-void ADXB_ExecOneWav8(ADXB adxb);
-void ADXB_ExecOneWav16(ADXB adxb);
-
+// 100% matching!
 Sint32 ADX_DecodeInfoWav(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk, Sint16 *cdc)
 {
-    scePrintf("ADX_DecodeInfoWav - UNIMPLEMENTED!\n");
+	WAVEFORMATEX *wfex;
+	static Sint8 *fmt_id = (Sint8*)"fmt";
+	static Sint8 *data_id = (Sint8*)"data";
+	Sint32 i;
+	Sint32 wavsize;
+    Uint8 *temp;
+
+    for (i = 0; i < ibuflen; i++)
+    {
+        if (memcmp(&ibuf[i], fmt_id, 4) == 0) 
+        {
+            break;
+        }
+    }
+    
+    if (i == ibuflen)
+    {
+        return -1;
+    }
+
+    if ((i & 0x3))
+    {
+        return -1;
+    }
+
+    wfex = (WAVEFORMATEX*)&ibuf[i + 8];
+
+    if (wfex->wFormatTag >= 2) 
+    {
+        return -1;
+    }
+
+    for (i = 0; i < ibuflen; i++)
+    {
+        if (memcmp(&ibuf[i], data_id, 4) == 0) 
+        {
+            break;
+        }
+    }
+
+    if (i == ibuflen)
+    {
+        return -1;
+    }
+
+    temp = (Uint8*)&ibuf[i + 4];
+    
+    wavsize = temp[0] | (temp[1] << 8) | (temp[2] << 16) | (temp[3] << 24);
+
+    *dlen = i + 8;
+    
+    *code = -1;
+
+    temp = (Uint8*)&wfex->nSamplesPerSec;
+    
+    *sfreq = temp[0] | (temp[1] << 8) | (temp[2] << 16) | (temp[3] << 24);
+
+    *nch = wfex->nChannels;
+    
+    *bps = wfex->wBitsPerSample;
+    
+    *blksize = wfex->nBlockAlign;
+    
+    *total_nsmpl = wavsize / *blksize;
+    
+    *nsmpl_blk = 1;
+
+    if (*bps == 16)
+    {
+        *cdc = 0;
+    }
+    else if (*bps == 8)
+    {
+        *cdc = 1;
+    }
+    else if (*bps == 4) 
+    {
+        *blksize = *nch * 2;
+        
+        *nsmpl_blk = 4;
+        
+        *total_nsmpl = ((unsigned int)wavsize >> 1) / *nch;
+        
+        *bps = 16;
+        
+        *cdc = 2;
+    }
+
+    if (*bps == 0) 
+    {
+        return -1;
+    }
+
+    if (*blksize == 0) 
+    {
+        return -1;
+    }
+
+    if ((*nch != 1) && (*nch != 2)) 
+    {
+        return -1;
+    }
+
+    if (*sfreq == 0) 
+    {
+        return -1;
+    }
+
+    return 0;
 }
 
 // 100% matching!
