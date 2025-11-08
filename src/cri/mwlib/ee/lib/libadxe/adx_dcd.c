@@ -20,9 +20,40 @@ Sint32 ADX_DecodeFooter(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen)
     return 0;
 }
 
-Sint32 ADX_DecodeInfo(Sint8* adr, Sint32 siz, Sint16* arg2, Sint8* arg3, Sint8* arg4, Sint8* arg5, Sint8* arg6, Sint32* arg7, Sint32* arg8, Sint32* arg9)
+// 100% matching!
+Sint32 ADX_DecodeInfo(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk) 
 {
-    scePrintf("ADX_DecodeInfo - UNIMPLEMENTED!\n");
+    Sint32 temp;
+    
+    if (ibuflen < 16) 
+    {
+        return -1;
+    }
+    
+    temp = (Uint8)ibuf[1] | ((Uint8)ibuf[0] << 8);
+    
+    if (temp != 0x8000) 
+    {
+        return -2;
+    }
+    
+    *dlen = ((Uint8)ibuf[3] | ((Uint8)ibuf[2] << 8)) + 4;
+    
+    *code = ibuf[4];
+    
+    *blksize = ibuf[5];
+    
+    *bps = ibuf[6];
+    
+    *nch = ibuf[7];
+    
+    *sfreq = ((Uint8)ibuf[8] << 24) | ((Uint8)ibuf[9] << 16) | ((Uint8)ibuf[10] << 8) | (Uint8)ibuf[11];
+    
+    *total_nsmpl = ((Uint8)ibuf[12] << 24) | ((Uint8)ibuf[13] << 16) | ((Uint8)ibuf[14] << 8) | (Uint8)ibuf[15];
+
+    *nsmpl_blk = ((*blksize - 2) * 8) / *bps;
+
+    return 0;
 }
 
 // 100% matching!
