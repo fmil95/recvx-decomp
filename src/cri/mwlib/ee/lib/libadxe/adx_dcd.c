@@ -2,12 +2,22 @@
 
 #include <mathf.h>
 
-#define PI 3.14159265
-#define PI_2 (PI * 2)
-
+// 100% matching!
 Sint32 ADX_DecodeFooter(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen) 
 {
-    scePrintf("ADX_DecodeFooter - UNIMPLEMENTED!\n");
+    if (ibuflen < 16) 
+    {
+        return -1;
+    }
+    
+    if (BSWAP_U16_EX(((Uint16*)ibuf)[0]) != 0x8001) 
+    {
+        return -2;
+    }
+
+    *dlen = BSWAP_U16_EX(((Uint16*)ibuf)[1]) + 4;
+    
+    return 0;
 }
 
 Sint32 ADX_DecodeInfo(Sint8* adr, Sint32 siz, Sint16* arg2, Sint8* arg3, Sint8* arg4, Sint8* arg5, Sint8* arg6, Sint32* arg7, Sint32* arg8, Sint32* arg9)

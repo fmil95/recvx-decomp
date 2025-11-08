@@ -5,6 +5,7 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include "override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
+#include "macros.h"
 
 Sint32 ADXB_CheckWav(Sint8 *ibuf);
 Sint32 ADXB_DecodeHeaderWav(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen);

@@ -2,6 +2,10 @@
 #define _ADX_DCD_H_
 
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include "macros.h"
+
+#define PI 3.14159265
+#define PI_2 (PI * 2)
 
 Sint32 ADX_DecodeFooter(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen);
 Sint32 ADX_DecodeInfo(Sint8* adr, Sint32 siz, Sint16* arg2, Sint8* arg3, Sint8* arg4, Sint8* arg5, Sint8* arg6, Sint32* arg7, Sint32* arg8, Sint32* arg9);
