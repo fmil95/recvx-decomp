@@ -668,7 +668,130 @@ Sint32 adxf_LoadData(ADXF adxf, Sint32 nsct, void *buf)
     }
 }
 
-// ADXF_LoadPartition
+// 100% matching!
+Sint32 ADXF_LoadPartition(Sint32 ptid, Char8 *fname, void *ptinfo, Sint32 nfile)
+{
+    Sint32 ret;
+	Sint32 flno;
+	Sint32 pos;
+	Sint32 rderr;
+	Uint16 *infotbl;
+	ADXF adxf;
+    Uint16 *ftbl;
+    ADXF_PTINFO* info;
+    
+    ret = adxf_ChkPrmPt(ptid, ptinfo);
+    
+    if (ret < ADXF_ERR_OK) 
+    {
+        return ret;
+    }
+    
+    info = ptinfo;
+    
+    adxf = ADXF_Open(fname, NULL);
+    
+    if (adxf == NULL) 
+    {
+        ADXERR_CallErrFunc1((const Sint8*)"E9040804:can't open file.(ADXF_LoadPartition)");
+        
+        return ADXF_ERR_FATAL;
+    }
+    
+    memset(info, 0, sizeof(ADXF_PTINFO));
+    
+    info->next = NULL;
+
+    adxf_ptinfo[ptid] = info;
+
+    ret = ADXF_ERR_FATAL;
+    
+    infotbl = (Uint16*)&info->top;
+    
+    strncpy((char*)&info->fname, fname, ADXF_FNAME_MAX);
+    
+    info->type = 0;
+
+    buf = (Sint32*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F); 
+    
+    wrk32 = (Sint8*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F);
+    
+    ftbl = (Uint16*)&info->top + 1;
+
+    flno = 0;
+
+    info->nfile = 0;
+    
+    for (rderr = 0; rderr < 3; )
+    {
+        if (adxf_LoadData(adxf, 1, buf) > 0)
+        {
+            pos = 0;
+            
+            if (info->nfile == 0)
+            {
+                pos++;
+                
+                if (buf[1] > ADXF_FILE_MAX)
+                {
+                    buf[1] = ADXF_FILE_MAX;
+                    
+                    ret = ADXF_ERR_AFS_FILE; 
+                    goto label;
+                } 
+                else 
+                {
+                    info->nfile = info->nentry = (nfile >= buf[1]) ? buf[1] : nfile;
+                    
+                    info->size = (((Uint32)info->nfile + 140) / 2) * 4;
+
+                    pos++;
+                    
+                    *infotbl = buf[pos] / ADXF_DEF_SCT_SIZE; 
+                    
+                    pos++;
+                }
+            }
+            else
+            {
+                pos++;
+            } 
+
+            for ( ; pos < ADXF_DEF_REQ_RD_SCT; pos += 2)
+            {
+                ftbl[flno++] = (buf[pos] + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE;
+                
+                if (flno >= info->nfile) 
+                {
+                    ret = ADXF_ERR_OK;
+                    goto label;
+                }
+            }
+            
+            rderr = 0;
+        } 
+        else 
+        {
+            rderr++;
+        }
+    }
+    
+    if (rderr == 3) 
+    {
+        ADXERR_CallErrFunc1((const Sint8*)"E9040805:read error.(ADXF_LoadPartition)");
+    }
+    
+label:
+    if (ret == ADXF_ERR_AFS_FILE)
+    {
+        ADXERR_CallErrFunc1((const Sint8*)"E9040806:file is broken.(ADXF_LoadPartition)");
+    }
+    
+    ADXF_Close(adxf);
+    
+    return ret;
+}
+
 // ADXF_LoadPartitionEx
 
 // 100% matching!
