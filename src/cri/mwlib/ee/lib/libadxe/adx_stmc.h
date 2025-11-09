@@ -3,7 +3,6 @@
 
 #include <cri_xpt.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
-#include "override_adxf.h"
 #include <cri_adxf.h>
 #include "cri_cvfs.h"
 #include "macros.h"

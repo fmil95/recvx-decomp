@@ -239,8 +239,8 @@ Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, 
     Sint32 i;
     Sint32 ofst2;
     Uint16 *fnsct2;
-    ADXF_FINFO *finfo;
-    ADXF_FINFO *finfo2;
+    ADXF_ADD_INFO *finfo;
+    ADXF_ADD_INFO *finfo2;
     
     ret = adxf_ChkPrmGfr(ptid, flid);
     
@@ -254,7 +254,7 @@ Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, 
 
     for (ptinfo = adxf_ptinfo[ptid]; ptinfo->next != NULL; ptinfo = ptinfo->next) 
     {
-        finfo = ptinfo->finfo;
+        finfo = (ADXF_ADD_INFO*)&ptinfo->top;
 
         for (i = 0; i < ptinfo->nentry; i++) 
         {
@@ -272,8 +272,8 @@ Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, 
         }
     }
 
-    ofst2 = ptinfo->finfo->flid;
-    fnsct2 = &ptinfo->finfo->fnsct;
+    ofst2 = *(Uint16*)&ptinfo->top;
+    fnsct2 = (Uint16*)&ptinfo->top + 1;
 
     for (i = 0; i < flid; i++) 
     {
@@ -296,8 +296,8 @@ Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, 
     Sint32 i;
     Sint32 ofst2;
     Uint16 *fnsct2;
-    ADXF_FINFO *finfo;
-    ADXF_FINFO *finfo2;
+    ADXF_ADD_INFO *finfo;
+    ADXF_ADD_INFO *finfo2; 
     
     ret = adxf_ChkPrmGfr(ptid, flid);
     
@@ -313,7 +313,7 @@ Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, 
 
     for (ptinfo = adxf_ptinfo[ptid]; ptinfo->next != NULL; ptinfo = ptinfo->next) 
     {
-        finfo = ptinfo->finfo;
+        finfo = (ADXF_ADD_INFO*)&ptinfo->top;
 
         for (i = 0; i < ptinfo->nentry; i++) 
         {
@@ -333,8 +333,8 @@ Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, 
         }
     }
 
-    ofst2 = ptinfo->finfo->flid;
-    fnsct2 = &ptinfo->finfo->fnsct;
+    ofst2 = *(Uint16*)&ptinfo->top;
+    fnsct2 = (Uint16*)&ptinfo->top + 1;
 
     for (i = 0; i < flid; i++) 
     {
@@ -434,7 +434,7 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
     {
         ptinfo = adxf_ptinfo[ptid];
         
-        fnsct = &ptinfo->finfo->fnsct;
+        fnsct = (Uint16*)&ptinfo->top + 1;
         
         if (ptinfo->nfile == 0) 
         {
@@ -460,7 +460,7 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
             
             ptinfo->size = (((Uint32)ptinfo->nfile + 140) >> 1) * 4;
             
-            ptinfo->finfo->flid = ((Sint32*)buf)[2] / ADXF_DEF_SCT_SIZE;
+            *(Uint16*)&ptinfo->top = ((Sint32*)buf)[2] / ADXF_DEF_SCT_SIZE;
             
             rdsct = 3;
         }

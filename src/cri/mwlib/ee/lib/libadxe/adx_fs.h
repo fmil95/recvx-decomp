@@ -3,8 +3,11 @@
 
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
-#include "override_adxf.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
+
+#define REG_RCNT0_COUNT     (volatile int *)0x10000000
+
+#define getRcnt0CountShort() *REG_RCNT0_COUNT & 0xFFFF
 
 ADXF adxf_AllocAdxFs(void);
 Sint32 adxf_ChkPrmGfr(Uint32 ptid, Sint32 flid);

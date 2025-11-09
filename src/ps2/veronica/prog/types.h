@@ -25,7 +25,6 @@
 #include <libssyn.h>
 #include <sif.h>
 #include <sifrpc.h>
-#include "../../../cri/mwlib/ee/lib/libadxe/override_adxf.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
