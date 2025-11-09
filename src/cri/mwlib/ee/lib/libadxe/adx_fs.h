@@ -28,7 +28,7 @@ Sint32 ADXF_GetNumReqSct(ADXF adxf, Sint32 *seekpos);
 Sint32 ADXF_GetPtinfoSize(Sint32 ptid);
 Sint32 ADXF_GetPtStat(Sint32 ptid);
 Sint32 ADXF_GetStat(ADXF adxf);
-void adxf_LoadData(ADXF adxf, Sint32 nsct, void *buf);
+Sint32 adxf_LoadData(ADXF adxf, Sint32 nsct, void *buf);
 Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo);
 ADXF ADXF_Open(Char8 *fname, void *atr);
 ADXF ADXF_OpenAfs(Sint32 ptid, Sint32 flid);

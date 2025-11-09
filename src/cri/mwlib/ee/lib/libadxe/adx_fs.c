@@ -7,17 +7,142 @@
 
 #include <string.h>
 
-#define REG_RCNT0_COUNT     (volatile int *)0x10000000
-
-#define getRcnt0CountShort() *REG_RCNT0_COUNT & 0xFFFF
-
-void* buf;
-Sint32* D_01E272F0;
-Sint32* wrk32;
+Sint32* D_01E272F0; // this is actually work below
+static Sint32 work[2112];
+static Sint32 *buf;
+static Sint8 *wrk32;
 Sint32 adxf_tcnt[10] = { 0 };
 Sint32 adxf_chkp_tcnt[10] = { 0 };
 
-// ADXF_AddPartition
+// 100% matching!
+Sint32 ADXF_AddPartition(Sint32 ptid, Char8 *fname, void *ptinfo, Sint32 nfile)
+{
+	Sint32 ret;
+	Sint32 flno;
+	Sint32 adno;
+	Sint32 pos;
+	Sint32 rderr;
+	ADXF_ADD_INFO *infotbl;
+	ADXF_ADD_INFO *ftbl;
+	ADXF adxf;
+    ADXF_PTINFO* info;
+
+    ret = adxf_ChkPrmPt(ptid, ptinfo);
+    
+    if (ret < ADXF_ERR_OK) 
+    {
+        return ret;
+    }
+    
+    info = ptinfo;
+    
+    adxf = ADXF_Open(fname, NULL);
+    
+    if (adxf == NULL) 
+    {
+        ADXERR_CallErrFunc1((const Sint8*)"E9040808:can't open.(ADXF_AddPartition)");
+        
+        return ADXF_ERR_FATAL;
+    }
+    
+    info->next = adxf_ptinfo[ptid];
+    
+    adxf_ptinfo[ptid] = info;
+
+    ret = ADXF_ERR_FATAL;
+
+    strncpy((char*)info->fname, fname, ADXF_FNAME_MAX);
+
+    ftbl = (ADXF_ADD_INFO*)&info->top;
+    
+    info->type = 1;
+
+    buf = (Sint32*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F); 
+    
+    wrk32 = (Sint8*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F);
+
+    flno = 0;
+
+    adno = 0;
+
+    info->nfile = 0;
+
+    for (rderr = 0; rderr < 3; ) 
+    {
+        if (adxf_LoadData(adxf, 1, buf) > 0) 
+        { 
+            pos = 0;
+            
+            if (info->nfile == 0) 
+            {
+                pos++;
+                
+                if (buf[pos] > ADXF_FILE_MAX) 
+                {
+                    buf[pos] = ADXF_FILE_MAX;
+                    
+                    ret = ADXF_ERR_AFS_FILE;
+                    
+                    ADXERR_CallErrFunc1((const Sint8*)"E9040810:file is broken.(ADXF_LoadPartition)");
+                    goto label;
+                }
+                else 
+                {
+                    info->nfile = (nfile >= buf[pos]) ? buf[pos] : nfile;
+                    
+                    pos++;
+                }
+            }   
+            
+            for ( ; pos < ADXF_DEF_REQ_RD_SCT; ) 
+            {
+                if (buf[pos] == 0) 
+                {
+                    pos += 2;
+                } 
+                else 
+                {
+                    infotbl = &ftbl[adno++];
+                    
+                    infotbl->flid = flno;
+                    
+                    infotbl->ofst = (buf[pos++] + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE;
+                    infotbl->fnsct = (buf[pos++] + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE;
+                }
+                
+                flno++;
+                
+                if (flno >= info->nfile) 
+                {
+                    ret = ADXF_ERR_OK;
+                    goto label;
+                }
+            }
+            
+            rderr = 0;
+        }
+        else 
+        {
+             rderr++;                                                                            
+        }
+    }
+
+    if (rderr == 3)
+    {
+        ADXERR_CallErrFunc1((const Sint8*)"E9040809:read error.(ADXF_LoadPartition)");
+    }
+    
+label:
+    info->nentry = adno;
+    
+    info->size = info->next->size;
+    
+    info->size += 276 + (info->nentry * 8); // 276 should be size of ADXF_PTINFO, but something doesn't match
+    
+    ADXF_Close(adxf);
+    
+    return ret;
+}
 
 // 100% matching!
 ADXF adxf_AllocAdxFs(void) 
@@ -516,7 +641,7 @@ Sint32 ADXF_GetStat(ADXF adxf)
 }
 
 // 100% matching!
-void adxf_LoadData(ADXF adxf, Sint32 nsct, void *buf) 
+Sint32 adxf_LoadData(ADXF adxf, Sint32 nsct, void *buf) 
 {
     while (ADXF_ReadNw32(adxf, nsct, buf) <= 0) 
     {
@@ -588,7 +713,9 @@ Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
         
         ((ADXF_PTINFO*)ptinfo)->curdir = dir;
         
-        wrk32 = buf = (Sint32*)((Sint32)&D_01E272F0 & ADXF_DEF_ALIGN_CALC);
+        wrk32 = (Sint8*)((Sint32)&D_01E272F0 & ADXF_DEF_ALIGN_CALC);
+
+        buf = (Sint32*)((Sint32)&D_01E272F0 & ADXF_DEF_ALIGN_CALC);
         
         rdsct = ADXF_ReadNw32(adxf_ldptnw_hn, 1, buf);
         
