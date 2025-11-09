@@ -648,9 +648,9 @@ Sint32 ADXF_GetStat(ADXF adxf)
 }
 
 // 100% matching!
-Sint32 adxf_LoadData(ADXF adxf, Sint32 nsct, void *buf) 
+Sint32 adxf_LoadData(ADXF adxf, Sint32 nsct, void *rdbuf) 
 {
-    while (ADXF_ReadNw32(adxf, nsct, buf) <= 0) 
+    while (ADXF_ReadNw32(adxf, nsct, rdbuf) <= 0) 
     {
         cvFsExecServer();
         ADXSTM_ExecServer();
@@ -667,12 +667,13 @@ Sint32 adxf_LoadData(ADXF adxf, Sint32 nsct, void *buf)
         
         if (ADXF_GetStat(adxf) == ADXF_STAT_READEND) 
         {
-            ADXF_GetNumReadSct(adxf);
             break;
         }
         
         adxf_wait_1ms();
     }
+
+    return ADXF_GetNumReadSct(adxf);
 }
 
 // 100% matching!
