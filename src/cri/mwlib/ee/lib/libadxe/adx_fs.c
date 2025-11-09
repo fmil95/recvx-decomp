@@ -341,15 +341,15 @@ void adxf_ExecOne(ADXF adxf)
 // 100% matching!
 void ADXF_ExecServer(void)
 {
-    Sint32 i;
+    Sint32 no;
     
     ADXCRS_Lock();
 
-    for (i = 0; i < ADXF_OBJ_MAX; i++)
+    for (no = 0; no < ADXF_OBJ_MAX; no++)
     {
-        if (adxf_obj[i].used == TRUE)
+        if (adxf_obj[no].used == TRUE)
         {
-            adxf_ExecOne(&adxf_obj[i]);
+            adxf_ExecOne(&adxf_obj[no]);
         }
     }
 
@@ -359,13 +359,13 @@ void ADXF_ExecServer(void)
 // 100% matching!
 Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, Sint32 *fnsct)
 {
-    Sint32 ret;
-    ADXF_PTINFO *ptinfo;
-    Sint32 i;
-    Sint32 ofst2;
-    Uint16 *fnsct2;
-    ADXF_ADD_INFO *finfo;
-    ADXF_ADD_INFO *finfo2;
+    ADXF_PTINFO *info;
+	Uint16 *org_ftbl;
+	ADXF_ADD_INFO *add_itbl;
+	ADXF_ADD_INFO *add_ftbl;
+	Sint32 i;
+	Sint32 fl_ofst;
+	Sint32 ret;
     
     ret = adxf_ChkPrmGfr(ptid, flid);
     
@@ -377,38 +377,38 @@ Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, 
         return ret;
     }
 
-    for (ptinfo = adxf_ptinfo[ptid]; ptinfo->next != NULL; ptinfo = ptinfo->next) 
+    for (info = adxf_ptinfo[ptid]; info->next != NULL; info = info->next) 
     {
-        finfo = (ADXF_ADD_INFO*)&ptinfo->top;
+        add_itbl = (ADXF_ADD_INFO*)&info->top;
 
-        for (i = 0; i < ptinfo->nentry; i++) 
+        for (i = 0; i < info->nentry; i++) 
         {
-            finfo2 = &finfo[i];
+            add_ftbl = &add_itbl[i];
             
-            if (finfo2->flid == flid) 
+            if (add_ftbl->flid == flid) 
             {
-                strncpy(fname, (char*)ptinfo->fname, ADXF_FNAME_MAX);
+                strncpy(fname, (char*)info->fname, ADXF_FNAME_MAX);
                 
-                *ofst = finfo2->ofst;
-                *fnsct = finfo2->fnsct;
+                *ofst = add_ftbl->ofst;
+                *fnsct = add_ftbl->fnsct;
                 
                 return ret;
             }
         }
     }
 
-    ofst2 = *(Uint16*)&ptinfo->top;
-    fnsct2 = (Uint16*)&ptinfo->top + 1;
+    fl_ofst = *(Uint16*)&info->top;
+    org_ftbl = (Uint16*)&info->top + 1;
 
     for (i = 0; i < flid; i++) 
     {
-        ofst2 += fnsct2[i];
+        fl_ofst += org_ftbl[i];
     }
 
-    strncpy(fname, (char*)ptinfo->fname, ADXF_FNAME_MAX);
+    strncpy(fname, (char*)info->fname, ADXF_FNAME_MAX);
     
-    *ofst = ofst2;
-    *fnsct = fnsct2[flid];
+    *ofst = fl_ofst;
+    *fnsct = org_ftbl[flid];
     
     return ret;
 }
@@ -416,13 +416,13 @@ Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, 
 // 100% matching!
 Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, Sint32 *ofst, Sint32 *fnsct)
 {
-    Sint32 ret;
-    ADXF_PTINFO *ptinfo;
-    Sint32 i;
-    Sint32 ofst2;
-    Uint16 *fnsct2;
-    ADXF_ADD_INFO *finfo;
-    ADXF_ADD_INFO *finfo2; 
+    ADXF_PTINFO *info;
+	Uint16 *org_ftbl;
+	ADXF_ADD_INFO *add_itbl;
+	ADXF_ADD_INFO *add_ftbl;
+	Sint32 i;
+	Sint32 fl_ofst;
+	Sint32 ret;
     
     ret = adxf_ChkPrmGfr(ptid, flid);
     
@@ -436,42 +436,42 @@ Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, 
         return ret;
     }
 
-    for (ptinfo = adxf_ptinfo[ptid]; ptinfo->next != NULL; ptinfo = ptinfo->next) 
+    for (info = adxf_ptinfo[ptid]; info->next != NULL; info = info->next) 
     {
-        finfo = (ADXF_ADD_INFO*)&ptinfo->top;
+        add_itbl = (ADXF_ADD_INFO*)&info->top;
 
-        for (i = 0; i < ptinfo->nentry; i++) 
+        for (i = 0; i < info->nentry; i++) 
         {
-            finfo2 = &finfo[i];
+            add_ftbl = &add_itbl[i];
             
-            if (finfo2->flid == flid) 
+            if (add_ftbl->flid == flid) 
             {
-                strncpy(fname, (char*)ptinfo->fname, ADXF_FNAME_MAX);
+                strncpy(fname, (char*)info->fname, ADXF_FNAME_MAX);
+
+                *dir = info->curdir; 
                 
-                *dir = ptinfo->curdir;
-                
-                *ofst = finfo2->ofst;
-                *fnsct = finfo2->fnsct;
+                *ofst = add_ftbl->ofst;
+                *fnsct = add_ftbl->fnsct;
                 
                 return ret;
             }
         }
     }
 
-    ofst2 = *(Uint16*)&ptinfo->top;
-    fnsct2 = (Uint16*)&ptinfo->top + 1;
+    fl_ofst = *(Uint16*)&info->top;
+    org_ftbl = (Uint16*)&info->top + 1;
 
     for (i = 0; i < flid; i++) 
     {
-        ofst2 += fnsct2[i];
+        fl_ofst += org_ftbl[i];
     }
 
-    strncpy(fname, (char*)ptinfo->fname, ADXF_FNAME_MAX);
+    strncpy(fname, (char*)info->fname, ADXF_FNAME_MAX);
+
+    *dir = info->curdir; 
     
-    *dir = ptinfo->curdir; 
-    
-    *ofst = ofst2;
-    *fnsct = fnsct2[flid];
+    *ofst = fl_ofst;
+    *fnsct = org_ftbl[flid];
     
     return ret;
 }
@@ -535,16 +535,21 @@ Sint32 ADXF_GetNumReqSct(ADXF adxf, Sint32 *seekpos)
 // 100% matching!
 Sint32 ADXF_GetPtinfoSize(Sint32 ptid)
 {
-    return adxf_ptinfo[ptid]->size;
+    ADXF_PTINFO *info;
+
+    info = adxf_ptinfo[ptid];
+    
+    return info->size;
 }
 
 // 100% matching!
 Sint32 ADXF_GetPtStat(Sint32 ptid) 
 {
-    Sint32 stat;
-    Uint16* fnsct;
-    Sint32 rdsct;
-    ADXF_PTINFO* ptinfo;
+    Uint16 *infotbl;
+	Uint16 *ftbl;
+	ADXF_PTINFO *info;
+	Sint32 stat;
+	Sint32 pos;
 
     if (ptid != adxf_ldptnw_ptid) 
     {
@@ -557,11 +562,13 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
     
     if (stat == ADXF_STAT_READEND)
     {
-        ptinfo = adxf_ptinfo[ptid];
+        info = adxf_ptinfo[ptid];
+
+        infotbl = (Uint16*)&info->top;
         
-        fnsct = (Uint16*)&ptinfo->top + 1;
+        ftbl = &infotbl[1];
         
-        if (ptinfo->nfile == 0) 
+        if (info->nfile == 0) 
         {
             if (memcmp(buf, "AFS", 3) != 0)
             {
@@ -581,24 +588,24 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
                 return ADXF_STAT_ERROR;
             }
             
-            ptinfo->nfile = ptinfo->nentry = ((Uint32*)buf)[1];
+            info->nfile = info->nentry = ((Uint32*)buf)[1];
             
-            ptinfo->size = (((Uint32)ptinfo->nfile + 140) >> 1) * 4;
+            info->size = (((Uint32)info->nfile + 140) / 2) * 4;
             
-            *(Uint16*)&ptinfo->top = ((Sint32*)buf)[2] / ADXF_DEF_SCT_SIZE;
+            *(Uint16*)&info->top = ((Sint32*)buf)[2] / ADXF_DEF_SCT_SIZE;
             
-            rdsct = 3;
+            pos = 3;
         }
         else 
         {
-            rdsct = 1;
+            pos = 1;
         }
         
-        for ( ; rdsct < ADXF_DEF_REQ_RD_SCT; rdsct += 2)
+        for ( ; pos < ADXF_DEF_REQ_RD_SCT; pos += 2)
         {
-            fnsct[adxf_flno++] = (((Sint32*)buf)[rdsct] + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE;
+            ftbl[adxf_flno++] = (((Sint32*)buf)[pos] + (ADXF_DEF_SCT_SIZE - 1)) / ADXF_DEF_SCT_SIZE;
             
-            if (adxf_flno >= ptinfo->nfile) 
+            if (adxf_flno >= info->nfile) 
             {
                 stat = ADXF_STAT_READEND;
                 
@@ -607,7 +614,7 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
             }
         }
         
-        if (rdsct < ADXF_DEF_REQ_RD_SCT)
+        if (pos < ADXF_DEF_REQ_RD_SCT)
         {
             return stat;
         }
