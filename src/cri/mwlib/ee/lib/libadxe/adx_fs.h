@@ -10,8 +10,8 @@
 #define getRcnt0CountShort() *REG_RCNT0_COUNT & 0xFFFF
 
 ADXF adxf_AllocAdxFs(void);
-Sint32 adxf_ChkPrmGfr(Uint32 ptid, Sint32 flid);
-Sint32 adxf_ChkPrmPt(Uint32 ptid, ADXF_PTINFO* ptinfo);
+Sint32 adxf_ChkPrmGfr(Sint32 ptid, Sint32 flid);
+Sint32 adxf_ChkPrmPt(Sint32 ptid, void *ptinfo);
 void ADXF_Close(ADXF adxf);
 void ADXF_CloseAll(void);
 void adxf_CloseLdptnwHn(void);

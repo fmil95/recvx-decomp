@@ -165,27 +165,27 @@ ADXF adxf_AllocAdxFs(void)
 }
 
 // 100% matching!
-Sint32 adxf_ChkPrmGfr(Uint32 ptid, Sint32 flid)
+Sint32 adxf_ChkPrmGfr(Sint32 ptid, Sint32 flid)
 {
-    ADXF_PTINFO* ptinfo;
+    ADXF_PTINFO *info;
 
-    if (ptid >= ADXF_PART_MAX) 
+    if ((Uint32)ptid >= ADXF_PART_MAX) 
     {
         ADXERR_CallErrFunc1((const Sint8*)"E9040828:'ptid' is range outside.");
         
         return ADXF_ERR_PRM;
     }
     
-    ptinfo = adxf_ptinfo[ptid];
+    info = adxf_ptinfo[ptid];
     
-    if (ptinfo == NULL) 
+    if (info == NULL) 
     {
         ADXERR_CallErrFunc1((const Sint8*)"E9040828:'ptid' is range outside.");
         
         return ADXF_ERR_PRM;
     }
     
-    if ((flid < 0) || (flid >= ptinfo->nfile))
+    if ((flid < 0) || (flid >= info->nfile))
     {
         ADXERR_CallErrFunc1((const Sint8*)"E9040828:'flid' is range outside.");
         
@@ -196,9 +196,9 @@ Sint32 adxf_ChkPrmGfr(Uint32 ptid, Sint32 flid)
 }
 
 // 100% matching!
-Sint32 adxf_ChkPrmPt(Uint32 ptid, ADXF_PTINFO* ptinfo) 
+Sint32 adxf_ChkPrmPt(Sint32 ptid, void *ptinfo)
 {
-    if (ptid >= ADXF_PART_MAX) 
+    if ((Uint32)ptid >= ADXF_PART_MAX) 
     {
         ADXERR_CallErrFunc1((const Sint8*)"E9040801:'ptid' is range outside.(adxf_ChkPrmPt)");
         
@@ -234,7 +234,7 @@ void ADXF_Close(ADXF adxf)
             ADXSTM_Close(adxf->stm);
         }
         
-        *adxf = (ADX_FS){0};
+        memset(adxf, 0, sizeof(ADX_FS));
         
         ADXCRS_Unlock();
         
@@ -278,7 +278,7 @@ void adxf_CloseSjStm(ADXF adxf)
             ADXF_Ocbi(adxf->buf, adxf->bsize);
         }
         
-        adxf->sj->vtbl->Destroy(adxf->sj);
+        SJ_Destroy(adxf->sj);
         
         adxf->sj = NULL;
     }
@@ -319,19 +319,19 @@ ADXF adxf_CreateAdxFs(void)
 // 100% matching!
 void adxf_ExecOne(ADXF adxf) 
 {
-    Sint32 nsct;
+    Sint32 rdsct;
     
     if (adxf->stat == ADXF_STAT_READING)
     {
         adxf->stat = ADXSTM_GetStat(adxf->stm);
         
-        ADXSTM_GetCurOfst(adxf->stm, &nsct);
+        ADXSTM_GetCurOfst(adxf->stm, &rdsct);
         
-        adxf->rdsct = nsct;
+        adxf->rdsct = rdsct;
         
         if ((adxf->stat == ADXF_STAT_READEND) || (adxf->stat == ADXF_STAT_ERROR)) 
         {
-            adxf->skpos += nsct;
+            adxf->skpos += rdsct;
         
             adxf_CloseSjStm(adxf);
         }
