@@ -9,7 +9,7 @@
 
 #include <string.h>
 
-static ADX_BASIC adxb_obj[8] = { 0 };
+ADX_BASIC adxb_obj[8] = { 0 };
 
 // 100% matching!
 void ADXB_CopyExtraBufMono(Sint16 *obuf, Sint32 obsize, Sint32 xsize, Sint32 nxsmpl)

@@ -7,7 +7,7 @@
 Sint32 ADX_DecodeInfoWav(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk, Sint16 *cdc)
 {
 	WAVEFORMATEX *wfex;
-	static Sint8 *fmt_id = (Sint8*)"fmt";
+	static Sint8 *fmt_id = (Sint8*)"fmt ";
 	static Sint8 *data_id = (Sint8*)"data";
 	Sint32 i;
 	Sint32 wavsize;

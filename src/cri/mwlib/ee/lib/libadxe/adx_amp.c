@@ -3,8 +3,8 @@
 
 #include <string.h>
 
-static Sint32 adxsmp_init_cnt;
-static ADX_AMP adxamp_obj[8] = { 0 };
+Sint32 adxsmp_init_cnt = 0;
+ADX_AMP adxamp_obj[8] = { 0 };
 
 // 100% matching!
 ADXAMP ADXAMP_Create(Sint32 maxnch, SJ *sji, SJ *sjo) 

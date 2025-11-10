@@ -55,7 +55,7 @@ Sint32 ADX_DecodeInfoAu(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, 
 // 100% matching!
 Sint32 ADXB_CheckAu(Sint8 *ibuf)
 {
-    if ((memcmp(ibuf, ".snd", 4) == 0) || (memcmp(ibuf, ".sd", 4) == 0)) 
+    if ((memcmp(ibuf, ".snd", 4) == 0) || (memcmp(ibuf, ".sd ", 4) == 0)) 
     {
         return 1;
     }
