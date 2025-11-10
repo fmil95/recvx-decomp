@@ -9,6 +9,7 @@
 
 #define getRcnt0CountShort() *REG_RCNT0_COUNT & 0xFFFF
 
+Sint32 ADXF_AddPartition(Sint32 ptid, Char8 *fname, void *ptinfo, Sint32 nfile);
 ADXF adxf_AllocAdxFs(void);
 Sint32 adxf_ChkPrmGfr(Sint32 ptid, Sint32 flid);
 Sint32 adxf_ChkPrmPt(Sint32 ptid, void *ptinfo);
@@ -29,6 +30,8 @@ Sint32 ADXF_GetPtinfoSize(Sint32 ptid);
 Sint32 ADXF_GetPtStat(Sint32 ptid);
 Sint32 ADXF_GetStat(ADXF adxf);
 Sint32 adxf_LoadData(ADXF adxf, Sint32 nsct, void *rdbuf);
+Sint32 ADXF_LoadPartition(Sint32 ptid, Char8 *fname, void *ptinfo, Sint32 nfile);
+Sint32 ADXF_LoadPartitionEx(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo);
 Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo);
 ADXF ADXF_Open(Char8 *fname, void *atr);
 ADXF ADXF_OpenAfs(Sint32 ptid, Sint32 flid);
@@ -40,7 +43,7 @@ Sint32 ADXF_Seek(ADXF adxf, Sint32 pos, Sint32 type);
 Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid);
 void adxf_SetCmdHstry(Sint32 cmdid, Sint32 fg, Sint32 prm0, Sint32 prm1, Sint32 prm2);
 Sint32 adxf_SetFileInfoEx(ADXF adxf, Sint8 *fname, void *atr);
-void ADXF_SetOcbiSw(Sint32 fg);
+void ADXF_SetOcbiSw(Sint32 sw);
 void ADXF_SetReqRdSct(ADXF adxf, Sint32 nsct);
 Sint32 ADXF_Stop(ADXF adxf);
 void ADXF_StopPtLd(void);

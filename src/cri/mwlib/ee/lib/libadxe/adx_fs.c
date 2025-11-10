@@ -1304,7 +1304,7 @@ Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
     Sint8 fname[ADXF_FNAME_MAX];
     void *dir;
 
-    if (ADXF_GetFnameRangeEx(ptid, flid, fname, (void**)&dir, &ofst, &fnsct) < 0) 
+    if (ADXF_GetFnameRangeEx(ptid, flid, (Char8*)fname, (void**)&dir, &ofst, &fnsct) < 0) 
     {
         return ADXF_ERR_PRM;
     }
@@ -1394,9 +1394,9 @@ Sint32 adxf_SetFileInfoEx(ADXF adxf, Sint8 *fname, void *atr)
 }
 
 // 100% matching!
-void ADXF_SetOcbiSw(Sint32 fg) 
+void ADXF_SetOcbiSw(Sint32 sw) 
 {
-    adxf_ocbi_fg = fg;
+    adxf_ocbi_fg = sw;
 }
 
 // 100% matching!
@@ -1415,7 +1415,7 @@ void ADXF_SetReqRdSct(ADXF adxf, Sint32 nsct)
 // 100% matching!
 Sint32 ADXF_Stop(ADXF adxf)
 {
-    Sint32 nsct;
+    Sint32 rdsct;
     
     adxf_SetCmdHstry(5, 0, (Sint32)adxf, -1, -1);
     
@@ -1445,9 +1445,9 @@ Sint32 ADXF_Stop(ADXF adxf)
             
             ADXSTM_Stop(adxf->stm);
             
-            ADXSTM_GetCurOfst(adxf->stm, &nsct);
+            ADXSTM_GetCurOfst(adxf->stm, &rdsct);
             
-            adxf->rdsct = nsct;
+            adxf->rdsct = rdsct;
             
             adxf_CloseSjStm(adxf);
             
