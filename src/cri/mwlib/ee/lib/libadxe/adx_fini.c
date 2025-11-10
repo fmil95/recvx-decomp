@@ -2,8 +2,8 @@
 
 #include <string.h>
 
-static char* volatile adxf_build = "\nADXF Ver 6.07 Build:Mar 13 2001 11:41:26\n";
-static Sint32 adxf_init_cnt = 0;
+char* volatile adxf_build = "\nADXF Ver 6.07 Build:Mar 13 2001 11:41:26\n";
+Sint32 adxf_init_cnt = 0;
 ADX_FS adxf_obj[ADXF_OBJ_MAX] = { 0 };
 ADXF_PTINFO *adxf_ptinfo[ADXF_PART_MAX] = { 0 };
 Sint32 adxf_ocbi_fg = 0;

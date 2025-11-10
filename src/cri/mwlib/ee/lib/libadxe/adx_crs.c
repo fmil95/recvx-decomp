@@ -1,7 +1,8 @@
 #include "adx_crs.h"
 #include "adx_mps2.h"
 
-static Sint32 adxcrs_lvl;
+Sint32 adxcrs_lvl = 0;
+Sint32 adxcrs_msk = 0; /* unused */
 
 // 100% matching!
 void ADXCRS_Init(void) 

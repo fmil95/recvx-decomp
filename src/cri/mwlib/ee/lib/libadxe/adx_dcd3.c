@@ -1,5 +1,6 @@
 #include "adx_dcd3.h"
 
+// TODO: these two tables below should be declared in a separate file called adx_qtbl
 const Float32 AdxQtblFloat0[256] = 
 { 
           0.0f,       0.0f,       0.0f,       0.0f,       0.0f,       0.0f,       0.0f,       0.0f,
@@ -70,7 +71,7 @@ const Float32 AdxQtblFloat1[256] =
           0.0f,   65536.0f,  131072.0f,  196608.0f,  262144.0f,  327680.0f,  393216.0f,  458752.0f,
     -524288.0f, -458752.0f, -393216.0f, -327680.0f, -262144.0f, -196608.0f, -131072.0f,  -65536.0f
 };
-Sint32 adx_decode_output_mono_flag;
+Sint32 adx_decode_output_mono_flag = 0;
 
 // 100% matching!
 Sint32 ADX_DecodeMonoFloat(Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l, Sint16 *dly_l, Sint16 k0, Sint16 k1)

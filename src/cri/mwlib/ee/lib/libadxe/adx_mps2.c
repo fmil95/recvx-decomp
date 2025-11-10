@@ -3,21 +3,21 @@
 
 #include <libgraph.h>
 
-static char* volatile adxps2_build = "\nADXPS2 Ver.1.01 Build:Mar 14 2001 14:23:33\n";
-static int adxps2_cur_tid;
+char* volatile adxps2_build = "\nADXPS2 Ver.1.01 Build:Mar 14 2001 14:23:33\n";
 static ADXPS2_TPRM adxps2_save_tprm = { 0 };
-static int adxps2_cur_prio;
-static Sint32 volatile adxps2_lock_count;
-static Sint32 volatile adxps2_exec_svr;
-static int volatile adxps2_id_adx;
-static int volatile adxps2_id_main;
-static int volatile adxps2_id_safe;
-static int adxps2_main_prio_def;
-static int (*adxps2_old_cbf)(int arg);
-static long unsigned int volatile adxps2_scnt;
-static long unsigned int volatile adxps2_vcnt;
+int volatile adxps2_id_safe = 0;
+int volatile adxps2_id_adx = 0;
+int volatile adxps2_id_main = 0;
+Sint32 volatile adxps2_exec_svr = 0;
+Sint32 volatile adxps2_lock_count = 0;
+long unsigned int volatile adxps2_scnt = 0;
+long unsigned int volatile adxps2_vcnt = 0;
+int (*adxps2_old_cbf)(int arg) = NULL;
+int adxps2_cur_prio = 0;
+int adxps2_cur_tid = 0;
+int adxps2_main_prio_def = 0;
 static char adxps2_stk_adx[DEF_STACK_SIZE] bss_align(64);
-static char adxps2_stk_safe[DEF_STACK_SIZE] bss_align(64);
+static char adxps2_stk_safe[DEF_STACK_SIZE] bss_align(64); // TODO: double-check whether DEF_STACK_SIZE should be 2048, or 4096 instead
 
 // 100% matching!
 void adxps2_adx_thrd_func(void)

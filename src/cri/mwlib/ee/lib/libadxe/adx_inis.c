@@ -8,11 +8,11 @@
 
 #include <string.h>
 
-static Sint32 adxt_vsync_svr_flag;
-Sint32 adxt_init_cnt;
+Sint8 adxt_obj_mark[16] = "MARK:adxt_obj"; /* unused */
+Sint32 adxt_init_cnt = 0;
+Sint32 adxt_vsync_svr_flag = 1;
+Uint32 adxt_vsync_cnt = 0;
 ADX_TALK adxt_obj[ADXT_MAX_OBJ] = { 0 };
-Uint32 adxt_vsync_cnt;
-static Sint8 adxt_obj_mark[16] = "MARK:adxt_obj"; /* unused */
 
 // 100% matching!
 void adxini_rnaerr_cbfn(void *obj, const Char8 *msg)

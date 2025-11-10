@@ -5,7 +5,7 @@
 
 #include <string.h>
 
-static ADX_SJDEC adxsjd_obj[8] = { 0 };
+ADX_SJDEC adxsjd_obj[8] = { 0 };
 
 // 100% matching!
 void adxsjd_clear(ADXSJD sjd)
