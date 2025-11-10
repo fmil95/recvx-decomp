@@ -8,19 +8,19 @@
 #include <eekernel.h>
 #include <sifrpc.h>
 
-static Char8* volatile dtx_build = "\nDTX Ver.0.95 Build:Jan 26 2001 09:57:12\n";
-static DTX_OBJ dtx_clnt[8] = { 0 };
-static Sint32 dtx_svr[136] = { 0 }; /* unused */
-static sceSifClientData dtx_cd = { 0 };
-static sceSifServeData dtx_sd = { 0 };
-static Uint32 dtx_svrbuf[64] = { 0 };
-static sceSifRpcFunc dtx_urpc_fn[64] = { 0 };
-static Uint32 dtx_urpc_obj[64] = { 0 }; 
+Char8* volatile dtx_build = "\nDTX Ver.0.95 Build:Jan 26 2001 09:57:12\n";
+Sint32 dtx_rpc_id = 0x7D000000;
+Sint32 volatile dtx_proc_init_flag = 0;
+Sint32 dtx_init_cnt = 0;
+DTX_OBJ dtx_clnt[8] = { 0 };
+DTX_OBJ dtx_svr[8] = { 0 }; /* unused */
+sceSifClientData dtx_cd = { 0 };
+sceSifServeData dtx_sd = { 0 };
+u_long128 dtx_svrbuf[16] = { 0 };
+sceSifRpcFunc dtx_urpc_fn[64] = { 0 };
+void *dtx_urpc_obj[64] = { 0 }; 
+static Uint32 dtx_sbuf[SSIZE/sizeof(Uint32)] __attribute__((aligned(64))); // TODO: double-check array size is the correct one here
 static Uint32 dtx_rbuf[RSIZE/sizeof(Uint32)] __attribute__((aligned(64)));
-static Uint32 dtx_sbuf[SSIZE/sizeof(Uint32)] __attribute__((aligned(64)));
-static Sint32 dtx_init_cnt;
-static Uint32 dtx_rpc_id;
-static Sint32 volatile dtx_proc_init_flag;
 
 // 100% matching!
 Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32 rsize)
@@ -329,7 +329,7 @@ void* dtx_rpc_func(Uint32 fno, DTX_RPC data, Uint32 size)
             
             if (fn != NULL) 
             {
-                fn(dtx_urpc_obj[fno - 1024], data, size / 4);
+                fn((Uint32)dtx_urpc_obj[fno - 1024], data, size / 4);
             }
         }         
         

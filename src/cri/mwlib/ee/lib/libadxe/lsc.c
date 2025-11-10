@@ -9,9 +9,9 @@
 
 /* The KATANA SDK has a header for this file, cri_lsc.h, while the PS2 CRIware headers don't. */
 
-static LSC_STATFN lsc_stat_func;
-static void *lsc_stat_obj1;
-static void *lsc_stat_obj2;
+LSC_STATFN lsc_stat_func = NULL;
+void *lsc_stat_obj1 = NULL;
+void *lsc_stat_obj2 = NULL;
 
 // 100% matching!
 LSC lsc_Alloc(void) 

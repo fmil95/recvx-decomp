@@ -2,9 +2,9 @@
 
 #include <stdio.h>
 
-static LSC_ERRFN lsc_err_func;
-static void *lsc_err_obj;
-static Sint8 lsc_err_msg[256] = { 0 }; 
+LSC_ERRFN lsc_err_func = NULL;
+void *lsc_err_obj = NULL;
+Sint8 lsc_err_msg[256] = { 0 }; 
 
 // 100% matching! 
 void LSC_CallErrFunc(const char *fmt, ...) // according to the symbols it is Sint8 instead of char, but char compiles easier

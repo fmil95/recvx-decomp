@@ -1,6 +1,7 @@
 #include "rna_crs.h"
 
-static Sint32 rna_crs_lvl;
+Sint32 rna_crs_lvl = 0;
+Sint32 rna_crs_msk = 0;
 
 // 100% matching!
 void RNACRS_Finish(void) 

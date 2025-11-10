@@ -9,8 +9,9 @@
 #include <eekernel.h>
 #include <sifrpc.h>
 
-static DTR_OBJ dtr_obj[16] = { 0 };
-static Sint32 dtr_init_cnt;
+Char8* volatile dtr_build = "\nDTR Ver.0.91 Build:Jan 26 2001 09:57:01\n";
+Sint32 dtr_init_cnt = 0;
+DTR_OBJ dtr_obj[16] = { 0 };
 
 // 100% matching!
 DTR DTR_Create(SJ sjo, SJ sji)
