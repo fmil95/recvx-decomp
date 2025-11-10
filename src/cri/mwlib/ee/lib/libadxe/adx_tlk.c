@@ -15,13 +15,21 @@
 #include <stdio.h>
 #include <string.h>
 
-static Uint32 adxt_svrcnt;
-static Uint32 adxt_svrcnt_sjd;
-static Uint32 adxt_svrcnt_rna;
-static Uint32 adxt_svrcnt_hndl;
-static Sint32 adxt_time_unit;
-static Sint32 adxt_time_mode;
-static float adxt_diff_av;
+Sint32 adxt_time_mode = 0;
+Sint32 adxt_tsvr_enter_cnt; /* unused */
+Uint32 adxt_time_adjust_cnt; /* unused */
+Uint32 adxt_time_adjust_sw; /* unused */
+Uint32 adxt_svrcnt = 0;
+Uint32 adxt_svrcnt_sjd = 0;
+Uint32 adxt_svrcnt_rna = 0;
+Uint32 adxt_svrcnt_adxf = 0; /* unused */
+Uint32 adxt_svrcnt_adxstm = 0; /* unused */
+Uint32 adxt_svrcnt_hndl = 0;
+Sint32 adxt_mviop_f = 0; /* unused */
+Sint32 adxt_mviop_d = 0; /* unused */
+Sint32 adxt_mvtmp_d = 0; /* unused */
+Sint32 adxt_time_unit = 0;
+float adxt_diff_av = 0;
 
 // 100% matching! 
 void ADXT_ClearErrCode(ADXT adxt)

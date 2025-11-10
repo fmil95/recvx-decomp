@@ -11,9 +11,9 @@
 
 #include <string.h>
 
-static Sint32 adxt_dbg_rna_ndata;
-static Sint32 adxt_dbg_nch;
-static Sint32 adxt_dbg_ndt;
+Sint32 adxt_dbg_nch = 0;
+Sint32 adxt_dbg_ndt = 0;
+Sint32 adxt_dbg_rna_ndata = 0;
 
 // 100% matching!
 void adxt_eos_entry(void *obj)

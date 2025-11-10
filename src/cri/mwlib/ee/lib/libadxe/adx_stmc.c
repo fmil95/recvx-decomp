@@ -4,11 +4,13 @@
 
 #include <string.h>
 
-static ADXSTM_FILE adxstmf_obj[40] = { 0 };
-static Sint32 adxstm_sj_internal_error_cnt;
-static Sint32 adxstmf_nrml_num;
-static Sint32 adxstmf_nrml_ofst;
-static Sint32 adxstmf_num_rtry;
+Sint32 adxstmf_rtim_ofst = 0; /* unused */
+Sint32 adxstmf_rtim_num = 8; /* unused */
+Sint32 adxstmf_nrml_ofst = 8;
+Sint32 adxstmf_nrml_num = 32;
+Sint32 adxstmf_num_rtry = -1;
+Sint32 adxstm_sj_internal_error_cnt = 0;
+ADXSTM_FILE adxstmf_obj[40] = { 0 };
 
 // 100% matching!
 void ADXSTM_Close(ADXSTM stm) 

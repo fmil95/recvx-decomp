@@ -6,7 +6,7 @@
 #include "adx_tlk.h"
 #include "lsc.h"
 
-static Char8* volatile adxt_build = "\nADXT Ver.6.24 Build:Mar 14 2001 14:23:32\n";
+Char8* volatile adxt_build = "\nADXT Ver.6.24 Build:Mar 14 2001 14:23:32\n";
 
 // 100% matching! 
 void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)

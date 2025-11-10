@@ -4,8 +4,8 @@
 
 #include <string.h>
 
-static ADX_XPDOBJ adxpd_obj[8] = { 0 };
-static Sint32 adxpd_internal_error;
+Sint32 adxpd_internal_error = 0;
+ADX_XPDOBJ adxpd_obj[8] = { 0 };
 
 // 100% matching!
 ADXPD ADXPD_Create(void)
