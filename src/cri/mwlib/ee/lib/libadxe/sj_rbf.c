@@ -2,11 +2,11 @@
 
 #include <string.h>
 
-static Char8* volatile sj_build = "\nSJ Ver.6.00 Build:Jan 26 2001 09:59:32\n";
-static SJRBF_OBJ sjrbf_obj[64] = { 0 };
-static SJ_IF sjrbf_vtbl = { NULL, NULL, NULL, (void*)SJRBF_Destroy, (void*)SJRBF_GetUuid, (void*)SJRBF_Reset, (void*)SJRBF_GetChunk,(void*)SJRBF_UngetChunk, (void*)SJRBF_PutChunk, (void*)SJRBF_GetNumData, (void*)SJRBF_IsGetChunk, (void*)SJRBF_EntryErrFunc };
+char* volatile sj_build = "\nSJ Ver.6.00 Build:Jan 26 2001 09:59:32\n";
 static const UUID sjrbf_uuid = { 0x3B9A9E81, 0x0DBB, 0x11D2, { 0xA6, 0xBF, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00 } }; 
-static Sint32 sjrbf_init_cnt;
+SJ_IF sjrbf_vtbl = { NULL, NULL, NULL, (void*)SJRBF_Destroy, (void*)SJRBF_GetUuid, (void*)SJRBF_Reset, (void*)SJRBF_GetChunk,(void*)SJRBF_UngetChunk, (void*)SJRBF_PutChunk, (void*)SJRBF_GetNumData, (void*)SJRBF_IsGetChunk, (void*)SJRBF_EntryErrFunc };
+Sint32 sjrbf_init_cnt = 0;
+SJRBF_OBJ sjrbf_obj[64] = { 0 };
 
 // 100% matching!
 SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize) // should return SJRBF, but doing so clashes with the header definition

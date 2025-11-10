@@ -2,10 +2,10 @@
 
 #include <string.h>
 
-static SJMEM_OBJ sjmem_obj[32] = { 0 };
-static SJ_IF sjmem_vtbl = { NULL, NULL, NULL, (void*)SJMEM_Destroy, (void*)SJMEM_GetUuid, (void*)SJMEM_Reset, (void*)SJMEM_GetChunk,(void*)SJMEM_UngetChunk, (void*)SJMEM_PutChunk, (void*)SJMEM_GetNumData, (void*)SJMEM_IsGetChunk, (void*)SJMEM_EntryErrFunc };
 static const UUID sjmem_uuid = { 0xDD9EEE41, 0x1679, 0x11D2, { 0x93, 0x6C, 0x00, 0x60, 0x08, 0x94, 0x48, 0xBC } };
-static Sint32 sjmem_init_cnt;
+SJ_IF sjmem_vtbl = { NULL, NULL, NULL, (void*)SJMEM_Destroy, (void*)SJMEM_GetUuid, (void*)SJMEM_Reset, (void*)SJMEM_GetChunk,(void*)SJMEM_UngetChunk, (void*)SJMEM_PutChunk, (void*)SJMEM_GetNumData, (void*)SJMEM_IsGetChunk, (void*)SJMEM_EntryErrFunc };
+Sint32 sjmem_init_cnt = 0;
+SJMEM_OBJ sjmem_obj[32] = { 0 };
 
 // 100% matching!
 SJ SJMEM_Create(Sint8 *data, Sint32 bsize) // should return SJMEM, but doing so clashes with the header definition

@@ -1,10 +1,10 @@
 #include "sjr_clt.h"
 #include "dtx.h"
 
-static Char8* volatile sjrmt_build = "\nSJRMT Ver 0.93 Build:Jan 26 2001 09:59:44\n";
+Char8* volatile sjrmt_build = "\nSJRMT Ver 0.93 Build:Jan 26 2001 09:59:44\n";
+Sint32 sjrmt_init_cnt = 0;
+static Sint32 sjrmt_sbuf[4]; // TODO: double-check the array size is correct here
 static Sint32 sjrmt_rbuf[4];
-static Sint32 sjrmt_sbuf[4];
-static Sint32 sjrmt_init_cnt = 0;
 
 // 100% matching!
 void* SJMEM_CreateRmt(Sint32 mode, Sint8 *work, Sint32 wksize)

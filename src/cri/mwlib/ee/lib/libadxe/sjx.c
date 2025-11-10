@@ -4,14 +4,14 @@
 #include <stdio.h>
 #include <string.h>
 
-static Char8* volatile sjx_build = "\nSJX Ver 1.00 Build:Jan 26 2001 09:59:55\n";
-static SJX_OBJ sjx_obj[16] = { 0 };
-static Sint32 sjx_init_cnt;
-static Sint32 sjx_wklen;
-static void* sjx_eewk;
-static Sint32 sjx_ee_work[564] = { 0 };
-static void* sjx_iopwk;
-static DTX sjx_dtx;
+Char8* volatile sjx_build = "\nSJX Ver 1.00 Build:Jan 26 2001 09:59:55\n";
+Sint32 sjx_init_cnt = 0;
+void *sjx_eewk = NULL;
+void *sjx_iopwk = NULL;
+SJX_OBJ sjx_obj[16] = { 0 };
+DTX sjx_dtx = NULL;
+Sint32 sjx_wklen = 0;
+Sint8 sjx_ee_work[2256] = { 0 };
 
 // 100% matching!
 SJX SJX_Create(SJ sj, Sint8 *work, Sint32 wksize) 
