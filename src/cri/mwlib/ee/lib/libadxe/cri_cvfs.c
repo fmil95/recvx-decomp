@@ -13,7 +13,6 @@ static Sint32 cvfs_init_cnt = 0;
 static Char8 cvfs_defdev[9];
 static CVFS_OBJ cvfs_obj[40];
 static CVFS_NAME_OBJ cvfs_tbl[32];
-static CVFS_NAME_OBJ D_01E2A604[32];
 
 // 100% matching!
 CVFS addDevice(Char8* devname, void* (*getdevif()))
@@ -199,9 +198,9 @@ void cvFsDelDev(Char8* devname)
 
     for (i = 0; i < 32; i++) 
     {
-        if (strncmp(devname, D_01E2A604[i].name, nameln) == 0) 
+        if (strncmp(devname, cvfs_tbl[i].name, nameln) == 0) 
         {
-            D_01E2A604[i].name[0] = '\0';
+            cvfs_tbl[i].name[0] = '\0';
             return;
         }
     }
@@ -363,7 +362,7 @@ CVFS_NAME cvFsGetDevName(CVFS cvfs)
         } 
     } 
     
-    return &D_01E2A604[i];
+    return (CVFS_NAME)cvfs_tbl[i].name;
 }
 
 // 100% matching!
@@ -514,9 +513,9 @@ Sint32 cvFsGetFreeSize(Char8* fname)
     
     for (i = 0; i < 32; i++)
     {
-        if (strncmp(devname, (char*)&D_01E2A604[i].name, nameln) == 0) 
+        if (strncmp(devname, (char*)&cvfs_tbl[i].name, nameln) == 0) 
         {
-            cvfs = (CVFS)&D_01E2A604[i].dev;
+            cvfs = (CVFS)&cvfs_tbl[i].dev;
             
             if (cvfs->vtbl == NULL) 
             {
@@ -1205,9 +1204,9 @@ CVFS getDevice(const Char8 *devname)
 
     for (i = 0; i < 32; i++)
     {
-        if (strncmp((char*)devname, (char*)&D_01E2A604[i].name, nameln) == 0)
+        if (strncmp((char*)devname, (char*)&cvfs_tbl[i].name, nameln) == 0)
         {
-            return D_01E2A604[i].dev;
+            return cvfs_tbl[i].dev;
         }
     }
 
@@ -1312,7 +1311,7 @@ Sint32 isExistDev(const Char8* devname, Sint32 nameln)
 
     for (i = 0; i < 32; i++) 
     {
-        if (strncmp(devname, D_01E2A604[i].name, nameln) == 0)
+        if (strncmp(devname, cvfs_tbl[i].name, nameln) == 0)
         {
             return 1;
         }
