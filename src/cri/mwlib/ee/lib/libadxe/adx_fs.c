@@ -7,7 +7,6 @@
 
 #include <string.h>
 
-Sint32* D_01E272F0; // this is actually work below
 static Sint32 work[2112];
 static Sint32 *buf;
 static Sint8 *wrk32;
@@ -926,12 +925,12 @@ label:
 // 100% matching!
 Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo) 
 {
-    Sint32 rdsct;
-    Sint32 errmsg;
+    Sint32 rqsct;
+    Sint32 ret;
 
-    errmsg = adxf_ChkPrmPt(ptid, ptinfo);
+    ret = adxf_ChkPrmPt(ptid, ptinfo);
     
-    if (errmsg >= ADXF_ERR_OK) 
+    if (ret >= ADXF_ERR_OK) 
     {
         if (adxf_ldptnw_ptid >= 0) 
         {
@@ -965,27 +964,27 @@ Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
         
         ((ADXF_PTINFO*)ptinfo)->curdir = dir;
         
-        wrk32 = (Sint8*)((Sint32)&D_01E272F0 & ADXF_DEF_ALIGN_CALC);
+        wrk32 = (Sint8*)((Sint32)work & ADXF_DEF_ALIGN_CALC);
 
-        buf = (Sint32*)((Sint32)&D_01E272F0 & ADXF_DEF_ALIGN_CALC);
+        buf = (Sint32*)((Sint32)work & ADXF_DEF_ALIGN_CALC);
         
-        rdsct = ADXF_ReadNw32(adxf_ldptnw_hn, 1, buf);
+        rqsct = ADXF_ReadNw32(adxf_ldptnw_hn, 1, buf);
         
-        if (rdsct >= 0) 
+        if (rqsct >= 0) 
         {
             ((ADXF_PTINFO*)ptinfo)->nfile = 0;
             
-            errmsg = ADXF_ERR_OK;
+            ret = ADXF_ERR_OK;
         }
         else 
         {
             ADXF_Close(adxf_ldptnw_hn);
             
-            return rdsct;
+            return rqsct;
         }
     }
     
-    return errmsg;
+    return ret;
 }
 
 // 100% matching!
