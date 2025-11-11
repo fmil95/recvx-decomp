@@ -9,75 +9,83 @@ Sint32 sjrbf_init_cnt = 0;
 SJRBF_OBJ sjrbf_obj[64] = { 0 };
 
 // 100% matching!
-SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize) // should return SJRBF, but doing so clashes with the header definition
+SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize)
 {
-    SJRBF sjrbf;
-    Sint32 i;
-
+    Sint32 no;
+	SJRBF rbf;
+    
     SJCRS_Lock();
 
-    for (i = 0; i < 64; i++)
+    for (no = 0; no < 64; no++)
     {
-        if (sjrbf_obj[i].used == FALSE) 
+        if (sjrbf_obj[no].used == FALSE) 
         {
             break;
         }
     }
 
-    if (i == 64) 
+    if (no == 64) 
     {
-        sjrbf = NULL;
+        rbf = NULL;
     }
     else 
     {
-        sjrbf = &sjrbf_obj[i];
+        rbf = &sjrbf_obj[no];
         
-        sjrbf->used = TRUE;
+        rbf->used = TRUE;
         
-        sjrbf->sj.vtbl = &sjrbf_vtbl;
+        rbf->vtbl = &sjrbf_vtbl;
         
-        sjrbf->buf = buf;
+        rbf->buf = buf;
         
-        sjrbf->bfsize = bsize;
-        sjrbf->xtrsize = xsize;
+        rbf->bsize = bsize;
+        rbf->xsize = xsize;
         
-        sjrbf->uuid = &sjrbf_uuid;
+        rbf->uuid = &sjrbf_uuid;
         
-        sjrbf->err_func = (void*)SJRBF_Error;
-        sjrbf->err_obj = sjrbf;
+        rbf->errfunc = (void*)SJRBF_Error;
+        rbf->errobj = rbf;
         
-        SJRBF_Reset(sjrbf);
+        SJRBF_Reset((SJ)rbf);
     }
 
     SJCRS_Unlock();
     
-    return (SJ)sjrbf;
+    return (SJ)rbf;
 }
 
 // 100% matching!
-void SJRBF_Destroy(SJRBF sjrbf)
+void SJRBF_Destroy(SJ sj)
 {
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
+    
     SJCRS_Lock();
     
-    if (sjrbf != NULL) 
+    if (rbf != NULL) 
     {
-        memset(sjrbf, 0, sizeof(SJRBF_OBJ));
+        memset(rbf, 0, sizeof(SJRBF_OBJ));
         
-        sjrbf->used = FALSE;
+        rbf->used = FALSE;
     }
     
     SJCRS_Unlock();
 }
 
 // 100% matching!
-void SJRBF_EntryErrFunc(SJRBF sjrbf, SJRBF_ERRFN func, void* obj) 
+void SJRBF_EntryErrFunc(SJ sj, SJRBF_ERRFN func, void *obj)
 {
-    sjrbf->err_func = func;
-    sjrbf->err_obj = obj;
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
+    
+    rbf->errfunc = func;
+    rbf->errobj = obj;
 }
 
 // 99.29% matching
-void SJRBF_Error(void) 
+void SJRBF_Error(SJRBF rbf, Sint32 errcode)
 {
     while (TRUE);
 }
@@ -92,41 +100,51 @@ void SJRBF_Finish(void)
 }
 
 // 100% matching!
-void* SJRBF_GetBufPtr(SJRBF sjrbf)
+Sint8* SJRBF_GetBufPtr(SJRBF sjrbf)
 {
     return sjrbf->buf;
 }
 
 // 100% matching!
-Sint32 SJRBF_GetBufSize(SJRBF sjrbf) 
+Sint32 SJRBF_GetBufSize(SJRBF sjrbf)
 {
-    return sjrbf->bfsize;
+    return sjrbf->bsize;
 }
 
 // 100% matching!
-void SJRBF_GetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, SJCK *ck)
+void SJRBF_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
 {
+    Sint32 pos;
+    Sint32 pos2;
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
+    
     SJCRS_Lock();
 
     if (id == 0)
     {
-        ck->len = MIN(MIN(sjrbf->unk10, (sjrbf->bfsize - sjrbf->unk14) + sjrbf->xtrsize), nbyte); // simplify this line
+        pos = MIN(rbf->nroom, (rbf->bsize - rbf->wpos) + rbf->xsize);
+            
+        ck->len = MIN(pos, nbyte); 
         
-        ck->data = (void*)((Sint32)sjrbf->buf + sjrbf->unk14); // simplify this too
+        ck->data = (void*)((Sint32)rbf->buf + rbf->wpos); // casts added for MWCC compatibility
         
-        sjrbf->unk14 = (sjrbf->unk14 + ck->len) % sjrbf->bfsize;
+        rbf->wpos = (rbf->wpos + ck->len) % rbf->bsize;
         
-        sjrbf->unk10 -= ck->len;
+        rbf->nroom -= ck->len;
     }
     else if (id == 1) 
     {
-        ck->len = MIN(MIN(sjrbf->datano, (sjrbf->bfsize - sjrbf->unk18) + sjrbf->xtrsize), nbyte); // same as above
+        pos2 = MIN(rbf->ndata, (rbf->bsize - rbf->rpos) + rbf->xsize);
         
-        ck->data = (void*)((Sint32)sjrbf->buf + sjrbf->unk18);
+        ck->len = MIN(pos2, nbyte); 
         
-        sjrbf->unk18 = (sjrbf->unk18 + ck->len) % sjrbf->bfsize;
+        ck->data = (void*)((Sint32)rbf->buf + rbf->rpos); // same as above
         
-        sjrbf->datano -= ck->len;
+        rbf->rpos = (rbf->rpos + ck->len) % rbf->bsize;
+        
+        rbf->ndata -= ck->len;
     }
     else
     {
@@ -134,9 +152,9 @@ void SJRBF_GetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, SJCK *ck)
         
         ck->data = NULL;
 
-        if (sjrbf->err_func != NULL)
+        if (rbf->errfunc != NULL)
         {
-            sjrbf->err_func(sjrbf->err_obj, -3);
+            rbf->errfunc(rbf->errobj, -3);
         }
     }
 
@@ -144,34 +162,42 @@ void SJRBF_GetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, SJCK *ck)
 }
 
 // 100% matching!
-Sint32 SJRBF_GetNumData(SJRBF sjrbf, Sint32 id)  
+Sint32 SJRBF_GetNumData(SJ sj, Sint32 id)
 {
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
+    
     if (id == 1) 
     {
-        return sjrbf->datano;
+        return rbf->ndata;
     }
     else if (id == 0) 
     {
-        return sjrbf->unk10;
+        return rbf->nroom;
     } 
-    else if (sjrbf->err_func != NULL) 
+    else if (rbf->errfunc != NULL) 
     {
-        sjrbf->err_func(sjrbf->err_obj, -3);
+        rbf->errfunc(rbf->errobj, -3);
     }
     
     return 0;
 }
 
 // 100% matching!
-const UUID* SJRBF_GetUuid(SJRBF sjrbf)
+const UUID* SJRBF_GetUuid(SJ sj)
 {
-    return sjrbf->uuid;
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
+    
+    return rbf->uuid;
 }
 
 // 100% matching!
 Sint32 SJRBF_GetXtrSize(SJRBF sjrbf) 
 {
-    return sjrbf->xtrsize;
+    return sjrbf->xsize;
 }
 
 // 100% matching!
@@ -186,44 +212,51 @@ void SJRBF_Init(void)
 }
 
 // 100% matching!
-Sint32 SJRBF_IsGetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
+Sint32 SJRBF_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
 {
-    Sint32 len;
+    Sint32 cklen;
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
 
     SJCRS_Lock();
     
     if (id == 0) 
     {
-        len = MIN(sjrbf->unk10, (sjrbf->bfsize - sjrbf->unk14) + sjrbf->xtrsize);
-        len = MIN(len, nbyte);
+        cklen = MIN(rbf->nroom, (rbf->bsize - rbf->wpos) + rbf->xsize);
+        cklen = MIN(cklen, nbyte);
     } 
     else if (id == 1) 
     {
-        len = MIN(sjrbf->datano, (sjrbf->bfsize - sjrbf->unk18) + sjrbf->xtrsize);
-        len = MIN(len, nbyte);
+        cklen = MIN(rbf->ndata, (rbf->bsize - rbf->rpos) + rbf->xsize);
+        cklen = MIN(cklen, nbyte);
     } 
     else 
     {
-        len = 0;
+        cklen = 0;
 
-        if (sjrbf->err_func != NULL)
+        if (rbf->errfunc != NULL)
         {
-            sjrbf->err_func(sjrbf->err_obj, -3); 
+            rbf->errfunc(rbf->errobj, -3); 
         }
     }
 
-    *rbyte = len;
+    *rbyte = cklen;
     
     SJCRS_Unlock();
     
-    return len == nbyte;
+    return cklen == nbyte;
 }
 
 // 100% matching!
-void SJRBF_PutChunk(SJRBF sjrbf, Sint32 id, SJCK *ck)
+void SJRBF_PutChunk(SJ sj, Sint32 id, SJCK *ck)
 {
+    Sint32 pos;
+    Sint32 pos2;
     Sint32 len;
-    Sint32 size;
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
 
     if ((ck->len > 0) && (ck->data != NULL)) 
     {
@@ -231,27 +264,29 @@ void SJRBF_PutChunk(SJRBF sjrbf, Sint32 id, SJCK *ck)
     
         if (id == 1) 
         {
-            len = (Sint32)ck->data - (Sint32)sjrbf->buf;
+            len = (Sint32)ck->data - (Sint32)rbf->buf; // casts added for MWCC compatibility
             
-            sjrbf->datano += ck->len;
+            rbf->ndata += ck->len;
     
-            if (len < sjrbf->xtrsize) 
+            if (len < rbf->xsize) 
             {
-                memcpy((void*)((Sint32)sjrbf->buf + (sjrbf->bfsize + len)), ck->data, MIN(ck->len, sjrbf->xtrsize - len)); // simplify this line
+                pos = MIN(ck->len, rbf->xsize - len);
+                
+                memcpy((void*)((Sint32)rbf->buf + (rbf->bsize + len)), ck->data, pos); // same as above
             }
      
-            len = ((Sint32)ck->data - (Sint32)sjrbf->buf) + ck->len; 
+            len = ((Sint32)ck->data - (Sint32)rbf->buf) + ck->len; 
      
-            if (len > sjrbf->bfsize) 
+            if (len > rbf->bsize) 
             {
-                size = MIN(ck->len, len - sjrbf->bfsize);
+                pos2 = MIN(ck->len, len - rbf->bsize);
                 
-                memcpy(sjrbf->buf, (void*)((Sint32)sjrbf->buf + (len - size)), size); // same as above
+                memcpy(rbf->buf, (void*)((Sint32)rbf->buf + (len - pos2)), pos2); 
             }
         } 
         else if (id == 0)
         {
-            sjrbf->unk10 += ck->len;
+            rbf->nroom += ck->len;
         }
         else
         {
@@ -259,9 +294,9 @@ void SJRBF_PutChunk(SJRBF sjrbf, Sint32 id, SJCK *ck)
             
             ck->data = NULL;
     
-            if (sjrbf->err_func != NULL) 
+            if (rbf->errfunc != NULL) 
             {
-                sjrbf->err_func(sjrbf->err_obj, -3);
+                rbf->errfunc(rbf->errobj, -3);
             }
         }
     
@@ -270,22 +305,29 @@ void SJRBF_PutChunk(SJRBF sjrbf, Sint32 id, SJCK *ck)
 }
 
 // 100% matching!
-void SJRBF_Reset(SJRBF sjrbf) 
+void SJRBF_Reset(SJ sj)
 {
-    sjrbf->datano = 0;
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
     
-    sjrbf->unk14 = 0;
+    rbf->ndata = 0;
     
-    sjrbf->unk10 = sjrbf->bfsize;
+    rbf->wpos = 0;
     
-    sjrbf->unk18 = 0; 
+    rbf->nroom = rbf->bsize;
+    
+    rbf->rpos = 0; 
 }
 
 // 100% matching!
-void SJRBF_UngetChunk(SJRBF sjrbf, Sint32 id, SJCK *ck)
+void SJRBF_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
 {
-    Sint32 mod1;
-    Sint32 mod2;
+    Sint32 pos;
+    Sint32 pos2;
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
 
     if ((ck->len > 0) && (ck->data != NULL)) 
     {
@@ -293,34 +335,34 @@ void SJRBF_UngetChunk(SJRBF sjrbf, Sint32 id, SJCK *ck)
 
         if (id == 0) 
         {
-            mod1 = ((sjrbf->unk14 + sjrbf->bfsize) - ck->len) % sjrbf->bfsize;
-            mod2 = ((Sint32)ck->data - (Sint32)sjrbf->buf) % sjrbf->bfsize;
+            pos = ((rbf->wpos + rbf->bsize) - ck->len) % rbf->bsize;
+            pos2 = ((Sint32)ck->data - (Sint32)rbf->buf) % rbf->bsize; // casts added for MWCC compatibility
     
-            if (mod1 == mod2) 
+            if (pos == pos2) 
             {
-                sjrbf->unk14 = mod1;
+                rbf->wpos = pos;
                 
-                sjrbf->unk10 += ck->len;
+                rbf->nroom += ck->len;
             }
-            else if (sjrbf->err_func != NULL) 
+            else if (rbf->errfunc != NULL) 
             {
-                sjrbf->err_func(sjrbf->err_obj, -3);
+                rbf->errfunc(rbf->errobj, -3);
             }
         }
         else if (id == 1)
         {
-            mod1 = ((sjrbf->unk18 + sjrbf->bfsize) - ck->len) % sjrbf->bfsize;
-            mod2 = ((Sint32)ck->data - (Sint32)sjrbf->buf) % sjrbf->bfsize;
+            pos = ((rbf->rpos + rbf->bsize) - ck->len) % rbf->bsize;
+            pos2 = ((Sint32)ck->data - (Sint32)rbf->buf) % rbf->bsize; // same as above
     
-            if (mod1 == mod2) 
+            if (pos == pos2) 
             {
-                sjrbf->unk18 = mod1;
+                rbf->rpos = pos;
                 
-                sjrbf->datano += ck->len;
+                rbf->ndata += ck->len;
             } 
-            else if (sjrbf->err_func != NULL)  
+            else if (rbf->errfunc != NULL)  
             {
-                sjrbf->err_func(sjrbf->err_obj, -3);
+                rbf->errfunc(rbf->errobj, -3);
             }
         } 
         else 
@@ -329,9 +371,9 @@ void SJRBF_UngetChunk(SJRBF sjrbf, Sint32 id, SJCK *ck)
             
             ck->data = NULL; 
     
-            if (sjrbf->err_func != NULL) 
+            if (rbf->errfunc != NULL) 
             {
-                sjrbf->err_func(sjrbf->err_obj, -3);
+                rbf->errfunc(rbf->errobj, -3);
             }
         }
     

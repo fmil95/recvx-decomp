@@ -7,39 +7,38 @@
 
 typedef void (*SJRBF_ERRFN)(void *obj, Sint32 errcode);
 
-typedef struct _sjrbf 
-{
-    SJ_OBJ       sj;
-    Sint32       used;
-    const UUID*  uuid;
-    Sint32       datano;
-    Sint32       unk10;
-    Sint32       unk14;
-    Sint32       unk18;    // roomno?
-    void*        buf;
-    Sint32       bfsize;
-    Sint32       xtrsize;
-    SJRBF_ERRFN  err_func;
-    void*        err_obj;
+typedef struct 
+{ 
+	SJIF vtbl;
+	Sint32 used;
+	const UUID *uuid;
+	Sint32 ndata;
+	Sint32 nroom;
+	Sint32 wpos;
+	Sint32 rpos;
+	Sint8 *buf;
+	Sint32 bsize;
+	Sint32 xsize;
+	SJRBF_ERRFN errfunc;
+	void *errobj;
 } SJRBF_OBJ;
-
 typedef SJRBF_OBJ *SJRBF;
 
 SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize);
-void SJRBF_Destroy(SJRBF sjrbf);
-void SJRBF_EntryErrFunc(SJRBF sjrbf, SJRBF_ERRFN func, void* obj);
-void SJRBF_Error(void);
+void SJRBF_Destroy(SJ sj);
+void SJRBF_EntryErrFunc(SJ sj, SJRBF_ERRFN func, void *obj);
+void SJRBF_Error(SJRBF rbf, Sint32 errcode);
 void SJRBF_Finish(void);
-void* SJRBF_GetBufPtr(SJRBF sjrbf);
+Sint8* SJRBF_GetBufPtr(SJRBF sjrbf);
 Sint32 SJRBF_GetBufSize(SJRBF sjrbf);
-void SJRBF_GetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, SJCK *ck);
-Sint32 SJRBF_GetNumData(SJRBF sjrbf, Sint32 id);
-const UUID* SJRBF_GetUuid(SJRBF sjrbf);
+void SJRBF_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck);
+Sint32 SJRBF_GetNumData(SJ sj, Sint32 id);
+const UUID* SJRBF_GetUuid(SJ sj);
 Sint32 SJRBF_GetXtrSize(SJRBF sjrbf);
 void SJRBF_Init(void);
-Sint32 SJRBF_IsGetChunk(SJRBF sjrbf, Sint32 id, Sint32 nbyte, Sint32 *rbyte);
-void SJRBF_PutChunk(SJRBF sjrbf, Sint32 id, SJCK *ck);
-void SJRBF_Reset(SJRBF sjrbf);  
-void SJRBF_UngetChunk(SJRBF sjrbf, Sint32 id, SJCK *ck);
+Sint32 SJRBF_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte);
+void SJRBF_PutChunk(SJ sj, Sint32 id, SJCK *ck);
+void SJRBF_Reset(SJ sj);
+void SJRBF_UngetChunk(SJ sj, Sint32 id, SJCK *ck);
 
 #endif
