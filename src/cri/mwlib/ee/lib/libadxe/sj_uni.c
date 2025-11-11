@@ -8,66 +8,74 @@ Sint32 sjuni_init_cnt = 0;
 SJUNI_OBJ sjuni_obj[64] = { 0 };
 
 // 100% matching!
-SJ SJUNI_Create(Sint32 mode, Sint8 *work, Sint32 wksize) // should return SJUNI, but doing so clashes with the header definition
+SJ SJUNI_Create(Sint32 mode, Sint8 *work, Sint32 wksize)
 {
-    SJUNI sjuni;
-    Sint32 i;
+    Sint32 no;
+	SJUNI uni;
 
-    for (i = 0; i < 64; i++)
+    for (no = 0; no < 64; no++)
     {
-        if (sjuni_obj[i].used == FALSE) 
+        if (sjuni_obj[no].used == FALSE) 
         {
             break;
         }
     }
 
-    if (i == 64)
+    if (no == 64)
     {
         return NULL;
     }
     
-    sjuni = &sjuni_obj[i];
+    uni = &sjuni_obj[no];
     
-    sjuni->used = TRUE;
+    uni->used = TRUE;
     
-    sjuni->sj.vtbl = &sjuni_vtbl;
+    uni->vtbl = &sjuni_vtbl;
     
-    sjuni->mode = mode;
+    uni->mode = mode;
     
-    sjuni->uuid = &sjuni_uuid;
+    uni->uuid = &sjuni_uuid;
     
-    sjuni->work = work;
+    uni->ckcnwk = (SJCKCN)work;
     
-    sjuni->wksize = (Uint32)wksize / 16;
+    uni->nckcn = (Uint32)wksize / 16;
     
-    sjuni->err_func = (void*)SJUNI_Error;
-    sjuni->err_obj = sjuni;
+    uni->errfunc = (void*)SJUNI_Error;
+    uni->errobj = uni;
     
-    SJUNI_Reset(sjuni);
+    SJUNI_Reset((SJ)uni);
     
-    return (SJ)sjuni;
+    return (SJ)uni;
 }
 
 // 100% matching!
-void SJUNI_Destroy(SJUNI sjuni)
+void SJUNI_Destroy(SJ sj)
 {
-    if (sjuni != NULL) 
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
+    
+    if (uni != NULL) 
     {
-        memset(sjuni, 0, sizeof(SJUNI_OBJ)); 
+        memset(uni, 0, sizeof(SJUNI_OBJ)); 
         
-        sjuni->used = FALSE;
+        uni->used = FALSE;
     }
 }
 
 // 100% matching!
-void SJUNI_EntryErrFunc(SJUNI sjuni, SJUNI_ERRFN func, void* obj) 
+void SJUNI_EntryErrFunc(SJ sj, SJUNI_ERRFN func, void *obj)
 {
-    sjuni->err_func = func;
-    sjuni->err_obj = obj;
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
+    
+    uni->errfunc = func;
+    uni->errobj = obj;
 }
 
 // 99.29% matching
-void SJUNI_Error(void) 
+void SJUNI_Error(SJUNI uni, Sint32 errcode) 
 {
     while (TRUE);
 }
@@ -81,18 +89,21 @@ void SJUNI_Finish(void)
     }
 }
 
-// 98.60% matching
-void SJUNI_GetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, SJCK *ck) 
+// 99.60% matching
+void SJUNI_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
 {
-    SJUNI_CKLIST cklist;
+    SJCKCN ckcn;
+    SJCK ck0;
     SJCK ck1;
-    SJCK ck2;
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
 
     if ((Uint32)id >= 4) 
     {
-        if (sjuni->err_func != NULL)
+        if (uni->errfunc != NULL)
         {
-            sjuni->err_func(sjuni->err_obj, -3);
+            uni->errfunc(uni->errobj, -3);
         }
 
         ck->data = NULL;
@@ -103,31 +114,29 @@ void SJUNI_GetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, SJCK *ck)
 
     SJCRS_Lock();
     
-    cklist = sjuni->cklist[id];
+    ckcn = uni->lin[id];
 
-    if (cklist != NULL) 
+    if (ckcn != NULL) 
     {
-        ck1 = cklist->ck;
+        ck0 = ckcn->ck;
         
-        if (nbyte >= ck1.len)
+        if (nbyte >= ck0.len)
         {
-            *ck = ck1;
+            *ck = ck0;
             
-            sjuni->cklist[id] = cklist->next;
+            uni->lin[id] = ckcn->next;
 
-            /* this line is currently causing a matching issue, because it seems that the SJUNI_OBJ struct needs to be 
-               arranged differently. Changing the type of data from void* to SJUNI_CKLIST in the struct gives a higher match. */
-            cklist->next = sjuni->data;
+            ckcn->next = uni->pool;
             
-            sjuni->data = cklist;
+            uni->pool = ckcn;
         } 
-        else if (sjuni->mode == 1)
+        else if (uni->mode == 1)
         {
-            SJ_SplitChunk(&ck1, nbyte, &ck1, &ck2);
+            SJ_SplitChunk(&ck0, nbyte, &ck0, &ck1);
             
-            *ck = ck1;
+            *ck = ck0;
             
-            cklist->ck = ck2;
+            ckcn->ck = ck1;
         }
         else 
         {
@@ -147,73 +156,80 @@ void SJUNI_GetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, SJCK *ck)
 }
 
 // 100% matching!
-Sint32 SJUNI_GetNumChainPool(SJ sj) // parameter should be SJUNI, but changing it causes issues with the header definition
+Sint32 SJUNI_GetNumChainPool(SJ sj)
 {
-    SJUNI sjuni;
-    SJUNI_CKLIST cklist;
-    Sint32 ncpool;
+    SJCKCN ckcn;
+	Sint32 i;
+    SJUNI uni;
 
-    sjuni = (SJUNI)sj;
+    uni = (SJUNI)sj;
 
-    ncpool = 0;
+    i = 0;
 
-    for (cklist = sjuni->data; cklist != NULL; cklist = cklist->next) 
+    for (ckcn = uni->pool; ckcn != NULL; ckcn = ckcn->next) 
     {
-        ncpool++;
+        i++;
     }
 
-    return ncpool;
+    return i;
 }
 
 // 100% matching!
-Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id) // first parameter should be SJUNI, but changing it causes issues with the header definition
+Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id)
 {
-    SJUNI sjuni;
-    SJUNI_CKLIST cklist;
-    Sint32 nck;
+    SJCKCN ckcn;
+	Sint32 i;
+    SJUNI uni;
 
-    sjuni = (SJUNI)sj;
+    uni = (SJUNI)sj;
 
-    nck = 0;
+    i = 0;
 
-    for (cklist = sjuni->cklist[id]; cklist != NULL; cklist = cklist->next) 
+    for (ckcn = uni->lin[id]; ckcn != NULL; ckcn = ckcn->next) 
     {
-        nck++;
+        i++;
     }
 
-    return nck;
+    return i;
 }
 
 // 100% matching!
-Sint32 SJUNI_GetNumData(SJUNI sjuni, Sint32 id)
+Sint32 SJUNI_GetNumData(SJ sj, Sint32 id)
 {
-    SJUNI_CKLIST cklist;
-    Sint32 datano;
+    Sint32 nbyte;
+	SJCKCN ckcn;
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
 
     if ((Uint32)id >= 4) 
     {
-        if (sjuni->err_func != NULL)
+        if (uni->errfunc != NULL)
         {
-            sjuni->err_func(sjuni->err_obj, -3);
+            uni->errfunc(uni->errobj, -3);
         }
     
         return 0;
     }
     
-    datano = 0;
+    nbyte = 0;
 
-    for (cklist = sjuni->cklist[id]; cklist != NULL; cklist = cklist->next)
+    for (ckcn = uni->lin[id]; ckcn != NULL; ckcn = ckcn->next)
     {
-        datano += cklist->ck.len; 
+        nbyte += ckcn->ck.len; 
     } 
 
-    return datano;
+    return nbyte;
 }
 
 // 100% matching!
-const UUID* SJUNI_GetUuid(SJUNI sjuni) 
+const UUID* SJUNI_GetUuid(SJ sj) 
 {
-    return sjuni->uuid;
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
+    
+    return uni->uuid;
 }
 
 // 100% matching!
@@ -228,34 +244,40 @@ void SJUNI_Init(void)
 }
 
 // 100% matching!
-Sint32 SJUNI_IsGetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
+Sint32 SJUNI_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
 {
-    SJCK ck;
+    SJCKCN ckcn;
+	SJCK ck0;
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
 
     *rbyte = 0;
 
     if ((Uint32)id >= 4) 
     {
-        if (sjuni->err_func != NULL)
+        if (uni->errfunc != NULL)
         {
-            sjuni->err_func(sjuni->err_obj, -3);
+            uni->errfunc(uni->errobj, -3);
         }
 
         return 0;
     }
 
-    if (sjuni->cklist[id] == NULL) 
+    if (uni->lin[id] == NULL) 
     {
         return 0;
     }
 
-    ck = sjuni->cklist[id]->ck;
-    
-    *rbyte = ck.len;
+    ckcn = uni->lin[id];
 
-    if (sjuni->mode == 1)
+    ck0 = ckcn->ck;
+    
+    *rbyte = ck0.len;
+
+    if (uni->mode == 1)
     {
-        if (ck.len >= nbyte) 
+        if (ck0.len >= nbyte) 
         {
             return 1;
         }
@@ -264,7 +286,7 @@ Sint32 SJUNI_IsGetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
             return 0;
         }
     } 
-    else if (ck.len == nbyte)
+    else if (ck0.len == nbyte)
     {
         return 1;
     }
@@ -275,17 +297,20 @@ Sint32 SJUNI_IsGetChunk(SJUNI sjuni, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
 }
 
 // 97.64% matching
-void SJUNI_PutChunk(SJUNI sjuni, Sint32 id, SJCK *ck)
+void SJUNI_PutChunk(SJ sj, Sint32 id, SJCK *ck)
 {
-    SJUNI_CKLIST cklist1;
-    SJUNI_CKLIST cklist2;
-    SJUNI_CKLIST* pCklist;
+    SJCKCN ckcn;
+    SJCKCN ckcn2;
+	SJCKCN *ckcnp;
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
 
     if ((Uint32)id >= 4) 
     {
-        if (sjuni->err_func != NULL)
+        if (uni->errfunc != NULL)
         {
-            sjuni->err_func(sjuni->err_obj, -3);
+            uni->errfunc(uni->errobj, -3);
         }
 
         return;
@@ -298,41 +323,41 @@ void SJUNI_PutChunk(SJUNI sjuni, Sint32 id, SJCK *ck)
 
     SJCRS_Lock();
     
-    pCklist = &sjuni->cklist[id];
+    ckcnp = &uni->lin[id];
     
-    cklist1 = NULL;
+    ckcn = NULL;
 
-    for (cklist2 = *pCklist; cklist2 != NULL; cklist2 = cklist2->next) 
+    for (ckcn2 = *ckcnp; ckcn2 != NULL; ckcn2 = ckcn2->next) 
     {
-        cklist1 = cklist2;
+        ckcn = ckcn2;
         
-        pCklist = &cklist1->next;
+        ckcnp = &ckcn->next;
     }
 
-    if ((sjuni->mode == 1) && (cklist1 != NULL) && ((cklist1->ck.data + cklist1->ck.len) == ck->data)) 
+    if ((uni->mode == 1) && (ckcn != NULL) && ((ckcn->ck.data + ckcn->ck.len) == ck->data)) 
     {
-        cklist1->ck.len += ck->len;
+        ckcn->ck.len += ck->len;
     } 
     else 
     {
-        cklist1 = sjuni->data;
+        ckcn = uni->pool;
         
-        if (cklist1 == NULL) 
+        if (ckcn == NULL) 
         {
-            if (sjuni->err_func != NULL) 
+            if (uni->errfunc != NULL) 
             {
-                sjuni->err_func(sjuni->err_obj, -3);
+                uni->errfunc(uni->errobj, -3);
             }
         } 
         else 
         {
-            sjuni->data = cklist1->next;
+            uni->pool = ckcn->next;
             
-            cklist1->ck = *ck;
+            ckcn->ck = *ck;
             
-            cklist1->next = NULL;
+            ckcn->next = NULL;
             
-            *pCklist = cklist1;
+            *ckcnp = ckcn;
         }
     }
 
@@ -340,46 +365,52 @@ void SJUNI_PutChunk(SJUNI sjuni, Sint32 id, SJCK *ck)
 }
 
 // 100% matching!
-void SJUNI_Reset(SJUNI sjuni)
+void SJUNI_Reset(SJ sj)
 {
-    Sint32 i;
-    SJUNI_CKLIST cklist;
+    SJUNI uni;
+	Sint32 i;
+	SJCK_CHAIN *ckchain;
 
-    cklist = (SJUNI_CKLIST)sjuni->work;
+    uni = (SJUNI)sj;
 
-    sjuni->data = cklist;
+    ckchain = (SJCK_CHAIN*)uni->ckcnwk;
 
-    for (i = 0; i < (sjuni->wksize - 1); i++)
+    uni->pool = ckchain;
+
+    for (i = 0; i < (uni->nckcn - 1); i++)
     {
-        cklist[i].next = &cklist[i + 1];
+        ckchain[i].next = &ckchain[i + 1];
         
-        cklist[i].ck.data = NULL;
+        ckchain[i].ck.data = NULL;
         
-        cklist[i].ck.len = 0;
+        ckchain[i].ck.len = 0;
     }
 
-    cklist[i].next = NULL;
+    ckchain[i].next = NULL;
     
-    cklist[i].ck.data = NULL;
+    ckchain[i].ck.data = NULL;
     
-    cklist[i].ck.len = 0;
+    ckchain[i].ck.len = 0;
 
     for (i = 0; i < 4; i++) 
     {
-        sjuni->cklist[i] = NULL;
+        uni->lin[i] = NULL;
     }
 }
 
 // 99.36% matching
-void SJUNI_UngetChunk(SJUNI sjuni, Sint32 id, SJCK *ck)
+void SJUNI_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
 {
-    SJUNI_CKLIST cklist;
+    SJCKCN ckcn;
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
 
     if ((Uint32)id >= 4)
     {
-        if (sjuni->err_func != NULL) 
+        if (uni->errfunc != NULL) 
         {
-            sjuni->err_func(sjuni->err_obj, -3);
+            uni->errfunc(uni->errobj, -3);
         }
 
         return;
@@ -392,36 +423,36 @@ void SJUNI_UngetChunk(SJUNI sjuni, Sint32 id, SJCK *ck)
 
     SJCRS_Lock();
     
-    cklist = sjuni->cklist[id];
+    ckcn = uni->lin[id];
 
-    if ((sjuni->mode == 1) && (cklist != NULL) && ((ck->data + ck->len) == cklist->ck.data)) 
+    if ((uni->mode == 1) && (ckcn != NULL) && ((ck->data + ck->len) == ckcn->ck.data)) 
     {
-        cklist->ck.data = ck->data;
+        ckcn->ck.data = ck->data;
         
-        cklist->ck.len += ck->len;
+        ckcn->ck.len += ck->len;
     } 
     else 
     {
-        cklist = sjuni->data;
+        ckcn = uni->pool;
         
-        if (cklist == NULL)
+        if (ckcn == NULL)
         {
-            if (sjuni->err_func != NULL) 
+            if (uni->errfunc != NULL) 
             {
-                sjuni->err_func(sjuni->err_obj, -3);
+                uni->errfunc(uni->errobj, -3);
             }
         }
         else 
         {
-            sjuni->data = cklist->next;
+            uni->pool = ckcn->next;
 
-            cklist->next = NULL;
+            ckcn->next = NULL;
             
-            cklist->ck = *ck;
+            ckcn->ck = *ck;
             
-            cklist->next = sjuni->cklist[id];
+            ckcn->next = uni->lin[id];
             
-            sjuni->cklist[id] = cklist;
+            uni->lin[id] = ckcn;
         }
     }
 
