@@ -128,7 +128,7 @@ void SJRBF_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
             
         ck->len = MIN(pos, nbyte); 
         
-        ck->data = (void*)((Sint32)rbf->buf + rbf->wpos); // casts added for MWCC compatibility
+        ck->data = (void*)&rbf->buf[rbf->wpos]; 
         
         rbf->wpos = (rbf->wpos + ck->len) % rbf->bsize;
         
@@ -140,7 +140,7 @@ void SJRBF_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
         
         ck->len = MIN(pos2, nbyte); 
         
-        ck->data = (void*)((Sint32)rbf->buf + rbf->rpos); // same as above
+        ck->data = (void*)&rbf->buf[rbf->rpos]; 
         
         rbf->rpos = (rbf->rpos + ck->len) % rbf->bsize;
         
