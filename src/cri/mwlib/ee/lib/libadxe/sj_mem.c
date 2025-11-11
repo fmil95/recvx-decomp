@@ -117,7 +117,7 @@ void SJMEM_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
     {
         ck->len = MIN(sjmem->ndata, nbyte);
         
-        ck->data = (void*)((Sint32)sjmem->buf + sjmem->rpos); // casts added for MWCC compatibility
+        ck->data = (void*)&sjmem->buf[sjmem->rpos]; 
         
         sjmem->rpos += ck->len;
         
