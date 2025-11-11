@@ -12,7 +12,7 @@ Additionally, this project also consists of reverse-engineering the CRI Middlewa
 
 ## Progress 
 
-<img src="https://i.imgur.com/qiMejZz.png"/>
+<img src="https://i.imgur.com/GlW9gJ7.png"/>
 
 <!-- PROGRESS-START -->
 ```
