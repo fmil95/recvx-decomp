@@ -8,46 +8,50 @@ Sint32 sjmem_init_cnt = 0;
 SJMEM_OBJ sjmem_obj[32] = { 0 };
 
 // 100% matching!
-SJ SJMEM_Create(Sint8 *data, Sint32 bsize) // should return SJMEM, but doing so clashes with the header definition
+SJ SJMEM_Create(Sint8 *data, Sint32 dtsize)
 {
+    Sint32 no;
     SJMEM sjmem;
-    Sint32 i;
 
-    for (i = 0; i < 32; i++) 
+    for (no = 0; no < 32; no++) 
     {
-        if (sjmem_obj[i].used == FALSE) 
+        if (sjmem_obj[no].used == FALSE) 
         {
             break;
         }
     }
 
-    if (i == 32) 
+    if (no == 32) 
     {
         return NULL;
     }
 
-    sjmem = &sjmem_obj[i];
+    sjmem = &sjmem_obj[no];
     
     sjmem->used = TRUE;
     
-    sjmem->sj.vtbl = &sjmem_vtbl; 
+    sjmem->vtbl = &sjmem_vtbl; 
     
     sjmem->buf = data;
-    sjmem->bfsize = bsize;
+    sjmem->bsize = dtsize;
     
     sjmem->uuid = &sjmem_uuid;
     
-    sjmem->err_func = (void*)SJMEM_Error;
-    sjmem->err_obj = sjmem;
+    sjmem->errfunc = (void*)SJMEM_Error;
+    sjmem->errobj = sjmem;
     
-    SJMEM_Reset(sjmem);
+    SJMEM_Reset((SJ)sjmem);
     
     return (SJ)sjmem;
 }
 
 // 100% matching!
-void SJMEM_Destroy(SJMEM sjmem) 
+void SJMEM_Destroy(SJ sj)
 {
+    SJMEM sjmem;
+
+    sjmem = (SJMEM)sj;
+    
     if (sjmem != NULL) 
     {
         memset(sjmem, 0, sizeof(SJMEM_OBJ));
@@ -57,14 +61,18 @@ void SJMEM_Destroy(SJMEM sjmem)
 }
 
 // 100% matching!
-void SJMEM_EntryErrFunc(SJMEM sjmem, SJMEM_ERRFN func, void* obj)
+void SJMEM_EntryErrFunc(SJ sj, SJMEM_ERRFN func, void *obj)
 {
-    sjmem->err_func = func;
-    sjmem->err_obj = obj;
+    SJMEM sjmem;
+
+    sjmem = (SJMEM)sj;
+    
+    sjmem->errfunc = func;
+    sjmem->errobj = obj;
 }
 
 // 99.29% matching
-void SJMEM_Error(void) 
+void SJMEM_Error(void *obj, Sint32 errcode)
 {
     while (TRUE);
 }
@@ -79,7 +87,7 @@ void SJMEM_Finish(void)
 }
 
 // 100% matching!
-void* SJMEM_GetBufPtr(SJMEM sjmem) 
+Sint8* SJMEM_GetBufPtr(SJMEM sjmem)
 {
     return sjmem->buf;
 }
@@ -87,12 +95,16 @@ void* SJMEM_GetBufPtr(SJMEM sjmem)
 // 100% matching!
 Sint32 SJMEM_GetBufSize(SJMEM sjmem) 
 {
-    return sjmem->bfsize;
+    return sjmem->bsize;
 }
 
 // 100% matching!
-void SJMEM_GetChunk(SJMEM sjmem, Sint32 id, Sint32 nbyte, SJCK* ck)
+void SJMEM_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
 {
+    SJMEM sjmem;
+
+    sjmem = (SJMEM)sj;
+    
     SJCRS_Lock();
     
     if (id == 0)
@@ -103,13 +115,13 @@ void SJMEM_GetChunk(SJMEM sjmem, Sint32 id, Sint32 nbyte, SJCK* ck)
     } 
     else if (id == 1)
     {
-        ck->len = MIN(sjmem->datano, nbyte);
+        ck->len = MIN(sjmem->ndata, nbyte);
         
-        ck->data = (void*)((Sint32)sjmem->buf + sjmem->unk10); // simplify this line 
+        ck->data = (void*)((Sint32)sjmem->buf + sjmem->rpos); // casts added for MWCC compatibility
         
-        sjmem->unk10 += ck->len;
+        sjmem->rpos += ck->len;
         
-        sjmem->datano -= ck->len;
+        sjmem->ndata -= ck->len;
     }
     else 
     {
@@ -117,9 +129,9 @@ void SJMEM_GetChunk(SJMEM sjmem, Sint32 id, Sint32 nbyte, SJCK* ck)
         
         ck->data = NULL;
         
-        if (sjmem->err_func != NULL)
+        if (sjmem->errfunc != NULL)
         {
-            sjmem->err_func(sjmem->err_obj, -3);
+            sjmem->errfunc(sjmem->errobj, -3);
         }
     }
     
@@ -127,24 +139,32 @@ void SJMEM_GetChunk(SJMEM sjmem, Sint32 id, Sint32 nbyte, SJCK* ck)
 }
 
 // 100% matching!
-Sint32 SJMEM_GetNumData(SJMEM sjmem, Sint32 id) 
+Sint32 SJMEM_GetNumData(SJ sj, Sint32 id)
 {
+    SJMEM sjmem;
+
+    sjmem = (SJMEM)sj;
+    
     if (id == 1) 
     {
-        return sjmem->datano;
+        return sjmem->ndata;
     }
 
-    if ((id != 0) && (sjmem->err_func != NULL)) 
+    if ((id != 0) && (sjmem->errfunc != NULL)) 
     {
-        sjmem->err_func(sjmem->err_obj, -3);
+        sjmem->errfunc(sjmem->errobj, -3);
     }
 
     return 0;
 }
 
 // 100% matching!
-const UUID* SJMEM_GetUuid(SJMEM sjmem)
+const UUID* SJMEM_GetUuid(SJ sj)
 {
+    SJMEM sjmem;
+
+    sjmem = (SJMEM)sj;
+    
     return sjmem->uuid;
 }
 
@@ -160,40 +180,47 @@ void SJMEM_Init(void)
 }
 
 // 100% matching!
-Sint32 SJMEM_IsGetChunk(SJMEM sjmem, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
+Sint32 SJMEM_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
 {
-    Sint32 len;
+    Sint32 cklen;
+    SJMEM sjmem;
+
+    sjmem = (SJMEM)sj;
     
     SJCRS_Lock();
     
     if (id == 0)
     {
-        len = 0;
+        cklen = 0;
     } 
     else if (id == 1)
     {
-        len = MIN(sjmem->datano, nbyte);
+        cklen = MIN(sjmem->ndata, nbyte);
     }
     else 
     {
-        len = 0;
+        cklen = 0;
         
-        if (sjmem->err_func != NULL)
+        if (sjmem->errfunc != NULL)
         {
-            sjmem->err_func(sjmem->err_obj, -3);
+            sjmem->errfunc(sjmem->errobj, -3);
         }
     }
 
-    *rbyte = len; 
+    *rbyte = cklen; 
     
     SJCRS_Unlock();
 
-    return len == nbyte;
+    return cklen == nbyte;
 }
 
 // 100% matching!
-void SJMEM_PutChunk(SJMEM sjmem, Sint32 id, SJCK *ck)
+void SJMEM_PutChunk(SJ sj, Sint32 id, SJCK *ck)
 {
+    SJMEM sjmem;
+
+    sjmem = (SJMEM)sj;
+    
     if ((ck->len > 0) && (ck->data != NULL))
     {
         SJCRS_Lock();
@@ -212,9 +239,9 @@ void SJMEM_PutChunk(SJMEM sjmem, Sint32 id, SJCK *ck)
         
         ck->data = NULL;
     
-        if (sjmem->err_func != NULL) 
+        if (sjmem->errfunc != NULL) 
         {
-            sjmem->err_func(sjmem->err_obj, -3);
+            sjmem->errfunc(sjmem->errobj, -3);
         }
     
     label:
@@ -223,36 +250,50 @@ void SJMEM_PutChunk(SJMEM sjmem, Sint32 id, SJCK *ck)
 }
 
 // 100% matching!
-void SJMEM_Reset(SJMEM sjmem) 
+void SJMEM_Reset(SJ sj)
 {
-    sjmem->unk10 = 0;
+    SJMEM sjmem;
+
+    sjmem = (SJMEM)sj;
     
-    sjmem->datano = sjmem->bfsize;
+    sjmem->rpos = 0;
+    
+    sjmem->ndata = sjmem->bsize;
 }
 
 // 100% matching!
-void SJMEM_UngetChunk(SJMEM sjmem, Sint32 id, SJCK *ck)
+void SJMEM_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
 {
+    Sint32 pos;
+    Sint32 pos2;
+    SJMEM sjmem;
+
+    sjmem = (SJMEM)sj;
+    
     if ((ck->len > 0) && (ck->data != NULL))
     {
         SJCRS_Lock();
     
         if (id == 0) 
         {
-            if (sjmem->err_func != NULL) 
+            if (sjmem->errfunc != NULL) 
             {
-                sjmem->err_func(sjmem->err_obj, -3);
+                sjmem->errfunc(sjmem->errobj, -3);
             }
         } 
         else if (id == 1) 
         {
-            sjmem->unk10 = MAX(sjmem->unk10 - ck->len, 0);
+            pos = sjmem->rpos - ck->len;
             
-            sjmem->datano = MIN(sjmem->bfsize, sjmem->datano + ck->len);
+            sjmem->rpos = MAX(pos, 0);
             
-            if ((sjmem->unk10 != ((Sint32)ck->data - (Sint32)sjmem->buf)) && (sjmem->err_func != NULL))
+            sjmem->ndata = MIN(sjmem->bsize, sjmem->ndata + ck->len);
+
+            pos2 = (Sint32)ck->data - (Sint32)sjmem->buf; // casts added for MWCC compatibility
+            
+            if ((sjmem->rpos != pos2) && (sjmem->errfunc != NULL))
             {
-                sjmem->err_func(sjmem->err_obj, -3);
+                sjmem->errfunc(sjmem->errobj, -3);
             }
         } 
         else 
@@ -261,9 +302,9 @@ void SJMEM_UngetChunk(SJMEM sjmem, Sint32 id, SJCK *ck)
             
             ck->data = NULL;
     
-            if (sjmem->err_func != NULL) 
+            if (sjmem->errfunc != NULL) 
             {
-                sjmem->err_func(sjmem->err_obj, -3);
+                sjmem->errfunc(sjmem->errobj, -3);
             }
         }
     
