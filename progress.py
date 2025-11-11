@@ -16,7 +16,7 @@ directories = {
     },
     r"src/cri/mwlib/ee/lib/libadxe": {
         "name": "CRI ADX (March 13, 2001)",
-        "total": 663,
+        "total": 662,
     },
     r"src/ps2/veronica/prog/ps2_snddrv.c": {
         "name": "Tamsoft Sound Driver (EE)",
