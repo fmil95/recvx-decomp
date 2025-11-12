@@ -10,7 +10,7 @@ typedef struct _sjck_chain
 	Sint32 rsv;
 	SJCK ck;
 } SJCK_CHAIN;
-typedef SJCK_CHAIN *SJCKCN;
+typedef struct _sjck_chain *SJCKCN;
 
 typedef void (*SJUNI_ERRFN)(void *obj, Sint32 errcode);
 

@@ -89,7 +89,7 @@ void SJUNI_Finish(void)
     }
 }
 
-// 99.60% matching
+// 100% matching!
 void SJUNI_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
 {
     SJCKCN ckcn;
@@ -296,7 +296,7 @@ Sint32 SJUNI_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
     }
 }
 
-// 97.64% matching
+// 100% matching!
 void SJUNI_PutChunk(SJ sj, Sint32 id, SJCK *ck)
 {
     SJCKCN ckcn;
@@ -352,10 +352,10 @@ void SJUNI_PutChunk(SJ sj, Sint32 id, SJCK *ck)
         else 
         {
             uni->pool = ckcn->next;
+
+            ckcn->next = NULL;
             
             ckcn->ck = *ck;
-            
-            ckcn->next = NULL;
             
             *ckcnp = ckcn;
         }
@@ -398,7 +398,7 @@ void SJUNI_Reset(SJ sj)
     }
 }
 
-// 99.36% matching
+// 100% matching!
 void SJUNI_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
 {
     SJCKCN ckcn;
