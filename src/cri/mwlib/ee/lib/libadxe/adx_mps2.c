@@ -17,7 +17,7 @@ int adxps2_cur_prio = 0;
 int adxps2_cur_tid = 0;
 int adxps2_main_prio_def = 0;
 static char adxps2_stk_adx[DEF_STACK_SIZE] bss_align(64);
-static char adxps2_stk_safe[DEF_STACK_SIZE] bss_align(64); // TODO: double-check whether DEF_STACK_SIZE should be 2048, or 4096 instead
+static char adxps2_stk_safe[DEF_STACK_SIZE] bss_align(64); 
 
 // 100% matching!
 void adxps2_adx_thrd_func(void)
