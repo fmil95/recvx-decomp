@@ -14,11 +14,11 @@ Sint32 sjx_wklen = 0;
 Sint8 sjx_ee_work[2256] = { 0 };
 
 // 100% matching!
-SJX SJX_Create(SJ sj, Sint8 *work, Sint32 wksize) 
+SJX SJX_Create(SJ sjsrc, SJ sjdst, Sint32 lin)
 {
-    SJX sjx;
     Sint32 i;
-    Sint32 sbuf[4];
+	Sint32 arg[4];
+	SJX sjx;
 
     for (i = 0; i < 16; i++) 
     {
@@ -37,20 +37,19 @@ SJX SJX_Create(SJ sj, Sint8 *work, Sint32 wksize)
 
     memset(sjx, 0, sizeof(SJX_OBJ));
     
-    sjx->wksize = wksize;
+    sjx->lin = lin;
     
-    sjx->sj = sj;
+    sjx->sjsrc = sjsrc;
+    sjx->sjdst = sjdst;
     
-    sjx->work = work;
+    arg[0] = (Sint32)sjsrc;
+    arg[1] = (Sint32)sjdst;
+    arg[2] = lin;
+    arg[3] = (Sint32)sjx;
     
-    sbuf[0] = (Sint32)sj;
-    sbuf[1] = (Sint32)work;
-    sbuf[2] = wksize;
-    sbuf[3] = (Sint32)sjx;
+    sjx->iopsjx = (void*)DTX_CallUrpc(SJX_DTXFNO_CREATE, arg, 4, arg, 1);
     
-    sjx->urpc = DTX_CallUrpc(0, sbuf, 4, sbuf, 1);
-    
-    if (sjx->urpc == 0) 
+    if (sjx->iopsjx == NULL) 
     {
         printf("E0100401: can't create SJX of IOP\n");
         
@@ -65,11 +64,11 @@ SJX SJX_Create(SJ sj, Sint8 *work, Sint32 wksize)
 // 100% matching!
 void SJX_Destroy(SJX sjx)
 {
-    Sint32 sbuf[1];
+    Sint32 arg[1];
 
-    sbuf[0] = sjx->urpc;
+    arg[0] = (Sint32)sjx->iopsjx;
     
-    DTX_CallUrpc(1, sbuf, 1, NULL, 0);
+    DTX_CallUrpc(SJX_DTXFNO_DESTROY, arg, 1, NULL, 0);
     
     sjx->used = FALSE;
 }
@@ -95,7 +94,7 @@ void SJX_Init(void)
         
         sjx_wklen = 2176;
         
-        sjx_eewk = (void*)(((Uint32)sjx_ee_work + 64) & ~0x3F); // simplify this line
+        sjx_eewk = (void*)(((Uint32)sjx_ee_work + 64) & ~0x3F);
 
         if (sjx_iopwk == NULL) 
         {
@@ -109,7 +108,7 @@ void SJX_Init(void)
             }
         }
 
-        sjx_iopwk = (void*)(((Uint32)sjx_iopwk + 64) & ~0x3F); // same as above
+        sjx_iopwk = (void*)(((Uint32)sjx_iopwk + 64) & ~0x3F); // casts added for MWCC compatibility
         
         sjx_dtx = DTX_Create(0, sjx_eewk, sjx_iopwk, sjx_wklen);
 
@@ -128,30 +127,39 @@ void SJX_Init(void)
 }
 
 // 100% matching!
-void sjx_rcvcbf(SJX sjx, SJX_RCVCBF buf, Sint32 bfsize) 
+void sjx_rcvcbf(void *obj, void *dt, Sint32 dtlen)
 {
-    SJX_WORK sjxwk;
-    Sint32 size;
-    Sint32 i;
+    SJX_DTXFMT *fmt;
+	SJX_DTXCMD *cmd;
+	Sint32 ncmd;
+	Sint32 i;
+	SJX sjx;
+    
+    fmt = dt;
 
-    if (buf == NULL) 
+    if (fmt == NULL) 
     {
         while (TRUE);
     }
 
-    size = buf->size;
+    ncmd = fmt->ncmd;
     
     SJCRS_Lock();
 
-    for (i = 0; i < size; i++) 
+    for (i = 0; i < ncmd; i++) 
     {
-        sjxwk = &buf->wk[i];
-
-        if ((sjxwk->unk0 == 0) && (sjxwk->unk2 == sjxwk->sjx->unk2))
+        cmd = &fmt->cmd[i];
+        
+        if (cmd->no == SJX_CMD_PUT_CHUNK)
         {
-            SJ_PutChunk(sjxwk->sjx->sj, sjxwk->id, &sjxwk->ck);
+            sjx = (SJX)cmd->sj;
+            
+            if (cmd->xid == sjx->xid) 
+            {
+                SJ_PutChunk(sjx->sjsrc, cmd->lin, &cmd->ck);
+            }
         }
-    }
+    } 
 
     SJCRS_Unlock();
 }
@@ -159,58 +167,61 @@ void sjx_rcvcbf(SJX sjx, SJX_RCVCBF buf, Sint32 bfsize)
 // 100% matching!
 void SJX_Reset(SJX sjx)
 {
-    Sint32 sbuf[2];
+    Sint32 arg[2];
 
-    sbuf[0] = sjx->urpc;
-    sbuf[1] = (Sint16)++sjx->unk2;
+    arg[0] = (Sint32)sjx->iopsjx;
+    arg[1] = ++sjx->xid;
     
-    DTX_CallUrpc(2, sbuf, 2, NULL, 0);
+    DTX_CallUrpc(SJX_DTXFNO_RESET, arg, 2, NULL, 0);
 }
 
 // 100% matching!
-void sjx_sndcbf(SJX sjx, SJX_SNDCBF buf, Sint32 bfsize) // it is likely that the first parameter is of a different type here
+void sjx_sndcbf(void *obj, void *dt, Sint32 dtlen)
 {
-    SJX _sjx;
-    SJX_WORK sjxwk;
-    SJCK ck;
-    Sint32 i;
-    Sint32 j;
+    SJX_DTXFMT *fmt;
+	SJX_DTXCMD *cmd;
+	Sint32 i;
+	Sint32 ncmd;
+	SJCK ck;
+    SJX sjx;
+
+    fmt = dt;
     
-    sjxwk = buf->wk;
+    cmd = fmt->cmd;
     
-    j = 0;
+    ncmd = 0;
 
     SJCRS_Lock();
 
     for (i = 0; i < 16; i++)
     {
-        _sjx = &sjx_obj[i];
+        sjx = &sjx_obj[i];
         
-        if (_sjx->used == TRUE) 
+        if (sjx->used == TRUE) 
         {
-            for ( ; ; j++) 
+            for ( ; ; ncmd++) 
             {
-                if (j == 128) 
+                if (ncmd == 128) 
                 {
                     goto label;
                 }
     
-                SJ_GetChunk(_sjx->sj, _sjx->wksize, SJCK_LEN_MAX, &ck);
+                SJ_GetChunk(sjx->sjsrc, sjx->lin, SJCK_LEN_MAX, &ck);
     
                 if (ck.len == 0)
                 {
                     break;
                 }
     
-                sjxwk[j].unk0 = 0;
+                cmd[ncmd].no = 0;
                 
-                sjxwk[j].sjx = (SJX)_sjx->urpc;
+                cmd[ncmd].sj = sjx->iopsjx;
                 
-                sjxwk[j].id = _sjx->wksize;   
+                cmd[ncmd].lin = sjx->lin;   
                 
-                sjxwk[j].ck = ck;
+                cmd[ncmd].ck = ck;
                 
-                sjxwk[j].unk2 = _sjx->unk2; 
+                cmd[ncmd].xid = sjx->xid; 
             }
         }
     }
@@ -218,5 +229,5 @@ void sjx_sndcbf(SJX sjx, SJX_SNDCBF buf, Sint32 bfsize) // it is likely that the
 label:
     SJCRS_Unlock();  
     
-    buf->size = j;
+    fmt->ncmd = ncmd;
 }
