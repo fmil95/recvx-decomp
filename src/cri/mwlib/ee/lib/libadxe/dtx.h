@@ -10,6 +10,7 @@
 // TODO: move this define somewhere else
 #define UNCBASE 0x20000000
 
+// TODO: use this
 typedef enum
 {
 	DTX_FNO_INIT = 0,

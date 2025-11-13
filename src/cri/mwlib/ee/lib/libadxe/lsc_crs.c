@@ -3,10 +3,11 @@
 // 100% matching!
 void LSC_LockCrs(LSC_CRS *crs)
 {
+    Sint32 temp; // FAKE: this var is not really needed, for some reason the compiler decided not to do tail-call for this function and this temp prevents it as well 
+    
     SJCRS_Lock(); 
 
-    // devs made a mistake and defined this function to return the output of SJCRS_Lock(), the following line simulates the return
-    if (0 != 0) { while (TRUE); }
+    temp = 0;
 }
 
 // 100% matching!
