@@ -493,8 +493,8 @@ void PS2RNA_Init(void)
             while (TRUE); 
         } 
         
-        DTX_SetRcvCbf(ps2rna_dtx, ps2rna_rcvcbf, 0);
-        DTX_SetSndCbf(ps2rna_dtx, ps2rna_sndcbf, 0);
+        DTX_SetRcvCbf(ps2rna_dtx, (void*)ps2rna_rcvcbf, 0);
+        DTX_SetSndCbf(ps2rna_dtx, (void*)ps2rna_sndcbf, 0);
     }
     
     ps2rna_init_cnt++;

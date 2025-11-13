@@ -16,27 +16,27 @@ DTX_OBJ dtx_clnt[8] = { 0 };
 DTX_OBJ dtx_svr[8] = { 0 }; /* unused */
 sceSifClientData dtx_cd = { 0 };
 sceSifServeData dtx_sd = { 0 };
-u_long128 dtx_svrbuf[16] = { 0 };
+Uint32 dtx_svrbuf[64] = { 0 };
 sceSifRpcFunc dtx_urpc_fn[64] = { 0 };
 void *dtx_urpc_obj[64] = { 0 }; 
-static Uint32 dtx_sbuf[SSIZE/sizeof(Uint32)] __attribute__((aligned(64))); // TODO: double-check array size is the correct one here
-static Uint32 dtx_rbuf[RSIZE/sizeof(Uint32)] __attribute__((aligned(64)));
+static Uint32 dtx_sbuf[64] __attribute__((aligned(64))); 
+static Uint32 dtx_rbuf[64] __attribute__((aligned(64)));
 
 // 100% matching!
-Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32 rsize)
+Sint32 DTX_CallUrpc(Sint32 fno, Sint32 *in, Sint32 nin, Sint32 *out, Sint32 nout)
 {
     Sint32 i;
 
-    for (i = 0; i < ssize; i++)
+    for (i = 0; i < nin; i++)
     {
-        dtx_sbuf[i] = sbuf[i];
+        dtx_sbuf[i] = in[i];
     }
 
-    sceSifCallRpc(&dtx_cd, cmd + 1024, 0, dtx_sbuf, ssize * sizeof(Uint32), dtx_rbuf, rsize * sizeof(Uint32), NULL, NULL);
+    sceSifCallRpc(&dtx_cd, fno + 1024, 0, dtx_sbuf, nin * sizeof(Uint32), dtx_rbuf, nout * sizeof(Uint32), NULL, NULL);
 
-    for (i = 0; i < rsize; i++)
+    for (i = 0; i < nout; i++)
     {
-        rbuf[i] = dtx_rbuf[i];
+        out[i] = dtx_rbuf[i];
     }
     
     return dtx_rbuf[0]; 
@@ -46,14 +46,14 @@ Sint32 DTX_CallUrpc(Sint32 cmd, Sint32* sbuf, Sint32 ssize, Sint32* rbuf, Sint32
 void DTX_Close(DTX dtx) 
 {
     dtx->rcvcbf = NULL;
-    dtx->rcbfsz = 0;
+    dtx->rcvcbo = NULL;
     
     dtx->sndcbf = NULL;
-    dtx->snbfsz = 0;
+    dtx->sndcbo = NULL;
 }
 
 // 100% matching!
-DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
+DTX DTX_Create(Sint32 id, Sint8 *eewk, Sint8 *iopwk, Sint32 wklen)
 {
     DTX dtx;
 
@@ -78,7 +78,7 @@ DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
         return NULL;
     }
 
-    if (id >= 8) 
+    if ((Uint32)id >= 8) 
     {
         printf("illeagal ID (%d) \n", id);
         
@@ -92,38 +92,38 @@ DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
         return NULL;
     }
 
-    dtx->rmt = dtx_create_rmt(id, eewk, iopwk, wklen);
+    dtx->dtxsvr = dtx_create_rmt(id, eewk, iopwk, wklen);
 
-    if (dtx->rmt == 0) 
+    if (dtx->dtxsvr == NULL) 
     {
         printf("DTX_Create: can't create DTX of server\n");
         
         return NULL;
     }
 
-    dtx->unk8 = 0;
+    dtx->ticket_no = 0;
     
-    dtx->eewkln = wklen - 64;
-    dtx->iopwkln = wklen;
+    dtx->dtlen = wklen - 64;
+    dtx->trlen = wklen;
     
-    dtx->iopwk = iopwk;
+    dtx->trdt = iopwk;
     
-    dtx->unk14 = (Sint32*)(((Sint32)eewk + dtx->eewkln) | UNCBASE); // the casts make this code a bit too cumbersome
+    dtx->ftr = (void*)(((Sint32)eewk + dtx->dtlen) | UNCBASE); // casts added for MWCC compatibility
     
-    dtx->eewk = eewk;
+    dtx->dt = eewk;
     
-    dtx->stat = 0;
+    dtx->wait_flag = 0;
     
-    memset(eewk, 0, dtx->eewkln);
+    memset(eewk, 0, dtx->dtlen);
     
-    SyncDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63));    // same as above, casts overcomplicate these two lines 
-    InvalidDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63)); 
+    SyncDCache(dtx->dt, (void*)(((Sint8*)dtx->dt + dtx->dtlen) + 63)); // same as above 
+    InvalidDCache(dtx->dt, (void*)(((Sint8*)dtx->dt + dtx->dtlen) + 63)); 
     
     dtx->rcvcbf = (void*)dtx_def_rcvcbf;
     dtx->sndcbf = (void*)dtx_def_sndcbf;
     
-    dtx->rcbfsz = 0;
-    dtx->snbfsz = 0;
+    dtx->rcvcbo = NULL;
+    dtx->sndcbo = NULL;
     
     dtx->used = TRUE;
 
@@ -131,7 +131,7 @@ DTX DTX_Create(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
 }
 
 // 100% matching!
-Sint32 dtx_create_rmt(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
+DTX dtx_create_rmt(Sint32 id, Sint8 *eewk, Sint8 *iopwk, Sint32 wklen)
 {
     dtx_sbuf[0] = id;
     dtx_sbuf[1] = (Sint32)eewk;
@@ -140,11 +140,11 @@ Sint32 dtx_create_rmt(Uint32 id, void* eewk, void* iopwk, Sint32 wklen)
     
     sceSifCallRpc(&dtx_cd, 2, 0, dtx_sbuf, 4 * sizeof(Uint32), dtx_rbuf, sizeof(Uint32), NULL, NULL);
     
-    return dtx_rbuf[0];
+    return (DTX)dtx_rbuf[0];
 }
 
 // 100% matching!
-void dtx_def_rcvcbf(DTX dtx, void* buf, Sint32 bfsize) 
+void dtx_def_rcvcbf(void *obj, void *dt, Sint32 dtlen)
 {
     static Sint32 cnt = 0;
     
@@ -152,17 +152,17 @@ void dtx_def_rcvcbf(DTX dtx, void* buf, Sint32 bfsize)
 }
 
 // 100% matching!
-void dtx_def_sndcbf(DTX dtx, void* buf, Sint32 bfsize)
+void dtx_def_sndcbf(void *obj, void *dt, Sint32 dtlen)
 {
     static Sint32 cnt = 0;
     Sint32 i;
 
-    for (i = 0; i < bfsize; i++) 
+    for (i = 0; i < dtlen; i++) 
     {
-        ((Sint8*)buf)[i] = -86;
+        ((Sint8*)dt)[i] = -86;
     }
     
-    sprintf(buf, "Hello from EE (%d)", cnt);
+    sprintf(dt, "Hello from EE (%d)", cnt);
     
     cnt++; 
 }
@@ -170,67 +170,67 @@ void dtx_def_sndcbf(DTX dtx, void* buf, Sint32 bfsize)
 // 100% matching!
 void DTX_Destroy(DTX dtx)
 {
-    dtx_destroy_rmt(dtx->rmt);
+    dtx_destroy_rmt(dtx->dtxsvr);
     
     memset(dtx, 0, sizeof(DTX_OBJ)); 
 }
 
 // 100% matching!
-void dtx_destroy_rmt(Uint32 id) 
+void dtx_destroy_rmt(DTX dtx)
 {
-    dtx_sbuf[0] = id;
+    dtx_sbuf[0] = (Sint32)dtx;
     
-    sceSifCallRpc(&dtx_cd, 3, 0, dtx_sbuf, sizeof(u_int), dtx_rbuf, 0, NULL, NULL);
+    sceSifCallRpc(&dtx_cd, 3, 0, dtx_sbuf, sizeof(Uint32), dtx_rbuf, 0, NULL, NULL);
 }
 
-// 99.54% matching
+// 100% matching!
 void DTX_ExecHndl(DTX dtx)
 {
     static Sint32 cnt = 0;
     
     cnt++;
 
-    if ((dtx->stat == 1) && (dtx->unk8 < dtx->unk14[15])) 
+    if ((dtx->wait_flag == 1) && (dtx->ticket_no < dtx->ftr->ticket_no)) 
     {
-        InvalidDCache(dtx->eewk, (void*)((Sint32)dtx->eewk + (dtx->eewkln - 1))); // remove cast to match 100%
+        InvalidDCache(dtx->dt, (void*)((Sint8*)dtx->dt + (dtx->dtlen - 1))); // casts added for MWCC compatibility
         
-        dtx->rcvcbf(dtx->rcbfsz, dtx->eewk, dtx->eewkln);
+        dtx->rcvcbf(dtx->rcvcbo, dtx->dt, dtx->dtlen);
         
-        dtx->unk8 = dtx->unk14[15];
+        dtx->ticket_no = dtx->ftr->ticket_no;
         
-        dtx->stat = 0;
+        dtx->wait_flag = 0;
     }
 
-    if (dtx->stat == 0) 
+    if (dtx->wait_flag == 0) 
     {
-        dtx->sndcbf(dtx->snbfsz, dtx->eewk, dtx->eewkln);
+        dtx->sndcbf(dtx->sndcbo, dtx->dt, dtx->dtlen);
         
-        dtx->unk8++;
+        dtx->ticket_no++;
         
-        dtx->unk14[15] = dtx->unk8;
+        dtx->ftr->ticket_no = dtx->ticket_no;
         
-        SyncDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) - 1));     // casts look awkward here
-        InvalidDCache(dtx->eewk, (void*)(((Sint32)dtx->eewk + dtx->eewkln) + 63)); 
+        SyncDCache(dtx->dt, (void*)(((Sint8*)dtx->dt + dtx->dtlen) - 1)); // same as above
+        InvalidDCache(dtx->dt, (void*)(((Sint8*)dtx->dt + dtx->dtlen) + 63)); 
         
-        dtx->sdd.data = (Sint32)dtx->eewk & 0xFFFFFFF;
+        dtx->dma.data = (Sint32)dtx->dt & 0xFFFFFFF;
         
-        dtx->sdd.addr = (Sint32)dtx->iopwk;
+        dtx->dma.addr = (Sint32)dtx->trdt;
         
-        dtx->sdd.size = dtx->iopwkln; 
+        dtx->dma.size = dtx->trlen; 
         
-        dtx->sdd.mode = 0;
+        dtx->dma.mode = 0;
         
-        dtx->did = sceSifSetDma(&dtx->sdd, 1);
+        dtx->dma_id = sceSifSetDma(&dtx->dma, 1);
         
-        dtx->stat = 1;
+        dtx->wait_flag = 1;
     }
 }
 
 // 100% matching!
 void DTX_ExecServer(void)
 {
-    DTX dtx;
     Sint32 i;
+    DTX dtx;
 
     SJCRS_Lock();
 
@@ -250,14 +250,14 @@ void DTX_ExecServer(void)
 // 100% matching!
 void DTX_Finish(void)
 {
-    DTX dtx;
     Sint32 i;
+    DTX dtx;
 
-    dtx = 0;
+    dtx = NULL;
 
     if (--dtx_init_cnt == 0) 
     {
-        dtx++; // this operation is invalid, it's only allowed for matching purposes
+        dtx++; // FAKE: this operation is invalid, it's only allowed for match purposes
         
         for (i = 0; i < 8; i++) 
         {
@@ -274,7 +274,7 @@ void DTX_Finish(void)
 // 99.76% matching
 void DTX_Init(void) 
 {
-    Sint32 i;
+    int i;
 
     if (dtx_init_cnt == 0)
     {
@@ -300,9 +300,9 @@ void DTX_Init(void)
 }
 
 // 100% matching!
-DTX DTX_Open(Uint32 id)
+DTX DTX_Open(Sint32 id)
 {
-    if (id >= 8) 
+    if ((Uint32)id >= 8) 
     {
         return NULL;
     }
@@ -311,9 +311,12 @@ DTX DTX_Open(Uint32 id)
 }
 
 // 100% matching!
-void* dtx_rpc_func(Uint32 fno, DTX_RPC data, Uint32 size)
+void* dtx_rpc_func(unsigned int fno, void *data, int size)
 {
+    Sint32 *arg;
     sceSifRpcFunc fn;
+
+    arg = data;
 
     SJCRS_Lock();
 
@@ -329,52 +332,52 @@ void* dtx_rpc_func(Uint32 fno, DTX_RPC data, Uint32 size)
             
             if (fn != NULL) 
             {
-                fn((Uint32)dtx_urpc_obj[fno - 1024], data, size / 4);
+                fn((Uint32)dtx_urpc_obj[fno - 1024], arg, (Uint32)size / 4);
             }
         }         
         
         break;
     case 2:
-        data->dtx = DTX_Create((Sint32)data->dtx, data->eewk, data->iopwk, data->wklen); // casting data->dtx to int doesn't look quite logical
+        arg[0] = (Sint32)DTX_Create(arg[0], (Sint8*)arg[1], (Sint8*)arg[2], arg[3]); 
         break;
     case 3:
-        DTX_Destroy(data->dtx);
+        DTX_Destroy((DTX)arg[0]);
         break;
     }
     
     SJCRS_Unlock();
     
-    return data; 
+    return arg; 
 }
 
 // 100% matching!
-void DTX_SetRcvCbf(DTX dtx, void* buf, Sint32 bfsize) 
+void DTX_SetRcvCbf(DTX dtx, DTX_RCVCBF fn, void *obj)
 {
-    dtx->rcvcbf = buf;
-    dtx->rcbfsz = bfsize;
+    dtx->rcvcbf = fn;
+    dtx->rcvcbo = obj;
 }
 
 // 100% matching!
-void DTX_SetSndCbf(DTX dtx, void* buf, Sint32 bfsize)
+void DTX_SetSndCbf(DTX dtx, DTX_SNDCBF fn, void *obj)
 {
-    dtx->sndcbf = buf;
-    dtx->snbfsz = bfsize;
+    dtx->sndcbf = fn;
+    dtx->sndcbo = obj;
 }
 
 // 100% matching!
-Sint32 dtx_svr_proc(void)
+int dtx_svr_proc()
 {
-    sceSifQueueData qd1;
-    sceSifQueueData qd2;
+    sceSifQueueData qd;
+    sceSifQueueData qd0;
 
-    sceSifSetRpcQueue(&qd1, GetThreadId());
-    sceSifSetRpcQueue(&qd2, GetThreadId());
+    sceSifSetRpcQueue(&qd, GetThreadId());
+    sceSifSetRpcQueue(&qd0, GetThreadId());
     
-    sceSifRegisterRpc(&dtx_sd, dtx_rpc_id, (sceSifRpcFunc)dtx_rpc_func, dtx_svrbuf, NULL, NULL, &qd1);
+    sceSifRegisterRpc(&dtx_sd, dtx_rpc_id, (sceSifRpcFunc)dtx_rpc_func, dtx_svrbuf, NULL, NULL, &qd);
     
     dtx_proc_init_flag = 1;
     
-    sceSifRpcLoop(&qd1);
+    sceSifRpcLoop(&qd);
     
     return 0;
 }
