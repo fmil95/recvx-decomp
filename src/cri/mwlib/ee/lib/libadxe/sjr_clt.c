@@ -3,8 +3,8 @@
 
 Char8* volatile sjrmt_build = "\nSJRMT Ver 0.93 Build:Jan 26 2001 09:59:44\n";
 Sint32 sjrmt_init_cnt = 0;
-static Sint32 sjrmt_sbuf[4] __attribute__((aligned(64))); // ERROR: these buffers have an array size of 64, but declaring them like so causes issues
-static Sint32 sjrmt_rbuf[4] __attribute__((aligned(64)));
+static Sint32 sjrmt_sbuf[64]; 
+static Sint32 sjrmt_rbuf[64];
 
 // 100% matching!
 SJ SJMEM_CreateRmt(Sint8 *data, Sint32 dtsize)

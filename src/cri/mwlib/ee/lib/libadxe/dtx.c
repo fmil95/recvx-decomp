@@ -16,7 +16,7 @@ DTX_OBJ dtx_clnt[8] = { 0 };
 DTX_OBJ dtx_svr[8] = { 0 }; /* unused */
 sceSifClientData dtx_cd = { 0 };
 sceSifServeData dtx_sd = { 0 };
-Uint32 dtx_svrbuf[64] = { 0 };
+u_long128 dtx_svrbuf[16] = { 0 };
 sceSifRpcFunc dtx_urpc_fn[64] = { 0 };
 void *dtx_urpc_obj[64] = { 0 }; 
 static Uint32 dtx_sbuf[64] __attribute__((aligned(64))); 
