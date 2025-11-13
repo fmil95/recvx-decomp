@@ -14,10 +14,10 @@ Sint32 dtr_init_cnt = 0;
 DTR_OBJ dtr_obj[16] = { 0 };
 
 // 100% matching!
-DTR DTR_Create(SJ sjo, SJ sji)
+DTR DTR_Create(SJ sjsrc, SJ sjdst)
 {
-    DTR dtr;
     Sint32 i;
+    DTR dtr;
 
     SJCRS_Lock();
 
@@ -39,21 +39,19 @@ DTR DTR_Create(SJ sjo, SJ sji)
     {
         memset(dtr, 0, sizeof(DTR_OBJ));
         
-        dtr->stat = 0;
+        dtr->stat = DTR_STAT_STOP;
         
-        dtr->unk38 = 64;
+        dtr->blklen = 64;
         
-        dtr->sjo = sjo;
+        dtr->sjsrc = sjsrc;
+        dtr->sjdst = sjdst;
         
-        dtr->sji = sji;
+        dtr->trnflg = DTR_DTXFNO_CREATE;
         
-        dtr->trnflg = 0;
-        
-        dtr->unk30 = 1;
+        dtr->srclin = 1;
+        dtr->dstlin = 0;
         
         dtr->used = TRUE;
-        
-        dtr->unk34 = 0;
     }
 
     SJCRS_Unlock();
@@ -75,13 +73,13 @@ void DTR_Destroy(DTR dtr)
 void DTR_ExecHndl(DTR dtr)
 {
     SJCK cks;
-    SJCK ck1;
-    SJCK ckd;
-    SJCK ck2;
-    Sint32 nbyte;
+	SJCK cks2;
+	SJCK ckd;
+	SJCK ckd2;
+	Sint32 len;
     Uint8 temp;
 
-    if (dtr->stat == 1) 
+    if (dtr->stat == DTR_STAT_EXEC) 
     {
         temp = dtr->trnflg;
 
@@ -89,30 +87,30 @@ void DTR_ExecHndl(DTR dtr)
         {
             if (sceSifDmaStat(dtr->dma_id) < 0)
             {
-                SJ_PutChunk(dtr->sjo, 0, &dtr->ck1);
+                SJ_PutChunk(dtr->sjsrc, 0, &dtr->cks);
                 
-                dtr->ck1.data = NULL;
+                dtr->cks.data = NULL;
                 
-                dtr->ck1.len = 0;
+                dtr->cks.len = 0;
                 
-                SJ_PutChunk(dtr->sji, 1, &dtr->ck2);
+                SJ_PutChunk(dtr->sjdst, 1, &dtr->ckd);
                 
-                dtr->ck2.data = NULL;
+                dtr->ckd.data = NULL;
                 
-                dtr->ck2.len = 0;
+                dtr->ckd.len = 0;
                 
-                dtr->trnflg = 0;
+                dtr->trnflg = DTR_DTXFNO_CREATE;
                 
-                dtr->unk3C += dtr->ck1.len;
+                dtr->total_tbyte += dtr->cks.len;
     
-                if (dtr->ck1.len != 0) 
+                if (dtr->cks.len != 0) 
                 {
                     printf("DTR_ExecHndl: Internal Error\n");
     
                     while (TRUE);
                 }
     
-                temp = 0;
+                temp = DTR_DTXFNO_CREATE;
             } 
             else 
             {
@@ -120,23 +118,23 @@ void DTR_ExecHndl(DTR dtr)
             }
         }
     
-        if (temp == 0) 
+        if (temp == DTR_DTXFNO_CREATE) 
         {
-            SJ_GetChunk(dtr->sjo, 1, SJCK_LEN_MAX, &cks);
-            SJ_GetChunk(dtr->sji, 0, SJCK_LEN_MAX, &ckd);
+            SJ_GetChunk(dtr->sjsrc, 1, SJCK_LEN_MAX, &cks);
+            SJ_GetChunk(dtr->sjdst, 0, SJCK_LEN_MAX, &ckd);
             
-            nbyte = MIN(cks.len, ckd.len);
-            nbyte = (nbyte / dtr->unk38) * dtr->unk38;
+            len = MIN(cks.len, ckd.len);
+            len = (len / dtr->blklen) * dtr->blklen;
             
-            SJ_SplitChunk(&cks, nbyte, &cks, &ck1);
+            SJ_SplitChunk(&cks, len, &cks, &cks2);
             
-            SJ_UngetChunk(dtr->sjo, 1, &ck1);
+            SJ_UngetChunk(dtr->sjsrc, 1, &cks2);
             
-            SJ_SplitChunk(&ckd, nbyte, &ckd, &ck2);
+            SJ_SplitChunk(&ckd, len, &ckd, &ckd2);
             
-            SJ_UngetChunk(dtr->sji, 0, &ck2);
+            SJ_UngetChunk(dtr->sjdst, 0, &ckd2);
         
-            if (nbyte > 0) 
+            if (len > 0) 
             {
                 if ((cks.len & 0x3F))
                 {
@@ -164,29 +162,29 @@ void DTR_ExecHndl(DTR dtr)
             
                 SyncDCache(cks.data, cks.data + (cks.len - 1));
                 
-                dtr->sdd.data = (Sint32)cks.data & 0xFFFFFFF;
+                dtr->dma.data = (Sint32)cks.data & 0xFFFFFFF;
                 
-                dtr->sdd.addr = (Sint32)ckd.data;
+                dtr->dma.addr = (Sint32)ckd.data;
                 
-                dtr->sdd.size = cks.len;
+                dtr->dma.size = cks.len;
                 
-                dtr->sdd.mode = 0;
+                dtr->dma.mode = 0;
                 
-                dtr->dma_id = sceSifSetDma(&dtr->sdd, 1);
+                dtr->dma_id = sceSifSetDma(&dtr->dma, 1);
             
                 if (dtr->dma_id == 0) 
                 {
                     printf("E0101701 DTR_ExecHndl: can't use DMA\n");
                     
-                    SJ_UngetChunk(dtr->sjo, 1, &cks);
-                    SJ_UngetChunk(dtr->sji, 0, &ckd);
+                    SJ_UngetChunk(dtr->sjsrc, 1, &cks);
+                    SJ_UngetChunk(dtr->sjdst, 0, &ckd);
                 } 
                 else 
                 {
-                    dtr->ck1 = cks;
-                    dtr->ck2 = ckd;
+                    dtr->cks = cks;
+                    dtr->ckd = ckd;
                     
-                    dtr->trnflg = 1;
+                    dtr->trnflg = DTR_DTXFNO_DESTROY;
                 }
             }
         }
@@ -197,12 +195,15 @@ void DTR_ExecHndl(DTR dtr)
 void DTR_ExecServer(void) 
 {
     Sint32 i;
+    DTR dtr;
 
     for (i = 0; i < 16; i++)
     {
-        if (dtr_obj[i].used == TRUE) 
+        dtr = &dtr_obj[i];
+        
+        if (dtr->used == TRUE) 
         {
-            DTR_ExecHndl(&dtr_obj[i]);
+            DTR_ExecHndl(dtr);
         } 
     }
 
@@ -233,31 +234,31 @@ void DTR_Init(void)
 // 100% matching!
 void DTR_Start(DTR dtr) 
 {
-    dtr->unk3C = 0;
+    dtr->total_tbyte = 0;
     
-    dtr->stat = 1;
+    dtr->stat = DTR_STAT_EXEC;
 }
 
 // 100% matching!
 void DTR_Stop(DTR dtr)
 {
-    dtr->stat = 0;
+    dtr->stat = DTR_STAT_STOP;
 
-    if (dtr->ck1.data != NULL)
+    if (dtr->cks.data != NULL)
     {
-        SJ_UngetChunk(dtr->sjo, 1, &dtr->ck1);
+        SJ_UngetChunk(dtr->sjsrc, 1, &dtr->cks);
     
-        dtr->ck1.data = NULL;
+        dtr->cks.data = NULL;
         
-        dtr->ck1.len = 0;
+        dtr->cks.len = 0;
     }
 
-    if (dtr->ck2.data != NULL)
+    if (dtr->ckd.data != NULL)
     {
-        SJ_UngetChunk(dtr->sji, 0, &dtr->ck2);
+        SJ_UngetChunk(dtr->sjdst, 0, &dtr->ckd);
     
-        dtr->ck2.data = NULL;
+        dtr->ckd.data = NULL;
         
-        dtr->ck2.len = 0;
+        dtr->ckd.len = 0;
     }
 }

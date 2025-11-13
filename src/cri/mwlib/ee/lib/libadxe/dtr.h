@@ -6,27 +6,38 @@
 #include <sif.h>
 #include "macros.h"
 
-typedef struct _dtr_obj
+typedef enum 
 {
-    Sint8          used;
-    Sint8          stat; 
-    Sint8          trnflg;
-    Sint8          unk3;  /* unused */
-    SJ             sjo;
-    SJ             sji;
-    SJCK           ck1;
-    SJCK           ck2;
-    sceSifDmaData  sdd;
-    Sint32         dma_id;
-    Sint32         unk30;
-    Sint32         unk34; // buf?
-    Sint32         unk38; // bufsize?
-    Sint32         unk3C; // datano?
-} DTR_OBJ;
+	DTR_DTXFNO_CREATE = 0,
+	DTR_DTXFNO_DESTROY = 1
+} DTR_DTXFNO;
 
+typedef enum 
+{
+	DTR_STAT_STOP = 0,
+	DTR_STAT_EXEC = 1
+} DTR_STAT;
+
+typedef struct dtr_obj
+{ 
+	Sint8 used;
+	Sint8 stat;
+	Sint8 trnflg;
+	Sint8 rsv;
+	SJ sjsrc;
+	SJ sjdst;
+	SJCK cks;
+	SJCK ckd;
+	sceSifDmaData dma;
+	Sint32 dma_id;
+	Sint32 srclin;
+	Sint32 dstlin;
+	Sint32 blklen;
+	Sint32 total_tbyte;
+} DTR_OBJ;
 typedef DTR_OBJ *DTR;
 
-DTR DTR_Create(SJ sjo, SJ sji);
+DTR DTR_Create(SJ sjsrc, SJ sjdst);
 void DTR_Destroy(DTR dtr);
 void DTR_ExecHndl(DTR dtr);
 void DTR_ExecServer(void);
