@@ -71,16 +71,6 @@ DTX ps2rna_dtx = NULL;
 Sint32 ps2rna_wklen = 0;
 Sint8 ps2rna_ee_work[2256] = { 0 };
 
-static inline void PS2RNA_SetCmd(PS2RNA_DTXCMD *cmd, IOPRNA rna, Sint32 arg1, Sint32 arg2) 
-{
-    cmd->no = IOPRNA_CMD_SETVOL;
-    
-    cmd->rna = rna;
-    
-    cmd->arg1 = arg1;
-    cmd->arg2 = arg2;
-}
-
 // 100% matching!
 void PS2RNA_ClearBuf(PS2RNA rna) 
 {
@@ -781,6 +771,7 @@ void ps2rna_sndcbf(void *obj, void *dt, Sint32 dtlen)
 	PS2RNA_DTXCMD *cmd;
 	Sint32 i;
 	Sint32 ncmd;
+    Sint32 psmvol;
     PS2RNA rna;
 
     fmt = dt;
@@ -856,11 +847,18 @@ void ps2rna_sndcbf(void *obj, void *dt, Sint32 dtlen)
             
             if (rna->ee_vol != rna->iop_vol) 
             {
-                PS2RNA_SetCmd(&cmd[ncmd], rna->ioprna, 0, ps2rna_dbtbl[-rna->ee_vol]);
+                psmvol = ps2rna_dbtbl[-rna->ee_vol];
                 
-                rna->iop_vol = rna->ee_vol;
+                cmd[ncmd].no = IOPRNA_CMD_SETVOL;
+                
+                cmd[ncmd].rna = rna->ioprna;
+                
+                cmd[ncmd].arg1 = 0;
+                cmd[ncmd].arg2 = psmvol;
                 
                 ncmd++;
+                
+                rna->iop_vol = rna->ee_vol;
             }
                 
             if (ncmd == 128) 
