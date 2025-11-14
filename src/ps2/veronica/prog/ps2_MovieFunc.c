@@ -1060,21 +1060,17 @@ int pcmCallback(_anon11* str, void* data)
 	// Line 1644, Address: 0x2ed6f0, Func Offset: 0x1a0
 	// Line 1645, Address: 0x2ed6fc, Func Offset: 0x1ac
 	// Func End, Address: 0x2ed718, Func Offset: 0x1c8
-}
+}*/
 
-// 
-// Start address: 0x2ed720
-int mpegError(_anon1* cberror)
+// 100% matching!
+int mpegError(sceMpeg *mp, sceMpegCbDataError *cberror, void *anyData)
 {
-	// Line 1653, Address: 0x2ed720, Func Offset: 0
-	// Line 1654, Address: 0x2ed728, Func Offset: 0x8
-	// Line 1656, Address: 0x2ed738, Func Offset: 0x18
-	// Line 1655, Address: 0x2ed73c, Func Offset: 0x1c
-	// Line 1656, Address: 0x2ed740, Func Offset: 0x20
-	// Func End, Address: 0x2ed748, Func Offset: 0x28
+    printf("%s\n", cberror->errMessage);
+    
+    return 1;
 }
 
-// 
+/*// 
 // Start address: 0x2ed750
 int mpegNodata()
 {
