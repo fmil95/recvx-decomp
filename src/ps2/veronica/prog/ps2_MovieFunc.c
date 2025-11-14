@@ -9,8 +9,8 @@
 int isFrameEnd;
 int oddeven;
 int handler_error;*/
-int __image_w__;
-int __image_h__;
+static int __image_w__;
+static int __image_h__;
 /*<unknown fundamental type (0xa510)> new_tags[64];
 _anon17 videoDec;
 int videoDecTh;
@@ -767,17 +767,16 @@ int viBufPutTs(_anon7* f, _anon8* ts)
 	// Func End, Address: 0x2ecdb0, Func Offset: 0x130
 }*/
 
-// 
-// Start address: 0x2ecdb0
+// 100% matching!
 void voBufIncCount(VoBuf *f)
 {
-	unsigned int stat;
-	// Line 1246, Address: 0x2ecdb0, Func Offset: 0
-	// Line 1248, Address: 0x2ecdd0, Func Offset: 0x20
-	// Line 1249, Address: 0x2ecddc, Func Offset: 0x2c
-	// Line 1253, Address: 0x2ecde8, Func Offset: 0x38
-	// Func End, Address: 0x2ecdf0, Func Offset: 0x40
-	scePrintf("voBufIncCount - UNIMPLEMENTED!\n");
+    DI();
+
+    f->tag->status = VOBUF_STATUS_FULL;
+    
+    f->count++;
+    
+    EI();
 }
 
 /*// 

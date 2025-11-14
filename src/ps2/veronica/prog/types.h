@@ -3179,7 +3179,13 @@ typedef struct {
     int len;
 } TimeStamp;
 
+/* vobuf.h */
+
 #define N_VOBUF 5
+
+#define VOBUF_STATUS_    0
+#define VOBUF_STATUS_TOPDONE  1
+#define VOBUF_STATUS_FULL     2
 
 #define MAX_WIDTH 720
 #define MAX_HEIGHT 480
@@ -3205,6 +3211,8 @@ typedef struct {
     volatile int count;	    // the number of images in VoBuf
     int size;		    // total number of elements in VoBuf
 } VoBuf;
+
+/* vibuf.h */
 
 typedef struct {
     __int128 *data;	// data array
