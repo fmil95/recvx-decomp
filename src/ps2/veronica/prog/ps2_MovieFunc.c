@@ -611,14 +611,11 @@ void setD4_CHCR(u_int val)
 	scePrintf("setD4_CHCR - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2ec7e0
-void scTag2(_anon22* q, void* addr, unsigned int id, unsigned int qwc)
+// 100% matching!
+void scTag2(QWORD *q, void *addr, u_int id, u_int qwc)
 {
-	// Line 1026, Address: 0x2ec7e0, Func Offset: 0
-	// Line 1029, Address: 0x2ec808, Func Offset: 0x28
-	// Func End, Address: 0x2ec810, Func Offset: 0x30
-}*/
+    q->l[0] = ((u_long)(u_int)addr << 32) | ((u_long)id << 28) | (u_long)qwc;
+}
 
 // 
 // Start address: 0x2ec810

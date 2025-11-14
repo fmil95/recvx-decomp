@@ -3212,6 +3212,16 @@ typedef struct {
     int size;		    // total number of elements in VoBuf
 } VoBuf;
 
+/* vibuf.c */
+
+typedef union {
+    u_long128	q;
+    u_long 	l[2];
+    u_int  	i[4];
+    u_short	s[8];
+    u_char	c[16];
+} QWORD;
+
 /* vibuf.h */
 
 typedef struct {
