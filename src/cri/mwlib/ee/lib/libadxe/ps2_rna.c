@@ -215,10 +215,13 @@ void PS2RNA_ExecHndl(PS2RNA rna)
 {
     Sint32 i;
 	SJCK ck;
+    Sint32 temp;
 
     if ((rna->ee_plysw == 1) && (rna->trnsw == 0)) 
     {
-        if (((Uint32)SJ_GetNumData(rna->sjo[0], 1) - 1) < 63) // this is likely to be a compiler optimization
+        temp = SJ_GetNumData(rna->sjo[0], 1);
+        
+        if ((temp > 0) && (temp < 64))
         {
             for (i = 0; i < rna->maxnch; i++) 
             {
