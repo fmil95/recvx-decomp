@@ -592,11 +592,11 @@ void setD3_CHCR(unsigned int val)
 	// Line 1006, Address: 0x2ec768, Func Offset: 0x48
 	// Line 1008, Address: 0x2ec774, Func Offset: 0x54
 	// Func End, Address: 0x2ec77c, Func Offset: 0x5c
-}
+}*/
 
 // 
 // Start address: 0x2ec780
-void setD4_CHCR(unsigned int val)
+void setD4_CHCR(u_int val)
 {
 	unsigned int stat;
 	// Line 1012, Address: 0x2ec780, Func Offset: 0
@@ -608,9 +608,10 @@ void setD4_CHCR(unsigned int val)
 	// Line 1015, Address: 0x2ec7c8, Func Offset: 0x48
 	// Line 1017, Address: 0x2ec7d4, Func Offset: 0x54
 	// Func End, Address: 0x2ec7dc, Func Offset: 0x5c
+	scePrintf("setD4_CHCR - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ec7e0
 void scTag2(_anon22* q, void* addr, unsigned int id, unsigned int qwc)
 {
@@ -864,25 +865,23 @@ void termAll()
 	// Line 1404, Address: 0x2ed034, Func Offset: 0x74
 	// Line 1405, Address: 0x2ed04c, Func Offset: 0x8c
 	// Func End, Address: 0x2ed058, Func Offset: 0x98
-}
+}*/
 
-// 
-// Start address: 0x2ed060
-int viBufDelete(_anon7* f)
+// 100% matching!
+int viBufDelete(ViBuf *f)
 {
-	// Line 1410, Address: 0x2ed060, Func Offset: 0
-	// Line 1411, Address: 0x2ed070, Func Offset: 0x10
-	// Line 1412, Address: 0x2ed078, Func Offset: 0x18
-	// Line 1413, Address: 0x2ed080, Func Offset: 0x20
-	// Line 1414, Address: 0x2ed088, Func Offset: 0x28
-	// Line 1417, Address: 0x2ed090, Func Offset: 0x30
-	// Line 1419, Address: 0x2ed098, Func Offset: 0x38
-	// Line 1418, Address: 0x2ed0a0, Func Offset: 0x40
-	// Line 1419, Address: 0x2ed0a4, Func Offset: 0x44
-	// Func End, Address: 0x2ed0ac, Func Offset: 0x4c
+    setD4_CHCR((0 << 8) | (1 << 2) | 1);
+    
+    *D4_QWC = 0;
+    *D4_MADR = 0;
+    *D4_TADR = 0;
+
+    DeleteSema(f->sema);
+    
+    return TRUE;
 }
 
-// 
+/*// 
 // Start address: 0x2ed0b0
 int videoDecDelete(_anon17* vd)
 {
