@@ -6,6 +6,15 @@
 #include <sifdev.h>
 #include "macros.h"
 
+typedef struct _htci_dir_obj
+{
+    Sint32  fd;
+    Sint32  fsize;
+    Char8   fname[256]; 
+    Uint8   pad[4];
+} HTCI_DIR_OBJ;
+typedef HTCI_DIR_OBJ *HTCI_DIR;
+
 typedef void (*HTCI_ERRFN)(void* htci_errobj, const Char8* msg, void* obj);
 
 typedef struct _htci_obj 

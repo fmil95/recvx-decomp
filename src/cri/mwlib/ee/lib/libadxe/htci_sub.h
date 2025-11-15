@@ -5,32 +5,33 @@
 #include <libcdvd.h>
 #include <sifdev.h>
 
-typedef struct _htg_flist_tbl 
-{
-    Char8*  fp;
-    Sint32  fsize;
-} HTG_FLIST_TBL;
+typedef struct
+{ 
+	Sint32 fd;
+	Sint32 size;
+    Char8 fname[256]; 
+    Sint8 pad[4];
+} HTS_CI_FCACHE;
 
-typedef struct _htci_dir_obj
-{
-    Sint32  fd;
-    Sint32  fsize;
-    Char8   fname[256]; 
-    Uint8   pad[4];
-} HTCI_DIR_OBJ;
-typedef HTCI_DIR_OBJ *HTCI_DIR;
+typedef struct 
+{ 
+	HTS_CI_FCACHE *finf;
+	Sint32 num;
+	Sint32 num_max;
+	Sint32 fname_max;
+} HTCI_FLIST_TBL;
 
 extern Sint32 htg_ci_open_mode;
 
-Sint32 analysis_flist(Char8* fpc, Sint8* rbuf, Uint32 size);
-Sint32 close_file_all(void);
-void conv_to_tpath(Char8* fname, Char8* path);
-void get_fstate(sceCdlFILE* fp, const Char8* fname, HTCI_DIR dir, Sint32 size);
-void htci_get_finf(const Char8* fname, sceCdlFILE* fp);
+static Sint32 analysis_flist(void *inf, Sint8 *buf, Sint32 num);
+static Sint32 close_file_all(void);
+void conv_to_tpath(Char8 *spath, Char8 *tpath);
+static void get_fstate(HTS_CI_FCACHE *finf, Uint8 *fname, HTS_CI_FCACHE *inf, Sint32 num);
+void htci_get_finf(Uint8 *fname, HTS_CI_FCACHE *inf);
 void htci_init_flist(void);
-Sint32 htCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size);
-void htCiSetOpenMode(Sint32 opmode);
-Sint32 load_flist(Char8* flist, Sint8* rbuf);
-Sint32 open_file_all(Char8* fpc, Sint32 fno);
+Sint32 htCiLoadFpCache(Sint8 *fls_fname, Sint8 *fpc_ptr, Sint32 fpc_size);
+void htCiSetOpenMode(Sint32 mode);
+Sint32 load_flist(Sint8 *fname, Sint8 *rbuf);
+static Sint32 open_file_all(void *inf, Sint32 num);
 
 #endif

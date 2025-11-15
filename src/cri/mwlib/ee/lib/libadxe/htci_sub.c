@@ -4,44 +4,46 @@
 #include <stdio.h>
 #include <string.h>
 
-static Sint32 htg_found = FALSE;
-static HTG_FLIST_TBL htg_flist_tbl = { 0 };
+// ERROR: this file needs to be compiled with -G0, but doing so gives a link error
+
+Sint32 htg_found = FALSE;
+static HTCI_FLIST_TBL htg_flist_tbl = { 0 };
 static Sint8 htg_rbuf[4096];
 Sint32 htg_ci_open_mode = 0x8001;
 
 // 100% matching!
-Sint32 analysis_flist(Char8* fpc, Sint8* rbuf, Uint32 size)
+static Sint32 analysis_flist(void *inf, Sint8 *buf, Sint32 num)
 {
-    HTCI_DIR dir;
-    Sint32 i; 
-    Sint32 j;
-    Sint32 k;
+    Uint32 pos;
+	Uint32 begin;
+	Uint32 len;
+    HTS_CI_FCACHE *finf;
     
-    for (i = 0, j = 0, k = 0; rbuf[i] != '\0'; i++)
+    for (pos = 0, begin = 0, len = 0; buf[pos] != '\0'; pos++)
     {
-        if (rbuf[i] == '\\')
+        if (buf[pos] == '\\')
         {
-            rbuf[i] = '/';
+            buf[pos] = '/';
         }
         
-        if ((rbuf[i] == '\n') || (rbuf[i] == '\0'))
+        if ((buf[pos] == '\n') || (buf[pos] == '\0'))
         {
-            dir = (HTCI_DIR)fpc;
+            finf = inf;
             
-            memcpy(dir[k].fname, &rbuf[j], (i - j) - 1);
+            memcpy(finf[len].fname, &buf[begin], (pos - begin) - 1);
             
-            k++;
+            len++;
             
-            j = i + 1;
+            begin = pos + 1;
             
-            if (k == size) 
+            if (len == num) 
             {
                 break;
             }
         }
     }
     
-    if (htg_flist_tbl.fp == NULL) 
+    if (htg_flist_tbl.finf == NULL) 
     {
         if (htg_found != FALSE)
         {
@@ -51,29 +53,30 @@ Sint32 analysis_flist(Char8* fpc, Sint8* rbuf, Uint32 size)
         {
             htg_found = TRUE;
             
-            htg_flist_tbl.fp = fpc;
+            htg_flist_tbl.finf = inf;
             
-            htg_flist_tbl.fsize = k;
+            htg_flist_tbl.num = len;
         }
     }
     
-    return k;
+    return len;
 }
 
 // 100% matching!
-Sint32 close_file_all(void)
+static Sint32 close_file_all(void)
 {
-    Char8 flist[256];
-    HTCI_DIR dir;
-    Sint32 numf;
-    Uint32 size;
-    Uint32 i;
-
-    dir = (HTCI_DIR)htg_flist_tbl.fp;
+    HTS_CI_FCACHE *inf;
+	Uint32 lp;
+	Uint32 found;
+	Sint32 num;
+	char fname[256];
+	char *fnameptr;
     
-    numf = 0;
+    inf = htg_flist_tbl.finf;
     
-    if (dir == NULL)
+    found = 0;
+    
+    if (inf == NULL)
     {
         if (htg_found != FALSE)
         {
@@ -83,28 +86,30 @@ Sint32 close_file_all(void)
         return 0;
     }
     
-    size = htg_flist_tbl.fsize;
+    num = htg_flist_tbl.num;
     
-    for (i = 0; i < size; i++) 
+    for (lp = 0; lp < num; lp++) 
     {
-        conv_to_tpath(flist, dir[i].fname);
+        fnameptr = inf[lp].fname;
+            
+        conv_to_tpath(fname, fnameptr);
         
-        if (dir[i].fname[0] != '\0') 
+        if (fnameptr[0] != '\0') 
         {
-            if (sceClose(dir[i].fd) < 0)
+            if (sceClose(inf[lp].fd) < 0)
             {
-                printf("HTCI: \"%s\" can't Close.(sceClose)\n", flist);
+                printf("HTCI: \"%s\" can't Close.(sceClose)\n", fname);
             } 
             else 
             {
-                numf++;
+                found++;
                 
-                printf("HTCI: \"%s\" Closed.(sceClose)\n", flist);
+                printf("HTCI: \"%s\" Closed.(sceClose)\n", fname);
             }
         }
     } 
     
-    printf("HTCI: Total %d files\n", numf);
+    printf("HTCI: Total %d files\n", found);
     
     htg_found = FALSE;
     
@@ -114,83 +119,79 @@ Sint32 close_file_all(void)
 }
 
 // 100% matching!
-void conv_to_tpath(Char8* fname, Char8* path)
+void conv_to_tpath(Char8 *spath, Char8 *tpath)
 {
-    Uint32 i;
-    Sint32 len;
-
-    memcpy(fname, "host:", sizeof("host:")); 
+    Sint32 i;
+	Sint32 flen;
     
-    strcat(fname, path);
-
-    len = strlen(fname);
+    memcpy(spath, "host:", 6); 
     
-    if ((fname[len - 1] == '/') || (fname[len - 1] == '\\')) 
+    strcat(spath, tpath);
+
+    flen = strlen(spath);
+    
+    if ((spath[flen - 1] == '/') || (spath[flen - 1] == '\\')) 
     {
-        fname[len - 1] = '\0';
+        spath[flen - 1] = '\0';
     }
     
-    len = strlen(fname);
+    flen = strlen(spath);
     
-    for (i = 0; i < len; i++) 
+    for (i = 0; (Uint32)i < flen; i++) 
     {
-        if (fname[i] == '\\') 
+        if (spath[i] == '\\') 
         {
-            fname[i] = '/';
+            spath[i] = '/';
         }
     } 
 }
 
 // 100% matching!
-void get_fstate(sceCdlFILE* fp, const Char8* fname, HTCI_DIR dir, Sint32 size)
+static void get_fstate(HTS_CI_FCACHE *finf, Uint8 *fname, HTS_CI_FCACHE *inf, Sint32 num)
 {
-    Sint32 i;
+    Sint32 lp;
 
-    for (i = 0; i < size; i++)
+    for (lp = 0; lp < num; lp++)
     {
-        if (strcasecmp(fname, (Char8*)&dir[i].fname) == 0)
+        if (strcasecmp(fname, (Char8*)&inf[lp].fname) == 0)
         {
-            fp->lsn = dir[i].fd;
+            finf->fd = inf[lp].fd;
             
-            fp->size = dir[i].fsize;
+            finf->size = inf[lp].size;
             return;
         }
     }
 
-    fp->lsn = 0;
+    finf->fd = 0;
     
-    fp->size = 0;
+    finf->size = 0;
 }
 
 // 100% matching!
-void htci_get_finf(const Char8* fname, sceCdlFILE* fp) 
+void htci_get_finf(Uint8 *fname, HTS_CI_FCACHE *inf)
 {
-    HTCI_DIR dir;
-
-    dir = (HTCI_DIR)htg_flist_tbl.fp; 
+    inf->fd = 0;
     
-    fp->lsn = 0;
-    
-    fp->size = 0; 
+    inf->size = 0; 
 
-    if (dir != NULL) 
+    if (htg_flist_tbl.finf != NULL) 
     {
-        get_fstate(fp, fname, dir, htg_flist_tbl.fsize);
+        get_fstate(inf, fname, htg_flist_tbl.finf, htg_flist_tbl.num);
     } 
 }
 
 // 100% matching!
 void htci_init_flist(void) 
 {
-    *(Sint64*)&htg_flist_tbl = 0; // cast doesn't seem valid, furthermore htg_flist_tbl might be a different data type altogether
+    *(Sint64*)&htg_flist_tbl = 0; 
     
     htg_found = FALSE;
 }
 
 // 100% matching!
-Sint32 htCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
+Sint32 htCiLoadFpCache(Sint8 *fls_fname, Sint8 *fpc_ptr, Sint32 fpc_size)
 {
-    Char8 flist[256] = { 0 };
+    char fname[256] = { 0 };
 
     memset(htg_rbuf, 0, sizeof(htg_rbuf));
     
@@ -203,14 +204,14 @@ Sint32 htCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
     
     close_file_all();
     
-    if ((fname == NULL) || (fpc == NULL) || (size == 0)) 
+    if ((fls_fname == NULL) || ((fpc_ptr == NULL) || (fpc_size == 0))) 
     {
         return 0;
     }
     
-    conv_to_tpath(flist, fname);
+    conv_to_tpath((Char8*)fname, (Char8*)fls_fname);
     
-    if (load_flist(flist, htg_rbuf) == 0) 
+    if (load_flist((Sint8*)fname, htg_rbuf) == 0) 
     {
         htci_call_errfn(NULL, "E0111501:can't read filelist.(htCiLoadDirInfo)");
         
@@ -218,20 +219,20 @@ Sint32 htCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size)
     }
     else 
     {
-        return open_file_all(fpc, analysis_flist(fpc, htg_rbuf, size / 268)) * 268;
+        return open_file_all(fpc_ptr, analysis_flist(fpc_ptr, htg_rbuf, (Uint32)fpc_size / 268)) * 268;
     }
     
     return 0;
 }
 
 // 100% matching!
-void htCiSetOpenMode(Sint32 opmode) 
+void htCiSetOpenMode(Sint32 mode)
 {
-    if (opmode != 0) 
+    if (mode != 0) 
     {
-        if (opmode == 1) 
+        if (mode == 1) 
         {
-            htg_ci_open_mode = opmode;
+            htg_ci_open_mode = mode;
         }
         else 
         {
@@ -245,12 +246,12 @@ void htCiSetOpenMode(Sint32 opmode)
 }
 
 // 100% matching!
-Sint32 load_flist(Char8* flist, Sint8* rbuf) 
+Sint32 load_flist(Sint8 *fname, Sint8 *rbuf)
 {
-    Sint32 fd;
-    Sint32 fsize;
+    int fd;
+	Sint32 fsize;
 
-    fd = sceOpen(flist, SCE_RDONLY);
+    fd = sceOpen((char*)fname, SCE_RDONLY);
     
     if (fd < 0)
     {
@@ -277,53 +278,56 @@ Sint32 load_flist(Char8* flist, Sint8* rbuf)
 }
 
 // 100% matching!
-Sint32 open_file_all(Char8* fpc, Sint32 fno)
+static Sint32 open_file_all(void *inf, Sint32 num)
 {
-    Char8 flist[256] = { 0 };
-    HTCI_DIR dir;
-    Sint32 numf;
-    Sint32 fd;
-    Sint32 i;
+    char fname[256] = { 0 };
+	int fd;
+	Sint32 lp;
+	Sint32 found;
+	char *fnameptr; 
+    HTS_CI_FCACHE *finf;
     
-    numf = 0;
+    found = 0;
     
-    if (fno > 13) 
+    if (num > 13) 
     {
-        fno = 13;
+        num = 13;
     }
     
-    for (i = 0; i < fno; i++)
+    for (lp = 0; lp < num; lp++)
     {
-        dir = (HTCI_DIR)fpc;
+        finf = inf;
+
+        fnameptr = finf[lp].fname;
         
-        conv_to_tpath(flist, dir[i].fname);
+        conv_to_tpath(fname, fnameptr);
         
-        if (dir[i].fname[0] != '\0') 
+        if (fnameptr[0] != '\0') 
         {
-            fd = sceOpen(flist, SCE_RDONLY);
+            fd = sceOpen(fname, SCE_RDONLY);
             
             if (fd < 0) 
             {
-                printf("HTCI: \"%s\" can't Open.(sceOpen)\n", flist);
+                printf("HTCI: \"%s\" can't Open.(sceOpen)\n", fname);
             } 
             else 
             {
-                dir[i].fd = fd;
+                finf[lp].fd = fd;
                 
-                numf++;
+                found++;
                 
-                dir[i].fsize = htci_get_fsize_opened(fd);
+                finf[lp].size = htci_get_fsize_opened(fd);
                 
-                printf("HTCI: \"%s\" Opened.(sceOpen)\n", flist);
+                printf("HTCI: \"%s\" Opened.(sceOpen)\n", fname);
                 
                 sceClose(fd);
                 
-                htci_wait_by_fd(sceOpen(flist, htg_ci_open_mode));
+                htci_wait_by_fd(sceOpen(fname, htg_ci_open_mode));
             }
         }
     } 
     
-    printf("HTCI: Total %d files\n", numf);
+    printf("HTCI: Total %d files\n", found);
     
-    return numf;
+    return found;
 }

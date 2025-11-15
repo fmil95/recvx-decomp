@@ -19,7 +19,7 @@ Sint32 ADXT_LoadFpCacheHost(ADXT_SPRM *sprm)
     
     if (sprm != NULL) 
     {
-        size = htCiLoadFpCache(sprm->fname, sprm->fpc, sprm->size);
+        size = htCiLoadFpCache((Sint8*)sprm->fname, (Sint8*)sprm->fpc, sprm->size);
     }
     
     return size;
@@ -44,6 +44,6 @@ void ADXT_SetupHostFs(ADXT_SPRM *sprm)
     {
         htCiSetOpenMode(sprm->opmode);
         
-        htCiLoadFpCache(sprm->fname, sprm->fpc, sprm->size);
+        htCiLoadFpCache((Sint8*)sprm->fname, (Sint8*)sprm->fpc, sprm->size);
     }
 }

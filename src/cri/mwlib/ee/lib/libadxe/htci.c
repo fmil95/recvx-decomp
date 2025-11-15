@@ -262,7 +262,7 @@ Sint32 htCiGetFileSize(const Char8* fname)
     
     htci_conv_fname(fname, htg_ci_fname);
     
-    htci_get_finf(&htg_ci_fname[5], (sceCdlFILE*)&dir);
+    htci_get_finf((Uint8*)&htg_ci_fname[5], (void*)&dir);
     
     if (dir.fsize == 0) 
     {
@@ -376,7 +376,7 @@ HTCI htCiOpen(Char8* fname, void* unused, Sint32 rw)
 
     htci_conv_fname(fname, htg_ci_fname);
     
-    htci_get_finf(&htg_ci_fname[5], (sceCdlFILE*)&dir);
+    htci_get_finf((Uint8*)&htg_ci_fname[5], (void*)&dir);
     
     if (dir.fsize == 0) 
     {
