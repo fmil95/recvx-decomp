@@ -578,9 +578,10 @@ int sendToIOP(int dst, u_char *src, int size)
 }
 
 // 100% matching!
-void changeInputVolume(unsigned int val){
-    sceSdRemote(1, 0x8010, 0xF81, val & 0xFFFF);
-    sceSdRemote(1, 0x8010, 0x1081, val & 0xFFFF);
+void changeInputVolume(u_int val)
+{
+    sceSdRemote(1, rSdSetParam, AUTODMA_CH | SD_P_BVOLL, val & 0xFFFF);
+    sceSdRemote(1, rSdSetParam, AUTODMA_CH | SD_P_BVOLR, val & 0xFFFF);
 }
 
 /*// 

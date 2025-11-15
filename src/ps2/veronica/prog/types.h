@@ -25,6 +25,8 @@
 #include <libssyn.h>
 #include <sif.h>
 #include <sifrpc.h>
+#include <sdrcmd.h>
+#include <sdmacro.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
@@ -3330,3 +3332,11 @@ typedef	void (*AlarmCallBack)(int, unsigned short, void*);
 
 #define min(x, y) (((x) > (y))? (y): (x))
 #define max(x, y) (((x) < (y))? (y): (x))
+
+/* audiodec.c */
+
+#define AUTODMA_CH 1 // modified
+#define AU_HEADER_SIZE 40
+#define UNIT_SIZE 1024
+#define PRESET_VALUE(count)	(count)
+#define ZERO_BUFF_SIZE	0x800
