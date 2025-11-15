@@ -739,18 +739,23 @@ int viBufModifyPts(_anon7* f, _anon8* new_ts)
 	// Line 1210, Address: 0x2ecc4c, Func Offset: 0x16c
 	// Line 1211, Address: 0x2ecc50, Func Offset: 0x170
 	// Func End, Address: 0x2ecc58, Func Offset: 0x178
-}
+}*/
 
-// 
-// Start address: 0x2ecc60
+#pragma divbyzerocheck on
+
+// 100% matching! 
 int IsPtsInRegion(int tgt, int pos, int len, int size)
 {
-	// Line 997, Address: 0x2ecc60, Func Offset: 0
-	// Line 998, Address: 0x2ecc78, Func Offset: 0x18
-	// Func End, Address: 0x2ecc80, Func Offset: 0x20
+    int tgt1;
+    
+    tgt1 = ((tgt + size) - pos) % size;
+    
+    return tgt1 < len;
 }
 
-// 
+#pragma divbyzerocheck off
+
+/*// 
 // Start address: 0x2ecc80
 int viBufPutTs(_anon7* f, _anon8* ts)
 {
