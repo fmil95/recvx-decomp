@@ -239,9 +239,14 @@ void readMpeg()
 }*/
 
 // 100% matching!
-int readBufEndGet(READ_BUF* b, int size) {
-    int size_ok = MIN(size, b->count);
+int readBufEndGet(READ_BUF *b, int size)
+{
+    int size_ok;
+
+    size_ok = min(b->count, size);
+
     b->count -= size_ok;
+
     return size_ok;
 }
 

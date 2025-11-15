@@ -3325,3 +3325,8 @@ typedef struct {
 typedef	void (*AlarmCallBack)(int, unsigned short, void*);
 
 #endif
+
+/* defs.h */
+
+#define min(x, y) (((x) > (y))? (y): (x))
+#define max(x, y) (((x) < (y))? (y): (x))
