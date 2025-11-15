@@ -4,12 +4,12 @@
 #include <stdio.h>
 #include <string.h>
 
-static Char8* volatile htci_build = "\nhtCi Ver.2.16 Build:Jan 26 2001 09:56:20\n";
-static HTCI_OBJ htg_ci_obj[13] = { 0 };
-static HTCI_ERRFN htg_ci_err_func = NULL;
-static void* htg_ci_err_obj = NULL;
-static Char8 htg_ci_fname[297] = { 0 };
-static HTCI_VTBL htci_vtbl = { htCiExecServer, htCiEntryErrFunc, htCiGetFileSize, NULL, htCiOpen, htCiClose, htCiSeek, htCiTell, htCiReqRd, NULL, htCiStopTr, htCiGetStat, htCiGetSctLen, NULL, htCiGetNumTr, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+char* volatile htci_build = "\nhtCi Ver.2.16 Build:Jan 26 2001 09:56:20\n";
+CVF_FS_ERRFN htg_ci_err_func = NULL;
+void *htg_ci_err_obj = NULL;
+CVS_FS_IF htci_vtbl = { htCiExecServer, htCiEntryErrFunc, htCiGetFileSize, NULL, htCiOpen, htCiClose, htCiSeek, htCiTell, htCiReqRd, NULL, htCiStopTr, htCiGetStat, htCiGetSctLen, NULL, htCiGetNumTr, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+HTS_CI_OBJ htg_ci_obj[13] = { 0 };
+Uint8 htg_ci_fname[297] = { 0 };
 
 // 100% matching!
 HTCI htci_alloc(void) 
@@ -31,41 +31,41 @@ HTCI htci_alloc(void)
 }
 
 // 100% matching!
-void htci_call_errfn(void* obj, const Char8* msg)
+void htci_call_errfn(HTCI htci, char *msg)
 {
     if (htg_ci_err_func != NULL) 
     { 
-        htg_ci_err_func(htg_ci_err_obj, msg, obj);
+        htg_ci_err_func(htg_ci_err_obj, msg, htci);
     }
 }
 
 // 100% matching!
-void htci_conv_fname(const Char8* fname, Char8* path)  
+void htci_conv_fname(Char8 *spath, Char8 *tpath)  
 {
-    Uint32 flen;
-    Uint32 dirlen;
     Sint32 i;
     Sint32 j;
+	Sint32 flen;
+    Sint32 dirlen;
 
-    memset(path, 0, 297);
+    memset(tpath, 0, 297);
     
-    memcpy(path, "host:", sizeof("host:"));
+    memcpy(tpath, "host:", 6);
     
-    flen = strlen(fname);
-    dirlen = strlen(path);
+    flen = strlen(spath);
+    dirlen = strlen(tpath);
     
-    for (i = 0, j = 0; i <= flen; i++) 
+    for (i = 0, j = 0; (Uint32)i <= flen; i++) 
     { 
-        if (((Uint8)fname[i] == '\\') || ((Uint8)fname[i] == '\0'))
+        if (((Uint8)spath[i] == '\\') || ((Uint8)spath[i] == '\0'))
         {
-            memcpy(&path[dirlen], &fname[j], (Uint16)(i - j));
+            memcpy(&tpath[dirlen], &spath[j], (Uint16)(i - j));
             
             dirlen += i - j;
             j += i - j;
             
             if (flen != j) 
             {
-                path[dirlen] = '/';  
+                tpath[dirlen] = '/';  
                 
                 dirlen++;
                 j++;
@@ -77,7 +77,7 @@ void htci_conv_fname(const Char8* fname, Char8* path)
 // 100% matching!
 void htci_free(HTCI htci)
 {
-    memset(htci, 0, sizeof(HTCI_OBJ));
+    memset(htci, 0, sizeof(HTS_CI_OBJ));
 }
 
 // 100% matching!
@@ -118,13 +118,13 @@ Sint32 htci_is_all_excute(void)
 // 100% matching!
 Sint32 htci_is_one_excute(HTCI htci)
 {
-    if (sceIoctl(htci->fd, SCE_FS_EXECUTING, &htci->isend) < 0) 
+    if (sceIoctl(htci->fd, SCE_FS_EXECUTING, &htci->end_fg) < 0) 
     {
         return 0;
     }
     else 
     {
-        return htci->isend != TRUE;
+        return htci->end_fg != TRUE;
     }
 }
 
@@ -137,15 +137,15 @@ void htci_wait(void)
 }
 
 // 100% matching!
-Sint32 htci_wait_by_fd(Sint32 fd) 
+Sint32 htci_wait_by_fd(int fd)
 {
-    Sint32 isend;
+    Sint32 end_fg;
 
-    isend = TRUE;
+    end_fg = TRUE;
     
-    while (isend == TRUE) 
+    while (end_fg == TRUE) 
     {
-        sceIoctl(fd, SCE_FS_EXECUTING, &isend);
+        sceIoctl(fd, SCE_FS_EXECUTING, &end_fg);
     } 
     
     htci_wait_io();
@@ -160,16 +160,20 @@ void htci_wait_io(void)
 }
 
 // 100% matching!
-void htCiClose(HTCI htci)
+void htCiClose(void *obj)
 {
+    HTCI htci;
+
+    htci = obj;
+    
     if (htci != NULL)
     {
-        if ((unsigned char)htci->stat >= 2)
+        if ((htci->stat < 0) || (htci->stat >= 2))
         {
             htCiStopTr(htci);
         }
         
-        if (htci->unk1 == 0) 
+        if (htci->cache == 0) 
         {
             htci_wait_io();
             
@@ -186,45 +190,45 @@ void htCiClose(HTCI htci)
 }
 
 // 100% matching!
-void htCiEntryErrFunc(HTCI_ERRFN func, void* obj) 
+void htCiEntryErrFunc(CVF_FS_ERRFN errfn, void *obj)
 {
-    htg_ci_err_func = func;
+    htg_ci_err_func = errfn;
     htg_ci_err_obj = obj;
 }
 
 // 100% matching!
 void htCiExecHndl(HTCI htci)
 {
-    Sint8 stat;
+    Sint32 sync_stat;
 
-    stat = htci->stat;
+    sync_stat = htci->stat;
     
-    if ((stat == 2) && (htci_is_all_excute() != 0) && (htci->isend == FALSE))
+    if ((sync_stat == 2) && (htci_is_all_excute() != 0) && (htci->end_fg == FALSE))
     {
-        if (htci->unk3 == 0) 
+        if (htci->rsv == 0) 
         {
-            htci->unk3 = 1;
+            htci->rsv = 1;
         }
-        else if (htci->unk3 == 1) 
+        else if (htci->rsv == 1) 
         {
-            htci->unk3 = stat;
+            htci->rsv = sync_stat;
         }
-        else if (htci->unk3 == stat) 
+        else if (htci->rsv == sync_stat) 
         {
             htci->stat = 1;
             
-            htci->unk3 = 0;
+            htci->rsv = 0;
             
-            htci->tell += htci->nbyte;
+            htci->req_nsct += htci->tr_nsct;
         }
 
-        if (htci->unk3 == 1)  
+        if (htci->rsv == 1)  
         {        
-            sceLseek(htci->fd, htci->tell * 2048, SCE_SEEK_SET);
+            sceLseek(htci->fd, htci->req_nsct * 2048, SCE_SEEK_SET);
         }
-        else if (htci->unk3 == 2) 
+        else if (htci->rsv == 2) 
         {
-            sceRead(htci->fd, htci->buf, htci->nbyte * 2048);
+            sceRead(htci->fd, htci->buf, htci->tr_nsct * 2048);
         }
     }
 }
@@ -247,11 +251,11 @@ void htCiExecServer(void)
 }
 
 // 100% matching!
-Sint32 htCiGetFileSize(const Char8* fname)
+Sint32 htCiGetFileSize(Sint8 *fname)
 {
-    HTCI_DIR_OBJ dir;
-    Sint32 fd;
     Sint32 fsize;
+	Sint32 fd;
+	HTS_CI_FCACHE finf;
 
     if (fname == NULL) 
     {
@@ -260,15 +264,15 @@ Sint32 htCiGetFileSize(const Char8* fname)
         return 0;
     }
     
-    htci_conv_fname(fname, htg_ci_fname);
+    htci_conv_fname((Char8*)fname, (Char8*)htg_ci_fname);
     
-    htci_get_finf((Uint8*)&htg_ci_fname[5], (void*)&dir);
+    htci_get_finf(&htg_ci_fname[5], &finf);
     
-    if (dir.fsize == 0) 
+    if (finf.size == 0) 
     {
         htci_wait_io();
         
-        fd = sceOpen(htg_ci_fname, SCE_RDONLY);
+        fd = sceOpen((char*)htg_ci_fname, SCE_RDONLY);
         
         if (fd < 0) 
         {
@@ -301,21 +305,25 @@ Sint32 htCiGetFileSize(const Char8* fname)
     } 
     else
     {
-        fsize = dir.fsize;
+        fsize = finf.size;
     }
     
     return fsize;
 }
 
 // 100% matching!
-void* htCiGetInterface(void)
+CVFS_IF htCiGetInterface(void)
 {
     return &htci_vtbl;
 }
 
 // 100% matching!
-Sint32 htCiGetNumTr(HTCI htci) 
+Sint32 htCiGetNumTr(void *obj)
 {
+    HTCI htci;
+
+    htci = obj;
+
     if (htci == NULL) 
     {
         htci_call_errfn(NULL, "E0092712:handl is null.");
@@ -323,18 +331,22 @@ Sint32 htCiGetNumTr(HTCI htci)
         return 0;
     }
     
-    return htci->tell * 2048;
+    return htci->req_nsct * 2048;
 }
 
 // 100% matching!
-Sint32 htCiGetSctLen(void) 
+Sint32 htCiGetSctLen(void *obj)
 {
     return 2048;
 }
 
 // 100% matching!
-Sint8 htCiGetStat(HTCI htci) 
+CVE_FS_ST htCiGetStat(void *obj)
 {
+    HTCI htci;
+
+    htci = obj;
+    
     if (htci == NULL)
     {
         htci_call_errfn(NULL, "E0092712:handl is null.");
@@ -346,19 +358,19 @@ Sint8 htCiGetStat(HTCI htci)
 }
 
 // 100% matching!
-HTCI htCiOpen(Char8* fname, void* unused, Sint32 rw)
+void* htCiOpen(Sint8 *fname, void *prm, CVE_FS_OP rw)
 {
     HTCI htci;
-    HTCI_DIR_OBJ dir = { 0 };
+    HTS_CI_FCACHE finf = { 0 };
 
     if (fname == NULL) 
     {
-        htci_call_errfn(fname, "E0092708:fname is null.(htCiOpen)");
+        htci_call_errfn((HTCI)fname, "E0092708:fname is null.(htCiOpen)");
         
-        return NULL;
+        return NULL; 
     }
 
-    if (rw != 0)
+    if (rw != CVE_FS_OP_READ)
     {
         htci_call_errfn(NULL, "E0092709:rw is illigal.(htCiOpen)");
         
@@ -374,15 +386,15 @@ HTCI htCiOpen(Char8* fname, void* unused, Sint32 rw)
         return NULL;
     }
 
-    htci_conv_fname(fname, htg_ci_fname);
+    htci_conv_fname((Char8*)fname, (Char8*)htg_ci_fname);
     
-    htci_get_finf((Uint8*)&htg_ci_fname[5], (void*)&dir);
+    htci_get_finf(&htg_ci_fname[5], &finf);
     
-    if (dir.fsize == 0) 
+    if (finf.size == 0) 
     {
-        htci->fsize = htCiGetFileSize(fname);
+        htci->fnsct = htCiGetFileSize(fname);
 
-        if (htci->fsize == 0) 
+        if (htci->fnsct == 0) 
         {
             htci_call_errfn(NULL, "E0111501:sceLseek fail.(htCiOpen)");
         }
@@ -391,7 +403,7 @@ HTCI htCiOpen(Char8* fname, void* unused, Sint32 rw)
 
         printf("opmode = %d\n", htg_ci_open_mode);
         
-        htci->fd = sceOpen(htg_ci_fname, htg_ci_open_mode);
+        htci->fd = sceOpen((char*)htg_ci_fname, htg_ci_open_mode);
 
         if (htci->fd < 0) 
         {
@@ -404,30 +416,30 @@ HTCI htCiOpen(Char8* fname, void* unused, Sint32 rw)
 
         htci_wait_by_fd(htci->fd);
         
-        htci->unk1 = 0;
+        htci->cache = 0;
     } 
     else 
     {
-        htci->unk1 = 1;
+        htci->cache = 1;
         
-        htci->fd = dir.fd;
+        htci->fd = finf.fd;
         
-        htci->fsize = dir.fsize;
+        htci->fnsct = finf.size;
     }
     
-    htci->tell = 0;
+    htci->req_nsct = 0;
 
     htci->used = TRUE;
     
     htci->buf = NULL;
 
-    htci->nbyte = 0; 
+    htci->tr_nsct = 0; 
 
-    htci->ofs = ((Sint32)htci->fsize + 2047) / 2048;
+    htci->skpos = ((Sint32)htci->fnsct + 2047) / 2048;
 
-    htci->unk3 = 0;
+    htci->rsv = 0;
 
-    htci->isend = FALSE;
+    htci->end_fg = FALSE;
     
     htci->stat = 0;
 
@@ -435,8 +447,12 @@ HTCI htCiOpen(Char8* fname, void* unused, Sint32 rw)
 }
 
 // 100% matching!
-Sint32 htCiReqRd(HTCI htci, Sint32 nsct, Sint8* buf) 
+Sint32 htCiReqRd(void *obj, Sint32 nsct, void *buf)
 {
+    HTCI htci;
+
+    htci = obj;
+    
     if (htci == NULL) 
     {
         htci_call_errfn(NULL, "E0092712:handl is null.");
@@ -474,18 +490,22 @@ Sint32 htCiReqRd(HTCI htci, Sint32 nsct, Sint8* buf)
     
     htci->buf = buf;
     
-    htci->unk3 = 0;
+    htci->rsv = 0;
     
-    htci->isend = FALSE;
+    htci->end_fg = FALSE;
     
-    htci->nbyte = MIN(nsct, htci->ofs - htci->tell);
+    htci->tr_nsct = MIN(nsct, htci->skpos - htci->req_nsct);
     
-    return htci->nbyte;
+    return htci->tr_nsct;
 }
 
 // 100% matching!
-Sint32 htCiSeek(HTCI htci, Sint32 ofst, Sint32 whence)
+Sint32 htCiSeek(void *obj, Sint32 nsct, CVE_FS_SK mode)
 {
+    HTCI htci;
+
+    htci = obj;
+    
     if (htci == NULL) 
     {
         htci_call_errfn(htci, "E0092712:handl is null.");
@@ -493,28 +513,31 @@ Sint32 htCiSeek(HTCI htci, Sint32 ofst, Sint32 whence)
         return 0;
     }
 
-    if (whence == 0) 
+    if (mode == CVE_FS_ST_IDLE) 
     {
-        htci->tell = ofst;
+        htci->req_nsct = nsct;
     } 
-    else if (whence == 2) 
+    else if (mode == CVE_FS_ST_TRANS) 
     {
-        htci->tell = htci->ofs + ofst;
+        htci->req_nsct = htci->skpos + nsct;
     } 
-    else if (whence == 1)
+    else if (mode == CVE_FS_ST_COMPLETE)
     {
-        htci->tell += ofst;
+        htci->req_nsct += nsct;
     }
 
-    htci->tell = CLAMP(htci->tell, 0, htci->ofs);
+    htci->req_nsct = CLAMP(htci->req_nsct, 0, htci->skpos);
     
-    return htci->tell;
+    return htci->req_nsct;
 }
 
 // 100% matching!
-void htCiStopTr(HTCI htci)
+void htCiStopTr(void *obj)
 {
-    Sint32 i;
+    HTCI htci;
+	Sint32 cnt;
+
+    htci = obj;
 
     if (htci == NULL) 
     {
@@ -524,13 +547,13 @@ void htCiStopTr(HTCI htci)
     
     if (htci->stat != 0) 
     {
-        if ((htci->stat == 2) && (htci->isend == TRUE)) 
+        if ((htci->stat == 2) && (htci->end_fg == TRUE)) 
         {
-            for (i = 0; i < 20; i++) 
+            for (cnt = 0; cnt < 20; cnt++) 
             {
-                sceIoctl(htci->fd, SCE_FS_EXECUTING, &htci->isend);
+                sceIoctl(htci->fd, SCE_FS_EXECUTING, &htci->end_fg);
                 
-                if (htci->isend == FALSE) 
+                if (htci->end_fg == FALSE) 
                 {
                     break;
                 }
@@ -544,8 +567,12 @@ void htCiStopTr(HTCI htci)
 }
 
 // 100% matching!
-Sint32 htCiTell(HTCI htci) 
+Sint32 htCiTell(void *obj)
 {
+    HTCI htci;
+    
+    htci = obj;
+    
     if (htci == NULL) 
     {
         htci_call_errfn(NULL, "E0092712:handl is null.");
@@ -553,5 +580,5 @@ Sint32 htCiTell(HTCI htci)
         return 0;
     }
     
-    return htci->tell;
+    return htci->req_nsct;
 }

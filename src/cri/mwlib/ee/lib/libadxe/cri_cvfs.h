@@ -75,6 +75,40 @@ typedef struct _cvfs_name_obj
 
 typedef CVFS_NAME_OBJ *CVFS_NAME;
 
+typedef void (*CVF_FS_ERRFN)(void *err_obj, char *msg, void *obj);
+
+typedef struct _vfs_vtbl 
+{
+	void (*ExecServer)();
+	void (*EntryErrFunc)();
+	Sint32 (*GetFileSize)();
+	Sint32 (*GetFreeSize)();
+	void* (*Open)();
+	void (*Close)();
+	Sint32 (*Seek)();
+	Sint32 (*Tell)();
+	Sint32 (*ReqRd)();
+	Sint32 (*ReqWr)();
+	void (*StopTr)();
+	CVE_FS_ST (*GetStat)();
+	Sint32 (*GetSctLen)();
+	void (*SetSctLen)();
+	Sint32 (*GetNumTr)();
+	Sint32 (*ChangeDir)();
+	Sint32 (*IsExistFile)();
+	Sint32 (*GetNumFiles)();
+	Sint32 (*LoadDirInfo)();
+	Sint32 (*GetMaxByteRate)();
+	Sint32 (*MakeDir)();
+	Sint32 (*RemoveDir)();
+	Sint32 (*DeleteFile)();
+	Sint32 (*GetFileSizeEx)();
+	Sint32 (*OptFn1)();
+	Sint32 (*OptFn2)();
+} CVS_FS_IF;
+typedef CVS_FS_IF *CVFS_IF;
+typedef CVFS_IF (*CVF_FS_VTBLFN)();
+
 CVFS addDevice(Char8* devname, void* (*getdevif()));
 CVFS allocCvFsHn(void);
 void cvFsAddDev(Char8* devname, void* (*getdevif()), void* unused);
