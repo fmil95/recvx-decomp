@@ -594,21 +594,18 @@ void setD3_CHCR(unsigned int val)
 	// Func End, Address: 0x2ec77c, Func Offset: 0x5c
 }*/
 
-// 
-// Start address: 0x2ec780
+// 100% matching!
 void setD4_CHCR(u_int val)
 {
-	unsigned int stat;
-	// Line 1012, Address: 0x2ec780, Func Offset: 0
-	// Line 1013, Address: 0x2ec7a0, Func Offset: 0x20
-	// Line 1014, Address: 0x2ec7b0, Func Offset: 0x30
-	// Line 1015, Address: 0x2ec7b4, Func Offset: 0x34
-	// Line 1013, Address: 0x2ec7bc, Func Offset: 0x3c
-	// Line 1014, Address: 0x2ec7c4, Func Offset: 0x44
-	// Line 1015, Address: 0x2ec7c8, Func Offset: 0x48
-	// Line 1017, Address: 0x2ec7d4, Func Offset: 0x54
-	// Func End, Address: 0x2ec7dc, Func Offset: 0x5c
-	scePrintf("setD4_CHCR - UNIMPLEMENTED!\n");
+    DI();
+    
+    *D_ENABLEW = *D_ENABLER | 0x10000;	
+    
+    *D4_CHCR = val;
+    
+    *D_ENABLEW = *D_ENABLER & ~0x10000;	
+    
+    EI();
 }
 
 // 100% matching!
