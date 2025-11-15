@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <string.h>
 
-// ERROR: this file needs to be compiled with -G0, but doing so gives a link error
-
 Sint32 htg_found = FALSE;
 static HTCI_FLIST_TBL htg_flist_tbl = { 0 };
 static Sint8 htg_rbuf[4096];
