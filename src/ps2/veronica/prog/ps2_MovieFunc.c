@@ -370,10 +370,15 @@ void vbrank_draw()
 void videoDecMain(VideoDec *vd)
 {
     viBufReset(&vd->vibuf);
+
     voBuf.count = 0;
+    
     voBuf.write = 0;
+
     decBs0(vd);
+
     while (voBuf.count);
+
     vd->state = VD_STATE_END;
 }
 
@@ -525,13 +530,13 @@ int sendToIOP2area(int pd0, int d0, int pd1, int d1, unsigned char* ps0, int s0,
 int sendToIOP(int dst, u_char *src, int size)
 {
     sceSifDmaData transData; 
-    unsigned int did; 
+    u_int did; 
     int i; 
     int j; 
-    unsigned int* data; 
-    unsigned int* copy; 
+    u_int* data; 
+    u_int* copy; 
     
-    did = (unsigned int)src;
+    did = (u_int)src;
     
     if (size <= 0) 
     {
@@ -542,9 +547,9 @@ int sendToIOP(int dst, u_char *src, int size)
     {
         FlushCache(0);
         
-        copy = (unsigned int*)did + 128;
+        copy = (u_int*)did + 128;
         
-        data = (unsigned int*)did;
+        data = (u_int*)did;
         
         for (i = 0; i < (size >> 10); i++) 
         {
@@ -561,8 +566,8 @@ int sendToIOP(int dst, u_char *src, int size)
         }
     }
     
-    transData.data = (unsigned int)src;
-    transData.addr = (unsigned int)dst;
+    transData.data = (u_int)src;
+    transData.addr = (u_int)dst;
     
     transData.size = size;
     
@@ -873,6 +878,7 @@ int viBufDelete(ViBuf *f)
     setD4_CHCR((0 << 8) | (1 << 2) | 1);
     
     *D4_QWC = 0;
+    
     *D4_MADR = 0;
     *D4_TADR = 0;
 
@@ -1278,4 +1284,3 @@ int mpegTS(_anon5* cbts)
 	// Line 1931, Address: 0x2ee094, Func Offset: 0x1e4
 	// Func End, Address: 0x2ee09c, Func Offset: 0x1ec
 }*/
-

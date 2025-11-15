@@ -3249,22 +3249,23 @@ typedef struct {
     unsigned int *micro[3][2];
 } CscVu1;
 
-typedef struct {
-    sceMpeg mpeg;	// MPEG decoder
-    ViBuf vibuf;	// video input buffer
-    unsigned int state;	// video decoder state
-    int sema;		// semaphore
-
-    int hid_endimage;	// handler to check the end of image transfer
-    int hid_vblank;	// vlbank handler
-
-    CscVu1 csc;		// color space conversion using vu1
-} VideoDec;
+/* videodec.h */
 
 #define VD_STATE_NORMAL    0
 #define VD_STATE_ABORT     1
 #define VD_STATE_FLUSH     2
 #define VD_STATE_END       3
+
+typedef struct {
+    sceMpeg mpeg;	// MPEG decoder
+    ViBuf vibuf;	// video input buffer
+    u_int state;	// video decoder state
+    int sema;		// semaphore
+
+    int hid_endimage;	// handler to check the end of image transfer
+    int hid_vblank;	// vlbank handler
+
+} VideoDec;
 
 #define SCE_GS_ALPHA_AS         (0)
 #define SCE_GS_ALPHA_AD         (1)
