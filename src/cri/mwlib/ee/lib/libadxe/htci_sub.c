@@ -145,7 +145,7 @@ void conv_to_tpath(Char8 *spath, Char8 *tpath)
 }
 
 // 100% matching!
-static void get_fstate(HTS_CI_FCACHE *finf, Uint8 *fname, HTS_CI_FCACHE *inf, Sint32 num)
+static void get_fstate(HTS_CI_FCACHE *finf, const Uint8 *fname, HTS_CI_FCACHE *inf, Sint32 num)
 {
     Sint32 lp;
 
@@ -166,7 +166,7 @@ static void get_fstate(HTS_CI_FCACHE *finf, Uint8 *fname, HTS_CI_FCACHE *inf, Si
 }
 
 // 100% matching!
-void htci_get_finf(Uint8 *fname, HTS_CI_FCACHE *inf)
+void htci_get_finf(const Uint8 *fname, HTS_CI_FCACHE *inf)
 {
     inf->fd = 0;
     
