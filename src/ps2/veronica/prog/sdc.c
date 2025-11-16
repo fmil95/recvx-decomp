@@ -269,19 +269,13 @@ void ExPlayMidi(_anon1* pRequestInfo)
 	// Func End, Address: 0x28f3ec, Func Offset: 0x1ac
 }*/
 
-// 
-// Start address: 0x28f3f0
-void StopMidi(unsigned int SlotNo)
+// 100% matching!
+void StopMidi(unsigned int SlotNo) 
 {
-	// Line 273, Address: 0x28f3f0, Func Offset: 0
-	// Line 272, Address: 0x28f404, Func Offset: 0x14
-	// Line 273, Address: 0x28f408, Func Offset: 0x18
-	// Line 272, Address: 0x28f40c, Func Offset: 0x1c
-	// Line 273, Address: 0x28f410, Func Offset: 0x20
-	// Line 274, Address: 0x28f41c, Func Offset: 0x2c
-	// Line 276, Address: 0x28f434, Func Offset: 0x44
-	// Func End, Address: 0x28f440, Func Offset: 0x50
-	scePrintf("StopMidi - UNIMPLEMENTED!\n");
+    if (MidiInfo[SlotNo].Flag != 0) 
+    {
+        sdMidiStop(MidiHandle[SlotNo]);
+    }
 }
 
 // 

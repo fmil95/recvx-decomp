@@ -649,11 +649,11 @@ SDE_ERR sdMidiSetVol(SDS_PORT_REF** handle, char vol, int fade_time)
 	// Line 1669, Address: 0x2dbc14, Func Offset: 0xe4
 	// Line 1671, Address: 0x2dbc1c, Func Offset: 0xec
 	// Func End, Address: 0x2dbc28, Func Offset: 0xf8
-}
+}*/
 
 // 
 // Start address: 0x2dbc30
-SDE_ERR sdMidiStop(SDS_PORT_REF** handle)
+SDE_ERR	sdMidiStop( SDMIDI handle)
 {
 	// Line 1695, Address: 0x2dbc30, Func Offset: 0
 	// Line 1699, Address: 0x2dbc38, Func Offset: 0x8
@@ -663,9 +663,10 @@ SDE_ERR sdMidiStop(SDS_PORT_REF** handle)
 	// Line 1714, Address: 0x2dbc80, Func Offset: 0x50
 	// Line 1716, Address: 0x2dbc88, Func Offset: 0x58
 	// Func End, Address: 0x2dbc94, Func Offset: 0x64
+    scePrintf("sdMidiStop - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dbca0
 SDE_ERR sdShotClosePort(SDS_PORT_REF** handle)
 {
