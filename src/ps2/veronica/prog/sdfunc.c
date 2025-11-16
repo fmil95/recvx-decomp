@@ -274,7 +274,7 @@ void InitSoundProgram()
     
     InitAdx();
     
-    RegistAdxStreamEx(2, 4, &AdxDef[0]);
+    RegistAdxStreamEx(2, 4, AdxDef);
     
     if (MountSoundAfs() != 0) 
     {
