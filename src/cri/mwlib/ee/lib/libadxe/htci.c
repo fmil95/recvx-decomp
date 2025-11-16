@@ -31,7 +31,7 @@ HTCI htci_alloc(void)
 }
 
 // 100% matching!
-void htci_call_errfn(HTCI htci, char *msg)
+void htci_call_errfn(HTCI htci, const char *msg)
 {
     if (htg_ci_err_func != NULL) 
     { 
@@ -40,7 +40,7 @@ void htci_call_errfn(HTCI htci, char *msg)
 }
 
 // 100% matching!
-void htci_conv_fname(Char8 *spath, Char8 *tpath)  
+void htci_conv_fname(const Char8 *spath, Char8 *tpath)  
 {
     Sint32 i;
     Sint32 j;
@@ -251,7 +251,7 @@ void htCiExecServer(void)
 }
 
 // 100% matching!
-Sint32 htCiGetFileSize(Sint8 *fname)
+Sint32 htCiGetFileSize(const Sint8 *fname)
 {
     Sint32 fsize;
 	Sint32 fd;

@@ -25,8 +25,8 @@ typedef struct
 typedef HTS_CI_OBJ *HTCI;
 
 HTCI htci_alloc(void);
-void htci_call_errfn(HTCI htci, char *msg);
-void htci_conv_fname(Char8 *spath, Char8 *tpath);
+void htci_call_errfn(HTCI htci, const char *msg);
+void htci_conv_fname(const Char8 *spath, Char8 *tpath);
 void htci_free(HTCI htci);
 Sint32 htci_get_fsize_opened(Sint32 fd);
 Sint32 htci_is_all_excute(void);
@@ -38,7 +38,7 @@ void htCiClose(void *obj);
 void htCiEntryErrFunc(CVF_FS_ERRFN errfn, void *obj);
 void htCiExecHndl(HTCI htci);
 void htCiExecServer(void);
-Sint32 htCiGetFileSize(Sint8 *fname);
+Sint32 htCiGetFileSize(const Sint8 *fname);
 CVFS_IF htCiGetInterface(void);
 Sint32 htCiGetNumTr(void *obj);
 Sint32 htCiGetSctLen(void *obj);

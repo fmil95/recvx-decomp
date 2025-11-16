@@ -75,7 +75,7 @@ typedef struct _cvfs_name_obj
 
 typedef CVFS_NAME_OBJ *CVFS_NAME;
 
-typedef void (*CVF_FS_ERRFN)(void *err_obj, char *msg, void *obj);
+typedef void (*CVF_FS_ERRFN)(void *err_obj, const char *msg, void *obj);
 
 typedef struct _vfs_vtbl 
 {
