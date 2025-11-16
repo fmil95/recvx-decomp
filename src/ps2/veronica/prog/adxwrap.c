@@ -500,25 +500,27 @@ void WakeupAdxStream(ADX_WORK* pAdx)
     {
         for (i = 0; i < MaxAdxStreamCnt; i++, pAdx++) 
         {
+            tp = &AdxTInfo[i];
+            
             ADXPS2_Lock();
             
-            AdxTInfo[i].Handle = ADXT_Create(pAdx->MaxChannel, AdxTInfo[i].pAdxTWork, AdxTInfo[i].WorkSize);
+            tp->Handle = ADXT_Create(pAdx->MaxChannel, tp->pAdxTWork, tp->WorkSize);
             
             ADXPS2_Unlock();
             
             if (pAdx->RecoverType != -1) 
             {
-                ADXT_SetAutoRcvr(AdxTInfo[i].Handle, pAdx->RecoverType);
+                ADXT_SetAutoRcvr(tp->Handle, pAdx->RecoverType);
             }
             
             if (pAdx->ReloadSector >= 0) 
             {
-                ADXT_SetReloadSct(AdxTInfo[i].Handle, pAdx->ReloadSector);
+                ADXT_SetReloadSct(tp->Handle, pAdx->ReloadSector);
             }
             
-            AdxTInfo[i].FadeFunc = 0;
+            tp->FadeFunc = 0;
             
-            AdxTInfo[i].Flag = 0;
+            tp->Flag = 0;
         }
         
         AdxStreamSleepFlag = 0;
