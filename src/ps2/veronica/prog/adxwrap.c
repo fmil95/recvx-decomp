@@ -741,56 +741,56 @@ int ExecAdxFadeManager()
     int i;         
     int ReturnCode; 
     ADXT_INFO* tp;  
-    
-    tp = AdxTInfo;
-    
+     
     ReturnCode = 0;
     
     for (i = 0; i < 4; i++)
     {
-        if (tp[i].FadeFunc != 0) 
+        tp = &AdxTInfo[i];
+        
+        if (tp->FadeFunc != 0) 
         {
-            tp[i].Volume -= tp[i].VolSpeed;
+            tp->Volume -= tp->VolSpeed;
             
-            tp[i].FadeCntMax--;
+            tp->FadeCntMax--;
             
-            if (tp[i].FadeCntMax < 0) 
+            if (tp->FadeCntMax < 0) 
             {
-                tp[i].Volume = tp[i].VolLast;
+                tp->Volume = tp->VolLast;
                 
-                if ((int)tp[i].Volume == -127) 
+                if ((int)tp->Volume == -127) 
                 {
                     StopAdx(i);
                 }
                 
-                tp[i].FadeFunc = 0;
+                tp->FadeFunc = 0;
             } 
             else
             {
                 ReturnCode = 1;
             }
             
-            SetVolumeAdx2(i, tp[i].Volume);
+            SetVolumeAdx2(i, tp->Volume);
         }
         
-        if (tp[i].PanFunc != 0)
+        if (tp->PanFunc != 0)
         {
-            tp[i].Pan -= tp[i].PanSpeed;
+            tp->Pan -= tp->PanSpeed;
             
-            tp[i].PanCntMax--;
+            tp->PanCntMax--;
             
-            if (tp[i].PanCntMax < 0) 
+            if (tp->PanCntMax < 0) 
             {
-                tp[i].Pan = tp[i].PanLast;
+                tp->Pan = tp->PanLast;
                 
-                tp[i].PanFunc = 0;
+                tp->PanFunc = 0;
             }
             else 
             {
                 ReturnCode = 1;
             }
             
-            SetPanAdx2(i, 0, tp[i].Pan);
+            SetPanAdx2(i, 0, tp->Pan);
         }
     } 
     
