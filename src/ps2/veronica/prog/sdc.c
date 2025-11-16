@@ -512,19 +512,13 @@ void ExPlaySe(SND_REQ* pRequestInfo)
 	scePrintf("ExPlaySe - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x28fba0
+// 100% matching!
 void StopSe(unsigned int SlotNo)
 {
-	// Line 513, Address: 0x28fba0, Func Offset: 0
-	// Line 512, Address: 0x28fbb4, Func Offset: 0x14
-	// Line 513, Address: 0x28fbb8, Func Offset: 0x18
-	// Line 512, Address: 0x28fbbc, Func Offset: 0x1c
-	// Line 513, Address: 0x28fbc0, Func Offset: 0x20
-	// Line 514, Address: 0x28fbcc, Func Offset: 0x2c
-	// Line 516, Address: 0x28fbe4, Func Offset: 0x44
-	// Func End, Address: 0x28fbf0, Func Offset: 0x50
-	scePrintf("StopSe - UNIMPLEMENTED!\n");
+    if (SeInfo[SlotNo].Flag != 0) 
+    {
+        sdShotStop(SeHandle[SlotNo]);
+    }
 }
 
 // 
