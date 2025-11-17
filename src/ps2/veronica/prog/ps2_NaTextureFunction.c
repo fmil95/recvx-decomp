@@ -671,41 +671,59 @@ int Ps2TextureMalloc(NJS_TEXMEMLIST* p)
     return 1;
 }
 
-// 
-// Start address: 0x2e2740
-int Ps2TextureFree(NJS_TEXMEMLIST* p)
+// 100% matching!
+int Ps2TextureFree(NJS_TEXMEMLIST* p) 
 {
-	//_anon4* timp;
-	//_anon4* after;
-	//_anon4* before;
-	unsigned int size;
-	// Line 944, Address: 0x2e2740, Func Offset: 0
-	// Line 948, Address: 0x2e274c, Func Offset: 0xc
-	// Line 949, Address: 0x2e2758, Func Offset: 0x18
-	// Line 950, Address: 0x2e2760, Func Offset: 0x20
-	// Line 952, Address: 0x2e2768, Func Offset: 0x28
-	// Line 951, Address: 0x2e276c, Func Offset: 0x2c
-	// Line 952, Address: 0x2e2770, Func Offset: 0x30
-	// Line 954, Address: 0x2e277c, Func Offset: 0x3c
-	// Line 955, Address: 0x2e2780, Func Offset: 0x40
-	// Line 968, Address: 0x2e2784, Func Offset: 0x44
-	// Line 956, Address: 0x2e2788, Func Offset: 0x48
-	// Line 957, Address: 0x2e278c, Func Offset: 0x4c
-	// Line 959, Address: 0x2e2790, Func Offset: 0x50
-	// Line 960, Address: 0x2e2794, Func Offset: 0x54
-	// Line 961, Address: 0x2e2798, Func Offset: 0x58
-	// Line 962, Address: 0x2e279c, Func Offset: 0x5c
-	// Line 963, Address: 0x2e27a0, Func Offset: 0x60
-	// Line 964, Address: 0x2e27a4, Func Offset: 0x64
-	// Line 965, Address: 0x2e27a8, Func Offset: 0x68
-	// Line 966, Address: 0x2e27ac, Func Offset: 0x6c
-	// Line 968, Address: 0x2e27b0, Func Offset: 0x70
-	// Line 974, Address: 0x2e27c0, Func Offset: 0x80
-	// Line 976, Address: 0x2e27c8, Func Offset: 0x88
-	// Line 975, Address: 0x2e27d0, Func Offset: 0x90
-	// Line 976, Address: 0x2e27d4, Func Offset: 0x94
-	// Func End, Address: 0x2e27dc, Func Offset: 0x9c
-    scePrintf("Ps2TextureFree - UNIMPLEMENTED!\n");
+    unsigned int size; 
+    TIM2_PICTUREHEADER_EX* before; 
+    TIM2_PICTUREHEADER_EX* after; 
+    TIM2_PICTUREHEADER_EX* timp; 
+    unsigned int* temp; // not from the debugging symbols
+    unsigned int* temp2; // not from the debugging symbols
+
+    (void)&temp; // FAKE
+
+    Ps2_current_texbreak = 1;
+    
+    ring_check();
+    
+    temp = p->texinfo.texsurface.pSurface;
+    
+    timp = (TIM2_PICTUREHEADER_EX*)temp;
+    
+    temp2 = &timp->admin.count;
+    
+    size = p->texinfo.texsurface.TextureSize;
+    
+    if (*temp2 == 0) 
+    {
+        before = timp->admin.before;
+        after = timp->admin.after;
+        
+        before->admin.after = after;
+        after->admin.before = before;
+        
+        timp->admin.gindex = 0;
+        
+        timp->admin.size = 0;
+        
+        *temp2 = 0;
+        
+        timp->admin.addr = NULL;
+        
+        timp->admin.before = NULL;
+        timp->admin.after = NULL;
+        
+        p->texinfo.texsurface.TextureSize = 0;
+        
+        p->texinfo.texsurface.pSurface = NULL;
+        
+        Ps2_free_texmemsize += size;
+    }
+    
+    ring_check();
+    
+    return 1;
 }
 
 /*// 
