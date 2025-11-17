@@ -1752,58 +1752,66 @@ void DisplayGameModePlate(int Cursor, int CursorMax, float FadeRate, int Flag)
 	scePrintf("DisplayGameModePlate - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c37a0
+// 94.78% matching
 void DisplayNewGamePlate(int Cursor, float FadeRate, int Flag)
 {
-	int DivTbl[3];
-	unsigned int Alpha;
-	int i;
-	//_anon0* qp;
-	//_anon8* ap;
-	// Line 3031, Address: 0x2c37a0, Func Offset: 0
-	// Line 3032, Address: 0x2c37bc, Func Offset: 0x1c
-	// Line 3031, Address: 0x2c37c4, Func Offset: 0x24
-	// Line 3036, Address: 0x2c37c8, Func Offset: 0x28
-	// Line 3031, Address: 0x2c37d4, Func Offset: 0x34
-	// Line 3036, Address: 0x2c37dc, Func Offset: 0x3c
-	// Line 3038, Address: 0x2c37e8, Func Offset: 0x48
-	// Line 3036, Address: 0x2c37f0, Func Offset: 0x50
-	// Line 3038, Address: 0x2c37f4, Func Offset: 0x54
-	// Line 3036, Address: 0x2c37f8, Func Offset: 0x58
-	// Line 3038, Address: 0x2c37fc, Func Offset: 0x5c
-	// Line 3040, Address: 0x2c3800, Func Offset: 0x60
-	// Line 3044, Address: 0x2c3808, Func Offset: 0x68
-	// Line 3045, Address: 0x2c3830, Func Offset: 0x90
-	// Line 3049, Address: 0x2c3858, Func Offset: 0xb8
-	// Line 3050, Address: 0x2c3880, Func Offset: 0xe0
-	// Line 3054, Address: 0x2c38a8, Func Offset: 0x108
-	// Line 3055, Address: 0x2c38d0, Func Offset: 0x130
-	// Line 3059, Address: 0x2c38f8, Func Offset: 0x158
-	// Line 3060, Address: 0x2c3924, Func Offset: 0x184
-	// Line 3106, Address: 0x2c3950, Func Offset: 0x1b0
-	// Line 3117, Address: 0x2c3958, Func Offset: 0x1b8
-	// Line 3118, Address: 0x2c3960, Func Offset: 0x1c0
-	// Line 3117, Address: 0x2c3964, Func Offset: 0x1c4
-	// Line 3118, Address: 0x2c3968, Func Offset: 0x1c8
-	// Line 3119, Address: 0x2c3974, Func Offset: 0x1d4
-	// Line 3121, Address: 0x2c3980, Func Offset: 0x1e0
-	// Line 3122, Address: 0x2c3988, Func Offset: 0x1e8
-	// Line 3123, Address: 0x2c398c, Func Offset: 0x1ec
-	// Line 3124, Address: 0x2c3990, Func Offset: 0x1f0
-	// Line 3125, Address: 0x2c39d0, Func Offset: 0x230
-	// Line 3127, Address: 0x2c39d8, Func Offset: 0x238
-	// Line 3128, Address: 0x2c39dc, Func Offset: 0x23c
-	// Line 3129, Address: 0x2c39e4, Func Offset: 0x244
-	// Line 3131, Address: 0x2c39e8, Func Offset: 0x248
-	// Line 3132, Address: 0x2c3a2c, Func Offset: 0x28c
-	// Line 3135, Address: 0x2c3a30, Func Offset: 0x290
-	// Line 3136, Address: 0x2c3a40, Func Offset: 0x2a0
-	// Line 3138, Address: 0x2c3a84, Func Offset: 0x2e4
-	// Line 3140, Address: 0x2c3a8c, Func Offset: 0x2ec
-	// Line 3141, Address: 0x2c3a94, Func Offset: 0x2f4
-	// Func End, Address: 0x2c3abc, Func Offset: 0x31c
-	scePrintf("DisplayNewGamePlate - UNIMPLEMENTED!\n");
+    ADV_WORK* ap = &AdvWork; 
+    QUAD* qp; 
+    int i; 
+    unsigned int Alpha; 
+    int DivTbl[3] = { 2, 2, 2 }; 
+
+    DivTbl[Cursor] = 1;
+    
+    qp = &Qtex[1];
+    
+    SetQuadPos(224.0f, 304.0f, 193.0f, 33.0f, qp);
+    SetQuadUv2(0, 320.0f, 193.0f, 33.0f, 1, qp);
+    
+    SetQuadPos(224.0f, 336.0f, 193.0f, 33.0f, &qp[1]);
+    SetQuadUv2(0, 288.0f, 193.0f, 33.0f, 1, &qp[1]);
+    
+    SetQuadPos(224.0f, 368.0f, 193.0f, 33.0f, &qp[2]);
+    SetQuadUv2(0, 256.0f, 193.0f, 33.0f, 1, &qp[2]);
+    
+    SetQuadPos(64.0f, 272.0f, 513.0f, 33.0f, &qp[3]);
+    SetQuadUv2(0, 160.0f, 513.0f, 33.0f, 1, &qp[3]);
+    
+    for (i = 0; i < 3; i++)
+    {
+        Alpha = FadeRate;
+        
+        if (DivTbl[i] == 1) 
+        {
+            Alpha += (unsigned int)ap->FlushCount2;
+                       
+            Alpha <<= 24;
+            
+            if (Flag == 0) 
+            {
+                Alpha = 0xFF000000;
+            }
+            
+            AdvEasyDrawTextureS(1, Alpha | ap->FontBaseColor, &Qtex[i + 1], 0.5f, 1, FadeRate);
+        } 
+        else 
+        {
+            Alpha <<= 24;
+            
+            if (Flag == 0) 
+            {
+                Alpha = 0xFF000000;
+            }
+            
+            AdvEasyDrawTextureS(1, Alpha | 0x7F7F7F, &Qtex[i + 1], 0.5f, 1, FadeRate);
+        }
+    } 
+   
+    AdvEasyDrawTextureS(1, ((unsigned int)FadeRate << 24) | 0xFFFFFF, &Qtex[4], 0.5f, 1, FadeRate);
+    
+    FlushPlate();
+    
+    DisplayTitleBg();
 }
 
 // 
