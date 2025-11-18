@@ -726,26 +726,32 @@ int Ps2TextureFree(NJS_TEXMEMLIST* p)
     return 1;
 }
 
-/*// 
-// Start address: 0x2e27e0
+// 100% matching!
 int Ps2ReplaceTexAddr(unsigned int gindex, void* rep_addr)
 {
-	int count;
-	_anon1* addr;
-	unsigned int n;
-	unsigned int i;
-	// Line 987, Address: 0x2e27e0, Func Offset: 0
-	// Line 988, Address: 0x2e27e8, Func Offset: 0x8
-	// Line 990, Address: 0x2e27ec, Func Offset: 0xc
-	// Line 991, Address: 0x2e27fc, Func Offset: 0x1c
-	// Line 992, Address: 0x2e2808, Func Offset: 0x28
-	// Line 994, Address: 0x2e2814, Func Offset: 0x34
-	// Line 993, Address: 0x2e2818, Func Offset: 0x38
-	// Line 995, Address: 0x2e281c, Func Offset: 0x3c
-	// Line 996, Address: 0x2e2820, Func Offset: 0x40
-	// Line 998, Address: 0x2e2830, Func Offset: 0x50
-	// Func End, Address: 0x2e2838, Func Offset: 0x58
-}*/
+    unsigned int i; 
+    unsigned int n;
+    NJS_TEXMEMLIST* addr; 
+    int count; 
+
+    n = n = Ps2_texmemlist_num;
+    
+    count = 0;
+    
+    for (i = 0; i < n; i++)
+    {
+        addr = &Ps2_tex_info[i];
+        
+        if (addr->globalIndex == gindex) 
+        {
+            count++;
+            
+            addr->texinfo.texsurface.pSurface = rep_addr;
+        }
+    } 
+
+    return count;
+}
 
 // 
 // Start address: 0x2e2840
