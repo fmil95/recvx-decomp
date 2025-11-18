@@ -2043,7 +2043,6 @@ int CheckButton(int Level, int Flag, int MaxFlag)
                 sys->gm_mode = 0;
                 
                 TitleCall(ap->PortId, 2);
-                
                 break;
             case 2:                                
                 ap->AppMode = 0;
@@ -2054,7 +2053,7 @@ int CheckButton(int Level, int Flag, int MaxFlag)
                 
                 ap->NextReturnCode = 4;
                 
-                ap->Mode = 0x11;
+                ap->Mode = 17;
                 
                 CallSystemSe(0, 3);
                 
