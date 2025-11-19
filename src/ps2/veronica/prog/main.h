@@ -83,6 +83,7 @@ extern unsigned char* keepmem;
 extern BH_PWORK ply;
 extern float BHD_ASPECT_X;
 extern float BHD_ASPECT_Y;
+extern unsigned char* Ps2_PXLCONV;
 
 void njUserInit(void);
 Sint32 njUserMain(void);

@@ -1,4 +1,5 @@
 #include "ps2_pxlconv.h"
+#include "main.h"
 
 /*unsigned char* Ps2_PXLCONV;
 
@@ -6,37 +7,59 @@ void Tim2_Format_Check(void* tim2_ptr);
 int BlockConv4to32(unsigned char* p_input, unsigned char* p_output);
 int BlockConv8to32(unsigned char* p_input, unsigned char* p_output);
 int PageConv4to32(int width, int height, unsigned char* p_input, unsigned char* p_output);
-int PageConv8to32(int width, int height, unsigned char* p_input, unsigned char* p_output);
+int PageConv8to32(int width, int height, unsigned char* p_input, unsigned char* p_output);*/
 int Conv4to32(int width, int height, unsigned char* p_input, unsigned char* p_output);
-int Conv8to32(int width, int height, unsigned char* p_input, unsigned char* p_output);*/
+int Conv8to32(int width, int height, unsigned char* p_input, unsigned char* p_output);
 
-// 
-// Start address: 0x3011a0
+// 100% matching! 
 void Tim2_Format_Check(void* tim2_ptr)
 {
-	unsigned char* output;
-	unsigned char* pImage;
-	//_anon0* ph;
-	// Line 28, Address: 0x3011a0, Func Offset: 0
-	// Line 34, Address: 0x3011b4, Func Offset: 0x14
-	// Line 44, Address: 0x3011b8, Func Offset: 0x18
-	// Line 51, Address: 0x3011d0, Func Offset: 0x30
-	// Line 53, Address: 0x3011d8, Func Offset: 0x38
-	// Line 54, Address: 0x3011dc, Func Offset: 0x3c
-	// Line 57, Address: 0x3011f4, Func Offset: 0x54
-	// Line 59, Address: 0x3011fc, Func Offset: 0x5c
-	// Line 60, Address: 0x301208, Func Offset: 0x68
-	// Line 63, Address: 0x301210, Func Offset: 0x70
-	// Line 65, Address: 0x301220, Func Offset: 0x80
-	// Line 66, Address: 0x301234, Func Offset: 0x94
-	// Line 68, Address: 0x301248, Func Offset: 0xa8
-	// Line 69, Address: 0x30125c, Func Offset: 0xbc
-	// Line 70, Address: 0x301264, Func Offset: 0xc4
-	// Line 71, Address: 0x301270, Func Offset: 0xd0
-	// Line 74, Address: 0x301278, Func Offset: 0xd8
-	// Line 84, Address: 0x301288, Func Offset: 0xe8
-	// Func End, Address: 0x3012a0, Func Offset: 0x100
-	scePrintf("Tim2_Format_Check - UNIMPLEMENTED!\n");
+    TIM2_PICTUREHEADER* ph;
+    unsigned char* pImage;  
+    unsigned char* output;  
+	
+    output = Ps2_PXLCONV;
+    
+    if (((TIM2_PICTUREHEADER_EX*)tim2_ptr)->FormatId != 0) 
+    {
+        ph = (TIM2_PICTUREHEADER*)&((unsigned char*)tim2_ptr)[128];
+    } 
+    else 
+    {
+        ph = (TIM2_PICTUREHEADER*)&((unsigned char*)tim2_ptr)[16]; 
+    }
+    
+    if (((TIM2_PICTUREHEADER_EX*)tim2_ptr)->FormatId == 0) 
+    {
+        pImage = (unsigned char*)ph + ph->HeaderSize;
+    }
+    else if ((((TIM2_PICTUREHEADER_EX*)tim2_ptr)->FormatId & 0xFF) == 1) 
+    {
+        pImage = &((unsigned char*)ph)[128];
+    } 
+    else 
+    {
+        printf("FormatId of this TIM2 FILE is not Supported\n");
+        
+        exit(0);
+    }
+    
+    if (ph->ImageType == TIM2_IDTEX4)
+    {
+        Conv4to32(ph->ImageWidth, ph->ImageHeight, pImage, output);
+    } 
+    else if (ph->ImageType == TIM2_IDTEX8) 
+    {
+        Conv8to32(ph->ImageWidth, ph->ImageHeight, pImage, output);
+    } 
+    else 
+    {
+        printf("This file is illegal Image Type\n");
+        
+        exit(0);
+    }
+    
+    memcpy(pImage, output, ph->ImageSize);
 }
 
 /*// 
@@ -249,7 +272,7 @@ int PageConv8to32(int width, int height, unsigned char* p_input, unsigned char* 
 	// Line 498, Address: 0x301870, Func Offset: 0x1e0
 	// Line 499, Address: 0x301874, Func Offset: 0x1e4
 	// Func End, Address: 0x30187c, Func Offset: 0x1ec
-}
+}*/
 
 // 
 // Start address: 0x301880
@@ -326,6 +349,7 @@ int Conv4to32(int width, int height, unsigned char* p_input, unsigned char* p_ou
 	// Line 609, Address: 0x301ba8, Func Offset: 0x328
 	// Line 610, Address: 0x301bac, Func Offset: 0x32c
 	// Func End, Address: 0x301bdc, Func Offset: 0x35c
+	scePrintf("Conv4to32 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -400,5 +424,5 @@ int Conv8to32(int width, int height, unsigned char* p_input, unsigned char* p_ou
 	// Line 724, Address: 0x301ee0, Func Offset: 0x300
 	// Line 725, Address: 0x301ee4, Func Offset: 0x304
 	// Func End, Address: 0x301f14, Func Offset: 0x334
-}*/
-
+	scePrintf("Conv8to32 - UNIMPLEMENTED!\n");
+}
