@@ -399,36 +399,49 @@ int Clut_Load_Func(TIM2_PICTUREHEADER* ph, unsigned long clut_addr)
     return 0;
 }
 
-// 
-// Start address: 0x2e7810
-int P32_Image_Load(TIM2_PICTUREHEADER* ph, unsigned long image_addr)
+// 100% matching!
+int P32_Image_Load(TIM2_PICTUREHEADER* ph, unsigned long image_addr) 
 {
-	int size;
-	int rrh;
-	int rrw;
-	int tbw;
-	int h;
-	int w;
-	//<unknown fundamental type (0xa510)>* pImage;
-	// Line 2261, Address: 0x2e7810, Func Offset: 0
-	// Line 2269, Address: 0x2e7818, Func Offset: 0x8
-	// Line 2273, Address: 0x2e781c, Func Offset: 0xc
-	// Line 2270, Address: 0x2e7820, Func Offset: 0x10
-	// Line 2276, Address: 0x2e7824, Func Offset: 0x14
-	// Line 2278, Address: 0x2e7828, Func Offset: 0x18
-	// Line 2284, Address: 0x2e7834, Func Offset: 0x24
-	// Line 2286, Address: 0x2e7844, Func Offset: 0x34
-	// Line 2285, Address: 0x2e7848, Func Offset: 0x38
-	// Line 2287, Address: 0x2e784c, Func Offset: 0x3c
-	// Line 2289, Address: 0x2e7854, Func Offset: 0x44
-	// Line 2288, Address: 0x2e7858, Func Offset: 0x48
-	// Line 2289, Address: 0x2e785c, Func Offset: 0x4c
-	// Line 2292, Address: 0x2e7860, Func Offset: 0x50
-	// Line 2295, Address: 0x2e7874, Func Offset: 0x64
-	// Line 2294, Address: 0x2e7878, Func Offset: 0x68
-	// Line 2295, Address: 0x2e787c, Func Offset: 0x6c
-	// Func End, Address: 0x2e7884, Func Offset: 0x74
-	scePrintf("P32_Image_Load - UNIMPLEMENTED!\n");
+    u_long128* pImage;
+    int w;            
+    int h;            
+    int tbw;           
+    int rrw;           
+    int rrh;          
+    int size;          
+
+    w = ph->ImageWidth;
+    h = ph->ImageHeight;
+
+    size = ph->HeaderSize;
+
+    pImage = (u_long128*)((char*)ph + size);
+
+    tbw = w / 128;
+    
+    if (tbw == 0) 
+    {
+        tbw = 1;
+    }
+
+    rrw = w / 2;
+    
+    if (ph->ImageType == 5)
+    {
+        rrh = h / 2;
+        
+        size = (w * h) / 16;
+    }
+    else
+    {
+        rrh = h / 4;
+        
+        size = (w * h) / 32; 
+    }
+    
+    LoadToVram(image_addr, pImage, tbw, 0, 0, rrw, rrh, size); 
+    
+    return 0;
 }
 
 #pragma divbyzerocheck on
