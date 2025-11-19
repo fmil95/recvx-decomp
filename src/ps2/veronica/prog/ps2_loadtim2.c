@@ -52,7 +52,7 @@ int Tim2CalcBufWidth(int psm, int w)
 	return 0;
 }
 
-// 97.97% matching
+// 100% matching! 
 void Set_GsTex(TIM2_PICTUREHEADER* ph, unsigned long send_image_adr, unsigned long send_clut_adr)
 {
     unsigned int i; 
@@ -76,7 +76,7 @@ void Set_GsTex(TIM2_PICTUREHEADER* ph, unsigned long send_image_adr, unsigned lo
     {
         printf("This texture is not adequate size!!\n");
         
-        // exit(0); // ERROR: enabling this crashes, see njSetTextureNum() for more information
+        exit(0); 
     }
     else 
     {
@@ -89,7 +89,7 @@ void Set_GsTex(TIM2_PICTUREHEADER* ph, unsigned long send_image_adr, unsigned lo
     {
         printf("This texture is not adequate size!!\n");
         
-        // exit(0);
+        exit(0);
     }
     else 
     {
