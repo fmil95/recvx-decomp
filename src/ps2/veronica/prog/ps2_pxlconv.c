@@ -105,7 +105,8 @@ int BlockConv4to32(u_char *p_input, u_char *p_output)
     };
     unsigned int i, j, k, i0, i1, i2;
     unsigned int index0, index1;
-    unsigned char c_in, c_out, *pIn;
+    unsigned char c_in, c_out;
+    unsigned char *pIn;
 
     pIn = p_input;
 
