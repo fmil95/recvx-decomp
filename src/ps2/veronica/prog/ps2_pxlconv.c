@@ -62,53 +62,89 @@ void Tim2_Format_Check(void* tim2_ptr)
     memcpy(pImage, output, ph->ImageSize);
 }
 
-/*// 
-// Start address: 0x3012a0
-int BlockConv4to32(unsigned char* p_input, unsigned char* p_output)
+// 99.70% matching
+int BlockConv4to32(u_char *p_input, u_char *p_output) 
 {
-	unsigned char* pIn;
-	unsigned char c_out;
-	unsigned int index1;
-	unsigned int index0;
-	unsigned int i2;
-	unsigned int i0;
-	unsigned int k;
-	unsigned int j;
-	unsigned int i;
-	int lut[256];
-	// Line 132, Address: 0x3012a0, Func Offset: 0
-	// Line 178, Address: 0x3012ac, Func Offset: 0xc
-	// Line 180, Address: 0x3012b0, Func Offset: 0x10
-	// Line 198, Address: 0x3012b4, Func Offset: 0x14
-	// Line 196, Address: 0x3012bc, Func Offset: 0x1c
-	// Line 198, Address: 0x3012c0, Func Offset: 0x20
-	// Line 182, Address: 0x3012c8, Func Offset: 0x28
-	// Line 184, Address: 0x3012d4, Func Offset: 0x34
-	// Line 186, Address: 0x3012e0, Func Offset: 0x40
-	// Line 198, Address: 0x3012e8, Func Offset: 0x48
-	// Line 190, Address: 0x3012ec, Func Offset: 0x4c
-	// Line 198, Address: 0x3012f0, Func Offset: 0x50
-	// Line 207, Address: 0x3012fc, Func Offset: 0x5c
-	// Line 198, Address: 0x301300, Func Offset: 0x60
-	// Line 194, Address: 0x301308, Func Offset: 0x68
-	// Line 196, Address: 0x301310, Func Offset: 0x70
-	// Line 198, Address: 0x30131c, Func Offset: 0x7c
-	// Line 196, Address: 0x301320, Func Offset: 0x80
-	// Line 202, Address: 0x301330, Func Offset: 0x90
-	// Line 204, Address: 0x301338, Func Offset: 0x98
-	// Line 206, Address: 0x301358, Func Offset: 0xb8
-	// Line 204, Address: 0x30135c, Func Offset: 0xbc
-	// Line 206, Address: 0x301364, Func Offset: 0xc4
-	// Line 207, Address: 0x301368, Func Offset: 0xc8
-	// Line 208, Address: 0x301374, Func Offset: 0xd4
-	// Line 210, Address: 0x301384, Func Offset: 0xe4
-	// Line 213, Address: 0x301394, Func Offset: 0xf4
-	// Line 212, Address: 0x30139c, Func Offset: 0xfc
-	// Line 213, Address: 0x3013a0, Func Offset: 0x100
-	// Func End, Address: 0x3013a8, Func Offset: 0x108
+    static int lut[256] = 
+    {
+        0, 68, 8,  76, 16, 84, 24, 92,
+        1, 69, 9,  77, 17, 85, 25, 93,
+        2, 70, 10, 78, 18, 86, 26, 94,
+        3, 71, 11, 79, 19, 87, 27, 95,
+        4, 64, 12, 72, 20, 80, 28, 88,
+        5, 65, 13, 73, 21, 81, 29, 89,
+        6, 66, 14, 74, 22, 82, 30, 90,
+        7, 67, 15, 75, 23, 83, 31, 91,
+
+        32, 100, 40, 108, 48, 116, 56, 124,
+        33, 101, 41, 109, 49, 117, 57, 125,
+        34, 102, 42, 110, 50, 118, 58, 126,
+        35, 103, 43, 111, 51, 119, 59, 127,
+        36, 96,  44, 104, 52, 112, 60, 120,
+        37, 97,  45, 105, 53, 113, 61, 121,
+        38, 98,  46, 106, 54, 114, 62, 122,
+        39, 99,  47, 107, 55, 115, 63, 123,
+    
+        4, 64, 12, 72, 20, 80, 28, 88,
+        5, 65, 13, 73, 21, 81, 29, 89,
+        6, 66, 14, 74, 22, 82, 30, 90,
+        7, 67, 15, 75, 23, 83, 31, 91,
+        0, 68, 8,  76, 16, 84, 24, 92,
+        1, 69, 9,  77, 17, 85, 25, 93,
+        2, 70, 10, 78, 18, 86, 26, 94,
+        3, 71, 11, 79, 19, 87, 27, 95,
+        
+        36, 96,  44, 104, 52, 112, 60, 120,
+        37, 97,  45, 105, 53, 113, 61, 121,
+        38, 98,  46, 106, 54, 114, 62, 122,
+        39, 99,  47, 107, 55, 115, 63, 123,
+        32, 100, 40, 108, 48, 116, 56, 124,
+        33, 101, 41, 109, 49, 117, 57, 125,
+        34, 102, 42, 110, 50, 118, 58, 126,
+        35, 103, 43, 111, 51, 119, 59, 127
+    };
+    unsigned int i, j, k, i0, i1, i2;
+    unsigned int index0, index1;
+    unsigned char c_in, c_out, *pIn;
+
+    pIn = p_input;
+
+    index1 = 0;
+
+    for (k = 0; k < 4; k++) 
+    {
+        index0 = (k % 2) * 128;
+
+        for (i = 0; i < 16; i++) 
+        {
+            for (j = 0; j < 4; j++)
+            {
+                c_out = 0;
+
+                i0 = lut[index0++];
+                i2 = (i0 & 0x1) * 4;
+                
+                c_in = (pIn[i0 / 2] & (15 << i2)) >> i2; 
+                c_out = c_out | c_in;
+                
+                i0 = lut[index0++];
+                i1 = i0 / 2;
+                i2 = (i0 & 0x1) * 4;
+                
+                c_in = (pIn[i0 / 2] & (15 << i2)) >> i2;
+                c_out = c_out | ((c_in << 4) & 0xF0);
+
+                p_output[index1++] = c_out;
+            }
+        }
+        
+        pIn += 64;
+    }
+
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x3013b0
 int BlockConv8to32(unsigned char* p_input, unsigned char* p_output)
 {
