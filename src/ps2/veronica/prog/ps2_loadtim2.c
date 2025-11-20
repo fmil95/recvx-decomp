@@ -276,57 +276,66 @@ int LoadToVram(unsigned long tbp, u_long128* addr, int tbw, int psm, int pos, in
     return 0;
 }
 
-// 
-// Start address: 0x2e7420
+// 99.83% matching
 int Send_1024_Clut_data(void* clt_adr, unsigned long send_clut_adr)
 {
-	//<unknown fundamental type (0xa510)>* pClut;
-	unsigned int clt_lp;
-	unsigned int loop;
-	unsigned long* pBuff;
-	unsigned long data[64];
-	// Line 2068, Address: 0x2e7420, Func Offset: 0
-	// Line 2075, Address: 0x2e7454, Func Offset: 0x34
-	// Line 2078, Address: 0x2e7458, Func Offset: 0x38
-	// Line 2080, Address: 0x2e746c, Func Offset: 0x4c
-	// Line 2088, Address: 0x2e7488, Func Offset: 0x68
-	// Line 2092, Address: 0x2e7490, Func Offset: 0x70
-	// Line 2119, Address: 0x2e749c, Func Offset: 0x7c
-	// Line 2095, Address: 0x2e74a0, Func Offset: 0x80
-	// Line 2093, Address: 0x2e74ac, Func Offset: 0x8c
-	// Line 2095, Address: 0x2e74b0, Func Offset: 0x90
-	// Line 2096, Address: 0x2e74b8, Func Offset: 0x98
-	// Line 2099, Address: 0x2e74c0, Func Offset: 0xa0
-	// Line 2098, Address: 0x2e74c4, Func Offset: 0xa4
-	// Line 2099, Address: 0x2e74c8, Func Offset: 0xa8
-	// Line 2101, Address: 0x2e74cc, Func Offset: 0xac
-	// Line 2102, Address: 0x2e74fc, Func Offset: 0xdc
-	// Line 2104, Address: 0x2e7504, Func Offset: 0xe4
-	// Line 2105, Address: 0x2e7518, Func Offset: 0xf8
-	// Line 2108, Address: 0x2e7520, Func Offset: 0x100
-	// Line 2107, Address: 0x2e7524, Func Offset: 0x104
-	// Line 2108, Address: 0x2e7528, Func Offset: 0x108
-	// Line 2110, Address: 0x2e752c, Func Offset: 0x10c
-	// Line 2113, Address: 0x2e7540, Func Offset: 0x120
-	// Line 2111, Address: 0x2e7554, Func Offset: 0x134
-	// Line 2113, Address: 0x2e7558, Func Offset: 0x138
-	// Line 2117, Address: 0x2e7560, Func Offset: 0x140
-	// Line 2114, Address: 0x2e7564, Func Offset: 0x144
-	// Line 2117, Address: 0x2e7568, Func Offset: 0x148
-	// Line 2119, Address: 0x2e7570, Func Offset: 0x150
-	// Line 2118, Address: 0x2e7574, Func Offset: 0x154
-	// Line 2119, Address: 0x2e7578, Func Offset: 0x158
-	// Line 2120, Address: 0x2e7580, Func Offset: 0x160
-	// Line 2122, Address: 0x2e7588, Func Offset: 0x168
-	// Line 2121, Address: 0x2e758c, Func Offset: 0x16c
-	// Line 2126, Address: 0x2e7590, Func Offset: 0x170
-	// Line 2128, Address: 0x2e7598, Func Offset: 0x178
-	// Line 2133, Address: 0x2e75a4, Func Offset: 0x184
-	// Line 2134, Address: 0x2e75b4, Func Offset: 0x194
-	// Line 2135, Address: 0x2e75c4, Func Offset: 0x1a4
-	// Func End, Address: 0x2e75ec, Func Offset: 0x1cc
-    scePrintf("Send_1024_Clut_data - UNIMPLEMENTED!\n");
-}
+    static unsigned long data[64]; 
+    unsigned long* pBuff;        
+    unsigned int loop;            
+    unsigned int clt_lp;          
+    u_long128* pClut;            
+
+    pClut = clt_adr;
+
+    for (clt_lp = 0; clt_lp < 4; clt_lp++) 
+    {
+        for (loop = 0; loop < 16; loop++) 
+        {
+            D2_SyncTag();
+
+            pBuff = (unsigned long*)UNCACHED(data);
+            
+            *pBuff++ = DMAcnt | 6;
+            *pBuff++ = 0;
+
+            *pBuff++ = SCE_GIF_SET_TAG(1, SCE_GS_FALSE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 4);
+            *pBuff++ = 0xEEEE;
+
+            *pBuff++ = SCE_GS_SET_BITBLTBUF(0, 0, SCE_GS_PSMCT32, send_clut_adr + (clt_lp * 4), 1, SCE_GS_PSMCT32);
+            *pBuff++ = SCE_GS_BITBLTBUF;
+            
+            *pBuff++ = SCE_GS_SET_TRXPOS(0, 0, (loop & 1) * 8, (loop / 2) * 2, 0);
+            *pBuff++ = SCE_GS_TRXPOS;
+            
+            *pBuff++ = SCE_GS_SET_TRXREG(8, 2);
+            *pBuff++ = SCE_GS_TRXREG;
+            
+            *pBuff++ = SCE_GS_SET_TRXDIR(0);
+            *pBuff++ = SCE_GS_TRXDIR;
+            
+            *pBuff++ = SCE_GIF_SET_TAG(64, SCE_GS_FALSE, SCE_GS_FALSE, 0, SCE_GIF_IMAGE, 0);
+            *pBuff++ = 0;
+            
+            *pBuff++ = (unsigned long)(DMAref | 64) | ((unsigned long)pClut << 32);
+            *pBuff++ = 0;
+            
+            *pBuff++ = DMAend | 2;
+            *pBuff++ = 0;
+            
+            *pBuff++ = SCE_GIF_SET_TAG(1, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1); 
+            *pBuff++ = SCE_GIF_PACKED_AD;
+            
+            *pBuff++ = 0;
+            *pBuff++ = SCE_GS_TEXFLUSH;
+            
+            D2_SyncTag();
+            
+            loadImage(data);
+            
+            pClut += 4;
+        }
+    } 
+} 
 
 // 100% matching! 
 int Send_Tim2_dataEx(void* tim2_top_adr, unsigned long send_image_adr, unsigned long send_clut_adr)
