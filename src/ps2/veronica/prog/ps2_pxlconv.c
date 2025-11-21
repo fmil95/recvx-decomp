@@ -1,15 +1,7 @@
 #include "ps2_pxlconv.h"
 #include "main.h"
 
-/*unsigned char* Ps2_PXLCONV;
-
-void Tim2_Format_Check(void* tim2_ptr);
-int BlockConv4to32(unsigned char* p_input, unsigned char* p_output);
-int BlockConv8to32(unsigned char* p_input, unsigned char* p_output);
-int PageConv4to32(int width, int height, unsigned char* p_input, unsigned char* p_output);
-int PageConv8to32(int width, int height, unsigned char* p_input, unsigned char* p_output);*/
-int Conv4to32(int width, int height, unsigned char* p_input, unsigned char* p_output);
-int Conv8to32(int width, int height, unsigned char* p_input, unsigned char* p_output);
+/*unsigned char* Ps2_PXLCONV;*/
 
 // 100% matching! 
 void Tim2_Format_Check(void* tim2_ptr)
@@ -491,77 +483,99 @@ int Conv4to32(int width, int height, u_char *p_input, u_char *p_output)
     return 0;
 }
 
-// 
-// Start address: 0x301be0
-int Conv8to32(int width, int height, unsigned char* p_input, unsigned char* p_output)
+// 100% matching! 
+int Conv8to32(int width, int height, u_char *p_input, u_char *p_output)
 {
-	unsigned char output_page[8192];
-	unsigned char input_page[8192];
-	unsigned char* po1;
-	unsigned char* po0;
-	unsigned char* pi1;
-	unsigned char* pi0;
-	int n_output_height;
-	int n_input_height;
-	int n_output_width_byte;
-	int n_input_width_byte;
-	int n_page_w;
-	int n_page_h;
-	int k;
-	int j;
-	int i;
-	// Line 634, Address: 0x301be0, Func Offset: 0
-	// Line 640, Address: 0x301c0c, Func Offset: 0x2c
-	// Line 634, Address: 0x301c10, Func Offset: 0x30
-	// Line 640, Address: 0x301c14, Func Offset: 0x34
-	// Line 634, Address: 0x301c20, Func Offset: 0x40
-	// Line 640, Address: 0x301c24, Func Offset: 0x44
-	// Line 642, Address: 0x301c44, Func Offset: 0x64
-	// Line 646, Address: 0x301c74, Func Offset: 0x94
-	// Line 647, Address: 0x301c78, Func Offset: 0x98
-	// Line 648, Address: 0x301c88, Func Offset: 0xa8
-	// Line 650, Address: 0x301c98, Func Offset: 0xb8
-	// Line 652, Address: 0x301ca4, Func Offset: 0xc4
-	// Line 655, Address: 0x301cac, Func Offset: 0xcc
-	// Line 656, Address: 0x301cb0, Func Offset: 0xd0
-	// Line 657, Address: 0x301cc0, Func Offset: 0xe0
-	// Line 659, Address: 0x301cd0, Func Offset: 0xf0
-	// Line 661, Address: 0x301cdc, Func Offset: 0xfc
-	// Line 672, Address: 0x301ce4, Func Offset: 0x104
-	// Line 675, Address: 0x301cf4, Func Offset: 0x114
-	// Line 683, Address: 0x301d04, Func Offset: 0x124
-	// Line 684, Address: 0x301d14, Func Offset: 0x134
-	// Line 686, Address: 0x301d18, Func Offset: 0x138
-	// Line 687, Address: 0x301d20, Func Offset: 0x140
-	// Line 688, Address: 0x301d24, Func Offset: 0x144
-	// Line 691, Address: 0x301d28, Func Offset: 0x148
-	// Line 692, Address: 0x301d38, Func Offset: 0x158
-	// Line 694, Address: 0x301d3c, Func Offset: 0x15c
-	// Line 695, Address: 0x301d44, Func Offset: 0x164
-	// Line 696, Address: 0x301d48, Func Offset: 0x168
-	// Line 699, Address: 0x301d4c, Func Offset: 0x16c
-	// Line 700, Address: 0x301d90, Func Offset: 0x1b0
-	// Line 701, Address: 0x301dc8, Func Offset: 0x1e8
-	// Line 703, Address: 0x301dd0, Func Offset: 0x1f0
-	// Line 705, Address: 0x301dd4, Func Offset: 0x1f4
-	// Line 706, Address: 0x301de8, Func Offset: 0x208
-	// Line 709, Address: 0x301df8, Func Offset: 0x218
-	// Line 707, Address: 0x301dfc, Func Offset: 0x21c
-	// Line 709, Address: 0x301e00, Func Offset: 0x220
-	// Line 711, Address: 0x301e10, Func Offset: 0x230
-	// Line 713, Address: 0x301e24, Func Offset: 0x244
-	// Line 715, Address: 0x301e2c, Func Offset: 0x24c
-	// Line 716, Address: 0x301e30, Func Offset: 0x250
-	// Line 717, Address: 0x301e40, Func Offset: 0x260
-	// Line 720, Address: 0x301e50, Func Offset: 0x270
-	// Line 718, Address: 0x301e54, Func Offset: 0x274
-	// Line 720, Address: 0x301e58, Func Offset: 0x278
-	// Line 721, Address: 0x301e80, Func Offset: 0x2a0
-	// Line 722, Address: 0x301ebc, Func Offset: 0x2dc
-	// Line 721, Address: 0x301ec0, Func Offset: 0x2e0
-	// Line 722, Address: 0x301ec4, Func Offset: 0x2e4
-	// Line 724, Address: 0x301ee0, Func Offset: 0x300
-	// Line 725, Address: 0x301ee4, Func Offset: 0x304
-	// Func End, Address: 0x301f14, Func Offset: 0x334
-	scePrintf("Conv8to32 - UNIMPLEMENTED!\n");
+    int i, j, k;
+    int n_page_h, n_page_w, n_page8_width_byte, n_page32_width_byte;
+    int n_input_width_byte, n_output_width_byte, n_input_height, n_output_height;
+    unsigned char *pi0, *pi1, *po0, *po1;
+    unsigned char input_page[PSMT8_PAGE_WIDTH * PSMT8_PAGE_HEIGHT] = { 0 };
+    unsigned char output_page[(PSMCT32_PAGE_WIDTH * 4) * PSMCT32_PAGE_HEIGHT] = { 0 }; 
+
+    for (i = 0; i < 13; i++) 
+    {
+        if (width == (4096 >> i)) 
+        {
+            break;
+        }
+    }
+    
+    if (i == 13)
+    {
+        return -1;
+    }
+
+    for (i = 0; i < 13; i++) 
+    {
+        if (height == (4096 >> i))
+        {
+            break;
+        }
+    }
+    
+    if (i == 13)
+    {
+        return -1;
+    }
+
+    n_page_w = ((width - 1) / PSMT8_PAGE_WIDTH) + 1;
+    n_page_h = ((height - 1) / PSMT8_PAGE_HEIGHT) + 1;
+
+    n_page8_width_byte = PSMT8_PAGE_WIDTH;
+    n_page32_width_byte = PSMCT32_PAGE_WIDTH * 4;
+
+    if (n_page_w == 1) 
+    {
+        n_input_width_byte = width;
+        n_output_width_byte = width * 2;
+    } 
+    else 
+    {
+        n_input_width_byte = n_page8_width_byte;
+        n_output_width_byte = n_page32_width_byte;
+    }
+
+    if (n_page_h == 1) 
+    {
+        n_input_height = height;
+        n_output_height = height / 2;
+    } 
+    else 
+    {
+        n_input_height = PSMT8_PAGE_HEIGHT;
+        n_output_height = PSMCT32_PAGE_HEIGHT;
+    }
+
+    for (i = 0; i < n_page_h; i++) 
+    {
+        for (j = 0; j < n_page_w; j++)
+        {
+            pi0 = (p_input + (((n_input_width_byte * PSMT8_PAGE_HEIGHT) * n_page_w) * i)) + (n_input_width_byte * j);
+            pi1 = input_page;
+
+            for (k = 0; k < n_input_height; k++) 
+            {
+                memcpy(pi1, pi0, n_input_width_byte);
+                
+                pi0 += n_input_width_byte * n_page_w;
+                pi1 += n_page8_width_byte;
+            }
+
+            PageConv8to32(PSMT8_PAGE_WIDTH, PSMT8_PAGE_HEIGHT, input_page, output_page);
+
+            po0 = (p_output + (((n_output_width_byte * n_output_height) * n_page_w) * i)) + (n_output_width_byte * j);
+            po1 = output_page;
+            
+            for (k = 0; k < n_output_height; k++) 
+            {
+                memcpy(po0, po1, n_output_width_byte);
+                
+                po0 += n_output_width_byte * n_page_w;
+                po1 += n_page32_width_byte;
+            }          
+        }
+    }
+
+    return 0;
 }
