@@ -302,70 +302,89 @@ int PageConv4to32(int width, int height, u_char *p_input, u_char *p_output)
     return 0;
 }
 
-/*// 
-// Start address: 0x301690
-int PageConv8to32(int width, int height, unsigned char* p_input, unsigned char* p_output)
+// 99.84% matching
+int PageConv8to32(int width, int height, u_char *p_input, u_char *p_output)
 {
-	int n_height;
-	int n_width;
-	int k;
-	int j;
-	int i;
-	int index0;
-	unsigned char* po1;
-	unsigned char* po0;
-	unsigned char* pi1;
-	unsigned char* pi0;
-	unsigned char output_block[256];
-	unsigned char input_block[256];
-	unsigned int in_block_nb;
-	unsigned int index32_v[128];
-	unsigned int index32_h[128];
-	unsigned int block_table8[32];
-	unsigned int block_table32[32];
-	// Line 411, Address: 0x301690, Func Offset: 0
-	// Line 441, Address: 0x3016cc, Func Offset: 0x3c
-	// Line 442, Address: 0x3016d0, Func Offset: 0x40
-	// Line 443, Address: 0x3016d4, Func Offset: 0x44
-	// Line 445, Address: 0x3016e0, Func Offset: 0x50
-	// Line 446, Address: 0x3016e4, Func Offset: 0x54
-	// Line 447, Address: 0x3016e8, Func Offset: 0x58
-	// Line 445, Address: 0x3016ec, Func Offset: 0x5c
-	// Line 448, Address: 0x3016f8, Func Offset: 0x68
-	// Line 446, Address: 0x3016fc, Func Offset: 0x6c
-	// Line 448, Address: 0x301700, Func Offset: 0x70
-	// Line 449, Address: 0x30170c, Func Offset: 0x7c
-	// Line 452, Address: 0x30171c, Func Offset: 0x8c
-	// Line 462, Address: 0x301724, Func Offset: 0x94
-	// Line 451, Address: 0x301728, Func Offset: 0x98
-	// Line 462, Address: 0x30172c, Func Offset: 0x9c
-	// Line 464, Address: 0x301740, Func Offset: 0xb0
-	// Line 469, Address: 0x301760, Func Offset: 0xd0
-	// Line 466, Address: 0x301774, Func Offset: 0xe4
-	// Line 467, Address: 0x301778, Func Offset: 0xe8
-	// Line 471, Address: 0x30177c, Func Offset: 0xec
-	// Line 472, Address: 0x301780, Func Offset: 0xf0
-	// Line 475, Address: 0x301790, Func Offset: 0x100
-	// Line 473, Address: 0x301798, Func Offset: 0x108
-	// Line 475, Address: 0x30179c, Func Offset: 0x10c
-	// Line 477, Address: 0x3017a4, Func Offset: 0x114
-	// Line 481, Address: 0x3017b0, Func Offset: 0x120
-	// Line 479, Address: 0x3017bc, Func Offset: 0x12c
-	// Line 482, Address: 0x3017c0, Func Offset: 0x130
-	// Line 481, Address: 0x3017c4, Func Offset: 0x134
-	// Line 484, Address: 0x3017d8, Func Offset: 0x148
-	// Line 488, Address: 0x3017e8, Func Offset: 0x158
-	// Line 486, Address: 0x3017f0, Func Offset: 0x160
-	// Line 488, Address: 0x3017f4, Func Offset: 0x164
-	// Line 490, Address: 0x3017fc, Func Offset: 0x16c
-	// Line 488, Address: 0x301800, Func Offset: 0x170
-	// Line 490, Address: 0x301804, Func Offset: 0x174
-	// Line 491, Address: 0x301828, Func Offset: 0x198
-	// Line 499, Address: 0x301848, Func Offset: 0x1b8
-	// Line 498, Address: 0x301870, Func Offset: 0x1e0
-	// Line 499, Address: 0x301874, Func Offset: 0x1e4
-	// Func End, Address: 0x30187c, Func Offset: 0x1ec
-}*/
+    static unsigned int block_table8[32] = 
+    {
+         0,  1,  4,  5, 16, 17, 20, 21,
+         2,  3,  6,  7, 18, 19, 22, 23,
+         8,  9, 12, 13, 24, 25, 28, 29,
+        10, 11, 14, 15, 26, 27, 30, 31
+    }; 
+    static unsigned int block_table32[32] = 
+    {
+         0,  1,  4,  5, 16, 17, 20, 21,
+         2,  3,  6,  7, 18, 19, 22, 23,
+         8,  9, 12, 13, 24, 25, 28, 29,
+        10, 11, 14, 15, 26, 27, 30, 31
+    };
+    unsigned int index32_h[128];
+    unsigned int index32_v[128];
+    unsigned int in_block_nb;
+    unsigned char input_block[16 * 16];
+    unsigned char output_block[16 * 16];
+    unsigned char *pi0, *pi1, *po0, *po1;
+    int index0, index1;
+    int i, j, k; 
+    int n_width, n_height;
+    int input_page_line_size, output_page_line_size;
+
+    index0 = 0;
+    
+    for (i = 0; i < 4; i++) 
+    {
+        for (j = 0; j < 8; j++) 
+        {
+            index1 = block_table32[index0];
+            
+            index32_h[index1] = j;
+            index32_v[index1] = i;
+            
+            index0++;
+        }
+    }
+
+    n_width = width / PSMT8_BLOCK_WIDTH;
+    n_height = height / PSMT8_BLOCK_HEIGHT;
+
+    input_page_line_size = 128;   
+    output_page_line_size = 256;      
+
+    for (i = 0; i < n_height; i++) 
+    {
+        for (j = 0; j < n_width; j++) 
+        {
+            pi0 = input_block;
+            pi1 = (p_input + ((PSMT8_BLOCK_HEIGHT * i) * input_page_line_size)) + (j * PSMT8_BLOCK_WIDTH);
+
+            in_block_nb = block_table8[(i * n_width) + j]; 
+
+            for (k = 0; k < PSMT8_BLOCK_HEIGHT; k++) 
+            {
+                memcpy(pi0, pi1, PSMT8_BLOCK_WIDTH);
+                
+                pi0 += PSMT8_BLOCK_WIDTH;
+                pi1 += input_page_line_size;
+            }
+            
+            BlockConv8to32(input_block, output_block);
+
+            po0 = output_block;
+            po1 = (p_output + ((8 * index32_v[in_block_nb]) * output_page_line_size)) + (index32_h[in_block_nb] * 32);
+            
+            for (k = 0; k < PSMCT32_BLOCK_HEIGHT; k++) 
+            {
+                memcpy(po1, po0, PSMCT32_BLOCK_WIDTH * 4);
+                
+                po0 += PSMCT32_BLOCK_WIDTH * 4;
+                po1 += output_page_line_size;   
+            }
+        }
+    }
+
+    return 0;
+}
 
 // 100% matching! 
 int Conv4to32(int width, int height, u_char *p_input, u_char *p_output)
