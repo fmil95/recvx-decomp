@@ -145,36 +145,74 @@ int BlockConv4to32(u_char *p_input, u_char *p_output)
     return 0;
 }
 
-/*// 
-// Start address: 0x3013b0
-int BlockConv8to32(unsigned char* p_input, unsigned char* p_output)
+// 99.71% matching
+int BlockConv8to32(u_char *p_input, u_char *p_output)
 {
-	unsigned char* pIn;
-	unsigned int index1;
-	unsigned int index0;
-	unsigned int i0;
-	unsigned int k;
-	unsigned int j;
-	unsigned int i;
-	int lut[128];
-	// Line 272, Address: 0x3013b0, Func Offset: 0
-	// Line 274, Address: 0x3013b4, Func Offset: 0x4
-	// Line 277, Address: 0x3013c0, Func Offset: 0x10
-	// Line 279, Address: 0x3013cc, Func Offset: 0x1c
-	// Line 280, Address: 0x3013d8, Func Offset: 0x28
-	// Line 281, Address: 0x3013e0, Func Offset: 0x30
-	// Line 282, Address: 0x3013e4, Func Offset: 0x34
-	// Line 283, Address: 0x3013e8, Func Offset: 0x38
-	// Line 281, Address: 0x3013ec, Func Offset: 0x3c
-	// Line 282, Address: 0x3013f0, Func Offset: 0x40
-	// Line 281, Address: 0x3013f8, Func Offset: 0x48
-	// Line 282, Address: 0x301400, Func Offset: 0x50
-	// Line 283, Address: 0x301404, Func Offset: 0x54
-	// Line 284, Address: 0x301410, Func Offset: 0x60
-	// Line 286, Address: 0x301420, Func Offset: 0x70
-	// Line 289, Address: 0x301430, Func Offset: 0x80
-	// Func End, Address: 0x301438, Func Offset: 0x88
-}*/
+    static int lut[128] = 
+    {
+        0, 36, 8,  44,
+        1, 37, 9,  45,
+        2, 38, 10, 46,
+        3, 39, 11, 47,
+        4, 32, 12, 40,
+        5, 33, 13, 41,
+        6, 34, 14, 42,
+        7, 35, 15, 43,
+
+        16, 52, 24, 60,
+        17, 53, 25, 61,
+        18, 54, 26, 62,
+        19, 55, 27, 63, 
+        20, 48, 28, 56,
+        21, 49, 29, 57,
+        22, 50, 30, 58,
+        23, 51, 31, 59,
+
+        4, 32, 12, 40,
+        5, 33, 13, 41,
+        6, 34, 14, 42,
+        7, 35, 15, 43,
+        0, 36, 8,  44,
+        1, 37, 9,  45,
+        2, 38, 10, 46,
+        3, 39, 11, 47,
+
+        20, 48, 28, 56,
+        21, 49, 29, 57,
+        22, 50, 30, 58,
+        23, 51, 31, 59,
+        16, 52, 24, 60,
+        17, 53, 25, 61,
+        18, 54, 26, 62,
+        19, 55, 27, 63
+    };
+    unsigned int i, j, k, i0;
+    unsigned int index0, index1;
+    unsigned char *pIn;
+
+    pIn = p_input;
+
+    index1 = 0;
+
+    for (k = 0; k < 4; k++) 
+    {
+        index0 = (k % 2) * 64;
+
+        for (i = 0; i < 16; i++) 
+        {
+            for (j = 0; j < 4; j++)
+            {
+                i0 = lut[index0++];
+                
+                p_output[index1++] = pIn[i0];
+            }
+        }
+        
+        pIn += 64;
+    }
+
+    return 0;
+}
 
 // 99.86% matching
 int PageConv4to32(int width, int height, u_char *p_input, u_char *p_output)
