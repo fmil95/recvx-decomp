@@ -753,13 +753,14 @@ int Ps2ReplaceTexAddr(unsigned int gindex, void* rep_addr)
     return count;
 }
 
-// 91.10% matching
+// 98.90% matching
 int Ps2TextureGarbageCollectionAll()
 {
     TIM2_PICTUREHEADER_EX* p; 
     TIM2_PICTUREHEADER_EX* after2; 
     unsigned int size; 
     unsigned char* real_p; 
+    TIM2_PICTUREHEADER_EX* temp; // not from the debugging symbols
     
     ring_check();
     
@@ -767,22 +768,22 @@ int Ps2TextureGarbageCollectionAll()
     {
         real_p = (unsigned char*)((int)p->admin.addr + p->admin.size); 
         
-        after2 = p->admin.after; 
-        
-        p = p->admin.after;
-        
-        if (((TIM2_PICTUREHEADER_EX*)real_p != after2) && (p != &Ps2_tm_list_last))
-        {
-            after2 = (TIM2_PICTUREHEADER_EX*)real_p;
+        after2 = (temp = p)->admin.after; 
 
+        if (((TIM2_PICTUREHEADER_EX*)real_p != p) && (p != &Ps2_tm_list_last))
+        {
             after2->admin.before = real_p; 
             
-            p->admin.addr = real_p;  
+            temp->admin.addr = real_p;  
             
-            after2->admin.after = real_p;
+            p->admin.after = real_p;
 
-            Ps2MemCopy4(real_p, p, p->admin.size / 4);
-            
+            size = temp->admin.size;
+
+            after2 = (TIM2_PICTUREHEADER_EX*)real_p;
+
+            Ps2MemCopy4(real_p, p, size / 4);
+        
             Ps2ReplaceTexAddr(after2->admin.gindex, real_p);
         }
     }
