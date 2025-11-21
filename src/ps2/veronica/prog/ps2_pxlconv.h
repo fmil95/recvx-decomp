@@ -3,6 +3,12 @@
 
 #include "types.h"
 
+#define PSMT4_BLOCK_WIDTH 32
+#define PSMT4_BLOCK_HEIGHT 16
+
+#define PSMCT32_BLOCK_WIDTH 8
+#define PSMCT32_BLOCK_HEIGHT 8
+
 #define PSMT4_PAGE_WIDTH    128
 #define PSMT4_PAGE_HEIGHT   128
 #define PSMCT32_PAGE_WIDTH  64

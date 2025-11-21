@@ -176,75 +176,92 @@ int BlockConv8to32(unsigned char* p_input, unsigned char* p_output)
 	// Func End, Address: 0x301438, Func Offset: 0x88
 }*/
 
-// 
-// Start address: 0x301440
+// 99.86% matching
 int PageConv4to32(int width, int height, u_char *p_input, u_char *p_output)
 {
-	int n_height;
-	int n_width;
-	int k;
-	int j;
-	int i;
-	int index0;
-	unsigned char* po1;
-	unsigned char* po0;
-	unsigned char* pi1;
-	unsigned char* pi0;
-	unsigned char output_block[256];
-	unsigned char input_block[256];
-	unsigned int in_block_nb;
-	unsigned int index32_v[128];
-	unsigned int index32_h[128];
-	unsigned int block_table4[32];
-	unsigned int block_table32[32];
-	// Line 292, Address: 0x301440, Func Offset: 0
-	// Line 321, Address: 0x30146c, Func Offset: 0x2c
-	// Line 292, Address: 0x301470, Func Offset: 0x30
-	// Line 321, Address: 0x301474, Func Offset: 0x34
-	// Line 292, Address: 0x301480, Func Offset: 0x40
-	// Line 321, Address: 0x301484, Func Offset: 0x44
-	// Line 332, Address: 0x3014dc, Func Offset: 0x9c
-	// Line 333, Address: 0x3014e0, Func Offset: 0xa0
-	// Line 334, Address: 0x3014e4, Func Offset: 0xa4
-	// Line 336, Address: 0x3014f0, Func Offset: 0xb0
-	// Line 337, Address: 0x3014f4, Func Offset: 0xb4
-	// Line 338, Address: 0x3014f8, Func Offset: 0xb8
-	// Line 336, Address: 0x3014fc, Func Offset: 0xbc
-	// Line 339, Address: 0x301508, Func Offset: 0xc8
-	// Line 337, Address: 0x30150c, Func Offset: 0xcc
-	// Line 339, Address: 0x301510, Func Offset: 0xd0
-	// Line 340, Address: 0x30151c, Func Offset: 0xdc
-	// Line 347, Address: 0x30152c, Func Offset: 0xec
-	// Line 362, Address: 0x301534, Func Offset: 0xf4
-	// Line 346, Address: 0x301538, Func Offset: 0xf8
-	// Line 362, Address: 0x30153c, Func Offset: 0xfc
-	// Line 364, Address: 0x301550, Func Offset: 0x110
-	// Line 373, Address: 0x301570, Func Offset: 0x130
-	// Line 366, Address: 0x301584, Func Offset: 0x144
-	// Line 370, Address: 0x301588, Func Offset: 0x148
-	// Line 375, Address: 0x30158c, Func Offset: 0x14c
-	// Line 376, Address: 0x301590, Func Offset: 0x150
-	// Line 383, Address: 0x3015a0, Func Offset: 0x160
-	// Line 380, Address: 0x3015a8, Func Offset: 0x168
-	// Line 383, Address: 0x3015ac, Func Offset: 0x16c
-	// Line 385, Address: 0x3015b4, Func Offset: 0x174
-	// Line 388, Address: 0x3015c0, Func Offset: 0x180
-	// Line 387, Address: 0x3015cc, Func Offset: 0x18c
-	// Line 389, Address: 0x3015d0, Func Offset: 0x190
-	// Line 388, Address: 0x3015d4, Func Offset: 0x194
-	// Line 390, Address: 0x3015e8, Func Offset: 0x1a8
-	// Line 397, Address: 0x3015f8, Func Offset: 0x1b8
-	// Line 394, Address: 0x301600, Func Offset: 0x1c0
-	// Line 397, Address: 0x301604, Func Offset: 0x1c4
-	// Line 399, Address: 0x30160c, Func Offset: 0x1cc
-	// Line 397, Address: 0x301610, Func Offset: 0x1d0
-	// Line 399, Address: 0x301614, Func Offset: 0x1d4
-	// Line 400, Address: 0x301638, Func Offset: 0x1f8
-	// Line 408, Address: 0x301658, Func Offset: 0x218
-	// Line 407, Address: 0x301680, Func Offset: 0x240
-	// Line 408, Address: 0x301684, Func Offset: 0x244
-	// Func End, Address: 0x30168c, Func Offset: 0x24c
-	scePrintf("PageConv4to32 - UNIMPLEMENTED!\n");
+    static unsigned int block_table4[32] = 
+    {
+         0,  2,  8, 10,
+         1,  3,  9, 11,
+         4,  6, 12, 14,
+         5,  7, 13, 15,
+        16, 18, 24, 26,
+        17, 19, 25, 27,
+        20, 22, 28, 30,
+        21, 23, 29, 31
+    }; // TODO: find out where the data location for these values is, can't find it in game.data.s
+    static unsigned int block_table32[32] = 
+    {
+         0,  1,  4,  5, 16, 17, 20, 21,
+         2,  3,  6,  7, 18, 19, 22, 23,
+         8,  9, 12, 13, 24, 25, 28, 29,
+        10, 11, 14, 15, 26, 27, 30, 31
+    };
+    unsigned int index32_h[128];
+    unsigned int index32_v[128];
+    unsigned int in_block_nb;
+    unsigned char input_block[16 * 16] = { 0 };
+    unsigned char output_block[16 * 16] = { 0 };
+    unsigned char *pi0, *pi1, *po0, *po1;
+    int index0, index1;
+    int i, j, k; 
+    int n_width, n_height;
+    int input_page_line_size, output_page_line_size;
+
+    index0 = 0;
+    
+    for (i = 0; i < 4; i++) 
+    {
+        for (j = 0; j < 8; j++) 
+        {
+            index1 = block_table32[index0];
+            
+            index32_h[index1] = j;
+            index32_v[index1] = i;
+            
+            index0++;
+        }
+    }
+
+    n_width = width / 32;
+    n_height = height / 16;
+
+    input_page_line_size = 16;   
+    output_page_line_size = 256;      
+
+    for (i = 0; i < n_height; i++) 
+    {
+        for (j = 0; j < n_width; j++) 
+        {
+            pi0 = input_block;
+            pi1 = (p_input + ((64 * i) * input_page_line_size)) + (j * 16);
+
+            in_block_nb = block_table4[(i * n_width) + j]; 
+
+            for (k = 0; k < PSMT4_BLOCK_HEIGHT; k++) 
+            {
+                memcpy(pi0, pi1, PSMT4_BLOCK_WIDTH / 2);
+                
+                pi0 += PSMT4_BLOCK_WIDTH / 2;
+                pi1 += input_page_line_size * 4;
+            }
+            
+            BlockConv4to32(input_block, output_block);
+
+            po0 = output_block;
+            po1 = (p_output + ((8 * index32_v[in_block_nb]) * output_page_line_size)) + (index32_h[in_block_nb] * 32);
+            
+            for (k = 0; k < PSMCT32_BLOCK_HEIGHT; k++) 
+            {
+                memcpy(po1, po0, PSMCT32_BLOCK_WIDTH * 4);
+                
+                po0 += PSMCT32_BLOCK_WIDTH * 4;
+                po1 += output_page_line_size;   
+            }
+        }
+    }
+
+    return 0;
 }
 
 /*// 
@@ -320,7 +337,7 @@ int Conv4to32(int width, int height, u_char *p_input, u_char *p_output)
     unsigned char *pi0, *pi1, *po0, *po1;
     int n_input_width_byte, n_output_width_byte, n_input_height, n_output_height;
     unsigned char input_page[(PSMT4_PAGE_WIDTH / 2) * PSMT4_PAGE_HEIGHT] = { 0 };
-    unsigned char output_page[(PSMCT32_PAGE_WIDTH * 4) * PSMCT32_PAGE_HEIGHT] = { 0 }; // TODO: check if there aren't any actual values to define
+    unsigned char output_page[(PSMCT32_PAGE_WIDTH * 4) * PSMCT32_PAGE_HEIGHT] = { 0 }; 
 
     for (i = 0; i < 14; i++) 
     {
@@ -388,7 +405,7 @@ int Conv4to32(int width, int height, u_char *p_input, u_char *p_output)
     {
         for (j = 0; j < n_page_w; j++)
         {
-            pi0 = p_input + (((n_input_width_byte * PSMT4_PAGE_HEIGHT) * n_page_w) * i) + (n_input_width_byte * j);
+            pi0 = (p_input + (((n_input_width_byte * PSMT4_PAGE_HEIGHT) * n_page_w) * i)) + (n_input_width_byte * j);
             pi1 = input_page;
 
             for (k = 0; k < n_input_height; k++) 
@@ -401,7 +418,7 @@ int Conv4to32(int width, int height, u_char *p_input, u_char *p_output)
 
             PageConv4to32(PSMT4_PAGE_WIDTH, PSMT4_PAGE_HEIGHT, input_page, output_page);
 
-            po0 = p_output + (((n_output_width_byte * PSMCT32_PAGE_HEIGHT) * n_page_w) * i) + (n_output_width_byte * j);
+            po0 = (p_output + (((n_output_width_byte * PSMCT32_PAGE_HEIGHT) * n_page_w) * i)) + (n_output_width_byte * j);
             po1 = output_page;
             
             for (k = 0; k < n_output_height; k++) 
