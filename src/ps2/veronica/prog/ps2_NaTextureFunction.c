@@ -753,37 +753,49 @@ int Ps2ReplaceTexAddr(unsigned int gindex, void* rep_addr)
     return count;
 }
 
-// 
-// Start address: 0x2e2840
+// 91.10% matching
 int Ps2TextureGarbageCollectionAll()
 {
-	unsigned char* real_p;
-	unsigned int size;
-	//_anon4* after2;
-	//_anon4* p;
-	// Line 1003, Address: 0x2e2840, Func Offset: 0
-	// Line 1008, Address: 0x2e2848, Func Offset: 0x8
-	// Line 1009, Address: 0x2e2850, Func Offset: 0x10
-	// Line 1010, Address: 0x2e2858, Func Offset: 0x18
-	// Line 1014, Address: 0x2e2860, Func Offset: 0x20
-	// Line 1015, Address: 0x2e286c, Func Offset: 0x2c
-	// Line 1016, Address: 0x2e2874, Func Offset: 0x34
-	// Line 1017, Address: 0x2e2884, Func Offset: 0x44
-	// Line 1018, Address: 0x2e2888, Func Offset: 0x48
-	// Line 1019, Address: 0x2e288c, Func Offset: 0x4c
-	// Line 1020, Address: 0x2e2890, Func Offset: 0x50
-	// Line 1028, Address: 0x2e28a0, Func Offset: 0x60
-	// Line 1030, Address: 0x2e28ac, Func Offset: 0x6c
-	// Line 1031, Address: 0x2e28b0, Func Offset: 0x70
-	// Line 1032, Address: 0x2e28b4, Func Offset: 0x74
-	// Line 1033, Address: 0x2e28d0, Func Offset: 0x90
-	// Line 1035, Address: 0x2e28d8, Func Offset: 0x98
-	// Line 1041, Address: 0x2e28e0, Func Offset: 0xa0
-	// Line 1036, Address: 0x2e28e4, Func Offset: 0xa4
-	// Line 1038, Address: 0x2e28e8, Func Offset: 0xa8
-	// Line 1042, Address: 0x2e28f8, Func Offset: 0xb8
-	// Func End, Address: 0x2e2908, Func Offset: 0xc8
-    scePrintf("Ps2TextureGarbageCollectionAll - UNIMPLEMENTED!\n");
+    TIM2_PICTUREHEADER_EX* p; 
+    TIM2_PICTUREHEADER_EX* after2; 
+    unsigned int size; 
+    unsigned char* real_p; 
+    
+    ring_check();
+    
+    for (p = &Ps2_tm_list_1st; (0, p)->admin.after != &Ps2_tm_list_last; p = (TIM2_PICTUREHEADER_EX*)real_p)
+    {
+        real_p = (unsigned char*)((int)p->admin.addr + p->admin.size); 
+        
+        after2 = p->admin.after; 
+        
+        p = p->admin.after;
+        
+        if (((TIM2_PICTUREHEADER_EX*)real_p != after2) && (p != &Ps2_tm_list_last))
+        {
+            after2 = (TIM2_PICTUREHEADER_EX*)real_p;
+
+            after2->admin.before = real_p; 
+            
+            p->admin.addr = real_p;  
+            
+            after2->admin.after = real_p;
+
+            Ps2MemCopy4(real_p, p, p->admin.size / 4);
+            
+            Ps2ReplaceTexAddr(after2->admin.gindex, real_p);
+        }
+    }
+
+    ring_check();
+
+    p = Ps2_tm_list_last.admin.before;
+    
+    size = p->admin.size;
+    
+    Ps2_now_free = (void*)(size + (int)p->admin.addr);
+
+    return 1;
 }
 
 // 100% matching!
