@@ -174,11 +174,11 @@ int BlockConv8to32(unsigned char* p_input, unsigned char* p_output)
 	// Line 286, Address: 0x301420, Func Offset: 0x70
 	// Line 289, Address: 0x301430, Func Offset: 0x80
 	// Func End, Address: 0x301438, Func Offset: 0x88
-}
+}*/
 
 // 
 // Start address: 0x301440
-int PageConv4to32(int width, int height, unsigned char* p_input, unsigned char* p_output)
+int PageConv4to32(int width, int height, u_char *p_input, u_char *p_output)
 {
 	int n_height;
 	int n_width;
@@ -244,9 +244,10 @@ int PageConv4to32(int width, int height, unsigned char* p_input, unsigned char* 
 	// Line 407, Address: 0x301680, Func Offset: 0x240
 	// Line 408, Address: 0x301684, Func Offset: 0x244
 	// Func End, Address: 0x30168c, Func Offset: 0x24c
+	scePrintf("PageConv4to32 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x301690
 int PageConv8to32(int width, int height, unsigned char* p_input, unsigned char* p_output)
 {
@@ -311,82 +312,109 @@ int PageConv8to32(int width, int height, unsigned char* p_input, unsigned char* 
 	// Func End, Address: 0x30187c, Func Offset: 0x1ec
 }*/
 
-// 
-// Start address: 0x301880
-int Conv4to32(int width, int height, unsigned char* p_input, unsigned char* p_output)
+// 100% matching! 
+int Conv4to32(int width, int height, u_char *p_input, u_char *p_output)
 {
-	unsigned char output_page[8192];
-	unsigned char input_page[8192];
-	int n_output_height;
-	int n_input_height;
-	int n_output_width_byte;
-	int n_input_width_byte;
-	unsigned char* po1;
-	unsigned char* po0;
-	unsigned char* pi1;
-	unsigned char* pi0;
-	int n_page_w;
-	int n_page_h;
-	int k;
-	int j;
-	int i;
-	// Line 518, Address: 0x301880, Func Offset: 0
-	// Line 525, Address: 0x3018ac, Func Offset: 0x2c
-	// Line 518, Address: 0x3018b0, Func Offset: 0x30
-	// Line 525, Address: 0x3018b4, Func Offset: 0x34
-	// Line 518, Address: 0x3018c0, Func Offset: 0x40
-	// Line 525, Address: 0x3018c4, Func Offset: 0x44
-	// Line 527, Address: 0x3018e4, Func Offset: 0x64
-	// Line 531, Address: 0x301914, Func Offset: 0x94
-	// Line 532, Address: 0x301918, Func Offset: 0x98
-	// Line 533, Address: 0x301928, Func Offset: 0xa8
-	// Line 535, Address: 0x301938, Func Offset: 0xb8
-	// Line 537, Address: 0x301944, Func Offset: 0xc4
-	// Line 539, Address: 0x30194c, Func Offset: 0xcc
-	// Line 540, Address: 0x301950, Func Offset: 0xd0
-	// Line 541, Address: 0x301960, Func Offset: 0xe0
-	// Line 549, Address: 0x301970, Func Offset: 0xf0
-	// Line 550, Address: 0x301974, Func Offset: 0xf4
-	// Line 551, Address: 0x301984, Func Offset: 0x104
-	// Line 553, Address: 0x301998, Func Offset: 0x118
-	// Line 555, Address: 0x3019a4, Func Offset: 0x124
-	// Line 559, Address: 0x3019ac, Func Offset: 0x12c
-	// Line 560, Address: 0x3019bc, Func Offset: 0x13c
-	// Line 565, Address: 0x3019cc, Func Offset: 0x14c
-	// Line 566, Address: 0x3019dc, Func Offset: 0x15c
-	// Line 568, Address: 0x3019e0, Func Offset: 0x160
-	// Line 569, Address: 0x3019e8, Func Offset: 0x168
-	// Line 570, Address: 0x3019ec, Func Offset: 0x16c
-	// Line 573, Address: 0x3019f0, Func Offset: 0x170
-	// Line 574, Address: 0x301a00, Func Offset: 0x180
-	// Line 576, Address: 0x301a04, Func Offset: 0x184
-	// Line 577, Address: 0x301a0c, Func Offset: 0x18c
-	// Line 578, Address: 0x301a10, Func Offset: 0x190
-	// Line 582, Address: 0x301a14, Func Offset: 0x194
-	// Line 583, Address: 0x301a58, Func Offset: 0x1d8
-	// Line 584, Address: 0x301a90, Func Offset: 0x210
-	// Line 586, Address: 0x301a98, Func Offset: 0x218
-	// Line 588, Address: 0x301a9c, Func Offset: 0x21c
-	// Line 589, Address: 0x301ab0, Func Offset: 0x230
-	// Line 592, Address: 0x301ac0, Func Offset: 0x240
-	// Line 590, Address: 0x301ac4, Func Offset: 0x244
-	// Line 592, Address: 0x301ac8, Func Offset: 0x248
-	// Line 594, Address: 0x301ad8, Func Offset: 0x258
-	// Line 596, Address: 0x301aec, Func Offset: 0x26c
-	// Line 598, Address: 0x301af4, Func Offset: 0x274
-	// Line 599, Address: 0x301af8, Func Offset: 0x278
-	// Line 600, Address: 0x301b08, Func Offset: 0x288
-	// Line 603, Address: 0x301b18, Func Offset: 0x298
-	// Line 601, Address: 0x301b1c, Func Offset: 0x29c
-	// Line 603, Address: 0x301b20, Func Offset: 0x2a0
-	// Line 604, Address: 0x301b48, Func Offset: 0x2c8
-	// Line 605, Address: 0x301b84, Func Offset: 0x304
-	// Line 604, Address: 0x301b88, Func Offset: 0x308
-	// Line 605, Address: 0x301b8c, Func Offset: 0x30c
-	// Line 609, Address: 0x301ba8, Func Offset: 0x328
-	// Line 610, Address: 0x301bac, Func Offset: 0x32c
-	// Func End, Address: 0x301bdc, Func Offset: 0x35c
-	scePrintf("Conv4to32 - UNIMPLEMENTED!\n");
+    int i, j, k;
+    int n_page_h, n_page_w, n_page4_width_byte, n_page32_width_byte;
+    unsigned char *pi0, *pi1, *po0, *po1;
+    int n_input_width_byte, n_output_width_byte, n_input_height, n_output_height;
+    unsigned char input_page[(PSMT4_PAGE_WIDTH / 2) * PSMT4_PAGE_HEIGHT] = { 0 };
+    unsigned char output_page[(PSMCT32_PAGE_WIDTH * 4) * PSMCT32_PAGE_HEIGHT] = { 0 }; // TODO: check if there aren't any actual values to define
+
+    for (i = 0; i < 14; i++) 
+    {
+        if (width == (8192 >> i)) 
+        {
+            break;
+        }
+    }
+    
+    if (i == 14)
+    {
+        return -1;
+    }
+
+    for (i = 0; i < 14; i++) 
+    {
+        if (width == (8192 >> i))
+        {
+            break;
+        }
+    }
+
+    for (i = 0; i < 14; i++) 
+    {
+        if (height == (8192 >> i)) 
+        {
+            break;
+        }
+    }
+    
+    if (i == 14)
+    {
+        return -1;
+    }
+
+    n_page_w = ((width - 1) / PSMT4_PAGE_WIDTH) + 1;
+    n_page_h = ((height - 1) / PSMT4_PAGE_HEIGHT) + 1;
+
+    n_page4_width_byte = PSMT4_PAGE_WIDTH / 2;
+    n_page32_width_byte = PSMCT32_PAGE_WIDTH * 4;
+
+    if (n_page_w == 1) 
+    {
+        n_input_width_byte = width / 2;
+        n_output_height = width / 4;
+    } 
+    else 
+    {
+        n_input_width_byte = n_page4_width_byte;
+        n_output_height = PSMCT32_PAGE_HEIGHT;
+    }
+
+    if (n_page_h == 1) 
+    {
+        n_input_height = height;
+        n_output_width_byte = height * 2;
+    } 
+    else 
+    {
+        n_input_height = PSMT4_PAGE_HEIGHT;
+        n_output_width_byte = n_page32_width_byte;
+    }
+
+    for (i = 0; i < n_page_h; i++) 
+    {
+        for (j = 0; j < n_page_w; j++)
+        {
+            pi0 = p_input + (((n_input_width_byte * PSMT4_PAGE_HEIGHT) * n_page_w) * i) + (n_input_width_byte * j);
+            pi1 = input_page;
+
+            for (k = 0; k < n_input_height; k++) 
+            {
+                memcpy(pi1, pi0, n_input_width_byte);
+                
+                pi0 += n_input_width_byte * n_page_w;
+                pi1 += n_page4_width_byte;
+            }
+
+            PageConv4to32(PSMT4_PAGE_WIDTH, PSMT4_PAGE_HEIGHT, input_page, output_page);
+
+            po0 = p_output + (((n_output_width_byte * PSMCT32_PAGE_HEIGHT) * n_page_w) * i) + (n_output_width_byte * j);
+            po1 = output_page;
+            
+            for (k = 0; k < n_output_height; k++) 
+            {
+                memcpy(po0, po1, n_output_width_byte);
+                
+                po0 += n_output_width_byte * n_page_w;
+                po1 += n_page32_width_byte;
+            }          
+        }
+    }
+
+    return 0;
 }
 
 // 

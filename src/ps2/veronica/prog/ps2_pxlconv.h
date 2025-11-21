@@ -3,6 +3,11 @@
 
 #include "types.h"
 
+#define PSMT4_PAGE_WIDTH    128
+#define PSMT4_PAGE_HEIGHT   128
+#define PSMCT32_PAGE_WIDTH  64
+#define PSMCT32_PAGE_HEIGHT 32
+
 void Tim2_Format_Check(void* tim2_ptr);
 
 /*typedef struct _anon0;
