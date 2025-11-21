@@ -2,6 +2,15 @@
 #include "pwksub.h"
 #include "main.h"
 
+void ControlTypewriter();
+void TypewriterKeepMemory();
+/*void CountDisplay(int disppoint, _anon5* pos, unsigned int col);*/
+unsigned int RoomNameSwitch(unsigned int name);
+void TypeWriterTextureInit();
+void TypewriterInit();
+void TypewriterMain();
+void TypewriterExit();
+
 /*char vmssyscmttbl[16];
 int old_data_flg;
 unsigned int InitFlag;
@@ -18,10 +27,10 @@ unsigned char cla_icon_data[1536];
 unsigned char chs_icon_palette[32];
 unsigned char chs_icon_data[1536];
 int space_pos[8][18];
-unsigned short mesdeftbl[10];
-void(*TypewriterMode)()[3];
-_anon31* sys;
-unsigned char* img1p;
+unsigned short mesdeftbl[10];*/
+typedef void (*TypewriterMode_proc)();
+TypewriterMode_proc TypewriterMode[3] = { TypewriterInit, TypewriterMain, TypewriterExit };
+/*unsigned char* img1p;
 _anon44 hdr00;
 _anon20* binfo_;
 unsigned char* img2p;
@@ -38,24 +47,12 @@ tagSAVE_SCREEN Save;
 int ErrorCode;
 _anon44 hdr01;
 _anon54 Info;
-char bootcommentbuf[32][15];
+char bootcommentbuf[32][15];*/
 
-void ControlTypewriter();
-void TypewriterKeepMemory();
-void CountDisplay(int disppoint, _anon5* pos, unsigned int col);
-unsigned int RoomNameSwitch(unsigned int name);
-void TypeWriterTextureInit();
-void TypewriterInit();
-void TypewriterMain();
-void TypewriterExit();*/
-
-// 
-// Start address: 0x2c8b20
+// 100% matching!
 void ControlTypewriter()
 {
-	// Line 1113, Address: 0x2c8b20, Func Offset: 0
-	// Func End, Address: 0x2c8b48, Func Offset: 0x28
-	scePrintf("ControlTypewriter - UNIMPLEMENTED!\n");
+    TypewriterMode[sys->typ_md0](); 
 }
 
 // 100% matching! 
@@ -247,7 +244,7 @@ void TypeWriterTextureInit()
 	// Line 3372, Address: 0x2c9330, Func Offset: 0x4e0
 	// Line 3375, Address: 0x2c9348, Func Offset: 0x4f8
 	// Func End, Address: 0x2c935c, Func Offset: 0x50c
-}
+}*/
 
 // 
 // Start address: 0x2c9360
@@ -293,6 +290,7 @@ void TypewriterInit()
 	// Line 3424, Address: 0x2c94f8, Func Offset: 0x198
 	// Line 3452, Address: 0x2c9504, Func Offset: 0x1a4
 	// Func End, Address: 0x2c9510, Func Offset: 0x1b0
+	scePrintf("TypewriterInit - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -316,13 +314,14 @@ void TypewriterMain()
 	// Line 3480, Address: 0x2c95d0, Func Offset: 0xc0
 	// Line 3991, Address: 0x2c95d8, Func Offset: 0xc8
 	// Func End, Address: 0x2c95e4, Func Offset: 0xd4
+	scePrintf("TypewriterMain - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2c95f0
 void TypewriterExit()
 {
-	_anon2* tw;
+	//_anon2* tw;
 	// Line 3996, Address: 0x2c95f0, Func Offset: 0
 	// Line 3997, Address: 0x2c95fc, Func Offset: 0xc
 	// Line 4000, Address: 0x2c9604, Func Offset: 0x14
@@ -437,5 +436,5 @@ void TypewriterExit()
 	// Line 4105, Address: 0x2c9a38, Func Offset: 0x448
 	// Line 4109, Address: 0x2c9a44, Func Offset: 0x454
 	// Func End, Address: 0x2c9a54, Func Offset: 0x464
-}*/
-
+	scePrintf("TypewriterExit - UNIMPLEMENTED!\n");
+}
