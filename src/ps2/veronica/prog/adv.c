@@ -1806,54 +1806,63 @@ void DisplayNewGamePlate(int Cursor, float FadeRate, int Flag)
     DisplayTitleBg();
 }
 
-// 
-// Start address: 0x2c3ac0
+// 94.18% matching
 void DisplayExtraGamePlate(int Cursor, float FadeRate, int Flag)
 {
-	int DivTbl[2];
-	unsigned int Alpha;
-	int i;
-	//_anon0* qp;
-	//_anon8* ap;
-	// Line 3152, Address: 0x2c3ac0, Func Offset: 0
-	// Line 3153, Address: 0x2c3adc, Func Offset: 0x1c
-	// Line 3152, Address: 0x2c3ae4, Func Offset: 0x24
-	// Line 3157, Address: 0x2c3ae8, Func Offset: 0x28
-	// Line 3152, Address: 0x2c3af4, Func Offset: 0x34
-	// Line 3157, Address: 0x2c3afc, Func Offset: 0x3c
-	// Line 3159, Address: 0x2c3b04, Func Offset: 0x44
-	// Line 3157, Address: 0x2c3b10, Func Offset: 0x50
-	// Line 3159, Address: 0x2c3b14, Func Offset: 0x54
-	// Line 3161, Address: 0x2c3b18, Func Offset: 0x58
-	// Line 3164, Address: 0x2c3b20, Func Offset: 0x60
-	// Line 3165, Address: 0x2c3b48, Func Offset: 0x88
-	// Line 3169, Address: 0x2c3b70, Func Offset: 0xb0
-	// Line 3170, Address: 0x2c3b98, Func Offset: 0xd8
-	// Line 3174, Address: 0x2c3bc0, Func Offset: 0x100
-	// Line 3175, Address: 0x2c3be8, Func Offset: 0x128
-	// Line 3178, Address: 0x2c3c10, Func Offset: 0x150
-	// Line 3189, Address: 0x2c3c18, Func Offset: 0x158
-	// Line 3190, Address: 0x2c3c20, Func Offset: 0x160
-	// Line 3189, Address: 0x2c3c24, Func Offset: 0x164
-	// Line 3190, Address: 0x2c3c28, Func Offset: 0x168
-	// Line 3191, Address: 0x2c3c34, Func Offset: 0x174
-	// Line 3193, Address: 0x2c3c40, Func Offset: 0x180
-	// Line 3194, Address: 0x2c3c48, Func Offset: 0x188
-	// Line 3195, Address: 0x2c3c4c, Func Offset: 0x18c
-	// Line 3196, Address: 0x2c3c50, Func Offset: 0x190
-	// Line 3197, Address: 0x2c3c90, Func Offset: 0x1d0
-	// Line 3199, Address: 0x2c3c98, Func Offset: 0x1d8
-	// Line 3200, Address: 0x2c3c9c, Func Offset: 0x1dc
-	// Line 3201, Address: 0x2c3ca4, Func Offset: 0x1e4
-	// Line 3203, Address: 0x2c3ca8, Func Offset: 0x1e8
-	// Line 3204, Address: 0x2c3cec, Func Offset: 0x22c
-	// Line 3207, Address: 0x2c3cf0, Func Offset: 0x230
-	// Line 3208, Address: 0x2c3d00, Func Offset: 0x240
-	// Line 3210, Address: 0x2c3d44, Func Offset: 0x284
-	// Line 3212, Address: 0x2c3d4c, Func Offset: 0x28c
-	// Line 3213, Address: 0x2c3d54, Func Offset: 0x294
-	// Func End, Address: 0x2c3d7c, Func Offset: 0x2bc
-	scePrintf("DisplayExtraGamePlate - UNIMPLEMENTED!\n");
+    ADV_WORK* ap = &AdvWork; 
+    QUAD* qp; 
+    int i; 
+    unsigned int Alpha; 
+    int DivTbl[2] = { 2, 2 }; 
+
+    DivTbl[Cursor] = 1;
+    
+    qp = &Qtex[1];
+    
+    SetQuadPos(64.0f, 352.0f, 256.0f, 33.0f, qp);
+    SetQuadUv2(0, 352.0f, 256.0f, 33.0f, 1, qp);
+    
+    SetQuadPos(320.0f, 352.0f, 256.0f, 33.0f, &qp[1]);
+    SetQuadUv2(0, 384.0f, 256.0f, 33.0f, 1, &qp[1]);
+    
+    SetQuadPos(64.0f, 288.0f, 512.0f, 33.0f, &qp[2]);
+    SetQuadUv2(0, 160.0f, 512.0f, 33.0f, 1, &qp[2]);
+    
+    for (i = 0; i < 2; i++)
+    {
+        Alpha = FadeRate;
+        
+        if (DivTbl[i] == 1) 
+        {
+            Alpha += (unsigned int)ap->FlushCount2;
+                       
+            Alpha <<= 24;
+            
+            if (Flag == 0) 
+            {
+                Alpha = 0xFF000000;
+            }
+            
+            AdvEasyDrawTextureS(1, Alpha | ap->FontBaseColor, &Qtex[i + 1], 0.5f, 1, FadeRate);
+        } 
+        else 
+        {
+            Alpha <<= 24;
+            
+            if (Flag == 0) 
+            {
+                Alpha = 0xFF000000;
+            }
+            
+            AdvEasyDrawTextureS(1, Alpha | 0x7F7F7F, &Qtex[i + 1], 0.5f, 1, FadeRate);
+        }
+    } 
+   
+    AdvEasyDrawTextureS(1, ((unsigned int)FadeRate << 24) | 0xFFFFFF, &Qtex[3], 0.5f, 1, FadeRate);
+    
+    FlushPlate();
+    
+    DisplayTitleBg();
 }
 
 // 100% matching! 
