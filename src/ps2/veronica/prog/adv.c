@@ -2662,63 +2662,70 @@ void DisplayOptionScrollPlate(float PosX, float PosY)
     njTextureFilterMode(0); 
 } 
 
-// 
-// Start address: 0x2c5210
+// 100% matching!
 void DisplayOptionBg(int Level, int Flag)
 {
-	//_anon0* qp;
-	float s[2];
-	float y[2];
-	int j;
-	int i;
-	//_anon8* ap;
-	// Line 4342, Address: 0x2c5210, Func Offset: 0
-	// Line 4343, Address: 0x2c522c, Func Offset: 0x1c
-	// Line 4342, Address: 0x2c5230, Func Offset: 0x20
-	// Line 4343, Address: 0x2c5234, Func Offset: 0x24
-	// Line 4342, Address: 0x2c5238, Func Offset: 0x28
-	// Line 4345, Address: 0x2c5240, Func Offset: 0x30
-	// Line 4342, Address: 0x2c5244, Func Offset: 0x34
-	// Line 4345, Address: 0x2c5248, Func Offset: 0x38
-	// Line 4342, Address: 0x2c524c, Func Offset: 0x3c
-	// Line 4345, Address: 0x2c5254, Func Offset: 0x44
-	// Line 4346, Address: 0x2c525c, Func Offset: 0x4c
-	// Line 4345, Address: 0x2c5268, Func Offset: 0x58
-	// Line 4346, Address: 0x2c526c, Func Offset: 0x5c
-	// Line 4347, Address: 0x2c5270, Func Offset: 0x60
-	// Line 4349, Address: 0x2c5278, Func Offset: 0x68
-	// Line 4359, Address: 0x2c52a4, Func Offset: 0x94
-	// Line 4360, Address: 0x2c52b0, Func Offset: 0xa0
-	// Line 4361, Address: 0x2c52c0, Func Offset: 0xb0
-	// Line 4362, Address: 0x2c52cc, Func Offset: 0xbc
-	// Line 4363, Address: 0x2c52d0, Func Offset: 0xc0
-	// Line 4362, Address: 0x2c52d8, Func Offset: 0xc8
-	// Line 4363, Address: 0x2c52e0, Func Offset: 0xd0
-	// Line 4364, Address: 0x2c52e8, Func Offset: 0xd8
-	// Line 4366, Address: 0x2c52f0, Func Offset: 0xe0
-	// Line 4370, Address: 0x2c52f8, Func Offset: 0xe8
-	// Line 4365, Address: 0x2c5300, Func Offset: 0xf0
-	// Line 4366, Address: 0x2c5308, Func Offset: 0xf8
-	// Line 4367, Address: 0x2c531c, Func Offset: 0x10c
-	// Line 4369, Address: 0x2c5334, Func Offset: 0x124
-	// Line 4370, Address: 0x2c533c, Func Offset: 0x12c
-	// Line 4371, Address: 0x2c5350, Func Offset: 0x140
-	// Line 4374, Address: 0x2c5368, Func Offset: 0x158
-	// Line 4375, Address: 0x2c5378, Func Offset: 0x168
-	// Line 4374, Address: 0x2c5380, Func Offset: 0x170
-	// Line 4375, Address: 0x2c5388, Func Offset: 0x178
-	// Line 4377, Address: 0x2c5390, Func Offset: 0x180
-	// Line 4386, Address: 0x2c5398, Func Offset: 0x188
-	// Line 4388, Address: 0x2c53a0, Func Offset: 0x190
-	// Line 4389, Address: 0x2c53c4, Func Offset: 0x1b4
-	// Line 4390, Address: 0x2c53ec, Func Offset: 0x1dc
-	// Line 4391, Address: 0x2c5410, Func Offset: 0x200
-	// Line 4392, Address: 0x2c5438, Func Offset: 0x228
-	// Line 4393, Address: 0x2c545c, Func Offset: 0x24c
-	// Line 4395, Address: 0x2c5480, Func Offset: 0x270
-	// Line 4398, Address: 0x2c5488, Func Offset: 0x278
-	// Func End, Address: 0x2c54bc, Func Offset: 0x2ac
-    scePrintf("DisplayOptionBg - UNIMPLEMENTED!\n");
+    ADV_WORK* ap = &AdvWork;     
+    int i;                        
+    int j;                       
+    float y[2] = { 16.0f, 384.0f }; 
+    float s[2] = { 2.0f, -2.0f };   
+    QUAD* qp;                   
+
+    qp = &Qtex[2];
+
+    switch (Level) 
+    {
+    case 0:
+    case 1:
+        break;
+    case -1:
+    case 2:
+    case 3:
+        return;
+    }
+    
+    for (i = 0; i < 2; i++)
+    {
+        for (j = 0; j < 2; j++) 
+        {
+            DisplayOptionScrollPlate(ap->ScrollPlatePosX[i][j], y[i]);
+            
+            ap->ScrollPlatePosX[i][j] += s[i];
+        }
+        
+        for (j = 0; j < 2; j++)
+        {
+            if (i == 0)
+            {
+                if (!(ap->ScrollPlatePosX[i][j] < 672.0f)) 
+                {
+                    ap->ScrollPlatePosX[i][j] = ap->ScrollPlatePosX[i][(j != 0) ^ 1] - 672.0f;
+                }
+            } 
+            else if (ap->ScrollPlatePosX[i][j] <= -672.0f) 
+            {
+                ap->ScrollPlatePosX[i][j] = 672.0f + ap->ScrollPlatePosX[i][(j != 0) ^ 1];
+            }
+        }
+    }  
+    
+    if (Flag != 0) 
+    {
+        njTextureFilterMode(1);
+        
+        SetQuadPos(0, 96.0f, 322.0f, 288.0f, qp);
+        SetQuadUv2(24.0f, 0, 298.0f, 256.0f, 2, qp);
+        
+        AdvEasyDrawTexture(2, 0xFF7F7F7F, qp, 0.01f, 0);
+        
+        SetQuadPos(320.0f, 96.0f, 322.0f, 288.0f, qp);
+        SetQuadUv2(0, 256.0f, 298.0f, 256.0f, 2, qp);
+        
+        AdvEasyDrawTexture(2, 0xFF7F7F7F, qp, 0.01f, 0);
+        
+        njTextureFilterMode(0);
+    }
 }
 
 // 
