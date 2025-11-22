@@ -670,7 +670,7 @@ void SetPvrInfo(NJS_TEXNAME* np, NJS_TEXINFO* ip, unsigned char* pp, int param1,
     
     GlobalIndex = ((TIM2_PICTUREHEADER_EX*)pp)->Gindex; 
     
-    pPichd = (TIM2_PICTUREHEADER*)&((TIM2_PICTUREHEADER_EX*)pp)->TotalSize; 
+    pPichd = (TIM2_PICTUREHEADER*)&((unsigned char*)pp)[128];
     
     Ps2CheckTextureAlpha(pp); 
     
