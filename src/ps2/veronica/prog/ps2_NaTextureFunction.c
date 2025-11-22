@@ -375,8 +375,7 @@ Sint32	njSetTexture(NJS_TEXLIST *texlist)
     }
 }
 
-/* This function is currently writing garbage in the emulator because Ps2_current_texlist doesn't get properly set, the culprit being 
-   bhSetFontTexture() reading the ef_tex field from the SYS_WORK struct before it is set (likely by BhInitEffect()) */
+/* ERROR: This function is currently writing garbage in the emulator because Ps2_current_texlist doesn't get properly set */
 // 100% matching! 
 Sint32	njSetTextureNum(Uint32 n)
 {

@@ -32,7 +32,7 @@ ADV_WORK AdvWork;
 QUAD Qtex[16];
 NJS_TEXINFO AdvTexInfo[2][8];
 NJS_TEXNAME AdvTexName[2][8];
-NJS_TEXLIST AdvTexList[2] = { {&AdvTexName[0][0], 8}, {&AdvTexName[1][0], 8} };
+NJS_TEXLIST AdvTexList[2] = { {AdvTexName[0], 8}, {AdvTexName[1], 8} };
 char AdvTexPalBank[2][8];
 ADV_VM_MSG AdvVmMsgDef[21] = {{-1.0f, 32.0f, 23, 21, 1}, {-1.0f, 176.0f, 25, -1, 0}, {-1.0f, 32.0f, 33, 21, 1}, {-1.0f, 208.0f, 30, 22, 1}, {-1.0f, 224.0f, 27, 22, 1}, {-1.0f, 32.0f, 24, 22, 1}, {-1.0f, 416.0f, 28, -1, 0}, {-1.0f, 32.0f, 24, 21, 1}, {-1.0f, 224.0f, 31, 22, 1}, {-1.0f, 224.0f, 32, 22, 1}, {-1.0f, 32.0f, 23, 22, 1}, {-1.0f, 32.0f, 33, 20, 1}, {-1.0f, 32.0f, 33, 22, 1}, {-1.0f, 32.0f, 34, 20, 1}, {-1.0f, 32.0f, 35, 20, 1}, {-1.0f, 32.0f, 36, 20, 1}, {-1.0f, 32.0f, 37, 20, 1}, {-1.0f, 32.0f, 38, 20, 1}, {-1.0f, 32.0f, 39, 20, 1}, {-1.0f, 32.0f, 40, 20, 1}, {-1.0f, 32.0f, 41, 20, 1}};
 SYSLOAD_SCREEN* pSysLoad;
