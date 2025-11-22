@@ -78,6 +78,8 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
         "adx_mps2.c": 8,     # src\cri\mwlib\ee\lib\libadxe\adx_mps2.c
         "adx_fini.c": 0,     # src\cri\mwlib\ee\lib\libadxe\adx_fini.c
         "adx_fs.c": 0,
+        "dvci.c": 0,
+        "dvci_sub.c": 0,
         "htci.c": 0,
         "htci_sub.c": 0,
         "sjr_clt.c": 0,
