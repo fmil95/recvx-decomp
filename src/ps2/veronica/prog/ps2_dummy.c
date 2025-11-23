@@ -54,51 +54,7 @@ unsigned int Ps2_njControl3D_flag;
 unsigned int Ps2_dbuff;
 unsigned int Ps2_vcount;
 void(*VsyncFunc)();
-void(*EorFunc)();
-
-int _builtin_set_imask();
-void Ps2Init();*/
-void Ps2LoadModule(char* p);
-/*void Snd_init();
-void Cd_init();
-void Card_init();
-void PS2_jikken();
-void PS2_swap();
-void Ps2AddPrim(unsigned long prim, void* dp, unsigned int num, unsigned int clip_3d_on);
-void Ps2AddPrim2D(unsigned long prim, void* dp, unsigned int num);
-void Ps2AddPrim3D(unsigned long prim, void* dp, unsigned int num);
-void Ps2AddPrim3DEx(unsigned long prim, void* dp, unsigned int num);
-void Ps2AddPrim3DEx1P(unsigned long prim, void* dp, unsigned int num);
-void Ps2AddPrim3DMod(unsigned long prim, void* dp, unsigned int num);
-void Ps2ClearOT();*/
-void Ps2AddOT(void* p, unsigned int num, float z, unsigned long prim);
-/*void Ps2DrawOTag();
-int Ps2DrawOTagSub(int start_no);
-unsigned int Ps2BitCount(unsigned int value);*/
-void Ps2InitTexCache();
-/*int Ps2GlobalIndexTexLoad(unsigned int index);
-int Ps2TexLoad(_anon4* addr);
-void Ps2SetFogColor();
-void Ps2SetFogColorSys(unsigned int r, unsigned int g, unsigned int b);
-void Ps2AlphaIs000(unsigned int* cp, unsigned int num);
-unsigned int Ps2AlphaIsHalf(unsigned int* cp, unsigned int num);
-unsigned int Ps2Alpha4to8(unsigned int* cp, unsigned int num);
-int Ps2CheckTextureAlpha(void* pp);*/
-void Ps2InitPS2_GS_SAVE();
-/*void Ps2ScreenClear();*/
-void Ps2DispScreenClear();
-void Ps2ZbuffOff();
-/*void Ps2ZbuffOff2();*/
-void Ps2ZbuffOn();
-/*void Ps2ShadowStart();
-void Ps2ShadowDraw();
-void Ps2ShadowMain0();
-void Ps2ShadowMain1();
-void Ps2ShadowEnd();*/
-void Ps2Vu0ProgSend(unsigned int prog_no);
-void Ps2Vu1ProgSend(unsigned int prog_no);
-/*void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num);
-void PS2_Render_Tex_Sub();*/
+void(*EorFunc)();*/
 
 extern int ps2_vu0sub0 __attribute__((section(".vudata")));
 extern int ps2_vu1sub0 __attribute__((section(".vudata")));

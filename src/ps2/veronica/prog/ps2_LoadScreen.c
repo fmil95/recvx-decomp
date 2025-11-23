@@ -11,46 +11,6 @@ SAVEFILE SaveFile;
 CONFIGFILE ConfigFile;
 SYS_WORK* sys;
 
-/*tagLOAD_SCREEN* CreateLoadScreen(tagLOAD_SCREEN* pLoad);
-void DispLoadMessageSelect(char cSelectMes);
-void DispLoadTexture(tagLOAD_SCREEN* pLoad);
-int ExecuteLoadScreen(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenAwarenessCard(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenAwarenessCard(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenErrLostCard(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenErrLostCard(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenErrUnPS2MemCard(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenErrUnPS2MemCard(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenSelectCard(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenSelectCard(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenTitleExit(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenTitleExit(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenErrUnFormat(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenErrUnFormat(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenErrLostDirCheck(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenErrLostDirCheck(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenDirCheck(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenDirCheck(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenDirFileBroken(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenDirFileBroken(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenSelectFile(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenSelectFile(tagLOAD_SCREEN* pLoad);
-void LoadScreenCheckSave(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenNoSave(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenNoSave(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenLoadCursor(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenLoadCursor(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenLoad(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenLoad(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenFileBroken(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenFileBroken(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenErrCardRead(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenErrCardRead(tagLOAD_SCREEN* pLoad);
-void SetStateLoadScreenLoadExit(tagLOAD_SCREEN* pLoad);
-void ExecuteStateLoadScreenLoadExit(tagLOAD_SCREEN* pLoad);
-void SetDispLoadSelectMessage();
-void CheckDispLoadMemoryCard(tagLOAD_SCREEN* pLoad);*/
-
 // 100% matching!
 LOAD_SCREEN* CreateLoadScreen(LOAD_SCREEN* pLoad)
 {

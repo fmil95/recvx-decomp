@@ -2,8 +2,8 @@
 
 /*int bhMlbBinRealize(void* bin_datP, _anon10* mlwP);*/
 int bhBscBinRealize(NJS_MODEL* mdlP, unsigned int dat_off, void* unknown);
-/*int bhCnkBinRealize(_anon9* mdlP, unsigned int dat_off);
-int bhMnbBinRealize(void* bin_datP, _anon0* mnwP);
+int bhCnkBinRealize(NJS_CNK_MODEL* mdlP, unsigned int dat_off);
+/*int bhMnbBinRealize(void* bin_datP, _anon0* mnwP);
 
 // 
 // Start address: 0x2c8720

@@ -1,6 +1,29 @@
 #ifndef _ITEMVIEW_H_
 #define _ITEMVIEW_H_
 
+/*void DrawSubItem(_anon2* st, _anon5* si);*/
+void Model_Read_Start();
+/*void Model_Read_Set(_anon2* st);*/
+void CameraInit();
+void CameraSet();
+void ItemView();
+void ItemModelChangeZoomIn();
+void ItemModelCheck();
+void ItemModelActionSet();
+void ItemModelChangeZoomOut();
+void ItemModelMessageWait();
+unsigned char MdlDirChk(short* dirang, short mdlang);
+/*unsigned char MdlAction00(_anon5* si);
+unsigned char MdlAction01(_anon5* si);
+unsigned char MdlAction02(_anon5* si);*/
+void MdlEvalflagsSet(unsigned short evalchk);
+/*void MdlHideCheck(npobj* op, unsigned char el, unsigned char chk);
+float ModelScaleSet(_anon5* itemmodel, unsigned short flg);
+void FlagErase(npobj* op);*/
+void LighterOpen(NJS_CNK_OBJECT* object);
+void FileSyu(NJS_CNK_OBJECT* op);
+void MakeTag(unsigned short flg);
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

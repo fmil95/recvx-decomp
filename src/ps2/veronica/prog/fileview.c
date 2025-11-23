@@ -17,29 +17,6 @@ _anon14 sitem;
 float cen_pos[6][0];
 float cen_pos99[6][0];
 
-void ControlFileView();
-void FileSelect();
-void FileFlagInit01();
-void FileFlagInit();
-void GetFile();
-void FileViewInit();
-void FileViewMain();
-void FileViewExit();
-void FileExit00();
-void FileExit01();
-int SearchTag(int dir);
-void SelectFile();
-void SelectTag();
-void FileScreenCancel();
-void FileScrollSet();
-void FileGetWait();
-void PageScroll();
-void FileEtcDisplay();
-void StatusToFileView();
-void ReadFstx();
-unsigned int FileNumberSwitch(unsigned int num);
-int PlayPageCheck();
-
 // 
 // Start address: 0x2abfc0
 void ControlFileView()

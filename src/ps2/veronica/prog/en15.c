@@ -1705,9 +1705,9 @@ float lcmat[16][0];
 _anon14* rom;
 
 int target_direction(BH_PWORK* epw);
-float target_distance(BH_PWORK* epw);
+float target_distance(BH_PWORK* epw);*/
 int GetLocalEneNo(BH_PWORK* epw);
-void SetMtnSE(BH_PWORK* epw);
+/*void SetMtnSE(BH_PWORK* epw);
 void bhEne15(BH_PWORK* epw);
 void Init(BH_PWORK* epw);
 void Move(BH_PWORK* epw);

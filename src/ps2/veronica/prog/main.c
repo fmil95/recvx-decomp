@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <string.h>
+
 // EE library
 #include <PREFIX_PS2_DEBUG.h>
 #include <eeregs.h>
@@ -12,8 +15,18 @@
 #include "macros.h"
 
 #include "main.h"
-#include "system.h"
+#include "backup.h"
+#include "expand.h"
+#include "fileview.h"
+#include "flag.h"
+#include "njplus.h"
+#include "ps2_dummy.h"
 #include "ps2_sg_maloc.h"
+#include "ps2_sg_sybt.h"
+#include "sbinit.h"
+#include "sdfunc.h"
+#include "sync.h"
+#include "system.h"
 
 #include "face_bh.c"
 #include "face.c"

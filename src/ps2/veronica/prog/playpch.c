@@ -7,21 +7,7 @@ _anon1 WpnTab[0];
 float lcmat[16][0];
 BH_PWORK ene[0];
 unsigned short PlMtnWpn[0];
-_anon5 WpnEffTab[4][0];
-
-void PlyPchInit(BH_PWORK* ewP);
-void PlyPchMain(BH_PWORK* ewP);
-void MixSetToJointRot(npobj* basP, char* rutP, npobj* objP, int yaw);
-void GetOneObjectMotion(BH_PWORK* ewP, int obj_no, int* ang);
-void SetOneObjectMotion(BH_PWORK* ewP, npobj* objP, int* ang);
-_search* bhSearchEnemy(BH_PWORK* pwP, int rng, float hgt);
-int SetLockOnDirection(int range, int count, int mode, int special);
-void bhCPM2_act_suw_pch();
-void bhCPM2_act_wsc_pch();
-void bhCPM2_act_atk_pch();
-_anon14* CheckGunHit(_anon1* wtP, int obj_no, int yaw);
-void bhCPM2_SearchPch();
-void bhArmIkMdk(BH_PWORK* ewP, int bas_no, _anon27* effP, int rot);*/
+_anon5 WpnEffTab[4][0];*/
 
 // 100% matching! 
 void PlyPchInit(BH_PWORK* ewP)

@@ -1,7 +1,18 @@
 #ifndef _MOTION_H_
 #define _MOTION_H_
 
+int bhSetMotion(BH_PWORK* ewP, int add, int mode, void* datP);
+void SetMtnNormal(BH_PWORK* ewP, char* datP, int mode);
+void SetMtnNormalHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
+void SetMtnFast(BH_PWORK* ewP, char* datP, int mode);
+void SetMtnFastHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
+void SetMtnSlow(BH_PWORK* ewP, char* datP, int mode);
+void SetMtnSlowHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
+void bhFixPosition(BH_PWORK* ewP, char* datP);
 void bhCalcFixOffset(BH_PWORK* ewP, char* datP, NJS_POINT3* offP, NJS_POINT3* rtnP);
+void bhGetObjMotion(BH_PWORK* ewP, int obj_no, float* pos, int* ang);
+void AngZyxToYzx(int* zyx, int* yzx);
+void AngYzxToZyx(int* yzx, int* zyx);
 
 /*typedef struct npobj;
 typedef struct _anon0;

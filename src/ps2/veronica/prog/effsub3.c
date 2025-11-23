@@ -2190,12 +2190,12 @@ _anon15* rom;
 void(*bhEff308Drw)(_anon24*);
 void(*bhEff309Drw)(_anon24*);
 void(*bhEff30bDrw)(_anon24*);
-void(*bhEff30cDrw)(_anon24*);
+void(*bhEff30cDrw)(_anon24*);*/
 
-_anon1* AllocOwork();
-_anon1* AllocOworkOne();
+NO_NAME_4* AllocOwork();
+/*_anon1* AllocOworkOne();*/
 void bhClrEff_RY();
-int bhSetBloodPoolLnk(BH_PWORK* ewP, _anon0* posP, int ay, _anon52* tabP, int pal_bnk);
+/*int bhSetBloodPoolLnk(BH_PWORK* ewP, _anon0* posP, int ay, _anon52* tabP, int pal_bnk);
 void bhEff300(_anon1* oP);
 void bhEff301(_anon1* oP);
 _anon1* bhSetEffParticle(BH_PWORK* ewP, int lnk_no, _anon0* offP, _anon0* dirP, unsigned int color, int typ_no);

@@ -1730,9 +1730,9 @@ float lcmat[16][0];
 void bhEne19(BH_PWORK* ewP);
 void bhEne19_Init(BH_PWORK* ewP);
 void bhEne19_Move(BH_PWORK* ewP);
-void bhEne19_Damage();
+void bhEne19_Damage();*/
 void bhEne19_Die(BH_PWORK* ewP);
-void bhEne19_Event(BH_PWORK* ewP);
+/*void bhEne19_Event(BH_PWORK* ewP);
 void bhEne19_Br00(BH_PWORK* ewP);
 void bhEne19_Br01(BH_PWORK* ewP);
 void bhEne19_Br02(BH_PWORK* ewP);
