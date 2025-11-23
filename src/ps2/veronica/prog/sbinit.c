@@ -1,4 +1,12 @@
 #include "sbinit.h"
+#include "gdlib.h"
+#include "ps2_dummy.h"
+#include "ps2_NaSystem.h"
+#include "ps2_sg_maloc.h"
+#include "ps2_sg_pad.h"
+#include "ps2_sg_sybt.h"
+#include "ps2_sg_syhw.h"
+#include "ps2_sg_syrtc.h"
 
 unsigned char gMapleSendBuf[1024 * 24 * 2 + 32];
 unsigned char gMapleRecvBuf[1024 * 24 * 2 + 32];

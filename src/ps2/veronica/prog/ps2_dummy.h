@@ -3,6 +3,7 @@
 
 #include "types.h"
 
+void _builtin_set_imask(int mask);
 void Ps2Init();
 void Snd_init();
 void Cd_init();

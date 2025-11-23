@@ -3,6 +3,17 @@
 
 #include "types.h"
 
+/*void Ps2SetPlane(_anon1* p, float* v0, float* v1, float* v2);*/
+void Ps2CalcScreenCone();
+/*float Calc_Intersection2(float* v0, float* v1, _anon1* plane);*/
+int CalcIntersectionCone(float* ans, float* v0, float* v1);
+float Head_or_Tail(float* v);
+float Across_Plane(float* v0, float* v1);
+/*void njDrawLine3D(_anon2* p, int n, unsigned int attr);
+void njDrawLine3DEx(_anon2* p, int n, unsigned int attr);
+void njDrawTriangle3D(_anon2* p, int n, unsigned int attr);
+void njDrawPolygon3D(_anon2* p, int n, unsigned int attr);*/
+
 /*typedef union _anon0;
 typedef struct _anon1;
 typedef struct tagVU1_STRIP_BUF;

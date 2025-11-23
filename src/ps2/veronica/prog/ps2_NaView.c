@@ -1,4 +1,7 @@
 #include "ps2_NaView.h"
+#include "ps2_NaDraw2D.h"
+#include "ps2_NaGraphics3D.h"
+#include "ps2_Vu1Strip.h"
 #include "main.h"
 
 float fNaViwOffsetX = 2048.0f;

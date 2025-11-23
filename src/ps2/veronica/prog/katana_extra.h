@@ -1,3 +1,6 @@
+#ifndef	_KATANA_EXTRA_H_
+#define	_KATANA_EXTRA_H_
+
 #include <sg_bup.h>
 
 /******** ?申?申?申?申?申?申?申J?申[?申h?申?申?申\?申?申?申?申 *******************************************/
@@ -53,3 +56,5 @@ typedef struct {
 
 #define HEAP_AREA ((void*) ((((Uint32) _BSG_END | P1AREA) & 0xffffffe0) + 0x20))
 #define HEAP_SIZE (WORK_END - (Uint32) HEAP_AREA)
+
+#endif

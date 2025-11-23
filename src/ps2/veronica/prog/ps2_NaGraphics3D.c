@@ -2,18 +2,7 @@
 
 /*_anon1 sc_plane;
 _anon1 c_plane[5];
-_anon4 _nj_screen_;
-
-void Ps2SetPlane(_anon1* p, float* v0, float* v1, float* v2);
-void Ps2CalcScreenCone();
-float Calc_Intersection2(float* v0, float* v1, _anon1* plane);
-int CalcIntersectionCone(float* ans, float* v0, float* v1);
-float Head_or_Tail(float* v);
-float Across_Plane(float* v0, float* v1);
-void njDrawLine3D(_anon2* p, int n, unsigned int attr);
-void njDrawLine3DEx(_anon2* p, int n, unsigned int attr);
-void njDrawTriangle3D(_anon2* p, int n, unsigned int attr);
-void njDrawPolygon3D(_anon2* p, int n, unsigned int attr);*/
+_anon4 _nj_screen_;*/
 
 // 100% matching! 
 void Ps2SetPlane(PS2_PLANE* p, sceVu0FVECTOR v0, sceVu0FVECTOR v1, sceVu0FVECTOR v2)

@@ -2,12 +2,6 @@
 #include "ps2_dummy.h"
 #include "main.h"
 
-/*void CalcPs2ZbuffAB();
-void sceVu0ITOF12Vector(float* v0, float* v1);
-void njDrawLine2D(_anon2* p, int n, float pri, unsigned int attr);
-void njDrawPolygon2D(_anon2* p, int n, float pri, unsigned int attr);
-void njDrawPolygon2DM(_anon2* p, int n, float pri, unsigned int attr);*/
-
 // 100% matching!
 void CalcPs2ZbuffAB()
 { 

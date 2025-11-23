@@ -3,6 +3,10 @@
 
 #include "types.h"
 
+void CalcPs2ZbuffAB();
+void sceVu0ITOF12Vector(sceVu0FVECTOR v0, sceVu0IVECTOR v1);
+/*void njDrawLine2D(_anon2* p, int n, float pri, unsigned int attr);
+void njDrawPolygon2D(_anon2* p, int n, float pri, unsigned int attr);*/
 void njDrawPolygon2DM(NJS_POINT2COL* p, int n, float pri, unsigned int attr);
 
 /*typedef union _anon0;

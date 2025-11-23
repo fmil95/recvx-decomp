@@ -74,7 +74,7 @@ int StartVibration(unsigned int PortId, PDS_VIBPARAM* vpp)
 
     vpp->unit = 1; 
     
-    pdVibMxStart(PortId, vpp); 
+    return pdVibMxStart(PortId, vpp); 
 } 
 
 // 100% matching! 
