@@ -1,4 +1,17 @@
 #include "game.h"
+#include "camera.h"
+#include "cut.h"
+#include "effect.h"
+#include "eneset.h"
+#include "event.h"
+#include "light.h"
+#include "MdlPut.h"
+#include "message.h"
+#include "objitm.h"
+#include "player.h"
+#include "pwksub.h"
+#include "room.h"
+#include "screen.h"
 #include "main.h"
 
 // 100% matching! 

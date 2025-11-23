@@ -3,6 +3,33 @@
 
 #include "types.h"
 
+void bhInitObjItm();
+/*_anon0* bhSetObject(_anon18* otp, int no, unsigned char* lkp);
+_anon0* bhSetItem(_anon18* itp, int no, unsigned char* lkp);*/
+void bhControlObjItm();
+void bhDrawGeneralPurposeWater();
+void bhDrawObjItm();
+/*void bhDrawObject(_anon0* op);
+void bhDrawSpObject(_anon0* op);
+void bhSetAlphaFadeObject(_anon0* op, int jntno, int jnt_n, int alpha, int count);
+void bhControlAlphaFadeObject(_anon0* op);*/
+void bhObjDmy();
+/*void bhObjItmBox(_anon0* op);
+void bhObj001(_anon0* op);
+void bhObj002(_anon0* op);
+void bhObj003(_anon0* op);
+void bhObj004(_anon0* op);
+void bhObj005(_anon0* op);
+void bhObj006(_anon0* op);
+void bhObj007(_anon0* op);
+void bhObj008(_anon0* op);
+void bhObj009(_anon0* op);
+void bhObj010(_anon0* op);
+void bhObj011(_anon0* op);
+void bhObj012(_anon0* op);
+void bhObjClpn(_anon0* op);*/
+void bhObjWssg();
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;

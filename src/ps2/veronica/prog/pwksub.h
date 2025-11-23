@@ -4,7 +4,30 @@
 #include "types.h"
 
 unsigned char* bhGetFreeMemory(int size, int param);
+void bhCalcLinkModel(BH_PWORK* pp);
+void bhSetFloorNum(BH_PWORK* pp);
+int bhCheckFloorNum(float py);
+void bhAddSpeed(BH_PWORK* pp, int r);
+int bhGetFrameNum(unsigned int fnm_old, unsigned int fnm_new, int fno_now);
+int bhCalcLockEneYR(BH_PWORK* pp, int idx);
+int bhSearchNearEnemy(BH_PWORK* pp, int* r, float* h, int* id);
+/*int bhSearchNearEnemyB(_anon23* pos, int ay, int ar, float len);*/
+int bhSearchNearEnemy2(BH_PWORK* pp, int* r, float* h, int* id);
+int bhSearchNextEnemy(BH_PWORK* pp, int r, float h);
+int bhSearchPlayer(BH_PWORK* pp, int r);
+/*int bhCheckL2Wall(_anon41* lp, unsigned int flg, float* len);*/
 int bhCheckC2Wall(NJS_CAPSULE* cap);
+/*int bhCheckC2WallN(_anon40* cap, unsigned int flg);*/
+int bhCheckClipModel(BH_PWORK* pp);
+/*int bhCheckClipPoint(_anon23* pos);*/
+void bhSetWaterSplash(BH_PWORK* pp, int jno, int type, float sx, float sy, float sz);
+/*void bhSetWaterSplash2(BH_PWORK* pp, _anon23* pos, int type, float sx, float sy, float sz);
+void bhSetWaterSplash3(_anon23* pos, int ang, int type, float sx, float sy, float sz);
+void bhSetWaterSplash4(_anon23* pos, int ang, int type, float sx, float sy, float sz);*/
+void bhSetGunFire(BH_PWORK* pp, int wno, int jno, int hand, int ang);
+void bhSetYakkyou(BH_PWORK* pp, int wno, int jno, int hand);
+void bhSetMagazine(BH_PWORK* pp, int wno, int jno, int hand, int ang);
+/*void bhSetLighterFire(_anon1* op, int flg);*/
 
 /*typedef struct npobj;
 typedef struct _anon0;

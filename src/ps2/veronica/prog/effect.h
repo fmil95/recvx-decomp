@@ -3,7 +3,34 @@
 
 #include "types.h"
 
+void bhInitEffect();
 void bhSetFontTexture(void* datp);
+void bhClearEffect();
+void bhClearEventEffect();
+void bhClrEff_YT();
+int bhPushEffectWork();
+void bhPopEffectWork();
+/*unsigned int bhGetGidx(_anon0* op);
+_anon0* bhSetExtraEffectWork();*/
+void bhDeleteYakkyou();
+/*void bhDrawPARAM2D(_anon49* prm, _anon41* p2c, float pri);
+int bhSetEffect(int effno, _anon35* pnt, unsigned char* lkp, int lkono);
+int bhSetEffectTb(_anon36* efp, _anon37* off, unsigned char* lkp, int lkono);
+int bhSetEffectEvt(int effno, _anon35* pnt, unsigned short type, int ax, int ay);*/
+int bhSetShadow(char* jtb, unsigned char* lkp, int lkono, float sx, float sy, float sz);
+void bhLinkBlood();
+void bhControlEffect();
+void bhDrawEffect();
+void bhDrawPolEffect(unsigned int* owp, int ct);
+void bhDrawMdfEffect(unsigned int* owp, int ct);
+void bhDrawLinEffect(unsigned int* owp, int ct);
+void bhDrawNtxEffect3D(unsigned int* owp, int ct);
+void bhDrawTrsEffect3D(unsigned int* owp, int ct);
+void bhDrawOpqEffect3D(unsigned int* owp, int ct);
+void bhDrawThlEffect3D(unsigned int* owp, int ct);
+void bhDrawNtxEffect2D(unsigned int* owp, int ct);
+void bhDrawTrsEffect2D(unsigned int* owp, int ct);
+void bhDrawThunder();
 
 /*typedef struct npobj;
 typedef struct _anon0;

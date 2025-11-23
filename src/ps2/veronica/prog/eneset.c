@@ -5,18 +5,7 @@ _anon23 En00CapColTab[5];
 BH_PWORK ene[0];
 _anon24* sys;
 BH_PWORK* plp;
-_anon9* rom;
-
-void bhInitEnemy();
-BH_PWORK* bhSetEnemy(_anon15* etp);
-void bhCheckEneWorkNum();
-void bhControlEnemy();
-void bhEne00(BH_PWORK* ep);
-void bhEne56(BH_PWORK* ep);
-void bhDrawEnemy();
-void bhDrawEneObject();
-void* bhEne_CallocWork(int size);
-void bhEne_SetCallFunc(void(*func)(BH_PWORK*), unsigned int no);*/
+_anon9* rom;*/
 
 // 
 // Start address: 0x174700

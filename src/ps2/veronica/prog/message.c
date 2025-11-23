@@ -5,19 +5,6 @@
 /*float mes_spos[4][3];*/
 float FontScaleY;
 
-/*void bhSetMessage(int mes_typ, int mes_idx);
-void bhControlMessage(int mode);
-void bhDispFont(_anon2* pos, int code, int color, float pri);
-void bhDispFontEx(_anon2* pos, int code, unsigned int argb, float pri);
-int bhDispItemName(_anon2* pos, int id, int color, int count, float pri);
-int bhDispMessage(float px, float py, float pri, int mes_typ, int mes_idx, int color, int count);
-int bhDispMessageEx(float px, float py, float pri, int mes_typ, int mes_idx, unsigned int argb, int count);
-void bhDispTime(_anon2* pos, unsigned int flg, int time, int color, float pri);
-void bhDispTimeEx(_anon2* pos, unsigned int flg, int time, unsigned int argb, float pri);*/
-float bhGetFontSize(unsigned short code);
-/*float bhMesLen(unsigned short* dp);
-void bhFontScaleSet(float ScaleX, float ScaleY, float ScaleCR);
-
 // 
 // Start address: 0x2b7510
 void bhSetMessage(int mes_typ, int mes_idx)

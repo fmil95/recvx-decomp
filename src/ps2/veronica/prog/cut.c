@@ -5,34 +5,7 @@ _anon9* rom;
 BH_PWORK* plp;
 _anon25* sys;
 _anon0 eff[0];
-BH_PWORK ene[0];
-
-void bhCheckCut(int flg);
-int bhCheckCutArea(float px, float pz, char flr_no);
-int bhCheckCutAreaInnerTriangle(float px, float pz, _anon13* ct);
-unsigned int bhCheckCutAttribute(float px, float pz, int flr_no);
-void bhSetCut(int cno, int flg);
-void bhSetFixedCut(int cno);
-void bhSetRenderCut(int cno);
-void bhSetHideObjLgt(int cno);
-void bhSetHideObject(int offset);
-void bhInitActiveCamera(int flg);
-void bhCheckNearAttrOffCutRange(_anon10* cp, unsigned int sft, float* px, float* pz);
-void bhControlActiveCamera();
-void bhSetEventCamera(int evc_no, int key_no);
-void bhSetEventFixedCut(int cno, int kno);
-void bhSetEventHideObjLgt(int cno, int kno);
-void bhInitEventCamera();
-void bhControlEventCamera();
-void bhCheckEvtCamLockPosition();
-void bhGetEvtCamLockPosition(_anon17* kfp, _anon28* pos);
-void bhControlPlEyeCamera(unsigned int attr);
-void bhInitPlEyeCamera();
-void bhSetPlEyeCamera();
-void bhControlMonitorCamera();
-float bhCalcActiveYpos(_anon10* cp);
-short bhCalcActiveZang(_anon10* cp);
-short bhCalcActivePers(_anon10* cp);*/
+BH_PWORK ene[0];*/
 
 // 
 // Start address: 0x27a2d0

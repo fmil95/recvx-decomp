@@ -3,6 +3,23 @@
 
 #include "types.h"
 
+void bhInitRoom();
+void bhInitReadRDT();
+void bhSetRDT();
+void bhSetRoom();
+void bhFinishRoom();
+/*void bhSetEneMdl(unsigned char* datp, _anon17* ep, int mdlno, int eno);*/
+void bhSetEneMtn(unsigned char* datp, BH_PWORK* ep, int id);
+void bhSetRoomMtn(unsigned char* datp);
+/*void bhSetObjMdl(unsigned char* datp, _anon17* ep, int eno);
+void bhSetItmMdl(unsigned char* datp, _anon17* ep, int eno);*/
+void bhSetEffectTable();
+/*void bhSetEffectLink(_anon19* efp, int efid);*/
+void bhSetDoorDemo(unsigned int attr, int stg_no, int rom_no, unsigned int pos_no, unsigned int dor_tp);
+void bhStartDoorDemo();
+void bhPushGameData();
+void bhPopGameData();
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;

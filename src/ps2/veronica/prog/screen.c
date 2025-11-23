@@ -9,23 +9,7 @@ float BHD_ASPECT_X;
 unsigned int Ps2_rendertex_initflag;
 float lcmat[16][0];
 _anon0 eff[0];
-unsigned int PS2_Render_tex_sub_flag;
-
-void bhSetScreenFade(unsigned int argb, float ct);
-void bhControlScreenFade();
-void bhDrawScreenFade();
-void bhInitScreenSaver();
-void bhSetScreenSaver(unsigned int alpha, float ct);
-void bhControlScreenSaver();
-void bhDrawScreenSaver();
-void bhControlCinesco();
-void bhDrawCinesco();
-void bhDrawScope();
-void bhDrawScopeNumber(float px, float py, int num);
-void bhDrawThermometer();
-void bhDrawThermoNumber(float px, float py, int num, unsigned int argb);
-void bhDrawFullScreenRenderTexture();
-void bhDrawSmallScreenRenderTexture();*/
+unsigned int PS2_Render_tex_sub_flag;*/
 
 // 100% matching!
 void bhSetScreenFade(unsigned int argb, float ct)

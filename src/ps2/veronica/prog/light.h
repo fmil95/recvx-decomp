@@ -3,6 +3,14 @@
 
 #include "types.h"
 
+void bhInitLight();
+/*void bhSetLightTab(_anon40* lt, int lno);*/
+void bhSetEasyDirLight(float it);
+void bhControlLight();
+void bhSetLight();
+void bhSetHalfLight();
+void bhGetLightVector(int xr, int yr, int zr, NJS_VECTOR* vec);
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;

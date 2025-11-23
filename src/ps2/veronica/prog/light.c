@@ -1,8 +1,8 @@
 #include "light.h"
 #include "main.h"
 
-/*_anon40 lgttab[5];*/
-/*_anon26* sys;
+/*_anon40 lgttab[5];
+_anon26* sys;
 _anon37 cam;
 float fNaViwOffsetY;
 float fNaViwOffsetX;
@@ -10,15 +10,7 @@ _anon0 eff[0];
 BH_PWORK ene[0];
 BH_PWORK* plp;
 
-void bhInitLight();
-void bhSetLightTab(_anon40* lt, int lno);
-void bhSetEasyDirLight(float it);
-void bhControlLight();
-void bhSetLight();
-void bhSetHalfLight();*/
-void bhGetLightVector(int xr, int yr, int zr, NJS_VECTOR* vec);
-
-/*// 
+// 
 // Start address: 0x280ed0
 void bhInitLight()
 {

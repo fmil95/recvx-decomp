@@ -3,6 +3,56 @@
 
 #include "types.h"
 
+void bhInitPlayer();
+void bhSetPlayer();
+void bhInitRoomChangePlayer();
+void bhResetPlayer();
+void bhCheckMothEgg();
+void bhCheckSubPack();
+void bhStandPlayerMotion();
+void bhKaidanPlayerMotion(int flg, int idx);
+void bhFixPositionXYZ(BH_PWORK* ewP, char* datP);
+int bhCheckPlayerKegaMotion(int wpntp, int dmlvl, int num);
+void bhCheckEvtTimer();
+void bhControlPlayer();
+void bhCPM0_action();
+void bhControlPlayerPad();
+void bhCPM1_act_bas();
+void bhCPM2_act_std();
+void bhCPM2_act_srt();
+void bhCPM2_act_sta();
+void bhCPM2_act_wlk();
+void bhCPM2_act_run();
+void bhCPM2_act_bak();
+void bhCPM2_act_bk2();
+void bhCPM2_act_kdu();
+void bhCPM2_act_kdd();
+void bhCPM2_act_dnu();
+void bhCPM2_act_dnd();
+void bhCPM2_act_psh();
+void bhCPM2_act_cro();
+void bhCPM2_act_hsu();
+void bhCPM2_act_hsd();
+void bhCPM2_act_rpsh();
+void bhCPM1_act_atk();
+void bhCPM2_act_suw();
+void bhCPM2_act_wpn();
+void bhCPM2_act_wre();
+void bhCPM2_act_atk();
+void bhCPM2_act_rld();
+void bhCPM2_act_knf();
+void bhCPM0_damage();
+void bhCPM0_die();
+void bhCPM0_nage();
+void bhCPM0_enedam();
+void bhCPM0_enedie();
+void bhCPM0_nothing();
+void bhControlPlayerHead();
+void bhLookNearEnemy();
+void bhSetHeadRotation(short ax, short ay);
+/*void bhCalcHair(_anon0* op, BH_PWORK* pp);*/
+void* bhGetTransZ(int mtn_no);
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
