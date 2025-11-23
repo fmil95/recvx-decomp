@@ -2,15 +2,6 @@
 #include "pwksub.h"
 #include "main.h"
 
-void ControlTypewriter();
-void TypewriterKeepMemory();
-/*void CountDisplay(int disppoint, _anon5* pos, unsigned int col);*/
-unsigned int RoomNameSwitch(unsigned int name);
-void TypeWriterTextureInit();
-void TypewriterInit();
-void TypewriterMain();
-void TypewriterExit();
-
 /*char vmssyscmttbl[16];
 int old_data_flg;
 unsigned int InitFlag;

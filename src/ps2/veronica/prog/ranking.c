@@ -14,32 +14,7 @@ NO_NAME_29 fade;
 tagSYSSAVE_SCREEN* pRankingSys;
 unsigned char* vwbmemp;
 tagSYSSAVE_SCREEN RankingSys;
-unsigned short mesdeftbl[0];
-
-void ControlRanking();
-void RankingInit();
-void RankingVmsWait();
-void RankingSave();
-void RankingErrorMessage();
-void RankingMain();
-void RankingExit();
-void RankingTextureInit();
-void WallPaperDisp();
-void DispRank(_anon12* pos, unsigned int color, int rank);
-void DispRankingData00();
-void DispRankingData01();
-void DispNumber(_anon12* pos, int num, unsigned int col);
-void DispTime(_anon12* pos, int time, unsigned int col, unsigned int mode);
-int AllRanking(int score, unsigned int mode);
-int GameClearScore(int time);
-int RodorigoEventScore();
-int SteveEventScore();
-int MapScore();
-int HealItemUseScore();
-int SaveCountScore();
-int RetryCountScore();
-void GetMessage(unsigned int mesnum, _anon12* pos);
-void RankingBgmSet();*/
+unsigned short mesdeftbl[0];*/
 
 // 
 // Start address: 0x2bb210

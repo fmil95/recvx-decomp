@@ -4,11 +4,17 @@
 #include "types.h"
 #include "macros.h"
 
+void ClutCopy(void* data, void* org_data);
+void ClutCopy256(void* data, void* org_data);
 int isVQ(unsigned char type);
 int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset);
+void bhReleaseMainTexture();
 void Init_PS2_SAVE_TEX();
+/*char* bhCopyTexmem2Mainmem(_anon3* tlp, char* adr);*/
 char* bhCopyTexmem2MainmemSub(NJS_TEXLIST* tlp, char* adr);
 void bhCopyMainmem2Texmem(NJS_TEXLIST* tlp);
+void bhPushAllTexture();
+void bhPopAllTexture();
 void bhGarbageTexture(NJS_TEXMEMLIST* addr, unsigned int n);
 
 /*typedef struct npobj;

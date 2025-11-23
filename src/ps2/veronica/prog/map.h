@@ -4,6 +4,68 @@
 #include "types.h"
 #include "enums.h"
 
+void bhInitMap(enum_2 set_mod);
+void bhSetMap();
+void bhExitMap();
+int bhReadMapData(char* namP);
+void MapCnvStatus2Flag();
+int bhControlMap();
+void MapPadMain();
+void MapViewMain();
+void MapLightMain();
+void MapPaletteMain();
+void MapCodeProcess();
+void MapBoolSet(int bol, int mod);
+/*void MapDrawMarker(int mrk_no, _anon14* posP, int pal_no);
+void MapDrawBackground(float depth, _anon5* p0P, _anon5* p1P);
+void MapDrawSprite(_anon14* posP, int col, _enum_4 spr_no);*/
+int MapGetFloorNo(void* datP, int rom_no, float pos_y);
+/*void MapPurgeTree(_anon19* mlwP);*/
+void MapFuncInit(int func_num);
+/*_func_wrk_typ* MapFuncAlloc(int(*funcP)(_func_wrk_typ*), int param0);
+void MapFuncFree(_func_wrk_typ* fwP);
+void MapFuncDel(_func_wrk_typ* fwP);
+_func_wrk_typ* MapFuncIns(_func_wrk_typ* bsP, _func_wrk_typ* fwP);
+void MapFuncExec();
+int FsubMapDraw(_func_wrk_typ* fwP);*/
+int FsubBackDraw();
+/*void MapEntrySprite(_enum_0 set_no, int mode);
+int FsprSpriteDraw(_anon22* fsP);
+int FsprSilhouetteDraw(_anon22* fsP);
+int FsprArrowDraw(_anon22* fsP);
+int FsprArrowDraw2(_anon22* fsP);
+_anon56* MapEntryTask(int(*tskP)(_anon35*), _enum_1 chg_mde, int param0);
+int FsubTaskMain(_anon56* ftP);*/
+int FtskMapWait();
+int FtskMapExit();
+/*int FtskMapRead(_anon35* ftsP);
+int FtskMapNormal(_anon35* ftsP);
+int FtskMapZoom(_anon35* ftsP);
+int FsubGaugeDrawZ(_anon3* fgP);
+int FsubGaugeDrawX(_anon3* fgP);
+int FsubGaugeDraw(_anon3* fgP);*/
+void MapTagInit(int tag_num);
+/*void MapTagEntry(float basP[16], int rom_no, _anon14* posP);
+_tag_wrk_typ* MapTagConnect(int rom_no);
+_tag_wrk_typ* MapTagCenter();
+void MapDrawLine2(_anon5* srcP, _anon5* dstP, float pri, int pal);
+void MapDrawLine(_anon5* srcP, _anon5* dstP, float pri, int pal);
+void MapDrawFill(_anon5* srcP, _anon5* dstP, float pri, int pal);
+void MapDrawPolyFill(_anon5* pnt, float pri, int pal);*/
+void MapDrawMessage();
+/*int FsubZoomCursor(_anon8* fzP);
+int FsubZoomInfomation(_anon21* fiP);
+_anon39 MapCnvArgb2Color(_anon11* argbP);
+int FsubZoomScreen(_anon30* fsP);
+int FsubCompass(_anon38* fcP);
+int FsubModeMessage(_anon49* fmP);*/
+void MapCncInit(int map_num, int flr_num);
+/*_cnc_wrk_typ* MapCncGet(int map_no, int flr_no);
+void MapCnc(_enum_3 dst, _enum_3 src, int status);*/
+void MapCncConnect(unsigned short* datP);
+/*_anon1* MapCheckNextMap(_anon1* mnP);*/
+int GetGameMode();
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

@@ -5,7 +5,7 @@
 /*float mes_spos[4][3];*/
 float FontScaleY;
 
-// 
+/*// 
 // Start address: 0x2b7510
 void bhSetMessage(int mes_typ, int mes_idx)
 {

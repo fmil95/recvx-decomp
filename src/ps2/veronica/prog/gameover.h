@@ -3,6 +3,13 @@
 
 #include "types.h"
 
+void bhControlGameOver();
+void bhSelectContinue();
+void bhInitGameOver();
+void bhMainGameOver();
+void bhExitGameOver();
+void bhDrawGameOver();
+
 /*typedef struct _anon0;
 typedef struct npobj;
 typedef struct _anon1;

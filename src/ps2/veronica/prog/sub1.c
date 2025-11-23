@@ -85,79 +85,7 @@ short v_k;
 short uend;
 _anon55 fade;
 int SoftResetFlag;
-_anon20 st_cam;
-
-void Ps2ZbuffOffI();
-void Ps2DrawOTagI();
-void StatusInit(_anon4* st);
-void ItemBoxInit(_anon4* st);
-void CursorMove(_anon4* st);
-void CursorSet(_anon4* st);
-void SpriteSet2D(_anon3* cbjim, _anon7* anim1, _anon10* tlist);
-void ItemSort();
-void ItemSet(_anon4* st);
-void KazuSet(_anon4* st, unsigned char flg);
-unsigned char ItemUse(_anon4* st);
-void SpriteH(_anon4* st);
-void SpriteUV(_anon4* st);
-void BGFadeIn();
-void BGFadeOut();
-void ItemTaskCheck();
-void StatusMain();
-void GetItem(_anon4* st);
-void MainCommand(_anon4* st);
-void StatusCancel(_anon4* st);
-void WeaponSet(unsigned int wpncsr, unsigned int lt_c);
-void ItemCommand(_anon4* st);
-void ArmsSet(_anon4* st);
-void WindowJyoutai(_anon4* st);
-void ItemCommandErase(_anon4* st);
-void ItemCombination(_anon4* st);
-void SidePackSet();
-void TrigerSet(_anon4* st);
-_anon3* BulletSet(_anon3* pb1, _anon3* pb2, unsigned int itemid, unsigned short mode);
-unsigned char Use_00(_anon4* st);
-unsigned char Use_01(_anon4* st);
-unsigned char Use_02();
-unsigned char Use_04();
-unsigned char Use_05(_anon4* st);
-unsigned char Combi_00(short ps, unsigned int* moto, unsigned int* aite);
-unsigned char Combi_01(short ps, unsigned int* moto, unsigned int* aite);
-unsigned char Combi_02(short ps, unsigned int* moto, unsigned int* aite);
-unsigned char Combi_03(short ps, unsigned int* moto, unsigned int* aite);
-unsigned char Combi_04(short ps, unsigned int* moto, unsigned int* aite);
-unsigned char Combi_05(unsigned int* moto, unsigned int* aite);
-unsigned char Combi_99(unsigned short moto, unsigned short aite);
-void ItemBox(_anon4* st);
-void ItemBoxChange(_anon4* st, unsigned short ibcsr);
-void BorderLineSet(_anon4* st, unsigned char border, float ypos);
-void SpriteOnOff(_anon4* st);
-void NameChangeSet(_anon4* st);
-void AllItemInit();
-void ExtraGameItemInit();
-void ItemBoxIconSet(_anon4* st);
-int bhSearchBullet();
-void CenterPositionInit();
-void BgColorInit();
-void CursorInit(_anon7* disp_a00, _anon3* disp_b00, _anon4* st);
-unsigned int* ItemSearch(unsigned short itemid);
-void EraseItem(unsigned int* wp);
-void PushPalletBuffer();
-void PopPalletBuffer();
-void SbsTextureInit();
-void PulseInit();
-void PulseMain();
-void PulseAnim();
-void PulseFadeAnim();
-void PulseHealAnim(_anon11* pos);
-void PulsePoisonHealAnim(_anon11* pos);
-void Pulse00(_anon11* pos, _anon14* texuv);
-void MultiWindowBack();
-void KazariAnim();
-void DrawPoly2D(_anon11* pos00, _anon14* col00, _anon14* uv00, float pri, unsigned int atr, int texnum);
-void DispFadeInit();
-void FadePolyDisp();
-void StatusMapFlagInit();
+_anon20 st_cam;*/
 
 // 
 // Start address: 0x29a870
@@ -201,7 +129,7 @@ void Ps2DrawOTagI()
 	// Func End, Address: 0x29a988, Func Offset: 0x88
 }
 
-// 
+/*// 
 // Start address: 0x29a990
 void StatusInit(_anon4* st)
 {

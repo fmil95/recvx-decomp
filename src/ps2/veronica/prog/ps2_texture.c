@@ -9,20 +9,7 @@ _anon23 tbuf[0];
 _anon6* rom;
 BH_PWORK ene[0];*/
 NO_NAME_17 Ps2_tex_save[2];
-/*_anon23* Ps2_tex_info;
-
-void ClutCopy(void* data, void* org_data);
-void ClutCopy256(void* data, void* org_data);
-int isVQ(unsigned char type);
-int bhSetMemPvpTexture(_anon3* tlp, unsigned char* datp, int offset);
-void bhReleaseMainTexture();
-void Init_PS2_SAVE_TEX();
-char* bhCopyTexmem2Mainmem(_anon3* tlp, char* adr);
-char* bhCopyTexmem2MainmemSub(_anon3* tlp, char* adr);
-void bhCopyMainmem2Texmem(_anon3* tlp);
-void bhPushAllTexture();
-void bhPopAllTexture();
-void bhGarbageTexture(_anon23* addr, unsigned int n);*/
+/*_anon23* Ps2_tex_info;*/
 
 // 100% matching!
 void ClutCopy(void* data, void* org_data)

@@ -5,44 +5,6 @@
 NP_WORK np;
 NJS_MATRIX lcmat[1];
 
-/*void npPlusInit();
-int npCollisionCheckCC(_anon4* cpa, _anon4* cpb);
-int npCollisionCheckCCEx(_anon4* cpa, _anon4* cpb, _anon1* pos);
-int npCollisionCheckSC(_anon6* sa, _anon4* cpb);
-void npDistanceP2C(_anon1* pos, _anon4* cap, _anon1* htp);
-void npDrawPlane(_anon1* ps0, _anon1* ps1, _anon1* ps2, _anon1* ps3, unsigned int argb);
-void npCalcMorphing(npobj* obj_a, npobj* obj_b, float no, int obj_n);*/
-void npTransform(NJS_CNK_OBJECT* srcobj, NJS_CNK_OBJECT* dstobj, register float no, int ono);
-/*void npPushMdlstr(npobj* objp, int obj_n);
-void npPopMdlstr(npobj* objp, int obj_n);
-void npPushMdlstr2(npobj* objp, int obj_n);
-void npPopMdlstr2(npobj* objp, int obj_n);
-void npCnkFlatOff(npobj* objp);
-void npClrTranslate();
-void npSetMemory(unsigned char* memp, unsigned int size, char dat);
-void npSetMemoryL(unsigned int* memp, unsigned int size, int dat);
-void npCopyMemory(unsigned char* dst, unsigned char* src, unsigned int size);
-void npGetWHDSizeSub(npobj* objp, _anon1* whd);
-void npGetWHDSize(npobj* objp, _anon1* whd);
-void npSkinConvPreparation(npobj* objp);
-void npSkinConvSub(npobj* objp);
-void npSkinConvMain(npobj* objp);
-void npSkinConvert(npobj* objp, int* sknp);
-void npRetSkinConvMain(npobj* objp);
-void npRetSkinConvert(npobj* objp, int* sknp);
-unsigned int npGetMatColor(npobj* objp, int obj_n);
-void npSetAllMatColor(npobj* objp, int obj_n, unsigned int argb);
-void npChangeMatAlphaColor(npobj* objp, int obj_n, unsigned char alpha);
-void npSetAllMatAlphaColor(npobj* objp, int obj_n, unsigned char alpha);
-void npSetOffsetUV(_anon16* mdlp, short offu, short offv);
-void npSetOffsetUV2(_anon16* mdlp, short offu, short offv);
-int npCopyVlist(int* dstp, int* srcp);
-void npCutSkin();
-void npInitCalcSkin(void* pwp, int obj_n, int* sknp);
-void npCalcSkin(void* pwp, int obj_n, int* sknp);
-void npInitCalcSkinFM(void* pwp, int obj_n, int* sknp);
-void npCalcSkinFM(void* pwp, int obj_n, int* sknp);*/
-
 // 100% matching!
 void npPlusInit() 
 {

@@ -3,6 +3,10 @@
 
 #include "types.h"
 
+void bhReadPlayerData();
+void bhReadWeaponData();
+/*unsigned char* bhKeepObjWork(_anon13* mp, unsigned char* sp);*/
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

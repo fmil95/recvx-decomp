@@ -30,28 +30,7 @@ _anon12* rom;
 float fNaViwClipFar;
 float cmat[16];
 BH_PWORK ene[0];
-float fNaViwClipNear;
-
-void bhControlSpEvtComputer();
-void bhKeepSpEvtComputer();
-void bhInitSpEvtComputer();
-void bhMainSpEvtComputer();
-void bhExitSpEvtComputer();
-void bhEntrySpEvtComputer();
-void bhDrawSpEvtComputer();
-void bhDrawSpEvtComTime();
-void bhDrawSpEvtComVal(int val, float px, float py);
-void bhDrawSpEvtComBar(int barno, int col0, int col1);
-void bhDrawSpEvtComCharacter();
-void bhSetSpEvtComFade(float fdst, float fcnt);
-void bhCalcSpEvtComFade();
-void bhDrawSpEvtComFade();
-void bhEntrySpEvtBoxLine(_anon41* line);
-void bhDrawSpEvtBoxLine();
-void bhClearComEvtText();
-void bhInitComEvtScript();
-void bhControlComEvtScript();
-void bhControlComEvtKeyboard();*/
+float fNaViwClipNear;*/
 
 // 
 // Start address: 0x2bd050

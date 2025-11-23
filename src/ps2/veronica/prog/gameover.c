@@ -1,13 +1,6 @@
 #include "gameover.h"
 #include "main.h"
 
-void bhControlGameOver();
-void bhSelectContinue();
-void bhInitGameOver();
-void bhMainGameOver();
-void bhExitGameOver();
-/*void bhDrawGameOver();*/
-
 typedef void (*mode0_proc)();
 mode0_proc bhCtrGov_mode0[4] = { bhSelectContinue, bhInitGameOver, bhMainGameOver, bhExitGameOver };
 /*float gov_yn[16];

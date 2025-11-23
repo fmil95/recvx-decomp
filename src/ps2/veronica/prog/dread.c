@@ -4,11 +4,7 @@
 _anon18* sys;
 BH_PWORK* plp;
 _anon11* rom;
-char BIO_CURRENT[0];
-
-void bhReadPlayerData();
-void bhReadWeaponData();
-unsigned char* bhKeepObjWork(_anon13* mp, unsigned char* sp);*/
+char BIO_CURRENT[0];*/
 
 // 
 // Start address: 0x2c9ca0

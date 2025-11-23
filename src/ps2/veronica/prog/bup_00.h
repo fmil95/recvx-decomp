@@ -3,8 +3,14 @@
 
 #include "types.h"
 
+void ControlTypewriter();
+void TypewriterKeepMemory();
 void CountDisplay(int disppoint, NJS_POINT2* pos, unsigned int col, int param);
 unsigned int RoomNameSwitch(unsigned int name);
+void TypeWriterTextureInit();
+void TypewriterInit();
+void TypewriterMain();
+void TypewriterExit();
 
 /*typedef struct npobj;
 typedef struct _anon0;

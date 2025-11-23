@@ -10,41 +10,7 @@ _anon25* sys;
 float BHD_ASPECT_Y;
 float BHD_ASPECT_X;
 float lcmat[16][0];
-int PruSndTbl[1];
-
-void bhInitDoor();
-int bhReadDoorData();
-void bhSetDoor();
-void bhExitDoor();
-int AnalyzeDoor(_door_wrk* dwP, int typ_no, int attr);
-int bhControlDoor();
-void ControlSoundTiming(_door_wrk* dwP);
-void SetSoundTiming(_door_wrk* dwP);
-void FadeProc1(_door_wrk* dwP);
-void ViewProc1(_door_wrk* dwP);
-void ViewProc2(_door_wrk* dwP);
-void ViewProc3(_door_wrk* dwP);
-void ViewProc4(_door_wrk* dwP);
-void ViewProc5(_door_wrk* dwP);
-void ViewProc6(_door_wrk* dwP);
-void ViewProc7(_door_wrk* dwP);
-void DoorProc1(_door_wrk* dwP);
-void DoorProc2(_door_wrk* dwP);
-void DoorProc3(_door_wrk* dwP);
-void DoorProc4(_door_wrk* dwP);
-void DoorProc5(_door_wrk* dwP);
-void DoorProc6(_door_wrk* dwP);
-void DoorProc7(_door_wrk* dwP);
-void LightProc1(_door_wrk* dwP);
-void LightProc2(_door_wrk* dwP);
-int CompareSint32(int val_a, int cmp_typ, int val_b);
-int CompareFloat(float val_a, int cmp_typ, float val_b);
-void VectorMove(_anon12* posP, int yaw, int pitch, float speed);
-void LightSubAmb(_anon12* ambP, _anon12* offP);
-void LightSubPnt(_door_wrk* dwP, int lgt_no, _anon35* ldP, _anon12* rteP);
-void ryExcuteFade(float pri, int col, float rate);
-void PuruProc1(_door_wrk* dwP);
-void DokiProcLgt(_door_wrk* dwP);*/
+int PruSndTbl[1];*/
 
 // 
 // Start address: 0x2aec30
