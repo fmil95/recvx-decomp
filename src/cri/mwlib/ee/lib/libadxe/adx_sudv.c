@@ -19,7 +19,7 @@ Sint32 ADXT_LoadFpCacheDvd(ADXT_SPRM *sprm)
     
     if (sprm != NULL) 
     {
-        size = dvCiLoadFpCache(sprm->fname, sprm->fpc, sprm->size);
+        size = dvCiLoadFpCache((const Sint8*)sprm->fname, (Sint8*)sprm->fpc, sprm->size);
     }
     
     return size;
@@ -42,7 +42,7 @@ void ADXT_SetupDvdFs(ADXT_SPRM *sprm)
     
     if (sprm != NULL) 
     {
-        dvCiLoadFpCache(sprm->fname, sprm->fpc, sprm->size);
+        dvCiLoadFpCache((const Sint8*)sprm->fname, (Sint8*)sprm->fpc, sprm->size);
         
         dvCiSetRdMode(sprm->nrtry, sprm->speed, sprm->dtype);
     }

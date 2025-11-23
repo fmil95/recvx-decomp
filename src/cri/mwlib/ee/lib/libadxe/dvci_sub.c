@@ -4,72 +4,72 @@
 #include <stdio.h>
 //#include <string.h>
 
-static DVG_FLIST_TBL dvg_flist_tbl = { 0 };
+static DVCI_FLIST_TBL dvg_flist_tbl = { 0 };
 static Sint8 dvg_rbuf[4096];
 sceCdRMode dvg_ci_cdrmode = { 0 };
 
 // 100% matching!
-Sint32 analysis_flist_dup(Char8* fpc, Sint8* rbuf, Uint32 size)
+static Sint32 analysis_flist_dup(void *inf, Sint8 *buf, Sint32 num)
 {
-    DVCI_DIR dir;
-    Sint32 i;
-    Sint32 j;
-    Sint32 k;
+    Sint32 pos;
+	Sint32 begin;
+	Sint32 len;
+    DVS_CI_FCACHE *finf;
 
-    for (i = 0, j = 0, k = 0; rbuf[i] != '\0'; i++)
+    for (pos = 0, begin = 0, len = 0; buf[pos] != '\0'; pos++)
     {
-        if ((rbuf[i] == '\n') || (rbuf[i] == '\0'))
+        if ((buf[pos] == '\n') || (buf[pos] == '\0'))
         {
-            dir = (DVCI_DIR)fpc;
+            finf = (DVS_CI_FCACHE*)inf;
             
-            memcpy(dir[k].fname, &rbuf[j], (i - j) - 1);
+            memcpy(finf[len].fname, &buf[begin], (pos - begin) - 1);
             
-            dvci_to_large_to_yen(dir[k].fname);
+            dvci_to_large_to_yen((Sint8*)finf[len].fname);
             
-            k++;
+            len++;
             
-            j = i + 1;
+            begin = pos + 1;
             
-            if (k == size) 
+            if (len == num) 
             {
                 break;
             }
         }
     }
     
-    if (dvg_flist_tbl.fp == NULL) 
+    if (dvg_flist_tbl.finf == NULL) 
     {
-        dvg_flist_tbl.fp = fpc;
+        dvg_flist_tbl.finf = inf;
         
-        dvg_flist_tbl.fsize = k;
+        dvg_flist_tbl.num = len;
     }
     
-    return k;
+    return len;
 }
 
 // 100% matching!
-void conv_to_tpath_dup(Char8* fname, Char8* path)
+void conv_to_tpath_dup(Sint8 *spath, Sint8 *tpath)
 {
-    strcpy(fname, path);
+    strcpy(spath, tpath);
     
-    if (strcmp(fname + (strlen(fname) - 2), ";1") != 0)
+    if (strcmp(spath + (strlen(spath) - 2), ";1") != 0)
     {
-        strcat(fname, ";1");
+        strcat(spath, ";1");
     }
     
-    dvci_to_large_to_yen(fname);
+    dvci_to_large_to_yen(spath);
 }
 
 // 100% matching!
-void dvci_get_fstate(const Char8* fname, sceCdlFILE* fp)
+Sint32 dvci_get_fstate(const Sint8 *fname, sceCdlFILE *fp)
 {
     fp->lsn = 0;
     
     fp->size = 0;
     
-    if (dvg_flist_tbl.fp != NULL) 
+    if (dvg_flist_tbl.finf != NULL) 
     {
-        get_fp_from_fname(fp, fname, (DVCI_DIR)dvg_flist_tbl.fp, dvg_flist_tbl.fsize);
+        get_fp_from_fname(fp, fname, dvg_flist_tbl.finf, dvg_flist_tbl.num);
     }
 }
 
@@ -80,34 +80,34 @@ void dvci_init_flist(void)
 }
 
 // 100% matching!
-Sint32 dvCiLoadFpCache(Char8* fname, Char8* fpc, Uint32 size) 
+Sint32 dvCiLoadFpCache(Sint8 *fls_fname, Sint8 *fpc_ptr, Sint32 fpc_size)
 {
-    Char8 flist[128] = { 0 };
+    Char8 fname[128] = { 0 };
     
     memset(dvg_rbuf, 0, sizeof(dvg_rbuf));
     
-    if (dvg_flist_tbl.fp == NULL)
+    if (dvg_flist_tbl.finf == NULL)
     {
         dvci_init_flist();
     }
     
-    if ((fname == NULL) || (fpc == NULL) || (size == 0))
+    if ((fls_fname == NULL) || (fpc_ptr == NULL) || (fpc_size == 0))
     {
         dvci_init_flist();
         
         return 0;
     }
     
-    conv_to_tpath_dup(flist, fname);
+    conv_to_tpath_dup((Sint8*)fname, fls_fname);
     
-    if (load_flist_dup(flist, dvg_rbuf) == 0)
+    if (load_flist_dup((Sint8*)fname, dvg_rbuf) == 0)
     {
         dvci_call_errfn(NULL, "E0111501:can't read filelist.(dvCiLoadDirInfo)");
         
         return 0;
     }
     
-    return search_fstate(fpc, analysis_flist_dup(fpc, dvg_rbuf, size / 140)) * 140;
+    return search_fstate(fpc_ptr, analysis_flist_dup(fpc_ptr, dvg_rbuf, (Uint32)fpc_size / 140)) * 140;
 }
 
 // 100% matching!
@@ -121,17 +121,20 @@ void dvCiSetRdMode(Sint32 nrtry, Sint32 speed, Sint32 dtype)
 }
 
 // 100% matching!
-void get_fp_from_fname(sceCdlFILE* fp, const Char8* fname, DVCI_DIR dir, Sint32 size)
+static void get_fp_from_fname(sceCdlFILE *fp, const Sint8 *fname, void *inf, Sint32 num)
 {
-    Sint32 i;
+    Sint32 lp;
+    DVS_CI_FCACHE *finf;
 
-    for (i = 0; i < size; i++)
+    finf = inf;
+
+    for (lp = 0; lp < num; lp++)
     {
-        if (strcasecmp(fname, (Char8*)&dir[i].fname) == 0)
+        if (strcasecmp(fname, (Char8*)&finf[lp].fname) == 0)
         {
-            fp->lsn = dir[i].fd;
+            fp->lsn = finf[lp].lsn;
             
-            fp->size = dir[i].fsize;
+            fp->size = finf[lp].size;
             return;
         }
     }
@@ -142,12 +145,12 @@ void get_fp_from_fname(sceCdlFILE* fp, const Char8* fname, DVCI_DIR dir, Sint32 
 }
 
 // 100% matching!
-Sint32 load_flist_dup(Char8* flist, Sint8* rbuf)  
+static Sint32 load_flist_dup(Sint8 *fname, Sint8 *rbuf)
 {
     sceCdlFILE fp;
     sceCdRMode mode;
 
-    if ((sceCdSearchFile(&fp, flist) == 0) || (mode.spindlctrl = 1, mode.trycount = 0, mode.datapattern = 0, mode.pad = 0, (sceCdRead(fp.lsn, 2, rbuf, &mode) == 0))) 
+    if ((sceCdSearchFile(&fp, (char*)fname) == 0) || (mode.spindlctrl = 1, mode.trycount = 0, mode.datapattern = 0, mode.pad = 0, (sceCdRead(fp.lsn, 2, rbuf, &mode) == 0))) 
     {
         return 0;
     }
@@ -158,48 +161,50 @@ Sint32 load_flist_dup(Char8* flist, Sint8* rbuf)
 }
 
 // 100% matching!
-Sint32 search_fstate(Char8* fpc, Sint32 fsize)
+static Sint32 search_fstate(void *inf, Sint32 num)
 {
-    Char8 flist[128] = { 0 };
-    DVCI_DIR dir;
-    Sint32 numf;
-    Sint32 fd;
-    Sint32 i;
+    Char8 fname[128] = { 0 };
     sceCdlFILE fp;
+	Sint32 lp;
+	Sint32 found;
+	char *fnameptr;
+    DVS_CI_FCACHE *finf;
 
-    numf = 0;
+    found = 0;
     
-    for (i = 0; i < fsize; i++) 
+    for (lp = 0; lp < num; lp++) 
     {
-        dir = (DVCI_DIR)fpc;
+        finf = inf;
+
+        fnameptr = finf[lp].fname;
         
-        strcpy(flist, dir[i].fname);
+        strcpy(fname, fnameptr);
         
-        if (dir[i].fname[0] != '\0')
+        if (fnameptr[0] != '\0')
         {
-            if (strcmp(flist + (strlen(flist) - 2), ";1") != 0) 
+            if (strcmp(fname + (strlen(fname) - 2), ";1") != 0) 
             {
-                strcat(flist, ";1");
+                strcat(fname, ";1");
             }
             
-            if (sceCdSearchFile(&fp, flist) == 1)
+            if (sceCdSearchFile(&fp, fname) == 1)
             {
-                dir[i].fd = fp.lsn;
+                finf[lp].lsn = fp.lsn;
                 
-                numf++;
+                found++;
                 
-                dir[i].fsize = fp.size;
+                finf[lp].size = fp.size;
                 
-                printf("DVCI: \"%s\" found.\n", flist);
+                printf("DVCI: \"%s\" found.\n", fname);
             }
             else 
             {
-                printf("DVCI: \"%s\" Not found.\n", flist);
+                printf("DVCI: \"%s\" Not found.\n", fname);
             }
         }
     } 
     
-    printf("DVCI: Total %d files\n", numf);
+    printf("DVCI: Total %d files\n", found);
     
-    return numf;
+    return found;
 }

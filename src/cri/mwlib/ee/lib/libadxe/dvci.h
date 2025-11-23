@@ -58,7 +58,7 @@ DVCI dvci_alloc(void);
 void dvci_call_errfn(void* obj, const Char8* msg);
 void dvci_conv_fname(const Char8* fname, Char8* path);
 void dvci_free(DVCI dvci);
-void dvci_to_large_to_yen(Char8* path);
+void dvci_to_large_to_yen(Sint8* path);
 void dvci_wait(void);
 void dvCiClose(DVCI dvci);
 void dvCiEntryErrFunc(DVCI_ERRFN func, void* obj);

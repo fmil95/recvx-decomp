@@ -54,7 +54,7 @@ void dvci_conv_fname(const Char8* fname, Char8* path)
         strcat(path, ";1");
     }
 
-    dvci_to_large_to_yen(path);
+    dvci_to_large_to_yen((Sint8*)path);
 }
 
 // 100% matching!
@@ -64,7 +64,7 @@ void dvci_free(DVCI dvci)
 }
 
 // 100% matching!
-void dvci_to_large_to_yen(Char8* path) 
+void dvci_to_large_to_yen(Sint8* path) 
 {
     Sint32 i;
     Uint32 l;
@@ -174,7 +174,7 @@ Sint32 dvCiGetFileSize(const Char8* fname)
         return 0;
     }
 
-    dvci_get_fstate(fname, &fp);
+    dvci_get_fstate((const Sint8*)fname, &fp);
 
     if (fp.lsn == 0) 
     {
@@ -259,7 +259,7 @@ DVCI dvCiOpen(Char8* fname, void* unused, Sint32 rw)
         return NULL;
     }
 
-    dvci_get_fstate(fname, &dvci->fp);
+    dvci_get_fstate((const Sint8*)fname, &dvci->fp);
 
     if (dvci->fp.lsn == 0) 
     {
