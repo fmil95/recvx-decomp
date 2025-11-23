@@ -351,10 +351,10 @@ CVE_FS_ST htCiGetStat(void *obj)
     {
         htci_call_errfn(NULL, "E0092712:handl is null.");
         
-        return 0;
+        return CVE_FS_ST_IDLE;
     }
     
-    return htci->stat;
+    return (CVE_FS_ST)htci->stat;
 }
 
 // 100% matching!
