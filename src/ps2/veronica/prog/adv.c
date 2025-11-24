@@ -2952,136 +2952,148 @@ int DisplayOptionPlateLevel0(int PortId, int Flag)
     return ReturnCode;
 }
 
-// 
-// Start address: 0x2c6190
+// 97.80% matching
 int DisplayOptionPlateLevel1(int PortId, int Flag)
 {
-	float KeyNameV[12];
-	float KeyNameU[12];
-	float KeyNameSizY[12];
-	float KeyNameSizX[12];
-	float KeyNamePosY[12];
-	float KeyNamePosX[12];
-	int ButtonSet[3][3];
-	int i;
-	int ReturnCode;
-	//_anon0* qp;
-	//_anon8* ap;
-	// Line 4676, Address: 0x2c6190, Func Offset: 0
-	// Line 4677, Address: 0x2c61bc, Func Offset: 0x2c
-	// Line 4679, Address: 0x2c61c4, Func Offset: 0x34
-	// Line 4684, Address: 0x2c61cc, Func Offset: 0x3c
-	// Line 4706, Address: 0x2c61e4, Func Offset: 0x54
-	// Line 4707, Address: 0x2c61e8, Func Offset: 0x58
-	// Line 4706, Address: 0x2c61ec, Func Offset: 0x5c
-	// Line 4684, Address: 0x2c61f0, Func Offset: 0x60
-	// Line 4706, Address: 0x2c61f4, Func Offset: 0x64
-	// Line 4684, Address: 0x2c61f8, Func Offset: 0x68
-	// Line 4706, Address: 0x2c6200, Func Offset: 0x70
-	// Line 4707, Address: 0x2c6208, Func Offset: 0x78
-	// Line 4708, Address: 0x2c6210, Func Offset: 0x80
-	// Line 4706, Address: 0x2c6218, Func Offset: 0x88
-	// Line 4708, Address: 0x2c621c, Func Offset: 0x8c
-	// Line 4709, Address: 0x2c6220, Func Offset: 0x90
-	// Line 4706, Address: 0x2c6224, Func Offset: 0x94
-	// Line 4707, Address: 0x2c6230, Func Offset: 0xa0
-	// Line 4709, Address: 0x2c6238, Func Offset: 0xa8
-	// Line 4710, Address: 0x2c6240, Func Offset: 0xb0
-	// Line 4707, Address: 0x2c6244, Func Offset: 0xb4
-	// Line 4708, Address: 0x2c6254, Func Offset: 0xc4
-	// Line 4710, Address: 0x2c6260, Func Offset: 0xd0
-	// Line 4711, Address: 0x2c6264, Func Offset: 0xd4
-	// Line 4710, Address: 0x2c6268, Func Offset: 0xd8
-	// Line 4708, Address: 0x2c626c, Func Offset: 0xdc
-	// Line 4709, Address: 0x2c6278, Func Offset: 0xe8
-	// Line 4711, Address: 0x2c6280, Func Offset: 0xf0
-	// Line 4709, Address: 0x2c6288, Func Offset: 0xf8
-	// Line 4710, Address: 0x2c6298, Func Offset: 0x108
-	// Line 4711, Address: 0x2c62b0, Func Offset: 0x120
-	// Line 4720, Address: 0x2c62c4, Func Offset: 0x134
-	// Line 4721, Address: 0x2c62cc, Func Offset: 0x13c
-	// Line 4722, Address: 0x2c62f4, Func Offset: 0x164
-	// Line 4723, Address: 0x2c6300, Func Offset: 0x170
-	// Line 4744, Address: 0x2c6304, Func Offset: 0x174
-	// Line 4745, Address: 0x2c6314, Func Offset: 0x184
-	// Line 4746, Address: 0x2c6320, Func Offset: 0x190
-	// Line 4745, Address: 0x2c6328, Func Offset: 0x198
-	// Line 4746, Address: 0x2c6340, Func Offset: 0x1b0
-	// Line 4747, Address: 0x2c635c, Func Offset: 0x1cc
-	// Line 4749, Address: 0x2c6370, Func Offset: 0x1e0
-	// Line 4750, Address: 0x2c6394, Func Offset: 0x204
-	// Line 4751, Address: 0x2c63a4, Func Offset: 0x214
-	// Line 4752, Address: 0x2c63ac, Func Offset: 0x21c
-	// Line 4753, Address: 0x2c63b8, Func Offset: 0x228
-	// Line 4754, Address: 0x2c63c4, Func Offset: 0x234
-	// Line 4753, Address: 0x2c63cc, Func Offset: 0x23c
-	// Line 4754, Address: 0x2c63dc, Func Offset: 0x24c
-	// Line 4753, Address: 0x2c63e4, Func Offset: 0x254
-	// Line 4754, Address: 0x2c63ec, Func Offset: 0x25c
-	// Line 4755, Address: 0x2c6414, Func Offset: 0x284
-	// Line 4757, Address: 0x2c6418, Func Offset: 0x288
-	// Line 4758, Address: 0x2c643c, Func Offset: 0x2ac
-	// Line 4764, Address: 0x2c644c, Func Offset: 0x2bc
-	// Line 4767, Address: 0x2c6454, Func Offset: 0x2c4
-	// Line 4768, Address: 0x2c6478, Func Offset: 0x2e8
-	// Line 4769, Address: 0x2c64a0, Func Offset: 0x310
-	// Line 4840, Address: 0x2c64c0, Func Offset: 0x330
-	// Line 4841, Address: 0x2c64e8, Func Offset: 0x358
-	// Line 4842, Address: 0x2c650c, Func Offset: 0x37c
-	// Line 4845, Address: 0x2c652c, Func Offset: 0x39c
-	// Line 4846, Address: 0x2c6554, Func Offset: 0x3c4
-	// Line 4847, Address: 0x2c657c, Func Offset: 0x3ec
-	// Line 4850, Address: 0x2c659c, Func Offset: 0x40c
-	// Line 4851, Address: 0x2c65c0, Func Offset: 0x430
-	// Line 4852, Address: 0x2c6618, Func Offset: 0x488
-	// Line 4855, Address: 0x2c6638, Func Offset: 0x4a8
-	// Line 4856, Address: 0x2c665c, Func Offset: 0x4cc
-	// Line 4857, Address: 0x2c6684, Func Offset: 0x4f4
-	// Line 4860, Address: 0x2c66bc, Func Offset: 0x52c
-	// Line 4861, Address: 0x2c66e0, Func Offset: 0x550
-	// Line 4862, Address: 0x2c6708, Func Offset: 0x578
-	// Line 4864, Address: 0x2c6740, Func Offset: 0x5b0
-	// Line 4865, Address: 0x2c675c, Func Offset: 0x5cc
-	// Line 4866, Address: 0x2c6788, Func Offset: 0x5f8
-	// Line 4867, Address: 0x2c67ec, Func Offset: 0x65c
-	// Line 4868, Address: 0x2c680c, Func Offset: 0x67c
-	// Line 4869, Address: 0x2c6848, Func Offset: 0x6b8
-	// Line 4870, Address: 0x2c6898, Func Offset: 0x708
-	// Line 4871, Address: 0x2c68b8, Func Offset: 0x728
-	// Line 4870, Address: 0x2c68c0, Func Offset: 0x730
-	// Line 4871, Address: 0x2c68d4, Func Offset: 0x744
-	// Line 4872, Address: 0x2c68dc, Func Offset: 0x74c
-	// Line 4873, Address: 0x2c6910, Func Offset: 0x780
-	// Line 4874, Address: 0x2c693c, Func Offset: 0x7ac
-	// Line 4875, Address: 0x2c6948, Func Offset: 0x7b8
-	// Line 4876, Address: 0x2c6978, Func Offset: 0x7e8
-	// Line 4877, Address: 0x2c6980, Func Offset: 0x7f0
-	// Line 4879, Address: 0x2c69a8, Func Offset: 0x818
-	// Line 4880, Address: 0x2c69c8, Func Offset: 0x838
-	// Line 4881, Address: 0x2c69d8, Func Offset: 0x848
-	// Line 4882, Address: 0x2c6a24, Func Offset: 0x894
-	// Line 4883, Address: 0x2c6a94, Func Offset: 0x904
-	// Line 4884, Address: 0x2c6aac, Func Offset: 0x91c
-	// Line 4885, Address: 0x2c6ad4, Func Offset: 0x944
-	// Line 4886, Address: 0x2c6b20, Func Offset: 0x990
-	// Line 4887, Address: 0x2c6b88, Func Offset: 0x9f8
-	// Line 4888, Address: 0x2c6b90, Func Offset: 0xa00
-	// Line 4889, Address: 0x2c6bd8, Func Offset: 0xa48
-	// Line 4891, Address: 0x2c6c20, Func Offset: 0xa90
-	// Line 4892, Address: 0x2c6c28, Func Offset: 0xa98
-	// Line 4893, Address: 0x2c6c64, Func Offset: 0xad4
-	// Line 4894, Address: 0x2c6cbc, Func Offset: 0xb2c
-	// Line 4895, Address: 0x2c6cc0, Func Offset: 0xb30
-	// Line 4896, Address: 0x2c6ce4, Func Offset: 0xb54
-	// Line 4895, Address: 0x2c6ce8, Func Offset: 0xb58
-	// Line 4896, Address: 0x2c6cf8, Func Offset: 0xb68
-	// Line 4895, Address: 0x2c6cfc, Func Offset: 0xb6c
-	// Line 4896, Address: 0x2c6d08, Func Offset: 0xb78
-	// Line 4899, Address: 0x2c6d10, Func Offset: 0xb80
-	// Line 4901, Address: 0x2c6d18, Func Offset: 0xb88
-	// Line 4902, Address: 0x2c6d1c, Func Offset: 0xb8c
-	// Func End, Address: 0x2c6d4c, Func Offset: 0xbbc
-	scePrintf("DisplayOptionPlateLevel1 - UNIMPLEMENTED!\n");
+    ADV_WORK* ap = &AdvWork;       
+    QUAD* qp;                 
+    int ReturnCode = 1;            
+    int i;                        
+    int ButtonSet[3][3] = { 2, 2, 0, 2, 0, 2, 0, 2, 2 };  
+    float KeyNamePosX[12] = { 448.0f, 376.0f, 520.0f, 448.0f, 80.0f, 80.0f, 8.0f, 152.0f, 80.0f, 448.0f, 196.0f, 332.0f }; 
+    float KeyNamePosY[12] = { 320.0f, 288.0f, 288.0f, 256.0f, 256.0f, 320.0f, 288.0f, 288.0f, 156.0f, 156.0f, 352.0f, 352.0f };
+    float KeyNameSizX[12] = { 124.0f, 124.0f, 124.0f, 124.0f, 124.0f, 124.0f, 124.0f, 124.0f, 124.0f, 124.0f, 124.0f, 124.0f }; 
+    float KeyNameSizY[12] = { 32.0f, 32.0f, 32.0f, 32.0f, 32.0f, 32.0f, 32.0f, 32.0f, 40.0f, 40.0f, 40.0f, 40.0f }; 
+    float KeyNameU[12] = { 388.0f, 388.0f, 388.0f, 388.0f, 388.0f, 388.0f, 388.0f, 388.0f, 266.0f, 266.0f, 388.0f, 265.0f };    
+    float KeyNameV[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 40.0f, 0, 0, 0 };    
+
+    if (Flag != 0) 
+    {
+        if ((Pad[PortId].press & 0x8F0)) 
+        {
+            CallSystemSe(0, 3);
+            
+            ReturnCode = 0;
+        }
+        
+        if ((Pad[PortId].press & 0x8000)) 
+        {
+            OptionDef[ap->OptIndex].Item--;
+            
+            if (OptionDef[ap->OptIndex].Item < 0) 
+            {
+                OptionDef[ap->OptIndex].Item = OptionDef[ap->OptIndex].MaxItem;
+            }
+            
+            sys->keytype = OptionDef[ap->OptIndex].Item;
+            
+            CallSystemSe(0, 2);
+        } 
+        else if ((Pad[PortId].press & 0x2000)) 
+        {
+            OptionDef[ap->OptIndex].Item++;
+            
+            if (OptionDef[ap->OptIndex].Item > OptionDef[ap->OptIndex].MaxItem) 
+            {
+                OptionDef[ap->OptIndex].Item = 0;
+            }
+            
+            sys->keytype = OptionDef[ap->OptIndex].Item;
+            
+            CallSystemSe(0, 2);
+        }
+    }
+    
+    qp = &Qtex[1]; 
+    
+    SetQuadPos(96.0f, 96.0f, 448.0f, 48.0f, qp);
+    SetQuadUv2(0, 368.0f, 448.0f, 48.0f, 1, qp);
+    
+    AdvEasyDrawTexture(1, -1, qp, 0.05f, 1);
+    
+    SetQuadPos(188.0f, 164.0f, 256.0f, 224.0f, qp);
+    SetQuadUv2(0, 0, 256.0f, 224.0f, 1, qp);
+    
+    AdvEasyDrawTexture(1, -1, qp, 0.03f, 1);
+    
+    SetQuadPos(256.0f, 148.0f, 128.0f, 32.0f, qp);
+    SetQuadUv2(0, 288.0f, 128.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, -1, qp, 0.05f, 1);
+    
+    SetQuadPos(360.0f, 148.0f, 32.0f, 32.0f, qp);
+    SetQuadUv2(128.0f + (OptionDef[ap->OptIndex].Item * 32), 288.0f, 32.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, -1, qp, 0.05f, 1);
+    
+    SetQuadPos(224.0f, 148.0f, 32.0f, 32.0f, qp);
+    SetQuadUv2(224.0f, 288.0f, 32.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, (((unsigned int)ap->FlushCount2 + 255) << 24) | 0xFFFFFF, qp, 0.05f, 1);
+    
+    SetQuadPos(392.0f, 148.0f, 32.0f, 32.0f, qp);
+    SetQuadUv2(256.0f, 288.0f, 32.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, (((unsigned int)ap->FlushCount2 + 255) << 24) | 0xFFFFFF, qp, 0.05f, 1);
+    
+    for (i = 0; i < 3; i++) 
+    {
+        SetQuadPos(KeyNamePosX[i], KeyNamePosY[i] - 8.0f, 112.0f, 32.0f, qp);
+        SetQuadUv2(288.0f, ButtonSet[OptionDef[ap->OptIndex].Item][i] * 32, 112.0f, 32.0f, 0, qp);
+        
+        AdvEasyDrawTexture(0, -1, qp, 0.05f, 1);
+        
+        SetQuadPos(KeyNamePosX[i] - 6.0f, (KeyNamePosY[i] - 3.0f) - 8.0f, KeyNameSizX[i], KeyNameSizY[i], qp);
+        SetQuadUv2(KeyNameU[i], 40.0f + (OptionDef[ap->OptIndex].Item * KeyNameSizY[i]), KeyNameSizX[i], KeyNameSizY[i], 1, qp);
+        
+        AdvEasyDrawTexture(1, -1, qp, 0.045f, 1);
+    } 
+    
+    for ( ; i < 12; i++) 
+    {
+        SetQuadPos(KeyNamePosX[i], KeyNamePosY[i] - 8.0f, 112.0f, 32.0f, qp);
+        
+        if (i < 11) 
+        {
+            SetQuadUv2(288.0f, i * 32, 112.0f, 32.0f, 0, qp);
+        } 
+        else 
+        {
+            SetQuadUv2(288.0f, 32.0f, 112.0f, 32.0f, 0, qp);
+        }
+        
+        AdvEasyDrawTexture(0, -1, qp, 0.05f, 1);
+        
+        if ((i == 8) || (i == 9)) 
+        {
+            SetQuadPos(KeyNamePosX[i] - 6.0f, (KeyNamePosY[i] - 3.0f) - 8.0f, KeyNameSizX[i], 1.0f + KeyNameSizY[i], qp);
+            SetQuadUv2(KeyNameU[i], (40.0f + KeyNameV[i]) + (OptionDef[ap->OptIndex].Item * (2.0f * KeyNameSizY[i])), KeyNameSizX[i], 1.0f + KeyNameSizY[i], 1, qp);
+        } 
+        else if ((i == 10) || (i == 11))
+        {
+            if (OptionDef[ap->OptIndex].Item < 2) 
+            {
+                SetQuadPos(KeyNamePosX[i] - 6.0f, (KeyNamePosY[i] - 3.0f) - 8.0f, KeyNameSizX[i], 1.0f + KeyNameSizY[i], qp);
+                SetQuadUv2(KeyNameU[i], KeyNameV[i] + (OptionDef[ap->OptIndex].Item * (7.0f * KeyNameSizY[i])), KeyNameSizX[i], 1.0f + KeyNameSizY[i], 1, qp);
+            } 
+            else
+            {
+                SetQuadPos(KeyNamePosX[i] - 6.0f, (KeyNamePosY[i] - 3.0f) - 8.0f, KeyNameSizX[i], 1.0f + KeyNameSizY[i], qp);
+                SetQuadUv2(KeyNameU[10], 200.0f + ((11 - i) * KeyNameSizY[i]), KeyNameSizX[i], 1.0f + KeyNameSizY[i], 1, qp);
+            }
+        } 
+        else 
+        {
+            SetQuadPos(KeyNamePosX[i] - 6.0f, (KeyNamePosY[i] - 3.0f) - 8.0f, KeyNameSizX[i], KeyNameSizY[i], qp);
+            SetQuadUv2(KeyNameU[i], (40.0f + KeyNameV[i]) + (OptionDef[ap->OptIndex].Item * KeyNameSizY[i]), KeyNameSizX[i], KeyNameSizY[i], 1, qp);
+        }
+        
+        AdvEasyDrawTexture(1, -1, qp, 0.045f, 1);
+    }
+    
+    FlushPlate();
+    
+    return ReturnCode;
 }
 
 // 

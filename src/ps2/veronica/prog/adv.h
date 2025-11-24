@@ -33,15 +33,15 @@ void ExecuteAdvScreenSaver();
 void CheckAdvScreenSaverStopKey(int PortId);
 unsigned int AdvGetOkButton();
 unsigned int AdvGetCancelButton();
-/*void SetPvrInfo(_anon20* np, _anon16* ip, unsigned char* pp);*/
+void SetPvrInfo(NJS_TEXNAME* np, NJS_TEXINFO* ip, unsigned char* pp, int param1, unsigned int param2);
 int TransPvpData(unsigned char* pp, int Mode);
 void AdvTransShadowPalette();
-/*void AdvEasyDrawWindow(_anon32* tlp, _anon32* brp, unsigned int WindowColor, unsigned int BackColor);
-void AdvEasyDrawTexture(int TexNo, unsigned int BaseColor, _anon0* qp, float PosZ, int TransFlag);
-void AdvEasyDrawTextureS(int TexNo, unsigned int BaseColor, _anon0* qp, float PosZ, int TransFlag, unsigned int ShadowAlpha);
-void SetQuadPos(float StartX, float StartY, float SizeX, float SizeY, _anon0* qp);
-void SetQuadUv2Ex(float u, float v, float SizeX, float SizeY, unsigned int ListNo, unsigned int TexNo, _anon0* qp);
-void SetQuadUv2(float u, float v, float SizeX, float SizeY, unsigned int TexNo, _anon0* qp);*/
+void AdvEasyDrawWindow(NJS_POINT3* tlp, NJS_POINT3* brp, unsigned int WindowColor, unsigned int BackColor);
+void AdvEasyDrawTexture(int TexNo, unsigned int BaseColor, QUAD* qp, float PosZ, int TransFlag);
+void AdvEasyDrawTextureS(int TexNo, unsigned int BaseColor, QUAD* qp, float PosZ, int TransFlag, unsigned int ShadowAlpha);
+void SetQuadPos(float StartX, float StartY, float SizeX, float SizeY, QUAD* qp);
+void SetQuadUv2Ex(float u, float v, float SizeX, float SizeY, unsigned int ListNo, unsigned int TexNo, QUAD* qp);
+void SetQuadUv2(float u, float v, float SizeX, float SizeY, unsigned int TexNo, QUAD* qp);
 void AdvDwawOnePictureEx(int TexNo, unsigned int BaseColor);
 void AdvDwawOnePicture(int TexNo);
 void AdvEasySetupTextureBasic(unsigned char* xp, int ListNo, int TexNo);
