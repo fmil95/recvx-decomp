@@ -3096,136 +3096,204 @@ int DisplayOptionPlateLevel1(int PortId, int Flag)
     return ReturnCode;
 }
 
-// 
-// Start address: 0x2c6d50
+// 98.88% matching
 int DisplayOptionPlateLevel2(int PortId, int Flag)
 {
-	unsigned int CursorCol[4];
-	char Str[4];
-	//_anon32 BotRigt;
-	//_anon32 TopLeft;
-	int ReturnCode;
-	//_anon0* qp;
-	//_anon8* ap;
-	// Line 4914, Address: 0x2c6d50, Func Offset: 0
-	// Line 4915, Address: 0x2c6d6c, Func Offset: 0x1c
-	// Line 4916, Address: 0x2c6d74, Func Offset: 0x24
-	// Line 4922, Address: 0x2c6d7c, Func Offset: 0x2c
-	// Line 4918, Address: 0x2c6d8c, Func Offset: 0x3c
-	// Line 4925, Address: 0x2c6d90, Func Offset: 0x40
-	// Line 4926, Address: 0x2c6d98, Func Offset: 0x48
-	// Line 4927, Address: 0x2c6dc0, Func Offset: 0x70
-	// Line 4929, Address: 0x2c6dcc, Func Offset: 0x7c
-	// Line 4930, Address: 0x2c6dd4, Func Offset: 0x84
-	// Line 4931, Address: 0x2c6de0, Func Offset: 0x90
-	// Line 4932, Address: 0x2c6de8, Func Offset: 0x98
-	// Line 4933, Address: 0x2c6df4, Func Offset: 0xa4
-	// Line 4934, Address: 0x2c6e00, Func Offset: 0xb0
-	// Line 4935, Address: 0x2c6e08, Func Offset: 0xb8
-	// Line 4936, Address: 0x2c6e14, Func Offset: 0xc4
-	// Line 4937, Address: 0x2c6e24, Func Offset: 0xd4
-	// Line 4938, Address: 0x2c6e2c, Func Offset: 0xdc
-	// Line 4939, Address: 0x2c6e38, Func Offset: 0xe8
-	// Line 4940, Address: 0x2c6e44, Func Offset: 0xf4
-	// Line 4942, Address: 0x2c6e48, Func Offset: 0xf8
-	// Line 4943, Address: 0x2c6e50, Func Offset: 0x100
-	// Line 4944, Address: 0x2c6e5c, Func Offset: 0x10c
-	// Line 4945, Address: 0x2c6e6c, Func Offset: 0x11c
-	// Line 4946, Address: 0x2c6e74, Func Offset: 0x124
-	// Line 4947, Address: 0x2c6e80, Func Offset: 0x130
-	// Line 4948, Address: 0x2c6e8c, Func Offset: 0x13c
-	// Line 4950, Address: 0x2c6e90, Func Offset: 0x140
-	// Line 4951, Address: 0x2c6e98, Func Offset: 0x148
-	// Line 4952, Address: 0x2c6ea4, Func Offset: 0x154
-	// Line 4953, Address: 0x2c6eb4, Func Offset: 0x164
-	// Line 4954, Address: 0x2c6ebc, Func Offset: 0x16c
-	// Line 4955, Address: 0x2c6ec8, Func Offset: 0x178
-	// Line 4956, Address: 0x2c6ed4, Func Offset: 0x184
-	// Line 4958, Address: 0x2c6ed8, Func Offset: 0x188
-	// Line 4959, Address: 0x2c6ee0, Func Offset: 0x190
-	// Line 4960, Address: 0x2c6eec, Func Offset: 0x19c
-	// Line 4961, Address: 0x2c6efc, Func Offset: 0x1ac
-	// Line 4962, Address: 0x2c6f04, Func Offset: 0x1b4
-	// Line 4963, Address: 0x2c6f10, Func Offset: 0x1c0
-	// Line 4964, Address: 0x2c6f1c, Func Offset: 0x1cc
-	// Line 4977, Address: 0x2c6f24, Func Offset: 0x1d4
-	// Line 4979, Address: 0x2c6f4c, Func Offset: 0x1fc
-	// Line 4980, Address: 0x2c6f74, Func Offset: 0x224
-	// Line 4986, Address: 0x2c6f94, Func Offset: 0x244
-	// Line 4987, Address: 0x2c6fb8, Func Offset: 0x268
-	// Line 4989, Address: 0x2c6fe4, Func Offset: 0x294
-	// Line 4993, Address: 0x2c7008, Func Offset: 0x2b8
-	// Line 4994, Address: 0x2c7030, Func Offset: 0x2e0
-	// Line 4995, Address: 0x2c7058, Func Offset: 0x308
-	// Line 5003, Address: 0x2c7078, Func Offset: 0x328
-	// Line 5004, Address: 0x2c709c, Func Offset: 0x34c
-	// Line 5005, Address: 0x2c70c4, Func Offset: 0x374
-	// Line 5008, Address: 0x2c70e4, Func Offset: 0x394
-	// Line 5009, Address: 0x2c7108, Func Offset: 0x3b8
-	// Line 5010, Address: 0x2c7130, Func Offset: 0x3e0
-	// Line 5013, Address: 0x2c7150, Func Offset: 0x400
-	// Line 5014, Address: 0x2c7174, Func Offset: 0x424
-	// Line 5015, Address: 0x2c719c, Func Offset: 0x44c
-	// Line 5018, Address: 0x2c71bc, Func Offset: 0x46c
-	// Line 5019, Address: 0x2c71e0, Func Offset: 0x490
-	// Line 5020, Address: 0x2c7208, Func Offset: 0x4b8
-	// Line 5023, Address: 0x2c7228, Func Offset: 0x4d8
-	// Line 5024, Address: 0x2c724c, Func Offset: 0x4fc
-	// Line 5025, Address: 0x2c7274, Func Offset: 0x524
-	// Line 5028, Address: 0x2c7298, Func Offset: 0x548
-	// Line 5029, Address: 0x2c72c0, Func Offset: 0x570
-	// Line 5030, Address: 0x2c72ec, Func Offset: 0x59c
-	// Line 5033, Address: 0x2c7310, Func Offset: 0x5c0
-	// Line 5034, Address: 0x2c731c, Func Offset: 0x5cc
-	// Line 5035, Address: 0x2c7344, Func Offset: 0x5f4
-	// Line 5036, Address: 0x2c7370, Func Offset: 0x620
-	// Line 5038, Address: 0x2c7394, Func Offset: 0x644
-	// Line 5039, Address: 0x2c73bc, Func Offset: 0x66c
-	// Line 5040, Address: 0x2c73e4, Func Offset: 0x694
-	// Line 5041, Address: 0x2c7428, Func Offset: 0x6d8
-	// Line 5042, Address: 0x2c744c, Func Offset: 0x6fc
-	// Line 5043, Address: 0x2c7474, Func Offset: 0x724
-	// Line 5044, Address: 0x2c74bc, Func Offset: 0x76c
-	// Line 5047, Address: 0x2c74e0, Func Offset: 0x790
-	// Line 5048, Address: 0x2c7508, Func Offset: 0x7b8
-	// Line 5049, Address: 0x2c7530, Func Offset: 0x7e0
-	// Line 5052, Address: 0x2c7554, Func Offset: 0x804
-	// Line 5053, Address: 0x2c757c, Func Offset: 0x82c
-	// Line 5054, Address: 0x2c75a8, Func Offset: 0x858
-	// Line 5056, Address: 0x2c75cc, Func Offset: 0x87c
-	// Line 5057, Address: 0x2c75d8, Func Offset: 0x888
-	// Line 5058, Address: 0x2c7600, Func Offset: 0x8b0
-	// Line 5059, Address: 0x2c762c, Func Offset: 0x8dc
-	// Line 5061, Address: 0x2c7650, Func Offset: 0x900
-	// Line 5062, Address: 0x2c7678, Func Offset: 0x928
-	// Line 5063, Address: 0x2c76a0, Func Offset: 0x950
-	// Line 5064, Address: 0x2c76e4, Func Offset: 0x994
-	// Line 5065, Address: 0x2c7708, Func Offset: 0x9b8
-	// Line 5066, Address: 0x2c7730, Func Offset: 0x9e0
-	// Line 5067, Address: 0x2c7774, Func Offset: 0xa24
-	// Line 5070, Address: 0x2c7798, Func Offset: 0xa48
-	// Line 5071, Address: 0x2c77a0, Func Offset: 0xa50
-	// Line 5072, Address: 0x2c77ac, Func Offset: 0xa5c
-	// Line 5073, Address: 0x2c77bc, Func Offset: 0xa6c
-	// Line 5074, Address: 0x2c77c4, Func Offset: 0xa74
-	// Line 5076, Address: 0x2c77d0, Func Offset: 0xa80
-	// Line 5075, Address: 0x2c77d4, Func Offset: 0xa84
-	// Line 5076, Address: 0x2c77d8, Func Offset: 0xa88
-	// Line 5075, Address: 0x2c77e8, Func Offset: 0xa98
-	// Line 5076, Address: 0x2c77ec, Func Offset: 0xa9c
-	// Line 5079, Address: 0x2c77f4, Func Offset: 0xaa4
-	// Line 5082, Address: 0x2c77fc, Func Offset: 0xaac
-	// Line 5084, Address: 0x2c7804, Func Offset: 0xab4
-	// Line 5085, Address: 0x2c7810, Func Offset: 0xac0
-	// Line 5086, Address: 0x2c7818, Func Offset: 0xac8
-	// Line 5088, Address: 0x2c7820, Func Offset: 0xad0
-	// Line 5087, Address: 0x2c7834, Func Offset: 0xae4
-	// Line 5088, Address: 0x2c7838, Func Offset: 0xae8
-	// Line 5282, Address: 0x2c7840, Func Offset: 0xaf0
-	// Line 5284, Address: 0x2c7848, Func Offset: 0xaf8
-	// Line 5285, Address: 0x2c784c, Func Offset: 0xafc
-	// Func End, Address: 0x2c786c, Func Offset: 0xb1c
-	scePrintf("DisplayOptionPlateLevel2 - UNIMPLEMENTED!\n");
+    ADV_WORK* ap = &AdvWork;                                                    
+    QUAD* qp = &Qtex[1];                                                          
+    int ReturnCode;                                                              
+    NJS_POINT3 TopLeft;                                                        
+    NJS_POINT3 BotRigt;                                                         
+    char Str[4];                                                                  
+    unsigned int CursorCol[4] = { 0xFF7F7F7F, 0xFF7F7F7F, 0xFF7F7F7F, 0xFF7F7F7F }; 
+    
+    ReturnCode = 2;
+    
+    if (Flag != 0) 
+    {
+        if ((Pad[PortId].press & 0xF0)) 
+        {
+            CallSystemSe(0, 0);
+            
+            ReturnCode = 0;
+        } 
+        else if ((Pad[PortId].press & 0x800)) 
+        {
+            ap->OptScrX = ap->OptScrY = 0;
+            
+            RequestAdjustDisplay(ap->OptScrX, ap->OptScrY);
+            
+            CallSystemSe(0, 3);
+        } 
+        else if ((Pad[PortId].press & 0x1000)) 
+        {
+            if (ap->OptScrY != -10) 
+            {
+                ap->OptScrY--;
+                
+                RequestAdjustDisplay(ap->OptScrX, ap->OptScrY);
+                
+                CallSystemSe(0, 2);
+                
+                CursorCol[0] = -1;
+            }
+        } 
+        else if ((Pad[PortId].press & 0x4000)) 
+        {
+            if (ap->OptScrY != 10) 
+            {
+                ap->OptScrY++;
+                
+                RequestAdjustDisplay(ap->OptScrX, ap->OptScrY);
+                
+                CallSystemSe(0, 2);
+                
+                CursorCol[1] = -1;
+            }
+        }
+        else if ((Pad[PortId].press & 0x8000)) 
+        {
+            if (ap->OptScrX != -10)
+            {
+                ap->OptScrX--;
+                
+                RequestAdjustDisplay(ap->OptScrX, ap->OptScrY);
+                
+                CallSystemSe(0, 2);
+                
+                CursorCol[2] = -1;
+            }
+        } 
+        else if (((Pad[PortId].press & 0x2000)) && (ap->OptScrX != 10)) 
+        {
+            ap->OptScrX++;
+            
+            RequestAdjustDisplay(ap->OptScrX, ap->OptScrY);
+            
+            CallSystemSe(0, 2);
+            
+            CursorCol[3] = -1;
+        }
+    }
+    
+    SetQuadPos(96.0f, 86.0f, 448.0f, 48.0f, qp);
+    SetQuadUv2(0, 464.0f, 448.0f, 48.0f, 1, qp);
+    
+    AdvEasyDrawTexture(1, -1, qp, 0.05f, 1);
+    
+    SetQuadPos(96.0f, 168.0f, 448.0f, 96.0f, qp);
+    SetQuadUv2(400.0f, 160.0f, 448.0f, 96.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+    
+    SetQuadPos(344.0f, 320.0f, 264.0f, 100.0f, qp);
+    SetQuadUv2(0, 224.0f, 264.0f, 100.0f, 1, qp);
+    
+    AdvEasyDrawTexture(1, -1, qp, 0.05f, 1);
+    
+    SetQuadPos(304.0f, 40.0f, 32.0f, 32.0f, qp);
+    SetQuadUv2(480.0f, 136.0f, 32.0f, 32.0f, 1, qp);
+    
+    AdvEasyDrawTexture(1, CursorCol[0], qp, 0.05f, 1);
+    
+    SetQuadPos(304.0f, 408.0f, 32.0f, 32.0f, qp);
+    SetQuadUv2(448.0f, 136.0f, 32.0f, 32.0f, 1, qp);
+    
+    AdvEasyDrawTexture(1, CursorCol[1], qp, 0.05f, 1);
+    
+    SetQuadPos(32.0f, 224.0f, 32.0f, 32.0f, qp);
+    SetQuadUv2(480.0f, 168.0f, 32.0f, 32.0f, 1, qp);
+    
+    AdvEasyDrawTexture(1, CursorCol[2], qp, 0.05f, 1);
+    
+    SetQuadPos(576.0f, 224.0f, 32.0f, 32.0f, qp);
+    SetQuadUv2(448.0f, 168.0f, 32.0f, 32.0f, 1, qp);
+    
+    AdvEasyDrawTexture(1, CursorCol[3], qp, 0.05f, 1);
+    
+    SetQuadPos(264.0f, 264.0f, 24.0f, 32.0f, qp);
+    SetQuadUv2(0, 352.0f, 24.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+    
+    SetQuadPos(288.0f, 264.0f, 24.0f, 32.0f, qp);
+    SetQuadUv2(48.0f, 352.0f, 24.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+    
+    if (ap->OptScrX < 0) 
+    {
+        SetQuadPos(312.0f, 264.0f, 24.0f, 32.0f, qp);
+        SetQuadUv2(72.0f, 352.0f, 24.0f, 32.0f, 0, qp);
+        
+        AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+    }
+    
+    sprintf(Str, "%02u", (unsigned int)fabsf(ap->OptScrX));
+    
+    SetQuadPos(336.0f, 264.0f, 24.0f, 32.0f, qp);
+    SetQuadUv2(((Str[0] - 48) * 24) + 96, 352.0f, 24.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+    
+    SetQuadPos(360.0f, 264.0f, 24.0f, 32.0f, qp);
+    SetQuadUv2(((Str[1] - 48) * 24) + 96, 352.0f, 24.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+    
+    SetQuadPos(408.0f, 264.0f, 24.0f, 32.0f, qp);
+    SetQuadUv2(24.0f, 352.0f, 24.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+    
+    SetQuadPos(432.0f, 264.0f, 24.0f, 32.0f, qp);
+    SetQuadUv2(48.0f, 352.0f, 24.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+    
+    if (ap->OptScrY < 0)
+    {
+        SetQuadPos(456.0f, 264.0f, 24.0f, 32.0f, qp);
+        SetQuadUv2(72.0f, 352.0f, 24.0f, 32.0f, 0, qp);
+        
+        AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+    }
+    
+    sprintf(Str, "%02u", (unsigned int)fabsf(ap->OptScrY));
+    
+    SetQuadPos(480.0f, 264.0f, 24.0f, 32.0f, qp);
+    SetQuadUv2(((Str[0] - 48) * 24) + 96, 352.0f, 24.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+    
+    SetQuadPos(504.0f, 264.0f, 24.0f, 32.0f, qp);
+    SetQuadUv2(((Str[1] - 48) * 24) + 96, 352.0f, 24.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+    
+    TopLeft.x = 8.0f;
+    TopLeft.y = 32.0f;
+    TopLeft.z = 0.02f;
+    
+    BotRigt.x = 632.0f;
+    BotRigt.y = 448.0f;
+    BotRigt.z = 0.02f;
+    
+    AdvEasyDrawWindow(&TopLeft, &BotRigt, 0xFF4F4F4F, 0xFF000010);
+    
+    TopLeft.x = 88.0f;
+    TopLeft.y = 152.0f;
+    TopLeft.z = 0.035f;
+    
+    BotRigt.x = 552.0f;
+    BotRigt.y = 296.0f;
+    BotRigt.z = 0.035f;
+    
+    AdvEasyDrawWindow(&TopLeft, &BotRigt, 0xFFAFAFAF, 0x3F5F5F5F);
+    
+    FlushPlate();
+    
+    return ReturnCode;
 }
 
 // 
