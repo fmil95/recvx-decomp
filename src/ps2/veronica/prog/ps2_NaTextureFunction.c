@@ -752,7 +752,7 @@ int Ps2ReplaceTexAddr(unsigned int gindex, void* rep_addr)
     return count;
 }
 
-// 98.90% matching
+// 100% matching!
 int Ps2TextureGarbageCollectionAll()
 {
     TIM2_PICTUREHEADER_EX* p; 
@@ -763,13 +763,20 @@ int Ps2TextureGarbageCollectionAll()
     
     ring_check();
     
-    for (p = &Ps2_tm_list_1st; (0, p)->admin.after != &Ps2_tm_list_last; p = (TIM2_PICTUREHEADER_EX*)real_p)
+    for (p = &Ps2_tm_list_1st; p->admin.after != &Ps2_tm_list_last; p = (TIM2_PICTUREHEADER_EX*)real_p)
     {
-        real_p = (unsigned char*)((int)p->admin.addr + p->admin.size); 
+        if (0) // FAKE
+        {
+            &p != NULL;
+        }
         
-        after2 = (temp = p)->admin.after; 
+        temp = p->admin.after; 
+        
+        after2 = temp->admin.after; 
 
-        if (((TIM2_PICTUREHEADER_EX*)real_p != p) && (p != &Ps2_tm_list_last))
+        real_p = (unsigned char*)((int)p->admin.addr + p->admin.size); 
+
+        if (((TIM2_PICTUREHEADER_EX*)real_p != temp) && (temp != &Ps2_tm_list_last))
         {
             after2->admin.before = real_p; 
             
@@ -777,11 +784,11 @@ int Ps2TextureGarbageCollectionAll()
             
             p->admin.after = real_p;
 
-            size = temp->admin.size;
-
             after2 = (TIM2_PICTUREHEADER_EX*)real_p;
 
-            Ps2MemCopy4(real_p, p, size / 4);
+            size = temp->admin.size / 4;
+
+            Ps2MemCopy4(real_p, temp, size);
         
             Ps2ReplaceTexAddr(after2->admin.gindex, real_p);
         }
@@ -793,7 +800,7 @@ int Ps2TextureGarbageCollectionAll()
     
     size = p->admin.size;
     
-    Ps2_now_free = (void*)(size + (int)p->admin.addr);
+    Ps2_now_free = (void*)((int)p->admin.addr + size);
 
     return 1;
 }
