@@ -3191,6 +3191,13 @@ typedef struct SAVE_SCREEN
     void* vpReadBuffer;                  // offset 0x3C, size 0x4
 } SAVE_SCREEN;
 
+typedef struct COLBAR_DEF
+{
+	// total size: 0x8
+    unsigned int col1; // offset 0x0, size 0x4
+    unsigned int col2; // offset 0x4, size 0x4
+} COLBAR_DEF;
+
 typedef struct {
     int isOnCD;		
     int size;

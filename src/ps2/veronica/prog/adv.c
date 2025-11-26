@@ -19,7 +19,6 @@
 
 #include <string.h>
 
-/*unsigned char SaveLoadMessage[10956];*/
 OPTION OptionDef[7] = { { 0, 1, 0, 0, 0,  0,  0, 0, 0 },
                         { 0, 2, 0, 0, 0,  1,  0, 0, 1 },
 			            { 0, 0, 0, 2, 0,  2,  0, 0, 0 },
@@ -37,9 +36,9 @@ char AdvTexPalBank[2][8];
 ADV_VM_MSG AdvVmMsgDef[21] = {{-1.0f, 32.0f, 23, 21, 1}, {-1.0f, 176.0f, 25, -1, 0}, {-1.0f, 32.0f, 33, 21, 1}, {-1.0f, 208.0f, 30, 22, 1}, {-1.0f, 224.0f, 27, 22, 1}, {-1.0f, 32.0f, 24, 22, 1}, {-1.0f, 416.0f, 28, -1, 0}, {-1.0f, 32.0f, 24, 21, 1}, {-1.0f, 224.0f, 31, 22, 1}, {-1.0f, 224.0f, 32, 22, 1}, {-1.0f, 32.0f, 23, 22, 1}, {-1.0f, 32.0f, 33, 20, 1}, {-1.0f, 32.0f, 33, 22, 1}, {-1.0f, 32.0f, 34, 20, 1}, {-1.0f, 32.0f, 35, 20, 1}, {-1.0f, 32.0f, 36, 20, 1}, {-1.0f, 32.0f, 37, 20, 1}, {-1.0f, 32.0f, 38, 20, 1}, {-1.0f, 32.0f, 39, 20, 1}, {-1.0f, 32.0f, 40, 20, 1}, {-1.0f, 32.0f, 41, 20, 1}};
 SYSLOAD_SCREEN* pSysLoad;
 SYSLOAD_SCREEN SysLoad;
-/*float ColorBarSizeY;
-float RedLinePosY;
-unsigned int ColorBarBright;*/
+float ColorBarSizeY = 229.0f;
+float RedLinePosY = 181.0f;
+unsigned int ColorBarBright = 68;
 SYSSAVE_SCREEN* pSysSave;
 SYSSAVE_SCREEN SysSave;
 
@@ -3296,98 +3295,110 @@ int DisplayOptionPlateLevel2(int PortId, int Flag)
     return ReturnCode;
 }
 
-// 
-// Start address: 0x2c7870
+// 99.65% matching
 int DisplayOptionPlateLevel3(int PortId, int Flag)
 {
-	unsigned int PolyCol;
-	//_anon28 ColorBarDef[8];
-	//_anon13 poly[4];
-	//_anon32 BotRigt;
-	//_anon32 TopLeft;
-	int ReturnCode;
-	int i;
-	//_anon0* qp;
-	//_anon8* ap;
-	// Line 5302, Address: 0x2c7870, Func Offset: 0
-	// Line 5303, Address: 0x2c789c, Func Offset: 0x2c
-	// Line 5309, Address: 0x2c78a4, Func Offset: 0x34
-	// Line 5306, Address: 0x2c78bc, Func Offset: 0x4c
-	// Line 5309, Address: 0x2c78c0, Func Offset: 0x50
-	// Line 5317, Address: 0x2c78d0, Func Offset: 0x60
-	// Line 5318, Address: 0x2c78d8, Func Offset: 0x68
-	// Line 5319, Address: 0x2c7900, Func Offset: 0x90
-	// Line 5320, Address: 0x2c790c, Func Offset: 0x9c
-	// Line 5352, Address: 0x2c7910, Func Offset: 0xa0
-	// Line 5355, Address: 0x2c7918, Func Offset: 0xa8
-	// Line 5356, Address: 0x2c793c, Func Offset: 0xcc
-	// Line 5357, Address: 0x2c7964, Func Offset: 0xf4
-	// Line 5360, Address: 0x2c7984, Func Offset: 0x114
-	// Line 5361, Address: 0x2c79a8, Func Offset: 0x138
-	// Line 5362, Address: 0x2c79d4, Func Offset: 0x164
-	// Line 5365, Address: 0x2c7a0c, Func Offset: 0x19c
-	// Line 5366, Address: 0x2c7a34, Func Offset: 0x1c4
-	// Line 5367, Address: 0x2c7a5c, Func Offset: 0x1ec
-	// Line 5370, Address: 0x2c7a80, Func Offset: 0x210
-	// Line 5371, Address: 0x2c7a94, Func Offset: 0x224
-	// Line 5372, Address: 0x2c7a98, Func Offset: 0x228
-	// Line 5371, Address: 0x2c7aa0, Func Offset: 0x230
-	// Line 5375, Address: 0x2c7aac, Func Offset: 0x23c
-	// Line 5371, Address: 0x2c7ab0, Func Offset: 0x240
-	// Line 5372, Address: 0x2c7abc, Func Offset: 0x24c
-	// Line 5375, Address: 0x2c7adc, Func Offset: 0x26c
-	// Line 5376, Address: 0x2c7ae4, Func Offset: 0x274
-	// Line 5379, Address: 0x2c7af0, Func Offset: 0x280
-	// Line 5376, Address: 0x2c7af4, Func Offset: 0x284
-	// Line 5377, Address: 0x2c7afc, Func Offset: 0x28c
-	// Line 5379, Address: 0x2c7b14, Func Offset: 0x2a4
-	// Line 5380, Address: 0x2c7b24, Func Offset: 0x2b4
-	// Line 5381, Address: 0x2c7b34, Func Offset: 0x2c4
-	// Line 5382, Address: 0x2c7b38, Func Offset: 0x2c8
-	// Line 5383, Address: 0x2c7b44, Func Offset: 0x2d4
-	// Line 5384, Address: 0x2c7b54, Func Offset: 0x2e4
-	// Line 5385, Address: 0x2c7b58, Func Offset: 0x2e8
-	// Line 5386, Address: 0x2c7b64, Func Offset: 0x2f4
-	// Line 5388, Address: 0x2c7b70, Func Offset: 0x300
-	// Line 5389, Address: 0x2c7b80, Func Offset: 0x310
-	// Line 5390, Address: 0x2c7b8c, Func Offset: 0x31c
-	// Line 5389, Address: 0x2c7b90, Func Offset: 0x320
-	// Line 5390, Address: 0x2c7b94, Func Offset: 0x324
-	// Line 5389, Address: 0x2c7b98, Func Offset: 0x328
-	// Line 5390, Address: 0x2c7b9c, Func Offset: 0x32c
-	// Line 5391, Address: 0x2c7ba4, Func Offset: 0x334
-	// Line 5390, Address: 0x2c7bac, Func Offset: 0x33c
-	// Line 5391, Address: 0x2c7bb4, Func Offset: 0x344
-	// Line 5394, Address: 0x2c7bbc, Func Offset: 0x34c
-	// Line 5397, Address: 0x2c7be4, Func Offset: 0x374
-	// Line 5398, Address: 0x2c7bec, Func Offset: 0x37c
-	// Line 5397, Address: 0x2c7bf8, Func Offset: 0x388
-	// Line 5398, Address: 0x2c7bfc, Func Offset: 0x38c
-	// Line 5399, Address: 0x2c7c08, Func Offset: 0x398
-	// Line 5400, Address: 0x2c7c0c, Func Offset: 0x39c
-	// Line 5399, Address: 0x2c7c14, Func Offset: 0x3a4
-	// Line 5401, Address: 0x2c7c1c, Func Offset: 0x3ac
-	// Line 5402, Address: 0x2c7c20, Func Offset: 0x3b0
-	// Line 5399, Address: 0x2c7c24, Func Offset: 0x3b4
-	// Line 5400, Address: 0x2c7c2c, Func Offset: 0x3bc
-	// Line 5402, Address: 0x2c7c38, Func Offset: 0x3c8
-	// Line 5400, Address: 0x2c7c3c, Func Offset: 0x3cc
-	// Line 5401, Address: 0x2c7c48, Func Offset: 0x3d8
-	// Line 5402, Address: 0x2c7c58, Func Offset: 0x3e8
-	// Line 5405, Address: 0x2c7c64, Func Offset: 0x3f4
-	// Line 5406, Address: 0x2c7c6c, Func Offset: 0x3fc
-	// Line 5407, Address: 0x2c7c74, Func Offset: 0x404
-	// Line 5408, Address: 0x2c7c7c, Func Offset: 0x40c
-	// Line 5409, Address: 0x2c7c88, Func Offset: 0x418
-	// Line 5411, Address: 0x2c7c90, Func Offset: 0x420
-	// Line 5407, Address: 0x2c7ca4, Func Offset: 0x434
-	// Line 5410, Address: 0x2c7ca8, Func Offset: 0x438
-	// Line 5411, Address: 0x2c7cac, Func Offset: 0x43c
-	// Line 5413, Address: 0x2c7cb4, Func Offset: 0x444
-	// Line 5415, Address: 0x2c7cbc, Func Offset: 0x44c
-	// Line 5416, Address: 0x2c7cc0, Func Offset: 0x450
-	// Func End, Address: 0x2c7cf0, Func Offset: 0x480
-	scePrintf("DisplayOptionPlateLevel3 - UNIMPLEMENTED!\n");
+    ADV_WORK* ap = &AdvWork;     
+    QUAD* qp;                     
+    int i;                        
+    int ReturnCode;                
+    NJS_POINT3 TopLeft;             
+    NJS_POINT3 BotRigt;         
+    NJS_POLYGON_VTX poly[4];        
+    COLBAR_DEF ColorBarDef[8] = { 0xFF7F7F7F, 0xFF010101, 0xFF7F7F00, 0xFF010100, 0xFF007F7F, 0xFF000101, 0xFF007F00, 0xFF000100, 0xFF7F007F, 0xFF010001, 0xFF7F0000, 0xFF010000, 0xFF00007F, 0xFF000001, 0xFF000000, 0xFF000000 }; 
+    unsigned int PolyCol;        
+    int temp, temp2; // not from the debugging symbols
+
+    ReturnCode = 3;
+    
+    if ((Flag != 0) && ((Pad[PortId].press & 0x8F0))) 
+    {
+        CallSystemSe(0, 0);
+        
+        ReturnCode = 0;
+    }
+    
+    qp = &Qtex[1];
+    
+    SetQuadPos(96.0f, 96.0f, 448.0f, 48.0f, qp);
+    SetQuadUv2(0, 416.0f, 448.0f, 48.0f, 1, qp);
+    
+    AdvEasyDrawTexture(1, -1, qp, 0.05f, 1);
+    
+    SetQuadPos(32.0f, 408.0f, 576.0f, 32.0f, qp);
+    SetQuadUv2(400.0f, 320.0f, 576.0f, 32.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, (((unsigned int)ap->FlushCount2 + 255) << 24) | 0xBFBFBF, qp, 0.05f, 1);
+    
+    SetQuadPos(56.0f, 232.0f, 528.0f, 160.0f, qp);
+    SetQuadUv2(400.0f, 0, 528.0f, 160.0f, 0, qp);
+    
+    AdvEasyDrawTexture(0, 0xFFBFBFBF, qp, 0.05f, 1);
+
+    poly[0].y = poly[2].y = 32.0f;
+    poly[1].y = poly[3].y = ColorBarSizeY;
+    
+    poly[0].z = poly[1].z = poly[2].z = poly[3].z = 0.015f;
+    
+    for (i = 0, temp = 0, temp2 = 80; i < 8; i++) 
+    {
+        poly[0].x = poly[1].x = temp;
+        poly[2].x = poly[3].x = temp2;
+        
+        PolyCol = 0;
+        
+        if ((ColorBarDef[i].col2 & 0xFF0000)) 
+        {
+            PolyCol |= ColorBarBright << 16;
+        }
+        
+        if ((ColorBarDef[i].col2 & 0xFF00)) 
+        {
+            PolyCol |= ColorBarBright << 8;
+        }
+        
+        if ((ColorBarDef[i].col2 & 0xFF)) 
+        {
+            PolyCol |= ColorBarBright;
+        }
+        
+        poly[0].col = poly[2].col = PolyCol;
+        
+        PolyCol = ColorBarDef[i].col2;
+        
+        poly[1].col = poly[3].col = PolyCol;
+        
+        njDrawPolygon(poly, 4, 0);
+        
+        temp += 80;
+        temp2 += 80;
+    } 
+    
+    poly[0].z = poly[1].z = poly[2].z = poly[3].z = 0.04f;
+    
+    poly[0].x = poly[1].x = 0;
+    poly[2].x = poly[3].x = 639.0f;
+
+    poly[0].y = poly[2].y = RedLinePosY;
+    poly[1].y = poly[3].y = 3.0f + poly[0].y;
+    
+    poly[0].col = poly[1].col = poly[2].col = poly[3].col = 0xFFC00000;
+    
+    njDrawPolygon(poly, 4, 0);
+    
+    TopLeft.x = 30.0f;
+    TopLeft.y = 222.0f;
+    TopLeft.z = 0.04f;
+    
+    BotRigt.x = 609.0f;
+    BotRigt.y = 390.0f;
+    BotRigt.z = 0.04f;
+    
+    AdvEasyDrawWindow(&TopLeft, &BotRigt, 0xFFAFAFAF, 0x3F5F5F5F);
+    
+    FlushPlate();
+    
+    return ReturnCode;
 }
 
 // 100% matching! 
