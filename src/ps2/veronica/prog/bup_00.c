@@ -283,28 +283,35 @@ void TypewriterInit()
     }
 }
 
-// 
-// Start address: 0x2c9510
+// 100% matching!
 void TypewriterMain()
 {
-	// Line 3456, Address: 0x2c9510, Func Offset: 0
-	// Line 3460, Address: 0x2c9518, Func Offset: 0x8
-	// Line 3462, Address: 0x2c9530, Func Offset: 0x20
-	// Line 3464, Address: 0x2c953c, Func Offset: 0x2c
-	// Line 3466, Address: 0x2c9554, Func Offset: 0x44
-	// Line 3467, Address: 0x2c9564, Func Offset: 0x54
-	// Line 3468, Address: 0x2c9570, Func Offset: 0x60
-	// Line 3469, Address: 0x2c957c, Func Offset: 0x6c
-	// Line 3468, Address: 0x2c9580, Func Offset: 0x70
-	// Line 3471, Address: 0x2c9588, Func Offset: 0x78
-	// Line 3474, Address: 0x2c9590, Func Offset: 0x80
-	// Line 3476, Address: 0x2c959c, Func Offset: 0x8c
-	// Line 3478, Address: 0x2c95b4, Func Offset: 0xa4
-	// Line 3479, Address: 0x2c95c4, Func Offset: 0xb4
-	// Line 3480, Address: 0x2c95d0, Func Offset: 0xc0
-	// Line 3991, Address: 0x2c95d8, Func Offset: 0xc8
-	// Func End, Address: 0x2c95e4, Func Offset: 0xd4
-	scePrintf("TypewriterMain - UNIMPLEMENTED!\n");
+     if (!(sys->ss_flg & 0x200))
+     {
+        ExecuteSaveScreen(pSave);
+         
+        if (pSave->usExitFlag == 1) 
+        {
+            sys->typ_md0 = 2;
+            sys->typ_md1 = 0;
+            
+            sys->typ_flg |= 0x8;
+            
+            InitFlag = 0;
+        }
+    }
+    else
+     {
+        ExecuteLoadScreen(pLoad);
+         
+        if (pLoad->usExitFlag == 1) 
+        {
+            sys->typ_md0 = 2;
+            sys->typ_md1 = 0;
+            
+            InitFlag = 0;
+        }
+    }
 }
 
 // 

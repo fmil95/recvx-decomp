@@ -107,11 +107,11 @@ void DispLoadTexture(tagLOAD_SCREEN* pLoad)
 	// Line 260, Address: 0x275758, Func Offset: 0x98
 	// Line 267, Address: 0x275774, Func Offset: 0xb4
 	// Func End, Address: 0x275784, Func Offset: 0xc4
-}
+}*/
 
 // 
 // Start address: 0x275790
-int ExecuteLoadScreen(tagLOAD_SCREEN* pLoad)
+int ExecuteLoadScreen(LOAD_SCREEN* pLoad)
 {
 	// Line 282, Address: 0x275790, Func Offset: 0
 	// Line 284, Address: 0x2757a0, Func Offset: 0x10
@@ -154,9 +154,10 @@ int ExecuteLoadScreen(tagLOAD_SCREEN* pLoad)
 	// Line 345, Address: 0x2759cc, Func Offset: 0x23c
 	// Line 346, Address: 0x2759d0, Func Offset: 0x240
 	// Func End, Address: 0x2759d8, Func Offset: 0x248
+	scePrintf("ExecuteLoadScreen - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2759e0
 void SetStateLoadScreenAwarenessCard(tagLOAD_SCREEN* pLoad)
 {

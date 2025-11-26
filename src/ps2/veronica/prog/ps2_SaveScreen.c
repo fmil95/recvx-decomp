@@ -147,11 +147,11 @@ void DispTexture(tagSAVE_SCREEN* pSave)
 	// Line 444, Address: 0x26f0b4, Func Offset: 0x134
 	// Line 451, Address: 0x26f0d0, Func Offset: 0x150
 	// Func End, Address: 0x26f0e0, Func Offset: 0x160
-}
+}*/
 
 // 
 // Start address: 0x26f0e0
-int ExecuteSaveScreen(tagSAVE_SCREEN* pSave)
+int ExecuteSaveScreen(SAVE_SCREEN* pSave)
 {
 	// Line 498, Address: 0x26f0e0, Func Offset: 0
 	// Line 500, Address: 0x26f0f0, Func Offset: 0x10
@@ -214,9 +214,10 @@ int ExecuteSaveScreen(tagSAVE_SCREEN* pSave)
 	// Line 591, Address: 0x26f45c, Func Offset: 0x37c
 	// Line 592, Address: 0x26f460, Func Offset: 0x380
 	// Func End, Address: 0x26f468, Func Offset: 0x388
+	scePrintf("ExecuteSaveScreen - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x26f470
 void SetStateSaveScreenAwarenessCard(tagSAVE_SCREEN* pSave)
 {
