@@ -7,6 +7,7 @@ config/SLUS_201.84
 config/SLUS_201.84.ld
 config/undefined_funcs_auto.txt
 config/undefined_syms_auto.txt
+context
 src/ps2/veronica/prog/*.o
 elf/*.o
 elf/*.s
@@ -19,3 +20,4 @@ elf/iso/RECVX_NEW.iso
 elf/iso/RECVX_FILELIST.TXT
 compile_config.json
 compile_wibo.py
+dwarfdump.txt
