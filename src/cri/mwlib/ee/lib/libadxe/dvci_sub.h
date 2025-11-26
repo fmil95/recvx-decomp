@@ -24,7 +24,7 @@ extern sceCdRMode dvg_ci_cdrmode;
 
 static Sint32 analysis_flist_dup(void *inf, Sint8 *buf, Sint32 num);
 void conv_to_tpath_dup(Sint8 *spath, Sint8 *tpath);
-Sint32 dvci_get_fstate(const Sint8 *fname, sceCdlFILE *fp);
+void dvci_get_fstate(const Sint8 *fname, sceCdlFILE *fp);
 void dvci_init_flist(void);
 Sint32 dvCiLoadFpCache(Sint8 *fls_fname, Sint8 *fpc_ptr, Sint32 fpc_size);
 void dvCiSetRdMode(Sint32 nrtry, Sint32 speed, Sint32 dtype);

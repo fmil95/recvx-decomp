@@ -7,15 +7,15 @@
 #include <stdio.h>
 //#include <string.h> /* ERROR: causes linker to fail */
 
-static Char8* volatile dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
-static DVCI_OBJ dvg_ci_obj[40] = { 0 };
-static DVCI_ERRFN dvg_ci_err_func = NULL;
-static void* dvg_ci_err_obj = NULL;
-static Char8 dvg_ci_fname[297] = { 0 };
-static DVCI_VTBL dvg_ci_vtbl = { dvCiExecServer, dvCiEntryErrFunc, dvCiGetFileSize, NULL, dvCiOpen, dvCiClose, dvCiSeek, dvCiTell, dvCiReqRd, NULL, dvCiStopTr, dvCiGetStat, dvCiGetSctLen, NULL, dvCiGetNumTr, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+char* volatile dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
+DVS_CI_OBJ dvg_ci_obj[40] = { 0 };
+CVF_FS_ERRFN dvg_ci_err_func = NULL;
+void *dvg_ci_err_obj = NULL;
+Sint8 dvg_ci_fname[297] = { 0 };
+CVS_FS_IF dvg_ci_vtbl = { dvCiExecServer, dvCiEntryErrFunc, dvCiGetFileSize, NULL, dvCiOpen, dvCiClose, dvCiSeek, dvCiTell, dvCiReqRd, NULL, dvCiStopTr, dvCiGetStat, dvCiGetSctLen, NULL, dvCiGetNumTr, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 
 // 100% matching!
-DVCI dvci_alloc(void) 
+static DVCI dvci_alloc(void)
 {
     DVCI dvci;
     Sint32 i;
@@ -34,53 +34,53 @@ DVCI dvci_alloc(void)
 }
 
 // 100% matching!
-void dvci_call_errfn(void* obj, const Char8* msg)
+void dvci_call_errfn(DVCI dvci, const char *msg)
 {
     if (dvg_ci_err_func != NULL) 
     {
-        dvg_ci_err_func(dvg_ci_err_obj, msg, obj);
+        dvg_ci_err_func(dvg_ci_err_obj, msg, dvci);
     }
 }
 
 // 100% matching!
-void dvci_conv_fname(const Char8* fname, Char8* path) 
+void dvci_conv_fname(const Sint8 *spath, Sint8 *tpath)
 {
-    memset(path, 0, 297);
+    memset(tpath, 0, 297);
     
-    strcpy(path, fname);
+    strcpy(tpath, spath);
 
-    if (strcmp(fname + (strlen(fname) - 2), ";1") != 0) 
+    if (strcmp(spath + (strlen(spath) - 2), ";1") != 0) 
     {
-        strcat(path, ";1");
+        strcat(tpath, ";1");
     }
 
-    dvci_to_large_to_yen((Sint8*)path);
+    dvci_to_large_to_yen(tpath);
 }
 
 // 100% matching!
-void dvci_free(DVCI dvci)
+static void dvci_free(DVCI dvci)
 {
-    memset(dvci, 0, sizeof(DVCI_OBJ));
+    memset(dvci, 0, sizeof(DVS_CI_OBJ));
 }
 
 // 100% matching!
-void dvci_to_large_to_yen(Sint8* path) 
+void dvci_to_large_to_yen(Sint8 *fname)
 {
-    Sint32 i;
-    Uint32 l;
+    Uint32 len;
+    Uint32 lp;
 
-    l = strlen(path);
+    len = strlen(fname);
     
-    for (i = 0; i < l; i++) 
+    for (lp = 0; lp < len; lp++) 
     {
-        if (path[i] == '/') 
+        if (fname[lp] == '/') 
         {
-            path[i] = '\\';
+            fname[lp] = '\\';
         }
         
-        if ((Uint8)(path[i] - 'a') < 26) // probably a compiler optimization
+        if ((fname[lp] >= 'a') && (fname[lp] <= 'z')) 
         {
-            path[i] -= ' ';
+            fname[lp] -= ' ';
         }
     } 
 }
@@ -94,11 +94,15 @@ void dvci_wait(void)
 }
 
 // 100% matching!
-void dvCiClose(DVCI dvci) 
+void dvCiClose(void *obj)
 {
+    DVCI dvci;
+
+    dvci = obj;
+    
     if (dvci != NULL) 
     {
-        if ((unsigned char)dvci->stat >= 2) 
+        if ((dvci->stat != 0) && (dvci->stat != 1)) 
         {
             dvCiStopTr(dvci);
         }
@@ -110,21 +114,21 @@ void dvCiClose(DVCI dvci)
 }
 
 // 100% matching!
-void dvCiEntryErrFunc(DVCI_ERRFN func, void* obj) 
+void dvCiEntryErrFunc(CVF_FS_ERRFN errfn, void *obj)
 {
-    dvg_ci_err_func = func;
+    dvg_ci_err_func = errfn;
     dvg_ci_err_obj = obj;
 }
 
 // 100% matching!
 void dvCiExecHndl(DVCI dvci)
 {
-    Sint32 rsflg;
+    Sint32 sync_stat;
     Sint32 errcode;
 
     if (dvci->stat == 2) 
     {
-        rsflg = sceCdSync(1);
+        sync_stat = sceCdSync(1);
         
         errcode = sceCdGetError();
         
@@ -134,13 +138,13 @@ void dvCiExecHndl(DVCI dvci)
             
             printf("Drive Error (0x%x)\n", errcode);
         }
-        else if (rsflg == 0) 
+        else if (sync_stat == 0) 
         {
-            InvalidDCache(dvci->buf, (dvci->buf + (dvci->rdsct * 2048)) - 1);
+            InvalidDCache(dvci->buf, (dvci->buf + (dvci->tr_nsct * 2048)) - 1);
             
             dvci->stat = 1;
             
-            dvci->tell += dvci->rdsct;
+            dvci->req_nsct += dvci->tr_nsct;
         }
     }
 }
@@ -163,7 +167,7 @@ void dvCiExecServer(void)
 }
 
 // 100% matching!
-Sint32 dvCiGetFileSize(const Char8* fname) 
+Sint32 dvCiGetFileSize(const Sint8 *fname) 
 {
     sceCdlFILE fp;
 
@@ -174,7 +178,7 @@ Sint32 dvCiGetFileSize(const Char8* fname)
         return 0;
     }
 
-    dvci_get_fstate((const Sint8*)fname, &fp);
+    dvci_get_fstate(fname, &fp);
 
     if (fp.lsn == 0) 
     {
@@ -182,7 +186,7 @@ Sint32 dvCiGetFileSize(const Char8* fname)
         
         dvci_conv_fname(fname, dvg_ci_fname);
 
-        if (sceCdSearchFile(&fp, dvg_ci_fname) == 0) 
+        if (sceCdSearchFile(&fp, (char*)dvg_ci_fname) == 0) 
         {
             dvci_call_errfn(NULL, "E0092902:can't find file.(dvCiGetFileSize)");
             
@@ -194,14 +198,18 @@ Sint32 dvCiGetFileSize(const Char8* fname)
 }
 
 // 100% matching!
-void* dvCiGetInterface(void) 
+CVFS_IF dvCiGetInterface()
 {
     return &dvg_ci_vtbl;
 }
 
 // 100% matching!
-Sint32 dvCiGetNumTr(DVCI dvci)
+Sint32 dvCiGetNumTr(void *obj)
 {
+    DVCI dvci;
+
+    dvci = obj;
+    
     if (dvci == NULL)
     {
         dvci_call_errfn(dvci, "E0092912:handl is null.");
@@ -209,41 +217,45 @@ Sint32 dvCiGetNumTr(DVCI dvci)
         return 0;
     }
 
-    return dvci->tell * 2048;
+    return dvci->req_nsct * 2048;
 }
 
 // 100% matching!
-Sint32 dvCiGetSctLen(void)
+Sint32 dvCiGetSctLen(void *obj)
 {
     return 2048;
 }
 
 // 100% matching!
-Sint8 dvCiGetStat(DVCI dvci)
+CVE_FS_ST dvCiGetStat(void *obj)
 {
+    DVCI dvci;
+
+    dvci = obj;
+    
     if (dvci == NULL) 
     {
         dvci_call_errfn(dvci, "E0092912:handl is null.");
         
-        return 0;
+        return CVE_FS_ST_IDLE;
     }
 
-    return dvci->stat;
+    return (CVE_FS_ST)dvci->stat;
 }
 
 // 100% matching!
-DVCI dvCiOpen(Char8* fname, void* unused, Sint32 rw)
+void* dvCiOpen(Sint8 *fname, void *prm, CVE_FS_OP rw)
 {
     DVCI dvci;
 
     if (fname == NULL) 
     {
-        dvci_call_errfn(fname, "E0092908:fname is null.(dvCiOpen)");
+        dvci_call_errfn((DVCI)fname, "E0092908:fname is null.(dvCiOpen)");
         
         return NULL;
     }
 
-    if (rw != 0)
+    if (rw != CVE_FS_OP_READ)
     {
         dvci_call_errfn(NULL, "E0092909:rw is illigal.(dvCis)");
         
@@ -259,7 +271,7 @@ DVCI dvCiOpen(Char8* fname, void* unused, Sint32 rw)
         return NULL;
     }
 
-    dvci_get_fstate((const Sint8*)fname, &dvci->fp);
+    dvci_get_fstate(fname, &dvci->fp);
 
     if (dvci->fp.lsn == 0) 
     {
@@ -267,7 +279,7 @@ DVCI dvCiOpen(Char8* fname, void* unused, Sint32 rw)
 
         sceCdSync(0);
 
-        if (sceCdSearchFile(&dvci->fp, dvg_ci_fname) == 0) 
+        if (sceCdSearchFile(&dvci->fp, (char*)dvg_ci_fname) == 0) 
         {
             dvci_call_errfn(NULL, "E0092911:sceCdSearchFile fail.(dvCiOpen)");
             
@@ -276,24 +288,24 @@ DVCI dvCiOpen(Char8* fname, void* unused, Sint32 rw)
             return NULL;
         }
 
-        dvci->unk1 = 0;
+        dvci->cache = 0;
     } 
     else 
     {
-        dvci->unk1 = 1;
+        dvci->cache = 1;
     }
 
     dvci->fsize = dvci->fp.size;
     
     dvci->used = TRUE;
     
-    dvci->tell = 0;
+    dvci->req_nsct = 0;
     
     dvci->buf = NULL;
     
-    dvci->ofs = ((Sint32)dvci->fp.size + 2047) / 2048;
+    dvci->skpos = ((Sint32)dvci->fp.size + 2047) / 2048;
     
-    dvci->rdsct = 0;
+    dvci->tr_nsct = 0;
     
     dvci->stat = 0;
 
@@ -301,9 +313,12 @@ DVCI dvCiOpen(Char8* fname, void* unused, Sint32 rw)
 }
 
 // 100% matching!
-Sint32 dvCiReqRd(DVCI dvci, Sint32 nsct, Sint8* buf) 
+Sint32 dvCiReqRd(void *obj, Sint32 nsct, void *buf)
 {
+    DVCI dvci;
     Sint32 lsn;
+
+    dvci = obj;
 
     if (dvci == NULL) 
     {
@@ -340,13 +355,13 @@ Sint32 dvCiReqRd(DVCI dvci, Sint32 nsct, Sint8* buf)
     
     dvci->buf = buf;
     
-    dvci->rdsct = MIN(nsct, dvci->ofs - dvci->tell);
+    dvci->tr_nsct = MIN(nsct, dvci->skpos - dvci->req_nsct);
     
-    dvci->cdrmode.trycount = dvg_ci_cdrmode.trycount;
+    dvci->mode.trycount = dvg_ci_cdrmode.trycount;
     
-    dvci->cdrmode.spindlctrl = dvg_ci_cdrmode.spindlctrl;
+    dvci->mode.spindlctrl = dvg_ci_cdrmode.spindlctrl;
     
-    dvci->cdrmode.datapattern = dvg_ci_cdrmode.datapattern;
+    dvci->mode.datapattern = dvg_ci_cdrmode.datapattern;
     
     if (sceCdSync(1) == 1)
     {
@@ -355,11 +370,11 @@ Sint32 dvCiReqRd(DVCI dvci, Sint32 nsct, Sint8* buf)
     
     dvCiExecServer();
     
-    lsn = dvci->fp.lsn + dvci->tell;
+    lsn = dvci->fp.lsn + dvci->req_nsct;
     
-    InvalidDCache(dvci->buf, (dvci->buf + (dvci->rdsct * 2048)) - 1);
+    InvalidDCache(dvci->buf, (dvci->buf + (dvci->tr_nsct * 2048)) - 1);
     
-    if (sceCdRead(lsn, dvci->rdsct, dvci->buf, &dvci->cdrmode) == 0) 
+    if (sceCdRead(lsn, dvci->tr_nsct, dvci->buf, &dvci->mode) == 0) 
     {
         return 0;
     }
@@ -368,12 +383,16 @@ Sint32 dvCiReqRd(DVCI dvci, Sint32 nsct, Sint8* buf)
         dvci->stat = 2;
     }
     
-    return dvci->rdsct;
+    return dvci->tr_nsct;
 }
 
 // 100% matching!
-Sint32 dvCiSeek(DVCI dvci, Sint32 ofst, Sint32 whence)
+Sint32 dvCiSeek(void *obj, Sint32 nsct, CVE_FS_SK mode)
 {
+    DVCI dvci;
+
+    dvci = obj;
+
     if (dvci == NULL) 
     {
         dvci_call_errfn(dvci, "E0092912:handl is null.");
@@ -381,28 +400,31 @@ Sint32 dvCiSeek(DVCI dvci, Sint32 ofst, Sint32 whence)
         return 0;
     }
 
-    if (whence == 0) 
+    if (mode == CVE_FS_SK_SET) 
     {
-        dvci->tell = ofst;
+        dvci->req_nsct = nsct;
     } 
-    else if (whence == 2) 
+    else if (mode == CVE_FS_SK_END) 
     {
-        dvci->tell = dvci->ofs + ofst;
+        dvci->req_nsct = dvci->skpos + nsct;
     } 
-    else if (whence == 1)
+    else if (mode == CVE_FS_SK_CUR)
     {
-        dvci->tell += ofst;
+        dvci->req_nsct += nsct;
     }
 
-    dvci->tell = CLAMP(dvci->tell, 0, dvci->ofs);
+    dvci->req_nsct = CLAMP(dvci->req_nsct, 0, dvci->skpos);
     
-    return dvci->tell;
+    return dvci->req_nsct;
 }
 
 // 100% matching!
-void dvCiStopTr(DVCI dvci) 
+void dvCiStopTr(void *obj)
 {
-    Sint32 i;
+    DVCI dvci;
+	Sint32 cnt;
+
+    dvci = obj;
 
     if (dvci == NULL) 
     {
@@ -417,7 +439,7 @@ void dvCiStopTr(DVCI dvci)
         
         if (dvci->stat == 2) 
         {
-            for (i = 0; i < 20; i++) 
+            for (cnt = 0; cnt < 20; cnt++) 
             {
                 if (sceCdBreak() == 1) 
                 {
@@ -427,21 +449,25 @@ void dvCiStopTr(DVCI dvci)
                 dvci_wait();
             } 
             
-            if (i >= 20) 
+            if (cnt >= 20) 
             {
                 sceCdSync(0);
             }
         }
         
-        InvalidDCache(dvci->buf, (dvci->buf + (dvci->rdsct * 2048)) - 1);
+        InvalidDCache(dvci->buf, (dvci->buf + (dvci->tr_nsct * 2048)) - 1);
         
         dvci->stat = 0;
     }
 }
 
 // 100% matching!
-Sint32 dvCiTell(DVCI dvci)
+Sint32 dvCiTell(void *obj)
 {
+    DVCI dvci;
+
+    dvci = obj;
+    
     if (dvci == NULL) 
     {
         dvci_call_errfn(dvci, "E0092912:handl is null.");
@@ -449,5 +475,5 @@ Sint32 dvCiTell(DVCI dvci)
         return 0;
     }
 
-    return dvci->tell;
+    return dvci->req_nsct;
 }

@@ -3,76 +3,45 @@
 
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <libcdvd.h>
+#include "cri_cvfs.h"
 #include "macros.h"
 
-typedef void (*DVCI_ERRFN)(void* dvci_errobj, const Char8* msg, void* obj);
-
-typedef struct _dvci_obj 
+typedef struct 
 {
-    Sint8       used;
-    Sint8       unk1;
-    Sint8       stat;
-    Sint8       unk3;    /* unused */
-    Sint32      unk4;    /* unused */
-    Sint32      fsize;
-    Sint32      ofs;
-    Sint32      tell;
-    Sint8*      buf;
-    Sint32      rdsct;
-    sceCdlFILE  fp;
-    sceCdRMode  cdrmode;
-} DVCI_OBJ;
-typedef DVCI_OBJ *DVCI;
+	Sint8 used;
+	Sint8 cache;
+	Sint8 stat;
+	Sint8 instat;
+    Sint32 fnsct;
+	Uint32 fsize;
+	Sint32 skpos;
+	Sint32 req_nsct;
+    Sint8 *buf;
+	Sint32 tr_nsct;
+	sceCdlFILE fp;
+	sceCdRMode mode;
+} DVS_CI_OBJ;
+typedef DVS_CI_OBJ *DVCI;
 
-typedef struct _dvci_vtbl
-{
-    void    (*ExecServer)();
-    void    (*EntryErrFunc)(DVCI_ERRFN func, void* obj);
-    Sint32  (*GetFileSize)(const Char8* fname);
-    void    (*unkC)();
-    DVCI    (*Open)(Char8* fname, void* unused, Sint32 rw);
-    void    (*Close)(DVCI dvci);
-    Sint32  (*Seek)(DVCI dvci, Sint32 ofst, Sint32 whence);
-    Sint32  (*Tell)(DVCI dvci);
-    Sint32  (*ReqRd)(DVCI dvci, Sint32 nsct, Sint8* buf);
-    void    (*unk24)();
-    void    (*StopTr)(DVCI dvci);
-    Sint8   (*GetStat)(DVCI dvci);
-    Sint32  (*GetSctLen)();
-    void    (*unk34)();
-    Sint32  (*GetNumTr)(DVCI dvci);
-    void    (*unk3C)();
-    void    (*unk40)();
-    void    (*unk44)();
-    void    (*unk48)();
-    void    (*unk4C)();
-    void    (*unk50)();
-    void    (*unk54)();
-    void    (*unk58)();
-    void    (*unk5C)();
-    void    (*unk60)();
-    void    (*unk64)();
-} DVCI_VTBL;
-
-DVCI dvci_alloc(void);
-void dvci_call_errfn(void* obj, const Char8* msg);
-void dvci_conv_fname(const Char8* fname, Char8* path);
-void dvci_free(DVCI dvci);
-void dvci_to_large_to_yen(Sint8* path);
+static DVCI dvci_alloc(void);
+void dvci_call_errfn(DVCI dvci, const char *msg);
+void dvci_conv_fname(const Sint8 *spath, Sint8 *tpath);
+static void dvci_free(DVCI dvci);
+void dvci_to_large_to_yen(Sint8 *fname);
 void dvci_wait(void);
-void dvCiClose(DVCI dvci);
-void dvCiEntryErrFunc(DVCI_ERRFN func, void* obj);
+void dvCiClose(void *obj);
+void dvCiEntryErrFunc(CVF_FS_ERRFN errfn, void *obj);
 void dvCiExecHndl(DVCI dvci);
 void dvCiExecServer(void);
-Sint32 dvCiGetFileSize(const Char8* fname);
-void* dvCiGetInterface(void);
-Sint32 dvCiGetNumTr(DVCI dvci);
-Sint32 dvCiGetSctLen(void);
-Sint8 dvCiGetStat(DVCI dvci);
-DVCI dvCiOpen(Char8* fname, void* unused, Sint32 rw);
-Sint32 dvCiReqRd(DVCI dvci, Sint32 nsct, Sint8* buf);
-Sint32 dvCiSeek(DVCI dvci, Sint32 ofst, Sint32 whence);
-void dvCiStopTr(DVCI dvci);
-Sint32 dvCiTell(DVCI dvci);
+Sint32 dvCiGetFileSize(const Sint8 *fname);
+CVFS_IF dvCiGetInterface(void);
+Sint32 dvCiGetNumTr(void *obj);
+Sint32 dvCiGetSctLen(void *obj);
+CVE_FS_ST dvCiGetStat(void *obj);
+void* dvCiOpen(Sint8 *fname, void *prm, CVE_FS_OP rw);
+Sint32 dvCiReqRd(void *obj, Sint32 nsct, void *buf);
+Sint32 dvCiSeek(void *obj, Sint32 nsct, CVE_FS_SK mode);
+void dvCiStopTr(void *obj);
+Sint32 dvCiTell(void *obj);
 
 #endif

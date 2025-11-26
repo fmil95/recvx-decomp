@@ -61,7 +61,7 @@ void conv_to_tpath_dup(Sint8 *spath, Sint8 *tpath)
 }
 
 // 100% matching!
-Sint32 dvci_get_fstate(const Sint8 *fname, sceCdlFILE *fp)
+void dvci_get_fstate(const Sint8 *fname, sceCdlFILE *fp)
 {
     fp->lsn = 0;
     
