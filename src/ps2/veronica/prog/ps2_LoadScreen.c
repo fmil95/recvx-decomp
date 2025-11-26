@@ -12,7 +12,7 @@ CONFIGFILE ConfigFile;
 SYS_WORK* sys;
 
 // 100% matching!
-LOAD_SCREEN* CreateLoadScreen(LOAD_SCREEN* pLoad)
+LOAD_SCREEN* CreateLoadScreen(LOAD_SCREEN* pLoad, void* vpWorkPtrSys) // second parameter is not present on the debugging symbols
 {
     pLoad->ulState = 0;
     pLoad->ulSubState = 0;

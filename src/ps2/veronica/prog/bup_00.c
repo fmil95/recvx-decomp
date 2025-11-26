@@ -1,11 +1,13 @@
 #include "bup_00.h"
+#include "ps2_LoadScreen.h"
+#include "ps2_SaveScreen.h"
 #include "pwksub.h"
 #include "main.h"
 
 /*char vmssyscmttbl[16];
-int old_data_flg;
+int old_data_flg;*/
 unsigned int InitFlag;
-char bootcommenttbl[32][32];
+/*char bootcommenttbl[32][32];
 _anon20* bip;
 char StrBuf[128];
 char ErrBuf[128];
@@ -28,14 +30,12 @@ unsigned char* img2p;
 unsigned char* img3p;
 unsigned char* img4p;
 unsigned int palbuf[0];
-_anon11* rom;
-tagLOAD_SCREEN* pLoad;
-tagLOAD_SCREEN Load;
-BH_PWORK* plp;
-tagSAVE_SCREEN* pSave;
-unsigned char* vwbmemp;
-tagSAVE_SCREEN Save;
-int ErrorCode;
+_anon11* rom;*/
+LOAD_SCREEN* pLoad;
+LOAD_SCREEN Load;
+SAVE_SCREEN* pSave;
+SAVE_SCREEN Save;
+/*int ErrorCode;
 _anon44 hdr01;
 _anon54 Info;
 char bootcommentbuf[32][15];*/
@@ -130,14 +130,14 @@ unsigned int RoomNameSwitch(unsigned int name)
 	scePrintf("RoomNameSwitch - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2c8e50
 void TypeWriterTextureInit()
 {
 	unsigned int dt;
 	unsigned char* datp;
 	int sz;
-	_anon2* tw;
+	//_anon2* tw;
 	// Line 3232, Address: 0x2c8e50, Func Offset: 0
 	// Line 3233, Address: 0x2c8e60, Func Offset: 0x10
 	// Line 3237, Address: 0x2c8e6c, Func Offset: 0x1c
@@ -235,53 +235,52 @@ void TypeWriterTextureInit()
 	// Line 3372, Address: 0x2c9330, Func Offset: 0x4e0
 	// Line 3375, Address: 0x2c9348, Func Offset: 0x4f8
 	// Func End, Address: 0x2c935c, Func Offset: 0x50c
-}*/
+	scePrintf("TypeWriterTextureInit - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x2c9360
+// 100% matching!
 void TypewriterInit()
 {
-	// Line 3393, Address: 0x2c9360, Func Offset: 0
-	// Line 3396, Address: 0x2c9368, Func Offset: 0x8
-	// Line 3397, Address: 0x2c9378, Func Offset: 0x18
-	// Line 3398, Address: 0x2c9380, Func Offset: 0x20
-	// Line 3400, Address: 0x2c9398, Func Offset: 0x38
-	// Line 3403, Address: 0x2c939c, Func Offset: 0x3c
-	// Line 3405, Address: 0x2c93ac, Func Offset: 0x4c
-	// Line 3408, Address: 0x2c93c4, Func Offset: 0x64
-	// Line 3409, Address: 0x2c93e0, Func Offset: 0x80
-	// Line 3418, Address: 0x2c93ec, Func Offset: 0x8c
-	// Line 3409, Address: 0x2c93f0, Func Offset: 0x90
-	// Line 3410, Address: 0x2c93f4, Func Offset: 0x94
-	// Line 3411, Address: 0x2c9408, Func Offset: 0xa8
-	// Line 3410, Address: 0x2c940c, Func Offset: 0xac
-	// Line 3411, Address: 0x2c9410, Func Offset: 0xb0
-	// Line 3412, Address: 0x2c9420, Func Offset: 0xc0
-	// Line 3411, Address: 0x2c9424, Func Offset: 0xc4
-	// Line 3412, Address: 0x2c9434, Func Offset: 0xd4
-	// Line 3413, Address: 0x2c9444, Func Offset: 0xe4
-	// Line 3412, Address: 0x2c9448, Func Offset: 0xe8
-	// Line 3413, Address: 0x2c944c, Func Offset: 0xec
-	// Line 3414, Address: 0x2c945c, Func Offset: 0xfc
-	// Line 3413, Address: 0x2c9460, Func Offset: 0x100
-	// Line 3414, Address: 0x2c9464, Func Offset: 0x104
-	// Line 3415, Address: 0x2c9474, Func Offset: 0x114
-	// Line 3414, Address: 0x2c9478, Func Offset: 0x118
-	// Line 3415, Address: 0x2c947c, Func Offset: 0x11c
-	// Line 3416, Address: 0x2c948c, Func Offset: 0x12c
-	// Line 3415, Address: 0x2c9490, Func Offset: 0x130
-	// Line 3416, Address: 0x2c9494, Func Offset: 0x134
-	// Line 3417, Address: 0x2c94a4, Func Offset: 0x144
-	// Line 3416, Address: 0x2c94a8, Func Offset: 0x148
-	// Line 3417, Address: 0x2c94b4, Func Offset: 0x154
-	// Line 3418, Address: 0x2c94c4, Func Offset: 0x164
-	// Line 3417, Address: 0x2c94c8, Func Offset: 0x168
-	// Line 3419, Address: 0x2c94d8, Func Offset: 0x178
-	// Line 3423, Address: 0x2c94e0, Func Offset: 0x180
-	// Line 3424, Address: 0x2c94f8, Func Offset: 0x198
-	// Line 3452, Address: 0x2c9504, Func Offset: 0x1a4
-	// Func End, Address: 0x2c9510, Func Offset: 0x1b0
-	scePrintf("TypewriterInit - UNIMPLEMENTED!\n");
+    sys->typ_flg &= 0x1;
+    
+    TypeWriterTextureInit();
+    
+    if (sys->typ_md0 == 1) 
+    {
+        sys->typ_md1 = 0;
+    }
+    
+    if (InitFlag == 0) 
+    {
+        if (!(sys->ss_flg & 0x200)) 
+        {
+            pSave = CreateSaveScreen(&Save, vwbmemp);
+            
+            sys->version = 10;
+            
+            sys->flr_no = plp->flr_no;
+            
+            sys->ply_stflg[sys->ply_id] = plp->stflg;
+            
+            sys->ply_pos.x = plp->px;
+            sys->ply_pos.y = plp->py;
+            sys->ply_pos.z = plp->pz;
+            
+            sys->ply_ang = plp->ay;
+            
+            sys->ply_wno[sys->ply_id] = plp->wpnr_no;
+            
+            sys->ply_hp[sys->ply_id] = plp->hp;
+            
+            InitFlag = 1;
+        }
+        else 
+        {
+            pLoad = CreateLoadScreen(&Load, NULL);
+            
+            InitFlag = 1;
+        }
+    }
 }
 
 // 

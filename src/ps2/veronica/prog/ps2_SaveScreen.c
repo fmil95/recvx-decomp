@@ -25,70 +25,11 @@ tagICONINFORMATION IconInfo;
 tagMEMORYCARDSTATE McState;
 tagSAVEFILE SaveFile;
 tagCONFIGFILE ConfigFile;
-_anon11* sys;
-
-tagSAVE_SCREEN* CreateSaveScreen(tagSAVE_SCREEN* pSave, void* vpWorkPtrSys);
-void DispMessageSelect(char cSelectMes);
-void DispTexture(tagSAVE_SCREEN* pSave);
-int ExecuteSaveScreen(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenAwarenessCard(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenAwarenessCard(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenErrLostCard(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenErrLostCard(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenErrUnPS2MemCard(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenErrUnPS2MemCard(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenSelectCard(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenSelectCard(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenExit(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenExit(tagSAVE_SCREEN* pSave);
-void SetSaveScreenSpecialSave(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenSpecialSave(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenLostDirCheck(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenLostDirCheck(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenFreeCapacity(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenFreeCapacity(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenErrFreeCapacity(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenErrFreeCapacity(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenCreateSaveFileCheck(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenCreateSaveFileCheck(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenCreateSaveFile(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenCreateSaveFile(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenErrCreateSaveFile(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenErrCreateSaveFile(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenSelectFile(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenSelectFile(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenSaveCursor(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenSaveCursor(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenSaveCursorOld(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenSaveCursorOld(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenSaveCursorNew(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenSaveCursorNew(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenSave(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenSave(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenSuccessCardWrite(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenSuccessCardWrite(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenSuccessCardWriteMessage(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenSuccessCardWriteMessage(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenErrCardWrite(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenErrCardWrite(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenFormat(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenFormat(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenStartFormat(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenStartFormat(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenExitFormat(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenExitFormat(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenSuccessFormat(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenSuccessFormat(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenErrFormat(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenErrFormat(tagSAVE_SCREEN* pSave);
-void SetStateSaveScreenErrDer(tagSAVE_SCREEN* pSave);
-void ExecuteStateSaveScreenErrDer(tagSAVE_SCREEN* pSave);
-void SetDispSelectMessage();
-void CheckDispMemoryCard(tagSAVE_SCREEN* pSave);
+_anon11* sys;*/
 
 // 
 // Start address: 0x26e8a0
-tagSAVE_SCREEN* CreateSaveScreen(tagSAVE_SCREEN* pSave, void* vpWorkPtrSys)
+SAVE_SCREEN* CreateSaveScreen(SAVE_SCREEN* pSave, void* vpWorkPtrSys)
 {
 	// Line 110, Address: 0x26e8a0, Func Offset: 0
 	// Line 111, Address: 0x26e8b0, Func Offset: 0x10
@@ -115,9 +56,10 @@ tagSAVE_SCREEN* CreateSaveScreen(tagSAVE_SCREEN* pSave, void* vpWorkPtrSys)
 	// Line 135, Address: 0x26e96c, Func Offset: 0xcc
 	// Line 136, Address: 0x26e970, Func Offset: 0xd0
 	// Func End, Address: 0x26e984, Func Offset: 0xe4
+	scePrintf("CreateSaveScreen - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x26e990
 void DispMessageSelect(char cSelectMes)
 {
