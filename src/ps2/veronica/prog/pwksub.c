@@ -92,7 +92,7 @@ void bhSetFloorNum(BH_PWORK* pp)
 	// Line 292, Address: 0x14e3a8, Func Offset: 0x88
 	// Line 293, Address: 0x14e3b8, Func Offset: 0x98
 	// Func End, Address: 0x14e3c0, Func Offset: 0xa0
-}
+}*/
 
 // 
 // Start address: 0x14e3c0
@@ -109,9 +109,10 @@ int bhCheckFloorNum(float py)
 	// Line 310, Address: 0x14e420, Func Offset: 0x60
 	// Line 312, Address: 0x14e430, Func Offset: 0x70
 	// Func End, Address: 0x14e438, Func Offset: 0x78
+	scePrintf("bhCheckFloorNum - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x14e440
 void bhAddSpeed(BH_PWORK* pp, int r)
 {

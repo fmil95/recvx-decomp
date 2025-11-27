@@ -3,7 +3,7 @@
 
 /*char NormalTbl[64];
 _anon3 NullMka;
-int mka_ang[3];
+int mka_ang[3];*/
 
 // 
 // Start address: 0x12f510
@@ -46,9 +46,10 @@ int bhSetMotion(BH_PWORK* ewP, int add, int mode, void* datP)
 	// Line 142, Address: 0x12f7b4, Func Offset: 0x2a4
 	// Line 143, Address: 0x12f7b8, Func Offset: 0x2a8
 	// Func End, Address: 0x12f7d0, Func Offset: 0x2c0
+	scePrintf("bhSetMotion - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x12f7d0
 void SetMtnNormal(BH_PWORK* ewP, char* datP, int mode)
 {

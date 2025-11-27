@@ -3198,6 +3198,53 @@ typedef struct COLBAR_DEF
     unsigned int col2; // offset 0x4, size 0x4
 } COLBAR_DEF;
 
+typedef struct BH_SCEWORK 
+{
+    // total size: 0x134
+    unsigned char mode0;          // offset 0x0, size 0x1
+    unsigned char mode1;          // offset 0x1, size 0x1
+    unsigned char mode2;          // offset 0x2, size 0x1
+    unsigned char mode3;          // offset 0x3, size 0x1
+    unsigned char status;         // offset 0x4, size 0x1
+    char loop;                    // offset 0x5, size 0x1
+    BH_PWORK* work;               // offset 0x8, size 0x4
+    unsigned char* data;          // offset 0xC, size 0x4
+    unsigned char* lstack[6];     // offset 0x10, size 0x18
+    unsigned char* lcondition[6]; // offset 0x28, size 0x18
+    int cnt[4];                   // offset 0x40, size 0x10
+    float addpx;                  // offset 0x50, size 0x4
+    float addpy;                  // offset 0x54, size 0x4
+    float addpz;                  // offset 0x58, size 0x4
+    int addax;                    // offset 0x5C, size 0x4
+    int adday;                    // offset 0x60, size 0x4
+    int addaz;                    // offset 0x64, size 0x4
+    float setpx;                  // offset 0x68, size 0x4
+    float setpy;                  // offset 0x6C, size 0x4
+    float setpz;                  // offset 0x70, size 0x4
+    int setax;                    // offset 0x74, size 0x4
+    int setay;                    // offset 0x78, size 0x4
+    int setaz;                    // offset 0x7C, size 0x4
+    unsigned char model_cno;      // offset 0x80, size 0x1
+    unsigned char bpx;            // offset 0x81, size 0x1
+    unsigned char bpy;            // offset 0x82, size 0x1
+    unsigned char bpz;            // offset 0x83, size 0x1
+    unsigned char bax;            // offset 0x84, size 0x1
+    unsigned char bay;            // offset 0x85, size 0x1
+    unsigned char baz;            // offset 0x86, size 0x1
+    int wpnr_no;                  // offset 0x88, size 0x4
+    int wpnl_no;                  // offset 0x8C, size 0x4
+    int ev_eff_no;                // offset 0x90, size 0x4
+    int cnt2;                     // offset 0x94, size 0x4
+    int cnt3;                     // offset 0x98, size 0x4
+    float ips[4][3];              // offset 0x9C, size 0x30
+    float ian[4][3];              // offset 0xCC, size 0x30
+    unsigned int mtn_md;          // offset 0xFC, size 0x4
+    unsigned int mdflg;           // offset 0x100, size 0x4
+    int hokan_rate;               // offset 0x104, size 0x4
+    int bh_loop_cnt;              // offset 0x108, size 0x4
+    float e_lgt[2][5];            // offset 0x10C, size 0x28
+} BH_SCEWORK; 
+
 typedef struct {
     int isOnCD;		
     int size;

@@ -1685,9 +1685,8 @@ unsigned char flip_tree[24];
 void(*Mode_func)(BH_PWORK*)[6];
 void(*Move_func)(BH_PWORK*)[5];
 void(*Ply_func)(BH_PWORK*)[8];
-BH_PWORK* plp;*/
-BH_PWORK ene[128];
-/*_JOINT_PARE jointTree[11];
+BH_PWORK* plp;
+_JOINT_PARE jointTree[11];
 char joint_tree_buf[12];
 char poison_attack_wait;
 char poison_eff_wait;

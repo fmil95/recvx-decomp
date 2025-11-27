@@ -180,11 +180,11 @@ float njInvertSqrt(float x)
 	// Line 472, Address: 0x2d7f3c, Func Offset: 0x1c
 	// Line 476, Address: 0x2d7f40, Func Offset: 0x20
 	// Func End, Address: 0x2d7f48, Func Offset: 0x28
-}
+}*/
 
 // 
 // Start address: 0x2d7f50
-void njLinear(float* fpIdata, float* fpOdata, float fFrame)
+void	njLinear(Float *idata, Float *odata, NJS_SPLINE *attr, Float frame)
 {
 	// Line 526, Address: 0x2d7f50, Func Offset: 0
 	// Line 527, Address: 0x2d7f54, Func Offset: 0x4
@@ -208,11 +208,12 @@ void njLinear(float* fpIdata, float* fpOdata, float fFrame)
 	// Line 545, Address: 0x2d7f9c, Func Offset: 0x4c
 	// Line 549, Address: 0x2d7fa0, Func Offset: 0x50
 	// Func End, Address: 0x2d7fa8, Func Offset: 0x58
+	scePrintf("njLinear - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d7fb0
-void njOverhauserSpline(float* fpIdata, float* fpOdata, _anon0* pAttr, float fT)
+void	njOverhauserSpline(Float *idata, Float *odata, NJS_SPLINE *attr, Float frame)
 {
 	float ftmp;
 	// Line 594, Address: 0x2d7fb0, Func Offset: 0
@@ -271,9 +272,10 @@ void njOverhauserSpline(float* fpIdata, float* fpOdata, _anon0* pAttr, float fT)
 	// Line 662, Address: 0x2d808c, Func Offset: 0xdc
 	// Line 667, Address: 0x2d8090, Func Offset: 0xe0
 	// Func End, Address: 0x2d8098, Func Offset: 0xe8
+	scePrintf("njOverhauserSpline - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d80a0
 void njBezierSpline(float* fpIdata, float* fpOdata, _anon0* pAttr, float fFrame)
 {

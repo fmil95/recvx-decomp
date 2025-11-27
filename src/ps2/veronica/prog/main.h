@@ -84,6 +84,7 @@ extern BH_PWORK ply;
 extern float BHD_ASPECT_X;
 extern float BHD_ASPECT_Y;
 extern unsigned char* Ps2_PXLCONV;
+extern BH_PWORK ene[128];
 
 void njUserInit(void);
 Sint32 njUserMain(void);

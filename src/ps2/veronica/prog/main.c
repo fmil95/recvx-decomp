@@ -216,6 +216,7 @@ CONFIGFILE ConfigFile;
 unsigned char pl_sleep_cnt;
 unsigned int Ps2_albinoid_flag;
 CAM_WORK cam;
+BH_PWORK ene[128];
 
 // 100% matching!
 void njUserInit(void)
