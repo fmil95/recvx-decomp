@@ -41,7 +41,7 @@ int RoomSoundCaseNo;
 /*short DefBg[3];
 short DefObj[5];
 short DefEvt[5];*/
-short DefEne[6];
+short DefEne[6] = { 0, 1, 2, 3, 4, 5 };
 int SoundInitLevel;
 int SdReadMode;
 int SpqFileReadRequestFlag;
@@ -1525,13 +1525,10 @@ void CallEnemySe(int SlotNo, _anon16* pPos, int SeNo)
 }
 */
 
-// 
-// Start address: 0x295420
+// 100% matching!
 void StopEnemySe(int SlotNo)
 {
-	// Line 2709, Address: 0x295420, Func Offset: 0
-	// Func End, Address: 0x295438, Func Offset: 0x18
-	scePrintf("StopEnemySe - UNIMPLEMENTED!\n");
+    StopSe(DefEne[SlotNo]);
 }
 
 /*// 
