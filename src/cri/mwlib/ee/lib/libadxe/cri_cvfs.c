@@ -2,162 +2,164 @@
 
 #include <string.h>
 
-/* cvFsOpen() looks a bit strange with all the casts, it seems that there is one struct missing for the handle component and cvFsInit() 
-   further cements that idea. Additionally, functions like cvFsAddDev() parse the device to its interface instead of manually accessing 
-   it from the CVFS_OBJ struct, this could be due to polymorphism but maybe there is some cleaner way to do it? */
+// ERROR: this file should be compiled with -G0, but doing so makes the emulator halt
 
-static Char8* volatile cvfs_build = "\ncvFs Ver.2.11 Build:Jan 26 2001 09:55:14\n";
-static CVFS_ERRFN cvfs_errfn = NULL;
-static void* cvfs_errobj = NULL; 
-static Sint32 cvfs_init_cnt = 0;
-static Char8 cvfs_defdev[9];
-static CVFS_OBJ cvfs_obj[40];
-static CVFS_NAME_OBJ cvfs_tbl[32];
+char* volatile cvfs_build = "\ncvFs Ver.2.11 Build:Jan 26 2001 09:55:14\n";
+static CVF_FS_ERRFN cvfs_errfn = NULL;
+static void *cvfs_errobj = NULL; 
+Sint32 cvfs_init_cnt = 0;
+static Sint8 cvfs_defdev[9];
+static CVS_FS_OBJ cvfs_obj[40];
+static CVF_FS_TBL cvfs_tbl[32];
 
 // 100% matching!
-CVFS addDevice(Char8* devname, void* (*getdevif()))
+static CVFS_IF addDevice(Sint8 *devname, CVF_FS_VTBLFN func)
 {
-    CVFS cvfs;
-    Sint32 i;
+    Sint32 lp;
+	CVFS_IF fsif;
 
-    i = 0;
+    lp = 0;
 
     toUpperStr(devname);
     
-    cvfs = (CVFS)getdevif();
+    fsif = func();
 
     if (getDevice(devname) != NULL)
     {
-        return cvfs;
+        return fsif;
     }
 
-    for ( ; i < 32; i++) 
+    for ( ; lp < 32; lp++) 
     {
-        if (cvfs_tbl[i].name[0] == '\0')
+        if (cvfs_tbl[lp].dname[0] == '\0')
         {
             break;
         }
     }
 
-    if (i == 32)
+    if (lp == 32)
     {
-        return cvfs; 
+        return fsif; 
     }
 
-    cvfs_tbl[i].dev = cvfs;
+    cvfs_tbl[lp].vtbl = fsif;
     
-    memcpy(cvfs_tbl[i].name, devname, strlen(devname) + 1);
+    memcpy(cvfs_tbl[lp].dname, devname, strlen((const char*)devname) + 1);
 
-    return cvfs;
+    return fsif;
 }
 
 // 100% matching!
-CVFS allocCvFsHn(void) 
+static void* allocCvFsHn()
 {
-    Sint32 i;
+    Sint32 lp;
 
-    for (i = 0; i < 40; i++) 
+    for (lp = 0; lp < 40; lp++) 
     {
-        if (cvfs_obj[i].dev == NULL) 
+        if (cvfs_obj[lp].obj == NULL) 
         {
             break;
         }
     }
 
-    if (i == 40) 
+    if (lp == 40) 
     {
         return NULL;
     }
     
-    return &cvfs_obj[i];
+    return &cvfs_obj[lp];
 }
 
 // 100% matching!
-void cvFsAddDev(Char8* devname, void* (*getdevif()), void* unused) 
+void cvFsAddDev(Sint8 *devname, CVF_FS_VTBLFN vtblfn, void *init_prm)
 {
-    CVFS cvfs;
+    CVFS_IF fsif;
 
     if (devname == NULL) 
     {
-        cvFsError("cvFsAddDev #1:illegal device name");
+        cvFsError((const Sint8*)"cvFsAddDev #1:illegal device name");
     }
-    else if (getdevif == NULL) 
+    else if (vtblfn == NULL) 
     {
-        cvFsError("cvFsAddDev #2:illegal I/F func name");
+        cvFsError((const Sint8*)"cvFsAddDev #2:illegal I/F func name");
     }
     else 
     {
-        cvfs = addDevice(devname, getdevif);
+        fsif = addDevice(devname, vtblfn);
     
-        if (((CVFS_VTBL*)cvfs)->EntryErrFunc != NULL) 
+        if (fsif->EntryErrFunc != NULL) 
         {
-            ((CVFS_VTBL*)cvfs)->EntryErrFunc(cvFsCallUsrErrFn, NULL);
+            fsif->EntryErrFunc(cvFsCallUsrErrFn, NULL);
         }
     }
 }
 
 // 100% matching!
-void cvFsCallUsrErrFn(void* errobj, const Char8* msg, void* obj) 
+void cvFsCallUsrErrFn(void *obj, const Sint8 *msg, void *hndl)
 {
     if (cvfs_errfn != NULL) 
     {
-        cvfs_errfn(cvfs_errobj, msg, obj);
+        cvfs_errfn(cvfs_errobj, msg, hndl);
     }
 }
 
 // 100% matching!
-Sint32 cvFsChangeDir(const Char8* dirname) 
+Sint32 cvFsChangeDir(const Sint8 *dirname)
 {
-    CVFS cvfs;
-    Char8 devname[297];
-    Char8 fname[297];
+    Sint32 ret;
+	CVFS_IF cvfsif;
+	Sint8 dev[297];
+	Sint8 dir[297];
 
+    ret = -1;
+    
     if (dirname == NULL) 
     {
-        cvFsError("cvFsChangeDir #1:illegal directory name");
+        cvFsError((const Sint8*)"cvFsChangeDir #1:illegal directory name");
         
-        return -1;
+        return ret;
     }
     
-    getDevName(devname, fname, dirname);
+    getDevName(dev, dir, dirname);
     
-    if (fname[0] == '\0') 
+    if (dir[0] == '\0') 
     {
-        cvFsError("cvFsChangeDir #1:illegal directory name");
+        cvFsError((const Sint8*)"cvFsChangeDir #1:illegal directory name");
         
-        return -1;
+        return ret;
     }
     
-    if (devname[0] == '\0') 
+    if (dev[0] == '\0') 
     {
-        getDefDev(devname);
+        getDefDev(dev);
         
-        if (devname[0] == '\0') 
+        if (dev[0] == '\0') 
         {
-            cvFsError("cvFsChangeDir #2:illegal device name");
+            cvFsError((const Sint8*)"cvFsChangeDir #2:illegal device name");
             
-            return -1;
+            return ret;
         }
     }
     
-    cvfs = getDevice(devname); 
+    cvfsif = getDevice(dev); 
     
-    if (cvfs == NULL) 
+    if (cvfsif == NULL) 
     {
-        cvFsError("cvFsChangeDir #3:device not found");
+        cvFsError((const Sint8*)"cvFsChangeDir #3:device not found");
         
-        return -1;
+        return ret;
     }
     
-    if (((CVFS_VTBL*)cvfs)->ChangeDir == NULL) 
+    if (cvfsif->ChangeDir == NULL) 
     {
-        cvFsError("cvFsChangeDir #4:vtbl error");
+        cvFsError((const Sint8*)"cvFsChangeDir #4:vtbl error");
         
-        return -1;
+        return ret;
     }
 
-    // might not really return here, but a VTBL callback signature is usually the same as that of the function which invokes it  
-    return ((CVFS_VTBL*)cvfs)->ChangeDir(fname); 
+    ret = cvfsif->ChangeDir(dir);
+
+    return ret; 
 }
 
 // 100% matching!
@@ -165,119 +167,123 @@ void cvFsClose(CVFS cvfs)
 {
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsClose #1:handle error");
+        cvFsError((const Sint8*)"cvFsClose #1:handle error");
         return;
     }
     
     if (cvfs->vtbl->Close != NULL) 
     {
-        cvfs->vtbl->Close(cvfs->dev);
+        cvfs->vtbl->Close(cvfs->obj);
         
         releaseCvFsHn(cvfs);
         return;
     }
     else 
     {
-        cvFsError("cvFsClose #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsClose #2:vtbl error");
     }
 }
 
 // 100% matching!
-void cvFsDelDev(Char8* devname)
+void cvFsDelDev(Sint8 *devname)
 {
-    Sint32 nameln;
-    Uint32 i;
-
+    Uint32 len;
+	Uint32 lp;
+    
     if (devname == NULL)
     {
-        cvFsError("cvFsDelDev #1:illegal device name");
+        cvFsError((const Sint8*)"cvFsDelDev #1:illegal device name");
         return;
     }
     
-    nameln = strlen(devname);
+    len = strlen((const char*)devname);
 
-    for (i = 0; i < 32; i++) 
+    for (lp = 0; lp < 32; lp++) 
     {
-        if (strncmp(devname, cvfs_tbl[i].name, nameln) == 0) 
+        if (strncmp((const char*)devname, (const char*)cvfs_tbl[lp].dname, len) == 0) 
         {
-            cvfs_tbl[i].name[0] = '\0';
+            cvfs_tbl[lp].dname[0] = '\0';
             return;
         }
     }
 }
 
 // 100% matching!
-Sint32 cvFsDeleteFile(const Char8* dirname) 
+Sint32 cvFsDeleteFile(const Sint8 *fname)
 {
-    CVFS cvfs;
-    Char8 devname[297];
-    Char8 fname[297];
+    Sint32 ret;
+	CVFS_IF cvfsif;
+	Sint8 dev[297];
+	Sint8 dir[297];
 
-    if (dirname == NULL) 
+    ret = -1;
+    
+    if (fname == NULL) 
     {
-        cvFsError("cvFsDeleteFile #1:illegal file name");
+        cvFsError((const Sint8*)"cvFsDeleteFile #1:illegal file name");
         
-        return -1;
+        return ret;
     }
     
-    getDevName(devname, fname, dirname);
+    getDevName(dev, dir, fname);
     
-    if (fname[0] == '\0') 
+    if (dir[0] == '\0') 
     {
-        cvFsError("cvFsDeleteFile #1:illegal file name");
+        cvFsError((const Sint8*)"cvFsDeleteFile #1:illegal file name");
         
-        return -1;
+        return ret;
     }
     
-    if (devname[0] == '\0') 
+    if (dev[0] == '\0') 
     {
-        getDefDev(devname);
+        getDefDev(dev);
         
-        if (devname[0] == '\0') 
+        if (dev[0] == '\0') 
         {
-            cvFsError("cvFsDeleteFile #2:illegal device name");
+            cvFsError((const Sint8*)"cvFsDeleteFile #2:illegal device name");
             
-            return -1;
+            return ret;
         }
     }
     
-    cvfs = getDevice(devname); 
+    cvfsif = getDevice(dev); 
     
-    if (cvfs == NULL) 
+    if (cvfsif == NULL) 
     {
-        cvFsError("cvFsDeleteFile #3:device not found");
+        cvFsError((const Sint8*)"cvFsDeleteFile #3:device not found");
         
-        return -1;
+        return ret;
     }
     
-    if (((CVFS_VTBL*)cvfs)->DeleteFile == NULL) 
+    if (cvfsif->DeleteFile == NULL) 
     {
-        cvFsError("cvFsDeleteFile #4:vtbl error");
+        cvFsError((const Sint8*)"cvFsDeleteFile #4:vtbl error");
         
-        return -1;
+        return ret;
     }
 
-    // same situation as cvFsChangeDir()
-    return ((CVFS_VTBL*)cvfs)->DeleteFile(fname); 
+    ret = cvfsif->DeleteFile(dir);
+
+    return ret; 
 }
 
 // 100% matching!
-void cvFsEntryErrFunc(CVFS_ERRFN func, void* obj) 
+void cvFsEntryErrFunc(CVF_FS_ERRFN errfn, void *obj)
 {
-    if (func == NULL)
+    if (errfn == NULL)
     {
         cvfs_errfn = NULL;
         cvfs_errobj = NULL;
     }
     else 
     {
-        cvfs_errfn = func;
+        cvfs_errfn = errfn;
         cvfs_errobj = obj;
     }
 }
 
 // 100% matching!
-void cvFsError(const Char8* msg) 
+void cvFsError(const Sint8 *msg)
 {
     cvFsCallUsrErrFn(&cvfs_errobj, msg, NULL);
 }
@@ -285,16 +291,16 @@ void cvFsError(const Char8* msg)
 // 100% matching!
 void cvFsExecServer(void) 
 {
-    CVFS cvfs;
-    Sint32 i;
-
-    for (i = 0; i < 32; i++) 
+    CVFS_IF cvfsif;
+	Sint32 lp;
+    
+    for (lp = 0; lp < 32; lp++) 
     {
-        cvfs = (CVFS)&cvfs_tbl[i];
+        cvfsif = cvfs_tbl[lp].vtbl;
         
-        if ((cvfs->vtbl != NULL) && (cvfs->vtbl->ExecServer != NULL)) 
+        if ((cvfsif != NULL) && (cvfsif->ExecServer != NULL)) 
         {
-            cvfs->vtbl->ExecServer();
+            cvfsif->ExecServer();
         }
     }
 } 
@@ -302,32 +308,32 @@ void cvFsExecServer(void)
 // 100% matching!
 void cvFsFinish(void) 
 {
-    CVFS cvfs1;
+    CVFS cvfs;
     CVFS cvfs2; 
-    Sint32 i;
+    Sint32 lp;
 
     if (--cvfs_init_cnt == 0)
     {
-        for (i = 0; i < 40; i++) 
+        for (lp = 0; lp < 40; lp++) 
         {
-            cvfs1 = &cvfs_obj[i];
+            cvfs = &cvfs_obj[lp];
             
-            if (cvfs1->vtbl != NULL)
+            if (cvfs->vtbl != NULL)
             {
-                cvfs2 = (CVFS)&cvfs_obj[i].dev; 
+                cvfs2 = (CVFS)&cvfs_obj[lp].obj; 
                 
-                cvfs1->vtbl->Close(cvfs1->dev);
+                cvfs->vtbl->Close(cvfs->obj);
             }
             
-            cvfs2 = (CVFS)&cvfs_obj[i].dev; 
+            cvfs2 = (CVFS)&cvfs_obj[lp].obj; 
     
-            cvfs1->vtbl = NULL;
+            cvfs->vtbl = NULL;
             cvfs2->vtbl = NULL;
         } 
     
-        for (i = 0; i < 32; i++) 
+        for (lp = 0; lp < 32; lp++) 
         {
-            cvfs_tbl[i].name[0] = '\0'; 
+            cvfs_tbl[lp].dname[0] = '\0'; 
         } 
         
         memset(cvfs_defdev, 0, sizeof(cvfs_defdev));
@@ -337,343 +343,357 @@ void cvFsFinish(void)
 }
 
 // 100% matching!
-Char8* cvFsGetDefDev(void) 
+Sint8* cvFsGetDefDev(void)
 {
     return cvfs_defdev;
 }
 
 // 100% matching!
-CVFS_NAME cvFsGetDevName(CVFS cvfs)
+Sint8* cvFsGetDevName(CVFS cvfs)
 {
-    Sint32 i;
+    Sint32 lp;
 
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsGetDevName #1:vtbl error");
+        cvFsError((const Sint8*)"cvFsGetDevName #1:vtbl error");
         
         return NULL;
     }
     
-    for (i = 0; i < 32; i++) 
+    for (lp = 0; lp < 32; lp++) 
     {
-        if (((CVFS)&cvfs_tbl[i])->vtbl == cvfs->vtbl) 
+        if (cvfs_tbl[lp].vtbl == cvfs->vtbl) 
         {
             break;
         } 
     } 
     
-    return (CVFS_NAME)cvfs_tbl[i].name;
+    return cvfs_tbl[lp].dname;
 }
 
 // 100% matching!
-Sint32 cvFsGetFileSize(const Sint8* dirname) 
+Sint32 cvFsGetFileSize(const Sint8 *fname)
 {
-    CVFS cvfs;
-    Char8 devname[297];
-    Char8 fname[297];
+    Sint32 val;
+	CVFS_IF cvfsif;
+	Sint8 dev[297];
+	Sint8 file[297];
 
-    if (dirname == NULL) 
+    val = 0;
+    
+    if (fname == NULL) 
     {
-        cvFsError("cvFsGetFileSize #1:illegal file name");
+        cvFsError((const Sint8*)"cvFsGetFileSize #1:illegal file name");
         
-        return 0;
+        return val;
     }
     
-    getDevName(devname, fname, (const Char8*)dirname);
+    getDevName(dev, file, fname);
     
-    if (fname[0] == '\0') 
+    if (file[0] == '\0') 
     {
-        cvFsError("cvFsGetFileSize #1:illegal file name");
+        cvFsError((const Sint8*)"cvFsGetFileSize #1:illegal file name");
         
-        return 0;
+        return val;
     }
     
-    if (devname[0] == '\0') 
+    if (dev[0] == '\0') 
     {
-        getDefDev(devname);
+        getDefDev(dev);
         
-        if (devname[0] == '\0') 
+        if (dev[0] == '\0') 
         {
-            cvFsError("cvFsGetFileSize #2:illegal device name");
+            cvFsError((const Sint8*)"cvFsGetFileSize #2:illegal device name");
             
-            return 0;
+            return val;
         }
     }
     
-    cvfs = getDevice(devname); 
+    cvfsif = getDevice(dev); 
     
-    if (cvfs == NULL) 
+    if (cvfsif == NULL) 
     {
-        cvFsError("cvFsGetFileSize #3:device not found");
+        cvFsError((const Sint8*)"cvFsGetFileSize #3:device not found");
         
-        return 0;
+        return val;
     }
     
-    if (((CVFS_VTBL*)cvfs)->GetFileSize == NULL) 
+    if (cvfsif->GetFileSize == NULL) 
     {
-        cvFsError("cvFsGetFileSize #4:vtbl error");
+        cvFsError((const Sint8*)"cvFsGetFileSize #4:vtbl error");
         
-        return 0;
+        return val;
     }
 
-    // same situation as cvFsChangeDir()
-    return ((CVFS_VTBL*)cvfs)->GetFileSize(fname); 
+    val = cvfsif->GetFileSize(file);
+
+    return val; 
 }
 
 // 100% matching!
-Sint32 cvFsGetFileSizeEx(const Char8* dirname, Sint32 arg1) 
+Sint32 cvFsGetFileSizeEx(const Sint8 *fname, void *prm)
 {
-    CVFS cvfs;
-    Char8 devname[297];
-    Char8 fname[297];
+    Sint32 val;
+	CVFS_IF cvfsif;
+	Sint8 dev[297];
+	Sint8 file[297];
 
-    if (dirname == NULL) 
+    val = 0;
+    
+    if (fname == NULL) 
     {
-        cvFsError("cvFsGetFileSize #1:illegal file name");
+        cvFsError((const Sint8*)"cvFsGetFileSize #1:illegal file name");
         
-        return 0;
+        return val;
     }
     
-    getDevName(devname, fname, dirname);
+    getDevName(dev, file, fname);
     
-    if (fname[0] == '\0') 
+    if (file[0] == '\0') 
     {
-        cvFsError("cvFsGetFileSize #1:illegal file name");
+        cvFsError((const Sint8*)"cvFsGetFileSize #1:illegal file name");
         
-        return 0;
+        return val;
     }
     
-    if (devname[0] == '\0') 
+    if (dev[0] == '\0') 
     {
-        getDefDev(devname);
+        getDefDev(dev);
         
-        if (devname[0] == '\0') 
+        if (dev[0] == '\0') 
         {
-            cvFsError("cvFsGetFileSize #2:illegal device name");
+            cvFsError((const Sint8*)"cvFsGetFileSize #2:illegal device name");
             
-            return 0;
+            return val;
         }
     }
     
-    cvfs = getDevice(devname); 
+    cvfsif = getDevice(dev); 
     
-    if (cvfs == NULL) 
+    if (cvfsif == NULL) 
     {
-        cvFsError("cvFsGetFileSize #3:device not found");
+        cvFsError((const Sint8*)"cvFsGetFileSize #3:device not found");
         
-        return 0;
+        return val;
     }
     
-    if (((CVFS_VTBL*)cvfs)->GetFileSizeEx == NULL) 
+    if (cvfsif->GetFileSizeEx == NULL) 
     {
-        cvFsError("cvFsGetFileSize #4:vtbl error");
+        cvFsError((const Sint8*)"cvFsGetFileSize #4:vtbl error");
         
-        return 0;
+        return val;
     }
 
-    // same situation as cvFsChangeDir()
-    return ((CVFS_VTBL*)cvfs)->GetFileSizeEx(fname, arg1); 
+    val = cvfsif->GetFileSizeEx(file, prm);
+
+    return val; 
 }
 
 // 100% matching!
-Sint32 cvFsGetFreeSize(Char8* fname) 
+Sint32 cvFsGetFreeSize(Sint8 *devname)
 {
-    CVFS cvfs;
-    Char8 devname[297];
-    Sint32 size;
-    Sint32 nameln;
-    Sint32 i;
+    Sint32 val;
+	Sint32 len;
+	Sint32 lp;
+	CVFS_IF cvfsif;
+	Sint8 dev[297];
     
-    size = 0;
+    val = 0;
     
-    if ((fname == NULL) || (fname[0] == '\0'))
+    if ((devname == NULL) || (devname[0] == '\0'))
     {
-        getDefDev(devname);
+        getDefDev(dev);
         
-        if (devname[0] == '\0')
+        if (dev[0] == '\0')
         {
-            cvFsError("cvFsGetFreeSize #5:device not found");
+            cvFsError((const Sint8*)"cvFsGetFreeSize #5:device not found");
             
-            return 0;
+            return val;
         }
     } 
     else
     {
-        memcpy(devname, fname, strlen(fname) + 1);
+        memcpy(dev, devname, strlen((const char*)devname) + 1);
     }
     
-    nameln = strlen(devname);
+    len = strlen((const char*)dev);
     
-    if (nameln <= 0) 
+    if (len <= 0) 
     {
-        cvFsError("cvFsGetFreeSize #5:device not found");
+        cvFsError((const Sint8*)"cvFsGetFreeSize #5:device not found");
         
-        return 0;
+        return val;
     }
     
-    for (i = 0; i < 32; i++)
+    for (lp = 0; lp < 32; lp++)
     {
-        if (strncmp(devname, (char*)&cvfs_tbl[i].name, nameln) == 0) 
+        if (strncmp((char*)dev, (char*)&cvfs_tbl[lp].dname, len) == 0) 
         {
-            cvfs = (CVFS)&cvfs_tbl[i].dev;
+            cvfsif = cvfs_tbl[lp].vtbl;
             
-            if (cvfs->vtbl == NULL) 
+            if (cvfsif == NULL) 
             {
-                cvFsError("cvFsGetFreeSize #6:vtbl error");
+                cvFsError((const Sint8*)"cvFsGetFreeSize #6:vtbl error");
                 
                 return 0;
             } 
 
-            if (cvfs->vtbl->GetFreeSize != NULL) 
+            if (cvfsif->GetFreeSize != NULL) 
             {
-                size = cvfs->vtbl->GetFreeSize();
+                val = cvfsif->GetFreeSize();
             }
         }
     }
     
-    return size;
+    return val;
 }
 
 // 100% matching!
 Sint32 cvFsGetMaxByteRate(CVFS cvfs)
 {
+    Sint32 val;
+
+    val = 0;
+    
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsGetMaxByteRate #1:handle error");
+        cvFsError((const Sint8*)"cvFsGetMaxByteRate #1:handle error");
     }
     else if (cvfs->vtbl->GetMaxByteRate == NULL) 
     {
-        cvFsError("cvFsGetMaxByteRate #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsGetMaxByteRate #2:vtbl error");
     }
     else
     {
-        return cvfs->vtbl->GetMaxByteRate(cvfs->dev);
+        val = cvfs->vtbl->GetMaxByteRate(cvfs->obj);
+        
+        return val;
     }
     
-    return 0;
+    return val;
 }
 
 // 100% matching!
-Sint32 cvFsGetNumFiles(const char* devname) 
+Sint32 cvFsGetNumFiles(const Sint8 *devname)
 {
-    Sint32 numf;
+    Sint32 val;
 
     if (devname == NULL)
     {
-        numf = getNumFilesAll();
+        val = getNumFilesAll();
     } 
     else
     {
-        numf = getNumFiles(devname);
+        val = getNumFiles(devname);
     }
     
-    if (numf == 0)
+    if (val == 0)
     {
-        cvFsError("cvFsGetNumFiles #1:file info error");
+        cvFsError((const Sint8*)"cvFsGetNumFiles #1:file info error");
     }
     
-    return numf;
+    return val;
 }
 
 // 100% matching!
 Sint32 cvFsGetNumTr(CVFS cvfs)
 {
-    Sint32 numtr;
+    Sint32 val;
 
-    numtr = 0;
+    val = 0;
     
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsGetNumTr #1:handle error");
+        cvFsError((const Sint8*)"cvFsGetNumTr #1:handle error");
         
-        return 0;
+        return val;
     }
     
     if (cvfs->vtbl->GetNumTr != NULL) 
     {
-        numtr = cvfs->vtbl->GetNumTr(cvfs->dev); 
+        val = cvfs->vtbl->GetNumTr(cvfs->obj); 
     }
     else 
     {
-        cvFsError("cvFsGetNumTr #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsGetNumTr #2:vtbl error");
     }
     
-    return numtr;
+    return val;
 }
 
 // 100% matching!
 Sint32 cvFsGetSctLen(CVFS cvfs)
 {
-    Sint32 sctlen;
+    Sint32 val;
 
-    sctlen = 0;
+    val = 0;
     
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsGetSctLen #1:handle error");
+        cvFsError((const Sint8*)"cvFsGetSctLen #1:handle error");
         
-        return 0;
+        return val;
     }
     
     if (cvfs->vtbl->GetSctLen != NULL) 
     {
-        sctlen = cvfs->vtbl->GetSctLen(cvfs->dev); 
+        val = cvfs->vtbl->GetSctLen(cvfs->obj); 
     }
     else 
     {
-        cvFsError("cvFsGetSctLen #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsGetSctLen #2:vtbl error");
     }
     
-    return sctlen;
+    return val;
 }
 
 // 100% matching!
-Sint8 cvFsGetStat(CVFS cvfs)
+CVE_FS_ST cvFsGetStat(CVFS cvfs)
 {
-    Sint8 stat;
+    CVE_FS_ST val;
 
-    stat = 3;
+    val = CVE_FS_ST_ERR;
     
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsGetStat #1:handle error");
+        cvFsError((const Sint8*)"cvFsGetStat #1:handle error");
         
-        return 3;
+        return val;
     }
     
     if (cvfs->vtbl->GetStat != NULL) 
     {
-        stat = cvfs->vtbl->GetStat(cvfs->dev); 
+        val = cvfs->vtbl->GetStat(cvfs->obj); 
     }
     else 
     {
-        cvFsError("cvFsGetStat #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsGetStat #2:vtbl error");
     }
     
-    return stat;
+    return val;
 }
 
 // 100% matching!
 void cvFsInit(void) 
 {
-    CVFS cvfs1;
+    CVFS cvfs;
     CVFS cvfs2; 
-    Sint32 i;
+    Sint32 lp;
 
     if (cvfs_init_cnt == 0)
     {
-        for (i = 0; i < 40; i++) 
+        for (lp = 0; lp < 40; lp++) 
         {
-            cvfs1 = &cvfs_obj[i];
-            cvfs2 = (CVFS)&cvfs_obj[i].dev; 
+            cvfs = &cvfs_obj[lp];
+            cvfs2 = (CVFS)&cvfs_obj[lp].obj; 
     
-            cvfs1->vtbl = NULL;
+            cvfs->vtbl = NULL;
             cvfs2->vtbl = NULL;
         } 
     
-        for (i = 0; i < 32; i++) 
+        for (lp = 0; lp < 32; lp++) 
         {
-            cvfs_tbl[i].name[0] = '\0'; 
+            cvfs_tbl[lp].dname[0] = '\0'; 
         } 
         
         memset(cvfs_defdev, 0, sizeof(cvfs_defdev));
@@ -685,422 +705,434 @@ void cvFsInit(void)
 }
 
 // 100% matching!
-Sint32 cvFsIsExistFile(const Char8* dirname) 
+Sint32 cvFsIsExistFile(const Sint8 *fname)
 {
-    CVFS cvfs;
-    Char8 devname[297];
-    Char8 fname[297];
-
-    getDevName(devname, fname, dirname);
-    
-    if (fname[0] == '\0') 
-    {
-        cvFsError("cvFsIsExistFile #1:illegal file name");
-        
-        return 0;
-    }
-    
-    if (devname[0] == '\0') 
-    {
-        getDefDev(devname);
-        
-        if (devname[0] == '\0') 
-        {
-            cvFsError("cvFsIsExistFile #2:illegal device name");
-            
-            return 0;
-        }
-    }
-    
-    cvfs = getDevice(devname); 
-    
-    if (cvfs == NULL) 
-    {
-        cvFsError("cvFsIsExistFile #3:device not found");
-        
-        return 0;
-    }
-    
-    if (((CVFS_VTBL*)cvfs)->IsExistFile == NULL) 
-    {
-        cvFsError("cvFsIsExistFile #4:vtbl error");
-        
-        return 0;
-    }
-
-    // same situation as cvFsChangeDir()
-    return ((CVFS_VTBL*)cvfs)->IsExistFile(fname); 
-}
-
-// 100% matching!
-Sint32 cvFsLoadDirInfo(const Char8* dirname, Sint32 arg1, Sint32 rw) 
-{
-    CVFS cvfs;
-    Char8 devname[297];
-    Char8 fname[297];
     Sint32 ret;
-
-    getDevName(devname, fname, dirname);
+	CVFS_IF cvfsif;
+	Sint8 dev[297];
+	Sint8 file[297];
+    
+    getDevName(dev, file, fname);
 
     ret = 0;
     
-    if (devname[0] == '\0') 
+    if (file[0] == '\0') 
     {
-        getDefDev(devname);
+        cvFsError((const Sint8*)"cvFsIsExistFile #1:illegal file name");
         
-        if (devname[0] == '\0') 
+        return ret;
+    }
+    
+    if (dev[0] == '\0') 
+    {
+        getDefDev(dev);
+        
+        if (dev[0] == '\0') 
         {
-            cvFsError("cvFsIsExistFile #2:illegal device name");
+            cvFsError((const Sint8*)"cvFsIsExistFile #2:illegal device name");
             
             return ret;
         }
     }
     
-    cvfs = getDevice(devname); 
+    cvfsif = getDevice(dev); 
     
-    if ((cvfs != NULL) && (((CVFS_VTBL*)cvfs)->LoadDirInfo != NULL)) 
+    if (cvfsif == NULL) 
     {
-        ret = ((CVFS_VTBL*)cvfs)->LoadDirInfo(dirname, arg1, rw); 
+        cvFsError((const Sint8*)"cvFsIsExistFile #3:device not found");
+        
+        return ret;
+    }
+    
+    if (cvfsif->IsExistFile == NULL) 
+    {
+        cvFsError((const Sint8*)"cvFsIsExistFile #4:vtbl error");
+        
+        return ret;
+    }
+
+    ret = cvfsif->IsExistFile(file);
+
+    return ret; 
+}
+
+// 100% matching!
+Sint32 cvFsLoadDirInfo(const Sint8 *name, void *inf, Sint32 num) 
+{
+    Sint32 ret;
+	Sint8 dev[297];
+	Sint8 file[297];
+	CVFS_IF cvfsif;
+    
+    getDevName(dev, file, name);
+
+    ret = 0;
+    
+    if (dev[0] == '\0') 
+    {
+        getDefDev(dev);
+        
+        if (dev[0] == '\0') 
+        {
+            cvFsError((const Sint8*)"cvFsIsExistFile #2:illegal device name");
+            
+            return ret;
+        }
+    }
+    
+    cvfsif = getDevice(dev); 
+    
+    if ((cvfsif != NULL) && (cvfsif->LoadDirInfo != NULL)) 
+    {
+        ret = cvfsif->LoadDirInfo(name, inf, num); 
     }
 
     return ret; 
 }
 
 // 100% matching!
-Sint32 cvFsMakeDir(const Char8* dirname) 
+Sint32 cvFsMakeDir(const Sint8 *dirname)
 {
-    CVFS cvfs;
-    Char8 devname[48];
-    Char8 fname[48];
+    Sint32 ret;
+	CVFS_IF cvfsif;
+	Sint8 dev[33];
+	Sint8 dir[33];
+
+    ret = -1;
 
     if (dirname == NULL) 
     {
-        cvFsError("cvFsMakeDir #1:illegal directory name");
+        cvFsError((const Sint8*)"cvFsMakeDir #1:illegal directory name");
         
-        return -1;
+        return ret;
     }
 
-    getDevName(devname, fname, dirname);
+    getDevName(dev, dir, dirname);
     
-    if (fname[0] == '\0') 
+    if (dir[0] == '\0') 
     {
-        cvFsError("cvFsMakeDir #1:illegal directory name");
+        cvFsError((const Sint8*)"cvFsMakeDir #1:illegal directory name");
         
-        return -1;
+        return ret;
     }
     
-    if (devname[0] == '\0') 
+    if (dev[0] == '\0') 
     {
-        getDefDev(devname);
+        getDefDev(dev);
         
-        if (devname[0] == '\0') 
+        if (dev[0] == '\0') 
         {
-            cvFsError("cvFsMakeDir #2:illegal device name");
+            cvFsError((const Sint8*)"cvFsMakeDir #2:illegal device name");
             
-            return -1;
+            return ret;
         }
     }
     
-    cvfs = getDevice(devname); 
+    cvfsif = getDevice(dev); 
     
-    if (cvfs == NULL) 
+    if (cvfsif == NULL) 
     {
-        cvFsError("cvFsMakeDir #3:device not found");
+        cvFsError((const Sint8*)"cvFsMakeDir #3:device not found");
         
-        return -1;
+        return ret;
     }
     
-    if (((CVFS_VTBL*)cvfs)->MakeDir == NULL) 
+    if (cvfsif->MakeDir == NULL) 
     {
-        cvFsError("cvFsMakeDir #4:vtbl error");
+        cvFsError((const Sint8*)"cvFsMakeDir #4:vtbl error");
         
-        return -1;
+        return ret;
     }
 
-    // same situation as cvFsChangeDir()
-    return ((CVFS_VTBL*)cvfs)->MakeDir(fname); 
+    ret = cvfsif->MakeDir(dir);
+
+    return ret; 
 }
 
 // 100% matching!
-CVFS cvFsOpen(const Sint8* dirname, void* arg1, CVE_FS_OP rw)
+CVFS cvFsOpen(const Sint8 *fname, void *prm, CVE_FS_OP op_mode)
 {
-    CVFS cvfs1;
-    CVFS_NAME cvfs2;
-    Char8 devname[297];
-    Char8 fname[297];
+    CVFS cvfs;
+    CVFS_IF cvfsif;
+	Sint8 dev[297];
+	Sint8 file[297];
 
-    if (dirname == NULL) 
+    if (fname == NULL) 
     {
-        cvFsError("cvFsOpen #1:illegal file name");
+        cvFsError((const Sint8*)"cvFsOpen #1:illegal file name");
         
         return NULL;
     }
 
-    getDevName(devname, fname, (Char8*)dirname);
+    getDevName(dev, file, fname);
     
-    if (fname[0] == '\0') 
+    if (file[0] == '\0') 
     {
-        cvFsError("cvFsOpen #1:illegal file name");
+        cvFsError((const Sint8*)"cvFsOpen #1:illegal file name");
         
         return NULL;
     }
     
-    if (devname[0] == '\0') 
+    if (dev[0] == '\0') 
     {
-        getDefDev((Char8*)devname);
+        getDefDev(dev);
         
-        if (devname[0] == '\0') 
+        if (dev[0] == '\0') 
         {
-            cvFsError("cvFsOpen #2:illegal device name");
+            cvFsError((const Sint8*)"cvFsOpen #2:illegal device name");
             
             return NULL;
         }
     }
 
-    cvfs2 = (CVFS_NAME)allocCvFsHn(); 
+    cvfs = allocCvFsHn(); 
     
-    if (cvfs2 == NULL) 
+    if (cvfs == NULL) 
     {
-        cvFsError("cvFsOpen #3:failed handle alloced");
+        cvFsError((const Sint8*)"cvFsOpen #3:failed handle alloced");
         
         return NULL;
     }
     
-    cvfs1 = getDevice((Char8*)devname); 
+    cvfsif = getDevice(dev); 
 
-    cvfs2->dev = cvfs1; 
+    cvfs->vtbl = cvfsif; 
     
-    if (cvfs1 == NULL) 
+    if (cvfsif == NULL) 
     {
-        releaseCvFsHn((CVFS)cvfs2);
+        releaseCvFsHn(cvfs);
         
-        cvFsError("cvFsOpen #4:device not found");
+        cvFsError((const Sint8*)"cvFsOpen #4:device not found");
         
         return NULL;
     }
     
-    if (((CVFS_VTBL*)cvfs1)->Open != NULL) 
+    if (cvfsif->Open != NULL) 
     {
-        ((CVFS)cvfs2)->dev = (void*)((CVFS_VTBL*)cvfs1)->Open((Sint8*)fname, arg1, rw);
+        cvfs->obj = cvfsif->Open(file, prm, op_mode);
     }
     else 
     {
-        cvFsError("cvFsOpen #5:vtbl error");
+        cvFsError((const Sint8*)"cvFsOpen #5:vtbl error");
             
         return NULL;
     }
     
-    if (((CVFS)cvfs2)->dev == NULL) 
+    if (cvfs->obj == NULL) 
     {
-        releaseCvFsHn((CVFS)cvfs2);
+        releaseCvFsHn(cvfs);
         
-        cvFsError("cvFsOpen #6:open failed");
+        cvFsError((const Sint8*)"cvFsOpen #6:open failed");
         
         return NULL;
     }
 
-    return (CVFS)cvfs2;
+    return cvfs;
 }
 
 // 100% matching!
-Sint32 cvFsOptFn1(CVFS cvfs) 
+Sint32 cvFsOptFn1(CVFS cvfs, Sint32 p0, Sint32 p1, Sint32 p2)
 {
-    Sint32 ret;
+    Sint32 val;
 
-    ret = 0;
+    val = 0;
     
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsOptFn1 #1:handle error");
+        cvFsError((const Sint8*)"cvFsOptFn1 #1:handle error");
         
-        return ret;
+        return val;
     }
     
     if (cvfs->vtbl->OptFn1 != NULL) 
     {
-        ret = cvfs->vtbl->OptFn1(cvfs->dev);
+        val = cvfs->vtbl->OptFn1(cvfs->obj);
     } 
     else 
     {
-        cvFsError("cvFsOptFn1 #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsOptFn1 #2:vtbl error");
     }
     
-    return ret;
+    return val;
 }
 
 // 100% matching!
-Sint32 cvFsOptFn2(CVFS cvfs) 
+Sint32 cvFsOptFn2(CVFS cvfs, Sint32 p0, Sint32 p1, Sint32 p2)
 {
-    Sint32 ret;
+    Sint32 val;
 
-    ret = 0;
+    val = 0;
     
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsOptFn2 #1:handle error");
+        cvFsError((const Sint8*)"cvFsOptFn2 #1:handle error");
         
-        return ret;
+        return val;
     }
     
     if (cvfs->vtbl->OptFn2 != NULL) 
     {
-        ret = cvfs->vtbl->OptFn2(cvfs->dev);
+        val = cvfs->vtbl->OptFn2(cvfs->obj);
     } 
     else 
     {
-        cvFsError("cvFsOptFn2 #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsOptFn2 #2:vtbl error");
     }
     
-    return ret;
+    return val;
 }
 
 // 100% matching!
-Sint32 cvFsRemoveDir(const Char8* dirname) 
+Sint32 cvFsRemoveDir(const Sint8 *dirname)
 {
-    CVFS cvfs;
-    Char8 devname[297];
-    Char8 fname[297];
+    Sint32 ret;
+	CVFS_IF cvfsif;
+	Sint8 dev[297];
+	Sint8 dir[297];
+
+    ret = -1;
 
     if (dirname == NULL) 
     {
-        cvFsError("cvFsRemoveDir #1:illegal directory name");
+        cvFsError((const Sint8*)"cvFsRemoveDir #1:illegal directory name");
         
-        return -1;
+        return ret;
     }
 
-    getDevName(devname, fname, dirname);
+    getDevName(dev, dir, dirname);
     
-    if (fname[0] == '\0') 
+    if (dir[0] == '\0') 
     {
-        cvFsError("cvFsRemoveDir #1:illegal directory name");
+        cvFsError((const Sint8*)"cvFsRemoveDir #1:illegal directory name");
         
-        return -1;
+        return ret;
     }
     
-    if (devname[0] == '\0') 
+    if (dev[0] == '\0') 
     {
-        getDefDev(devname);
+        getDefDev(dev);
         
-        if (devname[0] == '\0') 
+        if (dev[0] == '\0') 
         {
-            cvFsError("cvFsRemoveDir #2:illegal device name");
+            cvFsError((const Sint8*)"cvFsRemoveDir #2:illegal device name");
             
-            return -1;
+            return ret;
         }
     }
     
-    cvfs = getDevice(devname); 
+    cvfsif = getDevice(dev); 
     
-    if (cvfs == NULL) 
+    if (cvfsif == NULL) 
     {
-        cvFsError("cvFsRemoveDir #3:device not found");
+        cvFsError((const Sint8*)"cvFsRemoveDir #3:device not found");
         
-        return -1;
+        return ret;
     }
     
-    if (((CVFS_VTBL*)cvfs)->RemoveDir == NULL) 
+    if (cvfsif->RemoveDir == NULL) 
     {
-        cvFsError("cvFsRemoveDir #4:vtbl error");
+        cvFsError((const Sint8*)"cvFsRemoveDir #4:vtbl error");
         
-        return -1;
+        return ret;
     }
 
-    // same situation as cvFsChangeDir()
-    return ((CVFS_VTBL*)cvfs)->RemoveDir(fname); 
+    ret = cvfsif->RemoveDir(dir);
+
+    return ret; 
 }
 
 // 100% matching!
-Sint32 cvFsReqRd(CVFS cvfs, Sint32 nsct, Sint8* buf)
+Sint32 cvFsReqRd(CVFS cvfs, Sint32 nsct, void *buf)
 {
-    Sint32 ret;
+    Sint32 val;
 
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsReqRd #1:handle error");
+        cvFsError((const Sint8*)"cvFsReqRd #1:handle error");
         
         return 0;
     }
     
     if (cvfs->vtbl->ReqRd != NULL) 
     {
-        ret = cvfs->vtbl->ReqRd(cvfs->dev, nsct, buf);
+        val = cvfs->vtbl->ReqRd(cvfs->obj, nsct, buf);
     } 
     else 
     {
-        ret = 0;
+        val = 0;
         
-        cvFsError("cvFsReqRd #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsReqRd #2:vtbl error");
     }
     
-    return ret;
+    return val;
 }
 
 // 100% matching!
-Sint32 cvFsReqWr(CVFS cvfs, Sint32 nsct, Sint8* buf)
+Sint32 cvFsReqWr(CVFS cvfs, Sint32 nsct, void *buf)
 {
-    Sint32 ret;
+    Sint32 val;
 
-    ret = 0;
+    val = 0;
 
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsReqWr #1:handle error");
+        cvFsError((const Sint8*)"cvFsReqWr #1:handle error");
         
-        return ret;
+        return val;
     }
     
-    if (cvfs->vtbl->ReqRw != NULL) 
+    if (cvfs->vtbl->ReqWr != NULL) 
     {
-        ret = cvfs->vtbl->ReqRw(cvfs->dev, nsct, buf);
+        val = cvfs->vtbl->ReqWr(cvfs->obj, nsct, buf);
     } 
     else 
     {
-        cvFsError("cvFsReqWr #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsReqWr #2:vtbl error");
     }
     
-    return ret;
+    return val;
 }
 
 // 100% matching!
-Sint32 cvFsSeek(CVFS cvfs, Sint32 ofst, Sint32 whence)
+Sint32 cvFsSeek(CVFS cvfs, Sint32 nsct, CVE_FS_SK sk_mode)
 {
-    Sint32 ret;
+    Sint32 val;
 
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsSeek #1:handle error");
+        cvFsError((const Sint8*)"cvFsSeek #1:handle error");
         
-        return 0;
+        return CVE_FS_SK_SET;
     }
     
     if (cvfs->vtbl->Seek != NULL) 
     {
-        ret = cvfs->vtbl->Seek(cvfs->dev, ofst, whence);
+        val = cvfs->vtbl->Seek(cvfs->obj, nsct, sk_mode);
     } 
     else 
     {
-        ret = 0;
+        val = CVE_FS_SK_SET;
         
-        cvFsError("cvFsSeek #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsSeek #2:vtbl error");
     }
     
-    return ret;
+    return val;
 }
 
 // 100% matching!
-void cvFsSetDefDev(Char8* devname) 
+void cvFsSetDefDev(Sint8 *devname)
 {
-    Sint32 nameln;
+    Uint32 len;
 
     if (devname == NULL) 
     {
-        cvFsError("cvFsSetDefDev #1:illegal device name");
+        cvFsError((const Sint8*)"cvFsSetDefDev #1:illegal device name");
         return;
     }
 
-    nameln = strlen(devname);
+    len = strlen((const char*)devname);
 
-    if (nameln == 0) 
+    if (len == 0) 
     {
         cvfs_defdev[0] = '\0';
         return;
@@ -1108,29 +1140,29 @@ void cvFsSetDefDev(Char8* devname)
     
     toUpperStr(devname);
 
-    if (isExistDev(devname, nameln) == 1)
+    if (isExistDev(devname, len) == 1)
     {
-        memcpy(cvfs_defdev, devname, nameln + 1);
+        memcpy(cvfs_defdev, devname, len + 1);
         return;
     }
     
-    cvFsError("cvFsSetDefDev #2:unknown device name");
+    cvFsError((const Sint8*)"cvFsSetDefDev #2:unknown device name");
 }
 
 // 100% matching!
-void cvFsSetSctLen(CVFS cvfs)
+void cvFsSetSctLen(CVFS cvfs, Sint32 sctlen)
 {
     if (cvfs == NULL)
     {
-        cvFsError("cvFsSetSctLen #3:handle error");
+        cvFsError((const Sint8*)"cvFsSetSctLen #3:handle error");
     }
     else if (cvfs->vtbl->SetSctLen == NULL)
     {
-        cvFsError("cvFsSetSctLen #4:vtbl error");
+        cvFsError((const Sint8*)"cvFsSetSctLen #4:vtbl error");
     }
     else 
     {
-        cvfs->vtbl->SetSctLen(cvfs->dev);
+        cvfs->vtbl->SetSctLen(cvfs->obj);
     }
 }
 
@@ -1139,74 +1171,74 @@ void cvFsStopTr(CVFS cvfs)
 {
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsStopTr #1:handle error");
+        cvFsError((const Sint8*)"cvFsStopTr #1:handle error");
     }
     else if (cvfs->vtbl->StopTr == NULL) 
     {
-        cvFsError("cvFsStopTr #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsStopTr #2:vtbl error");
     }
     else 
     {
-        cvfs->vtbl->StopTr(cvfs->dev);
+        cvfs->vtbl->StopTr(cvfs->obj);
     }
 }
 
 // 100% matching!
 Sint32 cvFsTell(CVFS cvfs) 
 {
-    Sint32 ofst;
+    Sint32 val;
 
     if (cvfs == NULL) 
     {
-        cvFsError("cvFsTell #1:handle error");
+        cvFsError((const Sint8*)"cvFsTell #1:handle error");
         
         return 0;
     }
 
     if (cvfs->vtbl->Tell != NULL) 
     {
-        ofst = cvfs->vtbl->Tell(cvfs->dev);
+        val = cvfs->vtbl->Tell(cvfs->obj);
     }
     else 
     {
-        ofst = 0;
+        val = 0;
         
-        cvFsError("cvFsTell #2:vtbl error");
+        cvFsError((const Sint8*)"cvFsTell #2:vtbl error");
     }
 
-    return ofst;
+    return val;
 }
 
 // 100% matching!
-void getDefDev(Char8* devname) 
+static void getDefDev(Sint8 *dev)
 {
     Sint32 len;
 
-    len = strlen(cvfs_defdev);
+    len = strlen((const char*)cvfs_defdev);
 
     if (cvfs_defdev[0] == '\0') 
     {
-        devname[0] = '\0';
+        dev[0] = '\0';
     }
     else
     {
-        memcpy(devname, cvfs_defdev, len + 1);
+        memcpy(dev, cvfs_defdev, len + 1);
     }
 }
 
 // 100% matching!
-CVFS getDevice(const Char8 *devname) 
+static CVFS_IF getDevice(const Sint8 *devname) 
 {
-    Sint32 nameln;
-    Uint32 i;
+    Uint32 len;
+	Uint32 lp;
+    
+    len = strlen((const char*)devname);
 
-    nameln = strlen(devname);
-
-    for (i = 0; i < 32; i++)
+    for (lp = 0; lp < 32; lp++)
     {
-        if (strncmp((char*)devname, (char*)&cvfs_tbl[i].name, nameln) == 0)
+        if (strncmp((char*)devname, (char*)&cvfs_tbl[lp].dname, len) == 0)
         {
-            return cvfs_tbl[i].dev;
+            return cvfs_tbl[lp].vtbl;
         }
     }
 
@@ -1214,104 +1246,104 @@ CVFS getDevice(const Char8 *devname)
 }
 
 // 100% matching!
-void getDevName(Char8* devname, Char8* fname, const Char8* dirname) 
+void getDevName(Sint8 *dname, Sint8 *fname, const Sint8 *fn)
 {
-    Sint32 i;
-    Sint32 j;
+    Sint32 dlp;
+    Sint32 flp;
 
-    if (dirname == NULL) 
+    if (fn == NULL) 
     {
         return;
     }
 
-    for (i = 0; (i < 297) && ((dirname[i] != ':') && (dirname[i] != '\0')); i++) 
+    for (dlp = 0; (dlp < 297) && ((fn[dlp] != ':') && (fn[dlp] != '\0')); dlp++) 
     {
-        devname[i] = dirname[i];
+        dname[dlp] = fn[dlp];
     }
     
-    if (dirname[i] == '\0') 
+    if (fn[dlp] == '\0') 
     {
-        devname[i] = '\0';
+        dname[dlp] = '\0';
         
-        memcpy(fname, devname, strlen(devname) + 1);
+        memcpy(fname, dname, strlen((const char*)dname) + 1);
         
-        devname[0] = '\0';
+        dname[0] = '\0';
         return;
     }
 
-    devname[i] = '\0';
+    dname[dlp] = '\0';
     
-    i++;
+    dlp++;
 
-    for (j = i; (j < 297) && ((dirname[j] != ':') && (dirname[j] != '\0')); j++) 
+    for (flp = dlp; (flp < 297) && ((fn[flp] != ':') && (fn[flp] != '\0')); flp++) 
     {
-        fname[j - i] = dirname[j];
+        fname[flp - dlp] = fn[flp];
     }
 
-    fname[j - i] = '\0';
+    fname[flp - dlp] = '\0';
     
-    toUpperStr(devname);
+    toUpperStr(dname);
 }
 
 // 100% matching!
-Sint32 getNumFiles(const char* devname)
+Sint32 getNumFiles(const Sint8 *devname)
 {
-    CVFS cvfs;
-    Sint32 numf;
-    Sint32 nameln;
-    Sint32 i;
+    CVFS_IF cvfsif;
+    Sint32 val;
+    Uint32 len;
+    Sint32 lp;
 
-    numf = 0;
+    val = 0;
     
-    nameln = strlen(devname);
+    len = strlen((const char*)devname);
     
-    for (i = 0; i < 32; i++)
+    for (lp = 0; lp < 32; lp++)
     {
-        if (strncmp((char*)devname, (char*)&cvfs_tbl[i].name, nameln) == 0)
+        if (strncmp((char*)devname, (char*)&cvfs_tbl[lp].dname, len) == 0)
         { 
-            cvfs = (CVFS)&cvfs_tbl[i];
+            cvfsif = cvfs_tbl[lp].vtbl;
             
-            if ((cvfs->vtbl != NULL) && (cvfs->vtbl->GetNumFilesAll != NULL)) 
+            if ((cvfsif != NULL) && (cvfsif->GetNumFiles != NULL)) 
             {
-                numf = cvfs->vtbl->GetNumFilesAll();
+                val = cvfsif->GetNumFiles();
                 break; 
             }
         }
     }
     
-    return numf;
+    return val;
 }
 
 // 100% matching!
 Sint32 getNumFilesAll(void)
 {
-    CVFS cvfs;
-    Sint32 numf;
-    Sint32 i;
+    CVFS_IF cvfsif;
+    Sint32 val;
+    Sint32 lp;
 
-    numf = 0;
+    val = 0;
     
-    for (i = 0; i < 32; i++) 
+    for (lp = 0; lp < 32; lp++) 
     {
-        cvfs = (CVFS)&cvfs_tbl[i];
+        cvfsif = cvfs_tbl[lp].vtbl;
         
-        if ((cvfs->vtbl != NULL) && (cvfs->vtbl->GetNumFilesAll != NULL))
+        if ((cvfsif != NULL) && (cvfsif->GetNumFiles != NULL))
         {
-            numf += cvfs->vtbl->GetNumFilesAll();
+            val += cvfsif->GetNumFiles();
         }
     }
     
-    return numf;
+    return val;
 }
 
 // 100% matching!
-Sint32 isExistDev(const Char8* devname, Sint32 nameln) 
+static Sint32 isExistDev(const Sint8 *devname, Sint32 len)
 {
-    Sint32 i;
+    Sint32 lp;
 
-    for (i = 0; i < 32; i++) 
+    for (lp = 0; lp < 32; lp++) 
     {
-        if (strncmp(devname, cvfs_tbl[i].name, nameln) == 0)
+        if (strncmp((const char*)devname, (const char*)cvfs_tbl[lp].dname, len) == 0)
         {
             return 1;
         }
@@ -1321,26 +1353,26 @@ Sint32 isExistDev(const Char8* devname, Sint32 nameln)
 }
 
 // 100% matching!
-void releaseCvFsHn(CVFS cvfs) 
+static void releaseCvFsHn(CVFS cvfs)
 {
-    cvfs->dev = NULL;
+    cvfs->obj = NULL;
     
     cvfs->vtbl = NULL;
 }
 
 // 100% matching!
-void toUpperStr(Char8* str) 
+static void toUpperStr(Sint8 *src)
 {
     Uint32 len;
-    Sint32 i;
+    Uint32 lp;
 
-    len = strlen(str);
+    len = strlen((const char*)src);
 
-    for (i = 0; i < (len + 1); i++)
+    for (lp = 0; lp < (len + 1); lp++)
     {
-        if ((str[i] >= 'a') && (str[i] <= 'z')) 
+        if ((src[lp] >= 'a') && (src[lp] <= 'z')) 
         {
-            str[i] -= 'a' - 'A';
+            src[lp] -= 'a' - 'A';
         }
     }
 }

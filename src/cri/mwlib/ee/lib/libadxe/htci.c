@@ -35,7 +35,7 @@ void htci_call_errfn(HTCI htci, const char *msg)
 {
     if (htg_ci_err_func != NULL) 
     { 
-        htg_ci_err_func(htg_ci_err_obj, msg, htci);
+        htg_ci_err_func(htg_ci_err_obj, (const Sint8*)msg, htci);
     }
 }
 

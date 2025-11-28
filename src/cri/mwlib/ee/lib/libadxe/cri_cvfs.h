@@ -27,8 +27,6 @@ typedef enum
 	CVE_FS_SK_NUM = 3
 } CVE_FS_SK;
 
-typedef void (*CVFS_ERRFN)(void* cvfs_errobj, const Char8* msg, void* obj);
-
 typedef struct _cvfs_vtbl
 {
     void    (*ExecServer)();
@@ -59,23 +57,7 @@ typedef struct _cvfs_vtbl
     Sint32  (*OptFn2)(void* dev);
 } CVFS_VTBL;
 
-typedef struct _cvfs_obj 
-{
-    CVFS_VTBL* vtbl;
-    void*      dev;
-} CVFS_OBJ;
-
-typedef CVFS_OBJ *CVFS;
-
-typedef struct _cvfs_name_obj
-{
-    CVFS_OBJ*  dev;
-    Char8      name[12];
-} CVFS_NAME_OBJ;
-
-typedef CVFS_NAME_OBJ *CVFS_NAME;
-
-typedef void (*CVF_FS_ERRFN)(void *err_obj, const char *msg, void *obj);
+typedef void (*CVF_FS_ERRFN)(void *err_obj, const Sint8 *msg, void *obj);
 
 typedef struct _vfs_vtbl 
 {
@@ -109,50 +91,62 @@ typedef struct _vfs_vtbl
 typedef CVS_FS_IF *CVFS_IF;
 typedef CVFS_IF (*CVF_FS_VTBLFN)();
 
-CVFS addDevice(Char8* devname, void* (*getdevif()));
-CVFS allocCvFsHn(void);
-void cvFsAddDev(Char8* devname, void* (*getdevif()), void* unused);
-void cvFsCallUsrErrFn(void* errobj, const Char8* msg, void* obj);
-Sint32 cvFsChangeDir(const Char8* dirname);
+typedef struct 
+{ 
+	CVFS_IF vtbl;
+	Sint8 dname[9];
+} CVF_FS_TBL;
+
+typedef struct 
+{ 
+	CVFS_IF vtbl;
+	void *obj;
+} CVS_FS_OBJ;
+typedef CVS_FS_OBJ *CVFS;
+
+static CVFS_IF addDevice(Sint8 *devname, CVF_FS_VTBLFN func);
+static void* allocCvFsHn();
+void cvFsAddDev(Sint8 *devname, CVF_FS_VTBLFN vtblfn, void *init_prm);
+void cvFsCallUsrErrFn(void *obj, const Sint8 *msg, void *hndl);
+Sint32 cvFsChangeDir(const Sint8 *dirname);
 void cvFsClose(CVFS cvfs);
-void cvFsDelDev(Char8* devname);
-Sint32 cvFsDeleteFile(const Char8* dirname);
-void cvFsEntryErrFunc(CVFS_ERRFN func, void* obj);
-void cvFsError(const Char8* msg);
+void cvFsDelDev(Sint8 *devname);
+Sint32 cvFsDeleteFile(const Sint8 *fname);
+void cvFsEntryErrFunc(CVF_FS_ERRFN errfn, void *obj);
+void cvFsError(const Sint8 *msg);
 void cvFsExecServer(void);
 void cvFsFinish(void);
-Char8* cvFsGetDefDev(void);
-CVFS_NAME cvFsGetDevName(CVFS cvfs);
-Sint32 cvFsGetFileSize(const Sint8* dirname);
-Sint32 cvFsGetFileSizeEx(const Char8* dirname, Sint32 arg1);
-Sint32 cvFsGetFreeSize(Char8* fname);
+Sint8* cvFsGetDefDev(void);
+Sint8* cvFsGetDevName(CVFS cvfs);
+Sint32 cvFsGetFileSize(const Sint8 *fname);
+Sint32 cvFsGetFileSizeEx(const Sint8 *fname, void *prm);
+Sint32 cvFsGetFreeSize(Sint8 *devname);
 Sint32 cvFsGetMaxByteRate(CVFS cvfs);
-Sint32 cvFsGetNumFiles(const char* devname);
+Sint32 cvFsGetNumFiles(const Sint8 *devname);
 Sint32 cvFsGetNumTr(CVFS cvfs);
 Sint32 cvFsGetSctLen(CVFS cvfs);
-Sint8 cvFsGetStat(CVFS cvfs);
+CVE_FS_ST cvFsGetStat(CVFS cvfs);
 void cvFsInit(void);
-Sint32 cvFsIsExistFile(const Char8* dirname);
-Sint32 cvFsLoadDirInfo(const Char8* dirname, Sint32 arg1, Sint32 rw);
-Sint32 cvFsMakeDir(const Char8* dirname);
-CVFS cvFsOpen(const Sint8* dirname, void* arg1, CVE_FS_OP rw);
-Sint32 cvFsOptFn1(CVFS cvfs);
-Sint32 cvFsOptFn2(CVFS cvfs);
-Sint32 cvFsRemoveDir(const Char8* dirname);
-Sint32 cvFsReqRd(CVFS cvfs, Sint32 nsct, Sint8* buf);
-Sint32 cvFsReqWr(CVFS cvfs, Sint32 nsct, Sint8* buf);
-Sint32 cvFsSeek(CVFS cvfs, Sint32 ofst, Sint32 whence);
-void cvFsSetDefDev(Char8* devname);
-void cvFsSetSctLen(CVFS cvfs);
+Sint32 cvFsIsExistFile(const Sint8 *fname);
+Sint32 cvFsLoadDirInfo(const Sint8 *name, void *inf, Sint32 num);
+Sint32 cvFsMakeDir(const Sint8 *dirname);
+CVFS cvFsOpen(const Sint8 *fname, void *prm, CVE_FS_OP op_mode);
+Sint32 cvFsOptFn1(CVFS cvfs, Sint32 p0, Sint32 p1, Sint32 p2);
+Sint32 cvFsOptFn2(CVFS cvfs, Sint32 p0, Sint32 p1, Sint32 p2);
+Sint32 cvFsRemoveDir(const Sint8 *dirname);
+Sint32 cvFsReqRd(CVFS cvfs, Sint32 nsct, void *buf);
+Sint32 cvFsReqWr(CVFS cvfs, Sint32 nsct, void *buf);
+Sint32 cvFsSeek(CVFS cvfs, Sint32 nsct, CVE_FS_SK sk_mode);
+void cvFsSetDefDev(Sint8 *devname);
+void cvFsSetSctLen(CVFS cvfs, Sint32 sctlen);
 void cvFsStopTr(CVFS cvfs);
 Sint32 cvFsTell(CVFS cvfs);
-void getDefDev(Char8* devname);
-CVFS getDevice(const Char8* devname);
-void getDevName(Char8* devname, Char8* fname, const Char8* dirname);
-Sint32 getNumFiles(const char* devname);
+static void getDefDev(Sint8 *dev);
+static CVFS_IF getDevice(const Sint8 *devname);
+void getDevName(Sint8 *dname, Sint8 *fname, const Sint8 *fn);
+Sint32 getNumFiles(const Sint8 *devname);
 Sint32 getNumFilesAll(void);
-Sint32 isExistDev(const Char8* devname, Sint32 nameln);
-void releaseCvFsHn(CVFS cvfs);
-void toUpperStr(Char8* str);
+static void releaseCvFsHn(CVFS cvfs);
+static void toUpperStr(Sint8 *src);
 
 #endif

@@ -38,7 +38,7 @@ void dvci_call_errfn(DVCI dvci, const char *msg)
 {
     if (dvg_ci_err_func != NULL) 
     {
-        dvg_ci_err_func(dvg_ci_err_obj, msg, dvci);
+        dvg_ci_err_func(dvg_ci_err_obj, (const Sint8*)msg, dvci);
     }
 }
 

@@ -34,11 +34,11 @@ void ADXT_SetOpMode(ADXT_SPRM *sprm)
 // 100% matching!
 void ADXT_SetupHostFs(ADXT_SPRM *sprm)
 {
-    cvFsEntryErrFunc(adxt_err_host, NULL);
+    cvFsEntryErrFunc((void*)adxt_err_host, NULL);
     
-    cvFsAddDev("HST", (void*)htCiGetInterface, NULL);
+    cvFsAddDev((Sint8*)"HST", (void*)htCiGetInterface, NULL);
     
-    cvFsSetDefDev("HST");
+    cvFsSetDefDev((Sint8*)"HST");
     
     if (sprm != NULL) 
     {
