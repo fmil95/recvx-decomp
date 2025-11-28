@@ -2039,13 +2039,10 @@ void RegistEnemySlot(int SlotNo, int EnemyNo, int SeNo)
     EnemySlotPtr->Flag = 1;
 }
 
-// 
-// Start address: 0x2960a0
+// 100% matching!
 void ResetEnemySeInfo()
 {
-	// Line 3373, Address: 0x2960a0, Func Offset: 0
-	// Func End, Address: 0x2960a8, Func Offset: 0x8
-    scePrintf("ResetEnemySeInfo - UNIMPLEMENTED\n");
+
 }
 
 // 99.85% matching
