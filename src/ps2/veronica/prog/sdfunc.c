@@ -38,9 +38,9 @@ char MoviePlayTrayOpenFlag;
 int CurrentBgmNo = -1;
 int CurrentBgSeNo[2] = { -1, -1 };
 int RoomSoundCaseNo;
-/*short DefBg[3];
-short DefObj[5];
-short DefEvt[5];*/
+/*short DefBg[3];*/
+short DefObj[5] = { 3, 4, 5, 6, 7 };
+/*short DefEvt[5];*/
 short DefEne[6] = { 0, 1, 2, 3, 4, 5 };
 int SoundInitLevel;
 int SdReadMode;
@@ -2242,48 +2242,79 @@ int SearchFreeObjectSeSlot()
 	scePrintf("SearchFreeObjectSeSlot - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x296530
+// 100% matching! 
 void CallObjectSe2(unsigned int SlotNo, Object* oip, int Flag)
 {
-	// Line 3560, Address: 0x296530, Func Offset: 0
-	// Line 3561, Address: 0x296544, Func Offset: 0x14
-	// Line 3562, Address: 0x296554, Func Offset: 0x24
-	// Line 3563, Address: 0x29656c, Func Offset: 0x3c
-	// Line 3564, Address: 0x296574, Func Offset: 0x44
-	// Line 3565, Address: 0x29657c, Func Offset: 0x4c
-	// Line 3566, Address: 0x296584, Func Offset: 0x54
-	// Line 3567, Address: 0x296598, Func Offset: 0x68
-	// Line 3569, Address: 0x2965a4, Func Offset: 0x74
-	// Line 3570, Address: 0x2965ac, Func Offset: 0x7c
-	// Line 3571, Address: 0x2965bc, Func Offset: 0x8c
-	// Line 3572, Address: 0x2965c8, Func Offset: 0x98
-	// Line 3573, Address: 0x2965d8, Func Offset: 0xa8
-	// Line 3574, Address: 0x2965f0, Func Offset: 0xc0
-	// Line 3576, Address: 0x2965fc, Func Offset: 0xcc
-	// Line 3577, Address: 0x296604, Func Offset: 0xd4
-	// Line 3578, Address: 0x29660c, Func Offset: 0xdc
-	// Line 3579, Address: 0x296634, Func Offset: 0x104
-	// Line 3581, Address: 0x29663c, Func Offset: 0x10c
-	// Line 3582, Address: 0x29664c, Func Offset: 0x11c
-	// Line 3583, Address: 0x296658, Func Offset: 0x128
-	// Line 3584, Address: 0x296668, Func Offset: 0x138
-	// Line 3585, Address: 0x29667c, Func Offset: 0x14c
-	// Line 3587, Address: 0x296688, Func Offset: 0x158
-	// Line 3588, Address: 0x296690, Func Offset: 0x160
-	// Line 3589, Address: 0x29669c, Func Offset: 0x16c
-	// Line 3591, Address: 0x2966a4, Func Offset: 0x174
-	// Line 3592, Address: 0x2966b0, Func Offset: 0x180
-	// Line 3593, Address: 0x2966b8, Func Offset: 0x188
-	// Line 3594, Address: 0x2966c0, Func Offset: 0x190
-	// Line 3595, Address: 0x2966cc, Func Offset: 0x19c
-	// Line 3596, Address: 0x2966d4, Func Offset: 0x1a4
-	// Line 3597, Address: 0x2966e4, Func Offset: 0x1b4
-	// Line 3598, Address: 0x2966f0, Func Offset: 0x1c0
-	// Line 3599, Address: 0x2966f8, Func Offset: 0x1c8
-	// Line 3602, Address: 0x29670c, Func Offset: 0x1dc
-	// Func End, Address: 0x296724, Func Offset: 0x1f4
-	scePrintf("CallObjectSe2 - UNIMPLEMENTED!\n");
+    if (oip->Type == 0) 
+    {
+        RequestInfo.SlotNo = DefObj[SlotNo];
+        
+        if (Flag == 0) 
+        {
+            RequestInfo.ListNo = -1;
+        } 
+        else 
+        {
+            RequestInfo.BankNo = (oip->SeNo / 256) & 0xF;
+            RequestInfo.ListNo = oip->SeNo;
+        }
+        
+        RequestInfo.Priority = 0;
+        
+        if ((oip->Flag & 0x2)) 
+        {
+            RequestInfo.VolumeDelayTime = -1;
+            
+            if ((oip->Flag & 0x8)) 
+            {
+                RequestMidiFadeFunctionEx(DefObj[SlotNo], oip->VolFadeP[0], oip->VolFadeP[1], oip->VolFadeP[2]);
+                
+                oip->Flag &= ~0x8;
+            }
+        } 
+        else 
+        {
+            RequestInfo.Volume = oip->Vol;
+            
+            RequestInfo.Volume += CheckCollision4Sound(&oip->pos); 
+            
+            RequestInfo.VolumeDelayTime = 0;
+        }
+        
+        if ((oip->Flag & 0x4)) 
+        {
+            RequestInfo.PanDelayTime = -1;
+            
+            if ((oip->Flag & 0x10)) 
+            {
+                RequestMidiPanFunctionEx(DefObj[SlotNo], oip->PanFadeP[0], oip->PanFadeP[1], oip->PanFadeP[2]);
+                
+                oip->Flag &= ~0x10;
+            }
+        } 
+        else 
+        {
+            RequestInfo.Pan = oip->Pan;
+            
+            RequestInfo.PanDelayTime = 0;
+        }
+        
+        RequestInfo.SpeedDelayTime = RequestInfo.PitchDelayTime = -1;
+        
+        RequestInfo.FxInput = -1;
+        
+        ExPlayMidi(&RequestInfo);
+    }
+    else 
+    {
+        SetPanAdx(0, 0, oip->Pan);
+        SetVolumeAdx(0, oip->Vol);
+        
+        if (Flag != 0) 
+        {
+            PlayAdx(0, PatId[0], oip->SeNo);
+        }
+    }
 }
 
 // 100% matching!
