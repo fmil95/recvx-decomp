@@ -31,9 +31,9 @@ AFS_PATINFO SoundAfsPatDef[8] = {
 ADX_WORK AdxDef[2] = { { 2, 48000, 2, -1 }, { 1, 48000, 2, -1 } };
 SDE_DATA_TYPE SdTypeDef[5] = { SDE_DATA_TYPE_MIDI_SEQ_BANK, SDE_DATA_TYPE_MIDI_PRG_BANK, SDE_DATA_TYPE_SHOT_BANK, SDE_DATA_TYPE_FX_PRG_BANK, SDE_DATA_TYPE_FX_OUT_BANK }; 
 /*int PlayerFootStepSwitch[3];
-int SystemSeSlotSwitch;
+int SystemSeSlotSwitch;*/
 int WeaponSeSlotSwitch;
-int EnemyBackGroundSeFlag;*/
+/*int EnemyBackGroundSeFlag;*/
 char MoviePlayTrayOpenFlag;
 int CurrentBgmNo = -1;
 int CurrentBgSeNo[2] = { -1, -1 };
@@ -1234,39 +1234,43 @@ void CallPlayerActionSe(int SeNo, int Flag) {
     CallPlayerFootStepSeEx(SeNo, 3, Flag, 0, &PlayerPos);
 }
 
-
-/*// 
-// Start address: 0x294bd0
-void CallPlayerWeaponSeEx(_anon16* pPos, int SeNo, int SlotNo)
+// 100% matching! 
+void CallPlayerWeaponSeEx(NJS_POINT3* pPos, int SeNo, int SlotNo)
 {
-	int NeoSlotNo;
-	int SlotDef[2];
-	// Line 2315, Address: 0x294bd0, Func Offset: 0
-	// Line 2316, Address: 0x294bd4, Func Offset: 0x4
-	// Line 2315, Address: 0x294bd8, Func Offset: 0x8
-	// Line 2316, Address: 0x294bdc, Func Offset: 0xc
-	// Line 2315, Address: 0x294be0, Func Offset: 0x10
-	// Line 2316, Address: 0x294be8, Func Offset: 0x18
-	// Line 2319, Address: 0x294bf0, Func Offset: 0x20
-	// Line 2316, Address: 0x294bf4, Func Offset: 0x24
-	// Line 2319, Address: 0x294bf8, Func Offset: 0x28
-	// Line 2323, Address: 0x294c08, Func Offset: 0x38
-	// Line 2325, Address: 0x294c14, Func Offset: 0x44
-	// Line 2326, Address: 0x294c1c, Func Offset: 0x4c
-	// Line 2327, Address: 0x294c30, Func Offset: 0x60
-	// Line 2328, Address: 0x294c3c, Func Offset: 0x6c
-	// Line 2329, Address: 0x294c44, Func Offset: 0x74
-	// Line 2331, Address: 0x294c48, Func Offset: 0x78
-	// Line 2332, Address: 0x294c64, Func Offset: 0x94
-	// Line 2334, Address: 0x294c6c, Func Offset: 0x9c
-	// Line 2336, Address: 0x294c78, Func Offset: 0xa8
-	// Line 2337, Address: 0x294c88, Func Offset: 0xb8
-	// Line 2340, Address: 0x294ca4, Func Offset: 0xd4
-	// Line 2341, Address: 0x294cb0, Func Offset: 0xe0
-	// Func End, Address: 0x294cc0, Func Offset: 0xf0
+    int SlotDef[2] = { 8, 9 };   
+    int NeoSlotNo;            
+    int temp; // not from the debugging symbols
+
+    if (SpqFileReadRequestFlag != 2) 
+    {
+        NeoSlotNo = (SeNo & 0xFFFF00FF) | 0x100; 
+        
+        if (SlotNo == 0) 
+        {
+            temp = SlotDef[WeaponSeSlotSwitch];
+            WeaponSeSlotSwitch = !WeaponSeSlotSwitch;
+        } 
+        else 
+        {
+            temp = 19;
+        }
+        
+        SetupSeGenericParm(temp, NeoSlotNo, pPos, 1, GsSlotInfoSe[temp].Flag); 
+        
+        SetSyukanModeSoundParam();
+        
+        RequestInfo.PitchDelayTime = -2;
+        
+        if (!(GsSlotInfoSe[temp].Flag & 0x2))
+        {
+            RequestInfo.Volume += Room_SoundEnv.VolWeaponSe;
+        }
+        
+        ExPlaySe(&RequestInfo);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x294cc0
 void CallYakkyouSe(_anon16* pPos, int SeNo)
 {

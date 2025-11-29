@@ -71,7 +71,7 @@ int GetPlayerActionSeSlotNo(int Type, int Id);
 void CallPlayerFootStepSeEx(int FloorType, int Type, int Flag, int Id, NJS_POINT3* pPos);
 void CallPlayerFootStepSe(int FloorType, int Type, int Flag);
 void CallPlayerActionSe(int SeNo, int Flag);
-void CallPlayerWeaponSeEx(_anon16* pPos, int SeNo, int SlotNo);
+void CallPlayerWeaponSeEx(NJS_POINT3* pPos, int SeNo, int SlotNo);
 void CallYakkyouSe(_anon16* pPos, int SeNo);
 void CallBackGroundSeEx(unsigned int SlotNo, int SeNo, short Timer);
 void CallBackGroundSe(unsigned int SlotNo, int SeNo);
