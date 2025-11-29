@@ -683,25 +683,37 @@ void StopFadeMidi(int SlotNo)
     MidiInfo[SlotNo].FadeFunc = 0;
 }
 
-// 
-// Start address: 0x290180
+// 100% matching! 
 void RequestSeFadeFunction(int SlotNo, int Func, short Timer)
 {
-	NO_NAME_20* sp;
-	// Line 708, Address: 0x290180, Func Offset: 0
-	// Line 709, Address: 0x290198, Func Offset: 0x18
-	// Line 711, Address: 0x2901b8, Func Offset: 0x38
-	// Line 712, Address: 0x2901c0, Func Offset: 0x40
-	// Line 713, Address: 0x2901c4, Func Offset: 0x44
-	// Line 715, Address: 0x2901cc, Func Offset: 0x4c
-	// Line 719, Address: 0x2901d4, Func Offset: 0x54
-	// Line 722, Address: 0x290244, Func Offset: 0xc4
-	// Line 723, Address: 0x290250, Func Offset: 0xd0
-	// Line 724, Address: 0x29025c, Func Offset: 0xdc
-	// Line 729, Address: 0x290264, Func Offset: 0xe4
-	// Line 732, Address: 0x290284, Func Offset: 0x104
-	// Func End, Address: 0x29028c, Func Offset: 0x10c
-	scePrintf("RequestSeFadeFunction - UNIMPLEMENTED!\n");
+    NO_NAME_20* sp;
+    
+    sp = &SeInfo[SlotNo];
+    
+    switch (Func) 
+    {                                
+    case 1:
+        sp->Volume = -127.0f;
+        
+        sp->VolLast = sp->LimitMaxVol;
+        break;
+    case 2:
+        sp->VolLast = -127.0f;
+        break;
+    }
+    
+    sp->FadeCntMax = ((Timer / 100) * 30) + (((Timer % 100) * 6) / 10);
+    
+    sp->FadeCntMax /= 2;
+    
+    if (sp->FadeCntMax == 0) 
+    {
+        sp->FadeCntMax = 1;
+    }
+    
+    sp->VolSpeed = (sp->Volume - sp->VolLast) / sp->FadeCntMax;
+    
+    sp->FadeFunc = Func;
 }
 
 // 
