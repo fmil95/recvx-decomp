@@ -43,12 +43,12 @@ python3 -m splat split config/SLUS_201.84.yaml
 
 You can tell that it worked correctly if you see 100% on all section_headers operations, there will be an error message after that, but it's no problem since splat is asking for a linker script and we won't really need it.
 
-Next, and if you were planning to simply building the project all along, type the following command to compile the executable if you're on Windows:
+Next, and if you were planning to simply building the project all along, type the following command to compile:
 ```
 python compile.py
 ```
 
-If you are on Linux, you have to run compile_wine.py instead, as the game's version of MWCC has got binaries that are only available for Windows.
+If you're using Linux, ensure you have Wine installed on your system to run 32-bit programs. Wine will take care of MWCC since it only runs on Windows. By default, the command will use a directory named `.wineprefix` as prefix on the root of the project to keep things clean. If prompted about the **Mono Installer**, simply click on 'Cancel'.
 
 With the main.elf from compilation, you can repackage RE: CVX's ISO file with it to see the decompiled code in action. You need to put your copy of the game's DVD on the elf/iso folder, and dump its contents with the following command:
 ```

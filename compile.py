@@ -3,6 +3,8 @@ import subprocess
 import json
 import argparse
 import shutil
+import sys
+from pathlib import Path
 
 def load_json(filename):
     """Load JSON data from a file."""
@@ -18,6 +20,39 @@ def write_json(filename, data):
 
 def run_command(command, env_vars, log_file='elf/report.txt'):
     """Run a shell command with specified environment variables and log output."""
+
+    # Detect Linux environment and use WINE for windows binaries
+    if sys.platform.startswith("linux") and command[0].endswith('.exe'):
+        # By default, create a prefix inside the project root and use that
+        project_root = Path(__file__).resolve().parent
+
+        wine_prefix = project_root / ".wineprefix"
+
+        env = os.environ.copy()
+        env["WINEPREFIX"] = str(wine_prefix.resolve())
+
+        boot = subprocess.run(
+            ["wineboot", "--init"],
+            env=env,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+
+        if boot.returncode != 0:
+            sys.exit(1) # Couldn't handle wine boot
+
+        # Command for checking correct wineprefix
+        # result = subprocess.run(
+        #     ["wine", "winepath", "-u", "C:"],
+        #     env=env,
+        #     capture_output=True,
+        #     text=True
+        # )
+
+        # print("wine is mapping C:/ to ->", result.stdout.strip())
+
+        command = ['wine'] + command
+
     for cmd in command:
         # Tidy up the output a little
         if cmd.startswith("-L") or cmd.startswith("-I") or cmd.startswith("-D") or cmd.endswith(".c") or cmd.startswith("-lgcc"):
@@ -41,9 +76,9 @@ def run_command(command, env_vars, log_file='elf/report.txt'):
     if result.returncode != 0:
         print(f"Error: {result.stderr.decode('utf-8')}")
         return False  # Return False on failure
-    
+
     return True  # Return True on success
-    
+
 
 def create_compile_command_entry(compiler, source, object_file, include_dirs, defines):
     """Create a compile command entry for compile_commands.json."""
@@ -226,7 +261,7 @@ def main(args):
             print(f"Warning: {crt0_src} not found ? skipping crt0.o")
 
         objects = [obj for obj in objects if not obj.endswith("crt0.o")]
-        
+
         objects.insert(0, crt0_dest)
 
         print(f"Performing linkage with the following parameters:")
@@ -267,8 +302,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build automation script.")
 
     parser.add_argument('--env-file', type=str, default='compile_config.json', help="Path to the JSON file containing environment variables.")
-    
+
     args = parser.parse_args()
 
     main(args)
-
