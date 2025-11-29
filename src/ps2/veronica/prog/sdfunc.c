@@ -101,7 +101,7 @@ char CurrentRoomFxProgNo;
 int MaxRequestList;
 unsigned char RequestList[128];
 ObjectSlot ObjectSlotInfo[3];
-/*_anon65 SdComFuncTbl[10];*/
+SDCOM_FUNCTBL SdComFuncTbl[10] = { NULL, Com_ExecRoomFadeIn, Com_ExecRoomFadeOut, Com_StartInitScript, Com_FinishInitScript, Com_ExecCallBgm_And_BgSe, Com_ExecCallBgm_And_BgSe, Com_ExecCallBgm_And_BgSe, Com_ExecCallBgm_And_BgSe, Com_ExecCallBgm_And_BgSe };
 unsigned char* DestReadPtr;
 int GenAdxfSlot;
 unsigned char MovieTypeDef[22] = { 0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x02, 0x80, 0x42, 0x82, 0x00, 0x80, 0x00, 0x82 };
@@ -2486,7 +2486,7 @@ void ResetSoundComInfo()
 
 }
 
-/*// 
+// 
 // Start address: 0x296e00
 void Com_ExecRoomFadeIn()
 {
@@ -2516,6 +2516,7 @@ void Com_ExecRoomFadeIn()
 	// Line 4007, Address: 0x296f18, Func Offset: 0x118
 	// Line 4008, Address: 0x296f28, Func Offset: 0x128
 	// Func End, Address: 0x296f44, Func Offset: 0x144
+    scePrintf("Com_ExecRoomFadeIn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2546,7 +2547,8 @@ void Com_ExecRoomFadeOut()
 	// Line 4048, Address: 0x296fd0, Func Offset: 0x80
 	// Line 4049, Address: 0x296fd8, Func Offset: 0x88
 	// Func End, Address: 0x296fe4, Func Offset: 0x94
-}*/
+    scePrintf("Com_ExecRoomFadeOut - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void Com_ExecCallBgm_And_BgSe()
@@ -2554,7 +2556,7 @@ void Com_ExecCallBgm_And_BgSe()
 
 }
 
-/*// 
+// 
 // Start address: 0x297000
 void Com_StartInitScript()
 {
@@ -2575,7 +2577,8 @@ void Com_StartInitScript()
 	// Line 4125, Address: 0x297084, Func Offset: 0x84
 	// Line 4126, Address: 0x297090, Func Offset: 0x90
 	// Func End, Address: 0x29709c, Func Offset: 0x9c
-}*/
+    scePrintf("Com_StartInitScript - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void Com_FinishInitScript() 
@@ -2583,21 +2586,22 @@ void Com_FinishInitScript()
 
 }
 
-// 
-// Start address: 0x2970b0
+// 100% matching! 
 void ExecuteSoundCommand()
 {
-	int i;
-	// Line 4163, Address: 0x2970b0, Func Offset: 0
-	// Line 4166, Address: 0x2970c8, Func Offset: 0x18
-	// Line 4167, Address: 0x2970d0, Func Offset: 0x20
-	// Line 4168, Address: 0x2970f0, Func Offset: 0x40
-	// Line 4170, Address: 0x2970f8, Func Offset: 0x48
-	// Line 4171, Address: 0x297100, Func Offset: 0x50
-	// Line 4173, Address: 0x29711c, Func Offset: 0x6c
-	// Line 4174, Address: 0x297124, Func Offset: 0x74
-	// Func End, Address: 0x297138, Func Offset: 0x88
-	scePrintf("ExecuteSoundCommand - UNIMPLEMENTED!\n");
+    int i;
+    
+    for (i = 0; i < SoundCommand.MaxCommand; i++) 
+    {
+        if (SdComFuncTbl[SoundCommand.ComTbl[i]].FuncName != NULL) 
+        {
+            SdComFuncTbl[SoundCommand.ComTbl[i]].FuncName(SoundCommand.ComTbl[i]);
+        }
+        
+        SoundCommand.ComTbl[i] = 0;
+    }
+    
+    SoundCommand.MaxCommand = 0;
 }
 
 // 100% matching!

@@ -3245,6 +3245,12 @@ typedef struct BH_SCEWORK
     float e_lgt[2][5];            // offset 0x10C, size 0x28
 } BH_SCEWORK; 
 
+typedef struct SDCOM_FUNCTBL
+{
+    // total size: 0x4
+    void (*FuncName)(int); // offset 0x0, size 0x4
+} SDCOM_FUNCTBL;
+
 typedef struct {
     int isOnCD;		
     int size;
