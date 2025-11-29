@@ -21,3 +21,5 @@ elf/iso/RECVX_FILELIST.TXT
 compile_config.json
 compile_wibo.py
 dwarfdump.txt
+.wineprefix
+.venv
