@@ -1,5 +1,8 @@
 #include "bup_00.h"
 #include "ps2_LoadScreen.h"
+#include "ps2_NaFog.h"
+#include "ps2_NaMem.h"
+#include "ps2_NaTextureFunction.h"
 #include "ps2_SaveScreen.h"
 #include "pwksub.h"
 #include "main.h"
@@ -314,124 +317,135 @@ void TypewriterMain()
     }
 }
 
-// 
-// Start address: 0x2c95f0
+// 100% matching! 
 void TypewriterExit()
 {
-	//_anon2* tw;
-	// Line 3996, Address: 0x2c95f0, Func Offset: 0
-	// Line 3997, Address: 0x2c95fc, Func Offset: 0xc
-	// Line 4000, Address: 0x2c9604, Func Offset: 0x14
-	// Line 4001, Address: 0x2c9614, Func Offset: 0x24
-	// Line 4002, Address: 0x2c961c, Func Offset: 0x2c
-	// Line 4003, Address: 0x2c9628, Func Offset: 0x38
-	// Line 4002, Address: 0x2c962c, Func Offset: 0x3c
-	// Line 4003, Address: 0x2c9630, Func Offset: 0x40
-	// Line 4002, Address: 0x2c9634, Func Offset: 0x44
-	// Line 4003, Address: 0x2c963c, Func Offset: 0x4c
-	// Line 4005, Address: 0x2c9658, Func Offset: 0x68
-	// Line 4006, Address: 0x2c9660, Func Offset: 0x70
-	// Line 4008, Address: 0x2c9668, Func Offset: 0x78
-	// Line 4010, Address: 0x2c9674, Func Offset: 0x84
-	// Line 4013, Address: 0x2c967c, Func Offset: 0x8c
-	// Line 4014, Address: 0x2c9684, Func Offset: 0x94
-	// Line 4010, Address: 0x2c968c, Func Offset: 0x9c
-	// Line 4011, Address: 0x2c9690, Func Offset: 0xa0
-	// Line 4012, Address: 0x2c969c, Func Offset: 0xac
-	// Line 4013, Address: 0x2c96a8, Func Offset: 0xb8
-	// Line 4014, Address: 0x2c96b4, Func Offset: 0xc4
-	// Line 4013, Address: 0x2c96b8, Func Offset: 0xc8
-	// Line 4014, Address: 0x2c96c0, Func Offset: 0xd0
-	// Line 4015, Address: 0x2c96c8, Func Offset: 0xd8
-	// Line 4014, Address: 0x2c96cc, Func Offset: 0xdc
-	// Line 4015, Address: 0x2c96d4, Func Offset: 0xe4
-	// Line 4017, Address: 0x2c96f0, Func Offset: 0x100
-	// Line 4018, Address: 0x2c96f8, Func Offset: 0x108
-	// Line 4021, Address: 0x2c9724, Func Offset: 0x134
-	// Line 4022, Address: 0x2c9728, Func Offset: 0x138
-	// Line 4023, Address: 0x2c9738, Func Offset: 0x148
-	// Line 4024, Address: 0x2c9740, Func Offset: 0x150
-	// Line 4022, Address: 0x2c9744, Func Offset: 0x154
-	// Line 4023, Address: 0x2c9748, Func Offset: 0x158
-	// Line 4022, Address: 0x2c974c, Func Offset: 0x15c
-	// Line 4023, Address: 0x2c9754, Func Offset: 0x164
-	// Line 4024, Address: 0x2c9760, Func Offset: 0x170
-	// Line 4026, Address: 0x2c9768, Func Offset: 0x178
-	// Line 4028, Address: 0x2c9774, Func Offset: 0x184
-	// Line 4029, Address: 0x2c9794, Func Offset: 0x1a4
-	// Line 4031, Address: 0x2c97c4, Func Offset: 0x1d4
-	// Line 4032, Address: 0x2c97c8, Func Offset: 0x1d8
-	// Line 4034, Address: 0x2c97d0, Func Offset: 0x1e0
-	// Line 4035, Address: 0x2c97d4, Func Offset: 0x1e4
-	// Line 4037, Address: 0x2c97dc, Func Offset: 0x1ec
-	// Line 4040, Address: 0x2c97e0, Func Offset: 0x1f0
-	// Line 4043, Address: 0x2c97e8, Func Offset: 0x1f8
-	// Line 4045, Address: 0x2c9804, Func Offset: 0x214
-	// Line 4046, Address: 0x2c9810, Func Offset: 0x220
-	// Line 4047, Address: 0x2c9828, Func Offset: 0x238
-	// Line 4054, Address: 0x2c9830, Func Offset: 0x240
-	// Line 4055, Address: 0x2c9838, Func Offset: 0x248
-	// Line 4051, Address: 0x2c9840, Func Offset: 0x250
-	// Line 4047, Address: 0x2c9844, Func Offset: 0x254
-	// Line 4049, Address: 0x2c9848, Func Offset: 0x258
-	// Line 4057, Address: 0x2c984c, Func Offset: 0x25c
-	// Line 4047, Address: 0x2c9850, Func Offset: 0x260
-	// Line 4049, Address: 0x2c9858, Func Offset: 0x268
-	// Line 4051, Address: 0x2c9874, Func Offset: 0x284
-	// Line 4052, Address: 0x2c9880, Func Offset: 0x290
-	// Line 4053, Address: 0x2c9894, Func Offset: 0x2a4
-	// Line 4054, Address: 0x2c98a0, Func Offset: 0x2b0
-	// Line 4053, Address: 0x2c98a4, Func Offset: 0x2b4
-	// Line 4054, Address: 0x2c98ac, Func Offset: 0x2bc
-	// Line 4055, Address: 0x2c98b4, Func Offset: 0x2c4
-	// Line 4054, Address: 0x2c98b8, Func Offset: 0x2c8
-	// Line 4055, Address: 0x2c98c0, Func Offset: 0x2d0
-	// Line 4056, Address: 0x2c98c8, Func Offset: 0x2d8
-	// Line 4055, Address: 0x2c98cc, Func Offset: 0x2dc
-	// Line 4056, Address: 0x2c98d4, Func Offset: 0x2e4
-	// Line 4057, Address: 0x2c98dc, Func Offset: 0x2ec
-	// Line 4056, Address: 0x2c98e0, Func Offset: 0x2f0
-	// Line 4057, Address: 0x2c98e8, Func Offset: 0x2f8
-	// Line 4058, Address: 0x2c98f0, Func Offset: 0x300
-	// Line 4057, Address: 0x2c98f4, Func Offset: 0x304
-	// Line 4058, Address: 0x2c98fc, Func Offset: 0x30c
-	// Line 4059, Address: 0x2c9904, Func Offset: 0x314
-	// Line 4060, Address: 0x2c9910, Func Offset: 0x320
-	// Line 4061, Address: 0x2c9918, Func Offset: 0x328
-	// Line 4062, Address: 0x2c9920, Func Offset: 0x330
-	// Line 4063, Address: 0x2c9938, Func Offset: 0x348
-	// Line 4064, Address: 0x2c9944, Func Offset: 0x354
-	// Line 4063, Address: 0x2c9948, Func Offset: 0x358
-	// Line 4064, Address: 0x2c9950, Func Offset: 0x360
-	// Line 4065, Address: 0x2c996c, Func Offset: 0x37c
-	// Line 4068, Address: 0x2c9974, Func Offset: 0x384
-	// Line 4069, Address: 0x2c997c, Func Offset: 0x38c
-	// Line 4070, Address: 0x2c9990, Func Offset: 0x3a0
-	// Line 4073, Address: 0x2c999c, Func Offset: 0x3ac
-	// Line 4074, Address: 0x2c99a4, Func Offset: 0x3b4
-	// Line 4070, Address: 0x2c99a8, Func Offset: 0x3b8
-	// Line 4071, Address: 0x2c99ac, Func Offset: 0x3bc
-	// Line 4074, Address: 0x2c99b4, Func Offset: 0x3c4
-	// Line 4076, Address: 0x2c99b8, Func Offset: 0x3c8
-	// Line 4071, Address: 0x2c99bc, Func Offset: 0x3cc
-	// Line 4072, Address: 0x2c99c8, Func Offset: 0x3d8
-	// Line 4073, Address: 0x2c99d4, Func Offset: 0x3e4
-	// Line 4072, Address: 0x2c99d8, Func Offset: 0x3e8
-	// Line 4073, Address: 0x2c99e0, Func Offset: 0x3f0
-	// Line 4074, Address: 0x2c99e8, Func Offset: 0x3f8
-	// Line 4073, Address: 0x2c99ec, Func Offset: 0x3fc
-	// Line 4074, Address: 0x2c99f4, Func Offset: 0x404
-	// Line 4075, Address: 0x2c99fc, Func Offset: 0x40c
-	// Line 4074, Address: 0x2c9a00, Func Offset: 0x410
-	// Line 4075, Address: 0x2c9a08, Func Offset: 0x418
-	// Line 4076, Address: 0x2c9a10, Func Offset: 0x420
-	// Line 4075, Address: 0x2c9a14, Func Offset: 0x424
-	// Line 4076, Address: 0x2c9a1c, Func Offset: 0x42c
-	// Line 4104, Address: 0x2c9a24, Func Offset: 0x434
-	// Line 4076, Address: 0x2c9a28, Func Offset: 0x438
-	// Line 4104, Address: 0x2c9a30, Func Offset: 0x440
-	// Line 4105, Address: 0x2c9a38, Func Offset: 0x448
-	// Line 4109, Address: 0x2c9a44, Func Offset: 0x454
-	// Func End, Address: 0x2c9a54, Func Offset: 0x464
-	scePrintf("TypewriterExit - UNIMPLEMENTED!\n");
+    TYPEWRITER_WORK* tw;
+
+    tw = sys->typ_exp;
+    
+    if ((sys->ss_flg & 0x200)) 
+    {
+        njReleaseTextureAll();
+        
+        sys->ss_flg &= ~0x40;
+        
+        switch (sys->typ_flg & 0x10) 
+        {
+        case 0x10:
+            sys->tk_flg = 0x300010;
+            break;
+        default:
+            sys->tk_flg = 0x300008;
+            break;
+        }
+        
+        sys->typ_flg = 0;
+        
+        sys->typ_md1 = sys->typ_md0 = 0;
+        
+        sys->ss_flg &= ~0x20000;
+        sys->ss_flg &= ~0x10000;
+        
+        sys->memp = sys->sbs_sp;
+        
+        tw->mode_00 = 0;
+    }
+    else 
+    {
+        switch (sys->typ_md1)
+        {                           
+        case 0:
+            tw->mode_00 = 0;
+            
+            sys->ss_flg &= ~0x20000;
+            sys->ss_flg &= ~0x10000;
+            
+            njReleaseTexture(&tw->twtx_list);
+            
+            bhGarbageTexture(NULL, 0);
+            
+            bhSetScreenFade(sys->fade_pbk, 3.0f);
+            
+            switch (sys->typ_flg & 0x18) 
+            {                         
+            case 0x10:                                   
+                sys->typ_md1 = 2;
+                break;
+            case 0x8:                                    
+                sys->typ_md1 = 1;
+                break;
+            default:                                  
+                sys->typ_md1 = 1;
+                break;
+            }
+            
+            break;
+        case 1:
+            if (rom->mdl.texP != NULL) 
+            {
+                bhCopyMainmem2Texmem(rom->mdl.texP);
+            }
+            
+            njSetPaletteMode(2);
+            
+            njMemCopy4(palbuf, &palbuf[3072], 1024);
+            
+            sys->gm_flg |= 0x4;
+            
+            sys->memp = sys->sbs_sp;
+            
+            sys->sp_flg = -1;
+            
+            sys->bcl_ct = 0;
+            
+            sys->gm_flg |= 0x8000;
+            
+            sys->st_flg &= ~0x8000000;
+            
+            sys->cb_flg &= ~0x200000;
+            
+            sys->ts_flg |= 0x8000;
+            sys->ts_flg &= ~0x80;
+            
+            sys->typ_flg = 0;
+            
+            sys->typ_md1 = sys->typ_md0 = 0;
+            
+            bhDrawScreenFade();
+            
+            sys->bcl_ct = 1;
+            
+            sys->gm_flg |= 0x8000;
+            
+            if ((sys->st_flg & 0x2)) 
+            {
+                njFogEnable();
+            }
+            
+            break;
+        case 2:
+            njSetPaletteMode(2);
+            
+            njSetPaletteData(0, 1024, &palbuf[3072]);
+            
+            sys->sp_flg = -1;
+            
+            sys->bcl_ct = 0;
+            
+            sys->gm_flg |= 0x8000;
+            
+            sys->st_flg &= ~0x8000000;
+            
+            sys->cb_flg &= ~0x200000;
+            
+            sys->ts_flg |= 0x8000;
+            sys->ts_flg &= ~0x80;
+            
+            sys->typ_flg = 0;
+            
+            sys->typ_md0 = 0;
+            break;
+        }
+    }
 }
