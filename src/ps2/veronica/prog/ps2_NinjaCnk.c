@@ -28,11 +28,11 @@ float fNaCnkAlphaMaterial;*/
 VU1_COLOR NaCnkDiffuseMaterial;
 /*float fNaCnkMaterialSpeE;*/
 VU1_COLOR NaCnkSpeculaMaterial;
-/*tagVU1_COLOR NaCnkAmbientMaterial;
-tagVU1_COLOR NaCnkAmbientFunctionEm;
-tagVU1_COLOR NaCnkAmbientFunctionSm;*/
+/*tagVU1_COLOR NaCnkAmbientFunctionSm;*/
 VU1_COLOR NaCnkAmbientEs;
-VU1_COLOR NaCnkAmbientEm;
+VU1_COLOR NaCnkAmbientEm = { 1.0f, 1.0f, 1.0f, 1.0f };
+VU1_COLOR NaCnkAmbientFunctionEm = { 1.0f, 1.0f, 1.0f, 1.0f };
+VU1_COLOR NaCnkAmbientMaterial = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientSs;
 VU1_COLOR NaCnkAmbientSm;
 CNK_LIGHT NaCnkLightEs;
@@ -295,22 +295,14 @@ void njCnkSetEasyMultiLightSwitch(int iLightNum, int iSwitch)
 
 // 
 // Start address: 0x2cf600
-void    njCnkSetEasyMultiAmbient(Float ar, Float ag, Float ab)
-{
-	// Line 865, Address: 0x2cf600, Func Offset: 0
-	// Line 866, Address: 0x2cf608, Func Offset: 0x8
-	// Line 867, Address: 0x2cf610, Func Offset: 0x10
-	// Line 870, Address: 0x2cf618, Func Offset: 0x18
-	// Line 871, Address: 0x2cf620, Func Offset: 0x20
-	// Line 870, Address: 0x2cf628, Func Offset: 0x28
-	// Line 872, Address: 0x2cf62c, Func Offset: 0x2c
-	// Line 871, Address: 0x2cf634, Func Offset: 0x34
-	// Line 870, Address: 0x2cf638, Func Offset: 0x38
-	// Line 871, Address: 0x2cf640, Func Offset: 0x40
-	// Line 872, Address: 0x2cf648, Func Offset: 0x48
-	// Line 873, Address: 0x2cf650, Func Offset: 0x50
-	// Func End, Address: 0x2cf658, Func Offset: 0x58
-	scePrintf("njCnkSetEasyMultiAmbient - UNIMPLEMENTED!\n");
+// 100% matching!
+void njCnkSetEasyMultiAmbient(Float ar, Float ag, Float ab) {
+    NaCnkAmbientFunctionEm.fR = ar;
+    NaCnkAmbientFunctionEm.fG = ag;
+    NaCnkAmbientFunctionEm.fB = ab;
+    NaCnkAmbientEm.fR = ar * NaCnkAmbientMaterial.fR;
+    NaCnkAmbientEm.fG = ag * NaCnkAmbientMaterial.fG;
+    NaCnkAmbientEm.fB = ab * NaCnkAmbientMaterial.fB;
 }
 
 /*// 
