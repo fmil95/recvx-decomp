@@ -19,7 +19,7 @@ unsigned int RegistMidiSlot(unsigned int SlotNo);
 void FreeMidiSlot(unsigned int SlotNo);
 unsigned int CheckPlayMidi(unsigned int SlotNo);
 void PlayMidi(unsigned int SlotNo, char BankNo, char ListNo, char Priority);
-/*void ExPlayMidi(_anon1* pRequestInfo);*/
+void ExPlayMidi(SND_REQ* pRequestInfo); 
 void StopMidi(unsigned int SlotNo);
 void SetPanMidi2(unsigned int SlotNo, float Pan, short DelayTime);
 void SetPanMidi(unsigned int SlotNo, char Pan, short DelayTime);

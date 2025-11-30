@@ -238,11 +238,11 @@ void PlayMidi(unsigned int SlotNo, char BankNo, char ListNo, char Priority)
 	// Line 215, Address: 0x28f210, Func Offset: 0x40
 	// Line 218, Address: 0x28f228, Func Offset: 0x58
 	// Func End, Address: 0x28f234, Func Offset: 0x64
-}
+}*/
 
 // 
 // Start address: 0x28f240
-void ExPlayMidi(_anon1* pRequestInfo)
+void ExPlayMidi(SND_REQ* pRequestInfo)
 {
 	// Line 221, Address: 0x28f240, Func Offset: 0
 	// Line 222, Address: 0x28f250, Func Offset: 0x10
@@ -267,7 +267,8 @@ void ExPlayMidi(_anon1* pRequestInfo)
 	// Line 267, Address: 0x28f3c8, Func Offset: 0x188
 	// Line 269, Address: 0x28f3dc, Func Offset: 0x19c
 	// Func End, Address: 0x28f3ec, Func Offset: 0x1ac
-}*/
+	scePrintf("ExPlayMidi - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void StopMidi(unsigned int SlotNo) 
@@ -682,25 +683,37 @@ void StopFadeMidi(int SlotNo)
     MidiInfo[SlotNo].FadeFunc = 0;
 }
 
-// 
-// Start address: 0x290180
+// 100% matching! 
 void RequestSeFadeFunction(int SlotNo, int Func, short Timer)
 {
-	NO_NAME_20* sp;
-	// Line 708, Address: 0x290180, Func Offset: 0
-	// Line 709, Address: 0x290198, Func Offset: 0x18
-	// Line 711, Address: 0x2901b8, Func Offset: 0x38
-	// Line 712, Address: 0x2901c0, Func Offset: 0x40
-	// Line 713, Address: 0x2901c4, Func Offset: 0x44
-	// Line 715, Address: 0x2901cc, Func Offset: 0x4c
-	// Line 719, Address: 0x2901d4, Func Offset: 0x54
-	// Line 722, Address: 0x290244, Func Offset: 0xc4
-	// Line 723, Address: 0x290250, Func Offset: 0xd0
-	// Line 724, Address: 0x29025c, Func Offset: 0xdc
-	// Line 729, Address: 0x290264, Func Offset: 0xe4
-	// Line 732, Address: 0x290284, Func Offset: 0x104
-	// Func End, Address: 0x29028c, Func Offset: 0x10c
-	scePrintf("RequestSeFadeFunction - UNIMPLEMENTED!\n");
+    NO_NAME_20* sp;
+    
+    sp = &SeInfo[SlotNo];
+    
+    switch (Func) 
+    {                                
+    case 1:
+        sp->Volume = -127.0f;
+        
+        sp->VolLast = sp->LimitMaxVol;
+        break;
+    case 2:
+        sp->VolLast = -127.0f;
+        break;
+    }
+    
+    sp->FadeCntMax = ((Timer / 100) * 30) + (((Timer % 100) * 6) / 10);
+    
+    sp->FadeCntMax /= 2;
+    
+    if (sp->FadeCntMax == 0) 
+    {
+        sp->FadeCntMax = 1;
+    }
+    
+    sp->VolSpeed = (sp->Volume - sp->VolLast) / sp->FadeCntMax;
+    
+    sp->FadeFunc = Func;
 }
 
 // 
@@ -814,11 +827,11 @@ int ExecSoundFadeManager() {
     return ReturnCode;
 }
 
-/*// 
+// 
 // Start address: 0x290560
 void RequestMidiPanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 {
-	_anon0* mp;
+	//_anon0* mp;
 	// Line 817, Address: 0x290560, Func Offset: 0
 	// Line 820, Address: 0x290570, Func Offset: 0x10
 	// Line 817, Address: 0x29058c, Func Offset: 0x2c
@@ -835,9 +848,10 @@ void RequestMidiPanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 	// Line 832, Address: 0x290600, Func Offset: 0xa0
 	// Line 833, Address: 0x290608, Func Offset: 0xa8
 	// Func End, Address: 0x290620, Func Offset: 0xc0
+	scePrintf("RequestMidiPanFunctionEx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x290620
 void RequestSePanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 {

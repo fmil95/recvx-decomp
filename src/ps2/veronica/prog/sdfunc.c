@@ -31,16 +31,16 @@ AFS_PATINFO SoundAfsPatDef[8] = {
 ADX_WORK AdxDef[2] = { { 2, 48000, 2, -1 }, { 1, 48000, 2, -1 } };
 SDE_DATA_TYPE SdTypeDef[5] = { SDE_DATA_TYPE_MIDI_SEQ_BANK, SDE_DATA_TYPE_MIDI_PRG_BANK, SDE_DATA_TYPE_SHOT_BANK, SDE_DATA_TYPE_FX_PRG_BANK, SDE_DATA_TYPE_FX_OUT_BANK }; 
 /*int PlayerFootStepSwitch[3];
-int SystemSeSlotSwitch;
+int SystemSeSlotSwitch;*/
 int WeaponSeSlotSwitch;
-int EnemyBackGroundSeFlag;*/
+/*int EnemyBackGroundSeFlag;*/
 char MoviePlayTrayOpenFlag;
 int CurrentBgmNo = -1;
 int CurrentBgSeNo[2] = { -1, -1 };
 int RoomSoundCaseNo;
-/*short DefBg[3];
-short DefObj[5];
-short DefEvt[5];*/
+/*short DefBg[3];*/
+short DefObj[5] = { 3, 4, 5, 6, 7 };
+/*short DefEvt[5];*/
 short DefEne[6] = { 0, 1, 2, 3, 4, 5 };
 int SoundInitLevel;
 int SdReadMode;
@@ -101,7 +101,7 @@ char CurrentRoomFxProgNo;
 int MaxRequestList;
 unsigned char RequestList[128];
 ObjectSlot ObjectSlotInfo[3];
-/*_anon65 SdComFuncTbl[10];*/
+SDCOM_FUNCTBL SdComFuncTbl[10] = { NULL, Com_ExecRoomFadeIn, Com_ExecRoomFadeOut, Com_StartInitScript, Com_FinishInitScript, Com_ExecCallBgm_And_BgSe, Com_ExecCallBgm_And_BgSe, Com_ExecCallBgm_And_BgSe, Com_ExecCallBgm_And_BgSe, Com_ExecCallBgm_And_BgSe };
 unsigned char* DestReadPtr;
 int GenAdxfSlot;
 unsigned char MovieTypeDef[22] = { 0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x02, 0x80, 0x42, 0x82, 0x00, 0x80, 0x00, 0x82 };
@@ -1234,39 +1234,43 @@ void CallPlayerActionSe(int SeNo, int Flag) {
     CallPlayerFootStepSeEx(SeNo, 3, Flag, 0, &PlayerPos);
 }
 
-
-/*// 
-// Start address: 0x294bd0
-void CallPlayerWeaponSeEx(_anon16* pPos, int SeNo, int SlotNo)
+// 100% matching! 
+void CallPlayerWeaponSeEx(NJS_POINT3* pPos, int SeNo, int SlotNo)
 {
-	int NeoSlotNo;
-	int SlotDef[2];
-	// Line 2315, Address: 0x294bd0, Func Offset: 0
-	// Line 2316, Address: 0x294bd4, Func Offset: 0x4
-	// Line 2315, Address: 0x294bd8, Func Offset: 0x8
-	// Line 2316, Address: 0x294bdc, Func Offset: 0xc
-	// Line 2315, Address: 0x294be0, Func Offset: 0x10
-	// Line 2316, Address: 0x294be8, Func Offset: 0x18
-	// Line 2319, Address: 0x294bf0, Func Offset: 0x20
-	// Line 2316, Address: 0x294bf4, Func Offset: 0x24
-	// Line 2319, Address: 0x294bf8, Func Offset: 0x28
-	// Line 2323, Address: 0x294c08, Func Offset: 0x38
-	// Line 2325, Address: 0x294c14, Func Offset: 0x44
-	// Line 2326, Address: 0x294c1c, Func Offset: 0x4c
-	// Line 2327, Address: 0x294c30, Func Offset: 0x60
-	// Line 2328, Address: 0x294c3c, Func Offset: 0x6c
-	// Line 2329, Address: 0x294c44, Func Offset: 0x74
-	// Line 2331, Address: 0x294c48, Func Offset: 0x78
-	// Line 2332, Address: 0x294c64, Func Offset: 0x94
-	// Line 2334, Address: 0x294c6c, Func Offset: 0x9c
-	// Line 2336, Address: 0x294c78, Func Offset: 0xa8
-	// Line 2337, Address: 0x294c88, Func Offset: 0xb8
-	// Line 2340, Address: 0x294ca4, Func Offset: 0xd4
-	// Line 2341, Address: 0x294cb0, Func Offset: 0xe0
-	// Func End, Address: 0x294cc0, Func Offset: 0xf0
+    int SlotDef[2] = { 8, 9 };   
+    int NeoSlotNo;            
+    int temp; // not from the debugging symbols
+
+    if (SpqFileReadRequestFlag != 2) 
+    {
+        NeoSlotNo = (SeNo & 0xFFFF00FF) | 0x100; 
+        
+        if (SlotNo == 0) 
+        {
+            temp = SlotDef[WeaponSeSlotSwitch];
+            WeaponSeSlotSwitch = !WeaponSeSlotSwitch;
+        } 
+        else 
+        {
+            temp = 19;
+        }
+        
+        SetupSeGenericParm(temp, NeoSlotNo, pPos, 1, GsSlotInfoSe[temp].Flag); 
+        
+        SetSyukanModeSoundParam();
+        
+        RequestInfo.PitchDelayTime = -2;
+        
+        if (!(GsSlotInfoSe[temp].Flag & 0x2))
+        {
+            RequestInfo.Volume += Room_SoundEnv.VolWeaponSe;
+        }
+        
+        ExPlaySe(&RequestInfo);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x294cc0
 void CallYakkyouSe(_anon16* pPos, int SeNo)
 {
@@ -2242,48 +2246,79 @@ int SearchFreeObjectSeSlot()
 	scePrintf("SearchFreeObjectSeSlot - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x296530
+// 100% matching! 
 void CallObjectSe2(unsigned int SlotNo, Object* oip, int Flag)
 {
-	// Line 3560, Address: 0x296530, Func Offset: 0
-	// Line 3561, Address: 0x296544, Func Offset: 0x14
-	// Line 3562, Address: 0x296554, Func Offset: 0x24
-	// Line 3563, Address: 0x29656c, Func Offset: 0x3c
-	// Line 3564, Address: 0x296574, Func Offset: 0x44
-	// Line 3565, Address: 0x29657c, Func Offset: 0x4c
-	// Line 3566, Address: 0x296584, Func Offset: 0x54
-	// Line 3567, Address: 0x296598, Func Offset: 0x68
-	// Line 3569, Address: 0x2965a4, Func Offset: 0x74
-	// Line 3570, Address: 0x2965ac, Func Offset: 0x7c
-	// Line 3571, Address: 0x2965bc, Func Offset: 0x8c
-	// Line 3572, Address: 0x2965c8, Func Offset: 0x98
-	// Line 3573, Address: 0x2965d8, Func Offset: 0xa8
-	// Line 3574, Address: 0x2965f0, Func Offset: 0xc0
-	// Line 3576, Address: 0x2965fc, Func Offset: 0xcc
-	// Line 3577, Address: 0x296604, Func Offset: 0xd4
-	// Line 3578, Address: 0x29660c, Func Offset: 0xdc
-	// Line 3579, Address: 0x296634, Func Offset: 0x104
-	// Line 3581, Address: 0x29663c, Func Offset: 0x10c
-	// Line 3582, Address: 0x29664c, Func Offset: 0x11c
-	// Line 3583, Address: 0x296658, Func Offset: 0x128
-	// Line 3584, Address: 0x296668, Func Offset: 0x138
-	// Line 3585, Address: 0x29667c, Func Offset: 0x14c
-	// Line 3587, Address: 0x296688, Func Offset: 0x158
-	// Line 3588, Address: 0x296690, Func Offset: 0x160
-	// Line 3589, Address: 0x29669c, Func Offset: 0x16c
-	// Line 3591, Address: 0x2966a4, Func Offset: 0x174
-	// Line 3592, Address: 0x2966b0, Func Offset: 0x180
-	// Line 3593, Address: 0x2966b8, Func Offset: 0x188
-	// Line 3594, Address: 0x2966c0, Func Offset: 0x190
-	// Line 3595, Address: 0x2966cc, Func Offset: 0x19c
-	// Line 3596, Address: 0x2966d4, Func Offset: 0x1a4
-	// Line 3597, Address: 0x2966e4, Func Offset: 0x1b4
-	// Line 3598, Address: 0x2966f0, Func Offset: 0x1c0
-	// Line 3599, Address: 0x2966f8, Func Offset: 0x1c8
-	// Line 3602, Address: 0x29670c, Func Offset: 0x1dc
-	// Func End, Address: 0x296724, Func Offset: 0x1f4
-	scePrintf("CallObjectSe2 - UNIMPLEMENTED!\n");
+    if (oip->Type == 0) 
+    {
+        RequestInfo.SlotNo = DefObj[SlotNo];
+        
+        if (Flag == 0) 
+        {
+            RequestInfo.ListNo = -1;
+        } 
+        else 
+        {
+            RequestInfo.BankNo = (oip->SeNo / 256) & 0xF;
+            RequestInfo.ListNo = oip->SeNo;
+        }
+        
+        RequestInfo.Priority = 0;
+        
+        if ((oip->Flag & 0x2)) 
+        {
+            RequestInfo.VolumeDelayTime = -1;
+            
+            if ((oip->Flag & 0x8)) 
+            {
+                RequestMidiFadeFunctionEx(DefObj[SlotNo], oip->VolFadeP[0], oip->VolFadeP[1], oip->VolFadeP[2]);
+                
+                oip->Flag &= ~0x8;
+            }
+        } 
+        else 
+        {
+            RequestInfo.Volume = oip->Vol;
+            
+            RequestInfo.Volume += CheckCollision4Sound(&oip->pos); 
+            
+            RequestInfo.VolumeDelayTime = 0;
+        }
+        
+        if ((oip->Flag & 0x4)) 
+        {
+            RequestInfo.PanDelayTime = -1;
+            
+            if ((oip->Flag & 0x10)) 
+            {
+                RequestMidiPanFunctionEx(DefObj[SlotNo], oip->PanFadeP[0], oip->PanFadeP[1], oip->PanFadeP[2]);
+                
+                oip->Flag &= ~0x10;
+            }
+        } 
+        else 
+        {
+            RequestInfo.Pan = oip->Pan;
+            
+            RequestInfo.PanDelayTime = 0;
+        }
+        
+        RequestInfo.SpeedDelayTime = RequestInfo.PitchDelayTime = -1;
+        
+        RequestInfo.FxInput = -1;
+        
+        ExPlayMidi(&RequestInfo);
+    }
+    else 
+    {
+        SetPanAdx(0, 0, oip->Pan);
+        SetVolumeAdx(0, oip->Vol);
+        
+        if (Flag != 0) 
+        {
+            PlayAdx(0, PatId[0], oip->SeNo);
+        }
+    }
 }
 
 // 100% matching!
@@ -2486,7 +2521,7 @@ void ResetSoundComInfo()
 
 }
 
-/*// 
+// 
 // Start address: 0x296e00
 void Com_ExecRoomFadeIn()
 {
@@ -2516,6 +2551,7 @@ void Com_ExecRoomFadeIn()
 	// Line 4007, Address: 0x296f18, Func Offset: 0x118
 	// Line 4008, Address: 0x296f28, Func Offset: 0x128
 	// Func End, Address: 0x296f44, Func Offset: 0x144
+    scePrintf("Com_ExecRoomFadeIn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2546,7 +2582,8 @@ void Com_ExecRoomFadeOut()
 	// Line 4048, Address: 0x296fd0, Func Offset: 0x80
 	// Line 4049, Address: 0x296fd8, Func Offset: 0x88
 	// Func End, Address: 0x296fe4, Func Offset: 0x94
-}*/
+    scePrintf("Com_ExecRoomFadeOut - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void Com_ExecCallBgm_And_BgSe()
@@ -2554,7 +2591,7 @@ void Com_ExecCallBgm_And_BgSe()
 
 }
 
-/*// 
+// 
 // Start address: 0x297000
 void Com_StartInitScript()
 {
@@ -2575,7 +2612,8 @@ void Com_StartInitScript()
 	// Line 4125, Address: 0x297084, Func Offset: 0x84
 	// Line 4126, Address: 0x297090, Func Offset: 0x90
 	// Func End, Address: 0x29709c, Func Offset: 0x9c
-}*/
+    scePrintf("Com_StartInitScript - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void Com_FinishInitScript() 
@@ -2583,21 +2621,22 @@ void Com_FinishInitScript()
 
 }
 
-// 
-// Start address: 0x2970b0
+// 100% matching! 
 void ExecuteSoundCommand()
 {
-	int i;
-	// Line 4163, Address: 0x2970b0, Func Offset: 0
-	// Line 4166, Address: 0x2970c8, Func Offset: 0x18
-	// Line 4167, Address: 0x2970d0, Func Offset: 0x20
-	// Line 4168, Address: 0x2970f0, Func Offset: 0x40
-	// Line 4170, Address: 0x2970f8, Func Offset: 0x48
-	// Line 4171, Address: 0x297100, Func Offset: 0x50
-	// Line 4173, Address: 0x29711c, Func Offset: 0x6c
-	// Line 4174, Address: 0x297124, Func Offset: 0x74
-	// Func End, Address: 0x297138, Func Offset: 0x88
-	scePrintf("ExecuteSoundCommand - UNIMPLEMENTED!\n");
+    int i;
+    
+    for (i = 0; i < SoundCommand.MaxCommand; i++) 
+    {
+        if (SdComFuncTbl[SoundCommand.ComTbl[i]].FuncName != NULL) 
+        {
+            SdComFuncTbl[SoundCommand.ComTbl[i]].FuncName(SoundCommand.ComTbl[i]);
+        }
+        
+        SoundCommand.ComTbl[i] = 0;
+    }
+    
+    SoundCommand.MaxCommand = 0;
 }
 
 // 100% matching!
