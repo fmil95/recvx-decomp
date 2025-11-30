@@ -28,11 +28,11 @@ float fNaCnkAlphaMaterial;*/
 VU1_COLOR NaCnkDiffuseMaterial;
 /*float fNaCnkMaterialSpeE;*/
 VU1_COLOR NaCnkSpeculaMaterial;
-/*tagVU1_COLOR NaCnkAmbientMaterial;
-tagVU1_COLOR NaCnkAmbientFunctionEm;
-tagVU1_COLOR NaCnkAmbientFunctionSm;*/
+/*tagVU1_COLOR NaCnkAmbientFunctionSm;*/
 VU1_COLOR NaCnkAmbientEs;
-VU1_COLOR NaCnkAmbientEm;
+VU1_COLOR NaCnkAmbientEm = { 1.0f, 1.0f, 1.0f, 1.0f };
+VU1_COLOR NaCnkAmbientFunctionEm = { 1.0f, 1.0f, 1.0f, 1.0f };
+VU1_COLOR NaCnkAmbientMaterial = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientSs;
 VU1_COLOR NaCnkAmbientSm;
 CNK_LIGHT NaCnkLightEs;
@@ -156,14 +156,14 @@ void njCnkEasyMultiDrawObjectI(cnkobj* pObject);*/
 // 100% matching!
 void	njInit3D( NJS_VERTEX_BUF *vbuf, Int vn )
 {
-    pNaCnkVerBufTop = (VU1_STRIP_BUF*)vbuf; 
-    
-    iNaCnkVerBufMax = vn; 
-    
-    _Init_ScissorSystem(); 
+    pNaCnkVerBufTop = (VU1_STRIP_BUF*)vbuf;
+
+    iNaCnkVerBufMax = vn;
+
+    _Init_ScissorSystem();
 }
 
-/*// 
+/*//
 // Start address: 0x2cf380
 void njDrawModel(_anon18* pModel)
 {
@@ -172,7 +172,7 @@ void njDrawModel(_anon18* pModel)
 	// Func End, Address: 0x2cf38c, Func Offset: 0xc
 }*/
 
-// 
+//
 // Start address: 0x2cf390
 void	njControl3D( Uint32 flag )
 {
@@ -187,7 +187,7 @@ void	njControl3D( Uint32 flag )
 	scePrintf("njControl3D - UNIMPLEMENTED!\n");
 }
 
-/*// 
+/*//
 // Start address: 0x2cf3e0
 void njSetConstantAttr(unsigned int ulAnd, unsigned int ulOr)
 {
@@ -200,7 +200,7 @@ void njSetConstantAttr(unsigned int ulAnd, unsigned int ulOr)
 	// Func End, Address: 0x2cf41c, Func Offset: 0x3c
 }
 
-// 
+//
 // Start address: 0x2cf420
 void njSetConstantMaterial(_anon4* pMaterial)
 {
@@ -216,7 +216,7 @@ void njSetConstantMaterial(_anon4* pMaterial)
 	// Func End, Address: 0x2cf484, Func Offset: 0x64
 }
 
-// 
+//
 // Start address: 0x2cf490
 void njSetCnkBlendMode(unsigned int ulAttr)
 {
@@ -230,7 +230,7 @@ void njSetCnkBlendMode(unsigned int ulAttr)
 	// Func End, Address: 0x2cf4d8, Func Offset: 0x48
 }
 
-// 
+//
 // Start address: 0x2cf4e0
 void njCnkModDrawModel(_anon5* pModel)
 {
@@ -238,7 +238,7 @@ void njCnkModDrawModel(_anon5* pModel)
 	// Func End, Address: 0x2cf4e8, Func Offset: 0x8
 }
 
-// 
+//
 // Start address: 0x2cf4f0
 void njCnkSetEasyLight(float fX, float fY, float fZ)
 {
@@ -249,7 +249,7 @@ void njCnkSetEasyLight(float fX, float fY, float fZ)
 	// Func End, Address: 0x2cf518, Func Offset: 0x28
 }
 
-// 
+//
 // Start address: 0x2cf520
 void njCnkSetEasyLightIntensity(float fDiffuse, float fAmbient)
 {
@@ -259,7 +259,7 @@ void njCnkSetEasyLightIntensity(float fDiffuse, float fAmbient)
 	// Func End, Address: 0x2cf544, Func Offset: 0x24
 }
 
-// 
+//
 // Start address: 0x2cf550
 void njCnkSetEasyLightColor(float fR, float fG, float fB)
 {
@@ -270,7 +270,7 @@ void njCnkSetEasyLightColor(float fR, float fG, float fB)
 	// Func End, Address: 0x2cf56c, Func Offset: 0x1c
 }
 
-// 
+//
 // Start address: 0x2cf570
 void njCnkSetEasyMultiLight(int iLightMax)
 {
@@ -279,7 +279,7 @@ void njCnkSetEasyMultiLight(int iLightMax)
 	// Func End, Address: 0x2cf584, Func Offset: 0x14
 }
 
-// 
+//
 // Start address: 0x2cf590
 void njCnkSetEasyMultiLightSwitch(int iLightNum, int iSwitch)
 {
@@ -293,27 +293,19 @@ void njCnkSetEasyMultiLightSwitch(int iLightNum, int iSwitch)
 	// Func End, Address: 0x2cf5f4, Func Offset: 0x64
 }*/
 
-// 
+//
 // Start address: 0x2cf600
-void    njCnkSetEasyMultiAmbient(Float ar, Float ag, Float ab)
-{
-	// Line 865, Address: 0x2cf600, Func Offset: 0
-	// Line 866, Address: 0x2cf608, Func Offset: 0x8
-	// Line 867, Address: 0x2cf610, Func Offset: 0x10
-	// Line 870, Address: 0x2cf618, Func Offset: 0x18
-	// Line 871, Address: 0x2cf620, Func Offset: 0x20
-	// Line 870, Address: 0x2cf628, Func Offset: 0x28
-	// Line 872, Address: 0x2cf62c, Func Offset: 0x2c
-	// Line 871, Address: 0x2cf634, Func Offset: 0x34
-	// Line 870, Address: 0x2cf638, Func Offset: 0x38
-	// Line 871, Address: 0x2cf640, Func Offset: 0x40
-	// Line 872, Address: 0x2cf648, Func Offset: 0x48
-	// Line 873, Address: 0x2cf650, Func Offset: 0x50
-	// Func End, Address: 0x2cf658, Func Offset: 0x58
-	scePrintf("njCnkSetEasyMultiAmbient - UNIMPLEMENTED!\n");
+// 100% matching!
+void    njCnkSetEasyMultiAmbient(Float ar, Float ag, Float ab) {
+    NaCnkAmbientFunctionEm.fR = ar;
+    NaCnkAmbientFunctionEm.fG = ag;
+    NaCnkAmbientFunctionEm.fB = ab;
+    NaCnkAmbientEm.fR = ar * NaCnkAmbientMaterial.fR;
+    NaCnkAmbientEm.fG = ag * NaCnkAmbientMaterial.fG;
+    NaCnkAmbientEm.fB = ab * NaCnkAmbientMaterial.fB;
 }
 
-/*// 
+/*//
 // Start address: 0x2cf660
 void njCnkSetEasyMultiLightColor(int iLightNum, float fR, float fG, float fB)
 {
@@ -324,7 +316,7 @@ void njCnkSetEasyMultiLightColor(int iLightNum, float fR, float fG, float fB)
 	// Func End, Address: 0x2cf69c, Func Offset: 0x3c
 }
 
-// 
+//
 // Start address: 0x2cf6a0
 void njCnkSetEasyMultiLightVector(float fX, float fY, float fZ)
 {
@@ -336,7 +328,7 @@ void njCnkSetEasyMultiLightVector(float fX, float fY, float fZ)
 	// Func End, Address: 0x2cf6d0, Func Offset: 0x30
 }
 
-// 
+//
 // Start address: 0x2cf6d0
 void njCnkSetEasyMultiLightPoint(int iLightNum, float fX, float fY, float fZ)
 {
@@ -348,7 +340,7 @@ void njCnkSetEasyMultiLightPoint(int iLightNum, float fX, float fY, float fZ)
 	// Func End, Address: 0x2cf720, Func Offset: 0x50
 }
 
-// 
+//
 // Start address: 0x2cf720
 void njCnkSetEasyMultiLightRange(int iLightNum, float fNear, float fFar)
 {
@@ -361,7 +353,7 @@ void njCnkSetEasyMultiLightRange(int iLightNum, float fNear, float fFar)
 	// Func End, Address: 0x2cf768, Func Offset: 0x48
 }
 
-// 
+//
 // Start address: 0x2cf770
 void njCnkSetEasyMultiLightMatrices()
 {
@@ -381,7 +373,7 @@ void njCnkSetEasyMultiLightMatrices()
 	// Func End, Address: 0x2cf818, Func Offset: 0xa8
 }
 
-// 
+//
 // Start address: 0x2cf820
 void njCnkSetSimpleLight(float fX, float fY, float fZ)
 {
@@ -392,7 +384,7 @@ void njCnkSetSimpleLight(float fX, float fY, float fZ)
 	// Func End, Address: 0x2cf848, Func Offset: 0x28
 }
 
-// 
+//
 // Start address: 0x2cf850
 void njCnkSetSimpleLightIntensity(float fDiffuse, float fAmbient)
 {
@@ -402,7 +394,7 @@ void njCnkSetSimpleLightIntensity(float fDiffuse, float fAmbient)
 	// Func End, Address: 0x2cf874, Func Offset: 0x24
 }
 
-// 
+//
 // Start address: 0x2cf880
 void njCnkSetSimpleLightColor(float fR, float fG, float fB)
 {
@@ -417,11 +409,11 @@ void njCnkSetSimpleLightColor(float fR, float fG, float fB)
 void    njCnkSetSimpleMultiLight(Int num)
 {
     NaCnkLighting[3].lLightMax = num;
-    
+
     njCnkSetSimpleMultiLightSwitch(0, 1);
 }
 
-// 
+//
 // Start address: 0x2cf8c0
 void    njCnkSetSimpleMultiLightSwitch(Int light, Int flag)
 {
@@ -436,7 +428,7 @@ void    njCnkSetSimpleMultiLightSwitch(Int light, Int flag)
 	scePrintf("njCnkSetSimpleMultiLightSwitch - UNIMPLEMENTED!\n");
 }
 
-// 
+//
 // Start address: 0x2cf930
 void    njCnkSetSimpleMultiAmbient(Float ar, Float ag, Float ab)
 {
@@ -456,7 +448,7 @@ void    njCnkSetSimpleMultiAmbient(Float ar, Float ag, Float ab)
 	scePrintf("njCnkSetSimpleMultiAmbient - UNIMPLEMENTED!\n");
 }
 
-/*// 
+/*//
 // Start address: 0x2cf990
 void njCnkSetSimpleMultiLightColor(int iLightNum, float fR, float fG, float fB)
 {
@@ -467,7 +459,7 @@ void njCnkSetSimpleMultiLightColor(int iLightNum, float fR, float fG, float fB)
 	// Func End, Address: 0x2cf9cc, Func Offset: 0x3c
 }
 
-// 
+//
 // Start address: 0x2cf9d0
 void njCnkSetSimpleMultiLightVector(float fX, float fY, float fZ)
 {
@@ -479,7 +471,7 @@ void njCnkSetSimpleMultiLightVector(float fX, float fY, float fZ)
 	// Func End, Address: 0x2cfa00, Func Offset: 0x30
 }
 
-// 
+//
 // Start address: 0x2cfa00
 void njCnkSetSimpleMultiLightPoint(int iLightNum, float fX, float fY, float fZ)
 {
@@ -491,7 +483,7 @@ void njCnkSetSimpleMultiLightPoint(int iLightNum, float fX, float fY, float fZ)
 	// Func End, Address: 0x2cfa50, Func Offset: 0x50
 }
 
-// 
+//
 // Start address: 0x2cfa50
 void njCnkSetSimpleMultiLightRange(int iLightNum, float fNear, float fFar)
 {
@@ -504,7 +496,7 @@ void njCnkSetSimpleMultiLightRange(int iLightNum, float fNear, float fFar)
 	// Func End, Address: 0x2cfa98, Func Offset: 0x48
 }
 
-// 
+//
 // Start address: 0x2cfaa0
 void njCnkSetSimpleMultiLightMatrices()
 {
@@ -524,7 +516,7 @@ void njCnkSetSimpleMultiLightMatrices()
 	// Func End, Address: 0x2cfb48, Func Offset: 0xa8
 }
 
-// 
+//
 // Start address: 0x2cfb50
 void njCnkEasyDrawModel(_anon5* pModel)
 {
@@ -535,7 +527,7 @@ void njCnkEasyDrawModel(_anon5* pModel)
 	// Func End, Address: 0x2cfb80, Func Offset: 0x30
 }*/
 
-// 
+//
 // Start address: 0x2cfb80
 void    njCnkEasyDrawObject( NJS_CNK_OBJECT *model )
 {
@@ -558,7 +550,7 @@ void    njCnkEasyDrawObject( NJS_CNK_OBJECT *model )
 	scePrintf("njCnkEasyDrawObject - UNIMPLEMENTED!\n");
 }
 
-/*// 
+/*//
 // Start address: 0x2cfc70
 void njCnkEasyMultiDrawModel(_anon5* pModel)
 {
@@ -569,7 +561,7 @@ void njCnkEasyMultiDrawModel(_anon5* pModel)
 	// Func End, Address: 0x2cfca0, Func Offset: 0x30
 }*/
 
-// 
+//
 // Start address: 0x2cfca0
 void    njCnkEasyMultiDrawObject( NJS_CNK_OBJECT *model )
 {
@@ -592,7 +584,7 @@ void    njCnkEasyMultiDrawObject( NJS_CNK_OBJECT *model )
 	scePrintf("njCnkEasyMultiDrawObject - UNIMPLEMENTED!\n");
 }
 
-/*// 
+/*//
 // Start address: 0x2cfd90
 void njCnkSimpleDrawModel(_anon5* pModel)
 {
@@ -603,7 +595,7 @@ void njCnkSimpleDrawModel(_anon5* pModel)
 	// Func End, Address: 0x2cfdc0, Func Offset: 0x30
 }
 
-// 
+//
 // Start address: 0x2cfdc0
 void njCnkSimpleMultiDrawModel(_anon5* pModel)
 {
@@ -614,7 +606,7 @@ void njCnkSimpleMultiDrawModel(_anon5* pModel)
 	// Func End, Address: 0x2cfdf0, Func Offset: 0x30
 }
 
-// 
+//
 // Start address: 0x2cfdf0
 void njCnkSetCurrentDrawMode(unsigned int ulMode)
 {
@@ -628,7 +620,7 @@ void njCnkSetCurrentDrawMode(unsigned int ulMode)
 	// Func End, Address: 0x2cfe2c, Func Offset: 0x3c
 }
 
-// 
+//
 // Start address: 0x2cfe30
 int njCnkDrawModelLocal(_anon5* pModel)
 {
@@ -684,7 +676,7 @@ int njCnkDrawModelLocal(_anon5* pModel)
 	// Func End, Address: 0x2d009c, Func Offset: 0x26c
 }
 
-// 
+//
 // Start address: 0x2d00a0
 int njCnkDrawModelLocalMod(_anon5* pModel)
 {
@@ -733,7 +725,7 @@ int njCnkDrawModelLocalMod(_anon5* pModel)
 	// Func End, Address: 0x2d0278, Func Offset: 0x1d8
 }
 
-// 
+//
 // Start address: 0x2d0280
 tagCHUNK_HEAD* njCnkCn(tagCHUNK_HEAD* pCnk)
 {
@@ -741,7 +733,7 @@ tagCHUNK_HEAD* njCnkCn(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d0288, Func Offset: 0x8
 }
 
-// 
+//
 // Start address: 0x2d0290
 tagCHUNK_HEAD* njCnkCbBa(tagCHUNK_HEAD* pCnk)
 {
@@ -753,7 +745,7 @@ tagCHUNK_HEAD* njCnkCbBa(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d0300, Func Offset: 0x70
 }
 
-// 
+//
 // Start address: 0x2d0300
 tagCHUNK_HEAD* njCnkCbDa(tagCHUNK_HEAD* pCnk)
 {
@@ -761,7 +753,7 @@ tagCHUNK_HEAD* njCnkCbDa(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d0308, Func Offset: 0x8
 }
 
-// 
+//
 // Start address: 0x2d0310
 tagCHUNK_HEAD* njCnkCbExp(tagCHUNK_HEAD* pCnk)
 {
@@ -771,7 +763,7 @@ tagCHUNK_HEAD* njCnkCbExp(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d0354, Func Offset: 0x44
 }
 
-// 
+//
 // Start address: 0x2d0360
 tagCHUNK_HEAD* njCnkCtTid(tagCHUNK_HEAD* pCnk)
 {
@@ -786,7 +778,7 @@ tagCHUNK_HEAD* njCnkCtTid(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d03c8, Func Offset: 0x68
 }
 
-// 
+//
 // Start address: 0x2d03d0
 tagCHUNK_HEAD* njCnkCmD(tagCHUNK_HEAD* pCnk)
 {
@@ -804,7 +796,7 @@ tagCHUNK_HEAD* njCnkCmD(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d0560, Func Offset: 0x190
 }
 
-// 
+//
 // Start address: 0x2d0560
 tagCHUNK_HEAD* njCnkCmA(tagCHUNK_HEAD* pCnk)
 {
@@ -840,7 +832,7 @@ tagCHUNK_HEAD* njCnkCmA(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d0730, Func Offset: 0x1d0
 }
 
-// 
+//
 // Start address: 0x2d0730
 tagCHUNK_HEAD* njCnkCmDa(tagCHUNK_HEAD* pCnk)
 {
@@ -880,7 +872,7 @@ tagCHUNK_HEAD* njCnkCmDa(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d0a20, Func Offset: 0x2f0
 }
 
-// 
+//
 // Start address: 0x2d0a20
 tagCHUNK_HEAD* njCnkCmS(tagCHUNK_HEAD* pCnk)
 {
@@ -898,7 +890,7 @@ tagCHUNK_HEAD* njCnkCmS(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d0ba4, Func Offset: 0x184
 }
 
-// 
+//
 // Start address: 0x2d0bb0
 tagCHUNK_HEAD* njCnkCmDs(tagCHUNK_HEAD* pCnk)
 {
@@ -920,7 +912,7 @@ tagCHUNK_HEAD* njCnkCmDs(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d0e54, Func Offset: 0x2a4
 }
 
-// 
+//
 // Start address: 0x2d0e60
 tagCHUNK_HEAD* njCnkCmAs(tagCHUNK_HEAD* pCnk)
 {
@@ -961,7 +953,7 @@ tagCHUNK_HEAD* njCnkCmAs(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d1144, Func Offset: 0x2e4
 }
 
-// 
+//
 // Start address: 0x2d1150
 tagCHUNK_HEAD* njCnkCmDas(tagCHUNK_HEAD* pCnk)
 {
@@ -1006,7 +998,7 @@ tagCHUNK_HEAD* njCnkCmDas(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d1554, Func Offset: 0x404
 }
 
-// 
+//
 // Start address: 0x2d1560
 tagCHUNK_HEAD* njCnkCoP4(tagCHUNK_HEAD* pCnk)
 {
@@ -1015,7 +1007,7 @@ tagCHUNK_HEAD* njCnkCoP4(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d1574, Func Offset: 0x14
 }
 
-// 
+//
 // Start address: 0x2d1580
 tagCHUNK_HEAD* njCnkCoSt(tagCHUNK_HEAD* pCnk)
 {
@@ -1024,7 +1016,7 @@ tagCHUNK_HEAD* njCnkCoSt(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d1594, Func Offset: 0x14
 }
 
-// 
+//
 // Start address: 0x2d15a0
 tagCHUNK_HEAD* njCnkCvVn(tagCHUNK_HEAD* pCnk)
 {
@@ -1171,7 +1163,7 @@ tagCHUNK_HEAD* njCnkCvVn(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d197c, Func Offset: 0x3dc
 }
 
-// 
+//
 // Start address: 0x2d1980
 tagCHUNK_HEAD* njCnkCvVnPs2(tagCHUNK_HEAD* pCnk)
 {
@@ -1294,7 +1286,7 @@ tagCHUNK_HEAD* njCnkCvVnPs2(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d1c98, Func Offset: 0x318
 }
 
-// 
+//
 // Start address: 0x2d1ca0
 tagCHUNK_HEAD* njCnkCvVMod(tagCHUNK_HEAD* pCnk)
 {
@@ -1381,7 +1373,7 @@ tagCHUNK_HEAD* njCnkCvVMod(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d1e8c, Func Offset: 0x1ec
 }
 
-// 
+//
 // Start address: 0x2d1e90
 tagCHUNK_HEAD* njCnkCoP3(tagCHUNK_HEAD* pCnk)
 {
@@ -1491,7 +1483,7 @@ tagCHUNK_HEAD* njCnkCoP3(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d22dc, Func Offset: 0x44c
 }
 
-// 
+//
 // Start address: 0x2d22e0
 tagCHUNK_HEAD* njCnkCs(tagCHUNK_HEAD* pCnk)
 {
@@ -1564,7 +1556,7 @@ tagCHUNK_HEAD* njCnkCs(tagCHUNK_HEAD* pCnk)
 	// Func End, Address: 0x2d2560, Func Offset: 0x280
 }
 
-// 
+//
 // Start address: 0x2d2560
 int _CVV(float* v0)
 {
@@ -1587,17 +1579,17 @@ int _CVV(float* v0)
 
 // 100% matching!
 CHUNK_HEAD* njCnkDefaultLong(CHUNK_HEAD* pCnk)
-{ 
-    return (CHUNK_HEAD*)&((unsigned int*)(pCnk + 1))[pCnk->usSize]; 
+{
+    return (CHUNK_HEAD*)&((unsigned int*)(pCnk + 1))[pCnk->usSize];
 }
 
 // 100% matching!
-CHUNK_HEAD* njCnkDefaultShort(CHUNK_HEAD* pCnk) 
-{ 
-    return (CHUNK_HEAD*)&((unsigned short*)(pCnk + 1))[pCnk->usSize]; 
+CHUNK_HEAD* njCnkDefaultShort(CHUNK_HEAD* pCnk)
+{
+    return (CHUNK_HEAD*)&((unsigned short*)(pCnk + 1))[pCnk->usSize];
 }
 
-/*// 
+/*//
 // Start address: 0x2d37c0
 void njCnkEasyMultiDrawObjectI(cnkobj* pObject)
 {
