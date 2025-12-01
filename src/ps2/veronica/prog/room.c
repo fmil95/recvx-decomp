@@ -12,13 +12,10 @@ BH_PWORK* plp;
 _anon0 eff[0];
 unsigned char* freemem;*/
 
-// 
-// Start address: 0x287bb0
+// 100% matching! 
 void bhInitRoom()
 {
-	// Line 111, Address: 0x287bb0, Func Offset: 0
-	// Func End, Address: 0x287bc4, Func Offset: 0x14
-	scePrintf("bhInitRoom - UNIMPLEMENTED!\n");
+    npSetMemory((unsigned char*)rom, sizeof(ROM_WORK), 0);
 }
 
 // 100% matching! 
