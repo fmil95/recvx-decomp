@@ -1,11 +1,16 @@
 #include "room.h"
+#include "camera.h"
+#include "effect.h"
+#include "eneset.h"
+#include "system.h"
+#include "main.h"
 
 /*_anon9* rom;
 _anon16* sys;
 BH_PWORK ene[0];
 BH_PWORK* plp;
 _anon0 eff[0];
-unsigned char* freemem;
+unsigned char* freemem;*/
 
 // 
 // Start address: 0x287bb0
@@ -13,22 +18,20 @@ void bhInitRoom()
 {
 	// Line 111, Address: 0x287bb0, Func Offset: 0
 	// Func End, Address: 0x287bc4, Func Offset: 0x14
-}*/
+	scePrintf("bhInitRoom - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x287bd0
+// 100% matching! 
 void bhInitReadRDT()
 {
-	// Line 118, Address: 0x287bd0, Func Offset: 0
-	// Line 120, Address: 0x287bd8, Func Offset: 0x8
-	// Line 122, Address: 0x287be8, Func Offset: 0x18
-	// Line 127, Address: 0x287bf0, Func Offset: 0x20
-	// Line 129, Address: 0x287bf8, Func Offset: 0x28
-	// Line 131, Address: 0x287c00, Func Offset: 0x30
-	// Line 133, Address: 0x287c08, Func Offset: 0x38
-	// Line 134, Address: 0x287c10, Func Offset: 0x40
-	// Func End, Address: 0x287c1c, Func Offset: 0x4c
-	scePrintf("bhInitReadRDT - UNIMPLEMENTED!\n");
+    sys->gm_flg |= 0x2;
+    
+    bhInitRoomChangeSystem();
+    bhInitCamera();
+    bhInitEnemy();
+    bhInitRoom();
+    
+    bhClearEffect();
 }
 
 // 100% matching! 
