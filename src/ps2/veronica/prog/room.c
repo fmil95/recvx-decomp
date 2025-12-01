@@ -31,16 +31,13 @@ void bhInitReadRDT()
 	scePrintf("bhInitReadRDT - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x287c20
+// 100% matching! 
 void bhSetRDT()
 {
-	// Line 142, Address: 0x287c20, Func Offset: 0
-	// Func End, Address: 0x287c28, Func Offset: 0x8
-	scePrintf("bhSetRDT - UNIMPLEMENTED!\n");
+    bhSetRoom();
 }
 
-/*// 
+// 
 // Start address: 0x287c30
 void bhSetRoom()
 {
@@ -54,12 +51,12 @@ void bhSetRoom()
 	int k;
 	int j;
 	int i;
-	_anon0* owp;
+	//_anon0* owp;
 	BH_PWORK* pwp;
-	_anon19* efp;
-	_anon17* ep;
-	_anon10* cp;
-	_anon15* rh;
+	//_anon19* efp;
+	//_anon17* ep;
+	//_anon10* cp;
+	//_anon15* rh;
 	// Line 149, Address: 0x287c30, Func Offset: 0
 	// Line 170, Address: 0x287c4c, Func Offset: 0x1c
 	// Line 172, Address: 0x287c54, Func Offset: 0x24
@@ -248,7 +245,8 @@ void bhSetRoom()
 	// Line 436, Address: 0x288830, Func Offset: 0xc00
 	// Line 437, Address: 0x288844, Func Offset: 0xc14
 	// Func End, Address: 0x288864, Func Offset: 0xc34
-}*/
+	scePrintf("bhSetRoom - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x288870
