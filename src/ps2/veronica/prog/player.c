@@ -1,6 +1,8 @@
 #include "player.h"
-#include "flag.h"
 #include "Motion.h"
+#include "flag.h"
+#include "njplus.h"
+#include "pwksub.h"
 #include "main.h"
 
 /*float PlyInfo[2][4];
@@ -28,71 +30,58 @@ _anon44 lgttab[0];
 _anon41 cam;
 _anon0 eff[0];*/
 
-// 
-// Start address: 0x1386d0
+// 100% matching! 
 void bhInitPlayer()
 {
-	// Line 67, Address: 0x1386d0, Func Offset: 0
-	// Line 68, Address: 0x1386d8, Func Offset: 0x8
-	// Line 70, Address: 0x1386ec, Func Offset: 0x1c
-	// Line 71, Address: 0x138700, Func Offset: 0x30
-	// Line 70, Address: 0x138708, Func Offset: 0x38
-	// Line 71, Address: 0x138710, Func Offset: 0x40
-	// Line 72, Address: 0x138720, Func Offset: 0x50
-	// Line 71, Address: 0x138728, Func Offset: 0x58
-	// Line 72, Address: 0x138730, Func Offset: 0x60
-	// Line 73, Address: 0x138740, Func Offset: 0x70
-	// Line 72, Address: 0x138748, Func Offset: 0x78
-	// Line 73, Address: 0x138750, Func Offset: 0x80
-	// Line 74, Address: 0x138760, Func Offset: 0x90
-	// Line 73, Address: 0x138768, Func Offset: 0x98
-	// Line 74, Address: 0x138770, Func Offset: 0xa0
-	// Line 76, Address: 0x138780, Func Offset: 0xb0
-	// Line 74, Address: 0x138788, Func Offset: 0xb8
-	// Line 76, Address: 0x138790, Func Offset: 0xc0
-	// Line 77, Address: 0x1387a0, Func Offset: 0xd0
-	// Line 76, Address: 0x1387a8, Func Offset: 0xd8
-	// Line 77, Address: 0x1387b0, Func Offset: 0xe0
-	// Line 78, Address: 0x1387c0, Func Offset: 0xf0
-	// Line 77, Address: 0x1387c8, Func Offset: 0xf8
-	// Line 78, Address: 0x1387d0, Func Offset: 0x100
-	// Line 79, Address: 0x1387e0, Func Offset: 0x110
-	// Line 78, Address: 0x1387e8, Func Offset: 0x118
-	// Line 79, Address: 0x1387f0, Func Offset: 0x120
-	// Line 80, Address: 0x138800, Func Offset: 0x130
-	// Line 79, Address: 0x138808, Func Offset: 0x138
-	// Line 80, Address: 0x138810, Func Offset: 0x140
-	// Line 81, Address: 0x138820, Func Offset: 0x150
-	// Line 80, Address: 0x138828, Func Offset: 0x158
-	// Line 81, Address: 0x138830, Func Offset: 0x160
-	// Line 82, Address: 0x13884c, Func Offset: 0x17c
-	// Line 83, Address: 0x13886c, Func Offset: 0x19c
-	// Line 84, Address: 0x13888c, Func Offset: 0x1bc
-	// Line 86, Address: 0x1388ac, Func Offset: 0x1dc
-	// Line 88, Address: 0x1388cc, Func Offset: 0x1fc
-	// Line 90, Address: 0x1388e4, Func Offset: 0x214
-	// Line 93, Address: 0x1388f4, Func Offset: 0x224
-	// Line 90, Address: 0x1388f8, Func Offset: 0x228
-	// Line 91, Address: 0x138904, Func Offset: 0x234
-	// Line 90, Address: 0x138908, Func Offset: 0x238
-	// Line 91, Address: 0x138910, Func Offset: 0x240
-	// Line 92, Address: 0x13892c, Func Offset: 0x25c
-	// Line 91, Address: 0x138930, Func Offset: 0x260
-	// Line 92, Address: 0x138934, Func Offset: 0x264
-	// Line 93, Address: 0x13894c, Func Offset: 0x27c
-	// Line 92, Address: 0x138950, Func Offset: 0x280
-	// Line 93, Address: 0x138954, Func Offset: 0x284
-	// Line 94, Address: 0x138960, Func Offset: 0x290
-	// Line 96, Address: 0x138968, Func Offset: 0x298
-	// Line 97, Address: 0x138974, Func Offset: 0x2a4
-	// Line 96, Address: 0x138978, Func Offset: 0x2a8
-	// Line 97, Address: 0x13897c, Func Offset: 0x2ac
-	// Line 98, Address: 0x1389a4, Func Offset: 0x2d4
-	// Line 99, Address: 0x1389b4, Func Offset: 0x2e4
-	// Line 100, Address: 0x1389c0, Func Offset: 0x2f0
-	// Line 102, Address: 0x1389cc, Func Offset: 0x2fc
-	// Func End, Address: 0x1389d8, Func Offset: 0x308
-	scePrintf("bhInitPlayer - UNIMPLEMENTED!\n");
+    npSetMemory((unsigned char*)plp, sizeof(BH_PWORK), 0);
+    
+    sys->plmdlp = bhGetFreeMemory(131072, 32);
+    sys->lmmdlp = bhGetFreeMemory(32768, 32);
+    sys->wrmdlp = bhGetFreeMemory(32768, 32);
+    sys->wlmdlp = bhGetFreeMemory(32768, 32);
+    
+    sys->plmthp = bhGetFreeMemory(12288, 32);
+    
+    sys->plbmtp = bhGetFreeMemory(393216, 32);
+    sys->plwmtp = bhGetFreeMemory(65536, 32);
+    sys->plzmtp = bhGetFreeMemory(8192, 32);
+    
+    sys->plexwp = bhGetFreeMemory(124, 32);
+    sys->plhdwp = bhGetFreeMemory(124, 32);
+    
+    sys->pletcp = bhGetFreeMemory(32768, 32);
+    
+    plp->exp0 = sys->plexwp;
+    plp->exp1 = sys->plhdwp;
+    plp->exp3 = sys->pletcp;
+    
+    sys->mempb = sys->memp;
+    
+    if ((sys->ss_flg & 0x200)) 
+    {
+        plp->stflg = sys->ply_stflg[sys->ply_id] | 0x40000000;
+        
+        plp->hp = sys->ply_hp[sys->ply_id];
+        
+        plp->wpnr_no =  sys->ply_wno[sys->ply_id];
+        
+        sys->cb_flg |= 0x800000;
+    }
+    else
+    {
+        plp->stflg = 0x40000000;
+        
+        if (sys->gm_mode == 2) 
+        {
+            plp->hp = 320;
+        } 
+        else 
+        {
+            plp->hp = 160;
+        }
+        
+        plp->wpnl_no = plp->wpnr_no = 0;
+    }
 }
 
 /*// 
