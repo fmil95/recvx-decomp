@@ -467,32 +467,32 @@ void bhResetPlayer()
 	scePrintf("bhResetPlayer - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x139bd0
+// 100% matching! 
 void bhCheckMothEgg()
 {
-	_anon18 egg;
-	// Line 380, Address: 0x139bd0, Func Offset: 0
-	// Line 381, Address: 0x139bd4, Func Offset: 0x4
-	// Line 380, Address: 0x139bdc, Func Offset: 0xc
-	// Line 381, Address: 0x139be0, Func Offset: 0x10
-	// Line 390, Address: 0x139bf0, Func Offset: 0x20
-	// Line 381, Address: 0x139bf4, Func Offset: 0x24
-	// Line 390, Address: 0x139c00, Func Offset: 0x30
-	// Line 392, Address: 0x139c18, Func Offset: 0x48
-	// Line 394, Address: 0x139c24, Func Offset: 0x54
-	// Line 395, Address: 0x139c40, Func Offset: 0x70
-	// Line 396, Address: 0x139c44, Func Offset: 0x74
-	// Line 395, Address: 0x139c48, Func Offset: 0x78
-	// Line 396, Address: 0x139c4c, Func Offset: 0x7c
-	// Line 398, Address: 0x139c54, Func Offset: 0x84
-	// Line 399, Address: 0x139c70, Func Offset: 0xa0
-	// Line 400, Address: 0x139c74, Func Offset: 0xa4
-	// Line 399, Address: 0x139c78, Func Offset: 0xa8
-	// Line 400, Address: 0x139c7c, Func Offset: 0xac
-	// Line 402, Address: 0x139c84, Func Offset: 0xb4
-	// Func End, Address: 0x139c90, Func Offset: 0xc0
-}*/
+    EGG_WORK egg = { 0 };
+
+    if ((plp->stflg & 0x8000000)) 
+    {
+        egg.type = 0;
+        
+        bhSetEnemy(&egg, 0);
+    }
+    
+    if ((plp->stflg & 0x10000000)) 
+    {
+        egg.type = 1;
+        
+        bhSetEnemy(&egg, 0);
+    }
+    
+    if ((plp->stflg & 0x20000000)) 
+    {
+        egg.type = 2;
+        
+        bhSetEnemy(&egg, 0);
+    }
+}
 
 // 100% matching!
 void bhCheckSubPack()

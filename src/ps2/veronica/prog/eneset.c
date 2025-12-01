@@ -16,9 +16,9 @@ void bhInitEnemy()
 	scePrintf("bhInitEnemy - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x174720
-BH_PWORK* bhSetEnemy(_anon15* etp)
+BH_PWORK* bhSetEnemy(EGG_WORK* etp, int param) // second parameter is not present on the debugging symbols
 {
 	int i;
 	BH_PWORK* epp;
@@ -104,9 +104,10 @@ BH_PWORK* bhSetEnemy(_anon15* etp)
 	// Line 433, Address: 0x174a14, Func Offset: 0x2f4
 	// Line 434, Address: 0x174a18, Func Offset: 0x2f8
 	// Func End, Address: 0x174a30, Func Offset: 0x310
+	scePrintf("bhSetEnemy - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x174a30
 void bhCheckEneWorkNum()
 {
