@@ -158,11 +158,11 @@ void ADXB_ExecOneAiff8(ADXB adxb)
 
         pcmbuf = (Uint16*)dp->pcmbuf;
         
-        pcmbuf_l = pcmbuf + dp->wpos;
+        pcmbuf_l = &pcmbuf[dp->wpos];
         
         if (adxb->nch == 2) 
         {
-            pcmbuf_r = pcmbuf + (dp->pcmbdist + dp->wpos);
+            pcmbuf_r = &pcmbuf[dp->pcmbdist + dp->wpos];
             
             for (i = 0; i < ndata; i++) 
             {
@@ -219,11 +219,11 @@ void ADXB_ExecOneAiff16(ADXB adxb)
 
         pcmbuf = (Uint16*)dp->pcmbuf;
         
-        pcmbuf_l = pcmbuf + dp->wpos;
+        pcmbuf_l = &pcmbuf[dp->wpos];
         
         if (adxb->nch == 2) 
         {
-            pcmbuf_r = pcmbuf + (dp->pcmbdist + dp->wpos);
+            pcmbuf_r = &pcmbuf[dp->pcmbdist + dp->wpos];
             
             for (i = 0; i < ndata; i++) 
             {
