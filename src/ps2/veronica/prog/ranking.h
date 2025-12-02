@@ -25,7 +25,7 @@ int MapScore();
 int HealItemUseScore();
 int SaveCountScore();
 int RetryCountScore();
-/*void GetMessage(unsigned int mesnum, _anon12* pos);*/
+void GetMessage(unsigned int mesnum, NJS_POINT2* pos);
 void RankingBgmSet();
 
 /*typedef struct npobj;

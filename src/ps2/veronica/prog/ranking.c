@@ -4,6 +4,7 @@
 #include "message.h"
 #include "room.h"
 #include "sdfunc.h"
+#include "sub1.h"
 #include "system.h"
 #include "main.h"
 
@@ -211,86 +212,147 @@ void RankingErrorMessage()
 	// Line 424, Address: 0x2bb934, Func Offset: 0x104
 	// Line 513, Address: 0x2bb93c, Func Offset: 0x10c
 	// Func End, Address: 0x2bb950, Func Offset: 0x120
-}
+}*/
 
-// 
-// Start address: 0x2bb950
+// 99.84% matching
 void RankingMain()
 {
-	int num;
-	_anon6* sfe;
-	_anon5* rk;
-	unsigned int flg;
-	// Line 517, Address: 0x2bb950, Func Offset: 0
-	// Line 518, Address: 0x2bb960, Func Offset: 0x10
-	// Line 524, Address: 0x2bb968, Func Offset: 0x18
-	// Line 519, Address: 0x2bb970, Func Offset: 0x20
-	// Line 524, Address: 0x2bb978, Func Offset: 0x28
-	// Line 525, Address: 0x2bb994, Func Offset: 0x44
-	// Line 526, Address: 0x2bb9a8, Func Offset: 0x58
-	// Line 527, Address: 0x2bb9b0, Func Offset: 0x60
-	// Line 529, Address: 0x2bb9b8, Func Offset: 0x68
-	// Line 531, Address: 0x2bb9f0, Func Offset: 0xa0
-	// Line 533, Address: 0x2bba00, Func Offset: 0xb0
-	// Line 532, Address: 0x2bba04, Func Offset: 0xb4
-	// Line 533, Address: 0x2bba08, Func Offset: 0xb8
-	// Line 534, Address: 0x2bba0c, Func Offset: 0xbc
-	// Line 535, Address: 0x2bba14, Func Offset: 0xc4
-	// Line 536, Address: 0x2bba18, Func Offset: 0xc8
-	// Line 537, Address: 0x2bba1c, Func Offset: 0xcc
-	// Line 539, Address: 0x2bba24, Func Offset: 0xd4
-	// Line 540, Address: 0x2bba30, Func Offset: 0xe0
-	// Line 541, Address: 0x2bba50, Func Offset: 0x100
-	// Line 542, Address: 0x2bba5c, Func Offset: 0x10c
-	// Line 543, Address: 0x2bba64, Func Offset: 0x114
-	// Line 544, Address: 0x2bba68, Func Offset: 0x118
-	// Line 545, Address: 0x2bba6c, Func Offset: 0x11c
-	// Line 547, Address: 0x2bba70, Func Offset: 0x120
-	// Line 548, Address: 0x2bba74, Func Offset: 0x124
-	// Line 544, Address: 0x2bba78, Func Offset: 0x128
-	// Line 545, Address: 0x2bba80, Func Offset: 0x130
-	// Line 546, Address: 0x2bba84, Func Offset: 0x134
-	// Line 548, Address: 0x2bba88, Func Offset: 0x138
-	// Line 549, Address: 0x2bba90, Func Offset: 0x140
-	// Line 550, Address: 0x2bba98, Func Offset: 0x148
-	// Line 553, Address: 0x2bbaa0, Func Offset: 0x150
-	// Line 554, Address: 0x2bbab0, Func Offset: 0x160
-	// Line 555, Address: 0x2bbabc, Func Offset: 0x16c
-	// Line 556, Address: 0x2bbac4, Func Offset: 0x174
-	// Line 559, Address: 0x2bbacc, Func Offset: 0x17c
-	// Line 560, Address: 0x2bbad4, Func Offset: 0x184
-	// Line 562, Address: 0x2bbae0, Func Offset: 0x190
-	// Line 564, Address: 0x2bbae8, Func Offset: 0x198
-	// Line 565, Address: 0x2bbaf8, Func Offset: 0x1a8
-	// Line 566, Address: 0x2bbb04, Func Offset: 0x1b4
-	// Line 567, Address: 0x2bbb0c, Func Offset: 0x1bc
-	// Line 569, Address: 0x2bbb28, Func Offset: 0x1d8
-	// Line 570, Address: 0x2bbb34, Func Offset: 0x1e4
-	// Line 571, Address: 0x2bbb40, Func Offset: 0x1f0
-	// Line 572, Address: 0x2bbb50, Func Offset: 0x200
-	// Line 573, Address: 0x2bbb58, Func Offset: 0x208
-	// Line 575, Address: 0x2bbb5c, Func Offset: 0x20c
-	// Line 576, Address: 0x2bbb68, Func Offset: 0x218
-	// Line 577, Address: 0x2bbb6c, Func Offset: 0x21c
-	// Line 578, Address: 0x2bbb70, Func Offset: 0x220
-	// Line 577, Address: 0x2bbb74, Func Offset: 0x224
-	// Line 580, Address: 0x2bbb7c, Func Offset: 0x22c
-	// Line 581, Address: 0x2bbb84, Func Offset: 0x234
-	// Line 582, Address: 0x2bbb9c, Func Offset: 0x24c
-	// Line 583, Address: 0x2bbba0, Func Offset: 0x250
-	// Line 584, Address: 0x2bbbac, Func Offset: 0x25c
-	// Line 585, Address: 0x2bbbb0, Func Offset: 0x260
-	// Line 584, Address: 0x2bbbb4, Func Offset: 0x264
-	// Line 585, Address: 0x2bbbbc, Func Offset: 0x26c
-	// Line 589, Address: 0x2bbbc0, Func Offset: 0x270
-	// Line 590, Address: 0x2bbbec, Func Offset: 0x29c
-	// Line 592, Address: 0x2bbbf0, Func Offset: 0x2a0
-	// Line 595, Address: 0x2bbbf8, Func Offset: 0x2a8
-	// Line 597, Address: 0x2bbc00, Func Offset: 0x2b0
-	// Line 598, Address: 0x2bbc10, Func Offset: 0x2c0
-	// Line 607, Address: 0x2bbc20, Func Offset: 0x2d0
-	// Func End, Address: 0x2bbc34, Func Offset: 0x2e4
-}*/
+    static unsigned int flg;
+    RANK_WORK* rk;
+    NO_NAME_29* sfe;
+    int num;
+
+    rk = &rkw;
+    sfe = &fade;
+
+    if (sys->gm_mode == 0) 
+    {
+        DispRankingData00();
+    } 
+    else if (sys->gm_mode == 3)
+    {
+        DispRankingData01();
+    }
+    
+    WallPaperDisp();
+    FadePolyDisp();
+    
+    switch (rk->mode_01) 
+    {                          
+    case 0:
+        if (!(sfe->flg & 0x1)) 
+        {
+            rk->mode_01 = 1;
+            
+            rk->cnt00 = 45;
+            rk->cnt01 = 21;
+            
+            rk->alpha = 0;
+            
+            flg = 0;
+        }
+        
+        break;
+    case 1:
+        if (rk->cnt00 == 0) 
+        {
+            if ((sys->pad_ps & 0x1800)) 
+            {
+                if (rk->cnt01 == 0)
+                {
+                    rk->alpha = 255;
+                    
+                    rk->mode_01 = 2;
+                    
+                    sfe->flg |= 0x1;
+                    
+                    sfe->cnt01 = 12;
+                    
+                    rk->mesalpha = 1;
+                    rk->mescol = 12;
+                    
+                    StopBgm(200);
+                } 
+                else 
+                {
+                    flg = 1;
+                }
+            }
+            
+            if ((flg != 0) && (rk->cnt01 != 0)) 
+            {
+                rk->cnt01--;
+                
+                rk->alpha += 12;
+            }
+        }
+        else if (rk->cnt00 != 0)
+        {
+            rk->cnt00--;
+        }
+        
+        break;
+    case 2:
+        if (!(sfe->flg & 0x1)) 
+        {
+            if (rk->mesloop != 0) 
+            {
+                num = (rk->mesloop & 0xFFFF) - 1;
+                
+                GetMessage(rk->mesnum[num], &rk->mespos[num]);
+                
+                if (rk->mescol != 0)
+                {
+                    rk->mesalpha += rk->mescol;
+                    
+                    if (rk->mesalpha > 255)
+                    {
+                        rk->mesalpha = 255;
+                        rk->mescol = 0;
+                    }
+                    
+                    if (rk->mesalpha < 0) 
+                    {
+                        rk->mesalpha = 0;
+                        
+                        rk->mesloop--;
+                        
+                        rk->mescol = 12; 
+                    }
+                } 
+                else if ((rk->mesalpha == 255) || (rk->mesalpha == 0)) 
+                {
+                    rk->mescol = 0;
+                    
+                    if (rk->mesalpha == 0)
+                    {
+                        rk->mesloop--;
+                        
+                        rk->mescol = 12;
+                    }
+                }
+                
+                if (((sys->pad_ps & 0x1800)) && (rk->mescol == 0)) 
+                {
+                    rk->mescol = -12;
+                }
+            } 
+            else 
+            {
+                rk->mode_01 = 3;
+            }
+        }
+        
+        break;
+    case 3:
+        if (!(sfe->flg & 0x1)) 
+        {
+            sys->typ_md0 = 5;
+        }
+        
+        break;
+    }
+}
 
 // 100% matching! 
 void RankingExit()
@@ -435,13 +497,13 @@ void RankingTextureInit()
 	// Line 811, Address: 0x2bc198, Func Offset: 0x428
 	// Line 815, Address: 0x2bc19c, Func Offset: 0x42c
 	// Func End, Address: 0x2bc1b0, Func Offset: 0x440
-}
+}*/
 
 // 
 // Start address: 0x2bc1b0
 void WallPaperDisp()
 {
-	_anon23 twt[4];
+	//_anon23 twt[4];
 	// Line 822, Address: 0x2bc1b0, Func Offset: 0
 	// Line 826, Address: 0x2bc1b4, Func Offset: 0x4
 	// Line 822, Address: 0x2bc1b8, Func Offset: 0x8
@@ -470,9 +532,10 @@ void WallPaperDisp()
 	// Line 854, Address: 0x2bc288, Func Offset: 0xd8
 	// Line 856, Address: 0x2bc290, Func Offset: 0xe0
 	// Func End, Address: 0x2bc2a0, Func Offset: 0xf0
+	scePrintf("WallPaperDisp - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2bc2a0
 void DispRank(_anon12* pos, unsigned int color, int rank)
 {
@@ -491,14 +554,14 @@ void DispRank(_anon12* pos, unsigned int color, int rank)
 	// Line 904, Address: 0x2bc32c, Func Offset: 0x8c
 	// Line 909, Address: 0x2bc330, Func Offset: 0x90
 	// Func End, Address: 0x2bc344, Func Offset: 0xa4
-}
+}*/
 
 // 
 // Start address: 0x2bc350
 void DispRankingData00()
 {
 	unsigned int argb;
-	_anon12 pos;
+	//_anon12 pos;
 	// Line 914, Address: 0x2bc350, Func Offset: 0
 	// Line 917, Address: 0x2bc360, Func Offset: 0x10
 	// Line 919, Address: 0x2bc370, Func Offset: 0x20
@@ -522,6 +585,7 @@ void DispRankingData00()
 	// Line 950, Address: 0x2bc4dc, Func Offset: 0x18c
 	// Line 953, Address: 0x2bc4f4, Func Offset: 0x1a4
 	// Func End, Address: 0x2bc508, Func Offset: 0x1b8
+	scePrintf("DispRankingData00 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -531,8 +595,8 @@ void DispRankingData01()
 	unsigned int argb;
 	int ranking;
 	int score;
-	_anon12 pos;
-	_anon5* rk;
+	//_anon12 pos;
+	//_anon5* rk;
 	// Line 957, Address: 0x2bc510, Func Offset: 0
 	// Line 958, Address: 0x2bc524, Func Offset: 0x14
 	// Line 967, Address: 0x2bc52c, Func Offset: 0x1c
@@ -576,9 +640,10 @@ void DispRankingData01()
 	// Line 1028, Address: 0x2bc7f4, Func Offset: 0x2e4
 	// Line 1034, Address: 0x2bc800, Func Offset: 0x2f0
 	// Func End, Address: 0x2bc818, Func Offset: 0x308
+	scePrintf("DispRankingData01 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2bc820
 void DispNumber(_anon12* pos, int num, unsigned int col)
 {

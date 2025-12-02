@@ -5962,16 +5962,16 @@ void DispFadeInit()
 	// Line 8073, Address: 0x2a9678, Func Offset: 0x28
 	// Line 8074, Address: 0x2a967c, Func Offset: 0x2c
 	// Func End, Address: 0x2a9684, Func Offset: 0x34
-}
+}*/
 
 // 
 // Start address: 0x2a9690
 void FadePolyDisp()
 {
-	_anon14 col[4];
-	_anon11 p[4];
-	_anon56 p2c;
-	_anon55* sfe;
+	//_anon14 col[4];
+	//_anon11 p[4];
+	//_anon56 p2c;
+	//_anon55* sfe;
 	// Line 8080, Address: 0x2a9690, Func Offset: 0
 	// Line 8092, Address: 0x2a969c, Func Offset: 0xc
 	// Line 8081, Address: 0x2a96a0, Func Offset: 0x10
@@ -6012,7 +6012,8 @@ void FadePolyDisp()
 	// Line 8120, Address: 0x2a980c, Func Offset: 0x17c
 	// Line 8122, Address: 0x2a9824, Func Offset: 0x194
 	// Func End, Address: 0x2a9834, Func Offset: 0x1a4
-}*/
+	scePrintf("FadePolyDisp - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2a9840
@@ -6026,4 +6027,3 @@ void StatusMapFlagInit()
 	// Func End, Address: 0x2a9870, Func Offset: 0x30
 	scePrintf("StatusMapFlagInit - UNIMPLEMENTED!\n");
 }
-

@@ -2915,12 +2915,12 @@ typedef struct RANK_WORK
 typedef struct NO_NAME_29
 {
     // total size: 0x18
-	int flg; // offset 0x0, size 0x4
-	float alpha; // offset 0x4, size 0x4
+	int flg;        // offset 0x0, size 0x4
+	float alpha;    // offset 0x4, size 0x4
 	float alphaset; // offset 0x8, size 0x4
-	float cnt00; // offset 0xC, size 0x4
-	float cnt01; // offset 0x10, size 0x4
-	float cnt02; // offset 0x14, size 0x4
+	float cnt00;    // offset 0xC, size 0x4
+	float cnt01;    // offset 0x10, size 0x4
+	float cnt02;    // offset 0x14, size 0x4
 } NO_NAME_29;
 
 typedef struct Object {
