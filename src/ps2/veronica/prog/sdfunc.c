@@ -1353,25 +1353,22 @@ void CallBackGroundSe2(unsigned int SlotNo, int SeNo) {
     }
 }
 
-/*// 
-// Start address: 0x294f70
+// 100% matching!
 void StopBackGroundSeEx(unsigned int SlotNo, short Timer)
 {
-	int SlotDef[3];
-	// Line 2460, Address: 0x294f70, Func Offset: 0
-	// Line 2463, Address: 0x294f74, Func Offset: 0x4
-	// Line 2460, Address: 0x294f78, Func Offset: 0x8
-	// Line 2461, Address: 0x294f84, Func Offset: 0x14
-	// Line 2463, Address: 0x294f9c, Func Offset: 0x2c
-	// Line 2461, Address: 0x294fa0, Func Offset: 0x30
-	// Line 2463, Address: 0x294fa4, Func Offset: 0x34
-	// Line 2464, Address: 0x294fac, Func Offset: 0x3c
-	// Line 2465, Address: 0x294fc0, Func Offset: 0x50
-	// Line 2466, Address: 0x294fc8, Func Offset: 0x58
-	// Line 2468, Address: 0x294fd8, Func Offset: 0x68
-	// Line 2469, Address: 0x294ff0, Func Offset: 0x80
-	// Func End, Address: 0x295000, Func Offset: 0x90
-}*/
+    int SlotDef[3] = { 0, 1, 2 };
+    
+    if (Timer != 0) 
+    {
+        RequestMidiFadeFunction(SlotDef[SlotNo], 2, Timer);
+    } 
+    else 
+    {
+        StopMidi(SlotDef[SlotNo]);
+    }
+    
+    CurrentBgSeNo[SlotNo] = -1;
+}
 
 // 100% matching
 void StopBackGroundSe2(unsigned int SlotNo) {
