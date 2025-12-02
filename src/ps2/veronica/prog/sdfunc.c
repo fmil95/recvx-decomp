@@ -3114,7 +3114,7 @@ void ReadPlayLog()
 }
 
 // 100% matching! 
-void WritePlayLog()
+void WritePlayLog(int param1, int param2) // parameters are not present on the debugging symbols
 {
 
 }

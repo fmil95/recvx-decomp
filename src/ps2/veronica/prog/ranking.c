@@ -2,7 +2,9 @@
 #include "event.h"
 #include "flag.h"
 #include "message.h"
+#include "room.h"
 #include "sdfunc.h"
+#include "system.h"
 #include "main.h"
 
 /*void(*RankingMode)()[6];
@@ -288,40 +290,57 @@ void RankingMain()
 	// Line 598, Address: 0x2bbc10, Func Offset: 0x2c0
 	// Line 607, Address: 0x2bbc20, Func Offset: 0x2d0
 	// Func End, Address: 0x2bbc34, Func Offset: 0x2e4
-}
+}*/
 
-// 
-// Start address: 0x2bbc40
+// 100% matching! 
 void RankingExit()
 {
-	_anon5* rk;
-	// Line 612, Address: 0x2bbc40, Func Offset: 0
-	// Line 613, Address: 0x2bbc44, Func Offset: 0x4
-	// Line 612, Address: 0x2bbc4c, Func Offset: 0xc
-	// Line 615, Address: 0x2bbc50, Func Offset: 0x10
-	// Line 616, Address: 0x2bbc64, Func Offset: 0x24
-	// Line 617, Address: 0x2bbc70, Func Offset: 0x30
-	// Line 618, Address: 0x2bbc74, Func Offset: 0x34
-	// Line 616, Address: 0x2bbc78, Func Offset: 0x38
-	// Line 617, Address: 0x2bbc9c, Func Offset: 0x5c
-	// Line 618, Address: 0x2bbca0, Func Offset: 0x60
-	// Line 619, Address: 0x2bbcb0, Func Offset: 0x70
-	// Line 620, Address: 0x2bbcc4, Func Offset: 0x84
-	// Line 621, Address: 0x2bbccc, Func Offset: 0x8c
-	// Line 622, Address: 0x2bbcd4, Func Offset: 0x94
-	// Line 624, Address: 0x2bbce0, Func Offset: 0xa0
-	// Line 625, Address: 0x2bbcf4, Func Offset: 0xb4
-	// Line 626, Address: 0x2bbd00, Func Offset: 0xc0
-	// Line 627, Address: 0x2bbd08, Func Offset: 0xc8
-	// Line 629, Address: 0x2bbd14, Func Offset: 0xd4
-	// Line 630, Address: 0x2bbd3c, Func Offset: 0xfc
-	// Line 631, Address: 0x2bbd44, Func Offset: 0x104
-	// Line 632, Address: 0x2bbd50, Func Offset: 0x110
-	// Line 634, Address: 0x2bbd5c, Func Offset: 0x11c
-	// Func End, Address: 0x2bbd68, Func Offset: 0x128
+    RANK_WORK* rk;
+
+    rk = &rkw; 
+    
+    if (sys->gm_mode == 0) 
+    {
+        rk->gameest01 = (rk->allscore / 38) & 0xFE;
+        
+        rk->gamecarry01 = 254;
+
+        if (rk->gameest00 == 255) 
+        {
+            rk->gameest00 = 0;
+        }
+        
+        if (rk->gameest01 >= rk->gameest00) 
+        {
+            WritePlayLog(rk->gameest01, rk->gamecarry01);
+        }
+        else 
+        {
+            WritePlayLog(rk->gameest00, rk->gamecarry01);
+        }
+    } 
+    else if (sys->gm_mode == 3) 
+    {
+        WritePlayLog(rk->gameest00, rk->gamecarry01);
+    } 
+    else 
+    {
+        WritePlayLog(rk->gameest00, rk->gamecarry01); 
+    }
+    
+    if (sys->gm_mode < 3) 
+    {
+        bhReturnTitle();
+    } 
+    else 
+    {
+        bhPopGameData();
+    }
+    
+    sys->typ_md1 = sys->typ_md0 = 0;
 }
 
-// 
+/*// 
 // Start address: 0x2bbd70
 void RankingTextureInit()
 {

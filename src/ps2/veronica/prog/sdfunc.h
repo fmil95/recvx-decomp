@@ -155,7 +155,7 @@ void ExecAdjustDisplay();
 void InitPlayLogSystem();
 void ExitPlayLogSystem();
 void ReadPlayLog();
-void WritePlayLog();
+void WritePlayLog(int param1, int param2);
 
 /*typedef struct EnemySlot;
 typedef struct _anon1;
