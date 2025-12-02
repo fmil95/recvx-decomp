@@ -480,22 +480,29 @@ void InitGameSoundSystem() {
     EventVibrationMode = 0;
 }
 
-/*// 
-// Start address: 0x292d10
+// 100% matching! 
 int SearchAfsInsideFileId(unsigned short KeyCode)
 {
-	unsigned short* lp;
-	int i;
-	// Line 728, Address: 0x292d10, Func Offset: 0
-	// Line 729, Address: 0x292d20, Func Offset: 0x10
-	// Line 730, Address: 0x292d30, Func Offset: 0x20
-	// Line 732, Address: 0x292d38, Func Offset: 0x28
-	// Line 733, Address: 0x292d40, Func Offset: 0x30
-	// Line 735, Address: 0x292d48, Func Offset: 0x38
-	// Line 737, Address: 0x292d58, Func Offset: 0x48
-	// Line 738, Address: 0x292d5c, Func Offset: 0x4c
-	// Func End, Address: 0x292d64, Func Offset: 0x54
-}*/
+    int i;
+    unsigned short* lp;
+
+    lp = pSpqList;
+    
+    for (i = 0; i < 1024; i++, lp++) 
+    {
+        if (*lp == 65535)
+        {
+            return -1;
+        }
+        
+        if (*lp == (KeyCode & 0xFFFF)) 
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 // 100% matching!
 void StopThePsgSound(void) {
