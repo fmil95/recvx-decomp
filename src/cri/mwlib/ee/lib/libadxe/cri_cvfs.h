@@ -146,6 +146,7 @@ static CVFS_IF getDevice(const Sint8 *devname);
 void getDevName(Sint8 *dname, Sint8 *fname, const Sint8 *fn);
 Sint32 getNumFiles(const Sint8 *devname);
 Sint32 getNumFilesAll(void);
+static Sint32 isExistDev(const Sint8 *devname, Sint32 len);
 static void releaseCvFsHn(CVFS cvfs);
 static void toUpperStr(Sint8 *src);
 
