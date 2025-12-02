@@ -748,12 +748,12 @@ int CheckCollision4Sound(NJS_POINT3* pP2) {
     return ReturnCode;
 }
 
-/*// 
+// 
 // Start address: 0x293640
-int Get3DSoundParameter(_anon16* pP1, _anon16* pP2, char* pPan, char* pVol, float* pDist, int Mode)
+int Get3DSoundParameter(NJS_POINT3* pP1, NJS_POINT3* pP2, char* pPan, char* pVol, float* pDist, int Mode)
 {
-	_anon16 pd;
-	_anon28 ScreenPos;
+	//_anon16 pd;
+	//_anon28 ScreenPos;
 	int Ang;
 	int Val;
 	int ReturnCode;
@@ -778,7 +778,8 @@ int Get3DSoundParameter(_anon16* pP1, _anon16* pP2, char* pPan, char* pVol, floa
 	// Line 1456, Address: 0x2937c0, Func Offset: 0x180
 	// Line 1457, Address: 0x2937c4, Func Offset: 0x184
 	// Func End, Address: 0x2937f0, Func Offset: 0x1b0
-}*/
+    scePrintf("Get3DSoundParameter - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2937f0
@@ -1600,25 +1601,32 @@ int StopNativeEventSe(int SlotNo)
 }
 */
 
-// 
-// Start address: 0x2955f0
-void RequestObjectSeEx(int ObjectNo, NJS_POINT3* pPos, int SeNo, int Prio, int Type)
-{
-	_anon35* oip;
-	// Line 2851, Address: 0x2955f0, Func Offset: 0
-	// Line 2854, Address: 0x295600, Func Offset: 0x10
-	// Line 2855, Address: 0x295608, Func Offset: 0x18
-	// Line 2859, Address: 0x295618, Func Offset: 0x28
-	// Line 2860, Address: 0x295620, Func Offset: 0x30
-	// Line 2861, Address: 0x29563c, Func Offset: 0x4c
-	// Line 2862, Address: 0x295644, Func Offset: 0x54
-	// Line 2865, Address: 0x295660, Func Offset: 0x70
-	// Line 2866, Address: 0x295668, Func Offset: 0x78
-	// Line 2871, Address: 0x29567c, Func Offset: 0x8c
-	// Line 2873, Address: 0x295684, Func Offset: 0x94
-	// Line 2874, Address: 0x29568c, Func Offset: 0x9c
-	// Func End, Address: 0x2956a0, Func Offset: 0xb0
-	scePrintf("RequestObjectSeEx - UNIMPLEMENTED!\n");
+// 100% matching!
+void RequestObjectSeEx(int ObjectNo, NJS_POINT3* pPos, int SeNo, int Prio, int Type) 
+{ 
+    Object* oip;
+
+    oip = ObjectInfo;
+    
+    oip = &oip[ObjectNo];
+
+    if (Type == 0) 
+    {
+        Get3DSoundParameter(&CameraPos, pPos, &oip->Pan, &oip->Vol, &oip->Dist, 0);
+    } 
+    else
+    {
+        Get3DSoundParameter(&CameraPos, pPos, &oip->Pan, &oip->Vol, &oip->Dist, 1);
+    }
+
+    if (Type == 0) 
+    {
+        oip->Vol += Room_SoundEnv.VolObjectSe;
+    }
+
+    oip->SlotNo = -1;
+    
+    oip->ReqFlag = 1;
 }
 
 // 

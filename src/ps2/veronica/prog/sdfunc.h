@@ -54,7 +54,7 @@ int CustomMidiSlotDef(int ObjectSlot, int EventSlot);
 void ResetRoomSoundEnvParam();
 int wadGetAngle(NJS_POINT3* pPos1, int Ang, NJS_POINT3* pPos2);
 int CheckCollision4Sound(NJS_POINT3* pP2);
-int Get3DSoundParameter(_anon16* pP1, _anon16* pP2, char* pPan, char* pVol, float* pDist, int Mode);
+int Get3DSoundParameter(NJS_POINT3* pP1, NJS_POINT3* pP2, char* pPan, char* pVol, float* pDist, int Mode);
 int SetupSeGenericParm(int SlotNo, int SeNo, NJS_POINT3* pPos, int Flag, unsigned int Flag2);
 void Set3dSoundFlag(int Type, int SlotNo, unsigned int Flag);
 void Reset3dSoundFlag();

@@ -2923,20 +2923,21 @@ typedef struct NO_NAME_29
 	float cnt02;    // offset 0x14, size 0x4
 } NO_NAME_29;
 
-typedef struct Object {
+typedef struct Object 
+{
     // total size: 0x38
-    NJS_POINT3 pos; // offset 0x0, size 0xC
-    float Dist; // offset 0xC, size 0x4
-    signed int SeNo; // offset 0x10, size 0x4
-    signed char ReqFlag; // offset 0x14, size 0x1
-    signed char Prio; // offset 0x15, size 0x1
-    signed char SlotNo; // offset 0x16, size 0x1
-    signed char Type; // offset 0x17, size 0x1
-    signed char Pan; // offset 0x18, size 0x1
-    signed char Vol; // offset 0x19, size 0x1
-    signed int Flag; // offset 0x1C, size 0x4
-    signed int VolFadeP[3]; // offset 0x20, size 0xC
-    signed int PanFadeP[3]; // offset 0x2C, size 0xC
+    NJS_POINT3 pos;  // offset 0x0, size 0xC
+    float Dist;      // offset 0xC, size 0x4
+    int SeNo;        // offset 0x10, size 0x4
+    char ReqFlag;    // offset 0x14, size 0x1
+    char Prio;       // offset 0x15, size 0x1
+    char SlotNo;     // offset 0x16, size 0x1
+    char Type;       // offset 0x17, size 0x1
+    char Pan;        // offset 0x18, size 0x1
+    char Vol;        // offset 0x19, size 0x1
+    int Flag;        // offset 0x1C, size 0x4
+    int VolFadeP[3]; // offset 0x20, size 0xC
+    int PanFadeP[3]; // offset 0x2C, size 0xC
 } Object; 
 
 typedef struct ObjectSlot
