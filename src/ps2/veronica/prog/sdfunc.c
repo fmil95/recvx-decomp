@@ -79,10 +79,9 @@ char CurrentRoomFxLevel;
 /*int AngBak;*/
 SND_REQ RequestInfo;
 NJS_POINT3 CameraPos;
-/*_anon44 GsSlotInfoAx[2];*/
+NO_NAME_31 GsSlotInfoAx[2];
 Object ObjectInfo[16];
-/*_anon44 GsSlotInfoMi[8];
-*/
+NO_NAME_31 GsSlotInfoMi[8];
 NO_NAME_31 GsSlotInfoSe[20];
 NJS_POINT3 PlayerPos;
 /*int xAng;
@@ -2603,28 +2602,25 @@ void Com_ExecCallBgm_And_BgSe()
 
 }
 
-// 
-// Start address: 0x297000
+// 100% matching!
 void Com_StartInitScript()
 {
-	// Line 4108, Address: 0x297000, Func Offset: 0
-	// Line 4109, Address: 0x297004, Func Offset: 0x4
-	// Line 4108, Address: 0x297008, Func Offset: 0x8
-	// Line 4109, Address: 0x29700c, Func Offset: 0xc
-	// Line 4111, Address: 0x297010, Func Offset: 0x10
-	// Line 4114, Address: 0x297018, Func Offset: 0x18
-	// Line 4115, Address: 0x297020, Func Offset: 0x20
-	// Line 4116, Address: 0x297028, Func Offset: 0x28
-	// Line 4117, Address: 0x297030, Func Offset: 0x30
-	// Line 4118, Address: 0x297038, Func Offset: 0x38
-	// Line 4119, Address: 0x297040, Func Offset: 0x40
-	// Line 4121, Address: 0x297048, Func Offset: 0x48
-	// Line 4122, Address: 0x29705c, Func Offset: 0x5c
-	// Line 4123, Address: 0x297070, Func Offset: 0x70
-	// Line 4125, Address: 0x297084, Func Offset: 0x84
-	// Line 4126, Address: 0x297090, Func Offset: 0x90
-	// Func End, Address: 0x29709c, Func Offset: 0x9c
-    scePrintf("Com_StartInitScript - UNIMPLEMENTED!\n");
+    StartInitScriptFlag = 1;
+    
+    ResetEnemySeInfo();
+    ResetObjectSeInfo();
+    
+    StopMidi(3);
+    StopMidi(4);
+    StopMidi(5);
+    StopMidi(6);
+    StopMidi(7);
+    
+    memset(GsSlotInfoSe, 0, 20);
+    memset(GsSlotInfoMi, 0, 8);
+    memset(GsSlotInfoAx, 0, 2);
+    
+    CustomMidiSlotDef(1, 4);
 }
 
 // 100% matching!
