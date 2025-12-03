@@ -1278,28 +1278,25 @@ void CallPlayerWeaponSeEx(NJS_POINT3* pPos, int SeNo, int SlotNo)
     }
 }
 
-/*// 
-// Start address: 0x294cc0
-void CallYakkyouSe(_anon16* pPos, int SeNo)
+// 100% matching!
+void CallYakkyouSe(NJS_POINT3* pPos, int SeNo) 
 {
-	// Line 2361, Address: 0x294cc0, Func Offset: 0
-	// Line 2362, Address: 0x294ccc, Func Offset: 0xc
-	// Line 2368, Address: 0x294ce0, Func Offset: 0x20
-	// Line 2366, Address: 0x294ce8, Func Offset: 0x28
-	// Line 2368, Address: 0x294cf4, Func Offset: 0x34
-	// Line 2369, Address: 0x294d04, Func Offset: 0x44
-	// Line 2371, Address: 0x294d2c, Func Offset: 0x6c
-	// Line 2369, Address: 0x294d34, Func Offset: 0x74
-	// Line 2371, Address: 0x294d48, Func Offset: 0x88
-	// Line 2369, Address: 0x294d4c, Func Offset: 0x8c
-	// Line 2371, Address: 0x294d54, Func Offset: 0x94
-	// Line 2372, Address: 0x294d5c, Func Offset: 0x9c
-	// Line 2375, Address: 0x294d78, Func Offset: 0xb8
-	// Line 2376, Address: 0x294d84, Func Offset: 0xc4
-	// Func End, Address: 0x294d90, Func Offset: 0xd0
+    if (SpqFileReadRequestFlag != 2) 
+    {
+        SetupSeGenericParm(10, (SeNo & 0xFFFF00FF) | 0x100, pPos, 1, GsSlotInfoSe[10].Flag);
+        
+        RequestInfo.Volume -= CurrentRoomFxLevel / 12;
+        
+        if (!((GsSlotInfoSe[10].Flag) & 0x2)) 
+        {
+            RequestInfo.Volume += Room_SoundEnv.VolCartridgeSe;
+        }
+        
+        ExPlaySe(&RequestInfo);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x294d90
 void CallBackGroundSeEx(unsigned int SlotNo, int SeNo, short Timer)
 {
