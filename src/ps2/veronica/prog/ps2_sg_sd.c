@@ -405,9 +405,9 @@ SDE_ERR	sdMemBlkSetPrm( SDMEMBLK handle, const Void *src_blk_ptr, const Sint32 s
     return SDE_ERR_NO_INIT;
 }
 
-/*// 
+// 
 // Start address: 0x2db5e0
-SDE_ERR sdMidiClosePort(SDS_PORT_REF** handle)
+SDE_ERR	sdMidiClosePort( SDMIDI handle)
 {
 	// Line 1083, Address: 0x2db5e0, Func Offset: 0
 	// Line 1087, Address: 0x2db5ec, Func Offset: 0xc
@@ -433,7 +433,8 @@ SDE_ERR sdMidiClosePort(SDS_PORT_REF** handle)
 	// Line 1116, Address: 0x2db688, Func Offset: 0xa8
 	// Line 1118, Address: 0x2db690, Func Offset: 0xb0
 	// Func End, Address: 0x2db6a0, Func Offset: 0xc0
-}*/
+    scePrintf("sdMidiClosePort - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2db6a0

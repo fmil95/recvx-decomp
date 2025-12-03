@@ -190,22 +190,15 @@ unsigned int RegistMidiSlot(unsigned int SlotNo)
     return 0;
 }
 
-// 
-// Start address: 0x28f130
+// 100% matching! 
 void FreeMidiSlot(unsigned int SlotNo)
 {
-	// Line 188, Address: 0x28f130, Func Offset: 0
-	// Line 187, Address: 0x28f138, Func Offset: 0x8
-	// Line 188, Address: 0x28f13c, Func Offset: 0xc
-	// Line 187, Address: 0x28f144, Func Offset: 0x14
-	// Line 188, Address: 0x28f148, Func Offset: 0x18
-	// Line 187, Address: 0x28f14c, Func Offset: 0x1c
-	// Line 188, Address: 0x28f150, Func Offset: 0x20
-	// Line 192, Address: 0x28f160, Func Offset: 0x30
-	// Line 195, Address: 0x28f178, Func Offset: 0x48
-	// Line 196, Address: 0x28f17c, Func Offset: 0x4c
-	// Func End, Address: 0x28f18c, Func Offset: 0x5c
-	scePrintf("FreeMidiSlot - UNIMPLEMENTED!\n");
+    if (MidiInfo[SlotNo].Flag != 0)
+    {
+        sdMidiClosePort(MidiHandle[SlotNo]);
+    }
+    
+    MidiInfo[SlotNo].Flag = 0;
 }
 
 // 100% matching! 
