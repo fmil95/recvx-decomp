@@ -16,11 +16,11 @@ Additionally, this project also consists of reverse-engineering the CRI Middlewa
 
 <!-- PROGRESS-START -->
 ```
-Resident Evil CODE: Veronica X: 832 implemented functions / 3842 total (21.66%)
+Resident Evil CODE: Veronica X: 834 implemented functions / 3842 total (21.71%)
 CRI ADX (March 13, 2001): 661 implemented functions / 661 total (100%)
 Tamsoft Sound Driver (EE): 34 implemented functions / 34 total (100%)
 
-Decomp progress: 1527 implemented functions / 4537 total (33.66%)
+Decomp progress: 1529 implemented functions / 4537 total (33.7%)
 ```
 <!-- PROGRESS-END -->
 
