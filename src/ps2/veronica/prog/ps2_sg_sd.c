@@ -433,11 +433,11 @@ SDE_ERR sdMidiClosePort(SDS_PORT_REF** handle)
 	// Line 1116, Address: 0x2db688, Func Offset: 0xa8
 	// Line 1118, Address: 0x2db690, Func Offset: 0xb0
 	// Func End, Address: 0x2db6a0, Func Offset: 0xc0
-}
+}*/
 
 // 
 // Start address: 0x2db6a0
-SDE_ERR sdMidiGetStat(SDS_PORT_REF** handle, SDS_MIDI_STAT* midi_stat)
+SDE_ERR	sdMidiGetStat( SDMIDI handle, SDS_MIDI_STAT *midi_stat)
 {
 	// Line 1148, Address: 0x2db6a0, Func Offset: 0
 	// Line 1149, Address: 0x2db6b0, Func Offset: 0x10
@@ -450,7 +450,8 @@ SDE_ERR sdMidiGetStat(SDS_PORT_REF** handle, SDS_MIDI_STAT* midi_stat)
 	// Line 1165, Address: 0x2db710, Func Offset: 0x70
 	// Line 1167, Address: 0x2db718, Func Offset: 0x78
 	// Func End, Address: 0x2db720, Func Offset: 0x80
-}*/
+    scePrintf("sdMidiGetStat - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 SDE_ERR	sdMidiOpenPort( SDMIDI *handle)

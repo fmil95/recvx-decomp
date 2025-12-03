@@ -208,22 +208,15 @@ void FreeMidiSlot(unsigned int SlotNo)
 	scePrintf("FreeMidiSlot - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x28f190
+// 100% matching! 
 unsigned int CheckPlayMidi(unsigned int SlotNo)
 {
-	SDS_MIDI_STAT Status;
-	// Line 207, Address: 0x28f190, Func Offset: 0
-	// Line 204, Address: 0x28f198, Func Offset: 0x8
-	// Line 207, Address: 0x28f19c, Func Offset: 0xc
-	// Line 204, Address: 0x28f1a4, Func Offset: 0x14
-	// Line 207, Address: 0x28f1a8, Func Offset: 0x18
-	// Line 208, Address: 0x28f1b4, Func Offset: 0x24
-	// Line 209, Address: 0x28f1b8, Func Offset: 0x28
-	// Line 208, Address: 0x28f1bc, Func Offset: 0x2c
-	// Line 209, Address: 0x28f1c0, Func Offset: 0x30
-	// Func End, Address: 0x28f1c8, Func Offset: 0x38
-}*/
+    SDS_MIDI_STAT Status;
+    
+    sdMidiGetStat(MidiHandle[SlotNo], &Status);
+
+    return Status.m_Flg & 0x1;
+}
 
 // 100% matching! 
 void PlayMidi(unsigned int SlotNo, char BankNo, char ListNo, char Priority)
