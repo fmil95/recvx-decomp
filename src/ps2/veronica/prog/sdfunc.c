@@ -2239,20 +2239,23 @@ int SearchPlayingObjectSe(int ObjectNo) {
     return SearchPlayingObjectSeEx(ObjectNo, 1);
 }
 
-// 
-// Start address: 0x2964e0
+// 100% matching!
 int SearchFreeObjectSeSlot()
 {
-	//_anon11* osp;
-	int i;
-	// Line 3550, Address: 0x2964e0, Func Offset: 0
-	// Line 3551, Address: 0x2964f8, Func Offset: 0x18
-	// Line 3552, Address: 0x296504, Func Offset: 0x24
-	// Line 3554, Address: 0x29650c, Func Offset: 0x2c
-	// Line 3556, Address: 0x296524, Func Offset: 0x44
-	// Line 3557, Address: 0x296528, Func Offset: 0x48
-	// Func End, Address: 0x296530, Func Offset: 0x50
-	scePrintf("SearchFreeObjectSeSlot - UNIMPLEMENTED!\n");
+    int i;
+    ObjectSlot* osp;
+
+    i = 0;
+
+    for (osp = &ObjectSlotInfo[i]; i < MaxSlotObjectSe; i++, osp++)
+    {
+        if (osp->Flag == 0) 
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 // 100% matching! 
