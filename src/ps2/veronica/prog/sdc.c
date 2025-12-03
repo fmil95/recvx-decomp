@@ -223,22 +223,16 @@ unsigned int CheckPlayMidi(unsigned int SlotNo)
 	// Line 208, Address: 0x28f1bc, Func Offset: 0x2c
 	// Line 209, Address: 0x28f1c0, Func Offset: 0x30
 	// Func End, Address: 0x28f1c8, Func Offset: 0x38
-}
+}*/
 
-// 
-// Start address: 0x28f1d0
+// 100% matching! 
 void PlayMidi(unsigned int SlotNo, char BankNo, char ListNo, char Priority)
 {
-	// Line 213, Address: 0x28f1d0, Func Offset: 0
-	// Line 212, Address: 0x28f1e4, Func Offset: 0x14
-	// Line 213, Address: 0x28f1e8, Func Offset: 0x18
-	// Line 212, Address: 0x28f1ec, Func Offset: 0x1c
-	// Line 213, Address: 0x28f1f0, Func Offset: 0x20
-	// Line 214, Address: 0x28f1fc, Func Offset: 0x2c
-	// Line 215, Address: 0x28f210, Func Offset: 0x40
-	// Line 218, Address: 0x28f228, Func Offset: 0x58
-	// Func End, Address: 0x28f234, Func Offset: 0x64
-}*/
+    if ((MidiInfo[SlotNo].Flag != 0) && (ListNo != -1)) 
+    {
+        sdMidiPlay(MidiHandle[SlotNo], BankNo, ListNo, Priority);
+    }
+}
 
 // 
 // Start address: 0x28f240

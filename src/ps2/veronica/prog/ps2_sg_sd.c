@@ -506,9 +506,9 @@ SDE_ERR	sdMidiOpenPort( SDMIDI *handle)
     return SDE_ERR_NO_INIT;
 }
 
-/*// 
+// 
 // Start address: 0x2db800
-SDE_ERR sdMidiPlay(SDS_PORT_REF** handle, char bank_num, char data_num)
+SDE_ERR	sdMidiPlay( SDMIDI handle, const Sint8 bank_num, const Sint8 data_num, const Sint8 priority)
 {
 	unsigned int ch_check;
 	// Line 1259, Address: 0x2db800, Func Offset: 0
@@ -534,9 +534,10 @@ SDE_ERR sdMidiPlay(SDS_PORT_REF** handle, char bank_num, char data_num)
 	// Line 1338, Address: 0x2db8c8, Func Offset: 0xc8
 	// Line 1340, Address: 0x2db8d0, Func Offset: 0xd0
 	// Func End, Address: 0x2db8ec, Func Offset: 0xec
+    scePrintf("sdMidiPlay - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2db8f0
 SDE_ERR sdMidiSetFxLev()
 {
