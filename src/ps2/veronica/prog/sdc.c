@@ -423,22 +423,15 @@ unsigned int RegistSeSlot(unsigned int SlotNo)
     return 0;
 }
 
-// 
-// Start address: 0x28f8f0
+// 100% matching! 
 void FreeSeSlot(unsigned int SlotNo)
 {
-	// Line 417, Address: 0x28f8f0, Func Offset: 0
-	// Line 416, Address: 0x28f8f8, Func Offset: 0x8
-	// Line 417, Address: 0x28f8fc, Func Offset: 0xc
-	// Line 416, Address: 0x28f904, Func Offset: 0x14
-	// Line 417, Address: 0x28f908, Func Offset: 0x18
-	// Line 416, Address: 0x28f90c, Func Offset: 0x1c
-	// Line 417, Address: 0x28f910, Func Offset: 0x20
-	// Line 421, Address: 0x28f920, Func Offset: 0x30
-	// Line 424, Address: 0x28f938, Func Offset: 0x48
-	// Line 425, Address: 0x28f93c, Func Offset: 0x4c
-	// Func End, Address: 0x28f94c, Func Offset: 0x5c
-	scePrintf("FreeSeSlot - UNIMPLEMENTED!\n");
+    if (SeInfo[SlotNo].Flag != 0) 
+    {
+        sdShotClosePort(SeHandle[SlotNo]);
+    }
+
+    SeInfo[SlotNo].Flag = 0;
 }
 
 // 100% matching! 

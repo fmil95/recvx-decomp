@@ -668,9 +668,9 @@ SDE_ERR	sdMidiStop( SDMIDI handle)
     scePrintf("sdMidiStop - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2dbca0
-SDE_ERR sdShotClosePort(SDS_PORT_REF** handle)
+SDE_ERR	sdShotClosePort( SDSHOT handle)
 {
 	// Line 1738, Address: 0x2dbca0, Func Offset: 0
 	// Line 1743, Address: 0x2dbcac, Func Offset: 0xc
@@ -700,7 +700,8 @@ SDE_ERR sdShotClosePort(SDS_PORT_REF** handle)
 	// Line 1786, Address: 0x2dbdac, Func Offset: 0x10c
 	// Line 1788, Address: 0x2dbdb4, Func Offset: 0x114
 	// Func End, Address: 0x2dbdc4, Func Offset: 0x124
-}*/
+    scePrintf("sdShotClosePort - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 SDE_ERR	sdShotGetStat( SDSHOT handle, SDS_SHOT_STAT *shot_stat)
