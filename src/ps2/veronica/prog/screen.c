@@ -151,20 +151,19 @@ void bhSetScreenSaver(unsigned int alpha, float ct)
     sys->ssv_ap = alpha;
 }
 
-// 
-// Start address: 0x26c300
+// 100% matching! 
 void bhControlScreenSaver()
 {
-	// Line 310, Address: 0x26c300, Func Offset: 0
-	// Line 311, Address: 0x26c308, Func Offset: 0x8
-	// Line 310, Address: 0x26c310, Func Offset: 0x10
-	// Line 311, Address: 0x26c358, Func Offset: 0x58
-	// Line 312, Address: 0x26c37c, Func Offset: 0x7c
-	// Line 313, Address: 0x26c3b8, Func Offset: 0xb8
-	// Line 314, Address: 0x26c3c8, Func Offset: 0xc8
-	// Line 316, Address: 0x26c3e8, Func Offset: 0xe8
-	// Func End, Address: 0x26c3f0, Func Offset: 0xf0
-	scePrintf("bhControlScreenSaver - UNIMPLEMENTED!\n");
+    sys->ssv_an += (sys->ssv_ap - sys->ssv_ao) / sys->ssv_hkn;
+    
+    sys->ssv_ct += 1.0f;
+    
+    if (sys->ssv_ct >= sys->ssv_hkn) 
+    {
+        sys->ssv_md0 = 2;
+        
+        sys->ssv_an = sys->ssv_ap;
+    }
 }
 
 // 
