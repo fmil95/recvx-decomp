@@ -40,7 +40,7 @@ int CurrentBgSeNo[2] = { -1, -1 };
 int RoomSoundCaseNo;
 /*short DefBg[3];*/
 short DefObj[5] = { 3, 4, 5, 6, 7 };
-/*short DefEvt[5];*/
+short DefEvt[5] = { 7, 6, 5, 4, 3 };
 short DefEne[6] = { 0, 1, 2, 3, 4, 5 };
 int SoundInitLevel;
 int SdReadMode;
@@ -2420,46 +2420,66 @@ void ExecObjectSeManager() {
     }
 }
 
-// 
-// Start address: 0x2969c0
-void RequestSoundFade(int Func, int Attr, short Timer)
+// 100% matching!
+void RequestSoundFade(int Func, int Attr, short Timer) 
 {
-	int i;
-	// Line 3763, Address: 0x2969c0, Func Offset: 0
-	// Line 3766, Address: 0x2969dc, Func Offset: 0x1c
-	// Line 3763, Address: 0x2969e0, Func Offset: 0x20
-	// Line 3766, Address: 0x2969ec, Func Offset: 0x2c
-	// Line 3767, Address: 0x2969f4, Func Offset: 0x34
-	// Line 3768, Address: 0x296a00, Func Offset: 0x40
-	// Line 3770, Address: 0x296a10, Func Offset: 0x50
-	// Line 3771, Address: 0x296a1c, Func Offset: 0x5c
-	// Line 3772, Address: 0x296a2c, Func Offset: 0x6c
-	// Line 3773, Address: 0x296a3c, Func Offset: 0x7c
-	// Line 3774, Address: 0x296a4c, Func Offset: 0x8c
-	// Line 3775, Address: 0x296a5c, Func Offset: 0x9c
-	// Line 3776, Address: 0x296a6c, Func Offset: 0xac
-	// Line 3782, Address: 0x296a7c, Func Offset: 0xbc
-	// Line 3783, Address: 0x296a88, Func Offset: 0xc8
-	// Line 3785, Address: 0x296a98, Func Offset: 0xd8
-	// Line 3786, Address: 0x296aa4, Func Offset: 0xe4
-	// Line 3791, Address: 0x296ab4, Func Offset: 0xf4
-	// Line 3792, Address: 0x296adc, Func Offset: 0x11c
-	// Line 3793, Address: 0x296b38, Func Offset: 0x178
-	// Line 3794, Address: 0x296b44, Func Offset: 0x184
-	// Line 3795, Address: 0x296b58, Func Offset: 0x198
-	// Line 3796, Address: 0x296b60, Func Offset: 0x1a0
-	// Line 3798, Address: 0x296b74, Func Offset: 0x1b4
-	// Line 3799, Address: 0x296b94, Func Offset: 0x1d4
-	// Line 3800, Address: 0x296b9c, Func Offset: 0x1dc
-	// Line 3801, Address: 0x296bb0, Func Offset: 0x1f0
-	// Line 3807, Address: 0x296bcc, Func Offset: 0x20c
-	// Line 3808, Address: 0x296bd0, Func Offset: 0x210
-	// Line 3809, Address: 0x296bdc, Func Offset: 0x21c
-	// Line 3811, Address: 0x296bf0, Func Offset: 0x230
-	// Line 3812, Address: 0x296bfc, Func Offset: 0x23c
-	// Line 3814, Address: 0x296c10, Func Offset: 0x250
-	// Func End, Address: 0x296c34, Func Offset: 0x274
-    scePrintf("RequestSoundFade - UNIMPLEMENTED!\n");
+    int i;
+
+    if ((Attr & 0x1)) 
+    {
+        RequestSeFadeFunction(11, Func, Timer);
+        RequestSeFadeFunction(12, Func, Timer);
+    }
+
+    if ((Attr & 0x2)) 
+    {
+        RequestSeFadeFunction(0, Func, Timer);
+        RequestSeFadeFunction(1, Func, Timer);
+        RequestSeFadeFunction(2, Func, Timer);
+        RequestSeFadeFunction(3, Func, Timer);
+        RequestSeFadeFunction(4, Func, Timer);
+        RequestSeFadeFunction(5, Func, Timer);
+    }
+
+    if ((Attr & 0x8))
+    {
+        RequestMidiFadeFunction(0, Func, Timer);
+    }
+
+    if ((Attr & 0x10)) 
+    {
+        RequestMidiFadeFunction(1, Func, Timer);
+    }
+
+    if ((Attr & 0x20)) 
+    {
+        for (i = 0; i < MaxSlotObjectSe; i++) 
+        {
+            if (Func == 1)
+            {
+                RequestMidiFadeFunctionEx(DefObj[i], -127, -64, ((Timer / 100) * 30) + (((Timer % 100) * 6) / 10));
+            }
+            else 
+            {
+                RequestMidiFadeFunction(DefObj[i], Func, Timer); 
+            }
+        }
+
+        for (i = 0; i < MaxSlotEventSe; i++) 
+        {
+            RequestMidiFadeFunction(DefEvt[i], Func, Timer);
+        }
+    }
+
+    if ((Attr & 0x40)) 
+    {
+        RequestAdxFadeFunction(0, Func, Timer);
+    }
+    
+    if ((Attr & 0x80))
+    {
+        RequestAdxFadeFunction(1,  Func, Timer);
+    }
 }
 
 // 100% matching!
