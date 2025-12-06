@@ -265,33 +265,32 @@ void Model_Read_Set(_anon2* st)
 	// Line 533, Address: 0x2aa660, Func Offset: 0x2b0
 	// Line 536, Address: 0x2aa674, Func Offset: 0x2c4
 	// Func End, Address: 0x2aa68c, Func Offset: 0x2dc
-}
+}*/
 
-// 
-// Start address: 0x2aa690
+// 100% matching!
 void CameraInit()
 {
-	// Line 540, Address: 0x2aa690, Func Offset: 0
-	// Line 542, Address: 0x2aa694, Func Offset: 0x4
-	// Line 540, Address: 0x2aa698, Func Offset: 0x8
-	// Line 542, Address: 0x2aa69c, Func Offset: 0xc
-	// Line 543, Address: 0x2aa6a4, Func Offset: 0x14
-	// Line 544, Address: 0x2aa6b0, Func Offset: 0x20
-	// Line 545, Address: 0x2aa6bc, Func Offset: 0x2c
-	// Line 546, Address: 0x2aa6c4, Func Offset: 0x34
-	// Line 547, Address: 0x2aa6cc, Func Offset: 0x3c
-	// Line 548, Address: 0x2aa6d8, Func Offset: 0x48
-	// Line 549, Address: 0x2aa6e0, Func Offset: 0x50
-	// Line 550, Address: 0x2aa6e8, Func Offset: 0x58
-	// Line 551, Address: 0x2aa6f0, Func Offset: 0x60
-	// Line 552, Address: 0x2aa6f8, Func Offset: 0x68
-	// Line 553, Address: 0x2aa700, Func Offset: 0x70
-	// Line 554, Address: 0x2aa708, Func Offset: 0x78
-	// Line 555, Address: 0x2aa710, Func Offset: 0x80
-	// Line 556, Address: 0x2aa718, Func Offset: 0x88
-	// Line 557, Address: 0x2aa720, Func Offset: 0x90
-	// Func End, Address: 0x2aa72c, Func Offset: 0x9c
-}*/
+    njUnitMatrix(&st_cam.cmat1);
+    njUnitMatrix(&st_cam.rotmat);
+    
+    st_cam.dis = 20;
+    
+    st_cam.pos_0.x = 0;
+    st_cam.pos_0.y = 0;
+    st_cam.pos_0.z = 12;
+    
+    st_cam.pos_1.x = 0;
+    st_cam.pos_1.y = 0;
+    st_cam.pos_1.z = 0;
+    
+    st_cam.ax = 0;
+    st_cam.ay = 0;
+    st_cam.az = 0;
+    
+    st_cam.cax = 0;
+    st_cam.cay = 0;
+    st_cam.caz = 0;
+}
 
 // 99.64% matching
 void CameraSet()
