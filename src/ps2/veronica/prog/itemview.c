@@ -818,22 +818,24 @@ float ModelScaleSet(_anon5* itemmodel, unsigned short flg)
 	// Line 1180, Address: 0x2abc34, Func Offset: 0xf4
 	// Line 1185, Address: 0x2abc48, Func Offset: 0x108
 	// Func End, Address: 0x2abc58, Func Offset: 0x118
-}
-
-// 
-// Start address: 0x2abc60
-void FlagErase(npobj* op)
-{
-	// Line 1199, Address: 0x2abc60, Func Offset: 0
-	// Line 1200, Address: 0x2abc6c, Func Offset: 0xc
-	// Line 1201, Address: 0x2abc74, Func Offset: 0x14
-	// Line 1200, Address: 0x2abc7c, Func Offset: 0x1c
-	// Line 1201, Address: 0x2abc84, Func Offset: 0x24
-	// Line 1202, Address: 0x2abc90, Func Offset: 0x30
-	// Line 1203, Address: 0x2abca4, Func Offset: 0x44
-	// Line 1204, Address: 0x2abcb8, Func Offset: 0x58
-	// Func End, Address: 0x2abcc8, Func Offset: 0x68
 }*/
+
+// 100% matching! 
+void FlagErase(NJS_CNK_OBJECT* op) 
+{
+    op->evalflags &= ~0x2;
+    op->evalflags &= ~0x1;
+    
+    if (op->child != NULL) 
+    {
+        FlagErase(op->child);
+    }
+
+    if (op->sibling != NULL) 
+    {
+        FlagErase(op->sibling);
+    }
+}
 
 // 100% matching!
 void LighterOpen(NJS_CNK_OBJECT* object) 
