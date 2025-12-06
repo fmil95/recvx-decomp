@@ -12,9 +12,9 @@ float testf;
 _anon32 whd;
 unsigned int ItemViewTypeTbl[168];
 int ViewType;
-_anon33 fvwork;
-_anon1 st_cam;
-_anon6 dsptbl[0];
+_anon33 fvwork;*/
+STCAM_WRK st_cam;
+/*_anon6 dsptbl[0];
 _anon2 swork;
 _anon24* sys;
 _anon5 sitem;
@@ -291,26 +291,27 @@ void CameraInit()
 	// Line 556, Address: 0x2aa718, Func Offset: 0x88
 	// Line 557, Address: 0x2aa720, Func Offset: 0x90
 	// Func End, Address: 0x2aa72c, Func Offset: 0x9c
-}
+}*/
 
-// 
-// Start address: 0x2aa730
+// 99.64% matching
 void CameraSet()
 {
-	// Line 560, Address: 0x2aa730, Func Offset: 0
-	// Line 563, Address: 0x2aa738, Func Offset: 0x8
-	// Line 564, Address: 0x2aa740, Func Offset: 0x10
-	// Line 566, Address: 0x2aa748, Func Offset: 0x18
-	// Line 567, Address: 0x2aa778, Func Offset: 0x48
-	// Line 568, Address: 0x2aa788, Func Offset: 0x58
-	// Line 569, Address: 0x2aa798, Func Offset: 0x68
-	// Line 570, Address: 0x2aa7a8, Func Offset: 0x78
-	// Line 572, Address: 0x2aa7c0, Func Offset: 0x90
-	// Line 573, Address: 0x2aa7cc, Func Offset: 0x9c
-	// Func End, Address: 0x2aa7d8, Func Offset: 0xa8
+    njClearMatrix();
+    
+    njUnitMatrix(NULL);
+    
+    njTranslate(NULL, st_cam.pos_0.x, st_cam.pos_0.y, -st_cam.pos_0.z + st_cam.pos_1.z);
+    
+    njRotateX(NULL, st_cam.ax);
+    njRotateY(NULL, st_cam.ay);
+    njRotateZ(NULL, st_cam.az);
+    
+    njTranslate(NULL, 0, 0, st_cam.dis);
+    
+    njGetMatrix(&st_cam.cmat1);
 }
 
-// 
+/*// 
 // Start address: 0x2aa7e0
 void ItemView()
 {

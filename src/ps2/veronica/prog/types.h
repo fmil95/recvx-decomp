@@ -3272,6 +3272,23 @@ typedef struct EGG_WORK
     char hide[4];         // offset 0x20, size 0x4
 } EGG_WORK;
 
+typedef struct STCAM_WRK
+{
+	// total size: 0xC0
+    NJS_MATRIX cmat1;  // offset 0x0, size 0x40
+    NJS_MATRIX rotmat; // offset 0x40, size 0x40
+    NJS_POINT3 pos_0;  // offset 0x80, size 0xC
+    NJS_POINT3 pos_1;  // offset 0x8C, size 0xC
+    int ax;            // offset 0x98, size 0x4
+    int ay;            // offset 0x9C, size 0x4
+    int az;            // offset 0xA0, size 0x4
+    int cax;           // offset 0xA4, size 0x4
+    int cay;           // offset 0xA8, size 0x4
+    int caz;           // offset 0xAC, size 0x4
+    float dis;         // offset 0xB0, size 0x4
+    float Dummy[3];    // offset 0xB4, size 0xC
+} STCAM_WRK;
+
 typedef struct {
     int isOnCD;		
     int size;
