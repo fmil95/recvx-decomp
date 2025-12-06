@@ -1295,7 +1295,7 @@ void CallYakkyouSe(NJS_POINT3* pPos, int SeNo)
     }
 }
 
-/*// 
+// 
 // Start address: 0x294d90
 void CallBackGroundSeEx(unsigned int SlotNo, int SeNo, short Timer)
 {
@@ -1335,7 +1335,8 @@ void CallBackGroundSeEx(unsigned int SlotNo, int SeNo, short Timer)
 	// Line 2424, Address: 0x294eec, Func Offset: 0x15c
 	// Line 2425, Address: 0x294efc, Func Offset: 0x16c
 	// Func End, Address: 0x294f14, Func Offset: 0x184
-}*/
+    scePrintf("CallBackGroundSeEx - UNIMPLEMENTED!\n");
+}
 
 // 100% matching
 void CallBackGroundSe(unsigned int SlotNo, int SeNo) {
@@ -1717,15 +1718,16 @@ void PlayBgmEx2(unsigned int PatId, int BgmNo, int FadeInRate, int Volume)
     }
 }
 
-/*// 
+// 
 // Start address: 0x295910
 void PlayBgmEx(int BgmNo, int FadeInRate, int Volume)
 {
 	// Line 3008, Address: 0x295914, Func Offset: 0x4
 	// Func End, Address: 0x29592c, Func Offset: 0x1c
+    scePrintf("PlayBgmEx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x295930
 void PlayBgm(int BgmNo, int FadeInRate)
 {
@@ -2532,37 +2534,45 @@ void ResetSoundComInfo()
 
 }
 
-// 
-// Start address: 0x296e00
+// 100% matching!
 void Com_ExecRoomFadeIn()
 {
-	int i;
-	// Line 3948, Address: 0x296e00, Func Offset: 0
-	// Line 3953, Address: 0x296e18, Func Offset: 0x18
-	// Line 3981, Address: 0x296e20, Func Offset: 0x20
-	// Line 3982, Address: 0x296e34, Func Offset: 0x34
-	// Line 3983, Address: 0x296e4c, Func Offset: 0x4c
-	// Line 3984, Address: 0x296e54, Func Offset: 0x54
-	// Line 3985, Address: 0x296e60, Func Offset: 0x60
-	// Line 3988, Address: 0x296e8c, Func Offset: 0x8c
-	// Line 3990, Address: 0x296e98, Func Offset: 0x98
-	// Line 3991, Address: 0x296e9c, Func Offset: 0x9c
-	// Line 3992, Address: 0x296eac, Func Offset: 0xac
-	// Line 3993, Address: 0x296ebc, Func Offset: 0xbc
-	// Line 3994, Address: 0x296ec4, Func Offset: 0xc4
-	// Line 3995, Address: 0x296ed0, Func Offset: 0xd0
-	// Line 4000, Address: 0x296ee0, Func Offset: 0xe0
-	// Line 3998, Address: 0x296ee4, Func Offset: 0xe4
-	// Line 3999, Address: 0x296ee8, Func Offset: 0xe8
-	// Line 4000, Address: 0x296eec, Func Offset: 0xec
-	// Line 3999, Address: 0x296ef0, Func Offset: 0xf0
-	// Line 4000, Address: 0x296ef8, Func Offset: 0xf8
-	// Line 4002, Address: 0x296f00, Func Offset: 0x100
-	// Line 4004, Address: 0x296f10, Func Offset: 0x110
-	// Line 4007, Address: 0x296f18, Func Offset: 0x118
-	// Line 4008, Address: 0x296f28, Func Offset: 0x128
-	// Func End, Address: 0x296f44, Func Offset: 0x144
-    scePrintf("Com_ExecRoomFadeIn - UNIMPLEMENTED!\n");
+    int i;
+    
+    StartInitScriptFlag = 0;
+        
+    if ((ReqFadeBgmNo & 0x8)) 
+    {
+        PlayBgmEx(CurrentBgmNo, 120, CurrentBgmVolume);
+    } 
+    else if ((ReqFadeBgmNo & 0x2)) 
+    {
+        RequestAdxFadeFunctionEx(0, -1, CurrentBgmVolume, 42);
+    }
+
+    ReqFadeBgmNo = 0;
+    
+    for (i = 0; i < 2; i++) 
+    {
+        if ((ReqFadeBgSe[i] & 0x2)) 
+        {
+            CallBackGroundSeEx(i, CurrentBgSeNo[i], 120);
+        } 
+        else if (BgSePrmBuf[i].ReqFlag != 0) 
+        {
+            CallBackGroundSeEx(i, BgSePrmBuf[i].SeNo, BgSePrmBuf[i].Timer) ;
+        }
+        
+        ReqFadeBgSe[i] = 0;
+        
+        BgSePrmBuf[i].ReqFlag = 0;
+    }
+
+    RequestSoundFade(1, 0xA3, 120);
+    
+    ResetSoundComInfo();
+    
+    RequestMidiFadeFunction(2, 2, 250);
 }
 
 // 100% matching!
