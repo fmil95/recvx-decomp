@@ -3289,6 +3289,45 @@ typedef struct STCAM_WRK
     float Dummy[3];    // offset 0xB4, size 0xC
 } STCAM_WRK;
 
+typedef struct FV_WORK
+{
+    // total size: 0xD0
+	NJS_ARGB col;           // offset 0x0, size 0x10
+	NJS_TEXNAME fstx[1];    // offset 0x10, size 0xC
+	NJS_TEXLIST fstx_list;  // offset 0x1C, size 0x8
+	NJS_TEXNAME fbtx[1];    // offset 0x24, size 0xC
+	NJS_TEXLIST fbtx_list;  // offset 0x30, size 0x8
+	int afsmode;            // offset 0x38, size 0x4
+    int ang00;              // offset 0x3C, size 0x4
+    int mode_00;            // offset 0x40, size 0x4
+    int mode_01;            // offset 0x44, size 0x4
+    int mode_02;            // offset 0x48, size 0x4
+    int mode_03;            // offset 0x4C, size 0x4
+    unsigned int page;      // offset 0x50, size 0x4
+    int rdsz;               // offset 0x54, size 0x4
+    int tag;                // offset 0x58, size 0x4
+    int move;               // offset 0x5C, size 0x4
+    unsigned int part_id;   // offset 0x60, size 0x4
+    int filenum;            // offset 0x64, size 0x4
+    int pagewait00;         // offset 0x68, size 0x4
+    int pagewait01;         // offset 0x6C, size 0x4
+    short bufnum;           // offset 0x70, size 0x2
+    short filecsr;          // offset 0x72, size 0x2
+    short roll;             // offset 0x74, size 0x2
+    short j;                // offset 0x76, size 0x2
+    short k;                // offset 0x78, size 0x2
+    short z;                // offset 0x7A, size 0x2
+    short koma[16];         // offset 0x7C, size 0x20
+    short koma2[16];        // offset 0x9C, size 0x20
+    unsigned char scrol;    // offset 0xBC, size 0x1
+    unsigned char scrolcnt; // offset 0xBD, size 0x1
+    unsigned char flg;      // offset 0xBE, size 0x1
+    unsigned char* fsp;     // offset 0xC0, size 0x4
+    unsigned char* fspr;    // offset 0xC4, size 0x4
+    unsigned char* fspl;    // offset 0xC8, size 0x4
+    unsigned short tex_flg; // offset 0xCC, size 0x2
+} FV_WORK;
+
 typedef struct {
     int isOnCD;		
     int size;

@@ -2,10 +2,11 @@
 
 /*unsigned int fstbl[24];
 unsigned int fsheader[24];
-unsigned int wallpaper[24];
-void(*FileViewMode)()[5];
-_anon11 fvwork;
-_anon35 parts_22b[0];*/
+unsigned int wallpaper[24];*/
+typedef void (*FileViewMode_proc)();
+FileViewMode_proc FileViewMode[5] = { FileSelect, FileViewInit, FileViewMain, FileViewExit, FileGetWait };
+FV_WORK fvwork;
+/*_anon35 parts_22b[0];*/
 SYS_WORK* sys;
 /*_anon12 swork;
 char ViewCnt;
@@ -15,24 +16,21 @@ _anon35 parts_00b[24];
 _anon35 parts_10b[0];
 _anon14 sitem;
 float cen_pos[6][0];
-float cen_pos99[6][0];
+float cen_pos99[6][0];*/
 
-// 
-// Start address: 0x2abfc0
+// 100% matching!
 void ControlFileView()
 {
-	// Line 161, Address: 0x2abfc0, Func Offset: 0
-	// Line 163, Address: 0x2abfc8, Func Offset: 0x8
-	// Line 164, Address: 0x2abfec, Func Offset: 0x2c
-	// Line 165, Address: 0x2abff4, Func Offset: 0x34
-	// Func End, Address: 0x2ac000, Func Offset: 0x40
+    FileViewMode[fvwork.mode_00]();
+    
+    ReadFstx();
 }
 
 // 
 // Start address: 0x2ac000
 void FileSelect()
 {
-	_anon11* fv;
+	//_anon11* fv;
 	// Line 171, Address: 0x2ac000, Func Offset: 0
 	// Line 175, Address: 0x2ac008, Func Offset: 0x8
 	// Line 173, Address: 0x2ac00c, Func Offset: 0xc
@@ -45,9 +43,10 @@ void FileSelect()
 	// Line 187, Address: 0x2ac064, Func Offset: 0x64
 	// Line 190, Address: 0x2ac06c, Func Offset: 0x6c
 	// Func End, Address: 0x2ac078, Func Offset: 0x78
+	scePrintf("FileSelect - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ac080
 void FileFlagInit01()
 {
@@ -99,14 +98,14 @@ void GetFile()
 	// Line 241, Address: 0x2ac1cc, Func Offset: 0x7c
 	// Line 243, Address: 0x2ac1d0, Func Offset: 0x80
 	// Func End, Address: 0x2ac1e0, Func Offset: 0x90
-}
+}*/
 
 // 
 // Start address: 0x2ac1e0
 void FileViewInit()
 {
-	_anon11* fv;
-	_anon12* st;
+	//_anon11* fv;
+	//_anon12* st;
 	// Line 247, Address: 0x2ac1e0, Func Offset: 0
 	// Line 250, Address: 0x2ac1ec, Func Offset: 0xc
 	// Line 248, Address: 0x2ac1f0, Func Offset: 0x10
@@ -144,13 +143,14 @@ void FileViewInit()
 	// Line 288, Address: 0x2ac378, Func Offset: 0x198
 	// Line 292, Address: 0x2ac380, Func Offset: 0x1a0
 	// Func End, Address: 0x2ac390, Func Offset: 0x1b0
+	scePrintf("FileViewInit - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2ac390
 void FileViewMain()
 {
-	_anon11* fv;
+	//_anon11* fv;
 	// Line 297, Address: 0x2ac390, Func Offset: 0
 	// Line 300, Address: 0x2ac398, Func Offset: 0x8
 	// Line 299, Address: 0x2ac39c, Func Offset: 0xc
@@ -161,7 +161,8 @@ void FileViewMain()
 	// Line 306, Address: 0x2ac3d8, Func Offset: 0x48
 	// Line 309, Address: 0x2ac3e0, Func Offset: 0x50
 	// Func End, Address: 0x2ac3ec, Func Offset: 0x5c
-}*/
+	scePrintf("FileViewMain - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void FileViewExit()
@@ -696,13 +697,13 @@ void FileScrollSet()
 	// Line 897, Address: 0x2ad9fc, Func Offset: 0x3bc
 	// Line 902, Address: 0x2ada04, Func Offset: 0x3c4
 	// Func End, Address: 0x2ada18, Func Offset: 0x3d8
-}
+}*/
 
 // 
 // Start address: 0x2ada20
 void FileGetWait()
 {
-	_anon11* fv;
+	//_anon11* fv;
 	// Line 906, Address: 0x2ada20, Func Offset: 0
 	// Line 908, Address: 0x2ada2c, Func Offset: 0xc
 	// Line 909, Address: 0x2ada34, Func Offset: 0x14
@@ -726,9 +727,10 @@ void FileGetWait()
 	// Line 928, Address: 0x2adb6c, Func Offset: 0x14c
 	// Line 933, Address: 0x2adb74, Func Offset: 0x154
 	// Func End, Address: 0x2adb84, Func Offset: 0x164
+	scePrintf("FileGetWait - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2adb90
 void PageScroll()
 {
@@ -910,7 +912,7 @@ void StatusToFileView()
 	// Line 1153, Address: 0x2ae488, Func Offset: 0x128
 	// Line 1156, Address: 0x2ae49c, Func Offset: 0x13c
 	// Func End, Address: 0x2ae4a4, Func Offset: 0x144
-}
+}*/
 
 // 
 // Start address: 0x2ae4b0
@@ -918,8 +920,8 @@ void ReadFstx()
 {
 	unsigned int num;
 	int sz;
-	_anon11* fv;
-	_anon12* st;
+	//_anon11* fv;
+	//_anon12* st;
 	// Line 1160, Address: 0x2ae4b0, Func Offset: 0
 	// Line 1167, Address: 0x2ae4c0, Func Offset: 0x10
 	// Line 1161, Address: 0x2ae4c8, Func Offset: 0x18
@@ -996,9 +998,10 @@ void ReadFstx()
 	// Line 1337, Address: 0x2ae7f8, Func Offset: 0x348
 	// Line 1343, Address: 0x2ae800, Func Offset: 0x350
 	// Func End, Address: 0x2ae814, Func Offset: 0x364
+	scePrintf("ReadFstx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ae820
 unsigned int FileNumberSwitch(unsigned int num)
 {
