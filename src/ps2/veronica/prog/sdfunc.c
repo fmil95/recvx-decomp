@@ -2565,35 +2565,33 @@ void Com_ExecRoomFadeIn()
     scePrintf("Com_ExecRoomFadeIn - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x296f50
+// 100% matching!
 void Com_ExecRoomFadeOut()
 {
-	int AttrTbl[2];
-	int FadeAttr;
-	int i;
-	// Line 4017, Address: 0x296f50, Func Offset: 0
-	// Line 4020, Address: 0x296f54, Func Offset: 0x4
-	// Line 4017, Address: 0x296f5c, Func Offset: 0xc
-	// Line 4020, Address: 0x296f60, Func Offset: 0x10
-	// Line 4036, Address: 0x296f68, Func Offset: 0x18
-	// Line 4020, Address: 0x296f6c, Func Offset: 0x1c
-	// Line 4036, Address: 0x296f70, Func Offset: 0x20
-	// Line 4037, Address: 0x296f7c, Func Offset: 0x2c
-	// Line 4039, Address: 0x296f84, Func Offset: 0x34
-	// Line 4040, Address: 0x296f8c, Func Offset: 0x3c
-	// Line 4039, Address: 0x296f90, Func Offset: 0x40
-	// Line 4040, Address: 0x296f94, Func Offset: 0x44
-	// Line 4041, Address: 0x296f98, Func Offset: 0x48
-	// Line 4042, Address: 0x296fa8, Func Offset: 0x58
-	// Line 4044, Address: 0x296fb0, Func Offset: 0x60
-	// Line 4042, Address: 0x296fb8, Func Offset: 0x68
-	// Line 4044, Address: 0x296fbc, Func Offset: 0x6c
-	// Line 4046, Address: 0x296fc4, Func Offset: 0x74
-	// Line 4048, Address: 0x296fd0, Func Offset: 0x80
-	// Line 4049, Address: 0x296fd8, Func Offset: 0x88
-	// Func End, Address: 0x296fe4, Func Offset: 0x94
-    scePrintf("Com_ExecRoomFadeOut - UNIMPLEMENTED!\n");
+    int i;
+    int FadeAttr;
+    int AttrTbl[2] = { 0x8, 0x10 };
+
+    FadeAttr = 0xA3;
+    
+    if (ReqFadeBgmNo != 0)
+    {
+        FadeAttr |= 0x40;
+    }
+    
+    ReqFadeBgmNo = 0;
+    
+    for (i = 0; i < 2; i++) 
+    {
+        if ((ReqFadeBgSe[i] & 0x1)) 
+        {
+            FadeAttr |= AttrTbl[i];
+        }
+    }
+    
+    RequestSoundFade(2, FadeAttr, 400);
+    
+    StopVibrationEx();
 }
 
 // 100% matching!
