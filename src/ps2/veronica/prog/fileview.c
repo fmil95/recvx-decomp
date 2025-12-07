@@ -157,22 +157,25 @@ void FileViewInit()
 	scePrintf("FileViewInit - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ac390
+// 100% matching!
 void FileViewMain()
 {
-	//_anon11* fv;
-	// Line 297, Address: 0x2ac390, Func Offset: 0
-	// Line 300, Address: 0x2ac398, Func Offset: 0x8
-	// Line 299, Address: 0x2ac39c, Func Offset: 0xc
-	// Line 300, Address: 0x2ac3a4, Func Offset: 0x14
-	// Line 302, Address: 0x2ac3c4, Func Offset: 0x34
-	// Line 304, Address: 0x2ac3c8, Func Offset: 0x38
-	// Line 305, Address: 0x2ac3d0, Func Offset: 0x40
-	// Line 306, Address: 0x2ac3d8, Func Offset: 0x48
-	// Line 309, Address: 0x2ac3e0, Func Offset: 0x50
-	// Func End, Address: 0x2ac3ec, Func Offset: 0x5c
-	scePrintf("FileViewMain - UNIMPLEMENTED!\n");
+    FV_WORK* fv;
+    
+    fv = &fvwork;
+
+    switch (fv->mode_01) 
+    {                   
+    case 0:
+        fv->mode_01 = 1;
+    case 1:
+        FileScrollSet();
+        
+        PageScroll();
+        
+        FileEtcDisplay();
+        break;
+    }
 }
 
 // 100% matching!
@@ -632,15 +635,15 @@ void FileScreenCancel()
 	// Line 805, Address: 0x2ad61c, Func Offset: 0x1cc
 	// Line 807, Address: 0x2ad624, Func Offset: 0x1d4
 	// Func End, Address: 0x2ad634, Func Offset: 0x1e4
-}
+}*/
 
 // 
 // Start address: 0x2ad640
 void FileScrollSet()
 {
 	int page_end;
-	_anon11* fv;
-	_anon12* st;
+	//_anon11* fv;
+	//_anon12* st;
 	// Line 811, Address: 0x2ad640, Func Offset: 0
 	// Line 815, Address: 0x2ad650, Func Offset: 0x10
 	// Line 812, Address: 0x2ad654, Func Offset: 0x14
@@ -721,7 +724,8 @@ void FileScrollSet()
 	// Line 897, Address: 0x2ad9fc, Func Offset: 0x3bc
 	// Line 902, Address: 0x2ada04, Func Offset: 0x3c4
 	// Func End, Address: 0x2ada18, Func Offset: 0x3d8
-}*/
+	scePrintf("FileScrollSet - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2ada20
@@ -754,12 +758,12 @@ void FileGetWait()
 	scePrintf("FileGetWait - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2adb90
 void PageScroll()
 {
 	int page_end;
-	_anon11* fv;
+	//_anon11* fv;
 	// Line 938, Address: 0x2adb90, Func Offset: 0
 	// Line 943, Address: 0x2adb9c, Func Offset: 0xc
 	// Line 940, Address: 0x2adba4, Func Offset: 0x14
@@ -849,6 +853,7 @@ void PageScroll()
 	// Line 1061, Address: 0x2ae038, Func Offset: 0x4a8
 	// Line 1064, Address: 0x2ae064, Func Offset: 0x4d4
 	// Func End, Address: 0x2ae074, Func Offset: 0x4e4
+	scePrintf("PageScroll - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -856,7 +861,7 @@ void PageScroll()
 void FileEtcDisplay()
 {
 	int page_end;
-	_anon11* fv;
+	//_anon11* fv;
 	unsigned short flg;
 	unsigned short count;
 	// Line 1069, Address: 0x2ae080, Func Offset: 0
@@ -898,7 +903,8 @@ void FileEtcDisplay()
 	// Line 1116, Address: 0x2ae334, Func Offset: 0x2b4
 	// Line 1120, Address: 0x2ae348, Func Offset: 0x2c8
 	// Func End, Address: 0x2ae358, Func Offset: 0x2d8
-}*/
+	scePrintf("FileEtcDisplay - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void StatusToFileView()
