@@ -3328,6 +3328,76 @@ typedef struct FV_WORK
     unsigned short tex_flg; // offset 0xCC, size 0x2
 } FV_WORK;
 
+typedef struct PARTS
+{
+    // total size: 0x30
+    float pos[3];            // offset 0x0, size 0xC
+    short ang;               // offset 0xC, size 0x2
+    unsigned char atr;       // offset 0xE, size 0x1
+    char anim;               // offset 0xF, size 0x1
+    unsigned char cen_no;    // offset 0x10, size 0x1
+    unsigned char parts_num; // offset 0x11, size 0x1
+    float move;              // offset 0x14, size 0x4
+    unsigned char setnum;    // offset 0x18, size 0x1
+    NJS_ARGB col;            // offset 0x1C, size 0x10
+    unsigned char color;     // offset 0x2C, size 0x1
+} PARTS;
+
+typedef struct S_WORK
+{
+    // total size: 0xD8
+	NJS_TEXNAME subtx[5];         // offset 0x0, size 0x3C
+	NJS_TEXLIST subtx_list;       // offset 0x3C, size 0x8
+	unsigned short subscreenmode; // offset 0x44, size 0x2
+    unsigned int statusflg;       // offset 0x48, size 0x4
+    unsigned short testmode;      // offset 0x4C, size 0x2
+    unsigned int itmwrk;          // offset 0x50, size 0x4
+    unsigned int itemid;          // offset 0x54, size 0x4
+    unsigned short cmbitm;        // offset 0x58, size 0x2
+    short open1;                  // offset 0x5A, size 0x2
+    short open2;                  // offset 0x5C, size 0x2
+    unsigned short mode;          // offset 0x5E, size 0x2
+    short ips1;                   // offset 0x60, size 0x2
+    short ipsdisp;                // offset 0x62, size 0x2
+    unsigned int listcsr_0;       // offset 0x64, size 0x4
+    unsigned int listcsr_1;       // offset 0x68, size 0x4
+    unsigned int listcsr_2;       // offset 0x6C, size 0x4
+    unsigned int listcsr_3;       // offset 0x70, size 0x4
+    float color00;                // offset 0x74, size 0x4
+    unsigned short colorcount;    // offset 0x78, size 0x2
+    unsigned short colorflg;      // offset 0x7A, size 0x2
+    unsigned char maincsr;        // offset 0x7C, size 0x1
+    unsigned char subcsr;         // offset 0x7D, size 0x1
+    unsigned int* pip;            // offset 0x80, size 0x4
+    unsigned int* bxp;            // offset 0x84, size 0x4
+    unsigned int* gb;             // offset 0x88, size 0x4
+    unsigned char* ssp;           // offset 0x8C, size 0x4
+    char wait_;                   // offset 0x90, size 0x1
+    char wait;                    // offset 0x91, size 0x1
+    char number;                  // offset 0x92, size 0x1
+    char flag;                    // offset 0x93, size 0x1
+    unsigned char hp;             // offset 0x94, size 0x1
+    unsigned char abc;            // offset 0x95, size 0x1
+    unsigned char dnum;           // offset 0x96, size 0x1
+    char dflg;                    // offset 0x97, size 0x1
+    unsigned char keywait;        // offset 0x98, size 0x1
+    unsigned char boxwait;        // offset 0x99, size 0x1
+    short actioncount;            // offset 0x9A, size 0x2
+	NJS_SCREEN scr;               // offset 0x9C, size 0x14
+	NJS_POINT2 clip[2];           // offset 0xB0, size 0x10
+	unsigned char flgchk;         // offset 0xC0, size 0x1
+    unsigned char flgtest;        // offset 0xC1, size 0x1
+    unsigned char* sspb;          // offset 0xC4, size 0x4
+    unsigned char sprflg;         // offset 0xC8, size 0x1
+    char number_;                 // offset 0xC9, size 0x1
+    char flag_;                   // offset 0xCA, size 0x1
+    unsigned short mesid;         // offset 0xCC, size 0x2
+    unsigned short taskloop;      // offset 0xCE, size 0x2
+    unsigned short wn;            // offset 0xD0, size 0x2
+    unsigned short wn_num;        // offset 0xD2, size 0x2
+    unsigned char* subp;          // offset 0xD4, size 0x4
+} S_WORK;
+
 typedef struct {
     int isOnCD;		
     int size;

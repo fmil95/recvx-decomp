@@ -6,17 +6,28 @@ unsigned int wallpaper[24];*/
 typedef void (*FileViewMode_proc)();
 FileViewMode_proc FileViewMode[5] = { FileSelect, FileViewInit, FileViewMain, FileViewExit, FileGetWait };
 FV_WORK fvwork;
-/*_anon35 parts_22b[0];*/
+PARTS parts_22b[6]; // TODO: need to define data here
 SYS_WORK* sys;
-/*_anon12 swork;
-char ViewCnt;
+S_WORK swork;
+/*char ViewCnt;
 _anon23 tbuf[0];
 unsigned char menuanim[4][0];
 _anon35 parts_00b[24];
 _anon35 parts_10b[0];
-_anon14 sitem;
-float cen_pos[6][0];
-float cen_pos99[6][0];*/
+_anon14 sitem;*/
+float cen_pos[12][6] = { { 0,       0,       0,      0,      0,       0       }, 
+                         { 28.0f,   -80.0f,  28.0f,  40.0f,  0,       120.0f  }, 
+                         { -448.0f, 100.0f,  0,      100.0f, 448.0f,  0       }, 
+                         { 640.0f,  40.0f,   352.0f, 40.0f,  -288.0f, 0       }, 
+                         { 808.0f,  40.0f,   520.0f, 40.0f,  -288.0f, 0       }, 
+                         { 644.0f,  120.0f,  436.0f, 120.0f, -208.0f, 0       }, 
+                         { 28.0f,   484.0f,  28.0f,  332.0f, 0,       -152.0f }, 
+                         { 328.0f,  120.0f,  328.0f, 120.0f, 0,       0       },
+                         { -380.0f, 132.0f,  60.0f,  132.0f, 440.0f,  0       }, 
+                         { 644.0f,  40.0f,   436.0f, 40.0f,  -204.0f, 0       }, 
+                         { 28.0f,   -384.0f, 28.0f,  40.0f,  0,       424.0f  }, 
+                         { 660.0f,  120.0f,  452.0f, 120.0f, -208.0f, 0       } }; 
+/*float cen_pos99[6][0];*/
 
 // 100% matching!
 void ControlFileView()
@@ -874,45 +885,48 @@ void FileEtcDisplay()
 	// Line 1116, Address: 0x2ae334, Func Offset: 0x2b4
 	// Line 1120, Address: 0x2ae348, Func Offset: 0x2c8
 	// Func End, Address: 0x2ae358, Func Offset: 0x2d8
-}
+}*/
 
-// 
-// Start address: 0x2ae360
+// 100% matching!
 void StatusToFileView()
 {
-	unsigned short num1;
-	_anon11* fv;
-	// Line 1130, Address: 0x2ae360, Func Offset: 0
-	// Line 1127, Address: 0x2ae368, Func Offset: 0x8
-	// Line 1130, Address: 0x2ae370, Func Offset: 0x10
-	// Line 1132, Address: 0x2ae378, Func Offset: 0x18
-	// Line 1130, Address: 0x2ae384, Func Offset: 0x24
-	// Line 1133, Address: 0x2ae390, Func Offset: 0x30
-	// Line 1134, Address: 0x2ae39c, Func Offset: 0x3c
-	// Line 1135, Address: 0x2ae3a8, Func Offset: 0x48
-	// Line 1136, Address: 0x2ae3b4, Func Offset: 0x54
-	// Line 1137, Address: 0x2ae3c0, Func Offset: 0x60
-	// Line 1138, Address: 0x2ae3cc, Func Offset: 0x6c
-	// Line 1139, Address: 0x2ae3d8, Func Offset: 0x78
-	// Line 1140, Address: 0x2ae3e0, Func Offset: 0x80
-	// Line 1141, Address: 0x2ae3ec, Func Offset: 0x8c
-	// Line 1143, Address: 0x2ae400, Func Offset: 0xa0
-	// Line 1144, Address: 0x2ae414, Func Offset: 0xb4
-	// Line 1145, Address: 0x2ae41c, Func Offset: 0xbc
-	// Line 1146, Address: 0x2ae42c, Func Offset: 0xcc
-	// Line 1147, Address: 0x2ae438, Func Offset: 0xd8
-	// Line 1148, Address: 0x2ae440, Func Offset: 0xe0
-	// Line 1149, Address: 0x2ae44c, Func Offset: 0xec
-	// Line 1150, Address: 0x2ae450, Func Offset: 0xf0
-	// Line 1148, Address: 0x2ae454, Func Offset: 0xf4
-	// Line 1150, Address: 0x2ae458, Func Offset: 0xf8
-	// Line 1152, Address: 0x2ae470, Func Offset: 0x110
-	// Line 1154, Address: 0x2ae478, Func Offset: 0x118
-	// Line 1152, Address: 0x2ae47c, Func Offset: 0x11c
-	// Line 1153, Address: 0x2ae488, Func Offset: 0x128
-	// Line 1156, Address: 0x2ae49c, Func Offset: 0x13c
-	// Func End, Address: 0x2ae4a4, Func Offset: 0x144
-}*/
+    FV_WORK* fv;
+    unsigned short num1;
+
+    fv = &fvwork;
+    
+    swork.statusflg |= 0x9002040;
+    
+    cen_pos[1][3] = -80.0f;
+    cen_pos[2][2] = -448.0f;
+    cen_pos[3][2] = 640.0f;
+    cen_pos[4][2] = 808.0f;
+    cen_pos[5][2] = 644.0f;
+    cen_pos[6][3] = 484.0f;
+    
+    cen_pos[8][2] = -380.0f;
+    cen_pos[9][2] = 644.0f;
+    cen_pos[10][3] = -384.0f;
+    cen_pos[11][2] = 660.0f;
+
+    for (num1 = 1; num1 < 12; num1++) 
+    {
+        if (num1 != 3)
+        {
+            cen_pos[num1][4] = cen_pos[num1][2] - cen_pos[num1][0];
+            cen_pos[num1][5] = cen_pos[num1][3] - cen_pos[num1][1];
+        }
+        else 
+        {
+            cen_pos[num1][4] = cen_pos[num1][2] - 352.0f;
+        }
+    }
+
+    parts_22b[2].atr &= ~0x20;
+    parts_22b[3].atr &= ~0x20;
+    
+    fv->mode_02 = 1;
+}
 
 // 
 // Start address: 0x2ae4b0
