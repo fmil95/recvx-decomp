@@ -276,24 +276,37 @@ void FileExit01()
 	// Line 453, Address: 0x2ac6e8, Func Offset: 0x288
 	// Line 460, Address: 0x2ac700, Func Offset: 0x2a0
 	// Func End, Address: 0x2ac710, Func Offset: 0x2b0
-}
+}*/
 
-// 
-// Start address: 0x2ac710
+// 100% matching!
 int SearchTag(int dir)
 {
-	int tagbak;
-	_anon11* fv;
-	// Line 469, Address: 0x2ac710, Func Offset: 0
-	// Line 468, Address: 0x2ac718, Func Offset: 0x8
-	// Line 471, Address: 0x2ac720, Func Offset: 0x10
-	// Line 472, Address: 0x2ac750, Func Offset: 0x40
-	// Line 473, Address: 0x2ac75c, Func Offset: 0x4c
-	// Line 476, Address: 0x2ac76c, Func Offset: 0x5c
-	// Func End, Address: 0x2ac774, Func Offset: 0x64
+    FV_WORK* fv;
+    int tagbak;
+
+    fv = &fvwork;
+
+    tagbak = fv->tag;
+
+    while (TRUE) 
+    {
+        if (!(sys->itm[383] & (1 << (fv->tag + (fv->filecsr * 8))))) 
+        {
+            fv->tag = (fv->tag + dir) & 0x7;
+            
+            if (fv->tag == tagbak) 
+            {
+                return 0;
+            } 
+        }
+        else 
+        {
+            return 1;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2ac780
 void SelectFile()
 {
