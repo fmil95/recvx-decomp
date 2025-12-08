@@ -5,7 +5,7 @@
 /*float mes_spos[4][3];*/
 float FontScaleY;
 
-/*// 
+// 
 // Start address: 0x2b7510
 void bhSetMessage(int mes_typ, int mes_idx)
 {
@@ -35,7 +35,8 @@ void bhSetMessage(int mes_typ, int mes_idx)
 	// Line 146, Address: 0x2b7658, Func Offset: 0x148
 	// Line 147, Address: 0x2b7668, Func Offset: 0x158
 	// Func End, Address: 0x2b7670, Func Offset: 0x160
-}*/
+    scePrintf("bhSetMessage - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2b7670

@@ -1,4 +1,6 @@
 #include "fileview.h"
+#include "message.h"
+#include "sdfunc.h"
 
 /*unsigned int fstbl[24];
 unsigned int fsheader[24];
@@ -751,35 +753,43 @@ void FileScrollSet()
 	scePrintf("FileScrollSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ada20
+// 100% matching! 
 void FileGetWait()
 {
-	//_anon11* fv;
-	// Line 906, Address: 0x2ada20, Func Offset: 0
-	// Line 908, Address: 0x2ada2c, Func Offset: 0xc
-	// Line 909, Address: 0x2ada34, Func Offset: 0x14
-	// Line 911, Address: 0x2ada58, Func Offset: 0x38
-	// Line 912, Address: 0x2ada64, Func Offset: 0x44
-	// Line 911, Address: 0x2ada68, Func Offset: 0x48
-	// Line 912, Address: 0x2ada74, Func Offset: 0x54
-	// Line 913, Address: 0x2ada7c, Func Offset: 0x5c
-	// Line 914, Address: 0x2ada84, Func Offset: 0x64
-	// Line 915, Address: 0x2ada98, Func Offset: 0x78
-	// Line 916, Address: 0x2adaac, Func Offset: 0x8c
-	// Line 917, Address: 0x2adac0, Func Offset: 0xa0
-	// Line 918, Address: 0x2adad4, Func Offset: 0xb4
-	// Line 920, Address: 0x2adae8, Func Offset: 0xc8
-	// Line 921, Address: 0x2adb0c, Func Offset: 0xec
-	// Line 924, Address: 0x2adb3c, Func Offset: 0x11c
-	// Line 925, Address: 0x2adb44, Func Offset: 0x124
-	// Line 924, Address: 0x2adb4c, Func Offset: 0x12c
-	// Line 925, Address: 0x2adb50, Func Offset: 0x130
-	// Line 926, Address: 0x2adb58, Func Offset: 0x138
-	// Line 928, Address: 0x2adb6c, Func Offset: 0x14c
-	// Line 933, Address: 0x2adb74, Func Offset: 0x154
-	// Func End, Address: 0x2adb84, Func Offset: 0x164
-	scePrintf("FileGetWait - UNIMPLEMENTED!\n");
+    FV_WORK* fv;
+
+    fv = &fvwork;
+
+    switch (fv->mode_01)
+    {                             
+    case 0:
+        sys->sb_id = fv->filenum + 159;
+        
+        bhSetMessage(1, 152);
+        
+        fv->mode_01 = 1;
+
+        parts_22b[0].atr &= ~0x20;
+        parts_22b[1].atr &= ~0x20;
+        parts_22b[2].atr &= ~0x20;
+        parts_22b[3].atr &= ~0x20;
+        parts_22b[4].atr &= ~0x20;
+    case 1:
+        if (((sys->st_flg & 0x4000)) && ((sys->st_flg & 0x1000)) && (((sys->pad_ps & 0x800)) || ((sys->pad_ps & 0x1000)) || ((sys->st_flg & 0x8000)))) 
+        {
+            sys->st_flg &= ~0x200;
+           
+            CallSystemSe(0, 3);
+            
+            sys->sb_id = 0;
+            
+            fv->mode_01 = 0;
+            
+            FileScreenCancel();
+        }
+        
+        break;
+    }
 }
 
 // 
