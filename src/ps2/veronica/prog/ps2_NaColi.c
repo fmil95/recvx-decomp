@@ -1,4 +1,5 @@
 #include "ps2_NaColi.h"
+#include "ps2_NaMath.h"
 
 /*int njIsParalellL2L(_anon1* pLine1, _anon1* pLine2);
 int njIsParalellL2PL(_anon1* pLine, _anon1* pPlane);
@@ -16,41 +17,39 @@ int njCollisionCheckBS(_anon3* pBox, _anon4* pSphere);
 int njCollisionCheckBC(_anon3* pBox, _anon2* pCapsule);
 int njCheckPlane4AndLine(_anon0* pP1, _anon0* pP2, _anon0* pP3, _anon0* pP4, _anon0* pPN, _anon1* pLine);
 int njCollisionCheckBC2(_anon3* pBox, _anon2* pCapsule);
-int njCheckPlane4IncludePoint(_anon0* pP1, _anon0* pP2, _anon0* pP3, _anon0* pP4, _anon0* pPC);
+int njCheckPlane4IncludePoint(_anon0* pP1, _anon0* pP2, _anon0* pP3, _anon0* pP4, _anon0* pPC);*/
 
-// 
-// Start address: 0x2e3160
-int njIsParalellL2L(_anon1* pLine1, _anon1* pLine2)
+// 100% matching!
+Bool	njIsParalellL2L(NJS_LINE *l1, NJS_LINE *l2)
 {
-	float fLength;
-	float fZ2;
-	float fY2;
-	float fX2;
-	float fZ1;
-	float fY1;
-	float fX1;
-	// Line 65, Address: 0x2e3160, Func Offset: 0
-	// Line 70, Address: 0x2e3184, Func Offset: 0x24
-	// Line 71, Address: 0x2e3188, Func Offset: 0x28
-	// Line 72, Address: 0x2e318c, Func Offset: 0x2c
-	// Line 73, Address: 0x2e3194, Func Offset: 0x34
-	// Line 78, Address: 0x2e31a8, Func Offset: 0x48
-	// Line 79, Address: 0x2e31ac, Func Offset: 0x4c
-	// Line 74, Address: 0x2e31b0, Func Offset: 0x50
-	// Line 80, Address: 0x2e31b4, Func Offset: 0x54
-	// Line 75, Address: 0x2e31b8, Func Offset: 0x58
-	// Line 76, Address: 0x2e31bc, Func Offset: 0x5c
-	// Line 81, Address: 0x2e31c0, Func Offset: 0x60
-	// Line 82, Address: 0x2e31d4, Func Offset: 0x74
-	// Line 83, Address: 0x2e31d8, Func Offset: 0x78
-	// Line 89, Address: 0x2e31dc, Func Offset: 0x7c
-	// Line 84, Address: 0x2e31e4, Func Offset: 0x84
-	// Line 89, Address: 0x2e31e8, Func Offset: 0x88
-	// Line 96, Address: 0x2e3220, Func Offset: 0xc0
-	// Func End, Address: 0x2e3248, Func Offset: 0xe8
+    float fX1, fY1, fZ1;
+    float fX2, fY2, fZ2;
+    float fLength;
+    
+    fX1 = l1->vx;
+    fY1 = l1->vy;  
+    fZ1 = l1->vz;
+    
+    fLength = njInvertSqrt((fX1 * fX1) + (fY1 * fY1) + (fZ1 * fZ1));
+    
+    fX1 *= fLength;
+    fY1 *= fLength;
+    fZ1 *= fLength;
+    
+    fX2 = l2->vx;
+    fY2 = l2->vy;
+    fZ2 = l2->vz;
+    
+    fLength = njInvertSqrt((fX2 * fX2) + (fY2 * fY2) + (fZ2 * fZ2));
+    
+    fX2 *= fLength;
+    fY2 *= fLength;
+    fZ2 *= fLength;
+    
+    return (0.995f <= fabsf((fX1 * fX2) + (fY1 * fY2) + (fZ1 * fZ2))) ? 1 : 0;
 }
 
-// 
+/*// 
 // Start address: 0x2e3250
 int njIsParalellL2PL(_anon1* pLine, _anon1* pPlane)
 {

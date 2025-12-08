@@ -164,11 +164,11 @@ float njSqrt(float x)
 	// Line 444, Address: 0x2d7f0c, Func Offset: 0x1c
 	// Line 448, Address: 0x2d7f10, Func Offset: 0x20
 	// Func End, Address: 0x2d7f18, Func Offset: 0x28
-}
+}*/
 
 // 
 // Start address: 0x2d7f20
-float njInvertSqrt(float x)
+Float	njInvertSqrt(Float n)
 {
 	float ret;
 	// Line 466, Address: 0x2d7f20, Func Offset: 0
@@ -180,7 +180,8 @@ float njInvertSqrt(float x)
 	// Line 472, Address: 0x2d7f3c, Func Offset: 0x1c
 	// Line 476, Address: 0x2d7f40, Func Offset: 0x20
 	// Func End, Address: 0x2d7f48, Func Offset: 0x28
-}*/
+	scePrintf("njInvertSqrt - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2d7f50
