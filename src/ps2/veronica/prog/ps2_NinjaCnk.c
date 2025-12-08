@@ -280,11 +280,11 @@ void njCnkSetEasyMultiLight(int iLightMax)
 	// Line 807, Address: 0x2cf570, Func Offset: 0
 	// Line 808, Address: 0x2cf578, Func Offset: 0x8
 	// Func End, Address: 0x2cf584, Func Offset: 0x14
-}
+}*/
 
 // 
 // Start address: 0x2cf590
-void njCnkSetEasyMultiLightSwitch(int iLightNum, int iSwitch)
+void    njCnkSetEasyMultiLightSwitch(Int light, Int flag)
 {
 	// Line 832, Address: 0x2cf590, Func Offset: 0
 	// Line 834, Address: 0x2cf598, Func Offset: 0x8
@@ -294,7 +294,8 @@ void njCnkSetEasyMultiLightSwitch(int iLightNum, int iSwitch)
 	// Line 841, Address: 0x2cf5d8, Func Offset: 0x48
 	// Line 843, Address: 0x2cf5ec, Func Offset: 0x5c
 	// Func End, Address: 0x2cf5f4, Func Offset: 0x64
-}*/
+	scePrintf("njCnkSetEasyMultiLightSwitch - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2cf600
@@ -308,20 +309,21 @@ void njCnkSetEasyMultiAmbient(Float ar, Float ag, Float ab) {
     NaCnkAmbientEm.fB = ab * NaCnkAmbientMaterial.fB;
 }
 
-/*// 
+// 
 // Start address: 0x2cf660
-void njCnkSetEasyMultiLightColor(int iLightNum, float fR, float fG, float fB)
+void    njCnkSetEasyMultiLightColor(Int light, Float lr, Float lg, Float lb)
 {
 	// Line 898, Address: 0x2cf660, Func Offset: 0
 	// Line 899, Address: 0x2cf678, Func Offset: 0x18
 	// Line 900, Address: 0x2cf688, Func Offset: 0x28
 	// Line 901, Address: 0x2cf694, Func Offset: 0x34
 	// Func End, Address: 0x2cf69c, Func Offset: 0x3c
+	scePrintf("njCnkSetEasyMultiLightColor - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2cf6a0
-void njCnkSetEasyMultiLightVector(float fX, float fY, float fZ)
+void    njCnkSetEasyMultiLightVector(Float vx, Float vy, Float vz)
 {
 	// Line 923, Address: 0x2cf6a0, Func Offset: 0
 	// Line 924, Address: 0x2cf6ac, Func Offset: 0xc
@@ -329,9 +331,10 @@ void njCnkSetEasyMultiLightVector(float fX, float fY, float fZ)
 	// Line 926, Address: 0x2cf6c4, Func Offset: 0x24
 	// Line 927, Address: 0x2cf6c8, Func Offset: 0x28
 	// Func End, Address: 0x2cf6d0, Func Offset: 0x30
+	scePrintf("njCnkSetEasyMultiLightVector - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cf6d0
 void njCnkSetEasyMultiLightPoint(int iLightNum, float fX, float fY, float fZ)
 {
@@ -354,11 +357,11 @@ void njCnkSetEasyMultiLightRange(int iLightNum, float fNear, float fFar)
 	// Line 981, Address: 0x2cf750, Func Offset: 0x30
 	// Line 982, Address: 0x2cf760, Func Offset: 0x40
 	// Func End, Address: 0x2cf768, Func Offset: 0x48
-}
+}*/
 
 // 
 // Start address: 0x2cf770
-void njCnkSetEasyMultiLightMatrices()
+void    njCnkSetEasyMultiLightMatrices(void)
 {
 	int lCnt;
 	// Line 995, Address: 0x2cf770, Func Offset: 0
@@ -374,7 +377,8 @@ void njCnkSetEasyMultiLightMatrices()
 	// Line 1015, Address: 0x2cf7ec, Func Offset: 0x7c
 	// Line 1016, Address: 0x2cf804, Func Offset: 0x94
 	// Func End, Address: 0x2cf818, Func Offset: 0xa8
-}*/
+	scePrintf("njCnkSetEasyMultiLightMatrices - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2cf820
@@ -454,20 +458,21 @@ void    njCnkSetSimpleMultiAmbient(Float ar, Float ag, Float ab)
 	scePrintf("njCnkSetSimpleMultiAmbient - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2cf990
-void njCnkSetSimpleMultiLightColor(int iLightNum, float fR, float fG, float fB)
+void    njCnkSetSimpleMultiLightColor(Int light, Float lr, Float lg, Float lb)
 {
 	// Line 1199, Address: 0x2cf990, Func Offset: 0
 	// Line 1200, Address: 0x2cf9a8, Func Offset: 0x18
 	// Line 1201, Address: 0x2cf9b8, Func Offset: 0x28
 	// Line 1202, Address: 0x2cf9c4, Func Offset: 0x34
 	// Func End, Address: 0x2cf9cc, Func Offset: 0x3c
+	scePrintf("njCnkSetSimpleMultiLightColor - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2cf9d0
-void njCnkSetSimpleMultiLightVector(float fX, float fY, float fZ)
+void    njCnkSetSimpleMultiLightVector(Float vx, Float vy, Float vz)
 {
 	// Line 1224, Address: 0x2cf9d0, Func Offset: 0
 	// Line 1225, Address: 0x2cf9dc, Func Offset: 0xc
@@ -475,9 +480,10 @@ void njCnkSetSimpleMultiLightVector(float fX, float fY, float fZ)
 	// Line 1227, Address: 0x2cf9f4, Func Offset: 0x24
 	// Line 1228, Address: 0x2cf9f8, Func Offset: 0x28
 	// Func End, Address: 0x2cfa00, Func Offset: 0x30
+	scePrintf("njCnkSetSimpleMultiLightVector - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cfa00
 void njCnkSetSimpleMultiLightPoint(int iLightNum, float fX, float fY, float fZ)
 {
@@ -500,11 +506,11 @@ void njCnkSetSimpleMultiLightRange(int iLightNum, float fNear, float fFar)
 	// Line 1282, Address: 0x2cfa80, Func Offset: 0x30
 	// Line 1283, Address: 0x2cfa90, Func Offset: 0x40
 	// Func End, Address: 0x2cfa98, Func Offset: 0x48
-}
+}*/
 
 // 
 // Start address: 0x2cfaa0
-void njCnkSetSimpleMultiLightMatrices()
+void    njCnkSetSimpleMultiLightMatrices(void)
 {
 	int lCnt;
 	// Line 1296, Address: 0x2cfaa0, Func Offset: 0
@@ -520,9 +526,10 @@ void njCnkSetSimpleMultiLightMatrices()
 	// Line 1317, Address: 0x2cfb1c, Func Offset: 0x7c
 	// Line 1318, Address: 0x2cfb34, Func Offset: 0x94
 	// Func End, Address: 0x2cfb48, Func Offset: 0xa8
+	scePrintf("njCnkSetSimpleMultiLightMatrices - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cfb50
 void njCnkEasyDrawModel(_anon5* pModel)
 {
