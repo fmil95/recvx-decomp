@@ -3398,6 +3398,29 @@ typedef struct S_WORK
     unsigned char* subp;          // offset 0xD4, size 0x4
 } S_WORK;
 
+typedef struct MW
+{
+    // total size: 0x34
+	NJS_POINT3 pos;     // offset 0x0, size 0xC
+	void* tex_p;        // offset 0xC, size 0x4
+    void* mdl_p;        // offset 0x10, size 0x4
+    int ang[3];         // offset 0x14, size 0xC
+    int rdid;           // offset 0x20, size 0x4
+    int ax1;            // offset 0x24, size 0x4
+    int ay1;            // offset 0x28, size 0x4
+    int az1;            // offset 0x2C, size 0x4
+    unsigned short flg; // offset 0x30, size 0x2
+} MW;
+
+typedef struct SITEM
+{
+    // total size: 0x54
+	NO_NAME_2 mdl;             // offset 0x0, size 0x18
+	MW mw;                     // offset 0x18, size 0x34
+	unsigned char* keep;       // offset 0x4C, size 0x4
+    unsigned char* keepbackup; // offset 0x50, size 0x4
+} SITEM;
+
 typedef struct {
     int isOnCD;		
     int size;

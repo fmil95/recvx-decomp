@@ -1,4 +1,5 @@
 #include "itemview.h"
+#include "njplus.h"
 
 /*unsigned char(*actionprg)(_anon5*)[3];
 unsigned int* wp_;
@@ -8,9 +9,9 @@ int ang_01[3];
 int ang_02[3];
 _anon32 vec_00;
 float check[16];
-float testf;
-_anon32 whd;
-unsigned int ItemViewTypeTbl[168];
+float testf;*/
+NJS_VECTOR whd;
+/*unsigned int ItemViewTypeTbl[168];
 int ViewType;
 _anon33 fvwork;*/
 STCAM_WRK st_cam;
@@ -795,30 +796,31 @@ void MdlHideCheck(npobj* op, unsigned char el, unsigned char chk)
 	// Line 1124, Address: 0x2abb04, Func Offset: 0xb4
 	// Line 1127, Address: 0x2abb1c, Func Offset: 0xcc
 	// Func End, Address: 0x2abb34, Func Offset: 0xe4
-}
-
-// 
-// Start address: 0x2abb40
-float ModelScaleSet(_anon5* itemmodel, unsigned short flg)
-{
-	float scale00;
-	// Line 1130, Address: 0x2abb40, Func Offset: 0
-	// Line 1133, Address: 0x2abb4c, Func Offset: 0xc
-	// Line 1134, Address: 0x2abb54, Func Offset: 0x14
-	// Line 1135, Address: 0x2abb5c, Func Offset: 0x1c
-	// Line 1136, Address: 0x2abb64, Func Offset: 0x24
-	// Line 1138, Address: 0x2abb6c, Func Offset: 0x2c
-	// Line 1139, Address: 0x2abb78, Func Offset: 0x38
-	// Line 1140, Address: 0x2abb84, Func Offset: 0x44
-	// Line 1143, Address: 0x2abb90, Func Offset: 0x50
-	// Line 1158, Address: 0x2abba0, Func Offset: 0x60
-	// Line 1170, Address: 0x2abbac, Func Offset: 0x6c
-	// Line 1178, Address: 0x2abc10, Func Offset: 0xd0
-	// Line 1179, Address: 0x2abc2c, Func Offset: 0xec
-	// Line 1180, Address: 0x2abc34, Func Offset: 0xf4
-	// Line 1185, Address: 0x2abc48, Func Offset: 0x108
-	// Func End, Address: 0x2abc58, Func Offset: 0x118
 }*/
+
+// 100% matching!
+float ModelScaleSet(SITEM* itemmodel, int flg)
+{
+    float scale00;
+
+    if (flg != 0) 
+    {
+        itemmodel->mdl.objP->pos[2] = itemmodel->mdl.objP->pos[1] = itemmodel->mdl.objP->pos[0] = 0;
+
+        itemmodel->mdl.objP->child->pos[2] = itemmodel->mdl.objP->child->pos[1] = itemmodel->mdl.objP->child->pos[0] = 0;
+    }
+    
+    npGetWHDSize(itemmodel->mdl.objP, &whd);
+    
+    scale00 = njScalor(&whd);
+   
+    if ((itemmodel->mw.rdid != 1) && (itemmodel->mw.rdid != 2) && (itemmodel->mw.rdid != 3) && (itemmodel->mw.rdid != 4) && (itemmodel->mw.rdid != 6) && (itemmodel->mw.rdid != 10) && (itemmodel->mw.rdid != 11) && (itemmodel->mw.rdid != 103)) 
+    {
+        return 1.52f / scale00;
+    }
+    
+    return 1.84f / scale00;
+}
 
 // 100% matching! 
 void FlagErase(NJS_CNK_OBJECT* op) 
