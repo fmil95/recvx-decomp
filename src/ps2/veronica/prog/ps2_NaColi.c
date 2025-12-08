@@ -83,24 +83,19 @@ Bool	njIsParalellL2PL(NJS_LINE *l, NJS_PLANE *pl)
     return (fabsf((fPx * fLx) + (fPy * fLy) + (fPz * fLz)) <= 0.025f) ? 1 : 0;
 }
 
-/*// 
-// Start address: 0x2e3340
-float njDistanceP2P(_anon0* pPoint1, _anon0* pPoint2)
+// 100% matching!
+Float	njDistanceP2P(NJS_POINT3 *p1, NJS_POINT3 *p2)
 {
-	float fDeltaZ;
-	float fDeltaY;
-	float fDeltaX;
-	// Line 173, Address: 0x2e3340, Func Offset: 0
-	// Line 172, Address: 0x2e3348, Func Offset: 0x8
-	// Line 174, Address: 0x2e3350, Func Offset: 0x10
-	// Line 173, Address: 0x2e3358, Func Offset: 0x18
-	// Line 174, Address: 0x2e335c, Func Offset: 0x1c
-	// Line 172, Address: 0x2e3360, Func Offset: 0x20
-	// Line 175, Address: 0x2e3364, Func Offset: 0x24
-	// Func End, Address: 0x2e3378, Func Offset: 0x38
+    float fDeltaX, fDeltaY, fDeltaZ;
+
+    fDeltaX = p2->x - p1->x;
+    fDeltaY = p2->y - p1->y;
+    fDeltaZ = p2->z - p1->z;
+
+    return njSqrt((fDeltaX * fDeltaX) + (fDeltaY * fDeltaY) + (fDeltaZ * fDeltaZ));
 }
 
-// 
+/*// 
 // Start address: 0x2e3380
 float njDistanceP2L(_anon0* pPoint, _anon1* pLine, _anon0* pCross)
 {
