@@ -27,7 +27,18 @@ float cen_pos[12][6] = { { 0,       0,       0,      0,      0,       0       },
                          { 644.0f,  40.0f,   436.0f, 40.0f,  -204.0f, 0       }, 
                          { 28.0f,   -384.0f, 28.0f,  40.0f,  0,       424.0f  }, 
                          { 660.0f,  120.0f,  452.0f, 120.0f, -208.0f, 0       } }; 
-/*float cen_pos99[6][0];*/
+float cen_pos99[12][6] = { { 0,       0,       0,      0,      0,       0       },       
+                           { 28.0f,   -80.0f,  28.0f,  40.0f,  0,       120.0f  }, 
+                           { -448.0f, 100.0f,  0,      100.0f, 448.0f,  0       },       
+                           { 640.0f,  40.0f,   352.0f, 40.0f,  -288.0f, 0       }, 
+                           { 808.0f,  40.0f,   520.0f, 40.0f,  -288.0f, 0       },       
+                           { 644.0f,  120.0f,  436.0f, 120.0f, -208.0f, 0       }, 
+                           { 28.0f,   484.0f,  28.0f,  332.0f, 0,       -152.0f }, 
+                           { 328.0f,  120.0f,  328.0f, 120.0f, 0,       0       }, 
+                           { -380.0f, 132.0f,  60.0f,  132.0f, 440.0f,  0       },       
+                           { 644.0f,  40.0f,   436.0f, 40.0f,  -204.0f, 0       }, 
+                           { 28.0f,   -384.0f, 28.0f,  40.0f,  0,       424.0f  },  
+                           { 660.0f,  120.0f,  452.0f, 120.0f, -208.0f, 0       } }; 
 
 // 100% matching!
 void ControlFileView()
@@ -585,57 +596,64 @@ void SelectTag()
 	// Line 759, Address: 0x2ad434, Func Offset: 0x524
 	// Line 763, Address: 0x2ad438, Func Offset: 0x528
 	// Func End, Address: 0x2ad44c, Func Offset: 0x53c
-}
+}*/
 
-// 
-// Start address: 0x2ad450
+// 100% matching!
 void FileScreenCancel()
 {
-	unsigned short j;
-	unsigned short i;
-	_anon11* fv;
-	// Line 768, Address: 0x2ad450, Func Offset: 0
-	// Line 770, Address: 0x2ad45c, Func Offset: 0xc
-	// Line 773, Address: 0x2ad464, Func Offset: 0x14
-	// Line 774, Address: 0x2ad478, Func Offset: 0x28
-	// Line 780, Address: 0x2ad480, Func Offset: 0x30
-	// Line 783, Address: 0x2ad490, Func Offset: 0x40
-	// Line 784, Address: 0x2ad49c, Func Offset: 0x4c
-	// Line 783, Address: 0x2ad4a8, Func Offset: 0x58
-	// Line 784, Address: 0x2ad4b4, Func Offset: 0x64
-	// Line 786, Address: 0x2ad4e8, Func Offset: 0x98
-	// Line 787, Address: 0x2ad4f0, Func Offset: 0xa0
-	// Line 788, Address: 0x2ad500, Func Offset: 0xb0
-	// Line 789, Address: 0x2ad504, Func Offset: 0xb4
-	// Line 788, Address: 0x2ad50c, Func Offset: 0xbc
-	// Line 789, Address: 0x2ad518, Func Offset: 0xc8
-	// Line 790, Address: 0x2ad528, Func Offset: 0xd8
-	// Line 789, Address: 0x2ad52c, Func Offset: 0xdc
-	// Line 790, Address: 0x2ad534, Func Offset: 0xe4
-	// Line 791, Address: 0x2ad548, Func Offset: 0xf8
-	// Line 799, Address: 0x2ad550, Func Offset: 0x100
-	// Line 800, Address: 0x2ad554, Func Offset: 0x104
-	// Line 797, Address: 0x2ad558, Func Offset: 0x108
-	// Line 791, Address: 0x2ad560, Func Offset: 0x110
-	// Line 799, Address: 0x2ad564, Func Offset: 0x114
-	// Line 791, Address: 0x2ad56c, Func Offset: 0x11c
-	// Line 799, Address: 0x2ad574, Func Offset: 0x124
-	// Line 797, Address: 0x2ad580, Func Offset: 0x130
-	// Line 792, Address: 0x2ad58c, Func Offset: 0x13c
-	// Line 802, Address: 0x2ad594, Func Offset: 0x144
-	// Line 792, Address: 0x2ad598, Func Offset: 0x148
-	// Line 793, Address: 0x2ad5a4, Func Offset: 0x154
-	// Line 794, Address: 0x2ad5b8, Func Offset: 0x168
-	// Line 795, Address: 0x2ad5cc, Func Offset: 0x17c
-	// Line 796, Address: 0x2ad5e0, Func Offset: 0x190
-	// Line 800, Address: 0x2ad5f4, Func Offset: 0x1a4
-	// Line 801, Address: 0x2ad5f8, Func Offset: 0x1a8
-	// Line 802, Address: 0x2ad5fc, Func Offset: 0x1ac
-	// Line 804, Address: 0x2ad614, Func Offset: 0x1c4
-	// Line 805, Address: 0x2ad61c, Func Offset: 0x1cc
-	// Line 807, Address: 0x2ad624, Func Offset: 0x1d4
-	// Func End, Address: 0x2ad634, Func Offset: 0x1e4
-}*/
+    FV_WORK* fv;
+    unsigned short i;
+    unsigned short j;
+
+    fv = &fvwork;
+    
+    if ((fv->afsmode & 0x80)) 
+    {
+        njReleaseTexture(&fv->fstx_list);
+        
+        bhGarbageTexture(tbuf, 256);
+    }
+    
+    fvwork.afsmode &= ~0xB80;
+    
+    if (!(sys->cb_flg & 0x20000)) 
+    {
+        fvwork.afsmode |= 0x20;
+    }
+
+    for (i = 0; i < 12; i++) 
+    {
+        for (j = 0; j < 6; j++) 
+        {
+            cen_pos[i][j] = cen_pos99[i][j];
+        }
+    }
+
+    parts_22b[0].atr &= ~0x20;
+    
+    fvwork.flg &= ~0x1;
+    
+    swork.statusflg &= ~0x800;
+    
+    parts_22b[1].atr &= ~0x20;
+    parts_22b[2].atr &= ~0x20;
+    parts_22b[3].atr &= ~0x20;
+    parts_22b[4].atr &= ~0x20;
+    
+    parts_22b[4].color |= 0x8;
+    
+    fv->mode_00 = 3;
+    fv->mode_01 = 0;
+
+    if ((sys->cb_flg & 0x20000)) 
+    {
+        fv->mode_02 = 0;
+    }
+    else 
+    {
+        fv->mode_02 = 7;
+    }
+}
 
 // 
 // Start address: 0x2ad640
