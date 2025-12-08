@@ -68,26 +68,24 @@ void FileSelect()
 	scePrintf("FileSelect - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2ac080
+// 74.29% matching
 void FileFlagInit01()
 {
-	// Line 199, Address: 0x2ac080, Func Offset: 0
-	// Line 195, Address: 0x2ac088, Func Offset: 0x8
-	// Line 196, Address: 0x2ac094, Func Offset: 0x14
-	// Line 198, Address: 0x2ac09c, Func Offset: 0x1c
-	// Line 203, Address: 0x2ac0a4, Func Offset: 0x24
-	// Line 199, Address: 0x2ac0b0, Func Offset: 0x30
-	// Line 198, Address: 0x2ac0bc, Func Offset: 0x3c
-	// Line 201, Address: 0x2ac0c8, Func Offset: 0x48
-	// Line 200, Address: 0x2ac0d0, Func Offset: 0x50
-	// Line 203, Address: 0x2ac0d8, Func Offset: 0x58
-	// Line 200, Address: 0x2ac0e0, Func Offset: 0x60
-	// Line 203, Address: 0x2ac0e8, Func Offset: 0x68
-	// Func End, Address: 0x2ac0f0, Func Offset: 0x70
+    fvwork.mode_00 = 1;
+    fvwork.mode_01 = 0;
+    
+    parts_22b[2].atr &= ~0x20;
+    
+    fvwork.afsmode &= 0x780;
+    
+    parts_22b[3].atr &= ~0x20;
+    
+    fvwork.page = 0;
+   
+    njClipZ(-2.0f, -20000.0f); 
 }
 
-// 
+/*// 
 // Start address: 0x2ac0f0
 void FileFlagInit()
 {
