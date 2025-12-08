@@ -142,25 +142,45 @@ void bhClearEventEffect()
     bhClrEff_YG();
 }
 
-// 
-// Start address: 0x21c040
+// 100% matching! 
 void bhClrEff_YT()
 {
-	int i;
-	//_anon0* opp;
-	// Line 300, Address: 0x21c040, Func Offset: 0
-	// Line 301, Address: 0x21c048, Func Offset: 0x8
-	// Line 303, Address: 0x21c04c, Func Offset: 0xc
-	// Line 302, Address: 0x21c07c, Func Offset: 0x3c
-	// Line 303, Address: 0x21c08c, Func Offset: 0x4c
-	// Line 314, Address: 0x21c0f8, Func Offset: 0xb8
-	// Line 320, Address: 0x21c100, Func Offset: 0xc0
-	// Line 322, Address: 0x21c104, Func Offset: 0xc4
-	// Line 326, Address: 0x21c114, Func Offset: 0xd4
-	// Line 327, Address: 0x21c118, Func Offset: 0xd8
-	// Line 328, Address: 0x21c128, Func Offset: 0xe8
-	// Func End, Address: 0x21c130, Func Offset: 0xf0
-	scePrintf("bhClrEff_YT - UNIMPLEMENTED!\n");
+    NO_NAME_4* opp;
+    int i;
+
+    opp = eff;
+    
+    for (i = 0; i < 512; i++, opp++) 
+    {
+        if ((opp->flg & 0x1)) 
+        {
+            switch (opp->id) 
+            {
+            case 5:
+            case 11:
+            case 113:
+            case 114:
+            case 136:
+            case 159:
+            case 225:
+            case 398:
+                opp->flg = 0;
+                break;
+            case 22:
+            case 24:
+            case 25:
+            case 27:
+                opp->flg = 0;
+                
+                if (opp->exp0 != NULL) 
+                {
+                    *(unsigned int*)opp->exp0 = 0;
+                }
+
+                break;
+            }
+        }
+    }
 }
 
 /*// 
