@@ -8,27 +8,30 @@ float fNaViwOffsetY;
 float fNaViwOffsetX;
 _anon0 eff[0];
 BH_PWORK ene[0];
-BH_PWORK* plp;
+BH_PWORK* plp;*/
 
-// 
-// Start address: 0x280ed0
+// 100% matching! 
 void bhInitLight()
 {
-	int i;
-	_anon12* lp;
-	// Line 75, Address: 0x280ed0, Func Offset: 0
-	// Line 76, Address: 0x280ed8, Func Offset: 0x8
-	// Line 75, Address: 0x280edc, Func Offset: 0xc
-	// Line 76, Address: 0x280ee0, Func Offset: 0x10
-	// Line 77, Address: 0x280ee8, Func Offset: 0x18
-	// Line 78, Address: 0x280ef4, Func Offset: 0x24
-	// Line 80, Address: 0x280f00, Func Offset: 0x30
-	// Line 81, Address: 0x280f04, Func Offset: 0x34
-	// Line 82, Address: 0x280f14, Func Offset: 0x44
-	// Line 83, Address: 0x280f18, Func Offset: 0x48
-	// Line 84, Address: 0x280f38, Func Offset: 0x68
-	// Func End, Address: 0x280f40, Func Offset: 0x70
-}*/
+    NO_NAME_8* lp;
+    int i;
+
+    lp = rom->lgtp;
+    
+    for (i = 0; i < rom->lgt_n; i++, lp++) 
+    {
+        if (i < 4)
+        {
+            lp->flg &= ~0x2;
+        }
+        
+        lp->mode = 0;
+        
+        lp->ct0 = lp->ct1 = lp->ct2 = lp->ct3 = 0;
+        
+        lp->light = NULL;
+    }
+}
 
 // 100% matching! 
 void bhSetLightTab(NO_NAME_8* lt, int lno) 
