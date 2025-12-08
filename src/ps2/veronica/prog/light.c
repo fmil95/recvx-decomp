@@ -1,4 +1,6 @@
 #include "light.h"
+#include "ps2_NaMath.h"
+#include "ps2_NinjaCnk.h"
 #include "main.h"
 
 /*_anon40 lgttab[5];
@@ -116,35 +118,58 @@ void bhSetLightTab(NO_NAME_8* lt, int lno)
     bhGetLightVector(lt->ax, lt->ay, lt->az, (NJS_VECTOR*)&lp->vx);
 }
 
-/*// 
-// Start address: 0x2810e0
-void bhSetEasyDirLight(float it)
+// 99.90% matching 
+void bhSetEasyDirLight(float it) 
 {
-	float fl;
-	_anon12* lp;
-	// Line 240, Address: 0x2810e0, Func Offset: 0
-	// Line 245, Address: 0x2810f0, Func Offset: 0x10
-	// Line 247, Address: 0x2810fc, Func Offset: 0x1c
-	// Line 248, Address: 0x28110c, Func Offset: 0x2c
-	// Line 250, Address: 0x281130, Func Offset: 0x50
-	// Line 253, Address: 0x281150, Func Offset: 0x70
-	// Line 252, Address: 0x281158, Func Offset: 0x78
-	// Line 254, Address: 0x281160, Func Offset: 0x80
-	// Line 256, Address: 0x281168, Func Offset: 0x88
-	// Line 259, Address: 0x281170, Func Offset: 0x90
-	// Line 261, Address: 0x281178, Func Offset: 0x98
-	// Line 262, Address: 0x281188, Func Offset: 0xa8
-	// Line 263, Address: 0x28119c, Func Offset: 0xbc
-	// Line 264, Address: 0x2811ac, Func Offset: 0xcc
-	// Line 271, Address: 0x2811bc, Func Offset: 0xdc
-	// Line 272, Address: 0x2811d4, Func Offset: 0xf4
-	// Line 273, Address: 0x2811e8, Func Offset: 0x108
-	// Line 275, Address: 0x28120c, Func Offset: 0x12c
-	// Line 276, Address: 0x281224, Func Offset: 0x144
-	// Line 277, Address: 0x281238, Func Offset: 0x158
-	// Line 278, Address: 0x28125c, Func Offset: 0x17c
-	// Func End, Address: 0x281270, Func Offset: 0x190
-}*/
+    NO_NAME_8* lp;
+    float fl;
+    
+    lp = rom->lgtp;
+    
+    fl = it;
+    
+    if ((lp->flg & 0x2))
+    {
+        switch (lp->type) 
+        {                         
+        case 100:
+            switch (lp->mode) 
+            {                   
+            case 0:                                
+                lp->mode++;
+        
+                fl *= 3.0f;
+                break;
+            case 1:                                 
+                lp->flg &= ~0x2;
+                break;
+            }
+            
+            break;
+        case 101:
+            fl = njCos(lp->ct0);
+            
+            fl = 3.0f * fl;
+            
+            lp->ct0 += lp->aspd * 256;
+            
+            if (lp->ct0 > 16383)
+            {
+                lp->flg &= ~0x2;
+            }
+            
+            break;
+        }
+    }
+    
+    njCnkSetEasyLightColor(1.0f, 1.0f, 1.0f);
+    njCnkSetEasyLightIntensity(fl, 0.2f);
+    njCnkSetEasyLight(0, 0.3f, 0.7f);
+    
+    njCnkSetSimpleLightColor(1.0f, 1.0f, 1.0f);
+    njCnkSetSimpleLightIntensity(fl, 0.2f);
+    njCnkSetSimpleLight(0, 0.3f, 0.7f);
+}
 
 // 
 // Start address: 0x281270

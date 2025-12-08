@@ -59,9 +59,9 @@ Float	njSin(Angle n)
 	scePrintf("njSin - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2d7d40
-float njCos(int lAngle)
+Float	njCos(Angle n)
 {
 	float ret;
 	// Line 172, Address: 0x2d7d40, Func Offset: 0
@@ -91,7 +91,8 @@ float njCos(int lAngle)
 	// Line 235, Address: 0x2d7dc0, Func Offset: 0x80
 	// Line 245, Address: 0x2d7dc4, Func Offset: 0x84
 	// Func End, Address: 0x2d7dcc, Func Offset: 0x8c
-}*/
+	scePrintf("njCos - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2d7dd0

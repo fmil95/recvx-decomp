@@ -236,41 +236,44 @@ void njCnkModDrawModel(_anon5* pModel)
 {
 	// Line 709, Address: 0x2cf4e0, Func Offset: 0
 	// Func End, Address: 0x2cf4e8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x2cf4f0
-void njCnkSetEasyLight(float fX, float fY, float fZ)
+void    njCnkSetEasyLight( Float x,Float y,Float z )
 {
 	// Line 734, Address: 0x2cf4f0, Func Offset: 0
 	// Line 735, Address: 0x2cf4fc, Func Offset: 0xc
 	// Line 736, Address: 0x2cf508, Func Offset: 0x18
 	// Line 737, Address: 0x2cf510, Func Offset: 0x20
 	// Func End, Address: 0x2cf518, Func Offset: 0x28
+	scePrintf("njCnkSetEasyLight - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2cf520
-void njCnkSetEasyLightIntensity(float fDiffuse, float fAmbient)
+void    njCnkSetEasyLightIntensity( Float inten, Float ambient )
 {
 	// Line 758, Address: 0x2cf520, Func Offset: 0
 	// Line 759, Address: 0x2cf528, Func Offset: 0x8
 	// Line 762, Address: 0x2cf53c, Func Offset: 0x1c
 	// Func End, Address: 0x2cf544, Func Offset: 0x24
+	scePrintf("njCnkSetEasyLightIntensity - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2cf550
-void njCnkSetEasyLightColor(float fR, float fG, float fB)
+void    njCnkSetEasyLightColor( Float r, Float g, Float b )
 {
 	// Line 785, Address: 0x2cf550, Func Offset: 0
 	// Line 786, Address: 0x2cf558, Func Offset: 0x8
 	// Line 787, Address: 0x2cf560, Func Offset: 0x10
 	// Line 788, Address: 0x2cf564, Func Offset: 0x14
 	// Func End, Address: 0x2cf56c, Func Offset: 0x1c
+	scePrintf("njCnkSetEasyLightColor - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cf570
 void njCnkSetEasyMultiLight(int iLightMax)
 {
@@ -371,39 +374,42 @@ void njCnkSetEasyMultiLightMatrices()
 	// Line 1015, Address: 0x2cf7ec, Func Offset: 0x7c
 	// Line 1016, Address: 0x2cf804, Func Offset: 0x94
 	// Func End, Address: 0x2cf818, Func Offset: 0xa8
-}
+}*/
 
 // 
 // Start address: 0x2cf820
-void njCnkSetSimpleLight(float fX, float fY, float fZ)
+void    njCnkSetSimpleLight( Float x,Float y,Float z )
 {
 	// Line 1038, Address: 0x2cf820, Func Offset: 0
 	// Line 1039, Address: 0x2cf82c, Func Offset: 0xc
 	// Line 1040, Address: 0x2cf838, Func Offset: 0x18
 	// Line 1041, Address: 0x2cf840, Func Offset: 0x20
 	// Func End, Address: 0x2cf848, Func Offset: 0x28
+	scePrintf("njCnkSetSimpleLight - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2cf850
-void njCnkSetSimpleLightIntensity(float fDiffuse, float fAmbient)
+void    njCnkSetSimpleLightIntensity( Float inten, Float ambient )
 {
 	// Line 1061, Address: 0x2cf850, Func Offset: 0
 	// Line 1062, Address: 0x2cf858, Func Offset: 0x8
 	// Line 1065, Address: 0x2cf86c, Func Offset: 0x1c
 	// Func End, Address: 0x2cf874, Func Offset: 0x24
+	scePrintf("njCnkSetSimpleLightIntensity - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2cf880
-void njCnkSetSimpleLightColor(float fR, float fG, float fB)
+void    njCnkSetSimpleLightColor( Float r, Float g, Float b )
 {
 	// Line 1087, Address: 0x2cf880, Func Offset: 0
 	// Line 1088, Address: 0x2cf888, Func Offset: 0x8
 	// Line 1089, Address: 0x2cf890, Func Offset: 0x10
 	// Line 1090, Address: 0x2cf894, Func Offset: 0x14
 	// Func End, Address: 0x2cf89c, Func Offset: 0x1c
-}*/
+	scePrintf("njCnkSetSimpleLightColor - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void    njCnkSetSimpleMultiLight(Int num)
