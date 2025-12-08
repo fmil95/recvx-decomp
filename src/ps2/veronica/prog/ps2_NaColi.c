@@ -49,39 +49,41 @@ Bool	njIsParalellL2L(NJS_LINE *l1, NJS_LINE *l2)
     return (0.995f <= fabsf((fX1 * fX2) + (fY1 * fY2) + (fZ1 * fZ2))) ? 1 : 0;
 }
 
-/*// 
-// Start address: 0x2e3250
-int njIsParalellL2PL(_anon1* pLine, _anon1* pPlane)
+// 100% matching!
+Bool	njIsParalellL2PL(NJS_LINE *l, NJS_PLANE *pl)
 {
-	float fLz;
-	float fLy;
-	float fLx;
-	float fPz;
-	float fPy;
-	float fPx;
-	float fLength;
-	// Line 117, Address: 0x2e3250, Func Offset: 0
-	// Line 123, Address: 0x2e3274, Func Offset: 0x24
-	// Line 124, Address: 0x2e3278, Func Offset: 0x28
-	// Line 125, Address: 0x2e327c, Func Offset: 0x2c
-	// Line 126, Address: 0x2e3284, Func Offset: 0x34
-	// Line 131, Address: 0x2e3298, Func Offset: 0x48
-	// Line 132, Address: 0x2e329c, Func Offset: 0x4c
-	// Line 127, Address: 0x2e32a0, Func Offset: 0x50
-	// Line 133, Address: 0x2e32a4, Func Offset: 0x54
-	// Line 128, Address: 0x2e32a8, Func Offset: 0x58
-	// Line 129, Address: 0x2e32ac, Func Offset: 0x5c
-	// Line 134, Address: 0x2e32b0, Func Offset: 0x60
-	// Line 135, Address: 0x2e32c4, Func Offset: 0x74
-	// Line 136, Address: 0x2e32c8, Func Offset: 0x78
-	// Line 142, Address: 0x2e32cc, Func Offset: 0x7c
-	// Line 137, Address: 0x2e32d4, Func Offset: 0x84
-	// Line 142, Address: 0x2e32d8, Func Offset: 0x88
-	// Line 149, Address: 0x2e3310, Func Offset: 0xc0
-	// Func End, Address: 0x2e3338, Func Offset: 0xe8
+    float fLength;
+    float fPx;
+    float fPy;
+    float fPz;
+    float fLx;
+    float fLy;
+    float fLz;
+    
+    fPx = pl->vx;
+    fPy = pl->vy;  
+    fPz = pl->vz;
+    
+    fLength = njInvertSqrt((fPx * fPx) + (fPy * fPy) + (fPz * fPz));
+    
+    fPx *= fLength;
+    fPy *= fLength;
+    fPz *= fLength;
+
+    fLx = l->vx;
+    fLy = l->vy;  
+    fLz = l->vz;
+
+    fLength = njInvertSqrt((fLx * fLx) + (fLy * fLy) + (fLz * fLz));
+    
+    fLx *= fLength;
+    fLy *= fLength;
+    fLz *= fLength;
+
+    return (fabsf((fPx * fLx) + (fPy * fLy) + (fPz * fLz)) <= 0.025f) ? 1 : 0;
 }
 
-// 
+/*// 
 // Start address: 0x2e3340
 float njDistanceP2P(_anon0* pPoint1, _anon0* pPoint2)
 {
