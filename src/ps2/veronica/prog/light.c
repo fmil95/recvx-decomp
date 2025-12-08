@@ -685,19 +685,16 @@ void bhSetHalfLight()
 	scePrintf("bhSetHalfLight - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x282fe0
-void bhGetLightVector(int xr, int yr, int zr, NJS_VECTOR* vec)
+// 100% matching! 
+void bhGetLightVector(int xr, int yr, int zr, NJS_VECTOR* vec) 
 {
-	//_anon4 pos;
-	// Line 1216, Address: 0x282fe0, Func Offset: 0
-	// Line 1217, Address: 0x282ffc, Func Offset: 0x1c
-	// Line 1218, Address: 0x283020, Func Offset: 0x40
-	// Line 1219, Address: 0x28302c, Func Offset: 0x4c
-	// Line 1220, Address: 0x283038, Func Offset: 0x58
-	// Line 1221, Address: 0x283044, Func Offset: 0x64
-	// Line 1222, Address: 0x283050, Func Offset: 0x70
-	// Line 1223, Address: 0x283060, Func Offset: 0x80
-	// Func End, Address: 0x28307c, Func Offset: 0x9c
-	scePrintf("bhGetLightVector - UNIMPLEMENTED!\n");
+    NJS_VECTOR pos = { 0, 0, -1.0f };
+    
+    njUnitMatrix(NULL);
+    
+    njRotateZ(NULL, zr);
+    njRotateY(NULL, yr);
+    njRotateX(NULL, xr);
+    
+    njCalcPoint(NULL, &pos, vec);
 }
