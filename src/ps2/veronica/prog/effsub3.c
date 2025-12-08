@@ -2158,9 +2158,8 @@ struct _anon82
 };*/
 
 unsigned int owk_scn_noG;
-/*_anon9 Tex5uv[9];*/
-NO_NAME_4 eff[512];
-/*_anon11* sys;
+/*_anon9 Tex5uv[9];
+_anon11* sys;
 _anon70 cam;
 _anon2 PtclDat00[2];
 _anon2 PtclDat01[2];

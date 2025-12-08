@@ -128,13 +128,10 @@ void bhSetFontTexture(void* datp)
     }
 }
 
-// 
-// Start address: 0x21bff0
+// 100% matching! 
 void bhClearEffect()
 {
-	// Line 281, Address: 0x21bff0, Func Offset: 0
-	// Func End, Address: 0x21c008, Func Offset: 0x18
-	scePrintf("bhClearEffect - UNIMPLEMENTED!\n");
+    npSetMemoryL((unsigned int*)eff, sizeof(eff) / 4, 0);
 }
 
 // 100% matching! 
