@@ -675,14 +675,14 @@ void mcDisplaySelectFileInfoMesCount(SELECTFILEINFO* pFileInfo, float fx, float 
     {
         pos.x = 262.0f;
         
-        bhDispFontEx(&pos, MesNumTbl[pFileInfo->save_ct / 10], col, -1);
+        bhDispFontEx(&pos, MesNumTbl[pFileInfo->save_ct / 10], col, -1.0f);
     }
     
     if (CountMes >= (12 - pFileInfo->ply_id)) 
     {
         pos.x = 288.0f;
         
-        bhDispFontEx(&pos, MesNumTbl[pFileInfo->save_ct % 10], col, -1);
+        bhDispFontEx(&pos, MesNumTbl[pFileInfo->save_ct % 10], col, -1.0f);
     }
     
     if (CountMes >= (13 - pFileInfo->ply_id)) 
