@@ -101,26 +101,34 @@ void FileFlagInit()
 	// Line 220, Address: 0x2ac134, Func Offset: 0x44
 	// Line 221, Address: 0x2ac13c, Func Offset: 0x4c
 	// Func End, Address: 0x2ac144, Func Offset: 0x54
-}
+}*/
 
-// 
-// Start address: 0x2ac150
+// 100% matching!
 void GetFile()
 {
-	unsigned int id;
-	_anon12* st;
-	_anon11* fv;
-	// Line 225, Address: 0x2ac150, Func Offset: 0
-	// Line 233, Address: 0x2ac15c, Func Offset: 0xc
-	// Line 226, Address: 0x2ac164, Func Offset: 0x14
-	// Line 227, Address: 0x2ac16c, Func Offset: 0x1c
-	// Line 233, Address: 0x2ac174, Func Offset: 0x24
-	// Line 238, Address: 0x2ac180, Func Offset: 0x30
-	// Line 240, Address: 0x2ac1ac, Func Offset: 0x5c
-	// Line 241, Address: 0x2ac1cc, Func Offset: 0x7c
-	// Line 243, Address: 0x2ac1d0, Func Offset: 0x80
-	// Func End, Address: 0x2ac1e0, Func Offset: 0x90
-}*/
+    FV_WORK* fv;
+    S_WORK* st;
+    unsigned int id;
+
+    fv = &fvwork;
+
+    st = &swork;
+
+    if ((sys->cb_flg & 0x20000))
+    {
+        id = sys->sb_id;
+    } 
+    else
+    {
+        id = st->itemid;
+    }
+    
+    fv->filenum = FileNumberSwitch(id);
+    
+    sys->itm[383] |= 1 << fv->filenum;
+    
+    fv->page = 0;
+}
 
 // 
 // Start address: 0x2ac1e0
@@ -1052,7 +1060,7 @@ void ReadFstx()
 	scePrintf("ReadFstx - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2ae820
 unsigned int FileNumberSwitch(unsigned int num)
 {
@@ -1107,7 +1115,8 @@ unsigned int FileNumberSwitch(unsigned int num)
 	// Line 1426, Address: 0x2aeb40, Func Offset: 0x320
 	// Line 1428, Address: 0x2aeb50, Func Offset: 0x330
 	// Func End, Address: 0x2aeb58, Func Offset: 0x338
-}*/
+	scePrintf("FileNumberSwitch - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int PlayPageCheck()
