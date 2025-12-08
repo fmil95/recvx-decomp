@@ -137,16 +137,12 @@ void bhClearEffect()
 	scePrintf("bhClearEffect - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x21c010
+// 100% matching! 
 void bhClearEventEffect()
 {
-	// Line 290, Address: 0x21c010, Func Offset: 0
-	// Line 291, Address: 0x21c018, Func Offset: 0x8
-	// Line 292, Address: 0x21c020, Func Offset: 0x10
-	// Line 293, Address: 0x21c028, Func Offset: 0x18
-	// Line 294, Address: 0x21c030, Func Offset: 0x20
-	// Func End, Address: 0x21c03c, Func Offset: 0x2c
+    bhClrEff_YT();
+    bhClrEff_RY();
+    bhClrEff_YG();
 }
 
 // 
@@ -154,7 +150,7 @@ void bhClearEventEffect()
 void bhClrEff_YT()
 {
 	int i;
-	_anon0* opp;
+	//_anon0* opp;
 	// Line 300, Address: 0x21c040, Func Offset: 0
 	// Line 301, Address: 0x21c048, Func Offset: 0x8
 	// Line 303, Address: 0x21c04c, Func Offset: 0xc
@@ -167,9 +163,10 @@ void bhClrEff_YT()
 	// Line 327, Address: 0x21c118, Func Offset: 0xd8
 	// Line 328, Address: 0x21c128, Func Offset: 0xe8
 	// Func End, Address: 0x21c130, Func Offset: 0xf0
+	scePrintf("bhClrEff_YT - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x21c130
 int bhPushEffectWork()
 {

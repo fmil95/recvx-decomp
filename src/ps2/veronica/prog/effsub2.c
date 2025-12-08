@@ -4833,14 +4833,14 @@ void bhEff_SetBaseColor(_anon0* op, unsigned int col)
 	// Line 4898, Address: 0x246718, Func Offset: 0x8
 	// Line 4900, Address: 0x24671c, Func Offset: 0xc
 	// Func End, Address: 0x246724, Func Offset: 0x14
-}
+}*/
 
 // 
 // Start address: 0x246730
 void bhClrEff_YG()
 {
 	int i;
-	_anon0* opp;
+	//_anon0* opp;
 	// Line 4915, Address: 0x246730, Func Offset: 0
 	// Line 4916, Address: 0x246738, Func Offset: 0x8
 	// Line 4918, Address: 0x24673c, Func Offset: 0xc
@@ -4853,5 +4853,5 @@ void bhClrEff_YG()
 	// Line 4937, Address: 0x2467e8, Func Offset: 0xb8
 	// Line 4938, Address: 0x2467f8, Func Offset: 0xc8
 	// Func End, Address: 0x246800, Func Offset: 0xd0
-}*/
-
+	scePrintf("bhClrEff_YG - UNIMPLEMENTED!\n");
+}
