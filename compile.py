@@ -154,11 +154,10 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
             f.write(threshold_msg + "\n")
         # -------------------------------------------
 
-        object_file = source.replace(".c", ".o")
+        object_file = obj_path_for(source)
         objects.append(object_file)
 
-        compile_command = [compiler] + local_flags + ['-c', source, '-o', object_file] + \
-                          [f'-I{inc}' for inc in include_dirs] + [f'-D{d}' for d in defines]
+        compile_command = ([compiler] + local_flags + ["-c", source, "-o", object_file] + [f'-I{inc}' for inc in include_dirs] + [f'-D{d}' for d in defines])
 
         if not run_command(compile_command, env_vars, log_file):
             build_failed = True
@@ -175,7 +174,7 @@ def compile_assembly_files(assembler, sources, assembler_flags, include_dirs, de
     build_failed = False  # Track if any compilation fails
 
     for source in sources:
-        object_file = source.replace(".s", ".o")
+        object_file = obj_path_for(source)
         objects.append(object_file)
 
         compile_command = [assembler] + assembler_flags + ['-o', object_file , source]
@@ -198,6 +197,14 @@ def link_objects(linker, objects, linker_script, linker_flags, libraries, librar
     if not run_command(link_command, env_vars):
         return None  # Return None if linking fails
     return output_elf
+
+
+def obj_path_for(source):
+    """Return the object file path inside the build folder."""
+    src_path = Path(source)
+    dst_path = Path("build") / src_path.with_suffix(".o")
+    dst_path.parent.mkdir(parents=True, exist_ok=True)
+    return str(dst_path)
 
 
 def main(args):

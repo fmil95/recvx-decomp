@@ -8,9 +8,9 @@ config/SLUS_201.84.ld
 config/undefined_funcs_auto.txt
 config/undefined_syms_auto.txt
 context
-src/ps2/veronica/prog/*.o
-src/cri/mwlib/ee/lib/libadxe/*.o
-src/sce/ee/lib/crt0.o
+build/src/ps2/veronica/prog/*.o
+build/src/cri/mwlib/ee/lib/libadxe/*.o
+build/src/sce/ee/lib/crt0.o
 elf/*.o
 elf/*.s
 elf/main.elf
