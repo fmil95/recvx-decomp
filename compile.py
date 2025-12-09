@@ -2,7 +2,6 @@ import os
 import subprocess
 import json
 import argparse
-import shutil
 import sys
 from pathlib import Path
 
@@ -98,7 +97,7 @@ def create_compile_command_entry(compiler, source, object_file, include_dirs, de
 
 def compile_source_files(compiler, sources, compiler_flags, include_dirs, defines, env_vars):
     """Compile all source files and return object file list and compile commands."""
-    objects = []
+    objects = ["vsm/ps2_vu0.o", "vsm/ps2_vu1.o"]
     compile_commands = []
     build_failed = False
 
@@ -156,10 +155,6 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
         # -------------------------------------------
 
         object_file = source.replace(".c", ".o")
-        crt0_dest = os.path.join("elf", "crt0.o")
-        objects.append(crt0_dest)
-        objects.append("vsm/ps2_vu0.o")
-        objects.append("vsm/ps2_vu1.o")
         objects.append(object_file)
 
         compile_command = [compiler] + local_flags + ['-c', source, '-o', object_file] + \
@@ -249,21 +244,6 @@ def main(args):
             "MWLibraryFiles": ""
         }
 
-        crt0_src = "src/sce/ee/lib/crt0.o"
-        crt0_dest = "elf/crt0.o"
-
-        os.makedirs("elf", exist_ok=True)
-
-        if os.path.exists(crt0_src):
-            if not os.path.exists(crt0_dest):
-                shutil.copy(crt0_src, crt0_dest)
-        else:
-            print(f"Warning: {crt0_src} not found ? skipping crt0.o")
-
-        objects = [obj for obj in objects if not obj.endswith("crt0.o")]
-
-        objects.insert(0, crt0_dest)
-
         print(f"Performing linkage with the following parameters:")
 
         output_elf = link_objects(linker, objects, linker_script, linker_flags, libraries, library_dirs, linker_env)
@@ -274,19 +254,6 @@ def main(args):
             print(f"Linkage fail. See report.txt for more info.")
     else:
         print(f"Compilation fail. See report.txt for more info.")
-
-    crt0_file = "src/sce/ee/lib/crt0.o"
-
-    destination_directory = "elf/"
-
-    os.makedirs(destination_directory, exist_ok=True)
-
-    destination_file = os.path.join(destination_directory, "crt0.o")
-
-    if os.path.exists(destination_file):
-        os.remove(destination_file)
-    if os.path.exists(crt0_file):
-        shutil.move(crt0_file, destination_directory)
 
 
 if __name__ == "__main__":
