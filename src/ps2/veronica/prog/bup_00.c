@@ -55,55 +55,52 @@ void TypewriterKeepMemory()
     sys->typ_exp = bhGetFreeMemory(800, 32);
 }
 
-// 
-// Start address: 0x2c8b80
-void CountDisplay(int disppoint, NJS_POINT2* pos, unsigned int col, int param) // fourth parameter is not present on the debugging symbols      
+// 100% matching! 
+void CountDisplay(int disppoint, NJS_POINT2* pos, unsigned int col, int param) // fourth parameter is not present on the debugging symbols   
 {
-	//_anon26 uv[4];
-	//_anon26 col_[4];
-	//_anon5 p[4];
-	//_anon43 p2c;
-	// Line 2757, Address: 0x2c8b80, Func Offset: 0
-	// Line 2764, Address: 0x2c8b94, Func Offset: 0x14
-	// Line 2765, Address: 0x2c8bb8, Func Offset: 0x38
-	// Line 2767, Address: 0x2c8bc0, Func Offset: 0x40
-	// Line 2768, Address: 0x2c8bc8, Func Offset: 0x48
-	// Line 2769, Address: 0x2c8bd0, Func Offset: 0x50
-	// Line 2770, Address: 0x2c8bd8, Func Offset: 0x58
-	// Line 2771, Address: 0x2c8be0, Func Offset: 0x60
-	// Line 2773, Address: 0x2c8be4, Func Offset: 0x64
-	// Line 2790, Address: 0x2c8bec, Func Offset: 0x6c
-	// Line 2789, Address: 0x2c8bf0, Func Offset: 0x70
-	// Line 2771, Address: 0x2c8bf4, Func Offset: 0x74
-	// Line 2772, Address: 0x2c8bf8, Func Offset: 0x78
-	// Line 2789, Address: 0x2c8bfc, Func Offset: 0x7c
-	// Line 2800, Address: 0x2c8c04, Func Offset: 0x84
-	// Line 2772, Address: 0x2c8c10, Func Offset: 0x90
-	// Line 2773, Address: 0x2c8c14, Func Offset: 0x94
-	// Line 2800, Address: 0x2c8c18, Func Offset: 0x98
-	// Line 2773, Address: 0x2c8c24, Func Offset: 0xa4
-	// Line 2774, Address: 0x2c8c2c, Func Offset: 0xac
-	// Line 2775, Address: 0x2c8c34, Func Offset: 0xb4
-	// Line 2776, Address: 0x2c8c40, Func Offset: 0xc0
-	// Line 2777, Address: 0x2c8c4c, Func Offset: 0xcc
-	// Line 2778, Address: 0x2c8c54, Func Offset: 0xd4
-	// Line 2780, Address: 0x2c8c5c, Func Offset: 0xdc
-	// Line 2781, Address: 0x2c8c60, Func Offset: 0xe0
-	// Line 2782, Address: 0x2c8c64, Func Offset: 0xe4
-	// Line 2789, Address: 0x2c8c68, Func Offset: 0xe8
-	// Line 2778, Address: 0x2c8c6c, Func Offset: 0xec
-	// Line 2783, Address: 0x2c8c70, Func Offset: 0xf0
-	// Line 2790, Address: 0x2c8c74, Func Offset: 0xf4
-	// Line 2792, Address: 0x2c8c78, Func Offset: 0xf8
-	// Line 2793, Address: 0x2c8c84, Func Offset: 0x104
-	// Line 2794, Address: 0x2c8c8c, Func Offset: 0x10c
-	// Line 2795, Address: 0x2c8c98, Func Offset: 0x118
-	// Line 2796, Address: 0x2c8ca4, Func Offset: 0x124
-	// Line 2797, Address: 0x2c8cac, Func Offset: 0x12c
-	// Line 2800, Address: 0x2c8cb4, Func Offset: 0x134
-	// Line 2803, Address: 0x2c8cbc, Func Offset: 0x13c
-	// Func End, Address: 0x2c8cd4, Func Offset: 0x154
-	scePrintf("CountDisplay - UNIMPLEMENTED!\n");
+    NJS_POINT2COL p2c; 
+    NJS_POINT2 p[4];   
+    NJS_COLOR col_[4]; 
+    NJS_COLOR uv[4];   
+	
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(0);
+    
+    p2c.p = p;
+    
+    p2c.col = col_;
+    
+    p2c.tex = uv;
+    
+    p2c.num = 1;
+    
+    p[0].x = pos->x;
+    p[0].y = pos->y;
+    
+    p[1].x = 28.0f + pos->x;
+    p[1].y = pos->y;
+    
+    p[2].x = 28.0f + pos->x;
+    p[2].y = 28.0f + pos->y;
+    
+    p[3].x = pos->x;
+    p[3].y = 28.0f + pos->y;
+    
+    col_[3].color = col_[2].color = col_[1].color = col_[0].color = col;
+    
+    uv[0].tex.u = disppoint * 14;
+    uv[0].tex.v = 0; 
+    
+    uv[1].tex.u = uv[0].tex.u + 14; 
+    uv[1].tex.v = uv[0].tex.v;
+    
+    uv[2].tex.u = uv[0].tex.u + 14;
+    uv[2].tex.v = uv[0].tex.v + 14;
+    
+    uv[3].tex.u = uv[0].tex.u;
+    uv[3].tex.v = uv[0].tex.v + 14; 
+    
+    njDrawPolygon2DM(&p2c, 4, -3.0f, 0x80000060);
 }
 
 // 
