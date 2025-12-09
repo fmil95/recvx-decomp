@@ -26,7 +26,7 @@
   ],
   "libs": ["-lgcc", "-lgraph", "-ldma", "-ldev", "-lpkt", "-lpad", "-lvu0", "-lkernl", "-lc", "-lmc", "-lcdvd", "-lm", "-lssyn", "-lsdr", "-lmpeg"],
   "assembly_files": [
-      "include/recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.s"
+      "src/sce/ee/lib/crt0.s"
   ],
   "source_files": [
       "src/cri/mwlib/ee/lib/libadxe/adx_crs.c",

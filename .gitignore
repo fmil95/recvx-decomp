@@ -10,6 +10,7 @@ config/undefined_syms_auto.txt
 context
 src/ps2/veronica/prog/*.o
 src/cri/mwlib/ee/lib/libadxe/*.o
+src/sce/ee/lib/crt0.o
 elf/*.o
 elf/*.s
 elf/main.elf

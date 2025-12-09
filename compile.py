@@ -249,7 +249,7 @@ def main(args):
             "MWLibraryFiles": ""
         }
 
-        crt0_src = "include/recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.o"
+        crt0_src = "src/sce/ee/lib/crt0.o"
         crt0_dest = "elf/crt0.o"
 
         os.makedirs("elf", exist_ok=True)
@@ -275,7 +275,7 @@ def main(args):
     else:
         print(f"Compilation fail. See report.txt for more info.")
 
-    crt0_file = "include/recvx-decomp-ps2_sdk/usr/local/sce/ee/lib/crt0.o"
+    crt0_file = "src/sce/ee/lib/crt0.o"
 
     destination_directory = "elf/"
 
