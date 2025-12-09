@@ -6,9 +6,9 @@
 void bhPutModel(BH_PWORK* ewP);
 /*void DrawTreeBsc(npobj* objP, _anon10* owP, int obj_num);
 void EasyMultiDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num);
-void SimpleMultiDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num);
-void EasyDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num);
-void SimpleDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num);*/
+void SimpleMultiDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num);*/
+void EasyDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, NO_NAME_1* owP, int obj_num);
+/*void SimpleDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num);*/
 void bhCalcModel(BH_PWORK* ewP);
 void bhCalcTree(NJS_MATRIX* basP, NO_NAME_2* mlwP);
 

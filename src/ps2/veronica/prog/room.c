@@ -2,6 +2,7 @@
 #include "camera.h"
 #include "effect.h"
 #include "eneset.h"
+#include "njplus.h"
 #include "system.h"
 #include "main.h"
 

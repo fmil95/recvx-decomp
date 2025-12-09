@@ -1,6 +1,8 @@
 #include "ps2_pxlconv.h"
 #include "main.h"
 
+#include <string.h>
+
 /*unsigned char* Ps2_PXLCONV;*/
 
 // 100% matching! 

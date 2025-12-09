@@ -3,9 +3,9 @@
 
 #include "types.h"
 
-/*void Ps2SetPlane(_anon1* p, float* v0, float* v1, float* v2);*/
+void Ps2SetPlane(PS2_PLANE* p, sceVu0FVECTOR v0, sceVu0FVECTOR v1, sceVu0FVECTOR v2);
 void Ps2CalcScreenCone();
-/*float Calc_Intersection2(float* v0, float* v1, _anon1* plane);*/
+float Calc_Intersection2(sceVu0FVECTOR v0, sceVu0FVECTOR v1, PS2_PLANE* plane);
 int CalcIntersectionCone(float* ans, float* v0, float* v1);
 float Head_or_Tail(float* v);
 float Across_Plane(float* v0, float* v1);

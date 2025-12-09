@@ -6,34 +6,34 @@
 void npPlusInit();
 /*int npCollisionCheckCC(_anon4* cpa, _anon4* cpb);
 int npCollisionCheckCCEx(_anon4* cpa, _anon4* cpb, _anon1* pos);
-int npCollisionCheckSC(_anon6* sa, _anon4* cpb);
-void npDistanceP2C(_anon1* pos, _anon4* cap, _anon1* htp);
-void npDrawPlane(_anon1* ps0, _anon1* ps1, _anon1* ps2, _anon1* ps3, unsigned int argb);
-void npCalcMorphing(npobj* obj_a, npobj* obj_b, float no, int obj_n);*/
+int npCollisionCheckSC(_anon6* sa, _anon4* cpb);*/
+void npDistanceP2C(NJS_POINT3* pos, NJS_CAPSULE* cap, NJS_POINT3* htp);
+void npDrawPlane(NJS_POINT3* ps0, NJS_POINT3* ps1, NJS_POINT3* ps2, NJS_POINT3* ps3, unsigned int argb);
+void npCalcMorphing(NJS_CNK_OBJECT* obj_a, NJS_CNK_OBJECT* obj_b, float no, int obj_n);
 void npTransform(NJS_CNK_OBJECT* srcobj, NJS_CNK_OBJECT* dstobj, register float no, int ono);
-/*void npPushMdlstr(npobj* objp, int obj_n);
-void npPopMdlstr(npobj* objp, int obj_n);
-void npPushMdlstr2(npobj* objp, int obj_n);
-void npPopMdlstr2(npobj* objp, int obj_n);
-void npCnkFlatOff(npobj* objp);*/
+void npPushMdlstr(NJS_CNK_OBJECT* objp, int obj_n);
+void npPopMdlstr(NJS_CNK_OBJECT* objp, int obj_n);
+void npPushMdlstr2(NJS_CNK_OBJECT* objp, int obj_n);
+void npPopMdlstr2(NJS_CNK_OBJECT* objp, int obj_n);
+void npCnkFlatOff(NJS_CNK_OBJECT* objp);
 void npClrTranslate();
 void npSetMemory(unsigned char* memp, unsigned int size, char dat);
 void npSetMemoryL(unsigned int* memp, unsigned int size, int dat);
 void npCopyMemory(unsigned char* dst, unsigned char* src, unsigned int size);
-/*void npGetWHDSizeSub(npobj* objp, _anon1* whd);
-void npGetWHDSize(npobj* objp, _anon1* whd);
-void npSkinConvPreparation(npobj* objp);
-void npSkinConvSub(npobj* objp);
-void npSkinConvMain(npobj* objp);
-void npSkinConvert(npobj* objp, int* sknp);
-void npRetSkinConvMain(npobj* objp);
-void npRetSkinConvert(npobj* objp, int* sknp);
-unsigned int npGetMatColor(npobj* objp, int obj_n);
-void npSetAllMatColor(npobj* objp, int obj_n, unsigned int argb);
-void npChangeMatAlphaColor(npobj* objp, int obj_n, unsigned char alpha);
-void npSetAllMatAlphaColor(npobj* objp, int obj_n, unsigned char alpha);
-void npSetOffsetUV(_anon16* mdlp, short offu, short offv);
-void npSetOffsetUV2(_anon16* mdlp, short offu, short offv);*/
+void npGetWHDSizeSub(NJS_CNK_OBJECT* objp, NJS_POINT3* whd);
+void npGetWHDSize(NJS_CNK_OBJECT* objp, NJS_POINT3* whd);
+void npSkinConvPreparation(NJS_CNK_OBJECT* objp);
+void npSkinConvSub(NJS_CNK_OBJECT* objp);
+void npSkinConvMain(NJS_CNK_OBJECT* objp);
+void npSkinConvert(NJS_CNK_OBJECT* objp, int* sknp);
+void npRetSkinConvMain(NJS_CNK_OBJECT* objp);
+void npRetSkinConvert(NJS_CNK_OBJECT* objp, int* sknp);
+unsigned int npGetMatColor(NJS_CNK_OBJECT* objp, int obj_n);
+/*void npSetAllMatColor(npobj* objp, int obj_n, unsigned int argb);*/
+void npChangeMatAlphaColor(NJS_CNK_OBJECT* objp, int obj_n, unsigned char alpha);
+/*void npSetAllMatAlphaColor(npobj* objp, int obj_n, unsigned char alpha);*/
+void npSetOffsetUV(NJS_CNK_MODEL* mdlp, short offu, short offv);
+void npSetOffsetUV2(NJS_CNK_MODEL* mdlp, short offu, short offv);
 int npCopyVlist(int* dstp, int* srcp);
 void npCutSkin();
 void npInitCalcSkin(void* pwp, int obj_n, int* sknp);
