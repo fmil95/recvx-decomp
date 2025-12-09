@@ -133,112 +133,163 @@ unsigned int RoomNameSwitch(unsigned int name)
 	scePrintf("RoomNameSwitch - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c8e50
+// 100% matching! 
 void TypeWriterTextureInit()
 {
-	unsigned int dt;
-	unsigned char* datp;
-	int sz;
-	//_anon2* tw;
-	// Line 3232, Address: 0x2c8e50, Func Offset: 0
-	// Line 3233, Address: 0x2c8e60, Func Offset: 0x10
-	// Line 3237, Address: 0x2c8e6c, Func Offset: 0x1c
-	// Line 3239, Address: 0x2c8e98, Func Offset: 0x48
-	// Line 3240, Address: 0x2c8eb0, Func Offset: 0x60
-	// Line 3241, Address: 0x2c8ec8, Func Offset: 0x78
-	// Line 3243, Address: 0x2c8ecc, Func Offset: 0x7c
-	// Line 3241, Address: 0x2c8ed4, Func Offset: 0x84
-	// Line 3243, Address: 0x2c8edc, Func Offset: 0x8c
-	// Line 3244, Address: 0x2c8ee8, Func Offset: 0x98
-	// Line 3249, Address: 0x2c8ef0, Func Offset: 0xa0
-	// Line 3252, Address: 0x2c8ef8, Func Offset: 0xa8
-	// Line 3249, Address: 0x2c8f00, Func Offset: 0xb0
-	// Line 3252, Address: 0x2c8f14, Func Offset: 0xc4
-	// Line 3249, Address: 0x2c8f18, Func Offset: 0xc8
-	// Line 3252, Address: 0x2c8f24, Func Offset: 0xd4
-	// Line 3253, Address: 0x2c8f38, Func Offset: 0xe8
-	// Line 3255, Address: 0x2c8f40, Func Offset: 0xf0
-	// Line 3253, Address: 0x2c8f4c, Func Offset: 0xfc
-	// Line 3254, Address: 0x2c8f64, Func Offset: 0x114
-	// Line 3255, Address: 0x2c8f84, Func Offset: 0x134
-	// Line 3256, Address: 0x2c8f94, Func Offset: 0x144
-	// Line 3255, Address: 0x2c8f98, Func Offset: 0x148
-	// Line 3268, Address: 0x2c8fa4, Func Offset: 0x154
-	// Line 3269, Address: 0x2c8fac, Func Offset: 0x15c
-	// Line 3271, Address: 0x2c8fb0, Func Offset: 0x160
-	// Line 3273, Address: 0x2c8fb8, Func Offset: 0x168
-	// Line 3274, Address: 0x2c8fc8, Func Offset: 0x178
-	// Line 3282, Address: 0x2c8fd0, Func Offset: 0x180
-	// Line 3274, Address: 0x2c8fd4, Func Offset: 0x184
-	// Line 3281, Address: 0x2c8fe4, Func Offset: 0x194
-	// Line 3275, Address: 0x2c8fe8, Func Offset: 0x198
-	// Line 3276, Address: 0x2c8fec, Func Offset: 0x19c
-	// Line 3277, Address: 0x2c8ff0, Func Offset: 0x1a0
-	// Line 3278, Address: 0x2c8ff4, Func Offset: 0x1a4
-	// Line 3281, Address: 0x2c8ff8, Func Offset: 0x1a8
-	// Line 3283, Address: 0x2c900c, Func Offset: 0x1bc
-	// Line 3285, Address: 0x2c9014, Func Offset: 0x1c4
-	// Line 3286, Address: 0x2c9024, Func Offset: 0x1d4
-	// Line 3287, Address: 0x2c9038, Func Offset: 0x1e8
-	// Line 3292, Address: 0x2c9040, Func Offset: 0x1f0
-	// Line 3295, Address: 0x2c905c, Func Offset: 0x20c
-	// Line 3292, Address: 0x2c9060, Func Offset: 0x210
-	// Line 3295, Address: 0x2c906c, Func Offset: 0x21c
-	// Line 3296, Address: 0x2c9088, Func Offset: 0x238
-	// Line 3298, Address: 0x2c908c, Func Offset: 0x23c
-	// Line 3300, Address: 0x2c9094, Func Offset: 0x244
-	// Line 3301, Address: 0x2c90a4, Func Offset: 0x254
-	// Line 3302, Address: 0x2c90bc, Func Offset: 0x26c
-	// Line 3303, Address: 0x2c90c0, Func Offset: 0x270
-	// Line 3305, Address: 0x2c90c8, Func Offset: 0x278
-	// Line 3306, Address: 0x2c90d8, Func Offset: 0x288
-	// Line 3311, Address: 0x2c90ec, Func Offset: 0x29c
-	// Line 3314, Address: 0x2c9108, Func Offset: 0x2b8
-	// Line 3311, Address: 0x2c910c, Func Offset: 0x2bc
-	// Line 3314, Address: 0x2c9118, Func Offset: 0x2c8
-	// Line 3315, Address: 0x2c9154, Func Offset: 0x304
-	// Line 3316, Address: 0x2c9158, Func Offset: 0x308
-	// Line 3317, Address: 0x2c9160, Func Offset: 0x310
-	// Line 3319, Address: 0x2c9164, Func Offset: 0x314
-	// Line 3321, Address: 0x2c916c, Func Offset: 0x31c
-	// Line 3322, Address: 0x2c917c, Func Offset: 0x32c
-	// Line 3323, Address: 0x2c9190, Func Offset: 0x340
-	// Line 3328, Address: 0x2c9198, Func Offset: 0x348
-	// Line 3331, Address: 0x2c91b4, Func Offset: 0x364
-	// Line 3328, Address: 0x2c91b8, Func Offset: 0x368
-	// Line 3331, Address: 0x2c91c4, Func Offset: 0x374
-	// Line 3332, Address: 0x2c91e0, Func Offset: 0x390
-	// Line 3333, Address: 0x2c91e8, Func Offset: 0x398
-	// Line 3332, Address: 0x2c91ec, Func Offset: 0x39c
-	// Line 3335, Address: 0x2c9204, Func Offset: 0x3b4
-	// Line 3337, Address: 0x2c920c, Func Offset: 0x3bc
-	// Line 3338, Address: 0x2c922c, Func Offset: 0x3dc
-	// Line 3339, Address: 0x2c9230, Func Offset: 0x3e0
-	// Line 3338, Address: 0x2c923c, Func Offset: 0x3ec
-	// Line 3339, Address: 0x2c9240, Func Offset: 0x3f0
-	// Line 3342, Address: 0x2c9248, Func Offset: 0x3f8
-	// Line 3346, Address: 0x2c9270, Func Offset: 0x420
-	// Line 3347, Address: 0x2c9280, Func Offset: 0x430
-	// Line 3349, Address: 0x2c9294, Func Offset: 0x444
-	// Line 3351, Address: 0x2c929c, Func Offset: 0x44c
-	// Line 3355, Address: 0x2c92a8, Func Offset: 0x458
-	// Line 3356, Address: 0x2c92c0, Func Offset: 0x470
-	// Line 3357, Address: 0x2c92c4, Func Offset: 0x474
-	// Line 3359, Address: 0x2c92cc, Func Offset: 0x47c
-	// Line 3361, Address: 0x2c92d4, Func Offset: 0x484
-	// Line 3360, Address: 0x2c92d8, Func Offset: 0x488
-	// Line 3361, Address: 0x2c92dc, Func Offset: 0x48c
-	// Line 3362, Address: 0x2c92e0, Func Offset: 0x490
-	// Line 3366, Address: 0x2c9300, Func Offset: 0x4b0
-	// Line 3367, Address: 0x2c9304, Func Offset: 0x4b4
-	// Line 3369, Address: 0x2c930c, Func Offset: 0x4bc
-	// Line 3370, Address: 0x2c9314, Func Offset: 0x4c4
-	// Line 3371, Address: 0x2c9324, Func Offset: 0x4d4
-	// Line 3372, Address: 0x2c9330, Func Offset: 0x4e0
-	// Line 3375, Address: 0x2c9348, Func Offset: 0x4f8
-	// Func End, Address: 0x2c935c, Func Offset: 0x50c
-	scePrintf("TypeWriterTextureInit - UNIMPLEMENTED!\n");
+    TYPEWRITER_WORK* tw; 
+    int sz;              
+    unsigned char* datp; 
+    unsigned int dt;     
+    
+    tw = sys->typ_exp;
+    
+    switch (tw->mode_00)
+    {
+    case 0:
+        sys->sbs_sp = sys->memp;
+        
+        if ((sys->ss_flg & 0x200))
+        {
+            sys->tk_flg |= 0x400000;
+            
+            sz = GetIsoFileSize("sysmes.ald");
+            
+            if (sz != 0)
+            {
+                sys->memp = (unsigned char*)((unsigned int)(sys->memp + 63) & ~0x3F);
+                
+                RequestReadIsoFile("sysmes.ald", sys->memp);
+                
+                sys->mes_ip = (unsigned int*)sys->memp;
+                
+                sys->memp += sz;
+                
+                sys->doordp = bhGetFreeMemory(172032, 32);
+                
+                tw->mode_00 = 1;
+            }
+        }
+        else 
+        {
+            tw->mode_00 = 4;
+        }
+      
+        break;
+    case 1:
+        if (GetReadFileStatus() == 0)
+        {
+            datp = (unsigned char*)sys->mes_ip;
+            
+            dt = *sys->mes_ip; 
+            
+            datp += 4; 
+            
+            sys->mes_ip = (unsigned int*)datp; 
+            
+            datp += dt; 
+            
+            sys->mes_sp = (unsigned int*)(datp + 4);
+            
+            tw->mode_00 = 2;
+        }
+        
+        break;
+    case 2:
+        if ((GetReadFileStatus() == 0) && (GetInsideFileSize(sys->sys_partid, 1) != 0))
+        {
+            sys->memp = (unsigned char*)((unsigned int)(sys->memp + 63) & ~0x3F);
+            
+            RequestReadInsideFile(sys->sys_partid, 1, sys->memp);
+            
+            tw->mode_00 = 3;
+        }
+        
+        break;
+    case 3:
+        if (GetReadFileStatus() == 0)
+        {
+            bhSetFontTexture(sys->memp);
+            
+            tw->mode_00 = 4;
+        }
+        
+        break;
+    case 4:
+        if (!(sys->ss_flg & 0x200))
+        {
+            if (GetReadFileStatus() != 1)
+            {
+                sys->memp = (unsigned char*)((unsigned int)(sys->memp + 63) & ~0x3F);
+                
+                if (rom->mdl.texP != NULL)
+                {
+                    sys->memp = (unsigned char*)bhCopyTexmem2MainmemSub(rom->mdl.texP, (char*)sys->memp);
+                }
+                
+                tw->mode_00 = 5;
+            }
+        }
+        else
+        {
+            tw->mode_00 = 5;
+        }
+        
+        break;
+    case 5:
+        if ((GetReadFileStatus() == 0) && (GetInsideFileSize(sys->itm_partid, 144) != 0))
+        {
+            sys->memp = (unsigned char*)((unsigned int)(sys->memp + 63) & ~0x3F);
+            
+            RequestReadInsideFile(sys->itm_partid, 144, sys->memp);
+            
+            sys->subtxp = sys->memp;
+            
+            tw->mode_00 = 6;
+        }
+        
+        break;
+    case 6:
+        if ((!(sys->cb_flg & 0x2)) && (!(sys->ts_flg & 0x80)))
+        {
+            sys->ts_flg |= 0x80;
+            
+            njSetBackColor(0x00000000, 0x00000000, 0x00000000);
+        }
+        
+        if ((GetReadFileStatus() == 0) && (!(sys->cb_flg & 0x2)))
+        {
+            if ((!(sys->ss_flg & 0x200)) && (rom->mdl.texP != NULL))
+            {
+                njReleaseTexture(rom->mdl.texP);
+                
+                bhGarbageTexture(NULL, 0);
+            }
+            
+            njMemCopy4(&palbuf[3072], palbuf, 1024);
+            
+            tw->mode_00 = 7;
+        }
+        
+        break;
+    case 7:
+        njSetPaletteMode(6);
+        
+        tw->twtx_list.textures = (void*)tw;
+        
+        tw->twtx_list.nbTexture = 3;
+        
+        bhSetMemPvpTexture(&tw->twtx_list, sys->subtxp, 0);
+        
+        tw->mode_00 = 8;
+        break;
+    case 8:
+        tw->mode_00 = 9;
+        
+        sys->typ_md0 = 1;
+        sys->typ_md1 = 0;
+        
+        njSetTexture(&sys->ef_tlist);
+    }
 }
 
 // 100% matching!
