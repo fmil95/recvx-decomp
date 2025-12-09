@@ -288,14 +288,6 @@ def main(args):
     if os.path.exists(crt0_file):
         shutil.move(crt0_file, destination_directory)
 
-    for source in sources:
-        object_file = source.replace(".c", ".o")
-
-        if os.path.exists(object_file):
-            destination = os.path.join("elf", os.path.basename(object_file))
-
-            shutil.move(object_file, destination)
-
 
 if __name__ == "__main__":
     # Argument parser setup
