@@ -158,8 +158,8 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
         object_file = source.replace(".c", ".o")
         crt0_dest = os.path.join("elf", "crt0.o")
         objects.append(crt0_dest)
-        objects.append("elf/ps2_vu0.o")
-        objects.append("elf/ps2_vu1.o")
+        objects.append("vsm/ps2_vu0.o")
+        objects.append("vsm/ps2_vu1.o")
         objects.append(object_file)
 
         compile_command = [compiler] + local_flags + ['-c', source, '-o', object_file] + \
