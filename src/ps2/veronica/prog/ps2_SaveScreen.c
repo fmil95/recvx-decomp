@@ -155,32 +155,42 @@ void DispMessageSelect(char cSelectMes)
     bhFontScaleSet(1.0f, 1.0f, 1.0f);
 }
 
-/*// 
-// Start address: 0x26ef80
-void DispTexture(tagSAVE_SCREEN* pSave)
+// 98.95% matching
+void DispTexture(SAVE_SCREEN* pSave)
 {
-	int DispSavePortCard;
-	// Line 371, Address: 0x26ef80, Func Offset: 0
-	// Line 413, Address: 0x26ef8c, Func Offset: 0xc
-	// Line 416, Address: 0x26efb8, Func Offset: 0x38
-	// Line 417, Address: 0x26efc0, Func Offset: 0x40
-	// Line 420, Address: 0x26efc8, Func Offset: 0x48
-	// Line 421, Address: 0x26efe8, Func Offset: 0x68
-	// Line 424, Address: 0x26eff0, Func Offset: 0x70
-	// Line 425, Address: 0x26f010, Func Offset: 0x90
-	// Line 428, Address: 0x26f018, Func Offset: 0x98
-	// Line 429, Address: 0x26f020, Func Offset: 0xa0
-	// Line 431, Address: 0x26f03c, Func Offset: 0xbc
-	// Line 432, Address: 0x26f05c, Func Offset: 0xdc
-	// Line 435, Address: 0x26f064, Func Offset: 0xe4
-	// Line 436, Address: 0x26f06c, Func Offset: 0xec
-	// Line 437, Address: 0x26f088, Func Offset: 0x108
-	// Line 440, Address: 0x26f090, Func Offset: 0x110
-	// Line 441, Address: 0x26f0ac, Func Offset: 0x12c
-	// Line 444, Address: 0x26f0b4, Func Offset: 0x134
-	// Line 451, Address: 0x26f0d0, Func Offset: 0x150
-	// Func End, Address: 0x26f0e0, Func Offset: 0x160
-}*/
+    int DispSavePortCard;
+    
+    switch (pSave->cCgFlag) 
+    {
+    case 0:
+        CheckDispMemoryCard(pSave);
+        break;
+    case 1:
+        DispUpDownCursol(254.0f, 279.0f, pSave->sSelectCur + 2);
+        break;
+    case 2:
+        DispUpDownCursol(256.0f, 359.0f, pSave->sSelectCur + 2);
+        break;
+    case 3:
+        DispSavePortCard = GetMemoryCardCurrentPort(pSave->pMcState);
+        
+        mcDisplayFileSelectWindow(pSave->pSelectFileWindow, 60.0f, 108.0f, DispSavePortCard);
+        
+        DispUpDownCursol(256.0f, 359.0f, pSave->sSelectCur + 2);
+        break;
+    case 4:
+        DispSavePortCard = GetMemoryCardCurrentPort(pSave->pMcState);
+        
+        mcDisplayFileSelectWindow(pSave->pSelectFileWindow, 60.0f, 108.f, DispSavePortCard);
+        break;
+    case 5:
+        DispUpDownCursol(254.0f, 205.0f, pSave->sSelectCur + 2);
+        break;
+    case 6:
+        DispUpDownCursol(254.0f, 227.0f, pSave->sSelectCur + 2);
+        break;
+    }
+}
 
 // 
 // Start address: 0x26f0e0
