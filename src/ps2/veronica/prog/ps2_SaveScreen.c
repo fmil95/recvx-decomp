@@ -296,19 +296,18 @@ void ExecuteStateSaveScreenAwarenessCard(tagSAVE_SCREEN* pSave)
 	// Line 669, Address: 0x26f58c, Func Offset: 0xfc
 	// Line 674, Address: 0x26f594, Func Offset: 0x104
 	// Func End, Address: 0x26f5a8, Func Offset: 0x118
-}
+}*/
 
-// 
-// Start address: 0x26f5b0
-void SetStateSaveScreenErrLostCard(tagSAVE_SCREEN* pSave)
+// 100% matching! 
+void SetStateSaveScreenErrLostCard(SAVE_SCREEN* pSave)
 {
-	// Line 691, Address: 0x26f5b0, Func Offset: 0
-	// Line 693, Address: 0x26f5b8, Func Offset: 0x8
-	// Line 696, Address: 0x26f5bc, Func Offset: 0xc
-	// Func End, Address: 0x26f5c4, Func Offset: 0x14
+    pSave->ulState = 1;
+    
+    pSave->cMesFlag = 1;
+    pSave->cCgFlag = 0;
 }
 
-// 
+/*// 
 // Start address: 0x26f5d0
 void ExecuteStateSaveScreenErrLostCard(tagSAVE_SCREEN* pSave)
 {
