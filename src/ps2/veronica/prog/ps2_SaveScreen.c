@@ -1,4 +1,5 @@
 #include "ps2_SaveScreen.h"
+#include "message.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard.h"
 #include "main.h"
@@ -73,70 +74,88 @@ SAVE_SCREEN* CreateSaveScreen(SAVE_SCREEN* pSave, void* vpWorkPtrSys)
     return pSave;
 }
 
-/*// 
-// Start address: 0x26e990
+// 96.80% matching
 void DispMessageSelect(char cSelectMes)
 {
-	// Line 256, Address: 0x26e990, Func Offset: 0
-	// Line 151, Address: 0x26e99c, Func Offset: 0xc
-	// Line 256, Address: 0x26e9a0, Func Offset: 0x10
-	// Line 151, Address: 0x26e9a4, Func Offset: 0x14
-	// Line 256, Address: 0x26e9a8, Func Offset: 0x18
-	// Line 151, Address: 0x26e9ac, Func Offset: 0x1c
-	// Line 256, Address: 0x26e9b0, Func Offset: 0x20
-	// Line 258, Address: 0x26e9bc, Func Offset: 0x2c
-	// Line 262, Address: 0x26e9ec, Func Offset: 0x5c
-	// Line 263, Address: 0x26e9f4, Func Offset: 0x64
-	// Line 267, Address: 0x26e9fc, Func Offset: 0x6c
-	// Line 269, Address: 0x26ea2c, Func Offset: 0x9c
-	// Line 270, Address: 0x26ea34, Func Offset: 0xa4
-	// Line 273, Address: 0x26ea3c, Func Offset: 0xac
-	// Line 274, Address: 0x26ea6c, Func Offset: 0xdc
-	// Line 277, Address: 0x26ea74, Func Offset: 0xe4
-	// Line 278, Address: 0x26eaa4, Func Offset: 0x114
-	// Line 281, Address: 0x26eaac, Func Offset: 0x11c
-	// Line 282, Address: 0x26eadc, Func Offset: 0x14c
-	// Line 283, Address: 0x26eb0c, Func Offset: 0x17c
-	// Line 286, Address: 0x26eb14, Func Offset: 0x184
-	// Line 287, Address: 0x26eb44, Func Offset: 0x1b4
-	// Line 290, Address: 0x26eb4c, Func Offset: 0x1bc
-	// Line 291, Address: 0x26eb7c, Func Offset: 0x1ec
-	// Line 294, Address: 0x26eb84, Func Offset: 0x1f4
-	// Line 295, Address: 0x26ebb8, Func Offset: 0x228
-	// Line 296, Address: 0x26ebe8, Func Offset: 0x258
-	// Line 299, Address: 0x26ebf0, Func Offset: 0x260
-	// Line 300, Address: 0x26ec20, Func Offset: 0x290
-	// Line 303, Address: 0x26ec28, Func Offset: 0x298
-	// Line 304, Address: 0x26ec5c, Func Offset: 0x2cc
-	// Line 305, Address: 0x26ec8c, Func Offset: 0x2fc
-	// Line 308, Address: 0x26ec94, Func Offset: 0x304
-	// Line 309, Address: 0x26ecc8, Func Offset: 0x338
-	// Line 310, Address: 0x26ecf8, Func Offset: 0x368
-	// Line 313, Address: 0x26ed00, Func Offset: 0x370
-	// Line 314, Address: 0x26ed34, Func Offset: 0x3a4
-	// Line 317, Address: 0x26ed3c, Func Offset: 0x3ac
-	// Line 318, Address: 0x26ed70, Func Offset: 0x3e0
-	// Line 321, Address: 0x26ed78, Func Offset: 0x3e8
-	// Line 322, Address: 0x26eda8, Func Offset: 0x418
-	// Line 325, Address: 0x26edb0, Func Offset: 0x420
-	// Line 326, Address: 0x26ede0, Func Offset: 0x450
-	// Line 327, Address: 0x26ee10, Func Offset: 0x480
-	// Line 330, Address: 0x26ee18, Func Offset: 0x488
-	// Line 331, Address: 0x26ee48, Func Offset: 0x4b8
-	// Line 334, Address: 0x26ee50, Func Offset: 0x4c0
-	// Line 335, Address: 0x26ee80, Func Offset: 0x4f0
-	// Line 336, Address: 0x26eeb0, Func Offset: 0x520
-	// Line 339, Address: 0x26eeb8, Func Offset: 0x528
-	// Line 340, Address: 0x26eee8, Func Offset: 0x558
-	// Line 343, Address: 0x26eef0, Func Offset: 0x560
-	// Line 344, Address: 0x26ef20, Func Offset: 0x590
-	// Line 347, Address: 0x26ef28, Func Offset: 0x598
-	// Line 354, Address: 0x26ef58, Func Offset: 0x5c8
-	// Line 356, Address: 0x26ef70, Func Offset: 0x5e0
-	// Func End, Address: 0x26ef80, Func Offset: 0x5f0
+    bhFontScaleSet(0.71f, 0.71f, 0.75f);
+
+    switch (cSelectMes) 
+    {
+    case 0:
+        SetDispSelectMessage();
+        break;
+    case 1:
+    case 2:
+        bhDispMessage(90.0f, 194.0f, -0.1f, 1, 475, 3, 0);
+        
+        SetDispSelectMessage();
+        break;
+    case 3:
+        bhDispMessage(90.0f, 194.0f, -0.1f, 1, 471, 0, 0);
+        break;
+    case 4:
+        bhDispMessage(90.0f, 194.0f, -0.1f, 1, 476, 3, 0);
+        break;
+    case 5:
+        bhDispMessage(90.0f, 120.0f, -0.1f, 1, 477, 0, 0);
+        bhDispMessage(290.0f, 280.0f, -0.1f, 1, 466, 0, 0);
+        break;
+    case 6:
+        bhDispMessage(90.0f, 194.0f, -0.1f, 1, 478, 0, 0);
+        break;
+    case 7:
+        bhDispMessage(206.0f, 224.0f, -0.1f, 1, 480, 3, 0);
+        break;
+    case 8:
+        bhDispMessage(240.0f, 311.0f, -0.1f, 1, 253, 3, 0);
+        bhDispMessage(290.0f, 360.0f, -0.1f, 1, 466, 3, 0);
+        break;
+    case 9:
+        bhDispMessage(240.0f, 224.0f, -0.1f, 1, 461, 3, 0);
+        break;
+    case 10:
+        bhDispMessage(240.0f, 311.0f, -0.1f, 1, 483, 0, 0);
+        bhDispMessage(290.0f, 360.0f, -0.1f, 1, 466, 0, 0);
+        break;
+    case 11:
+        bhDispMessage(210.0f, 311.0f, -0.1f, 1, 482, 0, 0);
+        bhDispMessage(290.0f, 360.0f, -0.1f, 1, 466, 0, 0);
+        break;
+    case 12:
+        bhDispMessage(90.0f, 311.0f, -0.1f, 1, 484, 0, 0);
+        break;
+    case 13:
+        bhDispMessage(236.0f, 311.0f, -0.1f, 1, 485, 0, 0);
+        break;
+    case 14:
+        bhDispMessage(226.0f, 224.0f, -0.1f, 1, 486, 3, 0);
+        break;
+    case 15:
+        bhDispMessage(90.0f, 120.0f, -0.1f, 1, 487, 0, 0);
+        bhDispMessage(290.0f, 204.0f, -0.1f, 1, 466, 0, 0);
+        break;
+    case 16:
+        bhDispMessage(90.0f, 180.0f, -0.1f, 1, 488, 0, 0);
+        break;
+    case 17:
+        bhDispMessage(200.0f, 180.0f, -0.1f, 1, 481, 0, 0);
+        bhDispMessage(290.0f, 227.0f, -0.1f, 1, 466, 0, 0);
+        break;
+    case 18:
+        bhDispMessage(230.0f, 224.0f, -0.1f, 1, 489, 0, 0);
+        break;
+    case 19:
+        bhDispMessage(208.0f, 224.0f, -0.1f, 1, 490, 3, 0);
+        break;
+    case 20:
+        bhDispMessage(180.0f, 224.0f, -0.1f, 1, 479, 0, 0);
+        break;
+    }
+    
+    bhFontScaleSet(1.0f, 1.0f, 1.0f);
 }
 
-// 
+/*// 
 // Start address: 0x26ef80
 void DispTexture(tagSAVE_SCREEN* pSave)
 {
