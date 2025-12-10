@@ -1,4 +1,7 @@
 #include "ps2_SaveScreen.h"
+#include "ps2_McSaveFile.h"
+#include "ps2_MemoryCard.h"
+#include "main.h"
 
 /*char cIconSys[9];
 char cBioCvIco[11];
@@ -27,36 +30,47 @@ tagSAVEFILE SaveFile;
 tagCONFIGFILE ConfigFile;
 _anon11* sys;*/
 
-// 
-// Start address: 0x26e8a0
-SAVE_SCREEN* CreateSaveScreen(SAVE_SCREEN* pSave, void* vpWorkPtrSys)
+// 100% matching! 
+SAVE_SCREEN* CreateSaveScreen(SAVE_SCREEN* pSave, void* vpWorkPtrSys) 
 {
-	// Line 110, Address: 0x26e8a0, Func Offset: 0
-	// Line 111, Address: 0x26e8b0, Func Offset: 0x10
-	// Line 112, Address: 0x26e8b4, Func Offset: 0x14
-	// Line 113, Address: 0x26e8b8, Func Offset: 0x18
-	// Line 114, Address: 0x26e8bc, Func Offset: 0x1c
-	// Line 115, Address: 0x26e8c0, Func Offset: 0x20
-	// Line 116, Address: 0x26e8c4, Func Offset: 0x24
-	// Line 117, Address: 0x26e8c8, Func Offset: 0x28
-	// Line 118, Address: 0x26e8cc, Func Offset: 0x2c
-	// Line 119, Address: 0x26e8d0, Func Offset: 0x30
-	// Line 120, Address: 0x26e8d4, Func Offset: 0x34
-	// Line 121, Address: 0x26e8d8, Func Offset: 0x38
-	// Line 122, Address: 0x26e8dc, Func Offset: 0x3c
-	// Line 123, Address: 0x26e8e0, Func Offset: 0x40
-	// Line 124, Address: 0x26e8e8, Func Offset: 0x48
-	// Line 125, Address: 0x26e8fc, Func Offset: 0x5c
-	// Line 126, Address: 0x26e90c, Func Offset: 0x6c
-	// Line 127, Address: 0x26e91c, Func Offset: 0x7c
-	// Line 128, Address: 0x26e938, Func Offset: 0x98
-	// Line 129, Address: 0x26e948, Func Offset: 0xa8
-	// Line 130, Address: 0x26e960, Func Offset: 0xc0
-	// Line 133, Address: 0x26e964, Func Offset: 0xc4
-	// Line 135, Address: 0x26e96c, Func Offset: 0xcc
-	// Line 136, Address: 0x26e970, Func Offset: 0xd0
-	// Func End, Address: 0x26e984, Func Offset: 0xe4
-	scePrintf("CreateSaveScreen - UNIMPLEMENTED!\n");
+    pSave->ulState = 0;
+    pSave->ulSubState = 0;
+    
+    pSave->ulMemCheckCountTimer = 0;
+    
+    pSave->ulFileSize = 0;
+    
+    pSave->lCardState = 0;
+    
+    pSave->sCursorX = 0;
+    pSave->sCursorY = 0;
+    
+    pSave->sSelectCur = 0;
+    
+    pSave->usExitFlag = 0;
+    
+    pSave->usSaveEnd = 0;
+    
+    pSave->usLoopCount = 0;
+    
+    pSave->cMesFlag = 0;
+    pSave->cCgFlag = 0;
+    
+    pSave->pConfigFile = mcCreateConfigInit(&ConfigFile);
+    pSave->pSaveFile = mcCreateSaveFileInit(&SaveFile);
+    
+    pSave->pMcState = CreateMemoryCard(&McState);
+    
+    pSave->pIconInfo = mcCreateIconInit(&IconInfo, cpNameList, 1);
+    
+    pSave->pSelectFileInfo = mcSelectFileInfoInit(SelectFileInfo);
+    pSave->pSelectFileWindow = mcCreateFileSelectWindow(&SelectFileWindow, pSave->pSelectFileInfo, 15);
+    
+    pSave->vpReadBuffer = vpWorkPtrSys;
+    
+    CheckMemoryCardChangeConnectTypeAll(pSave->pMcState);
+    
+    return pSave;
 }
 
 /*// 
