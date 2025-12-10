@@ -250,18 +250,18 @@ int ExecuteSaveScreen(SAVE_SCREEN* pSave)
 	scePrintf("ExecuteSaveScreen - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x26f470
-void SetStateSaveScreenAwarenessCard(tagSAVE_SCREEN* pSave)
+// 100% matching! 
+void SetStateSaveScreenAwarenessCard(SAVE_SCREEN* pSave) 
 {
-	// Line 609, Address: 0x26f470, Func Offset: 0
-	// Line 611, Address: 0x26f474, Func Offset: 0x4
-	// Line 613, Address: 0x26f478, Func Offset: 0x8
-	// Line 615, Address: 0x26f47c, Func Offset: 0xc
-	// Func End, Address: 0x26f488, Func Offset: 0x18
+    pSave->ulState = 0;
+    pSave->ulSubState = 0;
+    
+    pSave->usLoopCount = 0;
+    
+    SetCheckMcFlag(pSave->pMcState, 0);
 }
 
-// 
+/*// 
 // Start address: 0x26f490
 void ExecuteStateSaveScreenAwarenessCard(tagSAVE_SCREEN* pSave)
 {
