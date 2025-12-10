@@ -453,13 +453,10 @@ Sint32	njReleaseTexture(NJS_TEXLIST *texlist)
     ring_check();
 }
 
-// 
-// Start address: 0x2e23b0
+// 100% matching! 
 Uint32	njCalcTexture(Uint32 flag)
 {
-	// Line 628, Address: 0x2e23b0, Func Offset: 0
-	// Func End, Address: 0x2e23b8, Func Offset: 0x8
-	scePrintf("njCalcTexture - UNIMPLEMENTED!\n");
+    return 1048576;
 }
 
 // 100% matching!
