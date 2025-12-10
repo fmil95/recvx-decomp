@@ -46,47 +46,6 @@ unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648];
 /*<unknown fundamental type (0xa510)> test_tag[1400];
 _anon24 db;
 
-void initAll();
-void readMpeg();
-int readBufEndGet(_anon16* b, int size);
-void setImageTag(unsigned int* tags, void* image);
-void vbrank_draw();
-void videoDecMain(_anon17* vd);
-int decBs0(_anon17* vd);
-int copy2area(unsigned char* pd0, int d0, unsigned char* pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1);
-int audioDecSendToIOP(_anon12* ad);
-void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, _anon12* ad, int pos);
-int sendToIOP2area(int pd0, int d0, int pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1);
-int sendToIOP(int dst, unsigned char* src, int size);
-void changeInputVolume(unsigned int val);
-void setD3_CHCR(unsigned int val);
-void setD4_CHCR(unsigned int val);
-void scTag2(_anon22* q, void* addr, unsigned int id, unsigned int qwc);
-int viBufReset(_anon7* f);
-void viBufBeginPut(_anon7* f, unsigned char** ptr0, int* len0, unsigned char** ptr1, int* len1);
-void viBufEndPut(_anon7* f, int size);
-int viBufModifyPts(_anon7* f, _anon8* new_ts);
-int IsPtsInRegion(int tgt, int pos, int len, int size);
-int viBufPutTs(_anon7* f, _anon8* ts);
-void voBufIncCount(_anon13* f);
-void audioDecResume(_anon12* ad);
-int getFIFOindex(_anon7* f, void* addr);
-int videoDecPutTs(_anon17* vd, long pts_val, long dts_val, unsigned char* start, int len);
-void audioDecBeginPut(_anon12* ad, unsigned char** ptr0, int* len0, unsigned char** ptr1, int* len1);
-void termAll();
-int viBufDelete(_anon7* f);
-int videoDecDelete(_anon17* vd);
-int audioDecDelete();
-int GetAllWorkMemory();
-void OutPutCdErrorCode(unsigned int* err);
-int videoCallback(_anon11* str, void* data);
-int pcmCallback(_anon11* str, void* data);
-int mpegError(_anon1* cberror);
-int mpegNodata();
-int mpegStopDMA();
-int mpegRestartDMA();
-int mpegTS(_anon5* cbts);
-
 // 
 // Start address: 0x2eb590
 void initAll()

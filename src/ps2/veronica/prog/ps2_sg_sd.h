@@ -3,6 +3,47 @@
 
 #include "types.h"
 
+SDE_ERR	sdBankDownload( SDMEMBLK handle, const SDE_DATA_TYPE bank_type, const Sint8 bank_num);
+SDE_ERR	sdDrvInit( SDMEMBLK handle);
+SDE_ERR	sdGddaSetPan( const Sint8 leftPan, const Sint8 right_pan);
+SDE_ERR	sdLibInit( Void *wrk_ptr, Sint32 mem_blk_handle_max, Sint32 second_host_cmd_max);
+SDE_ERR	sdMemBlkCreate( SDMEMBLK *handle);
+SDE_ERR	sdMemBlkDestroy( SDMEMBLK handle);
+SDE_ERR	sdMemBlkSetPrm( SDMEMBLK handle, const Void *src_blk_ptr, const Sint32 src_blk_sz, const SD_MEMBLK_CALLBACK_FUNC callback_func, const Void *callback_first_arg);
+SDE_ERR	sdMidiClosePort( SDMIDI handle);
+SDE_ERR	sdMidiGetStat( SDMIDI handle, SDS_MIDI_STAT *midi_stat);
+SDE_ERR	sdMidiOpenPort( SDMIDI *handle);
+SDE_ERR	sdMidiPlay( SDMIDI handle, const Sint8 bank_num, const Sint8 data_num, const Sint8 priority);
+/*SDE_ERR sdMidiSetFxLev();
+SDE_ERR sdMidiSetPan(SDS_PORT_REF** handle, char pan, int fade_time);
+SDE_ERR sdMidiSetPitch(SDS_PORT_REF** handle, short pitch, int fade_time);
+SDE_ERR sdMidiSetSpeed();
+SDE_ERR sdMidiSetVol(SDS_PORT_REF** handle, char vol, int fade_time);*/
+SDE_ERR	sdMidiStop( SDMIDI handle);
+SDE_ERR	sdShotClosePort( SDSHOT handle);
+SDE_ERR	sdShotGetStat( SDSHOT handle, SDS_SHOT_STAT *shot_stat);
+SDE_ERR	sdShotOpenPort( SDSHOT *handle);
+/*SDE_ERR sdShotPlay(SDS_PORT_REF** handle, char bank_num, char data_num, char priority);
+SDE_ERR sdShotSetFxLev();
+SDE_ERR sdShotSetPan(SDS_PORT_REF** handle, char pan, int fade_time);*/
+unsigned char Panpot_Control(SND_WORK* set_snd_work);
+/*SDE_ERR sdShotSetPitch(SDS_PORT_REF** handle, short pitch, int fade_time);*/
+short Pitch_Control(SND_WORK* set_snd_work);
+/*SDE_ERR sdShotSetVol(SDS_PORT_REF** handle, char vol, int fade_time);*/
+unsigned char Volume_Control(SND_WORK* set_snd_work);
+SDE_ERR	sdShotStop( SDSHOT handle);
+SDE_ERR	sdSndClearFxPrg( Void);
+SDE_ERR	sdSndSetFxPrg( const Sint8 new_fx_prg_num, const Sint8 new_fx_out_num);
+SDE_ERR	sdSndSetMasterVol( const Sint8 vol);
+SDE_ERR	sdSndSetPanMode( const SDE_PAN_MODE pan_mode);
+SDE_ERR	sdSndStopAll( Void);
+int sndr_trans_func();
+SDE_ERR	sdSysServer( Void);
+SDE_ERR	sdSysSetSlotMax(const Sint32 midi_slot_max, const Sint32 shot_slot_max, const Sint32 pstm_slot_max);
+SDE_ERR	sdMemBlkSetTransferMode( SDE_MEMBLK_TRANSFER_MODE transfer_mode);
+SDE_ERR	sdMultiUnitDownload( SDMEMBLK handle);
+SDE_ERR	sdSysFinish( Void);
+unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned int size, unsigned int mode, unsigned int flag);
 void CpEEWait(int val);
 
 /*typedef struct SDS_PORT_REF;

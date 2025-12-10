@@ -47,50 +47,7 @@ SND_WORK __snd_work__[40];
 SDHANDLE* __snd_handle__[40];
 /*int AdxTInfoBack[10][4];
 unsigned int old_trans_size;
-unsigned int ee_trans_type;
-
-SDE_ERR sdBankDownload(SDS_MEMBLK* handle, SDE_DATA_TYPE bank_type, char bank_num);
-SDE_ERR sdDrvInit();
-SDE_ERR sdGddaSetPan();
-SDE_ERR sdLibInit();
-SDE_ERR sdMemBlkCreate(SDS_MEMBLK** handle);
-SDE_ERR sdMemBlkDestroy(SDS_MEMBLK* handle);
-SDE_ERR sdMemBlkSetPrm(SDS_MEMBLK* handle, void* src_blk_ptr, int src_blk_sz, void(*callback_func)(void*), void* callback_first_arg);
-SDE_ERR sdMidiClosePort(SDS_PORT_REF** handle);
-SDE_ERR sdMidiGetStat(SDS_PORT_REF** handle, SDS_MIDI_STAT* midi_stat);
-SDE_ERR sdMidiOpenPort(SDS_PORT_REF*** handle);
-SDE_ERR sdMidiPlay(SDS_PORT_REF** handle, char bank_num, char data_num);
-SDE_ERR sdMidiSetFxLev();
-SDE_ERR sdMidiSetPan(SDS_PORT_REF** handle, char pan, int fade_time);
-SDE_ERR sdMidiSetPitch(SDS_PORT_REF** handle, short pitch, int fade_time);
-SDE_ERR sdMidiSetSpeed();
-SDE_ERR sdMidiSetVol(SDS_PORT_REF** handle, char vol, int fade_time);
-SDE_ERR sdMidiStop(SDS_PORT_REF** handle);
-SDE_ERR sdShotClosePort(SDS_PORT_REF** handle);
-SDE_ERR sdShotGetStat(SDS_PORT_REF** handle, SDS_SHOT_STAT* shot_stat);
-SDE_ERR sdShotOpenPort(SDS_PORT_REF*** handle);
-SDE_ERR sdShotPlay(SDS_PORT_REF** handle, char bank_num, char data_num, char priority);
-SDE_ERR sdShotSetFxLev();
-SDE_ERR sdShotSetPan(SDS_PORT_REF** handle, char pan, int fade_time);
-unsigned char Panpot_Control(_anon0* set_snd_work);
-SDE_ERR sdShotSetPitch(SDS_PORT_REF** handle, short pitch, int fade_time);
-short Pitch_Control(_anon0* set_snd_work);
-SDE_ERR sdShotSetVol(SDS_PORT_REF** handle, char vol, int fade_time);
-unsigned char Volume_Control(_anon0* set_snd_work);
-SDE_ERR sdShotStop(SDS_PORT_REF** handle);
-SDE_ERR sdSndClearFxPrg();
-SDE_ERR sdSndSetFxPrg();
-SDE_ERR sdSndSetMasterVol(char vol);
-SDE_ERR sdSndSetPanMode(SDE_PAN_MODE pan_mode);
-SDE_ERR sdSndStopAll();
-int sndr_trans_func();
-SDE_ERR sdSysServer();
-SDE_ERR sdSysSetSlotMax(int shot_slot_max, int pstm_slot_max);
-SDE_ERR sdMemBlkSetTransferMode();
-SDE_ERR sdMultiUnitDownload(SDS_MEMBLK* handle);
-SDE_ERR sdSysFinish();*/
-unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned int size, unsigned int mode, unsigned int flag);
-/*void CpEEWait(int val);*/
+unsigned int ee_trans_type;*/
 
 // 100% matching! 
 SDE_ERR	sdBankDownload( SDMEMBLK handle, const SDE_DATA_TYPE bank_type, const Sint8 bank_num)

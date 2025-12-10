@@ -1,5 +1,6 @@
 #include "player.h"
 #include "Motion.h"
+#include "eneset.h"
 #include "flag.h"
 #include "njplus.h"
 #include "pwksub.h"

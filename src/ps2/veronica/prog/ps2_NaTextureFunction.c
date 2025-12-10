@@ -31,38 +31,7 @@ int Ps2_3DEx_trans;
 unsigned int Ps2_quad_color;
 int Ps2_quad_trans;
 unsigned int Ps2_current_texno_bk;
-_anon2* Ps2_current_texlist_bk;
-
-void Ps2MemCopy4(void* vpDst, void* vpSrc, int lNum);
-void njInitTextureBuffer();
-void njInitTexture(_anon1* addr, unsigned int n);
-void njExitTexture();
-int SearchNumber(unsigned int global_index, unsigned int bank);
-int SearchNullNumber();
-int njLoadTexture(_anon2* texlist);
-int njSetTexture(_anon2* texlist);
-int njSetTextureNum(unsigned int n);
-int njSetTextureNumG(unsigned int globalIndex);
-int njSetTextureNumSys(unsigned int n);
-void njReleaseTextureAll();
-int njReleaseTexture(_anon2* texlist);
-unsigned int njCalcTexture();
-void njSetTextureInfo(_anon0* info, unsigned short* tex, int Type, int nWidth, int nHeight);
-void njSetTextureName(_anon3* texname, void* addr, unsigned int globalIndex, unsigned int attr);
-void njRenderTextureNum();
-void njRenderTextureNumG(unsigned int globalIndex);
-void njSetRenderWidth(unsigned int nWidth);
-void njSetPaletteBankNum(unsigned int n, int bank);
-void njSetPaletteMode();
-unsigned int njGetPaletteMode();
-void njSetPaletteData();
-void njGarbageTexture();
-unsigned int Ps2GetTim2Size(void* p);
-int Ps2TextureMalloc(_anon1* p);
-int Ps2TextureFree(_anon1* p);
-int Ps2ReplaceTexAddr(unsigned int gindex, void* rep_addr);
-int Ps2TextureGarbageCollectionAll();
-int ring_check();*/
+_anon2* Ps2_current_texlist_bk;*/
 
 // 100% matching!
 void Ps2MemCopy4(void* vpDst, void* vpSrc, int lNum)

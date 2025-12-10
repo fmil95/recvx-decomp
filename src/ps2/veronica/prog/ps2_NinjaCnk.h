@@ -3,6 +3,68 @@
 
 #include "types.h"
 
+void	njInit3D( NJS_VERTEX_BUF *vbuf, Int vn );
+/*void njDrawModel(_anon18* pModel);*/
+void	njControl3D( Uint32 flag );
+/*void njSetConstantAttr(unsigned int ulAnd, unsigned int ulOr);
+void njSetConstantMaterial(_anon4* pMaterial);
+void njSetCnkBlendMode(unsigned int ulAttr);
+void njCnkModDrawModel(_anon5* pModel);*/
+void    njCnkSetEasyLight( Float x,Float y,Float z );
+void    njCnkSetEasyLightIntensity( Float inten, Float ambient );
+void    njCnkSetEasyLightColor( Float r, Float g, Float b );
+/*void njCnkSetEasyMultiLight(int iLightMax);*/
+void    njCnkSetEasyMultiLightSwitch(Int light, Int flag);
+void    njCnkSetEasyMultiAmbient(Float ar, Float ag, Float ab);
+void    njCnkSetEasyMultiLightColor(Int light, Float lr, Float lg, Float lb);
+void    njCnkSetEasyMultiLightVector(Float vx, Float vy, Float vz);
+/*void njCnkSetEasyMultiLightPoint(int iLightNum, float fX, float fY, float fZ);
+void njCnkSetEasyMultiLightRange(int iLightNum, float fNear, float fFar);*/
+void    njCnkSetEasyMultiLightMatrices(void);
+void    njCnkSetSimpleLight( Float x,Float y,Float z );
+void    njCnkSetSimpleLightIntensity( Float inten, Float ambient );
+void    njCnkSetSimpleLightColor( Float r, Float g, Float b );
+void    njCnkSetSimpleMultiLight(Int num);
+void    njCnkSetSimpleMultiLightSwitch(Int light, Int flag);
+void    njCnkSetSimpleMultiAmbient(Float ar, Float ag, Float ab);
+void    njCnkSetSimpleMultiLightColor(Int light, Float lr, Float lg, Float lb);
+void    njCnkSetSimpleMultiLightVector(Float vx, Float vy, Float vz);
+/*void njCnkSetSimpleMultiLightPoint(int iLightNum, float fX, float fY, float fZ);
+void njCnkSetSimpleMultiLightRange(int iLightNum, float fNear, float fFar);*/
+void    njCnkSetSimpleMultiLightMatrices(void);
+/*void njCnkEasyDrawModel(_anon5* pModel);*/
+void    njCnkEasyDrawObject( NJS_CNK_OBJECT *model );
+/*void njCnkEasyMultiDrawModel(_anon5* pModel);*/
+void    njCnkEasyMultiDrawObject( NJS_CNK_OBJECT *model );
+/*void njCnkSimpleDrawModel(_anon5* pModel);
+void njCnkSimpleMultiDrawModel(_anon5* pModel);
+void njCnkSetCurrentDrawMode(unsigned int ulMode);
+int njCnkDrawModelLocal(_anon5* pModel);
+int njCnkDrawModelLocalMod(_anon5* pModel);
+tagCHUNK_HEAD* njCnkCn(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCbBa(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCbDa(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCbExp(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCtTid(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCmD(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCmA(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCmDa(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCmS(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCmDs(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCmAs(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCmDas(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCoP4(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCoSt(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCvVn(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCvVnPs2(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCvVMod(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCoP3(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCs(tagCHUNK_HEAD* pCnk);*/
+int _CVV(float* v0);
+CHUNK_HEAD* njCnkDefaultLong(CHUNK_HEAD* pCnk);
+CHUNK_HEAD* njCnkDefaultShort(CHUNK_HEAD* pCnk);
+/*void njCnkEasyMultiDrawObjectI(cnkobj* pObject);*/
+
 /*typedef struct _anon0;
 typedef struct tagCHUNK_HEAD;
 typedef union _anon1;

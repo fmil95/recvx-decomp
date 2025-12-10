@@ -1,4 +1,5 @@
 #include "ps2_texture.h"
+#include "ps2_dummy.h"
 #include "main.h"
 
 /*char fname[128];*/
