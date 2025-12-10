@@ -18,8 +18,8 @@ TIM2_PICTUREHEADER_EX Ps2_tm_list_last;
 TIM2_PICTUREHEADER_EX Ps2_tm_list_1st;
 void* Ps2_tex_buff;
 char* index(char*, int);
-/*unsigned int Ps2_render_width;
-unsigned int palbuf[4096];
+unsigned int Ps2_render_width;
+/*unsigned int palbuf[4096];
 unsigned int Ps2_clut[1024];*/
 void* Ps2_render_p;
 /*int Ps2_tex3DEx_count;
@@ -499,18 +499,15 @@ void njRenderTextureNumG(unsigned int globalIndex)
 	// Line 718, Address: 0x2e2460, Func Offset: 0x40
 	// Line 725, Address: 0x2e247c, Func Offset: 0x5c
 	// Func End, Address: 0x2e2488, Func Offset: 0x68
-}
+}*/
 
-// 
-// Start address: 0x2e2490
-void njSetRenderWidth(unsigned int nWidth)
+// 100% matching!
+void	njSetRenderWidth(Uint32 nWidth)
 {
-	// Line 737, Address: 0x2e2490, Func Offset: 0
-	// Line 739, Address: 0x2e2494, Func Offset: 0x4
-	// Func End, Address: 0x2e249c, Func Offset: 0xc
+    Ps2_render_width = nWidth;
 }
 
-// 
+/*// 
 // Start address: 0x2e24a0
 void njSetPaletteBankNum(unsigned int n, int bank)
 {
