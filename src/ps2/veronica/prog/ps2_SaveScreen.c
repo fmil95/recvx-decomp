@@ -271,32 +271,43 @@ void SetStateSaveScreenAwarenessCard(SAVE_SCREEN* pSave)
     SetCheckMcFlag(pSave->pMcState, 0);
 }
 
-/*// 
-// Start address: 0x26f490
-void ExecuteStateSaveScreenAwarenessCard(tagSAVE_SCREEN* pSave)
+// 100% matching! 
+void ExecuteStateSaveScreenAwarenessCard(SAVE_SCREEN* pSave)
 {
-	int lPort1State;
 	int lPort0State;
-	// Line 631, Address: 0x26f490, Func Offset: 0
-	// Line 634, Address: 0x26f4a0, Func Offset: 0x10
-	// Line 637, Address: 0x26f4dc, Func Offset: 0x4c
-	// Line 638, Address: 0x26f4e8, Func Offset: 0x58
-	// Line 640, Address: 0x26f4f8, Func Offset: 0x68
-	// Line 643, Address: 0x26f50c, Func Offset: 0x7c
-	// Line 644, Address: 0x26f518, Func Offset: 0x88
-	// Line 646, Address: 0x26f520, Func Offset: 0x90
-	// Line 650, Address: 0x26f544, Func Offset: 0xb4
-	// Line 651, Address: 0x26f550, Func Offset: 0xc0
-	// Line 656, Address: 0x26f558, Func Offset: 0xc8
-	// Line 658, Address: 0x26f564, Func Offset: 0xd4
-	// Line 661, Address: 0x26f56c, Func Offset: 0xdc
-	// Line 662, Address: 0x26f574, Func Offset: 0xe4
-	// Line 665, Address: 0x26f57c, Func Offset: 0xec
-	// Line 666, Address: 0x26f584, Func Offset: 0xf4
-	// Line 669, Address: 0x26f58c, Func Offset: 0xfc
-	// Line 674, Address: 0x26f594, Func Offset: 0x104
-	// Func End, Address: 0x26f5a8, Func Offset: 0x118
-}*/
+    int lPort1State;
+    
+    switch (pSave->lCardState)
+    {                              
+    case 100:
+        lPort0State = GetMemoryCardSelectPortState(pSave->pMcState, 0);
+        lPort1State = GetMemoryCardSelectPortState(pSave->pMcState, 1);
+        
+        if ((lPort0State == 2) || (lPort1State == 2))
+        {                     
+            SetStateSaveScreenSelectCard(pSave);
+        }
+        else if (((lPort0State != 2) && (lPort0State != 0)) || ((lPort1State != 2) && (lPort1State != 0))) 
+        {
+            SetStateSaveScreenErrUnPS2MemCard(pSave);
+        }
+        else 
+        {
+            SetStateSaveScreenErrLostCard(pSave);
+        }
+                
+        break;
+    case 101:
+        SetStateSaveScreenSelectCard(pSave);
+        break;
+    case 102:
+        SetStateSaveScreenErrUnPS2MemCard(pSave);
+        break;
+    case 103:
+        SetStateSaveScreenErrLostCard(pSave);
+        break;
+    }
+}
 
 // 100% matching! 
 void SetStateSaveScreenErrLostCard(SAVE_SCREEN* pSave)
@@ -332,11 +343,11 @@ void ExecuteStateSaveScreenErrLostCard(tagSAVE_SCREEN* pSave)
 	// Line 750, Address: 0x26f6d8, Func Offset: 0x108
 	// Line 754, Address: 0x26f6e0, Func Offset: 0x110
 	// Func End, Address: 0x26f6f4, Func Offset: 0x124
-}
+}*/
 
 // 
 // Start address: 0x26f700
-void SetStateSaveScreenErrUnPS2MemCard(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenErrUnPS2MemCard(SAVE_SCREEN* pSave)
 {
 	// Line 771, Address: 0x26f700, Func Offset: 0
 	// Line 773, Address: 0x26f708, Func Offset: 0x8
@@ -344,7 +355,7 @@ void SetStateSaveScreenErrUnPS2MemCard(tagSAVE_SCREEN* pSave)
 	// Func End, Address: 0x26f714, Func Offset: 0x14
 }
 
-// 
+/*// 
 // Start address: 0x26f720
 void ExecuteStateSaveScreenErrUnPS2MemCard(tagSAVE_SCREEN* pSave)
 {
@@ -369,11 +380,11 @@ void ExecuteStateSaveScreenErrUnPS2MemCard(tagSAVE_SCREEN* pSave)
 	// Line 828, Address: 0x26f810, Func Offset: 0xf0
 	// Line 832, Address: 0x26f818, Func Offset: 0xf8
 	// Func End, Address: 0x26f82c, Func Offset: 0x10c
-}
+}*/
 
 // 
 // Start address: 0x26f830
-void SetStateSaveScreenSelectCard(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenSelectCard(SAVE_SCREEN* pSave)
 {
 	// Line 847, Address: 0x26f830, Func Offset: 0
 	// Line 849, Address: 0x26f83c, Func Offset: 0xc
@@ -387,7 +398,7 @@ void SetStateSaveScreenSelectCard(tagSAVE_SCREEN* pSave)
 	// Func End, Address: 0x26f87c, Func Offset: 0x4c
 }
 
-// 
+/*// 
 // Start address: 0x26f880
 void ExecuteStateSaveScreenSelectCard(tagSAVE_SCREEN* pSave)
 {
