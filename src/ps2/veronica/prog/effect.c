@@ -1,4 +1,7 @@
 #include "effect.h"
+//#include "effsub2.h"
+//#include "effsub3.h"
+#include "njplus.h"
 #include "ps2_texture.h"
 #include "main.h"
 

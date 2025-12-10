@@ -17,9 +17,9 @@ unsigned char MdlDirChk(short* dirang, short mdlang);
 unsigned char MdlAction01(_anon5* si);
 unsigned char MdlAction02(_anon5* si);*/
 void MdlEvalflagsSet(unsigned short evalchk);
-/*void MdlHideCheck(npobj* op, unsigned char el, unsigned char chk);
-float ModelScaleSet(_anon5* itemmodel, unsigned short flg);
-void FlagErase(npobj* op);*/
+/*void MdlHideCheck(npobj* op, unsigned char el, unsigned char chk);*/
+float ModelScaleSet(SITEM* itemmodel, int flg);
+void FlagErase(NJS_CNK_OBJECT* op);
 void LighterOpen(NJS_CNK_OBJECT* object);
 void FileSyu(NJS_CNK_OBJECT* op);
 void MakeTag(unsigned short flg);

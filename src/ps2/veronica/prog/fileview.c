@@ -1,5 +1,6 @@
 #include "fileview.h"
 #include "message.h"
+#include "ps2_texture.h"
 #include "sdfunc.h"
 
 /*unsigned int fstbl[24];

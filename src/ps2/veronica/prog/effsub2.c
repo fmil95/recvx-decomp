@@ -1746,10 +1746,10 @@ void bhEff_DamagePointDraw(_anon0* op);
 void bhEff_Draw3DSprite(_anon0* op);
 void bhEff_SetUVInfo(_anon0* op, _anon4* uvp, float BaseSize);
 void bhEff_SetAlign(_anon0* op, unsigned int flg);
-void bhEff_SetBaseColor(_anon0* op, unsigned int col);
+void bhEff_SetBaseColor(_anon0* op, unsigned int col);*/
 void bhClrEff_YG();
 
-// 
+/*// 
 // Start address: 0x23d4b0
 void bhEff_E00_Mince(_anon0* op)
 {
