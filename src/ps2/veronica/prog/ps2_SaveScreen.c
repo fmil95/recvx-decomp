@@ -358,14 +358,13 @@ void ExecuteStateSaveScreenErrLostCard(SAVE_SCREEN* pSave)
     }
 }
 
-// 
-// Start address: 0x26f700
+// 100% matching! 
 void SetStateSaveScreenErrUnPS2MemCard(SAVE_SCREEN* pSave)
 {
-	// Line 771, Address: 0x26f700, Func Offset: 0
-	// Line 773, Address: 0x26f708, Func Offset: 0x8
-	// Line 776, Address: 0x26f70c, Func Offset: 0xc
-	// Func End, Address: 0x26f714, Func Offset: 0x14
+    pSave->ulState = 2;
+    
+    pSave->cMesFlag = 2;
+    pSave->cCgFlag = 0;
 }
 
 /*// 
