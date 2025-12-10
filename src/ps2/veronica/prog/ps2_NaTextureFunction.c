@@ -480,15 +480,13 @@ void	njSetTextureName(NJS_TEXNAME *texname,void *addr,Uint32 globalIndex,Uint32 
     texname->texaddr = globalIndex;
 }
 
-/*// 
-// Start address: 0x2e23f0
-void njRenderTextureNum()
+// 100% matching!
+void	njRenderTextureNum(Uint32 n)
 {
-	// Line 696, Address: 0x2e23f0, Func Offset: 0
-	// Func End, Address: 0x2e2420, Func Offset: 0x30
+    StoreRenderTex(((NJS_TEXMEMLIST*)Ps2_current_texlist->textures[Ps2_current_texno].texaddr)->texinfo.texsurface.pSurface);
 }
 
-// 
+/*// 
 // Start address: 0x2e2420
 void njRenderTextureNumG(unsigned int globalIndex)
 {
