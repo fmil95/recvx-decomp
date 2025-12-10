@@ -86,6 +86,10 @@ extern float BHD_ASPECT_X;
 extern float BHD_ASPECT_Y;
 extern unsigned char* Ps2_PXLCONV;
 extern BH_PWORK ene[128];
+extern unsigned int Ps2_quad_color;
+extern int Ps2_quad_trans;
+extern unsigned int Ps2_current_texno_bk;
+extern NJS_TEXLIST* Ps2_current_texlist_bk;
 
 void njUserInit(void);
 Sint32 njUserMain(void);

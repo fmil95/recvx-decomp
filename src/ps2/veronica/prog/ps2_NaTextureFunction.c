@@ -19,19 +19,14 @@ TIM2_PICTUREHEADER_EX Ps2_tm_list_1st;
 void* Ps2_tex_buff;
 char* index(char*, int);
 unsigned int Ps2_render_width;
-/*unsigned int palbuf[4096];
-unsigned int Ps2_clut[1024];*/
+unsigned int Ps2_clut[1024]; /* unused */
 void* Ps2_render_p;
-/*int Ps2_tex3DEx_count;
-_anon7* Ps2_tex3DEx_p;
-int Ps2_tex3DEx_trans;
-int Ps2_3DEx_count;
-_anon5* Ps2_3DEx_p;
-int Ps2_3DEx_trans;
-unsigned int Ps2_quad_color;
-int Ps2_quad_trans;
-unsigned int Ps2_current_texno_bk;
-_anon2* Ps2_current_texlist_bk;*/
+int Ps2_tex3DEx_count; /* unused */
+NJS_TEXTURE_VTX* Ps2_tex3DEx_p; /* unused */
+int Ps2_tex3DEx_trans; /* unused */
+int Ps2_3DEx_count; /* unused */
+NJS_POLYGON_VTX* Ps2_3DEx_p; /* unused */
+int Ps2_3DEx_trans; /* unused */
 
 // 100% matching!
 void Ps2MemCopy4(void* vpDst, void* vpSrc, int lNum)
@@ -344,7 +339,6 @@ Sint32	njSetTexture(NJS_TEXLIST *texlist)
     }
 }
 
-/* ERROR: This function is currently writing garbage in the emulator because Ps2_current_texlist doesn't get properly set */
 // 100% matching! 
 Sint32	njSetTextureNum(Uint32 n)
 {
@@ -486,20 +480,24 @@ void	njRenderTextureNum(Uint32 n)
     StoreRenderTex(((NJS_TEXMEMLIST*)Ps2_current_texlist->textures[Ps2_current_texno].texaddr)->texinfo.texsurface.pSurface);
 }
 
-/*// 
-// Start address: 0x2e2420
-void njRenderTextureNumG(unsigned int globalIndex)
+// 100% matching!
+void	njRenderTextureNumG(Uint32 globalIndex)
 {
-	int no;
-	// Line 710, Address: 0x2e2420, Func Offset: 0
-	// Line 714, Address: 0x2e2428, Func Offset: 0x8
-	// Line 715, Address: 0x2e2430, Func Offset: 0x10
-	// Line 716, Address: 0x2e2438, Func Offset: 0x18
-	// Line 717, Address: 0x2e2458, Func Offset: 0x38
-	// Line 718, Address: 0x2e2460, Func Offset: 0x40
-	// Line 725, Address: 0x2e247c, Func Offset: 0x5c
-	// Func End, Address: 0x2e2488, Func Offset: 0x68
-}*/
+    int no;
+    
+    no = SearchNumber(globalIndex, -1);
+    
+    if (no >= 0) 
+    {
+        StoreRenderTex(Ps2_tex_info[no].texinfo.texsurface.pSurface);
+    }
+    else 
+    {
+        printf("njRenderTextureNumG ERROR!!! %08x\n", index);
+        
+        exit(0);
+    }
+}
 
 // 100% matching!
 void	njSetRenderWidth(Uint32 nWidth)

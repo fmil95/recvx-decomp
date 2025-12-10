@@ -8,13 +8,11 @@ int Ps2_3DEx_count;
 _anon5* Ps2_3DEx_p;
 int Ps2_tex3DEx_trans;
 int Ps2_tex3DEx_count;
-_anon3* Ps2_tex3DEx_p;*/
-unsigned int Ps2_current_texno_bk;
-NJS_TEXLIST* Ps2_current_texlist_bk;
+_anon3* Ps2_tex3DEx_p;
 int Ps2_quad_trans;
 unsigned int Ps2_quad_color;
 
-/*void njDrawPolygon(_anon5* polygon, int count, int trans);
+void njDrawPolygon(_anon5* polygon, int count, int trans);
 void njDrawTextureSub(_anon3* polygon, int count, int flag);
 void njDrawTexture(_anon3* polygon, int count, int tex, int flag);
 void njDrawTextureSubH(_anon0* polygon, int count, int flag);

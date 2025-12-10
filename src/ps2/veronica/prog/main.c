@@ -217,6 +217,10 @@ unsigned char pl_sleep_cnt;
 unsigned int Ps2_albinoid_flag;
 CAM_WORK cam;
 BH_PWORK ene[128];
+unsigned int Ps2_quad_color;
+int Ps2_quad_trans; 
+unsigned int Ps2_current_texno_bk;
+NJS_TEXLIST* Ps2_current_texlist_bk;
 
 // 100% matching!
 void njUserInit(void)
