@@ -507,14 +507,11 @@ void	njSetRenderWidth(Uint32 nWidth)
     Ps2_render_width = nWidth;
 }
 
-/*// 
-// Start address: 0x2e24a0
-void njSetPaletteBankNum(unsigned int n, int bank)
+// 100% matching!
+void 	njSetPaletteBankNum(Uint32 n,Sint32 bank)
 {
-	// Line 753, Address: 0x2e24a0, Func Offset: 0
-	// Line 758, Address: 0x2e24c0, Func Offset: 0x20
-	// Func End, Address: 0x2e24c8, Func Offset: 0x28
-}*/
+    ((NJS_TEXMEMLIST*)Ps2_current_texlist->textures[n].texaddr)->bank = bank;
+}
 
 // 100% matching!
 void 	njSetPaletteMode(Uint32 mode) 
