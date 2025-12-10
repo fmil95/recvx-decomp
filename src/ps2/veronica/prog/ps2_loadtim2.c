@@ -2,23 +2,9 @@
 #include "ps2_dummy.h"
 #include "ps2_pxlconv.h"
 
-unsigned char clear_buff[1024];
+//#include <string.h>
 
-/*int Tim2CalcBufWidth(int psm, int w);
-void Set_GsTex(_anon0* ph, unsigned long send_image_adr, unsigned long send_clut_adr);
-<unknown fundamental type (0xa510)>* MakeRenderTexHeader(void* tex_adr);
-void StoreRenderTex(void* tex_adr);
-int LoadToVram(unsigned long tbp, <unknown fundamental type (0xa510)>* addr, int tbw, int psm, int pos, int width, int height, int size);
-int Send_1024_Clut_data(void* clt_adr, unsigned long send_clut_adr);
-int Send_Tim2_dataEx(void* tim2_top_adr, unsigned long send_image_adr, unsigned long send_clut_adr);
-int Clut_Load_Func(_anon0* ph, unsigned long clut_addr);
-int P32_Image_Load(_anon0* ph, unsigned long image_addr);
-int Tim2_Image_Load(_anon0* ph, unsigned long image_addr);
-void Ps2PxlconvCheck(void* timadr);
-void SyncPath();*/
-void D2_SyncTag();
-void loadImage(void* tags);
-/*void ClearVram();*/
+unsigned char clear_buff[1024];
 
 // 100% matching! 
 int Tim2CalcBufWidth(int psm, int w)
@@ -120,78 +106,81 @@ void Set_GsTex(TIM2_PICTUREHEADER* ph, unsigned long send_image_adr, unsigned lo
     ph->GsTex0.TBW = Tim2CalcBufWidth(ph->GsTex0.PSM, ph->ImageWidth);
 }
 
-// 
-// Start address: 0x2e6fe0
+// 100% matching! 
 u_long128* MakeRenderTexHeader(void* tex_adr)
 {
-	unsigned int loop;
-	unsigned int psize;
-	unsigned int fsize;
-	unsigned char* work;
-	//_anon0* pHead;
-	//tagTIM2_FILEHEADER* fHead;
-	// Line 1446, Address: 0x2e6fe0, Func Offset: 0
-	// Line 1463, Address: 0x2e6ff0, Func Offset: 0x10
-	// Line 1455, Address: 0x2e6ff4, Func Offset: 0x14
-	// Line 1463, Address: 0x2e6ff8, Func Offset: 0x18
-	// Line 1456, Address: 0x2e6ffc, Func Offset: 0x1c
-	// Line 1459, Address: 0x2e7000, Func Offset: 0x20
-	// Line 1463, Address: 0x2e7004, Func Offset: 0x24
-	// Line 1466, Address: 0x2e700c, Func Offset: 0x2c
-	// Line 1469, Address: 0x2e7014, Func Offset: 0x34
-	// Line 1472, Address: 0x2e701c, Func Offset: 0x3c
-	// Line 1474, Address: 0x2e7020, Func Offset: 0x40
-	// Line 1475, Address: 0x2e7024, Func Offset: 0x44
-	// Line 1476, Address: 0x2e7028, Func Offset: 0x48
-	// Line 1475, Address: 0x2e702c, Func Offset: 0x4c
-	// Line 1476, Address: 0x2e7030, Func Offset: 0x50
-	// Line 1479, Address: 0x2e7040, Func Offset: 0x60
-	// Line 1480, Address: 0x2e704c, Func Offset: 0x6c
-	// Line 1482, Address: 0x2e7050, Func Offset: 0x70
-	// Line 1484, Address: 0x2e7054, Func Offset: 0x74
-	// Line 1485, Address: 0x2e705c, Func Offset: 0x7c
-	// Line 1486, Address: 0x2e7060, Func Offset: 0x80
-	// Line 1487, Address: 0x2e7064, Func Offset: 0x84
-	// Line 1496, Address: 0x2e7068, Func Offset: 0x88
-	// Line 1500, Address: 0x2e7078, Func Offset: 0x98
-	// Line 1508, Address: 0x2e707c, Func Offset: 0x9c
-	// Line 1511, Address: 0x2e7080, Func Offset: 0xa0
-	// Line 1514, Address: 0x2e7084, Func Offset: 0xa4
-	// Line 1520, Address: 0x2e7088, Func Offset: 0xa8
-	// Line 1517, Address: 0x2e708c, Func Offset: 0xac
-	// Line 1520, Address: 0x2e7090, Func Offset: 0xb0
-	// Line 1531, Address: 0x2e7094, Func Offset: 0xb4
-	// Line 1523, Address: 0x2e7098, Func Offset: 0xb8
-	// Line 1531, Address: 0x2e709c, Func Offset: 0xbc
-	// Line 1534, Address: 0x2e70a0, Func Offset: 0xc0
-	// Line 1537, Address: 0x2e70a8, Func Offset: 0xc8
-	// Line 1541, Address: 0x2e70ac, Func Offset: 0xcc
-	// Line 1542, Address: 0x2e70bc, Func Offset: 0xdc
-	// Line 1541, Address: 0x2e70c0, Func Offset: 0xe0
-	// Line 1542, Address: 0x2e70cc, Func Offset: 0xec
-	// Line 1545, Address: 0x2e70d4, Func Offset: 0xf4
-	// Line 1542, Address: 0x2e70dc, Func Offset: 0xfc
-	// Line 1548, Address: 0x2e70e8, Func Offset: 0x108
-	// Line 1545, Address: 0x2e70ec, Func Offset: 0x10c
-	// Line 1548, Address: 0x2e70f0, Func Offset: 0x110
-	// Line 1560, Address: 0x2e70f4, Func Offset: 0x114
-	// Line 1548, Address: 0x2e70f8, Func Offset: 0x118
-	// Line 1545, Address: 0x2e70fc, Func Offset: 0x11c
-	// Line 1548, Address: 0x2e7108, Func Offset: 0x128
-	// Line 1556, Address: 0x2e7118, Func Offset: 0x138
-	// Line 1548, Address: 0x2e711c, Func Offset: 0x13c
-	// Line 1556, Address: 0x2e7120, Func Offset: 0x140
-	// Line 1548, Address: 0x2e7124, Func Offset: 0x144
-	// Line 1556, Address: 0x2e7130, Func Offset: 0x150
-	// Line 1560, Address: 0x2e7138, Func Offset: 0x158
-	// Line 1556, Address: 0x2e7140, Func Offset: 0x160
-	// Line 1560, Address: 0x2e714c, Func Offset: 0x16c
-	// Line 1562, Address: 0x2e715c, Func Offset: 0x17c
-	// Line 1565, Address: 0x2e7160, Func Offset: 0x180
-	// Line 1564, Address: 0x2e7164, Func Offset: 0x184
-	// Line 1565, Address: 0x2e7168, Func Offset: 0x188
-	// Func End, Address: 0x2e7178, Func Offset: 0x198
-	scePrintf("MakeRenderTexHeader - UNIMPLEMENTED!\n");
+    TIM2_FILEHEADER* fHead; 
+    TIM2_PICTUREHEADER* pHead; 
+    unsigned char* work;     
+    unsigned int fsize;    
+    unsigned int psize;      
+    unsigned int loop;        
+    TIM2_PICTUREHEADER_EX *temp; // not from the debugging symbols
+
+    work = tex_adr;
+    
+    temp = tex_adr;
+    
+    temp->ClampFlag = temp->TpFlag = 0;
+    
+    fHead = (TIM2_FILEHEADER*)tex_adr;
+    
+    strcpy(fHead->FileId, "TIM2");
+    
+    fHead->FormatVersion = 4;
+    fHead->FormatId = 1;
+    
+    fHead->Pictures = 1;
+    
+    for (loop = 0; loop < 8; loop++)
+    {
+        fHead->Reserved[loop] = 0;
+    }
+    
+    if (fHead->FormatId != 0)
+    {
+        fsize = 128;
+        psize = 128;
+        
+        work += fsize;
+    } 
+    else 
+    {
+        fsize = 16;
+        psize = 48;
+        
+        work += fsize;
+    }
+
+    pHead = (TIM2_PICTUREHEADER*)work;
+    
+    pHead->TotalSize = (fsize + 1048576) + psize;
+    pHead->ClutSize = 0;
+    pHead->ImageSize = 1048576;
+    pHead->HeaderSize = psize;
+    
+    pHead->ClutColors = 0;
+    
+    pHead->PictFormat = 0;
+    
+    pHead->MipMapTextures = 1;
+    
+    pHead->ClutType = 0;
+    pHead->ImageType = 3;
+    
+    pHead->ImageWidth = 512;
+    pHead->ImageHeight = 512;
+    
+    pHead->GsTex0.TFX = 0;
+    pHead->GsTex0.TCC = 1;
+    pHead->GsTex0.TW = 8;
+    pHead->GsTex0.TH = 8;
+    pHead->GsTex0.PSM = 0;
+    pHead->GsTex0.TBW = 8;
+    
+    work += psize;
+    
+    return (u_long128*)work;
 }
 
 // 100% matching! 
@@ -671,7 +660,7 @@ void ClearVram()
     }
 }
 
-// TODO: find out where this function might really belong to
+// TODO: move this function to the header
 // 100% matching!
 void *UncAddr(void *val)
 {

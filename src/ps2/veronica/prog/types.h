@@ -2697,6 +2697,16 @@ typedef struct TIM2_PICTUREHEADER
     unsigned int GsTexClut;       // offset 0x2C, size 0x4
 } TIM2_PICTUREHEADER;
 
+typedef struct TIM2_FILEHEADER
+{
+    // total size: 0x10
+    char FileId[4];              // offset 0x0, size 0x4
+    unsigned char FormatVersion; // offset 0x4, size 0x1
+    unsigned char FormatId;      // offset 0x5, size 0x1
+    unsigned short Pictures;     // offset 0x6, size 0x2
+    char Reserved[8];            // offset 0x8, size 0x8
+} TIM2_FILEHEADER;
+
 typedef struct RDT_WORK
 {
 	// total size: 0x80
