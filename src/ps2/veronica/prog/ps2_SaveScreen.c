@@ -2,6 +2,7 @@
 #include "message.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard.h"
+#include "sdfunc.h"
 #include "main.h"
 
 /*char cIconSys[9];
@@ -318,32 +319,44 @@ void SetStateSaveScreenErrLostCard(SAVE_SCREEN* pSave)
     pSave->cCgFlag = 0;
 }
 
-/*// 
-// Start address: 0x26f5d0
-void ExecuteStateSaveScreenErrLostCard(tagSAVE_SCREEN* pSave)
+// 100% matching! 
+void ExecuteStateSaveScreenErrLostCard(SAVE_SCREEN* pSave) 
 {
-	int lPort1State;
-	int lPort0State;
-	// Line 711, Address: 0x26f5d0, Func Offset: 0
-	// Line 715, Address: 0x26f5e0, Func Offset: 0x10
-	// Line 718, Address: 0x26f600, Func Offset: 0x30
-	// Line 720, Address: 0x26f608, Func Offset: 0x38
-	// Line 721, Address: 0x26f614, Func Offset: 0x44
-	// Line 725, Address: 0x26f61c, Func Offset: 0x4c
-	// Line 728, Address: 0x26f64c, Func Offset: 0x7c
-	// Line 729, Address: 0x26f658, Func Offset: 0x88
-	// Line 731, Address: 0x26f668, Func Offset: 0x98
-	// Line 734, Address: 0x26f67c, Func Offset: 0xac
-	// Line 735, Address: 0x26f688, Func Offset: 0xb8
-	// Line 737, Address: 0x26f690, Func Offset: 0xc0
-	// Line 741, Address: 0x26f6b4, Func Offset: 0xe4
-	// Line 743, Address: 0x26f6c0, Func Offset: 0xf0
-	// Line 746, Address: 0x26f6c8, Func Offset: 0xf8
-	// Line 747, Address: 0x26f6d0, Func Offset: 0x100
-	// Line 750, Address: 0x26f6d8, Func Offset: 0x108
-	// Line 754, Address: 0x26f6e0, Func Offset: 0x110
-	// Func End, Address: 0x26f6f4, Func Offset: 0x124
-}*/
+    int lPort0State;
+    int lPort1State;
+    
+    if ((sys->pad_ps & 0x1800)) 
+    {
+        SetStateSaveScreenExit(pSave);
+        
+        CallSystemSe(0, 3);
+        return;
+    }
+    
+    switch (pSave->lCardState) 
+    {
+    case 100:
+        lPort0State = GetMemoryCardSelectPortState(pSave->pMcState, 0);
+        lPort1State = GetMemoryCardSelectPortState(pSave->pMcState, 1);
+        
+        if ((lPort0State == 2) || (lPort1State == 2))
+        {                     
+            SetStateSaveScreenSelectCard(pSave);
+        }
+        else if (((lPort0State != 2) && (lPort0State != 0)) || ((lPort1State != 2) && (lPort1State != 0))) 
+        {
+            SetStateSaveScreenErrUnPS2MemCard(pSave);
+        }
+                
+        break;
+    case 101:
+        SetStateSaveScreenAwarenessCard(pSave);
+        break;
+    case 102:
+        SetStateSaveScreenErrUnPS2MemCard(pSave);
+        break;
+    }
+}
 
 // 
 // Start address: 0x26f700
