@@ -1,47 +1,50 @@
 #include "bup_00.h"
+#include "effect.h"
 #include "ps2_LoadScreen.h"
+#include "ps2_NaDraw2D.h"
 #include "ps2_NaFog.h"
 #include "ps2_NaMem.h"
 #include "ps2_NaTextureFunction.h"
 #include "ps2_SaveScreen.h"
+#include "ps2_texture.h"
 #include "pwksub.h"
+#include "screen.h"
+#include "sdfunc.h"
 #include "main.h"
 
-/*char vmssyscmttbl[16];
-int old_data_flg;*/
-unsigned int InitFlag;
-/*char bootcommenttbl[32][32];
-_anon20* bip;
-char StrBuf[128];
-char ErrBuf[128];
-char TwBuf[128];
-char name_99[16];
-unsigned char sys_icon_palette[32];
-unsigned char sys_icon_data[512];
-unsigned char cla_icon_palette[32];
-unsigned char cla_icon_data[1536];
-unsigned char chs_icon_palette[32];
-unsigned char chs_icon_data[1536];
-int space_pos[8][18];
-unsigned short mesdeftbl[10];*/
+char vmssyscmttbl[16]; /* unused */
+int old_data_flg; /* unused */
+unsigned int InitFlag; /* unused */
+char bootcommenttbl[32][32]; /* unused */
+BACKUPINFO* bip; /* unused */
+char StrBuf[128]; /* unused */
+char ErrBuf[128]; /* unused */
+char TwBuf[128]; /* unused */
+char name_99[16]; /* unused */
+unsigned char sys_icon_palette[32]; /* unused */
+unsigned char sys_icon_data[512]; /* unused */
+unsigned char cla_icon_palette[32]; /* unused */
+unsigned char cla_icon_data[1536]; /* unused */
+unsigned char chs_icon_palette[32]; /* unused */
+unsigned char chs_icon_data[1536]; /* unused */
+int space_pos[18][8]; /* unused */
+unsigned short mesdeftbl[10] = { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }; /* unused */
 typedef void (*TypewriterMode_proc)();
 TypewriterMode_proc TypewriterMode[3] = { TypewriterInit, TypewriterMain, TypewriterExit };
-/*unsigned char* img1p;
-_anon44 hdr00;
-_anon20* binfo_;
-unsigned char* img2p;
-unsigned char* img3p;
-unsigned char* img4p;
-unsigned int palbuf[0];
-_anon11* rom;*/
+unsigned char* img1p; /* unused */
+BUS_BACKUPFILEHEADER hdr00; /* unused */
+BACKUPINFO* binfo_; /* unused */
+unsigned char* img2p; /* unused */
+unsigned char* img3p; /* unused */
+unsigned char* img4p; /* unused */
 LOAD_SCREEN* pLoad;
 LOAD_SCREEN Load;
 SAVE_SCREEN* pSave;
 SAVE_SCREEN Save;
-/*int ErrorCode;
-_anon44 hdr01;
-_anon54 Info;
-char bootcommentbuf[32][15];*/
+int ErrorCode; /* unused */
+BUS_BACKUPFILEHEADER hdr01; /* unused */
+BUS_FILEINFO Info; /* unused */
+char bootcommentbuf[15][32]; /* unused */
 
 // 100% matching!
 void ControlTypewriter()
@@ -103,37 +106,82 @@ void CountDisplay(int disppoint, NJS_POINT2* pos, unsigned int col, int param) /
     njDrawPolygon2DM(&p2c, 4, -3.0f, 0x80000060);
 }
 
-// 
-// Start address: 0x2c8ce0
+// 100% matching!
 unsigned int RoomNameSwitch(unsigned int name)
 {
-	unsigned int roomnum;
-	// Line 2810, Address: 0x2c8ce0, Func Offset: 0
-	// Line 2813, Address: 0x2c8dc8, Func Offset: 0xe8
-	// Line 2819, Address: 0x2c8dd0, Func Offset: 0xf0
-	// Line 2822, Address: 0x2c8dd8, Func Offset: 0xf8
-	// Line 2828, Address: 0x2c8de0, Func Offset: 0x100
-	// Line 2831, Address: 0x2c8de8, Func Offset: 0x108
-	// Line 2834, Address: 0x2c8df0, Func Offset: 0x110
-	// Line 2837, Address: 0x2c8df8, Func Offset: 0x118
-	// Line 2840, Address: 0x2c8e00, Func Offset: 0x120
-	// Line 2843, Address: 0x2c8e08, Func Offset: 0x128
-	// Line 2846, Address: 0x2c8e10, Func Offset: 0x130
-	// Line 2849, Address: 0x2c8e18, Func Offset: 0x138
-	// Line 2852, Address: 0x2c8e20, Func Offset: 0x140
-	// Line 2855, Address: 0x2c8e28, Func Offset: 0x148
-	// Line 2858, Address: 0x2c8e30, Func Offset: 0x150
-	// Line 2861, Address: 0x2c8e38, Func Offset: 0x158
-	// Line 2864, Address: 0x2c8e40, Func Offset: 0x160
-	// Line 2873, Address: 0x2c8e48, Func Offset: 0x168
-	// Func End, Address: 0x2c8e50, Func Offset: 0x170
-	scePrintf("RoomNameSwitch - UNIMPLEMENTED!\n");
+    unsigned int roomnum;
+
+    switch (name)
+    {
+    case 0:
+        roomnum = 0;
+        break;
+    case 1:
+        roomnum = 1;
+        break;
+    case 108:
+        roomnum = 2;
+        break;
+    case 311:
+        roomnum = 3;
+        break;
+    case 500:
+        roomnum = 4;
+        break;
+    case 604:
+        roomnum = 5;
+        break;
+    case 709:
+        roomnum = 6;
+        break;
+    case 722:
+        roomnum = 7;
+        break;
+    case 904:
+        roomnum = 8;
+        break;
+    case 914:
+        roomnum = 9;
+        break;
+    case 4:
+        roomnum = 10;
+        break;
+    case 921:
+        roomnum = 11;
+        break;
+    case 600:
+        roomnum = 12;
+        break;
+    case 724:
+        roomnum = 13;
+        break;
+    case 404:
+        roomnum = 14;
+        break;
+    case 804:
+        roomnum = 15;
+        break;
+    case 304:
+        roomnum = 16;
+        break;
+    case 702:
+        roomnum = 17;
+        break;
+    case 207:
+        roomnum = 18;
+        break;
+    default:
+        roomnum = 0;
+        break;
+    }
+
+    return roomnum;
 }
 
 // 100% matching! 
 void TypeWriterTextureInit()
 {
-    TYPEWRITER_WORK* tw; 
+    TYP_WORK* tw; 
     int sz;              
     unsigned char* datp; 
     unsigned int dt;     
@@ -368,7 +416,7 @@ void TypewriterMain()
 // 100% matching! 
 void TypewriterExit()
 {
-    TYPEWRITER_WORK* tw;
+    TYP_WORK* tw;
 
     tw = sys->typ_exp;
     
