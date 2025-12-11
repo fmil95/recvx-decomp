@@ -724,19 +724,19 @@ void SetStateSaveScreenErrFreeCapacity(SAVE_SCREEN* pSave)
     pSave->cCgFlag = 100;
 }
 
-// 
-// Start address: 0x270020
+// 100% matching! 
 void ExecuteStateSaveScreenErrFreeCapacity(SAVE_SCREEN* pSave)
 {
-	// Line 1393, Address: 0x270020, Func Offset: 0
-	// Line 1395, Address: 0x270028, Func Offset: 0x8
-	// Line 1398, Address: 0x270048, Func Offset: 0x28
-	// Line 1400, Address: 0x270050, Func Offset: 0x30
-	// Line 1401, Address: 0x27005c, Func Offset: 0x3c
-	// Line 1405, Address: 0x270064, Func Offset: 0x44
-	// Line 1408, Address: 0x270080, Func Offset: 0x60
-	// Line 1411, Address: 0x270088, Func Offset: 0x68
-	// Func End, Address: 0x270094, Func Offset: 0x74
+    if ((sys->pad_ps & 0x1800))
+    {
+        SetStateSaveScreenAwarenessCard(pSave);
+        
+        CallSystemSe(0, 3);
+    }
+    else if ((pSave->lCardState > 100) && (pSave->lCardState < 104))
+    {
+        SetStateSaveScreenAwarenessCard(pSave);
+    }
 }
 
 // 
