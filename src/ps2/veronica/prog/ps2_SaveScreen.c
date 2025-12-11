@@ -598,23 +598,24 @@ void ExecuteStateSaveScreenSpecialSave(SAVE_SCREEN* pSave)
     }
 }
 
-// 
-// Start address: 0x26fc70
+// 100% matching! 
 void SetStateSaveScreenLostDirCheck(SAVE_SCREEN* pSave)
 {
-	// Line 1127, Address: 0x26fc70, Func Offset: 0
-	// Line 1129, Address: 0x26fc7c, Func Offset: 0xc
-	// Line 1131, Address: 0x26fc84, Func Offset: 0x14
-	// Line 1133, Address: 0x26fc8c, Func Offset: 0x1c
-	// Line 1135, Address: 0x26fc94, Func Offset: 0x24
-	// Line 1139, Address: 0x26fc98, Func Offset: 0x28
-	// Line 1137, Address: 0x26fc9c, Func Offset: 0x2c
-	// Line 1139, Address: 0x26fca4, Func Offset: 0x34
-	// Line 1141, Address: 0x26fca8, Func Offset: 0x38
-	// Line 1143, Address: 0x26fcb4, Func Offset: 0x44
-	// Line 1145, Address: 0x26fcc0, Func Offset: 0x50
-	// Line 1147, Address: 0x26fccc, Func Offset: 0x5c
-	// Func End, Address: 0x26fcdc, Func Offset: 0x6c
+    pSave->ulState = 12;
+    
+    pSave->cMesFlag = 3;
+    pSave->cCgFlag = 100;
+    
+    pSave->ulSubState = 0;
+    
+    pSave->usLoopCount = 0;
+    
+    pSave->ulMemCheckCountTimer = 10;
+    
+    SetMemoryCardFileNumber(pSave->pMcState, 0);
+    SetMemoryCardCurrentPort(pSave->pMcState, pSave->sCursorX);
+    
+    SetCheckMcFlag(pSave->pMcState, 1);
 }
 
 // 
