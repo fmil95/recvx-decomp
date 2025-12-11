@@ -681,15 +681,13 @@ void ExecuteStateSaveScreenLostDirCheck(SAVE_SCREEN* pSave)
 	// Func End, Address: 0x26ff58, Func Offset: 0x278
 }
 
-// 
-// Start address: 0x26ff60
+// 100% matching! 
 void SetStateSaveScreenFreeCapacity(SAVE_SCREEN* pSave)
 {
-	// Line 1306, Address: 0x26ff60, Func Offset: 0
-	// Line 1308, Address: 0x26ff68, Func Offset: 0x8
-	// Line 1310, Address: 0x26ff70, Func Offset: 0x10
-	// Line 1311, Address: 0x26ff74, Func Offset: 0x14
-	// Func End, Address: 0x26ff7c, Func Offset: 0x1c
+    pSave->ulState = 13;
+    
+    pSave->cMesFlag = 3;
+    pSave->cCgFlag = 100;
 }
 
 // 
