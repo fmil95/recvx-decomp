@@ -1,4 +1,5 @@
 #include "ps2_SaveScreen.h"
+#include "flag.h"
 #include "message.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard.h"
@@ -540,16 +541,15 @@ void ExecuteStateSaveScreenExit(SAVE_SCREEN* pSave)
 	// Func End, Address: 0x26fb04, Func Offset: 0x64
 }
 
-// 
-// Start address: 0x26fb10
+// 100% matching! 
 void SetSaveScreenSpecialSave(SAVE_SCREEN* pSave)
 {
-	// Line 1038, Address: 0x26fb10, Func Offset: 0
-	// Line 1040, Address: 0x26fb18, Func Offset: 0x8
-	// Line 1042, Address: 0x26fb20, Func Offset: 0x10
-	// Line 1044, Address: 0x26fb28, Func Offset: 0x18
-	// Line 1045, Address: 0x26fb2c, Func Offset: 0x1c
-	// Func End, Address: 0x26fb34, Func Offset: 0x24
+    pSave->ulState = 18;
+    
+    pSave->cMesFlag = 8;
+    pSave->cCgFlag = 2;
+    
+    pSave->sSelectCur = 1;
 }
 
 // 
