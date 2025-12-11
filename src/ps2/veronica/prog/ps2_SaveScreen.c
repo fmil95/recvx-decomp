@@ -433,20 +433,21 @@ void ExecuteStateSaveScreenErrUnPS2MemCard(SAVE_SCREEN* pSave)
     }
 }
 
-// 
-// Start address: 0x26f830
+// 100% matching! 
 void SetStateSaveScreenSelectCard(SAVE_SCREEN* pSave)
 {
-	// Line 847, Address: 0x26f830, Func Offset: 0
-	// Line 849, Address: 0x26f83c, Func Offset: 0xc
-	// Line 851, Address: 0x26f844, Func Offset: 0x14
-	// Line 853, Address: 0x26f848, Func Offset: 0x18
-	// Line 855, Address: 0x26f84c, Func Offset: 0x1c
-	// Line 857, Address: 0x26f854, Func Offset: 0x24
-	// Line 859, Address: 0x26f858, Func Offset: 0x28
-	// Line 861, Address: 0x26f860, Func Offset: 0x30
-	// Line 862, Address: 0x26f86c, Func Offset: 0x3c
-	// Func End, Address: 0x26f87c, Func Offset: 0x4c
+    pSave->ulState = 10;
+    
+    pSave->cMesFlag = 0;
+    pSave->cCgFlag = 0;
+    
+    pSave->sCursorY = 0;
+    
+    pSave->sSelectCur = 0;
+    
+    mcSetFileSelectWindowCursolInit(pSave->pSelectFileWindow);
+    
+    SetCheckMcFlag(pSave->pMcState, 0);
 }
 
 // 
