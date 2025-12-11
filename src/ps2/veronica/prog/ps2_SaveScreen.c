@@ -690,22 +690,29 @@ void SetStateSaveScreenFreeCapacity(SAVE_SCREEN* pSave)
     pSave->cCgFlag = 100;
 }
 
-// 
-// Start address: 0x26ff80
+// 100% matching! 
 void ExecuteStateSaveScreenFreeCapacity(SAVE_SCREEN* pSave)
 {
-	int lResult;
-	// Line 1326, Address: 0x26ff80, Func Offset: 0
-	// Line 1329, Address: 0x26ff94, Func Offset: 0x14
-	// Line 1331, Address: 0x26ff9c, Func Offset: 0x1c
-	// Line 1334, Address: 0x26ffb0, Func Offset: 0x30
-	// Line 1337, Address: 0x26ffbc, Func Offset: 0x3c
-	// Line 1340, Address: 0x26ffc4, Func Offset: 0x44
-	// Line 1347, Address: 0x26ffd0, Func Offset: 0x50
-	// Line 1349, Address: 0x26ffd8, Func Offset: 0x58
-	// Line 1354, Address: 0x26ffe0, Func Offset: 0x60
-	// Line 1356, Address: 0x26ffec, Func Offset: 0x6c
-	// Func End, Address: 0x270000, Func Offset: 0x80
+    int lResult;
+
+    lResult = GetMemoryCardFreeCapacity(pSave->pMcState);
+    
+    if (lResult < mcGetFreeCapacitySize()) 
+    {
+        if (lResult == -1) 
+        {
+            SetStateSaveScreenAwarenessCard(pSave);
+        }
+        
+        if (lResult != -2) 
+        {
+            SetStateSaveScreenErrFreeCapacity(pSave);
+        }
+    }
+    else
+    {
+        SetStateSaveScreenCreateSaveFileCheck(pSave);
+    }
 }
 
 // 100% matching! 
