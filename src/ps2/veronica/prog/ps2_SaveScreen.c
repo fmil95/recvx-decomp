@@ -708,15 +708,13 @@ void ExecuteStateSaveScreenFreeCapacity(SAVE_SCREEN* pSave)
 	// Func End, Address: 0x270000, Func Offset: 0x80
 }
 
-// 
-// Start address: 0x270000
+// 100% matching! 
 void SetStateSaveScreenErrFreeCapacity(SAVE_SCREEN* pSave)
 {
-	// Line 1373, Address: 0x270000, Func Offset: 0
-	// Line 1375, Address: 0x270008, Func Offset: 0x8
-	// Line 1377, Address: 0x270010, Func Offset: 0x10
-	// Line 1378, Address: 0x270014, Func Offset: 0x14
-	// Func End, Address: 0x27001c, Func Offset: 0x1c
+    pSave->ulState = 14;
+    
+    pSave->cMesFlag = 4;
+    pSave->cCgFlag = 100;
 }
 
 // 
