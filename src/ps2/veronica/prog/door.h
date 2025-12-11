@@ -29,7 +29,7 @@ void DoorProc7(_door_wrk* dwP);
 void LightProc1(_door_wrk* dwP);
 void LightProc2(_door_wrk* dwP);*/
 int CompareSint32(int val_a, int cmp_typ, int val_b);
-int CompareFloat(float val_a, int cmp_typ, float val_b);
+static int CompareFloat(float val_a, int cmp_typ, float val_b);
 /*void VectorMove(_anon12* posP, int yaw, int pitch, float speed);
 void LightSubAmb(_anon12* ambP, _anon12* offP);
 void LightSubPnt(_door_wrk* dwP, int lgt_no, _anon35* ldP, _anon12* rteP);*/

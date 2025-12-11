@@ -1091,20 +1091,62 @@ int CompareSint32(int val_a, int cmp_typ, int val_b)
     return ret;
 }
 
-/*// 
-// Start address: 0x2b1900
-int CompareFloat(float val_a, int cmp_typ, float val_b)
+/* 97.56% matching - with this same code, this function matches 100% on Dreamcast but for some reason not here. However, compiling 
+   this function with a different version of MWCC (2.3 as opposed to 2.3.3) does match, which might indicate that the project is
+   using the wrong compiler? */ 
+static int CompareFloat(float val_a, int cmp_typ, float val_b)
 {
-	// Line 2066, Address: 0x2b1900, Func Offset: 0
-	// Line 2068, Address: 0x2b1934, Func Offset: 0x34
-	// Line 2069, Address: 0x2b1950, Func Offset: 0x50
-	// Line 2070, Address: 0x2b196c, Func Offset: 0x6c
-	// Line 2072, Address: 0x2b1988, Func Offset: 0x88
-	// Line 2074, Address: 0x2b199c, Func Offset: 0x9c
-	// Func End, Address: 0x2b19a4, Func Offset: 0xa4
+    switch (cmp_typ) 
+    {                                
+    case -1:
+        if (val_a >= val_b) 
+        {
+            return 1;
+        } 
+        else 
+        {
+            return 0;
+        }
+        
+        break;
+    case 0:
+        if (val_a == val_b) 
+        {
+            return 1;
+        }
+        else 
+        {
+            return 0;
+        }
+        
+        break;
+    case 1:
+        if (val_a <= val_b)
+        {
+            return 1;
+        } 
+        else 
+        {
+            return 0;
+        }
+        
+        break;
+    case -2:
+    case 2:
+        if (val_a != val_b)
+        {
+            return 1;
+        } 
+        else 
+        {
+            return 0;
+        }
+        
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2b19b0
 void VectorMove(_anon12* posP, int yaw, int pitch, float speed)
 {
