@@ -450,53 +450,67 @@ void SetStateSaveScreenSelectCard(SAVE_SCREEN* pSave)
     SetCheckMcFlag(pSave->pMcState, 0);
 }
 
-// 
-// Start address: 0x26f880
+// 100% matching! 
 void ExecuteStateSaveScreenSelectCard(SAVE_SCREEN* pSave)
 {
-	// Line 877, Address: 0x26f880, Func Offset: 0
-	// Line 879, Address: 0x26f88c, Func Offset: 0xc
-	// Line 881, Address: 0x26f8b0, Func Offset: 0x30
-	// Line 883, Address: 0x26f8b4, Func Offset: 0x34
-	// Line 881, Address: 0x26f8bc, Func Offset: 0x3c
-	// Line 883, Address: 0x26f8c0, Func Offset: 0x40
-	// Line 884, Address: 0x26f8c8, Func Offset: 0x48
-	// Line 885, Address: 0x26f8d0, Func Offset: 0x50
-	// Line 887, Address: 0x26f8dc, Func Offset: 0x5c
-	// Line 889, Address: 0x26f8e0, Func Offset: 0x60
-	// Line 887, Address: 0x26f8e8, Func Offset: 0x68
-	// Line 889, Address: 0x26f8ec, Func Offset: 0x6c
-	// Line 892, Address: 0x26f8f4, Func Offset: 0x74
-	// Line 895, Address: 0x26f900, Func Offset: 0x80
-	// Line 898, Address: 0x26f90c, Func Offset: 0x8c
-	// Line 902, Address: 0x26f93c, Func Offset: 0xbc
-	// Line 904, Address: 0x26f95c, Func Offset: 0xdc
-	// Line 906, Address: 0x26f960, Func Offset: 0xe0
-	// Line 904, Address: 0x26f964, Func Offset: 0xe4
-	// Line 906, Address: 0x26f968, Func Offset: 0xe8
-	// Line 907, Address: 0x26f970, Func Offset: 0xf0
-	// Line 909, Address: 0x26f978, Func Offset: 0xf8
-	// Line 911, Address: 0x26f984, Func Offset: 0x104
-	// Line 913, Address: 0x26f988, Func Offset: 0x108
-	// Line 911, Address: 0x26f98c, Func Offset: 0x10c
-	// Line 913, Address: 0x26f990, Func Offset: 0x110
-	// Line 915, Address: 0x26f998, Func Offset: 0x118
-	// Line 916, Address: 0x26f9a4, Func Offset: 0x124
-	// Line 921, Address: 0x26f9ac, Func Offset: 0x12c
-	// Line 924, Address: 0x26f9cc, Func Offset: 0x14c
-	// Line 927, Address: 0x26f9dc, Func Offset: 0x15c
-	// Line 928, Address: 0x26f9e4, Func Offset: 0x164
-	// Line 933, Address: 0x26f9ec, Func Offset: 0x16c
-	// Line 936, Address: 0x26f9f8, Func Offset: 0x178
-	// Line 937, Address: 0x26fa04, Func Offset: 0x184
-	// Line 939, Address: 0x26fa0c, Func Offset: 0x18c
-	// Line 942, Address: 0x26fa18, Func Offset: 0x198
-	// Line 944, Address: 0x26fa20, Func Offset: 0x1a0
-	// Line 945, Address: 0x26fa2c, Func Offset: 0x1ac
-	// Line 949, Address: 0x26fa34, Func Offset: 0x1b4
-	// Line 952, Address: 0x26fa50, Func Offset: 0x1d0
-	// Line 965, Address: 0x26fa58, Func Offset: 0x1d8
-	// Func End, Address: 0x26fa68, Func Offset: 0x1e8
+    if ((sys->pad_ps & 0x1)) 
+    {
+        pSave->sCursorY--;
+        
+        CallSystemSe(0, 2);
+    }
+    else if ((sys->pad_ps & 0x2))
+    {
+        pSave->sCursorY++;
+        
+        CallSystemSe(0, 2);
+    }
+    
+    pSave->sCursorY &= 0x1;
+    
+    if ((pSave->sCursorY == 0) && ((GetMemoryCardSelectPortState(pSave->pMcState, 0) == 2) && (GetMemoryCardSelectPortState(pSave->pMcState, 1) == 2)))
+    {
+        if ((sys->pad_ps & 0x4)) 
+        {
+            pSave->sCursorX--;
+            
+            CallSystemSe(0, 2);
+        }
+        else if ((sys->pad_ps & 0x8)) 
+        {
+            pSave->sCursorX++;
+            
+            CallSystemSe(0, 2);
+        }
+        
+        pSave->sCursorX &= 0x1;
+        
+        pSave->sSelectCur = pSave->sCursorX;
+    }
+    
+    if ((sys->pad_ps & 0x800)) 
+    {
+        if (pSave->sCursorY == 1) 
+        {
+            SetStateSaveScreenExit(pSave);
+        } 
+        else 
+        {
+            SetStateSaveScreenLostDirCheck(pSave);
+        }
+        
+        CallSystemSe(0, 3);
+    }
+    else if ((sys->pad_ps & 0x1000)) 
+    {
+        SetStateSaveScreenExit(pSave);
+        
+        CallSystemSe(0, 0);
+    }
+    else if ((pSave->lCardState > 100) && (pSave->lCardState < 104)) 
+    {
+        SetStateSaveScreenAwarenessCard(pSave);
+    }
 }
 
 // 
