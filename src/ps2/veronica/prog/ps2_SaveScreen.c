@@ -193,72 +193,99 @@ void DispTexture(SAVE_SCREEN* pSave)
     }
 }
 
-// 
-// Start address: 0x26f0e0
-int ExecuteSaveScreen(SAVE_SCREEN* pSave)
+// 100% matching! 
+int ExecuteSaveScreen(SAVE_SCREEN* pSave) 
 {
-	// Line 498, Address: 0x26f0e0, Func Offset: 0
-	// Line 500, Address: 0x26f0f0, Func Offset: 0x10
-	// Line 503, Address: 0x26f0f8, Func Offset: 0x18
-	// Line 505, Address: 0x26f100, Func Offset: 0x20
-	// Line 508, Address: 0x26f240, Func Offset: 0x160
-	// Line 509, Address: 0x26f24c, Func Offset: 0x16c
-	// Line 511, Address: 0x26f254, Func Offset: 0x174
-	// Line 512, Address: 0x26f260, Func Offset: 0x180
-	// Line 514, Address: 0x26f268, Func Offset: 0x188
-	// Line 515, Address: 0x26f274, Func Offset: 0x194
-	// Line 517, Address: 0x26f27c, Func Offset: 0x19c
-	// Line 518, Address: 0x26f288, Func Offset: 0x1a8
-	// Line 520, Address: 0x26f290, Func Offset: 0x1b0
-	// Line 521, Address: 0x26f29c, Func Offset: 0x1bc
-	// Line 523, Address: 0x26f2a4, Func Offset: 0x1c4
-	// Line 524, Address: 0x26f2b0, Func Offset: 0x1d0
-	// Line 526, Address: 0x26f2b8, Func Offset: 0x1d8
-	// Line 527, Address: 0x26f2c4, Func Offset: 0x1e4
-	// Line 529, Address: 0x26f2cc, Func Offset: 0x1ec
-	// Line 530, Address: 0x26f2d8, Func Offset: 0x1f8
-	// Line 532, Address: 0x26f2e0, Func Offset: 0x200
-	// Line 533, Address: 0x26f2ec, Func Offset: 0x20c
-	// Line 535, Address: 0x26f2f4, Func Offset: 0x214
-	// Line 536, Address: 0x26f300, Func Offset: 0x220
-	// Line 538, Address: 0x26f308, Func Offset: 0x228
-	// Line 539, Address: 0x26f314, Func Offset: 0x234
-	// Line 541, Address: 0x26f31c, Func Offset: 0x23c
-	// Line 542, Address: 0x26f328, Func Offset: 0x248
-	// Line 544, Address: 0x26f330, Func Offset: 0x250
-	// Line 545, Address: 0x26f33c, Func Offset: 0x25c
-	// Line 547, Address: 0x26f344, Func Offset: 0x264
-	// Line 548, Address: 0x26f350, Func Offset: 0x270
-	// Line 550, Address: 0x26f358, Func Offset: 0x278
-	// Line 551, Address: 0x26f364, Func Offset: 0x284
-	// Line 553, Address: 0x26f36c, Func Offset: 0x28c
-	// Line 554, Address: 0x26f378, Func Offset: 0x298
-	// Line 556, Address: 0x26f380, Func Offset: 0x2a0
-	// Line 557, Address: 0x26f38c, Func Offset: 0x2ac
-	// Line 559, Address: 0x26f394, Func Offset: 0x2b4
-	// Line 560, Address: 0x26f3a0, Func Offset: 0x2c0
-	// Line 562, Address: 0x26f3a8, Func Offset: 0x2c8
-	// Line 563, Address: 0x26f3b4, Func Offset: 0x2d4
-	// Line 565, Address: 0x26f3bc, Func Offset: 0x2dc
-	// Line 566, Address: 0x26f3c8, Func Offset: 0x2e8
-	// Line 568, Address: 0x26f3d0, Func Offset: 0x2f0
-	// Line 569, Address: 0x26f3dc, Func Offset: 0x2fc
-	// Line 571, Address: 0x26f3e4, Func Offset: 0x304
-	// Line 572, Address: 0x26f3f0, Func Offset: 0x310
-	// Line 574, Address: 0x26f3f8, Func Offset: 0x318
-	// Line 575, Address: 0x26f404, Func Offset: 0x324
-	// Line 577, Address: 0x26f40c, Func Offset: 0x32c
-	// Line 578, Address: 0x26f418, Func Offset: 0x338
-	// Line 580, Address: 0x26f420, Func Offset: 0x340
-	// Line 581, Address: 0x26f42c, Func Offset: 0x34c
-	// Line 583, Address: 0x26f434, Func Offset: 0x354
-	// Line 587, Address: 0x26f440, Func Offset: 0x360
-	// Line 589, Address: 0x26f44c, Func Offset: 0x36c
-	// Line 592, Address: 0x26f454, Func Offset: 0x374
-	// Line 591, Address: 0x26f45c, Func Offset: 0x37c
-	// Line 592, Address: 0x26f460, Func Offset: 0x380
-	// Func End, Address: 0x26f468, Func Offset: 0x388
-	scePrintf("ExecuteSaveScreen - UNIMPLEMENTED!\n");
+    pSave->lCardState = ExecuteMemoryCard(pSave->pMcState);
+    
+    DispBackGroundTexture();
+    
+    switch (pSave->ulState) 
+    {                           
+    case 0:
+        ExecuteStateSaveScreenAwarenessCard(pSave);
+        break;
+    case 1:
+        ExecuteStateSaveScreenErrLostCard(pSave);
+        break;
+    case 2:
+        ExecuteStateSaveScreenErrUnPS2MemCard(pSave);
+        break;
+    case 10:
+        ExecuteStateSaveScreenSelectCard(pSave);
+        break;
+    case 11:
+        ExecuteStateSaveScreenExit(pSave);
+        break;
+    case 12:
+        ExecuteStateSaveScreenLostDirCheck(pSave);
+        break;
+    case 13:
+        ExecuteStateSaveScreenFreeCapacity(pSave);
+        break;
+    case 14:
+        ExecuteStateSaveScreenErrFreeCapacity(pSave);
+        break;
+    case 15:
+        ExecuteStateSaveScreenCreateSaveFileCheck(pSave);
+        break;
+    case 16:
+        ExecuteStateSaveScreenCreateSaveFile(pSave);
+        break;
+    case 17:
+        ExecuteStateSaveScreenErrCreateSaveFile(pSave);
+        break;
+    case 18:
+        ExecuteStateSaveScreenSpecialSave(pSave);
+        break;
+    case 20:
+        ExecuteStateSaveScreenSelectFile(pSave);
+        break;
+    case 21:
+        ExecuteStateSaveScreenErrDer(pSave);
+        break;
+    case 30:
+        ExecuteStateSaveScreenSaveCursor(pSave);
+        break;
+    case 31:
+        ExecuteStateSaveScreenSaveCursorOld(pSave);
+        break;
+    case 32:
+        ExecuteStateSaveScreenSaveCursorNew(pSave);
+        break;
+    case 33:
+        ExecuteStateSaveScreenSave(pSave);
+        break;
+    case 35:
+        ExecuteStateSaveScreenSuccessCardWrite(pSave);
+        break;
+    case 36:
+        ExecuteStateSaveScreenSuccessCardWriteMessage(pSave);
+        break;
+    case 37:
+        ExecuteStateSaveScreenErrCardWrite(pSave);
+        break;
+    case 40:
+        ExecuteStateSaveScreenFormat(pSave);
+        break;
+    case 41:
+        ExecuteStateSaveScreenStartFormat(pSave);
+        break;
+    case 42:
+        ExecuteStateSaveScreenExitFormat(pSave);
+        break;
+    case 43:
+        ExecuteStateSaveScreenSuccessFormat(pSave);
+        break;
+    case 44:
+        ExecuteStateSaveScreenErrFormat(pSave);
+        break;
+    }
+    
+    DispTexture(pSave);
+    DispMessageSelect(pSave->cMesFlag);
+    
+    return 0;
 }
 
 // 100% matching! 
@@ -367,9 +394,9 @@ void SetStateSaveScreenErrUnPS2MemCard(SAVE_SCREEN* pSave)
     pSave->cCgFlag = 0;
 }
 
-/*// 
+// 
 // Start address: 0x26f720
-void ExecuteStateSaveScreenErrUnPS2MemCard(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenErrUnPS2MemCard(SAVE_SCREEN* pSave)
 {
 	int lPort1State;
 	int lPort0State;
@@ -392,7 +419,7 @@ void ExecuteStateSaveScreenErrUnPS2MemCard(tagSAVE_SCREEN* pSave)
 	// Line 828, Address: 0x26f810, Func Offset: 0xf0
 	// Line 832, Address: 0x26f818, Func Offset: 0xf8
 	// Func End, Address: 0x26f82c, Func Offset: 0x10c
-}*/
+}
 
 // 
 // Start address: 0x26f830
@@ -410,9 +437,9 @@ void SetStateSaveScreenSelectCard(SAVE_SCREEN* pSave)
 	// Func End, Address: 0x26f87c, Func Offset: 0x4c
 }
 
-/*// 
+// 
 // Start address: 0x26f880
-void ExecuteStateSaveScreenSelectCard(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenSelectCard(SAVE_SCREEN* pSave)
 {
 	// Line 877, Address: 0x26f880, Func Offset: 0
 	// Line 879, Address: 0x26f88c, Func Offset: 0xc
@@ -461,7 +488,7 @@ void ExecuteStateSaveScreenSelectCard(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x26fa70
-void SetStateSaveScreenExit(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenExit(SAVE_SCREEN* pSave)
 {
 	// Line 982, Address: 0x26fa70, Func Offset: 0
 	// Line 984, Address: 0x26fa78, Func Offset: 0x8
@@ -473,7 +500,7 @@ void SetStateSaveScreenExit(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x26faa0
-void ExecuteStateSaveScreenExit(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenExit(SAVE_SCREEN* pSave)
 {
 	// Line 1006, Address: 0x26faa0, Func Offset: 0
 	// Line 1010, Address: 0x26faac, Func Offset: 0xc
@@ -487,7 +514,7 @@ void ExecuteStateSaveScreenExit(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x26fb10
-void SetSaveScreenSpecialSave(tagSAVE_SCREEN* pSave)
+void SetSaveScreenSpecialSave(SAVE_SCREEN* pSave)
 {
 	// Line 1038, Address: 0x26fb10, Func Offset: 0
 	// Line 1040, Address: 0x26fb18, Func Offset: 0x8
@@ -499,7 +526,7 @@ void SetSaveScreenSpecialSave(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x26fb40
-void ExecuteStateSaveScreenSpecialSave(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenSpecialSave(SAVE_SCREEN* pSave)
 {
 	// Line 1060, Address: 0x26fb40, Func Offset: 0
 	// Line 1064, Address: 0x26fb48, Func Offset: 0x8
@@ -535,7 +562,7 @@ void ExecuteStateSaveScreenSpecialSave(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x26fc70
-void SetStateSaveScreenLostDirCheck(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenLostDirCheck(SAVE_SCREEN* pSave)
 {
 	// Line 1127, Address: 0x26fc70, Func Offset: 0
 	// Line 1129, Address: 0x26fc7c, Func Offset: 0xc
@@ -554,7 +581,7 @@ void SetStateSaveScreenLostDirCheck(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x26fce0
-void ExecuteStateSaveScreenLostDirCheck(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenLostDirCheck(SAVE_SCREEN* pSave)
 {
 	int lResult;
 	// Line 1162, Address: 0x26fce0, Func Offset: 0
@@ -617,7 +644,7 @@ void ExecuteStateSaveScreenLostDirCheck(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x26ff60
-void SetStateSaveScreenFreeCapacity(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenFreeCapacity(SAVE_SCREEN* pSave)
 {
 	// Line 1306, Address: 0x26ff60, Func Offset: 0
 	// Line 1308, Address: 0x26ff68, Func Offset: 0x8
@@ -628,7 +655,7 @@ void SetStateSaveScreenFreeCapacity(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x26ff80
-void ExecuteStateSaveScreenFreeCapacity(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenFreeCapacity(SAVE_SCREEN* pSave)
 {
 	int lResult;
 	// Line 1326, Address: 0x26ff80, Func Offset: 0
@@ -646,7 +673,7 @@ void ExecuteStateSaveScreenFreeCapacity(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270000
-void SetStateSaveScreenErrFreeCapacity(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenErrFreeCapacity(SAVE_SCREEN* pSave)
 {
 	// Line 1373, Address: 0x270000, Func Offset: 0
 	// Line 1375, Address: 0x270008, Func Offset: 0x8
@@ -657,7 +684,7 @@ void SetStateSaveScreenErrFreeCapacity(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270020
-void ExecuteStateSaveScreenErrFreeCapacity(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenErrFreeCapacity(SAVE_SCREEN* pSave)
 {
 	// Line 1393, Address: 0x270020, Func Offset: 0
 	// Line 1395, Address: 0x270028, Func Offset: 0x8
@@ -672,7 +699,7 @@ void ExecuteStateSaveScreenErrFreeCapacity(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x2700a0
-void SetStateSaveScreenCreateSaveFileCheck(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenCreateSaveFileCheck(SAVE_SCREEN* pSave)
 {
 	// Line 1428, Address: 0x2700a0, Func Offset: 0
 	// Line 1430, Address: 0x2700a8, Func Offset: 0x8
@@ -683,7 +710,7 @@ void SetStateSaveScreenCreateSaveFileCheck(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x2700c0
-void ExecuteStateSaveScreenCreateSaveFileCheck(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenCreateSaveFileCheck(SAVE_SCREEN* pSave)
 {
 	// Line 1450, Address: 0x2700c0, Func Offset: 0
 	// Line 1454, Address: 0x2700c8, Func Offset: 0x8
@@ -719,7 +746,7 @@ void ExecuteStateSaveScreenCreateSaveFileCheck(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x2701f0
-void SetStateSaveScreenCreateSaveFile(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenCreateSaveFile(SAVE_SCREEN* pSave)
 {
 	// Line 1518, Address: 0x2701f0, Func Offset: 0
 	// Line 1520, Address: 0x2701f8, Func Offset: 0x8
@@ -734,7 +761,7 @@ void SetStateSaveScreenCreateSaveFile(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270230
-void ExecuteStateSaveScreenCreateSaveFile(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenCreateSaveFile(SAVE_SCREEN* pSave)
 {
 	int lResult;
 	// Line 1546, Address: 0x270230, Func Offset: 0
@@ -816,7 +843,7 @@ void ExecuteStateSaveScreenCreateSaveFile(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270560
-void SetStateSaveScreenErrCreateSaveFile(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenErrCreateSaveFile(SAVE_SCREEN* pSave)
 {
 	// Line 1726, Address: 0x270560, Func Offset: 0
 	// Line 1728, Address: 0x270568, Func Offset: 0x8
@@ -828,7 +855,7 @@ void SetStateSaveScreenErrCreateSaveFile(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270590
-void ExecuteStateSaveScreenErrCreateSaveFile(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenErrCreateSaveFile(SAVE_SCREEN* pSave)
 {
 	// Line 1750, Address: 0x270590, Func Offset: 0
 	// Line 1754, Address: 0x270598, Func Offset: 0x8
@@ -843,7 +870,7 @@ void ExecuteStateSaveScreenErrCreateSaveFile(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270610
-void SetStateSaveScreenSelectFile(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenSelectFile(SAVE_SCREEN* pSave)
 {
 	// Line 1785, Address: 0x270610, Func Offset: 0
 	// Line 1787, Address: 0x27061c, Func Offset: 0xc
@@ -859,7 +886,7 @@ void SetStateSaveScreenSelectFile(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270670
-void ExecuteStateSaveScreenSelectFile(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenSelectFile(SAVE_SCREEN* pSave)
 {
 	unsigned int KeyWait01;
 	unsigned int KeyWait00;
@@ -919,7 +946,7 @@ void ExecuteStateSaveScreenSelectFile(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270940
-void SetStateSaveScreenSaveCursor(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenSaveCursor(SAVE_SCREEN* pSave)
 {
 	// Line 1937, Address: 0x270940, Func Offset: 0
 	// Line 1939, Address: 0x27094c, Func Offset: 0xc
@@ -933,7 +960,7 @@ void SetStateSaveScreenSaveCursor(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270990
-void ExecuteStateSaveScreenSaveCursor(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenSaveCursor(SAVE_SCREEN* pSave)
 {
 	// Line 1963, Address: 0x270990, Func Offset: 0
 	// Line 1965, Address: 0x2709a0, Func Offset: 0x10
@@ -946,7 +973,7 @@ void ExecuteStateSaveScreenSaveCursor(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x2709f0
-void SetStateSaveScreenSaveCursorOld(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenSaveCursorOld(SAVE_SCREEN* pSave)
 {
 	// Line 1993, Address: 0x2709f0, Func Offset: 0
 	// Line 1995, Address: 0x2709f8, Func Offset: 0x8
@@ -958,7 +985,7 @@ void SetStateSaveScreenSaveCursorOld(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270a20
-void ExecuteStateSaveScreenSaveCursorOld(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenSaveCursorOld(SAVE_SCREEN* pSave)
 {
 	// Line 2015, Address: 0x270a20, Func Offset: 0
 	// Line 2019, Address: 0x270a28, Func Offset: 0x8
@@ -994,7 +1021,7 @@ void ExecuteStateSaveScreenSaveCursorOld(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270b50
-void SetStateSaveScreenSaveCursorNew(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenSaveCursorNew(SAVE_SCREEN* pSave)
 {
 	// Line 2084, Address: 0x270b50, Func Offset: 0
 	// Line 2086, Address: 0x270b58, Func Offset: 0x8
@@ -1005,7 +1032,7 @@ void SetStateSaveScreenSaveCursorNew(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270b70
-void ExecuteStateSaveScreenSaveCursorNew(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenSaveCursorNew(SAVE_SCREEN* pSave)
 {
 	// Line 2106, Address: 0x270b70, Func Offset: 0
 	// Line 2110, Address: 0x270b78, Func Offset: 0x8
@@ -1041,7 +1068,7 @@ void ExecuteStateSaveScreenSaveCursorNew(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270ca0
-void SetStateSaveScreenSave(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenSave(SAVE_SCREEN* pSave)
 {
 	// Line 2174, Address: 0x270ca0, Func Offset: 0
 	// Line 2178, Address: 0x270ca8, Func Offset: 0x8
@@ -1054,7 +1081,7 @@ void SetStateSaveScreenSave(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270cd0
-void ExecuteStateSaveScreenSave(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenSave(SAVE_SCREEN* pSave)
 {
 	int lFileNumber;
 	int lSaveResult;
@@ -1084,7 +1111,7 @@ void ExecuteStateSaveScreenSave(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270df0
-void SetStateSaveScreenSuccessCardWrite(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenSuccessCardWrite(SAVE_SCREEN* pSave)
 {
 	// Line 2270, Address: 0x270df0, Func Offset: 0
 	// Line 2272, Address: 0x270df8, Func Offset: 0x8
@@ -1097,7 +1124,7 @@ void SetStateSaveScreenSuccessCardWrite(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270e10
-void ExecuteStateSaveScreenSuccessCardWrite(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenSuccessCardWrite(SAVE_SCREEN* pSave)
 {
 	// Line 2292, Address: 0x270e10, Func Offset: 0
 	// Line 2294, Address: 0x270e20, Func Offset: 0x10
@@ -1110,7 +1137,7 @@ void ExecuteStateSaveScreenSuccessCardWrite(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270e60
-void SetStateSaveScreenSuccessCardWriteMessage(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenSuccessCardWriteMessage(SAVE_SCREEN* pSave)
 {
 	// Line 2322, Address: 0x270e60, Func Offset: 0
 	// Line 2324, Address: 0x270e6c, Func Offset: 0xc
@@ -1125,7 +1152,7 @@ void SetStateSaveScreenSuccessCardWriteMessage(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270ec0
-void ExecuteStateSaveScreenSuccessCardWriteMessage(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenSuccessCardWriteMessage(SAVE_SCREEN* pSave)
 {
 	// Line 2350, Address: 0x270ec0, Func Offset: 0
 	// Line 2352, Address: 0x270ec8, Func Offset: 0x8
@@ -1138,7 +1165,7 @@ void ExecuteStateSaveScreenSuccessCardWriteMessage(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270f00
-void SetStateSaveScreenErrCardWrite(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenErrCardWrite(SAVE_SCREEN* pSave)
 {
 	// Line 2379, Address: 0x270f00, Func Offset: 0
 	// Line 2381, Address: 0x270f08, Func Offset: 0x8
@@ -1149,7 +1176,7 @@ void SetStateSaveScreenErrCardWrite(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270f20
-void ExecuteStateSaveScreenErrCardWrite(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenErrCardWrite(SAVE_SCREEN* pSave)
 {
 	// Line 2399, Address: 0x270f20, Func Offset: 0
 	// Line 2400, Address: 0x270f28, Func Offset: 0x8
@@ -1164,7 +1191,7 @@ void ExecuteStateSaveScreenErrCardWrite(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270fa0
-void SetStateSaveScreenFormat(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenFormat(SAVE_SCREEN* pSave)
 {
 	// Line 2433, Address: 0x270fa0, Func Offset: 0
 	// Line 2435, Address: 0x270fa8, Func Offset: 0x8
@@ -1176,7 +1203,7 @@ void SetStateSaveScreenFormat(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x270fd0
-void ExecuteStateSaveScreenFormat(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenFormat(SAVE_SCREEN* pSave)
 {
 	// Line 2457, Address: 0x270fd0, Func Offset: 0
 	// Line 2460, Address: 0x270fd8, Func Offset: 0x8
@@ -1212,7 +1239,7 @@ void ExecuteStateSaveScreenFormat(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x271100
-void SetStateSaveScreenStartFormat(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenStartFormat(SAVE_SCREEN* pSave)
 {
 	// Line 2525, Address: 0x271100, Func Offset: 0
 	// Line 2529, Address: 0x271108, Func Offset: 0x8
@@ -1225,7 +1252,7 @@ void SetStateSaveScreenStartFormat(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x271130
-void ExecuteStateSaveScreenStartFormat(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenStartFormat(SAVE_SCREEN* pSave)
 {
 	int lFormatResult;
 	// Line 2550, Address: 0x271130, Func Offset: 0
@@ -1253,7 +1280,7 @@ void ExecuteStateSaveScreenStartFormat(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x271230
-void SetStateSaveScreenExitFormat(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenExitFormat(SAVE_SCREEN* pSave)
 {
 	// Line 2619, Address: 0x271230, Func Offset: 0
 	// Line 2621, Address: 0x271238, Func Offset: 0x8
@@ -1265,7 +1292,7 @@ void SetStateSaveScreenExitFormat(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x271260
-void ExecuteStateSaveScreenExitFormat(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenExitFormat(SAVE_SCREEN* pSave)
 {
 	// Line 2641, Address: 0x271260, Func Offset: 0
 	// Line 2643, Address: 0x271268, Func Offset: 0x8
@@ -1301,7 +1328,7 @@ void ExecuteStateSaveScreenExitFormat(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x271390
-void SetStateSaveScreenSuccessFormat(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenSuccessFormat(SAVE_SCREEN* pSave)
 {
 	// Line 2705, Address: 0x271390, Func Offset: 0
 	// Line 2707, Address: 0x271398, Func Offset: 0x8
@@ -1313,7 +1340,7 @@ void SetStateSaveScreenSuccessFormat(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x2713c0
-void ExecuteStateSaveScreenSuccessFormat(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenSuccessFormat(SAVE_SCREEN* pSave)
 {
 	// Line 2727, Address: 0x2713c0, Func Offset: 0
 	// Line 2729, Address: 0x2713c8, Func Offset: 0x8
@@ -1324,7 +1351,7 @@ void ExecuteStateSaveScreenSuccessFormat(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x2713f0
-void SetStateSaveScreenErrFormat(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenErrFormat(SAVE_SCREEN* pSave)
 {
 	// Line 2751, Address: 0x2713f0, Func Offset: 0
 	// Line 2753, Address: 0x2713f8, Func Offset: 0x8
@@ -1335,7 +1362,7 @@ void SetStateSaveScreenErrFormat(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x271410
-void ExecuteStateSaveScreenErrFormat(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenErrFormat(SAVE_SCREEN* pSave)
 {
 	// Line 2773, Address: 0x271410, Func Offset: 0
 	// Line 2774, Address: 0x271418, Func Offset: 0x8
@@ -1350,7 +1377,7 @@ void ExecuteStateSaveScreenErrFormat(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x271480
-void SetStateSaveScreenErrDer(tagSAVE_SCREEN* pSave)
+void SetStateSaveScreenErrDer(SAVE_SCREEN* pSave)
 {
 	// Line 2807, Address: 0x271480, Func Offset: 0
 	// Line 2809, Address: 0x271488, Func Offset: 0x8
@@ -1361,7 +1388,7 @@ void SetStateSaveScreenErrDer(tagSAVE_SCREEN* pSave)
 
 // 
 // Start address: 0x2714a0
-void ExecuteStateSaveScreenErrDer(tagSAVE_SCREEN* pSave)
+void ExecuteStateSaveScreenErrDer(SAVE_SCREEN* pSave)
 {
 	// Line 2827, Address: 0x2714a0, Func Offset: 0
 	// Line 2828, Address: 0x2714a8, Func Offset: 0x8
@@ -1396,7 +1423,7 @@ void SetDispSelectMessage()
 
 // 
 // Start address: 0x271690
-void CheckDispMemoryCard(tagSAVE_SCREEN* pSave)
+void CheckDispMemoryCard(SAVE_SCREEN* pSave)
 {
 	int lPort1CurX;
 	int lPort0CurX;
@@ -1440,5 +1467,4 @@ void CheckDispMemoryCard(tagSAVE_SCREEN* pSave)
 	// Line 2959, Address: 0x2717b8, Func Offset: 0x128
 	// Line 2960, Address: 0x271810, Func Offset: 0x180
 	// Func End, Address: 0x271828, Func Offset: 0x198
-}*/
-
+}
