@@ -394,31 +394,43 @@ void SetStateSaveScreenErrUnPS2MemCard(SAVE_SCREEN* pSave)
     pSave->cCgFlag = 0;
 }
 
-// 
-// Start address: 0x26f720
-void ExecuteStateSaveScreenErrUnPS2MemCard(SAVE_SCREEN* pSave)
+// 100% matching! 
+void ExecuteStateSaveScreenErrUnPS2MemCard(SAVE_SCREEN* pSave) 
 {
-	int lPort1State;
-	int lPort0State;
-	// Line 791, Address: 0x26f720, Func Offset: 0
-	// Line 795, Address: 0x26f730, Func Offset: 0x10
-	// Line 798, Address: 0x26f750, Func Offset: 0x30
-	// Line 800, Address: 0x26f758, Func Offset: 0x38
-	// Line 801, Address: 0x26f764, Func Offset: 0x44
-	// Line 805, Address: 0x26f76c, Func Offset: 0x4c
-	// Line 808, Address: 0x26f79c, Func Offset: 0x7c
-	// Line 809, Address: 0x26f7a8, Func Offset: 0x88
-	// Line 811, Address: 0x26f7b8, Func Offset: 0x98
-	// Line 814, Address: 0x26f7cc, Func Offset: 0xac
-	// Line 815, Address: 0x26f7d8, Func Offset: 0xb8
-	// Line 816, Address: 0x26f7e0, Func Offset: 0xc0
-	// Line 819, Address: 0x26f7f0, Func Offset: 0xd0
-	// Line 821, Address: 0x26f7f8, Func Offset: 0xd8
-	// Line 824, Address: 0x26f800, Func Offset: 0xe0
-	// Line 825, Address: 0x26f808, Func Offset: 0xe8
-	// Line 828, Address: 0x26f810, Func Offset: 0xf0
-	// Line 832, Address: 0x26f818, Func Offset: 0xf8
-	// Func End, Address: 0x26f82c, Func Offset: 0x10c
+    int lPort0State;
+    int lPort1State;
+ 
+    if ((sys->pad_ps & 0x1800)) 
+    {
+        SetStateSaveScreenExit(pSave);
+        
+        CallSystemSe(0, 3);
+        return;
+    }
+    
+    switch (pSave->lCardState) 
+    {
+    case 100:  
+        lPort0State = GetMemoryCardSelectPortState(pSave->pMcState, 0);
+        lPort1State = GetMemoryCardSelectPortState(pSave->pMcState, 1);
+
+        if ((lPort0State == 2) || (lPort1State == 2)) 
+        {
+            SetStateSaveScreenSelectCard(pSave);
+        } 
+        else if ((lPort0State == 0) && (lPort1State == 0))
+        {
+            SetStateSaveScreenErrLostCard(pSave);
+        }
+        
+        break;
+    case 101:  
+        SetStateSaveScreenAwarenessCard(pSave);
+        break;
+    case 103:  
+        SetStateSaveScreenErrLostCard(pSave);
+        break;
+    }
 }
 
 // 
