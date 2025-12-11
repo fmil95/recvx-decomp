@@ -527,18 +527,20 @@ void SetStateSaveScreenExit(SAVE_SCREEN* pSave)
     SetCheckMcFlag(pSave->pMcState, 0);
 }
 
-// 
-// Start address: 0x26faa0
+// 100% matching! 
 void ExecuteStateSaveScreenExit(SAVE_SCREEN* pSave)
 {
-	// Line 1006, Address: 0x26faa0, Func Offset: 0
-	// Line 1010, Address: 0x26faac, Func Offset: 0xc
-	// Line 1012, Address: 0x26facc, Func Offset: 0x2c
-	// Line 1014, Address: 0x26fadc, Func Offset: 0x3c
-	// Line 1016, Address: 0x26fae0, Func Offset: 0x40
-	// Line 1019, Address: 0x26fae8, Func Offset: 0x48
-	// Line 1021, Address: 0x26faf4, Func Offset: 0x54
-	// Func End, Address: 0x26fb04, Func Offset: 0x64
+    if (bhCkFlg(sys->ev_flg, 56) == 0) 
+    {
+        if (--pSave->ulMemCheckCountTimer == 0) 
+        {
+            pSave->usExitFlag = 1;
+        }
+    }
+    else
+    {
+        SetSaveScreenSpecialSave(pSave);
+    }
 }
 
 // 100% matching! 
