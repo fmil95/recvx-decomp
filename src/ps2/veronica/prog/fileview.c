@@ -1069,62 +1069,189 @@ void ReadFstx()
 	scePrintf("ReadFstx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ae820
+// 100% matching! 
 unsigned int FileNumberSwitch(unsigned int num)
 {
-	unsigned int filenum;
-	// Line 1351, Address: 0x2ae820, Func Offset: 0
-	// Line 1353, Address: 0x2ae970, Func Offset: 0x150
-	// Line 1354, Address: 0x2ae97c, Func Offset: 0x15c
-	// Line 1356, Address: 0x2ae984, Func Offset: 0x164
-	// Line 1357, Address: 0x2ae990, Func Offset: 0x170
-	// Line 1359, Address: 0x2ae998, Func Offset: 0x178
-	// Line 1360, Address: 0x2ae9a4, Func Offset: 0x184
-	// Line 1362, Address: 0x2ae9ac, Func Offset: 0x18c
-	// Line 1363, Address: 0x2ae9bc, Func Offset: 0x19c
-	// Line 1364, Address: 0x2ae9c8, Func Offset: 0x1a8
-	// Line 1366, Address: 0x2ae9d0, Func Offset: 0x1b0
-	// Line 1367, Address: 0x2ae9dc, Func Offset: 0x1bc
-	// Line 1369, Address: 0x2ae9e4, Func Offset: 0x1c4
-	// Line 1370, Address: 0x2ae9f0, Func Offset: 0x1d0
-	// Line 1373, Address: 0x2ae9f8, Func Offset: 0x1d8
-	// Line 1374, Address: 0x2aea04, Func Offset: 0x1e4
-	// Line 1376, Address: 0x2aea0c, Func Offset: 0x1ec
-	// Line 1377, Address: 0x2aea1c, Func Offset: 0x1fc
-	// Line 1378, Address: 0x2aea28, Func Offset: 0x208
-	// Line 1381, Address: 0x2aea30, Func Offset: 0x210
-	// Line 1382, Address: 0x2aea3c, Func Offset: 0x21c
-	// Line 1384, Address: 0x2aea44, Func Offset: 0x224
-	// Line 1385, Address: 0x2aea50, Func Offset: 0x230
-	// Line 1387, Address: 0x2aea58, Func Offset: 0x238
-	// Line 1388, Address: 0x2aea64, Func Offset: 0x244
-	// Line 1390, Address: 0x2aea6c, Func Offset: 0x24c
-	// Line 1391, Address: 0x2aea7c, Func Offset: 0x25c
-	// Line 1392, Address: 0x2aea88, Func Offset: 0x268
-	// Line 1394, Address: 0x2aea90, Func Offset: 0x270
-	// Line 1395, Address: 0x2aea9c, Func Offset: 0x27c
-	// Line 1397, Address: 0x2aeaa4, Func Offset: 0x284
-	// Line 1398, Address: 0x2aeab0, Func Offset: 0x290
-	// Line 1400, Address: 0x2aeab8, Func Offset: 0x298
-	// Line 1401, Address: 0x2aeac4, Func Offset: 0x2a4
-	// Line 1403, Address: 0x2aeacc, Func Offset: 0x2ac
-	// Line 1404, Address: 0x2aead8, Func Offset: 0x2b8
-	// Line 1407, Address: 0x2aeae0, Func Offset: 0x2c0
-	// Line 1408, Address: 0x2aeaec, Func Offset: 0x2cc
-	// Line 1410, Address: 0x2aeaf4, Func Offset: 0x2d4
-	// Line 1411, Address: 0x2aeb00, Func Offset: 0x2e0
-	// Line 1413, Address: 0x2aeb08, Func Offset: 0x2e8
-	// Line 1414, Address: 0x2aeb14, Func Offset: 0x2f4
-	// Line 1416, Address: 0x2aeb1c, Func Offset: 0x2fc
-	// Line 1417, Address: 0x2aeb28, Func Offset: 0x308
-	// Line 1419, Address: 0x2aeb30, Func Offset: 0x310
-	// Line 1420, Address: 0x2aeb34, Func Offset: 0x314
-	// Line 1419, Address: 0x2aeb38, Func Offset: 0x318
-	// Line 1426, Address: 0x2aeb40, Func Offset: 0x320
-	// Line 1428, Address: 0x2aeb50, Func Offset: 0x330
-	// Func End, Address: 0x2aeb58, Func Offset: 0x338
-	scePrintf("FileNumberSwitch - UNIMPLEMENTED!\n");
+    unsigned int filenum;
+
+    filenum = 0;
+    
+    switch (sys->rom_no + (sys->stg_no * 100)) 
+    {                   
+    case 7:
+        if (num == 48) 
+        {
+            filenum = 8;
+        }
+        
+        break;
+    case 11:
+        if (num == 47) 
+        {
+            filenum = 9;
+        }
+        
+        break;
+    case 108:
+        if (num == 47) 
+        {
+            filenum = 10;
+        }
+        
+        break;
+    case 207:
+        if (num == 135) 
+        {
+            filenum = 12;
+        }
+        
+        if (num == 102) 
+        {
+            filenum = 18;
+        }
+        
+        break;
+    case 204:
+        if (num == 134) 
+        {
+            filenum = 13;
+        }
+        
+        break;
+    case 106:
+        if (num == 133) 
+        {
+            filenum = 14;
+        }
+        
+        break;
+    case 601:
+    case 901:
+        if (num == 48) 
+        {
+            filenum = 15;
+        }
+        
+        break;
+    case 604:
+        if (num == 48) 
+        {
+            filenum = 16;
+        }
+        
+        if (num == 132) 
+        {
+            filenum = 17;
+        }
+        
+        break;
+    case 607:
+    case 907:
+        if (num == 132) 
+        {
+            filenum = 17;
+        }
+        
+        break;
+    case 702:
+        if (num == 102) 
+        {
+            filenum = 19;
+        }
+        
+        break;
+    case 922:
+        if (num == 49) 
+        {
+            filenum = 20;
+        }
+        
+        break;
+    case 904:
+        if (num == 102) 
+        {
+            filenum = 21;
+        }
+        
+        if (num == 48) 
+        {
+            filenum = 16;
+        }
+        
+        break;
+    case 919:
+        if (num == 133) 
+        {
+            filenum = 22;
+        }
+        
+        break;
+    case 918:
+        if (num == 133) 
+        {
+            filenum = 23;
+        }
+        
+        break;
+    case 4:
+        if (num == 132) 
+        {
+            filenum = 1;
+        }
+        
+        break;
+    case 9:
+        if (num == 49) 
+        {
+            filenum = 3;
+        }
+        
+        break;
+    case 313:
+    case 718:
+        if (num == 132) 
+        {
+            filenum = 4;
+        }
+        
+        break;
+    case 104:
+        if (num == 58) 
+        {
+            filenum = 5;
+        }
+        
+        break;
+    case 929:
+        if (num == 125) 
+        {
+            filenum = 6;
+        }
+        
+        break;
+    case 712:
+        if (num == 132) 
+        {
+            filenum = 7; 
+        }
+        
+        break;
+    case 551:
+        filenum = 11;
+        
+        sys->ssd_flg |= 0x1000;
+        break;
+    default:
+        filenum = 0;
+        break;
+    }
+    
+    if (num == 85) 
+    {
+        filenum = 2; 
+    }
+    
+    return filenum; 
 }
 
 // 100% matching!
