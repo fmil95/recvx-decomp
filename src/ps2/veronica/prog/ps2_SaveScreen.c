@@ -868,86 +868,168 @@ void SetStateSaveScreenCreateSaveFile(SAVE_SCREEN* pSave)
     SetCheckMcFlag(pSave->pMcState, 1);
 }
 
-// 
-// Start address: 0x270230
+// 100% matching! 
 void ExecuteStateSaveScreenCreateSaveFile(SAVE_SCREEN* pSave)
 {
-	int lResult;
-	// Line 1546, Address: 0x270230, Func Offset: 0
-	// Line 1549, Address: 0x27023c, Func Offset: 0xc
-	// Line 1552, Address: 0x270268, Func Offset: 0x38
-	// Line 1554, Address: 0x270270, Func Offset: 0x40
-	// Line 1557, Address: 0x27027c, Func Offset: 0x4c
-	// Line 1559, Address: 0x270288, Func Offset: 0x58
-	// Line 1561, Address: 0x270290, Func Offset: 0x60
-	// Line 1562, Address: 0x270294, Func Offset: 0x64
-	// Line 1563, Address: 0x27029c, Func Offset: 0x6c
-	// Line 1566, Address: 0x2702a8, Func Offset: 0x78
-	// Line 1571, Address: 0x2702cc, Func Offset: 0x9c
-	// Line 1574, Address: 0x2702d4, Func Offset: 0xa4
-	// Line 1575, Address: 0x2702dc, Func Offset: 0xac
-	// Line 1577, Address: 0x2702e8, Func Offset: 0xb8
-	// Line 1578, Address: 0x2702ec, Func Offset: 0xbc
-	// Line 1579, Address: 0x2702f4, Func Offset: 0xc4
-	// Line 1582, Address: 0x270300, Func Offset: 0xd0
-	// Line 1584, Address: 0x27030c, Func Offset: 0xdc
-	// Line 1586, Address: 0x270314, Func Offset: 0xe4
-	// Line 1588, Address: 0x270318, Func Offset: 0xe8
-	// Line 1592, Address: 0x270320, Func Offset: 0xf0
-	// Line 1593, Address: 0x270338, Func Offset: 0x108
-	// Line 1596, Address: 0x270344, Func Offset: 0x114
-	// Line 1598, Address: 0x270350, Func Offset: 0x120
-	// Line 1600, Address: 0x270358, Func Offset: 0x128
-	// Line 1601, Address: 0x27035c, Func Offset: 0x12c
-	// Line 1605, Address: 0x270364, Func Offset: 0x134
-	// Line 1607, Address: 0x270388, Func Offset: 0x158
-	// Line 1610, Address: 0x27038c, Func Offset: 0x15c
-	// Line 1613, Address: 0x270394, Func Offset: 0x164
-	// Line 1614, Address: 0x27039c, Func Offset: 0x16c
-	// Line 1617, Address: 0x2703a8, Func Offset: 0x178
-	// Line 1619, Address: 0x2703b4, Func Offset: 0x184
-	// Line 1621, Address: 0x2703bc, Func Offset: 0x18c
-	// Line 1622, Address: 0x2703c0, Func Offset: 0x190
-	// Line 1623, Address: 0x2703c8, Func Offset: 0x198
-	// Line 1626, Address: 0x2703d4, Func Offset: 0x1a4
-	// Line 1628, Address: 0x2703ec, Func Offset: 0x1bc
-	// Line 1631, Address: 0x2703f0, Func Offset: 0x1c0
-	// Line 1634, Address: 0x2703f8, Func Offset: 0x1c8
-	// Line 1635, Address: 0x270400, Func Offset: 0x1d0
-	// Line 1637, Address: 0x27040c, Func Offset: 0x1dc
-	// Line 1638, Address: 0x270410, Func Offset: 0x1e0
-	// Line 1639, Address: 0x270418, Func Offset: 0x1e8
-	// Line 1642, Address: 0x270424, Func Offset: 0x1f4
-	// Line 1644, Address: 0x270430, Func Offset: 0x200
-	// Line 1646, Address: 0x270438, Func Offset: 0x208
-	// Line 1648, Address: 0x27043c, Func Offset: 0x20c
-	// Line 1652, Address: 0x270444, Func Offset: 0x214
-	// Line 1654, Address: 0x270468, Func Offset: 0x238
-	// Line 1656, Address: 0x27046c, Func Offset: 0x23c
-	// Line 1659, Address: 0x270474, Func Offset: 0x244
-	// Line 1660, Address: 0x27047c, Func Offset: 0x24c
-	// Line 1662, Address: 0x270488, Func Offset: 0x258
-	// Line 1665, Address: 0x2704a4, Func Offset: 0x274
-	// Line 1669, Address: 0x2704ac, Func Offset: 0x27c
-	// Line 1667, Address: 0x2704b0, Func Offset: 0x280
-	// Line 1669, Address: 0x2704b4, Func Offset: 0x284
-	// Line 1671, Address: 0x2704b8, Func Offset: 0x288
-	// Line 1672, Address: 0x2704c4, Func Offset: 0x294
-	// Line 1675, Address: 0x2704cc, Func Offset: 0x29c
-	// Line 1677, Address: 0x2704d0, Func Offset: 0x2a0
-	// Line 1678, Address: 0x2704d8, Func Offset: 0x2a8
-	// Line 1681, Address: 0x2704e4, Func Offset: 0x2b4
-	// Line 1683, Address: 0x2704f0, Func Offset: 0x2c0
-	// Line 1685, Address: 0x2704f8, Func Offset: 0x2c8
-	// Line 1687, Address: 0x2704fc, Func Offset: 0x2cc
-	// Line 1690, Address: 0x270504, Func Offset: 0x2d4
-	// Line 1692, Address: 0x270514, Func Offset: 0x2e4
-	// Line 1695, Address: 0x270524, Func Offset: 0x2f4
-	// Line 1698, Address: 0x27052c, Func Offset: 0x2fc
-	// Line 1701, Address: 0x270534, Func Offset: 0x304
-	// Line 1704, Address: 0x270544, Func Offset: 0x314
-	// Line 1709, Address: 0x27054c, Func Offset: 0x31c
-	// Func End, Address: 0x27055c, Func Offset: 0x32c
+    int lResult;
+    
+    switch (pSave->ulSubState)
+    {
+    case 0:
+        lResult = CreateMemoryCardSubDirectory(pSave->pMcState);
+        
+        if (lResult == -1) 
+        {
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSave->pMcState);
+            
+            pSave->ulSubState = 8;
+        }
+        else if (lResult == 1) 
+        {
+            lResult = mcNewCreateIcon(pSave->pIconInfo, pSave->pMcState, cpNameList, 0);
+            
+            if (lResult == 1)
+            {
+                pSave->ulSubState = 1;
+            }
+        }
+        
+        break;
+    case 1: 
+        lResult = RecoveryMemoryCardWriteEnd(pSave->pMcState);
+        
+        if (lResult == 1) 
+        {
+            pSave->ulSubState = 2;
+        }
+        else if (lResult == -1) 
+        {
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSave->pMcState);
+            
+            pSave->ulSubState = 8;
+        }
+        
+        break;
+    case 2: 
+        lResult = mcReadIconData(pSave->vpReadBuffer, cpNameList, 1);
+        
+        pSave->ulFileSize = lResult;
+        
+        if (pSave->ulFileSize == 0) 
+        {
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSave->pMcState);
+            
+            pSave->ulSubState = 8;
+            break;
+        }
+        
+        lResult = mcWriteIconData(pSave->pMcState, pSave->vpReadBuffer, pSave->ulFileSize, cpNameList, 1);
+        
+        if (lResult == 1)
+        {
+            pSave->ulSubState = 3;
+        }
+        
+        break;
+    case 3: 
+        lResult = RecoveryMemoryCardWriteEnd(pSave->pMcState);
+        
+        if (lResult == -1) 
+        {
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSave->pMcState);
+            
+            pSave->ulSubState = 8;
+        }
+        else if (lResult == 1)
+        {
+            lResult = mcNewCreateConfigFile(pSave->pMcState, pSave->pConfigFile);
+            
+            if (lResult == 1) 
+            {
+                pSave->ulSubState = 4;
+            }
+        }
+        
+        break;
+    case 4: 
+        lResult = RecoveryMemoryCardWriteEnd(pSave->pMcState);
+        
+        if (lResult == 1) 
+        {
+            pSave->ulSubState = 5;
+        }
+        else if (lResult == -1) 
+        {
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSave->pMcState);
+            
+            pSave->ulSubState = 8;
+        }
+        
+        break;
+    case 5: 
+        lResult = mcNewCreateSaveFile(pSave->pMcState, pSave->pSaveFile, cpNameList, pSave->usLoopCount);
+        
+        if (lResult == 1) 
+        {
+            pSave->ulSubState = 6;
+        }
+        
+        break;
+    case 6: 
+        lResult = RecoveryMemoryCardWriteEnd(pSave->pMcState);
+        
+        if (lResult == 1) 
+        {
+            if (++pSave->usLoopCount > 14)
+            {
+                pSave->ulSubState = 7;
+                
+                pSave->usLoopCount = 0;
+                
+                pSave->cMesFlag = 20;
+                
+                SetCheckMcFlag(pSave->pMcState, 0);
+            } 
+            else 
+            {
+                pSave->ulSubState = 5;
+            }
+        }
+        else if (lResult == -1) 
+        {
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSave->pMcState);
+            
+            pSave->ulSubState = 8;
+        }
+        
+        break;
+    case 7: 
+        if ((--pSave->ulMemCheckCountTimer == 0) && (pSave->lCardState == 100))
+        {
+            SetStateSaveScreenLostDirCheck(pSave);
+        }
+        
+        break;
+    case 8: 
+        if (pSave->lCardState == 100) 
+        {
+            SetStateSaveScreenErrCreateSaveFile(pSave);
+        }
+        
+        break;
+    }
 }
 
 // 
