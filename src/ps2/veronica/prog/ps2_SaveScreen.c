@@ -3,6 +3,7 @@
 #include "message.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard.h"
+#include "room.h"
 #include "sdfunc.h"
 #include "main.h"
 
@@ -1393,17 +1394,17 @@ void SetStateSaveScreenSuccessCardWrite(SAVE_SCREEN* pSave)
     mcSetTyepWriteMode(pSave->pSelectFileWindow, 1);
 }
 
-// 
-// Start address: 0x270e10
+// 100% matching!
 void ExecuteStateSaveScreenSuccessCardWrite(SAVE_SCREEN* pSave)
 {
-	// Line 2292, Address: 0x270e10, Func Offset: 0
-	// Line 2294, Address: 0x270e20, Func Offset: 0x10
-	// Line 2296, Address: 0x270e30, Func Offset: 0x20
-	// Line 2299, Address: 0x270e3c, Func Offset: 0x2c
-	// Line 2301, Address: 0x270e44, Func Offset: 0x34
-	// Line 2307, Address: 0x270e4c, Func Offset: 0x3c
-	// Func End, Address: 0x270e5c, Func Offset: 0x4c
+    pSave->usSaveEnd = mcGetStringEnd(pSave->pSelectFileWindow, pSave->usSaveEnd);
+    
+    if (pSave->usSaveEnd == 0) 
+    {
+        bhPushGameData();
+        
+        SetStateSaveScreenSuccessCardWriteMessage(pSave);
+    }
 }
 
 // 
