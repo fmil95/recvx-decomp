@@ -1328,34 +1328,57 @@ void SetStateSaveScreenSave(SAVE_SCREEN* pSave)
     SetCheckMcFlag(pSave->pMcState, 1);
 }
 
-// 
-// Start address: 0x270cd0
+// 100% matching!
 void ExecuteStateSaveScreenSave(SAVE_SCREEN* pSave)
 {
-	int lFileNumber;
-	int lSaveResult;
-	// Line 2198, Address: 0x270cd0, Func Offset: 0
-	// Line 2201, Address: 0x270cdc, Func Offset: 0xc
-	// Line 2206, Address: 0x270d14, Func Offset: 0x44
-	// Line 2208, Address: 0x270d1c, Func Offset: 0x4c
-	// Line 2212, Address: 0x270d40, Func Offset: 0x70
-	// Line 2217, Address: 0x270d48, Func Offset: 0x78
-	// Line 2219, Address: 0x270d50, Func Offset: 0x80
-	// Line 2222, Address: 0x270d5c, Func Offset: 0x8c
-	// Line 2223, Address: 0x270d60, Func Offset: 0x90
-	// Line 2225, Address: 0x270d68, Func Offset: 0x98
-	// Line 2228, Address: 0x270d74, Func Offset: 0xa4
-	// Line 2230, Address: 0x270d80, Func Offset: 0xb0
-	// Line 2232, Address: 0x270d88, Func Offset: 0xb8
-	// Line 2234, Address: 0x270d8c, Func Offset: 0xbc
-	// Line 2238, Address: 0x270d94, Func Offset: 0xc4
-	// Line 2240, Address: 0x270d9c, Func Offset: 0xcc
-	// Line 2242, Address: 0x270dac, Func Offset: 0xdc
-	// Line 2243, Address: 0x270db4, Func Offset: 0xe4
-	// Line 2246, Address: 0x270dbc, Func Offset: 0xec
-	// Line 2249, Address: 0x270dcc, Func Offset: 0xfc
-	// Line 2253, Address: 0x270dd4, Func Offset: 0x104
-	// Func End, Address: 0x270de4, Func Offset: 0x114
+    int lSaveResult;
+    int lFileNumber;
+
+    switch (pSave->ulSubState) 
+    {
+    case 0:
+        lFileNumber = GetMemoryCardFileNumber(pSave->pMcState);
+        
+        lSaveResult = mcWriteStartSaveFile(pSave->pSaveFile, pSave->pMcState, cpNameList, lFileNumber);
+        
+        if (lSaveResult == 1) 
+        {
+            pSave->ulSubState = 1;
+        }
+        
+        break;
+    case 1:
+        lSaveResult = mcCheckWriteStartSaveFile(pSave->pMcState);
+        
+        if (lSaveResult == 1) 
+        {
+            pSave->ulSubState = 2;
+        } 
+        else if (lSaveResult == -1)
+        {
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSave->pMcState);
+            
+            pSave->ulSubState = 3;
+        }
+        
+        break;
+    case 2:
+        lFileNumber = GetMemoryCardFileNumber(pSave->pMcState);
+        
+        mcGetPortSelectDirInfo(pSave->pSaveFile, pSave->pSelectFileWindow, lFileNumber);
+        
+        SetStateSaveScreenSuccessCardWrite(pSave);
+        break;
+    case 3:
+        if (pSave->lCardState == 100) 
+        {
+            SetStateSaveScreenErrCardWrite(pSave);
+        }
+        
+        break;
+    }
 }
 
 // 
