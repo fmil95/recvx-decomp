@@ -1045,19 +1045,19 @@ void SetStateSaveScreenErrCreateSaveFile(SAVE_SCREEN* pSave)
     pSave->usLoopCount = 0;
 }
 
-// 
-// Start address: 0x270590
+// 100% matching! 
 void ExecuteStateSaveScreenErrCreateSaveFile(SAVE_SCREEN* pSave)
 {
-	// Line 1750, Address: 0x270590, Func Offset: 0
-	// Line 1754, Address: 0x270598, Func Offset: 0x8
-	// Line 1757, Address: 0x2705b8, Func Offset: 0x28
-	// Line 1759, Address: 0x2705c0, Func Offset: 0x30
-	// Line 1760, Address: 0x2705cc, Func Offset: 0x3c
-	// Line 1764, Address: 0x2705d4, Func Offset: 0x44
-	// Line 1767, Address: 0x2705f0, Func Offset: 0x60
-	// Line 1770, Address: 0x2705f8, Func Offset: 0x68
-	// Func End, Address: 0x270604, Func Offset: 0x74
+    if ((sys->pad_ps & 0x1800))
+    {
+        SetStateSaveScreenAwarenessCard(pSave);
+        
+        CallSystemSe(0, 3);
+    }
+    else if ((pSave->lCardState > 100) && (pSave->lCardState < 104))
+    {
+        SetStateSaveScreenAwarenessCard(pSave);
+    }
 }
 
 // 
