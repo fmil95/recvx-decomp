@@ -750,40 +750,48 @@ void SetStateSaveScreenCreateSaveFileCheck(SAVE_SCREEN* pSave)
     pSave->sSelectCur = 1;
 }
 
-// 
-// Start address: 0x2700c0
+// 100% matching! 
 void ExecuteStateSaveScreenCreateSaveFileCheck(SAVE_SCREEN* pSave)
 {
-	// Line 1450, Address: 0x2700c0, Func Offset: 0
-	// Line 1454, Address: 0x2700c8, Func Offset: 0x8
-	// Line 1456, Address: 0x2700e8, Func Offset: 0x28
-	// Line 1459, Address: 0x2700ec, Func Offset: 0x2c
-	// Line 1456, Address: 0x2700f0, Func Offset: 0x30
-	// Line 1457, Address: 0x2700f8, Func Offset: 0x38
-	// Line 1459, Address: 0x270104, Func Offset: 0x44
-	// Line 1460, Address: 0x27010c, Func Offset: 0x4c
-	// Line 1462, Address: 0x270114, Func Offset: 0x54
-	// Line 1464, Address: 0x270120, Func Offset: 0x60
-	// Line 1467, Address: 0x270124, Func Offset: 0x64
-	// Line 1464, Address: 0x270128, Func Offset: 0x68
-	// Line 1465, Address: 0x270130, Func Offset: 0x70
-	// Line 1467, Address: 0x27013c, Func Offset: 0x7c
-	// Line 1468, Address: 0x270144, Func Offset: 0x84
-	// Line 1470, Address: 0x27014c, Func Offset: 0x8c
-	// Line 1472, Address: 0x270158, Func Offset: 0x98
-	// Line 1475, Address: 0x270168, Func Offset: 0xa8
-	// Line 1476, Address: 0x270170, Func Offset: 0xb0
-	// Line 1480, Address: 0x270178, Func Offset: 0xb8
-	// Line 1483, Address: 0x270180, Func Offset: 0xc0
-	// Line 1484, Address: 0x27018c, Func Offset: 0xcc
-	// Line 1486, Address: 0x270194, Func Offset: 0xd4
-	// Line 1488, Address: 0x2701a0, Func Offset: 0xe0
-	// Line 1490, Address: 0x2701a8, Func Offset: 0xe8
-	// Line 1491, Address: 0x2701b4, Func Offset: 0xf4
-	// Line 1495, Address: 0x2701bc, Func Offset: 0xfc
-	// Line 1498, Address: 0x2701d8, Func Offset: 0x118
-	// Line 1501, Address: 0x2701e0, Func Offset: 0x120
-	// Func End, Address: 0x2701ec, Func Offset: 0x12c
+    if ((sys->pad_ps & 0x1)) 
+    {
+        pSave->sSelectCur--;
+        
+        pSave->sSelectCur &= 0x1;
+        
+        CallSystemSe(0, 2);
+    }
+    else if ((sys->pad_ps & 0x2)) 
+    {
+        pSave->sSelectCur++;
+        
+        pSave->sSelectCur &= 0x1;
+        
+        CallSystemSe(0, 2);
+    }
+    else if ((sys->pad_ps & 0x800)) 
+    {
+        if (pSave->sSelectCur == 1)
+        {
+            SetStateSaveScreenSelectCard(pSave);
+        } 
+        else 
+        {
+            SetStateSaveScreenCreateSaveFile(pSave);
+        }
+        
+        CallSystemSe(0, 3);
+    }
+    else if ((sys->pad_ps & 0x1000))
+    {
+        SetStateSaveScreenSelectCard(pSave);
+        
+        CallSystemSe(0, 0);
+    }
+    else if ((pSave->lCardState > 100) && (pSave->lCardState < 104))
+    {
+        SetStateSaveScreenAwarenessCard(pSave);
+    }
 }
 
 // 
