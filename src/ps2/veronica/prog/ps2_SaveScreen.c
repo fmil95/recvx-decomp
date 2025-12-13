@@ -1180,18 +1180,17 @@ void ExecuteStateSaveScreenSelectFile(SAVE_SCREEN* pSave)
     }
 }
 
-// 
-// Start address: 0x270940
+// 100% matching! 
 void SetStateSaveScreenSaveCursor(SAVE_SCREEN* pSave)
 {
-	// Line 1937, Address: 0x270940, Func Offset: 0
-	// Line 1939, Address: 0x27094c, Func Offset: 0xc
-	// Line 1941, Address: 0x27095c, Func Offset: 0x1c
-	// Line 1943, Address: 0x270964, Func Offset: 0x24
-	// Line 1945, Address: 0x27096c, Func Offset: 0x2c
-	// Line 1947, Address: 0x270974, Func Offset: 0x34
-	// Line 1948, Address: 0x270978, Func Offset: 0x38
-	// Func End, Address: 0x270988, Func Offset: 0x48
+    SetMemoryCardFileNumber(pSave->pMcState, pSave->sCursorY);
+    
+    pSave->ulState = 30;
+    
+    pSave->cMesFlag = 100;
+    pSave->cCgFlag = 4;
+    
+    pSave->sCursorY = 0;
 }
 
 // 
