@@ -618,67 +618,125 @@ void SetStateSaveScreenLostDirCheck(SAVE_SCREEN* pSave)
     SetCheckMcFlag(pSave->pMcState, 1);
 }
 
-// 
-// Start address: 0x26fce0
+// 100% matching! 
 void ExecuteStateSaveScreenLostDirCheck(SAVE_SCREEN* pSave)
 {
-	int lResult;
-	// Line 1162, Address: 0x26fce0, Func Offset: 0
-	// Line 1165, Address: 0x26fcec, Func Offset: 0xc
-	// Line 1169, Address: 0x26fd18, Func Offset: 0x38
-	// Line 1171, Address: 0x26fd20, Func Offset: 0x40
-	// Line 1174, Address: 0x26fd2c, Func Offset: 0x4c
-	// Line 1177, Address: 0x26fd3c, Func Offset: 0x5c
-	// Line 1178, Address: 0x26fd44, Func Offset: 0x64
-	// Line 1182, Address: 0x26fd4c, Func Offset: 0x6c
-	// Line 1186, Address: 0x26fd58, Func Offset: 0x78
-	// Line 1188, Address: 0x26fd60, Func Offset: 0x80
-	// Line 1191, Address: 0x26fd6c, Func Offset: 0x8c
-	// Line 1193, Address: 0x26fd78, Func Offset: 0x98
-	// Line 1195, Address: 0x26fd80, Func Offset: 0xa0
-	// Line 1197, Address: 0x26fd84, Func Offset: 0xa4
-	// Line 1200, Address: 0x26fd8c, Func Offset: 0xac
-	// Line 1201, Address: 0x26fd94, Func Offset: 0xb4
-	// Line 1204, Address: 0x26fda0, Func Offset: 0xc0
-	// Line 1205, Address: 0x26fda4, Func Offset: 0xc4
-	// Line 1206, Address: 0x26fdac, Func Offset: 0xcc
-	// Line 1209, Address: 0x26fdb8, Func Offset: 0xd8
-	// Line 1211, Address: 0x26fdc4, Func Offset: 0xe4
-	// Line 1213, Address: 0x26fdc8, Func Offset: 0xe8
-	// Line 1217, Address: 0x26fdd0, Func Offset: 0xf0
-	// Line 1218, Address: 0x26fde4, Func Offset: 0x104
-	// Line 1220, Address: 0x26fdec, Func Offset: 0x10c
-	// Line 1222, Address: 0x26fdf4, Func Offset: 0x114
-	// Line 1224, Address: 0x26fe00, Func Offset: 0x120
-	// Line 1225, Address: 0x26fe08, Func Offset: 0x128
-	// Line 1226, Address: 0x26fe10, Func Offset: 0x130
-	// Line 1229, Address: 0x26fe1c, Func Offset: 0x13c
-	// Line 1231, Address: 0x26fe20, Func Offset: 0x140
-	// Line 1235, Address: 0x26fe28, Func Offset: 0x148
-	// Line 1237, Address: 0x26fe4c, Func Offset: 0x16c
-	// Line 1239, Address: 0x26fe50, Func Offset: 0x170
-	// Line 1242, Address: 0x26fe58, Func Offset: 0x178
-	// Line 1243, Address: 0x26fe68, Func Offset: 0x188
-	// Line 1245, Address: 0x26fe74, Func Offset: 0x194
-	// Line 1246, Address: 0x26fe84, Func Offset: 0x1a4
-	// Line 1249, Address: 0x26fea0, Func Offset: 0x1c0
-	// Line 1250, Address: 0x26fea8, Func Offset: 0x1c8
-	// Line 1253, Address: 0x26feb0, Func Offset: 0x1d0
-	// Line 1255, Address: 0x26feb4, Func Offset: 0x1d4
-	// Line 1256, Address: 0x26febc, Func Offset: 0x1dc
-	// Line 1259, Address: 0x26fec8, Func Offset: 0x1e8
-	// Line 1261, Address: 0x26fed0, Func Offset: 0x1f0
-	// Line 1263, Address: 0x26fedc, Func Offset: 0x1fc
-	// Line 1265, Address: 0x26fee4, Func Offset: 0x204
-	// Line 1268, Address: 0x26feec, Func Offset: 0x20c
-	// Line 1271, Address: 0x26fefc, Func Offset: 0x21c
-	// Line 1273, Address: 0x26ff04, Func Offset: 0x224
-	// Line 1276, Address: 0x26ff0c, Func Offset: 0x22c
-	// Line 1279, Address: 0x26ff1c, Func Offset: 0x23c
-	// Line 1284, Address: 0x26ff24, Func Offset: 0x244
-	// Line 1287, Address: 0x26ff40, Func Offset: 0x260
-	// Line 1289, Address: 0x26ff48, Func Offset: 0x268
-	// Func End, Address: 0x26ff58, Func Offset: 0x278
+    int lResult;
+    
+    switch (pSave->ulSubState)
+    {
+    case 0:
+        lResult = CheckMemoryCardFormatStatus(pSave->pMcState);
+        
+        if (lResult == 1)
+        {
+            if (--pSave->ulMemCheckCountTimer == 0)
+            {
+                SetStateSaveScreenFormat(pSave);
+                return;
+            }
+        }
+        else if (lResult == 2)
+        {
+            pSave->ulSubState = 1;
+        }
+        else if (lResult == -1)
+        {
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSave->pMcState);
+            
+            pSave->ulSubState = 6;
+        }
+        
+        break;
+    case 1:
+        lResult = CheckMemoryCardExistSubDirectory(pSave->pMcState);
+        
+        if (lResult == 1)
+        {
+            pSave->ulSubState = 2;
+        }
+        else if (lResult == -1)
+        {
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            pSave->ulSubState = 5;
+        }
+        
+        break;
+    case 2:
+        lResult = CheckMemoryCardExistFileList(pSave->pMcState, cpNameList, 18);
+        
+        if (lResult < 0)
+        {
+            pSave->ulSubState = 6;
+            
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSave->pMcState);
+        }
+        else if (lResult == 1)
+        {
+            pSave->ulSubState = 3;
+        }
+        
+        break;
+    case 3:
+        lResult = mcReadStartSaveFile(pSave->pSaveFile, pSave->pMcState, cpNameList, pSave->usLoopCount);
+        
+        if (lResult == 1)
+        {
+            pSave->ulSubState = 4;
+        }
+        
+        break;
+    case 4:
+        lResult = mcCheckReadStartSaveFile(pSave->pSaveFile, pSave->pMcState, 0);
+        
+        if (lResult == 1)
+        {
+            mcGetPortSelectDirInfo(pSave->pSaveFile, pSave->pSelectFileWindow, pSave->usLoopCount);
+            
+            if (++pSave->usLoopCount > 14)
+            {
+                SetStateSaveScreenSelectFile(pSave);
+            }
+            else
+            {
+                pSave->ulSubState = 3;
+            }
+        }
+        else if (lResult <= -1)
+        {
+            pSave->ulSubState = 6;
+            
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSave->pMcState);
+        }
+        
+        break;
+    case 5:
+        if (pSave->lCardState == 100)
+        {
+            SetStateSaveScreenFreeCapacity(pSave);
+        }
+        
+        break;
+    case 6:
+        if (pSave->lCardState == 100)
+        {
+            SetStateSaveScreenErrDer(pSave);
+        }
+        
+        break;
+    }
+    
+    if ((pSave->lCardState > 100) && (pSave->lCardState < 104))
+    {
+        SetStateSaveScreenAwarenessCard(pSave);
+    }
 }
 
 // 100% matching! 
