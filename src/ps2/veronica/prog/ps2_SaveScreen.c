@@ -1422,17 +1422,17 @@ void SetStateSaveScreenSuccessCardWriteMessage(SAVE_SCREEN* pSave)
 	// Func End, Address: 0x270eb8, Func Offset: 0x58
 }
 
-// 
-// Start address: 0x270ec0
+// 100% matching!
 void ExecuteStateSaveScreenSuccessCardWriteMessage(SAVE_SCREEN* pSave)
 {
-	// Line 2350, Address: 0x270ec0, Func Offset: 0
-	// Line 2352, Address: 0x270ec8, Func Offset: 0x8
-	// Line 2355, Address: 0x270ed4, Func Offset: 0x14
-	// Line 2356, Address: 0x270ed8, Func Offset: 0x18
-	// Line 2360, Address: 0x270ee0, Func Offset: 0x20
-	// Line 2362, Address: 0x270ee8, Func Offset: 0x28
-	// Func End, Address: 0x270ef4, Func Offset: 0x34
+    if (pSave->ulMemCheckCountTimer != 0) 
+    {
+        pSave->ulMemCheckCountTimer--;
+    }
+    else
+    {
+        SetStateSaveScreenExit(pSave);
+    }
 }
 
 // 
