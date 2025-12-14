@@ -1635,16 +1635,15 @@ void ExecuteStateSaveScreenExitFormat(SAVE_SCREEN* pSave)
     }
 }
 
-// 
-// Start address: 0x271390
+// 100% matching!
 void SetStateSaveScreenSuccessFormat(SAVE_SCREEN* pSave)
 {
-	// Line 2705, Address: 0x271390, Func Offset: 0
-	// Line 2707, Address: 0x271398, Func Offset: 0x8
-	// Line 2709, Address: 0x2713a0, Func Offset: 0x10
-	// Line 2711, Address: 0x2713a8, Func Offset: 0x18
-	// Line 2712, Address: 0x2713ac, Func Offset: 0x1c
-	// Func End, Address: 0x2713b4, Func Offset: 0x24
+    pSave->ulState = 43;
+
+    pSave->cMesFlag = 18;
+    pSave->cCgFlag = 100;
+    
+    pSave->ulMemCheckCountTimer = 30;
 }
 
 // 
