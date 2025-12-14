@@ -1528,32 +1528,56 @@ void SetStateSaveScreenStartFormat(SAVE_SCREEN* pSave)
     SetCheckMcFlag(pSave->pMcState, 1);
 }
 
-// 
-// Start address: 0x271130
+// 100% matching!
 void ExecuteStateSaveScreenStartFormat(SAVE_SCREEN* pSave)
 {
-	int lFormatResult;
-	// Line 2550, Address: 0x271130, Func Offset: 0
-	// Line 2553, Address: 0x27113c, Func Offset: 0xc
-	// Line 2557, Address: 0x271174, Func Offset: 0x44
-	// Line 2561, Address: 0x271188, Func Offset: 0x58
-	// Line 2564, Address: 0x271190, Func Offset: 0x60
-	// Line 2566, Address: 0x271198, Func Offset: 0x68
-	// Line 2569, Address: 0x2711a4, Func Offset: 0x74
-	// Line 2571, Address: 0x2711b0, Func Offset: 0x80
-	// Line 2572, Address: 0x2711b4, Func Offset: 0x84
-	// Line 2574, Address: 0x2711bc, Func Offset: 0x8c
-	// Line 2577, Address: 0x2711c8, Func Offset: 0x98
-	// Line 2579, Address: 0x2711d4, Func Offset: 0xa4
-	// Line 2581, Address: 0x2711dc, Func Offset: 0xac
-	// Line 2583, Address: 0x2711e0, Func Offset: 0xb0
-	// Line 2587, Address: 0x2711e8, Func Offset: 0xb8
-	// Line 2590, Address: 0x2711f8, Func Offset: 0xc8
-	// Line 2592, Address: 0x271200, Func Offset: 0xd0
-	// Line 2595, Address: 0x271208, Func Offset: 0xd8
-	// Line 2598, Address: 0x271218, Func Offset: 0xe8
-	// Line 2602, Address: 0x271220, Func Offset: 0xf0
-	// Func End, Address: 0x271230, Func Offset: 0x100
+    int lFormatResult;
+
+    switch (pSave->ulSubState) 
+    {                              
+    case 0:
+        lFormatResult = FormatMemoryCard(pSave->pMcState);
+        
+        if (lFormatResult == 1)
+        {
+            pSave->ulSubState = 1;
+        }
+        
+        break;
+    case 1:
+        lFormatResult = RecoveryMemoryCardFormatEnd(pSave->pMcState);
+        
+        if (lFormatResult == 1) 
+        {
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            pSave->ulSubState = 2;
+        } 
+        else if (lFormatResult == -1) 
+        {
+            SetCheckMcFlag(pSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSave->pMcState);
+            
+            pSave->ulSubState = 3;
+        }
+        
+        break;
+    case 2:
+        if (pSave->lCardState == 100)
+        {
+            SetStateSaveScreenSuccessFormat(pSave);
+        }
+        
+        break;
+    case 3:
+        if (pSave->lCardState == 100) 
+        {
+            SetStateSaveScreenErrFormat(pSave);
+        }
+        
+        break;
+    }
 }
 
 // 
