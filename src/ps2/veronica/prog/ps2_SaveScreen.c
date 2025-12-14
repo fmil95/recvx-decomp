@@ -1646,15 +1646,13 @@ void SetStateSaveScreenSuccessFormat(SAVE_SCREEN* pSave)
     pSave->ulMemCheckCountTimer = 30;
 }
 
-// 
-// Start address: 0x2713c0
+// 100% matching!
 void ExecuteStateSaveScreenSuccessFormat(SAVE_SCREEN* pSave)
 {
-	// Line 2727, Address: 0x2713c0, Func Offset: 0
-	// Line 2729, Address: 0x2713c8, Func Offset: 0x8
-	// Line 2732, Address: 0x2713d8, Func Offset: 0x18
-	// Line 2734, Address: 0x2713e0, Func Offset: 0x20
-	// Func End, Address: 0x2713ec, Func Offset: 0x2c
+    if (--pSave->ulMemCheckCountTimer == 0) 
+    {
+        SetStateSaveScreenLostDirCheck(pSave);
+    }
 }
 
 // 
