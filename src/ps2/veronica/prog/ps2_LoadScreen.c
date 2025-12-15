@@ -298,31 +298,43 @@ void SetStateLoadScreenErrUnPS2MemCard(LOAD_SCREEN* pLoad)
     pLoad->cCgFlag = 0;
 }
 
-// 
-// Start address: 0x275c90
+// 100% matching! 
 void ExecuteStateLoadScreenErrUnPS2MemCard(LOAD_SCREEN* pLoad)
 {
-	int lPort1State;
-	int lPort0State;
-	// Line 548, Address: 0x275c90, Func Offset: 0
-	// Line 552, Address: 0x275ca0, Func Offset: 0x10
-	// Line 555, Address: 0x275cc0, Func Offset: 0x30
-	// Line 557, Address: 0x275cc8, Func Offset: 0x38
-	// Line 558, Address: 0x275cd4, Func Offset: 0x44
-	// Line 562, Address: 0x275cdc, Func Offset: 0x4c
-	// Line 566, Address: 0x275d0c, Func Offset: 0x7c
-	// Line 568, Address: 0x275d18, Func Offset: 0x88
-	// Line 570, Address: 0x275d28, Func Offset: 0x98
-	// Line 573, Address: 0x275d3c, Func Offset: 0xac
-	// Line 574, Address: 0x275d48, Func Offset: 0xb8
-	// Line 575, Address: 0x275d50, Func Offset: 0xc0
-	// Line 578, Address: 0x275d60, Func Offset: 0xd0
-	// Line 580, Address: 0x275d68, Func Offset: 0xd8
-	// Line 583, Address: 0x275d70, Func Offset: 0xe0
-	// Line 584, Address: 0x275d78, Func Offset: 0xe8
-	// Line 587, Address: 0x275d80, Func Offset: 0xf0
-	// Line 591, Address: 0x275d88, Func Offset: 0xf8
-	// Func End, Address: 0x275d9c, Func Offset: 0x10c
+    int lPort0State;
+    int lPort1State;
+ 
+    if ((sys->pad_ps & 0x1800)) 
+    {
+        SetStateLoadScreenTitleExit(pLoad);
+        
+        CallSystemSe(0, 3);
+        return;
+    }
+    
+    switch (pLoad->lCardState) 
+    {
+    case 100:  
+        lPort0State = GetMemoryCardSelectPortState(pLoad->pMcState, 0);
+        lPort1State = GetMemoryCardSelectPortState(pLoad->pMcState, 1);
+
+        if ((lPort0State == 2) || (lPort1State == 2)) 
+        {
+            SetStateLoadScreenSelectCard(pLoad);
+        } 
+        else if ((lPort0State == 0) && (lPort1State == 0))
+        {
+            SetStateLoadScreenErrLostCard(pLoad);
+        }
+        
+        break;
+    case 101:  
+        SetStateLoadScreenAwarenessCard(pLoad);
+        break;
+    case 103:  
+        SetStateLoadScreenErrLostCard(pLoad);
+        break;
+    }
 }
 
 // 
