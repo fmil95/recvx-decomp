@@ -289,14 +289,13 @@ void ExecuteStateLoadScreenErrLostCard(LOAD_SCREEN* pLoad)
     }
 }
 
-// 
-// Start address: 0x275c70
+// 100% matching! 
 void SetStateLoadScreenErrUnPS2MemCard(LOAD_SCREEN* pLoad)
 {
-	// Line 528, Address: 0x275c70, Func Offset: 0
-	// Line 530, Address: 0x275c78, Func Offset: 0x8
-	// Line 533, Address: 0x275c7c, Func Offset: 0xc
-	// Func End, Address: 0x275c84, Func Offset: 0x14
+    pLoad->ulState = 2;
+    
+    pLoad->cMesFlag = 2;
+    pLoad->cCgFlag = 0;
 }
 
 // 
