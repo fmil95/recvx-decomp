@@ -1705,24 +1705,19 @@ void ExecuteStateSaveScreenErrDer(SAVE_SCREEN* pSave)
     }
 }
 
-// 
-// Start address: 0x271520
+// 96.47% matching
 void SetDispSelectMessage()
 {
-	// Line 2870, Address: 0x271520, Func Offset: 0
-	// Line 2858, Address: 0x27152c, Func Offset: 0xc
-	// Line 2870, Address: 0x271530, Func Offset: 0x10
-	// Line 2858, Address: 0x271538, Func Offset: 0x18
-	// Line 2870, Address: 0x27153c, Func Offset: 0x1c
-	// Line 2872, Address: 0x271544, Func Offset: 0x24
-	// Line 2874, Address: 0x271574, Func Offset: 0x54
-	// Line 2875, Address: 0x2715a4, Func Offset: 0x84
-	// Line 2877, Address: 0x2715d4, Func Offset: 0xb4
-	// Line 2878, Address: 0x271604, Func Offset: 0xe4
-	// Line 2880, Address: 0x271638, Func Offset: 0x118
-	// Line 2882, Address: 0x27166c, Func Offset: 0x14c
-	// Line 2884, Address: 0x271684, Func Offset: 0x164
-	// Func End, Address: 0x271690, Func Offset: 0x170
+    bhFontScaleSet(0.71f, 0.71f, 0.75f);
+    
+    bhDispMessage(96.0f, 82.0f, -0.1f, 1, 472, 0, 0);
+    bhDispMessage(90.0f, 136.0f, -0.1f, 1, 463, 0, 0);
+    bhDispMessage(153.0f, 158.0f, -0.1f, 1, 464, 0, 0);
+    bhDispMessage(360.0f, 136.0f, -0.1f, 1, 463, 0, 0);
+    bhDispMessage(423.0f, 158.0f, -0.1f, 1, 465, 0, 0);
+    bhDispMessage(90.0f, 395.0f, -0.1f, 1, 473, 0, 0);
+    
+    bhFontScaleSet(1.0f, 1.0f, 1.0f);
 }
 
 // 
