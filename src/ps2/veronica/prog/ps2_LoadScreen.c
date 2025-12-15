@@ -337,20 +337,21 @@ void ExecuteStateLoadScreenErrUnPS2MemCard(LOAD_SCREEN* pLoad)
     }
 }
 
-// 
-// Start address: 0x275da0
+// 100% matching! 
 void SetStateLoadScreenSelectCard(LOAD_SCREEN* pLoad)
 {
-	// Line 606, Address: 0x275da0, Func Offset: 0
-	// Line 608, Address: 0x275dac, Func Offset: 0xc
-	// Line 610, Address: 0x275db4, Func Offset: 0x14
-	// Line 612, Address: 0x275db8, Func Offset: 0x18
-	// Line 614, Address: 0x275dbc, Func Offset: 0x1c
-	// Line 616, Address: 0x275dc4, Func Offset: 0x24
-	// Line 618, Address: 0x275dc8, Func Offset: 0x28
-	// Line 620, Address: 0x275dd4, Func Offset: 0x34
-	// Line 621, Address: 0x275ddc, Func Offset: 0x3c
-	// Func End, Address: 0x275dec, Func Offset: 0x4c
+    pLoad->ulState = 10;
+    
+    pLoad->sCursorY = 0;
+    
+    pLoad->sSelectCur = 0;
+
+    pLoad->cMesFlag = 0;
+    pLoad->cCgFlag = 0;
+    
+    SetMemoryCardFileNumber(pLoad->pMcState, 0);
+
+    mcSetFileSelectWindowCursolInit(pLoad->pSelectFileWindow);
 }
 
 // 
