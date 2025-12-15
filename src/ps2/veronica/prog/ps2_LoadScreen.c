@@ -52,45 +52,55 @@ LOAD_SCREEN* CreateLoadScreen(LOAD_SCREEN* pLoad, void* vpWorkPtrSys) // second 
     return pLoad;
 }
 
-/*// 
-// Start address: 0x275420
+// 98.69% matching
 void DispLoadMessageSelect(char cSelectMes)
 {
-	// Line 168, Address: 0x275420, Func Offset: 0
-	// Line 102, Address: 0x27542c, Func Offset: 0xc
-	// Line 168, Address: 0x275430, Func Offset: 0x10
-	// Line 102, Address: 0x275434, Func Offset: 0x14
-	// Line 168, Address: 0x275438, Func Offset: 0x18
-	// Line 102, Address: 0x27543c, Func Offset: 0x1c
-	// Line 168, Address: 0x275440, Func Offset: 0x20
-	// Line 170, Address: 0x27544c, Func Offset: 0x2c
-	// Line 174, Address: 0x27547c, Func Offset: 0x5c
-	// Line 175, Address: 0x275484, Func Offset: 0x64
-	// Line 179, Address: 0x27548c, Func Offset: 0x6c
-	// Line 181, Address: 0x2754b8, Func Offset: 0x98
-	// Line 182, Address: 0x2754c0, Func Offset: 0xa0
-	// Line 185, Address: 0x2754c8, Func Offset: 0xa8
-	// Line 186, Address: 0x2754f4, Func Offset: 0xd4
-	// Line 189, Address: 0x2754fc, Func Offset: 0xdc
-	// Line 190, Address: 0x275528, Func Offset: 0x108
-	// Line 196, Address: 0x275530, Func Offset: 0x110
-	// Line 197, Address: 0x275560, Func Offset: 0x140
-	// Line 200, Address: 0x275568, Func Offset: 0x148
-	// Line 201, Address: 0x275598, Func Offset: 0x178
-	// Line 202, Address: 0x2755c4, Func Offset: 0x1a4
-	// Line 205, Address: 0x2755cc, Func Offset: 0x1ac
-	// Line 206, Address: 0x2755fc, Func Offset: 0x1dc
-	// Line 209, Address: 0x275604, Func Offset: 0x1e4
-	// Line 210, Address: 0x275630, Func Offset: 0x210
-	// Line 213, Address: 0x275638, Func Offset: 0x218
-	// Line 214, Address: 0x275664, Func Offset: 0x244
-	// Line 217, Address: 0x27566c, Func Offset: 0x24c
-	// Line 224, Address: 0x275698, Func Offset: 0x278
-	// Line 226, Address: 0x2756b0, Func Offset: 0x290
-	// Func End, Address: 0x2756c0, Func Offset: 0x2a0
+    bhFontScaleSet(0.71f, 0.71f, 0.75f);
+
+    switch (cSelectMes) 
+    {
+    case 0:
+        SetDispLoadSelectMessage();
+        break;
+    case 1:
+    case 2:
+        bhDispMessage(160.0f, 224.0f, -1.0f, 1, 455, 3, 0);
+        
+        SetDispLoadSelectMessage();
+        break;
+    case 3:
+        bhDispMessage(100.0f, 194.0f, -1.0f, 1, 456, 3, 0);
+        break;
+    case 4:
+        bhDispMessage(50.0f, 194.0f, -1.0f, 1, 457, 3, 0);
+        break;
+    case 5:
+        break;
+    case 6:
+        bhDispMessage(275.0f, 194.0f, -1.0f, 1, 458, 3, 0);
+        break;
+    case 7:
+        bhDispMessage(240.0f, 311.0f, -1.0f, 1, 459, 0, 0);
+        bhDispMessage(290.0f, 360.0f, -1.0f, 1, 466, 0, 0);
+        break;
+    case 8:
+        bhDispMessage(90.0f, 311.0f, -1.0f, 1, 460, 0, 0);
+        break;
+    case 9:
+        bhDispMessage(242.0f, 194.0f, -1.0f, 1, 461, 3, 0);
+        break;
+    case 10:
+        bhDispMessage(210.0f, 194.0f, -1.0f, 1, 462, 3, 0);
+        break;
+    case 11:
+        bhDispMessage(90.0f, 194.0f, -1.0f, 1, 451, 0, 0);
+        break;
+    }
+    
+    bhFontScaleSet(1.0f, 1.0f, 1.0f);
 }
 
-// 
+/*// 
 // Start address: 0x2756c0
 void DispLoadTexture(tagLOAD_SCREEN* pLoad)
 {
