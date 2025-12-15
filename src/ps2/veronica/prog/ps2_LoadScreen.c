@@ -2,6 +2,7 @@
 #include "message.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard.h"
+#include "sdfunc.h"
 
 SELECTFILEWINDOW SelectFileWindow;
 SELECTFILEINFO SelectFileInfo[15];
@@ -249,31 +250,43 @@ void SetStateLoadScreenErrLostCard(LOAD_SCREEN* pLoad)
     pLoad->cCgFlag = 0;
 }
 
-// 
-// Start address: 0x275b40
+// 100% matching! 
 void ExecuteStateLoadScreenErrLostCard(LOAD_SCREEN* pLoad)
 {
-	int lPort1State;
-	int lPort0State;
-	// Line 466, Address: 0x275b40, Func Offset: 0
-	// Line 470, Address: 0x275b50, Func Offset: 0x10
-	// Line 473, Address: 0x275b70, Func Offset: 0x30
-	// Line 475, Address: 0x275b78, Func Offset: 0x38
-	// Line 476, Address: 0x275b84, Func Offset: 0x44
-	// Line 480, Address: 0x275b8c, Func Offset: 0x4c
-	// Line 484, Address: 0x275bbc, Func Offset: 0x7c
-	// Line 486, Address: 0x275bc8, Func Offset: 0x88
-	// Line 488, Address: 0x275bd8, Func Offset: 0x98
-	// Line 491, Address: 0x275bec, Func Offset: 0xac
-	// Line 492, Address: 0x275bf8, Func Offset: 0xb8
-	// Line 494, Address: 0x275c00, Func Offset: 0xc0
-	// Line 498, Address: 0x275c24, Func Offset: 0xe4
-	// Line 500, Address: 0x275c30, Func Offset: 0xf0
-	// Line 503, Address: 0x275c38, Func Offset: 0xf8
-	// Line 504, Address: 0x275c40, Func Offset: 0x100
-	// Line 507, Address: 0x275c48, Func Offset: 0x108
-	// Line 511, Address: 0x275c50, Func Offset: 0x110
-	// Func End, Address: 0x275c64, Func Offset: 0x124
+    int lPort0State;
+    int lPort1State;
+    
+    if ((sys->pad_ps & 0x1800)) 
+    {
+        SetStateLoadScreenTitleExit(pLoad);
+        
+        CallSystemSe(0, 3);
+        return;
+    }
+    
+    switch (pLoad->lCardState) 
+    {
+    case 100:
+        lPort0State = GetMemoryCardSelectPortState(pLoad->pMcState, 0);
+        lPort1State = GetMemoryCardSelectPortState(pLoad->pMcState, 1);
+        
+        if ((lPort0State == 2) || (lPort1State == 2))
+        {                     
+            SetStateLoadScreenSelectCard(pLoad);
+        }
+        else if (((lPort0State != 2) && (lPort0State != 0)) || ((lPort1State != 2) && (lPort1State != 0))) 
+        {
+            SetStateLoadScreenErrUnPS2MemCard(pLoad);
+        }
+                
+        break;
+    case 101:
+        SetStateLoadScreenAwarenessCard(pLoad);
+        break;
+    case 102:
+        SetStateLoadScreenErrUnPS2MemCard(pLoad);
+        break;
+    }
 }
 
 // 
