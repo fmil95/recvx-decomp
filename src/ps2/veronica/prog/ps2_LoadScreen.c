@@ -1,4 +1,5 @@
 #include "ps2_LoadScreen.h"
+#include "message.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard.h"
 
@@ -100,24 +101,30 @@ void DispLoadMessageSelect(char cSelectMes)
     bhFontScaleSet(1.0f, 1.0f, 1.0f);
 }
 
-/*// 
-// Start address: 0x2756c0
-void DispLoadTexture(tagLOAD_SCREEN* pLoad)
+// 99.59% matching
+void DispLoadTexture(LOAD_SCREEN* pLoad)
 {
-	int DispLoadPortCard;
-	// Line 241, Address: 0x2756c0, Func Offset: 0
-	// Line 244, Address: 0x2756cc, Func Offset: 0xc
-	// Line 248, Address: 0x2756f8, Func Offset: 0x38
-	// Line 249, Address: 0x275700, Func Offset: 0x40
-	// Line 251, Address: 0x275708, Func Offset: 0x48
-	// Line 252, Address: 0x275710, Func Offset: 0x50
-	// Line 253, Address: 0x27572c, Func Offset: 0x6c
-	// Line 255, Address: 0x275734, Func Offset: 0x74
-	// Line 256, Address: 0x27573c, Func Offset: 0x7c
-	// Line 260, Address: 0x275758, Func Offset: 0x98
-	// Line 267, Address: 0x275774, Func Offset: 0xb4
-	// Func End, Address: 0x275784, Func Offset: 0xc4
-}*/
+    int DispLoadPortCard;
+    
+    switch (pLoad->cCgFlag) 
+    {
+    case 0:
+        CheckDispLoadMemoryCard(pLoad);
+        break;
+    case 1:
+        DispLoadPortCard = GetMemoryCardCurrentPort(pLoad->pMcState);
+        
+        mcDisplayFileSelectWindow(pLoad->pSelectFileWindow, 60.0f, 108.0f, DispLoadPortCard);
+        break;
+    case 2:
+        DispLoadPortCard = GetMemoryCardCurrentPort(pLoad->pMcState);
+        
+        mcDisplayFileSelectWindow(pLoad->pSelectFileWindow, 60.0f, 108.f, DispLoadPortCard);
+        
+        DispUpDownCursol(256.0f, 358.0f, pLoad->sSelectCur + 2);
+        break;
+    }
+}
 
 // 
 // Start address: 0x275790
