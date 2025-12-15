@@ -240,14 +240,13 @@ void ExecuteStateLoadScreenAwarenessCard(LOAD_SCREEN* pLoad)
     }
 }
 
-// 
-// Start address: 0x275b20
+// 100% matching! 
 void SetStateLoadScreenErrLostCard(LOAD_SCREEN* pLoad)
 {
-	// Line 446, Address: 0x275b20, Func Offset: 0
-	// Line 448, Address: 0x275b28, Func Offset: 0x8
-	// Line 451, Address: 0x275b2c, Func Offset: 0xc
-	// Func End, Address: 0x275b34, Func Offset: 0x14
+    pLoad->ulState = 1;
+    
+    pLoad->cMesFlag = 1;
+    pLoad->cCgFlag = 0;
 }
 
 // 
