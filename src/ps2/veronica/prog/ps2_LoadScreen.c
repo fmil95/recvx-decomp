@@ -191,15 +191,15 @@ int ExecuteLoadScreen(LOAD_SCREEN* pLoad)
     return 0;
 }
 
-// 
-// Start address: 0x2759e0
+// 100% matching! 
 void SetStateLoadScreenAwarenessCard(LOAD_SCREEN* pLoad)
 {
-	// Line 364, Address: 0x2759e0, Func Offset: 0
-	// Line 366, Address: 0x2759e4, Func Offset: 0x4
-	// Line 368, Address: 0x2759e8, Func Offset: 0x8
-	// Line 370, Address: 0x2759ec, Func Offset: 0xc
-	// Func End, Address: 0x2759f8, Func Offset: 0x18
+    pLoad->ulState = 0;
+    pLoad->ulSubState = 0;
+    
+    pLoad->usLoopCount = 0;
+    
+    SetCheckMcFlag(pLoad->pMcState, 0);
 }
 
 // 
