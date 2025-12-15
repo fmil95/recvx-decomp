@@ -1,4 +1,5 @@
 #include "player.h"
+#include "MdlPut.h"
 #include "Motion.h"
 #include "eneset.h"
 #include "flag.h"
@@ -11,9 +12,9 @@ _anon18 lkmtab[2];
 char PlyEyeTab[8];
 int KnfAtrTab[4];
 char PlyLegRoute[7][2];
-char PlyFlip[23];
-unsigned short PlMtnAct[7][3][2];
-unsigned short PlMtnWpn[5];
+char PlyFlip[23];*/
+unsigned short PlMtnAct[2][3][7];
+/*unsigned short PlMtnWpn[5];
 char PlFootSnd[7][2][4];
 char PlKDU[3][2][4];
 _anon20 WpnTab[23];
@@ -536,59 +537,56 @@ void bhCheckSubPack()
     }
 }
 
-// 
-// Start address: 0x139dd0
+// TODO: find the struct that plp->exp0 gets parsed to 
+// 100% matching!
 void bhStandPlayerMotion()
 {
-	// Line 429, Address: 0x139dd0, Func Offset: 0
-	// Line 430, Address: 0x139dd8, Func Offset: 0x8
-	// Line 431, Address: 0x139df0, Func Offset: 0x20
-	// Line 432, Address: 0x139e04, Func Offset: 0x34
-	// Line 433, Address: 0x139e0c, Func Offset: 0x3c
-	// Line 434, Address: 0x139e14, Func Offset: 0x44
-	// Line 438, Address: 0x139e28, Func Offset: 0x58
-	// Line 439, Address: 0x139e30, Func Offset: 0x60
-	// Line 440, Address: 0x139e3c, Func Offset: 0x6c
-	// Line 443, Address: 0x139e54, Func Offset: 0x84
-	// Line 444, Address: 0x139e5c, Func Offset: 0x8c
-	// Line 445, Address: 0x139e74, Func Offset: 0xa4
-	// Line 449, Address: 0x139e78, Func Offset: 0xa8
-	// Line 458, Address: 0x139e88, Func Offset: 0xb8
-	// Line 462, Address: 0x139e90, Func Offset: 0xc0
-	// Line 449, Address: 0x139e94, Func Offset: 0xc4
-	// Line 457, Address: 0x139e98, Func Offset: 0xc8
-	// Line 459, Address: 0x139e9c, Func Offset: 0xcc
-	// Line 462, Address: 0x139ea0, Func Offset: 0xd0
-	// Line 449, Address: 0x139ea4, Func Offset: 0xd4
-	// Line 457, Address: 0x139eac, Func Offset: 0xdc
-	// Line 467, Address: 0x139eb0, Func Offset: 0xe0
-	// Line 457, Address: 0x139eb8, Func Offset: 0xe8
-	// Line 458, Address: 0x139ebc, Func Offset: 0xec
-	// Line 457, Address: 0x139ec0, Func Offset: 0xf0
-	// Line 458, Address: 0x139ec8, Func Offset: 0xf8
-	// Line 459, Address: 0x139ed0, Func Offset: 0x100
-	// Line 458, Address: 0x139ed4, Func Offset: 0x104
-	// Line 459, Address: 0x139edc, Func Offset: 0x10c
-	// Line 460, Address: 0x139ee4, Func Offset: 0x114
-	// Line 461, Address: 0x139ef0, Func Offset: 0x120
-	// Line 460, Address: 0x139ef4, Func Offset: 0x124
-	// Line 461, Address: 0x139efc, Func Offset: 0x12c
-	// Line 462, Address: 0x139f04, Func Offset: 0x134
-	// Line 461, Address: 0x139f08, Func Offset: 0x138
-	// Line 462, Address: 0x139f10, Func Offset: 0x140
-	// Line 463, Address: 0x139f18, Func Offset: 0x148
-	// Line 462, Address: 0x139f1c, Func Offset: 0x14c
-	// Line 463, Address: 0x139f54, Func Offset: 0x184
-	// Line 464, Address: 0x139f5c, Func Offset: 0x18c
-	// Line 465, Address: 0x139f68, Func Offset: 0x198
-	// Line 466, Address: 0x139f74, Func Offset: 0x1a4
-	// Line 467, Address: 0x139f80, Func Offset: 0x1b0
-	// Line 466, Address: 0x139f84, Func Offset: 0x1b4
-	// Line 467, Address: 0x139f88, Func Offset: 0x1b8
-	// Line 468, Address: 0x139f94, Func Offset: 0x1c4
-	// Line 469, Address: 0x139fa0, Func Offset: 0x1d0
-	// Func End, Address: 0x139fac, Func Offset: 0x1dc
-	scePrintf("bhStandPlayerMotion - UNIMPLEMENTED!\n");
+    if (plp->hp >= 120)
+    {
+        if ((plp->stflg & 0x280000)) 
+        {
+            ((int*)plp->exp0)[5] = 1; 
+        } 
+        else if (((int*)plp->exp0)[5] != 0) 
+        {
+            ((int*)plp->exp0)[5] = 0; 
+        }
+    }
+    else if (plp->hp >= 30)
+    {
+        if (((int*)plp->exp0)[5] != 1) 
+        {
+            ((int*)plp->exp0)[5] = 1; 
+        }
+    } 
+    else if (((int*)plp->exp0)[5] != 2) 
+    {
+        ((int*)plp->exp0)[5] = 2;
+    }
+    
+    plp->flg &= 0xC96EFFFB;
+    
+    plp->flg |= 0x8;
+    
+    plp->stflg &= ~0x18000;
+    
+    *(int*)&plp->mode0 = 1;
+    
+    *(float*)&plp->exp0[72] = plp->px;
+    *(float*)&plp->exp0[80] = plp->pz;
+    
+    plp->mtn_no = PlMtnAct[((int*)plp->exp0)[0]][((int*)plp->exp0)[5]][0];
+    
+    plp->hokan_rate = 0; 
+    plp->hokan_count = 0;
+    
+    plp->frm_no = 0;
+    
+    plp->mnwP = plp->mnwPb;
+    
+    bhSetMotion(plp, 0, 0, NULL);
+    
+    bhCalcModel(plp);
 }
 
 /*// 
