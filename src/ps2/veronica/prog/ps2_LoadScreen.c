@@ -437,15 +437,15 @@ void ExecuteStateLoadScreenTitleExit(LOAD_SCREEN* pLoad)
     }
 }
 
-// 
-// Start address: 0x276020
+// 100% matching! 
 void SetStateLoadScreenErrUnFormat(LOAD_SCREEN* pLoad)
 {
-	// Line 794, Address: 0x276020, Func Offset: 0
-	// Line 796, Address: 0x276028, Func Offset: 0x8
-	// Line 798, Address: 0x276030, Func Offset: 0x10
-	// Line 800, Address: 0x276038, Func Offset: 0x18
-	// Func End, Address: 0x276044, Func Offset: 0x24
+    pLoad->ulState = 12;
+    
+    pLoad->cMesFlag = 3;
+    pLoad->cCgFlag = 100;
+    
+    SetCheckMcFlag(pLoad->pMcState, 0);
 }
 
 // 
