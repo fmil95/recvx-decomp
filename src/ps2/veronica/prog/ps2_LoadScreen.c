@@ -126,57 +126,74 @@ void DispLoadTexture(LOAD_SCREEN* pLoad)
     }
 }
 
-// 
-// Start address: 0x275790
+// 100% matching! 
 int ExecuteLoadScreen(LOAD_SCREEN* pLoad)
 {
-	// Line 282, Address: 0x275790, Func Offset: 0
-	// Line 284, Address: 0x2757a0, Func Offset: 0x10
-	// Line 286, Address: 0x2757a8, Func Offset: 0x18
-	// Line 288, Address: 0x2757b0, Func Offset: 0x20
-	// Line 291, Address: 0x275878, Func Offset: 0xe8
-	// Line 292, Address: 0x275884, Func Offset: 0xf4
-	// Line 294, Address: 0x27588c, Func Offset: 0xfc
-	// Line 295, Address: 0x275898, Func Offset: 0x108
-	// Line 297, Address: 0x2758a0, Func Offset: 0x110
-	// Line 298, Address: 0x2758ac, Func Offset: 0x11c
-	// Line 300, Address: 0x2758b4, Func Offset: 0x124
-	// Line 301, Address: 0x2758c0, Func Offset: 0x130
-	// Line 303, Address: 0x2758c8, Func Offset: 0x138
-	// Line 304, Address: 0x2758d4, Func Offset: 0x144
-	// Line 306, Address: 0x2758dc, Func Offset: 0x14c
-	// Line 307, Address: 0x2758e8, Func Offset: 0x158
-	// Line 309, Address: 0x2758f0, Func Offset: 0x160
-	// Line 310, Address: 0x2758fc, Func Offset: 0x16c
-	// Line 312, Address: 0x275904, Func Offset: 0x174
-	// Line 313, Address: 0x275910, Func Offset: 0x180
-	// Line 315, Address: 0x275918, Func Offset: 0x188
-	// Line 316, Address: 0x275924, Func Offset: 0x194
-	// Line 318, Address: 0x27592c, Func Offset: 0x19c
-	// Line 319, Address: 0x275938, Func Offset: 0x1a8
-	// Line 321, Address: 0x275940, Func Offset: 0x1b0
-	// Line 322, Address: 0x27594c, Func Offset: 0x1bc
-	// Line 324, Address: 0x275954, Func Offset: 0x1c4
-	// Line 325, Address: 0x275960, Func Offset: 0x1d0
-	// Line 327, Address: 0x275968, Func Offset: 0x1d8
-	// Line 328, Address: 0x275974, Func Offset: 0x1e4
-	// Line 330, Address: 0x27597c, Func Offset: 0x1ec
-	// Line 331, Address: 0x275988, Func Offset: 0x1f8
-	// Line 333, Address: 0x275990, Func Offset: 0x200
-	// Line 334, Address: 0x27599c, Func Offset: 0x20c
-	// Line 336, Address: 0x2759a4, Func Offset: 0x214
-	// Line 341, Address: 0x2759b0, Func Offset: 0x220
-	// Line 343, Address: 0x2759bc, Func Offset: 0x22c
-	// Line 346, Address: 0x2759c4, Func Offset: 0x234
-	// Line 345, Address: 0x2759cc, Func Offset: 0x23c
-	// Line 346, Address: 0x2759d0, Func Offset: 0x240
-	// Func End, Address: 0x2759d8, Func Offset: 0x248
-	scePrintf("ExecuteLoadScreen - UNIMPLEMENTED!\n");
+    pLoad->lCardState = ExecuteMemoryCard(pLoad->pMcState);
+    
+    DispBackGroundTexture();
+    
+    switch (pLoad->ulState) 
+    {                              
+    case 0:
+        ExecuteStateLoadScreenAwarenessCard(pLoad);
+        break;
+    case 1:
+        ExecuteStateLoadScreenErrLostCard(pLoad);
+        break;
+    case 2:
+        ExecuteStateLoadScreenErrUnPS2MemCard(pLoad);
+        break;
+    case 10:
+        ExecuteStateLoadScreenSelectCard(pLoad);
+        break;
+    case 11:
+        ExecuteStateLoadScreenTitleExit(pLoad);
+        break;
+    case 12:
+        ExecuteStateLoadScreenErrUnFormat(pLoad);
+        break;
+    case 13:
+        ExecuteStateLoadScreenErrLostDirCheck(pLoad);
+        break;
+    case 14:
+        ExecuteStateLoadScreenDirCheck(pLoad);
+        break;
+    case 15:
+        ExecuteStateLoadScreenDirFileBroken(pLoad);
+        break;
+    case 20:
+        ExecuteStateLoadScreenSelectFile(pLoad);
+        break;
+    case 21:
+        ExecuteStateLoadScreenNoSave(pLoad);
+        break;
+    case 30:
+        ExecuteStateLoadScreenLoadCursor(pLoad);
+        break;
+    case 31:
+        ExecuteStateLoadScreenLoad(pLoad);
+        break;
+    case 32:
+        ExecuteStateLoadScreenFileBroken(pLoad);
+        break;
+    case 33:
+        ExecuteStateLoadScreenErrCardRead(pLoad);
+        break;
+    case 34:
+        ExecuteStateLoadScreenLoadExit(pLoad);
+        break;
+    }
+    
+    DispLoadTexture(pLoad);
+    DispLoadMessageSelect(pLoad->cMesFlag);
+    
+    return 0;
 }
 
-/*// 
+// 
 // Start address: 0x2759e0
-void SetStateLoadScreenAwarenessCard(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenAwarenessCard(LOAD_SCREEN* pLoad)
 {
 	// Line 364, Address: 0x2759e0, Func Offset: 0
 	// Line 366, Address: 0x2759e4, Func Offset: 0x4
@@ -187,7 +204,7 @@ void SetStateLoadScreenAwarenessCard(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x275a00
-void ExecuteStateLoadScreenAwarenessCard(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenAwarenessCard(LOAD_SCREEN* pLoad)
 {
 	int lPort1State;
 	int lPort0State;
@@ -214,7 +231,7 @@ void ExecuteStateLoadScreenAwarenessCard(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x275b20
-void SetStateLoadScreenErrLostCard(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenErrLostCard(LOAD_SCREEN* pLoad)
 {
 	// Line 446, Address: 0x275b20, Func Offset: 0
 	// Line 448, Address: 0x275b28, Func Offset: 0x8
@@ -224,7 +241,7 @@ void SetStateLoadScreenErrLostCard(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x275b40
-void ExecuteStateLoadScreenErrLostCard(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenErrLostCard(LOAD_SCREEN* pLoad)
 {
 	int lPort1State;
 	int lPort0State;
@@ -251,7 +268,7 @@ void ExecuteStateLoadScreenErrLostCard(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x275c70
-void SetStateLoadScreenErrUnPS2MemCard(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenErrUnPS2MemCard(LOAD_SCREEN* pLoad)
 {
 	// Line 528, Address: 0x275c70, Func Offset: 0
 	// Line 530, Address: 0x275c78, Func Offset: 0x8
@@ -261,7 +278,7 @@ void SetStateLoadScreenErrUnPS2MemCard(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x275c90
-void ExecuteStateLoadScreenErrUnPS2MemCard(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenErrUnPS2MemCard(LOAD_SCREEN* pLoad)
 {
 	int lPort1State;
 	int lPort0State;
@@ -288,7 +305,7 @@ void ExecuteStateLoadScreenErrUnPS2MemCard(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x275da0
-void SetStateLoadScreenSelectCard(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenSelectCard(LOAD_SCREEN* pLoad)
 {
 	// Line 606, Address: 0x275da0, Func Offset: 0
 	// Line 608, Address: 0x275dac, Func Offset: 0xc
@@ -304,7 +321,7 @@ void SetStateLoadScreenSelectCard(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x275df0
-void ExecuteStateLoadScreenSelectCard(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenSelectCard(LOAD_SCREEN* pLoad)
 {
 	// Line 636, Address: 0x275df0, Func Offset: 0
 	// Line 639, Address: 0x275dfc, Func Offset: 0xc
@@ -353,7 +370,7 @@ void ExecuteStateLoadScreenSelectCard(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x275fe0
-void SetStateLoadScreenTitleExit(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenTitleExit(LOAD_SCREEN* pLoad)
 {
 	// Line 747, Address: 0x275fe0, Func Offset: 0
 	// Line 749, Address: 0x275fe8, Func Offset: 0x8
@@ -365,7 +382,7 @@ void SetStateLoadScreenTitleExit(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276000
-void ExecuteStateLoadScreenTitleExit(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenTitleExit(LOAD_SCREEN* pLoad)
 {
 	// Line 773, Address: 0x276000, Func Offset: 0
 	// Line 775, Address: 0x276010, Func Offset: 0x10
@@ -375,7 +392,7 @@ void ExecuteStateLoadScreenTitleExit(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276020
-void SetStateLoadScreenErrUnFormat(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenErrUnFormat(LOAD_SCREEN* pLoad)
 {
 	// Line 794, Address: 0x276020, Func Offset: 0
 	// Line 796, Address: 0x276028, Func Offset: 0x8
@@ -386,7 +403,7 @@ void SetStateLoadScreenErrUnFormat(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276050
-void ExecuteStateLoadScreenErrUnFormat(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenErrUnFormat(LOAD_SCREEN* pLoad)
 {
 	// Line 815, Address: 0x276050, Func Offset: 0
 	// Line 817, Address: 0x276058, Func Offset: 0x8
@@ -401,7 +418,7 @@ void ExecuteStateLoadScreenErrUnFormat(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x2760d0
-void SetStateLoadScreenErrLostDirCheck(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenErrLostDirCheck(LOAD_SCREEN* pLoad)
 {
 	// Line 850, Address: 0x2760d0, Func Offset: 0
 	// Line 852, Address: 0x2760d8, Func Offset: 0x8
@@ -412,7 +429,7 @@ void SetStateLoadScreenErrLostDirCheck(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x2760f0
-void ExecuteStateLoadScreenErrLostDirCheck(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenErrLostDirCheck(LOAD_SCREEN* pLoad)
 {
 	// Line 870, Address: 0x2760f0, Func Offset: 0
 	// Line 872, Address: 0x2760f8, Func Offset: 0x8
@@ -427,7 +444,7 @@ void ExecuteStateLoadScreenErrLostDirCheck(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276170
-void SetStateLoadScreenDirCheck(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenDirCheck(LOAD_SCREEN* pLoad)
 {
 	// Line 903, Address: 0x276170, Func Offset: 0
 	// Line 905, Address: 0x27617c, Func Offset: 0xc
@@ -446,7 +463,7 @@ void SetStateLoadScreenDirCheck(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x2761e0
-void ExecuteStateLoadScreenDirCheck(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenDirCheck(LOAD_SCREEN* pLoad)
 {
 	int lResult;
 	// Line 937, Address: 0x2761e0, Func Offset: 0
@@ -506,7 +523,7 @@ void ExecuteStateLoadScreenDirCheck(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276440
-void SetStateLoadScreenDirFileBroken(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenDirFileBroken(LOAD_SCREEN* pLoad)
 {
 	// Line 1084, Address: 0x276440, Func Offset: 0
 	// Line 1086, Address: 0x276448, Func Offset: 0x8
@@ -517,7 +534,7 @@ void SetStateLoadScreenDirFileBroken(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276460
-void ExecuteStateLoadScreenDirFileBroken(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenDirFileBroken(LOAD_SCREEN* pLoad)
 {
 	// Line 1104, Address: 0x276460, Func Offset: 0
 	// Line 1105, Address: 0x276468, Func Offset: 0x8
@@ -532,7 +549,7 @@ void ExecuteStateLoadScreenDirFileBroken(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x2764e0
-void SetStateLoadScreenSelectFile(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenSelectFile(LOAD_SCREEN* pLoad)
 {
 	// Line 1136, Address: 0x2764e0, Func Offset: 0
 	// Line 1138, Address: 0x2764ec, Func Offset: 0xc
@@ -548,7 +565,7 @@ void SetStateLoadScreenSelectFile(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276540
-void ExecuteStateLoadScreenSelectFile(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenSelectFile(LOAD_SCREEN* pLoad)
 {
 	unsigned int KeyWait01;
 	unsigned int KeyWait00;
@@ -607,7 +624,7 @@ void ExecuteStateLoadScreenSelectFile(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276800
-void LoadScreenCheckSave(tagLOAD_SCREEN* pLoad)
+void LoadScreenCheckSave(LOAD_SCREEN* pLoad)
 {
 	// Line 1286, Address: 0x276800, Func Offset: 0
 	// Line 1288, Address: 0x27680c, Func Offset: 0xc
@@ -623,7 +640,7 @@ void LoadScreenCheckSave(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276880
-void SetStateLoadScreenNoSave(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenNoSave(LOAD_SCREEN* pLoad)
 {
 	// Line 1323, Address: 0x276880, Func Offset: 0
 	// Line 1325, Address: 0x276888, Func Offset: 0x8
@@ -634,7 +651,7 @@ void SetStateLoadScreenNoSave(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x2768a0
-void ExecuteStateLoadScreenNoSave(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenNoSave(LOAD_SCREEN* pLoad)
 {
 	// Line 1343, Address: 0x2768a0, Func Offset: 0
 	// Line 1345, Address: 0x2768a8, Func Offset: 0x8
@@ -649,7 +666,7 @@ void ExecuteStateLoadScreenNoSave(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276920
-void SetStateLoadScreenLoadCursor(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenLoadCursor(LOAD_SCREEN* pLoad)
 {
 	// Line 1378, Address: 0x276920, Func Offset: 0
 	// Line 1380, Address: 0x276928, Func Offset: 0x8
@@ -660,7 +677,7 @@ void SetStateLoadScreenLoadCursor(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276940
-void ExecuteStateLoadScreenLoadCursor(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenLoadCursor(LOAD_SCREEN* pLoad)
 {
 	// Line 1400, Address: 0x276940, Func Offset: 0
 	// Line 1404, Address: 0x276948, Func Offset: 0x8
@@ -697,7 +714,7 @@ void ExecuteStateLoadScreenLoadCursor(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276a80
-void SetStateLoadScreenLoad(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenLoad(LOAD_SCREEN* pLoad)
 {
 	// Line 1475, Address: 0x276a80, Func Offset: 0
 	// Line 1479, Address: 0x276a88, Func Offset: 0x8
@@ -711,7 +728,7 @@ void SetStateLoadScreenLoad(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276ab0
-void ExecuteStateLoadScreenLoad(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenLoad(LOAD_SCREEN* pLoad)
 {
 	int lFileNumber;
 	int lResult;
@@ -745,7 +762,7 @@ void ExecuteStateLoadScreenLoad(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276bf0
-void SetStateLoadScreenFileBroken(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenFileBroken(LOAD_SCREEN* pLoad)
 {
 	// Line 1579, Address: 0x276bf0, Func Offset: 0
 	// Line 1581, Address: 0x276bf8, Func Offset: 0x8
@@ -756,7 +773,7 @@ void SetStateLoadScreenFileBroken(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276c10
-void ExecuteStateLoadScreenFileBroken(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenFileBroken(LOAD_SCREEN* pLoad)
 {
 	// Line 1599, Address: 0x276c10, Func Offset: 0
 	// Line 1600, Address: 0x276c18, Func Offset: 0x8
@@ -771,7 +788,7 @@ void ExecuteStateLoadScreenFileBroken(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276c90
-void SetStateLoadScreenErrCardRead(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenErrCardRead(LOAD_SCREEN* pLoad)
 {
 	// Line 1633, Address: 0x276c90, Func Offset: 0
 	// Line 1635, Address: 0x276c98, Func Offset: 0x8
@@ -782,7 +799,7 @@ void SetStateLoadScreenErrCardRead(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276cb0
-void ExecuteStateLoadScreenErrCardRead(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenErrCardRead(LOAD_SCREEN* pLoad)
 {
 	// Line 1653, Address: 0x276cb0, Func Offset: 0
 	// Line 1654, Address: 0x276cb8, Func Offset: 0x8
@@ -797,7 +814,7 @@ void ExecuteStateLoadScreenErrCardRead(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276d30
-void SetStateLoadScreenLoadExit(tagLOAD_SCREEN* pLoad)
+void SetStateLoadScreenLoadExit(LOAD_SCREEN* pLoad)
 {
 	// Line 1687, Address: 0x276d30, Func Offset: 0
 	// Line 1689, Address: 0x276d38, Func Offset: 0x8
@@ -809,7 +826,7 @@ void SetStateLoadScreenLoadExit(tagLOAD_SCREEN* pLoad)
 
 // 
 // Start address: 0x276d60
-void ExecuteStateLoadScreenLoadExit(tagLOAD_SCREEN* pLoad)
+void ExecuteStateLoadScreenLoadExit(LOAD_SCREEN* pLoad)
 {
 	// Line 1711, Address: 0x276d60, Func Offset: 0
 	// Line 1715, Address: 0x276d6c, Func Offset: 0xc
@@ -844,7 +861,7 @@ void SetDispLoadSelectMessage()
 
 // 
 // Start address: 0x276f20
-void CheckDispLoadMemoryCard(tagLOAD_SCREEN* pLoad)
+void CheckDispLoadMemoryCard(LOAD_SCREEN* pLoad)
 {
 	int lPort1CurX;
 	int lPort0CurX;
@@ -888,5 +905,4 @@ void CheckDispLoadMemoryCard(tagLOAD_SCREEN* pLoad)
 	// Line 1838, Address: 0x277048, Func Offset: 0x128
 	// Line 1839, Address: 0x2770a0, Func Offset: 0x180
 	// Func End, Address: 0x2770b8, Func Offset: 0x198
-}*/
-
+}
