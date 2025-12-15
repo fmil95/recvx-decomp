@@ -417,16 +417,15 @@ void ExecuteStateLoadScreenSelectCard(LOAD_SCREEN* pLoad)
     }
 }
 
-// 
-// Start address: 0x275fe0
+// 100% matching! 
 void SetStateLoadScreenTitleExit(LOAD_SCREEN* pLoad)
 {
-	// Line 747, Address: 0x275fe0, Func Offset: 0
-	// Line 749, Address: 0x275fe8, Func Offset: 0x8
-	// Line 751, Address: 0x275ff0, Func Offset: 0x10
-	// Line 753, Address: 0x275ff4, Func Offset: 0x14
-	// Line 754, Address: 0x275ff8, Func Offset: 0x18
-	// Func End, Address: 0x276000, Func Offset: 0x20
+    pLoad->ulState = 11;
+    
+    pLoad->cMesFlag = 100;
+    pLoad->cCgFlag = 100;
+    
+    pLoad->ulMemCheckCountTimer = 1;
 }
 
 // 
