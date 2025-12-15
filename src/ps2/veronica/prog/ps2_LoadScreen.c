@@ -354,53 +354,67 @@ void SetStateLoadScreenSelectCard(LOAD_SCREEN* pLoad)
     mcSetFileSelectWindowCursolInit(pLoad->pSelectFileWindow);
 }
 
-// 
-// Start address: 0x275df0
+// 100% matching! 
 void ExecuteStateLoadScreenSelectCard(LOAD_SCREEN* pLoad)
 {
-	// Line 636, Address: 0x275df0, Func Offset: 0
-	// Line 639, Address: 0x275dfc, Func Offset: 0xc
-	// Line 642, Address: 0x275e20, Func Offset: 0x30
-	// Line 644, Address: 0x275e24, Func Offset: 0x34
-	// Line 642, Address: 0x275e2c, Func Offset: 0x3c
-	// Line 644, Address: 0x275e30, Func Offset: 0x40
-	// Line 645, Address: 0x275e38, Func Offset: 0x48
-	// Line 646, Address: 0x275e40, Func Offset: 0x50
-	// Line 649, Address: 0x275e4c, Func Offset: 0x5c
-	// Line 651, Address: 0x275e50, Func Offset: 0x60
-	// Line 649, Address: 0x275e58, Func Offset: 0x68
-	// Line 651, Address: 0x275e5c, Func Offset: 0x6c
-	// Line 654, Address: 0x275e64, Func Offset: 0x74
-	// Line 657, Address: 0x275e70, Func Offset: 0x80
-	// Line 660, Address: 0x275e7c, Func Offset: 0x8c
-	// Line 664, Address: 0x275eac, Func Offset: 0xbc
-	// Line 667, Address: 0x275ecc, Func Offset: 0xdc
-	// Line 669, Address: 0x275ed0, Func Offset: 0xe0
-	// Line 667, Address: 0x275ed4, Func Offset: 0xe4
-	// Line 669, Address: 0x275ed8, Func Offset: 0xe8
-	// Line 670, Address: 0x275ee0, Func Offset: 0xf0
-	// Line 672, Address: 0x275ee8, Func Offset: 0xf8
-	// Line 675, Address: 0x275ef4, Func Offset: 0x104
-	// Line 677, Address: 0x275ef8, Func Offset: 0x108
-	// Line 675, Address: 0x275efc, Func Offset: 0x10c
-	// Line 677, Address: 0x275f00, Func Offset: 0x110
-	// Line 680, Address: 0x275f08, Func Offset: 0x118
-	// Line 682, Address: 0x275f14, Func Offset: 0x124
-	// Line 687, Address: 0x275f1c, Func Offset: 0x12c
-	// Line 690, Address: 0x275f3c, Func Offset: 0x14c
-	// Line 693, Address: 0x275f4c, Func Offset: 0x15c
-	// Line 694, Address: 0x275f54, Func Offset: 0x164
-	// Line 698, Address: 0x275f5c, Func Offset: 0x16c
-	// Line 701, Address: 0x275f68, Func Offset: 0x178
-	// Line 702, Address: 0x275f74, Func Offset: 0x184
-	// Line 704, Address: 0x275f7c, Func Offset: 0x18c
-	// Line 707, Address: 0x275f88, Func Offset: 0x198
-	// Line 709, Address: 0x275f90, Func Offset: 0x1a0
-	// Line 710, Address: 0x275f9c, Func Offset: 0x1ac
-	// Line 714, Address: 0x275fa4, Func Offset: 0x1b4
-	// Line 717, Address: 0x275fc0, Func Offset: 0x1d0
-	// Line 730, Address: 0x275fc8, Func Offset: 0x1d8
-	// Func End, Address: 0x275fd8, Func Offset: 0x1e8
+    if ((sys->pad_ps & 0x1)) 
+    {
+        pLoad->sCursorY--;
+        
+        CallSystemSe(0, 2);
+    }
+    else if ((sys->pad_ps & 0x2))
+    {
+        pLoad->sCursorY++;
+        
+        CallSystemSe(0, 2);
+    }
+    
+    pLoad->sCursorY &= 0x1;
+    
+    if ((pLoad->sCursorY == 0) && ((GetMemoryCardSelectPortState(pLoad->pMcState, 0) == 2) && (GetMemoryCardSelectPortState(pLoad->pMcState, 1) == 2)))
+    {
+        if ((sys->pad_ps & 0x4)) 
+        {
+            pLoad->sCursorX--;
+            
+            CallSystemSe(0, 2);
+        }
+        else if ((sys->pad_ps & 0x8)) 
+        {
+            pLoad->sCursorX++;
+            
+            CallSystemSe(0, 2);
+        }
+        
+        pLoad->sCursorX &= 0x1;
+        
+        pLoad->sSelectCur = pLoad->sCursorX;
+    }
+    
+    if ((sys->pad_ps & 0x800)) 
+    {
+        if (pLoad->sCursorY == 1) 
+        {
+            SetStateLoadScreenTitleExit(pLoad);
+        } 
+        else 
+        {
+            SetStateLoadScreenDirCheck(pLoad);
+        }
+        
+        CallSystemSe(0, 3);
+    }
+    else if ((sys->pad_ps & 0x1000)) 
+    {
+        SetStateLoadScreenTitleExit(pLoad);
+        
+        CallSystemSe(0, 0);
+    }
+    else if ((pLoad->lCardState > 100) && (pLoad->lCardState < 104)) 
+    {
+        SetStateLoadScreenAwarenessCard(pLoad);
+    }
 }
 
 // 
