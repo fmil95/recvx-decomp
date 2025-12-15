@@ -7,33 +7,6 @@
 #include "sdfunc.h"
 #include "main.h"
 
-/*char cIconSys[9];
-char cBioCvIco[11];
-char cSysData[13];
-char cSaveData00[12];
-char cSaveData01[12];
-char cSaveData02[12];
-char cSaveData03[12];
-char cSaveData04[12];
-char cSaveData05[12];
-char cSaveData06[12];
-char cSaveData07[12];
-char cSaveData08[12];
-char cSaveData09[12];
-char cSaveData10[12];
-char cSaveData11[12];
-char cSaveData12[12];
-char cSaveData13[12];
-char cSaveData14[12];
-char* cpNameList[18];
-tagSELECTFILEWINDOW SelectFileWindow;
-tagSELECTFILEINFO SelectFileInfo[15];
-tagICONINFORMATION IconInfo;
-tagMEMORYCARDSTATE McState;
-tagSAVEFILE SaveFile;
-tagCONFIGFILE ConfigFile;
-_anon11* sys;*/
-
 // 100% matching! 
 SAVE_SCREEN* CreateSaveScreen(SAVE_SCREEN* pSave, void* vpWorkPtrSys) 
 {
@@ -1720,50 +1693,84 @@ void SetDispSelectMessage()
     bhFontScaleSet(1.0f, 1.0f, 1.0f);
 }
 
-// 
-// Start address: 0x271690
+// 100% matching!
 void CheckDispMemoryCard(SAVE_SCREEN* pSave)
 {
-	int lPort1CurX;
-	int lPort0CurX;
-	int lPort1Card;
-	int lPort0Card;
-	// Line 2899, Address: 0x271690, Func Offset: 0
-	// Line 2904, Address: 0x2716a8, Func Offset: 0x18
-	// Line 2905, Address: 0x2716b4, Func Offset: 0x24
-	// Line 2908, Address: 0x2716c4, Func Offset: 0x34
-	// Line 2912, Address: 0x2716d8, Func Offset: 0x48
-	// Line 2911, Address: 0x2716dc, Func Offset: 0x4c
-	// Line 2914, Address: 0x2716e0, Func Offset: 0x50
-	// Line 2912, Address: 0x2716e4, Func Offset: 0x54
-	// Line 2915, Address: 0x2716e8, Func Offset: 0x58
-	// Line 2917, Address: 0x2716f0, Func Offset: 0x60
-	// Line 2923, Address: 0x271704, Func Offset: 0x74
-	// Line 2921, Address: 0x271708, Func Offset: 0x78
-	// Line 2924, Address: 0x27170c, Func Offset: 0x7c
-	// Line 2920, Address: 0x271710, Func Offset: 0x80
-	// Line 2925, Address: 0x271714, Func Offset: 0x84
-	// Line 2927, Address: 0x27171c, Func Offset: 0x8c
-	// Line 2932, Address: 0x271730, Func Offset: 0xa0
-	// Line 2933, Address: 0x271734, Func Offset: 0xa4
-	// Line 2929, Address: 0x271738, Func Offset: 0xa8
-	// Line 2931, Address: 0x27173c, Func Offset: 0xac
-	// Line 2935, Address: 0x271740, Func Offset: 0xb0
-	// Line 2944, Address: 0x271748, Func Offset: 0xb8
-	// Line 2943, Address: 0x27174c, Func Offset: 0xbc
-	// Line 2939, Address: 0x271750, Func Offset: 0xc0
-	// Line 2940, Address: 0x271754, Func Offset: 0xc4
-	// Line 2941, Address: 0x271758, Func Offset: 0xc8
-	// Line 2942, Address: 0x27175c, Func Offset: 0xcc
-	// Line 2944, Address: 0x271760, Func Offset: 0xd0
-	// Line 2947, Address: 0x271764, Func Offset: 0xd4
-	// Line 2949, Address: 0x271774, Func Offset: 0xe4
-	// Line 2950, Address: 0x271778, Func Offset: 0xe8
-	// Line 2951, Address: 0x27177c, Func Offset: 0xec
-	// Line 2952, Address: 0x271780, Func Offset: 0xf0
-	// Line 2956, Address: 0x271784, Func Offset: 0xf4
-	// Line 2957, Address: 0x27179c, Func Offset: 0x10c
-	// Line 2959, Address: 0x2717b8, Func Offset: 0x128
-	// Line 2960, Address: 0x271810, Func Offset: 0x180
-	// Func End, Address: 0x271828, Func Offset: 0x198
+    int lPort0Card, lPort1Card;
+    int lPort0CurX, lPort1CurX; 
+    int lPort0CurY, lPort1CurY; // not from the debugging symbols
+    short temp; // not from the debugging symbols
+    
+    lPort0Card = GetMemoryCardSelectPortState(pSave->pMcState, 0); 
+    lPort1Card = GetMemoryCardSelectPortState(pSave->pMcState, 1);
+    
+    lPort0CurY = 2;
+    
+    if ((lPort0Card == 2) && (lPort1Card == 2)) 
+    {
+        temp = pSave->sCursorX;
+        
+        lPort1CurY = 2;
+        
+        pSave->sSelectCur = temp;
+        
+        lPort0CurX = temp ^ 1;
+        lPort1CurX = temp & 1;
+    } 
+    else
+    {
+        lPort0CurY = 2;
+        lPort1CurY = 2;
+        
+        if ((lPort0Card == 2) && (lPort1Card != 2))
+        {
+            pSave->sCursorX = 0;
+            
+            lPort0CurX = 1;
+            
+            pSave->sSelectCur = 0;
+            
+            lPort1CurY = 0;
+            lPort1CurX = 0;
+        } 
+        else if ((lPort0Card != 2) && (lPort1Card == 2)) 
+        {
+            lPort0CurY = 0;
+            lPort0CurX = 0;
+            
+            pSave->sCursorX = 1;
+            
+            lPort1CurX = 1;
+            lPort1CurY = 2;
+            
+            pSave->sSelectCur = 1;
+        }
+        else 
+        {
+            pSave->sSelectCur = 0;
+            
+            lPort0CurY = 0;
+            lPort1CurY = 0;
+            
+            lPort0CurX = 0;
+            lPort1CurX = 0;
+            
+            pSave->sCursorY = 1;
+        }
+    }
+    
+    if (pSave->sCursorY == 1) 
+    {
+        pSave->sSelectCur = 0;
+        
+        pSave->sCursorX = 0;
+        
+        lPort0CurX = 0;
+        lPort1CurX = 0;
+    }
+    
+    DispMemoryCardTexture(128.0f, 200.0f, lPort0CurX, lPort0CurY);
+    DispMemoryCardTexture(400.0f, 200.0f, lPort1CurX, lPort1CurY);
+    
+    DispCursolTexture(70.0f + (268.0f * pSave->sSelectCur), 129.0f + (258.0f * pSave->sCursorY), 0xFF808080);
 }
