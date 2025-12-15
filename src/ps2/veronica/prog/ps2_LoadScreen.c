@@ -202,31 +202,42 @@ void SetStateLoadScreenAwarenessCard(LOAD_SCREEN* pLoad)
     SetCheckMcFlag(pLoad->pMcState, 0);
 }
 
-// 
-// Start address: 0x275a00
+// 100% matching! 
 void ExecuteStateLoadScreenAwarenessCard(LOAD_SCREEN* pLoad)
 {
-	int lPort1State;
-	int lPort0State;
-	// Line 386, Address: 0x275a00, Func Offset: 0
-	// Line 389, Address: 0x275a10, Func Offset: 0x10
-	// Line 393, Address: 0x275a4c, Func Offset: 0x4c
-	// Line 395, Address: 0x275a58, Func Offset: 0x58
-	// Line 397, Address: 0x275a68, Func Offset: 0x68
-	// Line 400, Address: 0x275a7c, Func Offset: 0x7c
-	// Line 401, Address: 0x275a88, Func Offset: 0x88
-	// Line 403, Address: 0x275a90, Func Offset: 0x90
-	// Line 407, Address: 0x275ab4, Func Offset: 0xb4
-	// Line 408, Address: 0x275ac0, Func Offset: 0xc0
-	// Line 413, Address: 0x275ac8, Func Offset: 0xc8
-	// Line 415, Address: 0x275ad4, Func Offset: 0xd4
-	// Line 418, Address: 0x275adc, Func Offset: 0xdc
-	// Line 419, Address: 0x275ae4, Func Offset: 0xe4
-	// Line 422, Address: 0x275aec, Func Offset: 0xec
-	// Line 423, Address: 0x275af4, Func Offset: 0xf4
-	// Line 426, Address: 0x275afc, Func Offset: 0xfc
-	// Line 429, Address: 0x275b04, Func Offset: 0x104
-	// Func End, Address: 0x275b18, Func Offset: 0x118
+    int lPort0State;
+    int lPort1State;
+    
+    switch (pLoad->lCardState)
+    {                              
+    case 100:
+        lPort0State = GetMemoryCardSelectPortState(pLoad->pMcState, 0);
+        lPort1State = GetMemoryCardSelectPortState(pLoad->pMcState, 1);
+        
+        if ((lPort0State == 2) || (lPort1State == 2))
+        {                     
+            SetStateLoadScreenSelectCard(pLoad);
+        }
+        else if (((lPort0State != 2) && (lPort0State != 0)) || ((lPort1State != 2) && (lPort1State != 0))) 
+        {
+            SetStateLoadScreenErrUnPS2MemCard(pLoad);
+        }
+        else 
+        {
+            SetStateLoadScreenErrLostCard(pLoad);
+        }
+                
+        break;
+    case 101:
+        SetStateLoadScreenSelectCard(pLoad);
+        break;
+    case 102:
+        SetStateLoadScreenErrUnPS2MemCard(pLoad);
+        break;
+    case 103:
+        SetStateLoadScreenErrLostCard(pLoad);
+        break;
+    }
 }
 
 // 
