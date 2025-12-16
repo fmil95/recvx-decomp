@@ -24,7 +24,7 @@
   "defines": [
     "DEBUG"
   ],
-  "libs": ["-lgcc", "-lgraph", "-ldma", "-ldev", "-lpkt", "-lpad", "-lvu0", "-lkernl", "-lc", "-lmc", "-lcdvd", "-lm", "-lssyn", "-lsdr", "-lmpeg"],
+  "libs": ["-lgcc", "-lgraph", "-ldma", "-ldev", "-lpkt", "-lpad", "-lvu0", "-lkernl", "-lc", "-lmc", "-lcdvd", "-lm", "-lssyn", "-lsdr", "-lmpeg", "-lipu"],
   "assembly_files": [
       "src/sce/ee/lib/crt0.s"
   ],
