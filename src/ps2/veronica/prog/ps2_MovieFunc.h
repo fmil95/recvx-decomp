@@ -4,6 +4,52 @@
 #include "types.h"
 #include "macros.h"
 
+/* audiodec.h */
+
+typedef struct {
+    char id[4];		// 'S''S''h''d'
+    int size;		// 24
+    int type;		// 0: 16bit big endian
+    			// 1: 16bit little endian
+			// 2: SPU2-ADPCM (VAG) 
+    int rate;		// sampling rate
+    int ch;		// number of channels
+    int interSize;	// interleave size ... needs to be 512
+    int loopStart;	// loop start block address
+    int loopEnd;	// loop end block sddress
+} SpuStreamHeader;
+
+typedef struct {
+    char id[4];		// 'S''S''b''d'
+    int size;		// size of audio data
+} SpuStreamBody;
+
+typedef struct {
+
+    int state;
+
+    // header of ADS format
+    SpuStreamHeader sshd;
+    SpuStreamBody   ssbd;
+    int hdrCount;
+
+    // audio buffer
+    u_char *data;
+    int put;
+    int count;
+    int size;
+    int totalBytes;
+
+    // buffer on IOP
+    int iopBuff;
+    int iopBuffSize;
+    int iopLastPos;
+    int iopPausePos;
+    int totalBytesSent;
+    int iopZero;
+
+} AudioDec;
+
 /*void initAll();
 void readMpeg();*/
 int readBufEndGet(READ_BUF *b, int size);
@@ -11,9 +57,9 @@ int readBufEndGet(READ_BUF *b, int size);
 void vbrank_draw();*/
 void videoDecMain(VideoDec *vd);
 int decBs0(VideoDec *vd);
-/*int copy2area(unsigned char* pd0, int d0, unsigned char* pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1);
-int audioDecSendToIOP(_anon12* ad);
-void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, _anon12* ad, int pos);
+/*int copy2area(unsigned char* pd0, int d0, unsigned char* pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1);*/
+int audioDecSendToIOP(AudioDec *ad);
+/*void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, _anon12* ad, int pos);
 int sendToIOP2area(int pd0, int d0, int pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1);*/
 int sendToIOP(int dst, u_char *src, int size);
 void changeInputVolume(u_int val);
@@ -27,8 +73,8 @@ int viBufModifyPts(_anon7* f, _anon8* new_ts);*/
 int IsPtsInRegion(int tgt, int pos, int len, int size);
 /*int viBufPutTs(_anon7* f, _anon8* ts);*/
 void voBufIncCount(VoBuf *f);
-/*void audioDecResume(_anon12* ad);
-int getFIFOindex(_anon7* f, void* addr);
+void audioDecResume(AudioDec *ad);
+/*int getFIFOindex(_anon7* f, void* addr);
 int videoDecPutTs(_anon17* vd, long pts_val, long dts_val, unsigned char* start, int len);
 void audioDecBeginPut(_anon12* ad, unsigned char** ptr0, int* len0, unsigned char** ptr1, int* len1);
 void termAll();*/
@@ -36,8 +82,8 @@ int viBufDelete(ViBuf *f);
 /*int videoDecDelete(_anon17* vd);
 int audioDecDelete();*/
 int GetAllWorkMemory();
-/*void OutPutCdErrorCode(unsigned int* err);
-int videoCallback(_anon11* str, void* data);
+void OutPutCdErrorCode(unsigned int* err);
+/*int videoCallback(_anon11* str, void* data);
 int pcmCallback(_anon11* str, void* data);*/
 int mpegError(sceMpeg *mp, sceMpegCbDataError *cberror, void *anyData);
 /*int mpegNodata();

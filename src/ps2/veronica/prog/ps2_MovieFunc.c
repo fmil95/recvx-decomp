@@ -5,16 +5,16 @@
 
 #include <string.h>
 
-/*int isCountVblank;
-int isFrameEnd;
+int isCountVblank;
+/*int isFrameEnd;
 int oddeven;
 int handler_error;*/
 static int __image_w__;
 static int __image_h__;
-/*<unknown fundamental type (0xa510)> new_tags[64];
-_anon17 videoDec;
+/*<unknown fundamental type (0xa510)> new_tags[64];*/
+VideoDec videoDec;
 int videoDecTh;
-void* _gp;*/
+/*void* _gp;*/
 char* videoDecStack;
 /*void(*videoDecMain)(_anon17*);
 _anon35 rmi;
@@ -24,9 +24,9 @@ VoTag* voBufTag;
 VoData* voBufData;
 READ_BUF* readBuf;
 /*int(*pcmCallback)(_anon0*, _anon11*, void*);
-int(*videoCallback)(_anon0*, _anon11*, void*);
-_anon12 audioDec;
-int iop_zero_buff;
+int(*videoCallback)(_anon0*, _anon11*, void*);*/
+AudioDec audioDec;
+/*int iop_zero_buff;
 int iop_buff;*/
 unsigned char* audioBuff;
 TimeStamp* timeStamp;
@@ -38,8 +38,8 @@ int(*mpegStopDMA)(_anon0*, _anon2*, void*);
 int(*mpegNodata)(_anon0*, _anon2*, void*);
 int(*mpegError)(_anon0*, _anon1*, void*);*/
 unsigned char* mpegWork;
-/*int frd;
-_anon41 mdSize;*/
+int frd;
+/*_anon41 mdSize;*/
 unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
 /*<unknown fundamental type (0xa510)> test_tag[1400];
 _anon24 db;
@@ -146,54 +146,83 @@ void initAll()
 	// Func End, Address: 0x2eb8f8, Func Offset: 0x368
 }*/
 
-// 
-// Start address: 0x2eb900
+// 100% matching!
 void readMpeg()
 {
-	unsigned int uiReadError;
-	// Line 374, Address: 0x2eb900, Func Offset: 0
-	// Line 378, Address: 0x2eb908, Func Offset: 0x8
-	// Line 383, Address: 0x2eb93c, Func Offset: 0x3c
-	// Line 385, Address: 0x2eb958, Func Offset: 0x58
-	// Line 387, Address: 0x2eb95c, Func Offset: 0x5c
-	// Line 385, Address: 0x2eb960, Func Offset: 0x60
-	// Line 384, Address: 0x2eb964, Func Offset: 0x64
-	// Line 387, Address: 0x2eb968, Func Offset: 0x68
-	// Line 389, Address: 0x2eb974, Func Offset: 0x74
-	// Line 397, Address: 0x2eb988, Func Offset: 0x88
-	// Line 398, Address: 0x2eb9a8, Func Offset: 0xa8
-	// Line 401, Address: 0x2eb9b8, Func Offset: 0xb8
-	// Line 405, Address: 0x2eb9dc, Func Offset: 0xdc
-	// Line 406, Address: 0x2eb9f8, Func Offset: 0xf8
-	// Line 407, Address: 0x2eba04, Func Offset: 0x104
-	// Line 410, Address: 0x2eba0c, Func Offset: 0x10c
-	// Line 407, Address: 0x2eba14, Func Offset: 0x114
-	// Line 410, Address: 0x2eba20, Func Offset: 0x120
-	// Line 412, Address: 0x2eba3c, Func Offset: 0x13c
-	// Line 413, Address: 0x2eba58, Func Offset: 0x158
-	// Line 412, Address: 0x2eba5c, Func Offset: 0x15c
-	// Line 413, Address: 0x2eba60, Func Offset: 0x160
-	// Line 415, Address: 0x2eba68, Func Offset: 0x168
-	// Line 413, Address: 0x2eba6c, Func Offset: 0x16c
-	// Line 415, Address: 0x2eba74, Func Offset: 0x174
-	// Line 418, Address: 0x2eba8c, Func Offset: 0x18c
-	// Line 424, Address: 0x2eba98, Func Offset: 0x198
-	// Line 425, Address: 0x2ebaac, Func Offset: 0x1ac
-	// Line 426, Address: 0x2ebab8, Func Offset: 0x1b8
-	// Line 429, Address: 0x2ebae4, Func Offset: 0x1e4
-	// Line 431, Address: 0x2ebaf4, Func Offset: 0x1f4
-	// Line 434, Address: 0x2ebb14, Func Offset: 0x214
-	// Line 435, Address: 0x2ebb28, Func Offset: 0x228
-	// Line 443, Address: 0x2ebb44, Func Offset: 0x244
-	// Line 450, Address: 0x2ebb50, Func Offset: 0x250
-	// Line 454, Address: 0x2ebb98, Func Offset: 0x298
-	// Line 457, Address: 0x2ebba4, Func Offset: 0x2a4
-	// Line 460, Address: 0x2ebbc8, Func Offset: 0x2c8
-	// Line 461, Address: 0x2ebbd0, Func Offset: 0x2d0
-	// Line 464, Address: 0x2ebbd8, Func Offset: 0x2d8
-	// Line 466, Address: 0x2ebbe4, Func Offset: 0x2e4
-	// Func End, Address: 0x2ebbf0, Func Offset: 0x2f0
-	scePrintf("readMpeg - UNIMPLEMENTED!\n");
+    unsigned int uiReadError;
+    int count; // not from the debugging symbols
+
+    if ((rmi.iMovieState == 2) && ((!(rmi.uiContFlag & 0x2)) && (!(rmi.uiContFlag & 0x4)))) 
+    {
+        do
+        {
+            
+        } while (sceGsSyncV(0) == 1);
+        
+        isCountVblank = 1;
+        
+        frd = 0;
+        
+        audioDecResume(&audioDec);
+        
+        rmi.uiContFlag = 0x4 | rmi.uiContFlag;
+    }
+
+    if ((rmi.putsize = (readBuf->size - readBuf->count)) != 0)
+    {
+        rmi.put_ptr = (unsigned char*)readBuf + readBuf->put;
+    }
+    
+    if ((rmi.readrest > 0) && (rmi.putsize >= 16384)) 
+    {
+        rmi.count = sceCdStRead(8, (unsigned int*)rmi.put_ptr, STMBLK, &uiReadError);
+        
+        OutPutCdErrorCode(&uiReadError);
+        
+        rmi.count *= 2048;
+        
+        count = (rmi.count < (readBuf->size - readBuf->count)) ? rmi.count : readBuf->size - readBuf->count;
+        
+        readBuf->put = (readBuf->put + count) % readBuf->size;
+        
+        readBuf->count += count;
+        
+        rmi.readrest -= rmi.count;
+    }
+    
+    WakeupThread(videoDecTh);
+    
+    rmi.getsize = readBuf->count;
+
+    if (readBuf->count != 0)
+    {
+        rmi.get_ptr = (unsigned char*)readBuf + ((readBuf->size + (readBuf->put - readBuf->count)) % readBuf->size);
+    }
+    
+    if (rmi.getsize > 0)
+    {
+        rmi.proceed = sceMpegDemuxPssRing(&videoDec.mpeg, rmi.get_ptr, rmi.getsize, (unsigned char*)readBuf, readBuf->size);
+        
+        readBufEndGet(readBuf, rmi.proceed);
+        
+        rmi.writerest -= rmi.proceed;
+    }
+    
+    audioDecSendToIOP(&audioDec);
+    
+    if ((rmi.iMovieState == 1) && (voBuf.count == voBuf.size) && (audioDec.totalBytesSent >= audioDec.iopBuffSize)) 
+    {
+        rmi.iMovieState = 2;
+    }
+    
+    if ((rmi.writerest < 5) || (videoDec.state != 0)) 
+    {
+        isCountVblank = 0;
+        
+        frd = 0;
+        
+        rmi.iMovieState = 3;
+    }
 }
 
 // 100% matching!
@@ -395,11 +424,11 @@ int copy2area(unsigned char* pd0, int d0, unsigned char* pd1, int d1, unsigned c
 	// Line 789, Address: 0x2ec1f0, Func Offset: 0x100
 	// Line 790, Address: 0x2ec1f4, Func Offset: 0x104
 	// Func End, Address: 0x2ec220, Func Offset: 0x130
-}
+}*/
 
 // 
 // Start address: 0x2ec220
-int audioDecSendToIOP(_anon12* ad)
+int audioDecSendToIOP(AudioDec *ad)
 {
 	int pos;
 	int countAdj;
@@ -432,9 +461,10 @@ int audioDecSendToIOP(_anon12* ad)
 	// Line 840, Address: 0x2ec3ac, Func Offset: 0x18c
 	// Line 843, Address: 0x2ec3b0, Func Offset: 0x190
 	// Func End, Address: 0x2ec3c4, Func Offset: 0x1a4
+	scePrintf("audioDecSendToIOP - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ec3d0
 void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, _anon12* ad, int pos)
 {
@@ -750,9 +780,9 @@ void voBufIncCount(VoBuf *f)
     EI();
 }
 
-/*// 
+// 
 // Start address: 0x2ecdf0
-void audioDecResume(_anon12* ad)
+void audioDecResume(AudioDec *ad)
 {
 	// Line 1260, Address: 0x2ecdf0, Func Offset: 0
 	// Line 1267, Address: 0x2ece00, Func Offset: 0x10
@@ -761,9 +791,10 @@ void audioDecResume(_anon12* ad)
 	// Line 1277, Address: 0x2ece3c, Func Offset: 0x4c
 	// Line 1278, Address: 0x2ece44, Func Offset: 0x54
 	// Func End, Address: 0x2ece54, Func Offset: 0x64
+	scePrintf("audioDecResume - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ece60
 int getFIFOindex(_anon7* f, void* addr)
 {
@@ -923,7 +954,7 @@ int GetAllWorkMemory()
     return 0;
 }
 
-/*// 
+// 
 // Start address: 0x2ed2e0
 void OutPutCdErrorCode(unsigned int* err)
 {
@@ -948,9 +979,10 @@ void OutPutCdErrorCode(unsigned int* err)
 	// Line 1531, Address: 0x2ed408, Func Offset: 0x128
 	// Line 1539, Address: 0x2ed414, Func Offset: 0x134
 	// Func End, Address: 0x2ed424, Func Offset: 0x144
+	scePrintf("OutPutCdErrorCode - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ed430
 int videoCallback(_anon11* str, void* data)
 {
