@@ -146,6 +146,8 @@ void initAll()
 	// Func End, Address: 0x2eb8f8, Func Offset: 0x368
 }*/
 
+#pragma divbyzerocheck on
+
 // 100% matching!
 void readMpeg()
 {
@@ -224,6 +226,8 @@ void readMpeg()
         rmi.iMovieState = 3;
     }
 }
+
+#pragma divbyzerocheck off
 
 // 100% matching!
 int readBufEndGet(READ_BUF *b, int size)

@@ -4,7 +4,7 @@
 #include "types.h"
 #include "macros.h"
 
-/* audiodec.h */
+/* audiodec.h - move these to types.h */
 
 typedef struct {
     char id[4];		// 'S''S''h''d'
