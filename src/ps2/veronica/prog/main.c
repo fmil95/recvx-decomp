@@ -221,6 +221,10 @@ unsigned int Ps2_quad_color;
 int Ps2_quad_trans; 
 unsigned int Ps2_current_texno_bk;
 NJS_TEXLIST* Ps2_current_texlist_bk;
+int movie_draw;
+u_long128 test_tag[1400];
+VoBuf voBuf;
+RMI_WORK rmi;
 
 // 100% matching!
 void njUserInit(void)

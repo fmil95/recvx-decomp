@@ -90,6 +90,10 @@ extern unsigned int Ps2_quad_color;
 extern int Ps2_quad_trans;
 extern unsigned int Ps2_current_texno_bk;
 extern NJS_TEXLIST* Ps2_current_texlist_bk;
+extern int movie_draw;
+extern u_long128 test_tag[1400];
+extern VoBuf voBuf;
+extern RMI_WORK rmi;
 
 void njUserInit(void);
 Sint32 njUserMain(void);

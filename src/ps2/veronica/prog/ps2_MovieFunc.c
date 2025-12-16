@@ -20,7 +20,6 @@ char* videoDecStack;
 _anon35 rmi;
 unsigned int Ps2_vcount;
 _anon30 infile;*/
-VoBuf voBuf;
 VoTag* voBufTag;
 VoData* voBufData;
 READ_BUF* readBuf;
@@ -41,7 +40,6 @@ int(*mpegError)(_anon0*, _anon1*, void*);*/
 unsigned char* mpegWork;
 /*int frd;
 _anon41 mdSize;*/
-int movie_draw;
 unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
 /*<unknown fundamental type (0xa510)> test_tag[1400];
 _anon24 db;
@@ -146,7 +144,7 @@ void initAll()
 	// Line 357, Address: 0x2eb8d8, Func Offset: 0x348
 	// Line 358, Address: 0x2eb8ec, Func Offset: 0x35c
 	// Func End, Address: 0x2eb8f8, Func Offset: 0x368
-}
+}*/
 
 // 
 // Start address: 0x2eb900
@@ -195,7 +193,8 @@ void readMpeg()
 	// Line 464, Address: 0x2ebbd8, Func Offset: 0x2d8
 	// Line 466, Address: 0x2ebbe4, Func Offset: 0x2e4
 	// Func End, Address: 0x2ebbf0, Func Offset: 0x2f0
-}*/
+	scePrintf("readMpeg - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int readBufEndGet(READ_BUF *b, int size)
@@ -209,7 +208,7 @@ int readBufEndGet(READ_BUF *b, int size)
     return size_ok;
 }
 
-/*// 
+// 
 // Start address: 0x2ebc10
 void setImageTag(unsigned int* tags, void* image)
 {
@@ -261,6 +260,7 @@ void setImageTag(unsigned int* tags, void* image)
 	// Line 586, Address: 0x2ebda8, Func Offset: 0x198
 	// Line 588, Address: 0x2ebdb0, Func Offset: 0x1a0
 	// Func End, Address: 0x2ebde0, Func Offset: 0x1d0
+	scePrintf("setImageTag - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -323,7 +323,8 @@ void vbrank_draw()
 	// Line 652, Address: 0x2ebf4c, Func Offset: 0x16c
 	// Line 653, Address: 0x2ebf54, Func Offset: 0x174
 	// Func End, Address: 0x2ebf60, Func Offset: 0x180
-}*/
+	scePrintf("vbrank_draw - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void videoDecMain(VideoDec *vd)
