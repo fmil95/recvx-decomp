@@ -793,32 +793,50 @@ SDE_ERR sdShotSetFxLev()
 	// Line 2126, Address: 0x2dc180, Func Offset: 0
 	// Line 2131, Address: 0x2dc194, Func Offset: 0x14
 	// Func End, Address: 0x2dc19c, Func Offset: 0x1c
-}
-
-// 
-// Start address: 0x2dc1a0
-SDE_ERR sdShotSetPan(SDS_PORT_REF** handle, char pan, int fade_time)
-{
-	char set_pan;
-	// Line 2156, Address: 0x2dc1a0, Func Offset: 0
-	// Line 2161, Address: 0x2dc1a8, Func Offset: 0x8
-	// Line 2163, Address: 0x2dc1b8, Func Offset: 0x18
-	// Line 2164, Address: 0x2dc1c4, Func Offset: 0x24
-	// Line 2169, Address: 0x2dc1d0, Func Offset: 0x30
-	// Line 2171, Address: 0x2dc1e4, Func Offset: 0x44
-	// Line 2172, Address: 0x2dc1ec, Func Offset: 0x4c
-	// Line 2173, Address: 0x2dc1f8, Func Offset: 0x58
-	// Line 2174, Address: 0x2dc1fc, Func Offset: 0x5c
-	// Line 2175, Address: 0x2dc204, Func Offset: 0x64
-	// Line 2179, Address: 0x2dc208, Func Offset: 0x68
-	// Line 2180, Address: 0x2dc210, Func Offset: 0x70
-	// Line 2183, Address: 0x2dc218, Func Offset: 0x78
-	// Line 2185, Address: 0x2dc21c, Func Offset: 0x7c
-	// Line 2187, Address: 0x2dc220, Func Offset: 0x80
-	// Line 2190, Address: 0x2dc22c, Func Offset: 0x8c
-	// Line 2192, Address: 0x2dc234, Func Offset: 0x94
-	// Func End, Address: 0x2dc240, Func Offset: 0xa0
 }*/
+
+// 100% matching!
+SDE_ERR	sdShotSetPan( SDSHOT handle, const Sint8 pan, const Sint32 fade_time)
+{ 
+    SND_WORK* check_snd_work; // not from the debugging symbols
+    char set_pan;
+
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        if (*handle == 0) 
+        {
+            return SDE_ERR_HANDLE_NULL;
+        }
+
+        check_snd_work = (SND_WORK*)*handle;
+        
+        set_pan = (pan / 2) + 64;
+        
+        if (fade_time != 0) 
+        {
+            if (check_snd_work->pan_timer == 0)
+            {
+                check_snd_work->pan_timer = fade_time;
+                
+                check_snd_work->pan_old = check_snd_work->pan;
+                
+                check_snd_work->pan = set_pan;
+            }
+            
+            Panpot_Control(check_snd_work);
+        } 
+        else 
+        {
+            check_snd_work->pan_timer = 0;
+            
+            check_snd_work->pan = set_pan;
+        }
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
+}
 
 // 
 // Start address: 0x2dc240
