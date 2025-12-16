@@ -151,9 +151,9 @@ Float	njFraction  (Float n)
     return n - floorf(n); 
 } 
 
-/*// 
+// 
 // Start address: 0x2d7ef0
-float njSqrt(float x)
+Float	njSqrt(Float n)
 {
 	float ret;
 	// Line 438, Address: 0x2d7ef0, Func Offset: 0
@@ -165,7 +165,8 @@ float njSqrt(float x)
 	// Line 444, Address: 0x2d7f0c, Func Offset: 0x1c
 	// Line 448, Address: 0x2d7f10, Func Offset: 0x20
 	// Func End, Address: 0x2d7f18, Func Offset: 0x28
-}*/
+	scePrintf("njSqrt - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2d7f20
