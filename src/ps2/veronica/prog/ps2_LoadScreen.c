@@ -1006,19 +1006,17 @@ void SetStateLoadScreenLoadExit(LOAD_SCREEN* pLoad)
     SetCheckMcFlag(pLoad->pMcState, 0);
 }
 
-// 
-// Start address: 0x276d60
+// 100% matching!
 void ExecuteStateLoadScreenLoadExit(LOAD_SCREEN* pLoad)
 {
-	// Line 1711, Address: 0x276d60, Func Offset: 0
-	// Line 1715, Address: 0x276d6c, Func Offset: 0xc
-	// Line 1718, Address: 0x276d80, Func Offset: 0x20
-	// Line 1720, Address: 0x276d8c, Func Offset: 0x2c
-	// Line 1722, Address: 0x276d94, Func Offset: 0x34
-	// Line 1720, Address: 0x276d98, Func Offset: 0x38
-	// Line 1722, Address: 0x276da4, Func Offset: 0x44
-	// Line 1724, Address: 0x276da8, Func Offset: 0x48
-	// Func End, Address: 0x276db8, Func Offset: 0x58
+    if (--pLoad->ulMemCheckCountTimer == 0) 
+    {
+        SetCheckMcFlag(pLoad->pMcState, 0);
+        
+        sys->typ_flg |= 0x10;
+        
+        pLoad->usExitFlag = 1;
+    }
 }
 
 // 
