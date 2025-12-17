@@ -799,19 +799,19 @@ void SetStateLoadScreenNoSave(LOAD_SCREEN* pLoad)
     pLoad->cCgFlag = 100;
 }
 
-// 
-// Start address: 0x2768a0
+// 100% matching! 
 void ExecuteStateLoadScreenNoSave(LOAD_SCREEN* pLoad)
 {
-	// Line 1343, Address: 0x2768a0, Func Offset: 0
-	// Line 1345, Address: 0x2768a8, Func Offset: 0x8
-	// Line 1348, Address: 0x2768c8, Func Offset: 0x28
-	// Line 1350, Address: 0x2768d0, Func Offset: 0x30
-	// Line 1351, Address: 0x2768dc, Func Offset: 0x3c
-	// Line 1355, Address: 0x2768e4, Func Offset: 0x44
-	// Line 1358, Address: 0x276900, Func Offset: 0x60
-	// Line 1361, Address: 0x276908, Func Offset: 0x68
-	// Func End, Address: 0x276914, Func Offset: 0x74
+    if ((sys->pad_ps & 0x1800)) 
+    {
+        SetStateLoadScreenSelectFile(pLoad);
+        
+        CallSystemSe(0, 3);
+    }
+    else if ((pLoad->lCardState > 100) && (pLoad->lCardState < 104)) 
+    {
+        SetStateLoadScreenAwarenessCard(pLoad);
+    }
 }
 
 // 
