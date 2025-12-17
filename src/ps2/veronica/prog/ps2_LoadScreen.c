@@ -670,63 +670,105 @@ void SetStateLoadScreenSelectFile(LOAD_SCREEN* pLoad)
     SetCheckMcFlag(pLoad->pMcState, 0);
 }
 
-// 
-// Start address: 0x276540
+// 99.48% matching
 void ExecuteStateLoadScreenSelectFile(LOAD_SCREEN* pLoad)
 {
-	unsigned int KeyWait01;
-	unsigned int KeyWait00;
-	// Line 1166, Address: 0x276540, Func Offset: 0
-	// Line 1171, Address: 0x27654c, Func Offset: 0xc
-	// Line 1173, Address: 0x27656c, Func Offset: 0x2c
-	// Line 1175, Address: 0x276588, Func Offset: 0x48
-	// Line 1177, Address: 0x27659c, Func Offset: 0x5c
-	// Line 1178, Address: 0x2765ac, Func Offset: 0x6c
-	// Line 1181, Address: 0x2765b4, Func Offset: 0x74
-	// Line 1183, Address: 0x2765bc, Func Offset: 0x7c
-	// Line 1186, Address: 0x2765c4, Func Offset: 0x84
-	// Line 1187, Address: 0x2765cc, Func Offset: 0x8c
-	// Line 1189, Address: 0x2765d4, Func Offset: 0x94
-	// Line 1191, Address: 0x2765fc, Func Offset: 0xbc
-	// Line 1192, Address: 0x276604, Func Offset: 0xc4
-	// Line 1194, Address: 0x276614, Func Offset: 0xd4
-	// Line 1196, Address: 0x276620, Func Offset: 0xe0
-	// Line 1198, Address: 0x27662c, Func Offset: 0xec
-	// Line 1199, Address: 0x276638, Func Offset: 0xf8
-	// Line 1201, Address: 0x276644, Func Offset: 0x104
-	// Line 1203, Address: 0x27664c, Func Offset: 0x10c
-	// Line 1204, Address: 0x276658, Func Offset: 0x118
-	// Line 1205, Address: 0x276660, Func Offset: 0x120
-	// Line 1209, Address: 0x276670, Func Offset: 0x130
-	// Line 1211, Address: 0x27667c, Func Offset: 0x13c
-	// Line 1212, Address: 0x276688, Func Offset: 0x148
-	// Line 1213, Address: 0x276690, Func Offset: 0x150
-	// Line 1215, Address: 0x27669c, Func Offset: 0x15c
-	// Line 1217, Address: 0x2766a8, Func Offset: 0x168
-	// Line 1219, Address: 0x2766b4, Func Offset: 0x174
-	// Line 1221, Address: 0x2766c0, Func Offset: 0x180
-	// Line 1223, Address: 0x2766d0, Func Offset: 0x190
-	// Line 1225, Address: 0x2766d4, Func Offset: 0x194
-	// Line 1226, Address: 0x2766e0, Func Offset: 0x1a0
-	// Line 1227, Address: 0x2766e8, Func Offset: 0x1a8
-	// Line 1230, Address: 0x2766fc, Func Offset: 0x1bc
-	// Line 1232, Address: 0x276708, Func Offset: 0x1c8
-	// Line 1235, Address: 0x276714, Func Offset: 0x1d4
-	// Line 1238, Address: 0x27671c, Func Offset: 0x1dc
-	// Line 1241, Address: 0x276728, Func Offset: 0x1e8
-	// Line 1242, Address: 0x276730, Func Offset: 0x1f0
-	// Line 1243, Address: 0x276738, Func Offset: 0x1f8
-	// Line 1246, Address: 0x276744, Func Offset: 0x204
-	// Line 1248, Address: 0x27674c, Func Offset: 0x20c
-	// Line 1254, Address: 0x276758, Func Offset: 0x218
-	// Line 1257, Address: 0x276774, Func Offset: 0x234
-	// Line 1261, Address: 0x27677c, Func Offset: 0x23c
-	// Line 1263, Address: 0x276790, Func Offset: 0x250
-	// Line 1266, Address: 0x276794, Func Offset: 0x254
-	// Line 1268, Address: 0x2767b8, Func Offset: 0x278
-	// Line 1269, Address: 0x2767d0, Func Offset: 0x290
-	// Line 1271, Address: 0x2767e8, Func Offset: 0x2a8
-	// Func End, Address: 0x2767f8, Func Offset: 0x2b8
+    static unsigned int KeyWait00;
+	static unsigned int KeyWait01;
+
+    if (!(sys->pad_ps & 0x1800)) 
+    {
+        if ((sys->pad_on & 0xF)) 
+        {
+            if (KeyWait00 > 4) 
+            {
+                KeyWait01++;
+            } 
+            else
+            {
+                KeyWait00++;
+            }
+        }
+        else
+        {
+            KeyWait00 = 0;
+            KeyWait01 = 0;
+        }
+        
+        if ((KeyWait01 >= 3) || (KeyWait00 == 1)) 
+        {
+            KeyWait01 = 0;
+            
+            if ((sys->pad_on & 0x1))
+            {
+                pLoad->sCursorY--;
+                
+                mcSetFileSelectWindowCursol(pLoad->pSelectFileWindow, -1);
+                
+                CallSystemSe(0, 2);
+                
+                if (pLoad->sCursorY < 0) 
+                {
+                    pLoad->sCursorY = 14;
+                    
+                    mcSetFileSelectWindowCursol(pLoad->pSelectFileWindow, 4);
+                } 
+                else if (mcGetFileSelectWindowCursol(pLoad->pSelectFileWindow) < 0) 
+                {
+                    mcSetFileSelectWindowCursol(pLoad->pSelectFileWindow, 0);
+                }
+                
+                mcMoveFileSelectWindowCursor(pLoad->pSelectFileWindow, -1);
+            } 
+            else if ((sys->pad_on & 0x2)) 
+            {
+                pLoad->sCursorY++;
+                
+                mcSetFileSelectWindowCursol(pLoad->pSelectFileWindow, 1);
+                
+                CallSystemSe(0, 2);
+                
+                if (pLoad->sCursorY > 14) 
+                {
+                    pLoad->sCursorY = 0;
+                    
+                    mcSetFileSelectWindowCursol(pLoad->pSelectFileWindow, 0);
+                } 
+                else if (mcGetFileSelectWindowCursol(pLoad->pSelectFileWindow) > 4) 
+                {
+                    mcSetFileSelectWindowCursol(pLoad->pSelectFileWindow, 4);
+                }
+                
+                mcMoveFileSelectWindowCursor(pLoad->pSelectFileWindow, 1);
+            }
+        }
+    } 
+    else if ((sys->pad_ps & 0x800)) 
+    {
+        LoadScreenCheckSave(pLoad);
+    } 
+    else if ((sys->pad_ps & 0x1000)) 
+    {
+        SetStateLoadScreenSelectCard(pLoad);
+        
+        CallSystemSe(0, 0);
+    }
+    
+    if ((pLoad->lCardState > 100) && (pLoad->lCardState < 104)) 
+    {
+        SetStateLoadScreenAwarenessCard(pLoad);
+    }
+    
+    if (++pLoad->ulMemCheckCountTimer == 60) 
+    {
+        pLoad->ulMemCheckCountTimer = 0;
+    }
+    
+    if ((pLoad->ulMemCheckCountTimer % 30) < 20) 
+    {
+        DispUpDownCursol(320.0f, 90.0f, 0);
+        DispUpDownCursol(320.0f, 90.0f, 1);
+    }
 }
 
 // 
