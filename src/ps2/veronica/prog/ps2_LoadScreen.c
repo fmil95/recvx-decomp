@@ -653,20 +653,21 @@ void ExecuteStateLoadScreenDirFileBroken(LOAD_SCREEN* pLoad)
     }
 }
 
-// 
-// Start address: 0x2764e0
+// 100% matching! 
 void SetStateLoadScreenSelectFile(LOAD_SCREEN* pLoad)
 {
-	// Line 1136, Address: 0x2764e0, Func Offset: 0
-	// Line 1138, Address: 0x2764ec, Func Offset: 0xc
-	// Line 1140, Address: 0x2764f4, Func Offset: 0x14
-	// Line 1142, Address: 0x2764fc, Func Offset: 0x1c
-	// Line 1144, Address: 0x276508, Func Offset: 0x28
-	// Line 1146, Address: 0x27650c, Func Offset: 0x2c
-	// Line 1148, Address: 0x276518, Func Offset: 0x38
-	// Line 1150, Address: 0x27651c, Func Offset: 0x3c
-	// Line 1151, Address: 0x276528, Func Offset: 0x48
-	// Func End, Address: 0x276538, Func Offset: 0x58
+    pLoad->ulState = 20;
+    
+    pLoad->cMesFlag = 100;
+    pLoad->cCgFlag = 1;
+
+    pLoad->usLoopCount = 0;
+    
+    pLoad->sCursorY = GetMemoryCardFileNumber(pLoad->pMcState);
+
+    pLoad->sSelectCur = 0;
+    
+    SetCheckMcFlag(pLoad->pMcState, 0);
 }
 
 // 
