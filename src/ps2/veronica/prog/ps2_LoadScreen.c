@@ -825,41 +825,50 @@ void SetStateLoadScreenLoadCursor(LOAD_SCREEN* pLoad)
     pLoad->sSelectCur = 0;
 }
 
-// 
-// Start address: 0x276940
+// 100% matching! 
 void ExecuteStateLoadScreenLoadCursor(LOAD_SCREEN* pLoad)
 {
-	// Line 1400, Address: 0x276940, Func Offset: 0
-	// Line 1404, Address: 0x276948, Func Offset: 0x8
-	// Line 1407, Address: 0x276968, Func Offset: 0x28
-	// Line 1411, Address: 0x27696c, Func Offset: 0x2c
-	// Line 1407, Address: 0x276970, Func Offset: 0x30
-	// Line 1409, Address: 0x276978, Func Offset: 0x38
-	// Line 1411, Address: 0x276984, Func Offset: 0x44
-	// Line 1412, Address: 0x27698c, Func Offset: 0x4c
-	// Line 1414, Address: 0x276994, Func Offset: 0x54
-	// Line 1417, Address: 0x2769a0, Func Offset: 0x60
-	// Line 1421, Address: 0x2769a4, Func Offset: 0x64
-	// Line 1417, Address: 0x2769a8, Func Offset: 0x68
-	// Line 1419, Address: 0x2769b0, Func Offset: 0x70
-	// Line 1421, Address: 0x2769bc, Func Offset: 0x7c
-	// Line 1422, Address: 0x2769c4, Func Offset: 0x84
-	// Line 1424, Address: 0x2769cc, Func Offset: 0x8c
-	// Line 1426, Address: 0x2769d8, Func Offset: 0x98
-	// Line 1429, Address: 0x2769e8, Func Offset: 0xa8
-	// Line 1431, Address: 0x2769f0, Func Offset: 0xb0
-	// Line 1432, Address: 0x2769fc, Func Offset: 0xbc
-	// Line 1436, Address: 0x276a04, Func Offset: 0xc4
-	// Line 1438, Address: 0x276a0c, Func Offset: 0xcc
-	// Line 1440, Address: 0x276a18, Func Offset: 0xd8
-	// Line 1442, Address: 0x276a20, Func Offset: 0xe0
-	// Line 1445, Address: 0x276a2c, Func Offset: 0xec
-	// Line 1447, Address: 0x276a34, Func Offset: 0xf4
-	// Line 1448, Address: 0x276a40, Func Offset: 0x100
-	// Line 1452, Address: 0x276a48, Func Offset: 0x108
-	// Line 1455, Address: 0x276a64, Func Offset: 0x124
-	// Line 1458, Address: 0x276a6c, Func Offset: 0x12c
-	// Func End, Address: 0x276a78, Func Offset: 0x138
+    if ((sys->pad_ps & 0x1)) 
+    {
+        pLoad->sSelectCur--;
+
+        pLoad->sSelectCur &= 0x1;
+        
+        CallSystemSe(0, 2);
+    }
+    else if ((sys->pad_ps & 0x2))
+    {
+        pLoad->sSelectCur++;
+        
+        pLoad->sSelectCur &= 0x1;
+        
+        CallSystemSe(0, 2);
+    }
+    else if ((sys->pad_ps & 0x800)) 
+    {
+        if (pLoad->sSelectCur == 1) 
+        {
+            SetStateLoadScreenSelectFile(pLoad);
+            
+            CallSystemSe(0, 3);
+        } 
+        else 
+        {
+            SetStateLoadScreenLoad(pLoad);
+            
+            CallSystemSe(0, 3);
+        }
+    }
+    else if ((sys->pad_ps & 0x1000)) 
+    {
+        SetStateLoadScreenSelectFile(pLoad);
+        
+        CallSystemSe(0, 0);
+    }
+    else if ((pLoad->lCardState > 100) && (pLoad->lCardState < 104)) 
+    {
+        SetStateLoadScreenAwarenessCard(pLoad);
+    }
 }
 
 // 
