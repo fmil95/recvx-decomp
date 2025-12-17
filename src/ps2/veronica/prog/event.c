@@ -8425,7 +8425,7 @@ int Common_controll()
         {
             int v0; 
             int v1; 
-            NO_NAME_1* owk; 
+            O_WORK* owk; 
             
             owk = bhCetask->work->mdl->owP;
             bhScePtr++;
@@ -9059,7 +9059,7 @@ int Common_controll()
             switch (*bhScePtr) 
             {
                 case 0:
-                    bhCetask->work->mnwP = (NO_NAME_3*)sys->plmthp;
+                    bhCetask->work->mnwP = (MN_WORK*)sys->plmthp;
                     bhCetask->work->mode0 = '\a';
                     bhCetask->work->mode2 = '\b';
                     bhCetask->work->mode3 = '\0';
@@ -9279,7 +9279,7 @@ int Common_controll()
             switch (*bhScePtr) 
             {
                 case 0:
-                    bhCetask->work->mnwP = (NO_NAME_3*)sys->plmthp;
+                    bhCetask->work->mnwP = (MN_WORK*)sys->plmthp;
                     bhCetask->work->mode0 = '\a';
                     bhCetask->work->mode2 = '\b';
                     bhCetask->work->mode3 = '\0';

@@ -31,33 +31,36 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 
-typedef struct NO_NAME_1
+typedef struct O_WORK
 {
-	unsigned int flg;
-	int dmy;
-	unsigned int dummy[2];
-	float mtx[16];
-} NO_NAME_1;
+	// total size: 0x50
+    unsigned int flg;      // offset 0x0, size 0x4
+    int dmy;               // offset 0x4, size 0x4
+    unsigned int dummy[2]; // offset 0x8, size 0x8
+    float mtx[16];         // offset 0x10, size 0x40
+} O_WORK;
 
-typedef struct NO_NAME_2
+typedef struct ML_WORK
 {
-	unsigned int flg;
-	unsigned int obj_num;
-	void* datP;
-	NJS_CNK_OBJECT* objP;
-	NJS_TEXLIST* texP;
-	NO_NAME_1* owP;
-} NO_NAME_2;
+	// total size: 0x18
+    unsigned int flg;     // offset 0x0, size 0x4
+    unsigned int obj_num; // offset 0x4, size 0x4
+    void* datP;           // offset 0x8, size 0x4
+	NJS_CNK_OBJECT* objP; // offset 0xC, size 0x4
+	NJS_TEXLIST* texP;    // offset 0x10, size 0x4
+	O_WORK* owP;          // offset 0x14, size 0x4
+} ML_WORK;
 
-typedef struct NO_NAME_3
+typedef struct MN_WORK
 {
-	unsigned int flg;
-	unsigned int obj_num;
-	unsigned int frm_num;
-	void* datP;
-	NJS_MDATA2* md2P;
-	unsigned short* atrP;
-} NO_NAME_3;
+	// total size: 0x18
+    unsigned int flg;     // offset 0x0, size 0x4
+    unsigned int obj_num; // offset 0x4, size 0x4
+    unsigned int frm_num; // offset 0x8, size 0x4
+    void* datP;           // offset 0xC, size 0x4
+	NJS_MDATA2* md2P;     // offset 0x10, size 0x4
+	unsigned short* atrP; // offset 0x14, size 0x4
+} MN_WORK;
 
 typedef struct NO_NAME_4
 {
@@ -111,8 +114,8 @@ typedef struct NO_NAME_4
 	int* skp[16];
 	NJS_CNK_OBJECT* mbp[16];
 	NJS_TEXLIST* txp[16];
-	NO_NAME_2 mdl[16];
-	NO_NAME_2* mlwP;
+	ML_WORK mdl[16];
+	ML_WORK* mlwP;
 	unsigned int mdl_no;
 	int lkono;
 	unsigned char* lkwkp;
@@ -127,8 +130,8 @@ typedef struct NO_NAME_4
 	float shp_ct;
 	char clp_jno[8];
 	int lok_jno;
-	NO_NAME_3* mnwP;
-	NO_NAME_3* mnwPb;
+	MN_WORK* mnwP;
+	MN_WORK* mnwPb;
 	unsigned int mtn_attr;
 	unsigned int mtn_no;
 	int frm_no;
@@ -269,8 +272,8 @@ typedef struct BH_PWORK
     int * skp[16]; // offset 0xA0, size 0x40
     NJS_CNK_OBJECT * mbp[16]; // offset 0xE0, size 0x40
 	NJS_TEXLIST* txp[16]; // offset 0x120, size 0x40
-	NO_NAME_2 mdl[16]; // offset 0x160, size 0x180
-	NO_NAME_2* mlwP; // offset 0x2E0, size 0x4
+	ML_WORK mdl[16]; // offset 0x160, size 0x180
+	ML_WORK* mlwP; // offset 0x2E0, size 0x4
 	unsigned int mdl_no; // offset 0x2E4, size 0x4
     int lkono; // offset 0x2E8, size 0x4
     unsigned char * lkwkp; // offset 0x2EC, size 0x4
@@ -285,8 +288,8 @@ typedef struct BH_PWORK
     float shp_ct; // offset 0x34C, size 0x4
     char clp_jno[8]; // offset 0x350, size 0x8
     int lok_jno; // offset 0x358, size 0x4
-	NO_NAME_3* mnwP; // offset 0x35C, size 0x4
-	NO_NAME_3* mnwPb; // offset 0x360, size 0x4
+	MN_WORK* mnwP; // offset 0x35C, size 0x4
+	MN_WORK* mnwPb; // offset 0x360, size 0x4
 	unsigned int mtn_attr; // offset 0x364, size 0x4
     unsigned int mtn_no; // offset 0x368, size 0x4
     int frm_no; // offset 0x36C, size 0x4
@@ -630,8 +633,8 @@ typedef struct SYS_WORK
     unsigned char * sbs_sp; // offset 0x1B1C4, size 0x4
 	NO_NAME_4* obwp; // offset 0x1B1C8, size 0x4
 	NO_NAME_4* itwp; // offset 0x1B1CC, size 0x4
-	NO_NAME_3* emtp[128]; // offset 0x1B1D0, size 0x200
-	NO_NAME_3* rmthp; // offset 0x1B3D0, size 0x4
+	MN_WORK* emtp[128]; // offset 0x1B1D0, size 0x200
+	MN_WORK* rmthp; // offset 0x1B3D0, size 0x4
 	unsigned char * mspp; // offset 0x1B3D4, size 0x4
     unsigned char * lspp; // offset 0x1B3D8, size 0x4
     unsigned int * mes_ip; // offset 0x1B3DC, size 0x4
@@ -652,7 +655,7 @@ typedef struct SYS_WORK
 	NJS_TEXLIST ef_tlist; // offset 0x1ED0C, size 0x8
 	NO_NAME_6 ef; // offset 0x1ED14, size 0x28
 	short efid[256]; // offset 0x1ED3C, size 0x200
-	NO_NAME_2 efm[450]; // offset 0x1EF3C, size 0x2A30
+	ML_WORK efm[450]; // offset 0x1EF3C, size 0x2A30
 	int ef_ct; // offset 0x2196C, size 0x4
     int ef_ctb; // offset 0x21970, size 0x4
     int ef_extn; // offset 0x21974, size 0x4
@@ -2381,7 +2384,7 @@ typedef struct ROM_WORK
     float h; // offset 0x118, size 0x4
     float d; // offset 0x11C, size 0x4
     float grand[32]; // offset 0x120, size 0x80
-	NO_NAME_2 mdl; // offset 0x1A0, size 0x18
+	ML_WORK mdl; // offset 0x1A0, size 0x18
 	float fog[128]; // offset 0x1B8, size 0x200
     char amb_rom; // offset 0x3B8, size 0x1
     char amb_chr; // offset 0x3B9, size 0x1
@@ -3425,7 +3428,7 @@ typedef struct MW
 typedef struct SITEM
 {
     // total size: 0x54
-	NO_NAME_2 mdl;             // offset 0x0, size 0x18
+	ML_WORK mdl;               // offset 0x0, size 0x18
 	MW mw;                     // offset 0x18, size 0x34
 	unsigned char* keep;       // offset 0x4C, size 0x4
     unsigned char* keepbackup; // offset 0x50, size 0x4

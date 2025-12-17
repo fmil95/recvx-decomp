@@ -119,7 +119,7 @@ void SimpleMultiDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_nu
 }*/
 
 // 100% matching! 
-void EasyDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, NO_NAME_1* owP, int obj_num)
+void EasyDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
 {
     for ( ; obj_num > 0; obj_num--, objP++, owP++) 
     {
@@ -192,7 +192,7 @@ void bhCalcModel(BH_PWORK* ewP)
 
 // 
 // Start address: 0x12f400
-void bhCalcTree(NJS_MATRIX* basP, NO_NAME_2* mlwP)
+void bhCalcTree(NJS_MATRIX* basP, ML_WORK* mlwP)
 {
 	int obj_num;
 	//npobj* objP;
