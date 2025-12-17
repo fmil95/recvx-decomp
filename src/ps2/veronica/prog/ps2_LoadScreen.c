@@ -448,19 +448,19 @@ void SetStateLoadScreenErrUnFormat(LOAD_SCREEN* pLoad)
     SetCheckMcFlag(pLoad->pMcState, 0);
 }
 
-// 
-// Start address: 0x276050
+// 100% matching! 
 void ExecuteStateLoadScreenErrUnFormat(LOAD_SCREEN* pLoad)
 {
-	// Line 815, Address: 0x276050, Func Offset: 0
-	// Line 817, Address: 0x276058, Func Offset: 0x8
-	// Line 820, Address: 0x276078, Func Offset: 0x28
-	// Line 822, Address: 0x276080, Func Offset: 0x30
-	// Line 823, Address: 0x27608c, Func Offset: 0x3c
-	// Line 827, Address: 0x276094, Func Offset: 0x44
-	// Line 830, Address: 0x2760b0, Func Offset: 0x60
-	// Line 833, Address: 0x2760b8, Func Offset: 0x68
-	// Func End, Address: 0x2760c4, Func Offset: 0x74
+    if ((sys->pad_ps & 0x1800)) 
+    {
+        SetStateLoadScreenAwarenessCard(pLoad);
+        
+        CallSystemSe(0, 3);
+    }
+    else if ((pLoad->lCardState > 100) && (pLoad->lCardState < 104)) 
+    {
+        SetStateLoadScreenAwarenessCard(pLoad);
+    }
 }
 
 // 
