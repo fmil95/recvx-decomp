@@ -567,15 +567,13 @@ void ExecuteStateLoadScreenDirCheck(LOAD_SCREEN* pLoad)
 	// Func End, Address: 0x276434, Func Offset: 0x254
 }
 
-// 
-// Start address: 0x276440
+// 100% matching! 
 void SetStateLoadScreenDirFileBroken(LOAD_SCREEN* pLoad)
 {
-	// Line 1084, Address: 0x276440, Func Offset: 0
-	// Line 1086, Address: 0x276448, Func Offset: 0x8
-	// Line 1088, Address: 0x276450, Func Offset: 0x10
-	// Line 1089, Address: 0x276454, Func Offset: 0x14
-	// Func End, Address: 0x27645c, Func Offset: 0x1c
+    pLoad->ulState = 15;
+    
+    pLoad->cMesFlag = 9;
+    pLoad->cCgFlag = 100;
 }
 
 // 
