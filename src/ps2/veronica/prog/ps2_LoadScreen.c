@@ -463,15 +463,13 @@ void ExecuteStateLoadScreenErrUnFormat(LOAD_SCREEN* pLoad)
     }
 }
 
-// 
-// Start address: 0x2760d0
+// 100% matching! 
 void SetStateLoadScreenErrLostDirCheck(LOAD_SCREEN* pLoad)
 {
-	// Line 850, Address: 0x2760d0, Func Offset: 0
-	// Line 852, Address: 0x2760d8, Func Offset: 0x8
-	// Line 854, Address: 0x2760e0, Func Offset: 0x10
-	// Line 855, Address: 0x2760e4, Func Offset: 0x14
-	// Func End, Address: 0x2760ec, Func Offset: 0x1c
+    pLoad->ulState = 13;
+    
+    pLoad->cMesFlag = 4;
+    pLoad->cCgFlag = 100;
 }
 
 // 
