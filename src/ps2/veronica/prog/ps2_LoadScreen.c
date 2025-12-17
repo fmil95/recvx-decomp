@@ -472,19 +472,19 @@ void SetStateLoadScreenErrLostDirCheck(LOAD_SCREEN* pLoad)
     pLoad->cCgFlag = 100;
 }
 
-// 
-// Start address: 0x2760f0
+// 100% matching! 
 void ExecuteStateLoadScreenErrLostDirCheck(LOAD_SCREEN* pLoad)
 {
-	// Line 870, Address: 0x2760f0, Func Offset: 0
-	// Line 872, Address: 0x2760f8, Func Offset: 0x8
-	// Line 875, Address: 0x276118, Func Offset: 0x28
-	// Line 877, Address: 0x276120, Func Offset: 0x30
-	// Line 878, Address: 0x27612c, Func Offset: 0x3c
-	// Line 882, Address: 0x276134, Func Offset: 0x44
-	// Line 885, Address: 0x276150, Func Offset: 0x60
-	// Line 888, Address: 0x276158, Func Offset: 0x68
-	// Func End, Address: 0x276164, Func Offset: 0x74
+    if ((sys->pad_ps & 0x1800)) 
+    {
+        SetStateLoadScreenAwarenessCard(pLoad);
+        
+        CallSystemSe(0, 3);
+    }
+    else if ((pLoad->lCardState > 100) && (pLoad->lCardState < 104)) 
+    {
+        SetStateLoadScreenAwarenessCard(pLoad);
+    }
 }
 
 // 
