@@ -507,64 +507,126 @@ void SetStateLoadScreenDirCheck(LOAD_SCREEN* pLoad)
     SetCheckMcFlag(pLoad->pMcState, 1);
 }
 
-// 
-// Start address: 0x2761e0
+// 100% matching! 
 void ExecuteStateLoadScreenDirCheck(LOAD_SCREEN* pLoad)
 {
-	int lResult;
-	// Line 937, Address: 0x2761e0, Func Offset: 0
-	// Line 940, Address: 0x2761ec, Func Offset: 0xc
-	// Line 944, Address: 0x276218, Func Offset: 0x38
-	// Line 946, Address: 0x276220, Func Offset: 0x40
-	// Line 948, Address: 0x27622c, Func Offset: 0x4c
-	// Line 951, Address: 0x27623c, Func Offset: 0x5c
-	// Line 953, Address: 0x276244, Func Offset: 0x64
-	// Line 956, Address: 0x27624c, Func Offset: 0x6c
-	// Line 960, Address: 0x276254, Func Offset: 0x74
-	// Line 962, Address: 0x27625c, Func Offset: 0x7c
-	// Line 965, Address: 0x276264, Func Offset: 0x84
-	// Line 967, Address: 0x276270, Func Offset: 0x90
-	// Line 969, Address: 0x276278, Func Offset: 0x98
-	// Line 971, Address: 0x27627c, Func Offset: 0x9c
-	// Line 975, Address: 0x276284, Func Offset: 0xa4
-	// Line 976, Address: 0x27628c, Func Offset: 0xac
-	// Line 979, Address: 0x276298, Func Offset: 0xb8
-	// Line 980, Address: 0x27629c, Func Offset: 0xbc
-	// Line 981, Address: 0x2762a4, Func Offset: 0xc4
-	// Line 984, Address: 0x2762ac, Func Offset: 0xcc
-	// Line 986, Address: 0x2762b8, Func Offset: 0xd8
-	// Line 988, Address: 0x2762bc, Func Offset: 0xdc
-	// Line 992, Address: 0x2762c4, Func Offset: 0xe4
-	// Line 993, Address: 0x2762d8, Func Offset: 0xf8
-	// Line 995, Address: 0x2762e0, Func Offset: 0x100
-	// Line 997, Address: 0x2762e8, Func Offset: 0x108
-	// Line 999, Address: 0x2762f4, Func Offset: 0x114
-	// Line 1000, Address: 0x2762fc, Func Offset: 0x11c
-	// Line 1001, Address: 0x276304, Func Offset: 0x124
-	// Line 1006, Address: 0x27630c, Func Offset: 0x12c
-	// Line 1010, Address: 0x276314, Func Offset: 0x134
-	// Line 1015, Address: 0x276338, Func Offset: 0x158
-	// Line 1018, Address: 0x276340, Func Offset: 0x160
-	// Line 1019, Address: 0x276350, Func Offset: 0x170
-	// Line 1022, Address: 0x27635c, Func Offset: 0x17c
-	// Line 1023, Address: 0x27636c, Func Offset: 0x18c
-	// Line 1026, Address: 0x276388, Func Offset: 0x1a8
-	// Line 1027, Address: 0x276390, Func Offset: 0x1b0
-	// Line 1033, Address: 0x276398, Func Offset: 0x1b8
-	// Line 1034, Address: 0x2763a0, Func Offset: 0x1c0
-	// Line 1037, Address: 0x2763a8, Func Offset: 0x1c8
-	// Line 1039, Address: 0x2763b0, Func Offset: 0x1d0
-	// Line 1041, Address: 0x2763bc, Func Offset: 0x1dc
-	// Line 1043, Address: 0x2763c4, Func Offset: 0x1e4
-	// Line 1046, Address: 0x2763cc, Func Offset: 0x1ec
-	// Line 1049, Address: 0x2763dc, Func Offset: 0x1fc
-	// Line 1051, Address: 0x2763e4, Func Offset: 0x204
-	// Line 1054, Address: 0x2763ec, Func Offset: 0x20c
-	// Line 1057, Address: 0x2763fc, Func Offset: 0x21c
-	// Line 1062, Address: 0x276404, Func Offset: 0x224
-	// Line 1065, Address: 0x27641c, Func Offset: 0x23c
-	// Line 1067, Address: 0x276424, Func Offset: 0x244
-	// Func End, Address: 0x276434, Func Offset: 0x254
+    int lResult;
+    
+    switch (pLoad->ulSubState)
+    {
+    case 0:
+        lResult = CheckMemoryCardFormatStatus(pLoad->pMcState);
+        
+        if (lResult == 1)
+        {
+            if (--pLoad->ulMemCheckCountTimer == 0)
+            {
+                SetStateLoadScreenErrUnFormat(pLoad);
+            }
+            
+            return;
+        }
+        else if (lResult == 2)
+        {
+            pLoad->ulSubState = 1;
+        }
+        else if (lResult == -1)
+        {
+            SetCheckMcFlag(pLoad->pMcState, 0);
+            
+            RecoveryMemoryCardError(pLoad->pMcState);
+            
+            pLoad->ulSubState = 6;
+        }
+        
+        break;
+    case 1:
+        lResult = CheckMemoryCardExistSubDirectory(pLoad->pMcState);
+        
+        if (lResult == 1)
+        {
+            pLoad->ulSubState = 2;
+        }
+        else if (lResult == -1)
+        {
+            SetCheckMcFlag(pLoad->pMcState, 0);
+            
+            pLoad->ulSubState = 5;
+        }
+        
+        break;
+    case 2:
+        lResult = CheckMemoryCardExistFileList(pLoad->pMcState, cpNameList, 18);
+        
+        if (lResult < 0)
+        {
+            pLoad->ulSubState = 6;
+            
+            SetCheckMcFlag(pLoad->pMcState, 0);
+            
+            RecoveryMemoryCardError(pLoad->pMcState);
+        }
+        else if (lResult == 1)
+        {
+            pLoad->ulSubState = 3;
+        }
+        
+        break;
+    case 3:
+        lResult = mcReadStartSaveFile(pLoad->pSaveFile, pLoad->pMcState, cpNameList, pLoad->usLoopCount);
+        
+        if (lResult == 1)
+        {
+            pLoad->ulSubState = 4;
+        }
+        
+        break;
+    case 4:
+        lResult = mcCheckReadStartSaveFile(pLoad->pSaveFile, pLoad->pMcState, 0);
+        
+        if (lResult == 1)
+        {
+            mcGetPortSelectDirInfo(pLoad->pSaveFile, pLoad->pSelectFileWindow, pLoad->usLoopCount);
+            
+            if (++pLoad->usLoopCount > 14)
+            {
+                SetStateLoadScreenSelectFile(pLoad);
+            }
+            else
+            {
+                pLoad->ulSubState = 3;
+            }
+        }
+        else if (lResult <= -1)
+        {
+            pLoad->ulSubState = 6;
+            
+            SetCheckMcFlag(pLoad->pMcState, 0);
+            
+            RecoveryMemoryCardError(pLoad->pMcState);
+        }
+        
+        break;
+    case 5:
+        if (pLoad->lCardState == 100)
+        {
+            SetStateLoadScreenErrLostDirCheck(pLoad);
+        }
+        
+        break;
+    case 6:
+        if (pLoad->lCardState == 100)
+        {
+            SetStateLoadScreenDirFileBroken(pLoad);
+        }
+        
+        break;
+    }
+    
+    if ((pLoad->lCardState > 100) && (pLoad->lCardState < 104))
+    {
+        SetStateLoadScreenAwarenessCard(pLoad);
+    }
 }
 
 // 100% matching! 
