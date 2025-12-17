@@ -1034,50 +1034,84 @@ void SetDispLoadSelectMessage()
     bhFontScaleSet(1.0f, 1.0f, 1.0f);
 }
 
-// 
-// Start address: 0x276f20
+// 100% matching!
 void CheckDispLoadMemoryCard(LOAD_SCREEN* pLoad)
 {
-	int lPort1CurX;
-	int lPort0CurX;
-	int lPort1Card;
-	int lPort0Card;
-	// Line 1777, Address: 0x276f20, Func Offset: 0
-	// Line 1782, Address: 0x276f38, Func Offset: 0x18
-	// Line 1784, Address: 0x276f44, Func Offset: 0x24
-	// Line 1787, Address: 0x276f54, Func Offset: 0x34
-	// Line 1791, Address: 0x276f68, Func Offset: 0x48
-	// Line 1790, Address: 0x276f6c, Func Offset: 0x4c
-	// Line 1793, Address: 0x276f70, Func Offset: 0x50
-	// Line 1791, Address: 0x276f74, Func Offset: 0x54
-	// Line 1794, Address: 0x276f78, Func Offset: 0x58
-	// Line 1796, Address: 0x276f80, Func Offset: 0x60
-	// Line 1802, Address: 0x276f94, Func Offset: 0x74
-	// Line 1800, Address: 0x276f98, Func Offset: 0x78
-	// Line 1803, Address: 0x276f9c, Func Offset: 0x7c
-	// Line 1799, Address: 0x276fa0, Func Offset: 0x80
-	// Line 1804, Address: 0x276fa4, Func Offset: 0x84
-	// Line 1806, Address: 0x276fac, Func Offset: 0x8c
-	// Line 1811, Address: 0x276fc0, Func Offset: 0xa0
-	// Line 1812, Address: 0x276fc4, Func Offset: 0xa4
-	// Line 1808, Address: 0x276fc8, Func Offset: 0xa8
-	// Line 1810, Address: 0x276fcc, Func Offset: 0xac
-	// Line 1814, Address: 0x276fd0, Func Offset: 0xb0
-	// Line 1823, Address: 0x276fd8, Func Offset: 0xb8
-	// Line 1822, Address: 0x276fdc, Func Offset: 0xbc
-	// Line 1818, Address: 0x276fe0, Func Offset: 0xc0
-	// Line 1819, Address: 0x276fe4, Func Offset: 0xc4
-	// Line 1820, Address: 0x276fe8, Func Offset: 0xc8
-	// Line 1821, Address: 0x276fec, Func Offset: 0xcc
-	// Line 1823, Address: 0x276ff0, Func Offset: 0xd0
-	// Line 1826, Address: 0x276ff4, Func Offset: 0xd4
-	// Line 1828, Address: 0x277004, Func Offset: 0xe4
-	// Line 1829, Address: 0x277008, Func Offset: 0xe8
-	// Line 1830, Address: 0x27700c, Func Offset: 0xec
-	// Line 1831, Address: 0x277010, Func Offset: 0xf0
-	// Line 1835, Address: 0x277014, Func Offset: 0xf4
-	// Line 1836, Address: 0x27702c, Func Offset: 0x10c
-	// Line 1838, Address: 0x277048, Func Offset: 0x128
-	// Line 1839, Address: 0x2770a0, Func Offset: 0x180
-	// Func End, Address: 0x2770b8, Func Offset: 0x198
+    int lPort0Card, lPort1Card;
+    int lPort0CurX, lPort1CurX; 
+    int lPort0CurY, lPort1CurY; // not from the debugging symbols
+    short temp; // not from the debugging symbols
+    
+    lPort0Card = GetMemoryCardSelectPortState(pLoad->pMcState, 0); 
+    lPort1Card = GetMemoryCardSelectPortState(pLoad->pMcState, 1);
+    
+    lPort0CurY = 2;
+    
+    if ((lPort0Card == 2) && (lPort1Card == 2)) 
+    {
+        temp = pLoad->sCursorX;
+        
+        lPort1CurY = 2;
+        
+        pLoad->sSelectCur = temp;
+        
+        lPort0CurX = temp ^ 1;
+        lPort1CurX = temp & 1;
+    } 
+    else
+    {
+        lPort0CurY = 2;
+        lPort1CurY = 2;
+        
+        if ((lPort0Card == 2) && (lPort1Card != 2))
+        {
+            pLoad->sCursorX = 0;
+            
+            lPort0CurX = 1;
+            
+            pLoad->sSelectCur = 0;
+            
+            lPort1CurY = 0;
+            lPort1CurX = 0;
+        } 
+        else if ((lPort0Card != 2) && (lPort1Card == 2)) 
+        {
+            lPort0CurY = 0;
+            lPort0CurX = 0;
+            
+            pLoad->sCursorX = 1;
+            
+            lPort1CurX = 1;
+            lPort1CurY = 2;
+            
+            pLoad->sSelectCur = 1;
+        }
+        else 
+        {
+            pLoad->sSelectCur = 0;
+            
+            lPort0CurY = 0;
+            lPort1CurY = 0;
+            
+            lPort0CurX = 0;
+            lPort1CurX = 0;
+            
+            pLoad->sCursorY = 1;
+        }
+    }
+    
+    if (pLoad->sCursorY == 1) 
+    {
+        pLoad->sSelectCur = 0;
+        
+        pLoad->sCursorX = 0;
+        
+        lPort0CurX = 0;
+        lPort1CurX = 0;
+    }
+    
+    DispMemoryCardTexture(128.0f, 200.0f, lPort0CurX, lPort0CurY);
+    DispMemoryCardTexture(400.0f, 200.0f, lPort1CurX, lPort1CurY);
+    
+    DispCursolTexture(70.0f + (268.0f * pLoad->sSelectCur), 129.0f + (258.0f * pLoad->sCursorY), 0xFF808080);
 }
