@@ -871,18 +871,16 @@ void ExecuteStateLoadScreenLoadCursor(LOAD_SCREEN* pLoad)
     }
 }
 
-// 
-// Start address: 0x276a80
+// 100% matching! 
 void SetStateLoadScreenLoad(LOAD_SCREEN* pLoad)
 {
-	// Line 1475, Address: 0x276a80, Func Offset: 0
-	// Line 1479, Address: 0x276a88, Func Offset: 0x8
-	// Line 1477, Address: 0x276a8c, Func Offset: 0xc
-	// Line 1481, Address: 0x276a90, Func Offset: 0x10
-	// Line 1479, Address: 0x276a94, Func Offset: 0x14
-	// Line 1481, Address: 0x276a98, Func Offset: 0x18
-	// Line 1483, Address: 0x276a9c, Func Offset: 0x1c
-	// Func End, Address: 0x276aa4, Func Offset: 0x24
+    pLoad->ulState = 31;
+    pLoad->ulSubState = 0;
+    
+    pLoad->cMesFlag = 8;
+    pLoad->cCgFlag = 1;
+    
+    SetCheckMcFlag(pLoad->pMcState, 1);
 }
 
 // 
