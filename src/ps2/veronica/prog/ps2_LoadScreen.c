@@ -638,19 +638,19 @@ void SetStateLoadScreenDirFileBroken(LOAD_SCREEN* pLoad)
     pLoad->cCgFlag = 100;
 }
 
-// 
-// Start address: 0x276460
+// 100% matching! 
 void ExecuteStateLoadScreenDirFileBroken(LOAD_SCREEN* pLoad)
 {
-	// Line 1104, Address: 0x276460, Func Offset: 0
-	// Line 1105, Address: 0x276468, Func Offset: 0x8
-	// Line 1108, Address: 0x276488, Func Offset: 0x28
-	// Line 1110, Address: 0x276490, Func Offset: 0x30
-	// Line 1111, Address: 0x27649c, Func Offset: 0x3c
-	// Line 1115, Address: 0x2764a4, Func Offset: 0x44
-	// Line 1118, Address: 0x2764c0, Func Offset: 0x60
-	// Line 1121, Address: 0x2764c8, Func Offset: 0x68
-	// Func End, Address: 0x2764d4, Func Offset: 0x74
+    if ((sys->pad_ps & 0x1800)) 
+    {
+        SetStateLoadScreenAwarenessCard(pLoad);
+        
+        CallSystemSe(0, 3);
+    }
+    else if ((pLoad->lCardState > 100) && (pLoad->lCardState < 104)) 
+    {
+        SetStateLoadScreenAwarenessCard(pLoad);
+    }
 }
 
 // 
