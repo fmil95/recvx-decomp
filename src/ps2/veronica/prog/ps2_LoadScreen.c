@@ -969,15 +969,13 @@ void ExecuteStateLoadScreenFileBroken(LOAD_SCREEN* pLoad)
     }
 }
 
-// 
-// Start address: 0x276c90
+// 100% matching!
 void SetStateLoadScreenErrCardRead(LOAD_SCREEN* pLoad)
 {
-	// Line 1633, Address: 0x276c90, Func Offset: 0
-	// Line 1635, Address: 0x276c98, Func Offset: 0x8
-	// Line 1637, Address: 0x276ca0, Func Offset: 0x10
-	// Line 1638, Address: 0x276ca4, Func Offset: 0x14
-	// Func End, Address: 0x276cac, Func Offset: 0x1c
+    pLoad->ulState = 33;
+    
+    pLoad->cMesFlag = 10;
+    pLoad->cCgFlag = 100;
 }
 
 // 
