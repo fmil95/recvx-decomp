@@ -883,38 +883,66 @@ void SetStateLoadScreenLoad(LOAD_SCREEN* pLoad)
     SetCheckMcFlag(pLoad->pMcState, 1);
 }
 
-// 
-// Start address: 0x276ab0
+// 100% matching!
 void ExecuteStateLoadScreenLoad(LOAD_SCREEN* pLoad)
 {
-	int lFileNumber;
-	int lResult;
-	// Line 1499, Address: 0x276ab0, Func Offset: 0
-	// Line 1502, Address: 0x276abc, Func Offset: 0xc
-	// Line 1507, Address: 0x276af4, Func Offset: 0x44
-	// Line 1509, Address: 0x276afc, Func Offset: 0x4c
-	// Line 1514, Address: 0x276b20, Func Offset: 0x70
-	// Line 1517, Address: 0x276b28, Func Offset: 0x78
-	// Line 1519, Address: 0x276b34, Func Offset: 0x84
-	// Line 1522, Address: 0x276b40, Func Offset: 0x90
-	// Line 1523, Address: 0x276b48, Func Offset: 0x98
-	// Line 1525, Address: 0x276b50, Func Offset: 0xa0
-	// Line 1528, Address: 0x276b5c, Func Offset: 0xac
-	// Line 1530, Address: 0x276b68, Func Offset: 0xb8
-	// Line 1532, Address: 0x276b70, Func Offset: 0xc0
-	// Line 1533, Address: 0x276b74, Func Offset: 0xc4
-	// Line 1535, Address: 0x276b7c, Func Offset: 0xcc
-	// Line 1538, Address: 0x276b88, Func Offset: 0xd8
-	// Line 1540, Address: 0x276b94, Func Offset: 0xe4
-	// Line 1542, Address: 0x276b9c, Func Offset: 0xec
-	// Line 1544, Address: 0x276ba0, Func Offset: 0xf0
-	// Line 1547, Address: 0x276ba8, Func Offset: 0xf8
-	// Line 1550, Address: 0x276bb8, Func Offset: 0x108
-	// Line 1552, Address: 0x276bc0, Func Offset: 0x110
-	// Line 1555, Address: 0x276bc8, Func Offset: 0x118
-	// Line 1558, Address: 0x276bd8, Func Offset: 0x128
-	// Line 1562, Address: 0x276be0, Func Offset: 0x130
-	// Func End, Address: 0x276bf0, Func Offset: 0x140
+    int lResult;
+    int lFileNumber;
+
+    switch (pLoad->ulSubState) 
+    {
+    case 0:
+        lFileNumber = GetMemoryCardFileNumber(pLoad->pMcState);
+        
+        lResult = mcReadStartSaveFile(pLoad->pSaveFile, pLoad->pMcState, cpNameList, lFileNumber);
+        
+        if (lResult == 1) 
+        {
+            pLoad->ulSubState = 1;
+        }
+        
+        break;
+    case 1:
+        lResult = mcCheckReadStartSaveFile(pLoad->pSaveFile, pLoad->pMcState, 1);
+        
+        if (lResult == 1) 
+        {
+            SetStateLoadScreenLoadExit(pLoad);
+        } 
+        else if (lResult == -1)
+        {
+            SetCheckMcFlag(pLoad->pMcState, 0);
+            
+            RecoveryMemoryCardError(pLoad->pMcState);
+            
+            pLoad->ulSubState = 3;
+        }
+        else if (lResult == -2)
+        {
+            SetCheckMcFlag(pLoad->pMcState, 0);
+            
+            RecoveryMemoryCardError(pLoad->pMcState);
+            
+            pLoad->ulSubState = 2;
+        }
+        
+        break;
+    case 2:
+        if (pLoad->lCardState != 100)
+        {
+            break;
+        }
+        
+        SetStateLoadScreenFileBroken(pLoad);
+        break;
+    case 3:
+        if (pLoad->lCardState == 100) 
+        {
+            SetStateLoadScreenErrCardRead(pLoad);
+        }
+        
+        break;
+    }
 }
 
 // 
