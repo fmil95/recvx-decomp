@@ -1,6 +1,8 @@
 #ifndef _PS2_LOADSCREEN_H_
 #define _PS2_LOADSCREEN_H_
 
+#include "types.h"
+
 LOAD_SCREEN* CreateLoadScreen(LOAD_SCREEN* pLoad, void* vpWorkPtrSys);
 void DispLoadMessageSelect(char cSelectMes);
 void DispLoadTexture(LOAD_SCREEN* pLoad);

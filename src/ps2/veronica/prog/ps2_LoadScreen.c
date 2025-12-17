@@ -3,15 +3,7 @@
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard.h"
 #include "sdfunc.h"
-
-SELECTFILEWINDOW SelectFileWindow;
-SELECTFILEINFO SelectFileInfo[15];
-char* cpNameList[18];
-ICONINFORMATION IconInfo;
-MEMORYCARDSTATE McState;
-SAVEFILE SaveFile;
-CONFIGFILE ConfigFile;
-SYS_WORK* sys;
+#include "main.h"
 
 // 100% matching!
 LOAD_SCREEN* CreateLoadScreen(LOAD_SCREEN* pLoad, void* vpWorkPtrSys) // second parameter is not present on the debugging symbols

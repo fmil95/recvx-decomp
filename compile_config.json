@@ -134,6 +134,7 @@
       "src/ps2/veronica/prog/ranking.c",
       "src/ps2/veronica/prog/sp_evt.c",
       "src/ps2/veronica/prog/pwksub.c",
+      "src/ps2/veronica/prog/ps2_LoadScreen.c",
       "src/ps2/veronica/prog/bup_00.c",
       "src/ps2/veronica/prog/ps2_MemoryCard.c",
       "src/ps2/veronica/prog/ps2_McSaveFile.c",

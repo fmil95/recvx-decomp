@@ -100,7 +100,6 @@
 #include "effsub6.c"
 #include "ps2_NinjaPtcl.c"
 #include "ps2_cri_adxt.c"
-#include "ps2_LoadScreen.c"
 #include "Motion.c"
 #include "playpch.c"
 
