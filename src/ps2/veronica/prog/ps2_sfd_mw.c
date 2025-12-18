@@ -36,7 +36,7 @@ void ps2mwPlyStop(MWPLY mwply);
 MWE_PLY_STAT ps2mwPlyGetStat(MWPLY mwply);
 void ps2mwPlyGetTime(MWPLY mwply, int* ncount, int* tscale);
 void ps2mwPlyPause(MWPLY mwply, int sw);
-void ps2mwPlySetOutVol(MWPLY mwply, int vol);
+void ps2mwPlySetOutVol(MWPLY mwply, Sint32 vol);
 int ps2mwPlyGetOutVol();
 void ps2mwErrorStop();
 void Setps2FuncTbl(MWPLY mwply);
@@ -294,15 +294,10 @@ void ps2mwPlyPause(MWPLY mwply, Sint32 sw)
     }
 }
 
-// 
-// Start address: 0x2d8bd0
-void ps2mwPlySetOutVol(MWPLY ply, int vol)
+// 100% matching!
+void ps2mwPlySetOutVol(MWPLY mwply, Sint32 vol)
 {
-	// Line 990, Address: 0x2d8bd0, Func Offset: 0
-	// Line 994, Address: 0x2d8bd8, Func Offset: 0x8
-	// Line 995, Address: 0x2d8c10, Func Offset: 0x40
-	// Func End, Address: 0x2d8c1c, Func Offset: 0x4c
-	scePrintf("ps2mwSetOutVol - UNIMPLEMENTED!\n");
+    changeInputVolume(32.8 * (vol + 999));
 }
 
 // 100% matching!
@@ -318,6 +313,7 @@ void ps2mwErrorStop()
 }
 
 // 100% matching!
-void Setps2FuncTbl(MWPLY mwply) {
+void Setps2FuncTbl(MWPLY mwply) 
+{
     mwply->vtbl = &Ps2Func;
 }

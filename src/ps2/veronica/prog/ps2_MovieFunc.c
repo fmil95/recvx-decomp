@@ -42,14 +42,14 @@ int frd;
 /*_anon41 mdSize;*/
 unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
 /*<unknown fundamental type (0xa510)> test_tag[1400];
-_anon24 db;
+_anon24 db;*/
 
 // 
 // Start address: 0x2eb590
 void initAll()
 {
-	SemaParam param;
-	ThreadParam th_param;
+	//SemaParam param;
+	//ThreadParam th_param;
 	// Line 187, Address: 0x2eb590, Func Offset: 0
 	// Line 192, Address: 0x2eb598, Func Offset: 0x8
 	// Line 193, Address: 0x2eb5a0, Func Offset: 0x10
@@ -144,7 +144,8 @@ void initAll()
 	// Line 357, Address: 0x2eb8d8, Func Offset: 0x348
 	// Line 358, Address: 0x2eb8ec, Func Offset: 0x35c
 	// Func End, Address: 0x2eb8f8, Func Offset: 0x368
-}*/
+	scePrintf("initAll - UNIMPLEMENTED!\n");
+}
 
 #pragma divbyzerocheck on
 
