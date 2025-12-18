@@ -3437,6 +3437,15 @@ typedef struct SITEM
     unsigned char* keepbackup; // offset 0x50, size 0x4
 } SITEM;
 
+typedef struct MDSIZE_WORK
+{
+	// total size: 0x8
+    short sWidth;  // offset 0x0, size 0x2
+    short sHeight; // offset 0x2, size 0x2
+    short sDispX;  // offset 0x4, size 0x2
+    short sDispY;  // offset 0x6, size 0x2
+} MDSIZE_WORK;
+
 typedef struct {
     int isOnCD;		
     int size;

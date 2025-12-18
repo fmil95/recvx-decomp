@@ -11,9 +11,9 @@ MWPLY MwHandle = &MwObj;
 /*_anon8 voBuf;
 <unknown fundamental type (0xa510)> test_tag[1400];
 _anon2 rmi;
-int movie_draw;
-_anon5 mdSize;
-unsigned int Ps2_vcount;
+int movie_draw;*/
+MDSIZE_WORK mdSize;
+/*unsigned int Ps2_vcount;
 _anon10 __sfd_mw_conf__;
 
 int mwPlyCalcWorkSofdec();
@@ -26,8 +26,8 @@ void mwPlyPreInitSofdec();
 void mwPlySetDispMode();
 void mwPlySetDispPos(float lx, float ly);
 void mwPlySetFastHalfpel();
-void mwPlyStartFrame();
-void mwPlySetDispSize(float sx, float sy);*/
+void mwPlyStartFrame();*/
+void mwPlySetDispSize(MWPLY mwply, float sx, float sy);
 void ps2mwPlyVsyncHndl(MWPLY ply);
 void ps2mwPlyExecSvrHndl(MWPLY ply);
 void ps2mwPlyDestroy(MWPLY ply);
@@ -202,16 +202,11 @@ void mwPlyStartFrame(void)
 	scePrintf("mwPlyStartFrame - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d8a40
+// 100% matching!
 void mwPlySetDispSize(MWPLY mwply, float sx, float sy)
 {
-	// Line 715, Address: 0x2d8a40, Func Offset: 0
-	// Line 716, Address: 0x2d8a4c, Func Offset: 0xc
-	// Line 717, Address: 0x2d8a5c, Func Offset: 0x1c
-	// Line 718, Address: 0x2d8a6c, Func Offset: 0x2c
-	// Func End, Address: 0x2d8a7c, Func Offset: 0x3c
-	scePrintf("mwPlySetDispSize - UNIMPLEMENTED!\n");
+    mdSize.sWidth = sx;
+    mdSize.sHeight = sy;
 }
 
 // 100% matching!
