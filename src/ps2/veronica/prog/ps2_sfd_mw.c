@@ -14,32 +14,7 @@ _anon2 rmi;
 int movie_draw;*/
 MDSIZE_WORK mdSize;
 /*unsigned int Ps2_vcount;
-_anon10 __sfd_mw_conf__;
-
-int mwPlyCalcWorkSofdec();
-MWPLY ps2mwPlyCreateSofdec(char* fname);
-void mwPlyExecServer();
-void mwPlyFinishSofdec();
-int mwPlyGetBright();
-void mwPlyInitSofdec();
-void mwPlyPreInitSofdec();
-void mwPlySetDispMode();*/
-void mwPlySetDispPos(MWPLY mwply, float lx, float ly);
-void mwPlySetFastHalfpel(MWPLY mwply, Sint32 sw);
-void mwPlyStartFrame(void);
-void mwPlySetDispSize(MWPLY mwply, float sx, float sy);
-void ps2mwPlyVsyncHndl(MWPLY ply);
-void ps2mwPlyExecSvrHndl(MWPLY ply);
-void ps2mwPlyDestroy(MWPLY ply);
-void ps2mwPlyStartFname(MWPLY ply, Sint8 *fname);
-void ps2mwPlyStop(MWPLY ply);
-MWE_PLY_STAT ps2mwPlyGetStat(MWPLY ply);
-void ps2mwPlyGetTime(MWPLY ply, Sint32 *ncount, Sint32 *tscale);
-void ps2mwPlyPause(MWPLY ply, Sint32 sw);
-void ps2mwPlySetOutVol(MWPLY ply, Sint32 vol);
-Sint32 ps2mwPlyGetOutVol(MWPLY ply);
-void ps2mwErrorStop();
-void Setps2FuncTbl(MWPLY mwply);
+_anon10 __sfd_mw_conf__;*/
 
 extern MWD_IF Ps2Func = { 
     ps2mwErrorStop, 
@@ -59,7 +34,8 @@ extern MWD_IF Ps2Func = {
 };
 
 // 100% matching!
-Sint32 mwPlyCalcWorkSofdec(Sint32 ftype, Sint32 max_bps, Sint32 max_sx, Sint32 max_sy, Sint32 nfb){
+Sint32 mwPlyCalcWorkSofdec(Sint32 ftype, Sint32 max_bps, Sint32 max_sx, Sint32 max_sy, Sint32 nfb)
+{
 
 }
 
@@ -162,18 +138,15 @@ void mwPlyInitSofdec(MWS_PLY_INIT_SFD *iprm)
 }
 
 // 100% matching!
-void mwPlyPreInitSofdec() 
+void mwPlyPreInitSofdec(void) 
 {
 
 }
 
-// 
-// Start address: 0x2d89d0
-void mwPlySetDispMode()
+// 100% matching!
+void mwPlySetDispMode(Sint32 mode, Sint32 frame, Sint32 count, Sint32 latency)
 {
-	// Line 602, Address: 0x2d89d0, Func Offset: 0
-	// Func End, Address: 0x2d89d8, Func Offset: 0x8
-	scePrintf("mwPlySetDispMode - UNIMPLEMENTED!\n");
+
 }
 
 // 100% matching!
