@@ -37,7 +37,7 @@ void ps2mwPlyExecSvrHndl();
 void ps2mwPlyDestroy();
 void ps2mwPlyStartFname(MWPLY mwply, signed char* fname);
 void ps2mwPlyStop();
-MWE_PLY_STAT ps2mwPlyGetStat();
+MWE_PLY_STAT ps2mwPlyGetStat(MWPLY mwply);
 void ps2mwPlyGetTime(MWPLY mwply, int* ncount, int* tscale);
 void ps2mwPlyPause(MWPLY mwply, int sw);
 void ps2mwPlySetOutVol(MWPLY mwply, int vol);
@@ -274,14 +274,10 @@ void ps2mwPlyStop()
 	scePrintf("ps2mwPlyStop - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d8b50
-MWE_PLY_STAT ps2mwPlyGetStat()
+// 100% matching!
+MWE_PLY_STAT ps2mwPlyGetStat(MWPLY mwply)
 {
-	// Line 895, Address: 0x2d8b50, Func Offset: 0
-	// Line 896, Address: 0x2d8b54, Func Offset: 0x4
-	// Func End, Address: 0x2d8b5c, Func Offset: 0xc
-	scePrintf("ps2mwPlyGetStat - UNIMPLEMENTED!\n");
+    return rmi.iMovieState;
 }
 
 // 100% matching!
