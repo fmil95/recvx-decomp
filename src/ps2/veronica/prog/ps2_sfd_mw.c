@@ -23,8 +23,8 @@ void mwPlyFinishSofdec();
 int mwPlyGetBright();
 void mwPlyInitSofdec();
 void mwPlyPreInitSofdec();
-void mwPlySetDispMode();
-void mwPlySetDispPos(float lx, float ly);*/
+void mwPlySetDispMode();*/
+void mwPlySetDispPos(MWPLY mwply, float lx, float ly);
 void mwPlySetFastHalfpel(MWPLY mwply, Sint32 sw);
 void mwPlyStartFrame(void);
 void mwPlySetDispSize(MWPLY mwply, float sx, float sy);
@@ -176,16 +176,11 @@ void mwPlySetDispMode()
 	scePrintf("mwPlySetDispMode - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d89e0
-void mwPlySetDispPos(MWPLY mwply, float lx, float ly)
+// 100% matching!
+void mwPlySetDispPos(MWPLY mwply, float lx, float ly) 
 {
-	// Line 629, Address: 0x2d89e0, Func Offset: 0
-	// Line 630, Address: 0x2d89ec, Func Offset: 0xc
-	// Line 631, Address: 0x2d89fc, Func Offset: 0x1c
-	// Line 632, Address: 0x2d8a0c, Func Offset: 0x2c
-	// Func End, Address: 0x2d8a1c, Func Offset: 0x3c
-	scePrintf("mwPlySetDispPos - UNIMPLEMENTED!\n");
+    mdSize.sDispX = lx;
+    mdSize.sDispY = ly;
 }
 
 // 100% matching!
