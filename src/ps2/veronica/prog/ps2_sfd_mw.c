@@ -8,17 +8,14 @@
 MW_PLY_OBJ MwObj;
 StrFile infile;
 MWPLY MwHandle = &MwObj;
-/*
-_anon8 voBuf;
+/*_anon8 voBuf;
 <unknown fundamental type (0xa510)> test_tag[1400];
 _anon2 rmi;
 int movie_draw;
 _anon5 mdSize;
 unsigned int Ps2_vcount;
 _anon10 __sfd_mw_conf__;
-*/
 
-/*
 int mwPlyCalcWorkSofdec();
 MWPLY ps2mwPlyCreateSofdec(char* fname);
 void mwPlyExecServer();
@@ -30,13 +27,12 @@ void mwPlySetDispMode();
 void mwPlySetDispPos(float lx, float ly);
 void mwPlySetFastHalfpel();
 void mwPlyStartFrame();
-void mwPlySetDispSize(float sx, float sy);
-*/
+void mwPlySetDispSize(float sx, float sy);*/
 void ps2mwPlyVsyncHndl();
 void ps2mwPlyExecSvrHndl();
 void ps2mwPlyDestroy();
 void ps2mwPlyStartFname(MWPLY mwply, signed char* fname);
-void ps2mwPlyStop();
+void ps2mwPlyStop(MWPLY mwply);
 MWE_PLY_STAT ps2mwPlyGetStat(MWPLY mwply);
 void ps2mwPlyGetTime(MWPLY mwply, int* ncount, int* tscale);
 void ps2mwPlyPause(MWPLY mwply, int sw);
@@ -265,13 +261,10 @@ void ps2mwPlyStartFname(MWPLY mwply, signed char* fname)
 	scePrintf("ps2mwPlyStartFname - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d8b40
-void ps2mwPlyStop()
+// 100% matching!
+void ps2mwPlyStop(MWPLY mwply)
 {
-	// Line 868, Address: 0x2d8b40, Func Offset: 0
-	// Func End, Address: 0x2d8b48, Func Offset: 0x8
-	scePrintf("ps2mwPlyStop - UNIMPLEMENTED!\n");
+    termAll();
 }
 
 // 100% matching!

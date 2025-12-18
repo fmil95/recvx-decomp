@@ -851,7 +851,7 @@ void audioDecBeginPut(_anon12* ad, unsigned char** ptr0, int* len0, unsigned cha
 	// Line 1347, Address: 0x2ecfa0, Func Offset: 0xa0
 	// Line 1349, Address: 0x2ecfb4, Func Offset: 0xb4
 	// Func End, Address: 0x2ecfbc, Func Offset: 0xbc
-}
+}*/
 
 // 
 // Start address: 0x2ecfc0
@@ -870,7 +870,8 @@ void termAll()
 	// Line 1404, Address: 0x2ed034, Func Offset: 0x74
 	// Line 1405, Address: 0x2ed04c, Func Offset: 0x8c
 	// Func End, Address: 0x2ed058, Func Offset: 0x98
-}*/
+	scePrintf("termAll - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int viBufDelete(ViBuf *f)
