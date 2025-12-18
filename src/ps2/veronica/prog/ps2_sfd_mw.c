@@ -318,13 +318,10 @@ void ps2mwPlySetOutVol(MWPLY ply, int vol)
 	scePrintf("ps2mwSetOutVol - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d8c20
-int ps2mwPlyGetOutVol()
+// 100% matching!
+Sint32 ps2mwPlyGetOutVol(MWPLY mwply)
 {
-	// Line 1021, Address: 0x2d8c20, Func Offset: 0
-	// Func End, Address: 0x2d8c28, Func Offset: 0x8
-	scePrintf("ps2mwGetOutVol - UNIMPLEMENTED!\n");
+
 }
 
 // 100% matching!
