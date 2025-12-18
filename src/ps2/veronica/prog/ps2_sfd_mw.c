@@ -30,14 +30,14 @@ void mwPlyStartFrame();
 void mwPlySetDispSize(float sx, float sy);*/
 void ps2mwPlyVsyncHndl();
 void ps2mwPlyExecSvrHndl();
-void ps2mwPlyDestroy();
+void ps2mwPlyDestroy(MWPLY ply);
 void ps2mwPlyStartFname(MWPLY ply, Sint8 *fname);
-void ps2mwPlyStop(MWPLY mwply);
-MWE_PLY_STAT ps2mwPlyGetStat(MWPLY mwply);
-void ps2mwPlyGetTime(MWPLY mwply, int* ncount, int* tscale);
-void ps2mwPlyPause(MWPLY mwply, int sw);
-void ps2mwPlySetOutVol(MWPLY mwply, Sint32 vol);
-int ps2mwPlyGetOutVol();
+void ps2mwPlyStop(MWPLY ply);
+MWE_PLY_STAT ps2mwPlyGetStat(MWPLY ply);
+void ps2mwPlyGetTime(MWPLY ply, Sint32 *ncount, Sint32 *tscale);
+void ps2mwPlyPause(MWPLY ply, Sint32 sw);
+void ps2mwPlySetOutVol(MWPLY ply, Sint32 vol);
+Sint32 ps2mwPlyGetOutVol(MWPLY ply);
 void ps2mwErrorStop();
 void Setps2FuncTbl(MWPLY mwply);
 
@@ -232,13 +232,10 @@ void ps2mwPlyExecSvrHndl()
 	scePrintf("ps2mwPlyExecSvrHndl - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d8aa0
-void ps2mwPlyDestroy()
+// 100% matching!
+void ps2mwPlyDestroy(MWPLY ply)
 {
-	// Line 796, Address: 0x2d8aa0, Func Offset: 0
-	// Func End, Address: 0x2d8aa8, Func Offset: 0x8
-	scePrintf("ps2mwPlyDestroy - UNIMPLEMENTED!\n");
+
 }
 
 // 100% matching!
@@ -272,19 +269,19 @@ void ps2mwPlyStartFname(MWPLY ply, Sint8 *fname)
 }
 
 // 100% matching!
-void ps2mwPlyStop(MWPLY mwply)
+void ps2mwPlyStop(MWPLY ply)
 {
     termAll();
 }
 
 // 100% matching!
-MWE_PLY_STAT ps2mwPlyGetStat(MWPLY mwply)
+MWE_PLY_STAT ps2mwPlyGetStat(MWPLY ply)
 {
     return rmi.iMovieState;
 }
 
 // 100% matching!
-void ps2mwPlyGetTime(MWPLY mwply, Sint32 *ncount, Sint32 *tscale)
+void ps2mwPlyGetTime(MWPLY ply, Sint32 *ncount, Sint32 *tscale)
 {
     *ncount = Ps2_vcount - rmi.iMovieFrame;
     
@@ -292,7 +289,7 @@ void ps2mwPlyGetTime(MWPLY mwply, Sint32 *ncount, Sint32 *tscale)
 }
 
 // 100% matching!
-void ps2mwPlyPause(MWPLY mwply, Sint32 sw)
+void ps2mwPlyPause(MWPLY ply, Sint32 sw)
 {
     if (sw != 0) 
     {
@@ -305,13 +302,13 @@ void ps2mwPlyPause(MWPLY mwply, Sint32 sw)
 }
 
 // 100% matching!
-void ps2mwPlySetOutVol(MWPLY mwply, Sint32 vol)
+void ps2mwPlySetOutVol(MWPLY ply, Sint32 vol)
 {
     changeInputVolume(32.8 * (vol + 999));
 }
 
 // 100% matching!
-Sint32 ps2mwPlyGetOutVol(MWPLY mwply)
+Sint32 ps2mwPlyGetOutVol(MWPLY ply)
 {
 
 }
