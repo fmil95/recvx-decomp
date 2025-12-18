@@ -327,16 +327,13 @@ int ps2mwPlyGetOutVol()
 	scePrintf("ps2mwGetOutVol - UNIMPLEMENTED!\n");
 }
 
-// Start address: 0x2d8c30
+// 100% matching!
 void ps2mwErrorStop()
 {
-	// Line 1028, Address: 0x2d8c30, Func Offset: 0
-	// Func End, Address: 0x2d8c3c, Func Offset: 0xc
-	scePrintf("ps2mwErrorStop - UNIMPLEMENTED!\n");
+    printf("-\nMW Error Stop...\nThis function is no supported...\n");
 }
 
 // 100% matching!
 void Setps2FuncTbl(MWPLY mwply) {
     mwply->vtbl = &Ps2Func;
 }
-
