@@ -295,16 +295,17 @@ void ps2mwPlyGetTime(MWPLY ply, int* ncount, int* tscale)
 	scePrintf("ps2mwPlyGetTime - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d8b90
-void ps2mwPlyPause(MWPLY ply, int sw)
+// 100% matching!
+void ps2mwPlyPause(MWPLY mwply, Sint32 sw)
 {
-	// Line 959, Address: 0x2d8b90, Func Offset: 0
-	// Line 960, Address: 0x2d8b98, Func Offset: 0x8
-	// Line 962, Address: 0x2d8bb0, Func Offset: 0x20
-	// Line 963, Address: 0x2d8bc8, Func Offset: 0x38
-	// Func End, Address: 0x2d8bd0, Func Offset: 0x40
-	scePrintf("ps2mwPlyPause - UNIMPLEMENTED!\n");
+    if (sw != 0) 
+    {
+        rmi.uiContFlag |= 0x2;
+    }
+    else 
+    {
+        rmi.uiContFlag &= ~0x2;
+    }
 }
 
 // 
