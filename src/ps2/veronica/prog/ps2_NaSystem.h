@@ -30,4 +30,6 @@ void    njChangeSystem( Int mode, Int frame, Int count );
 void	njAdjustDisplay(Sint32 xadjust,Sint32 yadjust );
 void	njSetBorderColor(Uint32 color );
 
+extern unsigned int Ps2_vcount;
+
 #endif

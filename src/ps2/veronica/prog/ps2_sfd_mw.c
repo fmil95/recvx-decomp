@@ -1,5 +1,6 @@
 #include "ps2_sfd_mw.h"
 #include "ps2_MovieFunc.h"
+#include "ps2_NaSystem.h"
 #include "main.h"
 
 #include <string.h>
@@ -283,16 +284,12 @@ MWE_PLY_STAT ps2mwPlyGetStat()
 	scePrintf("ps2mwPlyGetStat - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d8b60
-void ps2mwPlyGetTime(MWPLY ply, int* ncount, int* tscale)
+// 100% matching!
+void ps2mwPlyGetTime(MWPLY mwply, Sint32 *ncount, Sint32 *tscale)
 {
-	// Line 928, Address: 0x2d8b60, Func Offset: 0
-	// Line 931, Address: 0x2d8b68, Func Offset: 0x8
-	// Line 928, Address: 0x2d8b6c, Func Offset: 0xc
-	// Line 932, Address: 0x2d8b7c, Func Offset: 0x1c
-	// Func End, Address: 0x2d8b84, Func Offset: 0x24
-	scePrintf("ps2mwPlyGetTime - UNIMPLEMENTED!\n");
+    *ncount = Ps2_vcount - rmi.iMovieFrame;
+    
+    *tscale = 29;
 }
 
 // 100% matching!
