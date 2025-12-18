@@ -29,7 +29,7 @@ void mwPlySetFastHalfpel();
 void mwPlyStartFrame();
 void mwPlySetDispSize(float sx, float sy);*/
 void ps2mwPlyVsyncHndl();
-void ps2mwPlyExecSvrHndl();
+void ps2mwPlyExecSvrHndl(MWPLY ply);
 void ps2mwPlyDestroy(MWPLY ply);
 void ps2mwPlyStartFname(MWPLY ply, Sint8 *fname);
 void ps2mwPlyStop(MWPLY ply);
@@ -223,13 +223,10 @@ void ps2mwPlyVsyncHndl()
 	scePrintf("ps2mwPlyVsyncHndl - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d8a90
-void ps2mwPlyExecSvrHndl()
+// 100% matching!
+void ps2mwPlyExecSvrHndl(MWPLY ply)
 {
-	// Line 770, Address: 0x2d8a90, Func Offset: 0
-	// Func End, Address: 0x2d8a98, Func Offset: 0x8
-	scePrintf("ps2mwPlyExecSvrHndl - UNIMPLEMENTED!\n");
+
 }
 
 // 100% matching!
