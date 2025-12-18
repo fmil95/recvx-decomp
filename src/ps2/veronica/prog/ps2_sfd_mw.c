@@ -3,7 +3,7 @@
 #include "ps2_NaSystem.h"
 #include "main.h"
 
-#include <string.h>
+//#include <string.h>
 
 MW_PLY_OBJ MwObj;
 StrFile infile;
@@ -31,7 +31,7 @@ void mwPlySetDispSize(float sx, float sy);*/
 void ps2mwPlyVsyncHndl();
 void ps2mwPlyExecSvrHndl();
 void ps2mwPlyDestroy();
-void ps2mwPlyStartFname(MWPLY mwply, signed char* fname);
+void ps2mwPlyStartFname(MWPLY ply, Sint8 *fname);
 void ps2mwPlyStop(MWPLY mwply);
 MWE_PLY_STAT ps2mwPlyGetStat(MWPLY mwply);
 void ps2mwPlyGetTime(MWPLY mwply, int* ncount, int* tscale);
@@ -241,24 +241,34 @@ void ps2mwPlyDestroy()
 	scePrintf("ps2mwPlyDestroy - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d8ab0
-void ps2mwPlyStartFname(MWPLY mwply, signed char* fname)
+// 100% matching!
+void ps2mwPlyStartFname(MWPLY ply, Sint8 *fname)
 {
-	char* src;
-	char* dest;
-	char nameBuf[256];
-	// Line 822, Address: 0x2d8ab0, Func Offset: 0
-	// Line 827, Address: 0x2d8abc, Func Offset: 0xc
-	// Line 829, Address: 0x2d8ac4, Func Offset: 0x14
-	// Line 833, Address: 0x2d8ad4, Func Offset: 0x24
-	// Line 834, Address: 0x2d8adc, Func Offset: 0x2c
-	// Line 837, Address: 0x2d8af8, Func Offset: 0x48
-	// Line 838, Address: 0x2d8b10, Func Offset: 0x60
-	// Line 840, Address: 0x2d8b20, Func Offset: 0x70
-	// Line 842, Address: 0x2d8b2c, Func Offset: 0x7c
-	// Func End, Address: 0x2d8b3c, Func Offset: 0x8c
-	scePrintf("ps2mwPlyStartFname - UNIMPLEMENTED!\n");
+    char nameBuf[256];
+    char* dest;
+    char* src;
+    
+    src = (char*)fname;
+    
+    initAll();
+    
+    memset(nameBuf, 0, sizeof(nameBuf));
+    
+    dest = nameBuf;
+    
+    while (*src != 0) 
+    {
+        *dest++ = *src++;
+    }
+
+    if (strcmp(nameBuf, "MV_016.PSS") == 0) 
+    {
+        rmi.MVCancelButton = 0x800;
+    } 
+    else 
+    {
+        rmi.MVCancelButton = 0x100;
+    }
 }
 
 // 100% matching!
