@@ -45,7 +45,7 @@ extern SND_STATUS get_iop_snddata;
 extern char sound_flag;
 extern unsigned int SddFirstFlag;
 extern char SdcGdDaVolume;
-extern NO_NAME_4 eff[512];
+extern O_WRK eff[512];
 
 // TODO: include sg_sybt.h and remove the below struct
 struct tag_SYS_BT_SYSTEMID{                   /*                    */

@@ -154,7 +154,7 @@ unsigned char* njpmemp;
 unsigned char* vebmemp;
 unsigned char* vwbmemp;
 unsigned int Ps2_sys_cnt;
-NO_NAME_4 eff[512];
+O_WRK eff[512];
 ROM_WORK romp;
 ROM_WORK* rom = &romp;
 unsigned int palbuf[4096];

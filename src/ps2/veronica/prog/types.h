@@ -62,155 +62,158 @@ typedef struct MN_WORK
 	unsigned short* atrP; // offset 0x14, size 0x4
 } MN_WORK;
 
-typedef struct NO_NAME_4
+typedef struct O_WRK
 {
-	unsigned int flg;
-	unsigned short id;
-	unsigned short type;
-	char flr_no;
-	char flr_nob;
-	unsigned char mdlver;
-	unsigned char param;
-	unsigned char mode0;
-	unsigned char mode1;
-	unsigned char mode2;
-	unsigned char mode3;
-	float px;
-	float py;
-	float pz;
-	int ax;
-	int ay;
-	int az;
-	float ar;
-	float aw;
-	float ah;
-	float ad;
-	float car;
-	float cah;
-	float pxb;
-	float pyb;
-	float pzb;
-	int axb;
-	int ayb;
-	int azb;
-	float gpx;
-	float gpy;
-	float gpz;
-	float lox;
-	float loy;
-	float loz;
-	float aox;
-	float aoy;
-	float aoz;
-	float spd;
-	unsigned int flg2;
-	unsigned int mdflg;
-	unsigned int stflg;
-	unsigned int Dummy3;
-	int draw_tp;
-	int mdl_n;
-	void* mskp;
-	unsigned int Dummy[1];
-	int* skp[16];
-	NJS_CNK_OBJECT* mbp[16];
-	NJS_TEXLIST* txp[16];
-	ML_WORK mdl[16];
-	ML_WORK* mlwP;
-	unsigned int mdl_no;
-	int lkono;
-	unsigned char* lkwkp;
-	unsigned char* exp0;
-	unsigned char* exp1;
-	unsigned char* exp2;
-	unsigned char* exp3;
-	unsigned char mtxbuf[64];
-	float mtx[16];
-	NJS_CNK_OBJECT* obj_a;
-	NJS_CNK_OBJECT* obj_b;
-	float shp_ct;
-	char clp_jno[8];
-	int lok_jno;
-	MN_WORK* mnwP;
-	MN_WORK* mnwPb;
-	unsigned int mtn_attr;
-	unsigned int mtn_no;
-	int frm_no;
-	unsigned int frm_mode;
-	int hokan_rate;
-	unsigned int hokan_count;
-	unsigned int hokan_ctbak;
-	int mtn_add;
-	unsigned int mtn_md;
-	unsigned char* mtn_tp;
-	int axp;
-	int ayp;
-	int azp;
-	short psh_ct;
-	short psh_idx;
-	int idx_ct;
-	int mtn_chk;
-	float ofx;
-	float ofy;
-	float ofz;
-	float sx;
-	float sy;
-	float sz;
-	float sxb;
-	float syb;
-	float szb;
-	float xn;
-	float yn;
-	float zn;
-	int ct0;
-	int ct1;
-	int ct2;
-	int ct3;
-	unsigned char* objbak;
-	NJS_SPHERE cspr;
-	int pn;
-	NJS_POLYGON_VTX* pvp;
-	NJS_TEXTURE_VTX* tvp;
-	NJS_POLYGON_VTX pv[4];
-	NJS_TEXTURE_VTX tv[4];
-	int bl_src;
-	int bl_dst;
-	int ani_ct;
-	int tex_id;
-	int aspd;
-	unsigned int gidx;
-	int bank;
-	char jno[16];
-	char hide[4];
-	void(*func)(void*);
-	int idx;
-	int Dummy2;
-} NO_NAME_4;
+	// total size: 0x4E0
+    unsigned int flg;         // offset 0x0, size 0x4
+    unsigned short id;        // offset 0x4, size 0x2
+    unsigned short type;      // offset 0x6, size 0x2
+    char flr_no;              // offset 0x8, size 0x1
+    char flr_nob;             // offset 0x9, size 0x1
+    unsigned char mdlver;     // offset 0xA, size 0x1
+    unsigned char param;      // offset 0xB, size 0x1
+    unsigned char mode0;      // offset 0xC, size 0x1
+    unsigned char mode1;      // offset 0xD, size 0x1
+    unsigned char mode2;      // offset 0xE, size 0x1
+    unsigned char mode3;      // offset 0xF, size 0x1
+    float px;                 // offset 0x10, size 0x4
+    float py;                 // offset 0x14, size 0x4
+    float pz;                 // offset 0x18, size 0x4
+    int ax;                   // offset 0x1C, size 0x4
+    int ay;                   // offset 0x20, size 0x4
+    int az;                   // offset 0x24, size 0x4
+    float ar;                 // offset 0x28, size 0x4
+    float aw;                 // offset 0x2C, size 0x4
+    float ah;                 // offset 0x30, size 0x4
+    float ad;                 // offset 0x34, size 0x4
+    float car;                // offset 0x38, size 0x4
+    float cah;                // offset 0x3C, size 0x4
+    float pxb;                // offset 0x40, size 0x4
+    float pyb;                // offset 0x44, size 0x4
+    float pzb;                // offset 0x48, size 0x4
+    int axb;                  // offset 0x4C, size 0x4
+    int ayb;                  // offset 0x50, size 0x4
+    int azb;                  // offset 0x54, size 0x4
+    float gpx;                // offset 0x58, size 0x4
+    float gpy;                // offset 0x5C, size 0x4
+    float gpz;                // offset 0x60, size 0x4
+    float lox;                // offset 0x64, size 0x4
+    float loy;                // offset 0x68, size 0x4
+    float loz;                // offset 0x6C, size 0x4
+    float aox;                // offset 0x70, size 0x4
+    float aoy;                // offset 0x74, size 0x4
+    float aoz;                // offset 0x78, size 0x4
+    float spd;                // offset 0x7C, size 0x4
+    unsigned int flg2;        // offset 0x80, size 0x4
+    unsigned int mdflg;       // offset 0x84, size 0x4
+    unsigned int stflg;       // offset 0x88, size 0x4
+    unsigned int Dummy3;      // offset 0x8C, size 0x4
+    int draw_tp;              // offset 0x90, size 0x4
+    int mdl_n;                // offset 0x94, size 0x4
+    void* mskp;               // offset 0x98, size 0x4
+    unsigned int Dummy[1];    // offset 0x9C, size 0x4
+    int* skp[16];             // offset 0xA0, size 0x40
+    NJS_CNK_OBJECT* mbp[16];  // offset 0xE0, size 0x40
+    NJS_TEXLIST* txp[16];     // offset 0x120, size 0x40
+    ML_WORK mdl[16];          // offset 0x160, size 0x180
+    ML_WORK* mlwP;            // offset 0x2E0, size 0x4
+    unsigned int mdl_no;      // offset 0x2E4, size 0x4
+    int lkono;                // offset 0x2E8, size 0x4
+    unsigned char* lkwkp;     // offset 0x2EC, size 0x4
+    unsigned char* exp0;      // offset 0x2F0, size 0x4
+    unsigned char* exp1;      // offset 0x2F4, size 0x4
+    unsigned char* exp2;      // offset 0x2F8, size 0x4
+    unsigned char* exp3;      // offset 0x2FC, size 0x4
+    unsigned char mtxbuf[64]; // offset 0x300, size 0x40
+    float (*mtx)[16];         // offset 0x340, size 0x4
+    NJS_CNK_OBJECT* obj_a;    // offset 0x344, size 0x4
+    NJS_CNK_OBJECT* obj_b;    // offset 0x348, size 0x4
+    float shp_ct;             // offset 0x34C, size 0x4
+    char clp_jno[8];          // offset 0x350, size 0x8
+    int lok_jno;              // offset 0x358, size 0x4
+    MN_WORK* mnwP;            // offset 0x35C, size 0x4
+    MN_WORK* mnwPb;           // offset 0x360, size 0x4
+    unsigned int mtn_attr;    // offset 0x364, size 0x4
+    unsigned int mtn_no;      // offset 0x368, size 0x4
+    int frm_no;               // offset 0x36C, size 0x4
+    unsigned int frm_mode;    // offset 0x370, size 0x4
+    int hokan_rate;           // offset 0x374, size 0x4
+    unsigned int hokan_count; // offset 0x378, size 0x4
+    unsigned int hokan_ctbak; // offset 0x37C, size 0x4
+    int mtn_add;              // offset 0x380, size 0x4
+    unsigned int mtn_md;      // offset 0x384, size 0x4
+    unsigned char* mtn_tp;    // offset 0x388, size 0x4
+    int axp;                  // offset 0x38C, size 0x4
+    int ayp;                  // offset 0x390, size 0x4
+    int azp;                  // offset 0x394, size 0x4
+    short psh_ct;             // offset 0x398, size 0x2
+    short psh_idx;            // offset 0x39A, size 0x2
+    int idx_ct;               // offset 0x39C, size 0x4
+    int mtn_chk;              // offset 0x3A0, size 0x4
+    float ofx;                // offset 0x3A4, size 0x4
+    float ofy;                // offset 0x3A8, size 0x4
+    float ofz;                // offset 0x3AC, size 0x4
+    float sx;                 // offset 0x3B0, size 0x4
+    float sy;                 // offset 0x3B4, size 0x4
+    float sz;                 // offset 0x3B8, size 0x4
+    float sxb;                // offset 0x3BC, size 0x4
+    float syb;                // offset 0x3C0, size 0x4
+    float szb;                // offset 0x3C4, size 0x4
+    float xn;                 // offset 0x3C8, size 0x4
+    float yn;                 // offset 0x3CC, size 0x4
+    float zn;                 // offset 0x3D0, size 0x4
+    int ct0;                  // offset 0x3D4, size 0x4
+    int ct1;                  // offset 0x3D8, size 0x4
+    int ct2;                  // offset 0x3DC, size 0x4
+    int ct3;                  // offset 0x3E0, size 0x4
+    unsigned char* objbak;    // offset 0x3E4, size 0x4
+    NJS_SPHERE cspr;          // offset 0x3E8, size 0x10
+    int pn;                   // offset 0x3F8, size 0x4
+    NJS_POLYGON_VTX* pvp;     // offset 0x3FC, size 0x4
+    NJS_TEXTURE_VTX* tvp;     // offset 0x400, size 0x4
+    NJS_POLYGON_VTX pv[4];    // offset 0x404, size 0x40
+    NJS_TEXTURE_VTX tv[4];    // offset 0x444, size 0x60
+    int bl_src;               // offset 0x4A4, size 0x4
+    int bl_dst;               // offset 0x4A8, size 0x4
+    int ani_ct;               // offset 0x4AC, size 0x4
+    int tex_id;               // offset 0x4B0, size 0x4
+    int aspd;                 // offset 0x4B4, size 0x4
+    unsigned int gidx;        // offset 0x4B8, size 0x4
+    int bank;                 // offset 0x4BC, size 0x4
+    char jno[16];             // offset 0x4C0, size 0x10
+    char hide[4];             // offset 0x4D0, size 0x4
+    void (*func)(void*);      // offset 0x4D4, size 0x4
+    int idx;                  // offset 0x4D8, size 0x4
+    int Dummy2;               // offset 0x4DC, size 0x4 
+} O_WRK;
 
-typedef struct NO_NAME_5
+typedef struct TXB_WORK
 {
-	unsigned char* adr;
-	unsigned int gidx;
-	unsigned int attr;
-	unsigned int w;
-	unsigned int h;
-} NO_NAME_5;
+	// total size: 0x14
+    unsigned char* adr; // offset 0x0, size 0x4
+    unsigned int gidx;  // offset 0x4, size 0x4
+    unsigned int attr;  // offset 0x8, size 0x4
+    unsigned int w;     // offset 0xC, size 0x4
+    unsigned int h;     // offset 0x10, size 0x4
+} TXB_WORK;
 
-typedef struct NO_NAME_6
+typedef struct EF_WORK
 {
-	unsigned int flg;
-	unsigned short id;
-	unsigned short type;
-	short flr_no;
-	unsigned short mdlver;
-	float px;
-	float py;
-	float pz;
-	float sx;
-	float sy;
-	float sz;
-	short ay;
-	short ax;
-} NO_NAME_6;
+	// total size: 0x28
+    unsigned int flg;      // offset 0x0, size 0x4
+    unsigned short id;     // offset 0x4, size 0x2
+    unsigned short type;   // offset 0x6, size 0x2
+    short flr_no;          // offset 0x8, size 0x2
+    unsigned short mdlver; // offset 0xA, size 0x2
+    float px;              // offset 0xC, size 0x4
+    float py;              // offset 0x10, size 0x4
+    float pz;              // offset 0x14, size 0x4
+    float sx;              // offset 0x18, size 0x4
+    float sy;              // offset 0x1C, size 0x4
+    float sz;              // offset 0x20, size 0x4
+    short ay;              // offset 0x24, size 0x2
+    short ax;              // offset 0x26, size 0x2
+} EF_WORK;
 
 typedef struct NO_NAME_7
 {
@@ -631,8 +634,8 @@ typedef struct SYS_WORK
     unsigned char * subtxp; // offset 0x1B1BC, size 0x4
     unsigned char * doordp; // offset 0x1B1C0, size 0x4
     unsigned char * sbs_sp; // offset 0x1B1C4, size 0x4
-	NO_NAME_4* obwp; // offset 0x1B1C8, size 0x4
-	NO_NAME_4* itwp; // offset 0x1B1CC, size 0x4
+	O_WRK* obwp; // offset 0x1B1C8, size 0x4
+	O_WRK* itwp; // offset 0x1B1CC, size 0x4
 	MN_WORK* emtp[128]; // offset 0x1B1D0, size 0x200
 	MN_WORK* rmthp; // offset 0x1B3D0, size 0x4
 	unsigned char * mspp; // offset 0x1B3D4, size 0x4
@@ -649,11 +652,11 @@ typedef struct SYS_WORK
     short txb_n; // offset 0x1BDEE, size 0x2
     short txb[256]; // offset 0x1BDF0, size 0x200
 	NJS_TEXLIST* txblp[256]; // offset 0x1BFF0, size 0x400
-	NO_NAME_5 txbp[256]; // offset 0x1C3F0, size 0x1400
+	TXB_WORK txbp[256]; // offset 0x1C3F0, size 0x1400
 	unsigned char* ef_psp; // offset 0x1D7F0, size 0x4
 	NJS_TEXNAME ef_tex[450]; // offset 0x1D7F4, size 0x1518
 	NJS_TEXLIST ef_tlist; // offset 0x1ED0C, size 0x8
-	NO_NAME_6 ef; // offset 0x1ED14, size 0x28
+	EF_WORK ef; // offset 0x1ED14, size 0x28
 	short efid[256]; // offset 0x1ED3C, size 0x200
 	ML_WORK efm[450]; // offset 0x1EF3C, size 0x2A30
 	int ef_ct; // offset 0x2196C, size 0x4
@@ -687,24 +690,24 @@ typedef struct SYS_WORK
     int ef_trs2dn; // offset 0x222DC, size 0x4
     int ef_pnc2dn; // offset 0x222E0, size 0x4
     int ef_fncn; // offset 0x222E4, size 0x4
-	NO_NAME_4* ef_pol[512]; // offset 0x222E8, size 0x800
-	NO_NAME_4* ef_mdf[128]; // offset 0x22AE8, size 0x200
-	NO_NAME_4* ef_lin[512]; // offset 0x22CE8, size 0x800
-	NO_NAME_4* ef_ntx[512]; // offset 0x234E8, size 0x800
-	NO_NAME_4* ef_trs[512]; // offset 0x23CE8, size 0x800
-	NO_NAME_4* ef_pnc[512]; // offset 0x244E8, size 0x800
-	NO_NAME_4* ef_opq[512]; // offset 0x24CE8, size 0x800
-	NO_NAME_4* ef_thl[512]; // offset 0x254E8, size 0x800
-	NO_NAME_4* ef_ntx2d[128]; // offset 0x25CE8, size 0x200
-	NO_NAME_4* ef_trs2d[128]; // offset 0x25EE8, size 0x200
-	NO_NAME_4* ef_pnc2d[128]; // offset 0x260E8, size 0x200
-	NO_NAME_4* ef_fnc[512]; // offset 0x262E8, size 0x800
+	O_WRK* ef_pol[512]; // offset 0x222E8, size 0x800
+	O_WRK* ef_mdf[128]; // offset 0x22AE8, size 0x200
+	O_WRK* ef_lin[512]; // offset 0x22CE8, size 0x800
+	O_WRK* ef_ntx[512]; // offset 0x234E8, size 0x800
+	O_WRK* ef_trs[512]; // offset 0x23CE8, size 0x800
+	O_WRK* ef_pnc[512]; // offset 0x244E8, size 0x800
+	O_WRK* ef_opq[512]; // offset 0x24CE8, size 0x800
+	O_WRK* ef_thl[512]; // offset 0x254E8, size 0x800
+	O_WRK* ef_ntx2d[128]; // offset 0x25CE8, size 0x200
+	O_WRK* ef_trs2d[128]; // offset 0x25EE8, size 0x200
+	O_WRK* ef_pnc2d[128]; // offset 0x260E8, size 0x200
+	O_WRK* ef_fnc[512]; // offset 0x262E8, size 0x800
 	int ob_nlgn; // offset 0x26AE8, size 0x4
     int ob_hlgn; // offset 0x26AEC, size 0x4
     int ob_spcn; // offset 0x26AF0, size 0x4
-	NO_NAME_4* ob_nlg[32]; // offset 0x26AF4, size 0x80
-	NO_NAME_4* ob_hlg[32]; // offset 0x26B74, size 0x80
-	NO_NAME_4* ob_spc[32]; // offset 0x26BF4, size 0x80
+	O_WRK* ob_nlg[32]; // offset 0x26AF4, size 0x80
+	O_WRK* ob_hlg[32]; // offset 0x26B74, size 0x80
+	O_WRK* ob_spc[32]; // offset 0x26BF4, size 0x80
 	unsigned int ren_gid; // offset 0x26C74, size 0x4
 	NJS_TEXINFO ren_info; // offset 0x26C78, size 0x2C
 	NJS_TEXNAME ren_tex[1]; // offset 0x26CA4, size 0xC

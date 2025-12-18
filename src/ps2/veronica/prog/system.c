@@ -444,8 +444,8 @@ void bhFirstGameStart()
     
     sys->memp = keepmem;
     
-    sys->obwp = (NO_NAME_4*)bhGetFreeMemory(39936, 32);
-    sys->itwp = (NO_NAME_4*)bhGetFreeMemory(39936, 32);
+    sys->obwp = (O_WRK*)bhGetFreeMemory(39936, 32);
+    sys->itwp = (O_WRK*)bhGetFreeMemory(39936, 32);
     
     sys->mempb = sys->memp;
     

@@ -1647,7 +1647,7 @@ void npCalcSkin(void* pwp, int obj_n, int* sknp)
         
         np.sknp = sknp; 
         
-        op = (NJS_CNK_OBJECT*)((NO_NAME_4*)pwp)->mlwP->objP; 
+        op = (NJS_CNK_OBJECT*)((O_WRK*)pwp)->mlwP->objP; 
         
         for (i = 0; i < obj_n; i++, op++) 
         { 
@@ -1947,7 +1947,7 @@ void npCalcSkinFM(void* pwp, int obj_n, int* sknp)
         
         np.sknp = sknp; 
         
-        op = (NJS_CNK_OBJECT*)((NO_NAME_4*)pwp)->mlwP->objP; 
+        op = (NJS_CNK_OBJECT*)((O_WRK*)pwp)->mlwP->objP; 
         
         for (i = 0; i < obj_n; i++, op++) 
         { 

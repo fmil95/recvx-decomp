@@ -148,7 +148,7 @@ void bhClearEventEffect()
 // 100% matching! 
 void bhClrEff_YT()
 {
-    NO_NAME_4* opp;
+    O_WRK* opp;
     int i;
 
     opp = eff;

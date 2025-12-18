@@ -2191,7 +2191,7 @@ void(*bhEff309Drw)(_anon24*);
 void(*bhEff30bDrw)(_anon24*);
 void(*bhEff30cDrw)(_anon24*);*/
 
-NO_NAME_4* AllocOwork();
+O_WRK* AllocOwork();
 /*_anon1* AllocOworkOne();*/
 void bhClrEff_RY();
 /*int bhSetBloodPoolLnk(BH_PWORK* ewP, _anon0* posP, int ay, _anon52* tabP, int pal_bnk);
@@ -2232,9 +2232,9 @@ void bhEff30c(_anon24* orP);
 void bhEff30cDrw(_anon24* orP);*/
 
 // 100% matching!
-NO_NAME_4* AllocOwork()
+O_WRK* AllocOwork()
 {
-    NO_NAME_4* oP;
+    O_WRK* oP;
     int o_no;
 
     o_no = owk_scn_noG;
@@ -2277,7 +2277,7 @@ _anon1* AllocOworkOne()
 // 100% matching!
 void bhClrEff_RY()
 {
-    NO_NAME_4* oP;
+    O_WRK* oP;
 	int i;
 
     oP = eff;
