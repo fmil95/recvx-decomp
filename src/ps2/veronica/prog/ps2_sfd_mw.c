@@ -8,15 +8,10 @@
 MW_PLY_OBJ MwObj;
 StrFile infile;
 MWPLY MwHandle = &MwObj;
-/*_anon8 voBuf;
-<unknown fundamental type (0xa510)> test_tag[1400];
-_anon2 rmi;
-int movie_draw;*/
 MDSIZE_WORK mdSize;
-/*unsigned int Ps2_vcount;
-_anon10 __sfd_mw_conf__;*/
-
-extern MWD_IF Ps2Func = { 
+MWS_PLY_INIT_SFD __sfd_mw_conf__; /* unused */
+MWD_IF Ps2Func = 
+{ 
     ps2mwErrorStop, 
     ps2mwErrorStop, 
     ps2mwErrorStop, 
@@ -40,63 +35,70 @@ Sint32 mwPlyCalcWorkSofdec(Sint32 ftype, Sint32 max_bps, Sint32 max_sx, Sint32 m
 }
 
 // 100% matching!
-MWPLY ps2mwPlyCreateSofdec(MWS_PLY_CPRM_SFD* cprm, char* fname) {
+MWPLY ps2mwPlyCreateSofdec(MWS_PLY_CPRM_SFD* cprm, char* fname) 
+{
     char read_name[256];
-    sceCdRMode mode;
     int i;
+    sceCdRMode mode;
     int loop;
     
     sceGsSyncV(0);
     sceGsSyncV(0);
 
-    i = 0;
-    while (i < strlen(fname)) {
-        
-        if (fname[i] >= 'a' && fname[i] <= 'z') {
-            fname[i] = fname[i] - 0x20;
+    for (i = 0; i < strlen(fname); i++) 
+    {
+        if ((fname[i] >= 'a') && (fname[i] <= 'z')) 
+        {
+            fname[i] -= ' ';
         }
-        
-        i++;
     }
     
-    sprintf((char*)read_name, "%s%s;1", "\\MOVIE\\", fname);
+    sprintf(read_name, "%s%s;1", "\\MOVIE\\", fname);
+    
     infile.iopBuf = (unsigned char*)iop_read_buff;
-    sceCdStInit(iRingBufNum * 16, iRingBufNum, ((unsigned int)infile.iopBuf + 0xF >> 4) * 16);
+    
+    sceCdStInit(iRingBufNum * 16, iRingBufNum, (((unsigned int)infile.iopBuf + 15) / 16) * 16);
 
-     while (!sceCdSearchFile(&infile.fp, read_name)){
-        printf("Cannot open '%s'(sceCdSearchFile)\n", &read_name);
+    while (sceCdSearchFile(&infile.fp, read_name) == 0)
+    {
+        printf("Cannot open '%s'(sceCdSearchFile)\n", read_name);
 
-        while (sceCdPause() == 0) {
-            
-            loop = 0;
-             while (loop < 0x186A0){
+        while (sceCdPause() == 0) 
+        {
+            for (loop = 0; loop < 100000; loop++)
+            {
                 asm("nop");
                 asm("nop");
                 asm("nop");
                 asm("nop");
-                loop++;
             }
         }
 
-        sceCdSync(0x10);
+        sceCdSync(16);
 
-        loop = 0;
-        while (loop < 0x186A0) {
+        for (loop = 0; loop < 100000; loop++)
+        {
             asm("nop");
             asm("nop");
             asm("nop");
             asm("nop");
-            loop++;
         }
     }
     
     printf("[%s] is open!\n", read_name);
+    
     mode.trycount = 0;
+    
     mode.spindlctrl = 0;
+    
     mode.datapattern = 0;
+    
     infile.size = infile.fp.size;
+    
     sceCdStStart(infile.fp.lsn, &mode);
+    
     Setps2FuncTbl(MwHandle);
+    
     return MwHandle;
 }
 
