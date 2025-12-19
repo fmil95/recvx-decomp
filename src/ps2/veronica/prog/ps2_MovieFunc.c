@@ -1074,32 +1074,43 @@ int GetAllWorkMemory()
     return 0;
 }
 
-// 
-// Start address: 0x2ed2e0
-void OutPutCdErrorCode(unsigned int* err)
+// 100% matching!
+void OutPutCdErrorCode(unsigned int* err) 
 {
-	// Line 1499, Address: 0x2ed2e0, Func Offset: 0
-	// Line 1500, Address: 0x2ed2f0, Func Offset: 0x10
-	// Line 1505, Address: 0x2ed358, Func Offset: 0x78
-	// Line 1506, Address: 0x2ed364, Func Offset: 0x84
-	// Line 1508, Address: 0x2ed36c, Func Offset: 0x8c
-	// Line 1509, Address: 0x2ed378, Func Offset: 0x98
-	// Line 1511, Address: 0x2ed380, Func Offset: 0xa0
-	// Line 1512, Address: 0x2ed38c, Func Offset: 0xac
-	// Line 1514, Address: 0x2ed394, Func Offset: 0xb4
-	// Line 1515, Address: 0x2ed3a0, Func Offset: 0xc0
-	// Line 1517, Address: 0x2ed3a8, Func Offset: 0xc8
-	// Line 1518, Address: 0x2ed3b4, Func Offset: 0xd4
-	// Line 1520, Address: 0x2ed3bc, Func Offset: 0xdc
-	// Line 1521, Address: 0x2ed3c8, Func Offset: 0xe8
-	// Line 1523, Address: 0x2ed3d0, Func Offset: 0xf0
-	// Line 1524, Address: 0x2ed3dc, Func Offset: 0xfc
-	// Line 1526, Address: 0x2ed3e4, Func Offset: 0x104
-	// Line 1529, Address: 0x2ed3f0, Func Offset: 0x110
-	// Line 1531, Address: 0x2ed408, Func Offset: 0x128
-	// Line 1539, Address: 0x2ed414, Func Offset: 0x134
-	// Func End, Address: 0x2ed424, Func Offset: 0x144
-	scePrintf("OutPutCdErrorCode - UNIMPLEMENTED!\n");
+    switch (*err) 
+    {                         
+    case 0:
+        break;
+    case -1:
+        printf("[FAIL]");
+        break;
+    case 50:
+        printf("[EOM]");
+        break;
+    case 49:
+        printf("[TRMOPN]");
+        break;
+    case 48:
+        printf("READ MISS!!\n");
+        break;
+    case 20:
+        printf("[CUD]");
+        break;
+    case 19:
+        printf("[NORDY]");
+        break;
+    case 1:
+        printf("[ABRT]");
+        break;
+    default:
+        printf("UnknownError");
+        break;
+    }
+
+    if ((*err != 0) && (*err != 48))
+    {
+        printf(" [READ CD ERROR] (in OutPutCdErrorCode)\n");
+    }
 }
 
 // 
