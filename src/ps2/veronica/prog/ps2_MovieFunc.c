@@ -927,23 +927,22 @@ int getFIFOindex(ViBuf *f, void *addr)
     }
 }
 
-/*// 
-// Start address: 0x2ecec0
-int videoDecPutTs(_anon17* vd, long pts_val, long dts_val, unsigned char* start, int len)
+// 100% matching! 
+int videoDecPutTs(VideoDec *vd, long pts_val, long dts_val, u_char *start, int len)
 {
-	_anon8 ts;
-	// Line 1299, Address: 0x2ecec0, Func Offset: 0
-	// Line 1303, Address: 0x2ecec8, Func Offset: 0x8
-	// Line 1304, Address: 0x2ececc, Func Offset: 0xc
-	// Line 1305, Address: 0x2eced0, Func Offset: 0x10
-	// Line 1307, Address: 0x2eced4, Func Offset: 0x14
-	// Line 1305, Address: 0x2ecedc, Func Offset: 0x1c
-	// Line 1307, Address: 0x2ecee4, Func Offset: 0x24
-	// Line 1308, Address: 0x2ecef0, Func Offset: 0x30
-	// Func End, Address: 0x2ecefc, Func Offset: 0x3c
+    TimeStamp ts;
+
+    ts.pts = pts_val;
+    ts.dts = dts_val;
+    
+    ts.pos = start - (u_char*)vd->vibuf.data;
+    
+    ts.len = len;
+    
+    return viBufPutTs(&videoDec.vibuf, &ts);
 }
 
-// 
+/*// 
 // Start address: 0x2ecf00
 void audioDecBeginPut(_anon12* ad, unsigned char** ptr0, int* len0, unsigned char** ptr1, int* len1)
 {
