@@ -259,59 +259,59 @@ int readBufEndGet(READ_BUF *b, int size)
     return size_ok;
 }
 
-// 
-// Start address: 0x2ebc10
-void setImageTag(unsigned int* tags, void* image)
+// 100% matching! 
+void setImageTag(u_int *tags, void *image)
 {
-	unsigned long giftag[2];
-	unsigned long* tag;
-	int i;
-	int mby;
-	int mbx;
-	// Line 531, Address: 0x2ebc10, Func Offset: 0
-	// Line 538, Address: 0x2ebc3c, Func Offset: 0x2c
-	// Line 532, Address: 0x2ebc48, Func Offset: 0x38
-	// Line 538, Address: 0x2ebc50, Func Offset: 0x40
-	// Line 547, Address: 0x2ebc58, Func Offset: 0x48
-	// Line 533, Address: 0x2ebc5c, Func Offset: 0x4c
-	// Line 532, Address: 0x2ebc64, Func Offset: 0x54
-	// Line 538, Address: 0x2ebc6c, Func Offset: 0x5c
-	// Line 547, Address: 0x2ebc74, Func Offset: 0x64
-	// Line 548, Address: 0x2ebcd4, Func Offset: 0xc4
-	// Line 554, Address: 0x2ebcdc, Func Offset: 0xcc
-	// Line 564, Address: 0x2ebce8, Func Offset: 0xd8
-	// Line 555, Address: 0x2ebcec, Func Offset: 0xdc
-	// Line 559, Address: 0x2ebcf0, Func Offset: 0xe0
-	// Line 556, Address: 0x2ebcf4, Func Offset: 0xe4
-	// Line 559, Address: 0x2ebcf8, Func Offset: 0xe8
-	// Line 557, Address: 0x2ebcfc, Func Offset: 0xec
-	// Line 559, Address: 0x2ebd00, Func Offset: 0xf0
-	// Line 560, Address: 0x2ebd08, Func Offset: 0xf8
-	// Line 561, Address: 0x2ebd10, Func Offset: 0x100
-	// Line 562, Address: 0x2ebd18, Func Offset: 0x108
-	// Line 564, Address: 0x2ebd20, Func Offset: 0x110
-	// Line 565, Address: 0x2ebd24, Func Offset: 0x114
-	// Line 570, Address: 0x2ebd28, Func Offset: 0x118
-	// Line 568, Address: 0x2ebd2c, Func Offset: 0x11c
-	// Line 570, Address: 0x2ebd30, Func Offset: 0x120
-	// Line 569, Address: 0x2ebd34, Func Offset: 0x124
-	// Line 570, Address: 0x2ebd38, Func Offset: 0x128
-	// Line 571, Address: 0x2ebd40, Func Offset: 0x130
-	// Line 573, Address: 0x2ebd48, Func Offset: 0x138
-	// Line 572, Address: 0x2ebd4c, Func Offset: 0x13c
-	// Line 573, Address: 0x2ebd50, Func Offset: 0x140
-	// Line 576, Address: 0x2ebd54, Func Offset: 0x144
-	// Line 579, Address: 0x2ebd5c, Func Offset: 0x14c
-	// Line 577, Address: 0x2ebd70, Func Offset: 0x160
-	// Line 579, Address: 0x2ebd74, Func Offset: 0x164
-	// Line 581, Address: 0x2ebd7c, Func Offset: 0x16c
-	// Line 583, Address: 0x2ebd80, Func Offset: 0x170
-	// Line 584, Address: 0x2ebd88, Func Offset: 0x178
-	// Line 585, Address: 0x2ebd90, Func Offset: 0x180
-	// Line 586, Address: 0x2ebda8, Func Offset: 0x198
-	// Line 588, Address: 0x2ebdb0, Func Offset: 0x1a0
-	// Func End, Address: 0x2ebde0, Func Offset: 0x1d0
-	scePrintf("setImageTag - UNIMPLEMENTED!\n");
+    int mbx = __image_w__ / 16;
+    int mby = __image_h__ / 16; 
+    int i; 
+    u_long* /*const*/ tag; 
+    const u_long giftag[2] = { SCE_GIF_SET_TAG(0, 0, 0, 0, 0, 1), 0x000000000000000EL }; 
+    
+    for (i = 0; i < mbx; i++)
+    {
+        D2_SyncTag();
+        
+        tag = (void*)((u_int)tags | UNCBASE);
+        
+        *tag++ = DMAcnt | 0x3;
+        *tag++ = 0;
+
+        *tag++ = giftag[0] | 0x2;
+        *tag++ = giftag[1];
+        
+        *tag++ = SCE_GS_SET_BITBLTBUF(0, 0, 0, 909312 / 64, 5, 0); 
+        *tag++ = SCE_GS_BITBLTBUF; 
+        
+        *tag++ = SCE_GS_SET_TRXREG(1 * 16, mby * 16);
+        *tag++ = SCE_GS_TRXREG;
+        
+        *tag++ = DMAcnt | 0x4;
+        *tag++ = 0;
+
+        *tag++ = giftag[0] | 0x2;
+        *tag++ = giftag[1];
+        
+        *tag++ = SCE_GS_SET_TRXPOS(0, 0, i * 16, 0, 0);
+        *tag++ = SCE_GS_TRXPOS;
+        
+        *tag++ = SCE_GS_SET_TRXDIR(0);
+        *tag++ = SCE_GS_TRXDIR;
+
+        *tag++ = SCE_GIF_SET_TAG((mby * 1024) / 16, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_IMAGE, 0); 
+        *tag++ = 0;
+
+        *tag++ = (unsigned long)((unsigned int)image & 0xFFFFFF) << 32 | 0x30000000L | ((mby * 1024) / 16);
+        *tag++ = 0;
+
+        image = (unsigned char*)image + (mby * 1024);
+        
+        SyncPath();
+        
+        loadImage(tags);
+    }
+    
+    D2_SyncTag();
 }
 
 // 
