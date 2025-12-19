@@ -768,22 +768,18 @@ void viBufBeginPut(ViBuf *f, u_char **ptr0, int *len0, u_char **ptr1, int *len1)
 
 #pragma divbyzerocheck off
 
-/*// 
-// Start address: 0x2eca80
-void viBufEndPut(_anon7* f, int size)
+// 100% matching! 
+void viBufEndPut(ViBuf *f, int size)
 {
-	// Line 1119, Address: 0x2eca80, Func Offset: 0
-	// Line 1120, Address: 0x2eca94, Func Offset: 0x14
-	// Line 1122, Address: 0x2ecaa0, Func Offset: 0x20
-	// Line 1123, Address: 0x2ecaa4, Func Offset: 0x24
-	// Line 1122, Address: 0x2ecaac, Func Offset: 0x2c
-	// Line 1123, Address: 0x2ecab4, Func Offset: 0x34
-	// Line 1125, Address: 0x2ecac0, Func Offset: 0x40
-	// Line 1126, Address: 0x2ecac8, Func Offset: 0x48
-	// Func End, Address: 0x2ecadc, Func Offset: 0x5c
+    WAITSEMA(f->sema);
+
+    f->readBytes += size;
+    f->totalBytes += size;
+
+    SIGNALSEMA(f->sema);
 }
 
-// 
+/*// 
 // Start address: 0x2ecae0
 int viBufModifyPts(_anon7* f, _anon8* new_ts)
 {
