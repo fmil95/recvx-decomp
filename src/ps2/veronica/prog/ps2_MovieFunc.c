@@ -394,33 +394,46 @@ void videoDecMain(VideoDec *vd)
 }
 
 // 100% matching!
-int decBs0(VideoDec* vd) {
+int decBs0(VideoDec *vd)
+{
     int status;
     int mpeg_param;
+    
     status = 1;
     
-    while (sceMpegIsEnd(&vd->mpeg) == 0) {
-        if (vd->state == VD_STATE_ABORT) {
+    while (sceMpegIsEnd(&vd->mpeg) == 0) 
+    {
+        if (vd->state == VD_STATE_ABORT) 
+        {
             status = -1;
+            
             printf("decode thread: aborted\n");
             break;
         }
 
-        mpeg_param = sceMpegGetPicture(&vd->mpeg, (sceIpuRGB32*)voBuf.data, 0x1B8);
+        mpeg_param = sceMpegGetPicture(&vd->mpeg, (sceIpuRGB32*)voBuf.data, 440);
+        
         movie_draw = 1;
-        if (mpeg_param < 0) {
+        
+        if (mpeg_param < 0) 
+        {
             printf("[ Error ] sceMpegGetPicture() decode error\n");
-        }  else if (vd->mpeg.frameCount == 0) {
-                __image_w__ = vd->mpeg.width;
-                __image_h__ = vd->mpeg.height;
-                printf("size %dx%d\n", __image_w__, __image_h__);
+        }  
+        else if (vd->mpeg.frameCount == 0) 
+        {
+            __image_w__ = vd->mpeg.width;
+            __image_h__ = vd->mpeg.height;
+            
+            printf("size %dx%d\n", __image_w__, __image_h__);
         }
         
         voBufIncCount(&voBuf);
+        
         SleepThread();
     }
     
     sceMpegReset(&vd->mpeg);
+    
     return status;
 }
 
