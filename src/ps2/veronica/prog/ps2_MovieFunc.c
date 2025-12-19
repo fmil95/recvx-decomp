@@ -437,29 +437,34 @@ int decBs0(VideoDec *vd)
     return status;
 }
 
-/*// 
-// Start address: 0x2ec0f0
-int copy2area(unsigned char* pd0, int d0, unsigned char* pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1)
+// 100% matching!
+static int copy2area(u_char *pd0, int d0, u_char *pd1, int d1, u_char *ps0, int s0, u_char *ps1, int s1)
 {
-	// Line 771, Address: 0x2ec0f0, Func Offset: 0
-	// Line 772, Address: 0x2ec118, Func Offset: 0x28
-	// Line 773, Address: 0x2ec144, Func Offset: 0x54
-	// Line 775, Address: 0x2ec14c, Func Offset: 0x5c
-	// Line 776, Address: 0x2ec158, Func Offset: 0x68
-	// Line 777, Address: 0x2ec164, Func Offset: 0x74
-	// Line 778, Address: 0x2ec178, Func Offset: 0x88
-	// Line 779, Address: 0x2ec188, Func Offset: 0x98
-	// Line 780, Address: 0x2ec190, Func Offset: 0xa0
-	// Line 781, Address: 0x2ec1a0, Func Offset: 0xb0
-	// Line 782, Address: 0x2ec1ac, Func Offset: 0xbc
-	// Line 783, Address: 0x2ec1bc, Func Offset: 0xcc
-	// Line 784, Address: 0x2ec1cc, Func Offset: 0xdc
-	// Line 785, Address: 0x2ec1d4, Func Offset: 0xe4
-	// Line 786, Address: 0x2ec1e0, Func Offset: 0xf0
-	// Line 789, Address: 0x2ec1f0, Func Offset: 0x100
-	// Line 790, Address: 0x2ec1f4, Func Offset: 0x104
-	// Func End, Address: 0x2ec220, Func Offset: 0x130
-}*/
+    if ((d0 + d1) < (s0 + s1)) 
+    {
+        return 0;
+    }
+
+    if (s0 >= d0) 
+    {
+    	memcpy(pd0,	ps0, d0);
+    	memcpy(pd1,	ps0 + d0, s0 - d0);
+    	memcpy(pd1 + (s0 - d0), ps1, s1); 
+    } 
+    else if (s1 >= (d0 - s0)) 
+    { 
+	    memcpy(pd0, ps0, s0);
+	    memcpy(pd0 + s0, ps1, d0 - s0);
+	    memcpy(pd1,	ps1 + (d0 - s0), s1 - (d0 - s0));
+    }
+    else
+    { 
+        memcpy(pd0, ps0, s0);
+        memcpy(pd0 + s0, ps1, s1);
+    }
+    
+    return s0 + s1;
+}
 
 #pragma divbyzerocheck on
 
