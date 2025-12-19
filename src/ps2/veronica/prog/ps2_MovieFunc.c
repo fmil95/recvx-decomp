@@ -779,45 +779,69 @@ void viBufEndPut(ViBuf *f, int size)
     SIGNALSEMA(f->sema);
 }
 
-/*// 
-// Start address: 0x2ecae0
-int viBufModifyPts(_anon7* f, _anon8* new_ts)
-{
-	int loop;
-	int datasize;
-	int rd;
-	_anon8* ts;
-	// Line 1176, Address: 0x2ecae0, Func Offset: 0
-	// Line 1178, Address: 0x2ecb00, Func Offset: 0x20
-	// Line 1179, Address: 0x2ecb28, Func Offset: 0x48
-	// Line 1178, Address: 0x2ecb2c, Func Offset: 0x4c
-	// Line 1180, Address: 0x2ecb30, Func Offset: 0x50
-	// Line 1182, Address: 0x2ecb34, Func Offset: 0x54
-	// Line 1185, Address: 0x2ecb3c, Func Offset: 0x5c
-	// Line 1186, Address: 0x2ecb50, Func Offset: 0x70
-	// Line 1188, Address: 0x2ecb68, Func Offset: 0x88
-	// Line 1190, Address: 0x2ecb80, Func Offset: 0xa0
-	// Line 1192, Address: 0x2ecba0, Func Offset: 0xc0
-	// Line 1193, Address: 0x2ecbb8, Func Offset: 0xd8
-	// Line 1194, Address: 0x2ecbc4, Func Offset: 0xe4
-	// Line 1196, Address: 0x2ecbd0, Func Offset: 0xf0
-	// Line 1198, Address: 0x2ecbdc, Func Offset: 0xfc
-	// Line 1199, Address: 0x2ecbe0, Func Offset: 0x100
-	// Line 1200, Address: 0x2ecbe4, Func Offset: 0x104
-	// Line 1201, Address: 0x2ecbe8, Func Offset: 0x108
-	// Line 1202, Address: 0x2ecbec, Func Offset: 0x10c
-	// Line 1203, Address: 0x2ecbf0, Func Offset: 0x110
-	// Line 1205, Address: 0x2ecc04, Func Offset: 0x124
-	// Line 1206, Address: 0x2ecc0c, Func Offset: 0x12c
-	// Line 1207, Address: 0x2ecc10, Func Offset: 0x130
-	// Line 1208, Address: 0x2ecc28, Func Offset: 0x148
-	// Line 1211, Address: 0x2ecc30, Func Offset: 0x150
-	// Line 1210, Address: 0x2ecc4c, Func Offset: 0x16c
-	// Line 1211, Address: 0x2ecc50, Func Offset: 0x170
-	// Func End, Address: 0x2ecc58, Func Offset: 0x178
-}*/
-
 #pragma divbyzerocheck on
+
+// 100% matching! 
+int viBufModifyPts(ViBuf *f, TimeStamp *new_ts) 
+{
+    TimeStamp *ts;
+    int rd;
+    int datasize;
+    int loop;
+
+    rd = ((f->wt_ts - f->count_ts) + f->n_ts) % f->n_ts;
+
+    datasize = VIBUF_ELM_SIZE * f->n;
+
+    loop = 1;
+
+    if (f->count_ts > 0) 
+    {
+    	while (loop) 
+        {
+    	    ts = f->ts + rd;
+    
+    	    if ((ts->len == 0) || (new_ts->len == 0)) 
+            {
+        		break;
+    	    }
+    
+    	    if (IsPtsInRegion(ts->pos, new_ts->pos, new_ts->len, datasize) != 0) 
+            {
+                int len;
+
+                len = MIN(ts->len, (new_ts->pos + new_ts->len) - ts->pos);
+                
+        		ts->pos = (ts->pos + len) % datasize;
+                
+        		ts->len -= len;
+         
+        		if (ts->len == 0) 
+                {
+        		    if (ts->pts >= 0) 
+                    {
+            			ts->pts = TS_NONE;
+            			ts->dts = TS_NONE;
+                        
+            			ts->pos = 0;
+                        
+            			ts->len = 0;
+        		    }
+                    
+        		    f->count_ts = MAX(f->count_ts - 1, 0);
+        		}
+            } 
+            else 
+            {
+    		    loop = 0;
+    	    }
+    
+    	    rd = (rd + 1) % f->n_ts;
+    	}
+    }
+
+    return 0;
+}
 
 // 100% matching! 
 int IsPtsInRegion(int tgt, int pos, int len, int size)
