@@ -686,40 +686,46 @@ void scTag2(QWORD *q, void *addr, u_int id, u_int qwc)
     q->l[0] = ((u_long)(u_int)addr << 32) | ((u_long)id << 28) | (u_long)qwc;
 }
 
-// 
-// Start address: 0x2ec810
+// 100% matching! 
 int viBufReset(ViBuf *f)
 {
-	int i;
-	// Line 1034, Address: 0x2ec810, Func Offset: 0
-	// Line 1038, Address: 0x2ec828, Func Offset: 0x18
-	// Line 1039, Address: 0x2ec82c, Func Offset: 0x1c
-	// Line 1041, Address: 0x2ec830, Func Offset: 0x20
-	// Line 1040, Address: 0x2ec834, Func Offset: 0x24
-	// Line 1041, Address: 0x2ec838, Func Offset: 0x28
-	// Line 1043, Address: 0x2ec83c, Func Offset: 0x2c
-	// Line 1044, Address: 0x2ec844, Func Offset: 0x34
-	// Line 1045, Address: 0x2ec848, Func Offset: 0x38
-	// Line 1046, Address: 0x2ec858, Func Offset: 0x48
-	// Line 1050, Address: 0x2ec85c, Func Offset: 0x4c
-	// Line 1046, Address: 0x2ec860, Func Offset: 0x50
-	// Line 1047, Address: 0x2ec868, Func Offset: 0x58
-	// Line 1048, Address: 0x2ec874, Func Offset: 0x64
-	// Line 1049, Address: 0x2ec880, Func Offset: 0x70
-	// Line 1050, Address: 0x2ec890, Func Offset: 0x80
-	// Line 1053, Address: 0x2ec8a0, Func Offset: 0x90
-	// Line 1055, Address: 0x2ec8b0, Func Offset: 0xa0
-	// Line 1061, Address: 0x2ec8dc, Func Offset: 0xcc
-	// Line 1062, Address: 0x2ec8f0, Func Offset: 0xe0
-	// Line 1069, Address: 0x2ec914, Func Offset: 0x104
-	// Line 1070, Address: 0x2ec91c, Func Offset: 0x10c
-	// Line 1071, Address: 0x2ec92c, Func Offset: 0x11c
-	// Line 1072, Address: 0x2ec938, Func Offset: 0x128
-	// Line 1075, Address: 0x2ec944, Func Offset: 0x134
-	// Line 1074, Address: 0x2ec958, Func Offset: 0x148
-	// Line 1075, Address: 0x2ec95c, Func Offset: 0x14c
-	// Func End, Address: 0x2ec964, Func Offset: 0x154
-	scePrintf("viBufReset - UNIMPLEMENTED!\n");
+    int i;
+
+    f->dmaStart = 0;
+    f->dmaN = 0;
+    
+    f->readBytes = 0;
+    
+    f->isActive = TRUE;
+
+    f->count_ts = 0;
+    f->wt_ts = 0;
+    
+    for (i = 0; i < f->n_ts; i++) 
+    {
+    	f->ts[i].pts = TS_NONE;
+    	f->ts[i].dts = TS_NONE;
+        
+    	f->ts[i].pos = 0;
+        
+    	f->ts[i].len = 0;
+    }
+
+    for (i = 0; i < f->n; i++)
+    {
+    	scTag2((QWORD*)(f->tag + i), DmaAddr((char*)f->data + (VIBUF_ELM_SIZE * i)), DMA_ID_REF, VIBUF_ELM_SIZE / 16);
+    }
+    
+    scTag2((QWORD*)(f->tag + i), DmaAddr(f->tag), DMA_ID_NEXT, 0);
+
+    *D4_QWC = 0;
+    
+    *D4_MADR = (u_int)DmaAddr(f->data);
+    *D4_TADR = (u_int)DmaAddr(f->tag);
+    
+    setD4_CHCR((0 << 8) | (1 << 2) | 1);
+
+    return TRUE;
 }
 
 /*// 

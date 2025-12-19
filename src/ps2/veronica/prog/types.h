@@ -3335,6 +3335,10 @@ typedef struct {
 
 /* vibuf.c */
 
+#define DMA_ID_REFE	0
+#define DMA_ID_NEXT	2
+#define DMA_ID_REF	3
+
 typedef union {
     u_long128	q;
     u_long 	l[2];
@@ -3453,6 +3457,8 @@ typedef	void (*AlarmCallBack)(int, unsigned short, void*);
 #endif
 
 /* defs.h */
+
+#define TS_NONE (-1)
 
 #define min(x, y) (((x) > (y))? (y): (x))
 #define max(x, y) (((x) < (y))? (y): (x))
