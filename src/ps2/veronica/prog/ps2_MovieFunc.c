@@ -853,30 +853,42 @@ int IsPtsInRegion(int tgt, int pos, int len, int size)
     return tgt1 < len;
 }
 
-#pragma divbyzerocheck off
-
-/*// 
-// Start address: 0x2ecc80
-int viBufPutTs(_anon7* f, _anon8* ts)
+// 100% matching! 
+int viBufPutTs(ViBuf *f, TimeStamp *ts)
 {
-	int ret;
-	// Line 1217, Address: 0x2ecc80, Func Offset: 0
-	// Line 1220, Address: 0x2ecc98, Func Offset: 0x18
-	// Line 1222, Address: 0x2ecca8, Func Offset: 0x28
-	// Line 1223, Address: 0x2eccbc, Func Offset: 0x3c
-	// Line 1225, Address: 0x2eccc8, Func Offset: 0x48
-	// Line 1227, Address: 0x2ecce0, Func Offset: 0x60
-	// Line 1228, Address: 0x2eccfc, Func Offset: 0x7c
-	// Line 1229, Address: 0x2ecd1c, Func Offset: 0x9c
-	// Line 1230, Address: 0x2ecd3c, Func Offset: 0xbc
-	// Line 1232, Address: 0x2ecd5c, Func Offset: 0xdc
-	// Line 1233, Address: 0x2ecd68, Func Offset: 0xe8
-	// Line 1235, Address: 0x2ecd88, Func Offset: 0x108
-	// Line 1238, Address: 0x2ecd8c, Func Offset: 0x10c
-	// Line 1240, Address: 0x2ecd94, Func Offset: 0x114
-	// Line 1241, Address: 0x2ecd98, Func Offset: 0x118
-	// Func End, Address: 0x2ecdb0, Func Offset: 0x130
-}*/
+    int ret;
+
+    ret = 0;
+
+    WAITSEMA(f->sema);
+
+    if (f->count_ts < f->n_ts) 
+    {
+    	viBufModifyPts(f, ts);
+    
+    	if ((ts->pts >= 0) || (ts->dts >= 0)) 
+        {
+    	    f->ts[f->wt_ts].pts = ts->pts;
+    	    f->ts[f->wt_ts].dts = ts->dts;
+            
+    	    f->ts[f->wt_ts].pos = ts->pos;
+    	    
+            f->ts[f->wt_ts].len = ts->len;
+    
+    	    f->count_ts++;
+    	    
+            f->wt_ts = (f->wt_ts + 1) % f->n_ts;
+    	}
+        
+    	ret = 1;
+    } 
+
+    SIGNALSEMA(f->sema);
+
+    return ret;
+}
+
+#pragma divbyzerocheck off
 
 // 100% matching!
 void voBufIncCount(VoBuf *f)
