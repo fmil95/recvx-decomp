@@ -942,34 +942,41 @@ int videoDecPutTs(VideoDec *vd, long pts_val, long dts_val, u_char *start, int l
     return viBufPutTs(&videoDec.vibuf, &ts);
 }
 
-/*// 
-// Start address: 0x2ecf00
-void audioDecBeginPut(_anon12* ad, unsigned char** ptr0, int* len0, unsigned char** ptr1, int* len1)
+// 100% matching! 
+void audioDecBeginPut(AudioDec *ad, u_char **ptr0, int *len0, u_char **ptr1, int *len1)
 {
-	int len;
-	// Line 1324, Address: 0x2ecf00, Func Offset: 0
-	// Line 1325, Address: 0x2ecf0c, Func Offset: 0xc
-	// Line 1326, Address: 0x2ecf14, Func Offset: 0x14
-	// Line 1325, Address: 0x2ecf18, Func Offset: 0x18
-	// Line 1326, Address: 0x2ecf20, Func Offset: 0x20
-	// Line 1327, Address: 0x2ecf2c, Func Offset: 0x2c
-	// Line 1328, Address: 0x2ecf34, Func Offset: 0x34
-	// Line 1329, Address: 0x2ecf38, Func Offset: 0x38
-	// Line 1336, Address: 0x2ecf40, Func Offset: 0x40
-	// Line 1338, Address: 0x2ecf48, Func Offset: 0x48
-	// Line 1336, Address: 0x2ecf4c, Func Offset: 0x4c
-	// Line 1338, Address: 0x2ecf50, Func Offset: 0x50
-	// Line 1339, Address: 0x2ecf60, Func Offset: 0x60
-	// Line 1340, Address: 0x2ecf6c, Func Offset: 0x6c
-	// Line 1341, Address: 0x2ecf70, Func Offset: 0x70
-	// Line 1343, Address: 0x2ecf74, Func Offset: 0x74
-	// Line 1344, Address: 0x2ecf7c, Func Offset: 0x7c
-	// Line 1345, Address: 0x2ecf88, Func Offset: 0x88
-	// Line 1346, Address: 0x2ecf98, Func Offset: 0x98
-	// Line 1347, Address: 0x2ecfa0, Func Offset: 0xa0
-	// Line 1349, Address: 0x2ecfb4, Func Offset: 0xb4
-	// Func End, Address: 0x2ecfbc, Func Offset: 0xbc
-}*/
+    int len;
+
+    if (ad->state == AU_STATE_INIT)
+    {
+    	*ptr0 = (u_char*)&ad->sshd + ad->hdrCount;
+    	*len0 = AU_HDR_SIZE - ad->hdrCount;
+        
+    	*ptr1 = ad->data;
+    	*len1 = ad->size;
+    
+    	return;
+    }
+
+    len = ad->size - ad->count;
+
+    if ((ad->size - ad->put) >= len) 
+    {
+    	*ptr0 = ad->data + ad->put;
+    	*len0 = len;
+        
+    	*ptr1 = NULL;
+    	*len1 = 0;
+    } 
+    else 
+    {			   
+    	*ptr0 = ad->data + ad->put;
+    	*len0 = ad->size - ad->put;
+        
+    	*ptr1 = ad->data;
+    	*len1 = len - (ad->size - ad->put);
+    }
+}
 
 // 
 // Start address: 0x2ecfc0
