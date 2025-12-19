@@ -1011,17 +1011,13 @@ int viBufDelete(ViBuf *f)
     return TRUE;
 }
 
-// 
-// Start address: 0x2ed0b0
+// 100% matching!
 int videoDecDelete(VideoDec *vd)
 {
-	// Line 1424, Address: 0x2ed0b0, Func Offset: 0
-	// Line 1426, Address: 0x2ed0c0, Func Offset: 0x10
-	// Line 1428, Address: 0x2ed0c8, Func Offset: 0x18
-	// Line 1431, Address: 0x2ed0d0, Func Offset: 0x20
-	// Line 1430, Address: 0x2ed0d8, Func Offset: 0x28
-	// Line 1431, Address: 0x2ed0dc, Func Offset: 0x2c
-	// Func End, Address: 0x2ed0e4, Func Offset: 0x34
+    viBufDelete(&vd->vibuf);
+    sceMpegDelete(&vd->mpeg);
+
+    return 1;
 }
 
 // 
