@@ -659,10 +659,3 @@ void ClearVram()
         sceGsSyncPath(0, 0);
     }
 }
-
-// TODO: move this function to the header
-// 100% matching!
-void *UncAddr(void *val)
-{
-    return (void*)(((u_int)val & UNCMASK)|UNCBASE);
-}

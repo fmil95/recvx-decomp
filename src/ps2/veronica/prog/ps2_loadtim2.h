@@ -19,6 +19,10 @@ void D2_SyncTag();
 void loadImage(void* tags);
 void ClearVram();
 
-void *UncAddr(void *val);
+// 0% matching
+static inline void *UncAddr(void *val)
+{
+    return (void*)(((u_int)val & UNCMASK)|UNCBASE);
+}
 
 #endif
