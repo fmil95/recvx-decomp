@@ -3345,6 +3345,10 @@ typedef union {
 
 /* vibuf.h */
 
+#define VIBUF_ELM_SIZE 2048
+#define VIBUF_SIZE 256
+#define VIBUF_TS_SIZE (VIBUF_SIZE*2)
+
 typedef struct {
     __int128 *data;	// data array
     __int128 *tag;	// tag array

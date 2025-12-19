@@ -865,17 +865,20 @@ void audioDecResume(AudioDec *ad)
 	scePrintf("audioDecResume - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2ece60
-int getFIFOindex(_anon7* f, void* addr)
+// 100% matching! 
+int getFIFOindex(ViBuf *f, void *addr)
 {
-	// Line 1285, Address: 0x2ece60, Func Offset: 0
-	// Line 1287, Address: 0x2ece70, Func Offset: 0x10
-	// Line 1290, Address: 0x2eceac, Func Offset: 0x4c
-	// Func End, Address: 0x2ecec0, Func Offset: 0x60
+    if (addr == DmaAddr(f->tag + (f->n + 1))) 
+    {
+	    return 0;
+    } 
+    else 
+    {
+	    return ((u_int)addr - (u_int)f->data) / VIBUF_ELM_SIZE;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2ecec0
 int videoDecPutTs(_anon17* vd, long pts_val, long dts_val, unsigned char* start, int len)
 {

@@ -74,8 +74,8 @@ int IsPtsInRegion(int tgt, int pos, int len, int size);
 /*int viBufPutTs(_anon7* f, _anon8* ts);*/
 void voBufIncCount(VoBuf *f);
 void audioDecResume(AudioDec *ad);
-/*int getFIFOindex(_anon7* f, void* addr);
-int videoDecPutTs(_anon17* vd, long pts_val, long dts_val, unsigned char* start, int len);
+int getFIFOindex(ViBuf *f, void *addr);
+/*int videoDecPutTs(_anon17* vd, long pts_val, long dts_val, unsigned char* start, int len);
 void audioDecBeginPut(_anon12* ad, unsigned char** ptr0, int* len0, unsigned char** ptr1, int* len1);*/
 void termAll();
 int viBufDelete(ViBuf *f);
