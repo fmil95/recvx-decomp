@@ -14,7 +14,7 @@ int oddeven;
 int handler_error;*/
 static int __image_w__;
 static int __image_h__;
-/*<unknown fundamental type (0xa510)> new_tags[64];*/
+long128* new_tags[64];
 VideoDec videoDec;
 int videoDecTh;
 /*void* _gp;*/
@@ -314,67 +314,63 @@ void setImageTag(u_int *tags, void *image)
     D2_SyncTag();
 }
 
-// 
-// Start address: 0x2ebde0
-void vbrank_draw()
+// 100% matching! 
+void vbrank_draw() 
 {
-	unsigned long giftag_eop[2];
-	unsigned long* tag;
-	// Line 591, Address: 0x2ebde0, Func Offset: 0
-	// Line 598, Address: 0x2ebde4, Func Offset: 0x4
-	// Line 591, Address: 0x2ebdec, Func Offset: 0xc
-	// Line 598, Address: 0x2ebdf0, Func Offset: 0x10
-	// Line 601, Address: 0x2ebdf8, Func Offset: 0x18
-	// Line 607, Address: 0x2ebe00, Func Offset: 0x20
-	// Line 603, Address: 0x2ebe08, Func Offset: 0x28
-	// Line 608, Address: 0x2ebe18, Func Offset: 0x38
-	// Line 607, Address: 0x2ebe20, Func Offset: 0x40
-	// Line 611, Address: 0x2ebe28, Func Offset: 0x48
-	// Line 608, Address: 0x2ebe30, Func Offset: 0x50
-	// Line 612, Address: 0x2ebe38, Func Offset: 0x58
-	// Line 611, Address: 0x2ebe40, Func Offset: 0x60
-	// Line 613, Address: 0x2ebe48, Func Offset: 0x68
-	// Line 612, Address: 0x2ebe50, Func Offset: 0x70
-	// Line 613, Address: 0x2ebe54, Func Offset: 0x74
-	// Line 645, Address: 0x2ebe58, Func Offset: 0x78
-	// Line 647, Address: 0x2ebe78, Func Offset: 0x98
-	// Line 616, Address: 0x2ebe98, Func Offset: 0xb8
-	// Line 617, Address: 0x2ebea4, Func Offset: 0xc4
-	// Line 620, Address: 0x2ebea8, Func Offset: 0xc8
-	// Line 643, Address: 0x2ebeac, Func Offset: 0xcc
-	// Line 623, Address: 0x2ebeb0, Func Offset: 0xd0
-	// Line 624, Address: 0x2ebeb4, Func Offset: 0xd4
-	// Line 620, Address: 0x2ebeb8, Func Offset: 0xd8
-	// Line 621, Address: 0x2ebec0, Func Offset: 0xe0
-	// Line 626, Address: 0x2ebec4, Func Offset: 0xe4
-	// Line 621, Address: 0x2ebed4, Func Offset: 0xf4
-	// Line 622, Address: 0x2ebed8, Func Offset: 0xf8
-	// Line 623, Address: 0x2ebedc, Func Offset: 0xfc
-	// Line 626, Address: 0x2ebee0, Func Offset: 0x100
-	// Line 625, Address: 0x2ebee4, Func Offset: 0x104
-	// Line 624, Address: 0x2ebee8, Func Offset: 0x108
-	// Line 625, Address: 0x2ebeec, Func Offset: 0x10c
-	// Line 626, Address: 0x2ebef0, Func Offset: 0x110
-	// Line 628, Address: 0x2ebef4, Func Offset: 0x114
-	// Line 629, Address: 0x2ebefc, Func Offset: 0x11c
-	// Line 641, Address: 0x2ebf04, Func Offset: 0x124
-	// Line 640, Address: 0x2ebf08, Func Offset: 0x128
-	// Line 641, Address: 0x2ebf0c, Func Offset: 0x12c
-	// Line 642, Address: 0x2ebf14, Func Offset: 0x134
-	// Line 643, Address: 0x2ebf18, Func Offset: 0x138
-	// Line 642, Address: 0x2ebf1c, Func Offset: 0x13c
-	// Line 644, Address: 0x2ebf20, Func Offset: 0x140
-	// Line 643, Address: 0x2ebf24, Func Offset: 0x144
-	// Line 644, Address: 0x2ebf28, Func Offset: 0x148
-	// Line 645, Address: 0x2ebf2c, Func Offset: 0x14c
-	// Line 646, Address: 0x2ebf30, Func Offset: 0x150
-	// Line 647, Address: 0x2ebf34, Func Offset: 0x154
-	// Line 650, Address: 0x2ebf38, Func Offset: 0x158
-	// Line 651, Address: 0x2ebf40, Func Offset: 0x160
-	// Line 652, Address: 0x2ebf4c, Func Offset: 0x16c
-	// Line 653, Address: 0x2ebf54, Func Offset: 0x174
-	// Func End, Address: 0x2ebf60, Func Offset: 0x180
-	scePrintf("vbrank_draw - UNIMPLEMENTED!\n");
+    unsigned long* tag;
+    const unsigned long giftag_eop[2] = { SCE_GIF_SET_TAG(0, 1, 0, 0, 0, 1), 0x000000000000000EL }; 
+    int u, v; // not from the debugging symbols
+    int y; // not from the debugging symbols
+    int w, h; // not from the debugging symbols
+
+    D2_SyncTag();
+    
+    tag = (void*)((u_int)new_tags | UNCBASE);
+    
+    u = (__image_w__ - 1) * 16;
+    v = (__image_h__ - 1) * 16;
+    
+    y = (mdSize.sDispY + 1824) * 16; 
+    
+    w = mdSize.sWidth * 16;
+    h = mdSize.sHeight * 16;
+    
+    *tag++ = DMAend | 0x9;
+    *tag++ = 0;
+
+    *tag++ = giftag_eop[0] | 0x8; 
+    *tag++ = giftag_eop[1];
+    
+    *tag++ = 0;
+    *tag++ = SCE_GS_TEXFLUSH;
+    
+    *tag++ = SCE_GS_SET_TEX1_1(0, 0, 1, 1, 0, 0, 0);
+    *tag++ = SCE_GS_TEX1_2;
+
+    //*tag++ = SCE_GS_SET_TEX0_2(0, 10, SCE_GS_PSMCT32, 10, 9, 0, SCE_GS_MODULATE, 0, SCE_GS_PSMCT32, 0, 0, 0); // TODO: match the function with this 
+    *tag++ = 0xA64017780;
+    *tag++ = SCE_GS_TEX0_2;
+
+    *tag++ = SCE_GS_SET_PRIM(SCE_GS_PRIM_SPRITE, 0, 1, 0, 0, 0, 1, 1, 0);
+    *tag++ = SCE_GS_PRIM; 
+
+    *tag++ = SCE_GS_SET_UV(8, 8);
+    *tag++ = SCE_GS_UV; 
+
+    *tag++ = SCE_GS_SET_XYZ2(27648, y, 0);
+    *tag++ = SCE_GS_XYZ2;
+
+    *tag++ = SCE_GS_SET_UV(u + 8, v + 8);
+    *tag++ = SCE_GS_UV; 
+
+    *tag++ = SCE_GS_SET_XYZ2(w + 27648, y + h, 0);
+    *tag++ = SCE_GS_XYZ2; 
+
+    SyncPath();
+    
+    loadImage(new_tags);
+    
+    D2_SyncTag();
 }
 
 // 100% matching!

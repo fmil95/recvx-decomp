@@ -29,5 +29,6 @@ void ps2mwErrorStop();
 void Setps2FuncTbl(MWPLY mwply);
 
 extern StrFile infile;
+extern MDSIZE_WORK mdSize;
 
 #endif
