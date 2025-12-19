@@ -50,11 +50,11 @@ typedef struct {
 
 } AudioDec;
 
-/*void initAll();
-void readMpeg();*/
+void initAll();
+void readMpeg();
 int readBufEndGet(READ_BUF *b, int size);
-/*void setImageTag(unsigned int* tags, void* image);
-void vbrank_draw();*/
+void setImageTag(unsigned int* tags, void* image);
+void vbrank_draw();
 void videoDecMain(VideoDec *vd);
 int decBs0(VideoDec *vd);
 /*int copy2area(unsigned char* pd0, int d0, unsigned char* pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1);*/
@@ -76,20 +76,20 @@ void voBufIncCount(VoBuf *f);
 void audioDecResume(AudioDec *ad);
 /*int getFIFOindex(_anon7* f, void* addr);
 int videoDecPutTs(_anon17* vd, long pts_val, long dts_val, unsigned char* start, int len);
-void audioDecBeginPut(_anon12* ad, unsigned char** ptr0, int* len0, unsigned char** ptr1, int* len1);
-void termAll();*/
+void audioDecBeginPut(_anon12* ad, unsigned char** ptr0, int* len0, unsigned char** ptr1, int* len1);*/
+void termAll();
 int viBufDelete(ViBuf *f);
 /*int videoDecDelete(_anon17* vd);
 int audioDecDelete();*/
 int GetAllWorkMemory();
 void OutPutCdErrorCode(unsigned int* err);
-/*int videoCallback(_anon11* str, void* data);
-int pcmCallback(_anon11* str, void* data);*/
+int videoCallback(sceMpeg *mp, sceMpegCbDataStr *str, void *data);
+int pcmCallback(sceMpeg *mp, sceMpegCbDataStr *str, void *data);
 int mpegError(sceMpeg *mp, sceMpegCbDataError *cberror, void *anyData);
-/*int mpegNodata();
-int mpegStopDMA();
-int mpegRestartDMA();
-int mpegTS(_anon5* cbts);*/
+int mpegNodata(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData);
+int mpegStopDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData);
+int mpegRestartDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData);
+int mpegTS(sceMpeg *mp, sceMpegCbDataTimeStamp *cbts, void *anyData);
 
 /*typedef struct _anon0;
 typedef struct _anon1;

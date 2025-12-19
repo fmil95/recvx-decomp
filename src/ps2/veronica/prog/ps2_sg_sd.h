@@ -46,6 +46,9 @@ SDE_ERR	sdSysFinish( Void);
 unsigned int CpSifDmaTransEEToIOP(unsigned int src, unsigned int dst, unsigned int size, unsigned int mode, unsigned int flag);
 void CpEEWait(int val);
 
+extern int iop_zero_buff;
+extern int iop_buff;
+
 /*typedef struct SDS_PORT_REF;
 typedef struct _anon0;
 typedef struct SDS_MEMBLK;

@@ -1,6 +1,9 @@
 #include "ps2_MovieFunc.h"
 #include "ps2_dummy.h"
 #include "ps2_loadtim2.h"
+#include "ps2_NaSystem.h"
+#include "ps2_sfd_mw.h"
+#include "ps2_sg_sd.h"
 #include "main.h"
 
 #include <string.h>
@@ -44,107 +47,121 @@ unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648];
 /*<unknown fundamental type (0xa510)> test_tag[1400];
 _anon24 db;*/
 
-// 
-// Start address: 0x2eb590
+// 99.95% matching
 void initAll()
 {
-	//SemaParam param;
-	//ThreadParam th_param;
-	// Line 187, Address: 0x2eb590, Func Offset: 0
-	// Line 192, Address: 0x2eb598, Func Offset: 0x8
-	// Line 193, Address: 0x2eb5a0, Func Offset: 0x10
-	// Line 201, Address: 0x2eb5b0, Func Offset: 0x20
-	// Line 208, Address: 0x2eb5b8, Func Offset: 0x28
-	// Line 212, Address: 0x2eb5c0, Func Offset: 0x30
-	// Line 208, Address: 0x2eb5c4, Func Offset: 0x34
-	// Line 212, Address: 0x2eb5cc, Func Offset: 0x3c
-	// Line 218, Address: 0x2eb5d4, Func Offset: 0x44
-	// Line 219, Address: 0x2eb5dc, Func Offset: 0x4c
-	// Line 218, Address: 0x2eb5e0, Func Offset: 0x50
-	// Line 219, Address: 0x2eb5f0, Func Offset: 0x60
-	// Line 225, Address: 0x2eb5f8, Func Offset: 0x68
-	// Line 226, Address: 0x2eb600, Func Offset: 0x70
-	// Line 228, Address: 0x2eb608, Func Offset: 0x78
-	// Line 231, Address: 0x2eb624, Func Offset: 0x94
-	// Line 232, Address: 0x2eb640, Func Offset: 0xb0
-	// Line 233, Address: 0x2eb65c, Func Offset: 0xcc
-	// Line 234, Address: 0x2eb678, Func Offset: 0xe8
-	// Line 235, Address: 0x2eb694, Func Offset: 0x104
-	// Line 238, Address: 0x2eb6b0, Func Offset: 0x120
-	// Line 242, Address: 0x2eb6b8, Func Offset: 0x128
-	// Line 244, Address: 0x2eb6c0, Func Offset: 0x130
-	// Line 242, Address: 0x2eb6c8, Func Offset: 0x138
-	// Line 244, Address: 0x2eb6cc, Func Offset: 0x13c
-	// Line 250, Address: 0x2eb6dc, Func Offset: 0x14c
-	// Line 246, Address: 0x2eb6e4, Func Offset: 0x154
-	// Line 257, Address: 0x2eb6e8, Func Offset: 0x158
-	// Line 246, Address: 0x2eb6ec, Func Offset: 0x15c
-	// Line 247, Address: 0x2eb6f4, Func Offset: 0x164
-	// Line 250, Address: 0x2eb700, Func Offset: 0x170
-	// Line 252, Address: 0x2eb708, Func Offset: 0x178
-	// Line 255, Address: 0x2eb714, Func Offset: 0x184
-	// Line 257, Address: 0x2eb71c, Func Offset: 0x18c
-	// Line 260, Address: 0x2eb72c, Func Offset: 0x19c
-	// Line 263, Address: 0x2eb738, Func Offset: 0x1a8
-	// Line 270, Address: 0x2eb740, Func Offset: 0x1b0
-	// Line 271, Address: 0x2eb748, Func Offset: 0x1b8
-	// Line 272, Address: 0x2eb750, Func Offset: 0x1c0
-	// Line 275, Address: 0x2eb758, Func Offset: 0x1c8
-	// Line 279, Address: 0x2eb75c, Func Offset: 0x1cc
-	// Line 299, Address: 0x2eb760, Func Offset: 0x1d0
-	// Line 287, Address: 0x2eb764, Func Offset: 0x1d4
-	// Line 293, Address: 0x2eb76c, Func Offset: 0x1dc
-	// Line 272, Address: 0x2eb774, Func Offset: 0x1e4
-	// Line 273, Address: 0x2eb77c, Func Offset: 0x1ec
-	// Line 274, Address: 0x2eb784, Func Offset: 0x1f4
-	// Line 275, Address: 0x2eb78c, Func Offset: 0x1fc
-	// Line 276, Address: 0x2eb794, Func Offset: 0x204
-	// Line 277, Address: 0x2eb79c, Func Offset: 0x20c
-	// Line 279, Address: 0x2eb7a4, Func Offset: 0x214
-	// Line 280, Address: 0x2eb7ac, Func Offset: 0x21c
-	// Line 281, Address: 0x2eb7b4, Func Offset: 0x224
-	// Line 299, Address: 0x2eb7bc, Func Offset: 0x22c
-	// Line 287, Address: 0x2eb7c0, Func Offset: 0x230
-	// Line 299, Address: 0x2eb7c8, Func Offset: 0x238
-	// Line 293, Address: 0x2eb7d4, Func Offset: 0x244
-	// Line 299, Address: 0x2eb7d8, Func Offset: 0x248
-	// Line 293, Address: 0x2eb7dc, Func Offset: 0x24c
-	// Line 299, Address: 0x2eb7e0, Func Offset: 0x250
-	// Line 301, Address: 0x2eb7ec, Func Offset: 0x25c
-	// Line 308, Address: 0x2eb810, Func Offset: 0x280
-	// Line 309, Address: 0x2eb824, Func Offset: 0x294
-	// Line 350, Address: 0x2eb82c, Func Offset: 0x29c
-	// Line 354, Address: 0x2eb834, Func Offset: 0x2a4
-	// Line 310, Address: 0x2eb838, Func Offset: 0x2a8
-	// Line 309, Address: 0x2eb83c, Func Offset: 0x2ac
-	// Line 310, Address: 0x2eb844, Func Offset: 0x2b4
-	// Line 311, Address: 0x2eb84c, Func Offset: 0x2bc
-	// Line 312, Address: 0x2eb854, Func Offset: 0x2c4
-	// Line 314, Address: 0x2eb85c, Func Offset: 0x2cc
-	// Line 352, Address: 0x2eb864, Func Offset: 0x2d4
-	// Line 354, Address: 0x2eb868, Func Offset: 0x2d8
-	// Line 314, Address: 0x2eb86c, Func Offset: 0x2dc
-	// Line 332, Address: 0x2eb870, Func Offset: 0x2e0
-	// Line 350, Address: 0x2eb878, Func Offset: 0x2e8
-	// Line 356, Address: 0x2eb87c, Func Offset: 0x2ec
-	// Line 340, Address: 0x2eb880, Func Offset: 0x2f0
-	// Line 351, Address: 0x2eb888, Func Offset: 0x2f8
-	// Line 332, Address: 0x2eb890, Func Offset: 0x300
-	// Line 333, Address: 0x2eb898, Func Offset: 0x308
-	// Line 334, Address: 0x2eb8a0, Func Offset: 0x310
-	// Line 351, Address: 0x2eb8a8, Func Offset: 0x318
-	// Line 335, Address: 0x2eb8ac, Func Offset: 0x31c
-	// Line 352, Address: 0x2eb8b0, Func Offset: 0x320
-	// Line 335, Address: 0x2eb8b4, Func Offset: 0x324
-	// Line 340, Address: 0x2eb8b8, Func Offset: 0x328
-	// Line 353, Address: 0x2eb8bc, Func Offset: 0x32c
-	// Line 354, Address: 0x2eb8c0, Func Offset: 0x330
-	// Line 340, Address: 0x2eb8c4, Func Offset: 0x334
-	// Line 356, Address: 0x2eb8c8, Func Offset: 0x338
-	// Line 357, Address: 0x2eb8d8, Func Offset: 0x348
-	// Line 358, Address: 0x2eb8ec, Func Offset: 0x35c
-	// Func End, Address: 0x2eb8f8, Func Offset: 0x368
-	scePrintf("initAll - UNIMPLEMENTED!\n");
+    struct ThreadParam th_param;
+    struct SemaParam param;
+
+    rmi.uiContFlag = 0;
+    
+    rmi.uiContFlag |= 0x1;
+    
+    GetAllWorkMemory();
+    
+    *D_CTRL |= 0x3;
+    
+    FlushCache(0);
+
+    readBuf->count = 0;
+    
+    readBuf->put = 0;
+    
+    readBuf->size = 16384;
+    
+    sceMpegInit();
+    sceIpuInit();
+    
+    sceMpegCreate(&videoDec.mpeg, mpegWork, 508928);
+    
+    sceMpegAddCallback(&videoDec.mpeg, sceMpegCbError, (sceMpegCallback)mpegError, NULL);
+    sceMpegAddCallback(&videoDec.mpeg, sceMpegCbNodata, mpegNodata, NULL);
+    sceMpegAddCallback(&videoDec.mpeg, sceMpegCbStopDMA, mpegStopDMA, NULL);
+    sceMpegAddCallback(&videoDec.mpeg, sceMpegCbRestartDMA, mpegRestartDMA, NULL);
+    sceMpegAddCallback(&videoDec.mpeg, sceMpegCbTimeStamp, (sceMpegCallback)mpegTS, NULL);
+    
+    videoDec.state = VD_STATE_NORMAL;
+    
+    videoDec.vibuf.data = viBufData;
+    
+    videoDec.vibuf.tag = UncAddr(viBufTag);
+    
+    videoDec.vibuf.n = 32;
+    
+    videoDec.vibuf.buffSize = 65536;
+    
+    videoDec.vibuf.ts = timeStamp;
+    videoDec.vibuf.n_ts = 64;
+    
+    param.initCount = 1;
+    param.maxCount = 1;
+    
+    videoDec.vibuf.sema = CreateSema(&param);
+    
+    viBufReset(&videoDec.vibuf);
+    
+    videoDec.vibuf.totalBytes = 0;
+
+    audioDec.state = AU_STATE_INIT;
+    
+    audioDec.hdrCount = 0;
+    
+    audioDec.data = audioBuff;
+    
+    audioDec.put = 0;
+    
+    audioDec.count = 0;
+    
+    audioDec.size = 24576;
+    
+    audioDec.totalBytes = 0;
+    audioDec.totalBytesSent = 0;
+    
+    audioDec.iopBuffSize = 12288;
+    
+    audioDec.iopLastPos = 0;
+    audioDec.iopPausePos = 0;
+    
+    audioDec.iopBuff = iop_buff;
+    audioDec.iopZero = iop_zero_buff;
+    
+    sceMpegAddStrCallback(&videoDec.mpeg, sceMpegStrM2V, 0, (sceMpegCallback)videoCallback, &readBuf);
+    sceMpegAddStrCallback(&videoDec.mpeg, sceMpegStrPCM, 0, (sceMpegCallback)pcmCallback, &readBuf);
+    
+    voBuf.data = UncAddr(voBufData);
+    
+    voBuf.tag = voBufTag;
+    
+    voBuf.size = 1;
+    
+    voBuf.count = 0;
+    
+    voBuf.write = 0;
+    
+    voBuf.tag->status = 0;
+    
+    rmi.readrest = infile.size;
+    rmi.writerest = infile.size;
+    
+    rmi.button_old = 0;
+    
+    rmi.iMovieState = 1;
+    rmi.iMovieFrame = Ps2_vcount;
+    
+    th_param.entry = videoDecMain;
+    
+    th_param.stack = videoDecStack;
+    th_param.stackSize = 16384;
+    
+    th_param.initPriority = 1;
+    
+    th_param.gpReg = &_gp;
+    
+    th_param.option = 0;
+    
+    videoDecTh = CreateThread(&th_param);
+    
+    StartThread(videoDecTh, &videoDec);
 }
 
 #pragma divbyzerocheck on
@@ -988,9 +1005,9 @@ void OutPutCdErrorCode(unsigned int* err)
 	scePrintf("OutPutCdErrorCode - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2ed430
-int videoCallback(_anon11* str, void* data)
+int videoCallback(sceMpeg *mp, sceMpegCbDataStr *str, void *data)
 {
 	int len;
 	int d1;
@@ -1002,7 +1019,7 @@ int videoCallback(_anon11* str, void* data)
 	int s1;
 	int s0;
 	unsigned char* ps0;
-	_anon16* rb;
+	//_anon16* rb;
 	// Line 1551, Address: 0x2ed430, Func Offset: 0
 	// Line 1555, Address: 0x2ed450, Func Offset: 0x20
 	// Line 1553, Address: 0x2ed454, Func Offset: 0x24
@@ -1025,7 +1042,7 @@ int videoCallback(_anon11* str, void* data)
 
 // 
 // Start address: 0x2ed550
-int pcmCallback(_anon11* str, void* data)
+int pcmCallback(sceMpeg *mp, sceMpegCbDataStr *str, void *data)
 {
 	int hdr_add;
 	int ret;
@@ -1036,7 +1053,7 @@ int pcmCallback(_anon11* str, void* data)
 	unsigned char* pd0;
 	int s0;
 	unsigned char* ps0;
-	_anon16* rb;
+	//_anon16* rb;
 	// Line 1594, Address: 0x2ed550, Func Offset: 0
 	// Line 1607, Address: 0x2ed568, Func Offset: 0x18
 	// Line 1608, Address: 0x2ed56c, Func Offset: 0x1c
@@ -1067,7 +1084,7 @@ int pcmCallback(_anon11* str, void* data)
 	// Line 1644, Address: 0x2ed6f0, Func Offset: 0x1a0
 	// Line 1645, Address: 0x2ed6fc, Func Offset: 0x1ac
 	// Func End, Address: 0x2ed718, Func Offset: 0x1c8
-}*/
+}
 
 // 100% matching!
 int mpegError(sceMpeg *mp, sceMpegCbDataError *cberror, void *anyData)
@@ -1077,9 +1094,9 @@ int mpegError(sceMpeg *mp, sceMpegCbDataError *cberror, void *anyData)
     return 1;
 }
 
-/*// 
+// 
 // Start address: 0x2ed750
-int mpegNodata()
+int mpegNodata(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
 {
 	int read_n;
 	int read_start;
@@ -1131,7 +1148,7 @@ int mpegNodata()
 
 // 
 // Start address: 0x2ed9d0
-int mpegStopDMA()
+int mpegStopDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
 {
 	// Line 1763, Address: 0x2ed9d0, Func Offset: 0
 	// Line 1764, Address: 0x2ed9d8, Func Offset: 0x8
@@ -1158,7 +1175,7 @@ int mpegStopDMA()
 
 // 
 // Start address: 0x2edad0
-int mpegRestartDMA()
+int mpegRestartDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
 {
 	int id;
 	int index_next;
@@ -1238,7 +1255,7 @@ int mpegRestartDMA()
 
 // 
 // Start address: 0x2edeb0
-int mpegTS(_anon5* cbts)
+int mpegTS(sceMpeg *mp, sceMpegCbDataTimeStamp *cbts, void *anyData)
 {
 	int rd;
 	int i;
@@ -1286,4 +1303,4 @@ int mpegTS(_anon5* cbts)
 	// Line 1930, Address: 0x2ee090, Func Offset: 0x1e0
 	// Line 1931, Address: 0x2ee094, Func Offset: 0x1e4
 	// Func End, Address: 0x2ee09c, Func Offset: 0x1ec
-}*/
+}
