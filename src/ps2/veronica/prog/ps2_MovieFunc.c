@@ -1020,16 +1020,12 @@ int videoDecDelete(VideoDec *vd)
     return 1;
 }
 
-// 
-// Start address: 0x2ed0f0
+// 100% matching!
 int audioDecDelete(AudioDec *ad)
 {
-	// Line 1436, Address: 0x2ed0f0, Func Offset: 0
-	// Line 1438, Address: 0x2ed0f8, Func Offset: 0x8
-	// Line 1440, Address: 0x2ed100, Func Offset: 0x10
-	// Line 1439, Address: 0x2ed104, Func Offset: 0x14
-	// Line 1440, Address: 0x2ed108, Func Offset: 0x18
-	// Func End, Address: 0x2ed110, Func Offset: 0x20
+    changeInputVolume(0);
+    
+    return 1;
 }
 
 // 100% matching!
