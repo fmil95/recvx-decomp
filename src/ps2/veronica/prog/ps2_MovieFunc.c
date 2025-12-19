@@ -728,34 +728,47 @@ int viBufReset(ViBuf *f)
     return TRUE;
 }
 
-/*// 
-// Start address: 0x2ec980
-void viBufBeginPut(_anon7* f, unsigned char** ptr0, int* len0, unsigned char** ptr1, int* len1)
+#pragma divbyzerocheck on
+
+// 100% matching! 
+void viBufBeginPut(ViBuf *f, u_char **ptr0, int *len0, u_char **ptr1, int *len1)
 {
-	int en;
-	int es;
-	// Line 1084, Address: 0x2ec980, Func Offset: 0
-	// Line 1091, Address: 0x2ec9a0, Func Offset: 0x20
-	// Line 1096, Address: 0x2ec9b8, Func Offset: 0x38
-	// Line 1097, Address: 0x2ec9e0, Func Offset: 0x60
-	// Line 1096, Address: 0x2ec9e4, Func Offset: 0x64
-	// Line 1099, Address: 0x2ec9e8, Func Offset: 0x68
-	// Line 1097, Address: 0x2ec9ec, Func Offset: 0x6c
-	// Line 1099, Address: 0x2ec9fc, Func Offset: 0x7c
-	// Line 1100, Address: 0x2eca08, Func Offset: 0x88
-	// Line 1101, Address: 0x2eca14, Func Offset: 0x94
-	// Line 1102, Address: 0x2eca18, Func Offset: 0x98
-	// Line 1104, Address: 0x2eca1c, Func Offset: 0x9c
-	// Line 1105, Address: 0x2eca24, Func Offset: 0xa4
-	// Line 1106, Address: 0x2eca30, Func Offset: 0xb0
-	// Line 1107, Address: 0x2eca3c, Func Offset: 0xbc
-	// Line 1108, Address: 0x2eca44, Func Offset: 0xc4
-	// Line 1112, Address: 0x2eca54, Func Offset: 0xd4
-	// Line 1113, Address: 0x2eca5c, Func Offset: 0xdc
-	// Func End, Address: 0x2eca7c, Func Offset: 0xfc
+    int es;
+    int en;
+    int fs;
+    int fn;
+
+    WAITSEMA(f->sema);
+
+    fs = FS(f);
+    fn = FN(f);
+
+    es = (fs + f->readBytes) % f->buffSize;
+    en = fn - f->readBytes;
+
+    if ((f->buffSize - es) >= en) 
+    {	
+	    *ptr0 = (u_char*)f->data + es;
+    	*len0 = en;
+        
+    	*ptr1 = NULL;
+    	*len1 = 0;
+    }
+    else 
+    {				
+	    *ptr0 = (u_char*)f->data + es;
+    	*len0 = f->buffSize - es;
+        
+    	*ptr1 = (u_char*)f->data;
+    	*len1 = en - (f->buffSize - es);
+    }
+
+    SIGNALSEMA(f->sema);
 }
 
-// 
+#pragma divbyzerocheck off
+
+/*// 
 // Start address: 0x2eca80
 void viBufEndPut(_anon7* f, int size)
 {

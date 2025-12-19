@@ -3339,6 +3339,20 @@ typedef struct {
 #define DMA_ID_NEXT	2
 #define DMA_ID_REF	3
 
+#define WAITSEMA(v) WaitSema(v)
+#define SIGNALSEMA(v) SignalSema(v)
+
+#define REST	2
+
+#define TAG_ADDR(i)	((u_int)DmaAddr(f->tag + i))
+#define DATA_ADDR(i)	((u_int)f->data + VIBUF_ELM_SIZE * (i))
+#define WRAP_ADDR(addr) ((u_int)(f->data)     + (((u_int)(addr) - (u_int)(f->data)) % (VIBUF_ELM_SIZE * f->n)))
+
+#define IsInRegion(i,start,len,n)  (     (0 <= (((i) + (n) - (start)) % (n))) &&     ((((i) + (n) - (start)) % (n)) < (len)))
+
+#define FS(f)	((f->dmaStart + f->dmaN) * VIBUF_ELM_SIZE)
+#define FN(f)	((f->n - REST -  f->dmaN) * VIBUF_ELM_SIZE)
+
 typedef union {
     u_long128	q;
     u_long 	l[2];
