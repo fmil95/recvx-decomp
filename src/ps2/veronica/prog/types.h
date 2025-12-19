@@ -2541,49 +2541,6 @@ typedef struct SELECTFILEWINDOW
     unsigned int ulfoundationColor; // offset 0x24, size 0x4
 } SELECTFILEWINDOW;
 
-typedef struct SYSLOAD_SCREEN 
-{
-    // total size: 0x38
-    unsigned int ulState; // offset 0x0, size 0x4
-    unsigned int ulSubState; // offset 0x4, size 0x4
-    unsigned int ulMemCheckCountTimer; // offset 0x8, size 0x4
-    unsigned int ulFileSize; // offset 0xC, size 0x4
-    unsigned short usExitFlag; // offset 0x10, size 0x2
-    unsigned short usLoopCount; // offset 0x12, size 0x2
-    int lCardState; // offset 0x14, size 0x4
-    char cMesFlag; // offset 0x18, size 0x1
-    CONFIGFILE* pConfigFile; // offset 0x1C, size 0x4
-    SAVEFILE* pSaveFile; // offset 0x20, size 0x4
-    ICONINFORMATION* pIconInfo; // offset 0x24, size 0x4
-    MEMORYCARDSTATE* pMcState; // offset 0x28, size 0x4
-    SELECTFILEINFO* pSelectFileInfo; // offset 0x2C, size 0x4
-    SELECTFILEWINDOW* pSelectFileWindow; // offset 0x30, size 0x4
-    void* vpReadBuffer; // offset 0x34, size 0x4
-} SYSLOAD_SCREEN;
-
-typedef struct SYSSAVE_SCREEN 
-{
-    // total size: 0x3C
-    unsigned int ulState;                // offset 0x0, size 0x4
-    unsigned int ulSubState;             // offset 0x4, size 0x4
-    unsigned int ulMemCheckCountTimer;   // offset 0x8, size 0x4
-    unsigned int ulFileSize;             // offset 0xC, size 0x4
-    int lCardState;                      // offset 0x10, size 0x4
-    short sSelectCur;                    // offset 0x14, size 0x2
-    unsigned short usExitFlag;           // offset 0x16, size 0x2
-    unsigned short usMesMode;            // offset 0x18, size 0x2
-    unsigned short usSaveMode;           // offset 0x1A, size 0x2
-    unsigned short usLoopCount;          // offset 0x1C, size 0x2
-    char cMesFlag;                       // offset 0x1E, size 0x1
-    CONFIGFILE* pConfigFile;             // offset 0x20, size 0x4
-    SAVEFILE* pSaveFile;                 // offset 0x24, size 0x4
-    ICONINFORMATION* pIconInfo;          // offset 0x28, size 0x4
-    MEMORYCARDSTATE* pMcState;           // offset 0x2C, size 0x4
-    SELECTFILEINFO* pSelectFileInfo;     // offset 0x30, size 0x4
-    SELECTFILEWINDOW* pSelectFileWindow; // offset 0x34, size 0x4
-    void* vpReadBuffer;                  // offset 0x38, size 0x4
-} SYSSAVE_SCREEN;
-
 typedef struct EFFECT_INFO
 {
 	// total size: 0x8
@@ -3115,30 +3072,6 @@ typedef struct READ_BUF
     int size;                  // offset 0x401C, size 0x4
 } READ_BUF;
 
-typedef struct LOAD_SCREEN 
-{
-    // total size: 0x3C
-    unsigned int ulState;                // offset 0x0, size 0x4
-    unsigned int ulSubState;             // offset 0x4, size 0x4
-    unsigned int ulMemCheckCountTimer;   // offset 0x8, size 0x4
-    unsigned int ulFileSize;             // offset 0xC, size 0x4
-    int lCardState;                      // offset 0x10, size 0x4
-    short sCursorX;                      // offset 0x14, size 0x2
-    short sCursorY;                      // offset 0x16, size 0x2
-    short sSelectCur;                    // offset 0x18, size 0x2
-    unsigned short usExitFlag;           // offset 0x1A, size 0x2
-    unsigned short usSaveEnd;            // offset 0x1C, size 0x2
-    unsigned short usLoopCount;          // offset 0x1E, size 0x2
-    char cMesFlag;                       // offset 0x20, size 0x1
-    char cCgFlag;                        // offset 0x21, size 0x1
-    CONFIGFILE* pConfigFile;             // offset 0x24, size 0x4
-    SAVEFILE* pSaveFile;                 // offset 0x28, size 0x4
-    ICONINFORMATION* pIconInfo;          // offset 0x2C, size 0x4
-    MEMORYCARDSTATE* pMcState;           // offset 0x30, size 0x4
-    SELECTFILEINFO* pSelectFileInfo;     // offset 0x34, size 0x4
-    SELECTFILEWINDOW* pSelectFileWindow; // offset 0x38, size 0x4
-} LOAD_SCREEN;
-
 typedef struct SNDQUE
 {
     // total size: 0x8
@@ -3182,31 +3115,6 @@ typedef struct EnemySlot
     unsigned short Prio;    // offset 0x8, size 0x2
     unsigned short EnemyNo; // offset 0xA, size 0x2
 } EnemySlot;
-
-typedef struct SAVE_SCREEN 
-{
-    // total size: 0x40
-    unsigned int ulState;                // offset 0x0, size 0x4
-    unsigned int ulSubState;             // offset 0x4, size 0x4
-    unsigned int ulMemCheckCountTimer;   // offset 0x8, size 0x4
-    unsigned int ulFileSize;             // offset 0xC, size 0x4
-    int lCardState;                      // offset 0x10, size 0x4
-    short sCursorX;                      // offset 0x14, size 0x2
-    short sCursorY;                      // offset 0x16, size 0x2
-    short sSelectCur;                    // offset 0x18, size 0x2
-    unsigned short usExitFlag;           // offset 0x1A, size 0x2
-    unsigned short usSaveEnd;            // offset 0x1C, size 0x2
-    unsigned short usLoopCount;          // offset 0x1E, size 0x2
-    char cMesFlag;                       // offset 0x20, size 0x1
-    char cCgFlag;                        // offset 0x21, size 0x1
-    CONFIGFILE* pConfigFile;             // offset 0x24, size 0x4
-    SAVEFILE* pSaveFile;                 // offset 0x28, size 0x4
-    ICONINFORMATION* pIconInfo;          // offset 0x2C, size 0x4
-    MEMORYCARDSTATE* pMcState;           // offset 0x30, size 0x4
-    SELECTFILEINFO* pSelectFileInfo;     // offset 0x34, size 0x4
-    SELECTFILEWINDOW* pSelectFileWindow; // offset 0x38, size 0x4
-    void* vpReadBuffer;                  // offset 0x3C, size 0x4
-} SAVE_SCREEN;
 
 typedef struct COLBAR_DEF
 {

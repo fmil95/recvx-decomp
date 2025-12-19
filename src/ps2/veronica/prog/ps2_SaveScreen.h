@@ -1,6 +1,31 @@
 #ifndef _PS2_SAVESCREEN_H_
 #define _PS2_SAVESCREEN_H_
 
+typedef struct SAVE_SCREEN 
+{
+    // total size: 0x40
+    unsigned int ulState;                // offset 0x0, size 0x4
+    unsigned int ulSubState;             // offset 0x4, size 0x4
+    unsigned int ulMemCheckCountTimer;   // offset 0x8, size 0x4
+    unsigned int ulFileSize;             // offset 0xC, size 0x4
+    int lCardState;                      // offset 0x10, size 0x4
+    short sCursorX;                      // offset 0x14, size 0x2
+    short sCursorY;                      // offset 0x16, size 0x2
+    short sSelectCur;                    // offset 0x18, size 0x2
+    unsigned short usExitFlag;           // offset 0x1A, size 0x2
+    unsigned short usSaveEnd;            // offset 0x1C, size 0x2
+    unsigned short usLoopCount;          // offset 0x1E, size 0x2
+    char cMesFlag;                       // offset 0x20, size 0x1
+    char cCgFlag;                        // offset 0x21, size 0x1
+    CONFIGFILE* pConfigFile;             // offset 0x24, size 0x4
+    SAVEFILE* pSaveFile;                 // offset 0x28, size 0x4
+    ICONINFORMATION* pIconInfo;          // offset 0x2C, size 0x4
+    MEMORYCARDSTATE* pMcState;           // offset 0x30, size 0x4
+    SELECTFILEINFO* pSelectFileInfo;     // offset 0x34, size 0x4
+    SELECTFILEWINDOW* pSelectFileWindow; // offset 0x38, size 0x4
+    void* vpReadBuffer;                  // offset 0x3C, size 0x4
+} SAVE_SCREEN;
+
 SAVE_SCREEN* CreateSaveScreen(SAVE_SCREEN* pSave, void* vpWorkPtrSys);
 void DispMessageSelect(char cSelectMes);
 void DispTexture(SAVE_SCREEN* pSave);
