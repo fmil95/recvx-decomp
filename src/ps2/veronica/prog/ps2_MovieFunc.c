@@ -461,47 +461,68 @@ int copy2area(unsigned char* pd0, int d0, unsigned char* pd1, int d1, unsigned c
 	// Func End, Address: 0x2ec220, Func Offset: 0x130
 }*/
 
-// 
-// Start address: 0x2ec220
-int audioDecSendToIOP(AudioDec *ad)
+#pragma divbyzerocheck on
+
+// 100% matching!
+int audioDecSendToIOP(AudioDec *ad) 
 {
-	int pos;
-	int countAdj;
-	int count_sent;
-	int s1;
-	unsigned char* ps0;
-	int d1;
-	int d0;
-	int pd1;
-	int pd0;
-	// Line 796, Address: 0x2ec220, Func Offset: 0
-	// Line 804, Address: 0x2ec230, Func Offset: 0x10
-	// Line 808, Address: 0x2ec26c, Func Offset: 0x4c
-	// Line 812, Address: 0x2ec278, Func Offset: 0x58
-	// Line 813, Address: 0x2ec29c, Func Offset: 0x7c
-	// Line 814, Address: 0x2ec2ac, Func Offset: 0x8c
-	// Line 816, Address: 0x2ec2b0, Func Offset: 0x90
-	// Line 819, Address: 0x2ec2b8, Func Offset: 0x98
-	// Line 821, Address: 0x2ec2d4, Func Offset: 0xb4
-	// Line 825, Address: 0x2ec2f0, Func Offset: 0xd0
-	// Line 829, Address: 0x2ec314, Func Offset: 0xf4
-	// Line 825, Address: 0x2ec31c, Func Offset: 0xfc
-	// Line 831, Address: 0x2ec324, Func Offset: 0x104
-	// Line 834, Address: 0x2ec33c, Func Offset: 0x11c
-	// Line 835, Address: 0x2ec364, Func Offset: 0x144
-	// Line 837, Address: 0x2ec374, Func Offset: 0x154
-	// Line 839, Address: 0x2ec380, Func Offset: 0x160
-	// Line 840, Address: 0x2ec38c, Func Offset: 0x16c
-	// Line 842, Address: 0x2ec3a8, Func Offset: 0x188
-	// Line 840, Address: 0x2ec3ac, Func Offset: 0x18c
-	// Line 843, Address: 0x2ec3b0, Func Offset: 0x190
-	// Func End, Address: 0x2ec3c4, Func Offset: 0x1a4
-	scePrintf("audioDecSendToIOP - UNIMPLEMENTED!\n");
+    int pd0, pd1, d0, d1;
+    u_char *ps0, *ps1;
+    int s0, s1;
+    int count_sent;
+    int countAdj;
+    int pos;
+
+    count_sent = 0;
+
+    pos = 0;
+
+    switch (ad->state)
+    {
+    case AU_STATE_INIT:
+    case AU_STATE_PAUSE:
+        return 0;
+    case AU_STATE_PRESET:
+        pd0 = ad->iopBuff + (ad->totalBytesSent % ad->iopBuffSize);
+        d0 = ad->iopBuffSize - ad->totalBytesSent;
+        
+        pd1 = 0;
+        d1 = 0;
+	    break;
+    case AU_STATE_PLAY:
+        pos = (sceSdRemote(1, rSdBlockTransStatus, SD_INIT_HOT) & 0xFFFFFF) - ad->iopBuff;
+        
+        iopGetArea(&pd0, &d0, &pd1, &d1, ad, pos);
+	    break;
+    }
+
+    ps0 = ad->data + (((ad->put - ad->count) + ad->size) % ad->size);
+    ps1 = ad->data;
+
+    countAdj = (ad->count / UNIT_SIZE) * UNIT_SIZE;
+
+    s0 = MIN(countAdj, (ad->data + ad->size) - ps0);
+    s1 = countAdj - s0;
+
+    if (((d0 + d1) >= UNIT_SIZE) && ((s0 + s1) >= UNIT_SIZE)) 
+    {
+    	count_sent = sendToIOP2area(pd0, d0, pd1, d1, ps0, s0, ps1, s1);
+    }
+
+    ad->count -= count_sent;
+
+    ad->totalBytesSent += count_sent;
+    
+    ad->iopLastPos = (ad->iopLastPos + count_sent) % ad->iopBuffSize;
+
+    return count_sent;
 }
 
-/*// 
+#pragma divbyzerocheck off
+
+// 
 // Start address: 0x2ec3d0
-void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, _anon12* ad, int pos)
+static void iopGetArea(int *pd0, int *d0, int *pd1, int *d1, AudioDec *ad, int pos)
 {
 	int len;
 	// Line 851, Address: 0x2ec3d0, Func Offset: 0
@@ -522,7 +543,7 @@ void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, _anon12* ad, int pos)
 
 // 
 // Start address: 0x2ec470
-int sendToIOP2area(int pd0, int d0, int pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1)
+static int sendToIOP2area(int pd0, int d0, int pd1, int d1, u_char *ps0, int s0, u_char *ps1, int s1)
 {
 	int diff;
 	// Line 878, Address: 0x2ec470, Func Offset: 0
@@ -549,7 +570,7 @@ int sendToIOP2area(int pd0, int d0, int pd1, int d1, unsigned char* ps0, int s0,
 	// Line 908, Address: 0x2ec59c, Func Offset: 0x12c
 	// Line 909, Address: 0x2ec5a0, Func Offset: 0x130
 	// Func End, Address: 0x2ec5cc, Func Offset: 0x15c
-}*/
+}
 
 // 100% matching! 
 int sendToIOP(int dst, u_char *src, int size)

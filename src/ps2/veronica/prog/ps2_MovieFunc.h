@@ -59,8 +59,8 @@ void videoDecMain(VideoDec *vd);
 int decBs0(VideoDec *vd);
 /*int copy2area(unsigned char* pd0, int d0, unsigned char* pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1);*/
 int audioDecSendToIOP(AudioDec *ad);
-/*void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, _anon12* ad, int pos);
-int sendToIOP2area(int pd0, int d0, int pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1);*/
+static void iopGetArea(int *pd0, int *d0, int *pd1, int *d1, AudioDec *ad, int pos);
+/*int sendToIOP2area(int pd0, int d0, int pd1, int d1, unsigned char* ps0, int s0, unsigned char* ps1, int s1);*/
 int sendToIOP(int dst, u_char *src, int size);
 void changeInputVolume(u_int val);
 /*void setD3_CHCR(unsigned int val);*/
