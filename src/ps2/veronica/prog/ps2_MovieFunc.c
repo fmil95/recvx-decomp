@@ -978,24 +978,22 @@ void audioDecBeginPut(AudioDec *ad, u_char **ptr0, int *len0, u_char **ptr1, int
     }
 }
 
-// 
-// Start address: 0x2ecfc0
+// 100% matching!
 void termAll()
 {
-	// Line 1364, Address: 0x2ecfc0, Func Offset: 0
-	// Line 1366, Address: 0x2ecfc4, Func Offset: 0x4
-	// Line 1364, Address: 0x2ecfcc, Func Offset: 0xc
-	// Line 1366, Address: 0x2ecfd0, Func Offset: 0x10
-	// Line 1370, Address: 0x2ecfe4, Func Offset: 0x24
-	// Line 1371, Address: 0x2ecff0, Func Offset: 0x30
-	// Line 1383, Address: 0x2ecffc, Func Offset: 0x3c
-	// Line 1384, Address: 0x2ed008, Func Offset: 0x48
-	// Line 1390, Address: 0x2ed014, Func Offset: 0x54
-	// Line 1394, Address: 0x2ed01c, Func Offset: 0x5c
-	// Line 1404, Address: 0x2ed034, Func Offset: 0x74
-	// Line 1405, Address: 0x2ed04c, Func Offset: 0x8c
-	// Func End, Address: 0x2ed058, Func Offset: 0x98
-	scePrintf("termAll - UNIMPLEMENTED!\n");
+    sceSdRemote(1, 32992, AUTODMA_CH, SD_TRANS_MODE_STOP, NULL, 0);
+    
+    TerminateThread(videoDecTh);
+    DeleteThread(videoDecTh);
+
+    videoDecDelete(&videoDec);
+    audioDecDelete(&audioDec);
+    
+    sceCdStStop();
+    
+    memset(ADX_STREAM_BUFFER, 0, 469120);
+    
+    rmi.uiContFlag &= ~0x1;
 }
 
 // 100% matching!
@@ -1013,9 +1011,9 @@ int viBufDelete(ViBuf *f)
     return TRUE;
 }
 
-/*// 
+// 
 // Start address: 0x2ed0b0
-int videoDecDelete(_anon17* vd)
+int videoDecDelete(VideoDec *vd)
 {
 	// Line 1424, Address: 0x2ed0b0, Func Offset: 0
 	// Line 1426, Address: 0x2ed0c0, Func Offset: 0x10
@@ -1028,7 +1026,7 @@ int videoDecDelete(_anon17* vd)
 
 // 
 // Start address: 0x2ed0f0
-int audioDecDelete()
+int audioDecDelete(AudioDec *ad)
 {
 	// Line 1436, Address: 0x2ed0f0, Func Offset: 0
 	// Line 1438, Address: 0x2ed0f8, Func Offset: 0x8
@@ -1036,7 +1034,7 @@ int audioDecDelete()
 	// Line 1439, Address: 0x2ed104, Func Offset: 0x14
 	// Line 1440, Address: 0x2ed108, Func Offset: 0x18
 	// Func End, Address: 0x2ed110, Func Offset: 0x20
-}*/
+}
 
 // 100% matching!
 int GetAllWorkMemory()
