@@ -552,35 +552,45 @@ static void iopGetArea(int *pd0, int *d0, int *pd1, int *d1, AudioDec *ad, int p
 
 #pragma divbyzerocheck off
 
-// 
-// Start address: 0x2ec470
+// 100% matching! 
 static int sendToIOP2area(int pd0, int d0, int pd1, int d1, u_char *ps0, int s0, u_char *ps1, int s1)
 {
-	int diff;
-	// Line 878, Address: 0x2ec470, Func Offset: 0
-	// Line 879, Address: 0x2ec494, Func Offset: 0x24
-	// Line 878, Address: 0x2ec4a0, Func Offset: 0x30
-	// Line 879, Address: 0x2ec4bc, Func Offset: 0x4c
-	// Line 881, Address: 0x2ec4c4, Func Offset: 0x54
-	// Line 883, Address: 0x2ec4c8, Func Offset: 0x58
-	// Line 885, Address: 0x2ec4d4, Func Offset: 0x64
-	// Line 887, Address: 0x2ec4dc, Func Offset: 0x6c
-	// Line 888, Address: 0x2ec4e4, Func Offset: 0x74
-	// Line 894, Address: 0x2ec4e8, Func Offset: 0x78
-	// Line 895, Address: 0x2ec4f4, Func Offset: 0x84
-	// Line 896, Address: 0x2ec504, Func Offset: 0x94
-	// Line 897, Address: 0x2ec514, Func Offset: 0xa4
-	// Line 898, Address: 0x2ec528, Func Offset: 0xb8
-	// Line 899, Address: 0x2ec530, Func Offset: 0xc0
-	// Line 900, Address: 0x2ec540, Func Offset: 0xd0
-	// Line 901, Address: 0x2ec550, Func Offset: 0xe0
-	// Line 902, Address: 0x2ec560, Func Offset: 0xf0
-	// Line 903, Address: 0x2ec574, Func Offset: 0x104
-	// Line 904, Address: 0x2ec57c, Func Offset: 0x10c
-	// Line 905, Address: 0x2ec58c, Func Offset: 0x11c
-	// Line 908, Address: 0x2ec59c, Func Offset: 0x12c
-	// Line 909, Address: 0x2ec5a0, Func Offset: 0x130
-	// Func End, Address: 0x2ec5cc, Func Offset: 0x15c
+    if ((d0 + d1) < (s0 + s1)) 
+    {
+        int diff;
+
+        diff = (s0 + s1) - (d0 + d1);
+        
+    	if (diff >= s1)
+        {
+    	    s0 -= diff - s1;
+    	    s1 = 0;
+    	}
+        else
+        {
+    	    s1 -= diff;
+    	}
+    }
+
+    if (s0 >= d0)
+    {
+    	sendToIOP(pd0, ps0, d0);
+    	sendToIOP(pd1, ps0 + d0, s0 - d0);
+    	sendToIOP((pd1 + s0) - d0, ps1, s1);
+    } 
+    else if (s1 >= (d0 - s0)) 
+    { 
+        sendToIOP(pd0, ps0, s0);
+        sendToIOP(pd0 + s0,	ps1, d0 - s0);
+        sendToIOP(pd1, (ps1 + d0) - s0, s1 - (d0 - s0));
+    }
+    else 
+    { 
+        sendToIOP(pd0, ps0, s0);
+        sendToIOP(pd0 + s0,	ps1, s1);
+    }
+    
+    return s0 + s1;
 }
 
 // 100% matching! 
