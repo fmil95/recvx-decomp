@@ -646,21 +646,19 @@ void changeInputVolume(u_int val)
     sceSdRemote(1, rSdSetParam, AUTODMA_CH | SD_P_BVOLR, val & 0xFFFF);
 }
 
-/*// 
-// Start address: 0x2ec720
-void setD3_CHCR(unsigned int val)
+// 100% matching!
+void setD3_CHCR(u_int val)
 {
-	unsigned int stat;
-	// Line 1003, Address: 0x2ec720, Func Offset: 0
-	// Line 1004, Address: 0x2ec740, Func Offset: 0x20
-	// Line 1005, Address: 0x2ec750, Func Offset: 0x30
-	// Line 1006, Address: 0x2ec754, Func Offset: 0x34
-	// Line 1004, Address: 0x2ec75c, Func Offset: 0x3c
-	// Line 1005, Address: 0x2ec764, Func Offset: 0x44
-	// Line 1006, Address: 0x2ec768, Func Offset: 0x48
-	// Line 1008, Address: 0x2ec774, Func Offset: 0x54
-	// Func End, Address: 0x2ec77c, Func Offset: 0x5c
-}*/
+    DI();
+    
+    *D_ENABLEW = *D_ENABLER | 0x10000;	
+    
+    *D3_CHCR = val;
+    
+    *D_ENABLEW = *D_ENABLER & ~0x10000;	
+    
+    EI();
+}
 
 // 100% matching!
 void setD4_CHCR(u_int val)
