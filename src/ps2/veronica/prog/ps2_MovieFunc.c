@@ -851,18 +851,16 @@ void voBufIncCount(VoBuf *f)
     EI();
 }
 
-// 
-// Start address: 0x2ecdf0
+// 100% matching!
 void audioDecResume(AudioDec *ad)
 {
-	// Line 1260, Address: 0x2ecdf0, Func Offset: 0
-	// Line 1267, Address: 0x2ece00, Func Offset: 0x10
-	// Line 1269, Address: 0x2ece08, Func Offset: 0x18
-	// Line 1274, Address: 0x2ece34, Func Offset: 0x44
-	// Line 1277, Address: 0x2ece3c, Func Offset: 0x4c
-	// Line 1278, Address: 0x2ece44, Func Offset: 0x54
-	// Func End, Address: 0x2ece54, Func Offset: 0x64
-	scePrintf("audioDecResume - UNIMPLEMENTED!\n");
+    changeInputVolume(0);
+
+    sceSdRemote(1, rSdBlockTrans, AUTODMA_CH, SD_TRANS_MODE_WRITE_FROM | SD_BLOCK_LOOP, ad->iopBuff, (ad->iopBuffSize / UNIT_SIZE) * UNIT_SIZE, ad->iopBuff + ad->iopPausePos);
+
+    changeInputVolume(32767);
+
+    ad->state = AU_STATE_PLAY;
 }
 
 // 100% matching! 
