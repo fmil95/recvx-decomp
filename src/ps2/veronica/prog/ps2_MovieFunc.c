@@ -523,28 +523,34 @@ int audioDecSendToIOP(AudioDec *ad)
     return count_sent;
 }
 
-#pragma divbyzerocheck off
-
-// 
-// Start address: 0x2ec3d0
+// 100% matching!
 static void iopGetArea(int *pd0, int *d0, int *pd1, int *d1, AudioDec *ad, int pos)
 {
-	int len;
-	// Line 851, Address: 0x2ec3d0, Func Offset: 0
-	// Line 858, Address: 0x2ec3f4, Func Offset: 0x24
-	// Line 855, Address: 0x2ec3f8, Func Offset: 0x28
-	// Line 858, Address: 0x2ec400, Func Offset: 0x30
-	// Line 859, Address: 0x2ec40c, Func Offset: 0x3c
-	// Line 860, Address: 0x2ec418, Func Offset: 0x48
-	// Line 861, Address: 0x2ec41c, Func Offset: 0x4c
-	// Line 863, Address: 0x2ec420, Func Offset: 0x50
-	// Line 866, Address: 0x2ec428, Func Offset: 0x58
-	// Line 867, Address: 0x2ec434, Func Offset: 0x64
-	// Line 868, Address: 0x2ec444, Func Offset: 0x74
-	// Line 869, Address: 0x2ec44c, Func Offset: 0x7c
-	// Line 871, Address: 0x2ec460, Func Offset: 0x90
-	// Func End, Address: 0x2ec468, Func Offset: 0x98
+    int len;
+
+    len = (((pos + ad->iopBuffSize) - ad->iopLastPos) - UNIT_SIZE) % ad->iopBuffSize;
+
+    len = (len / UNIT_SIZE) * UNIT_SIZE;
+
+    if ((ad->iopBuffSize - ad->iopLastPos) >= len)
+    { 
+    	*pd0 = ad->iopBuff + ad->iopLastPos;
+    	*d0 = len;
+        
+    	*pd1 = 0;
+    	*d1 = 0;
+    } 
+    else 
+    {			    
+    	*pd0 = ad->iopBuff + ad->iopLastPos;
+    	*d0 = ad->iopBuffSize - ad->iopLastPos;
+        
+    	*pd1 = ad->iopBuff;
+    	*d1 = len - (ad->iopBuffSize - ad->iopLastPos);
+    }
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x2ec470
