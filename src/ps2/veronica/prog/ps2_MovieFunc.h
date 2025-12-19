@@ -91,6 +91,12 @@ int mpegStopDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData);
 int mpegRestartDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData);
 int mpegTS(sceMpeg *mp, sceMpegCbDataTimeStamp *cbts, void *anyData);
 
+// 0% matching
+static inline void *DmaAddr(void *val)
+{
+    return (void*)((u_int)val & UNCMASK);
+}
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef union _anon2;
