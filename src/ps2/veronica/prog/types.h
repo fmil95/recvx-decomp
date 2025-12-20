@@ -3348,6 +3348,11 @@ typedef struct {
 #define DATA_ADDR(i)	((u_int)f->data + VIBUF_ELM_SIZE * (i))
 #define WRAP_ADDR(addr) ((u_int)(f->data)     + (((u_int)(addr) - (u_int)(f->data)) % (VIBUF_ELM_SIZE * f->n)))
 
+// custom macros
+#define TAG_ADDR_EX(i)	((u_int)DmaAddr(videoDec.vibuf.tag + i))
+#define DATA_ADDR_EX(i)	((u_int)videoDec.vibuf.data + VIBUF_ELM_SIZE * (i))
+#define WRAP_ADDR_EX(addr) ((u_int)(videoDec.vibuf.data)     + (((u_int)(addr) - (u_int)(videoDec.vibuf.data)) % (VIBUF_ELM_SIZE * videoDec.vibuf.n)))
+
 #define IsInRegion(i,start,len,n)  (     (0 <= (((i) + (n) - (start)) % (n))) &&     ((((i) + (n) - (start)) % (n)) < (len)))
 
 #define FS(f)	((f->dmaStart + f->dmaN) * VIBUF_ELM_SIZE)

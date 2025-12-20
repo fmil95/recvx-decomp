@@ -1343,85 +1343,101 @@ int mpegStopDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
     return 1;
 }
 
-// 
-// Start address: 0x2edad0
+#pragma divbyzerocheck on 
+
+// 100% matching!
 int mpegRestartDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
 {
-	int id;
-	int index_next;
-	int index;
-	unsigned int d4chcr_next;
-	unsigned int d4tadr_next;
-	unsigned int d4qwc_next;
-	unsigned int d4madr_next;
-	int ifc;
-	int fp;
-	unsigned int bp;
-	// Line 1797, Address: 0x2edad0, Func Offset: 0
-	// Line 1798, Address: 0x2edaf4, Func Offset: 0x24
-	// Line 1801, Address: 0x2edafc, Func Offset: 0x2c
-	// Line 1799, Address: 0x2edb04, Func Offset: 0x34
-	// Line 1800, Address: 0x2edb0c, Func Offset: 0x3c
-	// Line 1801, Address: 0x2edb14, Func Offset: 0x44
-	// Line 1802, Address: 0x2edb18, Func Offset: 0x48
-	// Line 1798, Address: 0x2edb20, Func Offset: 0x50
-	// Line 1803, Address: 0x2edb24, Func Offset: 0x54
-	// Line 1802, Address: 0x2edb2c, Func Offset: 0x5c
-	// Line 1801, Address: 0x2edb30, Func Offset: 0x60
-	// Line 1804, Address: 0x2edb38, Func Offset: 0x68
-	// Line 1809, Address: 0x2edb40, Func Offset: 0x70
-	// Line 1814, Address: 0x2edb50, Func Offset: 0x80
-	// Line 1815, Address: 0x2edb64, Func Offset: 0x94
-	// Line 1816, Address: 0x2edb6c, Func Offset: 0x9c
-	// Line 1817, Address: 0x2edb74, Func Offset: 0xa4
-	// Line 1816, Address: 0x2edb7c, Func Offset: 0xac
-	// Line 1817, Address: 0x2edb80, Func Offset: 0xb0
-	// Line 1818, Address: 0x2edb88, Func Offset: 0xb8
-	// Line 1822, Address: 0x2edbc0, Func Offset: 0xf0
-	// Line 1818, Address: 0x2edbc8, Func Offset: 0xf8
-	// Line 1822, Address: 0x2edbd4, Func Offset: 0x104
-	// Line 1825, Address: 0x2edbd8, Func Offset: 0x108
-	// Line 1822, Address: 0x2edbe0, Func Offset: 0x110
-	// Line 1825, Address: 0x2edbf0, Func Offset: 0x120
-	// Line 1826, Address: 0x2edc2c, Func Offset: 0x15c
-	// Line 1827, Address: 0x2edc38, Func Offset: 0x168
-	// Line 1829, Address: 0x2edc48, Func Offset: 0x178
-	// Line 1831, Address: 0x2edc80, Func Offset: 0x1b0
-	// Line 1832, Address: 0x2edc94, Func Offset: 0x1c4
-	// Line 1831, Address: 0x2edca0, Func Offset: 0x1d0
-	// Line 1833, Address: 0x2edca4, Func Offset: 0x1d4
-	// Line 1832, Address: 0x2edcac, Func Offset: 0x1dc
-	// Line 1833, Address: 0x2edcb8, Func Offset: 0x1e8
-	// Line 1837, Address: 0x2edd00, Func Offset: 0x230
-	// Line 1833, Address: 0x2edd08, Func Offset: 0x238
-	// Line 1837, Address: 0x2edd24, Func Offset: 0x254
-	// Line 1840, Address: 0x2edd38, Func Offset: 0x268
-	// Line 1841, Address: 0x2edd68, Func Offset: 0x298
-	// Line 1842, Address: 0x2edd70, Func Offset: 0x2a0
-	// Line 1847, Address: 0x2edd84, Func Offset: 0x2b4
-	// Line 1848, Address: 0x2edda4, Func Offset: 0x2d4
-	// Line 1849, Address: 0x2eddac, Func Offset: 0x2dc
-	// Line 1850, Address: 0x2eddbc, Func Offset: 0x2ec
-	// Line 1853, Address: 0x2eddcc, Func Offset: 0x2fc
-	// Line 1855, Address: 0x2edddc, Func Offset: 0x30c
-	// Line 1857, Address: 0x2eddf8, Func Offset: 0x328
-	// Line 1859, Address: 0x2ede00, Func Offset: 0x330
-	// Line 1860, Address: 0x2ede1c, Func Offset: 0x34c
-	// Line 1863, Address: 0x2ede20, Func Offset: 0x350
-	// Line 1864, Address: 0x2ede28, Func Offset: 0x358
-	// Line 1865, Address: 0x2ede30, Func Offset: 0x360
-	// Line 1866, Address: 0x2ede38, Func Offset: 0x368
-	// Line 1867, Address: 0x2ede48, Func Offset: 0x378
-	// Line 1869, Address: 0x2ede50, Func Offset: 0x380
-	// Line 1871, Address: 0x2ede58, Func Offset: 0x388
-	// Line 1869, Address: 0x2ede5c, Func Offset: 0x38c
-	// Line 1871, Address: 0x2ede64, Func Offset: 0x394
-	// Line 1873, Address: 0x2ede6c, Func Offset: 0x39c
-	// Line 1876, Address: 0x2ede78, Func Offset: 0x3a8
-	// Line 1875, Address: 0x2ede98, Func Offset: 0x3c8
-	// Line 1876, Address: 0x2ede9c, Func Offset: 0x3cc
-	// Func End, Address: 0x2edea4, Func Offset: 0x3d4
+    unsigned int bp;
+    int fp;
+    int ifc;
+    unsigned int d4madr_next, d4qwc_next, d4tadr_next, d4chcr_next;
+    int index, index_next;
+    int id;
+
+    fp = (videoDec.vibuf.env.ipubp >> 16) & 0x3;
+    bp = videoDec.vibuf.env.ipubp & 0x7F;
+
+    ifc = (videoDec.vibuf.env.ipubp >> 8) & 0xF;
+
+    d4madr_next = videoDec.vibuf.env.d4madr - ((fp + ifc) << 4);
+    d4qwc_next = videoDec.vibuf.env.d4qwc + (fp + ifc);
+    d4tadr_next = videoDec.vibuf.env.d4tadr;
+    d4chcr_next = videoDec.vibuf.env.d4chcr | 0x100;
+
+    WaitSema(videoDec.vibuf.sema);
+
+    if (d4madr_next < (unsigned int)videoDec.vibuf.data) 
+    {
+	    d4qwc_next = (DATA_ADDR_EX(0) - d4madr_next) >> 4;
+        
+    	d4madr_next += videoDec.vibuf.n * VIBUF_ELM_SIZE;
+	    d4tadr_next = TAG_ADDR_EX(0);
+        
+	    id = ((videoDec.vibuf.env.d4madr == DATA_ADDR_EX(0)) || (videoDec.vibuf.env.d4madr == DATA_ADDR_EX(videoDec.vibuf.n))) ? DMA_ID_REFE : DMA_ID_REF;
+	    
+        d4chcr_next = (videoDec.vibuf.env.d4chcr & 0xFFFFFFF) | (id << 28) | 0x100;
+
+    	if (!IsInRegion(0, videoDec.vibuf.dmaStart, videoDec.vibuf.dmaN, videoDec.vibuf.n)) 
+        {
+    	    videoDec.vibuf.dmaStart = videoDec.vibuf.n - 1;
+    	    videoDec.vibuf.dmaN++;
+    	}
+    } 
+    else if ((index = getFIFOindex(&videoDec.vibuf, (void*)videoDec.vibuf.env.d4madr)) != (index_next = getFIFOindex(&videoDec.vibuf, (void*)d4madr_next))) 
+    {
+        d4tadr_next = TAG_ADDR_EX(index);
+        d4qwc_next = (DATA_ADDR_EX(index) - d4madr_next) >> 4;
+        
+        id = (WRAP_ADDR_EX(videoDec.vibuf.env.d4madr) == DATA_ADDR_EX((videoDec.vibuf.dmaStart + videoDec.vibuf.dmaN) % videoDec.vibuf.n)) ? DMA_ID_REFE : DMA_ID_REF;
+
+        d4chcr_next = (videoDec.vibuf.env.d4chcr & 0xFFFFFFF) | (id << 28) | 0x100;
+    
+        if (!IsInRegion(index_next, videoDec.vibuf.dmaStart, videoDec.vibuf.dmaN, videoDec.vibuf.n)) 
+        {
+            videoDec.vibuf.dmaStart = index_next;
+            videoDec.vibuf.dmaN++;
+        }
+    }
+
+    if ((videoDec.vibuf.env.d3madr != 0) && (videoDec.vibuf.env.d3qwc != 0)) 
+    {
+    	*D3_MADR = videoDec.vibuf.env.d3madr;
+        
+    	*D3_QWC = videoDec.vibuf.env.d3qwc;
+    	
+        setD3_CHCR(videoDec.vibuf.env.d3chcr | 0x100);
+    }
+
+    if (videoDec.vibuf.dmaN != 0) 
+    {
+    	while (sceIpuIsBusy());
+        
+    	sceIpuBCLR(bp);
+    	
+        while (sceIpuIsBusy());
+    }
+
+    *D4_MADR = d4madr_next;
+    *D4_TADR = d4tadr_next;
+    
+    *D4_QWC = d4qwc_next;
+    
+    if (videoDec.vibuf.dmaN != 0) 
+    {
+	    setD4_CHCR(d4chcr_next);
+    }
+
+    *IPU_CTRL = videoDec.vibuf.env.ipuctrl;
+
+    videoDec.vibuf.isActive = TRUE;
+
+    SignalSema(videoDec.vibuf.sema);
+
+    return TRUE;
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x2edeb0
