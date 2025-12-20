@@ -1309,31 +1309,38 @@ int mpegNodata(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
 
 #pragma divbyzerocheck off
 
-// 
-// Start address: 0x2ed9d0
+// 100% matching!
 int mpegStopDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
 {
-	// Line 1763, Address: 0x2ed9d0, Func Offset: 0
-	// Line 1764, Address: 0x2ed9d8, Func Offset: 0x8
-	// Line 1768, Address: 0x2ed9e4, Func Offset: 0x14
-	// Line 1766, Address: 0x2ed9e8, Func Offset: 0x18
-	// Line 1768, Address: 0x2ed9ec, Func Offset: 0x1c
-	// Line 1770, Address: 0x2ed9f4, Func Offset: 0x24
-	// Line 1771, Address: 0x2eda04, Func Offset: 0x34
-	// Line 1772, Address: 0x2eda14, Func Offset: 0x44
-	// Line 1773, Address: 0x2eda24, Func Offset: 0x54
-	// Line 1777, Address: 0x2eda34, Func Offset: 0x64
-	// Line 1780, Address: 0x2eda50, Func Offset: 0x80
-	// Line 1781, Address: 0x2eda58, Func Offset: 0x88
-	// Line 1782, Address: 0x2eda68, Func Offset: 0x98
-	// Line 1783, Address: 0x2eda78, Func Offset: 0xa8
-	// Line 1785, Address: 0x2eda88, Func Offset: 0xb8
-	// Line 1786, Address: 0x2eda98, Func Offset: 0xc8
-	// Line 1788, Address: 0x2edaa8, Func Offset: 0xd8
-	// Line 1791, Address: 0x2edab4, Func Offset: 0xe4
-	// Line 1790, Address: 0x2edab8, Func Offset: 0xe8
-	// Line 1791, Address: 0x2edabc, Func Offset: 0xec
-	// Func End, Address: 0x2edac4, Func Offset: 0xf4
+    WaitSema(videoDec.vibuf.sema);
+    
+    videoDec.vibuf.isActive = FALSE;
+    
+    setD4_CHCR((0 << 8) | (1 << 2) | 1);		
+
+    videoDec.vibuf.env.d4madr = *D4_MADR;
+    videoDec.vibuf.env.d4tadr = *D4_TADR;
+    
+    videoDec.vibuf.env.d4qwc = *D4_QWC;
+    
+    videoDec.vibuf.env.d4chcr = *D4_CHCR;
+
+    while (DGET_IPU_CTRL() & 0xF0);
+
+    setD3_CHCR((0 << 8) | 0);		
+    
+    videoDec.vibuf.env.d3madr = *D3_MADR;
+    
+    videoDec.vibuf.env.d3qwc = *D3_QWC;
+    
+    videoDec.vibuf.env.d3chcr = *D3_CHCR;
+
+    videoDec.vibuf.env.ipubp = DGET_IPU_BP();
+    videoDec.vibuf.env.ipuctrl = DGET_IPU_CTRL();
+
+    SignalSema(videoDec.vibuf.sema);
+
+    return 1;
 }
 
 // 
