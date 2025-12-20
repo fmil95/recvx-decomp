@@ -1230,57 +1230,84 @@ int mpegError(sceMpeg *mp, sceMpegCbDataError *cberror, void *anyData)
     return 1;
 }
 
-// 
-// Start address: 0x2ed750
-int mpegNodata(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
+#pragma divbyzerocheck on
+
+// 100% matching!
+int mpegNodata(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData) 
 {
-	int read_n;
-	int read_start;
-	int consume;
-	int isNewData;
-	unsigned int d4chcr;
-	int last;
-	int index;
-	int i;
-	// Line 1664, Address: 0x2ed750, Func Offset: 0
-	// Line 1675, Address: 0x2ed76c, Func Offset: 0x1c
-	// Line 1677, Address: 0x2ed774, Func Offset: 0x24
-	// Line 1679, Address: 0x2ed780, Func Offset: 0x30
-	// Line 1680, Address: 0x2ed790, Func Offset: 0x40
-	// Line 1681, Address: 0x2ed79c, Func Offset: 0x4c
-	// Line 1693, Address: 0x2ed7a4, Func Offset: 0x54
-	// Line 1694, Address: 0x2ed7b0, Func Offset: 0x60
-	// Line 1700, Address: 0x2ed7b8, Func Offset: 0x68
-	// Line 1701, Address: 0x2ed7cc, Func Offset: 0x7c
-	// Line 1702, Address: 0x2ed7f4, Func Offset: 0xa4
-	// Line 1703, Address: 0x2ed810, Func Offset: 0xc0
-	// Line 1709, Address: 0x2ed824, Func Offset: 0xd4
-	// Line 1710, Address: 0x2ed84c, Func Offset: 0xfc
-	// Line 1709, Address: 0x2ed854, Func Offset: 0x104
-	// Line 1710, Address: 0x2ed858, Func Offset: 0x108
-	// Line 1711, Address: 0x2ed85c, Func Offset: 0x10c
-	// Line 1717, Address: 0x2ed874, Func Offset: 0x124
-	// Line 1718, Address: 0x2ed87c, Func Offset: 0x12c
-	// Line 1719, Address: 0x2ed8ac, Func Offset: 0x15c
-	// Line 1718, Address: 0x2ed8b4, Func Offset: 0x164
-	// Line 1719, Address: 0x2ed8b8, Func Offset: 0x168
-	// Line 1725, Address: 0x2ed8dc, Func Offset: 0x18c
-	// Line 1729, Address: 0x2ed8e0, Func Offset: 0x190
-	// Line 1731, Address: 0x2ed8ec, Func Offset: 0x19c
-	// Line 1737, Address: 0x2ed928, Func Offset: 0x1d8
-	// Line 1738, Address: 0x2ed940, Func Offset: 0x1f0
-	// Line 1737, Address: 0x2ed944, Func Offset: 0x1f4
-	// Line 1738, Address: 0x2ed948, Func Offset: 0x1f8
-	// Line 1740, Address: 0x2ed958, Func Offset: 0x208
-	// Line 1746, Address: 0x2ed96c, Func Offset: 0x21c
-	// Line 1747, Address: 0x2ed97c, Func Offset: 0x22c
-	// Line 1748, Address: 0x2ed984, Func Offset: 0x234
-	// Line 1750, Address: 0x2ed994, Func Offset: 0x244
-	// Line 1753, Address: 0x2ed9a0, Func Offset: 0x250
-	// Line 1755, Address: 0x2ed9ac, Func Offset: 0x25c
-	// Line 1756, Address: 0x2ed9b0, Func Offset: 0x260
-	// Func End, Address: 0x2ed9d0, Func Offset: 0x280
+    int i;
+    int index;
+    int last;
+    unsigned int d4chcr;
+    int isNewData;
+    int consume;
+    int read_start, read_n;
+
+    isNewData = 0;
+
+    SleepThread();
+
+    WaitSema(videoDec.vibuf.sema);
+
+    if (videoDec.vibuf.isActive == FALSE) 
+    {
+        printf("[ Error ] DMA ADD not active\n");
+        
+        return FALSE;
+    }
+
+    setD4_CHCR((DMA_ID_REFE << 28) | (0 << 8) | (1 << 2) | 1);
+    
+    d4chcr = *D4_CHCR;
+
+    index = getFIFOindex(&videoDec.vibuf, (void*)*D4_MADR);
+    
+    consume = ((index + videoDec.vibuf.n) - videoDec.vibuf.dmaStart) % videoDec.vibuf.n;
+    
+    videoDec.vibuf.dmaStart = (videoDec.vibuf.dmaStart + consume) % videoDec.vibuf.n;
+    videoDec.vibuf.dmaN -= consume;
+
+    read_start = (videoDec.vibuf.dmaStart + videoDec.vibuf.dmaN) % videoDec.vibuf.n;
+    read_n = videoDec.vibuf.readBytes / VIBUF_ELM_SIZE;
+    
+    videoDec.vibuf.readBytes %= VIBUF_ELM_SIZE;
+
+    if (read_n > 0) 
+    {
+    	last = (((videoDec.vibuf.dmaStart + videoDec.vibuf.dmaN) - 1) + videoDec.vibuf.n) % videoDec.vibuf.n;
+    	
+        scTag2((QWORD*)(videoDec.vibuf.tag + last), (char*)videoDec.vibuf.data + (VIBUF_ELM_SIZE * last), DMA_ID_REF, VIBUF_ELM_SIZE / 16);
+    	
+        isNewData = 1;
+    }
+
+    index = read_start;
+    
+    for (i = 0; i < read_n; i++) 
+    {
+    	scTag2((QWORD*)(videoDec.vibuf.tag + index), (char*)videoDec.vibuf.data + (VIBUF_ELM_SIZE * index), (i == (read_n - 1)) ? DMA_ID_REFE : DMA_ID_REF, VIBUF_ELM_SIZE / 16);
+        
+    	index = (index + 1) % videoDec.vibuf.n;
+    }
+
+    videoDec.vibuf.dmaN += read_n;
+
+    if (videoDec.vibuf.dmaN != 0) 
+    {
+    	if (isNewData != 0) 
+        {
+    	    d4chcr = (d4chcr & 0xFFFFFFF) | (DMA_ID_REF << 28);
+    	}
+        
+    	setD4_CHCR(d4chcr | 0x100);
+    }
+
+    SignalSema(videoDec.vibuf.sema);
+
+    return 1;
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x2ed9d0
