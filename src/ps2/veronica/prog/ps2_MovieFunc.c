@@ -1113,39 +1113,40 @@ void OutPutCdErrorCode(unsigned int* err)
     }
 }
 
-// 
-// Start address: 0x2ed430
+// 100% matching!
 int videoCallback(sceMpeg *mp, sceMpegCbDataStr *str, void *data)
 {
-	int len;
-	int d1;
-	int d0;
-	unsigned char* pd1Unc;
-	unsigned char* pd0Unc;
-	unsigned char* pd1;
-	unsigned char* pd0;
-	int s1;
-	int s0;
-	unsigned char* ps0;
-	//_anon16* rb;
-	// Line 1551, Address: 0x2ed430, Func Offset: 0
-	// Line 1555, Address: 0x2ed450, Func Offset: 0x20
-	// Line 1553, Address: 0x2ed454, Func Offset: 0x24
-	// Line 1555, Address: 0x2ed458, Func Offset: 0x28
-	// Line 1552, Address: 0x2ed460, Func Offset: 0x30
-	// Line 1555, Address: 0x2ed464, Func Offset: 0x34
-	// Line 1556, Address: 0x2ed474, Func Offset: 0x44
-	// Line 1565, Address: 0x2ed478, Func Offset: 0x48
-	// Line 1567, Address: 0x2ed498, Func Offset: 0x68
-	// Line 1568, Address: 0x2ed4a0, Func Offset: 0x70
-	// Line 1570, Address: 0x2ed4ac, Func Offset: 0x7c
-	// Line 1573, Address: 0x2ed4d4, Func Offset: 0xa4
-	// Line 1574, Address: 0x2ed4dc, Func Offset: 0xac
-	// Line 1575, Address: 0x2ed500, Func Offset: 0xd0
-	// Line 1578, Address: 0x2ed50c, Func Offset: 0xdc
-	// Line 1584, Address: 0x2ed51c, Func Offset: 0xec
-	// Line 1585, Address: 0x2ed528, Func Offset: 0xf8
-	// Func End, Address: 0x2ed54c, Func Offset: 0x11c
+    READ_BUF *rb;
+    u_char *ps0, *ps1;
+    int s0, s1;
+    u_char *pd0, *pd1;
+    u_char *pd0Unc, *pd1Unc;
+    int d0, d1;
+    int len;
+
+    rb = (READ_BUF*)data;
+
+    ps0 = str->data;
+    ps1 = rb->data;
+
+    s0 = MIN(str->len, (rb->data + rb->size) - str->data);
+    s1 = str->len - s0;
+
+    viBufBeginPut(&videoDec.vibuf, &pd0, &d0, &pd1, &d1);
+    
+    pd0Unc = UncAddr(pd0);
+    pd1Unc = UncAddr(pd1);
+
+    len = copy2area(pd0Unc, d0, pd1Unc, d1, ps0, s0, ps1, s1);
+
+    if ((len > 0) && (videoDecPutTs(&videoDec, str->pts, str->dts, pd0, len) == 0)) 
+    {
+        printf("[ Error ] pts buffer overflow\n");
+    }
+
+    viBufEndPut(&videoDec.vibuf, len);
+
+    return (len > 0) ? 1 : 0;
 }
 
 // 
