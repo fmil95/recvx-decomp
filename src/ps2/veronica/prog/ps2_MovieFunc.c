@@ -1149,51 +1149,78 @@ int videoCallback(sceMpeg *mp, sceMpegCbDataStr *str, void *data)
     return (len > 0) ? 1 : 0;
 }
 
-// 
-// Start address: 0x2ed550
-int pcmCallback(sceMpeg *mp, sceMpegCbDataStr *str, void *data)
+#pragma divbyzerocheck on
+
+// 100% matching!
+int pcmCallback(sceMpeg *mp, sceMpegCbDataStr *str, void *data) 
 {
-	int hdr_add;
-	int ret;
-	unsigned int len;
-	int d1;
-	int d0;
-	unsigned char* pd1;
-	unsigned char* pd0;
-	int s0;
-	unsigned char* ps0;
-	//_anon16* rb;
-	// Line 1594, Address: 0x2ed550, Func Offset: 0
-	// Line 1607, Address: 0x2ed568, Func Offset: 0x18
-	// Line 1608, Address: 0x2ed56c, Func Offset: 0x1c
-	// Line 1607, Address: 0x2ed570, Func Offset: 0x20
-	// Line 1608, Address: 0x2ed574, Func Offset: 0x24
-	// Line 1609, Address: 0x2ed584, Func Offset: 0x34
-	// Line 1611, Address: 0x2ed588, Func Offset: 0x38
-	// Line 1614, Address: 0x2ed58c, Func Offset: 0x3c
-	// Line 1611, Address: 0x2ed590, Func Offset: 0x40
-	// Line 1614, Address: 0x2ed594, Func Offset: 0x44
-	// Line 1617, Address: 0x2ed5a4, Func Offset: 0x54
-	// Line 1618, Address: 0x2ed5c0, Func Offset: 0x70
-	// Line 1620, Address: 0x2ed5e4, Func Offset: 0x94
-	// Line 1621, Address: 0x2ed5f4, Func Offset: 0xa4
-	// Line 1623, Address: 0x2ed60c, Func Offset: 0xbc
-	// Line 1625, Address: 0x2ed620, Func Offset: 0xd0
-	// Line 1626, Address: 0x2ed634, Func Offset: 0xe4
-	// Line 1629, Address: 0x2ed640, Func Offset: 0xf0
-	// Line 1628, Address: 0x2ed648, Func Offset: 0xf8
-	// Line 1629, Address: 0x2ed64c, Func Offset: 0xfc
-	// Line 1630, Address: 0x2ed670, Func Offset: 0x120
-	// Line 1631, Address: 0x2ed684, Func Offset: 0x134
-	// Line 1632, Address: 0x2ed694, Func Offset: 0x144
-	// Line 1633, Address: 0x2ed698, Func Offset: 0x148
-	// Line 1635, Address: 0x2ed6a0, Func Offset: 0x150
-	// Line 1636, Address: 0x2ed6c8, Func Offset: 0x178
-	// Line 1637, Address: 0x2ed6dc, Func Offset: 0x18c
-	// Line 1644, Address: 0x2ed6f0, Func Offset: 0x1a0
-	// Line 1645, Address: 0x2ed6fc, Func Offset: 0x1ac
-	// Func End, Address: 0x2ed718, Func Offset: 0x1c8
+    READ_BUF *rb;
+    u_char *ps0, *ps1;
+    int s0, s1;
+    u_char *pd0, *pd1;
+    int d0, d1;
+    int len;
+    int ret;
+
+    rb = data;
+
+    ps0 = str->data;
+    ps1 = rb->data;
+
+    ps0 = &str->data[4];
+    
+    if (ps0 >= (rb->data + rb->size)) 
+    {
+        ps0 -= rb->size;
+    }
+    
+    len = str->len - 4;
+    
+    s0 = MIN((u_int)len, (rb->data + rb->size) - ps0);
+    s1 = len - s0;
+    
+    ps1 = rb->data;
+    
+    audioDecBeginPut(&audioDec, &pd0, &d0, &pd1, &d1);
+    
+    ret = copy2area(pd0, d0, pd1, d1, ps0, s0, ps1, s1);
+    
+    if (audioDec.state == AU_STATE_INIT) 
+    {
+        int hdr_add;
+
+        hdr_add = MIN(AU_HDR_SIZE - audioDec.hdrCount, ret);
+        
+        audioDec.hdrCount += hdr_add;
+        
+        if (audioDec.hdrCount >= AU_HDR_SIZE) 
+        {
+            audioDec.state = AU_STATE_PRESET;
+        }
+        
+        ret -= hdr_add;
+        
+        audioDec.put = (audioDec.put + ret) % audioDec.size;
+        
+        audioDec.count += ret;
+        
+        audioDec.totalBytes += ret;
+        
+        ret += hdr_add;
+    } 
+    else 
+    {
+        audioDec.put = (audioDec.put + ret) % audioDec.size;
+        
+        audioDec.count += ret;
+        
+        audioDec.totalBytes += ret;
+    }
+    
+    return (ret > 0) ? 1 : 0;
 }
+
+#pragma divbyzerocheck off
 
 // 100% matching!
 int mpegError(sceMpeg *mp, sceMpegCbDataError *cberror, void *anyData)
