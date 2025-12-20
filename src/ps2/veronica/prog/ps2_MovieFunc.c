@@ -9,43 +9,27 @@
 #include <string.h>
 
 int isCountVblank;
-/*int isFrameEnd;
-int oddeven;
-int handler_error;*/
+int isFrameEnd; /* unused */
+int oddeven; /* unused */
+int handler_error; /* unused */
 static int __image_w__;
 static int __image_h__;
 long128* new_tags[64];
 VideoDec videoDec;
 int videoDecTh;
-/*void* _gp;*/
 char* videoDecStack;
-/*void(*videoDecMain)(_anon17*);
-_anon35 rmi;
-unsigned int Ps2_vcount;
-_anon30 infile;*/
 VoTag* voBufTag;
 VoData* voBufData;
 READ_BUF* readBuf;
-/*int(*pcmCallback)(_anon0*, _anon11*, void*);
-int(*videoCallback)(_anon0*, _anon11*, void*);*/
 AudioDec audioDec;
-/*int iop_zero_buff;
-int iop_buff;*/
 unsigned char* audioBuff;
 TimeStamp* timeStamp;
 long128* viBufTag;
 long128* viBufData;
-/*int(*mpegTS)(_anon0*, _anon5*, void*);
-int(*mpegRestartDMA)(_anon0*, _anon2*, void*);
-int(*mpegStopDMA)(_anon0*, _anon2*, void*);
-int(*mpegNodata)(_anon0*, _anon2*, void*);
-int(*mpegError)(_anon0*, _anon1*, void*);*/
 unsigned char* mpegWork;
 int frd;
-/*_anon41 mdSize;*/
 unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
-/*<unknown fundamental type (0xa510)> test_tag[1400];
-_anon24 db;*/
+sceGsDBuff db; /* unused */
 
 // 99.95% matching
 void initAll()
@@ -347,8 +331,7 @@ void vbrank_draw()
     *tag++ = SCE_GS_SET_TEX1_1(0, 0, 1, 1, 0, 0, 0);
     *tag++ = SCE_GS_TEX1_2;
 
-    //*tag++ = SCE_GS_SET_TEX0_2(0, 10, SCE_GS_PSMCT32, 10, 9, 0, SCE_GS_MODULATE, 0, SCE_GS_PSMCT32, 0, 0, 0); // TODO: match the function with this 
-    *tag++ = 0xA64017780;
+    *tag++ = SCE_GS_SET_TEX0_2(14208, 5, SCE_GS_PSMCT32, 9, 9, 0, SCE_GS_DECAL, 0, SCE_GS_PSMCT32, 0, 0, 0);
     *tag++ = SCE_GS_TEX0_2;
 
     *tag++ = SCE_GS_SET_PRIM(SCE_GS_PRIM_SPRITE, 0, 1, 0, 0, 0, 1, 1, 0);
@@ -1437,56 +1420,75 @@ int mpegRestartDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
     return TRUE;
 }
 
-#pragma divbyzerocheck off
-
-// 
-// Start address: 0x2edeb0
+// 100% matching!
 int mpegTS(sceMpeg *mp, sceMpegCbDataTimeStamp *cbts, void *anyData)
 {
-	int rd;
-	int i;
-	int tscount;
-	int isEnd;
-	int datasize;
-	unsigned int stop;
-	int ifc;
-	int fp;
-	int bp;
-	unsigned int ipubp;
-	unsigned int d4madr;
-	// Line 1884, Address: 0x2edeb0, Func Offset: 0
-	// Line 1886, Address: 0x2ededc, Func Offset: 0x2c
-	// Line 1894, Address: 0x2edee8, Func Offset: 0x38
-	// Line 1887, Address: 0x2edeec, Func Offset: 0x3c
-	// Line 1888, Address: 0x2edef4, Func Offset: 0x44
-	// Line 1889, Address: 0x2edefc, Func Offset: 0x4c
-	// Line 1890, Address: 0x2edf04, Func Offset: 0x54
-	// Line 1893, Address: 0x2edf0c, Func Offset: 0x5c
-	// Line 1888, Address: 0x2edf14, Func Offset: 0x64
-	// Line 1899, Address: 0x2edf18, Func Offset: 0x68
-	// Line 1904, Address: 0x2edf28, Func Offset: 0x78
-	// Line 1901, Address: 0x2edf48, Func Offset: 0x98
-	// Line 1902, Address: 0x2edf4c, Func Offset: 0x9c
-	// Line 1904, Address: 0x2edf50, Func Offset: 0xa0
-	// Line 1906, Address: 0x2edf60, Func Offset: 0xb0
-	// Line 1904, Address: 0x2edf68, Func Offset: 0xb8
-	// Line 1909, Address: 0x2edf6c, Func Offset: 0xbc
-	// Line 1911, Address: 0x2edf80, Func Offset: 0xd0
-	// Line 1913, Address: 0x2edfa0, Func Offset: 0xf0
-	// Line 1916, Address: 0x2edfd4, Func Offset: 0x124
-	// Line 1918, Address: 0x2edfdc, Func Offset: 0x12c
-	// Line 1916, Address: 0x2edfe0, Func Offset: 0x130
-	// Line 1917, Address: 0x2edfe8, Func Offset: 0x138
-	// Line 1919, Address: 0x2edfec, Func Offset: 0x13c
-	// Line 1918, Address: 0x2edff0, Func Offset: 0x140
-	// Line 1919, Address: 0x2edff4, Func Offset: 0x144
-	// Line 1922, Address: 0x2ee000, Func Offset: 0x150
-	// Line 1924, Address: 0x2ee030, Func Offset: 0x180
-	// Line 1926, Address: 0x2ee050, Func Offset: 0x1a0
-	// Line 1928, Address: 0x2ee05c, Func Offset: 0x1ac
-	// Line 1929, Address: 0x2ee064, Func Offset: 0x1b4
-	// Line 1931, Address: 0x2ee068, Func Offset: 0x1b8
-	// Line 1930, Address: 0x2ee090, Func Offset: 0x1e0
-	// Line 1931, Address: 0x2ee094, Func Offset: 0x1e4
-	// Func End, Address: 0x2ee09c, Func Offset: 0x1ec
+    unsigned int d4madr;
+    unsigned int ipubp;
+    int bp;
+    int fp;
+    int ifc;
+    unsigned int stop;
+    int datasize;
+    int isEnd;
+    int tscount;
+    int i;
+    TimeStamp ts; // not from the debugging symbols
+    unsigned int d4madr_next; // not from the debugging symbols
+    int wt; // not from the debugging symbols
+    
+    d4madr = *D4_MADR;
+
+    ipubp = DGET_IPU_BP();
+
+    bp = videoDec.vibuf.env.ipubp & 0x7F;
+
+    fp = (ipubp >> 16) & 0x3;
+
+    ifc = (ipubp >> 8) & 0xF;
+
+    d4madr_next = d4madr - ((fp + ifc) << 4);
+
+    datasize = VIBUF_ELM_SIZE * videoDec.vibuf.n;
+
+    isEnd = 0;
+
+    WaitSema(videoDec.vibuf.sema);
+
+    ts.pts = TS_NONE;
+    ts.dts = TS_NONE;
+
+    stop = (((d4madr_next + (bp >> 3)) + datasize) - (int)videoDec.vibuf.data) % datasize;
+
+    tscount = videoDec.vibuf.count_ts;
+    wt = videoDec.vibuf.wt_ts;
+
+    for (i = 0; (i < tscount) && (isEnd == 0); i++) 
+    {
+        int rd;
+
+        rd = (((wt - tscount) + videoDec.vibuf.n_ts) + i) % videoDec.vibuf.n_ts;
+        
+        if (IsPtsInRegion(stop, videoDec.vibuf.ts[rd].pos, videoDec.vibuf.ts[rd].len, datasize) != 0)
+        {
+            ts.pts = videoDec.vibuf.ts[rd].pts;
+            ts.dts = videoDec.vibuf.ts[rd].dts;
+            
+            videoDec.vibuf.ts[rd].pts = TS_NONE;
+            videoDec.vibuf.ts[rd].dts = TS_NONE;
+        
+            isEnd = 1;
+            
+            videoDec.vibuf.count_ts -= MIN(videoDec.vibuf.count_ts, 1);
+        }
+    }
+
+    SignalSema(videoDec.vibuf.sema);
+    
+    cbts->pts = ts.pts;
+    cbts->dts = ts.dts;
+    
+    return 1;
 }
+
+#pragma divbyzerocheck off
