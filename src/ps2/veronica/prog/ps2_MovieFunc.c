@@ -14,18 +14,18 @@ int oddeven; /* unused */
 int handler_error; /* unused */
 static int __image_w__;
 static int __image_h__;
-long128* new_tags[64];
-VideoDec videoDec;
+u_long128* new_tags[64] __attribute__((aligned(64)));
+VideoDec videoDec __attribute__((aligned(64)));
 int videoDecTh;
 char* videoDecStack;
-VoTag* voBufTag;
+VoTag* voBufTag __attribute__((aligned(64)));
 VoData* voBufData;
 READ_BUF* readBuf;
 AudioDec audioDec;
 unsigned char* audioBuff;
 TimeStamp* timeStamp;
-long128* viBufTag;
-long128* viBufData;
+u_long128* viBufTag;
+u_long128* viBufData;
 unsigned char* mpegWork;
 int frd;
 unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 

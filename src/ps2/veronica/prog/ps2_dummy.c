@@ -12,7 +12,7 @@ unsigned int Ps2_tex_load_tp_cancel;
 float Ps2_rand_seed[4];*/
 unsigned int PS2_Render_tex_sub_flag;
 /*unsigned int Ps2_albinoid_flag;*/
-unsigned char Ps2_tex_mem[10485760];
+unsigned char Ps2_tex_mem[10485760] __attribute__((aligned(64)));
 /*float Ps2_zbuff_a;
 float Ps2_zbuff_b;*/
 unsigned int Ps2_use_pt_flag;
@@ -21,7 +21,7 @@ unsigned int Ps2_ot_list_no;
 void* Ps2_PP;
 PS2_OT Ps2_ot_list[8192];
 unsigned int Ps2_now_bank;
-PS2_OT* Ps2_OT[4096][2];
+PS2_OT* Ps2_OT[4096][2] __attribute__((aligned(64)));
 /*float Ps2AddPrimPrio;*/
 PS2_TP_TAG Ps2_tp_tag[64];
 PS2_TP_CACHE ps2_tp_cache[64];

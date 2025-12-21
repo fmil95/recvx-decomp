@@ -3,7 +3,7 @@
 
 #include <string.h>
 
-BACKUPINFO gBupInfo[8];
+BACKUPINFO gBupInfo[8] __attribute__((aligned(64)));
 
 // 100% matching!
 void BupInit(void)

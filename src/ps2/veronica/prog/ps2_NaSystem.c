@@ -7,7 +7,7 @@ void (* VsyncFunc)();
 void (* EorFunc)();
 unsigned int Ps2_vcount;
 unsigned int Ps2_dbuff;
-PS2_NJ_SAVE Ps2_nj_save_current;
+PS2_NJ_SAVE Ps2_nj_save_current __attribute__((aligned(64)));
 
 // 100% matching!
 void	njSetTextureMemorySize(Uint32 size )
