@@ -87,50 +87,48 @@ void bhControlScreenFade()
     }
 }
 
-// 
-// Start address: 0x26c070
+// 100% matching!
 void bhDrawScreenFade()
 {
-	unsigned int argb;
-	//_anon14 col[4];
-	//_anon25 p[4];
-	//_anon30 p2c;
-	// Line 153, Address: 0x26c070, Func Offset: 0
-	// Line 158, Address: 0x26c080, Func Offset: 0x10
-	// Line 159, Address: 0x26c090, Func Offset: 0x20
-	// Line 164, Address: 0x26c09c, Func Offset: 0x2c
-	// Line 165, Address: 0x26c0a4, Func Offset: 0x34
-	// Line 168, Address: 0x26c0b0, Func Offset: 0x40
-	// Line 167, Address: 0x26c0b8, Func Offset: 0x48
-	// Line 166, Address: 0x26c0bc, Func Offset: 0x4c
-	// Line 167, Address: 0x26c0c0, Func Offset: 0x50
-	// Line 168, Address: 0x26c0c4, Func Offset: 0x54
-	// Line 172, Address: 0x26c118, Func Offset: 0xa8
-	// Line 168, Address: 0x26c11c, Func Offset: 0xac
-	// Line 184, Address: 0x26c120, Func Offset: 0xb0
-	// Line 178, Address: 0x26c12c, Func Offset: 0xbc
-	// Line 172, Address: 0x26c130, Func Offset: 0xc0
-	// Line 173, Address: 0x26c134, Func Offset: 0xc4
-	// Line 181, Address: 0x26c138, Func Offset: 0xc8
-	// Line 184, Address: 0x26c13c, Func Offset: 0xcc
-	// Line 173, Address: 0x26c144, Func Offset: 0xd4
-	// Line 174, Address: 0x26c148, Func Offset: 0xd8
-	// Line 184, Address: 0x26c14c, Func Offset: 0xdc
-	// Line 174, Address: 0x26c150, Func Offset: 0xe0
-	// Line 175, Address: 0x26c154, Func Offset: 0xe4
-	// Line 176, Address: 0x26c15c, Func Offset: 0xec
-	// Line 177, Address: 0x26c160, Func Offset: 0xf0
-	// Line 178, Address: 0x26c164, Func Offset: 0xf4
-	// Line 179, Address: 0x26c168, Func Offset: 0xf8
-	// Line 180, Address: 0x26c16c, Func Offset: 0xfc
-	// Line 181, Address: 0x26c170, Func Offset: 0x100
-	// Line 182, Address: 0x26c174, Func Offset: 0x104
-	// Line 184, Address: 0x26c178, Func Offset: 0x108
-	// Line 185, Address: 0x26c180, Func Offset: 0x110
-	// Line 186, Address: 0x26c18c, Func Offset: 0x11c
-	// Line 187, Address: 0x26c198, Func Offset: 0x128
-	// Func End, Address: 0x26c1b0, Func Offset: 0x140
-	scePrintf("bhDrawScreenFade - UNIMPLEMENTED!\n");
+    NJS_POINT2COL p2c;
+    NJS_POINT2 p[4];  
+    NJS_COLOR col[4];  
+    unsigned int argb; 
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    p2c.p = p;
+    
+    p2c.col = col;
+    
+    p2c.tex = NULL;
+    
+    p2c.num = 1;
+
+    argb = (unsigned int)sys->fade_bn | (((unsigned int)sys->fade_gn << 8) | (((unsigned int)sys->fade_an << 24) | ((unsigned int)sys->fade_rn << 16)));
+    
+    ((int*)&p2c.col->color)[0] = argb;
+    ((int*)&p2c.col->color)[1] = argb;
+    ((int*)&p2c.col->color)[2] = argb;
+    ((int*)&p2c.col->color)[3] = argb; 
+    
+    p[0].x = 0;
+    p[0].y = 0;
+    
+    p[1].x = 640.0f;
+    p[1].y = 0;
+    
+    p[2].x = 640.0f;
+    p[2].y = 480.0f;
+    
+    p[3].x = 0;
+    p[3].y = 480.0f;
+    
+    njDrawPolygon2D(&p2c, 4, -0.81f, 96);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
 }
 
 // 
