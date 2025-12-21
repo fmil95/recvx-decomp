@@ -3,7 +3,7 @@
 #include "main.h"
 
 NP_WORK np;
-NJS_MATRIX lcmat[1];
+NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
 
 // 100% matching!
 void npPlusInit() 

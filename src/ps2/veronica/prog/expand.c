@@ -1,6 +1,6 @@
 #include "expand.h"
 
-EXPAND_CTRL_BUF ExpandCtrlBuf;
+EXPAND_CTRL_BUF ExpandCtrlBuf __attribute__((aligned(64)));
 
 // 100% matching!
 void Init_Expand() 

@@ -8,7 +8,7 @@
 int MwMode = -1;
 int MwPlayFlag;
 MWPLY MwPly;
-MWS_PLY_CPRM_SFD MwsCprmSfd;
+MWS_PLY_CPRM_SFD MwsCprmSfd __attribute__((aligned(64)));
 int MwMemoryMode;
 int MwPlayMode;
 

@@ -114,13 +114,14 @@ HWS_WORK hwsp;
 HWS_WORK* hws = &hwsp;
 SYS_WORK sysp;
 SYS_WORK* sys = &sysp;
-char BIO_CURRENT[64];
+char BIO_CURRENT[64]; /* unused */
 float BHD_ASPECT_X = 1.174f;
 float BHD_ASPECT_Y = 1.0f;
 NJS_MATRIX crmat;
 NJS_MATRIX* cmat = &crmat;
-float mbuf[128][16];
-fn bhSysTaskJumpTab[23] = {
+float mbuf[128][16] __attribute__((aligned(64)));
+fn bhSysTaskJumpTab[23] = 
+{
     bhSysCallInit,
     bhSysCallWarning,
     bhSysCallIpl,
@@ -146,27 +147,27 @@ fn bhSysTaskJumpTab[23] = {
     bhSysCallScreenSaver
 };
 int pd_port = -1;
-unsigned char* Ps2_PXLCONV;
+unsigned char* Ps2_PXLCONV __attribute__((aligned(64)));
 unsigned char* freemem;
-unsigned char* fsize;
+unsigned char* fsize; /* unused */
 unsigned char* keepmem;
-unsigned char* njpmemp;
+unsigned char* njpmemp __attribute__((aligned(64)));
 unsigned char* vebmemp;
 unsigned char* vwbmemp;
 unsigned int Ps2_sys_cnt;
 O_WRK eff[512];
 ROM_WORK romp;
 ROM_WORK* rom = &romp;
-unsigned int palbuf[4096];
+unsigned int palbuf[4096] __attribute__((aligned(64)));
 float Ps2_zbuff_a;
 float Ps2_zbuff_b;
-float SinTable[16384];
-unsigned char Ps2_PBUFF[1835008];
+/*static */ float SinTable[16384];
+unsigned char Ps2_PBUFF[1835008] __attribute__((aligned(64)));
 sceGsDBuffDc Db;
-PS2_GS_SAVE Ps2_gs_save;
+PS2_GS_SAVE Ps2_gs_save __attribute__((aligned(64)));
 unsigned int Ps2_current_texno;
 NJS_TEXLIST* Ps2_current_texlist;
-NJS_TEXMEMLIST* Ps2_current_texmemlist;
+NJS_TEXMEMLIST* Ps2_current_texmemlist __attribute__((aligned(64)));
 int iRingBufNum = 20;
 int iop_read_buff;
 unsigned int StatusUpdateCounter;
@@ -180,28 +181,27 @@ BUTTON_INFO ButtonInfo[5] =
     { 4, 55541},
     {-1, 0    }
 }; 
-PAD_WRK Pad[4]; 
+PAD_WRK Pad[4] __attribute__((aligned(64))); 
 int SoftResetFlag;
 PAD_INFO Ps2_pad;
 unsigned int Ps2_sys_cnt;
 int CurrentPortId;
-char ADX_STREAM_BUFFER[471040];
+char ADX_STREAM_BUFFER[471040] __attribute__((aligned(64)));
 int iop_data_buff;
-SND_STATUS get_iop_snddata;
+SND_STATUS get_iop_snddata __attribute__((aligned(64)));
 char sound_flag;
 unsigned int SddFirstFlag;
 char SdcGdDaVolume;
 SYS_BT_SYSTEMID BootDiscSystemId;
 int PatId[4] = { -1, -1, -1, -1 };
 int OpenDriveTrayFlag;
-int pd_port;
 unsigned char BackColorFlag;
 unsigned char Pause_Flag;
 unsigned char FontSz[126];
 float FontScaleX;
 float FontScaleCR;
 SELECTFILEWINDOW SelectFileWindow;
-SELECTFILEINFO SelectFileInfo[15];
+SELECTFILEINFO SelectFileInfo[15] __attribute__((aligned(64)));
 char* cpNameList[18] = 
 {
     "icon.sys", "bio_cv.ico", "BASLUS-20184", "SAVEDATA-00", "SAVEDATA-01", "SAVEDATA-02", "SAVEDATA-03",
@@ -215,14 +215,13 @@ CONFIGFILE ConfigFile;
 unsigned char pl_sleep_cnt;
 unsigned int Ps2_albinoid_flag;
 CAM_WORK cam;
-BH_PWORK ene[128];
 unsigned int Ps2_quad_color;
 int Ps2_quad_trans; 
 unsigned int Ps2_current_texno_bk;
 NJS_TEXLIST* Ps2_current_texlist_bk;
 int movie_draw;
-u_long128 test_tag[1400];
-VoBuf voBuf;
+u_long128 test_tag[1400] __attribute__((aligned(64)));
+VoBuf voBuf __attribute__((aligned(64)));
 RMI_WORK rmi;
 
 // 100% matching!
