@@ -40,41 +40,51 @@ void bhSetScreenFade(unsigned int argb, float ct)
     sys->fade_bp = argb & 0xFF;
 }
 
-// 
-// Start address: 0x26bd70
+// 100% matching!
 void bhControlScreenFade()
 {
-	float hkn;
-	// Line 121, Address: 0x26bd70, Func Offset: 0
-	// Line 122, Address: 0x26bdc0, Func Offset: 0x50
-	// Line 123, Address: 0x26bdc4, Func Offset: 0x54
-	// Line 124, Address: 0x26bdcc, Func Offset: 0x5c
-	// Line 125, Address: 0x26bde8, Func Offset: 0x78
-	// Line 126, Address: 0x26bdf0, Func Offset: 0x80
-	// Line 125, Address: 0x26bdf4, Func Offset: 0x84
-	// Line 126, Address: 0x26bdfc, Func Offset: 0x8c
-	// Line 127, Address: 0x26be18, Func Offset: 0xa8
-	// Line 128, Address: 0x26be38, Func Offset: 0xc8
-	// Line 129, Address: 0x26be58, Func Offset: 0xe8
-	// Line 130, Address: 0x26be74, Func Offset: 0x104
-	// Line 132, Address: 0x26be7c, Func Offset: 0x10c
-	// Line 131, Address: 0x26be84, Func Offset: 0x114
-	// Line 132, Address: 0x26be88, Func Offset: 0x118
-	// Line 133, Address: 0x26bebc, Func Offset: 0x14c
-	// Line 134, Address: 0x26bf00, Func Offset: 0x190
-	// Line 135, Address: 0x26bf44, Func Offset: 0x1d4
-	// Line 136, Address: 0x26bf88, Func Offset: 0x218
-	// Line 137, Address: 0x26bfac, Func Offset: 0x23c
-	// Line 138, Address: 0x26bfd0, Func Offset: 0x260
-	// Line 139, Address: 0x26bfd8, Func Offset: 0x268
-	// Line 138, Address: 0x26bfdc, Func Offset: 0x26c
-	// Line 139, Address: 0x26bfe4, Func Offset: 0x274
-	// Line 140, Address: 0x26c000, Func Offset: 0x290
-	// Line 141, Address: 0x26c020, Func Offset: 0x2b0
-	// Line 142, Address: 0x26c040, Func Offset: 0x2d0
-	// Line 146, Address: 0x26c060, Func Offset: 0x2f0
-	// Func End, Address: 0x26c068, Func Offset: 0x2f8
-	scePrintf("bhControlScreenFade - UNIMPLEMENTED!\n");
+    float hkn;
+
+    hkn = sys->fade_hkn;
+    
+    if (hkn > 1.0f)
+    {
+        if (sys->fade_ct == 0)
+        {
+            sys->fade_ct += 1.0f;
+            return;
+        }
+    }
+    
+    if (hkn == 1.0f)
+    {
+        sys->cb_flg &= ~0x2;
+        
+        sys->fade_an = sys->fade_ap;
+        sys->fade_rn = sys->fade_rp;
+        sys->fade_gn = sys->fade_gp;
+        sys->fade_bn = sys->fade_bp;
+        return;
+    }
+    
+    hkn -= 1.0f;
+    
+    sys->fade_an += (sys->fade_ap - sys->fade_ao) / hkn;
+    sys->fade_rn += (sys->fade_rp - sys->fade_ro) / hkn;
+    sys->fade_gn += (sys->fade_gp - sys->fade_go) / hkn;
+    sys->fade_bn += (sys->fade_bp - sys->fade_bo) / hkn;
+    
+    sys->fade_ct += 1.0f;
+    
+    if (sys->fade_ct >= hkn) 
+    {
+        sys->cb_flg &= ~0x2;
+        
+        sys->fade_an = sys->fade_ap;
+        sys->fade_rn = sys->fade_rp;
+        sys->fade_gn = sys->fade_gp;
+        sys->fade_bn = sys->fade_bp;
+    }
 }
 
 // 
