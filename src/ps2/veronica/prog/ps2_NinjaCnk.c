@@ -163,15 +163,13 @@ void njSetCnkBlendMode(unsigned int ulAttr)
 	// Line 692, Address: 0x2cf4c8, Func Offset: 0x38
 	// Line 693, Address: 0x2cf4d0, Func Offset: 0x40
 	// Func End, Address: 0x2cf4d8, Func Offset: 0x48
-}
-
-// 
-// Start address: 0x2cf4e0
-void njCnkModDrawModel(_anon5* pModel)
-{
-	// Line 709, Address: 0x2cf4e0, Func Offset: 0
-	// Func End, Address: 0x2cf4e8, Func Offset: 0x8
 }*/
+
+// 100% matching!
+void    njCnkModDrawModel( NJS_CNK_MODEL *model ) 
+{
+    njCnkDrawModelLocalMod(model);
+}
 
 // 
 // Start address: 0x2cf4f0
@@ -622,19 +620,19 @@ int njCnkDrawModelLocal(_anon5* pModel)
 	// Line 1770, Address: 0x2d0080, Func Offset: 0x250
 	// Line 1771, Address: 0x2d0084, Func Offset: 0x254
 	// Func End, Address: 0x2d009c, Func Offset: 0x26c
-}
+}*/
 
 // 
 // Start address: 0x2d00a0
-int njCnkDrawModelLocalMod(_anon5* pModel)
+int njCnkDrawModelLocalMod(NJS_CNK_MODEL* pModel)
 {
-	tagCHUNK_HEAD* pCnk;
+	CHUNK_HEAD* pCnk;
 	float fZ;
 	float fSY;
 	float fSX;
 	float fRH;
 	float fRW;
-	_anon9 Center;
+	//_anon9 Center;
 	// Line 1786, Address: 0x2d00a0, Func Offset: 0
 	// Line 1793, Address: 0x2d00b4, Func Offset: 0x14
 	// Line 1796, Address: 0x2d00c4, Func Offset: 0x24
@@ -671,9 +669,10 @@ int njCnkDrawModelLocalMod(_anon5* pModel)
 	// Line 1844, Address: 0x2d025c, Func Offset: 0x1bc
 	// Line 1845, Address: 0x2d0260, Func Offset: 0x1c0
 	// Func End, Address: 0x2d0278, Func Offset: 0x1d8
+	scePrintf("njCnkDrawModelLocalMod - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d0280
 tagCHUNK_HEAD* njCnkCn(tagCHUNK_HEAD* pCnk)
 {
