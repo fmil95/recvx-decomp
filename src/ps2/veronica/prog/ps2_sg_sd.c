@@ -903,34 +903,55 @@ unsigned char Panpot_Control(SND_WORK* set_snd_work)
 	scePrintf("Panpot_Control - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2dc420
-SDE_ERR	sdShotSetPitch( SDSHOT handle, const Sint16 pitch, const Sint32 fade_time)
+// 100% matching!
+SDE_ERR	sdShotSetPitch( SDSHOT handle, const Sint16 pitch, const Sint32 fade_time) 
 {
-	unsigned short set_pitch;
-	// Line 2248, Address: 0x2dc420, Func Offset: 0
-	// Line 2253, Address: 0x2dc428, Func Offset: 0x8
-	// Line 2255, Address: 0x2dc438, Func Offset: 0x18
-	// Line 2256, Address: 0x2dc444, Func Offset: 0x24
-	// Line 2265, Address: 0x2dc450, Func Offset: 0x30
-	// Line 2281, Address: 0x2dc460, Func Offset: 0x40
-	// Line 2283, Address: 0x2dc46c, Func Offset: 0x4c
-	// Line 2285, Address: 0x2dc474, Func Offset: 0x54
-	// Line 2286, Address: 0x2dc480, Func Offset: 0x60
-	// Line 2293, Address: 0x2dc484, Func Offset: 0x64
-	// Line 2294, Address: 0x2dc48c, Func Offset: 0x6c
-	// Line 2295, Address: 0x2dc498, Func Offset: 0x78
-	// Line 2296, Address: 0x2dc49c, Func Offset: 0x7c
-	// Line 2297, Address: 0x2dc4a4, Func Offset: 0x84
-	// Line 2301, Address: 0x2dc4a8, Func Offset: 0x88
-	// Line 2302, Address: 0x2dc4b0, Func Offset: 0x90
-	// Line 2305, Address: 0x2dc4b8, Func Offset: 0x98
-	// Line 2307, Address: 0x2dc4bc, Func Offset: 0x9c
-	// Line 2309, Address: 0x2dc4c0, Func Offset: 0xa0
-	// Line 2312, Address: 0x2dc4cc, Func Offset: 0xac
-	// Line 2314, Address: 0x2dc4d4, Func Offset: 0xb4
-	// Func End, Address: 0x2dc4e0, Func Offset: 0xc0
-    scePrintf("sdShotSetPitch - UNIMPLEMENTED!\n");
+    SND_WORK* temp; // not from the debugging symbols
+    unsigned short set_pitch;
+    
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        temp = (SND_WORK*)*handle;
+        
+        if (temp == NULL) 
+        {
+            return SDE_ERR_HANDLE_NULL;
+        }
+        
+        set_pitch = ((pitch << 1) + 8192) + pitch;
+        
+        if (set_pitch < 512)
+        {
+            set_pitch = 512;
+        } 
+        else if (set_pitch > 16383) 
+        {
+            set_pitch = 16383;
+        }
+        
+        if (fade_time != 0) 
+        {
+            if (temp->pitch_timer == 0) 
+            {
+                temp->pitch_timer = fade_time;
+                
+                temp->pitch_old = temp->pitch;
+                temp->pitch = set_pitch;
+            }
+            
+            Pitch_Control(temp);
+        } 
+        else 
+        {
+            temp->pitch_timer = 0;
+            
+            temp->pitch = set_pitch;
+        }
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 
