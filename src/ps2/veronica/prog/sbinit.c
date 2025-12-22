@@ -9,7 +9,7 @@
 #include "ps2_sg_syrtc.h"
 
 unsigned char gMapleSendBuf[1024 * 24 * 2 + 32];
-unsigned char gMapleRecvBuf[1024 * 24 * 2 + 32];
+unsigned char gMapleRecvBuf[1024 * 24 * 2 + 32] __attribute__((aligned(64)));
 Uint8* _BSG_END;
 
 // 100% matching!

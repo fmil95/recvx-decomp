@@ -7,25 +7,24 @@
 static unsigned char sbuff[512] __attribute__((aligned(64)));
 static unsigned int getbuff[4] __attribute__((aligned(64)));
 static sceSifClientData ClientData;
-static sceSifClientData GetStClientData;
+static sceSifClientData GetStClientData __attribute__((aligned(64)));
 static volatile int sque_r_idx;
 static SNDQUE sndque_tbl[128];
 static int sque_w_idx;
 static int sbuff_idx;
-static int ThId_send;
+static int ThId_send; /* unused */
 static int SmId_send = -1;
 static int SmId_get = -1;
 int SendReqFlag;
 static unsigned char Stack_send[2048]; /* unused */
-unsigned int IOP_hd_size[16] = { 1792, 768, 12288, 2816, 2560, 2816, 6144, 768, 0, 0, 0, 0, 0, 0, 0, 0 };
+unsigned int IOP_hd_size[16] __attribute__((aligned(64))) = { 1792, 768, 12288, 2816, 2560, 2816, 6144, 768, 0, 0, 0, 0, 0, 0, 0, 0 };
 unsigned int IOP_tq_size[16] = { 0, 512, 8192, 3072, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 int iop_data_adr[16];
 int iop_sq_adr[16];
 int iop_hd_adr[16];
 int iop_data_adr_top;
 int get_adrs;
-//void* _gp; /* enabling this makes the emulator go potty, and is otherwise unused */
-SND_STATUS get_iop_buff;
+SND_STATUS get_iop_buff __attribute__((aligned(64)));
 
 // 100% matching!
 static void wait_alarm(int id, unsigned short time, int thid)

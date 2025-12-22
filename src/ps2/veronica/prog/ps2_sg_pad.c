@@ -12,8 +12,8 @@ unsigned char ChkCnt;
 unsigned char PadCnt;
 PDS_PERIPHERALINFO pgp_info;
 unsigned int Pad_state[2];
-PAD_INFO Pad_info;
-PAD_STATUS Pad_status2;
+PAD_INFO c; /* unused */
+PAD_STATUS Pad_status2; /* unused */
 
 // 100% matching!
 void pdInitPeripheral(Sint32 logic, void* recvbuf, void* sendbuf)

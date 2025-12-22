@@ -6,13 +6,13 @@ unsigned int ExecFxFlag;
 int SdcSoundMode = -1;
 void(*TransCallBackFunc)(void*) = (void*)-1;
 unsigned int TransCompleteFlag;
-SDS_MEMBLK* SdMemBlk;
+SDS_MEMBLK* SdMemBlk __attribute__((aligned(64)));
 char SdcMasterVolume;
 NO_NAME_20 MidiInfo[8];
-SDMIDI MidiHandle[8];
+SDMIDI MidiHandle[8] __attribute__((aligned(64)));
 char SdcSeDefaultVolume;
 char SdcMidiDefaultVolume;
-NO_NAME_20 SeInfo[20];
+NO_NAME_20 SeInfo[20] __attribute__((aligned(64)));
 SDSHOT SeHandle[20];
 
 // 100% matching!
