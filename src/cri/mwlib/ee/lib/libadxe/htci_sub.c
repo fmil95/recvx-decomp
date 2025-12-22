@@ -7,7 +7,7 @@
 Sint32 htg_found = FALSE;
 static HTCI_FLIST_TBL htg_flist_tbl = { 0 };
 Sint32 htg_ci_open_mode = 0x8001;
-static Sint8 htg_rbuf[4096];
+static Sint8 htg_rbuf[4096] __attribute__((aligned(64)));
 
 // 100% matching!
 static Sint32 analysis_flist(void *inf, Sint8 *buf, Sint32 num)

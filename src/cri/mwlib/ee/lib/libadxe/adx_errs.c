@@ -4,7 +4,7 @@
 
 void (*adxerr_func)(void *obj, const Sint8 *msg) = NULL;
 void *adxerr_obj = NULL;
-Sint8 adxerr_msg[256] = { 0 }; 
+Sint8 adxerr_msg[256] __attribute__((aligned(64))) = { 0 }; 
 
 // 100% matching!
 void ADXERR_CallErrFunc1(const Sint8 *msg) 

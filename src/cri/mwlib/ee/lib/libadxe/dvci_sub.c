@@ -5,7 +5,7 @@
 //#include <string.h>
 
 static DVCI_FLIST_TBL dvg_flist_tbl = { 0 };
-static Sint8 dvg_rbuf[4096];
+static Sint8 dvg_rbuf[4096] __attribute__((aligned(64)));
 sceCdRMode dvg_ci_cdrmode = { 0 };
 
 // 100% matching!
