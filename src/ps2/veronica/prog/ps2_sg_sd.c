@@ -1000,19 +1000,24 @@ unsigned char Volume_Control(SND_WORK* set_snd_work)
 	scePrintf("Volume_Control - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2dc910
+// 100% matching!
 SDE_ERR	sdShotStop( SDSHOT handle)
 {
-	//_anon0* set_snd_work;
-	// Line 2507, Address: 0x2dc910, Func Offset: 0
-	// Line 2512, Address: 0x2dc918, Func Offset: 0x8
-	// Line 2513, Address: 0x2dc928, Func Offset: 0x18
-	// Line 2517, Address: 0x2dc92c, Func Offset: 0x1c
-	// Line 2523, Address: 0x2dc964, Func Offset: 0x54
-	// Line 2525, Address: 0x2dc96c, Func Offset: 0x5c
-	// Func End, Address: 0x2dc978, Func Offset: 0x68
-    scePrintf("sdShotStop - UNIMPLEMENTED!\n");
+    SND_WORK* set_snd_work;
+
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        set_snd_work = (SND_WORK*)*handle;
+
+        if (SdrSeCancel((set_snd_work->channel_num << 0) | ((set_snd_work->port_num << 16) | (set_snd_work->bank_num << 8))) == 0) 
+        {
+            return SDE_ERR_NOTHING;
+        }
+        
+        return SDE_ERR_HOST_CMD_BUF_NO_ENOUGH;
+    }
+
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching! 
