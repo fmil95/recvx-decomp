@@ -496,14 +496,15 @@ SDE_ERR	sdMidiPlay( SDMIDI handle, const Sint8 bank_num, const Sint8 data_num, c
     scePrintf("sdMidiPlay - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2db8f0
+// 100% matching!
 SDE_ERR	sdMidiSetFxLev( SDMIDI handle, const Sint8 fx_lev)
 {
-	// Line 1371, Address: 0x2db8f0, Func Offset: 0
-	// Line 1376, Address: 0x2db904, Func Offset: 0x14
-	// Func End, Address: 0x2db90c, Func Offset: 0x1c
-    scePrintf("sdMidiSetFxLev - UNIMPLEMENTED!\n");
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 /*// 
