@@ -989,32 +989,45 @@ short Pitch_Control(SND_WORK* set_snd_work)
 	scePrintf("Pitch_Control - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2dc680
-SDE_ERR sdShotSetVol(SDS_PORT_REF** handle, char vol, int fade_time)
+// 100% matching!
+SDE_ERR	sdShotSetVol( SDSHOT handle, const Sint8 vol, const Sint32 fade_time)
 {
-	// Line 2370, Address: 0x2dc680, Func Offset: 0
-	// Line 2374, Address: 0x2dc688, Func Offset: 0x8
-	// Line 2376, Address: 0x2dc698, Func Offset: 0x18
-	// Line 2377, Address: 0x2dc6a4, Func Offset: 0x24
-	// Line 2383, Address: 0x2dc6b0, Func Offset: 0x30
-	// Line 2384, Address: 0x2dc6b8, Func Offset: 0x38
-	// Line 2385, Address: 0x2dc6c4, Func Offset: 0x44
-	// Line 2386, Address: 0x2dc6c8, Func Offset: 0x48
-	// Line 2387, Address: 0x2dc6cc, Func Offset: 0x4c
-	// Line 2411, Address: 0x2dc6d0, Func Offset: 0x50
-	// Line 2387, Address: 0x2dc6d4, Func Offset: 0x54
-	// Line 2411, Address: 0x2dc6d8, Func Offset: 0x58
-	// Line 2416, Address: 0x2dc6dc, Func Offset: 0x5c
-	// Line 2417, Address: 0x2dc6e4, Func Offset: 0x64
-	// Line 2445, Address: 0x2dc6ec, Func Offset: 0x6c
-	// Line 2420, Address: 0x2dc6f0, Func Offset: 0x70
-	// Line 2445, Address: 0x2dc6f4, Func Offset: 0x74
-	// Line 2449, Address: 0x2dc6f8, Func Offset: 0x78
-	// Line 2452, Address: 0x2dc704, Func Offset: 0x84
-	// Line 2454, Address: 0x2dc70c, Func Offset: 0x8c
-	// Func End, Address: 0x2dc718, Func Offset: 0x98
-}*/
+    SND_WORK* temp; // not from the debugging symbols
+
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        temp = (SND_WORK*)*handle;
+        
+        if (temp == NULL)
+        {
+            return SDE_ERR_HANDLE_NULL;
+        }
+        
+        if (fade_time != 0)
+        {
+            if (temp->vol_timer == 0) 
+            {
+                temp->vol_timer = fade_time;
+                temp->vol_set_time = fade_time;
+                
+                temp->vol_old = temp->vol;
+                temp->vol = vol + 128;
+            }
+            
+            Volume_Control(temp);
+        } 
+        else 
+        {
+            temp->vol_timer = 0;
+            
+            temp->vol = vol + 128;
+        }
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
+}
 
 // 
 // Start address: 0x2dc720
