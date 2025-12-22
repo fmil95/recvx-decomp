@@ -11,7 +11,7 @@ char* volatile dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
 DVS_CI_OBJ dvg_ci_obj[40] = { 0 };
 CVF_FS_ERRFN dvg_ci_err_func = NULL;
 void *dvg_ci_err_obj = NULL;
-Sint8 dvg_ci_fname[297] = { 0 };
+Sint8 dvg_ci_fname[297] __attribute__((aligned(64))) = { 0 };
 CVS_FS_IF dvg_ci_vtbl = { dvCiExecServer, dvCiEntryErrFunc, dvCiGetFileSize, NULL, dvCiOpen, dvCiClose, dvCiSeek, dvCiTell, dvCiReqRd, NULL, dvCiStopTr, dvCiGetStat, dvCiGetSctLen, NULL, dvCiGetNumTr, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 
 // 100% matching!
