@@ -33,8 +33,8 @@ AFS_PATINFO SoundAfsPatDef[8] = {
 };
 ADX_WORK AdxDef[2] = { { 2, 48000, 2, -1 }, { 1, 48000, 2, -1 } };
 SDE_DATA_TYPE SdTypeDef[5] __attribute__((aligned(64))) = { SDE_DATA_TYPE_MIDI_SEQ_BANK, SDE_DATA_TYPE_MIDI_PRG_BANK, SDE_DATA_TYPE_SHOT_BANK, SDE_DATA_TYPE_FX_PRG_BANK, SDE_DATA_TYPE_FX_OUT_BANK }; 
-/*int PlayerFootStepSwitch[3];
-int SystemSeSlotSwitch;*/
+/*int PlayerFootStepSwitch[3];*/
+int SystemSeSlotSwitch;
 int WeaponSeSlotSwitch;
 /*int EnemyBackGroundSeFlag;*/
 char MoviePlayTrayOpenFlag;
@@ -1068,47 +1068,51 @@ void PlayGameSe4Event(_anon25* gp, _anon16* pPos, int FloorType, int SeType)
 	// Func End, Address: 0x29459c, Func Offset: 0x19c
 }*/
 
-// 
-// Start address: 0x2945a0
+// 100% matching! 
 void CallSystemSeBasic(int SeNo, int Volume, int FxLevel)
 {
-	int SlotDef[2];
-	// Line 2012, Address: 0x2945a0, Func Offset: 0
-	// Line 2013, Address: 0x2945a4, Func Offset: 0x4
-	// Line 2012, Address: 0x2945ac, Func Offset: 0xc
-	// Line 2013, Address: 0x2945b0, Func Offset: 0x10
-	// Line 2015, Address: 0x2945b8, Func Offset: 0x18
-	// Line 2018, Address: 0x2945bc, Func Offset: 0x1c
-	// Line 2015, Address: 0x2945c0, Func Offset: 0x20
-	// Line 2013, Address: 0x2945c8, Func Offset: 0x28
-	// Line 2015, Address: 0x2945cc, Func Offset: 0x2c
-	// Line 2016, Address: 0x2945d0, Func Offset: 0x30
-	// Line 2017, Address: 0x2945d8, Func Offset: 0x38
-	// Line 2018, Address: 0x2945e0, Func Offset: 0x40
-	// Line 2019, Address: 0x2945e8, Func Offset: 0x48
-	// Line 2020, Address: 0x2945f0, Func Offset: 0x50
-	// Line 2021, Address: 0x2945f8, Func Offset: 0x58
-	// Line 2022, Address: 0x294600, Func Offset: 0x60
-	// Line 2023, Address: 0x294608, Func Offset: 0x68
-	// Line 2024, Address: 0x294610, Func Offset: 0x70
-	// Line 2025, Address: 0x294618, Func Offset: 0x78
-	// Line 2026, Address: 0x29461c, Func Offset: 0x7c
-	// Line 2027, Address: 0x294624, Func Offset: 0x84
-	// Line 2028, Address: 0x29462c, Func Offset: 0x8c
-	// Line 2031, Address: 0x294634, Func Offset: 0x94
-	// Line 2032, Address: 0x294644, Func Offset: 0xa4
-	// Line 2033, Address: 0x29464c, Func Offset: 0xac
-	// Line 2034, Address: 0x294658, Func Offset: 0xb8
-	// Line 2035, Address: 0x294664, Func Offset: 0xc4
-	// Line 2036, Address: 0x29466c, Func Offset: 0xcc
-	// Line 2038, Address: 0x294674, Func Offset: 0xd4
-	// Line 2036, Address: 0x29467c, Func Offset: 0xdc
-	// Line 2037, Address: 0x294688, Func Offset: 0xe8
-	// Line 2036, Address: 0x294698, Func Offset: 0xf8
-	// Line 2038, Address: 0x29469c, Func Offset: 0xfc
-	// Line 2040, Address: 0x2946a4, Func Offset: 0x104
-	// Func End, Address: 0x2946b0, Func Offset: 0x110
-	scePrintf("CallSystemSeBasic - UNIMPLEMENTED!\n");
+    int SlotDef[2] = { 17, 18 };
+
+    RequestInfo.BankNo = (SeNo / 256) & 0xF;
+    RequestInfo.ListNo = SeNo;
+    
+    RequestInfo.Priority = 0;
+    
+    RequestInfo.PanDelayTime = -2;
+    
+    RequestInfo.Volume = Volume;
+    
+    RequestInfo.VolumeDelayTime = 0;
+    RequestInfo.PitchDelayTime = -2;
+    RequestInfo.SpeedDelayTime = -1;
+    
+    if (FxLevel == 0)
+    {
+        RequestInfo.FxInput = -2;
+        RequestInfo.FxLevel = 0;
+    } 
+    else 
+    {
+        RequestInfo.FxInput = 0;
+        RequestInfo.FxLevel = FxLevel;
+    }
+    
+    if ((SeNo & 0x80000000)) 
+    {
+        StopFadeMidi(2);
+        
+        RequestInfo.SlotNo = 2;
+        
+        ExPlayMidi(&RequestInfo);
+    }
+    else 
+    {
+        RequestInfo.SlotNo = SlotDef[SystemSeSlotSwitch];
+        
+        SystemSeSlotSwitch = !SystemSeSlotSwitch;
+        
+        ExPlaySe(&RequestInfo);
+    }
 }
 
 // 100% matching 
