@@ -220,34 +220,66 @@ void PlayMidi(unsigned int SlotNo, char BankNo, char ListNo, char Priority)
     }
 }
 
-// 
-// Start address: 0x28f240
+// 100% matching! 
 void ExPlayMidi(SND_REQ* pRequestInfo)
 {
-	// Line 221, Address: 0x28f240, Func Offset: 0
-	// Line 222, Address: 0x28f250, Func Offset: 0x10
-	// Line 223, Address: 0x28f278, Func Offset: 0x38
-	// Line 225, Address: 0x28f29c, Func Offset: 0x5c
-	// Line 226, Address: 0x28f2a8, Func Offset: 0x68
-	// Line 228, Address: 0x28f2b0, Func Offset: 0x70
-	// Line 233, Address: 0x28f2bc, Func Offset: 0x7c
-	// Line 235, Address: 0x28f2e0, Func Offset: 0xa0
-	// Line 236, Address: 0x28f2f4, Func Offset: 0xb4
-	// Line 238, Address: 0x28f2fc, Func Offset: 0xbc
-	// Line 243, Address: 0x28f308, Func Offset: 0xc8
-	// Line 245, Address: 0x28f32c, Func Offset: 0xec
-	// Line 246, Address: 0x28f33c, Func Offset: 0xfc
-	// Line 248, Address: 0x28f344, Func Offset: 0x104
-	// Line 253, Address: 0x28f350, Func Offset: 0x110
-	// Line 255, Address: 0x28f374, Func Offset: 0x134
-	// Line 256, Address: 0x28f384, Func Offset: 0x144
-	// Line 258, Address: 0x28f38c, Func Offset: 0x14c
-	// Line 263, Address: 0x28f398, Func Offset: 0x158
-	// Line 264, Address: 0x28f3a8, Func Offset: 0x168
-	// Line 267, Address: 0x28f3c8, Func Offset: 0x188
-	// Line 269, Address: 0x28f3dc, Func Offset: 0x19c
-	// Func End, Address: 0x28f3ec, Func Offset: 0x1ac
-	scePrintf("ExPlayMidi - UNIMPLEMENTED!\n");
+    if (MidiInfo[pRequestInfo->SlotNo].Flag != 0)
+    {
+        switch (pRequestInfo->PanDelayTime)
+        {               
+        case -2:
+            SetPanMidi(pRequestInfo->SlotNo, 0, 0);
+            break;
+        case -1:
+            break;
+        default:
+            SetPanMidi(pRequestInfo->SlotNo, pRequestInfo->Pan, pRequestInfo->PanDelayTime);
+            break;
+        }
+        
+        switch (pRequestInfo->VolumeDelayTime) 
+        {                       
+        case -2:                                   
+            SetVolumeMidi(pRequestInfo->SlotNo, SdcSeDefaultVolume, 0);
+            break;
+        case -1:                                    
+            break;
+        default:                                    
+            SetVolumeMidi(pRequestInfo->SlotNo, pRequestInfo->Volume, pRequestInfo->VolumeDelayTime);
+            break;
+        }
+        
+        switch (pRequestInfo->PitchDelayTime)
+        {                        
+        case -2:                                 
+            SetPitchMidi(pRequestInfo->SlotNo, 0, 0);
+            break;
+        case -1:                                  
+            break;
+        default:                                   
+            SetPitchMidi(pRequestInfo->SlotNo, pRequestInfo->Pitch, pRequestInfo->PitchDelayTime);
+            break;
+        }
+        
+        switch (pRequestInfo->SpeedDelayTime)
+        {                        
+        case -2:                                    
+            SetSpeedMidi(pRequestInfo->SlotNo, 0, 0);
+            break;
+        case -1:                                   
+            break;
+        default:                                    
+            SetSpeedMidi(pRequestInfo->SlotNo, pRequestInfo->Speed, pRequestInfo->SpeedDelayTime);
+            break;
+        }
+        
+        if (pRequestInfo->FxInput != -1) 
+        {
+            sdMidiSetFxLev(MidiHandle[pRequestInfo->SlotNo], pRequestInfo->FxLevel);
+        }
+        
+        PlayMidi(pRequestInfo->SlotNo, pRequestInfo->BankNo, pRequestInfo->ListNo, pRequestInfo->Priority);
+    }
 }
 
 // 100% matching!
@@ -277,14 +309,14 @@ void SetPanMidi2(unsigned int SlotNo, float Pan, short DelayTime)
 	scePrintf("SetPanMidi2 - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x28f520
 void SetPanMidi(unsigned int SlotNo, char Pan, short DelayTime)
 {
 	// Line 322, Address: 0x28f520, Func Offset: 0
 	// Func End, Address: 0x28f534, Func Offset: 0x14
+	scePrintf("SetPanMidi - UNIMPLEMENTED!\n");
 }
-*/
 
 // 
 // Start address: 0x28f540
@@ -328,7 +360,7 @@ void SetVolumeMidi2(unsigned int SlotNo, float Volume, short DelayTime)
     scePrintf("SetVolumeMidi2 - UNIMPLEMENTED\n");
 }
 
-/*// 
+// 
 // Start address: 0x28f6e0
 void SetPitchMidi(unsigned int SlotNo, short Pitch, short DelayTime)
 {
@@ -340,6 +372,7 @@ void SetPitchMidi(unsigned int SlotNo, short Pitch, short DelayTime)
 	// Line 360, Address: 0x28f70c, Func Offset: 0x2c
 	// Line 362, Address: 0x28f72c, Func Offset: 0x4c
 	// Func End, Address: 0x28f738, Func Offset: 0x58
+	scePrintf("SetPitchMidi - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -354,9 +387,10 @@ void SetSpeedMidi(unsigned int SlotNo, short Speed, short DelayTime)
 	// Line 367, Address: 0x28f76c, Func Offset: 0x2c
 	// Line 369, Address: 0x28f78c, Func Offset: 0x4c
 	// Func End, Address: 0x28f798, Func Offset: 0x58
+	scePrintf("SetSpeedMidi - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28f7a0
 void SetFxLevelMidi(unsigned int SlotNo, char FxLevel)
 {
