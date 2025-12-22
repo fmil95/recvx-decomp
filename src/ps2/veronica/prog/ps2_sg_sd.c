@@ -785,16 +785,17 @@ SDE_ERR sdShotPlay(SDS_PORT_REF** handle, char bank_num, char data_num, char pri
 	// Line 2094, Address: 0x2dc14c, Func Offset: 0x21c
 	// Line 2096, Address: 0x2dc154, Func Offset: 0x224
 	// Func End, Address: 0x2dc17c, Func Offset: 0x24c
-}
+}*/
 
 // 
 // Start address: 0x2dc180
-SDE_ERR sdShotSetFxLev()
+SDE_ERR	sdShotSetFxLev( SDSHOT handle, const Sint8 fx_lev)
 {
 	// Line 2126, Address: 0x2dc180, Func Offset: 0
 	// Line 2131, Address: 0x2dc194, Func Offset: 0x14
 	// Func End, Address: 0x2dc19c, Func Offset: 0x1c
-}*/
+    scePrintf("sdShotSetFxLev - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 SDE_ERR	sdShotSetPan( SDSHOT handle, const Sint8 pan, const Sint32 fade_time)
@@ -873,9 +874,9 @@ unsigned char Panpot_Control(SND_WORK* set_snd_work)
 	scePrintf("Panpot_Control - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2dc420
-SDE_ERR sdShotSetPitch(SDS_PORT_REF** handle, short pitch, int fade_time)
+SDE_ERR	sdShotSetPitch( SDSHOT handle, const Sint16 pitch, const Sint32 fade_time)
 {
 	unsigned short set_pitch;
 	// Line 2248, Address: 0x2dc420, Func Offset: 0
@@ -900,7 +901,8 @@ SDE_ERR sdShotSetPitch(SDS_PORT_REF** handle, short pitch, int fade_time)
 	// Line 2312, Address: 0x2dc4cc, Func Offset: 0xac
 	// Line 2314, Address: 0x2dc4d4, Func Offset: 0xb4
 	// Func End, Address: 0x2dc4e0, Func Offset: 0xc0
-}*/
+    scePrintf("sdShotSetPitch - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2dc4e0

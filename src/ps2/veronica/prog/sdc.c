@@ -471,7 +471,7 @@ unsigned int CheckPlaySe(unsigned int SlotNo)
     return status.m_Flg & 0x1;
 }
 
-/*// 
+// 
 // Start address: 0x28f990
 void PlaySe(unsigned int SlotNo, char BankNo, char ListNo, char Priority)
 {
@@ -484,34 +484,64 @@ void PlaySe(unsigned int SlotNo, char BankNo, char ListNo, char Priority)
 	// Line 446, Address: 0x28f9d0, Func Offset: 0x40
 	// Line 449, Address: 0x28f9e8, Func Offset: 0x58
 	// Func End, Address: 0x28f9f4, Func Offset: 0x64
-}*/
+	scePrintf("PlaySe - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x28fa00
+// 100% matching! 
 void ExPlaySe(SND_REQ* pRequestInfo)
 {
-	// Line 452, Address: 0x28fa00, Func Offset: 0
-	// Line 453, Address: 0x28fa10, Func Offset: 0x10
-	// Line 454, Address: 0x28fa38, Func Offset: 0x38
-	// Line 456, Address: 0x28fa5c, Func Offset: 0x5c
-	// Line 457, Address: 0x28fa68, Func Offset: 0x68
-	// Line 459, Address: 0x28fa70, Func Offset: 0x70
-	// Line 464, Address: 0x28fa7c, Func Offset: 0x7c
-	// Line 466, Address: 0x28faa0, Func Offset: 0xa0
-	// Line 467, Address: 0x28fab4, Func Offset: 0xb4
-	// Line 469, Address: 0x28fabc, Func Offset: 0xbc
-	// Line 474, Address: 0x28fac8, Func Offset: 0xc8
-	// Line 476, Address: 0x28faec, Func Offset: 0xec
-	// Line 477, Address: 0x28fafc, Func Offset: 0xfc
-	// Line 479, Address: 0x28fb04, Func Offset: 0x104
-	// Line 496, Address: 0x28fb10, Func Offset: 0x110
-	// Line 498, Address: 0x28fb34, Func Offset: 0x134
-	// Line 499, Address: 0x28fb54, Func Offset: 0x154
-	// Line 501, Address: 0x28fb5c, Func Offset: 0x15c
-	// Line 507, Address: 0x28fb7c, Func Offset: 0x17c
-	// Line 509, Address: 0x28fb90, Func Offset: 0x190
-	// Func End, Address: 0x28fba0, Func Offset: 0x1a0
-	scePrintf("ExPlaySe - UNIMPLEMENTED!\n");
+    if (SeInfo[pRequestInfo->SlotNo].Flag != 0) 
+    {
+        switch (pRequestInfo->PanDelayTime) 
+        {                         
+        case -2:
+            SetPanSe(pRequestInfo->SlotNo, 0, 0);
+            break;
+        case -1:
+            break;
+        default:
+            SetPanSe(pRequestInfo->SlotNo, pRequestInfo->Pan, pRequestInfo->PanDelayTime);
+            break;
+        }
+        
+        switch (pRequestInfo->VolumeDelayTime) 
+        {                        
+        case -2:                                  
+            SetVolumeSe(pRequestInfo->SlotNo, SdcSeDefaultVolume, 0);
+            break;
+        case -1:                                  
+            break;
+        default:                                  
+            SetVolumeSe(pRequestInfo->SlotNo, pRequestInfo->Volume, pRequestInfo->VolumeDelayTime);
+            break;
+        }
+        
+        switch (pRequestInfo->PitchDelayTime) 
+        {                        
+        case -2:                                   
+            SetPitchSe(pRequestInfo->SlotNo, 0, 0);
+            break;
+        case -1:                                   
+            break;
+        default:                                    
+            SetPitchSe(pRequestInfo->SlotNo, pRequestInfo->Pitch, pRequestInfo->PitchDelayTime);
+            break;
+        }
+        
+        switch (pRequestInfo->FxInput) 
+        {                         
+        case -2:                                    
+            sdShotSetFxLev(SeHandle[pRequestInfo->SlotNo], 0);
+            break;
+        case -1:                                    
+            break;
+        default:                                  
+            sdShotSetFxLev(SeHandle[pRequestInfo->SlotNo], pRequestInfo->FxLevel);
+            break;
+        }
+        
+        PlaySe(pRequestInfo->SlotNo, pRequestInfo->BankNo, pRequestInfo->ListNo, pRequestInfo->Priority);
+    }
 }
 
 // 100% matching!
