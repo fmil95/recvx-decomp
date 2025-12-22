@@ -567,9 +567,9 @@ SDE_ERR	sdMidiSetPitch( SDMIDI handle, const Sint16 pitch, const Sint32 fade_tim
     scePrintf("sdMidiSetPitch - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2dbaf0
-SDE_ERR sdMidiSetSpeed()
+SDE_ERR	sdMidiSetSpeed( SDMIDI handle, const Sint16 speed, const Sint32 fade_time)
 {
 	// Line 1554, Address: 0x2dbaf0, Func Offset: 0
 	// Line 1556, Address: 0x2dbaf8, Func Offset: 0x8
@@ -578,9 +578,10 @@ SDE_ERR sdMidiSetSpeed()
 	// Line 1563, Address: 0x2dbb1c, Func Offset: 0x2c
 	// Line 1565, Address: 0x2dbb24, Func Offset: 0x34
 	// Func End, Address: 0x2dbb30, Func Offset: 0x40
+    scePrintf("sdMidiSetSpeed - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dbb30
 SDE_ERR sdMidiSetVol(SDS_PORT_REF** handle, char vol, int fade_time)
 {

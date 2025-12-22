@@ -369,19 +369,13 @@ void SetPitchMidi(unsigned int SlotNo, short Pitch, short DelayTime)
     }
 }
 
-// 
-// Start address: 0x28f740
+// 100% matching! 
 void SetSpeedMidi(unsigned int SlotNo, short Speed, short DelayTime)
 {
-	// Line 366, Address: 0x28f740, Func Offset: 0
-	// Line 365, Address: 0x28f754, Func Offset: 0x14
-	// Line 366, Address: 0x28f758, Func Offset: 0x18
-	// Line 365, Address: 0x28f75c, Func Offset: 0x1c
-	// Line 366, Address: 0x28f760, Func Offset: 0x20
-	// Line 367, Address: 0x28f76c, Func Offset: 0x2c
-	// Line 369, Address: 0x28f78c, Func Offset: 0x4c
-	// Func End, Address: 0x28f798, Func Offset: 0x58
-	scePrintf("SetSpeedMidi - UNIMPLEMENTED!\n");
+    if (MidiInfo[SlotNo].Flag != 0) 
+    {
+        sdMidiSetSpeed(MidiHandle[SlotNo], Speed, DelayTime);
+    }
 }
 
 /*// 
