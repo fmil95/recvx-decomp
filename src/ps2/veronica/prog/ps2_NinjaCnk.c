@@ -43,8 +43,8 @@ CNK_LIGHTING NaCnkLighting[4] __attribute__((aligned(64))) = { { &NaCnkLightEs, 
                                   { NaCnkLightEm, 6, &NaCnkDefaultOne, &NaCnkDefaultOne, &NaCnkAmbientEm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                                   { &NaCnkLightSs, 1, &NaCnkDiffuseMaterial, &NaCnkSpeculaMaterial, &NaCnkAmbientSs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                                   { NaCnkLightSm, 6, &NaCnkDiffuseMaterial, &NaCnkDefaultOne, &NaCnkAmbientSm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
-/*void* vpDummy;
-unsigned int Ps2_use_pt_flag;
+void* vpDummy;
+/*unsigned int Ps2_use_pt_flag;
 unsigned int _nj_control_3d_flag_;
 unsigned int Ps2_njControl3D_flag;
 tagCNK_LIGHTING* pNaCnkCrntLighting;
@@ -101,14 +101,11 @@ void	njInit3D( NJS_VERTEX_BUF *vbuf, Int vn )
     _Init_ScissorSystem(); 
 }
 
-/*// 
-// Start address: 0x2cf380
-void njDrawModel(_anon18* pModel)
+// 100% matching!
+void	njDrawModel( NJS_MODEL *model )
 {
-	// Line 593, Address: 0x2cf380, Func Offset: 0
-	// Line 594, Address: 0x2cf384, Func Offset: 0x4
-	// Func End, Address: 0x2cf38c, Func Offset: 0xc
-}*/
+    vpDummy = model;
+}
 
 // 
 // Start address: 0x2cf390
