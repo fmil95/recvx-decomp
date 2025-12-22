@@ -2,12 +2,12 @@
 
 //#include <string.h> /* ERROR: causes linker to fail */
 
-GDFS_HANDLE* __file_handle;
+GDFS_HANDLE* __file_handle __attribute__((aligned(64)));
 GDFS_WORK* __gds_fs_work;
 GDFS_DIRREC_TBL* __current_dir;
 GDFS_DIRREC_ENT* __gdfs_dir_ent;
 int dvd_image_data_max = 19;
-DVD_IMAGE_DATA dvd_image_data[19] = 
+DVD_IMAGE_DATA dvd_image_data[19] __attribute__((aligned(64))) = 
 {
 	{ "RDX_LNK.AFS" , rdx_files },
     { "SYSTEM.AFS"  , 0 },

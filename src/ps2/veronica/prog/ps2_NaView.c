@@ -18,7 +18,7 @@ NJS_SCREEN	_nj_screen_;
 NJS_MATRIX NaViewScreenMatrix;
 float fNaViwHalfH;
 float fNaViwHalfW;
-NJS_MATRIX NaViwViewMatrix;
+NJS_MATRIX NaViwViewMatrix __attribute__((aligned(64)));
 NO_NAME_16 ClipVolume = { 320.0f, 240.0f, 1.0f, 512.0f };
 sceVu0FMATRIX ClipScreenMatrix;
 sceVu0FMATRIX ClipMatrix2;

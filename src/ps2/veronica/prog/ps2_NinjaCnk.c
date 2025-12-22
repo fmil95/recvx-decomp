@@ -25,21 +25,21 @@ float fNaCnkConstantG;
 float fNaCnkConstantB;
 tagVU1_COLOR NaCnkConstantMaterial;
 float fNaCnkAlphaMaterial;*/
-VU1_COLOR NaCnkDiffuseMaterial;
+VU1_COLOR NaCnkDiffuseMaterial __attribute__((aligned(64)));
 /*float fNaCnkMaterialSpeE;*/
-VU1_COLOR NaCnkSpeculaMaterial;
+VU1_COLOR NaCnkSpeculaMaterial __attribute__((aligned(64)));
 /*tagVU1_COLOR NaCnkAmbientFunctionSm;*/
-VU1_COLOR NaCnkAmbientEs;
-VU1_COLOR NaCnkAmbientEm = { 1.0f, 1.0f, 1.0f, 1.0f };
-VU1_COLOR NaCnkAmbientFunctionEm = { 1.0f, 1.0f, 1.0f, 1.0f };
-VU1_COLOR NaCnkAmbientMaterial = { 1.0f, 1.0f, 1.0f, 1.0f };
-VU1_COLOR NaCnkAmbientSs;
+VU1_COLOR NaCnkAmbientEs __attribute__((aligned(64)));
+VU1_COLOR NaCnkAmbientEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
+VU1_COLOR NaCnkAmbientFunctionEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
+VU1_COLOR NaCnkAmbientMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
+VU1_COLOR NaCnkAmbientSs __attribute__((aligned(64)));
 VU1_COLOR NaCnkAmbientSm;
-CNK_LIGHT NaCnkLightEs;
-CNK_LIGHT NaCnkLightEm[6];
+CNK_LIGHT NaCnkLightEs __attribute__((aligned(64)));
+CNK_LIGHT NaCnkLightEm[6] __attribute__((aligned(64)));
 CNK_LIGHT NaCnkLightSs;
-CNK_LIGHT NaCnkLightSm[6];
-CNK_LIGHTING NaCnkLighting[4] = { { &NaCnkLightEs, 1, &NaCnkDefaultOne, &NaCnkSpeculaMaterial, &NaCnkAmbientEs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+CNK_LIGHT NaCnkLightSm[6] __attribute__((aligned(64)));
+CNK_LIGHTING NaCnkLighting[4] __attribute__((aligned(64))) = { { &NaCnkLightEs, 1, &NaCnkDefaultOne, &NaCnkSpeculaMaterial, &NaCnkAmbientEs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                                   { NaCnkLightEm, 6, &NaCnkDefaultOne, &NaCnkDefaultOne, &NaCnkAmbientEm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                                   { &NaCnkLightSs, 1, &NaCnkDiffuseMaterial, &NaCnkSpeculaMaterial, &NaCnkAmbientSs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                                   { NaCnkLightSm, 6, &NaCnkDiffuseMaterial, &NaCnkDefaultOne, &NaCnkAmbientSm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };

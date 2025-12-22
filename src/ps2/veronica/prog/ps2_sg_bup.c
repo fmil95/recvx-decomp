@@ -1,6 +1,6 @@
 #include "ps2_sg_bup.h"
 
-unsigned short visula_size[4];
+unsigned short visula_size[4]; /* unused */
 int(*__bu_completecallback_func)(int, int, int, unsigned int);
 int(*__bu_progresscallback_func)(int, int, int, int);
 
