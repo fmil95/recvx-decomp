@@ -529,11 +529,11 @@ SDE_ERR sdMidiSetPan(SDS_PORT_REF** handle, char pan, int fade_time)
 	// Line 1436, Address: 0x2db99c, Func Offset: 0x8c
 	// Line 1438, Address: 0x2db9a4, Func Offset: 0x94
 	// Func End, Address: 0x2db9b0, Func Offset: 0xa0
-}
+}*/
 
 // 
 // Start address: 0x2db9b0
-SDE_ERR sdMidiSetPitch(SDS_PORT_REF** handle, short pitch, int fade_time)
+SDE_ERR	sdMidiSetPitch( SDMIDI handle, const Sint16 pitch, const Sint32 fade_time)
 {
 	unsigned short set_pitch;
 	// Line 1464, Address: 0x2db9b0, Func Offset: 0
@@ -564,9 +564,10 @@ SDE_ERR sdMidiSetPitch(SDS_PORT_REF** handle, short pitch, int fade_time)
 	// Line 1525, Address: 0x2dbad4, Func Offset: 0x124
 	// Line 1527, Address: 0x2dbadc, Func Offset: 0x12c
 	// Func End, Address: 0x2dbae8, Func Offset: 0x138
+    scePrintf("sdMidiSetPitch - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2dbaf0
 SDE_ERR sdMidiSetSpeed()
 {

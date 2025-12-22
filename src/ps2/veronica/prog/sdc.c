@@ -360,19 +360,13 @@ void SetVolumeMidi2(unsigned int SlotNo, float Volume, short DelayTime)
     scePrintf("SetVolumeMidi2 - UNIMPLEMENTED\n");
 }
 
-// 
-// Start address: 0x28f6e0
+// 100% matching! 
 void SetPitchMidi(unsigned int SlotNo, short Pitch, short DelayTime)
 {
-	// Line 359, Address: 0x28f6e0, Func Offset: 0
-	// Line 358, Address: 0x28f6f4, Func Offset: 0x14
-	// Line 359, Address: 0x28f6f8, Func Offset: 0x18
-	// Line 358, Address: 0x28f6fc, Func Offset: 0x1c
-	// Line 359, Address: 0x28f700, Func Offset: 0x20
-	// Line 360, Address: 0x28f70c, Func Offset: 0x2c
-	// Line 362, Address: 0x28f72c, Func Offset: 0x4c
-	// Func End, Address: 0x28f738, Func Offset: 0x58
-	scePrintf("SetPitchMidi - UNIMPLEMENTED!\n");
+    if (MidiInfo[SlotNo].Flag != 0)
+    {
+        sdMidiSetPitch(MidiHandle[SlotNo], Pitch, DelayTime);
+    }
 }
 
 // 
