@@ -713,14 +713,10 @@ void RequestSeFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 	scePrintf("RequestSeFadeFunctionEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x290360
+// 100% matching! 
 void StopFadeSe(int SlotNo)
 {
-	// Line 755, Address: 0x290360, Func Offset: 0
-	// Line 756, Address: 0x290378, Func Offset: 0x18
-	// Func End, Address: 0x290380, Func Offset: 0x20
-	scePrintf("StopFadeSe - UNIMPLEMENTED!\n");
+    SeInfo[SlotNo].FadeFunc = 0;
 }
 
 // 
