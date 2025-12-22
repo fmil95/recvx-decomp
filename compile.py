@@ -20,37 +20,19 @@ def write_json(filename, data):
 def run_command(command, env_vars, log_file='elf/report.txt'):
     """Run a shell command with specified environment variables and log output."""
 
-    # Detect Linux environment and use WINE for windows binaries
+    # Detect Linux environment and use WIBO for windows binaries
     if sys.platform.startswith("linux") and command[0].endswith('.exe'):
-        # By default, create a prefix inside the project root and use that
-        project_root = Path(__file__).resolve().parent
+        try:
+            subprocess.run(["wibo"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        except FileNotFoundError:
+            print("ERROR: wibo does not appear to be accessible")
+            print("To install it, please download it and put it in your PATH:")
+            print(
+                "  wget https://github.com/decompals/wibo/releases/download/1.0.0/wibo-x86_64 && chmod +x wibo-x86_64 && sudo mv wibo-x86_64 /usr/bin/wibo"
+            )
+            sys.exit(1)
 
-        wine_prefix = project_root / ".wineprefix"
-
-        env = os.environ.copy()
-        env["WINEPREFIX"] = str(wine_prefix.resolve())
-
-        boot = subprocess.run(
-            ["wineboot", "--init"],
-            env=env,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
-
-        if boot.returncode != 0:
-            sys.exit(1) # Couldn't handle wine boot
-
-        # Command for checking correct wineprefix
-        # result = subprocess.run(
-        #     ["wine", "winepath", "-u", "C:"],
-        #     env=env,
-        #     capture_output=True,
-        #     text=True
-        # )
-
-        # print("wine is mapping C:/ to ->", result.stdout.strip())
-
-        command = ['wine'] + command
+        command = ['wibo'] + command
 
     for cmd in command:
         # Tidy up the output a little

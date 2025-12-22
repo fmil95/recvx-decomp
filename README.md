@@ -24,14 +24,16 @@ Decomp progress: 1732 implemented functions / 4537 total (38.18%)
 ```
 <!-- PROGRESS-END -->
 
-## Build
+## Building
 
 The very first step should be to clone the repository: 
 ```
 git clone --recursive https://github.com/fmil95/recvx-decomp.git
 ```
 
-If you plan on contributing, your next step should be to perform a disassembly of the ROM using splat in order to obtain the MIPS required for function matching. And if you are on Windows, you'll have to either install Linux or use WSL for this step, because otherwise the tool won't work. You have to place your copy of the SLUS_201.84 file in the config folder, and afterwards install splat with the following bash command: 
+If you plan on contributing, your next step should be to perform a disassembly of the ROM using splat in order to obtain the MIPS assembly required for function matching, for this a python installation is necessary. 
+
+You have to place your copy of the SLUS_201.84 file in the config folder, and afterwards install splat with the following command: 
 ```
 pip install -r config/requirements.txt
 ```
@@ -41,14 +43,15 @@ Once that is done, use the following command to perform the ASM dump:
 python3 -m splat split config/SLUS_201.84.yaml
 ```
 
-You can tell that it worked correctly if you see 100% on all section_headers operations, there will be an error message after that, but it's no problem since splat is asking for a linker script and we won't really need it.
+You can tell that it worked correctly if you see 100% on all section_headers operations.
 
 Next, and if you were planning to simply building the project all along, type the following command to compile:
 ```
 python compile.py
 ```
 
-If you're using Linux, ensure you have Wine installed on your system to run 32-bit programs. Wine will take care of MWCC since it only runs on Windows. By default, the command will use a directory named `.wineprefix` as prefix on the root of the project to keep things clean. If prompted about the **Mono Installer**, simply click on 'Cancel'.
+If you're using Linux, an installation of wibo is needed in order to run the Windows-only MWCC binary, 
+a small prompt with install steps will be shown if the script can't find wibo in your path.
 
 With the main.elf from compilation, you can repackage RE: CVX's ISO file with it to see the decompiled code in action. You need to put your copy of the game's DVD on the elf/iso folder, and dump its contents with the following command:
 ```

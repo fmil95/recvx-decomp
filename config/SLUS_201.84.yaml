@@ -12,13 +12,14 @@ options:
   # build_path: build
   # create_asm_dependencies: True
 
-  ld_script_path: SLUS_201.84
+  ld_script_path: SLUS_201.84.ld
+  asm_nonmatching_label_macro: ""
 
   find_file_boundaries: False
 
   o_as_suffix: True
   use_legacy_include_asm: False
-  gp_value: 0x004F9B70
+  gp_value: 0x0036A7F0
 
   section_order: [".text", ".data", ".lit4", ".sdata", ".rodata", ".bss"]
 
@@ -41,7 +42,7 @@ options:
 
 segments:
   - name: header
-    type: header
+    type: databin
     start: 0x0
 
   - name: main
