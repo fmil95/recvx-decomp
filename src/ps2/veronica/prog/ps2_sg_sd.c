@@ -465,35 +465,51 @@ SDE_ERR	sdMidiOpenPort( SDMIDI *handle)
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2db800
+// 100% matching!
 SDE_ERR	sdMidiPlay( SDMIDI handle, const Sint8 bank_num, const Sint8 data_num, const Sint8 priority)
 {
-	unsigned int ch_check;
-	// Line 1259, Address: 0x2db800, Func Offset: 0
-	// Line 1265, Address: 0x2db818, Func Offset: 0x18
-	// Line 1267, Address: 0x2db82c, Func Offset: 0x2c
-	// Line 1268, Address: 0x2db838, Func Offset: 0x38
-	// Line 1305, Address: 0x2db844, Func Offset: 0x44
-	// Line 1302, Address: 0x2db848, Func Offset: 0x48
-	// Line 1305, Address: 0x2db84c, Func Offset: 0x4c
-	// Line 1306, Address: 0x2db864, Func Offset: 0x64
-	// Line 1309, Address: 0x2db86c, Func Offset: 0x6c
-	// Line 1311, Address: 0x2db878, Func Offset: 0x78
-	// Line 1312, Address: 0x2db880, Func Offset: 0x80
-	// Line 1314, Address: 0x2db88c, Func Offset: 0x8c
-	// Line 1315, Address: 0x2db894, Func Offset: 0x94
-	// Line 1316, Address: 0x2db8a0, Func Offset: 0xa0
-	// Line 1318, Address: 0x2db8a4, Func Offset: 0xa4
-	// Line 1320, Address: 0x2db8a8, Func Offset: 0xa8
-	// Line 1319, Address: 0x2db8ac, Func Offset: 0xac
-	// Line 1320, Address: 0x2db8b0, Func Offset: 0xb0
-	// Line 1324, Address: 0x2db8b8, Func Offset: 0xb8
-	// Line 1332, Address: 0x2db8c0, Func Offset: 0xc0
-	// Line 1338, Address: 0x2db8c8, Func Offset: 0xc8
-	// Line 1340, Address: 0x2db8d0, Func Offset: 0xd0
-	// Func End, Address: 0x2db8ec, Func Offset: 0xec
-    scePrintf("sdMidiPlay - UNIMPLEMENTED!\n");
+    SND_WORK* temp; // not from the debugging symbols
+    unsigned int ch_check;
+
+    if (__sg_sd_snd_init__ != 0)
+    {
+        temp = (SND_WORK*)*handle;
+        
+        if (temp == NULL) 
+        {
+            return SDE_ERR_HANDLE_NULL;  
+        }
+        
+        ch_check = temp->port_num;
+        
+        if ((get_iop_snddata.midi_info & (1 << ch_check))) 
+        {
+            SdrBgmStop(ch_check);
+        }
+        
+        if (ch_check == 2)
+        {
+            ch_check = 8;
+        }
+        else if (ch_check == 8) 
+        {
+            ch_check = 9;
+        } 
+        else if (ch_check == 9) 
+        {
+            ch_check = 2;
+        }
+        
+        temp->port_num = ch_check;
+        temp->channel_num = data_num;
+        temp->bank_num = bank_num;
+        
+        temp->req = 1;
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;  
 }
 
 // 100% matching!
