@@ -28,7 +28,7 @@ Decomp progress: 1732 implemented functions / 4537 total (38.18%)
 
 Requisites:
 - Python
-- Mips Binutils (Must be available in PATH, [windows builds can be found here](https://github.com/dbalatoni13/mips-binutils/releases))
+- Mips Binutils
 - Wibo (if using Linux, for running Windows binaries)
 
 The very first step should be to clone the repository: 

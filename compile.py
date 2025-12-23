@@ -9,6 +9,8 @@ from pathlib import Path
 import splat.scripts.split as split
 from splat.segtypes.linker_entry import LinkerEntry
 
+ROOT_DIR = Path(__file__).parent
+
 YAML_FILE = Path("config/SLUS_201.84.yaml")
 SECTION_DICT = {
     ".text" : ",\"ax\",@progbits,unique,",
@@ -16,6 +18,8 @@ SECTION_DICT = {
     ".rodata" : ",\"a\",@progbits,unique,",
     ".bss" : ",\"wa\",@nobits,unique,",
 }
+
+IS_LINUX = sys.platform.startswith("linux")
 
 def load_json(filename):
     """Load JSON data from a file."""
@@ -32,18 +36,7 @@ def write_json(filename, data):
 def run_command(command, env_vars, log_file='elf/report.txt'):
     """Run a shell command with specified environment variables and log output."""
 
-    # Detect Linux environment and use WIBO for windows binaries
-    if sys.platform.startswith("linux") and command[0].endswith('.exe'):
-        try:
-            subprocess.run(["wibo"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        except FileNotFoundError:
-            print("ERROR: wibo does not appear to be accessible")
-            print("To install it, please download it and put it in your PATH:")
-            print(
-                "  wget https://github.com/decompals/wibo/releases/download/1.0.0/wibo-x86_64 && chmod +x wibo-x86_64 && sudo mv wibo-x86_64 /usr/bin/wibo"
-            )
-            sys.exit(1)
-
+    if IS_LINUX and command[0].endswith('.exe'):
         command = ['wibo'] + command
 
     for cmd in command:
@@ -89,7 +82,7 @@ def create_compile_command_entry(compiler, source, object_file, include_dirs, de
     }
 
 
-def compile_source_files(compiler, sources, compiler_flags, include_dirs, defines, env_vars):
+def compile_source_files(compiler_mwcc, sources, compiler_mwcc_flags, include_dirs, defines, env_vars, gcc, gcc_flags):
     """Compile all source files and return object file list and compile commands."""
     objects = ["vsm/ps2_vu0.o", "vsm/ps2_vu1.o"]
     compile_commands = []
@@ -118,6 +111,15 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
     log_file = 'elf/report.txt'
 
     for source in sources:
+        if "cri" in source:
+            sdata_flag = "-G"
+            compiler = gcc
+            compiler_flags = gcc_flags
+        else: 
+            sdata_flag = "-sdatathreshold="
+            compiler = compiler_mwcc
+            compiler_flags = compiler_mwcc_flags
+        
         normalized_path = source.replace("/", os.sep).replace("\\", os.sep)
         filename = os.path.basename(source)
 
@@ -128,20 +130,20 @@ def compile_source_files(compiler, sources, compiler_flags, include_dirs, define
         # Check file-specific rule first
         if filename in file_specific:
             applied_threshold = file_specific[filename]
-            local_flags = compiler_flags + [f"-sdatathreshold={applied_threshold}"]
+            local_flags = compiler_flags + [f"{sdata_flag}{applied_threshold}"]
         else:
             # Otherwise, check directory-based rule
             for base, val in threshold_rules.items():
                 if base in normalized_path:
                     applied_threshold = val
-                    local_flags = compiler_flags + [f"-sdatathreshold={val}"]
+                    local_flags = compiler_flags + [f"{sdata_flag}{val}"]
                     break
 
         # --- Logging info about threshold choice ---
         threshold_msg = (
-            f"[BUILD] {source} -> using -sdatathreshold={applied_threshold}"
+            f"[BUILD] {source} -> using {sdata_flag}{applied_threshold}"
             if applied_threshold is not None
-            else f"[BUILD] {source} -> using default threshold"
+            else f"[BUILD] {source} -> using default sdata threshold"
         )
         print(threshold_msg)
         with open(log_file, 'a') as f:
@@ -324,6 +326,35 @@ def do_objdiff_setup():
             clean_asm(Path(unit["target_path"]).with_suffix(".s"))
 
 
+def get_platform_tools():
+    # Check path availability of WIBO and AS
+    if IS_LINUX:
+        try:
+            subprocess.run(["wibo"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        except FileNotFoundError:
+            print("ERROR: wibo does not appear to be accessible")
+            print("To install it, please download it and put it in your PATH:")
+            print(
+                "  wget https://github.com/decompals/wibo/releases/download/1.0.0/wibo-x86_64 && chmod +x wibo-x86_64 && sudo mv wibo-x86_64 /usr/bin/wibo"
+            )
+            sys.exit(-1)
+        
+        try:
+            subprocess.run(["mips-linux-gnu-as", "--version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        except FileNotFoundError:
+            print("ERROR: GNU AS for mips does not appear to be accessible")
+            print("Please download it for you distro and put it in your PATH")
+            sys.exit(-1)
+        compiler_gcc = "compiler/linux/ee/gcc/bin/ee-gcc"
+        assembler = "mips-linux-gnu-as"
+    else:
+        compiler_gcc = "compiler/windows/ee/gcc/bin/ee-gcc.exe"
+        assembler = "compiler/windows/mips-binutils/mips-linux-gnu-as.exe"
+
+    return compiler_gcc, assembler
+
+        
+
 def main(args):
     """Main entry point for the build process."""
 
@@ -350,7 +381,8 @@ def main(args):
     compiler_flags = env_vars["compiler_flags"]
     linker_script = env_vars["linker_script"]
     linker_flags = env_vars["linker_flags"]
-    assembler = env_vars.get("assembler", "as")
+    compiler_gcc, assembler = get_platform_tools()
+    compiler_gcc_flags = env_vars["compiler_gcc_flags"]
     assembler_flags = env_vars["assembler_flags"]
     libraries = env_vars["libs"]
     sources = env_vars["source_files"]
@@ -378,7 +410,7 @@ def main(args):
 
     asm_objects, asm_compile_commands, asm_build_failed = compile_assembly_files(assembler, assembly, assembler_flags, include_dirs, defines, compiler_env)
 
-    objects, compile_commands, build_failed = compile_source_files(compiler, sources, compiler_flags, include_dirs, defines, compiler_env)
+    objects, compile_commands, build_failed = compile_source_files(compiler, sources, compiler_flags, include_dirs, defines, compiler_env, compiler_gcc, compiler_gcc_flags)
 
     objects += asm_objects
 
