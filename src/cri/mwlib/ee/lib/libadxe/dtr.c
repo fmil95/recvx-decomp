@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <PREFIX_PS2_DEBUG.h>
 #include <eetypes.h>
 #include <eekernel.h>
 #include <sifrpc.h>
