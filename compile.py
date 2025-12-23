@@ -5,6 +5,12 @@ import argparse
 import sys
 from pathlib import Path
 
+import splat
+import splat.scripts.split as split
+from splat.segtypes.linker_entry import LinkerEntry
+
+YAML_FILE = Path("config/SLUS_201.84.yaml")
+
 def load_json(filename):
     """Load JSON data from a file."""
     with open(filename, 'r') as f:
@@ -184,20 +190,95 @@ def link_objects(linker, objects, linker_script, linker_flags, libraries, librar
 def obj_path_for(source):
     """Return the object file path inside the build folder."""
     src_path = Path(source)
-    dst_path = Path("build") / src_path.with_suffix(".o")
-    dst_path.parent.mkdir(parents=True, exist_ok=True)
+    if "expected" in src_path.parts:
+        dst_path = src_path.with_suffix(".o")
+    else:
+        dst_path = Path("build") / src_path.with_suffix(".o")
+        dst_path.parent.mkdir(parents=True, exist_ok=True)
     return str(dst_path)
 
 
 def src_path_for(source):
     """Return the source file path inside the src folder."""
-    src_path = Path(source).relative_to("build")
-    dst_path = src_path.with_suffix(".c")
+    src_path = Path(source)
+    if "expected" in src_path.parts:
+        dst_path = src_path.with_suffix(".s")
+    else:
+        dst_path = src_path.relative_to("build").with_suffix(".c")
     return str(dst_path)
+
+
+def do_objdiff_setup():
+    """Setup objdiff.json and run splat."""
+    split.main([YAML_FILE], modes="all", verbose=False, make_full_disasm_for_code=True)
+
+    entries = split.linker_writer.entries
+
+    cfg = {
+        "min_version": "1.0.0",
+        "custom_make": "python",
+        "custom_args": [
+            "compile.py",
+            "--single-file",
+        ],
+        "build_target": True,
+        "watch_patterns": [
+            "*.c",
+            "*.h",
+            "*.inc",
+            "*.py",
+            "*.yml",
+            "*.yaml",
+            "*.txt",
+            "*.json",
+        ],
+        "units": [],
+    }
+    
+    build_path = Path("build/src")
+    expected_path = Path("build/expected")
+
+    def add_unit(entry: LinkerEntry) -> None:
+        if entry.segment.type not in ["c", "cpp"]:
+            return
+        
+        unit_src_path = entry.segment.out_path().relative_to("config")
+        if "sce" in unit_src_path.parts:
+            return
+        
+        obj_name = entry.segment.name
+        unit_cfg = {
+            "name": obj_name,
+            "target_path": (expected_path / entry.object_path.relative_to(build_path)).as_posix(),
+            "metadata": {
+                "source_path": entry.segment.out_path().as_posix()
+            },
+        }
+
+        if not unit_src_path.exists():
+            cfg["units"].append(unit_cfg)
+            return
+
+        src_obj_path = entry.object_path
+
+        unit_cfg["base_path"] = src_obj_path.as_posix()
+        unit_cfg["complete"] = False # TODO
+
+        cfg["units"].append(unit_cfg)
+    
+    for unit in entries:
+        add_unit(unit)
+
+    with open("objdiff.json", "w", encoding="utf-8") as f:
+        json.dump(cfg, f, indent=4)
 
 
 def main(args):
     """Main entry point for the build process."""
+
+    if args.setup:
+        do_objdiff_setup()
+        return
 
     # Load environment variables from JSON
     env_vars = load_json(args.env_file)
@@ -217,8 +298,13 @@ def main(args):
 
     if args.single_file:
         # Looks a bit eh, but it's what changes the least code
-        assembly = []
-        sources = [src_path_for(args.single_file)]
+        src = src_path_for(args.single_file)
+        if src.endswith(".s"):
+            assembly = [src]
+            sources = []
+        else:
+            assembly = []
+            sources = [src]
         skip_linking = True
         
     print(f"Performing compilation with the following parameters:")
@@ -241,8 +327,9 @@ def main(args):
 
     output_elf = None
 
-    if build_failed:
+    if build_failed or asm_build_failed:
         print(f"Compilation fail. See report.txt for more info.")
+        sys.exit(-1)
         return
     
     if not skip_linking:
@@ -267,6 +354,7 @@ if __name__ == "__main__":
 
     parser.add_argument('--env-file', type=str, default='compile_config.json', help="Path to the JSON file containing environment variables.")
     parser.add_argument('--single-file', type=str, help="For objdiff use.")
+    parser.add_argument('--setup', action="store_true", help="Generates original asm and objdiff project files.")
 
     args = parser.parse_args()
 
