@@ -189,6 +189,13 @@ def obj_path_for(source):
     return str(dst_path)
 
 
+def src_path_for(source):
+    """Return the source file path inside the src folder."""
+    src_path = Path(source).relative_to("build")
+    dst_path = src_path.with_suffix(".c")
+    return str(dst_path)
+
+
 def main(args):
     """Main entry point for the build process."""
 
@@ -206,8 +213,15 @@ def main(args):
     sources = env_vars["source_files"]
     assembly = env_vars.get("assembly_files", [])
     defines = env_vars.get("defines", [])
+    skip_linking = False
 
-    print(f"Performing compilation with the following parameters:");
+    if args.single_file:
+        # Looks a bit eh, but it's what changes the least code
+        assembly = []
+        sources = [src_path_for(args.single_file)]
+        skip_linking = True
+        
+    print(f"Performing compilation with the following parameters:")
 
     compiler_env = {
         "MWLibraries": ";".join(library_dirs),
@@ -227,7 +241,11 @@ def main(args):
 
     output_elf = None
 
-    if not build_failed:
+    if build_failed:
+        print(f"Compilation fail. See report.txt for more info.")
+        return
+    
+    if not skip_linking:
         linker_env = {
             "MWLibraries": ";".join(library_dirs),
             "MWLibraryFiles": ""
@@ -241,8 +259,6 @@ def main(args):
             print(f"Build steps have been successfully completed: {os.path.basename(output_elf)} was generated.")
         else:
             print(f"Linkage fail. See report.txt for more info.")
-    else:
-        print(f"Compilation fail. See report.txt for more info.")
 
 
 if __name__ == "__main__":
@@ -250,6 +266,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build automation script.")
 
     parser.add_argument('--env-file', type=str, default='compile_config.json', help="Path to the JSON file containing environment variables.")
+    parser.add_argument('--single-file', type=str, help="For objdiff use.")
 
     args = parser.parse_args()
 
