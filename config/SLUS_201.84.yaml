@@ -18,6 +18,7 @@ options:
   do_c_func_detection: False
 
   asm_nonmatching_label_macro: ""
+  generated_macro_inc_content: ".set Q, $Q\n.set ACC, $ACC\n.set I, $I\n.set R, $R"
 
   find_file_boundaries: False
   # disassemble_all: True
