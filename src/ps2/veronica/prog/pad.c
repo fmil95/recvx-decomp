@@ -10,8 +10,8 @@ unsigned int pad_tab_b[18];
 unsigned int pad_tab_c[18];
 unsigned int pad_tab_d[18];
 unsigned int* pad_type[4] = { pad_tab_a, pad_tab_b, pad_tab_c, pad_tab_d };
-unsigned short pdm_mes[10];
-unsigned short pdm_palmes[19];
+const unsigned short pdm_mes[10];
+const unsigned short pdm_palmes[19];
 
 // 100% matching!
 void bhSetPad() 
@@ -63,7 +63,7 @@ void bhSetPad()
         {
         unsigned int padtbl[18] = { 0x00000000, 0x00000800, 0x00000040, 0x00000100, 0x00001000, 0x00004000, 0x00008000, 0x00002000,
                                     0x00000000, 0x00000010, 0x00000080, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 
-                                    0x00000004, 0x00000008 }; 
+                                    0x00000008, 0x00000004 }; 
             
         if (pon != -1) 
         { 
