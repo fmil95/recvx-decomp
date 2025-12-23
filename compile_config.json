@@ -8,6 +8,8 @@
   "assembler_flags": ["-Iconfig/include", "-no-pad-sections", "-EL", "-march=5900", "-mabi=eabi"],
   "includes": [
       "include/recvx-decomp-mwcc/Metrowerks/CodeWarrior/PS2 Support",
+      "src/cri/mwlib/ee/lib/libadxe",
+      "src/ps2/veronica/prog",
       "include/recvx-decomp-katana/KATANA/Include",
       "include/recvx-decomp-cri/cri/mwlib/include",
       "include/recvx-decomp-cri/cri/mwlib/ee/include",

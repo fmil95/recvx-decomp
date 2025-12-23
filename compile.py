@@ -113,10 +113,12 @@ def compile_source_files(compiler_mwcc, sources, compiler_mwcc_flags, include_di
     for source in sources:
         if "cri" in source:
             sdata_flag = "-G"
+            includes = include_dirs[1:]
             compiler = gcc
             compiler_flags = gcc_flags
         else: 
             sdata_flag = "-sdatathreshold="
+            includes = include_dirs
             compiler = compiler_mwcc
             compiler_flags = compiler_mwcc_flags
         
@@ -153,7 +155,7 @@ def compile_source_files(compiler_mwcc, sources, compiler_mwcc_flags, include_di
         object_file = obj_path_for(source)
         objects.append(object_file)
 
-        compile_command = ([compiler] + local_flags + ["-c", source, "-o", object_file] + [f'-I{inc}' for inc in include_dirs] + [f'-D{d}' for d in defines])
+        compile_command = ([compiler] + local_flags + ["-c", source, "-o", object_file] + [f'-I{Path(inc)}' for inc in includes] + [f'-D{d}' for d in defines])
 
         if not run_command(compile_command, env_vars, log_file):
             build_failed = True
