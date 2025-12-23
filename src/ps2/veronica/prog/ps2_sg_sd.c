@@ -656,39 +656,51 @@ SDE_ERR	sdMidiStop( SDMIDI handle)
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2dbca0
+// 100% matching!
 SDE_ERR	sdShotClosePort( SDSHOT handle)
 {
-	// Line 1738, Address: 0x2dbca0, Func Offset: 0
-	// Line 1743, Address: 0x2dbcac, Func Offset: 0xc
-	// Line 1745, Address: 0x2dbcbc, Func Offset: 0x1c
-	// Line 1746, Address: 0x2dbcc8, Func Offset: 0x28
-	// Line 1752, Address: 0x2dbcd4, Func Offset: 0x34
-	// Line 1755, Address: 0x2dbd04, Func Offset: 0x64
-	// Line 1763, Address: 0x2dbd24, Func Offset: 0x84
-	// Line 1770, Address: 0x2dbd58, Func Offset: 0xb8
-	// Line 1769, Address: 0x2dbd5c, Func Offset: 0xbc
-	// Line 1770, Address: 0x2dbd60, Func Offset: 0xc0
-	// Line 1771, Address: 0x2dbd64, Func Offset: 0xc4
-	// Line 1772, Address: 0x2dbd6c, Func Offset: 0xcc
-	// Line 1773, Address: 0x2dbd74, Func Offset: 0xd4
-	// Line 1774, Address: 0x2dbd78, Func Offset: 0xd8
-	// Line 1775, Address: 0x2dbd7c, Func Offset: 0xdc
-	// Line 1776, Address: 0x2dbd80, Func Offset: 0xe0
-	// Line 1777, Address: 0x2dbd84, Func Offset: 0xe4
-	// Line 1778, Address: 0x2dbd88, Func Offset: 0xe8
-	// Line 1780, Address: 0x2dbd8c, Func Offset: 0xec
-	// Line 1779, Address: 0x2dbd90, Func Offset: 0xf0
-	// Line 1780, Address: 0x2dbd94, Func Offset: 0xf4
-	// Line 1782, Address: 0x2dbd98, Func Offset: 0xf8
-	// Line 1781, Address: 0x2dbd9c, Func Offset: 0xfc
-	// Line 1782, Address: 0x2dbda0, Func Offset: 0x100
-	// Line 1783, Address: 0x2dbda4, Func Offset: 0x104
-	// Line 1786, Address: 0x2dbdac, Func Offset: 0x10c
-	// Line 1788, Address: 0x2dbdb4, Func Offset: 0x114
-	// Func End, Address: 0x2dbdc4, Func Offset: 0x124
-    scePrintf("sdShotClosePort - UNIMPLEMENTED!\n");
+    SND_WORK* temp; // not from the debugging symbols
+
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        temp = (SND_WORK*)*handle;
+        
+        if (temp == NULL) 
+        {
+            return SDE_ERR_HANDLE_NULL; 
+        }
+
+        if (((1 << temp->channel_num) & get_iop_snddata.se_info[temp->port_num]))
+        {
+            SdrSeCancel((char)temp->channel_num | (((int)temp->port_num << 16) | (temp->bank_num << 8)));
+            
+            use_se_info[temp->port_num] &= ~(1 << (temp->channel_num & 0x7));
+        }
+        
+        temp->port_check = 0;
+        
+        temp->vol = 127;
+        temp->pan = 64;
+        temp->pitch = 8192;
+        
+        temp->vol_old = 0;
+        temp->pan_old = 0;
+        temp->pitch_old = 0;
+        
+        temp->vol_timer = 0;
+        temp->pan_timer = 0;
+        temp->pitch_timer = 0;
+        
+        temp->port_num = 0;
+        temp->channel_num = -1;
+        temp->bank_num = 0;
+        
+        temp->req = 255;
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT; 
 }
 
 // 100% matching! 
