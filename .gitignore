@@ -8,9 +8,7 @@ config/SLUS_201.84.ld
 config/undefined_funcs_auto.txt
 config/undefined_syms_auto.txt
 context
-build/src/ps2/veronica/prog/*.o
-build/src/cri/mwlib/ee/lib/libadxe/*.o
-build/src/sce/ee/lib/crt0.o
+build/*
 elf/*.o
 elf/*.s
 elf/main.elf
@@ -25,3 +23,6 @@ compile_wibo.py
 dwarfdump.txt
 .wineprefix
 .venv
+.splache
+__pycache__
+objdiff.json

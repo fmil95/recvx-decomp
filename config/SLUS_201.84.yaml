@@ -8,17 +8,29 @@ options:
   compiler: MWCCPS2
 
   # asm_path: asm
-  # src_path: src
-  # build_path: build
+  # src_path: ../src
+  build_path: ../build
+  make_full_disasm_for_code: True
   # create_asm_dependencies: True
 
-  ld_script_path: SLUS_201.84
+  ld_script_path: SLUS_201.84.ld
+  create_c_files: False
+  do_c_func_detection: False
+
+  asm_nonmatching_label_macro: ""
+  generated_macro_inc_content: ".set Q, $Q\n.set ACC, $ACC\n.set I, $I\n.set R, $R"
 
   find_file_boundaries: False
-
+  # disassemble_all: True
+  asm_path: ../build/expected
+  matchings_path: asm
+  nonmatchings_path: asm
+  create_undefined_syms_auto: False
+  create_undefined_funcs_auto: False
+  
   o_as_suffix: True
   use_legacy_include_asm: False
-  gp_value: 0x004F9B70
+  gp_value: 0x0036A7F0
 
   section_order: [".text", ".data", ".lit4", ".sdata", ".rodata", ".bss"]
 
@@ -36,12 +48,11 @@ options:
   rodata_string_guesser_level: 2
   data_string_guesser_level: 2
   ld_bss_is_noload: True
-  hasm_in_src_path: True
   # migrate_rodata_to_functions: False
 
 segments:
   - name: header
-    type: header
+    type: databin
     start: 0x0
 
   - name: main
@@ -439,7 +450,114 @@ segments:
       - [0x203878, .data, sce/ee/gcc/ee/lib/libc/locale]
       - [0x203890, .data, sce/ee/gcc/ee/lib/libc/mallocr]
       # Game
-      - [0x203CE8, data, game]
+      - [0x203CE8, .data, ps2/veronica/prog/main]
+      - [0x203D90, .data, ps2/veronica/prog/njplus]
+      - [0x203E20, .data, ps2/veronica/prog/MdlPut]
+      - [0x203E30, .data, ps2/veronica/prog/pad]
+      - [0x203FD0, .data, ps2/veronica/prog/player]
+      - [0x204F88, .data, ps2/veronica/prog/playpch]
+      - [0x204F98, .data, ps2/veronica/prog/pwksub]
+      - [0x204FA0, .data, ps2/veronica/prog/event]
+      - [0x206160, .data, ps2/veronica/prog/pl_evt]
+      - [0x2061D0, .data, ps2/veronica/prog/subpl]
+      - [0x206460, .data, ps2/veronica/prog/eneset]
+      - [0x206620, .data, ps2/veronica/prog/en01]
+      - [0x20A9B0, .data, ps2/veronica/prog/en01b]
+      - [0x20AB80, .data, ps2/veronica/prog/en01sub]
+      - [0x20ACD0, .data, ps2/veronica/prog/en02]
+      - [0x20D600, .data, ps2/veronica/prog/en02sub]
+      - [0x20D660, .data, ps2/veronica/prog/en03]
+      - [0x20EC10, .data, ps2/veronica/prog/en03sub]
+      - [0x20EC30, .data, ps2/veronica/prog/en04]
+      - [0x20FAF0, .data, ps2/veronica/prog/en05]
+      - [0x2120A8, .data, ps2/veronica/prog/en05sub]
+      - [0x2120C0, .data, ps2/veronica/prog/en06]
+      - [0x212620, .data, ps2/veronica/prog/en06sub]
+      - [0x2126D0, .data, ps2/veronica/prog/en07]
+      - [0x2128D0, .data, ps2/veronica/prog/en08]
+      - [0x212900, .data, ps2/veronica/prog/en09]
+      - [0x216BB0, .data, ps2/veronica/prog/en10]
+      - [0x216BE0, .data, ps2/veronica/prog/en11]
+      - [0x216C40, .data, ps2/veronica/prog/en12]
+      - [0x2185C0, .data, ps2/veronica/prog/en13]
+      - [0x218730, .data, ps2/veronica/prog/en13sub]
+      - [0x218770, .data, ps2/veronica/prog/en14]
+      - [0x218F60, .data, ps2/veronica/prog/en15]
+      - [0x21A020, .data, ps2/veronica/prog/en16]
+      - [0x21A050, .data, ps2/veronica/prog/en17]
+      - [0x21B2C0, .data, ps2/veronica/prog/en17sub]
+      - [0x21B2E0, .data, ps2/veronica/prog/en18]
+      - [0x21C120, .data, ps2/veronica/prog/en19]
+      - [0x21C900, .data, ps2/veronica/prog/en20]
+      - [0x21C940, .data, ps2/veronica/prog/en21]
+      - [0x21CDB0, .data, ps2/veronica/prog/en22]
+      - [0x21E5C0, .data, ps2/veronica/prog/en23]
+      - [0x21F6D0, .data, ps2/veronica/prog/en24]
+      - [0x21F790, .data, ps2/veronica/prog/en25]
+      - [0x21F800, .data, ps2/veronica/prog/en26]
+      - [0x220A90, .data, ps2/veronica/prog/en27]
+      - [0x220AE0, .data, ps2/veronica/prog/en29]
+      - [0x221200, .data, ps2/veronica/prog/en30]
+      - [0x2212E0, .data, ps2/veronica/prog/zonzon]
+      - [0x221520, .data, ps2/veronica/prog/zonzon1]
+      - [0x2215D0, .data, ps2/veronica/prog/en54]
+      - [0x221610, .data, ps2/veronica/prog/en55]
+      - [0x221650, .data, ps2/veronica/prog/en71]
+      - [0x221670, .data, ps2/veronica/prog/effect]
+      - [0x221CD0, .data, ps2/veronica/prog/effsub1b]
+      - [0x221CF0, .data, ps2/veronica/prog/effect]
+      - [0x221D70, .data, ps2/veronica/prog/effsub0]
+      - [0x224580, .data, ps2/veronica/prog/effsub1]
+      - [0x227538, .data, ps2/veronica/prog/effsub1b]
+      - [0x227CD0, .data, ps2/veronica/prog/effsub2]
+      - [0x229C30, .data, ps2/veronica/prog/effsub3]
+      - [0x22A1B0, .data, ps2/veronica/prog/effsub4]
+      - [0x22BCE0, .data, ps2/veronica/prog/effsub5]
+      - [0x22CE90, .data, ps2/veronica/prog/screen]
+      - [0x22D050, .data, ps2/veronica/prog/ps2_SaveScreen]
+      - [0x22D1B8, .data, ps2/veronica/prog/ps2_McSaveFile]
+      - [0x22D2A8, .data, ps2/veronica/prog/ps2_SystemLoadScreen]
+      - [0x22D2C0, .data, ps2/veronica/prog/ps2_SystemSaveScreen]
+      - [0x22D2E0, .data, ps2/veronica/prog/camera]
+      - [0x22D300, .data, ps2/veronica/prog/light]
+      - [0x22D560, .data, ps2/veronica/prog/objitm]
+      - [0x22D738, .data, ps2/veronica/prog/gdlib]
+      - [0x22D740, .data, ps2/veronica/prog/sdc]
+      - [0x22D750, .data, ps2/veronica/prog/mwwrap]
+      - [0x22D760, .data, ps2/veronica/prog/adxwrap]
+      - [0x22D890, .data, ps2/veronica/prog/sdfunc]
+      - [0x22DE88, .data, ps2/veronica/prog/padman]
+      - [0x22DEA0, .data, ps2/veronica/prog/sub1]
+      - [0x234558, .data, ps2/veronica/prog/itemview]
+      - [0x234810, .data, ps2/veronica/prog/fileview]
+      - [0x234950, .data, ps2/veronica/prog/door]
+      - [0x2349B0, .data, ps2/veronica/prog/map]
+      - [0x234A50, .data, ps2/veronica/prog/message]
+      - [0x234AB0, .data, ps2/veronica/prog/gameover]
+      - [0x234AC0, .data, ps2/veronica/prog/ranking]
+      - [0x234CF0, .data, ps2/veronica/prog/sp_evt]
+      - [0x2357D0, .data, ps2/veronica/prog/adv]
+      - [0x238770, .data, ps2/veronica/prog/vibman]
+      - [0x238780, .data, ps2/veronica/prog/bup_00]
+      - [0x2387A8, .data, ps2/veronica/prog/ps2_dummy]
+      - [0x238820, .data, ps2/veronica/prog/ps2_NinjaCnk]
+      - [0x239360, .data, ps2/veronica/prog/ps2_NinjaCnk_prog]
+      - [0x239380, .data, ps2/veronica/prog/ps2_Vu1Strip]
+      - [0x239440, .data, ps2/veronica/prog/ps2_NaFog]
+      - [0x239680, .data, ps2/veronica/prog/ps2_sfd_mw]
+      - [0x2396D8, .data, ps2/veronica/prog/ps2_sg_gd]
+      - [0x2396E0, .data, ps2/veronica/prog/ps2_sg_pad]
+      - [0x239710, .data, ps2/veronica/prog/ps2_NaGraphics3D]
+      - [0x2397E0, .data, ps2/veronica/prog/ps2_NaSystem]
+      - [0x239CC0, .data, ps2/veronica/prog/ps2_NaView]
+      - [0x239D20, .data, ps2/veronica/prog/ps2_NaColi]
+      - [0x239E80, .data, ps2/veronica/prog/ps2_dvd_image]
+      - [0x23A268, .data, ps2/veronica/prog/ps2_texture]
+      - [0x23A270, .data, ps2/veronica/prog/ps2_loadtim2]
+      - [0x23A280, .data, ps2/veronica/prog/ps2_event]
+      - [0x23AC60, .data, ps2/veronica/prog/effsub6]
+      - [0x23AD30, .data, ps2/veronica/prog/ps2_snddrv]
+      - [0x23ADC0, .data, ps2/veronica/prog/ps2_MovieFunc]
       # CRI Library data
       - [0x23ADE0, .data, cri/mwlib/ee/lib/libadxe/adx_amp]
       - [0x23AF60, .data, cri/mwlib/ee/lib/libadxe/adx_bau]
@@ -569,7 +687,7 @@ segments:
       - [0x259430, .rodata, ps2/veronica/prog/hitchk]
       - [0x259510, .rodata, ps2/veronica/prog/hitchkl]
       - [0x259530, .rodata, ps2/veronica/prog/ps2_SaveScreen]
-      - [0x2595F4, .rodata, ps2/veronica/prog/ps2_McSaveFile]
+      - [0x259600, .rodata, ps2/veronica/prog/ps2_McSaveFile]
       - [0x259720, .rodata, ps2/veronica/prog/ps2_MemoryCard.]
       - [0x259770, .rodata, ps2/veronica/prog/ps2_LoadScreen]
       - [0x2597C0, .rodata, ps2/veronica/prog/ps2_SystemLoadScreen]
@@ -581,10 +699,10 @@ segments:
       - [0x259950, .rodata, ps2/veronica/prog/weapon]
       - [0x25AAD8, .rodata, ps2/veronica/prog/gdlib]
       - [0x25AAE0, .rodata, ps2/veronica/prog/adxwrap]
-      - [0x25ABF0, .rodata, ps2/veronica/prog/sdfunc]
+      - [0x25AB90, .rodata, ps2/veronica/prog/sdfunc]
       - [0x25AD80, .rodata, ps2/veronica/prog/face_bh]
       - [0x25ADD0, .rodata, ps2/veronica/prog/sub1]
-      # - [0x25BA40, rodata, ps2/veronica/prog/itemview] # item?
+      - [0x25AE40, .rodata, ps2/veronica/prog/item]
       - [0x25C700, .rodata, ps2/veronica/prog/itemview]
       - [0x25C730, .rodata, ps2/veronica/prog/fileview]
       - [0x25C758, .rodata, ps2/veronica/prog/door]
@@ -606,7 +724,7 @@ segments:
       - [0x25E600, .rodata, ps2/veronica/prog/ps2_NaSprite]
       - [0x25E618, .rodata, ps2/veronica/prog/ps2_NaSystem]
       - [0x25E690, .rodata, ps2/veronica/prog/ps2_NaTextureFunction]
-      - [0x25E6F8, .rodata, ps2/veronica/prog/adxwrap]
+      - [0x25E6F8, .rodata, ps2/veronica/prog/ps2_dvd_image]
       - [0x25F4F0, .rodata, ps2/veronica/prog/ps2_loadtim2]
       - [0x25F540, .rodata, ps2/veronica/prog/effsub6]
       - [0x25F560, .rodata, ps2/veronica/prog/ps2_snddrv]
@@ -675,40 +793,106 @@ segments:
       - [0x262AB0, .sdata, cri/mwlib/ee/lib/libadxe/sjx]
       - [0x262AC8, pad]
       # 362a80-1e2cd00
-      - { start: 0x262B00, type: .bss, vram: 0x00362A80, name: sce/ee/lib/libdma/libdma }
-      - { start: 0x262B00, type: .bss, vram: 0x00362C00, name: sce/ee/lib/libmpeg/mpc }
-      - { start: 0x262B00, type: .bss, vram: 0x00363610, name: sce/ee/lib/libkernl/thread }
-      - { start: 0x262B00, type: .bss, vram: 0x00363E20, name: sce/ee/lib/libkernl/deci2 }
-      - { start: 0x262B00, type: .bss, vram: 0x00363E80, name: sce/ee/lib/libkernl/tty }
-      - { start: 0x262B00, type: .bss, vram: 0x00364240, name: sce/ee/lib/libkernl/kprintf }
-      - { start: 0x262B00, type: .bss, vram: 0x003642C0, name: sce/ee/lib/libkernl/sifcmd }
-      - { start: 0x262B00, type: .bss, vram: 0x00364540, name: sce/ee/lib/libkernl/sifrpc }
-      - { start: 0x262B00, type: .bss, vram: 0x00365D80, name: sce/ee/lib/libkernl/filestub }
-      - { start: 0x262B00, type: .bss, vram: 0x00366C00, name: sce/ee/lib/libkernl/iopheap }
-      - { start: 0x262B00, type: .bss, vram: 0x00366E00, name: sce/ee/lib/libkernl/eeloadfile }
-      - { start: 0x262B00, type: .bss, vram: 0x00367040, name: sce/ee/lib/libkernl/iopreset }
-      - { start: 0x262B00, type: .bss, vram: 0x003670C0, name: sce/ee/lib/libpad/libpad }
-      - { start: 0x262B00, type: .bss, vram: 0x00367480, name: sce/ee/lib/libcdvd/cdvd000 }
-      - { start: 0x262B00, type: .bss, vram: 0x00368B00, name: sce/ee/lib/libmc/libmc }
-      - { start: 0x262B00, type: .bss, vram: 0x0036A100, name: sce/ee/lib/libsdr/sdr_main }
-      - { start: 0x262B00, type: .bss, vram: 0x0036A280, name: sce/ee/lib/libssyn/dma }
-      - { start: 0x262B00, type: .bss, vram: 0x0036A288, name: sce/ee/gcc/ee/lib/libgcc/dp-bit }
-      - { start: 0x262B00, type: .bss, vram: 0x0036A2A0, name: sce/ee/gcc/ee/lib/libgcc/fp-bit }
+      - { vram: 0x00362A80, type: .bss, name: sce/ee/lib/libdma/libdma }
+      - { vram: 0x00362C00, type: .bss, name: sce/ee/lib/libmpeg/mpc }
+      - { vram: 0x00363610, type: .bss, name: sce/ee/lib/libkernl/thread }
+      - { vram: 0x00363E20, type: .bss, name: sce/ee/lib/libkernl/deci2 }
+      - { vram: 0x00363E80, type: .bss, name: sce/ee/lib/libkernl/tty }
+      - { vram: 0x00364240, type: .bss, name: sce/ee/lib/libkernl/kprintf }
+      - { vram: 0x003642C0, type: .bss, name: sce/ee/lib/libkernl/sifcmd }
+      - { vram: 0x00364540, type: .bss, name: sce/ee/lib/libkernl/sifrpc }
+      - { vram: 0x00365D80, type: .bss, name: sce/ee/lib/libkernl/filestub }
+      - { vram: 0x00366C00, type: .bss, name: sce/ee/lib/libkernl/iopheap }
+      - { vram: 0x00366E00, type: .bss, name: sce/ee/lib/libkernl/eeloadfile }
+      - { vram: 0x00367040, type: .bss, name: sce/ee/lib/libkernl/iopreset }
+      - { vram: 0x003670C0, type: .bss, name: sce/ee/lib/libpad/libpad }
+      - { vram: 0x00367480, type: .bss, name: sce/ee/lib/libcdvd/cdvd000 }
+      - { vram: 0x00368B00, type: .bss, name: sce/ee/lib/libmc/libmc }
+      - { vram: 0x0036A100, type: .bss, name: sce/ee/lib/libsdr/sdr_main }
+      - { vram: 0x0036A280, type: .bss, name: sce/ee/lib/libssyn/dma }
+      - { vram: 0x0036A288, type: .bss, name: sce/ee/gcc/ee/lib/libgcc/dp-bit }
+      - { vram: 0x0036A2A0, type: .bss, name: sce/ee/gcc/ee/lib/libgcc/fp-bit }
       # game
-      - { start: 0x262B00, type: bss, vram: 0x0036A2B0, name: game }
+      - { vram: 0x0036A2B0, type: .bss, name: ps2/veronica/prog/main }
+      - { vram: 0x004622A0, type: .bss, name: ps2/veronica/prog/sbinit }
+      - { vram: 0x0047A2E0, type: .bss, name: ps2/veronica/prog/njplus }
+      - { vram: 0x0047D200, type: .bss, name: ps2/veronica/prog/Motion }
+      - { vram: 0x0047D230, type: .bss, name: ps2/veronica/prog/system }
+      - { vram: 0x0047D260, type: .bss, name: ps2/veronica/prog/playpch }
+      - { vram: 0x0047D2C8, type: .bss, name: ps2/veronica/prog/pwksub }
+      - { vram: 0x0047D2D0, type: .bss, name: ps2/veronica/prog/event }
+      - { vram: 0x0047E688, type: .bss, name: ps2/veronica/prog/en04 }
+      - { vram: 0x0047E698, type: .bss, name: ps2/veronica/prog/en12 }
+      - { vram: 0x0047E6A0, type: .bss, name: ps2/veronica/prog/en15 }
+      - { vram: 0x0047E7B0, type: .bss, name: ps2/veronica/prog/en22 }
+      - { vram: 0x0047EF30, type: .bss, name: ps2/veronica/prog/en29 }
+      - { vram: 0x0047EF40, type: .bss, name: ps2/veronica/prog/effsub3 }
+      - { vram: 0x0047EF50, type: .bss, name: ps2/veronica/prog/hitchkl }
+      - { vram: 0x0047EF68, type: .bss, name: ps2/veronica/prog/screen }
+      - { vram: 0x0047EF78, type: .bss, name: ps2/veronica/prog/ps2_SaveScreen }
+      - { vram: 0x0047FDC0, type: .bss, name: ps2/veronica/prog/ps2_MemoryCard. }
+      - { vram: 0x00480340, type: .bss, name: ps2/veronica/prog/ps2_LoadScreen }
+      - { vram: 0x00480350, type: .bss, name: ps2/veronica/prog/cut }
+      - { vram: 0x00480368, type: .bss, name: ps2/veronica/prog/objitm }
+      - { vram: 0x00480370, type: .bss, name: ps2/veronica/prog/weapon }
+      - { vram: 0x00480378, type: .bss, name: ps2/veronica/prog/gdlib }
+      - { vram: 0x00480430, type: .bss, name: ps2/veronica/prog/sdc }
+      - { vram: 0x00480A20, type: .bss, name: ps2/veronica/prog/mwwrap }
+      - { vram: 0x00480A80, type: .bss, name: ps2/veronica/prog/adxwrap }
+      - { vram: 0x004F5640, type: .bss, name: ps2/veronica/prog/sdfunc }
+      - { vram: 0x004F6F48, type: .bss, name: ps2/veronica/prog/padman }
+      - { vram: 0x004F7170, type: .bss, name: ps2/veronica/prog/sub1 }
+      - { vram: 0x004F76F8, type: .bss, name: ps2/veronica/prog/itemview } # could be 0x004F7500 instead
+      - { vram: 0x004F77B0, type: .bss, name: ps2/veronica/prog/fileview }
+      - { vram: 0x004F7890, type: .bss, name: ps2/veronica/prog/door }
+      - { vram: 0x004F7AA0, type: .bss, name: ps2/veronica/prog/map }
+      - { vram: 0x004F8130, type: .bss, name: ps2/veronica/prog/message }
+      - { vram: 0x004F8148, type: .bss, name: ps2/veronica/prog/ranking }
+      - { vram: 0x004F8250, type: .bss, name: ps2/veronica/prog/adv }
+      - { vram: 0x004F8988, type: .bss, name: ps2/veronica/prog/vibman }
+      - { vram: 0x004F8998, type: .bss, name: ps2/veronica/prog/bup_00 }
+      - { vram: 0x004F8A40, type: .bss, name: ps2/veronica/prog/backup }
+      - { vram: 0x004F8D40, type: .bss, name: ps2/veronica/prog/expand }
+      - { vram: 0x004F8D70, type: .bss, name: ps2/veronica/prog/ps2_dummy }
+      - { vram: 0x0112CAE0, type: .bss, name: ps2/veronica/prog/ps2_NinjaCnk }
+      - { vram: 0x0112FD60, type: .bss, name: ps2/veronica/prog/ps2_Vu1Strip }
+      - { vram: 0x01130A80, type: .bss, name: ps2/veronica/prog/ps2_NaFog }
+      - { vram: 0x01130AE8, type: .bss, name: ps2/veronica/prog/ps2_NaMatrix }
+      - { vram: 0x01130B10, type: .bss, name: ps2/veronica/prog/ps2_NaMath }
+      - { vram: 0x01140B10, type: .bss, name: ps2/veronica/prog/ps2_NinjaPtcl }
+      - { vram: 0x01140B28, type: .bss, name: ps2/veronica/prog/ps2_sfd_mw }
+      - { vram: 0x01140B30, type: .bss, name: ps2/veronica/prog/ps2_sg_bup }
+      - { vram: 0x01140B40, type: .bss, name: ps2/veronica/prog/ps2_sg_gd }
+      - { vram: 0x01140B60, type: .bss, name: ps2/veronica/prog/ps2_sg_maloc }
+      - { vram: 0x01E0DB80, type: .bss, name: ps2/veronica/prog/ps2_sg_pad }
+      - { vram: 0x01E0DFF8, type: .bss, name: ps2/veronica/prog/ps2_sg_pdvib }
+      - { vram: 0x01E0E150, type: .bss, name: ps2/veronica/prog/ps2_sg_sd }
+      - { vram: 0x01E0EF28, type: .bss, name: ps2/veronica/prog/ps2_sg_sycfg }
+      - { vram: 0x01E0EF40, type: .bss, name: ps2/veronica/prog/ps2_NaDraw }
+      - { vram: 0x01E12F40, type: .bss, name: ps2/veronica/prog/ps2_NaDraw2D }
+      - { vram: 0x01E12F80, type: .bss, name: ps2/veronica/prog/ps2_NaGraphics3D }
+      - { vram: 0x01E16F80, type: .bss, name: ps2/veronica/prog/ps2_NaSystem }
+      - { vram: 0x01E16F90, type: .bss, name: ps2/veronica/prog/ps2_NaTextureFunction }
+      - { vram: 0x01E17290, type: .bss, name: ps2/veronica/prog/ps2_NaView }
+      - { vram: 0x01E173A0, type: .bss, name: ps2/veronica/prog/ps2_texture }
+      - { vram: 0x01E20400, type: .bss, name: ps2/veronica/prog/ps2_loadtim2 }
+      - { vram: 0x01E20C00, type: .bss, name: ps2/veronica/prog/ps2_event }
+      - { vram: 0x01E20C40, type: .bss, name: ps2/veronica/prog/ps2_snddrv }
+      - { vram: 0x01E21488, type: .bss, name: ps2/veronica/prog/ps2_MovieFunc }
+      - { vram: 0x01E27248, type: .bss, name: ps2/veronica/prog/ps2_MovieWork }
       # CRI library bss
-      - { start: 0x262B00, type: .bss, vram: 0x01E27290, name: cri/mwlib/ee/lib/libadxe/adx_errs }
-      - { start: 0x262B00, type: .bss, vram: 0x01E272B0, name: cri/mwlib/ee/lib/libadxe/adx_fs }
-      - { start: 0x262B00, type: .bss, vram: 0x01E293C0, name: cri/mwlib/ee/lib/libadxe/adx_mps2 }
-      - { start: 0x262B00, type: .bss, vram: 0x01E2A3C0, name: cri/mwlib/ee/lib/libadxe/adx_tlk2 }
-      - { start: 0x262B00, type: .bss, vram: 0x01E2A4C0, name: cri/mwlib/ee/lib/libadxe/cri_cvfs }
-      - { start: 0x262B00, type: .bss, vram: 0x01E2A840, name: cri/mwlib/ee/lib/libadxe/dtx }
-      - { start: 0x262B00, type: .bss, vram: 0x01E2AA40, name: cri/mwlib/ee/lib/libadxe/dvci_sub }
-      - { start: 0x262B00, type: .bss, vram: 0x01E2BA40, name: cri/mwlib/ee/lib/libadxe/htci_sub }
-      - { start: 0x262B00, type: .bss, vram: 0x01E2CA40, name: cri/mwlib/ee/lib/libadxe/lsc_svr }
-      - { start: 0x262B00, type: .bss, vram: 0x01E2CA80, name: cri/mwlib/ee/lib/libadxe/sjr_clt }
-      - { start: 0x262B00, type: .bss, vram: 0x01E2CCC0, name: ps2/veronica/prog/ps2_pxlconv }
-      - { start: 0x262B00, type: .bss, vram: 0x01E2CCC4, name: sce/ee/gcc/ee/lib/libc/sbrkr } # common
+      - { vram: 0x01E27290, type: .bss, name: cri/mwlib/ee/lib/libadxe/adx_errs }
+      - { vram: 0x01E272B0, type: .bss, name: cri/mwlib/ee/lib/libadxe/adx_fs }
+      - { vram: 0x01E293C0, type: .bss, name: cri/mwlib/ee/lib/libadxe/adx_mps2 }
+      - { vram: 0x01E2A3C0, type: .bss, name: cri/mwlib/ee/lib/libadxe/adx_tlk2 }
+      - { vram: 0x01E2A4C0, type: .bss, name: cri/mwlib/ee/lib/libadxe/cri_cvfs }
+      - { vram: 0x01E2A840, type: .bss, name: cri/mwlib/ee/lib/libadxe/dtx }
+      - { vram: 0x01E2AA40, type: .bss, name: cri/mwlib/ee/lib/libadxe/dvci_sub }
+      - { vram: 0x01E2BA40, type: .bss, name: cri/mwlib/ee/lib/libadxe/htci_sub }
+      - { vram: 0x01E2CA40, type: .bss, name: cri/mwlib/ee/lib/libadxe/lsc_svr }
+      - { vram: 0x01E2CA80, type: .bss, name: cri/mwlib/ee/lib/libadxe/sjr_clt }
+      - { vram: 0x01E2CCC0, type: .bss, name: ps2/veronica/prog/ps2_pxlconv }
+      - { vram: 0x01E2CCC4, type: .bss, name: sce/ee/gcc/ee/lib/libc/sbrkr } # common
   - [0x262B00, databin, shstrtab] 
   - [0x262B60, databin, strtab] 
   - [0x284600, databin, symbtab] 

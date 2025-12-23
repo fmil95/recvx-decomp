@@ -1,0 +1,2 @@
+rom:0x73FBC symbol:subpl_init_tbl reloc:MIPS_HI16 addend:-0xA0
+rom:0x73FC0 symbol:subpl_init_tbl reloc:MIPS_LO16 addend:-0xA0

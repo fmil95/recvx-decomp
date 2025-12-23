@@ -2,7 +2,6 @@
 #define _ADX_MPS2_H_
 
 #include <adx_ps2.h>
-#include <PREFIX_PS2_DEBUG.h>
 #include <eekernel.h>
 
 #define bss_align(val) \

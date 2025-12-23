@@ -21,7 +21,7 @@
 	.set nomips16	/* This file contains 32 bit assembly code. */
 #endif
 
-#define	ARG_SIZ     256 + 16*4 + 1*4
+.set ARG_SIZ,     256 + 16*4 + 1*4
 
 	.set noat
     	.set noreorder

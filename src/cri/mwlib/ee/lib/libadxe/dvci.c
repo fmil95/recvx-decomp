@@ -1,7 +1,6 @@
 #include "dvci.h"
 #include "dvci_sub.h"
 
-#include <PREFIX_PS2_DEBUG.h>
 #include <eetypes.h>
 #include <eekernel.h>
 #include <stdio.h>
