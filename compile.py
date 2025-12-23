@@ -3,9 +3,9 @@ import subprocess
 import json
 import argparse
 import sys
+import shutil
 from pathlib import Path
 
-import splat
 import splat.scripts.split as split
 from splat.segtypes.linker_entry import LinkerEntry
 
@@ -276,11 +276,6 @@ def do_objdiff_setup():
         "watch_patterns": [
             "*.c",
             "*.h",
-            "*.inc",
-            "*.py",
-            "*.yml",
-            "*.yaml",
-            "*.txt",
             "*.json",
         ],
         "units": [],
@@ -323,6 +318,7 @@ def do_objdiff_setup():
     with open("objdiff.json", "w", encoding="utf-8") as f:
         json.dump(cfg, f, indent=4)
 
+    print("Fixing asm blobs")
     for unit in cfg["units"]:
         if "veronica" in unit["target_path"]:
             clean_asm(Path(unit["target_path"]).with_suffix(".s"))
@@ -333,6 +329,15 @@ def main(args):
 
     if args.setup:
         do_objdiff_setup()
+
+        # Move function asm so people can make scratches
+        asm_folder = Path("build/expected/asm")
+        if asm_folder.exists():
+            shutil.move(asm_folder, "config/asm")
+        
+        # Remove unused folders
+        shutil.rmtree("build/expected/data/", ignore_errors=True)
+        shutil.rmtree("config/assets/", ignore_errors=True)
         return
 
     # Load environment variables from JSON

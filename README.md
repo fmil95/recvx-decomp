@@ -26,26 +26,29 @@ Decomp progress: 1732 implemented functions / 4537 total (38.18%)
 
 ## Building
 
+Requisites:
+- Python
+- Mips Binutils (Must be available in PATH, [windows builds can be found here](https://github.com/dbalatoni13/mips-binutils/releases))
+- Wibo (if using Linux, for running Windows binaries)
+
 The very first step should be to clone the repository: 
 ```
 git clone --recursive https://github.com/fmil95/recvx-decomp.git
 ```
 
-If you plan on contributing, your next step should be to perform a disassembly of the ROM using splat in order to obtain the MIPS assembly required for function matching, for this a python installation is necessary. 
-
-You have to place your copy of the SLUS_201.84 file in the config folder, and afterwards install splat with the following command: 
+Next you have to place your copy of the SLUS_201.84 file in the config folder, and afterwards install splat with the following command: 
 ```
 pip install -r config/requirements.txt
 ```
 
-Once that is done, use the following command to perform the ASM dump:
+Once that is done, use the following command to perform the ASM dump and setup objdiff:
 ```
-python3 -m splat split config/SLUS_201.84.yaml
+python compile.py --setup
 ```
 
-You can tell that it worked correctly if you see 100% on all section_headers operations.
+It should run without errors and generate an `objdiff.json` project file alongside a `config/asm` folder for creating decomp.me scratches.
 
-Next, and if you were planning to simply building the project all along, type the following command to compile:
+From now on to build the project you just need to type the following command:
 ```
 python compile.py
 ```
