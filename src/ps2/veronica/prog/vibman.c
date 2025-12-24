@@ -1,8 +1,8 @@
 #include "vibman.h"
 
-char PortIdTbl[4] = {2, 8, 14, 20};
-int EnadleVibrationFlag;
 unsigned int VibStopTime;
+int EnadleVibrationFlag;
+char PortIdTbl[4] = {2, 8, 14, 20};
 
 // 100% matching! 
 void InitVibrationUnit()

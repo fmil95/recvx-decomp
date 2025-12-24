@@ -1,6 +1,7 @@
 #ifndef _VIBMAN_H_
 #define _VIBMAN_H_
 
+#include "override_katana.h"
 #include <sg_pdvib.h>
 
 void InitVibrationUnit();

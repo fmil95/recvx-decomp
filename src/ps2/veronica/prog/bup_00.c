@@ -12,39 +12,40 @@
 #include "sdfunc.h"
 #include "main.h"
 
-char vmssyscmttbl[16]; /* unused */
-int old_data_flg; /* unused */
-unsigned int InitFlag; /* unused */
-char bootcommenttbl[32][32]; /* unused */
-BACKUPINFO* bip; /* unused */
-char StrBuf[128]; /* unused */
-char ErrBuf[128]; /* unused */
-char TwBuf[128]; /* unused */
-char name_99[16]; /* unused */
-unsigned char sys_icon_palette[32]; /* unused */
-unsigned char sys_icon_data[512]; /* unused */
-unsigned char cla_icon_palette[32]; /* unused */
-unsigned char cla_icon_data[1536]; /* unused */
-unsigned char chs_icon_palette[32]; /* unused */
-unsigned char chs_icon_data[1536]; /* unused */
-int space_pos[18][8]; /* unused */
-unsigned short mesdeftbl[10] = { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }; /* unused */
+SAVE_SCREEN Save;
+SAVE_SCREEN* pSave;
+LOAD_SCREEN Load;
+LOAD_SCREEN* pLoad;
+static unsigned int InitFlag; 
+unsigned short mesdeftbl[10] = { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }; 
 typedef void (*TypewriterMode_proc)();
 TypewriterMode_proc TypewriterMode[3] = { TypewriterInit, TypewriterMain, TypewriterExit };
-unsigned char* img1p; /* unused */
-BUS_BACKUPFILEHEADER hdr00; /* unused */
-BACKUPINFO* binfo_; /* unused */
-unsigned char* img2p; /* unused */
-unsigned char* img3p; /* unused */
-unsigned char* img4p; /* unused */
-LOAD_SCREEN* pLoad;
-LOAD_SCREEN Load;
-SAVE_SCREEN* pSave;
-SAVE_SCREEN Save;
-int ErrorCode; /* unused */
-BUS_BACKUPFILEHEADER hdr01; /* unused */
-BUS_FILEINFO Info; /* unused */
-char bootcommentbuf[15][32]; /* unused */
+/* unused below */
+/* char vmssyscmttbl[16]; 
+int old_data_flg; 
+char bootcommenttbl[32][32]; 
+BACKUPINFO* bip; 
+char StrBuf[128]; 
+char ErrBuf[128]; 
+char TwBuf[128]; 
+char name_99[16]; 
+unsigned char sys_icon_palette[32]; 
+unsigned char sys_icon_data[512]; 
+unsigned char cla_icon_palette[32]; 
+unsigned char cla_icon_data[1536]; 
+unsigned char chs_icon_palette[32]; 
+unsigned char chs_icon_data[1536]; 
+int space_pos[18][8]; 
+unsigned char* img1p; 
+BUS_BACKUPFILEHEADER hdr00; 
+BACKUPINFO* binfo_; 
+unsigned char* img2p; 
+unsigned char* img3p; 
+unsigned char* img4p; 
+int ErrorCode; 
+BUS_BACKUPFILEHEADER hdr01; 
+BUS_FILEINFO Info; 
+char bootcommentbuf[15][32]; */
 
 // 100% matching!
 void ControlTypewriter()

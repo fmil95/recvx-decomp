@@ -157,4 +157,6 @@ int Adv_GameOptionScreen();
 int Adv_ChangeDiscScreen();
 int Adv_SoundMuseum();
 
+extern unsigned char SaveLoadMessage[10956];
+
 #endif
