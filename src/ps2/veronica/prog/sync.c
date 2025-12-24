@@ -1,5 +1,6 @@
 #include "sync.h"
 #include "flag.h"
+#include "padman.h"
 #include "ps2_event.h"
 #include "ps2_NaFog.h"
 #include "sdfunc.h"

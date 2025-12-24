@@ -1,10 +1,13 @@
 #include "padman.h"
 #include "main.h"
 
+PAD_WRK Pad[4] __attribute__((aligned(64))); 
+REPEAT_INFO RepeatInfo[4][6];
+int SoftResetFlag;
+int MaxContorolPlayer;
+int CurrentPortId;
 unsigned int KeyWaitFirst = 10;
 unsigned int KeyWaitNext = 4;
-int MaxContorolPlayer;
-REPEAT_INFO RepeatInfo[4][6];
 
 // 100% matching! 
 void InitReadKeyEx(int MaxPlayer) 

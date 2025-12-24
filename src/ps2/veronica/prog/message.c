@@ -3,7 +3,10 @@
 #include "main.h"
 
 /*float mes_spos[4][3];*/
+float FontScaleX;
 float FontScaleY;
+float FontScaleCR;
+const unsigned char FontSz[126];
 
 // 
 // Start address: 0x2b7510

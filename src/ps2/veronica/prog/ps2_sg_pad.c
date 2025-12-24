@@ -1,4 +1,5 @@
 #include "ps2_sg_pad.h" 
+#include "padman.h"
 #include "ps2_sg_pdvib.h"
 #include "main.h"
 

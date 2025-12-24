@@ -1,6 +1,7 @@
 #include "ps2_SystemLoadScreen.h"
 #include "adv.h"
 #include "message.h"
+#include "padman.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard.h"
 #include "vibman.h"

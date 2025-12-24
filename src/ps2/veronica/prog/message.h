@@ -16,6 +16,10 @@ float bhGetFontSize(unsigned short code);
 float bhMesLen(unsigned short* dp);
 void bhFontScaleSet(float ScaleX, float ScaleY, float ScaleCR);
 
+extern float FontScaleX;
+extern float FontScaleCR;
+extern const unsigned char FontSz[126];
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

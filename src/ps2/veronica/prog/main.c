@@ -181,11 +181,8 @@ BUTTON_INFO ButtonInfo[5] =
     { 4, 55541},
     {-1, 0    }
 }; 
-PAD_WRK Pad[4] __attribute__((aligned(64))); 
-int SoftResetFlag;
 PAD_INFO Ps2_pad;
 unsigned int Ps2_sys_cnt;
-int CurrentPortId;
 char ADX_STREAM_BUFFER[471040] __attribute__((aligned(64)));
 int iop_data_buff;
 SND_STATUS get_iop_snddata __attribute__((aligned(64)));
@@ -197,9 +194,6 @@ int PatId[4] = { -1, -1, -1, -1 };
 int OpenDriveTrayFlag;
 unsigned char BackColorFlag;
 unsigned char Pause_Flag;
-unsigned char FontSz[126];
-float FontScaleX;
-float FontScaleCR;
 SELECTFILEWINDOW SelectFileWindow;
 SELECTFILEINFO SelectFileInfo[15] __attribute__((aligned(64)));
 char* cpNameList[18] = 
