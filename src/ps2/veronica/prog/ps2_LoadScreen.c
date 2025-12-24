@@ -1,7 +1,7 @@
 #include "ps2_LoadScreen.h"
 #include "message.h"
 #include "ps2_McSaveFile.h"
-#include "ps2_MemoryCard.h"
+#include "ps2_MemoryCard..h"
 #include "sdfunc.h"
 #include "main.h"
 

@@ -2,7 +2,7 @@
 #include "flag.h"
 #include "message.h"
 #include "ps2_McSaveFile.h"
-#include "ps2_MemoryCard.h"
+#include "ps2_MemoryCard..h"
 #include "room.h"
 #include "sdfunc.h"
 #include "main.h"

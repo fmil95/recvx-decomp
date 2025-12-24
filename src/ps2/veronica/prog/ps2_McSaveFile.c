@@ -2,7 +2,7 @@
 #include "bup_00.h"
 #include "flag.h"
 #include "message.h"
-#include "ps2_MemoryCard.h"
+#include "ps2_MemoryCard..h"
 #include "ps2_NaDraw.h"
 #include "sdfunc.h"
 #include "sub1.h"
