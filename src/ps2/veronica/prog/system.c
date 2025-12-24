@@ -902,7 +902,7 @@ void bhSysCallMap()
     StatusMapFlagInit();
 }
 
-// 100% matching! 
+// 94.82% matching
 void bhSysCallItemselect()
 {
     njFogDisable();
@@ -919,7 +919,7 @@ void bhSysCallItemselect()
     {
         bhDeleteYakkyou();
         
-        bhSetScreenFade(3.0f, sys->fade_pbk);
+        bhSetScreenFade(sys->fade_pbk, 3.0f);
         
         bhDrawScreenFade();
         
@@ -1232,7 +1232,7 @@ void bhSysCallTypewriter()
     ControlTypewriter();
 }
 
-// 83.89% matching
+// 95.81% matching
 void bhSysCallOption()
 { 
     if ((sys->tk_flg & 0x80)) 
@@ -1276,7 +1276,7 @@ void bhSysCallOption()
                 njFogEnable(); 
             }
             
-            bhSetScreenFade(3.0f, sys->fade_pbk); 
+            bhSetScreenFade(sys->fade_pbk, 3.0f); 
             
             bhStandPlayerMotion(); 
             
