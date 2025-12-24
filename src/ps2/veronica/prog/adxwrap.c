@@ -9,25 +9,26 @@
 
 //#include <string.h>
 
-char last_rdx_files[256]; /* unused */
-char last_adx_files[256]; /* unused */
-char last_file_id; /* unused */
-char adx_status; /* unused */
-int RDX_SIZE; /* unused */
-unsigned int RDX_CHECK_SAM; /* unused */
-int RDX_TOP; /* unused */
-unsigned int READ_RDX_NO; /* unused */
 char cf_area[5628] __attribute__((aligned(64)));
+AFS_INFO AfsInfo[16] __attribute__((aligned(64)));
+ADXF_INFO AdxFInfo[8];
+ADXT_INFO AdxTInfo[4];
+int MaxAdxStreamCnt;
+int AdxStreamSleepFlag;
+unsigned char RDX_FILE_PARTISION[880] __attribute__((aligned(64)));
+char ADX_STREAM_BUFFER[471040] __attribute__((aligned(64)));
 ADXT_SPRM cf_prm = { "\\cf_rom.txt", cf_area, 5092, 0, 0, 0, 0 };
 short AdxVolTbl[128] = { 0, -2, -4, -6, -8, -10, -12, -14, -16, -18, -20, -22, -24, -26, -28, -30, -32, -34, -36, -38, -40, -42, -44, -46, -48, -50, -52, -54, -56, -58, -60, -62, -64, -70, -76, -82, -88, -94, -100, -106, -112, -118, -124, -130, -136, -142, -148, -154, -160, -166, -172, -178, -184, -190, -196, -202, -208, -214, -220, -226, -232, -238, -244, -250, -256, -264, -272, -280, -288, -296, -304, -312, -320, -328, -336, -344, -352, -360, -368, -376, -384, -392, -400, -408, -416, -424, -432, -440, -448, -456, -464, -472, -480, -488, -496, -504, -512, -528, -544, -560, -576, -592, -608, -624, -640, -656, -672, -688, -704, -720, -736, -752, -768, -784, -800, -816, -832, -848, -864, -880, -896, -912, -928, -944, -960, -976, -992, -999 };
-int AdxStreamSleepFlag;
-int MaxAdxStreamCnt;
-ADXT_INFO AdxTInfo[4];
-ADXF_INFO AdxFInfo[8];
-AFS_INFO AfsInfo[16] __attribute__((aligned(64)));
-unsigned char RDX_FILE_PARTISION[880] __attribute__((aligned(64)));
-int rdx_image_data_max = 205;
 int ADX_STREAM_BUFF_OFFSET[2] = { 0, 307456 }; 
+/* unused below */
+/*char last_rdx_files[256]; 
+char last_adx_files[256]; 
+char last_file_id; 
+char adx_status; 
+int RDX_SIZE; 
+unsigned int RDX_CHECK_SAM; 
+int RDX_TOP; 
+unsigned int READ_RDX_NO;*/
 
 // 100% matching!
 void InitAdx()

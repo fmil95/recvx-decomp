@@ -25,7 +25,5 @@ char* rdx_files[205] = {
 };
 /*char* pss_files[18];
 _anon0 dvd_image_data[19];
-int dvd_image_data_max;
-int rdx_image_data_max;*/
-
-
+int dvd_image_data_max;*/
+int rdx_image_data_max = 205;

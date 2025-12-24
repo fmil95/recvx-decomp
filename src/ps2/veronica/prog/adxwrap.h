@@ -37,4 +37,6 @@ void RequestAdxFadeFunction(int SlotNo, int Func, int Timer);
 void RequestAdxFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame);
 int ExecAdxFadeManager();
 
+extern char ADX_STREAM_BUFFER[471040] __attribute__((aligned(64)));
+
 #endif

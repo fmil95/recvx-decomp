@@ -2,6 +2,7 @@
 #define _PS2_DVD_IMAGE_H_
 
 extern char* rdx_files[205];
+extern int rdx_image_data_max;
 
 /*typedef struct _anon0;
 

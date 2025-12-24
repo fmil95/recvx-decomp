@@ -5,12 +5,12 @@
 
 #include <string.h>
 
-int MwMode = -1;
-int MwPlayFlag;
 MWPLY MwPly;
 MWS_PLY_CPRM_SFD MwsCprmSfd __attribute__((aligned(64)));
-int MwMemoryMode;
+int MwPlayFlag;
 int MwPlayMode;
+int MwMemoryMode;
+int MwMode = -1;
 
 // 100% matching!
 void InitMwSystem(unsigned int Mode, void* pPrm)

@@ -5,7 +5,7 @@
 #include "sdfunc.h"
 #include "main.h"
 
-int GdDaPlayFlag;
+/*int GdDaPlayFlag; - unused */
 
 // 100% matching!
 void InitSdcParameter()

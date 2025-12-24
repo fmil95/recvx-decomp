@@ -1,4 +1,5 @@
 #include "ps2_MovieFunc.h"
+#include "adxwrap.h"
 #include "ps2_dummy.h"
 #include "ps2_loadtim2.h"
 #include "ps2_NaSystem.h"

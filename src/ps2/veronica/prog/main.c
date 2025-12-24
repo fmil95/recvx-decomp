@@ -183,7 +183,6 @@ BUTTON_INFO ButtonInfo[5] =
 }; 
 PAD_INFO Ps2_pad;
 unsigned int Ps2_sys_cnt;
-char ADX_STREAM_BUFFER[471040] __attribute__((aligned(64)));
 int iop_data_buff;
 SND_STATUS get_iop_snddata __attribute__((aligned(64)));
 char sound_flag;
