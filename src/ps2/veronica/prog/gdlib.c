@@ -2,19 +2,22 @@
 #include "ps2_sg_maloc.h"
 #include "main.h"
 
-unsigned int MaxDirectoryEntry = 512;
-unsigned int NewDiscCheckSw; /* unused */
-unsigned int GdErrorFlag;
-LFOPEN_INFO LfOpenInfo[14];
-GDFS_DIRREC GdDirRec;
-unsigned char* pDirTbl;
 unsigned char* pDirWork;
-unsigned int RequestMultiReadFlag;
-unsigned int RequestReadBufferFlag;
+unsigned char* pDirTbl;
+GDFS_DIRREC GdDirRec;
 unsigned int RequestReadFlag;
-GDFS CurrentGdFs; /* unused */
-GDFS CurrentGdFsBuf; /* unused */
-GDFS LfGdFs; /* unused */
+unsigned int RequestReadBufferFlag;
+unsigned int RequestMultiReadFlag;
+LFOPEN_INFO LfOpenInfo[14];
+unsigned int StatusUpdateCounter;
+unsigned int GdErrorFlag;
+unsigned int DiscOpenTrayFlag;
+unsigned int MaxDirectoryEntry = 512;
+/* unused below */
+/*unsigned int NewDiscCheckSw; 
+GDFS CurrentGdFs; 
+GDFS CurrentGdFsBuf; 
+GDFS LfGdFs;*/ 
 
 // 100% matching!
 void LfInitLib() 

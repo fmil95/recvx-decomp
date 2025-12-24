@@ -59,6 +59,9 @@ void RequestMidiPanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame);
 void RequestSePanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame);
 int ExecSoundPanManager();
 
+extern unsigned int SddFirstFlag;
+extern char SdcGdDaVolume;
+
 /*typedef struct _anon0;
 typedef struct SDS_MEMBLK;
 typedef struct SDS_PORT_REF;

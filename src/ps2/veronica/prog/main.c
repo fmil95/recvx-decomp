@@ -170,8 +170,6 @@ NJS_TEXLIST* Ps2_current_texlist;
 NJS_TEXMEMLIST* Ps2_current_texmemlist __attribute__((aligned(64)));
 int iRingBufNum = 20;
 int iop_read_buff;
-unsigned int StatusUpdateCounter;
-unsigned int DiscOpenTrayFlag;
 PAD_ACT Pad_act[20];
 BUTTON_INFO ButtonInfo[5] = 
 {
@@ -186,8 +184,6 @@ unsigned int Ps2_sys_cnt;
 int iop_data_buff;
 SND_STATUS get_iop_snddata __attribute__((aligned(64)));
 char sound_flag;
-unsigned int SddFirstFlag;
-char SdcGdDaVolume;
 SYS_BT_SYSTEMID BootDiscSystemId;
 int PatId[4] = { -1, -1, -1, -1 };
 int OpenDriveTrayFlag;

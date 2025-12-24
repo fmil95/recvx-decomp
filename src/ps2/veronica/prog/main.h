@@ -30,8 +30,6 @@ extern NJS_TEXLIST* Ps2_current_texlist;
 extern NJS_TEXMEMLIST* Ps2_current_texmemlist;
 extern int iRingBufNum;
 extern int iop_read_buff;
-extern unsigned int StatusUpdateCounter;
-extern unsigned int DiscOpenTrayFlag;
 extern PAD_ACT Pad_act[20];
 extern BUTTON_INFO ButtonInfo[5];
 extern PAD_INFO Ps2_pad;
@@ -39,8 +37,6 @@ extern unsigned int Ps2_sys_cnt;
 extern int iop_data_buff;
 extern SND_STATUS get_iop_snddata;
 extern char sound_flag;
-extern unsigned int SddFirstFlag;
-extern char SdcGdDaVolume;
 extern O_WRK eff[512];
 
 // TODO: include sg_sybt.h and remove the below struct

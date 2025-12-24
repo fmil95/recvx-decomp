@@ -10,4 +10,7 @@ int GetFileSize(char* FileName);
 int ReadFileEx(char* FileName, void* ReadAddress);
 unsigned int CheckOpenTray();
 
+extern unsigned int StatusUpdateCounter;
+extern unsigned int DiscOpenTrayFlag;
+
 #endif

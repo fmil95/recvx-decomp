@@ -62,7 +62,7 @@ void bhControlCamera() {
 
 // 100% matching
 void bhMakeCameraVector() {
-    NJS_VECTOR pos = {0x00000000, 0x00000000, 0xBF800000};
+    NJS_VECTOR pos = {0, 0, -1.0f};
     
     njUnitMatrix(0);
     njRotateY(0, cam.ay);
