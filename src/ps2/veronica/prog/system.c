@@ -22,6 +22,7 @@
 #include "ps2_dummy.h"
 #include "ps2_event.h"
 #include "ps2_sg_maloc.h"
+#include "ps2_sg_pdvib.h"
 #include "ps2_sg_sytmr.h"
 #include "ps2_texture.h"
 #include "pwksub.h"

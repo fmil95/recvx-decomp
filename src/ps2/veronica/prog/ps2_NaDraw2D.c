@@ -2,6 +2,9 @@
 #include "ps2_dummy.h"
 #include "main.h"
 
+float Ps2_zbuff_a;
+float Ps2_zbuff_b;
+
 // 100% matching!
 void CalcPs2ZbuffAB()
 { 

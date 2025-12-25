@@ -9,4 +9,7 @@ void	njDrawLine2D(NJS_POINT2COL *p, Int n, Float pri, Uint32 attr);
 void	njDrawPolygon2D(NJS_POINT2COL *p, Int n, Float pri, Uint32 attr);
 void njDrawPolygon2DM(NJS_POINT2COL* p, int n, float pri, unsigned int attr);
 
+extern float Ps2_zbuff_a;
+extern float Ps2_zbuff_b;
+
 #endif

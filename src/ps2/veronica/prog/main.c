@@ -160,15 +160,11 @@ O_WRK eff[512];
 ROM_WORK romp;
 ROM_WORK* rom = &romp;
 unsigned int palbuf[4096] __attribute__((aligned(64)));
-float Ps2_zbuff_a;
-float Ps2_zbuff_b;
 /*static */ float SinTable[16384];
 unsigned char Ps2_PBUFF[1835008] __attribute__((aligned(64)));
 sceGsDBuffDc Db;
 PS2_GS_SAVE Ps2_gs_save __attribute__((aligned(64)));
 int iRingBufNum = 20;
-int iop_read_buff;
-PAD_ACT Pad_act[20];
 BUTTON_INFO ButtonInfo[5] = 
 {
     { 1, 55541},
@@ -179,7 +175,6 @@ BUTTON_INFO ButtonInfo[5] =
 }; 
 PAD_INFO Ps2_pad;
 unsigned int Ps2_sys_cnt;
-char sound_flag;
 SYS_BT_SYSTEMID BootDiscSystemId;
 SELECTFILEWINDOW SelectFileWindow;
 SELECTFILEINFO SelectFileInfo[15] __attribute__((aligned(64)));

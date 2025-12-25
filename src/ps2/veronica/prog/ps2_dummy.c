@@ -1,5 +1,6 @@
 #include "ps2_dummy.h"
 #include "ps2_loadtim2.h"
+#include "ps2_NaDraw2D.h"
 #include "ps2_NaMath.h"
 #include "ps2_NaSystem.h"
 #include "ps2_sg_pad.h"
@@ -50,6 +51,10 @@ Uint8* _BSG_END;
 /*int _nj_tex_count;*/
 NJS_VERTEX_BUF* _nj_vertex_buf_;
 NJS_SCREEN _nj_screen_;
+void (* VsyncFunc)();
+void (* EorFunc)();
+unsigned int Ps2_vcount;
+unsigned int Ps2_dbuff;
 /*unsigned int _nj_control_3d_flag_;
 _anon28 _nj_screen_;
 unsigned char Ps2_DRAW_TMP[16384];

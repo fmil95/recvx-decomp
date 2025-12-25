@@ -48,6 +48,8 @@ void CpEEWait(int val);
 
 extern int iop_zero_buff;
 extern int iop_buff;
+extern int iop_read_buff;
+extern char sound_flag;
 
 /*typedef struct SDS_PORT_REF;
 typedef struct _anon0;

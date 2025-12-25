@@ -1,8 +1,9 @@
 #include "ps2_sg_pdvib.h"  
 #include "main.h"
 
-unsigned char Pad_vibe_call_num;
+PAD_ACT Pad_act[20];
 unsigned char Ps2_pad_motor[6];
+unsigned char Pad_vibe_call_num;
 
 // 100% matching! 
 Sint32 pdVibMxIsReady(Uint32 port)
@@ -135,7 +136,7 @@ void Ps2_pad_actuater()
 }
 
 // 100% matching! 
-void Ps2_pad_act_start(PAD_ACT* pPact)
+static void Ps2_pad_act_start(PAD_ACT* pPact)
 {
     unsigned char temp; // not from the debugging symbols
 
@@ -166,13 +167,13 @@ void Ps2_pad_act_start(PAD_ACT* pPact)
 }
 
 // 100% matching! 
-void Ps2_pad_act_stop(PAD_ACT* pPact)
+static void Ps2_pad_act_stop(PAD_ACT* pPact)
 {
     pPact->be_flag = 0;
 }
 
 // 100% matching! 
-void Ps2_pad_act_all_stop()
+static void Ps2_pad_act_all_stop()
 {
     PAD_ACT* pPact; 
     int i; 

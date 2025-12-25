@@ -3,10 +3,6 @@
 #include "ps2_loadtim2.h"
 #include "main.h"
 
-void (* VsyncFunc)();
-void (* EorFunc)();
-unsigned int Ps2_vcount;
-unsigned int Ps2_dbuff;
 PS2_NJ_SAVE Ps2_nj_save_current __attribute__((aligned(64)));
 
 // 100% matching!
@@ -172,7 +168,7 @@ void    njPolygonCullingMode( Int mode )
 // 99.91% matching 
 void njColorBlendingModeSys(int s_mode, int d_mode) // this function is not on this KATANA release
 { 
-    static unsigned long alpha_tbl[13][12] = // TODO: double-check that these values are all correct
+    static unsigned long alpha_tbl[13][12] = 
     {
     	{
     		0xFFFFFFFF,
