@@ -11,7 +11,9 @@ void pdSetMode(Sint32 mode);
 void Ps2_pad_read();
 void Ps2_Read_Key(PDS_PERIPHERAL* per, PAD_WORK* pad_wk);
 void Ps2_MakeRepeatKey(unsigned int Id, PAD_WORK* pad_wk);
-void Pad_set(PAD_WORK* pbt, unsigned short pad_num);
+static void Pad_set(PAD_WORK* pbt, unsigned short pad_num);
 void Pad_init();
+
+extern PAD_INFO Ps2_pad;
 
 #endif

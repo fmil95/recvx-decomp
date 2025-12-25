@@ -1,8 +1,8 @@
 #include "ps2_sg_bup.h"
 
-unsigned short visula_size[4]; /* unused */
 int(*__bu_completecallback_func)(int, int, int, unsigned int);
 int(*__bu_progresscallback_func)(int, int, int, int);
+/*unsigned short visula_size[4] - unused;*/
 
 // 100% matching! 
 Sint32 buExit(void)

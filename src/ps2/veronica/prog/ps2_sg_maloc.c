@@ -1,8 +1,8 @@
 #include "ps2_sg_maloc.h"
 
-unsigned int __free_malloc_size;
-HM* Ps2_malloc_p;
 unsigned char Ps2_malloc_mem[13422592] __attribute__((aligned(64)));
+HM* Ps2_malloc_p;
+unsigned int __free_malloc_size;
 unsigned int __max_malloc_size;
 
 // 100% matching! 

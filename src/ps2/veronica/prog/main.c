@@ -165,15 +165,6 @@ unsigned char Ps2_PBUFF[1835008] __attribute__((aligned(64)));
 sceGsDBuffDc Db;
 PS2_GS_SAVE Ps2_gs_save __attribute__((aligned(64)));
 int iRingBufNum = 20;
-BUTTON_INFO ButtonInfo[5] = 
-{
-    { 1, 55541},
-    { 2, 55541},
-    { 3, 55541},
-    { 4, 55541},
-    {-1, 0    }
-}; 
-PAD_INFO Ps2_pad;
 unsigned int Ps2_sys_cnt;
 SYS_BT_SYSTEMID BootDiscSystemId;
 SELECTFILEWINDOW SelectFileWindow;

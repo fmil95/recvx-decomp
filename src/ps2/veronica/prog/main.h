@@ -21,8 +21,6 @@ extern void* Ps2_tex_buff;
 extern unsigned int Ps2_current_texbreak;
 extern MOV_INFO MovieInfo;
 extern int iRingBufNum;
-extern BUTTON_INFO ButtonInfo[5];
-extern PAD_INFO Ps2_pad;
 extern unsigned int Ps2_sys_cnt;
 extern O_WRK eff[512];
 
