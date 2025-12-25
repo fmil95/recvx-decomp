@@ -39,4 +39,7 @@ void bhExitGame();
 void bhSetEventTimer(int mode);
 void EasyDispMessage(float PosY, unsigned int MessageNo);
 
+extern unsigned char pl_sleep_cnt;
+extern unsigned char Pause_Flag;
+
 #endif

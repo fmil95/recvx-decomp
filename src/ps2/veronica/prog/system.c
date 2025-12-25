@@ -35,17 +35,19 @@
 
 #include <string.h>
 
-unsigned short pause_mes[6];
-unsigned char FileWait;
-unsigned char VibWait;
+static unsigned char FileWait;
+static unsigned char VibWait;
 NJS_VERTEX_BUF* _nj_vertex_buf_;
-unsigned char PauseBtn;
-unsigned char NowLoadDisp;
 float GameFar;
 float GameNear;
 unsigned int Ps2_rendertex_initflag;
 unsigned int Ps2_ice_flag;
 WPN_TAB WpnTab[23];
+unsigned char pl_sleep_cnt;
+unsigned char Pause_Flag;
+unsigned char NowLoadDisp;
+unsigned char PauseBtn;
+const unsigned short pause_mes[6];
 
 // 100% matching!
 int bhCalcVtxBuffer()

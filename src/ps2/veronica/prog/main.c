@@ -188,7 +188,6 @@ SYS_BT_SYSTEMID BootDiscSystemId;
 int PatId[4] = { -1, -1, -1, -1 };
 int OpenDriveTrayFlag;
 unsigned char BackColorFlag;
-unsigned char Pause_Flag;
 SELECTFILEWINDOW SelectFileWindow;
 SELECTFILEINFO SelectFileInfo[15] __attribute__((aligned(64)));
 char* cpNameList[18] = 
@@ -201,7 +200,6 @@ ICONINFORMATION IconInfo;
 MEMORYCARDSTATE McState;
 SAVEFILE SaveFile;
 CONFIGFILE ConfigFile;
-unsigned char pl_sleep_cnt;
 unsigned int Ps2_albinoid_flag;
 CAM_WORK cam;
 unsigned int Ps2_quad_color;

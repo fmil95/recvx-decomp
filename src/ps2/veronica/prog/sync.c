@@ -4,6 +4,7 @@
 #include "ps2_event.h"
 #include "ps2_NaFog.h"
 #include "sdfunc.h"
+#include "system.h"
 #include "main.h"
 
 // 100% matching! 

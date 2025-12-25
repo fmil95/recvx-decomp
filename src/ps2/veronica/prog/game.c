@@ -12,6 +12,7 @@
 #include "pwksub.h"
 #include "room.h"
 #include "screen.h"
+#include "system.h"
 #include "main.h"
 
 // 100% matching! 

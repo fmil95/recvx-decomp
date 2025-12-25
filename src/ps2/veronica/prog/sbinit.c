@@ -8,9 +8,9 @@
 #include "ps2_sg_syhw.h"
 #include "ps2_sg_syrtc.h"
 
-unsigned char gMapleSendBuf[1024 * 24 * 2 + 32];
-unsigned char gMapleRecvBuf[1024 * 24 * 2 + 32] __attribute__((aligned(64)));
 Uint8* _BSG_END;
+unsigned char gMapleRecvBuf[1024 * 24 * 2 + 32] __attribute__((aligned(64)));
+unsigned char gMapleSendBuf[1024 * 24 * 2 + 32];
 
 // 100% matching!
 void sbInitSystem(Int mode, Int frame, Int count)
