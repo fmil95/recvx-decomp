@@ -8,8 +8,8 @@
 //#include <string.h>
 
 MW_PLY_OBJ MwObj;
+int iRingBufNum = 20;
 MWPLY MwHandle = &MwObj;
-MWS_PLY_INIT_SFD __sfd_mw_conf__; /* unused */
 MWD_IF Ps2Func = 
 { 
     ps2mwErrorStop, 
@@ -27,6 +27,7 @@ MWD_IF Ps2Func =
     ps2mwPlyGetOutVol,
     ps2mwErrorStop,
 };
+/*MWS_PLY_INIT_SFD __sfd_mw_conf__; - unused*/
 
 // 100% matching!
 Sint32 mwPlyCalcWorkSofdec(Sint32 ftype, Sint32 max_bps, Sint32 max_sx, Sint32 max_sy, Sint32 nfb)

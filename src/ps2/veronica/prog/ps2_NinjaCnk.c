@@ -1,8 +1,8 @@
 #include "ps2_NinjaCnk.h"
 #include "ps2_Vu1Strip.h"
 
-VU1_STRIP_BUF* pNaCnkVerBufTop;
-int iNaCnkVerBufMax;
+static VU1_STRIP_BUF* pNaCnkVerBufTop;
+static int iNaCnkVerBufMax;
 /*tagVU1_STRIP_BUF NaCnkStrBufTop[200];
 unsigned int Vu0ClipFlag;
 int lCnkModClipFace;

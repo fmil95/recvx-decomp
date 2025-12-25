@@ -2,25 +2,25 @@
 #include "ps2_NaView.h"
 #include "main.h"
 
+static SCISSOR_PLANE planeset;
+static SCISSOR scissorflip;
+float fVu1Projection;
+float fVu1NearClip;
+float fVu1InvNearClip;
+float fVu1FarClip;
+float fVu1AspectW;
+float fVu1AspectH;
 /*void(*pColorCalcFuncTbl)(tagVU1_STRIP_BUF*, tagVU1_PRIM_BUF*)[11];
 tagVU1_COLOR vu1Diffuse;
 tagVU1_COLOR vu1Specula;
 tagVU1_COLOR vu1Ambient;
-float fVu1AlphaRatio;*/
-SCISSOR_PLANE planeset;
-SCISSOR scissorflip;
-/*_anon4 node;*/
-float fVu1InvNearClip;
-float fVu1NearClip;
-float fVu1FarClip;
-/*float fVu1OffsetY;
-float fVu1OffsetX;*/
-float fVu1AspectH;
-float fVu1AspectW;
-/*tagVU1_PRIM_BUF vu1ScessorBuf[16];
+float fVu1AlphaRatio;
+static _anon4 node;
+float fVu1OffsetY;
+float fVu1OffsetX;
+tagVU1_PRIM_BUF vu1ScessorBuf[16];
 unsigned char Ps2_DRAW_TMP[16384];
 float Ps2AddPrimPrio;*/
-float fVu1Projection;
 
 // 
 // Start address: 0x2d38c0

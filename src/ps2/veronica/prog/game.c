@@ -13,6 +13,7 @@
 #include "room.h"
 #include "screen.h"
 #include "system.h"
+#include "ps2_dummy.h"
 #include "main.h"
 
 // 100% matching! 

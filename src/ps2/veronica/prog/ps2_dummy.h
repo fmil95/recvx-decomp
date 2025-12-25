@@ -47,6 +47,11 @@ void Ps2Vu1ProgSend(unsigned int prog_no);
 void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num);
 void PS2_Render_Tex_Sub();
 
+extern unsigned char Ps2_PBUFF[1835008];
+extern sceGsDBuffDc Db;
+extern PS2_GS_SAVE Ps2_gs_save;
+extern unsigned int Ps2_albinoid_flag;
+extern unsigned int Ps2_sys_cnt;
 extern unsigned char* Ps2_MOVIE;
 extern unsigned int Ps2_ice_flag;
 extern float cmmat[16];

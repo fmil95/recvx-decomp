@@ -28,4 +28,6 @@ Sint32 ps2mwPlyGetOutVol(MWPLY ply);
 void ps2mwErrorStop();
 void Setps2FuncTbl(MWPLY mwply);
 
+extern int iRingBufNum;
+
 #endif

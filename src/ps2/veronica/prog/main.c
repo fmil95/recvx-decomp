@@ -155,17 +155,11 @@ unsigned char* keepmem;
 unsigned char* njpmemp __attribute__((aligned(64)));
 unsigned char* vebmemp;
 unsigned char* vwbmemp;
-unsigned int Ps2_sys_cnt;
 O_WRK eff[512];
 ROM_WORK romp;
 ROM_WORK* rom = &romp;
 unsigned int palbuf[4096] __attribute__((aligned(64)));
 /*static */ float SinTable[16384];
-unsigned char Ps2_PBUFF[1835008] __attribute__((aligned(64)));
-sceGsDBuffDc Db;
-PS2_GS_SAVE Ps2_gs_save __attribute__((aligned(64)));
-int iRingBufNum = 20;
-unsigned int Ps2_sys_cnt;
 SYS_BT_SYSTEMID BootDiscSystemId;
 SELECTFILEWINDOW SelectFileWindow;
 SELECTFILEINFO SelectFileInfo[15] __attribute__((aligned(64)));
@@ -179,7 +173,6 @@ ICONINFORMATION IconInfo;
 MEMORYCARDSTATE McState;
 SAVEFILE SaveFile;
 CONFIGFILE ConfigFile;
-unsigned int Ps2_albinoid_flag;
 CAM_WORK cam;
 
 // 100% matching!

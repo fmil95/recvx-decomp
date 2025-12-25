@@ -3,11 +3,11 @@
 
 /*_anon5 TempMatrix0;
 _anon5 TempMatrix1;*/
-NJS_MATRIX* pNaMatMatrixStuckTop;
-NJS_MATRIX* pNaMatMatrixStuckPtr;
-int lNaMatMatrixStuckCnt;
-int lNaMatMatrixStuckMax;
 int lNaMatIsUnitMatrix;
+int lNaMatMatrixStuckMax;
+int lNaMatMatrixStuckCnt;
+NJS_MATRIX* pNaMatMatrixStuckPtr;
+NJS_MATRIX* pNaMatMatrixStuckTop;
 /*_anon4 _nj_screen_;
 float NaViewScreenMatrix[16];
 
@@ -36,7 +36,7 @@ void njScale(float pMatrix[16], float fScaleX, float fScaleY, float fScaleZ);
 void njScaleV(float pMatrix[16], _anon0* pScale);
 int njInvertMatrix(float pMatrix[16]);
 void njTransposeMatrix(float pMatrix[16]);
-float njAtan2b(float a, float b);
+static float njAtan2b(float a, float b);
 void njMirror(float pMatrix[16], _anon3* pPlane);
 void njCalcPoint(float pMatrix[16], _anon0* pSrcPoint, _anon0* pDstPoint);
 void njCalcPoint4(float pMatrix[16], _anon1* pSrcPoint, _anon1* pDstPoint);
@@ -786,7 +786,7 @@ void njTransposeMatrix(float pMatrix[16])
 
 // 
 // Start address: 0x2d7210
-float njAtan2b(float a, float b)
+static float njAtan2b(float a, float b)
 {
 	// Line 3657, Address: 0x2d7210, Func Offset: 0
 	// Func End, Address: 0x2d725c, Func Offset: 0x4c

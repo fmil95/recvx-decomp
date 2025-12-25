@@ -1,18 +1,18 @@
 #include "ps2_NaFog.h"
 #include "ps2_dummy.h"
 
-/*float fNaFogTbl[128];*/
-unsigned int ulNaFogState;
-float fNaFogB;
-unsigned int ulNaFogB;
-float fNaFogG;
-unsigned int ulNaFogG;
-float fNaFogR;
-unsigned int ulNaFogR;
 float fNaFogA;
+float fNaFogR;
+float fNaFogG;
+float fNaFogB;
 unsigned int ulNaFogA;
+unsigned int ulNaFogR;
+unsigned int ulNaFogG;
+unsigned int ulNaFogB;
 float* fpNaFogTblTop;
-/*float fNaFogNear;
+unsigned int ulNaFogState;
+/*float fNaFogTbl[128];
+float fNaFogNear;
 float fNaFogFar;
 float fNaFogDensity;
 float fNaFogDist;

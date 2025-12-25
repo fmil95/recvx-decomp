@@ -13,15 +13,10 @@ extern unsigned char* njpmemp;
 extern NJS_MATRIX* cmat;
 extern unsigned int palbuf[4096];
 extern float SinTable[16384];
-extern unsigned char Ps2_PBUFF[1835008];
-extern sceGsDBuffDc Db;
-extern PS2_GS_SAVE Ps2_gs_save;
 extern SYS_WORK* sys;
 extern void* Ps2_tex_buff;
 extern unsigned int Ps2_current_texbreak;
 extern MOV_INFO MovieInfo;
-extern int iRingBufNum;
-extern unsigned int Ps2_sys_cnt;
 extern O_WRK eff[512];
 
 // TODO: include sg_sybt.h and remove the below struct
@@ -46,7 +41,6 @@ extern SAVEFILE SaveFile;
 extern CONFIGFILE ConfigFile;
 extern unsigned char* vwbmemp;
 extern NJS_TEXMEMLIST tbuf[256];
-extern unsigned int Ps2_albinoid_flag;
 extern CAM_WORK cam;
 extern unsigned char* vebmemp;
 extern unsigned char* keepmem;
