@@ -157,6 +157,13 @@ void ExitPlayLogSystem();
 void ReadPlayLog();
 void WritePlayLog(int param1, int param2);
 
+extern int OpenDriveTrayFlag;
+extern int RoomFxLevel;
+extern char FxLevelTimer;
+extern int CurrentFxLevel;
+extern int AddFxLevel;
+extern int PatId[4];
+
 /*typedef struct EnemySlot;
 typedef struct _anon1;
 typedef struct _anon2;

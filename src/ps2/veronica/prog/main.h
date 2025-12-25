@@ -49,8 +49,6 @@ typedef struct tag_SYS_BT_SYSTEMID SYS_BT_SYSTEMID ;
 extern SYS_BT_SYSTEMID BootDiscSystemId;
 extern BH_PWORK* plp;
 extern HWS_WORK* hws;
-extern int PatId[4];
-extern int OpenDriveTrayFlag;
 extern int pd_port;
 extern unsigned char BackColorFlag;
 extern unsigned char* freemem;

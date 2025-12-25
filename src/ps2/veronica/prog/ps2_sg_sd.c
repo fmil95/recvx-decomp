@@ -1,6 +1,7 @@
 #include "ps2_sg_sd.h"  
 #include "ps2_MovieFunc.h"
 #include "ps2_snddrv.h"
+#include "sdfunc.h"
 #include "main.h"
 
 #include <string.h>
@@ -26,10 +27,6 @@ int __midi_value;
 unsigned int iop_trans_sq_address;
 unsigned int ee_trans_sq_size;
 unsigned int ee_trans_sq_address;
-int CurrentFxLevel;
-int AddFxLevel;
-char FxLevelTimer;
-int RoomFxLevel;
 int iop_zero_buff;
 int iop_buff;
 unsigned short req_se_info[6];
