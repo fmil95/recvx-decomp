@@ -50,7 +50,6 @@ extern SYS_BT_SYSTEMID BootDiscSystemId;
 extern BH_PWORK* plp;
 extern HWS_WORK* hws;
 extern int pd_port;
-extern unsigned char BackColorFlag;
 extern unsigned char* freemem;
 extern SELECTFILEWINDOW SelectFileWindow;
 extern SELECTFILEINFO SelectFileInfo[15];

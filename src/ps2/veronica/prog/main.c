@@ -186,7 +186,6 @@ int iop_data_buff;
 SND_STATUS get_iop_snddata __attribute__((aligned(64)));
 char sound_flag;
 SYS_BT_SYSTEMID BootDiscSystemId;
-unsigned char BackColorFlag;
 SELECTFILEWINDOW SelectFileWindow;
 SELECTFILEINFO SelectFileInfo[15] __attribute__((aligned(64)));
 char* cpNameList[18] = 

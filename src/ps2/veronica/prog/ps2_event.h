@@ -6,6 +6,8 @@
 void bhChangeBackColor();
 void bhChangeBackColorEvt();
 
+extern unsigned char BackColorFlag;
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct BH_PWORK;

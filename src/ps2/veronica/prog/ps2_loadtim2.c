@@ -7,7 +7,7 @@
 unsigned char clear_buff[1024];
 
 // 100% matching! 
-int Tim2CalcBufWidth(int psm, int w)
+static int Tim2CalcBufWidth(int psm, int w)
 {
     switch (psm) 
     {
@@ -263,6 +263,12 @@ int LoadToVram(unsigned long tbp, u_long128* addr, int tbw, int psm, int pos, in
     loadImage(data);
     
     return 0;
+}
+
+// 100% matching!
+void *UncAddr(void *val)
+{
+    return (void*)(((u_int)val & UNCMASK)|UNCBASE);
 }
 
 // 99.83% matching

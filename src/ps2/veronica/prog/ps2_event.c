@@ -2,10 +2,10 @@
 
 /*_anon44 cam;
 _anon10* sys;
-_anon11* rom;
+_anon11* rom;*/
 unsigned char BackColorFlag;
 
-void bhChangeBackColor();
+/*void bhChangeBackColor();
 void bhChangeBackColorEvt();*/
 
 // 
