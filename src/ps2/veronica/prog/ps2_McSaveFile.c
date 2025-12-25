@@ -1,7 +1,7 @@
 #include "ps2_McSaveFile.h"
 #include "bup_00.h"
 #include "flag.h"
-#include "message.h"
+#include "message.h" // TODO: in the original codebase, they forgot to include this, find a way to obtain a match
 #include "ps2_MemoryCard..h"
 #include "ps2_NaDraw.h"
 #include "sdfunc.h"

@@ -102,6 +102,7 @@
 #include "ps2_cri_adxt.c"
 #include "Motion.c"
 #include "playpch.c"
+#include "gcc_wrapper.c"
 
 typedef void(*fn)();
 
