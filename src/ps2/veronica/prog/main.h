@@ -24,7 +24,6 @@ extern SYS_WORK* sys;
 extern void* Ps2_tex_buff;
 extern unsigned int Ps2_current_texbreak;
 extern MOV_INFO MovieInfo;
-extern unsigned int Ps2_ice_flag;
 extern unsigned int Ps2_current_texno;
 extern NJS_TEXLIST* Ps2_current_texlist;
 extern NJS_TEXMEMLIST* Ps2_current_texmemlist;

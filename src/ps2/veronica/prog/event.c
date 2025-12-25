@@ -21,10 +21,10 @@ unsigned int* G_Sp;*/
 unsigned char* bhScePtr;
 /*BH_PWORK* plp;
 _anon45 cam;
-BH_PWORK ene[0];
+BH_PWORK ene[0];*/
 float GameFar;
 float GameNear;
-unsigned char G_Mess_flag;
+/*unsigned char G_Mess_flag;
 _anon26 NextSoundInfo;
 unsigned char pl_sleep_cnt;
 _anon24 WpnTab[0];

@@ -5,9 +5,9 @@
 _anon33 cam;
 _anon4 _nj_screen_;
 float BHD_ASPECT_Y;
-float BHD_ASPECT_X;
+float BHD_ASPECT_X;*/
 unsigned int Ps2_rendertex_initflag;
-float lcmat[16][0];
+/*float lcmat[16][0];
 _anon0 eff[0];
 unsigned int PS2_Render_tex_sub_flag;*/
 

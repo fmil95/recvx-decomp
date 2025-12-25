@@ -11,6 +11,7 @@ unsigned int Ps2_tex_load_tp_cancel;
 /*unsigned int Ps2_highlight;
 float Ps2_rand_seed[4];*/
 unsigned int PS2_Render_tex_sub_flag;
+unsigned int Ps2_ice_flag;
 /*unsigned int Ps2_albinoid_flag;*/
 unsigned char Ps2_tex_mem[10485760] __attribute__((aligned(64)));
 /*float Ps2_zbuff_a;
@@ -39,14 +40,16 @@ float Ps2_shadow_vec[4];
 int Ps2_shadow_z;
 int ViewType;
 unsigned int palbuf[4096];
-float mbuf[16][128];
-float lcmat[16][12];
-float cmmat[16][2];
-float crmat[16];
-unsigned char* _BSG_END;
-int _nj_tex_count;
-_anon3* _nj_vertex_buf_;
-unsigned int _nj_control_3d_flag_;
+float mbuf[16][128];*/
+NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
+//float cmmat[2][16] __attribute__((aligned(64))); // TODO: use this definition
+float cmmat[16];
+/*float cmmat[16][2];
+float crmat[16];*/
+Uint8* _BSG_END;
+/*int _nj_tex_count;*/
+NJS_VERTEX_BUF* _nj_vertex_buf_;
+/*unsigned int _nj_control_3d_flag_;
 _anon28 _nj_screen_;
 unsigned char Ps2_DRAW_TMP[16384];
 unsigned int Ps2_sys_cnt;

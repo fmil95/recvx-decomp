@@ -13,12 +13,12 @@ char PlyEyeTab[8];
 int KnfAtrTab[4];
 char PlyLegRoute[7][2];
 char PlyFlip[23];*/
-unsigned short PlMtnAct[2][3][7];
+const unsigned short PlMtnAct[2][3][7];
 /*unsigned short PlMtnWpn[5];
 char PlFootSnd[7][2][4];
-char PlKDU[3][2][4];
-_anon20 WpnTab[23];
-char PlyClipTab[5];
+char PlKDU[3][2][4];*/
+const WPN_TAB WpnTab[23];
+/*char PlyClipTab[5];
 char PlySdwTab[8];
 _anon27 PlyCapColTab[18];
 _anon40 WpnEffTab[4][23];

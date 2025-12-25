@@ -1,9 +1,9 @@
 #include "njplus.h"
+#include "ps2_dummy.h"
 #include "ps2_NaMatrix.h"
 #include "main.h"
 
 NP_WORK np;
-NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
 
 // 100% matching!
 void npPlusInit() 

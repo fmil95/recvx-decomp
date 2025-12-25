@@ -244,6 +244,9 @@ void bhChangeViewClipRM();
 void bhChangeClipVolume(char stg_no, char rom_no, char rcase, int evc_no);
 void bhChangeClipVolumeRM();
 
+extern float GameFar;
+extern float GameNear;
+
 /*typedef struct BH_PWORK;
 typedef struct npobj;
 typedef struct _anon0;

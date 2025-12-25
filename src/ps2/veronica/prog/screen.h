@@ -19,6 +19,8 @@ void bhDrawThermoNumber(float px, float py, int num, unsigned int argb);
 void bhDrawFullScreenRenderTexture();
 void bhDrawSmallScreenRenderTexture();
 
+extern unsigned int Ps2_rendertex_initflag;
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

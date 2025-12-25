@@ -1,9 +1,7 @@
 #include "camera.h"
 #include "njplus.h"
+#include "ps2_dummy.h"
 #include "main.h"
-
-//float cmmat[2][16] __attribute__((aligned(64))); // TODO: use this definition
-float cmmat[16];
 
 // 100% matching!
 void bhInitCamera() {

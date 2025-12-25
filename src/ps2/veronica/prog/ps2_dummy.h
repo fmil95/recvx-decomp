@@ -47,6 +47,12 @@ void Ps2Vu1ProgSend(unsigned int prog_no);
 void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num);
 void PS2_Render_Tex_Sub();
 
+extern unsigned int Ps2_ice_flag;
+extern float cmmat[16];
+extern NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
+extern Uint8* _BSG_END;
+extern NJS_VERTEX_BUF* _nj_vertex_buf_;
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;

@@ -53,6 +53,8 @@ void bhSetHeadRotation(short ax, short ay);
 /*void bhCalcHair(_anon0* op, BH_PWORK* pp);*/
 void* bhGetTransZ(int mtn_no);
 
+extern const WPN_TAB WpnTab[23];
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
