@@ -13,11 +13,11 @@ char PlyEyeTab[8];
 int KnfAtrTab[4];
 char PlyLegRoute[7][2];
 char PlyFlip[23];*/
-const unsigned short PlMtnAct[2][3][7];
+const unsigned short PlMtnAct[2][3][7]; // TODO: define data for this
 /*unsigned short PlMtnWpn[5];
 char PlFootSnd[7][2][4];
 char PlKDU[3][2][4];*/
-const WPN_TAB WpnTab[23];
+const WPN_TAB WpnTab[23]; // TODO: define data for this
 /*char PlyClipTab[5];
 char PlySdwTab[8];
 _anon27 PlyCapColTab[18];

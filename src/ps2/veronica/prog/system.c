@@ -41,7 +41,7 @@ unsigned char pl_sleep_cnt;
 unsigned char Pause_Flag;
 unsigned char NowLoadDisp;
 unsigned char PauseBtn;
-const unsigned short pause_mes[6];
+const unsigned short pause_mes[6] = { 0x30, 0x41, 0x55, 0x53, 0x45, 0xFFFF };
 
 // 100% matching!
 int bhCalcVtxBuffer()
