@@ -20,6 +20,7 @@ float fVu1AspectW;
 /*tagVU1_PRIM_BUF vu1ScessorBuf[16];
 unsigned char Ps2_DRAW_TMP[16384];
 float Ps2AddPrimPrio;*/
+float fVu1Projection;
 
 // 
 // Start address: 0x2d38c0

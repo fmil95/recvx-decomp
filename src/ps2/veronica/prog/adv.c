@@ -5,6 +5,7 @@
 #include "ps2_dummy.h"
 #include "ps2_MemoryCard..h"
 #include "ps2_NaDraw.h"
+#include "ps2_NaTextureFunction.h"
 #include "ps2_sg_maloc.h"
 #include "ps2_sg_sycfg.h"
 #include "ps2_SystemLoadScreen.h"

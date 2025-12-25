@@ -166,9 +166,6 @@ float Ps2_zbuff_b;
 unsigned char Ps2_PBUFF[1835008] __attribute__((aligned(64)));
 sceGsDBuffDc Db;
 PS2_GS_SAVE Ps2_gs_save __attribute__((aligned(64)));
-unsigned int Ps2_current_texno;
-NJS_TEXLIST* Ps2_current_texlist;
-NJS_TEXMEMLIST* Ps2_current_texmemlist __attribute__((aligned(64)));
 int iRingBufNum = 20;
 int iop_read_buff;
 PAD_ACT Pad_act[20];
@@ -198,10 +195,6 @@ SAVEFILE SaveFile;
 CONFIGFILE ConfigFile;
 unsigned int Ps2_albinoid_flag;
 CAM_WORK cam;
-unsigned int Ps2_quad_color;
-int Ps2_quad_trans; 
-unsigned int Ps2_current_texno_bk;
-NJS_TEXLIST* Ps2_current_texlist_bk;
 
 // 100% matching!
 void njUserInit(void)

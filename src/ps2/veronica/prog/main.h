@@ -3,14 +3,12 @@
 
 extern CAM_WORK cam;
 extern ROM_WORK* rom;
-extern float fVu1Projection;
 extern sceVu0FMATRIX ClipMatrix2;
 extern float _fNaViwClipNear;
 extern float _fNaViwClipFar;
 extern float fNaViwClipNear;
 extern float fNaViwClipFar;
 extern NJS_MATRIX NaViwViewMatrix;
-extern NJS_SCREEN	_nj_screen_;
 extern unsigned char* njpmemp;
 extern NJS_MATRIX* cmat;
 extern unsigned int palbuf[4096];
@@ -24,9 +22,6 @@ extern SYS_WORK* sys;
 extern void* Ps2_tex_buff;
 extern unsigned int Ps2_current_texbreak;
 extern MOV_INFO MovieInfo;
-extern unsigned int Ps2_current_texno;
-extern NJS_TEXLIST* Ps2_current_texlist;
-extern NJS_TEXMEMLIST* Ps2_current_texmemlist;
 extern int iRingBufNum;
 extern int iop_read_buff;
 extern PAD_ACT Pad_act[20];
@@ -66,10 +61,6 @@ extern BH_PWORK ply;
 extern float BHD_ASPECT_X;
 extern float BHD_ASPECT_Y;
 extern BH_PWORK ene[128];
-extern unsigned int Ps2_quad_color;
-extern int Ps2_quad_trans;
-extern unsigned int Ps2_current_texno_bk;
-extern NJS_TEXLIST* Ps2_current_texlist_bk;
 
 void njUserInit(void);
 Sint32 njUserMain(void);

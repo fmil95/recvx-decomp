@@ -41,6 +41,8 @@ void vu1DrawTriangleStripTransDoubleI(unsigned long ulType, tagVU1_STRIP_BUF* pS
 void DrawScissorPolygonTrans1P(_anon2* scissor, unsigned long ulType);
 void vu1DrawTriangleStripTransDouble1P(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode);*/
 
+extern float fVu1Projection;
+
 /*typedef struct tagVU1_STRIP_BUF;
 typedef struct tagVU1_PRIM_BUF;
 typedef struct _anon0;

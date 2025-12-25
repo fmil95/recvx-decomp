@@ -1,9 +1,16 @@
 #include "ps2_NaView.h"
+#include "ps2_dummy.h"
 #include "ps2_NaDraw2D.h"
 #include "ps2_NaGraphics3D.h"
 #include "ps2_Vu1Strip.h"
 #include "main.h"
 
+NJS_MATRIX NaViwViewMatrix __attribute__((aligned(64)));
+float fNaViwHalfW;
+float fNaViwHalfH;
+NJS_MATRIX NaViewScreenMatrix;
+sceVu0FMATRIX ClipScreenMatrix;
+sceVu0FMATRIX ClipMatrix2;
 float fNaViwOffsetX = 2048.0f;
 float fNaViwOffsetY = 2048.0f;
 float fNaViwAspectW = 1.174000025f;
@@ -14,15 +21,7 @@ float _fNaViwClipNear = 1.0f;
 float _fNaViwClipFar = 65535.0f;
 float ClipDispW = 2047.0f;
 float ClipDispH = 2047.0f;
-NJS_SCREEN	_nj_screen_;
-NJS_MATRIX NaViewScreenMatrix;
-float fNaViwHalfH;
-float fNaViwHalfW;
-NJS_MATRIX NaViwViewMatrix __attribute__((aligned(64)));
 NO_NAME_16 ClipVolume = { 320.0f, 240.0f, 1.0f, 512.0f };
-sceVu0FMATRIX ClipScreenMatrix;
-sceVu0FMATRIX ClipMatrix2;
-float fVu1Projection;
 
 // 100% matching!
 void    njSetScreen(NJS_SCREEN *s)

@@ -4,29 +4,36 @@
 #include "ps2_texture.h"
 #include "main.h"
 
-unsigned int Ps2_current_texbreak;
-unsigned int Ps2_current_gindex;
-unsigned int Ps2_texcontinue_no;
-void* Ps2_free_last;
-unsigned int Ps2_free_texmemsize;
-void* Ps2_now_free;
-NJS_TEXMEMLIST Ps2_last_tmlist;
-NJS_TEXMEMLIST Ps2_1st_tmlist __attribute__((aligned(64)));
-unsigned int Ps2_texmemlist_num;
 NJS_TEXMEMLIST* Ps2_tex_info __attribute__((aligned(64)));
-TIM2_PICTUREHEADER_EX Ps2_tm_list_last;
-TIM2_PICTUREHEADER_EX Ps2_tm_list_1st;
+unsigned int Ps2_texmemlist_num;
 void* Ps2_tex_buff;
 char* index(char*, int);
+NJS_TEXLIST* Ps2_current_texlist;
+unsigned int Ps2_current_texno;
+unsigned int Ps2_current_texbreak;
+NJS_TEXLIST* Ps2_current_texlist_bk;
+unsigned int Ps2_current_texno_bk;
+int Ps2_quad_trans; 
+unsigned int Ps2_quad_color;
+int Ps2_3DEx_trans;
+NJS_POLYGON_VTX* Ps2_3DEx_p; 
+int Ps2_3DEx_count; 
+int Ps2_tex3DEx_trans; 
+NJS_TEXTURE_VTX* Ps2_tex3DEx_p; 
+int Ps2_tex3DEx_count; 
+NJS_TEXMEMLIST Ps2_1st_tmlist __attribute__((aligned(64)));
+NJS_TEXMEMLIST Ps2_last_tmlist;
+void* Ps2_now_free;
+void* Ps2_free_last;
+unsigned int Ps2_free_texmemsize;
+unsigned int Ps2_texcontinue_no;
+unsigned int Ps2_current_gindex;
+NJS_TEXMEMLIST* Ps2_current_texmemlist __attribute__((aligned(64)));
 unsigned int Ps2_render_width;
-unsigned int Ps2_clut[1024]; /* unused */
 void* Ps2_render_p;
-int Ps2_tex3DEx_count; /* unused */
-NJS_TEXTURE_VTX* Ps2_tex3DEx_p; /* unused */
-int Ps2_tex3DEx_trans; /* unused */
-int Ps2_3DEx_count; /* unused */
-NJS_POLYGON_VTX* Ps2_3DEx_p; /* unused */
-int Ps2_3DEx_trans; /* unused */
+TIM2_PICTUREHEADER_EX Ps2_tm_list_1st;
+TIM2_PICTUREHEADER_EX Ps2_tm_list_last;
+/*unsigned int Ps2_clut[1024]; - unused*/
 
 // 100% matching!
 void Ps2MemCopy4(void* vpDst, void* vpSrc, int lNum)

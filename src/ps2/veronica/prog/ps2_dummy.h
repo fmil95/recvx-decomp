@@ -53,6 +53,7 @@ extern float cmmat[16];
 extern NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
 extern Uint8* _BSG_END;
 extern NJS_VERTEX_BUF* _nj_vertex_buf_;
+extern NJS_SCREEN _nj_screen_;
 
 /*typedef struct _anon0;
 typedef struct _anon1;

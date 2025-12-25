@@ -49,6 +49,7 @@ float crmat[16];*/
 Uint8* _BSG_END;
 /*int _nj_tex_count;*/
 NJS_VERTEX_BUF* _nj_vertex_buf_;
+NJS_SCREEN _nj_screen_;
 /*unsigned int _nj_control_3d_flag_;
 _anon28 _nj_screen_;
 unsigned char Ps2_DRAW_TMP[16384];
