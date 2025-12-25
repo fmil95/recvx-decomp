@@ -33,8 +33,6 @@ extern PAD_ACT Pad_act[20];
 extern BUTTON_INFO ButtonInfo[5];
 extern PAD_INFO Ps2_pad;
 extern unsigned int Ps2_sys_cnt;
-extern int iop_data_buff;
-extern SND_STATUS get_iop_snddata;
 extern char sound_flag;
 extern O_WRK eff[512];
 
@@ -67,16 +65,11 @@ extern unsigned char* keepmem;
 extern BH_PWORK ply;
 extern float BHD_ASPECT_X;
 extern float BHD_ASPECT_Y;
-extern unsigned char* Ps2_PXLCONV;
 extern BH_PWORK ene[128];
 extern unsigned int Ps2_quad_color;
 extern int Ps2_quad_trans;
 extern unsigned int Ps2_current_texno_bk;
 extern NJS_TEXLIST* Ps2_current_texlist_bk;
-extern int movie_draw;
-extern u_long128 test_tag[1400];
-extern VoBuf voBuf;
-extern RMI_WORK rmi;
 
 void njUserInit(void);
 Sint32 njUserMain(void);

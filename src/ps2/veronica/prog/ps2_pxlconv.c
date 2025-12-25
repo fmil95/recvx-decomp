@@ -3,7 +3,7 @@
 
 #include <string.h>
 
-/*unsigned char* Ps2_PXLCONV;*/
+unsigned char* Ps2_PXLCONV __attribute__((aligned(64)));
 
 // 100% matching! 
 void Tim2_Format_Check(void* tim2_ptr)

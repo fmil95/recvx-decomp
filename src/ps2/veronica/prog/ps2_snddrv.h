@@ -39,4 +39,7 @@ static int makebuff_ext(unsigned int cmd, int n, int limit);
 static int sending_req(SNDQUE* sq_p);
 int get_iopsnd_info();
 
+extern int iop_data_buff;
+extern SND_STATUS get_iop_snddata;
+
 #endif

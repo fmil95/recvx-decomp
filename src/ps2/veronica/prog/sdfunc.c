@@ -3,6 +3,7 @@
 #include "adxwrap.h"
 #include "gdlib.h"
 #include "mwwrap.h"
+#include "ps2_MovieFunc.h"
 #include "ps2_NaColi.h"
 #include "ps2_NaMatrix.h"
 #include "ps2_NaView.h"

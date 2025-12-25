@@ -6,9 +6,7 @@
 //#include <string.h>
 
 MW_PLY_OBJ MwObj;
-StrFile infile;
 MWPLY MwHandle = &MwObj;
-MDSIZE_WORK mdSize __attribute__((aligned(64)));
 MWS_PLY_INIT_SFD __sfd_mw_conf__; /* unused */
 MWD_IF Ps2Func = 
 { 

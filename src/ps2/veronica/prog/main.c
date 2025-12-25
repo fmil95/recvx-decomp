@@ -21,6 +21,7 @@
 #include "flag.h"
 #include "njplus.h"
 #include "ps2_dummy.h"
+#include "ps2_pxlconv.h"
 #include "ps2_sg_maloc.h"
 #include "ps2_sg_sybt.h"
 #include "sbinit.h"
@@ -148,7 +149,6 @@ fn bhSysTaskJumpTab[23] =
     bhSysCallScreenSaver
 };
 int pd_port = -1;
-unsigned char* Ps2_PXLCONV __attribute__((aligned(64)));
 unsigned char* freemem;
 unsigned char* fsize; /* unused */
 unsigned char* keepmem;
@@ -182,8 +182,6 @@ BUTTON_INFO ButtonInfo[5] =
 }; 
 PAD_INFO Ps2_pad;
 unsigned int Ps2_sys_cnt;
-int iop_data_buff;
-SND_STATUS get_iop_snddata __attribute__((aligned(64)));
 char sound_flag;
 SYS_BT_SYSTEMID BootDiscSystemId;
 SELECTFILEWINDOW SelectFileWindow;
@@ -204,10 +202,6 @@ unsigned int Ps2_quad_color;
 int Ps2_quad_trans; 
 unsigned int Ps2_current_texno_bk;
 NJS_TEXLIST* Ps2_current_texlist_bk;
-int movie_draw;
-u_long128 test_tag[1400] __attribute__((aligned(64)));
-VoBuf voBuf __attribute__((aligned(64)));
-RMI_WORK rmi;
 
 // 100% matching!
 void njUserInit(void)

@@ -29,4 +29,6 @@ int PageConv8to32(int width, int height, u_char *p_input, u_char *p_output);
 int Conv4to32(int width, int height, u_char *p_input, u_char *p_output);
 int Conv8to32(int width, int height, u_char *p_input, u_char *p_output);
 
+extern unsigned char* Ps2_PXLCONV;
+
 #endif

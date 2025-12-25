@@ -67,6 +67,7 @@ void setD3_CHCR(u_int val);
 void setD4_CHCR(u_int val);
 void scTag2(QWORD *q, void *addr, u_int id, u_int qwc);
 int viBufReset(ViBuf *f);
+void *DmaAddr(void *val);
 void viBufBeginPut(ViBuf *f, u_char **ptr0, int *len0, u_char **ptr1, int *len1);
 void viBufEndPut(ViBuf *f, int size);
 int viBufModifyPts(ViBuf *f, TimeStamp *new_ts);
@@ -91,10 +92,11 @@ int mpegStopDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData);
 int mpegRestartDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData);
 int mpegTS(sceMpeg *mp, sceMpegCbDataTimeStamp *cbts, void *anyData);
 
-// 0% matching
-static inline void *DmaAddr(void *val)
-{
-    return (void*)((u_int)val & UNCMASK);
-}
+extern RMI_WORK rmi;
+extern MDSIZE_WORK mdSize;
+extern int movie_draw;
+extern StrFile infile;
+extern u_long128 test_tag[1400];
+extern VoBuf voBuf;
 
 #endif

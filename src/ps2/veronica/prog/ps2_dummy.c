@@ -6,7 +6,7 @@
 #include "ps2_texture.h"
 #include "main.h"
 
-/*unsigned char* Ps2_MOVIE;*/
+unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
 unsigned int Ps2_tex_load_tp_cancel;
 /*unsigned int Ps2_highlight;
 float Ps2_rand_seed[4];*/

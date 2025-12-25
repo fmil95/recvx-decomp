@@ -2,6 +2,7 @@
 #include "adxwrap.h"
 #include "ps2_dummy.h"
 #include "ps2_loadtim2.h"
+#include "ps2_MovieWork.h"
 #include "ps2_NaSystem.h"
 #include "ps2_sfd_mw.h"
 #include "ps2_sg_sd.h"
@@ -9,28 +10,34 @@
 
 #include <string.h>
 
-int isCountVblank;
-int isFrameEnd; /* unused */
-int oddeven; /* unused */
-int handler_error; /* unused */
-static int __image_w__;
-static int __image_h__;
-u_long128* new_tags[64] __attribute__((aligned(64)));
-VideoDec videoDec __attribute__((aligned(64)));
-int videoDecTh;
-char* videoDecStack;
 VoTag* voBufTag __attribute__((aligned(64)));
 VoData* voBufData;
 READ_BUF* readBuf;
-AudioDec audioDec;
 unsigned char* audioBuff;
 TimeStamp* timeStamp;
 u_long128* viBufTag;
 u_long128* viBufData;
 unsigned char* mpegWork;
+char* videoDecStack;
+int videoDecTh;
 int frd;
-unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
-sceGsDBuff db; /* unused */
+int movie_draw;
+StrFile infile;
+VideoDec videoDec __attribute__((aligned(64)));
+AudioDec audioDec;
+VoBuf voBuf __attribute__((aligned(64)));
+u_long128 test_tag[1400] __attribute__((aligned(64)));
+RMI_WORK rmi;
+MDSIZE_WORK mdSize __attribute__((aligned(64)));
+u_long128* new_tags[64] __attribute__((aligned(64)));
+int isCountVblank;
+static int __image_w__;
+static int __image_h__;
+/* unused below */
+/*int isFrameEnd; 
+int oddeven; 
+int handler_error; 
+sceGsDBuff db;*/
 
 // 99.95% matching
 void initAll()
@@ -710,6 +717,12 @@ int viBufReset(ViBuf *f)
     setD4_CHCR((0 << 8) | (1 << 2) | 1);
 
     return TRUE;
+}
+
+// 100% matching! 
+void *DmaAddr(void *val)
+{
+    return (void*)((u_int)val & UNCMASK);
 }
 
 #pragma divbyzerocheck on

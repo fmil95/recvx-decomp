@@ -47,6 +47,7 @@ void Ps2Vu1ProgSend(unsigned int prog_no);
 void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num);
 void PS2_Render_Tex_Sub();
 
+extern unsigned char* Ps2_MOVIE;
 extern unsigned int Ps2_ice_flag;
 extern float cmmat[16];
 extern NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
