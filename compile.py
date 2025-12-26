@@ -371,12 +371,17 @@ def get_platform_tools():
         
         try:
             subprocess.run(["mips-linux-gnu-as", "--version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            assembler = "mips-linux-gnu-as"
         except FileNotFoundError:
-            print("ERROR: GNU AS for mips does not appear to be accessible")
-            print("Please download it for you distro and put it in your PATH")
-            sys.exit(-1)
+            try:
+                subprocess.run(["mips64-linux-gnu-as", "--version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                assembler = "mips64-linux-gnu-as"
+            except FileNotFoundError:
+                print("ERROR: GNU AS for mips does not appear to be accessible")
+                print("Please download it for you distro and put it in your PATH")
+                sys.exit(-1)
+            
         compiler_gcc = "compiler/linux/ee/gcc/bin/ee-gcc"
-        assembler = "mips-linux-gnu-as"
     else:
         compiler_gcc = "compiler/windows/ee/gcc/bin/ee-gcc.exe"
         assembler = "compiler/windows/mips-binutils/mips-linux-gnu-as.exe"
