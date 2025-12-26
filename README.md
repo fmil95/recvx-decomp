@@ -41,12 +41,17 @@ Next you have to place your copy of the SLUS_201.84 file in the config folder, a
 pip install -r config/requirements.txt
 ```
 
-Once that is done, use the following command to perform the ASM dump and setup objdiff:
+Once that is done, you can use the following command to setup objdiff:
 ```
 python compile.py --setup
 ```
 
-It should run without errors and generate an `objdiff.json` project file alongside a `config/asm` folder for creating decomp.me scratches.
+Or run this command to setup the ASM dump to create decomp.me scratches more easily:
+```
+python compile.py --split
+```
+
+Either command should run without errors and generate an `objdiff.json` project file or a `config/asm` folder respectively.
 
 From now on to build the project you just need to type the following command:
 ```

@@ -10,7 +10,6 @@ options:
   # asm_path: asm
   # src_path: ../src
   build_path: ../build
-  make_full_disasm_for_code: True
   # create_asm_dependencies: True
 
   ld_script_path: SLUS_201.84.ld
@@ -18,10 +17,19 @@ options:
   do_c_func_detection: False
 
   asm_nonmatching_label_macro: ""
-  generated_macro_inc_content: ".set Q, $Q\n.set ACC, $ACC\n.set I, $I\n.set R, $R"
+  generated_macro_inc_content: |-
+    .set Q, $Q
+    .set ACC, $ACC
+    .set I, $I
+    .set R, $R
+
+    # A label referenced by a jumptable.
+    .macro ljlabel label, visibility=local
+        .\visibility "\label"
+        "\label":
+    .endm
 
   find_file_boundaries: False
-  # disassemble_all: True
   asm_path: ../build/expected
   matchings_path: asm
   nonmatchings_path: asm
