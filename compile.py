@@ -8,6 +8,7 @@ from pathlib import Path
 
 import splat.scripts.split as split
 from splat.segtypes.linker_entry import LinkerEntry
+from splat.util.symbols import Symbol
 
 ROOT_DIR = Path(__file__).parent
 
@@ -218,35 +219,52 @@ def src_path_for(source):
     return str(dst_path)
 
 
-def clean_asm(asm_file: Path):
+def clean_asm(asm_file: Path, symbols: dict[int, list[Symbol]]):
     with asm_file.open("r", encoding="utf-8") as f:
         lines = f.readlines()
 
-    if lines[0] == "/* PROCESSED FILE */":
-        return
-    
-    out = ["/* PROCESSED FILE */\n"]
+    out = []
     skip = False
+    get_pos = False
     count = 1
     section = ".text"
+    last_section = 0
+    last_name = ""
     for line in lines:
         if line.startswith("/* Automatically generated and unreferenced pad */"):
             continue
         
         if line.startswith("dlabel D_"):
-            skip = True
             continue
 
-        if line.startswith("enddlabel D_"):
-            skip = True
+        if line.startswith("enddlabel"):
             continue
+
+        if line.startswith("  jlabel"):
+            out.append(line.replace("jlabel", "ljlabel"))
+            continue
+
+        if get_pos and line.startswith("    /* "):
+            s = line.split(" ")
+            if ".space" in line:
+                pos = s[5]
+            else:
+                pos = s[6]
+            sym = symbols[int(pos, base=16)][0]
+            if sym.user_declared:
+                out.append(f".size {last_name}, {sym.given_size}\n")
+            get_pos = False
 
         if line.startswith("glabel") or line.startswith("dlabel"):
+            get_pos = True
+            last_name = line[7:].split(",")[0].strip()
             out.append(f".section {section}{SECTION_DICT[section]}{count}\n")
+            last_section = len(out) - 1
             count += 1
             skip = False
-        
+
         if line.startswith("endlabel"):
+            out[last_section] += ".balign 16\n"
             out.append(line)
             out.append("\n")
             skip = True
@@ -265,7 +283,7 @@ def clean_asm(asm_file: Path):
 
 def do_objdiff_setup():
     """Setup objdiff.json and run splat."""
-    split.main([YAML_FILE], modes="all", verbose=False, make_full_disasm_for_code=True)
+    split.main([YAML_FILE], modes="all", verbose=False, use_cache=False, disassemble_all=False, make_full_disasm_for_code=True)
 
     entries = split.linker_writer.entries
 
@@ -325,7 +343,17 @@ def do_objdiff_setup():
     print("Fixing asm blobs")
     for unit in cfg["units"]:
         if "veronica" in unit["target_path"]:
-            clean_asm(Path(unit["target_path"]).with_suffix(".s"))
+            clean_asm(Path(unit["target_path"]).with_suffix(".s"), split.symbols.all_symbols_dict)
+
+
+def do_split():
+    split.main([YAML_FILE], modes="all", verbose=False, use_cache=False, disassemble_all=True, make_full_disasm_for_code=False)
+
+    # Move function asm so people can make scratches
+    asm_folder = Path("build/expected/asm")
+    if asm_folder.exists():
+        shutil.rmtree("config/asm", ignore_errors=True)
+        shutil.move(asm_folder, "config/asm")
 
 
 def get_platform_tools():
@@ -360,14 +388,13 @@ def get_platform_tools():
 def main(args):
     """Main entry point for the build process."""
 
+    if args.split:
+        do_split()
+
     if args.setup:
         do_objdiff_setup()
 
-        # Move function asm so people can make scratches
-        asm_folder = Path("build/expected/asm")
-        if asm_folder.exists():
-            shutil.move(asm_folder, "config/asm")
-        
+    if args.setup or args.split:
         # Remove unused folders
         shutil.rmtree("build/expected/data/", ignore_errors=True)
         shutil.rmtree("config/assets/", ignore_errors=True)
@@ -449,6 +476,7 @@ if __name__ == "__main__":
     parser.add_argument('--env-file', type=str, default='compile_config.json', help="Path to the JSON file containing environment variables.")
     parser.add_argument('--single-file', type=str, help="For objdiff use.")
     parser.add_argument('--setup', action="store_true", help="Generates original asm and objdiff project files.")
+    parser.add_argument('--split', action="store_true", help="Splits the binary function-wise, for decomp.me scratches.")
 
     args = parser.parse_args()
 
