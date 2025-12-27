@@ -17,8 +17,8 @@ unsigned int ulNaCnkFlagModelClip;
 /*int lNaCnkSrcAlphaMode[8];
 int lNaCnkDstAlphaMode[8];
 int lNaCnkSrcBlendMode;
-int lNaCnkDstBlendMode;
-unsigned char ucNaCnkAttr;*/
+int lNaCnkDstBlendMode;*/
+unsigned char ucNaCnkAttr;
 VU1_COLOR NaCnkDefaultOne;
 /*float fNaCnkConstantA;
 float fNaCnkConstantR;
@@ -118,20 +118,14 @@ void	njControl3D( Uint32 flag )
     ulNaCnkFlagModelClip = flag & 0x100;
 }
 
-/*// 
-// Start address: 0x2cf3e0
-void njSetConstantAttr(unsigned int ulAnd, unsigned int ulOr)
+// 100% matching!
+void	njSetConstantAttr( Uint32 and_attr, Uint32 or_attr )
 {
-	unsigned short ucData;
-	// Line 641, Address: 0x2cf3e0, Func Offset: 0
-	// Line 643, Address: 0x2cf3e8, Func Offset: 0x8
-	// Line 642, Address: 0x2cf3f0, Func Offset: 0x10
-	// Line 644, Address: 0x2cf404, Func Offset: 0x24
-	// Line 645, Address: 0x2cf414, Func Offset: 0x34
-	// Func End, Address: 0x2cf41c, Func Offset: 0x3c
+    ucNaCnkAttr &= and_attr >> 8;
+    ucNaCnkAttr |= or_attr >> 8;
 }
 
-// 
+/*// 
 // Start address: 0x2cf420
 void njSetConstantMaterial(_anon4* pMaterial)
 {
