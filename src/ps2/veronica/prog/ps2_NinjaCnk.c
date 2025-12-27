@@ -14,10 +14,10 @@ unsigned short usCnkCsTexColorCalcFunc[8][4];*/
 unsigned int ulNaCnkFlagConstMaterial;
 unsigned int ulNaCnkFlagConstAttr;
 unsigned int ulNaCnkFlagModelClip;
-/*int lNaCnkSrcAlphaMode[8];
-int lNaCnkDstAlphaMode[8];
-int lNaCnkSrcBlendMode;
-int lNaCnkDstBlendMode;*/
+int lNaCnkSrcAlphaMode[8] = { 11, 10, 3, 5, 8, 6, 2, 4 };
+int lNaCnkDstAlphaMode[8] = { 11, 10, 9, 7, 8, 6, 2, 4 };
+int lNaCnkSrcBlendMode = 8;
+int lNaCnkDstBlendMode = 6;
 unsigned char ucNaCnkAttr;
 VU1_COLOR NaCnkDefaultOne;
 /*float fNaCnkConstantA;
@@ -139,21 +139,14 @@ void njSetConstantMaterial(_anon4* pMaterial)
 	// Line 671, Address: 0x2cf474, Func Offset: 0x54
 	// Line 672, Address: 0x2cf47c, Func Offset: 0x5c
 	// Func End, Address: 0x2cf484, Func Offset: 0x64
-}
-
-// 
-// Start address: 0x2cf490
-void njSetCnkBlendMode(unsigned int ulAttr)
-{
-	// Line 691, Address: 0x2cf490, Func Offset: 0
-	// Line 692, Address: 0x2cf49c, Func Offset: 0xc
-	// Line 691, Address: 0x2cf4a4, Func Offset: 0x14
-	// Line 692, Address: 0x2cf4b8, Func Offset: 0x28
-	// Line 691, Address: 0x2cf4c4, Func Offset: 0x34
-	// Line 692, Address: 0x2cf4c8, Func Offset: 0x38
-	// Line 693, Address: 0x2cf4d0, Func Offset: 0x40
-	// Func End, Address: 0x2cf4d8, Func Offset: 0x48
 }*/
+
+// 100% matching!
+void njSetCnkBlendMode(Uint32 attr)
+{
+    lNaCnkSrcBlendMode = lNaCnkSrcAlphaMode[(attr >> 3) & 0x7]; 
+    lNaCnkDstBlendMode = lNaCnkDstAlphaMode[attr & 0x7];
+}
 
 // 100% matching!
 void    njCnkModDrawModel( NJS_CNK_MODEL *model ) 
