@@ -1,4 +1,5 @@
 #include "ps2_NinjaCnk.h"
+#include "ps2_dummy.h"
 #include "ps2_Vu1Strip.h"
 
 static VU1_STRIP_BUF* pNaCnkVerBufTop;
@@ -9,11 +10,11 @@ int lCnkModClipFace;
 tagCHUNK_HEAD*(*pCnkFuncTbl)(tagCHUNK_HEAD*)[76];
 void(*pCnkCsVu1FuncTbl)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short)[32];
 unsigned short usCnkCsPolColorCalcFunc[8];
-unsigned short usCnkCsTexColorCalcFunc[8][4];
+unsigned short usCnkCsTexColorCalcFunc[8][4];*/
 unsigned int ulNaCnkFlagConstMaterial;
 unsigned int ulNaCnkFlagConstAttr;
 unsigned int ulNaCnkFlagModelClip;
-int lNaCnkSrcAlphaMode[8];
+/*int lNaCnkSrcAlphaMode[8];
 int lNaCnkDstAlphaMode[8];
 int lNaCnkSrcBlendMode;
 int lNaCnkDstBlendMode;
@@ -44,10 +45,7 @@ CNK_LIGHTING NaCnkLighting[4] __attribute__((aligned(64))) = { { &NaCnkLightEs, 
                                   { &NaCnkLightSs, 1, &NaCnkDiffuseMaterial, &NaCnkSpeculaMaterial, &NaCnkAmbientSs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                                   { NaCnkLightSm, 6, &NaCnkDiffuseMaterial, &NaCnkDefaultOne, &NaCnkAmbientSm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 void* vpDummy;
-/*unsigned int Ps2_use_pt_flag;
-unsigned int _nj_control_3d_flag_;
-unsigned int Ps2_njControl3D_flag;
-tagCNK_LIGHTING* pNaCnkCrntLighting;
+/*tagCNK_LIGHTING* pNaCnkCrntLighting;
 unsigned short* uspCnkCrntTexColCalcTbl;
 unsigned int ulCnkCurrentDrawMode;
 float fNaViwHalfH;
@@ -107,19 +105,17 @@ void	njDrawModel( NJS_MODEL *model )
     vpDummy = model;
 }
 
-// 
-// Start address: 0x2cf390
+// 100% matching!
 void	njControl3D( Uint32 flag )
 {
-	// Line 612, Address: 0x2cf390, Func Offset: 0
-	// Line 613, Address: 0x2cf398, Func Offset: 0x8
-	// Line 615, Address: 0x2cf3a0, Func Offset: 0x10
-	// Line 616, Address: 0x2cf3ac, Func Offset: 0x1c
-	// Line 617, Address: 0x2cf3b8, Func Offset: 0x28
-	// Line 618, Address: 0x2cf3c4, Func Offset: 0x34
-	// Line 619, Address: 0x2cf3cc, Func Offset: 0x3c
-	// Func End, Address: 0x2cf3d4, Func Offset: 0x44
-	scePrintf("njControl3D - UNIMPLEMENTED!\n");
+    _nj_control_3d_flag_ = Ps2_njControl3D_flag = flag;
+    
+    Ps2_use_pt_flag = flag & 0x4000;
+    
+    ulNaCnkFlagConstMaterial = flag & 0x10;
+    ulNaCnkFlagConstAttr = flag & 0x800;
+    
+    ulNaCnkFlagModelClip = flag & 0x100;
 }
 
 /*// 

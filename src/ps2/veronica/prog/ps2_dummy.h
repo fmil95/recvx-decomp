@@ -48,6 +48,7 @@ void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num);
 void PS2_Render_Tex_Sub();
 
 extern unsigned char Ps2_PBUFF[1835008];
+extern unsigned int Ps2_use_pt_flag;
 extern sceGsDBuffDc Db;
 extern PS2_GS_SAVE Ps2_gs_save;
 extern unsigned int Ps2_albinoid_flag;
@@ -58,7 +59,9 @@ extern float cmmat[16];
 extern NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
 extern Uint8* _BSG_END;
 extern NJS_VERTEX_BUF* _nj_vertex_buf_;
+extern unsigned int _nj_control_3d_flag_;
 extern NJS_SCREEN _nj_screen_;
+extern unsigned int Ps2_njControl3D_flag;
 extern void (* VsyncFunc)();
 extern void (* EorFunc)();
 extern unsigned int Ps2_vcount;
