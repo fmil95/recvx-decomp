@@ -20,12 +20,12 @@ int lNaCnkSrcBlendMode = 8;
 int lNaCnkDstBlendMode = 6;
 unsigned char ucNaCnkAttr;
 VU1_COLOR NaCnkDefaultOne;
-/*float fNaCnkConstantA;
-float fNaCnkConstantR;
-float fNaCnkConstantG;
-float fNaCnkConstantB;
-tagVU1_COLOR NaCnkConstantMaterial;
-float fNaCnkAlphaMaterial;*/
+float fNaCnkConstantA = 1.0f;
+float fNaCnkConstantR = 1.0f;
+float fNaCnkConstantG = 1.0f;
+float fNaCnkConstantB = 1.0f;
+VU1_COLOR NaCnkConstantMaterial = { 1.0f, 1.0f, 1.0f, 1.0f };
+/*float fNaCnkAlphaMaterial;*/
 VU1_COLOR NaCnkDiffuseMaterial __attribute__((aligned(64)));
 /*float fNaCnkMaterialSpeE;*/
 VU1_COLOR NaCnkSpeculaMaterial __attribute__((aligned(64)));
@@ -125,21 +125,19 @@ void	njSetConstantAttr( Uint32 and_attr, Uint32 or_attr )
     ucNaCnkAttr |= or_attr >> 8;
 }
 
-/*// 
-// Start address: 0x2cf420
-void njSetConstantMaterial(_anon4* pMaterial)
+// 100% matching!
+void	njSetConstantMaterial( NJS_ARGB *mat )
 {
-	// Line 664, Address: 0x2cf420, Func Offset: 0
-	// Line 665, Address: 0x2cf42c, Func Offset: 0xc
-	// Line 666, Address: 0x2cf438, Func Offset: 0x18
-	// Line 667, Address: 0x2cf444, Func Offset: 0x24
-	// Line 668, Address: 0x2cf450, Func Offset: 0x30
-	// Line 669, Address: 0x2cf45c, Func Offset: 0x3c
-	// Line 670, Address: 0x2cf468, Func Offset: 0x48
-	// Line 671, Address: 0x2cf474, Func Offset: 0x54
-	// Line 672, Address: 0x2cf47c, Func Offset: 0x5c
-	// Func End, Address: 0x2cf484, Func Offset: 0x64
-}*/
+    fNaCnkConstantA = mat->a; 
+    fNaCnkConstantR = mat->r; 
+    fNaCnkConstantG = mat->g; 
+    fNaCnkConstantB = mat->b; 
+
+    NaCnkConstantMaterial.fA = mat->a;
+    NaCnkConstantMaterial.fR = mat->r;
+    NaCnkConstantMaterial.fG = mat->g;
+    NaCnkConstantMaterial.fB = mat->b;
+}
 
 // 100% matching!
 void njSetCnkBlendMode(Uint32 attr)
