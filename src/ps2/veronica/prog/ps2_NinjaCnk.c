@@ -30,7 +30,7 @@ VU1_COLOR NaCnkDiffuseMaterial __attribute__((aligned(64)));
 /*float fNaCnkMaterialSpeE;*/
 VU1_COLOR NaCnkSpeculaMaterial __attribute__((aligned(64)));
 /*tagVU1_COLOR NaCnkAmbientFunctionSm;*/
-VU1_COLOR NaCnkAmbientEs __attribute__((aligned(64)));
+VU1_COLOR NaCnkAmbientEs __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientFunctionEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -160,15 +160,14 @@ void    njCnkSetEasyLight( Float x,Float y,Float z )
     NaCnkLightEs.fCz = -z;
 }
 
-// 
-// Start address: 0x2cf520
-void    njCnkSetEasyLightIntensity( Float inten, Float ambient )
+// 100% matching!
+void    njCnkSetEasyLightIntensity( Float inten, Float ambient ) 
 {
-	// Line 758, Address: 0x2cf520, Func Offset: 0
-	// Line 759, Address: 0x2cf528, Func Offset: 0x8
-	// Line 762, Address: 0x2cf53c, Func Offset: 0x1c
-	// Func End, Address: 0x2cf544, Func Offset: 0x24
-	scePrintf("njCnkSetEasyLightIntensity - UNIMPLEMENTED!\n");
+    NaCnkLightEs.fI = inten;
+    
+    NaCnkAmbientEs.fB = ambient;
+    NaCnkAmbientEs.fG = ambient;
+    NaCnkAmbientEs.fR = ambient;
 }
 
 // 100% matching!
