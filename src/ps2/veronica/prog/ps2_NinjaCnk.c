@@ -36,14 +36,19 @@ VU1_COLOR NaCnkAmbientFunctionEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.
 VU1_COLOR NaCnkAmbientMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientSs __attribute__((aligned(64)));
 VU1_COLOR NaCnkAmbientSm;
-CNK_LIGHT NaCnkLightEs __attribute__((aligned(64))) = { 1.401298464f, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 };
-CNK_LIGHT NaCnkLightEm[6] __attribute__((aligned(64)));
+CNK_LIGHT NaCnkLightEs[1] __attribute__((aligned(64))) = { 1.401298464f, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 };
+CNK_LIGHT NaCnkLightEm[6] __attribute__((aligned(64))) = { { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
+														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
+														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
+														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
+														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
+														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 } };
 CNK_LIGHT NaCnkLightSs;
 CNK_LIGHT NaCnkLightSm[6] __attribute__((aligned(64)));
-CNK_LIGHTING NaCnkLighting[4] __attribute__((aligned(64))) = { { &NaCnkLightEs, 1, &NaCnkDefaultOne, &NaCnkSpeculaMaterial, &NaCnkAmbientEs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                                  { NaCnkLightEm, 6, &NaCnkDefaultOne, &NaCnkDefaultOne, &NaCnkAmbientEm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                                  { &NaCnkLightSs, 1, &NaCnkDiffuseMaterial, &NaCnkSpeculaMaterial, &NaCnkAmbientSs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                                  { NaCnkLightSm, 6, &NaCnkDiffuseMaterial, &NaCnkDefaultOne, &NaCnkAmbientSm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+CNK_LIGHTING NaCnkLighting[4] __attribute__((aligned(64))) = { { NaCnkLightEs, 1, &NaCnkDefaultOne, &NaCnkSpeculaMaterial, &NaCnkAmbientEs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+														       { NaCnkLightEm, 6, &NaCnkDefaultOne, &NaCnkDefaultOne, &NaCnkAmbientEm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+														       { &NaCnkLightSs, 1, &NaCnkDiffuseMaterial, &NaCnkSpeculaMaterial, &NaCnkAmbientSs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+														       { NaCnkLightSm, 6, &NaCnkDiffuseMaterial, &NaCnkDefaultOne, &NaCnkAmbientSm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 void* vpDummy;
 /*tagCNK_LIGHTING* pNaCnkCrntLighting;
 unsigned short* uspCnkCrntTexColCalcTbl;
@@ -155,15 +160,15 @@ void    njCnkModDrawModel( NJS_CNK_MODEL *model )
 // 100% matching!
 void    njCnkSetEasyLight( Float x,Float y,Float z ) 
 {
-    NaCnkLightEs.fCx = -x;
-    NaCnkLightEs.fCy = -y;
-    NaCnkLightEs.fCz = -z;
+    NaCnkLightEs->fCx = -x;
+    NaCnkLightEs->fCy = -y;
+    NaCnkLightEs->fCz = -z;
 }
 
 // 100% matching!
 void    njCnkSetEasyLightIntensity( Float inten, Float ambient ) 
 {
-    NaCnkLightEs.fI = inten;
+    NaCnkLightEs->fI = inten;
     
     NaCnkAmbientEs.fB = ambient;
     NaCnkAmbientEs.fG = ambient;
@@ -173,9 +178,9 @@ void    njCnkSetEasyLightIntensity( Float inten, Float ambient )
 // 100% matching!
 void    njCnkSetEasyLightColor( Float r, Float g, Float b ) 
 {    
-    NaCnkLightEs.fR = r;    
-    NaCnkLightEs.fG = g;    
-    NaCnkLightEs.fB = b;
+    NaCnkLightEs->fR = r;    
+    NaCnkLightEs->fG = g;    
+    NaCnkLightEs->fB = b;
 }
 
 /*// 
@@ -187,19 +192,22 @@ void njCnkSetEasyMultiLight(int iLightMax)
 	// Func End, Address: 0x2cf584, Func Offset: 0x14
 }*/
 
-// 
-// Start address: 0x2cf590
-void    njCnkSetEasyMultiLightSwitch(Int light, Int flag)
+// 100% matching!
+void    njCnkSetEasyMultiLightSwitch(Int light, Int flag) 
 {
-	// Line 832, Address: 0x2cf590, Func Offset: 0
-	// Line 834, Address: 0x2cf598, Func Offset: 0x8
-	// Line 836, Address: 0x2cf5b0, Func Offset: 0x20
-	// Line 837, Address: 0x2cf5b8, Func Offset: 0x28
-	// Line 838, Address: 0x2cf5d0, Func Offset: 0x40
-	// Line 841, Address: 0x2cf5d8, Func Offset: 0x48
-	// Line 843, Address: 0x2cf5ec, Func Offset: 0x5c
-	// Func End, Address: 0x2cf5f4, Func Offset: 0x64
-	scePrintf("njCnkSetEasyMultiLightSwitch - UNIMPLEMENTED!\n");
+    int i; // not from the debugging symbols
+
+    if (light == 0) 
+    {
+        for (i = 0; i < NaCnkLighting[1].lLightMax; i++) 
+        {
+            NaCnkLightEm[i].ulState = flag;
+        }
+    } 
+    else 
+    {
+        NaCnkLightEs[light].ulState = flag;
+    }    
 }
 
 // 
