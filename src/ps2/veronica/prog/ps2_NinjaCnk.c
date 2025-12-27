@@ -690,17 +690,15 @@ tagCHUNK_HEAD* njCnkCbBa(tagCHUNK_HEAD* pCnk)
 	// Line 1909, Address: 0x2d02ec, Func Offset: 0x5c
 	// Line 1910, Address: 0x2d02f0, Func Offset: 0x60
 	// Func End, Address: 0x2d0300, Func Offset: 0x70
-}
+}*/
 
-// 
-// Start address: 0x2d0300
-tagCHUNK_HEAD* njCnkCbDa(tagCHUNK_HEAD* pCnk)
+// 100% matching!
+CHUNK_HEAD* njCnkCbDa(CHUNK_HEAD* pCnk) 
 {
-	// Line 1930, Address: 0x2d0300, Func Offset: 0
-	// Func End, Address: 0x2d0308, Func Offset: 0x8
+    return &pCnk[1];
 }
 
-// 
+/*// 
 // Start address: 0x2d0310
 tagCHUNK_HEAD* njCnkCbExp(tagCHUNK_HEAD* pCnk)
 {
