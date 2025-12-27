@@ -210,28 +210,28 @@ void    njCnkSetEasyMultiLightSwitch(Int light, Int flag)
     }    
 }
 
-// 
-// Start address: 0x2cf600
 // 100% matching!
-void njCnkSetEasyMultiAmbient(Float ar, Float ag, Float ab) {
+void    njCnkSetEasyMultiAmbient(Float ar, Float ag, Float ab)
+{
     NaCnkAmbientFunctionEm.fR = ar;
     NaCnkAmbientFunctionEm.fG = ag;
     NaCnkAmbientFunctionEm.fB = ab;
+    
     NaCnkAmbientEm.fR = ar * NaCnkAmbientMaterial.fR;
     NaCnkAmbientEm.fG = ag * NaCnkAmbientMaterial.fG;
     NaCnkAmbientEm.fB = ab * NaCnkAmbientMaterial.fB;
 }
 
-// 
-// Start address: 0x2cf660
+// 100% matching!
 void    njCnkSetEasyMultiLightColor(Int light, Float lr, Float lg, Float lb)
 {
-	// Line 898, Address: 0x2cf660, Func Offset: 0
-	// Line 899, Address: 0x2cf678, Func Offset: 0x18
-	// Line 900, Address: 0x2cf688, Func Offset: 0x28
-	// Line 901, Address: 0x2cf694, Func Offset: 0x34
-	// Func End, Address: 0x2cf69c, Func Offset: 0x3c
-	scePrintf("njCnkSetEasyMultiLightColor - UNIMPLEMENTED!\n");
+    int num; // not from the debugging symbols
+
+    num = light - 1;
+    
+    NaCnkLightEm[num].fR = lr;
+    NaCnkLightEm[num].fG = lg;
+    NaCnkLightEm[num].fB = lb;
 }
 
 // 
