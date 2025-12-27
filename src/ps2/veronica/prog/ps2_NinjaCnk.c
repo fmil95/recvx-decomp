@@ -36,7 +36,7 @@ VU1_COLOR NaCnkAmbientFunctionEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.
 VU1_COLOR NaCnkAmbientMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientSs __attribute__((aligned(64)));
 VU1_COLOR NaCnkAmbientSm;
-CNK_LIGHT NaCnkLightEs __attribute__((aligned(64)));
+CNK_LIGHT NaCnkLightEs __attribute__((aligned(64))) = { 1.401298464f, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 };
 CNK_LIGHT NaCnkLightEm[6] __attribute__((aligned(64)));
 CNK_LIGHT NaCnkLightSs;
 CNK_LIGHT NaCnkLightSm[6] __attribute__((aligned(64)));
@@ -152,16 +152,12 @@ void    njCnkModDrawModel( NJS_CNK_MODEL *model )
     njCnkDrawModelLocalMod(model);
 }
 
-// 
-// Start address: 0x2cf4f0
-void    njCnkSetEasyLight( Float x,Float y,Float z )
+// 100% matching!
+void    njCnkSetEasyLight( Float x,Float y,Float z ) 
 {
-	// Line 734, Address: 0x2cf4f0, Func Offset: 0
-	// Line 735, Address: 0x2cf4fc, Func Offset: 0xc
-	// Line 736, Address: 0x2cf508, Func Offset: 0x18
-	// Line 737, Address: 0x2cf510, Func Offset: 0x20
-	// Func End, Address: 0x2cf518, Func Offset: 0x28
-	scePrintf("njCnkSetEasyLight - UNIMPLEMENTED!\n");
+    NaCnkLightEs.fCx = -x;
+    NaCnkLightEs.fCy = -y;
+    NaCnkLightEs.fCz = -z;
 }
 
 // 
