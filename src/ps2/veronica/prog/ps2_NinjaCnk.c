@@ -171,16 +171,12 @@ void    njCnkSetEasyLightIntensity( Float inten, Float ambient )
 	scePrintf("njCnkSetEasyLightIntensity - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2cf550
-void    njCnkSetEasyLightColor( Float r, Float g, Float b )
-{
-	// Line 785, Address: 0x2cf550, Func Offset: 0
-	// Line 786, Address: 0x2cf558, Func Offset: 0x8
-	// Line 787, Address: 0x2cf560, Func Offset: 0x10
-	// Line 788, Address: 0x2cf564, Func Offset: 0x14
-	// Func End, Address: 0x2cf56c, Func Offset: 0x1c
-	scePrintf("njCnkSetEasyLightColor - UNIMPLEMENTED!\n");
+// 100% matching!
+void    njCnkSetEasyLightColor( Float r, Float g, Float b ) 
+{    
+    NaCnkLightEs.fR = r;    
+    NaCnkLightEs.fG = g;    
+    NaCnkLightEs.fB = b;
 }
 
 /*// 
