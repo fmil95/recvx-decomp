@@ -1514,28 +1514,39 @@ tagCHUNK_HEAD* njCnkCs(tagCHUNK_HEAD* pCnk)
 	// Line 3673, Address: 0x2d2538, Func Offset: 0x258
 	// Line 3674, Address: 0x2d253c, Func Offset: 0x25c
 	// Func End, Address: 0x2d2560, Func Offset: 0x280
-}
+}*/
 
-// 
-// Start address: 0x2d2560
+// 100% matching!
 int _CVV(float* v0)
 {
-	int ret;
-	// Line 3806, Address: 0x2d2560, Func Offset: 0
-	// Line 3807, Address: 0x2d2564, Func Offset: 0x4
-	// Line 3808, Address: 0x2d2568, Func Offset: 0x8
-	// Line 3809, Address: 0x2d256c, Func Offset: 0xc
-	// Line 3810, Address: 0x2d2570, Func Offset: 0x10
-	// Line 3811, Address: 0x2d2574, Func Offset: 0x14
-	// Line 3812, Address: 0x2d2578, Func Offset: 0x18
-	// Line 3813, Address: 0x2d257c, Func Offset: 0x1c
-	// Line 3814, Address: 0x2d2580, Func Offset: 0x20
-	// Line 3815, Address: 0x2d2584, Func Offset: 0x24
-	// Line 3816, Address: 0x2d2588, Func Offset: 0x28
-	// Line 3817, Address: 0x2d258c, Func Offset: 0x2c
-	// Line 3820, Address: 0x2d2590, Func Offset: 0x30
-	// Func End, Address: 0x2d2598, Func Offset: 0x38
-}*/
+    register int ret;
+    
+    asm volatile 
+    {
+                      
+        lqc2         vf4, 0(a0)
+        
+        vmulax.xyzw  ACC, vf24, vf4x
+            
+        vmadday.xyzw ACC, vf25, vf4y
+        vmaddaz.xyzw ACC, vf26, vf4z
+            
+        vmaddw.xyzw  vf5, vf27, vf0w
+        
+        .word        0x4BC529FF  
+        vnop
+        vnop
+        vnop
+        vnop
+        vnop
+    
+        cfc2.ni      ret, vi18
+        
+        jr           ra
+        nop
+            
+    } 
+}
 
 // 100% matching!
 CHUNK_HEAD* njCnkDefaultLong(CHUNK_HEAD* pCnk)
