@@ -322,16 +322,12 @@ void    njCnkSetSimpleLightIntensity( Float inten, Float ambient )
     NaCnkAmbientSs.fR = ambient;
 }
 
-// 
-// Start address: 0x2cf880
+// 100% matching!
 void    njCnkSetSimpleLightColor( Float r, Float g, Float b )
 {
-	// Line 1087, Address: 0x2cf880, Func Offset: 0
-	// Line 1088, Address: 0x2cf888, Func Offset: 0x8
-	// Line 1089, Address: 0x2cf890, Func Offset: 0x10
-	// Line 1090, Address: 0x2cf894, Func Offset: 0x14
-	// Func End, Address: 0x2cf89c, Func Offset: 0x1c
-	scePrintf("njCnkSetSimpleLightColor - UNIMPLEMENTED!\n");
+    NaCnkLightSs.fR = r;
+    NaCnkLightSs.fG = g;
+    NaCnkLightSs.fB = b;
 }
 
 // 100% matching!
