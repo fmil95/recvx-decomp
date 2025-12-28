@@ -438,16 +438,13 @@ void    njCnkSetSimpleMultiLightMatrices(void)
 	scePrintf("njCnkSetSimpleMultiLightMatrices - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2cfb50
-void njCnkEasyDrawModel(_anon5* pModel)
+// 100% matching!
+void    njCnkEasyDrawModel( NJS_CNK_MODEL *model )
 {
-	// Line 1336, Address: 0x2cfb50, Func Offset: 0
-	// Line 1339, Address: 0x2cfb60, Func Offset: 0x10
-	// Line 1341, Address: 0x2cfb68, Func Offset: 0x18
-	// Line 1342, Address: 0x2cfb70, Func Offset: 0x20
-	// Func End, Address: 0x2cfb80, Func Offset: 0x30
-}*/
+    njCnkSetCurrentDrawMode(0);
+    
+    njCnkDrawModelLocal(model);
+}
 
 // 
 // Start address: 0x2cfb80
@@ -526,7 +523,7 @@ void njCnkSimpleMultiDrawModel(_anon5* pModel)
 	// Line 1556, Address: 0x2cfdd8, Func Offset: 0x18
 	// Line 1557, Address: 0x2cfde0, Func Offset: 0x20
 	// Func End, Address: 0x2cfdf0, Func Offset: 0x30
-}
+}*/
 
 // 
 // Start address: 0x2cfdf0
@@ -544,16 +541,16 @@ void njCnkSetCurrentDrawMode(unsigned int ulMode)
 
 // 
 // Start address: 0x2cfe30
-int njCnkDrawModelLocal(_anon5* pModel)
+int njCnkDrawModelLocal(NJS_CNK_MODEL* pModel)
 {
 	unsigned int modelclipflag;
-	tagCHUNK_HEAD* pCnk;
+	//tagCHUNK_HEAD* pCnk;
 	float fZ;
 	float fSY;
 	float fSX;
 	float fRH;
 	float fRW;
-	_anon9 Center;
+	//_anon9 Center;
 	// Line 1651, Address: 0x2cfe30, Func Offset: 0
 	// Line 1659, Address: 0x2cfe44, Func Offset: 0x14
 	// Line 1662, Address: 0x2cfe58, Func Offset: 0x28
@@ -596,7 +593,7 @@ int njCnkDrawModelLocal(_anon5* pModel)
 	// Line 1770, Address: 0x2d0080, Func Offset: 0x250
 	// Line 1771, Address: 0x2d0084, Func Offset: 0x254
 	// Func End, Address: 0x2d009c, Func Offset: 0x26c
-}*/
+}
 
 // 
 // Start address: 0x2d00a0
