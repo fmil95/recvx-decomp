@@ -30,13 +30,13 @@ VU1_COLOR NaCnkConstantMaterial = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkDiffuseMaterial __attribute__((aligned(64)));
 /*float fNaCnkMaterialSpeE;*/
 VU1_COLOR NaCnkSpeculaMaterial __attribute__((aligned(64)));
-/*tagVU1_COLOR NaCnkAmbientFunctionSm;*/
+VU1_COLOR NaCnkAmbientFunctionSm = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientEs __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientFunctionEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientSs __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
-VU1_COLOR NaCnkAmbientSm;
+VU1_COLOR NaCnkAmbientSm = { 1.0f, 1.0f, 1.0f, 1.0f };
 CNK_LIGHT NaCnkLightEs __attribute__((aligned(64))) = { 1.401298464f, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 };
 CNK_LIGHT NaCnkLightEm[6] __attribute__((aligned(64))) = { { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
 														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -356,24 +356,16 @@ void    njCnkSetSimpleMultiLightSwitch(Int light, Int flag)
     }
 }
 
-// 
-// Start address: 0x2cf930
+// 100% matching!
 void    njCnkSetSimpleMultiAmbient(Float ar, Float ag, Float ab)
 {
-	// Line 1166, Address: 0x2cf930, Func Offset: 0
-	// Line 1167, Address: 0x2cf938, Func Offset: 0x8
-	// Line 1168, Address: 0x2cf940, Func Offset: 0x10
-	// Line 1171, Address: 0x2cf948, Func Offset: 0x18
-	// Line 1172, Address: 0x2cf950, Func Offset: 0x20
-	// Line 1171, Address: 0x2cf958, Func Offset: 0x28
-	// Line 1173, Address: 0x2cf95c, Func Offset: 0x2c
-	// Line 1172, Address: 0x2cf964, Func Offset: 0x34
-	// Line 1171, Address: 0x2cf968, Func Offset: 0x38
-	// Line 1172, Address: 0x2cf970, Func Offset: 0x40
-	// Line 1173, Address: 0x2cf978, Func Offset: 0x48
-	// Line 1174, Address: 0x2cf980, Func Offset: 0x50
-	// Func End, Address: 0x2cf988, Func Offset: 0x58
-	scePrintf("njCnkSetSimpleMultiAmbient - UNIMPLEMENTED!\n");
+    NaCnkAmbientFunctionSm.fR = ar;
+    NaCnkAmbientFunctionSm.fG = ag;
+    NaCnkAmbientFunctionSm.fB = ab;
+    
+    NaCnkAmbientSm.fR = ar * NaCnkAmbientMaterial.fR;
+    NaCnkAmbientSm.fG = ag * NaCnkAmbientMaterial.fG;
+    NaCnkAmbientSm.fB = ab * NaCnkAmbientMaterial.fB;
 }
 
 // 
