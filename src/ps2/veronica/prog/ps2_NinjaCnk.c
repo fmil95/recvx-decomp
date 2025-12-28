@@ -693,15 +693,13 @@ int njCnkDrawModelLocalMod(NJS_CNK_MODEL* pModel)
 	scePrintf("njCnkDrawModelLocalMod - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2d0280
-tagCHUNK_HEAD* njCnkCn(tagCHUNK_HEAD* pCnk)
+// 100% matching!
+CHUNK_HEAD* njCnkCn(CHUNK_HEAD* pCnk)
 {
-	// Line 1864, Address: 0x2d0280, Func Offset: 0
-	// Func End, Address: 0x2d0288, Func Offset: 0x8
+    return (CHUNK_HEAD*)&pCnk->usSize;
 }
 
-// 
+/*// 
 // Start address: 0x2d0290
 tagCHUNK_HEAD* njCnkCbBa(tagCHUNK_HEAD* pCnk)
 {
