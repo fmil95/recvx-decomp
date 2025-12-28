@@ -368,16 +368,16 @@ void    njCnkSetSimpleMultiAmbient(Float ar, Float ag, Float ab)
     NaCnkAmbientSm.fB = ab * NaCnkAmbientMaterial.fB;
 }
 
-// 
-// Start address: 0x2cf990
+// 100% matching!
 void    njCnkSetSimpleMultiLightColor(Int light, Float lr, Float lg, Float lb)
 {
-	// Line 1199, Address: 0x2cf990, Func Offset: 0
-	// Line 1200, Address: 0x2cf9a8, Func Offset: 0x18
-	// Line 1201, Address: 0x2cf9b8, Func Offset: 0x28
-	// Line 1202, Address: 0x2cf9c4, Func Offset: 0x34
-	// Func End, Address: 0x2cf9cc, Func Offset: 0x3c
-	scePrintf("njCnkSetSimpleMultiLightColor - UNIMPLEMENTED!\n");
+    int lCnt; // not from the debugging symbols
+
+    lCnt = light - 1;
+    
+    NaCnkLightSm[lCnt].fR = lr;
+    NaCnkLightSm[lCnt].fG = lg;
+    NaCnkLightSm[lCnt].fB = lb;
 }
 
 // 
