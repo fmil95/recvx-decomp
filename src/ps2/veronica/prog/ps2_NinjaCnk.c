@@ -10,8 +10,9 @@ unsigned int Vu0ClipFlag;
 int lCnkModClipFace;
 tagCHUNK_HEAD*(*pCnkFuncTbl)(tagCHUNK_HEAD*)[76];
 void(*pCnkCsVu1FuncTbl)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short)[32];
-unsigned short usCnkCsPolColorCalcFunc[8];
-unsigned short usCnkCsTexColorCalcFunc[8][4];*/
+unsigned short usCnkCsPolColorCalcFunc[8];*/
+unsigned short usCnkCsTexColorCalcFunc[4][8] = { { 9, 2, 4, 2, 6, 2, 3, 2 }, { 9, 2, 4, 2, 6, 2, 3, 2 }, 
+												 { 10, 2, 4, 2, 7, 2, 3, 2 }, { 8, 2, 4, 2, 5, 2, 3, 2 } };
 unsigned int ulNaCnkFlagConstMaterial;
 unsigned int ulNaCnkFlagConstAttr;
 unsigned int ulNaCnkFlagModelClip;
@@ -56,10 +57,10 @@ CNK_LIGHTING NaCnkLighting[4] __attribute__((aligned(64))) = { { &NaCnkLightEs, 
 														       { &NaCnkLightSs, 1, &NaCnkDiffuseMaterial, &NaCnkSpeculaMaterial, &NaCnkAmbientSs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 														       { NaCnkLightSm, 6, &NaCnkDiffuseMaterial, &NaCnkDefaultOne, &NaCnkAmbientSm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 void* vpDummy;
-/*tagCNK_LIGHTING* pNaCnkCrntLighting;
+CNK_LIGHTING* pNaCnkCrntLighting;
 unsigned short* uspCnkCrntTexColCalcTbl;
 unsigned int ulCnkCurrentDrawMode;
-float fNaViwHalfH;
+/*float fNaViwHalfH;
 float fNaViwHalfW;
 float fNaViwAspectH;
 float fNaViwAspectW;
@@ -576,18 +577,14 @@ void    njCnkSimpleMultiDrawModel( NJS_CNK_MODEL *model )
     njCnkDrawModelLocal(model);
 }
 
-// 
-// Start address: 0x2cfdf0
-void njCnkSetCurrentDrawMode(unsigned int ulMode)
+// 100% matching!
+void njCnkSetCurrentDrawMode(unsigned int ulMode) 
 {
-	// Line 1627, Address: 0x2cfdf0, Func Offset: 0
-	// Line 1626, Address: 0x2cfdf8, Func Offset: 0x8
-	// Line 1627, Address: 0x2cfdfc, Func Offset: 0xc
-	// Line 1626, Address: 0x2cfe00, Func Offset: 0x10
-	// Line 1627, Address: 0x2cfe04, Func Offset: 0x14
-	// Line 1628, Address: 0x2cfe10, Func Offset: 0x20
-	// Line 1629, Address: 0x2cfe24, Func Offset: 0x34
-	// Func End, Address: 0x2cfe2c, Func Offset: 0x3c
+    ulCnkCurrentDrawMode = ulMode;
+    
+    uspCnkCrntTexColCalcTbl = usCnkCsTexColorCalcFunc[ulMode];
+    
+    pNaCnkCrntLighting = &NaCnkLighting[ulMode];
 }
 
 // 
