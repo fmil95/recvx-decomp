@@ -475,16 +475,13 @@ void    njCnkEasyDrawObject( NJS_CNK_OBJECT *model )
 	scePrintf("njCnkEasyDrawObject - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2cfc70
-void njCnkEasyMultiDrawModel(_anon5* pModel)
+// 100% matching!
+void    njCnkEasyMultiDrawModel( NJS_CNK_MODEL *model ) 
 {
-	// Line 1409, Address: 0x2cfc70, Func Offset: 0
-	// Line 1412, Address: 0x2cfc80, Func Offset: 0x10
-	// Line 1414, Address: 0x2cfc88, Func Offset: 0x18
-	// Line 1415, Address: 0x2cfc90, Func Offset: 0x20
-	// Func End, Address: 0x2cfca0, Func Offset: 0x30
-}*/
+    njCnkSetCurrentDrawMode(1);
+    
+    njCnkDrawModelLocal(model);
+}
 
 // 
 // Start address: 0x2cfca0
