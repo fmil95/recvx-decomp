@@ -483,27 +483,54 @@ void    njCnkEasyMultiDrawModel( NJS_CNK_MODEL *model )
     njCnkDrawModelLocal(model);
 }
 
-// 
-// Start address: 0x2cfca0
+// 100% matching!
 void    njCnkEasyMultiDrawObject( NJS_CNK_OBJECT *model )
 {
-	int lDrawResult;
-	unsigned int ulFlags;
-	// Line 1432, Address: 0x2cfca0, Func Offset: 0
-	// Line 1438, Address: 0x2cfcb0, Func Offset: 0x10
-	// Line 1440, Address: 0x2cfcbc, Func Offset: 0x1c
-	// Line 1444, Address: 0x2cfcc4, Func Offset: 0x24
-	// Line 1447, Address: 0x2cfccc, Func Offset: 0x2c
-	// Line 1448, Address: 0x2cfce0, Func Offset: 0x40
-	// Line 1449, Address: 0x2cfcf8, Func Offset: 0x58
-	// Line 1453, Address: 0x2cfd10, Func Offset: 0x70
-	// Line 1456, Address: 0x2cfd2c, Func Offset: 0x8c
-	// Line 1458, Address: 0x2cfd50, Func Offset: 0xb0
-	// Line 1461, Address: 0x2cfd58, Func Offset: 0xb8
-	// Line 1462, Address: 0x2cfd60, Func Offset: 0xc0
-	// Line 1463, Address: 0x2cfd70, Func Offset: 0xd0
-	// Func End, Address: 0x2cfd84, Func Offset: 0xe4
-	scePrintf("njCnkEasyMultiDrawObject - UNIMPLEMENTED!\n");
+    unsigned int ulFlags; 
+    int lDrawResult;    
+
+    njCnkSetCurrentDrawMode(1);
+    
+    for ( ; model != NULL; model = model->sibling) 
+    {
+        ulFlags = model->evalflags;
+    
+        njPushMatrixEx();
+    
+        if (!(ulFlags & 0x1)) 
+        {
+            njTranslateEx((NJS_VECTOR*)&model->pos[0]);
+        }
+    
+        if (!(ulFlags & 0x2)) 
+        {
+            njRotateEx(model->ang, ulFlags & 0x20);
+        }
+    
+        if (!(ulFlags & 0x4))
+        {
+            njScaleEx((NJS_VECTOR*)&model->scl[0]);
+        }
+    
+        if ((ulFlags & 0x8)) 
+        {
+            lDrawResult = 0;
+        } 
+        else
+        {
+            lDrawResult = njCnkDrawModelLocal(model->model);
+        }
+    
+        if (!(ulFlags & 0x10)) 
+        {
+            if ((!(ulFlags & 0x100)) || (lDrawResult != 0)) 
+            {
+                njCnkEasyMultiDrawObject(model->child);
+            }
+        }
+    
+        njPopMatrixEx();
+    }
 }
 
 /*// 
