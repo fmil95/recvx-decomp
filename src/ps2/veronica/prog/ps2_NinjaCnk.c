@@ -970,16 +970,13 @@ CHUNK_HEAD* njCnkCoP4(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)((char*)&pCnk[1] + (pCnk->usSize * 2));
 }
 
-/*// 
-// Start address: 0x2d1580
-tagCHUNK_HEAD* njCnkCoSt(tagCHUNK_HEAD* pCnk)
+// 100% matching!
+CHUNK_HEAD* njCnkCoSt(CHUNK_HEAD* pCnk)
 {
-	// Line 2367, Address: 0x2d1580, Func Offset: 0
-	// Line 2368, Address: 0x2d158c, Func Offset: 0xc
-	// Func End, Address: 0x2d1594, Func Offset: 0x14
+    return (CHUNK_HEAD*)((char*)&pCnk[1] + (pCnk->usSize * 2));
 }
 
-// 
+/*// 
 // Start address: 0x2d15a0
 tagCHUNK_HEAD* njCnkCvVn(tagCHUNK_HEAD* pCnk)
 {
