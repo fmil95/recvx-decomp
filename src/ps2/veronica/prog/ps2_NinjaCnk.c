@@ -560,18 +560,15 @@ void    njCnkEasyMultiDrawObject( NJS_CNK_OBJECT *model )
     }
 }
 
-/*// 
-// Start address: 0x2cfd90
-void njCnkSimpleDrawModel(_anon5* pModel)
+// 100% matching!
+void    njCnkSimpleDrawModel( NJS_CNK_MODEL *model ) 
 {
-	// Line 1480, Address: 0x2cfd90, Func Offset: 0
-	// Line 1483, Address: 0x2cfda0, Func Offset: 0x10
-	// Line 1485, Address: 0x2cfda8, Func Offset: 0x18
-	// Line 1486, Address: 0x2cfdb0, Func Offset: 0x20
-	// Func End, Address: 0x2cfdc0, Func Offset: 0x30
+    njCnkSetCurrentDrawMode(2);
+    
+    njCnkDrawModelLocal(model);
 }
 
-// 
+/*// 
 // Start address: 0x2cfdc0
 void njCnkSimpleMultiDrawModel(_anon5* pModel)
 {
