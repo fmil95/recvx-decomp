@@ -11,7 +11,7 @@ TARGET_WORD = "matching"
 directories = {
     r"src/ps2/veronica/prog": {
         "name": "Resident Evil CODE: Veronica X",
-        "total": 3842,  # 3876 - 34
+        "total": 3834,
         "exclude_files": ["ps2_snddrv.c"],
     },
     r"src/cri/mwlib/ee/lib/libadxe": {

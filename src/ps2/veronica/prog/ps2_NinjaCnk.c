@@ -452,27 +452,54 @@ void    njCnkEasyDrawModel( NJS_CNK_MODEL *model )
     njCnkDrawModelLocal(model);
 }
 
-// 
-// Start address: 0x2cfb80
+// 100% matching!
 void    njCnkEasyDrawObject( NJS_CNK_OBJECT *model )
 {
-	int lDrawResult;
-	unsigned int ulFlags;
-	// Line 1361, Address: 0x2cfb80, Func Offset: 0
-	// Line 1367, Address: 0x2cfb90, Func Offset: 0x10
-	// Line 1369, Address: 0x2cfb9c, Func Offset: 0x1c
-	// Line 1373, Address: 0x2cfba4, Func Offset: 0x24
-	// Line 1376, Address: 0x2cfbac, Func Offset: 0x2c
-	// Line 1377, Address: 0x2cfbc0, Func Offset: 0x40
-	// Line 1378, Address: 0x2cfbd8, Func Offset: 0x58
-	// Line 1382, Address: 0x2cfbf0, Func Offset: 0x70
-	// Line 1385, Address: 0x2cfc0c, Func Offset: 0x8c
-	// Line 1387, Address: 0x2cfc30, Func Offset: 0xb0
-	// Line 1390, Address: 0x2cfc38, Func Offset: 0xb8
-	// Line 1391, Address: 0x2cfc40, Func Offset: 0xc0
-	// Line 1392, Address: 0x2cfc50, Func Offset: 0xd0
-	// Func End, Address: 0x2cfc64, Func Offset: 0xe4
-	scePrintf("njCnkEasyDrawObject - UNIMPLEMENTED!\n");
+    unsigned int ulFlags; 
+    int lDrawResult;  
+
+    njCnkSetCurrentDrawMode(0);
+    
+    for ( ; model != NULL; model = model->sibling) 
+    {
+        ulFlags = model->evalflags;
+    
+        njPushMatrixEx();
+    
+        if (!(ulFlags & 0x1)) 
+        {
+            njTranslateEx((NJS_VECTOR*)&model->pos[0]);
+        }
+    
+        if (!(ulFlags & 0x2)) 
+        {
+            njRotateEx(model->ang, ulFlags & 0x20);
+        }
+    
+        if (!(ulFlags & 0x4))
+        {
+            njScaleEx((NJS_VECTOR*)&model->scl[0]);
+        }
+    
+        if ((ulFlags & 0x8)) 
+        {
+            lDrawResult = 0;
+        } 
+        else
+        {
+            lDrawResult = njCnkDrawModelLocal(model->model);
+        }
+    
+        if (!(ulFlags & 0x10)) 
+        {
+            if ((!(ulFlags & 0x100)) || (lDrawResult != 0)) 
+            {
+                njCnkEasyDrawObject(model->child);
+            }
+        }
+    
+        njPopMatrixEx();
+    }
 }
 
 // 100% matching!
