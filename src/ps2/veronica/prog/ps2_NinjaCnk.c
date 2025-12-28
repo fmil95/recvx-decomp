@@ -244,19 +244,21 @@ void    njCnkSetEasyMultiLightVector(Float vx, Float vy, Float vz)
     NaCnkLightEm->ulMode = 0;
 }
 
-/*// 
-// Start address: 0x2cf6d0
-void njCnkSetEasyMultiLightPoint(int iLightNum, float fX, float fY, float fZ)
+// 100% matching!
+void    njCnkSetEasyMultiLightPoint(Int light, Float px, Float py, Float pz)
 {
-	// Line 952, Address: 0x2cf6d0, Func Offset: 0
-	// Line 953, Address: 0x2cf6e8, Func Offset: 0x18
-	// Line 954, Address: 0x2cf6f8, Func Offset: 0x28
-	// Line 955, Address: 0x2cf708, Func Offset: 0x38
-	// Line 956, Address: 0x2cf718, Func Offset: 0x48
-	// Func End, Address: 0x2cf720, Func Offset: 0x50
+    int num; // not from the debugging symbols
+
+    num = light - 1;
+    
+    NaCnkLightEm[num].fWx = px;
+    NaCnkLightEm[num].fWy = py;
+    NaCnkLightEm[num].fWz = pz;
+    
+    NaCnkLightEm[num].ulMode = 1;
 }
 
-// 
+/*// 
 // Start address: 0x2cf720
 void njCnkSetEasyMultiLightRange(int iLightNum, float fNear, float fFar)
 {
