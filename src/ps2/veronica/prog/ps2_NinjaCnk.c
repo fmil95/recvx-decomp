@@ -380,17 +380,14 @@ void    njCnkSetSimpleMultiLightColor(Int light, Float lr, Float lg, Float lb)
     NaCnkLightSm[lCnt].fB = lb;
 }
 
-// 
-// Start address: 0x2cf9d0
+// 100% matching!
 void    njCnkSetSimpleMultiLightVector(Float vx, Float vy, Float vz)
 {
-	// Line 1224, Address: 0x2cf9d0, Func Offset: 0
-	// Line 1225, Address: 0x2cf9dc, Func Offset: 0xc
-	// Line 1226, Address: 0x2cf9e8, Func Offset: 0x18
-	// Line 1227, Address: 0x2cf9f4, Func Offset: 0x24
-	// Line 1228, Address: 0x2cf9f8, Func Offset: 0x28
-	// Func End, Address: 0x2cfa00, Func Offset: 0x30
-	scePrintf("njCnkSetSimpleMultiLightVector - UNIMPLEMENTED!\n");
+    NaCnkLightSm->fWx = -vx;
+    NaCnkLightSm->fWy = -vy;
+    NaCnkLightSm->fWz = -vz;
+    
+    NaCnkLightSm->ulMode = 0;
 }
 
 /*// 
