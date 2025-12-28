@@ -234,17 +234,14 @@ void    njCnkSetEasyMultiLightColor(Int light, Float lr, Float lg, Float lb)
     NaCnkLightEm[num].fB = lb;
 }
 
-// 
-// Start address: 0x2cf6a0
+// 100% matching!
 void    njCnkSetEasyMultiLightVector(Float vx, Float vy, Float vz)
 {
-	// Line 923, Address: 0x2cf6a0, Func Offset: 0
-	// Line 924, Address: 0x2cf6ac, Func Offset: 0xc
-	// Line 925, Address: 0x2cf6b8, Func Offset: 0x18
-	// Line 926, Address: 0x2cf6c4, Func Offset: 0x24
-	// Line 927, Address: 0x2cf6c8, Func Offset: 0x28
-	// Func End, Address: 0x2cf6d0, Func Offset: 0x30
-	scePrintf("njCnkSetEasyMultiLightVector - UNIMPLEMENTED!\n");
+    NaCnkLightEm->fWx = -vx;
+    NaCnkLightEm->fWy = -vy;
+    NaCnkLightEm->fWz = -vz;
+    
+    NaCnkLightEm->ulMode = 0;
 }
 
 /*// 
