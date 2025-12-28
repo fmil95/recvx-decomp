@@ -299,16 +299,12 @@ void    njCnkSetEasyMultiLightMatrices(void)
     }
 }
 
-// 
-// Start address: 0x2cf820
+// 100% matching!
 void    njCnkSetSimpleLight( Float x,Float y,Float z )
 {
-	// Line 1038, Address: 0x2cf820, Func Offset: 0
-	// Line 1039, Address: 0x2cf82c, Func Offset: 0xc
-	// Line 1040, Address: 0x2cf838, Func Offset: 0x18
-	// Line 1041, Address: 0x2cf840, Func Offset: 0x20
-	// Func End, Address: 0x2cf848, Func Offset: 0x28
-	scePrintf("njCnkSetSimpleLight - UNIMPLEMENTED!\n");
+    NaCnkLightSs.fCx = -x;
+    NaCnkLightSs.fCy = -y;
+    NaCnkLightSs.fCz = -z;
 }
 
 // 
