@@ -29,7 +29,7 @@ float fNaCnkConstantB = 1.0f;
 VU1_COLOR NaCnkConstantMaterial = { 1.0f, 1.0f, 1.0f, 1.0f };
 /*float fNaCnkAlphaMaterial;*/
 VU1_COLOR NaCnkDiffuseMaterial __attribute__((aligned(64)));
-/*float fNaCnkMaterialSpeE;*/
+float fNaCnkMaterialSpeE = 17.0f;
 VU1_COLOR NaCnkSpeculaMaterial __attribute__((aligned(64)));
 VU1_COLOR NaCnkAmbientFunctionSm = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientEs __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -717,17 +717,15 @@ CHUNK_HEAD* njCnkCbDa(CHUNK_HEAD* pCnk)
     return &pCnk[1];
 }
 
-/*// 
-// Start address: 0x2d0310
-tagCHUNK_HEAD* njCnkCbExp(tagCHUNK_HEAD* pCnk)
+// 100% matching!
+CHUNK_HEAD* njCnkCbExp(CHUNK_HEAD* pCnk)
 {
-	// Line 1949, Address: 0x2d0310, Func Offset: 0
-	// Line 1951, Address: 0x2d0348, Func Offset: 0x38
-	// Line 1952, Address: 0x2d034c, Func Offset: 0x3c
-	// Func End, Address: 0x2d0354, Func Offset: 0x44
+    fNaCnkMaterialSpeE = pCnk->ucHeadBits;
+
+    return &pCnk[1];
 }
 
-// 
+/*// 
 // Start address: 0x2d0360
 tagCHUNK_HEAD* njCnkCtTid(tagCHUNK_HEAD* pCnk)
 {
