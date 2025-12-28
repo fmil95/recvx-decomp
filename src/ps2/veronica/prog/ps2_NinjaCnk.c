@@ -1,6 +1,7 @@
 #include "ps2_NinjaCnk.h"
 #include "ps2_dummy.h"
 #include "ps2_NaMatrix.h"
+#include "ps2_NaTextureFunction.h"
 #include "ps2_Vu1Strip.h"
 
 static VU1_STRIP_BUF* pNaCnkVerBufTop;
@@ -725,22 +726,25 @@ CHUNK_HEAD* njCnkCbExp(CHUNK_HEAD* pCnk)
     return &pCnk[1];
 }
 
-/*// 
-// Start address: 0x2d0360
-tagCHUNK_HEAD* njCnkCtTid(tagCHUNK_HEAD* pCnk)
+// 100% matching!
+CHUNK_HEAD* njCnkCtTid(CHUNK_HEAD* pCnk) 
 {
-	// Line 1970, Address: 0x2d0360, Func Offset: 0
-	// Line 1972, Address: 0x2d036c, Func Offset: 0xc
-	// Line 1974, Address: 0x2d0380, Func Offset: 0x20
-	// Line 1977, Address: 0x2d038c, Func Offset: 0x2c
-	// Line 1979, Address: 0x2d0398, Func Offset: 0x38
-	// Line 1986, Address: 0x2d03a8, Func Offset: 0x48
-	// Line 1988, Address: 0x2d03b4, Func Offset: 0x54
-	// Line 1989, Address: 0x2d03b8, Func Offset: 0x58
-	// Func End, Address: 0x2d03c8, Func Offset: 0x68
+    if (((pCnk->ucHeadBits >> 6) & 0x3)) 
+    {
+        printf("'Texture Flip' Exist in 'CNK-DATA' !!\n");
+    }
+
+    njSetTextureNumSys(pCnk->usSize & 0xFFF);
+
+    if (!(pCnk->usSize & 0x2000)) 
+    {
+        njTextureFilterMode((pCnk->usSize / 16384) & 0x3);
+    }
+    
+    return &pCnk[1];
 }
 
-// 
+/*// 
 // Start address: 0x2d03d0
 tagCHUNK_HEAD* njCnkCmD(tagCHUNK_HEAD* pCnk)
 {
