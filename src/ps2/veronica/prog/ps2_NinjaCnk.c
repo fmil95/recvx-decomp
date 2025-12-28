@@ -338,19 +338,22 @@ void    njCnkSetSimpleMultiLight(Int num)
     njCnkSetSimpleMultiLightSwitch(0, 1);
 }
 
-// 
-// Start address: 0x2cf8c0
+// 100% matching!
 void    njCnkSetSimpleMultiLightSwitch(Int light, Int flag)
 {
-	// Line 1133, Address: 0x2cf8c0, Func Offset: 0
-	// Line 1135, Address: 0x2cf8c8, Func Offset: 0x8
-	// Line 1137, Address: 0x2cf8e0, Func Offset: 0x20
-	// Line 1138, Address: 0x2cf8e8, Func Offset: 0x28
-	// Line 1139, Address: 0x2cf900, Func Offset: 0x40
-	// Line 1142, Address: 0x2cf908, Func Offset: 0x48
-	// Line 1144, Address: 0x2cf91c, Func Offset: 0x5c
-	// Func End, Address: 0x2cf924, Func Offset: 0x64
-	scePrintf("njCnkSetSimpleMultiLightSwitch - UNIMPLEMENTED!\n");
+    int lCnt; // not from the debugging symbols
+
+    if (light == 0) 
+    {
+        for (lCnt = 0; lCnt < NaCnkLighting[3].lLightMax; lCnt++) 
+        {
+            NaCnkLightSm[lCnt].ulState = flag;
+        }
+    } 
+    else 
+    {
+        NaCnkLightSm[light - 1].ulState = flag;
+    }
 }
 
 // 
