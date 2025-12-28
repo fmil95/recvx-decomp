@@ -192,17 +192,18 @@ void njGetTranslation(float pMatrix[16], _anon0* pPoint)
 	// Line 487, Address: 0x2d6848, Func Offset: 0x28
 	// Line 492, Address: 0x2d684c, Func Offset: 0x2c
 	// Func End, Address: 0x2d6854, Func Offset: 0x34
-}
+}*/
 
 // 
 // Start address: 0x2d6860
-void njUnitTransPortion(float pMatrix[16])
+void    njUnitTransPortion(NJS_MATRIX *m)
 {
 	// Line 556, Address: 0x2d6860, Func Offset: 0
 	// Line 582, Address: 0x2d6874, Func Offset: 0x14
 	// Line 589, Address: 0x2d6878, Func Offset: 0x18
 	// Func End, Address: 0x2d6880, Func Offset: 0x20
-}*/
+	scePrintf("njUnitTransPortion - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2d6880

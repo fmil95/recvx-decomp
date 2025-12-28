@@ -1,5 +1,6 @@
 #include "ps2_NinjaCnk.h"
 #include "ps2_dummy.h"
+#include "ps2_NaMatrix.h"
 #include "ps2_Vu1Strip.h"
 
 static VU1_STRIP_BUF* pNaCnkVerBufTop;
@@ -195,13 +196,13 @@ void njCnkSetEasyMultiLight(int iLightMax)
 // 100% matching!
 void    njCnkSetEasyMultiLightSwitch(Int light, Int flag) 
 {
-    int i; // not from the debugging symbols
+    int lCnt; // not from the debugging symbols
 
     if (light == 0) 
     {
-        for (i = 0; i < NaCnkLighting[1].lLightMax; i++) 
+        for (lCnt = 0; lCnt < NaCnkLighting[1].lLightMax; lCnt++) 
         {
-            NaCnkLightEm[i].ulState = flag;
+            NaCnkLightEm[lCnt].ulState = flag;
         }
     } 
     else 
@@ -225,13 +226,13 @@ void    njCnkSetEasyMultiAmbient(Float ar, Float ag, Float ab)
 // 100% matching!
 void    njCnkSetEasyMultiLightColor(Int light, Float lr, Float lg, Float lb)
 {
-    int num; // not from the debugging symbols
+    int lCnt; // not from the debugging symbols
 
-    num = light - 1;
+    lCnt = light - 1;
     
-    NaCnkLightEm[num].fR = lr;
-    NaCnkLightEm[num].fG = lg;
-    NaCnkLightEm[num].fB = lb;
+    NaCnkLightEm[lCnt].fR = lr;
+    NaCnkLightEm[lCnt].fG = lg;
+    NaCnkLightEm[lCnt].fB = lb;
 }
 
 // 100% matching!
@@ -247,49 +248,55 @@ void    njCnkSetEasyMultiLightVector(Float vx, Float vy, Float vz)
 // 100% matching!
 void    njCnkSetEasyMultiLightPoint(Int light, Float px, Float py, Float pz)
 {
-    int num; // not from the debugging symbols
+    int lCnt; // not from the debugging symbols
 
-    num = light - 1;
+    lCnt = light - 1;
     
-    NaCnkLightEm[num].fWx = px;
-    NaCnkLightEm[num].fWy = py;
-    NaCnkLightEm[num].fWz = pz;
+    NaCnkLightEm[lCnt].fWx = px;
+    NaCnkLightEm[lCnt].fWy = py;
+    NaCnkLightEm[lCnt].fWz = pz;
     
-    NaCnkLightEm[num].ulMode = 1;
+    NaCnkLightEm[lCnt].ulMode = 1;
 }
 
 // 100% matching!
 void    njCnkSetEasyMultiLightRange(Int light, Float nrange, Float frange)
 {
-    int num; // not from the debugging symbols
+    int lCnt; // not from the debugging symbols
 
-    num = light - 1;
+    lCnt = light - 1;
 
-    NaCnkLightEm[num].fNearRR = nrange * nrange;
-    NaCnkLightEm[num].fFarRR = frange * frange;
+    NaCnkLightEm[lCnt].fNearRR = nrange * nrange;
+    NaCnkLightEm[lCnt].fFarRR = frange * frange;
     
-    NaCnkLightEm[num].ulMode = 1;
+    NaCnkLightEm[lCnt].ulMode = 1;
 }
 
-// 
-// Start address: 0x2cf770
+// 100% matching!
 void    njCnkSetEasyMultiLightMatrices(void)
 {
-	int lCnt;
-	// Line 995, Address: 0x2cf770, Func Offset: 0
-	// Line 998, Address: 0x2cf788, Func Offset: 0x18
-	// Line 1000, Address: 0x2cf790, Func Offset: 0x20
-	// Line 1003, Address: 0x2cf79c, Func Offset: 0x2c
-	// Line 1005, Address: 0x2cf7a8, Func Offset: 0x38
-	// Line 1006, Address: 0x2cf7b0, Func Offset: 0x40
-	// Line 1007, Address: 0x2cf7b8, Func Offset: 0x48
-	// Line 1008, Address: 0x2cf7c8, Func Offset: 0x58
-	// Line 1009, Address: 0x2cf7d0, Func Offset: 0x60
-	// Line 1013, Address: 0x2cf7d8, Func Offset: 0x68
-	// Line 1015, Address: 0x2cf7ec, Func Offset: 0x7c
-	// Line 1016, Address: 0x2cf804, Func Offset: 0x94
-	// Func End, Address: 0x2cf818, Func Offset: 0xa8
-	scePrintf("njCnkSetEasyMultiLightMatrices - UNIMPLEMENTED!\n");
+    int lCnt;  
+    
+    for (lCnt = 0; lCnt < NaCnkLighting[1].lLightMax; lCnt++) 
+    {
+        if (NaCnkLightEm[lCnt].ulState != 0) 
+        {
+            if (NaCnkLightEm[lCnt].ulMode == 0) 
+            {
+                njPushMatrixEx();
+                
+                njUnitTransPortion(NULL);
+                
+                njCalcPoint(NULL, (NJS_POINT3*)&NaCnkLightEm[lCnt].fWx, (NJS_POINT3*)&NaCnkLightEm[lCnt].fCx);
+                
+                njPopMatrixEx();
+            } 
+            else 
+            {
+                njCalcPoint(NULL, (NJS_POINT3*)&NaCnkLightEm[lCnt].fWx, (NJS_POINT3*)&NaCnkLightEm[lCnt].fCx);
+            }
+        }
+    }
 }
 
 // 
