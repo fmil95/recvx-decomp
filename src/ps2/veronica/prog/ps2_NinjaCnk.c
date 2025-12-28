@@ -417,25 +417,31 @@ void    njCnkSetSimpleMultiLightRange(Int light, Float nrange, Float frange)
     NaCnkLightSm[lCnt].ulMode = 1;
 }
 
-// 
-// Start address: 0x2cfaa0
+// 100% matching!
 void    njCnkSetSimpleMultiLightMatrices(void)
 {
-	int lCnt;
-	// Line 1296, Address: 0x2cfaa0, Func Offset: 0
-	// Line 1300, Address: 0x2cfab8, Func Offset: 0x18
-	// Line 1302, Address: 0x2cfac0, Func Offset: 0x20
-	// Line 1305, Address: 0x2cfacc, Func Offset: 0x2c
-	// Line 1307, Address: 0x2cfad8, Func Offset: 0x38
-	// Line 1308, Address: 0x2cfae0, Func Offset: 0x40
-	// Line 1309, Address: 0x2cfae8, Func Offset: 0x48
-	// Line 1310, Address: 0x2cfaf8, Func Offset: 0x58
-	// Line 1311, Address: 0x2cfb00, Func Offset: 0x60
-	// Line 1315, Address: 0x2cfb08, Func Offset: 0x68
-	// Line 1317, Address: 0x2cfb1c, Func Offset: 0x7c
-	// Line 1318, Address: 0x2cfb34, Func Offset: 0x94
-	// Func End, Address: 0x2cfb48, Func Offset: 0xa8
-	scePrintf("njCnkSetSimpleMultiLightMatrices - UNIMPLEMENTED!\n");
+    int lCnt;
+
+    for (lCnt = 0; lCnt < NaCnkLighting[3].lLightMax; lCnt++) 
+    {
+        if (NaCnkLightSm[lCnt].ulState != 0) 
+        {
+            if (NaCnkLightSm[lCnt].ulMode == 0)
+            {
+                njPushMatrixEx();
+                
+                njUnitTransPortion(NULL);
+                
+                njCalcPoint(NULL, (NJS_POINT3*)&NaCnkLightSm[lCnt].fWx, (NJS_POINT3*)&NaCnkLightSm[lCnt].fCx);
+                
+                njPopMatrixEx();
+            } 
+            else 
+            {
+                njCalcPoint(NULL, (NJS_POINT3*)&NaCnkLightSm[lCnt].fWx, (NJS_POINT3*)&NaCnkLightSm[lCnt].fCx);
+            }
+        }
+    }
 }
 
 // 100% matching!
