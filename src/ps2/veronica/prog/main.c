@@ -39,7 +39,6 @@
 #include "ps2_MovieWork.c"
 #include "ps2_NaColi.c"
 #include "ps2_NaSprite.c"
-#include "ps2_NinjaCnk_prog.h"
 #include "ps2_SaveScreen.c"
 #include "ps2_Vu1Scissor2.c"
 #include "rutchk.c"
