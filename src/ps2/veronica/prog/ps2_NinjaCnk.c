@@ -33,7 +33,7 @@ VU1_COLOR NaCnkConstantMaterial = { 1.0f, 1.0f, 1.0f, 1.0f };
 float fNaCnkAlphaMaterial = { 1.0f }; 
 VU1_COLOR NaCnkDiffuseMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 float fNaCnkMaterialSpeE = 17.0f;
-VU1_COLOR NaCnkSpeculaMaterial __attribute__((aligned(64)));
+VU1_COLOR NaCnkSpeculaMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientFunctionSm = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientEs __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -907,25 +907,28 @@ CHUNK_HEAD* njCnkCmDa(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)&ucpPtr[8];
 }
 
-/*// 
-// Start address: 0x2d0a20
-tagCHUNK_HEAD* njCnkCmS(tagCHUNK_HEAD* pCnk)
+// 97.78% matching
+CHUNK_HEAD* njCnkCmS(CHUNK_HEAD* pCnk)
 {
-	unsigned char* ucpPtr;
-	// Line 2146, Address: 0x2d0a20, Func Offset: 0
-	// Line 2150, Address: 0x2d0a2c, Func Offset: 0xc
-	// Line 2153, Address: 0x2d0a40, Func Offset: 0x20
-	// Line 2159, Address: 0x2d0a7c, Func Offset: 0x5c
-	// Line 2160, Address: 0x2d0ac4, Func Offset: 0xa4
-	// Line 2161, Address: 0x2d0b0c, Func Offset: 0xec
-	// Line 2162, Address: 0x2d0b54, Func Offset: 0x134
-	// Line 2166, Address: 0x2d0b90, Func Offset: 0x170
-	// Line 2165, Address: 0x2d0b98, Func Offset: 0x178
-	// Line 2166, Address: 0x2d0b9c, Func Offset: 0x17c
-	// Func End, Address: 0x2d0ba4, Func Offset: 0x184
+    unsigned char* ucpPtr;
+
+    if (!(Ps2_njControl3D_flag & 0x8000)) 
+    {
+        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+    }
+    
+    ucpPtr = (unsigned char*)&pCnk[1];
+    
+    NaCnkSpeculaMaterial.fB = ucpPtr[0] / 255.0f;
+    NaCnkSpeculaMaterial.fG = ucpPtr[1] / 255.0f;
+    NaCnkSpeculaMaterial.fR = ucpPtr[2] / 255.0f;
+    
+    fNaCnkMaterialSpeE = ucpPtr[3];
+    
+    return (CHUNK_HEAD*)&ucpPtr[4];
 }
 
-// 
+/*// 
 // Start address: 0x2d0bb0
 tagCHUNK_HEAD* njCnkCmDs(tagCHUNK_HEAD* pCnk)
 {
