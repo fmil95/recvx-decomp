@@ -15,4 +15,15 @@ void njViewScreenMatrix(NJS_MATRIX* vs);
 void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far);
 void _Make_ClipVolume(float x, float y);
 
+extern NJS_MATRIX NaViwViewMatrix;
+extern float fNaViwHalfW;
+extern float fNaViwHalfH;
+extern sceVu0FMATRIX ClipMatrix2;
+extern float fNaViwAspectW;
+extern float fNaViwAspectH;
+extern float fNaViwClipNear;
+extern float fNaViwClipFar;
+extern float _fNaViwClipNear;
+extern float _fNaViwClipFar;
+
 #endif

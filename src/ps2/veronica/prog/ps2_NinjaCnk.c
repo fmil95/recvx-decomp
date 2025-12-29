@@ -2,15 +2,16 @@
 #include "ps2_dummy.h"
 #include "ps2_NaMatrix.h"
 #include "ps2_NaTextureFunction.h"
+#include "ps2_NaView.h"
 #include "ps2_Vu1Strip.h"
 
 static VU1_STRIP_BUF* pNaCnkVerBufTop;
 static int iNaCnkVerBufMax;
-/*tagVU1_STRIP_BUF NaCnkStrBufTop[200];
+/*tagVU1_STRIP_BUF NaCnkStrBufTop[200];*/
 unsigned int Vu0ClipFlag;
-int lCnkModClipFace;
-tagCHUNK_HEAD*(*pCnkFuncTbl)(tagCHUNK_HEAD*)[76];
-void(*pCnkCsVu1FuncTbl)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short)[32];
+/*int lCnkModClipFace;*/
+CHUNK_HEAD* (*pCnkFuncTbl[76])(CHUNK_HEAD*); // TODO: needs defining data
+/*void(*pCnkCsVu1FuncTbl)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short)[32];
 unsigned short usCnkCsPolColorCalcFunc[8];*/
 unsigned short usCnkCsTexColorCalcFunc[4][8] = { { 9, 2, 4, 2, 6, 2, 3, 2 }, { 9, 2, 4, 2, 6, 2, 3, 2 }, 
 												 { 10, 2, 4, 2, 7, 2, 3, 2 }, { 8, 2, 4, 2, 5, 2, 3, 2 } };
@@ -588,60 +589,107 @@ void njCnkSetCurrentDrawMode(unsigned int ulMode)
     pNaCnkCrntLighting = &NaCnkLighting[ulMode];
 }
 
-// 
-// Start address: 0x2cfe30
-int njCnkDrawModelLocal(NJS_CNK_MODEL* pModel)
+// 99.55% matching
+int njCnkDrawModelLocal(NJS_CNK_MODEL* pModel) 
 {
-	unsigned int modelclipflag;
-	//tagCHUNK_HEAD* pCnk;
-	float fZ;
-	float fSY;
-	float fSX;
-	float fRH;
-	float fRW;
-	//_anon9 Center;
-	// Line 1651, Address: 0x2cfe30, Func Offset: 0
-	// Line 1659, Address: 0x2cfe44, Func Offset: 0x14
-	// Line 1662, Address: 0x2cfe58, Func Offset: 0x28
-	// Line 1663, Address: 0x2cfe5c, Func Offset: 0x2c
-	// Line 1666, Address: 0x2cfe74, Func Offset: 0x44
-	// Line 1668, Address: 0x2cfe84, Func Offset: 0x54
-	// Line 1672, Address: 0x2cfe88, Func Offset: 0x58
-	// Line 1673, Address: 0x2cfeac, Func Offset: 0x7c
-	// Line 1675, Address: 0x2cfed0, Func Offset: 0xa0
-	// Line 1678, Address: 0x2cfeec, Func Offset: 0xbc
-	// Line 1677, Address: 0x2cfef4, Func Offset: 0xc4
-	// Line 1683, Address: 0x2cfef8, Func Offset: 0xc8
-	// Line 1679, Address: 0x2cfefc, Func Offset: 0xcc
-	// Line 1678, Address: 0x2cff04, Func Offset: 0xd4
-	// Line 1679, Address: 0x2cff08, Func Offset: 0xd8
-	// Line 1684, Address: 0x2cff0c, Func Offset: 0xdc
-	// Line 1683, Address: 0x2cff14, Func Offset: 0xe4
-	// Line 1684, Address: 0x2cff18, Func Offset: 0xe8
-	// Line 1685, Address: 0x2cff38, Func Offset: 0x108
-	// Line 1689, Address: 0x2cff54, Func Offset: 0x124
-	// Line 1690, Address: 0x2cff58, Func Offset: 0x128
-	// Line 1689, Address: 0x2cff60, Func Offset: 0x130
-	// Line 1690, Address: 0x2cff64, Func Offset: 0x134
-	// Line 1691, Address: 0x2cff84, Func Offset: 0x154
-	// Line 1732, Address: 0x2cffa0, Func Offset: 0x170
-	// Line 1733, Address: 0x2cffa8, Func Offset: 0x178
-	// Line 1734, Address: 0x2cffac, Func Offset: 0x17c
-	// Line 1738, Address: 0x2cffb4, Func Offset: 0x184
-	// Line 1740, Address: 0x2cffc8, Func Offset: 0x198
-	// Line 1742, Address: 0x2cffe8, Func Offset: 0x1b8
-	// Line 1745, Address: 0x2cfff0, Func Offset: 0x1c0
-	// Line 1750, Address: 0x2d0008, Func Offset: 0x1d8
-	// Line 1755, Address: 0x2d0010, Func Offset: 0x1e0
-	// Line 1757, Address: 0x2d0024, Func Offset: 0x1f4
-	// Line 1762, Address: 0x2d0038, Func Offset: 0x208
-	// Line 1763, Address: 0x2d003c, Func Offset: 0x20c
-	// Line 1765, Address: 0x2d0044, Func Offset: 0x214
-	// Line 1767, Address: 0x2d004c, Func Offset: 0x21c
-	// Line 1768, Address: 0x2d0070, Func Offset: 0x240
-	// Line 1770, Address: 0x2d0080, Func Offset: 0x250
-	// Line 1771, Address: 0x2d0084, Func Offset: 0x254
-	// Func End, Address: 0x2d009c, Func Offset: 0x26c
+    NJS_POINT3 Center;      
+    float fRW, fRH;              
+    float fSX, fSY;              
+    float fZ;                 
+    CHUNK_HEAD* pCnk;           
+    unsigned int modelclipflag; 
+    float temp, temp2; // not from the debugging symbols
+
+    modelclipflag = 0;
+    
+    if (ulNaCnkFlagModelClip != 0) 
+    {
+        temp = pModel->r;
+        
+        if (0 < temp) 
+        {
+            njCalcPoint(NULL, &pModel->center, &Center);
+            
+            if ((Center.z + temp) < _fNaViwClipNear) 
+            {
+                return 0;
+            }
+            
+            if (_fNaViwClipFar < (Center.z - temp))
+            {
+                return 0;
+            }
+            
+            fZ = fabsf(_nj_screen_.dist / Center.z);
+            
+            temp2 = temp * fZ;
+            
+            fRW = temp2 * fNaViwAspectW;
+            fRH = temp2 * fNaViwAspectH;
+            
+            fSX = Center.x * fZ;
+            
+            if ((fSX + fRW) < -fNaViwHalfW) 
+            {
+                return 0;
+            }
+            
+            if (fNaViwHalfW < (fSX - fRW)) 
+            {
+                return 0;
+            }
+            
+            fSY = Center.y * fZ;
+            
+            if ((fSY + fRH) < -fNaViwHalfH) 
+            {
+                return 0;
+            }
+            
+            if (fNaViwHalfH < (fSY - fRH)) 
+            {
+                return 0;
+            }
+        }
+    }
+    
+    njPushMatrixEx();
+    
+    pCnk = (CHUNK_HEAD*)pModel->vlist;
+    
+    if (pCnk != NULL)
+    {
+        if (pCnk->ucType == 51)
+        {
+            modelclipflag = 1;
+        }
+        
+        pCnkFuncTbl[pCnk->ucType](pCnk);
+    }
+    
+    njPopMatrixEx();
+    
+    if ((modelclipflag != 0) && (Vu0ClipFlag != 0)) 
+    {
+        return 1;  
+    } 
+    
+    if ((Ps2_njControl3D_flag & 0x8000)) 
+    {
+        njColorBlendingModeSys(lNaCnkSrcBlendMode, lNaCnkDstBlendMode);
+    }
+    
+    pCnk = (CHUNK_HEAD*)pModel->plist;
+    
+    if (pCnk != NULL) 
+    {
+        while (pCnk->ucType != 0xFF) 
+        {
+            pCnk = pCnkFuncTbl[pCnk->ucType](pCnk);
+        }
+    }
+    
+    return 1;
 }
 
 // 

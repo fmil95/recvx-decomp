@@ -1,4 +1,5 @@
 #include "ps2_NaDraw2D.h"
+#include "ps2_NaView.h"
 #include "ps2_dummy.h"
 #include "main.h"
 
