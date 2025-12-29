@@ -874,47 +874,40 @@ CHUNK_HEAD* njCnkCmA(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)&ucpPtr[4];
 }
 
-/*// 
-// Start address: 0x2d0730
-tagCHUNK_HEAD* njCnkCmDa(tagCHUNK_HEAD* pCnk)
+// 98.86% matching
+CHUNK_HEAD* njCnkCmDa(CHUNK_HEAD* pCnk)
 {
-	unsigned char* ucpPtr;
-	// Line 2092, Address: 0x2d0730, Func Offset: 0
-	// Line 2096, Address: 0x2d073c, Func Offset: 0xc
-	// Line 2099, Address: 0x2d0750, Func Offset: 0x20
-	// Line 2105, Address: 0x2d078c, Func Offset: 0x5c
-	// Line 2106, Address: 0x2d07d4, Func Offset: 0xa4
-	// Line 2107, Address: 0x2d081c, Func Offset: 0xec
-	// Line 2108, Address: 0x2d0864, Func Offset: 0x134
-	// Line 2112, Address: 0x2d08ac, Func Offset: 0x17c
-	// Line 2113, Address: 0x2d08f4, Func Offset: 0x1c4
-	// Line 2114, Address: 0x2d093c, Func Offset: 0x20c
-	// Line 2118, Address: 0x2d0978, Func Offset: 0x248
-	// Line 2114, Address: 0x2d097c, Func Offset: 0x24c
-	// Line 2118, Address: 0x2d0980, Func Offset: 0x250
-	// Line 2127, Address: 0x2d0984, Func Offset: 0x254
-	// Line 2119, Address: 0x2d0988, Func Offset: 0x258
-	// Line 2120, Address: 0x2d0990, Func Offset: 0x260
-	// Line 2123, Address: 0x2d0998, Func Offset: 0x268
-	// Line 2124, Address: 0x2d09a0, Func Offset: 0x270
-	// Line 2118, Address: 0x2d09a8, Func Offset: 0x278
-	// Line 2125, Address: 0x2d09ac, Func Offset: 0x27c
-	// Line 2123, Address: 0x2d09b4, Func Offset: 0x284
-	// Line 2114, Address: 0x2d09b8, Func Offset: 0x288
-	// Line 2119, Address: 0x2d09c0, Func Offset: 0x290
-	// Line 2120, Address: 0x2d09c8, Func Offset: 0x298
-	// Line 2124, Address: 0x2d09d0, Func Offset: 0x2a0
-	// Line 2118, Address: 0x2d09d4, Func Offset: 0x2a4
-	// Line 2123, Address: 0x2d09dc, Func Offset: 0x2ac
-	// Line 2119, Address: 0x2d09e4, Func Offset: 0x2b4
-	// Line 2124, Address: 0x2d09f0, Func Offset: 0x2c0
-	// Line 2120, Address: 0x2d09f8, Func Offset: 0x2c8
-	// Line 2125, Address: 0x2d0a04, Func Offset: 0x2d4
-	// Line 2128, Address: 0x2d0a10, Func Offset: 0x2e0
-	// Func End, Address: 0x2d0a20, Func Offset: 0x2f0
+    unsigned char* ucpPtr;
+
+    if (!(Ps2_njControl3D_flag & 0x8000)) 
+    {
+        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+    }
+    
+    ucpPtr = (unsigned char*)&pCnk[1];
+    
+    NaCnkDiffuseMaterial.fB = ucpPtr[0] / 255.0f;
+    NaCnkDiffuseMaterial.fG = ucpPtr[1] / 255.0f;
+    NaCnkDiffuseMaterial.fR = ucpPtr[2] / 255.0f;
+    
+    fNaCnkAlphaMaterial = ucpPtr[3] / 255.0f;
+    
+    NaCnkAmbientMaterial.fB = ucpPtr[4] / 255.0f;
+    NaCnkAmbientMaterial.fG = ucpPtr[5] / 255.0f;
+    NaCnkAmbientMaterial.fR = ucpPtr[6] / 255.0f;
+    
+    NaCnkAmbientEm.fR = NaCnkAmbientFunctionEm.fR * NaCnkAmbientMaterial.fR;
+    NaCnkAmbientEm.fG = NaCnkAmbientFunctionEm.fG * NaCnkAmbientMaterial.fG;
+    NaCnkAmbientEm.fB = NaCnkAmbientFunctionEm.fB * NaCnkAmbientMaterial.fB;
+    
+    NaCnkAmbientSm.fR = NaCnkAmbientFunctionSm.fR * NaCnkAmbientMaterial.fR;
+    NaCnkAmbientSm.fG = NaCnkAmbientFunctionSm.fG * NaCnkAmbientMaterial.fG;
+    NaCnkAmbientSm.fB = NaCnkAmbientFunctionSm.fB * NaCnkAmbientMaterial.fB;
+    
+    return (CHUNK_HEAD*)&ucpPtr[8];
 }
 
-// 
+/*// 
 // Start address: 0x2d0a20
 tagCHUNK_HEAD* njCnkCmS(tagCHUNK_HEAD* pCnk)
 {
