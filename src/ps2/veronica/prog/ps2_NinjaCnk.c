@@ -1,6 +1,7 @@
 #include "ps2_NinjaCnk.h"
 #include "ps2_dummy.h"
 #include "ps2_NaMatrix.h"
+#include "ps2_NaSystem.h"
 #include "ps2_NaTextureFunction.h"
 #include "ps2_NaView.h"
 #include "ps2_Vu1Strip.h"
@@ -782,17 +783,16 @@ CHUNK_HEAD* njCnkCn(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)&pCnk->usSize;
 }
 
-/*// 
-// Start address: 0x2d0290
-tagCHUNK_HEAD* njCnkCbBa(tagCHUNK_HEAD* pCnk)
+// 92.32% matching
+CHUNK_HEAD* njCnkCbBa(CHUNK_HEAD* pCnk) 
 {
-	// Line 1902, Address: 0x2d0290, Func Offset: 0
-	// Line 1904, Address: 0x2d029c, Func Offset: 0xc
-	// Line 1906, Address: 0x2d02b0, Func Offset: 0x20
-	// Line 1909, Address: 0x2d02ec, Func Offset: 0x5c
-	// Line 1910, Address: 0x2d02f0, Func Offset: 0x60
-	// Func End, Address: 0x2d0300, Func Offset: 0x70
-}*/
+    if (!(Ps2_njControl3D_flag & 0x8000)) 
+    {
+        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+    }
+    
+    return &pCnk[1];
+}
 
 // 100% matching!
 CHUNK_HEAD* njCnkCbDa(CHUNK_HEAD* pCnk) 
