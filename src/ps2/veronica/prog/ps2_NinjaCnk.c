@@ -30,8 +30,8 @@ float fNaCnkConstantR = 1.0f;
 float fNaCnkConstantG = 1.0f;
 float fNaCnkConstantB = 1.0f;
 VU1_COLOR NaCnkConstantMaterial = { 1.0f, 1.0f, 1.0f, 1.0f };
-/*float fNaCnkAlphaMaterial;*/
-VU1_COLOR NaCnkDiffuseMaterial __attribute__((aligned(64)));
+float fNaCnkAlphaMaterial = { 1.0f }; 
+VU1_COLOR NaCnkDiffuseMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 float fNaCnkMaterialSpeE = 17.0f;
 VU1_COLOR NaCnkSpeculaMaterial __attribute__((aligned(64)));
 VU1_COLOR NaCnkAmbientFunctionSm = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -826,25 +826,28 @@ CHUNK_HEAD* njCnkCtTid(CHUNK_HEAD* pCnk)
     return &pCnk[1];
 }
 
-/*// 
-// Start address: 0x2d03d0
-tagCHUNK_HEAD* njCnkCmD(tagCHUNK_HEAD* pCnk)
+// 97.85% matching
+CHUNK_HEAD* njCnkCmD(CHUNK_HEAD* pCnk) 
 {
-	unsigned char* ucpPtr;
-	// Line 2007, Address: 0x2d03d0, Func Offset: 0
-	// Line 2011, Address: 0x2d03dc, Func Offset: 0xc
-	// Line 2014, Address: 0x2d03f0, Func Offset: 0x20
-	// Line 2020, Address: 0x2d042c, Func Offset: 0x5c
-	// Line 2021, Address: 0x2d0474, Func Offset: 0xa4
-	// Line 2022, Address: 0x2d04bc, Func Offset: 0xec
-	// Line 2023, Address: 0x2d0504, Func Offset: 0x134
-	// Line 2026, Address: 0x2d0548, Func Offset: 0x178
-	// Line 2023, Address: 0x2d054c, Func Offset: 0x17c
-	// Line 2027, Address: 0x2d0550, Func Offset: 0x180
-	// Func End, Address: 0x2d0560, Func Offset: 0x190
+    unsigned char* ucpPtr;
+    
+    if (!(Ps2_njControl3D_flag & 0x8000)) 
+    {
+        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+    }
+
+    ucpPtr = (unsigned char*)&pCnk[1];
+    
+    NaCnkDiffuseMaterial.fB = ucpPtr[0] / 255.0f;
+    NaCnkDiffuseMaterial.fG = ucpPtr[1] / 255.0f;
+    NaCnkDiffuseMaterial.fR = ucpPtr[2] / 255.0f;
+    
+    fNaCnkAlphaMaterial = ucpPtr[3] / 255.0f;
+    
+    return (CHUNK_HEAD*)&ucpPtr[4];
 }
 
-// 
+/*// 
 // Start address: 0x2d0560
 tagCHUNK_HEAD* njCnkCmA(tagCHUNK_HEAD* pCnk)
 {
