@@ -61,6 +61,8 @@ tagCHUNK_HEAD* njCnkCvVMod(tagCHUNK_HEAD* pCnk);
 tagCHUNK_HEAD* njCnkCoP3(tagCHUNK_HEAD* pCnk);
 tagCHUNK_HEAD* njCnkCs(tagCHUNK_HEAD* pCnk);*/
 int _CVV(float* v0);
+/*tagCHUNK_HEAD* njCnkCsUvh(tagCHUNK_HEAD* pCnk);
+tagCHUNK_HEAD* njCnkCsUvn(tagCHUNK_HEAD* pCnk);*/
 CHUNK_HEAD* njCnkDefaultLong(CHUNK_HEAD* pCnk);
 CHUNK_HEAD* njCnkDefaultShort(CHUNK_HEAD* pCnk);
 /*void njCnkEasyMultiDrawObjectI(cnkobj* pObject);*/
