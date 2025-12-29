@@ -1,14 +1,16 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+// TODO: include sg_sybt.h and remove the below struct
+struct tag_SYS_BT_SYSTEMID{                   /*                    */
+    Sint32 nNo ;                              /*                    */
+    Sint32 nAll ;                             /*                    */
+    Sint8  szProduct[16];                     /*                    */
+} ;                                           /*                    */
+typedef struct tag_SYS_BT_SYSTEMID SYS_BT_SYSTEMID ;
+
 extern CAM_WORK cam;
 extern ROM_WORK* rom;
-extern sceVu0FMATRIX ClipMatrix2;
-extern float _fNaViwClipNear;
-extern float _fNaViwClipFar;
-extern float fNaViwClipNear;
-extern float fNaViwClipFar;
-extern NJS_MATRIX NaViwViewMatrix;
 extern unsigned char* njpmemp;
 extern NJS_MATRIX* cmat;
 extern unsigned int palbuf[4096];
@@ -18,15 +20,6 @@ extern void* Ps2_tex_buff;
 extern unsigned int Ps2_current_texbreak;
 extern MOV_INFO MovieInfo;
 extern O_WRK eff[512];
-
-// TODO: include sg_sybt.h and remove the below struct
-struct tag_SYS_BT_SYSTEMID{                   /*                    */
-    Sint32 nNo ;                              /*                    */
-    Sint32 nAll ;                             /*                    */
-    Sint8  szProduct[16];                     /*                    */
-} ;                                           /*                    */
-typedef struct tag_SYS_BT_SYSTEMID SYS_BT_SYSTEMID ;
-
 extern SYS_BT_SYSTEMID BootDiscSystemId;
 extern BH_PWORK* plp;
 extern HWS_WORK* hws;

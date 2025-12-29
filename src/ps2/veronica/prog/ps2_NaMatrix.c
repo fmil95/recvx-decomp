@@ -1,4 +1,5 @@
 #include "ps2_NaMatrix.h"
+#include "ps2_NaView.h"
 #include "main.h"
 
 /*_anon5 TempMatrix0;
