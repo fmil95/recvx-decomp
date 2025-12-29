@@ -692,54 +692,88 @@ int njCnkDrawModelLocal(NJS_CNK_MODEL* pModel)
     return 1;
 }
 
-// 
-// Start address: 0x2d00a0
+// 99.41% matching
 int njCnkDrawModelLocalMod(NJS_CNK_MODEL* pModel)
 {
-	CHUNK_HEAD* pCnk;
-	float fZ;
-	float fSY;
-	float fSX;
-	float fRH;
-	float fRW;
-	//_anon9 Center;
-	// Line 1786, Address: 0x2d00a0, Func Offset: 0
-	// Line 1793, Address: 0x2d00b4, Func Offset: 0x14
-	// Line 1796, Address: 0x2d00c4, Func Offset: 0x24
-	// Line 1797, Address: 0x2d00c8, Func Offset: 0x28
-	// Line 1800, Address: 0x2d00e0, Func Offset: 0x40
-	// Line 1802, Address: 0x2d00f0, Func Offset: 0x50
-	// Line 1804, Address: 0x2d00f4, Func Offset: 0x54
-	// Line 1807, Address: 0x2d010c, Func Offset: 0x6c
-	// Line 1808, Address: 0x2d0130, Func Offset: 0x90
-	// Line 1810, Address: 0x2d0154, Func Offset: 0xb4
-	// Line 1812, Address: 0x2d0170, Func Offset: 0xd0
-	// Line 1811, Address: 0x2d0178, Func Offset: 0xd8
-	// Line 1816, Address: 0x2d017c, Func Offset: 0xdc
-	// Line 1813, Address: 0x2d0180, Func Offset: 0xe0
-	// Line 1812, Address: 0x2d0188, Func Offset: 0xe8
-	// Line 1813, Address: 0x2d018c, Func Offset: 0xec
-	// Line 1817, Address: 0x2d0190, Func Offset: 0xf0
-	// Line 1816, Address: 0x2d0198, Func Offset: 0xf8
-	// Line 1817, Address: 0x2d019c, Func Offset: 0xfc
-	// Line 1818, Address: 0x2d01bc, Func Offset: 0x11c
-	// Line 1821, Address: 0x2d01d8, Func Offset: 0x138
-	// Line 1822, Address: 0x2d01dc, Func Offset: 0x13c
-	// Line 1821, Address: 0x2d01e4, Func Offset: 0x144
-	// Line 1822, Address: 0x2d01e8, Func Offset: 0x148
-	// Line 1823, Address: 0x2d0208, Func Offset: 0x168
-	// Line 1829, Address: 0x2d0224, Func Offset: 0x184
-	// Line 1830, Address: 0x2d022c, Func Offset: 0x18c
-	// Line 1831, Address: 0x2d0230, Func Offset: 0x190
-	// Line 1833, Address: 0x2d0238, Func Offset: 0x198
-	// Line 1835, Address: 0x2d0240, Func Offset: 0x1a0
-	// Line 1839, Address: 0x2d0248, Func Offset: 0x1a8
-	// Line 1840, Address: 0x2d024c, Func Offset: 0x1ac
-	// Line 1842, Address: 0x2d0254, Func Offset: 0x1b4
-	// Line 1844, Address: 0x2d025c, Func Offset: 0x1bc
-	// Line 1845, Address: 0x2d0260, Func Offset: 0x1c0
-	// Func End, Address: 0x2d0278, Func Offset: 0x1d8
-	scePrintf("njCnkDrawModelLocalMod - UNIMPLEMENTED!\n");
+    NJS_POINT3 Center;      
+    float fRW, fRH;              
+    float fSX, fSY;              
+    float fZ;                 
+    CHUNK_HEAD* pCnk;           
+    float temp, temp2, temp3; // not from the debugging symbols
+
+    if (ulNaCnkFlagModelClip != 0) 
+    {
+        temp = pModel->r;
+        
+        if (0 < temp) 
+        {
+            njCalcPoint(NULL, &pModel->center, &Center);
+
+            temp3 = Center.z;
+            
+            printf("POS = %f\n", temp3);
+            
+            if ((temp3 + temp) < _fNaViwClipNear) 
+            {
+                return 0;
+            }
+            
+            if (_fNaViwClipFar < (temp3 - temp))
+            {
+                return 0;
+            }
+            
+            fZ = fabsf(_nj_screen_.dist / temp3);
+            
+            temp2 = temp * fZ;
+            
+            fRW = temp2 * fNaViwAspectW;
+            fRH = temp2 * fNaViwAspectH;
+            
+            fSX = Center.x * fZ;
+            
+            if ((fSX + fRW) < -fNaViwHalfW) 
+            {
+                return 0;
+            }
+            
+            if (fNaViwHalfW < (fSX - fRW)) 
+            {
+                return 0;
+            }
+            
+            fSY = Center.y * fZ;
+            
+            if ((fSY + fRH) < -fNaViwHalfH) 
+            {
+                return 0;
+            }
+            
+            if (fNaViwHalfH < (fSY - fRH)) 
+            {
+                return 0;
+            }
+        }
+    }
+    
+    njPushMatrixEx();
+    
+    pCnk = (CHUNK_HEAD*)pModel->vlist;
+    
+    if (pModel->vlist != NULL)
+    {
+        njCnkCvVMod(pModel->vlist);
+    }
+
+    njPopMatrixEx();
+    
+    if (pModel->plist != NULL) 
+    {
+        njCnkCoP3(pModel->plist);
+    }
+    
+    return 1;
 }
 
 // 100% matching!
