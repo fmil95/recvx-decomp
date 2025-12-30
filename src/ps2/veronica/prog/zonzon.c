@@ -2629,8 +2629,8 @@ NO_NAME_10* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step)
 // 100% matching!
 NO_NAME_10* bhEne_CheckDirWall3(BH_PWORK* epw, NJS_POINT3* pos, int ang, float step)
 {
-    int angle;
-    float float_angle;
+    int angle; // not from debugging symbols
+    float float_angle; // not from debugging symbols
 
     NO_NAME_10* hp;
 	NJS_POINT3 ps;
