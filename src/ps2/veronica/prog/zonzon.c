@@ -1629,16 +1629,15 @@ int ikou3(BH_PWORK* epw, NJS_POINT3* pos, int add_dir)
     return -add_dir;
 }
 
-// 
-// Start address: 0x216070
-int NitenDir_ck(float hontai_x, float hontai_z, float target_x, float target_z)
+// 100% matching!
+int NitenDir_ck(float hontai_x, float hontai_z, float target_x, float target_z) 
 {
-    // Line 207, Address: 0x216070, Func Offset: 0
-	// Line 206, Address: 0x216074, Func Offset: 0x4
-	// Line 207, Address: 0x21607c, Func Offset: 0xc
-	// Line 208, Address: 0x216098, Func Offset: 0x28
-	// Func End, Address: 0x2160a4, Func Offset: 0x34
-	scePrintf("NitenDir_ck - UNIMPLEMENTED!\n");
+    int uVar1;
+    float fVar2;
+
+    fVar2 = atan2f(hontai_x - target_x, hontai_z - target_z);
+    uVar1 = (int)(fVar2 * 10430.381f);
+    return uVar1;
 }
 /*
 
