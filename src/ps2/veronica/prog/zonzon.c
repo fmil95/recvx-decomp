@@ -1524,10 +1524,12 @@ _anon22* sys;
 _anon13* rom;
 BH_PWORK* plp;
 _anon0 eff[0];
+*/
 
-void ikou(BH_PWORK* epw, _anon4* pos, int add_dir);
-int ikou3(BH_PWORK* epw, _anon4* pos, int add_dir);
+void ikou(BH_PWORK* epw, NJS_POINT3* pos, int add_dir);
+int ikou3(BH_PWORK* epw, NJS_POINT3* pos, int add_dir);
 int NitenDir_ck(float hontai_x, float hontai_z, float target_x, float target_z);
+/*
 int bhCdirCheck(int my_ang, int trg_ang);
 int bhEne_LeverCheck();
 int bhDGCdirCheck(_anon4* dv, int rot);
@@ -1565,61 +1567,80 @@ void bhEne_SetVibration(int no);
 void bhEne_PlayerSePlay(BH_PWORK* epw, int no);
 /*
 void bhEne_HitCheckParts(BH_PWORK* pp, _anon4* pos);
+*/
 
-// 
-// Start address: 0x215f10
-void ikou(BH_PWORK* epw, _anon4* pos, int add_dir)
+// 99.11% matching (https://decomp.me/scratch/Lo19g)
+void ikou(BH_PWORK* epw, NJS_POINT3* pos, int add_dir)
 {
-	int rot;
 	int ang;
-	// Line 119, Address: 0x215f10, Func Offset: 0
-	// Line 122, Address: 0x215f20, Func Offset: 0x10
-	// Line 125, Address: 0x215f34, Func Offset: 0x24
-	// Line 128, Address: 0x215f48, Func Offset: 0x38
-	// Line 131, Address: 0x215f58, Func Offset: 0x48
-	// Line 130, Address: 0x215f60, Func Offset: 0x50
-	// Line 131, Address: 0x215f64, Func Offset: 0x54
-	// Line 134, Address: 0x215f68, Func Offset: 0x58
-	// Line 136, Address: 0x215f6c, Func Offset: 0x5c
-	// Line 134, Address: 0x215f70, Func Offset: 0x60
-	// Line 136, Address: 0x215f7c, Func Offset: 0x6c
-	// Line 139, Address: 0x215f88, Func Offset: 0x78
-	// Line 144, Address: 0x215f90, Func Offset: 0x80
-	// Line 142, Address: 0x215f94, Func Offset: 0x84
-	// Line 144, Address: 0x215f98, Func Offset: 0x88
-	// Line 146, Address: 0x215fa4, Func Offset: 0x94
-	// Line 149, Address: 0x215fb0, Func Offset: 0xa0
-	// Func End, Address: 0x215fc4, Func Offset: 0xb4
+	int rot;
+
+    if ((epw->flg & 0x80) != 0)
+    {
+        return;
+    }
+    
+    rot = NitenDir_ck(epw->px, epw->pz, pos->x, pos->z);
+    if ((add_dir & 0x80000000) != 0) 
+    {
+        add_dir = -add_dir;
+        rot = rot + 0x8000 & 0xffff;
+    }
+
+    ang = add_dir + (rot - epw->ay) & 0xffff;
+
+    if (ang < add_dir + add_dir)
+    {
+        epw->ay = rot;
+    }
+    else 
+    {
+        epw->ay = ang - add_dir;
+        
+        if (ang < 0x8001) 
+        {
+            epw->ay = epw->ay + (add_dir + add_dir);
+        }
+    }
 }
 
-// 
-// Start address: 0x215fd0
-int ikou3(BH_PWORK* epw, _anon4* pos, int add_dir)
+// 100% matching!
+int ikou3(BH_PWORK* epw, NJS_POINT3* pos, int add_dir)
 {
-	int rot;
-	// Line 168, Address: 0x215fd0, Func Offset: 0
-	// Line 171, Address: 0x215fe0, Func Offset: 0x10
-	// Line 174, Address: 0x215ffc, Func Offset: 0x2c
-	// Line 176, Address: 0x216010, Func Offset: 0x40
-	// Line 178, Address: 0x216014, Func Offset: 0x44
-	// Line 176, Address: 0x216018, Func Offset: 0x48
-	// Line 178, Address: 0x216024, Func Offset: 0x54
-	// Line 179, Address: 0x216030, Func Offset: 0x60
-	// Line 181, Address: 0x216038, Func Offset: 0x68
-	// Line 184, Address: 0x216058, Func Offset: 0x88
-	// Func End, Address: 0x21606c, Func Offset: 0x9c
+    int rot;
+
+    if((epw->flg & 0x80) != 0) 
+    {
+        return 0;
+    }
+
+    rot = NitenDir_ck(epw->px, epw->pz, pos->x, pos->z);
+    rot = add_dir + (rot - epw->ay) & 0xffff;
+    if ((int)rot < add_dir + add_dir) 
+    {
+        return 0;
+    }
+    
+    if (rot < 0x8001) 
+    {
+        return add_dir;
+    }
+    
+    return -add_dir;
 }
 
 // 
 // Start address: 0x216070
 int NitenDir_ck(float hontai_x, float hontai_z, float target_x, float target_z)
 {
-	// Line 207, Address: 0x216070, Func Offset: 0
+    // Line 207, Address: 0x216070, Func Offset: 0
 	// Line 206, Address: 0x216074, Func Offset: 0x4
 	// Line 207, Address: 0x21607c, Func Offset: 0xc
 	// Line 208, Address: 0x216098, Func Offset: 0x28
 	// Func End, Address: 0x2160a4, Func Offset: 0x34
+	scePrintf("NitenDir_ck - UNIMPLEMENTED!\n");
 }
+/*
 
 // 
 // Start address: 0x2160b0
