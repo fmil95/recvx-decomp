@@ -1554,10 +1554,12 @@ int bhEne_CollisionCheckWall(BH_PWORK* pw, _anon4* ps, _anon4* pd, float ar, flo
 _anon23* bhEne_CollisionCheckWall2(BH_PWORK* pw, _anon4* ps, _anon4* ops, _anon4* pd, float ar, float ah);
 _anon23* bhEne_CheckDirWall(BH_PWORK* epw, int ang, float step);
 _anon23* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step);
-_anon23* bhEne_CheckDirWall3(BH_PWORK* epw, _anon4* pos, int ang, float step);
+*/
+NO_NAME_10* bhEne_CheckDirWall3(BH_PWORK* epw, NJS_POINT3* pos, int ang, float step);
 int bhEne_CheckSideWall(BH_PWORK* epw, float step, int both);
 int bhEne_CheckSideWall2(BH_PWORK* epw, float step, int both);
-int bhEne_CheckSideWall3(BH_PWORK* epw, _anon4* pos, float step, int both);
+int bhEne_CheckSideWall3(BH_PWORK* epw, NJS_POINT3* pos, float step, int both);
+/*
 void bhEne_SetVibration(int no);
 void bhEne_PlayerSePlay(BH_PWORK* epw, int no);
 void bhEne_HitCheckParts(BH_PWORK* pp, _anon4* pos);
@@ -2644,7 +2646,7 @@ NO_NAME_10* bhEne_CheckDirWall3(BH_PWORK* epw, NJS_POINT3* pos, int ang, float s
 }
 
 // 100% matching!
-void bhEne_CheckSideWall(BH_PWORK* epw, float step, int both) {  
+int bhEne_CheckSideWall(BH_PWORK* epw, float step, int both) {  
 
     NJS_POINT3 *pos = (NJS_POINT3*)&epw->px;
     bhEne_CheckSideWall3(epw, pos, step, both);
