@@ -2638,8 +2638,9 @@ _anon23* bhEne_CheckDirWall3(BH_PWORK* epw, _anon4* pos, int ang, float step)
 	// Line 2094, Address: 0x2189ec, Func Offset: 0x7c
 	// Func End, Address: 0x218a08, Func Offset: 0x98
 }
-// */
+//
 
+*/
 // 100% matching!
 void bhEne_CheckSideWall(BH_PWORK* epw, float step, int both) {  
 
@@ -2687,8 +2688,9 @@ int bhEne_CheckSideWall3(BH_PWORK* epw, NJS_POINT3* pos, float step, int both)
 
     return left_hit + right_hit;
 }
-
 /*
+
+//
 // Start address: 0x218b20
 void bhEne_SetVibration(int no)
 {
