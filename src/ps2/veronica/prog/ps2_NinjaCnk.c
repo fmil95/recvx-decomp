@@ -783,12 +783,12 @@ CHUNK_HEAD* njCnkCn(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)&pCnk->usSize;
 }
 
-// 92.32% matching
+// 100% matching!
 CHUNK_HEAD* njCnkCbBa(CHUNK_HEAD* pCnk) 
 {
     if (!(Ps2_njControl3D_flag & 0x8000)) 
     {
-        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+        njColorBlendingModeSys((int)lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
     }
     
     return &pCnk[1];
@@ -826,14 +826,14 @@ CHUNK_HEAD* njCnkCtTid(CHUNK_HEAD* pCnk)
     return &pCnk[1];
 }
 
-// 97.85% matching
+// 100% matching!
 CHUNK_HEAD* njCnkCmD(CHUNK_HEAD* pCnk) 
 {
     unsigned char* ucpPtr;
     
     if (!(Ps2_njControl3D_flag & 0x8000)) 
     {
-        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+        njColorBlendingModeSys((int)lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
     }
 
     ucpPtr = (unsigned char*)&pCnk[1];
@@ -847,14 +847,14 @@ CHUNK_HEAD* njCnkCmD(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)&ucpPtr[4];
 }
 
-// 98.15% matching
+// 100% matching!
 CHUNK_HEAD* njCnkCmA(CHUNK_HEAD* pCnk)
 {
     unsigned char* ucpPtr;
     
     if (!(Ps2_njControl3D_flag & 0x8000)) 
     {
-        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+        njColorBlendingModeSys((int)lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
     }
     
     ucpPtr = (unsigned char*)&pCnk[1];
@@ -874,14 +874,14 @@ CHUNK_HEAD* njCnkCmA(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)&ucpPtr[4];
 }
 
-// 98.86% matching
+// 100% matching!
 CHUNK_HEAD* njCnkCmDa(CHUNK_HEAD* pCnk)
 {
     unsigned char* ucpPtr;
 
     if (!(Ps2_njControl3D_flag & 0x8000)) 
     {
-        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+        njColorBlendingModeSys((int)lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
     }
     
     ucpPtr = (unsigned char*)&pCnk[1];
@@ -907,14 +907,14 @@ CHUNK_HEAD* njCnkCmDa(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)&ucpPtr[8];
 }
 
-// 97.78% matching
+// 100% matching!
 CHUNK_HEAD* njCnkCmS(CHUNK_HEAD* pCnk)
 {
     unsigned char* ucpPtr;
 
     if (!(Ps2_njControl3D_flag & 0x8000)) 
     {
-        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+        njColorBlendingModeSys((int)lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
     }
     
     ucpPtr = (unsigned char*)&pCnk[1];
@@ -928,14 +928,14 @@ CHUNK_HEAD* njCnkCmS(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)&ucpPtr[4];
 }
 
-// 98.73% matching
+// 100% matching!
 CHUNK_HEAD* njCnkCmDs(CHUNK_HEAD* pCnk)
 {
     unsigned char* ucpPtr;
 
     if (!(Ps2_njControl3D_flag & 0x8000)) 
     {
-        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+        njColorBlendingModeSys((int)lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
     }
     
     ucpPtr = (unsigned char*)&pCnk[1];
@@ -955,14 +955,14 @@ CHUNK_HEAD* njCnkCmDs(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)&ucpPtr[8];
 }
 
-// 98.84% matching
+// 100% matching!
 CHUNK_HEAD* njCnkCmAs(CHUNK_HEAD* pCnk)
 {
     unsigned char* ucpPtr;
 
     if (!(Ps2_njControl3D_flag & 0x8000)) 
     {
-        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+        njColorBlendingModeSys((int)lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
     }
     
     ucpPtr = (unsigned char*)&pCnk[1];
@@ -988,14 +988,14 @@ CHUNK_HEAD* njCnkCmAs(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)&ucpPtr[8];
 }
 
-// 99.16% matching
+// 100% matching!
 CHUNK_HEAD* njCnkCmDas(CHUNK_HEAD* pCnk)
 {
     unsigned char* ucpPtr;
 
     if (!(Ps2_njControl3D_flag & 0x8000)) 
     {
-        njColorBlendingModeSys(lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
+        njColorBlendingModeSys((int)lNaCnkSrcAlphaMode[(pCnk->ucHeadBits >> 3) & 0x7], lNaCnkDstAlphaMode[pCnk->ucHeadBits & 0x7]);
     }
     
     ucpPtr = (unsigned char*)&pCnk[1];
