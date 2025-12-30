@@ -2638,31 +2638,26 @@ _anon23* bhEne_CheckDirWall3(BH_PWORK* epw, _anon4* pos, int ang, float step)
 	// Line 2094, Address: 0x2189ec, Func Offset: 0x7c
 	// Func End, Address: 0x218a08, Func Offset: 0x98
 }
+// */
 
-// 
-// Start address: 0x218a10
-int bhEne_CheckSideWall(BH_PWORK* epw, float step, int both)
-{
-	// Line 2115, Address: 0x218a14, Func Offset: 0x4
-	// Func End, Address: 0x218a1c, Func Offset: 0xc
+// 100% matching!
+void bhEne_CheckSideWall(BH_PWORK* epw, float step, int both) {  
+
+    NJS_POINT3 *pos = (NJS_POINT3*)&epw->px;
+    bhEne_CheckSideWall3(epw, pos, step, both);
 }
 
-// 
-// Start address: 0x218a20
+// 100% matching!
 int bhEne_CheckSideWall2(BH_PWORK* epw, float step, int both)
 {
-	_anon4 pos;
-	// Line 2136, Address: 0x218a20, Func Offset: 0
-	// Line 2139, Address: 0x218a28, Func Offset: 0x8
-	// Line 2142, Address: 0x218a34, Func Offset: 0x14
-	// Line 2139, Address: 0x218a38, Func Offset: 0x18
-	// Line 2140, Address: 0x218a40, Func Offset: 0x20
-	// Line 2141, Address: 0x218a50, Func Offset: 0x30
-	// Line 2142, Address: 0x218a54, Func Offset: 0x34
-	// Line 2143, Address: 0x218a5c, Func Offset: 0x3c
-	// Func End, Address: 0x218a68, Func Offset: 0x48
+    NJS_POINT3 pos; // $sp+0x10
+
+    pos.x = epw->px + epw->aox;
+    pos.z = epw->pz + epw->aoz;
+    pos.y = epw->py;
+    
+    bhEne_CheckSideWall3(epw, &pos, step, both);
 }
-*/
 
 // 100% matching!
 int bhEne_CheckSideWall3(BH_PWORK* epw, NJS_POINT3* pos, float step, int both)
