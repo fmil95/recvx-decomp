@@ -2662,28 +2662,38 @@ int bhEne_CheckSideWall2(BH_PWORK* epw, float step, int both)
 	// Line 2143, Address: 0x218a5c, Func Offset: 0x3c
 	// Func End, Address: 0x218a68, Func Offset: 0x48
 }
+*/
 
-// 
-// Start address: 0x218a70
-int bhEne_CheckSideWall3(BH_PWORK* epw, _anon4* pos, float step, int both)
+// 100% matching!
+int bhEne_CheckSideWall3(BH_PWORK* epw, NJS_POINT3* pos, float step, int both)
 {
-	int lhit;
-	int rhit;
-	// Line 2165, Address: 0x218a70, Func Offset: 0
-	// Line 2170, Address: 0x218a94, Func Offset: 0x24
-	// Line 2168, Address: 0x218aa4, Func Offset: 0x34
-	// Line 2170, Address: 0x218aa8, Func Offset: 0x38
-	// Line 2172, Address: 0x218ab8, Func Offset: 0x48
-	// Line 2174, Address: 0x218abc, Func Offset: 0x4c
-	// Line 2176, Address: 0x218ad8, Func Offset: 0x68
-	// Line 2179, Address: 0x218adc, Func Offset: 0x6c
-	// Line 2180, Address: 0x218aec, Func Offset: 0x7c
-	// Line 2182, Address: 0x218af4, Func Offset: 0x84
-	// Line 2183, Address: 0x218af8, Func Offset: 0x88
-	// Func End, Address: 0x218b1c, Func Offset: 0xac
+    int left_hit;
+    int right_hit;
+
+    right_hit = 0;
+    left_hit = 0;
+    
+    if (bhEne_CheckDirWall3(epw, pos, -0x4000, step) != 0) 
+    {
+        left_hit = 1;
+    }
+    if (bhEne_CheckDirWall3(epw, pos, 0x4000, step) != 0) 
+    {
+        right_hit = -1;
+    }
+
+    if (left_hit != 0) 
+    {
+        if (right_hit != 0) 
+        {
+            return both;
+        }
+    }
+
+    return left_hit + right_hit;
 }
 
-// 
+/*
 // Start address: 0x218b20
 void bhEne_SetVibration(int no)
 {
