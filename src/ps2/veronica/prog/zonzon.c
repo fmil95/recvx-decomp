@@ -1,3 +1,5 @@
+#include "types.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
@@ -2621,12 +2623,13 @@ _anon23* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step)
 	// Func End, Address: 0x218968, Func Offset: 0x48
 }
 
+*/
 // 
 // Start address: 0x218970
-_anon23* bhEne_CheckDirWall3(BH_PWORK* epw, _anon4* pos, int ang, float step)
+NO_NAME_10* bhEne_CheckDirWall3(BH_PWORK* epw, NJS_POINT3* pos, int ang, float step)
 {
-	_anon23* hp;
-	_anon4 ps;
+	NO_NAME_10* hp;
+	NJS_POINT3 ps;
 	// Line 2074, Address: 0x218970, Func Offset: 0
 	// Line 2078, Address: 0x218988, Func Offset: 0x18
 	// Line 2079, Address: 0x2189a0, Func Offset: 0x30
@@ -2637,9 +2640,9 @@ _anon23* bhEne_CheckDirWall3(BH_PWORK* epw, _anon4* pos, int ang, float step)
 	// Line 2083, Address: 0x2189d8, Func Offset: 0x68
 	// Line 2094, Address: 0x2189ec, Func Offset: 0x7c
 	// Func End, Address: 0x218a08, Func Offset: 0x98
+	scePrintf("bhEne_CheckDirWall3 - UNIMPLEMENTED!\n");
 }
 
-*/
 // 100% matching!
 void bhEne_CheckSideWall(BH_PWORK* epw, float step, int both) {  
 
