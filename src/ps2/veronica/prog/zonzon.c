@@ -1,5 +1,7 @@
 #include "types.h"
 
+// _anon23 = NO_NAME_10
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
@@ -1552,9 +1554,9 @@ void bhEne_QuickSort(_anon1* a, int first, int last);
 int bhEne_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate);
 int bhEne_CollisionCheckWall(BH_PWORK* pw, _anon4* ps, _anon4* pd, float ar, float ah);
 _anon23* bhEne_CollisionCheckWall2(BH_PWORK* pw, _anon4* ps, _anon4* ops, _anon4* pd, float ar, float ah);
-_anon23* bhEne_CheckDirWall(BH_PWORK* epw, int ang, float step);
-_anon23* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step);
 */
+NO_NAME_10* bhEne_CheckDirWall(BH_PWORK* epw, int ang, float step);
+NO_NAME_10* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step);
 NO_NAME_10* bhEne_CheckDirWall3(BH_PWORK* epw, NJS_POINT3* pos, int ang, float step);
 int bhEne_CheckSideWall(BH_PWORK* epw, float step, int both);
 int bhEne_CheckSideWall2(BH_PWORK* epw, float step, int both);
@@ -2598,51 +2600,53 @@ _anon23* bhEne_CollisionCheckWall2(BH_PWORK* pw, _anon4* ps, _anon4* ops, _anon4
 	// Line 1935, Address: 0x2188d0, Func Offset: 0xf0
 	// Func End, Address: 0x218904, Func Offset: 0x124
 }
-
-// 
-// Start address: 0x218910
-_anon23* bhEne_CheckDirWall(BH_PWORK* epw, int ang, float step)
-{
-	_anon23* hp;
-	// Line 2021, Address: 0x218914, Func Offset: 0x4
-	// Func End, Address: 0x21891c, Func Offset: 0xc
-}
-
-// 
-// Start address: 0x218920
-_anon23* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step)
-{
-	_anon23* hp;
-	_anon4 ps;
-	// Line 2042, Address: 0x218920, Func Offset: 0
-	// Line 2046, Address: 0x218928, Func Offset: 0x8
-	// Line 2050, Address: 0x218934, Func Offset: 0x14
-	// Line 2046, Address: 0x218938, Func Offset: 0x18
-	// Line 2047, Address: 0x218940, Func Offset: 0x20
-	// Line 2048, Address: 0x218950, Func Offset: 0x30
-	// Line 2050, Address: 0x218954, Func Offset: 0x34
-	// Line 2053, Address: 0x21895c, Func Offset: 0x3c
-	// Func End, Address: 0x218968, Func Offset: 0x48
-}
-
 */
-// 
-// Start address: 0x218970
+
+// 100% matching!
+NO_NAME_10* bhEne_CheckDirWall(BH_PWORK* epw, int ang, float step) 
+{
+    NJS_POINT3* pos = (NJS_POINT3*)((char*)epw + 0x10);
+    NO_NAME_10* hp;
+
+    hp = bhEne_CheckDirWall3(epw, pos, ang, step);
+    return hp;
+}
+
+// 100% matching!
+NO_NAME_10* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step)
+{
+    NO_NAME_10* hp;
+    NJS_POINT3 pos;
+
+    pos.x = epw->px + epw->aox;
+    pos.z = epw->pz + epw->aoz;
+    pos.y = epw->py;
+  
+    hp = bhEne_CheckDirWall3(epw, &pos, ang, step);
+    return hp;
+}
+
+// 100% matching!
 NO_NAME_10* bhEne_CheckDirWall3(BH_PWORK* epw, NJS_POINT3* pos, int ang, float step)
 {
-	NO_NAME_10* hp;
+    int angle;
+    float float_angle;
+
+    NO_NAME_10* hp;
 	NJS_POINT3 ps;
-	// Line 2074, Address: 0x218970, Func Offset: 0
-	// Line 2078, Address: 0x218988, Func Offset: 0x18
-	// Line 2079, Address: 0x2189a0, Func Offset: 0x30
-	// Line 2080, Address: 0x2189ac, Func Offset: 0x3c
-	// Line 2079, Address: 0x2189b0, Func Offset: 0x40
-	// Line 2080, Address: 0x2189b8, Func Offset: 0x48
-	// Line 2081, Address: 0x2189d0, Func Offset: 0x60
-	// Line 2083, Address: 0x2189d8, Func Offset: 0x68
-	// Line 2094, Address: 0x2189ec, Func Offset: 0x7c
-	// Func End, Address: 0x218a08, Func Offset: 0x98
-	scePrintf("bhEne_CheckDirWall3 - UNIMPLEMENTED!\n");
+    
+    angle = (epw->ay + ang) & 0xffff;
+
+    float_angle = step * njSin(angle);
+    ps.x = pos->x - float_angle;
+    
+    float_angle = step * njCos(angle);
+    ps.z = pos->z - float_angle;
+    
+    ps.y = pos->y;
+    
+    hp = bhCheckWallType(&ps, epw->flg, epw->ar, epw->ah);
+    return hp;
 }
 
 // 100% matching!
@@ -2696,23 +2700,25 @@ int bhEne_CheckSideWall3(BH_PWORK* epw, NJS_POINT3* pos, float step, int both)
 // 100% matching!
 void bhEne_SetVibration(int no)
 {
-    switch (no) {                               
-    case 0:
-        StartVibrationEx(1, 9);
-        break;
-    case 1:
-        StartVibrationEx(1, 0xA);
-        break;
-    case 2:
-        StartVibrationEx(1, 0xB);
-        break;
+    switch (no) 
+	{                               
+        case 0:
+            StartVibrationEx(1, 9);
+            break;
+        case 1:
+            StartVibrationEx(1, 0xA);
+            break;
+        case 2:
+            StartVibrationEx(1, 0xB);
+            break;
     }
 }
 
 // 100% matching!
 void bhEne_PlayerSePlay(BH_PWORK* epw, int no)
 {
-    if (!(epw->flg & 0x10000)) {
+    if (!(epw->flg & 0x10000)) 
+	{
         CallPlayerVoice(no);
     }
 }
