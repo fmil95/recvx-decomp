@@ -1529,9 +1529,9 @@ _anon0 eff[0];
 void ikou(BH_PWORK* epw, NJS_POINT3* pos, int add_dir);
 int ikou3(BH_PWORK* epw, NJS_POINT3* pos, int add_dir);
 int NitenDir_ck(float hontai_x, float hontai_z, float target_x, float target_z);
-/*
 int bhCdirCheck(int my_ang, int trg_ang);
 int bhEne_LeverCheck();
+/*
 int bhDGCdirCheck(_anon4* dv, int rot);
 int bhDGCdirCheck2(_anon4* dv, _anon20* owk);
 int bhDGCdirCheck3(_anon4* dv, int rot);
@@ -1645,21 +1645,27 @@ int bhCdirCheck(int my_ang, int trg_ang)
 {    
    return (((my_ang - trg_ang) + 0x4000) & 0xffff) < 0x8000 ? 1 : 0;
 }
-/*
 
-// 
-// Start address: 0x2160d0
-int bhEne_LeverCheck()
+// 100% matching!
+int bhEne_LeverCheck() 
 {
-	int dec_cnt;
-	// Line 255, Address: 0x2160d0, Func Offset: 0
-	// Line 257, Address: 0x2160f0, Func Offset: 0x20
-	// Line 260, Address: 0x2160f4, Func Offset: 0x24
-	// Line 262, Address: 0x216100, Func Offset: 0x30
-	// Line 273, Address: 0x216104, Func Offset: 0x34
-	// Func End, Address: 0x21610c, Func Offset: 0x3c
-}
+    int dec_cnt;
+    
+    dec_cnt = 0;
 
+    if ((sys->pad_ps & 0xf) != 0)
+    {
+        dec_cnt = 4;
+    }
+    
+    if ((sys->pad_ps & 0x2d00) != 0) 
+    {
+        dec_cnt += 3;
+    }
+    return dec_cnt;
+}
+/*
+    
 // 
 // Start address: 0x216110
 int bhDGCdirCheck(_anon4* dv, int rot)
