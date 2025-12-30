@@ -1639,16 +1639,13 @@ int NitenDir_ck(float hontai_x, float hontai_z, float target_x, float target_z)
     uVar1 = (int)(fVar2 * 10430.381f);
     return uVar1;
 }
-/*
 
-// 
-// Start address: 0x2160b0
-int bhCdirCheck(int my_ang, int trg_ang)
-{
-	// Line 232, Address: 0x2160b0, Func Offset: 0
-	// Line 236, Address: 0x2160c8, Func Offset: 0x18
-	// Func End, Address: 0x2160d0, Func Offset: 0x20
+// 100% matching!
+int bhCdirCheck(int my_ang, int trg_ang) 
+{    
+   return (((my_ang - trg_ang) + 0x4000) & 0xffff) < 0x8000 ? 1 : 0;
 }
+/*
 
 // 
 // Start address: 0x2160d0
