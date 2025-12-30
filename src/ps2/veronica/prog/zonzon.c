@@ -1559,9 +1559,9 @@ NO_NAME_10* bhEne_CheckDirWall3(BH_PWORK* epw, NJS_POINT3* pos, int ang, float s
 int bhEne_CheckSideWall(BH_PWORK* epw, float step, int both);
 int bhEne_CheckSideWall2(BH_PWORK* epw, float step, int both);
 int bhEne_CheckSideWall3(BH_PWORK* epw, NJS_POINT3* pos, float step, int both);
-/*
 void bhEne_SetVibration(int no);
 void bhEne_PlayerSePlay(BH_PWORK* epw, int no);
+/*
 void bhEne_HitCheckParts(BH_PWORK* pp, _anon4* pos);
 
 // 
@@ -2692,34 +2692,32 @@ int bhEne_CheckSideWall3(BH_PWORK* epw, NJS_POINT3* pos, float step, int both)
 
     return left_hit + right_hit;
 }
-/*
 
-// 
-// Start address: 0x218b20
+// 100% matching!
 void bhEne_SetVibration(int no)
 {
-	// Line 2201, Address: 0x218b20, Func Offset: 0
-	// Line 2202, Address: 0x218b24, Func Offset: 0x4
-	// Line 2205, Address: 0x218b4c, Func Offset: 0x2c
-	// Line 2206, Address: 0x218b58, Func Offset: 0x38
-	// Line 2209, Address: 0x218b60, Func Offset: 0x40
-	// Line 2210, Address: 0x218b6c, Func Offset: 0x4c
-	// Line 2213, Address: 0x218b74, Func Offset: 0x54
-	// Line 2216, Address: 0x218b80, Func Offset: 0x60
-	// Func End, Address: 0x218b8c, Func Offset: 0x6c
+    switch (no) {                               
+    case 0:
+        StartVibrationEx(1, 9);
+        break;
+    case 1:
+        StartVibrationEx(1, 0xA);
+        break;
+    case 2:
+        StartVibrationEx(1, 0xB);
+        break;
+    }
 }
 
-// 
-// Start address: 0x218b90
+// 100% matching!
 void bhEne_PlayerSePlay(BH_PWORK* epw, int no)
 {
-	// Line 2235, Address: 0x218b90, Func Offset: 0
-	// Line 2236, Address: 0x218b98, Func Offset: 0x8
-	// Line 2238, Address: 0x218bac, Func Offset: 0x1c
-	// Line 2239, Address: 0x218bb4, Func Offset: 0x24
-	// Func End, Address: 0x218bc0, Func Offset: 0x30
+    if (!(epw->flg & 0x10000)) {
+        CallPlayerVoice(no);
+    }
 }
 
+/*
 // 
 // Start address: 0x218bc0
 void bhEne_HitCheckParts(BH_PWORK* pp, _anon4* pos)
