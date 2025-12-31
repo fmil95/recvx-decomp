@@ -279,8 +279,6 @@ int _Clip_ViewVolume(register float* clip, register float local_clip[4], registe
         
         cfc2         v0, $vi18
         
-        jr           ra
-        nop
     }
 }
 
