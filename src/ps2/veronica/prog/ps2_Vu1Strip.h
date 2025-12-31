@@ -24,19 +24,19 @@ void vu1DrawTriangleStripOpaqueSingle(unsigned long ulType, tagVU1_STRIP_BUF* pS
 void vu1DrawTriangleStripOpaqueDouble(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode);
 void vu1DrawTriangleStripTransSingle(unsigned long ulType, tagVU1_STRIP_BUF* pStripTop, unsigned short usStripMax, unsigned short usMode);*/
 int _Clip_Screen(float* clip);
-/*void vu1DrawTriangleStripTransDouble(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode);
-void vu1GetVertexColor(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim);
-void vu1GetVertexColorCM(tagVU1_PRIM_BUF* pPrim);
-void vu1GetVertexColorIgnore(tagVU1_PRIM_BUF* pPrim);
-void vu1GetVertexColorDif(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim);
-void vu1GetVertexColorDifAmb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim);
-void vu1GetVertexColorDifSpe1(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim);
-void vu1GetVertexColorDifSpe2(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim);
-void vu1GetVertexColorDifSpe3(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim);
-void vu1GetVertexColorDifSpe1Amb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim);
-void vu1GetVertexColorDifSpe2Amb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim);
-void vu1GetVertexColorDifSpe3Amb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim);
-void vu1RotTransStripBuf(float pMatrix[16], _anon3* pVector, tagVU1_STRIP_BUF* pBuf);
+/*void vu1DrawTriangleStripTransDouble(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode);*/
+void vu1GetVertexColor(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+void vu1GetVertexColorCM(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+void vu1GetVertexColorIgnore(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+void vu1GetVertexColorDif(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+void vu1GetVertexColorDifAmb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+void vu1GetVertexColorDifSpe1(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+void vu1GetVertexColorDifSpe2(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+void vu1GetVertexColorDifSpe3(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+void vu1GetVertexColorDifSpe1Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+void vu1GetVertexColorDifSpe2Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+void vu1GetVertexColorDifSpe3Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+/*void vu1RotTransStripBuf(float pMatrix[16], _anon3* pVector, tagVU1_STRIP_BUF* pBuf);
 void vu1DrawTriangleStripTransDoubleI(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode);
 void DrawScissorPolygonTrans1P(_anon2* scissor, unsigned long ulType);
 void vu1DrawTriangleStripTransDouble1P(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode);*/

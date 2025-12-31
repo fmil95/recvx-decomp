@@ -4,23 +4,34 @@
 
 static SCISSOR_PLANE planeset;
 static SCISSOR scissorflip;
+static NODE node;
 float fVu1Projection;
 float fVu1NearClip;
 float fVu1InvNearClip;
 float fVu1FarClip;
-float fVu1AspectW;
-float fVu1AspectH;
-/*void(*pColorCalcFuncTbl)(tagVU1_STRIP_BUF*, tagVU1_PRIM_BUF*)[11];
-tagVU1_COLOR vu1Diffuse;*/
-VU1_COLOR vu1Specula = { 1.0f, 1.0f, 1.0f, 1.0f };
-float fVu1AlphaRatio = 128.0f;
-/*static _anon4 node;*/
 float fVu1OffsetX;
 float fVu1OffsetY;
+float fVu1AspectW;
+float fVu1AspectH;
+VU1_PRIM_BUF vu1ScessorBuf[16];
+void (*pColorCalcFuncTbl[11])(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) = 
+{
+	vu1GetVertexColor,
+	vu1GetVertexColorCM,
+	vu1GetVertexColorIgnore,
+	vu1GetVertexColorDif,
+	vu1GetVertexColorDifAmb,
+	vu1GetVertexColorDifSpe1,
+	vu1GetVertexColorDifSpe2,
+	vu1GetVertexColorDifSpe3,
+	vu1GetVertexColorDifSpe1Amb,
+	vu1GetVertexColorDifSpe2Amb,
+	vu1GetVertexColorDifSpe3Amb
+};
+VU1_COLOR vu1Diffuse = { 1.0f, 1.0f, 1.0f, 1.0f };
+VU1_COLOR vu1Specula = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR vu1Ambient = { 1.0f, 1.0f, 1.0f, 1.0f };
-/*tagVU1_PRIM_BUF vu1ScessorBuf[16];
-unsigned char Ps2_DRAW_TMP[16384];
-float Ps2AddPrimPrio;*/
+float fVu1AlphaRatio = 128.0f;
 
 // 100% matching!
 void vu1SetScreenProjection(float fProjection)
@@ -109,25 +120,32 @@ void vu1SetScreenAspect(float fAspectW, float fAspectH)
     }
 }
 
-/*// 
-// Start address: 0x2d39d0
-void vu1SetDiffuseMaterial(tagVU1_COLOR* pDiffuse)
+// 100% matching!
+void vu1SetDiffuseMaterial(VU1_COLOR* pDiffuse)
 {
-	// Line 340, Address: 0x2d39d0, Func Offset: 0
-	// Line 341, Address: 0x2d39e8, Func Offset: 0x18
-	// Line 342, Address: 0x2d39f8, Func Offset: 0x28
-	// Line 349, Address: 0x2d3a08, Func Offset: 0x38
-	// Line 350, Address: 0x2d3a0c, Func Offset: 0x3c
-	// Line 351, Address: 0x2d3a10, Func Offset: 0x40
-	// Line 352, Address: 0x2d3a14, Func Offset: 0x44
-	// Line 353, Address: 0x2d3a18, Func Offset: 0x48
-	// Line 354, Address: 0x2d3a1c, Func Offset: 0x4c
-	// Line 355, Address: 0x2d3a20, Func Offset: 0x50
-	// Line 356, Address: 0x2d3a24, Func Offset: 0x54
-	// Line 357, Address: 0x2d3a28, Func Offset: 0x58
-	// Line 364, Address: 0x2d3a2c, Func Offset: 0x5c
-	// Func End, Address: 0x2d3a34, Func Offset: 0x64
-}*/
+    vu1Diffuse.fR = 128.0f * pDiffuse->fR;
+    vu1Diffuse.fG = 128.0f * pDiffuse->fG;
+    vu1Diffuse.fB = 128.0f * pDiffuse->fB;
+    
+    asm volatile 
+    ("
+        lq         t3, 0(a0)
+    
+        mfc1       t0, %0
+        mfc1       t1, %0
+        mfc1       t2, %0
+        
+        pextlw     t0, t1, t0 
+        pcpyld     t0, t2, t0 
+    
+        qmtc2      t3, $vf4 
+        qmtc2      t0, $vf5 
+    
+        vmul.xyz   $vf4,  $vf4, $vf5 
+        vaddx.xyzw $vf20, $vf4, $vf0x 
+    " : : "f"(128.0f) : "t0"
+    );
+}
 
 // 100% matching!
 void vu1SetSpeculaMaterial(VU1_COLOR* pSpecula)
@@ -1056,11 +1074,11 @@ void vu1DrawTriangleStripTransDouble(unsigned long ulType, tagVU1_STRIP_BUF* pS,
 	// Line 3355, Address: 0x2d5528, Func Offset: 0x438
 	// Line 3360, Address: 0x2d553c, Func Offset: 0x44c
 	// Func End, Address: 0x2d556c, Func Offset: 0x47c
-}
+}*/
 
 // 
 // Start address: 0x2d5570
-void vu1GetVertexColor(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
+void vu1GetVertexColor(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
 	// Line 3663, Address: 0x2d5570, Func Offset: 0
 	// Line 3664, Address: 0x2d5580, Func Offset: 0x10
@@ -1075,11 +1093,12 @@ void vu1GetVertexColor(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
 	// Line 3673, Address: 0x2d55a4, Func Offset: 0x34
 	// Line 3677, Address: 0x2d55a8, Func Offset: 0x38
 	// Func End, Address: 0x2d55b0, Func Offset: 0x40
+	scePrintf("vu1GetVertexColor - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d55b0
-void vu1GetVertexColorCM(tagVU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorCM(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) // first parameter is not present on the debugging symbols
 {
 	// Line 3705, Address: 0x2d55b0, Func Offset: 0
 	// Line 3706, Address: 0x2d55b8, Func Offset: 0x8
@@ -1088,11 +1107,12 @@ void vu1GetVertexColorCM(tagVU1_PRIM_BUF* pPrim)
 	// Line 3709, Address: 0x2d55c8, Func Offset: 0x18
 	// Line 3713, Address: 0x2d55cc, Func Offset: 0x1c
 	// Func End, Address: 0x2d55d4, Func Offset: 0x24
+	scePrintf("vu1GetVertexColorCM - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d55e0
-void vu1GetVertexColorIgnore(tagVU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorIgnore(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) // first parameter is not present on the debugging symbols
 {
 	// Line 3742, Address: 0x2d55e0, Func Offset: 0
 	// Line 3743, Address: 0x2d55e4, Func Offset: 0x4
@@ -1103,11 +1123,12 @@ void vu1GetVertexColorIgnore(tagVU1_PRIM_BUF* pPrim)
 	// Line 3748, Address: 0x2d55fc, Func Offset: 0x1c
 	// Line 3752, Address: 0x2d5600, Func Offset: 0x20
 	// Func End, Address: 0x2d5608, Func Offset: 0x28
+	scePrintf("vu1GetVertexColorIgnore - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d5610
-void vu1GetVertexColorDif(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDif(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
 	// Line 3790, Address: 0x2d5610, Func Offset: 0
 	// Line 3791, Address: 0x2d5618, Func Offset: 0x8
@@ -1120,11 +1141,12 @@ void vu1GetVertexColorDif(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
 	// Line 3798, Address: 0x2d5638, Func Offset: 0x28
 	// Line 3802, Address: 0x2d563c, Func Offset: 0x2c
 	// Func End, Address: 0x2d5644, Func Offset: 0x34
+	scePrintf("vu1GetVertexColorDif - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d5650
-void vu1GetVertexColorDifAmb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifAmb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
 	// Line 3843, Address: 0x2d5650, Func Offset: 0
 	// Line 3846, Address: 0x2d5654, Func Offset: 0x4
@@ -1136,11 +1158,12 @@ void vu1GetVertexColorDifAmb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
 	// Line 3854, Address: 0x2d5670, Func Offset: 0x20
 	// Line 3858, Address: 0x2d5674, Func Offset: 0x24
 	// Func End, Address: 0x2d567c, Func Offset: 0x2c
+	scePrintf("vu1GetVertexColorDifAmb - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d5680
-void vu1GetVertexColorDifSpe1(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifSpe1(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
 	// Line 3909, Address: 0x2d5680, Func Offset: 0
 	// Line 3912, Address: 0x2d5684, Func Offset: 0x4
@@ -1159,11 +1182,12 @@ void vu1GetVertexColorDifSpe1(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
 	// Line 3922, Address: 0x2d56b8, Func Offset: 0x38
 	// Line 3926, Address: 0x2d56bc, Func Offset: 0x3c
 	// Func End, Address: 0x2d56c4, Func Offset: 0x44
+	scePrintf("vu1GetVertexColorDifSpe1 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d56d0
-void vu1GetVertexColorDifSpe2(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifSpe2(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
 	// Line 3976, Address: 0x2d56d0, Func Offset: 0
 	// Line 3978, Address: 0x2d56e8, Func Offset: 0x18
@@ -1184,11 +1208,12 @@ void vu1GetVertexColorDifSpe2(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
 	// Line 3993, Address: 0x2d5728, Func Offset: 0x58
 	// Line 3997, Address: 0x2d572c, Func Offset: 0x5c
 	// Func End, Address: 0x2d5734, Func Offset: 0x64
+	scePrintf("vu1GetVertexColorDifSpe2 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d5740
-void vu1GetVertexColorDifSpe3(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifSpe3(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
 	// Line 4044, Address: 0x2d5740, Func Offset: 0
 	// Line 4045, Address: 0x2d5750, Func Offset: 0x10
@@ -1212,11 +1237,12 @@ void vu1GetVertexColorDifSpe3(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
 	// Line 4064, Address: 0x2d57ac, Func Offset: 0x6c
 	// Line 4068, Address: 0x2d57b0, Func Offset: 0x70
 	// Func End, Address: 0x2d57b8, Func Offset: 0x78
+	scePrintf("vu1GetVertexColorDifSpe3 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d57c0
-void vu1GetVertexColorDifSpe1Amb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifSpe1Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
 	// Line 4122, Address: 0x2d57c0, Func Offset: 0
 	// Line 4123, Address: 0x2d57d8, Func Offset: 0x18
@@ -1237,11 +1263,12 @@ void vu1GetVertexColorDifSpe1Amb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPri
 	// Line 4138, Address: 0x2d5818, Func Offset: 0x58
 	// Line 4142, Address: 0x2d581c, Func Offset: 0x5c
 	// Func End, Address: 0x2d5824, Func Offset: 0x64
+	scePrintf("vu1GetVertexColorDifSpe1Amb - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d5830
-void vu1GetVertexColorDifSpe2Amb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifSpe2Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
 	// Line 4192, Address: 0x2d5830, Func Offset: 0
 	// Line 4193, Address: 0x2d5848, Func Offset: 0x18
@@ -1262,11 +1289,12 @@ void vu1GetVertexColorDifSpe2Amb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPri
 	// Line 4208, Address: 0x2d5888, Func Offset: 0x58
 	// Line 4212, Address: 0x2d588c, Func Offset: 0x5c
 	// Func End, Address: 0x2d5894, Func Offset: 0x64
+	scePrintf("vu1GetVertexColorDifSpe2Amb - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d58a0
-void vu1GetVertexColorDifSpe3Amb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifSpe3Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
 	// Line 4259, Address: 0x2d58a0, Func Offset: 0
 	// Line 4260, Address: 0x2d58b8, Func Offset: 0x18
@@ -1292,9 +1320,10 @@ void vu1GetVertexColorDifSpe3Amb(tagVU1_STRIP_BUF* pStrip, tagVU1_PRIM_BUF* pPri
 	// Line 4282, Address: 0x2d591c, Func Offset: 0x7c
 	// Line 4286, Address: 0x2d5920, Func Offset: 0x80
 	// Func End, Address: 0x2d5928, Func Offset: 0x88
+	scePrintf("vu1GetVertexColorDifSpe3Amb - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d5930
 void vu1RotTransStripBuf(float pMatrix[16], _anon3* pVector, tagVU1_STRIP_BUF* pBuf)
 {
