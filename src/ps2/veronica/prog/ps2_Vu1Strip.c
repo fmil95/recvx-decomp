@@ -13,11 +13,11 @@ float fVu1AspectH;
 /*void(*pColorCalcFuncTbl)(tagVU1_STRIP_BUF*, tagVU1_PRIM_BUF*)[11];
 tagVU1_COLOR vu1Diffuse;
 tagVU1_COLOR vu1Specula;
-tagVU1_COLOR vu1Ambient;
 float fVu1AlphaRatio;
 static _anon4 node;*/
 float fVu1OffsetX;
 float fVu1OffsetY;
+VU1_COLOR vu1Ambient = { 1.0f, 1.0f, 1.0f, 1.0f };
 /*tagVU1_PRIM_BUF vu1ScessorBuf[16];
 unsigned char Ps2_DRAW_TMP[16384];
 float Ps2AddPrimPrio;*/
@@ -146,20 +146,19 @@ void vu1SetSpeculaMaterial(tagVU1_COLOR* pSpecula)
 	// Line 395, Address: 0x2d3a94, Func Offset: 0x54
 	// Line 402, Address: 0x2d3a98, Func Offset: 0x58
 	// Func End, Address: 0x2d3aa0, Func Offset: 0x60
-}
+}*/
 
-// 
-// Start address: 0x2d3aa0
-void vu1SetAmbient(tagVU1_COLOR* pAmbient)
+// 100% matching!
+void vu1SetAmbient(VU1_COLOR* pAmbient)
 {
-	// Line 417, Address: 0x2d3aa0, Func Offset: 0
-	// Line 418, Address: 0x2d3aac, Func Offset: 0xc
-	// Line 419, Address: 0x2d3ab8, Func Offset: 0x18
-	// Line 431, Address: 0x2d3ac4, Func Offset: 0x24
-	// Func End, Address: 0x2d3acc, Func Offset: 0x2c
+    vu1Ambient.fR = pAmbient->fR;
+    vu1Ambient.fG = pAmbient->fG;
+    vu1Ambient.fB = pAmbient->fB;
+    
+    asm volatile(lqc2 vf22, 0(a0));
 }
 
-// 
+/*// 
 // Start address: 0x2d3ad0
 void vu1SetAlphaRatio(float fAlpha)
 {
