@@ -22,17 +22,26 @@ tagVU1_PRIM_BUF vu1ScessorBuf[16];
 unsigned char Ps2_DRAW_TMP[16384];
 float Ps2AddPrimPrio;*/
 
-// 
-// Start address: 0x2d38c0
+// 100% matching!
 void vu1SetScreenProjection(float fProjection)
 {
-	// Line 200, Address: 0x2d38c0, Func Offset: 0
-	// Line 206, Address: 0x2d38c8, Func Offset: 0x8
-	// Line 207, Address: 0x2d38d0, Func Offset: 0x10
-	// Line 208, Address: 0x2d38d4, Func Offset: 0x14
-	// Line 216, Address: 0x2d38d8, Func Offset: 0x18
-	// Func End, Address: 0x2d38fc, Func Offset: 0x3c
-	scePrintf("vu1SetScreenProjection - UNIMPLEMENTED!\n");
+    fVu1Projection = fProjection;
+    
+    asm volatile 
+    {
+    .set noreorder
+
+        mfc1     t0, $f12
+        nop
+        
+        qmtc2    t0, $vf4
+
+        vaddx.z  $vf23, $vf0, $vf4x
+        
+    .set reorder
+    }
+    
+    _Make_ClipMatrix(ClipMatrix2, fVu1Projection, _fNaViwClipNear, _fNaViwClipFar);
 }
 
 // 100% matching!
@@ -59,7 +68,7 @@ void vu1SetNearFarClip(float fNear, float fFar)
     .set reorder
     }
     
-    _Make_ClipMatrix(&ClipMatrix2[0], fVu1Projection, _fNaViwClipNear, _fNaViwClipFar);
+    _Make_ClipMatrix(ClipMatrix2, fVu1Projection, _fNaViwClipNear, _fNaViwClipFar);
 }
 
 // 
