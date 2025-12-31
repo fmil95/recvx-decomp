@@ -11,8 +11,8 @@ float fVu1FarClip;
 float fVu1AspectW;
 float fVu1AspectH;
 /*void(*pColorCalcFuncTbl)(tagVU1_STRIP_BUF*, tagVU1_PRIM_BUF*)[11];
-tagVU1_COLOR vu1Diffuse;
-tagVU1_COLOR vu1Specula;*/
+tagVU1_COLOR vu1Diffuse;*/
+VU1_COLOR vu1Specula = { 1.0f, 1.0f, 1.0f, 1.0f };
 float fVu1AlphaRatio = 128.0f;
 /*static _anon4 node;*/
 float fVu1OffsetX;
@@ -127,26 +127,32 @@ void vu1SetDiffuseMaterial(tagVU1_COLOR* pDiffuse)
 	// Line 357, Address: 0x2d3a28, Func Offset: 0x58
 	// Line 364, Address: 0x2d3a2c, Func Offset: 0x5c
 	// Func End, Address: 0x2d3a34, Func Offset: 0x64
-}
-
-// 
-// Start address: 0x2d3a40
-void vu1SetSpeculaMaterial(tagVU1_COLOR* pSpecula)
-{
-	// Line 380, Address: 0x2d3a40, Func Offset: 0
-	// Line 381, Address: 0x2d3a58, Func Offset: 0x18
-	// Line 382, Address: 0x2d3a68, Func Offset: 0x28
-	// Line 388, Address: 0x2d3a78, Func Offset: 0x38
-	// Line 389, Address: 0x2d3a7c, Func Offset: 0x3c
-	// Line 390, Address: 0x2d3a80, Func Offset: 0x40
-	// Line 391, Address: 0x2d3a84, Func Offset: 0x44
-	// Line 392, Address: 0x2d3a88, Func Offset: 0x48
-	// Line 393, Address: 0x2d3a8c, Func Offset: 0x4c
-	// Line 394, Address: 0x2d3a90, Func Offset: 0x50
-	// Line 395, Address: 0x2d3a94, Func Offset: 0x54
-	// Line 402, Address: 0x2d3a98, Func Offset: 0x58
-	// Func End, Address: 0x2d3aa0, Func Offset: 0x60
 }*/
+
+// 100% matching!
+void vu1SetSpeculaMaterial(VU1_COLOR* pSpecula)
+{
+    vu1Specula.fR = 31.0f * pSpecula->fR;
+    vu1Specula.fG = 31.0f * pSpecula->fG;
+    vu1Specula.fB = 31.0f * pSpecula->fB;
+    
+    asm volatile 
+    ("
+        mfc1       t0, %0
+        mfc1       t1, %0
+        mfc1       t2, %0
+        
+        pextlw     t0, t1, t0 
+        pcpyld     t0, t2, t0 
+    
+        qmtc2      t3, $vf4 
+        qmtc2      t0, $vf5 
+    
+        vmul.xyz   $vf4,  $vf4, $vf5 
+        vaddx.xyzw $vf21, $vf4, $vf0x 
+    " : : "f"(31.0f) : "t0"
+    );
+}
 
 // 100% matching!
 void vu1SetAmbient(VU1_COLOR* pAmbient)
