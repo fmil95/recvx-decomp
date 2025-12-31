@@ -254,28 +254,37 @@ void _Init_ScissorSystem()
     InitNodeArraySet(&scissorflip);
 }
 
-/*// 
-// Start address: 0x2d40b0
-int _Clip_ViewVolume(float* clip, float local_clip[4], float* vertex)
+// 100% matching! 
+int _Clip_ViewVolume(register float* clip, register float local_clip[4], register float* vertex)
 {
-	int ret;
-	// Line 553, Address: 0x2d40b0, Func Offset: 0
-	// Line 554, Address: 0x2d40b4, Func Offset: 0x4
-	// Line 555, Address: 0x2d40b8, Func Offset: 0x8
-	// Line 556, Address: 0x2d40bc, Func Offset: 0xc
-	// Line 557, Address: 0x2d40c0, Func Offset: 0x10
-	// Line 558, Address: 0x2d40c4, Func Offset: 0x14
-	// Line 559, Address: 0x2d40c8, Func Offset: 0x18
-	// Line 560, Address: 0x2d40cc, Func Offset: 0x1c
-	// Line 561, Address: 0x2d40d0, Func Offset: 0x20
-	// Line 562, Address: 0x2d40d4, Func Offset: 0x24
-	// Line 563, Address: 0x2d40d8, Func Offset: 0x28
-	// Line 564, Address: 0x2d40dc, Func Offset: 0x2c
-	// Line 568, Address: 0x2d40e0, Func Offset: 0x30
-	// Func End, Address: 0x2d40e8, Func Offset: 0x38
+    asm volatile
+    {
+        
+        lqc2         $vf4, 0(vertex)
+            
+        vmulax.xyzw  ACC,  $vf24, $vf4x
+            
+        vmadday.xyzw ACC,  $vf25, $vf4y
+        vmaddaz.xyzw ACC,  $vf26, $vf4z
+            
+        vmaddw.xyzw  $vf5, $vf27, $vf0w
+            
+        vclipw.xyz   $vf5xyz, $vf5w
+        vnop
+        vnop
+        vnop
+        vnop
+        
+        sqc2         $vf5, 0(clip)
+        
+        cfc2         v0, $vi18
+        
+        jr           ra
+        nop
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2d40f0
 void PushTriangleNodeArray(_anon2* scissor)
 {
