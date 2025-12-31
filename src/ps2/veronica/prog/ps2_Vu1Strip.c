@@ -143,7 +143,7 @@ void vu1SetDiffuseMaterial(VU1_COLOR* pDiffuse)
     
         vmul.xyz   $vf4,  $vf4, $vf5 
         vaddx.xyzw $vf20, $vf4, $vf0x 
-    " : : "f"(128.0f) : "t0"
+    " : : "f"(128.0f) : "t0", "t1", "t2"
     );
 }
 
@@ -168,7 +168,7 @@ void vu1SetSpeculaMaterial(VU1_COLOR* pSpecula)
     
         vmul.xyz   $vf4,  $vf4, $vf5 
         vaddx.xyzw $vf21, $vf4, $vf0x 
-    " : : "f"(31.0f) : "t0"
+    " : : "f"(31.0f) : "t0", "t1", "t2"
     );
 }
 
@@ -1076,24 +1076,29 @@ void vu1DrawTriangleStripTransDouble(unsigned long ulType, tagVU1_STRIP_BUF* pS,
 	// Func End, Address: 0x2d556c, Func Offset: 0x47c
 }*/
 
-// 
-// Start address: 0x2d5570
+// 100% matching!
 void vu1GetVertexColor(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
-	// Line 3663, Address: 0x2d5570, Func Offset: 0
-	// Line 3664, Address: 0x2d5580, Func Offset: 0x10
-	// Line 3665, Address: 0x2d5584, Func Offset: 0x14
-	// Line 3666, Address: 0x2d5588, Func Offset: 0x18
-	// Line 3667, Address: 0x2d558c, Func Offset: 0x1c
-	// Line 3668, Address: 0x2d5590, Func Offset: 0x20
-	// Line 3669, Address: 0x2d5594, Func Offset: 0x24
-	// Line 3670, Address: 0x2d5598, Func Offset: 0x28
-	// Line 3671, Address: 0x2d559c, Func Offset: 0x2c
-	// Line 3672, Address: 0x2d55a0, Func Offset: 0x30
-	// Line 3673, Address: 0x2d55a4, Func Offset: 0x34
-	// Line 3677, Address: 0x2d55a8, Func Offset: 0x38
-	// Func End, Address: 0x2d55b0, Func Offset: 0x40
-	scePrintf("vu1GetVertexColor - UNIMPLEMENTED!\n");
+    asm volatile 
+    ("
+        lqc2      $vf4, 0x10(a0)
+        
+        mfc1      t0, %0
+        mfc1      t1, %0
+        mfc1      t2, %0
+        mfc1      t3, %1
+        
+        pextlw    t0, t1, t0
+        pextlw    t2, t3, t2
+        pcpyld    t0, t2, t0
+    
+        qmtc2     t0, $vf5
+    
+        vmul.xyzw $vf4, $vf4, $vf5 
+        
+        sqc2      $vf4, 0x10(a1)
+    " : : "f"(128.0f), "f"(256.0f) : "t0", "t1", "t2", "t3"
+    );
 }
 
 // 
