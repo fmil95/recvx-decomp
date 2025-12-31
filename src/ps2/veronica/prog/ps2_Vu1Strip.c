@@ -1,4 +1,5 @@
 #include "ps2_Vu1Strip.h"
+#include "ps2_NaFog.h"
 #include "ps2_NaView.h"
 #include "main.h"
 
@@ -1328,29 +1329,27 @@ void vu1GetVertexColorDifSpe3Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 	scePrintf("vu1GetVertexColorDifSpe3Amb - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2d5930
-void vu1RotTransStripBuf(float pMatrix[16], _anon3* pVector, tagVU1_STRIP_BUF* pBuf)
+// 100% matching! 
+void vu1RotTransStripBuf(NJS_MATRIX* pMatrix, NJS_VECTOR* pVector, VU1_STRIP_BUF* pBuf)
 {
-	float fIz;
-	float fZ;
-	// Line 4303, Address: 0x2d5930, Func Offset: 0
-	// Line 4307, Address: 0x2d5940, Func Offset: 0x10
-	// Line 4309, Address: 0x2d5948, Func Offset: 0x18
-	// Line 4310, Address: 0x2d5954, Func Offset: 0x24
-	// Line 4312, Address: 0x2d595c, Func Offset: 0x2c
-	// Line 4309, Address: 0x2d5960, Func Offset: 0x30
-	// Line 4312, Address: 0x2d5964, Func Offset: 0x34
-	// Line 4313, Address: 0x2d596c, Func Offset: 0x3c
-	// Line 4310, Address: 0x2d5970, Func Offset: 0x40
-	// Line 4312, Address: 0x2d5974, Func Offset: 0x44
-	// Line 4313, Address: 0x2d5980, Func Offset: 0x50
-	// Line 4316, Address: 0x2d5994, Func Offset: 0x64
-	// Line 4320, Address: 0x2d59a0, Func Offset: 0x70
-	// Func End, Address: 0x2d59b0, Func Offset: 0x80
+    float fZ;
+    float fIz;
+    
+    njCalcPoint(pMatrix, pVector, (NJS_POINT3*)&pBuf->fVx);
+    
+    fIz = 1.0f / pBuf->fVz;
+    
+    fZ = fVu1Projection * fIz;
+    
+    pBuf->fSx = fVu1AspectW * (pBuf->fVx * fZ);
+    pBuf->fSy = fVu1AspectH * (pBuf->fVy * fZ);
+    
+    pBuf->fIz = fIz;
+    
+    pBuf->fFog = njCalcFogPowerEx(fIz);
 }
 
-// 
+/*// 
 // Start address: 0x2d59b0
 void vu1DrawTriangleStripTransDoubleI(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
 {

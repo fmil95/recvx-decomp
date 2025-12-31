@@ -126,7 +126,7 @@ void	njGenerateFogTable3(NJS_FOG_TABLE fog, Float n, Float f)
 	scePrintf("njGenerateFogTable3 - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2d63d0
 float njCalcFogPowerEx(float INVZ)
 {
@@ -162,9 +162,10 @@ float njCalcFogPowerEx(float INVZ)
 	// Line 320, Address: 0x2d64e0, Func Offset: 0x110
 	// Line 390, Address: 0x2d650c, Func Offset: 0x13c
 	// Func End, Address: 0x2d6514, Func Offset: 0x144
+	scePrintf("njCalcFogPowerEx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d6520
 float njCalcFogPower(float fVSZ)
 {
