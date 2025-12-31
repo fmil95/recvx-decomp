@@ -15,10 +15,10 @@ tagVU1_COLOR vu1Diffuse;
 tagVU1_COLOR vu1Specula;
 tagVU1_COLOR vu1Ambient;
 float fVu1AlphaRatio;
-static _anon4 node;
-float fVu1OffsetY;
+static _anon4 node;*/
 float fVu1OffsetX;
-tagVU1_PRIM_BUF vu1ScessorBuf[16];
+float fVu1OffsetY;
+/*tagVU1_PRIM_BUF vu1ScessorBuf[16];
 unsigned char Ps2_DRAW_TMP[16384];
 float Ps2AddPrimPrio;*/
 
@@ -29,7 +29,6 @@ void vu1SetScreenProjection(float fProjection)
     
     asm volatile 
     {
-    .set noreorder
 
         mfc1     t0, $f12
         nop
@@ -38,7 +37,6 @@ void vu1SetScreenProjection(float fProjection)
 
         vaddx.z  $vf23, $vf0, $vf4x
         
-    .set reorder
     }
     
     _Make_ClipMatrix(ClipMatrix2, fVu1Projection, _fNaViwClipNear, _fNaViwClipFar);
@@ -54,7 +52,6 @@ void vu1SetNearFarClip(float fNear, float fFar)
 
     asm volatile 
     {
-    .set noreorder
         
         mfc1     t0, $f12
         mfc1     t1, $f13
@@ -65,26 +62,30 @@ void vu1SetNearFarClip(float fNear, float fFar)
         vaddx.x  $vf23x, $vf0x, $vf4x
         vaddx.y  $vf23y, $vf0y, $vf5x
         
-    .set reorder
     }
     
     _Make_ClipMatrix(ClipMatrix2, fVu1Projection, _fNaViwClipNear, _fNaViwClipFar);
 }
 
-// 
-// Start address: 0x2d3970
+// 100% matching!
 void vu1SetScreenOffset(float fOffsetX, float fOffsetY)
 {
-	// Line 272, Address: 0x2d3970, Func Offset: 0
-	// Line 273, Address: 0x2d3978, Func Offset: 0x8
-	// Line 278, Address: 0x2d3980, Func Offset: 0x10
-	// Line 279, Address: 0x2d3984, Func Offset: 0x14
-	// Line 280, Address: 0x2d3988, Func Offset: 0x18
-	// Line 281, Address: 0x2d398c, Func Offset: 0x1c
-	// Line 282, Address: 0x2d3990, Func Offset: 0x20
-	// Line 289, Address: 0x2d3994, Func Offset: 0x24
-	// Func End, Address: 0x2d399c, Func Offset: 0x2c
-	scePrintf("vu1SetScreenOffset - UNIMPLEMENTED!\n");
+    fVu1OffsetX = fOffsetX;
+    fVu1OffsetY = fOffsetY;
+    
+    asm volatile 
+    {
+        
+        mfc1     t0, $f12
+        mfc1     t1, $f13
+
+        qmtc2    t0, $vf4
+        qmtc2    t1, $vf5
+
+        vaddx.x  $vf16, $vf0, $vf4x
+        vaddx.y  $vf16, $vf0, $vf5x
+        
+    }
 }
 
 // 100% matching!
