@@ -12,9 +12,9 @@ float fVu1AspectW;
 float fVu1AspectH;
 /*void(*pColorCalcFuncTbl)(tagVU1_STRIP_BUF*, tagVU1_PRIM_BUF*)[11];
 tagVU1_COLOR vu1Diffuse;
-tagVU1_COLOR vu1Specula;
-float fVu1AlphaRatio;
-static _anon4 node;*/
+tagVU1_COLOR vu1Specula;*/
+float fVu1AlphaRatio = 128.0f;
+/*static _anon4 node;*/
 float fVu1OffsetX;
 float fVu1OffsetY;
 VU1_COLOR vu1Ambient = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -158,17 +158,22 @@ void vu1SetAmbient(VU1_COLOR* pAmbient)
     asm volatile(lqc2 vf22, 0(a0));
 }
 
-/*// 
-// Start address: 0x2d3ad0
+// 100% matching!
 void vu1SetAlphaRatio(float fAlpha)
 {
-	// Line 446, Address: 0x2d3ad0, Func Offset: 0
-	// Line 448, Address: 0x2d3ae4, Func Offset: 0x14
-	// Line 451, Address: 0x2d3aec, Func Offset: 0x1c
-	// Line 452, Address: 0x2d3af0, Func Offset: 0x20
-	// Line 459, Address: 0x2d3af4, Func Offset: 0x24
-	// Func End, Address: 0x2d3afc, Func Offset: 0x2c
-}*/
+    fVu1AlphaRatio = 128.0f * fAlpha;
+
+    asm volatile 
+    ("
+
+        mfc1    t0, %0       
+        qmtc2   t0, $vf4 
+
+        vmulx.w $vf23, $vf0, $vf4x
+
+    " : : "f"(fVu1AlphaRatio) : "t0"
+    );
+}
 
 // 100% matching!
 void InitNodeArraySet(register SCISSOR* scissor)
