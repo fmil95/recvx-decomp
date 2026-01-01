@@ -1085,11 +1085,11 @@ void vu1DrawTriangleStripTransDouble(unsigned long ulType, tagVU1_STRIP_BUF* pS,
 }*/
 
 // 100% matching!
-void vu1GetVertexColor(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
+void vu1GetVertexColor(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
 {
     asm volatile 
     ("
-        lqc2      $vf4, 0x10(a0)
+        lqc2      vf4, VU1_STRIP_BUF.fIr(pStrip)
         
         mfc1      t0, %0
         mfc1      t1, %0
@@ -1100,11 +1100,11 @@ void vu1GetVertexColor(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
         pextlw    t2, t3, t2
         pcpyld    t0, t2, t0
     
-        qmtc2     t0, $vf5
+        qmtc2     t0, vf5
     
-        vmul.xyzw $vf4, $vf4, $vf5 
+        vmul.xyzw vf4, vf4, vf5 
         
-        sqc2      $vf4, 0x10(a1)
+        sqc2      vf4, VU1_PRIM_BUF.fR(pPrim)
     " : : "f"(128.0f), "f"(256.0f) : "t0", "t1", "t2", "t3"
     );
 }
@@ -1173,21 +1173,28 @@ void vu1GetVertexColorDif(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF*
     );
 }
 
-// 
-// Start address: 0x2d5650
-void vu1GetVertexColorDifAmb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
+// 100% matching!
+void vu1GetVertexColorDifAmb(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim) 
 {
-	// Line 3843, Address: 0x2d5650, Func Offset: 0
-	// Line 3846, Address: 0x2d5654, Func Offset: 0x4
-	// Line 3847, Address: 0x2d565c, Func Offset: 0xc
-	// Line 3849, Address: 0x2d5660, Func Offset: 0x10
-	// Line 3850, Address: 0x2d5664, Func Offset: 0x14
-	// Line 3851, Address: 0x2d5668, Func Offset: 0x18
-	// Line 3853, Address: 0x2d566c, Func Offset: 0x1c
-	// Line 3854, Address: 0x2d5670, Func Offset: 0x20
-	// Line 3858, Address: 0x2d5674, Func Offset: 0x24
-	// Func End, Address: 0x2d567c, Func Offset: 0x2c
-	scePrintf("vu1GetVertexColorDifAmb - UNIMPLEMENTED!\n");
+    asm volatile 
+    ("
+        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
+
+        lw         t0, fVu1AlphaRatio
+        
+        qmtc2      t0, vf8
+
+        vadd.xyz   vf7, vf4, vf22
+        
+        vmaxx.xyz  vf7, vf7, vf0x
+        vminiw.xyz vf7, vf7, vf0w
+        
+        vmul.xyz   vf4, vf7, vf20
+        vmulx.w    vf4, vf0, vf8x 
+
+        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
+    " : : "f"(fVu1AlphaRatio) : "t0"
+    );
 }
 
 // 
