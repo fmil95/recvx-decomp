@@ -1,4 +1,6 @@
 #include "gameover.h"
+#include "room.h"
+#include "system.h"
 #include "main.h"
 
 typedef void (*mode0_proc)();
@@ -517,20 +519,19 @@ void bhMainGameOver()
 	scePrintf("bhMainGameOver - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2bb020
-void bhExitGameOver()
-{
-	// Line 542, Address: 0x2bb020, Func Offset: 0
-	// Line 587, Address: 0x2bb028, Func Offset: 0x8
-	// Line 588, Address: 0x2bb040, Func Offset: 0x20
-	// Line 589, Address: 0x2bb048, Func Offset: 0x28
-	// Line 591, Address: 0x2bb050, Func Offset: 0x30
-	// Line 592, Address: 0x2bb058, Func Offset: 0x38
-	// Line 595, Address: 0x2bb060, Func Offset: 0x40
-	// Func End, Address: 0x2bb06c, Func Offset: 0x4c
-	scePrintf("bhExitGameOver - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+void bhExitGameOver() 
+{ 
+    if (sys->gm_mode < 3)
+    { 
+        bhReturnTitle(); 
+        return;
+    }
+    
+    sys->ts_flg |= 0x4000; 
+    
+    bhPopGameData();
+} 
 
 /*// 
 // Start address: 0x2bb070
