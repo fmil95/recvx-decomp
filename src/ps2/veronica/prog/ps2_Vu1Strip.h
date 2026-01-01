@@ -15,9 +15,9 @@ void InitNodeArraySet(register SCISSOR* scissor);
 void InitScissorPlane(SCISSOR_PLANE* sp);
 void _Init_ScissorSystem();
 int _Clip_ViewVolume(float* clip, float local_clip[4], float* vertex);
-/*void PushTriangleNodeArray(_anon2* scissor);
-void ResetNodeArraySet(_anon2* scissor);
-void ScissorTriangle(_anon2* scissor, _anon5* plane_set);
+/*void PushTriangleNodeArray(_anon2* scissor);*/
+void ResetNodeArraySet(register SCISSOR* scissor);
+/*void ScissorTriangle(_anon2* scissor, _anon5* plane_set);
 int _Check_DisplayAreaPoint(_anon3* vec);
 void DrawScissorPolygonOpaque(_anon2* scissor, unsigned long ulType);
 void vu1DrawTriangleStripOpaqueSingle(unsigned long ulType, tagVU1_STRIP_BUF* pStripTop, unsigned short usStripMax, unsigned short usMode);
