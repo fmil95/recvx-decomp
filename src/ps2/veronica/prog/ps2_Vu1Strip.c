@@ -282,31 +282,50 @@ int _Clip_ViewVolume(register float* clip, register float local_clip[4], registe
     }
 }
 
-/*// 
-// Start address: 0x2d40f0
-void PushTriangleNodeArray(_anon2* scissor)
+// 100% matching!
+void PushTriangleNodeArray(register SCISSOR* scissor)
 {
-	// Line 624, Address: 0x2d40f0, Func Offset: 0
-	// Line 625, Address: 0x2d40f8, Func Offset: 0x8
-	// Line 626, Address: 0x2d40fc, Func Offset: 0xc
-	// Line 627, Address: 0x2d4110, Func Offset: 0x20
-	// Line 628, Address: 0x2d4114, Func Offset: 0x24
-	// Line 629, Address: 0x2d4118, Func Offset: 0x28
-	// Line 630, Address: 0x2d411c, Func Offset: 0x2c
-	// Line 631, Address: 0x2d4120, Func Offset: 0x30
-	// Line 632, Address: 0x2d4124, Func Offset: 0x34
-	// Line 633, Address: 0x2d4128, Func Offset: 0x38
-	// Line 634, Address: 0x2d412c, Func Offset: 0x3c
-	// Line 635, Address: 0x2d4130, Func Offset: 0x40
-	// Line 636, Address: 0x2d4134, Func Offset: 0x44
-	// Line 637, Address: 0x2d4138, Func Offset: 0x48
-	// Line 638, Address: 0x2d413c, Func Offset: 0x4c
-	// Line 639, Address: 0x2d4140, Func Offset: 0x50
-	// Line 640, Address: 0x2d4148, Func Offset: 0x58
-	// Line 641, Address: 0x2d414c, Func Offset: 0x5c
-	// Line 647, Address: 0x2d4150, Func Offset: 0x60
-	// Func End, Address: 0x2d4158, Func Offset: 0x68
-}*/
+    asm volatile 
+    ("
+        move   v1, %0
+        
+        lw     t0, SCISSOR.rotflag(scissor)
+        
+        daddiu at, zero, sizeof(NODE)
+    
+        mult   t0, at
+        nop
+        nop
+    
+        mflo   t1
+    
+        addi   t0, t0, 1
+        add    t1, t1, scissor
+        
+        andi   t0, t0, 0x3
+    
+        lqc2   vf4, NODE.vertex(v1)
+        lqc2   vf5, NODE.color(v1)
+        lqc2   vf6, NODE.texUV(v1)
+        lqc2   vf7, NODE.clipV(v1)
+        
+        sqc2   vf4, SCISSOR.triangle.node[0].vertex(t1)
+        sqc2   vf5, SCISSOR.triangle.node[0].color(t1)
+        sqc2   vf6, SCISSOR.triangle.node[0].texUV(t1)
+        sqc2   vf7, SCISSOR.triangle.node[0].clipV(t1)
+        
+        addi   t2, t0, -3
+        
+        bltz   t2, l_002D4150
+        nop
+    
+        neg    t0, zero
+        
+        l_002D4150:
+        sw     t0, SCISSOR.rotflag(scissor)
+    " : : "r"(&node) : "v1"
+    );
+}
 
 // 100% matching!
 void ResetNodeArraySet(register SCISSOR* scissor)
