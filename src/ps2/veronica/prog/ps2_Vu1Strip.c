@@ -1256,33 +1256,50 @@ void vu1GetVertexColorDifSpe2(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_
     );
 }
 
-// 
-// Start address: 0x2d5740
-void vu1GetVertexColorDifSpe3(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
+// 100% matching!
+void vu1GetVertexColorDifSpe3(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
 {
-	// Line 4044, Address: 0x2d5740, Func Offset: 0
-	// Line 4045, Address: 0x2d5750, Func Offset: 0x10
-	// Line 4046, Address: 0x2d5754, Func Offset: 0x14
-	// Line 4047, Address: 0x2d5758, Func Offset: 0x18
-	// Line 4048, Address: 0x2d575c, Func Offset: 0x1c
-	// Line 4049, Address: 0x2d5764, Func Offset: 0x24
-	// Line 4050, Address: 0x2d5768, Func Offset: 0x28
-	// Line 4051, Address: 0x2d576c, Func Offset: 0x2c
-	// Line 4053, Address: 0x2d5770, Func Offset: 0x30
-	// Line 4054, Address: 0x2d5774, Func Offset: 0x34
-	// Line 4055, Address: 0x2d5778, Func Offset: 0x38
-	// Line 4056, Address: 0x2d578c, Func Offset: 0x4c
-	// Line 4057, Address: 0x2d5790, Func Offset: 0x50
-	// Line 4058, Address: 0x2d5794, Func Offset: 0x54
-	// Line 4059, Address: 0x2d5798, Func Offset: 0x58
-	// Line 4060, Address: 0x2d579c, Func Offset: 0x5c
-	// Line 4061, Address: 0x2d57a0, Func Offset: 0x60
-	// Line 4062, Address: 0x2d57a4, Func Offset: 0x64
-	// Line 4063, Address: 0x2d57a8, Func Offset: 0x68
-	// Line 4064, Address: 0x2d57ac, Func Offset: 0x6c
-	// Line 4068, Address: 0x2d57b0, Func Offset: 0x70
-	// Func End, Address: 0x2d57b8, Func Offset: 0x78
-	scePrintf("vu1GetVertexColorDifSpe3 - UNIMPLEMENTED!\n");
+    asm volatile 
+    ("
+        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
+        lqc2       vf5, VU1_COLOR.fR(%0)
+        lqc2       vf6, VU1_COLOR.fR(%1)
+
+        lw         t0, fVu1AlphaRatio
+        
+        qmtc2      t0, vf8
+
+        addi       t1, zero, 17
+
+        vaddw.xyz  vf7, vf0, vf0w
+
+        l_002D5770:
+        vmul.xyz   vf7, vf7, vf4
+
+        addi       t1, t1, -1
+        nop
+        nop
+        nop
+
+        bnez       t1, l_002D5770
+        nop
+
+        vmaxx.xyz  vf4, vf4, vf0x
+        vminiw.xyz vf4, vf4, vf0w
+        
+        vmaxx.xyz  vf7, vf7, vf0x
+        vminiw.xyz vf7, vf7, vf0w
+        
+        vmul.xyz   vf4, vf4, vf5
+        vmul.xyz   vf7, vf7, vf6
+        
+        vadd.xyz   vf4, vf4, vf7
+        
+        vmulx.w    vf4, vf0, vf8x 
+
+        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
+    " : : "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "v1", "a2", "t0"
+    );
 }
 
 // 
