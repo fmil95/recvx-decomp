@@ -1338,30 +1338,39 @@ void vu1GetVertexColorDifSpe1Amb(register VU1_STRIP_BUF* pStrip, register VU1_PR
     );
 }
 
-// 
-// Start address: 0x2d5830
-void vu1GetVertexColorDifSpe2Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
+// 100% matching!
+void vu1GetVertexColorDifSpe2Amb(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
 {
-	// Line 4192, Address: 0x2d5830, Func Offset: 0
-	// Line 4193, Address: 0x2d5848, Func Offset: 0x18
-	// Line 4194, Address: 0x2d584c, Func Offset: 0x1c
-	// Line 4195, Address: 0x2d5850, Func Offset: 0x20
-	// Line 4196, Address: 0x2d5854, Func Offset: 0x24
-	// Line 4197, Address: 0x2d5858, Func Offset: 0x28
-	// Line 4198, Address: 0x2d5860, Func Offset: 0x30
-	// Line 4199, Address: 0x2d5864, Func Offset: 0x34
-	// Line 4200, Address: 0x2d5868, Func Offset: 0x38
-	// Line 4201, Address: 0x2d586c, Func Offset: 0x3c
-	// Line 4202, Address: 0x2d5870, Func Offset: 0x40
-	// Line 4203, Address: 0x2d5874, Func Offset: 0x44
-	// Line 4204, Address: 0x2d5878, Func Offset: 0x48
-	// Line 4205, Address: 0x2d587c, Func Offset: 0x4c
-	// Line 4206, Address: 0x2d5880, Func Offset: 0x50
-	// Line 4207, Address: 0x2d5884, Func Offset: 0x54
-	// Line 4208, Address: 0x2d5888, Func Offset: 0x58
-	// Line 4212, Address: 0x2d588c, Func Offset: 0x5c
-	// Func End, Address: 0x2d5894, Func Offset: 0x64
-	scePrintf("vu1GetVertexColorDifSpe2Amb - UNIMPLEMENTED!\n");
+    asm volatile 
+    ("
+        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
+        lqc2       vf5, VU1_COLOR.fR(%0)
+        lqc2       vf6, VU1_COLOR.fR(%1)
+        lqc2       vf7, VU1_COLOR.fR(%2)
+
+        lw         t0, fVu1AlphaRatio
+        
+        qmtc2      t0, vf8
+
+        vadd.xyz   vf4, vf4, vf5
+        vsubw.xyz  vf9, vf4, vf0w
+
+        vmaxx.xyz  vf9, vf9, vf0x
+        vminiw.xyz vf9, vf9, vf0w
+        
+        vmaxx.xyz  vf4, vf4, vf0x
+        vminiw.xyz vf4, vf4, vf0w
+        
+        vmul.xyz   vf9, vf9, vf7
+        vmul.xyz   vf4, vf4, vf6
+        
+        vadd.xyz   vf4, vf4, vf9
+        
+        vmulx.w    vf4, vf0, vf8x 
+
+        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
+    " : : "r"(&vu1Ambient), "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "v1", "a2", "a3", "t0"
+    );
 }
 
 // 
