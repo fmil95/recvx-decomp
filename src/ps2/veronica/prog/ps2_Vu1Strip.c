@@ -1114,9 +1114,7 @@ void vu1GetVertexColorCM(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* 
 {
     asm volatile 
     ("
-        la      v1, vu1Diffuse
-        
-        lqc2    vf4, VU1_COLOR.fR(v1)
+        lqc2    vf4, VU1_COLOR.fR(%0)
 
         lw      t0, fVu1AlphaRatio
 
@@ -1152,22 +1150,27 @@ void vu1GetVertexColorIgnore(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_B
     );
 }
 
-// 
-// Start address: 0x2d5610
-void vu1GetVertexColorDif(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
+// 100% matching!
+void vu1GetVertexColorDif(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
 {
-	// Line 3790, Address: 0x2d5610, Func Offset: 0
-	// Line 3791, Address: 0x2d5618, Func Offset: 0x8
-	// Line 3792, Address: 0x2d561c, Func Offset: 0xc
-	// Line 3793, Address: 0x2d5620, Func Offset: 0x10
-	// Line 3794, Address: 0x2d5628, Func Offset: 0x18
-	// Line 3795, Address: 0x2d562c, Func Offset: 0x1c
-	// Line 3796, Address: 0x2d5630, Func Offset: 0x20
-	// Line 3797, Address: 0x2d5634, Func Offset: 0x24
-	// Line 3798, Address: 0x2d5638, Func Offset: 0x28
-	// Line 3802, Address: 0x2d563c, Func Offset: 0x2c
-	// Func End, Address: 0x2d5644, Func Offset: 0x34
-	scePrintf("vu1GetVertexColorDif - UNIMPLEMENTED!\n");
+    asm volatile 
+    ("
+        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
+        lqc2       vf5, VU1_COLOR.fR(%0)
+
+        lw         t0, fVu1AlphaRatio
+
+        vminiw.xyz vf4, vf4, vf0w
+        vmaxx.xyz  vf4, vf4, vf0x 
+        
+        qmtc2      t0, vf6 
+
+        vmul.xyz   vf4, vf4, vf5
+        vmulx.w    vf4, vf0, vf6x 
+
+        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
+    " : : "r"(&vu1Diffuse), "f"(fVu1AlphaRatio) : "v1", "t0"
+    );
 }
 
 // 
