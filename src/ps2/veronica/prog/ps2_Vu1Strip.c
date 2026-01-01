@@ -565,20 +565,20 @@ void ScissorTriangle(_anon2* scissor, _anon5* plane_set)
 	// Line 1197, Address: 0x2d4624, Func Offset: 0x494
 	// Line 1199, Address: 0x2d4644, Func Offset: 0x4b4
 	// Func End, Address: 0x2d464c, Func Offset: 0x4bc
-}
+}*/
 
-// 
-// Start address: 0x2d4650
-int _Check_DisplayAreaPoint(_anon3* vec)
+// 100% matching!
+int _Check_DisplayAreaPoint(NJS_VECTOR* vec)
 {
-	// Line 1206, Address: 0x2d4650, Func Offset: 0
-	// Line 1212, Address: 0x2d46e8, Func Offset: 0x98
-	// Line 1214, Address: 0x2d46f0, Func Offset: 0xa0
-	// Line 1299, Address: 0x2d46f4, Func Offset: 0xa4
-	// Func End, Address: 0x2d46fc, Func Offset: 0xac
+    if (((vec->x >= 1.0f) && (vec->x < 4095.0f)) && ((vec->y >= 1.0f) && (vec->y < 4095.0f)) && ((vec->z >= 1.0f) && (vec->z < 65535.0f))) 
+    {
+        return 0;
+    }
+    
+    return 1;
 }
 
-// 
+/*// 
 // Start address: 0x2d4700
 void DrawScissorPolygonOpaque(_anon2* scissor, unsigned long ulType)
 {
