@@ -26,7 +26,7 @@ void vu1DrawTriangleStripTransSingle(unsigned long ulType, tagVU1_STRIP_BUF* pSt
 int _Clip_Screen(float* clip);
 /*void vu1DrawTriangleStripTransDouble(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode);*/
 void vu1GetVertexColor(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
-void vu1GetVertexColorCM(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
+void vu1GetVertexColorCM(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim);
 void vu1GetVertexColorIgnore(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
 void vu1GetVertexColorDif(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
 void vu1GetVertexColorDifAmb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim);
