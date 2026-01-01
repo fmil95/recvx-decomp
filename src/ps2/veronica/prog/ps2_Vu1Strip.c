@@ -306,25 +306,33 @@ void PushTriangleNodeArray(_anon2* scissor)
 	// Line 641, Address: 0x2d414c, Func Offset: 0x5c
 	// Line 647, Address: 0x2d4150, Func Offset: 0x60
 	// Func End, Address: 0x2d4158, Func Offset: 0x68
-}
+}*/
 
-// 
-// Start address: 0x2d4160
-void ResetNodeArraySet(_anon2* scissor)
+// 100% matching!
+void ResetNodeArraySet(register SCISSOR* scissor)
 {
-	// Line 661, Address: 0x2d4160, Func Offset: 0
-	// Line 662, Address: 0x2d4164, Func Offset: 0x4
-	// Line 663, Address: 0x2d4168, Func Offset: 0x8
-	// Line 664, Address: 0x2d416c, Func Offset: 0xc
-	// Line 665, Address: 0x2d4170, Func Offset: 0x10
-	// Line 666, Address: 0x2d4174, Func Offset: 0x14
-	// Line 667, Address: 0x2d4178, Func Offset: 0x18
-	// Line 668, Address: 0x2d417c, Func Offset: 0x1c
-	// Line 672, Address: 0x2d4180, Func Offset: 0x20
-	// Func End, Address: 0x2d4188, Func Offset: 0x28
+    scissor->flipflag = 0;
+
+    asm volatile 
+    {
+        
+        add  t0, zero, scissor
+        
+        addi t2, zero, 3
+        
+        addi t0, t0, SCISSOR.narray
+        addi t1, t0, sizeof(SCISSOR_NODE)
+        
+        sw   t0, SCISSOR.in(scissor)
+        sw   t1, SCISSOR.out(scissor)
+        
+        sw   zero, SCISSOR_NODE.nodeNum(t0)
+        sw   zero, SCISSOR_NODE.nodeNum(t1)
+        
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2d4190
 void ScissorTriangle(_anon2* scissor, _anon5* plane_set)
 {
