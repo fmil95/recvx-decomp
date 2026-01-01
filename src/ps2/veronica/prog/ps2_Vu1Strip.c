@@ -1129,20 +1129,27 @@ void vu1GetVertexColorCM(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* 
     );
 }
 
-// 
-// Start address: 0x2d55e0
-void vu1GetVertexColorIgnore(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) // first parameter is not present on the debugging symbols
+// 100% matching!
+void vu1GetVertexColorIgnore(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim) // first parameter is not present on the debugging symbols
 {
-	// Line 3742, Address: 0x2d55e0, Func Offset: 0
-	// Line 3743, Address: 0x2d55e4, Func Offset: 0x4
-	// Line 3744, Address: 0x2d55e8, Func Offset: 0x8
-	// Line 3745, Address: 0x2d55ec, Func Offset: 0xc
-	// Line 3746, Address: 0x2d55f4, Func Offset: 0x14
-	// Line 3747, Address: 0x2d55f8, Func Offset: 0x18
-	// Line 3748, Address: 0x2d55fc, Func Offset: 0x1c
-	// Line 3752, Address: 0x2d5600, Func Offset: 0x20
-	// Func End, Address: 0x2d5608, Func Offset: 0x28
-	scePrintf("vu1GetVertexColorIgnore - UNIMPLEMENTED!\n");
+    asm volatile 
+    ("
+        addi        t0, zero, 128
+        
+        qmtc2       t0, vf5
+        
+        vitof0.xyzw vf5, vf5
+        
+        lw          t1, fVu1AlphaRatio
+    
+        qmtc2       t1, vf6
+    
+        vaddx.xyz   vf4, vf0, vf5x
+        vmulx.w     vf4, vf0, vf6x 
+
+        sqc2        vf4, VU1_PRIM_BUF.fR(pPrim)
+    " : : "f"(fVu1AlphaRatio) : "t1"
+    );
 }
 
 // 
