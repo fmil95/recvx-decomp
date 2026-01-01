@@ -840,7 +840,7 @@ void bhPushGameData()
 	scePrintf("bhPushGameData - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x28a220
 void bhPopGameData()
 {
@@ -863,5 +863,5 @@ void bhPopGameData()
 	// Line 1104, Address: 0x28a2dc, Func Offset: 0xbc
 	// Line 1105, Address: 0x28a2f0, Func Offset: 0xd0
 	// Func End, Address: 0x28a2fc, Func Offset: 0xdc
-}*/
-
+	scePrintf("bhPopGameData - UNIMPLEMENTED!\n");
+}
