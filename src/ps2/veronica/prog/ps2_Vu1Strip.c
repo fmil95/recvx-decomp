@@ -1373,35 +1373,53 @@ void vu1GetVertexColorDifSpe2Amb(register VU1_STRIP_BUF* pStrip, register VU1_PR
     );
 }
 
-// 
-// Start address: 0x2d58a0
-void vu1GetVertexColorDifSpe3Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
+// 100% matching!
+void vu1GetVertexColorDifSpe3Amb(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
 {
-	// Line 4259, Address: 0x2d58a0, Func Offset: 0
-	// Line 4260, Address: 0x2d58b8, Func Offset: 0x18
-	// Line 4261, Address: 0x2d58bc, Func Offset: 0x1c
-	// Line 4262, Address: 0x2d58c0, Func Offset: 0x20
-	// Line 4263, Address: 0x2d58c4, Func Offset: 0x24
-	// Line 4264, Address: 0x2d58c8, Func Offset: 0x28
-	// Line 4265, Address: 0x2d58d0, Func Offset: 0x30
-	// Line 4266, Address: 0x2d58d4, Func Offset: 0x34
-	// Line 4267, Address: 0x2d58d8, Func Offset: 0x38
-	// Line 4268, Address: 0x2d58dc, Func Offset: 0x3c
-	// Line 4270, Address: 0x2d58e0, Func Offset: 0x40
-	// Line 4271, Address: 0x2d58e4, Func Offset: 0x44
-	// Line 4272, Address: 0x2d58e8, Func Offset: 0x48
-	// Line 4273, Address: 0x2d58fc, Func Offset: 0x5c
-	// Line 4274, Address: 0x2d5900, Func Offset: 0x60
-	// Line 4275, Address: 0x2d5904, Func Offset: 0x64
-	// Line 4276, Address: 0x2d5908, Func Offset: 0x68
-	// Line 4277, Address: 0x2d590c, Func Offset: 0x6c
-	// Line 4279, Address: 0x2d5910, Func Offset: 0x70
-	// Line 4280, Address: 0x2d5914, Func Offset: 0x74
-	// Line 4281, Address: 0x2d5918, Func Offset: 0x78
-	// Line 4282, Address: 0x2d591c, Func Offset: 0x7c
-	// Line 4286, Address: 0x2d5920, Func Offset: 0x80
-	// Func End, Address: 0x2d5928, Func Offset: 0x88
-	scePrintf("vu1GetVertexColorDifSpe3Amb - UNIMPLEMENTED!\n");
+    asm volatile 
+    ("
+        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
+        lqc2       vf5, VU1_COLOR.fR(%0)
+        lqc2       vf6, VU1_COLOR.fR(%1)
+        lqc2       vf7, VU1_COLOR.fR(%2)
+
+        lw         t0, fVu1AlphaRatio
+        
+        qmtc2      t0, vf8
+
+        vadd.xyz   vf4, vf4, vf5
+
+        addi       t1, zero, 17
+
+        vaddw.xyz  vf9, vf0, vf0w
+
+        l_002D58E0:
+        vmul.xyz   vf9, vf9, vf4
+
+        addi       t1, t1, -1
+        nop
+        nop
+        nop
+
+        bnez       t1, l_002D58E0
+        nop
+
+        vmaxx.xyz  vf4, vf4, vf0x
+        vminiw.xyz vf4, vf4, vf0w
+        
+        vmaxx.xyz  vf9, vf9, vf0x
+        vminiw.xyz vf9, vf9, vf0w
+        
+        vmul.xyz   vf4, vf4, vf6
+        vmul.xyz   vf9, vf9, vf7
+        
+        vadd.xyz   vf4, vf4, vf9
+        
+        vmulx.w    vf4, vf0, vf8x 
+
+        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
+    " : : "r"(&vu1Ambient), "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "v1", "a2", "a3", "t0"
+    );
 }
 
 // 100% matching! 
