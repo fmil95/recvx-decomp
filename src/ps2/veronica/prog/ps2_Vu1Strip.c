@@ -597,45 +597,76 @@ int _Check_DisplayAreaPoint(NJS_VECTOR* vec)
     return 1;
 }
 
-/*// 
-// Start address: 0x2d4700
-void DrawScissorPolygonOpaque(_anon2* scissor, unsigned long ulType)
+// 100% matching!
+void DrawScissorPolygonOpaque(SCISSOR* scissor, unsigned long ulType)
 {
-	_anon0* in;
-	// Line 1391, Address: 0x2d4700, Func Offset: 0
-	// Line 1341, Address: 0x2d4704, Func Offset: 0x4
-	// Line 1391, Address: 0x2d4708, Func Offset: 0x8
-	// Line 1392, Address: 0x2d470c, Func Offset: 0xc
-	// Line 1393, Address: 0x2d4710, Func Offset: 0x10
-	// Line 1394, Address: 0x2d4714, Func Offset: 0x14
-	// Line 1395, Address: 0x2d4718, Func Offset: 0x18
-	// Line 1397, Address: 0x2d4720, Func Offset: 0x20
-	// Line 1398, Address: 0x2d4724, Func Offset: 0x24
-	// Line 1399, Address: 0x2d4728, Func Offset: 0x28
-	// Line 1400, Address: 0x2d472c, Func Offset: 0x2c
-	// Line 1401, Address: 0x2d4730, Func Offset: 0x30
-	// Line 1402, Address: 0x2d4734, Func Offset: 0x34
-	// Line 1403, Address: 0x2d4738, Func Offset: 0x38
-	// Line 1404, Address: 0x2d473c, Func Offset: 0x3c
-	// Line 1405, Address: 0x2d4740, Func Offset: 0x40
-	// Line 1406, Address: 0x2d4744, Func Offset: 0x44
-	// Line 1407, Address: 0x2d4748, Func Offset: 0x48
-	// Line 1408, Address: 0x2d474c, Func Offset: 0x4c
-	// Line 1409, Address: 0x2d4750, Func Offset: 0x50
-	// Line 1410, Address: 0x2d4754, Func Offset: 0x54
-	// Line 1411, Address: 0x2d4758, Func Offset: 0x58
-	// Line 1412, Address: 0x2d475c, Func Offset: 0x5c
-	// Line 1413, Address: 0x2d4760, Func Offset: 0x60
-	// Line 1414, Address: 0x2d4764, Func Offset: 0x64
-	// Line 1416, Address: 0x2d4768, Func Offset: 0x68
-	// Line 1417, Address: 0x2d4770, Func Offset: 0x70
-	// Line 1421, Address: 0x2d4774, Func Offset: 0x74
-	// Line 1420, Address: 0x2d4778, Func Offset: 0x78
-	// Line 1421, Address: 0x2d47a8, Func Offset: 0xa8
-	// Func End, Address: 0x2d47bc, Func Offset: 0xbc
+    SCISSOR_NODE* in; 
+    VU1_PRIM_BUF* pP; // not from the debugging symbols
+
+    in = scissor->in;
+    
+    asm volatile
+    ("
+        addi     t6, a0, SCISSOR.in
+    
+        lw       t6, SCISSOR.triangle.node[0](t6)
+        
+        add      t7, zero, %0
+    
+        lw       t0, SCISSOR_NODE.nodeNum(t6)
+        nop
+        
+        l_002D4720:
+        lqc2     vf4, SCISSOR.triangle.node[0].vertex(t6)
+        
+        vdiv     Q, vf0w, vf4z
+    
+        lqc2     vf7, SCISSOR.triangle.node[0].color(t6)
+        
+        sqc2     vf7, VU1_PRIM_BUF.fR(t7)
+    
+        vaddz.x  vf5, vf0, vf23z
+        
+        lqc2     vf6, SCISSOR.triangle.node[0].texUV(t6)
+    
+        addi     t0, t0, -1
+        
+        vwaitq
+        
+        vmulq.x  vf5, vf5, Q
+        vmulq.xy vf6, vf6, Q
+        
+        vaddq.z  vf6, vf0, Q
+        
+        vsub.w   vf6, vf6, vf6
+        
+        vmulx.xy vf4, vf4, vf5x
+        
+        sqc2     vf6, VU1_PRIM_BUF.fS(t7)
+    
+        vmul.xy  vf4, vf4, vf17
+        
+        vadd.xy  vf4, vf4, vf16
+        
+        addi     t6, t6, sizeof(NODE)
+    
+        sqc2     vf4, VU1_PRIM_BUF.fX(t7)
+    
+        addi     t7, t7, sizeof(VU1_PRIM_BUF)
+    
+        bnez     t0, l_002D4720
+        vnop
+    " : : "r"(vu1ScessorBuf) : "t7"
+    );
+
+    ulType = (ulType & 0xFFFDFFFFFFFFFFFF) | 0x6800000000000;
+    
+    pP = vu1ScessorBuf;
+    
+    Ps2AddPrim3DEx(ulType, pP, in->nodeNum);
 }
 
-// 
+/*// 
 // Start address: 0x2d47c0
 void vu1DrawTriangleStripOpaqueSingle(unsigned long ulType, tagVU1_STRIP_BUF* pStripTop, unsigned short usStripMax, unsigned short usMode)
 {
