@@ -612,14 +612,14 @@ void npCalcMorphing(NJS_CNK_OBJECT* obj_a, NJS_CNK_OBJECT* obj_b, float no, int 
 void npTransform(NJS_CNK_OBJECT* srcobj, NJS_CNK_OBJECT* dstobj, register float no, int ono)
 {
     int s_nb;
-    register NO_NAME_16* dp; 
-    register NO_NAME_16* fp; 
-    register NO_NAME_16* sp; 
+    register NJS_POINT4* dp; 
+    register NJS_POINT4* fp; 
+    register NJS_POINT4* sp; 
     NO_NAME_15* pSrc;
     NO_NAME_15* pDst; 
 
     pSrc = (NO_NAME_15*)srcobj->model->vlist; 
-    fp = (NO_NAME_16*)dstobj->model->vlist; 
+    fp = (NJS_POINT4*)dstobj->model->vlist; 
 
     s_nb = pSrc->usIndexMax; 
 
@@ -628,11 +628,11 @@ void npTransform(NJS_CNK_OBJECT* srcobj, NJS_CNK_OBJECT* dstobj, register float 
         return; 
     }
 
-    sp = (NO_NAME_16*)(pSrc + 1); 
-    dp = (NO_NAME_16*)((NO_NAME_15*)fp + 1); 
-    fp = (NO_NAME_16*)np.vlp2[ono]; 
+    sp = (NJS_POINT4*)(pSrc + 1); 
+    dp = (NJS_POINT4*)((NO_NAME_15*)fp + 1); 
+    fp = (NJS_POINT4*)np.vlp2[ono]; 
 
-    fp = (NO_NAME_16*)((int)fp | 0x30000000); 
+    fp = (NJS_POINT4*)((int)fp | 0x30000000); 
 
     ((NO_NAME_15*)fp)->ucType = pSrc->ucType; 
     ((NO_NAME_15*)fp)->ucAttr = pSrc->ucAttr; 
@@ -644,7 +644,7 @@ void npTransform(NJS_CNK_OBJECT* srcobj, NJS_CNK_OBJECT* dstobj, register float 
 
     no *= 0.001f; 
     
-    fp = (NO_NAME_16*)((NO_NAME_15*)fp + 1);
+    fp = (NJS_POINT4*)((NO_NAME_15*)fp + 1);
     
     for ( ; s_nb != 0; s_nb--) 
     { 
@@ -870,8 +870,8 @@ void npGetWHDSizeSub(NJS_CNK_OBJECT* objp, NJS_POINT3* whd)
 {
 	NJS_POINT3* ps3;   
 	NJS_POINT3 pd3;    
-	NO_NAME_16* ps4;  
-    NO_NAME_16 pd4;    
+	NJS_POINT4* ps4;  
+    NJS_POINT4 pd4;    
 	int i;           
     NO_NAME_17* pHdrCv; 
     NO_NAME_15* pHdrPs;
@@ -888,7 +888,7 @@ void npGetWHDSizeSub(NJS_CNK_OBJECT* objp, NJS_POINT3* whd)
         
         if (pHdrPs->ucType == 51)
         {
-            ps4 = (NO_NAME_16*)((unsigned int)pHdrPs + 64);
+            ps4 = (NJS_POINT4*)((unsigned int)pHdrPs + 64);
             
             for (i = pHdrPs->usIndexMax; i-- != 0; )
             {
@@ -909,7 +909,7 @@ void npGetWHDSizeSub(NJS_CNK_OBJECT* objp, NJS_POINT3* whd)
                     whd->z = fabsf(pd4.z);
                 }
                 
-                ps4 = (NO_NAME_16*)((unsigned int)ps4 + 32);
+                ps4 = (NJS_POINT4*)((unsigned int)ps4 + 32);
             }
         } 
         else 
@@ -1626,7 +1626,7 @@ void npInitCalcSkin(void* pwp, int obj_n, int* sknp)
 // 99.93% matching
 void npCalcSkin(void* pwp, int obj_n, int* sknp)
 { 
-    NO_NAME_16* p0;
+    NJS_POINT4* p0;
     NJS_CNK_OBJECT* op;
     float lv;
     float* p1;
@@ -1677,7 +1677,7 @@ void npCalcSkin(void* pwp, int obj_n, int* sknp)
                     pHdr1->usIndexOfs = pHdr0->usIndexOfs; 
                     pHdr1->usIndexMax = pHdr0->usIndexMax; 
                     
-                    p0 = (NO_NAME_16*)(pHdr0 + 1); 
+                    p0 = (NJS_POINT4*)(pHdr0 + 1); 
                     p1 = (float*)(pHdr1 + 1); 
     
                     for (j = 0; j < nb; j++) 
@@ -1926,7 +1926,7 @@ void npInitCalcSkinFM(void* pwp, int obj_n, int* sknp)
 // 99.93% matching
 void npCalcSkinFM(void* pwp, int obj_n, int* sknp)
 { 
-    NO_NAME_16* p0;
+    NJS_POINT4* p0;
     NJS_CNK_OBJECT* op;
     float lv;
     float* p1;
@@ -1979,7 +1979,7 @@ void npCalcSkinFM(void* pwp, int obj_n, int* sknp)
                         pHdr1->usIndexOfs = pHdr0->usIndexOfs; 
                         pHdr1->usIndexMax = pHdr0->usIndexMax; 
                         
-                        p0 = (NO_NAME_16*)(pHdr0 + 1); 
+                        p0 = (NJS_POINT4*)(pHdr0 + 1); 
                         p1 = (float*)(pHdr1 + 1); 
         
                         for (j = 0; j < nb; j++) 
