@@ -21,7 +21,7 @@ float _fNaViwClipNear = 1.0f;
 float _fNaViwClipFar = 65535.0f;
 float ClipDispW = 2047.0f;
 float ClipDispH = 2047.0f;
-NO_NAME_16 ClipVolume = { 320.0f, 240.0f, 1.0f, 512.0f };
+NJS_POINT4 ClipVolume = { 320.0f, 240.0f, 1.0f, 512.0f };
 
 // 100% matching!
 void    njSetScreen(NJS_SCREEN *s)
@@ -234,7 +234,7 @@ void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far)
 { 
 	float gsx;
 	float gsy;
-    NO_NAME_16* cv;
+    NJS_POINT4* cv;
     float (*mp)[4]; // not from the debugging symbols
     register float (*mp2)[4], *fM, *fw, *fh; // not from the debugging symbols
 

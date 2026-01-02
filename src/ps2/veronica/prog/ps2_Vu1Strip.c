@@ -911,32 +911,39 @@ void vu1DrawTriangleStripTransSingle(unsigned long ulType, tagVU1_STRIP_BUF* pSt
 	// Line 2645, Address: 0x2d5068, Func Offset: 0x2d8
 	// Line 2646, Address: 0x2d5080, Func Offset: 0x2f0
 	// Func End, Address: 0x2d50b0, Func Offset: 0x320
-}
+}*/
 
-// 
-// Start address: 0x2d50b0
-int _Clip_Screen(float* clip)
+// 99.38% matching
+int _Clip_Screen(register float* clip)
 {
-	int ret;
-	float para[4][2];
-	// Line 2987, Address: 0x2d50b0, Func Offset: 0
-	// Line 2988, Address: 0x2d50b8, Func Offset: 0x8
-	// Line 2989, Address: 0x2d50bc, Func Offset: 0xc
-	// Line 2990, Address: 0x2d50c0, Func Offset: 0x10
-	// Line 2991, Address: 0x2d50c4, Func Offset: 0x14
-	// Line 2992, Address: 0x2d50c8, Func Offset: 0x18
-	// Line 2993, Address: 0x2d50cc, Func Offset: 0x1c
-	// Line 2994, Address: 0x2d50d0, Func Offset: 0x20
-	// Line 2995, Address: 0x2d50d4, Func Offset: 0x24
-	// Line 2996, Address: 0x2d50d8, Func Offset: 0x28
-	// Line 2997, Address: 0x2d50dc, Func Offset: 0x2c
-	// Line 2998, Address: 0x2d50e0, Func Offset: 0x30
-	// Line 2999, Address: 0x2d50e4, Func Offset: 0x34
-	// Line 3002, Address: 0x2d50e8, Func Offset: 0x38
-	// Func End, Address: 0x2d50f0, Func Offset: 0x40
+    int ret;         
+    static float para[2][4] = { 2048.0f, 2048.0f, 0, 240.0f, 0.75f, 1.0f, 0, 0 }; 
+
+    asm volatile
+    ("
+        move       v0, %0
+    
+        lqc2       vf4, 0(clip)
+        lqc2       vf5, 0(v0)
+        lqc2       vf6, 16(v0)
+    
+        vsub.xy    vf4, vf4, vf5
+        
+        vmul.xyzw  vf4, vf4, vf6
+        
+        vclipw.xyz vf4, vf5
+        vnop
+        vnop
+        vnop
+        vnop
+        vnop
+    
+        cfc2       v0, vi18
+    " : : "f"(para) : "v0"
+    );
 }
 
-// 
+/*// 
 // Start address: 0x2d50f0
 void vu1DrawTriangleStripTransDouble(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
 {

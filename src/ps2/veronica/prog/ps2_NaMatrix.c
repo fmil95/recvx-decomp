@@ -947,7 +947,7 @@ void	njCalcPoint(NJS_MATRIX *m, NJS_POINT3 *ps, NJS_POINT3 *pd)
 
 // 
 // Start address: 0x2d7540
-void njCalcPoint4(NJS_MATRIX* pMatrix, NO_NAME_16* pSrcPoint, NO_NAME_16* pDstPoint)
+void njCalcPoint4(NJS_MATRIX* pMatrix, NJS_POINT4* pSrcPoint, NJS_POINT4* pDstPoint)
 {
 	// Line 4261, Address: 0x2d7540, Func Offset: 0
 	// Line 4266, Address: 0x2d7554, Func Offset: 0x14
