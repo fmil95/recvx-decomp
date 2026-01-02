@@ -1,6 +1,7 @@
 #include "ps2_Vu1Strip.h"
 #include "ps2_NaFog.h"
 #include "ps2_NaView.h"
+#include "ps2_dummy.h"
 #include "main.h"
 
 static SCISSOR_PLANE planeset;
@@ -1581,47 +1582,78 @@ void vu1DrawTriangleStripTransDoubleI(unsigned long ulType, tagVU1_STRIP_BUF* pS
 	// Line 4704, Address: 0x2d5ba4, Func Offset: 0x1f4
 	// Line 4705, Address: 0x2d5bb4, Func Offset: 0x204
 	// Func End, Address: 0x2d5bdc, Func Offset: 0x22c
-}
+}*/
 
-// 
-// Start address: 0x2d5be0
-void DrawScissorPolygonTrans1P(_anon2* scissor, unsigned long ulType)
+// 100% matching!
+void DrawScissorPolygonTrans1P(SCISSOR* scissor, unsigned long ulType)
 {
-	_anon0* in;
-	// Line 4750, Address: 0x2d5be0, Func Offset: 0
-	// Line 4748, Address: 0x2d5be4, Func Offset: 0x4
-	// Line 4750, Address: 0x2d5be8, Func Offset: 0x8
-	// Line 4751, Address: 0x2d5bec, Func Offset: 0xc
-	// Line 4752, Address: 0x2d5bf0, Func Offset: 0x10
-	// Line 4753, Address: 0x2d5bf4, Func Offset: 0x14
-	// Line 4754, Address: 0x2d5bf8, Func Offset: 0x18
-	// Line 4756, Address: 0x2d5c00, Func Offset: 0x20
-	// Line 4757, Address: 0x2d5c04, Func Offset: 0x24
-	// Line 4758, Address: 0x2d5c08, Func Offset: 0x28
-	// Line 4759, Address: 0x2d5c0c, Func Offset: 0x2c
-	// Line 4760, Address: 0x2d5c10, Func Offset: 0x30
-	// Line 4761, Address: 0x2d5c14, Func Offset: 0x34
-	// Line 4762, Address: 0x2d5c18, Func Offset: 0x38
-	// Line 4763, Address: 0x2d5c1c, Func Offset: 0x3c
-	// Line 4764, Address: 0x2d5c20, Func Offset: 0x40
-	// Line 4765, Address: 0x2d5c24, Func Offset: 0x44
-	// Line 4766, Address: 0x2d5c28, Func Offset: 0x48
-	// Line 4767, Address: 0x2d5c2c, Func Offset: 0x4c
-	// Line 4768, Address: 0x2d5c30, Func Offset: 0x50
-	// Line 4769, Address: 0x2d5c34, Func Offset: 0x54
-	// Line 4770, Address: 0x2d5c38, Func Offset: 0x58
-	// Line 4771, Address: 0x2d5c3c, Func Offset: 0x5c
-	// Line 4772, Address: 0x2d5c40, Func Offset: 0x60
-	// Line 4773, Address: 0x2d5c44, Func Offset: 0x64
-	// Line 4775, Address: 0x2d5c48, Func Offset: 0x68
-	// Line 4776, Address: 0x2d5c50, Func Offset: 0x70
-	// Line 4779, Address: 0x2d5c54, Func Offset: 0x74
-	// Line 4778, Address: 0x2d5c58, Func Offset: 0x78
-	// Line 4779, Address: 0x2d5c88, Func Offset: 0xa8
-	// Func End, Address: 0x2d5c9c, Func Offset: 0xbc
+    SCISSOR_NODE* in; 
+    VU1_PRIM_BUF* pP; // not from the debugging symbols
+
+    in = scissor->in;
+    
+    asm volatile
+    ("
+        addi     t6, a0, SCISSOR.in
+    
+        lw       t6, SCISSOR.triangle.node[0](t6)
+        
+        add      t7, zero, %0
+    
+        lw       t0, SCISSOR_NODE.nodeNum(t6)
+        nop
+        
+        l_002D4720:
+        lqc2     vf4, SCISSOR.triangle.node[0].vertex(t6)
+        
+        vdiv     Q, vf0w, vf4z
+    
+        lqc2     vf7, SCISSOR.triangle.node[0].color(t6)
+        
+        sqc2     vf7, VU1_PRIM_BUF.fR(t7)
+    
+        vaddz.x  vf5, vf0, vf23z
+        
+        lqc2     vf6, SCISSOR.triangle.node[0].texUV(t6)
+    
+        addi     t0, t0, -1
+        
+        vwaitq
+        
+        vmulq.x  vf5, vf5, Q
+        vmulq.xy vf6, vf6, Q
+        
+        vaddq.z  vf6, vf0, Q
+        
+        vsub.w   vf6, vf6, vf6
+        
+        vmulx.xy vf4, vf4, vf5x
+        
+        sqc2     vf6, VU1_PRIM_BUF.fS(t7)
+    
+        vmul.xy  vf4, vf4, vf17
+        
+        vadd.xy  vf4, vf4, vf16
+        
+        addi     t6, t6, sizeof(NODE)
+    
+        sqc2     vf4, VU1_PRIM_BUF.fX(t7)
+    
+        addi     t7, t7, sizeof(VU1_PRIM_BUF)
+    
+        bnez     t0, l_002D4720
+        vnop
+    " : : "r"(vu1ScessorBuf) : "t7"
+    );
+
+    ulType = (ulType & 0xFFFDFFFFFFFFFFFF) | 0x6800000000000;
+    
+    pP = vu1ScessorBuf;
+    
+    Ps2AddPrim3DEx1P(ulType, pP, in->nodeNum);
 }
 
-// 
+/*// 
 // Start address: 0x2d5ca0
 void vu1DrawTriangleStripTransDouble1P(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
 {

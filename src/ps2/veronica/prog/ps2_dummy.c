@@ -598,7 +598,7 @@ void Ps2AddPrim3D(unsigned long prim, void* dp, unsigned int num)
 	scePrintf("Ps2AddPrim3D - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2cbfb0
 void Ps2AddPrim3DEx(unsigned long prim, void* dp, unsigned int num)
 {
@@ -607,7 +607,7 @@ void Ps2AddPrim3DEx(unsigned long prim, void* dp, unsigned int num)
 	unsigned int st_clip_flag;
 	unsigned int clut_flag;
 	unsigned int clip_flag;
-	_anon0* timp;
+	//_anon0* timp;
 	unsigned long* p;
 	float zclip_ab_vec[4];
 	float near_far_vec[4];
@@ -705,6 +705,7 @@ void Ps2AddPrim3DEx(unsigned long prim, void* dp, unsigned int num)
 	// Line 1712, Address: 0x2cc2a4, Func Offset: 0x2f4
 	// Line 1716, Address: 0x2cc2ac, Func Offset: 0x2fc
 	// Func End, Address: 0x2cc2c4, Func Offset: 0x314
+	scePrintf("Ps2AddPrim3DEx - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -716,7 +717,7 @@ void Ps2AddPrim3DEx1P(unsigned long prim, void* dp, unsigned int num)
 	unsigned int st_clip_flag;
 	unsigned int clut_flag;
 	unsigned int clip_flag;
-	_anon0* timp;
+	//_anon0* timp;
 	unsigned long* p;
 	float zclip_ab_vec[4];
 	float near_far_vec[4];
@@ -821,9 +822,10 @@ void Ps2AddPrim3DEx1P(unsigned long prim, void* dp, unsigned int num)
 	// Line 2035, Address: 0x2cc5f8, Func Offset: 0x328
 	// Line 2038, Address: 0x2cc600, Func Offset: 0x330
 	// Func End, Address: 0x2cc618, Func Offset: 0x348
+	scePrintf("Ps2AddPrim3DEx1P - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cc620
 void Ps2AddPrim3DMod(unsigned long prim, void* dp, unsigned int num)
 {
