@@ -788,91 +788,121 @@ void vu1DrawTriangleStripOpaqueSingle(unsigned long ulType, VU1_STRIP_BUF* pStri
     Ps2AddPrim3DEx(ulType, Ps2_DRAW_TMP, usStripMax);
 }
 
-/*// 
-// Start address: 0x2d4ae0
-void vu1DrawTriangleStripOpaqueDouble(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
+// 100% matching! 
+void vu1DrawTriangleStripOpaqueDouble(unsigned long ulType, VU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
 {
-	int count;
-	unsigned int flg;
-	unsigned int clipflag;
-	void(*pFunc)(tagVU1_STRIP_BUF*, tagVU1_PRIM_BUF*);
-	unsigned short usStripCnt;
-	float fIz;
-	tagVU1_PRIM_BUF* pP;
-	// Line 1885, Address: 0x2d4ae0, Func Offset: 0
-	// Line 1901, Address: 0x2d4b14, Func Offset: 0x34
-	// Line 1906, Address: 0x2d4b1c, Func Offset: 0x3c
-	// Line 1905, Address: 0x2d4b28, Func Offset: 0x48
-	// Line 1906, Address: 0x2d4b30, Func Offset: 0x50
-	// Line 1908, Address: 0x2d4b40, Func Offset: 0x60
-	// Line 1909, Address: 0x2d4b4c, Func Offset: 0x6c
-	// Line 1910, Address: 0x2d4b50, Func Offset: 0x70
-	// Line 1914, Address: 0x2d4b54, Func Offset: 0x74
-	// Line 1910, Address: 0x2d4b58, Func Offset: 0x78
-	// Line 1911, Address: 0x2d4b60, Func Offset: 0x80
-	// Line 1912, Address: 0x2d4b6c, Func Offset: 0x8c
-	// Line 1914, Address: 0x2d4b70, Func Offset: 0x90
-	// Line 1915, Address: 0x2d4b78, Func Offset: 0x98
-	// Line 1919, Address: 0x2d4b84, Func Offset: 0xa4
-	// Line 1916, Address: 0x2d4b88, Func Offset: 0xa8
-	// Line 1915, Address: 0x2d4b8c, Func Offset: 0xac
-	// Line 1916, Address: 0x2d4b94, Func Offset: 0xb4
-	// Line 1917, Address: 0x2d4ba4, Func Offset: 0xc4
-	// Line 1918, Address: 0x2d4bac, Func Offset: 0xcc
-	// Line 1919, Address: 0x2d4bb0, Func Offset: 0xd0
-	// Line 1924, Address: 0x2d4bb8, Func Offset: 0xd8
-	// Line 1925, Address: 0x2d4bc8, Func Offset: 0xe8
-	// Line 1926, Address: 0x2d4bcc, Func Offset: 0xec
-	// Line 1930, Address: 0x2d4bd0, Func Offset: 0xf0
-	// Line 1926, Address: 0x2d4bd4, Func Offset: 0xf4
-	// Line 1927, Address: 0x2d4bdc, Func Offset: 0xfc
-	// Line 1928, Address: 0x2d4be8, Func Offset: 0x108
-	// Line 1930, Address: 0x2d4bec, Func Offset: 0x10c
-	// Line 1931, Address: 0x2d4bf4, Func Offset: 0x114
-	// Line 1935, Address: 0x2d4c00, Func Offset: 0x120
-	// Line 1932, Address: 0x2d4c04, Func Offset: 0x124
-	// Line 1931, Address: 0x2d4c08, Func Offset: 0x128
-	// Line 1932, Address: 0x2d4c10, Func Offset: 0x130
-	// Line 1933, Address: 0x2d4c20, Func Offset: 0x140
-	// Line 1934, Address: 0x2d4c28, Func Offset: 0x148
-	// Line 1935, Address: 0x2d4c2c, Func Offset: 0x14c
-	// Line 1936, Address: 0x2d4c38, Func Offset: 0x158
-	// Line 1937, Address: 0x2d4c3c, Func Offset: 0x15c
-	// Line 1938, Address: 0x2d4c40, Func Offset: 0x160
-	// Line 1940, Address: 0x2d4c44, Func Offset: 0x164
-	// Line 1942, Address: 0x2d4c50, Func Offset: 0x170
-	// Line 1943, Address: 0x2d4c5c, Func Offset: 0x17c
-	// Line 1944, Address: 0x2d4c60, Func Offset: 0x180
-	// Line 1948, Address: 0x2d4c64, Func Offset: 0x184
-	// Line 1944, Address: 0x2d4c68, Func Offset: 0x188
-	// Line 1945, Address: 0x2d4c70, Func Offset: 0x190
-	// Line 1946, Address: 0x2d4c7c, Func Offset: 0x19c
-	// Line 1948, Address: 0x2d4c80, Func Offset: 0x1a0
-	// Line 1949, Address: 0x2d4c88, Func Offset: 0x1a8
-	// Line 1954, Address: 0x2d4c94, Func Offset: 0x1b4
-	// Line 1950, Address: 0x2d4c98, Func Offset: 0x1b8
-	// Line 1949, Address: 0x2d4c9c, Func Offset: 0x1bc
-	// Line 1950, Address: 0x2d4ca4, Func Offset: 0x1c4
-	// Line 1951, Address: 0x2d4cb4, Func Offset: 0x1d4
-	// Line 1952, Address: 0x2d4cbc, Func Offset: 0x1dc
-	// Line 1954, Address: 0x2d4cc0, Func Offset: 0x1e0
-	// Line 1955, Address: 0x2d4cc8, Func Offset: 0x1e8
-	// Line 1957, Address: 0x2d4cd0, Func Offset: 0x1f0
-	// Line 1958, Address: 0x2d4cec, Func Offset: 0x20c
-	// Line 1959, Address: 0x2d4cf0, Func Offset: 0x210
-	// Line 1960, Address: 0x2d4d00, Func Offset: 0x220
-	// Line 1961, Address: 0x2d4d0c, Func Offset: 0x22c
-	// Line 1962, Address: 0x2d4d14, Func Offset: 0x234
-	// Line 1963, Address: 0x2d4d1c, Func Offset: 0x23c
-	// Line 1968, Address: 0x2d4d28, Func Offset: 0x248
-	// Line 1967, Address: 0x2d4d34, Func Offset: 0x254
-	// Line 1968, Address: 0x2d4d38, Func Offset: 0x258
-	// Line 2023, Address: 0x2d4d50, Func Offset: 0x270
-	// Line 2024, Address: 0x2d4d64, Func Offset: 0x284
-	// Func End, Address: 0x2d4d90, Func Offset: 0x2b0
+    VU1_PRIM_BUF* pP;                            
+    float fIz;                                   
+    unsigned short usStripCnt;                  
+    void (*pFunc)(VU1_STRIP_BUF*, VU1_PRIM_BUF*); 
+    unsigned int clipflag;                     
+    unsigned int flg;                                    
+    int count;   
+
+    InitNodeArraySet2();
+    
+    pP = (VU1_PRIM_BUF*)Ps2_DRAW_TMP;
+    
+    pFunc = pColorCalcFuncTbl[(usMode & 0xFFFF) & 0xF];
+    
+    pFunc(pS, pP);
+    
+    fIz = pS->fIz;
+   
+    pP->fS = pS->fU * fIz;
+    pP->fT = pS->fV * fIz;
+    pP->fQ = fIz;
+    
+    pP->ulKick = 0;
+
+    _Clip_ViewVolume2((NJS_POINT4*)&pS->fVx);
+    
+    pP->fX = fVu1OffsetX + pS->fSx;
+    pP->fY = fVu1OffsetY + pS->fSy;
+    pP->fZ = pS->fVz;
+    
+    pP->fF = pS->fFog;
+    
+    flg = _Check_DisplayAreaPoint((NJS_VECTOR*)&pP->fX);
+    
+    flg <<= 1;
+    
+    pP++;
+    pS++;
+    
+    pFunc(pS, pP);
+    
+    fIz = pS->fIz;
+    
+    pP->fS = pS->fU * fIz;
+    pP->fT = pS->fV * fIz;
+    pP->fQ = fIz;
+    
+    pP->ulKick = 0;
+
+    _Clip_ViewVolume2((NJS_POINT4*)&pS->fVx);
+    
+    pP->fX = fVu1OffsetX + pS->fSx;
+    pP->fY = fVu1OffsetY + pS->fSy;
+    pP->fZ = pS->fVz;
+    
+    pP->fF = pS->fFog;
+    
+    flg |= _Check_DisplayAreaPoint((NJS_VECTOR*)&pP->fX);
+    
+    flg <<= 1;
+    
+    pP++; 
+    pS++;
+    
+    for (usStripCnt = 2; usStripCnt < usStripMax; usStripCnt++, pS++, pP++) 
+    {
+        pFunc(pS, pP);
+        
+        fIz = pS->fIz;
+        
+        pP->fS = pS->fU * fIz;
+        pP->fT = pS->fV * fIz;
+        pP->fQ = fIz;
+        
+        pP->ulKick = 0;
+
+        _Check_ClipViewAll((NJS_POINT4*)&pS->fVx);
+        
+        pP->fX = fVu1OffsetX + pS->fSx;
+        pP->fY = fVu1OffsetY + pS->fSy;
+        pP->fZ = pS->fVz;
+        
+        pP->fF = pS->fFog;
+        
+        flg |= _Check_DisplayAreaPoint((NJS_VECTOR*)&pP->fX);
+        
+        clipflag = _Get_ClipViewVolume2();
+        
+        if (((flg & 0x7)) && ((clipflag & 0x3FFFF)))
+        {
+            pP->ulKick = 32768;
+            
+            if (_Get_ClipVolumePlane() != 0) 
+            {
+                _Set_NodeArray(pS, pP);
+                
+                count = _Check_ScissorPlane();
+                
+                if (count != 0)
+                {
+                    DrawScissorPolygonOpaque2(count, ulType);
+                }
+            }
+        }
+        
+        flg <<= 1;
+    }
+    
+    Ps2AddPrim3DEx(ulType, Ps2_DRAW_TMP, usStripMax);
 }
 
-// 
+/*// 
 // Start address: 0x2d4d90
 void vu1DrawTriangleStripTransSingle(unsigned long ulType, tagVU1_STRIP_BUF* pStripTop, unsigned short usStripMax, unsigned short usMode)
 {
