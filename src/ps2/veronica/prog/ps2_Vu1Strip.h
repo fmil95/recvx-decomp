@@ -12,7 +12,7 @@ void vu1SetSpeculaMaterial(tagVU1_COLOR* pSpecula);
 void vu1SetAmbient(tagVU1_COLOR* pAmbient);*/
 void vu1SetAlphaRatio(float fAlpha);
 void InitNodeArraySet(register SCISSOR* scissor);
-void InitScissorPlane(SCISSOR_PLANE* sp);
+static void InitScissorPlane(SCISSOR_PLANE* sp);
 void _Init_ScissorSystem();
 int _Clip_ViewVolume(float* clip, float local_clip[4], float* vertex);
 /*void PushTriangleNodeArray(_anon2* scissor);*/
