@@ -228,7 +228,7 @@ void InitNodeArraySet(register SCISSOR* scissor)
 }
 
 // 100% matching!
-void InitScissorPlane(SCISSOR_PLANE* sp)
+static void InitScissorPlane(SCISSOR_PLANE* sp)
 {
     sp->planeNum = 5;
     
@@ -352,16 +352,16 @@ void ResetNodeArraySet(register SCISSOR* scissor)
     }
 }
 
-/*// 
+// 
 // Start address: 0x2d4190
-void ScissorTriangle(_anon2* scissor, _anon5* plane_set)
+void ScissorTriangle(SCISSOR* scissor, SCISSOR_PLANE* plane_set)
 {
 	int n;
-	_anon4 interN;
-	_anon4* nextN;
-	_anon4* currN;
-	_anon0* outarray;
-	_anon0* inarray;
+	//_anon4 interN;
+	//_anon4* nextN;
+	//_anon4* currN;
+	//_anon0* outarray;
+	//_anon0* inarray;
 	float sgn;
 	int xyz;
 	int mask;
@@ -585,7 +585,7 @@ void ScissorTriangle(_anon2* scissor, _anon5* plane_set)
 	// Line 1197, Address: 0x2d4624, Func Offset: 0x494
 	// Line 1199, Address: 0x2d4644, Func Offset: 0x4b4
 	// Func End, Address: 0x2d464c, Func Offset: 0x4bc
-}*/
+}
 
 // 100% matching!
 int _Check_DisplayAreaPoint(NJS_VECTOR* vec)
@@ -1508,81 +1508,115 @@ void vu1RotTransStripBuf(NJS_MATRIX* pMatrix, NJS_VECTOR* pVector, VU1_STRIP_BUF
     pBuf->fFog = njCalcFogPowerEx(fIz);
 }
 
-/*// 
-// Start address: 0x2d59b0
-void vu1DrawTriangleStripTransDoubleI(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
-{
-	int flg;
-	unsigned int clipflag;
-	void(*pFunc)(tagVU1_STRIP_BUF*, tagVU1_PRIM_BUF*);
-	unsigned short usStripCnt;
-	tagVU1_PRIM_BUF* pP;
-	// Line 4578, Address: 0x2d59b0, Func Offset: 0
-	// Line 4588, Address: 0x2d59d8, Func Offset: 0x28
-	// Line 4583, Address: 0x2d59ec, Func Offset: 0x3c
-	// Line 4588, Address: 0x2d59f0, Func Offset: 0x40
-	// Line 4629, Address: 0x2d59f8, Func Offset: 0x48
-	// Line 4628, Address: 0x2d5a04, Func Offset: 0x54
-	// Line 4629, Address: 0x2d5a0c, Func Offset: 0x5c
-	// Line 4631, Address: 0x2d5a1c, Func Offset: 0x6c
-	// Line 4633, Address: 0x2d5a24, Func Offset: 0x74
-	// Line 4634, Address: 0x2d5a30, Func Offset: 0x80
-	// Line 4639, Address: 0x2d5a3c, Func Offset: 0x8c
-	// Line 4640, Address: 0x2d5a40, Func Offset: 0x90
-	// Line 4641, Address: 0x2d5a44, Func Offset: 0x94
-	// Line 4642, Address: 0x2d5a48, Func Offset: 0x98
-	// Line 4643, Address: 0x2d5a4c, Func Offset: 0x9c
-	// Line 4644, Address: 0x2d5a50, Func Offset: 0xa0
-	// Line 4645, Address: 0x2d5a54, Func Offset: 0xa4
-	// Line 4649, Address: 0x2d5a58, Func Offset: 0xa8
-	// Line 4650, Address: 0x2d5a5c, Func Offset: 0xac
-	// Line 4651, Address: 0x2d5a60, Func Offset: 0xb0
-	// Line 4653, Address: 0x2d5a64, Func Offset: 0xb4
-	// Line 4654, Address: 0x2d5a68, Func Offset: 0xb8
-	// Line 4655, Address: 0x2d5a6c, Func Offset: 0xbc
-	// Line 4656, Address: 0x2d5a70, Func Offset: 0xc0
-	// Line 4657, Address: 0x2d5a74, Func Offset: 0xc4
-	// Line 4662, Address: 0x2d5a78, Func Offset: 0xc8
-	// Line 4663, Address: 0x2d5a7c, Func Offset: 0xcc
-	// Line 4664, Address: 0x2d5a80, Func Offset: 0xd0
-	// Line 4665, Address: 0x2d5a84, Func Offset: 0xd4
-	// Line 4666, Address: 0x2d5a88, Func Offset: 0xd8
-	// Line 4667, Address: 0x2d5a8c, Func Offset: 0xdc
-	// Line 4668, Address: 0x2d5a90, Func Offset: 0xe0
-	// Line 4669, Address: 0x2d5a94, Func Offset: 0xe4
-	// Line 4671, Address: 0x2d5a98, Func Offset: 0xe8
-	// Line 4672, Address: 0x2d5a9c, Func Offset: 0xec
-	// Line 4673, Address: 0x2d5ab0, Func Offset: 0x100
-	// Line 4674, Address: 0x2d5ab4, Func Offset: 0x104
-	// Line 4675, Address: 0x2d5ab8, Func Offset: 0x108
-	// Line 4676, Address: 0x2d5abc, Func Offset: 0x10c
-	// Line 4677, Address: 0x2d5ac0, Func Offset: 0x110
-	// Line 4678, Address: 0x2d5ac4, Func Offset: 0x114
-	// Line 4679, Address: 0x2d5ac8, Func Offset: 0x118
-	// Line 4680, Address: 0x2d5acc, Func Offset: 0x11c
-	// Line 4681, Address: 0x2d5ad0, Func Offset: 0x120
-	// Line 4682, Address: 0x2d5ad8, Func Offset: 0x128
-	// Line 4683, Address: 0x2d5adc, Func Offset: 0x12c
-	// Line 4685, Address: 0x2d5ae0, Func Offset: 0x130
-	// Line 4688, Address: 0x2d5ae4, Func Offset: 0x134
-	// Line 4690, Address: 0x2d5af0, Func Offset: 0x140
-	// Line 4691, Address: 0x2d5b20, Func Offset: 0x170
-	// Line 4692, Address: 0x2d5b28, Func Offset: 0x178
-	// Line 4694, Address: 0x2d5b3c, Func Offset: 0x18c
-	// Line 4695, Address: 0x2d5b50, Func Offset: 0x1a0
-	// Line 4697, Address: 0x2d5b60, Func Offset: 0x1b0
-	// Line 4698, Address: 0x2d5b6c, Func Offset: 0x1bc
-	// Line 4700, Address: 0x2d5b70, Func Offset: 0x1c0
-	// Line 4702, Address: 0x2d5b74, Func Offset: 0x1c4
-	// Line 4700, Address: 0x2d5b80, Func Offset: 0x1d0
-	// Line 4702, Address: 0x2d5b84, Func Offset: 0x1d4
-	// Line 4701, Address: 0x2d5b88, Func Offset: 0x1d8
-	// Line 4700, Address: 0x2d5b8c, Func Offset: 0x1dc
-	// Line 4702, Address: 0x2d5b90, Func Offset: 0x1e0
-	// Line 4704, Address: 0x2d5ba4, Func Offset: 0x1f4
-	// Line 4705, Address: 0x2d5bb4, Func Offset: 0x204
-	// Func End, Address: 0x2d5bdc, Func Offset: 0x22c
-}*/
+// 100% matching! 
+void vu1DrawTriangleStripTransDoubleI(unsigned long ulType, VU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
+{ 
+    VU1_PRIM_BUF* pP;                              
+    unsigned short usStripCnt;                      
+    void (*pFunc)(VU1_STRIP_BUF*, VU1_PRIM_BUF*); 
+    unsigned int clipflag;                                     
+    int flg;                                              
+
+    clipflag = 0; 
+    flg = 0;
+
+    InitNodeArraySet(&scissorflip); 
+    
+    pP = (VU1_PRIM_BUF*)Ps2_DRAW_TMP; 
+    
+    pFunc = pColorCalcFuncTbl[usMode & 0xF]; 
+    
+    for (usStripCnt = 0; usStripCnt < usStripMax; usStripCnt++, pS++, pP++) 
+    {
+        pFunc(pS, pP);
+        
+        asm volatile
+        ("
+            lqc2       vf4, VU1_STRIP_BUF.fSx(%2)   
+            lqc2       vf5, VU1_STRIP_BUF.fU(%2)    
+            lqc2       vf6, VU1_STRIP_BUF.fVx(%2)    
+            
+            vmulz.xy   vf5, vf5, vf4z  
+            
+            vadd.z     vf5, vf0, vf4   
+            vsub.w     vf5, vf5, vf5   
+            
+            sqc2       vf5, VU1_PRIM_BUF.fS(%3)      
+        
+            lqc2       vf8, VU1_STRIP_BUF.fVx(%2)    
+            lqc2       vf10, VU1_STRIP_BUF.fU(%2)   
+            lqc2       vf9, VU1_PRIM_BUF.fR(%3)    
+        
+            vmulax     ACC, vf24, vf8x
+            
+            vmadday    ACC, vf25, vf8y 
+            vmaddaz    ACC, vf26, vf8z 
+            vmaddw     vf11, vf27, vf0w 
+            
+            vclipw.xyz vf11, vf11w       
+            
+            vmove      vf7, vf6         
+            
+            vadd.xy    vf7, vf4, vf16  
+            
+            sqc2       vf7, VU1_PRIM_BUF.fX(%3)   
+            
+            lw         t1, 0(%1)     
+            
+            cfc2.ni    t0, vi18        
+            
+            andi       t0, t0, 0x3F   
+            or         t1, t0, t1     
+            
+            sw         t1, 0(%1)     
+            
+            lw         t2, SCISSOR.rotflag(%0)   
+            
+            muli       t3, t2, 64    
+        
+            addi       t2, t2, 1     
+            add        t4, t3, %0      
+            
+            andi       t2, t2, 0x3   
+            
+            sqc2       vf8, SCISSOR.triangle.node[0].vertex(t4)    
+            sqc2       vf9, SCISSOR.triangle.node[0].color(t4)    
+            sqc2       vf10, SCISSOR.triangle.node[0].texUV(t4)   
+            sqc2       vf11, SCISSOR.triangle.node[0].clipV(t4) 
+            
+            addi       t5, t2, -3    
+            
+            bltz       t5, l_002D5AE0        
+            vnop                    
+        
+            neg        t2, zero   
+            
+            l_002D5AE0:
+            sw         t2, SCISSOR.rotflag(%0)    
+        " : : "r"(&scissorflip), "r"(&clipflag), "r"(pS), "r"(pP) : "$t0", "$t1", "$t2", "$t3", "$t4", "$t5", "memory");
+    
+        flg |= _Check_DisplayAreaPoint((NJS_VECTOR*)&pP->fX); 
+        
+        if ((((flg & 0x7)) && ((clipflag & 0x3FFFF))) && (usStripCnt >= 2)) 
+        { 
+            pP->ulKick = 32768;
+            
+            ScissorTriangle(&scissorflip, &planeset); 
+            
+            if (scissorflip.in->nodeNum != 0) 
+            { 
+                DrawScissorPolygonOpaque(&scissorflip, ulType); 
+       
+                ResetNodeArraySet(&scissorflip); 
+            } 
+        }
+        
+        clipflag <<= 6; 
+        flg <<= 1; 
+    } 
+    
+    Ps2AddPrim3DExI(ulType, Ps2_DRAW_TMP, usStripMax); 
+} 
 
 // 100% matching!
 void DrawScissorPolygonTrans1P(SCISSOR* scissor, unsigned long ulType)

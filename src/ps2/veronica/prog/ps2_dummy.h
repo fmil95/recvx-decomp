@@ -61,6 +61,7 @@ extern Uint8* _BSG_END;
 extern NJS_VERTEX_BUF* _nj_vertex_buf_;
 extern unsigned int _nj_control_3d_flag_;
 extern NJS_SCREEN _nj_screen_;
+extern unsigned char Ps2_DRAW_TMP[16384];
 extern unsigned int Ps2_njControl3D_flag;
 extern void (* VsyncFunc)();
 extern void (* EorFunc)();

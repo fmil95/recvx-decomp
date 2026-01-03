@@ -61,9 +61,9 @@ void (* EorFunc)();
 unsigned int Ps2_vcount;
 unsigned int Ps2_dbuff;
 unsigned int _nj_control_3d_flag_;
-/*_anon28 _nj_screen_;
+/*_anon28 _nj_screen_;*/
 unsigned char Ps2_DRAW_TMP[16384];
-unsigned int Ps2_sys_cnt;*/
+/*unsigned int Ps2_sys_cnt;*/
 unsigned int Ps2_njControl3D_flag;
 /*unsigned int Ps2_dbuff;
 unsigned int Ps2_vcount;
