@@ -193,14 +193,13 @@ void    njCnkSetEasyLightColor( Float r, Float g, Float b )
     NaCnkLightEs.fB = b;
 }
 
-/*// 
-// Start address: 0x2cf570
-void njCnkSetEasyMultiLight(int iLightMax)
+// 100% matching! 
+void    njCnkSetEasyMultiLight(Int num)
 {
-	// Line 807, Address: 0x2cf570, Func Offset: 0
-	// Line 808, Address: 0x2cf578, Func Offset: 0x8
-	// Func End, Address: 0x2cf584, Func Offset: 0x14
-}*/
+    NaCnkLighting[1].lLightMax = num;
+    
+    njCnkSetEasyMultiLightSwitch(0, 1);
+}
 
 // 100% matching!
 void    njCnkSetEasyMultiLightSwitch(Int light, Int flag) 
