@@ -11,7 +11,85 @@ static int iNaCnkVerBufMax;
 /*tagVU1_STRIP_BUF NaCnkStrBufTop[200];*/
 unsigned int Vu0ClipFlag;
 /*int lCnkModClipFace;*/
-CHUNK_HEAD* (*pCnkFuncTbl[76])(CHUNK_HEAD*); // TODO: needs defining data
+CHUNK_HEAD* (*pCnkFuncTbl[76])(CHUNK_HEAD*) = 
+{
+	njCnkCn,
+	njCnkCbBa,
+	njCnkCbDa,
+	njCnkCbExp,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkCtTid,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkCmD,
+	njCnkCmA,
+	njCnkCmDa,
+	njCnkCmS,
+	njCnkCmDs,
+	njCnkCmAs,
+	njCnkCmDas,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkCvVn,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkCvVnPs2,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkDefaultLong,
+	njCnkCoP3,
+	njCnkCoP4,
+	njCnkCoSt,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkCs,
+	njCnkCsUvn,
+	njCnkCsUvh,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort,
+	njCnkDefaultShort
+};
 /*void(*pCnkCsVu1FuncTbl)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short)[32];
 unsigned short usCnkCsPolColorCalcFunc[8];*/
 unsigned short usCnkCsTexColorCalcFunc[4][8] = { { 9, 2, 4, 2, 6, 2, 3, 2 }, { 9, 2, 4, 2, 6, 2, 3, 2 }, 
@@ -763,14 +841,14 @@ int njCnkDrawModelLocalMod(NJS_CNK_MODEL* pModel)
     
     if (pModel->vlist != NULL)
     {
-        njCnkCvVMod(pModel->vlist);
+        njCnkCvVMod((CHUNK_HEAD*)pModel->vlist);
     }
 
     njPopMatrixEx();
     
     if (pModel->plist != NULL) 
     {
-        njCnkCoP3(pModel->plist);
+        njCnkCoP3((CHUNK_HEAD*)pModel->plist);
     }
     
     return 1;
@@ -1038,9 +1116,9 @@ CHUNK_HEAD* njCnkCoSt(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)((char*)&pCnk[1] + (pCnk->usSize * 2));
 }
 
-/*// 
+// 
 // Start address: 0x2d15a0
-tagCHUNK_HEAD* njCnkCvVn(tagCHUNK_HEAD* pCnk)
+CHUNK_HEAD* njCnkCvVn(CHUNK_HEAD* pCnk)
 {
 	float fTRZ;
 	float fTRY;
@@ -1069,10 +1147,10 @@ tagCHUNK_HEAD* njCnkCvVn(tagCHUNK_HEAD* pCnk)
 	float fR;
 	float fI;
 	int lLightCnt;
-	tagCNK_LIGHT* pLightPtr;
+	CNK_LIGHT* pLightPtr;
 	float* fpCnk;
 	unsigned int ulIndex;
-	tagVU1_STRIP_BUF* pBuffer;
+	VU1_STRIP_BUF* pBuffer;
 	// Line 2641, Address: 0x2d15a0, Func Offset: 0
 	// Line 2681, Address: 0x2d15ec, Func Offset: 0x4c
 	// Line 2682, Address: 0x2d15f8, Func Offset: 0x58
@@ -1183,19 +1261,20 @@ tagCHUNK_HEAD* njCnkCvVn(tagCHUNK_HEAD* pCnk)
 	// Line 2776, Address: 0x2d1928, Func Offset: 0x388
 	// Line 2777, Address: 0x2d192c, Func Offset: 0x38c
 	// Func End, Address: 0x2d197c, Func Offset: 0x3dc
+	scePrintf("njCnkCvVn - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d1980
-tagCHUNK_HEAD* njCnkCvVnPs2(tagCHUNK_HEAD* pCnk)
+CHUNK_HEAD* njCnkCvVnPs2(CHUNK_HEAD* pCnk)
 {
 	unsigned int tmp;
-	tagCNK_LIGHT* lp;
+	CNK_LIGHT* lp;
 	float v[4][11];
 	float fog;
 	float* fpCnk;
 	unsigned int ulIndex;
-	tagVU1_STRIP_BUF* pBuffer;
+	VU1_STRIP_BUF* pBuffer;
 	unsigned int mask[5];
 	// Line 2857, Address: 0x2d1980, Func Offset: 0
 	// Line 2872, Address: 0x2d1998, Func Offset: 0x18
@@ -1306,11 +1385,12 @@ tagCHUNK_HEAD* njCnkCvVnPs2(tagCHUNK_HEAD* pCnk)
 	// Line 3077, Address: 0x2d1c78, Func Offset: 0x2f8
 	// Line 3078, Address: 0x2d1c7c, Func Offset: 0x2fc
 	// Func End, Address: 0x2d1c98, Func Offset: 0x318
+	scePrintf("njCnkCvVnPs2 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d1ca0
-tagCHUNK_HEAD* njCnkCvVMod(tagCHUNK_HEAD* pCnk)
+CHUNK_HEAD* njCnkCvVMod(CHUNK_HEAD* pCnk)
 {
 	float fTRZ;
 	float fTRY;
@@ -1333,7 +1413,7 @@ tagCHUNK_HEAD* njCnkCvVMod(tagCHUNK_HEAD* pCnk)
 	float fI;
 	float* fpCnk;
 	unsigned int ulIndex;
-	tagVU1_STRIP_BUF* pBuffer;
+	VU1_STRIP_BUF* pBuffer;
 	// Line 3392, Address: 0x2d1ca0, Func Offset: 0
 	// Line 3410, Address: 0x2d1ce4, Func Offset: 0x44
 	// Line 3411, Address: 0x2d1cf0, Func Offset: 0x50
@@ -1393,19 +1473,20 @@ tagCHUNK_HEAD* njCnkCvVMod(tagCHUNK_HEAD* pCnk)
 	// Line 3455, Address: 0x2d1e40, Func Offset: 0x1a0
 	// Line 3456, Address: 0x2d1e44, Func Offset: 0x1a4
 	// Func End, Address: 0x2d1e8c, Func Offset: 0x1ec
+	scePrintf("njCnkCvVMod - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d1e90
-tagCHUNK_HEAD* njCnkCoP3(tagCHUNK_HEAD* pCnk)
+CHUNK_HEAD* njCnkCoP3(CHUNK_HEAD* pCnk)
 {
 	float fNormal;
 	unsigned short usPoly;
 	unsigned short usNext;
-	tagCNK_PRIM_BUF* pP;
-	tagVU1_STRIP_BUF* pV2;
-	tagVU1_STRIP_BUF* pV1;
-	tagVU1_STRIP_BUF* pV0;
+	//CNK_PRIM_BUF* pP;
+	VU1_STRIP_BUF* pV2;
+	VU1_STRIP_BUF* pV1;
+	VU1_STRIP_BUF* pV0;
 	unsigned short* uspCnk;
 	// Line 3476, Address: 0x2d1e90, Func Offset: 0
 	// Line 3491, Address: 0x2d1ea8, Func Offset: 0x18
@@ -1503,21 +1584,22 @@ tagCHUNK_HEAD* njCnkCoP3(tagCHUNK_HEAD* pCnk)
 	// Line 3569, Address: 0x2d22bc, Func Offset: 0x42c
 	// Line 3572, Address: 0x2d22c0, Func Offset: 0x430
 	// Func End, Address: 0x2d22dc, Func Offset: 0x44c
+	scePrintf("njCnkCoP3 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d22e0
-tagCHUNK_HEAD* njCnkCs(tagCHUNK_HEAD* pCnk)
+CHUNK_HEAD* njCnkCs(CHUNK_HEAD* pCnk)
 {
-	void(*pVu1Func)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short);
+	void(*pVu1Func)(unsigned long, VU1_STRIP_BUF*, unsigned short, unsigned short);
 	unsigned short usColorCalc;
 	unsigned short usClip;
 	unsigned short usMax;
 	unsigned short usCnt;
 	unsigned short usStrip;
 	unsigned short usNext;
-	tagVU1_STRIP_BUF* pS;
-	tagVU1_STRIP_BUF* pV;
+	VU1_STRIP_BUF* pS;
+	VU1_STRIP_BUF* pV;
 	unsigned short* uspCnk;
 	unsigned long ulType;
 	// Line 3589, Address: 0x2d22e0, Func Offset: 0
@@ -1576,7 +1658,8 @@ tagCHUNK_HEAD* njCnkCs(tagCHUNK_HEAD* pCnk)
 	// Line 3673, Address: 0x2d2538, Func Offset: 0x258
 	// Line 3674, Address: 0x2d253c, Func Offset: 0x25c
 	// Func End, Address: 0x2d2560, Func Offset: 0x280
-}*/
+	scePrintf("njCnkCs - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int _CVV(float* v0)
@@ -1610,19 +1693,19 @@ int _CVV(float* v0)
     } 
 }
 
-/*// 
+// 
 // Start address: 0x2d25a0
-tagCHUNK_HEAD* njCnkCsUvh(tagCHUNK_HEAD* pCnk)
+CHUNK_HEAD* njCnkCsUvh(CHUNK_HEAD* pCnk)
 {
 	unsigned int cflag;
 	float zbuff[4];
 	unsigned int coflag;
-	_anon17* timp;
+	//_anon17* timp;
 	unsigned long vu1func_tag;
 	unsigned long ulVuflag;
 	unsigned long* ulpP;
 	int sExit;
-	void(*pVu1Func)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short);
+	void(*pVu1Func)(unsigned long, VU1_STRIP_BUF*, unsigned short, unsigned short);
 	unsigned short usColorCalc;
 	unsigned short usClip;
 	unsigned short usNum;
@@ -1630,9 +1713,9 @@ tagCHUNK_HEAD* njCnkCsUvh(tagCHUNK_HEAD* pCnk)
 	unsigned short usCnt;
 	unsigned short usStrip;
 	unsigned short usNext;
-	tagVU1_STRIP_BUF* pSorg;
-	tagVU1_STRIP_BUF* pS;
-	tagVU1_STRIP_BUF* pV;
+	VU1_STRIP_BUF* pSorg;
+	VU1_STRIP_BUF* pS;
+	VU1_STRIP_BUF* pV;
 	unsigned short* uspCnk;
 	unsigned long ulType2;
 	unsigned long ulType;
@@ -1900,21 +1983,22 @@ tagCHUNK_HEAD* njCnkCsUvh(tagCHUNK_HEAD* pCnk)
 	// Line 405, Address: 0x2d2e58, Func Offset: 0x8b8
 	// Line 406, Address: 0x2d2e5c, Func Offset: 0x8bc
 	// Func End, Address: 0x2d2e8c, Func Offset: 0x8ec
+	scePrintf("njCnkCsUvh - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2d2e90
-tagCHUNK_HEAD* njCnkCsUvn(tagCHUNK_HEAD* pCnk)
+CHUNK_HEAD* njCnkCsUvn(CHUNK_HEAD* pCnk)
 {
 	unsigned int cflag;
 	float zbuff[4];
 	unsigned int coflag;
-	_anon17* timp;
+	//_anon17* timp;
 	unsigned long vu1func_tag;
 	unsigned long ulVuflag;
 	unsigned long* ulpP;
 	int sExit;
-	void(*pVu1Func)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short);
+	void(*pVu1Func)(unsigned long, VU1_STRIP_BUF*, unsigned short, unsigned short);
 	unsigned short usColorCalc;
 	unsigned short usClip;
 	unsigned short usNum;
@@ -1922,9 +2006,9 @@ tagCHUNK_HEAD* njCnkCsUvn(tagCHUNK_HEAD* pCnk)
 	unsigned short usCnt;
 	unsigned short usStrip;
 	unsigned short usNext;
-	tagVU1_STRIP_BUF* pSorg;
-	tagVU1_STRIP_BUF* pS;
-	tagVU1_STRIP_BUF* pV;
+	VU1_STRIP_BUF* pSorg;
+	VU1_STRIP_BUF* pS;
+	VU1_STRIP_BUF* pV;
 	unsigned short* uspCnk;
 	unsigned long ulType2;
 	unsigned long ulType;
@@ -2192,7 +2276,8 @@ tagCHUNK_HEAD* njCnkCsUvn(tagCHUNK_HEAD* pCnk)
 	// Line 405, Address: 0x2d3748, Func Offset: 0x8b8
 	// Line 406, Address: 0x2d374c, Func Offset: 0x8bc
 	// Func End, Address: 0x2d377c, Func Offset: 0x8ec
-}*/
+	scePrintf("njCnkCsUvn - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 CHUNK_HEAD* njCnkDefaultLong(CHUNK_HEAD* pCnk)
