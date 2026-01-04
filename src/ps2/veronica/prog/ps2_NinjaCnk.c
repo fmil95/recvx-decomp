@@ -2206,25 +2206,54 @@ CHUNK_HEAD* njCnkDefaultShort(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)&((unsigned short*)(pCnk + 1))[pCnk->usSize]; 
 }
 
-/*// 
-// Start address: 0x2d37c0
-void njCnkEasyMultiDrawObjectI(cnkobj* pObject)
+// 100% matching!
+void njCnkEasyMultiDrawObjectI(NJS_CNK_OBJECT* pObject)
 {
-	int lDrawResult;
-	unsigned int ulFlags;
-	// Line 4180, Address: 0x2d37c0, Func Offset: 0
-	// Line 4186, Address: 0x2d37d4, Func Offset: 0x14
-	// Line 4187, Address: 0x2d37dc, Func Offset: 0x1c
-	// Line 4189, Address: 0x2d37ec, Func Offset: 0x2c
-	// Line 4193, Address: 0x2d37f4, Func Offset: 0x34
-	// Line 4196, Address: 0x2d37fc, Func Offset: 0x3c
-	// Line 4197, Address: 0x2d3810, Func Offset: 0x50
-	// Line 4198, Address: 0x2d3828, Func Offset: 0x68
-	// Line 4202, Address: 0x2d3840, Func Offset: 0x80
-	// Line 4205, Address: 0x2d385c, Func Offset: 0x9c
-	// Line 4207, Address: 0x2d3880, Func Offset: 0xc0
-	// Line 4210, Address: 0x2d3888, Func Offset: 0xc8
-	// Line 4211, Address: 0x2d3890, Func Offset: 0xd0
-	// Line 4212, Address: 0x2d38a0, Func Offset: 0xe0
-	// Func End, Address: 0x2d38b4, Func Offset: 0xf4
-}*/
+    unsigned int ulFlags; 
+    int lDrawResult;    
+
+    njCnkSetCurrentDrawMode(1);
+    
+    ulCnkCurrentDrawMode |= 0x4;
+    
+    for ( ; pObject != NULL; pObject = pObject->sibling) 
+    {
+        ulFlags = pObject->evalflags;
+    
+        njPushMatrixEx();
+    
+        if (!(ulFlags & 0x1)) 
+        {
+            njTranslateEx((NJS_VECTOR*)&pObject->pos[0]);
+        }
+    
+        if (!(ulFlags & 0x2)) 
+        {
+            njRotateEx(pObject->ang, ulFlags & 0x20);
+        }
+    
+        if (!(ulFlags & 0x4))
+        {
+            njScaleEx((NJS_VECTOR*)&pObject->scl[0]);
+        }
+    
+        if ((ulFlags & 0x8)) 
+        {
+            lDrawResult = 0;
+        } 
+        else
+        {
+            lDrawResult = njCnkDrawModelLocal(pObject->model);
+        }
+    
+        if (!(ulFlags & 0x10)) 
+        {
+            if ((!(ulFlags & 0x100)) || (lDrawResult != 0)) 
+            {
+                njCnkEasyMultiDrawObjectI(pObject->child);
+            }
+        }
+    
+        njPopMatrixEx();
+    }
+}
