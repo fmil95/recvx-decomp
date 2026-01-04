@@ -1028,18 +1028,18 @@ void vu1DrawTriangleStripTransSingle(unsigned long ulType, VU1_STRIP_BUF* pStrip
 }
 
 // 99.38% matching
-int _Clip_Screen(register float* clip)
+int _Clip_Screen(float* clip)
 {
     int ret;         
     static float para[2][4] = { 2048.0f, 2048.0f, 0, 240.0f, 0.75f, 1.0f, 0, 0 }; 
 
+    ret = 0;
+
     asm volatile
     ("
-        move       v0, %0
-    
-        lqc2       vf4, 0(clip)
-        lqc2       vf5, 0(v0)
-        lqc2       vf6, 16(v0)
+        lqc2       vf4, 0(%1)
+        lqc2       vf5, 0(%2)
+        lqc2       vf6, 16(%2)
     
         vsub.xy    vf4, vf4, vf5
         
@@ -1052,9 +1052,11 @@ int _Clip_Screen(register float* clip)
         vnop
         vnop
     
-        cfc2       v0, vi18
-    " : : "f"(para) : "v0"
+        cfc2       %0, vi18
+    " : "=r"(ret) : "f"(clip), "r"(&para) :
     );
+
+    return ret;
 }
 
 // 97.44% matching
