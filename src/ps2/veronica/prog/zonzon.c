@@ -1,5 +1,7 @@
 #include "types.h"
 
+// _anon4 = NJS_POINT3
+// _anon20 = O_WORK
 // _anon23 = NO_NAME_10
 
 /*typedef struct npobj;
@@ -1565,9 +1567,7 @@ int bhEne_CheckSideWall2(BH_PWORK* epw, float step, int both);
 int bhEne_CheckSideWall3(BH_PWORK* epw, NJS_POINT3* pos, float step, int both);
 void bhEne_SetVibration(int no);
 void bhEne_PlayerSePlay(BH_PWORK* epw, int no);
-/*
-void bhEne_HitCheckParts(BH_PWORK* pp, _anon4* pos);
-*/
+void bhEne_HitCheckParts(BH_PWORK* pp, NJS_POINT3* pos);
 
 // 99.11% matching (https://decomp.me/scratch/Lo19g)
 void ikou(BH_PWORK* epw, NJS_POINT3* pos, int add_dir)
@@ -2757,43 +2757,36 @@ void bhEne_PlayerSePlay(BH_PWORK* epw, int no)
     }
 }
 
-/*
-// 
-// Start address: 0x218bc0
-void bhEne_HitCheckParts(BH_PWORK* pp, _anon4* pos)
-{
-	int i;
-	float slen;
-	float len;
-	_anon4 vec;
-	_anon20* owk;
-	// Line 2260, Address: 0x218bc0, Func Offset: 0
-	// Line 2266, Address: 0x218be8, Func Offset: 0x28
-	// Line 2268, Address: 0x218bec, Func Offset: 0x2c
-	// Line 2272, Address: 0x218bf4, Func Offset: 0x34
-	// Line 2266, Address: 0x218bfc, Func Offset: 0x3c
-	// Line 2272, Address: 0x218c00, Func Offset: 0x40
-	// Line 2274, Address: 0x218c08, Func Offset: 0x48
-	// Line 2275, Address: 0x218c10, Func Offset: 0x50
-	// Line 2276, Address: 0x218c14, Func Offset: 0x54
-	// Line 2277, Address: 0x218c18, Func Offset: 0x58
-	// Line 2274, Address: 0x218c1c, Func Offset: 0x5c
-	// Line 2275, Address: 0x218c24, Func Offset: 0x64
-	// Line 2276, Address: 0x218c34, Func Offset: 0x74
-	// Line 2277, Address: 0x218c40, Func Offset: 0x80
-	// Line 2279, Address: 0x218c48, Func Offset: 0x88
-	// Line 2284, Address: 0x218c78, Func Offset: 0xb8
-	// Line 2285, Address: 0x218c7c, Func Offset: 0xbc
-	// Line 2286, Address: 0x218c80, Func Offset: 0xc0
-	// Line 2287, Address: 0x218c8c, Func Offset: 0xcc
-	// Line 2288, Address: 0x218c98, Func Offset: 0xd8
-	// Line 2289, Address: 0x218ca4, Func Offset: 0xe4
-	// Line 2290, Address: 0x218ca8, Func Offset: 0xe8
-	// Line 2291, Address: 0x218cac, Func Offset: 0xec
-	// Line 2292, Address: 0x218cc8, Func Offset: 0x108
-	// Line 2293, Address: 0x218cd0, Func Offset: 0x110
-	// Line 2294, Address: 0x218cd8, Func Offset: 0x118
-	// Line 2295, Address: 0x218ce0, Func Offset: 0x120
-	// Func End, Address: 0x218d08, Func Offset: 0x148
-}*/
+// 84.33% matching (https://decomp.me/scratch/MHlrL)
+void bhEne_HitCheckParts(BH_PWORK* pp, NJS_POINT3* pos) {
+    int i;
+    float slen;
+    float len;
+    NJS_VECTOR vec;
+    O_WORK* owk;
 
+    len = -1.0f;
+    owk = (O_WORK*)pp->mlwP->owP;
+    for (i = 1; i < (pp->mlwP->obj_num - 1); i++)
+    {        
+        vec.x = pos->x - pp->pxb;
+        vec.y = pos->y - pp->pyb;
+        vec.z = pos->z - pp->pzb;
+        slen = njScalor2(&vec);
+
+        if (len <= slen || len == -1.0f)
+        {
+            len = slen;
+            pp->djnt_no = i;
+            pp->dvx = -vec.x;
+            pp->dvy = -vec.y;
+            pp->dvz = -vec.z;
+        }
+
+         owk += 0x50;
+    }
+    
+    pp->dpx = pos->x;
+    pp->dpy = pos->y;
+    pp->dpz = pos->z;
+}
