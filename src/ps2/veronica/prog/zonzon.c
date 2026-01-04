@@ -1531,10 +1531,10 @@ int ikou3(BH_PWORK* epw, NJS_POINT3* pos, int add_dir);
 int NitenDir_ck(float hontai_x, float hontai_z, float target_x, float target_z);
 int bhCdirCheck(int my_ang, int trg_ang);
 int bhEne_LeverCheck();
+int bhDGCdirCheck(NJS_VECTOR* dv, int rot);
+int bhDGCdirCheck2(NJS_VECTOR* dv, O_WORK* owk);
+int bhDGCdirCheck3(NJS_VECTOR* dv, int rot);
 /*
-int bhDGCdirCheck(_anon4* dv, int rot);
-int bhDGCdirCheck2(_anon4* dv, _anon20* owk);
-int bhDGCdirCheck3(_anon4* dv, int rot);
 int bhEne_AngleCheck(_anon4* vec, int rot, int chk_ang);
 void bhEne_GetTranslateMtn(BH_PWORK* epw, int frm, int mode);
 void bhEne_GetTranslateMtn2(BH_PWORK* epw, int frm, int mode);
@@ -1664,102 +1664,113 @@ int bhEne_LeverCheck()
     }
     return dec_cnt;
 }
-/*
+
+// 100% matching!
+int bhDGCdirCheck(NJS_VECTOR* dv, int rot) 
+{
+    NJS_VECTOR v1;
+    NJS_VECTOR v0;
     
-// 
-// Start address: 0x216110
-int bhDGCdirCheck(_anon4* dv, int rot)
-{
-	_anon4 v1;
-	_anon4 v0;
-	// Line 293, Address: 0x216110, Func Offset: 0
-	// Line 305, Address: 0x216128, Func Offset: 0x18
-	// Line 306, Address: 0x216134, Func Offset: 0x24
-	// Line 307, Address: 0x216148, Func Offset: 0x38
-	// Line 309, Address: 0x21614c, Func Offset: 0x3c
-	// Line 312, Address: 0x216150, Func Offset: 0x40
-	// Line 309, Address: 0x216154, Func Offset: 0x44
-	// Line 310, Address: 0x216158, Func Offset: 0x48
-	// Line 311, Address: 0x216160, Func Offset: 0x50
-	// Line 312, Address: 0x216164, Func Offset: 0x54
-	// Line 316, Address: 0x21616c, Func Offset: 0x5c
-	// Line 322, Address: 0x21619c, Func Offset: 0x8c
-	// Func End, Address: 0x2161b0, Func Offset: 0xa0
+    v1.x = -njSin(rot);
+    v1.z = -njCos(rot);
+    v1.y = 0;
+
+    v0.x = dv->x;
+    v0.y = dv->y;
+    v0.z = dv->z;
+    
+    njUnitVector(&v0);
+
+    if (njInnerProduct(&v1, &v0) < 0.0f) 
+    {
+        return 0;
+    }
+
+    return 1;
 }
 
-// 
-// Start address: 0x2161b0
-int bhDGCdirCheck2(_anon4* dv, _anon20* owk)
+// 100% matching!
+int bhDGCdirCheck2(NJS_VECTOR* dv, O_WORK* owk)
 {
-	_anon4 v1;
-	_anon4 v0;
-	// Line 340, Address: 0x2161b0, Func Offset: 0
-	// Line 354, Address: 0x2161c8, Func Offset: 0x18
-	// Line 352, Address: 0x2161cc, Func Offset: 0x1c
-	// Line 351, Address: 0x2161d0, Func Offset: 0x20
-	// Line 353, Address: 0x2161d4, Func Offset: 0x24
-	// Line 352, Address: 0x2161d8, Func Offset: 0x28
-	// Line 353, Address: 0x2161dc, Func Offset: 0x2c
-	// Line 354, Address: 0x2161e0, Func Offset: 0x30
-	// Line 356, Address: 0x2161f0, Func Offset: 0x40
-	// Line 359, Address: 0x2161f4, Func Offset: 0x44
-	// Line 356, Address: 0x2161f8, Func Offset: 0x48
-	// Line 357, Address: 0x2161fc, Func Offset: 0x4c
-	// Line 358, Address: 0x216204, Func Offset: 0x54
-	// Line 359, Address: 0x216208, Func Offset: 0x58
-	// Line 363, Address: 0x216210, Func Offset: 0x60
-	// Line 369, Address: 0x216240, Func Offset: 0x90
-	// Func End, Address: 0x216258, Func Offset: 0xa8
+    NJS_VECTOR v0;
+    NJS_VECTOR v1;
+
+    v1.x = 0;
+    v1.y = 0;
+    v1.z = -1.0f;
+
+    njCalcVector((NJS_MATRIX*)owk->mtx, &v1, &v0);
+    
+    v1.x = dv->x;
+    v1.y = dv->y;
+    v1.z = dv->z;
+    
+    njUnitVector(&v1);
+    
+    if (njInnerProduct(&v0, &v1) < 0.0f) 
+    {
+        return 0;
+    }
+    return 1;
 }
 
-// 
-// Start address: 0x216260
-int bhDGCdirCheck3(_anon4* dv, int rot)
+// 84.73% matching (https://decomp.me/scratch/tOfhl)
+int bhDGCdirCheck3(NJS_VECTOR* dv, int rot) 
 {
-	int ang;
-	// Line 388, Address: 0x216260, Func Offset: 0
-	// Line 394, Address: 0x21626c, Func Offset: 0xc
-	// Line 395, Address: 0x216290, Func Offset: 0x30
-	// Line 397, Address: 0x216298, Func Offset: 0x38
-	// Line 399, Address: 0x2162b4, Func Offset: 0x54
-	// Line 401, Address: 0x2162c0, Func Offset: 0x60
-	// Line 403, Address: 0x2162d4, Func Offset: 0x74
-	// Line 405, Address: 0x2162dc, Func Offset: 0x7c
-	// Line 407, Address: 0x2162f8, Func Offset: 0x98
-	// Line 409, Address: 0x216300, Func Offset: 0xa0
-	// Line 411, Address: 0x216320, Func Offset: 0xc0
-	// Line 413, Address: 0x216328, Func Offset: 0xc8
-	// Line 414, Address: 0x21632c, Func Offset: 0xcc
-	// Func End, Address: 0x21633c, Func Offset: 0xdc
-}
+    // int temp;
+    // int temp2;
+    int ang;
+    float radians;
+    int temp;
+    int check, check2;
 
-// 
-// Start address: 0x216340
-int bhEne_AngleCheck(_anon4* vec, int rot, int chk_ang)
-{
-	float n2;
-	float n1;
-	_anon4 v3;
-	_anon4 v2;
-	_anon4 v1;
-	// Line 435, Address: 0x216340, Func Offset: 0
-	// Line 440, Address: 0x216358, Func Offset: 0x18
-	// Line 441, Address: 0x216360, Func Offset: 0x20
-	// Line 442, Address: 0x216364, Func Offset: 0x24
-	// Line 448, Address: 0x216374, Func Offset: 0x34
-	// Line 449, Address: 0x21637c, Func Offset: 0x3c
-	// Line 450, Address: 0x216388, Func Offset: 0x48
-	// Line 452, Address: 0x216398, Func Offset: 0x58
-	// Line 453, Address: 0x2163a0, Func Offset: 0x60
-	// Line 454, Address: 0x2163b0, Func Offset: 0x70
-	// Line 456, Address: 0x2163c0, Func Offset: 0x80
-	// Line 458, Address: 0x2163c8, Func Offset: 0x88
-	// Line 459, Address: 0x2163d4, Func Offset: 0x94
-	// Line 458, Address: 0x2163d8, Func Offset: 0x98
-	// Line 459, Address: 0x2163dc, Func Offset: 0x9c
-	// Line 461, Address: 0x2163e4, Func Offset: 0xa4
-	// Line 463, Address: 0x216400, Func Offset: 0xc0
-	// Func End, Address: 0x21641c, Func Offset: 0xdc
+
+    radians = atan2f(dv->x, dv->z);
+    temp = (int) (radians * 10430.381f);
+    ang = (temp - rot) & 0xffff;
+
+    // temp = (int)(10430.381f * atan2f(dv->x, dv->z) - rot) & 0xFFFF;
+    // temp2 = temp < 0x2000;
+    check = ang < 0x2000;
+    if (!check) {
+        check2 = ang < 0xe000;
+        
+        if (!check2) {
+            return 3;
+            // goto block_3;
+        }
+        // check = ang < 0x6000;
+        if (ang != 0) {
+            check = ang < 0x6000;
+            if (check) {
+                return 1;
+            }
+        }
+
+        
+// block_8:
+        check = ang < 0x6000;
+        if (check) {
+            check2 = ang < 0xa000;
+            if (check2) {
+                return 2;
+            }
+            // goto block_12;
+            // return 9;
+        }
+// block_12:
+        check2 = ang < 0xa000;
+        if (!check2) {
+            check = ang < 0xe000;
+            if (check) {
+                return 3;
+            }
+        }
+
+        return 3;
+    }
+// block_3:
+    return 0;
 }
 
 // 
