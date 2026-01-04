@@ -35,6 +35,10 @@ VU1_COLOR vu1Specula = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR vu1Ambient = { 1.0f, 1.0f, 1.0f, 1.0f };
 float fVu1AlphaRatio = 128.0f;
 
+extern void VU0_CLIP_VIEW_VOLUME_ALL() __attribute__((section(".vutext")));
+extern void VU0_CALC_COLOR() __attribute__((section(".vutext")));
+extern void VU0_INIT_CALC_COLOR() __attribute__((section(".vutext")));
+
 // 100% matching!
 void vu1SetScreenProjection(float fProjection)
 {
@@ -1053,180 +1057,336 @@ int _Clip_Screen(register float* clip)
     );
 }
 
-/*// 
-// Start address: 0x2d50f0
-void vu1DrawTriangleStripTransDouble(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
-{
-	int clipswitch;
-	int count;
-	int flg;
-	unsigned int clipflag;
-	unsigned short usStripCnt;
-	float fIz;
-	tagVU1_PRIM_BUF* pP;
-	// Line 3071, Address: 0x2d50f0, Func Offset: 0
-	// Line 3080, Address: 0x2d5128, Func Offset: 0x38
-	// Line 3087, Address: 0x2d512c, Func Offset: 0x3c
-	// Line 3090, Address: 0x2d5130, Func Offset: 0x40
-	// Line 3091, Address: 0x2d5134, Func Offset: 0x44
-	// Line 3092, Address: 0x2d5138, Func Offset: 0x48
-	// Line 3097, Address: 0x2d5140, Func Offset: 0x50
-	// Line 3103, Address: 0x2d5144, Func Offset: 0x54
-	// Line 3135, Address: 0x2d514c, Func Offset: 0x5c
-	// Line 3137, Address: 0x2d5160, Func Offset: 0x70
-	// Line 3138, Address: 0x2d5164, Func Offset: 0x74
-	// Line 3139, Address: 0x2d5168, Func Offset: 0x78
-	// Line 3141, Address: 0x2d5170, Func Offset: 0x80
-	// Line 3142, Address: 0x2d5174, Func Offset: 0x84
-	// Line 3143, Address: 0x2d5178, Func Offset: 0x88
-	// Line 3144, Address: 0x2d517c, Func Offset: 0x8c
-	// Line 3145, Address: 0x2d5180, Func Offset: 0x90
-	// Line 3146, Address: 0x2d5184, Func Offset: 0x94
-	// Line 3147, Address: 0x2d5188, Func Offset: 0x98
-	// Line 3148, Address: 0x2d518c, Func Offset: 0x9c
-	// Line 3149, Address: 0x2d5190, Func Offset: 0xa0
-	// Line 3150, Address: 0x2d5194, Func Offset: 0xa4
-	// Line 3151, Address: 0x2d5198, Func Offset: 0xa8
-	// Line 3152, Address: 0x2d519c, Func Offset: 0xac
-	// Line 3153, Address: 0x2d51a0, Func Offset: 0xb0
-	// Line 3154, Address: 0x2d51a4, Func Offset: 0xb4
-	// Line 3155, Address: 0x2d51a8, Func Offset: 0xb8
-	// Line 3156, Address: 0x2d51ac, Func Offset: 0xbc
-	// Line 3162, Address: 0x2d51b0, Func Offset: 0xc0
-	// Line 3166, Address: 0x2d51bc, Func Offset: 0xcc
-	// Line 3167, Address: 0x2d51c0, Func Offset: 0xd0
-	// Line 3175, Address: 0x2d51c4, Func Offset: 0xd4
-	// Line 3171, Address: 0x2d51cc, Func Offset: 0xdc
-	// Line 3172, Address: 0x2d51d0, Func Offset: 0xe0
-	// Line 3175, Address: 0x2d51d4, Func Offset: 0xe4
-	// Line 3177, Address: 0x2d51e0, Func Offset: 0xf0
-	// Line 3178, Address: 0x2d51e4, Func Offset: 0xf4
-	// Line 3179, Address: 0x2d51e8, Func Offset: 0xf8
-	// Line 3181, Address: 0x2d51f0, Func Offset: 0x100
-	// Line 3182, Address: 0x2d51f4, Func Offset: 0x104
-	// Line 3183, Address: 0x2d51f8, Func Offset: 0x108
-	// Line 3184, Address: 0x2d51fc, Func Offset: 0x10c
-	// Line 3185, Address: 0x2d5200, Func Offset: 0x110
-	// Line 3186, Address: 0x2d5204, Func Offset: 0x114
-	// Line 3187, Address: 0x2d5208, Func Offset: 0x118
-	// Line 3188, Address: 0x2d520c, Func Offset: 0x11c
-	// Line 3189, Address: 0x2d5210, Func Offset: 0x120
-	// Line 3190, Address: 0x2d5214, Func Offset: 0x124
-	// Line 3191, Address: 0x2d5218, Func Offset: 0x128
-	// Line 3192, Address: 0x2d521c, Func Offset: 0x12c
-	// Line 3193, Address: 0x2d5220, Func Offset: 0x130
-	// Line 3194, Address: 0x2d5224, Func Offset: 0x134
-	// Line 3195, Address: 0x2d5228, Func Offset: 0x138
-	// Line 3196, Address: 0x2d522c, Func Offset: 0x13c
-	// Line 3202, Address: 0x2d5230, Func Offset: 0x140
-	// Line 3206, Address: 0x2d5240, Func Offset: 0x150
-	// Line 3207, Address: 0x2d5244, Func Offset: 0x154
-	// Line 3211, Address: 0x2d5248, Func Offset: 0x158
-	// Line 3212, Address: 0x2d524c, Func Offset: 0x15c
-	// Line 3214, Address: 0x2d5250, Func Offset: 0x160
-	// Line 3217, Address: 0x2d5258, Func Offset: 0x168
-	// Line 3219, Address: 0x2d526c, Func Offset: 0x17c
-	// Line 3220, Address: 0x2d5270, Func Offset: 0x180
-	// Line 3221, Address: 0x2d5274, Func Offset: 0x184
-	// Line 3223, Address: 0x2d527c, Func Offset: 0x18c
-	// Line 3224, Address: 0x2d5280, Func Offset: 0x190
-	// Line 3225, Address: 0x2d5284, Func Offset: 0x194
-	// Line 3226, Address: 0x2d5288, Func Offset: 0x198
-	// Line 3227, Address: 0x2d528c, Func Offset: 0x19c
-	// Line 3228, Address: 0x2d5290, Func Offset: 0x1a0
-	// Line 3229, Address: 0x2d5294, Func Offset: 0x1a4
-	// Line 3230, Address: 0x2d5298, Func Offset: 0x1a8
-	// Line 3231, Address: 0x2d529c, Func Offset: 0x1ac
-	// Line 3232, Address: 0x2d52a0, Func Offset: 0x1b0
-	// Line 3233, Address: 0x2d52a4, Func Offset: 0x1b4
-	// Line 3234, Address: 0x2d52a8, Func Offset: 0x1b8
-	// Line 3235, Address: 0x2d52ac, Func Offset: 0x1bc
-	// Line 3236, Address: 0x2d52b0, Func Offset: 0x1c0
-	// Line 3237, Address: 0x2d52b4, Func Offset: 0x1c4
-	// Line 3238, Address: 0x2d52b8, Func Offset: 0x1c8
-	// Line 3244, Address: 0x2d52bc, Func Offset: 0x1cc
-	// Line 3247, Address: 0x2d52c8, Func Offset: 0x1d8
-	// Line 3248, Address: 0x2d52cc, Func Offset: 0x1dc
-	// Line 3249, Address: 0x2d52d0, Func Offset: 0x1e0
-	// Line 3254, Address: 0x2d52d4, Func Offset: 0x1e4
-	// Line 3255, Address: 0x2d52ec, Func Offset: 0x1fc
-	// Line 3256, Address: 0x2d52f0, Func Offset: 0x200
-	// Line 3257, Address: 0x2d5300, Func Offset: 0x210
-	// Line 3258, Address: 0x2d530c, Func Offset: 0x21c
-	// Line 3259, Address: 0x2d5314, Func Offset: 0x224
-	// Line 3260, Address: 0x2d531c, Func Offset: 0x22c
-	// Line 3264, Address: 0x2d5328, Func Offset: 0x238
-	// Line 3265, Address: 0x2d5330, Func Offset: 0x240
-	// Line 3266, Address: 0x2d5354, Func Offset: 0x264
-	// Line 3271, Address: 0x2d535c, Func Offset: 0x26c
-	// Line 3272, Address: 0x2d5360, Func Offset: 0x270
-	// Line 3276, Address: 0x2d5368, Func Offset: 0x278
-	// Line 3277, Address: 0x2d536c, Func Offset: 0x27c
-	// Line 3281, Address: 0x2d5370, Func Offset: 0x280
-	// Line 3277, Address: 0x2d5374, Func Offset: 0x284
-	// Line 3278, Address: 0x2d537c, Func Offset: 0x28c
-	// Line 3279, Address: 0x2d5388, Func Offset: 0x298
-	// Line 3280, Address: 0x2d538c, Func Offset: 0x29c
-	// Line 3281, Address: 0x2d5390, Func Offset: 0x2a0
-	// Line 3282, Address: 0x2d5398, Func Offset: 0x2a8
-	// Line 3281, Address: 0x2d539c, Func Offset: 0x2ac
-	// Line 3282, Address: 0x2d53a4, Func Offset: 0x2b4
-	// Line 3283, Address: 0x2d53b4, Func Offset: 0x2c4
-	// Line 3284, Address: 0x2d53bc, Func Offset: 0x2cc
-	// Line 3287, Address: 0x2d53c4, Func Offset: 0x2d4
-	// Line 3288, Address: 0x2d53c8, Func Offset: 0x2d8
-	// Line 3291, Address: 0x2d53cc, Func Offset: 0x2dc
-	// Line 3292, Address: 0x2d53d4, Func Offset: 0x2e4
-	// Line 3293, Address: 0x2d53d8, Func Offset: 0x2e8
-	// Line 3298, Address: 0x2d53dc, Func Offset: 0x2ec
-	// Line 3299, Address: 0x2d53e0, Func Offset: 0x2f0
-	// Line 3303, Address: 0x2d53e8, Func Offset: 0x2f8
-	// Line 3304, Address: 0x2d53ec, Func Offset: 0x2fc
-	// Line 3308, Address: 0x2d53f0, Func Offset: 0x300
-	// Line 3304, Address: 0x2d53f4, Func Offset: 0x304
-	// Line 3305, Address: 0x2d53fc, Func Offset: 0x30c
-	// Line 3306, Address: 0x2d5408, Func Offset: 0x318
-	// Line 3307, Address: 0x2d540c, Func Offset: 0x31c
-	// Line 3308, Address: 0x2d5410, Func Offset: 0x320
-	// Line 3309, Address: 0x2d5418, Func Offset: 0x328
-	// Line 3308, Address: 0x2d541c, Func Offset: 0x32c
-	// Line 3309, Address: 0x2d5424, Func Offset: 0x334
-	// Line 3310, Address: 0x2d5434, Func Offset: 0x344
-	// Line 3311, Address: 0x2d543c, Func Offset: 0x34c
-	// Line 3314, Address: 0x2d5444, Func Offset: 0x354
-	// Line 3315, Address: 0x2d5448, Func Offset: 0x358
-	// Line 3318, Address: 0x2d544c, Func Offset: 0x35c
-	// Line 3319, Address: 0x2d5454, Func Offset: 0x364
-	// Line 3320, Address: 0x2d5458, Func Offset: 0x368
-	// Line 3321, Address: 0x2d545c, Func Offset: 0x36c
-	// Line 3326, Address: 0x2d5464, Func Offset: 0x374
-	// Line 3327, Address: 0x2d5468, Func Offset: 0x378
-	// Line 3331, Address: 0x2d5470, Func Offset: 0x380
-	// Line 3332, Address: 0x2d5474, Func Offset: 0x384
-	// Line 3336, Address: 0x2d5478, Func Offset: 0x388
-	// Line 3332, Address: 0x2d547c, Func Offset: 0x38c
-	// Line 3333, Address: 0x2d5484, Func Offset: 0x394
-	// Line 3334, Address: 0x2d5490, Func Offset: 0x3a0
-	// Line 3335, Address: 0x2d5494, Func Offset: 0x3a4
-	// Line 3336, Address: 0x2d5498, Func Offset: 0x3a8
-	// Line 3337, Address: 0x2d54a0, Func Offset: 0x3b0
-	// Line 3336, Address: 0x2d54a4, Func Offset: 0x3b4
-	// Line 3337, Address: 0x2d54ac, Func Offset: 0x3bc
-	// Line 3338, Address: 0x2d54bc, Func Offset: 0x3cc
-	// Line 3339, Address: 0x2d54c4, Func Offset: 0x3d4
-	// Line 3342, Address: 0x2d54cc, Func Offset: 0x3dc
-	// Line 3343, Address: 0x2d54d0, Func Offset: 0x3e0
-	// Line 3346, Address: 0x2d54d4, Func Offset: 0x3e4
-	// Line 3347, Address: 0x2d54dc, Func Offset: 0x3ec
-	// Line 3349, Address: 0x2d54e4, Func Offset: 0x3f4
-	// Line 3350, Address: 0x2d54f4, Func Offset: 0x404
-	// Line 3351, Address: 0x2d54fc, Func Offset: 0x40c
-	// Line 3352, Address: 0x2d5500, Func Offset: 0x410
-	// Line 3353, Address: 0x2d5524, Func Offset: 0x434
-	// Line 3355, Address: 0x2d5528, Func Offset: 0x438
-	// Line 3360, Address: 0x2d553c, Func Offset: 0x44c
-	// Func End, Address: 0x2d556c, Func Offset: 0x47c
-}*/
+// 97.44% matching
+void vu1DrawTriangleStripTransDouble(unsigned long ulType, VU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
+{ 
+    VU1_PRIM_BUF* pP;                            
+    float fIz;                                   
+    unsigned short usStripCnt;                  
+    unsigned int clipflag;                     
+    int flg;                                    
+    int count;   
+    int clipswitch;
+
+    clipswitch = 0; 
+    
+    clipflag = 0;
+    
+    asm volatile 
+    ("
+    .set noreorder
+        andi    v0, %0, 0xF    
+
+        add     t0, zero, v0 
+        
+        ctc2    t0, vi1      
+    
+        vcallms VU0_INIT_CALC_COLOR 
+        nop
+    .set reorder
+    " : "r"(usMode) : 
+    );
+   
+    pP = (VU1_PRIM_BUF*)Ps2_DRAW_TMP; 
+    
+    if (clipswitch == 0) 
+    { 
+        asm volatile
+        ("
+        .set noreorder
+            lqc2    vf4, VU1_STRIP_BUF.fIr(%2) 
+            lqc2    vf14, VU1_STRIP_BUF.fVx(%2)
+            
+            vcallms VU0_CALC_COLOR  
+        
+            lwc1    f1, VU1_STRIP_BUF.fU(%2)
+            lwc1    f2, VU1_STRIP_BUF.fV(%2) 
+            lwc1    f3, VU1_STRIP_BUF.fIz(%2) 
+            
+            lq      t0, VU1_STRIP_BUF.fVx(%2) 
+            
+            lwc1    f4, VU1_STRIP_BUF.fSx(%2) 
+            lwc1    f5, VU1_STRIP_BUF.fSy(%2) 
+            
+            mul.s   f1, f1, f3 
+            mul.s   f2, f2, f3 
+            
+            add.s   f4, f4, %0 
+            add.s   f5, f5, %1 
+            
+            sq      t0, VU1_PRIM_BUF.fX(%3) 
+            
+            swc1    f1, VU1_PRIM_BUF.fS(%3) 
+            swc1    f2, VU1_PRIM_BUF.fT(%3) 
+            swc1    f3, VU1_PRIM_BUF.fQ(%3) 
+            
+            sw      zero, VU1_PRIM_BUF.ulKick(%3) 
+            
+            swc1    f4, VU1_PRIM_BUF.fX(%3) 
+            swc1    f5, VU1_PRIM_BUF.fY(%3) 
+        .set reorder
+        " : : "f"(fVu1OffsetX), "f"(fVu1OffsetY), "r"(pS), "r"(pP) : "$f1", "$f2", "$f3", "$f4", "$f5", "$t0", "memory"
+        );  
+            
+        flg = _Check_DisplayAreaPoint((NJS_VECTOR*)&pP->fX) << 2;
+        
+        asm volatile 
+        ("
+            qmfc2.i t0, vf4    
+            
+            sq      t0, VU1_PRIM_BUF.fR(%0) 
+        " : : "r"(pP) : "$t0", "memory" 
+        );
+        
+        pP++; 
+        pS++; 
+        
+        asm volatile 
+        (" 
+        .set noreorder
+            lqc2    vf4, VU1_STRIP_BUF.fIr(%2) 
+            lqc2    vf14, VU1_STRIP_BUF.fVx(%2)
+            
+            vcallms VU0_CALC_COLOR  
+        
+            lwc1    f1, VU1_STRIP_BUF.fU(%2)
+            lwc1    f2, VU1_STRIP_BUF.fV(%2) 
+            lwc1    f3, VU1_STRIP_BUF.fIz(%2) 
+            
+            lq      t0, VU1_STRIP_BUF.fVx(%2) 
+            
+            lwc1    f4, VU1_STRIP_BUF.fSx(%2) 
+            lwc1    f5, VU1_STRIP_BUF.fSy(%2) 
+            
+            mul.s   f1, f1, f3 
+            mul.s   f2, f2, f3 
+            
+            add.s   f4, f4, %0 
+            add.s   f5, f5, %1 
+            
+            sq      t0, VU1_PRIM_BUF.fX(%3) 
+            
+            swc1    f1, VU1_PRIM_BUF.fS(%3) 
+            swc1    f2, VU1_PRIM_BUF.fT(%3) 
+            swc1    f3, VU1_PRIM_BUF.fQ(%3) 
+            
+            sw      zero, VU1_PRIM_BUF.ulKick(%3) 
+            
+            swc1    f4, VU1_PRIM_BUF.fX(%3) 
+            swc1    f5, VU1_PRIM_BUF.fY(%3) 
+        .set reorder
+        " : : "f"(fVu1OffsetX), "f"(fVu1OffsetY), "r"(pS), "r"(pP) : "$f1", "$f2", "$f3", "$f4", "$f5", "$t0", "memory"
+        );
+        
+        flg |= _Check_DisplayAreaPoint((NJS_VECTOR*)&pP->fX) << 1; 
+        
+        asm volatile 
+        ("
+            qmfc2.i t0, vf4    
+            
+            sq      t0, VU1_PRIM_BUF.fR(%0) 
+        " : : "r"(pP) : "$t0", "memory" 
+        );
+        
+        pP++; 
+        pS++;
+        
+        for (usStripCnt = 2; usStripCnt < usStripMax; usStripCnt++, pS++, pP++) 
+        {
+            asm volatile 
+            (" 
+            .set noreorder
+                lqc2    vf4, VU1_STRIP_BUF.fIr(%2) 
+                lqc2    vf14, VU1_STRIP_BUF.fVx(%2)
+                
+                vcallms VU0_CLIP_VIEW_VOLUME_ALL  
+            
+                lwc1    f1, VU1_STRIP_BUF.fU(%2)
+                lwc1    f2, VU1_STRIP_BUF.fV(%2) 
+                lwc1    f3, VU1_STRIP_BUF.fIz(%2) 
+                
+                lq      t0, VU1_STRIP_BUF.fVx(%2) 
+                
+                lwc1    f4, VU1_STRIP_BUF.fSx(%2) 
+                lwc1    f5, VU1_STRIP_BUF.fSy(%2) 
+                
+                mul.s   f1, f1, f3 
+                mul.s   f2, f2, f3 
+                
+                add.s   f4, f4, %0 
+                add.s   f5, f5, %1 
+                
+                sq      t0, VU1_PRIM_BUF.fX(%3) 
+                
+                swc1    f1, VU1_PRIM_BUF.fS(%3) 
+                swc1    f2, VU1_PRIM_BUF.fT(%3) 
+                swc1    f3, VU1_PRIM_BUF.fQ(%3) 
+                
+                sw      zero, VU1_PRIM_BUF.ulKick(%3) 
+                
+                swc1    f4, VU1_PRIM_BUF.fX(%3) 
+                swc1    f5, VU1_PRIM_BUF.fY(%3) 
+            .set reorder
+            " : : "f"(fVu1OffsetX), "f"(fVu1OffsetY), "r"(pS), "r"(pP) : "$f1", "$f2", "$f3", "$f4", "$f5", "$t0", "memory"
+            );
+                
+            flg |= _Check_DisplayAreaPoint((NJS_VECTOR*)&pP->fX); 
+            
+            asm volatile 
+            ("
+                qmfc2.i t0, vf4     
+                
+                sq      t0, VU1_PRIM_BUF.fR(%1) 
+                
+                cfc2    %0, vi18    
+                
+                addi    %0, %0, 0
+            " : "=r"(clipflag) : "r"(pP) : "$t0" 
+            );
+
+            if ((flg != 0) && ((clipflag & 0x3FFFF)))
+            { 
+                pP->ulKick = 32768; 
+                
+                if (_Get_ClipVolumePlane() != 0) 
+                { 
+                    _Set_NodeArray(pS, pP); 
+                    
+                    count = _Check_ScissorPlane(); 
+                    
+                    if (count != 0)
+                    { 
+                        DrawScissorPolygonOpaque2(count, ulType); 
+                    }
+                }
+            }
+            
+            flg = (flg << 1) & 0x7; 
+        } 
+    }
+    else
+    {
+        asm volatile 
+        ("
+        .set noreorder
+            lqc2    vf4, VU1_STRIP_BUF.fIr(%0) 
+            
+            vcallms VU0_CALC_COLOR  
+            nop
+        .set reorder
+        " : : "r"(pS) : 
+        );   
+        
+        fIz = pS->fIz; 
+        
+        pP->fS = pS->fU * fIz; 
+        pP->fT = pS->fV * fIz; 
+        pP->fQ = fIz; 
+        
+        pP->ulKick = 0; 
+        
+        pP->fX = fVu1OffsetX + pS->fSx; 
+        pP->fY = fVu1OffsetY + pS->fSy; 
+        pP->fZ = pS->fVz; 
+        
+        pP->fF = pS->fFog; 
+        
+        asm volatile 
+        ("
+            sqc2 vf4, VU1_PRIM_BUF.fR(%0) 
+            nop                         
+        " : : "r"(pP) : 
+        );
+
+        _Clip_ViewVolume2((NJS_POINT4*)&pS->fVx); 
+        
+        pP++; 
+        pS++; 
+
+        asm volatile 
+        ("
+        .set noreorder
+            lqc2    vf4, VU1_STRIP_BUF.fIr(%0) 
+            
+            vcallms VU0_CALC_COLOR  
+            nop
+        .set reorder
+        " : : "r"(pS) : 
+        );
+        
+        fIz = pS->fIz; 
+        
+        pP->fS = pS->fU * fIz;  
+        pP->fT = pS->fV * fIz;
+        pP->fQ = fIz; 
+        
+        pP->ulKick = 0; 
+        
+        pP->fX = fVu1OffsetX + pS->fSx; 
+        pP->fY = fVu1OffsetY + pS->fSy; 
+        pP->fZ = pS->fVz; 
+        
+        pP->fF = pS->fFog; 
+        
+        asm volatile 
+        ("
+            sqc2 vf4, VU1_PRIM_BUF.fR(%0) 
+            nop                         
+        " : : "r"(pP) : 
+        );
+    
+        _Clip_ViewVolume2((NJS_POINT4*)&pS->fVx); 
+        
+        pP++; 
+        pS++; 
+        
+        for (usStripCnt = 2; usStripCnt < usStripMax; usStripCnt++, pS++, pP++) 
+        {
+            asm volatile 
+            ("
+            .set noreorder
+                lqc2    vf4, VU1_STRIP_BUF.fIr(%0) 
+                
+                vcallms VU0_CALC_COLOR  
+                nop
+            .set reorder
+            " : : "r"(pS) : 
+            );
+            
+            fIz = pS->fIz; 
+            
+            pP->fS = pS->fU * fIz;
+            pP->fT = pS->fV * fIz; 
+            pP->fQ = fIz; 
+            
+            pP->ulKick = 0; 
+            
+            pP->fX = fVu1OffsetX + pS->fSx; 
+            pP->fY = fVu1OffsetY + pS->fSy; 
+            pP->fZ = pS->fVz; 
+            
+            pP->fF = pS->fFog; 
+            
+            asm volatile 
+            ("
+                sqc2 vf4, VU1_PRIM_BUF.fR(%0) 
+                nop                         
+            " : : "r"(pP) : 
+            );
+            
+            _Clip_ViewVolume2((NJS_POINT4*)&pS->fVx); 
+            
+            clipflag = _Get_ClipViewVolume2(); 
+            
+            if ((clipflag & 0x3FFFF))
+            { 
+                pP->ulKick = 32768; 
+            } 
+        } 
+    } 
+    
+    Ps2AddPrim3DEx(ulType, Ps2_DRAW_TMP, usStripMax); 
+} 
 
 // 100% matching!
 void vu1GetVertexColor(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
