@@ -1536,8 +1536,8 @@ int bhEne_LeverCheck();
 int bhDGCdirCheck(NJS_VECTOR* dv, int rot);
 int bhDGCdirCheck2(NJS_VECTOR* dv, O_WORK* owk);
 int bhDGCdirCheck3(NJS_VECTOR* dv, int rot);
+int bhEne_AngleCheck(NJS_VECTOR* vec, int rot, int chk_ang);
 /*
-int bhEne_AngleCheck(_anon4* vec, int rot, int chk_ang);
 void bhEne_GetTranslateMtn(BH_PWORK* epw, int frm, int mode);
 void bhEne_GetTranslateMtn2(BH_PWORK* epw, int frm, int mode);
 void bhEne_CalcPartsPos(BH_PWORK* epw, float mtx[16], _anon4* pos, char* tree, int parts_num, int clr_flg);
@@ -1772,6 +1772,35 @@ int bhDGCdirCheck3(NJS_VECTOR* dv, int rot)
 // block_3:
     return 0;
 }
+
+// 100% matching!
+int bhEne_AngleCheck(NJS_VECTOR* vec, int rot, int chk_ang) {
+    float n2;
+    //float n1; // There's supposedly a use for this somewhere here but I can't figure out where...
+    NJS_VECTOR v3;
+    NJS_VECTOR v2;
+    NJS_VECTOR v1;
+
+    v3.x = 0;
+    v3.y = 0;
+    v3.z = -1.0f;
+    
+    njUnitMatrix(0);
+    njRotateY(0, chk_ang);
+    njCalcVector(0, &v3, &v2);
+    njUnitMatrix(0);
+    njRotateY(0, rot + 0x7FFF + 1);
+    njCalcVector(0, &v3, &v1);
+    njUnitVector(vec);
+    n2 = njInnerProduct(&v3, &v2);
+
+    if (njInnerProduct(vec, &v1) > n2) 
+    {
+        return 1;
+    }
+    
+    return 0;
+}/*
 
 // 
 // Start address: 0x216420
