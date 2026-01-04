@@ -62,9 +62,9 @@ void njPers(tagNJS_SCRVECTOR* pScreen);
 void njCopyMatrix(float pDstMat[16], float pSrcMat[16]);
 void njMulMatrixCN(float pSrcMat1[16], float pSrcMat2[16]);*/
 
-#define VU0_INIT_CALC_PROCESS 0xB68
+extern void VU0_INIT_CALC_PROCESS() __attribute__((section(".vutext")));
 
-// 100% matching! 
+// 98.85% matching
 void	njInitMatrix(NJS_MATRIX *m, Sint32 n, Int flag)
 {
     register float pi;
