@@ -11,12 +11,12 @@ void vu1SetScreenAspect(float fAspectW, float fAspectH);
 void vu1SetSpeculaMaterial(tagVU1_COLOR* pSpecula);
 void vu1SetAmbient(tagVU1_COLOR* pAmbient);*/
 void vu1SetAlphaRatio(float fAlpha);
-void InitNodeArraySet(register SCISSOR* scissor);
+void InitNodeArraySet(SCISSOR* scissor);
 static void InitScissorPlane(SCISSOR_PLANE* sp);
 void _Init_ScissorSystem();
 int _Clip_ViewVolume(float* clip, float local_clip[4], float* vertex);
 /*void PushTriangleNodeArray(_anon2* scissor);*/
-void ResetNodeArraySet(register SCISSOR* scissor);
+void ResetNodeArraySet(SCISSOR* scissor);
 /*void ScissorTriangle(_anon2* scissor, _anon5* plane_set);
 int _Check_DisplayAreaPoint(_anon3* vec);
 void DrawScissorPolygonOpaque(_anon2* scissor, unsigned long ulType);

@@ -135,11 +135,11 @@ void vu1SetDiffuseMaterial(VU1_COLOR* pDiffuse)
     
     asm volatile 
     ("
-        lq         t3, 0(a0)
+        lq         t3, VU1_COLOR.fR(%0)
     
-        mfc1       t0, %0
-        mfc1       t1, %0
-        mfc1       t2, %0
+        mfc1       t0, %1
+        mfc1       t1, %1
+        mfc1       t2, %1
         
         pextlw     t0, t1, t0 
         pcpyld     t0, t2, t0 
@@ -149,7 +149,7 @@ void vu1SetDiffuseMaterial(VU1_COLOR* pDiffuse)
     
         vmul.xyz   $vf4,  $vf4, $vf5 
         vaddx.xyzw $vf20, $vf4, $vf0x 
-    " : : "f"(128.0f) : "t0", "t1", "t2"
+    " : : "r"(pDiffuse), "f"(128.0f) : "t0"
     );
 }
 
@@ -185,7 +185,11 @@ void vu1SetAmbient(VU1_COLOR* pAmbient)
     vu1Ambient.fG = pAmbient->fG;
     vu1Ambient.fB = pAmbient->fB;
     
-    asm volatile(lqc2 vf22, 0(a0));
+    asm volatile
+    ("
+        lqc2 vf22, VU1_COLOR.fR(%0)
+    " : : "r"(pAmbient) : 
+    );
 }
 
 // 100% matching!
@@ -206,29 +210,29 @@ void vu1SetAlphaRatio(float fAlpha)
 }
 
 // 100% matching!
-void InitNodeArraySet(register SCISSOR* scissor)
+void InitNodeArraySet(SCISSOR* scissor)
 {
     scissor->rotflag = 0;
     scissor->flipflag = 0;
 
-    asm volatile {
-        
-        add  t0, zero, scissor
+    asm volatile 
+    ("
+        add  t0, zero, %0
         
         addi t2, zero, 3
         
         addi t0, t0, SCISSOR.narray
         addi t1, t0, sizeof(SCISSOR_NODE)
         
-        sw   t0, SCISSOR.in(scissor)
-        sw   t1, SCISSOR.out(scissor)
+        sw   t0, SCISSOR.in(%0)
+        sw   t1, SCISSOR.out(%0)
         
         sw   zero, SCISSOR_NODE.nodeNum(t0)
         sw   zero, SCISSOR_NODE.nodeNum(t1)
         
-        sw   t2, SCISSOR_NODE.nodeNum(scissor)
-            
-    }
+        sw   t2, SCISSOR_NODE.nodeNum(%0)
+    " : : "r"(scissor) : 
+    );
 }
 
 // 100% matching!
@@ -260,41 +264,40 @@ void _Init_ScissorSystem()
 }
 
 // 100% matching! 
-int _Clip_ViewVolume(register float* clip, register float local_clip[4], register float* vertex)
+int _Clip_ViewVolume(float* clip, float local_clip[4], float* vertex)
 {
     asm volatile
-    {
-        
-        lqc2         $vf4, 0(vertex)
+    ("
+        lqc2         vf4, 0(%1)
             
-        vmulax.xyzw  ACC,  $vf24, $vf4x
+        vmulax.xyzw  ACC, vf24, vf4x
             
-        vmadday.xyzw ACC,  $vf25, $vf4y
-        vmaddaz.xyzw ACC,  $vf26, $vf4z
+        vmadday.xyzw ACC, vf25, vf4y
+        vmaddaz.xyzw ACC, vf26, vf4z
             
-        vmaddw.xyzw  $vf5, $vf27, $vf0w
+        vmaddw.xyzw  vf5, vf27, vf0w
             
-        vclipw.xyz   $vf5xyz, $vf5w
+        vclipw.xyz   vf5xyz, vf5w
         vnop
         vnop
         vnop
         vnop
         
-        sqc2         $vf5, 0(clip)
+        sqc2         vf5, 0(%0)
         
-        cfc2         v0, $vi18
-        
-    }
+        cfc2         v0, vi18
+    " : : "r"(clip), "r"(vertex) : 
+    );
 }
 
 // 100% matching!
-void PushTriangleNodeArray(register SCISSOR* scissor)
+void PushTriangleNodeArray(SCISSOR* scissor)
 {
     asm volatile 
     ("
-        move   v1, %0
+        move   v1, %1
         
-        lw     t0, SCISSOR.rotflag(scissor)
+        lw     t0, SCISSOR.rotflag(%0)
         
         daddiu at, zero, sizeof(NODE)
     
@@ -305,7 +308,7 @@ void PushTriangleNodeArray(register SCISSOR* scissor)
         mflo   t1
     
         addi   t0, t0, 1
-        add    t1, t1, scissor
+        add    t1, t1, %0
         
         andi   t0, t0, 0x3
     
@@ -327,33 +330,32 @@ void PushTriangleNodeArray(register SCISSOR* scissor)
         neg    t0, zero
         
         l_002D4150:
-        sw     t0, SCISSOR.rotflag(scissor)
-    " : : "r"(&node) : "v1"
+        sw     t0, SCISSOR.rotflag(%0)
+    " : : "r"(scissor), "r"(&node) : "v1"
     );
 }
 
 // 100% matching!
-void ResetNodeArraySet(register SCISSOR* scissor)
+void ResetNodeArraySet(SCISSOR* scissor)
 {
     scissor->flipflag = 0;
 
     asm volatile 
-    {
-        
-        add  t0, zero, scissor
+    ("
+        add  t0, zero, %0
         
         addi t2, zero, 3
         
         addi t0, t0, SCISSOR.narray
         addi t1, t0, sizeof(SCISSOR_NODE)
         
-        sw   t0, SCISSOR.in(scissor)
-        sw   t1, SCISSOR.out(scissor)
+        sw   t0, SCISSOR.in(%0)
+        sw   t1, SCISSOR.out(%0)
         
         sw   zero, SCISSOR_NODE.nodeNum(t0)
         sw   zero, SCISSOR_NODE.nodeNum(t1)
-        
-    }
+    " : : "r"(scissor) : 
+    );
 }
 
 // 
@@ -612,11 +614,11 @@ void DrawScissorPolygonOpaque(SCISSOR* scissor, unsigned long ulType)
     
     asm volatile
     ("
-        addi     t6, a0, SCISSOR.in
+        addi     t6, %0, SCISSOR.in
     
         lw       t6, SCISSOR.triangle.node[0](t6)
         
-        add      t7, zero, %0
+        add      t7, zero, %1
     
         lw       t0, SCISSOR_NODE.nodeNum(t6)
         nop
@@ -661,7 +663,7 @@ void DrawScissorPolygonOpaque(SCISSOR* scissor, unsigned long ulType)
     
         bnez     t0, l_002D4720
         vnop
-    " : : "r"(vu1ScessorBuf) : "t7"
+    " : : "r"(scissor), "r"(vu1ScessorBuf) : "t7"
     );
 
     ulType = (ulType & 0xFFFDFFFFFFFFFFFF) | 0x6800000000000;
@@ -1878,11 +1880,11 @@ void DrawScissorPolygonTrans1P(SCISSOR* scissor, unsigned long ulType)
     
     asm volatile
     ("
-        addi     t6, a0, SCISSOR.in
+        addi     t6, %0, SCISSOR.in
     
         lw       t6, SCISSOR.triangle.node[0](t6)
         
-        add      t7, zero, %0
+        add      t7, zero, %1
     
         lw       t0, SCISSOR_NODE.nodeNum(t6)
         nop
@@ -1927,7 +1929,7 @@ void DrawScissorPolygonTrans1P(SCISSOR* scissor, unsigned long ulType)
     
         bnez     t0, l_002D4720
         vnop
-    " : : "r"(vu1ScessorBuf) : "t7"
+    " : : "r"(scissor), "r"(vu1ScessorBuf) : "t7"
     );
 
     ulType = (ulType & 0xFFFDFFFFFFFFFFFF) | 0x6800000000000;
