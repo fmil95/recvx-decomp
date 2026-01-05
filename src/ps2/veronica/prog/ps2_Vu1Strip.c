@@ -1393,16 +1393,16 @@ void vu1DrawTriangleStripTransDouble(unsigned long ulType, VU1_STRIP_BUF* pS, un
 } 
 
 // 100% matching!
-void vu1GetVertexColor(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
+void vu1GetVertexColor(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
     asm volatile 
     ("
-        lqc2      vf4, VU1_STRIP_BUF.fIr(pStrip)
+        lqc2      vf4, VU1_STRIP_BUF.fIr(%0)
         
-        mfc1      t0, %0
-        mfc1      t1, %0
-        mfc1      t2, %0
-        mfc1      t3, %1
+        mfc1      t0, %2
+        mfc1      t1, %2
+        mfc1      t2, %2
+        mfc1      t3, %3
         
         pextlw    t0, t1, t0
         pextlw    t2, t3, t2
@@ -1412,17 +1412,17 @@ void vu1GetVertexColor(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pP
     
         vmul.xyzw vf4, vf4, vf5 
         
-        sqc2      vf4, VU1_PRIM_BUF.fR(pPrim)
-    " : : "f"(128.0f), "f"(256.0f) : "t0", "t1", "t2", "t3"
+        sqc2      vf4, VU1_PRIM_BUF.fR(%1)
+    " : : "r"(pStrip), "r"(pPrim), "f"(128.0f), "f"(256.0f) : "$t0", "$t1", "$t2", "$t3"
     );
 }
 
 // 100% matching!
-void vu1GetVertexColorCM(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim) // first parameter is not present on the debugging symbols
+void vu1GetVertexColorCM(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) // first parameter is not present on the debugging symbols
 {
     asm volatile 
     ("
-        lqc2    vf4, VU1_COLOR.fR(%0)
+        lqc2    vf4, VU1_COLOR.fR(%1)
 
         lw      t0, fVu1AlphaRatio
 
@@ -1430,13 +1430,13 @@ void vu1GetVertexColorCM(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* 
     
         vmulx.w vf4, vf0, vf5x 
 
-        sqc2    vf4, VU1_PRIM_BUF.fR(pPrim)
-    " : : "r"(&vu1Diffuse), "f"(fVu1AlphaRatio) : "v1", "t0"
+        sqc2    vf4, VU1_PRIM_BUF.fR(%0)
+    " : : "r"(pPrim), "r"(&vu1Diffuse), "f"(fVu1AlphaRatio) : "$v1", "$t0"
     );
 }
 
 // 100% matching!
-void vu1GetVertexColorIgnore(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim) // first parameter is not present on the debugging symbols
+void vu1GetVertexColorIgnore(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) // first parameter is not present on the debugging symbols
 {
     asm volatile 
     ("
@@ -1453,18 +1453,18 @@ void vu1GetVertexColorIgnore(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_B
         vaddx.xyz   vf4, vf0, vf5x
         vmulx.w     vf4, vf0, vf6x 
 
-        sqc2        vf4, VU1_PRIM_BUF.fR(pPrim)
-    " : : "f"(fVu1AlphaRatio) : "t1"
+        sqc2        vf4, VU1_PRIM_BUF.fR(%0)
+    " : : "r"(pPrim), "f"(fVu1AlphaRatio) : "$t1"
     );
 }
 
 // 100% matching!
-void vu1GetVertexColorDif(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDif(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
     asm volatile 
     ("
-        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
-        lqc2       vf5, VU1_COLOR.fR(%0)
+        lqc2       vf4, VU1_STRIP_BUF.fIr(%0)
+        lqc2       vf5, VU1_COLOR.fR(%2)
 
         lw         t0, fVu1AlphaRatio
 
@@ -1476,17 +1476,17 @@ void vu1GetVertexColorDif(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF*
         vmul.xyz   vf4, vf4, vf5
         vmulx.w    vf4, vf0, vf6x 
 
-        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
-    " : : "r"(&vu1Diffuse), "f"(fVu1AlphaRatio) : "v1", "t0"
+        sqc2       vf4, VU1_PRIM_BUF.fR(%1)
+    " : : "r"(pStrip), "r"(pPrim), "r"(&vu1Diffuse), "f"(fVu1AlphaRatio) : "$v1", "$t0"
     );
 }
 
 // 100% matching!
-void vu1GetVertexColorDifAmb(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim) 
+void vu1GetVertexColorDifAmb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) 
 {
     asm volatile 
     ("
-        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
+        lqc2       vf4, VU1_STRIP_BUF.fIr(%0)
 
         lw         t0, fVu1AlphaRatio
         
@@ -1500,8 +1500,8 @@ void vu1GetVertexColorDifAmb(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_B
         vmul.xyz   vf4, vf7, vf20
         vmulx.w    vf4, vf0, vf8x 
 
-        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
-    " : : "f"(fVu1AlphaRatio) : "t0"
+        sqc2       vf4, VU1_PRIM_BUF.fR(%1)
+    " : : "r"(pStrip), "r"(pPrim), "f"(fVu1AlphaRatio) : "$t0"
     );
 }
 
@@ -1510,7 +1510,7 @@ void vu1GetVertexColorDifSpe1(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
     asm volatile 
     ("
-        lqc2       vf4, VU1_STRIP_BUF.fIr(%1)
+        lqc2       vf4, VU1_STRIP_BUF.fIr(%0)
 
         lw         t0, fVu1AlphaRatio
     
@@ -1534,20 +1534,20 @@ void vu1GetVertexColorDifSpe1(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
         
         vmulx.w    vf4, vf0, vf8x 
 
-        sqc2       vf4, VU1_PRIM_BUF.fR(%2)
-    " : : "f"(fVu1AlphaRatio), "r"(pStrip), "r"(pPrim) : "$t0", "memory"
+        sqc2       vf4, VU1_PRIM_BUF.fR(%1)
+    " : : "r"(pStrip), "r"(pPrim), "f"(fVu1AlphaRatio) : "$t0", "memory"
     );
 }
 
 // 100% matching!
-void vu1GetVertexColorDifSpe2(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifSpe2(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
     asm volatile 
     ("
-        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
-        lqc2       vf5, VU1_COLOR.fR(%0)
-        lqc2       vf6, VU1_COLOR.fR(%1)
-        lqc2       vf7, VU1_COLOR.fR(%2)
+        lqc2       vf4, VU1_STRIP_BUF.fIr(%0)
+        lqc2       vf5, VU1_COLOR.fR(%2)
+        lqc2       vf6, VU1_COLOR.fR(%3)
+        lqc2       vf7, VU1_COLOR.fR(%4)
 
         lw         t0, fVu1AlphaRatio
         
@@ -1569,19 +1569,19 @@ void vu1GetVertexColorDifSpe2(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_
         
         vmulx.w    vf4, vf0, vf8x 
 
-        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
-    " : : "r"(&vu1Ambient), "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "v1", "a2", "a3", "t0"
+        sqc2       vf4, VU1_PRIM_BUF.fR(%1)
+    " : : "r"(pStrip), "r"(pPrim), "r"(&vu1Ambient), "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "$v1", "$a2", "$a3", "$t0"
     );
 }
 
 // 100% matching!
-void vu1GetVertexColorDifSpe3(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifSpe3(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
     asm volatile 
     ("
-        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
-        lqc2       vf5, VU1_COLOR.fR(%0)
-        lqc2       vf6, VU1_COLOR.fR(%1)
+        lqc2       vf4, VU1_STRIP_BUF.fIr(%0)
+        lqc2       vf5, VU1_COLOR.fR(%2)
+        lqc2       vf6, VU1_COLOR.fR(%3)
 
         lw         t0, fVu1AlphaRatio
         
@@ -1615,20 +1615,20 @@ void vu1GetVertexColorDifSpe3(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_
         
         vmulx.w    vf4, vf0, vf8x 
 
-        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
-    " : : "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "v1", "a2", "t0"
+        sqc2       vf4, VU1_PRIM_BUF.fR(%1)
+    " : : "r"(pStrip), "r"(pPrim), "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "$v1", "$a2", "$t0"
     );
 }
 
 // 100% matching!
-void vu1GetVertexColorDifSpe1Amb(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifSpe1Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
     asm volatile 
     ("
-        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
-        lqc2       vf5, VU1_COLOR.fR(%0)
-        lqc2       vf6, VU1_COLOR.fR(%1)
-        lqc2       vf7, VU1_COLOR.fR(%2)
+        lqc2       vf4, VU1_STRIP_BUF.fIr(%0)
+        lqc2       vf5, VU1_COLOR.fR(%2)
+        lqc2       vf6, VU1_COLOR.fR(%3)
+        lqc2       vf7, VU1_COLOR.fR(%4)
 
         lw         t0, fVu1AlphaRatio
         
@@ -1651,20 +1651,20 @@ void vu1GetVertexColorDifSpe1Amb(register VU1_STRIP_BUF* pStrip, register VU1_PR
         
         vmulx.w    vf4, vf0, vf8x 
 
-        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
-    " : : "r"(&vu1Ambient), "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "v1", "a2", "a3", "t0"
+        sqc2       vf4, VU1_PRIM_BUF.fR(%1)
+    " : : "r"(pStrip), "r"(pPrim), "r"(&vu1Ambient), "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "$v1", "$a2", "$a3", "$t0"
     );
 }
 
 // 100% matching!
-void vu1GetVertexColorDifSpe2Amb(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifSpe2Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
     asm volatile 
     ("
-        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
-        lqc2       vf5, VU1_COLOR.fR(%0)
-        lqc2       vf6, VU1_COLOR.fR(%1)
-        lqc2       vf7, VU1_COLOR.fR(%2)
+        lqc2       vf4, VU1_STRIP_BUF.fIr(%0)
+        lqc2       vf5, VU1_COLOR.fR(%2)
+        lqc2       vf6, VU1_COLOR.fR(%3)
+        lqc2       vf7, VU1_COLOR.fR(%4)
 
         lw         t0, fVu1AlphaRatio
         
@@ -1686,20 +1686,20 @@ void vu1GetVertexColorDifSpe2Amb(register VU1_STRIP_BUF* pStrip, register VU1_PR
         
         vmulx.w    vf4, vf0, vf8x 
 
-        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
-    " : : "r"(&vu1Ambient), "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "v1", "a2", "a3", "t0"
+        sqc2       vf4, VU1_PRIM_BUF.fR(%1)
+    " : : "r"(pStrip), "r"(pPrim), "r"(&vu1Ambient), "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "$v1", "$a2", "$a3", "$t0"
     );
 }
 
 // 100% matching!
-void vu1GetVertexColorDifSpe3Amb(register VU1_STRIP_BUF* pStrip, register VU1_PRIM_BUF* pPrim)
+void vu1GetVertexColorDifSpe3Amb(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 {
     asm volatile 
     ("
-        lqc2       vf4, VU1_STRIP_BUF.fIr(pStrip)
-        lqc2       vf5, VU1_COLOR.fR(%0)
-        lqc2       vf6, VU1_COLOR.fR(%1)
-        lqc2       vf7, VU1_COLOR.fR(%2)
+        lqc2       vf4, VU1_STRIP_BUF.fIr(%0)
+        lqc2       vf5, VU1_COLOR.fR(%2)
+        lqc2       vf6, VU1_COLOR.fR(%3)
+        lqc2       vf7, VU1_COLOR.fR(%4)
 
         lw         t0, fVu1AlphaRatio
         
@@ -1735,8 +1735,8 @@ void vu1GetVertexColorDifSpe3Amb(register VU1_STRIP_BUF* pStrip, register VU1_PR
         
         vmulx.w    vf4, vf0, vf8x 
 
-        sqc2       vf4, VU1_PRIM_BUF.fR(pPrim)
-    " : : "r"(&vu1Ambient), "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "v1", "a2", "a3", "t0"
+        sqc2       vf4, VU1_PRIM_BUF.fR(%1)
+    " : : "r"(pStrip), "r"(pPrim), "r"(&vu1Ambient), "r"(&vu1Diffuse), "r"(&vu1Specula), "f"(fVu1AlphaRatio) : "$v1", "$a2", "$a3", "$t0"
     );
 }
 
