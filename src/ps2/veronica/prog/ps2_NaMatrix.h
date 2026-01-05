@@ -7,6 +7,8 @@ void njRotXYZ(NJS_MATRIX* pMatrix, int lAngleX, int lAngleY, int lAngleZ);
 void njCalcPoint4(NJS_MATRIX* pMatrix, NJS_POINT4* pSrcPoint, NJS_POINT4* pDstPoint);
 void njRotTransPers(NJS_POINT3* pPoint, NJS_SCRVECTOR* pScreen);
 
+extern NJS_MATRIX* pNaMatMatrixStuckPtr;
+
 /*typedef struct _anon0;
 typedef struct tagNJS_SCRVECTOR;
 typedef struct _anon1;

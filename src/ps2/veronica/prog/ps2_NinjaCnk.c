@@ -1,5 +1,6 @@
 #include "ps2_NinjaCnk.h"
 #include "ps2_dummy.h"
+#include "ps2_NaFog.h"
 #include "ps2_NaMatrix.h"
 #include "ps2_NaSystem.h"
 #include "ps2_NaTextureFunction.h"
@@ -1388,92 +1389,80 @@ CHUNK_HEAD* njCnkCvVnPs2(CHUNK_HEAD* pCnk)
 	scePrintf("njCnkCvVnPs2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d1ca0
+// 100% matching! 
 CHUNK_HEAD* njCnkCvVMod(CHUNK_HEAD* pCnk)
 {
-	float fTRZ;
-	float fTRY;
-	float fTRX;
-	float fR22;
-	float fR21;
-	float fR20;
-	float fR12;
-	float fR11;
-	float fR10;
-	float fR02;
-	float fR01;
-	float fR00;
-	float fZ;
-	float fY;
-	float fX;
-	float fVSY;
-	float fVSX;
-	float fVSZ;
-	float fI;
-	float* fpCnk;
-	unsigned int ulIndex;
-	VU1_STRIP_BUF* pBuffer;
-	// Line 3392, Address: 0x2d1ca0, Func Offset: 0
-	// Line 3410, Address: 0x2d1ce4, Func Offset: 0x44
-	// Line 3411, Address: 0x2d1cf0, Func Offset: 0x50
-	// Line 3412, Address: 0x2d1cf4, Func Offset: 0x54
-	// Line 3414, Address: 0x2d1cfc, Func Offset: 0x5c
-	// Line 3410, Address: 0x2d1d04, Func Offset: 0x64
-	// Line 3414, Address: 0x2d1d0c, Func Offset: 0x6c
-	// Line 3417, Address: 0x2d1d10, Func Offset: 0x70
-	// Line 3418, Address: 0x2d1d14, Func Offset: 0x74
-	// Line 3419, Address: 0x2d1d18, Func Offset: 0x78
-	// Line 3420, Address: 0x2d1d1c, Func Offset: 0x7c
-	// Line 3421, Address: 0x2d1d20, Func Offset: 0x80
-	// Line 3414, Address: 0x2d1d24, Func Offset: 0x84
-	// Line 3415, Address: 0x2d1d28, Func Offset: 0x88
-	// Line 3422, Address: 0x2d1d2c, Func Offset: 0x8c
-	// Line 3423, Address: 0x2d1d30, Func Offset: 0x90
-	// Line 3424, Address: 0x2d1d34, Func Offset: 0x94
-	// Line 3425, Address: 0x2d1d38, Func Offset: 0x98
-	// Line 3427, Address: 0x2d1d3c, Func Offset: 0x9c
-	// Line 3415, Address: 0x2d1d40, Func Offset: 0xa0
-	// Line 3416, Address: 0x2d1d44, Func Offset: 0xa4
-	// Line 3428, Address: 0x2d1d4c, Func Offset: 0xac
-	// Line 3431, Address: 0x2d1d54, Func Offset: 0xb4
-	// Line 3434, Address: 0x2d1d58, Func Offset: 0xb8
-	// Line 3442, Address: 0x2d1d5c, Func Offset: 0xbc
-	// Line 3432, Address: 0x2d1d60, Func Offset: 0xc0
-	// Line 3433, Address: 0x2d1d64, Func Offset: 0xc4
-	// Line 3442, Address: 0x2d1d68, Func Offset: 0xc8
-	// Line 3434, Address: 0x2d1d70, Func Offset: 0xd0
-	// Line 3433, Address: 0x2d1d74, Func Offset: 0xd4
-	// Line 3434, Address: 0x2d1d78, Func Offset: 0xd8
-	// Line 3435, Address: 0x2d1d84, Func Offset: 0xe4
-	// Line 3434, Address: 0x2d1d88, Func Offset: 0xe8
-	// Line 3439, Address: 0x2d1d8c, Func Offset: 0xec
-	// Line 3435, Address: 0x2d1d90, Func Offset: 0xf0
-	// Line 3436, Address: 0x2d1d98, Func Offset: 0xf8
-	// Line 3435, Address: 0x2d1da4, Func Offset: 0x104
-	// Line 3436, Address: 0x2d1dac, Func Offset: 0x10c
-	// Line 3435, Address: 0x2d1db0, Func Offset: 0x110
-	// Line 3436, Address: 0x2d1db4, Func Offset: 0x114
-	// Line 3440, Address: 0x2d1dbc, Func Offset: 0x11c
-	// Line 3442, Address: 0x2d1dc0, Func Offset: 0x120
-	// Line 3445, Address: 0x2d1de0, Func Offset: 0x140
-	// Line 3448, Address: 0x2d1dec, Func Offset: 0x14c
-	// Line 3449, Address: 0x2d1df4, Func Offset: 0x154
-	// Line 3448, Address: 0x2d1df8, Func Offset: 0x158
-	// Line 3449, Address: 0x2d1dfc, Func Offset: 0x15c
-	// Line 3453, Address: 0x2d1e00, Func Offset: 0x160
-	// Line 3450, Address: 0x2d1e04, Func Offset: 0x164
-	// Line 3449, Address: 0x2d1e08, Func Offset: 0x168
-	// Line 3450, Address: 0x2d1e0c, Func Offset: 0x16c
-	// Line 3451, Address: 0x2d1e14, Func Offset: 0x174
-	// Line 3450, Address: 0x2d1e18, Func Offset: 0x178
-	// Line 3451, Address: 0x2d1e20, Func Offset: 0x180
-	// Line 3452, Address: 0x2d1e30, Func Offset: 0x190
-	// Line 3453, Address: 0x2d1e34, Func Offset: 0x194
-	// Line 3455, Address: 0x2d1e40, Func Offset: 0x1a0
-	// Line 3456, Address: 0x2d1e44, Func Offset: 0x1a4
-	// Func End, Address: 0x2d1e8c, Func Offset: 0x1ec
-	scePrintf("njCnkCvVMod - UNIMPLEMENTED!\n");
+    VU1_STRIP_BUF* pBuffer;
+    unsigned int ulIndex;
+    float* fpCnk;
+    float fI;
+    float fVSZ, fVSX, fVSY;
+    float fX, fY, fZ;
+    float fR00, fR01, fR02;
+    float fR10, fR11, fR12;
+    float fR20, fR21, fR22;
+    float fTRX, fTRY, fTRZ;
+    float temp; // not from the debugging symbols
+
+    pBuffer = &pNaCnkVerBufTop[((unsigned short*)&pCnk[1])[0]];
+    
+    ulIndex = ((unsigned short*)&pCnk[1])[1];
+    
+    fpCnk = &((float*)&pCnk[1])[1];
+
+    fR00 = pNaMatMatrixStuckPtr[0][0];
+    fR01 = pNaMatMatrixStuckPtr[0][1];
+    fR02 = pNaMatMatrixStuckPtr[0][2];
+    
+    fR10 = pNaMatMatrixStuckPtr[0][4];
+    fR11 = pNaMatMatrixStuckPtr[0][5];
+    fR12 = pNaMatMatrixStuckPtr[0][6];
+    
+    fR20 = pNaMatMatrixStuckPtr[0][8];
+    fR21 = pNaMatMatrixStuckPtr[0][9];
+    fR22 = pNaMatMatrixStuckPtr[0][10];
+    
+    fTRX = pNaMatMatrixStuckPtr[0][12];
+    fTRY = pNaMatMatrixStuckPtr[0][13];
+    fTRZ = pNaMatMatrixStuckPtr[0][14];
+    
+    Ps2_shadow_z = 0;
+    
+    for ( ; ulIndex != 0; ulIndex--)
+    {
+        fX = fpCnk[0];
+        fY = fpCnk[1];
+        fZ = fpCnk[2];
+
+        fVSX = ((fTRX + (fR00 * fX)) + (fR10 * fY)) + (fR20 * fZ);
+        fVSY = ((fTRY + (fR01 * fX)) + (fR11 * fY)) + (fR21 * fZ);
+        fVSZ = ((fTRZ + (fR02 * fX)) + (fR12 * fY)) + (fR22 * fZ);
+
+        fpCnk += 3;
+
+        pBuffer->fVx = fVSX;
+        pBuffer->fVy = fVSY;
+        pBuffer->fVz = fVSZ;
+        
+        if (fVSZ < 1.0f)
+        {
+            Ps2_shadow_z = 1;
+        }
+        
+        pBuffer->fFog = njCalcFogPower(fVSZ);
+        
+        fI = 1.0f / fVSZ;
+        
+        temp = _nj_screen_.dist * fI;
+        
+        pBuffer->fSx = fNaViwAspectW * (fVSX * temp);
+        pBuffer->fSy = fNaViwAspectH * (fVSY * temp);
+        pBuffer->fIz = fI;
+        
+        pBuffer++;
+    } 
+    
+    return (CHUNK_HEAD*)fpCnk;
 }
 
 // 
