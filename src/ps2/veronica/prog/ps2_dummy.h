@@ -56,6 +56,7 @@ extern unsigned int Ps2_sys_cnt;
 extern unsigned char* Ps2_MOVIE;
 extern unsigned int Ps2_ice_flag;
 extern float cmmat[16];
+extern int Ps2_shadow_z;
 extern NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
 extern Uint8* _BSG_END;
 extern NJS_VERTEX_BUF* _nj_vertex_buf_;

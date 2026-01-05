@@ -42,9 +42,9 @@ unsigned long ulNaFogR;
 unsigned int Ps2_divide_flag;
 _anon19 Ps2_pad;
 float Ps2_shadow_fog;
-float Ps2_shadow_vec[4];
+float Ps2_shadow_vec[4];*/
 int Ps2_shadow_z;
-int ViewType;
+/*int ViewType;
 unsigned int palbuf[4096];
 float mbuf[16][128];*/
 NJS_MATRIX lcmat[12] __attribute__((aligned(64)));

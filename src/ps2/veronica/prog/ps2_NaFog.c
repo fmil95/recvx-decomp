@@ -15,15 +15,7 @@ unsigned int ulNaFogState;
 float fNaFogNear;
 float fNaFogFar;
 float fNaFogDensity;
-float fNaFogDist;
-
-void njFogEnable();
-void njFogDisable();
-void njSetFogColor(unsigned int ulColor);
-void njSetFogTable(float* FogTbl);
-void njGenerateFogTable3(float near, float far);
-float njCalcFogPowerEx(float INVZ);
-float njCalcFogPower(float fVSZ);*/
+float fNaFogDist;*/
 
 // 100% matching! 
 void	njFogEnable()
@@ -165,7 +157,7 @@ float njCalcFogPowerEx(float INVZ)
 	scePrintf("njCalcFogPowerEx - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2d6520
 float njCalcFogPower(float fVSZ)
 {
@@ -198,5 +190,5 @@ float njCalcFogPower(float fVSZ)
 	// Line 461, Address: 0x2d6670, Func Offset: 0x150
 	// Line 572, Address: 0x2d669c, Func Offset: 0x17c
 	// Func End, Address: 0x2d66a4, Func Offset: 0x184
-}*/
-
+	scePrintf("njCalcFogPower - UNIMPLEMENTED!\n");
+}
