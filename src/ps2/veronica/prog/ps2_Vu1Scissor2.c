@@ -1,6 +1,7 @@
 #include "ps2_Vu1Scissor2.h"
 
 extern void VU0_CLIP_VIEW_VOLUME() __attribute__((section(".vutext")));
+extern void VU0_CLIP_VIEW_VOLUME_ALL() __attribute__((section(".vutext")));
 
 /*// 
 // Start address: 0x2d3b00
@@ -86,20 +87,23 @@ int _Get_ClipVolumePlane()
 	// Line 264, Address: 0x2d3c14, Func Offset: 0x4
 	// Line 268, Address: 0x2d3c18, Func Offset: 0x8
 	// Func End, Address: 0x2d3c20, Func Offset: 0x10
-}
+}*/
 
-// 
-// Start address: 0x2d3c20
-void _Check_ClipViewAll(_anon1* vec)
+// 91.43% matching
+void _Check_ClipViewAll(NJS_POINT4* vec) 
 {
-	// Line 273, Address: 0x2d3c20, Func Offset: 0
-	// Line 276, Address: 0x2d3c28, Func Offset: 0x8
-	// Line 277, Address: 0x2d3c2c, Func Offset: 0xc
-	// Line 280, Address: 0x2d3c30, Func Offset: 0x10
-	// Func End, Address: 0x2d3c3c, Func Offset: 0x1c
+    asm volatile
+    ("
+    .set noreorder
+        lqc2    vf14, NJS_POINT4.x(%0)
+        
+        vcallms VU0_CLIP_VIEW_VOLUME_ALL
+    .set reorder
+    " : : "r"(vec) : 
+    );
 }
 
-// 
+/*// 
 // Start address: 0x2d3c40
 void _Set_NodeArray(tagVU1_STRIP_BUF* pS, tagVU1_PRIM_BUF* pP)
 {
