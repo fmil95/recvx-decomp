@@ -143,7 +143,7 @@ void _Set_NodeArray(VU1_STRIP_BUF* pS, VU1_PRIM_BUF* pP)
     );
 }
 
-/*// 
+// 
 // Start address: 0x2d3c80
 int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1, int count)
 {
@@ -255,27 +255,50 @@ int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1
 	// Line 735, Address: 0x2d3e90, Func Offset: 0x210
 	// Line 739, Address: 0x2d3e94, Func Offset: 0x214
 	// Func End, Address: 0x2d3eb0, Func Offset: 0x230
+	scePrintf("_ClipInter - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d3eb0
+// 100% matching!
 int _Check_ScissorPlane()
 {
-	int count;
-	// Line 744, Address: 0x2d3eb0, Func Offset: 0
-	// Line 766, Address: 0x2d3eb4, Func Offset: 0x4
-	// Line 744, Address: 0x2d3ed0, Func Offset: 0x20
-	// Line 766, Address: 0x2d3ed4, Func Offset: 0x24
-	// Line 767, Address: 0x2d3edc, Func Offset: 0x2c
-	// Line 769, Address: 0x2d3eec, Func Offset: 0x3c
-	// Line 770, Address: 0x2d3f10, Func Offset: 0x60
-	// Line 772, Address: 0x2d3f20, Func Offset: 0x70
-	// Line 773, Address: 0x2d3f44, Func Offset: 0x94
-	// Line 775, Address: 0x2d3f54, Func Offset: 0xa4
-	// Line 776, Address: 0x2d3f78, Func Offset: 0xc8
-	// Line 778, Address: 0x2d3f88, Func Offset: 0xd8
-	// Line 779, Address: 0x2d3fac, Func Offset: 0xfc
-	// Line 781, Address: 0x2d3fbc, Func Offset: 0x10c
-	// Line 785, Address: 0x2d3fe0, Func Offset: 0x130
-	// Func End, Address: 0x2d3fec, Func Offset: 0x13c
-}*/
+    int count;
+
+    count = _ClipInter(2048, 32, 2, -1.0f, 80, 128, 3);
+    
+    if (count == 0) 
+    {
+        return count;
+    }
+
+    count = _ClipInter(1024, 16, 2, 1.0f, 128, 80, count);
+
+    if (count == 0) 
+    {
+        return count;
+    }
+
+    count = _ClipInter(128, 2, 0, -1.0f, 80, 128, count);
+    
+    if (count == 0) 
+    {
+        return count;
+    }
+
+    count = _ClipInter(64, 1, 0, 1.0f, 128, 80, count);
+    
+    if (count == 0) 
+    {
+        return count;
+    }
+
+    count = _ClipInter(512, 8, 1, -1.0f, 80, 128, count);
+    
+    if (count == 0) 
+    {
+        return count;
+    }
+    
+    count = _ClipInter(256, 4, 1, 1.0f, 128, 80, count);
+
+    return count;
+}
