@@ -42,19 +42,20 @@ void DrawScissorPolygonOpaque2(int count, unsigned long ulType)
 	// Line 104, Address: 0x2d3ba4, Func Offset: 0xa4
 	// Line 105, Address: 0x2d3bb8, Func Offset: 0xb8
 	// Func End, Address: 0x2d3bc8, Func Offset: 0xc8
-}
+}*/
 
-// 
-// Start address: 0x2d3bd0
+// 100% matching!
 void InitNodeArraySet2()
 {
-	// Line 114, Address: 0x2d3bd0, Func Offset: 0
-	// Line 115, Address: 0x2d3bd4, Func Offset: 0x4
-	// Line 118, Address: 0x2d3bd8, Func Offset: 0x8
-	// Func End, Address: 0x2d3be0, Func Offset: 0x10
+    asm volatile 
+    {
+        vmove.xyzw vf15, vf0
+        vmove.xyzw vf18, vf0
+        vmove.xyzw vf19, vf0
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2d3be0
 unsigned int _Clip_ViewVolume2(_anon1* vec)
 {
