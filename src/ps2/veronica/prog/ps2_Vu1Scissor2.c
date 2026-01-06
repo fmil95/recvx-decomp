@@ -68,17 +68,25 @@ unsigned int _Clip_ViewVolume2(NJS_POINT4* vec)
     return ret;
 }
 
-/*// 
-// Start address: 0x2d3c00
+// 100% matching! 
 unsigned int _Get_ClipViewVolume2()
 {
-	unsigned int ret;
-	// Line 186, Address: 0x2d3c00, Func Offset: 0
-	// Line 190, Address: 0x2d3c04, Func Offset: 0x4
-	// Func End, Address: 0x2d3c0c, Func Offset: 0xc
+    unsigned int ret;
+
+    ret = 0;
+
+    asm volatile 
+    ("
+        cfc2.i %0, vi18
+        
+        addi   %0, %0, 0 
+    " : "=r"(ret) : : 
+    );
+
+    return ret;
 }
 
-// 
+/*// 
 // Start address: 0x2d3c10
 int _Get_ClipVolumePlane()
 {
