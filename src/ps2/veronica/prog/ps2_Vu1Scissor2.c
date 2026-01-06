@@ -1,16 +1,8 @@
 #include "ps2_Vu1Scissor2.h"
 
-/*void DrawScissorPolygonOpaque2(int count, unsigned long ulType);
-void InitNodeArraySet2();
-unsigned int _Clip_ViewVolume2(_anon1* vec);
-unsigned int _Get_ClipViewVolume2();
-int _Get_ClipVolumePlane();
-void _Check_ClipViewAll(_anon1* vec);
-void _Set_NodeArray(tagVU1_STRIP_BUF* pS, tagVU1_PRIM_BUF* pP);
-int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1, int count);
-int _Check_ScissorPlane();
+extern void VU0_CLIP_VIEW_VOLUME() __attribute__((section(".vutext")));
 
-// 
+/*// 
 // Start address: 0x2d3b00
 void DrawScissorPolygonOpaque2(int count, unsigned long ulType)
 {
@@ -55,20 +47,27 @@ void InitNodeArraySet2()
     }
 }
 
-/*// 
-// Start address: 0x2d3be0
-unsigned int _Clip_ViewVolume2(_anon1* vec)
+// 92.50% matching
+unsigned int _Clip_ViewVolume2(NJS_POINT4* vec) 
 {
-	unsigned int ret;
-	// Line 132, Address: 0x2d3be0, Func Offset: 0
-	// Line 133, Address: 0x2d3be8, Func Offset: 0x8
-	// Line 160, Address: 0x2d3bec, Func Offset: 0xc
-	// Line 161, Address: 0x2d3bf0, Func Offset: 0x10
-	// Line 177, Address: 0x2d3bf4, Func Offset: 0x14
-	// Func End, Address: 0x2d3c00, Func Offset: 0x20
+    unsigned int ret;
+    
+    ret = 0;
+    
+    asm volatile
+    ("
+    .set noreorder
+        lqc2    vf14, NJS_POINT4.x(%0)
+        
+        vcallms VU0_CLIP_VIEW_VOLUME
+    .set reorder
+    " : : "r"(vec) : 
+    );
+    
+    return ret;
 }
 
-// 
+/*// 
 // Start address: 0x2d3c00
 unsigned int _Get_ClipViewVolume2()
 {
