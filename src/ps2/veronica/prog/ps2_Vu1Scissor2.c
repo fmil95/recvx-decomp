@@ -86,16 +86,25 @@ unsigned int _Get_ClipViewVolume2()
     return ret;
 }
 
-/*// 
-// Start address: 0x2d3c10
-int _Get_ClipVolumePlane()
+// 100% matching! 
+int _Get_ClipVolumePlane() 
 {
-	int ret;
-	// Line 263, Address: 0x2d3c10, Func Offset: 0
-	// Line 264, Address: 0x2d3c14, Func Offset: 0x4
-	// Line 268, Address: 0x2d3c18, Func Offset: 0x8
-	// Func End, Address: 0x2d3c20, Func Offset: 0x10
-}*/
+    int ret;
+
+    ret = 0;
+
+    asm volatile 
+    ("
+    .set noreorder
+        cfc2.i %0, vi2
+        
+        addi   %0, %0, 0 
+    .set reorder
+    " : "=r"(ret) : : 
+    );
+
+    return ret;
+}
 
 // 91.43% matching
 void _Check_ClipViewAll(NJS_POINT4* vec) 
