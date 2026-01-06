@@ -2,6 +2,7 @@
 
 extern void VU0_CLIP_VIEW_VOLUME() __attribute__((section(".vutext")));
 extern void VU0_CLIP_VIEW_VOLUME_ALL() __attribute__((section(".vutext")));
+extern void VU0_SET_NODE_ARRAY() __attribute__((section(".vutext")));
 
 /*// 
 // Start address: 0x2d3b00
@@ -120,26 +121,29 @@ void _Check_ClipViewAll(NJS_POINT4* vec)
     );
 }
 
-/*// 
-// Start address: 0x2d3c40
-void _Set_NodeArray(tagVU1_STRIP_BUF* pS, tagVU1_PRIM_BUF* pP)
+// 96% matching
+void _Set_NodeArray(VU1_STRIP_BUF* pS, VU1_PRIM_BUF* pP)
 {
-	// Line 329, Address: 0x2d3c40, Func Offset: 0
-	// Line 368, Address: 0x2d3c48, Func Offset: 0x8
-	// Line 369, Address: 0x2d3c4c, Func Offset: 0xc
-	// Line 370, Address: 0x2d3c50, Func Offset: 0x10
-	// Line 372, Address: 0x2d3c54, Func Offset: 0x14
-	// Line 373, Address: 0x2d3c58, Func Offset: 0x18
-	// Line 374, Address: 0x2d3c5c, Func Offset: 0x1c
-	// Line 376, Address: 0x2d3c60, Func Offset: 0x20
-	// Line 377, Address: 0x2d3c64, Func Offset: 0x24
-	// Line 378, Address: 0x2d3c68, Func Offset: 0x28
-	// Line 380, Address: 0x2d3c6c, Func Offset: 0x2c
-	// Line 384, Address: 0x2d3c70, Func Offset: 0x30
-	// Func End, Address: 0x2d3c7c, Func Offset: 0x3c
+    asm volatile 
+    ("
+    .set noreorder
+        lqc2    vf4, -0x60(%0)
+        lqc2    vf5, -0x20(%0)
+        lqc2    vf6, 0x20(%0)
+        lqc2    vf7, -0x80(%0)
+        lqc2    vf8, -0x40(%0)
+        lqc2    vf9, 0(%0)
+        lqc2    vf10, -0x50(%1)
+        lqc2    vf11, -0x20(%1)
+        lqc2    vf12, 0x10(%1)
+        
+        vcallms VU0_SET_NODE_ARRAY
+    .set reorder
+    " : : "r"(pS), "r"(pP) : 
+    );
 }
 
-// 
+/*// 
 // Start address: 0x2d3c80
 int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1, int count)
 {
@@ -275,4 +279,3 @@ int _Check_ScissorPlane()
 	// Line 785, Address: 0x2d3fe0, Func Offset: 0x130
 	// Func End, Address: 0x2d3fec, Func Offset: 0x13c
 }*/
-
