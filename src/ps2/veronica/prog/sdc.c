@@ -534,28 +534,30 @@ void SetPanSe(unsigned int SlotNo, char Pan, short DelayTime)
     SetPanSe2(SlotNo, Pan, DelayTime);
 }
 
-// 
-// Start address: 0x28fcb0
+// 99.56% matching
 void SetVolumeSeEx(unsigned int SlotNo, float Volume, short DelayTime, int Flag)
 {
-	// Line 569, Address: 0x28fcb0, Func Offset: 0
-	// Line 570, Address: 0x28fcc0, Func Offset: 0x10
-	// Line 569, Address: 0x28fcc4, Func Offset: 0x14
-	// Line 570, Address: 0x28fcc8, Func Offset: 0x18
-	// Line 569, Address: 0x28fcd8, Func Offset: 0x28
-	// Line 570, Address: 0x28fcdc, Func Offset: 0x2c
-	// Line 571, Address: 0x28fcf4, Func Offset: 0x44
-	// Line 573, Address: 0x28fd2c, Func Offset: 0x7c
-	// Line 574, Address: 0x28fd58, Func Offset: 0xa8
-	// Line 575, Address: 0x28fd64, Func Offset: 0xb4
-	// Line 577, Address: 0x28fd6c, Func Offset: 0xbc
-	// Line 578, Address: 0x28fd74, Func Offset: 0xc4
-	// Line 579, Address: 0x28fd94, Func Offset: 0xe4
-	// Line 582, Address: 0x28fdbc, Func Offset: 0x10c
-	// Line 584, Address: 0x28fdcc, Func Offset: 0x11c
-	// Line 588, Address: 0x28fe00, Func Offset: 0x150
-	// Func End, Address: 0x28fe1c, Func Offset: 0x16c
-	scePrintf("SetVolumeSeEx - UNIMPLEMENTED!\n");
+    if (SeInfo[SlotNo].Flag != 0) 
+    {
+        switch (SeInfo[SlotNo].FadeFunc) 
+        {
+        case 0:
+            sdShotSetVol(SeHandle[SlotNo], Volume, DelayTime);
+            
+            SeInfo[SlotNo].Volume = Volume;
+            break;
+        case 1:
+            if ((Flag == 0) && (Volume < SeInfo[SlotNo].VolLast))
+            {
+                RequestSeFadeFunctionEx(SlotNo, -1, Volume, SeInfo[SlotNo].FadeCntMax);
+            }
+            
+            SeInfo[SlotNo].Volume = Volume;
+        case 2:
+            sdShotSetVol(SeHandle[SlotNo], SeInfo[SlotNo].Volume, 0);
+            break;
+        }
+    }
 }
 
 // 100% matching!
