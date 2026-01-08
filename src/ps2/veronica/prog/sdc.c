@@ -557,13 +557,10 @@ void SetPanSe2(unsigned int SlotNo, float Pan, short DelayTime)
 	scePrintf("SetPanSe2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x28fc90
+// 100% matching!
 void SetPanSe(unsigned int SlotNo, char Pan, short DelayTime)
 {
-	// Line 565, Address: 0x28fc90, Func Offset: 0
-	// Func End, Address: 0x28fca4, Func Offset: 0x14
-	scePrintf("SetPanSe - UNIMPLEMENTED!\n");
+    SetPanSe2(SlotNo, Pan, DelayTime);
 }
 
 // 
