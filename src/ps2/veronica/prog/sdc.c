@@ -818,28 +818,29 @@ int ExecSoundFadeManager() {
     return ReturnCode;
 }
 
-// 
-// Start address: 0x290560
+// 86.67% matching
 void RequestMidiPanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 {
-	//_anon0* mp;
-	// Line 817, Address: 0x290560, Func Offset: 0
-	// Line 820, Address: 0x290570, Func Offset: 0x10
-	// Line 817, Address: 0x29058c, Func Offset: 0x2c
-	// Line 822, Address: 0x290590, Func Offset: 0x30
-	// Line 823, Address: 0x29059c, Func Offset: 0x3c
-	// Line 825, Address: 0x2905a8, Func Offset: 0x48
-	// Line 826, Address: 0x2905ac, Func Offset: 0x4c
-	// Line 825, Address: 0x2905b4, Func Offset: 0x54
-	// Line 826, Address: 0x2905b8, Func Offset: 0x58
-	// Line 825, Address: 0x2905bc, Func Offset: 0x5c
-	// Line 826, Address: 0x2905c0, Func Offset: 0x60
-	// Line 828, Address: 0x2905c4, Func Offset: 0x64
-	// Line 829, Address: 0x2905cc, Func Offset: 0x6c
-	// Line 832, Address: 0x290600, Func Offset: 0xa0
-	// Line 833, Address: 0x290608, Func Offset: 0xa8
-	// Func End, Address: 0x290620, Func Offset: 0xc0
-	scePrintf("RequestMidiPanFunctionEx - UNIMPLEMENTED!\n");
+    NO_NAME_20* mp;
+
+    mp = &MidiInfo[SlotNo];
+
+    if (StartPan == -1) 
+    {
+        StartPan = mp->Pan;
+    }
+
+    mp->Pan = StartPan;
+    mp->PanLast = LastPan;
+    
+    mp->PanCntMax = Frame;
+
+    if (Frame != 0) 
+    {
+        mp->PanSpeed = -(((128.0f + mp->PanLast) - (128.0f + mp->Pan)) / mp->PanCntMax);
+    }
+
+    mp->PanFunc = 1;
 }
 
 /*// 
