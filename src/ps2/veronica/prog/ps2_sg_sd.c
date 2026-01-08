@@ -779,9 +779,9 @@ SDE_ERR	sdShotOpenPort( SDSHOT *handle)
     return SDE_ERR_NO_INIT;
 }
 
-/*// 
+// 
 // Start address: 0x2dbf30
-SDE_ERR sdShotPlay(SDS_PORT_REF** handle, char bank_num, char data_num, char priority)
+SDE_ERR	sdShotPlay( SDSHOT handle, const Sint8 bank_num, const Sint8 data_num, const Sint8 priority)
 {
 	int cancel_flag;
 	unsigned short* check_se_channel;
@@ -827,7 +827,8 @@ SDE_ERR sdShotPlay(SDS_PORT_REF** handle, char bank_num, char data_num, char pri
 	// Line 2094, Address: 0x2dc14c, Func Offset: 0x21c
 	// Line 2096, Address: 0x2dc154, Func Offset: 0x224
 	// Func End, Address: 0x2dc17c, Func Offset: 0x24c
-}*/
+    scePrintf("sdShotPlay - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 SDE_ERR	sdShotSetFxLev( SDSHOT handle, const Sint8 fx_lev)

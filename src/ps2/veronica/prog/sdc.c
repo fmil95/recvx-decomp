@@ -447,20 +447,13 @@ unsigned int CheckPlaySe(unsigned int SlotNo)
     return status.m_Flg & 0x1;
 }
 
-// 
-// Start address: 0x28f990
+// 100% matching!
 void PlaySe(unsigned int SlotNo, char BankNo, char ListNo, char Priority)
 {
-	// Line 444, Address: 0x28f990, Func Offset: 0
-	// Line 441, Address: 0x28f9a4, Func Offset: 0x14
-	// Line 444, Address: 0x28f9a8, Func Offset: 0x18
-	// Line 441, Address: 0x28f9ac, Func Offset: 0x1c
-	// Line 444, Address: 0x28f9b0, Func Offset: 0x20
-	// Line 445, Address: 0x28f9bc, Func Offset: 0x2c
-	// Line 446, Address: 0x28f9d0, Func Offset: 0x40
-	// Line 449, Address: 0x28f9e8, Func Offset: 0x58
-	// Func End, Address: 0x28f9f4, Func Offset: 0x64
-	scePrintf("PlaySe - UNIMPLEMENTED!\n");
+    if ((SeInfo[SlotNo].Flag != 0) && (ListNo != -1)) 
+    {
+        sdShotPlay(SeHandle[SlotNo], BankNo, ListNo, Priority);
+    }
 }
 
 // 100% matching! 
