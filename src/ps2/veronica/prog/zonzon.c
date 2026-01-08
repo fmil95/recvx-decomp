@@ -1543,7 +1543,9 @@ void bhEne_GetTranslateMtn2(BH_PWORK* epw, int frm, int mode);
 void bhEne_CalcPartsPos(BH_PWORK* epw, float mtx[16], _anon4* pos, char* tree, int parts_num, int clr_flg);
 _anon23* bhKaidanAtrCheck(BH_PWORK* epw, float len, int* idx);
 _anon23* bhEne_EnemyAtariCheck(_anon4* pos, int flr_no, unsigned char id, unsigned char type);
+*/
 int bhEne_PosCheck(float px, float pz, float x, float z, float w, float h);
+/*
 void bhEne_SetBlood(BH_PWORK* epw, unsigned char type, _anon10* bt);
 void bhEne_SetBlood2(BH_PWORK* epw, unsigned char type, _anon4* ofp, short ry);
 void bhEne_SetBlood3(BH_PWORK* epw, int lnk_obj, _anon4* ofs, _anon4* dv, int n, int tex_id, int type, int wcnt);
@@ -1941,17 +1943,21 @@ _anon23* bhEne_EnemyAtariCheck(_anon4* pos, int flr_no, unsigned char id, unsign
 	// Line 729, Address: 0x216abc, Func Offset: 0x13c
 	// Func End, Address: 0x216ae8, Func Offset: 0x168
 }
+*/
 
-// 
-// Start address: 0x216af0
+// 100% matching!
 int bhEne_PosCheck(float px, float pz, float x, float z, float w, float h)
 {
-	// Line 751, Address: 0x216af0, Func Offset: 0
-	// Line 754, Address: 0x216b38, Func Offset: 0x48
-	// Line 756, Address: 0x216b40, Func Offset: 0x50
-	// Line 757, Address: 0x216b44, Func Offset: 0x54
-	// Func End, Address: 0x216b4c, Func Offset: 0x5c
+    if (x <= px) 
+	{
+        if (!((x + w) < px) && (z <= pz) && !((z + h) < pz)) 
+		{
+            return 1;
+        }
+    }
+    return 0;
 }
+/*
 
 // 
 // Start address: 0x216b50
