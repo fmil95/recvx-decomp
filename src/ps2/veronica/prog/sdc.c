@@ -374,19 +374,14 @@ void SetSpeedMidi(unsigned int SlotNo, short Speed, short DelayTime)
     }
 }
 
-/*// 
-// Start address: 0x28f7a0
+// 100% matching!
 void SetFxLevelMidi(unsigned int SlotNo, char FxLevel)
 {
-	// Line 373, Address: 0x28f7a0, Func Offset: 0
-	// Line 372, Address: 0x28f7b4, Func Offset: 0x14
-	// Line 373, Address: 0x28f7b8, Func Offset: 0x18
-	// Line 372, Address: 0x28f7bc, Func Offset: 0x1c
-	// Line 373, Address: 0x28f7c0, Func Offset: 0x20
-	// Line 374, Address: 0x28f7cc, Func Offset: 0x2c
-	// Line 376, Address: 0x28f7e4, Func Offset: 0x44
-	// Func End, Address: 0x28f7f0, Func Offset: 0x50
-}*/
+    if (MidiInfo[SlotNo].Flag != 0) 
+    {
+        sdMidiSetFxLev(MidiHandle[SlotNo], FxLevel);
+    }
+}
 
 // 100% matching! 
 void SetMidiDefaultVolume(char Volume)
