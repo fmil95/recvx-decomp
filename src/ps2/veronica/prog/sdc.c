@@ -310,28 +310,30 @@ void SetPanMidi(unsigned int SlotNo, char Pan, short DelayTime)
     SetPanMidi2(SlotNo, Pan, DelayTime);
 }
 
-// 
-// Start address: 0x28f540
+// 99.56% matching
 void SetVolumeMidiEx(unsigned int SlotNo, float Volume, short DelayTime, int Flag)
 {
-	// Line 326, Address: 0x28f540, Func Offset: 0
-	// Line 327, Address: 0x28f550, Func Offset: 0x10
-	// Line 326, Address: 0x28f554, Func Offset: 0x14
-	// Line 327, Address: 0x28f558, Func Offset: 0x18
-	// Line 326, Address: 0x28f568, Func Offset: 0x28
-	// Line 327, Address: 0x28f56c, Func Offset: 0x2c
-	// Line 328, Address: 0x28f584, Func Offset: 0x44
-	// Line 330, Address: 0x28f5bc, Func Offset: 0x7c
-	// Line 331, Address: 0x28f5e8, Func Offset: 0xa8
-	// Line 332, Address: 0x28f5f4, Func Offset: 0xb4
-	// Line 334, Address: 0x28f5fc, Func Offset: 0xbc
-	// Line 335, Address: 0x28f604, Func Offset: 0xc4
-	// Line 336, Address: 0x28f624, Func Offset: 0xe4
-	// Line 339, Address: 0x28f64c, Func Offset: 0x10c
-	// Line 341, Address: 0x28f65c, Func Offset: 0x11c
-	// Line 345, Address: 0x28f690, Func Offset: 0x150
-	// Func End, Address: 0x28f6ac, Func Offset: 0x16c
-	scePrintf("SetVolumeMidiEx - UNIMPLEMENTED!\n");
+    if (MidiInfo[SlotNo].Flag != 0)
+    {
+        switch (MidiInfo[SlotNo].FadeFunc) 
+        {
+        case 0:
+            sdMidiSetVol(MidiHandle[SlotNo], Volume, DelayTime);
+            
+            MidiInfo[SlotNo].Volume = Volume;
+            break;
+        case 1:
+            if ((Flag == 0) && (Volume < MidiInfo[SlotNo].VolLast)) 
+            {
+                RequestMidiFadeFunctionEx(SlotNo, -1, Volume, MidiInfo[SlotNo].FadeCntMax);
+            }
+            
+            MidiInfo[SlotNo].Volume = Volume;
+        case 2:
+            sdMidiSetVol(MidiHandle[SlotNo], MidiInfo[SlotNo].Volume, 0);
+            break;
+        }
+    }
 }
 
 // 100% matching!
