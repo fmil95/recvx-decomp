@@ -843,28 +843,30 @@ void RequestMidiPanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
     mp->PanFunc = 1;
 }
 
-/*// 
-// Start address: 0x290620
+// 86.67% matching
 void RequestSePanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 {
-	_anon0* sp;
-	// Line 836, Address: 0x290620, Func Offset: 0
-	// Line 839, Address: 0x290630, Func Offset: 0x10
-	// Line 836, Address: 0x29064c, Func Offset: 0x2c
-	// Line 841, Address: 0x290650, Func Offset: 0x30
-	// Line 842, Address: 0x29065c, Func Offset: 0x3c
-	// Line 844, Address: 0x290668, Func Offset: 0x48
-	// Line 845, Address: 0x29066c, Func Offset: 0x4c
-	// Line 844, Address: 0x290674, Func Offset: 0x54
-	// Line 845, Address: 0x290678, Func Offset: 0x58
-	// Line 844, Address: 0x29067c, Func Offset: 0x5c
-	// Line 845, Address: 0x290680, Func Offset: 0x60
-	// Line 847, Address: 0x290684, Func Offset: 0x64
-	// Line 848, Address: 0x29068c, Func Offset: 0x6c
-	// Line 851, Address: 0x2906c0, Func Offset: 0xa0
-	// Line 852, Address: 0x2906c8, Func Offset: 0xa8
-	// Func End, Address: 0x2906e0, Func Offset: 0xc0
-}*/
+    NO_NAME_20* sp;
+
+    sp = &SeInfo[SlotNo];
+
+    if (StartPan == -1) 
+    {
+        StartPan = sp->Pan;
+    }
+
+    sp->Pan = StartPan;
+    sp->PanLast = LastPan;
+    
+    sp->PanCntMax = Frame;
+
+    if (Frame != 0) 
+    {
+        sp->PanSpeed = -(((128.0f + sp->PanLast) - (128.0f + sp->Pan)) / sp->PanCntMax);
+    }
+
+    sp->PanFunc = 1;
+}
 
 // 100% matching!
 int ExecSoundPanManager() {
