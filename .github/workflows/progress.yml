@@ -2,7 +2,7 @@ name: Update Decompilation Progress
 
 on:
   schedule:
-    - cron: "0 */2 * * *"  # Runs every 2 hours on the hour (UTC)
+    - cron: "0 */4 * * *"  # Runs every 4 hours on the hour (UTC)
   workflow_dispatch:  # still allows manual runs
 
 jobs:
