@@ -353,13 +353,10 @@ void SetVolumeMidi(unsigned int SlotNo, char Volume, short DelayTime)
 	scePrintf("SetVolumeMidi - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x28f6d0
+// 100% matching!
 void SetVolumeMidi2(unsigned int SlotNo, float Volume, short DelayTime)
 {
-	// Line 354, Address: 0x28f6d0, Func Offset: 0
-	// Func End, Address: 0x28f6d8, Func Offset: 0x8
-    scePrintf("SetVolumeMidi2 - UNIMPLEMENTED\n");
+    SetVolumeMidiEx(SlotNo, Volume, DelayTime, 0);
 }
 
 // 100% matching! 
