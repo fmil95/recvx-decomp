@@ -615,25 +615,37 @@ void StopFxProgram()
     ExecFxFlag = 0;
 }
 
-// 
-// Start address: 0x28ff80
+// 100% matching! 
 void RequestMidiFadeFunction(int SlotNo, int Func, short Timer)
 {
-	//_anon0* mp;
-	// Line 652, Address: 0x28ff80, Func Offset: 0
-	// Line 653, Address: 0x28ff98, Func Offset: 0x18
-	// Line 655, Address: 0x28ffb8, Func Offset: 0x38
-	// Line 656, Address: 0x28ffc0, Func Offset: 0x40
-	// Line 657, Address: 0x28ffc4, Func Offset: 0x44
-	// Line 659, Address: 0x28ffcc, Func Offset: 0x4c
-	// Line 663, Address: 0x28ffd4, Func Offset: 0x54
-	// Line 666, Address: 0x290044, Func Offset: 0xc4
-	// Line 667, Address: 0x290050, Func Offset: 0xd0
-	// Line 668, Address: 0x29005c, Func Offset: 0xdc
-	// Line 674, Address: 0x290064, Func Offset: 0xe4
-	// Line 677, Address: 0x290084, Func Offset: 0x104
-	// Func End, Address: 0x29008c, Func Offset: 0x10c
-	scePrintf("RequestMidiFadeFunction - UNIMPLEMENTED!\n");
+    NO_NAME_20* mp;
+    
+    mp = &MidiInfo[SlotNo];
+    
+    switch (Func) 
+    {                                
+    case 1:
+        mp->Volume = -127.0f;
+        
+        mp->VolLast = mp->LimitMaxVol;
+        break;
+    case 2:
+        mp->VolLast = -127.0f;
+        break;
+    }
+    
+    mp->FadeCntMax = ((Timer / 100) * 30) + (((Timer % 100) * 6) / 10);
+    
+    mp->FadeCntMax /= 2;
+    
+    if (mp->FadeCntMax == 0) 
+    {
+        mp->FadeCntMax = 1;
+    }
+    
+    mp->VolSpeed = (mp->Volume - mp->VolLast) / mp->FadeCntMax;
+    
+    mp->FadeFunc = Func;
 }
 
 // 87.69% matching
