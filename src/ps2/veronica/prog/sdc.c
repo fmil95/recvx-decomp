@@ -699,28 +699,39 @@ void RequestSeFadeFunction(int SlotNo, int Func, short Timer)
     sp->FadeFunc = Func;
 }
 
-// 
-// Start address: 0x290290
+// 87.69% matching
 void RequestSeFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 {
-	//_anon0* sp;
-	// Line 735, Address: 0x290290, Func Offset: 0
-	// Line 738, Address: 0x2902a0, Func Offset: 0x10
-	// Line 735, Address: 0x2902bc, Func Offset: 0x2c
-	// Line 740, Address: 0x2902c0, Func Offset: 0x30
-	// Line 741, Address: 0x2902cc, Func Offset: 0x3c
-	// Line 743, Address: 0x2902d8, Func Offset: 0x48
-	// Line 744, Address: 0x2902dc, Func Offset: 0x4c
-	// Line 743, Address: 0x2902e4, Func Offset: 0x54
-	// Line 744, Address: 0x2902e8, Func Offset: 0x58
-	// Line 743, Address: 0x2902ec, Func Offset: 0x5c
-	// Line 744, Address: 0x2902f0, Func Offset: 0x60
-	// Line 746, Address: 0x2902f4, Func Offset: 0x64
-	// Line 747, Address: 0x2902fc, Func Offset: 0x6c
-	// Line 750, Address: 0x29031c, Func Offset: 0x8c
-	// Line 751, Address: 0x290348, Func Offset: 0xb8
-	// Func End, Address: 0x290360, Func Offset: 0xd0
-	scePrintf("RequestSeFadeFunctionEx - UNIMPLEMENTED!\n");
+    NO_NAME_20* sp;
+    int Func; // not from the debugging symbols
+    
+    sp = &SeInfo[SlotNo];
+    
+    if (StartVol == -1) 
+    {
+        StartVol = sp->Volume;  
+    }
+
+    sp->Volume = StartVol;      
+    sp->VolLast = LastVol;     
+    
+    sp->FadeCntMax = Frame;
+
+    if (Frame != 0) 
+    {
+        sp->VolSpeed = -((sp->VolLast - sp->Volume) / sp->FadeCntMax);
+    }
+
+    if (sp->VolSpeed < 0) 
+    {
+        Func = 1;
+    } 
+    else 
+    {
+        Func = 2;
+    }
+
+    sp->FadeFunc = Func;
 }
 
 // 100% matching! 
