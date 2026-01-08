@@ -1,4 +1,6 @@
 #include "eneset.h"
+#include "njplus.h"
+#include "main.h"
 
 /*void(*bhJumpEnemy)()[100];
 _anon23 En00CapColTab[5];
@@ -7,13 +9,10 @@ _anon24* sys;
 BH_PWORK* plp;
 _anon9* rom;*/
 
-// 
-// Start address: 0x174700
+// 100% matching! 
 void bhInitEnemy()
 {
-	// Line 317, Address: 0x174700, Func Offset: 0
-	// Func End, Address: 0x174718, Func Offset: 0x18
-	scePrintf("bhInitEnemy - UNIMPLEMENTED!\n");
+    npSetMemory((unsigned char*)ene, 180224, 0);
 }
 
 // 
