@@ -1,4 +1,6 @@
 #include "objitm.h"
+#include "njplus.h"
+#include "main.h"
 
 /*void(*bhJumpObject)()[101];
 void(*bhJumpObject2)()[13];
@@ -9,16 +11,11 @@ unsigned char pl_sleep_cnt;
 _anon41 cam;
 BH_PWORK* plp;*/
 
-// 
-// Start address: 0x283080
+// 100% matching! 
 void bhInitObjItm()
 {
-	// Line 59, Address: 0x283080, Func Offset: 0
-	// Line 60, Address: 0x283088, Func Offset: 0x8
-	// Line 61, Address: 0x2830a8, Func Offset: 0x28
-	// Line 62, Address: 0x2830c8, Func Offset: 0x48
-	// Func End, Address: 0x2830d4, Func Offset: 0x54
-	scePrintf("bhInitObjItm - UNIMPLEMENTED!\n");
+    npSetMemory((unsigned char*)sys->obwp, 39936, 0);
+    npSetMemory((unsigned char*)sys->itwp, 39936, 0);
 }
 
 /*// 
