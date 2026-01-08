@@ -524,9 +524,9 @@ SDE_ERR	sdMidiSetFxLev( SDMIDI handle, const Sint8 fx_lev)
     return SDE_ERR_NO_INIT;
 }
 
-/*// 
+// 
 // Start address: 0x2db910
-SDE_ERR sdMidiSetPan(SDS_PORT_REF** handle, char pan, int fade_time)
+SDE_ERR	sdMidiSetPan( SDMIDI handle, const Sint8 pan, const Sint32 fade_time)
 {
 	char set_pan;
 	// Line 1402, Address: 0x2db910, Func Offset: 0
@@ -547,7 +547,8 @@ SDE_ERR sdMidiSetPan(SDS_PORT_REF** handle, char pan, int fade_time)
 	// Line 1436, Address: 0x2db99c, Func Offset: 0x8c
 	// Line 1438, Address: 0x2db9a4, Func Offset: 0x94
 	// Func End, Address: 0x2db9b0, Func Offset: 0xa0
-}*/
+    scePrintf("sdMidiSetPan - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2db9b0

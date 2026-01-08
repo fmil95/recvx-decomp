@@ -293,22 +293,15 @@ void StopMidi(unsigned int SlotNo)
     }
 }
 
-// 
-// Start address: 0x28f440
+// 99.43% matching
 void SetPanMidi2(unsigned int SlotNo, float Pan, short DelayTime)
 {
-	// Line 311, Address: 0x28f440, Func Offset: 0
-	// Line 312, Address: 0x28f450, Func Offset: 0x10
-	// Line 311, Address: 0x28f454, Func Offset: 0x14
-	// Line 312, Address: 0x28f458, Func Offset: 0x18
-	// Line 311, Address: 0x28f468, Func Offset: 0x28
-	// Line 312, Address: 0x28f46c, Func Offset: 0x2c
-	// Line 313, Address: 0x28f484, Func Offset: 0x44
-	// Line 314, Address: 0x28f4b8, Func Offset: 0x78
-	// Line 315, Address: 0x28f4e8, Func Offset: 0xa8
-	// Line 318, Address: 0x28f4f8, Func Offset: 0xb8
-	// Func End, Address: 0x28f514, Func Offset: 0xd4
-	scePrintf("SetPanMidi2 - UNIMPLEMENTED!\n");
+    if ((MidiInfo[SlotNo].Flag != 0) && ((MidiInfo[SlotNo].PanFunc != 0) || (MidiInfo[SlotNo].FadeFunc != 2)))
+    {
+        sdMidiSetPan(MidiHandle[SlotNo], Pan, DelayTime);
+        
+        MidiInfo[SlotNo].Pan = Pan;
+    }
 }
 
 // 100% matching!
