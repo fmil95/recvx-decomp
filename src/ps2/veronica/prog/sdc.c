@@ -732,14 +732,15 @@ void StopFadeSe(int SlotNo)
     SeInfo[SlotNo].FadeFunc = 0;
 }
 
-// 
-// Start address: 0x290380
+// 100% matching! 
 int CheckFadeEndSe(int SlotNo)
 {
-	// Line 760, Address: 0x290380, Func Offset: 0
-	// Line 761, Address: 0x2903a4, Func Offset: 0x24
-	// Func End, Address: 0x2903ac, Func Offset: 0x2c
-	scePrintf("CheckFadeEndSe - UNIMPLEMENTED!\n");
+    if (SeInfo[SlotNo].FadeFunc == 0) 
+    {
+        return 0;
+    }
+    
+    return 1;
 }
 
 // 100% matching!
