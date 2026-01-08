@@ -584,19 +584,14 @@ void SetPitchSe(unsigned int SlotNo, short Pitch, short DelayTime)
     }
 }
 
-/*/ 
-// Start address: 0x28feb0
+// 100% matching!
 void SetFxLevelSe(unsigned int SlotNo, char FxLevel)
 {
-	// Line 618, Address: 0x28feb0, Func Offset: 0
-	// Line 617, Address: 0x28fec4, Func Offset: 0x14
-	// Line 618, Address: 0x28fec8, Func Offset: 0x18
-	// Line 617, Address: 0x28fecc, Func Offset: 0x1c
-	// Line 618, Address: 0x28fed0, Func Offset: 0x20
-	// Line 619, Address: 0x28fedc, Func Offset: 0x2c
-	// Line 621, Address: 0x28fef4, Func Offset: 0x44
-	// Func End, Address: 0x28ff00, Func Offset: 0x50
-}*/
+    if (SeInfo[SlotNo].Flag != 0) 
+    {
+        sdShotSetFxLev(SeHandle[SlotNo], FxLevel);
+    }
+}
 
 // 100% matching! 
 void SetSeDefaultVolume(char Volume) 
