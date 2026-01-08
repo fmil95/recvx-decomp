@@ -1,8 +1,8 @@
 #include "ps2_NaGraphics3D.h"
+#include "ps2_dummy.h"
 
-/*_anon1 sc_plane;
-_anon1 c_plane[5];
-_anon4 _nj_screen_;*/
+/*_anon1 sc_plane;*/
+PS2_PLANE c_plane[5];
 
 // 100% matching! 
 void Ps2SetPlane(PS2_PLANE* p, sceVu0FVECTOR v0, sceVu0FVECTOR v1, sceVu0FVECTOR v2)
@@ -20,29 +20,18 @@ void Ps2SetPlane(PS2_PLANE* p, sceVu0FVECTOR v0, sceVu0FVECTOR v1, sceVu0FVECTOR
     *(long128*)p->pos = *(long128*)&v0;
 }
 
-// 
-// Start address: 0x2dfa80
+// 98.22% matching
 void Ps2CalcScreenCone()
 {
-	float cp[4];
-	float pos[4][4];
-	// Line 76, Address: 0x2dfa80, Func Offset: 0
-	// Line 83, Address: 0x2dfa84, Func Offset: 0x4
-	// Line 76, Address: 0x2dfa8c, Func Offset: 0xc
-	// Line 83, Address: 0x2dfa90, Func Offset: 0x10
-	// Line 85, Address: 0x2dfa9c, Func Offset: 0x1c
-	// Line 83, Address: 0x2dfaa0, Func Offset: 0x20
-	// Line 85, Address: 0x2dfaa4, Func Offset: 0x24
-	// Line 83, Address: 0x2dfaa8, Func Offset: 0x28
-	// Line 85, Address: 0x2dfaac, Func Offset: 0x2c
-	// Line 83, Address: 0x2dfabc, Func Offset: 0x3c
-	// Line 85, Address: 0x2dfac0, Func Offset: 0x40
-	// Line 86, Address: 0x2dfac8, Func Offset: 0x48
-	// Line 87, Address: 0x2dfae8, Func Offset: 0x68
-	// Line 88, Address: 0x2dfb08, Func Offset: 0x88
-	// Line 89, Address: 0x2dfb28, Func Offset: 0xa8
-	// Func End, Address: 0x2dfb34, Func Offset: 0xb4
-	scePrintf("Ps2CalcScreenCone - UNIMPLEMENTED!\n");
+    sceVu0FVECTOR cp = { 0, 0, 0, 1.0f };
+	static sceVu0FMATRIX pos;
+
+    cp[2] = -_nj_screen_.dist;
+
+    Ps2SetPlane(&c_plane[1], cp, pos[1], pos[0]);
+    Ps2SetPlane(&c_plane[2], cp, pos[2], pos[1]);
+    Ps2SetPlane(&c_plane[3], cp, pos[3], pos[2]);
+    Ps2SetPlane(&c_plane[4], cp, pos[0], pos[3]);
 }
 
 // 100% matching! 
