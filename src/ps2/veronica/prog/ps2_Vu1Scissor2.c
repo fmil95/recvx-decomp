@@ -4,11 +4,11 @@ extern void VU0_CLIP_VIEW_VOLUME() __attribute__((section(".vutext")));
 extern void VU0_CLIP_VIEW_VOLUME_ALL() __attribute__((section(".vutext")));
 extern void VU0_SET_NODE_ARRAY() __attribute__((section(".vutext")));
 
-/*// 
+// 
 // Start address: 0x2d3b00
 void DrawScissorPolygonOpaque2(int count, unsigned long ulType)
 {
-	tagVU1_PRIM_BUF* pPrim;
+	VU1_PRIM_BUF* pPrim;
 	// Line 37, Address: 0x2d3b00, Func Offset: 0
 	// Line 38, Address: 0x2d3b0c, Func Offset: 0xc
 	// Line 78, Address: 0x2d3b14, Func Offset: 0x14
@@ -36,7 +36,8 @@ void DrawScissorPolygonOpaque2(int count, unsigned long ulType)
 	// Line 104, Address: 0x2d3ba4, Func Offset: 0xa4
 	// Line 105, Address: 0x2d3bb8, Func Offset: 0xb8
 	// Func End, Address: 0x2d3bc8, Func Offset: 0xc8
-}*/
+	scePrintf("DrawScissorPolygonOpaque2 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void InitNodeArraySet2()
