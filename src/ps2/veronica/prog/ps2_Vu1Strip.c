@@ -591,6 +591,7 @@ void ScissorTriangle(SCISSOR* scissor, SCISSOR_PLANE* plane_set)
 	// Line 1197, Address: 0x2d4624, Func Offset: 0x494
 	// Line 1199, Address: 0x2d4644, Func Offset: 0x4b4
 	// Func End, Address: 0x2d464c, Func Offset: 0x4bc
+    scePrintf("ScissorTriangle - UNIMPLEMENTED!\n");
 }
 
 // 100% matching!
@@ -1939,17 +1940,17 @@ void DrawScissorPolygonTrans1P(SCISSOR* scissor, unsigned long ulType)
     Ps2AddPrim3DEx1P(ulType, pP, in->nodeNum);
 }
 
-/*// 
+// 
 // Start address: 0x2d5ca0
-void vu1DrawTriangleStripTransDouble1P(unsigned long ulType, tagVU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
+void vu1DrawTriangleStripTransDouble1P(unsigned long ulType, VU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
 {
 	int flg;
 	unsigned int clipflag;
-	void(*pFunc)(tagVU1_STRIP_BUF*, tagVU1_PRIM_BUF*);
+	void(*pFunc)(VU1_STRIP_BUF*, VU1_PRIM_BUF*);
 	unsigned short usStripCnt;
 	float sam;
 	float fIz;
-	tagVU1_PRIM_BUF* pP;
+	VU1_PRIM_BUF* pP;
 	// Line 4792, Address: 0x2d5ca0, Func Offset: 0
 	// Line 4802, Address: 0x2d5cd0, Func Offset: 0x30
 	// Line 4797, Address: 0x2d5ce4, Func Offset: 0x44
@@ -2007,4 +2008,5 @@ void vu1DrawTriangleStripTransDouble1P(unsigned long ulType, tagVU1_STRIP_BUF* p
 	// Line 4856, Address: 0x2d5f18, Func Offset: 0x278
 	// Line 4857, Address: 0x2d5f30, Func Offset: 0x290
 	// Func End, Address: 0x2d5f60, Func Offset: 0x2c0
-}*/
+    scePrintf("vu1DrawTriangleStripTransDouble1P - UNIMPLEMENTED!\n");
+}

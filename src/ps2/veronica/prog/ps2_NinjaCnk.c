@@ -9,9 +9,18 @@
 
 static VU1_STRIP_BUF* pNaCnkVerBufTop;
 static int iNaCnkVerBufMax;
-/*tagVU1_STRIP_BUF NaCnkStrBufTop[200];*/
-unsigned int Vu0ClipFlag;
-/*int lCnkModClipFace;*/
+static VU1_STRIP_BUF NaCnkStrBufTop[200];
+static unsigned int Vu0ClipFlag;
+static unsigned int Ps2_chunk_buff_flip;
+unsigned int ulCnkCurrentDrawMode;
+unsigned short* uspCnkCrntTexColCalcTbl;
+CNK_LIGHTING* pNaCnkCrntLighting;
+void* vpDummy;
+unsigned char ucNaCnkAttr;
+unsigned int ulNaCnkFlagModelClip;
+unsigned int ulNaCnkFlagConstAttr;
+unsigned int ulNaCnkFlagConstMaterial;
+int lCnkModClipFace;
 CHUNK_HEAD* (*pCnkFuncTbl[76])(CHUNK_HEAD*) = 
 {
 	njCnkCn,
@@ -91,19 +100,49 @@ CHUNK_HEAD* (*pCnkFuncTbl[76])(CHUNK_HEAD*) =
 	njCnkDefaultShort,
 	njCnkDefaultShort
 };
-/*void(*pCnkCsVu1FuncTbl)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short)[32];
-unsigned short usCnkCsPolColorCalcFunc[8];*/
+void (*pCnkCsVu1FuncTbl[32])(unsigned long, VU1_STRIP_BUF*, unsigned short, unsigned short) = 
+{
+	vu1DrawTriangleStripOpaqueDouble,
+	vu1DrawTriangleStripOpaqueDouble,
+	vu1DrawTriangleStripOpaqueSingle,
+	vu1DrawTriangleStripOpaqueSingle,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	vu1DrawTriangleStripTransDouble,
+	vu1DrawTriangleStripTransDouble,
+	vu1DrawTriangleStripTransSingle,
+	vu1DrawTriangleStripTransSingle,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	vu1DrawTriangleStripOpaqueDouble,
+	vu1DrawTriangleStripOpaqueDouble,
+	vu1DrawTriangleStripOpaqueDouble,
+	vu1DrawTriangleStripOpaqueDouble,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	vu1DrawTriangleStripTransDouble,
+	vu1DrawTriangleStripTransDouble,
+	vu1DrawTriangleStripTransDouble,
+	vu1DrawTriangleStripTransDouble,
+	vu1DrawTriangleStripTransDoubleI,
+	vu1DrawTriangleStripTransDoubleI,
+	vu1DrawTriangleStripTransDoubleI,
+	vu1DrawTriangleStripTransDoubleI
+};
+unsigned short usCnkCsPolColorCalcFunc[8] = { 4, 2, 4, 2, 4, 2, 4, 2 };
 unsigned short usCnkCsTexColorCalcFunc[4][8] = { { 9, 2, 4, 2, 6, 2, 3, 2 }, { 9, 2, 4, 2, 6, 2, 3, 2 }, 
 												 { 10, 2, 4, 2, 7, 2, 3, 2 }, { 8, 2, 4, 2, 5, 2, 3, 2 } };
-unsigned int ulNaCnkFlagConstMaterial;
-unsigned int ulNaCnkFlagConstAttr;
-unsigned int ulNaCnkFlagModelClip;
 int lNaCnkSrcAlphaMode[8] = { 11, 10, 3, 5, 8, 6, 2, 4 };
 int lNaCnkDstAlphaMode[8] = { 11, 10, 9, 7, 8, 6, 2, 4 };
 int lNaCnkSrcBlendMode = 8;
 int lNaCnkDstBlendMode = 6;
-unsigned char ucNaCnkAttr;
-VU1_COLOR NaCnkDefaultOne;
+VU1_COLOR NaCnkDefaultOne = { 1.0f, 1.0f, 1.0f, 1.0f };
 float fNaCnkConstantA = 1.0f;
 float fNaCnkConstantR = 1.0f;
 float fNaCnkConstantG = 1.0f;
@@ -113,11 +152,11 @@ float fNaCnkAlphaMaterial = { 1.0f };
 VU1_COLOR NaCnkDiffuseMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 float fNaCnkMaterialSpeE = 17.0f;
 VU1_COLOR NaCnkSpeculaMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
+VU1_COLOR NaCnkAmbientMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
+VU1_COLOR NaCnkAmbientFunctionEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientFunctionSm = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientEs __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
-VU1_COLOR NaCnkAmbientFunctionEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
-VU1_COLOR NaCnkAmbientMaterial __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientSs __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientSm = { 1.0f, 1.0f, 1.0f, 1.0f };
 CNK_LIGHT NaCnkLightEs __attribute__((aligned(64))) = { 1.401298464f, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -138,50 +177,7 @@ CNK_LIGHTING NaCnkLighting[4] __attribute__((aligned(64))) = { { &NaCnkLightEs, 
 														       { NaCnkLightEm, 6, &NaCnkDefaultOne, &NaCnkDefaultOne, &NaCnkAmbientEm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 														       { &NaCnkLightSs, 1, &NaCnkDiffuseMaterial, &NaCnkSpeculaMaterial, &NaCnkAmbientSs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 														       { NaCnkLightSm, 6, &NaCnkDiffuseMaterial, &NaCnkDefaultOne, &NaCnkAmbientSm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
-void* vpDummy;
-CNK_LIGHTING* pNaCnkCrntLighting;
-unsigned short* uspCnkCrntTexColCalcTbl;
-unsigned int ulCnkCurrentDrawMode;
-/*float fNaViwHalfH;
-float fNaViwHalfW;
-float fNaViwAspectH;
-float fNaViwAspectW;
-_anon21 _nj_screen_;
-float _fNaViwClipFar;
-float _fNaViwClipNear;
-float pNaMatMatrixStuckPtr[16];
-int Ps2_shadow_z;
-float Ps2_shadow_fog;
-float Ps2_shadow_vec[4];
-float fNaViwOffsetY;
-float fNaViwOffsetX;
-_anon7 planeset;
-_anon26 scissorflip;
-_anon22 node;
-unsigned int Ps2_chunk_buff_flip;
-float Ps2_zbuff_a;
-float Ps2_zbuff_b;
-float ClipScreenMatrix[4][4];
-float fVu1AspectH;
-float fVu1AspectW;
-float fVu1OffsetY;
-float fVu1OffsetX;
-float ClipMatrix2[4][4];
-float fVu1AlphaRatio;
-float fVu1Projection;
-float fVu1FarClip;
-float fVu1NearClip;
-tagVU1_COLOR vu1Specula;
-tagVU1_COLOR vu1Ambient;
-tagVU1_COLOR vu1Diffuse;
-unsigned int Ps2_tex_load_tp_cancel;
-_anon8* Ps2_now_tex;
-void(*vu1DrawTriangleStripOpaqueSingle)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short);
-void(*vu1DrawTriangleStripTransSingle)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short);
-void(*vu1DrawTriangleStripTransDoubleI)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short);
-void(*vu1DrawTriangleStripTransDouble)(unsigned long, tagVU1_STRIP_BUF*, unsigned short, unsigned short);
-unsigned int ulDrawGeneralPurposeWater;
-unsigned int njCnkConvTest;*/
+/*unsigned int njCnkConvTest; - unused*/
 
 // 100% matching!
 void	njInit3D( NJS_VERTEX_BUF *vbuf, Int vn )
