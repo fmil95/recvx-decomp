@@ -563,13 +563,10 @@ void SetVolumeSeEx(unsigned int SlotNo, float Volume, short DelayTime, int Flag)
 	scePrintf("SetVolumeSeEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x28fe20
+// 100% matching!
 void SetVolumeSe(unsigned int SlotNo, char Volume, short DelayTime)
 {
-	// Line 592, Address: 0x28fe20, Func Offset: 0
-	// Func End, Address: 0x28fe38, Func Offset: 0x18
-	scePrintf("SetVolumeSe - UNIMPLEMENTED!\n");
+    SetVolumeSeEx(SlotNo, Volume, DelayTime, 0);
 }
 
 // 
