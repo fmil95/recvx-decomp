@@ -311,13 +311,10 @@ void SetPanMidi2(unsigned int SlotNo, float Pan, short DelayTime)
 	scePrintf("SetPanMidi2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x28f520
+// 100% matching!
 void SetPanMidi(unsigned int SlotNo, char Pan, short DelayTime)
 {
-	// Line 322, Address: 0x28f520, Func Offset: 0
-	// Func End, Address: 0x28f534, Func Offset: 0x14
-	scePrintf("SetPanMidi - UNIMPLEMENTED!\n");
+    SetPanMidi2(SlotNo, Pan, DelayTime);
 }
 
 // 
