@@ -2,9 +2,9 @@
 #include "ps2_sg_sycfg.h"
 #include "main.h"
 
-NO_NAME_20 MidiInfo[8];
+SDS_INFO MidiInfo[8];
 SDMIDI MidiHandle[8] __attribute__((aligned(64)));
-NO_NAME_20 SeInfo[20] __attribute__((aligned(64)));
+SDS_INFO SeInfo[20] __attribute__((aligned(64)));
 SDSHOT SeHandle[20];
 char SdcMasterVolume;
 char SdcGdDaVolume;
@@ -618,7 +618,7 @@ void StopFxProgram()
 // 100% matching! 
 void RequestMidiFadeFunction(int SlotNo, int Func, short Timer)
 {
-    NO_NAME_20* mp;
+    SDS_INFO* mp;
     
     mp = &MidiInfo[SlotNo];
     
@@ -651,7 +651,7 @@ void RequestMidiFadeFunction(int SlotNo, int Func, short Timer)
 // 87.69% matching
 void RequestMidiFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 {
-    NO_NAME_20* mp;
+    SDS_INFO* mp;
     int Func; // not from the debugging symbols
 
     mp = &MidiInfo[SlotNo];
@@ -692,7 +692,7 @@ void StopFadeMidi(int SlotNo)
 // 100% matching! 
 void RequestSeFadeFunction(int SlotNo, int Func, short Timer)
 {
-    NO_NAME_20* sp;
+    SDS_INFO* sp;
     
     sp = &SeInfo[SlotNo];
     
@@ -725,7 +725,7 @@ void RequestSeFadeFunction(int SlotNo, int Func, short Timer)
 // 87.69% matching
 void RequestSeFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 {
-    NO_NAME_20* sp;
+    SDS_INFO* sp;
     int Func; // not from the debugging symbols
     
     sp = &SeInfo[SlotNo];
@@ -778,8 +778,8 @@ int CheckFadeEndSe(int SlotNo)
 int ExecSoundFadeManager() {
     int i;
     int ReturnCode;
-    NO_NAME_20* mp;
-    NO_NAME_20* sp;
+    SDS_INFO* mp;
+    SDS_INFO* sp;
     
     ReturnCode = 0;
     for(i = 0;i < 8; i++) {
@@ -844,7 +844,7 @@ int ExecSoundFadeManager() {
 // 86.67% matching
 void RequestMidiPanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 {
-    NO_NAME_20* mp;
+    SDS_INFO* mp;
 
     mp = &MidiInfo[SlotNo];
 
@@ -869,7 +869,7 @@ void RequestMidiPanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 // 86.67% matching
 void RequestSePanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 {
-    NO_NAME_20* sp;
+    SDS_INFO* sp;
 
     sp = &SeInfo[SlotNo];
 
@@ -893,7 +893,7 @@ void RequestSePanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame)
 
 // 100% matching!
 int ExecSoundPanManager() {
-    NO_NAME_20* sp;
+    SDS_INFO* sp;
     int ReturnCode;
     int i;
 
