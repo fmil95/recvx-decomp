@@ -829,14 +829,15 @@ SDE_ERR sdShotPlay(SDS_PORT_REF** handle, char bank_num, char data_num, char pri
 	// Func End, Address: 0x2dc17c, Func Offset: 0x24c
 }*/
 
-// 
-// Start address: 0x2dc180
+// 100% matching!
 SDE_ERR	sdShotSetFxLev( SDSHOT handle, const Sint8 fx_lev)
 {
-	// Line 2126, Address: 0x2dc180, Func Offset: 0
-	// Line 2131, Address: 0x2dc194, Func Offset: 0x14
-	// Func End, Address: 0x2dc19c, Func Offset: 0x1c
-    scePrintf("sdShotSetFxLev - UNIMPLEMENTED!\n");
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        return SDE_ERR_NOTHING;
+    } 
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching!
