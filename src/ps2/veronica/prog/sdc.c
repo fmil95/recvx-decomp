@@ -636,28 +636,39 @@ void RequestMidiFadeFunction(int SlotNo, int Func, short Timer)
 	scePrintf("RequestMidiFadeFunction - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x290090
+// 87.69% matching
 void RequestMidiFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 {
-	//_anon0* mp;
-	// Line 680, Address: 0x290090, Func Offset: 0
-	// Line 683, Address: 0x2900a0, Func Offset: 0x10
-	// Line 680, Address: 0x2900bc, Func Offset: 0x2c
-	// Line 685, Address: 0x2900c0, Func Offset: 0x30
-	// Line 686, Address: 0x2900cc, Func Offset: 0x3c
-	// Line 688, Address: 0x2900d8, Func Offset: 0x48
-	// Line 689, Address: 0x2900dc, Func Offset: 0x4c
-	// Line 688, Address: 0x2900e4, Func Offset: 0x54
-	// Line 689, Address: 0x2900e8, Func Offset: 0x58
-	// Line 688, Address: 0x2900ec, Func Offset: 0x5c
-	// Line 689, Address: 0x2900f0, Func Offset: 0x60
-	// Line 691, Address: 0x2900f4, Func Offset: 0x64
-	// Line 692, Address: 0x2900fc, Func Offset: 0x6c
-	// Line 695, Address: 0x29011c, Func Offset: 0x8c
-	// Line 696, Address: 0x290148, Func Offset: 0xb8
-	// Func End, Address: 0x290160, Func Offset: 0xd0
-	scePrintf("RequestMidiFadeFunctionEx - UNIMPLEMENTED!\n");
+    NO_NAME_20* mp;
+    int Func; // not from the debugging symbols
+
+    mp = &MidiInfo[SlotNo];
+
+    if (StartVol == -1) 
+    {
+        StartVol = mp->Volume;
+    }
+
+    mp->Volume = StartVol;
+    mp->VolLast = LastVol;
+    
+    mp->FadeCntMax = Frame;
+
+    if (Frame != 0) 
+    {
+        mp->VolSpeed = -((mp->VolLast - mp->Volume) / mp->FadeCntMax);
+    }
+
+    if (mp->VolSpeed < 0) 
+    {
+        Func = 1;
+    } 
+    else 
+    {
+        Func = 2;
+    }
+
+    mp->FadeFunc = Func;
 }
  
 // 100% matching! 
@@ -913,4 +924,3 @@ int ExecSoundPanManager() {
 
     return ReturnCode;
 }
-
