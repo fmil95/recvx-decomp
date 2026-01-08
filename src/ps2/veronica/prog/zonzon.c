@@ -1557,7 +1557,9 @@ void bhEne_SetDFireEffect2(BH_PWORK* epw, int no, _anon10* ltbl, int type);
 int bhEne_SetSanEffect(BH_PWORK* epw, int no, _anon10* ltbl);
 int bhEne_SetSanEffect2(BH_PWORK* epw, int no, _anon10* ltbl);
 void bhEne_QuickSort(_anon1* a, int first, int last);
+*/
 int bhEne_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate);
+/*
 int bhEne_CollisionCheckWall(BH_PWORK* pw, _anon4* ps, _anon4* pd, float ar, float ah);
 _anon23* bhEne_CollisionCheckWall2(BH_PWORK* pw, _anon4* ps, _anon4* ops, _anon4* pd, float ar, float ah);
 */
@@ -2569,30 +2571,29 @@ void bhEne_QuickSort(_anon1* a, int first, int last)
 	// Line 1769, Address: 0x218610, Func Offset: 0x110
 	// Func End, Address: 0x218628, Func Offset: 0x128
 }
+*/
 
-// 
-// Start address: 0x218630
-int bhEne_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate)
+// 100% matching!
+int bhEne_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate) 
 {
-	// Line 1791, Address: 0x218630, Func Offset: 0
-	// Line 1792, Address: 0x218638, Func Offset: 0x8
-	// Line 1794, Address: 0x218644, Func Offset: 0x14
-	// Line 1795, Address: 0x218648, Func Offset: 0x18
-	// Line 1796, Address: 0x21864c, Func Offset: 0x1c
-	// Line 1802, Address: 0x218650, Func Offset: 0x20
-	// Line 1798, Address: 0x218654, Func Offset: 0x24
-	// Line 1802, Address: 0x218658, Func Offset: 0x28
-	// Line 1805, Address: 0x21865c, Func Offset: 0x2c
-	// Line 1807, Address: 0x218668, Func Offset: 0x38
-	// Line 1809, Address: 0x218670, Func Offset: 0x40
-	// Line 1805, Address: 0x218674, Func Offset: 0x44
-	// Line 1807, Address: 0x21867c, Func Offset: 0x4c
-	// Line 1809, Address: 0x218684, Func Offset: 0x54
-	// Line 1811, Address: 0x21868c, Func Offset: 0x5c
-	// Line 1812, Address: 0x218690, Func Offset: 0x60
-	// Func End, Address: 0x218698, Func Offset: 0x68
+
+    epw->mtn_add = 0x10000;
+    if (epw->mtn_no != no) 
+    {
+        epw->mtn_no = no;
+        epw->frm_no = frm;
+        epw->hokan_count = rate;
+        epw->hokan_rate = 0;
+        epw->mtn_md = 0x20;
+        epw->flg = (int) (epw->flg & 0xFFFBFFFF);
+        epw->flg = (int) (epw->flg & 0xFDFFFFFF);
+        return 0;
+    }
+    
+    return -1;
 }
 
+/*
 // 
 // Start address: 0x2186a0
 int bhEne_CollisionCheckWall(BH_PWORK* pw, _anon4* ps, _anon4* pd, float ar, float ah)
