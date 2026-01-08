@@ -1,8 +1,12 @@
 #include "ps2_NaGraphics3D.h"
 #include "ps2_dummy.h"
 
-/*_anon1 sc_plane;*/
-PS2_PLANE c_plane[5];
+PS2_PLANE sc_plane = { { 0, 0, 1.0f, 1.0f }, { 0, 0, 2.0f, 1.0f } };
+PS2_PLANE c_plane[5] = { { { 0, 0, 1.0f, 1.0f }, { 0, 0, 2.0f, 1.0f } }, 
+						 { { 0, 0, 0,    1.0f }, { 0, 0, 0,    1.0f } },  
+						 { { 0, 0, 0,    1.0f }, { 0, 0, 0,    1.0f } },
+						 { { 0, 0, 0,    1.0f }, { 0, 0, 0,    1.0f } }, 
+						 { { 0, 0, 0,    1.0f }, { 0, 0, 0,    1.0f } } };
 
 // 100% matching! 
 void Ps2SetPlane(PS2_PLANE* p, sceVu0FVECTOR v0, sceVu0FVECTOR v1, sceVu0FVECTOR v2)
@@ -24,7 +28,7 @@ void Ps2SetPlane(PS2_PLANE* p, sceVu0FVECTOR v0, sceVu0FVECTOR v1, sceVu0FVECTOR
 void Ps2CalcScreenCone()
 {
     sceVu0FVECTOR cp = { 0, 0, 0, 1.0f };
-	static sceVu0FMATRIX pos;
+	static const sceVu0FMATRIX pos = { { -320.0f, -240.0f, 0, 1.0f }, { 320.0f, -240.0f, 0, 1.0f }, { 320.0f, 240.0f, 0, 1.0f }, { -320.0f, 240.0f, 0, 1.0f } };
 
     cp[2] = -_nj_screen_.dist;
 
