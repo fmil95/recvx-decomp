@@ -540,21 +540,15 @@ void StopSe(unsigned int SlotNo)
     }
 }
 
-// 
-// Start address: 0x28fbf0
+// 99.49% matching
 void SetPanSe2(unsigned int SlotNo, float Pan, short DelayTime)
-{
-	// Line 556, Address: 0x28fbf0, Func Offset: 0
-	// Line 557, Address: 0x28fc00, Func Offset: 0x10
-	// Line 556, Address: 0x28fc04, Func Offset: 0x14
-	// Line 557, Address: 0x28fc08, Func Offset: 0x18
-	// Line 556, Address: 0x28fc18, Func Offset: 0x28
-	// Line 557, Address: 0x28fc1c, Func Offset: 0x2c
-	// Line 558, Address: 0x28fc34, Func Offset: 0x44
-	// Line 559, Address: 0x28fc60, Func Offset: 0x70
-	// Line 561, Address: 0x28fc70, Func Offset: 0x80
-	// Func End, Address: 0x28fc8c, Func Offset: 0x9c
-	scePrintf("SetPanSe2 - UNIMPLEMENTED!\n");
+{ 
+    if (SeInfo[SlotNo].Flag != 0) 
+    {
+        sdShotSetPan(SeHandle[SlotNo], Pan, DelayTime);
+        
+        SeInfo[SlotNo].Pan = Pan;
+    }
 }
 
 // 100% matching!
