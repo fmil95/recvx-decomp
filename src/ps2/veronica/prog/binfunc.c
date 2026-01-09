@@ -168,34 +168,54 @@ int bhCnkBinRealize(NJS_CNK_MODEL* mdlP, unsigned int dat_off)
     return 1; 
 }
 
-/*// 
-// Start address: 0x2c8a60
-int bhMnbBinRealize(void* bin_datP, _anon0* mnwP)
+// 100% matching!
+int bhMnbBinRealize(void* bin_datP, MN_WORK* mnwP)
 {
-	int i;
-	void* dat_topP;
-	_anon3* md2P;
-	_anon1* mtnP;
-	// Line 237, Address: 0x2c8a60, Func Offset: 0
-	// Line 238, Address: 0x2c8a64, Func Offset: 0x4
-	// Line 248, Address: 0x2c8a68, Func Offset: 0x8
-	// Line 237, Address: 0x2c8a6c, Func Offset: 0xc
-	// Line 238, Address: 0x2c8a70, Func Offset: 0x10
-	// Line 239, Address: 0x2c8a74, Func Offset: 0x14
-	// Line 241, Address: 0x2c8a80, Func Offset: 0x20
-	// Line 242, Address: 0x2c8a88, Func Offset: 0x28
-	// Line 243, Address: 0x2c8a90, Func Offset: 0x30
-	// Line 244, Address: 0x2c8a98, Func Offset: 0x38
-	// Line 245, Address: 0x2c8a9c, Func Offset: 0x3c
-	// Line 246, Address: 0x2c8aa0, Func Offset: 0x40
-	// Line 248, Address: 0x2c8aa4, Func Offset: 0x44
-	// Line 249, Address: 0x2c8ab0, Func Offset: 0x50
-	// Line 251, Address: 0x2c8ab8, Func Offset: 0x58
-	// Line 252, Address: 0x2c8ac4, Func Offset: 0x64
-	// Line 253, Address: 0x2c8ad8, Func Offset: 0x78
-	// Line 254, Address: 0x2c8ae0, Func Offset: 0x80
-	// Line 255, Address: 0x2c8af4, Func Offset: 0x94
-	// Line 256, Address: 0x2c8b00, Func Offset: 0xa0
-	// Line 260, Address: 0x2c8b18, Func Offset: 0xb8
-	// Func End, Address: 0x2c8b20, Func Offset: 0xc0
-}*/
+    NJS_MOTION* mtnP;     
+    NJS_MDATA2_MOD* md2P;
+    void* dat_topP;     
+    int i;               
+    
+    dat_topP = (void*)((int)bin_datP + ((unsigned short*)bin_datP)[2]);
+    mtnP = (NJS_MOTION*)((int)dat_topP + ((int*)bin_datP)[2]);
+    md2P = (NJS_MDATA2_MOD*)((int)mtnP->mdata + (int)dat_topP);
+    
+    mtnP->mdata = md2P;
+    
+    mnwP->flg = ((char*)bin_datP)[3];
+    
+    mnwP->obj_num = ((unsigned short*)bin_datP)[3];
+    mnwP->frm_num = mtnP->nbFrame;
+    
+    mnwP->datP = bin_datP;
+    mnwP->md2P = (NJS_MDATA2*)md2P;
+    mnwP->atrP = NULL;
+    
+    if (((int*)bin_datP)[3] != -1) 
+    {
+        mnwP->atrP = (unsigned short*)((int)dat_topP + ((int*)bin_datP)[3]);
+    }
+    
+    for (i = 0; i < ((unsigned short*)bin_datP)[3]; i++, md2P++)
+    {
+        if (md2P->p[0] == (void*)-1) 
+        {
+            md2P->p[0] = NULL;
+        } 
+        else 
+        {
+            *(int*)&md2P->p[0] += (int)dat_topP;
+        }
+        
+        if (md2P->p[1] == (void*)-1) 
+        {
+            md2P->p[1] = NULL;
+        } 
+        else 
+        {
+            *(int*)&md2P->p[1] += (int)dat_topP;
+        }
+    }
+    
+    return 1;
+}

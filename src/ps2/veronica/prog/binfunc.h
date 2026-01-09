@@ -1,6 +1,12 @@
 #ifndef _BINFUNC_H_
 #define _BINFUNC_H_
 
+typedef struct NJS_MDATA2_MOD
+{
+    // total size: 0x8
+    void* p[2]; // offset 0x0, size 0x8
+} NJS_MDATA2_MOD; 
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;
