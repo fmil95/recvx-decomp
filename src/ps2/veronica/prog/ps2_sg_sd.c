@@ -408,22 +408,33 @@ SDE_ERR	sdMidiClosePort( SDMIDI handle)
     return SDE_ERR_NO_INIT; 
 }
 
-// 
-// Start address: 0x2db6a0
+// 100% matching!
 SDE_ERR	sdMidiGetStat( SDMIDI handle, SDS_MIDI_STAT *midi_stat)
 {
-	// Line 1148, Address: 0x2db6a0, Func Offset: 0
-	// Line 1149, Address: 0x2db6b0, Func Offset: 0x10
-	// Line 1150, Address: 0x2db6bc, Func Offset: 0x1c
-	// Line 1156, Address: 0x2db6c8, Func Offset: 0x28
-	// Line 1157, Address: 0x2db6e8, Func Offset: 0x48
-	// Line 1158, Address: 0x2db6f0, Func Offset: 0x50
-	// Line 1160, Address: 0x2db6f8, Func Offset: 0x58
-	// Line 1162, Address: 0x2db708, Func Offset: 0x68
-	// Line 1165, Address: 0x2db710, Func Offset: 0x70
-	// Line 1167, Address: 0x2db718, Func Offset: 0x78
-	// Func End, Address: 0x2db720, Func Offset: 0x80
-    scePrintf("sdMidiGetStat - UNIMPLEMENTED!\n");
+    SND_WORK* temp; // not from the debugging symbols
+    
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        temp = (SND_WORK*)*handle;
+        
+        if (temp == NULL) 
+        {
+            return SDE_ERR_HANDLE_NULL;
+        }
+
+        if ((get_iop_snddata.midi_info & (1 << temp->port_num))) 
+        {
+            midi_stat->m_Flg |= 0x1;
+        } 
+        else 
+        {
+            midi_stat->m_Flg &= ~0x1;
+        }
+
+        return SDE_ERR_NOTHING;
+    }
+
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching! 
