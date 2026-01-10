@@ -152,12 +152,12 @@ int bhCnkBinRealize(NJS_CNK_MODEL* mdlP, unsigned int dat_off)
         
         if ((int)mdlP->vlist != -1)
         { 
-            *(int*)&mdlP->vlist += dat_off; 
+            mdlP->vlist = (int*)((char*)mdlP->vlist + dat_off); 
         }
         
         if ((int)mdlP->plist != -1)
         {
-            *(int*)&mdlP->plist += dat_off; 
+            mdlP->plist = (short*)((char*)mdlP->plist + dat_off); 
         }
     }
     
@@ -200,7 +200,7 @@ int bhMnbBinRealize(void* bin_datP, MN_WORK* mnwP)
         } 
         else 
         {
-            *(int*)&md2P->p[0] += (int)dat_topP;
+            md2P->p[0] = (void*)((char*)md2P->p[0] + (int)dat_topP);
         }
         
         if (md2P->p[1] == (void*)-1) 
@@ -209,7 +209,7 @@ int bhMnbBinRealize(void* bin_datP, MN_WORK* mnwP)
         } 
         else 
         {
-            *(int*)&md2P->p[1] += (int)dat_topP;
+            md2P->p[1] = (void*)((char*)md2P->p[1] + (int)dat_topP);
         }
     }
     
