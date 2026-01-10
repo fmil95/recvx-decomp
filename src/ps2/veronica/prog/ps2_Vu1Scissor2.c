@@ -3,6 +3,9 @@
 extern void VU0_CLIP_VIEW_VOLUME() __attribute__((section(".vutext")));
 extern void VU0_CLIP_VIEW_VOLUME_ALL() __attribute__((section(".vutext")));
 extern void VU0_SET_NODE_ARRAY() __attribute__((section(".vutext")));
+extern void VU0_LOAD_SCISSOR_WORK() __attribute__((section(".vutext")));
+extern void VU0_LOAD_SCISSOR_WORKi() __attribute__((section(".vutext")));
+extern void VU0_LOAD_SCISSOR_WORKb() __attribute__((section(".vutext")));
 
 // 
 // Start address: 0x2d3b00
@@ -144,119 +147,237 @@ void _Set_NodeArray(VU1_STRIP_BUF* pS, VU1_PRIM_BUF* pP)
     );
 }
 
-// 
-// Start address: 0x2d3c80
+// TODO: Verify that this function hasn't got more parts written in C, for example addiu and paddub tend to be compiler-emitted instructions
+// 96.57% matching 
 int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1, int count)
 {
-	int ret;
-	// Line 583, Address: 0x2d3c80, Func Offset: 0
-	// Line 586, Address: 0x2d3c98, Func Offset: 0x18
-	// Line 583, Address: 0x2d3ca8, Func Offset: 0x28
-	// Line 586, Address: 0x2d3cb8, Func Offset: 0x38
-	// Line 588, Address: 0x2d3cbc, Func Offset: 0x3c
-	// Line 589, Address: 0x2d3cc0, Func Offset: 0x40
-	// Line 590, Address: 0x2d3cc4, Func Offset: 0x44
-	// Line 591, Address: 0x2d3cc8, Func Offset: 0x48
-	// Line 592, Address: 0x2d3ccc, Func Offset: 0x4c
-	// Line 593, Address: 0x2d3cd0, Func Offset: 0x50
-	// Line 596, Address: 0x2d3cd8, Func Offset: 0x58
-	// Line 597, Address: 0x2d3cdc, Func Offset: 0x5c
-	// Line 598, Address: 0x2d3ce0, Func Offset: 0x60
-	// Line 600, Address: 0x2d3ce4, Func Offset: 0x64
-	// Line 601, Address: 0x2d3ce8, Func Offset: 0x68
-	// Line 602, Address: 0x2d3cec, Func Offset: 0x6c
-	// Line 603, Address: 0x2d3cf0, Func Offset: 0x70
-	// Line 604, Address: 0x2d3cf4, Func Offset: 0x74
-	// Line 605, Address: 0x2d3cf8, Func Offset: 0x78
-	// Line 607, Address: 0x2d3d00, Func Offset: 0x80
-	// Line 608, Address: 0x2d3d04, Func Offset: 0x84
-	// Line 609, Address: 0x2d3d08, Func Offset: 0x88
-	// Line 610, Address: 0x2d3d0c, Func Offset: 0x8c
-	// Line 611, Address: 0x2d3d10, Func Offset: 0x90
-	// Line 612, Address: 0x2d3d14, Func Offset: 0x94
-	// Line 613, Address: 0x2d3d18, Func Offset: 0x98
-	// Line 614, Address: 0x2d3d1c, Func Offset: 0x9c
-	// Line 615, Address: 0x2d3d20, Func Offset: 0xa0
-	// Line 616, Address: 0x2d3d24, Func Offset: 0xa4
-	// Line 617, Address: 0x2d3d28, Func Offset: 0xa8
-	// Line 618, Address: 0x2d3d2c, Func Offset: 0xac
-	// Line 621, Address: 0x2d3d34, Func Offset: 0xb4
-	// Line 622, Address: 0x2d3d38, Func Offset: 0xb8
-	// Line 623, Address: 0x2d3d3c, Func Offset: 0xbc
-	// Line 627, Address: 0x2d3d44, Func Offset: 0xc4
-	// Line 628, Address: 0x2d3d48, Func Offset: 0xc8
-	// Line 629, Address: 0x2d3d4c, Func Offset: 0xcc
-	// Line 630, Address: 0x2d3d50, Func Offset: 0xd0
-	// Line 632, Address: 0x2d3d54, Func Offset: 0xd4
-	// Line 634, Address: 0x2d3d5c, Func Offset: 0xdc
-	// Line 635, Address: 0x2d3d60, Func Offset: 0xe0
-	// Line 636, Address: 0x2d3d64, Func Offset: 0xe4
-	// Line 637, Address: 0x2d3d68, Func Offset: 0xe8
-	// Line 640, Address: 0x2d3d70, Func Offset: 0xf0
-	// Line 641, Address: 0x2d3d74, Func Offset: 0xf4
-	// Line 642, Address: 0x2d3d78, Func Offset: 0xf8
-	// Line 643, Address: 0x2d3d7c, Func Offset: 0xfc
-	// Line 644, Address: 0x2d3d80, Func Offset: 0x100
-	// Line 645, Address: 0x2d3d84, Func Offset: 0x104
-	// Line 646, Address: 0x2d3d88, Func Offset: 0x108
-	// Line 647, Address: 0x2d3d8c, Func Offset: 0x10c
-	// Line 649, Address: 0x2d3d90, Func Offset: 0x110
-	// Line 650, Address: 0x2d3d94, Func Offset: 0x114
-	// Line 651, Address: 0x2d3d98, Func Offset: 0x118
-	// Line 653, Address: 0x2d3d9c, Func Offset: 0x11c
-	// Line 655, Address: 0x2d3da0, Func Offset: 0x120
-	// Line 656, Address: 0x2d3da4, Func Offset: 0x124
-	// Line 657, Address: 0x2d3da8, Func Offset: 0x128
-	// Line 659, Address: 0x2d3dac, Func Offset: 0x12c
-	// Line 660, Address: 0x2d3db0, Func Offset: 0x130
-	// Line 661, Address: 0x2d3db4, Func Offset: 0x134
-	// Line 663, Address: 0x2d3db8, Func Offset: 0x138
-	// Line 666, Address: 0x2d3dc0, Func Offset: 0x140
-	// Line 667, Address: 0x2d3dc4, Func Offset: 0x144
-	// Line 670, Address: 0x2d3dcc, Func Offset: 0x14c
-	// Line 671, Address: 0x2d3dd0, Func Offset: 0x150
-	// Line 672, Address: 0x2d3dd4, Func Offset: 0x154
-	// Line 675, Address: 0x2d3ddc, Func Offset: 0x15c
-	// Line 679, Address: 0x2d3de4, Func Offset: 0x164
-	// Line 680, Address: 0x2d3de8, Func Offset: 0x168
-	// Line 681, Address: 0x2d3dec, Func Offset: 0x16c
-	// Line 683, Address: 0x2d3df0, Func Offset: 0x170
-	// Line 685, Address: 0x2d3df8, Func Offset: 0x178
-	// Line 686, Address: 0x2d3dfc, Func Offset: 0x17c
-	// Line 687, Address: 0x2d3e00, Func Offset: 0x180
-	// Line 688, Address: 0x2d3e04, Func Offset: 0x184
-	// Line 689, Address: 0x2d3e08, Func Offset: 0x188
-	// Line 692, Address: 0x2d3e10, Func Offset: 0x190
-	// Line 693, Address: 0x2d3e14, Func Offset: 0x194
-	// Line 694, Address: 0x2d3e18, Func Offset: 0x198
-	// Line 695, Address: 0x2d3e1c, Func Offset: 0x19c
-	// Line 696, Address: 0x2d3e20, Func Offset: 0x1a0
-	// Line 697, Address: 0x2d3e24, Func Offset: 0x1a4
-	// Line 698, Address: 0x2d3e28, Func Offset: 0x1a8
-	// Line 699, Address: 0x2d3e2c, Func Offset: 0x1ac
-	// Line 701, Address: 0x2d3e30, Func Offset: 0x1b0
-	// Line 702, Address: 0x2d3e34, Func Offset: 0x1b4
-	// Line 703, Address: 0x2d3e38, Func Offset: 0x1b8
-	// Line 705, Address: 0x2d3e3c, Func Offset: 0x1bc
-	// Line 707, Address: 0x2d3e40, Func Offset: 0x1c0
-	// Line 708, Address: 0x2d3e44, Func Offset: 0x1c4
-	// Line 709, Address: 0x2d3e48, Func Offset: 0x1c8
-	// Line 711, Address: 0x2d3e4c, Func Offset: 0x1cc
-	// Line 712, Address: 0x2d3e50, Func Offset: 0x1d0
-	// Line 713, Address: 0x2d3e54, Func Offset: 0x1d4
-	// Line 715, Address: 0x2d3e58, Func Offset: 0x1d8
-	// Line 718, Address: 0x2d3e60, Func Offset: 0x1e0
-	// Line 719, Address: 0x2d3e64, Func Offset: 0x1e4
-	// Line 722, Address: 0x2d3e6c, Func Offset: 0x1ec
-	// Line 727, Address: 0x2d3e74, Func Offset: 0x1f4
-	// Line 728, Address: 0x2d3e78, Func Offset: 0x1f8
-	// Line 729, Address: 0x2d3e7c, Func Offset: 0x1fc
-	// Line 731, Address: 0x2d3e84, Func Offset: 0x204
-	// Line 732, Address: 0x2d3e88, Func Offset: 0x208
-	// Line 735, Address: 0x2d3e90, Func Offset: 0x210
-	// Line 739, Address: 0x2d3e94, Func Offset: 0x214
-	// Func End, Address: 0x2d3eb0, Func Offset: 0x230
-	scePrintf("_ClipInter - UNIMPLEMENTED!\n");
+    int ret;
+    int pad[4]; // not from the debugging symbols
+
+    ret = 0;
+
+    asm volatile 
+    ("
+    .set noreorder
+        addiu      s0, sp, 0x50
+        addiu      s1, sp, 0x54
+        addiu      s2, sp, 0x58
+        addiu      s3, sp, 0x5C
+        
+        sw         t1, 0x5C(sp)
+        sw         a0, 0x50(sp)
+        sw         a1, 0x54(sp)
+        sw         a2, 0x58(sp)
+        
+        paddub     %0, t0, zero
+        
+        add        t0, zero, a3 
+        add        t1, zero, %0 
+        
+        ctc2.ni    t0, vi3
+        ctc2.ni    t1, vi4
+        
+        viadd      vi5, vi0, vi4
+    
+        vcallms    VU0_LOAD_SCISSOR_WORK
+    
+        mfc1       t2, f12
+    
+        lw         t3, 0(s3)
+        
+        neg        t5, zero 
+    
+        qmtc2.ni   t2, vf12
+        
+        l_002D3CE4:
+        lw         t1, 0(s2)
+        
+        vmove.xyzw vf4, vf8
+        vmove.xyzw vf5, vf9
+        vmove.xyzw vf6, vf10
+        vmove.xyzw vf7, vf11
+        
+        vcallms    VU0_LOAD_SCISSOR_WORK
+    
+        vclipw.xyz vf4, vf4w                   
+        vclipw.xyz vf8, vf8w                 
+        vnop
+        vnop
+        vnop
+        vnop
+        vnop
+    
+        lw         t0, 0(s0)
+        lw         t7, 0(s1)
+        
+        cfc2.ni    %0, vi18
+        
+        and        t0, %0, t0
+        nop
+    
+        beqz       t0, l_002D3DCC
+        nop
+        
+        and        %0, %0, t7
+        nop
+    
+        bnez       %0, l_002D3E74
+        nop
+    
+        vmulx.w    vf13, vf4, vf12x
+        vmulx.w    vf14, vf8, vf12x
+        
+        vsubw.xyzw vf13, vf4, vf13w
+        vsubw.xyzw vf14, vf8, vf14w
+        
+        l_002D3D54:
+        beqz       t1, l_002D3D70
+        nop
+        
+        vmr32.xyzw vf13, vf13
+        vmr32.xyzw vf14, vf14
+        
+        addi       t1, t1, -1 
+        
+        b          l_002D3D54
+        nop
+    
+        l_002D3D70:
+        vsub.xyz   vf14, vf14, vf13
+        
+        vdiv       Q, vf13x, vf14x
+    
+        vwaitq
+    
+        vaddq.x    vf13, vf0, Q
+        
+        vabs.x     vf13, vf13
+        
+        vsub.xyzw  vf14, vf8, vf4
+        
+        vmulx.xyzw vf14, vf14, vf13x
+        
+        vadd.xyzw  vf4, vf4, vf14
+        vsub.xyzw  vf14, vf9, vf5
+        
+        vmulx.xyzw vf14, vf14, vf13x
+        
+        vadd.xyzw  vf5, vf5, vf14
+        
+        vmaxw.z    vf5, vf5, vf0w
+        
+        vsub.xyzw  vf14, vf10, vf6
+        
+        vmulx.xyzw vf14, vf14, vf13x
+        
+        vadd.xyzw  vf6, vf6, vf14
+        vsub.xyzw  vf14, vf11, vf7
+        
+        vmulx.xyzw vf14, vf14, vf13x
+        
+        vadd.xyzw  vf7, vf7, vf14
+        
+        vcallms    VU0_LOAD_SCISSOR_WORKb
+    
+        addi       t5, t5, 1 
+        nop
+    
+        b          l_002D3E74
+        nop
+    
+        l_002D3DCC:
+        and        %0, %0, t7
+        nop
+    
+        beqz       %0, l_002D3E6C
+        nop
+    
+        vcallms    VU0_LOAD_SCISSOR_WORKb
+    
+        vmulx.w    vf13, vf4, vf12x
+        vmulx.w    vf14, vf8, vf12x
+        
+        vsubw.xyzw vf13, vf4, vf13w
+        vsubw.xyzw vf14, vf8, vf14w
+        
+        l_002D3DF0:
+        beqz       t1, l_002D3E10
+        nop
+        
+        vmr32.xyzw vf13, vf13
+        vmr32.xyzw vf14, vf14
+        
+        addi       t1, t1, -1 
+        nop
+        
+        b          l_002D3DF0
+        nop
+    
+        l_002D3E10:
+        vsub.xyz   vf14, vf14, vf13
+        
+        vdiv       Q, vf13x, vf14x
+    
+        vwaitq
+    
+        vaddq.x    vf13, vf0, Q
+        
+        vabs.x     vf13, vf13
+        
+        vsub.xyzw  vf14, vf8, vf4
+        
+        vmulx.xyzw vf14, vf14, vf13x
+        
+        vadd.xyzw  vf4, vf4, vf14
+        vsub.xyzw  vf14, vf9, vf5
+        
+        vmulx.xyzw vf14, vf14, vf13x
+        
+        vadd.xyzw  vf5, vf5, vf14
+        
+        vmaxw.z    vf5, vf5, vf0w
+        
+        vsub.xyzw  vf14, vf10, vf6
+        
+        vmulx.xyzw vf14, vf14, vf13x
+        
+        vadd.xyzw  vf6, vf6, vf14
+        vsub.xyzw  vf14, vf11, vf7
+        
+        vmulx.xyzw vf14, vf14, vf13x
+        
+        vadd.xyzw  vf7, vf7, vf14
+        
+        vcallms    VU0_LOAD_SCISSOR_WORKb
+    
+        addi       t5, t5, 2 
+        nop
+    
+        b          l_002D3E74
+        nop
+    
+        l_002D3E6C:
+        vcallms    VU0_LOAD_SCISSOR_WORKb
+    
+        addi       t5, t5, 1 
+    
+        l_002D3E74:
+        addi       t3, t3, -1 
+        nop
+        
+        bnez       t3, l_002D3CE4
+        nop
+    
+        vcallms    VU0_LOAD_SCISSOR_WORKi
+        vcallms    VU0_LOAD_SCISSOR_WORKb
+    
+        addu       %0, t5, zero
+        addi       %0, %0, 0 
+    .set reorder
+    " : "=r"(ret) : "r"(pad) : 
+    );
+
+    return ret;
 }
 
 // 100% matching!
