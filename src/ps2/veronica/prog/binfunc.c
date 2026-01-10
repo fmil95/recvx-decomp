@@ -1,7 +1,7 @@
 #include "binfunc.h"
 
 /*int bhMlbBinRealize(void* bin_datP, _anon10* mlwP);*/
-int bhBscBinRealize(NJS_MODEL* mdlP, unsigned int dat_off, void* unknown);
+int bhBscBinRealize(NJS_MODEL* mdlP, unsigned int dat_off);
 int bhCnkBinRealize(NJS_CNK_MODEL* mdlP, unsigned int dat_off);
 /*int bhMnbBinRealize(void* bin_datP, _anon0* mnwP);
 
@@ -66,12 +66,10 @@ int bhMlbBinRealize(void* bin_datP, _anon10* mlwP)
 }*/
 
 // 100% matching!
-int bhBscBinRealize(NJS_MODEL* mdlP, unsigned int dat_off, void* unknown) // third parameter is not present on the debugging symbols 
+int bhBscBinRealize(NJS_MODEL* mdlP, unsigned int dat_off)
 {
     NJS_MESHSET* mshP;
     unsigned int i;
-
-    mshP = unknown;
     
     if ((mdlP->nbPoint & 0x80000000))
     {
@@ -79,67 +77,65 @@ int bhBscBinRealize(NJS_MODEL* mdlP, unsigned int dat_off, void* unknown) // thi
         
         if ((int)mdlP->points != -1) 
         {
-            *(int*)&mdlP->points += dat_off;
+            mdlP->points = (NJS_POINT3*)((char*)mdlP->points + dat_off);
         }
         
         if ((int)mdlP->normals != -1) 
         {
-            *(int*)&mdlP->normals += dat_off;
+            mdlP->normals = (NJS_VECTOR*)((char*)mdlP->normals + dat_off);
         }
         
         if ((int)mdlP->meshsets != -1) 
         {
-            mshP = (NJS_MESHSET*)((int)mdlP->meshsets + dat_off);
-            
-            *(int*)&mdlP->meshsets = (int)mshP;
+            mshP = mdlP->meshsets = (NJS_MESHSET*)((char*)mdlP->meshsets + dat_off);
         }
         
         if ((int)mdlP->mats != -1)
         {
-            *(int*)&mdlP->mats += dat_off;
+            mdlP->mats = (NJS_MATERIAL*)((char*)mdlP->mats + dat_off);
         }
         
         for (i = 0; i < mdlP->nbMeshset; i++, mshP++) 
         {
             if ((int)mshP->meshes != -1) 
             {
-                *(int*)&mshP->meshes += dat_off;
+                mshP->meshes = (short*)((char*)mshP->meshes + dat_off);
             }
             
             if ((int)mshP->attrs != -1) 
             {
-                *(int*)&mshP->attrs += dat_off;
+                mshP->attrs = (unsigned int*)((char*)mshP->attrs + dat_off);
             }
             else 
             {
-                *(int*)&mshP->attrs = 0;
+                mshP->attrs = NULL;
             }
             
             if ((int)mshP->normals != -1)
             {
-                *(int*)&mshP->normals += dat_off;
+                mshP->normals = (NJS_VECTOR*)((char*)mshP->normals + dat_off);
             } 
             else
             {
-                *(int*)&mshP->normals = 0;
+                mshP->normals = NULL;
             }
             
             if ((int)mshP->vertcolor != -1) 
             {
-                *(int*)&mshP->vertcolor += dat_off;
+                mshP->vertcolor = (NJS_COLOR*)((char*)mshP->vertcolor + dat_off);
             }
             else 
             {
-                *(int*)&mshP->vertcolor = 0;
+                mshP->vertcolor = NULL;
             }
             
             if ((int)mshP->vertuv != -1) 
             {
-                *(int*)&mshP->vertuv += dat_off;
+                mshP->vertuv = (NJS_COLOR*)((char*)mshP->vertuv + dat_off);
             } 
             else
             {
-                *(int*)&mshP->vertuv = 0;
+                mshP->vertuv = NULL;
             }
         }
     }
