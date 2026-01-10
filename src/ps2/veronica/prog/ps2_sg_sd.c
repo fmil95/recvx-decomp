@@ -363,35 +363,49 @@ SDE_ERR	sdMemBlkSetPrm( SDMEMBLK handle, const Void *src_blk_ptr, const Sint32 s
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2db5e0
+// 100% matching!
 SDE_ERR	sdMidiClosePort( SDMIDI handle)
 {
-	// Line 1083, Address: 0x2db5e0, Func Offset: 0
-	// Line 1087, Address: 0x2db5ec, Func Offset: 0xc
-	// Line 1089, Address: 0x2db5fc, Func Offset: 0x1c
-	// Line 1090, Address: 0x2db608, Func Offset: 0x28
-	// Line 1095, Address: 0x2db614, Func Offset: 0x34
-	// Line 1096, Address: 0x2db634, Func Offset: 0x54
-	// Line 1099, Address: 0x2db63c, Func Offset: 0x5c
-	// Line 1100, Address: 0x2db644, Func Offset: 0x64
-	// Line 1101, Address: 0x2db64c, Func Offset: 0x6c
-	// Line 1102, Address: 0x2db654, Func Offset: 0x74
-	// Line 1103, Address: 0x2db658, Func Offset: 0x78
-	// Line 1104, Address: 0x2db65c, Func Offset: 0x7c
-	// Line 1105, Address: 0x2db660, Func Offset: 0x80
-	// Line 1106, Address: 0x2db664, Func Offset: 0x84
-	// Line 1107, Address: 0x2db668, Func Offset: 0x88
-	// Line 1108, Address: 0x2db66c, Func Offset: 0x8c
-	// Line 1109, Address: 0x2db670, Func Offset: 0x90
-	// Line 1111, Address: 0x2db674, Func Offset: 0x94
-	// Line 1110, Address: 0x2db678, Func Offset: 0x98
-	// Line 1111, Address: 0x2db67c, Func Offset: 0x9c
-	// Line 1113, Address: 0x2db680, Func Offset: 0xa0
-	// Line 1116, Address: 0x2db688, Func Offset: 0xa8
-	// Line 1118, Address: 0x2db690, Func Offset: 0xb0
-	// Func End, Address: 0x2db6a0, Func Offset: 0xc0
-    scePrintf("sdMidiClosePort - UNIMPLEMENTED!\n");
+    SND_WORK* temp; // not from the debugging symbols
+
+    if (__sg_sd_snd_init__ != 0) 
+    {
+        temp = (SND_WORK*)*handle;
+        
+        if (temp == NULL) 
+        {
+            return SDE_ERR_HANDLE_NULL; 
+        }
+
+        if ((get_iop_snddata.midi_info & (1 << temp->port_num)))
+        {
+            SdrBgmStop(temp->port_num);
+        }
+        
+        temp->vol = 127;
+        temp->pan = 64;
+        temp->pitch = 8192;
+        
+        temp->vol_old = 0;
+        temp->pan_old = 0;
+        
+        temp->pitch = 0;
+        
+        temp->vol_timer = 0;
+        temp->pan_timer = 0;
+        temp->pitch_timer = 0;
+        
+        temp->port_num = 0;
+        temp->port_check = 0;
+        
+        temp->bank_num = 0;
+        
+        temp->req = 255;
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT; 
 }
 
 // 
