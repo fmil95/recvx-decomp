@@ -653,18 +653,17 @@ SDE_ERR	sdMidiSetPitch( SDMIDI handle, const Sint16 pitch, const Sint32 fade_tim
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2dbaf0
+// 100% matching!
 SDE_ERR	sdMidiSetSpeed( SDMIDI handle, const Sint16 speed, const Sint32 fade_time)
 {
-	// Line 1554, Address: 0x2dbaf0, Func Offset: 0
-	// Line 1556, Address: 0x2dbaf8, Func Offset: 0x8
-	// Line 1558, Address: 0x2dbb08, Func Offset: 0x18
-	// Line 1560, Address: 0x2dbb14, Func Offset: 0x24
-	// Line 1563, Address: 0x2dbb1c, Func Offset: 0x2c
-	// Line 1565, Address: 0x2dbb24, Func Offset: 0x34
-	// Func End, Address: 0x2dbb30, Func Offset: 0x40
-    scePrintf("sdMidiSetSpeed - UNIMPLEMENTED!\n");
+    if (__sg_sd_snd_init__ != 0)
+    {
+        printf("sdMidiSetSpeed NOT USED!\n");
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 
