@@ -3286,6 +3286,23 @@ typedef struct MDSIZE_WORK
     short sDispY;  // offset 0x6, size 0x2
 } MDSIZE_WORK;
 
+typedef struct CNK_PRIM_BUF 
+{
+    // total size: 0x30
+    float fS;            // offset 0x0, size 0x4
+    float fT;            // offset 0x4, size 0x4
+    float fQ;            // offset 0x8, size 0x4
+    unsigned int ulKick; // offset 0xC, size 0x4
+    float fR;            // offset 0x10, size 0x4
+    float fG;            // offset 0x14, size 0x4
+    float fB;            // offset 0x18, size 0x4
+    float fA;            // offset 0x1C, size 0x4
+    float fX;            // offset 0x20, size 0x4
+    float fY;            // offset 0x24, size 0x4
+    float fZ;            // offset 0x28, size 0x4
+    float fF;            // offset 0x2C, size 0x4
+} CNK_PRIM_BUF;
+
 typedef struct {
     int isOnCD;		
     int size;
