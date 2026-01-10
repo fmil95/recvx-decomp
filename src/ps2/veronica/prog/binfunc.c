@@ -1,69 +1,99 @@
 #include "binfunc.h"
 
-/*int bhMlbBinRealize(void* bin_datP, _anon10* mlwP);*/
-int bhBscBinRealize(NJS_MODEL* mdlP, unsigned int dat_off);
-int bhCnkBinRealize(NJS_CNK_MODEL* mdlP, unsigned int dat_off);
-/*int bhMnbBinRealize(void* bin_datP, _anon0* mnwP);
-
-// 
-// Start address: 0x2c8720
-int bhMlbBinRealize(void* bin_datP, _anon10* mlwP)
+// 100% matching!
+int bhMlbBinRealize(void* bin_datP, ML_WORK* mlwP)
 {
-	_anon2* namP;
-	unsigned int tex_num;
-	npobj* objP;
-	unsigned int status;
-	unsigned int obj_off;
-	unsigned int tex_off;
-	unsigned int obj_num;
-	// Line 52, Address: 0x2c8720, Func Offset: 0
-	// Line 56, Address: 0x2c8740, Func Offset: 0x20
-	// Line 57, Address: 0x2c8744, Func Offset: 0x24
-	// Line 58, Address: 0x2c8748, Func Offset: 0x28
-	// Line 59, Address: 0x2c874c, Func Offset: 0x2c
-	// Line 74, Address: 0x2c8754, Func Offset: 0x34
-	// Line 63, Address: 0x2c875c, Func Offset: 0x3c
-	// Line 64, Address: 0x2c8760, Func Offset: 0x40
-	// Line 65, Address: 0x2c8764, Func Offset: 0x44
-	// Line 66, Address: 0x2c8768, Func Offset: 0x48
-	// Line 67, Address: 0x2c876c, Func Offset: 0x4c
-	// Line 68, Address: 0x2c8770, Func Offset: 0x50
-	// Line 70, Address: 0x2c8774, Func Offset: 0x54
-	// Line 74, Address: 0x2c8778, Func Offset: 0x58
-	// Line 78, Address: 0x2c8780, Func Offset: 0x60
-	// Line 76, Address: 0x2c8784, Func Offset: 0x64
-	// Line 79, Address: 0x2c8788, Func Offset: 0x68
-	// Line 83, Address: 0x2c878c, Func Offset: 0x6c
-	// Line 85, Address: 0x2c8798, Func Offset: 0x78
-	// Line 86, Address: 0x2c87a8, Func Offset: 0x88
-	// Line 88, Address: 0x2c87b4, Func Offset: 0x94
-	// Line 90, Address: 0x2c87b8, Func Offset: 0x98
-	// Line 91, Address: 0x2c87c8, Func Offset: 0xa8
-	// Line 93, Address: 0x2c87d4, Func Offset: 0xb4
-	// Line 96, Address: 0x2c87d8, Func Offset: 0xb8
-	// Line 97, Address: 0x2c87e8, Func Offset: 0xc8
-	// Line 99, Address: 0x2c87ec, Func Offset: 0xcc
-	// Line 100, Address: 0x2c87f4, Func Offset: 0xd4
-	// Line 102, Address: 0x2c8808, Func Offset: 0xe8
-	// Line 103, Address: 0x2c8814, Func Offset: 0xf4
-	// Line 104, Address: 0x2c881c, Func Offset: 0xfc
-	// Line 106, Address: 0x2c8820, Func Offset: 0x100
-	// Line 108, Address: 0x2c882c, Func Offset: 0x10c
-	// Line 111, Address: 0x2c8830, Func Offset: 0x110
-	// Line 115, Address: 0x2c883c, Func Offset: 0x11c
-	// Line 116, Address: 0x2c8844, Func Offset: 0x124
-	// Line 119, Address: 0x2c8854, Func Offset: 0x134
-	// Line 120, Address: 0x2c8858, Func Offset: 0x138
-	// Line 121, Address: 0x2c885c, Func Offset: 0x13c
-	// Line 122, Address: 0x2c8864, Func Offset: 0x144
-	// Line 123, Address: 0x2c8868, Func Offset: 0x148
-	// Line 122, Address: 0x2c886c, Func Offset: 0x14c
-	// Line 123, Address: 0x2c8874, Func Offset: 0x154
-	// Line 128, Address: 0x2c8880, Func Offset: 0x160
-	// Line 127, Address: 0x2c889c, Func Offset: 0x17c
-	// Line 128, Address: 0x2c88a0, Func Offset: 0x180
-	// Func End, Address: 0x2c88a8, Func Offset: 0x188
-}*/
+    unsigned int obj_num; 
+    unsigned int tex_off; 
+    unsigned int obj_off; 
+    unsigned int status;  
+    NJS_CNK_OBJECT* objP; 
+    NJS_TEXNAME* namP;    
+    unsigned int tex_num; 
+
+    status = ((char*)bin_datP)[3];
+    
+    obj_num = ((unsigned short*)bin_datP)[3];
+    
+    tex_off = ((int*)bin_datP)[2];
+    obj_off = ((int*)bin_datP)[3];
+    
+    mlwP->flg = 0;
+    
+    mlwP->obj_num = 0;
+    
+    mlwP->datP = bin_datP;
+    mlwP->objP = NULL;
+    mlwP->texP = NULL;
+    mlwP->owP = NULL;
+    
+    bin_datP = (void*)((char*)bin_datP + ((unsigned short*)bin_datP)[2]);
+    
+    if (obj_off != -1) 
+    {
+        mlwP->flg = status;
+        
+        objP = (NJS_CNK_OBJECT*)((int)bin_datP + obj_off);
+        
+        mlwP->obj_num = obj_num;
+        mlwP->objP = objP;
+        
+        for ( ; obj_num != 0; obj_num--, objP++) 
+        {
+            if (objP->child != (void*)-1) 
+            {
+                objP->child = (void*)((int)objP->child + (int)bin_datP);
+            } 
+            else 
+            {
+                objP->child = NULL;
+            }
+            
+            if (objP->sibling != (void*)-1) 
+            {
+                objP->sibling = (void*)((int)objP->sibling + (int)bin_datP);
+            }
+            else 
+            {
+                objP->sibling = NULL;
+            }
+            
+            if (objP->model != (void*)-1) 
+            {
+                objP->model = (void*)((int)objP->model + (int)bin_datP);
+                
+                if (!(status & 0x80))
+                {
+                    bhBscBinRealize((NJS_MODEL*)objP->model, (unsigned int)bin_datP);
+                } 
+                else
+                {
+                    bhCnkBinRealize(objP->model, (unsigned int)bin_datP); 
+                }
+            }
+            else 
+            {
+                objP->model = NULL;
+            }
+        }
+    }
+    
+    if (tex_off != -1)
+    {
+        mlwP->texP = (void*)((int)bin_datP + tex_off);
+        
+        mlwP->texP->textures = (NJS_TEXNAME*)((char*)mlwP->texP->textures + (int)bin_datP);
+        
+        namP = mlwP->texP->textures;
+        
+        for (tex_num = mlwP->texP->nbTexture; tex_num != 0; tex_num--, namP++) 
+        {
+            namP->filename = (void*)((char*)namP->filename + (int)bin_datP);
+        }
+    }
+    
+    return 1;
+}
 
 // 100% matching!
 int bhBscBinRealize(NJS_MODEL* mdlP, unsigned int dat_off)
