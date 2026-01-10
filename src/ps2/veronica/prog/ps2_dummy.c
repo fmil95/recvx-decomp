@@ -40,9 +40,9 @@ unsigned long ulNaFogB;
 unsigned long ulNaFogG;
 unsigned long ulNaFogR;
 unsigned int Ps2_divide_flag;
-_anon19 Ps2_pad;
+_anon19 Ps2_pad;*/
 float Ps2_shadow_fog;
-float Ps2_shadow_vec[4];*/
+float Ps2_shadow_vec[4];
 int Ps2_shadow_z;
 /*int ViewType;
 unsigned int palbuf[4096];
@@ -825,7 +825,7 @@ void Ps2AddPrim3DEx1P(unsigned long prim, void* dp, unsigned int num)
 	scePrintf("Ps2AddPrim3DEx1P - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2cc620
 void Ps2AddPrim3DMod(unsigned long prim, void* dp, unsigned int num)
 {
@@ -914,7 +914,8 @@ void Ps2AddPrim3DMod(unsigned long prim, void* dp, unsigned int num)
 	// Line 2151, Address: 0x2cc824, Func Offset: 0x204
 	// Line 2154, Address: 0x2cc82c, Func Offset: 0x20c
 	// Func End, Address: 0x2cc844, Func Offset: 0x224
-}*/
+	scePrintf("Ps2AddPrim3DMod - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void Ps2ClearOT()

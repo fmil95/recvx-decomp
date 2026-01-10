@@ -19,6 +19,8 @@ extern NJS_MATRIX NaViwViewMatrix;
 extern float fNaViwHalfW;
 extern float fNaViwHalfH;
 extern sceVu0FMATRIX ClipMatrix2;
+extern float fNaViwOffsetX;
+extern float fNaViwOffsetY;
 extern float fNaViwAspectW;
 extern float fNaViwAspectH;
 extern float fNaViwClipNear;
