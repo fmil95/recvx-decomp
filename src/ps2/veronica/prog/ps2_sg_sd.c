@@ -549,30 +549,46 @@ SDE_ERR	sdMidiSetFxLev( SDMIDI handle, const Sint8 fx_lev)
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2db910
+// 100% matching!
 SDE_ERR	sdMidiSetPan( SDMIDI handle, const Sint8 pan, const Sint32 fade_time)
 {
-	char set_pan;
-	// Line 1402, Address: 0x2db910, Func Offset: 0
-	// Line 1407, Address: 0x2db918, Func Offset: 0x8
-	// Line 1409, Address: 0x2db928, Func Offset: 0x18
-	// Line 1410, Address: 0x2db934, Func Offset: 0x24
-	// Line 1415, Address: 0x2db940, Func Offset: 0x30
-	// Line 1417, Address: 0x2db954, Func Offset: 0x44
-	// Line 1418, Address: 0x2db95c, Func Offset: 0x4c
-	// Line 1419, Address: 0x2db968, Func Offset: 0x58
-	// Line 1420, Address: 0x2db96c, Func Offset: 0x5c
-	// Line 1421, Address: 0x2db974, Func Offset: 0x64
-	// Line 1425, Address: 0x2db978, Func Offset: 0x68
-	// Line 1426, Address: 0x2db980, Func Offset: 0x70
-	// Line 1429, Address: 0x2db988, Func Offset: 0x78
-	// Line 1431, Address: 0x2db98c, Func Offset: 0x7c
-	// Line 1433, Address: 0x2db990, Func Offset: 0x80
-	// Line 1436, Address: 0x2db99c, Func Offset: 0x8c
-	// Line 1438, Address: 0x2db9a4, Func Offset: 0x94
-	// Func End, Address: 0x2db9b0, Func Offset: 0xa0
-    scePrintf("sdMidiSetPan - UNIMPLEMENTED!\n");
+    SND_WORK* temp; // not from the debugging symbols
+    char set_pan;
+
+    if (__sg_sd_snd_init__ != 0)
+    {
+        temp = (SND_WORK*)*handle;
+        
+        if (temp == NULL) 
+        {
+            return SDE_ERR_HANDLE_NULL;
+        }
+        
+        set_pan = (pan / 2) + 64;
+        
+        if (fade_time != 0) 
+        {
+            if (temp->pan_timer == 0) 
+            {
+                temp->pan_timer = fade_time;
+                
+                temp->pan_old = temp->pan;
+                temp->pan = set_pan;
+            }
+            
+            Panpot_Control(temp);
+        } 
+        else
+        {
+            temp->pan_timer = 0;
+            
+            temp->pan = set_pan;
+        }
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 
