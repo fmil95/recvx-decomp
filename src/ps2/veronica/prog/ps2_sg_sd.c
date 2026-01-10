@@ -591,40 +591,66 @@ SDE_ERR	sdMidiSetPan( SDMIDI handle, const Sint8 pan, const Sint32 fade_time)
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2db9b0
+// 100% matching!
 SDE_ERR	sdMidiSetPitch( SDMIDI handle, const Sint16 pitch, const Sint32 fade_time)
 {
-	unsigned short set_pitch;
-	// Line 1464, Address: 0x2db9b0, Func Offset: 0
-	// Line 1469, Address: 0x2db9b8, Func Offset: 0x8
-	// Line 1471, Address: 0x2db9c8, Func Offset: 0x18
-	// Line 1472, Address: 0x2db9d4, Func Offset: 0x24
-	// Line 1480, Address: 0x2db9e0, Func Offset: 0x30
-	// Line 1481, Address: 0x2db9f0, Func Offset: 0x40
-	// Line 1482, Address: 0x2dba1c, Func Offset: 0x6c
-	// Line 1483, Address: 0x2dba24, Func Offset: 0x74
-	// Line 1484, Address: 0x2dba2c, Func Offset: 0x7c
-	// Line 1485, Address: 0x2dba58, Func Offset: 0xa8
-	// Line 1487, Address: 0x2dba60, Func Offset: 0xb0
-	// Line 1494, Address: 0x2dba64, Func Offset: 0xb4
-	// Line 1496, Address: 0x2dba74, Func Offset: 0xc4
-	// Line 1498, Address: 0x2dba7c, Func Offset: 0xcc
-	// Line 1499, Address: 0x2dba88, Func Offset: 0xd8
-	// Line 1506, Address: 0x2dba8c, Func Offset: 0xdc
-	// Line 1507, Address: 0x2dba94, Func Offset: 0xe4
-	// Line 1508, Address: 0x2dbaa0, Func Offset: 0xf0
-	// Line 1509, Address: 0x2dbaa4, Func Offset: 0xf4
-	// Line 1510, Address: 0x2dbaac, Func Offset: 0xfc
-	// Line 1514, Address: 0x2dbab0, Func Offset: 0x100
-	// Line 1515, Address: 0x2dbab8, Func Offset: 0x108
-	// Line 1518, Address: 0x2dbac0, Func Offset: 0x110
-	// Line 1520, Address: 0x2dbac4, Func Offset: 0x114
-	// Line 1522, Address: 0x2dbac8, Func Offset: 0x118
-	// Line 1525, Address: 0x2dbad4, Func Offset: 0x124
-	// Line 1527, Address: 0x2dbadc, Func Offset: 0x12c
-	// Func End, Address: 0x2dbae8, Func Offset: 0x138
-    scePrintf("sdMidiSetPitch - UNIMPLEMENTED!\n");
+    SND_WORK* temp; // not from the debugging symbols
+    unsigned short set_pitch;
+
+    if (__sg_sd_snd_init__ != 0)
+    {
+        temp = (SND_WORK*)*handle;
+        
+        if (temp == NULL)
+        {
+            return SDE_ERR_HANDLE_NULL;
+        }
+        
+        if (pitch > 0)
+        {
+            set_pitch = ((pitch / 3072) * 8192) + 8192;
+        } 
+        else if (pitch < 0) 
+        {
+            set_pitch = ((pitch / 3072) * 4096) + 8192;
+        } 
+        else 
+        {
+            set_pitch = 8192;
+        }
+        
+        if (set_pitch < 512)
+        {
+            set_pitch = 512;
+        } 
+        else if (set_pitch > 16383) 
+        {
+            set_pitch = 16383;
+        }
+        
+        if (fade_time != 0) 
+        {
+            if (temp->pitch_timer == 0) 
+            {
+                temp->pitch_timer = fade_time;
+                
+                temp->pitch_old = temp->pitch;
+                temp->pitch = set_pitch;
+            }
+            
+            Pitch_Control(temp);
+        }
+        else 
+        {
+            temp->pitch_timer = 0;
+            
+            temp->pitch = set_pitch;
+        }
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 
