@@ -666,38 +666,67 @@ SDE_ERR	sdMidiSetSpeed( SDMIDI handle, const Sint16 speed, const Sint32 fade_tim
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2dbb30
+// 100% matching!
 SDE_ERR	sdMidiSetVol( SDMIDI handle, const Sint8 vol, const Sint32 fade_time)
 {
-	// Line 1591, Address: 0x2dbb30, Func Offset: 0
-	// Line 1596, Address: 0x2dbb38, Func Offset: 0x8
-	// Line 1598, Address: 0x2dbb48, Func Offset: 0x18
-	// Line 1599, Address: 0x2dbb54, Func Offset: 0x24
-	// Line 1604, Address: 0x2dbb60, Func Offset: 0x30
-	// Line 1605, Address: 0x2dbb68, Func Offset: 0x38
-	// Line 1606, Address: 0x2dbb74, Func Offset: 0x44
-	// Line 1607, Address: 0x2dbb78, Func Offset: 0x48
-	// Line 1608, Address: 0x2dbb7c, Func Offset: 0x4c
-	// Line 1613, Address: 0x2dbb80, Func Offset: 0x50
-	// Line 1615, Address: 0x2dbb94, Func Offset: 0x64
-	// Line 1623, Address: 0x2dbb9c, Func Offset: 0x6c
-	// Line 1624, Address: 0x2dbba8, Func Offset: 0x78
-	// Line 1625, Address: 0x2dbbac, Func Offset: 0x7c
-	// Line 1628, Address: 0x2dbbb4, Func Offset: 0x84
-	// Line 1635, Address: 0x2dbbbc, Func Offset: 0x8c
-	// Line 1636, Address: 0x2dbbc4, Func Offset: 0x94
-	// Line 1645, Address: 0x2dbbcc, Func Offset: 0x9c
-	// Line 1647, Address: 0x2dbbe0, Func Offset: 0xb0
-	// Line 1655, Address: 0x2dbbe8, Func Offset: 0xb8
-	// Line 1656, Address: 0x2dbbf4, Func Offset: 0xc4
-	// Line 1657, Address: 0x2dbbf8, Func Offset: 0xc8
-	// Line 1660, Address: 0x2dbc00, Func Offset: 0xd0
-	// Line 1666, Address: 0x2dbc08, Func Offset: 0xd8
-	// Line 1669, Address: 0x2dbc14, Func Offset: 0xe4
-	// Line 1671, Address: 0x2dbc1c, Func Offset: 0xec
-	// Func End, Address: 0x2dbc28, Func Offset: 0xf8
-    scePrintf("sdMidiSetVol - UNIMPLEMENTED!\n");
+    SND_WORK* temp; // not from the debugging symbols
+
+    if (__sg_sd_snd_init__ != 0)
+    {
+        temp = (SND_WORK*)*handle;
+        
+        if (temp == NULL)
+        {
+            return SDE_ERR_HANDLE_NULL;
+        }
+        
+        if (fade_time != 0)
+        {
+            if (temp->vol_timer == 0)
+            {
+                temp->vol_timer = fade_time;
+                temp->vol_set_time = fade_time;
+                
+                temp->vol_old = temp->vol;
+                
+                if ((vol + 128) < 0)
+                {
+                    temp->vol = 0;
+                } 
+                else if ((vol + 128) > 127)
+                {
+                    temp->vol = 127;
+                }
+                else
+                {
+                    temp->vol = vol + 128;
+                }
+            }
+            
+            Volume_Control(temp);
+        } 
+        else
+        {
+            temp->vol_timer = 0;
+            
+            if ((vol + 128) < 0)
+            {
+                temp->vol = 0;
+            } 
+            else if ((vol + 128) > 127)
+            {
+                temp->vol = 127;
+            }
+            else
+            {
+                temp->vol = vol + 128;
+            }
+        }
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching!
