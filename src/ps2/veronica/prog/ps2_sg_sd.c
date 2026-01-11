@@ -876,55 +876,90 @@ SDE_ERR	sdShotOpenPort( SDSHOT *handle)
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2dbf30
+// 100% matching!
 SDE_ERR	sdShotPlay( SDSHOT handle, const Sint8 bank_num, const Sint8 data_num, const Sint8 priority)
 {
-	int cancel_flag;
-	unsigned short* check_se_channel;
-	unsigned int ch_check;
-	// Line 1918, Address: 0x2dbf30, Func Offset: 0
-	// Line 1933, Address: 0x2dbf54, Func Offset: 0x24
-	// Line 1935, Address: 0x2dbf70, Func Offset: 0x40
-	// Line 1936, Address: 0x2dbf7c, Func Offset: 0x4c
-	// Line 1983, Address: 0x2dbf88, Func Offset: 0x58
-	// Line 1984, Address: 0x2dbfc0, Func Offset: 0x90
-	// Line 1989, Address: 0x2dbfcc, Func Offset: 0x9c
-	// Line 1991, Address: 0x2dbfd8, Func Offset: 0xa8
-	// Line 1994, Address: 0x2dc000, Func Offset: 0xd0
-	// Line 1999, Address: 0x2dc020, Func Offset: 0xf0
-	// Line 2004, Address: 0x2dc024, Func Offset: 0xf4
-	// Line 2012, Address: 0x2dc030, Func Offset: 0x100
-	// Line 2016, Address: 0x2dc054, Func Offset: 0x124
-	// Line 2012, Address: 0x2dc058, Func Offset: 0x128
-	// Line 2016, Address: 0x2dc060, Func Offset: 0x130
-	// Line 2020, Address: 0x2dc064, Func Offset: 0x134
-	// Line 2022, Address: 0x2dc074, Func Offset: 0x144
-	// Line 2029, Address: 0x2dc080, Func Offset: 0x150
-	// Line 2033, Address: 0x2dc084, Func Offset: 0x154
-	// Line 2035, Address: 0x2dc09c, Func Offset: 0x16c
-	// Line 2036, Address: 0x2dc0a0, Func Offset: 0x170
-	// Line 2038, Address: 0x2dc0a8, Func Offset: 0x178
-	// Line 2048, Address: 0x2dc0b8, Func Offset: 0x188
-	// Line 2052, Address: 0x2dc0c4, Func Offset: 0x194
-	// Line 2061, Address: 0x2dc0d0, Func Offset: 0x1a0
-	// Line 2058, Address: 0x2dc0d4, Func Offset: 0x1a4
-	// Line 2063, Address: 0x2dc0d8, Func Offset: 0x1a8
-	// Line 2064, Address: 0x2dc0e4, Func Offset: 0x1b4
-	// Line 2070, Address: 0x2dc0f0, Func Offset: 0x1c0
-	// Line 2072, Address: 0x2dc0f8, Func Offset: 0x1c8
-	// Line 2076, Address: 0x2dc104, Func Offset: 0x1d4
-	// Line 2086, Address: 0x2dc108, Func Offset: 0x1d8
-	// Line 2076, Address: 0x2dc110, Func Offset: 0x1e0
-	// Line 2084, Address: 0x2dc120, Func Offset: 0x1f0
-	// Line 2086, Address: 0x2dc124, Func Offset: 0x1f4
-	// Line 2088, Address: 0x2dc12c, Func Offset: 0x1fc
-	// Line 2086, Address: 0x2dc130, Func Offset: 0x200
-	// Line 2088, Address: 0x2dc144, Func Offset: 0x214
-	// Line 2094, Address: 0x2dc14c, Func Offset: 0x21c
-	// Line 2096, Address: 0x2dc154, Func Offset: 0x224
-	// Func End, Address: 0x2dc17c, Func Offset: 0x24c
-    scePrintf("sdShotPlay - UNIMPLEMENTED!\n");
+    SND_WORK* temp; // not from the debugging symbols
+    unsigned int ch_check; 
+    unsigned short* check_se_channel; 
+    int cancel_flag;
+
+    cancel_flag = 0;
+    
+    if (__sg_sd_snd_init__ != 0)
+    {
+        temp = (SND_WORK*)*handle;
+        
+        if (temp == NULL)
+        {
+            return SDE_ERR_HANDLE_NULL;
+        }
+        
+        if (((1 << (temp->channel_num & 0x7)) & req_se_info[bank_num]))
+        {
+            return SDE_ERR_HOST_CMD_BUF_NO_ENOUGH;
+        }
+        
+        if (temp->channel_num != -1)
+        {
+            if (((1 << temp->channel_num) & get_iop_snddata.se_info[temp->port_num]))
+            {
+                SdrSeCancel((char)temp->channel_num | ((temp->port_num << 16) | (temp->bank_num << 8)));
+                
+                cancel_flag = 1;
+            }
+            
+            if (temp->port_num != bank_num)
+            {
+                use_se_info[bank_num] &= ~(1 << (temp->channel_num & 0x7));
+                
+                temp->channel_num = -1;
+            }
+        }
+        
+        if (temp->channel_num == -1)
+        {
+            check_se_channel = &use_se_info[bank_num];
+            
+            for (ch_check = 0; ch_check < 8; ch_check++)
+            {
+                if (!(*check_se_channel & (1 << ch_check)))
+                {
+                    *check_se_channel |= 1 << ch_check;
+                    break;
+                }
+            }
+            
+            if (ch_check >= 8)
+            {
+                return SDE_ERR_MEMBLK_QUEUE_NO_ENOUGH;
+            }
+            
+            temp->channel_num = ch_check;
+            
+            cancel_flag = 0;
+        }
+        
+        temp->port_num = bank_num;
+        temp->bank_num = data_num;
+        
+        temp->priority = priority;
+
+        if (cancel_flag != 0)
+        {
+            temp->channel_num ^= 8;
+        }
+
+        req_se_info[bank_num] = 1 << (temp->channel_num & 0x7);
+        
+        temp->req = 1;
+        
+        get_iop_snddata.se_info[temp->port_num] |= 1 << temp->channel_num;
+        
+        return SDE_ERR_NOTHING;
+    }
+    
+    return SDE_ERR_NO_INIT;
 }
 
 // 100% matching!
