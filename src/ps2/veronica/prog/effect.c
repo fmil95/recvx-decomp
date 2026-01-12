@@ -1,7 +1,10 @@
 #include "effect.h"
+#include "binfunc.h"
+#include "dread.h"
 //#include "effsub2.h"
 //#include "effsub3.h"
 #include "njplus.h"
+#include "ps2_NaTextureFunction.h"
 #include "ps2_texture.h"
 #include "main.h"
 
@@ -20,77 +23,77 @@ BH_PWORK* plp;
 _anon43 cam;
 int lCnkModClipFace;*/
 
-// 
-// Start address: 0x21bb60
+// 99.62% matching
 void bhInitEffect()
 {
-	unsigned char* refadr;
-	unsigned char* dp;
-	int sz;
-	int ef[16];
-	int poln;
-	int j;
-	int i;
-	// Line 172, Address: 0x21bb60, Func Offset: 0
-	// Line 179, Address: 0x21bb78, Func Offset: 0x18
-	// Line 172, Address: 0x21bb7c, Func Offset: 0x1c
-	// Line 179, Address: 0x21bb80, Func Offset: 0x20
-	// Line 172, Address: 0x21bb84, Func Offset: 0x24
-	// Line 179, Address: 0x21bb8c, Func Offset: 0x2c
-	// Line 172, Address: 0x21bb90, Func Offset: 0x30
-	// Line 179, Address: 0x21bb94, Func Offset: 0x34
-	// Line 180, Address: 0x21bba4, Func Offset: 0x44
-	// Line 190, Address: 0x21bbb0, Func Offset: 0x50
-	// Line 180, Address: 0x21bbb8, Func Offset: 0x58
-	// Line 181, Address: 0x21bbc4, Func Offset: 0x64
-	// Line 186, Address: 0x21bbcc, Func Offset: 0x6c
-	// Line 190, Address: 0x21bbd0, Func Offset: 0x70
-	// Line 181, Address: 0x21bbe0, Func Offset: 0x80
-	// Line 182, Address: 0x21bbec, Func Offset: 0x8c
-	// Line 183, Address: 0x21bc00, Func Offset: 0xa0
-	// Line 187, Address: 0x21bc14, Func Offset: 0xb4
-	// Line 188, Address: 0x21bc28, Func Offset: 0xc8
-	// Line 192, Address: 0x21bc2c, Func Offset: 0xcc
-	// Line 193, Address: 0x21bc34, Func Offset: 0xd4
-	// Line 194, Address: 0x21bc58, Func Offset: 0xf8
-	// Line 195, Address: 0x21bc80, Func Offset: 0x120
-	// Line 197, Address: 0x21bc90, Func Offset: 0x130
-	// Line 200, Address: 0x21bcb0, Func Offset: 0x150
-	// Line 198, Address: 0x21bcb4, Func Offset: 0x154
-	// Line 201, Address: 0x21bcb8, Func Offset: 0x158
-	// Line 198, Address: 0x21bcbc, Func Offset: 0x15c
-	// Line 199, Address: 0x21bcc0, Func Offset: 0x160
-	// Line 202, Address: 0x21bcc4, Func Offset: 0x164
-	// Line 204, Address: 0x21bcd4, Func Offset: 0x174
-	// Line 205, Address: 0x21bcd8, Func Offset: 0x178
-	// Line 209, Address: 0x21bce8, Func Offset: 0x188
-	// Line 208, Address: 0x21bcf0, Func Offset: 0x190
-	// Line 209, Address: 0x21bcfc, Func Offset: 0x19c
-	// Line 210, Address: 0x21bd14, Func Offset: 0x1b4
-	// Line 211, Address: 0x21bd1c, Func Offset: 0x1bc
-	// Line 210, Address: 0x21bd20, Func Offset: 0x1c0
-	// Line 211, Address: 0x21bd2c, Func Offset: 0x1cc
-	// Line 216, Address: 0x21bd4c, Func Offset: 0x1ec
-	// Line 211, Address: 0x21bd50, Func Offset: 0x1f0
-	// Line 212, Address: 0x21bd5c, Func Offset: 0x1fc
-	// Line 213, Address: 0x21bd7c, Func Offset: 0x21c
-	// Line 215, Address: 0x21bd9c, Func Offset: 0x23c
-	// Line 216, Address: 0x21bdac, Func Offset: 0x24c
-	// Line 218, Address: 0x21bdb4, Func Offset: 0x254
-	// Line 219, Address: 0x21bdf4, Func Offset: 0x294
-	// Line 218, Address: 0x21bdf8, Func Offset: 0x298
-	// Line 219, Address: 0x21be04, Func Offset: 0x2a4
-	// Line 221, Address: 0x21be10, Func Offset: 0x2b0
-	// Line 222, Address: 0x21be28, Func Offset: 0x2c8
-	// Line 227, Address: 0x21be34, Func Offset: 0x2d4
-	// Line 231, Address: 0x21be3c, Func Offset: 0x2dc
-	// Line 232, Address: 0x21be68, Func Offset: 0x308
-	// Line 231, Address: 0x21be6c, Func Offset: 0x30c
-	// Line 232, Address: 0x21be8c, Func Offset: 0x32c
-	// Line 239, Address: 0x21be98, Func Offset: 0x338
-	// Line 244, Address: 0x21beac, Func Offset: 0x34c
-	// Func End, Address: 0x21bedc, Func Offset: 0x37c
-	scePrintf("bhInitEffect - UNIMPLEMENTED!\n");
+    int i;                 
+    int j; // unused
+    int poln;              
+    int ef[16];           
+    int sz;                
+    unsigned char* dp;     
+    unsigned char* refadr; // unused
+    
+    npSetMemoryL((unsigned int*)eff, sizeof(eff) / 4, 0);
+    
+    sys->bl_ct = sys->yk_ct = sys->ef_ct = 0;
+    
+    sys->eft_n = 0;
+    
+    dp = sys->memp;
+    
+    sz = *(int*)sys->memp;
+    
+    dp += 4;
+
+    poln = 0;
+    
+    for (i = 0; ef_info[i].flg != -1; i++) 
+    {
+        sys->ef_tn[i] = sys->ef_ct;
+        
+        sys->ef_ct += ef_info[i].nbAnim;
+        
+        if ((ef_info[i].flg & 0x1))
+        {
+            bhMlbBinRealize(dp, (ML_WORK*)&sys->efm[i]);
+            
+            ef[poln++] = i;
+
+            dp += sz;
+            
+            sz = *(int*)dp;
+            
+            dp += 4;
+        }
+    }
+    
+    sys->ef_tlist.textures = sys->ef_tex;
+    
+    sys->ef_tlist.nbTexture = 0;
+    
+    sys->ef_ct = bhSetMemPvpTexture(&sys->ef_tlist, (unsigned char*)(((int)dp + 31) & ~0x1F), 0);
+    
+    sys->ef_tlist.nbTexture = sys->ef_ct;
+    
+    sys->ef_ctb = sys->ef_ct;
+    
+    sys->memp = dp;
+    
+    for (i = 0; poln > i; i++)  
+    {
+        sys->memp = bhKeepObjWork((ML_WORK*)&sys->efm[ef[i]], sys->memp);
+    }
+    
+    njSetTexture(&sys->ef_tlist);
+    njSetPaletteBankNum(0, 0);
+    
+    for (i = 0; i < 30; i++) 
+    {
+        sys->ef_pbkb[i] = *(unsigned char*)(sys->ef_tlist.textures[sys->ef_tn[i]].texaddr + 4);
+    } 
+    
+    sys->ss_flg |= 0x40;
 }
 
 // 100% matching!

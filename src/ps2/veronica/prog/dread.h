@@ -5,7 +5,7 @@
 
 void bhReadPlayerData();
 void bhReadWeaponData();
-/*unsigned char* bhKeepObjWork(_anon13* mp, unsigned char* sp);*/
+unsigned char* bhKeepObjWork(ML_WORK* mp, unsigned char* sp);
 
 /*typedef struct npobj;
 typedef struct _anon0;
