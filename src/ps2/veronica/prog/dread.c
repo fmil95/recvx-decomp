@@ -229,21 +229,18 @@ void bhReadWeaponData()
 	scePrintf("bhReadWeaponData - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2ca450
-unsigned char* bhKeepObjWork(_anon13* mp, unsigned char* sp)
+// 94.11% matching
+unsigned char* bhKeepObjWork(ML_WORK* mp, unsigned char* sp)
 {
-	// Line 648, Address: 0x2ca450, Func Offset: 0
-	// Line 651, Address: 0x2ca464, Func Offset: 0x14
-	// Line 656, Address: 0x2ca470, Func Offset: 0x20
-	// Line 657, Address: 0x2ca474, Func Offset: 0x24
-	// Line 658, Address: 0x2ca494, Func Offset: 0x44
-	// Line 660, Address: 0x2ca498, Func Offset: 0x48
-	// Line 658, Address: 0x2ca49c, Func Offset: 0x4c
-	// Line 660, Address: 0x2ca4a4, Func Offset: 0x54
-	// Line 658, Address: 0x2ca4a8, Func Offset: 0x58
-	// Line 659, Address: 0x2ca4b0, Func Offset: 0x60
-	// Line 660, Address: 0x2ca4b4, Func Offset: 0x64
-	// Func End, Address: 0x2ca4c0, Func Offset: 0x70
-}*/
+    unsigned char* owp; // not from the debugging symbols
 
+    owp = (unsigned char*)(((int)sp + 15) & ~0xF);
+    
+    mp->owP = (O_WORK*)owp;
+    
+    memset(owp, 0, mp->obj_num * 80);
+    
+    owp += mp->obj_num * 80;
+    
+    return owp;
+}
