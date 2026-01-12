@@ -1,4 +1,10 @@
 #include "dread.h"
+#include "binfunc.h"
+#include "njplus.h"
+#include "ps2_NaTextureFunction.h"
+#include "ps2_texture.h"
+#include "weapon.h"
+#include "main.h"
 
 /*char* mshp_tab[16];
 _anon18* sys;
@@ -119,114 +125,174 @@ void bhReadPlayerData()
 	scePrintf("bhReadPlayerData - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ca0c0
+// 100% matching! 
 void bhReadWeaponData()
 {
-	unsigned char* plmtnp;
-	int mtsz;
-	//_anon4* mtnp;
-	unsigned char* mp;
-	unsigned char* dp;
-	int wpn_no;
-	int msz;
-	int sz;
-	//_anon0* op;
-	// Line 195, Address: 0x2ca0c0, Func Offset: 0
-	// Line 200, Address: 0x2ca0e0, Func Offset: 0x20
-	// Line 201, Address: 0x2ca0e8, Func Offset: 0x28
-	// Line 200, Address: 0x2ca0f0, Func Offset: 0x30
-	// Line 201, Address: 0x2ca0f4, Func Offset: 0x34
-	// Line 208, Address: 0x2ca0fc, Func Offset: 0x3c
-	// Line 201, Address: 0x2ca100, Func Offset: 0x40
-	// Line 208, Address: 0x2ca104, Func Offset: 0x44
-	// Line 207, Address: 0x2ca108, Func Offset: 0x48
-	// Line 204, Address: 0x2ca110, Func Offset: 0x50
-	// Line 207, Address: 0x2ca114, Func Offset: 0x54
-	// Line 208, Address: 0x2ca118, Func Offset: 0x58
-	// Line 209, Address: 0x2ca120, Func Offset: 0x60
-	// Line 210, Address: 0x2ca130, Func Offset: 0x70
-	// Line 212, Address: 0x2ca138, Func Offset: 0x78
-	// Line 216, Address: 0x2ca144, Func Offset: 0x84
-	// Line 217, Address: 0x2ca14c, Func Offset: 0x8c
-	// Line 218, Address: 0x2ca154, Func Offset: 0x94
-	// Line 217, Address: 0x2ca15c, Func Offset: 0x9c
-	// Line 218, Address: 0x2ca168, Func Offset: 0xa8
-	// Line 219, Address: 0x2ca170, Func Offset: 0xb0
-	// Line 220, Address: 0x2ca180, Func Offset: 0xc0
-	// Line 221, Address: 0x2ca188, Func Offset: 0xc8
-	// Line 223, Address: 0x2ca194, Func Offset: 0xd4
-	// Line 225, Address: 0x2ca198, Func Offset: 0xd8
-	// Line 226, Address: 0x2ca19c, Func Offset: 0xdc
-	// Line 232, Address: 0x2ca1ac, Func Offset: 0xec
-	// Line 235, Address: 0x2ca1b8, Func Offset: 0xf8
-	// Line 232, Address: 0x2ca1bc, Func Offset: 0xfc
-	// Line 236, Address: 0x2ca1c0, Func Offset: 0x100
-	// Line 237, Address: 0x2ca1c8, Func Offset: 0x108
-	// Line 239, Address: 0x2ca1cc, Func Offset: 0x10c
-	// Line 240, Address: 0x2ca1d4, Func Offset: 0x114
-	// Line 241, Address: 0x2ca1e4, Func Offset: 0x124
-	// Line 242, Address: 0x2ca1e8, Func Offset: 0x128
-	// Line 241, Address: 0x2ca1ec, Func Offset: 0x12c
-	// Line 242, Address: 0x2ca1f4, Func Offset: 0x134
-	// Line 246, Address: 0x2ca204, Func Offset: 0x144
-	// Line 247, Address: 0x2ca21c, Func Offset: 0x15c
-	// Line 248, Address: 0x2ca23c, Func Offset: 0x17c
-	// Line 256, Address: 0x2ca240, Func Offset: 0x180
-	// Line 250, Address: 0x2ca248, Func Offset: 0x188
-	// Line 253, Address: 0x2ca24c, Func Offset: 0x18c
-	// Line 256, Address: 0x2ca250, Func Offset: 0x190
-	// Line 257, Address: 0x2ca25c, Func Offset: 0x19c
-	// Line 255, Address: 0x2ca260, Func Offset: 0x1a0
-	// Line 257, Address: 0x2ca264, Func Offset: 0x1a4
-	// Line 258, Address: 0x2ca270, Func Offset: 0x1b0
-	// Line 259, Address: 0x2ca280, Func Offset: 0x1c0
-	// Line 261, Address: 0x2ca288, Func Offset: 0x1c8
-	// Line 265, Address: 0x2ca294, Func Offset: 0x1d4
-	// Line 266, Address: 0x2ca29c, Func Offset: 0x1dc
-	// Line 267, Address: 0x2ca2a4, Func Offset: 0x1e4
-	// Line 266, Address: 0x2ca2ac, Func Offset: 0x1ec
-	// Line 267, Address: 0x2ca2b8, Func Offset: 0x1f8
-	// Line 268, Address: 0x2ca2c0, Func Offset: 0x200
-	// Line 269, Address: 0x2ca2d0, Func Offset: 0x210
-	// Line 270, Address: 0x2ca2d8, Func Offset: 0x218
-	// Line 272, Address: 0x2ca2e4, Func Offset: 0x224
-	// Line 274, Address: 0x2ca2e8, Func Offset: 0x228
-	// Line 275, Address: 0x2ca2ec, Func Offset: 0x22c
-	// Line 281, Address: 0x2ca2fc, Func Offset: 0x23c
-	// Line 284, Address: 0x2ca308, Func Offset: 0x248
-	// Line 281, Address: 0x2ca30c, Func Offset: 0x24c
-	// Line 285, Address: 0x2ca310, Func Offset: 0x250
-	// Line 286, Address: 0x2ca318, Func Offset: 0x258
-	// Line 288, Address: 0x2ca31c, Func Offset: 0x25c
-	// Line 289, Address: 0x2ca324, Func Offset: 0x264
-	// Line 290, Address: 0x2ca334, Func Offset: 0x274
-	// Line 291, Address: 0x2ca338, Func Offset: 0x278
-	// Line 290, Address: 0x2ca33c, Func Offset: 0x27c
-	// Line 291, Address: 0x2ca344, Func Offset: 0x284
-	// Line 295, Address: 0x2ca354, Func Offset: 0x294
-	// Line 296, Address: 0x2ca36c, Func Offset: 0x2ac
-	// Line 297, Address: 0x2ca38c, Func Offset: 0x2cc
-	// Line 299, Address: 0x2ca390, Func Offset: 0x2d0
-	// Line 301, Address: 0x2ca394, Func Offset: 0x2d4
-	// Line 303, Address: 0x2ca398, Func Offset: 0x2d8
-	// Line 307, Address: 0x2ca3a0, Func Offset: 0x2e0
-	// Line 308, Address: 0x2ca3a8, Func Offset: 0x2e8
-	// Line 307, Address: 0x2ca3b0, Func Offset: 0x2f0
-	// Line 308, Address: 0x2ca3bc, Func Offset: 0x2fc
-	// Line 309, Address: 0x2ca3c4, Func Offset: 0x304
-	// Line 310, Address: 0x2ca3d8, Func Offset: 0x318
-	// Line 311, Address: 0x2ca3e4, Func Offset: 0x324
-	// Line 312, Address: 0x2ca3ec, Func Offset: 0x32c
-	// Line 313, Address: 0x2ca3f4, Func Offset: 0x334
-	// Line 314, Address: 0x2ca3f8, Func Offset: 0x338
-	// Line 316, Address: 0x2ca404, Func Offset: 0x344
-	// Line 317, Address: 0x2ca40c, Func Offset: 0x34c
-	// Line 319, Address: 0x2ca410, Func Offset: 0x350
-	// Line 320, Address: 0x2ca414, Func Offset: 0x354
-	// Line 324, Address: 0x2ca428, Func Offset: 0x368
-	// Func End, Address: 0x2ca44c, Func Offset: 0x38c
-	scePrintf("bhReadWeaponData - UNIMPLEMENTED!\n");
+    O_WRK* op;             
+    int sz;              
+    int msz;               
+    int wpn_no;            
+    unsigned char* dp;   
+    unsigned char* mp;   
+    MN_WORK* mtnp;         
+    int mtsz;              
+    unsigned char* plmtnp; 
+    int temp; // not from the debugging symbols
+
+    wpn_no = plp->wpnr_no;
+    
+    dp = sys->memp;
+    
+    msz = *(unsigned int*)dp;
+    
+    dp += 4;
+    
+    op = sys->obwp;
+    
+    if ((!(sys->ss_flg & 0x100)) && (op->mlwP->texP != NULL)) 
+    {
+        njReleaseTexture(op->mlwP->texP);
+        
+        bhGarbageTexture(NULL, 0);
+    }
+    
+    if (msz != 0) 
+    {
+        mp = sys->wrmdlp;
+        
+        npCopyMemory(mp, dp, msz);
+        
+        bhSetWeapon(op, wpn_no, 0);
+        
+        op->mlwP = op->mdl;
+        
+        bhMlbBinRealize(mp, op->mlwP);
+    }
+    
+    dp = &dp[msz];
+    
+    temp = *(unsigned int*)dp;
+    
+    if ((temp & 0x80000000))
+    {
+        dp += 4;
+        
+        dp = (unsigned char*)(((int)dp + 63) & ~0x3F);
+        
+        temp &= ~0x80000000;
+    }
+    else 
+    {
+        dp += 4;
+    }
+    
+    if (temp != 0) 
+    {
+        if (op->mlwP->texP != NULL)
+        {
+            op->mlwP->flg |= 0x200;
+            
+            bhSetMemPvpTexture(op->mlwP->texP, dp, 0);
+        }
+        
+        op->mlwP->owP = (O_WORK*)(((int)&mp[msz] + 255) & ~0xFF);
+        
+        memset(op->mlwP->owP, 0, op->mlwP->obj_num * 80);
+        
+        op->mdl_no = 0;
+    }
+    
+    dp = &dp[temp];
+    
+    msz = *(unsigned int*)dp;
+    
+    dp += 4;
+    
+    op = &sys->obwp[1]; 
+    
+    if ((!(sys->ss_flg & 0x100)) && (op->mlwP->texP != NULL))
+    {
+        njReleaseTexture(op->mlwP->texP);
+        
+        bhGarbageTexture(NULL, 0);
+    }
+    
+    if (msz != 0) 
+    {
+        mp = sys->wlmdlp;
+        
+        npCopyMemory(mp, dp, msz);
+        
+        bhSetWeapon(op, wpn_no, 1);
+        
+        op->mlwP = op->mdl;
+        
+        bhMlbBinRealize(mp, op->mlwP);
+    }
+    
+    dp = &dp[msz];
+    
+    sz = *(unsigned int*)dp;
+    
+    if ((sz & 0x80000000))
+    {
+        dp += 4;
+        
+        dp = (unsigned char*)(((int)dp + 63) & ~0x3F);
+        
+        sz &= ~0x80000000;
+    }
+    else  
+    {
+        dp += 4;
+    }
+    
+    if (sz != 0)
+    {
+        if (op->mlwP->texP != NULL)
+        {
+            op->mlwP->flg |= 0x200;
+            
+            bhSetMemPvpTexture(op->mlwP->texP, dp, 0);
+        }
+        
+        op->mlwP->owP = (O_WORK*)(((int)&mp[msz] + 255) & ~0xFF);
+        
+        memset(op->mlwP->owP, 0, op->mlwP->obj_num * 80);
+        
+        op->mdl_no = 0;
+    }
+    
+    dp = &dp[sz];
+    
+    sz = *(unsigned int*)dp;
+    
+    if (sz != 0) 
+    {
+        plmtnp = sys->plwmtp;
+
+        dp += 4;
+        
+        npCopyMemory(plmtnp, dp, sz);
+        
+        sys->wmt_size = sz;
+        
+        for (mtnp = &plp->mnwP[100]; (mtsz = *(unsigned int*)plmtnp) != -1; mtnp++) 
+        {
+            if (mtsz != 0) 
+            {
+                dp = plmtnp + 4;
+                
+                bhMnbBinRealize(dp, mtnp);
+                
+                plmtnp = &dp[mtsz];
+            } 
+            else 
+            {
+                plmtnp += 4;
+            }
+        }
+    }
 }
 
 // 94.11% matching

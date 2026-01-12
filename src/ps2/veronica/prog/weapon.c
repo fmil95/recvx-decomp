@@ -11,10 +11,10 @@ _anon4 swork;
 _anon22 WpnTab[0];
 BH_PWORK ene[0];
 _anon42 cam;
-_anon11* rom;
+_anon11* rom;*/
 
-void bhSetWeapon(_anon0* op, int wpn_no, int flg);
-void bhObjWpn(_anon0* op);
+void bhSetWeapon(O_WRK* op, int wpn_no, int flg);
+/*void bhObjWpn(_anon0* op);
 void bhActionWeapon(_anon0* op);
 short bhCheckBullet();
 int bhCountBullet();
@@ -27,11 +27,11 @@ int bhCheckCapCol2Capsule(BH_PWORK* pp, _anon34* cap, _anon1* hps);
 void bhSetGunSplash(_anon21* gap, _anon1* pos, int wattr);
 void bhSetExplosion(_anon1* pos);
 void bhSetExplosionEffect(_anon1* pos);
-void bhSetExplosionEffectEx(_anon1* pos, float scl);
+void bhSetExplosionEffectEx(_anon1* pos, float scl);*/
 
 // 
 // Start address: 0x28a300
-void bhSetWeapon(_anon0* op, int wpn_no, int flg)
+void bhSetWeapon(O_WRK* op, int wpn_no, int flg)
 {
 	// Line 137, Address: 0x28a300, Func Offset: 0
 	// Line 138, Address: 0x28a31c, Func Offset: 0x1c
@@ -80,9 +80,10 @@ void bhSetWeapon(_anon0* op, int wpn_no, int flg)
 	// Line 172, Address: 0x28a520, Func Offset: 0x220
 	// Line 173, Address: 0x28a538, Func Offset: 0x238
 	// Func End, Address: 0x28a550, Func Offset: 0x250
+	scePrintf("bhSetWeapon - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28a550
 void bhObjWpn(_anon0* op)
 {
