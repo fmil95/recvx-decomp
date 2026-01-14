@@ -176,42 +176,41 @@ void bhControlScreenSaver()
     }
 }
 
-// 
-// Start address: 0x26c3f0
+// 100% matching!
 void bhDrawScreenSaver()
 {
-	unsigned int argb;
-	//_anon29 pol[4];
-	// Line 323, Address: 0x26c3f0, Func Offset: 0
-	// Line 328, Address: 0x26c3f4, Func Offset: 0x4
-	// Line 323, Address: 0x26c3f8, Func Offset: 0x8
-	// Line 328, Address: 0x26c3fc, Func Offset: 0xc
-	// Line 329, Address: 0x26c404, Func Offset: 0x14
-	// Line 337, Address: 0x26c410, Func Offset: 0x20
-	// Line 338, Address: 0x26c428, Func Offset: 0x38
-	// Line 339, Address: 0x26c42c, Func Offset: 0x3c
-	// Line 340, Address: 0x26c430, Func Offset: 0x40
-	// Line 337, Address: 0x26c434, Func Offset: 0x44
-	// Line 340, Address: 0x26c438, Func Offset: 0x48
-	// Line 341, Address: 0x26c43c, Func Offset: 0x4c
-	// Line 342, Address: 0x26c440, Func Offset: 0x50
-	// Line 343, Address: 0x26c444, Func Offset: 0x54
-	// Line 344, Address: 0x26c44c, Func Offset: 0x5c
-	// Line 345, Address: 0x26c450, Func Offset: 0x60
-	// Line 346, Address: 0x26c454, Func Offset: 0x64
-	// Line 347, Address: 0x26c45c, Func Offset: 0x6c
-	// Line 348, Address: 0x26c460, Func Offset: 0x70
-	// Line 349, Address: 0x26c464, Func Offset: 0x74
-	// Line 350, Address: 0x26c468, Func Offset: 0x78
-	// Line 351, Address: 0x26c46c, Func Offset: 0x7c
-	// Line 352, Address: 0x26c470, Func Offset: 0x80
-	// Line 353, Address: 0x26c474, Func Offset: 0x84
-	// Line 354, Address: 0x26c478, Func Offset: 0x88
-	// Line 355, Address: 0x26c488, Func Offset: 0x98
-	// Line 356, Address: 0x26c494, Func Offset: 0xa4
-	// Line 357, Address: 0x26c4a0, Func Offset: 0xb0
-	// Func End, Address: 0x26c4ac, Func Offset: 0xbc
-	scePrintf("bhDrawScreenSaver - UNIMPLEMENTED!\n");
+    NJS_POLYGON_VTX pol[4];
+    unsigned int argb; 
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+
+    argb = (Uint32)sys->ssv_an << 24;
+    
+    pol[0].x = 0;
+    pol[0].y = 0;
+    pol[0].z = 1.25f;
+    pol[0].col = argb;
+    
+    pol[1].x = 0;
+    pol[1].y = 480.0f;
+    pol[1].z = 1.25f;
+    pol[1].col = argb;
+    
+    pol[2].x = 640.0f;
+    pol[2].y = 0;
+    pol[2].z = 1.25f;
+    pol[2].col = argb;
+    
+    pol[3].x = 640.0f;
+    pol[3].y = 480.0f;
+    pol[3].z = 1.25f;
+    pol[3].col = argb;
+    
+    njDrawPolygon(pol, 4, 1);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
 }
 
 // 100% matching!
