@@ -131,18 +131,20 @@ void bhDrawScreenFade()
     njColorBlendingMode(1, 6);
 }
 
-// 
-// Start address: 0x26c1b0
+// 100% matching!
 void bhInitScreenSaver()
 {
-	// Line 281, Address: 0x26c1b0, Func Offset: 0
-	// Line 282, Address: 0x26c1c8, Func Offset: 0x18
-	// Line 283, Address: 0x26c1dc, Func Offset: 0x2c
-	// Line 284, Address: 0x26c1f0, Func Offset: 0x40
-	// Line 285, Address: 0x26c204, Func Offset: 0x54
-	// Line 286, Address: 0x26c23c, Func Offset: 0x8c
-	// Func End, Address: 0x26c244, Func Offset: 0x94
-	scePrintf("bhInitScreenSaver - UNIMPLEMENTED!\n");
+    *(int*)&sys->ssv_md0 = 0;
+    
+    sys->ssv_tim = 0;
+    
+    sys->ssv_ct = 0;
+    
+    sys->ssv_hkn = 0;
+    
+    sys->ssv_ap = 0;
+    sys->ssv_an = 0;
+    sys->ssv_ao = 0;
 }
 
 // 100% matching! 
