@@ -4,7 +4,7 @@
 #include "types.h"
 
 void bhInitLight();
-void bhSetLightTab(NO_NAME_8* lt, int lno);
+void bhSetLightTab(LGT_WORK* lt, int lno);
 void bhSetEasyDirLight(float it);
 void bhControlLight();
 void bhSetLight();
