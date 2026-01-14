@@ -29,58 +29,73 @@ void bhSetExplosion(_anon1* pos);
 void bhSetExplosionEffect(_anon1* pos);
 void bhSetExplosionEffectEx(_anon1* pos, float scl);*/
 
-// 
-// Start address: 0x28a300
+// 100% matching! 
 void bhSetWeapon(O_WRK* op, int wpn_no, int flg)
 {
-	// Line 137, Address: 0x28a300, Func Offset: 0
-	// Line 138, Address: 0x28a31c, Func Offset: 0x1c
-	// Line 139, Address: 0x28a32c, Func Offset: 0x2c
-	// Line 140, Address: 0x28a334, Func Offset: 0x34
-	// Line 141, Address: 0x28a33c, Func Offset: 0x3c
-	// Line 142, Address: 0x28a344, Func Offset: 0x44
-	// Line 145, Address: 0x28a34c, Func Offset: 0x4c
-	// Line 142, Address: 0x28a350, Func Offset: 0x50
-	// Line 150, Address: 0x28a358, Func Offset: 0x58
-	// Line 151, Address: 0x28a374, Func Offset: 0x74
-	// Line 152, Address: 0x28a388, Func Offset: 0x88
-	// Line 153, Address: 0x28a39c, Func Offset: 0x9c
-	// Line 154, Address: 0x28a3a4, Func Offset: 0xa4
-	// Line 155, Address: 0x28a3b0, Func Offset: 0xb0
-	// Line 156, Address: 0x28a3d4, Func Offset: 0xd4
-	// Line 157, Address: 0x28a3e0, Func Offset: 0xe0
-	// Line 158, Address: 0x28a3f8, Func Offset: 0xf8
-	// Line 159, Address: 0x28a400, Func Offset: 0x100
-	// Line 158, Address: 0x28a408, Func Offset: 0x108
-	// Line 159, Address: 0x28a410, Func Offset: 0x110
-	// Line 160, Address: 0x28a418, Func Offset: 0x118
-	// Line 159, Address: 0x28a41c, Func Offset: 0x11c
-	// Line 160, Address: 0x28a42c, Func Offset: 0x12c
-	// Line 161, Address: 0x28a434, Func Offset: 0x134
-	// Line 160, Address: 0x28a438, Func Offset: 0x138
-	// Line 161, Address: 0x28a448, Func Offset: 0x148
-	// Line 162, Address: 0x28a45c, Func Offset: 0x15c
-	// Line 163, Address: 0x28a464, Func Offset: 0x164
-	// Line 164, Address: 0x28a470, Func Offset: 0x170
-	// Line 163, Address: 0x28a478, Func Offset: 0x178
-	// Line 164, Address: 0x28a480, Func Offset: 0x180
-	// Line 165, Address: 0x28a490, Func Offset: 0x190
-	// Line 166, Address: 0x28a494, Func Offset: 0x194
-	// Line 165, Address: 0x28a498, Func Offset: 0x198
-	// Line 166, Address: 0x28a4ac, Func Offset: 0x1ac
-	// Line 167, Address: 0x28a4b4, Func Offset: 0x1b4
-	// Line 166, Address: 0x28a4b8, Func Offset: 0x1b8
-	// Line 167, Address: 0x28a4c8, Func Offset: 0x1c8
-	// Line 170, Address: 0x28a4e0, Func Offset: 0x1e0
-	// Line 171, Address: 0x28a4f0, Func Offset: 0x1f0
-	// Line 170, Address: 0x28a4f4, Func Offset: 0x1f4
-	// Line 171, Address: 0x28a504, Func Offset: 0x204
-	// Line 172, Address: 0x28a50c, Func Offset: 0x20c
-	// Line 171, Address: 0x28a510, Func Offset: 0x210
-	// Line 172, Address: 0x28a520, Func Offset: 0x220
-	// Line 173, Address: 0x28a538, Func Offset: 0x238
-	// Func End, Address: 0x28a550, Func Offset: 0x250
-	scePrintf("bhSetWeapon - UNIMPLEMENTED!\n");
+    npSetMemory((unsigned char*)op, sizeof(O_WRK), 0);
+    
+    op->flg = 0x81;
+    
+    op->id = 1210;
+    
+    op->type = wpn_no & 0xFF;
+    
+    op->flr_no = plp->flr_no;
+    
+    op->mtx = (void*)op->mtxbuf; // cast was likely to a non-void type
+    
+    if (wpn_no != 0) 
+    {
+        op->flg |= 0x40000;
+    } 
+    else
+    {
+        op->flg &= ~0x40000;
+    }
+    
+    if (flg == 0) 
+    {
+        op->lkono = 9;
+    }
+    else
+    {
+        op->lkono = 13;
+    }
+    
+    op->lkwkp = (unsigned char*)plp;
+    
+    if (plp->wpnr_no < 10) 
+    {
+        *(int*)plp->exp0 = 0;
+    } 
+    else 
+    {
+        *(int*)plp->exp0 = 1;
+    }
+    
+    if (plp->wpnr_no > 1)
+    {
+        plp->flg |= 0x20000;
+        
+        plp->mlwP->owP[7].flg &= ~0x2;
+        plp->mlwP->owP[8].flg &= ~0x2;
+        plp->mlwP->owP[9].flg &= ~0x2;
+    }
+    else 
+    {
+        plp->flg &= ~0x20000; 
+
+        if (plp->wpnr_no != 1) 
+        {
+            plp->mlwP->owP[7].flg &= ~0x2;
+            plp->mlwP->owP[8].flg &= ~0x2;
+            plp->mlwP->owP[9].flg &= ~0x2;
+        }
+    }
+    
+    plp->mlwP->owP[11].flg &= ~0x2;
+    plp->mlwP->owP[12].flg &= ~0x2;
+    plp->mlwP->owP[13].flg &= ~0x2;
 }
 
 /*// 
