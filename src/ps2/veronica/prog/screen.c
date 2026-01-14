@@ -504,77 +504,67 @@ void bhDrawScope()
     }
 }
 
-// 
-// Start address: 0x26ce60
+// 100% matching!
 void bhDrawScopeNumber(float px, float py, int num)
 {
-	//_anon14 uv[4];
-	//_anon14 col[4];
-	//_anon25 p[4];
-	//_anon30 p2c;
-	short uv_tab[8][18];
-	// Line 572, Address: 0x26ce60, Func Offset: 0
-	// Line 599, Address: 0x26ce64, Func Offset: 0x4
-	// Line 572, Address: 0x26ce68, Func Offset: 0x8
-	// Line 599, Address: 0x26ce6c, Func Offset: 0xc
-	// Line 600, Address: 0x26ce70, Func Offset: 0x10
-	// Line 601, Address: 0x26ce78, Func Offset: 0x18
-	// Line 602, Address: 0x26ce80, Func Offset: 0x20
-	// Line 604, Address: 0x26ce88, Func Offset: 0x28
-	// Line 605, Address: 0x26ce90, Func Offset: 0x30
-	// Line 606, Address: 0x26ce94, Func Offset: 0x34
-	// Line 608, Address: 0x26ce98, Func Offset: 0x38
-	// Line 607, Address: 0x26ce9c, Func Offset: 0x3c
-	// Line 608, Address: 0x26cea0, Func Offset: 0x40
-	// Line 624, Address: 0x26ceb0, Func Offset: 0x50
-	// Line 609, Address: 0x26ceb4, Func Offset: 0x54
-	// Line 608, Address: 0x26cec0, Func Offset: 0x60
-	// Line 609, Address: 0x26cec4, Func Offset: 0x64
-	// Line 610, Address: 0x26cec8, Func Offset: 0x68
-	// Line 609, Address: 0x26ced4, Func Offset: 0x74
-	// Line 610, Address: 0x26ced8, Func Offset: 0x78
-	// Line 611, Address: 0x26cedc, Func Offset: 0x7c
-	// Line 610, Address: 0x26cee4, Func Offset: 0x84
-	// Line 611, Address: 0x26cee8, Func Offset: 0x88
-	// Line 610, Address: 0x26ceec, Func Offset: 0x8c
-	// Line 611, Address: 0x26cef0, Func Offset: 0x90
-	// Line 612, Address: 0x26cef4, Func Offset: 0x94
-	// Line 611, Address: 0x26cf00, Func Offset: 0xa0
-	// Line 612, Address: 0x26cf04, Func Offset: 0xa4
-	// Line 613, Address: 0x26cf08, Func Offset: 0xa8
-	// Line 612, Address: 0x26cf10, Func Offset: 0xb0
-	// Line 613, Address: 0x26cf14, Func Offset: 0xb4
-	// Line 612, Address: 0x26cf18, Func Offset: 0xb8
-	// Line 613, Address: 0x26cf1c, Func Offset: 0xbc
-	// Line 614, Address: 0x26cf20, Func Offset: 0xc0
-	// Line 613, Address: 0x26cf28, Func Offset: 0xc8
-	// Line 614, Address: 0x26cf2c, Func Offset: 0xcc
-	// Line 613, Address: 0x26cf30, Func Offset: 0xd0
-	// Line 614, Address: 0x26cf34, Func Offset: 0xd4
-	// Line 615, Address: 0x26cf38, Func Offset: 0xd8
-	// Line 614, Address: 0x26cf40, Func Offset: 0xe0
-	// Line 615, Address: 0x26cf44, Func Offset: 0xe4
-	// Line 624, Address: 0x26cf4c, Func Offset: 0xec
-	// Line 618, Address: 0x26cf50, Func Offset: 0xf0
-	// Line 616, Address: 0x26cf58, Func Offset: 0xf8
-	// Line 618, Address: 0x26cf5c, Func Offset: 0xfc
-	// Line 617, Address: 0x26cf60, Func Offset: 0x100
-	// Line 624, Address: 0x26cf64, Func Offset: 0x104
-	// Line 615, Address: 0x26cf68, Func Offset: 0x108
-	// Line 621, Address: 0x26cf6c, Func Offset: 0x10c
-	// Line 618, Address: 0x26cf70, Func Offset: 0x110
-	// Line 619, Address: 0x26cf74, Func Offset: 0x114
-	// Line 620, Address: 0x26cf78, Func Offset: 0x118
-	// Line 621, Address: 0x26cf7c, Func Offset: 0x11c
-	// Line 622, Address: 0x26cf80, Func Offset: 0x120
-	// Line 624, Address: 0x26cf84, Func Offset: 0x124
-	// Line 615, Address: 0x26cf8c, Func Offset: 0x12c
-	// Line 624, Address: 0x26cf90, Func Offset: 0x130
-	// Line 623, Address: 0x26cf94, Func Offset: 0x134
-	// Line 624, Address: 0x26cf98, Func Offset: 0x138
-	// Line 625, Address: 0x26cfa0, Func Offset: 0x140
-	// Func End, Address: 0x26cfac, Func Offset: 0x14c
-	scePrintf("bhDrawScopeNumber - UNIMPLEMENTED!\n");
+    NJS_POINT2COL p2c;
+    NJS_POINT2 p[4];
+    NJS_COLOR col[4]; 
+    NJS_COLOR uv[4];
+    static short uv_tab[18][8] = { { 0  , 0 , 32 , 0 , 32 , 32, 0  , 32 },
+                                   { 32 , 0 , 64 , 0 , 64 , 32, 32 , 32 },
+                                   { 64 , 0 , 96 , 0 , 96 , 32, 64 , 32 },
+                                   { 96 , 0 , 128, 0 , 128, 32, 96 , 32 },
+                                   { 128, 0 , 160, 0 , 160, 32, 128, 32 },
+                                   { 160, 0 , 192, 0 , 192, 32, 160, 32 },
+                                   { 192, 0 , 224, 0 , 224, 32, 192, 32 },
+                                   { 224, 0 , 256, 0 , 256, 32, 224, 32 },
+                                   { 0  , 32, 32 , 32, 32 , 64, 0  , 64 },
+                                   { 32 , 32, 64 , 32, 64 , 64, 32 , 64 },
+                                   { 64 , 32, 96 , 32, 96 , 64, 64 , 64 },
+                                   { 96 , 32, 128, 32, 128, 64, 96 , 64 },
+                                   { 128, 32, 160, 32, 160, 64, 128, 64 },
+                                   { 160, 32, 192, 32, 192, 64, 160, 64 },
+                                   { 192, 32, 224, 32, 224, 64, 192, 64 },
+                                   { 224, 32, 256, 32, 256, 64, 224, 64 },
+                                   { 0  , 64, 32 , 64, 32 , 96, 0  , 96 },
+                                   { 32 , 64, 64 , 64, 64 , 96, 32 , 96 } };
+ 
+    p2c.p = p;
+    
+    p2c.col = col;
+    
+    p2c.tex = uv;
+    
+    p2c.num = 1;
+    
+    col[3].color = col[2].color = col[1].color = col[0].color = -1;
+
+    uv[0].tex.u = uv_tab[num][0];
+    uv[0].tex.v = uv_tab[num][1];
+
+    uv[1].tex.u = uv_tab[num][2] - 1;
+    uv[1].tex.v = uv_tab[num][3];
+
+    uv[2].tex.u = uv_tab[num][4] - 1;
+    uv[2].tex.v = uv_tab[num][5] - 1;
+
+    uv[3].tex.u = uv_tab[num][6];
+    uv[3].tex.v = uv_tab[num][7] - 1;
+    
+    p[0].x = px;
+    p[0].y = py;
+    
+    p[1].x = 16.0f + px;
+    p[1].y = py;
+    
+    p[2].x = 16.0f + px;
+    p[2].y = 16.0f + py;
+    
+    p[3].x = px;
+    p[3].y = 16.0f + py;
+    
+    njDrawPolygon2D(&p2c, 4, -1.4f, 0x80000060);
 }
 
 // 
