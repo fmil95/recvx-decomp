@@ -214,19 +214,24 @@ void bhDrawScreenSaver()
 	scePrintf("bhDrawScreenSaver - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x26c4b0
+// 100% matching!
 void bhControlCinesco()
-{
-	// Line 365, Address: 0x26c4b0, Func Offset: 0
-	// Line 366, Address: 0x26c4e8, Func Offset: 0x38
-	// Line 367, Address: 0x26c4f4, Func Offset: 0x44
-	// Line 368, Address: 0x26c528, Func Offset: 0x78
-	// Line 367, Address: 0x26c52c, Func Offset: 0x7c
-	// Line 368, Address: 0x26c538, Func Offset: 0x88
-	// Line 369, Address: 0x26c580, Func Offset: 0xd0
-	// Func End, Address: 0x26c588, Func Offset: 0xd8
-	scePrintf("bhControlCinesco - UNIMPLEMENTED!\n");
+{   
+    if (((sys->cb_flg & 0x4)) && (!(sys->cb_flg & 0x40))) 
+    {
+        sys->cine_ap = 1.0f;
+    } 
+    else
+    {
+        sys->cine_ap = 0;
+    }
+    
+    sys->cine_an += 0.1f * (sys->cine_ap - sys->cine_an);
+    
+    if ((!(sys->cb_flg & 0x4)) && (sys->cine_an < 0.004f))
+    {
+        sys->cine_an = 0;
+    }
 }
 
 // 
