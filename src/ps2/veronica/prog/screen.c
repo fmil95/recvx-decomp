@@ -234,60 +234,55 @@ void bhControlCinesco()
     }
 }
 
-// 
-// Start address: 0x26c590
+// 100% matching!
 void bhDrawCinesco()
 {
-	unsigned int argb;
-	//_anon14 col[4];
-	//_anon25 p[4];
-	//_anon30 p2c;
-	// Line 376, Address: 0x26c590, Func Offset: 0
-	// Line 382, Address: 0x26c5ac, Func Offset: 0x1c
-	// Line 384, Address: 0x26c5c4, Func Offset: 0x34
-	// Line 385, Address: 0x26c5d0, Func Offset: 0x40
-	// Line 386, Address: 0x26c5dc, Func Offset: 0x4c
-	// Line 387, Address: 0x26c5e4, Func Offset: 0x54
-	// Line 391, Address: 0x26c5f0, Func Offset: 0x60
-	// Line 389, Address: 0x26c5f8, Func Offset: 0x68
-	// Line 388, Address: 0x26c5fc, Func Offset: 0x6c
-	// Line 389, Address: 0x26c600, Func Offset: 0x70
-	// Line 391, Address: 0x26c604, Func Offset: 0x74
-	// Line 398, Address: 0x26c624, Func Offset: 0x94
-	// Line 403, Address: 0x26c628, Func Offset: 0x98
-	// Line 404, Address: 0x26c62c, Func Offset: 0x9c
-	// Line 405, Address: 0x26c630, Func Offset: 0xa0
-	// Line 398, Address: 0x26c634, Func Offset: 0xa4
-	// Line 399, Address: 0x26c638, Func Offset: 0xa8
-	// Line 410, Address: 0x26c63c, Func Offset: 0xac
-	// Line 407, Address: 0x26c648, Func Offset: 0xb8
-	// Line 399, Address: 0x26c64c, Func Offset: 0xbc
-	// Line 400, Address: 0x26c650, Func Offset: 0xc0
-	// Line 407, Address: 0x26c654, Func Offset: 0xc4
-	// Line 409, Address: 0x26c658, Func Offset: 0xc8
-	// Line 410, Address: 0x26c65c, Func Offset: 0xcc
-	// Line 400, Address: 0x26c660, Func Offset: 0xd0
-	// Line 401, Address: 0x26c664, Func Offset: 0xd4
-	// Line 410, Address: 0x26c668, Func Offset: 0xd8
-	// Line 401, Address: 0x26c670, Func Offset: 0xe0
-	// Line 402, Address: 0x26c674, Func Offset: 0xe4
-	// Line 403, Address: 0x26c678, Func Offset: 0xe8
-	// Line 404, Address: 0x26c67c, Func Offset: 0xec
-	// Line 405, Address: 0x26c680, Func Offset: 0xf0
-	// Line 406, Address: 0x26c684, Func Offset: 0xf4
-	// Line 407, Address: 0x26c688, Func Offset: 0xf8
-	// Line 408, Address: 0x26c68c, Func Offset: 0xfc
-	// Line 410, Address: 0x26c690, Func Offset: 0x100
-	// Line 411, Address: 0x26c698, Func Offset: 0x108
-	// Line 412, Address: 0x26c6a0, Func Offset: 0x110
-	// Line 413, Address: 0x26c6a4, Func Offset: 0x114
-	// Line 414, Address: 0x26c6ac, Func Offset: 0x11c
-	// Line 415, Address: 0x26c6b0, Func Offset: 0x120
-	// Line 416, Address: 0x26c6cc, Func Offset: 0x13c
-	// Line 417, Address: 0x26c6d8, Func Offset: 0x148
-	// Line 418, Address: 0x26c6e4, Func Offset: 0x154
-	// Func End, Address: 0x26c704, Func Offset: 0x174
-	scePrintf("bhDrawCinesco - UNIMPLEMENTED!\n");
+    NJS_POINT2COL p2c;
+    NJS_POINT2 p[4];  
+    NJS_COLOR col[4];  
+    unsigned int argb;
+
+    if (!(sys->cb_flg & 0x40))
+    {
+        njColorBlendingMode(0, 8);
+        njColorBlendingMode(1, 6);
+
+        p2c.p = p;
+        
+        p2c.col = col;
+        
+        p2c.tex = NULL;
+        
+        p2c.num = 1;
+
+        argb = (unsigned int)(255.0f * sys->cine_an) << 24;
+    
+        p2c.col[3].color = p2c.col[2].color = p2c.col[1].color = p2c.col[0].color = argb;
+
+        p[0].x = 0;
+        p[0].y = 0;
+
+        p[1].x = 640.0f;
+        p[1].y = 0;
+
+        p[2].x = 640.0f;
+        p[2].y = 48.0f;
+
+        p[3].x = 0;
+        p[3].y = 48.0f;
+
+        njDrawPolygon2D(&p2c, 4, -0.9f, 96);
+
+        p[0].y = 432.0f;
+        p[1].y = 432.0f;
+        p[2].y = 480.0f;
+        p[3].y = 480.0f;
+
+        njDrawPolygon2D(&p2c, 4, -0.9f, 96);
+        
+        njColorBlendingMode(0, 8);
+        njColorBlendingMode(1, 6);
+    }
 }
 
 // 
