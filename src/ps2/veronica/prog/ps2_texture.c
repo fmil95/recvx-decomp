@@ -303,52 +303,76 @@ int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset)
     return nbTex; 
 } 
 
-// 
-// Start address: 0x2e6580
+// 100% matching!
 void bhReleaseMainTexture()
 {
-	int j;
-	int i;
-	//_anon0* op;
-	BH_PWORK* pp;
-	// Line 392, Address: 0x2e6580, Func Offset: 0
-	// Line 397, Address: 0x2e659c, Func Offset: 0x1c
-	// Line 399, Address: 0x2e65b8, Func Offset: 0x38
-	// Line 400, Address: 0x2e65c4, Func Offset: 0x44
-	// Line 401, Address: 0x2e65f0, Func Offset: 0x70
-	// Line 402, Address: 0x2e6600, Func Offset: 0x80
-	// Line 403, Address: 0x2e660c, Func Offset: 0x8c
-	// Line 404, Address: 0x2e6628, Func Offset: 0xa8
-	// Line 405, Address: 0x2e6634, Func Offset: 0xb4
-	// Line 407, Address: 0x2e664c, Func Offset: 0xcc
-	// Line 409, Address: 0x2e6668, Func Offset: 0xe8
-	// Line 410, Address: 0x2e6670, Func Offset: 0xf0
-	// Line 409, Address: 0x2e6674, Func Offset: 0xf4
-	// Line 410, Address: 0x2e6680, Func Offset: 0x100
-	// Line 411, Address: 0x2e6688, Func Offset: 0x108
-	// Line 412, Address: 0x2e6698, Func Offset: 0x118
-	// Line 413, Address: 0x2e66b4, Func Offset: 0x134
-	// Line 414, Address: 0x2e66bc, Func Offset: 0x13c
-	// Line 415, Address: 0x2e66c0, Func Offset: 0x140
-	// Line 417, Address: 0x2e66e0, Func Offset: 0x160
-	// Line 418, Address: 0x2e66f4, Func Offset: 0x174
-	// Line 419, Address: 0x2e66fc, Func Offset: 0x17c
-	// Line 420, Address: 0x2e670c, Func Offset: 0x18c
-	// Line 421, Address: 0x2e6728, Func Offset: 0x1a8
-	// Line 423, Address: 0x2e6730, Func Offset: 0x1b0
-	// Line 425, Address: 0x2e6750, Func Offset: 0x1d0
-	// Line 426, Address: 0x2e676c, Func Offset: 0x1ec
-	// Line 427, Address: 0x2e67a0, Func Offset: 0x220
-	// Line 428, Address: 0x2e67c0, Func Offset: 0x240
-	// Line 429, Address: 0x2e67d8, Func Offset: 0x258
-	// Line 430, Address: 0x2e67f8, Func Offset: 0x278
-	// Line 432, Address: 0x2e6818, Func Offset: 0x298
-	// Line 433, Address: 0x2e6834, Func Offset: 0x2b4
-	// Line 434, Address: 0x2e6844, Func Offset: 0x2c4
-	// Line 437, Address: 0x2e6858, Func Offset: 0x2d8
-	// Line 438, Address: 0x2e6868, Func Offset: 0x2e8
-	// Func End, Address: 0x2e6888, Func Offset: 0x308
-	scePrintf("bhReleaseMainTexture - UNIMPLEMENTED!\n");
+    BH_PWORK* pp; 
+    O_WRK* op; 
+    int i; 
+    int j; 
+
+    if (rom->mdl.texP != NULL)
+    {
+        njReleaseTexture(rom->mdl.texP);
+    }
+
+    for (i = 0; i < rom->ene_n; i++)
+    {
+        pp = &ene[rom->enep[i].wrk_no];
+
+        if ((pp->flg & 0x1)) 
+        {
+            for (j = 0; j < pp->mdl_n; j++)
+            {
+                if ((pp->mdl[j].texP != NULL) && ((pp->mdl[j].flg & 0x200))) 
+                {
+                    njReleaseTexture(pp->mdl[j].texP);
+                }
+            }
+        }
+    }
+
+    op = &sys->obwp[4];
+    
+    for (i = 4; i < rom->obj_n; i++, op++)
+    {
+        if (((op->flg & 0x1)) && ((op->mdl->texP != NULL) && ((op->mdl->flg & 0x200))))
+        {
+            njReleaseTexture(op->mdl->texP);
+        }
+    }
+
+    op = sys->itwp;
+    
+    for (i = 0; i < rom->itm_n; i++, op++)
+    {
+        if (((op->flg & 0x1)) && ((op->mdl->texP != NULL) && ((op->mdl->flg & 0x200)))) 
+        {
+            njReleaseTexture(op->mdl->texP);
+        }
+    }
+
+    if (sys->ef_extn != 0)
+    {
+        sys->ef_tlist.textures = (NJS_TEXNAME*)&sys->ef_tex[sys->ef_ctb].filename;
+        
+        sys->ef_tlist.nbTexture = sys->ef_extn;
+        
+        njReleaseTexture(&sys->ef_tlist);
+        
+        sys->ef_tlist.textures = (NJS_TEXNAME*)&sys->ef_tex[0].filename;
+        
+        sys->ef_tlist.nbTexture = sys->ef_ctb;
+    }
+
+    if (sys->ren_tlist.nbTexture != 0)
+    {
+        njReleaseTexture(&sys->ren_tlist);
+        
+        sys->ren_tlist.nbTexture = 0;
+    }
+    
+    bhGarbageTexture(tbuf, 256);
 }
 
 // 100% matching!
