@@ -215,12 +215,12 @@ typedef struct EF_WORK
     short ax;              // offset 0x26, size 0x2
 } EF_WORK;
 
-typedef struct NO_NAME_7
+typedef struct CPCL
 {
-	short jnt_a;
-	short jnt_b;
-	int cap_r;
-} NO_NAME_7;
+	short jnt_a; // offset 0x0, size 0x2
+    short jnt_b; // offset 0x2, size 0x2
+    int cap_r;   // offset 0x4, size 0x4
+} CPCL;
 
 typedef struct BH_PWORK
 {
@@ -330,7 +330,7 @@ typedef struct BH_PWORK
     int wpnl_no; // offset 0x3E8, size 0x4
     unsigned int at_flg; // offset 0x3EC, size 0x4
 	NJS_CAPSULE watr; // offset 0x3F0, size 0x1C
-	NO_NAME_7* cpcl; // offset 0x40C, size 0x4
+	CPCL* cpcl; // offset 0x40C, size 0x4
 	short wax; // offset 0x410, size 0x2
     short way; // offset 0x412, size 0x2
     short waz; // offset 0x414, size 0x2
