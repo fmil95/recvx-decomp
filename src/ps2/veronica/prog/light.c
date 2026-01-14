@@ -15,7 +15,7 @@ BH_PWORK* plp;*/
 // 100% matching! 
 void bhInitLight()
 {
-    NO_NAME_8* lp;
+    LGT_WORK* lp;
     int i;
 
     lp = rom->lgtp;
@@ -36,9 +36,9 @@ void bhInitLight()
 }
 
 // 100% matching! 
-void bhSetLightTab(NO_NAME_8* lt, int lno) 
+void bhSetLightTab(LGT_WORK* lt, int lno) 
 { 
-    NO_NAME_8* lp;
+    LGT_WORK* lp;
 
     lp = &rom->lgtp[lno];
 
@@ -121,7 +121,7 @@ void bhSetLightTab(NO_NAME_8* lt, int lno)
 // 99.90% matching 
 void bhSetEasyDirLight(float it) 
 {
-    NO_NAME_8* lp;
+    LGT_WORK* lp;
     float fl;
     
     lp = rom->lgtp;
