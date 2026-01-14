@@ -178,22 +178,30 @@ void njCalcPoints(float pMatrix[16], _anon0* pSrcPoints, _anon0* pDstPoints, int
 	// Line 339, Address: 0x2d6808, Func Offset: 0x88
 	// Line 346, Address: 0x2d6810, Func Offset: 0x90
 	// Func End, Address: 0x2d6818, Func Offset: 0x98
-}
-
-// 
-// Start address: 0x2d6820
-void njGetTranslation(float pMatrix[16], _anon0* pPoint)
-{
-	// Line 471, Address: 0x2d6820, Func Offset: 0
-	// Line 482, Address: 0x2d6834, Func Offset: 0x14
-	// Line 483, Address: 0x2d6838, Func Offset: 0x18
-	// Line 484, Address: 0x2d683c, Func Offset: 0x1c
-	// Line 485, Address: 0x2d6840, Func Offset: 0x20
-	// Line 486, Address: 0x2d6844, Func Offset: 0x24
-	// Line 487, Address: 0x2d6848, Func Offset: 0x28
-	// Line 492, Address: 0x2d684c, Func Offset: 0x2c
-	// Func End, Address: 0x2d6854, Func Offset: 0x34
 }*/
+
+// 100% matching! 
+void    njGetTranslation(NJS_MATRIX *m, NJS_POINT3 *p)
+{
+    if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile 
+    ("
+    .set noreorder
+        lw t0, 0x30(%0)
+        lw t1, 0x34(%0)
+        lw t2, 0x38(%0)
+        
+        sw t0, NJS_POINT3.x(%1)
+        sw t1, NJS_POINT3.y(%1)
+        sw t2, NJS_POINT3.z(%1)
+    .set reorder
+    " : : "r"(m), "r"(p) : 
+    );
+}
 
 // 
 // Start address: 0x2d6860
