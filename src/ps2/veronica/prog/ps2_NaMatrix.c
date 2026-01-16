@@ -960,32 +960,48 @@ void	njMirror(NJS_MATRIX *m,NJS_PLANE *pl)
 	scePrintf("njMirror - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d74d0
+// 100% matching!
 void	njCalcPoint(NJS_MATRIX *m, NJS_POINT3 *ps, NJS_POINT3 *pd)
 {
-	// Line 4173, Address: 0x2d74d0, Func Offset: 0
-	// Line 4226, Address: 0x2d74e4, Func Offset: 0x14
-	// Line 4227, Address: 0x2d74e8, Func Offset: 0x18
-	// Line 4228, Address: 0x2d74ec, Func Offset: 0x1c
-	// Line 4229, Address: 0x2d74f0, Func Offset: 0x20
-	// Line 4230, Address: 0x2d74f4, Func Offset: 0x24
-	// Line 4232, Address: 0x2d74f8, Func Offset: 0x28
-	// Line 4233, Address: 0x2d74fc, Func Offset: 0x2c
-	// Line 4234, Address: 0x2d7500, Func Offset: 0x30
-	// Line 4235, Address: 0x2d7504, Func Offset: 0x34
-	// Line 4237, Address: 0x2d7508, Func Offset: 0x38
-	// Line 4238, Address: 0x2d750c, Func Offset: 0x3c
-	// Line 4239, Address: 0x2d7510, Func Offset: 0x40
-	// Line 4240, Address: 0x2d7514, Func Offset: 0x44
-	// Line 4242, Address: 0x2d7518, Func Offset: 0x48
-	// Line 4243, Address: 0x2d751c, Func Offset: 0x4c
-	// Line 4244, Address: 0x2d7520, Func Offset: 0x50
-	// Line 4245, Address: 0x2d7524, Func Offset: 0x54
-	// Line 4246, Address: 0x2d7528, Func Offset: 0x58
-	// Line 4253, Address: 0x2d752c, Func Offset: 0x5c
-	// Func End, Address: 0x2d7534, Func Offset: 0x64
-	scePrintf("njCalcPoint - UNIMPLEMENTED!\n");
+    if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        ldl         t0, 7(%1)
+        ldr         t0, 0(%1)
+        
+        lw          t1, 8(%1)
+        
+        pcpyld      t0, t1, t0
+    
+        qmtc2       t0, vf4
+    
+        lqc2        vf5, 0(%0)
+        lqc2        vf6, 0x10(%0)
+        lqc2        vf7, 0x20(%0)
+        lqc2        vf8, 0x30(%0)
+
+        vmulax.xyz  ACC,  vf5, vf4
+        
+        vmadday.xyz ACC,  vf6, vf4
+        vmaddaz.xyz ACC,  vf7, vf4
+        vmaddw.xyz  vf18, vf8, vf0
+
+        qmfc2       t0, vf18
+    
+        pcpyud      t1, t0, t0
+    
+        sdl         t0, 7(%2)
+        sdr         t0, 0(%2)
+        
+        sw          t1, 8(%2)
+    .set reorder
+    " : : "r"(m), "r"(ps), "r"(pd) : 
+    );
 }
 
 // 100% matching!
