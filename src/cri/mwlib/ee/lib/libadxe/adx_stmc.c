@@ -4,8 +4,8 @@
 
 #include <string.h>
 
-Sint32 adxstmf_rtim_ofst = 0; /* unused */
-Sint32 adxstmf_rtim_num = 8; /* unused */
+Sint32 adxstmf_rtim_ofst = 0; 
+Sint32 adxstmf_rtim_num = 8; 
 Sint32 adxstmf_nrml_ofst = 8;
 Sint32 adxstmf_nrml_num = 32;
 Sint32 adxstmf_num_rtry = -1;
@@ -493,9 +493,9 @@ ADXSTMF ADXSTMF_CreateCvfsRt(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
 
     stmf = NULL;
 
-    for (no = 0; no < adxstmf_nrml_num; no++) 
+    for (no = 0; no < adxstmf_rtim_num; no++) 
     {
-        stmf = &adxstmf_obj[adxstmf_nrml_ofst + no];
+        stmf = &adxstmf_obj[adxstmf_rtim_ofst + no];
 
         if (stmf->used == FALSE) 
         {
@@ -503,7 +503,7 @@ ADXSTMF ADXSTMF_CreateCvfsRt(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
         }
     }
 
-    if (no == adxstmf_nrml_num) 
+    if (no == adxstmf_rtim_num) 
     {
         return NULL;
     }
@@ -693,5 +693,5 @@ void ADXT_SetupNrmlNumStm(Sint32 num)
 // 100% matching!
 void ADXT_SetupRtimeNumStm(Sint32 num)
 {
-    adxstmf_nrml_num = num;
+    adxstmf_rtim_num = num;
 }
