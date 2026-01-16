@@ -590,7 +590,7 @@ void bhControlLight()
 // 99.72% matching 
 void bhSetLight()
 {
-    NO_NAME_9* lptb;
+    LPTB* lptb;
     NJS_VECTOR vec;
     int i;
 

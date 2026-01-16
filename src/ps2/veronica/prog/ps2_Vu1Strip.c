@@ -291,7 +291,7 @@ int _Clip_ViewVolume(float* clip, float local_clip[4], float* vertex)
 }
 
 // 100% matching!
-void PushTriangleNodeArray(SCISSOR* scissor)
+void PushTriangleNodeArray(SCISSOR* scissor, NODE* nod)
 {
     asm volatile 
     ("
