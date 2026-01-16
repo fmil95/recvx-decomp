@@ -425,15 +425,15 @@ typedef struct LGT_WORK
 	NJS_LIGHT_PTR* light; // offset 0xDC, size 0x4
 } LGT_WORK;
 
-typedef struct NO_NAME_9
+typedef struct LPTB
 {
-	NJS_POINT3 ps;
-	float nr;
-	float fr;
-	float cr;
-	float cg;
-	float cb;
-} NO_NAME_9;
+	NJS_POINT3 ps; // offset 0x0, size 0xC
+    float nr;      // offset 0xC, size 0x4
+    float fr;      // offset 0x10, size 0x4
+    float cr;      // offset 0x14, size 0x4
+    float cg;      // offset 0x18, size 0x4
+    float cb;      // offset 0x1C, size 0x4
+} LPTB;
 
 typedef struct NO_NAME_10
 {
@@ -737,7 +737,7 @@ typedef struct SYS_WORK
     float lg_g; // offset 0x28928, size 0x4
     float lg_b; // offset 0x2892C, size 0x4
     int lg_pnt; // offset 0x28930, size 0x4
-	NO_NAME_9 lg_ptb[4]; // offset 0x28934, size 0x80
+	LPTB lg_ptb[4]; // offset 0x28934, size 0x80
 	int mes_idx; // offset 0x289B4, size 0x4
     unsigned int * mes_dp; // offset 0x289B8, size 0x4
     int mes_ct; // offset 0x289BC, size 0x4

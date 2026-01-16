@@ -15,7 +15,7 @@ void InitNodeArraySet(SCISSOR* scissor);
 static void InitScissorPlane(SCISSOR_PLANE* sp);
 void _Init_ScissorSystem();
 int _Clip_ViewVolume(float* clip, float local_clip[4], float* vertex);
-void PushTriangleNodeArray(SCISSOR* scissor);
+void PushTriangleNodeArray(SCISSOR* scissor, NODE* nod);
 void ResetNodeArraySet(SCISSOR* scissor);
 void ScissorTriangle(SCISSOR* scissor, SCISSOR_PLANE* plane_set);
 int _Check_DisplayAreaPoint(NJS_VECTOR* vec);
