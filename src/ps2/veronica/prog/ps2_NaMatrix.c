@@ -953,24 +953,33 @@ void	njCalcPoint(NJS_MATRIX *m, NJS_POINT3 *ps, NJS_POINT3 *pd)
 	scePrintf("njCalcPoint - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d7540
+// 100% matching!
 void njCalcPoint4(NJS_MATRIX* pMatrix, NJS_POINT4* pSrcPoint, NJS_POINT4* pDstPoint)
 {
-	// Line 4261, Address: 0x2d7540, Func Offset: 0
-	// Line 4266, Address: 0x2d7554, Func Offset: 0x14
-	// Line 4267, Address: 0x2d7558, Func Offset: 0x18
-	// Line 4268, Address: 0x2d755c, Func Offset: 0x1c
-	// Line 4269, Address: 0x2d7560, Func Offset: 0x20
-	// Line 4270, Address: 0x2d7564, Func Offset: 0x24
-	// Line 4271, Address: 0x2d7568, Func Offset: 0x28
-	// Line 4272, Address: 0x2d756c, Func Offset: 0x2c
-	// Line 4273, Address: 0x2d7570, Func Offset: 0x30
-	// Line 4274, Address: 0x2d7574, Func Offset: 0x34
-	// Line 4275, Address: 0x2d7578, Func Offset: 0x38
-	// Line 4280, Address: 0x2d757c, Func Offset: 0x3c
-	// Func End, Address: 0x2d7584, Func Offset: 0x44
-	scePrintf("njCalcPoint4 - UNIMPLEMENTED!\n");
+    if (pMatrix == NULL)
+    {
+        pMatrix = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        lqc2        vf4, 0(%1)
+        lqc2        vf5, 0(%0)
+        lqc2        vf6, 0x10(%0)
+        lqc2        vf7, 0x20(%0)
+        lqc2        vf8, 0x30(%0)
+
+        vmulax.xyz  ACC,  vf5, vf4x
+        
+        vmadday.xyz ACC,  vf6, vf4y
+        vmaddaz.xyz ACC,  vf7, vf4z
+        vmaddw.xyz  vf18, vf8, vf0w
+    
+        sqc2        vf18, 0(%2)
+    .set reorder
+    " : : "r"(pMatrix), "r"(pSrcPoint), "r"(pDstPoint) : 
+    );
 }
 
 /*// 
