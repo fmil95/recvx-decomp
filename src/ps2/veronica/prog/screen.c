@@ -737,79 +737,60 @@ void bhDrawThermometer()
 	scePrintf("bhDrawThermometer - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x26d520
+// 100% matching!
 void bhDrawThermoNumber(float px, float py, int num, unsigned int argb)
 {
-	_anon14 uv[4];
-	_anon14 col[4];
-	_anon25 p[4];
-	_anon30 p2c;
-	short uv_tab[8][10];
-	// Line 755, Address: 0x26d520, Func Offset: 0
-	// Line 773, Address: 0x26d524, Func Offset: 0x4
-	// Line 755, Address: 0x26d528, Func Offset: 0x8
-	// Line 773, Address: 0x26d52c, Func Offset: 0xc
-	// Line 774, Address: 0x26d530, Func Offset: 0x10
-	// Line 775, Address: 0x26d538, Func Offset: 0x18
-	// Line 776, Address: 0x26d540, Func Offset: 0x20
-	// Line 781, Address: 0x26d544, Func Offset: 0x24
-	// Line 777, Address: 0x26d548, Func Offset: 0x28
-	// Line 776, Address: 0x26d54c, Func Offset: 0x2c
-	// Line 778, Address: 0x26d550, Func Offset: 0x30
-	// Line 779, Address: 0x26d554, Func Offset: 0x34
-	// Line 780, Address: 0x26d558, Func Offset: 0x38
-	// Line 781, Address: 0x26d55c, Func Offset: 0x3c
-	// Line 797, Address: 0x26d56c, Func Offset: 0x4c
-	// Line 782, Address: 0x26d570, Func Offset: 0x50
-	// Line 781, Address: 0x26d57c, Func Offset: 0x5c
-	// Line 782, Address: 0x26d580, Func Offset: 0x60
-	// Line 783, Address: 0x26d584, Func Offset: 0x64
-	// Line 782, Address: 0x26d590, Func Offset: 0x70
-	// Line 783, Address: 0x26d594, Func Offset: 0x74
-	// Line 784, Address: 0x26d598, Func Offset: 0x78
-	// Line 783, Address: 0x26d5a0, Func Offset: 0x80
-	// Line 784, Address: 0x26d5a4, Func Offset: 0x84
-	// Line 783, Address: 0x26d5a8, Func Offset: 0x88
-	// Line 784, Address: 0x26d5ac, Func Offset: 0x8c
-	// Line 785, Address: 0x26d5b0, Func Offset: 0x90
-	// Line 784, Address: 0x26d5bc, Func Offset: 0x9c
-	// Line 785, Address: 0x26d5c0, Func Offset: 0xa0
-	// Line 786, Address: 0x26d5c4, Func Offset: 0xa4
-	// Line 785, Address: 0x26d5cc, Func Offset: 0xac
-	// Line 786, Address: 0x26d5d0, Func Offset: 0xb0
-	// Line 785, Address: 0x26d5d4, Func Offset: 0xb4
-	// Line 786, Address: 0x26d5d8, Func Offset: 0xb8
-	// Line 787, Address: 0x26d5dc, Func Offset: 0xbc
-	// Line 786, Address: 0x26d5e4, Func Offset: 0xc4
-	// Line 787, Address: 0x26d5e8, Func Offset: 0xc8
-	// Line 786, Address: 0x26d5ec, Func Offset: 0xcc
-	// Line 787, Address: 0x26d5f0, Func Offset: 0xd0
-	// Line 788, Address: 0x26d5f4, Func Offset: 0xd4
-	// Line 787, Address: 0x26d600, Func Offset: 0xe0
-	// Line 788, Address: 0x26d604, Func Offset: 0xe4
-	// Line 794, Address: 0x26d608, Func Offset: 0xe8
-	// Line 791, Address: 0x26d60c, Func Offset: 0xec
-	// Line 789, Address: 0x26d614, Func Offset: 0xf4
-	// Line 797, Address: 0x26d618, Func Offset: 0xf8
-	// Line 788, Address: 0x26d61c, Func Offset: 0xfc
-	// Line 791, Address: 0x26d620, Func Offset: 0x100
-	// Line 790, Address: 0x26d624, Func Offset: 0x104
-	// Line 788, Address: 0x26d628, Func Offset: 0x108
-	// Line 797, Address: 0x26d62c, Func Offset: 0x10c
-	// Line 791, Address: 0x26d630, Func Offset: 0x110
-	// Line 792, Address: 0x26d634, Func Offset: 0x114
-	// Line 793, Address: 0x26d638, Func Offset: 0x118
-	// Line 794, Address: 0x26d63c, Func Offset: 0x11c
-	// Line 797, Address: 0x26d640, Func Offset: 0x120
-	// Line 794, Address: 0x26d644, Func Offset: 0x124
-	// Line 795, Address: 0x26d64c, Func Offset: 0x12c
-	// Line 797, Address: 0x26d650, Func Offset: 0x130
-	// Line 796, Address: 0x26d654, Func Offset: 0x134
-	// Line 797, Address: 0x26d658, Func Offset: 0x138
-	// Line 798, Address: 0x26d664, Func Offset: 0x144
-	// Func End, Address: 0x26d670, Func Offset: 0x150
-}*/
+    NJS_POINT2COL p2c;
+    NJS_POINT2 p[4];
+    NJS_COLOR col[4]; 
+    NJS_COLOR uv[4];
+    static short uv_tab[10][8] = { { 0  , 160, 32 , 160, 32 , 208, 0  , 208 },
+                                   { 32 , 160, 64 , 160, 64 , 208, 32 , 208 },
+                                   { 64 , 160, 96 , 160, 96 , 208, 64 , 208 },
+                                   { 96 , 160, 128, 160, 128, 208, 96 , 208 },
+                                   { 128, 160, 160, 160, 160, 208, 128, 208 },
+                                   { 0  , 208, 32 , 208, 32 , 256, 0  , 256 },
+                                   { 32 , 208, 64 , 208, 64 , 256, 32 , 256 },
+                                   { 64 , 208, 96 , 208, 96 , 256, 64 , 256 },
+                                   { 96 , 208, 128, 208, 128, 256, 96 , 256 },
+                                   { 128, 208, 160, 208, 160, 256, 128, 256 } };
+
+    p2c.p = p;
+    
+    p2c.col = col;
+    
+    p2c.tex = uv;
+    
+    p2c.num = 1;
+
+    col[3].color = col[2].color = col[1].color = col[0].color = argb;
+    
+    uv[0].tex.u = uv_tab[num][0];
+    uv[0].tex.v = uv_tab[num][1];
+
+    uv[1].tex.u = uv_tab[num][2] - 1;
+    uv[1].tex.v = uv_tab[num][3];
+
+    uv[2].tex.u = uv_tab[num][4] - 1;
+    uv[2].tex.v = uv_tab[num][5] - 1;
+
+    uv[3].tex.u = uv_tab[num][6];
+    uv[3].tex.v = uv_tab[num][7] - 1;
+    
+    p[0].x = px;
+    p[0].y = py;
+    
+    p[1].x = 32.0f + px;
+    p[1].y = py;
+    
+    p[2].x = 32.0f + px;
+    p[2].y = 48.0f + py;
+    
+    p[3].x = px;
+    p[3].y = 48.0f + py;
+    
+    njDrawPolygon2D(&p2c, 4, -0.94f, 0x80000060);
+}
 
 // 
 // Start address: 0x26d670
