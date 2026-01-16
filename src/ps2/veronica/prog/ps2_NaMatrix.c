@@ -241,29 +241,49 @@ void    njClearMatrix()
     njSetMatrix(NULL, &NaViwViewMatrix);
 }
 
-// 
-// Start address: 0x2d68f0
+// 100% matching!
 Bool	njPushMatrix(NJS_MATRIX *m)
 {
-	float* fpDst;
-	float* fpSrc;
-	// Line 739, Address: 0x2d68f0, Func Offset: 0
-	// Line 740, Address: 0x2d6914, Func Offset: 0x24
-	// Line 742, Address: 0x2d691c, Func Offset: 0x2c
-	// Line 744, Address: 0x2d6930, Func Offset: 0x40
-	// Line 747, Address: 0x2d6944, Func Offset: 0x54
-	// Line 777, Address: 0x2d6950, Func Offset: 0x60
-	// Line 778, Address: 0x2d6954, Func Offset: 0x64
-	// Line 779, Address: 0x2d6958, Func Offset: 0x68
-	// Line 780, Address: 0x2d695c, Func Offset: 0x6c
-	// Line 781, Address: 0x2d6960, Func Offset: 0x70
-	// Line 782, Address: 0x2d6964, Func Offset: 0x74
-	// Line 783, Address: 0x2d6968, Func Offset: 0x78
-	// Line 784, Address: 0x2d696c, Func Offset: 0x7c
-	// Line 791, Address: 0x2d6970, Func Offset: 0x80
-	// Line 792, Address: 0x2d6974, Func Offset: 0x84
-	// Func End, Address: 0x2d697c, Func Offset: 0x8c
-	scePrintf("njPushMatrix - UNIMPLEMENTED!\n");
+	NJS_MATRIX* fpSrc;
+    NJS_MATRIX* fpDst;
+
+    if (lNaMatMatrixStuckMax <= lNaMatMatrixStuckCnt) 
+    {
+        return FALSE;
+    }
+    
+    lNaMatMatrixStuckCnt++;
+
+    if (m == NULL) 
+    {
+        fpSrc = pNaMatMatrixStuckPtr;
+    }
+    else 
+    {
+        fpSrc = m;
+    }
+
+    pNaMatMatrixStuckPtr++;
+    
+    fpDst = pNaMatMatrixStuckPtr;
+    
+    asm volatile
+    ("
+    .set noreorder
+        lqc2 vf4, 0(%0) 
+        lqc2 vf5, 0x10(%0) 
+        lqc2 vf6, 0x20(%0) 
+        lqc2 vf7, 0x30(%0) 
+    
+        sqc2 vf4, 0(%1) 
+        sqc2 vf5, 0x10(%1) 
+        sqc2 vf6, 0x20(%1) 
+        sqc2 vf7, 0x30(%1) 
+    .set reorder
+    " : : "r"(fpSrc), "r"(fpDst) : 
+    );
+
+    return TRUE;
 }
 
 // 100% matching!
