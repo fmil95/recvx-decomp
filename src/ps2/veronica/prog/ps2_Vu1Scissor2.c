@@ -1,4 +1,5 @@
 #include "ps2_Vu1Scissor2.h"
+#include "ps2_Vu1Strip.h"
 
 extern void VU0_CLIP_VIEW_VOLUME() __attribute__((section(".vutext")));
 extern void VU0_CLIP_VIEW_VOLUME_ALL() __attribute__((section(".vutext")));
@@ -7,39 +8,54 @@ extern void VU0_LOAD_SCISSOR_WORK() __attribute__((section(".vutext")));
 extern void VU0_LOAD_SCISSOR_WORKi() __attribute__((section(".vutext")));
 extern void VU0_LOAD_SCISSOR_WORKb() __attribute__((section(".vutext")));
 
-// 
-// Start address: 0x2d3b00
+// 98.80% matching
 void DrawScissorPolygonOpaque2(int count, unsigned long ulType)
 {
-	VU1_PRIM_BUF* pPrim;
-	// Line 37, Address: 0x2d3b00, Func Offset: 0
-	// Line 38, Address: 0x2d3b0c, Func Offset: 0xc
-	// Line 78, Address: 0x2d3b14, Func Offset: 0x14
-	// Line 37, Address: 0x2d3b18, Func Offset: 0x18
-	// Line 79, Address: 0x2d3b20, Func Offset: 0x20
-	// Line 80, Address: 0x2d3b24, Func Offset: 0x24
-	// Line 81, Address: 0x2d3b28, Func Offset: 0x28
-	// Line 83, Address: 0x2d3b2c, Func Offset: 0x2c
-	// Line 84, Address: 0x2d3b34, Func Offset: 0x34
-	// Line 85, Address: 0x2d3b38, Func Offset: 0x38
-	// Line 87, Address: 0x2d3b3c, Func Offset: 0x3c
-	// Line 88, Address: 0x2d3b40, Func Offset: 0x40
-	// Line 89, Address: 0x2d3b44, Func Offset: 0x44
-	// Line 90, Address: 0x2d3b48, Func Offset: 0x48
-	// Line 91, Address: 0x2d3b4c, Func Offset: 0x4c
-	// Line 92, Address: 0x2d3b50, Func Offset: 0x50
-	// Line 93, Address: 0x2d3b54, Func Offset: 0x54
-	// Line 94, Address: 0x2d3b58, Func Offset: 0x58
-	// Line 95, Address: 0x2d3b5c, Func Offset: 0x5c
-	// Line 96, Address: 0x2d3b60, Func Offset: 0x60
-	// Line 97, Address: 0x2d3b64, Func Offset: 0x64
-	// Line 99, Address: 0x2d3b68, Func Offset: 0x68
-	// Line 100, Address: 0x2d3b70, Func Offset: 0x70
-	// Line 103, Address: 0x2d3b74, Func Offset: 0x74
-	// Line 104, Address: 0x2d3ba4, Func Offset: 0xa4
-	// Line 105, Address: 0x2d3bb8, Func Offset: 0xb8
-	// Func End, Address: 0x2d3bc8, Func Offset: 0xc8
-	scePrintf("DrawScissorPolygonOpaque2 - UNIMPLEMENTED!\n");
+    VU1_PRIM_BUF* pPrim; 
+
+    asm volatile
+    ("
+        lw        t0, 0(%1)
+        
+        addi      t1, zero, 80
+    
+        ctc2      t1, vi3
+        
+        l_002D3B2C:
+        vcallms   VU0_LOAD_SCISSOR_WORKi
+    
+        vdiv      Q, vf0w, vf9z
+        
+        vmulx.w   vf10, vf0, vf0x
+        vmul.xy   vf9,  vf9, vf17
+        
+        vaddw.z   vf10, vf0, vf0w
+    
+        addi      t0, t0, -1
+        addi      %0, %0, sizeof(VU1_PRIM_BUF)
+        
+        vwaitq
+        
+        vmulq.z   vf4,  vf23, Q
+        vmulq.xyz vf10, vf10, Q
+        vmulz.xy  vf9,  vf9,  vf4z
+        
+        vadd.xy   vf9, vf9, vf16
+        
+        sqc2      vf10, -0x30(%0)
+        sqc2      vf11, -0x20(%0)
+        sqc2      vf9,  -0x10(%0)
+
+        bnez      t0, l_002D3B2C
+        nop
+    " : : "r"(vu1ScessorBuf), "r"(&count) : "$t0", "memory"
+    );
+
+    ulType = (ulType & ~0x2000000000000) | 0x6800000000000;
+    
+    pPrim = vu1ScessorBuf;
+    
+    Ps2AddPrim3DEx(ulType, pPrim, count);
 }
 
 // 100% matching!

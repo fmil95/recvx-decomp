@@ -42,5 +42,6 @@ void DrawScissorPolygonTrans1P(SCISSOR* scissor, unsigned long ulType);
 void vu1DrawTriangleStripTransDouble1P(unsigned long ulType, VU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode);
 
 extern float fVu1Projection;
+extern VU1_PRIM_BUF vu1ScessorBuf[16];
 
 #endif
