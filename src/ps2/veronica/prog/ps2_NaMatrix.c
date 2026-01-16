@@ -266,19 +266,23 @@ Bool	njPushMatrix(NJS_MATRIX *m)
 	scePrintf("njPushMatrix - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d6980
+// 100% matching!
 Bool	njPopMatrix(Uint32 n)
 {
-	int lNumber;
-	// Line 816, Address: 0x2d6980, Func Offset: 0
-	// Line 818, Address: 0x2d699c, Func Offset: 0x1c
-	// Line 819, Address: 0x2d69a4, Func Offset: 0x24
-	// Line 821, Address: 0x2d69b0, Func Offset: 0x30
-	// Line 819, Address: 0x2d69b4, Func Offset: 0x34
-	// Line 822, Address: 0x2d69c0, Func Offset: 0x40
-	// Func End, Address: 0x2d69c8, Func Offset: 0x48
-	scePrintf("njPopMatrix - UNIMPLEMENTED!\n");
+    int lNumber;
+
+    lNumber = lNaMatMatrixStuckCnt - n;
+    
+    if (lNumber < 0) 
+    {
+        return FALSE;
+    }
+    
+    lNaMatMatrixStuckCnt = lNumber;
+    
+    pNaMatMatrixStuckPtr -= n;
+    
+    return TRUE;
 }
 
 // 100% matching!
