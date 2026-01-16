@@ -1940,73 +1940,80 @@ void DrawScissorPolygonTrans1P(SCISSOR* scissor, unsigned long ulType)
     Ps2AddPrim3DEx1P(ulType, pP, in->nodeNum);
 }
 
-// 
-// Start address: 0x2d5ca0
+// 100% matching!
 void vu1DrawTriangleStripTransDouble1P(unsigned long ulType, VU1_STRIP_BUF* pS, unsigned short usStripMax, unsigned short usMode)
-{
-	int flg;
-	unsigned int clipflag;
-	void(*pFunc)(VU1_STRIP_BUF*, VU1_PRIM_BUF*);
-	unsigned short usStripCnt;
-	float sam;
-	float fIz;
-	VU1_PRIM_BUF* pP;
-	// Line 4792, Address: 0x2d5ca0, Func Offset: 0
-	// Line 4802, Address: 0x2d5cd0, Func Offset: 0x30
-	// Line 4797, Address: 0x2d5ce4, Func Offset: 0x44
-	// Line 4802, Address: 0x2d5ce8, Func Offset: 0x48
-	// Line 4807, Address: 0x2d5cf0, Func Offset: 0x50
-	// Line 4806, Address: 0x2d5cfc, Func Offset: 0x5c
-	// Line 4811, Address: 0x2d5d04, Func Offset: 0x64
-	// Line 4807, Address: 0x2d5d08, Func Offset: 0x68
-	// Line 4811, Address: 0x2d5d18, Func Offset: 0x78
-	// Line 4812, Address: 0x2d5d2c, Func Offset: 0x8c
-	// Line 4813, Address: 0x2d5d30, Func Offset: 0x90
-	// Line 4812, Address: 0x2d5d38, Func Offset: 0x98
-	// Line 4813, Address: 0x2d5d40, Func Offset: 0xa0
-	// Line 4814, Address: 0x2d5d50, Func Offset: 0xb0
-	// Line 4823, Address: 0x2d5d94, Func Offset: 0xf4
-	// Line 4825, Address: 0x2d5da0, Func Offset: 0x100
-	// Line 4826, Address: 0x2d5dac, Func Offset: 0x10c
-	// Line 4827, Address: 0x2d5db0, Func Offset: 0x110
-	// Line 4836, Address: 0x2d5db4, Func Offset: 0x114
-	// Line 4831, Address: 0x2d5dc0, Func Offset: 0x120
-	// Line 4827, Address: 0x2d5dc4, Func Offset: 0x124
-	// Line 4836, Address: 0x2d5dc8, Func Offset: 0x128
-	// Line 4827, Address: 0x2d5dd0, Func Offset: 0x130
-	// Line 4828, Address: 0x2d5dd4, Func Offset: 0x134
-	// Line 4829, Address: 0x2d5de0, Func Offset: 0x140
-	// Line 4831, Address: 0x2d5de4, Func Offset: 0x144
-	// Line 4832, Address: 0x2d5dec, Func Offset: 0x14c
-	// Line 4831, Address: 0x2d5df0, Func Offset: 0x150
-	// Line 4832, Address: 0x2d5df8, Func Offset: 0x158
-	// Line 4833, Address: 0x2d5e08, Func Offset: 0x168
-	// Line 4834, Address: 0x2d5e10, Func Offset: 0x170
-	// Line 4836, Address: 0x2d5e18, Func Offset: 0x178
-	// Line 4837, Address: 0x2d5e24, Func Offset: 0x184
-	// Line 4838, Address: 0x2d5e30, Func Offset: 0x190
-	// Line 4837, Address: 0x2d5e34, Func Offset: 0x194
-	// Line 4838, Address: 0x2d5e38, Func Offset: 0x198
-	// Line 4839, Address: 0x2d5e40, Func Offset: 0x1a0
-	// Line 4838, Address: 0x2d5e44, Func Offset: 0x1a4
-	// Line 4839, Address: 0x2d5e48, Func Offset: 0x1a8
-	// Line 4840, Address: 0x2d5e50, Func Offset: 0x1b0
-	// Line 4839, Address: 0x2d5e58, Func Offset: 0x1b8
-	// Line 4840, Address: 0x2d5e5c, Func Offset: 0x1bc
-	// Line 4841, Address: 0x2d5e60, Func Offset: 0x1c0
-	// Line 4843, Address: 0x2d5e78, Func Offset: 0x1d8
-	// Line 4844, Address: 0x2d5ea0, Func Offset: 0x200
-	// Line 4845, Address: 0x2d5ea8, Func Offset: 0x208
-	// Line 4846, Address: 0x2d5ebc, Func Offset: 0x21c
-	// Line 4847, Address: 0x2d5ed0, Func Offset: 0x230
-	// Line 4848, Address: 0x2d5ee0, Func Offset: 0x240
-	// Line 4850, Address: 0x2d5eec, Func Offset: 0x24c
-	// Line 4854, Address: 0x2d5ef0, Func Offset: 0x250
-	// Line 4852, Address: 0x2d5efc, Func Offset: 0x25c
-	// Line 4853, Address: 0x2d5f00, Func Offset: 0x260
-	// Line 4854, Address: 0x2d5f04, Func Offset: 0x264
-	// Line 4856, Address: 0x2d5f18, Func Offset: 0x278
-	// Line 4857, Address: 0x2d5f30, Func Offset: 0x290
-	// Func End, Address: 0x2d5f60, Func Offset: 0x2c0
-    scePrintf("vu1DrawTriangleStripTransDouble1P - UNIMPLEMENTED!\n");
-}
+{ 
+    VU1_PRIM_BUF* pP;                                      
+    float fIz;                                    
+    float sam;                                    
+    unsigned short usStripCnt;                                   
+    void (*pFunc)(VU1_STRIP_BUF*, VU1_PRIM_BUF*); 
+    unsigned int clipflag;                                                           
+    int flg;                                                             
+
+    clipflag = 0; 
+    flg = 0;
+
+    InitNodeArraySet(&scissorflip); 
+    
+    pP = (VU1_PRIM_BUF*)Ps2_DRAW_TMP; 
+
+    sam = 0;
+    
+    pFunc = pColorCalcFuncTbl[usMode & 0xF]; 
+    
+    for (usStripCnt = 0; usStripCnt < usStripMax; usStripCnt++)
+    {
+        sam += pS[usStripCnt].fVz;
+    }
+    
+    Ps2AddPrimPrio = sam / usStripMax;
+    
+    for (usStripCnt = 0; usStripCnt < usStripMax; usStripCnt++, pS++, pP++) 
+    {
+        pFunc(pS, pP);
+
+        fIz = pS->fIz;
+       
+        pP->fS = pS->fU * fIz;
+        pP->fT = pS->fV * fIz;
+        pP->fQ = fIz;
+        
+        pP->fX = fVu1OffsetX + pS->fSx;
+        pP->fY = fVu1OffsetY + pS->fSy;
+        pP->fZ = pS->fVz;
+        
+        pP->fF = pS->fFog;
+
+        pP->ulKick = 0;
+
+        clipflag |= _Clip_ViewVolume(node.clipV, ClipMatrix2[0], &pS->fVx) & 0x3F;
+    
+        flg |= _Check_DisplayAreaPoint((NJS_VECTOR*)&pP->fX); 
+
+        *(u_long128*)&node.texUV = *(u_long128*)&pS->fU;
+        *(u_long128*)&node.vertex = *(u_long128*)&pS->fVx;
+        *(u_long128*)&node.color = *(u_long128*)&pP->fR;
+        
+        PushTriangleNodeArray(&scissorflip, &node);
+
+        if ((((flg & 0x7)) && ((clipflag & 0x3FFFF))) && (usStripCnt >= 2)) 
+        { 
+            pP->ulKick = 32768;
+            
+            ScissorTriangle(&scissorflip, &planeset); 
+            
+            if (scissorflip.in->nodeNum != 0) 
+            { 
+                DrawScissorPolygonTrans1P(&scissorflip, ulType); 
+       
+                ResetNodeArraySet(&scissorflip); 
+            } 
+        }
+        
+        clipflag <<= 6; 
+        flg <<= 1; 
+    } 
+    
+    Ps2AddPrim3DEx1P(ulType, Ps2_DRAW_TMP, usStripMax); 
+} 

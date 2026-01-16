@@ -24,7 +24,7 @@ void* Ps2_PP;
 PS2_OT Ps2_ot_list[8192];
 unsigned int Ps2_now_bank;
 PS2_OT* Ps2_OT[4096][2] __attribute__((aligned(64)));
-/*float Ps2AddPrimPrio;*/
+float Ps2AddPrimPrio;
 PS2_TP_TAG Ps2_tp_tag[64];
 PS2_TP_CACHE ps2_tp_cache[64];
 unsigned int Ps2_tex_cache_num;

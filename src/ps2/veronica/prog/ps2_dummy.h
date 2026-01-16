@@ -47,6 +47,7 @@ void Ps2Vu1ProgSend(unsigned int prog_no);
 void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num);
 void PS2_Render_Tex_Sub();
 
+extern float Ps2AddPrimPrio;
 extern unsigned char Ps2_PBUFF[1835008];
 extern unsigned int Ps2_use_pt_flag;
 extern sceGsDBuffDc Db;
