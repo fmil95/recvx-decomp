@@ -2,7 +2,7 @@
 #include "adx_crs.h"
 #include "adx_errs.h"
 
-#include <string.h>
+//#include <string.h>
 
 Sint32 adxstmf_rtim_ofst = 0; 
 Sint32 adxstmf_rtim_num = 8; 

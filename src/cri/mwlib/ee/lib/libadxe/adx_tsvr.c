@@ -9,7 +9,7 @@
 #include "adx_stmc.h"
 #include "adx_tlk.h"
 
-#include <string.h>
+//#include <string.h>
 
 Sint32 adxt_dbg_nch = 0;
 Sint32 adxt_dbg_ndt = 0;

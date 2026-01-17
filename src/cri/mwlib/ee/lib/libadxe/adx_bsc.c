@@ -7,7 +7,7 @@
 #include "adx_dcd3.h"
 #include "adx_xpnd.h"
 
-#include <string.h>
+//#include <string.h>
 
 ADX_BASIC adxb_obj[8] = { 0 };
 

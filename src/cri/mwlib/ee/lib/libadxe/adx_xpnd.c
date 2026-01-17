@@ -2,7 +2,7 @@
 #include "adx_dcd.h"
 #include "adx_dcd3.h"
 
-#include <string.h>
+//#include <string.h>
 
 Sint32 adxpd_internal_error = 0;
 ADX_XPDOBJ adxpd_obj[8] = { 0 };

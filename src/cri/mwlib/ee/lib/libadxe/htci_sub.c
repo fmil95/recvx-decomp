@@ -2,7 +2,7 @@
 #include "htci.h"
 
 #include <stdio.h>
-#include <string.h>
+//#include <string.h>
 
 Sint32 htg_found = FALSE;
 static HTCI_FLIST_TBL htg_flist_tbl = { 0 };

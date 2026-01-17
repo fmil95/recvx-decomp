@@ -1,6 +1,6 @@
 #include "adx_fini.h"
 
-#include <string.h>
+//#include <string.h>
 
 char* volatile adxf_build = "\nADXF Ver 6.07 Build:Mar 13 2001 11:41:26\n";
 Sint32 adxf_init_cnt = 0;

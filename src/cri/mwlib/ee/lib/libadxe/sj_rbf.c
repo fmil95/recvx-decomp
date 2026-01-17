@@ -1,6 +1,6 @@
 #include "sj_rbf.h"
 
-#include <string.h>
+//#include <string.h>
 
 char* volatile sj_build = "\nSJ Ver.6.00 Build:Jan 26 2001 09:59:32\n";
 static const UUID sjrbf_uuid = { 0x3B9A9E81, 0x0DBB, 0x11D2, { 0xA6, 0xBF, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00 } }; 

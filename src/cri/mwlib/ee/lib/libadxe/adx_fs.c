@@ -5,7 +5,7 @@
 #include "adx_fini.h"
 #include "adx_stmc.h"
 
-#include <string.h>
+//#include <string.h>
 
 Uint32 adxf_tcnt[10] = { 0 };
 Uint32 adxf_chkp_tcnt[10] = { 0 };

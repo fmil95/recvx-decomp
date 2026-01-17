@@ -1,6 +1,6 @@
 #include "cri_cvfs.h"
 
-#include <string.h>
+//#include <string.h>
 
 // ERROR: this file should be compiled with -G0, but doing so makes the emulator halt
 

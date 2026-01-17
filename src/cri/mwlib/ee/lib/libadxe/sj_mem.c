@@ -1,6 +1,6 @@
 #include "sj_mem.h"
 
-#include <string.h>
+//#include <string.h>
 
 static const UUID sjmem_uuid = { 0xDD9EEE41, 0x1679, 0x11D2, { 0x93, 0x6C, 0x00, 0x60, 0x08, 0x94, 0x48, 0xBC } };
 SJ_IF sjmem_vtbl = { NULL, NULL, NULL, (void*)SJMEM_Destroy, (void*)SJMEM_GetUuid, (void*)SJMEM_Reset, (void*)SJMEM_GetChunk,(void*)SJMEM_UngetChunk, (void*)SJMEM_PutChunk, (void*)SJMEM_GetNumData, (void*)SJMEM_IsGetChunk, (void*)SJMEM_EntryErrFunc };
