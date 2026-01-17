@@ -5,7 +5,7 @@
 #include "sdfunc.h"
 #include "main.h"
 
-#include <string.h>
+//#include <string.h>
 
 short MIDI_HD_CHECK[4];
 short SE_HD_CHECK[5];

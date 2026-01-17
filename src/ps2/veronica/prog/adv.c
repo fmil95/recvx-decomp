@@ -18,7 +18,7 @@
 #include "vibman.h"
 #include "main.h"
 
-#include <string.h>
+//#include <string.h>
 
 SYSLOAD_SCREEN SysLoad;
 SYSSAVE_SCREEN SysSave;

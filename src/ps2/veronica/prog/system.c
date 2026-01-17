@@ -36,7 +36,7 @@
 #include "sync.h"
 #include "main.h"
 
-#include <string.h>
+//#include <string.h>
 
 static unsigned char FileWait;
 static unsigned char VibWait;

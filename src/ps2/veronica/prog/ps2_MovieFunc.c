@@ -8,7 +8,7 @@
 #include "ps2_sg_sd.h"
 #include "main.h"
 
-#include <string.h>
+//#include <string.h>
 
 VoTag* voBufTag __attribute__((aligned(64)));
 VoData* voBufData;
