@@ -1,7 +1,7 @@
 #include "dtx.h"
 
 #include <stdio.h>
-#include <string.h>
+//#include <string.h>
 
 #include <eetypes.h>
 #include <eekernel.h>

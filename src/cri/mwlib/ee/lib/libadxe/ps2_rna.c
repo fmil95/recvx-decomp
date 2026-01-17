@@ -4,7 +4,7 @@
 #include "sjr_clt.h"
 
 #include <stdio.h>
-#include <string.h>
+//#include <string.h>
 
 Char8* volatile ps2rna_build = "\nPS2RNA Ver 0.98 Build:Jan 26 2001 09:57:43\n";
 Uint32 ps2rna_dbtbl[1000] = // TODO: double-check all values are correct

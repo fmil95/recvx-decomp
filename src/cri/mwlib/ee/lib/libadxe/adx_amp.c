@@ -1,7 +1,7 @@
 #include "adx_amp.h"
 #include "adx_crs.h"
 
-#include <string.h>
+//#include <string.h>
 
 Sint32 adxsmp_init_cnt = 0;
 ADX_AMP adxamp_obj[8] = { 0 };

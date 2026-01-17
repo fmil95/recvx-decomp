@@ -6,7 +6,7 @@
 #include "adx_stmc.h"
 #include "lsc_ini.h"
 
-#include <string.h>
+//#include <string.h>
 
 Sint8 adxt_obj_mark[16] = "MARK:adxt_obj"; /* unused */
 Sint32 adxt_init_cnt = 0;

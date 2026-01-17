@@ -3,7 +3,7 @@
 #include "adx_crs.h"
 #include "sj_rbf.h"
 
-#include <string.h>
+//#include <string.h>
 
 ADX_SJDEC adxsjd_obj[8] = { 0 };
 

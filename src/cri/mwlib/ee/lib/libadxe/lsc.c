@@ -5,7 +5,7 @@
 #include "lsc_ini.h"
 #include "lsc_svr.h"
 
-#include <string.h>
+//#include <string.h>
 
 /* The KATANA SDK has a header for this file, cri_lsc.h, while the PS2 CRIware headers don't. */
 

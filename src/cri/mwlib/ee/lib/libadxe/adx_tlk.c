@@ -13,7 +13,7 @@
 #include "sjr_clt.h"
 
 #include <stdio.h>
-#include <string.h>
+//#include <string.h>
 
 Sint32 adxt_time_mode = 0;
 Sint32 adxt_tsvr_enter_cnt; /* unused */
