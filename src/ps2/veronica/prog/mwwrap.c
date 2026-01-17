@@ -3,7 +3,7 @@
 #include "ps2_sg_maloc.h"
 #include "sdc.h"
 
-#include <string.h>
+//#include <string.h>
 
 MWPLY MwPly;
 MWS_PLY_CPRM_SFD MwsCprmSfd __attribute__((aligned(64)));

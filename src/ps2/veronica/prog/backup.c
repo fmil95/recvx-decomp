@@ -1,7 +1,7 @@
 #include "backup.h"
 #include "ps2_sg_maloc.h"
 
-#include <string.h>
+//#include <string.h>
 
 BACKUPINFO gBupInfo[8] __attribute__((aligned(64)));
 

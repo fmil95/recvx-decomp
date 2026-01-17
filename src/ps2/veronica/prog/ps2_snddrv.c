@@ -2,7 +2,7 @@
 #include "ps2_sg_sd.h"
 #include "main.h"
 
-#include <string.h>
+//#include <string.h>
 
 SND_STATUS get_iop_buff __attribute__((aligned(64)));
 SND_STATUS get_iop_snddata __attribute__((aligned(64)));
