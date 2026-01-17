@@ -547,7 +547,7 @@ typedef struct SYS_WORK
     char pos_nob; // offset 0x8B6, size 0x1
     char rcase_b; // offset 0x8B7, size 0x1
     unsigned int en_flg[4]; // offset 0x8B8, size 0x10
-	NJS_TEXLIST* et_lp[16][16][100]; // offset 0x8C8, size 0x19000
+	NJS_TEXLIST* et_lp[100][16][16]; // offset 0x8C8, size 0x19000
 	NJS_TEXLIST* ot_lp[1300]; // offset 0x198C8, size 0x1450
 	NJS_TEXLIST* it_lp[200]; // offset 0x1AD18, size 0x320
 	int eft_n; // offset 0x1B038, size 0x4
