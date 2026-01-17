@@ -100,6 +100,7 @@ def compile_source_files(compiler_mwcc, sources, compiler_mwcc_flags, include_di
         "adx_mps2.c": 8,     # src\cri\mwlib\ee\lib\libadxe\adx_mps2.c
         "adx_fini.c": 0,     # src\cri\mwlib\ee\lib\libadxe\adx_fini.c
         "adx_fs.c": 0,
+        "cri_cvfs.c": 0,
         "dvci.c": 0,
         "dvci_sub.c": 0,
         "htci.c": 0,
