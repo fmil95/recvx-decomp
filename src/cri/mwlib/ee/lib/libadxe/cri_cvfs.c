@@ -2,8 +2,6 @@
 
 //#include <string.h>
 
-// ERROR: this file should be compiled with -G0, but doing so makes the emulator halt
-
 char* volatile cvfs_build = "\ncvFs Ver.2.11 Build:Jan 26 2001 09:55:14\n";
 static CVF_FS_ERRFN cvfs_errfn = NULL;
 static void *cvfs_errobj = NULL; 
@@ -1246,7 +1244,7 @@ static CVFS_IF getDevice(const Sint8 *devname)
 }
 
 // 100% matching!
-void getDevName(Sint8 *dname, Sint8 *fname, const Sint8 *fn)
+static void getDevName(Sint8 *dname, Sint8 *fname, const Sint8 *fn)
 {
     Sint32 dlp;
     Sint32 flp;
@@ -1286,7 +1284,7 @@ void getDevName(Sint8 *dname, Sint8 *fname, const Sint8 *fn)
 }
 
 // 100% matching!
-Sint32 getNumFiles(const Sint8 *devname)
+static Sint32 getNumFiles(const Sint8 *devname)
 {
     CVFS_IF cvfsif;
     Sint32 val;
@@ -1315,7 +1313,7 @@ Sint32 getNumFiles(const Sint8 *devname)
 }
 
 // 100% matching!
-Sint32 getNumFilesAll(void)
+static Sint32 getNumFilesAll(void)
 {
     CVFS_IF cvfsif;
     Sint32 val;
