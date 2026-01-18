@@ -18,6 +18,7 @@ void _Make_ClipVolume(float x, float y);
 extern NJS_MATRIX NaViwViewMatrix;
 extern float fNaViwHalfW;
 extern float fNaViwHalfH;
+extern NJS_MATRIX NaViewScreenMatrix;
 extern sceVu0FMATRIX ClipMatrix2;
 extern float fNaViwOffsetX;
 extern float fNaViwOffsetY;
