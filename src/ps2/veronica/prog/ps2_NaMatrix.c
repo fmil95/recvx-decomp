@@ -1134,30 +1134,46 @@ void njSubVector(_anon0* pDstVec, _anon0* pSrcVec)
 	// Func End, Address: 0x2d7648, Func Offset: 0x38
 }*/
 
-// 
-// Start address: 0x2d7650
+// 100% matching!
 void	njCalcVector(NJS_MATRIX *m, NJS_VECTOR *vs, NJS_VECTOR *vd)
 {
-	// Line 4484, Address: 0x2d7650, Func Offset: 0
-	// Line 4531, Address: 0x2d7664, Func Offset: 0x14
-	// Line 4532, Address: 0x2d7668, Func Offset: 0x18
-	// Line 4533, Address: 0x2d766c, Func Offset: 0x1c
-	// Line 4534, Address: 0x2d7670, Func Offset: 0x20
-	// Line 4535, Address: 0x2d7674, Func Offset: 0x24
-	// Line 4537, Address: 0x2d7678, Func Offset: 0x28
-	// Line 4538, Address: 0x2d767c, Func Offset: 0x2c
-	// Line 4539, Address: 0x2d7680, Func Offset: 0x30
-	// Line 4541, Address: 0x2d7684, Func Offset: 0x34
-	// Line 4542, Address: 0x2d7688, Func Offset: 0x38
-	// Line 4543, Address: 0x2d768c, Func Offset: 0x3c
-	// Line 4545, Address: 0x2d7690, Func Offset: 0x40
-	// Line 4546, Address: 0x2d7694, Func Offset: 0x44
-	// Line 4547, Address: 0x2d7698, Func Offset: 0x48
-	// Line 4548, Address: 0x2d769c, Func Offset: 0x4c
-	// Line 4549, Address: 0x2d76a0, Func Offset: 0x50
-	// Line 4556, Address: 0x2d76a4, Func Offset: 0x54
-	// Func End, Address: 0x2d76ac, Func Offset: 0x5c
-	scePrintf("njCalcVector - UNIMPLEMENTED!\n");
+    if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        ldl         t0, 7(%1)
+        ldr         t0, 0(%1)
+        
+        lw          t1, 8(%1)
+        
+        pcpyld      t0, t1, t0
+    
+        qmtc2       t0, vf4
+    
+        lqc2        vf7, 0(%0)
+        lqc2        vf8, 0x10(%0)
+        lqc2        vf9, 0x20(%0)
+
+        vmulax.xyz  ACC,  vf7, vf4
+        
+        vmadday.xyz ACC,  vf8, vf4
+        vmaddz.xyz  vf18, vf9, vf4
+
+        qmfc2       t0, vf18
+    
+        pcpyud      t1, t0, t0
+    
+        sdl         t0, 7(%2)
+        sdr         t0, 0(%2)
+        
+        sw          t1, 8(%2)
+    .set reorder
+    " : : "r"(m), "r"(vs), "r"(vd) : 
+    );
 }
 
 /*// 
