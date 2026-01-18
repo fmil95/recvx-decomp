@@ -40,9 +40,9 @@ void njTransposeMatrix(float pMatrix[16]);
 static float njAtan2b(float a, float b);
 void njMirror(float pMatrix[16], _anon3* pPlane);
 void njCalcPoint(float pMatrix[16], _anon0* pSrcPoint, _anon0* pDstPoint);
-void njCalcPoint4(float pMatrix[16], _anon1* pSrcPoint, _anon1* pDstPoint);
-void njCalcPointCN(_anon0* pSrcPoint, _anon0* pDstPoint);
-void njAddVector(_anon0* pDstVec, _anon0* pSrcVec);
+void njCalcPoint4(float pMatrix[16], _anon1* pSrcPoint, _anon1* pDstPoint);*/
+void njCalcPointCN(NJS_POINT3* pSrcPoint, NJS_POINT3* pDstPoint);
+/*void njAddVector(_anon0* pDstVec, _anon0* pSrcVec);
 void njSubVector(_anon0* pDstVec, _anon0* pSrcVec);
 void njCalcVector(float pMatrix[16], _anon0* pSrcVec, _anon0* pDstVec);
 float njUnitVector(_anon0* pVector);
@@ -59,8 +59,8 @@ int njPopMatrixEx();
 void njRotTransPers(_anon0* pPoint, tagNJS_SCRVECTOR* pScreen);
 void njRotTrans(_anon0* pPoint, _anon0* pOut);
 void njPers(tagNJS_SCRVECTOR* pScreen);
-void njCopyMatrix(float pDstMat[16], float pSrcMat[16]);
-void njMulMatrixCN(float pSrcMat1[16], float pSrcMat2[16]);*/
+void njCopyMatrix(float pDstMat[16], float pSrcMat[16]);*/
+void njMulMatrixCN(NJS_MATRIX* pSrcMat1, NJS_MATRIX* pSrcMat2);
 
 extern void VU0_INIT_CALC_PROCESS() __attribute__((section(".vutext")));
 
@@ -1072,9 +1072,9 @@ void njCalcPoint4(NJS_MATRIX* pMatrix, NJS_POINT4* pSrcPoint, NJS_POINT4* pDstPo
     );
 }
 
-/*// 
+// 
 // Start address: 0x2d7590
-void njCalcPointCN(_anon0* pSrcPoint, _anon0* pDstPoint)
+void njCalcPointCN(NJS_POINT3* pSrcPoint, NJS_POINT3* pDstPoint)
 {
 	// Line 4290, Address: 0x2d7590, Func Offset: 0
 	// Line 4291, Address: 0x2d7594, Func Offset: 0x4
@@ -1092,9 +1092,10 @@ void njCalcPointCN(_anon0* pSrcPoint, _anon0* pDstPoint)
 	// Line 4303, Address: 0x2d75c4, Func Offset: 0x34
 	// Line 4307, Address: 0x2d75c8, Func Offset: 0x38
 	// Func End, Address: 0x2d75d0, Func Offset: 0x40
+	scePrintf("njCalcPointCN - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d75d0
 void njAddVector(_anon0* pDstVec, _anon0* pSrcVec)
 {
@@ -1243,40 +1244,60 @@ float njScalor2(_anon0* pVector)
 	// Line 4816, Address: 0x2d7774, Func Offset: 0x24
 	// Line 4822, Address: 0x2d7778, Func Offset: 0x28
 	// Func End, Address: 0x2d7780, Func Offset: 0x30
-}
+}*/
 
-// 
-// Start address: 0x2d7780
-void njProjectScreen(float pMatrix[16], _anon0* pPoint, _anon2* pScreen)
+// 100% matching!
+void	njProjectScreen(NJS_MATRIX *m, NJS_POINT3 *p3, NJS_POINT2 *p2)
 {
-	_anon0 Point;
-	// Line 4861, Address: 0x2d7780, Func Offset: 0
-	// Line 4866, Address: 0x2d7794, Func Offset: 0x14
-	// Line 4870, Address: 0x2d77a8, Func Offset: 0x28
-	// Line 4871, Address: 0x2d77b8, Func Offset: 0x38
-	// Line 4879, Address: 0x2d77c4, Func Offset: 0x44
-	// Line 4882, Address: 0x2d77d0, Func Offset: 0x50
-	// Line 4883, Address: 0x2d77d4, Func Offset: 0x54
-	// Line 4884, Address: 0x2d77d8, Func Offset: 0x58
-	// Line 4885, Address: 0x2d77dc, Func Offset: 0x5c
-	// Line 4886, Address: 0x2d77e4, Func Offset: 0x64
-	// Line 4887, Address: 0x2d77ec, Func Offset: 0x6c
-	// Line 4888, Address: 0x2d77f0, Func Offset: 0x70
-	// Line 4889, Address: 0x2d77f4, Func Offset: 0x74
-	// Line 4890, Address: 0x2d77f8, Func Offset: 0x78
-	// Line 4891, Address: 0x2d77fc, Func Offset: 0x7c
-	// Line 4892, Address: 0x2d7800, Func Offset: 0x80
-	// Line 4893, Address: 0x2d7804, Func Offset: 0x84
-	// Line 4894, Address: 0x2d7808, Func Offset: 0x88
-	// Line 4895, Address: 0x2d780c, Func Offset: 0x8c
-	// Line 4896, Address: 0x2d7810, Func Offset: 0x90
-	// Line 4897, Address: 0x2d7814, Func Offset: 0x94
-	// Line 4898, Address: 0x2d7818, Func Offset: 0x98
-	// Line 4903, Address: 0x2d781c, Func Offset: 0x9c
-	// Func End, Address: 0x2d7830, Func Offset: 0xb0
+    NJS_POINT3 Point;
+    
+    if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+    
+    njMulMatrixCN(&NaViewScreenMatrix, m);
+    
+    njCalcPointCN(p3, &Point);
+    
+    asm volatile
+    ("
+    .set noreorder
+        mfc1     t0, %2
+        
+        qmtc2    t0, vf4
+
+        vdiv     Q, vf4x, vf18z
+
+        lw       t1, fNaViwOffsetX
+        lw       t2, fNaViwOffsetY
+        
+        qmtc2    t1, vf5
+        qmtc2    t2, vf6
+
+        vwaitq
+
+        vaddq.z  vf8, vf0, Q
+
+        vmulq.xy vf7, vf18, Q
+        
+        vaddx.x  vf8, vf7, vf5
+        vaddx.y  vf8, vf7, vf6
+
+        qmfc2    t0, vf8
+    
+        pcpyud   t1, t0, t0
+    
+        sdl      t0, 7(%0)
+        sdr      t0, 0(%0)
+        
+        sw       t1, 8(%1)
+    .set reorder
+    " : : "r"(p2), "r"(&Point), "f"(_nj_screen_.dist) : 
+    );
 }
 
-// 
+/*// 
 // Start address: 0x2d7830
 float njOuterProduct(_anon0* pSrcVec1, _anon0* pSrcVec2, _anon0* pDstVec)
 {
@@ -1507,11 +1528,11 @@ void njCopyMatrix(float pDstMat[16], float pSrcMat[16])
 	// Line 5991, Address: 0x2d7bcc, Func Offset: 0x1c
 	// Line 5996, Address: 0x2d7bd0, Func Offset: 0x20
 	// Func End, Address: 0x2d7bd8, Func Offset: 0x28
-}
+}*/
 
 // 
 // Start address: 0x2d7be0
-void njMulMatrixCN(float pSrcMat1[16], float pSrcMat2[16])
+void njMulMatrixCN(NJS_MATRIX* pSrcMat1, NJS_MATRIX* pSrcMat2)
 {
 	// Line 6278, Address: 0x2d7be0, Func Offset: 0
 	// Line 6356, Address: 0x2d7bf4, Func Offset: 0x14
@@ -1537,4 +1558,5 @@ void njMulMatrixCN(float pSrcMat1[16], float pSrcMat2[16])
 	// Line 6380, Address: 0x2d7c44, Func Offset: 0x64
 	// Line 6385, Address: 0x2d7c48, Func Offset: 0x68
 	// Func End, Address: 0x2d7c50, Func Offset: 0x70
-}*/
+	scePrintf("njMulMatrixCN - UNIMPLEMENTED!\n");
+}
