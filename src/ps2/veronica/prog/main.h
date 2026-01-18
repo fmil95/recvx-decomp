@@ -14,7 +14,6 @@ extern ROM_WORK* rom;
 extern unsigned char* njpmemp;
 extern NJS_MATRIX* cmat;
 extern unsigned int palbuf[4096];
-extern float SinTable[16384];
 extern SYS_WORK* sys;
 extern void* Ps2_tex_buff;
 extern unsigned int Ps2_current_texbreak;
