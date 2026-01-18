@@ -473,14 +473,14 @@ typedef struct DOOR_WORK
     int ct3;              // offset 0x18, size 0x4
 } DOOR_WORK;
 
-// similar but not quite like NJS_CAPSULE
-typedef struct CONICAL_FRUSTUM
+typedef struct GATC
 {
-	NJS_POINT3 c1;
-	NJS_POINT3 c2;
-	float r1;
-	float r2;
-} CONICAL_FRUSTUM;
+    // total size: 0x20
+	NJS_POINT3 c1; // offset 0x0, size 0xC
+	NJS_POINT3 c2; // offset 0xC, size 0xC
+	float r1;      // offset 0x18, size 0x4
+    float r2;      // offset 0x1C, size 0x4
+} GATC;
 
 typedef struct SYS_WORK
 {
@@ -859,7 +859,7 @@ typedef struct SYS_WORK
     unsigned char * pdm_pd; // offset 0x2A738, size 0x4
     int pdm_keytpb; // offset 0x2A73C, size 0x4
     int gat_ct; // offset 0x2A740, size 0x4
-	CONICAL_FRUSTUM gatc[16]; // offset 0x2A744, size 0x200
+	GATC gatc[16]; // offset 0x2A744, size 0x200
 	int ght_ct; // offset 0x2A944, size 0x4
     unsigned int ghtc[32]; // offset 0x2A948, size 0x80
 	NJS_POINT3 ghtp[32]; // offset 0x2A9C8, size 0x180

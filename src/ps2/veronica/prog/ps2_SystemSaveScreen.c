@@ -1,90 +1,102 @@
 #include "ps2_SystemSaveScreen.h"
+#include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard..h"
+#include "main.h"
 
-/*tagSYSSAVE_SCREEN* CreateSysSaveScreen(tagSYSSAVE_SCREEN* pSysSave, void* vpWorkPtrSys, unsigned short usSaveMesMode, unsigned short usSaveWriteMode);
-void DispSysSaveMessageSelect(tagSYSSAVE_SCREEN* pSysSave);
-int ExecuteSysSaveScreen(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveAwarenessCard(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveAwarenessCard(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveErrUnPS2MemCard(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveErrUnPS2MemCard(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveErrLostCard(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveErrLostCard(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveErrPort2(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveErrPort2(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveDirCheck(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveDirCheck(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveFreeCapacity(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveFreeCapacity(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveErrFreeCapacity(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveErrFreeCapacity(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveCheckWriteSysData(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveCheckWriteSysData(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveWriteSysData(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveWriteSysData(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveSuccessWriteSysData(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveSuccessWriteSysData(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveErrWriteSysData(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveErrWriteSysData(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveFileBroken(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveFileBroken(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveExitWriteSysData(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveExitWriteSysData(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateWriteRankingData(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateWriteRankingData(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSave(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSave(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveErrCardWrite(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveErrCardWrite(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveFormat(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveFormat(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveStartFormat(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveStartFormat(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveExitFormat(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveExitFormat(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveSuccessFormat(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveSuccessFormat(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveErrFormat(tagSYSSAVE_SCREEN* pSysSave);
-void ExecuteStateSysSaveErrFormat(tagSYSSAVE_SCREEN* pSysSave);
-void SetStateSysSaveTitleExit(tagSYSSAVE_SCREEN* pSysSave);
+SYSSAVE_SCREEN* CreateSysSaveScreen(SYSSAVE_SCREEN* pSysSave, void* vpWorkPtrSys, unsigned short usSaveMesMode, unsigned short usSaveWriteMode);
+void DispSysSaveMessageSelect(SYSSAVE_SCREEN* pSysSave);
+int ExecuteSysSaveScreen(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveAwarenessCard(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveAwarenessCard(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveErrUnPS2MemCard(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveErrUnPS2MemCard(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveErrLostCard(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveErrLostCard(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveErrPort2(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveErrPort2(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveDirCheck(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveDirCheck(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveFreeCapacity(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveFreeCapacity(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveErrFreeCapacity(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveErrFreeCapacity(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveCheckWriteSysData(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveCheckWriteSysData(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveWriteSysData(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveWriteSysData(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveSuccessWriteSysData(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveSuccessWriteSysData(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveErrWriteSysData(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveErrWriteSysData(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveFileBroken(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveFileBroken(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveExitWriteSysData(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveExitWriteSysData(SYSSAVE_SCREEN* pSysSave);
+void SetStateWriteRankingData(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateWriteRankingData(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSave(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSave(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveErrCardWrite(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveErrCardWrite(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveFormat(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveFormat(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveStartFormat(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveStartFormat(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveExitFormat(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveExitFormat(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveSuccessFormat(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveSuccessFormat(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveErrFormat(SYSSAVE_SCREEN* pSysSave);
+void ExecuteStateSysSaveErrFormat(SYSSAVE_SCREEN* pSysSave);
+void SetStateSysSaveTitleExit(SYSSAVE_SCREEN* pSysSave);
 void ExecuteStateSysSaveTitleExit();
-void SysSaveHikaku(tagCONFIGFILE* pConfig);
+void SysSaveHikaku(CONFIGFILE* pConfig);
 unsigned int GetOkButton();
-unsigned int GetCancelButton();*/
+unsigned int GetCancelButton();
 
-// 
-// Start address: 0x277f40
+// 100% matching!
 SYSSAVE_SCREEN* CreateSysSaveScreen(SYSSAVE_SCREEN* pSysSave, void* vpWorkPtrSys, unsigned short usSaveMesMode, unsigned short usSaveWriteMode)
 {
-	// Line 78, Address: 0x277f40, Func Offset: 0
-	// Line 79, Address: 0x277f50, Func Offset: 0x10
-	// Line 80, Address: 0x277f54, Func Offset: 0x14
-	// Line 81, Address: 0x277f58, Func Offset: 0x18
-	// Line 82, Address: 0x277f5c, Func Offset: 0x1c
-	// Line 83, Address: 0x277f60, Func Offset: 0x20
-	// Line 84, Address: 0x277f64, Func Offset: 0x24
-	// Line 85, Address: 0x277f68, Func Offset: 0x28
-	// Line 86, Address: 0x277f6c, Func Offset: 0x2c
-	// Line 87, Address: 0x277f70, Func Offset: 0x30
-	// Line 88, Address: 0x277f74, Func Offset: 0x34
-	// Line 89, Address: 0x277f78, Func Offset: 0x38
-	// Line 90, Address: 0x277f80, Func Offset: 0x40
-	// Line 91, Address: 0x277f94, Func Offset: 0x54
-	// Line 92, Address: 0x277fa4, Func Offset: 0x64
-	// Line 93, Address: 0x277fb4, Func Offset: 0x74
-	// Line 94, Address: 0x277fd0, Func Offset: 0x90
-	// Line 95, Address: 0x277fe0, Func Offset: 0xa0
-	// Line 96, Address: 0x277ff8, Func Offset: 0xb8
-	// Line 99, Address: 0x277ffc, Func Offset: 0xbc
-	// Line 101, Address: 0x278004, Func Offset: 0xc4
-	// Line 102, Address: 0x278008, Func Offset: 0xc8
-	// Func End, Address: 0x27801c, Func Offset: 0xdc
-	scePrintf("CreateSysSaveScreen - UNIMPLEMENTED!\n");
+    pSysSave->ulState = 0;
+    pSysSave->ulSubState = 0;
+    
+    pSysSave->ulMemCheckCountTimer = 0;
+    
+    pSysSave->ulFileSize = 0;
+    
+    pSysSave->lCardState = 0;
+    
+    pSysSave->usExitFlag = 0;
+    
+    pSysSave->usMesMode = usSaveMesMode;
+    pSysSave->usSaveMode = usSaveWriteMode;
+    
+    pSysSave->usLoopCount = 0;
+    
+    pSysSave->sSelectCur = 0;
+    
+    pSysSave->cMesFlag = 0;
+    
+    pSysSave->pConfigFile = mcCreateConfigInit(&ConfigFile);
+    pSysSave->pSaveFile = mcCreateSaveFileInit(&SaveFile);
+    
+    pSysSave->pMcState = CreateMemoryCard(&McState);
+    
+    pSysSave->pIconInfo = mcCreateIconInit(&IconInfo, cpNameList, 1);
+    
+    pSysSave->pSelectFileInfo = mcSelectFileInfoInit(SelectFileInfo);
+    pSysSave->pSelectFileWindow = mcCreateFileSelectWindow(&SelectFileWindow, pSysSave->pSelectFileInfo, 15);
+    
+    pSysSave->vpReadBuffer = vpWorkPtrSys;
+    
+    CheckMemoryCardChangeConnectTypeAll(pSysSave->pMcState);
+    
+    return pSysSave;
 }
 
 /*// 
 // Start address: 0x278020
-void DispSysSaveMessageSelect(tagSYSSAVE_SCREEN* pSysSave)
+void DispSysSaveMessageSelect(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 117, Address: 0x278020, Func Offset: 0
 	// Line 192, Address: 0x278024, Func Offset: 0x4
@@ -189,7 +201,7 @@ int ExecuteSysSaveScreen(SYSSAVE_SCREEN* pSysSave)
 
 /*// 
 // Start address: 0x278670
-void SetStateSysSaveAwarenessCard(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveAwarenessCard(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 401, Address: 0x278670, Func Offset: 0
 	// Line 403, Address: 0x27867c, Func Offset: 0xc
@@ -201,7 +213,7 @@ void SetStateSysSaveAwarenessCard(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x2786b0
-void ExecuteStateSysSaveAwarenessCard(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveAwarenessCard(SYSSAVE_SCREEN* pSysSave)
 {
 	int lResult;
 	int lPort1State;
@@ -235,7 +247,7 @@ void ExecuteStateSysSaveAwarenessCard(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278800
-void SetStateSysSaveErrUnPS2MemCard(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveErrUnPS2MemCard(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 500, Address: 0x278800, Func Offset: 0
 	// Line 503, Address: 0x278808, Func Offset: 0x8
@@ -244,7 +256,7 @@ void SetStateSysSaveErrUnPS2MemCard(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278810
-void ExecuteStateSysSaveErrUnPS2MemCard(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveErrUnPS2MemCard(SYSSAVE_SCREEN* pSysSave)
 {
 	int lPort1State;
 	int lPort0State;
@@ -272,7 +284,7 @@ void ExecuteStateSysSaveErrUnPS2MemCard(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278910
-void SetStateSysSaveErrLostCard(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveErrLostCard(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 583, Address: 0x278910, Func Offset: 0
 	// Line 585, Address: 0x278918, Func Offset: 0x8
@@ -282,7 +294,7 @@ void SetStateSysSaveErrLostCard(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278930
-void ExecuteStateSysSaveErrLostCard(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveErrLostCard(SYSSAVE_SCREEN* pSysSave)
 {
 	int lPort1State;
 	int lPort0State;
@@ -310,7 +322,7 @@ void ExecuteStateSysSaveErrLostCard(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278a40
-void SetStateSysSaveErrPort2(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveErrPort2(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 675, Address: 0x278a40, Func Offset: 0
 	// Line 677, Address: 0x278a48, Func Offset: 0x8
@@ -320,7 +332,7 @@ void SetStateSysSaveErrPort2(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278a60
-void ExecuteStateSysSaveErrPort2(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveErrPort2(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 692, Address: 0x278a60, Func Offset: 0
 	// Line 694, Address: 0x278a68, Func Offset: 0x8
@@ -335,7 +347,7 @@ void ExecuteStateSysSaveErrPort2(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278ac0
-void SetStateSysSaveDirCheck(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveDirCheck(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 726, Address: 0x278ac0, Func Offset: 0
 	// Line 728, Address: 0x278acc, Func Offset: 0xc
@@ -348,7 +360,7 @@ void SetStateSysSaveDirCheck(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278b10
-void ExecuteStateSysSaveDirCheck(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveDirCheck(SYSSAVE_SCREEN* pSysSave)
 {
 	int lResult;
 	// Line 750, Address: 0x278b10, Func Offset: 0
@@ -386,7 +398,7 @@ void ExecuteStateSysSaveDirCheck(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278c80
-void SetStateSysSaveFreeCapacity(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveFreeCapacity(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 842, Address: 0x278c80, Func Offset: 0
 	// Line 843, Address: 0x278c84, Func Offset: 0x4
@@ -395,7 +407,7 @@ void SetStateSysSaveFreeCapacity(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278c90
-void ExecuteStateSysSaveFreeCapacity(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveFreeCapacity(SYSSAVE_SCREEN* pSysSave)
 {
 	int lResult;
 	// Line 858, Address: 0x278c90, Func Offset: 0
@@ -413,7 +425,7 @@ void ExecuteStateSysSaveFreeCapacity(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278d10
-void SetStateSysSaveErrFreeCapacity(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveErrFreeCapacity(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 905, Address: 0x278d10, Func Offset: 0
 	// Line 907, Address: 0x278d18, Func Offset: 0x8
@@ -423,7 +435,7 @@ void SetStateSysSaveErrFreeCapacity(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278d30
-void ExecuteStateSysSaveErrFreeCapacity(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveErrFreeCapacity(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 922, Address: 0x278d30, Func Offset: 0
 	// Line 924, Address: 0x278d38, Func Offset: 0x8
@@ -438,7 +450,7 @@ void ExecuteStateSysSaveErrFreeCapacity(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278d90
-void SetStateSysSaveCheckWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveCheckWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 957, Address: 0x278d90, Func Offset: 0
 	// Line 959, Address: 0x278d98, Func Offset: 0x8
@@ -449,7 +461,7 @@ void SetStateSysSaveCheckWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278db0
-void ExecuteStateSysSaveCheckWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveCheckWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 977, Address: 0x278db0, Func Offset: 0
 	// Line 981, Address: 0x278dbc, Func Offset: 0xc
@@ -485,7 +497,7 @@ void ExecuteStateSysSaveCheckWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278f00
-void SetStateSysSaveWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1047, Address: 0x278f00, Func Offset: 0
 	// Line 1049, Address: 0x278f08, Func Offset: 0x8
@@ -500,7 +512,7 @@ void SetStateSysSaveWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x278f30
-void ExecuteStateSysSaveWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
 	int lResult;
 	// Line 1073, Address: 0x278f30, Func Offset: 0
@@ -581,7 +593,7 @@ void ExecuteStateSysSaveWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279250
-void SetStateSysSaveSuccessWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveSuccessWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1267, Address: 0x279250, Func Offset: 0
 	// Line 1269, Address: 0x279254, Func Offset: 0x4
@@ -594,7 +606,7 @@ void SetStateSysSaveSuccessWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279270
-void ExecuteStateSysSaveSuccessWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveSuccessWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1289, Address: 0x279270, Func Offset: 0
 	// Line 1290, Address: 0x279278, Func Offset: 0x8
@@ -608,7 +620,7 @@ void ExecuteStateSysSaveSuccessWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x2792d0
-void SetStateSysSaveErrWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveErrWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1322, Address: 0x2792d0, Func Offset: 0
 	// Line 1324, Address: 0x2792d8, Func Offset: 0x8
@@ -618,7 +630,7 @@ void SetStateSysSaveErrWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x2792f0
-void ExecuteStateSysSaveErrWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveErrWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1339, Address: 0x2792f0, Func Offset: 0
 	// Line 1341, Address: 0x2792f8, Func Offset: 0x8
@@ -633,7 +645,7 @@ void ExecuteStateSysSaveErrWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279350
-void SetStateSysSaveFileBroken(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveFileBroken(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1374, Address: 0x279350, Func Offset: 0
 	// Line 1376, Address: 0x279358, Func Offset: 0x8
@@ -643,7 +655,7 @@ void SetStateSysSaveFileBroken(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279370
-void ExecuteStateSysSaveFileBroken(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveFileBroken(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1391, Address: 0x279370, Func Offset: 0
 	// Line 1393, Address: 0x279378, Func Offset: 0x8
@@ -658,7 +670,7 @@ void ExecuteStateSysSaveFileBroken(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x2793d0
-void SetStateSysSaveExitWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveExitWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1426, Address: 0x2793d0, Func Offset: 0
 	// Line 1428, Address: 0x2793d8, Func Offset: 0x8
@@ -669,7 +681,7 @@ void SetStateSysSaveExitWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x2793f0
-void ExecuteStateSysSaveExitWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveExitWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1446, Address: 0x2793f0, Func Offset: 0
 	// Line 1448, Address: 0x2793fc, Func Offset: 0xc
@@ -706,7 +718,7 @@ void ExecuteStateSysSaveExitWriteSysData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279540
-void SetStateWriteRankingData(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateWriteRankingData(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1515, Address: 0x279540, Func Offset: 0
 	// Line 1517, Address: 0x27954c, Func Offset: 0xc
@@ -719,11 +731,11 @@ void SetStateWriteRankingData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279580
-void ExecuteStateWriteRankingData(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateWriteRankingData(SYSSAVE_SCREEN* pSysSave)
 {
 	int ulSaveResult;
-	tagCONFIGFILE* pRankingData;
-	tagCONFIGFILE RankingData;
+	CONFIGFILE* pRankingData;
+	CONFIGFILE RankingData;
 	// Line 1539, Address: 0x279580, Func Offset: 0
 	// Line 1545, Address: 0x279594, Func Offset: 0x14
 	// Line 1550, Address: 0x2795c0, Func Offset: 0x40
@@ -753,7 +765,7 @@ void ExecuteStateWriteRankingData(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x2796b0
-void SetStateSysSave(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSave(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1630, Address: 0x2796b0, Func Offset: 0
 	// Line 1634, Address: 0x2796b8, Func Offset: 0x8
@@ -765,7 +777,7 @@ void SetStateSysSave(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x2796d0
-void ExecuteStateSysSave(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSave(SYSSAVE_SCREEN* pSysSave)
 {
 	int ulSaveResult;
 	// Line 1652, Address: 0x2796d0, Func Offset: 0
@@ -791,7 +803,7 @@ void ExecuteStateSysSave(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x2797b0
-void SetStateSysSaveErrCardWrite(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveErrCardWrite(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1711, Address: 0x2797b0, Func Offset: 0
 	// Line 1713, Address: 0x2797b8, Func Offset: 0x8
@@ -801,7 +813,7 @@ void SetStateSysSaveErrCardWrite(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x2797d0
-void ExecuteStateSysSaveErrCardWrite(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveErrCardWrite(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1730, Address: 0x2797d0, Func Offset: 0
 	// Line 1732, Address: 0x2797d8, Func Offset: 0x8
@@ -816,7 +828,7 @@ void ExecuteStateSysSaveErrCardWrite(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279830
-void SetStateSysSaveFormat(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveFormat(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1766, Address: 0x279830, Func Offset: 0
 	// Line 1768, Address: 0x279838, Func Offset: 0x8
@@ -827,7 +839,7 @@ void SetStateSysSaveFormat(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279850
-void ExecuteStateSysSaveFormat(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveFormat(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1786, Address: 0x279850, Func Offset: 0
 	// Line 1788, Address: 0x27985c, Func Offset: 0xc
@@ -863,7 +875,7 @@ void ExecuteStateSysSaveFormat(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x2799a0
-void SetStateSysSaveStartFormat(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveStartFormat(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1858, Address: 0x2799a0, Func Offset: 0
 	// Line 1862, Address: 0x2799a8, Func Offset: 0x8
@@ -875,7 +887,7 @@ void SetStateSysSaveStartFormat(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x2799c0
-void ExecuteStateSysSaveStartFormat(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveStartFormat(SYSSAVE_SCREEN* pSysSave)
 {
 	int lFormatResult;
 	// Line 1880, Address: 0x2799c0, Func Offset: 0
@@ -903,7 +915,7 @@ void ExecuteStateSysSaveStartFormat(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279ac0
-void SetStateSysSaveExitFormat(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveExitFormat(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1949, Address: 0x279ac0, Func Offset: 0
 	// Line 1951, Address: 0x279ac8, Func Offset: 0x8
@@ -914,7 +926,7 @@ void SetStateSysSaveExitFormat(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279ae0
-void ExecuteStateSysSaveExitFormat(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveExitFormat(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 1969, Address: 0x279ae0, Func Offset: 0
 	// Line 1971, Address: 0x279aec, Func Offset: 0xc
@@ -951,7 +963,7 @@ void ExecuteStateSysSaveExitFormat(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279c30
-void SetStateSysSaveSuccessFormat(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveSuccessFormat(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 2039, Address: 0x279c30, Func Offset: 0
 	// Line 2041, Address: 0x279c38, Func Offset: 0x8
@@ -962,7 +974,7 @@ void SetStateSysSaveSuccessFormat(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279c50
-void ExecuteStateSysSaveSuccessFormat(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveSuccessFormat(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 2060, Address: 0x279c50, Func Offset: 0
 	// Line 2062, Address: 0x279c58, Func Offset: 0x8
@@ -977,7 +989,7 @@ void ExecuteStateSysSaveSuccessFormat(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279cb0
-void SetStateSysSaveErrFormat(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveErrFormat(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 2095, Address: 0x279cb0, Func Offset: 0
 	// Line 2097, Address: 0x279cb8, Func Offset: 0x8
@@ -987,7 +999,7 @@ void SetStateSysSaveErrFormat(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279cd0
-void ExecuteStateSysSaveErrFormat(tagSYSSAVE_SCREEN* pSysSave)
+void ExecuteStateSysSaveErrFormat(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 2115, Address: 0x279cd0, Func Offset: 0
 	// Line 2116, Address: 0x279cd8, Func Offset: 0x8
@@ -1001,7 +1013,7 @@ void ExecuteStateSysSaveErrFormat(tagSYSSAVE_SCREEN* pSysSave)
 
 // 
 // Start address: 0x279d30
-void SetStateSysSaveTitleExit(tagSYSSAVE_SCREEN* pSysSave)
+void SetStateSysSaveTitleExit(SYSSAVE_SCREEN* pSysSave)
 {
 	// Line 2147, Address: 0x279d30, Func Offset: 0
 	// Line 2148, Address: 0x279d34, Func Offset: 0x4
@@ -1021,7 +1033,7 @@ void ExecuteStateSysSaveTitleExit()
 
 // 
 // Start address: 0x279d70
-void SysSaveHikaku(tagCONFIGFILE* pConfig)
+void SysSaveHikaku(CONFIGFILE* pConfig)
 {
 	unsigned int Count;
 	// Line 2186, Address: 0x279d70, Func Offset: 0
