@@ -1542,33 +1542,47 @@ void njCopyMatrix(float pDstMat[16], float pSrcMat[16])
 	// Func End, Address: 0x2d7bd8, Func Offset: 0x28
 }*/
 
-// 
-// Start address: 0x2d7be0
+// 100% matching!
 void njMulMatrixCN(NJS_MATRIX* pSrcMat1, NJS_MATRIX* pSrcMat2)
 {
-	// Line 6278, Address: 0x2d7be0, Func Offset: 0
-	// Line 6356, Address: 0x2d7bf4, Func Offset: 0x14
-	// Line 6357, Address: 0x2d7bf8, Func Offset: 0x18
-	// Line 6358, Address: 0x2d7bfc, Func Offset: 0x1c
-	// Line 6359, Address: 0x2d7c00, Func Offset: 0x20
-	// Line 6360, Address: 0x2d7c04, Func Offset: 0x24
-	// Line 6361, Address: 0x2d7c08, Func Offset: 0x28
-	// Line 6362, Address: 0x2d7c0c, Func Offset: 0x2c
-	// Line 6363, Address: 0x2d7c10, Func Offset: 0x30
-	// Line 6365, Address: 0x2d7c14, Func Offset: 0x34
-	// Line 6366, Address: 0x2d7c18, Func Offset: 0x38
-	// Line 6367, Address: 0x2d7c1c, Func Offset: 0x3c
-	// Line 6369, Address: 0x2d7c20, Func Offset: 0x40
-	// Line 6370, Address: 0x2d7c24, Func Offset: 0x44
-	// Line 6371, Address: 0x2d7c28, Func Offset: 0x48
-	// Line 6373, Address: 0x2d7c2c, Func Offset: 0x4c
-	// Line 6374, Address: 0x2d7c30, Func Offset: 0x50
-	// Line 6375, Address: 0x2d7c34, Func Offset: 0x54
-	// Line 6377, Address: 0x2d7c38, Func Offset: 0x58
-	// Line 6378, Address: 0x2d7c3c, Func Offset: 0x5c
-	// Line 6379, Address: 0x2d7c40, Func Offset: 0x60
-	// Line 6380, Address: 0x2d7c44, Func Offset: 0x64
-	// Line 6385, Address: 0x2d7c48, Func Offset: 0x68
-	// Func End, Address: 0x2d7c50, Func Offset: 0x70
-	scePrintf("njMulMatrixCN - UNIMPLEMENTED!\n");
+    if (pSrcMat2 == NULL)
+    {
+        pSrcMat2 = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        lqc2         vf4,  0(%0)
+        lqc2         vf5,  0x10(%0)
+        lqc2         vf6,  0x20(%0)
+        lqc2         vf7,  0x30(%0)
+        lqc2         vf8,  0(%1)
+        lqc2         vf9,  0x10(%1)
+        lqc2         vf10, 0x20(%1)
+        lqc2         vf11, 0x30(%1)
+
+        vmulax.xyzw  ACC,  vf4, vf8
+        
+        vmadday.xyzw ACC,  vf5, vf8
+        vmaddz.xyzw  vf28, vf6, vf8
+        
+        vmulax.xyzw  ACC,  vf4, vf9
+
+        vmadday.xyzw ACC,  vf5, vf9
+        vmaddz.xyzw  vf29, vf6, vf9
+        
+        vmulax.xyzw  ACC,  vf4, vf10
+
+        vmadday.xyzw ACC,  vf5, vf10
+        vmaddz.xyzw  vf30, vf6, vf10
+        
+        vmulax.xyzw  ACC,  vf4, vf11
+
+        vmadday.xyzw ACC,  vf5, vf11
+        vmaddaz.xyzw ACC,  vf6, vf11
+        vmaddw.xyzw  vf31, vf7, vf0
+    .set reorder
+    " : : "r"(pSrcMat1), "r"(pSrcMat2) : 
+    );
 }
