@@ -367,59 +367,59 @@ typedef struct BH_PWORK
 typedef struct LGT_WORK
 {
 	// total size: 0xE0
-    unsigned int flg; // offset 0x0, size 0x4
-    unsigned int type; // offset 0x4, size 0x4
-    int aspd; // offset 0x8, size 0x4
-    int lkflg; // offset 0xC, size 0x4
-    int lkno; // offset 0x10, size 0x4
-    int lkono; // offset 0x14, size 0x4
-    int lsrc; // offset 0x18, size 0x4
-    float px; // offset 0x1C, size 0x4
-    float py; // offset 0x20, size 0x4
-    float pz; // offset 0x24, size 0x4
-    float lx; // offset 0x28, size 0x4
-    float ly; // offset 0x2C, size 0x4
-    float lz; // offset 0x30, size 0x4
-    float vx; // offset 0x34, size 0x4
-    float vy; // offset 0x38, size 0x4
-    float vz; // offset 0x3C, size 0x4
-    float spc; // offset 0x40, size 0x4
-    float dif; // offset 0x44, size 0x4
-    float amb; // offset 0x48, size 0x4
-    float r; // offset 0x4C, size 0x4
-    float g; // offset 0x50, size 0x4
-    float b; // offset 0x54, size 0x4
-    float nr; // offset 0x58, size 0x4
-    float fr; // offset 0x5C, size 0x4
-    int iang; // offset 0x60, size 0x4
-    int oang; // offset 0x64, size 0x4
-    int ax; // offset 0x68, size 0x4
-    int ay; // offset 0x6C, size 0x4
-    int az; // offset 0x70, size 0x4
-    unsigned int mode; // offset 0x74, size 0x4
-    int ct0; // offset 0x78, size 0x4
-    int ct1; // offset 0x7C, size 0x4
-    int ct2; // offset 0x80, size 0x4
-    int ct3; // offset 0x84, size 0x4
-    float wpx; // offset 0x88, size 0x4
-    float wpy; // offset 0x8C, size 0x4
-    float wpz; // offset 0x90, size 0x4
-    float wvx; // offset 0x94, size 0x4
-    float wvy; // offset 0x98, size 0x4
-    float wvz; // offset 0x9C, size 0x4
-    float wspc; // offset 0xA0, size 0x4
-    float wdif; // offset 0xA4, size 0x4
-    float wamb; // offset 0xA8, size 0x4
-    float wr; // offset 0xAC, size 0x4
-    float wg; // offset 0xB0, size 0x4
-    float wb; // offset 0xB4, size 0x4
-    float wnr; // offset 0xB8, size 0x4
-    float wfr; // offset 0xBC, size 0x4
-    int wiang; // offset 0xC0, size 0x4
-    int woang; // offset 0xC4, size 0x4
-    int wax; // offset 0xC8, size 0x4
-    int way; // offset 0xCC, size 0x4
-    int waz; // offset 0xD0, size 0x4
+    unsigned int flg;     // offset 0x0, size 0x4
+    unsigned int type;    // offset 0x4, size 0x4
+    int aspd;             // offset 0x8, size 0x4
+    int lkflg;            // offset 0xC, size 0x4
+    int lkno;             // offset 0x10, size 0x4
+    int lkono;            // offset 0x14, size 0x4
+    int lsrc;             // offset 0x18, size 0x4
+    float px;             // offset 0x1C, size 0x4
+    float py;             // offset 0x20, size 0x4
+    float pz;             // offset 0x24, size 0x4
+    float lx;             // offset 0x28, size 0x4
+    float ly;             // offset 0x2C, size 0x4
+    float lz;             // offset 0x30, size 0x4
+    float vx;             // offset 0x34, size 0x4
+    float vy;             // offset 0x38, size 0x4
+    float vz;             // offset 0x3C, size 0x4
+    float spc;            // offset 0x40, size 0x4
+    float dif;            // offset 0x44, size 0x4
+    float amb;            // offset 0x48, size 0x4
+    float r;              // offset 0x4C, size 0x4
+    float g;              // offset 0x50, size 0x4
+    float b;              // offset 0x54, size 0x4
+    float nr;             // offset 0x58, size 0x4
+    float fr;             // offset 0x5C, size 0x4
+    int iang;             // offset 0x60, size 0x4
+    int oang;             // offset 0x64, size 0x4
+    int ax;               // offset 0x68, size 0x4
+    int ay;               // offset 0x6C, size 0x4
+    int az;               // offset 0x70, size 0x4
+    unsigned int mode;    // offset 0x74, size 0x4
+    int ct0;              // offset 0x78, size 0x4
+    int ct1;              // offset 0x7C, size 0x4
+    int ct2;              // offset 0x80, size 0x4
+    int ct3;              // offset 0x84, size 0x4
+    float wpx;            // offset 0x88, size 0x4
+    float wpy;            // offset 0x8C, size 0x4
+    float wpz;            // offset 0x90, size 0x4
+    float wvx;            // offset 0x94, size 0x4
+    float wvy;            // offset 0x98, size 0x4
+    float wvz;            // offset 0x9C, size 0x4
+    float wspc;           // offset 0xA0, size 0x4
+    float wdif;           // offset 0xA4, size 0x4
+    float wamb;           // offset 0xA8, size 0x4
+    float wr;             // offset 0xAC, size 0x4
+    float wg;             // offset 0xB0, size 0x4
+    float wb;             // offset 0xB4, size 0x4
+    float wnr;            // offset 0xB8, size 0x4
+    float wfr;            // offset 0xBC, size 0x4
+    int wiang;            // offset 0xC0, size 0x4
+    int woang;            // offset 0xC4, size 0x4
+    int wax;              // offset 0xC8, size 0x4
+    int way;              // offset 0xCC, size 0x4
+    int waz;              // offset 0xD0, size 0x4
     unsigned char* lkwkp; // offset 0xD4, size 0x4
     unsigned char* exp;   // offset 0xD8, size 0x4
 	NJS_LIGHT_PTR* light; // offset 0xDC, size 0x4
@@ -435,24 +435,25 @@ typedef struct LPTB
     float cb;      // offset 0x1C, size 0x4
 } LPTB;
 
-typedef struct NO_NAME_10
+typedef struct ATR_WORK
 {
-	unsigned char flg;
-	unsigned char type;
-	unsigned char id;
-	char flr_no;
-	unsigned int attr;
-	float px;
-	float py;
-	float pz;
-	float w;
-	float h;
-	float d;
-	unsigned char prm0;
-	unsigned char prm1;
-	unsigned char prm2;
-	unsigned char prm3;
-} NO_NAME_10; 
+	// total size: 0x24
+    unsigned char flg; // offset 0x0, size 0x1
+    unsigned char type; // offset 0x1, size 0x1
+    unsigned char id; // offset 0x2, size 0x1
+    char flr_no; // offset 0x3, size 0x1
+    unsigned int attr; // offset 0x4, size 0x4
+    float px; // offset 0x8, size 0x4
+    float py; // offset 0xC, size 0x4
+    float pz; // offset 0x10, size 0x4
+    float w; // offset 0x14, size 0x4
+    float h; // offset 0x18, size 0x4
+    float d; // offset 0x1C, size 0x4
+    unsigned char prm0; // offset 0x20, size 0x1
+    unsigned char prm1; // offset 0x21, size 0x1
+    unsigned char prm2; // offset 0x22, size 0x1
+    unsigned char prm3; // offset 0x23, size 0x1
+} ATR_WORK; 
 
 typedef struct DOOR_WORK
 {
@@ -753,19 +754,19 @@ typedef struct SYS_WORK
     unsigned char * rt_nx; // offset 0x28A60, size 0x4
     float * rt_ln; // offset 0x28A64, size 0x4
     BH_PWORK * plp; // offset 0x28A68, size 0x4
-	NO_NAME_10* pl_htp; // offset 0x28A6C, size 0x4
+	ATR_WORK* pl_htp; // offset 0x28A6C, size 0x4
 	int costume; // offset 0x28A70, size 0x4
 	NJS_POINT3 hd_pos; // offset 0x28A74, size 0xC
 	NJS_POINT3 apos; // offset 0x28A80, size 0xC
-	NO_NAME_10* ahtp; // offset 0x28A8C, size 0x4
+	ATR_WORK* ahtp; // offset 0x28A8C, size 0x4
 	int mwal_n; // offset 0x28A90, size 0x4
     int metc_n; // offset 0x28A94, size 0x4
     int mflr_n; // offset 0x28A98, size 0x4
-	NO_NAME_10 mwalp[64]; // offset 0x28A9C, size 0x900
-	NO_NAME_10 metcp[64]; // offset 0x2939C, size 0x900
-	NO_NAME_10 mflrp[64]; // offset 0x29C9C, size 0x900
+	ATR_WORK mwalp[64]; // offset 0x28A9C, size 0x900
+	ATR_WORK metcp[64]; // offset 0x2939C, size 0x900
+	ATR_WORK mflrp[64]; // offset 0x29C9C, size 0x900
 	int dla_n; // offset 0x2A59C, size 0x4
-	NO_NAME_10* htp; // offset 0x2A5A0, size 0x4
+	ATR_WORK* htp; // offset 0x2A5A0, size 0x4
 	int psh_snd; // offset 0x2A5A4, size 0x4
     int fog_cngct; // offset 0x2A5A8, size 0x4
     unsigned int fog_col; // offset 0x2A5AC, size 0x4
@@ -2253,11 +2254,11 @@ typedef struct ROM_WORK
 	NO_NAME_26* objp; // offset 0xC, size 0x4
 	NO_NAME_26* itmp; // offset 0x10, size 0x4
 	NO_NAME_27* effp; // offset 0x14, size 0x4
-	NO_NAME_10* walp; // offset 0x18, size 0x4
-	NO_NAME_10* etcp; // offset 0x1C, size 0x4
-	NO_NAME_10* flrp; // offset 0x20, size 0x4
+	ATR_WORK* walp; // offset 0x18, size 0x4
+	ATR_WORK* etcp; // offset 0x1C, size 0x4
+	ATR_WORK* flrp; // offset 0x20, size 0x4
 	NO_NAME_28* posp; // offset 0x24, size 0x4
-	NO_NAME_10* rutp; // offset 0x28, size 0x4
+	ATR_WORK* rutp; // offset 0x28, size 0x4
 	unsigned char* ruttp; // offset 0x2C, size 0x4
 	NO_NAME_12* evtp; // offset 0x30, size 0x4
 	NO_NAME_22* evcp; // offset 0x34, size 0x4
