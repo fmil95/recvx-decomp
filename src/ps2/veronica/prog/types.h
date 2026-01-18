@@ -438,17 +438,17 @@ typedef struct LPTB
 typedef struct ATR_WORK
 {
 	// total size: 0x24
-    unsigned char flg; // offset 0x0, size 0x1
+    unsigned char flg;  // offset 0x0, size 0x1
     unsigned char type; // offset 0x1, size 0x1
-    unsigned char id; // offset 0x2, size 0x1
-    char flr_no; // offset 0x3, size 0x1
-    unsigned int attr; // offset 0x4, size 0x4
-    float px; // offset 0x8, size 0x4
-    float py; // offset 0xC, size 0x4
-    float pz; // offset 0x10, size 0x4
-    float w; // offset 0x14, size 0x4
-    float h; // offset 0x18, size 0x4
-    float d; // offset 0x1C, size 0x4
+    unsigned char id;   // offset 0x2, size 0x1
+    char flr_no;        // offset 0x3, size 0x1
+    unsigned int attr;  // offset 0x4, size 0x4
+    float px;           // offset 0x8, size 0x4
+    float py;           // offset 0xC, size 0x4
+    float pz;           // offset 0x10, size 0x4
+    float w;            // offset 0x14, size 0x4
+    float h;            // offset 0x18, size 0x4
+    float d;            // offset 0x1C, size 0x4
     unsigned char prm0; // offset 0x20, size 0x1
     unsigned char prm1; // offset 0x21, size 0x1
     unsigned char prm2; // offset 0x22, size 0x1
@@ -457,19 +457,20 @@ typedef struct ATR_WORK
 
 typedef struct DOOR_WORK
 {
-	unsigned int flg;
-	char stg_no;
-	char rom_no;
-	unsigned char pos_no;
-	unsigned char dor_tp;
-	unsigned char mode0;
-	unsigned char mode1;
-	unsigned char mode2;
-	unsigned char mode3;
-	int ct0;
-	int ct1;
-	int ct2;
-	int ct3;
+	// total size: 0x1C
+    unsigned int flg;     // offset 0x0, size 0x4
+    char stg_no;          // offset 0x4, size 0x1
+    char rom_no;          // offset 0x5, size 0x1
+    unsigned char pos_no; // offset 0x6, size 0x1
+    unsigned char dor_tp; // offset 0x7, size 0x1
+    unsigned char mode0;  // offset 0x8, size 0x1
+    unsigned char mode1;  // offset 0x9, size 0x1
+    unsigned char mode2;  // offset 0xA, size 0x1
+    unsigned char mode3;  // offset 0xB, size 0x1
+    int ct0;              // offset 0xC, size 0x4
+    int ct1;              // offset 0x10, size 0x4
+    int ct2;              // offset 0x14, size 0x4
+    int ct3;              // offset 0x18, size 0x4
 } DOOR_WORK;
 
 // similar but not quite like NJS_CAPSULE
