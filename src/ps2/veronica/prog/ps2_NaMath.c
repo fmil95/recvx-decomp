@@ -1,6 +1,8 @@
 #include "ps2_NaMath.h"
 #include "main.h"
 
+static float SinTable[16384];
+
 /*void _Make_SinTable();
 float njSin(int lAngle);
 float njCos(int lAngle);
@@ -94,55 +96,85 @@ Float	njCos(Angle n)
 	scePrintf("njCos - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d7dd0
+// 100% matching!
 void njSinCos(int lAngle, float* sin, float* cos)
 {
-	// Line 254, Address: 0x2d7dd0, Func Offset: 0
-	// Line 289, Address: 0x2d7dd8, Func Offset: 0x8
-	// Line 291, Address: 0x2d7de4, Func Offset: 0x14
-	// Line 292, Address: 0x2d7de8, Func Offset: 0x18
-	// Line 293, Address: 0x2d7dec, Func Offset: 0x1c
-	// Line 294, Address: 0x2d7df0, Func Offset: 0x20
-	// Line 296, Address: 0x2d7df8, Func Offset: 0x28
-	// Line 297, Address: 0x2d7dfc, Func Offset: 0x2c
-	// Line 298, Address: 0x2d7e08, Func Offset: 0x38
-	// Line 299, Address: 0x2d7e14, Func Offset: 0x44
-	// Line 300, Address: 0x2d7e18, Func Offset: 0x48
-	// Line 301, Address: 0x2d7e1c, Func Offset: 0x4c
-	// Line 302, Address: 0x2d7e20, Func Offset: 0x50
-	// Line 303, Address: 0x2d7e24, Func Offset: 0x54
-	// Line 304, Address: 0x2d7e28, Func Offset: 0x58
-	// Line 305, Address: 0x2d7e2c, Func Offset: 0x5c
-	// Line 306, Address: 0x2d7e30, Func Offset: 0x60
-	// Line 307, Address: 0x2d7e34, Func Offset: 0x64
-	// Line 308, Address: 0x2d7e38, Func Offset: 0x68
-	// Line 309, Address: 0x2d7e3c, Func Offset: 0x6c
-	// Line 310, Address: 0x2d7e40, Func Offset: 0x70
-	// Line 311, Address: 0x2d7e44, Func Offset: 0x74
-	// Line 314, Address: 0x2d7e4c, Func Offset: 0x7c
-	// Line 315, Address: 0x2d7e50, Func Offset: 0x80
-	// Line 316, Address: 0x2d7e5c, Func Offset: 0x8c
-	// Line 317, Address: 0x2d7e68, Func Offset: 0x98
-	// Line 318, Address: 0x2d7e6c, Func Offset: 0x9c
-	// Line 319, Address: 0x2d7e70, Func Offset: 0xa0
-	// Line 320, Address: 0x2d7e74, Func Offset: 0xa4
-	// Line 321, Address: 0x2d7e78, Func Offset: 0xa8
-	// Line 322, Address: 0x2d7e7c, Func Offset: 0xac
-	// Line 323, Address: 0x2d7e80, Func Offset: 0xb0
-	// Line 324, Address: 0x2d7e84, Func Offset: 0xb4
-	// Line 325, Address: 0x2d7e88, Func Offset: 0xb8
-	// Line 326, Address: 0x2d7e8c, Func Offset: 0xbc
-	// Line 327, Address: 0x2d7e90, Func Offset: 0xc0
-	// Line 328, Address: 0x2d7e94, Func Offset: 0xc4
-	// Line 329, Address: 0x2d7e98, Func Offset: 0xc8
-	// Line 331, Address: 0x2d7e9c, Func Offset: 0xcc
-	// Line 332, Address: 0x2d7ea0, Func Offset: 0xd0
-	// Line 333, Address: 0x2d7ea4, Func Offset: 0xd4
-	// Line 334, Address: 0x2d7ea8, Func Offset: 0xd8
-	// Line 338, Address: 0x2d7eac, Func Offset: 0xdc
-	// Func End, Address: 0x2d7eb4, Func Offset: 0xe4
-	scePrintf("njSinCos - UNIMPLEMENTED!\n");
+    asm volatile 
+    ("
+    .set noreorder
+        move  v1, %3 
+        
+        lw    t0, 0(%0) 
+        
+        addi  t2, zero, 16383 
+    
+        andi  t3, t0, 0x4000 
+        
+        beqz  t3, l_002D7E4C 
+        
+        and   t1, t0, t2
+    
+        sub   t2, t2, t1 
+    
+        muli  t1, t1, 4 
+        muli  t2, t2, 4 
+        
+        add   t1, t1, v1 
+        add   t2, t2, v1 
+    
+        lwc1  f4, 0(t2) 
+        lwc1  f5, 0(t1) 
+        
+        neg.s f6, f4 
+        neg.s f7, f5
+        
+        mfc1  t4, f6
+        mfc1  t5, f5
+        mfc1  t6, f4
+        mfc1  t7, f7
+    
+        andi  t0, t0, 0x8000
+    
+        movz  t4, t6, t0
+        
+        b     l_002D7E9C
+    
+        movz  t5, t7, t0
+    
+        l_002D7E4C:
+        sub   t2, t2, t1 
+        
+        muli  t1, t1, 4
+        muli  t2, t2, 4
+        
+        add   t1, t1, v1 
+        add   t2, t2, v1 
+    
+        lwc1  f4, 0(t1)
+        lwc1  f5, 0(t2)
+        
+        neg.s f6, f4
+        neg.s f7, f5
+        
+        mfc1  t4, f4
+        mfc1  t5, f5
+        mfc1  t6, f6
+        mfc1  t7, f7
+    
+        andi  t0, t0, 0x8000
+    
+        movn  t4, t6, t0
+        movn  t5, t7, t0
+    
+        l_002D7E9C:
+        sw    t4, 0(%1)
+        sw    t5, 0(%2)
+        
+        qmtc2 t4, vf11
+        qmtc2 t5, vf12
+    .set reorder
+    " : : "r"(&lAngle), "r"(sin), "r"(cos), "r"(SinTable) : 
+    );
 }
 
 // 79.50% matching 

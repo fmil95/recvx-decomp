@@ -158,7 +158,6 @@ O_WRK eff[512];
 ROM_WORK romp;
 ROM_WORK* rom = &romp;
 unsigned int palbuf[4096] __attribute__((aligned(64)));
-/*static */ float SinTable[16384];
 SYS_BT_SYSTEMID BootDiscSystemId;
 SELECTFILEWINDOW SelectFileWindow;
 SELECTFILEINFO SelectFileInfo[15] __attribute__((aligned(64)));
