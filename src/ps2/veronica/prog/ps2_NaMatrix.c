@@ -535,35 +535,48 @@ void	njRotateX(NJS_MATRIX *m, Angle ang)
     );
 }
 
-// 
-// Start address: 0x2d6c90
+// 100% matching!
 void	njRotateY(NJS_MATRIX *m, Angle ang)
 {
-	float fCos;
-	float fSin;
-	// Line 1927, Address: 0x2d6c90, Func Offset: 0
-	// Line 1955, Address: 0x2d6ca0, Func Offset: 0x10
-	// Line 1958, Address: 0x2d6ca4, Func Offset: 0x14
-	// Line 1960, Address: 0x2d6cb4, Func Offset: 0x24
-	// Line 2009, Address: 0x2d6cc8, Func Offset: 0x38
-	// Line 2012, Address: 0x2d6cd4, Func Offset: 0x44
-	// Line 2013, Address: 0x2d6cd8, Func Offset: 0x48
-	// Line 2014, Address: 0x2d6cdc, Func Offset: 0x4c
-	// Line 2015, Address: 0x2d6ce0, Func Offset: 0x50
-	// Line 2017, Address: 0x2d6ce4, Func Offset: 0x54
-	// Line 2018, Address: 0x2d6ce8, Func Offset: 0x58
-	// Line 2020, Address: 0x2d6cec, Func Offset: 0x5c
-	// Line 2022, Address: 0x2d6cf0, Func Offset: 0x60
-	// Line 2023, Address: 0x2d6cf4, Func Offset: 0x64
-	// Line 2024, Address: 0x2d6cf8, Func Offset: 0x68
-	// Line 2025, Address: 0x2d6cfc, Func Offset: 0x6c
-	// Line 2027, Address: 0x2d6d00, Func Offset: 0x70
-	// Line 2028, Address: 0x2d6d04, Func Offset: 0x74
-	// Line 2030, Address: 0x2d6d08, Func Offset: 0x78
-	// Line 2031, Address: 0x2d6d0c, Func Offset: 0x7c
-	// Line 2039, Address: 0x2d6d10, Func Offset: 0x80
-	// Func End, Address: 0x2d6d20, Func Offset: 0x90
-	scePrintf("njRotateY - UNIMPLEMENTED!\n");
+    float fSin;
+    float fCos;
+
+    ang &= 0xFFFF;
+    
+    njSinCos(ang, &fSin, &fCos);
+    
+    if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        mfc1      t6, %1 
+        mfc1      t7, %2
+        
+        qmtc2     t6, vf11
+        qmtc2     t7, vf12
+    
+        lqc2      vf4, 0x0(%0)
+        lqc2      vf5, 0x20(%0)
+
+        vsub.x    vf10, vf0, vf11
+        
+        vmulx.xyz vf6, vf4, vf12
+        vmulx.xyz vf7, vf5, vf10
+        vmulx.xyz vf4, vf4, vf11
+        vmulx.xyz vf5, vf5, vf12
+
+        vadd.xyz  vf8, vf6, vf7
+        vadd.xyz  vf9, vf4, vf5
+
+        sqc2      vf8, 0x0(%0)
+        sqc2      vf9, 0x20(%0)
+    .set reorder
+    " : : "r"(m), "f"(fSin), "f"(fCos) : 
+    );
 }
 
 // 
