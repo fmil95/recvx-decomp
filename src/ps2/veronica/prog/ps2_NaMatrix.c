@@ -1072,27 +1072,39 @@ void njCalcPoint4(NJS_MATRIX* pMatrix, NJS_POINT4* pSrcPoint, NJS_POINT4* pDstPo
     );
 }
 
-// 
-// Start address: 0x2d7590
+// 100% matching!
 void njCalcPointCN(NJS_POINT3* pSrcPoint, NJS_POINT3* pDstPoint)
 {
-	// Line 4290, Address: 0x2d7590, Func Offset: 0
-	// Line 4291, Address: 0x2d7594, Func Offset: 0x4
-	// Line 4292, Address: 0x2d7598, Func Offset: 0x8
-	// Line 4293, Address: 0x2d759c, Func Offset: 0xc
-	// Line 4294, Address: 0x2d75a0, Func Offset: 0x10
-	// Line 4295, Address: 0x2d75a4, Func Offset: 0x14
-	// Line 4296, Address: 0x2d75a8, Func Offset: 0x18
-	// Line 4297, Address: 0x2d75ac, Func Offset: 0x1c
-	// Line 4298, Address: 0x2d75b0, Func Offset: 0x20
-	// Line 4299, Address: 0x2d75b4, Func Offset: 0x24
-	// Line 4300, Address: 0x2d75b8, Func Offset: 0x28
-	// Line 4301, Address: 0x2d75bc, Func Offset: 0x2c
-	// Line 4302, Address: 0x2d75c0, Func Offset: 0x30
-	// Line 4303, Address: 0x2d75c4, Func Offset: 0x34
-	// Line 4307, Address: 0x2d75c8, Func Offset: 0x38
-	// Func End, Address: 0x2d75d0, Func Offset: 0x40
-	scePrintf("njCalcPointCN - UNIMPLEMENTED!\n");
+    asm volatile
+    ("
+    .set noreorder
+        ldl         t2, 7(%0)
+        ldr         t2, 0(%0)
+        
+        lw          t3, 8(%0)
+        
+        pcpyld      t2, t3, t2
+    
+        qmtc2       t2, vf4
+    
+        vmulax.xyz  ACC, vf28, vf4
+        
+        vmadday.xyz ACC, vf29, vf4
+        vmaddaz.xyz ACC, vf30, vf4
+
+        vmaddw.xyz  vf18, vf31, vf0
+
+        qmfc2       t0, vf18
+    
+        pcpyud      t1, t0, t0
+    
+        sdl         t0, 7(%1)
+        sdr         t0, 0(%1)
+        
+        sw          t1, 8(%1)
+    .set reorder
+    " : : "r"(pSrcPoint), "r"(pDstPoint) : 
+    );
 }
 
 /*// 
