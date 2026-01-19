@@ -1,4 +1,5 @@
 #include "ps2_SystemSaveScreen.h"
+#include "adv.h"
 #include "message.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard..h"
@@ -95,53 +96,71 @@ SYSSAVE_SCREEN* CreateSysSaveScreen(SYSSAVE_SCREEN* pSysSave, void* vpWorkPtrSys
     return pSysSave;
 }
 
-/*// 
-// Start address: 0x278020
+// 99.56% matching
 void DispSysSaveMessageSelect(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 117, Address: 0x278020, Func Offset: 0
-	// Line 192, Address: 0x278024, Func Offset: 0x4
-	// Line 117, Address: 0x27802c, Func Offset: 0xc
-	// Line 192, Address: 0x278038, Func Offset: 0x18
-	// Line 194, Address: 0x278044, Func Offset: 0x24
-	// Line 198, Address: 0x278070, Func Offset: 0x50
-	// Line 199, Address: 0x278090, Func Offset: 0x70
-	// Line 202, Address: 0x278098, Func Offset: 0x78
-	// Line 203, Address: 0x2780b8, Func Offset: 0x98
-	// Line 206, Address: 0x2780c0, Func Offset: 0xa0
-	// Line 207, Address: 0x2780e0, Func Offset: 0xc0
-	// Line 210, Address: 0x2780e8, Func Offset: 0xc8
-	// Line 211, Address: 0x278108, Func Offset: 0xe8
-	// Line 212, Address: 0x278128, Func Offset: 0x108
-	// Line 215, Address: 0x278130, Func Offset: 0x110
-	// Line 216, Address: 0x278150, Func Offset: 0x130
-	// Line 219, Address: 0x278158, Func Offset: 0x138
-	// Line 220, Address: 0x278178, Func Offset: 0x158
-	// Line 223, Address: 0x278180, Func Offset: 0x160
-	// Line 224, Address: 0x2781a0, Func Offset: 0x180
-	// Line 227, Address: 0x2781a8, Func Offset: 0x188
-	// Line 228, Address: 0x2781c8, Func Offset: 0x1a8
-	// Line 229, Address: 0x2781e4, Func Offset: 0x1c4
-	// Line 232, Address: 0x2781ec, Func Offset: 0x1cc
-	// Line 233, Address: 0x27820c, Func Offset: 0x1ec
-	// Line 236, Address: 0x278214, Func Offset: 0x1f4
-	// Line 237, Address: 0x278234, Func Offset: 0x214
-	// Line 240, Address: 0x27823c, Func Offset: 0x21c
-	// Line 241, Address: 0x27825c, Func Offset: 0x23c
-	// Line 244, Address: 0x278264, Func Offset: 0x244
-	// Line 245, Address: 0x278284, Func Offset: 0x264
-	// Line 248, Address: 0x27828c, Func Offset: 0x26c
-	// Line 249, Address: 0x2782ac, Func Offset: 0x28c
-	// Line 252, Address: 0x2782b4, Func Offset: 0x294
-	// Line 253, Address: 0x2782d4, Func Offset: 0x2b4
-	// Line 256, Address: 0x2782dc, Func Offset: 0x2bc
-	// Line 257, Address: 0x2782fc, Func Offset: 0x2dc
-	// Line 260, Address: 0x278304, Func Offset: 0x2e4
-	// Line 261, Address: 0x278324, Func Offset: 0x304
-	// Line 265, Address: 0x278340, Func Offset: 0x320
-	// Line 269, Address: 0x278358, Func Offset: 0x338
-	// Func End, Address: 0x278368, Func Offset: 0x348
-}*/
+    bhFontScaleSet(0.75f, 0.75f, 0.75f);
+
+    switch (pSysSave->cMesFlag)
+    {
+    case 0:
+        AutoSaveLoadEasyDispMessage(-1.0f, 176.0f, SaveLoadMessage, 0);
+        break;
+    case 1:
+        AutoSaveLoadEasyDispMessage(-1.0f, 92.0f, SaveLoadMessage, 30);
+        break;
+    case 2:
+        AutoSaveLoadEasyDispMessage(-1.0f, 84.0f, SaveLoadMessage, 31);
+        break;
+    case 3:
+        AutoSaveLoadEasyDispMessage(-1.0f, 162.0f, SaveLoadMessage, 32);
+        
+        DispUpDownCursol(270.0f, 275.0f, pSysSave->sSelectCur + 2);
+        break;
+    case 4:
+        AutoSaveLoadEasyDispMessage(-1.0f, 176.0f, SaveLoadMessage, 33);
+        break;
+    case 5:
+        AutoSaveLoadEasyDispMessage(-1.0f, 190.0f, SaveLoadMessage, 34);
+        break;
+    case 6:
+        AutoSaveLoadEasyDispMessage(-1.0f, 176.0f, SaveLoadMessage, 35);
+        break;
+    case 7:
+        AutoSaveLoadEasyDispMessage(-1.0f, 162.0f, SaveLoadMessage, 36);
+        
+        DispUpDownCursol(270.0f, 320.0f, pSysSave->sSelectCur + 2);
+        break;
+    case 8:
+        AutoSaveLoadEasyDispMessage(-1.0f, 176.0f, SaveLoadMessage, 37);
+        break;
+    case 9:
+        AutoSaveLoadEasyDispMessage(-1.0f, 204.0f, SaveLoadMessage, 38);
+        break;
+    case 10:
+        AutoSaveLoadEasyDispMessage(-1.0f, 176.0f, SaveLoadMessage, 39);
+        break;
+    case 11:
+        AutoSaveLoadEasyDispMessage(-1.0f, 176.0f, SaveLoadMessage, 40);
+        break;
+    case 12:
+        AutoSaveLoadEasyDispMessage(-1.0f, 204.0f, SaveLoadMessage, 41);
+        break;
+    case 13:
+        AutoSaveLoadEasyDispMessage(-1.0f, 176.0f, SaveLoadMessage, 42);
+        break;
+    case 14:
+        AutoSaveLoadEasyDispMessage(-1.0f, 136.0f, SaveLoadMessage, 43);
+        break;
+    case 15:
+        AutoSaveLoadEasyDispMessage(-1.0f, 176.0f, SaveLoadMessage, 44);
+        
+        DispUpDownCursol(270.0f, 221.0f, pSysSave->sSelectCur + 2);
+        break;
+    }
+
+    bhFontScaleSet(1.0f, 1.0f, 1.0f);
+}
 
 // 
 // Start address: 0x278370
