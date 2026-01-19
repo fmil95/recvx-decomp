@@ -1,4 +1,5 @@
 #include "ps2_SystemSaveScreen.h"
+#include "message.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard..h"
 #include "main.h"
