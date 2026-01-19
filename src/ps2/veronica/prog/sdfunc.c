@@ -169,7 +169,7 @@ void QuickGetDiscTrayStatus()
     
     if (DiscOpenTrayFlag == -1)
     { 
-        ExitApplication(DiscOpenTrayFlag); 
+        ExitApplication(); 
     }
 } 
 
