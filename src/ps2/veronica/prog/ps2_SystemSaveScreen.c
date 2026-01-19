@@ -1,6 +1,7 @@
 #include "ps2_SystemSaveScreen.h"
 #include "adv.h"
 #include "message.h"
+#include "padman.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard..h"
 #include "main.h"
@@ -313,32 +314,45 @@ void SetStateSysSaveErrUnPS2MemCard(SYSSAVE_SCREEN* pSysSave)
     pSysSave->cMesFlag = 1;
 }
 
-// 
-// Start address: 0x278810
+// 100% matching!
 void ExecuteStateSysSaveErrUnPS2MemCard(SYSSAVE_SCREEN* pSysSave)
 {
-	int lPort1State;
 	int lPort0State;
-	// Line 518, Address: 0x278810, Func Offset: 0
-	// Line 523, Address: 0x278820, Func Offset: 0x10
-	// Line 525, Address: 0x278834, Func Offset: 0x24
-	// Line 527, Address: 0x278838, Func Offset: 0x28
-	// Line 528, Address: 0x278840, Func Offset: 0x30
-	// Line 532, Address: 0x278848, Func Offset: 0x38
-	// Line 537, Address: 0x278878, Func Offset: 0x68
-	// Line 539, Address: 0x278884, Func Offset: 0x74
-	// Line 541, Address: 0x278894, Func Offset: 0x84
-	// Line 544, Address: 0x2788a0, Func Offset: 0x90
-	// Line 545, Address: 0x2788a8, Func Offset: 0x98
-	// Line 547, Address: 0x2788b0, Func Offset: 0xa0
-	// Line 550, Address: 0x2788b8, Func Offset: 0xa8
-	// Line 551, Address: 0x2788c0, Func Offset: 0xb0
-	// Line 553, Address: 0x2788c8, Func Offset: 0xb8
-	// Line 556, Address: 0x2788d8, Func Offset: 0xc8
-	// Line 558, Address: 0x2788e0, Func Offset: 0xd0
-	// Line 562, Address: 0x2788e8, Func Offset: 0xd8
-	// Line 566, Address: 0x2788f0, Func Offset: 0xe0
-	// Func End, Address: 0x278904, Func Offset: 0xf4
+    int lPort1State;
+
+    if ((Pad->press & 0x800))
+    {
+        pSysSave->usExitFlag = 1;
+        
+        SetStateSysSaveTitleExit(pSysSave);
+        return;
+    }
+    
+    switch (pSysSave->lCardState)
+    {
+    case 100:
+    case 101:
+        lPort0State = GetMemoryCardSelectPortState(pSysSave->pMcState, 0);
+        lPort1State = GetMemoryCardSelectPortState(pSysSave->pMcState, 1);
+        
+        if (lPort0State == 2)
+        {
+            SetStateSysSaveAwarenessCard(pSysSave);
+        }
+        else if (lPort1State == 2)
+        {
+            SetStateSysSaveErrPort2(pSysSave);
+        }
+        else if ((lPort0State == 0) && (lPort1State == 0))
+        {
+            SetStateSysSaveErrLostCard(pSysSave);
+        }
+        
+        break;
+    case 103:
+        SetStateSysSaveErrLostCard(pSysSave);
+        break;
+    }
 }
 
 // 
