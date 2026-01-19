@@ -923,23 +923,24 @@ typedef struct MDLSTR2
 
 typedef struct NP_WORK
 {
-	int* sknp;
-	int obj_now;
-	int obj_cnt;
-	unsigned char* buff;
-	unsigned char* bp;
-	int* vlist[128];
-	NJS_POINT3 op[128];
-	NJS_CNK_OBJECT* cobj[128];
-	int* sktp[128];
-	int* vlp[128];
-	NJS_MATRIX* mxp[128][10];
-	void* wkp;
-	unsigned char* buff2;
-	unsigned char* bp2;
-	MDLSTR2 mdlstr2[128];
-	int* vlp2[128];
-	char mes[256];
+    // total size: 0x2F20
+	int* sknp;                 // offset 0x0, size 0x4
+    int obj_now;               // offset 0x4, size 0x4
+    int obj_cnt;               // offset 0x8, size 0x4
+    unsigned char* buff;       // offset 0xC, size 0x4
+    unsigned char* bp;         // offset 0x10, size 0x4
+    int* vlist[128];           // offset 0x14, size 0x200
+	NJS_POINT3 op[128];        // offset 0x214, size 0x600
+	NJS_CNK_OBJECT* cobj[128]; // offset 0x814, size 0x200
+	int* sktp[128];            // offset 0xA14, size 0x200
+    int* vlp[128];             // offset 0xC14, size 0x200
+	NJS_MATRIX* mxp[128][10];  // offset 0xE14, size 0x1400
+	void* wkp;                 // offset 0x2214, size 0x4
+    unsigned char* buff2;      // offset 0x2218, size 0x4
+    unsigned char* bp2;        // offset 0x221C, size 0x4
+	MDLSTR2 mdlstr2[128];      // offset 0x2220, size 0xA00
+	int* vlp2[128];            // offset 0x2C20, size 0x200
+    char mes[256];             // offset 0x2E20, size 0x100
 } NP_WORK;
 
 typedef struct NO_NAME_15
@@ -951,15 +952,6 @@ typedef struct NO_NAME_15
 	unsigned short usIndexMax;
 	unsigned char ucPadding[56];
 } NO_NAME_15;
-
-typedef struct NO_NAME_15_NOPAD
-{
-	unsigned char ucType;
-	unsigned char ucAttr;
-	unsigned short usSize;
-	unsigned short usIndexOfs;
-	unsigned short usIndexMax;
-} NO_NAME_15_NOPAD;
 
 typedef struct NJS_POINT4
 {

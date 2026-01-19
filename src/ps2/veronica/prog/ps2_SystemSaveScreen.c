@@ -252,38 +252,57 @@ void SetStateSysSaveAwarenessCard(SYSSAVE_SCREEN* pSysSave)
     RecoveryMemoryCardError((MEMORYCARDSTATE*)pSysSave);
 }
 
-// 
-// Start address: 0x2786b0
+// 100% matching!
 void ExecuteStateSysSaveAwarenessCard(SYSSAVE_SCREEN* pSysSave)
 {
-	int lResult;
-	int lPort1State;
-	int lPort0State;
-	// Line 423, Address: 0x2786b0, Func Offset: 0
-	// Line 427, Address: 0x2786c0, Func Offset: 0x10
-	// Line 432, Address: 0x2786fc, Func Offset: 0x4c
-	// Line 434, Address: 0x278708, Func Offset: 0x58
-	// Line 436, Address: 0x278718, Func Offset: 0x68
-	// Line 439, Address: 0x278724, Func Offset: 0x74
-	// Line 441, Address: 0x27872c, Func Offset: 0x7c
-	// Line 444, Address: 0x278738, Func Offset: 0x88
-	// Line 445, Address: 0x278740, Func Offset: 0x90
-	// Line 448, Address: 0x278748, Func Offset: 0x98
-	// Line 451, Address: 0x278754, Func Offset: 0xa4
-	// Line 453, Address: 0x27875c, Func Offset: 0xac
-	// Line 455, Address: 0x278764, Func Offset: 0xb4
-	// Line 458, Address: 0x27876c, Func Offset: 0xbc
-	// Line 459, Address: 0x278774, Func Offset: 0xc4
-	// Line 461, Address: 0x27877c, Func Offset: 0xcc
-	// Line 465, Address: 0x2787a0, Func Offset: 0xf0
-	// Line 466, Address: 0x2787ac, Func Offset: 0xfc
-	// Line 471, Address: 0x2787b4, Func Offset: 0x104
-	// Line 473, Address: 0x2787c0, Func Offset: 0x110
-	// Line 476, Address: 0x2787c8, Func Offset: 0x118
-	// Line 477, Address: 0x2787d0, Func Offset: 0x120
-	// Line 480, Address: 0x2787d8, Func Offset: 0x128
-	// Line 483, Address: 0x2787e0, Func Offset: 0x130
-	// Func End, Address: 0x2787f4, Func Offset: 0x144
+    int lPort0State;
+    int lPort1State;
+    int lResult;
+	
+    switch (pSysSave->lCardState)
+    {
+    case 100:
+    case 101:
+        lPort0State = GetMemoryCardSelectPortState(pSysSave->pMcState, 0);
+        lPort1State = GetMemoryCardSelectPortState(pSysSave->pMcState, 1);
+        
+        if (lPort0State == 2)
+        {
+            lResult = CheckMemoryCardFormatStatus(pSysSave->pMcState);
+            
+            if (lResult == 1)
+            {
+                SetStateSysSaveFormat(pSysSave);
+            }
+            else if (lResult == 2)
+            {
+                SetStateSysSaveDirCheck(pSysSave);
+            }
+        }
+        else 
+        {
+            if (lPort1State == 2)
+            {
+                SetStateSysSaveErrPort2(pSysSave);
+            }
+            else if (((lPort0State != 2) && (lPort0State != 0)) || ((lPort1State != 2) && (lPort1State != 0))) 
+            {
+                SetStateSysSaveErrUnPS2MemCard(pSysSave);
+            }
+            else 
+            {
+                SetStateSysSaveErrLostCard(pSysSave);
+            }
+        }
+        
+        break;
+    case 102:
+        SetStateSysSaveErrUnPS2MemCard(pSysSave);
+        break;
+    case 103:
+        SetStateSysSaveErrLostCard(pSysSave);
+        break;
+    }
 }
 
 // 
