@@ -404,14 +404,12 @@ void ExecuteStateSysSaveErrLostCard(SYSSAVE_SCREEN* pSysSave)
     }
 }
 
-// 
-// Start address: 0x278a40
+// 100% matching!
 void SetStateSysSaveErrPort2(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 675, Address: 0x278a40, Func Offset: 0
-	// Line 677, Address: 0x278a48, Func Offset: 0x8
-	// Line 678, Address: 0x278a4c, Func Offset: 0xc
-	// Func End, Address: 0x278a54, Func Offset: 0x14
+    pSysSave->ulState = 3;
+    
+    pSysSave->cMesFlag = 1;
 }
 
 // 
