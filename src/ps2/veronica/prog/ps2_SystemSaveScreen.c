@@ -718,17 +718,16 @@ void ExecuteStateSysSaveWriteSysData(SYSSAVE_SCREEN* pSysSave)
 	// Func End, Address: 0x279248, Func Offset: 0x318
 }
 
-// 
-// Start address: 0x279250
+// 100% matching!
 void SetStateSysSaveSuccessWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 1267, Address: 0x279250, Func Offset: 0
-	// Line 1269, Address: 0x279254, Func Offset: 0x4
-	// Line 1267, Address: 0x279258, Func Offset: 0x8
-	// Line 1269, Address: 0x27925c, Func Offset: 0xc
-	// Line 1271, Address: 0x279260, Func Offset: 0x10
-	// Line 1273, Address: 0x279264, Func Offset: 0x14
-	// Func End, Address: 0x279270, Func Offset: 0x20
+    pSysSave->ulState = 15;
+    
+    pSysSave->cMesFlag = 9;
+    
+    pSysSave->ulMemCheckCountTimer = 15;
+    
+    SetCheckMcFlag(pSysSave->pMcState, 0);
 }
 
 // 
