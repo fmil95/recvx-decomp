@@ -427,17 +427,14 @@ void ExecuteStateSysSaveErrPort2(SYSSAVE_SCREEN* pSysSave)
     }
 }
 
-// 
-// Start address: 0x278ac0
+// 100% matching!
 void SetStateSysSaveDirCheck(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 726, Address: 0x278ac0, Func Offset: 0
-	// Line 728, Address: 0x278acc, Func Offset: 0xc
-	// Line 730, Address: 0x278ad8, Func Offset: 0x18
-	// Line 732, Address: 0x278adc, Func Offset: 0x1c
-	// Line 734, Address: 0x278ae8, Func Offset: 0x28
-	// Line 735, Address: 0x278af4, Func Offset: 0x34
-	// Func End, Address: 0x278b04, Func Offset: 0x44
+    pSysSave->ulState = 10;
+    pSysSave->ulSubState = 0;
+    
+    SetMemoryCardCurrentPort(pSysSave->pMcState, 0);
+    SetCheckMcFlag(pSysSave->pMcState, 1);
 }
 
 // 
