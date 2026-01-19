@@ -519,22 +519,29 @@ void SetStateSysSaveFreeCapacity(SYSSAVE_SCREEN* pSysSave)
     pSysSave->ulState = 11;
 }
 
-// 
-// Start address: 0x278c90
+// 100% matching!
 void ExecuteStateSysSaveFreeCapacity(SYSSAVE_SCREEN* pSysSave)
 {
-	int lResult;
-	// Line 858, Address: 0x278c90, Func Offset: 0
-	// Line 861, Address: 0x278ca4, Func Offset: 0x14
-	// Line 863, Address: 0x278cac, Func Offset: 0x1c
-	// Line 866, Address: 0x278cc0, Func Offset: 0x30
-	// Line 869, Address: 0x278ccc, Func Offset: 0x3c
-	// Line 872, Address: 0x278cd4, Func Offset: 0x44
-	// Line 879, Address: 0x278ce0, Func Offset: 0x50
-	// Line 881, Address: 0x278ce8, Func Offset: 0x58
-	// Line 886, Address: 0x278cf0, Func Offset: 0x60
-	// Line 888, Address: 0x278cfc, Func Offset: 0x6c
-	// Func End, Address: 0x278d10, Func Offset: 0x80
+    int lResult;
+
+    lResult = GetMemoryCardFreeCapacity(pSysSave->pMcState);
+    
+    if (lResult < mcGetFreeCapacitySize())
+    {
+        if (lResult == -1)
+        {
+            SetStateSysSaveAwarenessCard(pSysSave);
+        }
+        
+        if (lResult != -2)
+        {
+            SetStateSysSaveErrFreeCapacity(pSysSave);
+        }
+    }
+    else
+    {
+        SetStateSysSaveCheckWriteSysData(pSysSave);
+    }
 }
 
 // 100% matching!
