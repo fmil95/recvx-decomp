@@ -242,16 +242,14 @@ int ExecuteSysSaveScreen(SYSSAVE_SCREEN* pSysSave)
     return pSysSave->usExitFlag;
 }
 
-// 
-// Start address: 0x278670
+// 100% matching!
 void SetStateSysSaveAwarenessCard(SYSSAVE_SCREEN* pSysSave)
-{
-	// Line 401, Address: 0x278670, Func Offset: 0
-	// Line 403, Address: 0x27867c, Func Offset: 0xc
-	// Line 405, Address: 0x278684, Func Offset: 0x14
-	// Line 407, Address: 0x278690, Func Offset: 0x20
-	// Line 408, Address: 0x278698, Func Offset: 0x28
-	// Func End, Address: 0x2786a8, Func Offset: 0x38
+{   
+    pSysSave->ulState = 0;
+    
+    SetMemoryCardCurrentPort(pSysSave->pMcState, 0);
+    
+    RecoveryMemoryCardError((MEMORYCARDSTATE*)pSysSave);
 }
 
 // 

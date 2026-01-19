@@ -905,19 +905,21 @@ typedef struct HWS_WORK
     int vtx_total; // offset 0x20, size 0x4
 } HWS_WORK;
 
-typedef struct NO_NAME_12
+typedef struct EVT_WORK
 {
-	unsigned short* scd0;
-	unsigned short* scd1;
-	unsigned short* evd;
-} NO_NAME_12;
+	// total size: 0xC
+    unsigned short* scd0; // offset 0x0, size 0x4
+    unsigned short* scd1; // offset 0x4, size 0x4
+    unsigned short* evd;  // offset 0x8, size 0x4
+} EVT_WORK;
 
-typedef struct NO_NAME_14
+typedef struct MDLSTR2
 {
-	float pos[3];
-	int* vlist;
-	short* plist;
-} NO_NAME_14;
+    // total size: 0x14
+    float pos[3]; // offset 0x0, size 0xC
+    int* vlist;   // offset 0xC, size 0x4
+    short* plist; // offset 0x10, size 0x4
+} MDLSTR2;
 
 typedef struct NP_WORK
 {
@@ -935,7 +937,7 @@ typedef struct NP_WORK
 	void* wkp;
 	unsigned char* buff2;
 	unsigned char* bp2;
-	NO_NAME_14 mdlstr2[128];
+	MDLSTR2 mdlstr2[128];
 	int* vlp2[128];
 	char mes[256];
 } NP_WORK;
@@ -2261,7 +2263,7 @@ typedef struct ROM_WORK
 	NO_NAME_28* posp; // offset 0x24, size 0x4
 	ATR_WORK* rutp; // offset 0x28, size 0x4
 	unsigned char* ruttp; // offset 0x2C, size 0x4
-	NO_NAME_12* evtp; // offset 0x30, size 0x4
+	EVT_WORK* evtp; // offset 0x30, size 0x4
 	NO_NAME_22* evcp; // offset 0x34, size 0x4
 	unsigned int* mesp; // offset 0x38, size 0x4
 	LGT_WORK* evlp; // offset 0x3C, size 0x4
