@@ -969,15 +969,6 @@ typedef struct NO_NAME_17
 	void* addr[256];
 } NO_NAME_17;
 
-typedef struct NO_NAME_18
-{
-	// total size: 0x50
-    unsigned int flg;      // offset 0x0, size 0x4
-    int dmy;               // offset 0x4, size 0x4
-    unsigned int dummy[2]; // offset 0x8, size 0x8
-    float mtx[16];         // offset 0x10, size 0x40
-} NO_NAME_18;
-
 typedef struct LFOPEN_INFO
 {
 	// total size: 0x8

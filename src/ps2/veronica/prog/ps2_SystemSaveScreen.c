@@ -363,32 +363,45 @@ void SetStateSysSaveErrLostCard(SYSSAVE_SCREEN* pSysSave)
     pSysSave->cMesFlag = 1;
 }
 
-// 
-// Start address: 0x278930
+// 100% matching!
 void ExecuteStateSysSaveErrLostCard(SYSSAVE_SCREEN* pSysSave)
 {
-	int lPort1State;
-	int lPort0State;
-	// Line 601, Address: 0x278930, Func Offset: 0
-	// Line 605, Address: 0x278940, Func Offset: 0x10
-	// Line 607, Address: 0x278954, Func Offset: 0x24
-	// Line 609, Address: 0x278958, Func Offset: 0x28
-	// Line 610, Address: 0x278960, Func Offset: 0x30
-	// Line 614, Address: 0x278968, Func Offset: 0x38
-	// Line 619, Address: 0x278998, Func Offset: 0x68
-	// Line 621, Address: 0x2789a4, Func Offset: 0x74
-	// Line 623, Address: 0x2789b4, Func Offset: 0x84
-	// Line 626, Address: 0x2789c0, Func Offset: 0x90
-	// Line 627, Address: 0x2789c8, Func Offset: 0x98
-	// Line 629, Address: 0x2789d0, Func Offset: 0xa0
-	// Line 632, Address: 0x2789d8, Func Offset: 0xa8
-	// Line 633, Address: 0x2789e0, Func Offset: 0xb0
-	// Line 635, Address: 0x2789e8, Func Offset: 0xb8
-	// Line 639, Address: 0x278a0c, Func Offset: 0xdc
-	// Line 641, Address: 0x278a18, Func Offset: 0xe8
-	// Line 645, Address: 0x278a20, Func Offset: 0xf0
-	// Line 658, Address: 0x278a28, Func Offset: 0xf8
-	// Func End, Address: 0x278a3c, Func Offset: 0x10c
+    int lPort0State;
+    int lPort1State;
+
+    if ((Pad->press & 0x800))
+    {
+        pSysSave->usExitFlag = 1;
+        
+        SetStateSysSaveTitleExit(pSysSave);
+        return;
+    }
+    
+    switch (pSysSave->lCardState)
+    {
+    case 100:
+    case 101:
+        lPort0State = GetMemoryCardSelectPortState(pSysSave->pMcState, 0);
+        lPort1State = GetMemoryCardSelectPortState(pSysSave->pMcState, 1);
+        
+        if (lPort0State == 2)
+        {
+            SetStateSysSaveAwarenessCard(pSysSave);
+        }
+        else if (lPort1State == 2)
+        {
+            SetStateSysSaveErrPort2(pSysSave);
+        }
+        else if (((lPort0State != 2) && (lPort0State != 0)) || ((lPort1State != 2) && (lPort1State != 0))) 
+        {
+            SetStateSysSaveErrUnPS2MemCard(pSysSave);
+        }
+        
+        break;
+    case 102:
+        SetStateSysSaveErrUnPS2MemCard(pSysSave);
+        break;
+    }
 }
 
 // 
