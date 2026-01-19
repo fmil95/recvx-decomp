@@ -567,15 +567,14 @@ void ExecuteStateSysSaveErrFreeCapacity(SYSSAVE_SCREEN* pSysSave)
     }
 }
 
-// 
-// Start address: 0x278d90
+// 100% matching!
 void SetStateSysSaveCheckWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 957, Address: 0x278d90, Func Offset: 0
-	// Line 959, Address: 0x278d98, Func Offset: 0x8
-	// Line 961, Address: 0x278da0, Func Offset: 0x10
-	// Line 962, Address: 0x278da4, Func Offset: 0x14
-	// Func End, Address: 0x278dac, Func Offset: 0x1c
+    pSysSave->ulState = 13;
+    
+    pSysSave->cMesFlag = 7;
+    
+    pSysSave->sSelectCur = 1;
 }
 
 // 
