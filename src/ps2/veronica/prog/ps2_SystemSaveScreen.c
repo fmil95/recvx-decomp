@@ -513,13 +513,10 @@ void ExecuteStateSysSaveDirCheck(SYSSAVE_SCREEN* pSysSave)
     }
 }
 
-// 
-// Start address: 0x278c80
+// 100% matching!
 void SetStateSysSaveFreeCapacity(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 842, Address: 0x278c80, Func Offset: 0
-	// Line 843, Address: 0x278c84, Func Offset: 0x4
-	// Func End, Address: 0x278c8c, Func Offset: 0xc
+    pSysSave->ulState = 11;
 }
 
 // 
