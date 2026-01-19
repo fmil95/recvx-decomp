@@ -437,42 +437,80 @@ void SetStateSysSaveDirCheck(SYSSAVE_SCREEN* pSysSave)
     SetCheckMcFlag(pSysSave->pMcState, 1);
 }
 
-// 
-// Start address: 0x278b10
+// 100% matching!
 void ExecuteStateSysSaveDirCheck(SYSSAVE_SCREEN* pSysSave)
 {
-	int lResult;
-	// Line 750, Address: 0x278b10, Func Offset: 0
-	// Line 753, Address: 0x278b1c, Func Offset: 0xc
-	// Line 757, Address: 0x278b54, Func Offset: 0x44
-	// Line 758, Address: 0x278b5c, Func Offset: 0x4c
-	// Line 762, Address: 0x278b68, Func Offset: 0x58
-	// Line 763, Address: 0x278b70, Func Offset: 0x60
-	// Line 766, Address: 0x278b78, Func Offset: 0x68
-	// Line 768, Address: 0x278b84, Func Offset: 0x74
-	// Line 770, Address: 0x278b8c, Func Offset: 0x7c
-	// Line 772, Address: 0x278b90, Func Offset: 0x80
-	// Line 776, Address: 0x278b98, Func Offset: 0x88
-	// Line 777, Address: 0x278bac, Func Offset: 0x9c
-	// Line 779, Address: 0x278bb4, Func Offset: 0xa4
-	// Line 781, Address: 0x278bbc, Func Offset: 0xac
-	// Line 783, Address: 0x278bc8, Func Offset: 0xb8
-	// Line 784, Address: 0x278bd0, Func Offset: 0xc0
-	// Line 785, Address: 0x278bd8, Func Offset: 0xc8
-	// Line 788, Address: 0x278be4, Func Offset: 0xd4
-	// Line 791, Address: 0x278bf0, Func Offset: 0xe0
-	// Line 792, Address: 0x278bf8, Func Offset: 0xe8
-	// Line 797, Address: 0x278c00, Func Offset: 0xf0
-	// Line 800, Address: 0x278c0c, Func Offset: 0xfc
-	// Line 803, Address: 0x278c14, Func Offset: 0x104
-	// Line 806, Address: 0x278c24, Func Offset: 0x114
-	// Line 808, Address: 0x278c2c, Func Offset: 0x11c
-	// Line 813, Address: 0x278c34, Func Offset: 0x124
-	// Line 815, Address: 0x278c44, Func Offset: 0x134
-	// Line 820, Address: 0x278c4c, Func Offset: 0x13c
-	// Line 823, Address: 0x278c68, Func Offset: 0x158
-	// Line 825, Address: 0x278c70, Func Offset: 0x160
-	// Func End, Address: 0x278c80, Func Offset: 0x170
+    int lResult;
+
+    switch (pSysSave->ulSubState)
+    {
+    case 0:
+        lResult = CheckMemoryCardExistSubDirectory(pSysSave->pMcState);
+        
+        if (lResult == 1)
+        {
+            pSysSave->ulSubState = 1;
+        }
+        else if (lResult < 0)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSysSave->pMcState);
+            
+            pSysSave->ulSubState = 2;
+        }
+        
+        break;
+    case 1:
+        lResult = CheckMemoryCardExistFileList(pSysSave->pMcState, cpNameList, 18);
+        
+        if (lResult < 0)
+        {
+            pSysSave->ulSubState = 3;
+            
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSysSave->pMcState);
+        }
+        else if (lResult == 1)
+        {
+            if (pSysSave->usSaveMode == 1)
+            {
+                SetStateWriteRankingData(pSysSave);
+            }
+            else
+            {
+                SetStateSysSave(pSysSave);
+            }
+        }
+        
+        break;
+    case 2:
+        lResult = pSysSave->lCardState;
+        
+        if (lResult == 100)
+        {
+            SetStateSysSaveFreeCapacity(pSysSave);
+        }
+        
+        break;
+    case 3:
+        lResult = pSysSave->lCardState;
+        
+        if (lResult == 100)
+        {
+            SetStateSysSaveFileBroken(pSysSave);
+        }
+        
+        break;
+    }
+    
+    lResult = pSysSave->lCardState;
+    
+    if ((lResult > 100) && (lResult < 104))
+    {
+        SetStateSysSaveAwarenessCard(pSysSave);
+    }
 }
 
 // 
