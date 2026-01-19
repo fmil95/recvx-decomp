@@ -1555,7 +1555,7 @@ void npCutSkin()
 void npInitCalcSkin(void* pwp, int obj_n, int* sknp)
 { 
 	NJS_MATRIX mat;        
-	NO_NAME_18* owp;     
+	O_WORK* owp;     
 	NJS_CNK_OBJECT* op;    
 	int i;                
 	int flg;               
@@ -1564,7 +1564,7 @@ void npInitCalcSkin(void* pwp, int obj_n, int* sknp)
     unsigned int ulSize;    
 	unsigned char matb[64]; 
 
-    owp = (NO_NAME_18*)((BH_PWORK*)pwp)->mlwP->owP; 
+    owp = ((BH_PWORK*)pwp)->mlwP->owP; 
     
     np.bp = np.buff + (obj_n * 128); 
     
@@ -1852,7 +1852,7 @@ void npCalcSkin(void* pwp, int obj_n, int* sknp)
 void npInitCalcSkinFM(void* pwp, int obj_n, int* sknp)
 { 
 	NJS_MATRIX mat;        
-	NO_NAME_18* owp;     
+	O_WORK* owp;     
 	NJS_CNK_OBJECT* op;    
 	int i;                
 	int flg;               
@@ -1861,7 +1861,7 @@ void npInitCalcSkinFM(void* pwp, int obj_n, int* sknp)
     unsigned int ulSize;    
 	unsigned char matb[64]; 
 
-    owp = (NO_NAME_18*)((BH_PWORK*)pwp)->mlwP->owP; 
+    owp = ((BH_PWORK*)pwp)->mlwP->owP; 
     
     np.bp = np.buff + (obj_n * 128); 
     
