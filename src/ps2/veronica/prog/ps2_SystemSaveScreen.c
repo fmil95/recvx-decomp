@@ -162,64 +162,87 @@ void DispSysSaveMessageSelect(SYSSAVE_SCREEN* pSysSave)
     bhFontScaleSet(1.0f, 1.0f, 1.0f);
 }
 
-// 
-// Start address: 0x278370
+// 100% matching!
 int ExecuteSysSaveScreen(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 284, Address: 0x278370, Func Offset: 0
-	// Line 287, Address: 0x278380, Func Offset: 0x10
-	// Line 289, Address: 0x27838c, Func Offset: 0x1c
-	// Line 292, Address: 0x27849c, Func Offset: 0x12c
-	// Line 293, Address: 0x2784a8, Func Offset: 0x138
-	// Line 295, Address: 0x2784b0, Func Offset: 0x140
-	// Line 296, Address: 0x2784bc, Func Offset: 0x14c
-	// Line 298, Address: 0x2784c4, Func Offset: 0x154
-	// Line 299, Address: 0x2784d0, Func Offset: 0x160
-	// Line 301, Address: 0x2784d8, Func Offset: 0x168
-	// Line 302, Address: 0x2784e4, Func Offset: 0x174
-	// Line 304, Address: 0x2784ec, Func Offset: 0x17c
-	// Line 305, Address: 0x2784f8, Func Offset: 0x188
-	// Line 307, Address: 0x278500, Func Offset: 0x190
-	// Line 308, Address: 0x27850c, Func Offset: 0x19c
-	// Line 310, Address: 0x278514, Func Offset: 0x1a4
-	// Line 311, Address: 0x278520, Func Offset: 0x1b0
-	// Line 313, Address: 0x278528, Func Offset: 0x1b8
-	// Line 314, Address: 0x278534, Func Offset: 0x1c4
-	// Line 316, Address: 0x27853c, Func Offset: 0x1cc
-	// Line 317, Address: 0x278548, Func Offset: 0x1d8
-	// Line 319, Address: 0x278550, Func Offset: 0x1e0
-	// Line 320, Address: 0x27855c, Func Offset: 0x1ec
-	// Line 322, Address: 0x278564, Func Offset: 0x1f4
-	// Line 323, Address: 0x278570, Func Offset: 0x200
-	// Line 325, Address: 0x278578, Func Offset: 0x208
-	// Line 326, Address: 0x278584, Func Offset: 0x214
-	// Line 328, Address: 0x27858c, Func Offset: 0x21c
-	// Line 329, Address: 0x278598, Func Offset: 0x228
-	// Line 331, Address: 0x2785a0, Func Offset: 0x230
-	// Line 332, Address: 0x2785ac, Func Offset: 0x23c
-	// Line 334, Address: 0x2785b4, Func Offset: 0x244
-	// Line 335, Address: 0x2785c0, Func Offset: 0x250
-	// Line 337, Address: 0x2785c8, Func Offset: 0x258
-	// Line 338, Address: 0x2785d4, Func Offset: 0x264
-	// Line 340, Address: 0x2785dc, Func Offset: 0x26c
-	// Line 341, Address: 0x2785e8, Func Offset: 0x278
-	// Line 343, Address: 0x2785f0, Func Offset: 0x280
-	// Line 344, Address: 0x2785fc, Func Offset: 0x28c
-	// Line 346, Address: 0x278604, Func Offset: 0x294
-	// Line 347, Address: 0x278610, Func Offset: 0x2a0
-	// Line 349, Address: 0x278618, Func Offset: 0x2a8
-	// Line 350, Address: 0x278624, Func Offset: 0x2b4
-	// Line 352, Address: 0x27862c, Func Offset: 0x2bc
-	// Line 353, Address: 0x278638, Func Offset: 0x2c8
-	// Line 355, Address: 0x278640, Func Offset: 0x2d0
-	// Line 360, Address: 0x278648, Func Offset: 0x2d8
-	// Line 362, Address: 0x278654, Func Offset: 0x2e4
-	// Line 363, Address: 0x278658, Func Offset: 0x2e8
-	// Func End, Address: 0x278668, Func Offset: 0x2f8
-	scePrintf("ExecuteSysSaveScreen - UNIMPLEMENTED!\n");
+    pSysSave->lCardState = ExecuteMemoryCard(pSysSave->pMcState);
+    
+    switch (pSysSave->ulState)
+    {                          
+    case 0:
+        ExecuteStateSysSaveAwarenessCard(pSysSave);
+        break;
+    case 1:
+        ExecuteStateSysSaveErrUnPS2MemCard(pSysSave);
+        break;
+    case 2:
+        ExecuteStateSysSaveErrLostCard(pSysSave);
+        break;
+    case 3:
+        ExecuteStateSysSaveErrPort2(pSysSave);
+        break;
+    case 10:
+        ExecuteStateSysSaveDirCheck(pSysSave);
+        break;
+    case 11:
+        ExecuteStateSysSaveFreeCapacity(pSysSave);
+        break;
+    case 12:
+        ExecuteStateSysSaveErrFreeCapacity(pSysSave);
+        break;
+    case 13:
+        ExecuteStateSysSaveCheckWriteSysData(pSysSave);
+        break;
+    case 14:
+        ExecuteStateSysSaveWriteSysData(pSysSave);
+        break;
+    case 15:
+        ExecuteStateSysSaveSuccessWriteSysData(pSysSave);
+        break;
+    case 16:
+        ExecuteStateSysSaveErrWriteSysData(pSysSave);
+        break;
+    case 17:
+        ExecuteStateSysSaveFileBroken(pSysSave);
+        break;
+    case 18:
+        ExecuteStateSysSaveExitWriteSysData(pSysSave);
+        break;
+    case 20:
+        ExecuteStateWriteRankingData(pSysSave);
+        break;
+    case 30:
+        ExecuteStateSysSave(pSysSave);
+        break;
+    case 31:
+        ExecuteStateSysSaveErrCardWrite(pSysSave);
+        break;
+    case 40:
+        ExecuteStateSysSaveFormat(pSysSave);
+        break;
+    case 41:
+        ExecuteStateSysSaveStartFormat(pSysSave);
+        break;
+    case 42:
+        ExecuteStateSysSaveExitFormat(pSysSave);
+        break;
+    case 43:
+        ExecuteStateSysSaveSuccessFormat(pSysSave);
+        break;
+    case 44:
+        ExecuteStateSysSaveErrFormat(pSysSave);
+        break;
+    case 50:
+        ExecuteStateSysSaveTitleExit();
+        break;
+    }
+    
+    DispSysSaveMessageSelect(pSysSave);
+    
+    return pSysSave->usExitFlag;
 }
 
-/*// 
+// 
 // Start address: 0x278670
 void SetStateSysSaveAwarenessCard(SYSSAVE_SCREEN* pSysSave)
 {
@@ -1106,5 +1129,4 @@ unsigned int GetCancelButton()
 	// Line 2246, Address: 0x279e84, Func Offset: 0x24
 	// Line 2247, Address: 0x279e98, Func Offset: 0x38
 	// Func End, Address: 0x279ea0, Func Offset: 0x40
-}*/
-
+}
