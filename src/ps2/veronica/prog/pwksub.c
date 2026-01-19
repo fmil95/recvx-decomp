@@ -1,5 +1,6 @@
 #include "pwksub.h"
 #include "njplus.h"
+#include "ps2_NaMatrix.h"
 #include "main.h"
 
 /*_anon12* sys;
@@ -2192,29 +2193,42 @@ int bhCheckC2WallN(_anon40* cap, unsigned int flg)
 	// Func End, Address: 0x153210, Func Offset: 0x860
 }*/
 
-// 
-// Start address: 0x153210
+// 100% matching!
 int bhCheckClipModel(BH_PWORK* pp)
 {
-	int jno;
-	int i;
-	//_anon23 p3;
-	//_anon35 p2;
-	//_anon15* mlwP;
-	// Line 2439, Address: 0x153210, Func Offset: 0
-	// Line 2440, Address: 0x153228, Func Offset: 0x18
-	// Line 2444, Address: 0x15322c, Func Offset: 0x1c
-	// Line 2445, Address: 0x15323c, Func Offset: 0x2c
-	// Line 2446, Address: 0x153240, Func Offset: 0x30
-	// Line 2447, Address: 0x153254, Func Offset: 0x44
-	// Line 2449, Address: 0x15327c, Func Offset: 0x6c
-	// Line 2451, Address: 0x153298, Func Offset: 0x88
-	// Line 2453, Address: 0x153324, Func Offset: 0x114
-	// Line 2454, Address: 0x15332c, Func Offset: 0x11c
-	// Line 2455, Address: 0x153340, Func Offset: 0x130
-	// Line 2456, Address: 0x153344, Func Offset: 0x134
-	// Func End, Address: 0x153360, Func Offset: 0x150
-	scePrintf("bhCheckClipModel - UNIMPLEMENTED!\n");
+    ML_WORK* mlwP; 
+    NJS_POINT2 p2; 
+    NJS_POINT3 p3; 
+    int i;         
+    int jno;       
+    
+    mlwP = pp->mlwP;
+    
+    if (mlwP == NULL)
+    {
+        return 1;
+    }
+    
+    for (i = 0; i < 8; i++) 
+    {
+        if (pp->clp_jno[i] == -1)
+        {
+            break;
+        }
+        
+        jno = pp->clp_jno[i];
+        
+        njProjectScreen(cam.mtx, (NJS_POINT3*)&mlwP->owP[jno].mtx[12], &p2);
+        
+        njCalcPoint(cam.mtx, (NJS_POINT3*)&mlwP->owP[jno].mtx[12], &p3);
+        
+        if (((p2.x > 1472.0f) && (p2.x < 2624.0f)) && ((p2.y > 1632.0f) && (p2.y < 2624.0f)) && (p3.z > -1.0f)) 
+        {
+            return 0;
+        }
+    }
+    
+    return 1;
 }
 
 /*// 
