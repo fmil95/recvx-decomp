@@ -35,21 +35,23 @@ unsigned char bhCheckRoute(_anon25* ps0, _anon25* ps1, _anon25* ps2)
 	// Line 87, Address: 0x26b9b8, Func Offset: 0xe8
 	// Line 89, Address: 0x26b9cc, Func Offset: 0xfc
 	// Func End, Address: 0x26b9e4, Func Offset: 0x114
-}
-
-// 
-// Start address: 0x26b9f0
-unsigned char bhCheckRouteID(_anon25* ps)
-{
-	int i;
-	_anon0* rp;
-	// Line 104, Address: 0x26b9f0, Func Offset: 0
-	// Line 105, Address: 0x26b9fc, Func Offset: 0xc
-	// Line 106, Address: 0x26ba08, Func Offset: 0x18
-	// Line 110, Address: 0x26ba98, Func Offset: 0xa8
-	// Line 112, Address: 0x26baa0, Func Offset: 0xb0
-	// Line 113, Address: 0x26bab4, Func Offset: 0xc4
-	// Line 114, Address: 0x26bab8, Func Offset: 0xc8
-	// Func End, Address: 0x26bac0, Func Offset: 0xd0
 }*/
 
+// 100% matching!
+unsigned char bhCheckRouteID(NJS_POINT3* ps)
+{
+    ATR_WORK* rp;
+    int i;
+
+    rp = rom->rutp;
+    
+    for (i = 0; i < rom->rut_n; i++, rp++) 
+    {
+        if (((rp->px <= ps->x) && ((rp->px + rp->w) >= ps->x)) && ((rp->py <= ps->y) && ((rp->py + rp->h) >= ps->y)) && ((rp->pz <= ps->z) && ((rp->pz + rp->d) >= ps->z)))
+        {
+            return i;
+        }
+    }
+
+    return 0xFF;
+}
