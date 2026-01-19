@@ -3494,8 +3494,6 @@ typedef struct {
 
 typedef	void (*AlarmCallBack)(int, unsigned short, void*);
 
-#endif
-
 /* defs.h */
 
 #define TS_NONE (-1)
@@ -3519,3 +3517,5 @@ typedef	void (*AlarmCallBack)(int, unsigned short, void*);
 #define AU_STATE_PAUSE		3
 
 #define AU_HDR_SIZE		(sizeof(SpuStreamHeader) 					+ sizeof(SpuStreamBody))
+
+#endif
