@@ -412,19 +412,19 @@ void SetStateSysSaveErrPort2(SYSSAVE_SCREEN* pSysSave)
     pSysSave->cMesFlag = 1;
 }
 
-// 
-// Start address: 0x278a60
+// 100% matching!
 void ExecuteStateSysSaveErrPort2(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 692, Address: 0x278a60, Func Offset: 0
-	// Line 694, Address: 0x278a68, Func Offset: 0x8
-	// Line 697, Address: 0x278a7c, Func Offset: 0x1c
-	// Line 699, Address: 0x278a80, Func Offset: 0x20
-	// Line 700, Address: 0x278a88, Func Offset: 0x28
-	// Line 704, Address: 0x278a90, Func Offset: 0x30
-	// Line 707, Address: 0x278aac, Func Offset: 0x4c
-	// Line 710, Address: 0x278ab4, Func Offset: 0x54
-	// Func End, Address: 0x278ac0, Func Offset: 0x60
+    if ((Pad->press & 0x800))
+    {
+        pSysSave->usExitFlag = 1;
+        
+        SetStateSysSaveTitleExit(pSysSave);
+    }
+    else if ((pSysSave->lCardState > 100) && (pSysSave->lCardState < 104))
+    {
+        SetStateSysSaveAwarenessCard(pSysSave);
+    }
 }
 
 // 
