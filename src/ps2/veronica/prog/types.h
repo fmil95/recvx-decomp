@@ -943,15 +943,26 @@ typedef struct NP_WORK
     char mes[256];             // offset 0x2E20, size 0x100
 } NP_WORK;
 
-typedef struct NO_NAME_15
+typedef struct HDR_PS
 {
-	unsigned char ucType;
-	unsigned char ucAttr;
-	unsigned short usSize;
-	unsigned short usIndexOfs;
-	unsigned short usIndexMax;
-	unsigned char ucPadding[56];
-} NO_NAME_15;
+	// total size: 0x40
+    unsigned char ucType;        // offset 0x0, size 0x1
+    unsigned char ucAttr;        // offset 0x1, size 0x1
+    unsigned short usSize;       // offset 0x2, size 0x2
+    unsigned short usIndexOfs;   // offset 0x4, size 0x2
+    unsigned short usIndexMax;   // offset 0x6, size 0x2
+    unsigned char ucPadding[56]; // offset 0x8, size 0x38
+} HDR_PS;
+
+typedef struct HDR_CV
+{
+	// total size: 0x8
+    unsigned char ucType;      // offset 0x0, size 0x1
+    unsigned char ucAttr;      // offset 0x1, size 0x1
+    unsigned short usSize;     // offset 0x2, size 0x2
+    unsigned short usIndexOfs; // offset 0x4, size 0x2
+    unsigned short usIndexMax; // offset 0x6, size 0x2
+} HDR_CV;
 
 typedef struct NJS_POINT4
 {

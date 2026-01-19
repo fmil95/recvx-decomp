@@ -615,36 +615,36 @@ void npTransform(NJS_CNK_OBJECT* srcobj, NJS_CNK_OBJECT* dstobj, register float 
     register NJS_POINT4* dp; 
     register NJS_POINT4* fp; 
     register NJS_POINT4* sp; 
-    NO_NAME_15* pSrc;
-    NO_NAME_15* pDst; 
+    HDR_PS* pSrc;
+    HDR_PS* pDst; 
 
-    pSrc = (NO_NAME_15*)srcobj->model->vlist; 
+    pSrc = (HDR_PS*)srcobj->model->vlist; 
     fp = (NJS_POINT4*)dstobj->model->vlist; 
 
     s_nb = pSrc->usIndexMax; 
 
-    if (s_nb != ((NO_NAME_15*)fp)->usIndexMax)
+    if (s_nb != ((HDR_PS*)fp)->usIndexMax)
     {
         return; 
     }
 
     sp = (NJS_POINT4*)(pSrc + 1); 
-    dp = (NJS_POINT4*)((NO_NAME_15*)fp + 1); 
+    dp = (NJS_POINT4*)((HDR_PS*)fp + 1); 
     fp = (NJS_POINT4*)np.vlp2[ono]; 
 
     fp = (NJS_POINT4*)((int)fp | 0x30000000); 
 
-    ((NO_NAME_15*)fp)->ucType = pSrc->ucType; 
-    ((NO_NAME_15*)fp)->ucAttr = pSrc->ucAttr; 
+    ((HDR_PS*)fp)->ucType = pSrc->ucType; 
+    ((HDR_PS*)fp)->ucAttr = pSrc->ucAttr; 
     
-    ((NO_NAME_15*)fp)->usSize = pSrc->usSize; 
+    ((HDR_PS*)fp)->usSize = pSrc->usSize; 
     
-    ((NO_NAME_15*)fp)->usIndexOfs = pSrc->usIndexOfs; 
-    ((NO_NAME_15*)fp)->usIndexMax = s_nb; 
+    ((HDR_PS*)fp)->usIndexOfs = pSrc->usIndexOfs; 
+    ((HDR_PS*)fp)->usIndexMax = s_nb; 
 
     no *= 0.001f; 
     
-    fp = (NJS_POINT4*)((NO_NAME_15*)fp + 1);
+    fp = (NJS_POINT4*)((HDR_PS*)fp + 1);
     
     for ( ; s_nb != 0; s_nb--) 
     { 
@@ -703,7 +703,7 @@ void npTransform(NJS_CNK_OBJECT* srcobj, NJS_CNK_OBJECT* dstobj, register float 
         } 
     } 
 
-    ((NO_NAME_15*)fp)->ucType = 0xFF; 
+    ((HDR_PS*)fp)->ucType = 0xFF; 
 
     srcobj->model->vlist = np.vlp2[ono]; 
 } 
@@ -873,8 +873,8 @@ void npGetWHDSizeSub(NJS_CNK_OBJECT* objp, NJS_POINT3* whd)
 	NJS_POINT4* ps4;  
     NJS_POINT4 pd4;    
 	int i;           
-    NO_NAME_17* pHdrCv; 
-    NO_NAME_15* pHdrPs;
+    HDR_CV* pHdrCv; 
+    HDR_PS* pHdrPs;
 
     njPushMatrix(NULL);
     
@@ -884,7 +884,7 @@ void npGetWHDSizeSub(NJS_CNK_OBJECT* objp, NJS_POINT3* whd)
     
     if ((objp->model != NULL) && (!(objp->evalflags & 0x8))) 
     { 
-        pHdrPs = (NO_NAME_15*)objp->model->vlist;
+        pHdrPs = (HDR_PS*)objp->model->vlist;
         
         if (pHdrPs->ucType == 51)
         {
@@ -1030,7 +1030,7 @@ void npSkinConvSub(NJS_CNK_OBJECT* objp)
     int dt;                
     int flg;               
     int mno;               
-    NO_NAME_15* pHdr;      
+    HDR_PS* pHdr;      
     unsigned short max; // not from the debugging symbols
     float x, y, z; // not from the debugging symbols
 
@@ -1067,7 +1067,7 @@ void npSkinConvSub(NJS_CNK_OBJECT* objp)
     
     if ((flg & 0x1))
     {
-        pHdr = (NO_NAME_15*)np.cobj[mno]->model->vlist;
+        pHdr = (HDR_PS*)np.cobj[mno]->model->vlist;
         
         max = pHdr->usIndexMax;
         
@@ -1524,10 +1524,10 @@ void npSetOffsetUV2(NJS_CNK_MODEL* mdlp, short offu, short offv)
 // 100% matching!
 int npCopyVlist(int* dstp, int* srcp)
 {
-    NO_NAME_15* pPs;
+    HDR_PS* pPs;
     int nb;
 	
-    pPs = (NO_NAME_15*)srcp;
+    pPs = (HDR_PS*)srcp;
 
     if (pPs->ucType == 41)
     {
@@ -1651,8 +1651,8 @@ void npCalcSkin(void* pwp, int obj_n, int* sknp)
     int flg;
     int rg0;
     int nb;
-    NO_NAME_15* pHdr0;
-    NO_NAME_15* pHdr1;
+    HDR_PS* pHdr0;
+    HDR_PS* pHdr1;
     static float level[10] = { 0.1000000015f, 0.200000003f, 0.3000000119f, 0.400000006f, 0.5f, 0.6000000238f, 0.6999999881f, 0.8000000119f, 0.8999999762f, 1.0f };
 
     if (sknp != NULL)
@@ -1673,17 +1673,17 @@ void npCalcSkin(void* pwp, int obj_n, int* sknp)
             { 
                 if ((flg & 0x2)) 
                 { 
-                    pHdr0 = (NO_NAME_15*)op->model->vlist;
+                    pHdr0 = (HDR_PS*)op->model->vlist;
                     
                     rg0 = *np.sknp++; 
                     
                     op->model->vlist = np.vlp[rg0]; 
                     
-                    pHdr1 = (NO_NAME_15*)np.vlp[rg0]; 
+                    pHdr1 = (HDR_PS*)np.vlp[rg0]; 
                     
                     nb = *np.sknp++;
     
-                    pHdr1 = (NO_NAME_15*)((int)pHdr1 | 0x30000000); 
+                    pHdr1 = (HDR_PS*)((int)pHdr1 | 0x30000000); 
     
                     pHdr1->ucType = pHdr0->ucType;
                     pHdr1->ucAttr = pHdr0->ucAttr; 
@@ -1951,8 +1951,8 @@ void npCalcSkinFM(void* pwp, int obj_n, int* sknp)
     int flg;
     int rg0;
     int nb;
-    NO_NAME_15* pHdr0;
-    NO_NAME_15* pHdr1;
+    HDR_PS* pHdr0;
+    HDR_PS* pHdr1;
     static float level[10] = { 0.1000000015f, 0.200000003f, 0.3000000119f, 0.400000006f, 0.5f, 0.6000000238f, 0.6999999881f, 0.8000000119f, 0.8999999762f, 1.0f };
 
     if (sknp != NULL)
@@ -1975,17 +1975,17 @@ void npCalcSkinFM(void* pwp, int obj_n, int* sknp)
                 { 
                     if ((flg & 0x2)) 
                     { 
-                        pHdr0 = (NO_NAME_15*)op->model->vlist;
+                        pHdr0 = (HDR_PS*)op->model->vlist;
                         
                         rg0 = *np.sknp++; 
                         
                         op->model->vlist = np.vlp[rg0]; 
                         
-                        pHdr1 = (NO_NAME_15*)np.vlp[rg0]; 
+                        pHdr1 = (HDR_PS*)np.vlp[rg0]; 
                         
                         nb = *np.sknp++;
         
-                        pHdr1 = (NO_NAME_15*)((int)pHdr1 | 0x30000000); 
+                        pHdr1 = (HDR_PS*)((int)pHdr1 | 0x30000000); 
         
                         pHdr1->ucType = pHdr0->ucType;
                         pHdr1->ucAttr = pHdr0->ucAttr; 
