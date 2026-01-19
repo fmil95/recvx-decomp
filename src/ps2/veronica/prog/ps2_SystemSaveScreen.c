@@ -4,6 +4,7 @@
 #include "padman.h"
 #include "ps2_McSaveFile.h"
 #include "ps2_MemoryCard..h"
+#include "sdfunc.h"
 #include "main.h"
 
 SYSSAVE_SCREEN* CreateSysSaveScreen(SYSSAVE_SCREEN* pSysSave, void* vpWorkPtrSys, unsigned short usSaveMesMode, unsigned short usSaveWriteMode);
@@ -577,40 +578,48 @@ void SetStateSysSaveCheckWriteSysData(SYSSAVE_SCREEN* pSysSave)
     pSysSave->sSelectCur = 1;
 }
 
-// 
-// Start address: 0x278db0
+// 100% matching!
 void ExecuteStateSysSaveCheckWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 977, Address: 0x278db0, Func Offset: 0
-	// Line 981, Address: 0x278dbc, Func Offset: 0xc
-	// Line 984, Address: 0x278dd0, Func Offset: 0x20
-	// Line 988, Address: 0x278dd4, Func Offset: 0x24
-	// Line 984, Address: 0x278ddc, Func Offset: 0x2c
-	// Line 986, Address: 0x278de4, Func Offset: 0x34
-	// Line 988, Address: 0x278dec, Func Offset: 0x3c
-	// Line 989, Address: 0x278df4, Func Offset: 0x44
-	// Line 990, Address: 0x278dfc, Func Offset: 0x4c
-	// Line 993, Address: 0x278e08, Func Offset: 0x58
-	// Line 997, Address: 0x278e0c, Func Offset: 0x5c
-	// Line 993, Address: 0x278e14, Func Offset: 0x64
-	// Line 995, Address: 0x278e1c, Func Offset: 0x6c
-	// Line 997, Address: 0x278e24, Func Offset: 0x74
-	// Line 998, Address: 0x278e2c, Func Offset: 0x7c
-	// Line 999, Address: 0x278e34, Func Offset: 0x84
-	// Line 1001, Address: 0x278e50, Func Offset: 0xa0
-	// Line 1004, Address: 0x278e5c, Func Offset: 0xac
-	// Line 1005, Address: 0x278e64, Func Offset: 0xb4
-	// Line 1009, Address: 0x278e6c, Func Offset: 0xbc
-	// Line 1012, Address: 0x278e78, Func Offset: 0xc8
-	// Line 1013, Address: 0x278e84, Func Offset: 0xd4
-	// Line 1014, Address: 0x278e8c, Func Offset: 0xdc
-	// Line 1017, Address: 0x278ea8, Func Offset: 0xf8
-	// Line 1019, Address: 0x278eb0, Func Offset: 0x100
-	// Line 1020, Address: 0x278ebc, Func Offset: 0x10c
-	// Line 1024, Address: 0x278ec4, Func Offset: 0x114
-	// Line 1027, Address: 0x278ee0, Func Offset: 0x130
-	// Line 1030, Address: 0x278ee8, Func Offset: 0x138
-	// Func End, Address: 0x278ef8, Func Offset: 0x148
+    if ((Pad->press & 0x1000))
+    {
+        pSysSave->sSelectCur--;
+        
+        pSysSave->sSelectCur &= 0x1;
+        
+        CallSystemSe(0, 2);
+    }
+    else if ((Pad->press & 0x4000))
+    {
+        pSysSave->sSelectCur++;
+        
+        pSysSave->sSelectCur &= 0x1;
+        
+        CallSystemSe(0, 2);
+    }
+    else if ((Pad->press & GetOkButton()))
+    {
+        if (pSysSave->sSelectCur == 0)
+        {
+            SetStateSysSaveWriteSysData(pSysSave);
+        }
+        else
+        {
+            SetStateSysSaveExitWriteSysData(pSysSave);
+        }
+        
+        CallSystemSe(0, 3);
+    }
+    else if ((Pad->press & GetCancelButton()))
+    {
+        SetStateSysSaveExitWriteSysData(pSysSave);
+        
+        CallSystemSe(0, 0);
+    }
+    else if ((pSysSave->lCardState > 100) && (pSysSave->lCardState < 104))
+    {
+        SetStateSysSaveAwarenessCard(pSysSave);
+    }
 }
 
 // 100% matching!

@@ -3,7 +3,7 @@
 #include "main.h"
 
 static NJS_TEXINFO info;
-NO_NAME_17 Ps2_tex_save[2];
+PS2_TEX_SAVE Ps2_tex_save[2];
 static NJS_TEXLIST tlist = { NULL, 1 }; 
 /*char fname[128];
 char BIO_CURRENT[0];
