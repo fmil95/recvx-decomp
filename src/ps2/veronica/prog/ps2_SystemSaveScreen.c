@@ -1279,18 +1279,17 @@ void SetStateSysSaveErrFormat(SYSSAVE_SCREEN* pSysSave)
     pSysSave->sSelectCur = 0;
 }
 
-// 
-// Start address: 0x279cd0
+// 100% matching!
 void ExecuteStateSysSaveErrFormat(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 2115, Address: 0x279cd0, Func Offset: 0
-	// Line 2116, Address: 0x279cd8, Func Offset: 0x8
-	// Line 2119, Address: 0x279cec, Func Offset: 0x1c
-	// Line 2120, Address: 0x279cf4, Func Offset: 0x24
-	// Line 2124, Address: 0x279cfc, Func Offset: 0x2c
-	// Line 2127, Address: 0x279d18, Func Offset: 0x48
-	// Line 2130, Address: 0x279d20, Func Offset: 0x50
-	// Func End, Address: 0x279d2c, Func Offset: 0x5c
+    if ((Pad->press & 0x800))
+    {
+        SetStateSysSaveExitFormat(pSysSave);
+    }
+    else if ((pSysSave->lCardState > 100) && (pSysSave->lCardState < 104))
+    {
+        SetStateSysSaveAwarenessCard(pSysSave);
+    }
 }
 
 // 100% matching!
