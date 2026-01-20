@@ -970,16 +970,15 @@ void ExecuteStateWriteRankingData(SYSSAVE_SCREEN* pSysSave)
 	// Func End, Address: 0x2796b0, Func Offset: 0x130
 }
 
-// 
-// Start address: 0x2796b0
+// 100% matching!
 void SetStateSysSave(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 1630, Address: 0x2796b0, Func Offset: 0
-	// Line 1634, Address: 0x2796b8, Func Offset: 0x8
-	// Line 1632, Address: 0x2796bc, Func Offset: 0xc
-	// Line 1634, Address: 0x2796c0, Func Offset: 0x10
-	// Line 1636, Address: 0x2796c4, Func Offset: 0x14
-	// Func End, Address: 0x2796d0, Func Offset: 0x20
+    pSysSave->ulState = 30;
+    pSysSave->ulSubState = 0;
+    
+    pSysSave->cMesFlag = 11;
+    
+    SetCheckMcFlag(pSysSave->pMcState, 1);
 }
 
 // 
