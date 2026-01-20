@@ -1298,15 +1298,15 @@ void SetStateSysSaveTitleExit(SYSSAVE_SCREEN* pSysSave)
     pSysSave->ulState = 50;
 }
 
-// 
-// Start address: 0x279d40
+// 100% matching!
 void ExecuteStateSysSaveTitleExit()
 {
-	// Line 2162, Address: 0x279d40, Func Offset: 0
-	// Line 2164, Address: 0x279d4c, Func Offset: 0xc
-	// Line 2166, Address: 0x279d64, Func Offset: 0x24
-	// Line 2168, Address: 0x279d68, Func Offset: 0x28
-	// Func End, Address: 0x279d70, Func Offset: 0x30
+    sys->typ_md1 = 0;
+    
+    if (!(sys->tk_flg & 0x2000))
+    {
+        sys->typ_md0 = 0;
+    }
 }
 
 // 
