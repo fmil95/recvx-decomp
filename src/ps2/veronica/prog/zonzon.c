@@ -2794,24 +2794,25 @@ void bhEne_PlayerSePlay(BH_PWORK* epw, int no)
     }
 }
 
-// 84.33% matching (https://decomp.me/scratch/MHlrL)
+// 100% matching!
 void bhEne_HitCheckParts(BH_PWORK* pp, NJS_POINT3* pos) {
-    int i;
-    float slen;
-    float len;
-    NJS_VECTOR vec;
     O_WORK* owk;
+    NJS_VECTOR vec;
+    float len;
+    float slen;
+    int i;
 
+    owk = (O_WORK*)pp->mlwP->owP+1;
     len = -1.0f;
-    owk = (O_WORK*)pp->mlwP->owP;
-    for (i = 1; i < (pp->mlwP->obj_num - 1); i++)
+    
+    for (i = 1; i < (int)(pp->mlwP->obj_num - 1); i++)
     {        
-        vec.x = pos->x - pp->pxb;
-        vec.y = pos->y - pp->pyb;
-        vec.z = pos->z - pp->pzb;
+        vec.x = pos->x - owk->mtx[12];
+        vec.y = pos->y - owk->mtx[13];
+        vec.z = pos->z - owk->mtx[14];
         slen = njScalor2(&vec);
 
-        if (len <= slen || len == -1.0f)
+        if (len > slen || len == -1.0f)
         {
             len = slen;
             pp->djnt_no = i;
@@ -2819,8 +2820,8 @@ void bhEne_HitCheckParts(BH_PWORK* pp, NJS_POINT3* pos) {
             pp->dvy = -vec.y;
             pp->dvz = -vec.z;
         }
-
-         owk += 0x50;
+        
+         owk++;
     }
     
     pp->dpx = pos->x;
