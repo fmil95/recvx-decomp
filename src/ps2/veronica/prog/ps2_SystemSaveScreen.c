@@ -916,17 +916,15 @@ void ExecuteStateSysSaveExitWriteSysData(SYSSAVE_SCREEN* pSysSave)
 	// Func End, Address: 0x27953c, Func Offset: 0x14c
 }
 
-// 
-// Start address: 0x279540
+// 100% matching!
 void SetStateWriteRankingData(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 1515, Address: 0x279540, Func Offset: 0
-	// Line 1517, Address: 0x27954c, Func Offset: 0xc
-	// Line 1519, Address: 0x279558, Func Offset: 0x18
-	// Line 1521, Address: 0x27955c, Func Offset: 0x1c
-	// Line 1523, Address: 0x279568, Func Offset: 0x28
-	// Line 1524, Address: 0x279570, Func Offset: 0x30
-	// Func End, Address: 0x279580, Func Offset: 0x40
+    pSysSave->ulState = 20;
+    pSysSave->ulSubState = 0;
+    
+    SetCheckMcFlag(pSysSave->pMcState, 0);
+    
+    RecoveryMemoryCardError(pSysSave->pMcState);
 }
 
 // 
