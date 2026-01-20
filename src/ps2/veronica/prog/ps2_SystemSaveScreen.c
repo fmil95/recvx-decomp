@@ -1309,31 +1309,30 @@ void ExecuteStateSysSaveTitleExit()
     }
 }
 
-// 
-// Start address: 0x279d70
+// 99.55% matching
 void SysSaveHikaku(CONFIGFILE* pConfig)
 {
-	unsigned int Count;
-	// Line 2186, Address: 0x279d70, Func Offset: 0
-	// Line 2188, Address: 0x279d7c, Func Offset: 0xc
-	// Line 2190, Address: 0x279d84, Func Offset: 0x14
-	// Line 2188, Address: 0x279d8c, Func Offset: 0x1c
-	// Line 2192, Address: 0x279d98, Func Offset: 0x28
-	// Line 2194, Address: 0x279dc4, Func Offset: 0x54
-	// Line 2196, Address: 0x279dc8, Func Offset: 0x58
-	// Line 2194, Address: 0x279dcc, Func Offset: 0x5c
-	// Line 2196, Address: 0x279dd0, Func Offset: 0x60
-	// Line 2197, Address: 0x279ddc, Func Offset: 0x6c
-	// Line 2200, Address: 0x279de4, Func Offset: 0x74
-	// Line 2202, Address: 0x279dec, Func Offset: 0x7c
-	// Line 2203, Address: 0x279df8, Func Offset: 0x88
-	// Line 2202, Address: 0x279dfc, Func Offset: 0x8c
-	// Line 2203, Address: 0x279e00, Func Offset: 0x90
-	// Line 2202, Address: 0x279e04, Func Offset: 0x94
-	// Line 2203, Address: 0x279e0c, Func Offset: 0x9c
-	// Line 2204, Address: 0x279e14, Func Offset: 0xa4
-	// Line 2205, Address: 0x279e18, Func Offset: 0xa8
-	// Func End, Address: 0x279e20, Func Offset: 0xb0
+    unsigned int Count;
+    
+    if (pConfig->ssd_flg != 0)
+    {
+        sys->ssd_flg |= pConfig->ssd_flg;
+
+        for (Count = 0; Count < 8; Count++)
+        {
+            if ((pConfig->best_tm[Count] < sys->best_tm[Count]) && (pConfig->best_tm[Count] != 0))
+            {
+                sys->best_tm[Count] = pConfig->best_tm[Count];
+            }
+        }
+    }
+    else
+    {
+        for (Count = 0; Count < 8; Count++)
+        {
+            sys->best_tm[Count] = pConfig->best_tm[Count] = 0; 
+        }
+    }
 }
 
 // 
