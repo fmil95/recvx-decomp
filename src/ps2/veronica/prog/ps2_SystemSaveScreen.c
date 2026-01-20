@@ -1138,32 +1138,54 @@ void SetStateSysSaveStartFormat(SYSSAVE_SCREEN* pSysSave)
     SetCheckMcFlag(pSysSave->pMcState, 1);
 }
 
-// 
-// Start address: 0x2799c0
+// 100% matching!
 void ExecuteStateSysSaveStartFormat(SYSSAVE_SCREEN* pSysSave)
 {
-	int lFormatResult;
-	// Line 1880, Address: 0x2799c0, Func Offset: 0
-	// Line 1883, Address: 0x2799cc, Func Offset: 0xc
-	// Line 1887, Address: 0x279a04, Func Offset: 0x44
-	// Line 1891, Address: 0x279a18, Func Offset: 0x58
-	// Line 1894, Address: 0x279a20, Func Offset: 0x60
-	// Line 1896, Address: 0x279a28, Func Offset: 0x68
-	// Line 1899, Address: 0x279a34, Func Offset: 0x74
-	// Line 1901, Address: 0x279a40, Func Offset: 0x80
-	// Line 1902, Address: 0x279a44, Func Offset: 0x84
-	// Line 1904, Address: 0x279a4c, Func Offset: 0x8c
-	// Line 1907, Address: 0x279a58, Func Offset: 0x98
-	// Line 1909, Address: 0x279a64, Func Offset: 0xa4
-	// Line 1911, Address: 0x279a6c, Func Offset: 0xac
-	// Line 1913, Address: 0x279a70, Func Offset: 0xb0
-	// Line 1917, Address: 0x279a78, Func Offset: 0xb8
-	// Line 1920, Address: 0x279a88, Func Offset: 0xc8
-	// Line 1922, Address: 0x279a90, Func Offset: 0xd0
-	// Line 1925, Address: 0x279a98, Func Offset: 0xd8
-	// Line 1928, Address: 0x279aa8, Func Offset: 0xe8
-	// Line 1932, Address: 0x279ab0, Func Offset: 0xf0
-	// Func End, Address: 0x279ac0, Func Offset: 0x100
+    int lFormatResult;
+    
+    switch (pSysSave->ulSubState)
+    {
+    case 0:
+        if (FormatMemoryCard(pSysSave->pMcState) == 1)
+        {
+            pSysSave->ulSubState = 1;
+        }
+        
+        break;
+    case 1:
+        lFormatResult = RecoveryMemoryCardFormatEnd(pSysSave->pMcState);
+
+        if (lFormatResult == 1)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            pSysSave->ulSubState = 2;
+        }
+        else if (lFormatResult == -1)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSysSave->pMcState);
+            
+            pSysSave->ulSubState = 3;
+        }
+        
+        break;
+    case 2:
+        if (pSysSave->lCardState == 100)
+        {
+            SetStateSysSaveSuccessFormat(pSysSave);
+        }
+        
+        break;
+    case 3:
+        if (pSysSave->lCardState == 100)
+        {
+            SetStateSysSaveErrFormat(pSysSave);
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!
