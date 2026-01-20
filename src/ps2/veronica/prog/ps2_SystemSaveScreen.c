@@ -1058,19 +1058,19 @@ void SetStateSysSaveErrCardWrite(SYSSAVE_SCREEN* pSysSave)
     SetCheckMcFlag(pSysSave->pMcState, 0);
 }
 
-// 
-// Start address: 0x2797d0
+// 100% matching!
 void ExecuteStateSysSaveErrCardWrite(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 1730, Address: 0x2797d0, Func Offset: 0
-	// Line 1732, Address: 0x2797d8, Func Offset: 0x8
-	// Line 1735, Address: 0x2797ec, Func Offset: 0x1c
-	// Line 1737, Address: 0x2797f0, Func Offset: 0x20
-	// Line 1738, Address: 0x2797f8, Func Offset: 0x28
-	// Line 1742, Address: 0x279800, Func Offset: 0x30
-	// Line 1745, Address: 0x27981c, Func Offset: 0x4c
-	// Line 1748, Address: 0x279824, Func Offset: 0x54
-	// Func End, Address: 0x279830, Func Offset: 0x60
+    if ((Pad->press & 0x800))
+    {
+        pSysSave->usExitFlag = 1;
+        
+        SetStateSysSaveTitleExit(pSysSave);
+    }
+    else if ((pSysSave->lCardState > 100) && (pSysSave->lCardState < 104))
+    {
+        SetStateSysSaveAwarenessCard(pSysSave);
+    }
 }
 
 // 100% matching!
