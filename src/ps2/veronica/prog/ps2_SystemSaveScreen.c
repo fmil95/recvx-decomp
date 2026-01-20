@@ -1335,19 +1335,12 @@ void SysSaveHikaku(CONFIGFILE* pConfig)
     }
 }
 
-// 
-// Start address: 0x279e20
+// 100% matching!
 unsigned int GetOkButton()
 {
-	unsigned int ButtonDef[3];
-	// Line 2219, Address: 0x279e20, Func Offset: 0
-	// Line 2217, Address: 0x279e30, Func Offset: 0x10
-	// Line 2219, Address: 0x279e34, Func Offset: 0x14
-	// Line 2225, Address: 0x279e38, Func Offset: 0x18
-	// Line 2219, Address: 0x279e3c, Func Offset: 0x1c
-	// Line 2225, Address: 0x279e44, Func Offset: 0x24
-	// Line 2226, Address: 0x279e58, Func Offset: 0x38
-	// Func End, Address: 0x279e60, Func Offset: 0x40
+    unsigned int ButtonDef[3] = { 0xC0, 0x60, 0xA0 };
+
+    return ButtonDef[sys->keytype];
 }
 
 // 
