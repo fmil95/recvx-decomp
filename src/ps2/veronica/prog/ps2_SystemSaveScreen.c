@@ -1003,30 +1003,49 @@ void SetStateSysSave(SYSSAVE_SCREEN* pSysSave)
     SetCheckMcFlag(pSysSave->pMcState, 1);
 }
 
-// 
-// Start address: 0x2796d0
+// 100% matching!
 void ExecuteStateSysSave(SYSSAVE_SCREEN* pSysSave)
 {
-	int ulSaveResult;
-	// Line 1652, Address: 0x2796d0, Func Offset: 0
-	// Line 1655, Address: 0x2796dc, Func Offset: 0xc
-	// Line 1658, Address: 0x279708, Func Offset: 0x38
-	// Line 1662, Address: 0x279720, Func Offset: 0x50
-	// Line 1665, Address: 0x279728, Func Offset: 0x58
-	// Line 1666, Address: 0x279730, Func Offset: 0x60
-	// Line 1669, Address: 0x27973c, Func Offset: 0x6c
-	// Line 1671, Address: 0x279748, Func Offset: 0x78
-	// Line 1673, Address: 0x279750, Func Offset: 0x80
-	// Line 1674, Address: 0x279758, Func Offset: 0x88
-	// Line 1675, Address: 0x279760, Func Offset: 0x90
-	// Line 1678, Address: 0x279768, Func Offset: 0x98
-	// Line 1680, Address: 0x279774, Func Offset: 0xa4
-	// Line 1682, Address: 0x27977c, Func Offset: 0xac
-	// Line 1684, Address: 0x279780, Func Offset: 0xb0
-	// Line 1687, Address: 0x279788, Func Offset: 0xb8
-	// Line 1689, Address: 0x279798, Func Offset: 0xc8
-	// Line 1694, Address: 0x2797a0, Func Offset: 0xd0
-	// Func End, Address: 0x2797b0, Func Offset: 0xe0
+    int ulSaveResult;
+
+    switch (pSysSave->ulSubState)
+    {
+    case 0:
+        if (mcWriteStartConfigFile(pSysSave->pMcState, pSysSave->pConfigFile) == 1)
+        {
+            pSysSave->ulSubState = 1;
+        }
+        
+        break;
+    case 1:
+        ulSaveResult = mcCheckWriteStartConfigFile(pSysSave->pMcState);
+        
+        if (ulSaveResult == 1)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            pSysSave->usExitFlag = 2;
+            
+            SetStateSysSaveTitleExit(pSysSave);
+        }
+        else if (ulSaveResult < 0)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSysSave->pMcState);
+            
+            pSysSave->ulSubState = 2;
+        }
+        
+        break;
+    case 2:
+        if (pSysSave->lCardState == 100)
+        {
+            SetStateSysSaveErrCardWrite(pSysSave);
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!
