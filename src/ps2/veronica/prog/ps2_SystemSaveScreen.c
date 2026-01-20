@@ -1254,19 +1254,17 @@ void SetStateSysSaveSuccessFormat(SYSSAVE_SCREEN* pSysSave)
     pSysSave->ulMemCheckCountTimer = 60;
 }
 
-// 
-// Start address: 0x279c50
+// 100% matching!
 void ExecuteStateSysSaveSuccessFormat(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 2060, Address: 0x279c50, Func Offset: 0
-	// Line 2062, Address: 0x279c58, Func Offset: 0x8
-	// Line 2065, Address: 0x279c64, Func Offset: 0x14
-	// Line 2068, Address: 0x279c70, Func Offset: 0x20
-	// Line 2069, Address: 0x279c78, Func Offset: 0x28
-	// Line 2072, Address: 0x279c80, Func Offset: 0x30
-	// Line 2075, Address: 0x279c9c, Func Offset: 0x4c
-	// Line 2078, Address: 0x279ca4, Func Offset: 0x54
-	// Func End, Address: 0x279cb0, Func Offset: 0x60
+    if (--pSysSave->ulMemCheckCountTimer == 0)
+    {
+        SetStateSysSaveAwarenessCard(pSysSave);
+    }
+    else if ((pSysSave->lCardState > 100) && (pSysSave->lCardState < 104))
+    {
+        SetStateSysSaveAwarenessCard(pSysSave);
+    }
 }
 
 // 100% matching!
