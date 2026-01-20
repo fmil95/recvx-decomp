@@ -936,38 +936,60 @@ void SetStateWriteRankingData(SYSSAVE_SCREEN* pSysSave)
     RecoveryMemoryCardError(pSysSave->pMcState);
 }
 
-// 
-// Start address: 0x279580
+// 100% matching!
 void ExecuteStateWriteRankingData(SYSSAVE_SCREEN* pSysSave)
 {
-	int ulSaveResult;
-	CONFIGFILE* pRankingData;
-	CONFIGFILE RankingData;
-	// Line 1539, Address: 0x279580, Func Offset: 0
-	// Line 1545, Address: 0x279594, Func Offset: 0x14
-	// Line 1550, Address: 0x2795c0, Func Offset: 0x40
-	// Line 1554, Address: 0x2795d8, Func Offset: 0x58
-	// Line 1558, Address: 0x2795e0, Func Offset: 0x60
-	// Line 1560, Address: 0x2795f0, Func Offset: 0x70
-	// Line 1563, Address: 0x2795f8, Func Offset: 0x78
-	// Line 1568, Address: 0x279604, Func Offset: 0x84
-	// Line 1574, Address: 0x27960c, Func Offset: 0x8c
-	// Line 1568, Address: 0x279610, Func Offset: 0x90
-	// Line 1574, Address: 0x279614, Func Offset: 0x94
-	// Line 1576, Address: 0x279620, Func Offset: 0xa0
-	// Line 1577, Address: 0x279628, Func Offset: 0xa8
-	// Line 1586, Address: 0x279630, Func Offset: 0xb0
-	// Line 1589, Address: 0x279644, Func Offset: 0xc4
-	// Line 1590, Address: 0x279650, Func Offset: 0xd0
-	// Line 1592, Address: 0x279658, Func Offset: 0xd8
-	// Line 1595, Address: 0x279660, Func Offset: 0xe0
-	// Line 1597, Address: 0x27966c, Func Offset: 0xec
-	// Line 1599, Address: 0x279674, Func Offset: 0xf4
-	// Line 1601, Address: 0x279678, Func Offset: 0xf8
-	// Line 1604, Address: 0x279680, Func Offset: 0x100
-	// Line 1607, Address: 0x279690, Func Offset: 0x110
-	// Line 1612, Address: 0x279698, Func Offset: 0x118
-	// Func End, Address: 0x2796b0, Func Offset: 0x130
+    CONFIGFILE RankingData;
+    CONFIGFILE* pRankingData;
+    int ulSaveResult;
+
+    switch (pSysSave->ulSubState)
+    {
+    case 0:
+        if (mcReadStartConfigFile(pSysSave->pMcState, pSysSave->pConfigFile) == 1)
+        {
+            pSysSave->ulSubState = 1;
+        }
+        
+        break;
+    case 1:
+        ulSaveResult = mcCheckReadStartConfigFile(pSysSave->pMcState, pSysSave->pConfigFile);
+        
+        if (ulSaveResult > 0)
+        {
+            if (pSysSave->usSaveMode != 0)
+            {
+                pRankingData = mcCreateConfigInit(&RankingData);
+                
+                memcpy(pRankingData, pSysSave->pConfigFile, ulSaveResult);
+                
+                SysSaveHikaku(pRankingData);
+            }
+            else
+            {
+                memcpy(sys, pSysSave->pConfigFile, ulSaveResult);
+            }
+            
+            SetStateSysSave(pSysSave);
+        }
+        else if (ulSaveResult < 0)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSysSave->pMcState);
+            
+            pSysSave->ulSubState = 2;
+        }
+        
+        break;
+    case 2:
+        if (pSysSave->lCardState == 100)
+        {
+            SetStateSysSaveFileBroken(pSysSave);
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!
