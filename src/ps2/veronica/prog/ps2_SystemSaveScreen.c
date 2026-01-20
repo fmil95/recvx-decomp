@@ -1235,15 +1235,14 @@ void ExecuteStateSysSaveExitFormat(SYSSAVE_SCREEN* pSysSave)
 	// Func End, Address: 0x279c2c, Func Offset: 0x14c
 }
 
-// 
-// Start address: 0x279c30
+// 100% matching!
 void SetStateSysSaveSuccessFormat(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 2039, Address: 0x279c30, Func Offset: 0
-	// Line 2041, Address: 0x279c38, Func Offset: 0x8
-	// Line 2043, Address: 0x279c40, Func Offset: 0x10
-	// Line 2045, Address: 0x279c44, Func Offset: 0x14
-	// Func End, Address: 0x279c4c, Func Offset: 0x1c
+    pSysSave->ulState = 43;
+    
+    pSysSave->cMesFlag = 5;
+    
+    pSysSave->ulMemCheckCountTimer = 60;
 }
 
 // 
