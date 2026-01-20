@@ -1,6 +1,8 @@
 #ifndef _HITCHK_H_
 #define _HITCHK_H_
 
+ATR_WORK* bhCheckWallType(NJS_POINT3* pos, unsigned int flg, float ar, float ah);
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

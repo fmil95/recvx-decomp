@@ -1,3 +1,10 @@
+#include "types.h"
+#include "hitchk.h"
+
+// _anon4 = NJS_POINT3
+// _anon20 = O_WORK
+// _anon23 = ATR_WORK
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
@@ -1520,22 +1527,26 @@ _anon22* sys;
 _anon13* rom;
 BH_PWORK* plp;
 _anon0 eff[0];
+*/
 
-void ikou(BH_PWORK* epw, _anon4* pos, int add_dir);
-int ikou3(BH_PWORK* epw, _anon4* pos, int add_dir);
+void ikou(BH_PWORK* epw, NJS_POINT3* pos, int add_dir);
+int ikou3(BH_PWORK* epw, NJS_POINT3* pos, int add_dir);
 int NitenDir_ck(float hontai_x, float hontai_z, float target_x, float target_z);
 int bhCdirCheck(int my_ang, int trg_ang);
 int bhEne_LeverCheck();
-int bhDGCdirCheck(_anon4* dv, int rot);
-int bhDGCdirCheck2(_anon4* dv, _anon20* owk);
-int bhDGCdirCheck3(_anon4* dv, int rot);
-int bhEne_AngleCheck(_anon4* vec, int rot, int chk_ang);
+int bhDGCdirCheck(NJS_VECTOR* dv, int rot);
+int bhDGCdirCheck2(NJS_VECTOR* dv, O_WORK* owk);
+int bhDGCdirCheck3(NJS_VECTOR* dv, int rot);
+int bhEne_AngleCheck(NJS_VECTOR* vec, int rot, int chk_ang);
+/*
 void bhEne_GetTranslateMtn(BH_PWORK* epw, int frm, int mode);
 void bhEne_GetTranslateMtn2(BH_PWORK* epw, int frm, int mode);
 void bhEne_CalcPartsPos(BH_PWORK* epw, float mtx[16], _anon4* pos, char* tree, int parts_num, int clr_flg);
 _anon23* bhKaidanAtrCheck(BH_PWORK* epw, float len, int* idx);
 _anon23* bhEne_EnemyAtariCheck(_anon4* pos, int flr_no, unsigned char id, unsigned char type);
+*/
 int bhEne_PosCheck(float px, float pz, float x, float z, float w, float h);
+/*
 void bhEne_SetBlood(BH_PWORK* epw, unsigned char type, _anon10* bt);
 void bhEne_SetBlood2(BH_PWORK* epw, unsigned char type, _anon4* ofp, short ry);
 void bhEne_SetBlood3(BH_PWORK* epw, int lnk_obj, _anon4* ofs, _anon4* dv, int n, int tex_id, int type, int wcnt);
@@ -1547,191 +1558,254 @@ void bhEne_SetDFireEffect2(BH_PWORK* epw, int no, _anon10* ltbl, int type);
 int bhEne_SetSanEffect(BH_PWORK* epw, int no, _anon10* ltbl);
 int bhEne_SetSanEffect2(BH_PWORK* epw, int no, _anon10* ltbl);
 void bhEne_QuickSort(_anon1* a, int first, int last);
+*/
 int bhEne_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate);
+/*
 int bhEne_CollisionCheckWall(BH_PWORK* pw, _anon4* ps, _anon4* pd, float ar, float ah);
 _anon23* bhEne_CollisionCheckWall2(BH_PWORK* pw, _anon4* ps, _anon4* ops, _anon4* pd, float ar, float ah);
-_anon23* bhEne_CheckDirWall(BH_PWORK* epw, int ang, float step);
-_anon23* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step);
-_anon23* bhEne_CheckDirWall3(BH_PWORK* epw, _anon4* pos, int ang, float step);
+*/
+ATR_WORK* bhEne_CheckDirWall(BH_PWORK* epw, int ang, float step);
+ATR_WORK* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step);
+ATR_WORK* bhEne_CheckDirWall3(BH_PWORK* epw, NJS_POINT3* pos, int ang, float step);
 int bhEne_CheckSideWall(BH_PWORK* epw, float step, int both);
 int bhEne_CheckSideWall2(BH_PWORK* epw, float step, int both);
-int bhEne_CheckSideWall3(BH_PWORK* epw, _anon4* pos, float step, int both);
+int bhEne_CheckSideWall3(BH_PWORK* epw, NJS_POINT3* pos, float step, int both);
 void bhEne_SetVibration(int no);
 void bhEne_PlayerSePlay(BH_PWORK* epw, int no);
-void bhEne_HitCheckParts(BH_PWORK* pp, _anon4* pos);
+void bhEne_HitCheckParts(BH_PWORK* pp, NJS_POINT3* pos);
 
-// 
-// Start address: 0x215f10
-void ikou(BH_PWORK* epw, _anon4* pos, int add_dir)
-{
-	int rot;
-	int ang;
-	// Line 119, Address: 0x215f10, Func Offset: 0
-	// Line 122, Address: 0x215f20, Func Offset: 0x10
-	// Line 125, Address: 0x215f34, Func Offset: 0x24
-	// Line 128, Address: 0x215f48, Func Offset: 0x38
-	// Line 131, Address: 0x215f58, Func Offset: 0x48
-	// Line 130, Address: 0x215f60, Func Offset: 0x50
-	// Line 131, Address: 0x215f64, Func Offset: 0x54
-	// Line 134, Address: 0x215f68, Func Offset: 0x58
-	// Line 136, Address: 0x215f6c, Func Offset: 0x5c
-	// Line 134, Address: 0x215f70, Func Offset: 0x60
-	// Line 136, Address: 0x215f7c, Func Offset: 0x6c
-	// Line 139, Address: 0x215f88, Func Offset: 0x78
-	// Line 144, Address: 0x215f90, Func Offset: 0x80
-	// Line 142, Address: 0x215f94, Func Offset: 0x84
-	// Line 144, Address: 0x215f98, Func Offset: 0x88
-	// Line 146, Address: 0x215fa4, Func Offset: 0x94
-	// Line 149, Address: 0x215fb0, Func Offset: 0xa0
-	// Func End, Address: 0x215fc4, Func Offset: 0xb4
-}
-
-// 
-// Start address: 0x215fd0
-int ikou3(BH_PWORK* epw, _anon4* pos, int add_dir)
-{
-	int rot;
-	// Line 168, Address: 0x215fd0, Func Offset: 0
-	// Line 171, Address: 0x215fe0, Func Offset: 0x10
-	// Line 174, Address: 0x215ffc, Func Offset: 0x2c
-	// Line 176, Address: 0x216010, Func Offset: 0x40
-	// Line 178, Address: 0x216014, Func Offset: 0x44
-	// Line 176, Address: 0x216018, Func Offset: 0x48
-	// Line 178, Address: 0x216024, Func Offset: 0x54
-	// Line 179, Address: 0x216030, Func Offset: 0x60
-	// Line 181, Address: 0x216038, Func Offset: 0x68
-	// Line 184, Address: 0x216058, Func Offset: 0x88
-	// Func End, Address: 0x21606c, Func Offset: 0x9c
-}
-
-// 
-// Start address: 0x216070
-int NitenDir_ck(float hontai_x, float hontai_z, float target_x, float target_z)
-{
-	// Line 207, Address: 0x216070, Func Offset: 0
-	// Line 206, Address: 0x216074, Func Offset: 0x4
-	// Line 207, Address: 0x21607c, Func Offset: 0xc
-	// Line 208, Address: 0x216098, Func Offset: 0x28
-	// Func End, Address: 0x2160a4, Func Offset: 0x34
-}
-
-// 
-// Start address: 0x2160b0
-int bhCdirCheck(int my_ang, int trg_ang)
-{
-	// Line 232, Address: 0x2160b0, Func Offset: 0
-	// Line 236, Address: 0x2160c8, Func Offset: 0x18
-	// Func End, Address: 0x2160d0, Func Offset: 0x20
-}
-
-// 
-// Start address: 0x2160d0
-int bhEne_LeverCheck()
-{
-	int dec_cnt;
-	// Line 255, Address: 0x2160d0, Func Offset: 0
-	// Line 257, Address: 0x2160f0, Func Offset: 0x20
-	// Line 260, Address: 0x2160f4, Func Offset: 0x24
-	// Line 262, Address: 0x216100, Func Offset: 0x30
-	// Line 273, Address: 0x216104, Func Offset: 0x34
-	// Func End, Address: 0x21610c, Func Offset: 0x3c
-}
-
-// 
-// Start address: 0x216110
-int bhDGCdirCheck(_anon4* dv, int rot)
-{
-	_anon4 v1;
-	_anon4 v0;
-	// Line 293, Address: 0x216110, Func Offset: 0
-	// Line 305, Address: 0x216128, Func Offset: 0x18
-	// Line 306, Address: 0x216134, Func Offset: 0x24
-	// Line 307, Address: 0x216148, Func Offset: 0x38
-	// Line 309, Address: 0x21614c, Func Offset: 0x3c
-	// Line 312, Address: 0x216150, Func Offset: 0x40
-	// Line 309, Address: 0x216154, Func Offset: 0x44
-	// Line 310, Address: 0x216158, Func Offset: 0x48
-	// Line 311, Address: 0x216160, Func Offset: 0x50
-	// Line 312, Address: 0x216164, Func Offset: 0x54
-	// Line 316, Address: 0x21616c, Func Offset: 0x5c
-	// Line 322, Address: 0x21619c, Func Offset: 0x8c
-	// Func End, Address: 0x2161b0, Func Offset: 0xa0
-}
-
-// 
-// Start address: 0x2161b0
-int bhDGCdirCheck2(_anon4* dv, _anon20* owk)
-{
-	_anon4 v1;
-	_anon4 v0;
-	// Line 340, Address: 0x2161b0, Func Offset: 0
-	// Line 354, Address: 0x2161c8, Func Offset: 0x18
-	// Line 352, Address: 0x2161cc, Func Offset: 0x1c
-	// Line 351, Address: 0x2161d0, Func Offset: 0x20
-	// Line 353, Address: 0x2161d4, Func Offset: 0x24
-	// Line 352, Address: 0x2161d8, Func Offset: 0x28
-	// Line 353, Address: 0x2161dc, Func Offset: 0x2c
-	// Line 354, Address: 0x2161e0, Func Offset: 0x30
-	// Line 356, Address: 0x2161f0, Func Offset: 0x40
-	// Line 359, Address: 0x2161f4, Func Offset: 0x44
-	// Line 356, Address: 0x2161f8, Func Offset: 0x48
-	// Line 357, Address: 0x2161fc, Func Offset: 0x4c
-	// Line 358, Address: 0x216204, Func Offset: 0x54
-	// Line 359, Address: 0x216208, Func Offset: 0x58
-	// Line 363, Address: 0x216210, Func Offset: 0x60
-	// Line 369, Address: 0x216240, Func Offset: 0x90
-	// Func End, Address: 0x216258, Func Offset: 0xa8
-}
-
-// 
-// Start address: 0x216260
-int bhDGCdirCheck3(_anon4* dv, int rot)
+// 99.11% matching (https://decomp.me/scratch/Lo19g)
+void ikou(BH_PWORK* epw, NJS_POINT3* pos, int add_dir)
 {
 	int ang;
-	// Line 388, Address: 0x216260, Func Offset: 0
-	// Line 394, Address: 0x21626c, Func Offset: 0xc
-	// Line 395, Address: 0x216290, Func Offset: 0x30
-	// Line 397, Address: 0x216298, Func Offset: 0x38
-	// Line 399, Address: 0x2162b4, Func Offset: 0x54
-	// Line 401, Address: 0x2162c0, Func Offset: 0x60
-	// Line 403, Address: 0x2162d4, Func Offset: 0x74
-	// Line 405, Address: 0x2162dc, Func Offset: 0x7c
-	// Line 407, Address: 0x2162f8, Func Offset: 0x98
-	// Line 409, Address: 0x216300, Func Offset: 0xa0
-	// Line 411, Address: 0x216320, Func Offset: 0xc0
-	// Line 413, Address: 0x216328, Func Offset: 0xc8
-	// Line 414, Address: 0x21632c, Func Offset: 0xcc
-	// Func End, Address: 0x21633c, Func Offset: 0xdc
+	int rot;
+
+    if ((epw->flg & 0x80) != 0)
+    {
+        return;
+    }
+    
+    rot = NitenDir_ck(epw->px, epw->pz, pos->x, pos->z);
+    if ((add_dir & 0x80000000) != 0) 
+    {
+        add_dir = -add_dir;
+        rot = rot + 0x8000 & 0xffff;
+    }
+
+    ang = add_dir + (rot - epw->ay) & 0xffff;
+
+    if (ang < add_dir + add_dir)
+    {
+        epw->ay = rot;
+    }
+    else 
+    {
+        epw->ay = ang - add_dir;
+        
+        if (ang < 0x8001) 
+        {
+            epw->ay = epw->ay + (add_dir + add_dir);
+        }
+    }
 }
 
-// 
-// Start address: 0x216340
-int bhEne_AngleCheck(_anon4* vec, int rot, int chk_ang)
+// 100% matching!
+int ikou3(BH_PWORK* epw, NJS_POINT3* pos, int add_dir)
 {
-	float n2;
-	float n1;
-	_anon4 v3;
-	_anon4 v2;
-	_anon4 v1;
-	// Line 435, Address: 0x216340, Func Offset: 0
-	// Line 440, Address: 0x216358, Func Offset: 0x18
-	// Line 441, Address: 0x216360, Func Offset: 0x20
-	// Line 442, Address: 0x216364, Func Offset: 0x24
-	// Line 448, Address: 0x216374, Func Offset: 0x34
-	// Line 449, Address: 0x21637c, Func Offset: 0x3c
-	// Line 450, Address: 0x216388, Func Offset: 0x48
-	// Line 452, Address: 0x216398, Func Offset: 0x58
-	// Line 453, Address: 0x2163a0, Func Offset: 0x60
-	// Line 454, Address: 0x2163b0, Func Offset: 0x70
-	// Line 456, Address: 0x2163c0, Func Offset: 0x80
-	// Line 458, Address: 0x2163c8, Func Offset: 0x88
-	// Line 459, Address: 0x2163d4, Func Offset: 0x94
-	// Line 458, Address: 0x2163d8, Func Offset: 0x98
-	// Line 459, Address: 0x2163dc, Func Offset: 0x9c
-	// Line 461, Address: 0x2163e4, Func Offset: 0xa4
-	// Line 463, Address: 0x216400, Func Offset: 0xc0
-	// Func End, Address: 0x21641c, Func Offset: 0xdc
+    int rot;
+
+    if((epw->flg & 0x80) != 0) 
+    {
+        return 0;
+    }
+
+    rot = NitenDir_ck(epw->px, epw->pz, pos->x, pos->z);
+    rot = add_dir + (rot - epw->ay) & 0xffff;
+    if ((int)rot < add_dir + add_dir) 
+    {
+        return 0;
+    }
+    
+    if (rot < 0x8001) 
+    {
+        return add_dir;
+    }
+    
+    return -add_dir;
 }
+
+// 100% matching!
+int NitenDir_ck(float hontai_x, float hontai_z, float target_x, float target_z) 
+{
+    int uVar1;
+    float fVar2;
+
+    fVar2 = atan2f(hontai_x - target_x, hontai_z - target_z);
+    uVar1 = (int)(fVar2 * 10430.381f);
+    return uVar1;
+}
+
+// 100% matching!
+int bhCdirCheck(int my_ang, int trg_ang) 
+{    
+   return (((my_ang - trg_ang) + 0x4000) & 0xffff) < 0x8000 ? 1 : 0;
+}
+
+// 100% matching!
+int bhEne_LeverCheck() 
+{
+    int dec_cnt;
+    
+    dec_cnt = 0;
+
+    if ((sys->pad_ps & 0xf) != 0)
+    {
+        dec_cnt = 4;
+    }
+    
+    if ((sys->pad_ps & 0x2d00) != 0) 
+    {
+        dec_cnt += 3;
+    }
+    return dec_cnt;
+}
+
+// 100% matching!
+int bhDGCdirCheck(NJS_VECTOR* dv, int rot) 
+{
+    NJS_VECTOR v1;
+    NJS_VECTOR v0;
+    
+    v1.x = -njSin(rot);
+    v1.z = -njCos(rot);
+    v1.y = 0;
+
+    v0.x = dv->x;
+    v0.y = dv->y;
+    v0.z = dv->z;
+    
+    njUnitVector(&v0);
+
+    if (njInnerProduct(&v1, &v0) < 0.0f) 
+    {
+        return 0;
+    }
+
+    return 1;
+}
+
+// 100% matching!
+int bhDGCdirCheck2(NJS_VECTOR* dv, O_WORK* owk)
+{
+    NJS_VECTOR v0;
+    NJS_VECTOR v1;
+
+    v1.x = 0;
+    v1.y = 0;
+    v1.z = -1.0f;
+
+    njCalcVector((NJS_MATRIX*)owk->mtx, &v1, &v0);
+    
+    v1.x = dv->x;
+    v1.y = dv->y;
+    v1.z = dv->z;
+    
+    njUnitVector(&v1);
+    
+    if (njInnerProduct(&v0, &v1) < 0.0f) 
+    {
+        return 0;
+    }
+    return 1;
+}
+
+// 84.73% matching (https://decomp.me/scratch/tOfhl)
+int bhDGCdirCheck3(NJS_VECTOR* dv, int rot) 
+{
+    // int temp;
+    // int temp2;
+    int ang;
+    float radians;
+    int temp;
+    int check, check2;
+
+
+    radians = atan2f(dv->x, dv->z);
+    temp = (int) (radians * 10430.381f);
+    ang = (temp - rot) & 0xffff;
+
+    // temp = (int)(10430.381f * atan2f(dv->x, dv->z) - rot) & 0xFFFF;
+    // temp2 = temp < 0x2000;
+    check = ang < 0x2000;
+    if (!check) {
+        check2 = ang < 0xe000;
+        
+        if (!check2) {
+            return 3;
+            // goto block_3;
+        }
+        // check = ang < 0x6000;
+        if (ang != 0) {
+            check = ang < 0x6000;
+            if (check) {
+                return 1;
+            }
+        }
+
+        
+// block_8:
+        check = ang < 0x6000;
+        if (check) {
+            check2 = ang < 0xa000;
+            if (check2) {
+                return 2;
+            }
+            // goto block_12;
+            // return 9;
+        }
+// block_12:
+        check2 = ang < 0xa000;
+        if (!check2) {
+            check = ang < 0xe000;
+            if (check) {
+                return 3;
+            }
+        }
+
+        return 3;
+    }
+// block_3:
+    return 0;
+}
+
+// 100% matching!
+int bhEne_AngleCheck(NJS_VECTOR* vec, int rot, int chk_ang) {
+    float n2;
+    //float n1; // There's supposedly a use for this somewhere here but I can't figure out where...
+    NJS_VECTOR v3;
+    NJS_VECTOR v2;
+    NJS_VECTOR v1;
+
+    v3.x = 0;
+    v3.y = 0;
+    v3.z = -1.0f;
+    
+    njUnitMatrix(0);
+    njRotateY(0, chk_ang);
+    njCalcVector(0, &v3, &v2);
+    njUnitMatrix(0);
+    njRotateY(0, rot + 0x7FFF + 1);
+    njCalcVector(0, &v3, &v1);
+    njUnitVector(vec);
+    n2 = njInnerProduct(&v3, &v2);
+
+    if (njInnerProduct(vec, &v1) > n2) 
+    {
+        return 1;
+    }
+    
+    return 0;
+}/*
 
 // 
 // Start address: 0x216420
@@ -1872,17 +1946,21 @@ _anon23* bhEne_EnemyAtariCheck(_anon4* pos, int flr_no, unsigned char id, unsign
 	// Line 729, Address: 0x216abc, Func Offset: 0x13c
 	// Func End, Address: 0x216ae8, Func Offset: 0x168
 }
+*/
 
-// 
-// Start address: 0x216af0
+// 100% matching!
 int bhEne_PosCheck(float px, float pz, float x, float z, float w, float h)
 {
-	// Line 751, Address: 0x216af0, Func Offset: 0
-	// Line 754, Address: 0x216b38, Func Offset: 0x48
-	// Line 756, Address: 0x216b40, Func Offset: 0x50
-	// Line 757, Address: 0x216b44, Func Offset: 0x54
-	// Func End, Address: 0x216b4c, Func Offset: 0x5c
+    if (x <= px) 
+	{
+        if (!((x + w) < px) && (z <= pz) && !((z + h) < pz)) 
+		{
+            return 1;
+        }
+    }
+    return 0;
 }
+/*
 
 // 
 // Start address: 0x216b50
@@ -2494,30 +2572,29 @@ void bhEne_QuickSort(_anon1* a, int first, int last)
 	// Line 1769, Address: 0x218610, Func Offset: 0x110
 	// Func End, Address: 0x218628, Func Offset: 0x128
 }
+*/
 
-// 
-// Start address: 0x218630
-int bhEne_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate)
+// 100% matching!
+int bhEne_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate) 
 {
-	// Line 1791, Address: 0x218630, Func Offset: 0
-	// Line 1792, Address: 0x218638, Func Offset: 0x8
-	// Line 1794, Address: 0x218644, Func Offset: 0x14
-	// Line 1795, Address: 0x218648, Func Offset: 0x18
-	// Line 1796, Address: 0x21864c, Func Offset: 0x1c
-	// Line 1802, Address: 0x218650, Func Offset: 0x20
-	// Line 1798, Address: 0x218654, Func Offset: 0x24
-	// Line 1802, Address: 0x218658, Func Offset: 0x28
-	// Line 1805, Address: 0x21865c, Func Offset: 0x2c
-	// Line 1807, Address: 0x218668, Func Offset: 0x38
-	// Line 1809, Address: 0x218670, Func Offset: 0x40
-	// Line 1805, Address: 0x218674, Func Offset: 0x44
-	// Line 1807, Address: 0x21867c, Func Offset: 0x4c
-	// Line 1809, Address: 0x218684, Func Offset: 0x54
-	// Line 1811, Address: 0x21868c, Func Offset: 0x5c
-	// Line 1812, Address: 0x218690, Func Offset: 0x60
-	// Func End, Address: 0x218698, Func Offset: 0x68
+
+    epw->mtn_add = 0x10000;
+    if (epw->mtn_no != no) 
+    {
+        epw->mtn_no = no;
+        epw->frm_no = frm;
+        epw->hokan_count = rate;
+        epw->hokan_rate = 0;
+        epw->mtn_md = 0x20;
+        epw->flg = (int) (epw->flg & 0xFFFBFFFF);
+        epw->flg = (int) (epw->flg & 0xFDFFFFFF);
+        return 0;
+    }
+    
+    return -1;
 }
 
+/*
 // 
 // Start address: 0x2186a0
 int bhEne_CollisionCheckWall(BH_PWORK* pw, _anon4* ps, _anon4* pd, float ar, float ah)
@@ -2594,157 +2671,159 @@ _anon23* bhEne_CollisionCheckWall2(BH_PWORK* pw, _anon4* ps, _anon4* ops, _anon4
 	// Line 1935, Address: 0x2188d0, Func Offset: 0xf0
 	// Func End, Address: 0x218904, Func Offset: 0x124
 }
+*/
 
-// 
-// Start address: 0x218910
-_anon23* bhEne_CheckDirWall(BH_PWORK* epw, int ang, float step)
+// 100% matching!
+ATR_WORK* bhEne_CheckDirWall(BH_PWORK* epw, int ang, float step) 
 {
-	_anon23* hp;
-	// Line 2021, Address: 0x218914, Func Offset: 0x4
-	// Func End, Address: 0x21891c, Func Offset: 0xc
+    NJS_POINT3* pos = (NJS_POINT3*)((char*)epw + 0x10);
+    ATR_WORK* hp;
+
+    hp = bhEne_CheckDirWall3(epw, pos, ang, step);
+    return hp;
 }
 
-// 
-// Start address: 0x218920
-_anon23* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step)
+// 100% matching!
+ATR_WORK* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step)
 {
-	_anon23* hp;
-	_anon4 ps;
-	// Line 2042, Address: 0x218920, Func Offset: 0
-	// Line 2046, Address: 0x218928, Func Offset: 0x8
-	// Line 2050, Address: 0x218934, Func Offset: 0x14
-	// Line 2046, Address: 0x218938, Func Offset: 0x18
-	// Line 2047, Address: 0x218940, Func Offset: 0x20
-	// Line 2048, Address: 0x218950, Func Offset: 0x30
-	// Line 2050, Address: 0x218954, Func Offset: 0x34
-	// Line 2053, Address: 0x21895c, Func Offset: 0x3c
-	// Func End, Address: 0x218968, Func Offset: 0x48
+    ATR_WORK* hp;
+    NJS_POINT3 pos;
+
+    pos.x = epw->px + epw->aox;
+    pos.z = epw->pz + epw->aoz;
+    pos.y = epw->py;
+  
+    hp = bhEne_CheckDirWall3(epw, &pos, ang, step);
+    return hp;
 }
 
-// 
-// Start address: 0x218970
-_anon23* bhEne_CheckDirWall3(BH_PWORK* epw, _anon4* pos, int ang, float step)
+// 100% matching!
+ATR_WORK* bhEne_CheckDirWall3(BH_PWORK* epw, NJS_POINT3* pos, int ang, float step)
 {
-	_anon23* hp;
-	_anon4 ps;
-	// Line 2074, Address: 0x218970, Func Offset: 0
-	// Line 2078, Address: 0x218988, Func Offset: 0x18
-	// Line 2079, Address: 0x2189a0, Func Offset: 0x30
-	// Line 2080, Address: 0x2189ac, Func Offset: 0x3c
-	// Line 2079, Address: 0x2189b0, Func Offset: 0x40
-	// Line 2080, Address: 0x2189b8, Func Offset: 0x48
-	// Line 2081, Address: 0x2189d0, Func Offset: 0x60
-	// Line 2083, Address: 0x2189d8, Func Offset: 0x68
-	// Line 2094, Address: 0x2189ec, Func Offset: 0x7c
-	// Func End, Address: 0x218a08, Func Offset: 0x98
+    int angle; // not from debugging symbols
+    float float_angle; // not from debugging symbols
+
+    ATR_WORK* hp;
+	NJS_POINT3 ps;
+    
+    angle = (epw->ay + ang) & 0xffff;
+
+    float_angle = step * njSin(angle);
+    ps.x = pos->x - float_angle;
+    
+    float_angle = step * njCos(angle);
+    ps.z = pos->z - float_angle;
+    
+    ps.y = pos->y;
+    
+    hp = bhCheckWallType(&ps, epw->flg, epw->ar, epw->ah);
+    return hp;
 }
 
-// 
-// Start address: 0x218a10
-int bhEne_CheckSideWall(BH_PWORK* epw, float step, int both)
-{
-	// Line 2115, Address: 0x218a14, Func Offset: 0x4
-	// Func End, Address: 0x218a1c, Func Offset: 0xc
+// 100% matching!
+int bhEne_CheckSideWall(BH_PWORK* epw, float step, int both) {  
+
+    NJS_POINT3 *pos = (NJS_POINT3*)&epw->px;
+    return bhEne_CheckSideWall3(epw, pos, step, both);
 }
 
-// 
-// Start address: 0x218a20
+// 100% matching!
 int bhEne_CheckSideWall2(BH_PWORK* epw, float step, int both)
 {
-	_anon4 pos;
-	// Line 2136, Address: 0x218a20, Func Offset: 0
-	// Line 2139, Address: 0x218a28, Func Offset: 0x8
-	// Line 2142, Address: 0x218a34, Func Offset: 0x14
-	// Line 2139, Address: 0x218a38, Func Offset: 0x18
-	// Line 2140, Address: 0x218a40, Func Offset: 0x20
-	// Line 2141, Address: 0x218a50, Func Offset: 0x30
-	// Line 2142, Address: 0x218a54, Func Offset: 0x34
-	// Line 2143, Address: 0x218a5c, Func Offset: 0x3c
-	// Func End, Address: 0x218a68, Func Offset: 0x48
+    NJS_POINT3 pos; // $sp+0x10
+
+    pos.x = epw->px + epw->aox;
+    pos.z = epw->pz + epw->aoz;
+    pos.y = epw->py;
+    
+    return bhEne_CheckSideWall3(epw, &pos, step, both);
 }
 
-// 
-// Start address: 0x218a70
-int bhEne_CheckSideWall3(BH_PWORK* epw, _anon4* pos, float step, int both)
+// 100% matching!
+int bhEne_CheckSideWall3(BH_PWORK* epw, NJS_POINT3* pos, float step, int both)
 {
-	int lhit;
-	int rhit;
-	// Line 2165, Address: 0x218a70, Func Offset: 0
-	// Line 2170, Address: 0x218a94, Func Offset: 0x24
-	// Line 2168, Address: 0x218aa4, Func Offset: 0x34
-	// Line 2170, Address: 0x218aa8, Func Offset: 0x38
-	// Line 2172, Address: 0x218ab8, Func Offset: 0x48
-	// Line 2174, Address: 0x218abc, Func Offset: 0x4c
-	// Line 2176, Address: 0x218ad8, Func Offset: 0x68
-	// Line 2179, Address: 0x218adc, Func Offset: 0x6c
-	// Line 2180, Address: 0x218aec, Func Offset: 0x7c
-	// Line 2182, Address: 0x218af4, Func Offset: 0x84
-	// Line 2183, Address: 0x218af8, Func Offset: 0x88
-	// Func End, Address: 0x218b1c, Func Offset: 0xac
+    int left_hit;
+    int right_hit;
+
+    right_hit = 0;
+    left_hit = 0;
+    
+    if (bhEne_CheckDirWall3(epw, pos, -0x4000, step) != 0) 
+    {
+        left_hit = 1;
+    }
+    if (bhEne_CheckDirWall3(epw, pos, 0x4000, step) != 0) 
+    {
+        right_hit = -1;
+    }
+
+    if (left_hit != 0) 
+    {
+        if (right_hit != 0) 
+        {
+            return both;
+        }
+    }
+
+    return left_hit + right_hit;
 }
 
-// 
-// Start address: 0x218b20
+// 100% matching!
 void bhEne_SetVibration(int no)
 {
-	// Line 2201, Address: 0x218b20, Func Offset: 0
-	// Line 2202, Address: 0x218b24, Func Offset: 0x4
-	// Line 2205, Address: 0x218b4c, Func Offset: 0x2c
-	// Line 2206, Address: 0x218b58, Func Offset: 0x38
-	// Line 2209, Address: 0x218b60, Func Offset: 0x40
-	// Line 2210, Address: 0x218b6c, Func Offset: 0x4c
-	// Line 2213, Address: 0x218b74, Func Offset: 0x54
-	// Line 2216, Address: 0x218b80, Func Offset: 0x60
-	// Func End, Address: 0x218b8c, Func Offset: 0x6c
+    switch (no) 
+	{                               
+        case 0:
+            StartVibrationEx(1, 9);
+            break;
+        case 1:
+            StartVibrationEx(1, 0xA);
+            break;
+        case 2:
+            StartVibrationEx(1, 0xB);
+            break;
+    }
 }
 
-// 
-// Start address: 0x218b90
+// 100% matching!
 void bhEne_PlayerSePlay(BH_PWORK* epw, int no)
 {
-	// Line 2235, Address: 0x218b90, Func Offset: 0
-	// Line 2236, Address: 0x218b98, Func Offset: 0x8
-	// Line 2238, Address: 0x218bac, Func Offset: 0x1c
-	// Line 2239, Address: 0x218bb4, Func Offset: 0x24
-	// Func End, Address: 0x218bc0, Func Offset: 0x30
+    if (!(epw->flg & 0x10000)) 
+	{
+        CallPlayerVoice(no);
+    }
 }
 
-// 
-// Start address: 0x218bc0
-void bhEne_HitCheckParts(BH_PWORK* pp, _anon4* pos)
-{
-	int i;
-	float slen;
-	float len;
-	_anon4 vec;
-	_anon20* owk;
-	// Line 2260, Address: 0x218bc0, Func Offset: 0
-	// Line 2266, Address: 0x218be8, Func Offset: 0x28
-	// Line 2268, Address: 0x218bec, Func Offset: 0x2c
-	// Line 2272, Address: 0x218bf4, Func Offset: 0x34
-	// Line 2266, Address: 0x218bfc, Func Offset: 0x3c
-	// Line 2272, Address: 0x218c00, Func Offset: 0x40
-	// Line 2274, Address: 0x218c08, Func Offset: 0x48
-	// Line 2275, Address: 0x218c10, Func Offset: 0x50
-	// Line 2276, Address: 0x218c14, Func Offset: 0x54
-	// Line 2277, Address: 0x218c18, Func Offset: 0x58
-	// Line 2274, Address: 0x218c1c, Func Offset: 0x5c
-	// Line 2275, Address: 0x218c24, Func Offset: 0x64
-	// Line 2276, Address: 0x218c34, Func Offset: 0x74
-	// Line 2277, Address: 0x218c40, Func Offset: 0x80
-	// Line 2279, Address: 0x218c48, Func Offset: 0x88
-	// Line 2284, Address: 0x218c78, Func Offset: 0xb8
-	// Line 2285, Address: 0x218c7c, Func Offset: 0xbc
-	// Line 2286, Address: 0x218c80, Func Offset: 0xc0
-	// Line 2287, Address: 0x218c8c, Func Offset: 0xcc
-	// Line 2288, Address: 0x218c98, Func Offset: 0xd8
-	// Line 2289, Address: 0x218ca4, Func Offset: 0xe4
-	// Line 2290, Address: 0x218ca8, Func Offset: 0xe8
-	// Line 2291, Address: 0x218cac, Func Offset: 0xec
-	// Line 2292, Address: 0x218cc8, Func Offset: 0x108
-	// Line 2293, Address: 0x218cd0, Func Offset: 0x110
-	// Line 2294, Address: 0x218cd8, Func Offset: 0x118
-	// Line 2295, Address: 0x218ce0, Func Offset: 0x120
-	// Func End, Address: 0x218d08, Func Offset: 0x148
-}*/
+// 84.33% matching (https://decomp.me/scratch/MHlrL)
+void bhEne_HitCheckParts(BH_PWORK* pp, NJS_POINT3* pos) {
+    int i;
+    float slen;
+    float len;
+    NJS_VECTOR vec;
+    O_WORK* owk;
 
+    len = -1.0f;
+    owk = (O_WORK*)pp->mlwP->owP;
+    for (i = 1; i < (pp->mlwP->obj_num - 1); i++)
+    {        
+        vec.x = pos->x - pp->pxb;
+        vec.y = pos->y - pp->pyb;
+        vec.z = pos->z - pp->pzb;
+        slen = njScalor2(&vec);
+
+        if (len <= slen || len == -1.0f)
+        {
+            len = slen;
+            pp->djnt_no = i;
+            pp->dvx = -vec.x;
+            pp->dvy = -vec.y;
+            pp->dvz = -vec.z;
+        }
+
+         owk += 0x50;
+    }
+    
+    pp->dpx = pos->x;
+    pp->dpy = pos->y;
+    pp->dpz = pos->z;
+}
