@@ -1198,41 +1198,50 @@ void SetStateSysSaveExitFormat(SYSSAVE_SCREEN* pSysSave)
     pSysSave->sSelectCur = 1;
 }
 
-// 
-// Start address: 0x279ae0
+// 100% matching!
 void ExecuteStateSysSaveExitFormat(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 1969, Address: 0x279ae0, Func Offset: 0
-	// Line 1971, Address: 0x279aec, Func Offset: 0xc
-	// Line 1974, Address: 0x279b00, Func Offset: 0x20
-	// Line 1978, Address: 0x279b04, Func Offset: 0x24
-	// Line 1974, Address: 0x279b0c, Func Offset: 0x2c
-	// Line 1976, Address: 0x279b14, Func Offset: 0x34
-	// Line 1978, Address: 0x279b1c, Func Offset: 0x3c
-	// Line 1979, Address: 0x279b24, Func Offset: 0x44
-	// Line 1980, Address: 0x279b2c, Func Offset: 0x4c
-	// Line 1983, Address: 0x279b38, Func Offset: 0x58
-	// Line 1987, Address: 0x279b3c, Func Offset: 0x5c
-	// Line 1983, Address: 0x279b44, Func Offset: 0x64
-	// Line 1985, Address: 0x279b4c, Func Offset: 0x6c
-	// Line 1987, Address: 0x279b54, Func Offset: 0x74
-	// Line 1988, Address: 0x279b5c, Func Offset: 0x7c
-	// Line 1989, Address: 0x279b64, Func Offset: 0x84
-	// Line 1991, Address: 0x279b80, Func Offset: 0xa0
-	// Line 1994, Address: 0x279b90, Func Offset: 0xb0
-	// Line 1995, Address: 0x279b98, Func Offset: 0xb8
-	// Line 1999, Address: 0x279ba0, Func Offset: 0xc0
-	// Line 2001, Address: 0x279ba4, Func Offset: 0xc4
-	// Line 2004, Address: 0x279bac, Func Offset: 0xcc
-	// Line 2005, Address: 0x279bb8, Func Offset: 0xd8
-	// Line 2006, Address: 0x279bc0, Func Offset: 0xe0
-	// Line 2009, Address: 0x279bdc, Func Offset: 0xfc
-	// Line 2011, Address: 0x279be4, Func Offset: 0x104
-	// Line 2012, Address: 0x279bf0, Func Offset: 0x110
-	// Line 2016, Address: 0x279bf8, Func Offset: 0x118
-	// Line 2019, Address: 0x279c14, Func Offset: 0x134
-	// Line 2022, Address: 0x279c1c, Func Offset: 0x13c
-	// Func End, Address: 0x279c2c, Func Offset: 0x14c
+    if ((Pad->press & 0x1000))
+    {
+        pSysSave->sSelectCur--;
+
+        pSysSave->sSelectCur &= 0x1;
+        
+        CallSystemSe(0, 2);
+    }
+    else if ((Pad->press & 0x4000))
+    {
+        pSysSave->sSelectCur++;
+        
+        pSysSave->sSelectCur &= 0x1;
+        
+        CallSystemSe(0, 2);
+    }
+    else if ((Pad->press & GetOkButton()))
+    {
+        if (pSysSave->sSelectCur == 1) 
+        {
+            SetStateSysSaveAwarenessCard(pSysSave);
+        }
+        else 
+        {
+            pSysSave->usExitFlag = 1;
+            
+            SetStateSysSaveTitleExit(pSysSave);
+        }
+        
+        CallSystemSe(0, 3);
+    }
+    else if ((Pad->press & GetCancelButton()))
+    {
+        SetStateSysSaveAwarenessCard(pSysSave);
+        
+        CallSystemSe(0, 0);
+    }
+    else if ((pSysSave->lCardState > 100) && (pSysSave->lCardState < 104))
+    {
+        SetStateSysSaveAwarenessCard(pSysSave);
+    }
 }
 
 // 100% matching!
