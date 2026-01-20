@@ -1029,14 +1029,14 @@ void ExecuteStateSysSave(SYSSAVE_SCREEN* pSysSave)
 	// Func End, Address: 0x2797b0, Func Offset: 0xe0
 }
 
-// 
-// Start address: 0x2797b0
+// 100% matching!
 void SetStateSysSaveErrCardWrite(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 1711, Address: 0x2797b0, Func Offset: 0
-	// Line 1713, Address: 0x2797b8, Func Offset: 0x8
-	// Line 1715, Address: 0x2797c0, Func Offset: 0x10
-	// Func End, Address: 0x2797cc, Func Offset: 0x1c
+    pSysSave->ulState = 31;
+    
+    pSysSave->cMesFlag = 13;
+    
+    SetCheckMcFlag(pSysSave->pMcState, 0);
 }
 
 // 
