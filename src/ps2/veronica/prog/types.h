@@ -922,37 +922,13 @@ typedef struct NJS_POINT4
     float w; // offset 0xC, size 0x4
 } NJS_POINT4; 
 
-typedef struct PS2_TEX_SAVE
-{
-	unsigned int num;         // offset 0x0, size 0x4
-	NJS_TEXMEMLIST tmem[256]; // offset 0x4, size 0x4400
-	void* addr[256];          // offset 0x4404, size 0x400
-} PS2_TEX_SAVE;
-
-typedef struct LFOPEN_INFO
-{
-	// total size: 0x8
-    unsigned int Flag; // offset 0x0, size 0x4
-    GDFS GdFs;         // offset 0x4, size 0x4
-} LFOPEN_INFO;
-
-typedef struct HM HM; 
-struct HM
-{
-	unsigned int Use_size;
-	unsigned int Total_size;
-	unsigned int dummy;
-	HM* pNext_work;
-	unsigned int dummy64[12];
-};
-
 typedef struct PAD_STATUS
 {
 	// total size: 0x12
-    unsigned short routine_0; // offset 0x0, size 0x2
-    unsigned short type; // offset 0x2, size 0x2
-    unsigned short act_lv[2]; // offset 0x4, size 0x4
-    unsigned short be_flag; // offset 0x8, size 0x2
+    unsigned short routine_0;  // offset 0x0, size 0x2
+    unsigned short type;       // offset 0x2, size 0x2
+    unsigned short act_lv[2];  // offset 0x4, size 0x4
+    unsigned short be_flag;    // offset 0x8, size 0x2
     unsigned char act_data[8]; // offset 0xA, size 0x8
 } PAD_STATUS;
 

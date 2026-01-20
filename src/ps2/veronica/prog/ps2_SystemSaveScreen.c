@@ -637,85 +637,165 @@ void SetStateSysSaveWriteSysData(SYSSAVE_SCREEN* pSysSave)
     SetCheckMcFlag(pSysSave->pMcState, 1);
 }
 
-// 
-// Start address: 0x278f30
+// 100% matching!
 void ExecuteStateSysSaveWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
-	int lResult;
-	// Line 1073, Address: 0x278f30, Func Offset: 0
-	// Line 1077, Address: 0x278f3c, Func Offset: 0xc
-	// Line 1080, Address: 0x278f68, Func Offset: 0x38
-	// Line 1082, Address: 0x278f70, Func Offset: 0x40
-	// Line 1085, Address: 0x278f7c, Func Offset: 0x4c
-	// Line 1087, Address: 0x278f88, Func Offset: 0x58
-	// Line 1089, Address: 0x278f90, Func Offset: 0x60
-	// Line 1090, Address: 0x278f94, Func Offset: 0x64
-	// Line 1092, Address: 0x278f9c, Func Offset: 0x6c
-	// Line 1095, Address: 0x278fa8, Func Offset: 0x78
-	// Line 1100, Address: 0x278fcc, Func Offset: 0x9c
-	// Line 1104, Address: 0x278fd4, Func Offset: 0xa4
-	// Line 1106, Address: 0x278fdc, Func Offset: 0xac
-	// Line 1108, Address: 0x278fe8, Func Offset: 0xb8
-	// Line 1109, Address: 0x278fec, Func Offset: 0xbc
-	// Line 1111, Address: 0x278ff4, Func Offset: 0xc4
-	// Line 1114, Address: 0x279000, Func Offset: 0xd0
-	// Line 1116, Address: 0x27900c, Func Offset: 0xdc
-	// Line 1118, Address: 0x279014, Func Offset: 0xe4
-	// Line 1120, Address: 0x279018, Func Offset: 0xe8
-	// Line 1124, Address: 0x279020, Func Offset: 0xf0
-	// Line 1126, Address: 0x279038, Func Offset: 0x108
-	// Line 1129, Address: 0x279044, Func Offset: 0x114
-	// Line 1131, Address: 0x279050, Func Offset: 0x120
-	// Line 1133, Address: 0x279058, Func Offset: 0x128
-	// Line 1134, Address: 0x27905c, Func Offset: 0x12c
-	// Line 1139, Address: 0x279064, Func Offset: 0x134
-	// Line 1141, Address: 0x279088, Func Offset: 0x158
-	// Line 1145, Address: 0x27908c, Func Offset: 0x15c
-	// Line 1149, Address: 0x279094, Func Offset: 0x164
-	// Line 1151, Address: 0x27909c, Func Offset: 0x16c
-	// Line 1154, Address: 0x2790a8, Func Offset: 0x178
-	// Line 1156, Address: 0x2790b4, Func Offset: 0x184
-	// Line 1158, Address: 0x2790bc, Func Offset: 0x18c
-	// Line 1159, Address: 0x2790c0, Func Offset: 0x190
-	// Line 1161, Address: 0x2790c8, Func Offset: 0x198
-	// Line 1164, Address: 0x2790d4, Func Offset: 0x1a4
-	// Line 1166, Address: 0x2790ec, Func Offset: 0x1bc
-	// Line 1169, Address: 0x2790f0, Func Offset: 0x1c0
-	// Line 1173, Address: 0x2790f8, Func Offset: 0x1c8
-	// Line 1175, Address: 0x279100, Func Offset: 0x1d0
-	// Line 1177, Address: 0x27910c, Func Offset: 0x1dc
-	// Line 1178, Address: 0x279110, Func Offset: 0x1e0
-	// Line 1180, Address: 0x279118, Func Offset: 0x1e8
-	// Line 1183, Address: 0x279124, Func Offset: 0x1f4
-	// Line 1185, Address: 0x279130, Func Offset: 0x200
-	// Line 1187, Address: 0x279138, Func Offset: 0x208
-	// Line 1189, Address: 0x27913c, Func Offset: 0x20c
-	// Line 1193, Address: 0x279144, Func Offset: 0x214
-	// Line 1195, Address: 0x279164, Func Offset: 0x234
-	// Line 1197, Address: 0x279168, Func Offset: 0x238
-	// Line 1201, Address: 0x279170, Func Offset: 0x240
-	// Line 1203, Address: 0x279178, Func Offset: 0x248
-	// Line 1205, Address: 0x279184, Func Offset: 0x254
-	// Line 1208, Address: 0x2791a0, Func Offset: 0x270
-	// Line 1212, Address: 0x2791a8, Func Offset: 0x278
-	// Line 1210, Address: 0x2791ac, Func Offset: 0x27c
-	// Line 1212, Address: 0x2791b0, Func Offset: 0x280
-	// Line 1214, Address: 0x2791b4, Func Offset: 0x284
-	// Line 1215, Address: 0x2791c0, Func Offset: 0x290
-	// Line 1219, Address: 0x2791c8, Func Offset: 0x298
-	// Line 1221, Address: 0x2791cc, Func Offset: 0x29c
-	// Line 1223, Address: 0x2791d4, Func Offset: 0x2a4
-	// Line 1226, Address: 0x2791e0, Func Offset: 0x2b0
-	// Line 1228, Address: 0x2791ec, Func Offset: 0x2bc
-	// Line 1230, Address: 0x2791f4, Func Offset: 0x2c4
-	// Line 1232, Address: 0x2791f8, Func Offset: 0x2c8
-	// Line 1235, Address: 0x279200, Func Offset: 0x2d0
-	// Line 1238, Address: 0x279210, Func Offset: 0x2e0
-	// Line 1240, Address: 0x279218, Func Offset: 0x2e8
-	// Line 1243, Address: 0x279220, Func Offset: 0x2f0
-	// Line 1246, Address: 0x279230, Func Offset: 0x300
-	// Line 1250, Address: 0x279238, Func Offset: 0x308
-	// Func End, Address: 0x279248, Func Offset: 0x318
+    int lResult;
+
+    switch (pSysSave->ulSubState)
+    {
+    case 0:
+        lResult = CreateMemoryCardSubDirectory(pSysSave->pMcState);
+        
+        if (lResult == -1)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSysSave->pMcState);
+            
+            pSysSave->ulSubState = 8;
+        }
+        else if ((lResult == 1) && (mcNewCreateIcon(pSysSave->pIconInfo, pSysSave->pMcState, cpNameList, 0) == 1))
+        {
+            pSysSave->ulSubState = 1;
+        }
+        
+        break;
+    case 1:
+        lResult = RecoveryMemoryCardWriteEnd(pSysSave->pMcState);
+        
+        if (lResult == 1)
+        {
+            pSysSave->ulSubState = 2;
+        }
+        else if (lResult == -1)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSysSave->pMcState);
+            
+            pSysSave->ulSubState = 8;
+        }
+        
+        break;
+    case 2:
+        pSysSave->ulFileSize = mcReadIconData(pSysSave->vpReadBuffer, cpNameList, 1);
+        
+        if (pSysSave->ulFileSize == 0)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSysSave->pMcState);
+            
+            pSysSave->ulSubState = 8;
+        }
+        else
+        {
+            lResult = mcWriteIconData(pSysSave->pMcState, pSysSave->vpReadBuffer, pSysSave->ulFileSize, cpNameList, 1);
+            
+            if (lResult == 1)
+            {
+                pSysSave->ulSubState = 3;
+            }
+        }
+        
+        break;
+    case 3:
+        lResult = RecoveryMemoryCardWriteEnd(pSysSave->pMcState);
+        
+        if (lResult == -1)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSysSave->pMcState);
+            
+            pSysSave->ulSubState = 8;
+        }
+        else 
+        {
+            if (lResult == 1)
+            {
+                lResult = mcNewCreateConfigFile(pSysSave->pMcState, pSysSave->pConfigFile);
+
+                if (lResult == 1)
+                {
+                    pSysSave->ulSubState = 4;
+                }
+            }
+        }
+        
+        break;
+    case 4:
+        lResult = RecoveryMemoryCardWriteEnd(pSysSave->pMcState);
+        
+        if (lResult == 1)
+        {
+            pSysSave->ulSubState = 5;
+        }
+        else if (lResult == -1)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSysSave->pMcState);
+            
+            pSysSave->ulSubState = 8;
+        }
+        
+        break;
+    case 5:
+        lResult = mcNewCreateSaveFile(pSysSave->pMcState, pSysSave->pSaveFile, cpNameList, pSysSave->usLoopCount);
+        
+        if (lResult != 0)
+        {
+            pSysSave->ulSubState = 6;
+        }
+        
+        break;
+    case 6:
+        lResult = RecoveryMemoryCardWriteEnd(pSysSave->pMcState);
+        
+        if (lResult == 1)
+        {
+            if (++pSysSave->usLoopCount > 14)
+            {
+                pSysSave->ulSubState = 7;
+                
+                pSysSave->usLoopCount = 0;
+                
+                pSysSave->cMesFlag = 20;
+                
+                SetCheckMcFlag(pSysSave->pMcState, 0);
+            }
+            else
+            {
+                pSysSave->ulSubState = 5;
+            }
+        }
+        else if (lResult == -1)
+        {
+            SetCheckMcFlag(pSysSave->pMcState, 0);
+            
+            RecoveryMemoryCardError(pSysSave->pMcState);
+            
+            pSysSave->ulSubState = 8;
+        }
+        
+        break;
+    case 7:
+        if (pSysSave->lCardState == 100)
+        {
+            SetStateSysSaveSuccessWriteSysData(pSysSave);
+        }
+        
+        break;
+    case 8:
+        if (pSysSave->lCardState == 100)
+        {
+            SetStateSysSaveErrWriteSysData(pSysSave);
+        }
+
+        break;
+    }
 }
 
 // 100% matching!
