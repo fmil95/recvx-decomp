@@ -1343,17 +1343,10 @@ unsigned int GetOkButton()
     return ButtonDef[sys->keytype];
 }
 
-// 
-// Start address: 0x279e60
+// 100% matching!
 unsigned int GetCancelButton()
 {
-	unsigned int ButtonDef[3];
-	// Line 2240, Address: 0x279e60, Func Offset: 0
-	// Line 2238, Address: 0x279e70, Func Offset: 0x10
-	// Line 2240, Address: 0x279e74, Func Offset: 0x14
-	// Line 2246, Address: 0x279e78, Func Offset: 0x18
-	// Line 2240, Address: 0x279e7c, Func Offset: 0x1c
-	// Line 2246, Address: 0x279e84, Func Offset: 0x24
-	// Line 2247, Address: 0x279e98, Func Offset: 0x38
-	// Func End, Address: 0x279ea0, Func Offset: 0x40
+    unsigned int ButtonDef[3] = { 0x20, 0x80, 0x40 };
+
+    return ButtonDef[sys->keytype];
 }
