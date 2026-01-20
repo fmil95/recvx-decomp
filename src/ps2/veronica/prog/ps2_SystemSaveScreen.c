@@ -854,19 +854,19 @@ void SetStateSysSaveFileBroken(SYSSAVE_SCREEN* pSysSave)
     pSysSave->cMesFlag = 14;
 }
 
-// 
-// Start address: 0x279370
+// 100% matching!
 void ExecuteStateSysSaveFileBroken(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 1391, Address: 0x279370, Func Offset: 0
-	// Line 1393, Address: 0x279378, Func Offset: 0x8
-	// Line 1395, Address: 0x27938c, Func Offset: 0x1c
-	// Line 1397, Address: 0x279390, Func Offset: 0x20
-	// Line 1398, Address: 0x279398, Func Offset: 0x28
-	// Line 1402, Address: 0x2793a0, Func Offset: 0x30
-	// Line 1405, Address: 0x2793bc, Func Offset: 0x4c
-	// Line 1408, Address: 0x2793c4, Func Offset: 0x54
-	// Func End, Address: 0x2793d0, Func Offset: 0x60
+    if ((Pad->press & 0x800))
+    {
+        pSysSave->usExitFlag = 1;
+        
+        SetStateSysSaveTitleExit(pSysSave);
+    }
+    else if ((pSysSave->lCardState > 100) && (pSysSave->lCardState < 104))
+    {
+        SetStateSysSaveAwarenessCard(pSysSave);
+    }
 }
 
 // 100% matching!
