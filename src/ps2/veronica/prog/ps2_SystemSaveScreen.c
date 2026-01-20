@@ -810,18 +810,17 @@ void SetStateSysSaveSuccessWriteSysData(SYSSAVE_SCREEN* pSysSave)
     SetCheckMcFlag(pSysSave->pMcState, 0);
 }
 
-// 
-// Start address: 0x279270
+// 100% matching!
 void ExecuteStateSysSaveSuccessWriteSysData(SYSSAVE_SCREEN* pSysSave)
-{
-	// Line 1289, Address: 0x279270, Func Offset: 0
-	// Line 1290, Address: 0x279278, Func Offset: 0x8
-	// Line 1293, Address: 0x279288, Func Offset: 0x18
-	// Line 1294, Address: 0x279290, Func Offset: 0x20
-	// Line 1298, Address: 0x279298, Func Offset: 0x28
-	// Line 1301, Address: 0x2792b4, Func Offset: 0x44
-	// Line 1305, Address: 0x2792bc, Func Offset: 0x4c
-	// Func End, Address: 0x2792c8, Func Offset: 0x58
+{   
+    if (--pSysSave->ulMemCheckCountTimer == 0)
+    {
+        SetStateSysSaveDirCheck(pSysSave);
+    }
+    else if ((pSysSave->lCardState > 100) && (pSysSave->lCardState < 104))
+    {
+        SetStateSysSaveAwarenessCard(pSysSave);
+    }
 }
 
 // 100% matching!
