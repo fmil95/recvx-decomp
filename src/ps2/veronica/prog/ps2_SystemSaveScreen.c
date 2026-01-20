@@ -869,15 +869,14 @@ void ExecuteStateSysSaveFileBroken(SYSSAVE_SCREEN* pSysSave)
 	// Func End, Address: 0x2793d0, Func Offset: 0x60
 }
 
-// 
-// Start address: 0x2793d0
+// 100% matching!
 void SetStateSysSaveExitWriteSysData(SYSSAVE_SCREEN* pSysSave)
 {
-	// Line 1426, Address: 0x2793d0, Func Offset: 0
-	// Line 1428, Address: 0x2793d8, Func Offset: 0x8
-	// Line 1430, Address: 0x2793e0, Func Offset: 0x10
-	// Line 1431, Address: 0x2793e4, Func Offset: 0x14
-	// Func End, Address: 0x2793ec, Func Offset: 0x1c
+    pSysSave->ulState = 18;
+    
+    pSysSave->cMesFlag = 15;
+    
+    pSysSave->sSelectCur = 1;
 }
 
 // 
