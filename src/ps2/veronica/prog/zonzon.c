@@ -2548,7 +2548,6 @@ void bhEne_QuickSort(_anon1* a, int first, int last)
 // 100% matching!
 int bhEne_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate) 
 {
-
     epw->mtn_add = 0x10000;
     if (epw->mtn_no != no) 
     {
@@ -2557,8 +2556,8 @@ int bhEne_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate)
         epw->hokan_count = rate;
         epw->hokan_rate = 0;
         epw->mtn_md = 0x20;
-        epw->flg = (int) (epw->flg & 0xFFFBFFFF);
-        epw->flg = (int) (epw->flg & 0xFDFFFFFF);
+        epw->flg = (int) (epw->flg & ~0x40000);
+        epw->flg = (int) (epw->flg & ~0x2000000);
         return 0;
     }
     
