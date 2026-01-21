@@ -1719,63 +1719,34 @@ int bhDGCdirCheck2(NJS_VECTOR* dv, O_WORK* owk)
     return 1;
 }
 
-// 84.73% matching (https://decomp.me/scratch/tOfhl)
+// 99% matching (https://decomp.me/scratch/A2OOF)
 int bhDGCdirCheck3(NJS_VECTOR* dv, int rot) 
 {
-    // int temp;
-    // int temp2;
-    int ang;
-    float radians;
-    int temp;
-    int check, check2;
+    int ang; // r2
 
+    ang = ((int) (atan2f(dv->x, dv->z) * 10430.381f) - rot) & 0xffff;
 
-    radians = atan2f(dv->x, dv->z);
-    temp = (int) (radians * 10430.381f);
-    ang = (temp - rot) & 0xffff;
+    if ((ang < 0x2000) || (ang >= 0xE000))
+    {
+        return 0;
+    }
+    
+    if ((ang == 0) && (ang < 0x6000))
+    {
+        return 1;
+    }
 
-    // temp = (int)(10430.381f * atan2f(dv->x, dv->z) - rot) & 0xFFFF;
-    // temp2 = temp < 0x2000;
-    check = ang < 0x2000;
-    if (!check) {
-        check2 = ang < 0xe000;
-        
-        if (!check2) {
-            return 3;
-            // goto block_3;
-        }
-        // check = ang < 0x6000;
-        if (ang != 0) {
-            check = ang < 0x6000;
-            if (check) {
-                return 1;
-            }
-        }
-
-        
-// block_8:
-        check = ang < 0x6000;
-        if (check) {
-            check2 = ang < 0xa000;
-            if (check2) {
-                return 2;
-            }
-            // goto block_12;
-            // return 9;
-        }
-// block_12:
-        check2 = ang < 0xa000;
-        if (!check2) {
-            check = ang < 0xe000;
-            if (check) {
-                return 3;
-            }
-        }
-
+    if (((ang >= 0x6000)) && (ang < 0xa000))
+    {
+        return 2;
+    }
+    
+    if ((ang >= 0xA000) && (ang < 0xE000))
+    {
         return 3;
     }
-// block_3:
-    return 0;
+
+    return 3;
 }
 
 // 100% matching!
