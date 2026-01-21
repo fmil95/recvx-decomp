@@ -1,4 +1,5 @@
 #include "hitchk.h"
+#include "types.h"
 
 /*_anon4* sys;
 _anon12* rom;
@@ -10,7 +11,6 @@ BH_PWORK ene[0];
 void bhCheckWall(BH_PWORK* pw);
 int bhCheckWallEx(BH_PWORK* pw, _anon20* npos, _anon20* opos, float par, float pah);
 void bhCheckWall2Box(BH_PWORK* pw);
-_anon0* bhCheckWallType(_anon20* pos, unsigned int flg, float ar, float ah);
 _anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, float ah, int idx_ct);
 _anon0* bhCheckWallRefAngle(_anon20* pos, unsigned int flg, float ar, float ah, int* ay);
 void bhSetWallRefAngle(_anon0* hp, _anon20* pos, float ar, float ah, int* ay);
@@ -1248,9 +1248,9 @@ void bhCheckWall2Box(BH_PWORK* pw)
 	// Func End, Address: 0x261334, Func Offset: 0x1744
 }
 
-// 
+// */
 // Start address: 0x261340
-_anon0* bhCheckWallType(_anon20* pos, unsigned int flg, float ar, float ah)
+ATR_WORK* bhCheckWallType(NJS_POINT3* pos, unsigned int flg, float ar, float ah)
 {
 	float h;
 	float ln;
@@ -1260,7 +1260,7 @@ _anon0* bhCheckWallType(_anon20* pos, unsigned int flg, float ar, float ah)
 	float px;
 	int wal_n;
 	int i;
-	_anon0* hp;
+	NJS_POINT3* hp;
 	// Line 1667, Address: 0x261340, Func Offset: 0
 	// Line 1673, Address: 0x261374, Func Offset: 0x34
 	// Line 1674, Address: 0x2613a4, Func Offset: 0x64
@@ -1306,6 +1306,7 @@ _anon0* bhCheckWallType(_anon20* pos, unsigned int flg, float ar, float ah)
 	// Line 1739, Address: 0x2617f4, Func Offset: 0x4b4
 	// Func End, Address: 0x26182c, Func Offset: 0x4ec
 }
+/*
 
 // 
 // Start address: 0x261830
