@@ -1752,7 +1752,7 @@ int bhDGCdirCheck3(NJS_VECTOR* dv, int rot)
 // 100% matching!
 int bhEne_AngleCheck(NJS_VECTOR* vec, int rot, int chk_ang) {
     float n2;
-    //float n1; // There's supposedly a use for this somewhere here but I can't figure out where...
+    float n1; // Unused
     NJS_VECTOR v3;
     NJS_VECTOR v2;
     NJS_VECTOR v1;
@@ -2701,7 +2701,7 @@ int bhEne_CheckSideWall(BH_PWORK* epw, float step, int both) {
 // 100% matching!
 int bhEne_CheckSideWall2(BH_PWORK* epw, float step, int both)
 {
-    NJS_POINT3 pos; // $sp+0x10
+    NJS_POINT3 pos;
 
     pos.x = epw->px + epw->aox;
     pos.z = epw->pz + epw->aoz;
