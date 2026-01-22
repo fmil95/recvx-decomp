@@ -3,6 +3,16 @@
 
 #include "types.h"
 
+typedef struct TIM2_FILEHEADER
+{
+    // total size: 0x10
+    char FileId[4];              // offset 0x0, size 0x4
+    unsigned char FormatVersion; // offset 0x4, size 0x1
+    unsigned char FormatId;      // offset 0x5, size 0x1
+    unsigned short Pictures;     // offset 0x6, size 0x2
+    char Reserved[8];            // offset 0x8, size 0x8
+} TIM2_FILEHEADER;
+
 static int Tim2CalcBufWidth(int psm, int w);
 void Set_GsTex(TIM2_PICTUREHEADER* ph, unsigned long send_image_adr, unsigned long send_clut_adr);
 u_long128* MakeRenderTexHeader(void* tex_adr);
