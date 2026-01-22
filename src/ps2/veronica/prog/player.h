@@ -3,6 +3,42 @@
 
 #include "types.h"
 
+typedef struct WPN_TAB
+{
+	// total size: 0x68
+    unsigned int flg;      // offset 0x0, size 0x4
+    unsigned int atack_ct; // offset 0x4, size 0x4
+    unsigned int fend_ct;  // offset 0x8, size 0x4
+    unsigned int at_cct;   // offset 0xC, size 0x4
+    short ef_yct;          // offset 0x10, size 0x2
+    short act_ct0;         // offset 0x12, size 0x2
+    short act_ct1;         // offset 0x14, size 0x2
+    short act_ct2;         // offset 0x16, size 0x2
+    float r;               // offset 0x18, size 0x4
+    float l;               // offset 0x1C, size 0x4
+    float rn;              // offset 0x20, size 0x4
+    float rmax;            // offset 0x24, size 0x4
+	NJS_POINT3 wp_fps1;    // offset 0x28, size 0xC
+	NJS_POINT3 wp_fps2;    // offset 0x34, size 0xC
+	NJS_POINT3 wp_cps;     // offset 0x40, size 0xC
+	unsigned char ltp;     // offset 0x4C, size 0x1
+    unsigned char lr;      // offset 0x4D, size 0x1
+    unsigned char lg;      // offset 0x4E, size 0x1
+    unsigned char lb;      // offset 0x4F, size 0x1
+    unsigned short lnr;    // offset 0x50, size 0x2
+    unsigned short lfr;    // offset 0x52, size 0x2
+    float hrate;           // offset 0x54, size 0x4
+    float ef_scale;        // offset 0x58, size 0x4
+    short snd_wpno;        // offset 0x5C, size 0x2
+    short hiteff;          // offset 0x5E, size 0x2
+    unsigned short seno0;  // offset 0x60, size 0x2
+    unsigned short seno1;  // offset 0x62, size 0x2
+    char vib_tp;           // offset 0x64, size 0x1
+    char vib_ct;           // offset 0x65, size 0x1
+    char reserve1;         // offset 0x66, size 0x1
+    char reserve2;         // offset 0x67, size 0x1
+} WPN_TAB;
+
 void bhInitPlayer();
 void bhSetPlayer();
 void bhInitRoomChangePlayer();

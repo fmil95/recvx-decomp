@@ -1114,224 +1114,194 @@ typedef struct MOV_INFO
     char MovieSystemLastError; // offset 0x1A, size 0x1
 } MOV_INFO;
 
-typedef struct WPN_TAB
-{
-	// total size: 0x68
-    unsigned int flg; // offset 0x0, size 0x4
-    unsigned int atack_ct; // offset 0x4, size 0x4
-    unsigned int fend_ct; // offset 0x8, size 0x4
-    unsigned int at_cct; // offset 0xC, size 0x4
-    short ef_yct; // offset 0x10, size 0x2
-    short act_ct0; // offset 0x12, size 0x2
-    short act_ct1; // offset 0x14, size 0x2
-    short act_ct2; // offset 0x16, size 0x2
-    float r; // offset 0x18, size 0x4
-    float l; // offset 0x1C, size 0x4
-    float rn; // offset 0x20, size 0x4
-    float rmax; // offset 0x24, size 0x4
-	NJS_POINT3 wp_fps1; // offset 0x28, size 0xC
-	NJS_POINT3 wp_fps2; // offset 0x34, size 0xC
-	NJS_POINT3 wp_cps; // offset 0x40, size 0xC
-	unsigned char ltp; // offset 0x4C, size 0x1
-    unsigned char lr; // offset 0x4D, size 0x1
-    unsigned char lg; // offset 0x4E, size 0x1
-    unsigned char lb; // offset 0x4F, size 0x1
-    unsigned short lnr; // offset 0x50, size 0x2
-    unsigned short lfr; // offset 0x52, size 0x2
-    float hrate; // offset 0x54, size 0x4
-    float ef_scale; // offset 0x58, size 0x4
-    short snd_wpno; // offset 0x5C, size 0x2
-    short hiteff; // offset 0x5E, size 0x2
-    unsigned short seno0; // offset 0x60, size 0x2
-    unsigned short seno1; // offset 0x62, size 0x2
-    char vib_tp; // offset 0x64, size 0x1
-    char vib_ct; // offset 0x65, size 0x1
-    char reserve1; // offset 0x66, size 0x1
-    char reserve2; // offset 0x67, size 0x1
-} WPN_TAB;
-
 typedef struct CAM_KEYF_WORK
 {
 	// total size: 0x80
-    unsigned short flg; // offset 0x0, size 0x2
-    short frame; // offset 0x2, size 0x2
-    float px; // offset 0x4, size 0x4
-    float py; // offset 0x8, size 0x4
-    float pz; // offset 0xC, size 0x4
-    short ax; // offset 0x10, size 0x2
-    short ay; // offset 0x12, size 0x2
-    short az; // offset 0x14, size 0x2
-    short pers; // offset 0x16, size 0x2
+    unsigned short flg;     // offset 0x0, size 0x2
+    short frame;            // offset 0x2, size 0x2
+    float px;               // offset 0x4, size 0x4
+    float py;               // offset 0x8, size 0x4
+    float pz;               // offset 0xC, size 0x4
+    short ax;               // offset 0x10, size 0x2
+    short ay;               // offset 0x12, size 0x2
+    short az;               // offset 0x14, size 0x2
+    short pers;             // offset 0x16, size 0x2
     unsigned int hidobj[8]; // offset 0x18, size 0x20
     unsigned int hidlgt[4]; // offset 0x38, size 0x10
-    unsigned int fog_col; // offset 0x48, size 0x4
-    float fog_nr; // offset 0x4C, size 0x4
-    float fog_fr; // offset 0x50, size 0x4
-    short lkflg; // offset 0x54, size 0x2
-    short lkno; // offset 0x56, size 0x2
-    short lkono; // offset 0x58, size 0x2
-    short nxt_no; // offset 0x5A, size 0x2
-    float lx; // offset 0x5C, size 0x4
-    float ly; // offset 0x60, size 0x4
-    float lz; // offset 0x64, size 0x4
-    float prm_0; // offset 0x68, size 0x4
-    float prm_1; // offset 0x6C, size 0x4
-    float prm_2; // offset 0x70, size 0x4
-    float prm_3; // offset 0x74, size 0x4
-    float prm_4; // offset 0x78, size 0x4
-    unsigned char* recp; // offset 0x7C, size 0x4
+    unsigned int fog_col;   // offset 0x48, size 0x4
+    float fog_nr;           // offset 0x4C, size 0x4
+    float fog_fr;           // offset 0x50, size 0x4
+    short lkflg;            // offset 0x54, size 0x2
+    short lkno;             // offset 0x56, size 0x2
+    short lkono;            // offset 0x58, size 0x2
+    short nxt_no;           // offset 0x5A, size 0x2
+    float lx;               // offset 0x5C, size 0x4
+    float ly;               // offset 0x60, size 0x4
+    float lz;               // offset 0x64, size 0x4
+    float prm_0;            // offset 0x68, size 0x4
+    float prm_1;            // offset 0x6C, size 0x4
+    float prm_2;            // offset 0x70, size 0x4
+    float prm_3;            // offset 0x74, size 0x4
+    float prm_4;            // offset 0x78, size 0x4
+    unsigned char* recp;    // offset 0x7C, size 0x4
 } CAM_KEYF_WORK;
 
-typedef struct NO_NAME_22
+typedef struct EVC_WORK
 {
-	unsigned short flg;
-	unsigned short type;
-	short nxt_no;
-	short keyf_n;
-	CAM_KEYF_WORK keyf[16];
-} NO_NAME_22;
+    // total size: 0x808
+	unsigned short flg;     // offset 0x0, size 0x2
+    unsigned short type;    // offset 0x2, size 0x2
+    short nxt_no;           // offset 0x4, size 0x2
+    short keyf_n;           // offset 0x6, size 0x2
+	CAM_KEYF_WORK keyf[16]; // offset 0x8, size 0x800
+} EVC_WORK;
 
 typedef struct CAM_WRK
 {
 	// total size: 0xC4
-    unsigned short flg; // offset 0x0, size 0x2
-    unsigned char lgtclip; // offset 0x2, size 0x1
-    char spd; // offset 0x3, size 0x1
-    float px; // offset 0x4, size 0x4
-    float py; // offset 0x8, size 0x4
-    float pz; // offset 0xC, size 0x4
-    float ln; // offset 0x10, size 0x4
-    float w; // offset 0x14, size 0x4
-    float h; // offset 0x18, size 0x4
-    float d; // offset 0x1C, size 0x4
-    float y0; // offset 0x20, size 0x4
-    float y1; // offset 0x24, size 0x4
-    float y2; // offset 0x28, size 0x4
-    float y3; // offset 0x2C, size 0x4
-    float am_spd; // offset 0x30, size 0x4
-    int ax; // offset 0x34, size 0x4
-    int ay; // offset 0x38, size 0x4
-    int az; // offset 0x3C, size 0x4
-    int lax; // offset 0x40, size 0x4
-    int lay; // offset 0x44, size 0x4
-    short laz0; // offset 0x48, size 0x2
-    short laz1; // offset 0x4A, size 0x2
-    short laz2; // offset 0x4C, size 0x2
-    short laz3; // offset 0x4E, size 0x2
-    char aa_spd; // offset 0x50, size 0x1
-    char fil_no; // offset 0x51, size 0x1
-    char fil_rt; // offset 0x52, size 0x1
-    char reserve; // offset 0x53, size 0x1
-    int pers; // offset 0x54, size 0x4
+    unsigned short flg;      // offset 0x0, size 0x2
+    unsigned char lgtclip;   // offset 0x2, size 0x1
+    char spd;                // offset 0x3, size 0x1
+    float px;                // offset 0x4, size 0x4
+    float py;                // offset 0x8, size 0x4
+    float pz;                // offset 0xC, size 0x4
+    float ln;                // offset 0x10, size 0x4
+    float w;                 // offset 0x14, size 0x4
+    float h;                 // offset 0x18, size 0x4
+    float d;                 // offset 0x1C, size 0x4
+    float y0;                // offset 0x20, size 0x4
+    float y1;                // offset 0x24, size 0x4
+    float y2;                // offset 0x28, size 0x4
+    float y3;                // offset 0x2C, size 0x4
+    float am_spd;            // offset 0x30, size 0x4
+    int ax;                  // offset 0x34, size 0x4
+    int ay;                  // offset 0x38, size 0x4
+    int az;                  // offset 0x3C, size 0x4
+    int lax;                 // offset 0x40, size 0x4
+    int lay;                 // offset 0x44, size 0x4
+    short laz0;              // offset 0x48, size 0x2
+    short laz1;              // offset 0x4A, size 0x2
+    short laz2;              // offset 0x4C, size 0x2
+    short laz3;              // offset 0x4E, size 0x2
+    char aa_spd;             // offset 0x50, size 0x1
+    char fil_no;             // offset 0x51, size 0x1
+    char fil_rt;             // offset 0x52, size 0x1
+    char reserve;            // offset 0x53, size 0x1
+    int pers;                // offset 0x54, size 0x4
     unsigned int hidobj[16]; // offset 0x58, size 0x40
-    unsigned int hidlgt[8]; // offset 0x98, size 0x20
-    unsigned int fog_col; // offset 0xB8, size 0x4
-    float fog_nr; // offset 0xBC, size 0x4
-    float fog_fr; // offset 0xC0, size 0x4
+    unsigned int hidlgt[8];  // offset 0x98, size 0x20
+    unsigned int fog_col;    // offset 0xB8, size 0x4
+    float fog_nr;            // offset 0xBC, size 0x4
+    float fog_fr;            // offset 0xC0, size 0x4
 } CAM_WRK;
 
-typedef struct NO_NAME_24
+typedef struct CUT_WRK
 {
-	unsigned int attr;
-	char flr_no;
-	char reserve0;
-	char reserve1;
-	char atr_tp;
-	float h;
-	float dmy;
-	float minx;
-	float minz;
-	float maxx;
-	float maxz;
-} NO_NAME_24;
+	// total size: 0x20
+    unsigned int attr; // offset 0x0, size 0x4
+    char flr_no;       // offset 0x4, size 0x1
+    char reserve0;     // offset 0x5, size 0x1
+    char reserve1;     // offset 0x6, size 0x1
+    char atr_tp;       // offset 0x7, size 0x1
+    float h;           // offset 0x8, size 0x4
+    float dmy;         // offset 0xC, size 0x4
+    float minx;        // offset 0x10, size 0x4
+    float minz;        // offset 0x14, size 0x4
+    float maxx;        // offset 0x18, size 0x4
+    float maxz;        // offset 0x1C, size 0x4
+} CUT_WRK;
 
-typedef struct NO_NAME_25
+typedef struct CUT_WORK
 {
-	unsigned char flg;
-	unsigned char type;
-	char flr_no;
-	unsigned char ctab_n;
-	NO_NAME_24* cuttp;
-	float cx;
-	float cy;
-	float cz;
-	float cw;
-	float ch;
-	float cd;
-	CAM_WRK cam[2];
-	unsigned char exd[256];
-} NO_NAME_25;
+	// total size: 0x2A8
+    unsigned char flg;      // offset 0x0, size 0x1
+    unsigned char type;     // offset 0x1, size 0x1
+    char flr_no;            // offset 0x2, size 0x1
+    unsigned char ctab_n;   // offset 0x3, size 0x1
+	CUT_WRK* cuttp;         // offset 0x4, size 0x4
+	float cx;               // offset 0x8, size 0x4
+    float cy;               // offset 0xC, size 0x4
+    float cz;               // offset 0x10, size 0x4
+    float cw;               // offset 0x14, size 0x4
+    float ch;               // offset 0x18, size 0x4
+    float cd;               // offset 0x1C, size 0x4
+	CAM_WRK cam[2];         // offset 0x20, size 0x188
+	unsigned char exd[256]; // offset 0x1A8, size 0x100
+} CUT_WORK;
 
-typedef struct NO_NAME_26
+typedef struct ETTY_WORK
 {
-	unsigned int flg;
-	unsigned short id;
-	unsigned short type;
-	char flr_no;
-	unsigned char mdlver;
-	unsigned char wrk_no;
-	char prm1;
-	float px;
-	float py;
-	float pz;
-	short ax;
-	short az;
-	short ay;
-	short aspd;
-	char hide[4];
-} NO_NAME_26;
+	// total size: 0x24
+    unsigned int flg;     // offset 0x0, size 0x4
+    unsigned short id;    // offset 0x4, size 0x2
+    unsigned short type;  // offset 0x6, size 0x2
+    char flr_no;          // offset 0x8, size 0x1
+    unsigned char mdlver; // offset 0x9, size 0x1
+    unsigned char wrk_no; // offset 0xA, size 0x1
+    char prm1;            // offset 0xB, size 0x1
+    float px;             // offset 0xC, size 0x4
+    float py;             // offset 0x10, size 0x4
+    float pz;             // offset 0x14, size 0x4
+    short ax;             // offset 0x18, size 0x2
+    short az;             // offset 0x1A, size 0x2
+    short ay;             // offset 0x1C, size 0x2
+    short aspd;           // offset 0x1E, size 0x2
+    char hide[4];         // offset 0x20, size 0x4
+} ETTY_WORK;
 
-typedef struct NO_NAME_27
+typedef struct EF_WRK
 {
-	unsigned int flg;
-	unsigned short id;
-	unsigned short type;
-	short flr_no;
-	unsigned short mdlver;
-	float px;
-	float py;
-	float pz;
-	float sx;
-	float sy;
-	float sz;
-	short ay;
-	short ax;
-	int lkflg;
-	int lkno;
-	int lkono;
-	float lx;
-	float ly;
-	float lz;
-	int param;
-} NO_NAME_27;
+	// total size: 0x44
+    unsigned int flg;      // offset 0x0, size 0x4
+    unsigned short id;     // offset 0x4, size 0x2
+    unsigned short type;   // offset 0x6, size 0x2
+    short flr_no;          // offset 0x8, size 0x2
+    unsigned short mdlver; // offset 0xA, size 0x2
+    float px;              // offset 0xC, size 0x4
+    float py;              // offset 0x10, size 0x4
+    float pz;              // offset 0x14, size 0x4
+    float sx;              // offset 0x18, size 0x4
+    float sy;              // offset 0x1C, size 0x4
+    float sz;              // offset 0x20, size 0x4
+    short ay;              // offset 0x24, size 0x2
+    short ax;              // offset 0x26, size 0x2
+    int lkflg;             // offset 0x28, size 0x4
+    int lkno;              // offset 0x2C, size 0x4
+    int lkono;             // offset 0x30, size 0x4
+    float lx;              // offset 0x34, size 0x4
+    float ly;              // offset 0x38, size 0x4
+    float lz;              // offset 0x3C, size 0x4
+    int param;             // offset 0x40, size 0x4
+} EF_WRK;
 
-typedef struct NO_NAME_28
+typedef struct POS
 {
-	float px;
-	float py;
-	float pz;
-	int ay;
-} NO_NAME_28;
+	// total size: 0x10
+    float px; // offset 0x0, size 0x4
+    float py; // offset 0x4, size 0x4
+    float pz; // offset 0x8, size 0x4
+    int ay;   // offset 0xC, size 0x4
+} POS;
 
 typedef struct ROM_WORK
 {
     // total size: 0x3EC
-	NO_NAME_25* cutp; // offset 0x0, size 0x4
-	LGT_WORK* lgtp; // offset 0x4, size 0x4
-	NO_NAME_26* enep; // offset 0x8, size 0x4
-	NO_NAME_26* objp; // offset 0xC, size 0x4
-	NO_NAME_26* itmp; // offset 0x10, size 0x4
-	NO_NAME_27* effp; // offset 0x14, size 0x4
-	ATR_WORK* walp; // offset 0x18, size 0x4
-	ATR_WORK* etcp; // offset 0x1C, size 0x4
-	ATR_WORK* flrp; // offset 0x20, size 0x4
-	NO_NAME_28* posp; // offset 0x24, size 0x4
-	ATR_WORK* rutp; // offset 0x28, size 0x4
+	CUT_WORK* cutp;       // offset 0x0, size 0x4
+	LGT_WORK* lgtp;       // offset 0x4, size 0x4
+	ETTY_WORK* enep;      // offset 0x8, size 0x4
+	ETTY_WORK* objp;      // offset 0xC, size 0x4
+	ETTY_WORK* itmp;      // offset 0x10, size 0x4
+	EF_WRK* effp;         // offset 0x14, size 0x4
+	ATR_WORK* walp;       // offset 0x18, size 0x4
+	ATR_WORK* etcp;       // offset 0x1C, size 0x4
+	ATR_WORK* flrp;       // offset 0x20, size 0x4
+	POS* posp;            // offset 0x24, size 0x4
+	ATR_WORK* rutp;       // offset 0x28, size 0x4
 	unsigned char* ruttp; // offset 0x2C, size 0x4
-	EVT_WORK* evtp; // offset 0x30, size 0x4
-	NO_NAME_22* evcp; // offset 0x34, size 0x4
-	unsigned int* mesp; // offset 0x38, size 0x4
-	LGT_WORK* evlp; // offset 0x3C, size 0x4
+	EVT_WORK* evtp;       // offset 0x30, size 0x4
+	EVC_WORK* evcp;       // offset 0x34, size 0x4
+	unsigned int* mesp;   // offset 0x38, size 0x4
+	LGT_WORK* evlp;       // offset 0x3C, size 0x4
 	unsigned char* dmp00; // offset 0x40, size 0x4
     unsigned char* dmp01; // offset 0x44, size 0x4
     unsigned char* dmp02; // offset 0x48, size 0x4
@@ -1348,70 +1318,70 @@ typedef struct ROM_WORK
     unsigned char* dmp13; // offset 0x74, size 0x4
     unsigned char* dmp14; // offset 0x78, size 0x4
     unsigned char* dmp15; // offset 0x7C, size 0x4
-    int cut_n; // offset 0x80, size 0x4
-    int lgt_n; // offset 0x84, size 0x4
-    int ene_n; // offset 0x88, size 0x4
-    int obj_n; // offset 0x8C, size 0x4
-    int itm_n; // offset 0x90, size 0x4
-    int eff_n; // offset 0x94, size 0x4
-    int wal_n; // offset 0x98, size 0x4
-    int etc_n; // offset 0x9C, size 0x4
-    int flr_n; // offset 0xA0, size 0x4
-    int pos_n; // offset 0xA4, size 0x4
-    int rut_n; // offset 0xA8, size 0x4
-    int evc_n; // offset 0xAC, size 0x4
-    int mes_n; // offset 0xB0, size 0x4
-    int evl_n; // offset 0xB4, size 0x4
-    int dmy00; // offset 0xB8, size 0x4
-    int dmy01; // offset 0xBC, size 0x4
-    int dmy02; // offset 0xC0, size 0x4
-    int dmy03; // offset 0xC4, size 0x4
-    int dmy04; // offset 0xC8, size 0x4
-    int dmy05; // offset 0xCC, size 0x4
-    int dmy06; // offset 0xD0, size 0x4
-    int dmy07; // offset 0xD4, size 0x4
-    int dmy08; // offset 0xD8, size 0x4
-    int dmy09; // offset 0xDC, size 0x4
-    int dmy10; // offset 0xE0, size 0x4
-    int dmy11; // offset 0xE4, size 0x4
-    int dmy12; // offset 0xE8, size 0x4
-    int dmy13; // offset 0xEC, size 0x4
-    int dmy14; // offset 0xF0, size 0x4
-    int dmy15; // offset 0xF4, size 0x4
-    int dmy16; // offset 0xF8, size 0x4
-    int dmy17; // offset 0xFC, size 0x4
-    unsigned int flg; // offset 0x100, size 0x4
+    int cut_n;            // offset 0x80, size 0x4
+    int lgt_n;            // offset 0x84, size 0x4
+    int ene_n;            // offset 0x88, size 0x4
+    int obj_n;            // offset 0x8C, size 0x4
+    int itm_n;            // offset 0x90, size 0x4
+    int eff_n;            // offset 0x94, size 0x4
+    int wal_n;            // offset 0x98, size 0x4
+    int etc_n;            // offset 0x9C, size 0x4
+    int flr_n;            // offset 0xA0, size 0x4
+    int pos_n;            // offset 0xA4, size 0x4
+    int rut_n;            // offset 0xA8, size 0x4
+    int evc_n;            // offset 0xAC, size 0x4
+    int mes_n;            // offset 0xB0, size 0x4
+    int evl_n;            // offset 0xB4, size 0x4
+    int dmy00;            // offset 0xB8, size 0x4
+    int dmy01;            // offset 0xBC, size 0x4
+    int dmy02;            // offset 0xC0, size 0x4
+    int dmy03;            // offset 0xC4, size 0x4
+    int dmy04;            // offset 0xC8, size 0x4
+    int dmy05;            // offset 0xCC, size 0x4
+    int dmy06;            // offset 0xD0, size 0x4
+    int dmy07;            // offset 0xD4, size 0x4
+    int dmy08;            // offset 0xD8, size 0x4
+    int dmy09;            // offset 0xDC, size 0x4
+    int dmy10;            // offset 0xE0, size 0x4
+    int dmy11;            // offset 0xE4, size 0x4
+    int dmy12;            // offset 0xE8, size 0x4
+    int dmy13;            // offset 0xEC, size 0x4
+    int dmy14;            // offset 0xF0, size 0x4
+    int dmy15;            // offset 0xF4, size 0x4
+    int dmy16;            // offset 0xF8, size 0x4
+    int dmy17;            // offset 0xFC, size 0x4
+    unsigned int flg;     // offset 0x100, size 0x4
     unsigned int bak_col; // offset 0x104, size 0x4
     unsigned int fog_col; // offset 0x108, size 0x4
-    float fog_nr; // offset 0x10C, size 0x4
-    float fog_fr; // offset 0x110, size 0x4
-    float w; // offset 0x114, size 0x4
-    float h; // offset 0x118, size 0x4
-    float d; // offset 0x11C, size 0x4
-    float grand[32]; // offset 0x120, size 0x80
-	ML_WORK mdl; // offset 0x1A0, size 0x18
-	float fog[128]; // offset 0x1B8, size 0x200
-    char amb_rom; // offset 0x3B8, size 0x1
-    char amb_chr; // offset 0x3B9, size 0x1
-    char amb_obj; // offset 0x3BA, size 0x1
-    char amb_itm; // offset 0x3BB, size 0x1
-    float amb_r[4]; // offset 0x3BC, size 0x10
-    float amb_g[4]; // offset 0x3CC, size 0x10
-    float amb_b[4]; // offset 0x3DC, size 0x10
+    float fog_nr;         // offset 0x10C, size 0x4
+    float fog_fr;         // offset 0x110, size 0x4
+    float w;              // offset 0x114, size 0x4
+    float h;              // offset 0x118, size 0x4
+    float d;              // offset 0x11C, size 0x4
+    float grand[32];      // offset 0x120, size 0x80
+	ML_WORK mdl;          // offset 0x1A0, size 0x18
+	float fog[128];       // offset 0x1B8, size 0x200
+    char amb_rom;         // offset 0x3B8, size 0x1
+    char amb_chr;         // offset 0x3B9, size 0x1
+    char amb_obj;         // offset 0x3BA, size 0x1
+    char amb_itm;         // offset 0x3BB, size 0x1
+    float amb_r[4];       // offset 0x3BC, size 0x10
+    float amb_g[4];       // offset 0x3CC, size 0x10
+    float amb_b[4];       // offset 0x3DC, size 0x10
 } ROM_WORK;
 
 typedef struct CONFIGFILE 
 {
     // total size: 0x34
-    unsigned int ssd_ver; // offset 0x0, size 0x4
-    unsigned int ssd_flg; // offset 0x4, size 0x4
+    unsigned int ssd_ver;     // offset 0x0, size 0x4
+    unsigned int ssd_flg;     // offset 0x4, size 0x4
     unsigned int ssd_reserve; // offset 0x8, size 0x4
-    char keytype; // offset 0xC, size 0x1
-    char adjust_x; // offset 0xD, size 0x1
-    char adjust_y; // offset 0xE, size 0x1
-    char vibration; // offset 0xF, size 0x1
-    int best_tm[8]; // offset 0x10, size 0x20
-    unsigned int Check_Sam; // offset 0x30, size 0x4
+    char keytype;             // offset 0xC, size 0x1
+    char adjust_x;            // offset 0xD, size 0x1
+    char adjust_y;            // offset 0xE, size 0x1
+    char vibration;           // offset 0xF, size 0x1
+    int best_tm[8];           // offset 0x10, size 0x20
+    unsigned int Check_Sam;   // offset 0x30, size 0x4
 } CONFIGFILE;
 
 typedef struct ICONINFORMATION 

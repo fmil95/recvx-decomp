@@ -8100,8 +8100,8 @@ int Common_controll()
             int v1; 
             int v2; 
             BH_PWORK* epw; 
-            NO_NAME_28* e_posp; 
-            NO_NAME_26* temp; // not from the debugging symbols
+            POS* e_posp; 
+            ETTY_WORK* temp; // not from the debugging symbols
             
             bhScePtr++;
             v0 = *bhScePtr++;
@@ -8130,7 +8130,7 @@ int Common_controll()
         case 52:
         {
             int v0; 
-            NO_NAME_28* e_posp; 
+            POS* e_posp; 
             
             bhScePtr++;
             v0 = *bhScePtr;
