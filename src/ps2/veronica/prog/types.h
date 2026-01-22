@@ -217,6 +217,7 @@ typedef struct EF_WORK
 
 typedef struct CPCL
 {
+    // total size: 0x8
 	short jnt_a; // offset 0x0, size 0x2
     short jnt_b; // offset 0x2, size 0x2
     int cap_r;   // offset 0x4, size 0x4
@@ -427,6 +428,7 @@ typedef struct LGT_WORK
 
 typedef struct LPTB
 {
+    // total size: 0x20
 	NJS_POINT3 ps; // offset 0x0, size 0xC
     float nr;      // offset 0xC, size 0x4
     float fr;      // offset 0x10, size 0x4
@@ -1098,6 +1100,7 @@ typedef struct PAD_WRK
 
 typedef struct MOV_INFO
 {
+    // total size: 0x1C
 	unsigned char* mmp;        // offset 0x0, size 0x4
     float Vol;                 // offset 0x4, size 0x4
     float VolSpeed;            // offset 0x8, size 0x4
@@ -1110,242 +1113,6 @@ typedef struct MOV_INFO
     char MovieFadeMode;        // offset 0x19, size 0x1
     char MovieSystemLastError; // offset 0x1A, size 0x1
 } MOV_INFO;
-
-typedef struct RMI_WORK
-{
-    // total size: 0x54
-    unsigned char* put_ptr;      // offset 0x0, size 0x4
-    unsigned char* get_ptr;      // offset 0x4, size 0x4
-    int putsize;                 // offset 0x8, size 0x4
-    int getsize;                 // offset 0xC, size 0x4
-    int readrest;                // offset 0x10, size 0x4
-    int writerest;               // offset 0x14, size 0x4
-    int count;                   // offset 0x18, size 0x4
-    int proceed;                 // offset 0x1C, size 0x4
-    unsigned int button_old;     // offset 0x20, size 0x4
-    unsigned char cdata[32];     // offset 0x24, size 0x20
-    int iMovieState;             // offset 0x44, size 0x4
-    int iMovieFrame;             // offset 0x48, size 0x4
-    unsigned int uiContFlag;     // offset 0x4C, size 0x4
-    unsigned int MVCancelButton; // offset 0x50, size 0x4
-} RMI_WORK;
-
-typedef struct ADX_WORK
-{
-	// total size: 0x10
-	unsigned int MaxChannel;    // offset 0x0, size 0x4
-    unsigned int MaxSampleRate; // offset 0x4, size 0x4
-    int RecoverType;            // offset 0x8, size 0x4
-    int ReloadSector;           // offset 0xC, size 0x4
-} ADX_WORK;
-
-// the link_file field in the struct below was originally char* but got turned into char** because it matches gdFsInit() higher
-typedef struct DVD_IMAGE_DATA
-{
-	// total size: 0x8
-    char* file_name;  // offset 0x0, size 0x4
-    char** link_file; // offset 0x4, size 0x4
-} DVD_IMAGE_DATA;
-
-typedef struct PS2_NJ_SAVE
-{
-	unsigned char mode_bk[2]; // offset 0x0, size 0x2
-    unsigned char set_last; // offset 0x2, size 0x1
-    unsigned char dc_alpha; // offset 0x3, size 0x1
-    int mode; // offset 0x4, size 0x4
-} PS2_NJ_SAVE;
-
-typedef struct PS2_GS_SAVE
-{
-	unsigned long SC_TAG[2]; // offset 0x0, size 0x8
-    unsigned long GIF_TAG[2]; // offset 0x10, size 0x8
-    unsigned long TEX0; // offset 0x20, size 0x4
-    unsigned long TEX0_TAG; // offset 0x28, size 0x4
-    unsigned long TEX0_NEXT; // offset 0x30, size 0x4
-    unsigned long TEX0_NEXT_TAG; // offset 0x38, size 0x4
-    unsigned long TEX1; // offset 0x40, size 0x4
-    unsigned long TEX1_TAG; // offset 0x48, size 0x4
-    unsigned long CLAMP; // offset 0x50, size 0x4
-    unsigned long CLAMP_TAG; // offset 0x58, size 0x4
-    unsigned long TEST; // offset 0x60, size 0x4
-    unsigned long TEST_TAG; // offset 0x68, size 0x4
-    unsigned long FOGCOL; // offset 0x70, size 0x4
-    unsigned long FOGCOL_TAG; // offset 0x78, size 0x4
-    unsigned long ALPHA; // offset 0x80, size 0x4
-    unsigned long ALPHA_TAG; // offset 0x88, size 0x4
-    unsigned long FBA; // offset 0x90, size 0x4
-    unsigned long FBA_TAG; // offset 0x98, size 0x4
-    unsigned long SCISSOR; // offset 0xA0, size 0x4
-    unsigned long SCISSOR_TAG; // offset 0xA8, size 0x4
-    unsigned char mode_bk[2]; // offset 0xB0, size 0x2
-    unsigned char set_last; // offset 0xB2, size 0x1
-    unsigned char dc_alpha; // offset 0xB3, size 0x1
-    unsigned int pad32; // offset 0xB4, size 0x4
-    unsigned long pad64; // offset 0xB8, size 0x4
-} PS2_GS_SAVE;
-
-typedef struct PS2_OT_LIST
-{
-    int pad; // TODO: this is actually an empty struct 
-} PS2_OT_LIST;
-
-typedef struct PS2_OT
-{
-	NJS_TEXMEMLIST* tp;
-	unsigned char mode_bk[2];
-	unsigned char set_last;
-	unsigned char dc_alpha;
-	PS2_OT_LIST* op;
-	void* p;
-	unsigned long ALPHA;
-	unsigned long TEX0;
-	unsigned long TEX0_NEXT;
-	unsigned int bank;
-	unsigned int pad;
-} PS2_OT;
-
-typedef struct PS2_TP_TAG
-{
-	unsigned long GIF_TAG[2]; // offset 0x0, size 0x8
-    unsigned long TEX0; // offset 0x10, size 0x4
-    unsigned long TEX0_TAG; // offset 0x18, size 0x4
-    unsigned long TEX0_NEXT; // offset 0x20, size 0x4
-    unsigned long TEX0_NEXT_TAG; // offset 0x28, size 0x4
-    unsigned long CLAMP; // offset 0x30, size 0x4
-    unsigned long CLAMP_TAG; // offset 0x38, size 0x4
-} PS2_TP_TAG;
-
-typedef struct PS2_TP_CACHE
-{
-	void * tp; // offset 0x0, size 0x4
-    unsigned int bank; // offset 0x4, size 0x4
-    unsigned int tex_addr; // offset 0x8, size 0x4
-    unsigned int clt_addr; // offset 0xC, size 0x4
-} PS2_TP_CACHE;
-
-typedef struct BUF_QUEUE 
-{
-    char* from;               
-    unsigned char* to;        
-} BUF_QUEUE;
-
-typedef struct EXPAND_STATUS 
-{
-    char active;              
-    char mode;                
-} EXPAND_STATUS;
-
-typedef union EXPAND_CTRL 
-{
-    EXPAND_STATUS sb;      
-    short check;              
-} EXPAND_CTRL;
-
-typedef union EXPAND_FLAG
-{
-    struct 
-    {
-        EXPAND_CTRL uw; 
-        char in;              
-        char out;             
-    } sl;
-    int abort;               
-} EXPAND_FLAG;
-
-typedef struct EXPAND_CTRL_BUF
-{
-    EXPAND_FLAG flag;        
-    int code;                    
-    int counter;                 
-    int repeat;                  
-    unsigned char* offset;       
-    char* source;               
-    unsigned char* destination;  
-    BUF_QUEUE que[2];         
-} EXPAND_CTRL_BUF;
-
-typedef struct RM_SNDENV
-{
-	// total size: 0x10
-	char VolPlayerVoice; // offset 0x0, size 0x1
-    char VolPlayerAction; // offset 0x1, size 0x1
-    char VolWeaponSe; // offset 0x2, size 0x1
-    char VolCartridgeSe; // offset 0x3, size 0x1
-    char VolEnemySe; // offset 0x4, size 0x1
-    char VolBgSe0; // offset 0x5, size 0x1
-    char VolBgSe1; // offset 0x6, size 0x1
-    char VolObjectSe; // offset 0x7, size 0x1
-    char VolEventSe; // offset 0x8, size 0x1
-    char RoomFxLevel; // offset 0x9, size 0x1
-    char RoomFxProg; // offset 0xA, size 0x1
-    char MaxEventSeSlots; // offset 0xB, size 0x1
-    char MaxObjectSeSlots; // offset 0xC, size 0x1
-    char Dummy1; // offset 0xD, size 0x1
-    char Dummy2; // offset 0xE, size 0x1
-    char Dummy3; // offset 0xF, size 0x1
-} RM_SNDENV;
-
-typedef struct AFS_PATINFO
-{
-    // total size: 0x10
-    char* AfsFileName;        // offset 0x0, size 0x4
-    int PartitionId;          // offset 0x4, size 0x4
-    int MaxInsideFileNum;     // offset 0x8, size 0x4
-    unsigned char* pInfoWork; // offset 0xC, size 0x4
-} AFS_PATINFO;
-
-typedef struct AFS_INFO
-{
-	// total size: 0xC
-    unsigned char* pInfoPart;  // offset 0x0, size 0x4
-    unsigned int PartAreaSize; // offset 0x4, size 0x4
-    unsigned int Flag;         // offset 0x8, size 0x4
-} AFS_INFO;
-
-typedef struct ADXF_INFO
-{
-	// total size: 0x10
-    ADX_FS* Handle;           // offset 0x0, size 0x4
-    unsigned char* pAdxFWork; // offset 0x4, size 0x4
-    unsigned int Flag;        // offset 0x8, size 0x4
-    int Mode;                 // offset 0xC, size 0x4
-} ADXF_INFO;
-
-typedef struct ADXT_INFO
-{
-	// total size: 0x40
-    ADX_TALK* Handle;         // offset 0x0, size 0x4
-    unsigned char* pAdxTWork; // offset 0x4, size 0x4
-    int WorkSize;             // offset 0x8, size 0x4
-    unsigned int Flag;        // offset 0xC, size 0x4
-    int FadeFunc;             // offset 0x10, size 0x4
-    int FadeCntMax;           // offset 0x14, size 0x4
-    float Volume;             // offset 0x18, size 0x4
-    float VolSpeed;           // offset 0x1C, size 0x4
-    float VolLast;            // offset 0x20, size 0x4
-    float VolSave;            // offset 0x24, size 0x4
-    float LimitMaxVol;        // offset 0x28, size 0x4
-    int PanFunc;              // offset 0x2C, size 0x4
-    int PanCntMax;            // offset 0x30, size 0x4
-    float Pan;                // offset 0x34, size 0x4
-    float PanSpeed;           // offset 0x38, size 0x4
-    float PanLast;            // offset 0x3C, size 0x4
-} ADXT_INFO;
-
-typedef struct PAD_ACT
-{
-	// total size: 0x10
-    unsigned char be_flag; // offset 0x0, size 0x1
-    unsigned char level; // offset 0x1, size 0x1
-    unsigned char start; // offset 0x2, size 0x1
-    unsigned char end; // offset 0x3, size 0x1
-    unsigned short delay; // offset 0x4, size 0x2
-    unsigned short time; // offset 0x6, size 0x2
-    unsigned short add; // offset 0x8, size 0x2
-    short f_level; // offset 0xA, size 0x2
-    short f_add; // offset 0xC, size 0x2
-    char data[2]; // offset 0xE, size 0x2
-} PAD_ACT;
 
 typedef struct WPN_TAB
 {
@@ -2810,5 +2577,49 @@ typedef	void (*AlarmCallBack)(int, unsigned short, void*);
 #define AU_STATE_PAUSE		3
 
 #define AU_HDR_SIZE		(sizeof(SpuStreamHeader) 					+ sizeof(SpuStreamBody))
+
+typedef struct {
+    char id[4];		// 'S''S''h''d'
+    int size;		// 24
+    int type;		// 0: 16bit big endian
+    			// 1: 16bit little endian
+			// 2: SPU2-ADPCM (VAG) 
+    int rate;		// sampling rate
+    int ch;		// number of channels
+    int interSize;	// interleave size ... needs to be 512
+    int loopStart;	// loop start block address
+    int loopEnd;	// loop end block sddress
+} SpuStreamHeader;
+
+typedef struct {
+    char id[4];		// 'S''S''b''d'
+    int size;		// size of audio data
+} SpuStreamBody;
+
+typedef struct {
+
+    int state;
+
+    // header of ADS format
+    SpuStreamHeader sshd;
+    SpuStreamBody   ssbd;
+    int hdrCount;
+
+    // audio buffer
+    u_char *data;
+    int put;
+    int count;
+    int size;
+    int totalBytes;
+
+    // buffer on IOP
+    int iopBuff;
+    int iopBuffSize;
+    int iopLastPos;
+    int iopPausePos;
+    int totalBytesSent;
+    int iopZero;
+
+} AudioDec;
 
 #endif

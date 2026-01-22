@@ -3,6 +3,79 @@
 
 #include "types.h"
 
+typedef struct PS2_OT_LIST
+{
+    // total size: 0x0
+    int pad; // this isn't really here, but blocks an error
+} PS2_OT_LIST;
+
+typedef struct PS2_OT
+{
+    // total size: 0x30
+	NJS_TEXMEMLIST* tp;       // offset 0x0, size 0x4
+	unsigned char mode_bk[2]; // offset 0x4, size 0x2
+    unsigned char set_last;   // offset 0x6, size 0x1
+    unsigned char dc_alpha;   // offset 0x7, size 0x1
+    PS2_OT_LIST* op;          // offset 0x8, size 0x4
+    void* p;                  // offset 0xC, size 0x4
+    unsigned long ALPHA;      // offset 0x10, size 0x4
+    unsigned long TEX0;       // offset 0x18, size 0x4
+    unsigned long TEX0_NEXT;  // offset 0x20, size 0x4
+    unsigned int bank;        // offset 0x28, size 0x4
+    unsigned int pad;         // offset 0x2C, size 0x4
+} PS2_OT;
+
+typedef struct PS2_TP_TAG
+{
+    // total size: 0x40
+	unsigned long GIF_TAG[2];    // offset 0x0, size 0x8
+    unsigned long TEX0;          // offset 0x10, size 0x4
+    unsigned long TEX0_TAG;      // offset 0x18, size 0x4
+    unsigned long TEX0_NEXT;     // offset 0x20, size 0x4
+    unsigned long TEX0_NEXT_TAG; // offset 0x28, size 0x4
+    unsigned long CLAMP;         // offset 0x30, size 0x4
+    unsigned long CLAMP_TAG;     // offset 0x38, size 0x4
+} PS2_TP_TAG;
+
+typedef struct PS2_TP_CACHE
+{
+    // total size: 0x10
+	void* tp;              // offset 0x0, size 0x4
+    unsigned int bank;     // offset 0x4, size 0x4
+    unsigned int tex_addr; // offset 0x8, size 0x4
+    unsigned int clt_addr; // offset 0xC, size 0x4
+} PS2_TP_CACHE;
+
+typedef struct PS2_GS_SAVE
+{
+    // total size: 0xC0
+	unsigned long SC_TAG[2];     // offset 0x0, size 0x8
+    unsigned long GIF_TAG[2];    // offset 0x10, size 0x8
+    unsigned long TEX0;          // offset 0x20, size 0x4
+    unsigned long TEX0_TAG;      // offset 0x28, size 0x4
+    unsigned long TEX0_NEXT;     // offset 0x30, size 0x4
+    unsigned long TEX0_NEXT_TAG; // offset 0x38, size 0x4
+    unsigned long TEX1;          // offset 0x40, size 0x4
+    unsigned long TEX1_TAG;      // offset 0x48, size 0x4
+    unsigned long CLAMP;         // offset 0x50, size 0x4
+    unsigned long CLAMP_TAG;     // offset 0x58, size 0x4
+    unsigned long TEST;          // offset 0x60, size 0x4
+    unsigned long TEST_TAG;      // offset 0x68, size 0x4
+    unsigned long FOGCOL;        // offset 0x70, size 0x4
+    unsigned long FOGCOL_TAG;    // offset 0x78, size 0x4
+    unsigned long ALPHA;         // offset 0x80, size 0x4
+    unsigned long ALPHA_TAG;     // offset 0x88, size 0x4
+    unsigned long FBA;           // offset 0x90, size 0x4
+    unsigned long FBA_TAG;       // offset 0x98, size 0x4
+    unsigned long SCISSOR;       // offset 0xA0, size 0x4
+    unsigned long SCISSOR_TAG;   // offset 0xA8, size 0x4
+    unsigned char mode_bk[2];    // offset 0xB0, size 0x2
+    unsigned char set_last;      // offset 0xB2, size 0x1
+    unsigned char dc_alpha;      // offset 0xB3, size 0x1
+    unsigned int pad32;          // offset 0xB4, size 0x4
+    unsigned long pad64;         // offset 0xB8, size 0x4
+} PS2_GS_SAVE;
+
 void _builtin_set_imask(int mask);
 void Ps2Init();
 void Ps2LoadModule(char* p);

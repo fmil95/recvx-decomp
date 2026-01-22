@@ -4,51 +4,24 @@
 #include "types.h"
 #include "macros.h"
 
-/* audiodec.h - move these to types.h */
-
-typedef struct {
-    char id[4];		// 'S''S''h''d'
-    int size;		// 24
-    int type;		// 0: 16bit big endian
-    			// 1: 16bit little endian
-			// 2: SPU2-ADPCM (VAG) 
-    int rate;		// sampling rate
-    int ch;		// number of channels
-    int interSize;	// interleave size ... needs to be 512
-    int loopStart;	// loop start block address
-    int loopEnd;	// loop end block sddress
-} SpuStreamHeader;
-
-typedef struct {
-    char id[4];		// 'S''S''b''d'
-    int size;		// size of audio data
-} SpuStreamBody;
-
-typedef struct {
-
-    int state;
-
-    // header of ADS format
-    SpuStreamHeader sshd;
-    SpuStreamBody   ssbd;
-    int hdrCount;
-
-    // audio buffer
-    u_char *data;
-    int put;
-    int count;
-    int size;
-    int totalBytes;
-
-    // buffer on IOP
-    int iopBuff;
-    int iopBuffSize;
-    int iopLastPos;
-    int iopPausePos;
-    int totalBytesSent;
-    int iopZero;
-
-} AudioDec;
+typedef struct RMI_WORK
+{
+    // total size: 0x54
+    unsigned char* put_ptr;      // offset 0x0, size 0x4
+    unsigned char* get_ptr;      // offset 0x4, size 0x4
+    int putsize;                 // offset 0x8, size 0x4
+    int getsize;                 // offset 0xC, size 0x4
+    int readrest;                // offset 0x10, size 0x4
+    int writerest;               // offset 0x14, size 0x4
+    int count;                   // offset 0x18, size 0x4
+    int proceed;                 // offset 0x1C, size 0x4
+    unsigned int button_old;     // offset 0x20, size 0x4
+    unsigned char cdata[32];     // offset 0x24, size 0x20
+    int iMovieState;             // offset 0x44, size 0x4
+    int iMovieFrame;             // offset 0x48, size 0x4
+    unsigned int uiContFlag;     // offset 0x4C, size 0x4
+    unsigned int MVCancelButton; // offset 0x50, size 0x4
+} RMI_WORK;
 
 void initAll();
 void readMpeg();

@@ -3,6 +3,15 @@
 
 #include "types.h"
 
+typedef struct PS2_NJ_SAVE
+{
+    // total size: 0x8
+	unsigned char mode_bk[2]; // offset 0x0, size 0x2
+    unsigned char set_last;   // offset 0x2, size 0x1
+    unsigned char dc_alpha;   // offset 0x3, size 0x1
+    int mode;                 // offset 0x4, size 0x4
+} PS2_NJ_SAVE;
+
 void	njSetTextureMemorySize(Uint32 size );
 void	njSetVertexBuffer(Uint32 *buffer,Sint32 size);
 void	njInitSystem( Int, Int, Int );
