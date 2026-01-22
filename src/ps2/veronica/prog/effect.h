@@ -3,6 +3,13 @@
 
 #include "types.h"
 
+typedef struct EFFECT_INFO
+{
+	// total size: 0x8
+    unsigned int flg; // offset 0x0, size 0x4
+    int nbAnim;       // offset 0x4, size 0x4
+} EFFECT_INFO;
+
 void bhInitEffect();
 void bhSetFontTexture(void* datp);
 void bhClearEffect();

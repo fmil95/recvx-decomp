@@ -1384,155 +1384,154 @@ typedef struct CONFIGFILE
     unsigned int Check_Sam;   // offset 0x30, size 0x4
 } CONFIGFILE;
 
+typedef struct ICON 
+{
+    // total size: 0x3C4
+    unsigned char Head[4];       // offset 0x0, size 0x4
+    unsigned short Reserv1;      // offset 0x4, size 0x2
+    unsigned short OffsLF;       // offset 0x6, size 0x2
+    unsigned int Reserv2;        // offset 0x8, size 0x4
+    unsigned int TransRate;      // offset 0xC, size 0x4
+    int BgColor[4][4];           // offset 0x10, size 0x40
+    float LightDir[3][4];        // offset 0x50, size 0x30
+    float LightColor[3][4];      // offset 0x80, size 0x30
+    float Ambient[4];            // offset 0xB0, size 0x10
+    unsigned char TitleName[68]; // offset 0xC0, size 0x44
+    unsigned char FnameView[64]; // offset 0x104, size 0x40
+    unsigned char FnameCopy[64]; // offset 0x144, size 0x40
+    unsigned char FnameDel[64];  // offset 0x184, size 0x40
+    unsigned char Reserve3[512]; // offset 0x1C4, size 0x200
+} ICON;
+
 typedef struct ICONINFORMATION 
 {
     // total size: 0x3C4
-    struct 
-    {
-        // total size: 0x3C4
-        unsigned char Head[4]; // offset 0x0, size 0x4
-        unsigned short Reserv1; // offset 0x4, size 0x2
-        unsigned short OffsLF; // offset 0x6, size 0x2
-        unsigned int Reserv2; // offset 0x8, size 0x4
-        unsigned int TransRate; // offset 0xC, size 0x4
-        int BgColor[4][4]; // offset 0x10, size 0x40
-        float LightDir[3][4]; // offset 0x50, size 0x30
-        float LightColor[3][4]; // offset 0x80, size 0x30
-        float Ambient[4]; // offset 0xB0, size 0x10
-        unsigned char TitleName[68]; // offset 0xC0, size 0x44
-        unsigned char FnameView[64]; // offset 0x104, size 0x40
-        unsigned char FnameCopy[64]; // offset 0x144, size 0x40
-        unsigned char FnameDel[64]; // offset 0x184, size 0x40
-        unsigned char Reserve3[512]; // offset 0x1C4, size 0x200
-    } icon; // offset 0x0, size 0x3C4
+    ICON icon; // offset 0x0, size 0x3C4
 } ICONINFORMATION;
 
 typedef struct MEMORYCARDPORT 
 {
     // total size: 0x10
-    int lCrntType; // offset 0x0, size 0x4
-    int lPrevType; // offset 0x4, size 0x4
-    int lFreeSize; // offset 0x8, size 0x4
+    int lCrntType;   // offset 0x0, size 0x4
+    int lPrevType;   // offset 0x4, size 0x4
+    int lFreeSize;   // offset 0x8, size 0x4
     int lFormatType; // offset 0xC, size 0x4
 } MEMORYCARDPORT;
 
 typedef struct MEMORYCARDSTATE 
 {
     // total size: 0xA0
-    unsigned int ulState; // offset 0x0, size 0x4
-    unsigned int ulError; // offset 0x4, size 0x4
-    unsigned int ulMcSubState; // offset 0x8, size 0x4
-    unsigned int ulFileSize; // offset 0xC, size 0x4
-    int lCurrentPort; // offset 0x10, size 0x4
-    int lOpenFileNumber; // offset 0x14, size 0x4
-    int lSelectFileNumber; // offset 0x18, size 0x4
-    int lOpenMode; // offset 0x1C, size 0x4
+    unsigned int ulState;        // offset 0x0, size 0x4
+    unsigned int ulError;        // offset 0x4, size 0x4
+    unsigned int ulMcSubState;   // offset 0x8, size 0x4
+    unsigned int ulFileSize;     // offset 0xC, size 0x4
+    int lCurrentPort;            // offset 0x10, size 0x4
+    int lOpenFileNumber;         // offset 0x14, size 0x4
+    int lSelectFileNumber;       // offset 0x18, size 0x4
+    int lOpenMode;               // offset 0x1C, size 0x4
     unsigned short usMcSysState; // offset 0x20, size 0x2
-    void* vpAddr; // offset 0x24, size 0x4
-    char cCurrentDir[50]; // offset 0x28, size 0x32
-    char cOpenFileName[32]; // offset 0x5A, size 0x20
-    char cRetryCount; // offset 0x7A, size 0x1
-    char cMcCheckFlag; // offset 0x7B, size 0x1
-    char cCheckMcFlag; // offset 0x7C, size 0x1
-    MEMORYCARDPORT Port[2]; // offset 0x80, size 0x20
+    void* vpAddr;                // offset 0x24, size 0x4
+    char cCurrentDir[50];        // offset 0x28, size 0x32
+    char cOpenFileName[32];      // offset 0x5A, size 0x20
+    char cRetryCount;            // offset 0x7A, size 0x1
+    char cMcCheckFlag;           // offset 0x7B, size 0x1
+    char cCheckMcFlag;           // offset 0x7C, size 0x1
+    MEMORYCARDPORT Port[2];      // offset 0x80, size 0x20
 } MEMORYCARDSTATE;
 
 typedef struct SAVEFILE 
 {
     // total size: 0x838
-    unsigned int version; // offset 0x0, size 0x4
-    int save_ct; // offset 0x4, size 0x4
-    char ply_id; // offset 0x8, size 0x1
-    char stg_no; // offset 0x9, size 0x1
-    char rom_no; // offset 0xA, size 0x1
-    char rcase; // offset 0xB, size 0x1
-    char pos_no; // offset 0xC, size 0x1
-    char cut_no; // offset 0xD, size 0x1
-    char flr_no; // offset 0xE, size 0x1
-    char reserve0; // offset 0xF, size 0x1
-    int gm_mode; // offset 0x10, size 0x4
-    unsigned int ev_flg[32]; // offset 0x14, size 0x80
-    unsigned int it_flg[16]; // offset 0x94, size 0x40
-    unsigned int ic_flg[16]; // offset 0xD4, size 0x40
-    unsigned int ed_flg[32]; // offset 0x114, size 0x80
-    unsigned int ky_flg[16]; // offset 0x194, size 0x40
-    unsigned int mp_flg[8]; // offset 0x1D4, size 0x20
-    unsigned int itm[384]; // offset 0x1F4, size 0x600
-    unsigned int ply_stflg[4]; // offset 0x7F4, size 0x10
-    struct 
-    {
-        // total size: 0xC
-        float x; // offset 0x0, size 0x4
-        float y; // offset 0x4, size 0x4
-        float z; // offset 0x8, size 0x4
-    } ply_pos; // offset 0x804, size 0xC
-    int ply_ang; // offset 0x810, size 0x4
-    char ply_wno[4]; // offset 0x814, size 0x4
-    short ply_hp[4]; // offset 0x818, size 0x8
+    unsigned int version;       // offset 0x0, size 0x4
+    int save_ct;                // offset 0x4, size 0x4
+    char ply_id;                // offset 0x8, size 0x1
+    char stg_no;                // offset 0x9, size 0x1
+    char rom_no;                // offset 0xA, size 0x1
+    char rcase;                 // offset 0xB, size 0x1
+    char pos_no;                // offset 0xC, size 0x1
+    char cut_no;                // offset 0xD, size 0x1
+    char flr_no;                // offset 0xE, size 0x1
+    char reserve0;              // offset 0xF, size 0x1
+    int gm_mode;                // offset 0x10, size 0x4
+    unsigned int ev_flg[32];    // offset 0x14, size 0x80
+    unsigned int it_flg[16];    // offset 0x94, size 0x40
+    unsigned int ic_flg[16];    // offset 0xD4, size 0x40
+    unsigned int ed_flg[32];    // offset 0x114, size 0x80
+    unsigned int ky_flg[16];    // offset 0x194, size 0x40
+    unsigned int mp_flg[8];     // offset 0x1D4, size 0x20
+    unsigned int itm[384];      // offset 0x1F4, size 0x600
+    unsigned int ply_stflg[4];  // offset 0x7F4, size 0x10
+    NJS_POINT3 ply_pos;         // offset 0x804, size 0xC
+    int ply_ang;                // offset 0x810, size 0x4
+    char ply_wno[4];            // offset 0x814, size 0x4
+    short ply_hp[4];            // offset 0x818, size 0x8
     unsigned char evt_posno[4]; // offset 0x820, size 0x4
-    int time; // offset 0x824, size 0x4
-    int stv_tm; // offset 0x828, size 0x4
-    short spray_ct; // offset 0x82C, size 0x2
-    short retry_ct; // offset 0x82E, size 0x2
-    short clear_ct; // offset 0x830, size 0x2
-    short reserve1; // offset 0x832, size 0x2
-    unsigned int CheckSam; // offset 0x834, size 0x4
+    int time;                   // offset 0x824, size 0x4
+    int stv_tm;                 // offset 0x828, size 0x4
+    short spray_ct;             // offset 0x82C, size 0x2
+    short retry_ct;             // offset 0x82E, size 0x2
+    short clear_ct;             // offset 0x830, size 0x2
+    short reserve1;             // offset 0x832, size 0x2
+    unsigned int CheckSam;      // offset 0x834, size 0x4
 } SAVEFILE;
 
 typedef struct SELECTFILEINFO
 {
     // total size: 0x10
     int FileNumber; // offset 0x0, size 0x4
-    int save_ct; // offset 0x4, size 0x4
-    int gm_mode; // offset 0x8, size 0x4
-    char ply_id; // offset 0xC, size 0x1
-    char saveroom; // offset 0xD, size 0x1
+    int save_ct;    // offset 0x4, size 0x4
+    int gm_mode;    // offset 0x8, size 0x4
+    char ply_id;    // offset 0xC, size 0x1
+    char saveroom;  // offset 0xD, size 0x1
 } SELECTFILEINFO;
 
 typedef struct SELECTFILEWINDOW 
 {
     // total size: 0x28
-    unsigned int ulFileState; // offset 0x0, size 0x4
-    SELECTFILEINFO* pRecordTop; // offset 0x4, size 0x4
-    int lRecordMax; // offset 0x8, size 0x4
-    short slDispTopNumber; // offset 0xC, size 0x2
-    short slDispRecordNumber; // offset 0xE, size 0x2
-    short sMesCur; // offset 0x10, size 0x2
-    short sCursol; // offset 0x12, size 0x2
-    short sWaitMesTimer; // offset 0x14, size 0x2
-    float slLineNumber; // offset 0x18, size 0x4
-    int slDispWriteMesMax; // offset 0x1C, size 0x4
-    int slDispWriteMes; // offset 0x20, size 0x4
+    unsigned int ulFileState;       // offset 0x0, size 0x4
+    SELECTFILEINFO* pRecordTop;     // offset 0x4, size 0x4
+    int lRecordMax;                 // offset 0x8, size 0x4
+    short slDispTopNumber;          // offset 0xC, size 0x2
+    short slDispRecordNumber;       // offset 0xE, size 0x2
+    short sMesCur;                  // offset 0x10, size 0x2
+    short sCursol;                  // offset 0x12, size 0x2
+    short sWaitMesTimer;            // offset 0x14, size 0x2
+    float slLineNumber;             // offset 0x18, size 0x4
+    int slDispWriteMesMax;          // offset 0x1C, size 0x4
+    int slDispWriteMes;             // offset 0x20, size 0x4
     unsigned int ulfoundationColor; // offset 0x24, size 0x4
 } SELECTFILEWINDOW;
 
-typedef struct EFFECT_INFO
+typedef struct TIM2_PICTUREHEADER
 {
-	// total size: 0x8
-    unsigned int flg; // offset 0x0, size 0x4
-    int nbAnim; // offset 0x4, size 0x4
-} EFFECT_INFO;
+	// total size: 0x30
+    unsigned int TotalSize;       // offset 0x0, size 0x4
+    unsigned int ClutSize;        // offset 0x4, size 0x4
+    unsigned int ImageSize;       // offset 0x8, size 0x4
+    unsigned short HeaderSize;    // offset 0xC, size 0x2
+    unsigned short ClutColors;    // offset 0xE, size 0x2
+    unsigned char PictFormat;     // offset 0x10, size 0x1
+    unsigned char MipMapTextures; // offset 0x11, size 0x1
+    unsigned char ClutType;       // offset 0x12, size 0x1
+    unsigned char ImageType;      // offset 0x13, size 0x1
+    unsigned short ImageWidth;    // offset 0x14, size 0x2
+    unsigned short ImageHeight;   // offset 0x16, size 0x2
+    sceGsTex0 GsTex0;             // offset 0x18, size 0x8
+    sceGsTex1 GsTex1;             // offset 0x20, size 0x8
+    unsigned int GsRegs;          // offset 0x28, size 0x4
+    unsigned int GsTexClut;       // offset 0x2C, size 0x4
+} TIM2_PICTUREHEADER;
 
-typedef struct PVP_INFO 
+typedef struct ADMIN 
 {
-    // total size: 0x10
-    char ppStrPvpl[4]; // offset 0x0, size 0x4
-    unsigned int ppNextTag; // offset 0x4, size 0x4
-    unsigned short ppCategoryCode; // offset 0x8, size 0x2
-    unsigned short ppBankId; // offset 0xA, size 0x2
-    unsigned short ppEntryOffset; // offset 0xC, size 0x2
-    unsigned short ppEntryCount; // offset 0xE, size 0x2
-} PVP_INFO;
-
-// constant definition for ClutType, ImageType in picture header
-enum TIM2_gattr_type {
-	TIM2_NONE = 0,			// no CLUT (for ClutType)
-	TIM2_RGB16,				// 16 bit color (for both of ClutType, ImageType)
-	TIM2_RGB24,				// 24 bit color (for ImageType)
-	TIM2_RGB32,				// 32 bit color (for ClutType, ImageType)
-	TIM2_IDTEX4,			// 16 color texture (for ImageType)
-	TIM2_IDTEX8				// 256 color texture (for ImageType)
-};
+    // total size: 0x18
+    unsigned int gindex; // offset 0x0, size 0x4
+    unsigned int size;   // offset 0x4, size 0x4
+    unsigned int count;  // offset 0x8, size 0x4
+    void* addr;          // offset 0xC, size 0x4
+    void* before;        // offset 0x10, size 0x4
+    void* after;         // offset 0x14, size 0x4
+} ADMIN;
 
 typedef struct TIM2_PICTUREHEADER_EX 
 {
@@ -1558,72 +1557,14 @@ typedef struct TIM2_PICTUREHEADER_EX
     unsigned char ImageType;      // offset 0x93, size 0x1
     unsigned short ImageWidth;    // offset 0x94, size 0x2
     unsigned short ImageHeight;   // offset 0x96, size 0x2
-    struct
-    {
-        // total size: 0x8
-        unsigned long TBP0 : 14;  // offset 0x0, size 0x4
-        unsigned long TBW : 6;    // offset 0x0, size 0x4
-        unsigned long PSM : 6;    // offset 0x0, size 0x4
-        unsigned long TW : 4;     // offset 0x0, size 0x4
-        unsigned long TH : 4;     // offset 0x0, size 0x4
-        unsigned long TCC : 1;    // offset 0x0, size 0x4
-        unsigned long TFX : 2;    // offset 0x0, size 0x4
-        unsigned long CBP : 14;   // offset 0x0, size 0x4
-        unsigned long CPSM : 4;   // offset 0x0, size 0x4
-        unsigned long CSM : 1;    // offset 0x0, size 0x4
-        unsigned long CSA : 5;    // offset 0x0, size 0x4
-        unsigned long CLD : 3;    // offset 0x0, size 0x4
-    } GsTex0;                     // offset 0x98, size 0x8
-    struct 
-    {
-        // total size: 0x8
-        unsigned long LCM : 1;    // offset 0x0, size 0x4
-        unsigned long pad01 : 1;  // offset 0x0, size 0x4
-        unsigned long MXL : 3;    // offset 0x0, size 0x4
-        unsigned long MMAG : 1;   // offset 0x0, size 0x4
-        unsigned long MMIN : 3;   // offset 0x0, size 0x4
-        unsigned long MTBA : 1;   // offset 0x0, size 0x4
-        unsigned long pad10 : 9;  // offset 0x0, size 0x4
-        unsigned long L : 2;      // offset 0x0, size 0x4
-        unsigned long pad21 : 11; // offset 0x0, size 0x4
-        unsigned long K : 12;     // offset 0x0, size 0x4
-        unsigned long pad44 : 20; // offset 0x0, size 0x4
-    } GsTex1;                     // offset 0xA0, size 0x8
+    sceGsTex0 GsTex0;             // offset 0x98, size 0x8
+    sceGsTex1 GsTex1;             // offset 0xA0, size 0x8
     unsigned int GsRegs;          // offset 0xA8, size 0x4
     unsigned int GsTexClut;       // offset 0xAC, size 0x4
-    struct 
-    {
-        // total size: 0x18
-        unsigned int gindex;      // offset 0x0, size 0x4
-        unsigned int size;        // offset 0x4, size 0x4
-        unsigned int count;       // offset 0x8, size 0x4
-        void* addr;               // offset 0xC, size 0x4
-        void* before;             // offset 0x10, size 0x4
-        void* after;              // offset 0x14, size 0x4
-    } admin;                      // offset 0xB0, size 0x18
+    ADMIN admin;                  // offset 0xB0, size 0x18
     unsigned int TpFlag;          // offset 0xC8, size 0x4
     unsigned int ClampFlag;       // offset 0xCC, size 0x4
 } TIM2_PICTUREHEADER_EX;
-
-typedef struct TIM2_PICTUREHEADER
-{
-	// total size: 0x30
-    unsigned int TotalSize;       // offset 0x0, size 0x4
-    unsigned int ClutSize;        // offset 0x4, size 0x4
-    unsigned int ImageSize;       // offset 0x8, size 0x4
-    unsigned short HeaderSize;    // offset 0xC, size 0x2
-    unsigned short ClutColors;    // offset 0xE, size 0x2
-    unsigned char PictFormat;     // offset 0x10, size 0x1
-    unsigned char MipMapTextures; // offset 0x11, size 0x1
-    unsigned char ClutType;       // offset 0x12, size 0x1
-    unsigned char ImageType;      // offset 0x13, size 0x1
-    unsigned short ImageWidth;    // offset 0x14, size 0x2
-    unsigned short ImageHeight;   // offset 0x16, size 0x2
-    sceGsTex0 GsTex0;             // offset 0x18, size 0x8
-    unsigned int GsTex1[2];       // offset 0x20, size 0x8
-    unsigned int GsRegs;          // offset 0x28, size 0x4
-    unsigned int GsTexClut;       // offset 0x2C, size 0x4
-} TIM2_PICTUREHEADER;
 
 typedef struct TIM2_FILEHEADER
 {
@@ -2335,6 +2276,16 @@ typedef struct CNK_PRIM_BUF
     float fZ;            // offset 0x28, size 0x4
     float fF;            // offset 0x2C, size 0x4
 } CNK_PRIM_BUF;
+
+// constant definition for ClutType, ImageType in picture header
+enum TIM2_gattr_type {
+	TIM2_NONE = 0,			// no CLUT (for ClutType)
+	TIM2_RGB16,				// 16 bit color (for both of ClutType, ImageType)
+	TIM2_RGB24,				// 24 bit color (for ImageType)
+	TIM2_RGB32,				// 32 bit color (for ClutType, ImageType)
+	TIM2_IDTEX4,			// 16 color texture (for ImageType)
+	TIM2_IDTEX8				// 256 color texture (for ImageType)
+};
 
 typedef struct {
     int isOnCD;		

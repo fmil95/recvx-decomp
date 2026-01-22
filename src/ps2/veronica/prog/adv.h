@@ -72,6 +72,17 @@ typedef struct ADV_WORK
     char ModeCommandId[4];            // offset 0xD2, size 0x4
 } ADV_WORK;
 
+typedef struct PVP_INFO 
+{
+    // total size: 0x10
+    char ppStrPvpl[4];             // offset 0x0, size 0x4
+    unsigned int ppNextTag;        // offset 0x4, size 0x4
+    unsigned short ppCategoryCode; // offset 0x8, size 0x2
+    unsigned short ppBankId;       // offset 0xA, size 0x2
+    unsigned short ppEntryOffset;  // offset 0xC, size 0x2
+    unsigned short ppEntryCount;   // offset 0xE, size 0x2
+} PVP_INFO;
+
 void CallPlayerDeadVoice(int PlayerNo);
 void CallSystemVoice(int VoiceNo);
 float GetSamurai(int Time);
