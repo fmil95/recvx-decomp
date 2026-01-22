@@ -1,4 +1,5 @@
 #include "weapon.h"
+#include "effect.h"
 
 /*short EneDamNear[22][31];
 short EneDamMid[22][31];
@@ -1523,34 +1524,29 @@ void bhSetExplosionEffect(_anon1* pos)
 	// Line 1835, Address: 0x28e7fc, Func Offset: 0x38c
 	// Line 1836, Address: 0x28e80c, Func Offset: 0x39c
 	// Func End, Address: 0x28e81c, Func Offset: 0x3ac
-}
-
-// 
-// Start address: 0x28e820
-void bhSetExplosionEffectEx(_anon1* pos, float scl)
-{
-	// Line 1849, Address: 0x28e820, Func Offset: 0
-	// Line 1857, Address: 0x28e828, Func Offset: 0x8
-	// Line 1849, Address: 0x28e82c, Func Offset: 0xc
-	// Line 1857, Address: 0x28e830, Func Offset: 0x10
-	// Line 1850, Address: 0x28e834, Func Offset: 0x14
-	// Line 1849, Address: 0x28e838, Func Offset: 0x18
-	// Line 1850, Address: 0x28e844, Func Offset: 0x24
-	// Line 1851, Address: 0x28e84c, Func Offset: 0x2c
-	// Line 1862, Address: 0x28e850, Func Offset: 0x30
-	// Line 1850, Address: 0x28e85c, Func Offset: 0x3c
-	// Line 1851, Address: 0x28e868, Func Offset: 0x48
-	// Line 1852, Address: 0x28e87c, Func Offset: 0x5c
-	// Line 1853, Address: 0x28e890, Func Offset: 0x70
-	// Line 1854, Address: 0x28e8a4, Func Offset: 0x84
-	// Line 1855, Address: 0x28e8b8, Func Offset: 0x98
-	// Line 1856, Address: 0x28e8cc, Func Offset: 0xac
-	// Line 1857, Address: 0x28e8e0, Func Offset: 0xc0
-	// Line 1858, Address: 0x28e908, Func Offset: 0xe8
-	// Line 1859, Address: 0x28e930, Func Offset: 0x110
-	// Line 1860, Address: 0x28e958, Func Offset: 0x138
-	// Line 1861, Address: 0x28e96c, Func Offset: 0x14c
-	// Line 1862, Address: 0x28e980, Func Offset: 0x160
-	// Func End, Address: 0x28e998, Func Offset: 0x178
 }*/
 
+// 100% matching!
+void bhSetExplosionEffectEx(NJS_POINT3* pos, float scl)
+{
+    sys->ef.id = 23;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.type = 2;
+    
+    sys->ef.mdlver = 1;
+    
+    sys->ef.flr_no = 0;
+    
+    sys->ef.sz = sys->ef.sy = sys->ef.sx = scl;
+    
+    sys->ef.px = pos->x - (4.0f * cam.vx);
+    sys->ef.py = pos->y - (4.0f * cam.vy);
+    sys->ef.pz = pos->z - (4.0f * cam.vz);
+    
+    sys->ef.ay = 0;
+    sys->ef.ax = 0;
+    
+    bhSetEffectTb((EF_WORK*)&sys->ef, NULL, NULL, 0);
+}

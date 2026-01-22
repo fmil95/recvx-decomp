@@ -14,9 +14,9 @@ void bhPopEffectWork();
 _anon0* bhSetExtraEffectWork();*/
 void bhDeleteYakkyou();
 /*void bhDrawPARAM2D(_anon49* prm, _anon41* p2c, float pri);
-int bhSetEffect(int effno, _anon35* pnt, unsigned char* lkp, int lkono);
-int bhSetEffectTb(_anon36* efp, _anon37* off, unsigned char* lkp, int lkono);
-int bhSetEffectEvt(int effno, _anon35* pnt, unsigned short type, int ax, int ay);*/
+int bhSetEffect(int effno, _anon35* pnt, unsigned char* lkp, int lkono);*/
+int bhSetEffectTb(EF_WORK* efp, NJS_POINT3* off, unsigned char* lkp, int lkono);
+/*int bhSetEffectEvt(int effno, _anon35* pnt, unsigned short type, int ax, int ay);*/
 int bhSetShadow(char* jtb, unsigned char* lkp, int lkono, float sx, float sy, float sz);
 void bhLinkBlood();
 void bhControlEffect();

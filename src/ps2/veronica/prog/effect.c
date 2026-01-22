@@ -372,14 +372,14 @@ int bhSetEffect(int effno, _anon35* pnt, unsigned char* lkp, int lkono)
 	// Line 672, Address: 0x21c6a0, Func Offset: 0x1a0
 	// Line 673, Address: 0x21c6a4, Func Offset: 0x1a4
 	// Func End, Address: 0x21c6c8, Func Offset: 0x1c8
-}
+}*/
 
 // 
 // Start address: 0x21c6d0
-int bhSetEffectTb(_anon36* efp, _anon37* off, unsigned char* lkp, int lkono)
+int bhSetEffectTb(EF_WORK* efp, NJS_POINT3* off, unsigned char* lkp, int lkono)
 {
 	int i;
-	_anon0* opp;
+	//_anon0* opp;
 	// Line 685, Address: 0x21c6d0, Func Offset: 0
 	// Line 688, Address: 0x21c6f0, Func Offset: 0x20
 	// Line 689, Address: 0x21c708, Func Offset: 0x38
@@ -446,9 +446,10 @@ int bhSetEffectTb(_anon36* efp, _anon37* off, unsigned char* lkp, int lkono)
 	// Line 757, Address: 0x21c8b4, Func Offset: 0x1e4
 	// Line 758, Address: 0x21c8b8, Func Offset: 0x1e8
 	// Func End, Address: 0x21c8dc, Func Offset: 0x20c
+	scePrintf("bhSetEffectTb - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x21c8e0
 int bhSetEffectEvt(int effno, _anon35* pnt, unsigned short type, int ax, int ay)
 {
