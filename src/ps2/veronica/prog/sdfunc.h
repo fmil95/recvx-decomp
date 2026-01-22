@@ -3,6 +3,34 @@
 
 #include "types.h"
 
+typedef struct SND_CMD
+{
+	// total size: 0x8
+	int MaxCommand;          // offset 0x0, size 0x4
+    unsigned char ComTbl[2]; // offset 0x4, size 0x2
+} SND_CMD;
+
+typedef struct MOV_DEF
+{
+	// total size: 0xE
+    unsigned short sSizeX;  // offset 0x0, size 0x2
+    unsigned short sSizeY;  // offset 0x2, size 0x2
+    unsigned short dPosX;   // offset 0x4, size 0x2
+    unsigned short dPosY;   // offset 0x6, size 0x2
+    unsigned short dSizeX;  // offset 0x8, size 0x2
+    unsigned short dSizeY;  // offset 0xA, size 0x2
+    unsigned char DispType; // offset 0xC, size 0x1
+} MOV_DEF; 
+
+typedef struct PDS_VIBPARAM_EX
+{
+	// total size: 0x4
+    unsigned char flag; // offset 0x0, size 0x1
+    char power;         // offset 0x1, size 0x1
+    unsigned char freq; // offset 0x2, size 0x1
+    unsigned char inc;  // offset 0x3, size 0x1
+} PDS_VIBPARAM_EX;
+
 typedef struct
 {
 	float x;
