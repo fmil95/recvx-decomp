@@ -26,39 +26,67 @@ void _Make_SinTable()
     } 
 }  
 
-// 
-// Start address: 0x2d7cb0
+// 100% matching!
 Float	njSin(Angle n)
 {
-	float ret;
-	// Line 79, Address: 0x2d7cb0, Func Offset: 0
-	// Line 113, Address: 0x2d7cb4, Func Offset: 0x4
-	// Line 79, Address: 0x2d7cc0, Func Offset: 0x10
-	// Line 115, Address: 0x2d7cc4, Func Offset: 0x14
-	// Line 116, Address: 0x2d7cc8, Func Offset: 0x18
-	// Line 117, Address: 0x2d7ccc, Func Offset: 0x1c
-	// Line 118, Address: 0x2d7cd0, Func Offset: 0x20
-	// Line 120, Address: 0x2d7cd8, Func Offset: 0x28
-	// Line 121, Address: 0x2d7cdc, Func Offset: 0x2c
-	// Line 122, Address: 0x2d7ce8, Func Offset: 0x38
-	// Line 123, Address: 0x2d7cec, Func Offset: 0x3c
-	// Line 124, Address: 0x2d7cf0, Func Offset: 0x40
-	// Line 125, Address: 0x2d7cf4, Func Offset: 0x44
-	// Line 126, Address: 0x2d7cf8, Func Offset: 0x48
-	// Line 127, Address: 0x2d7cfc, Func Offset: 0x4c
-	// Line 128, Address: 0x2d7d00, Func Offset: 0x50
-	// Line 131, Address: 0x2d7d08, Func Offset: 0x58
-	// Line 132, Address: 0x2d7d14, Func Offset: 0x64
-	// Line 133, Address: 0x2d7d18, Func Offset: 0x68
-	// Line 134, Address: 0x2d7d1c, Func Offset: 0x6c
-	// Line 135, Address: 0x2d7d20, Func Offset: 0x70
-	// Line 136, Address: 0x2d7d24, Func Offset: 0x74
-	// Line 137, Address: 0x2d7d28, Func Offset: 0x78
-	// Line 138, Address: 0x2d7d2c, Func Offset: 0x7c
-	// Line 140, Address: 0x2d7d30, Func Offset: 0x80
-	// Line 150, Address: 0x2d7d34, Func Offset: 0x84
-	// Func End, Address: 0x2d7d3c, Func Offset: 0x8c
-	scePrintf("njSin - UNIMPLEMENTED!\n");
+    float ret;
+    
+    asm volatile 
+    ("
+    .set noreorder
+        move  v0, %0
+        
+        lw    t0, 0(%1)
+        
+        addi  t2, zero, 16383
+    
+        andi  t3, t0, 0x4000
+        
+        beqz  t3, l_002D7D08
+        
+        and   t1, t0, t2
+    
+        sub   t2, t2, t1
+    
+        muli  t2, t2, 4
+    
+        add   t2, t2, %2
+        
+        lwc1  f4, 0(t2)
+        
+        neg.s f6, f4
+        
+        mfc1  %2, f6
+        
+        andi  t0, t0, 0x8000
+    
+        mfc1  t6, f4
+        
+        b     l_002D7D30
+    
+        movz  %2, t6, t0
+
+        l_002D7D08:
+        muli  t1, t1, 4
+        
+        add   t1, t1, %2
+        
+        lwc1  f4, 0(t1)
+        
+        neg.s f6, f4
+        
+        mfc1  %2, f4
+        mfc1  t6, f6
+    
+        andi  t0, t0, 0x8000
+        
+        movn  %2, t6, t0
+
+        l_002D7D30:
+        mtc1  %2, f0
+    .set reorder
+    " : "=r"(ret) : "r"(&n), "r"(SinTable) : 
+    );
 }
 
 // 
