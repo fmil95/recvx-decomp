@@ -9,9 +9,9 @@ _anon0* bhSetItem(_anon18* itp, int no, unsigned char* lkp);*/
 void bhControlObjItm();
 void bhDrawGeneralPurposeWater();
 void bhDrawObjItm();
-/*void bhDrawObject(_anon0* op);
-void bhDrawSpObject(_anon0* op);
-void bhSetAlphaFadeObject(_anon0* op, int jntno, int jnt_n, int alpha, int count);
+/*void bhDrawObject(_anon0* op);*/
+void bhDrawSpObject(O_WRK* op);
+/*void bhSetAlphaFadeObject(_anon0* op, int jntno, int jnt_n, int alpha, int count);
 void bhControlAlphaFadeObject(_anon0* op);*/
 void bhObjDmy();
 /*void bhObjItmBox(_anon0* op);

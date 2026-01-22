@@ -3,9 +3,9 @@
 #include "main.h"
 
 /*void(*bhJumpObject)()[101];
-void(*bhJumpObject2)()[13];
+void(*bhJumpObject2)()[13];*/
 unsigned int ulDrawGeneralPurposeWater;
-_anon1* sys;
+/*_anon1* sys;
 _anon4* rom;
 unsigned char pl_sleep_cnt;
 _anon41 cam;
@@ -215,22 +215,29 @@ void bhControlObjItm()
 	scePrintf("bhControlObjItm - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x283a30
+// 100% matching!
 void bhDrawGeneralPurposeWater()
 {
-	int i;
-	// Line 333, Address: 0x283a30, Func Offset: 0
-	// Line 338, Address: 0x283a40, Func Offset: 0x10
-	// Line 362, Address: 0x283a58, Func Offset: 0x28
-	// Line 364, Address: 0x283a64, Func Offset: 0x34
-	// Line 373, Address: 0x283b30, Func Offset: 0x100
-	// Line 375, Address: 0x283b3c, Func Offset: 0x10c
-	// Line 377, Address: 0x283b50, Func Offset: 0x120
-	// Line 379, Address: 0x283b5c, Func Offset: 0x12c
-	// Line 381, Address: 0x283b80, Func Offset: 0x150
-	// Func End, Address: 0x283b94, Func Offset: 0x164
-	scePrintf("bhDrawGeneralPurposeWater - UNIMPLEMENTED!\n");
+    int i;
+    
+    if ((sys->pt_flg & 0x4))
+    {
+        for (i = 0; i < sys->ob_spcn; i++)
+        {
+            if ((((sys->stg_no == 1) && (sys->rom_no == 13)) && (i == 0)) 
+            || (((sys->stg_no == 3) && (sys->rom_no == 6)) && (i == 0)) 
+            || (((sys->stg_no == 7) && (sys->rom_no == 6)) && (i == 0)) 
+            || (((sys->stg_no == 7) && (sys->rom_no == 10)) && (i == 0)) 
+            || (((sys->stg_no == 9) && (sys->rom_no == 11)) && (i == 0)))
+            {
+                ulDrawGeneralPurposeWater = 1;
+                
+                bhDrawSpObject(sys->ob_spc[i]);
+                
+                ulDrawGeneralPurposeWater = 0;
+            }
+        }
+    }
 }
 
 // 
@@ -334,14 +341,14 @@ void bhDrawObject(_anon0* op)
 	// Line 604, Address: 0x2843fc, Func Offset: 0x18c
 	// Line 605, Address: 0x284428, Func Offset: 0x1b8
 	// Func End, Address: 0x284438, Func Offset: 0x1c8
-}
+}*/
 
 // 
 // Start address: 0x284440
-void bhDrawSpObject(_anon0* op)
+void bhDrawSpObject(O_WRK* op)
 {
-	_anon32 vec;
-	_anon3* lp;
+	//_anon32 vec;
+	//_anon3* lp;
 	// Line 611, Address: 0x284440, Func Offset: 0
 	// Line 620, Address: 0x284454, Func Offset: 0x14
 	// Line 624, Address: 0x284494, Func Offset: 0x54
@@ -363,9 +370,10 @@ void bhDrawSpObject(_anon0* op)
 	// Line 651, Address: 0x2845ac, Func Offset: 0x16c
 	// Line 654, Address: 0x2845b8, Func Offset: 0x178
 	// Func End, Address: 0x2845cc, Func Offset: 0x18c
+	scePrintf("bhDrawSpObject - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2845d0
 void bhSetAlphaFadeObject(_anon0* op, int jntno, int jnt_n, int alpha, int count)
 {
