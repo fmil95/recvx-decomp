@@ -909,127 +909,238 @@ static float njAtan2b(float a, float b)
     return atan2(a, b);
 }
 
-// 
-// Start address: 0x2d7260
+// 100% matching!
 void	njMirror(NJS_MATRIX *m,NJS_PLANE *pl)
 {
-	int lAngleZ;
-	int lAngleX;
-	//float mat[16];
-	// Line 3662, Address: 0x2d7260, Func Offset: 0
-	// Line 3698, Address: 0x2d7278, Func Offset: 0x18
-	// Line 4005, Address: 0x2d728c, Func Offset: 0x2c
-	// Line 4008, Address: 0x2d7298, Func Offset: 0x38
-	// Line 4009, Address: 0x2d729c, Func Offset: 0x3c
-	// Line 4010, Address: 0x2d72a0, Func Offset: 0x40
-	// Line 4011, Address: 0x2d72a4, Func Offset: 0x44
-	// Line 4012, Address: 0x2d72a8, Func Offset: 0x48
-	// Line 4013, Address: 0x2d72ac, Func Offset: 0x4c
-	// Line 4014, Address: 0x2d72b0, Func Offset: 0x50
-	// Line 4015, Address: 0x2d72b4, Func Offset: 0x54
-	// Line 4016, Address: 0x2d72b8, Func Offset: 0x58
-	// Line 4017, Address: 0x2d72bc, Func Offset: 0x5c
-	// Line 4018, Address: 0x2d72c0, Func Offset: 0x60
-	// Line 4019, Address: 0x2d72c4, Func Offset: 0x64
-	// Line 4020, Address: 0x2d72c8, Func Offset: 0x68
-	// Line 4021, Address: 0x2d72cc, Func Offset: 0x6c
-	// Line 4022, Address: 0x2d72d0, Func Offset: 0x70
-	// Line 4023, Address: 0x2d72d4, Func Offset: 0x74
-	// Line 4024, Address: 0x2d72d8, Func Offset: 0x78
-	// Line 4025, Address: 0x2d72dc, Func Offset: 0x7c
-	// Line 4026, Address: 0x2d72e0, Func Offset: 0x80
-	// Line 4027, Address: 0x2d72e4, Func Offset: 0x84
-	// Line 4028, Address: 0x2d72e8, Func Offset: 0x88
-	// Line 4029, Address: 0x2d72ec, Func Offset: 0x8c
-	// Line 4030, Address: 0x2d72f0, Func Offset: 0x90
-	// Line 4031, Address: 0x2d72f4, Func Offset: 0x94
-	// Line 4032, Address: 0x2d72f8, Func Offset: 0x98
-	// Line 4033, Address: 0x2d72fc, Func Offset: 0x9c
-	// Line 4034, Address: 0x2d7300, Func Offset: 0xa0
-	// Line 4036, Address: 0x2d7308, Func Offset: 0xa8
-	// Line 4037, Address: 0x2d730c, Func Offset: 0xac
-	// Line 4038, Address: 0x2d7310, Func Offset: 0xb0
-	// Line 4039, Address: 0x2d7314, Func Offset: 0xb4
-	// Line 4040, Address: 0x2d7318, Func Offset: 0xb8
-	// Line 4041, Address: 0x2d731c, Func Offset: 0xbc
-	// Line 4042, Address: 0x2d7320, Func Offset: 0xc0
-	// Line 4043, Address: 0x2d7324, Func Offset: 0xc4
-	// Line 4046, Address: 0x2d732c, Func Offset: 0xcc
-	// Line 4047, Address: 0x2d7330, Func Offset: 0xd0
-	// Line 4048, Address: 0x2d7334, Func Offset: 0xd4
-	// Line 4049, Address: 0x2d7338, Func Offset: 0xd8
-	// Line 4050, Address: 0x2d733c, Func Offset: 0xdc
-	// Line 4051, Address: 0x2d7340, Func Offset: 0xe0
-	// Line 4053, Address: 0x2d7348, Func Offset: 0xe8
-	// Line 4054, Address: 0x2d7350, Func Offset: 0xf0
-	// Line 4055, Address: 0x2d7354, Func Offset: 0xf4
-	// Line 4056, Address: 0x2d7358, Func Offset: 0xf8
-	// Line 4057, Address: 0x2d735c, Func Offset: 0xfc
-	// Line 4059, Address: 0x2d7364, Func Offset: 0x104
-	// Line 4061, Address: 0x2d736c, Func Offset: 0x10c
-	// Line 4064, Address: 0x2d7374, Func Offset: 0x114
-	// Line 4065, Address: 0x2d7378, Func Offset: 0x118
-	// Line 4066, Address: 0x2d737c, Func Offset: 0x11c
-	// Line 4067, Address: 0x2d7380, Func Offset: 0x120
-	// Line 4068, Address: 0x2d7384, Func Offset: 0x124
-	// Line 4069, Address: 0x2d7388, Func Offset: 0x128
-	// Line 4070, Address: 0x2d738c, Func Offset: 0x12c
-	// Line 4071, Address: 0x2d7390, Func Offset: 0x130
-	// Line 4072, Address: 0x2d7394, Func Offset: 0x134
-	// Line 4073, Address: 0x2d7398, Func Offset: 0x138
-	// Line 4074, Address: 0x2d739c, Func Offset: 0x13c
-	// Line 4076, Address: 0x2d73a4, Func Offset: 0x144
-	// Line 4077, Address: 0x2d73a8, Func Offset: 0x148
-	// Line 4078, Address: 0x2d73ac, Func Offset: 0x14c
-	// Line 4079, Address: 0x2d73b0, Func Offset: 0x150
-	// Line 4080, Address: 0x2d73b4, Func Offset: 0x154
-	// Line 4081, Address: 0x2d73b8, Func Offset: 0x158
-	// Line 4082, Address: 0x2d73bc, Func Offset: 0x15c
-	// Line 4083, Address: 0x2d73c0, Func Offset: 0x160
-	// Line 4084, Address: 0x2d73c4, Func Offset: 0x164
-	// Line 4085, Address: 0x2d73c8, Func Offset: 0x168
-	// Line 4086, Address: 0x2d73cc, Func Offset: 0x16c
-	// Line 4087, Address: 0x2d73d0, Func Offset: 0x170
-	// Line 4088, Address: 0x2d73d4, Func Offset: 0x174
-	// Line 4089, Address: 0x2d73d8, Func Offset: 0x178
-	// Line 4090, Address: 0x2d73dc, Func Offset: 0x17c
-	// Line 4091, Address: 0x2d73e0, Func Offset: 0x180
-	// Line 4092, Address: 0x2d73e4, Func Offset: 0x184
-	// Line 4093, Address: 0x2d73e8, Func Offset: 0x188
-	// Line 4094, Address: 0x2d73ec, Func Offset: 0x18c
-	// Line 4095, Address: 0x2d73f0, Func Offset: 0x190
-	// Line 4096, Address: 0x2d73f4, Func Offset: 0x194
-	// Line 4097, Address: 0x2d73f8, Func Offset: 0x198
-	// Line 4098, Address: 0x2d73fc, Func Offset: 0x19c
-	// Line 4099, Address: 0x2d7400, Func Offset: 0x1a0
-	// Line 4100, Address: 0x2d7404, Func Offset: 0x1a4
-	// Line 4101, Address: 0x2d7408, Func Offset: 0x1a8
-	// Line 4102, Address: 0x2d740c, Func Offset: 0x1ac
-	// Line 4103, Address: 0x2d7410, Func Offset: 0x1b0
-	// Line 4105, Address: 0x2d7418, Func Offset: 0x1b8
-	// Line 4106, Address: 0x2d741c, Func Offset: 0x1bc
-	// Line 4107, Address: 0x2d7420, Func Offset: 0x1c0
-	// Line 4108, Address: 0x2d7424, Func Offset: 0x1c4
-	// Line 4109, Address: 0x2d7428, Func Offset: 0x1c8
-	// Line 4110, Address: 0x2d742c, Func Offset: 0x1cc
-	// Line 4111, Address: 0x2d7430, Func Offset: 0x1d0
-	// Line 4112, Address: 0x2d7434, Func Offset: 0x1d4
-	// Line 4113, Address: 0x2d7438, Func Offset: 0x1d8
-	// Line 4114, Address: 0x2d743c, Func Offset: 0x1dc
-	// Line 4115, Address: 0x2d7440, Func Offset: 0x1e0
-	// Line 4116, Address: 0x2d7444, Func Offset: 0x1e4
-	// Line 4117, Address: 0x2d7448, Func Offset: 0x1e8
-	// Line 4118, Address: 0x2d744c, Func Offset: 0x1ec
-	// Line 4129, Address: 0x2d7450, Func Offset: 0x1f0
-	// Line 4130, Address: 0x2d7458, Func Offset: 0x1f8
-	// Line 4131, Address: 0x2d7464, Func Offset: 0x204
-	// Line 4132, Address: 0x2d7470, Func Offset: 0x210
-	// Line 4133, Address: 0x2d748c, Func Offset: 0x22c
-	// Line 4134, Address: 0x2d749c, Func Offset: 0x23c
-	// Line 4135, Address: 0x2d74ac, Func Offset: 0x24c
-	// Line 4136, Address: 0x2d74b8, Func Offset: 0x258
-	// Func End, Address: 0x2d74d0, Func Offset: 0x270
-	scePrintf("njMirror - UNIMPLEMENTED!\n");
+    NJS_MATRIX mat; 
+    int lAngleX;   
+    int lAngleZ;   
+    
+    if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        move        a1, %0
+        move        a0, %1
+        move        s1, %2
+        move        s2, %3
+        
+        addiu       a0, sp, 0x40
+        
+        vaddz.x     vf4, vf0, vf3z
+        
+        ld          t0, NJS_PLANE.vx(a1)
+        ld          t2, NJS_PLANE.vz(a1)
+        
+        qmtc2       t0, vf5
+    
+        vmulw.x     vf4, vf4, vf2w
+        
+        qmtc2       t2, vf6
+    
+        vaddx.z     vf5, vf0, vf6x
+        
+        vmul.xyz    vf7, vf5, vf5
+        
+        vaddy.x     vf7, vf7, vf7y
+        vaddz.x     vf7, vf7, vf7z
+        
+        vrsqrt      Q, vf0w, vf7x
+    
+        ldl         t0, 0x7(a1)
+        ldr         t0, 0x0(a1)
+        
+        lw          t1, 0x8(a1)
+        
+        pcpyld      t0, t1, t0
+    
+        qmtc2       t0, vf12
+    
+        vwaitq
+    
+        vmulq.xyz   vf9, vf5, Q
+    
+        vaddq.x     vf6, vf0, Q
+        
+        vmul.xyz    vf8, vf9, vf12
+        
+        vsubx.x     vf10, vf0, vf8x
+        vsuby.x     vf10, vf10, vf8y
+        vsubz.x     vf10, vf10, vf8z
+        
+        vmulx.xyz   vf11, vf9, vf10x
+        
+        vsub.xyz    vf11, vf0, vf11
+        
+        qmfc2       t0, vf10
+    
+        bnez        t0, l_002D732C
+    
+        vadd.x      vf10, vf10, vf10
+        
+        vmulw.xyzw  vf4, vf0, vf0w
+        
+        vmr32.xyzw  vf5, vf4
+        vmr32.xyzw  vf6, vf5
+        vmr32.xyzw  vf7, vf6
+        
+        sqc2        vf4, 0x30(s1)
+        sqc2        vf5, 0x20(s1)
+        sqc2        vf6, 0x10(s1)
+        jr          ra
+        sqc2        vf7, 0x0(s1)
+    
+        l_002D732C:
+        vmulx.xyz   vf14, vf5, vf10x
+        
+        vsub.xyz    vf12, vf0, vf14
+        
+        vaddy.x     vf11, vf0, vf5y
+        vaddz.x     vf11, vf11, vf5z
+        
+        qmfc2       t0, vf11
+    
+        bnez        t0, l_002D7374
+    
+        sqc2        vf12, 0x30(a0)
+        
+        addiu       t6, zero, 0x4008
+        addiu       t6, t6, 0x7FF8
+        addiu       t7, zero, 0x4000
+        
+        mfc1        s1, f0
+        
+        qmfc2       t2, vf5
+    
+        bgtz        t2, l_002D7450
+    
+        mfc1        s2, f14
+    
+        bgtz        t2, l_002D7450
+    
+        mfc1        s2, f15
+    
+        j           l_002D7450
+    
+        mfc1        s2, f0
+    
+        l_002D7374:
+        vaddz.x     vf6, vf0, vf5z
+        vaddy.x     vf7, vf0, vf5y
+        
+        qmfc2       a0, vf6
+        qmfc2       a1, vf7
+    
+        addi        sp, sp, -0x10 
+        
+        sw          v0, 0x0(sp)
+        sw          v1, 0x4(sp)
+        sw          a0, 0x8(sp)
+        sw          a1, 0xC(sp)
+        
+        lwc1        f12, 0x8(sp)
+        
+        jal         njAtan2b
+    
+        lwc1        f13, 0xC(sp)
+        
+        swc1        f0, 0xC(sp)
+        
+        lw          v0, 0x0(sp)
+        lw          v1, 0x4(sp)
+        lw          t2, 0xC(sp)
+        
+        addi        sp, sp, 0x10 
+    
+        qmtc2       t2, vf12
+        
+        vmulx.x     vf12, vf12, vf4x
+        
+        vdiv        Q, vf12x, vf3w
+    
+        vmul.xyz    vf6, vf5, vf5
+        
+        vaddy.x     vf7, vf0, vf5y
+        vaddz.x     vf7, vf7, vf5z
+        
+        vwaitq
+        
+        vaddq.x     vf12, vf0, Q
+        
+        vftoi0.xyzw vf12, vf12
+        
+        qmfc2       t3, vf12
+    
+        sw          t3, 0x0(s1)
+        
+        vsqrt       Q, vf7x          
+    
+        addi        sp, sp, -0x10 
+        
+        sw          v0, 0x0(sp)
+        sw          v1, 0x4(sp)
+        
+        vwaitq
+        
+        vaddq.x     vf6, vf0, Q
+        
+        qmfc2       a0, vf5
+        qmfc2       a1, vf6
+    
+        sw          a0, 0x8(sp)
+        sw          a1, 0xC(sp)
+        
+        lwc1        f12, 0x8(sp)
+        
+        jal         njAtan2b
+    
+        lwc1        f13, 0xC(sp)
+        
+        swc1        f0, 0xC(sp)
+        
+        lw          v0, 0x0(sp)
+        lw          v1, 0x4(sp)
+        lw          t2, 0xC(sp)
+        
+        addi        sp, sp, 0x10 
+    
+        qmtc2       t2, vf12
+        
+        vmulx.x     vf12, vf12, vf4x
+        
+        vdiv        Q, vf12x, vf3w
+    
+        vwaitq
+    
+        vaddq.x     vf12, vf0, Q
+        
+        vsubx.x     vf12, vf0, vf12x
+        
+        vftoi0.xyzw vf12, vf12
+        
+        qmfc2       t3, vf12
+    
+        sw          t3, 0x0(s2)
+    .set reorder
+    " : : "r"(pl), "f"(&mat), "r"(&lAngleX), "r"(&lAngleZ) : 
+    );
+
+    l_002D7450:
+    njUnitRotPortion(&mat);
+    
+    njRotateX(&mat, lAngleX);
+    njRotateZ(&mat, lAngleZ);
+    
+    njScale(&mat, 1.0f, -1.0f, 1.0f);
+    
+    njRotateZ(&mat, -lAngleZ);
+    njRotateX(&mat, -lAngleX);
+    
+    njMultiMatrix(m, &mat);
 }
 
 // 100% matching!
