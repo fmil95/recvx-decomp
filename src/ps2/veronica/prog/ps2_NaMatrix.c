@@ -1433,13 +1433,10 @@ void njScaleEx(NJS_VECTOR *v)
 	scePrintf("njScaleEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d7a10
+// 100% matching!
 Bool njPushMatrixEx( void )
 {
-	// Line 5439, Address: 0x2d7a10, Func Offset: 0
-	// Func End, Address: 0x2d7a18, Func Offset: 0x8
-	scePrintf("njPushMatrixEx - UNIMPLEMENTED!\n");
+    njPushMatrix(NULL);
 }
 
 // 100% matching!
