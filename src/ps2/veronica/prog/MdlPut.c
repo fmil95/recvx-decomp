@@ -146,24 +146,30 @@ void EasyDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_n
     } 
 }
 
-/*// 
-// Start address: 0x12f230
-void SimpleDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num)
+// 100% matching! 
+void SimpleDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
 {
-	// Line 227, Address: 0x12f230, Func Offset: 0
-	// Line 229, Address: 0x12f254, Func Offset: 0x24
-	// Line 230, Address: 0x12f25c, Func Offset: 0x2c
-	// Line 231, Address: 0x12f268, Func Offset: 0x38
-	// Line 232, Address: 0x12f27c, Func Offset: 0x4c
-	// Line 234, Address: 0x12f290, Func Offset: 0x60
-	// Line 235, Address: 0x12f2a4, Func Offset: 0x74
-	// Line 236, Address: 0x12f2a8, Func Offset: 0x78
-	// Line 237, Address: 0x12f2c4, Func Offset: 0x94
-	// Line 238, Address: 0x12f2d0, Func Offset: 0xa0
-	// Line 239, Address: 0x12f2d8, Func Offset: 0xa8
-	// Line 241, Address: 0x12f2e8, Func Offset: 0xb8
-	// Func End, Address: 0x12f304, Func Offset: 0xd4
-}*/
+    for ( ; obj_num > 0; obj_num--, objP++, owP++) 
+    {
+        njPushMatrix(cam.mtx);
+        
+        if (!(objP->evalflags & 0x80000000))
+        {
+            njMultiMatrix(NULL, &owP->mtx);
+        } 
+        else 
+        {
+            njTranslate(NULL, ewP->px, ewP->py, ewP->pz);
+        }
+        
+        if ((objP->model != NULL) && (!(objP->evalflags & 0x8)))
+        {
+            njCnkSimpleDrawModel(objP->model);
+        }
+        
+        njPopMatrixEx();
+    } 
+}
 
 // 100% matching! 
 void bhCalcModel(BH_PWORK* ewP) 
