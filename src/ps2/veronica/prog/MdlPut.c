@@ -1,4 +1,6 @@
 #include "MdlPut.h"
+#include "ps2_NaMatrix.h"
+#include "ps2_NinjaCnk.h"
 #include "main.h"
 
 /*void(*bhJumpCnkDraw)()[4];
@@ -64,23 +66,24 @@ void bhPutModel(BH_PWORK* ewP)
 	scePrintf("bhPutModel - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x12ef00
-void DrawTreeBsc(npobj* objP, _anon10* owP, int obj_num)
+// 100% matching!
+void DrawTreeBsc(NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
 {
-	// Line 146, Address: 0x12ef00, Func Offset: 0
-	// Line 148, Address: 0x12ef1c, Func Offset: 0x1c
-	// Line 149, Address: 0x12ef24, Func Offset: 0x24
-	// Line 150, Address: 0x12ef30, Func Offset: 0x30
-	// Line 151, Address: 0x12ef3c, Func Offset: 0x3c
-	// Line 152, Address: 0x12ef58, Func Offset: 0x58
-	// Line 153, Address: 0x12ef60, Func Offset: 0x60
-	// Line 154, Address: 0x12ef68, Func Offset: 0x68
-	// Line 156, Address: 0x12ef78, Func Offset: 0x78
-	// Func End, Address: 0x12ef90, Func Offset: 0x90
+    for ( ; obj_num > 0; obj_num--, objP++, owP++) 
+    {
+        njPushMatrix(cam.mtx);
+        njMultiMatrix(NULL, &owP->mtx);
+        
+        if ((objP->model != NULL) && (!(objP->evalflags & 0x8))) 
+        {
+            njDrawModel((NJS_MODEL*)objP->model);
+        }
+        
+        njPopMatrixEx();
+    } 
 }
 
-// 
+/*// 
 // Start address: 0x12ef90
 void EasyMultiDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num)
 {
