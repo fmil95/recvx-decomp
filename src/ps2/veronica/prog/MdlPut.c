@@ -1,69 +1,122 @@
 #include "MdlPut.h"
+#include "njplus.h"
 #include "ps2_NaMatrix.h"
+#include "ps2_NaTextureFunction.h"
 #include "ps2_NinjaCnk.h"
 #include "main.h"
 
-/*void(*bhJumpCnkDraw)()[4];
-unsigned int _nj_control_3d_flag_;
-_anon16* sys;*/
+void (*bhJumpCnkDraw[4])(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num) = 
+{ 
+	EasyMultiDrawTreeCnk, 
+	SimpleMultiDrawTreeCnk, 
+	EasyDrawTreeCnk, 
+	SimpleDrawTreeCnk 
+};
 
-// 
-// Start address: 0x12ebb0
-void bhPutModel(BH_PWORK* ewP)
+// 100% matching! 
+void bhPutModel(BH_PWORK* ewP) 
 {
-	unsigned int c3df;
-	int draw_tp;
-	//_anon10* owP;
-	//_anon7* mlwP;
-	// Line 65, Address: 0x12ebb0, Func Offset: 0
-	// Line 66, Address: 0x12ebcc, Func Offset: 0x1c
-	// Line 71, Address: 0x12ebd4, Func Offset: 0x24
-	// Line 72, Address: 0x12ebe0, Func Offset: 0x30
-	// Line 77, Address: 0x12ebe8, Func Offset: 0x38
-	// Line 79, Address: 0x12ec10, Func Offset: 0x60
-	// Line 81, Address: 0x12ec20, Func Offset: 0x70
-	// Line 84, Address: 0x12ec38, Func Offset: 0x88
-	// Line 85, Address: 0x12ec44, Func Offset: 0x94
-	// Line 86, Address: 0x12ec54, Func Offset: 0xa4
-	// Line 87, Address: 0x12ec70, Func Offset: 0xc0
-	// Line 88, Address: 0x12ec78, Func Offset: 0xc8
-	// Line 90, Address: 0x12ec94, Func Offset: 0xe4
-	// Line 91, Address: 0x12ecbc, Func Offset: 0x10c
-	// Line 93, Address: 0x12ece4, Func Offset: 0x134
-	// Line 94, Address: 0x12ecf8, Func Offset: 0x148
-	// Line 95, Address: 0x12ed18, Func Offset: 0x168
-	// Line 96, Address: 0x12ed28, Func Offset: 0x178
-	// Line 97, Address: 0x12ed30, Func Offset: 0x180
-	// Line 98, Address: 0x12ed38, Func Offset: 0x188
-	// Line 99, Address: 0x12ed40, Func Offset: 0x190
-	// Line 100, Address: 0x12ed4c, Func Offset: 0x19c
-	// Line 101, Address: 0x12ed64, Func Offset: 0x1b4
-	// Line 102, Address: 0x12ed6c, Func Offset: 0x1bc
-	// Line 103, Address: 0x12ed80, Func Offset: 0x1d0
-	// Line 104, Address: 0x12ed90, Func Offset: 0x1e0
-	// Line 105, Address: 0x12ed98, Func Offset: 0x1e8
-	// Line 107, Address: 0x12eda0, Func Offset: 0x1f0
-	// Line 108, Address: 0x12edac, Func Offset: 0x1fc
-	// Line 111, Address: 0x12edb4, Func Offset: 0x204
-	// Line 112, Address: 0x12eddc, Func Offset: 0x22c
-	// Line 114, Address: 0x12ee04, Func Offset: 0x254
-	// Line 115, Address: 0x12ee18, Func Offset: 0x268
-	// Line 116, Address: 0x12ee38, Func Offset: 0x288
-	// Line 117, Address: 0x12ee48, Func Offset: 0x298
-	// Line 118, Address: 0x12ee50, Func Offset: 0x2a0
-	// Line 119, Address: 0x12ee58, Func Offset: 0x2a8
-	// Line 120, Address: 0x12ee60, Func Offset: 0x2b0
-	// Line 121, Address: 0x12ee6c, Func Offset: 0x2bc
-	// Line 122, Address: 0x12ee84, Func Offset: 0x2d4
-	// Line 123, Address: 0x12ee8c, Func Offset: 0x2dc
-	// Line 124, Address: 0x12eea0, Func Offset: 0x2f0
-	// Line 125, Address: 0x12eeb0, Func Offset: 0x300
-	// Line 126, Address: 0x12eeb8, Func Offset: 0x308
-	// Line 129, Address: 0x12eec0, Func Offset: 0x310
-	// Line 131, Address: 0x12eec8, Func Offset: 0x318
-	// Line 134, Address: 0x12eed8, Func Offset: 0x328
-	// Func End, Address: 0x12eef8, Func Offset: 0x348
-	scePrintf("bhPutModel - UNIMPLEMENTED!\n");
+    // these variables are arranged in an order different from the debugging symbols
+    O_WORK* owP;       
+    int draw_tp;       
+    ML_WORK* mlwP;     
+    unsigned int c3df; 
+    
+    mlwP = ewP->mlwP;
+    owP = mlwP->owP;
+    
+    if (mlwP->texP != NULL) 
+    {
+        njSetTexture(mlwP->texP);
+    }
+    
+    draw_tp = ewP->draw_tp;
+    
+    if (((sys->gm_flg & 0x80)) && (draw_tp < 2)) 
+    {
+        draw_tp += 2;
+    }
+    
+    if ((mlwP->flg & 0x80))
+    {
+        if (ewP->skp[ewP->mdl_no] != NULL) 
+        {
+            npPushMdlstr(mlwP->objP, mlwP->obj_num);
+            
+            if ((ewP->mdflg & 0x100))
+            {
+                npCalcSkinFM(ewP, mlwP->obj_num, ewP->skp[ewP->mdl_no]);
+            } 
+            else 
+            {
+                npCalcSkin(ewP, mlwP->obj_num, ewP->skp[ewP->mdl_no]);
+            }
+            
+            bhJumpCnkDraw[draw_tp](ewP, mlwP->objP, owP, mlwP->obj_num);
+            
+            if (((sys->st_flg & 0x100)) && (!(ewP->mdflg & 0x40))) 
+            {
+                njSetMatrix(cam.mtxb, cam.mtx);
+                
+                njMirror(cam.mtx, &sys->mr_pl);
+                
+                njSetMatrix(NULL, cam.mtx);
+                
+                njCnkSetEasyMultiLightMatrices();
+                njCnkSetSimpleMultiLightMatrices();
+                
+                c3df = _nj_control_3d_flag_;
+                
+                njControl3D(c3df | 0x10000);
+                
+                bhJumpCnkDraw[draw_tp](ewP, mlwP->objP, owP, mlwP->obj_num);
+                
+                njControl3D(c3df);
+                
+                njSetMatrix(cam.mtx, cam.mtxb);
+                njSetMatrix(NULL, cam.mtx);
+                
+                njCnkSetEasyMultiLightMatrices();
+                njCnkSetSimpleMultiLightMatrices();
+            }
+            
+            npPopMdlstr(mlwP->objP, mlwP->obj_num);
+        }
+        else 
+        {
+            bhJumpCnkDraw[draw_tp](ewP, mlwP->objP, owP, mlwP->obj_num);
+            
+            if (((sys->st_flg & 0x100)) && (!(ewP->mdflg & 0x40))) 
+            {
+                njSetMatrix(cam.mtxb, cam.mtx);
+                
+                njMirror(cam.mtx, &sys->mr_pl);
+                
+                njSetMatrix(NULL, cam.mtx);
+                
+                njCnkSetEasyMultiLightMatrices();
+                njCnkSetSimpleMultiLightMatrices();
+
+                c3df = _nj_control_3d_flag_;
+                
+                njControl3D(c3df | 0x10000);
+                
+                bhJumpCnkDraw[draw_tp](ewP, mlwP->objP, owP, mlwP->obj_num);
+                
+                njControl3D(c3df);
+                
+                njSetMatrix(cam.mtx, cam.mtxb);
+                njSetMatrix(NULL, cam.mtx);
+                
+                njCnkSetEasyMultiLightMatrices();
+                njCnkSetSimpleMultiLightMatrices();
+            }
+        }
+    }
+    else 
+    {
+        DrawTreeBsc(mlwP->objP, owP, mlwP->obj_num);
+    }
 }
 
 // 100% matching!
