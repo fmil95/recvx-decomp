@@ -67,7 +67,7 @@ void bhPutModel(BH_PWORK* ewP)
 }
 
 // 100% matching!
-void DrawTreeBsc(NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
+static void DrawTreeBsc(NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
 {
     for ( ; obj_num > 0; obj_num--, objP++, owP++) 
     {
@@ -84,7 +84,7 @@ void DrawTreeBsc(NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
 }
 
 // 100% matching! 
-void EasyMultiDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
+static void EasyMultiDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
 {
     for ( ; obj_num > 0; obj_num--, objP++, owP++) 
     {
@@ -108,27 +108,33 @@ void EasyMultiDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int 
     } 
 }
 
-/*// 
-// Start address: 0x12f070
-void SimpleMultiDrawTreeCnk(BH_PWORK* ewP, npobj* objP, _anon10* owP, int obj_num)
+// 100% matching! 
+static void SimpleMultiDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
 {
-	// Line 189, Address: 0x12f070, Func Offset: 0
-	// Line 191, Address: 0x12f094, Func Offset: 0x24
-	// Line 192, Address: 0x12f09c, Func Offset: 0x2c
-	// Line 193, Address: 0x12f0a8, Func Offset: 0x38
-	// Line 194, Address: 0x12f0bc, Func Offset: 0x4c
-	// Line 196, Address: 0x12f0d0, Func Offset: 0x60
-	// Line 197, Address: 0x12f0e4, Func Offset: 0x74
-	// Line 198, Address: 0x12f0e8, Func Offset: 0x78
-	// Line 199, Address: 0x12f104, Func Offset: 0x94
-	// Line 200, Address: 0x12f110, Func Offset: 0xa0
-	// Line 201, Address: 0x12f118, Func Offset: 0xa8
-	// Line 203, Address: 0x12f128, Func Offset: 0xb8
-	// Func End, Address: 0x12f144, Func Offset: 0xd4
-}*/
+    for ( ; obj_num > 0; obj_num--, objP++, owP++) 
+    {
+        njPushMatrix(cam.mtx);
+        
+        if (!(objP->evalflags & 0x80000000))
+        {
+            njMultiMatrix(NULL, &owP->mtx);
+        } 
+        else 
+        {
+            njTranslate(NULL, ewP->px, ewP->py, ewP->pz);
+        }
+        
+        if ((objP->model != NULL) && (!(objP->evalflags & 0x8)))
+        {
+            njCnkSimpleMultiDrawModel(objP->model);
+        }
+        
+        njPopMatrixEx();
+    } 
+}
 
 // 100% matching! 
-void EasyDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
+static void EasyDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
 {
     for ( ; obj_num > 0; obj_num--, objP++, owP++) 
     {
@@ -153,7 +159,7 @@ void EasyDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_n
 }
 
 // 100% matching! 
-void SimpleDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
+static void SimpleDrawTreeCnk(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num)
 {
     for ( ; obj_num > 0; obj_num--, objP++, owP++) 
     {
