@@ -901,15 +901,13 @@ void njTransposeMatrix(float pMatrix[16])
 	// Line 3547, Address: 0x2d71fc, Func Offset: 0x4c
 	// Line 3554, Address: 0x2d7200, Func Offset: 0x50
 	// Func End, Address: 0x2d7208, Func Offset: 0x58
-}
+}*/
 
-// 
-// Start address: 0x2d7210
+// 100% matching!
 static float njAtan2b(float a, float b)
 {
-	// Line 3657, Address: 0x2d7210, Func Offset: 0
-	// Func End, Address: 0x2d725c, Func Offset: 0x4c
-}*/
+    return atan2(a, b);
+}
 
 // 
 // Start address: 0x2d7260
