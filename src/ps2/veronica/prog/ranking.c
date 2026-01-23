@@ -11,7 +11,7 @@
 /*void(*RankingMode)()[6];
 */
 RANK_WORK rkw;
-NO_NAME_29 fade;
+FADE fade;
 
 /*
 tagSYSSAVE_SCREEN* pRankingSys;
@@ -219,7 +219,7 @@ void RankingMain()
 {
     static unsigned int flg;
     RANK_WORK* rk;
-    NO_NAME_29* sfe;
+    FADE* sfe;
     int num;
 
     rk = &rkw;
@@ -831,7 +831,7 @@ void GetMessage(unsigned int mesnum, NJS_POINT2* pos) {
 // 100% matching
 void RankingBgmSet() {
     RANK_WORK* rk = &rkw;
-    NO_NAME_29* sfe = &fade;
+    FADE* sfe = &fade;
 
     if ((sys->gm_mode == 0) || (sys->gm_mode== 3)) {
         if (rk->ranking & 3) {

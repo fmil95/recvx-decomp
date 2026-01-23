@@ -1442,13 +1442,10 @@ Bool njPushMatrixEx( void )
 	scePrintf("njPushMatrixEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d7a20
+// 100% matching!
 Bool njPopMatrixEx( void )
 {
-	// Line 5459, Address: 0x2d7a20, Func Offset: 0
-	// Func End, Address: 0x2d7a28, Func Offset: 0x8
-	scePrintf("njPopMatrixEx - UNIMPLEMENTED!\n");
+    njPopMatrix(1);
 }
 
 // 
