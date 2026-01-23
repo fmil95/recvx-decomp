@@ -214,21 +214,29 @@ void    njUnitTransPortion(NJS_MATRIX *m)
 	scePrintf("njUnitTransPortion - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d6880
+// 100% matching! 
 void    njUnitRotPortion(NJS_MATRIX *m)
 {
-	// Line 618, Address: 0x2d6880, Func Offset: 0
-	// Line 664, Address: 0x2d6894, Func Offset: 0x14
-	// Line 665, Address: 0x2d6898, Func Offset: 0x18
-	// Line 666, Address: 0x2d689c, Func Offset: 0x1c
-	// Line 667, Address: 0x2d68a0, Func Offset: 0x20
-	// Line 668, Address: 0x2d68a4, Func Offset: 0x24
-	// Line 669, Address: 0x2d68a8, Func Offset: 0x28
-	// Line 670, Address: 0x2d68ac, Func Offset: 0x2c
-	// Line 677, Address: 0x2d68b0, Func Offset: 0x30
-	// Func End, Address: 0x2d68b8, Func Offset: 0x38
-	scePrintf("njUnitRotPortion - UNIMPLEMENTED!\n");
+    if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile 
+    ("
+    .set noreorder
+        vmulw.xyzw vf4, vf0, vf0w
+        
+        vmr32.xyzw vf5, vf4
+        vmr32.xyzw vf6, vf5
+        vmr32.xyzw vf7, vf6
+        
+        sqc2       vf5, 0x20(%0)
+        sqc2       vf6, 0x10(%0)
+        sqc2       vf7,  0x0(%0)
+    .set reorder
+    " : : "r"(m) : 
+    );
 }
 
 // 100% matching!
