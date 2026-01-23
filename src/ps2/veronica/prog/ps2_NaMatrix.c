@@ -784,33 +784,44 @@ void njRotate(float pMatrix[16], _anon0* pAxis, int lAngle)
 	// Line 2673, Address: 0x2d7048, Func Offset: 0x148
 	// Line 2680, Address: 0x2d704c, Func Offset: 0x14c
 	// Func End, Address: 0x2d7060, Func Offset: 0x160
-}
+}*/
 
-// 
-// Start address: 0x2d7060
-void njScale(float pMatrix[16], float fScaleX, float fScaleY, float fScaleZ)
+// 100% matching!
+void	njScale(NJS_MATRIX *m, Float sx, Float sy, Float sz)
 {
-	// Line 2923, Address: 0x2d7060, Func Offset: 0
-	// Line 2996, Address: 0x2d7074, Func Offset: 0x14
-	// Line 2997, Address: 0x2d7078, Func Offset: 0x18
-	// Line 2998, Address: 0x2d707c, Func Offset: 0x1c
-	// Line 2999, Address: 0x2d7080, Func Offset: 0x20
-	// Line 3000, Address: 0x2d7084, Func Offset: 0x24
-	// Line 3001, Address: 0x2d7088, Func Offset: 0x28
-	// Line 3002, Address: 0x2d708c, Func Offset: 0x2c
-	// Line 3003, Address: 0x2d7090, Func Offset: 0x30
-	// Line 3004, Address: 0x2d7094, Func Offset: 0x34
-	// Line 3005, Address: 0x2d7098, Func Offset: 0x38
-	// Line 3006, Address: 0x2d709c, Func Offset: 0x3c
-	// Line 3007, Address: 0x2d70a0, Func Offset: 0x40
-	// Line 3008, Address: 0x2d70a4, Func Offset: 0x44
-	// Line 3009, Address: 0x2d70a8, Func Offset: 0x48
-	// Line 3010, Address: 0x2d70ac, Func Offset: 0x4c
-	// Line 3017, Address: 0x2d70b0, Func Offset: 0x50
-	// Func End, Address: 0x2d70b8, Func Offset: 0x58
+    if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        mfc1      t2, %1 
+        mfc1      t3, %2
+        mfc1      t4, %3
+        
+        qmtc2     t2, vf4
+        qmtc2     t3, vf5
+        qmtc2     t4, vf6
+    
+        lqc2      vf7,  0x0(%0)
+        lqc2      vf8, 0x10(%0)
+        lqc2      vf9, 0x20(%0)
+
+        vmulx.xyz vf7, vf7, vf4
+        vmulx.xyz vf8, vf8, vf5
+        vmulx.xyz vf9, vf9, vf6
+    
+        sqc2      vf7,  0x0(%0)
+        sqc2      vf8, 0x10(%0)
+        sqc2      vf9, 0x20(%0)
+    .set reorder
+    " : : "r"(m), "f"(sx), "f"(sy), "f"(sz) : 
+    );
 }
 
-// 
+/*// 
 // Start address: 0x2d70c0
 void njScaleV(float pMatrix[16], _anon0* pScale)
 {
