@@ -398,39 +398,55 @@ void	njGetMatrix(NJS_MATRIX *m)
     }
 }
 
-/*// 
-// Start address: 0x2d6ac0
-void njMultiMatrix(float pDstMat[16], float pSrcMat[16])
+// 100% matching!
+void	njMultiMatrix(NJS_MATRIX *md, NJS_MATRIX *ms)
 {
-	// Line 1220, Address: 0x2d6ac0, Func Offset: 0
-	// Line 1324, Address: 0x2d6ad4, Func Offset: 0x14
-	// Line 1325, Address: 0x2d6ad8, Func Offset: 0x18
-	// Line 1326, Address: 0x2d6adc, Func Offset: 0x1c
-	// Line 1327, Address: 0x2d6ae0, Func Offset: 0x20
-	// Line 1328, Address: 0x2d6ae4, Func Offset: 0x24
-	// Line 1329, Address: 0x2d6ae8, Func Offset: 0x28
-	// Line 1330, Address: 0x2d6aec, Func Offset: 0x2c
-	// Line 1331, Address: 0x2d6af0, Func Offset: 0x30
-	// Line 1333, Address: 0x2d6af4, Func Offset: 0x34
-	// Line 1334, Address: 0x2d6af8, Func Offset: 0x38
-	// Line 1335, Address: 0x2d6afc, Func Offset: 0x3c
-	// Line 1337, Address: 0x2d6b00, Func Offset: 0x40
-	// Line 1338, Address: 0x2d6b04, Func Offset: 0x44
-	// Line 1339, Address: 0x2d6b08, Func Offset: 0x48
-	// Line 1341, Address: 0x2d6b0c, Func Offset: 0x4c
-	// Line 1342, Address: 0x2d6b10, Func Offset: 0x50
-	// Line 1343, Address: 0x2d6b14, Func Offset: 0x54
-	// Line 1345, Address: 0x2d6b18, Func Offset: 0x58
-	// Line 1346, Address: 0x2d6b1c, Func Offset: 0x5c
-	// Line 1347, Address: 0x2d6b20, Func Offset: 0x60
-	// Line 1348, Address: 0x2d6b24, Func Offset: 0x64
-	// Line 1350, Address: 0x2d6b28, Func Offset: 0x68
-	// Line 1351, Address: 0x2d6b2c, Func Offset: 0x6c
-	// Line 1352, Address: 0x2d6b30, Func Offset: 0x70
-	// Line 1353, Address: 0x2d6b34, Func Offset: 0x74
-	// Line 1360, Address: 0x2d6b38, Func Offset: 0x78
-	// Func End, Address: 0x2d6b40, Func Offset: 0x80
-}*/
+    if (md == NULL)
+    {
+        md = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        lqc2        vf4,  0(%0)
+        lqc2        vf5,  0x10(%0)
+        lqc2        vf6,  0x20(%0)
+        lqc2        vf7,  0x30(%0)
+        lqc2        vf8,  0(%1)
+        lqc2        vf9,  0x10(%1)
+        lqc2        vf10, 0x20(%1)
+        lqc2        vf11, 0x30(%1)
+
+        vmulax.xyz  ACC,  vf4, vf8
+        
+        vmadday.xyz ACC,  vf5, vf8
+        vmaddz.xyz  vf8,  vf6, vf8
+        
+        vmulax.xyz  ACC,  vf4, vf9
+
+        vmadday.xyz ACC,  vf5, vf9
+        vmaddz.xyz  vf9,  vf6, vf9
+        
+        vmulax.xyz  ACC,  vf4, vf10
+
+        vmadday.xyz ACC,  vf5, vf10
+        vmaddz.xyz  vf10, vf6, vf10
+        
+        vmulax.xyz  ACC,  vf4, vf11
+
+        vmadday.xyz ACC,  vf5, vf11
+        vmaddaz.xyz ACC,  vf6, vf11
+        vmaddw.xyz  vf11, vf7, vf0
+
+        sqc2        vf8,  0x0(%0)
+        sqc2        vf9,  0x10(%0)
+        sqc2        vf10, 0x20(%0)
+        sqc2        vf11, 0x30(%0)
+    .set reorder
+    " : : "r"(md), "r"(ms) : 
+    );
+}
 
 // 100% matching!
 void	njTranslate(NJS_MATRIX *m, Float x, Float y, Float z)
