@@ -991,7 +991,9 @@ void	njMirror(NJS_MATRIX *m,NJS_PLANE *pl)
         sqc2        vf4, 0x30(s1)
         sqc2        vf5, 0x20(s1)
         sqc2        vf6, 0x10(s1)
+
         jr          ra
+		
         sqc2        vf7, 0x0(s1)
     
         l_002D732C:
