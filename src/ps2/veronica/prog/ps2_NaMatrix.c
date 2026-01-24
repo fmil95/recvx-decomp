@@ -661,49 +661,79 @@ void	njRotateXYZ(NJS_MATRIX *m, Angle angx, Angle angy, Angle angz)
 	scePrintf("njRotateXYZ - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d6e20
+// 100% matching!
 void njRotXYZ(NJS_MATRIX* pMatrix, int lAngleX, int lAngleY, int lAngleZ)
 {
-	float fCos;
-	float fSin;
-	// Line 2272, Address: 0x2d6e20, Func Offset: 0
-	// Line 2279, Address: 0x2d6e3c, Func Offset: 0x1c
-	// Line 2280, Address: 0x2d6e40, Func Offset: 0x20
-	// Line 2288, Address: 0x2d6e54, Func Offset: 0x34
-	// Line 2289, Address: 0x2d6e58, Func Offset: 0x38
-	// Line 2290, Address: 0x2d6e5c, Func Offset: 0x3c
-	// Line 2292, Address: 0x2d6e60, Func Offset: 0x40
-	// Line 2294, Address: 0x2d6e64, Func Offset: 0x44
-	// Line 2295, Address: 0x2d6e68, Func Offset: 0x48
-	// Line 2296, Address: 0x2d6e6c, Func Offset: 0x4c
-	// Line 2297, Address: 0x2d6e70, Func Offset: 0x50
-	// Line 2299, Address: 0x2d6e74, Func Offset: 0x54
-	// Line 2300, Address: 0x2d6e78, Func Offset: 0x58
-	// Line 2305, Address: 0x2d6e7c, Func Offset: 0x5c
-	// Line 2306, Address: 0x2d6e80, Func Offset: 0x60
-	// Line 2309, Address: 0x2d6e90, Func Offset: 0x70
-	// Line 2310, Address: 0x2d6e94, Func Offset: 0x74
-	// Line 2311, Address: 0x2d6e98, Func Offset: 0x78
-	// Line 2312, Address: 0x2d6e9c, Func Offset: 0x7c
-	// Line 2313, Address: 0x2d6ea0, Func Offset: 0x80
-	// Line 2314, Address: 0x2d6ea4, Func Offset: 0x84
-	// Line 2315, Address: 0x2d6ea8, Func Offset: 0x88
-	// Line 2319, Address: 0x2d6eac, Func Offset: 0x8c
-	// Line 2320, Address: 0x2d6eb0, Func Offset: 0x90
-	// Line 2323, Address: 0x2d6ec0, Func Offset: 0xa0
-	// Line 2324, Address: 0x2d6ec4, Func Offset: 0xa4
-	// Line 2325, Address: 0x2d6ec8, Func Offset: 0xa8
-	// Line 2326, Address: 0x2d6ecc, Func Offset: 0xac
-	// Line 2327, Address: 0x2d6ed0, Func Offset: 0xb0
-	// Line 2328, Address: 0x2d6ed4, Func Offset: 0xb4
-	// Line 2329, Address: 0x2d6ed8, Func Offset: 0xb8
-	// Line 2330, Address: 0x2d6edc, Func Offset: 0xbc
-	// Line 2331, Address: 0x2d6ee0, Func Offset: 0xc0
-	// Line 2332, Address: 0x2d6ee4, Func Offset: 0xc4
-	// Line 2335, Address: 0x2d6ee8, Func Offset: 0xc8
-	// Func End, Address: 0x2d6f00, Func Offset: 0xe0
-	scePrintf("njRotXYZ - UNIMPLEMENTED!\n");
+    float fSin;
+    float fCos;
+
+    lAngleX &= 0xFFFF;
+    
+    njSinCos(lAngleX, &fSin, &fCos);
+    
+    asm volatile
+    ("
+    .set noreorder
+        lqc2      vf4,  0x0(%0)
+        lqc2      vf5, 0x10(%0)
+        lqc2      vf6, 0x20(%0)
+
+        vsub.x    vf10, vf0, vf11
+        
+        vmulx.xyz vf7, vf5, vf12
+        vmulx.xyz vf8, vf6, vf11
+        vmulx.xyz vf5, vf5, vf10
+        vmulx.xyz vf6, vf6, vf12
+
+        vadd.xyz  vf6, vf5, vf6
+        vadd.xyz  vf5, vf7, vf8
+    .set reorder
+    " : : "r"(pMatrix) :  
+    );
+
+    lAngleY &= 0xFFFF;
+    
+    njSinCos(lAngleY, &fSin, &fCos);
+    
+    asm volatile
+    ("
+    .set noreorder
+        vsub.x    vf10, vf0, vf11
+        
+        vmulx.xyz vf7, vf4, vf12
+        vmulx.xyz vf8, vf6, vf10
+        vmulx.xyz vf4, vf4, vf11
+        vmulx.xyz vf6, vf6, vf12
+
+        vadd.xyz  vf6, vf4, vf6
+        vadd.xyz  vf4, vf7, vf8
+    .set reorder
+    " : : "r"(pMatrix) :  
+    );
+
+    lAngleZ &= 0xFFFF;
+    
+    njSinCos(lAngleZ, &fSin, &fCos);
+    
+    asm volatile
+    ("
+    .set noreorder
+        vsub.x    vf10, vf0, vf11
+        
+        vmulx.xyz vf7, vf4, vf12
+        vmulx.xyz vf8, vf5, vf11
+        vmulx.xyz vf4, vf4, vf10
+        vmulx.xyz vf5, vf5, vf12
+
+        vadd.xyz  vf8, vf7, vf8
+        vadd.xyz  vf9, vf4, vf5
+
+        sqc2      vf8,  0x0(%0)
+        sqc2      vf9, 0x10(%0)
+        sqc2      vf6, 0x20(%0)
+    .set reorder
+    " : : "r"(pMatrix) : 
+    );
 }
 
 /*// 
