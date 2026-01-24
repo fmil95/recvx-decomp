@@ -651,76 +651,79 @@ void bhSetLight()
     njCnkSetSimpleMultiLightMatrices();
 }
 
-// 
-// Start address: 0x282c90
+// 98.87% matching
 void bhSetHalfLight()
 {
-	int i;
-	float b;
-	float g;
-	float r;
-	//_anon4 vec;
-	//_anon9* lptb;
-	// Line 1134, Address: 0x282c90, Func Offset: 0
-	// Line 1145, Address: 0x282cac, Func Offset: 0x1c
-	// Line 1146, Address: 0x282cc4, Func Offset: 0x34
-	// Line 1147, Address: 0x282cd8, Func Offset: 0x48
-	// Line 1153, Address: 0x282ce0, Func Offset: 0x50
-	// Line 1155, Address: 0x282cf4, Func Offset: 0x64
-	// Line 1156, Address: 0x282d08, Func Offset: 0x78
-	// Line 1158, Address: 0x282d14, Func Offset: 0x84
-	// Line 1159, Address: 0x282d28, Func Offset: 0x98
-	// Line 1161, Address: 0x282d34, Func Offset: 0xa4
-	// Line 1162, Address: 0x282d48, Func Offset: 0xb8
-	// Line 1163, Address: 0x282d54, Func Offset: 0xc4
-	// Line 1165, Address: 0x282d68, Func Offset: 0xd8
-	// Line 1166, Address: 0x282d7c, Func Offset: 0xec
-	// Line 1167, Address: 0x282d88, Func Offset: 0xf8
-	// Line 1168, Address: 0x282d9c, Func Offset: 0x10c
-	// Line 1169, Address: 0x282da4, Func Offset: 0x114
-	// Line 1170, Address: 0x282db8, Func Offset: 0x128
-	// Line 1169, Address: 0x282dc0, Func Offset: 0x130
-	// Line 1170, Address: 0x282dc4, Func Offset: 0x134
-	// Line 1173, Address: 0x282dc8, Func Offset: 0x138
-	// Line 1171, Address: 0x282dcc, Func Offset: 0x13c
-	// Line 1170, Address: 0x282dd4, Func Offset: 0x144
-	// Line 1171, Address: 0x282dd8, Func Offset: 0x148
-	// Line 1173, Address: 0x282ddc, Func Offset: 0x14c
-	// Line 1171, Address: 0x282de4, Func Offset: 0x154
-	// Line 1173, Address: 0x282de8, Func Offset: 0x158
-	// Line 1174, Address: 0x282df0, Func Offset: 0x160
-	// Line 1175, Address: 0x282e20, Func Offset: 0x190
-	// Line 1177, Address: 0x282e2c, Func Offset: 0x19c
-	// Line 1178, Address: 0x282e40, Func Offset: 0x1b0
-	// Line 1179, Address: 0x282e70, Func Offset: 0x1e0
-	// Line 1181, Address: 0x282e7c, Func Offset: 0x1ec
-	// Line 1182, Address: 0x282ea0, Func Offset: 0x210
-	// Line 1183, Address: 0x282eb0, Func Offset: 0x220
-	// Line 1184, Address: 0x282ec4, Func Offset: 0x234
-	// Line 1186, Address: 0x282edc, Func Offset: 0x24c
-	// Line 1187, Address: 0x282eec, Func Offset: 0x25c
-	// Line 1188, Address: 0x282f00, Func Offset: 0x270
-	// Line 1191, Address: 0x282f10, Func Offset: 0x280
-	// Line 1192, Address: 0x282f18, Func Offset: 0x288
-	// Line 1191, Address: 0x282f1c, Func Offset: 0x28c
-	// Line 1192, Address: 0x282f24, Func Offset: 0x294
-	// Line 1193, Address: 0x282f2c, Func Offset: 0x29c
-	// Line 1194, Address: 0x282f30, Func Offset: 0x2a0
-	// Line 1195, Address: 0x282f34, Func Offset: 0x2a4
-	// Line 1193, Address: 0x282f38, Func Offset: 0x2a8
-	// Line 1197, Address: 0x282f40, Func Offset: 0x2b0
-	// Line 1193, Address: 0x282f44, Func Offset: 0x2b4
-	// Line 1194, Address: 0x282f48, Func Offset: 0x2b8
-	// Line 1195, Address: 0x282f4c, Func Offset: 0x2bc
-	// Line 1197, Address: 0x282f50, Func Offset: 0x2c0
-	// Line 1199, Address: 0x282f60, Func Offset: 0x2d0
-	// Line 1200, Address: 0x282f74, Func Offset: 0x2e4
-	// Line 1202, Address: 0x282fa0, Func Offset: 0x310
-	// Line 1204, Address: 0x282fb0, Func Offset: 0x320
-	// Line 1206, Address: 0x282fb8, Func Offset: 0x328
-	// Line 1207, Address: 0x282fc0, Func Offset: 0x330
-	// Func End, Address: 0x282fe0, Func Offset: 0x350
-	scePrintf("bhSetHalfLight - UNIMPLEMENTED!\n");
+    LPTB* lptb;
+    NJS_VECTOR vec;
+    float r;
+    float g;
+    float b;
+    int i;
+
+    if ((sys->gm_flg & 0x80)) 
+    {
+        bhSetEasyDirLight(0.6f);
+        return;
+    }
+
+    if (!(sys->st_flg & 0x10000)) 
+    {
+        njCnkSetEasyMultiLightColor(1, 0, 0, 0);
+        njCnkSetEasyMultiLightSwitch(1, 0);
+        
+        njCnkSetSimpleMultiLightColor(1, 0, 0, 0);
+        njCnkSetSimpleMultiLightSwitch(1, 0);
+        
+        njCnkSetEasyLightColor(0, 0, 0);
+        njCnkSetEasyLightIntensity(0, 0);
+        njCnkSetEasyLight(0, 0, 1.0f);
+        
+        njCnkSetSimpleLightColor(0, 0, 0);
+        njCnkSetSimpleLightIntensity(0, 0);
+        njCnkSetSimpleLight(0, 0, 1.0f);
+    }
+    else
+    {
+        r = 0.5f * sys->lg_r;
+        g = 0.5f * sys->lg_g;
+        b = 0.5f * sys->lg_b;
+        
+        njCnkSetEasyMultiLightColor(1, r, g, b);
+        njCnkSetEasyMultiLightVector(sys->lg_vx, sys->lg_vy, sys->lg_vz);
+        njCnkSetEasyMultiLightSwitch(1, 1);
+        
+        njCnkSetSimpleMultiLightColor(1, r, g, b);
+        njCnkSetSimpleMultiLightVector(sys->lg_vx, sys->lg_vy, sys->lg_vz);
+        njCnkSetSimpleMultiLightSwitch(1, 1);
+        
+        njCalcVector(cam.mtx, (NJS_VECTOR*)&sys->lg_vx, &vec);
+        
+        njCnkSetEasyLightColor(r, g, b);
+        njCnkSetEasyLightIntensity(1.0f,  0);
+        njCnkSetEasyLight(vec.x, vec.y, vec.z);
+        
+        njCnkSetSimpleLightColor(r, g, b);
+        njCnkSetSimpleLightIntensity(1.0f, 0);
+        njCnkSetSimpleLight(vec.x, vec.y, vec.z);
+    }
+
+    lptb = sys->lg_ptb;
+    
+    for (i = 0; i < sys->lg_pnt; i++, lptb++) 
+    {
+        r = 0.5f * lptb->cr;
+        g = 0.5f * lptb->cg;
+        b = 0.5f * lptb->cb;
+        
+        njCnkSetEasyMultiLightColor(i + 2, r, g, b);
+        njCnkSetSimpleMultiLightColor(i + 2, r, g, b);
+    }
+
+    njSetMatrix(NULL, cam.mtx);
+    
+    njCnkSetEasyMultiLightMatrices();
+    njCnkSetSimpleMultiLightMatrices();
 }
 
 // 100% matching! 
