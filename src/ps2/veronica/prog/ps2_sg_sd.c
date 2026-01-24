@@ -1016,38 +1016,41 @@ SDE_ERR	sdShotSetPan( SDSHOT handle, const Sint8 pan, const Sint32 fade_time)
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2dc240
-unsigned char Panpot_Control(SND_WORK* set_snd_work)
+// 98.76% matching (matches on GC)
+static unsigned char Panpot_Control(SND_WORK* set_snd_work)
 {
-	float dpan;
-	float shift_pan;
-	// Line 2196, Address: 0x2dc240, Func Offset: 0
-	// Line 2201, Address: 0x2dc248, Func Offset: 0x8
-	// Line 2202, Address: 0x2dc254, Func Offset: 0x14
-	// Line 2204, Address: 0x2dc268, Func Offset: 0x28
-	// Line 2205, Address: 0x2dc270, Func Offset: 0x30
-	// Line 2206, Address: 0x2dc2a4, Func Offset: 0x64
-	// Line 2205, Address: 0x2dc2a8, Func Offset: 0x68
-	// Line 2206, Address: 0x2dc2b8, Func Offset: 0x78
-	// Line 2207, Address: 0x2dc318, Func Offset: 0xd8
-	// Line 2206, Address: 0x2dc31c, Func Offset: 0xdc
-	// Line 2207, Address: 0x2dc320, Func Offset: 0xe0
-	// Line 2208, Address: 0x2dc324, Func Offset: 0xe4
-	// Line 2210, Address: 0x2dc32c, Func Offset: 0xec
-	// Line 2211, Address: 0x2dc334, Func Offset: 0xf4
-	// Line 2212, Address: 0x2dc368, Func Offset: 0x128
-	// Line 2211, Address: 0x2dc36c, Func Offset: 0x12c
-	// Line 2212, Address: 0x2dc37c, Func Offset: 0x13c
-	// Line 2213, Address: 0x2dc3dc, Func Offset: 0x19c
-	// Line 2212, Address: 0x2dc3e0, Func Offset: 0x1a0
-	// Line 2213, Address: 0x2dc3e4, Func Offset: 0x1a4
-	// Line 2215, Address: 0x2dc3ec, Func Offset: 0x1ac
-	// Line 2219, Address: 0x2dc3fc, Func Offset: 0x1bc
-	// Line 2221, Address: 0x2dc400, Func Offset: 0x1c0
-	// Line 2223, Address: 0x2dc408, Func Offset: 0x1c8
-	// Func End, Address: 0x2dc414, Func Offset: 0x1d4
-	scePrintf("Panpot_Control - UNIMPLEMENTED!\n");
+    float shift_pan;
+    float dpan;
+    
+    if (set_snd_work->pan_timer != 0)
+    {
+        if (set_snd_work->pan_old > set_snd_work->pan)
+        {
+            shift_pan = set_snd_work->pan_old - set_snd_work->pan;
+            
+            shift_pan /= set_snd_work->pan_set_time;
+            
+            dpan = set_snd_work->pan_old - (shift_pan * (set_snd_work->pan_set_time - set_snd_work->pan_timer));
+
+            set_snd_work->pan_timer--;
+        }
+        else
+        {
+            shift_pan = set_snd_work->pan - set_snd_work->pan_old;
+            
+            shift_pan /= set_snd_work->pan_set_time;
+            
+            dpan = set_snd_work->pan_old + (shift_pan * (set_snd_work->pan_set_time - set_snd_work->pan_timer));
+
+            set_snd_work->pan_timer--;
+        }
+
+        return dpan;
+    }
+
+    set_snd_work->pan_timer = 0;
+
+    return set_snd_work->pan;
 }
 
 // 100% matching!
