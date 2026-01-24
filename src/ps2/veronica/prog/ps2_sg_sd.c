@@ -1176,36 +1176,41 @@ SDE_ERR	sdShotSetVol( SDSHOT handle, const Sint8 vol, const Sint32 fade_time)
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2dc720
-unsigned char Volume_Control(SND_WORK* set_snd_work)
+// 97.52% matching (matches on GC)
+static unsigned char Volume_Control(SND_WORK* set_snd_work)
 {
-	float dvol;
+    float dvol;
 	float fade_vol;
-	// Line 2458, Address: 0x2dc720, Func Offset: 0
-	// Line 2463, Address: 0x2dc730, Func Offset: 0x10
-	// Line 2464, Address: 0x2dc73c, Func Offset: 0x1c
-	// Line 2466, Address: 0x2dc750, Func Offset: 0x30
-	// Line 2467, Address: 0x2dc758, Func Offset: 0x38
-	// Line 2468, Address: 0x2dc78c, Func Offset: 0x6c
-	// Line 2467, Address: 0x2dc790, Func Offset: 0x70
-	// Line 2468, Address: 0x2dc7a0, Func Offset: 0x80
-	// Line 2469, Address: 0x2dc800, Func Offset: 0xe0
-	// Line 2468, Address: 0x2dc804, Func Offset: 0xe4
-	// Line 2469, Address: 0x2dc808, Func Offset: 0xe8
-	// Line 2470, Address: 0x2dc80c, Func Offset: 0xec
-	// Line 2472, Address: 0x2dc814, Func Offset: 0xf4
-	// Line 2473, Address: 0x2dc81c, Func Offset: 0xfc
-	// Line 2474, Address: 0x2dc850, Func Offset: 0x130
-	// Line 2473, Address: 0x2dc854, Func Offset: 0x134
-	// Line 2474, Address: 0x2dc864, Func Offset: 0x144
-	// Line 2475, Address: 0x2dc8d0, Func Offset: 0x1b0
-	// Line 2477, Address: 0x2dc8dc, Func Offset: 0x1bc
-	// Line 2481, Address: 0x2dc8ec, Func Offset: 0x1cc
-	// Line 2483, Address: 0x2dc8f0, Func Offset: 0x1d0
-	// Line 2485, Address: 0x2dc8f8, Func Offset: 0x1d8
-	// Func End, Address: 0x2dc90c, Func Offset: 0x1ec
-	scePrintf("Volume_Control - UNIMPLEMENTED!\n");
+
+    if (set_snd_work->vol_timer != 0)
+    {
+        if (set_snd_work->vol_old > set_snd_work->vol)
+        {
+            fade_vol = set_snd_work->vol_old - set_snd_work->vol;
+            
+            fade_vol /= set_snd_work->vol_set_time;
+            
+            dvol = set_snd_work->vol_old - (fade_vol * (set_snd_work->vol_set_time - set_snd_work->vol_timer));
+
+            set_snd_work->vol_timer--;
+        }
+        else
+        {
+            fade_vol = set_snd_work->vol - set_snd_work->vol_old;
+
+            fade_vol /= set_snd_work->vol_set_time;
+            
+            set_snd_work->vol = set_snd_work->vol_old + (fade_vol * (set_snd_work->vol_set_time - set_snd_work->vol_timer));
+
+            set_snd_work->vol_timer--;
+        }
+        
+        return dvol;
+    }
+    
+    set_snd_work->vol_timer = 0;
+    
+    return set_snd_work->vol;
 }
 
 // 100% matching!
