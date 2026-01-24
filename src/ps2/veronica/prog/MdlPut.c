@@ -264,28 +264,49 @@ void bhCalcModel(BH_PWORK* ewP)
     bhCalcTree(ewP->mtx, ewP->mlwP);
 }
 
-// 
-// Start address: 0x12f400
-void bhCalcTree(NJS_MATRIX* basP, ML_WORK* mlwP)
+// 100% matching!
+void bhCalcTree(NJS_MATRIX* basP, ML_WORK* mlwP) 
 {
-	int obj_num;
-	//npobj* objP;
-	//_anon10* owP;
-	// Line 286, Address: 0x12f400, Func Offset: 0
-	// Line 287, Address: 0x12f418, Func Offset: 0x18
-	// Line 288, Address: 0x12f41c, Func Offset: 0x1c
-	// Line 291, Address: 0x12f424, Func Offset: 0x24
-	// Line 293, Address: 0x12f42c, Func Offset: 0x2c
-	// Line 295, Address: 0x12f43c, Func Offset: 0x3c
-	// Line 297, Address: 0x12f448, Func Offset: 0x48
-	// Line 299, Address: 0x12f460, Func Offset: 0x60
-	// Line 300, Address: 0x12f474, Func Offset: 0x74
-	// Line 301, Address: 0x12f488, Func Offset: 0x88
-	// Line 302, Address: 0x12f4a8, Func Offset: 0xa8
-	// Line 304, Address: 0x12f4b8, Func Offset: 0xb8
-	// Line 305, Address: 0x12f4d0, Func Offset: 0xd0
-	// Line 307, Address: 0x12f4e0, Func Offset: 0xe0
-	// Line 309, Address: 0x12f4e8, Func Offset: 0xe8
-	// Func End, Address: 0x12f504, Func Offset: 0x104
-	scePrintf("bhCalcTree - UNIMPLEMENTED!\n");
+    O_WORK* owP;
+    NJS_CNK_OBJECT* objP;
+    int obj_num;
+
+    owP = mlwP->owP;
+    objP = mlwP->objP;
+
+    njPushMatrix(basP);
+
+    if (basP == NULL)
+    {
+        njUnitMatrix(NULL);
+    }
+
+    obj_num = mlwP->obj_num;
+
+    for ( ; obj_num > 0; obj_num--, objP++, owP++)
+    {
+        if (objP->sibling != NULL)
+        {
+            njPushMatrixEx();
+        }
+
+        njTranslate(NULL, objP->pos[0], objP->pos[1], objP->pos[2]);
+        njRotateXYZ(NULL, objP->ang[0], objP->ang[1], objP->ang[2]);
+
+        if (!(owP->flg & 0x1)) 
+        {
+            njGetMatrix(&owP->mtx);
+        }
+        else 
+        {
+            njSetMatrix(NULL, &owP->mtx);
+        }
+
+        if (objP->child == NULL)
+        {
+            njPopMatrixEx();
+        }
+    }
+
+    njPopMatrixEx();
 }
