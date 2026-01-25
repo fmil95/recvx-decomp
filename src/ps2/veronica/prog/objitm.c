@@ -18,55 +18,69 @@ void bhInitObjItm()
     npSetMemory((unsigned char*)sys->itwp, 39936, 0);
 }
 
-/*// 
-// Start address: 0x2830e0
-_anon0* bhSetObject(_anon18* otp, int no, unsigned char* lkp)
+// 100% matching!
+O_WRK* bhSetObject(ETTY_WORK* otp, int no, unsigned char* lkp)
 {
-	_anon0* opp;
-	// Line 73, Address: 0x2830e0, Func Offset: 0
-	// Line 75, Address: 0x2830fc, Func Offset: 0x1c
-	// Line 76, Address: 0x28312c, Func Offset: 0x4c
-	// Line 75, Address: 0x283134, Func Offset: 0x54
-	// Line 76, Address: 0x283138, Func Offset: 0x58
-	// Line 77, Address: 0x283140, Func Offset: 0x60
-	// Line 78, Address: 0x283144, Func Offset: 0x64
-	// Line 77, Address: 0x283148, Func Offset: 0x68
-	// Line 78, Address: 0x28314c, Func Offset: 0x6c
-	// Line 79, Address: 0x283168, Func Offset: 0x88
-	// Line 80, Address: 0x283188, Func Offset: 0xa8
-	// Line 93, Address: 0x28318c, Func Offset: 0xac
-	// Line 103, Address: 0x283190, Func Offset: 0xb0
-	// Line 109, Address: 0x283194, Func Offset: 0xb4
-	// Line 80, Address: 0x283198, Func Offset: 0xb8
-	// Line 81, Address: 0x28319c, Func Offset: 0xbc
-	// Line 111, Address: 0x2831a0, Func Offset: 0xc0
-	// Line 81, Address: 0x2831a4, Func Offset: 0xc4
-	// Line 82, Address: 0x2831a8, Func Offset: 0xc8
-	// Line 83, Address: 0x2831b4, Func Offset: 0xd4
-	// Line 84, Address: 0x2831bc, Func Offset: 0xdc
-	// Line 85, Address: 0x2831c4, Func Offset: 0xe4
-	// Line 86, Address: 0x2831cc, Func Offset: 0xec
-	// Line 87, Address: 0x2831d4, Func Offset: 0xf4
-	// Line 88, Address: 0x2831dc, Func Offset: 0xfc
-	// Line 89, Address: 0x2831e4, Func Offset: 0x104
-	// Line 90, Address: 0x2831ec, Func Offset: 0x10c
-	// Line 91, Address: 0x2831f4, Func Offset: 0x114
-	// Line 92, Address: 0x2831fc, Func Offset: 0x11c
-	// Line 93, Address: 0x283204, Func Offset: 0x124
-	// Line 94, Address: 0x28320c, Func Offset: 0x12c
-	// Line 95, Address: 0x283214, Func Offset: 0x134
-	// Line 96, Address: 0x28321c, Func Offset: 0x13c
-	// Line 97, Address: 0x283224, Func Offset: 0x144
-	// Line 98, Address: 0x28322c, Func Offset: 0x14c
-	// Line 99, Address: 0x283234, Func Offset: 0x154
-	// Line 100, Address: 0x28323c, Func Offset: 0x15c
-	// Line 103, Address: 0x283240, Func Offset: 0x160
-	// Line 108, Address: 0x283244, Func Offset: 0x164
-	// Line 109, Address: 0x283248, Func Offset: 0x168
-	// Line 110, Address: 0x28324c, Func Offset: 0x16c
-	// Line 112, Address: 0x283250, Func Offset: 0x170
-	// Func End, Address: 0x28326c, Func Offset: 0x18c
-}*/
+    O_WRK* opp;
+
+    opp = &sys->obwp[no];
+    
+    npSetMemory((unsigned char*)opp, sizeof(O_WRK), 0);
+    
+    opp->flg = otp->flg;
+    
+    if ((opp->flg & 0x80000000)) 
+    {
+        opp->mdflg |= 0x10;
+    }
+    
+    if ((opp->flg & 0x20000000)) 
+    {
+        opp->mdflg |= 0x40;
+    }
+    
+    opp->id = otp->id;
+    
+    opp->type = (unsigned char)otp->type;
+    
+    opp->param = otp->type >> 8;
+    
+    opp->flr_no = otp->flr_no;
+    
+    opp->mdlver = otp->mdlver;
+    
+    opp->draw_tp = otp->prm1;
+    
+    opp->px = otp->px;
+    opp->py = otp->py;
+    opp->pz = otp->pz;
+    
+    opp->ax = otp->ax;
+    opp->ay = otp->ay;
+    opp->az = otp->az;
+    
+    opp->aspd = otp->aspd;
+    
+    opp->sx = opp->sxb = 1.0f;
+    opp->sy = opp->syb = 1.0f;
+    opp->sz = opp->szb = 1.0f;
+    
+    opp->hide[0] = otp->hide[0];
+    opp->hide[1] = otp->hide[1];
+    opp->hide[2] = otp->hide[2];
+    opp->hide[3] = otp->hide[3];
+    
+    opp->lkwkp = lkp;
+    
+    opp->mtx = (void*)opp->mtxbuf;
+    
+    opp->clp_jno[0] = 0;
+    opp->clp_jno[1] = -1;
+    
+    opp->idx_ct = no;
+    
+    return opp;
+}
 
 // 100% matching!
 O_WRK* bhSetItem(ETTY_WORK* itp, int no, unsigned char* lkp)
