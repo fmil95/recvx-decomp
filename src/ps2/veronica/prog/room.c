@@ -579,31 +579,40 @@ void bhSetRoomMtn(unsigned char* datp)
 	// Line 803, Address: 0x2897c8, Func Offset: 0xe8
 	// Line 804, Address: 0x2897d8, Func Offset: 0xf8
 	// Func End, Address: 0x2897f4, Func Offset: 0x114
-}
-
-// 
-// Start address: 0x289800
-void bhSetObjMdl(unsigned char* datp, _anon17* ep, int eno)
-{
-	int sz;
-	_anon0* epp;
-	// Line 810, Address: 0x289800, Func Offset: 0
-	// Line 814, Address: 0x289810, Func Offset: 0x10
-	// Line 815, Address: 0x28982c, Func Offset: 0x2c
-	// Line 817, Address: 0x28983c, Func Offset: 0x3c
-	// Line 821, Address: 0x28986c, Func Offset: 0x6c
-	// Line 822, Address: 0x289878, Func Offset: 0x78
-	// Line 824, Address: 0x289880, Func Offset: 0x80
-	// Line 825, Address: 0x289884, Func Offset: 0x84
-	// Line 827, Address: 0x289888, Func Offset: 0x88
-	// Line 825, Address: 0x28988c, Func Offset: 0x8c
-	// Line 826, Address: 0x289890, Func Offset: 0x90
-	// Line 827, Address: 0x289898, Func Offset: 0x98
-	// Line 828, Address: 0x2898a0, Func Offset: 0xa0
-	// Line 830, Address: 0x2898ac, Func Offset: 0xac
-	// Line 832, Address: 0x2898b4, Func Offset: 0xb4
-	// Func End, Address: 0x2898c8, Func Offset: 0xc8
 }*/
+
+// 96.70% matching (matches on GC)
+void bhSetObjMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // third parameter is not present on the debugging symbols
+{
+    O_WRK* epp;
+    int sz;
+
+    epp = (O_WRK*)bhSetObject(ep, eno, NULL);
+    
+    if (epp != NULL)
+    {
+        npSetMemory((unsigned char*)epp->mdl, sizeof(O_WRK) / 50, 0);
+        
+        if (((unsigned char*)datp[0] == (unsigned char*)'M') && ((unsigned char*)datp[1] == (unsigned char*)'D') && ((unsigned char*)datp[2] == (unsigned char*)'L')) 
+        {
+            bhMlbBinRealize(datp, epp->mdl);
+        }
+        else 
+        {
+            sz = *(unsigned int*)datp;
+            
+            epp->skp[0] = (int*)&datp[8];
+            
+            datp += sz + 8;
+            
+            bhMlbBinRealize(datp, epp->mdl);
+            
+            npSkinConvert(epp->mdl->objP, epp->skp[0]);
+        }
+        
+        epp->mlwP = epp->mdl;
+    }
+}
 
 // 93.40% matching (matches on GC)
 void bhSetItmMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // third parameter is not present on the debugging symbols
