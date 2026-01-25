@@ -1104,39 +1104,41 @@ SDE_ERR	sdShotSetPitch( SDSHOT handle, const Sint16 pitch, const Sint32 fade_tim
     return SDE_ERR_NO_INIT;
 }
 
-// 
-// Start address: 0x2dc4e0
-short Pitch_Control(SND_WORK* set_snd_work)
+// 98.86% matching
+static short Pitch_Control(SND_WORK* set_snd_work)
 {
-	float dpitch;
-	float pitch_bend;
-	// Line 2318, Address: 0x2dc4e0, Func Offset: 0
-	// Line 2323, Address: 0x2dc4e8, Func Offset: 0x8
-	// Line 2324, Address: 0x2dc4f4, Func Offset: 0x14
-	// Line 2326, Address: 0x2dc508, Func Offset: 0x28
-	// Line 2327, Address: 0x2dc510, Func Offset: 0x30
-	// Line 2328, Address: 0x2dc544, Func Offset: 0x64
-	// Line 2327, Address: 0x2dc548, Func Offset: 0x68
-	// Line 2328, Address: 0x2dc558, Func Offset: 0x78
-	// Line 2329, Address: 0x2dc58c, Func Offset: 0xac
-	// Line 2328, Address: 0x2dc590, Func Offset: 0xb0
-	// Line 2329, Address: 0x2dc59c, Func Offset: 0xbc
-	// Line 2330, Address: 0x2dc5a4, Func Offset: 0xc4
-	// Line 2332, Address: 0x2dc5ac, Func Offset: 0xcc
-	// Line 2333, Address: 0x2dc5b4, Func Offset: 0xd4
-	// Line 2334, Address: 0x2dc5e8, Func Offset: 0x108
-	// Line 2333, Address: 0x2dc5ec, Func Offset: 0x10c
-	// Line 2334, Address: 0x2dc5fc, Func Offset: 0x11c
-	// Line 2335, Address: 0x2dc630, Func Offset: 0x150
-	// Line 2334, Address: 0x2dc634, Func Offset: 0x154
-	// Line 2335, Address: 0x2dc640, Func Offset: 0x160
-	// Line 2334, Address: 0x2dc648, Func Offset: 0x168
-	// Line 2337, Address: 0x2dc64c, Func Offset: 0x16c
-	// Line 2341, Address: 0x2dc65c, Func Offset: 0x17c
-	// Line 2343, Address: 0x2dc660, Func Offset: 0x180
-	// Line 2345, Address: 0x2dc668, Func Offset: 0x188
-	// Func End, Address: 0x2dc674, Func Offset: 0x194
-	scePrintf("Pitch_Control - UNIMPLEMENTED!\n");
+    float pitch_bend;
+    float dpitch;
+
+    if (set_snd_work->pitch_timer != 0)
+    {
+        if (set_snd_work->pitch_old > set_snd_work->pitch)
+        {
+            pitch_bend = set_snd_work->pitch_old - set_snd_work->pitch;
+  
+            pitch_bend /= set_snd_work->pitch_set_time;
+
+            dpitch = set_snd_work->pitch_old - (pitch_bend * (set_snd_work->pitch_set_time - set_snd_work->pitch_timer));
+
+            set_snd_work->pitch_timer--;
+        }
+        else
+        {
+            pitch_bend = set_snd_work->pitch_old - set_snd_work->pitch;
+            
+            pitch_bend /= set_snd_work->pitch_set_time;
+            
+            dpitch = set_snd_work->pitch_old + (pitch_bend * (set_snd_work->pitch_set_time - set_snd_work->pitch_timer));
+
+            set_snd_work->pitch_timer--;
+        }
+
+        return dpitch;
+    }
+
+    set_snd_work->pitch_timer = 0;
+
+    return set_snd_work->pitch;
 }
 
 // 100% matching!
