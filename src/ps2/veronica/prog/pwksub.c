@@ -71,29 +71,34 @@ void bhCalcLinkModel(BH_PWORK* pp)
 	// Line 271, Address: 0x14e2f0, Func Offset: 0x250
 	// Line 272, Address: 0x14e300, Func Offset: 0x260
 	// Func End, Address: 0x14e318, Func Offset: 0x278
-}
+}*/
 
-// 
-// Start address: 0x14e320
+// 100% matching!
 void bhSetFloorNum(BH_PWORK* pp)
 {
-	int fnow;
-	int fno;
-	int i;
-	// Line 285, Address: 0x14e320, Func Offset: 0
-	// Line 283, Address: 0x14e324, Func Offset: 0x4
-	// Line 285, Address: 0x14e328, Func Offset: 0x8
-	// Line 284, Address: 0x14e32c, Func Offset: 0xc
-	// Line 285, Address: 0x14e330, Func Offset: 0x10
-	// Line 286, Address: 0x14e334, Func Offset: 0x14
-	// Line 288, Address: 0x14e388, Func Offset: 0x68
-	// Line 289, Address: 0x14e38c, Func Offset: 0x6c
-	// Line 290, Address: 0x14e390, Func Offset: 0x70
-	// Line 291, Address: 0x14e3a0, Func Offset: 0x80
-	// Line 292, Address: 0x14e3a8, Func Offset: 0x88
-	// Line 293, Address: 0x14e3b8, Func Offset: 0x98
-	// Func End, Address: 0x14e3c0, Func Offset: 0xa0
-}*/
+    int i;    
+    int fno; 
+    int fnow; 
+    
+    fnow = pp->flr_no;
+    
+    fno = 2;
+
+    for (i = 0; i < 31; i++)
+    {
+        if (((rom->grand[i]) && (pp->py >= rom->grand[i])) || ((i == 2) && (pp->py >= rom->grand[i]))) 
+        {
+            fno = i;
+        }
+    }
+
+    pp->flr_no = fno - 2;
+    
+    if (pp->flr_no != fnow)
+    {
+        pp->flr_nob = fnow;
+    }
+}
 
 // 
 // Start address: 0x14e3c0
