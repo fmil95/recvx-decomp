@@ -106,22 +106,24 @@ BH_PWORK* bhSetEnemy(EGG_WORK* etp, int param) // second parameter is not presen
 	scePrintf("bhSetEnemy - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x174a30
+// 100% matching!
 void bhCheckEneWorkNum()
 {
-	int i;
-	BH_PWORK* epp;
-	// Line 443, Address: 0x174a30, Func Offset: 0
-	// Line 444, Address: 0x174a38, Func Offset: 0x8
-	// Line 445, Address: 0x174a40, Func Offset: 0x10
-	// Line 443, Address: 0x174a44, Func Offset: 0x14
-	// Line 446, Address: 0x174a50, Func Offset: 0x20
-	// Line 447, Address: 0x174a60, Func Offset: 0x30
-	// Line 449, Address: 0x174a78, Func Offset: 0x48
-	// Line 450, Address: 0x174a88, Func Offset: 0x58
-	// Func End, Address: 0x174a90, Func Offset: 0x60
-}*/
+    BH_PWORK* epp;
+    int i;
+
+    sys->ewk_n = 0;
+    
+    epp = ene;
+
+    for (i = 0; i < 128; i++, epp++)
+    {
+        if ((epp->flg & 0x1))
+        {
+            sys->ewk_n = i + 1;
+        }
+    }
+}
 
 // 
 // Start address: 0x174a90
