@@ -66,13 +66,13 @@ _anon0* bhSetObject(_anon18* otp, int no, unsigned char* lkp)
 	// Line 110, Address: 0x28324c, Func Offset: 0x16c
 	// Line 112, Address: 0x283250, Func Offset: 0x170
 	// Func End, Address: 0x28326c, Func Offset: 0x18c
-}
+}*/
 
 // 
 // Start address: 0x283270
-_anon0* bhSetItem(_anon18* itp, int no, unsigned char* lkp)
+O_WRK* bhSetItem(ETTY_WORK* itp, int no, unsigned char* lkp)
 {
-	_anon0* opp;
+	O_WRK* opp;
 	// Line 123, Address: 0x283270, Func Offset: 0
 	// Line 125, Address: 0x28328c, Func Offset: 0x1c
 	// Line 126, Address: 0x2832bc, Func Offset: 0x4c
@@ -116,7 +116,8 @@ _anon0* bhSetItem(_anon18* itp, int no, unsigned char* lkp)
 	// Line 160, Address: 0x2833dc, Func Offset: 0x16c
 	// Line 162, Address: 0x2833e0, Func Offset: 0x170
 	// Func End, Address: 0x2833fc, Func Offset: 0x18c
-}*/
+	scePrintf("bhSetItem - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x283400

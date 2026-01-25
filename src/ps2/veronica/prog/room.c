@@ -1,8 +1,10 @@
 #include "room.h"
+#include "binfunc.h"
 #include "camera.h"
 #include "effect.h"
 #include "eneset.h"
 #include "njplus.h"
+#include "objitm.h"
 #include "system.h"
 #include "main.h"
 
@@ -601,23 +603,26 @@ void bhSetObjMdl(unsigned char* datp, _anon17* ep, int eno)
 	// Line 830, Address: 0x2898ac, Func Offset: 0xac
 	// Line 832, Address: 0x2898b4, Func Offset: 0xb4
 	// Func End, Address: 0x2898c8, Func Offset: 0xc8
-}
+}*/
 
-// 
-// Start address: 0x2898d0
-void bhSetItmMdl(unsigned char* datp, _anon17* ep, int eno)
+// 93.40% matching (matches on GC)
+void bhSetItmMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // third parameter is not present on the debugging symbols
 {
-	_anon0* epp;
-	// Line 838, Address: 0x2898d0, Func Offset: 0
-	// Line 841, Address: 0x2898e0, Func Offset: 0x10
-	// Line 842, Address: 0x2898fc, Func Offset: 0x2c
-	// Line 843, Address: 0x28990c, Func Offset: 0x3c
-	// Line 844, Address: 0x289918, Func Offset: 0x48
-	// Line 846, Address: 0x289920, Func Offset: 0x50
-	// Func End, Address: 0x289934, Func Offset: 0x64
+    O_WRK* epp;
+
+    epp = (O_WRK*)bhSetItem(ep, eno, NULL);
+    
+    if (epp != NULL) 
+    {
+        npSetMemory((unsigned char*)epp->mdl, sizeof(O_WRK) / 50, 0);
+        
+        bhMlbBinRealize(datp, epp->mdl);
+        
+        epp->mlwP = epp->mdl;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x289940
 void bhSetEffectTable()
 {
