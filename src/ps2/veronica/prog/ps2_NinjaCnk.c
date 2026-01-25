@@ -1722,7 +1722,7 @@ int _CVV(float* v0)
             
         vmaddw.xyzw  vf5, vf27, vf0w
         
-        .word        0x4BC529FF  
+        vclipw.xyz   vf5, vf5w  
         vnop
         vnop
         vnop
