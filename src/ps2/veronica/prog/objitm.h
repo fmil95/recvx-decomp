@@ -4,8 +4,8 @@
 #include "types.h"
 
 void bhInitObjItm();
-/*_anon0* bhSetObject(_anon18* otp, int no, unsigned char* lkp);
-_anon0* bhSetItem(_anon18* itp, int no, unsigned char* lkp);*/
+O_WRK* bhSetObject(ETTY_WORK* otp, int no, unsigned char* lkp);
+O_WRK* bhSetItem(ETTY_WORK* itp, int no, unsigned char* lkp);
 void bhControlObjItm();
 void bhDrawGeneralPurposeWater();
 void bhDrawObjItm();

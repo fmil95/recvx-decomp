@@ -587,7 +587,7 @@ void bhSetObjMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // thir
     O_WRK* epp;
     int sz;
 
-    epp = (O_WRK*)bhSetObject(ep, eno, NULL);
+    epp = bhSetObject(ep, eno, NULL);
     
     if (epp != NULL)
     {
@@ -619,7 +619,7 @@ void bhSetItmMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // thir
 {
     O_WRK* epp;
 
-    epp = (O_WRK*)bhSetItem(ep, eno, NULL);
+    epp = bhSetItem(ep, eno, NULL);
     
     if (epp != NULL) 
     {
