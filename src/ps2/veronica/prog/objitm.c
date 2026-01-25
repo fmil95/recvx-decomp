@@ -68,55 +68,68 @@ _anon0* bhSetObject(_anon18* otp, int no, unsigned char* lkp)
 	// Func End, Address: 0x28326c, Func Offset: 0x18c
 }*/
 
-// 
-// Start address: 0x283270
+// 100% matching!
 O_WRK* bhSetItem(ETTY_WORK* itp, int no, unsigned char* lkp)
 {
-	O_WRK* opp;
-	// Line 123, Address: 0x283270, Func Offset: 0
-	// Line 125, Address: 0x28328c, Func Offset: 0x1c
-	// Line 126, Address: 0x2832bc, Func Offset: 0x4c
-	// Line 125, Address: 0x2832c4, Func Offset: 0x54
-	// Line 126, Address: 0x2832c8, Func Offset: 0x58
-	// Line 127, Address: 0x2832d0, Func Offset: 0x60
-	// Line 128, Address: 0x2832d4, Func Offset: 0x64
-	// Line 127, Address: 0x2832d8, Func Offset: 0x68
-	// Line 128, Address: 0x2832dc, Func Offset: 0x6c
-	// Line 129, Address: 0x2832f8, Func Offset: 0x88
-	// Line 130, Address: 0x283318, Func Offset: 0xa8
-	// Line 143, Address: 0x28331c, Func Offset: 0xac
-	// Line 153, Address: 0x283320, Func Offset: 0xb0
-	// Line 159, Address: 0x283324, Func Offset: 0xb4
-	// Line 130, Address: 0x283328, Func Offset: 0xb8
-	// Line 131, Address: 0x28332c, Func Offset: 0xbc
-	// Line 161, Address: 0x283330, Func Offset: 0xc0
-	// Line 131, Address: 0x283334, Func Offset: 0xc4
-	// Line 132, Address: 0x283338, Func Offset: 0xc8
-	// Line 133, Address: 0x283344, Func Offset: 0xd4
-	// Line 134, Address: 0x28334c, Func Offset: 0xdc
-	// Line 135, Address: 0x283354, Func Offset: 0xe4
-	// Line 136, Address: 0x28335c, Func Offset: 0xec
-	// Line 137, Address: 0x283364, Func Offset: 0xf4
-	// Line 138, Address: 0x28336c, Func Offset: 0xfc
-	// Line 139, Address: 0x283374, Func Offset: 0x104
-	// Line 140, Address: 0x28337c, Func Offset: 0x10c
-	// Line 141, Address: 0x283384, Func Offset: 0x114
-	// Line 142, Address: 0x28338c, Func Offset: 0x11c
-	// Line 143, Address: 0x283394, Func Offset: 0x124
-	// Line 144, Address: 0x28339c, Func Offset: 0x12c
-	// Line 145, Address: 0x2833a4, Func Offset: 0x134
-	// Line 146, Address: 0x2833ac, Func Offset: 0x13c
-	// Line 147, Address: 0x2833b4, Func Offset: 0x144
-	// Line 148, Address: 0x2833bc, Func Offset: 0x14c
-	// Line 149, Address: 0x2833c4, Func Offset: 0x154
-	// Line 150, Address: 0x2833cc, Func Offset: 0x15c
-	// Line 153, Address: 0x2833d0, Func Offset: 0x160
-	// Line 158, Address: 0x2833d4, Func Offset: 0x164
-	// Line 159, Address: 0x2833d8, Func Offset: 0x168
-	// Line 160, Address: 0x2833dc, Func Offset: 0x16c
-	// Line 162, Address: 0x2833e0, Func Offset: 0x170
-	// Func End, Address: 0x2833fc, Func Offset: 0x18c
-	scePrintf("bhSetItem - UNIMPLEMENTED!\n");
+    O_WRK* opp;
+
+    opp = &sys->itwp[no];
+    
+    npSetMemory((unsigned char*)opp, sizeof(O_WRK), 0);
+    
+    opp->flg = itp->flg;
+    
+    if ((opp->flg & 0x80000000)) 
+    {
+        opp->mdflg |= 0x10;
+    }
+    
+    if ((opp->flg & 0x20000000)) 
+    {
+        opp->mdflg |= 0x40;
+    }
+    
+    opp->id = itp->id;
+    
+    opp->type = (unsigned char)itp->type;
+    
+    opp->param = itp->type >> 8;
+    
+    opp->flr_no = itp->flr_no;
+    
+    opp->mdlver = itp->mdlver;
+    
+    opp->draw_tp = itp->prm1;
+    
+    opp->px = itp->px;
+    opp->py = itp->py;
+    opp->pz = itp->pz;
+    
+    opp->ax = itp->ax;
+    opp->ay = itp->ay;
+    opp->az = itp->az;
+    
+    opp->aspd = itp->aspd;
+    
+    opp->sx = opp->sxb = 1.0f;
+    opp->sy = opp->syb = 1.0f;
+    opp->sz = opp->szb = 1.0f;
+    
+    opp->hide[0] = itp->hide[0];
+    opp->hide[1] = itp->hide[1];
+    opp->hide[2] = itp->hide[2];
+    opp->hide[3] = itp->hide[3];
+    
+    opp->lkwkp = lkp;
+    
+    opp->mtx = (void*)opp->mtxbuf;
+    
+    opp->clp_jno[0] = 0;
+    opp->clp_jno[1] = -1;
+    
+    opp->idx_ct = no;
+    
+    return opp;
 }
 
 // 
