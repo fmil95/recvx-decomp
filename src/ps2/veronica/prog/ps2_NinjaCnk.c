@@ -179,6 +179,9 @@ CNK_LIGHTING NaCnkLighting[4] __attribute__((aligned(64))) = { { &NaCnkLightEs, 
 														       { &NaCnkLightSs, 1, &NaCnkDiffuseMaterial, &NaCnkSpeculaMaterial, &NaCnkAmbientSs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 														       { NaCnkLightSm, 6, &NaCnkDiffuseMaterial, &NaCnkDefaultOne, &NaCnkAmbientSm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 /*unsigned int njCnkConvTest; - unused*/
+extern void VU0_MINMAX() __attribute__((section(".vutext")));
+extern void VU0_CALCPOINT_END() __attribute__((section(".vutext")));
+extern void VU0_CALCPOINT_INIT() __attribute__((section(".vutext")));
 
 // 100% matching!
 void	njInit3D( NJS_VERTEX_BUF *vbuf, Int vn )
@@ -1271,128 +1274,198 @@ CHUNK_HEAD* njCnkCvVn(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)fpCnk;
 }
 
-// 
-// Start address: 0x2d1980
+// 98.11% matching
 CHUNK_HEAD* njCnkCvVnPs2(CHUNK_HEAD* pCnk)
 {
-	unsigned int tmp;
-	CNK_LIGHT* lp;
-	float v[4][11];
-	float fog;
-	float* fpCnk;
-	unsigned int ulIndex;
-	VU1_STRIP_BUF* pBuffer;
-	unsigned int mask[5];
-	// Line 2857, Address: 0x2d1980, Func Offset: 0
-	// Line 2872, Address: 0x2d1998, Func Offset: 0x18
-	// Line 2897, Address: 0x2d19a0, Func Offset: 0x20
-	// Line 2898, Address: 0x2d19a8, Func Offset: 0x28
-	// Line 2872, Address: 0x2d19ac, Func Offset: 0x2c
-	// Line 2934, Address: 0x2d19b0, Func Offset: 0x30
-	// Line 2874, Address: 0x2d19b4, Func Offset: 0x34
-	// Line 2875, Address: 0x2d19bc, Func Offset: 0x3c
-	// Line 2876, Address: 0x2d19c4, Func Offset: 0x44
-	// Line 2877, Address: 0x2d19cc, Func Offset: 0x4c
-	// Line 2879, Address: 0x2d19d4, Func Offset: 0x54
-	// Line 2880, Address: 0x2d19dc, Func Offset: 0x5c
-	// Line 2881, Address: 0x2d19e4, Func Offset: 0x64
-	// Line 2882, Address: 0x2d19ec, Func Offset: 0x6c
-	// Line 2884, Address: 0x2d19f4, Func Offset: 0x74
-	// Line 2885, Address: 0x2d19fc, Func Offset: 0x7c
-	// Line 2886, Address: 0x2d1a04, Func Offset: 0x84
-	// Line 2887, Address: 0x2d1a0c, Func Offset: 0x8c
-	// Line 2897, Address: 0x2d1a14, Func Offset: 0x94
-	// Line 2889, Address: 0x2d1a18, Func Offset: 0x98
-	// Line 2897, Address: 0x2d1a2c, Func Offset: 0xac
-	// Line 2889, Address: 0x2d1a34, Func Offset: 0xb4
-	// Line 2897, Address: 0x2d1a6c, Func Offset: 0xec
-	// Line 2889, Address: 0x2d1a70, Func Offset: 0xf0
-	// Line 2897, Address: 0x2d1a7c, Func Offset: 0xfc
-	// Line 2898, Address: 0x2d1a80, Func Offset: 0x100
-	// Line 2900, Address: 0x2d1a84, Func Offset: 0x104
-	// Line 2901, Address: 0x2d1a8c, Func Offset: 0x10c
-	// Line 2902, Address: 0x2d1a94, Func Offset: 0x114
-	// Line 2903, Address: 0x2d1a9c, Func Offset: 0x11c
-	// Line 2905, Address: 0x2d1aa4, Func Offset: 0x124
-	// Line 2906, Address: 0x2d1aac, Func Offset: 0x12c
-	// Line 2907, Address: 0x2d1ab4, Func Offset: 0x134
-	// Line 2908, Address: 0x2d1abc, Func Offset: 0x13c
-	// Line 2910, Address: 0x2d1ac4, Func Offset: 0x144
-	// Line 2911, Address: 0x2d1acc, Func Offset: 0x14c
-	// Line 2912, Address: 0x2d1ad4, Func Offset: 0x154
-	// Line 2913, Address: 0x2d1adc, Func Offset: 0x15c
-	// Line 2915, Address: 0x2d1ae4, Func Offset: 0x164
-	// Line 2916, Address: 0x2d1aec, Func Offset: 0x16c
-	// Line 2917, Address: 0x2d1af4, Func Offset: 0x174
-	// Line 2918, Address: 0x2d1afc, Func Offset: 0x17c
-	// Line 2920, Address: 0x2d1b04, Func Offset: 0x184
-	// Line 2921, Address: 0x2d1b0c, Func Offset: 0x18c
-	// Line 2922, Address: 0x2d1b14, Func Offset: 0x194
-	// Line 2923, Address: 0x2d1b1c, Func Offset: 0x19c
-	// Line 2925, Address: 0x2d1b24, Func Offset: 0x1a4
-	// Line 2926, Address: 0x2d1b2c, Func Offset: 0x1ac
-	// Line 2927, Address: 0x2d1b34, Func Offset: 0x1b4
-	// Line 2928, Address: 0x2d1b3c, Func Offset: 0x1bc
-	// Line 2930, Address: 0x2d1b44, Func Offset: 0x1c4
-	// Line 2931, Address: 0x2d1b4c, Func Offset: 0x1cc
-	// Line 2932, Address: 0x2d1b54, Func Offset: 0x1d4
-	// Line 2933, Address: 0x2d1b5c, Func Offset: 0x1dc
-	// Line 2936, Address: 0x2d1b64, Func Offset: 0x1e4
-	// Line 2937, Address: 0x2d1b68, Func Offset: 0x1e8
-	// Line 2938, Address: 0x2d1b6c, Func Offset: 0x1ec
-	// Line 2939, Address: 0x2d1b70, Func Offset: 0x1f0
-	// Line 2940, Address: 0x2d1b74, Func Offset: 0x1f4
-	// Line 2941, Address: 0x2d1b78, Func Offset: 0x1f8
-	// Line 2942, Address: 0x2d1b7c, Func Offset: 0x1fc
-	// Line 2943, Address: 0x2d1b80, Func Offset: 0x200
-	// Line 2944, Address: 0x2d1b84, Func Offset: 0x204
-	// Line 2945, Address: 0x2d1b88, Func Offset: 0x208
-	// Line 2946, Address: 0x2d1b8c, Func Offset: 0x20c
-	// Line 2955, Address: 0x2d1b90, Func Offset: 0x210
-	// Line 2957, Address: 0x2d1b98, Func Offset: 0x218
-	// Line 2958, Address: 0x2d1b9c, Func Offset: 0x21c
-	// Line 2959, Address: 0x2d1ba8, Func Offset: 0x228
-	// Line 2960, Address: 0x2d1bac, Func Offset: 0x22c
-	// Line 2961, Address: 0x2d1bb0, Func Offset: 0x230
-	// Line 2967, Address: 0x2d1bb4, Func Offset: 0x234
-	// Line 2958, Address: 0x2d1bb8, Func Offset: 0x238
-	// Line 2967, Address: 0x2d1bbc, Func Offset: 0x23c
-	// Line 2972, Address: 0x2d1bc8, Func Offset: 0x248
-	// Line 2984, Address: 0x2d1bd0, Func Offset: 0x250
-	// Line 2986, Address: 0x2d1bd4, Func Offset: 0x254
-	// Line 2996, Address: 0x2d1bdc, Func Offset: 0x25c
-	// Line 2997, Address: 0x2d1be0, Func Offset: 0x260
-	// Line 2998, Address: 0x2d1be4, Func Offset: 0x264
-	// Line 2999, Address: 0x2d1be8, Func Offset: 0x268
-	// Line 3000, Address: 0x2d1bec, Func Offset: 0x26c
-	// Line 3003, Address: 0x2d1bf0, Func Offset: 0x270
-	// Line 3004, Address: 0x2d1bf4, Func Offset: 0x274
-	// Line 3012, Address: 0x2d1bf8, Func Offset: 0x278
-	// Line 3013, Address: 0x2d1bfc, Func Offset: 0x27c
-	// Line 3016, Address: 0x2d1c00, Func Offset: 0x280
-	// Line 3029, Address: 0x2d1c08, Func Offset: 0x288
-	// Line 3030, Address: 0x2d1c0c, Func Offset: 0x28c
-	// Line 3032, Address: 0x2d1c10, Func Offset: 0x290
-	// Line 3040, Address: 0x2d1c18, Func Offset: 0x298
-	// Line 3042, Address: 0x2d1c20, Func Offset: 0x2a0
-	// Line 3040, Address: 0x2d1c28, Func Offset: 0x2a8
-	// Line 3044, Address: 0x2d1c2c, Func Offset: 0x2ac
-	// Line 3045, Address: 0x2d1c30, Func Offset: 0x2b0
-	// Line 3046, Address: 0x2d1c34, Func Offset: 0x2b4
-	// Line 3047, Address: 0x2d1c38, Func Offset: 0x2b8
-	// Line 3048, Address: 0x2d1c3c, Func Offset: 0x2bc
-	// Line 3049, Address: 0x2d1c40, Func Offset: 0x2c0
-	// Line 3052, Address: 0x2d1c44, Func Offset: 0x2c4
-	// Line 3053, Address: 0x2d1c48, Func Offset: 0x2c8
-	// Line 3055, Address: 0x2d1c4c, Func Offset: 0x2cc
-	// Line 3056, Address: 0x2d1c50, Func Offset: 0x2d0
-	// Line 3063, Address: 0x2d1c54, Func Offset: 0x2d4
-	// Line 3065, Address: 0x2d1c68, Func Offset: 0x2e8
-	// Line 3069, Address: 0x2d1c74, Func Offset: 0x2f4
-	// Line 3077, Address: 0x2d1c78, Func Offset: 0x2f8
-	// Line 3078, Address: 0x2d1c7c, Func Offset: 0x2fc
-	// Func End, Address: 0x2d1c98, Func Offset: 0x318
-	scePrintf("njCnkCvVnPs2 - UNIMPLEMENTED!\n");
+    VU1_STRIP_BUF* pBuffer;                                    
+    unsigned int ulIndex;                                      
+    float* fpCnk;                                               
+    float fog;                                                  
+    float v[11][4];                                              
+    CNK_LIGHT* lp;                                               
+    unsigned int tmp;                                            
+    static unsigned int mask[5] = { 0, 0x88, 0xCC, 0xEE, 0xFF }; 
+
+    fog = 0;
+
+    lp = pNaCnkCrntLighting->pLightTop;
+    
+    v[0][0] = lp->fCx;
+    v[0][1] = lp[1].fCx;
+    v[0][2] = lp[2].fCx;
+    v[0][3] = lp[3].fCx;
+    
+    v[1][0] = lp->fCy;
+    v[1][1] = lp[1].fCy;
+    v[1][2] = lp[2].fCy;
+    v[1][3] = lp[3].fCy;
+    
+    v[2][0] = lp->fCz;
+    v[2][1] = lp[1].fCz;
+    v[2][2] = lp[2].fCz;
+    v[2][3] = lp[3].fCz;
+
+    tmp = lp[3].ulMode | ((lp[2].ulMode * 2) | ((lp[1].ulMode * 4) | ((lp->ulMode * 8) | ((lp[3].ulState * 16) | ((lp[2].ulState * 32) | ((lp->ulState * 128) | (lp[1].ulState * 64)))))));
+    
+    tmp &= mask[pNaCnkCrntLighting->lLightMax];
+    
+    *(int*)&v[3][0] = tmp;
+    
+    v[4][0] = lp->fNearRR;
+    v[4][1] = lp[1].fNearRR;
+    v[4][2] = lp[2].fNearRR;
+    v[4][3] = lp[3].fNearRR;
+    
+    v[5][0] = lp->fFarRR;
+    v[5][1] = lp[1].fFarRR;
+    v[5][2] = lp[2].fFarRR;
+    v[5][3] = lp[3].fFarRR;
+    
+    v[6][0] = lp->fI;
+    v[6][1] = lp[1].fI;
+    v[6][2] = lp[2].fI;
+    v[6][3] = lp[3].fI;
+    
+    v[7][0] = lp->fR;
+    v[7][1] = lp->fG;
+    v[7][2] = lp->fB;
+    v[7][3] = lp->fI;
+    
+    v[8][0] = lp[1].fR;
+    v[8][1] = lp[1].fG;
+    v[8][2] = lp[1].fB;
+    v[8][3] = lp[1].fI;
+    
+    v[9][0] = lp[2].fR;
+    v[9][1] = lp[2].fG;
+    v[9][2] = lp[2].fB;
+    v[9][3] = lp[2].fI;
+    
+    v[10][0] = lp[3].fR;
+    v[10][1] = lp[3].fG;
+    v[10][2] = lp[3].fB;
+    v[10][3] = lp[3].fI;
+    
+    asm volatile 
+    ("
+    .set noreorder
+        move v1, %0
+        
+        lqc2 vf4,     0(v1) 
+        lqc2 vf5,  0x10(v1) 
+        lqc2 vf6,  0x20(v1) 
+        lqc2 vf7,  0x30(v1) 
+        lqc2 vf8,  0x40(v1) 
+        lqc2 vf9,  0x50(v1) 
+        lqc2 vf10, 0x60(v1) 
+        lqc2 vf11, 0x70(v1) 
+        lqc2 vf12, 0x80(v1) 
+        lqc2 vf13, 0x90(v1) 
+        lqc2 vf14, 0xA0(v1) 
+    .set reorder
+    " : : "r"(v) : "$v1", "memory" 
+    ); 
+        
+    pCnk = (CHUNK_HEAD*)((int)pCnk | 0x30000000);
+    
+    pCnk++;
+    
+    ulIndex = pCnk->usSize;
+    
+    fpCnk = (float*)&pCnk[1];
+    
+    fpCnk += 14;
+    
+    pBuffer = &pNaCnkVerBufTop[*(unsigned short*)&pCnk[0]];
+    
+    njSetMatrixCN(pNaMatMatrixStuckPtr);
+    
+    asm volatile 
+    ("
+    .set noreorder
+        vcallms  VU0_MINMAX 
+    
+        lqc2     vf4,    0(%2)
+        lqc2     vf5, 0x10(%2)
+        
+        vcallms  VU0_CALCPOINT_END 
+    
+        qmfc2.i  t0, vf7 
+        qmfc2.i  t1, vf18 
+        qmfc2.i  t2, vf6 
+        
+        sq       t0, 0x10(%1)
+        sq       t1, 0x20(%1)
+        sq       t2, 0x30(%1)
+        
+        qmfc2.ni t3, vf11 
+        
+        mtc1     t3, %0  
+    .set reorder
+    " : "=f"(fog) : "r"(pBuffer), "r"(fpCnk) : "$f20", "$s1", "$s2", "memory" 
+    ); 
+        
+    ulIndex--;
+    
+    pBuffer++;
+    
+    fpCnk += 8;
+    
+    while (ulIndex != 0)
+    {
+        asm volatile 
+        ("
+        .set noreorder
+            lqc2    vf4,    0(%0)
+            lqc2    vf5, 0x10(%0)
+            
+            vcallms VU0_CALCPOINT_END
+            nop
+        .set reorder
+        " : : "r"(fpCnk) : "$s2", "memory" 
+        ); 
+            
+        pBuffer[-1].fFog = njCalcFogPowerEx(fog);
+        
+        asm volatile 
+        ("
+        .set noreorder
+            qmfc2.i  t0, vf7 
+            qmfc2.i  t1, vf18 
+            qmfc2.i  t2, vf6
+         
+            sq       t0, 0x10(%2)
+            sq       t1, 0x20(%2)
+            sq       t2, 0x30(%2)
+        
+            qmfc2.ni t3, vf11 
+        
+            mtc1     t3, %0
+        
+            cfc2.ni  t0, vi11 
+        
+            sw       t0, 0(%1)
+        .set reorder
+        " : "=f"(fog) : "r"(&Vu0ClipFlag), "r"(pBuffer) : "$f20", "$v0", "$s1", "memory" 
+        ); 
+
+        ulIndex--;
+        
+        pBuffer++;
+        
+        fpCnk += 8; 
+    }
+    
+    pBuffer[-1].fFog = njCalcFogPowerEx(fog);
+    
+    asm volatile 
+    ("
+    .set noreorder 
+        vcallms VU0_CALCPOINT_INIT 
+    .set reorder 
+    ");
+    
+    return (CHUNK_HEAD*)fpCnk;
 }
 
 // 100% matching! 
