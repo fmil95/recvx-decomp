@@ -1,6 +1,7 @@
 #include "ps2_NinjaCnk.h"
 #include "ps2_dummy.h"
 #include "ps2_NaFog.h"
+#include "ps2_NaMath.h"
 #include "ps2_NaMatrix.h"
 #include "ps2_NaSystem.h"
 #include "ps2_NaTextureFunction.h"
@@ -1113,152 +1114,161 @@ CHUNK_HEAD* njCnkCoSt(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)((char*)&pCnk[1] + (pCnk->usSize * 2));
 }
 
-// 
-// Start address: 0x2d15a0
+// 100% matching! 
 CHUNK_HEAD* njCnkCvVn(CHUNK_HEAD* pCnk)
 {
-	float fTRZ;
-	float fTRY;
-	float fTRX;
-	float fR22;
-	float fR21;
-	float fR20;
-	float fR12;
-	float fR11;
-	float fR10;
-	float fR02;
-	float fR01;
-	float fR00;
-	float fNSZ;
-	float fNSY;
-	float fNSX;
-	float fZ;
-	float fY;
-	float fX;
-	float fL;
-	float fVSY;
-	float fVSX;
-	float fVSZ;
-	float fB;
-	float fG;
-	float fR;
-	float fI;
-	int lLightCnt;
-	CNK_LIGHT* pLightPtr;
-	float* fpCnk;
-	unsigned int ulIndex;
-	VU1_STRIP_BUF* pBuffer;
-	// Line 2641, Address: 0x2d15a0, Func Offset: 0
-	// Line 2681, Address: 0x2d15ec, Func Offset: 0x4c
-	// Line 2682, Address: 0x2d15f8, Func Offset: 0x58
-	// Line 2683, Address: 0x2d15fc, Func Offset: 0x5c
-	// Line 2685, Address: 0x2d1604, Func Offset: 0x64
-	// Line 2681, Address: 0x2d160c, Func Offset: 0x6c
-	// Line 2685, Address: 0x2d1614, Func Offset: 0x74
-	// Line 2686, Address: 0x2d161c, Func Offset: 0x7c
-	// Line 2687, Address: 0x2d1624, Func Offset: 0x84
-	// Line 2688, Address: 0x2d162c, Func Offset: 0x8c
-	// Line 2689, Address: 0x2d1634, Func Offset: 0x94
-	// Line 2690, Address: 0x2d163c, Func Offset: 0x9c
-	// Line 2691, Address: 0x2d1644, Func Offset: 0xa4
-	// Line 2692, Address: 0x2d164c, Func Offset: 0xac
-	// Line 2693, Address: 0x2d1654, Func Offset: 0xb4
-	// Line 2694, Address: 0x2d165c, Func Offset: 0xbc
-	// Line 2695, Address: 0x2d1664, Func Offset: 0xc4
-	// Line 2696, Address: 0x2d166c, Func Offset: 0xcc
-	// Line 2698, Address: 0x2d1670, Func Offset: 0xd0
-	// Line 2701, Address: 0x2d1678, Func Offset: 0xd8
-	// Line 2704, Address: 0x2d167c, Func Offset: 0xdc
-	// Line 2702, Address: 0x2d1680, Func Offset: 0xe0
-	// Line 2703, Address: 0x2d1684, Func Offset: 0xe4
-	// Line 2704, Address: 0x2d1688, Func Offset: 0xe8
-	// Line 2709, Address: 0x2d16ac, Func Offset: 0x10c
-	// Line 2705, Address: 0x2d16b4, Func Offset: 0x114
-	// Line 2706, Address: 0x2d16c4, Func Offset: 0x124
-	// Line 2705, Address: 0x2d16d4, Func Offset: 0x134
-	// Line 2706, Address: 0x2d16e0, Func Offset: 0x140
-	// Line 2705, Address: 0x2d16e8, Func Offset: 0x148
-	// Line 2706, Address: 0x2d16f0, Func Offset: 0x150
-	// Line 2710, Address: 0x2d16f8, Func Offset: 0x158
-	// Line 2706, Address: 0x2d16fc, Func Offset: 0x15c
-	// Line 2714, Address: 0x2d1700, Func Offset: 0x160
-	// Line 2717, Address: 0x2d170c, Func Offset: 0x16c
-	// Line 2733, Address: 0x2d1714, Func Offset: 0x174
-	// Line 2717, Address: 0x2d171c, Func Offset: 0x17c
-	// Line 2714, Address: 0x2d1720, Func Offset: 0x180
-	// Line 2718, Address: 0x2d1724, Func Offset: 0x184
-	// Line 2719, Address: 0x2d172c, Func Offset: 0x18c
-	// Line 2718, Address: 0x2d1730, Func Offset: 0x190
-	// Line 2719, Address: 0x2d1734, Func Offset: 0x194
-	// Line 2733, Address: 0x2d173c, Func Offset: 0x19c
-	// Line 2720, Address: 0x2d1740, Func Offset: 0x1a0
-	// Line 2733, Address: 0x2d1744, Func Offset: 0x1a4
-	// Line 2719, Address: 0x2d1748, Func Offset: 0x1a8
-	// Line 2720, Address: 0x2d1754, Func Offset: 0x1b4
-	// Line 2734, Address: 0x2d1760, Func Offset: 0x1c0
-	// Line 2720, Address: 0x2d1764, Func Offset: 0x1c4
-	// Line 2721, Address: 0x2d1768, Func Offset: 0x1c8
-	// Line 2724, Address: 0x2d176c, Func Offset: 0x1cc
-	// Line 2727, Address: 0x2d1770, Func Offset: 0x1d0
-	// Line 2725, Address: 0x2d1774, Func Offset: 0x1d4
-	// Line 2726, Address: 0x2d1778, Func Offset: 0x1d8
-	// Line 2727, Address: 0x2d177c, Func Offset: 0x1dc
-	// Line 2728, Address: 0x2d1794, Func Offset: 0x1f4
-	// Line 2729, Address: 0x2d179c, Func Offset: 0x1fc
-	// Line 2728, Address: 0x2d17a4, Func Offset: 0x204
-	// Line 2729, Address: 0x2d17b0, Func Offset: 0x210
-	// Line 2728, Address: 0x2d17b8, Func Offset: 0x218
-	// Line 2729, Address: 0x2d17c0, Func Offset: 0x220
-	// Line 2730, Address: 0x2d17cc, Func Offset: 0x22c
-	// Line 2734, Address: 0x2d17d0, Func Offset: 0x230
-	// Line 2735, Address: 0x2d17d4, Func Offset: 0x234
-	// Line 2734, Address: 0x2d17d8, Func Offset: 0x238
-	// Line 2735, Address: 0x2d17dc, Func Offset: 0x23c
-	// Line 2737, Address: 0x2d17e8, Func Offset: 0x248
-	// Line 2740, Address: 0x2d17f4, Func Offset: 0x254
-	// Line 2743, Address: 0x2d1800, Func Offset: 0x260
-	// Line 2744, Address: 0x2d180c, Func Offset: 0x26c
-	// Line 2743, Address: 0x2d1810, Func Offset: 0x270
-	// Line 2744, Address: 0x2d1820, Func Offset: 0x280
-	// Line 2745, Address: 0x2d1830, Func Offset: 0x290
-	// Line 2746, Address: 0x2d1834, Func Offset: 0x294
-	// Line 2751, Address: 0x2d183c, Func Offset: 0x29c
-	// Line 2752, Address: 0x2d1840, Func Offset: 0x2a0
-	// Line 2750, Address: 0x2d1844, Func Offset: 0x2a4
-	// Line 2754, Address: 0x2d184c, Func Offset: 0x2ac
-	// Line 2751, Address: 0x2d1850, Func Offset: 0x2b0
-	// Line 2750, Address: 0x2d1854, Func Offset: 0x2b4
-	// Line 2752, Address: 0x2d1858, Func Offset: 0x2b8
-	// Line 2753, Address: 0x2d185c, Func Offset: 0x2bc
-	// Line 2754, Address: 0x2d186c, Func Offset: 0x2cc
-	// Line 2755, Address: 0x2d187c, Func Offset: 0x2dc
-	// Line 2756, Address: 0x2d1884, Func Offset: 0x2e4
-	// Line 2757, Address: 0x2d1888, Func Offset: 0x2e8
-	// Line 2758, Address: 0x2d188c, Func Offset: 0x2ec
-	// Line 2759, Address: 0x2d1890, Func Offset: 0x2f0
-	// Line 2760, Address: 0x2d189c, Func Offset: 0x2fc
-	// Line 2759, Address: 0x2d18a0, Func Offset: 0x300
-	// Line 2760, Address: 0x2d18a4, Func Offset: 0x304
-	// Line 2762, Address: 0x2d18b4, Func Offset: 0x314
-	// Line 2763, Address: 0x2d18c8, Func Offset: 0x328
-	// Line 2767, Address: 0x2d18d8, Func Offset: 0x338
-	// Line 2768, Address: 0x2d18dc, Func Offset: 0x33c
-	// Line 2769, Address: 0x2d18e0, Func Offset: 0x340
-	// Line 2767, Address: 0x2d18e4, Func Offset: 0x344
-	// Line 2768, Address: 0x2d18e8, Func Offset: 0x348
-	// Line 2769, Address: 0x2d18ec, Func Offset: 0x34c
-	// Line 2767, Address: 0x2d18f0, Func Offset: 0x350
-	// Line 2768, Address: 0x2d18f4, Func Offset: 0x354
-	// Line 2769, Address: 0x2d18f8, Func Offset: 0x358
-	// Line 2770, Address: 0x2d18fc, Func Offset: 0x35c
-	// Line 2771, Address: 0x2d1910, Func Offset: 0x370
-	// Line 2772, Address: 0x2d1914, Func Offset: 0x374
-	// Line 2773, Address: 0x2d1918, Func Offset: 0x378
-	// Line 2774, Address: 0x2d191c, Func Offset: 0x37c
-	// Line 2776, Address: 0x2d1928, Func Offset: 0x388
-	// Line 2777, Address: 0x2d192c, Func Offset: 0x38c
-	// Func End, Address: 0x2d197c, Func Offset: 0x3dc
-	scePrintf("njCnkCvVn - UNIMPLEMENTED!\n");
+    // these variables are arranged in an order different from the debugging symbols
+    VU1_STRIP_BUF* pBuffer;
+    float* fpCnk;         
+    unsigned int ulIndex;  
+    CNK_LIGHT* pLightPtr;  
+    int lLightCnt;          
+    float fI;             
+    float fR;              
+    float fG;             
+    float fB;             
+    float fVSZ;         
+    float fVSX;            
+    float fVSY;          
+    float fL;               
+    float fX;             
+    float fY;              
+    float fZ;              
+    float fNSX;           
+    float fNSY;            
+    float fNSZ;            
+    float fR00;            
+    float fR01;          
+    float fR02;          
+    float fR10;            
+    float fR11;             
+    float fR12;            
+    float fR20;           
+    float fR21;            
+    float fR22;             
+    float fTRX;             
+    float fTRY;             
+    float fTRZ;             
+    float f3;            // not from the debugging symbols
+    float f25;           // not from the debugging symbols
+    float f26, f27, f28; // not from the debugging symbols
+    float f29, f30, f31; // not from the debugging symbols
+
+    pBuffer = &pNaCnkVerBufTop[*(unsigned short*)&pCnk[1]];
+    
+    fpCnk = &((float*)&pCnk[1])[1];
+    
+    fR00 = pNaMatMatrixStuckPtr[0][0];
+    fR01 = pNaMatMatrixStuckPtr[0][1];
+    fR02 = pNaMatMatrixStuckPtr[0][2];
+    
+    fR10 = pNaMatMatrixStuckPtr[0][4];
+    fR11 = pNaMatMatrixStuckPtr[0][5];
+    fR12 = pNaMatMatrixStuckPtr[0][6];
+    
+    fR20 = pNaMatMatrixStuckPtr[0][8];
+    fR21 = pNaMatMatrixStuckPtr[0][9];
+    fR22 = pNaMatMatrixStuckPtr[0][10];
+    
+    fTRX = pNaMatMatrixStuckPtr[0][12];
+    fTRY = pNaMatMatrixStuckPtr[0][13];
+    fTRZ = pNaMatMatrixStuckPtr[0][14];
+    
+    for (ulIndex = ((unsigned short*)&pCnk[1])[1]; ulIndex != 0; ulIndex--, pBuffer++)
+    {
+        fX = *fpCnk++;
+        fY = *fpCnk++;
+        fZ = *fpCnk++;
+        
+        fVSX = fTRX + (fR00 * fX) + (fR10 * fY) + (fR20 * fZ);
+        fVSY = fTRY + (fR01 * fX) + (fR11 * fY) + (fR21 * fZ);
+        fVSZ = fTRZ + (fR02 * fX) + (fR12 * fY) + (fR22 * fZ);
+
+        pBuffer->fVx = fVSX;
+        pBuffer->fVy = fVSY;
+        pBuffer->fVz = fVSZ;
+
+        pBuffer->fFog = njCalcFogPower(fVSZ);
+
+        fI = 1.0f / fVSZ;
+        
+        f3 = _nj_screen_.dist * fI;
+        
+        pBuffer->fSx = fNaViwAspectW * (fVSX * f3);
+        pBuffer->fSy = fNaViwAspectH * (fVSY * f3);
+        pBuffer->fIz = fI;
+
+        fB = 0;
+        fG = 0;
+        fR = 0;
+
+        fNSX = *fpCnk++;
+        fNSY = *fpCnk++;
+        fNSZ = *fpCnk++;
+
+        f26 = (fR00 * fNSX) + (fR10 * fNSY) + (fR20 * fNSZ); 
+        f27 = (fR01 * fNSX) + (fR11 * fNSY) + (fR21 * fNSZ);
+        f28 = (fR02 * fNSX) + (fR12 * fNSY) + (fR22 * fNSZ);
+
+        pBuffer->fNz = f28;
+
+        pLightPtr = pNaCnkCrntLighting->pLightTop;
+        
+        for (lLightCnt = pNaCnkCrntLighting->lLightMax; lLightCnt != 0; lLightCnt--, pLightPtr++) 
+        {
+            if (pLightPtr->ulState != 0)
+            {
+                if (pLightPtr->ulMode == 0) 
+                {
+                    f3 = (f26 * pLightPtr->fCx) + (f27 * pLightPtr->fCy) + (f28 * pLightPtr->fCz);
+                    
+                    if (f3 > 0) 
+                    {
+                        f3 *= pLightPtr->fI;
+                        goto label;
+                    }
+                }
+                else 
+                {
+                    f29 = pLightPtr->fCx - fVSX;
+                    f30 = pLightPtr->fCy - fVSY;
+                    f31 = pLightPtr->fCz - fVSZ;
+                    
+                    f25 = (f29 * f29) + (f30 * f30) + (f31 * f31);
+                    
+                    if (pLightPtr->fFarRR > f25) 
+                    {
+                        fL = njInvertSqrt(f25);
+                        
+                        f29 *= fL;
+                        f30 *= fL;
+                        f31 *= fL; 
+                        
+                        f3 = (f26 * f29) + (f27 * f30) + (f28 * f31);
+                        
+                        if (f3 > 0) 
+                        {
+                            if (pLightPtr->fNearRR < f25) 
+                            {
+                                f3 *= pLightPtr->fNearRR / f25;
+                            }
+
+                            label:
+                            fR += f3 * pLightPtr->fR;
+                            fG += f3 * pLightPtr->fG;
+                            fB += f3 * pLightPtr->fB;
+                        }
+                    }
+                }
+            }
+        }
+        
+        pBuffer->fIr = fR;
+        pBuffer->fIg = fG;
+        pBuffer->fIb = fB;
+    } 
+    
+    return (CHUNK_HEAD*)fpCnk;
 }
 
 // 
