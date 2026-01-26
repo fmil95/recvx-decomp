@@ -1,6 +1,7 @@
 #include "room.h"
 #include "binfunc.h"
 #include "camera.h"
+#include "dread.h"
 #include "effect.h"
 #include "eneset.h"
 #include "njplus.h"
@@ -458,62 +459,95 @@ void bhFinishRoom()
 	scePrintf("bhFinishRoom - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x289330
-void bhSetEneMdl(unsigned char* datp, _anon17* ep, int mdlno, int eno)
+// 100% matching!
+void bhSetEneMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) 
 {
-	unsigned char* emdlp;
-	int mdlver;
-	int dt;
-	BH_PWORK* epp;
-	// Line 676, Address: 0x289330, Func Offset: 0
-	// Line 682, Address: 0x289358, Func Offset: 0x28
-	// Line 684, Address: 0x289360, Func Offset: 0x30
-	// Line 686, Address: 0x289374, Func Offset: 0x44
-	// Line 688, Address: 0x28937c, Func Offset: 0x4c
-	// Line 689, Address: 0x289384, Func Offset: 0x54
-	// Line 690, Address: 0x28938c, Func Offset: 0x5c
-	// Line 691, Address: 0x289394, Func Offset: 0x64
-	// Line 693, Address: 0x289398, Func Offset: 0x68
-	// Line 696, Address: 0x2893c4, Func Offset: 0x94
-	// Line 698, Address: 0x2893cc, Func Offset: 0x9c
-	// Line 699, Address: 0x2893dc, Func Offset: 0xac
-	// Line 701, Address: 0x2893e4, Func Offset: 0xb4
-	// Line 702, Address: 0x2893f4, Func Offset: 0xc4
-	// Line 704, Address: 0x289400, Func Offset: 0xd0
-	// Line 705, Address: 0x289418, Func Offset: 0xe8
-	// Line 707, Address: 0x289424, Func Offset: 0xf4
-	// Line 708, Address: 0x289428, Func Offset: 0xf8
-	// Line 709, Address: 0x289440, Func Offset: 0x110
-	// Line 710, Address: 0x289458, Func Offset: 0x128
-	// Line 712, Address: 0x289468, Func Offset: 0x138
-	// Line 710, Address: 0x289474, Func Offset: 0x144
-	// Line 712, Address: 0x289478, Func Offset: 0x148
-	// Line 713, Address: 0x289494, Func Offset: 0x164
-	// Line 714, Address: 0x289498, Func Offset: 0x168
-	// Line 713, Address: 0x28949c, Func Offset: 0x16c
-	// Line 714, Address: 0x2894a4, Func Offset: 0x174
-	// Line 715, Address: 0x2894c4, Func Offset: 0x194
-	// Line 716, Address: 0x2894cc, Func Offset: 0x19c
-	// Line 717, Address: 0x2894d4, Func Offset: 0x1a4
-	// Line 716, Address: 0x2894d8, Func Offset: 0x1a8
-	// Line 717, Address: 0x2894e0, Func Offset: 0x1b0
-	// Line 719, Address: 0x289500, Func Offset: 0x1d0
-	// Line 720, Address: 0x289508, Func Offset: 0x1d8
-	// Line 721, Address: 0x289514, Func Offset: 0x1e4
-	// Line 722, Address: 0x28951c, Func Offset: 0x1ec
-	// Line 724, Address: 0x289544, Func Offset: 0x214
-	// Line 726, Address: 0x289548, Func Offset: 0x218
-	// Line 727, Address: 0x289554, Func Offset: 0x224
-	// Line 731, Address: 0x289560, Func Offset: 0x230
-	// Line 732, Address: 0x289568, Func Offset: 0x238
-	// Line 734, Address: 0x28956c, Func Offset: 0x23c
-	// Line 735, Address: 0x289580, Func Offset: 0x250
-	// Line 736, Address: 0x289588, Func Offset: 0x258
-	// Func End, Address: 0x2895b0, Func Offset: 0x280
+    BH_PWORK* epp;       
+    int dt;               
+    int mdlver;           
+    unsigned char* emdlp; 
+
+    emdlp = datp;
+    
+    epp = bhSetEnemy((EGG_WORK*)ep, eno);
+    
+    epp->mlwP = (ML_WORK*)&epp->mdl;
+    
+    mdlver = -1;
+    
+    epp->mdl_n = 0;
+    
+    while ((dt = *(unsigned int*)emdlp) != -1) 
+    {
+        if (dt != 0)
+        {
+            emdlp += 4;
+            
+            switch (*(unsigned int*)emdlp) 
+            {                     
+            case 0x4B53414D:
+                epp->mskp = emdlp;
+                break;
+            case SKIN_MAGIC:
+                epp->skp[epp->mdl_n] = (int*)&emdlp[4];
+                break;
+            default:
+                npSetMemory((unsigned char*)epp->mlwP, sizeof(ML_WORK), 0);
+                
+                bhMlbBinRealize(emdlp, epp->mlwP);
+                
+                if (epp->skp[epp->mdl_n] != NULL) 
+                {
+                    npSkinConvert(epp->mlwP->objP, epp->skp[epp->mdl_n]);
+                }
+                
+                epp->mbp[epp->mdl_n] = epp->mlwP->objP;
+                epp->txp[epp->mdl_n] = epp->mlwP->texP;
+                
+                if (epp->mlwP->texP != NULL) 
+                {
+                    mdlver++;
+                    
+                    if (sys->et_lp[ep->id][mdlno][mdlver] == 0) 
+                    {
+                        epp->mlwP->flg |= 0x200;
+                        
+                        sys->et_lp[ep->id][mdlno][mdlver] = epp->mlwP->texP;
+                    } 
+                    else
+                    {
+                        epp->mlwP->flg &= ~0x200;
+                        
+                        epp->mlwP->texP = sys->et_lp[ep->id][mdlno][mdlver];
+                    }
+                } 
+                else
+                {
+                    epp->mlwP->flg &= ~0x200;
+                    
+                    if (mdlver >= 0) 
+                    {
+                        epp->mlwP->texP = sys->et_lp[ep->id][mdlno][mdlver];
+                    }
+                }
+                
+                epp->mdl_n++;
+                epp->mlwP++;
+                break;
+            }
+            
+            emdlp = &emdlp[dt];
+        }
+        else 
+        {
+            emdlp += 4;
+        }
+    }
+    
+    epp->mlwP = epp->mdl;
 }
 
-// 
+/*// 
 // Start address: 0x2895b0
 void bhSetEneMtn(unsigned char* datp, BH_PWORK* ep, int id)
 {
