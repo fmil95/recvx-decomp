@@ -4,7 +4,7 @@
 #include "types.h"
 
 void bhInitEnemy();
-BH_PWORK* bhSetEnemy(EGG_WORK* etp, int param);
+BH_PWORK* bhSetEnemy(EGG_WORK* etp, int unused);
 void bhCheckEneWorkNum();
 void bhControlEnemy();
 void bhEne00(BH_PWORK* ep);

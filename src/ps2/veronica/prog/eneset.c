@@ -1,5 +1,6 @@
 #include "eneset.h"
 #include "njplus.h"
+#include "pwksub.h"
 #include "main.h"
 
 /*void(*bhJumpEnemy)()[100];
@@ -15,95 +16,159 @@ void bhInitEnemy()
     npSetMemory((unsigned char*)ene, 180224, 0);
 }
 
-// 
-// Start address: 0x174720
-BH_PWORK* bhSetEnemy(EGG_WORK* etp, int param) // second parameter is not present on the debugging symbols
+// 100% matching!
+BH_PWORK* bhSetEnemy(EGG_WORK* etp, int unused) // second parameter is not present on the debugging symbols
 {
-	int i;
-	BH_PWORK* epp;
-	// Line 323, Address: 0x174720, Func Offset: 0
-	// Line 326, Address: 0x174734, Func Offset: 0x14
-	// Line 327, Address: 0x174740, Func Offset: 0x20
-	// Line 328, Address: 0x174744, Func Offset: 0x24
-	// Line 329, Address: 0x174754, Func Offset: 0x34
-	// Line 330, Address: 0x174764, Func Offset: 0x44
-	// Line 331, Address: 0x17476c, Func Offset: 0x4c
-	// Line 332, Address: 0x174774, Func Offset: 0x54
-	// Line 334, Address: 0x174784, Func Offset: 0x64
-	// Line 337, Address: 0x174788, Func Offset: 0x68
-	// Line 334, Address: 0x17478c, Func Offset: 0x6c
-	// Line 337, Address: 0x174794, Func Offset: 0x74
-	// Line 347, Address: 0x17485c, Func Offset: 0x13c
-	// Line 346, Address: 0x174860, Func Offset: 0x140
-	// Line 347, Address: 0x174864, Func Offset: 0x144
-	// Line 348, Address: 0x174868, Func Offset: 0x148
-	// Line 349, Address: 0x174870, Func Offset: 0x150
-	// Line 350, Address: 0x174878, Func Offset: 0x158
-	// Line 351, Address: 0x174880, Func Offset: 0x160
-	// Line 352, Address: 0x174888, Func Offset: 0x168
-	// Line 353, Address: 0x174890, Func Offset: 0x170
-	// Line 354, Address: 0x174894, Func Offset: 0x174
-	// Line 364, Address: 0x17489c, Func Offset: 0x17c
-	// Line 363, Address: 0x1748a0, Func Offset: 0x180
-	// Line 364, Address: 0x1748a4, Func Offset: 0x184
-	// Line 365, Address: 0x1748a8, Func Offset: 0x188
-	// Line 366, Address: 0x1748b0, Func Offset: 0x190
-	// Line 367, Address: 0x1748b8, Func Offset: 0x198
-	// Line 368, Address: 0x1748c0, Func Offset: 0x1a0
-	// Line 369, Address: 0x1748c8, Func Offset: 0x1a8
-	// Line 370, Address: 0x1748d0, Func Offset: 0x1b0
-	// Line 373, Address: 0x1748d8, Func Offset: 0x1b8
-	// Line 381, Address: 0x1748e4, Func Offset: 0x1c4
-	// Line 383, Address: 0x1748f4, Func Offset: 0x1d4
-	// Line 385, Address: 0x174900, Func Offset: 0x1e0
-	// Line 403, Address: 0x174904, Func Offset: 0x1e4
-	// Line 412, Address: 0x174908, Func Offset: 0x1e8
-	// Line 421, Address: 0x17490c, Func Offset: 0x1ec
-	// Line 425, Address: 0x174910, Func Offset: 0x1f0
-	// Line 385, Address: 0x174914, Func Offset: 0x1f4
-	// Line 387, Address: 0x174918, Func Offset: 0x1f8
-	// Line 426, Address: 0x17491c, Func Offset: 0x1fc
-	// Line 427, Address: 0x174920, Func Offset: 0x200
-	// Line 387, Address: 0x174924, Func Offset: 0x204
-	// Line 388, Address: 0x174928, Func Offset: 0x208
-	// Line 389, Address: 0x174930, Func Offset: 0x210
-	// Line 390, Address: 0x174938, Func Offset: 0x218
-	// Line 391, Address: 0x174940, Func Offset: 0x220
-	// Line 392, Address: 0x174948, Func Offset: 0x228
-	// Line 393, Address: 0x17494c, Func Offset: 0x22c
-	// Line 394, Address: 0x174954, Func Offset: 0x234
-	// Line 395, Address: 0x174958, Func Offset: 0x238
-	// Line 396, Address: 0x174964, Func Offset: 0x244
-	// Line 397, Address: 0x174968, Func Offset: 0x248
-	// Line 398, Address: 0x174978, Func Offset: 0x258
-	// Line 399, Address: 0x17497c, Func Offset: 0x25c
-	// Line 400, Address: 0x174980, Func Offset: 0x260
-	// Line 401, Address: 0x174984, Func Offset: 0x264
-	// Line 402, Address: 0x174988, Func Offset: 0x268
-	// Line 403, Address: 0x17498c, Func Offset: 0x26c
-	// Line 404, Address: 0x174994, Func Offset: 0x274
-	// Line 405, Address: 0x17499c, Func Offset: 0x27c
-	// Line 407, Address: 0x1749a4, Func Offset: 0x284
-	// Line 408, Address: 0x1749a8, Func Offset: 0x288
-	// Line 409, Address: 0x1749ac, Func Offset: 0x28c
-	// Line 412, Address: 0x1749b0, Func Offset: 0x290
-	// Line 418, Address: 0x1749b4, Func Offset: 0x294
-	// Line 419, Address: 0x1749c0, Func Offset: 0x2a0
-	// Line 420, Address: 0x1749cc, Func Offset: 0x2ac
-	// Line 421, Address: 0x1749d0, Func Offset: 0x2b0
-	// Line 422, Address: 0x1749d4, Func Offset: 0x2b4
-	// Line 423, Address: 0x1749d8, Func Offset: 0x2b8
-	// Line 424, Address: 0x1749dc, Func Offset: 0x2bc
-	// Line 425, Address: 0x1749e0, Func Offset: 0x2c0
-	// Line 427, Address: 0x1749e4, Func Offset: 0x2c4
-	// Line 428, Address: 0x1749ec, Func Offset: 0x2cc
-	// Line 429, Address: 0x1749f4, Func Offset: 0x2d4
-	// Line 431, Address: 0x1749fc, Func Offset: 0x2dc
-	// Line 432, Address: 0x174a0c, Func Offset: 0x2ec
-	// Line 433, Address: 0x174a14, Func Offset: 0x2f4
-	// Line 434, Address: 0x174a18, Func Offset: 0x2f8
-	// Func End, Address: 0x174a30, Func Offset: 0x310
-	scePrintf("bhSetEnemy - UNIMPLEMENTED!\n");
+    BH_PWORK* epp;
+    int i;
+    
+    epp = ene;
+    
+    for (i = 0; ; )
+    {
+        if (!(epp->flg & 0x1)) 
+        {
+            npSetMemory((unsigned char*)epp, sizeof(BH_PWORK), 0);
+            
+            epp->flg = etp->flg;
+            
+            epp->id = etp->id;
+            
+            if (epp->id > 40) 
+            {
+                epp->mdflg |= 0x20;
+                
+                switch (epp->id) 
+                {                      
+                case 41:
+                case 42:
+                case 43:
+                case 44:
+                case 45:
+                case 46:
+                case 47:
+                case 48:
+                    epp->clp_jno[0] = 0;
+                    epp->clp_jno[1] = 3;
+                    epp->clp_jno[2] = 5;
+                    epp->clp_jno[3] = 8;
+                    epp->clp_jno[4] = 12;
+                    epp->clp_jno[5] = 15;
+                    epp->clp_jno[6] = 19;
+                    epp->clp_jno[7] = -1;
+                    break;
+                case 91:
+                case 92:
+                case 93:
+                case 94:
+                case 95:
+                case 96:
+                case 97:
+                case 98:
+                    epp->clp_jno[0] = 0;
+                    epp->clp_jno[1] = 3;
+                    epp->clp_jno[2] = 5;
+                    epp->clp_jno[3] = 17;
+                    epp->clp_jno[4] = 21;
+                    epp->clp_jno[5] = 24;
+                    epp->clp_jno[6] = 28;
+                    epp->clp_jno[7] = -1;
+                    break;
+                }
+                
+                epp->flg |= 0x8000;
+            }
+            
+            if (epp->id > 90) 
+            {
+                epp->mdflg |= 0x100;
+            }
+            
+            epp->type = etp->type;
+            
+            epp->flr_no = etp->flr_no;
+            
+            epp->mdlver = etp->mdlver;
+            
+            epp->px = etp->px;
+            epp->py = etp->py;
+            epp->pz = etp->pz;
+            
+            epp->ax = 0;
+            epp->ay = etp->ay;
+            epp->az = 0;
+            
+            epp->aoz = 0;
+            epp->aoy = 0;
+            epp->aox = 0;
+            
+            *(int*)&epp->mode0 = 0;
+            
+            epp->ct3 = 0;
+            epp->ct2 = 0;
+            epp->ct1 = 0;
+            epp->ct0 = 0;
+            
+            epp->lkwkp = NULL;
+            
+            epp->exp0 = NULL;
+            epp->exp1 = NULL;
+            epp->exp2 = NULL;
+            
+            epp->idx_ct = i;
+            
+            epp->sxb = 1.0f;
+            epp->sx = 1.0f;
+            
+            epp->syb = 1.0f;
+            epp->sy = 1.0f;
+            
+            epp->szb = 1.0f;
+            epp->sz = 1.0f;
+            
+            epp->obj_a = NULL;
+            epp->obj_b = NULL;
+            
+            epp->shp_ct = 0;
+            
+            epp->mtx = (float(*)[16])epp->mtxbuf;
+            
+            epp->frm_no = 0;
+            epp->mtn_no = 0;
+            epp->mdl_no = 0;
+            
+            epp->hokan_count = 0;
+            epp->hokan_rate = 0;
+            
+            epp->frm_mode = 0;
+            
+            epp->mtn_no = 0;
+            epp->mtn_add = 65536;
+            epp->mtn_md = 0;
+            epp->mtn_tp = NULL;
+            
+            epp->at_flg = 0;
+            
+            epp->clp_jno[0] = 1;
+            epp->clp_jno[1] = -1;
+            
+            bhSetFloorNum(epp);
+            
+            bhCheckEneWorkNum();
+            
+            return epp;
+        }
+        
+        i++;
+        epp++;
+        
+        if (i >= 128) 
+        {
+            bhCheckEneWorkNum();
+            
+            return NULL;
+        }
+    }
 }
 
 // 100% matching!
