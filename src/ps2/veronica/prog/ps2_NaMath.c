@@ -228,21 +228,32 @@ Float	njSqrt(Float n)
 	scePrintf("njSqrt - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d7f20
+// 100% matching! 
 Float	njInvertSqrt(Float n)
 {
-	float ret;
-	// Line 466, Address: 0x2d7f20, Func Offset: 0
-	// Line 467, Address: 0x2d7f28, Func Offset: 0x8
-	// Line 468, Address: 0x2d7f2c, Func Offset: 0xc
-	// Line 469, Address: 0x2d7f30, Func Offset: 0x10
-	// Line 470, Address: 0x2d7f34, Func Offset: 0x14
-	// Line 471, Address: 0x2d7f38, Func Offset: 0x18
-	// Line 472, Address: 0x2d7f3c, Func Offset: 0x1c
-	// Line 476, Address: 0x2d7f40, Func Offset: 0x20
-	// Func End, Address: 0x2d7f48, Func Offset: 0x28
-	scePrintf("njInvertSqrt - UNIMPLEMENTED!\n");
+    float ret;
+
+    ret = 0;
+    
+    asm volatile
+    ("
+        mfc1    t0, f12
+
+        qmtc2   t0, vf8
+    
+        vrsqrt  Q, vf0w, vf8x
+
+        vwaitq 
+
+        vaddq.x vf8, vf0, Q
+        
+        qmfc2   v0, vf8
+    
+        mtc1    v0, %0
+    " : "=f"(ret) : : 
+    );
+
+    return ret;
 }
 
 // 
