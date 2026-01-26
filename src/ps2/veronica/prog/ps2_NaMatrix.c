@@ -367,17 +367,20 @@ void	njSetMatrix(NJS_MATRIX *md, NJS_MATRIX *ms)
     }
 }
 
-/*// 
-// Start address: 0x2d6a60
-void njSetMatrixCN(float pMat[16])
+// 100% matching!
+void njSetMatrixCN(NJS_MATRIX* pMat)
 {
-	// Line 1030, Address: 0x2d6a60, Func Offset: 0
-	// Line 1031, Address: 0x2d6a64, Func Offset: 0x4
-	// Line 1032, Address: 0x2d6a68, Func Offset: 0x8
-	// Line 1033, Address: 0x2d6a6c, Func Offset: 0xc
-	// Line 1038, Address: 0x2d6a70, Func Offset: 0x10
-	// Func End, Address: 0x2d6a78, Func Offset: 0x18
-}*/
+    asm volatile
+    ("
+    .set noreorder
+        lqc2 vf28,  0x0(%0) 
+        lqc2 vf29, 0x10(%0) 
+        lqc2 vf30, 0x20(%0) 
+        lqc2 vf31, 0x30(%0) 
+    .set reorder 
+    " : : "r"(pMat) : 
+    );
+}
 
 // 100% matching!
 void	njGetMatrix(NJS_MATRIX *m)
