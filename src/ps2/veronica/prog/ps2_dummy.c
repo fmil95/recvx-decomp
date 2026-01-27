@@ -2026,23 +2026,23 @@ void Ps2Vu1ProgSend(unsigned int prog_no)
     sceDmaSync((sceDmaChan*)0x10009000, 0, 0);
 }
 
-/*// 
+// 
 // Start address: 0x2ceb50
 void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num)
 {
 	float max;
-	float max;
-	float max;
+	//float max;
+	//float max;
 	float fz[4][3];
 	int j;
-	<unknown fundamental type (0xa510)>* p128;
+	//<unknown fundamental type (0xa510)>* p128;
 	unsigned long* pp;
 	float zbuff_ab_vec[4];
 	float zsum;
 	unsigned int st_clip_flag;
 	unsigned int clut_flag;
 	unsigned int clip_flag;
-	_anon0* timp;
+	//_anon0* timp;
 	unsigned long* p;
 	float zclip_ab_vec[4];
 	float near_far_vec[4];
@@ -2209,9 +2209,10 @@ void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num)
 	// Line 4290, Address: 0x2cf170, Func Offset: 0x620
 	// Line 4293, Address: 0x2cf178, Func Offset: 0x628
 	// Func End, Address: 0x2cf190, Func Offset: 0x640
+	scePrintf("Ps2AddPrim3DExI - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2cf190
 void PS2_Render_Tex_Sub()
 {

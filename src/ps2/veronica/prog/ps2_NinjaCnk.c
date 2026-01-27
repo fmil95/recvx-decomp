@@ -1714,78 +1714,112 @@ CHUNK_HEAD* njCnkCoP3(CHUNK_HEAD* pCnk)
     return (CHUNK_HEAD*)uspCnk;
 }
 
-// 
-// Start address: 0x2d22e0
+// 100% matching! 
 CHUNK_HEAD* njCnkCs(CHUNK_HEAD* pCnk)
-{
-	void(*pVu1Func)(unsigned long, VU1_STRIP_BUF*, unsigned short, unsigned short);
-	unsigned short usColorCalc;
-	unsigned short usClip;
-	unsigned short usMax;
-	unsigned short usCnt;
-	unsigned short usStrip;
-	unsigned short usNext;
-	VU1_STRIP_BUF* pS;
-	VU1_STRIP_BUF* pV;
-	unsigned short* uspCnk;
-	unsigned long ulType;
-	// Line 3589, Address: 0x2d22e0, Func Offset: 0
-	// Line 3591, Address: 0x2d2300, Func Offset: 0x20
-	// Line 3605, Address: 0x2d2308, Func Offset: 0x28
-	// Line 3608, Address: 0x2d2348, Func Offset: 0x68
-	// Line 3611, Address: 0x2d2360, Func Offset: 0x80
-	// Line 3613, Address: 0x2d2370, Func Offset: 0x90
-	// Line 3614, Address: 0x2d237c, Func Offset: 0x9c
-	// Line 3616, Address: 0x2d2388, Func Offset: 0xa8
-	// Line 3619, Address: 0x2d2390, Func Offset: 0xb0
-	// Line 3620, Address: 0x2d239c, Func Offset: 0xbc
-	// Line 3621, Address: 0x2d23ac, Func Offset: 0xcc
-	// Line 3622, Address: 0x2d23b8, Func Offset: 0xd8
-	// Line 3627, Address: 0x2d23d4, Func Offset: 0xf4
-	// Line 3631, Address: 0x2d23e4, Func Offset: 0x104
-	// Line 3632, Address: 0x2d23e8, Func Offset: 0x108
-	// Line 3627, Address: 0x2d23ec, Func Offset: 0x10c
-	// Line 3633, Address: 0x2d2400, Func Offset: 0x120
-	// Line 3634, Address: 0x2d2404, Func Offset: 0x124
-	// Line 3632, Address: 0x2d2408, Func Offset: 0x128
-	// Line 3636, Address: 0x2d240c, Func Offset: 0x12c
-	// Line 3641, Address: 0x2d2420, Func Offset: 0x140
-	// Line 3638, Address: 0x2d2424, Func Offset: 0x144
-	// Line 3641, Address: 0x2d2428, Func Offset: 0x148
-	// Line 3642, Address: 0x2d2430, Func Offset: 0x150
-	// Line 3645, Address: 0x2d2450, Func Offset: 0x170
-	// Line 3642, Address: 0x2d245c, Func Offset: 0x17c
-	// Line 3659, Address: 0x2d2460, Func Offset: 0x180
-	// Line 3645, Address: 0x2d2464, Func Offset: 0x184
-	// Line 3659, Address: 0x2d2468, Func Offset: 0x188
-	// Line 3645, Address: 0x2d246c, Func Offset: 0x18c
-	// Line 3646, Address: 0x2d2470, Func Offset: 0x190
-	// Line 3652, Address: 0x2d2474, Func Offset: 0x194
-	// Line 3646, Address: 0x2d2478, Func Offset: 0x198
-	// Line 3647, Address: 0x2d247c, Func Offset: 0x19c
-	// Line 3648, Address: 0x2d2484, Func Offset: 0x1a4
-	// Line 3652, Address: 0x2d248c, Func Offset: 0x1ac
-	// Line 3653, Address: 0x2d249c, Func Offset: 0x1bc
-	// Line 3652, Address: 0x2d24a0, Func Offset: 0x1c0
-	// Line 3653, Address: 0x2d24a4, Func Offset: 0x1c4
-	// Line 3654, Address: 0x2d24a8, Func Offset: 0x1c8
-	// Line 3655, Address: 0x2d24b0, Func Offset: 0x1d0
-	// Line 3659, Address: 0x2d24b8, Func Offset: 0x1d8
-	// Line 3661, Address: 0x2d24c0, Func Offset: 0x1e0
-	// Line 3667, Address: 0x2d24cc, Func Offset: 0x1ec
-	// Line 3661, Address: 0x2d24d4, Func Offset: 0x1f4
-	// Line 3662, Address: 0x2d24e0, Func Offset: 0x200
-	// Line 3666, Address: 0x2d24e4, Func Offset: 0x204
-	// Line 3662, Address: 0x2d24e8, Func Offset: 0x208
-	// Line 3663, Address: 0x2d24ec, Func Offset: 0x20c
-	// Line 3664, Address: 0x2d24f4, Func Offset: 0x214
-	// Line 3667, Address: 0x2d24fc, Func Offset: 0x21c
-	// Line 3670, Address: 0x2d2508, Func Offset: 0x228
-	// Line 3671, Address: 0x2d2524, Func Offset: 0x244
-	// Line 3673, Address: 0x2d2538, Func Offset: 0x258
-	// Line 3674, Address: 0x2d253c, Func Offset: 0x25c
-	// Func End, Address: 0x2d2560, Func Offset: 0x280
-	scePrintf("njCnkCs - UNIMPLEMENTED!\n");
+{ 
+    VU1_STRIP_BUF* pS;
+    VU1_STRIP_BUF* pV;
+    unsigned short usNext;
+    unsigned short usMax;
+    unsigned short usClip;
+    unsigned short usColorCalc;
+    int ulMode; // not from the debugging symbols
+    unsigned long ulType;           
+    unsigned short usCnt;
+    unsigned short* uspCnk;                                                        
+    unsigned short usStrip;                                                      
+    unsigned short usColorCalc2; // not from the debugging symbols
+    void (*pVu1Func)(unsigned long, VU1_STRIP_BUF*, unsigned short, unsigned short); 
+
+    ulType = 0x12000000000000;
+
+    if (((ulMode = ulNaCnkFlagConstAttr ? ucNaCnkAttr : pCnk->ucHeadBits) & 0x8)) 
+    { 
+        ulType |= 0x20000000000000;
+    }
+
+    if (!(ulMode & 0x20)) 
+    {
+        ulType |= 0x4000000000000;
+    }
+    
+    if (ulNaCnkFlagConstMaterial != 0) 
+    {
+        vu1SetDiffuseMaterial(&NaCnkConstantMaterial); 
+        vu1SetAlphaRatio(fNaCnkConstantA); 
+        
+        usColorCalc = 1;
+    } 
+    else
+    {
+        vu1SetDiffuseMaterial(&NaCnkDiffuseMaterial);
+        vu1SetAmbient(pNaCnkCrntLighting->pAmbient);
+        vu1SetAlphaRatio(fNaCnkAlphaMaterial);
+        
+        usColorCalc = usCnkCsPolColorCalcFunc[ulMode & 0x7];
+    }
+    
+    pVu1Func = pCnkCsVu1FuncTbl[(ulMode & 0x18) | ulCnkCurrentDrawMode]; 
+    
+    usColorCalc2 = usColorCalc;
+    
+    uspCnk = (unsigned short*)&pCnk[1];
+    
+    usNext = (*uspCnk >> 14) & 0x3;
+    
+    usStrip = *uspCnk & 0x3FFF;
+    
+    uspCnk++; 
+    
+    for ( ; usStrip; usStrip--)
+    {
+        pS = NaCnkStrBufTop;
+        
+        usClip = *uspCnk & 0x8000; 
+        
+        usCnt = usMax = usClip ? ~*uspCnk + 1 : *uspCnk; 
+        
+        uspCnk++;
+        
+        pV = &pNaCnkVerBufTop[*uspCnk];
+
+        uspCnk++;
+        
+        *(u_long128*)&pS->fVx = *(u_long128*)&pV->fVx; 
+        *(u_long128*)&pS->fSx = *(u_long128*)&pV->fSx; 
+        *(u_long128*)&pS->fIr = *(u_long128*)&pV->fIr; 
+        
+        pS++;
+        
+        pV = &pNaCnkVerBufTop[*uspCnk];
+
+        uspCnk++;
+        
+        *(u_long128*)&pS->fVx = *(u_long128*)&pV->fVx; 
+        *(u_long128*)&pS->fSx = *(u_long128*)&pV->fSx; 
+        *(u_long128*)&pS->fIr = *(u_long128*)&pV->fIr; 
+
+        pS++;
+        
+        for (usCnt = usMax - 2; usCnt; usCnt--) 
+        {
+            pV = &pNaCnkVerBufTop[*uspCnk];
+
+            uspCnk++;
+            
+            *(u_long128*)&pS->fVx = *(u_long128*)&pV->fVx; 
+            *(u_long128*)&pS->fSx = *(u_long128*)&pV->fSx; 
+            *(u_long128*)&pS->fIr = *(u_long128*)&pV->fIr; 
+            
+            pS++; 
+            
+            uspCnk += usNext;
+        }
+        
+        pVu1Func(ulType, NaCnkStrBufTop, usMax, usClip | usColorCalc2);
+    }
+    
+    return (CHUNK_HEAD*)uspCnk;
 }
 
 // 100% matching!
