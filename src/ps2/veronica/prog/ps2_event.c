@@ -2,13 +2,7 @@
 #include "ps2_NaSystem.h"
 #include "main.h"
 
-/*_anon44 cam;
-_anon10* sys;
-_anon11* rom;*/
 unsigned char BackColorFlag;
-
-/*void bhChangeBackColor();
-void bhChangeBackColorEvt();*/
 
 // 100% matching!
 void bhChangeBackColor()
@@ -251,39 +245,153 @@ void bhChangeBackColor()
     njSetBackColor(BackCol, BackCol, BackCol);
 }
 
-// 
-// Start address: 0x2e7f50
+// 100% matching!
 void bhChangeBackColorEvt()
 {
-	unsigned int BackCol;
-	int i;
-	//_anon1* BackColTbl;
-	//_anon1* BackColStage[10];
-	// Line 1088, Address: 0x2e7f50, Func Offset: 0
-	// Line 1165, Address: 0x2e7f58, Func Offset: 0x8
-	// Line 1166, Address: 0x2e7f68, Func Offset: 0x18
-	// Line 1168, Address: 0x2e7f70, Func Offset: 0x20
-	// Line 1167, Address: 0x2e7f78, Func Offset: 0x28
-	// Line 1168, Address: 0x2e7f7c, Func Offset: 0x2c
-	// Line 1166, Address: 0x2e7f84, Func Offset: 0x34
-	// Line 1168, Address: 0x2e7f88, Func Offset: 0x38
-	// Line 1170, Address: 0x2e7fb8, Func Offset: 0x68
-	// Line 1173, Address: 0x2e7fe0, Func Offset: 0x90
-	// Line 1174, Address: 0x2e7ff4, Func Offset: 0xa4
-	// Line 1176, Address: 0x2e8000, Func Offset: 0xb0
-	// Line 1177, Address: 0x2e800c, Func Offset: 0xbc
-	// Line 1178, Address: 0x2e8014, Func Offset: 0xc4
-	// Line 1179, Address: 0x2e8028, Func Offset: 0xd8
-	// Line 1180, Address: 0x2e803c, Func Offset: 0xec
-	// Line 1183, Address: 0x2e8044, Func Offset: 0xf4
-	// Line 1184, Address: 0x2e8058, Func Offset: 0x108
-	// Line 1185, Address: 0x2e8068, Func Offset: 0x118
-	// Line 1190, Address: 0x2e8070, Func Offset: 0x120
-	// Line 1191, Address: 0x2e8078, Func Offset: 0x128
-	// Line 1195, Address: 0x2e8084, Func Offset: 0x134
-	// Line 1199, Address: 0x2e808c, Func Offset: 0x13c
-	// Line 1200, Address: 0x2e8098, Func Offset: 0x148
-	// Func End, Address: 0x2e80a4, Func Offset: 0x154
-	scePrintf("bhChangeBackColorEvt - UNIMPLEMENTED!\n");
-}
+    int i;                           
+    unsigned int BackCol;             
+    char ev_flag; // not from the debugging symbols
+    static EVT_WRK* BackColTbl;
+    static EVT_WRK BackColSt0[1] = 
+    {
+        { -1, -1, -1, 0, 0, 0, 0 },
+    };
+    static EVT_WRK BackColSt1[1] = 
+    {
+        { -1, -1, -1, 0, 0, 0, 0 },
+    };
+    static EVT_WRK BackColSt2[1] = 
+    {
+        { -1, -1, -1, 0, 0, 0, 0 },
+    };
+    static EVT_WRK BackColSt3[4] = 
+    {
+        { 23,  0,  6, 0, 0, 0x386880, 0 },
+        { 23,  0, 10, 0, 0, 0x386880, 0 },
+        { 23,  0, 11, 0, 0, 0x386880, 0 },
+        { -1, -1, -1, 0, 0,        0, 0 },
+    };
+    static EVT_WRK BackColSt4[1] =
+    {
+        { -1, -1, -1, 0, 0, 0, 0 },
+    };
+    static EVT_WRK BackColSt5[1] = 
+    {
+        { -1, -1, -1, 0, 0, 0, 0 },
+    };
+    static EVT_WRK BackColSt6[2] = 
+    {
+        {  3,  0,  0, 0, 0, 0x10272C, 0 },
+        { -1, -1, -1, 0, 0,        0, 0 },
+    };
+    static EVT_WRK BackColSt7[14] = 
+    {
+        {  7,  0,  0, 0, 0, 0x506070, 0 },
+        {  7,  0,  2, 0, 0, 0x304060, 0 },
+        {  7,  0, 10, 0, 0, 0x304860, 0 },
+        {  7,  0, 11, 0, 0, 0x506070, 0 },
+        {  7,  0, 14, 0, 0, 0x505860, 0 },
+        {  7,  0, 15, 0, 0, 0x305050, 0 },
+        {  7,  0, 19, 0, 0, 0x305060, 0 },
+        {  7,  0, 20, 0, 0, 0x608090, 0 },
+        {  7,  0, 24, 0, 0, 0x274359, 0 },
+        {  7,  0, 25, 0, 0, 0x304040, 0 },
+        {  7,  0, 26, 0, 0, 0x306080, 0 },
+        {  7,  0, 28, 0, 0, 0x306078, 0 },
+        {  7,  0, 30, 0, 0, 0x304040, 0 },
+        { -1, -1, -1, 0, 0,        0, 0 },
+    };
+    static EVT_WRK BackColSt8[1] =
+    {
+        { -1, -1, -1, 0, 0, 0, 0 },
+    };
+    static EVT_WRK BackColSt9[14] = 
+    {
+        {  9,  0, 44, 0, 0, 0x14171A, 0 },
+        {  9,  0, 58, 0, 0, 0x14171A, 0 },
+        { 28,  0, 10, 0, 0,  0xA121B, 0 },
+        { 28,  0, 34, 0, 0,  0xA121B, 0 },
+        { 35,  0,  1, 0, 0, 0x909870, 0 },
+        { 35,  0,  6, 0, 0, 0x909870, 0 },
+        { 35,  0, 11, 0, 0, 0x5B6C8A, 0 },
+        { 35,  0, 18, 0, 0, 0x181C20, 0 },
+        { 35,  0, 32, 0, 0, 0x181C20, 0 },
+        { 35,  0, 37, 0, 0, 0x181C20, 0 },
+        { 35,  0, 38, 0, 0, 0x404040, 0 },
+        { 35,  0, 44, 0, 0, 0x181C20, 0 },
+        { 35,  0, 45, 0, 0, 0x909870, 0 },
+        { -1, -1, -1, 0, 0,        0, 0 },
+    };
+	static EVT_WRK* BackColStage[10] =
+    {
+        BackColSt0,
+        BackColSt1,
+        BackColSt2,
+        BackColSt3,
+        BackColSt4,
+        BackColSt5,
+        BackColSt6,
+        BackColSt7,
+        BackColSt8,
+        BackColSt9 
+    };
 
+    if (BackColorFlag == 0) 
+    {
+        return;
+    }
+    
+    BackCol = rom->bak_col;
+    
+    BackColTbl = BackColStage[sys->stg_no];
+    
+    for (i = 0; ; i++) 
+    {
+        if ((sys->rom_no == BackColTbl[i].room) && (sys->rcase == BackColTbl[i].rcase) && (cam.ncut == BackColTbl[i].evc_no)) 
+        {
+            if (BackColTbl[i].flag != 0) 
+            {
+                BackCol = cam.fog_col;
+                break;
+            }
+            
+            ev_flag = BackColTbl[i].ev_flag;
+            
+            if (BackColTbl[i].ev_flag == 0) 
+            {
+                BackCol = BackColTbl[i].col;
+            } 
+            else if (ev_flag == 1)
+            {
+                if ((sys->ev_flg[9] & 0x400000)) 
+                {
+                    BackCol = BackColTbl[i].ev_col;
+                } 
+                else 
+                {
+                    BackCol = BackColTbl[i].col;
+                }
+            }
+            else if (ev_flag == 2)
+            {
+                if ((sys->ev_flg[12] & 0x20)) 
+                {
+                    BackCol = BackColTbl[i].ev_col;
+                } 
+                else
+                {
+                    BackCol = BackColTbl[i].col;
+                }
+            }
+            
+            break;
+        }
+        
+        if (BackColTbl[i].room < 0)
+        {
+            break;
+        }
+    }
+    
+    njSetBackColor(BackCol, BackCol, BackCol);
+}
