@@ -41,215 +41,294 @@ void bhSetRDT()
     bhSetRoom();
 }
 
-// 
-// Start address: 0x287c30
+// 99.97% matching
 void bhSetRoom()
 {
-	unsigned char* reladr;
-	unsigned char* datp;
-	unsigned int* romp;
-	unsigned int* texhed;
-	unsigned int* mdlhed;
-	unsigned int nbt;
-	int nbTex;
-	int k;
-	int j;
-	int i;
-	//_anon0* owp;
-	BH_PWORK* pwp;
-	//_anon19* efp;
-	//_anon17* ep;
-	//_anon10* cp;
-	//_anon15* rh;
-	// Line 149, Address: 0x287c30, Func Offset: 0
-	// Line 170, Address: 0x287c4c, Func Offset: 0x1c
-	// Line 172, Address: 0x287c54, Func Offset: 0x24
-	// Line 170, Address: 0x287c60, Func Offset: 0x30
-	// Line 172, Address: 0x287c6c, Func Offset: 0x3c
-	// Line 173, Address: 0x287c80, Func Offset: 0x50
-	// Line 174, Address: 0x287c88, Func Offset: 0x58
-	// Line 186, Address: 0x287c90, Func Offset: 0x60
-	// Line 188, Address: 0x287ca8, Func Offset: 0x78
-	// Line 189, Address: 0x287cb4, Func Offset: 0x84
-	// Line 194, Address: 0x287cd4, Func Offset: 0xa4
-	// Line 196, Address: 0x287cf0, Func Offset: 0xc0
-	// Line 197, Address: 0x287cf4, Func Offset: 0xc4
-	// Line 199, Address: 0x287cfc, Func Offset: 0xcc
-	// Line 204, Address: 0x287d08, Func Offset: 0xd8
-	// Line 199, Address: 0x287d0c, Func Offset: 0xdc
-	// Line 204, Address: 0x287d20, Func Offset: 0xf0
-	// Line 206, Address: 0x287d40, Func Offset: 0x110
-	// Line 212, Address: 0x287d44, Func Offset: 0x114
-	// Line 214, Address: 0x287d50, Func Offset: 0x120
-	// Line 212, Address: 0x287d60, Func Offset: 0x130
-	// Line 214, Address: 0x287d6c, Func Offset: 0x13c
-	// Line 215, Address: 0x287d78, Func Offset: 0x148
-	// Line 220, Address: 0x287d84, Func Offset: 0x154
-	// Line 215, Address: 0x287d8c, Func Offset: 0x15c
-	// Line 220, Address: 0x287d9c, Func Offset: 0x16c
-	// Line 221, Address: 0x287da8, Func Offset: 0x178
-	// Line 223, Address: 0x287db8, Func Offset: 0x188
-	// Line 224, Address: 0x287dc0, Func Offset: 0x190
-	// Line 225, Address: 0x287dc8, Func Offset: 0x198
-	// Line 226, Address: 0x287dd0, Func Offset: 0x1a0
-	// Line 227, Address: 0x287dd8, Func Offset: 0x1a8
-	// Line 226, Address: 0x287de0, Func Offset: 0x1b0
-	// Line 227, Address: 0x287dec, Func Offset: 0x1bc
-	// Line 228, Address: 0x287df4, Func Offset: 0x1c4
-	// Line 229, Address: 0x287e04, Func Offset: 0x1d4
-	// Line 230, Address: 0x287e14, Func Offset: 0x1e4
-	// Line 231, Address: 0x287e20, Func Offset: 0x1f0
-	// Line 232, Address: 0x287e28, Func Offset: 0x1f8
-	// Line 233, Address: 0x287e38, Func Offset: 0x208
-	// Line 238, Address: 0x287e44, Func Offset: 0x214
-	// Line 233, Address: 0x287e50, Func Offset: 0x220
-	// Line 238, Address: 0x287e60, Func Offset: 0x230
-	// Line 240, Address: 0x287e68, Func Offset: 0x238
-	// Line 250, Address: 0x287e88, Func Offset: 0x258
-	// Line 251, Address: 0x287e8c, Func Offset: 0x25c
-	// Line 252, Address: 0x287e98, Func Offset: 0x268
-	// Line 257, Address: 0x287ea4, Func Offset: 0x274
-	// Line 252, Address: 0x287eb0, Func Offset: 0x280
-	// Line 257, Address: 0x287ec0, Func Offset: 0x290
-	// Line 258, Address: 0x287ec8, Func Offset: 0x298
-	// Line 260, Address: 0x287ee8, Func Offset: 0x2b8
-	// Line 261, Address: 0x287eec, Func Offset: 0x2bc
-	// Line 262, Address: 0x287ef4, Func Offset: 0x2c4
-	// Line 267, Address: 0x287f00, Func Offset: 0x2d0
-	// Line 262, Address: 0x287f0c, Func Offset: 0x2dc
-	// Line 267, Address: 0x287f1c, Func Offset: 0x2ec
-	// Line 268, Address: 0x287f24, Func Offset: 0x2f4
-	// Line 274, Address: 0x287f48, Func Offset: 0x318
-	// Line 288, Address: 0x287f68, Func Offset: 0x338
-	// Line 290, Address: 0x287f90, Func Offset: 0x360
-	// Line 300, Address: 0x287f9c, Func Offset: 0x36c
-	// Line 290, Address: 0x287fa4, Func Offset: 0x374
-	// Line 300, Address: 0x287fac, Func Offset: 0x37c
-	// Line 290, Address: 0x287fb0, Func Offset: 0x380
-	// Line 295, Address: 0x287fb8, Func Offset: 0x388
-	// Line 293, Address: 0x287fbc, Func Offset: 0x38c
-	// Line 291, Address: 0x287fc0, Func Offset: 0x390
-	// Line 295, Address: 0x287fc4, Func Offset: 0x394
-	// Line 300, Address: 0x287fc8, Func Offset: 0x398
-	// Line 301, Address: 0x287fd0, Func Offset: 0x3a0
-	// Line 302, Address: 0x287ff0, Func Offset: 0x3c0
-	// Line 303, Address: 0x288018, Func Offset: 0x3e8
-	// Line 304, Address: 0x288040, Func Offset: 0x410
-	// Line 308, Address: 0x288064, Func Offset: 0x434
-	// Line 306, Address: 0x288068, Func Offset: 0x438
-	// Line 308, Address: 0x28806c, Func Offset: 0x43c
-	// Line 309, Address: 0x288070, Func Offset: 0x440
-	// Line 310, Address: 0x288078, Func Offset: 0x448
-	// Line 311, Address: 0x288084, Func Offset: 0x454
-	// Line 313, Address: 0x2880a0, Func Offset: 0x470
-	// Line 322, Address: 0x2880ac, Func Offset: 0x47c
-	// Line 313, Address: 0x2880b0, Func Offset: 0x480
-	// Line 318, Address: 0x2880c0, Func Offset: 0x490
-	// Line 313, Address: 0x2880cc, Func Offset: 0x49c
-	// Line 318, Address: 0x2880d0, Func Offset: 0x4a0
-	// Line 319, Address: 0x2880e4, Func Offset: 0x4b4
-	// Line 320, Address: 0x28810c, Func Offset: 0x4dc
-	// Line 321, Address: 0x288134, Func Offset: 0x504
-	// Line 322, Address: 0x288158, Func Offset: 0x528
-	// Line 324, Address: 0x28815c, Func Offset: 0x52c
-	// Line 325, Address: 0x288170, Func Offset: 0x540
-	// Line 327, Address: 0x288190, Func Offset: 0x560
-	// Line 328, Address: 0x2881c0, Func Offset: 0x590
-	// Line 329, Address: 0x2881c8, Func Offset: 0x598
-	// Line 328, Address: 0x2881d0, Func Offset: 0x5a0
-	// Line 329, Address: 0x2881dc, Func Offset: 0x5ac
-	// Line 330, Address: 0x2881e4, Func Offset: 0x5b4
-	// Line 331, Address: 0x2881f4, Func Offset: 0x5c4
-	// Line 333, Address: 0x28821c, Func Offset: 0x5ec
-	// Line 334, Address: 0x288220, Func Offset: 0x5f0
-	// Line 344, Address: 0x288224, Func Offset: 0x5f4
-	// Line 333, Address: 0x288228, Func Offset: 0x5f8
-	// Line 334, Address: 0x288230, Func Offset: 0x600
-	// Line 335, Address: 0x288254, Func Offset: 0x624
-	// Line 340, Address: 0x28825c, Func Offset: 0x62c
-	// Line 335, Address: 0x288260, Func Offset: 0x630
-	// Line 340, Address: 0x28826c, Func Offset: 0x63c
-	// Line 335, Address: 0x288270, Func Offset: 0x640
-	// Line 340, Address: 0x288278, Func Offset: 0x648
-	// Line 335, Address: 0x288284, Func Offset: 0x654
-	// Line 340, Address: 0x288288, Func Offset: 0x658
-	// Line 341, Address: 0x28829c, Func Offset: 0x66c
-	// Line 342, Address: 0x2882c4, Func Offset: 0x694
-	// Line 343, Address: 0x2882ec, Func Offset: 0x6bc
-	// Line 345, Address: 0x28830c, Func Offset: 0x6dc
-	// Line 346, Address: 0x288314, Func Offset: 0x6e4
-	// Line 347, Address: 0x288318, Func Offset: 0x6e8
-	// Line 346, Address: 0x28831c, Func Offset: 0x6ec
-	// Line 347, Address: 0x288324, Func Offset: 0x6f4
-	// Line 350, Address: 0x288348, Func Offset: 0x718
-	// Line 352, Address: 0x288368, Func Offset: 0x738
-	// Line 353, Address: 0x288398, Func Offset: 0x768
-	// Line 354, Address: 0x2883a0, Func Offset: 0x770
-	// Line 353, Address: 0x2883a4, Func Offset: 0x774
-	// Line 354, Address: 0x2883b0, Func Offset: 0x780
-	// Line 355, Address: 0x2883b8, Func Offset: 0x788
-	// Line 356, Address: 0x2883c8, Func Offset: 0x798
-	// Line 358, Address: 0x2883f0, Func Offset: 0x7c0
-	// Line 359, Address: 0x2883f4, Func Offset: 0x7c4
-	// Line 369, Address: 0x2883f8, Func Offset: 0x7c8
-	// Line 358, Address: 0x2883fc, Func Offset: 0x7cc
-	// Line 359, Address: 0x288404, Func Offset: 0x7d4
-	// Line 360, Address: 0x288428, Func Offset: 0x7f8
-	// Line 365, Address: 0x288430, Func Offset: 0x800
-	// Line 360, Address: 0x288434, Func Offset: 0x804
-	// Line 365, Address: 0x288440, Func Offset: 0x810
-	// Line 360, Address: 0x288444, Func Offset: 0x814
-	// Line 365, Address: 0x28844c, Func Offset: 0x81c
-	// Line 360, Address: 0x288458, Func Offset: 0x828
-	// Line 365, Address: 0x28845c, Func Offset: 0x82c
-	// Line 366, Address: 0x288470, Func Offset: 0x840
-	// Line 367, Address: 0x288498, Func Offset: 0x868
-	// Line 368, Address: 0x2884c0, Func Offset: 0x890
-	// Line 370, Address: 0x2884e0, Func Offset: 0x8b0
-	// Line 371, Address: 0x2884e8, Func Offset: 0x8b8
-	// Line 372, Address: 0x2884ec, Func Offset: 0x8bc
-	// Line 371, Address: 0x2884f0, Func Offset: 0x8c0
-	// Line 372, Address: 0x2884f8, Func Offset: 0x8c8
-	// Line 374, Address: 0x28851c, Func Offset: 0x8ec
-	// Line 375, Address: 0x288520, Func Offset: 0x8f0
-	// Line 377, Address: 0x288540, Func Offset: 0x910
-	// Line 378, Address: 0x288544, Func Offset: 0x914
-	// Line 379, Address: 0x288550, Func Offset: 0x920
-	// Line 380, Address: 0x288580, Func Offset: 0x950
-	// Line 381, Address: 0x2885b8, Func Offset: 0x988
-	// Line 382, Address: 0x2885d8, Func Offset: 0x9a8
-	// Line 391, Address: 0x2885dc, Func Offset: 0x9ac
-	// Line 392, Address: 0x2885e4, Func Offset: 0x9b4
-	// Line 393, Address: 0x2885ec, Func Offset: 0x9bc
-	// Line 392, Address: 0x2885f4, Func Offset: 0x9c4
-	// Line 393, Address: 0x288604, Func Offset: 0x9d4
-	// Line 394, Address: 0x28860c, Func Offset: 0x9dc
-	// Line 395, Address: 0x288614, Func Offset: 0x9e4
-	// Line 396, Address: 0x28861c, Func Offset: 0x9ec
-	// Line 395, Address: 0x288624, Func Offset: 0x9f4
-	// Line 396, Address: 0x288634, Func Offset: 0xa04
-	// Line 398, Address: 0x28863c, Func Offset: 0xa0c
-	// Line 399, Address: 0x288644, Func Offset: 0xa14
-	// Line 400, Address: 0x288670, Func Offset: 0xa40
-	// Line 402, Address: 0x2886a8, Func Offset: 0xa78
-	// Line 403, Address: 0x2886b0, Func Offset: 0xa80
-	// Line 409, Address: 0x2886cc, Func Offset: 0xa9c
-	// Line 403, Address: 0x2886d8, Func Offset: 0xaa8
-	// Line 409, Address: 0x2886dc, Func Offset: 0xaac
-	// Line 410, Address: 0x2886ec, Func Offset: 0xabc
-	// Line 425, Address: 0x2886f4, Func Offset: 0xac4
-	// Line 410, Address: 0x2886f8, Func Offset: 0xac8
-	// Line 411, Address: 0x288714, Func Offset: 0xae4
-	// Line 412, Address: 0x288748, Func Offset: 0xb18
-	// Line 413, Address: 0x288774, Func Offset: 0xb44
-	// Line 414, Address: 0x288798, Func Offset: 0xb68
-	// Line 423, Address: 0x2887b8, Func Offset: 0xb88
-	// Line 427, Address: 0x28880c, Func Offset: 0xbdc
-	// Line 428, Address: 0x288810, Func Offset: 0xbe0
-	// Line 436, Address: 0x288830, Func Offset: 0xc00
-	// Line 437, Address: 0x288844, Func Offset: 0xc14
-	// Func End, Address: 0x288864, Func Offset: 0xc34
-	scePrintf("bhSetRoom - UNIMPLEMENTED!\n");
+    RDT_WORK* rh;          
+    CUT_WORK* cp;         
+    ETTY_WORK* ep;      
+    EF_WRK* efp;          
+    BH_PWORK* pwp;        
+    O_WRK* owp;           
+    int i;                
+    int j;                 
+    int k;                
+    int nbTex;             
+    unsigned int nbt;      
+    unsigned int* mdlhed; 
+    unsigned int* texhed; 
+    unsigned int* romp;   
+    unsigned char* datp;  
+    unsigned char* reladr; 
+    unsigned char* texdat; // not from the debugging symbols
+    
+    reladr = sys->rdtp;
+    
+    if (*(float*)&*reladr < 1.72f) 
+    {
+        sys->error |= 0x1;
+        return;
+    }
+    
+    njMemCopy(rom, &reladr[*(unsigned int*)(reladr + 16)], 1004);
+    
+    for (romp = (unsigned int*)rom; (unsigned int)romp < (unsigned int)&rom->dmp00; romp++) 
+    {
+        *romp = (unsigned int)sys->rdtp + *romp;
+    }
+    
+    cp = rom->cutp;
+    
+    for (i = 0; i < rom->cut_n; i++, cp++)
+    {
+        cp->cuttp = (CUT_WRK*)&sys->rdtp[*(unsigned int*)&cp->cuttp];
+    }
+    
+    rom->grand[31] = 0;
+    
+    datp = &sys->rdtp[*(unsigned int*)(reladr + 20)];
+    
+    npSetMemory((unsigned char*)&rom->mdl, sizeof(ML_WORK), 0);
+    
+    mdlhed = (unsigned int*)&sys->rdtp[*(unsigned int*)datp];
+    
+    datp += 4;
+    
+    bhMlbBinRealize(mdlhed, &rom->mdl); 
+    
+    npCnkFlatOff(rom->mdl.objP);
+    
+    for (i = 0; i < 100; i++) 
+    {
+        for (j = 0; j < 16; j++) 
+        {
+            for (k = 0; k < 16; k++) 
+            {
+                sys->et_lp[i][j][k] = NULL;
+            }
+        }
+    } 
+    
+    ep = rom->enep;
+    
+    for (i = 0; i < rom->ene_n; i++, ep++) 
+    {
+        if ((ep->flg & 0x1)) 
+        {
+            mdlhed = (unsigned int*)&sys->rdtp[*(unsigned int*)datp];
+            
+            datp += 4;
+            
+            bhSetEneMdl((unsigned char*)mdlhed, ep, ep->mdlver, i);
+        }
+    }
+    
+    ep = &rom->objp[4];
+    
+    for (i = 4; i < rom->obj_n; i++, ep++)
+    {
+        mdlhed = (unsigned int*)&sys->rdtp[*(unsigned int*)datp];
+        
+        datp += 4;
+        
+        bhSetObjMdl((unsigned char*)mdlhed, ep, ep->id, i);
+    }
+    
+    ep = rom->itmp;
+    
+    for (i = 0; i < rom->itm_n; i++, ep++) 
+    {
+        mdlhed = (unsigned int*)&sys->rdtp[*(unsigned int*)datp];
+        
+        datp += 4;
+        
+        bhSetItmMdl((unsigned char*)mdlhed, ep, ep->id, i); 
+    }
+
+    reladr += 28;
+    
+    rom->evtp = (EVT_WORK*)&sys->rdtp[*(unsigned int*)reladr];
+    
+    sys->txr_ct = 0;
+    sys->txr_n = 0;
+
+    reladr += 4;
+
+    texdat = &sys->rdtp[*(unsigned int*)reladr];
+    
+    nbt = *(unsigned int*)texdat;
+    
+    reladr = texdat;
+    
+    texhed = (unsigned int*)&sys->rdtp[*(unsigned int*)(texdat + 4)];
+    
+    texdat += 8;
+    
+    if (rom->mdl.texP != NULL) 
+    {
+        sys->txlp[sys->txr_n] = rom->mdl.texP;
+        sys->txdp[sys->txr_n] = (unsigned char*)texhed;
+        
+        sys->txloff[sys->txr_n] = 0;
+        
+        sys->txr_n++;
+    }
+    
+    nbt--;
+    
+    pwp = ene;
+    
+    for (i = 0; i < rom->ene_n; i++, pwp++)
+    {
+        for (j = 0; j < pwp->mdl_n; j++)
+        {
+            if ((pwp->mdl[j].texP != NULL) && ((pwp->mdl[j].flg & 0x200)))
+            {
+                nbt--;
+                
+                texhed = (unsigned int*)&sys->rdtp[*(unsigned int*)texdat];
+                
+                texdat += 4;
+                
+                sys->txlp[sys->txr_n] = pwp->mdl[j].texP;
+                sys->txdp[sys->txr_n] = (unsigned char*)texhed;
+                
+                sys->txloff[sys->txr_n] = 0;
+                
+                sys->txr_n++;
+            }
+        }
+    }
+    
+    for (i = 0; i < 1300; i++) 
+    {
+        sys->ot_lp[i] = NULL;
+    } 
+    
+    owp = &sys->obwp[4];
+    
+    for (i = 4; i < rom->obj_n; i++, owp++)
+    {
+        if (owp->mlwP->texP != NULL)
+        {
+            if (sys->ot_lp[owp->id] == NULL) 
+            {
+                nbt--;
+                
+                owp->mlwP->flg |= 0x200;
+                
+                sys->ot_lp[owp->id] = owp->mlwP->texP;
+                
+                texhed = (unsigned int*)&sys->rdtp[*(unsigned int*)texdat];
+                
+                texdat += 4;
+                
+                sys->txlp[sys->txr_n] = owp->mlwP->texP;
+                sys->txdp[sys->txr_n] = (unsigned char*)texhed;
+                
+                sys->txloff[sys->txr_n] = 0;
+                
+                sys->txr_n++;
+            } 
+            else 
+            {
+                owp->mlwP->flg &= ~0x200;
+                
+                owp->mlwP->texP = sys->ot_lp[owp->id];
+            }
+        }
+    }
+    
+    for (i = 0; i < 200; i++) 
+    {
+        sys->it_lp[i] = NULL;
+    } 
+    
+    owp = sys->itwp;
+    
+    for (i = 0; i < rom->itm_n; i++, owp++) 
+    {
+        if (owp->mlwP->texP != NULL)
+        {
+            if (sys->it_lp[owp->id] == NULL) 
+            {
+                nbt--;
+                
+                owp->mlwP->flg |= 0x200;
+                
+                sys->it_lp[owp->id] = owp->mlwP->texP;
+                
+                texhed = (unsigned int*)&sys->rdtp[*(unsigned int*)texdat];
+                
+                texdat += 4;
+                
+                sys->txlp[sys->txr_n] = owp->mlwP->texP;
+                sys->txdp[sys->txr_n] = (unsigned char*)texhed; 
+                
+                sys->txloff[sys->txr_n] = 0;
+                
+                sys->txr_n++;
+            } 
+            else 
+            {
+                owp->mlwP->flg &= ~0x200;
+                
+                owp->mlwP->texP = sys->it_lp[owp->id];
+            }
+        }
+    }
+    
+    efp = rom->effp;
+    
+    for (i = 0; i < rom->eff_n; i++, efp++)
+    {
+        if (((efp->id >= 30) && (efp->id < 100)) || (efp->id >= 400))
+        {
+            sys->efm[efp->id].flg &= ~0x200;
+        }
+    }
+    
+    efp = rom->effp;
+    
+    for (i = 30; i < 100; i++)
+    {
+        sys->ef_tn[i] = 0;
+    } 
+    
+    for (i = 400; i < 450; i++) 
+    {
+        sys->ef_tn[i] = 0;
+    } 
+    
+    for (i = 0; i < rom->eff_n; i++, efp++)
+    {
+        if ((((efp->id >= 30) && (efp->id < 100)) || (efp->id >= 400)) && (!(sys->efm[efp->id].flg & 0x200))) 
+        {
+            sys->efm[efp->id].flg |= 0x200;
+            
+            texhed = (unsigned int*)&sys->rdtp[*(unsigned int*)texdat];
+            
+            texdat += 4;
+            
+            nbTex = bhSetMemPvpTexture(&sys->ef_tlist, (unsigned char*)texhed, sys->ef_ct);
+            
+            nbt--;
+            
+            sys->ef_extn += nbTex;
+            
+            sys->efm[efp->id].obj_num = sys->ef_ct;
+            
+            sys->ef_tn[efp->id] = sys->ef_ct;
+            
+            sys->ef_ct += nbTex;
+            
+            sys->ef_tlist.nbTexture = sys->ef_ct;
+            
+            sys->ef_pbkb[efp->id] = *(unsigned char*)(sys->ef_tlist.textures[sys->ef_tn[efp->id]].texaddr + 4);
+        }
+    }
+    
+    sys->memp = reladr;
 }
 
 // 
