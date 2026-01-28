@@ -667,36 +667,43 @@ void bhSetEneMtn(unsigned char* datp, BH_PWORK* ep, int id)
     }
 }
 
-/*// 
-// Start address: 0x2896e0
+// 100% matching!
 void bhSetRoomMtn(unsigned char* datp)
 {
-	unsigned char* emtnp;
-	int mno;
-	int sz;
-	_anon4* mtnp;
-	// Line 780, Address: 0x2896e0, Func Offset: 0
-	// Line 785, Address: 0x2896f8, Func Offset: 0x18
-	// Line 789, Address: 0x289708, Func Offset: 0x28
-	// Line 785, Address: 0x28970c, Func Offset: 0x2c
-	// Line 786, Address: 0x28971c, Func Offset: 0x3c
-	// Line 785, Address: 0x289720, Func Offset: 0x40
-	// Line 786, Address: 0x28972c, Func Offset: 0x4c
-	// Line 787, Address: 0x289748, Func Offset: 0x68
-	// Line 788, Address: 0x28975c, Func Offset: 0x7c
-	// Line 789, Address: 0x289778, Func Offset: 0x98
-	// Line 793, Address: 0x289794, Func Offset: 0xb4
-	// Line 794, Address: 0x28979c, Func Offset: 0xbc
-	// Line 795, Address: 0x2897a4, Func Offset: 0xc4
-	// Line 796, Address: 0x2897a8, Func Offset: 0xc8
-	// Line 798, Address: 0x2897b4, Func Offset: 0xd4
-	// Line 799, Address: 0x2897bc, Func Offset: 0xdc
-	// Line 801, Address: 0x2897c0, Func Offset: 0xe0
-	// Line 802, Address: 0x2897c4, Func Offset: 0xe4
-	// Line 803, Address: 0x2897c8, Func Offset: 0xe8
-	// Line 804, Address: 0x2897d8, Func Offset: 0xf8
-	// Func End, Address: 0x2897f4, Func Offset: 0x114
-}*/
+    MN_WORK* mtnp;    
+    int sz;          
+    int mno;             
+    unsigned char* emtnp; 
+    unsigned int* memp; // not from the debugging symbols
+
+    memp = (unsigned int*)&sys->memp;
+    
+    *memp = (*memp + 7) & ~0x7;
+    
+    sys->rmthp = (MN_WORK*)sys->memp;
+    
+    mtnp = sys->rmthp;
+    
+    sys->memp += sizeof(MN_WORK) * 512;
+    
+    npSetMemory((unsigned char*)sys->rmthp, sizeof(MN_WORK) * 512, 0);
+    
+    for (mno = 0; (sz = *(unsigned int*)datp) != -1; mtnp++, mno++)
+    {
+        if (sz != 0)
+        {
+            datp += 4;
+            
+            bhMnbBinRealize(datp, mtnp);
+            
+            datp = &datp[sz];
+        }
+        else 
+        {
+            datp += 4;
+        }
+    }
+}
 
 // 96.70% matching (matches on GC)
 void bhSetObjMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // third parameter is not present on the debugging symbols
