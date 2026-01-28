@@ -374,79 +374,116 @@ int bhSetEffect(int effno, _anon35* pnt, unsigned char* lkp, int lkono)
 	// Func End, Address: 0x21c6c8, Func Offset: 0x1c8
 }*/
 
-// 
-// Start address: 0x21c6d0
-int bhSetEffectTb(EF_WORK* efp, NJS_POINT3* off, unsigned char* lkp, int lkono)
+// 100% matching!
+int bhSetEffectTb(EF_WORK* efp, NJS_POINT3* off, unsigned char* lkp, int lkono) 
 {
-	int i;
-	//_anon0* opp;
-	// Line 685, Address: 0x21c6d0, Func Offset: 0
-	// Line 688, Address: 0x21c6f0, Func Offset: 0x20
-	// Line 689, Address: 0x21c708, Func Offset: 0x38
-	// Line 690, Address: 0x21c70c, Func Offset: 0x3c
-	// Line 691, Address: 0x21c71c, Func Offset: 0x4c
-	// Line 692, Address: 0x21c72c, Func Offset: 0x5c
-	// Line 695, Address: 0x21c730, Func Offset: 0x60
-	// Line 710, Address: 0x21c734, Func Offset: 0x64
-	// Line 692, Address: 0x21c738, Func Offset: 0x68
-	// Line 693, Address: 0x21c73c, Func Offset: 0x6c
-	// Line 694, Address: 0x21c744, Func Offset: 0x74
-	// Line 695, Address: 0x21c74c, Func Offset: 0x7c
-	// Line 696, Address: 0x21c750, Func Offset: 0x80
-	// Line 697, Address: 0x21c758, Func Offset: 0x88
-	// Line 698, Address: 0x21c760, Func Offset: 0x90
-	// Line 699, Address: 0x21c768, Func Offset: 0x98
-	// Line 700, Address: 0x21c770, Func Offset: 0xa0
-	// Line 701, Address: 0x21c778, Func Offset: 0xa8
-	// Line 702, Address: 0x21c780, Func Offset: 0xb0
-	// Line 703, Address: 0x21c788, Func Offset: 0xb8
-	// Line 704, Address: 0x21c790, Func Offset: 0xc0
-	// Line 705, Address: 0x21c798, Func Offset: 0xc8
-	// Line 706, Address: 0x21c7a0, Func Offset: 0xd0
-	// Line 707, Address: 0x21c7a8, Func Offset: 0xd8
-	// Line 708, Address: 0x21c7b0, Func Offset: 0xe0
-	// Line 709, Address: 0x21c7b8, Func Offset: 0xe8
-	// Line 710, Address: 0x21c7bc, Func Offset: 0xec
-	// Line 711, Address: 0x21c7e0, Func Offset: 0x110
-	// Line 712, Address: 0x21c7e8, Func Offset: 0x118
-	// Line 713, Address: 0x21c7f0, Func Offset: 0x120
-	// Line 714, Address: 0x21c7f8, Func Offset: 0x128
-	// Line 716, Address: 0x21c800, Func Offset: 0x130
-	// Line 717, Address: 0x21c808, Func Offset: 0x138
-	// Line 718, Address: 0x21c80c, Func Offset: 0x13c
-	// Line 719, Address: 0x21c814, Func Offset: 0x144
-	// Line 720, Address: 0x21c81c, Func Offset: 0x14c
-	// Line 725, Address: 0x21c820, Func Offset: 0x150
-	// Line 722, Address: 0x21c824, Func Offset: 0x154
-	// Line 725, Address: 0x21c828, Func Offset: 0x158
-	// Line 731, Address: 0x21c82c, Func Offset: 0x15c
-	// Line 732, Address: 0x21c834, Func Offset: 0x164
-	// Line 733, Address: 0x21c83c, Func Offset: 0x16c
-	// Line 734, Address: 0x21c844, Func Offset: 0x174
-	// Line 735, Address: 0x21c84c, Func Offset: 0x17c
-	// Line 736, Address: 0x21c850, Func Offset: 0x180
-	// Line 737, Address: 0x21c854, Func Offset: 0x184
-	// Line 738, Address: 0x21c85c, Func Offset: 0x18c
-	// Line 739, Address: 0x21c860, Func Offset: 0x190
-	// Line 740, Address: 0x21c864, Func Offset: 0x194
-	// Line 741, Address: 0x21c868, Func Offset: 0x198
-	// Line 742, Address: 0x21c86c, Func Offset: 0x19c
-	// Line 743, Address: 0x21c870, Func Offset: 0x1a0
-	// Line 744, Address: 0x21c874, Func Offset: 0x1a4
-	// Line 745, Address: 0x21c878, Func Offset: 0x1a8
-	// Line 746, Address: 0x21c87c, Func Offset: 0x1ac
-	// Line 747, Address: 0x21c880, Func Offset: 0x1b0
-	// Line 748, Address: 0x21c884, Func Offset: 0x1b4
-	// Line 749, Address: 0x21c888, Func Offset: 0x1b8
-	// Line 750, Address: 0x21c88c, Func Offset: 0x1bc
-	// Line 751, Address: 0x21c890, Func Offset: 0x1c0
-	// Line 752, Address: 0x21c894, Func Offset: 0x1c4
-	// Line 754, Address: 0x21c898, Func Offset: 0x1c8
-	// Line 756, Address: 0x21c8a4, Func Offset: 0x1d4
-	// Line 757, Address: 0x21c8b4, Func Offset: 0x1e4
-	// Line 758, Address: 0x21c8b8, Func Offset: 0x1e8
-	// Func End, Address: 0x21c8dc, Func Offset: 0x20c
-	scePrintf("bhSetEffectTb - UNIMPLEMENTED!\n");
+    O_WRK* opp;
+    int i;
+    
+    opp = eff;
+    
+    for (i = 0; ; )
+    {
+        if (!(opp->flg & 0x3))
+        {
+            npSetMemoryL(&opp->flg, sizeof(O_WRK) / 4, 0);
+            
+            opp->flg = efp->flg;
+            
+            opp->id = efp->id;
+            
+            opp->type = efp->type;
+            
+            opp->tex_id = -1;
+            
+            opp->mdlver = efp->mdlver;
+            
+            opp->flr_no = efp->flr_no;
+            
+            opp->px = efp->px;
+            opp->py = efp->py;
+            opp->pz = efp->pz;
+            
+            opp->sx = efp->sx;
+            opp->sy = efp->sy;
+            opp->sz = efp->sz;
+            
+            opp->sxb = efp->sx;
+            opp->syb = efp->sy;
+            opp->szb = efp->sz;
+            
+            opp->ax = efp->ax;
+            opp->ay = efp->ay;
+            opp->az = 0;
+            
+            opp->mlwP = &sys->efm[efp->id];
+            
+            if (off != NULL) 
+            {
+                opp->lox = off->x;
+                opp->loy = off->y;
+                opp->loz = off->z;
+            }
+            
+            if (lkp != NULL) 
+            {
+                opp->lkwkp = lkp;
+                
+                opp->flg |= 0x80;
+            } 
+            else 
+            {
+                opp->lkwkp = NULL;
+            }
+            
+            opp->lkono = lkono;
+            
+            opp->mtx = (float(*)[16])opp->mtxbuf;
+            
+            opp->pvp = opp->pv;
+            opp->tvp = opp->tv;
+            
+            opp->pn = 4;
+            
+            opp->tv[0].x = -1.0f;
+            opp->tv[0].y = -1.0f;
+            opp->tv[0].z = 0;
+            
+            opp->tv[1].x = 1.0f;
+            opp->tv[1].y = -1.0f;
+            opp->tv[1].z = 0;
+            
+            opp->tv[2].x = -1.0f;
+            opp->tv[2].y = 1.0f;
+            opp->tv[2].z = 0;
+            
+            opp->tv[3].x = 1.0f;
+            opp->tv[3].y = 1.0f;
+            opp->tv[3].z = 0;
+            
+            opp->tv[0].u = 0;
+            opp->tv[0].v = 0;
+            
+            opp->tv[1].u = 1.0f;
+            opp->tv[1].v = 0;
+            
+            opp->tv[2].u = 0;
+            opp->tv[2].v = 1.0f;
+            
+            opp->tv[3].u = 1.0f;
+            opp->tv[3].v = 1.0f;
+            
+            return i;
+        }
+        
+        i++;
+        opp++;
+        
+        if (i >= 512) 
+        {
+            return -1;
+        }
+    }
 }
 
 /*// 
