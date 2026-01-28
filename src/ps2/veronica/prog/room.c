@@ -755,27 +755,23 @@ void bhSetItmMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // thir
     }
 }
 
-/*// 
-// Start address: 0x289940
+// 100% matching!
 void bhSetEffectTable()
 {
-	int i;
-	_anon19* ep;
-	// Line 852, Address: 0x289940, Func Offset: 0
-	// Line 855, Address: 0x289954, Func Offset: 0x14
-	// Line 856, Address: 0x28995c, Func Offset: 0x1c
-	// Line 855, Address: 0x289960, Func Offset: 0x20
-	// Line 856, Address: 0x289964, Func Offset: 0x24
-	// Line 857, Address: 0x28996c, Func Offset: 0x2c
-	// Line 858, Address: 0x289988, Func Offset: 0x48
-	// Line 857, Address: 0x289990, Func Offset: 0x50
-	// Line 858, Address: 0x28999c, Func Offset: 0x5c
-	// Line 859, Address: 0x2899a8, Func Offset: 0x68
-	// Line 860, Address: 0x2899c8, Func Offset: 0x88
-	// Func End, Address: 0x2899e0, Func Offset: 0xa0
+    EF_WRK* ep; 
+    int i;      
+    
+    ep = rom->effp;
+    
+    for (i = 0; i < rom->eff_n; i++, ep++) 
+    {
+        sys->efid[i] = bhSetEffectTb((EF_WORK*)ep, NULL, NULL, 0);
+        
+        bhSetEffectLink(ep, i);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2899e0
 void bhSetEffectLink(_anon19* efp, int efid)
 {
