@@ -626,44 +626,48 @@ void bhSetEneMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno)
     epp->mlwP = epp->mdl;
 }
 
-/*// 
-// Start address: 0x2895b0
+// 100% matching! 
 void bhSetEneMtn(unsigned char* datp, BH_PWORK* ep, int id)
 {
-	unsigned char* emtnp;
-	int mno;
-	int sz;
-	_anon4* mtnp;
-	// Line 742, Address: 0x2895b0, Func Offset: 0
-	// Line 747, Address: 0x2895c8, Func Offset: 0x18
-	// Line 748, Address: 0x2895f0, Func Offset: 0x40
-	// Line 752, Address: 0x2895f4, Func Offset: 0x44
-	// Line 747, Address: 0x2895f8, Func Offset: 0x48
-	// Line 748, Address: 0x289604, Func Offset: 0x54
-	// Line 749, Address: 0x289618, Func Offset: 0x68
-	// Line 751, Address: 0x28961c, Func Offset: 0x6c
-	// Line 749, Address: 0x289620, Func Offset: 0x70
-	// Line 751, Address: 0x289624, Func Offset: 0x74
-	// Line 750, Address: 0x289628, Func Offset: 0x78
-	// Line 751, Address: 0x28962c, Func Offset: 0x7c
-	// Line 752, Address: 0x289648, Func Offset: 0x98
-	// Line 753, Address: 0x289654, Func Offset: 0xa4
-	// Line 755, Address: 0x289664, Func Offset: 0xb4
-	// Line 753, Address: 0x289668, Func Offset: 0xb8
-	// Line 757, Address: 0x289674, Func Offset: 0xc4
-	// Line 758, Address: 0x28967c, Func Offset: 0xcc
-	// Line 759, Address: 0x289684, Func Offset: 0xd4
-	// Line 766, Address: 0x289688, Func Offset: 0xd8
-	// Line 768, Address: 0x289694, Func Offset: 0xe4
-	// Line 769, Address: 0x28969c, Func Offset: 0xec
-	// Line 771, Address: 0x2896a0, Func Offset: 0xf0
-	// Line 772, Address: 0x2896a4, Func Offset: 0xf4
-	// Line 773, Address: 0x2896a8, Func Offset: 0xf8
-	// Line 774, Address: 0x2896b8, Func Offset: 0x108
-	// Func End, Address: 0x2896d4, Func Offset: 0x124
+    MN_WORK* mtnp;    
+    int sz;          
+    int mno;             
+    unsigned char* emtnp; 
+    unsigned int* memp; // not from the debugging symbols
+
+    memp = (unsigned int*)&sys->memp;
+    
+    *memp = (*memp + 7) & ~0x7;
+    
+    ep->mnwP = (MN_WORK*)sys->memp;
+    ep->mnwPb = ep->mnwP;
+    
+    mtnp = ep->mnwP;
+    
+    sys->memp += sizeof(MN_WORK) * 512;
+    
+    npSetMemory((unsigned char*)ep->mnwP, sizeof(MN_WORK) * 512, 0);
+    
+    sys->emtp[id] = ep->mnwP;
+    
+    for (mno = 0; (sz = *(unsigned int*)datp) != -1; mtnp++, mno++)
+    {
+        if (sz != 0)
+        {
+            datp += 4;
+            
+            bhMnbBinRealize(datp, mtnp);
+            
+            datp = &datp[sz];
+        }
+        else 
+        {
+            datp += 4;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2896e0
 void bhSetRoomMtn(unsigned char* datp)
 {
