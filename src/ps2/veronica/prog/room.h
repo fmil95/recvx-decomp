@@ -14,7 +14,7 @@ void bhSetRoomMtn(unsigned char* datp);
 void bhSetObjMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno);
 void bhSetItmMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno);
 void bhSetEffectTable();
-/*void bhSetEffectLink(_anon19* efp, int efid);*/
+void bhSetEffectLink(EF_WRK* efp, int efid);
 void bhSetDoorDemo(unsigned int attr, int stg_no, int rom_no, unsigned int pos_no, unsigned int dor_tp);
 void bhStartDoorDemo();
 void bhPushGameData();

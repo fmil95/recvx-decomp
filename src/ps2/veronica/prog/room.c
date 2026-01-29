@@ -771,56 +771,102 @@ void bhSetEffectTable()
     }
 }
 
-/*// 
-// Start address: 0x2899e0
-void bhSetEffectLink(_anon19* efp, int efid)
+// 100% matching! 
+void bhSetEffectLink(EF_WRK* efp, int efid)
 {
-	_anon0* op;
-	BH_PWORK* pwp;
-	// Line 866, Address: 0x2899e0, Func Offset: 0
-	// Line 870, Address: 0x2899e8, Func Offset: 0x8
-	// Line 872, Address: 0x289a14, Func Offset: 0x34
-	// Line 873, Address: 0x289a1c, Func Offset: 0x3c
-	// Line 875, Address: 0x289a24, Func Offset: 0x44
-	// Line 876, Address: 0x289a28, Func Offset: 0x48
-	// Line 877, Address: 0x289a2c, Func Offset: 0x4c
-	// Line 879, Address: 0x289a34, Func Offset: 0x54
-	// Line 880, Address: 0x289a54, Func Offset: 0x74
-	// Line 881, Address: 0x289a74, Func Offset: 0x94
-	// Line 883, Address: 0x289a7c, Func Offset: 0x9c
-	// Line 884, Address: 0x289a9c, Func Offset: 0xbc
-	// Line 885, Address: 0x289ac8, Func Offset: 0xe8
-	// Line 887, Address: 0x289ad0, Func Offset: 0xf0
-	// Line 888, Address: 0x289af0, Func Offset: 0x110
-	// Line 889, Address: 0x289b1c, Func Offset: 0x13c
-	// Line 891, Address: 0x289b24, Func Offset: 0x144
-	// Line 892, Address: 0x289b44, Func Offset: 0x164
-	// Line 895, Address: 0x289b84, Func Offset: 0x1a4
-	// Line 896, Address: 0x289b98, Func Offset: 0x1b8
-	// Line 895, Address: 0x289b9c, Func Offset: 0x1bc
-	// Line 896, Address: 0x289bc0, Func Offset: 0x1e0
-	// Line 897, Address: 0x289bc8, Func Offset: 0x1e8
-	// Line 898, Address: 0x289bd8, Func Offset: 0x1f8
-	// Line 899, Address: 0x289be4, Func Offset: 0x204
-	// Line 901, Address: 0x289bec, Func Offset: 0x20c
-	// Line 902, Address: 0x289bf8, Func Offset: 0x218
-	// Line 903, Address: 0x289bfc, Func Offset: 0x21c
-	// Line 904, Address: 0x289c18, Func Offset: 0x238
-	// Line 905, Address: 0x289c20, Func Offset: 0x240
-	// Line 906, Address: 0x289c28, Func Offset: 0x248
-	// Line 907, Address: 0x289c30, Func Offset: 0x250
-	// Line 908, Address: 0x289c38, Func Offset: 0x258
-	// Line 910, Address: 0x289c44, Func Offset: 0x264
-	// Line 912, Address: 0x289c54, Func Offset: 0x274
-	// Line 915, Address: 0x289c5c, Func Offset: 0x27c
-	// Line 918, Address: 0x289c84, Func Offset: 0x2a4
-	// Line 919, Address: 0x289c8c, Func Offset: 0x2ac
-	// Line 920, Address: 0x289c9c, Func Offset: 0x2bc
-	// Line 922, Address: 0x289ca4, Func Offset: 0x2c4
-	// Func End, Address: 0x289cb0, Func Offset: 0x2d0
+    BH_PWORK* pwp;
+    O_WRK* op;
+    
+    switch (efp->lkflg)
+    {
+    case 0:
+        efp->lz = 0;
+        efp->ly = 0;
+        efp->lx = 0;
+        break;
+    case 1:
+        efp->lkno = 0;
+        
+        pwp = plp;
+        break;
+    case 2:
+        if (rom->ene_n <= efp->lkno)
+        {
+            efp->lkno = 0;
+        }
+        
+        pwp = &ene[efp->lkno];
+        break;
+    case 3:
+        if (rom->obj_n <= efp->lkno)
+        {
+            efp->lkno = 0;
+        }
+        
+        pwp = (BH_PWORK*)&sys->obwp[efp->lkno];
+        break;
+    case 4:
+        if (rom->itm_n <= efp->lkno)
+        {
+            efp->lkno = 0;
+        }
+        
+        pwp = (BH_PWORK*)&sys->itwp[efp->lkno];
+        break;
+    case 5:
+        if (rom->eff_n <= efp->lkno)
+        {
+            efp->lkno = 0;
+        }
+        
+        pwp = (BH_PWORK*)&eff[sys->efid[efp->lkno]];
+        break;
+    }
+    
+    op = &eff[sys->efid[efid]]; 
+    
+    if (efp->lkflg != 0) 
+    {
+        if (!(pwp->flg & 0x1))
+        {
+            op->flg &= ~0x80;
+        }
+        else
+        {
+            op->flg |= 0x80;
+            
+            op->lkwkp = (unsigned char*)pwp;
+            
+            if (pwp->mlwP->obj_num <= efp->lkono)
+            {
+                efp->lkono = 0;
+            }
+            
+            op->lkono = efp->lkono;
+            
+            op->lox = efp->lx;
+            op->loy = efp->ly;
+            op->loz = efp->lz; 
+            
+            if (efp->lkono == 0)
+            {
+                njCalcPoint(pwp->mtx, (NJS_POINT3*)&efp->lx, (NJS_POINT3*)&efp->px);
+            }
+            else
+            {
+                njCalcPoint((NJS_MATRIX*)pwp->mlwP->owP[efp->lkono].mtx, (NJS_POINT3*)&efp->lx, (NJS_POINT3*)&efp->px);
+            }
+        }
+    }
+    else 
+    {
+        op->flg &= ~0x80;
+        
+        op->lkono = efp->lkono;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x289cb0
 void bhSetDoorDemo(unsigned int attr, int stg_no, int rom_no, unsigned int pos_no, unsigned int dor_tp)
 {
