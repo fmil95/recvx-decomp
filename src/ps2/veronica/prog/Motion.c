@@ -5,60 +5,114 @@
 _anon3 NullMka;
 int mka_ang[3];*/
 
-// 
-// Start address: 0x12f510
-int bhSetMotion(BH_PWORK* ewP, int add, int mode, void* datP)
+// 99.94% matching (matches on GC)
+int bhSetMotion(BH_PWORK* ewP, int add, int mode, void* datP) 
 {
-	int frm_num;
-	unsigned short* atrP;
-	unsigned int* flgP;
-	float rate;
-	// Line 83, Address: 0x12f510, Func Offset: 0
-	// Line 84, Address: 0x12f524, Func Offset: 0x14
-	// Line 91, Address: 0x12f550, Func Offset: 0x40
-	// Line 93, Address: 0x12f5e0, Func Offset: 0xd0
-	// Line 95, Address: 0x12f5fc, Func Offset: 0xec
-	// Line 96, Address: 0x12f620, Func Offset: 0x110
-	// Line 97, Address: 0x12f630, Func Offset: 0x120
-	// Line 98, Address: 0x12f638, Func Offset: 0x128
-	// Line 100, Address: 0x12f644, Func Offset: 0x134
-	// Line 101, Address: 0x12f668, Func Offset: 0x158
-	// Line 102, Address: 0x12f678, Func Offset: 0x168
-	// Line 104, Address: 0x12f680, Func Offset: 0x170
-	// Line 105, Address: 0x12f6a4, Func Offset: 0x194
-	// Line 112, Address: 0x12f6b4, Func Offset: 0x1a4
-	// Line 113, Address: 0x12f6d0, Func Offset: 0x1c0
-	// Line 118, Address: 0x12f6f0, Func Offset: 0x1e0
-	// Line 120, Address: 0x12f6f8, Func Offset: 0x1e8
-	// Line 118, Address: 0x12f6fc, Func Offset: 0x1ec
-	// Line 120, Address: 0x12f710, Func Offset: 0x200
-	// Line 121, Address: 0x12f734, Func Offset: 0x224
-	// Line 124, Address: 0x12f740, Func Offset: 0x230
-	// Line 126, Address: 0x12f748, Func Offset: 0x238
-	// Line 127, Address: 0x12f76c, Func Offset: 0x25c
-	// Line 128, Address: 0x12f774, Func Offset: 0x264
-	// Line 130, Address: 0x12f77c, Func Offset: 0x26c
-	// Line 131, Address: 0x12f788, Func Offset: 0x278
-	// Line 132, Address: 0x12f790, Func Offset: 0x280
-	// Line 134, Address: 0x12f798, Func Offset: 0x288
-	// Line 135, Address: 0x12f7a4, Func Offset: 0x294
-	// Line 136, Address: 0x12f7ac, Func Offset: 0x29c
-	// Line 142, Address: 0x12f7b4, Func Offset: 0x2a4
-	// Line 143, Address: 0x12f7b8, Func Offset: 0x2a8
-	// Func End, Address: 0x12f7d0, Func Offset: 0x2c0
-	scePrintf("bhSetMotion - UNIMPLEMENTED!\n");
+    float rate;           
+    unsigned int* flgP;   
+    unsigned short* atrP; 
+    int frm_num;          
+
+    flgP = &ewP->mnwP[ewP->mtn_no].flg;
+    
+    if (ewP->mnwP[ewP->mtn_no].datP != NULL)
+    {
+        if ((mode & 0x20)) 
+        {
+            rate = (1.0f / ewP->hokan_count) - (0.000015258789f * ewP->hokan_rate);
+        } 
+        else
+        {
+            rate = 0.000015258789f * (65536 - ewP->hokan_rate);
+        }
+        
+        if (((mode & 0x8)) || ((*flgP & 0x20))) 
+        {
+            if (ewP->hokan_count == 0)
+            {
+                SetMtnSlow(ewP, datP, mode);
+            }
+            else 
+            {
+                SetMtnSlowHokan(ewP, datP, mode, rate);
+            }
+        }
+        else if ((*flgP & 0x10))
+        {
+            if (ewP->hokan_count == 0)
+            {
+                SetMtnNormal(ewP, datP, mode);
+            } 
+            else
+            {
+                SetMtnNormalHokan(ewP, datP, mode, rate);
+            }
+        } 
+        else if (ewP->hokan_count == 0) 
+        {
+            SetMtnFast(ewP, datP, mode);
+        }
+        else 
+        {
+            SetMtnFastHokan(ewP, datP, mode, rate);
+        }
+        
+        atrP = ewP->mnwP[ewP->mtn_no].atrP;
+        
+        if (atrP != NULL) 
+        {
+            ewP->mtn_attr = atrP[ewP->frm_no >> 16];
+        }
+        
+        frm_num = ewP->mnwP[ewP->mtn_no].frm_num << 16;
+        
+        if (((mode & 0x1)) && (ewP->frm_mode != 0)) 
+        {
+            ewP->frm_no -= add;
+        } 
+        else 
+        {
+            ewP->frm_no += add;
+        }
+        
+        if ((mode & 0x1)) 
+        {
+            if ((0 >= ewP->frm_no) || (ewP->frm_no >= ((frm_num - 32768) - 32768))) 
+            {
+                ewP->frm_mode = ~ewP->frm_mode;
+            }
+        }
+        else 
+        {
+            if (ewP->frm_no < 0) 
+            {
+                ewP->frm_no += frm_num;
+                
+                return -1;
+            }
+            
+            if (ewP->frm_no >= frm_num) 
+            {
+                ewP->frm_no -= frm_num;
+                
+                return 1;
+            }
+        }
+    }
+    
+    return 0;
 }
 
-/*// 
+// 
 // Start address: 0x12f7d0
 void SetMtnNormal(BH_PWORK* ewP, char* datP, int mode)
 {
 	int* dstP;
-	_anon3* mkaP;
+	//_anon3* mkaP;
 	float* posP;
-	_anon0* mkfP;
-	_anon6* owP;
-	_anon2* md2P;
+	//_anon0* mkfP;
+	//_anon6* owP;
+	//_anon2* md2P;
 	int obj_no;
 	float flp_f;
 	int flp_s;
@@ -98,6 +152,7 @@ void SetMtnNormal(BH_PWORK* ewP, char* datP, int mode)
 	// Line 214, Address: 0x12f948, Func Offset: 0x178
 	// Line 217, Address: 0x12f958, Func Offset: 0x188
 	// Func End, Address: 0x12f960, Func Offset: 0x190
+	scePrintf("SetMtnNormal - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -107,12 +162,12 @@ void SetMtnNormalHokan(BH_PWORK* ewP, char* datP, int mode, float rate)
 	short dlt;
 	int* dstP;
 	int sum;
-	_anon3* mkaP;
+	//_anon3* mkaP;
 	int* angP;
 	float* posP;
-	_anon0* mkfP;
-	_anon6* owP;
-	_anon2* md2P;
+	//_anon0* mkfP;
+	//_anon6* owP;
+	//_anon2* md2P;
 	int obj_no;
 	float flp_f;
 	int flp_s;
@@ -181,6 +236,7 @@ void SetMtnNormalHokan(BH_PWORK* ewP, char* datP, int mode, float rate)
 	// Line 338, Address: 0x12fd58, Func Offset: 0x3f8
 	// Line 339, Address: 0x12fd64, Func Offset: 0x404
 	// Func End, Address: 0x12fd94, Func Offset: 0x434
+	scePrintf("SetMtnNormalHokan - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -188,9 +244,9 @@ void SetMtnNormalHokan(BH_PWORK* ewP, char* datP, int mode, float rate)
 void SetMtnFast(BH_PWORK* ewP, char* datP, int mode)
 {
 	int* dstP;
-	_anon3* mkaP;
-	_anon6* owP;
-	_anon2* md2P;
+	//_anon3* mkaP;
+	//_anon6* owP;
+	//_anon2* md2P;
 	int obj_no;
 	int flp;
 	float* posP;
@@ -234,6 +290,7 @@ void SetMtnFast(BH_PWORK* ewP, char* datP, int mode)
 	// Line 403, Address: 0x12ff30, Func Offset: 0x190
 	// Line 406, Address: 0x12ff40, Func Offset: 0x1a0
 	// Func End, Address: 0x12ff48, Func Offset: 0x1a8
+	scePrintf("SetMtnFast - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -243,15 +300,15 @@ void SetMtnFastHokan(BH_PWORK* ewP, char* datP, int mode, float rate)
 	short dlt;
 	int* dstP;
 	int sum;
-	_anon3* mkaP;
+	//_anon3* mkaP;
 	int* angP;
-	_anon6* owP;
-	_anon2* md2P;
+	//_anon6* owP;
+	//_anon2* md2P;
 	int obj_no;
 	int flp;
 	float* posP;
 	float* keyP;
-	float flp;
+	//float flp;
 	int tmpS[3];
 	int tmpD[3];
 	// Line 418, Address: 0x12ff50, Func Offset: 0
@@ -334,6 +391,7 @@ void SetMtnFastHokan(BH_PWORK* ewP, char* datP, int mode, float rate)
 	// Line 534, Address: 0x130470, Func Offset: 0x520
 	// Line 535, Address: 0x13047c, Func Offset: 0x52c
 	// Func End, Address: 0x1304a4, Func Offset: 0x554
+	scePrintf("SetMtnFastHokan - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -342,20 +400,20 @@ void SetMtnSlow(BH_PWORK* ewP, char* datP, int mode)
 {
 	short* dstP;
 	short* srcP;
-	_anon3* mkaP;
+	//_anon3* mkaP;
 	int* angP;
 	float* posP;
-	float* dstP;
-	float* srcP;
-	_anon0* mkfP;
-	_anon6* owP;
-	_anon2* md2P;
+	//float* dstP;
+	//float* srcP;
+	//_anon0* mkfP;
+	//_anon6* owP;
+	//_anon2* md2P;
 	int obj_no;
 	float flp_f;
 	int flp_s;
 	int dst_no;
 	int src_no;
-	_anon1* mnwP;
+	//_anon1* mnwP;
 	float frac;
 	// Line 547, Address: 0x1304b0, Func Offset: 0
 	// Line 549, Address: 0x1304dc, Func Offset: 0x2c
@@ -412,6 +470,7 @@ void SetMtnSlow(BH_PWORK* ewP, char* datP, int mode)
 	// Line 608, Address: 0x130780, Func Offset: 0x2d0
 	// Line 611, Address: 0x130790, Func Offset: 0x2e0
 	// Func End, Address: 0x1307c8, Func Offset: 0x318
+	scePrintf("SetMtnSlow - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -421,23 +480,23 @@ void SetMtnSlowHokan(BH_PWORK* ewP, char* datP, int mode, float rate)
 	short dlt;
 	int* dstP;
 	int sum;
-	short* dstP;
+	//short* dstP;
 	short* srcP;
 	int* bufP;
-	_anon3* mkaP;
+	//_anon3* mkaP;
 	int* angP;
 	float* posP;
-	float* dstP;
-	float* srcP;
-	_anon0* mkfP;
-	_anon6* owP;
-	_anon2* md2P;
+	//float* dstP;
+	//float* srcP;
+	//_anon0* mkfP;
+	//_anon6* owP;
+	//_anon2* md2P;
 	int obj_no;
 	float flp_f;
 	int flp_s;
 	int dst_no;
 	int src_no;
-	_anon1* mnwP;
+	//_anon1* mnwP;
 	float frac;
 	// Line 623, Address: 0x1307d0, Func Offset: 0
 	// Line 625, Address: 0x130800, Func Offset: 0x30
@@ -519,7 +578,8 @@ void SetMtnSlowHokan(BH_PWORK* ewP, char* datP, int mode, float rate)
 	// Line 736, Address: 0x130d40, Func Offset: 0x570
 	// Line 738, Address: 0x130d4c, Func Offset: 0x57c
 	// Func End, Address: 0x130d88, Func Offset: 0x5b8
-}*/
+	scePrintf("SetMtnSlowHokan - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhFixPosition(BH_PWORK* ewP, char* datP)
