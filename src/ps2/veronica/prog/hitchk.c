@@ -3451,29 +3451,38 @@ void bhSetDansaLimitAtari(BH_PWORK* pp)
 	// Line 4168, Address: 0x2678d4, Func Offset: 0x5c4
 	// Line 4173, Address: 0x2678e4, Func Offset: 0x5d4
 	// Func End, Address: 0x267914, Func Offset: 0x604
-}
+}*/
 
-// 
-// Start address: 0x267920
-_anon0* bhCheckDansaAtari(int flr_no, float px, float pz)
+// 100% matching! 
+ATR_WORK* bhCheckDansaAtari(int flr_no, float px, float pz)
 {
-	int etc_n;
-	int i;
-	_anon0* exp;
-	// Line 4189, Address: 0x267920, Func Offset: 0
-	// Line 4190, Address: 0x267944, Func Offset: 0x24
-	// Line 4193, Address: 0x267954, Func Offset: 0x34
-	// Line 4192, Address: 0x267958, Func Offset: 0x38
-	// Line 4193, Address: 0x267994, Func Offset: 0x74
-	// Line 4194, Address: 0x2679bc, Func Offset: 0x9c
-	// Line 4197, Address: 0x267a20, Func Offset: 0x100
-	// Line 4200, Address: 0x267a28, Func Offset: 0x108
-	// Line 4201, Address: 0x267a38, Func Offset: 0x118
-	// Line 4202, Address: 0x267a3c, Func Offset: 0x11c
-	// Func End, Address: 0x267a44, Func Offset: 0x124
+    ATR_WORK* exp; 
+    int i;        
+    int etc_n;     
+    
+    etc_n = rom->etc_n + sys->metc_n;
+    
+    for (i = 0; i < etc_n; i++) 
+    {
+        if (i < rom->etc_n) 
+        {
+            exp = rom->etcp + i;
+        } 
+        else 
+        {
+            exp = &sys->metcp[i - rom->etc_n];
+        }
+        
+        if (((exp->flg & 0x1)) && (exp->type == 2) && (exp->prm0 != 0) && (((exp->px <= px) && ((exp->px + exp->w) >= px)) && ((exp->pz <= pz) && ((exp->pz + exp->d) >= pz))) && (exp->flr_no == flr_no)) 
+        {
+            return exp;
+        }
+    }
+    
+    return NULL;
 }
 
-// 
+/*// 
 // Start address: 0x267a50
 void bhCheckFloorP(BH_PWORK* pp)
 {
