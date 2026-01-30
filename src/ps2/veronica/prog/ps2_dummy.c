@@ -1629,7 +1629,7 @@ int Ps2CheckTextureAlpha(void* pp)
     return flag;
 }
 
-// 96.92% matching 
+// 100% matching! 
 void Ps2InitPS2_GS_SAVE()
 {
     Ps2_gs_save.SC_TAG[0] = DMAend | 0xA;
@@ -1665,7 +1665,7 @@ void Ps2InitPS2_GS_SAVE()
     Ps2_gs_save.SCISSOR = 0;
     Ps2_gs_save.SCISSOR_TAG = SCE_GS_SCISSOR_1;
 
-    Ps2_gs_save.mode_bk[0] = 0;
+    Ps2_gs_save.dmy = 0;
     Ps2_gs_save.pad64 = 0;
     
     FlushCache(0);
