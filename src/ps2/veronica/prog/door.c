@@ -1065,7 +1065,7 @@ void LightProc2(_door_wrk* dwP)
 }*/
 
 // 100% matching!
-int CompareSint32(int val_a, int cmp_typ, int val_b)
+static int CompareSint32(int val_a, int cmp_typ, int val_b)
 {
     int ret; // not from the debugging symbols
 
