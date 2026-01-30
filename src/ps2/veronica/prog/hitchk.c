@@ -3756,59 +3756,92 @@ _anon0* bhCheckL2Water(_anon39* lp, _anon20* pos)
 	// Line 4542, Address: 0x268910, Func Offset: 0x270
 	// Line 4543, Address: 0x268914, Func Offset: 0x274
 	// Func End, Address: 0x268944, Func Offset: 0x2a4
-}
+}*/
 
-// 
-// Start address: 0x268950
+// 100% matching! 
 void bhResetAtariAttr()
 {
-	int atr_n;
-	int i;
-	_anon0* hp;
-	// Line 4550, Address: 0x268950, Func Offset: 0
-	// Line 4554, Address: 0x268968, Func Offset: 0x18
-	// Line 4555, Address: 0x26898c, Func Offset: 0x3c
-	// Line 4557, Address: 0x26899c, Func Offset: 0x4c
-	// Line 4558, Address: 0x2689e8, Func Offset: 0x98
-	// Line 4559, Address: 0x2689f8, Func Offset: 0xa8
-	// Line 4561, Address: 0x268a10, Func Offset: 0xc0
-	// Line 4563, Address: 0x268a20, Func Offset: 0xd0
-	// Line 4564, Address: 0x268a40, Func Offset: 0xf0
-	// Line 4565, Address: 0x268a68, Func Offset: 0x118
-	// Line 4564, Address: 0x268a6c, Func Offset: 0x11c
-	// Line 4565, Address: 0x268a70, Func Offset: 0x120
-	// Line 4569, Address: 0x268a98, Func Offset: 0x148
-	// Line 4571, Address: 0x268aa8, Func Offset: 0x158
-	// Line 4572, Address: 0x268acc, Func Offset: 0x17c
-	// Line 4573, Address: 0x268adc, Func Offset: 0x18c
-	// Line 4574, Address: 0x268b00, Func Offset: 0x1b0
-	// Line 4575, Address: 0x268b28, Func Offset: 0x1d8
-	// Line 4576, Address: 0x268b30, Func Offset: 0x1e0
-	// Line 4577, Address: 0x268b48, Func Offset: 0x1f8
-	// Line 4578, Address: 0x268b70, Func Offset: 0x220
-	// Line 4577, Address: 0x268b74, Func Offset: 0x224
-	// Line 4578, Address: 0x268b78, Func Offset: 0x228
-	// Line 4579, Address: 0x268b94, Func Offset: 0x244
-	// Line 4578, Address: 0x268b98, Func Offset: 0x248
-	// Line 4579, Address: 0x268ba0, Func Offset: 0x250
-	// Line 4581, Address: 0x268bb0, Func Offset: 0x260
-	// Line 4582, Address: 0x268bd4, Func Offset: 0x284
-	// Line 4583, Address: 0x268be4, Func Offset: 0x294
-	// Line 4584, Address: 0x268c08, Func Offset: 0x2b8
-	// Line 4585, Address: 0x268c30, Func Offset: 0x2e0
-	// Line 4586, Address: 0x268c38, Func Offset: 0x2e8
-	// Line 4587, Address: 0x268c50, Func Offset: 0x300
-	// Line 4588, Address: 0x268c78, Func Offset: 0x328
-	// Line 4587, Address: 0x268c7c, Func Offset: 0x32c
-	// Line 4588, Address: 0x268c80, Func Offset: 0x330
-	// Line 4589, Address: 0x268c9c, Func Offset: 0x34c
-	// Line 4588, Address: 0x268ca0, Func Offset: 0x350
-	// Line 4589, Address: 0x268ca8, Func Offset: 0x358
-	// Line 4590, Address: 0x268cb8, Func Offset: 0x368
-	// Func End, Address: 0x268cd4, Func Offset: 0x384
+    ATR_WORK* hp; 
+    int i;        
+    int atr_n;    
+
+    atr_n = rom->wal_n + sys->mwal_n;
+    
+    for (i = 0; i < atr_n; i++)
+    {
+        if (i < rom->wal_n)
+        {
+            hp = &rom->walp[i];
+        }
+        else
+        {
+            hp = &sys->mwalp[i - rom->wal_n];
+        }
+        
+        hp->attr &= 0x1FFFF;
+        
+        if ((hp->flg & 0x2)) 
+        {
+            hp->flg &= 0xFE;
+        }
+        
+        if (((hp->flg & 0x1)) && ((hp->type <= 1) || (hp->type == 7))) 
+        {
+            hp->w = 0.1f * ceilf(10.0f * hp->w);
+            hp->d = 0.1f * ceilf(10.0f * hp->d);
+        }
+    }
+    
+    atr_n = rom->etc_n + sys->metc_n;
+    
+    for (i = 0; i < atr_n; i++) 
+    {
+        if (i < rom->etc_n)
+        {
+            hp = &rom->etcp[i];
+        } 
+        else 
+        {
+            hp = &sys->metcp[i - rom->etc_n];
+        }
+        
+        *(int*)&hp->attr = (unsigned short)hp->attr; // ???
+        
+        if ((hp->flg & 0x2))
+        {
+            hp->flg &= 0xFE;
+        }
+        
+        hp->w = 0.1f * ceilf(10.0f * hp->w);
+        hp->d = 0.1f * ceilf(10.0f * hp->d);
+    }
+    
+    atr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < atr_n; i++) 
+    {
+        if (i < rom->flr_n) 
+        {
+            hp = &rom->flrp[i]; 
+        } 
+        else 
+        {
+            hp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        *(int*)&hp->attr = (unsigned short)hp->attr; // ???
+        
+        if ((hp->flg & 0x2)) 
+        {
+            hp->flg &= 0xFE;
+        }
+        
+        hp->w = 0.1f * ceilf(10.0f * hp->w);
+        hp->d = 0.1f * ceilf(10.0f * hp->d);
+    } 
 }
 
-// 
+/*// 
 // Start address: 0x268ce0
 void bhCheckPlayer(BH_PWORK* pp)
 {
