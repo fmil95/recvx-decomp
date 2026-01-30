@@ -560,68 +560,101 @@ int bhSetEffectEvt(int effno, _anon35* pnt, unsigned short type, int ax, int ay)
 	// Line 920, Address: 0x21ca6c, Func Offset: 0x18c
 	// Line 921, Address: 0x21ca70, Func Offset: 0x190
 	// Func End, Address: 0x21ca98, Func Offset: 0x1b8
-}
+}*/
 
-// 
-// Start address: 0x21caa0
-int bhSetShadow(char* jtb, unsigned char* lkp, int lkono, float sx, float sy, float sz)
+// 100% matching! 
+int bhSetShadow(char* jtb, unsigned char* lkp, int lkono, float sx, float sy, float sz) 
 {
-	int j;
-	int i;
-	_anon0* opp;
-	// Line 934, Address: 0x21caa0, Func Offset: 0
-	// Line 937, Address: 0x21cac4, Func Offset: 0x24
-	// Line 934, Address: 0x21cac8, Func Offset: 0x28
-	// Line 937, Address: 0x21cacc, Func Offset: 0x2c
-	// Line 938, Address: 0x21cae8, Func Offset: 0x48
-	// Line 939, Address: 0x21caec, Func Offset: 0x4c
-	// Line 940, Address: 0x21cafc, Func Offset: 0x5c
-	// Line 941, Address: 0x21cb0c, Func Offset: 0x6c
-	// Line 942, Address: 0x21cb18, Func Offset: 0x78
-	// Line 943, Address: 0x21cb1c, Func Offset: 0x7c
-	// Line 945, Address: 0x21cb24, Func Offset: 0x84
-	// Line 946, Address: 0x21cb2c, Func Offset: 0x8c
-	// Line 948, Address: 0x21cb30, Func Offset: 0x90
-	// Line 949, Address: 0x21cb38, Func Offset: 0x98
-	// Line 950, Address: 0x21cb3c, Func Offset: 0x9c
-	// Line 951, Address: 0x21cb40, Func Offset: 0xa0
-	// Line 952, Address: 0x21cb44, Func Offset: 0xa4
-	// Line 953, Address: 0x21cb48, Func Offset: 0xa8
-	// Line 954, Address: 0x21cb4c, Func Offset: 0xac
-	// Line 955, Address: 0x21cb50, Func Offset: 0xb0
-	// Line 956, Address: 0x21cb54, Func Offset: 0xb4
-	// Line 957, Address: 0x21cb58, Func Offset: 0xb8
-	// Line 958, Address: 0x21cb5c, Func Offset: 0xbc
-	// Line 959, Address: 0x21cb60, Func Offset: 0xc0
-	// Line 960, Address: 0x21cb64, Func Offset: 0xc4
-	// Line 961, Address: 0x21cb68, Func Offset: 0xc8
-	// Line 962, Address: 0x21cb6c, Func Offset: 0xcc
-	// Line 963, Address: 0x21cb94, Func Offset: 0xf4
-	// Line 964, Address: 0x21cb9c, Func Offset: 0xfc
-	// Line 965, Address: 0x21cba0, Func Offset: 0x100
-	// Line 966, Address: 0x21cba8, Func Offset: 0x108
-	// Line 967, Address: 0x21cbb0, Func Offset: 0x110
-	// Line 972, Address: 0x21cbb4, Func Offset: 0x114
-	// Line 969, Address: 0x21cbb8, Func Offset: 0x118
-	// Line 972, Address: 0x21cbbc, Func Offset: 0x11c
-	// Line 977, Address: 0x21cbc0, Func Offset: 0x120
-	// Line 978, Address: 0x21cbc8, Func Offset: 0x128
-	// Line 979, Address: 0x21cbcc, Func Offset: 0x12c
-	// Line 980, Address: 0x21cbd4, Func Offset: 0x134
-	// Line 981, Address: 0x21cbd8, Func Offset: 0x138
-	// Line 982, Address: 0x21cbe0, Func Offset: 0x140
-	// Line 984, Address: 0x21cbe4, Func Offset: 0x144
-	// Line 983, Address: 0x21cbe8, Func Offset: 0x148
-	// Line 984, Address: 0x21cbf4, Func Offset: 0x154
-	// Line 985, Address: 0x21cc00, Func Offset: 0x160
-	// Line 987, Address: 0x21cc10, Func Offset: 0x170
-	// Line 989, Address: 0x21cc18, Func Offset: 0x178
-	// Line 990, Address: 0x21cc28, Func Offset: 0x188
-	// Line 991, Address: 0x21cc2c, Func Offset: 0x18c
-	// Func End, Address: 0x21cc58, Func Offset: 0x1b8
+    O_WRK* opp;
+    int i;
+    int j;
+	
+    opp = eff;
+    
+    for (i = 0; i < 512; i++, opp++)
+    {
+        if (!(opp->flg & 0x3)) 
+        {
+            npSetMemoryL(&opp->flg, sizeof(O_WRK) / 4, 0);
+            
+            opp->flg = 0x240001;
+            
+            opp->id = 1;
+            
+            if (jtb != NULL) 
+            {
+                opp->type = 0;
+            } 
+            else 
+            {
+                opp->type = 1;
+            }
+            
+            opp->tex_id = -1;
+            
+            opp->mdlver = 0;
+            
+            opp->px = 0;
+            opp->py = 0;
+            opp->pz = 0;
+            
+            opp->sx = sx;
+            opp->sy = sy;
+            opp->sz = sz;
+            
+            opp->sxb = sx;
+            opp->syb = sy;
+            opp->szb = sz;
+            
+            opp->ax = 0;
+            opp->ay = 0;
+            opp->az = 0;
+            
+            opp->mlwP = &sys->efm[opp->id];
+            
+            if (lkp != NULL) 
+            {
+                opp->lkwkp = lkp;
+                
+                opp->flg |= 0x80;
+            } 
+            else 
+            {
+                opp->lkwkp = NULL;
+            }
+            
+            opp->lkono = lkono;
+            
+            opp->mtx = (float(*)[16])opp->mtxbuf;
+            
+            opp->pvp = opp->pv;
+            opp->tvp = opp->tv;
+            
+            if (jtb == NULL) 
+            {
+                opp->jno[0] = -1;
+            }
+            else 
+            {
+                for (j = 0; j < 15; j++) 
+                {
+                    opp->jno[j] = *jtb++;
+                    
+                    if (opp->jno[j] == -1)
+                    {
+                        break;
+                    }
+                }
+            }
+            
+            return i;
+        }
+    }
+
+    return -1;
 }
 
-// 
+/*// 
 // Start address: 0x21cc60
 void bhLinkBlood()
 {
