@@ -567,174 +567,188 @@ void bhDrawScopeNumber(float px, float py, int num)
     njDrawPolygon2D(&p2c, 4, -1.4f, 0x80000060);
 }
 
-// 
-// Start address: 0x26cfb0
+// 100% matching! 
 void bhDrawThermometer()
 {
-	float py;
-	float px;
-	unsigned int argb;
-	//_anon14 uv[4];
-	//_anon14 col[4];
-	//_anon25 p[4];
-	//_anon30 p2c;
-	int ten;
-	// Line 632, Address: 0x26cfb0, Func Offset: 0
-	// Line 641, Address: 0x26cfdc, Func Offset: 0x2c
-	// Line 642, Address: 0x26cfec, Func Offset: 0x3c
-	// Line 643, Address: 0x26cff8, Func Offset: 0x48
-	// Line 644, Address: 0x26d010, Func Offset: 0x60
-	// Line 645, Address: 0x26d028, Func Offset: 0x78
-	// Line 646, Address: 0x26d030, Func Offset: 0x80
-	// Line 647, Address: 0x26d038, Func Offset: 0x88
-	// Line 648, Address: 0x26d040, Func Offset: 0x90
-	// Line 651, Address: 0x26d048, Func Offset: 0x98
-	// Line 652, Address: 0x26d04c, Func Offset: 0x9c
-	// Line 651, Address: 0x26d050, Func Offset: 0xa0
-	// Line 652, Address: 0x26d054, Func Offset: 0xa4
-	// Line 653, Address: 0x26d058, Func Offset: 0xa8
-	// Line 654, Address: 0x26d060, Func Offset: 0xb0
-	// Line 656, Address: 0x26d068, Func Offset: 0xb8
-	// Line 655, Address: 0x26d06c, Func Offset: 0xbc
-	// Line 657, Address: 0x26d070, Func Offset: 0xc0
-	// Line 656, Address: 0x26d078, Func Offset: 0xc8
-	// Line 658, Address: 0x26d07c, Func Offset: 0xcc
-	// Line 657, Address: 0x26d080, Func Offset: 0xd0
-	// Line 659, Address: 0x26d084, Func Offset: 0xd4
-	// Line 658, Address: 0x26d088, Func Offset: 0xd8
-	// Line 659, Address: 0x26d08c, Func Offset: 0xdc
-	// Line 660, Address: 0x26d090, Func Offset: 0xe0
-	// Line 661, Address: 0x26d098, Func Offset: 0xe8
-	// Line 660, Address: 0x26d09c, Func Offset: 0xec
-	// Line 662, Address: 0x26d0a0, Func Offset: 0xf0
-	// Line 661, Address: 0x26d0a4, Func Offset: 0xf4
-	// Line 662, Address: 0x26d0a8, Func Offset: 0xf8
-	// Line 663, Address: 0x26d0ac, Func Offset: 0xfc
-	// Line 664, Address: 0x26d0b0, Func Offset: 0x100
-	// Line 663, Address: 0x26d0b4, Func Offset: 0x104
-	// Line 664, Address: 0x26d0b8, Func Offset: 0x108
-	// Line 665, Address: 0x26d0c0, Func Offset: 0x110
-	// Line 666, Address: 0x26d0cc, Func Offset: 0x11c
-	// Line 667, Address: 0x26d0d4, Func Offset: 0x124
-	// Line 668, Address: 0x26d0dc, Func Offset: 0x12c
-	// Line 671, Address: 0x26d0e8, Func Offset: 0x138
-	// Line 669, Address: 0x26d0ec, Func Offset: 0x13c
-	// Line 671, Address: 0x26d0f0, Func Offset: 0x140
-	// Line 669, Address: 0x26d0f8, Func Offset: 0x148
-	// Line 670, Address: 0x26d0fc, Func Offset: 0x14c
-	// Line 671, Address: 0x26d100, Func Offset: 0x150
-	// Line 670, Address: 0x26d10c, Func Offset: 0x15c
-	// Line 671, Address: 0x26d110, Func Offset: 0x160
-	// Line 673, Address: 0x26d118, Func Offset: 0x168
-	// Line 675, Address: 0x26d138, Func Offset: 0x188
-	// Line 676, Address: 0x26d164, Func Offset: 0x1b4
-	// Line 677, Address: 0x26d16c, Func Offset: 0x1bc
-	// Line 681, Address: 0x26d170, Func Offset: 0x1c0
-	// Line 682, Address: 0x26d174, Func Offset: 0x1c4
-	// Line 676, Address: 0x26d178, Func Offset: 0x1c8
-	// Line 678, Address: 0x26d188, Func Offset: 0x1d8
-	// Line 679, Address: 0x26d190, Func Offset: 0x1e0
-	// Line 680, Address: 0x26d198, Func Offset: 0x1e8
-	// Line 681, Address: 0x26d1a0, Func Offset: 0x1f0
-	// Line 683, Address: 0x26d1a4, Func Offset: 0x1f4
-	// Line 682, Address: 0x26d1a8, Func Offset: 0x1f8
-	// Line 683, Address: 0x26d1ac, Func Offset: 0x1fc
-	// Line 684, Address: 0x26d1b0, Func Offset: 0x200
-	// Line 685, Address: 0x26d1b4, Func Offset: 0x204
-	// Line 686, Address: 0x26d1b8, Func Offset: 0x208
-	// Line 687, Address: 0x26d1c0, Func Offset: 0x210
-	// Line 688, Address: 0x26d1c4, Func Offset: 0x214
-	// Line 689, Address: 0x26d1c8, Func Offset: 0x218
-	// Line 690, Address: 0x26d1cc, Func Offset: 0x21c
-	// Line 689, Address: 0x26d1d0, Func Offset: 0x220
-	// Line 690, Address: 0x26d1d4, Func Offset: 0x224
-	// Line 691, Address: 0x26d1dc, Func Offset: 0x22c
-	// Line 692, Address: 0x26d1e8, Func Offset: 0x238
-	// Line 693, Address: 0x26d1f0, Func Offset: 0x240
-	// Line 694, Address: 0x26d1f8, Func Offset: 0x248
-	// Line 695, Address: 0x26d204, Func Offset: 0x254
-	// Line 697, Address: 0x26d208, Func Offset: 0x258
-	// Line 696, Address: 0x26d220, Func Offset: 0x270
-	// Line 697, Address: 0x26d224, Func Offset: 0x274
-	// Line 699, Address: 0x26d22c, Func Offset: 0x27c
-	// Line 701, Address: 0x26d24c, Func Offset: 0x29c
-	// Line 702, Address: 0x26d250, Func Offset: 0x2a0
-	// Line 701, Address: 0x26d254, Func Offset: 0x2a4
-	// Line 702, Address: 0x26d258, Func Offset: 0x2a8
-	// Line 703, Address: 0x26d25c, Func Offset: 0x2ac
-	// Line 704, Address: 0x26d264, Func Offset: 0x2b4
-	// Line 705, Address: 0x26d26c, Func Offset: 0x2bc
-	// Line 707, Address: 0x26d278, Func Offset: 0x2c8
-	// Line 706, Address: 0x26d27c, Func Offset: 0x2cc
-	// Line 708, Address: 0x26d280, Func Offset: 0x2d0
-	// Line 707, Address: 0x26d284, Func Offset: 0x2d4
-	// Line 709, Address: 0x26d288, Func Offset: 0x2d8
-	// Line 708, Address: 0x26d28c, Func Offset: 0x2dc
-	// Line 709, Address: 0x26d290, Func Offset: 0x2e0
-	// Line 710, Address: 0x26d294, Func Offset: 0x2e4
-	// Line 711, Address: 0x26d298, Func Offset: 0x2e8
-	// Line 712, Address: 0x26d29c, Func Offset: 0x2ec
-	// Line 713, Address: 0x26d2a4, Func Offset: 0x2f4
-	// Line 715, Address: 0x26d2a8, Func Offset: 0x2f8
-	// Line 716, Address: 0x26d2b0, Func Offset: 0x300
-	// Line 717, Address: 0x26d2b8, Func Offset: 0x308
-	// Line 718, Address: 0x26d2bc, Func Offset: 0x30c
-	// Line 717, Address: 0x26d2c0, Func Offset: 0x310
-	// Line 719, Address: 0x26d2c4, Func Offset: 0x314
-	// Line 718, Address: 0x26d2c8, Func Offset: 0x318
-	// Line 719, Address: 0x26d2cc, Func Offset: 0x31c
-	// Line 720, Address: 0x26d2d0, Func Offset: 0x320
-	// Line 721, Address: 0x26d2d4, Func Offset: 0x324
-	// Line 722, Address: 0x26d2d8, Func Offset: 0x328
-	// Line 723, Address: 0x26d2e0, Func Offset: 0x330
-	// Line 724, Address: 0x26d2e4, Func Offset: 0x334
-	// Line 726, Address: 0x26d2e8, Func Offset: 0x338
-	// Line 731, Address: 0x26d300, Func Offset: 0x350
-	// Line 726, Address: 0x26d304, Func Offset: 0x354
-	// Line 727, Address: 0x26d310, Func Offset: 0x360
-	// Line 726, Address: 0x26d314, Func Offset: 0x364
-	// Line 728, Address: 0x26d318, Func Offset: 0x368
-	// Line 734, Address: 0x26d31c, Func Offset: 0x36c
-	// Line 726, Address: 0x26d324, Func Offset: 0x374
-	// Line 727, Address: 0x26d328, Func Offset: 0x378
-	// Line 726, Address: 0x26d330, Func Offset: 0x380
-	// Line 734, Address: 0x26d334, Func Offset: 0x384
-	// Line 727, Address: 0x26d340, Func Offset: 0x390
-	// Line 734, Address: 0x26d344, Func Offset: 0x394
-	// Line 726, Address: 0x26d348, Func Offset: 0x398
-	// Line 727, Address: 0x26d34c, Func Offset: 0x39c
-	// Line 731, Address: 0x26d350, Func Offset: 0x3a0
-	// Line 727, Address: 0x26d354, Func Offset: 0x3a4
-	// Line 728, Address: 0x26d358, Func Offset: 0x3a8
-	// Line 731, Address: 0x26d35c, Func Offset: 0x3ac
-	// Line 728, Address: 0x26d360, Func Offset: 0x3b0
-	// Line 734, Address: 0x26d368, Func Offset: 0x3b8
-	// Line 728, Address: 0x26d36c, Func Offset: 0x3bc
-	// Line 729, Address: 0x26d380, Func Offset: 0x3d0
-	// Line 730, Address: 0x26d388, Func Offset: 0x3d8
-	// Line 731, Address: 0x26d3a8, Func Offset: 0x3f8
-	// Line 732, Address: 0x26d3b0, Func Offset: 0x400
-	// Line 734, Address: 0x26d3cc, Func Offset: 0x41c
-	// Line 738, Address: 0x26d3d4, Func Offset: 0x424
-	// Line 736, Address: 0x26d3dc, Func Offset: 0x42c
-	// Line 738, Address: 0x26d3e4, Func Offset: 0x434
-	// Line 739, Address: 0x26d400, Func Offset: 0x450
-	// Line 740, Address: 0x26d408, Func Offset: 0x458
-	// Line 742, Address: 0x26d428, Func Offset: 0x478
-	// Line 741, Address: 0x26d430, Func Offset: 0x480
-	// Line 742, Address: 0x26d438, Func Offset: 0x488
-	// Line 743, Address: 0x26d458, Func Offset: 0x4a8
-	// Line 744, Address: 0x26d460, Func Offset: 0x4b0
-	// Line 746, Address: 0x26d47c, Func Offset: 0x4cc
-	// Line 745, Address: 0x26d484, Func Offset: 0x4d4
-	// Line 746, Address: 0x26d48c, Func Offset: 0x4dc
-	// Line 747, Address: 0x26d4ac, Func Offset: 0x4fc
-	// Line 748, Address: 0x26d4b4, Func Offset: 0x504
-	// Line 750, Address: 0x26d4d0, Func Offset: 0x520
-	// Line 751, Address: 0x26d4dc, Func Offset: 0x52c
-	// Line 752, Address: 0x26d4e8, Func Offset: 0x538
-	// Func End, Address: 0x26d51c, Func Offset: 0x56c
-	scePrintf("bhDrawThermometer - UNIMPLEMENTED!\n");
+    NJS_POINT2COL p2c;
+    NJS_POINT2 p[4];
+    NJS_COLOR col[4]; 
+    NJS_COLOR uv[4];
+    unsigned int argb; 
+    float px; 
+    float py; 
+    static int ten;
+
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(sys->ond_tnm);
+
+    p2c.p = p;
+    
+    p2c.col = col;
+    
+    p2c.tex = uv;
+    
+    p2c.num = 1;
+
+    col[3].color = col[2].color = col[1].color = col[0].color = -1;
+
+    uv[0].tex.u = 0;
+    uv[0].tex.v = 0;
+
+    uv[1].tex.u = 216;
+    uv[1].tex.v = 0;
+
+    uv[2].tex.u = 216;
+    uv[2].tex.v = 144;
+
+    uv[3].tex.u = 0;
+    uv[3].tex.v = 144;
+
+    p[0].x = 216.0f;
+    p[0].y = 100.0f;
+    
+    p[1].x = 432.0f;
+    p[1].y = 100.0f;
+    
+    p[2].x = 432.0f;
+    p[2].y = 244.0f;
+    
+    p[3].x = 216.0f;
+    p[3].y = 244.0f;
+    
+    njDrawPolygon2D(&p2c, 4, -0.95f, 0x80000060);
+    
+    if (sys->ond_cx == 3) 
+    {
+        argb = ((int)(255.0f * njSin(ten)) << 24) | 0xFFFF00;
+        
+        ten = (ten + 4096) & 0x7FFF;
+        
+        col[3].color = col[2].color = col[1].color = col[0].color = argb;
+
+        uv[0].tex.u = 176;
+        uv[0].tex.v = 104;
+    
+        uv[1].tex.u = 192;
+        uv[1].tex.v = 104;
+    
+        uv[2].tex.u = 192;
+        uv[2].tex.v = 120;
+    
+        uv[3].tex.u = 176;
+        uv[3].tex.v = 120;
+
+        p[0].x = 392.0f;
+        p[0].y = 204.0f;
+        
+        p[1].x = 408.0f;
+        p[1].y = 204.0f;
+        
+        p[2].x = 408.0f;
+        p[2].y = 220.0f;
+        
+        p[3].x = 392.0f;
+        p[3].y = 220.0f;
+        
+        njDrawPolygon2D(&p2c, 4, -0.94f, 0x80000060);
+    }
+    
+    if (sys->ond_ud != 0) 
+    {
+        col[3].color = col[2].color = col[1].color = col[0].color = -256;
+        
+        if (sys->ond_ud > 0) 
+        {
+            py = 0;
+
+            uv[0].tex.u = 160;
+            uv[0].tex.v = 168;
+        
+            uv[1].tex.u = 176;
+            uv[1].tex.v = 168;
+        
+            uv[2].tex.u = 176;
+            uv[2].tex.v = 184;
+        
+            uv[3].tex.u = 160;
+            uv[3].tex.v = 184;
+        } 
+        else 
+        {
+            py = 72.0f;
+
+            uv[0].tex.u = 176;
+            uv[0].tex.v = 168;
+        
+            uv[1].tex.u = 192;
+            uv[1].tex.v = 168;
+        
+            uv[2].tex.u = 192;
+            uv[2].tex.v = 184;
+        
+            uv[3].tex.u = 176;
+            uv[3].tex.v = 184;
+        }
+        
+        p[0].x = 248.0f + (48.0f * sys->ond_cx);
+        p[0].y = 128.0f + py;
+        
+        p[1].x = 264.0f + (48.0f * sys->ond_cx);
+        p[1].y = 128.0f + py;
+        
+        p[2].x = 264.0f + (48.0f * sys->ond_cx);
+        p[2].y = 144.0f + py;
+        
+        p[3].x = 248.0f + (48.0f * sys->ond_cx);
+        p[3].y = 144.0f + py;
+        
+        njDrawPolygon2D(&p2c, 4, -0.94f, 0x80000060);
+    }
+
+    px = 240.0f;
+    
+    if (sys->ond_cx == 0) 
+    {
+        argb = -0x3FE0;
+    }
+    else
+    {
+        argb = 0xA0808080;
+    }
+    
+    bhDrawThermoNumber(px, 146.0f, sys->ond_n[0], argb);
+
+    px += 48.0f;
+    
+    if (sys->ond_cx == 1) 
+    {
+        argb = -0x3FE0;
+    }
+    else
+    {
+        argb = 0xA0808080;
+    }
+    
+    bhDrawThermoNumber(px, 146.0f, sys->ond_n[1], argb);
+
+    px += 48.0f;
+    
+    if (sys->ond_cx == 2)
+    {
+        argb = -0x3FE0;
+    }
+    else 
+    {
+        argb = 0xA0808080;
+    }
+    
+    bhDrawThermoNumber(px, 146.0f, sys->ond_n[2], argb);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
 }
 
 // 100% matching!
