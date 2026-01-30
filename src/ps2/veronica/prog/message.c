@@ -382,34 +382,50 @@ void bhDispFontEx(NJS_POINT2* pos, int code, unsigned int argb, float pri)
     njDrawPolygon2DM(&p2c, 4, pri, 0x80000060);
 }
 
-/*// 
-// Start address: 0x2b8620
-int bhDispItemName(_anon2* pos, int id, int color, int count, float pri)
+// 99.52% matching
+int bhDispItemName(NJS_POINT2* pos, int id, int color, int count, float pri)
 {
-	int num;
-	int cflg;
-	unsigned short cd;
-	unsigned short* dp;
-	// Line 543, Address: 0x2b8620, Func Offset: 0
-	// Line 547, Address: 0x2b8648, Func Offset: 0x28
-	// Line 549, Address: 0x2b8654, Func Offset: 0x34
-	// Line 547, Address: 0x2b8664, Func Offset: 0x44
-	// Line 546, Address: 0x2b8674, Func Offset: 0x54
-	// Line 547, Address: 0x2b867c, Func Offset: 0x5c
-	// Line 551, Address: 0x2b8688, Func Offset: 0x68
-	// Line 552, Address: 0x2b868c, Func Offset: 0x6c
-	// Line 559, Address: 0x2b869c, Func Offset: 0x7c
-	// Line 560, Address: 0x2b86a8, Func Offset: 0x88
-	// Line 561, Address: 0x2b86b8, Func Offset: 0x98
-	// Line 562, Address: 0x2b86d4, Func Offset: 0xb4
-	// Line 563, Address: 0x2b86dc, Func Offset: 0xbc
-	// Line 567, Address: 0x2b86f8, Func Offset: 0xd8
-	// Line 568, Address: 0x2b8700, Func Offset: 0xe0
-	// Line 569, Address: 0x2b8704, Func Offset: 0xe4
-	// Line 572, Address: 0x2b8714, Func Offset: 0xf4
-	// Line 573, Address: 0x2b8718, Func Offset: 0xf8
-	// Func End, Address: 0x2b8744, Func Offset: 0x124
-}*/
+    unsigned short* dp; 
+    unsigned short cd;  
+    int cflg;           
+    int num;            
+
+    num = 0;
+    
+    dp = (unsigned short*)((char*)sys->mes_ip + sys->mes_ip[id + 1]);
+    
+    cflg = (count == 0) ? 0 : 1;
+
+    while (TRUE)
+    {
+        cd = *dp++;
+
+        if (cd == 0xFFFF)
+        {
+            break;
+        }
+        
+        if (cd != 0xFF01) 
+        {
+            bhDispFont(pos, cd, color, pri);
+            
+            pos->x += FontScaleX * bhGetFontSize(cd);
+        } 
+        else 
+        {
+            pos->x += 14.0f * FontScaleX;
+        }
+        
+        num++;
+
+        if ((cflg != 0) && (--count <= 0)) 
+        {
+            return 0;
+        }
+    } 
+
+    return num;
+}
 
 // 100% matching! 
 int bhDispMessage(float px, float py, float pri, int mes_typ, int mes_idx, int color, int count)
