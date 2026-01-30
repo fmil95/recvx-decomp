@@ -137,7 +137,7 @@ void CallBackGroundSe2(unsigned int SlotNo, int SeNo);
 void StopBackGroundSeEx(unsigned int SlotNo, short Timer);
 void StopBackGroundSe2(unsigned int SlotNo);
 void CallDoorSe(unsigned int No);
-void RequestEnemySeBasic(int EnemyNo, _anon16* pPos, int SeNo, int Flag, int FadeRate);
+void RequestEnemySeBasic(int EnemyNo, NJS_POINT3* pPos, int SeNo, int Flag, int FadeRate);
 void RequestEnemySe(int EnemyNo, _anon16* pPos, int SeNo);
 void RequestEnemySeEx(int EnemyNo, _anon16* pPos, int SeNo, int FadeRate);
 int ChechPlayEnemySe(int EnemyNo, int SeNo);

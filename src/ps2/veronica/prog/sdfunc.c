@@ -1455,52 +1455,48 @@ void CallDoorSe(unsigned int No)
 	// Line 2531, Address: 0x2950f4, Func Offset: 0xc4
 	// Line 2532, Address: 0x2950fc, Func Offset: 0xcc
 	// Func End, Address: 0x295108, Func Offset: 0xd8
-}
+}*/
 
-// 
-// Start address: 0x295110
-void RequestEnemySeBasic(int EnemyNo, _anon16* pPos, int SeNo, int Flag, int FadeRate)
+// 100% matching!
+void RequestEnemySeBasic(int EnemyNo, NJS_POINT3* pPos, int SeNo, int Flag, int FadeRate)
 {
-	char VolDownTbl[8];
-	_anon2* eip;
-	// Line 2550, Address: 0x295110, Func Offset: 0
-	// Line 2552, Address: 0x295124, Func Offset: 0x14
-	// Line 2550, Address: 0x29512c, Func Offset: 0x1c
-	// Line 2552, Address: 0x295130, Func Offset: 0x20
-	// Line 2554, Address: 0x295148, Func Offset: 0x38
-	// Line 2557, Address: 0x295150, Func Offset: 0x40
-	// Line 2555, Address: 0x295154, Func Offset: 0x44
-	// Line 2557, Address: 0x29515c, Func Offset: 0x4c
-	// Line 2555, Address: 0x295160, Func Offset: 0x50
-	// Line 2557, Address: 0x295168, Func Offset: 0x58
-	// Line 2558, Address: 0x29516c, Func Offset: 0x5c
-	// Line 2557, Address: 0x295178, Func Offset: 0x68
-	// Line 2558, Address: 0x295180, Func Offset: 0x70
-	// Line 2557, Address: 0x295188, Func Offset: 0x78
-	// Line 2558, Address: 0x29518c, Func Offset: 0x7c
-	// Line 2560, Address: 0x295194, Func Offset: 0x84
-	// Line 2561, Address: 0x2951a0, Func Offset: 0x90
-	// Line 2560, Address: 0x2951b0, Func Offset: 0xa0
-	// Line 2561, Address: 0x2951b8, Func Offset: 0xa8
-	// Line 2564, Address: 0x2951c0, Func Offset: 0xb0
-	// Line 2561, Address: 0x2951cc, Func Offset: 0xbc
-	// Line 2562, Address: 0x2951d4, Func Offset: 0xc4
-	// Line 2564, Address: 0x2951d8, Func Offset: 0xc8
-	// Line 2565, Address: 0x2951e8, Func Offset: 0xd8
-	// Line 2568, Address: 0x2951ec, Func Offset: 0xdc
-	// Line 2570, Address: 0x2951fc, Func Offset: 0xec
-	// Line 2569, Address: 0x295200, Func Offset: 0xf0
-	// Line 2570, Address: 0x295204, Func Offset: 0xf4
-	// Line 2572, Address: 0x295208, Func Offset: 0xf8
-	// Line 2574, Address: 0x295210, Func Offset: 0x100
-	// Line 2573, Address: 0x295214, Func Offset: 0x104
-	// Line 2574, Address: 0x295218, Func Offset: 0x108
-	// Line 2575, Address: 0x29521c, Func Offset: 0x10c
-	// Line 2577, Address: 0x295220, Func Offset: 0x110
-	// Func End, Address: 0x29523c, Func Offset: 0x12c
+    Enemy* eip;
+    char VolDownTbl[8] = { 0, 254, 252, 250, 248, 247, 246, 245 };
+
+    eip = EnemyInfo; 
+    eip = &eip[EnemyNo];
+    
+    eip->Pos = *pPos;
+    
+    Get3DSoundParameter(&CameraPos, pPos, &eip->Pan, &eip->Vol, &eip->Dist, 0);
+    
+    eip->Vol += Room_SoundEnv.VolEnemySe;
+    eip->Vol += VolDownTbl[(SeNo & 0xF00000) >> 20];
+    
+    eip->FadeRate = FadeRate;
+
+    if (eip->Prio > ((SeNo & 0xF0000) >> 16)) 
+    {
+        eip->Prio = (SeNo & 0xF0000) >> 16;
+    }
+
+    if (!(SeNo & 0xF000000)) 
+    {
+        eip->SeNo = SeNo;
+        
+        eip->ReqFlag = 1;
+        eip->CallFlag = Flag;
+    }
+    else 
+    {
+        eip->SeNoV = SeNo;
+        
+        eip->ReqFlagV = 1;
+        eip->CallFlagV = Flag;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x295240
 void RequestEnemySe(int EnemyNo, _anon16* pPos, int SeNo)
 {
