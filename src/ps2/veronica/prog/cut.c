@@ -433,29 +433,30 @@ void bhSetFixedCut(int cno)
 	scePrintf("bhSetFixedCut - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x27b4c0
+// 100% matching!
 void bhSetRenderCut(int cno)
 {
-	_anon21* ci;
-	// Line 554, Address: 0x27b4c0, Func Offset: 0
-	// Line 559, Address: 0x27b4cc, Func Offset: 0xc
-	// Line 560, Address: 0x27b4ec, Func Offset: 0x2c
-	// Line 559, Address: 0x27b4f0, Func Offset: 0x30
-	// Line 560, Address: 0x27b4f4, Func Offset: 0x34
-	// Line 561, Address: 0x27b4f8, Func Offset: 0x38
-	// Line 559, Address: 0x27b4fc, Func Offset: 0x3c
-	// Line 562, Address: 0x27b500, Func Offset: 0x40
-	// Line 564, Address: 0x27b508, Func Offset: 0x48
-	// Line 565, Address: 0x27b51c, Func Offset: 0x5c
-	// Line 566, Address: 0x27b530, Func Offset: 0x70
-	// Line 567, Address: 0x27b544, Func Offset: 0x84
-	// Line 568, Address: 0x27b558, Func Offset: 0x98
-	// Line 569, Address: 0x27b56c, Func Offset: 0xac
-	// Line 570, Address: 0x27b580, Func Offset: 0xc0
-	// Line 571, Address: 0x27b58c, Func Offset: 0xcc
-	// Line 572, Address: 0x27b598, Func Offset: 0xd8
-	// Func End, Address: 0x27b5a8, Func Offset: 0xe8
+    CAM_WRK* ci;
+
+    ci = (CAM_WRK*)&rom->cutp[cno].cam;
+    
+    cam.ncut = cno;
+    
+    cam.camver = 0;
+    
+    bhSetHideObjLgt(cno);
+    
+    cam.ax = cam.axp = ci->ax;
+    cam.ay = cam.ayp = ci->ay;
+    cam.az = cam.azp = ci->az;
+    
+    cam.px = cam.pxp = ci->px;
+    cam.py = cam.pyp = ci->py;
+    cam.pz = cam.pzp = ci->pz;
+    
+    cam.pers = ci->pers;
+    
+    cam.ln = ci->ln;
 }
 
 // 
@@ -463,9 +464,9 @@ void bhSetRenderCut(int cno)
 void bhSetHideObjLgt(int cno)
 {
 	int i;
-	npobj* obj;
-	_anon14* lp;
-	_anon21* ci;
+	//npobj* obj;
+	//_anon14* lp;
+	//_anon21* ci;
 	// Line 578, Address: 0x27b5b0, Func Offset: 0
 	// Line 585, Address: 0x27b5c8, Func Offset: 0x18
 	// Line 587, Address: 0x27b5ec, Func Offset: 0x3c
@@ -490,7 +491,8 @@ void bhSetHideObjLgt(int cno)
 	// Line 605, Address: 0x27b6d0, Func Offset: 0x120
 	// Line 606, Address: 0x27b6f0, Func Offset: 0x140
 	// Func End, Address: 0x27b70c, Func Offset: 0x15c
-}*/
+	scePrintf("bhSetHideObjLgt - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x27b710
