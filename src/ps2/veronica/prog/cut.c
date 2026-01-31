@@ -459,39 +459,46 @@ void bhSetRenderCut(int cno)
     cam.ln = ci->ln;
 }
 
-// 
-// Start address: 0x27b5b0
+// 100% matching!
 void bhSetHideObjLgt(int cno)
 {
-	int i;
-	//npobj* obj;
-	//_anon14* lp;
-	//_anon21* ci;
-	// Line 578, Address: 0x27b5b0, Func Offset: 0
-	// Line 585, Address: 0x27b5c8, Func Offset: 0x18
-	// Line 587, Address: 0x27b5ec, Func Offset: 0x3c
-	// Line 585, Address: 0x27b5f4, Func Offset: 0x44
-	// Line 587, Address: 0x27b614, Func Offset: 0x64
-	// Line 588, Address: 0x27b61c, Func Offset: 0x6c
-	// Line 589, Address: 0x27b624, Func Offset: 0x74
-	// Line 590, Address: 0x27b630, Func Offset: 0x80
-	// Line 591, Address: 0x27b644, Func Offset: 0x94
-	// Line 592, Address: 0x27b64c, Func Offset: 0x9c
-	// Line 593, Address: 0x27b654, Func Offset: 0xa4
-	// Line 595, Address: 0x27b664, Func Offset: 0xb4
-	// Line 593, Address: 0x27b668, Func Offset: 0xb8
-	// Line 596, Address: 0x27b66c, Func Offset: 0xbc
-	// Line 598, Address: 0x27b688, Func Offset: 0xd8
-	// Line 599, Address: 0x27b68c, Func Offset: 0xdc
-	// Line 600, Address: 0x27b698, Func Offset: 0xe8
-	// Line 601, Address: 0x27b6ac, Func Offset: 0xfc
-	// Line 602, Address: 0x27b6b8, Func Offset: 0x108
-	// Line 603, Address: 0x27b6c0, Func Offset: 0x110
-	// Line 604, Address: 0x27b6cc, Func Offset: 0x11c
-	// Line 605, Address: 0x27b6d0, Func Offset: 0x120
-	// Line 606, Address: 0x27b6f0, Func Offset: 0x140
-	// Func End, Address: 0x27b70c, Func Offset: 0x15c
-	scePrintf("bhSetHideObjLgt - UNIMPLEMENTED!\n");
+    CAM_WRK* ci;
+    LGT_WORK* lp;
+    NJS_CNK_OBJECT* obj;
+    int i;
+
+    ci = (CAM_WRK*)&rom->cutp[cno].cam[cam.camver];
+
+    for (i = 0; i < (int)rom->mdl.obj_num; i++)
+    {
+        obj = &rom->mdl.objP[i];
+        
+        if (obj->model != NULL)
+        {
+            if (bhCkFlg(ci->hidobj, i) != 0)
+            {
+                obj->evalflags |= 0x8;
+            }
+            else
+            {
+                obj->evalflags &= ~0x8;
+            }
+        }
+    }
+
+    lp = (LGT_WORK*)&rom->lgtp[4];
+    
+    for (i = 4; i < rom->lgt_n; i++, lp++)
+    {
+        if (bhCkFlg(ci->hidlgt, i) != 0) 
+        {
+            lp->flg &= ~0x2;
+        } 
+        else 
+        {
+            lp->flg |= 0x2;
+        }
+    }
 }
 
 // 
