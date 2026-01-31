@@ -5,7 +5,7 @@
 
 void bhCheckCut(int flg);
 int bhCheckCutArea(float px, float pz, char flr_no);
-/*int bhCheckCutAreaInnerTriangle(float px, float pz, _anon13* ct);*/
+int bhCheckCutAreaInnerTriangle(float px, float pz, CUT_WRK* ct);
 unsigned int bhCheckCutAttribute(float px, float pz, int flr_no);
 void bhSetCut(int cno, int flg);
 void bhSetFixedCut(int cno);

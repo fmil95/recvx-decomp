@@ -113,35 +113,48 @@ void bhCheckCut(int flg)
 	scePrintf("bhCheckCut - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x27a7f0
+// 100% matching!
 int bhCheckCutArea(float px, float pz, char flr_no)
 {
-	int j;
-	int i;
-	_anon13* ct;
-	_anon10* cp;
-	// Line 229, Address: 0x27a7f0, Func Offset: 0
-	// Line 233, Address: 0x27a814, Func Offset: 0x24
-	// Line 234, Address: 0x27a830, Func Offset: 0x40
-	// Line 235, Address: 0x27a838, Func Offset: 0x48
-	// Line 236, Address: 0x27a848, Func Offset: 0x58
-	// Line 237, Address: 0x27a84c, Func Offset: 0x5c
-	// Line 238, Address: 0x27a854, Func Offset: 0x64
-	// Line 239, Address: 0x27a860, Func Offset: 0x70
-	// Line 241, Address: 0x27a86c, Func Offset: 0x7c
-	// Line 244, Address: 0x27a8bc, Func Offset: 0xcc
-	// Line 247, Address: 0x27a8c4, Func Offset: 0xd4
-	// Line 250, Address: 0x27a8e4, Func Offset: 0xf4
-	// Line 252, Address: 0x27a900, Func Offset: 0x110
-	// Line 253, Address: 0x27a920, Func Offset: 0x130
-	// Line 254, Address: 0x27a924, Func Offset: 0x134
-	// Func End, Address: 0x27a94c, Func Offset: 0x15c
+    CUT_WORK* cp;
+    CUT_WRK* ct;
+    int i;
+    int j;
+    
+    cp = rom->cutp;
+    
+    for (i = 0; i < rom->cut_n; i++, cp++)
+    {
+        if ((cp->flg & 0x1)) 
+        {
+            ct = cp->cuttp;
+            
+            for (j = 0; j < cp->ctab_n; j++, ct++)
+            {
+                if (ct->flr_no == flr_no)
+                {
+                    if (ct->atr_tp == 0) 
+                    {
+                        if (((ct->minx <= px) && (ct->maxx > px)) && ((ct->minz <= pz) && (ct->maxz > pz)))
+                        {
+                            return i;
+                        }
+                    }
+                    else if (bhCheckCutAreaInnerTriangle(px, pz, ct) != 0) 
+                    {
+                        return i;
+                    }
+                }
+            }
+        }
+    }
+
+    return -1;
 }
 
 // 
 // Start address: 0x27a950
-int bhCheckCutAreaInnerTriangle(float px, float pz, _anon13* ct)
+int bhCheckCutAreaInnerTriangle(float px, float pz, CUT_WRK* ct)
 {
 	float d;
 	// Line 266, Address: 0x27a950, Func Offset: 0
@@ -170,7 +183,8 @@ int bhCheckCutAreaInnerTriangle(float px, float pz, _anon13* ct)
 	// Line 304, Address: 0x27aa74, Func Offset: 0x124
 	// Line 306, Address: 0x27aaa0, Func Offset: 0x150
 	// Func End, Address: 0x27aab8, Func Offset: 0x168
-}*/
+	scePrintf("bhCheckCutAreaInnerTriangle - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 unsigned int bhCheckCutAttribute(float px, float pz, int flr_no)
