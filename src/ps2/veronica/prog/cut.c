@@ -1,4 +1,6 @@
 #include "cut.h"
+#include "flag.h"
+#include "main.h"
 
 /*_anon38 cam;
 _anon9* rom;
@@ -1349,40 +1351,49 @@ void bhSetEventFixedCut(int cno, int kno)
 	scePrintf("bhSetEventFixedCut - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x27e350
+// 100% matching!
 void bhSetEventHideObjLgt(int cno, int kno)
 {
-	int i;
-	_anon14* lp;
-	_anon17* kfp;
-	npobj* obj;
-	// Line 1552, Address: 0x27e350, Func Offset: 0
-	// Line 1559, Address: 0x27e368, Func Offset: 0x18
-	// Line 1561, Address: 0x27e380, Func Offset: 0x30
-	// Line 1559, Address: 0x27e388, Func Offset: 0x38
-	// Line 1561, Address: 0x27e394, Func Offset: 0x44
-	// Line 1562, Address: 0x27e39c, Func Offset: 0x4c
-	// Line 1563, Address: 0x27e3a4, Func Offset: 0x54
-	// Line 1564, Address: 0x27e3b0, Func Offset: 0x60
-	// Line 1565, Address: 0x27e3c4, Func Offset: 0x74
-	// Line 1566, Address: 0x27e3cc, Func Offset: 0x7c
-	// Line 1567, Address: 0x27e3d4, Func Offset: 0x84
-	// Line 1569, Address: 0x27e3e4, Func Offset: 0x94
-	// Line 1567, Address: 0x27e3e8, Func Offset: 0x98
-	// Line 1570, Address: 0x27e3ec, Func Offset: 0x9c
-	// Line 1572, Address: 0x27e408, Func Offset: 0xb8
-	// Line 1573, Address: 0x27e40c, Func Offset: 0xbc
-	// Line 1574, Address: 0x27e414, Func Offset: 0xc4
-	// Line 1575, Address: 0x27e428, Func Offset: 0xd8
-	// Line 1576, Address: 0x27e434, Func Offset: 0xe4
-	// Line 1577, Address: 0x27e43c, Func Offset: 0xec
-	// Line 1579, Address: 0x27e448, Func Offset: 0xf8
-	// Line 1580, Address: 0x27e468, Func Offset: 0x118
-	// Func End, Address: 0x27e484, Func Offset: 0x134
+    NJS_CNK_OBJECT* obj;
+    CAM_KEYF_WORK* kfp;
+    LGT_WORK* lp;
+    int i; 
+
+    kfp = &rom->evcp[cno].keyf[kno];
+
+    for (i = 0; i < (int)rom->mdl.obj_num; i++)
+    {
+        obj = &rom->mdl.objP[i];
+
+        if (obj->model != NULL)
+        {
+            if (bhCkFlg(kfp->hidobj, i) != 0)
+            {
+                obj->evalflags |= 0x8;
+            }
+            else
+            {
+                obj->evalflags &= ~0x8;
+            }
+        }
+    }
+
+    lp = rom->evlp;
+    
+    for (i = 0; i < rom->evl_n; i++, lp++)
+    {
+        if (bhCkFlg(kfp->hidlgt, i) != 0)
+        {
+            lp->flg &= ~0x2;
+        }
+        else
+        {
+            lp->flg |= 0x2;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x27e490
 void bhInitEventCamera()
 {
