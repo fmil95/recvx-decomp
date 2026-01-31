@@ -1,5 +1,6 @@
 #include "cut.h"
 #include "flag.h"
+#include "ps2_NaMath.h"
 #include "main.h"
 
 /*_anon38 cam;
@@ -748,79 +749,87 @@ void bhInitActiveCamera(int flg)
 	// Line 947, Address: 0x27c904, Func Offset: 0x1004
 	// Line 949, Address: 0x27c928, Func Offset: 0x1028
 	// Func End, Address: 0x27c94c, Func Offset: 0x104c
-}
+}*/
 
-// 
-// Start address: 0x27c950
-void bhCheckNearAttrOffCutRange(_anon10* cp, unsigned int sft, float* px, float* pz)
+// 100% matching!
+void bhCheckNearAttrOffCutRange(CUT_WORK* cp, unsigned int sft, float* px, float* pz)
 {
-	float nr;
-	float ln;
-	float hz;
-	float hx;
-	float zz;
-	float xx;
-	int i;
-	_anon13* ct;
-	// Line 956, Address: 0x27c950, Func Offset: 0
-	// Line 961, Address: 0x27c97c, Func Offset: 0x2c
-	// Line 960, Address: 0x27c980, Func Offset: 0x30
-	// Line 962, Address: 0x27c99c, Func Offset: 0x4c
-	// Line 963, Address: 0x27c9a4, Func Offset: 0x54
-	// Line 964, Address: 0x27c9c0, Func Offset: 0x70
-	// Line 965, Address: 0x27c9cc, Func Offset: 0x7c
-	// Line 964, Address: 0x27c9d4, Func Offset: 0x84
-	// Line 967, Address: 0x27c9d8, Func Offset: 0x88
-	// Line 964, Address: 0x27c9dc, Func Offset: 0x8c
-	// Line 967, Address: 0x27c9e0, Func Offset: 0x90
-	// Line 964, Address: 0x27c9e4, Func Offset: 0x94
-	// Line 967, Address: 0x27c9e8, Func Offset: 0x98
-	// Line 965, Address: 0x27c9ec, Func Offset: 0x9c
-	// Line 968, Address: 0x27c9f0, Func Offset: 0xa0
-	// Line 965, Address: 0x27c9f4, Func Offset: 0xa4
-	// Line 968, Address: 0x27c9f8, Func Offset: 0xa8
-	// Line 967, Address: 0x27c9fc, Func Offset: 0xac
-	// Line 969, Address: 0x27ca00, Func Offset: 0xb0
-	// Line 970, Address: 0x27ca0c, Func Offset: 0xbc
-	// Line 971, Address: 0x27ca1c, Func Offset: 0xcc
-	// Line 972, Address: 0x27ca20, Func Offset: 0xd0
-	// Line 973, Address: 0x27ca24, Func Offset: 0xd4
-	// Line 974, Address: 0x27ca2c, Func Offset: 0xdc
-	// Line 976, Address: 0x27ca30, Func Offset: 0xe0
-	// Line 977, Address: 0x27ca40, Func Offset: 0xf0
-	// Line 976, Address: 0x27ca44, Func Offset: 0xf4
-	// Line 977, Address: 0x27ca48, Func Offset: 0xf8
-	// Line 978, Address: 0x27ca4c, Func Offset: 0xfc
-	// Line 979, Address: 0x27ca58, Func Offset: 0x108
-	// Line 980, Address: 0x27ca68, Func Offset: 0x118
-	// Line 981, Address: 0x27ca6c, Func Offset: 0x11c
-	// Line 982, Address: 0x27ca74, Func Offset: 0x124
-	// Line 985, Address: 0x27ca78, Func Offset: 0x128
-	// Line 986, Address: 0x27ca88, Func Offset: 0x138
-	// Line 985, Address: 0x27ca8c, Func Offset: 0x13c
-	// Line 986, Address: 0x27ca90, Func Offset: 0x140
-	// Line 987, Address: 0x27ca94, Func Offset: 0x144
-	// Line 988, Address: 0x27caa0, Func Offset: 0x150
-	// Line 989, Address: 0x27cab0, Func Offset: 0x160
-	// Line 990, Address: 0x27cab4, Func Offset: 0x164
-	// Line 991, Address: 0x27cabc, Func Offset: 0x16c
-	// Line 994, Address: 0x27cac0, Func Offset: 0x170
-	// Line 995, Address: 0x27cac8, Func Offset: 0x178
-	// Line 994, Address: 0x27cacc, Func Offset: 0x17c
-	// Line 995, Address: 0x27cad0, Func Offset: 0x180
-	// Line 994, Address: 0x27cad4, Func Offset: 0x184
-	// Line 995, Address: 0x27cad8, Func Offset: 0x188
-	// Line 996, Address: 0x27cadc, Func Offset: 0x18c
-	// Line 997, Address: 0x27cae8, Func Offset: 0x198
-	// Line 999, Address: 0x27cb08, Func Offset: 0x1b8
-	// Line 998, Address: 0x27cb0c, Func Offset: 0x1bc
-	// Line 1000, Address: 0x27cb10, Func Offset: 0x1c0
-	// Line 1003, Address: 0x27cb18, Func Offset: 0x1c8
-	// Line 1004, Address: 0x27cb30, Func Offset: 0x1e0
-	// Func End, Address: 0x27cb60, Func Offset: 0x210
+    CUT_WRK* ct;
+    int i; 
+    float xx; 
+    float zz; 
+    float hx; 
+    float hz; 
+    float ln; 
+    float nr;
+    
+    ct = cp->cuttp;
+    
+    nr = 10000.0f;
+
+    for (i = 0; i < cp->ctab_n; i++, ct++)
+    {
+        if ((!(ct->attr & sft)) && (ct->atr_tp == 0))
+        {
+            xx = 0.5f * (ct->maxx + ct->minx);
+            zz = 0.5f * (ct->maxz + ct->minz);
+
+            hx = plp->gpx - xx;
+            hz = plp->gpz - ct->minz;
+            
+            ln = njSqrt((hx * hx) + (hz * hz));
+
+            if (ln < nr)
+            {
+                nr = ln;
+                
+                *px = xx;
+                *pz = ct->minz;
+            }
+
+            hx = plp->gpx - ct->minx;
+            hz = plp->gpz - zz;
+            
+            ln = njSqrt((hx * hx) + (hz * hz));
+
+            if (ln < nr) 
+            {
+                nr = ln;
+                
+                *px = ct->minx;
+                *pz = zz;
+            }
+
+            hx = plp->gpx - ct->maxx;
+            hz = plp->gpz - zz;
+            
+            ln = njSqrt((hx * hx) + (hz * hz));
+
+            if (ln < nr) 
+            {
+                nr = ln;
+                
+                *px = ct->maxx;
+                *pz = zz;
+            }
+
+            hx = plp->gpx - xx;
+            hz = plp->gpz - ct->maxz;
+            
+            ln = njSqrt((hx * hx) + (hz * hz));
+
+            if ((ln < nr) && (!(ct->attr & sft))) 
+            {
+                nr = ln;
+                
+                *px = xx;
+                *pz = ct->maxz;
+            }
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x27cb60
 void bhControlActiveCamera()
 {
