@@ -11228,15 +11228,15 @@ void bhChangeViewClip(char stg_no, char rom_no, char rcase, int evc_no)
 	// Line 12804, Address: 0x171b88, Func Offset: 0x128
 	// Line 12807, Address: 0x171b94, Func Offset: 0x134
 	// Func End, Address: 0x171bac, Func Offset: 0x14c
-}
+}*/
 
 // 
 // Start address: 0x171bb0
 void bhChangeViewClipRM()
 {
 	int i;
-	_anon2* ViewClipTbl;
-	_anon2* ViewClipStage[10];
+	//_anon2* ViewClipTbl;
+	//_anon2* ViewClipStage[10];
 	// Line 12810, Address: 0x171bb0, Func Offset: 0
 	// Line 12939, Address: 0x171bb8, Func Offset: 0x8
 	// Line 12940, Address: 0x171bc4, Func Offset: 0x14
@@ -11259,9 +11259,10 @@ void bhChangeViewClipRM()
 	// Line 12964, Address: 0x171ccc, Func Offset: 0x11c
 	// Line 12967, Address: 0x171cd8, Func Offset: 0x128
 	// Func End, Address: 0x171ce4, Func Offset: 0x134
+	scePrintf("bhChangeViewClipRM - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x171cf0
 void bhChangeClipVolume(char stg_no, char rom_no, char rcase, int evc_no)
 {
@@ -11284,7 +11285,7 @@ void bhChangeClipVolume(char stg_no, char rom_no, char rcase, int evc_no)
 	// Line 13045, Address: 0x171d90, Func Offset: 0xa0
 	// Line 13046, Address: 0x171d98, Func Offset: 0xa8
 	// Func End, Address: 0x171da0, Func Offset: 0xb0
-}
+}*/
 
 // 
 // Start address: 0x171da0
@@ -11293,8 +11294,8 @@ void bhChangeClipVolumeRM()
 	float y;
 	float x;
 	int i;
-	_anon2* ViewClipTbl;
-	_anon2* ViewClipStage[10];
+	//_anon2* ViewClipTbl;
+	//_anon2* ViewClipStage[10];
 	// Line 13140, Address: 0x171da0, Func Offset: 0
 	// Line 13138, Address: 0x171da8, Func Offset: 0x8
 	// Line 13141, Address: 0x171db0, Func Offset: 0x10
@@ -11311,5 +11312,5 @@ void bhChangeClipVolumeRM()
 	// Line 13155, Address: 0x171e34, Func Offset: 0x94
 	// Line 13156, Address: 0x171e3c, Func Offset: 0x9c
 	// Func End, Address: 0x171e44, Func Offset: 0xa4
-}*/
-
+	scePrintf("bhChangeClipVolumeRM - UNIMPLEMENTED!\n");
+}
