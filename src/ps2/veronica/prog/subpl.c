@@ -3,9 +3,27 @@
 /*void(*Subpl_tbl)(BH_PWORK*)[7];*/
 typedef void (*InitSubpl_proc)(BH_PWORK*);
 InitSubpl_proc subpl_init_tbl[120] = { em60_init };
-/*void(*subpl_mv_tbl)(BH_PWORK*)[1];
-void(*subpl_mv00_tbl)(BH_PWORK*)[15];
-void(*subpl_mv01_tbl)(BH_PWORK*)[15];
+/*void(*subpl_mv_tbl)(BH_PWORK*)[1];*/
+typedef void (*Mv00Subpl_proc)(BH_PWORK*);
+Mv00Subpl_proc subpl_mv00_tbl[15] = 
+{
+    mv00_subpl0,
+    mv00_subpl1,
+    mv00_subpl2,
+    mv00_subpl3,
+    mv00_subpl5,
+    mv00_subpl6,
+    mv00_subpl0_1,
+    mv00_subpl0,
+    mv00_subpl0,
+    mv00_subpl1,
+    mv00_subpl0Ex,
+    mv00_subpl0,
+    mv00_subpl0,
+    mv00_subpl0,
+    mv00_subpl0
+}; 
+/*void(*subpl_mv01_tbl)(BH_PWORK*)[15];
 
 // 
 // Start address: 0x173ec0
@@ -84,14 +102,12 @@ void bhEne_Event(BH_PWORK* epw)
 {
 	// Line 262, Address: 0x174080, Func Offset: 0
 	// Func End, Address: 0x1740a0, Func Offset: 0x20
-}
+}*/
 
-// 
-// Start address: 0x1740a0
+// 100% matching!
 void bhEne_Event2(BH_PWORK* epw)
 {
-	// Line 267, Address: 0x1740a0, Func Offset: 0
-	// Func End, Address: 0x1740c0, Func Offset: 0x20
+    subpl_mv00_tbl[epw->ct2](epw);
 }
 
 // 
@@ -112,6 +128,7 @@ void mv00_subpl0(BH_PWORK* epw)
 	// Line 306, Address: 0x174114, Func Offset: 0x54
 	// Line 308, Address: 0x174124, Func Offset: 0x64
 	// Func End, Address: 0x174130, Func Offset: 0x70
+	scePrintf("mv00_subpl0 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -130,6 +147,7 @@ void mv00_subpl0Ex(BH_PWORK* epw)
 	// Line 346, Address: 0x17417c, Func Offset: 0x4c
 	// Line 348, Address: 0x17418c, Func Offset: 0x5c
 	// Func End, Address: 0x174198, Func Offset: 0x68
+	scePrintf("mv00_subpl0Ex - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -154,7 +172,8 @@ void mv00_subpl1(BH_PWORK* epw)
 	// Line 382, Address: 0x174274, Func Offset: 0xd4
 	// Line 384, Address: 0x174280, Func Offset: 0xe0
 	// Func End, Address: 0x174290, Func Offset: 0xf0
-}*/
+	scePrintf("mv00_subpl1 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void mv00_subpl2(BH_PWORK* epw)
@@ -194,7 +213,7 @@ void mv00_subpl2_0(BH_PWORK* epw)
     }
 }
 
-/*// 
+// 
 // Start address: 0x174310
 void mv00_subpl3(BH_PWORK* epw)
 {
@@ -214,9 +233,10 @@ void mv00_subpl3(BH_PWORK* epw)
 	// Line 458, Address: 0x1743cc, Func Offset: 0xbc
 	// Line 460, Address: 0x1743d4, Func Offset: 0xc4
 	// Func End, Address: 0x1743e4, Func Offset: 0xd4
+	scePrintf("mv00_subpl3 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1743f0
 void mv00_subpl3_0(BH_PWORK* epw)
 {
@@ -234,7 +254,7 @@ void mv00_subpl3_0(BH_PWORK* epw)
 	// Line 493, Address: 0x1744a8, Func Offset: 0xb8
 	// Line 495, Address: 0x1744b0, Func Offset: 0xc0
 	// Func End, Address: 0x1744c0, Func Offset: 0xd0
-}
+}*/
 
 // 
 // Start address: 0x1744c0
@@ -253,6 +273,7 @@ void mv00_subpl5(BH_PWORK* epw)
 	// Line 518, Address: 0x174508, Func Offset: 0x48
 	// Line 520, Address: 0x174518, Func Offset: 0x58
 	// Func End, Address: 0x174524, Func Offset: 0x64
+	scePrintf("mv00_subpl5 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -274,6 +295,7 @@ void mv00_subpl6(BH_PWORK* epw)
 	// Line 544, Address: 0x174588, Func Offset: 0x58
 	// Line 546, Address: 0x174598, Func Offset: 0x68
 	// Func End, Address: 0x1745a4, Func Offset: 0x74
+	scePrintf("mv00_subpl6 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -289,7 +311,8 @@ void mv00_subpl0_1(BH_PWORK* epw)
 	// Line 559, Address: 0x1745ec, Func Offset: 0x3c
 	// Line 561, Address: 0x1745fc, Func Offset: 0x4c
 	// Func End, Address: 0x174608, Func Offset: 0x58
-}*/
+	scePrintf("mv00_subpl0_1 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 int bhSub_DirTarget(BH_PWORK* epw, float x, float z, int ay)
