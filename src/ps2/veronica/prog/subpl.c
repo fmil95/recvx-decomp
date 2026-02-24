@@ -23,9 +23,27 @@ Mv00Subpl_proc subpl_mv00_tbl[15] =
     mv00_subpl0,
     mv00_subpl0
 }; 
-/*void(*subpl_mv01_tbl)(BH_PWORK*)[15];
+typedef void (*Mv01Subpl_proc)(BH_PWORK*);
+Mv01Subpl_proc subpl_mv01_tbl[15] = 
+{
+    mv00_subpl2,
+    mv00_subpl3,
+    mv00_subpl2,
+    mv00_subpl3,
+    mv00_subpl5,
+    mv00_subpl6,
+    mv00_subpl2_0,
+    mv00_subpl3_0,
+    mv00_subpl0,
+    mv00_subpl1,
+    mv00_subpl10,
+    mv00_subpl0,
+    mv00_subpl0,
+    mv00_subpl0,
+    mv00_subpl0
+};
 
-// 
+/*// 
 // Start address: 0x173ec0
 void bhSubpl(BH_PWORK* epw)
 {
@@ -94,15 +112,13 @@ void em_sce(BH_PWORK* epw)
 {
 	// Line 256, Address: 0x174060, Func Offset: 0
 	// Func End, Address: 0x174080, Func Offset: 0x20
-}
+}*/
 
-// 
-// Start address: 0x174080
+// 100% matching!
 void bhEne_Event(BH_PWORK* epw)
 {
-	// Line 262, Address: 0x174080, Func Offset: 0
-	// Func End, Address: 0x1740a0, Func Offset: 0x20
-}*/
+    subpl_mv01_tbl[epw->ct2](epw);
+}
 
 // 100% matching!
 void bhEne_Event2(BH_PWORK* epw)
