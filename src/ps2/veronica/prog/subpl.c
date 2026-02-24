@@ -3,7 +3,8 @@
 /*void(*Subpl_tbl)(BH_PWORK*)[7];*/
 typedef void (*InitSubpl_proc)(BH_PWORK*);
 InitSubpl_proc subpl_init_tbl[120] = { em60_init };
-/*void(*subpl_mv_tbl)(BH_PWORK*)[1];*/
+typedef void (*MvSubpl_proc)(BH_PWORK*);
+MvSubpl_proc subpl_mv_tbl[1] = { bhEne_Event2 };
 typedef void (*Mv00Subpl_proc)(BH_PWORK*);
 Mv00Subpl_proc subpl_mv00_tbl[15] = 
 {
@@ -98,13 +99,11 @@ void em60_init(BH_PWORK* epw)
 	scePrintf("em60_init - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x174040
+// 100% matching!
 void move_subpl(BH_PWORK* epw)
 {
-	// Line 222, Address: 0x174040, Func Offset: 0
-	// Func End, Address: 0x174060, Func Offset: 0x20
-}*/
+    subpl_mv_tbl[epw->mode2](epw);
+}
 
 // 100% matching!
 void em_sce(BH_PWORK* epw)
