@@ -1,4 +1,5 @@
 #include "eneset.h"
+#include "MdlPut.h"
 #include "njplus.h"
 #include "pwksub.h"
 #include "main.h"
@@ -572,33 +573,44 @@ void bhDrawEnemy()
 	scePrintf("bhDrawEnemy - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x175b70
+// 100% matching!
 void bhDrawEneObject()
 {
-	int i;
-	BH_PWORK* ep;
-	// Line 1072, Address: 0x175b70, Func Offset: 0
-	// Line 1089, Address: 0x175b84, Func Offset: 0x14
-	// Line 1090, Address: 0x175b90, Func Offset: 0x20
-	// Line 1091, Address: 0x175ba0, Func Offset: 0x30
-	// Line 1092, Address: 0x175bb0, Func Offset: 0x40
-	// Line 1103, Address: 0x175bc4, Func Offset: 0x54
-	// Line 1105, Address: 0x175be0, Func Offset: 0x70
-	// Line 1106, Address: 0x175bf0, Func Offset: 0x80
-	// Line 1108, Address: 0x175c00, Func Offset: 0x90
-	// Line 1113, Address: 0x175c20, Func Offset: 0xb0
-	// Line 1115, Address: 0x175c2c, Func Offset: 0xbc
-	// Line 1116, Address: 0x175c38, Func Offset: 0xc8
-	// Line 1120, Address: 0x175c50, Func Offset: 0xe0
-	// Line 1121, Address: 0x175c58, Func Offset: 0xe8
-	// Line 1122, Address: 0x175c64, Func Offset: 0xf4
-	// Line 1123, Address: 0x175c74, Func Offset: 0x104
-	// Line 1124, Address: 0x175c7c, Func Offset: 0x10c
-	// Line 1128, Address: 0x175c8c, Func Offset: 0x11c
-	// Line 1129, Address: 0x175cb0, Func Offset: 0x140
-	// Func End, Address: 0x175cc8, Func Offset: 0x158
-	scePrintf("bhDrawEneObject - UNIMPLEMENTED!\n");
+    BH_PWORK* ep;
+    int i;
+	
+    for (i = 0; i < sys->en_objn; i++) 
+    {
+        ep = sys->en_obj[i];
+        
+        if (((ep->flg & 0x1)) && (!(ep->stflg & 0x41000000)))
+        {
+            if ((ep->mdflg & 0x4))
+            {
+                bhCalcModel(ep);
+            }
+            
+            if ((((ep->mdflg & 0x20)) || (bhCheckClipModel(ep) == 0)) && (ep->mlwP->objP != NULL) && (!(ep->mdflg & 0x1)))
+            {
+                if ((ep->mdflg & 0x2)) 
+                {
+                    npPushMdlstr2(ep->obj_a, ep->mlwP->obj_num);
+                    
+                    npCalcMorphing(ep->obj_a, ep->obj_b, ep->shp_ct, ep->mlwP->obj_num);
+                    
+                    ep->mlwP->objP = ep->obj_a;
+                    
+                    bhPutModel(ep);
+                    
+                    npPopMdlstr2(ep->obj_a, ep->mlwP->obj_num);
+                }
+                else 
+                {
+                    bhPutModel(ep);
+                }
+            }
+        }
+    }
 }
 
 /*// 
