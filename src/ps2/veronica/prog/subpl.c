@@ -246,27 +246,27 @@ void mv00_subpl2_0(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x174310
+// 93.77% matching (matches on GC)
 void mv00_subpl3(BH_PWORK* epw)
 {
-	// Line 431, Address: 0x174310, Func Offset: 0
-	// Line 435, Address: 0x174320, Func Offset: 0x10
-	// Line 437, Address: 0x174340, Func Offset: 0x30
-	// Line 438, Address: 0x174344, Func Offset: 0x34
-	// Line 439, Address: 0x174348, Func Offset: 0x38
-	// Line 438, Address: 0x17434c, Func Offset: 0x3c
-	// Line 439, Address: 0x174350, Func Offset: 0x40
-	// Line 446, Address: 0x174354, Func Offset: 0x44
-	// Line 454, Address: 0x174358, Func Offset: 0x48
-	// Line 456, Address: 0x1743a4, Func Offset: 0x94
-	// Line 458, Address: 0x1743b0, Func Offset: 0xa0
-	// Line 454, Address: 0x1743b8, Func Offset: 0xa8
-	// Line 456, Address: 0x1743c0, Func Offset: 0xb0
-	// Line 458, Address: 0x1743cc, Func Offset: 0xbc
-	// Line 460, Address: 0x1743d4, Func Offset: 0xc4
-	// Func End, Address: 0x1743e4, Func Offset: 0xd4
-	scePrintf("mv00_subpl3 - UNIMPLEMENTED!\n");
+    switch (epw->mode3) 
+    {                         
+    case 0:
+        epw->mode3 = 1;
+        
+        epw->mtn_no = epw->mode1;
+        
+        epw->hokan_count = 8;
+        
+        epw->frm_mode = 0;
+    case 1:
+        epw->ay += bhSub_DirTarget(epw, (short)(epw->ct0 >> 16) * 0.01f, (short)epw->ct0 * 0.01f, 182);
+        
+        epw->spd = 0.01f * epw->ct3;
+        
+        bhAddSpeed(epw, 0);
+        break;
+    }
 }
 
 // 93.65% matching (matches on GC)
