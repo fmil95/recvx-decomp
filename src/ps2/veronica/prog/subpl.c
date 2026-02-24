@@ -1,6 +1,17 @@
 #include "subpl.h"
+#include "MdlPut.h"
 
-/*void(*Subpl_tbl)(BH_PWORK*)[7];*/
+typedef void (*Subpl_proc)(BH_PWORK*);
+Subpl_proc Subpl_tbl[7] = 
+{
+    init_subpl,
+    move_subpl,
+    NULL,
+    NULL,
+    NULL,
+    em_sce,
+    em_sce
+};
 typedef void (*InitSubpl_proc)(BH_PWORK*);
 InitSubpl_proc subpl_init_tbl[120] = { em60_init };
 typedef void (*MvSubpl_proc)(BH_PWORK*);
@@ -44,22 +55,16 @@ Mv01Subpl_proc subpl_mv01_tbl[15] =
     mv00_subpl0
 };
 
-/*// 
-// Start address: 0x173ec0
+// 100% matching!
 void bhSubpl(BH_PWORK* epw)
 {
-	// Line 101, Address: 0x173ec0, Func Offset: 0
-	// Line 104, Address: 0x173ecc, Func Offset: 0xc
-	// Line 108, Address: 0x173ed0, Func Offset: 0x10
-	// Line 106, Address: 0x173ed4, Func Offset: 0x14
-	// Line 108, Address: 0x173edc, Func Offset: 0x1c
-	// Line 104, Address: 0x173ee0, Func Offset: 0x20
-	// Line 106, Address: 0x173ee8, Func Offset: 0x28
-	// Line 108, Address: 0x173ef4, Func Offset: 0x34
-	// Line 111, Address: 0x173f0c, Func Offset: 0x4c
-	// Line 113, Address: 0x173f14, Func Offset: 0x54
-	// Func End, Address: 0x173f24, Func Offset: 0x64
-}*/
+    epw->flg |= 0x8100;
+    epw->flg &= ~0x2;
+    
+    Subpl_tbl[epw->mode0](epw);
+    
+    bhCalcModel(epw);
+}
 
 // 100% matching! 
 void init_subpl(BH_PWORK* epw)
