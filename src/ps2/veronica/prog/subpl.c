@@ -327,20 +327,23 @@ void mv00_subpl6(BH_PWORK* epw)
 	scePrintf("mv00_subpl6 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1745b0
+// 100% matching! 
 void mv00_subpl0_1(BH_PWORK* epw)
 {
-	// Line 551, Address: 0x1745b0, Func Offset: 0
-	// Line 552, Address: 0x1745b8, Func Offset: 0x8
-	// Line 554, Address: 0x1745d8, Func Offset: 0x28
-	// Line 555, Address: 0x1745dc, Func Offset: 0x2c
-	// Line 556, Address: 0x1745e4, Func Offset: 0x34
-	// Line 557, Address: 0x1745e8, Func Offset: 0x38
-	// Line 559, Address: 0x1745ec, Func Offset: 0x3c
-	// Line 561, Address: 0x1745fc, Func Offset: 0x4c
-	// Func End, Address: 0x174608, Func Offset: 0x58
-	scePrintf("mv00_subpl0_1 - UNIMPLEMENTED!\n");
+    switch (epw->mode3) 
+    {                        
+    case 0:
+        epw->mode3 = 1;
+        
+        epw->mtn_no = epw->mode1;
+        
+        epw->hokan_count = 0;
+        
+        epw->frm_mode = 0;
+    case 1:
+        bhSetMotion(epw, (int)epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+        break;
+    }
 }
 
 // 100% matching! 
