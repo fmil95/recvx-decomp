@@ -305,26 +305,29 @@ void mv00_subpl5(BH_PWORK* epw)
 	scePrintf("mv00_subpl5 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x174530
+// 100% matching! 
 void mv00_subpl6(BH_PWORK* epw)
 {
-	// Line 525, Address: 0x174530, Func Offset: 0
-	// Line 526, Address: 0x174538, Func Offset: 0x8
-	// Line 528, Address: 0x174558, Func Offset: 0x28
-	// Line 529, Address: 0x17455c, Func Offset: 0x2c
-	// Line 530, Address: 0x174560, Func Offset: 0x30
-	// Line 532, Address: 0x174564, Func Offset: 0x34
-	// Line 529, Address: 0x174568, Func Offset: 0x38
-	// Line 530, Address: 0x17456c, Func Offset: 0x3c
-	// Line 532, Address: 0x174570, Func Offset: 0x40
-	// Line 538, Address: 0x174574, Func Offset: 0x44
-	// Line 539, Address: 0x174580, Func Offset: 0x50
-	// Line 541, Address: 0x174584, Func Offset: 0x54
-	// Line 544, Address: 0x174588, Func Offset: 0x58
-	// Line 546, Address: 0x174598, Func Offset: 0x68
-	// Func End, Address: 0x1745a4, Func Offset: 0x74
-	scePrintf("mv00_subpl6 - UNIMPLEMENTED!\n");
+    switch (epw->mode3) 
+    {                            
+    case 0:
+        epw->mode3 = 1;
+        
+        epw->mtn_no = epw->mode1;
+        
+        epw->hokan_count = 16;
+        
+        epw->mtn_add = 65536;
+        
+        epw->mtn_md |= 0x100;
+        
+        epw->mtn_tp = NULL;
+        
+        epw->frm_mode = 0;
+    case 1:
+        bhSetMotion(epw, (int)epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+        break;
+    }
 }
 
 // 100% matching! 
