@@ -154,23 +154,26 @@ void mv00_subpl1(BH_PWORK* epw)
 	// Line 382, Address: 0x174274, Func Offset: 0xd4
 	// Line 384, Address: 0x174280, Func Offset: 0xe0
 	// Func End, Address: 0x174290, Func Offset: 0xf0
-}
+}*/
 
-// 
-// Start address: 0x174290
+// 100% matching! 
 void mv00_subpl2(BH_PWORK* epw)
 {
-	// Line 390, Address: 0x174290, Func Offset: 0
-	// Line 392, Address: 0x1742a4, Func Offset: 0x14
-	// Line 393, Address: 0x1742ac, Func Offset: 0x1c
-	// Line 394, Address: 0x1742b0, Func Offset: 0x20
-	// Line 393, Address: 0x1742b4, Func Offset: 0x24
-	// Line 394, Address: 0x1742b8, Func Offset: 0x28
-	// Line 402, Address: 0x1742bc, Func Offset: 0x2c
-	// Line 403, Address: 0x1742c0, Func Offset: 0x30
-	// Line 405, Address: 0x1742c4, Func Offset: 0x34
-	// Func End, Address: 0x1742cc, Func Offset: 0x3c
-}*/
+    switch (epw->mode3) 
+    {
+    case 0:
+        epw->mode3 = 1;
+        
+        epw->mtn_no = epw->mode1;
+        
+        epw->hokan_count = 8;
+        
+        epw->frm_mode = 0;
+        
+        epw->spd = 0;
+        break;
+    }
+}
 
 // 100% matching! 
 void mv00_subpl2_0(BH_PWORK* epw)
