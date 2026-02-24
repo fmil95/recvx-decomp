@@ -289,22 +289,24 @@ void mv00_subpl0_1(BH_PWORK* epw)
 	// Line 559, Address: 0x1745ec, Func Offset: 0x3c
 	// Line 561, Address: 0x1745fc, Func Offset: 0x4c
 	// Func End, Address: 0x174608, Func Offset: 0x58
-}
+}*/
 
-// 
-// Start address: 0x174610
+// 100% matching! 
 int bhSub_DirTarget(BH_PWORK* epw, float x, float z, int ay)
 {
-	int ang;
-	// Line 565, Address: 0x174610, Func Offset: 0
-	// Line 571, Address: 0x174620, Func Offset: 0x10
-	// Line 572, Address: 0x174650, Func Offset: 0x40
-	// Line 574, Address: 0x174660, Func Offset: 0x50
-	// Line 575, Address: 0x174674, Func Offset: 0x64
-	// Line 578, Address: 0x17468c, Func Offset: 0x7c
-	// Line 579, Address: 0x174690, Func Offset: 0x80
-	// Func End, Address: 0x1746a4, Func Offset: 0x94
-}*/
+    int ang;
+    
+    ang = atan2f(epw->px - x, epw->pz - z) * 10430.381f;
+    
+    ang = (short)(ang - epw->ay);
+    
+    if (ay < abs(ang)) 
+    {  
+        ang = (ang > 0) ? ay : -ay;
+    }
+    
+    return ang;
+}
 
 // 100% matching! 
 void mv00_subpl10(BH_PWORK* epw)
