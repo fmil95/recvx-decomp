@@ -2266,7 +2266,7 @@ void bhEne_CalcDamage(BH_PWORK* epw, _anon18* CombWepTbl, _anon20* CombJointTbl)
 	// Line 963, Address: 0x21ab04, Func Offset: 0x204
 	// Line 965, Address: 0x21ab10, Func Offset: 0x210
 	// Func End, Address: 0x21ab20, Func Offset: 0x220
-}
+}*/
 
 // 
 // Start address: 0x21ab20
@@ -2286,9 +2286,10 @@ void bhEne_InitDamage(BH_PWORK* epw)
 	// Line 992, Address: 0x21ab88, Func Offset: 0x68
 	// Line 993, Address: 0x21ab90, Func Offset: 0x70
 	// Func End, Address: 0x21ab98, Func Offset: 0x78
+	scePrintf("bhEne_InitDamage - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x21aba0
 void bhEne_CallSE(BH_PWORK* epw, _anon6* pos, int se)
 {
@@ -2387,4 +2388,3 @@ void bhEne_EraseArrow(BH_PWORK* epw, int obj_no)
 	// Line 1155, Address: 0x21aec8, Func Offset: 0x68
 	// Func End, Address: 0x21aed0, Func Offset: 0x70
 }*/
-

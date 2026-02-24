@@ -63,15 +63,15 @@ void bhInitMask(BH_PWORK* pp)
 	// Line 124, Address: 0x298238, Func Offset: 0x268
 	// Line 125, Address: 0x29823c, Func Offset: 0x26c
 	// Func End, Address: 0x298250, Func Offset: 0x280
-}
+}*/
 
 // 
 // Start address: 0x298250
 void bhControlMask(BH_PWORK* pp)
 {
 	void* fbak;
-	_anon11* lip;
-	_anon2* fm;
+	//_anon11* lip;
+	//_anon2* fm;
 	// Line 131, Address: 0x298250, Func Offset: 0
 	// Line 136, Address: 0x298268, Func Offset: 0x18
 	// Line 137, Address: 0x298274, Func Offset: 0x24
@@ -155,9 +155,10 @@ void bhControlMask(BH_PWORK* pp)
 	// Line 286, Address: 0x2986a4, Func Offset: 0x454
 	// Line 336, Address: 0x2986bc, Func Offset: 0x46c
 	// Func End, Address: 0x2986d8, Func Offset: 0x488
+	scePrintf("bhControlMask - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2986e0
 int bhSetMask(BH_PWORK* pp, int msk_no, int frm_no)
 {
@@ -215,4 +216,3 @@ int bhSetLip(BH_PWORK* pp, int mls_no)
 	// Line 418, Address: 0x29880c, Func Offset: 0x7c
 	// Func End, Address: 0x298814, Func Offset: 0x84
 }*/
-

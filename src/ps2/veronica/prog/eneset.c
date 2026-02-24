@@ -1,8 +1,10 @@
 #include "eneset.h"
 #include "MdlPut.h"
+#include "face.h"
 #include "light.h"
 #include "njplus.h"
 #include "pwksub.h"
+//#include "zonzon1.h"
 #include "main.h"
 
 typedef void (*JumpEnemy_proc)();
@@ -194,37 +196,51 @@ void bhCheckEneWorkNum()
     }
 }
 
-// 
-// Start address: 0x174a90
+// 100% matching!
 void bhControlEnemy()
 {
-	unsigned int i;
-	BH_PWORK* ep;
-	// Line 539, Address: 0x174a90, Func Offset: 0
-	// Line 543, Address: 0x174aa0, Func Offset: 0x10
-	// Line 565, Address: 0x174ab8, Func Offset: 0x28
-	// Line 566, Address: 0x174ad0, Func Offset: 0x40
-	// Line 576, Address: 0x174ad8, Func Offset: 0x48
-	// Line 566, Address: 0x174ae0, Func Offset: 0x50
-	// Line 577, Address: 0x174ae4, Func Offset: 0x54
-	// Line 578, Address: 0x174aec, Func Offset: 0x5c
-	// Line 579, Address: 0x174af8, Func Offset: 0x68
-	// Line 581, Address: 0x174b34, Func Offset: 0xa4
-	// Line 582, Address: 0x174b38, Func Offset: 0xa8
-	// Line 584, Address: 0x174b44, Func Offset: 0xb4
-	// Line 585, Address: 0x174b4c, Func Offset: 0xbc
-	// Line 586, Address: 0x174b54, Func Offset: 0xc4
-	// Line 588, Address: 0x174b5c, Func Offset: 0xcc
-	// Line 589, Address: 0x174b64, Func Offset: 0xd4
-	// Line 590, Address: 0x174b6c, Func Offset: 0xdc
-	// Line 592, Address: 0x174b74, Func Offset: 0xe4
-	// Line 614, Address: 0x174b90, Func Offset: 0x100
-	// Line 616, Address: 0x174bb0, Func Offset: 0x120
-	// Line 618, Address: 0x174bb8, Func Offset: 0x128
-	// Line 620, Address: 0x174c04, Func Offset: 0x174
-	// Line 621, Address: 0x174c30, Func Offset: 0x1a0
-	// Func End, Address: 0x174c44, Func Offset: 0x1b4
-	scePrintf("bhControlEnemy - UNIMPLEMENTED!\n");
+    BH_PWORK* ep;
+    unsigned int i;
+    
+    plp->ofz = 0;
+    plp->ofx = 0;
+    
+    if ((sys->sp_flg & 0x2)) 
+    {
+        ep = ene;
+        
+        sys->en_objn = 0;
+        
+        for (i = 0; i < sys->ewk_n; i++, ep++)
+        {
+            sys->enow = i;
+            
+            if ((!(ep->stflg & 0x41000000)) && (((!(ep->flg & 0x80)) || (!(((BH_PWORK*)ep->lkwkp)->stflg & 0x1000000))) && ((ep->flg & 0x1))))
+            {
+                ep->pxb = ep->px;
+                ep->pyb = ep->py;
+                ep->pzb = ep->pz;
+                
+                ep->axb = ep->ax;
+                ep->ayb = ep->ay;
+                ep->azb = ep->az;
+                
+                if (ep->id > 90) 
+                {
+                    bhControlMask(ep);
+                }
+                
+                bhJumpEnemy[ep->id](ep);
+                
+                bhEne_InitDamage(ep);
+                
+                if ((ep->flg & 0x80000000)) 
+                {
+                    sys->en_obj[sys->en_objn++] = ep;
+                }
+            }
+        }
+    }
 }
 
 /*// 
