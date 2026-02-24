@@ -1,6 +1,7 @@
 #include "subpl.h"
 #include "MdlPut.h"
 #include "Motion.h"
+#include "pwksub.h"
 
 typedef void (*Subpl_proc)(BH_PWORK*);
 typedef void (*InitSubpl_proc)(BH_PWORK*);
@@ -265,25 +266,28 @@ void mv00_subpl3(BH_PWORK* epw)
 	scePrintf("mv00_subpl3 - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x1743f0
+// 93.65% matching (matches on GC)
 void mv00_subpl3_0(BH_PWORK* epw)
 {
-	// Line 466, Address: 0x1743f0, Func Offset: 0
-	// Line 470, Address: 0x174400, Func Offset: 0x10
-	// Line 472, Address: 0x174420, Func Offset: 0x30
-	// Line 473, Address: 0x174424, Func Offset: 0x34
-	// Line 474, Address: 0x17442c, Func Offset: 0x3c
-	// Line 481, Address: 0x174430, Func Offset: 0x40
-	// Line 489, Address: 0x174434, Func Offset: 0x44
-	// Line 491, Address: 0x174480, Func Offset: 0x90
-	// Line 493, Address: 0x17448c, Func Offset: 0x9c
-	// Line 489, Address: 0x174494, Func Offset: 0xa4
-	// Line 491, Address: 0x17449c, Func Offset: 0xac
-	// Line 493, Address: 0x1744a8, Func Offset: 0xb8
-	// Line 495, Address: 0x1744b0, Func Offset: 0xc0
-	// Func End, Address: 0x1744c0, Func Offset: 0xd0
-}*/
+    switch (epw->mode3) 
+    {                              
+    case 0:
+        epw->mode3 = 1;
+        
+        epw->mtn_no = epw->mode1;
+        
+        epw->hokan_count = 0;
+        
+        epw->frm_mode = 0;
+    case 1:
+        epw->ay += bhSub_DirTarget(epw, (short)(epw->ct0 >> 16) * 0.01f, (short)epw->ct0 * 0.01f, 182);
+        
+        epw->spd = 0.01f * epw->ct3;
+        
+        bhAddSpeed(epw, 0);
+        break;
+    }
+}
 
 // 100% matching! 
 void mv00_subpl5(BH_PWORK* epw)
