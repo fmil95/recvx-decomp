@@ -3,6 +3,11 @@
 #include "Motion.h"
 
 typedef void (*Subpl_proc)(BH_PWORK*);
+typedef void (*InitSubpl_proc)(BH_PWORK*);
+typedef void (*MvSubpl_proc)(BH_PWORK*);
+typedef void (*Mv00Subpl_proc)(BH_PWORK*);
+typedef void (*Mv01Subpl_proc)(BH_PWORK*);
+
 Subpl_proc Subpl_tbl[7] = 
 {
     init_subpl,
@@ -13,11 +18,8 @@ Subpl_proc Subpl_tbl[7] =
     em_sce,
     em_sce
 };
-typedef void (*InitSubpl_proc)(BH_PWORK*);
 InitSubpl_proc subpl_init_tbl[120] = { em60_init };
-typedef void (*MvSubpl_proc)(BH_PWORK*);
 MvSubpl_proc subpl_mv_tbl[1] = { bhEne_Event2 };
-typedef void (*Mv00Subpl_proc)(BH_PWORK*);
 Mv00Subpl_proc subpl_mv00_tbl[15] = 
 {
     mv00_subpl0,
@@ -36,7 +38,6 @@ Mv00Subpl_proc subpl_mv00_tbl[15] =
     mv00_subpl0,
     mv00_subpl0
 }; 
-typedef void (*Mv01Subpl_proc)(BH_PWORK*);
 Mv01Subpl_proc subpl_mv01_tbl[15] = 
 {
     mv00_subpl2,
@@ -135,25 +136,26 @@ void bhEne_Event2(BH_PWORK* epw)
     subpl_mv00_tbl[epw->ct2](epw);
 }
 
-// 
-// Start address: 0x1740c0
+// 100% matching!
 void mv00_subpl0(BH_PWORK* epw)
 {
-	// Line 273, Address: 0x1740c0, Func Offset: 0
-	// Line 274, Address: 0x1740c8, Func Offset: 0x8
-	// Line 276, Address: 0x1740e8, Func Offset: 0x28
-	// Line 277, Address: 0x1740ec, Func Offset: 0x2c
-	// Line 278, Address: 0x1740f0, Func Offset: 0x30
-	// Line 285, Address: 0x1740f4, Func Offset: 0x34
-	// Line 277, Address: 0x1740f8, Func Offset: 0x38
-	// Line 278, Address: 0x1740fc, Func Offset: 0x3c
-	// Line 281, Address: 0x174100, Func Offset: 0x40
-	// Line 285, Address: 0x174104, Func Offset: 0x44
-	// Line 288, Address: 0x174110, Func Offset: 0x50
-	// Line 306, Address: 0x174114, Func Offset: 0x54
-	// Line 308, Address: 0x174124, Func Offset: 0x64
-	// Func End, Address: 0x174130, Func Offset: 0x70
-	scePrintf("mv00_subpl0 - UNIMPLEMENTED!\n");
+    switch (epw->mode3) 
+    {                              
+    case 0:
+        epw->mode3 = 1;
+        
+        epw->mtn_no = epw->mode1;
+        
+        epw->hokan_count = 8;
+        epw->hokan_rate = 0;
+        
+        epw->mtn_md &= ~0x100;
+        
+        epw->frm_mode = 0;
+    case 1:
+        bhSetMotion(epw, (int)epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+        break;
+    }
 }
 
 // 
