@@ -3,8 +3,10 @@
 #include "pwksub.h"
 #include "main.h"
 
-/*void(*bhJumpEnemy)()[100];
-_anon23 En00CapColTab[5];
+typedef void (*JumpEnemy_proc)();
+
+JumpEnemy_proc bhJumpEnemy[100]; // DATA
+/*_anon23 En00CapColTab[5];
 BH_PWORK ene[0];
 _anon24* sys;
 BH_PWORK* plp;
@@ -619,14 +621,10 @@ void* bhEne_CallocWork(int size)
 	// Line 1218, Address: 0x175d64, Func Offset: 0x94
 	// Line 1220, Address: 0x175d78, Func Offset: 0xa8
 	// Func End, Address: 0x175d80, Func Offset: 0xb0
-}
-
-// 
-// Start address: 0x175d80
-void bhEne_SetCallFunc(void(*func)(BH_PWORK*), unsigned int no)
-{
-	// Line 1231, Address: 0x175d80, Func Offset: 0
-	// Line 1232, Address: 0x175d90, Func Offset: 0x10
-	// Func End, Address: 0x175d98, Func Offset: 0x18
 }*/
 
+// 100% matching!
+void bhEne_SetCallFunc(void(*func)(BH_PWORK*), unsigned int no)
+{
+    bhJumpEnemy[no] = func;
+}
