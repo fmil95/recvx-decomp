@@ -1,5 +1,6 @@
 #include "eneset.h"
 #include "MdlPut.h"
+#include "light.h"
 #include "njplus.h"
 #include "pwksub.h"
 #include "main.h"
@@ -532,45 +533,73 @@ void bhEne56(BH_PWORK* ep)
 	// Func End, Address: 0x1758f8, Func Offset: 0x8c8
 }*/
 
-// 
-// Start address: 0x175900
-void bhDrawEnemy()
+// 100% matching!
+void bhDrawEnemy() 
 {
-	unsigned int argb;
-	int i;
-	BH_PWORK* ep;
-	// Line 938, Address: 0x175900, Func Offset: 0
-	// Line 955, Address: 0x175910, Func Offset: 0x10
-	// Line 956, Address: 0x175918, Func Offset: 0x18
-	// Line 957, Address: 0x175920, Func Offset: 0x20
-	// Line 1008, Address: 0x175940, Func Offset: 0x40
-	// Line 1011, Address: 0x17599c, Func Offset: 0x9c
-	// Line 1022, Address: 0x1759a0, Func Offset: 0xa0
-	// Line 1024, Address: 0x1759b8, Func Offset: 0xb8
-	// Line 1025, Address: 0x1759c8, Func Offset: 0xc8
-	// Line 1028, Address: 0x1759d8, Func Offset: 0xd8
-	// Line 1034, Address: 0x1759f8, Func Offset: 0xf8
-	// Line 1035, Address: 0x175a10, Func Offset: 0x110
-	// Line 1036, Address: 0x175a18, Func Offset: 0x118
-	// Line 1038, Address: 0x175a20, Func Offset: 0x120
-	// Line 1039, Address: 0x175a38, Func Offset: 0x138
-	// Line 1042, Address: 0x175a44, Func Offset: 0x144
-	// Line 1044, Address: 0x175a4c, Func Offset: 0x14c
-	// Line 1045, Address: 0x175aa0, Func Offset: 0x1a0
-	// Line 1046, Address: 0x175aa8, Func Offset: 0x1a8
-	// Line 1048, Address: 0x175abc, Func Offset: 0x1bc
-	// Line 1049, Address: 0x175ac0, Func Offset: 0x1c0
-	// Line 1051, Address: 0x175ad0, Func Offset: 0x1d0
-	// Line 1052, Address: 0x175ae0, Func Offset: 0x1e0
-	// Line 1056, Address: 0x175af8, Func Offset: 0x1f8
-	// Line 1057, Address: 0x175b00, Func Offset: 0x200
-	// Line 1058, Address: 0x175b0c, Func Offset: 0x20c
-	// Line 1059, Address: 0x175b1c, Func Offset: 0x21c
-	// Line 1061, Address: 0x175b24, Func Offset: 0x224
-	// Line 1065, Address: 0x175b30, Func Offset: 0x230
-	// Line 1066, Address: 0x175b58, Func Offset: 0x258
-	// Func End, Address: 0x175b6c, Func Offset: 0x26c
-	scePrintf("bhDrawEnemy - UNIMPLEMENTED!\n");
+    BH_PWORK* ep;
+    int i;
+    unsigned int argb;
+    
+    ep = ene;
+    
+    for (i = 0; i < sys->ewk_n; i++, ep++)
+    {
+        if ((((ep->flg & 0x1)) && (!(ep->flg & 0x80000000))) && (!(ep->stflg & 0x41000000)) && (((sys->st_flg & 0x20)) || (!(ep->mdflg & 0x200))) && ((!(ep->flg & 0x80)) || (!(((BH_PWORK*)ep->lkwkp)->stflg & 0x1000000))))
+        {
+            if ((ep->mdflg & 0x4)) 
+            {
+                bhCalcModel(ep);
+            }
+            
+            if ((((ep->mdflg & 0x20)) || (bhCheckClipModel(ep) == 0)) && (!(ep->mdflg & 0x1)) && (ep->mlwP->objP != NULL)) 
+            {
+                if ((sys->st_flg & 0x20))
+                {
+                    bhPutModel(ep);
+                }
+                else
+                {
+                    if ((sys->gm_flg & 0x1000040)) 
+                    {
+                        if ((ep->mdflg & 0x400))
+                        {
+                            argb = npGetMatColor(ep->mlwP->objP, ep->mlwP->obj_num) & 0xFF;
+                            
+                            if (argb >= 0)
+                            {
+                                bhSetEasyDirLight(argb / 255.0f);
+                            }
+                            else
+                            {
+                                bhSetEasyDirLight((2.0f * ((argb >> 1) | (argb & 0x1))) / 255.0f);
+                            }
+                        }
+                        else 
+                        {
+                            bhSetEasyDirLight(0.6f);
+                        }
+                    }
+                    
+                    if ((ep->mdflg & 0x2))
+                    {
+                        npPushMdlstr2(ep->obj_a, ep->mlwP->obj_num);
+                        
+                        npCalcMorphing(ep->obj_a, ep->obj_b, ep->shp_ct, ep->mlwP->obj_num);
+                        
+                        ep->mlwP->objP = ep->obj_a;
+                        
+                        bhPutModel(ep);
+                        
+                        npPopMdlstr2(ep->obj_a, ep->mlwP->obj_num);
+                    } 
+                    else 
+                    {
+                        bhPutModel(ep);
+                    }
+                }
+            }
+        }
+    }
 }
 
 // 100% matching!
