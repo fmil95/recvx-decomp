@@ -104,15 +104,13 @@ void move_subpl(BH_PWORK* epw)
 {
 	// Line 222, Address: 0x174040, Func Offset: 0
 	// Func End, Address: 0x174060, Func Offset: 0x20
-}
+}*/
 
-// 
-// Start address: 0x174060
+// 100% matching!
 void em_sce(BH_PWORK* epw)
 {
-	// Line 256, Address: 0x174060, Func Offset: 0
-	// Func End, Address: 0x174080, Func Offset: 0x20
-}*/
+    subpl_mv01_tbl[epw->ct2](epw);
+}
 
 // 100% matching!
 void bhEne_Event(BH_PWORK* epw)
