@@ -296,18 +296,21 @@ int bhSub_DirTarget(BH_PWORK* epw, float x, float z, int ay)
 	// Line 578, Address: 0x17468c, Func Offset: 0x7c
 	// Line 579, Address: 0x174690, Func Offset: 0x80
 	// Func End, Address: 0x1746a4, Func Offset: 0x94
-}
-
-// 
-// Start address: 0x1746b0
-void mv00_subpl10(BH_PWORK* epw)
-{
-	// Line 607, Address: 0x1746b0, Func Offset: 0
-	// Line 609, Address: 0x1746c4, Func Offset: 0x14
-	// Line 610, Address: 0x1746cc, Func Offset: 0x1c
-	// Line 619, Address: 0x1746d4, Func Offset: 0x24
-	// Line 620, Address: 0x1746d8, Func Offset: 0x28
-	// Line 622, Address: 0x1746dc, Func Offset: 0x2c
-	// Func End, Address: 0x1746e4, Func Offset: 0x34
 }*/
 
+// 100% matching! 
+void mv00_subpl10(BH_PWORK* epw)
+{
+    switch (epw->mode3) 
+    {
+    case 0:
+        epw->mode3 = 1;
+        
+        epw->mtn_no = epw->mode1;
+        
+        epw->frm_mode = 0;
+        
+        epw->spd = 0;
+        break;
+    }
+}
