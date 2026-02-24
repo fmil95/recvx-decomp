@@ -1,30 +1,11 @@
 #include "subpl.h"
 
-/*void(*Subpl_tbl)(BH_PWORK*)[7];
-void(*subpl_init_tbl)(BH_PWORK*)[120];
-void(*subpl_mv_tbl)(BH_PWORK*)[1];
+/*void(*Subpl_tbl)(BH_PWORK*)[7];*/
+typedef void (*InitSubpl_proc)(BH_PWORK*);
+InitSubpl_proc subpl_init_tbl[120] = { em60_init };
+/*void(*subpl_mv_tbl)(BH_PWORK*)[1];
 void(*subpl_mv00_tbl)(BH_PWORK*)[15];
 void(*subpl_mv01_tbl)(BH_PWORK*)[15];
-
-void bhSubpl(BH_PWORK* epw);
-void init_subpl(BH_PWORK* epw);
-void em60_init(BH_PWORK* epw);
-void move_subpl(BH_PWORK* epw);
-void em_sce(BH_PWORK* epw);
-void bhEne_Event(BH_PWORK* epw);
-void bhEne_Event2(BH_PWORK* epw);
-void mv00_subpl0(BH_PWORK* epw);
-void mv00_subpl0Ex(BH_PWORK* epw);
-void mv00_subpl1(BH_PWORK* epw);
-void mv00_subpl2(BH_PWORK* epw);
-void mv00_subpl2_0(BH_PWORK* epw);
-void mv00_subpl3(BH_PWORK* epw);
-void mv00_subpl3_0(BH_PWORK* epw);
-void mv00_subpl5(BH_PWORK* epw);
-void mv00_subpl6(BH_PWORK* epw);
-void mv00_subpl0_1(BH_PWORK* epw);
-int bhSub_DirTarget(BH_PWORK* epw, float x, float z, int ay);
-void mv00_subpl10(BH_PWORK* epw);
 
 // 
 // Start address: 0x173ec0
@@ -41,15 +22,14 @@ void bhSubpl(BH_PWORK* epw)
 	// Line 111, Address: 0x173f0c, Func Offset: 0x4c
 	// Line 113, Address: 0x173f14, Func Offset: 0x54
 	// Func End, Address: 0x173f24, Func Offset: 0x64
-}
+}*/
 
-// 
-// Start address: 0x173f30
+// 100% matching! 
 void init_subpl(BH_PWORK* epw)
 {
-	// Line 161, Address: 0x173f30, Func Offset: 0
-	// Line 163, Address: 0x173f38, Func Offset: 0x8
-	// Func End, Address: 0x173f58, Func Offset: 0x28
+    epw->mode0 = 1;
+    
+    subpl_init_tbl[epw->id - 40](epw);
 }
 
 // 
@@ -79,9 +59,10 @@ void em60_init(BH_PWORK* epw)
 	// Line 203, Address: 0x17401c, Func Offset: 0xbc
 	// Line 204, Address: 0x174030, Func Offset: 0xd0
 	// Func End, Address: 0x174040, Func Offset: 0xe0
+	scePrintf("em60_init - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x174040
 void move_subpl(BH_PWORK* epw)
 {
