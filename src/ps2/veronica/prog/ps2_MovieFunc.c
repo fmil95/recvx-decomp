@@ -29,7 +29,7 @@ VoBuf voBuf __attribute__((aligned(64)));
 u_long128 test_tag[1400] __attribute__((aligned(64)));
 RMI_WORK rmi;
 MDSIZE_WORK mdSize __attribute__((aligned(64)));
-u_long128* new_tags[64] __attribute__((aligned(64)));
+u_long128 new_tags[64] __attribute__((aligned(64)));
 int isCountVblank;
 static int __image_w__;
 static int __image_h__;
