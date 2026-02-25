@@ -924,6 +924,17 @@ typedef struct NJS_POINT4
     float w; // offset 0xC, size 0x4
 } NJS_POINT4; 
 
+typedef struct POINT 
+{
+    // total size: 0x18
+    float px; // offset 0x0, size 0x4
+    float py; // offset 0x4, size 0x4
+    float pz; // offset 0x8, size 0x4
+    float ox; // offset 0xC, size 0x4
+    float oy; // offset 0x10, size 0x4
+    float oz; // offset 0x14, size 0x4
+} POINT; 
+
 typedef struct PLANE
 {
 	// total size: 0x8
