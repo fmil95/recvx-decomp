@@ -658,27 +658,32 @@ void bhDrawEneObject()
     }
 }
 
-/*// 
-// Start address: 0x175cd0
+// 100% matching!
 void* bhEne_CallocWork(int size)
 {
-	unsigned char* addr;
-	unsigned char* ret_addr;
-	// Line 1205, Address: 0x175cd0, Func Offset: 0
-	// Line 1207, Address: 0x175d10, Func Offset: 0x40
-	// Line 1210, Address: 0x175d18, Func Offset: 0x48
-	// Line 1211, Address: 0x175d28, Func Offset: 0x58
-	// Line 1215, Address: 0x175d30, Func Offset: 0x60
-	// Line 1211, Address: 0x175d34, Func Offset: 0x64
-	// Line 1212, Address: 0x175d44, Func Offset: 0x74
-	// Line 1215, Address: 0x175d4c, Func Offset: 0x7c
-	// Line 1217, Address: 0x175d58, Func Offset: 0x88
-	// Line 1218, Address: 0x175d5c, Func Offset: 0x8c
-	// Line 1217, Address: 0x175d60, Func Offset: 0x90
-	// Line 1218, Address: 0x175d64, Func Offset: 0x94
-	// Line 1220, Address: 0x175d78, Func Offset: 0xa8
-	// Func End, Address: 0x175d80, Func Offset: 0xb0
-}*/
+    unsigned char* ret_addr; 
+    unsigned char* addr;     
+
+    if ((&sys->memp[size] - sys->mempb) > 0xC40000)
+    {
+        return NULL;
+    }
+    
+    sys->memp = (unsigned char*)(((unsigned int)sys->memp + 63) & ~0x3F);
+    
+    ret_addr = sys->memp;
+
+    addr = ret_addr; 
+    
+    sys->memp = &ret_addr[size];
+    
+    while (size-- != 0) 
+    {
+        *addr++ = 0;
+    } 
+    
+    return ret_addr;
+}
 
 // 100% matching!
 void bhEne_SetCallFunc(void(*func)(BH_PWORK*), unsigned int no)
