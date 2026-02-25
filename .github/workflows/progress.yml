@@ -1,37 +1,20 @@
-name: Update Decompilation Progress
+# adapted from https://github.com/Mikompilation/Himuro/blob/main/.github/workflows/progress.yml
+
+name: Upload Objdiff Progress Report Artifacts
 
 on:
-  schedule:
-    - cron: "0 */4 * * *"  # Runs every 4 hours on the hour (UTC)
-  workflow_dispatch:  # still allows manual runs
+  push:
 
 jobs:
-  update-progress:
+  upload:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write  # needed to push changes to the repo
-
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
-          python-version: '3.11'
-
-      - name: Run decomp progress script
-        run: python progress.py
-
-      - name: Commit and push README.md if changed
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet README.md; then
-            echo "✅ No changes to commit."
-          else
-            git add README.md
-            git commit -m "Update progress status"
-            git push
-          fi
+          name: progress_report
+          path: ./report.json
