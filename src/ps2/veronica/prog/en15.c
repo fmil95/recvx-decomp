@@ -1,4 +1,7 @@
+#include "types.h"
 //#include <string.h>
+
+extern BH_PWORK ene[128];
 
 /*typedef struct _anon0;
 typedef struct _anon1;

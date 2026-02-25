@@ -1,6 +1,8 @@
 #ifndef _PLAYPCH_H_
 #define _PLAYPCH_H_
 
+#include "types.h"
+
 void PlyPchInit(BH_PWORK* ewP);
 void PlyPchMain(BH_PWORK* ewP);
 /*void MixSetToJointRot(npobj* basP, char* rutP, npobj* objP, int yaw);*/

@@ -30,6 +30,7 @@ options:
     .endm
 
   find_file_boundaries: False
+  # disassemble_all: True
   asm_path: ../build/expected
   matchings_path: asm
   nonmatchings_path: asm
@@ -368,6 +369,7 @@ segments:
       - [0x1E3180, c, ps2/veronica/prog/ps2_NaMem]
       - [0x1E31E0, c, ps2/veronica/prog/ps2_NaColi]
       - [0x1E5EE0, c, ps2/veronica/prog/gcc_wrapper]
+      - [auto, c, ps2/veronica/prog/ps2_dvd_image]
       - [0x1E5FD0, c, ps2/veronica/prog/ps2_texture]
       - [0x1E6C60, c, ps2/veronica/prog/ps2_loadtim2]
       # - [0x1E7480, c, ps2/veronica/prog/ps2_loadtim2.h]
@@ -385,6 +387,7 @@ segments:
       - [0x1F0938, c, cri/mwlib/ee/lib/libadxe/adx_bwav]
       - [0x1F11E0, c, cri/mwlib/ee/lib/libadxe/adx_crs]
       - [0x1F1238, c, cri/mwlib/ee/lib/libadxe/adx_dcd]
+      - [auto, c, cri/mwlib/ee/lib/libadxe/adx_qtbl]
       - [0x1F1810, c, cri/mwlib/ee/lib/libadxe/adx_dcd3]
       - [0x1F1F20, c, cri/mwlib/ee/lib/libadxe/adx_errs]
       - [0x1F21D0, c, cri/mwlib/ee/lib/libadxe/adx_fcch]

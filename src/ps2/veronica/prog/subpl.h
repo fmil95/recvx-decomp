@@ -1,6 +1,8 @@
 #ifndef _SUBPL_H_
 #define _SUBPL_H_
 
+#include "types.h"
+
 void bhSubpl(BH_PWORK* epw);
 void init_subpl(BH_PWORK* epw);
 void em60_init(BH_PWORK* epw);

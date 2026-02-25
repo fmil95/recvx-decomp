@@ -1,6 +1,8 @@
 #ifndef _ITEMVIEW_H_
 #define _ITEMVIEW_H_
 
+#include "types.h"
+
 /*void DrawSubItem(_anon2* st, _anon5* si);*/
 void Model_Read_Start();
 /*void Model_Read_Set(_anon2* st);*/

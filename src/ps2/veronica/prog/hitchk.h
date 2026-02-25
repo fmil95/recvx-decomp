@@ -1,6 +1,8 @@
 #ifndef _HITCHK_H_
 #define _HITCHK_H_
 
+#include "types.h"
+
 ATR_WORK* bhCheckWallType(NJS_POINT3* pos, unsigned int flg, float ar, float ah);
 
 /*typedef struct npobj;

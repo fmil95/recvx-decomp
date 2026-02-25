@@ -1,6 +1,8 @@
 #ifndef _BINFUNC_H_
 #define _BINFUNC_H_
 
+#include "types.h"
+
 typedef struct NJS_MDATA2_MOD
 {
     // total size: 0x8

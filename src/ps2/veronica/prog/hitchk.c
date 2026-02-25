@@ -1,5 +1,5 @@
 #include "hitchk.h"
-#include "types.h"
+#include "main.h"
 
 /*_anon4* sys;
 _anon12* rom;

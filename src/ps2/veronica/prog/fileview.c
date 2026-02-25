@@ -3,6 +3,7 @@
 #include "ps2_texture.h"
 #include "sdfunc.h"
 #include "sub1.h"
+#include "main.h"
 
 /*unsigned int fstbl[24];
 unsigned int fsheader[24];
@@ -11,7 +12,6 @@ typedef void (*FileViewMode_proc)();
 FileViewMode_proc FileViewMode[5] = { FileSelect, FileViewInit, FileViewMain, FileViewExit, FileGetWait };
 FV_WORK fvwork;
 PARTS parts_22b[6]; // TODO: need to define data here
-SYS_WORK* sys;
 /*char ViewCnt;
 _anon23 tbuf[0];
 unsigned char menuanim[4][0];

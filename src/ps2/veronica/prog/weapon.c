@@ -1,5 +1,6 @@
 #include "weapon.h"
 #include "effect.h"
+#include "main.h"
 
 /*short EneDamNear[22][31];
 short EneDamMid[22][31];

@@ -1,3 +1,5 @@
+#include "types.h"
+
 /*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;

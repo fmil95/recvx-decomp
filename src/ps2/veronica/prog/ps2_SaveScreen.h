@@ -1,6 +1,8 @@
 #ifndef _PS2_SAVESCREEN_H_
 #define _PS2_SAVESCREEN_H_
 
+#include "types.h"
+
 typedef struct SAVE_SCREEN 
 {
     // total size: 0x40

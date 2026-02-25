@@ -1,3 +1,7 @@
+#include "types.h"
+
+extern O_WRK eff[512];
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

@@ -1,6 +1,8 @@
 #ifndef _MOTION_H_
 #define _MOTION_H_
 
+#include "types.h"
+
 int bhSetMotion(BH_PWORK* ewP, int add, int mode, void* datP);
 void SetMtnNormal(BH_PWORK* ewP, char* datP, int mode);
 void SetMtnNormalHokan(BH_PWORK* ewP, char* datP, int mode, float rate);

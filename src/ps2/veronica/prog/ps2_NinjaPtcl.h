@@ -1,6 +1,8 @@
 #ifndef _PS2_NINJA_PTCL_H_
 #define _PS2_NINJA_PTCL_H_
 
+#include "types.h"
+
 void	njPtclPolygonStart( Uint32 col );
 void	njPtclPolygonEnd( void );
 void	njPtclDrawPolygon( NJS_POINT3 *p, Sint32 n, Float h );

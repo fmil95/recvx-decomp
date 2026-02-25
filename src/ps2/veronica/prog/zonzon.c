@@ -1,5 +1,6 @@
 #include "types.h"
 #include "hitchk.h"
+#include "main.h"
 
 // _anon4 = NJS_POINT3
 // _anon20 = O_WORK

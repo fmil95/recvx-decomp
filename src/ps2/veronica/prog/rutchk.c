@@ -1,4 +1,5 @@
 #include "rutchk.h"
+#include "main.h"
 
 /*_anon10* rom;
 _anon15* sys;

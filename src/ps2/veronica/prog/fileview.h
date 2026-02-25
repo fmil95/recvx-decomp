@@ -1,6 +1,8 @@
 #ifndef _FILEVIEW_H_
 #define _FILEVIEW_H_
 
+#include "types.h"
+
 void ControlFileView();
 void FileSelect();
 void FileFlagInit01();
