@@ -391,3 +391,9 @@ void mv00_subpl10(BH_PWORK* epw)
         break;
     }
 }
+
+// 100% matching! 
+void bhEne28()
+{
+
+}

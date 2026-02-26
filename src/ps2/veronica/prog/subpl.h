@@ -22,5 +22,6 @@ void mv00_subpl6(BH_PWORK* epw);
 void mv00_subpl0_1(BH_PWORK* epw);
 int bhSub_DirTarget(BH_PWORK* epw, float x, float z, int ay);
 void mv00_subpl10(BH_PWORK* epw);
+void bhEne28();
 
 #endif
