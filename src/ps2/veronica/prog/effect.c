@@ -225,25 +225,29 @@ void bhPopEffectWork()
 	// Line 383, Address: 0x21c278, Func Offset: 0x38
 	// Line 386, Address: 0x21c2bc, Func Offset: 0x7c
 	// Func End, Address: 0x21c2c8, Func Offset: 0x88
-}
-
-// 
-// Start address: 0x21c2d0
-unsigned int bhGetGidx(_anon0* op)
-{
-	_anon27* tnp;
-	_anon1* tlp;
-	// Line 398, Address: 0x21c2d0, Func Offset: 0
-	// Line 399, Address: 0x21c2e0, Func Offset: 0x10
-	// Line 400, Address: 0x21c2e8, Func Offset: 0x18
-	// Line 399, Address: 0x21c2f0, Func Offset: 0x20
-	// Line 400, Address: 0x21c2fc, Func Offset: 0x2c
-	// Line 401, Address: 0x21c324, Func Offset: 0x54
-	// Line 403, Address: 0x21c32c, Func Offset: 0x5c
-	// Line 406, Address: 0x21c350, Func Offset: 0x80
-	// Line 407, Address: 0x21c354, Func Offset: 0x84
-	// Func End, Address: 0x21c35c, Func Offset: 0x8c
 }*/
+
+// 100% matching!
+unsigned int bhGetGidx(O_WRK* op)
+{
+    NJS_TEXLIST* tlp;
+    NJS_TEXNAME* tnp;
+    
+    if (!(op->stflg & 0x20)) 
+    {
+        tlp = &sys->ef_tlist;
+        
+        tnp = &tlp->textures[sys->ef_tn[op->tex_id] + op->ani_ct];
+    }
+    else 
+    {
+        tlp = (NJS_TEXLIST*)&op->txp[0]->textures;
+        
+        tnp = &tlp->textures[op->tex_id + op->ani_ct];
+    }
+    
+    return ((NJS_TEXMEMLIST*)tnp->texaddr)->globalIndex;
+}
 
 // 100% matching! 
 O_WRK* bhSetExtraEffectWork() 
