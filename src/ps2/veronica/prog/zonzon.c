@@ -1720,7 +1720,7 @@ int bhDGCdirCheck2(NJS_VECTOR* dv, O_WORK* owk)
     return 1;
 }
 
-// 99% matching (https://decomp.me/scratch/A2OOF)
+// 100% matching!
 int bhDGCdirCheck3(NJS_VECTOR* dv, int rot) 
 {
     int ang; // r2
@@ -1732,7 +1732,7 @@ int bhDGCdirCheck3(NJS_VECTOR* dv, int rot)
         return 0;
     }
     
-    if ((ang == 0) && (ang < 0x6000))
+    if ((ang >= 0x2000) && (ang < 0x6000))
     {
         return 1;
     }
