@@ -305,79 +305,110 @@ void bhDrawPARAM2D(NJS_PRIM* prm, NJS_POINT2COL* p2c, float pri)
     njDrawPolygon2D(p2c, 4, pri, 0x80000060);
 }
 
-/*// 
-// Start address: 0x21c500
-int bhSetEffect(int effno, _anon35* pnt, unsigned char* lkp, int lkono)
+// 100% matching!
+int bhSetEffect(int effno, POINT* pnt, unsigned char* lkp, int lkono)
 {
-	int i;
-	_anon0* opp;
-	// Line 606, Address: 0x21c500, Func Offset: 0
-	// Line 609, Address: 0x21c520, Func Offset: 0x20
-	// Line 610, Address: 0x21c538, Func Offset: 0x38
-	// Line 611, Address: 0x21c53c, Func Offset: 0x3c
-	// Line 612, Address: 0x21c54c, Func Offset: 0x4c
-	// Line 613, Address: 0x21c55c, Func Offset: 0x5c
-	// Line 614, Address: 0x21c564, Func Offset: 0x64
-	// Line 616, Address: 0x21c568, Func Offset: 0x68
-	// Line 615, Address: 0x21c56c, Func Offset: 0x6c
-	// Line 616, Address: 0x21c570, Func Offset: 0x70
-	// Line 617, Address: 0x21c574, Func Offset: 0x74
-	// Line 618, Address: 0x21c578, Func Offset: 0x78
-	// Line 619, Address: 0x21c57c, Func Offset: 0x7c
-	// Line 631, Address: 0x21c580, Func Offset: 0x80
-	// Line 625, Address: 0x21c588, Func Offset: 0x88
-	// Line 631, Address: 0x21c58c, Func Offset: 0x8c
-	// Line 619, Address: 0x21c590, Func Offset: 0x90
-	// Line 620, Address: 0x21c594, Func Offset: 0x94
-	// Line 631, Address: 0x21c598, Func Offset: 0x98
-	// Line 620, Address: 0x21c59c, Func Offset: 0x9c
-	// Line 621, Address: 0x21c5a0, Func Offset: 0xa0
-	// Line 622, Address: 0x21c5a8, Func Offset: 0xa8
-	// Line 623, Address: 0x21c5b0, Func Offset: 0xb0
-	// Line 624, Address: 0x21c5b8, Func Offset: 0xb8
-	// Line 625, Address: 0x21c5c0, Func Offset: 0xc0
-	// Line 626, Address: 0x21c5c4, Func Offset: 0xc4
-	// Line 627, Address: 0x21c5c8, Func Offset: 0xc8
-	// Line 628, Address: 0x21c5cc, Func Offset: 0xcc
-	// Line 629, Address: 0x21c5d0, Func Offset: 0xd0
-	// Line 630, Address: 0x21c5d4, Func Offset: 0xd4
-	// Line 631, Address: 0x21c5d8, Func Offset: 0xd8
-	// Line 632, Address: 0x21c5ec, Func Offset: 0xec
-	// Line 633, Address: 0x21c5f4, Func Offset: 0xf4
-	// Line 634, Address: 0x21c5f8, Func Offset: 0xf8
-	// Line 635, Address: 0x21c600, Func Offset: 0x100
-	// Line 636, Address: 0x21c608, Func Offset: 0x108
-	// Line 641, Address: 0x21c60c, Func Offset: 0x10c
-	// Line 638, Address: 0x21c610, Func Offset: 0x110
-	// Line 641, Address: 0x21c614, Func Offset: 0x114
-	// Line 646, Address: 0x21c618, Func Offset: 0x118
-	// Line 647, Address: 0x21c620, Func Offset: 0x120
-	// Line 648, Address: 0x21c628, Func Offset: 0x128
-	// Line 649, Address: 0x21c630, Func Offset: 0x130
-	// Line 650, Address: 0x21c638, Func Offset: 0x138
-	// Line 651, Address: 0x21c63c, Func Offset: 0x13c
-	// Line 652, Address: 0x21c640, Func Offset: 0x140
-	// Line 653, Address: 0x21c648, Func Offset: 0x148
-	// Line 654, Address: 0x21c64c, Func Offset: 0x14c
-	// Line 655, Address: 0x21c650, Func Offset: 0x150
-	// Line 656, Address: 0x21c654, Func Offset: 0x154
-	// Line 657, Address: 0x21c658, Func Offset: 0x158
-	// Line 658, Address: 0x21c65c, Func Offset: 0x15c
-	// Line 659, Address: 0x21c660, Func Offset: 0x160
-	// Line 660, Address: 0x21c664, Func Offset: 0x164
-	// Line 661, Address: 0x21c668, Func Offset: 0x168
-	// Line 662, Address: 0x21c66c, Func Offset: 0x16c
-	// Line 663, Address: 0x21c670, Func Offset: 0x170
-	// Line 664, Address: 0x21c674, Func Offset: 0x174
-	// Line 665, Address: 0x21c678, Func Offset: 0x178
-	// Line 666, Address: 0x21c67c, Func Offset: 0x17c
-	// Line 667, Address: 0x21c680, Func Offset: 0x180
-	// Line 669, Address: 0x21c684, Func Offset: 0x184
-	// Line 671, Address: 0x21c690, Func Offset: 0x190
-	// Line 672, Address: 0x21c6a0, Func Offset: 0x1a0
-	// Line 673, Address: 0x21c6a4, Func Offset: 0x1a4
-	// Func End, Address: 0x21c6c8, Func Offset: 0x1c8
-}*/
+    O_WRK* opp;
+    int i; 
+    
+    opp = eff;
+    
+    for (i = 0; ; )
+    {
+        if (!(opp->flg & 0x3))
+        {
+            npSetMemoryL(&opp->flg, sizeof(O_WRK) / 4, 0);
+            
+            opp->flg = 1;
+            
+            opp->id = effno;
+            
+            opp->type = 0;
+            
+            opp->tex_id = -1;
+            
+            opp->mdlver = 0;
+            
+            opp->flr_no = 0;
+            
+            opp->px = pnt->px;
+            opp->py = pnt->py;
+            opp->pz = pnt->pz;
+
+            opp->lox = pnt->ox;
+            opp->loy = pnt->oy;
+            opp->loz = pnt->oz;
+            
+            opp->sx = 1.0f;
+            opp->sy = 1.0f;
+            opp->sz = 1.0f;
+            
+            opp->ax = 0;
+            opp->ay = 0;
+            opp->az = 0;
+            
+            opp->mlwP = &sys->efm[effno];
+            
+            if (lkp != NULL) 
+            {
+                opp->lkwkp = lkp;
+                
+                opp->flg |= 0x80;
+            } 
+            else 
+            {
+                opp->lkwkp = NULL;
+            }
+            
+            opp->lkono = lkono;
+            
+            opp->mtx = (float(*)[16])opp->mtxbuf;
+            
+            opp->pvp = opp->pv;
+            opp->tvp = opp->tv;
+            
+            opp->pn = 4;
+            
+            opp->tv[0].x = -1.0f;
+            opp->tv[0].y = -1.0f;
+            opp->tv[0].z = 0;
+            
+            opp->tv[1].x = 1.0f;
+            opp->tv[1].y = -1.0f;
+            opp->tv[1].z = 0;
+            
+            opp->tv[2].x = -1.0f;
+            opp->tv[2].y = 1.0f;
+            opp->tv[2].z = 0;
+            
+            opp->tv[3].x = 1.0f;
+            opp->tv[3].y = 1.0f;
+            opp->tv[3].z = 0;
+            
+            opp->tv[0].u = 0;
+            opp->tv[0].v = 0;
+            
+            opp->tv[1].u = 1.0f;
+            opp->tv[1].v = 0;
+            
+            opp->tv[2].u = 0;
+            opp->tv[2].v = 1.0f;
+            
+            opp->tv[3].u = 1.0f;
+            opp->tv[3].v = 1.0f;
+            
+            return i;
+        }
+        
+        i++;
+        opp++;
+        
+        if (i >= 512) 
+        {
+            return -1;
+        }
+    }
+}
 
 // 100% matching!
 int bhSetEffectTb(EF_WORK* efp, NJS_POINT3* off, unsigned char* lkp, int lkono) 
