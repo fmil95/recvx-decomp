@@ -5,6 +5,7 @@
 //#include "effsub3.h"
 #include "light.h"
 #include "njplus.h"
+#include "ps2_NaDraw2D.h"
 #include "ps2_NaMatrix.h"
 #include "ps2_NaTextureFunction.h"
 #include "ps2_NinjaCnk.h"
@@ -284,31 +285,27 @@ void bhDeleteYakkyou()
     } 
 }
 
-/*// 
-// Start address: 0x21c440
-void bhDrawPARAM2D(_anon49* prm, _anon41* p2c, float pri)
+// 100% matching! 
+void bhDrawPARAM2D(NJS_PRIM* prm, NJS_POINT2COL* p2c, float pri)
 {
-	// Line 584, Address: 0x21c440, Func Offset: 0
-	// Line 593, Address: 0x21c448, Func Offset: 0x8
-	// Line 584, Address: 0x21c44c, Func Offset: 0xc
-	// Line 593, Address: 0x21c450, Func Offset: 0x10
-	// Line 592, Address: 0x21c454, Func Offset: 0x14
-	// Line 584, Address: 0x21c458, Func Offset: 0x18
-	// Line 585, Address: 0x21c460, Func Offset: 0x20
-	// Line 586, Address: 0x21c474, Func Offset: 0x34
-	// Line 587, Address: 0x21c488, Func Offset: 0x48
-	// Line 588, Address: 0x21c49c, Func Offset: 0x5c
-	// Line 589, Address: 0x21c4b0, Func Offset: 0x70
-	// Line 590, Address: 0x21c4c4, Func Offset: 0x84
-	// Line 591, Address: 0x21c4d8, Func Offset: 0x98
-	// Line 593, Address: 0x21c4e8, Func Offset: 0xa8
-	// Line 591, Address: 0x21c4ec, Func Offset: 0xac
-	// Line 592, Address: 0x21c4f0, Func Offset: 0xb0
-	// Line 593, Address: 0x21c4f4, Func Offset: 0xb4
-	// Func End, Address: 0x21c4fc, Func Offset: 0xbc
+    p2c->p[0].x = prm->px + prm->x0;
+    p2c->p[0].y = prm->py + prm->y0;
+    
+    p2c->p[1].x = prm->px + prm->x1;
+    p2c->p[1].y = prm->py + prm->y0;
+    
+    p2c->p[2].x = prm->px + prm->x1;
+    p2c->p[2].y = prm->py + prm->y1;
+    
+    p2c->p[3].x = prm->px + prm->x0;
+    p2c->p[3].y = prm->py + prm->y1;
+    
+    p2c->tex = prm->uv;
+    
+    njDrawPolygon2D(p2c, 4, pri, 0x80000060);
 }
 
-// 
+/*// 
 // Start address: 0x21c500
 int bhSetEffect(int effno, _anon35* pnt, unsigned char* lkp, int lkono)
 {

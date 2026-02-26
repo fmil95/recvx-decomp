@@ -2139,6 +2139,18 @@ typedef struct CNK_PRIM_BUF
     float fF;            // offset 0x2C, size 0x4
 } CNK_PRIM_BUF;
 
+typedef struct NJS_PRIM
+{
+    // total size: 0x28
+    float px;        // offset 0x0, size 0x4
+    float py;        // offset 0x4, size 0x4
+    float x0;        // offset 0x8, size 0x4
+    float y0;        // offset 0xC, size 0x4
+    float x1;        // offset 0x10, size 0x4
+    float y1;        // offset 0x14, size 0x4
+    NJS_COLOR uv[4]; // offset 0x18, size 0x10
+} NJS_PRIM;
+
 // constant definition for ClutType, ImageType in picture header
 enum TIM2_gattr_type {
 	TIM2_NONE = 0,			// no CLUT (for ClutType)
