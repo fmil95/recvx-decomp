@@ -213,19 +213,22 @@ int bhPushEffectWork()
 	// Line 371, Address: 0x21c228, Func Offset: 0xf8
 	// Line 372, Address: 0x21c22c, Func Offset: 0xfc
 	// Func End, Address: 0x21c238, Func Offset: 0x108
-}
+}*/
 
-// 
-// Start address: 0x21c240
+// 100% matching!
 void bhPopEffectWork()
 {
-	// Line 378, Address: 0x21c240, Func Offset: 0
-	// Line 379, Address: 0x21c248, Func Offset: 0x8
-	// Line 380, Address: 0x21c264, Func Offset: 0x24
-	// Line 383, Address: 0x21c278, Func Offset: 0x38
-	// Line 386, Address: 0x21c2bc, Func Offset: 0x7c
-	// Func End, Address: 0x21c2c8, Func Offset: 0x88
-}*/
+    int nb; // not from the debugging symbols
+
+    if (sys->ef_psp != NULL) 
+    {
+        njMemCopy4(eff, sys->ef_psp, 0x27000);
+        
+        nb = (int)&sys->ob_nlgn - (int)&sys->ef_poln;
+        
+        njMemCopy4(&sys->ef_poln, sys->ef_psp + 0x9C000, (unsigned int)nb / 4);
+    }
+}
 
 // 100% matching!
 unsigned int bhGetGidx(O_WRK* op)
