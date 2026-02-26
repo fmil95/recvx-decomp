@@ -3,8 +3,11 @@
 #include "dread.h"
 //#include "effsub2.h"
 //#include "effsub3.h"
+#include "light.h"
 #include "njplus.h"
+#include "ps2_NaMatrix.h"
 #include "ps2_NaTextureFunction.h"
+#include "ps2_NinjaCnk.h"
 #include "ps2_texture.h"
 #include "main.h"
 
@@ -14,8 +17,8 @@ void(*bhJumpEffect2)()[50];
 void(*bhJumpEffect3)()[50];
 void(*bhJumpEffect4)()[50];*/
 const EFFECT_INFO ef_info[21] = { {1, 9}, {1, 0}, {0, 2}, {0, 4}, {0, 4}, {0, 4}, {0, 2}, {1, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 5}, {0, 0}, {1, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 2}, {0, 1}, {0, 1}, {-1, 0} };
-/*_anon0* ef_Zanzo[6];
-SYS_WORK* sys;
+O_WORK* ef_Zanzo[6] = { 0 };
+/*SYS_WORK* sys;
 _anon0 eff[0];
 _anon7* rom;
 BH_PWORK ene[0];
@@ -724,49 +727,113 @@ void bhControlEffect()
 	scePrintf("bhControlEffect - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x21cf70
+// 100% matching!
 void bhDrawEffect()
 {
-	int i;
-	// Line 1253, Address: 0x21cf70, Func Offset: 0
-	// Line 1259, Address: 0x21cf80, Func Offset: 0x10
-	// Line 1261, Address: 0x21cf90, Func Offset: 0x20
-	// Line 1262, Address: 0x21cf98, Func Offset: 0x28
-	// Line 1264, Address: 0x21cfc4, Func Offset: 0x54
-	// Line 1266, Address: 0x21cfd0, Func Offset: 0x60
-	// Line 1267, Address: 0x21cffc, Func Offset: 0x8c
-	// Line 1269, Address: 0x21d008, Func Offset: 0x98
-	// Line 1271, Address: 0x21d034, Func Offset: 0xc4
-	// Line 1273, Address: 0x21d060, Func Offset: 0xf0
-	// Line 1275, Address: 0x21d08c, Func Offset: 0x11c
-	// Line 1276, Address: 0x21d098, Func Offset: 0x128
-	// Line 1278, Address: 0x21d0c4, Func Offset: 0x154
-	// Line 1279, Address: 0x21d0d0, Func Offset: 0x160
-	// Line 1281, Address: 0x21d0fc, Func Offset: 0x18c
-	// Line 1286, Address: 0x21d128, Func Offset: 0x1b8
-	// Line 1288, Address: 0x21d154, Func Offset: 0x1e4
-	// Line 1290, Address: 0x21d180, Func Offset: 0x210
-	// Line 1291, Address: 0x21d18c, Func Offset: 0x21c
-	// Line 1295, Address: 0x21d1b8, Func Offset: 0x248
-	// Line 1296, Address: 0x21d1c4, Func Offset: 0x254
-	// Line 1297, Address: 0x21d1e4, Func Offset: 0x274
-	// Line 1300, Address: 0x21d23c, Func Offset: 0x2cc
-	// Line 1302, Address: 0x21d244, Func Offset: 0x2d4
-	// Line 1303, Address: 0x21d260, Func Offset: 0x2f0
-	// Line 1307, Address: 0x21d270, Func Offset: 0x300
-	// Line 1309, Address: 0x21d2a0, Func Offset: 0x330
-	// Func End, Address: 0x21d2b4, Func Offset: 0x344
-	scePrintf("bhDrawEffect - UNIMPLEMENTED!\n");
+    int i;
+
+    njSetMatrix(NULL, cam.mtx);
+    
+    njControl3D(0x100);
+    
+    if (sys->ef_poln != 0) 
+    {
+        bhDrawPolEffect((unsigned int*)sys->ef_pol, sys->ef_poln);
+    }
+    
+    njControl3D(0x2400);
+    
+    if (sys->ef_mdfn != 0) 
+    {
+        bhDrawMdfEffect((unsigned int*)sys->ef_mdf, sys->ef_mdfn);
+    }
+    
+    njControl3D(0x100);
+    
+    if (sys->ef_linn != 0) 
+    {
+        bhDrawLinEffect((unsigned int*)sys->ef_lin, sys->ef_linn);
+    }
+    
+    if (sys->ef_ntxn != 0) 
+    {
+        bhDrawNtxEffect3D((unsigned int*)sys->ef_ntx, sys->ef_ntxn);
+    }
+    
+    if (sys->ef_trsn != 0) 
+    {
+        bhDrawTrsEffect3D((unsigned int*)sys->ef_trs, sys->ef_trsn);
+    }
+    
+    njControl3D(0x4000);
+    
+    if (sys->ef_pncn != 0) 
+    {
+        bhDrawTrsEffect3D((unsigned int*)sys->ef_pnc, sys->ef_pncn);
+    }
+    
+    njControl3D(0);
+    
+    if (sys->ef_opqn != 0) 
+    {
+        bhDrawOpqEffect3D((unsigned int*)sys->ef_opq, sys->ef_opqn);
+    }
+    
+    if (sys->ef_thln != 0) 
+    {
+        bhDrawThlEffect3D((unsigned int*)sys->ef_thl, sys->ef_thln);
+    }
+    
+    if (sys->ef_ntx2dn != 0) 
+    {
+        bhDrawNtxEffect2D((unsigned int*)sys->ef_ntx2d, sys->ef_ntx2dn);
+    }
+    
+    if (sys->ef_trs2dn != 0) 
+    {
+        bhDrawTrsEffect2D((unsigned int*)sys->ef_trs2d, sys->ef_trs2dn);
+    }
+    
+    njControl3D(0x4000);
+    
+    if (sys->ef_pnc2dn != 0) 
+    {
+        bhDrawTrsEffect2D((unsigned int*)sys->ef_pnc2d, sys->ef_pnc2dn);
+    }
+    
+    njControl3D(0);
+    
+    if ((sys->ef_flg & 0x4))
+    {
+        bhSetHalfLight();
+    }
+    
+    for (i = 0; i < sys->ef_fncn; i++)
+    {
+        sys->ef_fnc[i]->func(sys->ef_fnc[i]);
+    }
+    
+    for (i = 5; 0 <= i; i--) 
+    {
+        if (ef_Zanzo[i] != NULL) 
+        {
+            ((O_WRK*)ef_Zanzo[i])->func(ef_Zanzo[i]);
+        }
+    }
+    
+    if ((sys->stg_no == 1) && (sys->rom_no == 9)) 
+    {
+        bhDrawThunder(sys->rom_no, sys);
+    }
 }
 
-/*// 
+// 
 // Start address: 0x21d2c0
 void bhDrawPolEffect(unsigned int* owp, int ct)
 {
-	_anon0* op;
-	_anon12* mlp;
-	_anon27* tnp;
+	//_anon0* op;
+	//_anon12* mlp;
+	//_anon27* tnp;
 	// Line 1315, Address: 0x21d2c0, Func Offset: 0
 	// Line 1322, Address: 0x21d2d0, Func Offset: 0x10
 	// Line 1315, Address: 0x21d2d8, Func Offset: 0x18
@@ -823,8 +890,8 @@ void bhDrawPolEffect(unsigned int* owp, int ct)
 // Start address: 0x21d5b0
 void bhDrawMdfEffect(unsigned int* owp, int ct)
 {
-	_anon0* op;
-	_anon12* mlp;
+	//_anon0* op;
+	//_anon12* mlp;
 	// Line 1386, Address: 0x21d5b0, Func Offset: 0
 	// Line 1394, Address: 0x21d5cc, Func Offset: 0x1c
 	// Line 1396, Address: 0x21d5d4, Func Offset: 0x24
@@ -865,10 +932,10 @@ void bhDrawMdfEffect(unsigned int* owp, int ct)
 // Start address: 0x21d7d0
 void bhDrawLinEffect(unsigned int* owp, int ct)
 {
-	_anon0* op;
-	_anon24 col[2];
-	_anon37 pos[2];
-	_anon42 p3c;
+	//_anon0* op;
+	//_anon24 col[2];
+	//_anon37 pos[2];
+	//_anon42 p3c;
 	// Line 1501, Address: 0x21d7d0, Func Offset: 0
 	// Line 1509, Address: 0x21d7e4, Func Offset: 0x14
 	// Line 1501, Address: 0x21d7ec, Func Offset: 0x1c
@@ -917,11 +984,11 @@ void bhDrawLinEffect(unsigned int* owp, int ct)
 // Start address: 0x21d970
 void bhDrawNtxEffect3D(unsigned int* owp, int ct)
 {
-	_anon37 vec;
-	_anon37 pc;
-	_anon37 pb;
-	_anon37 pa;
-	_anon0* op;
+	//_anon37 vec;
+	//_anon37 pc;
+	//_anon37 pb;
+	//_anon37 pa;
+	//_anon0* op;
 	// Line 1574, Address: 0x21d970, Func Offset: 0
 	// Line 1579, Address: 0x21d984, Func Offset: 0x14
 	// Line 1580, Address: 0x21d994, Func Offset: 0x24
@@ -984,11 +1051,11 @@ void bhDrawNtxEffect3D(unsigned int* owp, int ct)
 // Start address: 0x21dd10
 void bhDrawTrsEffect3D(unsigned int* owp, int ct)
 {
-	_anon37 vec;
-	_anon37 pc;
-	_anon37 pb;
-	_anon37 pa;
-	_anon0* op;
+	//_anon37 vec;
+	//_anon37 pc;
+	//_anon37 pb;
+	//_anon37 pa;
+	//_anon0* op;
 	// Line 1679, Address: 0x21dd10, Func Offset: 0
 	// Line 1685, Address: 0x21dd24, Func Offset: 0x14
 	// Line 1679, Address: 0x21dd2c, Func Offset: 0x1c
@@ -1063,11 +1130,11 @@ void bhDrawTrsEffect3D(unsigned int* owp, int ct)
 // Start address: 0x21e210
 void bhDrawOpqEffect3D(unsigned int* owp, int ct)
 {
-	_anon37 vec;
-	_anon37 pc;
-	_anon37 pb;
-	_anon37 pa;
-	_anon0* op;
+	//_anon37 vec;
+	//_anon37 pc;
+	//_anon37 pb;
+	//_anon37 pa;
+	//_anon0* op;
 	// Line 1812, Address: 0x21e210, Func Offset: 0
 	// Line 1819, Address: 0x21e228, Func Offset: 0x18
 	// Line 1820, Address: 0x21e238, Func Offset: 0x28
@@ -1140,14 +1207,14 @@ void bhDrawThlEffect3D(unsigned int* owp, int ct)
 {
 	int pt;
 	float it;
-	_anon37 vc1;
-	_anon37 vc0;
-	_anon37 vec;
-	_anon37 pc;
-	_anon37 pb;
-	_anon37 pa;
-	_anon0* op;
-	_anon8* tvp;
+	//_anon37 vc1;
+	//_anon37 vc0;
+	//_anon37 vec;
+	//_anon37 pc;
+	//_anon37 pb;
+	//_anon37 pa;
+	//_anon0* op;
+	//_anon8* tvp;
 	// Line 1936, Address: 0x21e650, Func Offset: 0
 	// Line 1943, Address: 0x21e664, Func Offset: 0x14
 	// Line 1936, Address: 0x21e668, Func Offset: 0x18
@@ -1238,7 +1305,7 @@ void bhDrawThlEffect3D(unsigned int* owp, int ct)
 // Start address: 0x21eb80
 void bhDrawNtxEffect2D(unsigned int* owp, int ct)
 {
-	_anon0* op;
+	//_anon0* op;
 	// Line 2074, Address: 0x21eb80, Func Offset: 0
 	// Line 2076, Address: 0x21eb94, Func Offset: 0x14
 	// Line 2077, Address: 0x21eba4, Func Offset: 0x24
@@ -1254,7 +1321,7 @@ void bhDrawNtxEffect2D(unsigned int* owp, int ct)
 // Start address: 0x21ec30
 void bhDrawTrsEffect2D(unsigned int* owp, int ct)
 {
-	_anon0* op;
+	//_anon0* op;
 	// Line 2092, Address: 0x21ec30, Func Offset: 0
 	// Line 2094, Address: 0x21ec44, Func Offset: 0x14
 	// Line 2092, Address: 0x21ec4c, Func Offset: 0x1c
@@ -1280,9 +1347,9 @@ void bhDrawTrsEffect2D(unsigned int* owp, int ct)
 void bhDrawThunder()
 {
 	int i;
-	_anon40* p;
-	_anon40 p1[4];
-	_anon40 p2[4];
+	//_anon40* p;
+	//_anon40 p1[4];
+	//_anon40 p2[4];
 	// Line 2125, Address: 0x21ed60, Func Offset: 0
 	// Line 2142, Address: 0x21ed6c, Func Offset: 0xc
 	// Line 2181, Address: 0x21ed94, Func Offset: 0x34
@@ -1295,5 +1362,4 @@ void bhDrawThunder()
 	// Line 2190, Address: 0x21edf4, Func Offset: 0x94
 	// Line 2191, Address: 0x21ee04, Func Offset: 0xa4
 	// Func End, Address: 0x21ee14, Func Offset: 0xb4
-}*/
-
+}
