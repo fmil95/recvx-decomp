@@ -522,81 +522,101 @@ int bhSetEffectTb(EF_WORK* efp, NJS_POINT3* off, unsigned char* lkp, int lkono)
     }
 }
 
-/*// 
-// Start address: 0x21c8e0
-int bhSetEffectEvt(int effno, _anon35* pnt, unsigned short type, int ax, int ay)
+// 100% matching!
+int bhSetEffectEvt(int effno, POINT* pnt, unsigned short type, int ax, int ay)
 {
-	int i;
-	_anon0* opp;
-	// Line 859, Address: 0x21c8e0, Func Offset: 0
-	// Line 862, Address: 0x21c904, Func Offset: 0x24
-	// Line 863, Address: 0x21c920, Func Offset: 0x40
-	// Line 864, Address: 0x21c924, Func Offset: 0x44
-	// Line 865, Address: 0x21c934, Func Offset: 0x54
-	// Line 866, Address: 0x21c944, Func Offset: 0x64
-	// Line 867, Address: 0x21c94c, Func Offset: 0x6c
-	// Line 869, Address: 0x21c950, Func Offset: 0x70
-	// Line 868, Address: 0x21c954, Func Offset: 0x74
-	// Line 869, Address: 0x21c958, Func Offset: 0x78
-	// Line 870, Address: 0x21c95c, Func Offset: 0x7c
-	// Line 871, Address: 0x21c960, Func Offset: 0x80
-	// Line 872, Address: 0x21c964, Func Offset: 0x84
-	// Line 884, Address: 0x21c968, Func Offset: 0x88
-	// Line 878, Address: 0x21c974, Func Offset: 0x94
-	// Line 872, Address: 0x21c978, Func Offset: 0x98
-	// Line 873, Address: 0x21c97c, Func Offset: 0x9c
-	// Line 884, Address: 0x21c980, Func Offset: 0xa0
-	// Line 889, Address: 0x21c984, Func Offset: 0xa4
-	// Line 894, Address: 0x21c988, Func Offset: 0xa8
-	// Line 873, Address: 0x21c98c, Func Offset: 0xac
-	// Line 874, Address: 0x21c990, Func Offset: 0xb0
-	// Line 895, Address: 0x21c994, Func Offset: 0xb4
-	// Line 896, Address: 0x21c998, Func Offset: 0xb8
-	// Line 897, Address: 0x21c99c, Func Offset: 0xbc
-	// Line 874, Address: 0x21c9a0, Func Offset: 0xc0
-	// Line 875, Address: 0x21c9a4, Func Offset: 0xc4
-	// Line 917, Address: 0x21c9a8, Func Offset: 0xc8
-	// Line 875, Address: 0x21c9ac, Func Offset: 0xcc
-	// Line 876, Address: 0x21c9b0, Func Offset: 0xd0
-	// Line 877, Address: 0x21c9b8, Func Offset: 0xd8
-	// Line 878, Address: 0x21c9c0, Func Offset: 0xe0
-	// Line 879, Address: 0x21c9c4, Func Offset: 0xe4
-	// Line 880, Address: 0x21c9c8, Func Offset: 0xe8
-	// Line 881, Address: 0x21c9cc, Func Offset: 0xec
-	// Line 882, Address: 0x21c9d0, Func Offset: 0xf0
-	// Line 883, Address: 0x21c9d4, Func Offset: 0xf4
-	// Line 884, Address: 0x21c9d8, Func Offset: 0xf8
-	// Line 885, Address: 0x21c9f0, Func Offset: 0x110
-	// Line 886, Address: 0x21c9f4, Func Offset: 0x114
-	// Line 889, Address: 0x21c9f8, Func Offset: 0x118
-	// Line 894, Address: 0x21c9fc, Func Offset: 0x11c
-	// Line 895, Address: 0x21ca00, Func Offset: 0x120
-	// Line 896, Address: 0x21ca04, Func Offset: 0x124
-	// Line 897, Address: 0x21ca08, Func Offset: 0x128
-	// Line 898, Address: 0x21ca0c, Func Offset: 0x12c
-	// Line 899, Address: 0x21ca10, Func Offset: 0x130
-	// Line 900, Address: 0x21ca14, Func Offset: 0x134
-	// Line 901, Address: 0x21ca18, Func Offset: 0x138
-	// Line 902, Address: 0x21ca1c, Func Offset: 0x13c
-	// Line 903, Address: 0x21ca20, Func Offset: 0x140
-	// Line 904, Address: 0x21ca24, Func Offset: 0x144
-	// Line 905, Address: 0x21ca28, Func Offset: 0x148
-	// Line 906, Address: 0x21ca2c, Func Offset: 0x14c
-	// Line 907, Address: 0x21ca30, Func Offset: 0x150
-	// Line 908, Address: 0x21ca34, Func Offset: 0x154
-	// Line 909, Address: 0x21ca38, Func Offset: 0x158
-	// Line 910, Address: 0x21ca3c, Func Offset: 0x15c
-	// Line 911, Address: 0x21ca40, Func Offset: 0x160
-	// Line 912, Address: 0x21ca44, Func Offset: 0x164
-	// Line 913, Address: 0x21ca48, Func Offset: 0x168
-	// Line 914, Address: 0x21ca4c, Func Offset: 0x16c
-	// Line 915, Address: 0x21ca50, Func Offset: 0x170
-	// Line 917, Address: 0x21ca54, Func Offset: 0x174
-	// Line 919, Address: 0x21ca5c, Func Offset: 0x17c
-	// Line 920, Address: 0x21ca6c, Func Offset: 0x18c
-	// Line 921, Address: 0x21ca70, Func Offset: 0x190
-	// Func End, Address: 0x21ca98, Func Offset: 0x1b8
-}*/
+    O_WRK* opp;
+    int i; 
+    
+    opp = eff;
+    
+    for (i = 0; ; )
+    {
+        if (!(opp->flg & 0x3))
+        {
+            npSetMemoryL(&opp->flg, sizeof(O_WRK) / 4, 0);
+            
+            opp->flg = 1;
+            
+            opp->id = effno;
+            
+            opp->type = type;
+            
+            opp->tex_id = -1;
+            
+            opp->mdlver = 0;
+            
+            opp->flr_no = 0;
+            
+            opp->px = pnt->px;
+            opp->py = pnt->py;
+            opp->pz = pnt->pz;
+
+            opp->lox = pnt->ox;
+            opp->loy = pnt->oy;
+            opp->loz = pnt->oz;
+            
+            opp->sx = 1.0f;
+            opp->sy = 1.0f;
+            opp->sz = 1.0f;
+            
+            opp->ax = ax;
+            opp->ay = ay;
+            opp->az = 0;
+            
+            opp->mlwP = &sys->efm[effno];
+
+            opp->lkwkp = NULL;
+            
+            opp->lkono = 0;
+            
+            opp->mtx = (float(*)[16])opp->mtxbuf;
+            
+            opp->pvp = opp->pv;
+            opp->tvp = opp->tv;
+            
+            opp->pn = 4;
+            
+            opp->tv[0].x = -1.0f;
+            opp->tv[0].y = -1.0f;
+            opp->tv[0].z = 0;
+            
+            opp->tv[1].x = 1.0f;
+            opp->tv[1].y = -1.0f;
+            opp->tv[1].z = 0;
+            
+            opp->tv[2].x = -1.0f;
+            opp->tv[2].y = 1.0f;
+            opp->tv[2].z = 0;
+            
+            opp->tv[3].x = 1.0f;
+            opp->tv[3].y = 1.0f;
+            opp->tv[3].z = 0;
+            
+            opp->tv[0].u = 0;
+            opp->tv[0].v = 0;
+            
+            opp->tv[1].u = 1.0f;
+            opp->tv[1].v = 0;
+            
+            opp->tv[2].u = 0;
+            opp->tv[2].v = 1.0f;
+            
+            opp->tv[3].u = 1.0f;
+            opp->tv[3].v = 1.0f;
+            
+            return i;
+        }
+        
+        i++;
+        opp++;
+        
+        if (i >= 512) 
+        {
+            return -1;
+        }
+    }
+}
 
 // 100% matching! 
 int bhSetShadow(char* jtb, unsigned char* lkp, int lkono, float sx, float sy, float sz) 
