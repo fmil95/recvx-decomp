@@ -267,20 +267,21 @@ O_WRK* bhSetExtraEffectWork()
     return NULL;
 }
 
-// 
-// Start address: 0x21c3d0
+// 100% matching! 
 void bhDeleteYakkyou()
 {
-	int i;
-	//_anon0* op;
-	// Line 517, Address: 0x21c3d0, Func Offset: 0
-	// Line 518, Address: 0x21c3d8, Func Offset: 0x8
-	// Line 519, Address: 0x21c3dc, Func Offset: 0xc
-	// Line 521, Address: 0x21c418, Func Offset: 0x48
-	// Line 522, Address: 0x21c420, Func Offset: 0x50
-	// Line 523, Address: 0x21c430, Func Offset: 0x60
-	// Func End, Address: 0x21c438, Func Offset: 0x68
-	scePrintf("bhDeleteYakkyou - UNIMPLEMENTED!\n");
+    O_WRK* op;
+    int i;
+    
+    op = eff;
+    
+    for (i = 0; i < 512; i++, op++)
+    {
+        if ((((op->flg & 0x1)) && (op->id == 0)) || (((op->flg & 0x1)) && (op->id == 7))) 
+        {
+            op->flg = 0;
+        }
+    } 
 }
 
 /*// 
