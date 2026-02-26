@@ -1575,7 +1575,7 @@ void bhEne_SetVibration(int no);
 void bhEne_PlayerSePlay(BH_PWORK* epw, int no);
 void bhEne_HitCheckParts(BH_PWORK* pp, NJS_POINT3* pos);
 
-// 99.11% matching (https://decomp.me/scratch/Lo19g)
+// 100% matching! 
 void ikou(BH_PWORK* epw, NJS_POINT3* pos, int add_dir)
 {
 	int ang;
@@ -1586,26 +1586,26 @@ void ikou(BH_PWORK* epw, NJS_POINT3* pos, int add_dir)
         return;
     }
     
-    rot = NitenDir_ck(epw->px, epw->pz, pos->x, pos->z);
+    ang = NitenDir_ck(epw->px, epw->pz, pos->x, pos->z);
     if ((add_dir & 0x80000000) != 0) 
     {
         add_dir = -add_dir;
-        rot = rot + 0x8000 & 0xffff;
+        ang = ang + 0x8000 & 0xffff;
     }
 
-    ang = add_dir + (rot - epw->ay) & 0xffff;
+    rot = add_dir + (ang - epw->ay) & 0xffff;
 
-    if (ang < add_dir + add_dir)
+    if (rot < (add_dir + add_dir))
     {
-        epw->ay = rot;
+        epw->ay = ang;
     }
     else 
     {
-        epw->ay = ang - add_dir;
+        epw->ay -= add_dir;
         
-        if (ang < 0x8001) 
+        if (rot <= 0x8000)
         {
-            epw->ay = epw->ay + (add_dir + add_dir);
+            epw->ay += (add_dir + add_dir);
         }
     }
 }
