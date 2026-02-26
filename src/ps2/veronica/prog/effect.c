@@ -242,26 +242,30 @@ unsigned int bhGetGidx(_anon0* op)
 	// Line 406, Address: 0x21c350, Func Offset: 0x80
 	// Line 407, Address: 0x21c354, Func Offset: 0x84
 	// Func End, Address: 0x21c35c, Func Offset: 0x8c
-}
-
-// 
-// Start address: 0x21c360
-_anon0* bhSetExtraEffectWork()
-{
-	int i;
-	_anon0* op;
-	// Line 476, Address: 0x21c360, Func Offset: 0
-	// Line 479, Address: 0x21c36c, Func Offset: 0xc
-	// Line 480, Address: 0x21c374, Func Offset: 0x14
-	// Line 481, Address: 0x21c378, Func Offset: 0x18
-	// Line 482, Address: 0x21c388, Func Offset: 0x28
-	// Line 483, Address: 0x21c398, Func Offset: 0x38
-	// Line 484, Address: 0x21c3a0, Func Offset: 0x40
-	// Line 486, Address: 0x21c3a8, Func Offset: 0x48
-	// Line 487, Address: 0x21c3b8, Func Offset: 0x58
-	// Line 488, Address: 0x21c3bc, Func Offset: 0x5c
-	// Func End, Address: 0x21c3cc, Func Offset: 0x6c
 }*/
+
+// 100% matching! 
+O_WRK* bhSetExtraEffectWork() 
+{
+	O_WRK* op;
+    int i;
+
+    op = eff;
+    
+    for (i = 0; i < 512; i++, op++) 
+    {
+        if (!(op->flg & 0x3)) 
+        {
+            npSetMemoryL(&op->flg, sizeof(O_WRK) / 4, 0);
+            
+            op->flg = 2;
+            
+            return op;
+        }
+    }
+
+    return NULL;
+}
 
 // 
 // Start address: 0x21c3d0
