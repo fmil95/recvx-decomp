@@ -721,13 +721,11 @@ int bhSetShadow(char* jtb, unsigned char* lkp, int lkono, float sx, float sy, fl
     return -1;
 }
 
-/*// 
-// Start address: 0x21cc60
+// 100% matching!
 void bhLinkBlood()
 {
-	// Line 1161, Address: 0x21cc60, Func Offset: 0
-	// Func End, Address: 0x21cc68, Func Offset: 0x8
-}*/
+	
+}
 
 // 
 // Start address: 0x21cc70
