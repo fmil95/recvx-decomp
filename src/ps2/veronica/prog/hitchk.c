@@ -36,15 +36,15 @@ _anon0* bhCheckL2Water(_anon39* lp, _anon20* pos);
 void bhResetAtariAttr();
 void bhCheckPlayer(BH_PWORK* pp);
 void bhCheckEnemies(BH_PWORK* pp);
-int bhCheckWallAttrB89(_anon0* hp);
+int bhCheckWallAttrB89(_anon0* hp);*/
 
 // 
 // Start address: 0x25d590
 void bhCheckWall(BH_PWORK* pw)
 {
 	float inn;
-	_anon20 vec1;
-	_anon20 vec0;
+	//_anon20 vec1;
+	//_anon20 vec0;
 	int r;
 	float abz;
 	float abx;
@@ -69,11 +69,11 @@ void bhCheckWall(BH_PWORK* pw)
 	int hit;
 	int j;
 	int i;
-	_anon0 ht;
-	_anon0* hp;
-	_anon39 l;
-	_anon20 pd;
-	_anon20* npos;
+	//_anon0 ht;
+	//_anon0* hp;
+	//_anon39 l;
+	//_anon20 pd;
+	//_anon20* npos;
 	// Line 102, Address: 0x25d590, Func Offset: 0
 	// Line 120, Address: 0x25d5ec, Func Offset: 0x5c
 	// Line 117, Address: 0x25d608, Func Offset: 0x78
@@ -432,9 +432,10 @@ void bhCheckWall(BH_PWORK* pw)
 	// Line 601, Address: 0x25e880, Func Offset: 0x12f0
 	// Line 605, Address: 0x25e8c4, Func Offset: 0x1334
 	// Func End, Address: 0x25e924, Func Offset: 0x1394
+	scePrintf("bhCheckWall - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x25e930
 int bhCheckWallEx(BH_PWORK* pw, _anon20* npos, _anon20* opos, float par, float pah)
 {

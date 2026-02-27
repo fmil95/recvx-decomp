@@ -3,6 +3,7 @@
 #include "dread.h"
 //#include "effsub2.h"
 //#include "effsub3.h"
+#include "hitchk.h"
 #include "light.h"
 #include "njplus.h"
 #include "ps2_NaDraw2D.h"
@@ -12,11 +13,17 @@
 #include "ps2_texture.h"
 #include "main.h"
 
-/*void(*bhJumpEffect)()[150];
-void(*bhJumpEffect0)()[100];
-void(*bhJumpEffect2)()[50];
-void(*bhJumpEffect3)()[50];
-void(*bhJumpEffect4)()[50];*/
+typedef void (*bhJumpEffect_proc)(O_WRK*);
+typedef void (*bhJumpEffect0_proc)(O_WRK*);
+typedef void (*bhJumpEffect2_proc)(O_WRK*);
+typedef void (*bhJumpEffect3_proc)(O_WRK*);
+typedef void (*bhJumpEffect4_proc)(O_WRK*);
+
+bhJumpEffect_proc bhJumpEffect[150]; // DATA
+bhJumpEffect0_proc bhJumpEffect0[100]; // DATA
+bhJumpEffect2_proc bhJumpEffect2[50];  // DATA
+bhJumpEffect3_proc bhJumpEffect3[50]; // DATA
+bhJumpEffect4_proc bhJumpEffect4[50]; // DATA
 const EFFECT_INFO ef_info[21] = { {1, 9}, {1, 0}, {0, 2}, {0, 4}, {0, 4}, {0, 4}, {0, 2}, {1, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 5}, {0, 0}, {1, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 2}, {0, 1}, {0, 1}, {-1, 0} };
 O_WORK* ef_Zanzo[6] = { 0 };
 /*SYS_WORK* sys;
@@ -724,69 +731,114 @@ int bhSetShadow(char* jtb, unsigned char* lkp, int lkono, float sx, float sy, fl
 // 100% matching!
 void bhLinkBlood()
 {
-	
+
 }
 
-// 
-// Start address: 0x21cc70
+// 100% matching!
 void bhControlEffect()
 {
-	int* entp;
-	int i;
-	//_anon23* owp;
-	//BH_PWORK* pp;
-	//_anon0* op;
-	// Line 1167, Address: 0x21cc70, Func Offset: 0
-	// Line 1172, Address: 0x21cc80, Func Offset: 0x10
-	// Line 1174, Address: 0x21cca8, Func Offset: 0x38
-	// Line 1175, Address: 0x21ccb4, Func Offset: 0x44
-	// Line 1176, Address: 0x21ccb8, Func Offset: 0x48
-	// Line 1177, Address: 0x21ccbc, Func Offset: 0x4c
-	// Line 1178, Address: 0x21ccc0, Func Offset: 0x50
-	// Line 1179, Address: 0x21ccc4, Func Offset: 0x54
-	// Line 1180, Address: 0x21ccc8, Func Offset: 0x58
-	// Line 1181, Address: 0x21cccc, Func Offset: 0x5c
-	// Line 1182, Address: 0x21ccd0, Func Offset: 0x60
-	// Line 1183, Address: 0x21ccd4, Func Offset: 0x64
-	// Line 1184, Address: 0x21ccd8, Func Offset: 0x68
-	// Line 1185, Address: 0x21ccdc, Func Offset: 0x6c
-	// Line 1186, Address: 0x21cce0, Func Offset: 0x70
-	// Line 1189, Address: 0x21cce4, Func Offset: 0x74
-	// Line 1194, Address: 0x21cd14, Func Offset: 0xa4
-	// Line 1195, Address: 0x21cd1c, Func Offset: 0xac
-	// Line 1196, Address: 0x21cd24, Func Offset: 0xb4
-	// Line 1194, Address: 0x21cd28, Func Offset: 0xb8
-	// Line 1197, Address: 0x21cd34, Func Offset: 0xc4
-	// Line 1198, Address: 0x21cd48, Func Offset: 0xd8
-	// Line 1199, Address: 0x21cd6c, Func Offset: 0xfc
-	// Line 1200, Address: 0x21cd90, Func Offset: 0x120
-	// Line 1201, Address: 0x21cd94, Func Offset: 0x124
-	// Line 1207, Address: 0x21cda4, Func Offset: 0x134
-	// Line 1210, Address: 0x21cdac, Func Offset: 0x13c
-	// Line 1211, Address: 0x21cdb4, Func Offset: 0x144
-	// Line 1212, Address: 0x21cdbc, Func Offset: 0x14c
-	// Line 1214, Address: 0x21cdc4, Func Offset: 0x154
-	// Line 1215, Address: 0x21cdcc, Func Offset: 0x15c
-	// Line 1216, Address: 0x21cdd4, Func Offset: 0x164
-	// Line 1219, Address: 0x21cddc, Func Offset: 0x16c
-	// Line 1220, Address: 0x21cdec, Func Offset: 0x17c
-	// Line 1221, Address: 0x21cdf0, Func Offset: 0x180
-	// Line 1222, Address: 0x21ce00, Func Offset: 0x190
-	// Line 1223, Address: 0x21ce1c, Func Offset: 0x1ac
-	// Line 1224, Address: 0x21ce24, Func Offset: 0x1b4
-	// Line 1229, Address: 0x21ce34, Func Offset: 0x1c4
-	// Line 1231, Address: 0x21ce38, Func Offset: 0x1c8
-	// Line 1233, Address: 0x21ce70, Func Offset: 0x200
-	// Line 1235, Address: 0x21cea0, Func Offset: 0x230
-	// Line 1237, Address: 0x21ced0, Func Offset: 0x260
-	// Line 1238, Address: 0x21cf00, Func Offset: 0x290
-	// Line 1241, Address: 0x21cf1c, Func Offset: 0x2ac
-	// Line 1243, Address: 0x21cf20, Func Offset: 0x2b0
-	// Line 1244, Address: 0x21cf34, Func Offset: 0x2c4
-	// Line 1246, Address: 0x21cf3c, Func Offset: 0x2cc
-	// Line 1247, Address: 0x21cf50, Func Offset: 0x2e0
-	// Func End, Address: 0x21cf64, Func Offset: 0x2f4
-	scePrintf("bhControlEffect - UNIMPLEMENTED!\n");
+    O_WRK* op;    
+    BH_PWORK* pp; 
+    O_WORK* owp;  
+    int i;        
+    int* entp;    
+    
+    if (((sys->sp_flg & 0x8)) || ((sys->ef_flg & 0x1))) 
+    {
+        entp = &sys->ef_poln;
+        
+        *entp++ = 0;
+        *entp++ = 0;
+        *entp++ = 0;
+        *entp++ = 0;
+        *entp++ = 0;
+        *entp++ = 0;
+        *entp++ = 0;
+        *entp++ = 0;
+        *entp++ = 0;
+        *entp++ = 0;
+        *entp++ = 0;
+        *entp++ = 0;
+        
+        ef_Zanzo[5] = NULL;
+        ef_Zanzo[4] = NULL;
+        ef_Zanzo[3] = NULL;
+        ef_Zanzo[2] = NULL;
+        ef_Zanzo[1] = NULL;
+        ef_Zanzo[0] = NULL;
+        
+        sys->ef_ctrn = 0;
+        
+        op = eff;
+        
+        for (i = 0; i < 512; i++, op++)
+        {
+            sys->efnow = i;
+            
+            if (((op->flg & 0x1)) && (!(op->stflg & 0x1000000))) 
+            {
+                sys->ef_ctrn++;
+                
+                op->idx = i;
+                
+                if (op->id >= 400)
+                {
+                    op->flg = 0;
+                } 
+                else 
+                {
+                    op->pxb = op->px;
+                    op->pyb = op->py;
+                    op->pzb = op->pz;
+                    
+                    op->axb = op->ax;
+                    op->ayb = op->ay;
+                    op->azb = op->az;
+                    
+                    if ((op->flg & 0x80)) 
+                    {
+                        pp = (BH_PWORK*)op->lkwkp;
+                        
+                        if ((pp->flg & 0x1))
+                        {
+                            owp = &pp->mlwP->owP[op->lkono];
+                            
+                            if (owp != NULL) 
+                            {
+                                njCalcPoint(&owp->mtx, (NJS_POINT3*)&op->lox, (NJS_POINT3*)&op->px);
+                            }
+                        }
+                    }
+                    
+                    if (op->id < 150) 
+                    {
+                        bhJumpEffect[op->id](op);
+                    } 
+                    else if (op->id < 250) 
+                    {
+                        bhJumpEffect0[op->id - 150](op);
+                    } 
+                    else if (op->id < 300)
+                    {
+                        bhJumpEffect2[op->id - 250](op);
+                    } 
+                    else if (op->id < 350) 
+                    {
+                        bhJumpEffect3[op->id - 300](op);
+                    }
+                    else 
+                    {
+                        bhJumpEffect4[op->id - 350](op);
+                    }
+                    
+                    if ((op->flg & 0x10000)) 
+                    {
+                        bhCheckWall((BH_PWORK*)op);
+                    }
+                }
+            }
+        } 
+    }
 }
 
 // 100% matching!
