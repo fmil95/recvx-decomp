@@ -199,14 +199,14 @@ void njDrawTextureSubH(_anon0* polygon, int count, int flag)
 	// Line 245, Address: 0x2de5f0, Func Offset: 0x160
 	// Line 248, Address: 0x2de604, Func Offset: 0x174
 	// Func End, Address: 0x2de610, Func Offset: 0x180
-}
+}*/
 
 // 
 // Start address: 0x2de610
-void njDrawTextureH(_anon0* polygon, int count, int tex, int flag)
+void    njDrawTextureH( NJS_TEXTUREH_VTX *polygon, Int count, Int tex, Int flag )
 {
 	int i;
-	_anon0 poly[32];
+	//_anon0 poly[32];
 	// Line 304, Address: 0x2de610, Func Offset: 0
 	// Line 317, Address: 0x2de628, Func Offset: 0x18
 	// Line 318, Address: 0x2de654, Func Offset: 0x44
@@ -226,9 +226,10 @@ void njDrawTextureH(_anon0* polygon, int count, int tex, int flag)
 	// Line 342, Address: 0x2de718, Func Offset: 0x108
 	// Line 344, Address: 0x2de720, Func Offset: 0x110
 	// Func End, Address: 0x2de73c, Func Offset: 0x12c
+	scePrintf("njDrawTextureH - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2de740
 void njDrawPolygon3DEx(_anon5* p, int count, int trans)
 {
