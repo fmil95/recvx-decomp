@@ -2236,12 +2236,12 @@ int bhCheckClipModel(BH_PWORK* pp)
     return 1;
 }
 
-/*// 
+// 
 // Start address: 0x153360
-int bhCheckClipPoint(_anon23* pos)
+int bhCheckClipPoint(NJS_POINT3* pos)
 {
-	_anon23 p3;
-	_anon35 p2;
+	//_anon23 p3;
+	//_anon35 p2;
 	// Line 2466, Address: 0x153360, Func Offset: 0
 	// Line 2469, Address: 0x153370, Func Offset: 0x10
 	// Line 2470, Address: 0x153384, Func Offset: 0x24
@@ -2252,7 +2252,7 @@ int bhCheckClipPoint(_anon23* pos)
 	// Func End, Address: 0x153440, Func Offset: 0xe0
 }
 
-// 
+/*// 
 // Start address: 0x153440
 void bhSetWaterSplash(BH_PWORK* pp, int jno, int type, float sx, float sy, float sz)
 {

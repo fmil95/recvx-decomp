@@ -1,15 +1,21 @@
 #include "screen.h"
+#include "camera.h"
+#include "cut.h"
+#include "game.h"
+#include "light.h"
+#include "ps2_NaDraw.h"
+#include "ps2_NaDraw2D.h"
+#include "ps2_NaGraphics3D.h"
+#include "ps2_NaMatrix.h"
+#include "ps2_NaSystem.h"
+#include "ps2_NaTextureFunction.h"
+/* #include "ps2_NaView.h" - the devs didn't include this originally */ 
+#include "ps2_NinjaCnk.h"
+#include "ps2_dummy.h"
+#include "pwksub.h"
 #include "main.h"
 
-/*_anon19* sys;
-_anon33 cam;
-_anon4 _nj_screen_;
-float BHD_ASPECT_Y;
-float BHD_ASPECT_X;*/
 unsigned int Ps2_rendertex_initflag;
-/*float lcmat[16][0];
-_anon0 eff[0];
-unsigned int PS2_Render_tex_sub_flag;*/
 
 // 100% matching!
 void bhSetScreenFade(unsigned int argb, float ct)
@@ -1104,94 +1110,129 @@ void bhDrawFullScreenRenderTexture()
 	scePrintf("bhDrawFullScreenRenderTexture - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x26e3a0
+// 98.72% matching
 void bhDrawSmallScreenRenderTexture()
 {
-	//_anon4 scr_tex;
-	float dist;
-	unsigned int gm_flg;
-	//_anon33 cambk;
-	//_anon0* op;
-	// Line 961, Address: 0x26e3a0, Func Offset: 0
-	// Line 980, Address: 0x26e3c0, Func Offset: 0x20
-	// Line 981, Address: 0x26e3d0, Func Offset: 0x30
-	// Line 982, Address: 0x26e3f8, Func Offset: 0x58
-	// Line 983, Address: 0x26e408, Func Offset: 0x68
-	// Line 984, Address: 0x26e410, Func Offset: 0x70
-	// Line 986, Address: 0x26e418, Func Offset: 0x78
-	// Line 987, Address: 0x26e420, Func Offset: 0x80
-	// Line 992, Address: 0x26e428, Func Offset: 0x88
-	// Line 993, Address: 0x26e45c, Func Offset: 0xbc
-	// Line 996, Address: 0x26e47c, Func Offset: 0xdc
-	// Line 998, Address: 0x26e488, Func Offset: 0xe8
-	// Line 997, Address: 0x26e48c, Func Offset: 0xec
-	// Line 998, Address: 0x26e494, Func Offset: 0xf4
-	// Line 999, Address: 0x26e498, Func Offset: 0xf8
-	// Line 1000, Address: 0x26e4a0, Func Offset: 0x100
-	// Line 1001, Address: 0x26e4b4, Func Offset: 0x114
-	// Line 1002, Address: 0x26e4c8, Func Offset: 0x128
-	// Line 1003, Address: 0x26e508, Func Offset: 0x168
-	// Line 1004, Address: 0x26e510, Func Offset: 0x170
-	// Line 1005, Address: 0x26e518, Func Offset: 0x178
-	// Line 1006, Address: 0x26e52c, Func Offset: 0x18c
-	// Line 1005, Address: 0x26e530, Func Offset: 0x190
-	// Line 1006, Address: 0x26e534, Func Offset: 0x194
-	// Line 1007, Address: 0x26e538, Func Offset: 0x198
-	// Line 1008, Address: 0x26e53c, Func Offset: 0x19c
-	// Line 1005, Address: 0x26e540, Func Offset: 0x1a0
-	// Line 1006, Address: 0x26e544, Func Offset: 0x1a4
-	// Line 1008, Address: 0x26e548, Func Offset: 0x1a8
-	// Line 1007, Address: 0x26e54c, Func Offset: 0x1ac
-	// Line 1009, Address: 0x26e550, Func Offset: 0x1b0
-	// Line 1008, Address: 0x26e554, Func Offset: 0x1b4
-	// Line 1010, Address: 0x26e558, Func Offset: 0x1b8
-	// Line 1025, Address: 0x26e564, Func Offset: 0x1c4
-	// Line 1027, Address: 0x26e57c, Func Offset: 0x1dc
-	// Line 1028, Address: 0x26e598, Func Offset: 0x1f8
-	// Line 1030, Address: 0x26e5b0, Func Offset: 0x210
-	// Line 1032, Address: 0x26e5d8, Func Offset: 0x238
-	// Line 1033, Address: 0x26e5f4, Func Offset: 0x254
-	// Line 1035, Address: 0x26e60c, Func Offset: 0x26c
-	// Line 1036, Address: 0x26e634, Func Offset: 0x294
-	// Line 1038, Address: 0x26e63c, Func Offset: 0x29c
-	// Line 1039, Address: 0x26e654, Func Offset: 0x2b4
-	// Line 1040, Address: 0x26e670, Func Offset: 0x2d0
-	// Line 1042, Address: 0x26e694, Func Offset: 0x2f4
-	// Line 1043, Address: 0x26e6ac, Func Offset: 0x30c
-	// Line 1044, Address: 0x26e6c8, Func Offset: 0x328
-	// Line 1048, Address: 0x26e6ec, Func Offset: 0x34c
-	// Line 1049, Address: 0x26e6fc, Func Offset: 0x35c
-	// Line 1054, Address: 0x26e704, Func Offset: 0x364
-	// Line 1055, Address: 0x26e70c, Func Offset: 0x36c
-	// Line 1057, Address: 0x26e714, Func Offset: 0x374
-	// Line 1058, Address: 0x26e724, Func Offset: 0x384
-	// Line 1057, Address: 0x26e728, Func Offset: 0x388
-	// Line 1058, Address: 0x26e730, Func Offset: 0x390
-	// Line 1068, Address: 0x26e744, Func Offset: 0x3a4
-	// Line 1069, Address: 0x26e75c, Func Offset: 0x3bc
-	// Line 1070, Address: 0x26e764, Func Offset: 0x3c4
-	// Line 1071, Address: 0x26e76c, Func Offset: 0x3cc
-	// Line 1072, Address: 0x26e770, Func Offset: 0x3d0
-	// Line 1076, Address: 0x26e778, Func Offset: 0x3d8
-	// Line 1077, Address: 0x26e780, Func Offset: 0x3e0
-	// Line 1078, Address: 0x26e788, Func Offset: 0x3e8
-	// Line 1079, Address: 0x26e790, Func Offset: 0x3f0
-	// Line 1080, Address: 0x26e794, Func Offset: 0x3f4
-	// Line 1081, Address: 0x26e7a0, Func Offset: 0x400
-	// Line 1083, Address: 0x26e7d8, Func Offset: 0x438
-	// Line 1081, Address: 0x26e7e0, Func Offset: 0x440
-	// Line 1083, Address: 0x26e7e8, Func Offset: 0x448
-	// Line 1084, Address: 0x26e7f4, Func Offset: 0x454
-	// Line 1088, Address: 0x26e808, Func Offset: 0x468
-	// Line 1091, Address: 0x26e818, Func Offset: 0x478
-	// Line 1093, Address: 0x26e820, Func Offset: 0x480
-	// Line 1094, Address: 0x26e82c, Func Offset: 0x48c
-	// Line 1096, Address: 0x26e840, Func Offset: 0x4a0
-	// Line 1098, Address: 0x26e854, Func Offset: 0x4b4
-	// Line 1100, Address: 0x26e85c, Func Offset: 0x4bc
-	// Line 1103, Address: 0x26e868, Func Offset: 0x4c8
-	// Line 1105, Address: 0x26e870, Func Offset: 0x4d0
-	// Func End, Address: 0x26e894, Func Offset: 0x4f4
-	scePrintf("bhDrawSmallScreenRenderTexture - UNIMPLEMENTED!\n");
+    O_WRK* op;           
+    CAM_WORK cambk;      
+    unsigned int gm_flg; 
+    float dist;          
+    NJS_SCREEN scr_tex;  
+
+    if ((Ps2_rendertex_initflag == 0) && ((!(sys->st_flg & 0x1)) && (sys->stg_no != 7)))
+    {
+        if ((sys->gm_flg & 0x20))
+        {
+            Ps2_rendertex_initflag = 1;
+        }
+        else
+        {
+            PS2_Render_tex_sub_flag = 1;
+            return;
+        }
+    }
+
+    op = &eff[sys->ren_idx[0]];
+    
+    if ((bhCheckClipPoint((NJS_POINT3*)&op->px) == 0) && (!(op->stflg & 0x10))) 
+    {
+        gm_flg = sys->gm_flg;
+        
+        sys->gm_flg |= 0x80;
+
+        dist = _nj_screen_.dist;
+        
+        njSetRenderWidth(512);
+        njSetMatrix(&lcmat[10], cam.mtx);
+        njSetMatrix(&lcmat[11], cam.mtxb);
+
+        cambk = cam;
+        
+        bhSetRenderCut(op->type);
+        
+        bhControlCamera();
+        
+        scr_tex.dist = 0.8f * _nj_screen_.dist;
+        
+        scr_tex.w = 512.0f;
+        scr_tex.h = 512.0f;
+        
+        scr_tex.cx = 256.0f;
+        scr_tex.cy = 256.0f;
+        
+        njSetScreen(&scr_tex);
+        
+        if (sys->stg_no == 7)
+        {
+            njCnkSetEasyLightColor(0.3f, 0.3f, 1.0f);
+            njCnkSetEasyLightIntensity(4.0f, 0.5f);
+            njCnkSetEasyLight(0.35f, -0.15f, 0.5f);
+            
+            njCnkSetSimpleLightColor(0.3f, 0.3f, 1.0f);
+            njCnkSetSimpleLightIntensity(4.0f, 0.5f);
+            njCnkSetSimpleLight(0.35f, -0.15f, 0.5f);
+        } 
+        else 
+        {
+            njCnkSetEasyLightColor(1.0f, 1.0f, 1.0f);
+            njCnkSetEasyLightIntensity(1.0f, 0.2f);
+            njCnkSetEasyLight(0, 0.3f, 0.7f);
+            
+            njCnkSetSimpleLightColor(1.0f, 1.0f, 1.0f);
+            njCnkSetSimpleLightIntensity(1.0f, 0.2f);
+            njCnkSetSimpleLight(0, 0.3f, 0.7f);
+        }
+        
+        sys->st_flg |= 0x20;
+        
+        bhAllEasyDrawModel();
+        
+        Ps2DrawOTag();
+        
+        Ps2ClearOT();
+        
+        sys->st_flg &= ~0x20;
+        
+        njSetTexture(&sys->ef_tlist);
+        
+        if (sys->stg_no == 7)
+        {
+            njRenderTextureNumG(2);
+        }
+        else 
+        {
+            Ps2_rendertex_initflag = 0;
+            
+            PS2_Render_Tex_Sub();
+        }
+        
+        scr_tex.w = 640.0f;
+        scr_tex.h = 480.0f;
+        
+        scr_tex.cx = 320.0f;
+        scr_tex.cy = 240.0f;
+        
+        njSetScreen(&scr_tex);
+        
+        cam = cambk;
+        
+        njSetMatrix(cam.mtx, &lcmat[10]);
+        njSetMatrix(cam.mtxb, &lcmat[11]);        
+        njSetScreenProjection(dist);
+        
+        Ps2CalcScreenCone();
+        
+        sys->gm_flg = gm_flg;
+        
+        if ((cam.flg & 0x2)) 
+        {
+            bhSetEventHideObjLgt(cam.evc_no, cam.keyf_no);
+        } 
+        else 
+        {
+            bhSetHideObjLgt(cam.ncut);
+        }
+        
+        bhSetLight();
+    }
 }

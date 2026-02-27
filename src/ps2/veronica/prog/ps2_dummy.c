@@ -2212,7 +2212,7 @@ void Ps2AddPrim3DExI(unsigned long prim, void* dp, unsigned int num)
 	scePrintf("Ps2AddPrim3DExI - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2cf190
 void PS2_Render_Tex_Sub()
 {
@@ -2267,4 +2267,4 @@ void PS2_Render_Tex_Sub()
 	// Line 4360, Address: 0x2cf348, Func Offset: 0x1b8
 	// Line 4361, Address: 0x2cf350, Func Offset: 0x1c0
 	// Func End, Address: 0x2cf35c, Func Offset: 0x1cc
-}*/
+}
