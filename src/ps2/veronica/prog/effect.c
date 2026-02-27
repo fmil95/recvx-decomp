@@ -193,27 +193,31 @@ void bhClrEff_YT()
     }
 }
 
-/*// 
-// Start address: 0x21c130
+// 100% matching!
 int bhPushEffectWork()
 {
-	unsigned int pssz;
-	// Line 356, Address: 0x21c130, Func Offset: 0
-	// Line 358, Address: 0x21c138, Func Offset: 0x8
-	// Line 360, Address: 0x21c148, Func Offset: 0x18
-	// Line 358, Address: 0x21c14c, Func Offset: 0x1c
-	// Line 360, Address: 0x21c168, Func Offset: 0x38
-	// Line 358, Address: 0x21c16c, Func Offset: 0x3c
-	// Line 360, Address: 0x21c170, Func Offset: 0x40
-	// Line 361, Address: 0x21c18c, Func Offset: 0x5c
-	// Line 362, Address: 0x21c1c4, Func Offset: 0x94
-	// Line 363, Address: 0x21c1c8, Func Offset: 0x98
-	// Line 365, Address: 0x21c1d0, Func Offset: 0xa0
-	// Line 368, Address: 0x21c1e4, Func Offset: 0xb4
-	// Line 371, Address: 0x21c228, Func Offset: 0xf8
-	// Line 372, Address: 0x21c22c, Func Offset: 0xfc
-	// Func End, Address: 0x21c238, Func Offset: 0x108
-}*/
+    unsigned int pssz;
+    int nb; // not from the debugging symbols
+
+    pssz = ((int)&sys->ob_nlgn - (int)&sys->ef_poln) + 0x9C000; 
+    
+    sys->ef_psp = (unsigned char*)((unsigned int)(sys->memp + 3) & ~0x3);
+
+    if ((unsigned int)&sys->ef_psp[pssz] >= (unsigned int)sys->endp)
+    {
+        sys->ef_psp = NULL;
+        
+        return 0;
+    }
+    
+    njMemCopy4(sys->ef_psp, eff, 0x27000);
+    
+    nb = (int)&sys->ob_nlgn - (int)&sys->ef_poln;
+    
+    njMemCopy4(sys->ef_psp + 0x9C000, &sys->ef_poln, (unsigned int)nb / 4);
+    
+    return 1;
+}
 
 // 100% matching!
 void bhPopEffectWork()
