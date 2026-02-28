@@ -358,240 +358,406 @@ void ResetNodeArraySet(SCISSOR* scissor)
     );
 }
 
-// 
-// Start address: 0x2d4190
+// 100% matching! 
 void ScissorTriangle(SCISSOR* scissor, SCISSOR_PLANE* plane_set)
 {
-	int n;
-	//_anon4 interN;
-	//_anon4* nextN;
-	//_anon4* currN;
-	//_anon0* outarray;
-	//_anon0* inarray;
-	float sgn;
-	int xyz;
-	int mask;
-	int clip;
-	int j;
-	int i;
-	// Line 943, Address: 0x2d4190, Func Offset: 0
-	// Line 894, Address: 0x2d4194, Func Offset: 0x4
-	// Line 942, Address: 0x2d4198, Func Offset: 0x8
-	// Line 949, Address: 0x2d419c, Func Offset: 0xc
-	// Line 954, Address: 0x2d41a4, Func Offset: 0x14
-	// Line 955, Address: 0x2d41b0, Func Offset: 0x20
-	// Line 956, Address: 0x2d41b4, Func Offset: 0x24
-	// Line 957, Address: 0x2d41c8, Func Offset: 0x38
-	// Line 958, Address: 0x2d41cc, Func Offset: 0x3c
-	// Line 959, Address: 0x2d41d0, Func Offset: 0x40
-	// Line 960, Address: 0x2d41d4, Func Offset: 0x44
-	// Line 961, Address: 0x2d41d8, Func Offset: 0x48
-	// Line 962, Address: 0x2d41dc, Func Offset: 0x4c
-	// Line 963, Address: 0x2d41e0, Func Offset: 0x50
-	// Line 964, Address: 0x2d41e4, Func Offset: 0x54
-	// Line 965, Address: 0x2d41e8, Func Offset: 0x58
-	// Line 966, Address: 0x2d41ec, Func Offset: 0x5c
-	// Line 967, Address: 0x2d41f0, Func Offset: 0x60
-	// Line 968, Address: 0x2d41f4, Func Offset: 0x64
-	// Line 969, Address: 0x2d41f8, Func Offset: 0x68
-	// Line 970, Address: 0x2d41fc, Func Offset: 0x6c
-	// Line 972, Address: 0x2d4200, Func Offset: 0x70
-	// Line 975, Address: 0x2d4208, Func Offset: 0x78
-	// Line 976, Address: 0x2d420c, Func Offset: 0x7c
-	// Line 977, Address: 0x2d4210, Func Offset: 0x80
-	// Line 978, Address: 0x2d4214, Func Offset: 0x84
-	// Line 979, Address: 0x2d4228, Func Offset: 0x98
-	// Line 980, Address: 0x2d422c, Func Offset: 0x9c
-	// Line 981, Address: 0x2d4230, Func Offset: 0xa0
-	// Line 982, Address: 0x2d4238, Func Offset: 0xa8
-	// Line 983, Address: 0x2d423c, Func Offset: 0xac
-	// Line 985, Address: 0x2d4240, Func Offset: 0xb0
-	// Line 986, Address: 0x2d4254, Func Offset: 0xc4
-	// Line 987, Address: 0x2d4258, Func Offset: 0xc8
-	// Line 991, Address: 0x2d425c, Func Offset: 0xcc
-	// Line 992, Address: 0x2d4260, Func Offset: 0xd0
-	// Line 993, Address: 0x2d4264, Func Offset: 0xd4
-	// Line 994, Address: 0x2d4268, Func Offset: 0xd8
-	// Line 995, Address: 0x2d426c, Func Offset: 0xdc
-	// Line 996, Address: 0x2d4270, Func Offset: 0xe0
-	// Line 997, Address: 0x2d4274, Func Offset: 0xe4
-	// Line 998, Address: 0x2d4278, Func Offset: 0xe8
-	// Line 999, Address: 0x2d427c, Func Offset: 0xec
-	// Line 1000, Address: 0x2d4280, Func Offset: 0xf0
-	// Line 1002, Address: 0x2d4284, Func Offset: 0xf4
-	// Line 1003, Address: 0x2d428c, Func Offset: 0xfc
-	// Line 1006, Address: 0x2d4294, Func Offset: 0x104
-	// Line 1007, Address: 0x2d4298, Func Offset: 0x108
-	// Line 1008, Address: 0x2d42ac, Func Offset: 0x11c
-	// Line 1009, Address: 0x2d42b0, Func Offset: 0x120
-	// Line 1010, Address: 0x2d42b4, Func Offset: 0x124
-	// Line 1011, Address: 0x2d42b8, Func Offset: 0x128
-	// Line 1012, Address: 0x2d42bc, Func Offset: 0x12c
-	// Line 1013, Address: 0x2d42c0, Func Offset: 0x130
-	// Line 1014, Address: 0x2d42c4, Func Offset: 0x134
-	// Line 1015, Address: 0x2d42c8, Func Offset: 0x138
-	// Line 1016, Address: 0x2d42cc, Func Offset: 0x13c
-	// Line 1017, Address: 0x2d42d0, Func Offset: 0x140
-	// Line 1020, Address: 0x2d42d4, Func Offset: 0x144
-	// Line 1021, Address: 0x2d42f4, Func Offset: 0x164
-	// Line 1023, Address: 0x2d4310, Func Offset: 0x180
-	// Line 1024, Address: 0x2d4318, Func Offset: 0x188
-	// Line 1025, Address: 0x2d431c, Func Offset: 0x18c
-	// Line 1026, Address: 0x2d4320, Func Offset: 0x190
-	// Line 1027, Address: 0x2d4328, Func Offset: 0x198
-	// Line 1028, Address: 0x2d432c, Func Offset: 0x19c
-	// Line 1029, Address: 0x2d4330, Func Offset: 0x1a0
-	// Line 1030, Address: 0x2d4334, Func Offset: 0x1a4
-	// Line 1031, Address: 0x2d4338, Func Offset: 0x1a8
-	// Line 1032, Address: 0x2d433c, Func Offset: 0x1ac
-	// Line 1033, Address: 0x2d4340, Func Offset: 0x1b0
-	// Line 1034, Address: 0x2d4344, Func Offset: 0x1b4
-	// Line 1035, Address: 0x2d4348, Func Offset: 0x1b8
-	// Line 1036, Address: 0x2d434c, Func Offset: 0x1bc
-	// Line 1037, Address: 0x2d4350, Func Offset: 0x1c0
-	// Line 1038, Address: 0x2d4358, Func Offset: 0x1c8
-	// Line 1039, Address: 0x2d435c, Func Offset: 0x1cc
-	// Line 1041, Address: 0x2d4360, Func Offset: 0x1d0
-	// Line 1044, Address: 0x2d4368, Func Offset: 0x1d8
-	// Line 1045, Address: 0x2d436c, Func Offset: 0x1dc
-	// Line 1046, Address: 0x2d4370, Func Offset: 0x1e0
-	// Line 1047, Address: 0x2d4374, Func Offset: 0x1e4
-	// Line 1048, Address: 0x2d4378, Func Offset: 0x1e8
-	// Line 1049, Address: 0x2d437c, Func Offset: 0x1ec
-	// Line 1050, Address: 0x2d4380, Func Offset: 0x1f0
-	// Line 1051, Address: 0x2d4384, Func Offset: 0x1f4
-	// Line 1052, Address: 0x2d4388, Func Offset: 0x1f8
-	// Line 1053, Address: 0x2d438c, Func Offset: 0x1fc
-	// Line 1054, Address: 0x2d4390, Func Offset: 0x200
-	// Line 1055, Address: 0x2d4394, Func Offset: 0x204
-	// Line 1056, Address: 0x2d4398, Func Offset: 0x208
-	// Line 1057, Address: 0x2d439c, Func Offset: 0x20c
-	// Line 1058, Address: 0x2d43a0, Func Offset: 0x210
-	// Line 1059, Address: 0x2d43a4, Func Offset: 0x214
-	// Line 1060, Address: 0x2d43a8, Func Offset: 0x218
-	// Line 1061, Address: 0x2d43ac, Func Offset: 0x21c
-	// Line 1062, Address: 0x2d43b0, Func Offset: 0x220
-	// Line 1063, Address: 0x2d43b4, Func Offset: 0x224
-	// Line 1064, Address: 0x2d43b8, Func Offset: 0x228
-	// Line 1065, Address: 0x2d43bc, Func Offset: 0x22c
-	// Line 1066, Address: 0x2d43c0, Func Offset: 0x230
-	// Line 1067, Address: 0x2d43c4, Func Offset: 0x234
-	// Line 1068, Address: 0x2d43c8, Func Offset: 0x238
-	// Line 1069, Address: 0x2d43cc, Func Offset: 0x23c
-	// Line 1070, Address: 0x2d43d0, Func Offset: 0x240
-	// Line 1071, Address: 0x2d43d4, Func Offset: 0x244
-	// Line 1072, Address: 0x2d43d8, Func Offset: 0x248
-	// Line 1073, Address: 0x2d43dc, Func Offset: 0x24c
-	// Line 1077, Address: 0x2d43e0, Func Offset: 0x250
-	// Line 1078, Address: 0x2d43e4, Func Offset: 0x254
-	// Line 1079, Address: 0x2d43f8, Func Offset: 0x268
-	// Line 1080, Address: 0x2d43fc, Func Offset: 0x26c
-	// Line 1081, Address: 0x2d4400, Func Offset: 0x270
-	// Line 1082, Address: 0x2d4404, Func Offset: 0x274
-	// Line 1083, Address: 0x2d4408, Func Offset: 0x278
-	// Line 1084, Address: 0x2d440c, Func Offset: 0x27c
-	// Line 1085, Address: 0x2d4410, Func Offset: 0x280
-	// Line 1086, Address: 0x2d4414, Func Offset: 0x284
-	// Line 1087, Address: 0x2d4418, Func Offset: 0x288
-	// Line 1088, Address: 0x2d441c, Func Offset: 0x28c
-	// Line 1089, Address: 0x2d4420, Func Offset: 0x290
-	// Line 1092, Address: 0x2d4424, Func Offset: 0x294
-	// Line 1093, Address: 0x2d4428, Func Offset: 0x298
-	// Line 1094, Address: 0x2d442c, Func Offset: 0x29c
-	// Line 1095, Address: 0x2d4440, Func Offset: 0x2b0
-	// Line 1096, Address: 0x2d4444, Func Offset: 0x2b4
-	// Line 1097, Address: 0x2d4448, Func Offset: 0x2b8
-	// Line 1098, Address: 0x2d444c, Func Offset: 0x2bc
-	// Line 1099, Address: 0x2d4450, Func Offset: 0x2c0
-	// Line 1100, Address: 0x2d4454, Func Offset: 0x2c4
-	// Line 1101, Address: 0x2d4458, Func Offset: 0x2c8
-	// Line 1102, Address: 0x2d445c, Func Offset: 0x2cc
-	// Line 1103, Address: 0x2d4460, Func Offset: 0x2d0
-	// Line 1104, Address: 0x2d4464, Func Offset: 0x2d4
-	// Line 1107, Address: 0x2d4468, Func Offset: 0x2d8
-	// Line 1109, Address: 0x2d4488, Func Offset: 0x2f8
-	// Line 1110, Address: 0x2d4490, Func Offset: 0x300
-	// Line 1111, Address: 0x2d4494, Func Offset: 0x304
-	// Line 1112, Address: 0x2d4498, Func Offset: 0x308
-	// Line 1113, Address: 0x2d44a0, Func Offset: 0x310
-	// Line 1114, Address: 0x2d44a4, Func Offset: 0x314
-	// Line 1115, Address: 0x2d44a8, Func Offset: 0x318
-	// Line 1116, Address: 0x2d44ac, Func Offset: 0x31c
-	// Line 1117, Address: 0x2d44b0, Func Offset: 0x320
-	// Line 1118, Address: 0x2d44b4, Func Offset: 0x324
-	// Line 1119, Address: 0x2d44b8, Func Offset: 0x328
-	// Line 1120, Address: 0x2d44bc, Func Offset: 0x32c
-	// Line 1121, Address: 0x2d44c0, Func Offset: 0x330
-	// Line 1122, Address: 0x2d44c4, Func Offset: 0x334
-	// Line 1123, Address: 0x2d44c8, Func Offset: 0x338
-	// Line 1124, Address: 0x2d44d0, Func Offset: 0x340
-	// Line 1125, Address: 0x2d44d4, Func Offset: 0x344
-	// Line 1127, Address: 0x2d44d8, Func Offset: 0x348
-	// Line 1130, Address: 0x2d44e0, Func Offset: 0x350
-	// Line 1131, Address: 0x2d44e4, Func Offset: 0x354
-	// Line 1132, Address: 0x2d44e8, Func Offset: 0x358
-	// Line 1133, Address: 0x2d44ec, Func Offset: 0x35c
-	// Line 1134, Address: 0x2d44f0, Func Offset: 0x360
-	// Line 1135, Address: 0x2d44f4, Func Offset: 0x364
-	// Line 1136, Address: 0x2d44f8, Func Offset: 0x368
-	// Line 1137, Address: 0x2d44fc, Func Offset: 0x36c
-	// Line 1138, Address: 0x2d4500, Func Offset: 0x370
-	// Line 1139, Address: 0x2d4504, Func Offset: 0x374
-	// Line 1140, Address: 0x2d4508, Func Offset: 0x378
-	// Line 1141, Address: 0x2d450c, Func Offset: 0x37c
-	// Line 1142, Address: 0x2d4510, Func Offset: 0x380
-	// Line 1143, Address: 0x2d4514, Func Offset: 0x384
-	// Line 1144, Address: 0x2d4518, Func Offset: 0x388
-	// Line 1145, Address: 0x2d451c, Func Offset: 0x38c
-	// Line 1146, Address: 0x2d4520, Func Offset: 0x390
-	// Line 1147, Address: 0x2d4524, Func Offset: 0x394
-	// Line 1148, Address: 0x2d4528, Func Offset: 0x398
-	// Line 1149, Address: 0x2d452c, Func Offset: 0x39c
-	// Line 1150, Address: 0x2d4530, Func Offset: 0x3a0
-	// Line 1151, Address: 0x2d4534, Func Offset: 0x3a4
-	// Line 1152, Address: 0x2d4538, Func Offset: 0x3a8
-	// Line 1153, Address: 0x2d453c, Func Offset: 0x3ac
-	// Line 1154, Address: 0x2d4540, Func Offset: 0x3b0
-	// Line 1155, Address: 0x2d4544, Func Offset: 0x3b4
-	// Line 1156, Address: 0x2d4548, Func Offset: 0x3b8
-	// Line 1157, Address: 0x2d454c, Func Offset: 0x3bc
-	// Line 1158, Address: 0x2d4550, Func Offset: 0x3c0
-	// Line 1159, Address: 0x2d4554, Func Offset: 0x3c4
-	// Line 1162, Address: 0x2d4558, Func Offset: 0x3c8
-	// Line 1163, Address: 0x2d455c, Func Offset: 0x3cc
-	// Line 1164, Address: 0x2d4560, Func Offset: 0x3d0
-	// Line 1165, Address: 0x2d4574, Func Offset: 0x3e4
-	// Line 1166, Address: 0x2d4578, Func Offset: 0x3e8
-	// Line 1167, Address: 0x2d457c, Func Offset: 0x3ec
-	// Line 1168, Address: 0x2d4580, Func Offset: 0x3f0
-	// Line 1169, Address: 0x2d4584, Func Offset: 0x3f4
-	// Line 1170, Address: 0x2d4588, Func Offset: 0x3f8
-	// Line 1171, Address: 0x2d458c, Func Offset: 0x3fc
-	// Line 1172, Address: 0x2d4590, Func Offset: 0x400
-	// Line 1173, Address: 0x2d4594, Func Offset: 0x404
-	// Line 1174, Address: 0x2d4598, Func Offset: 0x408
-	// Line 1175, Address: 0x2d459c, Func Offset: 0x40c
-	// Line 1178, Address: 0x2d45a0, Func Offset: 0x410
-	// Line 1181, Address: 0x2d45c4, Func Offset: 0x434
-	// Line 1182, Address: 0x2d45c8, Func Offset: 0x438
-	// Line 1183, Address: 0x2d45cc, Func Offset: 0x43c
-	// Line 1184, Address: 0x2d45d0, Func Offset: 0x440
-	// Line 1185, Address: 0x2d45d4, Func Offset: 0x444
-	// Line 1186, Address: 0x2d45e8, Func Offset: 0x458
-	// Line 1187, Address: 0x2d45fc, Func Offset: 0x46c
-	// Line 1188, Address: 0x2d4600, Func Offset: 0x470
-	// Line 1189, Address: 0x2d4604, Func Offset: 0x474
-	// Line 1190, Address: 0x2d4608, Func Offset: 0x478
-	// Line 1191, Address: 0x2d460c, Func Offset: 0x47c
-	// Line 1192, Address: 0x2d4610, Func Offset: 0x480
-	// Line 1193, Address: 0x2d4614, Func Offset: 0x484
-	// Line 1197, Address: 0x2d4618, Func Offset: 0x488
-	// Line 1195, Address: 0x2d461c, Func Offset: 0x48c
-	// Line 1196, Address: 0x2d4620, Func Offset: 0x490
-	// Line 1197, Address: 0x2d4624, Func Offset: 0x494
-	// Line 1199, Address: 0x2d4644, Func Offset: 0x4b4
-	// Func End, Address: 0x2d464c, Func Offset: 0x4bc
-    scePrintf("ScissorTriangle - UNIMPLEMENTED!\n");
+    int i;                 
+    int j;                  
+    int clip;               
+    int mask;               
+    int xyz;                
+    float sgn;              
+    SCISSOR_NODE* inarray;  
+    SCISSOR_NODE* outarray; 
+    NODE* currN;            
+    NODE* nextN;            
+    NODE interN;            
+    int n;                 
+
+    nextN = NULL;
+    currN = NULL;
+
+    sgn = 0;
+
+    clip = 0;
+    
+    inarray = &scissor->triangle;
+    outarray = scissor->out;
+    
+    for (i = 0; i < plane_set->planeNum; i++) 
+    {
+        asm volatile
+        ("
+            lw          t0, 0(%4)
+            
+            muli        t0, t0, sizeof(PLANE)
+        
+            add         t0, t0, %1
+        
+            lw          t1, PLANE.xyzflag(t0)
+            
+            andi        t4, t1, 16
+        
+            li          t2, -1 
+            li          t3,  1 
+            
+            movz        t2, t3, t4
+            
+            qmtc2       t2, vf4
+        
+            vitof0.xyzw vf4, vf4
+            
+            lw          t2, PLANE.clipmask(t0)
+        
+            sw          t2, 0(%2)
+            
+            andi        t1, t1, 0xF
+        
+            sw          t1, 0(%3)
+            
+            qmfc2       v0, vf4
+        
+            mtc1        v0, %0
+        " : "=r"(sgn) : "r"(plane_set), "r"(&mask), "r"(&xyz), "r"(&i) :
+        ); 
+        
+        for (j = 0; j < inarray->nodeNum; j++) 
+        {
+            asm volatile
+            ("
+                lw   t0, 0(%3)
+                lw   t1, SCISSOR_NODE.nodeNum(%2)
+                
+                muli t2, t0, sizeof(NODE)
+            
+                addi t3, t0, 1 
+            
+                sub  t4, t3, t1 
+                
+                bltz t4, l_002D4244
+                vnop
+            
+                neg  t3, zero
+                
+            l_002D4244:
+                muli t3, t3, sizeof(NODE)
+                                    
+                add  %0, t2, %2
+                add  %1, t3, %2 
+            " : "=r"(currN), "=r"(nextN) : "r"(inarray), "r"(&j)
+            );
+                
+            asm volatile
+            ("
+                lqc2       vf4, NODE.clipV(%1)
+                lqc2       vf5, NODE.clipV(%2) 
+            
+                vclipw.xyz vf4, vf4                    
+                vclipw.xyz vf5, vf5                   
+                vnop
+                vnop
+                vnop
+                vnop
+                vnop
+            
+                cfc2       %0, vi18
+            " : "=r"(clip) : "r"(currN), "r"(nextN)
+            );
+            
+            clip &= mask;
+            
+            if (clip == 0) 
+            {
+                asm volatile
+                ("  
+                    lw   t0, SCISSOR_NODE.nodeNum(%2)
+                    
+                    muli t1, t0, sizeof(NODE)
+                
+                    add  t1, t1, %2 
+                
+                    lqc2 vf4, NODE.vertex(%4)
+                    lqc2 vf5, NODE.color(%4)
+                    lqc2 vf6, NODE.texUV(%4)
+                    lqc2 vf7, NODE.clipV(%4)
+                    
+                    sqc2 vf4, NODE.vertex(t1)
+                    sqc2 vf5, NODE.color(t1)
+                    sqc2 vf6, NODE.texUV(t1)
+                    sqc2 vf7, NODE.clipV(t1)
+                    
+                    addi t0, t0, 1 
+                
+                    sw   t0, SCISSOR_NODE.nodeNum(%2)
+                " : : "r"(inarray), "r"(&j), "r"(outarray), "r"(mask), "r"(currN)
+                );
+            } 
+            else if (((clip & 0x3F)) && ((clip & 0xFC0)))
+            {
+                
+            } 
+            else if (((clip & 0x3F)) && (!(clip & 0xFC0)))
+            {
+                asm volatile
+                ("
+                    lqc2       vf8, NODE.clipV(%3)
+                    lqc2       vf9, NODE.clipV(%4)
+                    
+                    mfc1       t0, %0
+                
+                    qmtc2      t0, vf10
+                    
+                    vmulx.w    vf11, vf8, vf10
+                    vmulx.w    vf12, vf9, vf10
+                    
+                    vsubw.xyzw vf11, vf8, vf11
+                    vsubw.xyzw vf12, vf9, vf12
+                    
+                    vabs.xyzw  vf11, vf11
+                    vabs.xyzw  vf12, vf12
+                    
+                    qmfc2      t1, vf11
+                    qmfc2      t2, vf12
+                    nop
+                
+                l_002D4350:   
+                    beqz       %2, l_002D4368
+                        
+                    prot3w     t1, t1
+                    prot3w     t2, t2
+                
+                    addi       %2, -1
+                    j l_002D4350  
+                    
+                l_002D4368:    
+                    qmtc2      t1, vf11
+                    qmtc2      t2, vf12
+                
+                    vsub.xyzw  vf13, vf9, vf8
+                    
+                    vadd.xyz   vf12, vf12, vf11
+                    
+                    lqc2       vf6, NODE.vertex(%4)
+                    lqc2       vf5, NODE.color(%4)
+                    lqc2       vf4, NODE.texUV(%4)
+                    
+                    vdiv       Q, vf11, vf12
+                
+                    lqc2       vf9,  NODE.vertex(%3)
+                    lqc2       vf10, NODE.color(%3)
+                    lqc2       vf11, NODE.texUV(%3)
+                    
+                    vsub.xyzw  vf6, vf6, vf9
+                    vsub.xyzw  vf5, vf5, vf10
+                    vsub.xyzw  vf4, vf4, vf11
+                    
+                    vwaitq
+                    
+                    vaddq.xyzw vf12, vf0, Q
+                    
+                    vabs.x     vf12, vf12
+                    
+                    vmulx.xyzw vf7, vf13, vf12
+                    vmulx.xyzw vf6, vf6,  vf12
+                    vmulx.xyzw vf5, vf5,  vf12
+                    vmulx.xyzw vf4, vf4,  vf12
+                    
+                    vadd.xyzw  vf7, vf8, vf7
+                    vadd.xyzw  vf6, vf6, vf9
+                    vadd.xyzw  vf5, vf5, vf10
+                    vadd.xyzw  vf4, vf4, vf11
+                    
+                    vmaxw.z    vf6, vf6, vf0
+                    
+                    sqc2       vf5, NODE.color(%1)
+                    sqc2       vf4, NODE.texUV(%1)
+                    sqc2       vf7, NODE.clipV(%1)
+                    sqc2       vf6, NODE.vertex(%1)
+                " : : "r"(sgn), "r"(&interN), "r"(xyz), "r"(currN), "r"(nextN)
+                );
+                    
+                asm volatile
+                ("
+                    lw   t0, SCISSOR_NODE.nodeNum(%2)
+                
+                    muli t1, t0, sizeof(NODE)
+                    
+                    add  t1, t1, %2 
+                
+                    lqc2 vf4, NODE.vertex(%3)
+                    lqc2 vf5, NODE.color(%3)
+                    lqc2 vf6, NODE.texUV(%3)
+                    lqc2 vf7, NODE.clipV(%3)
+                    
+                    sqc2 vf4, NODE.vertex(t1)
+                    sqc2 vf5, NODE.color(t1)
+                    sqc2 vf6, NODE.texUV(t1)
+                    sqc2 vf7, NODE.clipV(t1)
+                    
+                    addi t0, t0, 1 
+                
+                    sw   t0, SCISSOR_NODE.nodeNum(%2)
+                " : : "r"(&interN), "r"(xyz), "r"(outarray), "r"(currN)
+                );
+                    
+                asm volatile
+                ("
+                    lw   t0, SCISSOR_NODE.nodeNum(%2)
+                    
+                    muli t1, t0, sizeof(NODE)
+                    
+                    add  t1, t1, %2 
+                
+                    lqc2 vf4, NODE.vertex(%0)
+                    lqc2 vf5, NODE.color(%0)
+                    lqc2 vf6, NODE.texUV(%0)
+                    lqc2 vf7, NODE.clipV(%0)
+                    
+                    sqc2 vf4, NODE.vertex(t1)
+                    sqc2 vf5, NODE.color(t1)
+                    sqc2 vf6, NODE.texUV(t1)
+                    sqc2 vf7, NODE.clipV(t1)
+                    
+                    addi t0, t0, 1 
+                
+                    sw   t0, SCISSOR_NODE.nodeNum(%2)
+                " : : "r"(&interN), "r"(xyz), "r"(outarray)
+                );
+            } 
+            else if ((!(clip & 0x3F)) && ((clip & 0xFC0))) 
+            {
+                asm volatile
+                ("
+                    lqc2       vf8, NODE.clipV(%3)
+                    lqc2       vf9, NODE.clipV(%4)
+                    
+                    mfc1       t0, %0
+                
+                    qmtc2      t0, vf10
+                    
+                    vmulx.w    vf11, vf8, vf10
+                    vmulx.w    vf12, vf9, vf10
+                    
+                    vsubw.xyzw vf11, vf8, vf11
+                    vsubw.xyzw vf12, vf9, vf12
+                    
+                    vabs.xyzw  vf11, vf11
+                    vabs.xyzw  vf12, vf12
+                    
+                    qmfc2      t1, vf11
+                    qmfc2      t2, vf12
+                    nop
+                
+                l_002D44C8:
+                    beqz       %2, l_002D44E0
+                        
+                    prot3w     t1, t1
+                    prot3w     t2, t2
+                
+                    addi       %2, %2, -1 
+                    j          l_002D44C8
+                    
+                l_002D44E0:
+                    qmtc2      t1, vf11
+                    qmtc2      t2, vf12
+                
+                    vsub.xyzw  vf13, vf9, vf8
+                    
+                    vadd.xyz   vf12, vf12, vf11
+                    
+                    lqc2       vf6, NODE.vertex(%4)
+                    lqc2       vf5, NODE.color(%4)
+                    lqc2       vf4, NODE.texUV(%4)
+                    
+                    vdiv       Q, vf11, vf12
+                
+                    lqc2       vf9,  NODE.vertex(%3)
+                    lqc2       vf10, NODE.color(%3)
+                    lqc2       vf11, NODE.texUV(%3)
+                    
+                    vsub.xyzw  vf6, vf6, vf9
+                    vsub.xyzw  vf5, vf5, vf10
+                    vsub.xyzw  vf4, vf4, vf11
+                    
+                    vwaitq
+                    
+                    vaddq.xyzw vf12, vf0, Q
+                    
+                    vabs.x     vf12, vf12
+                    
+                    vmulx.xyzw vf7, vf13, vf12
+                    vmulx.xyzw vf6, vf6, vf12
+                    vmulx.xyzw vf5, vf5, vf12
+                    vmulx.xyzw vf4, vf4, vf12
+                    
+                    vadd.xyzw  vf7, vf8, vf7
+                    vadd.xyzw  vf6, vf6, vf9
+                    vadd.xyzw  vf5, vf5, vf10
+                    vadd.xyzw  vf4, vf4, vf11
+                    
+                    vmaxw.z    vf6, vf6, vf0
+                    
+                    sqc2       vf5, NODE.color(%1)
+                    sqc2       vf4, NODE.texUV(%1)
+                    sqc2       vf7, NODE.clipV(%1)
+                    sqc2       vf6, NODE.vertex(%1)
+                " : : "r"(sgn), "r"(&interN), "r"(xyz), "r"(nextN), "r"(currN)
+                );
+                
+                asm volatile
+                ("
+                    lw   t0, SCISSOR_NODE.nodeNum(%2)
+                    
+                    muli t1, t0, sizeof(NODE)
+                    
+                    add  t1, t1, %2 
+                    
+                    lqc2 vf4, NODE.vertex(%1)
+                    lqc2 vf5, NODE.color(%1)
+                    lqc2 vf6, NODE.texUV(%1)
+                    lqc2 vf7, NODE.clipV(%1)
+                    
+                    sqc2 vf4, NODE.vertex(t1)
+                    sqc2 vf5, NODE.color(t1)
+                    sqc2 vf6, NODE.texUV(t1)
+                    sqc2 vf7, NODE.clipV(t1)
+                    
+                    addi t0, t0, 1 
+                    
+                    sw   t0, SCISSOR_NODE.nodeNum(%2)
+                " : : "r"(xyz), "r"(&interN), "r"(outarray)
+                );
+            }
+        }
+
+        asm volatile
+        ("
+            lw   t0, SCISSOR.flipflag(%0)
+            
+            addi t1, t0, 1 
+        
+            andi t1, t1, 1
+            
+            sw   t1, SCISSOR.flipflag(%0)
+            
+            muli t0, t0, sizeof(SCISSOR_NODE)
+            muli t1, t1, sizeof(SCISSOR_NODE)
+        
+            add  t0, t0, %0 
+            add  t1, t1, %0 
+            
+            addi t0, t0, sizeof(SCISSOR_NODE) 
+            addi t1, t1, sizeof(SCISSOR_NODE) 
+            
+            sw   t0,   SCISSOR.out(%0)
+            sw   t1,   SCISSOR.in(%0)
+            sw   zero, SCISSOR.triangle.nodeNum(t0)
+        " : : "r"(scissor)
+        );
+                
+        inarray = scissor->in;   
+        outarray = scissor->out;
+    }
 }
 
 // 100% matching!
