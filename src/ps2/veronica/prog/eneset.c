@@ -46,7 +46,7 @@
 #include "sdfunc.h"
 #include "subpl.h"
 #include "weapon.h"
-//#include "zonzon1.h"
+#include "zonzon1.h"
 #include "main.h"
 
 typedef void (*JumpEnemy_proc)();
