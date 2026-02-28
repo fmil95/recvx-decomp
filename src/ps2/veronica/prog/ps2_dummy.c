@@ -1811,7 +1811,7 @@ void Ps2ZbuffOn()
     D2_SyncTag();
 }
 
-/*// 
+// 
 // Start address: 0x2ce330
 void Ps2ShadowStart()
 {
@@ -1854,6 +1854,7 @@ void Ps2ShadowStart()
 	// Line 3731, Address: 0x2ce474, Func Offset: 0x144
 	// Line 3732, Address: 0x2ce47c, Func Offset: 0x14c
 	// Func End, Address: 0x2ce488, Func Offset: 0x158
+	scePrintf("Ps2ShadowStart - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1951,6 +1952,7 @@ void Ps2ShadowDraw()
 	// Line 3862, Address: 0x2ce978, Func Offset: 0x4e8
 	// Line 3864, Address: 0x2ce980, Func Offset: 0x4f0
 	// Func End, Address: 0x2ce99c, Func Offset: 0x50c
+	scePrintf("Ps2ShadowDraw - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1964,6 +1966,7 @@ void Ps2ShadowMain0()
 	// Line 3902, Address: 0x2ce9c0, Func Offset: 0x20
 	// Line 3903, Address: 0x2ce9c8, Func Offset: 0x28
 	// Func End, Address: 0x2ce9d4, Func Offset: 0x34
+	scePrintf("Ps2ShadowMain0 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1973,7 +1976,8 @@ void Ps2ShadowMain1()
 	unsigned long shadow_tail[6];
 	// Line 3915, Address: 0x2ce9e0, Func Offset: 0
 	// Func End, Address: 0x2ce9ec, Func Offset: 0xc
-}*/
+	scePrintf("Ps2ShadowMain1 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void Ps2ShadowEnd()

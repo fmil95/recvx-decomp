@@ -994,46 +994,73 @@ void bhDrawPolEffect(unsigned int* owp, int ct)
 	// Func End, Address: 0x21d5b0, Func Offset: 0x2f0
 }
 
-// 
-// Start address: 0x21d5b0
-void bhDrawMdfEffect(unsigned int* owp, int ct)
+// 100% matching!
+void bhDrawMdfEffect(unsigned int* owp, int ct) 
 {
-	//_anon0* op;
-	//_anon12* mlp;
-	// Line 1386, Address: 0x21d5b0, Func Offset: 0
-	// Line 1394, Address: 0x21d5cc, Func Offset: 0x1c
-	// Line 1396, Address: 0x21d5d4, Func Offset: 0x24
-	// Line 1397, Address: 0x21d5e0, Func Offset: 0x30
-	// Line 1398, Address: 0x21d5e8, Func Offset: 0x38
-	// Line 1400, Address: 0x21d5ec, Func Offset: 0x3c
-	// Line 1404, Address: 0x21d638, Func Offset: 0x88
-	// Line 1405, Address: 0x21d640, Func Offset: 0x90
-	// Line 1409, Address: 0x21d648, Func Offset: 0x98
-	// Line 1410, Address: 0x21d650, Func Offset: 0xa0
-	// Line 1412, Address: 0x21d670, Func Offset: 0xc0
-	// Line 1413, Address: 0x21d67c, Func Offset: 0xcc
-	// Line 1414, Address: 0x21d684, Func Offset: 0xd4
-	// Line 1415, Address: 0x21d690, Func Offset: 0xe0
-	// Line 1416, Address: 0x21d698, Func Offset: 0xe8
-	// Line 1420, Address: 0x21d6a0, Func Offset: 0xf0
-	// Line 1421, Address: 0x21d6cc, Func Offset: 0x11c
-	// Line 1422, Address: 0x21d6e0, Func Offset: 0x130
-	// Line 1423, Address: 0x21d6f4, Func Offset: 0x144
-	// Line 1424, Address: 0x21d6f8, Func Offset: 0x148
-	// Line 1472, Address: 0x21d700, Func Offset: 0x150
-	// Line 1473, Address: 0x21d70c, Func Offset: 0x15c
-	// Line 1475, Address: 0x21d714, Func Offset: 0x164
-	// Line 1476, Address: 0x21d71c, Func Offset: 0x16c
-	// Line 1477, Address: 0x21d724, Func Offset: 0x174
-	// Line 1479, Address: 0x21d74c, Func Offset: 0x19c
-	// Line 1480, Address: 0x21d754, Func Offset: 0x1a4
-	// Line 1481, Address: 0x21d760, Func Offset: 0x1b0
-	// Line 1482, Address: 0x21d788, Func Offset: 0x1d8
-	// Line 1490, Address: 0x21d790, Func Offset: 0x1e0
-	// Line 1491, Address: 0x21d798, Func Offset: 0x1e8
-	// Line 1493, Address: 0x21d7a8, Func Offset: 0x1f8
-	// Line 1495, Address: 0x21d7b0, Func Offset: 0x200
-	// Func End, Address: 0x21d7cc, Func Offset: 0x21c
+    ML_WORK* mlp;
+    O_WRK* op;
+
+    Ps2ShadowStart();
+    
+    while (ct--)
+    { 
+        njPushMatrixEx();
+        
+        op = (O_WRK*)*owp++;
+        
+        if (((op->flg & 0x1000000)) || ((op->stflg & 0x1000000)) || (((sys->gm_flg & 0x4000)) && ((op->mdflg & 0x40))))
+        {
+            njPopMatrixEx();
+        }
+        else 
+        {
+            mlp = op->mlwP;
+            
+            njPushMatrixEx();
+            
+            if (((op->flg & 0x200000)) || (!(op->flg & 0x80))) 
+            {
+                njUnitMatrix(NULL);
+                
+                njTranslateEx((NJS_POINT3*)&op->px);
+                
+                njRotateEx(&op->ax, 0);
+                
+                njGetMatrix(op->mtx);
+            }
+            else 
+            {
+                njSetMatrix(op->mtx, &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
+                
+                njTranslate(op->mtx, op->lox, op->loy, op->loz);
+                
+                njRotateXYZ(op->mtx, op->ax, op->ay, op->az);
+            }
+            
+            njPopMatrixEx();
+            njMultiMatrix(NULL, op->mtx);
+            
+            njScaleEx((NJS_POINT3*)&op->sx);
+            
+            Ps2ShadowMain0();
+            
+            lCnkModClipFace = 0;
+            
+            njCnkModDrawModel(mlp->objP[op->mdlver].model);
+            
+            Ps2ShadowMain1();
+            
+            lCnkModClipFace = 0x80000000;
+            
+            njCnkModDrawModel(mlp->objP[op->mdlver].model);
+            
+            Ps2ShadowDraw();
+            
+            njPopMatrixEx();
+        }
+    }
+    
+    Ps2ShadowEnd();
 }
 
 // 
