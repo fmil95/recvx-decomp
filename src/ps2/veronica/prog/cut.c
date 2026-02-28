@@ -382,72 +382,100 @@ void bhSetCut(int cno, int flg)
     bhMakeCameraVector();
 }
 
-// 
-// Start address: 0x27b130
+// 100% matching! 
 void bhSetFixedCut(int cno)
 {
-	//_anon21* ci;
-	// Line 469, Address: 0x27b130, Func Offset: 0
-	// Line 476, Address: 0x27b140, Func Offset: 0x10
-	// Line 488, Address: 0x27b148, Func Offset: 0x18
-	// Line 478, Address: 0x27b150, Func Offset: 0x20
-	// Line 476, Address: 0x27b15c, Func Offset: 0x2c
-	// Line 478, Address: 0x27b170, Func Offset: 0x40
-	// Line 488, Address: 0x27b174, Func Offset: 0x44
-	// Line 480, Address: 0x27b180, Func Offset: 0x50
-	// Line 478, Address: 0x27b184, Func Offset: 0x54
-	// Line 480, Address: 0x27b18c, Func Offset: 0x5c
-	// Line 485, Address: 0x27b194, Func Offset: 0x64
-	// Line 480, Address: 0x27b198, Func Offset: 0x68
-	// Line 485, Address: 0x27b1a0, Func Offset: 0x70
-	// Line 488, Address: 0x27b1a8, Func Offset: 0x78
-	// Line 485, Address: 0x27b1ac, Func Offset: 0x7c
-	// Line 488, Address: 0x27b1b4, Func Offset: 0x84
-	// Line 489, Address: 0x27b1e0, Func Offset: 0xb0
-	// Line 495, Address: 0x27b1e8, Func Offset: 0xb8
-	// Line 492, Address: 0x27b1f0, Func Offset: 0xc0
-	// Line 493, Address: 0x27b1fc, Func Offset: 0xcc
-	// Line 494, Address: 0x27b208, Func Offset: 0xd8
-	// Line 495, Address: 0x27b214, Func Offset: 0xe4
-	// Line 500, Address: 0x27b234, Func Offset: 0x104
-	// Line 501, Address: 0x27b250, Func Offset: 0x120
-	// Line 503, Address: 0x27b274, Func Offset: 0x144
-	// Line 504, Address: 0x27b284, Func Offset: 0x154
-	// Line 509, Address: 0x27b28c, Func Offset: 0x15c
-	// Line 511, Address: 0x27b298, Func Offset: 0x168
-	// Line 515, Address: 0x27b2ac, Func Offset: 0x17c
-	// Line 525, Address: 0x27b2b4, Func Offset: 0x184
-	// Line 515, Address: 0x27b2b8, Func Offset: 0x188
-	// Line 516, Address: 0x27b2c0, Func Offset: 0x190
-	// Line 517, Address: 0x27b2c8, Func Offset: 0x198
-	// Line 518, Address: 0x27b2dc, Func Offset: 0x1ac
-	// Line 519, Address: 0x27b2f0, Func Offset: 0x1c0
-	// Line 520, Address: 0x27b304, Func Offset: 0x1d4
-	// Line 521, Address: 0x27b318, Func Offset: 0x1e8
-	// Line 522, Address: 0x27b32c, Func Offset: 0x1fc
-	// Line 523, Address: 0x27b340, Func Offset: 0x210
-	// Line 524, Address: 0x27b354, Func Offset: 0x224
-	// Line 525, Address: 0x27b368, Func Offset: 0x238
-	// Line 526, Address: 0x27b37c, Func Offset: 0x24c
-	// Line 528, Address: 0x27b384, Func Offset: 0x254
-	// Line 529, Address: 0x27b394, Func Offset: 0x264
-	// Line 530, Address: 0x27b39c, Func Offset: 0x26c
-	// Line 529, Address: 0x27b3a4, Func Offset: 0x274
-	// Line 530, Address: 0x27b3b0, Func Offset: 0x280
-	// Line 531, Address: 0x27b3c0, Func Offset: 0x290
-	// Line 532, Address: 0x27b3d4, Func Offset: 0x2a4
-	// Line 533, Address: 0x27b3dc, Func Offset: 0x2ac
-	// Line 536, Address: 0x27b3f4, Func Offset: 0x2c4
-	// Line 537, Address: 0x27b41c, Func Offset: 0x2ec
-	// Line 539, Address: 0x27b434, Func Offset: 0x304
-	// Line 540, Address: 0x27b45c, Func Offset: 0x32c
-	// Line 542, Address: 0x27b474, Func Offset: 0x344
-	// Line 543, Address: 0x27b48c, Func Offset: 0x35c
-	// Line 544, Address: 0x27b494, Func Offset: 0x364
-	// Line 545, Address: 0x27b49c, Func Offset: 0x36c
-	// Line 548, Address: 0x27b4a4, Func Offset: 0x374
-	// Func End, Address: 0x27b4b8, Func Offset: 0x388
-	scePrintf("bhSetFixedCut - UNIMPLEMENTED!\n");
+    CAM_WRK* ci;
+
+    cam.flg &= ~0x80000000;
+    
+    sys->gm_flg &= ~0x1000;
+    sys->gm_flg |= 0x20;
+    
+    sys->st_flg |= 0x1;
+    
+    ci = (CAM_WRK*)&rom->cutp[cno].cam[cam.camver];
+    
+    bhSetHideObjLgt(cno);
+    
+    cam.fog_col = ci->fog_col;
+    
+    cam.fog_nr = ci->fog_nr;
+    cam.fog_fr = ci->fog_fr;
+
+    if (((sys->st_flg & 0x2)) && ((ci->flg & 0x8))) 
+    {
+        sys->fog_ct = sys->fog_cngct - 3;
+            
+        if (sys->fog_ct < 0)
+        {
+            sys->fog_ct = 0;
+        }
+
+        sys->gm_flg |= 0x10; 
+    }
+    else 
+    {
+        sys->fog_ct = 0;
+        
+        sys->gm_flg |= 0x10; 
+    }
+    
+    cam.ocut = cam.ncut;
+    cam.ncut = cno;
+    
+    cam.ax = cam.axp = ci->ax;
+    cam.ay = cam.ayp = ci->ay;
+    cam.az = cam.azp = ci->az;
+    
+    cam.px = cam.pxp = ci->px;
+    cam.py = cam.pyp = ci->py;
+    cam.pz = cam.pzp = ci->pz;
+    
+    cam.pers = cam.ppers = ci->pers;
+    
+    cam.ln = cam.pln = ci->ln;
+    
+    cam.flg &= ~0x1;
+    
+    cam.hct = 0;
+    
+    if ((ci->flg & 0x8000)) 
+    {
+        cam.flg |= 0x8;
+        
+        sys->fil_no = ci->fil_no;
+        sys->fil_rt = ci->fil_rt;
+    } 
+    else 
+    {
+        cam.flg &= ~0x8;
+    }
+    
+    if ((ci->flg & 0x200)) 
+    {
+        cam.flg |= 0x10;
+    } 
+    else 
+    {
+        cam.flg &= ~0x10;
+    }
+    
+    if ((ci->flg & 0x400)) 
+    {
+        cam.flg |= 0x20;
+    }
+    else 
+    {
+        cam.flg &= ~0x20;
+    }
+    
+    if ((sys->ts_flg & 0x200)) 
+    {
+        bhChangeViewClipRM();
+        bhChangeClipVolumeRM();
+        bhChangeBackColor();
+    }
 }
 
 // 100% matching!
