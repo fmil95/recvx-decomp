@@ -176,38 +176,68 @@ float njCalcFogPowerEx(float INVZ)
     return ret;
 }
 
-// 
-// Start address: 0x2d6520
+// 100% matching!
 float njCalcFogPower(float fVSZ)
 {
-	unsigned int tmp;
-	float vb;
-	float v0;
-	float ftmp2;
-	int itmp0;
-	float ret;
-	float inv[8];
-	// Line 413, Address: 0x2d6520, Func Offset: 0
-	// Line 404, Address: 0x2d6528, Func Offset: 0x8
-	// Line 413, Address: 0x2d6530, Func Offset: 0x10
-	// Line 419, Address: 0x2d6538, Func Offset: 0x18
-	// Line 422, Address: 0x2d656c, Func Offset: 0x4c
-	// Line 423, Address: 0x2d6590, Func Offset: 0x70
-	// Line 427, Address: 0x2d65b4, Func Offset: 0x94
-	// Line 428, Address: 0x2d65bc, Func Offset: 0x9c
-	// Line 441, Address: 0x2d65d4, Func Offset: 0xb4
-	// Line 442, Address: 0x2d65e4, Func Offset: 0xc4
-	// Line 444, Address: 0x2d65f4, Func Offset: 0xd4
-	// Line 450, Address: 0x2d6608, Func Offset: 0xe8
-	// Line 452, Address: 0x2d6618, Func Offset: 0xf8
-	// Line 454, Address: 0x2d6620, Func Offset: 0x100
-	// Line 456, Address: 0x2d6640, Func Offset: 0x120
-	// Line 461, Address: 0x2d665c, Func Offset: 0x13c
-	// Line 456, Address: 0x2d6660, Func Offset: 0x140
-	// Line 461, Address: 0x2d6664, Func Offset: 0x144
-	// Line 456, Address: 0x2d666c, Func Offset: 0x14c
-	// Line 461, Address: 0x2d6670, Func Offset: 0x150
-	// Line 572, Address: 0x2d669c, Func Offset: 0x17c
-	// Func End, Address: 0x2d66a4, Func Offset: 0x184
-	scePrintf("njCalcFogPower - UNIMPLEMENTED!\n");
+    float ret;           
+    int itmp0;           
+    float ftmp2;         
+    float v0;            
+    float vb;            
+    unsigned int tmp;    
+    static float inv[8] = { 16.0f, 8.0f, 4.0f, 2.0f, 1.0f, 0.5f, 0.25f, 0.125f };
+    
+    ret = 255.0f;
+    
+    if (ulNaFogState != 0)
+    {
+        if (fVSZ < 0)
+        {
+            ftmp2 = 255.9999f;
+        }
+        else
+        {
+            ftmp2 = fNaFogDensity / fVSZ;
+        }
+        
+        if (ftmp2 < 1.0f)
+        {
+            ftmp2 = 1.0f;
+        }
+        else if (ftmp2 > 255.9999f)
+        {
+            ftmp2 = 255.9999f;
+        }
+        
+        tmp = *(int*)&ftmp2;
+        
+        itmp0 = ((tmp >> 19) & 0xF) | (((tmp >> 23) - 127) * 16);
+        
+        if (itmp0 < 0)
+        {
+            itmp0 = 0;
+        }
+        else if (itmp0 > 127)
+        {
+            itmp0 = 127;
+        }
+        
+        switch (itmp0) 
+        { 
+        case 127:
+            ret = fNaFogTbl[itmp0];
+            break;
+        default:
+            *(int*)&v0 = (((itmp0 / 16) + 127) << 23) | ((itmp0 & 0xF) << 19);
+            
+            vb = inv[itmp0 / 16];
+            
+            vb *= ftmp2 - v0;
+            
+            ret = ((1.0f - vb) * fNaFogTbl[itmp0]) + (vb * fNaFogTbl[itmp0 + 1]);
+            break;
+        }
+    }
+    
+    return ret;
 }
