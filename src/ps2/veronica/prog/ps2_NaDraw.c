@@ -238,18 +238,19 @@ void njDrawPolygon3DEx(_anon5* p, int count, int trans)
 	// Line 362, Address: 0x2de760, Func Offset: 0x20
 	// Line 364, Address: 0x2de76c, Func Offset: 0x2c
 	// Func End, Address: 0x2de780, Func Offset: 0x40
-}
+}*/
 
 // 
 // Start address: 0x2de780
-void njDrawPolygon3DExStart(int trans)
+void	njDrawPolygon3DExStart(Int trans)
 {
 	// Line 378, Address: 0x2de780, Func Offset: 0
 	// Line 379, Address: 0x2de784, Func Offset: 0x4
 	// Func End, Address: 0x2de78c, Func Offset: 0xc
+	scePrintf("njDrawPolygon3DExStart - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2de790
 void njDrawPolygonSub3D(_anon5* polygon, int count, int flag)
 {
@@ -287,17 +288,18 @@ void njDrawPolygonSub3D(_anon5* polygon, int count, int flag)
 	// Line 419, Address: 0x2de870, Func Offset: 0xe0
 	// Line 423, Address: 0x2de884, Func Offset: 0xf4
 	// Func End, Address: 0x2de8a4, Func Offset: 0x114
-}
+}*/
 
 // 
 // Start address: 0x2de8b0
-void njDrawPolygon3DExSetData(_anon5* p, int count)
+void    njDrawPolygon3DExSetData( NJS_POLYGON_VTX *p, Int count)
 {
 	// Line 440, Address: 0x2de8b0, Func Offset: 0
 	// Line 441, Address: 0x2de8b8, Func Offset: 0x8
 	// Line 443, Address: 0x2de8c0, Func Offset: 0x10
 	// Func End, Address: 0x2de8cc, Func Offset: 0x1c
-}*/
+	scePrintf("njDrawPolygon3DExSetData - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void	njDrawPolygon3DExEnd(void)

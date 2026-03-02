@@ -305,20 +305,21 @@ void njGetPlaneNormal(_anon0* pPoint, _anon0* pVector)
 	// Line 520, Address: 0x2e3a48, Func Offset: 0x68
 	// Line 521, Address: 0x2e3a78, Func Offset: 0x98
 	// Func End, Address: 0x2e3a80, Func Offset: 0xa0
-}
+}*/
 
 // 
 // Start address: 0x2e3a80
-void njGetPlaneNormal2(_anon0* pP1, _anon0* pP2, _anon0* pP3, _anon0* pVector)
+void	njGetPlaneNormal2(NJS_POINT3 *p0, NJS_POINT3 *p1, NJS_POINT3 *p2, NJS_VECTOR *v)
 {
 	// Line 544, Address: 0x2e3a80, Func Offset: 0
 	// Line 545, Address: 0x2e3ab4, Func Offset: 0x34
 	// Line 546, Address: 0x2e3ae8, Func Offset: 0x68
 	// Line 547, Address: 0x2e3b18, Func Offset: 0x98
 	// Func End, Address: 0x2e3b20, Func Offset: 0xa0
+	scePrintf("njGetPlaneNormal2 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e3b20
 int njCollisionCheckSS(_anon4* pSphere1, _anon4* pSphere2)
 {

@@ -115,7 +115,7 @@ float Across_Plane(float* v0, float* v1)
 
 // 
 // Start address: 0x2dfdc0
-void njDrawLine3D(NJS_POINT3COL* p, int n, unsigned int attr)
+void    njDrawLine3D(NJS_POINT3COL *p, Int n, Uint32 attr)
 {
 	//tagNJS_SCRVECTOR scr;
 	unsigned long prim;

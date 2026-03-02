@@ -1368,9 +1368,9 @@ void	njCalcVector(NJS_MATRIX *m, NJS_VECTOR *vs, NJS_VECTOR *vd)
     );
 }
 
-/*// 
+// 
 // Start address: 0x2d76b0
-float njUnitVector(_anon0* pVector)
+Float	njUnitVector(NJS_VECTOR *v)
 {
 	float ret;
 	// Line 4662, Address: 0x2d76b0, Func Offset: 0
@@ -1394,9 +1394,10 @@ float njUnitVector(_anon0* pVector)
 	// Line 4683, Address: 0x2d76f8, Func Offset: 0x48
 	// Line 4689, Address: 0x2d76fc, Func Offset: 0x4c
 	// Func End, Address: 0x2d7704, Func Offset: 0x54
+    scePrintf("njUnitVector - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2d7710
 float njScalor(_anon0* pVector)
 {

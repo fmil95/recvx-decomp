@@ -6,6 +6,8 @@
 #include "hitchk.h"
 #include "light.h"
 #include "njplus.h"
+#include "ps2_NaColi.h"
+#include "ps2_NaDraw.h"
 #include "ps2_NaDraw2D.h"
 #include "ps2_NaMatrix.h"
 #include "ps2_NaSystem.h"
@@ -1152,71 +1154,126 @@ void bhDrawLinEffect(unsigned int* owp, int ct)
     }
 }
 
-// 
-// Start address: 0x21d970
+// 100% matching!
 void bhDrawNtxEffect3D(unsigned int* owp, int ct)
 {
-	//_anon37 vec;
-	//_anon37 pc;
-	//_anon37 pb;
-	//_anon37 pa;
-	//_anon0* op;
-	// Line 1574, Address: 0x21d970, Func Offset: 0
-	// Line 1579, Address: 0x21d984, Func Offset: 0x14
-	// Line 1580, Address: 0x21d994, Func Offset: 0x24
-	// Line 1581, Address: 0x21d9a0, Func Offset: 0x30
-	// Line 1582, Address: 0x21d9a8, Func Offset: 0x38
-	// Line 1584, Address: 0x21d9ac, Func Offset: 0x3c
-	// Line 1588, Address: 0x21d9f8, Func Offset: 0x88
-	// Line 1589, Address: 0x21da00, Func Offset: 0x90
-	// Line 1592, Address: 0x21da08, Func Offset: 0x98
-	// Line 1593, Address: 0x21da18, Func Offset: 0xa8
-	// Line 1595, Address: 0x21da28, Func Offset: 0xb8
-	// Line 1597, Address: 0x21da38, Func Offset: 0xc8
-	// Line 1598, Address: 0x21da40, Func Offset: 0xd0
-	// Line 1600, Address: 0x21da60, Func Offset: 0xf0
-	// Line 1601, Address: 0x21da6c, Func Offset: 0xfc
-	// Line 1602, Address: 0x21da74, Func Offset: 0x104
-	// Line 1603, Address: 0x21da80, Func Offset: 0x110
-	// Line 1604, Address: 0x21da88, Func Offset: 0x118
-	// Line 1608, Address: 0x21da90, Func Offset: 0x120
-	// Line 1609, Address: 0x21dabc, Func Offset: 0x14c
-	// Line 1610, Address: 0x21dad0, Func Offset: 0x160
-	// Line 1611, Address: 0x21dae4, Func Offset: 0x174
-	// Line 1612, Address: 0x21dae8, Func Offset: 0x178
-	// Line 1613, Address: 0x21daf0, Func Offset: 0x180
-	// Line 1614, Address: 0x21dafc, Func Offset: 0x18c
-	// Line 1615, Address: 0x21db10, Func Offset: 0x1a0
-	// Line 1616, Address: 0x21db18, Func Offset: 0x1a8
-	// Line 1617, Address: 0x21db24, Func Offset: 0x1b4
-	// Line 1618, Address: 0x21db3c, Func Offset: 0x1cc
-	// Line 1619, Address: 0x21db68, Func Offset: 0x1f8
-	// Line 1621, Address: 0x21db9c, Func Offset: 0x22c
-	// Line 1622, Address: 0x21dba0, Func Offset: 0x230
-	// Line 1624, Address: 0x21dbac, Func Offset: 0x23c
-	// Line 1627, Address: 0x21dbc0, Func Offset: 0x250
-	// Line 1628, Address: 0x21dbd0, Func Offset: 0x260
-	// Line 1629, Address: 0x21dbe4, Func Offset: 0x274
-	// Line 1630, Address: 0x21dbf8, Func Offset: 0x288
-	// Line 1631, Address: 0x21dc08, Func Offset: 0x298
-	// Line 1632, Address: 0x21dc1c, Func Offset: 0x2ac
-	// Line 1633, Address: 0x21dc30, Func Offset: 0x2c0
-	// Line 1634, Address: 0x21dc44, Func Offset: 0x2d4
-	// Line 1635, Address: 0x21dc4c, Func Offset: 0x2dc
-	// Line 1636, Address: 0x21dc68, Func Offset: 0x2f8
-	// Line 1637, Address: 0x21dc70, Func Offset: 0x300
-	// Line 1638, Address: 0x21dc78, Func Offset: 0x308
-	// Line 1640, Address: 0x21dc80, Func Offset: 0x310
-	// Line 1661, Address: 0x21dc90, Func Offset: 0x320
-	// Line 1662, Address: 0x21dc9c, Func Offset: 0x32c
-	// Line 1664, Address: 0x21dca8, Func Offset: 0x338
-	// Line 1666, Address: 0x21dcb4, Func Offset: 0x344
-	// Line 1668, Address: 0x21dcc0, Func Offset: 0x350
-	// Line 1670, Address: 0x21dccc, Func Offset: 0x35c
-	// Line 1671, Address: 0x21dcd4, Func Offset: 0x364
-	// Line 1672, Address: 0x21dce8, Func Offset: 0x378
-	// Line 1673, Address: 0x21dcf0, Func Offset: 0x380
-	// Func End, Address: 0x21dd08, Func Offset: 0x398
+    O_WRK* op;      
+    NJS_POINT3 pa;  
+    NJS_POINT3 pb;  
+    NJS_POINT3 pc;  
+    NJS_VECTOR vec; 
+    
+    njDrawPolygon3DExStart(1);
+    
+    while (ct--) 
+    {
+        njPushMatrixEx();
+        
+        op = (O_WRK*)*owp++;
+        
+        if (((op->flg & 0x1000000)) || ((op->stflg & 0x1000000)) || (((sys->gm_flg & 0x4000)) && ((op->mdflg & 0x40))))
+        {
+            njPopMatrixEx();
+        } 
+        else 
+        { 
+            if ((op->flg & 0x20000000)) 
+            {
+                njTextureFilterMode(0);
+            } 
+            else 
+            {
+                njTextureFilterMode(1);
+            }
+            
+            njPushMatrixEx();
+            
+            if ((!(op->flg & 0x80)) || ((op->flg & 0x200000))) 
+            {
+                njUnitMatrix(NULL);
+            
+                njTranslateEx((NJS_POINT3*)&op->px);
+                njRotateEx(&op->ax, 0);
+            
+                njGetMatrix(op->mtx);
+            } 
+            else 
+            {
+                njSetMatrix(op->mtx, &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
+            
+                njTranslate(op->mtx, op->lox, op->loy, op->loz);
+                njRotateXYZ(op->mtx, op->ax, op->ay, op->az);
+            }
+            
+            njPopMatrixEx();
+            
+            njMultiMatrix(NULL, op->mtx);
+            
+            if ((op->flg & 0x100000)) 
+            {
+                njUnitRotPortion(NULL);
+                
+                njRotateZ(NULL, op->az);
+                
+                if ((sys->gm_flg & 0x4000)) 
+                {
+                    if (sys->mr_pl.vx) 
+                    {
+                        njRotateY(NULL, 32768);
+                    }
+                    
+                    if (sys->mr_pl.vy) 
+                    {
+                        njRotateX(NULL, 32768);
+                    }
+                }
+            }
+            
+            njScaleEx((NJS_POINT3*)&op->sx);
+            
+            if ((op->flg & 0x20000)) 
+            {
+                njCalcPoint(NULL, (NJS_POINT3*)op->pvp, &pa);
+                njCalcPoint(NULL, (NJS_POINT3*)&op->pvp[1], &pb);
+                njCalcPoint(NULL, (NJS_POINT3*)&op->pvp[2], &pc);
+                
+                njProjectScreen(NULL, (NJS_POINT3*)op->pvp, (NJS_POINT2*)&pa);
+                njProjectScreen(NULL, (NJS_POINT3*)&op->pvp[1], (NJS_POINT2*)&pb);
+                njProjectScreen(NULL, (NJS_POINT3*)&op->pvp[2], (NJS_POINT2*)&pc);
+                
+                njGetPlaneNormal2(&pa, &pb, &pc, &vec);
+                
+                njUnitVector(&vec);
+                
+                if (vec.z < 0)
+                {
+                    op->stflg |= 0x10;
+                    
+                    njPopMatrixEx();
+                } 
+                else 
+                {
+                    op->stflg &= ~0x10;
+                    goto label;
+                }
+            } 
+            else 
+            {
+label:
+                njColorBlendingMode(0, op->bl_src);
+                njColorBlendingMode(1, op->bl_dst);
+                
+                njDrawPolygon3DExSetData(op->pvp, op->pn);
+                
+                njColorBlendingMode(0, 8);
+                njColorBlendingMode(1, 6);
+                
+                njPopMatrixEx();
+            }
+        } 
+    }
+    
+    njDrawPolygon3DExEnd();
 }
 
 // 
