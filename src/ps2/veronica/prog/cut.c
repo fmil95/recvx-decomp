@@ -4,6 +4,7 @@
 #include "flag.h"
 #include "ps2_event.h"
 #include "ps2_NaMath.h"
+#include "ps2_NaView.h"
 #include "main.h"
 
 /*_anon38 cam;
@@ -2258,95 +2259,102 @@ void bhControlPlEyeCamera(unsigned int attr)
 	// Func End, Address: 0x2804d0, Func Offset: 0x7a0
 }*/
 
-// 
-// Start address: 0x2804d0
+// 100% matching!
 void bhInitPlEyeCamera()
 {
-	int i;
-	//_anon14* lp;
-	//npobj* obj;
-	// Line 2267, Address: 0x2804d0, Func Offset: 0
-	// Line 2272, Address: 0x2804d8, Func Offset: 0x8
-	// Line 2274, Address: 0x2804e8, Func Offset: 0x18
-	// Line 2272, Address: 0x2804ec, Func Offset: 0x1c
-	// Line 2274, Address: 0x2804f4, Func Offset: 0x24
-	// Line 2275, Address: 0x280508, Func Offset: 0x38
-	// Line 2276, Address: 0x280528, Func Offset: 0x58
-	// Line 2277, Address: 0x280530, Func Offset: 0x60
-	// Line 2276, Address: 0x280538, Func Offset: 0x68
-	// Line 2277, Address: 0x280540, Func Offset: 0x70
-	// Line 2278, Address: 0x280548, Func Offset: 0x78
-	// Line 2277, Address: 0x28054c, Func Offset: 0x7c
-	// Line 2278, Address: 0x280554, Func Offset: 0x84
-	// Line 2280, Address: 0x280564, Func Offset: 0x94
-	// Line 2281, Address: 0x280574, Func Offset: 0xa4
-	// Line 2280, Address: 0x28057c, Func Offset: 0xac
-	// Line 2281, Address: 0x280580, Func Offset: 0xb0
-	// Line 2280, Address: 0x280584, Func Offset: 0xb4
-	// Line 2281, Address: 0x28058c, Func Offset: 0xbc
-	// Line 2282, Address: 0x280594, Func Offset: 0xc4
-	// Line 2281, Address: 0x280598, Func Offset: 0xc8
-	// Line 2282, Address: 0x2805a0, Func Offset: 0xd0
-	// Line 2283, Address: 0x2805ac, Func Offset: 0xdc
-	// Line 2286, Address: 0x2805b4, Func Offset: 0xe4
-	// Line 2299, Address: 0x2805bc, Func Offset: 0xec
-	// Line 2297, Address: 0x2805c4, Func Offset: 0xf4
-	// Line 2286, Address: 0x2805c8, Func Offset: 0xf8
-	// Line 2288, Address: 0x2805cc, Func Offset: 0xfc
-	// Line 2300, Address: 0x2805d0, Func Offset: 0x100
-	// Line 2302, Address: 0x2805d4, Func Offset: 0x104
-	// Line 2286, Address: 0x2805d8, Func Offset: 0x108
-	// Line 2288, Address: 0x2805e0, Func Offset: 0x110
-	// Line 2302, Address: 0x2805e4, Func Offset: 0x114
-	// Line 2288, Address: 0x2805ec, Func Offset: 0x11c
-	// Line 2290, Address: 0x2805f0, Func Offset: 0x120
-	// Line 2288, Address: 0x2805f4, Func Offset: 0x124
-	// Line 2290, Address: 0x2805fc, Func Offset: 0x12c
-	// Line 2291, Address: 0x280624, Func Offset: 0x154
-	// Line 2292, Address: 0x280640, Func Offset: 0x170
-	// Line 2293, Address: 0x280664, Func Offset: 0x194
-	// Line 2294, Address: 0x28067c, Func Offset: 0x1ac
-	// Line 2295, Address: 0x280690, Func Offset: 0x1c0
-	// Line 2296, Address: 0x2806a0, Func Offset: 0x1d0
-	// Line 2297, Address: 0x2806a8, Func Offset: 0x1d8
-	// Line 2298, Address: 0x2806b0, Func Offset: 0x1e0
-	// Line 2299, Address: 0x2806c0, Func Offset: 0x1f0
-	// Line 2300, Address: 0x2806c4, Func Offset: 0x1f4
-	// Line 2302, Address: 0x2806d4, Func Offset: 0x204
-	// Line 2303, Address: 0x2806dc, Func Offset: 0x20c
-	// Line 2304, Address: 0x2806e4, Func Offset: 0x214
-	// Line 2305, Address: 0x2806f0, Func Offset: 0x220
-	// Line 2306, Address: 0x2806fc, Func Offset: 0x22c
-	// Line 2305, Address: 0x280700, Func Offset: 0x230
-	// Line 2307, Address: 0x280704, Func Offset: 0x234
-	// Line 2309, Address: 0x280720, Func Offset: 0x250
-	// Line 2310, Address: 0x280724, Func Offset: 0x254
-	// Line 2311, Address: 0x280734, Func Offset: 0x264
-	// Line 2312, Address: 0x280738, Func Offset: 0x268
-	// Line 2311, Address: 0x28073c, Func Offset: 0x26c
-	// Line 2312, Address: 0x280744, Func Offset: 0x274
-	// Line 2314, Address: 0x280760, Func Offset: 0x290
-	// Line 2315, Address: 0x280778, Func Offset: 0x2a8
-	// Line 2316, Address: 0x280784, Func Offset: 0x2b4
-	// Line 2317, Address: 0x280790, Func Offset: 0x2c0
-	// Line 2322, Address: 0x28079c, Func Offset: 0x2cc
-	// Line 2323, Address: 0x2807b8, Func Offset: 0x2e8
-	// Line 2325, Address: 0x2807d8, Func Offset: 0x308
-	// Line 2326, Address: 0x2807e0, Func Offset: 0x310
-	// Line 2327, Address: 0x2807ec, Func Offset: 0x31c
-	// Line 2328, Address: 0x2807f8, Func Offset: 0x328
-	// Line 2329, Address: 0x280804, Func Offset: 0x334
-	// Line 2331, Address: 0x280810, Func Offset: 0x340
-	// Line 2333, Address: 0x280818, Func Offset: 0x348
-	// Line 2331, Address: 0x28081c, Func Offset: 0x34c
-	// Line 2333, Address: 0x280820, Func Offset: 0x350
-	// Line 2331, Address: 0x280824, Func Offset: 0x354
-	// Line 2333, Address: 0x28082c, Func Offset: 0x35c
-	// Line 2334, Address: 0x280848, Func Offset: 0x378
-	// Line 2336, Address: 0x280870, Func Offset: 0x3a0
-	// Line 2342, Address: 0x28088c, Func Offset: 0x3bc
-	// Func End, Address: 0x280898, Func Offset: 0x3c8
-	scePrintf("bhInitPlEyeCamera - UNIMPLEMENTED!\n");
+    NJS_CNK_OBJECT* obj;
+    LGT_WORK* lp;
+    int i;
+
+    sys->gm_flg &= ~0x2000;
+    
+    if ((plp->flg & 0x4)) 
+    {
+        if (!(sys->gm_flg & 0x1000000))
+        {
+            sys->gm_flg &= ~0x40;
+            sys->gm_flg &= ~0x80;
+            sys->gm_flg |= 0x800;
+        }
+        
+        sys->st_flg &= ~0x800000;
+        sys->gm_flg &= ~0x80000;
+        
+        sys->pt_flg |= 0x1;
+        return;
+    }
+    
+    sys->gm_flg |= 0x20;
+    sys->gm_flg |= 0xC0;
+    
+    cam.px = cam.plx = cam.pxp = plp->mlwP->owP[5].mtx[12];
+    cam.py = cam.pyp = plp->mlwP->owP[5].mtx[13];
+    cam.pz = cam.plz = cam.pzp = plp->mlwP->owP[5].mtx[14];
+    
+    cam.ax = cam.axp = cam.pe_ax;
+    cam.ay = cam.ayp = plp->ay;
+    cam.az = cam.azp = 0;
+    
+    cam.ln = 0;
+    
+    cam.pers = 11832;
+    cam.ppers = cam.pe_pers;
+    
+    *(int*)&cam.mode0 = 0;
+    
+    sys->st_flg &= ~0x1;
+    
+    for (i = 0; i < rom->mdl.obj_num; i++)
+    {
+        obj = &rom->mdl.objP[i];
+        
+        if (obj->model != NULL)
+        {
+            obj->evalflags &= ~0x8;
+        }
+    }
+
+    lp = (LGT_WORK*)&rom->lgtp[4];
+    
+    for (i = 4; i < rom->lgt_n; i++, lp++)
+    {
+        lp->flg &= ~0x2;
+    }
+    
+    if ((sys->st_flg & 0x2))
+    {
+        cam.fog_col = rom->fog_col;
+        
+        cam.fog_nr = rom->fog_nr;
+        cam.fog_fr = rom->fog_fr;
+        
+        sys->fog_ct = sys->fog_cngct - 4;
+
+        if (sys->fog_ct < 0) 
+        {
+            sys->fog_ct = 0;
+        }
+    } 
+    else 
+    {
+        cam.fog_col = rom->fog_col;
+        
+        cam.fog_nr = rom->fog_nr;
+        cam.fog_fr = rom->fog_fr;
+        
+        sys->fog_ct = 0;
+    }
+    
+    sys->gm_flg |= 0x10;
+
+    if ((plp->wpnr_no == 10) || (plp->wpnr_no == 19))
+    {
+        njClipZ(-1.1f, -20000.0f);
+    }
+    else
+    {
+        njClipZ(-1.0f, -20000.0f);
+    }
 }
 
 // 
