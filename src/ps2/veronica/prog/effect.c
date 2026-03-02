@@ -1276,83 +1276,144 @@ label:
     njDrawPolygon3DExEnd();
 }
 
-// 
-// Start address: 0x21dd10
-void bhDrawTrsEffect3D(unsigned int* owp, int ct)
+// 100% matching!
+void bhDrawTrsEffect3D(unsigned int* owp, int ct) 
 {
-	//_anon37 vec;
-	//_anon37 pc;
-	//_anon37 pb;
-	//_anon37 pa;
-	//_anon0* op;
-	// Line 1679, Address: 0x21dd10, Func Offset: 0
-	// Line 1685, Address: 0x21dd24, Func Offset: 0x14
-	// Line 1679, Address: 0x21dd2c, Func Offset: 0x1c
-	// Line 1685, Address: 0x21dd30, Func Offset: 0x20
-	// Line 1686, Address: 0x21dd38, Func Offset: 0x28
-	// Line 1687, Address: 0x21dd40, Func Offset: 0x30
-	// Line 1689, Address: 0x21dd44, Func Offset: 0x34
-	// Line 1696, Address: 0x21de30, Func Offset: 0x120
-	// Line 1697, Address: 0x21de38, Func Offset: 0x128
-	// Line 1700, Address: 0x21de40, Func Offset: 0x130
-	// Line 1701, Address: 0x21de50, Func Offset: 0x140
-	// Line 1703, Address: 0x21de60, Func Offset: 0x150
-	// Line 1705, Address: 0x21de70, Func Offset: 0x160
-	// Line 1706, Address: 0x21de84, Func Offset: 0x174
-	// Line 1707, Address: 0x21de8c, Func Offset: 0x17c
-	// Line 1708, Address: 0x21de94, Func Offset: 0x184
-	// Line 1709, Address: 0x21dea4, Func Offset: 0x194
-	// Line 1722, Address: 0x21debc, Func Offset: 0x1ac
-	// Line 1723, Address: 0x21dee8, Func Offset: 0x1d8
-	// Line 1724, Address: 0x21def0, Func Offset: 0x1e0
-	// Line 1726, Address: 0x21def8, Func Offset: 0x1e8
-	// Line 1730, Address: 0x21df08, Func Offset: 0x1f8
-	// Line 1731, Address: 0x21df10, Func Offset: 0x200
-	// Line 1733, Address: 0x21df30, Func Offset: 0x220
-	// Line 1734, Address: 0x21df3c, Func Offset: 0x22c
-	// Line 1735, Address: 0x21df44, Func Offset: 0x234
-	// Line 1736, Address: 0x21df50, Func Offset: 0x240
-	// Line 1737, Address: 0x21df58, Func Offset: 0x248
-	// Line 1741, Address: 0x21df60, Func Offset: 0x250
-	// Line 1742, Address: 0x21df8c, Func Offset: 0x27c
-	// Line 1743, Address: 0x21dfa0, Func Offset: 0x290
-	// Line 1744, Address: 0x21dfb4, Func Offset: 0x2a4
-	// Line 1745, Address: 0x21dfb8, Func Offset: 0x2a8
-	// Line 1746, Address: 0x21dfc0, Func Offset: 0x2b0
-	// Line 1747, Address: 0x21dfcc, Func Offset: 0x2bc
-	// Line 1748, Address: 0x21dfe0, Func Offset: 0x2d0
-	// Line 1749, Address: 0x21dfe8, Func Offset: 0x2d8
-	// Line 1750, Address: 0x21dff4, Func Offset: 0x2e4
-	// Line 1751, Address: 0x21e00c, Func Offset: 0x2fc
-	// Line 1752, Address: 0x21e038, Func Offset: 0x328
-	// Line 1754, Address: 0x21e06c, Func Offset: 0x35c
-	// Line 1755, Address: 0x21e070, Func Offset: 0x360
-	// Line 1757, Address: 0x21e07c, Func Offset: 0x36c
-	// Line 1760, Address: 0x21e090, Func Offset: 0x380
-	// Line 1761, Address: 0x21e0a0, Func Offset: 0x390
-	// Line 1762, Address: 0x21e0b4, Func Offset: 0x3a4
-	// Line 1763, Address: 0x21e0c8, Func Offset: 0x3b8
-	// Line 1764, Address: 0x21e0d8, Func Offset: 0x3c8
-	// Line 1765, Address: 0x21e0ec, Func Offset: 0x3dc
-	// Line 1766, Address: 0x21e100, Func Offset: 0x3f0
-	// Line 1767, Address: 0x21e114, Func Offset: 0x404
-	// Line 1768, Address: 0x21e11c, Func Offset: 0x40c
-	// Line 1769, Address: 0x21e138, Func Offset: 0x428
-	// Line 1770, Address: 0x21e140, Func Offset: 0x430
-	// Line 1771, Address: 0x21e148, Func Offset: 0x438
-	// Line 1773, Address: 0x21e150, Func Offset: 0x440
-	// Line 1788, Address: 0x21e160, Func Offset: 0x450
-	// Line 1789, Address: 0x21e16c, Func Offset: 0x45c
-	// Line 1793, Address: 0x21e178, Func Offset: 0x468
-	// Line 1794, Address: 0x21e1a0, Func Offset: 0x490
-	// Line 1795, Address: 0x21e1b0, Func Offset: 0x4a0
-	// Line 1796, Address: 0x21e1b8, Func Offset: 0x4a8
-	// Line 1800, Address: 0x21e1c8, Func Offset: 0x4b8
-	// Line 1802, Address: 0x21e1d4, Func Offset: 0x4c4
-	// Line 1804, Address: 0x21e1e0, Func Offset: 0x4d0
-	// Line 1805, Address: 0x21e1e8, Func Offset: 0x4d8
-	// Line 1806, Address: 0x21e1f8, Func Offset: 0x4e8
-	// Func End, Address: 0x21e210, Func Offset: 0x500
+    O_WRK* op;      
+    NJS_POINT3 pa;  
+    NJS_POINT3 pb;  
+    NJS_POINT3 pc;  
+    NJS_VECTOR vec; 
+    
+    while (ct--) 
+    {
+        njPushMatrixEx();
+        
+        op = (O_WRK*)*owp++;
+        
+        if ((((op->flg & 0x1000000)) || ((op->stflg & 0x1000000)) || (op->tex_id < 0)) || (((sys->gm_flg & 0x4000)) && ((op->mdflg & 0x40)))
+        || ((!(sys->sp_flg & 0x8)) && ((op->id == 9) && (op->type == 2)) && ((plp->stflg & 0x1000000)))
+        || ((!(sys->sp_flg & 0x8)) && ((op->id == 9) && (op->type == 2)) && ((plp->mdflg & 0x1)))) 
+        {
+            njPopMatrixEx();
+        } 
+        else 
+        { 
+            if ((op->flg & 0x20000000)) 
+            {
+                njTextureFilterMode(0);
+            }
+            else 
+            {
+                njTextureFilterMode(1);
+            }
+            
+            if ((op->flg & 0x800000)) 
+            {
+                njSetTextureNumG(op->gidx);
+            } 
+            else if (!(op->stflg & 0x20)) 
+            {
+                njSetTexture(&sys->ef_tlist);
+                njSetTextureNum(sys->ef_tn[op->tex_id] + op->ani_ct);
+            } 
+            else 
+            {
+                njSetTexture(op->txp[0]);
+                njSetTextureNum(op->tex_id + op->ani_ct);
+            }
+            
+            njPushMatrixEx();
+            
+            if ((!(op->flg & 0x80)) || ((op->flg & 0x200000)))
+            { 
+                njUnitMatrix(NULL);
+    
+                njTranslateEx((NJS_POINT3*)&op->px); 
+                njRotateEx(&op->ax, 0);
+        
+                njGetMatrix(op->mtx); 
+            } 
+            else
+            {
+                njSetMatrix(op->mtx, &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
+        
+                njTranslate(op->mtx, op->lox, op->loy, op->loz);
+                njRotateXYZ(op->mtx, op->ax, op->ay, op->az);
+            }
+            
+            njPopMatrixEx();
+            njMultiMatrix(NULL, op->mtx);
+            
+            if ((op->flg & 0x100000)) 
+            {
+                njUnitRotPortion(NULL);
+                njRotateZ(NULL, op->az);
+                
+                if ((sys->gm_flg & 0x4000)) 
+                {
+                    if (sys->mr_pl.vx)
+                    {
+                        njRotateY(NULL, 32768);
+                    }
+                    
+                    if (sys->mr_pl.vy) 
+                    {
+                        njRotateX(NULL, 32768);
+                    }
+                }
+            }
+            
+            njScaleEx((NJS_POINT3*)&op->sx);
+            
+            if ((op->flg & 0x20000))
+            {
+                njCalcPoint(NULL, (NJS_POINT3*)op->tvp, &pa);
+                njCalcPoint(NULL, (NJS_POINT3*)&op->tvp[1], &pb);
+                njCalcPoint(NULL, (NJS_POINT3*)&op->tvp[2], &pc);
+                
+                njProjectScreen(NULL, (NJS_POINT3*)op->tvp, (NJS_POINT2*)&pa);
+                njProjectScreen(NULL, (NJS_POINT3*)&op->tvp[1], (NJS_POINT2*)&pb);
+                njProjectScreen(NULL, (NJS_POINT3*)&op->tvp[2], (NJS_POINT2*)&pc);
+                
+                njGetPlaneNormal2(&pa, &pb, &pc, &vec);
+                
+                njUnitVector(&vec);
+                
+                if (vec.z < 0)
+                {
+                    op->stflg |= 0x10;
+                    
+                    njPopMatrixEx();
+                } 
+                else 
+                {
+                    op->stflg &= ~0x10;
+                    goto label;
+                }
+            } 
+            else 
+            {
+label:
+                njColorBlendingMode(0, op->bl_src);
+                njColorBlendingMode(1, op->bl_dst);
+                
+                if ((op->id == 128) || (op->id == 353) || (op->id == 123)) 
+                {
+                    njDrawTexture3DEx1P(op->tvp, op->pn, 1);
+                } 
+                else 
+                {
+                    njDrawTexture3DEx(op->tvp, op->pn, 1);
+                }
+                
+                njColorBlendingMode(0, 8);
+                njColorBlendingMode(1, 6);
+                
+                njPopMatrixEx();
+            }
+        } 
+    }
 }
 
 // 

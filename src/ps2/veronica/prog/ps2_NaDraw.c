@@ -307,29 +307,31 @@ void	njDrawPolygon3DExEnd(void)
 
 }
 
-/*// 
+// 
 // Start address: 0x2de8e0
-void njDrawTexture3DEx(_anon3* p, int count, int trans)
+void	njDrawTexture3DEx( NJS_TEXTURE_VTX *p, Int count, Int trans )
 {
 	// Line 469, Address: 0x2de8e0, Func Offset: 0
 	// Line 470, Address: 0x2de8f8, Func Offset: 0x18
 	// Line 471, Address: 0x2de900, Func Offset: 0x20
 	// Line 473, Address: 0x2de90c, Func Offset: 0x2c
 	// Func End, Address: 0x2de920, Func Offset: 0x40
+	scePrintf("njDrawTexture3DEx - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2de920
-void njDrawTexture3DEx1P(_anon3* p, int count, int trans)
+void njDrawTexture3DEx1P(NJS_TEXTURE_VTX* p, int count, int trans)
 {
 	// Line 476, Address: 0x2de920, Func Offset: 0
 	// Line 477, Address: 0x2de938, Func Offset: 0x18
 	// Line 478, Address: 0x2de940, Func Offset: 0x20
 	// Line 480, Address: 0x2de94c, Func Offset: 0x2c
 	// Func End, Address: 0x2de960, Func Offset: 0x40
+	scePrintf("njDrawTexture3DEx1P - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2de960
 void njDrawTexture3DExStart(int trans)
 {
