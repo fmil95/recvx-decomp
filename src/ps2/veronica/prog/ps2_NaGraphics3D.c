@@ -111,13 +111,13 @@ float Across_Plane(float* v0, float* v1)
 	// Line 155, Address: 0x2dfd7c, Func Offset: 0x4c
 	// Line 156, Address: 0x2dfd9c, Func Offset: 0x6c
 	// Func End, Address: 0x2dfdb4, Func Offset: 0x84
-}
+}*/
 
 // 
 // Start address: 0x2dfdc0
-void njDrawLine3D(_anon2* p, int n, unsigned int attr)
+void njDrawLine3D(NJS_POINT3COL* p, int n, unsigned int attr)
 {
-	tagNJS_SCRVECTOR scr;
+	//tagNJS_SCRVECTOR scr;
 	unsigned long prim;
 	unsigned int i;
 	float bp[4];
@@ -201,9 +201,10 @@ void njDrawLine3D(_anon2* p, int n, unsigned int attr)
 	// Line 262, Address: 0x2e009c, Func Offset: 0x2dc
 	// Line 263, Address: 0x2e00ac, Func Offset: 0x2ec
 	// Func End, Address: 0x2e00e0, Func Offset: 0x320
+	scePrintf("njDrawLine3D - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e00e0
 void njDrawLine3DEx(_anon2* p, int n, unsigned int attr)
 {

@@ -8,6 +8,7 @@
 #include "njplus.h"
 #include "ps2_NaDraw2D.h"
 #include "ps2_NaMatrix.h"
+#include "ps2_NaSystem.h"
 #include "ps2_NaTextureFunction.h"
 #include "ps2_NinjaCnk.h"
 #include "ps2_texture.h"
@@ -1087,56 +1088,68 @@ void bhDrawMdfEffect(unsigned int* owp, int ct)
     Ps2ShadowEnd();
 }
 
-// 
-// Start address: 0x21d7d0
+// 100% matching!
 void bhDrawLinEffect(unsigned int* owp, int ct)
 {
-	//_anon0* op;
-	//_anon24 col[2];
-	//_anon37 pos[2];
-	//_anon42 p3c;
-	// Line 1501, Address: 0x21d7d0, Func Offset: 0
-	// Line 1509, Address: 0x21d7e4, Func Offset: 0x14
-	// Line 1501, Address: 0x21d7ec, Func Offset: 0x1c
-	// Line 1509, Address: 0x21d7f0, Func Offset: 0x20
-	// Line 1510, Address: 0x21d7f8, Func Offset: 0x28
-	// Line 1511, Address: 0x21d800, Func Offset: 0x30
-	// Line 1513, Address: 0x21d804, Func Offset: 0x34
-	// Line 1517, Address: 0x21d850, Func Offset: 0x80
-	// Line 1518, Address: 0x21d858, Func Offset: 0x88
-	// Line 1520, Address: 0x21d860, Func Offset: 0x90
-	// Line 1528, Address: 0x21d864, Func Offset: 0x94
-	// Line 1529, Address: 0x21d868, Func Offset: 0x98
-	// Line 1531, Address: 0x21d86c, Func Offset: 0x9c
-	// Line 1520, Address: 0x21d870, Func Offset: 0xa0
-	// Line 1521, Address: 0x21d874, Func Offset: 0xa4
-	// Line 1522, Address: 0x21d87c, Func Offset: 0xac
-	// Line 1523, Address: 0x21d884, Func Offset: 0xb4
-	// Line 1524, Address: 0x21d88c, Func Offset: 0xbc
-	// Line 1525, Address: 0x21d894, Func Offset: 0xc4
-	// Line 1526, Address: 0x21d89c, Func Offset: 0xcc
-	// Line 1527, Address: 0x21d8a4, Func Offset: 0xd4
-	// Line 1528, Address: 0x21d8a8, Func Offset: 0xd8
-	// Line 1529, Address: 0x21d8ac, Func Offset: 0xdc
-	// Line 1530, Address: 0x21d8b0, Func Offset: 0xe0
-	// Line 1527, Address: 0x21d8b4, Func Offset: 0xe4
-	// Line 1532, Address: 0x21d8b8, Func Offset: 0xe8
-	// Line 1533, Address: 0x21d8c0, Func Offset: 0xf0
-	// Line 1534, Address: 0x21d8c8, Func Offset: 0xf8
-	// Line 1535, Address: 0x21d8d0, Func Offset: 0x100
-	// Line 1536, Address: 0x21d8dc, Func Offset: 0x10c
-	// Line 1537, Address: 0x21d8e4, Func Offset: 0x114
-	// Line 1538, Address: 0x21d8ec, Func Offset: 0x11c
-	// Line 1539, Address: 0x21d8f8, Func Offset: 0x128
-	// Line 1557, Address: 0x21d900, Func Offset: 0x130
-	// Line 1558, Address: 0x21d90c, Func Offset: 0x13c
-	// Line 1560, Address: 0x21d918, Func Offset: 0x148
-	// Line 1562, Address: 0x21d928, Func Offset: 0x158
-	// Line 1564, Address: 0x21d934, Func Offset: 0x164
-	// Line 1566, Address: 0x21d940, Func Offset: 0x170
-	// Line 1567, Address: 0x21d948, Func Offset: 0x178
-	// Line 1568, Address: 0x21d958, Func Offset: 0x188
-	// Func End, Address: 0x21d970, Func Offset: 0x1a0
+    NJS_POINT3COL p3c; 
+    NJS_POINT3 pos[2]; 
+    NJS_COLOR col[2];  
+    O_WRK* op;         
+
+    while (ct--) 
+    {
+        njPushMatrixEx();
+        
+        op = (O_WRK*)*owp++;
+        
+        if (((op->flg & 0x1000000)) || ((op->stflg & 0x1000000)) || (((sys->gm_flg & 0x4000)) && ((op->mdflg & 0x40))))
+        {
+            njPopMatrixEx();
+        } 
+        else 
+        {
+            pos[0].x = op->pv[0].x;
+            pos[0].y = op->pv[0].y;
+            pos[0].z = op->pv[0].z; 
+            
+            pos[1].x = op->pv[1].x;
+            pos[1].y = op->pv[1].y;
+            pos[1].z = op->pv[1].z;
+           
+            col[0].color = op->pv[0].col;
+            col[1].color = op->pv[1].col;
+            
+            p3c.p = pos;
+            
+            p3c.col = col;
+            
+            p3c.tex = NULL;
+            
+            p3c.num = 1;
+            
+            njPushMatrixEx();
+            njUnitMatrix(NULL);
+            
+            njTranslateEx((NJS_POINT3*)&op->px);
+            njRotateEx(&op->ax, 0);
+            
+            njGetMatrix(op->mtx);
+            njPopMatrixEx();
+            
+            njMultiMatrix(NULL, op->mtx);
+            njScaleEx((NJS_POINT3*)&op->sx);
+            
+            njColorBlendingMode(0, op->bl_src);
+            njColorBlendingMode(1, op->bl_dst);
+            
+            njDrawLine3D(&p3c, op->pn, 0x40);
+            
+            njColorBlendingMode(0, 8);
+            njColorBlendingMode(1, 6);
+            
+            njPopMatrixEx();
+        }
+    }
 }
 
 // 
