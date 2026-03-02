@@ -1414,76 +1414,81 @@ void bhSetEventCamera(int evc_no, int key_no)
 	// Func End, Address: 0x27e05c, Func Offset: 0x39c
 }*/
 
-// 
-// Start address: 0x27e060
+// 100% matching!
 void bhSetEventFixedCut(int cno, int kno)
 {
-	//_anon17* kfp;
-	// Line 1486, Address: 0x27e060, Func Offset: 0
-	// Line 1493, Address: 0x27e06c, Func Offset: 0xc
-	// Line 1505, Address: 0x27e074, Func Offset: 0x14
-	// Line 1516, Address: 0x27e080, Func Offset: 0x20
-	// Line 1493, Address: 0x27e084, Func Offset: 0x24
-	// Line 1495, Address: 0x27e08c, Func Offset: 0x2c
-	// Line 1505, Address: 0x27e090, Func Offset: 0x30
-	// Line 1516, Address: 0x27e094, Func Offset: 0x34
-	// Line 1493, Address: 0x27e098, Func Offset: 0x38
-	// Line 1495, Address: 0x27e0a0, Func Offset: 0x40
-	// Line 1497, Address: 0x27e0a8, Func Offset: 0x48
-	// Line 1495, Address: 0x27e0ac, Func Offset: 0x4c
-	// Line 1497, Address: 0x27e0b4, Func Offset: 0x54
-	// Line 1498, Address: 0x27e0c4, Func Offset: 0x64
-	// Line 1500, Address: 0x27e0d8, Func Offset: 0x78
-	// Line 1501, Address: 0x27e0f4, Func Offset: 0x94
-	// Line 1503, Address: 0x27e108, Func Offset: 0xa8
-	// Line 1505, Address: 0x27e110, Func Offset: 0xb0
-	// Line 1506, Address: 0x27e118, Func Offset: 0xb8
-	// Line 1505, Address: 0x27e120, Func Offset: 0xc0
-	// Line 1506, Address: 0x27e124, Func Offset: 0xc4
-	// Line 1505, Address: 0x27e12c, Func Offset: 0xcc
-	// Line 1506, Address: 0x27e134, Func Offset: 0xd4
-	// Line 1507, Address: 0x27e138, Func Offset: 0xd8
-	// Line 1505, Address: 0x27e140, Func Offset: 0xe0
-	// Line 1507, Address: 0x27e144, Func Offset: 0xe4
-	// Line 1508, Address: 0x27e148, Func Offset: 0xe8
-	// Line 1509, Address: 0x27e15c, Func Offset: 0xfc
-	// Line 1510, Address: 0x27e170, Func Offset: 0x110
-	// Line 1511, Address: 0x27e184, Func Offset: 0x124
-	// Line 1512, Address: 0x27e198, Func Offset: 0x138
-	// Line 1513, Address: 0x27e1ac, Func Offset: 0x14c
-	// Line 1514, Address: 0x27e1c0, Func Offset: 0x160
-	// Line 1515, Address: 0x27e1c8, Func Offset: 0x168
-	// Line 1516, Address: 0x27e1d4, Func Offset: 0x174
-	// Line 1517, Address: 0x27e1d8, Func Offset: 0x178
-	// Line 1518, Address: 0x27e1e0, Func Offset: 0x180
-	// Line 1517, Address: 0x27e1e8, Func Offset: 0x188
-	// Line 1518, Address: 0x27e1f4, Func Offset: 0x194
-	// Line 1520, Address: 0x27e1fc, Func Offset: 0x19c
-	// Line 1522, Address: 0x27e204, Func Offset: 0x1a4
-	// Line 1523, Address: 0x27e22c, Func Offset: 0x1cc
-	// Line 1524, Address: 0x27e238, Func Offset: 0x1d8
-	// Line 1525, Address: 0x27e244, Func Offset: 0x1e4
-	// Line 1530, Address: 0x27e250, Func Offset: 0x1f0
-	// Line 1531, Address: 0x27e26c, Func Offset: 0x20c
-	// Line 1533, Address: 0x27e28c, Func Offset: 0x22c
-	// Line 1534, Address: 0x27e294, Func Offset: 0x234
-	// Line 1535, Address: 0x27e2a0, Func Offset: 0x240
-	// Line 1536, Address: 0x27e2ac, Func Offset: 0x24c
-	// Line 1537, Address: 0x27e2b8, Func Offset: 0x258
-	// Line 1539, Address: 0x27e2c4, Func Offset: 0x264
-	// Line 1540, Address: 0x27e2cc, Func Offset: 0x26c
-	// Line 1539, Address: 0x27e2d0, Func Offset: 0x270
-	// Line 1540, Address: 0x27e2d4, Func Offset: 0x274
-	// Line 1539, Address: 0x27e2d8, Func Offset: 0x278
-	// Line 1540, Address: 0x27e2e0, Func Offset: 0x280
-	// Line 1542, Address: 0x27e2e4, Func Offset: 0x284
-	// Line 1540, Address: 0x27e2ec, Func Offset: 0x28c
-	// Line 1542, Address: 0x27e2f8, Func Offset: 0x298
-	// Line 1543, Address: 0x27e310, Func Offset: 0x2b0
-	// Line 1544, Address: 0x27e330, Func Offset: 0x2d0
-	// Line 1546, Address: 0x27e338, Func Offset: 0x2d8
-	// Func End, Address: 0x27e348, Func Offset: 0x2e8
-	scePrintf("bhSetEventFixedCut - UNIMPLEMENTED!\n");
+    CAM_KEYF_WORK* kfp;
+
+    sys->gm_flg &= ~0x1000;
+    sys->gm_flg |= 0x20;
+    
+    sys->evc_ono = cno;
+    sys->evc_okn = kno;
+    
+    cam.evc_no = cno;
+    
+    sys->evc_no = cno;
+    sys->evc_kn = kno;
+    
+    cam.keyf_no = kno;
+    
+    kfp = &rom->evcp[cno].keyf[kno];
+    
+    cam.plx = plp->px;
+    cam.plz = plp->pz;
+    
+    cam.px = cam.pxp = kfp->px;
+    cam.py = cam.pyp = kfp->py;
+    cam.pz = cam.pzp = kfp->pz;
+    
+    cam.ax = cam.axp = kfp->ax;
+    cam.ay = cam.ayp = kfp->ay;
+    cam.az = cam.azp = kfp->az;
+    
+    cam.ln = 0;
+    
+    cam.pers = kfp->pers;
+    
+    *(int*)&cam.mode0 = 0;
+    
+    cam.flg |= 0x2;
+    
+    sys->st_flg |= 0x1;
+    
+    bhSetEventHideObjLgt(cno, kno);
+    
+    if (((sys->st_flg & 0x2)) && ((kfp->flg & 0x8)))
+    {
+        cam.fog_col = kfp->fog_col;
+        
+        cam.fog_nr = kfp->fog_nr;
+        cam.fog_fr = kfp->fog_fr;
+        
+        sys->fog_ct = sys->fog_cngct - 4;
+        
+        if (sys->fog_ct < 0) 
+        {
+            sys->fog_ct = 0;
+        }
+    }
+    else 
+    {
+        cam.fog_col = kfp->fog_col;
+        
+        cam.fog_nr = kfp->fog_nr;
+        cam.fog_fr = kfp->fog_fr;
+        
+        sys->fog_ct = 0;
+    }
+    
+    sys->gm_flg |= 0x10;
+    
+    cam.flg &= ~0x38;
+    
+    bhChangeViewClip(sys->stg_no, sys->rom_no, sys->rcase, cam.evc_no);
+    bhChangeClipVolume(sys->stg_no, sys->rom_no, sys->rcase, cam.evc_no);
+    
+    bhChangeBackColorEvt();
 }
 
 // 100% matching!

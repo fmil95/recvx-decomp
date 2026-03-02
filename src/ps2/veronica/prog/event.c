@@ -11195,7 +11195,7 @@ unsigned int bhFlagSet(unsigned char type, unsigned int cnt, unsigned char flag)
 	// Line 12585, Address: 0x171a38, Func Offset: 0x138
 	// Line 12587, Address: 0x171a50, Func Offset: 0x150
 	// Func End, Address: 0x171a58, Func Offset: 0x158
-}
+}*/
 
 // 
 // Start address: 0x171a60
@@ -11204,8 +11204,8 @@ void bhChangeViewClip(char stg_no, char rom_no, char rcase, int evc_no)
 	float far;
 	float near;
 	int i;
-	_anon2* ViewClipTbl;
-	_anon2* ViewClipStage[10];
+	//_anon2* ViewClipTbl;
+	//_anon2* ViewClipStage[10];
 	// Line 12598, Address: 0x171a60, Func Offset: 0
 	// Line 12774, Address: 0x171a74, Func Offset: 0x14
 	// Line 12775, Address: 0x171a8c, Func Offset: 0x2c
@@ -11228,7 +11228,8 @@ void bhChangeViewClip(char stg_no, char rom_no, char rcase, int evc_no)
 	// Line 12804, Address: 0x171b88, Func Offset: 0x128
 	// Line 12807, Address: 0x171b94, Func Offset: 0x134
 	// Func End, Address: 0x171bac, Func Offset: 0x14c
-}*/
+	scePrintf("bhChangeViewClip - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x171bb0
@@ -11262,15 +11263,15 @@ void bhChangeViewClipRM()
 	scePrintf("bhChangeViewClipRM - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x171cf0
 void bhChangeClipVolume(char stg_no, char rom_no, char rcase, int evc_no)
 {
 	float y;
 	float x;
 	int i;
-	_anon2* ViewClipTbl;
-	_anon2* ViewClipStage[10];
+	//_anon2* ViewClipTbl;
+	//_anon2* ViewClipStage[10];
 	// Line 13030, Address: 0x171cf0, Func Offset: 0
 	// Line 13027, Address: 0x171cfc, Func Offset: 0xc
 	// Line 13028, Address: 0x171d08, Func Offset: 0x18
@@ -11285,7 +11286,8 @@ void bhChangeClipVolume(char stg_no, char rom_no, char rcase, int evc_no)
 	// Line 13045, Address: 0x171d90, Func Offset: 0xa0
 	// Line 13046, Address: 0x171d98, Func Offset: 0xa8
 	// Func End, Address: 0x171da0, Func Offset: 0xb0
-}*/
+	scePrintf("bhChangeClipVolume - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x171da0
