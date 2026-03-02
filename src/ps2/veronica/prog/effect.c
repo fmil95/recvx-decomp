@@ -935,63 +935,89 @@ void bhDrawEffect()
     }
 }
 
-// 
-// Start address: 0x21d2c0
+// 99.84% matching
 void bhDrawPolEffect(unsigned int* owp, int ct)
 {
-	//_anon0* op;
-	//_anon12* mlp;
-	//_anon27* tnp;
-	// Line 1315, Address: 0x21d2c0, Func Offset: 0
-	// Line 1322, Address: 0x21d2d0, Func Offset: 0x10
-	// Line 1315, Address: 0x21d2d8, Func Offset: 0x18
-	// Line 1322, Address: 0x21d2e8, Func Offset: 0x28
-	// Line 1323, Address: 0x21d2f8, Func Offset: 0x38
-	// Line 1324, Address: 0x21d318, Func Offset: 0x58
-	// Line 1325, Address: 0x21d33c, Func Offset: 0x7c
-	// Line 1326, Address: 0x21d348, Func Offset: 0x88
-	// Line 1327, Address: 0x21d350, Func Offset: 0x90
-	// Line 1329, Address: 0x21d354, Func Offset: 0x94
-	// Line 1333, Address: 0x21d3a0, Func Offset: 0xe0
-	// Line 1334, Address: 0x21d3a8, Func Offset: 0xe8
-	// Line 1337, Address: 0x21d3b0, Func Offset: 0xf0
-	// Line 1338, Address: 0x21d3c0, Func Offset: 0x100
-	// Line 1340, Address: 0x21d3d0, Func Offset: 0x110
-	// Line 1344, Address: 0x21d3e0, Func Offset: 0x120
-	// Line 1345, Address: 0x21d3f0, Func Offset: 0x130
-	// Line 1346, Address: 0x21d3f8, Func Offset: 0x138
-	// Line 1345, Address: 0x21d400, Func Offset: 0x140
-	// Line 1346, Address: 0x21d40c, Func Offset: 0x14c
-	// Line 1345, Address: 0x21d410, Func Offset: 0x150
-	// Line 1346, Address: 0x21d414, Func Offset: 0x154
-	// Line 1347, Address: 0x21d420, Func Offset: 0x160
-	// Line 1346, Address: 0x21d424, Func Offset: 0x164
-	// Line 1347, Address: 0x21d42c, Func Offset: 0x16c
-	// Line 1348, Address: 0x21d440, Func Offset: 0x180
-	// Line 1349, Address: 0x21d448, Func Offset: 0x188
-	// Line 1350, Address: 0x21d450, Func Offset: 0x190
-	// Line 1351, Address: 0x21d458, Func Offset: 0x198
-	// Line 1353, Address: 0x21d460, Func Offset: 0x1a0
-	// Line 1354, Address: 0x21d468, Func Offset: 0x1a8
-	// Line 1356, Address: 0x21d488, Func Offset: 0x1c8
-	// Line 1357, Address: 0x21d494, Func Offset: 0x1d4
-	// Line 1358, Address: 0x21d49c, Func Offset: 0x1dc
-	// Line 1359, Address: 0x21d4a8, Func Offset: 0x1e8
-	// Line 1360, Address: 0x21d4b0, Func Offset: 0x1f0
-	// Line 1364, Address: 0x21d4b8, Func Offset: 0x1f8
-	// Line 1365, Address: 0x21d4e4, Func Offset: 0x224
-	// Line 1366, Address: 0x21d4f8, Func Offset: 0x238
-	// Line 1367, Address: 0x21d50c, Func Offset: 0x24c
-	// Line 1368, Address: 0x21d510, Func Offset: 0x250
-	// Line 1369, Address: 0x21d518, Func Offset: 0x258
-	// Line 1371, Address: 0x21d524, Func Offset: 0x264
-	// Line 1372, Address: 0x21d52c, Func Offset: 0x26c
-	// Line 1373, Address: 0x21d554, Func Offset: 0x294
-	// Line 1374, Address: 0x21d564, Func Offset: 0x2a4
-	// Line 1376, Address: 0x21d578, Func Offset: 0x2b8
-	// Line 1377, Address: 0x21d580, Func Offset: 0x2c0
-	// Line 1378, Address: 0x21d590, Func Offset: 0x2d0
-	// Func End, Address: 0x21d5b0, Func Offset: 0x2f0
+    NJS_TEXNAME* tnp; 
+    ML_WORK* mlp;     
+    O_WRK* op;        
+
+    njCnkSetEasyLightColor(1.0f, 1.0f, 1.0f);
+    njCnkSetEasyLightIntensity(0.7f, 0.2f);
+    njCnkSetEasyLight(0, 0.3f, 0.7f);
+    
+    while (ct--)
+    { 
+        njPushMatrixEx();
+        
+        op = (O_WRK*)*owp++;
+        
+        if (((op->flg & 0x1000000)) || ((op->stflg & 0x1000000)) || (((sys->gm_flg & 0x4000)) && ((op->mdflg & 0x40))))
+        {
+            njPopMatrixEx();
+        }
+        else 
+        {
+            if ((op->flg & 0x20000000))
+            {
+                njTextureFilterMode(0);
+            } 
+            else 
+            {
+                njTextureFilterMode(1);
+            }
+            
+            mlp = op->mlwP;
+            
+            if (!(op->stflg & 0x20))
+            {
+                tnp = sys->ef_tlist.textures;
+                
+                sys->ef_tlist.textures = &tnp[op->tex_id + op->ani_ct];
+                
+                njSetTexture(&sys->ef_tlist);
+                njSetTextureNum(0);
+            } 
+            else 
+            {
+                njSetTexture(op->txp[0]);
+                njSetTextureNum(0);
+            }
+            
+            njPushMatrixEx();
+            
+            if (((op->flg & 0x200000)) || (!(op->flg & 0x80))) 
+            {
+                njUnitMatrix(NULL);
+                
+                njTranslateEx((NJS_POINT3*)&op->px);
+                njRotateEx(&op->ax, 0);
+                
+                njGetMatrix(op->mtx);
+            }
+            else 
+            {
+                njSetMatrix(op->mtx, &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
+                
+                njTranslate(op->mtx, op->lox, op->loy, op->loz);
+                njRotateXYZ(op->mtx, op->ax, op->ay, op->az);
+            }
+            
+            njPopMatrixEx();
+            njMultiMatrix(NULL, op->mtx);
+        
+            njScaleEx((NJS_POINT3*)&op->sx);
+            
+            njCnkEasyDrawModel(mlp->objP[op->mdlver].model);
+            
+            if (!(op->stflg & 0x20)) 
+            {
+                sys->ef_tlist.textures = tnp;
+            }
+            
+            njPopMatrixEx();
+        }
+    }
 }
 
 // 100% matching!
@@ -1023,7 +1049,6 @@ void bhDrawMdfEffect(unsigned int* owp, int ct)
                 njUnitMatrix(NULL);
                 
                 njTranslateEx((NJS_POINT3*)&op->px);
-                
                 njRotateEx(&op->ax, 0);
                 
                 njGetMatrix(op->mtx);
@@ -1033,7 +1058,6 @@ void bhDrawMdfEffect(unsigned int* owp, int ct)
                 njSetMatrix(op->mtx, &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
                 
                 njTranslate(op->mtx, op->lox, op->loy, op->loz);
-                
                 njRotateXYZ(op->mtx, op->ax, op->ay, op->az);
             }
             
