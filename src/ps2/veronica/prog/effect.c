@@ -1416,79 +1416,139 @@ label:
     }
 }
 
-// 
-// Start address: 0x21e210
+// 100% matching!
 void bhDrawOpqEffect3D(unsigned int* owp, int ct)
 {
-	//_anon37 vec;
-	//_anon37 pc;
-	//_anon37 pb;
-	//_anon37 pa;
-	//_anon0* op;
-	// Line 1812, Address: 0x21e210, Func Offset: 0
-	// Line 1819, Address: 0x21e228, Func Offset: 0x18
-	// Line 1820, Address: 0x21e238, Func Offset: 0x28
-	// Line 1821, Address: 0x21e244, Func Offset: 0x34
-	// Line 1822, Address: 0x21e250, Func Offset: 0x40
-	// Line 1823, Address: 0x21e258, Func Offset: 0x48
-	// Line 1825, Address: 0x21e25c, Func Offset: 0x4c
-	// Line 1830, Address: 0x21e2b8, Func Offset: 0xa8
-	// Line 1831, Address: 0x21e2c0, Func Offset: 0xb0
-	// Line 1834, Address: 0x21e2c8, Func Offset: 0xb8
-	// Line 1835, Address: 0x21e2d8, Func Offset: 0xc8
-	// Line 1837, Address: 0x21e2e8, Func Offset: 0xd8
-	// Line 1839, Address: 0x21e2f8, Func Offset: 0xe8
-	// Line 1840, Address: 0x21e30c, Func Offset: 0xfc
-	// Line 1841, Address: 0x21e314, Func Offset: 0x104
-	// Line 1842, Address: 0x21e31c, Func Offset: 0x10c
-	// Line 1843, Address: 0x21e32c, Func Offset: 0x11c
-	// Line 1854, Address: 0x21e344, Func Offset: 0x134
-	// Line 1855, Address: 0x21e370, Func Offset: 0x160
-	// Line 1856, Address: 0x21e378, Func Offset: 0x168
-	// Line 1858, Address: 0x21e380, Func Offset: 0x170
-	// Line 1862, Address: 0x21e390, Func Offset: 0x180
-	// Line 1863, Address: 0x21e398, Func Offset: 0x188
-	// Line 1865, Address: 0x21e3b8, Func Offset: 0x1a8
-	// Line 1866, Address: 0x21e3c4, Func Offset: 0x1b4
-	// Line 1867, Address: 0x21e3cc, Func Offset: 0x1bc
-	// Line 1868, Address: 0x21e3d8, Func Offset: 0x1c8
-	// Line 1869, Address: 0x21e3e0, Func Offset: 0x1d0
-	// Line 1873, Address: 0x21e3e8, Func Offset: 0x1d8
-	// Line 1874, Address: 0x21e414, Func Offset: 0x204
-	// Line 1875, Address: 0x21e428, Func Offset: 0x218
-	// Line 1876, Address: 0x21e43c, Func Offset: 0x22c
-	// Line 1877, Address: 0x21e440, Func Offset: 0x230
-	// Line 1878, Address: 0x21e448, Func Offset: 0x238
-	// Line 1879, Address: 0x21e454, Func Offset: 0x244
-	// Line 1880, Address: 0x21e468, Func Offset: 0x258
-	// Line 1881, Address: 0x21e470, Func Offset: 0x260
-	// Line 1882, Address: 0x21e47c, Func Offset: 0x26c
-	// Line 1883, Address: 0x21e494, Func Offset: 0x284
-	// Line 1884, Address: 0x21e4c0, Func Offset: 0x2b0
-	// Line 1886, Address: 0x21e4f4, Func Offset: 0x2e4
-	// Line 1887, Address: 0x21e4f8, Func Offset: 0x2e8
-	// Line 1889, Address: 0x21e504, Func Offset: 0x2f4
-	// Line 1892, Address: 0x21e518, Func Offset: 0x308
-	// Line 1893, Address: 0x21e528, Func Offset: 0x318
-	// Line 1894, Address: 0x21e53c, Func Offset: 0x32c
-	// Line 1895, Address: 0x21e550, Func Offset: 0x340
-	// Line 1896, Address: 0x21e560, Func Offset: 0x350
-	// Line 1897, Address: 0x21e574, Func Offset: 0x364
-	// Line 1898, Address: 0x21e588, Func Offset: 0x378
-	// Line 1899, Address: 0x21e59c, Func Offset: 0x38c
-	// Line 1900, Address: 0x21e5a4, Func Offset: 0x394
-	// Line 1901, Address: 0x21e5c0, Func Offset: 0x3b0
-	// Line 1902, Address: 0x21e5c8, Func Offset: 0x3b8
-	// Line 1903, Address: 0x21e5d0, Func Offset: 0x3c0
-	// Line 1905, Address: 0x21e5d8, Func Offset: 0x3c8
-	// Line 1921, Address: 0x21e5e8, Func Offset: 0x3d8
-	// Line 1922, Address: 0x21e5f8, Func Offset: 0x3e8
-	// Line 1923, Address: 0x21e608, Func Offset: 0x3f8
-	// Line 1924, Address: 0x21e610, Func Offset: 0x400
-	// Line 1928, Address: 0x21e620, Func Offset: 0x410
-	// Line 1929, Address: 0x21e628, Func Offset: 0x418
-	// Line 1930, Address: 0x21e638, Func Offset: 0x428
-	// Func End, Address: 0x21e650, Func Offset: 0x440
+    O_WRK* op;      
+    NJS_POINT3 pa;  
+    NJS_POINT3 pb;  
+    NJS_POINT3 pc;  
+    NJS_VECTOR vec; 
+
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    while (ct--) 
+    {
+        njPushMatrixEx();
+        
+        op = (O_WRK*)*owp++;
+        
+        if ((((op->flg & 0x1000000)) || ((op->stflg & 0x1000000)) || (op->tex_id < 0)) || (((sys->gm_flg & 0x4000)) && ((op->mdflg & 0x40)))) 
+        {
+            njPopMatrixEx();
+        } 
+        else 
+        { 
+            if ((op->flg & 0x20000000)) 
+            {
+                njTextureFilterMode(0);
+            }
+            else 
+            {
+                njTextureFilterMode(1);
+            }
+            
+            if ((op->flg & 0x800000)) 
+            {
+                njSetTextureNumG(op->gidx);
+            } 
+            else if (!(op->stflg & 0x20)) 
+            {
+                njSetTexture(&sys->ef_tlist);
+                njSetTextureNum(sys->ef_tn[op->tex_id] + op->ani_ct);
+            } 
+            else 
+            {
+                njSetTexture(op->txp[0]);
+                njSetTextureNum(op->tex_id + op->ani_ct);
+            }
+            
+            njPushMatrixEx();
+            
+            if ((!(op->flg & 0x80)) || ((op->flg & 0x200000)))
+            { 
+                njUnitMatrix(NULL);
+    
+                njTranslateEx((NJS_POINT3*)&op->px); 
+                njRotateEx(&op->ax, 0);
+        
+                njGetMatrix(op->mtx); 
+            } 
+            else
+            {
+                njSetMatrix(op->mtx, &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
+        
+                njTranslate(op->mtx, op->lox, op->loy, op->loz);
+                njRotateXYZ(op->mtx, op->ax, op->ay, op->az);
+            }
+            
+            njPopMatrixEx();
+            njMultiMatrix(NULL, op->mtx);
+            
+            if ((op->flg & 0x100000)) 
+            {
+                njUnitRotPortion(NULL);
+                njRotateZ(NULL, op->az);
+                
+                if ((sys->gm_flg & 0x4000)) 
+                {
+                    if (sys->mr_pl.vx)
+                    {
+                        njRotateY(NULL, 32768);
+                    }
+                    
+                    if (sys->mr_pl.vy) 
+                    {
+                        njRotateX(NULL, 32768);
+                    }
+                }
+            }
+            
+            njScaleEx((NJS_POINT3*)&op->sx);
+            
+            if ((op->flg & 0x20000))
+            {
+                njCalcPoint(NULL, (NJS_POINT3*)op->tvp, &pa);
+                njCalcPoint(NULL, (NJS_POINT3*)&op->tvp[1], &pb);
+                njCalcPoint(NULL, (NJS_POINT3*)&op->tvp[2], &pc);
+                
+                njProjectScreen(NULL, (NJS_POINT3*)op->tvp, (NJS_POINT2*)&pa);
+                njProjectScreen(NULL, (NJS_POINT3*)&op->tvp[1], (NJS_POINT2*)&pb);
+                njProjectScreen(NULL, (NJS_POINT3*)&op->tvp[2], (NJS_POINT2*)&pc);
+                
+                njGetPlaneNormal2(&pa, &pb, &pc, &vec);
+                
+                njUnitVector(&vec);
+                
+                if (vec.z < 0)
+                {
+                    op->stflg |= 0x10;
+                    
+                    njPopMatrixEx();
+                } 
+                else 
+                {
+                    op->stflg &= ~0x10;
+                    goto label;
+                }
+            } 
+            else 
+            {
+label:
+                if (op->id == 204) 
+                {
+                    njDrawTexture3DEx1P(op->tvp, op->pn, 1);
+                } 
+                else 
+                {
+                    njDrawTexture3DEx(op->tvp, op->pn, 1);
+                }
+                
+                njPopMatrixEx();
+            }
+        } 
+    }
 }
 
 // 
