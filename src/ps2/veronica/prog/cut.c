@@ -2483,25 +2483,22 @@ short bhCalcActiveZang(_anon10* cp)
 	// Line 2438, Address: 0x280c20, Func Offset: 0x90
 	// Line 2443, Address: 0x280c24, Func Offset: 0x94
 	// Func End, Address: 0x280c40, Func Offset: 0xb0
-}
-
-// 
-// Start address: 0x280c40
-short bhCalcActivePers(_anon10* cp)
-{
-	unsigned char* psp;
-	float ag0;
-	float lap1;
-	float lap0;
-	// Line 2450, Address: 0x280c40, Func Offset: 0
-	// Line 2455, Address: 0x280c60, Func Offset: 0x20
-	// Line 2456, Address: 0x280c84, Func Offset: 0x44
-	// Line 2457, Address: 0x280cd0, Func Offset: 0x90
-	// Line 2460, Address: 0x280d1c, Func Offset: 0xdc
-	// Line 2463, Address: 0x280d78, Func Offset: 0x138
-	// Line 2460, Address: 0x280d7c, Func Offset: 0x13c
-	// Line 2463, Address: 0x280d94, Func Offset: 0x154
-	// Line 2464, Address: 0x280e1c, Func Offset: 0x1dc
-	// Func End, Address: 0x280e40, Func Offset: 0x200
 }*/
 
+// 100% matching!
+short bhCalcActivePers(CUT_WORK* cp)
+{
+    float lap0;       
+    float lap1;         
+    float ag0;          
+    unsigned char* psp; 
+    
+    psp = (unsigned char*)&cp->cam[cam.camver].pers;
+    
+    lap0 = (int)(182.04445f * *psp++);
+    lap1 = (int)(182.04445f * *psp++);
+   
+    ag0 = lap0 + ((cam.plz - cp->cz) * (((int)(182.04445f * *psp++) - lap0) / cp->cd));
+   
+    return ag0 + ((cam.plx - cp->cx) * (((lap1 + ((cam.plz - cp->cz) * (((int)(182.04445f * *psp) - lap1) / cp->cd))) - ag0) / cp->cw));
+}
