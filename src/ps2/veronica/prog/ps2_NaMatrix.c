@@ -1521,11 +1521,11 @@ float njOuterProduct(_anon0* pSrcVec1, _anon0* pSrcVec2, _anon0* pDstVec)
 	// Line 4965, Address: 0x2d7890, Func Offset: 0x60
 	// Line 4971, Address: 0x2d7894, Func Offset: 0x64
 	// Func End, Address: 0x2d789c, Func Offset: 0x6c
-}
+}*/
 
 // 
 // Start address: 0x2d78a0
-float njInnerProduct(_anon0* pVec1, _anon0* pVec2)
+Float	njInnerProduct(NJS_VECTOR *v1, NJS_VECTOR *v2)
 {
 	float ret;
 	// Line 5031, Address: 0x2d78a0, Func Offset: 0
@@ -1545,7 +1545,8 @@ float njInnerProduct(_anon0* pVec1, _anon0* pVec2)
 	// Line 5046, Address: 0x2d78d8, Func Offset: 0x38
 	// Line 5052, Address: 0x2d78dc, Func Offset: 0x3c
 	// Func End, Address: 0x2d78e4, Func Offset: 0x44
-}*/
+    scePrintf("njInnerProduct - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2d78f0

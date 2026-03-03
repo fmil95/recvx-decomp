@@ -486,14 +486,14 @@ void njDrawTextureSub3DH(_anon0* polygon, int count, int flag)
 	// Line 835, Address: 0x2dee90, Func Offset: 0x120
 	// Line 839, Address: 0x2deea4, Func Offset: 0x134
 	// Func End, Address: 0x2deec4, Func Offset: 0x154
-}
+}*/
 
 // 
 // Start address: 0x2deed0
-void njDrawTexture3DHEx(_anon0* p, int count, int trans)
+void njDrawTexture3DHEx(NJS_TEXTUREH_VTX* p, int count, int trans)
 {
 	int i;
-	_anon0 poly[4];
+	NJS_TEXTUREH_VTX poly[4];
 	// Line 854, Address: 0x2deed0, Func Offset: 0
 	// Line 865, Address: 0x2deee4, Func Offset: 0x14
 	// Line 866, Address: 0x2def0c, Func Offset: 0x3c
@@ -512,7 +512,8 @@ void njDrawTexture3DHEx(_anon0* p, int count, int trans)
 	// Line 882, Address: 0x2defc8, Func Offset: 0xf8
 	// Line 883, Address: 0x2defd0, Func Offset: 0x100
 	// Func End, Address: 0x2defe8, Func Offset: 0x118
-}*/
+	scePrintf("njDrawTexture3DHEx - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void njQuadTextureStart(int trans)
