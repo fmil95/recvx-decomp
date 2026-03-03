@@ -1733,30 +1733,36 @@ void bhDrawNtxEffect2D(unsigned int* owp, int ct)
     }
 } 
 
-// 
-// Start address: 0x21ec30
+// 100% matching!
 void bhDrawTrsEffect2D(unsigned int* owp, int ct)
 {
-	//_anon0* op;
-	// Line 2092, Address: 0x21ec30, Func Offset: 0
-	// Line 2094, Address: 0x21ec44, Func Offset: 0x14
-	// Line 2092, Address: 0x21ec4c, Func Offset: 0x1c
-	// Line 2094, Address: 0x21ec50, Func Offset: 0x20
-	// Line 2095, Address: 0x21ec58, Func Offset: 0x28
-	// Line 2097, Address: 0x21ec5c, Func Offset: 0x2c
-	// Line 2101, Address: 0x21ecb4, Func Offset: 0x84
-	// Line 2103, Address: 0x21ecb8, Func Offset: 0x88
-	// Line 2104, Address: 0x21ecc8, Func Offset: 0x98
-	// Line 2106, Address: 0x21ecd8, Func Offset: 0xa8
-	// Line 2108, Address: 0x21ece8, Func Offset: 0xb8
-	// Line 2109, Address: 0x21ecf4, Func Offset: 0xc4
-	// Line 2111, Address: 0x21ed00, Func Offset: 0xd0
-	// Line 2113, Address: 0x21ed14, Func Offset: 0xe4
-	// Line 2115, Address: 0x21ed20, Func Offset: 0xf0
-	// Line 2117, Address: 0x21ed2c, Func Offset: 0xfc
-	// Line 2118, Address: 0x21ed40, Func Offset: 0x110
-	// Func End, Address: 0x21ed58, Func Offset: 0x128
-}
+    O_WRK* op;
+    
+    while (ct--) 
+    {
+        op = (O_WRK*)*owp++;
+        
+        if (((!(op->flg & 0x1000000)) && (!(op->stflg & 0x1000000)) && (op->tex_id >= 0)) && ((!(sys->gm_flg & 0x4000)) || (!(op->mdflg & 0x40))))  
+        {
+            if ((op->flg & 0x20000000))
+            {
+                njTextureFilterMode(0);
+            } 
+            else 
+            {
+                njTextureFilterMode(1);
+            }
+
+            njColorBlendingMode(0, op->bl_src);
+            njColorBlendingMode(1, op->bl_dst);
+            
+            njDrawTexture(op->tvp, op->pn, op->gidx, 1);
+            
+            njColorBlendingMode(0, 8);
+            njColorBlendingMode(1, 6);
+        } 
+    }
+} 
 
 // 
 // Start address: 0x21ed60

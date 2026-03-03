@@ -140,20 +140,21 @@ void njDrawTextureSub(_anon3* polygon, int count, int flag)
 	// Line 170, Address: 0x2de418, Func Offset: 0x178
 	// Line 173, Address: 0x2de42c, Func Offset: 0x18c
 	// Func End, Address: 0x2de438, Func Offset: 0x198
-}
+}*/
 
 // 
 // Start address: 0x2de440
-void njDrawTexture(_anon3* polygon, int count, int tex, int flag)
+void    njDrawTexture( NJS_TEXTURE_VTX *polygon, Int count, Int tex, Int flag )
 {
 	// Line 191, Address: 0x2de440, Func Offset: 0
 	// Line 201, Address: 0x2de460, Func Offset: 0x20
 	// Line 202, Address: 0x2de468, Func Offset: 0x28
 	// Line 203, Address: 0x2de478, Func Offset: 0x38
 	// Func End, Address: 0x2de490, Func Offset: 0x50
+	scePrintf("njDrawTexture - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2de490
 void njDrawTextureSubH(_anon0* polygon, int count, int flag)
 {
