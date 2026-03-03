@@ -2420,29 +2420,18 @@ void bhControlMonitorCamera()
 
 }
 
-/*// 
-// Start address: 0x280b00
-float bhCalcActiveYpos(_anon10* cp)
+// 100% matching!
+float bhCalcActiveYpos(CUT_WORK* cp)
 {
-	float yy0;
-	_anon21* ci;
-	// Line 2419, Address: 0x280b00, Func Offset: 0
-	// Line 2420, Address: 0x280b08, Func Offset: 0x8
-	// Line 2423, Address: 0x280b0c, Func Offset: 0xc
-	// Line 2420, Address: 0x280b10, Func Offset: 0x10
-	// Line 2423, Address: 0x280b14, Func Offset: 0x14
-	// Line 2420, Address: 0x280b18, Func Offset: 0x18
-	// Line 2419, Address: 0x280b20, Func Offset: 0x20
-	// Line 2420, Address: 0x280b34, Func Offset: 0x34
-	// Line 2419, Address: 0x280b38, Func Offset: 0x38
-	// Line 2423, Address: 0x280b3c, Func Offset: 0x3c
-	// Line 2420, Address: 0x280b44, Func Offset: 0x44
-	// Line 2423, Address: 0x280b4c, Func Offset: 0x4c
-	// Line 2420, Address: 0x280b58, Func Offset: 0x58
-	// Line 2423, Address: 0x280b68, Func Offset: 0x68
-	// Line 2424, Address: 0x280b88, Func Offset: 0x88
-	// Func End, Address: 0x280b90, Func Offset: 0x90
-}*/
+    CAM_WRK* ci;
+    float yy0;
+	
+    ci = &cp->cam[cam.camver];
+
+    yy0 = ci->y0 + ((cam.plz - cp->cz) * ((ci->y2 - ci->y0) / cp->cd));
+    
+    return yy0 + ((cam.plx - cp->cx) * (((ci->y1 + ((cam.plz - cp->cz) * ((ci->y3 - ci->y1) / cp->cd))) - yy0) / cp->cw));
+}
 
 // 99.14% matching (matches on GC)
 short bhCalcActiveZang(CUT_WORK* cp)
