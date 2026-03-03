@@ -2414,15 +2414,13 @@ void bhSetPlEyeCamera()
 	scePrintf("bhSetPlEyeCamera - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x280af0
+// 100% matching!
 void bhControlMonitorCamera()
 {
-	// Line 2410, Address: 0x280af0, Func Offset: 0
-	// Func End, Address: 0x280af8, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x280b00
 float bhCalcActiveYpos(_anon10* cp)
 {
