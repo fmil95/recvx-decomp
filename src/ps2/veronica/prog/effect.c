@@ -1717,21 +1717,21 @@ label:
     }
 }
 
-// 
-// Start address: 0x21eb80
+// 100% matching!
 void bhDrawNtxEffect2D(unsigned int* owp, int ct)
 {
-	//_anon0* op;
-	// Line 2074, Address: 0x21eb80, Func Offset: 0
-	// Line 2076, Address: 0x21eb94, Func Offset: 0x14
-	// Line 2077, Address: 0x21eba4, Func Offset: 0x24
-	// Line 2079, Address: 0x21eba8, Func Offset: 0x28
-	// Line 2082, Address: 0x21ebf4, Func Offset: 0x74
-	// Line 2084, Address: 0x21ebf8, Func Offset: 0x78
-	// Line 2085, Address: 0x21ec08, Func Offset: 0x88
-	// Line 2086, Address: 0x21ec18, Func Offset: 0x98
-	// Func End, Address: 0x21ec2c, Func Offset: 0xac
-}
+    O_WRK* op;
+    
+    while (ct--) 
+    {
+        op = (O_WRK*)*owp++;
+        
+        if (((!(op->flg & 0x1000000)) && (!(op->stflg & 0x1000000))) && ((!(sys->gm_flg & 0x4000)) || (!(op->mdflg & 0x40)))) 
+        {
+            njDrawPolygon(op->pvp, op->pn, 1);
+        } 
+    }
+} 
 
 // 
 // Start address: 0x21ec30
