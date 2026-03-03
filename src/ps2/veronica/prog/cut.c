@@ -7,111 +7,147 @@
 #include "ps2_NaView.h"
 #include "main.h"
 
-/*_anon38 cam;
-_anon9* rom;
-BH_PWORK* plp;
-_anon25* sys;
-_anon0 eff[0];
-BH_PWORK ene[0];*/
-
-// 
-// Start address: 0x27a2d0
+// 100% matching!
 void bhCheckCut(int flg)
 {
-	int p3;
-	int p2;
-	int p1;
-	int p0;
-	int pp;
-	float gpz;
-	float gpx;
-	// Line 112, Address: 0x27a2d0, Func Offset: 0
-	// Line 116, Address: 0x27a2f0, Func Offset: 0x20
-	// Line 142, Address: 0x27a300, Func Offset: 0x30
-	// Line 116, Address: 0x27a304, Func Offset: 0x34
-	// Line 142, Address: 0x27a30c, Func Offset: 0x3c
-	// Line 143, Address: 0x27a320, Func Offset: 0x50
-	// Line 144, Address: 0x27a330, Func Offset: 0x60
-	// Line 145, Address: 0x27a340, Func Offset: 0x70
-	// Line 146, Address: 0x27a348, Func Offset: 0x78
-	// Line 147, Address: 0x27a350, Func Offset: 0x80
-	// Line 146, Address: 0x27a358, Func Offset: 0x88
-	// Line 147, Address: 0x27a360, Func Offset: 0x90
-	// Line 148, Address: 0x27a378, Func Offset: 0xa8
-	// Line 149, Address: 0x27a384, Func Offset: 0xb4
-	// Line 148, Address: 0x27a390, Func Offset: 0xc0
-	// Line 149, Address: 0x27a398, Func Offset: 0xc8
-	// Line 150, Address: 0x27a3a0, Func Offset: 0xd0
-	// Line 149, Address: 0x27a3a4, Func Offset: 0xd4
-	// Line 150, Address: 0x27a3ac, Func Offset: 0xdc
-	// Line 153, Address: 0x27a3bc, Func Offset: 0xec
-	// Line 155, Address: 0x27a3e8, Func Offset: 0x118
-	// Line 156, Address: 0x27a3ec, Func Offset: 0x11c
-	// Line 157, Address: 0x27a3f4, Func Offset: 0x124
-	// Line 156, Address: 0x27a3f8, Func Offset: 0x128
-	// Line 157, Address: 0x27a3fc, Func Offset: 0x12c
-	// Line 159, Address: 0x27a408, Func Offset: 0x138
-	// Line 165, Address: 0x27a410, Func Offset: 0x140
-	// Line 162, Address: 0x27a414, Func Offset: 0x144
-	// Line 159, Address: 0x27a41c, Func Offset: 0x14c
-	// Line 160, Address: 0x27a428, Func Offset: 0x158
-	// Line 161, Address: 0x27a434, Func Offset: 0x164
-	// Line 162, Address: 0x27a440, Func Offset: 0x170
-	// Line 163, Address: 0x27a44c, Func Offset: 0x17c
-	// Line 164, Address: 0x27a458, Func Offset: 0x188
-	// Line 163, Address: 0x27a45c, Func Offset: 0x18c
-	// Line 164, Address: 0x27a464, Func Offset: 0x194
-	// Line 165, Address: 0x27a468, Func Offset: 0x198
-	// Line 166, Address: 0x27a46c, Func Offset: 0x19c
-	// Line 169, Address: 0x27a474, Func Offset: 0x1a4
-	// Line 171, Address: 0x27a47c, Func Offset: 0x1ac
-	// Line 172, Address: 0x27a484, Func Offset: 0x1b4
-	// Line 173, Address: 0x27a48c, Func Offset: 0x1bc
-	// Line 172, Address: 0x27a494, Func Offset: 0x1c4
-	// Line 173, Address: 0x27a49c, Func Offset: 0x1cc
-	// Line 174, Address: 0x27a4b4, Func Offset: 0x1e4
-	// Line 175, Address: 0x27a4c0, Func Offset: 0x1f0
-	// Line 174, Address: 0x27a4cc, Func Offset: 0x1fc
-	// Line 175, Address: 0x27a4d4, Func Offset: 0x204
-	// Line 176, Address: 0x27a4dc, Func Offset: 0x20c
-	// Line 175, Address: 0x27a4e0, Func Offset: 0x210
-	// Line 176, Address: 0x27a4e8, Func Offset: 0x218
-	// Line 178, Address: 0x27a4f8, Func Offset: 0x228
-	// Line 179, Address: 0x27a500, Func Offset: 0x230
-	// Line 178, Address: 0x27a508, Func Offset: 0x238
-	// Line 179, Address: 0x27a510, Func Offset: 0x240
-	// Line 180, Address: 0x27a520, Func Offset: 0x250
-	// Line 181, Address: 0x27a534, Func Offset: 0x264
-	// Line 182, Address: 0x27a544, Func Offset: 0x274
-	// Line 183, Address: 0x27a598, Func Offset: 0x2c8
-	// Line 184, Address: 0x27a5a0, Func Offset: 0x2d0
-	// Line 185, Address: 0x27a5b4, Func Offset: 0x2e4
-	// Line 184, Address: 0x27a5b8, Func Offset: 0x2e8
-	// Line 185, Address: 0x27a5bc, Func Offset: 0x2ec
-	// Line 186, Address: 0x27a5d4, Func Offset: 0x304
-	// Line 188, Address: 0x27a5fc, Func Offset: 0x32c
-	// Line 189, Address: 0x27a604, Func Offset: 0x334
-	// Line 190, Address: 0x27a608, Func Offset: 0x338
-	// Line 192, Address: 0x27a610, Func Offset: 0x340
-	// Line 193, Address: 0x27a614, Func Offset: 0x344
-	// Line 195, Address: 0x27a61c, Func Offset: 0x34c
-	// Line 196, Address: 0x27a638, Func Offset: 0x368
-	// Line 197, Address: 0x27a65c, Func Offset: 0x38c
-	// Line 198, Address: 0x27a680, Func Offset: 0x3b0
-	// Line 199, Address: 0x27a6a0, Func Offset: 0x3d0
-	// Line 203, Address: 0x27a6c8, Func Offset: 0x3f8
-	// Line 204, Address: 0x27a6d0, Func Offset: 0x400
-	// Line 205, Address: 0x27a728, Func Offset: 0x458
-	// Line 206, Address: 0x27a730, Func Offset: 0x460
-	// Line 210, Address: 0x27a740, Func Offset: 0x470
-	// Line 211, Address: 0x27a760, Func Offset: 0x490
-	// Line 212, Address: 0x27a768, Func Offset: 0x498
-	// Line 213, Address: 0x27a798, Func Offset: 0x4c8
-	// Line 214, Address: 0x27a7a8, Func Offset: 0x4d8
-	// Line 215, Address: 0x27a7b8, Func Offset: 0x4e8
-	// Line 218, Address: 0x27a7c0, Func Offset: 0x4f0
-	// Func End, Address: 0x27a7e4, Func Offset: 0x514
-	scePrintf("bhCheckCut - UNIMPLEMENTED!\n");
+    float gpx; 
+    float gpz; 
+    int pp;    
+    int p0;   
+    int p1;    
+    int p2;   
+    int p3;    
+    
+    sys->gm_flg &= ~0x20;
+    
+    if ((sys->sp_flg & 0x40))
+    {
+        if (!(sys->st_flg & 0x1))
+        {
+            if ((sys->gm_flg & 0x40))
+            {
+                if (flg != 0)
+                {
+                    sys->gm_flg &= ~0x800;
+                    
+                    if ((sys->st_flg & 0x800000)) 
+                    {
+                        sys->st_flg &= ~0x800000;
+                        sys->gm_flg &= ~0x80000;
+                        
+                        sys->pt_flg |= 0x1;
+                    }
+
+                    if (rom->fog_nr <= rom->fog_fr) 
+                    {
+                        rom->fog_col = 0;
+                        
+                        rom->fog_nr = 0;
+                        rom->fog_fr = -100.0f;
+                    }
+                    
+                    cam.fog_col = rom->fog_col;
+                    
+                    cam.fog_nr = rom->fog_nr;
+                    cam.fog_fr = rom->fog_fr;
+                    
+                    sys->fog_ct = 0;
+                    
+                    sys->gm_flg |= 0x10;
+                    
+                    cam.pe_ax = 0;
+                    
+                    cam.pe_pers = 11832;
+                    
+                    bhInitPlEyeCamera();
+                }
+
+                return;
+            } 
+            else 
+            {
+                if (flg != 0)
+                {
+                    sys->gm_flg &= ~0x800;
+                    
+                    if ((sys->st_flg & 0x800000)) 
+                    {
+                        sys->st_flg &= ~0x800000;
+                        sys->gm_flg &= ~0x80000;
+                        
+                        sys->pt_flg |= 0x1;
+                    }
+                    
+                    cam.ocut = cam.ncut;
+                    
+                    pp = bhCheckCutArea(plp->gpx, plp->gpz, plp->flr_no);
+                    
+                    if (pp != -1) 
+                    {
+                        cam.ncut = pp;
+                    }
+                    
+                    bhSetCut(cam.ncut, 1);
+                    
+                    cam.ocflg = rom->cutp[cam.ncut].cam[cam.camver].flg;
+                } 
+                else
+                {
+                    pp = bhCheckCutArea(plp->gpx, plp->gpz, plp->flr_no);
+                    
+                    if ((pp != -1) && (pp != cam.ncut))
+                    {
+                        if (((plp->stflg & 0x30)) || (plp->mode0 == 7))
+                        {
+                            gpx = plp->mlwP->owP->mtx[12];
+                            gpz = plp->mlwP->owP->mtx[14];
+                        } 
+                        else 
+                        {
+                            gpx = plp->gpx;
+                            gpz = plp->gpz;
+                        }
+                        
+                        p0 = bhCheckCutArea(gpx, gpz - 1.0f, plp->flr_no);
+                        p1 = bhCheckCutArea(gpx, 1.0f + gpz, plp->flr_no);
+                        p2 = bhCheckCutArea(gpx - 1.0f, gpz, plp->flr_no);
+                        p3 = bhCheckCutArea(1.0f + gpx, gpz, plp->flr_no);
+                        
+                        if ((p0 != cam.ncut) && (p1 != cam.ncut) && (p2 != cam.ncut) && (p3 != cam.ncut))
+                        {
+                            cam.ocut = cam.ncut;
+                            
+                            cam.ocflg = rom->cutp[cam.ocut].cam[cam.camver].flg;
+                            
+                            cam.ncut = pp;
+                            
+                            bhSetCut(cam.ncut, 0);
+                        }
+                    }
+                }
+                
+                if (!(cam.flg & 0x80000000))
+                {
+                    bhControlActiveCamera();
+                }
+            }
+        } 
+        else
+        {
+            switch (cam.flg & 0x46)
+            {
+            case 0x2:
+                bhControlEventCamera();
+                break;
+            case 0x4:
+                bhControlPlEyeCamera(0);
+                break;
+            case 0x40:
+                bhControlMonitorCamera();
+                break;
+            }
+        }
+    }
 }
 
 // 100% matching!
@@ -956,11 +992,11 @@ void bhCheckNearAttrOffCutRange(CUT_WORK* cp, unsigned int sft, float* px, float
     }
 }
 
-/*// 
+// 
 // Start address: 0x27cb60
 void bhControlActiveCamera()
 {
-	_anon28 sca;
+	//_anon28 sca;
 	short ahkn;
 	float hkn;
 	short aa;
@@ -975,8 +1011,8 @@ void bhControlActiveCamera()
 	float pz;
 	float py;
 	float px;
-	_anon21* ci;
-	_anon10* cp;
+	//_anon21* ci;
+	//_anon10* cp;
 	// Line 1011, Address: 0x27cb60, Func Offset: 0
 	// Line 1019, Address: 0x27cb80, Func Offset: 0x20
 	// Line 1022, Address: 0x27cb88, Func Offset: 0x28
@@ -1337,9 +1373,10 @@ void bhControlActiveCamera()
 	// Line 1394, Address: 0x27dc6c, Func Offset: 0x110c
 	// Line 1401, Address: 0x27dc90, Func Offset: 0x1130
 	// Func End, Address: 0x27dcb4, Func Offset: 0x1154
+	scePrintf("bhControlActiveCamera - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x27dcc0
 void bhSetEventCamera(int evc_no, int key_no)
 {
@@ -1704,7 +1741,7 @@ void bhInitEventCamera()
 	// Line 1701, Address: 0x27e8e8, Func Offset: 0x458
 	// Line 1702, Address: 0x27e8f8, Func Offset: 0x468
 	// Func End, Address: 0x27e908, Func Offset: 0x478
-}
+}*/
 
 // 
 // Start address: 0x27e910
@@ -1713,9 +1750,9 @@ void bhControlEventCamera()
 	float pz;
 	float px;
 	float ans[3];
-	_anon28 pos;
-	_anon17* kfp;
-	_anon5* ecp;
+	//_anon28 pos;
+	//_anon17* kfp;
+	//_anon5* ecp;
 	// Line 1709, Address: 0x27e910, Func Offset: 0
 	// Line 1718, Address: 0x27e92c, Func Offset: 0x1c
 	// Line 1720, Address: 0x27e95c, Func Offset: 0x4c
@@ -1863,9 +1900,10 @@ void bhControlEventCamera()
 	// Line 1887, Address: 0x27f3d4, Func Offset: 0xac4
 	// Line 1919, Address: 0x27f404, Func Offset: 0xaf4
 	// Func End, Address: 0x27f424, Func Offset: 0xb14
+	scePrintf("bhControlEventCamera - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x27f430
 void bhCheckEvtCamLockPosition()
 {
@@ -2099,7 +2137,7 @@ void bhGetEvtCamLockPosition(_anon17* kfp, _anon28* pos)
 	// Line 2113, Address: 0x27fcf0, Func Offset: 0x250
 	// Line 2116, Address: 0x27fd1c, Func Offset: 0x27c
 	// Func End, Address: 0x27fd28, Func Offset: 0x288
-}
+}*/
 
 // 
 // Start address: 0x27fd30
@@ -2110,7 +2148,7 @@ void bhControlPlEyeCamera(unsigned int attr)
 	short ax;
 	int ct;
 	float hkn;
-	_anon21* ci;
+	//_anon21* ci;
 	// Line 2123, Address: 0x27fd30, Func Offset: 0
 	// Line 2130, Address: 0x27fd38, Func Offset: 0x8
 	// Line 2132, Address: 0x27fd40, Func Offset: 0x10
@@ -2257,7 +2295,8 @@ void bhControlPlEyeCamera(unsigned int attr)
 	// Line 2256, Address: 0x2804b0, Func Offset: 0x780
 	// Line 2260, Address: 0x2804c4, Func Offset: 0x794
 	// Func End, Address: 0x2804d0, Func Offset: 0x7a0
-}*/
+	scePrintf("bhControlPlEyeCamera - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhInitPlEyeCamera()
