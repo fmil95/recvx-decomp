@@ -2442,48 +2442,25 @@ float bhCalcActiveYpos(_anon10* cp)
 	// Line 2423, Address: 0x280b68, Func Offset: 0x68
 	// Line 2424, Address: 0x280b88, Func Offset: 0x88
 	// Func End, Address: 0x280b90, Func Offset: 0x90
-}
-
-// 
-// Start address: 0x280b90
-short bhCalcActiveZang(_anon10* cp)
-{
-	float ag0;
-	float laz1;
-	float laz0;
-	_anon21* ci;
-	// Line 2433, Address: 0x280b90, Func Offset: 0
-	// Line 2438, Address: 0x280b98, Func Offset: 0x8
-	// Line 2443, Address: 0x280b9c, Func Offset: 0xc
-	// Line 2438, Address: 0x280ba0, Func Offset: 0x10
-	// Line 2443, Address: 0x280ba4, Func Offset: 0x14
-	// Line 2438, Address: 0x280ba8, Func Offset: 0x18
-	// Line 2433, Address: 0x280bb0, Func Offset: 0x20
-	// Line 2438, Address: 0x280bc4, Func Offset: 0x34
-	// Line 2433, Address: 0x280bc8, Func Offset: 0x38
-	// Line 2443, Address: 0x280bcc, Func Offset: 0x3c
-	// Line 2434, Address: 0x280bd4, Func Offset: 0x44
-	// Line 2435, Address: 0x280bd8, Func Offset: 0x48
-	// Line 2438, Address: 0x280bdc, Func Offset: 0x4c
-	// Line 2443, Address: 0x280be0, Func Offset: 0x50
-	// Line 2434, Address: 0x280be8, Func Offset: 0x58
-	// Line 2435, Address: 0x280bec, Func Offset: 0x5c
-	// Line 2434, Address: 0x280bf0, Func Offset: 0x60
-	// Line 2435, Address: 0x280bf4, Func Offset: 0x64
-	// Line 2438, Address: 0x280bf8, Func Offset: 0x68
-	// Line 2443, Address: 0x280bfc, Func Offset: 0x6c
-	// Line 2438, Address: 0x280c00, Func Offset: 0x70
-	// Line 2443, Address: 0x280c04, Func Offset: 0x74
-	// Line 2438, Address: 0x280c08, Func Offset: 0x78
-	// Line 2443, Address: 0x280c0c, Func Offset: 0x7c
-	// Line 2438, Address: 0x280c10, Func Offset: 0x80
-	// Line 2443, Address: 0x280c14, Func Offset: 0x84
-	// Line 2438, Address: 0x280c18, Func Offset: 0x88
-	// Line 2443, Address: 0x280c1c, Func Offset: 0x8c
-	// Line 2438, Address: 0x280c20, Func Offset: 0x90
-	// Line 2443, Address: 0x280c24, Func Offset: 0x94
-	// Func End, Address: 0x280c40, Func Offset: 0xb0
 }*/
+
+// 99.14% matching (matches on GC)
+short bhCalcActiveZang(CUT_WORK* cp)
+{
+    CAM_WRK* ci; 
+    float laz0;
+    float laz1; 
+    float ag0;  
+    
+    ci = &cp->cam[cam.camver];
+    
+    laz0 = ci->laz0;
+    laz1 = ci->laz1;
+    
+    ag0 = laz0 + ((cam.plz - cp->cz) * ((ci->laz2 - laz0) / cp->cd));
+    
+    return ag0 + ((cam.plx - cp->cx) * (((laz1 + ((cam.plz - cp->cz) * ((ci->laz3 - laz1) / cp->cd))) - ag0) / cp->cw));
+}
 
 // 100% matching!
 short bhCalcActivePers(CUT_WORK* cp)
