@@ -1764,24 +1764,42 @@ void bhDrawTrsEffect2D(unsigned int* owp, int ct)
     }
 } 
 
-// 
-// Start address: 0x21ed60
-void bhDrawThunder()
+// 100% matching!
+static void bhDrawThunder()
 {
-	int i;
-	//_anon40* p;
-	//_anon40 p1[4];
-	//_anon40 p2[4];
-	// Line 2125, Address: 0x21ed60, Func Offset: 0
-	// Line 2142, Address: 0x21ed6c, Func Offset: 0xc
-	// Line 2181, Address: 0x21ed94, Func Offset: 0x34
-	// Line 2182, Address: 0x21ed9c, Func Offset: 0x3c
-	// Line 2183, Address: 0x21eda8, Func Offset: 0x48
-	// Line 2182, Address: 0x21edb0, Func Offset: 0x50
-	// Line 2183, Address: 0x21edd4, Func Offset: 0x74
-	// Line 2185, Address: 0x21eddc, Func Offset: 0x7c
-	// Line 2187, Address: 0x21ede8, Func Offset: 0x88
-	// Line 2190, Address: 0x21edf4, Func Offset: 0x94
-	// Line 2191, Address: 0x21ee04, Func Offset: 0xa4
-	// Func End, Address: 0x21ee14, Func Offset: 0xb4
+    NJS_POLYGON_VTX* p; 
+    int i;              
+	static NJS_POLYGON_VTX p1[4] =
+    {
+        {  4.0f, 35.0f, -18.9f, 0x808080 },
+        { 51.0f, 35.0f, -18.9f, 0x808080 },
+        {  4.0f,  4.0f, -18.9f, 0x808080 },
+        { 51.0f,  4.0f, -18.9f, 0x808080 },
+    };
+	static NJS_POLYGON_VTX p2[4] = 
+    {
+        {  9.1f, 31.2f, -3.2f, 0x808080 },
+        { 51.1f, 31.2f, -3.2f, 0x808080 },
+        {  9.1f, 15.0f, -3.2f, 0x808080 },
+        { 51.1f, 15.0f, -3.2f, 0x808080 },
+    };
+    
+    if (cam.ncut == 1) 
+    {
+        p = p2;
+    } 
+    else 
+    {
+        p = p1;
+    }
+    
+    for (i = 0; i < 4; i++) 
+    {
+        p[i].col = ((sys->thunder >> 1) << 24) | (p[i].col & 0xFFFFFF);
+    } 
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njDrawPolygon3DEx(p, 4, 1);
 }
