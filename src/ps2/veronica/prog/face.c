@@ -1,8 +1,7 @@
 #include "face.h"
+#include "main.h"
 
-/*_anon23* sys;
-
-void bhInitMask(BH_PWORK* pp);
+/*void bhInitMask(BH_PWORK* pp);
 void bhControlMask(BH_PWORK* pp);
 int bhSetMask(BH_PWORK* pp, int msk_no, int frm_no);
 int bhSetLip(BH_PWORK* pp, int mls_no);
@@ -188,31 +187,44 @@ int bhSetMask(BH_PWORK* pp, int msk_no, int frm_no)
 	// Line 363, Address: 0x29876c, Func Offset: 0x8c
 	// Line 365, Address: 0x29877c, Func Offset: 0x9c
 	// Func End, Address: 0x298784, Func Offset: 0xa4
-}
+}*/
 
-// 
-// Start address: 0x298790
+// 100% matching!
 int bhSetLip(BH_PWORK* pp, int mls_no)
 {
-	int i;
-	unsigned int sz;
-	unsigned char* datp;
-	_anon11* lip;
-	// Line 406, Address: 0x298790, Func Offset: 0
-	// Line 407, Address: 0x2987a4, Func Offset: 0x14
-	// Line 408, Address: 0x2987bc, Func Offset: 0x2c
-	// Line 409, Address: 0x2987c0, Func Offset: 0x30
-	// Line 411, Address: 0x2987cc, Func Offset: 0x3c
-	// Line 410, Address: 0x2987d0, Func Offset: 0x40
-	// Line 411, Address: 0x2987d4, Func Offset: 0x44
-	// Line 413, Address: 0x2987e4, Func Offset: 0x54
-	// Line 412, Address: 0x2987e8, Func Offset: 0x58
-	// Line 415, Address: 0x2987ec, Func Offset: 0x5c
-	// Line 413, Address: 0x2987f4, Func Offset: 0x64
-	// Line 415, Address: 0x2987f8, Func Offset: 0x68
-	// Line 416, Address: 0x298800, Func Offset: 0x70
-	// Line 417, Address: 0x298804, Func Offset: 0x74
-	// Line 416, Address: 0x298808, Func Offset: 0x78
-	// Line 418, Address: 0x29880c, Func Offset: 0x7c
-	// Func End, Address: 0x298814, Func Offset: 0x84
-}*/
+    LIP_WORK* lip;        
+    unsigned char* datp; 
+    unsigned int sz;     
+    int i;              
+    
+    datp = sys->lspp;
+    
+    lip = (LIP_WORK*)pp->exp2;
+    
+    if ((datp == NULL) || (lip == NULL))
+    {
+        return 0;
+    }
+    
+    i = mls_no + 1;
+    
+    while (i--) 
+    {
+        sz = *(unsigned int*)datp;
+        
+        if (sz == -1) 
+        {
+            return 0;
+        }
+        
+        datp += 4;
+        
+        ((int*)pp->exp0)[268] = (int)datp;
+        
+        datp = &datp[sz]; 
+    }
+    
+    ((int*)pp->exp0)[3] = mls_no;
+    
+    return 1;
+}

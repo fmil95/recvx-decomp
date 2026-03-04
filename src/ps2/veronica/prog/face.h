@@ -3,6 +3,18 @@
 
 #include "types.h"
 
+typedef struct LIP_WORK 
+{
+    // total size: 0x10
+    unsigned char* top;  // offset 0x0, size 0x4
+    unsigned char* ptr;  // offset 0x4, size 0x4
+    short cnt;           // offset 0x8, size 0x2
+    short time;          // offset 0xA, size 0x2
+    unsigned char cur;   // offset 0xC, size 0x1
+    unsigned char next;  // offset 0xD, size 0x1
+    unsigned short flag; // offset 0xE, size 0x2
+} LIP_WORK;
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct cnkobj;
