@@ -1,0 +1,27 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/cpp
+{
+	"name": "RE:CVX Decomp",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"features": {
+		// Include python
+		"ghcr.io/devcontainers/features/python:1": {}
+	},
+
+	// Runs when the container is first created.
+	// Updates the apt repositories and installs the MIPS toolchains.
+	// Then downloads the wibo decompilation tool, makes it executable, and moves it to /usr/bin.
+	// Finally, create python virtual environment and install the requiremenets. Adds the command to activate the virtual environment to the bashrc file so that it is automatically activated when opening a terminal.
+	"postCreateCommand": "sudo apt update && sudo apt install -y binutils-mips-linux-gnu binutils-mipsel-linux-gnu && wget https://github.com/decompals/wibo/releases/download/1.0.0/wibo-x86_64 && chmod +x wibo-x86_64 && sudo mv wibo-x86_64 /usr/bin/wibo && python3 -m venv .venv && .venv/bin/pip install -r config/requirements.txt && echo 'source ${containerWorkspaceFolder}/.venv/bin/activate' >> ~/.bashrc",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.terminal.activateEnvironment": true
+			}
+		}
+	}
+}
