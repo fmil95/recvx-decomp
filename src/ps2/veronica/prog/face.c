@@ -157,37 +157,49 @@ void bhControlMask(BH_PWORK* pp)
 	scePrintf("bhControlMask - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2986e0
+// 100% matching!
 int bhSetMask(BH_PWORK* pp, int msk_no, int frm_no)
 {
-	int i;
-	unsigned int sz;
-	unsigned char* datp;
-	_anon2* fm;
-	// Line 347, Address: 0x2986e0, Func Offset: 0
-	// Line 351, Address: 0x2986e4, Func Offset: 0x4
-	// Line 352, Address: 0x2986e8, Func Offset: 0x8
-	// Line 351, Address: 0x2986ec, Func Offset: 0xc
-	// Line 352, Address: 0x2986f0, Func Offset: 0x10
-	// Line 353, Address: 0x298700, Func Offset: 0x20
-	// Line 354, Address: 0x29871c, Func Offset: 0x3c
-	// Line 355, Address: 0x298720, Func Offset: 0x40
-	// Line 357, Address: 0x29872c, Func Offset: 0x4c
-	// Line 356, Address: 0x298730, Func Offset: 0x50
-	// Line 357, Address: 0x298734, Func Offset: 0x54
-	// Line 359, Address: 0x298744, Func Offset: 0x64
-	// Line 358, Address: 0x298748, Func Offset: 0x68
-	// Line 361, Address: 0x29874c, Func Offset: 0x6c
-	// Line 359, Address: 0x298754, Func Offset: 0x74
-	// Line 361, Address: 0x298758, Func Offset: 0x78
-	// Line 362, Address: 0x298760, Func Offset: 0x80
-	// Line 364, Address: 0x298764, Func Offset: 0x84
-	// Line 362, Address: 0x298768, Func Offset: 0x88
-	// Line 363, Address: 0x29876c, Func Offset: 0x8c
-	// Line 365, Address: 0x29877c, Func Offset: 0x9c
-	// Func End, Address: 0x298784, Func Offset: 0xa4
-}*/
+    MASK_WORK* fm;        
+    unsigned char* datp; 
+    unsigned int sz;     
+    int i;            
+
+    fm = (MASK_WORK*)pp->exp1;
+
+    ((int*)pp->exp0)[5] = frm_no;
+    
+    datp = sys->mspp;
+    
+    if ((datp == NULL) || (fm == NULL))
+    {
+        return 0;
+    }
+    
+    i = msk_no + 1;
+    
+    while (i--) 
+    {
+        sz = *(unsigned int*)datp;
+        
+        if (sz == -1) 
+        {
+            return 0;
+        }
+        
+        datp += 4;
+        
+        ((int*)pp->exp0)[266] = (int)datp;
+        
+        datp = &datp[sz]; 
+    }
+    
+    ((int*)pp->exp0)[2] = msk_no;
+
+    ((int*)pp->exp0)[0] |= 0x8;
+    
+    return 1;
+}
 
 // 100% matching!
 int bhSetLip(BH_PWORK* pp, int mls_no)

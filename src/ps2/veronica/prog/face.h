@@ -3,6 +3,26 @@
 
 #include "types.h"
 
+typedef struct MASK_WORK 
+{
+    // total size: 0x40
+    char id[4];              // offset 0x0, size 0x4
+    unsigned short version;  // offset 0x4, size 0x2
+    unsigned short flag;     // offset 0x6, size 0x2
+    unsigned short jawId[2]; // offset 0x8, size 0x4
+    unsigned int nAttr;      // offset 0xC, size 0x4
+    unsigned int nList;      // offset 0x10, size 0x4
+    unsigned int nConnect;   // offset 0x14, size 0x4
+    unsigned int nJaw;       // offset 0x18, size 0x4
+    unsigned int nTang;      // offset 0x1C, size 0x4
+    unsigned int nFace;      // offset 0x20, size 0x4
+    unsigned int reserve[4]; // offset 0x24, size 0x10
+    char faceId;             // offset 0x34, size 0x1
+    char tangId;             // offset 0x35, size 0x1
+    char toothId;            // offset 0x36, size 0x1
+    char eyeId[9];           // offset 0x37, size 0x9
+} MASK_WORK;
+
 typedef struct LIP_WORK 
 {
     // total size: 0x10
