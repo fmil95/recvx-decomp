@@ -583,36 +583,55 @@ void bhSetHideObjLgt(int cno)
     }
 }
 
-// 
-// Start address: 0x27b710
+// 99.51% matching
 void bhSetHideObject(int offset)
-{
-	int i;
-	//npobj* obj;
-	// Line 612, Address: 0x27b710, Func Offset: 0
-	// Line 619, Address: 0x27b728, Func Offset: 0x18
-	// Line 623, Address: 0x27b754, Func Offset: 0x44
-	// Line 624, Address: 0x27b7a0, Func Offset: 0x90
-	// Line 625, Address: 0x27b7a8, Func Offset: 0x98
-	// Line 626, Address: 0x27b7b4, Func Offset: 0xa4
-	// Line 627, Address: 0x27b7c8, Func Offset: 0xb8
-	// Line 628, Address: 0x27b7d0, Func Offset: 0xc0
-	// Line 629, Address: 0x27b7d8, Func Offset: 0xc8
-	// Line 632, Address: 0x27b7ec, Func Offset: 0xdc
-	// Line 633, Address: 0x27b808, Func Offset: 0xf8
-	// Line 637, Address: 0x27b814, Func Offset: 0x104
-	// Line 638, Address: 0x27b874, Func Offset: 0x164
-	// Line 639, Address: 0x27b87c, Func Offset: 0x16c
-	// Line 640, Address: 0x27b888, Func Offset: 0x178
-	// Line 641, Address: 0x27b89c, Func Offset: 0x18c
-	// Line 642, Address: 0x27b8a4, Func Offset: 0x194
-	// Line 643, Address: 0x27b8ac, Func Offset: 0x19c
-	// Line 645, Address: 0x27b8bc, Func Offset: 0x1ac
-	// Line 643, Address: 0x27b8c0, Func Offset: 0x1b0
-	// Line 646, Address: 0x27b8c4, Func Offset: 0x1b4
-	// Line 648, Address: 0x27b8e0, Func Offset: 0x1d0
-	// Func End, Address: 0x27b8fc, Func Offset: 0x1ec
-	scePrintf("bhSetHideObject - UNIMPLEMENTED!\n");
+{   
+    NJS_CNK_OBJECT* obj; 
+    int i;               
+    unsigned int* flg; // not from DWARF
+
+    if (((sys->st_flg & 0x1)) && ((cam.flg & 0x2)))
+    {
+        flg = &rom->evcp[cam.evc_no].keyf[cam.keyf_no].hidobj[offset]; 
+        
+        for (i = 0; i < (int)rom->mdl.obj_num; i++)
+        {
+            obj = &rom->mdl.objP[i];
+
+            if (obj->model != NULL)
+            {
+                if (bhCkFlg(flg, i) != 0)
+                {
+                    obj->evalflags |= 0x8;
+                }
+                else
+                {
+                    obj->evalflags &= ~0x8;
+                }
+            }
+        }
+    }
+    else 
+    {
+        flg = &rom->cutp[cam.ncut].cam[cam.camver].hidobj[offset]; 
+      
+        for (i = 0; i < (int)rom->mdl.obj_num; i++)
+        {
+            obj = &rom->mdl.objP[i];
+    
+            if (obj->model != NULL)
+            {
+                if (bhCkFlg(flg, i) != 0)
+                {
+                    obj->evalflags |= 0x8;
+                }
+                else
+                {
+                    obj->evalflags &= ~0x8;
+                }
+            }
+        }
+    }
 }
 
 // 
