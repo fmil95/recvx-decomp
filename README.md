@@ -32,7 +32,9 @@ Next you have to place your copy of the SLUS_201.84 file in the config folder. T
 
 ### With Dev Container
 
-If you're using an IDE that supports dev containers, such as Visual Studio Code, you can simply open the repository with as a dev container. 
+If you're using an IDE that supports [dev containers](https://containers.dev/), such as Visual Studio Code, you can simply open the repository with as a dev container. 
+
+You will need to have [Docker](https://www.docker.com/) or [Podman](https://podman.io/) installed and running on your machine to open a dev container.
 
 ### Without Dev Container
 
