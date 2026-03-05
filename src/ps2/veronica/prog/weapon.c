@@ -1,5 +1,6 @@
 #include "weapon.h"
 #include "effect.h"
+#include "ps2_NaMatrix.h"
 #include "main.h"
 
 /*short EneDamNear[22][31];
@@ -1468,64 +1469,69 @@ void bhSetExplosion(_anon1* pos)
 	// Line 1789, Address: 0x28e444, Func Offset: 0x464
 	// Line 1790, Address: 0x28e454, Func Offset: 0x474
 	// Func End, Address: 0x28e464, Func Offset: 0x484
-}
-
-// 
-// Start address: 0x28e470
-void bhSetExplosionEffect(_anon1* pos)
-{
-	int i;
-	_anon1 vc1;
-	_anon1 vc0;
-	// Line 1799, Address: 0x28e470, Func Offset: 0
-	// Line 1803, Address: 0x28e47c, Func Offset: 0xc
-	// Line 1811, Address: 0x28e484, Func Offset: 0x14
-	// Line 1803, Address: 0x28e488, Func Offset: 0x18
-	// Line 1811, Address: 0x28e48c, Func Offset: 0x1c
-	// Line 1804, Address: 0x28e490, Func Offset: 0x20
-	// Line 1803, Address: 0x28e494, Func Offset: 0x24
-	// Line 1804, Address: 0x28e4a0, Func Offset: 0x30
-	// Line 1808, Address: 0x28e4a8, Func Offset: 0x38
-	// Line 1816, Address: 0x28e4ac, Func Offset: 0x3c
-	// Line 1804, Address: 0x28e4b8, Func Offset: 0x48
-	// Line 1805, Address: 0x28e4c4, Func Offset: 0x54
-	// Line 1806, Address: 0x28e4d8, Func Offset: 0x68
-	// Line 1807, Address: 0x28e4ec, Func Offset: 0x7c
-	// Line 1808, Address: 0x28e500, Func Offset: 0x90
-	// Line 1809, Address: 0x28e514, Func Offset: 0xa4
-	// Line 1810, Address: 0x28e528, Func Offset: 0xb8
-	// Line 1811, Address: 0x28e53c, Func Offset: 0xcc
-	// Line 1812, Address: 0x28e564, Func Offset: 0xf4
-	// Line 1813, Address: 0x28e58c, Func Offset: 0x11c
-	// Line 1814, Address: 0x28e5b4, Func Offset: 0x144
-	// Line 1815, Address: 0x28e5c8, Func Offset: 0x158
-	// Line 1816, Address: 0x28e5dc, Func Offset: 0x16c
-	// Line 1818, Address: 0x28e5f4, Func Offset: 0x184
-	// Line 1819, Address: 0x28e5f8, Func Offset: 0x188
-	// Line 1820, Address: 0x28e600, Func Offset: 0x190
-	// Line 1821, Address: 0x28e608, Func Offset: 0x198
-	// Line 1822, Address: 0x28e614, Func Offset: 0x1a4
-	// Line 1825, Address: 0x28e618, Func Offset: 0x1a8
-	// Line 1821, Address: 0x28e61c, Func Offset: 0x1ac
-	// Line 1822, Address: 0x28e628, Func Offset: 0x1b8
-	// Line 1823, Address: 0x28e63c, Func Offset: 0x1cc
-	// Line 1824, Address: 0x28e650, Func Offset: 0x1e0
-	// Line 1825, Address: 0x28e664, Func Offset: 0x1f4
-	// Line 1826, Address: 0x28e674, Func Offset: 0x204
-	// Line 1827, Address: 0x28e6b8, Func Offset: 0x248
-	// Line 1828, Address: 0x28e6d8, Func Offset: 0x268
-	// Line 1829, Address: 0x28e6e8, Func Offset: 0x278
-	// Line 1830, Address: 0x28e73c, Func Offset: 0x2cc
-	// Line 1831, Address: 0x28e788, Func Offset: 0x318
-	// Line 1830, Address: 0x28e78c, Func Offset: 0x31c
-	// Line 1831, Address: 0x28e794, Func Offset: 0x324
-	// Line 1832, Address: 0x28e79c, Func Offset: 0x32c
-	// Line 1833, Address: 0x28e7c8, Func Offset: 0x358
-	// Line 1834, Address: 0x28e7d8, Func Offset: 0x368
-	// Line 1835, Address: 0x28e7fc, Func Offset: 0x38c
-	// Line 1836, Address: 0x28e80c, Func Offset: 0x39c
-	// Func End, Address: 0x28e81c, Func Offset: 0x3ac
 }*/
+
+// 99.91% matching
+void bhSetExplosionEffect(NJS_POINT3* pos) 
+{
+    NJS_VECTOR vc0; 
+    NJS_VECTOR vc1; 
+    int i;         
+
+    sys->ef.id = 23;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.type = 1;
+    
+    sys->ef.mdlver = 1;
+    
+    sys->ef.flr_no = 0;
+    
+    sys->ef.sx = 6.0f;
+    sys->ef.sy = 6.0f;
+    sys->ef.sz = 6.0f;
+    
+    sys->ef.px = pos->x - (4.0f * cam.vx);
+    sys->ef.py = pos->y - (4.0f * cam.vy);
+    sys->ef.pz = pos->z - (4.0f * cam.vz);
+    
+    sys->ef.ay = 0;
+    sys->ef.ax = 0;
+    
+    bhSetEffectTb((EF_WORK*)&sys->ef, NULL, 0, 0);
+    
+    for (i = 0; i < 2; i++)
+    {
+        vc0.y = 0;
+        vc0.x = 0;
+        vc0.z = -2;
+        
+        sys->ef.id = 24;
+        
+        sys->ef.flg = 1;
+        
+        sys->ef.type = 0;
+        
+        sys->ef.mdlver = 1;
+        
+        sys->ef.flr_no = i & 0x3;
+        
+        sys->ef.sx = 1.0f + (-rand() / -2.1474836e9f);
+        sys->ef.sy = sys->ef.sx;
+        sys->ef.sz = 0;
+        
+        sys->ef.ay = 182.04445f * (360.0f * (-rand() / -2.1474836e9f));
+        sys->ef.ax = 182.04445f * (80.0f * (-rand() / -2.1474836e9f));
+        
+        njUnitMatrix(NULL);
+        njRotateXYZ(NULL, sys->ef.ax, sys->ef.ay, 0);
+        
+        njCalcVector(NULL, &vc0, &vc1);
+        
+        bhSetEffectTb((EF_WORK*)&sys->ef, &vc1, NULL, 0);
+    }
+}
 
 // 100% matching!
 void bhSetExplosionEffectEx(NJS_POINT3* pos, float scl)
