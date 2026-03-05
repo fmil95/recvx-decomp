@@ -1,68 +1,78 @@
 #include "face.h"
+#include "pwksub.h"
 #include "main.h"
 
-/*void bhInitMask(BH_PWORK* pp);
-void bhControlMask(BH_PWORK* pp);
-int bhSetMask(BH_PWORK* pp, int msk_no, int frm_no);
-int bhSetLip(BH_PWORK* pp, int mls_no);
-
-// 
-// Start address: 0x297fd0
+// 100% matching!
 void bhInitMask(BH_PWORK* pp)
 {
-	int i;
-	_anon2* fm;
-	// Line 61, Address: 0x297fd0, Func Offset: 0
-	// Line 66, Address: 0x297fe0, Func Offset: 0x10
-	// Line 68, Address: 0x297ff0, Func Offset: 0x20
-	// Line 70, Address: 0x298000, Func Offset: 0x30
-	// Line 73, Address: 0x298014, Func Offset: 0x44
-	// Line 74, Address: 0x298020, Func Offset: 0x50
-	// Line 75, Address: 0x298030, Func Offset: 0x60
-	// Line 76, Address: 0x298044, Func Offset: 0x74
-	// Line 77, Address: 0x298058, Func Offset: 0x88
-	// Line 78, Address: 0x29806c, Func Offset: 0x9c
-	// Line 79, Address: 0x298080, Func Offset: 0xb0
-	// Line 80, Address: 0x298090, Func Offset: 0xc0
-	// Line 84, Address: 0x298098, Func Offset: 0xc8
-	// Line 85, Address: 0x2980a0, Func Offset: 0xd0
-	// Line 86, Address: 0x2980a4, Func Offset: 0xd4
-	// Line 85, Address: 0x2980ac, Func Offset: 0xdc
-	// Line 86, Address: 0x2980b4, Func Offset: 0xe4
-	// Line 87, Address: 0x2980bc, Func Offset: 0xec
-	// Line 88, Address: 0x2980c4, Func Offset: 0xf4
-	// Line 90, Address: 0x2980cc, Func Offset: 0xfc
-	// Line 89, Address: 0x2980d0, Func Offset: 0x100
-	// Line 90, Address: 0x2980d4, Func Offset: 0x104
-	// Line 94, Address: 0x2980e4, Func Offset: 0x114
-	// Line 95, Address: 0x2980f0, Func Offset: 0x120
-	// Line 96, Address: 0x298100, Func Offset: 0x130
-	// Line 97, Address: 0x29810c, Func Offset: 0x13c
-	// Line 98, Address: 0x298118, Func Offset: 0x148
-	// Line 101, Address: 0x298130, Func Offset: 0x160
-	// Line 102, Address: 0x298144, Func Offset: 0x174
-	// Line 103, Address: 0x298158, Func Offset: 0x188
-	// Line 104, Address: 0x29816c, Func Offset: 0x19c
-	// Line 105, Address: 0x298180, Func Offset: 0x1b0
-	// Line 106, Address: 0x298194, Func Offset: 0x1c4
-	// Line 107, Address: 0x2981a8, Func Offset: 0x1d8
-	// Line 108, Address: 0x2981bc, Func Offset: 0x1ec
-	// Line 109, Address: 0x2981d0, Func Offset: 0x200
-	// Line 112, Address: 0x2981e4, Func Offset: 0x214
-	// Line 114, Address: 0x2981ec, Func Offset: 0x21c
-	// Line 115, Address: 0x2981f4, Func Offset: 0x224
-	// Line 118, Address: 0x298204, Func Offset: 0x234
-	// Line 122, Address: 0x298208, Func Offset: 0x238
-	// Line 118, Address: 0x29820c, Func Offset: 0x23c
-	// Line 119, Address: 0x298210, Func Offset: 0x240
-	// Line 120, Address: 0x298218, Func Offset: 0x248
-	// Line 121, Address: 0x298220, Func Offset: 0x250
-	// Line 122, Address: 0x298228, Func Offset: 0x258
-	// Line 123, Address: 0x298230, Func Offset: 0x260
-	// Line 124, Address: 0x298238, Func Offset: 0x268
-	// Line 125, Address: 0x29823c, Func Offset: 0x26c
-	// Func End, Address: 0x298250, Func Offset: 0x280
-}*/
+    int i;
+    int j; // not from DWARF
+	MASK_WORK* fm;
+
+    pp->exp0 = bhGetFreeMemory(1092, 32);
+    pp->exp1 = bhGetFreeMemory(sizeof(MASK_WORK), 32);
+    pp->exp2 = bhGetFreeMemory(sizeof(LIP_WORK), 32);
+
+    if (pp->mskp == NULL) 
+    {
+        pp->mdflg &= ~0x100;
+        
+        pp->mlwP->owP[6].flg |= 0x4;
+        pp->mlwP->owP[7].flg |= 0x4;
+        pp->mlwP->owP[8].flg |= 0x4;
+        pp->mlwP->owP[9].flg |= 0x4;
+        pp->mlwP->owP[10].flg |= 0x4;
+        return;
+    }
+    
+    for (i = 0, j = 0; i < 256; j += 4) 
+    {
+        i++;
+        
+        ((int*)&pp->exp0[j])[9] = 0; 
+    } 
+    
+    ((int*)pp->exp0)[2] = 0;
+    ((int*)pp->exp0)[5] = 0;
+    
+    fm = (MASK_WORK*)pp->exp1;
+    
+    fmCnkInitContext(fm, pp->mskp, pp->mlwP->objP, pp->mlwP);
+    
+    fmCnkSetMode(fm, 1);
+    
+    ((int*)pp->exp0)[8] = fm->head->nFace;
+    
+    ((int*)pp->exp0)[265] = (unsigned int)fm->face; 
+    ((int*)pp->exp0)[267] = (unsigned int)fm->face; 
+    
+    *(int*)(&pp->exp0[(*(int*)(pp->exp0 + 8)) * 4] + 36) = (int)fm->list;
+    
+    pp->mlwP->owP[6].flg |= 0x4;
+    pp->mlwP->owP[7].flg |= 0x4;
+    pp->mlwP->owP[8].flg |= 0x4;
+    pp->mlwP->owP[9].flg |= 0x4;
+    pp->mlwP->owP[10].flg |= 0x4;
+    pp->mlwP->owP[11].flg |= 0x4;
+    pp->mlwP->owP[12].flg |= 0x4;
+    pp->mlwP->owP[13].flg |= 0x4;
+    pp->mlwP->owP[14].flg |= 0x4;
+    
+    ((int*)pp->exp0)[3] = 0;
+    
+    ((LIP_WORK*)pp->exp2)->flag = 0;
+    
+    bhSetLip(pp, ((int*)pp->exp0)[3]);
+    
+    ((int*)pp->exp0)[0] = 0;
+    ((int*)pp->exp0)[4] = 0;
+    ((int*)pp->exp0)[6] = 0;
+    ((int*)pp->exp0)[7] = 0;
+    ((int*)pp->exp0)[1] = 1;
+    ((int*)pp->exp0)[272] = 0;
+    
+    pp->ko_num = 0;
+}
 
 // 
 // Start address: 0x298250

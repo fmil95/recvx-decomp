@@ -1,4 +1,5 @@
 #include "face_bh.h"
+#include "face.h"
 
 /*void fmSetLipSyncParam(_anon2* fm, _anon4* base, _anon9* lip, unsigned int mask);
 void _fmSetObjP(_anon5* mlwP);
@@ -404,19 +405,19 @@ void _fmCnkSetJaw(_anon2* fm, unsigned int v0, unsigned int v1)
 	// Line 857, Address: 0x299414, Func Offset: 0x194
 	// Line 859, Address: 0x29941c, Func Offset: 0x19c
 	// Func End, Address: 0x299448, Func Offset: 0x1c8
-}
+}*/
 
 // 
 // Start address: 0x299450
-void fmCnkInitContext(_anon2* fm, void* data, cnkobj* root, _anon5* mlwP)
+void fmCnkInitContext(MASK_WORK* fm, void* data, NJS_CNK_OBJECT* root, ML_WORK* mlwP)
 {
 	unsigned int vofs;
-	cnkobj* obj;
+	NJS_CNK_OBJECT* obj;
 	int j;
 	int i;
 	int* dvp;
 	unsigned int* nlist;
-	_anon6* vlist;
+	//_anon6* vlist;
 	// Line 937, Address: 0x299450, Func Offset: 0
 	// Line 945, Address: 0x299470, Func Offset: 0x20
 	// Line 947, Address: 0x299484, Func Offset: 0x34
@@ -464,9 +465,10 @@ void fmCnkInitContext(_anon2* fm, void* data, cnkobj* root, _anon5* mlwP)
 	// Line 999, Address: 0x2996a0, Func Offset: 0x250
 	// Line 1000, Address: 0x2996a8, Func Offset: 0x258
 	// Func End, Address: 0x2996c4, Func Offset: 0x274
+	scePrintf("fmCnkInitContext - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2996d0
 void fmCnkSetParam(_anon2* fm, _anon4* param)
 {
@@ -1037,11 +1039,11 @@ void fmCnkCalcFace(_anon2* fm)
 	// Line 2853, Address: 0x29a7e8, Func Offset: 0x48
 	// Line 2856, Address: 0x29a7f0, Func Offset: 0x50
 	// Func End, Address: 0x29a800, Func Offset: 0x60
-}
+}*/
 
 // 
 // Start address: 0x29a800
-void fmCnkSetMode(_anon2* fm, unsigned int mode)
+void fmCnkSetMode(MASK_WORK* fm, unsigned int mode)
 {
 	float* dnp;
 	float* snp;
@@ -1063,5 +1065,5 @@ void fmCnkSetMode(_anon2* fm, unsigned int mode)
 	// Line 2908, Address: 0x29a860, Func Offset: 0x60
 	// Line 2912, Address: 0x29a868, Func Offset: 0x68
 	// Func End, Address: 0x29a870, Func Offset: 0x70
-}*/
-
+	scePrintf("fmCnkSetMode - UNIMPLEMENTED!\n");
+}

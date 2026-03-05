@@ -1,6 +1,8 @@
 #ifndef _FACE_BH_H_
 #define _FACE_BH_H_
 
+#include "types.h"
+
 /*typedef struct _anon0;
 typedef struct cnkobj;
 typedef struct _anon1;
