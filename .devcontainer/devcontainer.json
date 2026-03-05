@@ -1,0 +1,30 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/cpp
+{
+	"name": "RE:CVX Decomp",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"features": {
+		// Include python
+		"ghcr.io/devcontainers/features/python:1": {}
+	},
+
+	// Runs when the container is first created.
+	// Creates a virtual environment, installs dependencies, and configures the terminal to activate the environment on startup.
+	"postCreateCommand": "python3 -m venv .venv && .venv/bin/pip install -r config/requirements.txt && echo '. ${containerWorkspaceFolder}/.venv/bin/activate' >> ~/.bashrc && echo '. ${containerWorkspaceFolder}/.venv/bin/activate' >> ~/.zshrc",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.terminal.activateEnvironment": true,
+				"python.terminal.activateEnvInCurrentTerminal": true,
+				"python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python"
+			},
+			"extensions": [
+				"ms-vscode.cpptools"
+			]
+		}
+	}
+}

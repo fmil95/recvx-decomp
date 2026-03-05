@@ -23,22 +23,36 @@ Additionally, this project also consists of reverse-engineering the CRI Middlewa
 
 ## Building
 
-Requisites:
-- Python
-- MIPS Binutils
-- wibo (if using Linux, for running Windows binaries)
-
 The very first step should be to clone the repository: 
 ```
 git clone --recursive https://github.com/fmil95/recvx-decomp.git
 ```
 
-Next you have to place your copy of the SLUS_201.84 file in the config folder, and afterwards install splat with the following command: 
+Next you have to place your copy of the SLUS_201.84 file in the config folder. The setup now depends on whether you want to use a dev container or not.
+
+### With Dev Container
+
+If you're using an IDE that supports [dev containers](https://containers.dev/), such as Visual Studio Code, you can simply open the repository with as a dev container. 
+
+You will need to have [Docker](https://www.docker.com/) or [Podman](https://podman.io/) installed and running on your machine to open a dev container.
+
+### Without Dev Container
+
+Requisites:
+- Python
+- MIPS Binutils
+- wibo (if using Linux, for running Windows binaries)
+
+Install splat with the following command: 
 ```
 pip install -r config/requirements.txt
 ```
 
-Once that is done, you can use the following command to setup objdiff:
+---
+
+**Follow these instructions after entering the dev container or installing the requisites:**
+
+Use the following command to setup objdiff:
 ```
 python compile.py --setup
 ```
