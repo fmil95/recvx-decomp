@@ -23,11 +23,11 @@ void _fmCnkCalcEye(_anon2* fm);
 void _fmCnkCalcTang(_anon2* fm);
 void _fmCnkCalcNormal(_anon2* fm);
 void fmCnkCalcFace(_anon2* fm);
-void fmCnkSetMode(_anon2* fm, unsigned int mode);
+void fmCnkSetMode(_anon2* fm, unsigned int mode);*/
 
 // 
 // Start address: 0x298820
-void fmSetLipSyncParam(_anon2* fm, _anon4* base, _anon9* lip, unsigned int mask)
+void fmSetLipSyncParam(MASK_WORK* fm, PARAM_WORK* base, LIP_WORK* lip, unsigned int mask)
 {
 	float level;
 	float rate;
@@ -61,9 +61,10 @@ void fmSetLipSyncParam(_anon2* fm, _anon4* base, _anon9* lip, unsigned int mask)
 	// Line 94, Address: 0x2989b0, Func Offset: 0x190
 	// Line 96, Address: 0x2989bc, Func Offset: 0x19c
 	// Func End, Address: 0x2989cc, Func Offset: 0x1ac
+	scePrintf("fmSetLipSyncParam - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2989d0
 void _fmSetObjP(_anon5* mlwP)
 {
@@ -559,11 +560,11 @@ void fmCnkSetInterParamLip(_anon2* fm, _anon4* p1, _anon4* p2, float t, float lv
 	// Line 1364, Address: 0x299b50, Func Offset: 0x1d0
 	// Line 1365, Address: 0x299b6c, Func Offset: 0x1ec
 	// Func End, Address: 0x299b8c, Func Offset: 0x20c
-}
+}*/
 
 // 
 // Start address: 0x299b90
-void fmCnkSetCurrentFrame(_anon2* fm, float frame)
+void fmCnkSetCurrentFrame(MASK_WORK* fm, float frame)
 {
 	unsigned int key;
 	int i;
@@ -581,18 +582,20 @@ void fmCnkSetCurrentFrame(_anon2* fm, float frame)
 	// Line 1400, Address: 0x299c58, Func Offset: 0xc8
 	// Line 1402, Address: 0x299cd8, Func Offset: 0x148
 	// Func End, Address: 0x299cfc, Func Offset: 0x16c
+	scePrintf("fmCnkSetCurrentFrame - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x299d00
-unsigned int fmCnkGetLastFrame(_anon2* fm)
+unsigned int fmCnkGetLastFrame(MASK_WORK* fm)
 {
 	// Line 1409, Address: 0x299d00, Func Offset: 0
 	// Line 1410, Address: 0x299d20, Func Offset: 0x20
 	// Func End, Address: 0x299d28, Func Offset: 0x28
+	scePrintf("fmCnkGetLastFrame - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x299d30
 void _fmCnkCalcMuscle(_anon2* fm)
 {
@@ -1023,11 +1026,11 @@ void _fmCnkCalcNormal(_anon2* fm)
 	// Line 2714, Address: 0x29a758, Func Offset: 0x108
 	// Line 2715, Address: 0x29a76c, Func Offset: 0x11c
 	// Func End, Address: 0x29a79c, Func Offset: 0x14c
-}
+}*/
 
 // 
 // Start address: 0x29a7a0
-void fmCnkCalcFace(_anon2* fm)
+void fmCnkCalcFace(MASK_WORK* fm)
 {
 	// Line 2813, Address: 0x29a7a0, Func Offset: 0
 	// Line 2814, Address: 0x29a7ac, Func Offset: 0xc
@@ -1039,7 +1042,8 @@ void fmCnkCalcFace(_anon2* fm)
 	// Line 2853, Address: 0x29a7e8, Func Offset: 0x48
 	// Line 2856, Address: 0x29a7f0, Func Offset: 0x50
 	// Func End, Address: 0x29a800, Func Offset: 0x60
-}*/
+	scePrintf("fmCnkCalcFace - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x29a800
