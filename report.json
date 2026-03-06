@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 22.79138,
+    "fuzzy_match_percent": 22.791916,
     "total_code": "1904472",
-    "matched_code": "370276",
-    "matched_code_percent": 19.44245,
+    "matched_code": "371436",
+    "matched_code_percent": 19.503359,
     "total_data": "28420060",
     "matched_data": "15261348",
     "matched_data_percent": 53.699215,
     "total_functions": 4529,
-    "matched_functions": 1947,
-    "matched_functions_percent": 42.989624,
+    "matched_functions": 1948,
+    "matched_functions_percent": 43.0117,
     "total_units": 199
   },
   "units": [
@@ -16946,7 +16946,7 @@
     {
       "name": "ps2/veronica/prog/ps2_SaveScreen",
       "measures": {
-        "fuzzy_match_percent": 98.99695,
+        "fuzzy_match_percent": 98.92294,
         "total_code": "11784",
         "matched_code": "8836",
         "matched_code_percent": 74.98303,
@@ -16985,7 +16985,7 @@
         {
           "name": ".text",
           "size": "12176",
-          "fuzzy_match_percent": 98.99695,
+          "fuzzy_match_percent": 98.92294,
           "metadata": {}
         },
         {
@@ -17004,7 +17004,7 @@
         {
           "name": "DispMessageSelect",
           "size": "1520",
-          "fuzzy_match_percent": 93.52631,
+          "fuzzy_match_percent": 92.95263,
           "metadata": {},
           "address": "240"
         },
@@ -18216,7 +18216,7 @@
     {
       "name": "ps2/veronica/prog/ps2_LoadScreen",
       "measures": {
-        "fuzzy_match_percent": 99.706566,
+        "fuzzy_match_percent": 99.823494,
         "total_code": "7252",
         "matched_code": "6236",
         "matched_code_percent": 85.990074,
@@ -18252,7 +18252,7 @@
         {
           "name": ".text",
           "size": "7552",
-          "fuzzy_match_percent": 99.706566,
+          "fuzzy_match_percent": 99.823494,
           "metadata": {}
         },
         {
@@ -18271,7 +18271,7 @@
         {
           "name": "DispLoadMessageSelect",
           "size": "672",
-          "fuzzy_match_percent": 98.24405,
+          "fuzzy_match_percent": 99.50595,
           "metadata": {},
           "address": "224"
         },
@@ -22322,14 +22322,14 @@
     {
       "name": "ps2/veronica/prog/face",
       "measures": {
-        "fuzzy_match_percent": 99.51336,
+        "fuzzy_match_percent": 100.0,
         "total_code": "2096",
-        "matched_code": "936",
-        "matched_code_percent": 44.656487,
+        "matched_code": "2096",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 4,
-        "matched_functions": 3,
-        "matched_functions_percent": 75.0,
+        "matched_functions": 4,
+        "matched_functions_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -22345,7 +22345,7 @@
         {
           "name": ".text",
           "size": "2128",
-          "fuzzy_match_percent": 99.51336,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -22364,7 +22364,7 @@
         {
           "name": "bhControlMask",
           "size": "1160",
-          "fuzzy_match_percent": 99.12069,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "640"
         },
@@ -24806,7 +24806,7 @@
     {
       "name": "ps2/veronica/prog/adv",
       "measures": {
-        "fuzzy_match_percent": 98.14727,
+        "fuzzy_match_percent": 98.14806,
         "total_code": "30176",
         "matched_code": "15760",
         "matched_code_percent": 52.226936,
@@ -24848,7 +24848,7 @@
         {
           "name": ".text",
           "size": "30624",
-          "fuzzy_match_percent": 98.14727,
+          "fuzzy_match_percent": 98.14806,
           "metadata": {}
         },
         {
@@ -25406,7 +25406,7 @@
         {
           "name": "DisplayOptionPlateLevel2",
           "size": "2844",
-          "fuzzy_match_percent": 98.80169,
+          "fuzzy_match_percent": 98.81013,
           "metadata": {},
           "address": "24592"
         },
@@ -39287,16 +39287,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 19.26439,
+        "fuzzy_match_percent": 19.26495,
         "total_code": "1820460",
-        "matched_code": "292104",
-        "matched_code_percent": 16.045614,
+        "matched_code": "293264",
+        "matched_code_percent": 16.109335,
         "total_data": "28328660",
         "matched_data": "15225556",
         "matched_data_percent": 53.74612,
         "total_functions": 3834,
-        "matched_functions": 1273,
-        "matched_functions_percent": 33.202923,
+        "matched_functions": 1274,
+        "matched_functions_percent": 33.229004,
         "total_units": 151
       }
     },

@@ -1,4 +1,5 @@
 #include "face.h"
+#include "face_bh.h"
 #include "pwksub.h"
 #include "main.h"
 
@@ -74,7 +75,7 @@ void bhInitMask(BH_PWORK* pp)
     pp->ko_num = 0;
 }
 
-// 99.88% matching
+// 100% matching!
 void bhControlMask(BH_PWORK* pp)
 {
     MASK_WORK* fm; 
@@ -179,11 +180,11 @@ void bhControlMask(BH_PWORK* pp)
             {
                 ((int*)pp->exp0)[6]++;
                 
-                if (((int*)pp->exp0)[7] <= ((int*)pp->exp0)[6])
+                if (((int*)pp->exp0)[6] >= ((int*)pp->exp0)[7])
                 {
                     if (!(((unsigned int*)pp->exp0)[0] & 0x2)) 
                     {
-                        ((int*)pp->exp0)[6] = (int)pp->exp0 - 1;
+                        ((int*)pp->exp0)[6] = ((int*)pp->exp0)[7] - 1;
                         
                         if (((int*)pp->exp0)[6] < 0) 
                         {

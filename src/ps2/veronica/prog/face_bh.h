@@ -3,7 +3,31 @@
 
 #include "types.h"
 
-/*typedef struct _anon0;
+/*void fmSetLipSyncParam(_anon2* fm, _anon4* base, _anon9* lip, unsigned int mask);
+void _fmSetObjP(_anon5* mlwP);
+cnkobj* _fmCnkSearchObject(_anon2* fm, cnkobj* root, char id);
+void _fmGetVChunkType(_anon2* fm);
+void _fmCnkSetFaceObject(_anon2* fm, cnkobj* face);
+void _fmCnkSetEyeballObject(_anon2* fm, unsigned int id, cnkobj* eye, cnkobj* root);
+void _fmCnkSetTangObject(_anon2* fm, cnkobj* tang);
+void _fmCnkSetToothObject(_anon2* fm, cnkobj* tooth);
+void _fmCnkSetJaw(_anon2* fm, unsigned int v0, unsigned int v1);
+void fmCnkInitContext(_anon2* fm, void* data, cnkobj* root, _anon5* mlwP);
+void fmCnkSetParam(_anon2* fm, _anon4* param);
+void fmCnkSetParamLip(_anon2* fm, _anon4* param, unsigned int flag);
+void fmCnkSetInterParam(_anon2* fm, _anon4* p1, _anon4* p2, float t, float lv, unsigned int mask);
+void fmCnkSetInterParamLip(_anon2* fm, _anon4* p1, _anon4* p2, float t, float lv, unsigned int mask);*/
+void fmCnkSetCurrentFrame(MASK_WORK* fm, float frame);
+/*unsigned int fmCnkGetLastFrame(_anon2* fm);
+void _fmCnkCalcMuscle(_anon2* fm);
+void _fmCnkCalcJaw(_anon2* fm);
+void _fmCnkCalcEye(_anon2* fm);
+void _fmCnkCalcTang(_anon2* fm);
+void _fmCnkCalcNormal(_anon2* fm);
+void fmCnkCalcFace(_anon2* fm);
+void fmCnkSetMode(_anon2* fm, unsigned int mode);
+
+typedef struct _anon0;
 typedef struct cnkobj;
 typedef struct _anon1;
 typedef struct _anon2;
