@@ -4,6 +4,7 @@
 #include "flag.h"
 #include "ps2_event.h"
 #include "ps2_NaMath.h"
+#include "ps2_NaMatrix.h"
 #include "ps2_NaView.h"
 #include "main.h"
 
@@ -2115,48 +2116,86 @@ void bhCheckEvtCamLockPosition()
 	// Line 2065, Address: 0x27fa50, Func Offset: 0x620
 	// Line 2066, Address: 0x27fa60, Func Offset: 0x630
 	// Func End, Address: 0x27fa9c, Func Offset: 0x66c
-}
-
-// 
-// Start address: 0x27faa0
-void bhGetEvtCamLockPosition(_anon17* kfp, _anon28* pos)
-{
-	_anon3* psp;
-	BH_PWORK* pwp;
-	// Line 2070, Address: 0x27faa0, Func Offset: 0
-	// Line 2075, Address: 0x27faa8, Func Offset: 0x8
-	// Line 2077, Address: 0x27fad4, Func Offset: 0x34
-	// Line 2078, Address: 0x27fad8, Func Offset: 0x38
-	// Line 2079, Address: 0x27fadc, Func Offset: 0x3c
-	// Line 2081, Address: 0x27fae4, Func Offset: 0x44
-	// Line 2082, Address: 0x27fb04, Func Offset: 0x64
-	// Line 2083, Address: 0x27fb24, Func Offset: 0x84
-	// Line 2085, Address: 0x27fb2c, Func Offset: 0x8c
-	// Line 2086, Address: 0x27fb4c, Func Offset: 0xac
-	// Line 2087, Address: 0x27fb78, Func Offset: 0xd8
-	// Line 2089, Address: 0x27fb80, Func Offset: 0xe0
-	// Line 2090, Address: 0x27fba0, Func Offset: 0x100
-	// Line 2091, Address: 0x27fbcc, Func Offset: 0x12c
-	// Line 2093, Address: 0x27fbd4, Func Offset: 0x134
-	// Line 2094, Address: 0x27fbf4, Func Offset: 0x154
-	// Line 2095, Address: 0x27fc30, Func Offset: 0x190
-	// Line 2097, Address: 0x27fc38, Func Offset: 0x198
-	// Line 2098, Address: 0x27fc3c, Func Offset: 0x19c
-	// Line 2099, Address: 0x27fc5c, Func Offset: 0x1bc
-	// Line 2100, Address: 0x27fc68, Func Offset: 0x1c8
-	// Line 2099, Address: 0x27fc6c, Func Offset: 0x1cc
-	// Line 2100, Address: 0x27fc78, Func Offset: 0x1d8
-	// Line 2101, Address: 0x27fc84, Func Offset: 0x1e4
-	// Line 2102, Address: 0x27fc94, Func Offset: 0x1f4
-	// Line 2105, Address: 0x27fca4, Func Offset: 0x204
-	// Line 2106, Address: 0x27fcb4, Func Offset: 0x214
-	// Line 2107, Address: 0x27fcd0, Func Offset: 0x230
-	// Line 2109, Address: 0x27fcdc, Func Offset: 0x23c
-	// Line 2110, Address: 0x27fce8, Func Offset: 0x248
-	// Line 2113, Address: 0x27fcf0, Func Offset: 0x250
-	// Line 2116, Address: 0x27fd1c, Func Offset: 0x27c
-	// Func End, Address: 0x27fd28, Func Offset: 0x288
 }*/
+
+// 100% matching! 
+void bhGetEvtCamLockPosition(CAM_KEYF_WORK* kfp, NJS_POINT3* pos) 
+{
+    BH_PWORK* pwp;
+    POS* psp;
+    
+    switch (kfp->lkflg) 
+    {
+    case 1:
+        kfp->lkno = 0;
+        
+        pwp = plp; 
+        break;
+    case 2:
+        if (rom->ene_n <= kfp->lkno) 
+        {
+            kfp->lkno = 0;
+        }
+
+        pwp = &ene[kfp->lkno];
+        break;
+    case 3:
+        if (rom->obj_n <= kfp->lkno) 
+        {
+            kfp->lkno = 0;
+        }
+        
+        pwp = (BH_PWORK*)&sys->obwp[kfp->lkno];
+        break;
+    case 4:
+        if (rom->itm_n <= kfp->lkno) 
+        {
+            kfp->lkno = 0;
+        } 
+        
+        pwp = (BH_PWORK*)&sys->itwp[kfp->lkno];
+        break;
+    case 5:
+        if (rom->eff_n <= kfp->lkno) 
+        {
+            kfp->lkno = 0;
+        }
+        
+        pwp = (BH_PWORK*)&eff[sys->efid[kfp->lkno]];
+        break;
+    case 6:
+        kfp->lkono = 0;
+        
+        if (rom->pos_n <= kfp->lkno) 
+        {
+            kfp->lkno = 0;
+        }
+        
+        psp = &rom->posp[kfp->lkno];
+        
+        pos->x = psp->px + kfp->lx;
+        pos->y = psp->py + kfp->ly;
+        pos->z = psp->pz + kfp->lz;
+        break;
+    }
+    
+    if (kfp->lkflg < 6) 
+    {
+        if (pwp->mlwP->obj_num <= kfp->lkono)
+        {
+            kfp->lkono = 0;
+        }
+        
+        if (kfp->lkono == 0) 
+        {
+            njCalcPoint(pwp->mtx, (NJS_POINT3*)&kfp->lx, pos);
+        }
+        else 
+        {
+            njCalcPoint(&pwp->mlwP->owP[(short)kfp->lkono].mtx, (NJS_POINT3*)&kfp->lx, pos);
+        }
+    }
+}
 
 // 
 // Start address: 0x27fd30
