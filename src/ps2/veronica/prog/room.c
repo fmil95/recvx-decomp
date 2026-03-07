@@ -882,53 +882,62 @@ void bhSetEffectLink(EF_WRK* efp, int efid)
     }
 }
 
-/*// 
-// Start address: 0x289cb0
-void bhSetDoorDemo(unsigned int attr, int stg_no, int rom_no, unsigned int pos_no, unsigned int dor_tp)
+// 100% matching!
+void bhSetDoorDemo(unsigned int attr, int stg_no, int rom_no, unsigned int pos_no, unsigned int dor_tp) 
 {
-	int etmf;
-	// Line 937, Address: 0x289cb0, Func Offset: 0
-	// Line 939, Address: 0x289cc0, Func Offset: 0x10
-	// Line 938, Address: 0x289cc4, Func Offset: 0x14
-	// Line 939, Address: 0x289cc8, Func Offset: 0x18
-	// Line 937, Address: 0x289ccc, Func Offset: 0x1c
-	// Line 939, Address: 0x289cd4, Func Offset: 0x24
-	// Line 940, Address: 0x289cdc, Func Offset: 0x2c
-	// Line 941, Address: 0x289cf8, Func Offset: 0x48
-	// Line 943, Address: 0x289d00, Func Offset: 0x50
-	// Line 941, Address: 0x289d04, Func Offset: 0x54
-	// Line 943, Address: 0x289d08, Func Offset: 0x58
-	// Line 941, Address: 0x289d0c, Func Offset: 0x5c
-	// Line 942, Address: 0x289d10, Func Offset: 0x60
-	// Line 941, Address: 0x289d14, Func Offset: 0x64
-	// Line 942, Address: 0x289d1c, Func Offset: 0x6c
-	// Line 943, Address: 0x289d24, Func Offset: 0x74
-	// Line 942, Address: 0x289d28, Func Offset: 0x78
-	// Line 943, Address: 0x289d30, Func Offset: 0x80
-	// Line 944, Address: 0x289d38, Func Offset: 0x88
-	// Line 943, Address: 0x289d3c, Func Offset: 0x8c
-	// Line 944, Address: 0x289d44, Func Offset: 0x94
-	// Line 945, Address: 0x289d54, Func Offset: 0xa4
-	// Line 946, Address: 0x289d68, Func Offset: 0xb8
-	// Line 947, Address: 0x289d7c, Func Offset: 0xcc
-	// Line 948, Address: 0x289d90, Func Offset: 0xe0
-	// Line 949, Address: 0x289da4, Func Offset: 0xf4
-	// Line 951, Address: 0x289db8, Func Offset: 0x108
-	// Line 952, Address: 0x289de4, Func Offset: 0x134
-	// Line 953, Address: 0x289dec, Func Offset: 0x13c
-	// Line 952, Address: 0x289df4, Func Offset: 0x144
-	// Line 953, Address: 0x289dfc, Func Offset: 0x14c
-	// Line 954, Address: 0x289e24, Func Offset: 0x174
-	// Line 955, Address: 0x289e44, Func Offset: 0x194
-	// Line 956, Address: 0x289e50, Func Offset: 0x1a0
-	// Line 955, Address: 0x289e5c, Func Offset: 0x1ac
-	// Line 956, Address: 0x289e64, Func Offset: 0x1b4
-	// Line 957, Address: 0x289e6c, Func Offset: 0x1bc
-	// Line 956, Address: 0x289e70, Func Offset: 0x1c0
-	// Line 957, Address: 0x289e78, Func Offset: 0x1c8
-	// Line 960, Address: 0x289e88, Func Offset: 0x1d8
-	// Func End, Address: 0x289e90, Func Offset: 0x1e0
-}*/
+    int etmf; 
+
+    if ((sys->sp_flg & 0x200)) 
+    {
+        etmf = 1;
+    } 
+    else 
+    {
+        etmf = 0;
+    }
+    
+    sys->sp_flg = 0;
+    
+    sys->sp_flg |= 0x48;
+    
+    if (etmf != 0) 
+    {
+        sys->sp_flg |= 0x200;
+    }
+    
+    plp->stflg |= 0x80010000;
+    
+    sys->cb_flg |= 0x1;
+    sys->st_flg &= ~0x400200;
+
+    sys->ddmd = 0;
+    
+    sys->door.flg = attr;
+    
+    sys->door.stg_no = stg_no;
+    sys->door.rom_no = rom_no;
+    sys->door.pos_no = pos_no;
+    
+    sys->door.dor_tp = dor_tp;
+    
+    if (((sys->gm_flg & 0x40)) && ((sys->st_flg & 0x800000))) 
+    {
+        sys->gm_flg &= ~0x40;
+        
+        if (!(sys->gm_flg & 0x1000000)) 
+        {
+            sys->gm_flg &= ~0x80;
+        }
+        
+        if ((sys->st_flg & 0x800000))
+        {
+            sys->st_flg &= ~0x800000;
+            sys->gm_flg &= ~0x80000;
+            
+            sys->pt_flg |= 0x1;
+        }
+    }
+}
 
 // 
 // Start address: 0x289e90
