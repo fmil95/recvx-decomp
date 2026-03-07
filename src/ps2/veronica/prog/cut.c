@@ -2454,61 +2454,87 @@ void bhInitPlEyeCamera()
     }
 }
 
-// 
-// Start address: 0x2808a0
+// 100% matching! 
 void bhSetPlEyeCamera()
 {
-	short axn;
-	short ay;
-	//_anon28 pos;
-	// Line 2349, Address: 0x2808a0, Func Offset: 0
-	// Line 2352, Address: 0x2808ac, Func Offset: 0xc
-	// Line 2354, Address: 0x2808c8, Func Offset: 0x28
-	// Line 2358, Address: 0x2808d0, Func Offset: 0x30
-	// Line 2355, Address: 0x2808d4, Func Offset: 0x34
-	// Line 2356, Address: 0x2808d8, Func Offset: 0x38
-	// Line 2357, Address: 0x2808e0, Func Offset: 0x40
-	// Line 2358, Address: 0x2808e8, Func Offset: 0x48
-	// Line 2359, Address: 0x280908, Func Offset: 0x68
-	// Line 2360, Address: 0x280920, Func Offset: 0x80
-	// Line 2361, Address: 0x280930, Func Offset: 0x90
-	// Line 2363, Address: 0x280938, Func Offset: 0x98
-	// Line 2364, Address: 0x280940, Func Offset: 0xa0
-	// Line 2365, Address: 0x280964, Func Offset: 0xc4
-	// Line 2366, Address: 0x280970, Func Offset: 0xd0
-	// Line 2368, Address: 0x280978, Func Offset: 0xd8
-	// Line 2369, Address: 0x280994, Func Offset: 0xf4
-	// Line 2370, Address: 0x2809a0, Func Offset: 0x100
-	// Line 2372, Address: 0x2809ac, Func Offset: 0x10c
-	// Line 2374, Address: 0x2809b4, Func Offset: 0x114
-	// Line 2376, Address: 0x2809bc, Func Offset: 0x11c
-	// Line 2375, Address: 0x2809c4, Func Offset: 0x124
-	// Line 2376, Address: 0x2809cc, Func Offset: 0x12c
-	// Line 2377, Address: 0x2809e8, Func Offset: 0x148
-	// Line 2378, Address: 0x2809f0, Func Offset: 0x150
-	// Line 2377, Address: 0x2809f4, Func Offset: 0x154
-	// Line 2384, Address: 0x2809fc, Func Offset: 0x15c
-	// Line 2385, Address: 0x280a00, Func Offset: 0x160
-	// Line 2383, Address: 0x280a08, Func Offset: 0x168
-	// Line 2386, Address: 0x280a0c, Func Offset: 0x16c
-	// Line 2383, Address: 0x280a14, Func Offset: 0x174
-	// Line 2387, Address: 0x280a18, Func Offset: 0x178
-	// Line 2389, Address: 0x280a34, Func Offset: 0x194
-	// Line 2391, Address: 0x280a3c, Func Offset: 0x19c
-	// Line 2393, Address: 0x280a50, Func Offset: 0x1b0
-	// Line 2391, Address: 0x280a54, Func Offset: 0x1b4
-	// Line 2393, Address: 0x280a58, Func Offset: 0x1b8
-	// Line 2391, Address: 0x280a5c, Func Offset: 0x1bc
-	// Line 2392, Address: 0x280a74, Func Offset: 0x1d4
-	// Line 2393, Address: 0x280a7c, Func Offset: 0x1dc
-	// Line 2394, Address: 0x280a8c, Func Offset: 0x1ec
-	// Line 2395, Address: 0x280a90, Func Offset: 0x1f0
-	// Line 2397, Address: 0x280aa8, Func Offset: 0x208
-	// Line 2398, Address: 0x280ab0, Func Offset: 0x210
-	// Line 2399, Address: 0x280ad4, Func Offset: 0x234
-	// Line 2402, Address: 0x280adc, Func Offset: 0x23c
-	// Func End, Address: 0x280aec, Func Offset: 0x24c
-	scePrintf("bhSetPlEyeCamera - UNIMPLEMENTED!\n");
+    NJS_POINT3 pos; 
+    short ay; 
+    short axn;       
+    
+    if ((sys->st_flg & 0x800000)) 
+    {
+        cam.ln = 0;
+        
+        pos.x = 0;
+        pos.y = 1.5f;
+        pos.z = -1.0f;
+        
+        njCalcPoint(&plp->mlwP->owP[5].mtx, &pos, (NJS_POINT3*)&cam.px);
+        
+        cam.ax = -plp->wax;
+        cam.ay = -plp->ay;
+        cam.az = 0;
+        
+        axn = cam.pers;
+        ay = cam.ppers;
+        
+        if (ABS(ay - axn) < 364) 
+        {
+            cam.pers = cam.ppers;
+        }
+        else
+        {
+            if (axn > ay) 
+            {
+                axn -= 364;
+            }
+            else 
+            {
+                axn += 364;
+            }
+            
+            cam.pers = axn;
+        }
+    }
+    else 
+    { 
+        cam.axp = 0;
+        
+        ay = 2048;
+        
+        if ((plp->mode0 == 1) && (plp->mode1 != 0)) 
+        {
+            cam.axp = -plp->wax;
+            
+            ay = 0;
+        }
+    
+        cam.ln = 0;
+        
+        pos.x = 0;
+        pos.y = 1.5f;
+        pos.z = -1.0f;
+        
+        njCalcPoint(&plp->mlwP->owP[5].mtx, &pos, (NJS_POINT3*)&cam.px);
+        
+        axn = cam.ax;
+        ay = (cam.axp + ay) - axn;
+        
+        axn += ay / 4;
+        
+        cam.ax = axn;
+        cam.ay = -plp->ay;
+        cam.az = 0;
+        
+        if (ABS(ay) < 182)
+        {
+            axn = cam.pers;
+            
+            axn += ((short)cam.ppers - axn) / 4;
+            
+            cam.pers = axn;
+        }
+    }
 }
 
 // 100% matching!
