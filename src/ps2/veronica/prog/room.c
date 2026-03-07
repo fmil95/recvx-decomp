@@ -1000,40 +1000,25 @@ void bhStartDoorDemo()
 	scePrintf("bhStartDoorDemo - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x28a100
+// 100% matching!
 void bhPushGameData()
 {
-	// Line 1061, Address: 0x28a100, Func Offset: 0
-	// Line 1070, Address: 0x28a10c, Func Offset: 0xc
-	// Line 1061, Address: 0x28a110, Func Offset: 0x10
-	// Line 1062, Address: 0x28a114, Func Offset: 0x14
-	// Line 1070, Address: 0x28a128, Func Offset: 0x28
-	// Line 1062, Address: 0x28a12c, Func Offset: 0x2c
-	// Line 1070, Address: 0x28a130, Func Offset: 0x30
-	// Line 1071, Address: 0x28a140, Func Offset: 0x40
-	// Line 1070, Address: 0x28a144, Func Offset: 0x44
-	// Line 1071, Address: 0x28a158, Func Offset: 0x58
-	// Line 1072, Address: 0x28a168, Func Offset: 0x68
-	// Line 1071, Address: 0x28a16c, Func Offset: 0x6c
-	// Line 1072, Address: 0x28a170, Func Offset: 0x70
-	// Line 1073, Address: 0x28a180, Func Offset: 0x80
-	// Line 1072, Address: 0x28a184, Func Offset: 0x84
-	// Line 1073, Address: 0x28a188, Func Offset: 0x88
-	// Line 1074, Address: 0x28a198, Func Offset: 0x98
-	// Line 1073, Address: 0x28a19c, Func Offset: 0x9c
-	// Line 1074, Address: 0x28a1a0, Func Offset: 0xa0
-	// Line 1075, Address: 0x28a1b0, Func Offset: 0xb0
-	// Line 1074, Address: 0x28a1b4, Func Offset: 0xb4
-	// Line 1075, Address: 0x28a1b8, Func Offset: 0xb8
-	// Line 1076, Address: 0x28a1c8, Func Offset: 0xc8
-	// Line 1075, Address: 0x28a1cc, Func Offset: 0xcc
-	// Line 1076, Address: 0x28a1d8, Func Offset: 0xd8
-	// Line 1079, Address: 0x28a1e8, Func Offset: 0xe8
-	// Line 1076, Address: 0x28a1ec, Func Offset: 0xec
-	// Line 1079, Address: 0x28a1fc, Func Offset: 0xfc
-	// Func End, Address: 0x28a218, Func Offset: 0x118
-	scePrintf("bhPushGameData - UNIMPLEMENTED!\n");
+    sys->version = 10;
+    
+    sys->flr_no = plp->flr_no;
+    
+    sys->ply_stflg[sys->ply_id] = plp->stflg & 0x78280000;
+    
+    sys->ply_pos.x = plp->px;
+    sys->ply_pos.y = plp->py;
+    sys->ply_pos.z = plp->pz;
+    
+    sys->ply_ang = plp->ay;
+    
+    sys->ply_wno[sys->ply_id] = plp->wpnr_no;
+    sys->ply_hp[sys->ply_id] = plp->hp;
+    
+    npCopyMemory(freemem, (unsigned char*)&sys->version, (int)&sys->save_end - (int)&sys->version);
 }
 
 // 
