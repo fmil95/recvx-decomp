@@ -240,7 +240,7 @@ void bhSetPlayer()
 	// Line 228, Address: 0x139208, Func Offset: 0x828
 	// Line 229, Address: 0x139220, Func Offset: 0x840
 	// Func End, Address: 0x13922c, Func Offset: 0x84c
-}
+}*/
 
 // 
 // Start address: 0x139230
@@ -373,7 +373,8 @@ void bhInitRoomChangePlayer()
 	// Line 298, Address: 0x1396c4, Func Offset: 0x494
 	// Line 299, Address: 0x1396dc, Func Offset: 0x4ac
 	// Func End, Address: 0x1396e8, Func Offset: 0x4b8
-}*/
+	scePrintf("bhInitRoomChangePlayer - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x1396f0

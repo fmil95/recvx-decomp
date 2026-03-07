@@ -39,6 +39,42 @@ typedef struct WPN_TAB
     char reserve2;         // offset 0x67, size 0x1
 } WPN_TAB;
 
+typedef struct EXP_WORK 
+{
+    // total size: 0x7C
+    int wpntp;    // offset 0x0, size 0x4
+    int yrct;     // offset 0x4, size 0x4
+    int kdn_fr;   // offset 0x8, size 0x4
+    float kdn_py; // offset 0xC, size 0x4
+    float rtspd;  // offset 0x10, size 0x4
+    int dmlvl;    // offset 0x14, size 0x4
+    int dm_ct;    // offset 0x18, size 0x4
+    float arn;    // offset 0x1C, size 0x4
+    float arp;    // offset 0x20, size 0x4
+    float fpx;    // offset 0x24, size 0x4
+    float fpy;    // offset 0x28, size 0x4
+    float fpz;    // offset 0x2C, size 0x4
+    float bpx;    // offset 0x30, size 0x4
+    float bpy;    // offset 0x34, size 0x4
+    float bpz;    // offset 0x38, size 0x4
+    float bpxb;   // offset 0x3C, size 0x4
+    float bpyb;   // offset 0x40, size 0x4
+    float bpzb;   // offset 0x44, size 0x4
+    float spx;    // offset 0x48, size 0x4
+    float spy;    // offset 0x4C, size 0x4
+    float spz;    // offset 0x50, size 0x4
+    float spxn;   // offset 0x54, size 0x4
+    float spyn;   // offset 0x58, size 0x4
+    float spzn;   // offset 0x5C, size 0x4
+    float plx;    // offset 0x60, size 0x4
+    float ply;    // offset 0x64, size 0x4
+    float plz;    // offset 0x68, size 0x4
+    float nlxb;   // offset 0x6C, size 0x4
+    float nlyb;   // offset 0x70, size 0x4
+    float nlzb;   // offset 0x74, size 0x4
+    int scp_ct;   // offset 0x78, size 0x4
+} EXP_WORK;
+
 void bhInitPlayer();
 void bhSetPlayer();
 void bhInitRoomChangePlayer();
