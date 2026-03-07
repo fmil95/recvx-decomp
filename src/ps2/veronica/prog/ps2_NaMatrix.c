@@ -650,18 +650,17 @@ void	njRotateZ(NJS_MATRIX *m, Angle ang)
     );
 }
 
-// 
-// Start address: 0x2d6db0
+// 100% matching!
 void	njRotateXYZ(NJS_MATRIX *m, Angle angx, Angle angy, Angle angz)
 {
-	// Line 2246, Address: 0x2d6db0, Func Offset: 0
-	// Line 2247, Address: 0x2d6dcc, Func Offset: 0x1c
-	// Line 2250, Address: 0x2d6de0, Func Offset: 0x30
-	// Line 2251, Address: 0x2d6dec, Func Offset: 0x3c
-	// Line 2252, Address: 0x2d6df8, Func Offset: 0x48
-	// Line 2253, Address: 0x2d6e04, Func Offset: 0x54
-	// Func End, Address: 0x2d6e1c, Func Offset: 0x6c
-	scePrintf("njRotateXYZ - UNIMPLEMENTED!\n");
+    if (m == NULL) 
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+    
+    njRotateZ(m, angz);
+    njRotateY(m, angy);
+    njRotateX(m, angx);
 }
 
 // 100% matching!
