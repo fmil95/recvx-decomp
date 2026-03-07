@@ -14,6 +14,7 @@
 #include "player.h"
 #include "pwksub.h"
 #include "screen.h"
+#include "sdfunc.h"
 #include "system.h"
 #include "main.h"
 
@@ -939,74 +940,80 @@ void bhSetDoorDemo(unsigned int attr, int stg_no, int rom_no, unsigned int pos_n
     }
 }
 
-// 
-// Start address: 0x289e90
+// 100% matching!
 void bhStartDoorDemo()
 {
-	int etmf;
-	//_anon18* ddp;
-	// Line 966, Address: 0x289e90, Func Offset: 0
-	// Line 967, Address: 0x289e9c, Func Offset: 0xc
-	// Line 969, Address: 0x289ea4, Func Offset: 0x14
-	// Line 967, Address: 0x289ea8, Func Offset: 0x18
-	// Line 969, Address: 0x289eb4, Func Offset: 0x24
-	// Line 972, Address: 0x289ed8, Func Offset: 0x48
-	// Line 974, Address: 0x289ee8, Func Offset: 0x58
-	// Line 976, Address: 0x289ef0, Func Offset: 0x60
-	// Line 981, Address: 0x289ef8, Func Offset: 0x68
-	// Line 982, Address: 0x289efc, Func Offset: 0x6c
-	// Line 984, Address: 0x289f00, Func Offset: 0x70
-	// Line 976, Address: 0x289f04, Func Offset: 0x74
-	// Line 977, Address: 0x289f14, Func Offset: 0x84
-	// Line 978, Address: 0x289f28, Func Offset: 0x98
-	// Line 979, Address: 0x289f3c, Func Offset: 0xac
-	// Line 980, Address: 0x289f50, Func Offset: 0xc0
-	// Line 981, Address: 0x289f64, Func Offset: 0xd4
-	// Line 982, Address: 0x289f70, Func Offset: 0xe0
-	// Line 981, Address: 0x289f74, Func Offset: 0xe4
-	// Line 982, Address: 0x289f7c, Func Offset: 0xec
-	// Line 984, Address: 0x289f84, Func Offset: 0xf4
-	// Line 982, Address: 0x289f88, Func Offset: 0xf8
-	// Line 984, Address: 0x289f90, Func Offset: 0x100
-	// Line 986, Address: 0x289f98, Func Offset: 0x108
-	// Line 985, Address: 0x289f9c, Func Offset: 0x10c
-	// Line 986, Address: 0x289fa0, Func Offset: 0x110
-	// Line 984, Address: 0x289fa4, Func Offset: 0x114
-	// Line 986, Address: 0x289fac, Func Offset: 0x11c
-	// Line 987, Address: 0x289fb4, Func Offset: 0x124
-	// Line 988, Address: 0x289fd0, Func Offset: 0x140
-	// Line 1007, Address: 0x289fd8, Func Offset: 0x148
-	// Line 1009, Address: 0x289fdc, Func Offset: 0x14c
-	// Line 988, Address: 0x289fe0, Func Offset: 0x150
-	// Line 989, Address: 0x28a000, Func Offset: 0x170
-	// Line 990, Address: 0x28a020, Func Offset: 0x190
-	// Line 991, Address: 0x28a02c, Func Offset: 0x19c
-	// Line 992, Address: 0x28a038, Func Offset: 0x1a8
-	// Line 991, Address: 0x28a03c, Func Offset: 0x1ac
-	// Line 992, Address: 0x28a040, Func Offset: 0x1b0
-	// Line 993, Address: 0x28a048, Func Offset: 0x1b8
-	// Line 992, Address: 0x28a04c, Func Offset: 0x1bc
-	// Line 993, Address: 0x28a050, Func Offset: 0x1c0
-	// Line 1007, Address: 0x28a058, Func Offset: 0x1c8
-	// Line 993, Address: 0x28a05c, Func Offset: 0x1cc
-	// Line 1007, Address: 0x28a060, Func Offset: 0x1d0
-	// Line 1009, Address: 0x28a074, Func Offset: 0x1e4
-	// Line 1010, Address: 0x28a084, Func Offset: 0x1f4
-	// Line 1012, Address: 0x28a08c, Func Offset: 0x1fc
-	// Line 1024, Address: 0x28a09c, Func Offset: 0x20c
-	// Line 1025, Address: 0x28a0ac, Func Offset: 0x21c
-	// Line 1027, Address: 0x28a0b4, Func Offset: 0x224
-	// Line 1028, Address: 0x28a0b8, Func Offset: 0x228
-	// Line 1029, Address: 0x28a0bc, Func Offset: 0x22c
-	// Line 1025, Address: 0x28a0c0, Func Offset: 0x230
-	// Line 1027, Address: 0x28a0cc, Func Offset: 0x23c
-	// Line 1028, Address: 0x28a0d8, Func Offset: 0x248
-	// Line 1027, Address: 0x28a0dc, Func Offset: 0x24c
-	// Line 1028, Address: 0x28a0e4, Func Offset: 0x254
-	// Line 1029, Address: 0x28a0e8, Func Offset: 0x258
-	// Line 1033, Address: 0x28a0f0, Func Offset: 0x260
-	// Func End, Address: 0x28a100, Func Offset: 0x270
-	scePrintf("bhStartDoorDemo - UNIMPLEMENTED!\n");
+    DOOR_WORK* ddp;
+    int etmf;
+	
+    ddp = &sys->door;
+    
+    switch (sys->ddmd)
+    {                
+    case 0:
+        bhSetScreenFade(0xFF000000, 10.0f);
+        
+        SendSoundCommand(2);
+        
+        *(int*)&sys->door.mode0 = 0;
+        
+        sys->door.ct0 = 0;
+        sys->door.ct1 = 0;
+        sys->door.ct2 = 0;
+        sys->door.ct3 = 0;
+        
+        sys->ts_flg |= 0x100000;
+        sys->ts_flg &= ~0x800;
+        
+        if ((sys->sp_flg & 0x200)) 
+        {
+            etmf = 1;
+        } 
+        else 
+        {
+            etmf = 0;
+        }
+        
+        sys->sp_flg = 0;
+        
+        sys->sp_flg |= 0x48;
+        
+        if (etmf != 0) 
+        {
+            sys->sp_flg |= 0x200;
+        }
+        
+        sys->pad_ps = 0;
+        sys->pad_on = 0;
+        
+        sys->ef_ct = sys->ef_ctb;
+        
+        sys->error = 0;
+        
+        sys->stg_no = ddp->stg_no;
+        sys->rom_no = ddp->rom_no;
+        sys->pos_no = ddp->pos_no;
+        
+        *(int*)&sys->mn_mode0 = 2;
+        
+        sys->ddmd = 1;
+        break;
+    case 1:
+        if ((sys->ts_flg & 0x800)) 
+        {
+            bhSetScreenFade(0, 5.0f);
+            
+            sys->fade_pbk = 0;
+            
+            sys->cb_flg &= ~0x1;
+            
+            sys->sp_flg = -1;
+            
+            bhCheckCut(1);
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!
