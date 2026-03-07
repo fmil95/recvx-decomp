@@ -21,7 +21,7 @@ void bhSetEventHideObjLgt(int cno, int kno);
 void bhInitEventCamera();
 void bhControlEventCamera();
 void bhCheckEvtCamLockPosition();
-/*void bhGetEvtCamLockPosition(_anon17* kfp, _anon28* pos);*/
+void bhGetEvtCamLockPosition(CAM_KEYF_WORK* kfp, NJS_POINT3* pos);
 void bhControlPlEyeCamera(unsigned int attr);
 void bhInitPlEyeCamera();
 void bhSetPlEyeCamera();

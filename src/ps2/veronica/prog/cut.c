@@ -1396,81 +1396,87 @@ void bhControlActiveCamera()
 	scePrintf("bhControlActiveCamera - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x27dcc0
+// 100% matching! 
 void bhSetEventCamera(int evc_no, int key_no)
 {
-	float pz;
-	float px;
-	_anon28 pos;
-	_anon17* kfp;
-	// Line 1408, Address: 0x27dcc0, Func Offset: 0
-	// Line 1415, Address: 0x27dcd8, Func Offset: 0x18
-	// Line 1425, Address: 0x27dce0, Func Offset: 0x20
-	// Line 1415, Address: 0x27dcf0, Func Offset: 0x30
-	// Line 1417, Address: 0x27dcf4, Func Offset: 0x34
-	// Line 1425, Address: 0x27dcfc, Func Offset: 0x3c
-	// Line 1415, Address: 0x27dd00, Func Offset: 0x40
-	// Line 1417, Address: 0x27dd08, Func Offset: 0x48
-	// Line 1418, Address: 0x27dd24, Func Offset: 0x64
-	// Line 1420, Address: 0x27dd44, Func Offset: 0x84
-	// Line 1421, Address: 0x27dd58, Func Offset: 0x98
-	// Line 1423, Address: 0x27dd6c, Func Offset: 0xac
-	// Line 1425, Address: 0x27dd74, Func Offset: 0xb4
-	// Line 1426, Address: 0x27dd7c, Func Offset: 0xbc
-	// Line 1425, Address: 0x27dd84, Func Offset: 0xc4
-	// Line 1426, Address: 0x27dd88, Func Offset: 0xc8
-	// Line 1425, Address: 0x27dd90, Func Offset: 0xd0
-	// Line 1426, Address: 0x27dd98, Func Offset: 0xd8
-	// Line 1427, Address: 0x27dd9c, Func Offset: 0xdc
-	// Line 1428, Address: 0x27dda8, Func Offset: 0xe8
-	// Line 1429, Address: 0x27ddbc, Func Offset: 0xfc
-	// Line 1430, Address: 0x27ddd0, Func Offset: 0x110
-	// Line 1431, Address: 0x27dde4, Func Offset: 0x124
-	// Line 1432, Address: 0x27ddf8, Func Offset: 0x138
-	// Line 1433, Address: 0x27de0c, Func Offset: 0x14c
-	// Line 1434, Address: 0x27de20, Func Offset: 0x160
-	// Line 1435, Address: 0x27de28, Func Offset: 0x168
-	// Line 1437, Address: 0x27de34, Func Offset: 0x174
-	// Line 1440, Address: 0x27de40, Func Offset: 0x180
-	// Line 1442, Address: 0x27de4c, Func Offset: 0x18c
-	// Line 1443, Address: 0x27de54, Func Offset: 0x194
-	// Line 1442, Address: 0x27de58, Func Offset: 0x198
-	// Line 1443, Address: 0x27de5c, Func Offset: 0x19c
-	// Line 1442, Address: 0x27de68, Func Offset: 0x1a8
-	// Line 1444, Address: 0x27de6c, Func Offset: 0x1ac
-	// Line 1443, Address: 0x27de70, Func Offset: 0x1b0
-	// Line 1444, Address: 0x27de74, Func Offset: 0x1b4
-	// Line 1446, Address: 0x27de7c, Func Offset: 0x1bc
-	// Line 1450, Address: 0x27debc, Func Offset: 0x1fc
-	// Line 1452, Address: 0x27df10, Func Offset: 0x250
-	// Line 1453, Address: 0x27df1c, Func Offset: 0x25c
-	// Line 1456, Address: 0x27df24, Func Offset: 0x264
-	// Line 1454, Address: 0x27df2c, Func Offset: 0x26c
-	// Line 1453, Address: 0x27df34, Func Offset: 0x274
-	// Line 1454, Address: 0x27df40, Func Offset: 0x280
-	// Line 1456, Address: 0x27df48, Func Offset: 0x288
-	// Line 1458, Address: 0x27df50, Func Offset: 0x290
-	// Line 1459, Address: 0x27df78, Func Offset: 0x2b8
-	// Line 1460, Address: 0x27df84, Func Offset: 0x2c4
-	// Line 1461, Address: 0x27df90, Func Offset: 0x2d0
-	// Line 1466, Address: 0x27df9c, Func Offset: 0x2dc
-	// Line 1467, Address: 0x27dfb8, Func Offset: 0x2f8
-	// Line 1469, Address: 0x27dfd8, Func Offset: 0x318
-	// Line 1470, Address: 0x27dfe0, Func Offset: 0x320
-	// Line 1471, Address: 0x27dfec, Func Offset: 0x32c
-	// Line 1472, Address: 0x27dff8, Func Offset: 0x338
-	// Line 1473, Address: 0x27e004, Func Offset: 0x344
-	// Line 1475, Address: 0x27e010, Func Offset: 0x350
-	// Line 1476, Address: 0x27e018, Func Offset: 0x358
-	// Line 1475, Address: 0x27e01c, Func Offset: 0x35c
-	// Line 1476, Address: 0x27e020, Func Offset: 0x360
-	// Line 1475, Address: 0x27e024, Func Offset: 0x364
-	// Line 1476, Address: 0x27e02c, Func Offset: 0x36c
-	// Line 1477, Address: 0x27e038, Func Offset: 0x378
-	// Line 1478, Address: 0x27e040, Func Offset: 0x380
-	// Func End, Address: 0x27e05c, Func Offset: 0x39c
-}*/
+    CAM_KEYF_WORK* kfp;
+    NJS_POINT3 pos;
+    float px;
+    float pz;
+
+    sys->gm_flg |= 0x20;
+    
+    sys->evc_ono = sys->evc_no;
+    sys->evc_okn = sys->evc_kn;
+    
+    sys->evc_no = evc_no;
+    sys->evc_kn = key_no;
+    
+    cam.keyf_no = key_no;
+    
+    kfp = &rom->evcp[evc_no].keyf[key_no];
+    
+    cam.plx = plp->px;
+    cam.plz = plp->pz;
+    
+    cam.px = cam.pxp = kfp->px;
+    cam.py = cam.pyp = kfp->py;
+    cam.pz = cam.pzp = kfp->pz;
+    
+    cam.ax = cam.axp = kfp->ax;
+    cam.ay = cam.ayp = kfp->ay;
+    cam.az = cam.azp = kfp->az;
+    
+    cam.ln = 0;
+    
+    cam.pers = kfp->pers;
+    
+    if (kfp->lkflg != 0)  
+    {
+        bhGetEvtCamLockPosition(kfp, &pos);
+        
+        cam.ax = cam.axp = -(int)(10430.381f * atan2f(pos.y - cam.py, njSqrt(((pos.x - cam.px) * (pos.x - cam.px)) + ((pos.z - cam.pz) * (pos.z - cam.pz)))));
+        cam.ay = cam.ayp = -(int)(10430.381f * atan2f(pos.x - cam.px, pos.z - cam.pz)) + 32768; 
+    }
+    
+    *(int*)&cam.mode0 = 0;
+    
+    cam.flg |= 0x2;
+    
+    sys->st_flg |= 0x1;
+    
+    bhSetEventHideObjLgt(evc_no, key_no);
+    
+    if (((sys->st_flg & 0x2)) && ((kfp->flg & 0x8))) 
+    {
+        cam.fog_col = kfp->fog_col;
+        
+        cam.fog_nr = kfp->fog_nr;
+        cam.fog_fr = kfp->fog_fr;
+        
+        sys->fog_ct = sys->fog_cngct - 4;
+        
+        if (sys->fog_ct < 0) 
+        {
+            sys->fog_ct = 0;
+        }
+    } 
+    else 
+    {
+        cam.fog_col = kfp->fog_col;
+        
+        cam.fog_nr = kfp->fog_nr;
+        cam.fog_fr = kfp->fog_fr;
+        
+        sys->fog_ct = 0;
+    }
+    
+    sys->gm_flg |= 0x10;
+    
+    cam.flg &= ~0x38;
+    
+    bhChangeBackColorEvt();
+}
 
 // 100% matching!
 void bhSetEventFixedCut(int cno, int kno)
