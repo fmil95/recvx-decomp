@@ -1021,28 +1021,25 @@ void bhPushGameData()
     npCopyMemory(freemem, (unsigned char*)&sys->version, (int)&sys->save_end - (int)&sys->version);
 }
 
-// 
-// Start address: 0x28a220
+// 100% matching!
 void bhPopGameData()
 {
-	// Line 1089, Address: 0x28a220, Func Offset: 0
-	// Line 1093, Address: 0x28a228, Func Offset: 0x8
-	// Line 1094, Address: 0x28a23c, Func Offset: 0x1c
-	// Line 1096, Address: 0x28a244, Func Offset: 0x24
-	// Line 1098, Address: 0x28a264, Func Offset: 0x44
-	// Line 1099, Address: 0x28a28c, Func Offset: 0x6c
-	// Line 1101, Address: 0x28a294, Func Offset: 0x74
-	// Line 1104, Address: 0x28a29c, Func Offset: 0x7c
-	// Line 1099, Address: 0x28a2a4, Func Offset: 0x84
-	// Line 1100, Address: 0x28a2a8, Func Offset: 0x88
-	// Line 1099, Address: 0x28a2ac, Func Offset: 0x8c
-	// Line 1100, Address: 0x28a2b4, Func Offset: 0x94
-	// Line 1101, Address: 0x28a2bc, Func Offset: 0x9c
-	// Line 1100, Address: 0x28a2c0, Func Offset: 0xa0
-	// Line 1101, Address: 0x28a2c8, Func Offset: 0xa8
-	// Line 1102, Address: 0x28a2d0, Func Offset: 0xb0
-	// Line 1104, Address: 0x28a2dc, Func Offset: 0xbc
-	// Line 1105, Address: 0x28a2f0, Func Offset: 0xd0
-	// Func End, Address: 0x28a2fc, Func Offset: 0xdc
-	scePrintf("bhPopGameData - UNIMPLEMENTED!\n");
+    sys->ss_flg |= 0x20000;
+    
+    bhExitGame();
+    
+    npCopyMemory((unsigned char*)&sys->version, freemem, (int)&sys->save_end - (int)&sys->version);
+    
+    if (sys->retry_ct < 99) 
+    {
+        sys->retry_ct++;
+    }
+    
+    sys->gm_flg |= 0x2;
+    sys->ss_flg |= 0x200;
+    
+    sys->tk_flg = 0x300020;
+    sys->ts_flg = 0;
+    
+    sys->ss_flg &= ~0x20000;
 }
