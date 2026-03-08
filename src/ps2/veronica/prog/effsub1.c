@@ -2,24 +2,24 @@
 
 /*_anon7* sys;
 _anon49 cam;
-void(*bhDrawWeaponEffect)(_anon0*);
+void(*bhDrawWeaponEffect)(O_WRK*);
 BH_PWORK* plp;
 BH_PWORK ene[0];
 _anon22 WpnTab[0];
 _anon12* rom;
-void(*bhDraw021)(_anon0*);
-void(*bhDraw022)(_anon0*);
-void(*bhDraw024)(_anon0*);
-void(*bhDraw025)(_anon0*);
-void(*bhDraw027)(_anon0*);
-void(*bhEff106)(_anon0*);
-void(*bhDraw107)(_anon0*);
+void(*bhDraw021)(O_WRK*);
+void(*bhDraw022)(O_WRK*);
+void(*bhDraw024)(O_WRK*);
+void(*bhDraw025)(O_WRK*);
+void(*bhDraw027)(O_WRK*);
+void(*bhEff106)(O_WRK*);
+void(*bhDraw107)(O_WRK*);
 float BHD_ASPECT_X;
 float BHD_ASPECT_Y;
 _anon37 tbuf[0];
 float cmat[16];
-void(*bhDraw114)(_anon0*);
-_anon0 eff[0];*/
+void(*bhDraw114)(O_WRK*);
+O_WRK eff[0];*/
 
 // 100% matching!
 void bhEffDmy(O_WRK* op)
@@ -27,9 +27,9 @@ void bhEffDmy(O_WRK* op)
 	op->flg = 0;
 }
 
-/*// 
+// 
 // Start address: 0x223f80
-void bhEffFil(_anon0* op)
+void bhEffFil(O_WRK* op)
 {
 	// Line 69, Address: 0x223f80, Func Offset: 0
 	// Line 71, Address: 0x223f8c, Func Offset: 0xc
@@ -108,11 +108,12 @@ void bhEffFil(_anon0* op)
 	// Line 161, Address: 0x224210, Func Offset: 0x290
 	// Line 164, Address: 0x224244, Func Offset: 0x2c4
 	// Func End, Address: 0x224254, Func Offset: 0x2d4
+	scePrintf("bhEffFil - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x224260
-void bhEffBG(_anon0* op)
+void bhEffBG(O_WRK* op)
 {
 	// Line 172, Address: 0x224260, Func Offset: 0
 	// Line 174, Address: 0x224280, Func Offset: 0x20
@@ -140,11 +141,12 @@ void bhEffBG(_anon0* op)
 	// Line 192, Address: 0x2242e4, Func Offset: 0x84
 	// Line 195, Address: 0x22431c, Func Offset: 0xbc
 	// Func End, Address: 0x224324, Func Offset: 0xc4
+	scePrintf("bhEffBG - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x224330
-void bhEff2D(_anon0* op)
+void bhEff2D(O_WRK* op)
 {
 	float v;
 	float u;
@@ -207,16 +209,17 @@ void bhEff2D(_anon0* op)
 	// Line 249, Address: 0x2244f0, Func Offset: 0x1c0
 	// Line 253, Address: 0x224524, Func Offset: 0x1f4
 	// Func End, Address: 0x224534, Func Offset: 0x204
+	scePrintf("bhEff2D - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x224540
-void bhEff000(_anon0* op)
+void bhEff000(O_WRK* op)
 {
-	_anon1* whp;
+	//_anon1* whp;
 	float py;
-	_anon1* hp;
-	_anon41 pos;
+	//_anon1* hp;
+	//_anon41 pos;
 	// Line 265, Address: 0x224540, Func Offset: 0
 	// Line 270, Address: 0x224554, Func Offset: 0x14
 	// Line 272, Address: 0x224594, Func Offset: 0x54
@@ -429,11 +432,12 @@ void bhEff000(_anon0* op)
 	// Line 505, Address: 0x225600, Func Offset: 0x10c0
 	// Line 507, Address: 0x225630, Func Offset: 0x10f0
 	// Func End, Address: 0x225648, Func Offset: 0x1108
+	scePrintf("bhEff000 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x225650
-void bhEff001(_anon0* op)
+void bhEff001(O_WRK* op)
 {
 	float scz;
 	float scx;
@@ -441,11 +445,11 @@ void bhEff001(_anon0* op)
 	float maxx;
 	float minz;
 	float minx;
-	_anon17* mp;
+	//_anon17* mp;
 	int jno;
 	int i;
-	_anon41 ps1;
-	_anon41 ps0;
+	//_anon41 ps1;
+	//_anon41 ps0;
 	BH_PWORK* pp;
 	// Line 514, Address: 0x225650, Func Offset: 0
 	// Line 520, Address: 0x225678, Func Offset: 0x28
@@ -499,21 +503,22 @@ void bhEff001(_anon0* op)
 	// Line 573, Address: 0x225964, Func Offset: 0x314
 	// Line 577, Address: 0x225998, Func Offset: 0x348
 	// Func End, Address: 0x2259c4, Func Offset: 0x374
+	scePrintf("bhEff001 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2259d0
-void bhEff002(_anon0* op)
+void bhEff002(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_v0[14];
-	_anon8 uvinfo_v2[25];
-	_anon8 uvinfo_vz[6];
-	_anon8 uvinfo_v9[7];
-	_anon8 uvinfo_v8[5];
-	_anon8 uvinfo_v4[8];
-	_anon8 uvinfo_v3[14];
-	_anon8 uvinfo_v1[7];
+	//_anon8* uvp;
+	//_anon8 uvinfo_v0[14];
+	//_anon8 uvinfo_v2[25];
+	//_anon8 uvinfo_vz[6];
+	//_anon8 uvinfo_v9[7];
+	//_anon8 uvinfo_v8[5];
+	//_anon8 uvinfo_v4[8];
+	//_anon8 uvinfo_v3[14];
+	//_anon8 uvinfo_v1[7];
 	// Line 584, Address: 0x2259d0, Func Offset: 0
 	// Line 701, Address: 0x2259dc, Func Offset: 0xc
 	// Line 703, Address: 0x2259fc, Func Offset: 0x2c
@@ -758,28 +763,29 @@ void bhEff002(_anon0* op)
 	// Line 937, Address: 0x226914, Func Offset: 0xf44
 	// Line 938, Address: 0x226948, Func Offset: 0xf78
 	// Func End, Address: 0x226958, Func Offset: 0xf88
+	scePrintf("bhEff002 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x226960
-void bhDrawWeaponEffect(_anon0* op)
+void bhDrawWeaponEffect(O_WRK* op)
 {
 	float len;
-	_anon50 lp;
-	_anon41 pos;
-	_anon41 fps;
+	//_anon50 lp;
+	//_anon41 pos;
+	//_anon41 fps;
 	float* wkp;
 	float off;
 	float scl;
-	_anon5 tvb[4];
-	_anon5 tv[4];
+	//_anon5 tvb[4];
+	//_anon5 tv[4];
 	int ani;
 	int i;
-	_anon8* uvp;
-	_anon8 uvinfo_t01[9][2];
+	//_anon8* uvp;
+	//_anon8 uvinfo_t01[9][2];
 	short akpal[3][2];
-	_anon8 uvinfo_t03[4][2];
-	_anon8 uvinfo_t00[4][2];
+	//_anon8 uvinfo_t03[4][2];
+	//_anon8 uvinfo_t00[4][2];
 	// Line 944, Address: 0x226960, Func Offset: 0
 	// Line 1012, Address: 0x226998, Func Offset: 0x38
 	// Line 1014, Address: 0x2269a4, Func Offset: 0x44
@@ -1375,11 +1381,12 @@ void bhDrawWeaponEffect(_anon0* op)
 	// Line 1505, Address: 0x227ee4, Func Offset: 0x1584
 	// Line 1506, Address: 0x227ef0, Func Offset: 0x1590
 	// Func End, Address: 0x227f2c, Func Offset: 0x15cc
+	scePrintf("bhDrawWeaponEffect - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x227f30
-void bhEff003(_anon0* op)
+void bhEff003(O_WRK* op)
 {
 	int i;
 	float* wkp;
@@ -1435,7 +1442,8 @@ void bhEff003(_anon0* op)
 	// Line 1625, Address: 0x228208, Func Offset: 0x2d8
 	// Line 1628, Address: 0x22820c, Func Offset: 0x2dc
 	// Func End, Address: 0x228224, Func Offset: 0x2f4
-}*/
+	scePrintf("bhEff003 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhEff004()
@@ -1443,14 +1451,14 @@ void bhEff004()
 
 }
 
-/*// 
+// 
 // Start address: 0x228240
-void bhEff005(_anon0* op)
+void bhEff005(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_l[13];
-	_anon8 uvinfo_m[12];
-	_anon8 uvinfo_s[14];
+	//_anon8* uvp;
+	//_anon8 uvinfo_l[13];
+	//_anon8 uvinfo_m[12];
+	//_anon8 uvinfo_s[14];
 	// Line 1690, Address: 0x228240, Func Offset: 0
 	// Line 1692, Address: 0x228254, Func Offset: 0x14
 	// Line 1693, Address: 0x22825c, Func Offset: 0x1c
@@ -1492,14 +1500,15 @@ void bhEff005(_anon0* op)
 	// Line 1731, Address: 0x2283dc, Func Offset: 0x19c
 	// Line 1732, Address: 0x228410, Func Offset: 0x1d0
 	// Func End, Address: 0x228418, Func Offset: 0x1d8
+	scePrintf("bhEff005 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x228420
-void bhEff006(_anon0* op)
+void bhEff006(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo[8];
+	//_anon8* uvp;
+	//_anon8 uvinfo[8];
 	// Line 1751, Address: 0x228420, Func Offset: 0
 	// Line 1753, Address: 0x228440, Func Offset: 0x20
 	// Line 1754, Address: 0x22844c, Func Offset: 0x2c
@@ -1559,11 +1568,12 @@ void bhEff006(_anon0* op)
 	// Line 1820, Address: 0x22866c, Func Offset: 0x24c
 	// Line 1822, Address: 0x2286a4, Func Offset: 0x284
 	// Func End, Address: 0x2286ac, Func Offset: 0x28c
+	scePrintf("bhEff006 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2286b0
-void bhEff007(_anon0* op)
+void bhEff007(O_WRK* op)
 {
 	// Line 1829, Address: 0x2286b0, Func Offset: 0
 	// Line 1838, Address: 0x2286c0, Func Offset: 0x10
@@ -1641,16 +1651,17 @@ void bhEff007(_anon0* op)
 	// Line 1906, Address: 0x228ae0, Func Offset: 0x430
 	// Line 1907, Address: 0x228b18, Func Offset: 0x468
 	// Func End, Address: 0x228b28, Func Offset: 0x478
+	scePrintf("bhEff007 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x228b30
-void bhEff008(_anon0* op)
+void bhEff008(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_f1[9];
-	_anon8 uvinfo_f0[11];
-	_anon8 uvinfo_fst[11];
+	//_anon8* uvp;
+	//_anon8 uvinfo_f1[9];
+	//_anon8 uvinfo_f0[11];
+	//_anon8 uvinfo_fst[11];
 	// Line 1953, Address: 0x228b30, Func Offset: 0
 	// Line 1955, Address: 0x228b44, Func Offset: 0x14
 	// Line 1956, Address: 0x228b4c, Func Offset: 0x1c
@@ -1710,15 +1721,16 @@ void bhEff008(_anon0* op)
 	// Line 2014, Address: 0x228cec, Func Offset: 0x1bc
 	// Line 2015, Address: 0x228d1c, Func Offset: 0x1ec
 	// Func End, Address: 0x228d24, Func Offset: 0x1f4
+	scePrintf("bhEff008 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x228d30
-void bhEff009(_anon0* op)
+void bhEff009(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_f0[9];
-	_anon8 uvinfo_f1[9];
+	//_anon8* uvp;
+	//_anon8 uvinfo_f0[9];
+	//_anon8 uvinfo_f1[9];
 	// Line 2046, Address: 0x228d30, Func Offset: 0
 	// Line 2048, Address: 0x228d44, Func Offset: 0x14
 	// Line 2061, Address: 0x228d4c, Func Offset: 0x1c
@@ -1781,14 +1793,15 @@ void bhEff009(_anon0* op)
 	// Line 2113, Address: 0x228f7c, Func Offset: 0x24c
 	// Line 2114, Address: 0x228fb0, Func Offset: 0x280
 	// Func End, Address: 0x228fb8, Func Offset: 0x288
+	scePrintf("bhEff009 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x228fc0
-void bhEff010(_anon0* op)
+void bhEff010(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_f0[5];
+	//_anon8* uvp;
+	//_anon8 uvinfo_f0[5];
 	// Line 2130, Address: 0x228fc0, Func Offset: 0
 	// Line 2133, Address: 0x228fd4, Func Offset: 0x14
 	// Line 2134, Address: 0x228fdc, Func Offset: 0x1c
@@ -1851,22 +1864,23 @@ void bhEff010(_anon0* op)
 	// Line 2185, Address: 0x22918c, Func Offset: 0x1cc
 	// Line 2186, Address: 0x2291c0, Func Offset: 0x200
 	// Func End, Address: 0x2291c8, Func Offset: 0x208
+	scePrintf("bhEff010 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2291d0
-void bhEff011(_anon0* op)
+void bhEff011(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_smk[9];
-	_anon8 uvinfo_c4[11];
-	_anon8 uvinfo_c3[6];
-	_anon8 uvinfo_c2[11];
-	_anon8 uvinfo_c1[11];
-	_anon8 uvinfo_c0[10];
-	_anon8 uvinfo_t0[18];
-	_anon8 uvinfo_oil[13];
-	_anon8 uvinfo_tb[17];
+	//_anon8* uvp;
+	//_anon8 uvinfo_smk[9];
+	//_anon8 uvinfo_c4[11];
+	//_anon8 uvinfo_c3[6];
+	//_anon8 uvinfo_c2[11];
+	//_anon8 uvinfo_c1[11];
+	//_anon8 uvinfo_c0[10];
+	//_anon8 uvinfo_t0[18];
+	//_anon8 uvinfo_oil[13];
+	//_anon8 uvinfo_tb[17];
 	// Line 2193, Address: 0x2291d0, Func Offset: 0
 	// Line 2329, Address: 0x2291dc, Func Offset: 0xc
 	// Line 2331, Address: 0x2291f0, Func Offset: 0x20
@@ -2053,11 +2067,12 @@ void bhEff011(_anon0* op)
 	// Line 2505, Address: 0x229968, Func Offset: 0x798
 	// Line 2506, Address: 0x22999c, Func Offset: 0x7cc
 	// Func End, Address: 0x2299ac, Func Offset: 0x7dc
+	scePrintf("bhEff011 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2299b0
-void bhEff012(_anon0* op)
+void bhEff012(O_WRK* op)
 {
 	// Line 2513, Address: 0x2299b0, Func Offset: 0
 	// Line 2514, Address: 0x2299bc, Func Offset: 0xc
@@ -2124,23 +2139,24 @@ void bhEff012(_anon0* op)
 	// Line 2578, Address: 0x229d00, Func Offset: 0x350
 	// Line 2579, Address: 0x229d38, Func Offset: 0x388
 	// Func End, Address: 0x229d48, Func Offset: 0x398
+	scePrintf("bhEff012 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x229d50
-void bhEff013(_anon0* op)
+void bhEff013(O_WRK* op)
 {
-	_anon41 vc1;
-	_anon41 vc0;
-	_anon41 vec;
+	//_anon41 vc1;
+	//_anon41 vc0;
+	//_anon41 vec;
 	int id;
 	float hh;
 	int aa;
 	BH_PWORK* ep;
-	_anon44 gat;
+	//_anon44 gat;
 	float len;
-	_anon41 ps;
-	_anon50 lp;
+	//_anon41 ps;
+	//_anon50 lp;
 	// Line 2586, Address: 0x229d50, Func Offset: 0
 	// Line 2600, Address: 0x229d78, Func Offset: 0x28
 	// Line 2602, Address: 0x229db0, Func Offset: 0x60
@@ -2454,17 +2470,18 @@ void bhEff013(_anon0* op)
 	// Line 2868, Address: 0x22aca8, Func Offset: 0xf58
 	// Line 2869, Address: 0x22acf0, Func Offset: 0xfa0
 	// Func End, Address: 0x22ad18, Func Offset: 0xfc8
+	scePrintf("bhEff013 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22ad20
-void bhEff014(_anon0* op)
+void bhEff014(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_f3[1];
-	_anon8 uvinfo_f2[6];
-	_anon8 uvinfo_f1[4];
-	_anon8 uvinfo_f0[8];
+	//_anon8* uvp;
+	//_anon8 uvinfo_f3[1];
+	//_anon8 uvinfo_f2[6];
+	//_anon8 uvinfo_f1[4];
+	//_anon8 uvinfo_f0[8];
 	// Line 2905, Address: 0x22ad20, Func Offset: 0
 	// Line 2907, Address: 0x22ad34, Func Offset: 0x14
 	// Line 2908, Address: 0x22ad38, Func Offset: 0x18
@@ -2541,19 +2558,20 @@ void bhEff014(_anon0* op)
 	// Line 2989, Address: 0x22b008, Func Offset: 0x2e8
 	// Line 2990, Address: 0x22b03c, Func Offset: 0x31c
 	// Func End, Address: 0x22b044, Func Offset: 0x324
+	scePrintf("bhEff014 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22b050
-void bhEff015(_anon0* op)
+void bhEff015(O_WRK* op)
 {
 	float xn;
-	_anon8* uvp;
-	_anon8 uvinfo_oilh[5];
-	_anon8 uvinfo_oil[9];
-	_anon8 uvinfo_t1[5];
-	_anon8 uvinfo_t0[11];
-	_anon8 uvinfo_t2[12];
+	//_anon8* uvp;
+	//_anon8 uvinfo_oilh[5];
+	//_anon8 uvinfo_oil[9];
+	//_anon8 uvinfo_t1[5];
+	//_anon8 uvinfo_t0[11];
+	//_anon8 uvinfo_t2[12];
 	// Line 2997, Address: 0x22b050, Func Offset: 0
 	// Line 3065, Address: 0x22b060, Func Offset: 0x10
 	// Line 3067, Address: 0x22b074, Func Offset: 0x24
@@ -2725,11 +2743,12 @@ void bhEff015(_anon0* op)
 	// Line 3221, Address: 0x22b874, Func Offset: 0x824
 	// Line 3222, Address: 0x22b8a8, Func Offset: 0x858
 	// Func End, Address: 0x22b8bc, Func Offset: 0x86c
+	scePrintf("bhEff015 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22b8c0
-void bhEff016(_anon0* op)
+void bhEff016(O_WRK* op)
 {
 	// Line 3229, Address: 0x22b8c0, Func Offset: 0
 	// Line 3230, Address: 0x22b8cc, Func Offset: 0xc
@@ -2738,29 +2757,31 @@ void bhEff016(_anon0* op)
 	// Line 3233, Address: 0x22b904, Func Offset: 0x44
 	// Line 3235, Address: 0x22b908, Func Offset: 0x48
 	// Func End, Address: 0x22b918, Func Offset: 0x58
+	scePrintf("bhEff016 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22b920
-void bhEff017(_anon0* op)
+void bhEff017(O_WRK* op)
 {
 	// Line 3244, Address: 0x22b920, Func Offset: 0
 	// Line 3246, Address: 0x22b938, Func Offset: 0x18
 	// Line 3248, Address: 0x22b970, Func Offset: 0x50
 	// Func End, Address: 0x22b978, Func Offset: 0x58
+	scePrintf("bhEff017 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22b980
-void bhEff018(_anon0* op)
+void bhEff018(O_WRK* op)
 {
-	_anon41 pos;
-	_anon8* uvp;
-	_anon8 uvinfo_fs[9];
-	_anon8 uvinfo_fl[11];
-	_anon8 uvinfo_fed[4];
-	_anon8 uvinfo_fl2s[4];
-	_anon8 uvinfo_fst[8];
+	//_anon41 pos;
+	//_anon8* uvp;
+	//_anon8 uvinfo_fs[9];
+	//_anon8 uvinfo_fl[11];
+	//_anon8 uvinfo_fed[4];
+	//_anon8 uvinfo_fl2s[4];
+	//_anon8 uvinfo_fst[8];
 	// Line 3255, Address: 0x22b980, Func Offset: 0
 	// Line 3303, Address: 0x22b990, Func Offset: 0x10
 	// Line 3305, Address: 0x22b9a4, Func Offset: 0x24
@@ -2912,17 +2933,18 @@ void bhEff018(_anon0* op)
 	// Line 3466, Address: 0x22c0cc, Func Offset: 0x74c
 	// Line 3467, Address: 0x22c100, Func Offset: 0x780
 	// Func End, Address: 0x22c114, Func Offset: 0x794
+	scePrintf("bhEff018 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22c120
-void bhEff019(_anon0* op)
+void bhEff019(O_WRK* op)
 {
-	_anon13* lp;
-	_anon8* uvp;
-	_anon8 uvinfo_t1[15];
-	_anon8 uvinfo_t2[8];
-	_anon8 uvinfo_t0[15];
+	//_anon13* lp;
+	//_anon8* uvp;
+	//_anon8 uvinfo_t1[15];
+	//_anon8 uvinfo_t2[8];
+	//_anon8 uvinfo_t0[15];
 	// Line 3556, Address: 0x22c120, Func Offset: 0
 	// Line 3558, Address: 0x22c134, Func Offset: 0x14
 	// Line 3559, Address: 0x22c140, Func Offset: 0x20
@@ -3035,15 +3057,16 @@ void bhEff019(_anon0* op)
 	// Line 3669, Address: 0x22c4fc, Func Offset: 0x3dc
 	// Line 3670, Address: 0x22c530, Func Offset: 0x410
 	// Func End, Address: 0x22c538, Func Offset: 0x418
+	scePrintf("bhEff019 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22c540
 void bhDraw021()
 {
-	_anon27 col[4];
-	_anon40 p[4];
-	_anon46 p2c;
+	//_anon27 col[4];
+	//_anon40 p[4];
+	//_anon46 p2c;
 	// Line 3685, Address: 0x22c540, Func Offset: 0
 	// Line 3691, Address: 0x22c558, Func Offset: 0x18
 	// Line 3692, Address: 0x22c568, Func Offset: 0x28
@@ -3130,11 +3153,12 @@ void bhDraw021()
 	// Line 3745, Address: 0x22c710, Func Offset: 0x1d0
 	// Line 3746, Address: 0x22c718, Func Offset: 0x1d8
 	// Func End, Address: 0x22c738, Func Offset: 0x1f8
+	scePrintf("bhDraw021 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22c740
-void bhEff021(_anon0* op)
+void bhEff021(O_WRK* op)
 {
 	// Line 3750, Address: 0x22c740, Func Offset: 0
 	// Line 3751, Address: 0x22c74c, Func Offset: 0xc
@@ -3151,18 +3175,19 @@ void bhEff021(_anon0* op)
 	// Line 3756, Address: 0x22c7c4, Func Offset: 0x84
 	// Line 3758, Address: 0x22c7d0, Func Offset: 0x90
 	// Func End, Address: 0x22c7d8, Func Offset: 0x98
+	scePrintf("bhEff021 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22c7e0
-void bhDraw022(_anon0* op)
+void bhDraw022(O_WRK* op)
 {
 	int i;
-	_anon41 scl;
-	_anon36* exp;
-	_anon8* uvp;
-	_anon5 tv[4];
-	_anon8 uvinfo[15];
+	//_anon41 scl;
+	//_anon36* exp;
+	//_anon8* uvp;
+	//_anon5 tv[4];
+	//_anon8 uvinfo[15];
 	// Line 3765, Address: 0x22c7e0, Func Offset: 0
 	// Line 3793, Address: 0x22c7f4, Func Offset: 0x14
 	// Line 3795, Address: 0x22c7fc, Func Offset: 0x1c
@@ -3220,15 +3245,16 @@ void bhDraw022(_anon0* op)
 	// Line 3850, Address: 0x22ca38, Func Offset: 0x258
 	// Line 3851, Address: 0x22ca40, Func Offset: 0x260
 	// Func End, Address: 0x22ca58, Func Offset: 0x278
+	scePrintf("bhDraw022 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22ca60
-void bhEff022(_anon0* op)
+void bhEff022(O_WRK* op)
 {
 	int i;
-	_anon41 ps;
-	_anon41 vc;
+	//_anon41 ps;
+	//_anon41 vc;
 	// Line 3854, Address: 0x22ca60, Func Offset: 0
 	// Line 3855, Address: 0x22ca70, Func Offset: 0x10
 	// Line 3856, Address: 0x22ca80, Func Offset: 0x20
@@ -3284,18 +3310,19 @@ void bhEff022(_anon0* op)
 	// Line 3904, Address: 0x22cd10, Func Offset: 0x2b0
 	// Line 3906, Address: 0x22cd48, Func Offset: 0x2e8
 	// Func End, Address: 0x22cd5c, Func Offset: 0x2fc
+	scePrintf("bhEff022 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22cd60
-void bhEff023(_anon0* op)
+void bhEff023(O_WRK* op)
 {
 	float sch;
 	float scl;
-	_anon41 vc1;
-	_anon41 vc0;
-	_anon8* uvp;
-	_anon8 uvinfo_t0[16];
+	//_anon41 vc1;
+	//_anon41 vc0;
+	//_anon8* uvp;
+	//_anon8 uvinfo_t0[16];
 	// Line 3913, Address: 0x22cd60, Func Offset: 0
 	// Line 3933, Address: 0x22cd74, Func Offset: 0x14
 	// Line 3936, Address: 0x22cd88, Func Offset: 0x28
@@ -3393,22 +3420,23 @@ void bhEff023(_anon0* op)
 	// Line 4022, Address: 0x22d3d8, Func Offset: 0x678
 	// Line 4023, Address: 0x22d410, Func Offset: 0x6b0
 	// Func End, Address: 0x22d428, Func Offset: 0x6c8
+	scePrintf("bhEff023 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22d430
-void bhDraw024(_anon0* op)
+void bhDraw024(O_WRK* op)
 {
 	int i;
-	_anon41 scl;
-	_anon36* exp;
-	_anon8* uvp;
-	_anon5* tv;
+	//_anon41 scl;
+	//_anon36* exp;
+	//_anon8* uvp;
+	//_anon5* tv;
 	int ef24ct[2];
-	_anon8 uvinfo1[11];
-	_anon5 tv1[4];
-	_anon8 uvinfo0[8];
-	_anon5 tv0[4];
+	//_anon8 uvinfo1[11];
+	//_anon5 tv1[4];
+	//_anon8 uvinfo0[8];
+	//_anon5 tv0[4];
 	// Line 4030, Address: 0x22d430, Func Offset: 0
 	// Line 4077, Address: 0x22d448, Func Offset: 0x18
 	// Line 4079, Address: 0x22d450, Func Offset: 0x20
@@ -3492,15 +3520,16 @@ void bhDraw024(_anon0* op)
 	// Line 4153, Address: 0x22d748, Func Offset: 0x318
 	// Line 4154, Address: 0x22d750, Func Offset: 0x320
 	// Func End, Address: 0x22d76c, Func Offset: 0x33c
+	scePrintf("bhDraw024 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22d770
-void bhEff024(_anon0* op)
+void bhEff024(O_WRK* op)
 {
 	float py;
-	_anon41 vec;
-	_anon1* hp;
+	//_anon41 vec;
+	//_anon1* hp;
 	// Line 4157, Address: 0x22d770, Func Offset: 0
 	// Line 4161, Address: 0x22d788, Func Offset: 0x18
 	// Line 4162, Address: 0x22d798, Func Offset: 0x28
@@ -3570,18 +3599,19 @@ void bhEff024(_anon0* op)
 	// Line 4222, Address: 0x22dae0, Func Offset: 0x370
 	// Line 4224, Address: 0x22db18, Func Offset: 0x3a8
 	// Func End, Address: 0x22db34, Func Offset: 0x3c4
+	scePrintf("bhEff024 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22db40
-void bhDraw025(_anon0* op)
+void bhDraw025(O_WRK* op)
 {
 	int i;
-	_anon41 scl;
-	_anon2* exp;
-	_anon8* uvp;
-	_anon5 tv[4];
-	_anon8 uvinfo[11];
+	//_anon41 scl;
+	//_anon2* exp;
+	//_anon8* uvp;
+	//_anon5 tv[4];
+	//_anon8 uvinfo[11];
 	// Line 4231, Address: 0x22db40, Func Offset: 0
 	// Line 4279, Address: 0x22db50, Func Offset: 0x10
 	// Line 4280, Address: 0x22db58, Func Offset: 0x18
@@ -3634,14 +3664,15 @@ void bhDraw025(_anon0* op)
 	// Line 4331, Address: 0x22dd78, Func Offset: 0x238
 	// Line 4332, Address: 0x22dd80, Func Offset: 0x240
 	// Func End, Address: 0x22dd94, Func Offset: 0x254
+	scePrintf("bhDraw025 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22dda0
-void bhEff025(_anon0* op)
+void bhEff025(O_WRK* op)
 {
 	int i;
-	_anon2* exp;
+	//_anon2* exp;
 	// Line 4335, Address: 0x22dda0, Func Offset: 0
 	// Line 4338, Address: 0x22ddb4, Func Offset: 0x14
 	// Line 4339, Address: 0x22ddc4, Func Offset: 0x24
@@ -3675,13 +3706,14 @@ void bhEff025(_anon0* op)
 	// Line 4368, Address: 0x22dfd8, Func Offset: 0x238
 	// Line 4370, Address: 0x22e010, Func Offset: 0x270
 	// Func End, Address: 0x22e028, Func Offset: 0x288
+	scePrintf("bhEff025 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22e030
-void bhEff026(_anon0* op)
+void bhEff026(O_WRK* op)
 {
-	_anon56 pnt;
+	//_anon56 pnt;
 	unsigned int argb;
 	// Line 4377, Address: 0x22e030, Func Offset: 0
 	// Line 4379, Address: 0x22e03c, Func Offset: 0xc
@@ -3761,18 +3793,19 @@ void bhEff026(_anon0* op)
 	// Line 4429, Address: 0x22e3f0, Func Offset: 0x3c0
 	// Line 4430, Address: 0x22e424, Func Offset: 0x3f4
 	// Func End, Address: 0x22e434, Func Offset: 0x404
+	scePrintf("bhEff026 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22e440
-void bhDraw027(_anon0* op)
+void bhDraw027(O_WRK* op)
 {
 	int i;
-	_anon41 scl;
-	_anon2* exp;
-	_anon8* uvp;
-	_anon5 tv[4];
-	_anon8 uvinfo[11];
+	//_anon41 scl;
+	//_anon2* exp;
+	//_anon8* uvp;
+	//_anon5 tv[4];
+	//_anon8 uvinfo[11];
 	// Line 4437, Address: 0x22e440, Func Offset: 0
 	// Line 4461, Address: 0x22e450, Func Offset: 0x10
 	// Line 4462, Address: 0x22e458, Func Offset: 0x18
@@ -3835,15 +3868,16 @@ void bhDraw027(_anon0* op)
 	// Line 4512, Address: 0x22e690, Func Offset: 0x250
 	// Line 4513, Address: 0x22e698, Func Offset: 0x258
 	// Func End, Address: 0x22e6ac, Func Offset: 0x26c
+	scePrintf("bhDraw027 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22e6b0
-void bhEff027(_anon0* op)
+void bhEff027(O_WRK* op)
 {
 	int i;
-	_anon2* exp;
-	_anon41 ps;
+	//_anon2* exp;
+	//_anon41 ps;
 	// Line 4516, Address: 0x22e6b0, Func Offset: 0
 	// Line 4520, Address: 0x22e6c4, Func Offset: 0x14
 	// Line 4521, Address: 0x22e6d4, Func Offset: 0x24
@@ -3902,7 +3936,8 @@ void bhEff027(_anon0* op)
 	// Line 4571, Address: 0x22ea84, Func Offset: 0x3d4
 	// Line 4572, Address: 0x22eabc, Func Offset: 0x40c
 	// Func End, Address: 0x22ead4, Func Offset: 0x424
-}*/
+	scePrintf("bhEff027 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhEff028()
@@ -3910,9 +3945,9 @@ void bhEff028()
 
 }
 
-/*// 
+// 
 // Start address: 0x22eaf0
-void bhEff029(_anon0* op)
+void bhEff029(O_WRK* op)
 {
 	// Line 4589, Address: 0x22eaf0, Func Offset: 0
 	// Line 4590, Address: 0x22eb00, Func Offset: 0x10
@@ -3920,14 +3955,15 @@ void bhEff029(_anon0* op)
 	// Line 4593, Address: 0x22eb1c, Func Offset: 0x2c
 	// Line 4595, Address: 0x22eb20, Func Offset: 0x30
 	// Func End, Address: 0x22eb28, Func Offset: 0x38
+	scePrintf("bhEff029 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22eb30
-void bhEff100(_anon0* op)
+void bhEff100(O_WRK* op)
 {
 	int i;
-	_anon9* erp;
+	//_anon9* erp;
 	// Line 4609, Address: 0x22eb30, Func Offset: 0
 	// Line 4612, Address: 0x22eb44, Func Offset: 0x14
 	// Line 4613, Address: 0x22eb54, Func Offset: 0x24
@@ -3954,11 +3990,12 @@ void bhEff100(_anon0* op)
 	// Line 4635, Address: 0x22eccc, Func Offset: 0x19c
 	// Line 4637, Address: 0x22ed04, Func Offset: 0x1d4
 	// Func End, Address: 0x22ed1c, Func Offset: 0x1ec
+	scePrintf("bhEff100 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22ed20
-void bhEff101(_anon0* op)
+void bhEff101(O_WRK* op)
 {
 	// Line 4644, Address: 0x22ed20, Func Offset: 0
 	// Line 4648, Address: 0x22ed28, Func Offset: 0x8
@@ -3982,11 +4019,12 @@ void bhEff101(_anon0* op)
 	// Line 4663, Address: 0x22ee38, Func Offset: 0x118
 	// Line 4664, Address: 0x22ee50, Func Offset: 0x130
 	// Func End, Address: 0x22ee5c, Func Offset: 0x13c
+	scePrintf("bhEff101 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22ee60
-void bhEff102(_anon0* op)
+void bhEff102(O_WRK* op)
 {
 	// Line 4671, Address: 0x22ee60, Func Offset: 0
 	// Line 4672, Address: 0x22ee70, Func Offset: 0x10
@@ -4002,11 +4040,12 @@ void bhEff102(_anon0* op)
 	// Line 4681, Address: 0x22efb8, Func Offset: 0x158
 	// Line 4682, Address: 0x22efd0, Func Offset: 0x170
 	// Func End, Address: 0x22efe4, Func Offset: 0x184
+	scePrintf("bhEff102 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22eff0
-void bhEff103(_anon0* op)
+void bhEff103(O_WRK* op)
 {
 	// Line 4689, Address: 0x22eff0, Func Offset: 0
 	// Line 4690, Address: 0x22effc, Func Offset: 0xc
@@ -4080,11 +4119,12 @@ void bhEff103(_anon0* op)
 	// Line 4737, Address: 0x22f4cc, Func Offset: 0x4dc
 	// Line 4741, Address: 0x22f4e4, Func Offset: 0x4f4
 	// Func End, Address: 0x22f4f4, Func Offset: 0x504
+	scePrintf("bhEff103 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22f500
-void bhEff104(_anon0* op)
+void bhEff104(O_WRK* op)
 {
 	int j;
 	int i;
@@ -4120,11 +4160,12 @@ void bhEff104(_anon0* op)
 	// Line 4768, Address: 0x22f7b4, Func Offset: 0x2b4
 	// Line 4769, Address: 0x22f7cc, Func Offset: 0x2cc
 	// Func End, Address: 0x22f7e4, Func Offset: 0x2e4
+	scePrintf("bhEff104 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22f7f0
-void bhEff105(_anon0* op)
+void bhEff105(O_WRK* op)
 {
 	// Line 4777, Address: 0x22f7f0, Func Offset: 0
 	// Line 4778, Address: 0x22f7fc, Func Offset: 0xc
@@ -4162,18 +4203,19 @@ void bhEff105(_anon0* op)
 	// Line 4826, Address: 0x22fa44, Func Offset: 0x254
 	// Line 4828, Address: 0x22fa78, Func Offset: 0x288
 	// Func End, Address: 0x22fa88, Func Offset: 0x298
+	scePrintf("bhEff105 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22fa90
-void bhEff106(_anon0* op)
+void bhEff106(O_WRK* op)
 {
 	int ang[3];
 	int i;
-	_anon9* erp;
-	_anon48 p3c;
-	_anon27 col[2];
-	_anon41 pos[2];
+	//_anon9* erp;
+	//_anon48 p3c;
+	//_anon27 col[2];
+	//_anon41 pos[2];
 	// Line 4835, Address: 0x22fa90, Func Offset: 0
 	// Line 4847, Address: 0x22faa0, Func Offset: 0x10
 	// Line 4848, Address: 0x22faa8, Func Offset: 0x18
@@ -4215,17 +4257,18 @@ void bhEff106(_anon0* op)
 	// Line 4878, Address: 0x22fcf0, Func Offset: 0x260
 	// Line 4879, Address: 0x22fcf8, Func Offset: 0x268
 	// Func End, Address: 0x22fd0c, Func Offset: 0x27c
+	scePrintf("bhEff106 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22fd10
-void bhDraw107(_anon0* op)
+void bhDraw107(O_WRK* op)
 {
 	int i;
-	_anon8* uvp;
-	_anon9* erp;
-	_anon5 tv[4];
-	_anon8 uvinfo[6];
+	//_anon8* uvp;
+	//_anon9* erp;
+	//_anon5 tv[4];
+	//_anon8 uvinfo[6];
 	// Line 4886, Address: 0x22fd10, Func Offset: 0
 	// Line 4904, Address: 0x22fd20, Func Offset: 0x10
 	// Line 4905, Address: 0x22fd28, Func Offset: 0x18
@@ -4259,15 +4302,16 @@ void bhDraw107(_anon0* op)
 	// Line 4931, Address: 0x22fea8, Func Offset: 0x198
 	// Line 4932, Address: 0x22feb0, Func Offset: 0x1a0
 	// Func End, Address: 0x22fec4, Func Offset: 0x1b4
+	scePrintf("bhDraw107 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x22fed0
-void bhEff107(_anon0* op)
+void bhEff107(O_WRK* op)
 {
 	int i;
-	_anon1* hp;
-	_anon9* erp;
+	//_anon1* hp;
+	//_anon9* erp;
 	// Line 4939, Address: 0x22fed0, Func Offset: 0
 	// Line 4943, Address: 0x22fee4, Func Offset: 0x14
 	// Line 4944, Address: 0x22fef0, Func Offset: 0x20
@@ -4295,11 +4339,12 @@ void bhEff107(_anon0* op)
 	// Line 4970, Address: 0x23008c, Func Offset: 0x1bc
 	// Line 4972, Address: 0x2300c4, Func Offset: 0x1f4
 	// Func End, Address: 0x2300dc, Func Offset: 0x20c
+	scePrintf("bhEff107 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2300e0
-void bhEff108(_anon0* op)
+void bhEff108(O_WRK* op)
 {
 	float* wty;
 	int ay;
@@ -4418,13 +4463,14 @@ void bhEff108(_anon0* op)
 	// Line 5089, Address: 0x230700, Func Offset: 0x620
 	// Line 5094, Address: 0x230704, Func Offset: 0x624
 	// Func End, Address: 0x23071c, Func Offset: 0x63c
+	scePrintf("bhEff108 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x230720
-void bhEff109(_anon0* op)
+void bhEff109(O_WRK* op)
 {
-	_anon56 pos;
+	//_anon56 pos;
 	// Line 5101, Address: 0x230720, Func Offset: 0
 	// Line 5103, Address: 0x230728, Func Offset: 0x8
 	// Line 5104, Address: 0x230730, Func Offset: 0x10
@@ -4451,11 +4497,12 @@ void bhEff109(_anon0* op)
 	// Line 5120, Address: 0x2307f0, Func Offset: 0xd0
 	// Line 5124, Address: 0x2307fc, Func Offset: 0xdc
 	// Func End, Address: 0x230808, Func Offset: 0xe8
+	scePrintf("bhEff109 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x230810
-void bhEff110(_anon0* op)
+void bhEff110(O_WRK* op)
 {
 	float yn;
 	float xn;
@@ -4670,15 +4717,16 @@ void bhEff110(_anon0* op)
 	// Line 5319, Address: 0x23118c, Func Offset: 0x97c
 	// Line 5328, Address: 0x23119c, Func Offset: 0x98c
 	// Func End, Address: 0x2311c4, Func Offset: 0x9b4
+	scePrintf("bhEff110 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2311d0
-void bhEff111(_anon0* op)
+void bhEff111(O_WRK* op)
 {
 	float wcos;
 	float wsin;
-	_anon3* tvp;
+	//_anon3* tvp;
 	// Line 5335, Address: 0x2311d0, Func Offset: 0
 	// Line 5338, Address: 0x2311e4, Func Offset: 0x14
 	// Line 5339, Address: 0x2311fc, Func Offset: 0x2c
@@ -4841,13 +4889,14 @@ void bhEff111(_anon0* op)
 	// Line 5495, Address: 0x231990, Func Offset: 0x7c0
 	// Line 5497, Address: 0x231994, Func Offset: 0x7c4
 	// Func End, Address: 0x2319ac, Func Offset: 0x7dc
+	scePrintf("bhEff111 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2319b0
-void bhEff112(_anon0* op)
+void bhEff112(O_WRK* op)
 {
-	_anon41 vec;
+	//_anon41 vec;
 	// Line 5504, Address: 0x2319b0, Func Offset: 0
 	// Line 5505, Address: 0x2319b4, Func Offset: 0x4
 	// Line 5504, Address: 0x2319b8, Func Offset: 0x8
@@ -4865,11 +4914,12 @@ void bhEff112(_anon0* op)
 	// Line 5526, Address: 0x231aac, Func Offset: 0xfc
 	// Line 5528, Address: 0x231ac4, Func Offset: 0x114
 	// Func End, Address: 0x231ad4, Func Offset: 0x124
+	scePrintf("bhEff112 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x231ae0
-void bhEff113(_anon0* op)
+void bhEff113(O_WRK* op)
 {
 	float spq;
 	float yn;
@@ -4879,8 +4929,8 @@ void bhEff113(_anon0* op)
 	int ct;
 	int j;
 	int i;
-	_anon41 vc1;
-	_anon41 vc0;
+	//_anon41 vc1;
+	//_anon41 vc0;
 	// Line 5535, Address: 0x231ae0, Func Offset: 0
 	// Line 5539, Address: 0x231b10, Func Offset: 0x30
 	// Line 5544, Address: 0x231b3c, Func Offset: 0x5c
@@ -4963,17 +5013,18 @@ void bhEff113(_anon0* op)
 	// Line 5593, Address: 0x231fa0, Func Offset: 0x4c0
 	// Line 5594, Address: 0x231fa4, Func Offset: 0x4c4
 	// Func End, Address: 0x231fd4, Func Offset: 0x4f4
+	scePrintf("bhEff113 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x231fe0
-void bhDraw114(_anon0* op)
+void bhDraw114(O_WRK* op)
 {
 	int pt;
 	float it;
-	_anon41 vc1;
-	_anon41 vc0;
-	_anon3* tvp;
+	//_anon41 vc1;
+	//_anon41 vc0;
+	//_anon3* tvp;
 	// Line 5601, Address: 0x231fe0, Func Offset: 0
 	// Line 5606, Address: 0x231ff4, Func Offset: 0x14
 	// Line 5608, Address: 0x231ffc, Func Offset: 0x1c
@@ -5000,19 +5051,20 @@ void bhDraw114(_anon0* op)
 	// Line 5639, Address: 0x23216c, Func Offset: 0x18c
 	// Line 5640, Address: 0x232174, Func Offset: 0x194
 	// Func End, Address: 0x23218c, Func Offset: 0x1ac
+	scePrintf("bhDraw114 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x232190
-void bhEff114(_anon0* op)
+void bhEff114(O_WRK* op)
 {
 	float fs;
 	int is;
 	float v;
 	float u;
 	int pt;
-	_anon3* tvp;
-	_anon41 vc0;
+	//_anon3* tvp;
+	//_anon41 vc0;
 	// Line 5643, Address: 0x232190, Func Offset: 0
 	// Line 5649, Address: 0x2321a0, Func Offset: 0x10
 	// Line 5651, Address: 0x2321c0, Func Offset: 0x30
@@ -5178,11 +5230,12 @@ void bhEff114(_anon0* op)
 	// Line 5778, Address: 0x23279c, Func Offset: 0x60c
 	// Line 5780, Address: 0x2327d4, Func Offset: 0x644
 	// Func End, Address: 0x2327e4, Func Offset: 0x654
+	scePrintf("bhEff114 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2327f0
-void bhEff115(_anon0* op)
+void bhEff115(O_WRK* op)
 {
 	int i;
 	// Line 5787, Address: 0x2327f0, Func Offset: 0
@@ -5269,11 +5322,12 @@ void bhEff115(_anon0* op)
 	// Line 5850, Address: 0x232dc4, Func Offset: 0x5d4
 	// Line 5855, Address: 0x232ddc, Func Offset: 0x5ec
 	// Func End, Address: 0x232df0, Func Offset: 0x600
+	scePrintf("bhEff115 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x232df0
-void bhEff116(_anon0* op)
+void bhEff116(O_WRK* op)
 {
 	// Line 5862, Address: 0x232df0, Func Offset: 0
 	// Line 5864, Address: 0x232df8, Func Offset: 0x8
@@ -5301,15 +5355,16 @@ void bhEff116(_anon0* op)
 	// Line 5880, Address: 0x232f54, Func Offset: 0x164
 	// Line 5883, Address: 0x232f6c, Func Offset: 0x17c
 	// Func End, Address: 0x232f78, Func Offset: 0x188
+	scePrintf("bhEff116 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x232f80
-void bhEff117(_anon0* op)
+void bhEff117(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_p1[4];
-	_anon8 uvinfo_p0[4];
+	//_anon8* uvp;
+	//_anon8 uvinfo_p1[4];
+	//_anon8 uvinfo_p0[4];
 	// Line 5890, Address: 0x232f80, Func Offset: 0
 	// Line 5913, Address: 0x232f90, Func Offset: 0x10
 	// Line 5915, Address: 0x232fb0, Func Offset: 0x30
@@ -5350,17 +5405,18 @@ void bhEff117(_anon0* op)
 	// Line 5949, Address: 0x233120, Func Offset: 0x1a0
 	// Line 5950, Address: 0x233154, Func Offset: 0x1d4
 	// Func End, Address: 0x233164, Func Offset: 0x1e4
+	scePrintf("bhEff117 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x233170
-void bhEff118(_anon0* op)
+void bhEff118(O_WRK* op)
 {
 	short* wp;
 	float ang;
 	int i;
-	_anon41 pos;
-	_anon0* opp;
+	//_anon41 pos;
+	O_WRK* opp;
 	// Line 5957, Address: 0x233170, Func Offset: 0
 	// Line 5963, Address: 0x233188, Func Offset: 0x18
 	// Line 5964, Address: 0x233198, Func Offset: 0x28
@@ -5431,14 +5487,15 @@ void bhEff118(_anon0* op)
 	// Line 6020, Address: 0x233530, Func Offset: 0x3c0
 	// Line 6021, Address: 0x23353c, Func Offset: 0x3cc
 	// Func End, Address: 0x233558, Func Offset: 0x3e8
+	scePrintf("bhEff118 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x233560
-void bhEff119(_anon0* op)
+void bhEff119(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_p0[16];
+	//_anon8* uvp;
+	//_anon8 uvinfo_p0[16];
 	// Line 6028, Address: 0x233560, Func Offset: 0
 	// Line 6048, Address: 0x233570, Func Offset: 0x10
 	// Line 6050, Address: 0x233584, Func Offset: 0x24
@@ -5516,11 +5573,12 @@ void bhEff119(_anon0* op)
 	// Line 6114, Address: 0x2338d8, Func Offset: 0x378
 	// Line 6115, Address: 0x23390c, Func Offset: 0x3ac
 	// Func End, Address: 0x233920, Func Offset: 0x3c0
+	scePrintf("bhEff119 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x233920
-void bhEff120(_anon0* op)
+void bhEff120(O_WRK* op)
 {
 	short az;
 	BH_PWORK* ep;
@@ -5559,14 +5617,15 @@ void bhEff120(_anon0* op)
 	// Line 6159, Address: 0x233ad0, Func Offset: 0x1b0
 	// Line 6163, Address: 0x233ae8, Func Offset: 0x1c8
 	// Func End, Address: 0x233afc, Func Offset: 0x1dc
+	scePrintf("bhEff120 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x233b00
-void bhEff121(_anon0* op)
+void bhEff121(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_p0[9];
+	//_anon8* uvp;
+	//_anon8 uvinfo_p0[9];
 	// Line 6183, Address: 0x233b00, Func Offset: 0
 	// Line 6185, Address: 0x233b14, Func Offset: 0x14
 	// Line 6186, Address: 0x233b1c, Func Offset: 0x1c
@@ -5619,14 +5678,15 @@ void bhEff121(_anon0* op)
 	// Line 6225, Address: 0x233c58, Func Offset: 0x158
 	// Line 6226, Address: 0x233c88, Func Offset: 0x188
 	// Func End, Address: 0x233c90, Func Offset: 0x190
+	scePrintf("bhEff121 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x233c90
-void bhEff122(_anon0* op)
+void bhEff122(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_p0[3];
+	//_anon8* uvp;
+	//_anon8 uvinfo_p0[3];
 	// Line 6240, Address: 0x233c90, Func Offset: 0
 	// Line 6242, Address: 0x233ca4, Func Offset: 0x14
 	// Line 6243, Address: 0x233cac, Func Offset: 0x1c
@@ -5655,14 +5715,15 @@ void bhEff122(_anon0* op)
 	// Line 6265, Address: 0x233d74, Func Offset: 0xe4
 	// Line 6266, Address: 0x233da4, Func Offset: 0x114
 	// Func End, Address: 0x233dac, Func Offset: 0x11c
+	scePrintf("bhEff122 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x233db0
-void bhEff123(_anon0* op)
+void bhEff123(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_p0[4];
+	//_anon8* uvp;
+	//_anon8 uvinfo_p0[4];
 	// Line 6273, Address: 0x233db0, Func Offset: 0
 	// Line 6281, Address: 0x233dbc, Func Offset: 0xc
 	// Line 6283, Address: 0x233ddc, Func Offset: 0x2c
@@ -5726,15 +5787,16 @@ void bhEff123(_anon0* op)
 	// Line 6356, Address: 0x234004, Func Offset: 0x254
 	// Line 6357, Address: 0x234038, Func Offset: 0x288
 	// Func End, Address: 0x234048, Func Offset: 0x298
+	scePrintf("bhEff123 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x234050
-void bhEff124(_anon0* op)
+void bhEff124(O_WRK* op)
 {
-	_anon41 pos;
-	_anon8* uvp;
-	_anon8 uvinfo[15];
+	//_anon41 pos;
+	//_anon8* uvp;
+	//_anon8 uvinfo[15];
 	// Line 6364, Address: 0x234050, Func Offset: 0
 	// Line 6384, Address: 0x234060, Func Offset: 0x10
 	// Line 6386, Address: 0x234098, Func Offset: 0x48
@@ -5808,11 +5870,12 @@ void bhEff124(_anon0* op)
 	// Line 6453, Address: 0x2342cc, Func Offset: 0x27c
 	// Line 6454, Address: 0x234300, Func Offset: 0x2b0
 	// Func End, Address: 0x234310, Func Offset: 0x2c0
+	scePrintf("bhEff124 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x234310
-void bhEff125(_anon0* op)
+void bhEff125(O_WRK* op)
 {
 	// Line 6461, Address: 0x234310, Func Offset: 0
 	// Line 6463, Address: 0x23431c, Func Offset: 0xc
@@ -5841,19 +5904,20 @@ void bhEff125(_anon0* op)
 	// Line 6481, Address: 0x234504, Func Offset: 0x1f4
 	// Line 6484, Address: 0x234508, Func Offset: 0x1f8
 	// Func End, Address: 0x234518, Func Offset: 0x208
+	scePrintf("bhEff125 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x234520
-void bhEff126(_anon0* op)
+void bhEff126(O_WRK* op)
 {
 	int alpha;
-	_anon41 pos;
-	_anon8* uvp;
-	_anon8 uvinfo_p3[16];
-	_anon8 uvinfo_p2[20];
-	_anon8 uvinfo_p1[19];
-	_anon8 uvinfo_p0[19];
+	//_anon41 pos;
+	//_anon8* uvp;
+	//_anon8 uvinfo_p3[16];
+	//_anon8 uvinfo_p2[20];
+	//_anon8 uvinfo_p1[19];
+	//_anon8 uvinfo_p0[19];
 	// Line 6491, Address: 0x234520, Func Offset: 0
 	// Line 6577, Address: 0x23452c, Func Offset: 0xc
 	// Line 6579, Address: 0x234540, Func Offset: 0x20
@@ -5957,11 +6021,12 @@ void bhEff126(_anon0* op)
 	// Line 6690, Address: 0x2348e8, Func Offset: 0x3c8
 	// Line 6691, Address: 0x23491c, Func Offset: 0x3fc
 	// Func End, Address: 0x23492c, Func Offset: 0x40c
+	scePrintf("bhEff126 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x234930
-void bhEff127(_anon0* op)
+void bhEff127(O_WRK* op)
 {
 	// Line 6698, Address: 0x234930, Func Offset: 0
 	// Line 6708, Address: 0x234940, Func Offset: 0x10
@@ -6084,11 +6149,12 @@ void bhEff127(_anon0* op)
 	// Line 6811, Address: 0x235294, Func Offset: 0x964
 	// Line 6816, Address: 0x2352ac, Func Offset: 0x97c
 	// Func End, Address: 0x2352c0, Func Offset: 0x990
+	scePrintf("bhEff127 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2352c0
-void bhEff128(_anon0* op)
+void bhEff128(O_WRK* op)
 {
 	float y;
 	float x;
@@ -6170,7 +6236,8 @@ void bhEff128(_anon0* op)
 	// Line 6919, Address: 0x235534, Func Offset: 0x274
 	// Line 6920, Address: 0x23556c, Func Offset: 0x2ac
 	// Func End, Address: 0x235580, Func Offset: 0x2c0
-}*/
+	scePrintf("bhEff128 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhEff129()
@@ -6178,21 +6245,21 @@ void bhEff129()
 
 }
 
-/*// 
+// 
 // Start address: 0x235590
-void bhEff130(_anon0* op)
+void bhEff130(O_WRK* op)
 {
-	_anon41 vc1;
-	_anon41 vc0;
-	_anon41 vc1;
-	_anon41 vc0;
+	//_anon41 vc1;
+	//_anon41 vc0;
+	//_anon41 vc1;
+	//_anon41 vc0;
 	int i;
 	float len;
-	_anon44 gat;
-	_anon41 vc;
-	_anon41 ps;
-	_anon50 lp;
-	_anon13* lgp;
+	//_anon44 gat;
+	//_anon41 vc;
+	//_anon41 ps;
+	//_anon50 lp;
+	//_anon13* lgp;
 	// Line 6935, Address: 0x235590, Func Offset: 0
 	// Line 6943, Address: 0x2355ac, Func Offset: 0x1c
 	// Line 6945, Address: 0x2355d8, Func Offset: 0x48
@@ -7106,14 +7173,15 @@ void bhEff130(_anon0* op)
 	// Line 7716, Address: 0x238478, Func Offset: 0x2ee8
 	// Line 7723, Address: 0x23847c, Func Offset: 0x2eec
 	// Func End, Address: 0x23849c, Func Offset: 0x2f0c
+	scePrintf("bhEff130 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2384a0
-void bhEff131(_anon0* op)
+void bhEff131(O_WRK* op)
 {
-	_anon8* uvp;
-	_anon8 uvinfo_p0[14];
+	//_anon8* uvp;
+	//_anon8 uvinfo_p0[14];
 	// Line 7749, Address: 0x2384a0, Func Offset: 0
 	// Line 7751, Address: 0x2384b4, Func Offset: 0x14
 	// Line 7753, Address: 0x2384bc, Func Offset: 0x1c
@@ -7159,19 +7227,20 @@ void bhEff131(_anon0* op)
 	// Line 7785, Address: 0x238640, Func Offset: 0x1a0
 	// Line 7786, Address: 0x238674, Func Offset: 0x1d4
 	// Func End, Address: 0x23867c, Func Offset: 0x1dc
+	scePrintf("bhEff131 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x238680
-void bhEff132(_anon0* op)
+void bhEff132(O_WRK* op)
 {
 	int i;
-	_anon8* uvp;
+	//_anon8* uvp;
 	short apat_p3[9];
-	_anon8 uvinfo_p3[9];
-	_anon8 uvinfo_p2[12];
-	_anon8 uvinfo_p1[9];
-	_anon8 uvinfo_p0[8];
+	//_anon8 uvinfo_p3[9];
+	//_anon8 uvinfo_p2[12];
+	//_anon8 uvinfo_p1[9];
+	//_anon8 uvinfo_p0[8];
 	// Line 7793, Address: 0x238680, Func Offset: 0
 	// Line 7867, Address: 0x23868c, Func Offset: 0xc
 	// Line 7869, Address: 0x2386a0, Func Offset: 0x20
@@ -7357,4 +7426,5 @@ void bhEff132(_anon0* op)
 	// Line 8041, Address: 0x238e78, Func Offset: 0x7f8
 	// Line 8042, Address: 0x238eb0, Func Offset: 0x830
 	// Func End, Address: 0x238ec0, Func Offset: 0x840
-}*/
+	scePrintf("bhEff132 - UNIMPLEMENTED!\n");
+}

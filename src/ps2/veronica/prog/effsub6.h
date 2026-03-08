@@ -1588,17 +1588,17 @@ struct _anon45
 	float prm_3;
 	float prm_4;
 	unsigned char* recp;
-};
+};*/
 
-void bhEff085(_anon0* op);
-void bhEff145(_anon0* op);
-void bhEff146_Init(_anon0* op);
-void bhEff_Sub146(_anon0* op);
-void bhEff147(_anon0* op);
-void bhEff148(_anon0* op);
-void bhEff149(_anon0* op);
-void bhEff144(_anon0* op);
-void bhEff143_sub(_anon0* op);
-void bhEff143(_anon0* op);*/
+void bhEff085(O_WRK* op);
+void bhEff145(O_WRK* op);
+void bhEff146_Init(O_WRK* op);
+void bhEff_Sub146(O_WRK* op);
+void bhEff147(O_WRK* op);
+void bhEff148(O_WRK* op);
+void bhEff149(O_WRK* op);
+void bhEff144(O_WRK* op);
+void bhEff143_sub(O_WRK* op);
+void bhEff143(O_WRK* op);
 
 #endif

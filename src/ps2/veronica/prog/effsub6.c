@@ -4,18 +4,18 @@
 BH_PWORK ene[0];
 _anon9* rom;
 _anon5* sys;
-_anon0 eff[0];
-void(*bhEff_Draw3DSprite)(_anon0*);
+O_WRK eff[0];
+void(*bhEff_Draw3DSprite)(O_WRK*);
 _anon38 cam;
-void(*bhEff143_sub)(_anon0*);
+void(*bhEff143_sub)(O_WRK*);*/
 
 // 
 // Start address: 0x2e80b0
-void bhEff085(_anon0* op)
+void bhEff085(O_WRK* op)
 {
-	_anon6* effp;
-	_anon1* tnp2;
-	_anon1* tnp;
+	//_anon6* effp;
+	//_anon1* tnp2;
+	//_anon1* tnp;
 	// Line 86, Address: 0x2e80b0, Func Offset: 0
 	// Line 88, Address: 0x2e80d0, Func Offset: 0x20
 	// Line 89, Address: 0x2e80dc, Func Offset: 0x2c
@@ -48,11 +48,12 @@ void bhEff085(_anon0* op)
 	// Line 121, Address: 0x2e8218, Func Offset: 0x168
 	// Line 128, Address: 0x2e821c, Func Offset: 0x16c
 	// Func End, Address: 0x2e8224, Func Offset: 0x174
+	scePrintf("bhEff085 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e8230
-void bhEff145(_anon0* op)
+void bhEff145(O_WRK* op)
 {
 	// Line 138, Address: 0x2e8230, Func Offset: 0
 	// Line 157, Address: 0x2e8238, Func Offset: 0x8
@@ -74,11 +75,12 @@ void bhEff145(_anon0* op)
 	// Line 179, Address: 0x2e82d0, Func Offset: 0xa0
 	// Line 183, Address: 0x2e82d8, Func Offset: 0xa8
 	// Func End, Address: 0x2e82e4, Func Offset: 0xb4
+	scePrintf("bhEff145 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e82f0
-void bhEff146_Init(_anon0* op)
+void bhEff146_Init(O_WRK* op)
 {
 	int eno;
 	int i;
@@ -113,11 +115,12 @@ void bhEff146_Init(_anon0* op)
 	// Line 240, Address: 0x2e84f8, Func Offset: 0x208
 	// Line 241, Address: 0x2e8508, Func Offset: 0x218
 	// Func End, Address: 0x2e8524, Func Offset: 0x234
+	scePrintf("bhEff146_Init - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e8530
-void bhEff_Sub146(_anon0* op)
+void bhEff_Sub146(O_WRK* op)
 {
 	// Line 255, Address: 0x2e8530, Func Offset: 0
 	// Line 258, Address: 0x2e855c, Func Offset: 0x2c
@@ -171,11 +174,12 @@ void bhEff_Sub146(_anon0* op)
 	// Line 327, Address: 0x2e8754, Func Offset: 0x224
 	// Line 331, Address: 0x2e8778, Func Offset: 0x248
 	// Func End, Address: 0x2e8780, Func Offset: 0x250
+	scePrintf("bhEff_Sub146 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e8780
-void bhEff147(_anon0* op)
+void bhEff147(O_WRK* op)
 {
 	// Line 342, Address: 0x2e8780, Func Offset: 0
 	// Line 355, Address: 0x2e878c, Func Offset: 0xc
@@ -212,13 +216,14 @@ void bhEff147(_anon0* op)
 	// Line 384, Address: 0x2e8868, Func Offset: 0xe8
 	// Line 386, Address: 0x2e888c, Func Offset: 0x10c
 	// Func End, Address: 0x2e889c, Func Offset: 0x11c
+	scePrintf("bhEff147 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e88a0
-void bhEff148(_anon0* op)
+void bhEff148(O_WRK* op)
 {
-	_anon33 pos;
+	//_anon33 pos;
 	// Line 396, Address: 0x2e88a0, Func Offset: 0
 	// Line 416, Address: 0x2e88ac, Func Offset: 0xc
 	// Line 417, Address: 0x2e88b8, Func Offset: 0x18
@@ -285,14 +290,15 @@ void bhEff148(_anon0* op)
 	// Line 545, Address: 0x2e8af0, Func Offset: 0x250
 	// Line 549, Address: 0x2e8b14, Func Offset: 0x274
 	// Func End, Address: 0x2e8b24, Func Offset: 0x284
+	scePrintf("bhEff148 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e8b30
-void bhEff149(_anon0* op)
+void bhEff149(O_WRK* op)
 {
-	_anon39* uvp;
-	_anon39 uvtble[10];
+	//_anon39* uvp;
+	//_anon39 uvtble[10];
 	// Line 560, Address: 0x2e8b30, Func Offset: 0
 	// Line 585, Address: 0x2e8b3c, Func Offset: 0xc
 	// Line 587, Address: 0x2e8b68, Func Offset: 0x38
@@ -403,11 +409,12 @@ void bhEff149(_anon0* op)
 	// Line 726, Address: 0x2e9084, Func Offset: 0x554
 	// Line 743, Address: 0x2e90a8, Func Offset: 0x578
 	// Func End, Address: 0x2e90b8, Func Offset: 0x588
+	scePrintf("bhEff149 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e90c0
-void bhEff144(_anon0* op)
+void bhEff144(O_WRK* op)
 {
 	// Line 967, Address: 0x2e90c0, Func Offset: 0
 	// Line 969, Address: 0x2e90e0, Func Offset: 0x20
@@ -422,13 +429,14 @@ void bhEff144(_anon0* op)
 	// Line 985, Address: 0x2e9154, Func Offset: 0x94
 	// Line 986, Address: 0x2e918c, Func Offset: 0xcc
 	// Func End, Address: 0x2e9194, Func Offset: 0xd4
+	scePrintf("bhEff144 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e91a0
-void bhEff143_sub(_anon0* op)
+void bhEff143_sub(O_WRK* op)
 {
-	_anon21* pp;
+	//_anon21* pp;
 	// Line 997, Address: 0x2e91a0, Func Offset: 0
 	// Line 1001, Address: 0x2e91b0, Func Offset: 0x10
 	// Line 998, Address: 0x2e91b4, Func Offset: 0x14
@@ -450,17 +458,18 @@ void bhEff143_sub(_anon0* op)
 	// Line 1025, Address: 0x2e927c, Func Offset: 0xdc
 	// Line 1027, Address: 0x2e9288, Func Offset: 0xe8
 	// Func End, Address: 0x2e929c, Func Offset: 0xfc
+	scePrintf("bhEff143_sub - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2e92a0
-void bhEff143(_anon0* op)
+void bhEff143(O_WRK* op)
 {
 	unsigned int col[3];
 	int i;
-	_anon33* v;
-	_anon33* p;
-	_anon21* pp;
+	//_anon33* v;
+	//_anon33* p;
+	//_anon21* pp;
 	// Line 1037, Address: 0x2e92a0, Func Offset: 0
 	// Line 1042, Address: 0x2e92b4, Func Offset: 0x14
 	// Line 1037, Address: 0x2e92b8, Func Offset: 0x18
@@ -543,4 +552,5 @@ void bhEff143(_anon0* op)
 	// Line 1150, Address: 0x2e9854, Func Offset: 0x5b4
 	// Line 1153, Address: 0x2e9878, Func Offset: 0x5d8
 	// Func End, Address: 0x2e9898, Func Offset: 0x5f8
-}*/
+	scePrintf("bhEff143 - UNIMPLEMENTED!\n");
+}

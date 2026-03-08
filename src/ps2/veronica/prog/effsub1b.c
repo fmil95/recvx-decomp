@@ -1,18 +1,18 @@
 #include "effsub1b.h"
 
 /*_anon4* sys;
-void(*bhDraw134)(_anon0*);
-_anon0 eff[0];
-_anon0* ef_Zanzo[6];
+void(*bhDraw134)(O_WRK*);
+O_WRK eff[0];
+O_WRK* ef_Zanzo[6];
 _anon41 cam;
-void(*bhDraw136)(_anon0*);
-void(*bhDraw137)(_anon0*);
+void(*bhDraw136)(O_WRK*);
+void(*bhDraw137)(O_WRK*);
 _anon7* rom;
-void(*bhDraw138)(_anon0*);
+void(*bhDraw138)(O_WRK*);*/
 
 // 
 // Start address: 0x238ec0
-void bhEff133(_anon0* op)
+void bhEff133(O_WRK* op)
 {
 	char lmt[2][3];
 	// Line 50, Address: 0x238ec0, Func Offset: 0
@@ -65,18 +65,19 @@ void bhEff133(_anon0* op)
 	// Line 105, Address: 0x23923c, Func Offset: 0x37c
 	// Line 109, Address: 0x239240, Func Offset: 0x380
 	// Func End, Address: 0x239250, Func Offset: 0x390
+	scePrintf("bhEff133 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x239250
-void bhDraw134(_anon0* op)
+void bhDraw134(O_WRK* op)
 {
 	int i;
 	unsigned int argb;
-	_anon23 col[4];
-	_anon34 p[4];
-	_anon39 p2c;
-	_anon48 ef134tb[8];
+	//_anon23 col[4];
+	//_anon34 p[4];
+	//_anon39 p2c;
+	//_anon48 ef134tb[8];
 	// Line 122, Address: 0x239250, Func Offset: 0
 	// Line 144, Address: 0x23927c, Func Offset: 0x2c
 	// Line 145, Address: 0x239284, Func Offset: 0x34
@@ -148,11 +149,12 @@ void bhDraw134(_anon0* op)
 	// Line 210, Address: 0x23955c, Func Offset: 0x30c
 	// Line 211, Address: 0x239564, Func Offset: 0x314
 	// Func End, Address: 0x239594, Func Offset: 0x344
+	scePrintf("bhDraw134 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2395a0
-void bhEff134(_anon0* op)
+void bhEff134(O_WRK* op)
 {
 	int i;
 	float nn;
@@ -425,11 +427,12 @@ void bhEff134(_anon0* op)
 	// Line 489, Address: 0x23a334, Func Offset: 0xd94
 	// Line 493, Address: 0x23a384, Func Offset: 0xde4
 	// Func End, Address: 0x23a398, Func Offset: 0xdf8
+	scePrintf("bhEff134 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x23a3a0
-void bhEff135(_anon0* op)
+void bhEff135(O_WRK* op)
 {
 	int i;
 	BH_PWORK* pp;
@@ -478,11 +481,12 @@ void bhEff135(_anon0* op)
 	// Line 577, Address: 0x23a6c4, Func Offset: 0x324
 	// Line 581, Address: 0x23a6d8, Func Offset: 0x338
 	// Func End, Address: 0x23a6e8, Func Offset: 0x348
+	scePrintf("bhEff135 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x23a6f0
-void bhDraw136(_anon0* op)
+void bhDraw136(O_WRK* op)
 {
 	BH_PWORK* pwp;
 	int* vp;
@@ -515,15 +519,16 @@ void bhDraw136(_anon0* op)
 	// Line 626, Address: 0x23a92c, Func Offset: 0x23c
 	// Line 627, Address: 0x23a934, Func Offset: 0x244
 	// Func End, Address: 0x23a94c, Func Offset: 0x25c
+	scePrintf("bhDraw136 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x23a950
-void bhEff136(_anon0* op)
+void bhEff136(O_WRK* op)
 {
 	int i;
-	_anon12* mlwPb;
-	_anon12* mlwP;
+	//_anon12* mlwPb;
+	//_anon12* mlwP;
 	BH_PWORK* pwp;
 	// Line 630, Address: 0x23a950, Func Offset: 0
 	// Line 634, Address: 0x23a968, Func Offset: 0x18
@@ -564,11 +569,12 @@ void bhEff136(_anon0* op)
 	// Line 703, Address: 0x23ac58, Func Offset: 0x308
 	// Line 704, Address: 0x23ac64, Func Offset: 0x314
 	// Func End, Address: 0x23ac80, Func Offset: 0x330
+	scePrintf("bhEff136 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x23ac80
-void bhDraw137(_anon0* op)
+void bhDraw137(O_WRK* op)
 {
 	int i;
 	unsigned int argb;
@@ -576,11 +582,11 @@ void bhDraw137(_anon0* op)
 	float xr;
 	float zom;
 	float px;
-	_anon23 uv[4];
-	_anon23 col[4];
-	_anon34 p[4];
-	_anon39 p2c;
-	_anon48 ef137tb[9];
+	//_anon23 uv[4];
+	//_anon23 col[4];
+	//_anon34 p[4];
+	//_anon39 p2c;
+	//_anon48 ef137tb[9];
 	// Line 722, Address: 0x23ac80, Func Offset: 0
 	// Line 742, Address: 0x23acb8, Func Offset: 0x38
 	// Line 743, Address: 0x23acc0, Func Offset: 0x40
@@ -736,11 +742,12 @@ void bhDraw137(_anon0* op)
 	// Line 874, Address: 0x23b360, Func Offset: 0x6e0
 	// Line 875, Address: 0x23b368, Func Offset: 0x6e8
 	// Func End, Address: 0x23b3a4, Func Offset: 0x724
+	scePrintf("bhDraw137 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x23b3b0
-void bhEff137(_anon0* op)
+void bhEff137(O_WRK* op)
 {
 	// Line 878, Address: 0x23b3b0, Func Offset: 0
 	// Line 879, Address: 0x23b3bc, Func Offset: 0xc
@@ -877,23 +884,24 @@ void bhEff137(_anon0* op)
 	// Line 1037, Address: 0x23bcdc, Func Offset: 0x92c
 	// Line 1043, Address: 0x23bd14, Func Offset: 0x964
 	// Func End, Address: 0x23bd24, Func Offset: 0x974
+	scePrintf("bhEff137 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x23bd30
-void bhDraw138(_anon0* op)
+void bhDraw138(O_WRK* op)
 {
 	int i;
 	unsigned int argb;
-	_anon23 uv[4];
-	_anon23 col[4];
-	_anon34 p[4];
-	_anon39 p2c;
-	_anon48 ef138cur[1];
-	_anon48 ef138ledl[4];
-	_anon48 ef138leds[4];
-	_anon48 ef138tb[12];
-	_anon48 ef138oil[9];
+	//_anon23 uv[4];
+	//_anon23 col[4];
+	//_anon34 p[4];
+	//_anon39 p2c;
+	//_anon48 ef138cur[1];
+	//_anon48 ef138ledl[4];
+	//_anon48 ef138leds[4];
+	//_anon48 ef138tb[12];
+	//_anon48 ef138oil[9];
 	// Line 1050, Address: 0x23bd30, Func Offset: 0
 	// Line 1115, Address: 0x23bd5c, Func Offset: 0x2c
 	// Line 1116, Address: 0x23bd64, Func Offset: 0x34
@@ -1153,11 +1161,12 @@ void bhDraw138(_anon0* op)
 	// Line 1346, Address: 0x23c758, Func Offset: 0xa28
 	// Line 1347, Address: 0x23c760, Func Offset: 0xa30
 	// Func End, Address: 0x23c790, Func Offset: 0xa60
+	scePrintf("bhDraw138 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x23c790
-void bhEff138(_anon0* op)
+void bhEff138(O_WRK* op)
 {
 	int flg;
 	float CurTab[2][3];
@@ -1427,4 +1436,5 @@ void bhEff138(_anon0* op)
 	// Line 1625, Address: 0x23d488, Func Offset: 0xcf8
 	// Line 1629, Address: 0x23d498, Func Offset: 0xd08
 	// Func End, Address: 0x23d4ac, Func Offset: 0xd1c
-}*/
+	scePrintf("bhEff138 - UNIMPLEMENTED!\n");
+}

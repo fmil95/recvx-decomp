@@ -1627,17 +1627,17 @@ struct _anon48
 	float x1;
 	float y1;
 	_anon18 uv[4];
-};
+};*/
 
-void bhEff133(_anon0* op);
-void bhDraw134(_anon0* op);
-void bhEff134(_anon0* op);
-void bhEff135(_anon0* op);
-void bhDraw136(_anon0* op);
-void bhEff136(_anon0* op);
-void bhDraw137(_anon0* op);
-void bhEff137(_anon0* op);
-void bhDraw138(_anon0* op);
-void bhEff138(_anon0* op);*/
+void bhEff133(O_WRK* op);
+void bhDraw134(O_WRK* op);
+void bhEff134(O_WRK* op);
+void bhEff135(O_WRK* op);
+void bhDraw136(O_WRK* op);
+void bhEff136(O_WRK* op);
+void bhDraw137(O_WRK* op);
+void bhEff137(O_WRK* op);
+void bhDraw138(O_WRK* op);
+void bhEff138(O_WRK* op);
 
 #endif
