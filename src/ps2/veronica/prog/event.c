@@ -353,14 +353,12 @@ void bhControlEvent()
 	scePrintf("bhControlEvent - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x155b00
+// 100% matching!
 unsigned int bhEnd()
 {
-	// Line 320, Address: 0x155b00, Func Offset: 0
-	// Line 322, Address: 0x155b08, Func Offset: 0x8
-	// Func End, Address: 0x155b10, Func Offset: 0x10
-	scePrintf("bhEnd - UNIMPLEMENTED!\n");
+	bhIfelFlg = 0;
+
+	return 0;
 }
 
 // 
