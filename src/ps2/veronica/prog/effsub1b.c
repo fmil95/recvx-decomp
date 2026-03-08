@@ -1428,4 +1428,3 @@ void bhEff138(_anon0* op)
 	// Line 1629, Address: 0x23d498, Func Offset: 0xd08
 	// Func End, Address: 0x23d4ac, Func Offset: 0xd1c
 }*/
-

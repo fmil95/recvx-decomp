@@ -964,17 +964,15 @@ void bhEff173(_anon0* op)
 	// Line 1771, Address: 0x2214d0, Func Offset: 0x110
 	// Line 1772, Address: 0x221504, Func Offset: 0x144
 	// Func End, Address: 0x221514, Func Offset: 0x154
-}
+}*/
 
-// 
-// Start address: 0x221520
+// 100% matching!
 void bhEff174()
 {
-	// Line 1783, Address: 0x221520, Func Offset: 0
-	// Func End, Address: 0x221528, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x221530
 void bhEff175(_anon0* op)
 {

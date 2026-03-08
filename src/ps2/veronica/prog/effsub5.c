@@ -3920,4 +3920,3 @@ _anon3* GetEff5SnowRectCurrentWindVector(_anon3* pVector)
 	// Line 6340, Address: 0x25d580, Func Offset: 0xa0
 	// Func End, Address: 0x25d590, Func Offset: 0xb0
 }*/
-
