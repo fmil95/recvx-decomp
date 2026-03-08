@@ -3907,7 +3907,7 @@ void bhEff027(_anon0* op)
 // 100% matching!
 void bhEff028()
 {
-	
+
 }
 
 /*// 
@@ -6170,17 +6170,15 @@ void bhEff128(_anon0* op)
 	// Line 6919, Address: 0x235534, Func Offset: 0x274
 	// Line 6920, Address: 0x23556c, Func Offset: 0x2ac
 	// Func End, Address: 0x235580, Func Offset: 0x2c0
-}
+}*/
 
-// 
-// Start address: 0x235580
+// 100% matching!
 void bhEff129()
 {
-	// Line 6928, Address: 0x235580, Func Offset: 0
-	// Func End, Address: 0x235588, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x235590
 void bhEff130(_anon0* op)
 {
