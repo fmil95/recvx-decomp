@@ -19,17 +19,18 @@ float BHD_ASPECT_Y;
 _anon37 tbuf[0];
 float cmat[16];
 void(*bhDraw114)(_anon0*);
-_anon0 eff[0];
+_anon0 eff[0];*/
 
 // 
 // Start address: 0x223f70
-void bhEffDmy(_anon0* op)
+void bhEffDmy(O_WRK* op)
 {
 	// Line 63, Address: 0x223f70, Func Offset: 0
 	// Func End, Address: 0x223f78, Func Offset: 0x8
+	scePrintf("bhEffDmy - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x223f80
 void bhEffFil(_anon0* op)
 {

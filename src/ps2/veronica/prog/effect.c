@@ -1,8 +1,12 @@
 #include "effect.h"
 #include "binfunc.h"
 #include "dread.h"
+#include "effsub1.h"
 #include "effsub2.h"
 #include "effsub3.h"
+#include "effsub4.h"
+#include "en15.h"
+#include "en21.h"
 #include "hitchk.h"
 #include "light.h"
 #include "njplus.h"
@@ -27,7 +31,7 @@ bhJumpEffect_proc bhJumpEffect[150]/* = { bhEff000, bhEff001, bhEff002, bhEff003
 bhJumpEffect0_proc bhJumpEffect0[100]/* = { bhEff150, bhEff151, bhEff152, bhEff153, bhEff154, bhEff155, bhEff156, bhEff157, bhEff158, bhEff159, bhEff160, bhEff161, bhEff162, bhEff163, bhEff164, bhEff165, bhEff166, bhEff167, bhEff168, bhEff169, bhEff170, bhEff171, bhEff172, bhEff173, bhEff174, bhEff175, bhEff176, bhEff177, bhEff178, bhEff179, bhEff180, bhEff181, bhEff182, bhEff183, bhEff184, bhEff185, bhEff186, bhEff187, bhEff188, bhEff189, bhEff190, bhEff191, bhEff192, bhEff193, bhEff194, bhEff195, bhEff196, bhEff197, bhEff198, bhEff199, bhEff200, bhEff201, bhEff202, bhEff203, bhEff204, bhEff205, bhEff206, bhEff207, bhEff208, bhEff209, bhEff210, bhEff211, bhEff212, bhEff213, bhEff214, bhEff215, bhEff216, bhEff217, bhEff218, bhEff219, bhEff220, bhEff221, bhEff222, bhEff223, bhEff224, bhEff225, bhEff226, bhEff227, bhEff228, bhEff229, bhEff230, bhEff231, bhEff232, bhEff233, bhEff234, bhEff235, bhEff236, bhEff237, bhEff238, bhEff239, bhEff240, bhEff241, bhEff242, bhEff243, bhEff244, bhEff245, bhEff246, bhEff247, bhEff248, bhEff249 }*/; 
 bhJumpEffect2_proc bhJumpEffect2[50]/* = { bhEff_E00_Mince, bhEff_E00_DropBlood, bhEff_E00_Fire, bhEff_E02_SandDust, bhEff_E02_SandParticle, bhEff_E02_SandParticle2, bhEff_E03_Acid, bhEff_E00_Acid, bhEff_E03_Shadow, bhEff_E05_Blood, bhEff_E06_Rinpun, bhEff_E11_SearchLight, bhEff_E12_FireManager, bhEff_E12_Fire, bhEff_E12_FireSpark, bhEff_E12_FrameLiquid, bhEff_E12_FloorBlood2, bhEff_E13_Fluid, bhEff_E14_Explosion, bhEff_E14_Fire, bhEff_E16_LaserSight, bhEff_E14_Fire2, bhEff_E00_Dust, bhEff_E14_Mucus, bhEff_E12_Fire2, bhEff_E12_Fire3, bhEff_E12_BintaEffControl, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEff_E00_Blood, bhEff_E00_BloodBurst, bhEff_E00_AcidGenerator, bhEff_DamagePoint }*/;
 bhJumpEffect3_proc bhJumpEffect3[50]/* = { bhEff300, bhEff301, bhEff302, bhEff303, bhEff304, bhEff305, bhEff306, bhEff307, bhEff308, bhEff309, bhEff30a, bhEff30b, bhEff30c, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEff349 }*/; 
-bhJumpEffect4_proc bhJumpEffect4[50]/* = { bhEff_Sub350, bhEff_Sub351, bhEff_Sub352, bhEff_Sub353, bhEff_Sub354, bhEff_Sub355, bhEff_Sub356, bhEff_Sub357, bhEffDmy, bhEffDmy, bhEff_Sub360, bhEff_Sub361, bhEff_Sub362, bhEff_Sub363, bhEff_Sub364, bhEff_Sub365, bhEff_Sub366, bhEff_Sub367, bhEff_Sub368, bhEff_Sub369, bhEff_Sub370, bhEff_Sub371, bhEff_Sub372, bhEff_Sub373, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEff_E21_Mark, bhEff_E15_Poison, bhEff_Sub398, bhEff_E21_Spark }*/;
+bhJumpEffect4_proc bhJumpEffect4[50] = { bhEff_Sub350, bhEff_Sub351, bhEff_Sub352, bhEff_Sub353, bhEff_Sub354, bhEff_Sub355, bhEff_Sub356, bhEff_Sub357, bhEffDmy, bhEffDmy, bhEff_Sub360, bhEff_Sub361, bhEff_Sub362, bhEff_Sub363, bhEff_Sub364, bhEff_Sub365, bhEff_Sub366, bhEff_Sub367, bhEff_Sub368, bhEff_Sub369, bhEff_Sub370, bhEff_Sub371, bhEff_Sub372, bhEff_Sub373, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEffDmy, bhEff_E21_Mark, bhEff_E15_Poison, bhEff_Sub398, bhEff_E21_Spark };
 const EFFECT_INFO ef_info[21] = { {1, 9}, {1, 0}, {0, 2}, {0, 4}, {0, 4}, {0, 4}, {0, 2}, {1, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 5}, {0, 0}, {1, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 2}, {0, 1}, {0, 1}, {-1, 0} };
 O_WORK* ef_Zanzo[6] = { 0 };
 

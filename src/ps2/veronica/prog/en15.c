@@ -1,7 +1,6 @@
-#include "types.h"
+#include "en15.h"
+#include "main.h"
 //#include <string.h>
-
-extern BH_PWORK ene[128];
 
 /*typedef struct _anon0;
 typedef struct _anon1;
@@ -1708,62 +1707,6 @@ _anon1 eff[0];
 float lcmat[16][0];
 _anon14* rom;
 
-int target_direction(BH_PWORK* epw);
-float target_distance(BH_PWORK* epw);*/
-int GetLocalEneNo(BH_PWORK* epw);
-/*void SetMtnSE(BH_PWORK* epw);
-void bhEne15(BH_PWORK* epw);
-void Init(BH_PWORK* epw);
-void Move(BH_PWORK* epw);
-void Stand(BH_PWORK* epw);
-void __attack(BH_PWORK* epw);
-void CloseTurn(BH_PWORK* epw);
-void Chase(BH_PWORK* epw);
-void __goalAng(BH_PWORK* epw, _anon2* vec, _anon2* ans);
-int _goalAng(BH_PWORK* epw);
-int _goalAng2(BH_PWORK* epw);
-void KeepFar(BH_PWORK* epw);
-void Attack(BH_PWORK* epw);
-void Throw(BH_PWORK* epw);
-void Damage(BH_PWORK* epw);
-void Die(BH_PWORK* epw);
-int NearestCapsule(BH_PWORK* epw, _anon2* pos, _anon28* dest, short* jnt);
-void CheckDamage(BH_PWORK* epw);
-int GetRelay(BH_PWORK* epw, _MTN_RELAY** ret);
-void SetMtn(BH_PWORK* epw);
-void ReqMtn(BH_PWORK* epw, unsigned int mtn_no);
-void SetPlyMtn(unsigned int mtn_no);
-int VacumeToPoint(BH_PWORK* pw, _anon2* pos);
-void LockLeg(BH_PWORK* epw);
-int bhEne15_AttackPlayerCC(_anon28* cap, _anon2* attack_v, int damage);
-int bhEne15_AttackPlayerBC(_anon11* box, _anon2* attack_v, int damage);
-int bhEne15_AttackPlayerSS(_anon0* spr, _anon2* attack_v, int damage);
-void SetSmoke(_anon2* pos);
-void SpecialAttack(BH_PWORK* epw, _anon2* splash_v);
-void _bhEne_SetPoison(BH_PWORK* epw, _anon2* ofp, short ry);
-void _bhEne_SetPoison2(_anon1* op, int type, _anon2* ofp);
-void bhEne_SetPoison(BH_PWORK* epw, _anon37* bt);
-void PoisonAttack(_anon1* op);
-void AddWindForce(_anon1* op, float reg);
-void bhEff_E15_Poison(_anon1* op);
-void bhEne15_RotChar(BH_PWORK* pw, int goal, int add_ang);
-int AbleToFall(BH_PWORK* pp);
-int _DrivePlayer();
-void DrivePlayer(BH_PWORK* epw);
-void FallingPlayer(BH_PWORK* epw);
-void SlidePlayer(BH_PWORK* epw);
-void StandupPlayer(BH_PWORK* epw);
-void HoldPlayer(BH_PWORK* epw);
-void FlyingPlayer(BH_PWORK* epw);
-void FallDiePlayer(BH_PWORK* epw);
-void DiePlayer(BH_PWORK* epw);
-void ChangeAmbient(short* plist, unsigned char add);
-void SetMince(BH_PWORK* epw, int type, int num);
-void CoreInit(BH_PWORK* epw);
-void CoreMove(BH_PWORK* epw);
-void CoreDie(BH_PWORK* epw);
-void bhEne53(BH_PWORK* epw);
-
 // 
 // Start address: 0x1e0eb0
 int target_direction(BH_PWORK* epw)
@@ -3216,16 +3159,16 @@ void AddWindForce(_anon1* op, float reg)
 	// Line 3255, Address: 0x1e6f60, Func Offset: 0x110
 	// Line 3256, Address: 0x1e6f6c, Func Offset: 0x11c
 	// Func End, Address: 0x1e6f80, Func Offset: 0x130
-}
+}*/
 
 // 
 // Start address: 0x1e6f80
-void bhEff_E15_Poison(_anon1* op)
+void bhEff_E15_Poison(O_WRK* op)
 {
-	_anon2 pos;
-	_anon2 pos;
-	_anon2 pos;
-	_UVINFO* uvp;
+	//_anon2 pos;
+	//_anon2 pos;
+	//_anon2 pos;
+	//_UVINFO* uvp;
 	// Line 3271, Address: 0x1e6f80, Func Offset: 0
 	// Line 3272, Address: 0x1e6f90, Func Offset: 0x10
 	// Line 3274, Address: 0x1e6fc4, Func Offset: 0x44
@@ -3360,9 +3303,10 @@ void bhEff_E15_Poison(_anon1* op)
 	// Line 3431, Address: 0x1e7a74, Func Offset: 0xaf4
 	// Line 3437, Address: 0x1e7a90, Func Offset: 0xb10
 	// Func End, Address: 0x1e7aa4, Func Offset: 0xb24
+	scePrintf("bhEff_E15_Poison - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1e7ab0
 void bhEne15_RotChar(BH_PWORK* pw, int goal, int add_ang)
 {

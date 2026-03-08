@@ -1,3 +1,5 @@
+#include "en21.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1257,33 +1259,6 @@ BH_PWORK* plp;
 BH_PWORK ene[0];
 _anon0 eff[0];
 
-void bhEne21(BH_PWORK* epw);
-void bhEne21_Init(BH_PWORK* epw);
-void bhEne21_SearchPlayer(BH_PWORK* epw);
-void bhEne21_Brain(BH_PWORK* epw);
-void bhEne21_BR00(BH_PWORK* epw);
-void bhEne21_Move(BH_PWORK* epw);
-void bhEne21_MV00(BH_PWORK* epw);
-void bhEne21_MV01(BH_PWORK* epw);
-void bhEne21_MV02(BH_PWORK* epw);
-void bhEne21_MV03(BH_PWORK* epw);
-void bhEne21_MV04(BH_PWORK* epw);
-void bhEne21_MV05(BH_PWORK* epw);
-void bhEne21_MV06(BH_PWORK* epw);
-void bhEne21_MV07();
-void bhEne21_MV08(BH_PWORK* epw);
-void bhEne21_Nage(BH_PWORK* epw);
-void bhEne21_NG00(BH_PWORK* epw);
-void bhEne21_Damage(BH_PWORK* epw);
-void bhEne21_Die(BH_PWORK* epw);
-void bhEne21_DD00(BH_PWORK* epw);
-void bhEne21_PlayerControl(BH_PWORK* epw);
-unsigned char bhEne21_AllWayWallCheck(BH_PWORK* epw, float dist);
-void bhEne21_SetSparkEff(BH_PWORK* epw, int num, int flg, unsigned int ofy);
-void bhEff_E21_Spark(_anon0* op);
-void bhEne21_SetMarkEff(BH_PWORK* epw);
-void bhEff_E21_Mark(_anon0* op);
-
 // 
 // Start address: 0x1f7e20
 void bhEne21(BH_PWORK* epw)
@@ -2247,14 +2222,14 @@ void bhEne21_SetSparkEff(BH_PWORK* epw, int num, int flg, unsigned int ofy)
 	// Line 1472, Address: 0x1fa438, Func Offset: 0x588
 	// Line 1473, Address: 0x1fa448, Func Offset: 0x598
 	// Func End, Address: 0x1fa478, Func Offset: 0x5c8
-}
+}*/
 
 // 
 // Start address: 0x1fa480
-void bhEff_E21_Spark(_anon0* op)
+void bhEff_E21_Spark(O_WRK* op)
 {
-	_anon3* uvp;
-	_anon3* uvtble[4];
+	//_anon3* uvp;
+	//_anon3* uvtble[4];
 	char flm_tbl[4];
 	char pat_tbl[4];
 	// Line 1488, Address: 0x1fa480, Func Offset: 0
@@ -2308,9 +2283,10 @@ void bhEff_E21_Spark(_anon0* op)
 	// Line 1617, Address: 0x1fa780, Func Offset: 0x300
 	// Line 1620, Address: 0x1fa7a4, Func Offset: 0x324
 	// Func End, Address: 0x1fa7b8, Func Offset: 0x338
+	scePrintf("bhEff_E21_Spark - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1fa7c0
 void bhEne21_SetMarkEff(BH_PWORK* epw)
 {
@@ -2351,14 +2327,14 @@ void bhEne21_SetMarkEff(BH_PWORK* epw)
 	// Line 1666, Address: 0x1fa978, Func Offset: 0x1b8
 	// Line 1668, Address: 0x1fa97c, Func Offset: 0x1bc
 	// Func End, Address: 0x1fa98c, Func Offset: 0x1cc
-}
+}*/
 
 // 
 // Start address: 0x1fa990
-void bhEff_E21_Mark(_anon0* op)
+void bhEff_E21_Mark(O_WRK* op)
 {
-	_anon3* uvp;
-	_anon3 uvinfo0[12];
+	//_anon3* uvp;
+	//_anon3 uvinfo0[12];
 	// Line 1700, Address: 0x1fa990, Func Offset: 0
 	// Line 1703, Address: 0x1fa9b0, Func Offset: 0x20
 	// Line 1706, Address: 0x1fa9b8, Func Offset: 0x28
@@ -2401,5 +2377,5 @@ void bhEff_E21_Mark(_anon0* op)
 	// Line 1744, Address: 0x1fab70, Func Offset: 0x1e0
 	// Line 1747, Address: 0x1fab94, Func Offset: 0x204
 	// Func End, Address: 0x1fab9c, Func Offset: 0x20c
-}*/
-
+	scePrintf("bhEff_E21_Mark - UNIMPLEMENTED!\n");
+}

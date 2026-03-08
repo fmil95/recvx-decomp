@@ -2151,6 +2151,22 @@ typedef struct NJS_PRIM
     NJS_COLOR uv[4]; // offset 0x18, size 0x10
 } NJS_PRIM;
 
+typedef struct UV_WORK 
+{
+    // total size: 0x10
+    float u;  // offset 0x0, size 0x4
+    float v;  // offset 0x4, size 0x4
+    float xs; // offset 0x8, size 0x4
+    float ys; // offset 0xC, size 0x4
+} UV_WORK;
+
+typedef struct EFF_ANIM 
+{
+    // total size: 0x4
+    short ptrn;  // offset 0x0, size 0x2
+    short timer; // offset 0x2, size 0x2
+} EFF_ANIM;
+
 // constant definition for ClutType, ImageType in picture header
 enum TIM2_gattr_type {
 	TIM2_NONE = 0,			// no CLUT (for ClutType)
