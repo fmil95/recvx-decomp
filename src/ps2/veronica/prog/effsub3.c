@@ -36,7 +36,7 @@ void(*bhEff30bDrw)(OR_WORK*);
 void(*bhEff30cDrw)(OR_WORK*);*/
 
 // 100% matching!
-O_WRK* AllocOwork()
+static O_WRK* AllocOwork()
 {
     O_WRK* oP;
     int o_no;
@@ -60,23 +60,29 @@ O_WRK* AllocOwork()
     return NULL;
 }
 
-// 
-// Start address: 0x2468b0
+// 100% matching!
 O_WRK* AllocOworkOne()
 {
-	int o_no;
-	O_WRK* oP;
-	// Line 244, Address: 0x2468b0, Func Offset: 0
-	// Line 248, Address: 0x2468bc, Func Offset: 0xc
-	// Line 249, Address: 0x2468c8, Func Offset: 0x18
-	// Line 250, Address: 0x2468d8, Func Offset: 0x28
-	// Line 251, Address: 0x2468e8, Func Offset: 0x38
-	// Line 253, Address: 0x2468f0, Func Offset: 0x40
-	// Line 255, Address: 0x2468f8, Func Offset: 0x48
-	// Line 257, Address: 0x246904, Func Offset: 0x54
-	// Line 258, Address: 0x246908, Func Offset: 0x58
-	// Func End, Address: 0x246918, Func Offset: 0x68
-	scePrintf("AllocOworkOne - UNIMPLEMENTED!\n");
+    O_WRK* oP;
+    int o_no;
+
+    o_no = 512;
+
+    oP = eff;
+    
+    for ( ; o_no > 0; o_no--, oP++) 
+    {
+        if (!(oP->flg & 0x3))
+        {
+            npSetMemory((unsigned char*)oP, sizeof(*oP), 0);
+            
+            oP->flg = 0x2;
+            
+            return oP;
+        }
+    }
+    
+    return NULL;
 }
 
 // 100% matching!
