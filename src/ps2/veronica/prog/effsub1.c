@@ -21,13 +21,10 @@ float cmat[16];
 void(*bhDraw114)(_anon0*);
 _anon0 eff[0];*/
 
-// 
-// Start address: 0x223f70
+// 100% matching!
 void bhEffDmy(O_WRK* op)
 {
-	// Line 63, Address: 0x223f70, Func Offset: 0
-	// Func End, Address: 0x223f78, Func Offset: 0x8
-	scePrintf("bhEffDmy - UNIMPLEMENTED!\n");
+	op->flg = 0;
 }
 
 /*// 
