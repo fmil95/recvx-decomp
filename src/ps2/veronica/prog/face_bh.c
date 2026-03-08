@@ -1,5 +1,6 @@
 #include "face.h"
 #include "face_bh.h"
+#include "ps2_NaMem.h"
 
 // 
 // Start address: 0x298820
@@ -74,7 +75,7 @@ void _fmSetObjP(_anon5* mlwP)
 
 // 
 // Start address: 0x298ac0
-cnkobj* _fmCnkSearchObject(_anon2* fm, cnkobj* root, char id)
+cnkobj* _fmCnkSearchObject(MASK_WORK* fm, cnkobj* root, char id)
 {
 	int dummy;
 	int i;
@@ -113,7 +114,7 @@ cnkobj* _fmCnkSearchObject(_anon2* fm, cnkobj* root, char id)
 
 // 
 // Start address: 0x298bc0
-void _fmGetVChunkType(_anon2* fm)
+void _fmGetVChunkType(MASK_WORK* fm)
 {
 	// Line 339, Address: 0x298bc0, Func Offset: 0
 	// Line 344, Address: 0x298bd0, Func Offset: 0x10
@@ -164,7 +165,7 @@ void _fmGetVChunkType(_anon2* fm)
 
 // 
 // Start address: 0x298d40
-void _fmCnkSetFaceObject(_anon2* fm, cnkobj* face)
+void _fmCnkSetFaceObject(MASK_WORK* fm, cnkobj* face)
 {
 	// Line 441, Address: 0x298d40, Func Offset: 0
 	// Line 442, Address: 0x298d54, Func Offset: 0x14
@@ -182,7 +183,7 @@ void _fmCnkSetFaceObject(_anon2* fm, cnkobj* face)
 
 // 
 // Start address: 0x298e10
-void _fmCnkSetEyeballObject(_anon2* fm, unsigned int id, cnkobj* eye, cnkobj* root)
+void _fmCnkSetEyeballObject(MASK_WORK* fm, unsigned int id, cnkobj* eye, cnkobj* root)
 {
 	int sp;
 	cnkobj* stack[256];
@@ -241,7 +242,7 @@ void _fmCnkSetEyeballObject(_anon2* fm, unsigned int id, cnkobj* eye, cnkobj* ro
 
 // 
 // Start address: 0x299030
-void _fmCnkSetTangObject(_anon2* fm, cnkobj* tang)
+void _fmCnkSetTangObject(MASK_WORK* fm, cnkobj* tang)
 {
 	<unknown fundamental type (0xa510)>* dst_128;
 	<unknown fundamental type (0xa510)>* src_128;
@@ -295,7 +296,7 @@ void _fmCnkSetTangObject(_anon2* fm, cnkobj* tang)
 
 // 
 // Start address: 0x2991b0
-void _fmCnkSetToothObject(_anon2* fm, cnkobj* tooth)
+void _fmCnkSetToothObject(MASK_WORK* fm, cnkobj* tooth)
 {
 	int i;
 	// Line 707, Address: 0x2991b0, Func Offset: 0
@@ -330,7 +331,7 @@ void _fmCnkSetToothObject(_anon2* fm, cnkobj* tooth)
 
 // 
 // Start address: 0x299280
-void _fmCnkSetJaw(_anon2* fm, unsigned int v0, unsigned int v1)
+void _fmCnkSetJaw(MASK_WORK* fm, unsigned int v0, unsigned int v1)
 {
 	float svp0[4];
 	unsigned int vofs;
@@ -445,17 +446,15 @@ void fmCnkInitContext(MASK_WORK* fm, void* data, NJS_CNK_OBJECT* root, ML_WORK* 
 	scePrintf("fmCnkInitContext - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2996d0
-void fmCnkSetParam(_anon2* fm, _anon4* param)
+// 100% matching!
+void fmCnkSetParam(MASK_WORK* fm, PARAM_WORK* param)
 {
-	// Line 1127, Address: 0x2996d0, Func Offset: 0
-	// Func End, Address: 0x2996dc, Func Offset: 0xc
+	njMemCopy(&fm->param, param, sizeof(PARAM_WORK));
 }
 
-// 
+/*// 
 // Start address: 0x2996e0
-void fmCnkSetParamLip(_anon2* fm, _anon4* param, unsigned int flag)
+void fmCnkSetParamLip(MASK_WORK* fm, PARAM_WORK* param, unsigned int flag)
 {
 	int i;
 	// Line 1158, Address: 0x2996e0, Func Offset: 0
@@ -475,7 +474,7 @@ void fmCnkSetParamLip(_anon2* fm, _anon4* param, unsigned int flag)
 
 // 
 // Start address: 0x299770
-void fmCnkSetInterParam(_anon2* fm, _anon4* p1, _anon4* p2, float t, float lv, unsigned int mask)
+void fmCnkSetInterParam(MASK_WORK* fm, PARAM_WORK* p1, PARAM_WORK* p2, float t, float lv, unsigned int mask)
 {
 	float rate;
 	int i;
@@ -508,7 +507,7 @@ void fmCnkSetInterParam(_anon2* fm, _anon4* p1, _anon4* p2, float t, float lv, u
 
 // 
 // Start address: 0x299980
-void fmCnkSetInterParamLip(_anon2* fm, _anon4* p1, _anon4* p2, float t, float lv, unsigned int mask)
+void fmCnkSetInterParamLip(MASK_WORK* fm, PARAM_WORK* p1, PARAM_WORK* p2, float t, float lv, unsigned int mask)
 {
 	float* fm_muscle;
 	float rate;
@@ -573,7 +572,7 @@ unsigned int fmCnkGetLastFrame(MASK_WORK* fm)
 
 /*// 
 // Start address: 0x299d30
-void _fmCnkCalcMuscle(_anon2* fm)
+void _fmCnkCalcMuscle(MASK_WORK* fm)
 {
 	float rsum;
 	unsigned int vofs;
@@ -688,7 +687,7 @@ void _fmCnkCalcMuscle(_anon2* fm)
 
 // 
 // Start address: 0x299f70
-void _fmCnkCalcJaw(_anon2* fm)
+void _fmCnkCalcJaw(MASK_WORK* fm)
 {
 	float jawtrans;
 	float jawang;
@@ -811,7 +810,7 @@ void _fmCnkCalcJaw(_anon2* fm)
 
 // 
 // Start address: 0x29a250
-void _fmCnkCalcEye(_anon2* fm)
+void _fmCnkCalcEye(MASK_WORK* fm)
 {
 	int i;
 	_anon0 r3;
@@ -891,7 +890,7 @@ void _fmCnkCalcEye(_anon2* fm)
 
 // 
 // Start address: 0x29a4c0
-void _fmCnkCalcTang(_anon2* fm)
+void _fmCnkCalcTang(MASK_WORK* fm)
 {
 	unsigned int calc_ofs;
 	float tangz;
@@ -959,7 +958,7 @@ void _fmCnkCalcTang(_anon2* fm)
 
 // 
 // Start address: 0x29a650
-void _fmCnkCalcNormal(_anon2* fm)
+void _fmCnkCalcNormal(MASK_WORK* fm)
 {
 	unsigned int vofs;
 	_anon0** nvp;
