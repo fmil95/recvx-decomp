@@ -11582,36 +11582,55 @@ int Event_exec(unsigned int task_level, unsigned int evt_id)
 	scePrintf("Event_exec - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x171620
+// 100% matching!
 int bhEventScheduler2()
 {
-	unsigned int t_time_flg;
-	unsigned int level;
-	// Line 12464, Address: 0x171620, Func Offset: 0
-	// Line 12467, Address: 0x171634, Func Offset: 0x14
-	// Line 12469, Address: 0x171654, Func Offset: 0x34
-	// Line 12471, Address: 0x171658, Func Offset: 0x38
-	// Line 12472, Address: 0x17165c, Func Offset: 0x3c
-	// Line 12473, Address: 0x171664, Func Offset: 0x44
-	// Line 12474, Address: 0x171670, Func Offset: 0x50
-	// Line 12475, Address: 0x171678, Func Offset: 0x58
-	// Line 12476, Address: 0x17168c, Func Offset: 0x6c
-	// Line 12479, Address: 0x171690, Func Offset: 0x70
-	// Line 12477, Address: 0x171698, Func Offset: 0x78
-	// Line 12479, Address: 0x17169c, Func Offset: 0x7c
-	// Line 12481, Address: 0x1716a0, Func Offset: 0x80
-	// Line 12482, Address: 0x1716d0, Func Offset: 0xb0
-	// Line 12484, Address: 0x1716e0, Func Offset: 0xc0
-	// Line 12483, Address: 0x1716e4, Func Offset: 0xc4
-	// Line 12484, Address: 0x1716ec, Func Offset: 0xcc
-	// Line 12483, Address: 0x1716f4, Func Offset: 0xd4
-	// Line 12485, Address: 0x171704, Func Offset: 0xe4
-	// Line 12495, Address: 0x17170c, Func Offset: 0xec
-	// Line 12497, Address: 0x171720, Func Offset: 0x100
-	// Line 12498, Address: 0x171730, Func Offset: 0x110
-	// Func End, Address: 0x171748, Func Offset: 0x128
-	scePrintf("bhEventScheduler2 - UNIMPLEMENTED!\n");
+    unsigned int level;      
+    unsigned int t_time_flg; 
+    unsigned char* gsp; // not from DWARF
+    BH_SCEWORK* scep;   // not from DWARF
+
+    if ((sys->sp_flg & 0x10)) 
+    {
+        scep = bhEtask;
+        
+        t_time_flg = 0;
+        
+        for (level = 0; level < 16; level++, scep++) 
+        {
+            bhCetask = scep;
+            
+            if (scep->status != 0) 
+            {
+                if (t_time_flg == 0) 
+                {
+                    Event_T_timer++;
+                }
+                
+                t_time_flg = 1;
+                
+                bhScePtr = scep->data;
+                
+                while (TRUE) 
+                {
+                    while (bhScenarioJmpT[*bhScePtr]() != 0);
+                    
+                    if (bhIfelFlg <= 0)
+                    {
+                        break;
+                    }
+                    
+                    gsp = (unsigned char*)--G_Sp;
+                    
+                    bhIfelFlg--;
+                    
+                    bhScePtr = gsp;
+                }
+                
+                bhCetask->data = bhScePtr;
+            }
+        } 
+    }
 }
 
 // 100% matching!
