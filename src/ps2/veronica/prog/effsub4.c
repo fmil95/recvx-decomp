@@ -1,4 +1,5 @@
 #include "effsub4.h"
+#include "main.h"
 
 /*void(*bhEff_PtclSpriteDraw)(O_WRK*);
 O_WRK eff[0];
@@ -1858,24 +1859,27 @@ void bhEff_Sub398(O_WRK* op)
 	scePrintf("bhEff_Sub398 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2510e0
-O_WRK* bhEff_AllocOwork()
+// 100% matching!
+static O_WRK* bhEff_AllocOwork()
 {
-	int i;
-	O_WRK* op;
-	// Line 3920, Address: 0x2510e0, Func Offset: 0
-	// Line 3921, Address: 0x2510ec, Func Offset: 0xc
-	// Line 3924, Address: 0x2510f4, Func Offset: 0x14
-	// Line 3926, Address: 0x2510f8, Func Offset: 0x18
-	// Line 3928, Address: 0x251108, Func Offset: 0x28
-	// Line 3929, Address: 0x251118, Func Offset: 0x38
-	// Line 3930, Address: 0x251120, Func Offset: 0x40
-	// Line 3932, Address: 0x251128, Func Offset: 0x48
-	// Line 3933, Address: 0x251138, Func Offset: 0x58
-	// Line 3934, Address: 0x25113c, Func Offset: 0x5c
-	// Func End, Address: 0x25114c, Func Offset: 0x6c
-	scePrintf("bhEff_AllocOwork - UNIMPLEMENTED!\n");
+    O_WRK* op;
+    int i;
+
+    op = eff;
+    
+    for (i = 0; i < 512; i++, op++) 
+    {
+        if (!(op->flg & 0x3))
+        {
+            npSetMemory((unsigned char*)op, sizeof(*op), 0);
+            
+            op->flg = 0x2;
+            
+            return op;
+        }
+    }
+    
+    return NULL;
 }
 
 // 
