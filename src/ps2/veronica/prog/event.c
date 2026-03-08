@@ -1,22 +1,25 @@
 #include "event.h"
 #include "MdlPut.h"
 #include "Motion.h"
+#include "eneset.h"
 #include "ps2_NaMath.h"
 #include "pwksub.h"
+#include "sdfunc.h"
+#include "sub1.h"
 #include "main.h"
 
 /*_anon52 evnt_BldTbl;
 _anon52 evnt_BldTbl2;
-_anon15* sys;
+_anon15* sys;*/
 unsigned short* bhScdPtr;
-_anon19 swork;*/
+/*_anon19 swork;*/
 BH_SCEWORK* bhCetask;
-/*_anon40 bhEtask[16];
+BH_SCEWORK bhEtask[16];
 unsigned int Event_T_timer;
 int bhIfelFlg;
 unsigned char* bhEvdPtr;
 unsigned short* bhScd2Ptr;
-_anon14* rom;
+/*_anon14* rom;
 unsigned int* G_Sp;*/
 unsigned char* bhScePtr;
 /*BH_PWORK* plp;
@@ -50,42 +53,44 @@ unsigned int* G_Sp3;
 unsigned int* G_Sp2;
 unsigned int* G_Sp1;*/
 
-// 
-// Start address: 0x1559c0
+// 100% matching!
 void bhInitEvent()
 {
-	unsigned int v6;
-	// Line 244, Address: 0x1559c0, Func Offset: 0
-	// Line 246, Address: 0x1559d0, Func Offset: 0x10
-	// Line 247, Address: 0x1559d4, Func Offset: 0x14
-	// Line 249, Address: 0x1559d8, Func Offset: 0x18
-	// Line 248, Address: 0x1559dc, Func Offset: 0x1c
-	// Line 249, Address: 0x1559e4, Func Offset: 0x24
-	// Line 250, Address: 0x1559f0, Func Offset: 0x30
-	// Line 258, Address: 0x1559f8, Func Offset: 0x38
-	// Line 260, Address: 0x155a00, Func Offset: 0x40
-	// Line 268, Address: 0x155a08, Func Offset: 0x48
-	// Line 260, Address: 0x155a10, Func Offset: 0x50
-	// Line 270, Address: 0x155a14, Func Offset: 0x54
-	// Line 260, Address: 0x155a1c, Func Offset: 0x5c
-	// Line 261, Address: 0x155a28, Func Offset: 0x68
-	// Line 271, Address: 0x155a2c, Func Offset: 0x6c
-	// Line 261, Address: 0x155a34, Func Offset: 0x74
-	// Line 262, Address: 0x155a40, Func Offset: 0x80
-	// Line 268, Address: 0x155a50, Func Offset: 0x90
-	// Line 264, Address: 0x155a58, Func Offset: 0x98
-	// Line 266, Address: 0x155a60, Func Offset: 0xa0
-	// Line 270, Address: 0x155a68, Func Offset: 0xa8
-	// Line 271, Address: 0x155a7c, Func Offset: 0xbc
-	// Line 272, Address: 0x155a84, Func Offset: 0xc4
-	// Line 273, Address: 0x155a94, Func Offset: 0xd4
-	// Line 274, Address: 0x155a9c, Func Offset: 0xdc
-	// Line 275, Address: 0x155aa8, Func Offset: 0xe8
-	// Line 274, Address: 0x155aac, Func Offset: 0xec
-	// Line 275, Address: 0x155ab4, Func Offset: 0xf4
-	// Line 276, Address: 0x155abc, Func Offset: 0xfc
-	// Func End, Address: 0x155ac8, Func Offset: 0x108
-	scePrintf("bhInitEvent - UNIMPLEMENTED!\n");
+    unsigned int v6;
+
+    for (v6 = 0; v6 < 16; v6++) 
+    {
+        bhEtask[v6].status = 0;
+        
+        bhEtask[v6].wpnl_no = 0;
+    }
+    
+    SendSoundCommand(3);
+    
+    bhControlEnemy();
+
+    bhScdPtr = rom->evtp->scd0;
+    bhScd2Ptr = rom->evtp->scd1;
+    
+    bhEvdPtr = (unsigned char*)rom->evtp->evd;
+    
+    bhCetask = bhEtask;
+    
+    bhIfelFlg = 0;
+    
+    Event_T_timer = 0;
+
+    swork.pip = &sys->itm[sys->ply_id * 16];
+
+    bhScenarioCheck((unsigned char*)bhScdPtr);
+    
+    sys->sp_flg |= 0x10;
+    
+    bhEventScheduler2();
+    
+    sys->sp_flg &= ~0x10;
+    
+    SendSoundCommand(4);
 }
 
 // 
@@ -11098,7 +11103,7 @@ int Event_exec(unsigned int task_level, unsigned int evt_id)
 	// Line 12438, Address: 0x1715fc, Func Offset: 0x3c
 	// Line 12451, Address: 0x171600, Func Offset: 0x40
 	// Func End, Address: 0x171618, Func Offset: 0x58
-}
+}*/
 
 // 
 // Start address: 0x171620
@@ -11129,6 +11134,7 @@ int bhEventScheduler2()
 	// Line 12497, Address: 0x171720, Func Offset: 0x100
 	// Line 12498, Address: 0x171730, Func Offset: 0x110
 	// Func End, Address: 0x171748, Func Offset: 0x128
+	scePrintf("bhEventScheduler2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -11148,9 +11154,10 @@ void bhScenarioCheck(unsigned char* next_ptr)
 	// Line 12517, Address: 0x1717ec, Func Offset: 0x9c
 	// Line 12519, Address: 0x1717f4, Func Offset: 0xa4
 	// Func End, Address: 0x171800, Func Offset: 0xb0
+	scePrintf("bhScenarioCheck - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x171800
 unsigned int bhFlagCk(unsigned char type, unsigned int cnt, unsigned char flag)
 {
