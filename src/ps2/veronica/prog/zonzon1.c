@@ -702,25 +702,26 @@ void bhEne_CalcDamage(BH_PWORK* epw, _anon18* CombWepTbl, _anon20* CombJointTbl)
 	// Func End, Address: 0x21ab20, Func Offset: 0x220
 }*/
 
-// 
-// Start address: 0x21ab20
+// 100% matching!
 void bhEne_InitDamage(BH_PWORK* epw)
 {
-	int i;
-	// Line 979, Address: 0x21ab20, Func Offset: 0
-	// Line 980, Address: 0x21ab2c, Func Offset: 0xc
-	// Line 981, Address: 0x21ab38, Func Offset: 0x18
-	// Line 982, Address: 0x21ab40, Func Offset: 0x20
-	// Line 983, Address: 0x21ab5c, Func Offset: 0x3c
-	// Line 986, Address: 0x21ab60, Func Offset: 0x40
-	// Line 987, Address: 0x21ab6c, Func Offset: 0x4c
-	// Line 991, Address: 0x21ab74, Func Offset: 0x54
-	// Line 992, Address: 0x21ab7c, Func Offset: 0x5c
-	// Line 991, Address: 0x21ab80, Func Offset: 0x60
-	// Line 992, Address: 0x21ab88, Func Offset: 0x68
-	// Line 993, Address: 0x21ab90, Func Offset: 0x70
-	// Func End, Address: 0x21ab98, Func Offset: 0x78
-	scePrintf("bhEne_InitDamage - UNIMPLEMENTED!\n");
+    int i;
+
+    if (epw->mlwP != NULL) 
+    {
+        for (i = 0; i < epw->mlwP->obj_num; i++)
+        {
+            epw->dam[i] = 0;
+        }
+    }
+    
+    if (epw->comb_timeout != 0)
+    {
+        epw->comb_timeout--;
+    }
+    
+    epw->comb_flg &= ~0x70;
+    epw->flg2 &= ~0x4;
 }
 
 /*// 
