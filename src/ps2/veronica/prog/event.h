@@ -233,7 +233,7 @@ int Common_controll();
 unsigned int bhLoadWork();
 unsigned int bhLoadWorkEx();
 unsigned int bhLoadWork2();
-/*int Event_init(_anon40* a0, unsigned int evt_id);*/
+int Event_init(BH_SCEWORK* a0, unsigned int evt_id);
 int Event_exec(unsigned int task_level, unsigned int evt_id);
 int bhEventScheduler2();
 void bhScenarioCheck(unsigned char* next_ptr);

@@ -8,32 +8,280 @@
 #include "sub1.h"
 #include "main.h"
 
-/*_anon52 evnt_BldTbl;
-_anon52 evnt_BldTbl2;
-_anon15* sys;*/
+unsigned char* bhScePtr;
 unsigned short* bhScdPtr;
-/*_anon19 swork;*/
+unsigned short* bhScd2Ptr;
+unsigned char* bhEvdPtr;
+unsigned int* G_Sp;
+int bhIfelFlg;
 BH_SCEWORK* bhCetask;
 BH_SCEWORK bhEtask[16];
 unsigned int Event_T_timer;
-int bhIfelFlg;
-unsigned char* bhEvdPtr;
-unsigned short* bhScd2Ptr;
-/*_anon14* rom;
-unsigned int* G_Sp;*/
-unsigned char* bhScePtr;
-/*BH_PWORK* plp;
-_anon45 cam;
-BH_PWORK ene[0];*/
-float GameFar;
 float GameNear;
+float GameFar;
+
+/*_anon52 evnt_BldTbl;
+_anon52 evnt_BldTbl2;*/
+unsigned int (*bhScenarioJmpT[256])() = 
+{
+	bhEnd, 
+	bhIfelCk, 
+	bhElseCk, 
+	bhEndif, 
+	bhCk, 
+	bhSet, 
+	bhCmpB, 
+	bhCmpW, 
+	bhSv, 
+	bhSvW, 
+	bhWalAtariSet, 
+	bhEtcAtariSet, 
+	bhFlrAtariSet, 
+	bhDieCk, 
+	bhItmCk, 
+	bhUseItemClear, 
+	bhUseItemCheck, 
+	bhPlItemCheck, 
+	bhCineSet, 
+	bhCamSet, 
+	bhEvtOn, 
+	bhBgmOn, 
+	bhBgmOff, 
+	bhSeOn, 
+	bhSeOff, 
+	bhVoiceOn, 
+	bhVoiceOff, 
+	bhAdxCk, 
+	bhBGSeOn, 
+	bhBGSeOff, 
+	bhAdxTimeCk, 
+	bhMessageSet, 
+	bhSetDispObj, 
+	bhDieEventCk, 
+	bhEneSetCk, 
+	bhItmSetCk, 
+	bhInitModelSet, 
+	bhEtcAtariSet2, 
+	bhArmsItemCheck, 
+	bhArmsItemChange, 
+	bhSubStatus, 
+	bhCamPauseSet, 
+	bhCamSet2, 
+	bhMotionPauseSet, 
+	bhEffectSet, 
+	bhInitMotionPause, 
+	bhMotionPauseSetPly, 
+	bhInitSetKage, 
+	bhInitMotionPauseEx, 
+	bhPlItemLost, 
+	bhObjLinkSet, 
+	bhSetDoorCall, 
+	bhObjLinkSetPly, 
+	bhLightSet, 
+	bhFadeSet, 
+	bhRoomCaseNo, 
+	bhFrameCheck, 
+	bhCamInfoSet, 
+	bhMutekiSetPl, 
+	bhDefModelSet, 
+	bhMaskSet, 
+	bhLipSet, 
+	bhMaskStart, 
+	bhLipStart, 
+	bhLookGsetPlStart, 
+	bhLookGsetPlStop, 
+	bhItmAspdSet, 
+	bhEffDispSet, 
+	bhEffAmbSet, 
+	bhDelObjSe, 
+	bhSetNextRoomBgm, 
+	bhSetNextRoomBgSe, 
+	bhFootSeCall, 
+	bhWeaponSeCall, 
+	bhYakkyouSet, 
+	bhLightTypeSet, 
+	bhFogColorSet, 
+	bhPlItemBlockCk, 
+	bhEffBloodSet, 
+	bhCyoutenHenkeiSet, 
+	bhSetObjMotion, 
+	bhObjLinkSetObjEne, 
+	bhObjLinkSetObjItem, 
+	bhObjLinkSetEneItem, 
+	bhObjLinkSetEneEne, 
+	bhCyoutenHenkeiStart, 
+	bhEffBloodPoolSet, 
+	bhFixEventCamPly, 
+	bhEffBloodPoolSet2, 
+	bhObjLinkSetObjObj, 
+	bhCamYureSet, 
+	bhInitCamSet, 
+	bhMesDispEndSet, 
+	bhPadCheck, 
+	bhMovieStart, 
+	bhMovieStop, 
+	bhTFrameCheck, 
+	bhEventTimerClr, 
+	bhCamCheck, 
+	bhRandamSet, 
+	bhPlCtr, 
+	bhLoadWork, 
+	bhObjCtr, 
+	bhSubCtr, 
+	bhLoadWork2, 
+	bhCommonCtr, 
+	bhEventSkipSet, 
+	bhDelYakkyou, 
+	bhObjAlphaSet, 
+	bhCyodanSet, 
+	bhHEffectSet, 
+	bhObjLinkSetObjPly, 
+	bhEffPush, 
+	bhEffPop, 
+	bhAreaSearchObj, 
+	bhLightParameterCSet, 
+	bhLightParameterStart, 
+	bhInitMidiSlotSet, 
+	bh3dSoundFlagSet, 
+	bhSoundVolumeSet, 
+	bhLightParameterSet, 
+	bhEneSeOn, 
+	bhEneSeOff, 
+	bhWalAtariSet2, 
+	bhFlrAtariSet2, 
+	bhMotionPosSetEnePly, 
+	bhKageSwSet, 
+	bhSoundPanSet, 
+	bhInitPonySet, 
+	bhSubMapBusyCk, 
+	bhSetDebugLoopEx, 
+	bhSoundFadeOut, 
+	bhCyoutenHenkeiSetEX, 
+	bhCyoutenHenkeiStartEX, 
+	bhEasySESet, 
+	bhSoundFlagReSet, 
+	bhEffUVSet, 
+	bhPlayerChangeSet, 
+	bhPlayerPoisonCk, 
+	bhAddObjSe, 
+	bhRandTest, 
+	bhEvtComSet, 
+	bhZombieUpDieCk, 
+	bhFacePauseSet, 
+	bhFaceReSet, 
+	bhEffModeSet, 
+	bhBGSeOff2, 
+	bhBgmOff2, 
+	bhBGSeOn2, 
+	bhBgmOn2, 
+	bhEffectSensyaSet, 
+	bhEffectKokuenSet, 
+	bhEffectSandSet, 
+	bhEnemyHpUp, 
+	bhFaceRep, 
+	bhMovieCk, 
+	bhSetItmMotion, 
+	bhObjAspdSet, 
+	bhPuruPuruFlagSet, 
+	bhPuruPuruStart, 
+	bhMapSystemOn, 
+	bhTrapDamageSet, 
+	bhEvtLighterFireSet, 
+	bhObjLinkSetPlyItem, 
+	bhPlayerKaidanMotion, 
+	bhEneRenderSet, 
+	bhBgmOnEx, 
+	bhBgmOn2Ex, 
+	bhFogParameterCSet, 
+	bhFogParameterStart, 
+	bhEffUVSet2, 
+	bhBGColorSet, 
+	bhMovieTimeCk, 
+	bhEffTypeSet, 
+	bhPlayerPoison2Cr, 
+	bhPlyHandChange, 
+	bhHEffectSet2, 
+	bhObjDposCk, 
+	bhItemGetGet, 
+	bhEtcAtariEnePosSet, 
+	bhEtcAtariEvtPosSet, 
+	bhLoadWorkEx, 
+	bhRoomSoundCase, 
+	bhItemPlToSBox, 
+	bhItemSBoxToIBox, 
+	bhGrdPosSet, 
+	bhGrdPosMoveCSet, 
+	bhGrdPosMoveStart, 
+	bhEvtKill, 
+	bhReTryPointSet, 
+	bhPlyDposCk, 
+	bhPlItemLostEx, 
+	bhCyodanSetEx, 
+	bhArmsItemSet, 
+	bhItemGetGetEx, 
+	bhEffectSandSetMatsumoto, 
+	bhVoiceWait, 
+	bhVoiceStart, 
+	bhGameOverSet, 
+	bhPlItemChangeM, 
+	bhEffBakuDrmSet, 
+	bhPlItemTamaSet, 
+	bhEffClearEvt, 
+	bhEvtTimerSet, 
+	bhEneLookFlgSet, 
+	bhReturnTitleEvt, 
+	bhSyukanModeSet, 
+	bhExGameItemInit, 
+	bhEneLifeSetM, 
+	bhEffSSizeSet, 
+	bhEffLinkOffsetSet, 
+	bhRankingCall, 
+	bhCallSysSe, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	dm0, 
+	bhEwhile2, 
+	bhComNext, 
+	dm0, 
+	dm0, 
+	dm0, 
+	bhSleep, 
+	bhSleeping, 
+	bhFor, 
+	bhNext, 
+	bhWhile, 
+	bhEwhile, 
+	bhEvtNext, 
+	bhEvtEnd
+};
 /*unsigned char G_Mess_flag;
-_anon26 NextSoundInfo;
-unsigned char pl_sleep_cnt;
-_anon24 WpnTab[0];
-_anon0 eff[0];
-unsigned int(*bhScenarioJmpT)()[256];
-unsigned int Ps2_ice_flag;
 unsigned int Event_T_timer_bak;
 unsigned int Event_C_timer;
 unsigned int bhCetask_w[308];
@@ -105,13 +353,14 @@ void bhControlEvent()
 	scePrintf("bhControlEvent - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x155b00
 unsigned int bhEnd()
 {
 	// Line 320, Address: 0x155b00, Func Offset: 0
 	// Line 322, Address: 0x155b08, Func Offset: 0x8
 	// Func End, Address: 0x155b10, Func Offset: 0x10
+	scePrintf("bhEnd - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -129,6 +378,7 @@ unsigned int bhIfelCk()
 	// Line 334, Address: 0x155b58, Func Offset: 0x48
 	// Line 338, Address: 0x155b68, Func Offset: 0x58
 	// Func End, Address: 0x155b70, Func Offset: 0x60
+	scePrintf("bhIfelCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -146,6 +396,7 @@ unsigned int bhElseCk()
 	// Line 346, Address: 0x155ba4, Func Offset: 0x34
 	// Line 348, Address: 0x155bb0, Func Offset: 0x40
 	// Func End, Address: 0x155bb8, Func Offset: 0x48
+	scePrintf("bhElseCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -163,6 +414,7 @@ unsigned int bhEndif()
 	// Line 355, Address: 0x155bf4, Func Offset: 0x34
 	// Line 357, Address: 0x155bfc, Func Offset: 0x3c
 	// Func End, Address: 0x155c04, Func Offset: 0x44
+	scePrintf("bhEndif - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -171,6 +423,7 @@ unsigned int dm0()
 {
 	// Line 364, Address: 0x155c10, Func Offset: 0
 	// Func End, Address: 0x155c18, Func Offset: 0x8
+	scePrintf("dm0 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -227,6 +480,7 @@ unsigned int bhCk()
 	// Line 447, Address: 0x155e34, Func Offset: 0x214
 	// Line 462, Address: 0x155e3c, Func Offset: 0x21c
 	// Func End, Address: 0x155e44, Func Offset: 0x224
+	scePrintf("bhCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -285,6 +539,7 @@ unsigned int bhSet()
 	// Line 540, Address: 0x156070, Func Offset: 0x220
 	// Line 543, Address: 0x156078, Func Offset: 0x228
 	// Func End, Address: 0x156080, Func Offset: 0x230
+	scePrintf("bhSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -324,6 +579,7 @@ unsigned int bhCmpB()
 	// Line 585, Address: 0x156230, Func Offset: 0x1b0
 	// Line 592, Address: 0x156238, Func Offset: 0x1b8
 	// Func End, Address: 0x156240, Func Offset: 0x1c0
+	scePrintf("bhCmpB - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -360,6 +616,7 @@ unsigned int bhCmpW()
 	// Line 640, Address: 0x1563b4, Func Offset: 0x174
 	// Line 647, Address: 0x1563bc, Func Offset: 0x17c
 	// Func End, Address: 0x1563c4, Func Offset: 0x184
+	scePrintf("bhCmpW - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -394,6 +651,7 @@ unsigned int bhSv()
 	// Line 689, Address: 0x15659c, Func Offset: 0x1cc
 	// Line 690, Address: 0x1565a0, Func Offset: 0x1d0
 	// Func End, Address: 0x1565a8, Func Offset: 0x1d8
+	scePrintf("bhSv - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -429,6 +687,7 @@ unsigned int bhSvW()
 	// Line 763, Address: 0x156794, Func Offset: 0x1e4
 	// Line 764, Address: 0x156798, Func Offset: 0x1e8
 	// Func End, Address: 0x1567a0, Func Offset: 0x1f0
+	scePrintf("bhSvW - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -445,6 +704,7 @@ unsigned int bhEvtOn()
 	// Line 778, Address: 0x1567e0, Func Offset: 0x40
 	// Line 780, Address: 0x1567ec, Func Offset: 0x4c
 	// Func End, Address: 0x1567f8, Func Offset: 0x58
+	scePrintf("bhEvtOn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -487,6 +747,7 @@ unsigned int bhCamSet()
 	// Line 836, Address: 0x156994, Func Offset: 0x194
 	// Line 837, Address: 0x156998, Func Offset: 0x198
 	// Func End, Address: 0x1569a0, Func Offset: 0x1a0
+	scePrintf("bhCamSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -526,6 +787,7 @@ unsigned int bhCamSet2()
 	// Line 872, Address: 0x156ac0, Func Offset: 0x120
 	// Line 873, Address: 0x156ac4, Func Offset: 0x124
 	// Func End, Address: 0x156acc, Func Offset: 0x12c
+	scePrintf("bhCamSet2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -544,6 +806,7 @@ unsigned int bhCamPauseSet()
 	// Line 895, Address: 0x156b2c, Func Offset: 0x5c
 	// Line 896, Address: 0x156b30, Func Offset: 0x60
 	// Func End, Address: 0x156b38, Func Offset: 0x68
+	scePrintf("bhCamPauseSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -571,6 +834,7 @@ unsigned int bhMessageSet()
 	// Line 938, Address: 0x156bf0, Func Offset: 0xb0
 	// Line 940, Address: 0x156bfc, Func Offset: 0xbc
 	// Func End, Address: 0x156c08, Func Offset: 0xc8
+	scePrintf("bhMessageSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -594,6 +858,7 @@ unsigned int bhBgmOn()
 	// Line 973, Address: 0x156c84, Func Offset: 0x74
 	// Line 974, Address: 0x156c88, Func Offset: 0x78
 	// Func End, Address: 0x156c90, Func Offset: 0x80
+	scePrintf("bhBgmOn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -611,6 +876,7 @@ unsigned int bhBgmOff()
 	// Line 990, Address: 0x156cd8, Func Offset: 0x48
 	// Line 991, Address: 0x156cdc, Func Offset: 0x4c
 	// Func End, Address: 0x156ce4, Func Offset: 0x54
+	scePrintf("bhBgmOff - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -618,7 +884,7 @@ unsigned int bhBgmOff()
 unsigned int bhSeOn()
 {
 	BH_PWORK* e_ep;
-	_anon39 pPos;
+	//_anon39 pPos;
 	unsigned int v4;
 	unsigned int v3;
 	unsigned int v2;
@@ -657,6 +923,7 @@ unsigned int bhSeOn()
 	// Line 1044, Address: 0x156ec4, Func Offset: 0x1d4
 	// Line 1045, Address: 0x156ec8, Func Offset: 0x1d8
 	// Func End, Address: 0x156ed0, Func Offset: 0x1e0
+	scePrintf("bhSeOn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -673,6 +940,7 @@ unsigned int bhSeOff()
 	// Line 1061, Address: 0x156f0c, Func Offset: 0x3c
 	// Line 1062, Address: 0x156f10, Func Offset: 0x40
 	// Func End, Address: 0x156f18, Func Offset: 0x48
+	scePrintf("bhSeOff - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -696,6 +964,7 @@ unsigned int bhBGSeOn()
 	// Line 1084, Address: 0x156fa0, Func Offset: 0x80
 	// Line 1085, Address: 0x156fa4, Func Offset: 0x84
 	// Func End, Address: 0x156fac, Func Offset: 0x8c
+	scePrintf("bhBGSeOn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -716,6 +985,7 @@ unsigned int bhBGSeOff()
 	// Line 1105, Address: 0x157018, Func Offset: 0x68
 	// Line 1106, Address: 0x15701c, Func Offset: 0x6c
 	// Func End, Address: 0x157024, Func Offset: 0x74
+	scePrintf("bhBGSeOff - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -731,6 +1001,7 @@ unsigned int bhUseItemCheck()
 	// Line 1123, Address: 0x157064, Func Offset: 0x34
 	// Line 1126, Address: 0x157094, Func Offset: 0x64
 	// Func End, Address: 0x15709c, Func Offset: 0x6c
+	scePrintf("bhUseItemCheck - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -746,6 +1017,7 @@ unsigned int bhArmsItemCheck()
 	// Line 1140, Address: 0x1570d4, Func Offset: 0x34
 	// Line 1141, Address: 0x1570dc, Func Offset: 0x3c
 	// Func End, Address: 0x1570e4, Func Offset: 0x44
+	scePrintf("bhArmsItemCheck - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -767,6 +1039,7 @@ unsigned int bhArmsItemChange()
 	// Line 1158, Address: 0x157148, Func Offset: 0x58
 	// Line 1161, Address: 0x157158, Func Offset: 0x68
 	// Func End, Address: 0x157160, Func Offset: 0x70
+	scePrintf("bhArmsItemChange - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -796,6 +1069,7 @@ unsigned int bhPlItemLost()
 	// Line 1197, Address: 0x157268, Func Offset: 0x108
 	// Line 1199, Address: 0x15727c, Func Offset: 0x11c
 	// Func End, Address: 0x157284, Func Offset: 0x124
+	scePrintf("bhPlItemLost - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -810,6 +1084,7 @@ unsigned int bhUseItemClear()
 	// Line 1209, Address: 0x1572b4, Func Offset: 0x24
 	// Line 1211, Address: 0x1572bc, Func Offset: 0x2c
 	// Func End, Address: 0x1572c4, Func Offset: 0x34
+	scePrintf("bhUseItemClear - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -833,6 +1108,7 @@ unsigned int bhPlItemCheck()
 	// Line 1237, Address: 0x15738c, Func Offset: 0xbc
 	// Line 1238, Address: 0x157390, Func Offset: 0xc0
 	// Func End, Address: 0x157398, Func Offset: 0xc8
+	scePrintf("bhPlItemCheck - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -852,6 +1128,7 @@ unsigned int bhMovieStart()
 	// Line 1256, Address: 0x1573fc, Func Offset: 0x5c
 	// Line 1262, Address: 0x15740c, Func Offset: 0x6c
 	// Func End, Address: 0x157414, Func Offset: 0x74
+	scePrintf("bhMovieStart - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -866,6 +1143,7 @@ unsigned int bhMovieStop()
 	// Line 1272, Address: 0x157448, Func Offset: 0x28
 	// Line 1277, Address: 0x157450, Func Offset: 0x30
 	// Func End, Address: 0x157458, Func Offset: 0x38
+	scePrintf("bhMovieStop - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -873,7 +1151,7 @@ unsigned int bhMovieStop()
 unsigned int bhVoiceOn()
 {
 	BH_PWORK* e_ep;
-	_anon39 pPos;
+	//_anon39 pPos;
 	unsigned int v4;
 	unsigned int v3;
 	unsigned int v2;
@@ -919,6 +1197,7 @@ unsigned int bhVoiceOn()
 	// Line 1343, Address: 0x1576a4, Func Offset: 0x244
 	// Line 1344, Address: 0x1576a8, Func Offset: 0x248
 	// Func End, Address: 0x1576b0, Func Offset: 0x250
+	scePrintf("bhVoiceOn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -939,6 +1218,7 @@ unsigned int bhVoiceOff()
 	// Line 1363, Address: 0x157704, Func Offset: 0x54
 	// Line 1364, Address: 0x157708, Func Offset: 0x58
 	// Func End, Address: 0x157710, Func Offset: 0x60
+	scePrintf("bhVoiceOff - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -954,6 +1234,7 @@ unsigned int bhAdxCk()
 	// Line 1380, Address: 0x157750, Func Offset: 0x40
 	// Line 1382, Address: 0x157760, Func Offset: 0x50
 	// Func End, Address: 0x157768, Func Offset: 0x58
+	scePrintf("bhAdxCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -993,6 +1274,7 @@ unsigned int bhAdxTimeCk()
 	// Line 1429, Address: 0x157884, Func Offset: 0x114
 	// Line 1433, Address: 0x157888, Func Offset: 0x118
 	// Func End, Address: 0x15789c, Func Offset: 0x12c
+	scePrintf("bhAdxTimeCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1074,13 +1356,14 @@ unsigned int bhCineSet()
 	// Line 1520, Address: 0x157b40, Func Offset: 0x2a0
 	// Line 1521, Address: 0x157b44, Func Offset: 0x2a4
 	// Func End, Address: 0x157b4c, Func Offset: 0x2ac
+	scePrintf("bhCineSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x157b50
 unsigned int bhWalAtariSet()
 {
-	_anon6* e_walp;
+	//_anon6* e_walp;
 	unsigned int v1;
 	unsigned int v0;
 	// Line 1534, Address: 0x157b50, Func Offset: 0
@@ -1099,13 +1382,14 @@ unsigned int bhWalAtariSet()
 	// Line 1550, Address: 0x157bc4, Func Offset: 0x74
 	// Line 1554, Address: 0x157bd0, Func Offset: 0x80
 	// Func End, Address: 0x157bd8, Func Offset: 0x88
+	scePrintf("bhWalAtariSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x157be0
 unsigned int bhEtcAtariSet()
 {
-	_anon6* e_etcp;
+	//_anon6* e_etcp;
 	unsigned int v1;
 	unsigned int v0;
 	// Line 1567, Address: 0x157be0, Func Offset: 0
@@ -1124,13 +1408,14 @@ unsigned int bhEtcAtariSet()
 	// Line 1583, Address: 0x157c54, Func Offset: 0x74
 	// Line 1587, Address: 0x157c60, Func Offset: 0x80
 	// Func End, Address: 0x157c68, Func Offset: 0x88
+	scePrintf("bhEtcAtariSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x157c70
 unsigned int bhFlrAtariSet()
 {
-	_anon6* e_flrp;
+	//_anon6* e_flrp;
 	unsigned int v1;
 	unsigned int v0;
 	// Line 1600, Address: 0x157c70, Func Offset: 0
@@ -1149,6 +1434,7 @@ unsigned int bhFlrAtariSet()
 	// Line 1616, Address: 0x157ce4, Func Offset: 0x74
 	// Line 1620, Address: 0x157cf0, Func Offset: 0x80
 	// Func End, Address: 0x157cf8, Func Offset: 0x88
+	scePrintf("bhFlrAtariSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1162,6 +1448,7 @@ unsigned int bhSubStatus()
 	// Line 1637, Address: 0x157d20, Func Offset: 0x20
 	// Line 1639, Address: 0x157d28, Func Offset: 0x28
 	// Func End, Address: 0x157d30, Func Offset: 0x30
+	scePrintf("bhSubStatus - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1189,6 +1476,7 @@ unsigned int bhMotionPauseSet()
 	// Line 1672, Address: 0x157ddc, Func Offset: 0xac
 	// Line 1673, Address: 0x157de0, Func Offset: 0xb0
 	// Func End, Address: 0x157de8, Func Offset: 0xb8
+	scePrintf("bhMotionPauseSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1207,6 +1495,7 @@ unsigned int bhMotionPauseSetPly()
 	// Line 1690, Address: 0x157e64, Func Offset: 0x74
 	// Line 1691, Address: 0x157e68, Func Offset: 0x78
 	// Func End, Address: 0x157e70, Func Offset: 0x80
+	scePrintf("bhMotionPauseSetPly - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1235,6 +1524,7 @@ unsigned int bhInitMotionPause()
 	// Line 1723, Address: 0x157f0c, Func Offset: 0x9c
 	// Line 1724, Address: 0x157f10, Func Offset: 0xa0
 	// Func End, Address: 0x157f18, Func Offset: 0xa8
+	scePrintf("bhInitMotionPause - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1275,13 +1565,14 @@ unsigned int bhInitMotionPauseEx()
 	// Line 1764, Address: 0x158004, Func Offset: 0xe4
 	// Line 1765, Address: 0x158008, Func Offset: 0xe8
 	// Func End, Address: 0x158010, Func Offset: 0xf0
+	scePrintf("bhInitMotionPauseEx - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x158010
 unsigned int bhEffectSet()
 {
-	_anon53 pnt;
+	//_anon53 pnt;
 	unsigned int v1;
 	unsigned int v0;
 	// Line 1773, Address: 0x158010, Func Offset: 0
@@ -1305,13 +1596,14 @@ unsigned int bhEffectSet()
 	// Line 1797, Address: 0x1580f8, Func Offset: 0xe8
 	// Line 1798, Address: 0x1580fc, Func Offset: 0xec
 	// Func End, Address: 0x158104, Func Offset: 0xf4
+	scePrintf("bhEffectSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x158110
 unsigned int bhEffectSensyaSet()
 {
-	_anon53 pnt;
+	//_anon53 pnt;
 	// Line 1806, Address: 0x158110, Func Offset: 0
 	// Line 1811, Address: 0x158118, Func Offset: 0x8
 	// Line 1814, Address: 0x158120, Func Offset: 0x10
@@ -1329,6 +1621,7 @@ unsigned int bhEffectSensyaSet()
 	// Line 1818, Address: 0x158184, Func Offset: 0x74
 	// Line 1819, Address: 0x158188, Func Offset: 0x78
 	// Func End, Address: 0x158190, Func Offset: 0x80
+	scePrintf("bhEffectSensyaSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1381,13 +1674,14 @@ unsigned int bhEffectKokuenSet()
 	// Line 1865, Address: 0x158618, Func Offset: 0x488
 	// Line 1866, Address: 0x15861c, Func Offset: 0x48c
 	// Func End, Address: 0x158624, Func Offset: 0x494
+	scePrintf("bhEffectKokuenSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x158630
 unsigned int bhDieCk()
 {
-	_anon21* e_enep;
+	//_anon21* e_enep;
 	unsigned char* a0;
 	unsigned int v2;
 	int* v0;
@@ -1414,13 +1708,14 @@ unsigned int bhDieCk()
 	// Line 1918, Address: 0x158740, Func Offset: 0x110
 	// Line 1920, Address: 0x15874c, Func Offset: 0x11c
 	// Func End, Address: 0x158754, Func Offset: 0x124
+	scePrintf("bhDieCk - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x158760
 unsigned int bhItmCk()
 {
-	_anon6* e_etcp;
+	//_anon6* e_etcp;
 	unsigned int v5;
 	unsigned int v4;
 	unsigned int v2;
@@ -1478,6 +1773,7 @@ unsigned int bhItmCk()
 	// Line 2001, Address: 0x15896c, Func Offset: 0x20c
 	// Line 2003, Address: 0x158978, Func Offset: 0x218
 	// Func End, Address: 0x158980, Func Offset: 0x220
+	scePrintf("bhItmCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1535,6 +1831,7 @@ unsigned int bhObjLinkSet()
 	// Line 2072, Address: 0x158dec, Func Offset: 0x46c
 	// Line 2075, Address: 0x158df4, Func Offset: 0x474
 	// Func End, Address: 0x158dfc, Func Offset: 0x47c
+	scePrintf("bhObjLinkSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1559,6 +1856,7 @@ unsigned int bhSetObjMotion()
 	// Line 2106, Address: 0x158eac, Func Offset: 0xac
 	// Line 2107, Address: 0x158eb0, Func Offset: 0xb0
 	// Func End, Address: 0x158eb8, Func Offset: 0xb8
+	scePrintf("bhSetObjMotion - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1592,6 +1890,7 @@ unsigned int bhSetDispObj()
 	// Line 2155, Address: 0x159010, Func Offset: 0x150
 	// Line 2158, Address: 0x159020, Func Offset: 0x160
 	// Func End, Address: 0x159028, Func Offset: 0x168
+	scePrintf("bhSetDispObj - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1620,6 +1919,7 @@ unsigned int bhSetDoorCall()
 	// Line 2184, Address: 0x1590cc, Func Offset: 0x9c
 	// Line 2185, Address: 0x1590d0, Func Offset: 0xa0
 	// Func End, Address: 0x1590d8, Func Offset: 0xa8
+	scePrintf("bhSetDoorCall - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1652,6 +1952,7 @@ unsigned int bhDieEventCk()
 	// Line 2223, Address: 0x159214, Func Offset: 0x134
 	// Line 2225, Address: 0x15921c, Func Offset: 0x13c
 	// Func End, Address: 0x159224, Func Offset: 0x144
+	scePrintf("bhDieEventCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1680,6 +1981,7 @@ unsigned int bhSetDebugLoopEx()
 	// Line 2262, Address: 0x1592f8, Func Offset: 0xc8
 	// Line 2263, Address: 0x1592fc, Func Offset: 0xcc
 	// Func End, Address: 0x159304, Func Offset: 0xd4
+	scePrintf("bhSetDebugLoopEx - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1716,6 +2018,7 @@ unsigned int bhInitSetKage()
 	// Line 2318, Address: 0x1594c4, Func Offset: 0x1b4
 	// Line 2319, Address: 0x1594c8, Func Offset: 0x1b8
 	// Func End, Address: 0x1594d0, Func Offset: 0x1c0
+	scePrintf("bhInitSetKage - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1771,6 +2074,7 @@ unsigned int bhObjLinkSetPly()
 	// Line 2379, Address: 0x1598ec, Func Offset: 0x41c
 	// Line 2382, Address: 0x1598f4, Func Offset: 0x424
 	// Func End, Address: 0x1598fc, Func Offset: 0x42c
+	scePrintf("bhObjLinkSetPly - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1799,6 +2103,7 @@ unsigned int bhSetNextRoomBgm()
 	// Line 2422, Address: 0x1599c4, Func Offset: 0xc4
 	// Line 2426, Address: 0x1599d4, Func Offset: 0xd4
 	// Func End, Address: 0x1599dc, Func Offset: 0xdc
+	scePrintf("bhSetNextRoomBgm - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1852,6 +2157,7 @@ unsigned int bhSetNextRoomBgSe()
 	// Line 2464, Address: 0x159b58, Func Offset: 0x178
 	// Line 2467, Address: 0x159b60, Func Offset: 0x180
 	// Func End, Address: 0x159b68, Func Offset: 0x188
+	scePrintf("bhSetNextRoomBgSe - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1892,13 +2198,14 @@ unsigned int bhFootSeCall()
 	// Line 2527, Address: 0x159d14, Func Offset: 0x1a4
 	// Line 2528, Address: 0x159d18, Func Offset: 0x1a8
 	// Func End, Address: 0x159d20, Func Offset: 0x1b0
+	scePrintf("bhFootSeCall - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x159d20
 unsigned int bhEneSetCk()
 {
-	_anon21* e_enep;
+	//_anon21* e_enep;
 	unsigned char* a0;
 	unsigned int v2;
 	// Line 2545, Address: 0x159d20, Func Offset: 0
@@ -1920,13 +2227,14 @@ unsigned int bhEneSetCk()
 	// Line 2568, Address: 0x159df0, Func Offset: 0xd0
 	// Line 2570, Address: 0x159df8, Func Offset: 0xd8
 	// Func End, Address: 0x159e00, Func Offset: 0xe0
+	scePrintf("bhEneSetCk - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x159e00
 unsigned int bhItmSetCk()
 {
-	_anon6* e_etcp;
+	//_anon6* e_etcp;
 	unsigned int v5;
 	unsigned int v4;
 	unsigned int v3;
@@ -1963,13 +2271,14 @@ unsigned int bhItmSetCk()
 	// Line 2620, Address: 0x159f34, Func Offset: 0x134
 	// Line 2623, Address: 0x159f40, Func Offset: 0x140
 	// Func End, Address: 0x159f48, Func Offset: 0x148
+	scePrintf("bhItmSetCk - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x159f50
 unsigned int bhInitModelSet()
 {
-	_anon0* e_ip;
+	//_anon0* e_ip;
 	BH_PWORK* e_ep;
 	unsigned int v4;
 	unsigned int v3;
@@ -2020,13 +2329,14 @@ unsigned int bhInitModelSet()
 	// Line 2707, Address: 0x15a1b0, Func Offset: 0x260
 	// Line 2708, Address: 0x15a1b4, Func Offset: 0x264
 	// Func End, Address: 0x15a1bc, Func Offset: 0x26c
+	scePrintf("bhInitModelSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x15a1c0
 unsigned int bhEtcAtariSet2()
 {
-	_anon6* e_etcp;
+	//_anon6* e_etcp;
 	unsigned int v1;
 	// Line 2722, Address: 0x15a1c0, Func Offset: 0
 	// Line 2756, Address: 0x15a1c8, Func Offset: 0x8
@@ -2065,13 +2375,14 @@ unsigned int bhEtcAtariSet2()
 	// Line 2754, Address: 0x15a2d4, Func Offset: 0x114
 	// Line 2757, Address: 0x15a2e0, Func Offset: 0x120
 	// Func End, Address: 0x15a2e8, Func Offset: 0x128
+	scePrintf("bhEtcAtariSet2 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x15a2f0
 unsigned int bhLightSet()
 {
-	_anon11* lp;
+	//_anon11* lp;
 	int v2;
 	int v1;
 	int v0;
@@ -2089,6 +2400,7 @@ unsigned int bhLightSet()
 	// Line 2792, Address: 0x15a3a4, Func Offset: 0xb4
 	// Line 2795, Address: 0x15a3b4, Func Offset: 0xc4
 	// Func End, Address: 0x15a3bc, Func Offset: 0xcc
+	scePrintf("bhLightSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2161,6 +2473,7 @@ unsigned int bhWeaponSeCall()
 	// Line 2891, Address: 0x15a820, Func Offset: 0x460
 	// Line 2892, Address: 0x15a824, Func Offset: 0x464
 	// Func End, Address: 0x15a82c, Func Offset: 0x46c
+	scePrintf("bhWeaponSeCall - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2211,6 +2524,7 @@ unsigned int bhYakkyouSet()
 	// Line 2947, Address: 0x15aa28, Func Offset: 0x1f8
 	// Line 2948, Address: 0x15aa2c, Func Offset: 0x1fc
 	// Func End, Address: 0x15aa34, Func Offset: 0x204
+	scePrintf("bhYakkyouSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2246,6 +2560,7 @@ unsigned int bhFadeSet()
 	// Line 2973, Address: 0x15aafc, Func Offset: 0xbc
 	// Line 2974, Address: 0x15ab00, Func Offset: 0xc0
 	// Func End, Address: 0x15ab08, Func Offset: 0xc8
+	scePrintf("bhFadeSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2261,6 +2576,7 @@ unsigned int bhRoomCaseNo()
 	// Line 2987, Address: 0x15ab3c, Func Offset: 0x2c
 	// Line 2992, Address: 0x15ab48, Func Offset: 0x38
 	// Func End, Address: 0x15ab50, Func Offset: 0x40
+	scePrintf("bhRoomCaseNo - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2293,13 +2609,14 @@ unsigned int bhFrameCheck()
 	// Line 3045, Address: 0x15ac88, Func Offset: 0x138
 	// Line 3048, Address: 0x15aca0, Func Offset: 0x150
 	// Func End, Address: 0x15aca8, Func Offset: 0x158
+	scePrintf("bhFrameCheck - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x15acb0
 unsigned int bhCamInfoSet()
 {
-	_anon16* cp;
+	//_anon16* cp;
 	unsigned int v1;
 	unsigned int v0;
 	// Line 3061, Address: 0x15acb0, Func Offset: 0
@@ -2316,6 +2633,7 @@ unsigned int bhCamInfoSet()
 	// Line 3076, Address: 0x15ad2c, Func Offset: 0x7c
 	// Line 3080, Address: 0x15ad38, Func Offset: 0x88
 	// Func End, Address: 0x15ad40, Func Offset: 0x90
+	scePrintf("bhCamInfoSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2340,6 +2658,7 @@ unsigned int bhMaskSet()
 	// Line 3114, Address: 0x15adec, Func Offset: 0xac
 	// Line 3115, Address: 0x15adf0, Func Offset: 0xb0
 	// Func End, Address: 0x15adf8, Func Offset: 0xb8
+	scePrintf("bhMaskSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2369,6 +2688,7 @@ unsigned int bhLipSet()
 	// Line 3151, Address: 0x15aeb4, Func Offset: 0xb4
 	// Line 3152, Address: 0x15aeb8, Func Offset: 0xb8
 	// Func End, Address: 0x15aec0, Func Offset: 0xc0
+	scePrintf("bhLipSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2395,6 +2715,7 @@ unsigned int bhMaskStart()
 	// Line 3187, Address: 0x15af70, Func Offset: 0xb0
 	// Line 3190, Address: 0x15af84, Func Offset: 0xc4
 	// Func End, Address: 0x15af8c, Func Offset: 0xcc
+	scePrintf("bhMaskStart - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2421,6 +2742,7 @@ unsigned int bhLipStart()
 	// Line 3225, Address: 0x15b040, Func Offset: 0xb0
 	// Line 3228, Address: 0x15b054, Func Offset: 0xc4
 	// Func End, Address: 0x15b05c, Func Offset: 0xcc
+	scePrintf("bhLipStart - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2437,6 +2759,7 @@ unsigned int bhMutekiSetPl()
 	// Line 3248, Address: 0x15b0ac, Func Offset: 0x4c
 	// Line 3251, Address: 0x15b0c0, Func Offset: 0x60
 	// Func End, Address: 0x15b0c8, Func Offset: 0x68
+	scePrintf("bhMutekiSetPl - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2479,6 +2802,7 @@ unsigned int bhLookGsetPlStart()
 	// Line 3293, Address: 0x15b3c0, Func Offset: 0x2f0
 	// Line 3295, Address: 0x15b3c8, Func Offset: 0x2f8
 	// Func End, Address: 0x15b3d0, Func Offset: 0x300
+	scePrintf("bhLookGsetPlStart - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2493,6 +2817,7 @@ unsigned int bhLookGsetPlStop()
 	// Line 3306, Address: 0x15b3f4, Func Offset: 0x24
 	// Line 3308, Address: 0x15b400, Func Offset: 0x30
 	// Func End, Address: 0x15b408, Func Offset: 0x38
+	scePrintf("bhLookGsetPlStop - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2504,6 +2829,7 @@ unsigned int bhSoundFadeOut()
 	// Line 3318, Address: 0x15b41c, Func Offset: 0xc
 	// Line 3320, Address: 0x15b424, Func Offset: 0x14
 	// Func End, Address: 0x15b42c, Func Offset: 0x1c
+	scePrintf("bhSoundFadeOut - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2538,6 +2864,7 @@ unsigned int bhDefModelSet()
 	// Line 3367, Address: 0x15b57c, Func Offset: 0x14c
 	// Line 3370, Address: 0x15b5ac, Func Offset: 0x17c
 	// Func End, Address: 0x15b5b4, Func Offset: 0x184
+	scePrintf("bhDefModelSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2560,13 +2887,14 @@ unsigned int bhItmAspdSet()
 	// Line 3393, Address: 0x15b624, Func Offset: 0x64
 	// Line 3396, Address: 0x15b634, Func Offset: 0x74
 	// Func End, Address: 0x15b63c, Func Offset: 0x7c
+	scePrintf("bhItmAspdSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x15b640
 unsigned int bhEffDispSet()
 {
-	_anon0* e_ep;
+	//_anon0* e_ep;
 	unsigned int v1;
 	unsigned int v0;
 	// Line 3408, Address: 0x15b640, Func Offset: 0
@@ -2584,6 +2912,7 @@ unsigned int bhEffDispSet()
 	// Line 3422, Address: 0x15b6d8, Func Offset: 0x98
 	// Line 3425, Address: 0x15b6ec, Func Offset: 0xac
 	// Func End, Address: 0x15b6f4, Func Offset: 0xb4
+	scePrintf("bhEffDispSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2618,6 +2947,7 @@ unsigned int bhEffAmbSet()
 	// Line 3449, Address: 0x15b858, Func Offset: 0x158
 	// Line 3451, Address: 0x15b85c, Func Offset: 0x15c
 	// Func End, Address: 0x15b864, Func Offset: 0x164
+	scePrintf("bhEffAmbSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2679,6 +3009,7 @@ unsigned int bhObjLinkSetObjEne()
 	// Line 3518, Address: 0x15bc1c, Func Offset: 0x3ac
 	// Line 3521, Address: 0x15bc24, Func Offset: 0x3b4
 	// Func End, Address: 0x15bc2c, Func Offset: 0x3bc
+	scePrintf("bhObjLinkSetObjEne - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2734,6 +3065,7 @@ unsigned int bhObjLinkSetObjItem()
 	// Line 3586, Address: 0x15c080, Func Offset: 0x450
 	// Line 3589, Address: 0x15c088, Func Offset: 0x458
 	// Func End, Address: 0x15c090, Func Offset: 0x460
+	scePrintf("bhObjLinkSetObjItem - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2791,6 +3123,7 @@ unsigned int bhObjLinkSetEneItem()
 	// Line 3656, Address: 0x15c4fc, Func Offset: 0x46c
 	// Line 3659, Address: 0x15c504, Func Offset: 0x474
 	// Func End, Address: 0x15c50c, Func Offset: 0x47c
+	scePrintf("bhObjLinkSetEneItem - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2853,6 +3186,7 @@ unsigned int bhObjLinkSetEneEne()
 	// Line 3732, Address: 0x15c8c4, Func Offset: 0x3b4
 	// Line 3735, Address: 0x15c8cc, Func Offset: 0x3bc
 	// Func End, Address: 0x15c8d4, Func Offset: 0x3c4
+	scePrintf("bhObjLinkSetEneEne - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2869,13 +3203,14 @@ unsigned int bhDelObjSe()
 	// Line 3751, Address: 0x15c91c, Func Offset: 0x3c
 	// Line 3752, Address: 0x15c920, Func Offset: 0x40
 	// Func End, Address: 0x15c928, Func Offset: 0x48
+	scePrintf("bhDelObjSe - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x15c930
 unsigned int bhLightTypeSet()
 {
-	_anon11* lp;
+	//_anon11* lp;
 	unsigned int v2;
 	unsigned int v1;
 	unsigned int v0;
@@ -2895,6 +3230,7 @@ unsigned int bhLightTypeSet()
 	// Line 3777, Address: 0x15c9ac, Func Offset: 0x7c
 	// Line 3781, Address: 0x15c9b0, Func Offset: 0x80
 	// Func End, Address: 0x15c9b8, Func Offset: 0x88
+	scePrintf("bhLightTypeSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2932,13 +3268,14 @@ unsigned int bhFogColorSet()
 	// Line 3810, Address: 0x15cacc, Func Offset: 0x10c
 	// Line 3815, Address: 0x15cadc, Func Offset: 0x11c
 	// Func End, Address: 0x15cae4, Func Offset: 0x124
+	scePrintf("bhFogColorSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x15caf0
 unsigned int bhEffectSandSet()
 {
-	_anon39 pos;
+	//_anon39 pos;
 	BH_PWORK* epw;
 	unsigned int v2;
 	unsigned int v1;
@@ -2999,6 +3336,7 @@ unsigned int bhEffectSandSet()
 	// Line 3906, Address: 0x15d0ac, Func Offset: 0x5bc
 	// Line 3907, Address: 0x15d0b0, Func Offset: 0x5c0
 	// Func End, Address: 0x15d0b8, Func Offset: 0x5c8
+	scePrintf("bhEffectSandSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3047,13 +3385,14 @@ unsigned int bhPlItemBlockCk()
 	// Line 3971, Address: 0x15d2e8, Func Offset: 0x228
 	// Line 3972, Address: 0x15d2ec, Func Offset: 0x22c
 	// Func End, Address: 0x15d2f4, Func Offset: 0x234
+	scePrintf("bhPlItemBlockCk - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x15d300
 unsigned int bhEffBloodSet()
 {
-	_anon39 ofp;
+	//_anon39 ofp;
 	BH_PWORK* epw;
 	int v2;
 	int v1;
@@ -3106,6 +3445,7 @@ unsigned int bhEffBloodSet()
 	// Line 4042, Address: 0x15d6c0, Func Offset: 0x3c0
 	// Line 4043, Address: 0x15d6c4, Func Offset: 0x3c4
 	// Func End, Address: 0x15d6cc, Func Offset: 0x3cc
+	scePrintf("bhEffBloodSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3113,7 +3453,7 @@ unsigned int bhEffBloodSet()
 unsigned int bhEffBloodPoolSet()
 {
 	int ang;
-	_anon39 gpos;
+	//_anon39 gpos;
 	BH_PWORK* epw;
 	int v2;
 	int v1;
@@ -3167,6 +3507,7 @@ unsigned int bhEffBloodPoolSet()
 	// Line 4105, Address: 0x15d938, Func Offset: 0x268
 	// Line 4106, Address: 0x15d93c, Func Offset: 0x26c
 	// Func End, Address: 0x15d944, Func Offset: 0x274
+	scePrintf("bhEffBloodPoolSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3174,7 +3515,7 @@ unsigned int bhEffBloodPoolSet()
 unsigned int bhEffBloodPoolSet2()
 {
 	int ang;
-	_anon39 gpos;
+	//_anon39 gpos;
 	int v3;
 	int v2;
 	int v1;
@@ -3244,6 +3585,7 @@ unsigned int bhEffBloodPoolSet2()
 	// Line 4186, Address: 0x15de28, Func Offset: 0x4d8
 	// Line 4187, Address: 0x15de2c, Func Offset: 0x4dc
 	// Func End, Address: 0x15de34, Func Offset: 0x4e4
+	scePrintf("bhEffBloodPoolSet2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3278,6 +3620,7 @@ unsigned int bhCyoutenHenkeiSet()
 	// Line 4229, Address: 0x15df40, Func Offset: 0x100
 	// Line 4240, Address: 0x15df44, Func Offset: 0x104
 	// Func End, Address: 0x15df4c, Func Offset: 0x10c
+	scePrintf("bhCyoutenHenkeiSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3296,6 +3639,7 @@ unsigned int bhCyoutenHenkeiStart()
 	// Line 4263, Address: 0x15dfcc, Func Offset: 0x7c
 	// Line 4264, Address: 0x15dfd0, Func Offset: 0x80
 	// Func End, Address: 0x15dfd8, Func Offset: 0x88
+	scePrintf("bhCyoutenHenkeiStart - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3312,6 +3656,7 @@ unsigned int bhFixEventCamPly()
 	// Line 4282, Address: 0x15e02c, Func Offset: 0x4c
 	// Line 4285, Address: 0x15e048, Func Offset: 0x68
 	// Func End, Address: 0x15e050, Func Offset: 0x70
+	scePrintf("bhFixEventCamPly - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3364,6 +3709,7 @@ unsigned int bhObjLinkSetObjObj()
 	// Line 4350, Address: 0x15e48c, Func Offset: 0x43c
 	// Line 4353, Address: 0x15e494, Func Offset: 0x444
 	// Func End, Address: 0x15e49c, Func Offset: 0x44c
+	scePrintf("bhObjLinkSetObjObj - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3390,6 +3736,7 @@ unsigned int bhCamYureSet()
 	// Line 4380, Address: 0x15e5c0, Func Offset: 0x120
 	// Line 4381, Address: 0x15e5c4, Func Offset: 0x124
 	// Func End, Address: 0x15e5cc, Func Offset: 0x12c
+	scePrintf("bhCamYureSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3419,6 +3766,7 @@ unsigned int bhInitCamSet()
 	// Line 4401, Address: 0x15e650, Func Offset: 0x80
 	// Line 4402, Address: 0x15e654, Func Offset: 0x84
 	// Func End, Address: 0x15e65c, Func Offset: 0x8c
+	scePrintf("bhInitCamSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3437,6 +3785,7 @@ unsigned int bhMesDispEndSet()
 	// Line 4416, Address: 0x15e6cc, Func Offset: 0x6c
 	// Line 4418, Address: 0x15e6dc, Func Offset: 0x7c
 	// Func End, Address: 0x15e6e4, Func Offset: 0x84
+	scePrintf("bhMesDispEndSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3475,6 +3824,7 @@ unsigned int bhPadCheck()
 	// Line 4499, Address: 0x15e938, Func Offset: 0x248
 	// Line 4500, Address: 0x15e93c, Func Offset: 0x24c
 	// Func End, Address: 0x15e944, Func Offset: 0x254
+	scePrintf("bhPadCheck - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3490,6 +3840,7 @@ unsigned int bhTFrameCheck()
 	// Line 4516, Address: 0x15e980, Func Offset: 0x30
 	// Line 4519, Address: 0x15e998, Func Offset: 0x48
 	// Func End, Address: 0x15e9a0, Func Offset: 0x50
+	scePrintf("bhTFrameCheck - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3502,6 +3853,7 @@ unsigned int bhEventTimerClr()
 	// Line 4528, Address: 0x15e9b4, Func Offset: 0x14
 	// Line 4531, Address: 0x15e9bc, Func Offset: 0x1c
 	// Func End, Address: 0x15e9c4, Func Offset: 0x24
+	scePrintf("bhEventTimerClr - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3532,6 +3884,7 @@ unsigned int bhCamCheck()
 	// Line 4565, Address: 0x15eac0, Func Offset: 0xf0
 	// Line 4566, Address: 0x15eac4, Func Offset: 0xf4
 	// Func End, Address: 0x15eacc, Func Offset: 0xfc
+	scePrintf("bhCamCheck - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3550,6 +3903,7 @@ unsigned int bhRandamSet()
 	// Line 4583, Address: 0x15eb58, Func Offset: 0x88
 	// Line 4585, Address: 0x15eb5c, Func Offset: 0x8c
 	// Func End, Address: 0x15eb6c, Func Offset: 0x9c
+	scePrintf("bhRandamSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3566,6 +3920,7 @@ unsigned int bhEventSkipSet()
 	// Line 4603, Address: 0x15ebbc, Func Offset: 0x4c
 	// Line 4606, Address: 0x15ebd8, Func Offset: 0x68
 	// Func End, Address: 0x15ebe0, Func Offset: 0x70
+	scePrintf("bhEventSkipSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3579,13 +3934,14 @@ unsigned int bhDelYakkyou()
 	// Line 4617, Address: 0x15ec04, Func Offset: 0x24
 	// Line 4618, Address: 0x15ec08, Func Offset: 0x28
 	// Func End, Address: 0x15ec10, Func Offset: 0x30
+	scePrintf("bhDelYakkyou - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x15ec10
 unsigned int bhObjAlphaSet()
 {
-	_anon0* op;
+	//_anon0* op;
 	int v5;
 	int v4;
 	int v3;
@@ -3617,6 +3973,7 @@ unsigned int bhObjAlphaSet()
 	// Line 4660, Address: 0x15ed40, Func Offset: 0x130
 	// Line 4661, Address: 0x15ed44, Func Offset: 0x134
 	// Func End, Address: 0x15ed4c, Func Offset: 0x13c
+	scePrintf("bhObjAlphaSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3624,8 +3981,8 @@ unsigned int bhObjAlphaSet()
 unsigned int bhCyodanSet()
 {
 	int wp_hef;
-	_anon39 wps;
-	_anon39 ps;
+	//_anon39 wps;
+	//_anon39 ps;
 	int v5;
 	int v4;
 	int v3;
@@ -3701,13 +4058,14 @@ unsigned int bhCyodanSet()
 	// Line 4747, Address: 0x15f34c, Func Offset: 0x5fc
 	// Line 4748, Address: 0x15f350, Func Offset: 0x600
 	// Func End, Address: 0x15f358, Func Offset: 0x608
+	scePrintf("bhCyodanSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x15f360
 unsigned int bhHEffectSet()
 {
-	_anon53 pnt;
+	//_anon53 pnt;
 	int ay;
 	int ax;
 	int v3;
@@ -3785,6 +4143,7 @@ unsigned int bhHEffectSet()
 	// Line 4844, Address: 0x15f9a0, Func Offset: 0x640
 	// Line 4845, Address: 0x15f9a4, Func Offset: 0x644
 	// Func End, Address: 0x15f9ac, Func Offset: 0x64c
+	scePrintf("bhHEffectSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3837,6 +4196,7 @@ unsigned int bhObjLinkSetObjPly()
 	// Line 4905, Address: 0x15fd3c, Func Offset: 0x38c
 	// Line 4908, Address: 0x15fd44, Func Offset: 0x394
 	// Func End, Address: 0x15fd4c, Func Offset: 0x39c
+	scePrintf("bhObjLinkSetObjPly - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3850,6 +4210,7 @@ unsigned int bhEffPush()
 	// Line 4919, Address: 0x15fd74, Func Offset: 0x24
 	// Line 4920, Address: 0x15fd78, Func Offset: 0x28
 	// Func End, Address: 0x15fd80, Func Offset: 0x30
+	scePrintf("bhEffPush - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3863,6 +4224,7 @@ unsigned int bhEffPop()
 	// Line 4931, Address: 0x15fda4, Func Offset: 0x24
 	// Line 4932, Address: 0x15fda8, Func Offset: 0x28
 	// Func End, Address: 0x15fdb0, Func Offset: 0x30
+	scePrintf("bhEffPop - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3912,6 +4274,7 @@ unsigned int bhAreaSearchObj()
 	// Line 5009, Address: 0x160298, Func Offset: 0x4e8
 	// Line 5010, Address: 0x16029c, Func Offset: 0x4ec
 	// Func End, Address: 0x1602a4, Func Offset: 0x4f4
+	scePrintf("bhAreaSearchObj - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4001,6 +4364,7 @@ unsigned int bhLightParameterCSet()
 	// Line 5055, Address: 0x1604ac, Func Offset: 0x1fc
 	// Line 5058, Address: 0x1604c4, Func Offset: 0x214
 	// Func End, Address: 0x1604cc, Func Offset: 0x21c
+	scePrintf("bhLightParameterCSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4010,7 +4374,7 @@ unsigned int bhLightParameterStart()
 	float frm;
 	float ans[3];
 	float ips_w[3][4];
-	_anon11* lp;
+	//_anon11* lp;
 	unsigned int v1;
 	unsigned int v0;
 	// Line 5066, Address: 0x1604d0, Func Offset: 0
@@ -4059,6 +4423,7 @@ unsigned int bhLightParameterStart()
 	// Line 5116, Address: 0x160650, Func Offset: 0x180
 	// Line 5119, Address: 0x160658, Func Offset: 0x188
 	// Func End, Address: 0x16067c, Func Offset: 0x1ac
+	scePrintf("bhLightParameterStart - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4078,6 +4443,7 @@ unsigned int bhInitMidiSlotSet()
 	// Line 5139, Address: 0x1606d4, Func Offset: 0x54
 	// Line 5140, Address: 0x1606d8, Func Offset: 0x58
 	// Func End, Address: 0x1606e0, Func Offset: 0x60
+	scePrintf("bhInitMidiSlotSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4100,6 +4466,7 @@ unsigned int bh3dSoundFlagSet()
 	// Line 5161, Address: 0x16074c, Func Offset: 0x6c
 	// Line 5162, Address: 0x160750, Func Offset: 0x70
 	// Func End, Address: 0x160758, Func Offset: 0x78
+	scePrintf("bh3dSoundFlagSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4132,13 +4499,14 @@ unsigned int bhSoundVolumeSet()
 	// Line 5191, Address: 0x160804, Func Offset: 0xa4
 	// Line 5192, Address: 0x160808, Func Offset: 0xa8
 	// Func End, Address: 0x160810, Func Offset: 0xb0
+	scePrintf("bhSoundVolumeSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x160810
 unsigned int bhLightParameterSet()
 {
-	_anon11* lp;
+	//_anon11* lp;
 	int v6;
 	int v5;
 	int v4;
@@ -4181,6 +4549,7 @@ unsigned int bhLightParameterSet()
 	// Line 5237, Address: 0x160960, Func Offset: 0x150
 	// Line 5240, Address: 0x160978, Func Offset: 0x168
 	// Func End, Address: 0x160980, Func Offset: 0x170
+	scePrintf("bhLightParameterSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4188,7 +4557,7 @@ unsigned int bhLightParameterSet()
 unsigned int bhEneSeOn()
 {
 	BH_PWORK* epw;
-	_anon39 pPos;
+	//_anon39 pPos;
 	unsigned int v3;
 	unsigned int v2;
 	unsigned int v1;
@@ -4222,6 +4591,7 @@ unsigned int bhEneSeOn()
 	// Line 5277, Address: 0x160a98, Func Offset: 0x118
 	// Line 5278, Address: 0x160a9c, Func Offset: 0x11c
 	// Func End, Address: 0x160aa4, Func Offset: 0x124
+	scePrintf("bhEneSeOn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4238,13 +4608,14 @@ unsigned int bhEneSeOff()
 	// Line 5294, Address: 0x160aec, Func Offset: 0x3c
 	// Line 5295, Address: 0x160af0, Func Offset: 0x40
 	// Func End, Address: 0x160af8, Func Offset: 0x48
+	scePrintf("bhEneSeOff - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x160b00
 unsigned int bhWalAtariSet2()
 {
-	_anon6* e_walp;
+	//_anon6* e_walp;
 	unsigned int v1;
 	// Line 5309, Address: 0x160b00, Func Offset: 0
 	// Line 5344, Address: 0x160b08, Func Offset: 0x8
@@ -4283,13 +4654,14 @@ unsigned int bhWalAtariSet2()
 	// Line 5342, Address: 0x160c14, Func Offset: 0x114
 	// Line 5345, Address: 0x160c20, Func Offset: 0x120
 	// Func End, Address: 0x160c28, Func Offset: 0x128
+	scePrintf("bhWalAtariSet2 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x160c30
 unsigned int bhFlrAtariSet2()
 {
-	_anon6* e_flrp;
+	//_anon6* e_flrp;
 	unsigned int v1;
 	// Line 5359, Address: 0x160c30, Func Offset: 0
 	// Line 5394, Address: 0x160c38, Func Offset: 0x8
@@ -4328,6 +4700,7 @@ unsigned int bhFlrAtariSet2()
 	// Line 5392, Address: 0x160d44, Func Offset: 0x114
 	// Line 5395, Address: 0x160d50, Func Offset: 0x120
 	// Func End, Address: 0x160d58, Func Offset: 0x128
+	scePrintf("bhFlrAtariSet2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4390,13 +4763,14 @@ unsigned int bhMotionPosSetEnePly()
 	// Line 5457, Address: 0x160f3c, Func Offset: 0x1dc
 	// Line 5458, Address: 0x160f40, Func Offset: 0x1e0
 	// Func End, Address: 0x160f48, Func Offset: 0x1e8
+	scePrintf("bhMotionPosSetEnePly - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x160f50
 unsigned int bhKageSwSet()
 {
-	_anon0* e_ip;
+	//_anon0* e_ip;
 	BH_PWORK* e_ep;
 	unsigned int v4;
 	unsigned int v3;
@@ -4436,6 +4810,7 @@ unsigned int bhKageSwSet()
 	// Line 5526, Address: 0x161124, Func Offset: 0x1d4
 	// Line 5527, Address: 0x161128, Func Offset: 0x1d8
 	// Func End, Address: 0x161130, Func Offset: 0x1e0
+	scePrintf("bhKageSwSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4468,6 +4843,7 @@ unsigned int bhSoundPanSet()
 	// Line 5556, Address: 0x1611d4, Func Offset: 0xa4
 	// Line 5557, Address: 0x1611d8, Func Offset: 0xa8
 	// Func End, Address: 0x1611e0, Func Offset: 0xb0
+	scePrintf("bhSoundPanSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4490,6 +4866,7 @@ unsigned int bhInitPonySet()
 	// Line 5589, Address: 0x1612a0, Func Offset: 0xc0
 	// Line 5590, Address: 0x1612a4, Func Offset: 0xc4
 	// Func End, Address: 0x1612ac, Func Offset: 0xcc
+	scePrintf("bhInitPonySet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4531,6 +4908,7 @@ unsigned int bhCyoutenHenkeiSetEX()
 	// Line 5638, Address: 0x1613d8, Func Offset: 0x128
 	// Line 5643, Address: 0x1613e4, Func Offset: 0x134
 	// Func End, Address: 0x1613ec, Func Offset: 0x13c
+	scePrintf("bhCyoutenHenkeiSetEX - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4557,6 +4935,7 @@ unsigned int bhCyoutenHenkeiStartEX()
 	// Line 5669, Address: 0x161450, Func Offset: 0x60
 	// Line 5672, Address: 0x16147c, Func Offset: 0x8c
 	// Func End, Address: 0x161484, Func Offset: 0x94
+	scePrintf("bhCyoutenHenkeiStartEX - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4564,7 +4943,7 @@ unsigned int bhCyoutenHenkeiStartEX()
 unsigned int bhEasySESet()
 {
 	BH_PWORK* epw;
-	_anon1 gp;
+	//_anon1 gp;
 	int v8;
 	int v7;
 	int v6;
@@ -4640,6 +5019,7 @@ unsigned int bhEasySESet()
 	// Line 5779, Address: 0x161768, Func Offset: 0x2d8
 	// Line 5780, Address: 0x16176c, Func Offset: 0x2dc
 	// Func End, Address: 0x161774, Func Offset: 0x2e4
+	scePrintf("bhEasySESet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4653,13 +5033,14 @@ unsigned int bhSoundFlagReSet()
 	// Line 5791, Address: 0x1617a4, Func Offset: 0x24
 	// Line 5792, Address: 0x1617a8, Func Offset: 0x28
 	// Func End, Address: 0x1617b0, Func Offset: 0x30
+	scePrintf("bhSoundFlagReSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1617b0
 unsigned int bhEffUVSet()
 {
-	_anon0* e_ep;
+	//_anon0* e_ep;
 	int v4;
 	int v3;
 	int v2;
@@ -4709,6 +5090,7 @@ unsigned int bhEffUVSet()
 	// Line 5831, Address: 0x1618d4, Func Offset: 0x124
 	// Line 5835, Address: 0x1618d8, Func Offset: 0x128
 	// Func End, Address: 0x1618e0, Func Offset: 0x130
+	scePrintf("bhEffUVSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4726,6 +5108,7 @@ unsigned int bhPlayerChangeSet()
 	// Line 5851, Address: 0x161924, Func Offset: 0x44
 	// Line 5854, Address: 0x161934, Func Offset: 0x54
 	// Func End, Address: 0x16193c, Func Offset: 0x5c
+	scePrintf("bhPlayerChangeSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4743,13 +5126,14 @@ unsigned int bhPlayerPoisonCk()
 	// Line 5873, Address: 0x161994, Func Offset: 0x54
 	// Line 5876, Address: 0x1619a0, Func Offset: 0x60
 	// Func End, Address: 0x1619a8, Func Offset: 0x68
+	scePrintf("bhPlayerPoisonCk - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1619b0
 unsigned int bhAddObjSe()
 {
-	_anon39 pPos;
+	//_anon39 pPos;
 	int v3;
 	int v2;
 	int v1;
@@ -4790,6 +5174,7 @@ unsigned int bhAddObjSe()
 	// Line 5921, Address: 0x161cac, Func Offset: 0x2fc
 	// Line 5922, Address: 0x161cb0, Func Offset: 0x300
 	// Func End, Address: 0x161cb8, Func Offset: 0x308
+	scePrintf("bhAddObjSe - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4823,6 +5208,7 @@ unsigned int bhRandTest()
 	// Line 5976, Address: 0x161dc0, Func Offset: 0x100
 	// Line 5977, Address: 0x161dc4, Func Offset: 0x104
 	// Func End, Address: 0x161dcc, Func Offset: 0x10c
+	scePrintf("bhRandTest - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4843,6 +5229,7 @@ unsigned int bhEvtComSet()
 	// Line 5993, Address: 0x161e1c, Func Offset: 0x4c
 	// Line 5996, Address: 0x161e28, Func Offset: 0x58
 	// Func End, Address: 0x161e30, Func Offset: 0x60
+	scePrintf("bhEvtComSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4872,6 +5259,7 @@ unsigned int bhZombieUpDieCk()
 	// Line 6026, Address: 0x161ef0, Func Offset: 0xc0
 	// Line 6027, Address: 0x161ef4, Func Offset: 0xc4
 	// Func End, Address: 0x161efc, Func Offset: 0xcc
+	scePrintf("bhZombieUpDieCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4897,6 +5285,7 @@ unsigned int bhFacePauseSet()
 	// Line 6059, Address: 0x161f9c, Func Offset: 0x9c
 	// Line 6062, Address: 0x161fb0, Func Offset: 0xb0
 	// Func End, Address: 0x161fb8, Func Offset: 0xb8
+	scePrintf("bhFacePauseSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4914,6 +5303,7 @@ unsigned int bhFaceReSet()
 	// Line 6089, Address: 0x162000, Func Offset: 0x40
 	// Line 6092, Address: 0x16203c, Func Offset: 0x7c
 	// Func End, Address: 0x162044, Func Offset: 0x84
+	scePrintf("bhFaceReSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4935,6 +5325,7 @@ unsigned int bhEffModeSet()
 	// Line 6115, Address: 0x1620b0, Func Offset: 0x60
 	// Line 6118, Address: 0x1620d4, Func Offset: 0x84
 	// Func End, Address: 0x1620dc, Func Offset: 0x8c
+	scePrintf("bhEffModeSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4962,6 +5353,7 @@ unsigned int bhEnemyHpUp()
 	// Line 6144, Address: 0x162170, Func Offset: 0x90
 	// Line 6146, Address: 0x162194, Func Offset: 0xb4
 	// Func End, Address: 0x16219c, Func Offset: 0xbc
+	scePrintf("bhEnemyHpUp - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4987,6 +5379,7 @@ unsigned int bhFaceRep()
 	// Line 6178, Address: 0x16223c, Func Offset: 0x9c
 	// Line 6181, Address: 0x162250, Func Offset: 0xb0
 	// Func End, Address: 0x162258, Func Offset: 0xb8
+	scePrintf("bhFaceRep - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5003,6 +5396,7 @@ unsigned int bhBGSeOff2()
 	// Line 6197, Address: 0x16229c, Func Offset: 0x3c
 	// Line 6198, Address: 0x1622a0, Func Offset: 0x40
 	// Func End, Address: 0x1622a8, Func Offset: 0x48
+	scePrintf("bhBGSeOff2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5016,6 +5410,7 @@ unsigned int bhBgmOff2()
 	// Line 6209, Address: 0x1622d4, Func Offset: 0x24
 	// Line 6210, Address: 0x1622d8, Func Offset: 0x28
 	// Func End, Address: 0x1622e0, Func Offset: 0x30
+	scePrintf("bhBgmOff2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5035,6 +5430,7 @@ unsigned int bhBGSeOn2()
 	// Line 6228, Address: 0x162334, Func Offset: 0x54
 	// Line 6229, Address: 0x162338, Func Offset: 0x58
 	// Func End, Address: 0x162340, Func Offset: 0x60
+	scePrintf("bhBGSeOn2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5057,6 +5453,7 @@ unsigned int bhBgmOn2()
 	// Line 6250, Address: 0x16239c, Func Offset: 0x5c
 	// Line 6251, Address: 0x1623a0, Func Offset: 0x60
 	// Func End, Address: 0x1623a8, Func Offset: 0x68
+	scePrintf("bhBgmOn2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5076,6 +5473,7 @@ unsigned int bhMovieCk()
 	// Line 6271, Address: 0x16241c, Func Offset: 0x6c
 	// Line 6274, Address: 0x162420, Func Offset: 0x70
 	// Func End, Address: 0x16242c, Func Offset: 0x7c
+	scePrintf("bhMovieCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5100,6 +5498,7 @@ unsigned int bhSetItmMotion()
 	// Line 6304, Address: 0x1624dc, Func Offset: 0xac
 	// Line 6305, Address: 0x1624e0, Func Offset: 0xb0
 	// Func End, Address: 0x1624e8, Func Offset: 0xb8
+	scePrintf("bhSetItmMotion - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5122,6 +5521,7 @@ unsigned int bhObjAspdSet()
 	// Line 6328, Address: 0x162554, Func Offset: 0x64
 	// Line 6331, Address: 0x162564, Func Offset: 0x74
 	// Func End, Address: 0x16256c, Func Offset: 0x7c
+	scePrintf("bhObjAspdSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5141,6 +5541,7 @@ unsigned int bhPuruPuruFlagSet()
 	// Line 6350, Address: 0x1625c4, Func Offset: 0x54
 	// Line 6351, Address: 0x1625c8, Func Offset: 0x58
 	// Func End, Address: 0x1625d0, Func Offset: 0x60
+	scePrintf("bhPuruPuruFlagSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5159,6 +5560,7 @@ unsigned int bhPuruPuruStart()
 	// Line 6376, Address: 0x162610, Func Offset: 0x40
 	// Line 6377, Address: 0x162614, Func Offset: 0x44
 	// Func End, Address: 0x16261c, Func Offset: 0x4c
+	scePrintf("bhPuruPuruStart - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5176,6 +5578,7 @@ unsigned int bhSubMapBusyCk()
 	// Line 6395, Address: 0x162680, Func Offset: 0x60
 	// Line 6397, Address: 0x16268c, Func Offset: 0x6c
 	// Func End, Address: 0x162694, Func Offset: 0x74
+	scePrintf("bhSubMapBusyCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5206,6 +5609,7 @@ unsigned int bhMapSystemOn()
 	// Line 6422, Address: 0x16276c, Func Offset: 0xcc
 	// Line 6424, Address: 0x16277c, Func Offset: 0xdc
 	// Func End, Address: 0x162784, Func Offset: 0xe4
+	scePrintf("bhMapSystemOn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5222,6 +5626,7 @@ unsigned int bhTrapDamageSet()
 	// Line 6442, Address: 0x1627d8, Func Offset: 0x48
 	// Line 6445, Address: 0x1627f0, Func Offset: 0x60
 	// Func End, Address: 0x1627f8, Func Offset: 0x68
+	scePrintf("bhTrapDamageSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5246,6 +5651,7 @@ unsigned int bhEvtLighterFireSet()
 	// Line 6470, Address: 0x162880, Func Offset: 0x80
 	// Line 6471, Address: 0x162884, Func Offset: 0x84
 	// Func End, Address: 0x16288c, Func Offset: 0x8c
+	scePrintf("bhEvtLighterFireSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5301,6 +5707,7 @@ unsigned int bhObjLinkSetPlyItem()
 	// Line 6531, Address: 0x162cac, Func Offset: 0x41c
 	// Line 6534, Address: 0x162cb4, Func Offset: 0x424
 	// Func End, Address: 0x162cbc, Func Offset: 0x42c
+	scePrintf("bhObjLinkSetPlyItem - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5320,6 +5727,7 @@ unsigned int bhPlayerKaidanMotion()
 	// Line 6557, Address: 0x162d14, Func Offset: 0x54
 	// Line 6558, Address: 0x162d18, Func Offset: 0x58
 	// Func End, Address: 0x162d20, Func Offset: 0x60
+	scePrintf("bhPlayerKaidanMotion - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5345,6 +5753,7 @@ unsigned int bhEneRenderSet()
 	// Line 6587, Address: 0x162db8, Func Offset: 0x98
 	// Line 6591, Address: 0x162dc8, Func Offset: 0xa8
 	// Func End, Address: 0x162dd0, Func Offset: 0xb0
+	scePrintf("bhEneRenderSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5370,6 +5779,7 @@ unsigned int bhBgmOnEx()
 	// Line 6612, Address: 0x162e4c, Func Offset: 0x7c
 	// Line 6613, Address: 0x162e50, Func Offset: 0x80
 	// Func End, Address: 0x162e58, Func Offset: 0x88
+	scePrintf("bhBgmOnEx - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5389,6 +5799,7 @@ unsigned int bhBgmOn2Ex()
 	// Line 6631, Address: 0x162eb8, Func Offset: 0x58
 	// Line 6632, Address: 0x162ebc, Func Offset: 0x5c
 	// Func End, Address: 0x162ec4, Func Offset: 0x64
+	scePrintf("bhBgmOn2Ex - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5465,6 +5876,7 @@ unsigned int bhFogParameterCSet()
 	// Line 6671, Address: 0x16303c, Func Offset: 0x16c
 	// Line 6674, Address: 0x163044, Func Offset: 0x174
 	// Func End, Address: 0x16304c, Func Offset: 0x17c
+	scePrintf("bhFogParameterCSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5512,13 +5924,14 @@ unsigned int bhFogParameterStart()
 	// Line 6715, Address: 0x163194, Func Offset: 0x144
 	// Line 6719, Address: 0x1631a4, Func Offset: 0x154
 	// Func End, Address: 0x1631c4, Func Offset: 0x174
+	scePrintf("bhFogParameterStart - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1631d0
 unsigned int bhEffUVSet2()
 {
-	_anon10* tvp;
+	//_anon10* tvp;
 	int v4;
 	int v3;
 	int v2;
@@ -5568,6 +5981,7 @@ unsigned int bhEffUVSet2()
 	// Line 6761, Address: 0x1632f8, Func Offset: 0x128
 	// Line 6765, Address: 0x1632fc, Func Offset: 0x12c
 	// Func End, Address: 0x163304, Func Offset: 0x134
+	scePrintf("bhEffUVSet2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5605,6 +6019,7 @@ unsigned int bhBGColorSet()
 	// Line 6790, Address: 0x1633d8, Func Offset: 0xc8
 	// Line 6794, Address: 0x1633e8, Func Offset: 0xd8
 	// Func End, Address: 0x1633f0, Func Offset: 0xe0
+	scePrintf("bhBGColorSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5645,6 +6060,7 @@ unsigned int bhMovieTimeCk()
 	// Line 6841, Address: 0x163518, Func Offset: 0x128
 	// Line 6845, Address: 0x16351c, Func Offset: 0x12c
 	// Func End, Address: 0x163530, Func Offset: 0x140
+	scePrintf("bhMovieTimeCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5666,6 +6082,7 @@ unsigned int bhEffTypeSet()
 	// Line 6868, Address: 0x163590, Func Offset: 0x60
 	// Line 6871, Address: 0x1635b4, Func Offset: 0x84
 	// Func End, Address: 0x1635bc, Func Offset: 0x8c
+	scePrintf("bhEffTypeSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -5680,13 +6097,14 @@ unsigned int bhPlayerPoison2Cr()
 	// Line 6881, Address: 0x1635e8, Func Offset: 0x28
 	// Line 6883, Address: 0x1635f0, Func Offset: 0x30
 	// Func End, Address: 0x1635f8, Func Offset: 0x38
+	scePrintf("bhPlayerPoison2Cr - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x163600
 unsigned int bhPlyHandChange()
 {
-	_anon34* owk;
+	//_anon34* owk;
 	int v1;
 	// Line 6896, Address: 0x163600, Func Offset: 0
 	// Line 6904, Address: 0x163608, Func Offset: 0x8
@@ -5787,13 +6205,14 @@ unsigned int bhPlyHandChange()
 	// Line 6968, Address: 0x1639e4, Func Offset: 0x3e4
 	// Line 6969, Address: 0x1639e8, Func Offset: 0x3e8
 	// Func End, Address: 0x1639f0, Func Offset: 0x3f0
+	scePrintf("bhPlyHandChange - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1639f0
 unsigned int bhHEffectSet2()
 {
-	_anon44* eft;
+	//_anon44* eft;
 	int v4;
 	int v3;
 	int v2;
@@ -5880,13 +6299,14 @@ unsigned int bhHEffectSet2()
 	// Line 7071, Address: 0x164088, Func Offset: 0x698
 	// Line 7072, Address: 0x16408c, Func Offset: 0x69c
 	// Func End, Address: 0x164094, Func Offset: 0x6a4
+	scePrintf("bhHEffectSet2 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1640a0
 unsigned int bhObjDposCk()
 {
-	npobj* objP;
+	//npobj* objP;
 	BH_PWORK* e_ep;
 	int eay2;
 	int eay;
@@ -5961,6 +6381,7 @@ unsigned int bhObjDposCk()
 	// Line 7192, Address: 0x1643b4, Func Offset: 0x314
 	// Line 7193, Address: 0x1643b8, Func Offset: 0x318
 	// Func End, Address: 0x1643d0, Func Offset: 0x330
+	scePrintf("bhObjDposCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6004,6 +6425,7 @@ unsigned int bhItemGetGet()
 	// Line 7234, Address: 0x1644f8, Func Offset: 0x128
 	// Line 7235, Address: 0x1644fc, Func Offset: 0x12c
 	// Func End, Address: 0x164504, Func Offset: 0x134
+	scePrintf("bhItemGetGet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6014,9 +6436,9 @@ unsigned int bhEtcAtariEnePosSet()
 	unsigned int cnt;
 	float sw2;
 	float sw1;
-	_anon3* e_posp;
+	//_anon3* e_posp;
 	BH_PWORK* epw;
-	_anon6* e_etcp;
+	//_anon6* e_etcp;
 	int v5;
 	int v4;
 	int v3;
@@ -6078,14 +6500,15 @@ unsigned int bhEtcAtariEnePosSet()
 	// Line 7293, Address: 0x16470c, Func Offset: 0x1fc
 	// Line 7296, Address: 0x164718, Func Offset: 0x208
 	// Func End, Address: 0x164748, Func Offset: 0x238
+	scePrintf("bhEtcAtariEnePosSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x164750
 unsigned int bhEtcAtariEvtPosSet()
 {
-	_anon3* e_posp;
-	_anon6* e_etcp;
+	//_anon3* e_posp;
+	//_anon6* e_etcp;
 	BH_PWORK* epw;
 	int v3;
 	int v1;
@@ -6129,6 +6552,7 @@ unsigned int bhEtcAtariEvtPosSet()
 	// Line 7337, Address: 0x16485c, Func Offset: 0x10c
 	// Line 7340, Address: 0x164860, Func Offset: 0x110
 	// Func End, Address: 0x164868, Func Offset: 0x118
+	scePrintf("bhEtcAtariEvtPosSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6145,6 +6569,7 @@ unsigned int bhRoomSoundCase()
 	// Line 7357, Address: 0x1648ac, Func Offset: 0x3c
 	// Line 7358, Address: 0x1648b0, Func Offset: 0x40
 	// Func End, Address: 0x1648b8, Func Offset: 0x48
+	scePrintf("bhRoomSoundCase - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6175,6 +6600,7 @@ unsigned int bhItemPlToSBox()
 	// Line 7383, Address: 0x164968, Func Offset: 0xa8
 	// Line 7386, Address: 0x164974, Func Offset: 0xb4
 	// Func End, Address: 0x16497c, Func Offset: 0xbc
+	scePrintf("bhItemPlToSBox - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6198,13 +6624,14 @@ unsigned int bhItemSBoxToIBox()
 	// Line 7411, Address: 0x164a10, Func Offset: 0x90
 	// Line 7412, Address: 0x164a14, Func Offset: 0x94
 	// Func End, Address: 0x164a1c, Func Offset: 0x9c
+	scePrintf("bhItemSBoxToIBox - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x164a20
 unsigned int bhGrdPosSet()
 {
-	_anon6* e_walp;
+	//_anon6* e_walp;
 	unsigned int v1;
 	// Line 7425, Address: 0x164a20, Func Offset: 0
 	// Line 7432, Address: 0x164a28, Func Offset: 0x8
@@ -6240,6 +6667,7 @@ unsigned int bhGrdPosSet()
 	// Line 7461, Address: 0x164cec, Func Offset: 0x2cc
 	// Line 7465, Address: 0x164cf4, Func Offset: 0x2d4
 	// Func End, Address: 0x164cfc, Func Offset: 0x2dc
+	scePrintf("bhGrdPosSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6296,6 +6724,7 @@ unsigned int bhGrdPosMoveCSet()
 	// Line 7526, Address: 0x165268, Func Offset: 0x568
 	// Line 7529, Address: 0x165270, Func Offset: 0x570
 	// Func End, Address: 0x165278, Func Offset: 0x578
+	scePrintf("bhGrdPosMoveCSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6304,7 +6733,7 @@ unsigned int bhGrdPosMoveStart()
 {
 	float ans[3];
 	float ips_w[3][4];
-	_anon6* e_walp;
+	//_anon6* e_walp;
 	// Line 7537, Address: 0x165280, Func Offset: 0
 	// Line 7546, Address: 0x16528c, Func Offset: 0xc
 	// Line 7575, Address: 0x165294, Func Offset: 0x14
@@ -6340,6 +6769,7 @@ unsigned int bhGrdPosMoveStart()
 	// Line 7579, Address: 0x165384, Func Offset: 0x104
 	// Line 7582, Address: 0x16538c, Func Offset: 0x10c
 	// Func End, Address: 0x16539c, Func Offset: 0x11c
+	scePrintf("bhGrdPosMoveStart - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6359,6 +6789,7 @@ unsigned int bhEvtKill()
 	// Line 7597, Address: 0x1653e0, Func Offset: 0x40
 	// Line 7600, Address: 0x1653e4, Func Offset: 0x44
 	// Func End, Address: 0x1653ec, Func Offset: 0x4c
+	scePrintf("bhEvtKill - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6372,6 +6803,7 @@ unsigned int bhReTryPointSet()
 	// Line 7612, Address: 0x165414, Func Offset: 0x24
 	// Line 7613, Address: 0x165418, Func Offset: 0x28
 	// Func End, Address: 0x165420, Func Offset: 0x30
+	scePrintf("bhReTryPointSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6420,6 +6852,7 @@ unsigned int bhPlyDposCk()
 	// Line 7668, Address: 0x1655b8, Func Offset: 0x198
 	// Line 7669, Address: 0x1655bc, Func Offset: 0x19c
 	// Func End, Address: 0x1655cc, Func Offset: 0x1ac
+	scePrintf("bhPlyDposCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6459,6 +6892,7 @@ unsigned int bhPlItemLostEx()
 	// Line 7713, Address: 0x16572c, Func Offset: 0x15c
 	// Line 7714, Address: 0x165730, Func Offset: 0x160
 	// Func End, Address: 0x165738, Func Offset: 0x168
+	scePrintf("bhPlItemLostEx - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6467,8 +6901,8 @@ unsigned int bhCyodanSetEx()
 {
 	BH_PWORK* e_ep;
 	int wp_hef;
-	_anon39 wps;
-	_anon39 ps;
+	//_anon39 wps;
+	//_anon39 ps;
 	int w7;
 	int w6;
 	int w5;
@@ -6584,6 +7018,7 @@ unsigned int bhCyodanSetEx()
 	// Line 7859, Address: 0x165f48, Func Offset: 0x808
 	// Line 7860, Address: 0x165f4c, Func Offset: 0x80c
 	// Func End, Address: 0x165f54, Func Offset: 0x814
+	scePrintf("bhCyodanSetEx - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6615,6 +7050,7 @@ unsigned int bhArmsItemSet()
 	// Line 7895, Address: 0x166080, Func Offset: 0x120
 	// Line 7896, Address: 0x166084, Func Offset: 0x124
 	// Func End, Address: 0x16608c, Func Offset: 0x12c
+	scePrintf("bhArmsItemSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6662,6 +7098,7 @@ unsigned int bhItemGetGetEx()
 	// Line 7945, Address: 0x166238, Func Offset: 0x1a8
 	// Line 7946, Address: 0x16623c, Func Offset: 0x1ac
 	// Func End, Address: 0x166244, Func Offset: 0x1b4
+	scePrintf("bhItemGetGetEx - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6684,6 +7121,7 @@ unsigned int bhEffectSandSetMatsumoto()
 	// Line 7971, Address: 0x1662bc, Func Offset: 0x6c
 	// Line 7972, Address: 0x1662c0, Func Offset: 0x70
 	// Func End, Address: 0x1662c8, Func Offset: 0x78
+	scePrintf("bhEffectSandSetMatsumoto - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6691,7 +7129,7 @@ unsigned int bhEffectSandSetMatsumoto()
 unsigned int bhVoiceWait()
 {
 	BH_PWORK* e_ep;
-	_anon39 pPos;
+	//_anon39 pPos;
 	unsigned int v4;
 	unsigned int v3;
 	unsigned int v2;
@@ -6738,6 +7176,7 @@ unsigned int bhVoiceWait()
 	// Line 8041, Address: 0x166528, Func Offset: 0x258
 	// Line 8042, Address: 0x16652c, Func Offset: 0x25c
 	// Func End, Address: 0x166534, Func Offset: 0x264
+	scePrintf("bhVoiceWait - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6751,6 +7190,7 @@ unsigned int bhVoiceStart()
 	// Line 8053, Address: 0x166564, Func Offset: 0x24
 	// Line 8054, Address: 0x166568, Func Offset: 0x28
 	// Func End, Address: 0x166570, Func Offset: 0x30
+	scePrintf("bhVoiceStart - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6768,6 +7208,7 @@ unsigned int bhGameOverSet()
 	// Line 8065, Address: 0x1665a4, Func Offset: 0x34
 	// Line 8067, Address: 0x1665b4, Func Offset: 0x44
 	// Func End, Address: 0x1665bc, Func Offset: 0x4c
+	scePrintf("bhGameOverSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6792,13 +7233,14 @@ unsigned int bhPlItemChangeM()
 	// Line 8091, Address: 0x16666c, Func Offset: 0xac
 	// Line 8092, Address: 0x166670, Func Offset: 0xb0
 	// Func End, Address: 0x166678, Func Offset: 0xb8
+	scePrintf("bhPlItemChangeM - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x166680
 unsigned int bhEffBakuDrmSet()
 {
-	_anon39 pPos;
+	//_anon39 pPos;
 	int v2;
 	// Line 8100, Address: 0x166680, Func Offset: 0
 	// Line 8104, Address: 0x166688, Func Offset: 0x8
@@ -6830,6 +7272,7 @@ unsigned int bhEffBakuDrmSet()
 	// Line 8132, Address: 0x166934, Func Offset: 0x2b4
 	// Line 8133, Address: 0x166938, Func Offset: 0x2b8
 	// Func End, Address: 0x166940, Func Offset: 0x2c0
+	scePrintf("bhEffBakuDrmSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6854,6 +7297,7 @@ unsigned int bhPlItemTamaSet()
 	// Line 8157, Address: 0x1669ec, Func Offset: 0xac
 	// Line 8158, Address: 0x1669f0, Func Offset: 0xb0
 	// Func End, Address: 0x1669f8, Func Offset: 0xb8
+	scePrintf("bhPlItemTamaSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6867,6 +7311,7 @@ unsigned int bhEffClearEvt()
 	// Line 8171, Address: 0x166a24, Func Offset: 0x24
 	// Line 8172, Address: 0x166a28, Func Offset: 0x28
 	// Func End, Address: 0x166a30, Func Offset: 0x30
+	scePrintf("bhEffClearEvt - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6883,6 +7328,7 @@ unsigned int bhEvtTimerSet()
 	// Line 8189, Address: 0x166a6c, Func Offset: 0x3c
 	// Line 8190, Address: 0x166a70, Func Offset: 0x40
 	// Func End, Address: 0x166a78, Func Offset: 0x48
+	scePrintf("bhEvtTimerSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6908,6 +7354,7 @@ unsigned int bhEneLookFlgSet()
 	// Line 8220, Address: 0x166b20, Func Offset: 0xa0
 	// Line 8223, Address: 0x166b2c, Func Offset: 0xac
 	// Func End, Address: 0x166b34, Func Offset: 0xb4
+	scePrintf("bhEneLookFlgSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6925,6 +7372,7 @@ unsigned int bhReturnTitleEvt()
 	// Line 8237, Address: 0x166b84, Func Offset: 0x44
 	// Line 8240, Address: 0x166b90, Func Offset: 0x50
 	// Func End, Address: 0x166b9c, Func Offset: 0x5c
+	scePrintf("bhReturnTitleEvt - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6958,6 +7406,7 @@ unsigned int bhSyukanModeSet()
 	// Line 8264, Address: 0x166c5c, Func Offset: 0xbc
 	// Line 8267, Address: 0x166c6c, Func Offset: 0xcc
 	// Func End, Address: 0x166c74, Func Offset: 0xd4
+	scePrintf("bhSyukanModeSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6971,6 +7420,7 @@ unsigned int bhExGameItemInit()
 	// Line 8278, Address: 0x166ca4, Func Offset: 0x24
 	// Line 8279, Address: 0x166ca8, Func Offset: 0x28
 	// Func End, Address: 0x166cb0, Func Offset: 0x30
+	scePrintf("bhExGameItemInit - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6993,13 +7443,14 @@ unsigned int bhEneLifeSetM()
 	// Line 8303, Address: 0x166d14, Func Offset: 0x64
 	// Line 8306, Address: 0x166d38, Func Offset: 0x88
 	// Func End, Address: 0x166d40, Func Offset: 0x90
+	scePrintf("bhEneLifeSetM - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x166d40
 unsigned int bhEffSSizeSet()
 {
-	_anon0* e_ep;
+	//_anon0* e_ep;
 	int v1;
 	int v0;
 	// Line 8319, Address: 0x166d40, Func Offset: 0
@@ -7038,13 +7489,14 @@ unsigned int bhEffSSizeSet()
 	// Line 8353, Address: 0x167040, Func Offset: 0x300
 	// Line 8356, Address: 0x167048, Func Offset: 0x308
 	// Func End, Address: 0x167050, Func Offset: 0x310
+	scePrintf("bhEffSSizeSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x167050
 unsigned int bhEffLinkOffsetSet()
 {
-	_anon0* e_ep;
+	//_anon0* e_ep;
 	int v1;
 	int v0;
 	// Line 8369, Address: 0x167050, Func Offset: 0
@@ -7083,6 +7535,7 @@ unsigned int bhEffLinkOffsetSet()
 	// Line 8403, Address: 0x167338, Func Offset: 0x2e8
 	// Line 8406, Address: 0x167340, Func Offset: 0x2f0
 	// Func End, Address: 0x167348, Func Offset: 0x2f8
+	scePrintf("bhEffLinkOffsetSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7111,6 +7564,7 @@ unsigned int bhRankingCall()
 	// Line 8431, Address: 0x167450, Func Offset: 0x100
 	// Line 8433, Address: 0x167464, Func Offset: 0x114
 	// Func End, Address: 0x167470, Func Offset: 0x120
+	scePrintf("bhRankingCall - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7129,6 +7583,7 @@ unsigned int bhCallSysSe()
 	// Line 8449, Address: 0x1674b0, Func Offset: 0x40
 	// Line 8450, Address: 0x1674b4, Func Offset: 0x44
 	// Func End, Address: 0x1674bc, Func Offset: 0x4c
+	scePrintf("bhCallSysSe - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7151,6 +7606,7 @@ unsigned int bhSleep()
 	// Line 8734, Address: 0x16754c, Func Offset: 0x8c
 	// Line 8737, Address: 0x167558, Func Offset: 0x98
 	// Func End, Address: 0x167560, Func Offset: 0xa0
+	scePrintf("bhSleep - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7164,6 +7620,7 @@ unsigned int bhSleeping()
 	// Line 8747, Address: 0x1675a0, Func Offset: 0x40
 	// Line 8750, Address: 0x1675ac, Func Offset: 0x4c
 	// Func End, Address: 0x1675b4, Func Offset: 0x54
+	scePrintf("bhSleeping - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7186,6 +7643,7 @@ unsigned int bhWhile()
 	// Line 8766, Address: 0x16761c, Func Offset: 0x5c
 	// Line 8768, Address: 0x167630, Func Offset: 0x70
 	// Func End, Address: 0x167638, Func Offset: 0x78
+	scePrintf("bhWhile - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7209,6 +7667,7 @@ unsigned int bhEwhile()
 	// Line 8786, Address: 0x16770c, Func Offset: 0xcc
 	// Line 8787, Address: 0x167710, Func Offset: 0xd0
 	// Func End, Address: 0x16771c, Func Offset: 0xdc
+	scePrintf("bhEwhile - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7232,6 +7691,7 @@ unsigned int bhEwhile2()
 	// Line 8806, Address: 0x1677ec, Func Offset: 0xcc
 	// Line 8807, Address: 0x1677f0, Func Offset: 0xd0
 	// Func End, Address: 0x1677fc, Func Offset: 0xdc
+	scePrintf("bhEwhile2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7243,6 +7703,7 @@ unsigned int bhEvtNext()
 	// Line 8816, Address: 0x16780c, Func Offset: 0xc
 	// Line 8818, Address: 0x167814, Func Offset: 0x14
 	// Func End, Address: 0x16781c, Func Offset: 0x1c
+	scePrintf("bhEvtNext - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7254,6 +7715,7 @@ unsigned int bhComNext()
 	// Line 8827, Address: 0x16782c, Func Offset: 0xc
 	// Line 8829, Address: 0x167834, Func Offset: 0x14
 	// Func End, Address: 0x16783c, Func Offset: 0x1c
+	scePrintf("bhComNext - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7267,6 +7729,7 @@ unsigned int bhEvtEnd()
 	// Line 8840, Address: 0x167864, Func Offset: 0x24
 	// Line 8842, Address: 0x167874, Func Offset: 0x34
 	// Func End, Address: 0x16787c, Func Offset: 0x3c
+	scePrintf("bhEvtEnd - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7285,6 +7748,7 @@ unsigned int bhFor()
 	// Line 8856, Address: 0x1678f0, Func Offset: 0x70
 	// Line 8858, Address: 0x167904, Func Offset: 0x84
 	// Func End, Address: 0x16790c, Func Offset: 0x8c
+	scePrintf("bhFor - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7307,6 +7771,7 @@ unsigned int bhNext()
 	// Line 8878, Address: 0x1679b8, Func Offset: 0xa8
 	// Line 8879, Address: 0x1679bc, Func Offset: 0xac
 	// Func End, Address: 0x1679c4, Func Offset: 0xb4
+	scePrintf("bhNext - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7321,24 +7786,25 @@ unsigned int bhPlCtr()
 	// Line 8892, Address: 0x167a04, Func Offset: 0x34
 	// Line 8893, Address: 0x167a08, Func Offset: 0x38
 	// Func End, Address: 0x167a10, Func Offset: 0x40
+	scePrintf("bhPlCtr - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x167a10
 int Player_controll()
 {
-	_anon3* e_posp;
+	//_anon3* e_posp;
 	unsigned int v0;
-	unsigned int v0;
-	unsigned int v0;
-	unsigned int v0;
+	//unsigned int v0;
+	//unsigned int v0;
+	//unsigned int v0;
 	unsigned int v1;
-	unsigned int v0;
+	//unsigned int v0;
 	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
+	//unsigned int v1;
+	//unsigned int v0;
 	unsigned short* a0;
-	unsigned int v0;
+	//unsigned int v0;
 	// Line 8898, Address: 0x167a10, Func Offset: 0
 	// Line 8900, Address: 0x167a20, Func Offset: 0x10
 	// Line 8906, Address: 0x167b08, Func Offset: 0xf8
@@ -7762,6 +8228,7 @@ int Player_controll()
 	// Line 9252, Address: 0x168bcc, Func Offset: 0x11bc
 	// Line 9255, Address: 0x168bd8, Func Offset: 0x11c8
 	// Func End, Address: 0x168bec, Func Offset: 0x11dc
+	scePrintf("Player_controll - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7775,6 +8242,7 @@ unsigned int bhObjCtr()
 	// Line 9266, Address: 0x168c14, Func Offset: 0x24
 	// Line 9267, Address: 0x168c18, Func Offset: 0x28
 	// Func End, Address: 0x168c20, Func Offset: 0x30
+	scePrintf("bhObjCtr - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7802,6 +8270,7 @@ int Obj_controll()
 	// Line 9293, Address: 0x168cdc, Func Offset: 0xbc
 	// Line 9296, Address: 0x168cf0, Func Offset: 0xd0
 	// Func End, Address: 0x168cf8, Func Offset: 0xd8
+	scePrintf("Obj_controll - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7815,6 +8284,7 @@ unsigned int bhSubCtr()
 	// Line 9308, Address: 0x168d24, Func Offset: 0x24
 	// Line 9309, Address: 0x168d28, Func Offset: 0x28
 	// Func End, Address: 0x168d30, Func Offset: 0x30
+	scePrintf("bhSubCtr - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -7822,7 +8292,7 @@ unsigned int bhSubCtr()
 int Sub_controll()
 {
 	int v0;
-	int v0;
+	//int v0;
 	// Line 9311, Address: 0x168d30, Func Offset: 0
 	// Line 9313, Address: 0x168d38, Func Offset: 0x8
 	// Line 9317, Address: 0x168db4, Func Offset: 0x84
@@ -8049,6 +8519,7 @@ int Sub_controll()
 	// Line 9460, Address: 0x16953c, Func Offset: 0x80c
 	// Line 9463, Address: 0x169548, Func Offset: 0x818
 	// Func End, Address: 0x169554, Func Offset: 0x824
+	scePrintf("Sub_controll - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -8062,7 +8533,8 @@ unsigned int bhCommonCtr()
 	// Line 9475, Address: 0x169584, Func Offset: 0x24
 	// Line 9476, Address: 0x169588, Func Offset: 0x28
 	// Func End, Address: 0x169590, Func Offset: 0x30
-}*/
+	scePrintf("bhCommonCtr - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int Common_controll()
@@ -10814,15 +11286,15 @@ int Common_controll()
     }
 }
 
-/*// 
+// 
 // Start address: 0x170cd0
 unsigned int bhLoadWork()
 {
 	unsigned char* a0;
-	unsigned char* a0;
-	unsigned char* a0;
-	_anon21* e_enep;
-	unsigned char* a0;
+	//unsigned char* a0;
+	//unsigned char* a0;
+	//_anon21* e_enep;
+	//unsigned char* a0;
 	// Line 12111, Address: 0x170cd0, Func Offset: 0
 	// Line 12112, Address: 0x170cd8, Func Offset: 0x8
 	// Line 12111, Address: 0x170cdc, Func Offset: 0xc
@@ -10915,6 +11387,7 @@ unsigned int bhLoadWork()
 	// Line 12212, Address: 0x17102c, Func Offset: 0x35c
 	// Line 12213, Address: 0x171030, Func Offset: 0x360
 	// Func End, Address: 0x171038, Func Offset: 0x368
+	scePrintf("bhLoadWork - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -10922,10 +11395,10 @@ unsigned int bhLoadWork()
 unsigned int bhLoadWorkEx()
 {
 	unsigned char* a0;
-	unsigned char* a0;
-	unsigned char* a0;
-	_anon21* e_enep;
-	unsigned char* a0;
+	//unsigned char* a0;
+	//unsigned char* a0;
+	//_anon21* e_enep;
+	//unsigned char* a0;
 	// Line 12222, Address: 0x171040, Func Offset: 0
 	// Line 12223, Address: 0x171048, Func Offset: 0x8
 	// Line 12222, Address: 0x17104c, Func Offset: 0xc
@@ -10999,6 +11472,7 @@ unsigned int bhLoadWorkEx()
 	// Line 12313, Address: 0x171358, Func Offset: 0x318
 	// Line 12314, Address: 0x17135c, Func Offset: 0x31c
 	// Func End, Address: 0x171364, Func Offset: 0x324
+	scePrintf("bhLoadWorkEx - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -11007,8 +11481,8 @@ unsigned int bhLoadWork2()
 {
 	unsigned int tk_no;
 	unsigned char* a0;
-	_anon21* e_enep;
-	unsigned char* a0;
+	//_anon21* e_enep;
+	//unsigned char* a0;
 	// Line 12322, Address: 0x171370, Func Offset: 0
 	// Line 12323, Address: 0x171378, Func Offset: 0x8
 	// Line 12322, Address: 0x17137c, Func Offset: 0xc
@@ -11049,11 +11523,12 @@ unsigned int bhLoadWork2()
 	// Line 12366, Address: 0x1714f8, Func Offset: 0x188
 	// Line 12368, Address: 0x171500, Func Offset: 0x190
 	// Func End, Address: 0x171508, Func Offset: 0x198
+	scePrintf("bhLoadWork2 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x171510
-int Event_init(_anon40* a0, unsigned int evt_id)
+int Event_init(BH_SCEWORK* a0, unsigned int evt_id)
 {
 	// Line 12383, Address: 0x171510, Func Offset: 0
 	// Line 12384, Address: 0x171518, Func Offset: 0x8
@@ -11090,6 +11565,7 @@ int Event_init(_anon40* a0, unsigned int evt_id)
 	// Line 12412, Address: 0x1715b0, Func Offset: 0xa0
 	// Line 12419, Address: 0x1715b4, Func Offset: 0xa4
 	// Func End, Address: 0x1715bc, Func Offset: 0xac
+	scePrintf("Event_init - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -11103,7 +11579,8 @@ int Event_exec(unsigned int task_level, unsigned int evt_id)
 	// Line 12438, Address: 0x1715fc, Func Offset: 0x3c
 	// Line 12451, Address: 0x171600, Func Offset: 0x40
 	// Func End, Address: 0x171618, Func Offset: 0x58
-}*/
+	scePrintf("Event_exec - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x171620
@@ -11157,7 +11634,7 @@ void bhScenarioCheck(unsigned char* next_ptr)
 	scePrintf("bhScenarioCheck - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x171800
 unsigned int bhFlagCk(unsigned char type, unsigned int cnt, unsigned char flag)
 {
@@ -11176,6 +11653,7 @@ unsigned int bhFlagCk(unsigned char type, unsigned int cnt, unsigned char flag)
 	// Line 12548, Address: 0x1718c8, Func Offset: 0xc8
 	// Line 12549, Address: 0x1718ec, Func Offset: 0xec
 	// Func End, Address: 0x1718f4, Func Offset: 0xf4
+	scePrintf("bhFlagCk - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -11202,7 +11680,8 @@ unsigned int bhFlagSet(unsigned char type, unsigned int cnt, unsigned char flag)
 	// Line 12585, Address: 0x171a38, Func Offset: 0x138
 	// Line 12587, Address: 0x171a50, Func Offset: 0x150
 	// Func End, Address: 0x171a58, Func Offset: 0x158
-}*/
+	scePrintf("bhFlagSet - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x171a60
