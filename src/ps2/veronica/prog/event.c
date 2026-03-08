@@ -11614,24 +11614,32 @@ int bhEventScheduler2()
 	scePrintf("bhEventScheduler2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x171750
+// 100% matching!
 void bhScenarioCheck(unsigned char* next_ptr)
 {
-	// Line 12503, Address: 0x171750, Func Offset: 0
-	// Line 12506, Address: 0x171758, Func Offset: 0x8
-	// Line 12509, Address: 0x17176c, Func Offset: 0x1c
-	// Line 12507, Address: 0x171774, Func Offset: 0x24
-	// Line 12513, Address: 0x171788, Func Offset: 0x38
-	// Line 12514, Address: 0x1717b8, Func Offset: 0x68
-	// Line 12516, Address: 0x1717c8, Func Offset: 0x78
-	// Line 12515, Address: 0x1717cc, Func Offset: 0x7c
-	// Line 12516, Address: 0x1717d4, Func Offset: 0x84
-	// Line 12515, Address: 0x1717dc, Func Offset: 0x8c
-	// Line 12517, Address: 0x1717ec, Func Offset: 0x9c
-	// Line 12519, Address: 0x1717f4, Func Offset: 0xa4
-	// Func End, Address: 0x171800, Func Offset: 0xb0
-	scePrintf("bhScenarioCheck - UNIMPLEMENTED!\n");
+    unsigned char* gsp; // not from DWARF
+    
+    bhScePtr = (unsigned char*)rom->evtp;
+    
+    bhIfelFlg = 0;
+    
+    bhScePtr = &bhScePtr[(int)next_ptr];
+
+    while (TRUE) 
+    {
+        while (bhScenarioJmpT[*bhScePtr]() != 0);
+        
+        if (bhIfelFlg <= 0)
+        {
+            break;
+        }
+        
+        gsp = (unsigned char*)--G_Sp;
+        
+        bhIfelFlg--;
+        
+        bhScePtr = gsp;
+    }
 }
 
 // 
