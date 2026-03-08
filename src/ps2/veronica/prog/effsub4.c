@@ -861,13 +861,10 @@ void bhEff_Sub356(O_WRK* op)
 	scePrintf("bhEff_Sub356 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24eaa0
+// 100% matching!
 void bhEff_Sub357()
 {
-	// Line 1581, Address: 0x24eaa0, Func Offset: 0
-	// Func End, Address: 0x24eaa8, Func Offset: 0x8
-	scePrintf("bhEff_Sub357 - UNIMPLEMENTED!\n");
+
 }
 
 // 

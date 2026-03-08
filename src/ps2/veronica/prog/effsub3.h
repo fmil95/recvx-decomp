@@ -3,9 +3,41 @@
 
 #include "types.h"
 
+typedef struct OR_WORK 
+{
+    // total size: 0x4E0
+    unsigned int flg; // offset 0x0, size 0x4
+    unsigned short id; // offset 0x4, size 0x2
+    signed char free0[10]; // offset 0x6, size 0xA
+    float px; // offset 0x10, size 0x4
+    float py; // offset 0x14, size 0x4
+    float pz; // offset 0x18, size 0x4
+    signed int ax; // offset 0x1C, size 0x4
+    signed int ay; // offset 0x20, size 0x4
+    signed int az; // offset 0x24, size 0x4
+    signed char free1[24]; // offset 0x28, size 0x18
+    float pxb; // offset 0x40, size 0x4
+    float pyb; // offset 0x44, size 0x4
+    float pzb; // offset 0x48, size 0x4
+    signed int axb; // offset 0x4C, size 0x4
+    signed int ayb; // offset 0x50, size 0x4
+    signed int azb; // offset 0x54, size 0x4
+    signed char free2[12]; // offset 0x58, size 0xC
+    float lox; // offset 0x64, size 0x4
+    float loy; // offset 0x68, size 0x4
+    float loz; // offset 0x6C, size 0x4
+    signed char free3[24]; // offset 0x70, size 0x18
+    unsigned int stflg; // offset 0x88, size 0x4
+    unsigned int Dummy; // offset 0x8C, size 0x4
+    signed char free4[1092]; // offset 0x90, size 0x444
+    void (* func)(void *); // offset 0x4D4, size 0x4
+    signed int idx; // offset 0x4D8, size 0x4
+    signed int Dummy2; // offset 0x4DC, size 0x4
+} OR_WORK;
+
 /*typedef struct npobj;
-typedef struct _anon0;
-typedef struct _anon1;
+typedef struct NJS_POINT3;
+typedef struct O_WRK;
 typedef struct _anon2;
 typedef struct _anon3;
 typedef struct _anon4;
@@ -28,7 +60,7 @@ typedef struct _anon20;
 typedef struct _anon21;
 typedef struct _anon22;
 typedef struct _anon23;
-typedef struct _anon24;
+typedef struct OR_WORK;
 typedef struct _anon25;
 typedef struct BH_PWORK;
 typedef struct _anon26;
@@ -92,63 +124,63 @@ typedef struct _anon80;
 typedef struct _anon81;
 typedef struct _anon82;
 
-typedef void(*type_88)(_anon24*);
-typedef void(*type_99)(_anon1*);
+typedef void(*type_88)(OR_WORK*);
+typedef void(*type_99)(O_WRK*);
 typedef void(*type_144)(void*);
 typedef void(*type_147)(void*);
 typedef void(*type_150)(void*);
-typedef void(*type_160)(_anon24*);
-typedef void(*type_177)(_anon24*);
-typedef void(*type_186)(_anon24*);
-typedef void(*type_187)(_anon24*);
-typedef void(*type_200)(_anon24*);
+typedef void(*type_160)(OR_WORK*);
+typedef void(*type_177)(OR_WORK*);
+typedef void(*type_186)(OR_WORK*);
+typedef void(*type_187)(OR_WORK*);
+typedef void(*type_200)(OR_WORK*);
 
 typedef float type_0[16];
 typedef float* type_1[6];
 typedef unsigned int type_2[4];
-typedef _anon1* type_3[512];
+typedef O_WRK* type_3[512];
 typedef float type_4[96];
 typedef float type_5[18];
-typedef _anon1* type_6[32];
+typedef O_WRK* type_6[32];
 typedef _anon2 type_7[2];
 typedef _anon5* type_8[16];
-typedef _anon1* type_9[32];
-typedef _anon1* type_10[512];
+typedef O_WRK* type_9[32];
+typedef O_WRK* type_10[512];
 typedef _anon5* type_11[16][16];
 typedef _anon5* type_12[16][16][100];
 typedef char type_13[8];
-typedef _anon1* type_14[32];
-typedef _anon0 type_15[2];
-typedef _anon1* type_16[512];
+typedef O_WRK* type_14[32];
+typedef NJS_POINT3 type_15[2];
+typedef O_WRK* type_16[512];
 typedef _anon5* type_17[1300];
 typedef _anon42 type_18[2];
 typedef char type_19[32];
 typedef float type_20[32];
 typedef _anon12 type_21[2];
-typedef _anon1* type_22[512];
+typedef O_WRK* type_22[512];
 typedef _anon5* type_23[200];
 typedef float type_24[6];
 typedef short type_25[32];
 typedef _anon45 type_26[1];
-typedef _anon1* type_27[128];
+typedef O_WRK* type_27[128];
 typedef unsigned int type_28[1];
 typedef _anon2 type_29[2];
 typedef _anon17 type_30[256];
 typedef _anon5* type_31[8];
 typedef int* type_32[16];
-typedef _anon1* type_33[128];
+typedef O_WRK* type_33[128];
 typedef _anon81 type_34[16];
 typedef npobj* type_35[16];
-typedef _anon1* type_36[128];
+typedef O_WRK* type_36[128];
 typedef int type_37[4];
 typedef _anon5* type_38[16];
 typedef _anon2 type_39[2];
 typedef _anon47 type_40[4];
 typedef unsigned int type_41[4];
 typedef float type_42[4];
-typedef _anon0 type_43[96];
+typedef NJS_POINT3 type_43[96];
 typedef _anon27 type_44[16];
-typedef _anon1* type_45[512];
+typedef O_WRK* type_45[512];
 typedef _anon9* type_46[10];
 typedef float type_47[4];
 typedef _anon12 type_48[4];
@@ -163,7 +195,7 @@ typedef _anon2 type_56[2];
 typedef float type_57[3];
 typedef unsigned char type_58[64];
 typedef float type_59[3][20];
-typedef _anon1 type_60[0];
+typedef O_WRK type_60[0];
 typedef float type_61[3];
 typedef float type_62[3][20];
 typedef _anon71 type_63[6];
@@ -179,9 +211,9 @@ typedef int type_72[16];
 typedef int type_73[16];
 typedef void* type_74[2];
 typedef _anon57 type_75[8];
-typedef _anon0 type_76[16];
-typedef _anon0 type_77[2];
-typedef _anon0 type_78[2][16];
+typedef NJS_POINT3 type_76[16];
+typedef NJS_POINT3 type_77[2];
+typedef NJS_POINT3 type_78[2][16];
 typedef _anon2 type_79[1];
 typedef unsigned int type_80[2];
 typedef unsigned int type_81[2][16];
@@ -202,7 +234,7 @@ typedef int type_96[3];
 typedef int type_97[8];
 typedef float type_98[3];
 typedef _anon6 type_100[4];
-typedef void(*type_101)(_anon1*)[4];
+typedef void(*type_101)(O_WRK*)[4];
 typedef _anon5* type_102[256];
 typedef _anon23 type_103[256];
 typedef _anon67 type_104[7];
@@ -217,7 +249,7 @@ typedef _anon6 type_112[16];
 typedef short type_113[256];
 typedef char type_114[3];
 typedef int type_115[64];
-typedef _anon0 type_116[16];
+typedef NJS_POINT3 type_116[16];
 typedef _anon27 type_117[450];
 typedef unsigned int type_118[16];
 typedef unsigned char type_119[2];
@@ -293,23 +325,23 @@ typedef float type_195[16][0];
 typedef unsigned int type_196[4];
 typedef int type_197[18];
 typedef int type_198[6];
-typedef _anon0 type_199[32];
+typedef NJS_POINT3 type_199[32];
 typedef int type_201[18];
-typedef _anon1* type_202[512];
+typedef O_WRK* type_202[512];
 typedef int type_203[6];
-typedef _anon0 type_204[18];
-typedef _anon1* type_205[128];
-typedef _anon0* type_206[6];
-typedef _anon0 type_207[18];
+typedef NJS_POINT3 type_204[18];
+typedef O_WRK* type_205[128];
+typedef NJS_POINT3* type_206[6];
+typedef NJS_POINT3 type_207[18];
 typedef _anon2 type_208[1];
-typedef _anon0 type_209[6];
-typedef _anon1* type_210[512];
-typedef _anon0 type_211[18];
+typedef NJS_POINT3 type_209[6];
+typedef O_WRK* type_210[512];
+typedef NJS_POINT3 type_211[18];
 typedef unsigned char type_212[64];
-typedef _anon0 type_213[16];
+typedef NJS_POINT3 type_213[16];
 typedef _anon6 type_214[4];
 typedef _anon2 type_215[2];
-typedef _anon1* type_216[512];
+typedef O_WRK* type_216[512];
 
 struct npobj
 {
@@ -322,14 +354,14 @@ struct npobj
 	npobj* sibling;
 };
 
-struct _anon0
+struct NJS_POINT3
 {
 	float x;
 	float y;
 	float z;
 };
 
-struct _anon1
+struct O_WRK
 {
 	unsigned int flg;
 	unsigned short id;
@@ -463,7 +495,7 @@ struct _anon2
 struct _anon3
 {
 	unsigned int flg;
-	_anon0 vtx_pos[96];
+	NJS_POINT3 vtx_pos[96];
 };
 
 struct _anon4
@@ -475,8 +507,8 @@ struct _anon4
 	int TimBuf[16];
 	int ColAdd[16];
 	int ColSub[16];
-	_anon0 VtxDir[16];
-	_anon0 VtxBuf[2][16];
+	NJS_POINT3 VtxDir[16];
+	NJS_POINT3 VtxBuf[2][16];
 	unsigned int VtxCol[2][16];
 	_anon62 lne_p3c;
 	float wnd_spd;
@@ -509,7 +541,7 @@ struct _anon7
 	float vtx_scale;
 	int stg_erase;
 	char stg_timer[6];
-	_anon0 vtx_gravity;
+	NJS_POINT3 vtx_gravity;
 };
 
 struct _anon8
@@ -518,8 +550,8 @@ struct _anon8
 	int mode;
 	int ang_x;
 	int ang_y;
-	_anon0 off_pos;
-	_anon0 dst_pos;
+	NJS_POINT3 off_pos;
+	NJS_POINT3 dst_pos;
 };
 
 struct _anon9
@@ -587,7 +619,7 @@ struct _anon11
 	unsigned int mp_flg[8];
 	unsigned int itm[384];
 	unsigned int ply_stflg[4];
-	_anon0 ply_pos;
+	NJS_POINT3 ply_pos;
 	int ply_ang;
 	char ply_wno[4];
 	short ply_hp[4];
@@ -692,8 +724,8 @@ struct _anon11
 	unsigned char* subtxp;
 	unsigned char* doordp;
 	unsigned char* sbs_sp;
-	_anon1* obwp;
-	_anon1* itwp;
+	O_WRK* obwp;
+	O_WRK* itwp;
 	_anon13* emtp[128];
 	_anon13* rmthp;
 	unsigned char* mspp;
@@ -748,24 +780,24 @@ struct _anon11
 	int ef_trs2dn;
 	int ef_pnc2dn;
 	int ef_fncn;
-	_anon1* ef_pol[512];
-	_anon1* ef_mdf[128];
-	_anon1* ef_lin[512];
-	_anon1* ef_ntx[512];
-	_anon1* ef_trs[512];
-	_anon1* ef_pnc[512];
-	_anon1* ef_opq[512];
-	_anon1* ef_thl[512];
-	_anon1* ef_ntx2d[128];
-	_anon1* ef_trs2d[128];
-	_anon1* ef_pnc2d[128];
-	_anon1* ef_fnc[512];
+	O_WRK* ef_pol[512];
+	O_WRK* ef_mdf[128];
+	O_WRK* ef_lin[512];
+	O_WRK* ef_ntx[512];
+	O_WRK* ef_trs[512];
+	O_WRK* ef_pnc[512];
+	O_WRK* ef_opq[512];
+	O_WRK* ef_thl[512];
+	O_WRK* ef_ntx2d[128];
+	O_WRK* ef_trs2d[128];
+	O_WRK* ef_pnc2d[128];
+	O_WRK* ef_fnc[512];
 	int ob_nlgn;
 	int ob_hlgn;
 	int ob_spcn;
-	_anon1* ob_nlg[32];
-	_anon1* ob_hlg[32];
-	_anon1* ob_spc[32];
+	O_WRK* ob_nlg[32];
+	O_WRK* ob_hlg[32];
+	O_WRK* ob_spc[32];
 	unsigned int ren_gid;
 	_anon39 ren_info;
 	_anon45 ren_tex[1];
@@ -812,8 +844,8 @@ struct _anon11
 	BH_PWORK* plp;
 	_anon36* pl_htp;
 	int costume;
-	_anon0 hd_pos;
-	_anon0 apos;
+	NJS_POINT3 hd_pos;
+	NJS_POINT3 apos;
 	_anon36* ahtp;
 	int mwal_n;
 	int metc_n;
@@ -890,7 +922,7 @@ struct _anon11
 	unsigned char ufo_md;
 	unsigned char ufo_flg;
 	short ufo_oidx;
-	_anon0 ufo_pos;
+	NJS_POINT3 ufo_pos;
 	unsigned int opt_flg;
 	unsigned short opt_md0;
 	unsigned short opt_md1;
@@ -917,7 +949,7 @@ struct _anon11
 	_anon63 gatc[16];
 	int ght_ct;
 	unsigned int ghtc[32];
-	_anon0 ghtp[32];
+	NJS_POINT3 ghtp[32];
 	unsigned short db_md0;
 	unsigned short db_md1;
 	char db_stgno;
@@ -1066,8 +1098,8 @@ struct _anon15
 
 struct _anon16
 {
-	_anon0 vtx_pos;
-	_anon0 vtx_dir;
+	NJS_POINT3 vtx_pos;
+	NJS_POINT3 vtx_dir;
 	unsigned int col_src;
 	unsigned int col_dst;
 	float gnd_hgh;
@@ -1100,19 +1132,19 @@ struct _anon18
 	unsigned int dst_col;
 	int col_add;
 	int col_sub;
-	_anon0* vtx_bufP;
-	_anon0 vtx_gravity;
-	_anon0 pos_bak;
+	NJS_POINT3* vtx_bufP;
+	NJS_POINT3 vtx_gravity;
+	NJS_POINT3 pos_bak;
 	char atr_bak[192];
 	int stg_col[6];
 	int stg_tim[6];
-	_anon0* stg_buf[6];
-	_anon0 stg_grv[6];
-	_anon0 vtx_dir[16];
+	NJS_POINT3* stg_buf[6];
+	NJS_POINT3 stg_grv[6];
+	NJS_POINT3 vtx_dir[16];
 	float* stg_spd[6];
 	float vtx_spd[96];
 	_anon62 lne_p3c;
-	_anon0 lne_pnt[2];
+	NJS_POINT3 lne_pnt[2];
 	_anon42 lne_col[2];
 	float stg_scl[6];
 	float scl_add_1st;
@@ -1144,7 +1176,7 @@ struct _anon20
 struct _anon21
 {
 	float vtx_scl;
-	_anon0 vtx_pos;
+	NJS_POINT3 vtx_pos;
 	_anon6 VtxBuf[4];
 };
 
@@ -1171,7 +1203,7 @@ struct _anon23
 	unsigned int h;
 };
 
-struct _anon24
+struct OR_WORK
 {
 	unsigned int flg;
 	unsigned short id;
@@ -1210,8 +1242,8 @@ struct _anon25
 	float grv;
 	int col;
 	float scl;
-	_anon0 dir;
-	_anon0 pos;
+	NJS_POINT3 dir;
+	NJS_POINT3 pos;
 };
 
 struct BH_PWORK
@@ -1595,8 +1627,8 @@ struct _anon37
 struct _anon38
 {
 	float vtx_mtxP[16];
-	_anon0 vtx_pos;
-	_anon0 vtx_dir;
+	NJS_POINT3 vtx_pos;
+	NJS_POINT3 vtx_dir;
 };
 
 struct _anon39
@@ -1722,8 +1754,8 @@ struct _anon49
 struct _anon50
 {
 	float vtx_mtxP[16];
-	_anon0 vtx_pos;
-	_anon0 vtx_dir;
+	NJS_POINT3 vtx_pos;
+	NJS_POINT3 vtx_dir;
 };
 
 struct _anon51
@@ -1737,9 +1769,9 @@ struct _anon51
 	float tex_frm;
 	int VtxAlp[18];
 	int VtxCol[18];
-	_anon0 VtxDir[18];
-	_anon0 VtxBufS[18];
-	_anon0 VtxBufD[18];
+	NJS_POINT3 VtxDir[18];
+	NJS_POINT3 VtxBufS[18];
+	NJS_POINT3 VtxBufD[18];
 	_anon6 poly[4];
 	float wnd_acl;
 	float WndSpd[18];
@@ -1747,7 +1779,7 @@ struct _anon51
 
 struct _anon52
 {
-	_anon0 off_pos;
+	NJS_POINT3 off_pos;
 	int srd_dir;
 	float srd_pos;
 	float bld_spd;
@@ -1766,8 +1798,8 @@ struct _anon53
 struct _anon54
 {
 	float mtrx[16];
-	_anon0 pnt;
-	_anon0 vctr;
+	NJS_POINT3 pnt;
+	NJS_POINT3 vctr;
 	int stat;
 	int reserve;
 	_anon64 ltcal;
@@ -1776,7 +1808,7 @@ struct _anon54
 
 struct _anon55
 {
-	_anon0 ps;
+	NJS_POINT3 ps;
 	float nr;
 	float fr;
 	float cr;
@@ -1812,7 +1844,7 @@ struct _anon58
 {
 	int* vlist;
 	short* plist;
-	_anon0 center;
+	NJS_POINT3 center;
 	float r;
 };
 
@@ -1832,12 +1864,12 @@ struct _anon60
 	float srt_spd[5];
 	int srt_vtx[5];
 	_anon6 tv_buf[16];
-	_anon0 tv_spd[16];
+	NJS_POINT3 tv_spd[16];
 };
 
 struct _rap_dsp_typ
 {
-	_anon0 vtx_vel;
+	NJS_POINT3 vtx_vel;
 };
 
 struct _anon61
@@ -1851,7 +1883,7 @@ struct _anon61
 
 struct _anon62
 {
-	_anon0* p;
+	NJS_POINT3* p;
 	_anon42* col;
 	_anon42* tex;
 	unsigned int num;
@@ -1859,8 +1891,8 @@ struct _anon62
 
 struct _anon63
 {
-	_anon0 c1;
-	_anon0 c2;
+	NJS_POINT3 c1;
+	NJS_POINT3 c2;
 	float r1;
 	float r2;
 };
@@ -1879,9 +1911,9 @@ struct _anon64
 	float intns;
 	int exp;
 	int reserve;
-	_anon0 lpnt;
-	_anon0 lvctr;
-	_anon0 lmvctr;
+	NJS_POINT3 lpnt;
+	NJS_POINT3 lvctr;
+	NJS_POINT3 lmvctr;
 	_anon49 atten;
 	_anon49 amb;
 	_anon49 dif;
@@ -1917,14 +1949,14 @@ struct _anon67
 
 struct _anon68
 {
-	_anon0* points;
-	_anon0* normals;
+	NJS_POINT3* points;
+	NJS_POINT3* normals;
 	int nbPoint;
 	_anon77* meshsets;
 	_anon72* mats;
 	unsigned short nbMeshset;
 	unsigned short nbMat;
-	_anon0 center;
+	NJS_POINT3 center;
 	float r;
 };
 
@@ -2052,15 +2084,15 @@ struct _anon73
 struct _anon74
 {
 	void(*fnc_prcP)(void*);
-	void(*fnc_drwP)(_anon24*);
+	void(*fnc_drwP)(OR_WORK*);
 	int free[1024];
 };
 
 struct _anon75
 {
 	float mtxP[16];
-	_anon0 src;
-	_anon0 dst;
+	NJS_POINT3 src;
+	NJS_POINT3 dst;
 	float frm_inc;
 	int col;
 	int tim;
@@ -2087,7 +2119,7 @@ struct _anon77
 	unsigned short nbMesh;
 	short* meshes;
 	unsigned int* attrs;
-	_anon0* normals;
+	NJS_POINT3* normals;
 	_anon42* vertcolor;
 	_anon42* vertuv;
 };
@@ -2108,14 +2140,14 @@ struct _anon78
 
 struct _anon79
 {
-	_anon0 c;
+	NJS_POINT3 c;
 	float r;
 };
 
 struct _anon80
 {
-	_anon0 c1;
-	_anon0 c2;
+	NJS_POINT3 c1;
+	NJS_POINT3 c2;
 	float r;
 };
 
@@ -2163,43 +2195,43 @@ struct _anon82
 };*/
 
 O_WRK* AllocOwork();
-/*_anon1* AllocOworkOne();*/
+O_WRK* AllocOworkOne();
 void bhClrEff_RY();
-/*int bhSetBloodPoolLnk(BH_PWORK* ewP, _anon0* posP, int ay, _anon52* tabP, int pal_bnk);
-void bhEff300(_anon1* oP);
-void bhEff301(_anon1* oP);
-_anon1* bhSetEffParticle(BH_PWORK* ewP, int lnk_no, _anon0* offP, _anon0* dirP, unsigned int color, int typ_no);
-_anon1* bhSetEffParticleMk2(BH_PWORK* ewP, int lnk_no, _anon0* offP, _anon0* dirP, unsigned int src_col, unsigned int dst_col, int typ_no);
-void bhEff302(_anon1* oP);
-void bhEff_PtclSpriteDrawB(_anon1* oP);
-void bhEff_PtclLineDraw(_anon1* oP);
-void bhEff303(_anon1* oP);
-int bhCheckCamWall2D(_anon0* srcP, _anon0* vctP, _anon0* rtnP, float rng_x, float rng_y);
-_anon1* rySetShadow(BH_PWORK* ewP, int obj0, int obj1, int obj2, float off_a, float off_b);
-void bhEff304(_anon1* oP);
-void bhEff305(_anon1* oP);
-void bhEff306(_anon1* oP);
-_anon24* bhSetRapEff(int eff_no, void* datP, int lng_siz);
-void bhEff307(_anon24* orP);
-void bhEff307Drw(_anon24* orP);
-void bhSetEffGunSpark(_anon0* posP, _anon0* dirP, unsigned int src_col, unsigned int dst_col, int typ_no);
-void bhSetEffSpark(_anon0* posP, _anon0* dirP, unsigned int src_col, unsigned int dst_col, int typ_no);
-void bhEff308(_anon24* orP);
-void bhEff308Drw(_anon24* orP);
+/*int bhSetBloodPoolLnk(BH_PWORK* ewP, NJS_POINT3* posP, int ay, _anon52* tabP, int pal_bnk);*/
+void bhEff300(O_WRK* oP);
+void bhEff301(O_WRK* oP);
+O_WRK* bhSetEffParticle(BH_PWORK* ewP, int lnk_no, NJS_POINT3* offP, NJS_POINT3* dirP, unsigned int color, int typ_no);
+O_WRK* bhSetEffParticleMk2(BH_PWORK* ewP, int lnk_no, NJS_POINT3* offP, NJS_POINT3* dirP, unsigned int src_col, unsigned int dst_col, int typ_no);
+void bhEff302(O_WRK* oP);
+void bhEff_PtclSpriteDrawB(O_WRK* oP);
+void bhEff_PtclLineDraw(O_WRK* oP);
+void bhEff303(O_WRK* oP);
+int bhCheckCamWall2D(NJS_POINT3* srcP, NJS_POINT3* vctP, NJS_POINT3* rtnP, float rng_x, float rng_y);
+O_WRK* rySetShadow(BH_PWORK* ewP, int obj0, int obj1, int obj2, float off_a, float off_b);
+void bhEff304(O_WRK* oP);
+void bhEff305(O_WRK* oP);
+void bhEff306(O_WRK* oP);
+OR_WORK* bhSetRapEff(int eff_no, void* datP, int lng_siz);
+void bhEff307(OR_WORK* orP);
+void bhEff307Drw(OR_WORK* orP);
+void bhSetEffGunSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, unsigned int dst_col, int typ_no);
+void bhSetEffSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, unsigned int dst_col, int typ_no);
+void bhEff308(OR_WORK* orP);
+void bhEff308Drw(OR_WORK* orP);
 int ryLinerColor(int src_col, int dst_col, float rate);
-_anon24* rySetEffBlood(float mtxP[16], _anon0* posP, _anon0* dirP, int typ_no);
-void bhEff309(_anon24* orP);
-void bhEff309Drw(_anon24* orP);
-void ryRapTexDrw(_anon5* texP, int tex_id, _rap_tex_typ* rtP);
+OR_WORK* rySetEffBlood(float mtxP[16], NJS_POINT3* posP, NJS_POINT3* dirP, int typ_no);
+void bhEff309(OR_WORK* orP);
+void bhEff309Drw(OR_WORK* orP);
+/*void ryRapTexDrw(_anon5* texP, int tex_id, _rap_tex_typ* rtP);
 int ryRapTexAnm(_anon20* anmP, _anon21* dspP, int bol);
-void ryRapDspSet(_anon0* posP, _anon21* dspP, float scl);
-void ryRapAnmColSet(_anon20* anmP, int src_col, int dst_col, int col_cnt);
-void bhEff30a(_anon24* orP);
-void bhEff349(_anon24* orP);
-_anon24* rySetEffBlood2(float mtxP[16], _anon0* posP, _anon0* dirP, int typ_no);
-void bhEff30b(_anon24* orP);
-void bhEff30bDrw(_anon24* orP);
-void bhEff30c(_anon24* orP);
-void bhEff30cDrw(_anon24* orP);*/
+void ryRapDspSet(NJS_POINT3* posP, _anon21* dspP, float scl);
+void ryRapAnmColSet(_anon20* anmP, int src_col, int dst_col, int col_cnt);*/
+void bhEff30a(OR_WORK* orP);
+void bhEff349(OR_WORK* orP);
+OR_WORK* rySetEffBlood2(float mtxP[16], NJS_POINT3* posP, NJS_POINT3* dirP, int typ_no);
+void bhEff30b(OR_WORK* orP);
+void bhEff30bDrw(OR_WORK* orP);
+void bhEff30c(OR_WORK* orP);
+void bhEff30cDrw(OR_WORK* orP);
 
 #endif
