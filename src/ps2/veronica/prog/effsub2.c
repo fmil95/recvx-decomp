@@ -1,4 +1,5 @@
 #include "effsub2.h"
+#include "main.h"
 
 /*void* bhJumpEffect[0];
 _anon5* sys;
@@ -3103,23 +3104,37 @@ void bhEff_SetBaseColor(_anon0* op, unsigned int col)
 	// Func End, Address: 0x246724, Func Offset: 0x14
 }*/
 
-// 
-// Start address: 0x246730
+// 100% matching!
 void bhClrEff_YG()
 {
-	int i;
-	//_anon0* opp;
-	// Line 4915, Address: 0x246730, Func Offset: 0
-	// Line 4916, Address: 0x246738, Func Offset: 0x8
-	// Line 4918, Address: 0x24673c, Func Offset: 0xc
-	// Line 4917, Address: 0x246764, Func Offset: 0x34
-	// Line 4918, Address: 0x246774, Func Offset: 0x44
-	// Line 4928, Address: 0x2467d0, Func Offset: 0xa0
-	// Line 4932, Address: 0x2467d8, Func Offset: 0xa8
-	// Line 4933, Address: 0x2467e0, Func Offset: 0xb0
-	// Line 4936, Address: 0x2467e4, Func Offset: 0xb4
-	// Line 4937, Address: 0x2467e8, Func Offset: 0xb8
-	// Line 4938, Address: 0x2467f8, Func Offset: 0xc8
-	// Func End, Address: 0x246800, Func Offset: 0xd0
-	scePrintf("bhClrEff_YG - UNIMPLEMENTED!\n");
+    O_WRK* opp;
+    int i;
+	
+    opp = eff;
+    
+    for (i = 0; i < 512; i++, opp++) 
+    {
+        if ((opp->flg & 0x1))
+        {
+            switch (opp->id) 
+            {                      
+            case 250:
+            case 253:
+            case 256:
+            case 257:
+            case 272:
+            case 296:
+            case 297:
+            case 298:
+                opp->flg = 0;
+                break;
+            case 254:
+            case 260:
+                *(int*)opp->exp0 = 0;
+                
+                opp->flg = 0;
+                break;
+            }
+        }
+    }
 }
