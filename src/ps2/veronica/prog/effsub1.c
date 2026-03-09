@@ -146,72 +146,80 @@ void bhEffBG(O_WRK* op)
 	scePrintf("bhEffBG - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x224330
+// 100% matching!
 void bhEff2D(O_WRK* op)
 {
-	float v;
 	float u;
-	// Line 201, Address: 0x224330, Func Offset: 0
-	// Line 203, Address: 0x22433c, Func Offset: 0xc
-	// Line 205, Address: 0x22435c, Func Offset: 0x2c
-	// Line 206, Address: 0x22436c, Func Offset: 0x3c
-	// Line 207, Address: 0x224374, Func Offset: 0x44
-	// Line 208, Address: 0x22437c, Func Offset: 0x4c
-	// Line 209, Address: 0x224380, Func Offset: 0x50
-	// Line 211, Address: 0x224384, Func Offset: 0x54
-	// Line 212, Address: 0x224390, Func Offset: 0x60
-	// Line 213, Address: 0x224394, Func Offset: 0x64
-	// Line 214, Address: 0x224398, Func Offset: 0x68
-	// Line 215, Address: 0x2243a0, Func Offset: 0x70
-	// Line 216, Address: 0x2243a4, Func Offset: 0x74
-	// Line 217, Address: 0x2243a8, Func Offset: 0x78
-	// Line 218, Address: 0x2243ac, Func Offset: 0x7c
-	// Line 219, Address: 0x2243b0, Func Offset: 0x80
-	// Line 220, Address: 0x2243b4, Func Offset: 0x84
-	// Line 221, Address: 0x2243c0, Func Offset: 0x90
-	// Line 222, Address: 0x2243c4, Func Offset: 0x94
-	// Line 223, Address: 0x2243c8, Func Offset: 0x98
-	// Line 224, Address: 0x2243cc, Func Offset: 0x9c
-	// Line 225, Address: 0x2243d4, Func Offset: 0xa4
-	// Line 226, Address: 0x2243dc, Func Offset: 0xac
-	// Line 227, Address: 0x2243e0, Func Offset: 0xb0
-	// Line 229, Address: 0x2243e8, Func Offset: 0xb8
-	// Line 230, Address: 0x2243f4, Func Offset: 0xc4
-	// Line 231, Address: 0x224400, Func Offset: 0xd0
-	// Line 234, Address: 0x224408, Func Offset: 0xd8
-	// Line 235, Address: 0x224418, Func Offset: 0xe8
-	// Line 234, Address: 0x22441c, Func Offset: 0xec
-	// Line 236, Address: 0x22442c, Func Offset: 0xfc
-	// Line 235, Address: 0x224434, Func Offset: 0x104
-	// Line 236, Address: 0x22443c, Func Offset: 0x10c
-	// Line 239, Address: 0x224440, Func Offset: 0x110
-	// Line 234, Address: 0x224444, Func Offset: 0x114
-	// Line 249, Address: 0x224448, Func Offset: 0x118
-	// Line 236, Address: 0x22444c, Func Offset: 0x11c
-	// Line 235, Address: 0x224454, Func Offset: 0x124
-	// Line 237, Address: 0x224460, Func Offset: 0x130
-	// Line 238, Address: 0x224468, Func Offset: 0x138
-	// Line 239, Address: 0x224470, Func Offset: 0x140
-	// Line 235, Address: 0x224474, Func Offset: 0x144
-	// Line 239, Address: 0x224478, Func Offset: 0x148
-	// Line 234, Address: 0x22447c, Func Offset: 0x14c
-	// Line 239, Address: 0x224480, Func Offset: 0x150
-	// Line 240, Address: 0x224488, Func Offset: 0x158
-	// Line 234, Address: 0x22448c, Func Offset: 0x15c
-	// Line 240, Address: 0x224490, Func Offset: 0x160
-	// Line 241, Address: 0x224498, Func Offset: 0x168
-	// Line 242, Address: 0x2244a0, Func Offset: 0x170
-	// Line 243, Address: 0x2244ac, Func Offset: 0x17c
-	// Line 244, Address: 0x2244b4, Func Offset: 0x184
-	// Line 245, Address: 0x2244c0, Func Offset: 0x190
-	// Line 246, Address: 0x2244cc, Func Offset: 0x19c
-	// Line 247, Address: 0x2244d8, Func Offset: 0x1a8
-	// Line 248, Address: 0x2244e4, Func Offset: 0x1b4
-	// Line 249, Address: 0x2244f0, Func Offset: 0x1c0
-	// Line 253, Address: 0x224524, Func Offset: 0x1f4
-	// Func End, Address: 0x224534, Func Offset: 0x204
-	scePrintf("bhEff2D - UNIMPLEMENTED!\n");
+    float v;
+    
+    switch (op->mode0) 
+    {                           
+    case 0:
+        op->flg |= 0x1000000;
+        
+        op->tex_id = op->type;
+        
+        op->ani_ct = op->lkono;
+        
+        op->px = 0;
+        op->py = 0;
+        op->pz = 0;
+        
+        op->gidx = bhGetGidx(op);
+        
+        op->tv[0].u = 0;
+        op->tv[0].v = 0;
+        
+        op->tv[1].u = 1.0f;
+        op->tv[1].v = 0;
+        
+        op->tv[2].u = 0;
+        op->tv[2].v = 1.0f;
+        
+        op->tv[3].u = 1.0f;
+        op->tv[3].v = 1.0f;
+        
+        op->tv[0].col = 0xFFE0E0E0;
+        op->tv[1].col = 0xFFE0E0E0;
+        op->tv[2].col = 0xFFE0E0E0;
+        op->tv[3].col = 0xFFE0E0E0;
+        
+        op->bl_src = 8;
+        op->bl_dst = 6;
+        
+        op->mode0 = 1;
+        break;
+    case 1:
+        if (op->mode1 == 0) 
+        {
+            op->flg |= 0x1000000;
+            break;
+        }
+
+        u = (op->sx / 4.0f) * (512.0f * (op->tv[1].u - op->tv[0].u));
+        v = (op->sy / 4.0f) * (512.0f * (op->tv[2].v - op->tv[0].v));
+
+        op->flg &= ~0x1000000;
+        
+        op->tv[0].x = op->px;
+        op->tv[0].y = op->py;
+        op->tv[0].z = 1.0f / op->sz;
+        
+        op->tv[1].x = op->px + u;
+        op->tv[1].y = op->py;
+        op->tv[1].z = 1.0f / op->sz;
+        
+        op->tv[2].x = op->px;
+        op->tv[2].y = op->py + v;
+        op->tv[2].z = 1.0f / op->sz;
+        
+        op->tv[3].x = op->px + u;
+        op->tv[3].y = op->py + v;
+        op->tv[3].z = 1.0f / op->sz;
+        
+        sys->ef_trs2d[sys->ef_trs2dn++] = op;
+        break;
+    }
 }
 
 // 
