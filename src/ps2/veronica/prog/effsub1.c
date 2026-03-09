@@ -1,4 +1,5 @@
 #include "effsub1.h"
+#include "effect.h"
 #include "main.h"
 
 /*_anon7* sys;
@@ -5871,38 +5872,35 @@ void bhEff124(O_WRK* op)
 	scePrintf("bhEff124 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x234310
+// 100% matching!
 void bhEff125(O_WRK* op)
 {
-	// Line 6461, Address: 0x234310, Func Offset: 0
-	// Line 6463, Address: 0x23431c, Func Offset: 0xc
-	// Line 6464, Address: 0x234328, Func Offset: 0x18
-	// Line 6463, Address: 0x23432c, Func Offset: 0x1c
-	// Line 6464, Address: 0x234334, Func Offset: 0x24
-	// Line 6465, Address: 0x234348, Func Offset: 0x38
-	// Line 6467, Address: 0x234354, Func Offset: 0x44
-	// Line 6468, Address: 0x234364, Func Offset: 0x54
-	// Line 6470, Address: 0x234380, Func Offset: 0x70
-	// Line 6473, Address: 0x2343a0, Func Offset: 0x90
-	// Line 6470, Address: 0x2343a8, Func Offset: 0x98
-	// Line 6471, Address: 0x2343b4, Func Offset: 0xa4
-	// Line 6473, Address: 0x2343d0, Func Offset: 0xc0
-	// Line 6474, Address: 0x2343ec, Func Offset: 0xdc
-	// Line 6475, Address: 0x234408, Func Offset: 0xf8
-	// Line 6476, Address: 0x23441c, Func Offset: 0x10c
-	// Line 6477, Address: 0x234468, Func Offset: 0x158
-	// Line 6478, Address: 0x23447c, Func Offset: 0x16c
-	// Line 6480, Address: 0x2344a0, Func Offset: 0x190
-	// Line 6478, Address: 0x2344a8, Func Offset: 0x198
-	// Line 6480, Address: 0x2344bc, Func Offset: 0x1ac
-	// Line 6478, Address: 0x2344c0, Func Offset: 0x1b0
-	// Line 6479, Address: 0x2344d4, Func Offset: 0x1c4
-	// Line 6480, Address: 0x2344ec, Func Offset: 0x1dc
-	// Line 6481, Address: 0x234504, Func Offset: 0x1f4
-	// Line 6484, Address: 0x234508, Func Offset: 0x1f8
-	// Func End, Address: 0x234518, Func Offset: 0x208
-	scePrintf("bhEff125 - UNIMPLEMENTED!\n");
+    op->flg |= 0x1000000;
+    
+    if ((!(sys->gm_flg & 0x1)) && (op->mode1 != 0)) 
+    {
+        sys->ef.id = 126;
+        
+        sys->ef.flg = 0x4100001;
+        
+        sys->ef.mdlver = op->type % 4;
+        
+        sys->ef.type = op->mode1 - 1;
+        
+        sys->ef.sx = 0.25f * op->sx;
+        sys->ef.sy = 0.25f * op->sy;
+        sys->ef.sz = op->sz;
+        
+        sys->ef.px = op->px + ((-rand() / -2.1474836E9f) - 0.5f);
+        sys->ef.py = op->py;
+        sys->ef.pz = op->pz + ((-rand() / -2.1474836E9f) - 0.5f);
+        
+        sys->ef.ay = op->ay;
+        
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        op->mode1 = 0;
+    }
 }
 
 // 
