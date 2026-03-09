@@ -1,4 +1,5 @@
 #include "effsub1.h"
+#include "main.h"
 
 /*_anon7* sys;
 _anon49 cam;
@@ -3156,26 +3157,23 @@ void bhDraw021()
 	scePrintf("bhDraw021 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x22c740
+// 100% matching!
 void bhEff021(O_WRK* op)
 {
-	// Line 3750, Address: 0x22c740, Func Offset: 0
-	// Line 3751, Address: 0x22c74c, Func Offset: 0xc
-	// Line 3752, Address: 0x22c754, Func Offset: 0x14
-	// Line 3751, Address: 0x22c75c, Func Offset: 0x1c
-	// Line 3753, Address: 0x22c760, Func Offset: 0x20
-	// Line 3751, Address: 0x22c764, Func Offset: 0x24
-	// Line 3752, Address: 0x22c76c, Func Offset: 0x2c
-	// Line 3753, Address: 0x22c770, Func Offset: 0x30
-	// Line 3754, Address: 0x22c7a0, Func Offset: 0x60
-	// Line 3755, Address: 0x22c7a8, Func Offset: 0x68
-	// Line 3756, Address: 0x22c7b4, Func Offset: 0x74
-	// Line 3755, Address: 0x22c7b8, Func Offset: 0x78
-	// Line 3756, Address: 0x22c7c4, Func Offset: 0x84
-	// Line 3758, Address: 0x22c7d0, Func Offset: 0x90
-	// Func End, Address: 0x22c7d8, Func Offset: 0x98
-	scePrintf("bhEff021 - UNIMPLEMENTED!\n");
+    if (op->mode1 != 0) 
+    {
+        sys->cb_flg |= 0x40;
+        
+        op->func = bhDraw021;
+        
+        sys->ef_fnc[sys->ef_fncn++] = op;
+    }
+    else 
+    {
+        sys->cb_flg &= ~0x40;
+        
+        op->flg |= 0x1000000;
+    }
 }
 
 // 
