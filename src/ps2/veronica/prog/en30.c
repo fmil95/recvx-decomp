@@ -1,3 +1,5 @@
+#include "en30.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
@@ -1225,32 +1227,7 @@ void(*bhEne30_DeadMode2)(BH_PWORK*)[2];
 BH_PWORK* plp;
 _anon10* sys;
 BH_PWORK ene[0];
-_anon0 eff[0];
-
-void bhEne30(BH_PWORK* epw);
-void bhEne30_Init(BH_PWORK* epw);
-void bhEne30_Brain(BH_PWORK* epw);
-void bhEne30_BR00(BH_PWORK* epw);
-void bhEne30_Move(BH_PWORK* epw);
-void bhEne30_MV00();
-void bhEne30_MV01(BH_PWORK* epw);
-void bhEne30_MV02(BH_PWORK* epw);
-void bhEne30_MV03(BH_PWORK* epw);
-void bhEne30_MV04(BH_PWORK* epw);
-void bhEne30_MV05(BH_PWORK* epw);
-void bhEne30_MV06(BH_PWORK* epw);
-void bhEne30_MV07(BH_PWORK* epw);
-void bhEne30_Nage();
-void bhEne30_Damage(BH_PWORK* epw);
-void bhEne30_DG00(BH_PWORK* epw);
-void bhEne30_DG01(BH_PWORK* epw);
-void bhEne30_Die(BH_PWORK* epw);
-void bhEne30_DD00(BH_PWORK* epw);
-void bhEne30_DD01(BH_PWORK* epw);
-void bhEne30_CheckEnemies(BH_PWORK* epw);
-void bhEne30_DamageInit(BH_PWORK* epw);
-void bhEne30_CollisionLine(BH_PWORK* epw);
-void bhEne30_SetFluidEffect(_anon3* pos, _anon3* vec, int type, float size);
+_anon0 eff[0];*/
 
 // 
 // Start address: 0x213630
@@ -1282,9 +1259,10 @@ void bhEne30(BH_PWORK* epw)
 	// Line 252, Address: 0x213740, Func Offset: 0x110
 	// Line 253, Address: 0x213758, Func Offset: 0x128
 	// Func End, Address: 0x21376c, Func Offset: 0x13c
+	scePrintf("bhEne30 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x213770
 void bhEne30_Init(BH_PWORK* epw)
 {

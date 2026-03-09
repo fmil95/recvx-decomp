@@ -1,3 +1,5 @@
+#include "en03sub.h"
+
 /*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;

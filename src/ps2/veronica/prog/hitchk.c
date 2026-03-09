@@ -3851,7 +3851,7 @@ void bhResetAtariAttr()
     } 
 }
 
-/*// 
+// 
 // Start address: 0x268ce0
 void bhCheckPlayer(BH_PWORK* pp)
 {
@@ -3863,7 +3863,7 @@ void bhCheckPlayer(BH_PWORK* pp)
 	float ey;
 	float pz;
 	float px;
-	_anon20 vec;
+	//_anon20 vec;
 	// Line 4609, Address: 0x268ce0, Func Offset: 0
 	// Line 4617, Address: 0x268d08, Func Offset: 0x28
 	// Line 4620, Address: 0x268d44, Func Offset: 0x64
@@ -3926,13 +3926,14 @@ void bhCheckPlayer(BH_PWORK* pp)
 	// Line 4664, Address: 0x268f6c, Func Offset: 0x28c
 	// Line 4667, Address: 0x268f7c, Func Offset: 0x29c
 	// Func End, Address: 0x268fa8, Func Offset: 0x2c8
+	scePrintf("bhCheckPlayer - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x268fb0
 void bhCheckEnemies(BH_PWORK* pp)
 {
-	_anon20 ps[128];
+	//_anon20 ps[128];
 	int hct;
 	int i;
 	int r;
@@ -4002,9 +4003,10 @@ void bhCheckEnemies(BH_PWORK* pp)
 	// Line 4884, Address: 0x269290, Func Offset: 0x2e0
 	// Line 4888, Address: 0x269298, Func Offset: 0x2e8
 	// Func End, Address: 0x2692d8, Func Offset: 0x328
+	scePrintf("bhCheckEnemies - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2692e0
 int bhCheckWallAttrB89(_anon0* hp)
 {

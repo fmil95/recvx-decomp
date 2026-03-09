@@ -1,3 +1,5 @@
+#include "en11.h"
+
 /*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;
@@ -1212,40 +1214,14 @@ void(*bhEne11_BrainType)(BH_PWORK*)[1];
 void(*bhEne11_MoveMode2)(BH_PWORK*)[10];
 BH_PWORK* plp;
 _anon0 eff[0];
-_anon16* sys;
-
-void bhEne11(BH_PWORK* epw);
-void bhEne11_Init(BH_PWORK* epw);
-void bhEne11_Brain(BH_PWORK* epw);
-void bhEne11_BR00(BH_PWORK* epw);
-void bhEne11_Move(BH_PWORK* epw);
-void bhEne11_MV00(BH_PWORK* epw);
-void bhEne11_MV01(BH_PWORK* epw);
-void bhEne11_MV02(BH_PWORK* epw);
-void bhEne11_MV03(BH_PWORK* epw);
-void bhEne11_MV04(BH_PWORK* epw);
-void bhEne11_MV05(BH_PWORK* epw);
-void bhEne11_MV06(BH_PWORK* epw);
-void bhEne11_MV07(BH_PWORK* epw);
-void bhEne11_MV08(BH_PWORK* epw);
-void bhEne11_MV09(BH_PWORK* epw);
-void bhEne11_Nage();
-void bhEne11_Damage();
-void bhEne11_Die();
-void bhEne11_GoFoward(BH_PWORK* epw);
-void bhEne11_CollisionWalls(BH_PWORK* epw);
-int bhEne11_CollisionBoxEdge2(BH_PWORK* epw);
-void bhEne11_CameraSet(BH_PWORK* epw, _anon3* vec, int hcnt);
-void bhEne11_MoveNearWall(BH_PWORK* epw);
-void bhEne11_LightControl(BH_PWORK* epw, int flg);
-int bhEne11_SelectDir(BH_PWORK* epw);
+_anon16* sys;*/
 
 // 
 // Start address: 0x1d3240
 void bhEne11(BH_PWORK* epw)
 {
 	int ang;
-	_anon3 v;
+	//_anon3 v;
 	unsigned int flg;
 	// Line 169, Address: 0x1d3240, Func Offset: 0
 	// Line 173, Address: 0x1d3254, Func Offset: 0x14
@@ -1303,9 +1279,10 @@ void bhEne11(BH_PWORK* epw)
 	// Line 243, Address: 0x1d34d0, Func Offset: 0x290
 	// Line 245, Address: 0x1d34d8, Func Offset: 0x298
 	// Func End, Address: 0x1d34ec, Func Offset: 0x2ac
+	scePrintf("bhEne11 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1d34f0
 void bhEne11_Init(BH_PWORK* epw)
 {

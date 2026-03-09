@@ -1,3 +1,5 @@
+#include "en24.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1212,26 +1214,7 @@ void(*bhEne24_Mode0)(BH_PWORK*)[7];
 void(*bhEne24_BrainType)(BH_PWORK*)[1];
 void(*bhEne24_MoveMode2)(BH_PWORK*)[6];
 BH_PWORK* plp;
-_anon15* sys;
-
-void bhEne24(BH_PWORK* epw);
-void bhEne24_Init(BH_PWORK* epw);
-void bhEne24_Brain(BH_PWORK* epw);
-void bhEne24_BR00(BH_PWORK* epw);
-void bhEne24_Move(BH_PWORK* epw);
-void bhEne24_MV00();
-void bhEne24_MV01(BH_PWORK* epw);
-void bhEne24_MV02(BH_PWORK* epw);
-void bhEne24_MV03(BH_PWORK* epw);
-void bhEne24_MV04(BH_PWORK* epw);
-void bhEne24_MV05(BH_PWORK* epw);
-void bhEne24_Nage();
-void bhEne24_Damage();
-void bhEne24_Die();
-void bhEne24_Dummy();
-void bhEne24_CollisionWalls(BH_PWORK* epw);
-void bhEne24_CollisionLine(BH_PWORK* epw);
-int bhEne24_DeadCheck(BH_PWORK* epw);
+_anon15* sys;*/
 
 // 
 // Start address: 0x207620
@@ -1261,9 +1244,10 @@ void bhEne24(BH_PWORK* epw)
 	// Line 235, Address: 0x207720, Func Offset: 0x100
 	// Line 237, Address: 0x20772c, Func Offset: 0x10c
 	// Func End, Address: 0x20773c, Func Offset: 0x11c
+	scePrintf("bhEne24 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x207740
 void bhEne24_Init(BH_PWORK* epw)
 {

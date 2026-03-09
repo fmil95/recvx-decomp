@@ -1,3 +1,5 @@
+#include "en71.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
@@ -257,14 +259,7 @@ struct _anon9
 	float r;
 };
 
-void(*bhEne71_Mode0)(BH_PWORK*)[6];
-
-void bhEne71(BH_PWORK* epw);
-void bhEne71_Init(BH_PWORK* epw);
-void bhEne71_Move();
-void bhEne71_Nage();
-void bhEne71_Damage();
-void bhEne71_Die();
+void(*bhEne71_Mode0)(BH_PWORK*)[6];*/
 
 // 
 // Start address: 0x21b950
@@ -283,9 +278,10 @@ void bhEne71(BH_PWORK* epw)
 	// Line 144, Address: 0x21b9f0, Func Offset: 0xa0
 	// Line 145, Address: 0x21b9f8, Func Offset: 0xa8
 	// Func End, Address: 0x21ba08, Func Offset: 0xb8
+	scePrintf("bhEne71 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x21ba10
 void bhEne71_Init(BH_PWORK* epw)
 {

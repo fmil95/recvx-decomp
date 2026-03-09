@@ -1,3 +1,5 @@
+#include "en07.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1265,45 +1267,7 @@ void(*bhEne07_DeadMode2)(BH_PWORK*)[7];
 BH_PWORK* plp;
 _anon12* sys;
 _anon0 eff[0];
-BH_PWORK ene[0];
-
-void bhEne07(BH_PWORK* epw);
-void bhEne07_Init(BH_PWORK* epw);
-void bhEne07_Brain(BH_PWORK* epw);
-void bhEne07_BR00(BH_PWORK* epw);
-void bhEne07_BR01(BH_PWORK* epw);
-void bhEne07_Move(BH_PWORK* epw);
-void bhEne07_MV00(BH_PWORK* epw);
-void bhEne07_MV01(BH_PWORK* epw);
-void bhEne07_MV02(BH_PWORK* epw);
-void bhEne07_MV03(BH_PWORK* epw);
-void bhEne07_MV04(BH_PWORK* epw);
-void bhEne07_MV05(BH_PWORK* epw);
-void bhEne07_MV06();
-void bhEne07_MV07();
-void bhEne07_MV08(BH_PWORK* epw);
-void bhEne07_Nage(BH_PWORK* epw);
-void bhEne07_NG00(BH_PWORK* epw);
-void bhEne07_NG01(BH_PWORK* epw);
-void bhEne07_Damage(BH_PWORK* epw);
-void bhEne07_Die(BH_PWORK* epw);
-void bhEne07_DD00(BH_PWORK* epw);
-void bhEne07_DD01(BH_PWORK* epw);
-void bhEne07_DD02(BH_PWORK* epw);
-void bhEne07_DD03(BH_PWORK* epw);
-void bhEne07_DD04(BH_PWORK* epw);
-void bhEne07_DD05(BH_PWORK* epw);
-void bhEne07_DD06(BH_PWORK* epw);
-void bhEne07_SearchPlayer(BH_PWORK* epw);
-void bhEne07_CollisionWalls(BH_PWORK* epw);
-void bhEne07_FloorCollision(BH_PWORK* epw);
-int bhEne07_CheckLeaningWall();
-int bhEne07_CheckHangingWall(BH_PWORK* epw);
-int bhEne07_AvoidWall(BH_PWORK* epw, int dir);
-void bhEne07_PlayerBloodEffect(BH_PWORK* epw, unsigned char size);
-void bhEne07_PlayerControl(BH_PWORK* epw);
-int bhEne07_ObjEdge(BH_PWORK* epw);
-void bhEne07_CalcAtariOffset(BH_PWORK* epw, _anon5* ofp);
+BH_PWORK ene[0];*/
 
 // 
 // Start address: 0x1bfe80
@@ -1329,9 +1293,10 @@ void bhEne07(BH_PWORK* epw)
 	// Line 333, Address: 0x1bff94, Func Offset: 0x114
 	// Line 335, Address: 0x1bffb4, Func Offset: 0x134
 	// Func End, Address: 0x1bffc4, Func Offset: 0x144
+	scePrintf("bhEne07 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1bffd0
 void bhEne07_Init(BH_PWORK* epw)
 {

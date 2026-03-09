@@ -1,3 +1,5 @@
+#include "en14.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1297,48 +1299,13 @@ _anon0 eff[0];
 _anon18* sys;
 BH_PWORK ene[0];
 BH_PWORK* plp;
-float lcmat[16][0];
-
-void bhEne14(BH_PWORK* epw);
-void bhEne14_Init(BH_PWORK* epw);
-void bhEne14_Brain(BH_PWORK* epw);
-void bhEne14_BR00();
-void bhEne14_BR01();
-void bhEne14_Move(BH_PWORK* epw);
-void bhEne14_MV00(BH_PWORK* epw);
-void bhEne14_MV01(BH_PWORK* epw);
-void bhEne14_MV02(BH_PWORK* epw);
-void bhEne14_MV03();
-void bhEne14_MV04(BH_PWORK* epw);
-void bhEne14_MV05();
-void bhEne14_MV06();
-void bhEne14_MV07();
-void bhEne14_MV08();
-void bhEne14_MV09();
-void bhEne14_MV10();
-void bhEne14_MV11(BH_PWORK* epw);
-void bhEne14_Nage(BH_PWORK* epw);
-void bhEne14_NG00();
-void bhEne14_Damage(BH_PWORK* epw);
-void bhEne14_DG00(BH_PWORK* epw);
-void bhEne14_DG01(BH_PWORK* epw);
-void bhEne14_Die();
-void bhEne14_InitDamage(BH_PWORK* epw);
-void bhEne14_LookPlayaer(BH_PWORK* epw);
-void bhEne14_TailInit(BH_PWORK* epw);
-void bhEne14_TailSwing(BH_PWORK* epw);
-int bhEne14_HitMark(BH_PWORK* epw);
-void bhEne14_Acid(BH_PWORK* epw, int se);
-void bhEne14_SetMotion(BH_PWORK* epw);
-void bhEne14_CheckWall(BH_PWORK* epw);
-void bhEne14_PlayerControl(BH_PWORK* epw);
-void bhEne14_CallSE(BH_PWORK* epw);
+float lcmat[16][0];*/
 
 // 
 // Start address: 0x1ddad0
 void bhEne14(BH_PWORK* epw)
 {
-	_anon0* op;
+	//_anon0* op;
 	int i;
 	// Line 429, Address: 0x1ddad0, Func Offset: 0
 	// Line 431, Address: 0x1ddae0, Func Offset: 0x10
@@ -1367,9 +1334,10 @@ void bhEne14(BH_PWORK* epw)
 	// Line 480, Address: 0x1ddc10, Func Offset: 0x140
 	// Line 489, Address: 0x1ddc20, Func Offset: 0x150
 	// Func End, Address: 0x1ddc30, Func Offset: 0x160
+	scePrintf("bhEne14 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1ddc30
 void bhEne14_Init(BH_PWORK* epw)
 {

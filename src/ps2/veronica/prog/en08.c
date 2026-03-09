@@ -1,4 +1,4 @@
-#include "types.h"
+#include "en08.h"
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;
@@ -281,24 +281,14 @@ struct _anon10
 	_anon9 c1;
 	_anon9 c2;
 	float r;
-};*/
+};
 
-void bhEne08(BH_PWORK* epw);
-void bhEne08_Init(BH_PWORK* epw);
-void bhEne08_Move(BH_PWORK* epw);
-void bhEne08_MV00(BH_PWORK* epw);
-void bhEne08_MV01(BH_PWORK* epw);
-void bhEne08_MV02(BH_PWORK* epw);
-void bhEne08_Nage();
-void bhEne08_Damage();
-void bhEne08_Die();
-
-/*void(*bhEne08_Mode0)(BH_PWORK*)[6];
+void(*bhEne08_Mode0)(BH_PWORK*)[6];
 void(*bhEne08_BrainType)(BH_PWORK*)[1];*/
 typedef void (*MoveMode2_proc)(BH_PWORK*);
 MoveMode2_proc bhEne08_MoveMode2[3] = { bhEne08_MV00, bhEne08_MV01, bhEne08_MV02 };
 
-/*// 
+// 
 // Start address: 0x1c5f70
 void bhEne08(BH_PWORK* epw)
 {
@@ -311,9 +301,10 @@ void bhEne08(BH_PWORK* epw)
 	// Line 143, Address: 0x1c5fcc, Func Offset: 0x5c
 	// Line 144, Address: 0x1c5fd4, Func Offset: 0x64
 	// Func End, Address: 0x1c5fe4, Func Offset: 0x74
+	scePrintf("bhEne08 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1c5ff0
 void bhEne08_Init(BH_PWORK* epw)
 {

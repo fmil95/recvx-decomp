@@ -1,3 +1,5 @@
+#include "en13.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
@@ -1601,36 +1603,7 @@ BH_PWORK ene[0];
 void(*bhEne13B)(BH_PWORK*);
 _anon9* rom;
 BH_PWORK* plp;
-_anon38 cam;
-
-void bhEne13(BH_PWORK* epw);
-void bhEne13_Init(BH_PWORK* epw);
-void bhEne13_Brain(BH_PWORK* epw);
-void bhEne13_BR00(BH_PWORK* epw);
-void bhEne13_BR01(BH_PWORK* epw);
-void bhEne13_Move(BH_PWORK* epw);
-void bhEne13_MV00(BH_PWORK* epw);
-void bhEne13_MV01(BH_PWORK* epw);
-void bhEne13_MV02(BH_PWORK* epw);
-void bhEne13_MV03(BH_PWORK* epw);
-void bhEne13_Nage();
-void bhEne13_Damage(BH_PWORK* epw);
-void bhEne13_DG00(BH_PWORK* epw);
-void bhEne13_Die(BH_PWORK* epw);
-void bhEne13_InitDamage(BH_PWORK* epw);
-void bhEne13_Finish(BH_PWORK* epw);
-void bhEne13_ScaleModel(npobj* pObj, float sx, float sy, float sz);
-int bhEne13_StoreObject(BH_PWORK* epw, _anon32* pos, _anon32** v, int no);
-int bhEne13_RestoreObject(BH_PWORK* epw, _anon32* pos, _anon32** v, int no);
-void bhEne13_PutAttacker(BH_PWORK* epw, int no);
-void bhEne13_Tentacle(BH_PWORK* epw, int no);
-int bhEne13_GetHatchNo(BH_PWORK* epw);
-int bhEne13_GetTentaNo(BH_PWORK* epw);
-BH_PWORK** bhEne13_GetChild(BH_PWORK* epw, int* num);
-void bhEne13_CameraControl(BH_PWORK* epw);
-void bhEne13_SetCamera(BH_PWORK* epw, float f);
-int bhEne13_SelectTentacle(BH_PWORK* epw);
-void bhEne13_PlayerControl(BH_PWORK* epw);
+_anon38 cam;*/
 
 // 
 // Start address: 0x1da340
@@ -1644,9 +1617,10 @@ void bhEne13(BH_PWORK* epw)
 	// Line 218, Address: 0x1da394, Func Offset: 0x54
 	// Line 219, Address: 0x1da39c, Func Offset: 0x5c
 	// Func End, Address: 0x1da3ac, Func Offset: 0x6c
+	scePrintf("bhEne13 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1da3b0
 void bhEne13_Init(BH_PWORK* epw)
 {

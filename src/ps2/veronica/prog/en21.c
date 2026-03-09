@@ -1257,14 +1257,14 @@ void(*bhEne21_DieMode2)(BH_PWORK*)[1];
 _anon17* sys;
 BH_PWORK* plp;
 BH_PWORK ene[0];
-_anon0 eff[0];
+_anon0 eff[0];*/
 
 // 
 // Start address: 0x1f7e20
 void bhEne21(BH_PWORK* epw)
 {
 	int i;
-	_anon6* owk;
+	//_anon6* owk;
 	// Line 264, Address: 0x1f7e20, Func Offset: 0
 	// Line 269, Address: 0x1f7e30, Func Offset: 0x10
 	// Line 272, Address: 0x1f7e50, Func Offset: 0x30
@@ -1300,9 +1300,10 @@ void bhEne21(BH_PWORK* epw)
 	// Line 323, Address: 0x1f7fe4, Func Offset: 0x1c4
 	// Line 324, Address: 0x1f7ff0, Func Offset: 0x1d0
 	// Func End, Address: 0x1f8000, Func Offset: 0x1e0
+	scePrintf("bhEne21 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1f8000
 void bhEne21_Init(BH_PWORK* epw)
 {

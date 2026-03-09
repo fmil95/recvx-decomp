@@ -1,3 +1,5 @@
+#include "en22.h"
+
 /*typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1678,77 +1680,20 @@ float en22_mogmog[20];
 float lcmat[16][0];
 _anon0 eff[0];
 
-void bhEne22_DmmyBrain();
-void bhEne22(BH_PWORK* epw);
-void bhEne22_MainLoop(BH_PWORK* epw);
-int bhEne22_DmgChk(BH_PWORK* epw);
-void bhEne22_ChgDmgMode(BH_PWORK* epw);
-void bhEne22_DamageAdd(BH_PWORK* epw);
-void bhEne22_CollCheck(BH_PWORK* epw);
-void bhEne22_CollCheckWall(BH_PWORK* epw);
-void bhEne22_Init(BH_PWORK* epw);
-void bhEne22_InitType00();
-void bhEne22_Move(BH_PWORK* epw);
-void bhEne22_Nage();
-void bhEne22_Damage(BH_PWORK* epw);
-void bhEne22_Die(BH_PWORK* epw);
-void bhEne22_PlyerHitCheck(BH_PWORK* pl, BH_PWORK* epw);
-void bhEne22_EneSearch(BH_PWORK* epw);
-void bhEne22_Brain(BH_PWORK* epw);
-void bhEne22_Brain00(BH_PWORK* epw);
-void bhEne22_Brain01(BH_PWORK* epw);
-void bhEne22_Brain02(BH_PWORK* epw);
-void bhEne22_Brain04(BH_PWORK* epw);
-void bhEne22_MVType00(BH_PWORK* epw);
-void bhEne22_MV00(BH_PWORK* epw);
-void bhEne22_MV01(BH_PWORK* epw);
-void bhEne22_MV02(BH_PWORK* epw);
-void bhEne22_MV03();
-void bhEne22_MV04(BH_PWORK* epw);
-void bhEne22_MV05();
-void bhEne22_MV06(BH_PWORK* epw);
-void bhEne22_DGType00(BH_PWORK* epw);
-void bhEne22_DG00(BH_PWORK* epw);
-void bhEne22_DG01(BH_PWORK* epw);
-void bhEne22_DG02();
-void bhEne22_DDType00(BH_PWORK* epw);
-void bhEne22_DD00(BH_PWORK* epw);
-void bhEne22_DD01();
-void bhEne22_PlyDG00(BH_PWORK* pl, BH_PWORK* epw);
-void bhEne22_PlyDG01(BH_PWORK* pl, BH_PWORK* epw);
-int bhEne22_SetMtn(BH_PWORK* epw);
-void bhEne22_CheckMtnTbl(BH_PWORK* epw, int frm);
-void bhEne22_GetTranslateMtn(BH_PWORK* epw, int frm);
-void bhEne22_SparkEffect(BH_PWORK* epw, int frm);
-unsigned int* bhEne22_GetDengekiColorAddr(npobj* objp, int no);
-void bhEne22_SetWaterEffect(BH_PWORK* epw, int mtn_no, int frm);
-int bhEne22_GetAreaNo(float px, float pz);
-int bhEne22_AreaCheck(float ene_x, float ene_z, float ply_x, float ply_z);
-int bhEne22_SetTrgPos(BH_PWORK* epw);
-void bhEne22_SePlay(BH_PWORK* epw, _anon34* ps, int no);
-_anon0* bhEne22_SetDengekiEffect(BH_PWORK* epw, int obj, _anon34* ofs, float size);
-void bhEne22_SetDengekiEffect2(BH_PWORK* epw);
-void bhEne22_SetElectricShockEffect(BH_PWORK* epw, int type);
-void bhEne22_SetElectricShockEffect2(BH_PWORK* epw);
-_anon0* bhEne22_SetElectricLightEffect(BH_PWORK* epw);
-void bhEne22_SetLight(BH_PWORK* epw, int lnk_obj, _anon34* ofs, int type);
-void bhEne22_CtrLight(BH_PWORK* epw);
-void bhEne22_ChgDengekiColor(npobj* objp, int no, unsigned int argb);
-
 // 
 // Start address: 0x1faba0
 void bhEne22_DmmyBrain()
 {
 	// Line 91, Address: 0x1faba0, Func Offset: 0
 	// Func End, Address: 0x1faba8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x1fabb0
 void bhEne22(BH_PWORK* epw)
 {
 	int i;
-	_anon17* owk;
+	//_anon17* owk;
 	// Line 260, Address: 0x1fabb0, Func Offset: 0
 	// Line 265, Address: 0x1fabbc, Func Offset: 0xc
 	// Line 268, Address: 0x1fabc4, Func Offset: 0x14
@@ -1783,9 +1728,10 @@ void bhEne22(BH_PWORK* epw)
 	// Line 314, Address: 0x1fad68, Func Offset: 0x1b8
 	// Line 316, Address: 0x1fad74, Func Offset: 0x1c4
 	// Func End, Address: 0x1fad84, Func Offset: 0x1d4
+	scePrintf("bhEne22 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1fad90
 void bhEne22_MainLoop(BH_PWORK* epw)
 {

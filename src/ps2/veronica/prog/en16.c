@@ -1,3 +1,5 @@
+#include "en16.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1269,19 +1271,7 @@ void(*bhEne16_MoveMode2)(BH_PWORK*)[3];
 _anon0 eff[0];
 _anon18* sys;
 BH_PWORK* plp;
-_anon10 WpnTab[0];
-
-void bhEne16(BH_PWORK* epw);
-void bhEne16_Init(BH_PWORK* epw);
-void bhEne16_Brain(BH_PWORK* epw);
-void bhEne16_BR00(BH_PWORK* epw);
-void bhEne16_Move(BH_PWORK* epw);
-void bhEne16_MV00(BH_PWORK* epw);
-void bhEne16_MV01(BH_PWORK* epw);
-void bhEne16_MV02(BH_PWORK* epw);
-int bhEne16_GetEffNum(BH_PWORK* epw);
-_anon14* bhEne16_GetEffPos(BH_PWORK* epw);
-void bhEne16_AddEffPos(BH_PWORK* epw, _anon14* pos);
+_anon10 WpnTab[0];*/
 
 // 
 // Start address: 0x1e9cc0
@@ -1296,9 +1286,10 @@ void bhEne16(BH_PWORK* epw)
 	// Line 142, Address: 0x1e9d28, Func Offset: 0x68
 	// Line 143, Address: 0x1e9d34, Func Offset: 0x74
 	// Func End, Address: 0x1e9d44, Func Offset: 0x84
+	scePrintf("bhEne16 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1e9d50
 void bhEne16_Init(BH_PWORK* epw)
 {

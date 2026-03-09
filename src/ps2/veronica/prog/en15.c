@@ -1776,13 +1776,13 @@ void SetMtnSE(BH_PWORK* epw)
 	// Line 1288, Address: 0x1e10c4, Func Offset: 0x84
 	// Line 1289, Address: 0x1e10d4, Func Offset: 0x94
 	// Func End, Address: 0x1e10e8, Func Offset: 0xa8
-}
+}*/
 
 // 
 // Start address: 0x1e10f0
 void bhEne15(BH_PWORK* epw)
 {
-	_anon30* owk;
+	//_anon30* owk;
 	// Line 1351, Address: 0x1e10f0, Func Offset: 0
 	// Line 1352, Address: 0x1e10fc, Func Offset: 0xc
 	// Line 1353, Address: 0x1e1118, Func Offset: 0x28
@@ -1823,9 +1823,10 @@ void bhEne15(BH_PWORK* epw)
 	// Line 1401, Address: 0x1e12fc, Func Offset: 0x20c
 	// Line 1404, Address: 0x1e1314, Func Offset: 0x224
 	// Func End, Address: 0x1e1324, Func Offset: 0x234
+	scePrintf("bhEne15 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1e1330
 void Init(BH_PWORK* epw)
 {
@@ -3888,7 +3889,7 @@ void CoreDie(BH_PWORK* epw)
 	// Line 4166, Address: 0x1e9c08, Func Offset: 0x6e8
 	// Line 4172, Address: 0x1e9c10, Func Offset: 0x6f0
 	// Func End, Address: 0x1e9c24, Func Offset: 0x704
-}
+}*/
 
 // 
 // Start address: 0x1e9c30
@@ -3904,5 +3905,5 @@ void bhEne53(BH_PWORK* epw)
 	// Line 4237, Address: 0x1e9ca0, Func Offset: 0x70
 	// Line 4240, Address: 0x1e9ca8, Func Offset: 0x78
 	// Func End, Address: 0x1e9cb8, Func Offset: 0x88
-}*/
-
+	scePrintf("bhEne53 - UNIMPLEMENTED!\n");
+}

@@ -1,3 +1,5 @@
+#include "en20.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct BH_PWORK;
@@ -260,22 +262,7 @@ struct _anon9
 };
 
 void(*bhEne20_Mode0)(BH_PWORK*)[6];
-void(*bhEne20_MoveMode2)(BH_PWORK*)[8];
-
-void bhEne20(BH_PWORK* epw);
-void bhEne20_Init(BH_PWORK* epw);
-void bhEne20_Move(BH_PWORK* epw);
-void bhEne20_MV00(BH_PWORK* epw);
-void bhEne20_MV01(BH_PWORK* epw);
-void bhEne20_MV02(BH_PWORK* epw);
-void bhEne20_MV03(BH_PWORK* epw);
-void bhEne20_MV04(BH_PWORK* epw);
-void bhEne20_MV05(BH_PWORK* epw);
-void bhEne20_MV06(BH_PWORK* epw);
-void bhEne20_MV07(BH_PWORK* epw);
-void bhEne20_Nage();
-void bhEne20_Damage();
-void bhEne20_Die();
+void(*bhEne20_MoveMode2)(BH_PWORK*)[8];*/
 
 // 
 // Start address: 0x1f74a0
@@ -287,9 +274,10 @@ void bhEne20(BH_PWORK* epw)
 	// Line 140, Address: 0x1f74e4, Func Offset: 0x44
 	// Line 141, Address: 0x1f74ec, Func Offset: 0x4c
 	// Func End, Address: 0x1f74fc, Func Offset: 0x5c
+	scePrintf("bhEne20 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1f7500
 void bhEne20_Init(BH_PWORK* epw)
 {

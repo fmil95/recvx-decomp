@@ -1,3 +1,5 @@
+#include "en10.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1204,26 +1206,14 @@ struct _anon32
 void(*bhEne10_Mode0)(BH_PWORK*)[6];
 void(*bhEne10_MoveMode2)(BH_PWORK*)[3];
 BH_PWORK* plp;
-_anon15* sys;
-
-void bhEne10(BH_PWORK* epw);
-void bhEne10_Init(BH_PWORK* epw);
-void bhEne10_CheckPos(BH_PWORK* epw);
-void bhEne10_Brain(BH_PWORK* epw);
-void bhEne10_Move(BH_PWORK* epw);
-void bhEne10_MV00();
-void bhEne10_MV01(BH_PWORK* epw);
-void bhEne10_MV02(BH_PWORK* epw);
-void bhEne10_Nage(BH_PWORK* epw);
-void bhEne10_Damage();
-void bhEne10_Die();
+_anon15* sys;*/
 
 // 
 // Start address: 0x1d2440
 void bhEne10(BH_PWORK* epw)
 {
 	int i;
-	_anon17* owk;
+	//_anon17* owk;
 	// Line 118, Address: 0x1d2440, Func Offset: 0
 	// Line 123, Address: 0x1d2454, Func Offset: 0x14
 	// Line 126, Address: 0x1d2474, Func Offset: 0x34
@@ -1257,9 +1247,10 @@ void bhEne10(BH_PWORK* epw)
 	// Line 169, Address: 0x1d25f8, Func Offset: 0x1b8
 	// Line 170, Address: 0x1d2604, Func Offset: 0x1c4
 	// Func End, Address: 0x1d2618, Func Offset: 0x1d8
+	scePrintf("bhEne10 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1d2620
 void bhEne10_Init(BH_PWORK* epw)
 {

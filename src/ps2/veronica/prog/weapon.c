@@ -1369,17 +1369,17 @@ void bhSetGunSplash(_anon21* gap, _anon1* pos, int wattr)
 	// Line 1682, Address: 0x28dfa8, Func Offset: 0x568
 	// Line 1706, Address: 0x28dfc0, Func Offset: 0x580
 	// Func End, Address: 0x28dfdc, Func Offset: 0x59c
-}
+}*/
 
 // 
 // Start address: 0x28dfe0
-void bhSetExplosion(_anon1* pos)
+void bhSetExplosion(NJS_POINT3* pos)
 {
 	int i;
-	_anon1 vc1;
-	_anon1 vc0;
-	_anon7* lp;
-	_anon48 pnt;
+	//_anon1 vc1;
+	//_anon1 vc0;
+	//_anon7* lp;
+	//_anon48 pnt;
 	// Line 1715, Address: 0x28dfe0, Func Offset: 0
 	// Line 1724, Address: 0x28dff0, Func Offset: 0x10
 	// Line 1726, Address: 0x28dffc, Func Offset: 0x1c
@@ -1469,7 +1469,8 @@ void bhSetExplosion(_anon1* pos)
 	// Line 1789, Address: 0x28e444, Func Offset: 0x464
 	// Line 1790, Address: 0x28e454, Func Offset: 0x474
 	// Func End, Address: 0x28e464, Func Offset: 0x484
-}*/
+	scePrintf("bhSetExplosion - UNIMPLEMENTED!\n");
+}
 
 // 99.91% matching
 void bhSetExplosionEffect(NJS_POINT3* pos) 

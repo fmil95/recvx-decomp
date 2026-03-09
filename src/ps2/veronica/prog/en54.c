@@ -1,3 +1,5 @@
+#include "en54.h"
+
 /*typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1214,20 +1216,7 @@ void(*bhEne54_MoveMode2)(BH_PWORK*)[1];
 void(*bhEne54_DamageType)(BH_PWORK*)[1];
 void(*bhEne54_DamageMode2)(BH_PWORK*)[1];
 _anon1* sys;
-BH_PWORK ene[0];
-
-void bhEne54(BH_PWORK* epw);
-void bhEne54_MainLoop(BH_PWORK* epw);
-int bhEne54_SetMtn(BH_PWORK* epw);
-void bhEne54_CollCheck(BH_PWORK* epw);
-void bhEne54_CalcEnemy(BH_PWORK* epw);
-void bhEne54_Init(BH_PWORK* epw);
-void bhEne54_Move(BH_PWORK* epw);
-void bhEne54_Damage(BH_PWORK* epw);
-void bhEne54_MVType00(BH_PWORK* epw);
-void bhEne54_MV00(BH_PWORK* epw);
-void bhEne54_DGType00(BH_PWORK* epw);
-void bhEne54_DG00(BH_PWORK* epw);
+BH_PWORK ene[0];*/
 
 // 
 // Start address: 0x21aed0
@@ -1243,9 +1232,10 @@ void bhEne54(BH_PWORK* epw)
 	// Line 171, Address: 0x21af34, Func Offset: 0x64
 	// Line 173, Address: 0x21af3c, Func Offset: 0x6c
 	// Func End, Address: 0x21af4c, Func Offset: 0x7c
+	scePrintf("bhEne54 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x21af50
 void bhEne54_MainLoop(BH_PWORK* epw)
 {

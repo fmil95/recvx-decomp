@@ -1,3 +1,5 @@
+#include "en25.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1218,21 +1220,7 @@ _anon33 BloodParam;
 void(*bhEne25_Mode0)(BH_PWORK*)[6];
 void(*bhEne25_MoveMode2)(BH_PWORK*)[4];
 _anon15* sys;
-BH_PWORK* plp;
-
-void bhEne25(BH_PWORK* epw);
-void bhEne25_Init(BH_PWORK* epw);
-void bhEne25_Brain();
-void bhEne25_Move(BH_PWORK* epw);
-void bhEne25_MV00(BH_PWORK* epw);
-void bhEne25_MV01(BH_PWORK* epw);
-void bhEne25_MV02(BH_PWORK* epw);
-void bhEne25_MV03(BH_PWORK* epw);
-void bhEne25_Nage();
-void bhEne25_Damage();
-void bhEne25_Die();
-void bhEne25_SetEffect(BH_PWORK* epw);
-void bhEne25_PlayerControl(BH_PWORK* epw);
+BH_PWORK* plp;*/
 
 // 
 // Start address: 0x208950
@@ -1246,9 +1234,10 @@ void bhEne25(BH_PWORK* epw)
 	// Line 149, Address: 0x2089b0, Func Offset: 0x60
 	// Line 150, Address: 0x2089b8, Func Offset: 0x68
 	// Func End, Address: 0x2089c8, Func Offset: 0x78
+	scePrintf("bhEne25 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2089d0
 void bhEne25_Init(BH_PWORK* epw)
 {

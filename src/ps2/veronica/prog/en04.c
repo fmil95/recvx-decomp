@@ -1,3 +1,5 @@
+#include "en04.h"
+
 /*typedef struct npobj;
 typedef struct BH_PWORK;
 typedef struct _anon0;
@@ -1663,85 +1665,19 @@ BH_PWORK ene[0];
 int kaidan_ang[0];
 void(*bhEne04Sub_Mode0)(BH_PWORK*)[4];
 
-void bhEne04_DmmyBrain();
-void bhEne04(BH_PWORK* epw);
-void bhEne04_MainLoop(BH_PWORK* epw);
-void bhEne04_SetCollision(BH_PWORK* epw);
-void bhEne04_DmgChk(BH_PWORK* epw);
-void bhEne04_ChgDmgMode(BH_PWORK* epw);
-void bhEne04_DamageAdd(BH_PWORK* epw);
-void bhEne04_PlayerControl(BH_PWORK* pl, BH_PWORK* epw);
-void bhEne04_PlayerLink(BH_PWORK* pl, BH_PWORK* epw);
-void bhEne04_CollisionCheck(BH_PWORK* epw);
-void bhEne04_CollCheckWall(BH_PWORK* epw);
-void bhEne04_Init(BH_PWORK* epw);
-void bhEne04_Move(BH_PWORK* epw);
-void bhEne04_Nage(BH_PWORK* epw);
-void bhEne04_Damage(BH_PWORK* epw);
-void bhEne04_Die(BH_PWORK* epw);
-void bhEne04_MVType00(BH_PWORK* epw);
-void bhEne04_MVType01(BH_PWORK* epw);
-void bhEne04_MVType02(BH_PWORK* epw);
-int bhEne04_AtariCheck(BH_PWORK* epw);
-int bhEne04_AtariCheck2(BH_PWORK* epw);
-_anon12* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip);
-void bhEne04_EneSearch(BH_PWORK* epw);
-void bhEne04_Brain(BH_PWORK* epw);
-void bhEne04_Brain00(BH_PWORK* epw);
-void bhEne04_Brain01(BH_PWORK* epw);
-void bhEne04_Brain02(BH_PWORK* epw);
-void bhEne04_Brain04(BH_PWORK* epw);
-void bhEne04_Brain06(BH_PWORK* epw);
-void bhEne04_MV00(BH_PWORK* epw);
-void bhEne04_MV01(BH_PWORK* epw);
-void bhEne04_MV02(BH_PWORK* epw);
-void bhEne04_MV03(BH_PWORK* epw);
-void bhEne04_MV04(BH_PWORK* epw);
-void bhEne04_MV05(BH_PWORK* epw);
-void bhEne04_MV06(BH_PWORK* epw);
-void bhEne04_MV07(BH_PWORK* epw);
-void bhEne04_MV08(BH_PWORK* epw);
-void bhEne04_MV09(BH_PWORK* epw);
-void bhEne04_MV10(BH_PWORK* epw);
-void bhEne04_MV11(BH_PWORK* epw);
-void bhEne04_MV12(BH_PWORK* epw);
-int bhEne04_Escape(BH_PWORK* epw, int res, int r);
-void bhEne04_NGType00(BH_PWORK* epw);
-void bhEne04_NG00(BH_PWORK* epw);
-void bhEne04_NG01(BH_PWORK* epw);
-void bhEne04_DGType00(BH_PWORK* epw);
-void bhEne04_DG00(BH_PWORK* epw);
-void bhEne04_DG01(BH_PWORK* epw);
-void bhEne04_DDType00(BH_PWORK* epw);
-void bhEne04_DD00(BH_PWORK* epw);
-void bhEne04_PlyDG00(BH_PWORK* pl, BH_PWORK* epw);
-void bhEne04_PlyDG01(BH_PWORK* pl, BH_PWORK* epw);
-int bhEne04_PlyDamageCheck(BH_PWORK* epw, int type);
-void bhEne04_SpeedUp(float* spd, float g, float limit);
-void bhEne04_SpeedDown(float* spd, float g, float limit);
-void bhEne04_RunMotion(BH_PWORK* epw, int rot);
-int bhEne04_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate);
-int bhEne04_SetMtn(BH_PWORK* epw);
-void bhEne04_CheckMtnTbl(BH_PWORK* epw, int frm);
-int bhEne04_KaidanCheck(BH_PWORK* epw);
-void bhEne04_ShakeWire(_anon0* obwp);
-void bhEne04_RotNeck(BH_PWORK* epw, int ry);
-int bhEne04_SearchNeck(BH_PWORK* epw);
-void bhEne04_SePlay(BH_PWORK* epw, int no);
-
 // 
 // Start address: 0x1a4ec0
 void bhEne04_DmmyBrain()
 {
 	// Line 103, Address: 0x1a4ec0, Func Offset: 0
 	// Func End, Address: 0x1a4ec8, Func Offset: 0x8
-}
+}*/
 
 // 
 // Start address: 0x1a4ed0
 void bhEne04(BH_PWORK* epw)
 {
-	_anon0* op;
+	//_anon0* op;
 	int i;
 	// Line 282, Address: 0x1a4ed0, Func Offset: 0
 	// Line 288, Address: 0x1a4ee4, Func Offset: 0x14
@@ -1765,9 +1701,10 @@ void bhEne04(BH_PWORK* epw)
 	// Line 328, Address: 0x1a5004, Func Offset: 0x134
 	// Line 329, Address: 0x1a5024, Func Offset: 0x154
 	// Func End, Address: 0x1a503c, Func Offset: 0x16c
+	scePrintf("bhEne04 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1a5040
 void bhEne04_MainLoop(BH_PWORK* epw)
 {

@@ -1,3 +1,5 @@
+#include "en18.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1325,21 +1327,7 @@ _anon27 Tentacle3[11];
 _anon27 Tentacle4[11];
 void(*bhEne18_Mode0)(BH_PWORK*)[6];
 void(*bhEne18_MoveMode2)(BH_PWORK*)[6];
-_anon18* sys;
-
-void bhEne18(BH_PWORK* epw);
-void bhEne18_Init(BH_PWORK* epw);
-void bhEne18_Move(BH_PWORK* epw);
-void bhEne18_MV00(BH_PWORK* epw);
-void bhEne18_MV01(BH_PWORK* epw);
-void bhEne18_MV02(BH_PWORK* epw);
-void bhEne18_MV03();
-void bhEne18_MV04(BH_PWORK* epw);
-void bhEne18_MV05(BH_PWORK* epw);
-void bhEne18_Nage();
-void bhEne18_Damage();
-void bhEne18_Die(BH_PWORK* epw);
-int bhEne18_HitMark(BH_PWORK* epw);
+_anon18* sys;*/
 
 // 
 // Start address: 0x1eec00
@@ -1353,9 +1341,10 @@ void bhEne18(BH_PWORK* epw)
 	// Line 487, Address: 0x1eec60, Func Offset: 0x60
 	// Line 488, Address: 0x1eec6c, Func Offset: 0x6c
 	// Func End, Address: 0x1eec7c, Func Offset: 0x7c
+	scePrintf("bhEne18 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1eec80
 void bhEne18_Init(BH_PWORK* epw)
 {

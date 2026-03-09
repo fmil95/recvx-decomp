@@ -1,3 +1,5 @@
+#include "en27.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1493,21 +1495,7 @@ void(*bhEne27_BrainType)(BH_PWORK*)[1];
 void(*bhEne27_MoveMode2)(BH_PWORK*)[3];
 _anon25* sys;
 _anon10* rom;
-BH_PWORK* plp;
-
-void bhEne27(BH_PWORK* epw);
-void bhEne27_Init(BH_PWORK* epw);
-void bhEne27_Brain(BH_PWORK* epw);
-void bhEne27_BR00(BH_PWORK* epw);
-void bhEne27_Move(BH_PWORK* epw);
-void bhEne27_MV00();
-void bhEne27_MV01(BH_PWORK* epw);
-void bhEne27_MV02(BH_PWORK* epw);
-void bhEne27_Nage();
-void bhEne27_Damage();
-void bhEne27_Die();
-void bhEne27_IncubateEffect(BH_PWORK* epw);
-void bhEne27_CallSE(BH_PWORK* epw);
+BH_PWORK* plp;*/
 
 // 
 // Start address: 0x20fae0
@@ -1520,9 +1508,10 @@ void bhEne27(BH_PWORK* epw)
 	// Line 138, Address: 0x20fb34, Func Offset: 0x54
 	// Line 140, Address: 0x20fb3c, Func Offset: 0x5c
 	// Func End, Address: 0x20fb4c, Func Offset: 0x6c
+	scePrintf("bhEne27 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x20fb50
 void bhEne27_Init(BH_PWORK* epw)
 {

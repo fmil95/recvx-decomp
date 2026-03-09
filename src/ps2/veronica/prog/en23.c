@@ -1,3 +1,5 @@
+#include "en23.h"
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
@@ -1628,63 +1630,14 @@ _anon0 eff[0];
 BH_PWORK ene[0];
 void(*bhEne03s)(BH_PWORK*);
 _anon11* rom;
-BH_PWORK* plp;
-
-void bhEne23(BH_PWORK* epw);
-void bhEne23_Init(BH_PWORK* epw);
-void bhEne23_Brain(BH_PWORK* epw);
-void bhEne23_BR00(BH_PWORK* epw);
-void bhEne23_BR01(BH_PWORK* epw);
-void bhEne23_Move(BH_PWORK* epw);
-void bhEne23_MV00(BH_PWORK* epw);
-void bhEne23_MV01(BH_PWORK* epw);
-void bhEne23_MV02(BH_PWORK* epw);
-void bhEne23_MV03(BH_PWORK* epw);
-void bhEne23_MV04();
-void bhEne23_MV05(BH_PWORK* epw);
-void bhEne23_MV06(BH_PWORK* epw);
-void bhEne23_MV07();
-void bhEne23_MV08();
-void bhEne23_MV09(BH_PWORK* epw);
-void bhEne23_MV10(BH_PWORK* epw);
-void bhEne23_MV11(BH_PWORK* epw);
-void bhEne23_MV12(BH_PWORK* epw);
-void bhEne23_Nage(BH_PWORK* epw);
-void bhEne23_NG00();
-void bhEne23_Damage(BH_PWORK* epw);
-void bhEne23_DG00();
-void bhEne23_DG01(BH_PWORK* epw);
-void bhEne23_DG02();
-void bhEne23_DG03(BH_PWORK* epw);
-void bhEne23_DG04(BH_PWORK* epw);
-void bhEne23_DG05();
-void bhEne23_DG06(BH_PWORK* epw);
-void bhEne23_DG07(BH_PWORK* epw);
-void bhEne23_Die(BH_PWORK* epw);
-void bhEne23_DD00(BH_PWORK* epw);
-void bhEne23_DD01(BH_PWORK* epw);
-void bhEne23_DD02();
-void bhEne23_DD03(BH_PWORK* epw);
-void bhEne23_CollisionWalls(BH_PWORK* epw);
-void bhEne23_CollisionLine(BH_PWORK* epw);
-int bhEne23_CheckClimbWall(BH_PWORK* epw, int flg);
-int bhEne23_CheckDiving(BH_PWORK* epw);
-void bhEne23_DamageInit(BH_PWORK* epw);
-void bhEne23_LegBreak(BH_PWORK* epw);
-void bhEne23_InitChild(BH_PWORK* epw);
-void bhEne23_PlayerControl(BH_PWORK* epw);
-void bhEne23_Acid(BH_PWORK* epw);
-unsigned int bhEne23_SearchPlayer(BH_PWORK* epw, int ang);
-void bhEne23_Shape(BH_PWORK* epw);
-void bhEne23_CallSE(BH_PWORK* epw);
-void bhEne23_HitMark(BH_PWORK* epw);
+BH_PWORK* plp;*/
 
 // 
 // Start address: 0x1fff40
 void bhEne23(BH_PWORK* epw)
 {
 	unsigned int flg;
-	_anon24 pos;
+	//_anon24 pos;
 	// Line 567, Address: 0x1fff40, Func Offset: 0
 	// Line 569, Address: 0x1fff50, Func Offset: 0x10
 	// Line 572, Address: 0x1fff58, Func Offset: 0x18
@@ -1731,9 +1684,10 @@ void bhEne23(BH_PWORK* epw)
 	// Line 635, Address: 0x200138, Func Offset: 0x1f8
 	// Line 636, Address: 0x200140, Func Offset: 0x200
 	// Func End, Address: 0x200154, Func Offset: 0x214
+	scePrintf("bhEne23 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x200160
 void bhEne23_Init(BH_PWORK* epw)
 {

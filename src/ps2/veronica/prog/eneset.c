@@ -1,5 +1,5 @@
 #include "eneset.h"
-/*#include "en01.h"
+#include "en01.h"
 #include "en02.h"
 #include "en03.h"
 #include "en04.h"
@@ -26,14 +26,11 @@
 #include "en25.h"
 #include "en26.h"
 #include "en27.h"
-#include "en28.h"
 #include "en29.h"
 #include "en30.h"
-#include "en53.h"
 #include "en54.h"
 #include "en55.h"
-#include "en56.h"
-#include "en71.h"*/
+#include "en71.h"
 #include "MdlPut.h"
 #include "Motion.h"
 #include "effect.h"
@@ -49,7 +46,7 @@
 #include "zonzon1.h"
 #include "main.h"
 
-typedef void (*JumpEnemy_proc)();
+typedef void (*JumpEnemy_proc)(BH_PWORK*);
 
 CPCL En00CapColTab[5] =
 {
@@ -59,7 +56,7 @@ CPCL En00CapColTab[5] =
     { 0, 100, 0  },
     { 0, 0,   0  },
 };
-JumpEnemy_proc bhJumpEnemy[100]/* = TODO: create headers for the en01, en02, etc., files.
+JumpEnemy_proc bhJumpEnemy[100] = 
 {
 	bhEne00,
 	bhEne01,
@@ -161,7 +158,7 @@ JumpEnemy_proc bhJumpEnemy[100]/* = TODO: create headers for the en01, en02, etc
 	bhSubpl,
 	bhSubpl,
 	bhSubpl
-}*/;
+};
 
 // 100% matching! 
 void bhInitEnemy()

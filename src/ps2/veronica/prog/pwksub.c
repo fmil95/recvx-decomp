@@ -118,7 +118,7 @@ int bhCheckFloorNum(float py)
 	scePrintf("bhCheckFloorNum - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x14e440
 void bhAddSpeed(BH_PWORK* pp, int r)
 {
@@ -130,9 +130,10 @@ void bhAddSpeed(BH_PWORK* pp, int r)
 	// Line 324, Address: 0x14e47c, Func Offset: 0x3c
 	// Line 325, Address: 0x14e498, Func Offset: 0x58
 	// Func End, Address: 0x14e4ac, Func Offset: 0x6c
+	scePrintf("bhAddSpeed - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x14e4b0
 int bhGetFrameNum(unsigned int fnm_old, unsigned int fnm_new, int fno_now)
 {
