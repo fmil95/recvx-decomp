@@ -1757,35 +1757,48 @@ void RegistObjectSe(int ObjectNo, NJS_POINT3* pPos, int SeNo, int Prio)
 	scePrintf("RegistObjectSe - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x295760
+// 100% matching!
 void FreeObjectSe(int ObjectNo)
 {
-	_anon35* oip;
-	int Flag;
-	int i;
-	// Line 2941, Address: 0x295760, Func Offset: 0
-	// Line 2942, Address: 0x295768, Func Offset: 0x8
-	// Line 2936, Address: 0x295778, Func Offset: 0x18
-	// Line 2944, Address: 0x29577c, Func Offset: 0x1c
-	// Line 2936, Address: 0x295780, Func Offset: 0x20
-	// Line 2944, Address: 0x295784, Func Offset: 0x24
-	// Line 2945, Address: 0x295788, Func Offset: 0x28
-	// Line 2948, Address: 0x29578c, Func Offset: 0x2c
-	// Line 2938, Address: 0x29579c, Func Offset: 0x3c
-	// Line 2948, Address: 0x2957a0, Func Offset: 0x40
-	// Line 2949, Address: 0x2957a8, Func Offset: 0x48
-	// Line 2950, Address: 0x2957b4, Func Offset: 0x54
-	// Line 2952, Address: 0x2957b8, Func Offset: 0x58
-	// Line 2953, Address: 0x2957c0, Func Offset: 0x60
-	// Line 2955, Address: 0x2957cc, Func Offset: 0x6c
-	// Line 2956, Address: 0x2957dc, Func Offset: 0x7c
-	// Line 2957, Address: 0x2957e4, Func Offset: 0x84
-	// Line 2960, Address: 0x2957f8, Func Offset: 0x98
-	// Line 2961, Address: 0x29580c, Func Offset: 0xac
-	// Line 2963, Address: 0x295824, Func Offset: 0xc4
-	// Func End, Address: 0x295830, Func Offset: 0xd0
-	scePrintf("FreeObjectSe - UNIMPLEMENTED!\n");
+    int i;
+    int Flag;
+    Object* oip;
+    int SlotNo; // not from DWARF
+
+    oip = ObjectInfo;
+    
+    oip = &oip[ObjectNo];
+    
+    oip->SlotNo = -1;
+    
+    oip->ReqFlag = 0;
+    
+    Flag = 0;
+    
+    for (i = 0; i < MaxObjectReqList; i++)  
+    {
+        if (ObjectReqList[i] == ObjectNo) 
+        {
+            Flag = 1;
+        }
+        
+        if (Flag != 0) 
+        {
+            ObjectReqList[i] = ObjectReqList[i + 1];
+        }
+    }
+    
+    if (Flag != 0) 
+    {
+        MaxObjectReqList--;
+    }
+    
+    SlotNo = SearchPlayingObjectSeEx(ObjectNo, 0);
+    
+    if (SlotNo >= 0) 
+    {
+        StopMidi(DefObj[SlotNo]);
+    }
 }
 
 // 100% matching!
