@@ -1673,7 +1673,7 @@ void RequestObjectSeEx(int ObjectNo, NJS_POINT3* pPos, int SeNo, int Prio, int T
 
 // 
 // Start address: 0x2956a0
-void RegistObjectSe(int ObjectNo, _anon16* pPos, int SeNo, int Prio)
+void RegistObjectSe(int ObjectNo, NJS_POINT3* pPos, int SeNo, int Prio)
 {
 	_anon35* oip;
 	int i;
@@ -1861,21 +1861,20 @@ void PlayVoiceEx2(int PatId, int VoiceNo, NJS_POINT3* pPos, int Mode, int FadeIn
 	scePrintf("PlayVoiceEx2 - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x295bd0
-void PlayVoiceEx(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate, int PauseFlag)
+void PlayVoiceEx(int VoiceNo, NJS_POINT3* pPos, int Mode, int FadeInRate, int PauseFlag)
 {
 	// Line 3144, Address: 0x295bd4, Func Offset: 0x4
 	// Func End, Address: 0x295bfc, Func Offset: 0x2c
+    scePrintf("PlayVoiceEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x295c00
-void PlayVoice(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate)
+// 100% matching!
+void PlayVoice(int VoiceNo, NJS_POINT3* pPos, int Mode, int FadeInRate)
 {
-	// Line 3160, Address: 0x295c00, Func Offset: 0
-	// Func End, Address: 0x295c08, Func Offset: 0x8
-}*/
+	PlayVoiceEx(VoiceNo, pPos, Mode, FadeInRate, 0);
+}
 
 // 100% matching!
 void ContinuePlayVoice()
