@@ -1763,13 +1763,10 @@ void PlayBgmEx2(unsigned int PatId, int BgmNo, int FadeInRate, int Volume)
     }
 }
 
-// 
-// Start address: 0x295910
+// 100% matching!
 void PlayBgmEx(int BgmNo, int FadeInRate, int Volume)
 {
-	// Line 3008, Address: 0x295914, Func Offset: 0x4
-	// Func End, Address: 0x29592c, Func Offset: 0x1c
-    scePrintf("PlayBgmEx - UNIMPLEMENTED!\n");
+	PlayBgmEx2(PatId[0], BgmNo, FadeInRate, Volume);
 }
 
 // 100% matching!
