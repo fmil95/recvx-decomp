@@ -1496,13 +1496,11 @@ void RequestEnemySeBasic(int EnemyNo, NJS_POINT3* pPos, int SeNo, int Flag, int 
     }
 }
 
-/*// 
-// Start address: 0x295240
-void RequestEnemySe(int EnemyNo, _anon16* pPos, int SeNo)
+// 100% matching! 
+void RequestEnemySe(int EnemyNo, NJS_POINT3* pPos, int SeNo)
 {
-	// Line 2588, Address: 0x295240, Func Offset: 0
-	// Func End, Address: 0x29524c, Func Offset: 0xc
-}*/
+	RequestEnemySeBasic(EnemyNo, pPos, SeNo, 1, 0);
+}
 
 // 100% matching! 
 void RequestEnemySeEx(int EnemyNo, NJS_POINT3* pPos, int SeNo, int FadeRate)
