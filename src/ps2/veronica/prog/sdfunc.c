@@ -887,38 +887,54 @@ int Get3DSoundParameter(NJS_POINT3* pP1, NJS_POINT3* pP2, char* pPan, char* pVol
     return ReturnCode;
 }
 
-// 
-// Start address: 0x2937f0
+// 100% matching!
 int SetupSeGenericParm(int SlotNo, int SeNo, NJS_POINT3* pPos, int Flag, unsigned int Flag2)
 {
-	float Distance;
-	int ReturnCode;
-	// Line 1480, Address: 0x2937f0, Func Offset: 0
-	// Line 1484, Address: 0x293804, Func Offset: 0x14
-	// Line 1480, Address: 0x29380c, Func Offset: 0x1c
-	// Line 1484, Address: 0x29381c, Func Offset: 0x2c
-	// Line 1486, Address: 0x293840, Func Offset: 0x50
-	// Line 1487, Address: 0x293844, Func Offset: 0x54
-	// Line 1488, Address: 0x29384c, Func Offset: 0x5c
-	// Line 1489, Address: 0x293850, Func Offset: 0x60
-	// Line 1490, Address: 0x293858, Func Offset: 0x68
-	// Line 1492, Address: 0x293864, Func Offset: 0x74
-	// Line 1493, Address: 0x293874, Func Offset: 0x84
-	// Line 1494, Address: 0x293878, Func Offset: 0x88
-	// Line 1496, Address: 0x293884, Func Offset: 0x94
-	// Line 1497, Address: 0x29388c, Func Offset: 0x9c
-	// Line 1498, Address: 0x293894, Func Offset: 0xa4
-	// Line 1500, Address: 0x29389c, Func Offset: 0xac
-	// Line 1502, Address: 0x2938a8, Func Offset: 0xb8
-	// Line 1503, Address: 0x2938b0, Func Offset: 0xc0
-	// Line 1504, Address: 0x2938b8, Func Offset: 0xc8
-	// Line 1506, Address: 0x2938c0, Func Offset: 0xd0
-	// Line 1507, Address: 0x2938c8, Func Offset: 0xd8
-	// Line 1508, Address: 0x2938d4, Func Offset: 0xe4
-	// Line 1509, Address: 0x2938dc, Func Offset: 0xec
-	// Line 1512, Address: 0x2938e4, Func Offset: 0xf4
-	// Func End, Address: 0x293900, Func Offset: 0x110
-    scePrintf("SetupSeGenericParm - UNIMPLEMENTED!\n");
+    int ReturnCode;
+    float Distance; 
+    
+    ReturnCode = Get3DSoundParameter(&CameraPos, pPos, &RequestInfo.Pan, &RequestInfo.Volume, &Distance, 0);
+    
+    RequestInfo.SlotNo = SlotNo;
+    
+    if (Flag != 0) 
+    {
+        RequestInfo.ListNo = SeNo;
+    }
+    else 
+    {
+        RequestInfo.ListNo = -1;
+    }
+    
+    RequestInfo.BankNo = (SeNo / 256) & 0xF;
+    
+    RequestInfo.Priority = 0;
+    
+    if ((Flag2 & 0x2))
+    {
+        RequestInfo.VolumeDelayTime = -2;
+    } 
+    else
+    {
+        RequestInfo.VolumeDelayTime = 0;
+    }
+    
+    if ((Flag2 & 0x4))
+    {
+        RequestInfo.PanDelayTime = -2;
+    } 
+    else
+    {
+        RequestInfo.PanDelayTime = 0;
+    }
+    
+    RequestInfo.Pitch = 0;
+    RequestInfo.PitchDelayTime = -1;
+    
+    RequestInfo.FxInput = -1;
+    RequestInfo.FxLevel = 0;
+    
+    return ReturnCode;
 }
 
 /*// 
