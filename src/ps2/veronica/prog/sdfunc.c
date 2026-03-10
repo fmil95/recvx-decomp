@@ -583,70 +583,132 @@ int CheckSpecialBank(int Type, int BankNo)
     return 0;
 }
 
-// 
-// Start address: 0x292e80
+// 100% matching!
 int LoadSoundPackFile(char* SpqFile)
 {
-	int InsideId;
-	int FileSize;
-	// Line 812, Address: 0x292e80, Func Offset: 0
-	// Line 816, Address: 0x292e90, Func Offset: 0x10
-	// Line 819, Address: 0x292ecc, Func Offset: 0x4c
-	// Line 820, Address: 0x292ee0, Func Offset: 0x60
-	// Line 821, Address: 0x292ef0, Func Offset: 0x70
-	// Line 824, Address: 0x292ef8, Func Offset: 0x78
-	// Line 825, Address: 0x292f08, Func Offset: 0x88
-	// Line 827, Address: 0x292f10, Func Offset: 0x90
-	// Line 828, Address: 0x292f28, Func Offset: 0xa8
-	// Line 834, Address: 0x292f30, Func Offset: 0xb0
-	// Line 836, Address: 0x292f44, Func Offset: 0xc4
-	// Line 837, Address: 0x292f58, Func Offset: 0xd8
-	// Line 838, Address: 0x292f68, Func Offset: 0xe8
-	// Line 839, Address: 0x292f70, Func Offset: 0xf0
-	// Line 852, Address: 0x292f88, Func Offset: 0x108
-	// Line 854, Address: 0x292f9c, Func Offset: 0x11c
-	// Line 856, Address: 0x292fcc, Func Offset: 0x14c
-	// Line 857, Address: 0x292fd4, Func Offset: 0x154
-	// Line 856, Address: 0x292fdc, Func Offset: 0x15c
-	// Line 857, Address: 0x292fe4, Func Offset: 0x164
-	// Line 859, Address: 0x292fec, Func Offset: 0x16c
-	// Line 864, Address: 0x292ff4, Func Offset: 0x174
-	// Line 866, Address: 0x293000, Func Offset: 0x180
-	// Line 867, Address: 0x293004, Func Offset: 0x184
-	// Line 871, Address: 0x293010, Func Offset: 0x190
-	// Line 872, Address: 0x293028, Func Offset: 0x1a8
-	// Line 873, Address: 0x293038, Func Offset: 0x1b8
-	// Line 878, Address: 0x293074, Func Offset: 0x1f4
-	// Line 879, Address: 0x29307c, Func Offset: 0x1fc
-	// Line 891, Address: 0x29309c, Func Offset: 0x21c
-	// Line 890, Address: 0x2930a4, Func Offset: 0x224
-	// Line 892, Address: 0x2930b0, Func Offset: 0x230
-	// Line 891, Address: 0x2930b8, Func Offset: 0x238
-	// Line 892, Address: 0x2930c4, Func Offset: 0x244
-	// Line 898, Address: 0x2930dc, Func Offset: 0x25c
-	// Line 899, Address: 0x2930ec, Func Offset: 0x26c
-	// Line 901, Address: 0x2930f4, Func Offset: 0x274
-	// Line 902, Address: 0x29310c, Func Offset: 0x28c
-	// Line 903, Address: 0x29311c, Func Offset: 0x29c
-	// Line 907, Address: 0x29312c, Func Offset: 0x2ac
-	// Line 908, Address: 0x293140, Func Offset: 0x2c0
-	// Line 912, Address: 0x293154, Func Offset: 0x2d4
-	// Line 915, Address: 0x293160, Func Offset: 0x2e0
-	// Line 917, Address: 0x293168, Func Offset: 0x2e8
-	// Line 918, Address: 0x293170, Func Offset: 0x2f0
-	// Line 920, Address: 0x293178, Func Offset: 0x2f8
-	// Line 921, Address: 0x293180, Func Offset: 0x300
-	// Line 922, Address: 0x293188, Func Offset: 0x308
-	// Line 923, Address: 0x293194, Func Offset: 0x314
-	// Line 927, Address: 0x2931a8, Func Offset: 0x328
-	// Line 930, Address: 0x2931b4, Func Offset: 0x334
-	// Line 932, Address: 0x2931bc, Func Offset: 0x33c
-	// Line 933, Address: 0x2931c4, Func Offset: 0x344
-	// Line 935, Address: 0x2931cc, Func Offset: 0x34c
-	// Line 940, Address: 0x2931d8, Func Offset: 0x358
-	// Line 941, Address: 0x2931dc, Func Offset: 0x35c
-	// Func End, Address: 0x2931f0, Func Offset: 0x370
-	scePrintf("LoadSoundPackFile - UNIMPLEMENTED!\n");
+    int FileSize;
+    int InsideId;
+    
+    switch (SdReadMode) 
+    {             
+    case 0:                              
+        if (SpqKeyCode == 0xFFFF) 
+        {
+            FileSize = GetFileSize(SpqFile);
+            
+            if (FileSize == 0) 
+            {
+                return -1;
+            }
+        }
+        else
+        {
+            if ((InsideId = SearchAfsInsideFileId(SpqKeyCode)) < 0) 
+            {
+                return -1;
+            }
+            
+            FileSize = GetInsideFileSize(PatId[2], InsideId);
+            
+            if (FileSize == 0)
+            {
+                return -1;
+            }
+        }
+        
+        pSdReadBuf = bhGetFreeMemory(FileSize, 32);
+        
+        if (SpqKeyCode == 0xFFFF) 
+        {
+            RequestReadIsoFile(SpqFile, pSdReadBuf);
+        }
+        else 
+        {
+            RequestReadInsideFile(PatId[2], InsideId, pSdReadBuf);
+        }
+        
+        SdReadMode++;
+    case 1:                            
+        switch (GetReadFileStatus())
+        {       
+        case 0:        
+            pSpqHeader = (SPQ_HEADER*)pSdReadBuf;
+            
+            SdReadMode++;
+            break;
+        case 1:      
+            break;
+        case -1:     
+            bhReleaseFreeMemory(pSdReadBuf);
+            
+            SdReadMode = 0;
+            
+            return -2;
+        }
+        
+        break;
+    case 2:                           
+        if (pSpqHeader->Type != 5) 
+        {
+            if (CheckSpecialBank(pSpqHeader->Type, pSpqHeader->BankNo) == 0)
+            {
+                SetSoundData(SdTypeDef[pSpqHeader->Type], pSpqHeader->BankNo, &pSdReadBuf[pSpqHeader->Offset], pSpqHeader->Size);
+            }
+        }
+        else 
+        {
+            memcpy(Room_SoundEnv, &pSdReadBuf[pSpqHeader->Offset], sizeof(RM_SNDENV)); 
+            
+            FxLevelTimer = 16;
+            
+            RoomFxLevel = Room_SoundEnv.RoomFxLevel * 256;
+            AddFxLevel = (RoomFxLevel - CurrentFxLevel) / 16;
+        }
+        
+        SdReadMode++;
+        
+        break;
+    case 3:                    
+        if (pSpqHeader->Type != 5) 
+        {
+            if ((CheckSpecialBank(pSpqHeader->Type, pSpqHeader->BankNo) != 0) || (CheckTransComplete() == 0)) 
+            {
+                pSpqHeader++;
+                
+                if (pSpqHeader->Offset == 0)
+                {
+                    bhReleaseFreeMemory(pSdReadBuf);
+                    
+                    SetRoomSoundFxLevelEx();
+                    
+                    SdReadMode = 0;
+                    
+                    return 0;
+                }
+                
+                SdReadMode = 2;
+            }
+        }
+        else 
+        {
+            pSpqHeader++;
+            
+            if (pSpqHeader->Offset == 0)
+            {
+                bhReleaseFreeMemory(pSdReadBuf);
+                
+                SetRoomSoundFxLevelEx();
+                
+                SdReadMode = 0;
+                
+                return 0;
+            }
+            
+            SdReadMode = 2;
+        }
+    }
+
+    return 1;
 }
 
 // 100% matching! 
