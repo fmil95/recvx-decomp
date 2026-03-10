@@ -1,16 +1,172 @@
 #include "light.h"
 #include "ps2_NaMath.h"
+#include "ps2_NaMatrix.h"
 #include "ps2_NinjaCnk.h"
 #include "main.h"
 
-/*_anon40 lgttab[5];
-_anon26* sys;
-_anon37 cam;
-float fNaViwOffsetY;
-float fNaViwOffsetX;
-_anon0 eff[0];
-BH_PWORK ene[0];
-BH_PWORK* plp;*/
+LGT_WORK lgttab[5] = 
+{
+    // lgttab[0]
+    {
+        0x00000001, // flg
+        0x00000064, // type
+        0,          // aspd
+        1,          // lkflg
+        0,          // lkno
+        9,          // lkono
+        4,          // lsrc
+        0.0f,       // px
+        0.0f,       // py
+        0.0f,       // pz
+        0.0f,       // lx
+        0.0f,       // ly
+        0.0f,       // lz
+        0.0f,       // vx
+        1.0f,       // vy
+        0.0f,       // vz
+        1.0f,       // spc
+        1.0f,       // dif
+        1.0f,       // amb
+        6.0f,       // r
+        6.0f,       // g
+        6.0f,       // b
+        5.0f,       // nr
+        60.0f,      // fr
+        0,          // iang
+        0,          // oang
+        0,          // ax
+        0,          // ay
+        0,          // az
+    },
+    // lgttab[1]
+    {
+        0x00000001, // flg
+        0x00000004, // type
+        30,         // aspd
+        1,          // lkflg
+        0,          // lkno
+        9,          // lkono
+        4,          // lsrc
+        0.0f,       // px
+        0.0f,       // py
+        0.0f,       // pz
+        0.3f,       // lx
+        0.0f,       // ly
+        -1.5f,      // lz
+        0.0f,       // vx
+        1.0f,       // vy
+        0.0f,       // vz
+        0.0f,       // spc
+        0.0f,       // dif
+        0.0f,       // amb
+        3.16f,      // r
+        2.06f,      // g
+        0.7f,       // b
+        8.0f,       // nr
+        400.0f,     // fr
+        0,          // iang
+        0,          // oang
+        0,          // ax
+        0,          // ay
+        0,          // az
+    },
+    // lgttab[2]
+    {
+        0x00000001, // flg
+        0x00000000, // type
+        0,          // aspd
+        0,          // lkflg
+        0,          // lkno
+        0,          // lkono
+        4,          // lsrc
+        0.0f,       // px
+        0.0f,       // py
+        0.0f,       // pz
+        0.0f,       // lx
+        0.0f,       // ly
+        0.0f,       // lz
+        0.0f,       // vx
+        0.0f,       // vy
+        0.0f,       // vz
+        0.0f,       // spc
+        0.0f,       // dif
+        0.0f,       // amb
+        0.0f,       // r
+        0.0f,       // g
+        0.0f,       // b
+        0.0f,       // nr
+        0.0f,       // fr
+        0,          // iang
+        0,          // oang
+        0,          // ax
+        0,          // ay
+        0,          // az
+    },
+    // lgttab[3]
+    {
+        0x00000001, // flg
+        0x00000000, // type
+        0,          // aspd
+        0,          // lkflg
+        0,          // lkno
+        0,          // lkono
+        4,          // lsrc
+        0.0f,       // px
+        0.0f,       // py
+        0.0f,       // pz
+        0.0f,       // lx
+        0.0f,       // ly
+        0.0f,       // lz
+        0.0f,       // vx
+        0.0f,       // vy
+        0.0f,       // vz
+        0.0f,       // spc
+        0.0f,       // dif
+        0.0f,       // amb
+        0.0f,       // r
+        0.0f,       // g
+        0.0f,       // b
+        0.0f,       // nr
+        0.0f,       // fr
+        0,          // iang
+        0,          // oang
+        0,          // ax
+        0,          // ay
+        0,          // az
+    },
+    // lgttab[4]
+    {
+        0x00000003, // flg
+        0x00000000, // type
+        0,          // aspd
+        0,          // lkflg
+        0,          // lkno
+        0,          // lkono
+        2,          // lsrc
+        0.0f,       // px
+        50.0f,      // py
+        -16.0f,     // pz
+        0.0f,       // lx
+        0.0f,       // ly
+        0.0f,       // lz
+        0.0f,       // vx
+        0.0f,       // vy
+        0.0f,       // vz
+        1.0f,       // spc
+        1.0f,       // dif
+        0.1f,       // amb
+        1.0f,       // r
+        1.0f,       // g
+        1.0f,       // b
+        0.0f,       // nr
+        0.0f,       // fr
+        0,          // iang
+        0,          // oang
+        -16384,     // ax
+        0,          // ay
+        0,          // az
+    },
+};
 
 // 100% matching! 
 void bhInitLight()

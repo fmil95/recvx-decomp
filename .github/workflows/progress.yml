@@ -1,5 +1,3 @@
-# adapted from https://github.com/Mikompilation/Himuro/blob/main/.github/workflows/progress.yml
-
 name: Upload Objdiff Progress Report Artifacts
 
 on:
