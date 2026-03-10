@@ -84,9 +84,9 @@ int xVol;
 int xPan;
 SDS_PORT_REF** MidiHandle[0];
 int PlayerFootStepSwitch[3];
-int EnemyBackGroundSeFlag;
-short DefBg[3];
-_anon19 MidiInfo[0];
+int EnemyBackGroundSeFlag;*/
+short DefBg[3] = { 0, 1, 2 };
+/*_anon19 MidiInfo[0];
 float xDist;
 _anon6 NextSoundInfo;*/
 int PatId[4] = { -1, -1, -1, -1 };
@@ -1056,54 +1056,92 @@ void Reset3dSoundFlag(void) {
     Set3dSoundFlag(0xB, 0, 0);
 }
 
-/*// 
-// Start address: 0x293e60
+// 100% matching!
 void SetUserSoundVolume(int Type, int SlotNo, int StartVol, int LastVol, int Frame)
 {
-	// Line 1740, Address: 0x293e60, Func Offset: 0
-	// Line 1741, Address: 0x293e74, Func Offset: 0x14
-	// Line 1740, Address: 0x293e78, Func Offset: 0x18
-	// Line 1741, Address: 0x293e84, Func Offset: 0x24
-	// Line 1743, Address: 0x293ea8, Func Offset: 0x48
-	// Line 1744, Address: 0x293ebc, Func Offset: 0x5c
-	// Line 1746, Address: 0x293ed0, Func Offset: 0x70
-	// Line 1748, Address: 0x293ed8, Func Offset: 0x78
-	// Line 1749, Address: 0x293ef8, Func Offset: 0x98
-	// Line 1750, Address: 0x293f0c, Func Offset: 0xac
-	// Line 1752, Address: 0x293f20, Func Offset: 0xc0
-	// Line 1754, Address: 0x293f28, Func Offset: 0xc8
-	// Line 1755, Address: 0x293f3c, Func Offset: 0xdc
-	// Line 1757, Address: 0x293f50, Func Offset: 0xf0
-	// Line 1759, Address: 0x293f58, Func Offset: 0xf8
-	// Line 1760, Address: 0x293f6c, Func Offset: 0x10c
-	// Line 1761, Address: 0x293f80, Func Offset: 0x120
-	// Line 1762, Address: 0x293f94, Func Offset: 0x134
-	// Line 1764, Address: 0x293fa8, Func Offset: 0x148
-	// Line 1766, Address: 0x293fb0, Func Offset: 0x150
-	// Line 1767, Address: 0x293fc4, Func Offset: 0x164
-	// Line 1769, Address: 0x293fd8, Func Offset: 0x178
-	// Line 1771, Address: 0x293fe0, Func Offset: 0x180
-	// Line 1772, Address: 0x294010, Func Offset: 0x1b0
-	// Line 1774, Address: 0x294020, Func Offset: 0x1c0
-	// Line 1776, Address: 0x294028, Func Offset: 0x1c8
-	// Line 1777, Address: 0x294058, Func Offset: 0x1f8
-	// Line 1779, Address: 0x294068, Func Offset: 0x208
-	// Line 1781, Address: 0x294070, Func Offset: 0x210
-	// Line 1782, Address: 0x2940a0, Func Offset: 0x240
-	// Line 1784, Address: 0x2940b0, Func Offset: 0x250
-	// Line 1786, Address: 0x2940b8, Func Offset: 0x258
-	// Line 1787, Address: 0x2940e0, Func Offset: 0x280
-	// Line 1788, Address: 0x2940f0, Func Offset: 0x290
-	// Line 1789, Address: 0x294100, Func Offset: 0x2a0
-	// Line 1790, Address: 0x294110, Func Offset: 0x2b0
-	// Line 1792, Address: 0x294118, Func Offset: 0x2b8
-	// Line 1799, Address: 0x294120, Func Offset: 0x2c0
-	// Line 1800, Address: 0x294134, Func Offset: 0x2d4
-	// Line 1809, Address: 0x294148, Func Offset: 0x2e8
-	// Func End, Address: 0x294164, Func Offset: 0x304
+    switch (Type) 
+    {
+    case 0:
+        if ((GsSlotInfoSe[7].Flag & 0x2))
+        {
+            RequestSeFadeFunctionEx(7, StartVol, LastVol, Frame);
+        }
+
+        break;
+    case 1:
+        if ((GsSlotInfoSe[(SlotNo * 2) + 11].Flag & 0x2))
+        {
+            RequestSeFadeFunctionEx((SlotNo * 2) + 11, StartVol, LastVol, Frame);
+            RequestSeFadeFunctionEx((SlotNo * 2) + 12, StartVol, LastVol, Frame);
+        }
+        
+        break;
+    case 2:
+        if ((GsSlotInfoSe[6].Flag & 0x2))
+        {
+            RequestSeFadeFunctionEx(6, StartVol, LastVol, Frame);
+        }
+        
+        break;
+    case 3:
+        if ((GsSlotInfoSe[8].Flag & 0x2))
+        {
+            RequestSeFadeFunctionEx(8, StartVol, LastVol, Frame);
+            RequestSeFadeFunctionEx(9, StartVol, LastVol, Frame);
+            RequestSeFadeFunctionEx(19, StartVol, LastVol, Frame);
+        }
+        
+        break;
+    case 4:
+        if ((GsSlotInfoSe[10].Flag & 0x2))
+        {
+            RequestSeFadeFunctionEx(10, StartVol, LastVol, Frame);
+        }
+        
+        break;
+    case 5:
+        if ((GsSlotInfoSe[DefEne[SlotNo]].Flag & 0x2)) 
+        {
+            RequestSeFadeFunctionEx(DefEne[SlotNo], StartVol, LastVol, Frame);
+        }
+        
+        break;
+    case 6:
+        if ((GsSlotInfoMi[DefBg[SlotNo]].Flag & 0x2))
+        {
+            RequestMidiFadeFunctionEx(DefBg[SlotNo], StartVol, LastVol, Frame);
+        }
+        
+        break;
+    case 7:
+        if ((GsSlotInfoMi[DefEvt[SlotNo]].Flag & 0x2)) 
+        {
+            RequestMidiFadeFunctionEx(DefEvt[SlotNo], StartVol, LastVol, Frame);
+        }
+        
+        break;
+    case 8:
+        if ((ObjectInfo[SlotNo].Flag & 0x2))
+        {
+            ObjectInfo[SlotNo].VolFadeP[0] = StartVol;
+            ObjectInfo[SlotNo].VolFadeP[1] = LastVol;
+            ObjectInfo[SlotNo].VolFadeP[2] = Frame;
+
+            ObjectInfo[SlotNo].Flag |= 0x8;
+        }
+        
+        break;
+    case 10:
+        if ((GsSlotInfoAx->Flag & 0x2))
+        {
+            RequestAdxFadeFunctionEx(0, StartVol, LastVol, Frame);
+        }
+        
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x294170
 void SetUserSoundPan(int Type, int SlotNo, int StartPan, int LastPan, int Frame)
 {
