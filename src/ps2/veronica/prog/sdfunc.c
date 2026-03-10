@@ -1875,17 +1875,14 @@ void PlayVoice(int VoiceNo, _anon16* pPos, int Mode, int FadeInRate)
 {
 	// Line 3160, Address: 0x295c00, Func Offset: 0
 	// Func End, Address: 0x295c08, Func Offset: 0x8
-}
+}*/
 
-// 
-// Start address: 0x295c10
+// 100% matching!
 void ContinuePlayVoice()
 {
-	// Line 3170, Address: 0x295c10, Func Offset: 0
-	// Func End, Address: 0x295c18, Func Offset: 0x8
+	ContinueAdx(1);
 }
 
-*/ 
 // 100% matching!
 void StopVoice(int FadeOutRate)
 {
