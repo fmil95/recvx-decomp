@@ -1142,42 +1142,70 @@ void SetUserSoundPan(int Type, int SlotNo, int StartPan, int LastPan, int Frame)
 	// Line 1886, Address: 0x2943d8, Func Offset: 0x268
 	// Line 1897, Address: 0x2943e4, Func Offset: 0x274
 	// Func End, Address: 0x294400, Func Offset: 0x290
-}
-
-// 
-// Start address: 0x294400
-void PlayGameSe4Event(_anon25* gp, _anon16* pPos, int FloorType, int SeType)
-{
-	int Flag;
-	// Line 1947, Address: 0x294400, Func Offset: 0
-	// Line 1950, Address: 0x294418, Func Offset: 0x18
-	// Line 1951, Address: 0x294438, Func Offset: 0x38
-	// Line 1953, Address: 0x29443c, Func Offset: 0x3c
-	// Line 1954, Address: 0x29444c, Func Offset: 0x4c
-	// Line 1956, Address: 0x294450, Func Offset: 0x50
-	// Line 1958, Address: 0x29445c, Func Offset: 0x5c
-	// Line 1959, Address: 0x29446c, Func Offset: 0x6c
-	// Line 1961, Address: 0x294480, Func Offset: 0x80
-	// Line 1962, Address: 0x294490, Func Offset: 0x90
-	// Line 1965, Address: 0x2944a4, Func Offset: 0xa4
-	// Line 1967, Address: 0x2944d0, Func Offset: 0xd0
-	// Line 1968, Address: 0x2944d8, Func Offset: 0xd8
-	// Line 1970, Address: 0x2944e0, Func Offset: 0xe0
-	// Line 1971, Address: 0x2944f8, Func Offset: 0xf8
-	// Line 1973, Address: 0x294500, Func Offset: 0x100
-	// Line 1974, Address: 0x29450c, Func Offset: 0x10c
-	// Line 1976, Address: 0x294514, Func Offset: 0x114
-	// Line 1977, Address: 0x294524, Func Offset: 0x124
-	// Line 1979, Address: 0x29452c, Func Offset: 0x12c
-	// Line 1980, Address: 0x294538, Func Offset: 0x138
-	// Line 1982, Address: 0x294540, Func Offset: 0x140
-	// Line 1983, Address: 0x294550, Func Offset: 0x150
-	// Line 1985, Address: 0x294558, Func Offset: 0x158
-	// Line 1986, Address: 0x294564, Func Offset: 0x164
-	// Line 1988, Address: 0x29456c, Func Offset: 0x16c
-	// Line 1999, Address: 0x294580, Func Offset: 0x180
-	// Func End, Address: 0x29459c, Func Offset: 0x19c
 }*/
+
+// 100% matching!
+void PlayGameSe4Event(GAME_WORK* gp, NJS_POINT3* pPos, int FloorType, int SeType)
+{
+    int Flag;
+
+    Flag = 0;
+    
+    if (gp->LastVol != -1) 
+    {
+        Flag |= 0x2;
+    }
+    
+    if (gp->LastPan != -1) 
+    {
+        Flag |= 0x4;
+    }
+    
+    Set3dSoundFlag(gp->Type, gp->SlotNo, Flag);
+    
+    if (gp->LastVol != -1) 
+    {
+        SetUserSoundVolume(gp->Type, gp->SlotNo, gp->StartVol, gp->LastVol, gp->Frame);
+    }
+    
+    if (gp->LastPan != -1) 
+    {
+        SetUserSoundPan(gp->Type, gp->SlotNo, gp->StartPan, gp->LastPan, gp->Frame);
+    }
+    
+    switch (gp->Type)
+    {
+    case 0:
+        CallPlayerVoice(gp->SeNo);
+        break;
+    case 1:
+        CallPlayerFootStepSeEx(FloorType, SeType, 1, gp->SlotNo, pPos);
+        break;
+    case 2:
+        CallPlayerActionSe(gp->SeNo, 1);
+        break;
+    case 3:
+        CallPlayerWeaponSeEx(pPos, gp->SeNo, gp->SlotNo);
+        break;
+    case 4:
+        CallYakkyouSe(pPos, gp->SeNo);
+        break;
+    case 5:
+        CallEnemySe(gp->SlotNo, pPos, gp->SeNo);
+        break;
+    case 6:
+        CallBackGroundSe(gp->SlotNo, gp->SeNo);
+        break;
+    case 7:
+        CallNativeEventSe(gp->SlotNo, pPos, gp->SeNo, 1);
+        break;
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+        break;
+    }
+}
 
 // 100% matching! 
 void CallSystemSeBasic(int SeNo, int Volume, int FxLevel)

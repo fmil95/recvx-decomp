@@ -61,6 +61,19 @@ typedef struct SPQ_HEADER
     int BankNo; // offset 0xC, size 0x4
 } SPQ_HEADER;
 
+typedef struct GAME_WORK
+{
+    // total size: 0x20
+    int Type;     // offset 0x0, size 0x4
+    int SlotNo;   // offset 0x4, size 0x4
+    int SeNo;     // offset 0x8, size 0x4
+    int StartVol; // offset 0xC, size 0x4
+    int LastVol;  // offset 0x10, size 0x4
+    int StartPan; // offset 0x14, size 0x4
+    int LastPan;  // offset 0x18, size 0x4
+    int Frame;    // offset 0x1C, size 0x4
+} GAME_WORK;
+
 typedef struct
 {
 	float x;
