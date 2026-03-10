@@ -1502,17 +1502,15 @@ void RequestEnemySe(int EnemyNo, _anon16* pPos, int SeNo)
 {
 	// Line 2588, Address: 0x295240, Func Offset: 0
 	// Func End, Address: 0x29524c, Func Offset: 0xc
-}
+}*/
 
-// 
-// Start address: 0x295250
-void RequestEnemySeEx(int EnemyNo, _anon16* pPos, int SeNo, int FadeRate)
+// 100% matching! 
+void RequestEnemySeEx(int EnemyNo, NJS_POINT3* pPos, int SeNo, int FadeRate)
 {
-	// Line 2618, Address: 0x295254, Func Offset: 0x4
-	// Func End, Address: 0x29525c, Func Offset: 0xc
+	RequestEnemySeBasic(EnemyNo, pPos, SeNo, 1, FadeRate);
 }
 
-// 
+/*// 
 // Start address: 0x295260
 int ChechPlayEnemySe(int EnemyNo, int SeNo)
 {
