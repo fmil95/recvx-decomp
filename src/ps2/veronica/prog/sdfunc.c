@@ -1141,46 +1141,76 @@ void SetUserSoundVolume(int Type, int SlotNo, int StartVol, int LastVol, int Fra
     }
 }
 
-/*// 
-// Start address: 0x294170
+// 100% matching!
 void SetUserSoundPan(int Type, int SlotNo, int StartPan, int LastPan, int Frame)
 {
-	// Line 1841, Address: 0x294170, Func Offset: 0
-	// Line 1842, Address: 0x294184, Func Offset: 0x14
-	// Line 1841, Address: 0x294188, Func Offset: 0x18
-	// Line 1842, Address: 0x294194, Func Offset: 0x24
-	// Line 1844, Address: 0x2941b8, Func Offset: 0x48
-	// Line 1845, Address: 0x2941cc, Func Offset: 0x5c
-	// Line 1847, Address: 0x2941e0, Func Offset: 0x70
-	// Line 1849, Address: 0x2941e8, Func Offset: 0x78
-	// Line 1850, Address: 0x294208, Func Offset: 0x98
-	// Line 1851, Address: 0x29421c, Func Offset: 0xac
-	// Line 1853, Address: 0x294230, Func Offset: 0xc0
-	// Line 1855, Address: 0x294238, Func Offset: 0xc8
-	// Line 1856, Address: 0x29424c, Func Offset: 0xdc
-	// Line 1858, Address: 0x294260, Func Offset: 0xf0
-	// Line 1860, Address: 0x294268, Func Offset: 0xf8
-	// Line 1861, Address: 0x29427c, Func Offset: 0x10c
-	// Line 1862, Address: 0x294290, Func Offset: 0x120
-	// Line 1863, Address: 0x2942a4, Func Offset: 0x134
-	// Line 1865, Address: 0x2942b8, Func Offset: 0x148
-	// Line 1867, Address: 0x2942c0, Func Offset: 0x150
-	// Line 1868, Address: 0x2942d4, Func Offset: 0x164
-	// Line 1870, Address: 0x2942e8, Func Offset: 0x178
-	// Line 1872, Address: 0x2942f0, Func Offset: 0x180
-	// Line 1873, Address: 0x294320, Func Offset: 0x1b0
-	// Line 1875, Address: 0x294330, Func Offset: 0x1c0
-	// Line 1877, Address: 0x294338, Func Offset: 0x1c8
-	// Line 1878, Address: 0x294368, Func Offset: 0x1f8
-	// Line 1880, Address: 0x294378, Func Offset: 0x208
-	// Line 1882, Address: 0x294380, Func Offset: 0x210
-	// Line 1883, Address: 0x2943a8, Func Offset: 0x238
-	// Line 1884, Address: 0x2943b8, Func Offset: 0x248
-	// Line 1885, Address: 0x2943c8, Func Offset: 0x258
-	// Line 1886, Address: 0x2943d8, Func Offset: 0x268
-	// Line 1897, Address: 0x2943e4, Func Offset: 0x274
-	// Func End, Address: 0x294400, Func Offset: 0x290
-}*/
+    switch (Type)
+    {
+    case 0:
+        if ((GsSlotInfoSe[7].Flag & 0x4))
+        {
+            RequestSePanFunctionEx(7, StartPan, LastPan, Frame);
+        }
+        
+        break;
+    case 1:
+        if ((GsSlotInfoSe[(SlotNo * 2) + 11].Flag & 0x4))
+        {
+            RequestSePanFunctionEx((SlotNo * 2) + 11, StartPan, LastPan, Frame);
+            RequestSePanFunctionEx((SlotNo * 2) + 12, StartPan, LastPan, Frame);
+        }
+        
+        break;
+    case 2:
+        if ((GsSlotInfoSe[6].Flag & 0x4)) 
+        {
+            RequestSePanFunctionEx(6, StartPan, LastPan, Frame);
+        }
+        
+        break;
+    case 3:
+        if ((GsSlotInfoSe[8].Flag & 0x4)) 
+        {
+            RequestSePanFunctionEx(8, StartPan, LastPan, Frame);
+            RequestSePanFunctionEx(9, StartPan, LastPan, Frame);
+            RequestSePanFunctionEx(19, StartPan, LastPan, Frame);
+        }
+        
+        break;
+    case 4:
+        if ((GsSlotInfoSe[10].Flag & 0x4))
+        {
+            RequestSePanFunctionEx(10, StartPan, LastPan, Frame);
+        }
+        
+        break;
+    case 5:
+        if ((GsSlotInfoSe[DefEne[SlotNo]].Flag & 0x4)) 
+        {
+            RequestSePanFunctionEx(DefEne[SlotNo], StartPan, LastPan, Frame);
+        }
+        
+        break;
+    case 7:
+        if ((GsSlotInfoMi[DefEvt[SlotNo]].Flag & 0x4)) 
+        {
+            RequestMidiPanFunctionEx(DefEvt[SlotNo], StartPan, LastPan, Frame);
+        }
+        
+        break;
+    case 8:
+        if ((ObjectInfo[SlotNo].Flag & 0x4))
+        {
+            ObjectInfo[SlotNo].PanFadeP[0] = StartPan;
+            ObjectInfo[SlotNo].PanFadeP[1] = LastPan;
+            ObjectInfo[SlotNo].PanFadeP[2] = Frame;
+            
+            ObjectInfo[SlotNo].Flag |= 0x10;
+        }
+        
+        break;
+    }
+}
 
 // 100% matching!
 void PlayGameSe4Event(GAME_WORK* gp, NJS_POINT3* pPos, int FloorType, int SeType)
