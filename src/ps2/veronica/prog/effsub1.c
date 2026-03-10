@@ -1767,76 +1767,145 @@ void bhEff008(O_WRK* op)
 	scePrintf("bhEff008 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x228d30
-void bhEff009(O_WRK* op)
+// 100% matching!
+void bhEff009(O_WRK* op) 
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_f0[9];
-	//_anon8 uvinfo_f1[9];
-	// Line 2046, Address: 0x228d30, Func Offset: 0
-	// Line 2048, Address: 0x228d44, Func Offset: 0x14
-	// Line 2061, Address: 0x228d4c, Func Offset: 0x1c
-	// Line 2049, Address: 0x228d50, Func Offset: 0x20
-	// Line 2050, Address: 0x228d54, Func Offset: 0x24
-	// Line 2052, Address: 0x228d58, Func Offset: 0x28
-	// Line 2048, Address: 0x228d5c, Func Offset: 0x2c
-	// Line 2049, Address: 0x228d64, Func Offset: 0x34
-	// Line 2050, Address: 0x228d68, Func Offset: 0x38
-	// Line 2051, Address: 0x228d6c, Func Offset: 0x3c
-	// Line 2052, Address: 0x228d70, Func Offset: 0x40
-	// Line 2053, Address: 0x228d74, Func Offset: 0x44
-	// Line 2054, Address: 0x228d78, Func Offset: 0x48
-	// Line 2055, Address: 0x228d7c, Func Offset: 0x4c
-	// Line 2056, Address: 0x228d80, Func Offset: 0x50
-	// Line 2057, Address: 0x228d84, Func Offset: 0x54
-	// Line 2058, Address: 0x228d88, Func Offset: 0x58
-	// Line 2059, Address: 0x228d8c, Func Offset: 0x5c
-	// Line 2060, Address: 0x228d90, Func Offset: 0x60
-	// Line 2061, Address: 0x228d94, Func Offset: 0x64
-	// Line 2062, Address: 0x228d9c, Func Offset: 0x6c
-	// Line 2063, Address: 0x228da0, Func Offset: 0x70
-	// Line 2064, Address: 0x228da4, Func Offset: 0x74
-	// Line 2065, Address: 0x228da8, Func Offset: 0x78
-	// Line 2067, Address: 0x228db0, Func Offset: 0x80
-	// Line 2068, Address: 0x228db8, Func Offset: 0x88
-	// Line 2069, Address: 0x228dbc, Func Offset: 0x8c
-	// Line 2070, Address: 0x228dc0, Func Offset: 0x90
-	// Line 2074, Address: 0x228dec, Func Offset: 0xbc
-	// Line 2075, Address: 0x228df4, Func Offset: 0xc4
-	// Line 2076, Address: 0x228dfc, Func Offset: 0xcc
-	// Line 2078, Address: 0x228e04, Func Offset: 0xd4
-	// Line 2079, Address: 0x228e08, Func Offset: 0xd8
-	// Line 2082, Address: 0x228e14, Func Offset: 0xe4
-	// Line 2085, Address: 0x228e1c, Func Offset: 0xec
-	// Line 2087, Address: 0x228e48, Func Offset: 0x118
-	// Line 2089, Address: 0x228e50, Func Offset: 0x120
-	// Line 2090, Address: 0x228e5c, Func Offset: 0x12c
-	// Line 2092, Address: 0x228e74, Func Offset: 0x144
-	// Line 2094, Address: 0x228e7c, Func Offset: 0x14c
-	// Line 2096, Address: 0x228eb0, Func Offset: 0x180
-	// Line 2097, Address: 0x228eb8, Func Offset: 0x188
-	// Line 2099, Address: 0x228ecc, Func Offset: 0x19c
-	// Line 2100, Address: 0x228ed4, Func Offset: 0x1a4
-	// Line 2099, Address: 0x228edc, Func Offset: 0x1ac
-	// Line 2100, Address: 0x228ee4, Func Offset: 0x1b4
-	// Line 2101, Address: 0x228ef8, Func Offset: 0x1c8
-	// Line 2102, Address: 0x228efc, Func Offset: 0x1cc
-	// Line 2104, Address: 0x228f0c, Func Offset: 0x1dc
-	// Line 2113, Address: 0x228f10, Func Offset: 0x1e0
-	// Line 2104, Address: 0x228f14, Func Offset: 0x1e4
-	// Line 2105, Address: 0x228f18, Func Offset: 0x1e8
-	// Line 2106, Address: 0x228f20, Func Offset: 0x1f0
-	// Line 2107, Address: 0x228f30, Func Offset: 0x200
-	// Line 2108, Address: 0x228f38, Func Offset: 0x208
-	// Line 2109, Address: 0x228f40, Func Offset: 0x210
-	// Line 2110, Address: 0x228f50, Func Offset: 0x220
-	// Line 2111, Address: 0x228f60, Func Offset: 0x230
-	// Line 2112, Address: 0x228f70, Func Offset: 0x240
-	// Line 2113, Address: 0x228f7c, Func Offset: 0x24c
-	// Line 2114, Address: 0x228fb0, Func Offset: 0x280
-	// Func End, Address: 0x228fb8, Func Offset: 0x288
-	scePrintf("bhEff009 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+	static UV_WORK uvinfo_f0[9] = 
+    {
+        { 0.0f,   0.0f,   0.25f, 0.25f },
+        { 0.25f,  0.0f,   0.25f, 0.25f },
+        { 0.5f,   0.0f,   0.25f, 0.25f },
+        { 0.75f,  0.0f,   0.25f, 0.25f },
+        { 0.0f,   0.25f,  0.25f, 0.25f },
+        { 0.25f,  0.25f,  0.25f, 0.25f },
+        { 0.5f,   0.25f,  0.25f, 0.25f },
+        { 0.75f,  0.25f,  0.25f, 0.25f },
+        { -1.0f,  0.0f,   0.0f,  0.0f  },
+    };
+    static UV_WORK uvinfo_f1[9] = 
+    {
+        { 0.0f,     0.8125f, 0.0625f, 0.0625f },
+        { 0.125f,   0.8125f, 0.0625f, 0.0625f },
+        { 0.1875f,  0.8125f, 0.0625f, 0.0625f },
+        { 0.25f,    0.8125f, 0.0625f, 0.0625f },
+        { 0.3125f,  0.8125f, 0.0625f, 0.0625f },
+        { 0.375f,   0.8125f, 0.0625f, 0.0625f },
+        { 0.4375f,  0.8125f, 0.0625f, 0.0625f },
+        { 0.0f,     0.0f,    0.0f,    0.0f    },  
+        { -1.0f,    0.0f,    0.0f,    0.0f    },
+    };
+    
+    switch (op->mode0) 
+    {
+    case 0:
+        op->flg |= 0x4100000;
+        
+        op->tv[0].x = -1.0f;
+        op->tv[0].y = -2.0f;
+        op->tv[0].z = 0;
+        
+        op->tv[1].x = 1.0f;
+        op->tv[1].y = -2.0f;
+        op->tv[1].z = 0;
+        
+        op->tv[2].x = -1.0f;
+        op->tv[2].y = 0;
+        op->tv[2].z = 0;
+        
+        op->tv[3].x = 1.0f;
+        op->tv[3].y = 0;
+        op->tv[3].z = 0;
+        
+        op->tv[0].col = 0xFFE0E0E0;
+        op->tv[1].col = 0xFFE0E0E0;
+        op->tv[2].col = 0xFFE0E0E0;
+        op->tv[3].col = 0xFFE0E0E0;
+        
+        op->bl_src = 8;
+        op->bl_dst = 6;
+        
+        op->ani_ct = 0;
+        op->ct0 = 0;
+        
+        switch (op->type) 
+        {                          
+        case 1:
+        case 2:
+        case 3:
+            op->tex_id = 8;
+            
+            uvp = uvinfo_f1;
+            
+            op->exp0 = (unsigned char*)uvp;
+            break;
+        default:
+            op->tex_id = 9;
+            
+            uvp = uvinfo_f0;
+            
+            op->exp0 = (unsigned char*)uvp;
+            break;
+        }
+        
+        op->mode0 = 1;
+    }
+    
+    if (op->type == 3) 
+    {
+        if ((sys->st_flg & 0x20000000)) 
+        {
+            goto label;
+        } 
+        else 
+        {
+            op->flg = 0;
+        }
+    } 
+    else
+    {
+    label:
+        if (op->type == 2) 
+        {
+            if (!(plp->flg & 0x1000000)) 
+            {
+                op->flg = 0;
+                return;
+            }
+            
+            if (!(((sys->pt_flg & 0x1)) && (!(plp->stflg & 0x1000000)) && (!(plp->mdflg & 0x1)))) 
+            {
+                return;
+            }
+            
+            op->flg &= ~0x1000000;
+        }
+    
+        uvp = (UV_WORK*)op->exp0 + op->ct0;
+        
+        if (uvp->u == -1.0f) 
+        {
+            op->ct0 = 0;
+            
+            uvp = (UV_WORK*)op->exp0 + op->ct0;
+        }
+        
+        op->tv[0].u = uvp->u;
+        op->tv[0].v = uvp->v;
+        
+        op->tv[1].u = uvp->u + uvp->xs;
+        op->tv[1].v = uvp->v;
+        
+        op->tv[2].u = uvp->u;
+        op->tv[2].v = uvp->v + uvp->ys;
+        
+        op->tv[3].u = uvp->u + uvp->xs;
+        op->tv[3].v = uvp->v + uvp->ys;
+        
+        op->ct0++;
+        
+        sys->ef_trs[sys->ef_trsn++] = op;
+    }
 }
 
 // 
