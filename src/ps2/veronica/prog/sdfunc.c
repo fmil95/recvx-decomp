@@ -1679,27 +1679,22 @@ int CallNativeEventSe(int SlotNo, _anon16* pPos, int SeNo, int Mode)
 	// Line 2817, Address: 0x295580, Func Offset: 0x140
 	// Line 2818, Address: 0x295584, Func Offset: 0x144
 	// Func End, Address: 0x295590, Func Offset: 0x150
-}
+}*/
 
-// 
-// Start address: 0x295590
+// 100% matching!
 int StopNativeEventSe(int SlotNo)
 {
-	int SlotDef[5];
-	// Line 2827, Address: 0x295590, Func Offset: 0
-	// Line 2828, Address: 0x295594, Func Offset: 0x4
-	// Line 2827, Address: 0x29559c, Func Offset: 0xc
-	// Line 2828, Address: 0x2955a0, Func Offset: 0x10
-	// Line 2830, Address: 0x2955a8, Func Offset: 0x18
-	// Line 2828, Address: 0x2955ac, Func Offset: 0x1c
-	// Line 2830, Address: 0x2955b8, Func Offset: 0x28
-	// Line 2831, Address: 0x2955c8, Func Offset: 0x38
-	// Line 2834, Address: 0x2955d0, Func Offset: 0x40
-	// Line 2836, Address: 0x2955e0, Func Offset: 0x50
-	// Line 2837, Address: 0x2955e4, Func Offset: 0x54
-	// Func End, Address: 0x2955f0, Func Offset: 0x60
+    int SlotDef[5] = { 7, 6, 5, 4, 3 };
+    
+    if (MaxSlotEventSe < SlotNo) 
+    {
+        return 1;
+    }
+    
+    StopMidi(SlotDef[SlotNo]);
+    
+    return 0;
 }
-*/
 
 // 100% matching!
 void RequestObjectSeEx(int ObjectNo, NJS_POINT3* pPos, int SeNo, int Prio, int Type) 
