@@ -1885,39 +1885,56 @@ void StopBgm2()
     NextBgmVolume = -127;
 }
 
-// 
-// Start address: 0x295a20
+// 100% matching!
 void PlayVoiceEx2(int PatId, int VoiceNo, NJS_POINT3* pPos, int Mode, int FadeInRate, int PauseFlag)
 {
-	float Dist;
-	char Vol;
-	char Pan;
-	// Line 3093, Address: 0x295a20, Func Offset: 0
-	// Line 3098, Address: 0x295a44, Func Offset: 0x24
-	// Line 3094, Address: 0x295a5c, Func Offset: 0x3c
-	// Line 3098, Address: 0x295a60, Func Offset: 0x40
-	// Line 3099, Address: 0x295a74, Func Offset: 0x54
-	// Line 3100, Address: 0x295a7c, Func Offset: 0x5c
-	// Line 3103, Address: 0x295a84, Func Offset: 0x64
-	// Line 3105, Address: 0x295aac, Func Offset: 0x8c
-	// Line 3106, Address: 0x295ac8, Func Offset: 0xa8
-	// Line 3107, Address: 0x295ad8, Func Offset: 0xb8
-	// Line 3108, Address: 0x295ae4, Func Offset: 0xc4
-	// Line 3109, Address: 0x295af8, Func Offset: 0xd8
-	// Line 3111, Address: 0x295b00, Func Offset: 0xe0
-	// Line 3112, Address: 0x295b08, Func Offset: 0xe8
-	// Line 3113, Address: 0x295b18, Func Offset: 0xf8
-	// Line 3114, Address: 0x295b20, Func Offset: 0x100
-	// Line 3116, Address: 0x295b2c, Func Offset: 0x10c
-	// Line 3117, Address: 0x295b3c, Func Offset: 0x11c
-	// Line 3118, Address: 0x295b50, Func Offset: 0x130
-	// Line 3120, Address: 0x295b58, Func Offset: 0x138
-	// Line 3121, Address: 0x295b78, Func Offset: 0x158
-	// Line 3122, Address: 0x295b88, Func Offset: 0x168
-	// Line 3125, Address: 0x295b94, Func Offset: 0x174
-	// Line 3126, Address: 0x295ba0, Func Offset: 0x180
-	// Func End, Address: 0x295bc4, Func Offset: 0x1a4
-	scePrintf("PlayVoiceEx2 - UNIMPLEMENTED!\n");
+    char Pan;   
+    char Vol;   
+    float Dist; 
+
+    Pan = 0;
+    Vol = 0;
+    
+    if (GetAdxStatus(1) == 3) 
+    {
+        StopAdx(1);
+        
+        AdxPlayFlag[1] = 0;
+    }
+    
+    switch (Mode) 
+    {                               
+    case 0:
+        Get3DSoundParameter(&CameraPos, pPos, &Pan, &Vol, &Dist, 1);
+        
+        SetPanAdx(1, 0, Pan);
+        SetVolumeAdx(1, Vol); 
+        
+        PlayAdxEx(1, PatId, VoiceNo, PauseFlag);
+        break;
+    case 1:
+        if (FadeInRate != 0) 
+        {
+            RequestAdxFadeFunction(1, 1, FadeInRate);
+        } 
+        else 
+        {
+            SetVolumeAdx(1, 0);
+        }
+        
+        SetPanAdx(1, 0, 0);
+        
+        PlayAdxEx(1, PatId, VoiceNo, PauseFlag);
+        break;
+    case 2:
+        Get3DSoundParameter(&CameraPos, pPos, &Pan, &Vol, &Dist, 1);
+        
+        SetPanAdx(1, 0, Pan);
+        SetVolumeAdx(1, Vol);
+        break;
+    }
+    
+    AdxPlayFlag[1] = 1;
 }
 
 // 100% matching!
