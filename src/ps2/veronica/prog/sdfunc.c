@@ -1724,37 +1724,42 @@ void RequestObjectSeEx(int ObjectNo, NJS_POINT3* pPos, int SeNo, int Prio, int T
     oip->ReqFlag = 1;
 }
 
-// 
-// Start address: 0x2956a0
+// 100% matching!
 void RegistObjectSe(int ObjectNo, NJS_POINT3* pPos, int SeNo, int Prio)
 {
-	_anon35* oip;
-	int i;
-	// Line 2904, Address: 0x2956a0, Func Offset: 0
-	// Line 2909, Address: 0x2956a8, Func Offset: 0x8
-	// Line 2905, Address: 0x2956ac, Func Offset: 0xc
-	// Line 2909, Address: 0x2956bc, Func Offset: 0x1c
-	// Line 2910, Address: 0x2956c0, Func Offset: 0x20
-	// Line 2907, Address: 0x2956c4, Func Offset: 0x24
-	// Line 2914, Address: 0x2956d4, Func Offset: 0x34
-	// Line 2910, Address: 0x2956d8, Func Offset: 0x38
-	// Line 2911, Address: 0x2956dc, Func Offset: 0x3c
-	// Line 2916, Address: 0x2956e4, Func Offset: 0x44
-	// Line 2919, Address: 0x2956e8, Func Offset: 0x48
-	// Line 2911, Address: 0x2956f0, Func Offset: 0x50
-	// Line 2912, Address: 0x2956f4, Func Offset: 0x54
-	// Line 2913, Address: 0x2956f8, Func Offset: 0x58
-	// Line 2914, Address: 0x2956fc, Func Offset: 0x5c
-	// Line 2915, Address: 0x295700, Func Offset: 0x60
-	// Line 2916, Address: 0x295704, Func Offset: 0x64
-	// Line 2919, Address: 0x295708, Func Offset: 0x68
-	// Line 2920, Address: 0x295714, Func Offset: 0x74
-	// Line 2923, Address: 0x295724, Func Offset: 0x84
-	// Line 2926, Address: 0x295734, Func Offset: 0x94
-	// Line 2927, Address: 0x295744, Func Offset: 0xa4
-	// Line 2928, Address: 0x295758, Func Offset: 0xb8
-	// Func End, Address: 0x295760, Func Offset: 0xc0
-	scePrintf("RegistObjectSe - UNIMPLEMENTED!\n");
+    int i;
+    Object* oip;
+
+    oip = ObjectInfo;
+    
+    oip = &oip[ObjectNo];
+    
+    SeNo = (SeNo & 0xFFFF00FF) | 0x200;
+    
+    oip->pos.x = pPos->x;
+    oip->pos.y = pPos->y;
+    oip->pos.z = pPos->z;
+    
+    oip->Prio = Prio;
+    
+    oip->Type = 0;
+    
+    oip->SlotNo = -1;
+    oip->SeNo = SeNo;
+    
+    oip->ReqFlag = 1;
+    
+    for (i = 0; i < MaxObjectReqList; i++)  
+    {
+        if (ObjectReqList[i] == ObjectNo)
+        {
+            return;
+        }
+    } 
+    
+    ObjectReqList[i] = ObjectNo;
+    
+    MaxObjectReqList++;
 }
 
 // 100% matching!
@@ -1923,7 +1928,7 @@ void PlayVoiceEx2(int PatId, int VoiceNo, NJS_POINT3* pPos, int Mode, int FadeIn
         }
         
         SetPanAdx(1, 0, 0);
-        
+
         PlayAdxEx(1, PatId, VoiceNo, PauseFlag);
         break;
     case 2:
