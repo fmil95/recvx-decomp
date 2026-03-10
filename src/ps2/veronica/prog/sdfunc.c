@@ -1861,13 +1861,10 @@ void PlayVoiceEx2(int PatId, int VoiceNo, NJS_POINT3* pPos, int Mode, int FadeIn
 	scePrintf("PlayVoiceEx2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x295bd0
+// 100% matching!
 void PlayVoiceEx(int VoiceNo, NJS_POINT3* pPos, int Mode, int FadeInRate, int PauseFlag)
 {
-	// Line 3144, Address: 0x295bd4, Func Offset: 0x4
-	// Func End, Address: 0x295bfc, Func Offset: 0x2c
-    scePrintf("PlayVoiceEx - UNIMPLEMENTED!\n");
+	PlayVoiceEx2(PatId[1], VoiceNo, pPos, Mode, FadeInRate, PauseFlag);
 }
 
 // 100% matching!
