@@ -82,9 +82,9 @@ int SystemSeSlotSwitch;
 /*int xAng;
 int xVol;
 int xPan;
-SDS_PORT_REF** MidiHandle[0];
-int PlayerFootStepSwitch[3];
-int EnemyBackGroundSeFlag;*/
+SDS_PORT_REF** MidiHandle[0];*/
+int PlayerFootStepSwitch[3] = { 0 };
+/*int EnemyBackGroundSeFlag;*/
 short DefBg[3] = { 0, 1, 2 };
 /*_anon19 MidiInfo[0];
 float xDist;
@@ -1358,28 +1358,28 @@ void CallPlayerVoice(int SeNo) {
     ExPlaySe(&RequestInfo);
 }
 
-
-/*// 
-// Start address: 0x2947b0
+// 100% matching!
 int GetPlayerActionSeSlotNo(int Type, int Id)
 {
-	int SlotDef[6];
-	// Line 2135, Address: 0x2947b0, Func Offset: 0
-	// Line 2134, Address: 0x2947bc, Func Offset: 0xc
-	// Line 2135, Address: 0x2947c0, Func Offset: 0x10
-	// Line 2140, Address: 0x2947c4, Func Offset: 0x14
-	// Line 2135, Address: 0x2947c8, Func Offset: 0x18
-	// Line 2140, Address: 0x2947d0, Func Offset: 0x20
-	// Line 2145, Address: 0x2947f4, Func Offset: 0x44
-	// Line 2155, Address: 0x294808, Func Offset: 0x58
-	// Line 2145, Address: 0x29480c, Func Offset: 0x5c
-	// Line 2155, Address: 0x294818, Func Offset: 0x68
-	// Line 2160, Address: 0x294830, Func Offset: 0x80
-	// Line 2162, Address: 0x294834, Func Offset: 0x84
-	// Func End, Address: 0x29483c, Func Offset: 0x8c
+    int SlotDef[6] = { 11, 12, 13, 14, 15, 16 };
+    
+    switch (Type) 
+    {
+    case 0:
+    case 1:
+    case 4:
+    case 5:
+        PlayerFootStepSwitch[Id] = !PlayerFootStepSwitch[Id];
+    
+        return SlotDef[(Id * 2) + PlayerFootStepSwitch[Id]];
+    case 2:
+    case 3:
+    case 6:
+        return 6;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x294840
 void CallPlayerFootStepSeEx(int FloorType, int Type, int Flag, int Id, _anon16* pPos)
 {
