@@ -76,6 +76,7 @@ void RequestMidiPanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame);
 void RequestSePanFunctionEx(int SlotNo, int StartPan, int LastPan, int Frame);
 int ExecSoundPanManager();
 
+extern SDMIDI MidiHandle[8];
 extern char SdcGdDaVolume;
 extern unsigned int SddFirstFlag;
 

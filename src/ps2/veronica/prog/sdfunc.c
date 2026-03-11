@@ -81,8 +81,7 @@ int WeaponSeSlotSwitch;
 int SystemSeSlotSwitch;
 /*int xAng;
 int xVol;
-int xPan;
-SDS_PORT_REF** MidiHandle[0];*/
+int xPan;*/
 int PlayerFootStepSwitch[3] = { 0 };
 /*int EnemyBackGroundSeFlag;*/
 short DefBg[3] = { 0, 1, 2 };
@@ -1518,47 +1517,51 @@ void CallYakkyouSe(NJS_POINT3* pPos, int SeNo)
     }
 }
 
-// 
-// Start address: 0x294d90
+// 100% matching!
 void CallBackGroundSeEx(unsigned int SlotNo, int SeNo, short Timer)
 {
-	int SlotDef[3];
-	// Line 2386, Address: 0x294d90, Func Offset: 0
-	// Line 2387, Address: 0x294da0, Func Offset: 0x10
-	// Line 2386, Address: 0x294da4, Func Offset: 0x14
-	// Line 2387, Address: 0x294da8, Func Offset: 0x18
-	// Line 2391, Address: 0x294dc0, Func Offset: 0x30
-	// Line 2389, Address: 0x294dc4, Func Offset: 0x34
-	// Line 2387, Address: 0x294dd0, Func Offset: 0x40
-	// Line 2389, Address: 0x294dd4, Func Offset: 0x44
-	// Line 2387, Address: 0x294dd8, Func Offset: 0x48
-	// Line 2391, Address: 0x294ddc, Func Offset: 0x4c
-	// Line 2392, Address: 0x294de8, Func Offset: 0x58
-	// Line 2393, Address: 0x294dfc, Func Offset: 0x6c
-	// Line 2394, Address: 0x294e0c, Func Offset: 0x7c
-	// Line 2396, Address: 0x294e1c, Func Offset: 0x8c
-	// Line 2399, Address: 0x294e24, Func Offset: 0x94
-	// Line 2400, Address: 0x294e34, Func Offset: 0xa4
-	// Line 2404, Address: 0x294e48, Func Offset: 0xb8
-	// Line 2405, Address: 0x294e54, Func Offset: 0xc4
-	// Line 2410, Address: 0x294e70, Func Offset: 0xe0
-	// Line 2411, Address: 0x294e78, Func Offset: 0xe8
-	// Line 2414, Address: 0x294e84, Func Offset: 0xf4
-	// Line 2418, Address: 0x294e94, Func Offset: 0x104
-	// Line 2415, Address: 0x294e98, Func Offset: 0x108
-	// Line 2414, Address: 0x294e9c, Func Offset: 0x10c
-	// Line 2415, Address: 0x294ea0, Func Offset: 0x110
-	// Line 2416, Address: 0x294eac, Func Offset: 0x11c
-	// Line 2417, Address: 0x294eb4, Func Offset: 0x124
-	// Line 2418, Address: 0x294ebc, Func Offset: 0x12c
-	// Line 2419, Address: 0x294ec4, Func Offset: 0x134
-	// Line 2420, Address: 0x294ecc, Func Offset: 0x13c
-	// Line 2421, Address: 0x294ed8, Func Offset: 0x148
-	// Line 2422, Address: 0x294ee0, Func Offset: 0x150
-	// Line 2424, Address: 0x294eec, Func Offset: 0x15c
-	// Line 2425, Address: 0x294efc, Func Offset: 0x16c
-	// Func End, Address: 0x294f14, Func Offset: 0x184
-    scePrintf("CallBackGroundSeEx - UNIMPLEMENTED!\n");
+    int SlotDef[3] = { 0, 1, 2 };
+
+    SeNo = (SeNo & 0xFFFF00FF) | 0x300;
+    
+    if (StartInitScriptFlag != 0)
+    {
+        BgSePrmBuf[SlotNo].SeNo = SeNo;
+        
+        BgSePrmBuf[SlotNo].Timer = Timer;
+        
+        BgSePrmBuf[SlotNo].ReqFlag = 1;
+        return;
+    }
+    
+    if (Timer != 0) 
+    {
+        RequestMidiFadeFunction(SlotDef[SlotNo], 1, Timer);
+        
+        RequestInfo.VolumeDelayTime = -1;
+        
+        sdMidiSetVol(MidiHandle[SlotNo], -127, 0);
+    } 
+    else 
+    {
+        RequestInfo.VolumeDelayTime = -2;
+    }
+    
+    RequestInfo.SlotNo = SlotDef[SlotNo];
+    RequestInfo.BankNo = (SeNo / 256) & 0xF;
+    RequestInfo.ListNo = SeNo;
+    
+    RequestInfo.Priority = 0;
+    
+    RequestInfo.PanDelayTime = -2;
+    RequestInfo.PitchDelayTime = -2;
+    RequestInfo.SpeedDelayTime = -1;
+    
+    RequestInfo.FxInput = -1;
+    
+    ExPlayMidi(&RequestInfo);
+    
+    CurrentBgSeNo[SlotNo] = SeNo;
 }
 
 // 100% matching
