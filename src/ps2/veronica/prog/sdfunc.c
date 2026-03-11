@@ -1678,39 +1678,29 @@ void StopBackGroundSe2(unsigned int SlotNo) {
     CurrentBgSeNo[SlotNo] = -1;
 }
 
-/*// 
-// Start address: 0x295030
+// 100% matching!
 void CallDoorSe(unsigned int No)
 {
-	unsigned char DoorFxDef[40];
-	// Line 2502, Address: 0x295030, Func Offset: 0
-	// Line 2503, Address: 0x295034, Func Offset: 0x4
-	// Line 2502, Address: 0x29503c, Func Offset: 0xc
-	// Line 2503, Address: 0x295040, Func Offset: 0x10
-	// Line 2511, Address: 0x295050, Func Offset: 0x20
-	// Line 2503, Address: 0x295058, Func Offset: 0x28
-	// Line 2511, Address: 0x295064, Func Offset: 0x34
-	// Line 2512, Address: 0x295068, Func Offset: 0x38
-	// Line 2513, Address: 0x295074, Func Offset: 0x44
-	// Line 2514, Address: 0x29507c, Func Offset: 0x4c
-	// Line 2515, Address: 0x295084, Func Offset: 0x54
-	// Line 2516, Address: 0x295090, Func Offset: 0x60
-	// Line 2517, Address: 0x295098, Func Offset: 0x68
-	// Line 2522, Address: 0x2950a0, Func Offset: 0x70
-	// Line 2518, Address: 0x2950a8, Func Offset: 0x78
-	// Line 2526, Address: 0x2950b4, Func Offset: 0x84
-	// Line 2522, Address: 0x2950bc, Func Offset: 0x8c
-	// Line 2521, Address: 0x2950c4, Func Offset: 0x94
-	// Line 2522, Address: 0x2950cc, Func Offset: 0x9c
-	// Line 2526, Address: 0x2950d4, Func Offset: 0xa4
-	// Line 2531, Address: 0x2950d8, Func Offset: 0xa8
-	// Line 2526, Address: 0x2950dc, Func Offset: 0xac
-	// Line 2531, Address: 0x2950e0, Func Offset: 0xb0
-	// Line 2526, Address: 0x2950e4, Func Offset: 0xb4
-	// Line 2531, Address: 0x2950f4, Func Offset: 0xc4
-	// Line 2532, Address: 0x2950fc, Func Offset: 0xcc
-	// Func End, Address: 0x295108, Func Offset: 0xd8
-}*/
+    unsigned char DoorFxDef[40] = { 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40 };
+    
+    RequestInfo.SlotNo = 2; 
+    RequestInfo.BankNo = 1;
+    RequestInfo.ListNo = No;
+    
+    RequestInfo.Priority = 0;
+    
+    RequestInfo.PanDelayTime = -2;
+    RequestInfo.VolumeDelayTime = -2;
+    RequestInfo.PitchDelayTime = -2;
+    RequestInfo.SpeedDelayTime = -1;
+    
+    RequestInfo.FxInput = 0;
+    RequestInfo.FxLevel = DoorFxDef[CurrentDoorNo];
+    
+    MidiInfo[RequestInfo.SlotNo].FadeFunc = 0;
+    
+    ExPlayMidi(&RequestInfo);
+}
 
 // 100% matching!
 void RequestEnemySeBasic(int EnemyNo, NJS_POINT3* pPos, int SeNo, int Flag, int FadeRate)
