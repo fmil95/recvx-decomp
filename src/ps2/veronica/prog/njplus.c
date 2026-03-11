@@ -1237,69 +1237,102 @@ unsigned int npGetMatColor(NJS_CNK_OBJECT* objp, int obj_n)
     return 0;
 }
 
-/*// 
-// Start address: 0x12da70
-void npSetAllMatColor(npobj* objp, int obj_n, unsigned int argb)
+// 100% matching!
+void npSetAllMatColor(NJS_CNK_OBJECT* objp, int obj_n, unsigned int argb)
 {
-	unsigned char b;
-	unsigned char g;
-	unsigned char r;
-	unsigned char a;
-	unsigned char* mat;
-	short* plp;
-	short head;
-	int offset;
-	int i;
-	// Line 2877, Address: 0x12da70, Func Offset: 0
-	// Line 2878, Address: 0x12da80, Func Offset: 0x10
-	// Line 2871, Address: 0x12da90, Func Offset: 0x20
-	// Line 2879, Address: 0x12da94, Func Offset: 0x24
-	// Line 2871, Address: 0x12da9c, Func Offset: 0x2c
-	// Line 2879, Address: 0x12daa0, Func Offset: 0x30
-	// Line 2881, Address: 0x12daa4, Func Offset: 0x34
-	// Line 2871, Address: 0x12daa8, Func Offset: 0x38
-	// Line 2880, Address: 0x12daac, Func Offset: 0x3c
-	// Line 2881, Address: 0x12dab0, Func Offset: 0x40
-	// Line 2895, Address: 0x12dab8, Func Offset: 0x48
-	// Line 2890, Address: 0x12dac8, Func Offset: 0x58
-	// Line 2923, Address: 0x12dacc, Func Offset: 0x5c
-	// Line 2882, Address: 0x12dad0, Func Offset: 0x60
-	// Line 2883, Address: 0x12daec, Func Offset: 0x7c
-	// Line 2884, Address: 0x12daf4, Func Offset: 0x84
-	// Line 2885, Address: 0x12daf8, Func Offset: 0x88
-	// Line 2886, Address: 0x12db04, Func Offset: 0x94
-	// Line 2887, Address: 0x12db1c, Func Offset: 0xac
-	// Line 2888, Address: 0x12db24, Func Offset: 0xb4
-	// Line 2889, Address: 0x12db28, Func Offset: 0xb8
-	// Line 2890, Address: 0x12db30, Func Offset: 0xc0
-	// Line 2892, Address: 0x12db40, Func Offset: 0xd0
-	// Line 2895, Address: 0x12db58, Func Offset: 0xe8
-	// Line 2898, Address: 0x12db80, Func Offset: 0x110
-	// Line 2899, Address: 0x12db84, Func Offset: 0x114
-	// Line 2900, Address: 0x12db88, Func Offset: 0x118
-	// Line 2901, Address: 0x12db8c, Func Offset: 0x11c
-	// Line 2902, Address: 0x12db98, Func Offset: 0x128
-	// Line 2905, Address: 0x12dba0, Func Offset: 0x130
-	// Line 2906, Address: 0x12dba4, Func Offset: 0x134
-	// Line 2907, Address: 0x12dba8, Func Offset: 0x138
-	// Line 2908, Address: 0x12dbac, Func Offset: 0x13c
-	// Line 2909, Address: 0x12dbc0, Func Offset: 0x150
-	// Line 2910, Address: 0x12dbc4, Func Offset: 0x154
-	// Line 2911, Address: 0x12dbc8, Func Offset: 0x158
-	// Line 2912, Address: 0x12dbcc, Func Offset: 0x15c
-	// Line 2914, Address: 0x12dbdc, Func Offset: 0x16c
-	// Line 2915, Address: 0x12dbe0, Func Offset: 0x170
-	// Line 2916, Address: 0x12dbe8, Func Offset: 0x178
-	// Line 2917, Address: 0x12dbec, Func Offset: 0x17c
-	// Line 2918, Address: 0x12dbf4, Func Offset: 0x184
-	// Line 2920, Address: 0x12dc0c, Func Offset: 0x19c
-	// Line 2921, Address: 0x12dc14, Func Offset: 0x1a4
-	// Line 2922, Address: 0x12dc18, Func Offset: 0x1a8
-	// Line 2923, Address: 0x12dc20, Func Offset: 0x1b0
-	// Line 2926, Address: 0x12dc28, Func Offset: 0x1b8
-	// Line 2927, Address: 0x12dc38, Func Offset: 0x1c8
-	// Func End, Address: 0x12dc48, Func Offset: 0x1d8
-}*/
+    int i;         
+    int offset;     
+    short head;         
+    short* plp;         
+    unsigned char* mat; 
+    unsigned char a;    
+    unsigned char r;    
+    unsigned char g;    
+    unsigned char b;    
+    
+    a = ((argb & 0xFF000000) >> 24) & 0xFF;
+    r = ((argb & 0xFF0000) >> 16) & 0xFF;
+    g = ((argb & 0xFF00) >> 8) & 0xFF;
+    b = argb & 0xFF;
+    
+    for (i = 0; i < obj_n; i++, objp++)
+    {
+        if ((objp->model != NULL) && (!(objp->evalflags & 0x8))) 
+        {
+            plp = objp->model->plist;
+            
+            while (TRUE) 
+            {
+                head = (unsigned char)*plp++; 
+                
+                if ((head >= 64) && (head < 67)) 
+                {
+                    offset = *plp++; 
+                    plp += offset;
+                }
+                else if (head == 8) 
+                {
+                    plp++;
+                }
+                else if ((head >= 17) && (head < 24)) 
+                {
+                    mat = (unsigned char*)plp + 2;
+                    
+                    switch (head) 
+                    {    
+                    case 17:
+                    case 21:
+                        *mat++ = b;
+                        *mat++ = g;
+                        *mat++ = r;
+                        
+                        if (*mat != 0) 
+                        {
+                            *mat = a;
+                        }
+                        
+                        break;
+                    case 19:
+                    case 23:
+                        *mat++ = b;
+                        *mat++ = g;
+                        *mat++ = r;
+                        
+                        if (*mat != 0) 
+                        {
+                            *mat = a;
+                        }
+                        
+                        mat++;
+                        
+                        *mat++ = b;
+                        *mat++ = g;
+                        *mat++ = r;
+                        
+                        if (*mat != 0) 
+                        {
+                            *mat = a;
+                        }
+                        
+                        break;
+                    }
+                    
+                    offset = *plp++; 
+                    plp += offset;
+                }
+                else if ((head >= 56) && (head < 59)) 
+                {
+                    offset = *plp++; 
+                    plp += offset;
+                }
+                else if (head == 255)
+                { 
+                    break;
+                }
+            } 
+        }
+    }
+}
 
 // 100% matching!
 void npChangeMatAlphaColor(NJS_CNK_OBJECT* objp, int obj_n, unsigned char alpha)
