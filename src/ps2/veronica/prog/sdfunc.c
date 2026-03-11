@@ -1753,24 +1753,32 @@ void RequestEnemySeEx(int EnemyNo, NJS_POINT3* pPos, int SeNo, int FadeRate)
 	RequestEnemySeBasic(EnemyNo, pPos, SeNo, 1, FadeRate);
 }
 
-/*// 
-// Start address: 0x295260
+// 100% matching!
 int ChechPlayEnemySe(int EnemyNo, int SeNo)
 {
-	EnemySlot* esp;
-	int i;
-	// Line 2634, Address: 0x295260, Func Offset: 0
-	// Line 2635, Address: 0x29526c, Func Offset: 0xc
-	// Line 2636, Address: 0x295278, Func Offset: 0x18
-	// Line 2637, Address: 0x295284, Func Offset: 0x24
-	// Line 2638, Address: 0x29528c, Func Offset: 0x2c
-	// Line 2640, Address: 0x295294, Func Offset: 0x34
-	// Line 2641, Address: 0x2952a0, Func Offset: 0x40
-	// Line 2646, Address: 0x2952a8, Func Offset: 0x48
-	// Line 2648, Address: 0x2952b8, Func Offset: 0x58
-	// Line 2649, Address: 0x2952bc, Func Offset: 0x5c
-	// Func End, Address: 0x2952c4, Func Offset: 0x64
-}*/
+    int i;
+    EnemySlot* esp;
+    
+    esp = EnemySlotInfo;
+    
+    for (i = 0; i < 6; i++, esp++) 
+    {
+        if ((esp->Flag != 0) && (esp->EnemyNo == EnemyNo)) 
+        {
+            if (SeNo > 0) 
+            {
+                return 1;
+            }
+            
+            if (esp->SeNo == SeNo) 
+            {
+                return 1;
+            }
+        }
+    }
+    
+    return 0;
+}
 
 // 100% matching
 void AllStopEnemySe(void) {
