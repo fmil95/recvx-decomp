@@ -83,11 +83,11 @@ int xAng;
 int xVol;
 int xPan;
 int PlayerFootStepSwitch[3] = { 0 };
-/*int EnemyBackGroundSeFlag;*/
+/*int EnemyBackGroundSeFlag; - unused*/
 short DefBg[3] = { 0, 1, 2 };
-/*_anon19 MidiInfo[0];
-float xDist;
-_anon6 NextSoundInfo;*/
+/*float xDist; - unused*/
+SYS_BT_SYSTEMID BootDiscSystemId;
+NEXTSOUND_INFO NextSoundInfo;
 int PatId[4] = { -1, -1, -1, -1 };
 AFS_PATINFO SoundAfsPatDef[8] = {
     { "BGM?.AFS"    , 0, 128, NULL },
@@ -740,7 +740,7 @@ void ExecTransSoundData()
     }
 }
 
-// 100% matching 
+// 100% matching! 
 void RequestRoomSoundBank(int StageNo, int RoomNo, int CaseNo) {
     ResetRoomSoundEnvParam();
     sprintf(SpqFileName, "RM_%01u%02u%01u.SPQ", StageNo, RoomNo, CaseNo);
@@ -748,14 +748,14 @@ void RequestRoomSoundBank(int StageNo, int RoomNo, int CaseNo) {
     SpqFileReadRequestFlag = 1;
 }
 
-// 100% matching
+// 100% matching!
 void RequestArmsSoundBank(int ArmsNo) {
     sprintf(SpqFileName, "ARMS_%03u.SPQ", ArmsNo);
     SpqKeyCode = ArmsNo | 0x4000;
     SpqFileReadRequestFlag = 2;
 }
 
-// 100% matching
+// 100% matching!
 void RequestDoorSoundBank(int DoorNo) {
     sprintf(SpqFileName, "DOOR_%03u.SPQ", DoorNo);
     CurrentDoorNo = DoorNo;
@@ -763,24 +763,24 @@ void RequestDoorSoundBank(int DoorNo) {
     SpqFileReadRequestFlag = 3;
 }
 
-// 100% matching
+// 100% matching!
 void RequestPlayerVoiceSoundBank(int PlayerNo) {
     sprintf(SpqFileName, "CORE_%03u.SPQ", PlayerNo);
     SpqKeyCode = PlayerNo | 0xFFF0;
     SpqFileReadRequestFlag = 4;
 }
 
-//  100% matching
+// 100% matching!
 int CheckTransEndSoundBank() {
     return SpqFileReadRequestFlag;
 }
 
-// 100% matching
+// 100% matching!
 void SetRoomSoundCaseNo(int CaseNo) {
     RoomSoundCaseNo = CaseNo;
 }
 
-// 100% matching
+// 100% matching!
 int GetRoomSoundCaseNo() {
     int ReturnCode;
     
@@ -790,7 +790,7 @@ int GetRoomSoundCaseNo() {
     return ReturnCode;
 }
 
-// 100% matching
+// 100% matching!
 int CustomMidiSlotDef(int ObjectSlot, int EventSlot) {
     if ((ObjectSlot + EventSlot) > 5) {
         MaxSlotObjectSe = 1;
@@ -820,7 +820,7 @@ int wadGetAngle(NJS_POINT3* pPos1, int Ang, NJS_POINT3* pPos2) {
     return (short)(Ang + (int)(10430.381f * atan2f(pPos1->x - pPos2->x,  pPos1->z - pPos2->z)));
 }
 
-// 100% matching
+// 100% matching!
 int CheckCollision4Sound(NJS_POINT3* pP2) {
     NJS_CAPSULE Capsule;
     int ReturnCode;
@@ -1084,7 +1084,7 @@ void Set3dSoundFlag(int Type, int SlotNo, unsigned int Flag)
     }
 }
 
-// 100% matching
+// 100% matching!
 void Reset3dSoundFlag(void) {
     int i;
     
@@ -1385,23 +1385,23 @@ void CallSystemSeBasic(int SeNo, int Volume, int FxLevel)
     }
 }
 
-// 100% matching 
+// 100% matching!
 void CallSystemSeEx(int SeNo, int Volume) {
     CallSystemSeBasic(SeNo, Volume, 0);
 }
 
-// 100% matching 
+// 100% matching!
 void CallSystemSe(int param, int SeNo) // first parameter is not present on the debugging symbols
 {
     CallSystemSeEx(SeNo, 0);
 }
 
-// 100% matching
+// 100% matching!
 void StopSystemSe() {
     StopMidi(2);
 }
 
-// 100% matching
+// 100% matching!
 void SetSyukanModeSoundParam() {
     if (sys->gm_flg & 0x01000000) {
         RequestInfo.Volume = 0;
@@ -1411,7 +1411,7 @@ void SetSyukanModeSoundParam() {
     }
 }
 
-// 100% matching
+// 100% matching!
 void CallPlayerVoice(int SeNo) {
     SetupSeGenericParm(7, SeNo, &PlayerPos, 1, GsSlotInfoSe[7].Flag);
     RequestInfo.PitchDelayTime = -2;
@@ -1531,12 +1531,12 @@ void CallPlayerFootStepSeEx(int FloorType, int Type, int Flag, int Id, NJS_POINT
     ExPlaySe(&RequestInfo);
 }
 
-// 100% matching 
+// 100% matching!
 void CallPlayerFootStepSe(int FloorType, int Type, int Flag) {
     CallPlayerFootStepSeEx(FloorType, Type, Flag, 0, &PlayerPos);
 }
 
-// 100% matching
+// 100% matching!
 void CallPlayerActionSe(int SeNo, int Flag) {
     CallPlayerFootStepSeEx(SeNo, 3, Flag, 0, &PlayerPos);
 }
@@ -1642,12 +1642,12 @@ void CallBackGroundSeEx(unsigned int SlotNo, int SeNo, short Timer)
     CurrentBgSeNo[SlotNo] = SeNo;
 }
 
-// 100% matching
+// 100% matching!
 void CallBackGroundSe(unsigned int SlotNo, int SeNo) {
     CallBackGroundSeEx(SlotNo, SeNo, 0);
 }
 
-// 100% matching
+// 100% matching!
 void CallBackGroundSe2(unsigned int SlotNo, int SeNo) {
     if( SeNo != CurrentBgSeNo[SlotNo]) {
         ReqFadeBgSe[SlotNo] |= 2;
@@ -1672,7 +1672,7 @@ void StopBackGroundSeEx(unsigned int SlotNo, short Timer)
     CurrentBgSeNo[SlotNo] = -1;
 }
 
-// 100% matching
+// 100% matching!
 void StopBackGroundSe2(unsigned int SlotNo) {
     ReqFadeBgSe[SlotNo] = 1;
     CurrentBgSeNo[SlotNo] = -1;
@@ -1780,7 +1780,7 @@ int ChechPlayEnemySe(int EnemyNo, int SeNo)
     return 0;
 }
 
-// 100% matching
+// 100% matching!
 void AllStopEnemySe(void) {
     int i;
     EnemySlot* esp;
@@ -1824,46 +1824,57 @@ void StopEnemySe(int SlotNo)
     StopSe(DefEne[SlotNo]);
 }
 
-/*// 
-// Start address: 0x295440
-int CallNativeEventSe(int SlotNo, _anon16* pPos, int SeNo, int Mode)
+// 100% matching!
+int CallNativeEventSe(int SlotNo, NJS_POINT3* pPos, int SeNo, int Mode)
 {
-	int SlotDef[5];
-	float Distance;
-	// Line 2781, Address: 0x295440, Func Offset: 0
-	// Line 2783, Address: 0x295444, Func Offset: 0x4
-	// Line 2781, Address: 0x29544c, Func Offset: 0xc
-	// Line 2783, Address: 0x295450, Func Offset: 0x10
-	// Line 2785, Address: 0x295458, Func Offset: 0x18
-	// Line 2783, Address: 0x29545c, Func Offset: 0x1c
-	// Line 2785, Address: 0x295468, Func Offset: 0x28
-	// Line 2786, Address: 0x295478, Func Offset: 0x38
-	// Line 2791, Address: 0x295480, Func Offset: 0x40
-	// Line 2789, Address: 0x295490, Func Offset: 0x50
-	// Line 2791, Address: 0x2954a0, Func Offset: 0x60
-	// Line 2792, Address: 0x2954a4, Func Offset: 0x64
-	// Line 2791, Address: 0x2954a8, Func Offset: 0x68
-	// Line 2792, Address: 0x2954ac, Func Offset: 0x6c
-	// Line 2793, Address: 0x2954b8, Func Offset: 0x78
-	// Line 2794, Address: 0x2954c0, Func Offset: 0x80
-	// Line 2795, Address: 0x2954c8, Func Offset: 0x88
-	// Line 2796, Address: 0x2954d4, Func Offset: 0x94
-	// Line 2797, Address: 0x2954e0, Func Offset: 0xa0
-	// Line 2799, Address: 0x2954e4, Func Offset: 0xa4
-	// Line 2801, Address: 0x295500, Func Offset: 0xc0
-	// Line 2802, Address: 0x295524, Func Offset: 0xe4
-	// Line 2803, Address: 0x29552c, Func Offset: 0xec
-	// Line 2804, Address: 0x295530, Func Offset: 0xf0
-	// Line 2806, Address: 0x295538, Func Offset: 0xf8
-	// Line 2807, Address: 0x295540, Func Offset: 0x100
-	// Line 2808, Address: 0x295560, Func Offset: 0x120
-	// Line 2809, Address: 0x295564, Func Offset: 0x124
-	// Line 2810, Address: 0x29556c, Func Offset: 0x12c
-	// Line 2815, Address: 0x295574, Func Offset: 0x134
-	// Line 2817, Address: 0x295580, Func Offset: 0x140
-	// Line 2818, Address: 0x295584, Func Offset: 0x144
-	// Func End, Address: 0x295590, Func Offset: 0x150
-}*/
+    float Distance;
+    int SlotDef[5] = { 7, 6, 5, 4, 3 };
+    
+    if (MaxSlotEventSe < SlotNo)
+    {
+        return 1;
+    }
+    
+    SeNo = (SeNo & 0xFFFF00FF) | 0x200;
+    
+    RequestInfo.SlotNo = SlotDef[SlotNo];
+    RequestInfo.BankNo = (SeNo / 256) & 0xF;
+    RequestInfo.ListNo = SeNo;
+    
+    RequestInfo.Priority = 0;
+    
+    RequestInfo.PitchDelayTime = -2;
+    RequestInfo.SpeedDelayTime = -1;
+    
+    RequestInfo.FxInput = -1;
+    
+    switch (Mode) 
+    {                               
+    case 0:
+        Get3DSoundParameter(&CameraPos, pPos, &RequestInfo.Pan, &RequestInfo.Volume, &Distance, 0);
+        
+        RequestInfo.PanDelayTime = 0;
+        RequestInfo.VolumeDelayTime = 0;
+        break;
+    case 1:
+        RequestInfo.PanDelayTime = -2;
+        
+        if ((GsSlotInfoMi[SlotDef[SlotNo]].Flag & 0x2))
+        {
+            RequestInfo.VolumeDelayTime = -1;
+        } 
+        else
+        {
+            RequestInfo.VolumeDelayTime = -2;
+        }
+        
+        break;
+    }
+    
+    ExPlayMidi(&RequestInfo);
+    
+    return 0;
+}
 
 // 100% matching!
 int StopNativeEventSe(int SlotNo)
@@ -2045,7 +2056,6 @@ void PlayBgm2(int BgmNo, int Volume)
     CurrentBgmVolume = Volume;
 }
 
-// 
 // 100% matching!
 void StopBgm(int FadeOutRate) 
 {
@@ -2198,17 +2208,13 @@ void SetRoomSoundFxLevel(char FxProgNo, char FxLevel)
     CurrentRoomFxLevel = FxLevel;
 }
 
-// 
 // 100% matching!
-
 void SetRoomSoundFxLevelEx() 
 {
     SetRoomSoundFxLevel(0, Room_SoundEnv.RoomFxLevel);
 }
 
-/*
 // 100% matching!
-*/
 int SearchPlayingEnemySe(int EnemyNo, int Attrib) 
 {
     EnemySlot* EnemySlotPtr;
@@ -2512,7 +2518,7 @@ void ExecEnemySeManager()
     }
 }
 
-// 100% matching
+// 100% matching!
 int SearchPlayingObjectSeEx(int ObjectNo, int Mode) {
     int i;
     ObjectSlot* osp;
@@ -2537,8 +2543,7 @@ int SearchPlayingObjectSeEx(int ObjectNo, int Mode) {
     return -1;
 }
 
-// 
-// 100% matching
+// 100% matching!
 int SearchPlayingObjectSe(int ObjectNo) {
     return SearchPlayingObjectSeEx(ObjectNo, 1);
 }

@@ -20,7 +20,6 @@ extern void* Ps2_tex_buff;
 extern unsigned int Ps2_current_texbreak;
 extern MOV_INFO MovieInfo;
 extern O_WRK eff[512];
-extern SYS_BT_SYSTEMID BootDiscSystemId;
 extern BH_PWORK* plp;
 extern HWS_WORK* hws;
 extern int pd_port;

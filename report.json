@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 23.956804,
+    "fuzzy_match_percent": 24.333845,
     "total_code": "1904472",
-    "matched_code": "381328",
-    "matched_code_percent": 20.022768,
+    "matched_code": "388572",
+    "matched_code_percent": 20.403135,
     "total_data": "28420060",
-    "matched_data": "15261348",
-    "matched_data_percent": 53.699215,
+    "matched_data": "15267756",
+    "matched_data_percent": 53.721756,
     "total_functions": 4529,
-    "matched_functions": 1977,
-    "matched_functions_percent": 43.65202,
+    "matched_functions": 2001,
+    "matched_functions_percent": 44.18194,
     "total_units": 199
   },
   "units": [
@@ -21967,21 +21967,23 @@
     {
       "name": "ps2/veronica/prog/sdfunc",
       "measures": {
-        "fuzzy_match_percent": 67.82011,
+        "fuzzy_match_percent": 99.98459,
         "total_code": "22324",
-        "matched_code": "13588",
-        "matched_code_percent": 60.867226,
+        "matched_code": "20832",
+        "matched_code_percent": 93.31661,
         "total_data": "8432",
+        "matched_data": "6408",
+        "matched_data_percent": 75.9962,
         "total_functions": 131,
-        "matched_functions": 104,
-        "matched_functions_percent": 79.38931,
+        "matched_functions": 128,
+        "matched_functions_percent": 97.70992,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".bss",
           "size": "6408",
-          "fuzzy_match_percent": 98.76643,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -21991,7 +21993,7 @@
         {
           "name": ".data",
           "size": "1528",
-          "fuzzy_match_percent": 87.58782,
+          "fuzzy_match_percent": 94.208664,
           "metadata": {}
         },
         {
@@ -22001,13 +22003,13 @@
         {
           "name": ".rodata",
           "size": "496",
-          "fuzzy_match_percent": 59.732826,
+          "fuzzy_match_percent": 73.17073,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "23024",
-          "fuzzy_match_percent": 67.82011,
+          "fuzzy_match_percent": 99.98459,
           "metadata": {}
         },
         {
@@ -22131,7 +22133,7 @@
         {
           "name": "LoadSoundPackFile",
           "size": "880",
-          "fuzzy_match_percent": 1.0227273,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2672"
         },
@@ -22229,13 +22231,14 @@
         {
           "name": "SetupSeGenericParm",
           "size": "272",
-          "fuzzy_match_percent": 3.3088236,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5088"
         },
         {
           "name": "Set3dSoundFlag",
           "size": "1000",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5360"
         },
@@ -22249,18 +22252,21 @@
         {
           "name": "SetUserSoundVolume",
           "size": "772",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "6736"
         },
         {
           "name": "SetUserSoundPan",
           "size": "656",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "7520"
         },
         {
           "name": "PlayGameSe4Event",
           "size": "412",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "8176"
         },
@@ -22309,12 +22315,14 @@
         {
           "name": "GetPlayerActionSeSlotNo",
           "size": "140",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "9120"
         },
         {
           "name": "CallPlayerFootStepSeEx",
           "size": "860",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "9264"
         },
@@ -22349,7 +22357,7 @@
         {
           "name": "CallBackGroundSeEx",
           "size": "388",
-          "fuzzy_match_percent": 2.3195877,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "10624"
         },
@@ -22384,6 +22392,7 @@
         {
           "name": "CallDoorSe",
           "size": "216",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "11296"
         },
@@ -22397,18 +22406,21 @@
         {
           "name": "RequestEnemySe",
           "size": "12",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "11824"
         },
         {
           "name": "RequestEnemySeEx",
           "size": "12",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "11840"
         },
         {
           "name": "ChechPlayEnemySe",
           "size": "100",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "11856"
         },
@@ -22422,6 +22434,7 @@
         {
           "name": "CallEnemySe",
           "size": "176",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "12128"
         },
@@ -22435,12 +22448,14 @@
         {
           "name": "CallNativeEventSe",
           "size": "336",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "12336"
         },
         {
           "name": "StopNativeEventSe",
           "size": "96",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "12672"
         },
@@ -22454,14 +22469,14 @@
         {
           "name": "RegistObjectSe",
           "size": "192",
-          "fuzzy_match_percent": 4.6875,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "12944"
         },
         {
           "name": "FreeObjectSe",
           "size": "208",
-          "fuzzy_match_percent": 4.423077,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "13136"
         },
@@ -22475,13 +22490,14 @@
         {
           "name": "PlayBgmEx",
           "size": "28",
-          "fuzzy_match_percent": 33.57143,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "13568"
         },
         {
           "name": "PlayBgm",
           "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "13600"
         },
@@ -22509,25 +22525,28 @@
         {
           "name": "PlayVoiceEx2",
           "size": "420",
-          "fuzzy_match_percent": 2.142857,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "13840"
         },
         {
           "name": "PlayVoiceEx",
           "size": "44",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "14272"
         },
         {
           "name": "PlayVoice",
           "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "14320"
         },
         {
           "name": "ContinuePlayVoice",
           "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "14336"
         },
@@ -25500,7 +25519,7 @@
     {
       "name": "ps2/veronica/prog/adv",
       "measures": {
-        "fuzzy_match_percent": 98.14648,
+        "fuzzy_match_percent": 98.14727,
         "total_code": "30176",
         "matched_code": "15760",
         "matched_code_percent": 52.226936,
@@ -25542,7 +25561,7 @@
         {
           "name": ".text",
           "size": "30624",
-          "fuzzy_match_percent": 98.14648,
+          "fuzzy_match_percent": 98.14727,
           "metadata": {}
         },
         {
@@ -26100,7 +26119,7 @@
         {
           "name": "DisplayOptionPlateLevel2",
           "size": "2844",
-          "fuzzy_match_percent": 98.79325,
+          "fuzzy_match_percent": 98.80169,
           "metadata": {},
           "address": "24592"
         },
@@ -39994,16 +40013,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 20.483599,
+        "fuzzy_match_percent": 20.87804,
         "total_code": "1820460",
-        "matched_code": "303156",
-        "matched_code_percent": 16.652714,
+        "matched_code": "310400",
+        "matched_code_percent": 17.050636,
         "total_data": "28328660",
-        "matched_data": "15225556",
-        "matched_data_percent": 53.74612,
+        "matched_data": "15231964",
+        "matched_data_percent": 53.76874,
         "total_functions": 3834,
-        "matched_functions": 1303,
-        "matched_functions_percent": 33.985394,
+        "matched_functions": 1327,
+        "matched_functions_percent": 34.61137,
         "total_units": 151
       }
     },
