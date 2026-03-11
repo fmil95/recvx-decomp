@@ -79,9 +79,9 @@ int RoomSoundCaseNo;
 char MoviePlayTrayOpenFlag;
 int WeaponSeSlotSwitch;
 int SystemSeSlotSwitch;
-/*int xAng;
+int xAng;
 int xVol;
-int xPan;*/
+int xPan;
 int PlayerFootStepSwitch[3] = { 0 };
 /*int EnemyBackGroundSeFlag;*/
 short DefBg[3] = { 0, 1, 2 };
@@ -1378,80 +1378,94 @@ int GetPlayerActionSeSlotNo(int Type, int Id)
     }
 }
 
-/*// 
-// Start address: 0x294840
-void CallPlayerFootStepSeEx(int FloorType, int Type, int Flag, int Id, _anon16* pPos)
+// 100% matching!
+void CallPlayerFootStepSeEx(int FloorType, int Type, int Flag, int Id, NJS_POINT3* pPos)
 {
-	float Distance;
-	char FootDef[5];
-	short RunPitchTbl[4];
-	short WalkPitchTbl[4];
-	// Line 2184, Address: 0x294840, Func Offset: 0
-	// Line 2185, Address: 0x294854, Func Offset: 0x14
-	// Line 2184, Address: 0x294858, Func Offset: 0x18
-	// Line 2185, Address: 0x29485c, Func Offset: 0x1c
-	// Line 2186, Address: 0x294874, Func Offset: 0x34
-	// Line 2185, Address: 0x29487c, Func Offset: 0x3c
-	// Line 2186, Address: 0x294880, Func Offset: 0x40
-	// Line 2187, Address: 0x29488c, Func Offset: 0x4c
-	// Line 2186, Address: 0x294898, Func Offset: 0x58
-	// Line 2187, Address: 0x29489c, Func Offset: 0x5c
-	// Line 2191, Address: 0x2948a0, Func Offset: 0x60
-	// Line 2187, Address: 0x2948b0, Func Offset: 0x70
-	// Line 2191, Address: 0x2948b4, Func Offset: 0x74
-	// Line 2187, Address: 0x2948c4, Func Offset: 0x84
-	// Line 2191, Address: 0x2948cc, Func Offset: 0x8c
-	// Line 2192, Address: 0x2948d4, Func Offset: 0x94
-	// Line 2198, Address: 0x2948dc, Func Offset: 0x9c
-	// Line 2202, Address: 0x2948e4, Func Offset: 0xa4
-	// Line 2199, Address: 0x2948ec, Func Offset: 0xac
-	// Line 2200, Address: 0x2948f4, Func Offset: 0xb4
-	// Line 2198, Address: 0x2948fc, Func Offset: 0xbc
-	// Line 2199, Address: 0x294904, Func Offset: 0xc4
-	// Line 2200, Address: 0x29490c, Func Offset: 0xcc
-	// Line 2202, Address: 0x294910, Func Offset: 0xd0
-	// Line 2203, Address: 0x294920, Func Offset: 0xe0
-	// Line 2204, Address: 0x294928, Func Offset: 0xe8
-	// Line 2206, Address: 0x294930, Func Offset: 0xf0
-	// Line 2207, Address: 0x294938, Func Offset: 0xf8
-	// Line 2210, Address: 0x29496c, Func Offset: 0x12c
-	// Line 2209, Address: 0x294974, Func Offset: 0x134
-	// Line 2210, Address: 0x29497c, Func Offset: 0x13c
-	// Line 2211, Address: 0x294980, Func Offset: 0x140
-	// Line 2212, Address: 0x2949d4, Func Offset: 0x194
-	// Line 2213, Address: 0x2949d8, Func Offset: 0x198
-	// Line 2222, Address: 0x2949e0, Func Offset: 0x1a0
-	// Line 2221, Address: 0x2949e8, Func Offset: 0x1a8
-	// Line 2222, Address: 0x2949f0, Func Offset: 0x1b0
-	// Line 2223, Address: 0x2949f4, Func Offset: 0x1b4
-	// Line 2224, Address: 0x294a48, Func Offset: 0x208
-	// Line 2225, Address: 0x294a4c, Func Offset: 0x20c
-	// Line 2233, Address: 0x294a54, Func Offset: 0x214
-	// Line 2235, Address: 0x294a5c, Func Offset: 0x21c
-	// Line 2236, Address: 0x294a68, Func Offset: 0x228
-	// Line 2237, Address: 0x294a70, Func Offset: 0x230
-	// Line 2245, Address: 0x294a78, Func Offset: 0x238
-	// Line 2246, Address: 0x294a84, Func Offset: 0x244
-	// Line 2247, Address: 0x294a8c, Func Offset: 0x24c
-	// Line 2251, Address: 0x294a98, Func Offset: 0x258
-	// Line 2252, Address: 0x294abc, Func Offset: 0x27c
-	// Line 2253, Address: 0x294ac4, Func Offset: 0x284
-	// Line 2254, Address: 0x294acc, Func Offset: 0x28c
-	// Line 2256, Address: 0x294ad4, Func Offset: 0x294
-	// Line 2257, Address: 0x294af8, Func Offset: 0x2b8
-	// Line 2258, Address: 0x294b00, Func Offset: 0x2c0
-	// Line 2259, Address: 0x294b08, Func Offset: 0x2c8
-	// Line 2261, Address: 0x294b0c, Func Offset: 0x2cc
-	// Line 2262, Address: 0x294b14, Func Offset: 0x2d4
-	// Line 2263, Address: 0x294b1c, Func Offset: 0x2dc
-	// Line 2264, Address: 0x294b24, Func Offset: 0x2e4
-	// Line 2265, Address: 0x294b2c, Func Offset: 0x2ec
-	// Line 2268, Address: 0x294b34, Func Offset: 0x2f4
-	// Line 2269, Address: 0x294b58, Func Offset: 0x318
-	// Line 2272, Address: 0x294b74, Func Offset: 0x334
-	// Line 2273, Address: 0x294b80, Func Offset: 0x340
-	// Func End, Address: 0x294b9c, Func Offset: 0x35c
-}*/
+    short WalkPitchTbl[4] = { 0, 1, 1, 0 };
+    short RunPitchTbl[4] = { 768, 512, 512, 768 };
+    char FootDef[5] = { 3, 2, 1, 0, 4 }; 
+    float Distance; 
+
+    Get3DSoundParameter(&CameraPos, pPos, &RequestInfo.Pan, &RequestInfo.Volume, &Distance, 0);
+    
+    SetSyukanModeSoundParam();
+    
+    xPan = RequestInfo.Pan;
+    xVol = RequestInfo.Volume;
+    xAng = AngBak;
+    
+    RequestInfo.SlotNo = GetPlayerActionSeSlotNo(Type, Id);
+    
+    RequestInfo.Priority = 0;
+    
+    RequestInfo.FxInput = -1;
+    
+    if (Flag != 0)
+    {
+        switch (Type)
+        {                 
+        case 0:
+            RequestInfo.BankNo = 2;
+            RequestInfo.ListNo = FootDef[FloorType];
+            
+            RequestInfo.Pitch = WalkPitchTbl[(unsigned int)(4.0f * (-rand() / -2.1474836e9f)) & 0x3];
+            RequestInfo.PitchDelayTime = 0;
+            break;
+        case 1:
+            RequestInfo.BankNo = 2;
+            RequestInfo.ListNo = FootDef[FloorType];
+            
+            RequestInfo.Pitch = RunPitchTbl[(unsigned int)(4.0f * (-rand() / -2.1474836e9f)) & 0x3];
+            RequestInfo.PitchDelayTime = 0;
+            break;
+        case 2:
+            RequestInfo.BankNo = 2;
+            RequestInfo.ListNo = 5;
+            
+            RequestInfo.PitchDelayTime = -2;
+            break;
+        case 3:
+            RequestInfo.BankNo = 2;
+            RequestInfo.ListNo = FloorType;
+            
+            RequestInfo.PitchDelayTime = -2;
+            break;
+        }
+        
+        if ((GsSlotInfoSe[RequestInfo.SlotNo].Flag & 0x2))
+        {
+            RequestInfo.VolumeDelayTime = -1;
+        }
+        else 
+        {
+            RequestInfo.VolumeDelayTime = 0;
+        }
+        
+        if ((GsSlotInfoSe[RequestInfo.SlotNo].Flag & 0x4)) 
+        {
+            RequestInfo.PanDelayTime = -1;
+        }
+        else 
+        {
+            RequestInfo.PanDelayTime = 0;
+        }
+    } 
+    else 
+    {
+        RequestInfo.ListNo = -1;
+        
+        RequestInfo.PanDelayTime = -1;
+        RequestInfo.VolumeDelayTime = -1;
+        RequestInfo.PitchDelayTime = -1;
+    }
+    
+    if (!(GsSlotInfoSe[RequestInfo.SlotNo].Flag & 0x2)) 
+    {
+        RequestInfo.Volume += Room_SoundEnv.VolPlayerAction;
+    }
+    
+    ExPlaySe(&RequestInfo);
+}
 
 // 100% matching 
 void CallPlayerFootStepSe(int FloorType, int Type, int Flag) {
