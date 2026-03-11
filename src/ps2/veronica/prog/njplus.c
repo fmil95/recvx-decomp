@@ -1141,63 +1141,96 @@ void npSkinConvert(NJS_CNK_OBJECT* objp, int* sknp)
     npSkinConvMain(objp);
 }
 
-// 
-// Start address: 0x12d740
+// 100% matching!
 void npRetSkinConvMain(NJS_CNK_OBJECT* objp)
 {
-	//_anon3* pHdr;
-	int mno;
-	int flg;
-	int dt;
-	int i;
-	int nb;
-	int* skp;
-	//_anon0* p0;
-	//_anon0 pd;
-	//_anon0 ps;
-	// Line 2701, Address: 0x12d740, Func Offset: 0
-	// Line 2703, Address: 0x12d750, Func Offset: 0x10
-	// Line 2701, Address: 0x12d754, Func Offset: 0x14
-	// Line 2703, Address: 0x12d758, Func Offset: 0x18
-	// Line 2701, Address: 0x12d75c, Func Offset: 0x1c
-	// Line 2703, Address: 0x12d760, Func Offset: 0x20
-	// Line 2712, Address: 0x12d76c, Func Offset: 0x2c
-	// Line 2713, Address: 0x12d778, Func Offset: 0x38
-	// Line 2715, Address: 0x12d78c, Func Offset: 0x4c
-	// Line 2716, Address: 0x12d7a0, Func Offset: 0x60
-	// Line 2717, Address: 0x12d7a8, Func Offset: 0x68
-	// Line 2718, Address: 0x12d7b4, Func Offset: 0x74
-	// Line 2719, Address: 0x12d7cc, Func Offset: 0x8c
-	// Line 2720, Address: 0x12d7e4, Func Offset: 0xa4
-	// Line 2721, Address: 0x12d7f8, Func Offset: 0xb8
-	// Line 2722, Address: 0x12d800, Func Offset: 0xc0
-	// Line 2724, Address: 0x12d818, Func Offset: 0xd8
-	// Line 2726, Address: 0x12d830, Func Offset: 0xf0
-	// Line 2727, Address: 0x12d844, Func Offset: 0x104
-	// Line 2728, Address: 0x12d850, Func Offset: 0x110
-	// Line 2729, Address: 0x12d854, Func Offset: 0x114
-	// Line 2728, Address: 0x12d85c, Func Offset: 0x11c
-	// Line 2729, Address: 0x12d860, Func Offset: 0x120
-	// Line 2730, Address: 0x12d868, Func Offset: 0x128
-	// Line 2732, Address: 0x12d874, Func Offset: 0x134
-	// Line 2736, Address: 0x12d888, Func Offset: 0x148
-	// Line 2732, Address: 0x12d88c, Func Offset: 0x14c
-	// Line 2734, Address: 0x12d894, Func Offset: 0x154
-	// Line 2736, Address: 0x12d898, Func Offset: 0x158
-	// Line 2737, Address: 0x12d8bc, Func Offset: 0x17c
-	// Line 2739, Address: 0x12d8c0, Func Offset: 0x180
-	// Line 2740, Address: 0x12d8d4, Func Offset: 0x194
-	// Line 2741, Address: 0x12d8ec, Func Offset: 0x1ac
-	// Line 2742, Address: 0x12d904, Func Offset: 0x1c4
-	// Line 2743, Address: 0x12d91c, Func Offset: 0x1dc
-	// Line 2746, Address: 0x12d920, Func Offset: 0x1e0
-	// Line 2749, Address: 0x12d930, Func Offset: 0x1f0
-	// Line 2751, Address: 0x12d944, Func Offset: 0x204
-	// Line 2752, Address: 0x12d958, Func Offset: 0x218
-	// Line 2753, Address: 0x12d964, Func Offset: 0x224
-	// Line 2754, Address: 0x12d978, Func Offset: 0x238
-	// Func End, Address: 0x12d994, Func Offset: 0x254
-    scePrintf("npRetSkinConvMain - UNIMPLEMENTED!\n");
+    NJS_POINT4 ps = { 0 }; 
+    NJS_POINT4 pd;      
+    NJS_POINT4* p0;     
+    int* skp;         
+    int nb;            
+    int i;              
+    int dt;          
+    int flg;            
+    int mno;             
+    HDR_PS* pHdr;    
+    unsigned short max; // not from DWARF
+    
+    njPushMatrix(NULL);
+    
+    if (!(objp->evalflags & 0x20000000)) 
+    {
+        flg = *np.sknp++;
+        
+        if (flg != 0) 
+        {
+            if ((flg & 0x2)) 
+            {
+                mno = *np.sknp++;
+                
+                nb = *np.sknp++;
+                
+                np.sknp = &np.sknp[nb];
+            }
+            else 
+            {
+                mno = *np.sknp++;
+            }
+            
+            skp = np.sktp[mno];
+        }
+        
+        njTranslate(NULL, objp->pos[0], objp->pos[1], objp->pos[2]);
+        
+        ps.z = 0;
+        ps.y = 0;
+        ps.x = 0;
+        ps.w = 1.0f;
+        
+        njCalcPoint4(NULL, &ps, &pd); 
+        
+        if ((flg & 0x1)) 
+        {
+            pHdr = (HDR_PS*)np.cobj[mno]->model->vlist;
+            
+            max = pHdr->usIndexMax;
+            
+            p0 = (NJS_POINT4*)&pHdr[1];
+            
+            i = 0;
+            
+            if (0 < max)
+            {
+                do 
+                {
+                    if (np.obj_now == (*skp++ >> 24)) 
+                    {
+                        p0->x = p0->x + (pd.x - np.op[mno].x);
+                        p0->y = p0->y + (pd.y - np.op[mno].y);
+                        p0->z = p0->z + (pd.z - np.op[mno].z);
+                    }
+                    
+                    p0 += 2;
+                    
+                    i++;
+                } while (i < max);
+            }
+        }
+        
+        np.obj_now++;
+    }
+    
+    if (objp->child != NULL) 
+    {
+        npRetSkinConvMain(objp->child);
+    }
+    
+    njPopMatrix(1);
+    
+    if (objp->sibling != NULL) 
+    {
+        npRetSkinConvMain(objp->sibling);
+    }
 }
 
 // 100% matching!
