@@ -1801,29 +1801,22 @@ void AllStopEnemySe(void) {
     StopVibrationEx();
 }
 
-/*// 
-// Start address: 0x295370
-void CallEnemySe(int SlotNo, _anon16* pPos, int SeNo)
+// 100% matching!
+void CallEnemySe(int SlotNo, NJS_POINT3* pPos, int SeNo)
 {
-	int SlotDef[6];
-	// Line 2686, Address: 0x295370, Func Offset: 0
-	// Line 2687, Address: 0x295374, Func Offset: 0x4
-	// Line 2686, Address: 0x295378, Func Offset: 0x8
-	// Line 2687, Address: 0x29537c, Func Offset: 0xc
-	// Line 2686, Address: 0x295380, Func Offset: 0x10
-	// Line 2687, Address: 0x295388, Func Offset: 0x18
-	// Line 2689, Address: 0x295394, Func Offset: 0x24
-	// Line 2687, Address: 0x2953a4, Func Offset: 0x34
-	// Line 2691, Address: 0x2953a8, Func Offset: 0x38
-	// Line 2687, Address: 0x2953ac, Func Offset: 0x3c
-	// Line 2691, Address: 0x2953b0, Func Offset: 0x40
-	// Line 2693, Address: 0x2953d8, Func Offset: 0x68
-	// Line 2694, Address: 0x2953e8, Func Offset: 0x78
-	// Line 2697, Address: 0x295404, Func Offset: 0x94
-	// Line 2698, Address: 0x295410, Func Offset: 0xa0
-	// Func End, Address: 0x295420, Func Offset: 0xb0
+    int SlotDef[6] = { 0, 1, 2, 3, 4, 5 };
+
+    SeNo = (SeNo & 0xFFFF00FF) | 0x300;
+
+    SetupSeGenericParm(SlotDef[SlotNo], SeNo, pPos, 1, GsSlotInfoSe[SlotDef[SlotNo]].Flag);
+    
+    if (!(GsSlotInfoSe[SlotDef[SlotNo]].Flag & 0x2))
+    {
+        RequestInfo.Volume += Room_SoundEnv.VolEnemySe;
+    }
+    
+    ExPlaySe(&RequestInfo);
 }
-*/
 
 // 100% matching!
 void StopEnemySe(int SlotNo)
