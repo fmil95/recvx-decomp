@@ -936,89 +936,153 @@ int SetupSeGenericParm(int SlotNo, int SeNo, NJS_POINT3* pPos, int Flag, unsigne
     return ReturnCode;
 }
 
-/*// 
-// Start address: 0x293900
+// 100% matching!
 void Set3dSoundFlag(int Type, int SlotNo, unsigned int Flag)
 {
-	int No;
-	// Line 1552, Address: 0x293900, Func Offset: 0
-	// Line 1553, Address: 0x29390c, Func Offset: 0xc
-	// Line 1552, Address: 0x293910, Func Offset: 0x10
-	// Line 1553, Address: 0x293914, Func Offset: 0x14
-	// Line 1555, Address: 0x293938, Func Offset: 0x38
-	// Line 1556, Address: 0x29393c, Func Offset: 0x3c
-	// Line 1557, Address: 0x293948, Func Offset: 0x48
-	// Line 1559, Address: 0x293958, Func Offset: 0x58
-	// Line 1560, Address: 0x293964, Func Offset: 0x64
-	// Line 1562, Address: 0x293974, Func Offset: 0x74
-	// Line 1564, Address: 0x29397c, Func Offset: 0x7c
-	// Line 1565, Address: 0x293990, Func Offset: 0x90
-	// Line 1566, Address: 0x2939a0, Func Offset: 0xa0
-	// Line 1567, Address: 0x2939ac, Func Offset: 0xac
-	// Line 1568, Address: 0x2939bc, Func Offset: 0xbc
-	// Line 1570, Address: 0x2939cc, Func Offset: 0xcc
-	// Line 1571, Address: 0x2939d8, Func Offset: 0xd8
-	// Line 1572, Address: 0x2939e8, Func Offset: 0xe8
-	// Line 1574, Address: 0x2939f8, Func Offset: 0xf8
-	// Line 1576, Address: 0x293a00, Func Offset: 0x100
-	// Line 1577, Address: 0x293a04, Func Offset: 0x104
-	// Line 1578, Address: 0x293a10, Func Offset: 0x110
-	// Line 1580, Address: 0x293a20, Func Offset: 0x120
-	// Line 1581, Address: 0x293a2c, Func Offset: 0x12c
-	// Line 1583, Address: 0x293a3c, Func Offset: 0x13c
-	// Line 1585, Address: 0x293a44, Func Offset: 0x144
-	// Line 1586, Address: 0x293a4c, Func Offset: 0x14c
-	// Line 1587, Address: 0x293a54, Func Offset: 0x154
-	// Line 1588, Address: 0x293a58, Func Offset: 0x158
-	// Line 1589, Address: 0x293a64, Func Offset: 0x164
-	// Line 1590, Address: 0x293a74, Func Offset: 0x174
-	// Line 1591, Address: 0x293a84, Func Offset: 0x184
-	// Line 1593, Address: 0x293a94, Func Offset: 0x194
-	// Line 1594, Address: 0x293aa0, Func Offset: 0x1a0
-	// Line 1595, Address: 0x293ab0, Func Offset: 0x1b0
-	// Line 1596, Address: 0x293ac0, Func Offset: 0x1c0
-	// Line 1598, Address: 0x293ad0, Func Offset: 0x1d0
-	// Line 1600, Address: 0x293ad8, Func Offset: 0x1d8
-	// Line 1601, Address: 0x293adc, Func Offset: 0x1dc
-	// Line 1602, Address: 0x293ae8, Func Offset: 0x1e8
-	// Line 1604, Address: 0x293af8, Func Offset: 0x1f8
-	// Line 1605, Address: 0x293b04, Func Offset: 0x204
-	// Line 1607, Address: 0x293b14, Func Offset: 0x214
-	// Line 1609, Address: 0x293b1c, Func Offset: 0x21c
-	// Line 1610, Address: 0x293b38, Func Offset: 0x238
-	// Line 1609, Address: 0x293b3c, Func Offset: 0x23c
-	// Line 1610, Address: 0x293b40, Func Offset: 0x240
-	// Line 1611, Address: 0x293b48, Func Offset: 0x248
-	// Line 1613, Address: 0x293b5c, Func Offset: 0x25c
-	// Line 1614, Address: 0x293b68, Func Offset: 0x268
-	// Line 1616, Address: 0x293b78, Func Offset: 0x278
-	// Line 1618, Address: 0x293b80, Func Offset: 0x280
-	// Line 1619, Address: 0x293ba0, Func Offset: 0x2a0
-	// Line 1620, Address: 0x293bac, Func Offset: 0x2ac
-	// Line 1625, Address: 0x293bc0, Func Offset: 0x2c0
-	// Line 1627, Address: 0x293bc8, Func Offset: 0x2c8
-	// Line 1628, Address: 0x293be4, Func Offset: 0x2e4
-	// Line 1627, Address: 0x293be8, Func Offset: 0x2e8
-	// Line 1628, Address: 0x293bec, Func Offset: 0x2ec
-	// Line 1629, Address: 0x293bf4, Func Offset: 0x2f4
-	// Line 1631, Address: 0x293c08, Func Offset: 0x308
-	// Line 1632, Address: 0x293c14, Func Offset: 0x314
-	// Line 1634, Address: 0x293c24, Func Offset: 0x324
-	// Line 1639, Address: 0x293c2c, Func Offset: 0x32c
-	// Line 1641, Address: 0x293c44, Func Offset: 0x344
-	// Line 1639, Address: 0x293c48, Func Offset: 0x348
-	// Line 1641, Address: 0x293c4c, Func Offset: 0x34c
-	// Line 1642, Address: 0x293c5c, Func Offset: 0x35c
-	// Line 1643, Address: 0x293c68, Func Offset: 0x368
-	// Line 1645, Address: 0x293c88, Func Offset: 0x388
-	// Line 1646, Address: 0x293c94, Func Offset: 0x394
-	// Line 1650, Address: 0x293cb4, Func Offset: 0x3b4
-	// Line 1661, Address: 0x293cbc, Func Offset: 0x3bc
-	// Line 1662, Address: 0x293cc4, Func Offset: 0x3c4
-	// Line 1672, Address: 0x293cd4, Func Offset: 0x3d4
-	// Func End, Address: 0x293ce8, Func Offset: 0x3e8
+    int No;
+
+    switch (Type) 
+    {
+    case 0:
+        GsSlotInfoSe[7].Flag = Flag;
+        
+        if ((Flag & 0x2)) 
+        {
+            SetVolumeSe2(7, 0, 0);
+        }
+        
+        if ((Flag & 0x4)) 
+        {
+            SetPanSe(7, 0, 0);
+        }
+    
+        break;
+    case 1:
+        GsSlotInfoSe[(SlotNo * 2) + 11].Flag = Flag;
+        GsSlotInfoSe[(SlotNo * 2) + 12].Flag = Flag;
+        
+        if ((Flag & 0x2)) 
+        {
+            SetVolumeSe2((SlotNo * 2) + 11, 0, 0);
+            SetVolumeSe2((SlotNo * 2) + 12, 0, 0);
+        }
+        
+        if ((Flag & 0x4)) 
+        {
+            SetPanSe((SlotNo * 2) + 11, 0, 0);
+            SetPanSe((SlotNo * 2) + 12, 0, 0);
+        }
+        
+        break;
+    case 2:
+        GsSlotInfoSe[6].Flag = Flag;
+        
+        if ((Flag & 0x2)) 
+        {
+            SetVolumeSe2(6, 0, 0);
+        }
+        
+        if ((Flag & 0x4)) 
+        {
+            SetPanSe(6, 0, 0);
+        }
+        
+        break;
+    case 3:
+        GsSlotInfoSe[8].Flag = Flag;
+        GsSlotInfoSe[9].Flag = Flag;
+        GsSlotInfoSe[19].Flag = Flag;
+        
+        if ((Flag & 0x2)) 
+        {
+            SetVolumeSe2(8, 0, 0);
+            SetVolumeSe2(9, 0, 0);
+            SetVolumeSe2(19, 0, 0);
+        }
+        
+        if ((Flag & 0x4)) 
+        {
+            SetPanSe(8, 0, 0);
+            SetPanSe(9, 0, 0);
+            SetPanSe(19, 0, 0);
+        }
+        
+        break;
+    case 4:
+        GsSlotInfoSe[10].Flag = Flag;
+        
+        if ((Flag & 0x2))
+        {
+            SetVolumeSe2(10, 0, 0);
+        }
+        
+        if ((Flag & 0x4)) 
+        {
+            SetPanSe(10, 0, 0);
+        }
+        
+        break;
+    case 5:
+        GsSlotInfoSe[DefEne[SlotNo]].Flag = Flag;
+        
+        if ((Flag & 0x2))
+        {
+            SetVolumeSe2(DefEne[SlotNo], 0, 0);
+        }
+        
+        if ((Flag & 0x4))
+        {
+            SetPanSe(DefEne[SlotNo], 0, 0);
+        }
+        
+        break;
+    case 6:
+        GsSlotInfoMi[DefBg[SlotNo]].Flag = Flag;
+        
+        if ((Flag & 0x2)) 
+        {
+            SetVolumeMidi2(DefBg[SlotNo], 0, 0);
+        }
+        
+        break;
+    case 7:
+        GsSlotInfoMi[DefEvt[SlotNo]].Flag = Flag;
+        
+        if ((Flag & 0x2))
+        {
+            SetVolumeMidi2(DefEvt[SlotNo], 0, 0);
+        }
+        
+        if ((Flag & 0x4)) 
+        {
+            SetPanMidi(DefEvt[SlotNo], 0, 0);
+        }
+        
+        break;
+    case 8:
+        ObjectInfo[SlotNo].Flag = Flag;
+        
+        if ((No = SearchPlayingObjectSeEx(SlotNo, 0)) >= 0)
+        {
+            if ((Flag & 0x2)) 
+            {
+                SetVolumeMidi2(DefObj[No], 0, 0);
+            }
+            
+            if ((Flag & 0x4)) 
+            {
+                SetPanMidi(DefObj[No], 0, 0);
+            }
+        }
+        
+        break;
+    case 10:
+        GsSlotInfoAx->Flag = Flag;
+        
+        SetVolumeAdx(0, CurrentBgmVolume);
+        break;
+    }
 }
-*/
 
 // 100% matching
 void Reset3dSoundFlag(void) {
