@@ -400,65 +400,74 @@ int npCollisionCheckCCEx(_anon4* cpa, _anon4* cpb, _anon1* pos)
 	// Line 481, Address: 0x12c3fc, Func Offset: 0x78c
 	// Line 482, Address: 0x12c400, Func Offset: 0x790
 	// Func End, Address: 0x12c43c, Func Offset: 0x7cc
-}
-
-// 
-// Start address: 0x12c440
-int npCollisionCheckSC(_anon6* sa, _anon4* cpb)
-{
-	float sca;
-	float lenb;
-	float lr;
-	float inn;
-	_anon1 vec;
-	_anon6 sb;
-	_anon21 lnb;
-	// Line 493, Address: 0x12c440, Func Offset: 0
-	// Line 498, Address: 0x12c470, Func Offset: 0x30
-	// Line 499, Address: 0x12c478, Func Offset: 0x38
-	// Line 500, Address: 0x12c47c, Func Offset: 0x3c
-	// Line 501, Address: 0x12c480, Func Offset: 0x40
-	// Line 498, Address: 0x12c484, Func Offset: 0x44
-	// Line 499, Address: 0x12c488, Func Offset: 0x48
-	// Line 500, Address: 0x12c48c, Func Offset: 0x4c
-	// Line 502, Address: 0x12c490, Func Offset: 0x50
-	// Line 505, Address: 0x12c498, Func Offset: 0x58
-	// Line 500, Address: 0x12c49c, Func Offset: 0x5c
-	// Line 501, Address: 0x12c4a0, Func Offset: 0x60
-	// Line 502, Address: 0x12c4ac, Func Offset: 0x6c
-	// Line 503, Address: 0x12c4bc, Func Offset: 0x7c
-	// Line 504, Address: 0x12c4cc, Func Offset: 0x8c
-	// Line 505, Address: 0x12c4d4, Func Offset: 0x94
-	// Line 504, Address: 0x12c4d8, Func Offset: 0x98
-	// Line 505, Address: 0x12c4dc, Func Offset: 0x9c
-	// Line 506, Address: 0x12c4e4, Func Offset: 0xa4
-	// Line 507, Address: 0x12c4e8, Func Offset: 0xa8
-	// Line 509, Address: 0x12c4f8, Func Offset: 0xb8
-	// Line 510, Address: 0x12c500, Func Offset: 0xc0
-	// Line 511, Address: 0x12c504, Func Offset: 0xc4
-	// Line 512, Address: 0x12c508, Func Offset: 0xc8
-	// Line 509, Address: 0x12c50c, Func Offset: 0xcc
-	// Line 510, Address: 0x12c514, Func Offset: 0xd4
-	// Line 511, Address: 0x12c524, Func Offset: 0xe4
-	// Line 512, Address: 0x12c530, Func Offset: 0xf0
-	// Line 513, Address: 0x12c538, Func Offset: 0xf8
-	// Line 514, Address: 0x12c544, Func Offset: 0x104
-	// Line 515, Address: 0x12c54c, Func Offset: 0x10c
-	// Line 516, Address: 0x12c558, Func Offset: 0x118
-	// Line 517, Address: 0x12c570, Func Offset: 0x130
-	// Line 518, Address: 0x12c58c, Func Offset: 0x14c
-	// Line 519, Address: 0x12c59c, Func Offset: 0x15c
-	// Line 520, Address: 0x12c5a4, Func Offset: 0x164
-	// Line 521, Address: 0x12c5ac, Func Offset: 0x16c
-	// Line 523, Address: 0x12c5b0, Func Offset: 0x170
-	// Line 524, Address: 0x12c5b8, Func Offset: 0x178
-	// Line 525, Address: 0x12c5d0, Func Offset: 0x190
-	// Line 526, Address: 0x12c5d8, Func Offset: 0x198
-	// Line 527, Address: 0x12c5e0, Func Offset: 0x1a0
-	// Line 538, Address: 0x12c5e8, Func Offset: 0x1a8
-	// Line 540, Address: 0x12c600, Func Offset: 0x1c0
-	// Func End, Address: 0x12c634, Func Offset: 0x1f4
 }*/
+
+// 100% matching! 
+int npCollisionCheckSC(NJS_SPHERE* sa, NJS_CAPSULE* cpb) 
+{
+    NJS_LINE lnb;  
+    NJS_SPHERE sb; 
+    NJS_POINT3 vec; 
+    float inn;      
+    float lr;      
+    float lenb;    
+    float sca;     
+    
+    lr = sa->r + cpb->r;
+    
+    lnb.px = cpb->c1.x;
+    lnb.py = cpb->c1.y;
+    lnb.pz = cpb->c1.z;
+    
+    lnb.vx = cpb->c2.x - lnb.px;
+    lnb.vy = cpb->c2.y - lnb.py;
+    lnb.vz = cpb->c2.z - lnb.pz;
+    
+    njDistanceP2L(&sa->c, &lnb, &sb.c);
+    
+    sb.r = cpb->r;
+    
+    lenb = njScalor((NJS_VECTOR*)&lnb.vx);
+    
+    vec.x = sb.c.x - lnb.px;
+    vec.y = sb.c.y - lnb.py;
+    vec.z = sb.c.z - lnb.pz;
+    
+    sca = njScalor(&vec);
+    
+    njUnitVector(&vec);
+    njUnitVector((NJS_VECTOR*)&lnb.vx);
+    
+    inn = njInnerProduct(&vec, (NJS_VECTOR*)&lnb.vx);
+    
+    if (inn > 0)
+    {
+        if (sca > (lenb + lr)) 
+        {
+            return 0;
+        }
+
+        if (sca > lenb)
+        {
+            sb.c.x = cpb->c2.x;
+            sb.c.y = cpb->c2.y;
+            sb.c.z = cpb->c2.z;
+        }
+    }
+    else
+    {
+        if (sca > lr) 
+        {
+            return 0;
+        }
+
+        sb.c.x = cpb->c1.x;
+        sb.c.y = cpb->c1.y;
+        sb.c.z = cpb->c1.z;
+    } 
+    
+    return (njCollisionCheckSS(sa, &sb) != 0) ? 1 : 0;
+}
 
 // 100% matching!
 void npDistanceP2C(NJS_POINT3* pos, NJS_CAPSULE* cap, NJS_POINT3* htp) 
