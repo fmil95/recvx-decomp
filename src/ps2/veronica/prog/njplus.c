@@ -1357,44 +1357,74 @@ void npChangeMatAlphaColor(NJS_CNK_OBJECT* objp, int obj_n, unsigned char alpha)
     } 
 }
 
-/*// 
-// Start address: 0x12dca0
-void npSetAllMatAlphaColor(npobj* objp, int obj_n, unsigned char alpha)
+// 100% matching!
+void npSetAllMatAlphaColor(NJS_CNK_OBJECT* objp, int obj_n, unsigned char alpha)
 {
-	unsigned char* mat;
-	short* plp;
-	short head;
-	int offset;
-	int i;
-	// Line 2965, Address: 0x12dca0, Func Offset: 0
-	// Line 2979, Address: 0x12dcac, Func Offset: 0xc
-	// Line 2974, Address: 0x12dcbc, Func Offset: 0x1c
-	// Line 2998, Address: 0x12dcc0, Func Offset: 0x20
-	// Line 2966, Address: 0x12dcc4, Func Offset: 0x24
-	// Line 2967, Address: 0x12dce0, Func Offset: 0x40
-	// Line 2969, Address: 0x12dce8, Func Offset: 0x48
-	// Line 2970, Address: 0x12dcf4, Func Offset: 0x54
-	// Line 2971, Address: 0x12dd0c, Func Offset: 0x6c
-	// Line 2972, Address: 0x12dd14, Func Offset: 0x74
-	// Line 2973, Address: 0x12dd18, Func Offset: 0x78
-	// Line 2974, Address: 0x12dd20, Func Offset: 0x80
-	// Line 2976, Address: 0x12dd30, Func Offset: 0x90
-	// Line 2979, Address: 0x12dd48, Func Offset: 0xa8
-	// Line 2983, Address: 0x12dd70, Func Offset: 0xd0
-	// Line 2986, Address: 0x12dd78, Func Offset: 0xd8
-	// Line 2987, Address: 0x12dd7c, Func Offset: 0xdc
-	// Line 2990, Address: 0x12dd80, Func Offset: 0xe0
-	// Line 2991, Address: 0x12dd88, Func Offset: 0xe8
-	// Line 2992, Address: 0x12dd8c, Func Offset: 0xec
-	// Line 2993, Address: 0x12dd94, Func Offset: 0xf4
-	// Line 2995, Address: 0x12ddac, Func Offset: 0x10c
-	// Line 2996, Address: 0x12ddb4, Func Offset: 0x114
-	// Line 2997, Address: 0x12ddb8, Func Offset: 0x118
-	// Line 2998, Address: 0x12ddc0, Func Offset: 0x120
-	// Line 3001, Address: 0x12ddc8, Func Offset: 0x128
-	// Line 3002, Address: 0x12ddd8, Func Offset: 0x138
-	// Func End, Address: 0x12dde0, Func Offset: 0x140
-}*/
+    int i;
+    int offset;
+    short head;
+    short* plp;
+    unsigned char* mat;
+    
+    for (i = 0; i < obj_n; i++, objp++)
+    {
+        if ((objp->model != NULL) && (!(objp->evalflags & 0x8))) 
+        {
+            plp = objp->model->plist;
+            
+            while (TRUE) 
+            {
+                head = (unsigned char)*plp++; 
+                
+                if ((head >= 64) && (head < 67)) 
+                {
+                    offset = *plp++; 
+                    plp += offset;
+                }
+                else if (head == 8) 
+                {
+                    plp++;
+                }
+                else if ((head >= 17) && (head < 24)) 
+                {
+                    mat = (unsigned char*)plp + 2;
+                    
+                    switch (head) 
+                    {    
+                    case 17:
+                    case 21:
+                        mat += 3;
+                        
+                        *mat = alpha;
+                        break;
+                    case 19:
+                    case 23:
+                        mat += 3;
+                        
+                        *mat = alpha;
+
+                        mat += 4;
+                        
+                        *mat = alpha;
+                        break;
+                    }
+                    
+                    offset = *plp++; 
+                    plp += offset;
+                }
+                else if ((head >= 56) && (head < 59)) 
+                {
+                    offset = *plp++; 
+                    plp += offset;
+                }
+                else if (head == 255)
+                { 
+                    break;
+                }
+            } 
+        }
+    }
+}
 
 // 100% matching!
 void npSetOffsetUV(NJS_CNK_MODEL* mdlp, short offu, short offv)
