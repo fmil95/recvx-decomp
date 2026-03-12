@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 24.333845,
+    "fuzzy_match_percent": 24.609356,
     "total_code": "1904472",
-    "matched_code": "388572",
-    "matched_code_percent": 20.403135,
+    "matched_code": "393828",
+    "matched_code_percent": 20.679117,
     "total_data": "28420060",
-    "matched_data": "15267756",
-    "matched_data_percent": 53.721756,
+    "matched_data": "15267900",
+    "matched_data_percent": 53.722263,
     "total_functions": 4529,
-    "matched_functions": 2001,
-    "matched_functions_percent": 44.18194,
+    "matched_functions": 2007,
+    "matched_functions_percent": 44.31442,
     "total_units": 199
   },
   "units": [
@@ -207,16 +207,16 @@
     {
       "name": "ps2/veronica/prog/njplus",
       "measures": {
-        "fuzzy_match_percent": 60.88044,
+        "fuzzy_match_percent": 99.990456,
         "total_code": "13416",
-        "matched_code": "7788",
-        "matched_code_percent": 58.05009,
+        "matched_code": "13044",
+        "matched_code_percent": 97.22719,
         "total_data": "12208",
-        "matched_data": "12064",
-        "matched_data_percent": 98.82045,
+        "matched_data": "12208",
+        "matched_data_percent": 100.0,
         "total_functions": 37,
-        "matched_functions": 30,
-        "matched_functions_percent": 81.08108,
+        "matched_functions": 36,
+        "matched_functions_percent": 97.2973,
         "total_units": 1
       },
       "sections": [
@@ -233,7 +233,7 @@
         {
           "name": ".data",
           "size": "144",
-          "fuzzy_match_percent": 93.75,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -243,7 +243,7 @@
         {
           "name": ".text",
           "size": "13632",
-          "fuzzy_match_percent": 60.88044,
+          "fuzzy_match_percent": 99.990456,
           "metadata": {}
         },
         {
@@ -262,18 +262,21 @@
         {
           "name": "npCollisionCheckCC",
           "size": "1372",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "160"
         },
         {
           "name": "npCollisionCheckCCEx",
           "size": "1996",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1536"
         },
         {
           "name": "npCollisionCheckSC",
           "size": "500",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "3536"
         },
@@ -413,7 +416,7 @@
         {
           "name": "npRetSkinConvMain",
           "size": "596",
-          "fuzzy_match_percent": 1.5100671,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "8400"
         },
@@ -434,6 +437,7 @@
         {
           "name": "npSetAllMatColor",
           "size": "472",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "9216"
         },
@@ -447,6 +451,7 @@
         {
           "name": "npSetAllMatAlphaColor",
           "size": "320",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "9776"
         },
@@ -40013,16 +40018,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 20.87804,
+        "fuzzy_match_percent": 21.166264,
         "total_code": "1820460",
-        "matched_code": "310400",
-        "matched_code_percent": 17.050636,
+        "matched_code": "315656",
+        "matched_code_percent": 17.339354,
         "total_data": "28328660",
-        "matched_data": "15231964",
-        "matched_data_percent": 53.76874,
+        "matched_data": "15232108",
+        "matched_data_percent": 53.76925,
         "total_functions": 3834,
-        "matched_functions": 1327,
-        "matched_functions_percent": 34.61137,
+        "matched_functions": 1333,
+        "matched_functions_percent": 34.767868,
         "total_units": 151
       }
     },

@@ -230,221 +230,269 @@ int npCollisionCheckCC(NJS_CAPSULE* cpa, NJS_CAPSULE* cpb)
     }
 }
 
-/*// 
-// Start address: 0x12bc70
-int npCollisionCheckCCEx(_anon4* cpa, _anon4* cpb, _anon1* pos)
+// 100% matching!
+int npCollisionCheckCCEx(NJS_CAPSULE* cpa, NJS_CAPSULE* cpb, NJS_POINT3* pos)
 {
-	_anon1 scl;
-	_anon1 scl;
-	_anon1 scl;
-	float sca;
-	float lenb;
-	float lena;
-	float inn;
-	_anon1 vec;
-	_anon6 sb;
-	_anon6 sa;
-	_anon4* capb;
-	_anon4* capa;
-	_anon21 lnc;
-	_anon21 lnb;
-	_anon21 lna;
-	// Line 256, Address: 0x12bc70, Func Offset: 0
-	// Line 262, Address: 0x12bca8, Func Offset: 0x38
-	// Line 263, Address: 0x12bcac, Func Offset: 0x3c
-	// Line 264, Address: 0x12bcb0, Func Offset: 0x40
-	// Line 265, Address: 0x12bcb4, Func Offset: 0x44
-	// Line 262, Address: 0x12bcb8, Func Offset: 0x48
-	// Line 263, Address: 0x12bcbc, Func Offset: 0x4c
-	// Line 271, Address: 0x12bcc0, Func Offset: 0x50
-	// Line 263, Address: 0x12bcd0, Func Offset: 0x60
-	// Line 264, Address: 0x12bcd4, Func Offset: 0x64
-	// Line 265, Address: 0x12bcdc, Func Offset: 0x6c
-	// Line 266, Address: 0x12bcec, Func Offset: 0x7c
-	// Line 269, Address: 0x12bcf4, Func Offset: 0x84
-	// Line 266, Address: 0x12bcf8, Func Offset: 0x88
-	// Line 267, Address: 0x12bd00, Func Offset: 0x90
-	// Line 274, Address: 0x12bd08, Func Offset: 0x98
-	// Line 267, Address: 0x12bd0c, Func Offset: 0x9c
-	// Line 268, Address: 0x12bd14, Func Offset: 0xa4
-	// Line 269, Address: 0x12bd1c, Func Offset: 0xac
-	// Line 270, Address: 0x12bd24, Func Offset: 0xb4
-	// Line 271, Address: 0x12bd30, Func Offset: 0xc0
-	// Line 272, Address: 0x12bd38, Func Offset: 0xc8
-	// Line 271, Address: 0x12bd3c, Func Offset: 0xcc
-	// Line 272, Address: 0x12bd44, Func Offset: 0xd4
-	// Line 273, Address: 0x12bd4c, Func Offset: 0xdc
-	// Line 272, Address: 0x12bd50, Func Offset: 0xe0
-	// Line 273, Address: 0x12bd58, Func Offset: 0xe8
-	// Line 274, Address: 0x12bd64, Func Offset: 0xf4
-	// Line 275, Address: 0x12bd70, Func Offset: 0x100
-	// Line 276, Address: 0x12bd7c, Func Offset: 0x10c
-	// Line 280, Address: 0x12bd8c, Func Offset: 0x11c
-	// Line 283, Address: 0x12bd90, Func Offset: 0x120
-	// Line 280, Address: 0x12bd94, Func Offset: 0x124
-	// Line 284, Address: 0x12bda0, Func Offset: 0x130
-	// Line 281, Address: 0x12bda4, Func Offset: 0x134
-	// Line 285, Address: 0x12bda8, Func Offset: 0x138
-	// Line 278, Address: 0x12bdac, Func Offset: 0x13c
-	// Line 280, Address: 0x12bdb0, Func Offset: 0x140
-	// Line 281, Address: 0x12bdb8, Func Offset: 0x148
-	// Line 282, Address: 0x12bdc8, Func Offset: 0x158
-	// Line 286, Address: 0x12bdd4, Func Offset: 0x164
-	// Line 287, Address: 0x12bddc, Func Offset: 0x16c
-	// Line 288, Address: 0x12bde0, Func Offset: 0x170
-	// Line 292, Address: 0x12bde4, Func Offset: 0x174
-	// Line 293, Address: 0x12bdf8, Func Offset: 0x188
-	// Line 297, Address: 0x12be00, Func Offset: 0x190
-	// Line 293, Address: 0x12be08, Func Offset: 0x198
-	// Line 296, Address: 0x12be0c, Func Offset: 0x19c
-	// Line 294, Address: 0x12be14, Func Offset: 0x1a4
-	// Line 298, Address: 0x12be18, Func Offset: 0x1a8
-	// Line 299, Address: 0x12be1c, Func Offset: 0x1ac
-	// Line 296, Address: 0x12be20, Func Offset: 0x1b0
-	// Line 294, Address: 0x12be24, Func Offset: 0x1b4
-	// Line 296, Address: 0x12be28, Func Offset: 0x1b8
-	// Line 297, Address: 0x12be2c, Func Offset: 0x1bc
-	// Line 298, Address: 0x12be40, Func Offset: 0x1d0
-	// Line 299, Address: 0x12be50, Func Offset: 0x1e0
-	// Line 300, Address: 0x12be58, Func Offset: 0x1e8
-	// Line 301, Address: 0x12be64, Func Offset: 0x1f4
-	// Line 302, Address: 0x12be6c, Func Offset: 0x1fc
-	// Line 303, Address: 0x12be78, Func Offset: 0x208
-	// Line 304, Address: 0x12be90, Func Offset: 0x220
-	// Line 305, Address: 0x12bea0, Func Offset: 0x230
-	// Line 306, Address: 0x12bea8, Func Offset: 0x238
-	// Line 307, Address: 0x12beb0, Func Offset: 0x240
-	// Line 309, Address: 0x12beb4, Func Offset: 0x244
-	// Line 310, Address: 0x12bebc, Func Offset: 0x24c
-	// Line 311, Address: 0x12bec4, Func Offset: 0x254
-	// Line 312, Address: 0x12becc, Func Offset: 0x25c
-	// Line 315, Address: 0x12bed4, Func Offset: 0x264
-	// Line 316, Address: 0x12bedc, Func Offset: 0x26c
-	// Line 317, Address: 0x12bee4, Func Offset: 0x274
-	// Line 315, Address: 0x12bee8, Func Offset: 0x278
-	// Line 318, Address: 0x12beec, Func Offset: 0x27c
-	// Line 315, Address: 0x12bef0, Func Offset: 0x280
-	// Line 316, Address: 0x12bef4, Func Offset: 0x284
-	// Line 317, Address: 0x12bf08, Func Offset: 0x298
-	// Line 318, Address: 0x12bf1c, Func Offset: 0x2ac
-	// Line 319, Address: 0x12bf24, Func Offset: 0x2b4
-	// Line 320, Address: 0x12bf30, Func Offset: 0x2c0
-	// Line 321, Address: 0x12bf38, Func Offset: 0x2c8
-	// Line 322, Address: 0x12bf44, Func Offset: 0x2d4
-	// Line 323, Address: 0x12bf5c, Func Offset: 0x2ec
-	// Line 324, Address: 0x12bf6c, Func Offset: 0x2fc
-	// Line 325, Address: 0x12bf74, Func Offset: 0x304
-	// Line 326, Address: 0x12bf7c, Func Offset: 0x30c
-	// Line 328, Address: 0x12bf80, Func Offset: 0x310
-	// Line 329, Address: 0x12bf88, Func Offset: 0x318
-	// Line 330, Address: 0x12bf90, Func Offset: 0x320
-	// Line 331, Address: 0x12bf98, Func Offset: 0x328
-	// Line 353, Address: 0x12bfa0, Func Offset: 0x330
-	// Line 355, Address: 0x12bfb4, Func Offset: 0x344
-	// Line 356, Address: 0x12bfbc, Func Offset: 0x34c
-	// Line 357, Address: 0x12bfc0, Func Offset: 0x350
-	// Line 358, Address: 0x12bfc4, Func Offset: 0x354
-	// Line 355, Address: 0x12bfc8, Func Offset: 0x358
-	// Line 356, Address: 0x12bfd0, Func Offset: 0x360
-	// Line 357, Address: 0x12bfe0, Func Offset: 0x370
-	// Line 358, Address: 0x12bfec, Func Offset: 0x37c
-	// Line 359, Address: 0x12c008, Func Offset: 0x398
-	// Line 360, Address: 0x12c010, Func Offset: 0x3a0
-	// Line 361, Address: 0x12c028, Func Offset: 0x3b8
-	// Line 362, Address: 0x12c040, Func Offset: 0x3d0
-	// Line 363, Address: 0x12c054, Func Offset: 0x3e4
-	// Line 364, Address: 0x12c05c, Func Offset: 0x3ec
-	// Line 365, Address: 0x12c064, Func Offset: 0x3f4
-	// Line 366, Address: 0x12c06c, Func Offset: 0x3fc
-	// Line 368, Address: 0x12c074, Func Offset: 0x404
-	// Line 372, Address: 0x12c07c, Func Offset: 0x40c
-	// Line 375, Address: 0x12c080, Func Offset: 0x410
-	// Line 372, Address: 0x12c08c, Func Offset: 0x41c
-	// Line 373, Address: 0x12c090, Func Offset: 0x420
-	// Line 374, Address: 0x12c098, Func Offset: 0x428
-	// Line 375, Address: 0x12c09c, Func Offset: 0x42c
-	// Line 377, Address: 0x12c0a4, Func Offset: 0x434
-	// Line 378, Address: 0x12c0ac, Func Offset: 0x43c
-	// Line 380, Address: 0x12c0b0, Func Offset: 0x440
-	// Line 377, Address: 0x12c0b4, Func Offset: 0x444
-	// Line 378, Address: 0x12c0bc, Func Offset: 0x44c
-	// Line 379, Address: 0x12c0d0, Func Offset: 0x460
-	// Line 380, Address: 0x12c0e4, Func Offset: 0x474
-	// Line 381, Address: 0x12c0ec, Func Offset: 0x47c
-	// Line 382, Address: 0x12c0f8, Func Offset: 0x488
-	// Line 383, Address: 0x12c104, Func Offset: 0x494
-	// Line 384, Address: 0x12c11c, Func Offset: 0x4ac
-	// Line 385, Address: 0x12c12c, Func Offset: 0x4bc
-	// Line 386, Address: 0x12c134, Func Offset: 0x4c4
-	// Line 387, Address: 0x12c13c, Func Offset: 0x4cc
-	// Line 389, Address: 0x12c140, Func Offset: 0x4d0
-	// Line 390, Address: 0x12c148, Func Offset: 0x4d8
-	// Line 391, Address: 0x12c150, Func Offset: 0x4e0
-	// Line 392, Address: 0x12c158, Func Offset: 0x4e8
-	// Line 408, Address: 0x12c160, Func Offset: 0x4f0
-	// Line 410, Address: 0x12c174, Func Offset: 0x504
-	// Line 411, Address: 0x12c17c, Func Offset: 0x50c
-	// Line 412, Address: 0x12c180, Func Offset: 0x510
-	// Line 413, Address: 0x12c184, Func Offset: 0x514
-	// Line 410, Address: 0x12c188, Func Offset: 0x518
-	// Line 411, Address: 0x12c190, Func Offset: 0x520
-	// Line 412, Address: 0x12c1a0, Func Offset: 0x530
-	// Line 413, Address: 0x12c1ac, Func Offset: 0x53c
-	// Line 414, Address: 0x12c1c8, Func Offset: 0x558
-	// Line 415, Address: 0x12c1d0, Func Offset: 0x560
-	// Line 416, Address: 0x12c1e8, Func Offset: 0x578
-	// Line 417, Address: 0x12c200, Func Offset: 0x590
-	// Line 418, Address: 0x12c214, Func Offset: 0x5a4
-	// Line 419, Address: 0x12c21c, Func Offset: 0x5ac
-	// Line 420, Address: 0x12c224, Func Offset: 0x5b4
-	// Line 421, Address: 0x12c22c, Func Offset: 0x5bc
-	// Line 423, Address: 0x12c234, Func Offset: 0x5c4
-	// Line 427, Address: 0x12c23c, Func Offset: 0x5cc
-	// Line 430, Address: 0x12c240, Func Offset: 0x5d0
-	// Line 427, Address: 0x12c24c, Func Offset: 0x5dc
-	// Line 428, Address: 0x12c250, Func Offset: 0x5e0
-	// Line 429, Address: 0x12c258, Func Offset: 0x5e8
-	// Line 430, Address: 0x12c25c, Func Offset: 0x5ec
-	// Line 432, Address: 0x12c264, Func Offset: 0x5f4
-	// Line 433, Address: 0x12c26c, Func Offset: 0x5fc
-	// Line 435, Address: 0x12c270, Func Offset: 0x600
-	// Line 432, Address: 0x12c274, Func Offset: 0x604
-	// Line 433, Address: 0x12c27c, Func Offset: 0x60c
-	// Line 434, Address: 0x12c290, Func Offset: 0x620
-	// Line 435, Address: 0x12c2a4, Func Offset: 0x634
-	// Line 436, Address: 0x12c2ac, Func Offset: 0x63c
-	// Line 437, Address: 0x12c2b8, Func Offset: 0x648
-	// Line 438, Address: 0x12c2c4, Func Offset: 0x654
-	// Line 439, Address: 0x12c2dc, Func Offset: 0x66c
-	// Line 440, Address: 0x12c2ec, Func Offset: 0x67c
-	// Line 441, Address: 0x12c2f4, Func Offset: 0x684
-	// Line 442, Address: 0x12c2fc, Func Offset: 0x68c
-	// Line 444, Address: 0x12c300, Func Offset: 0x690
-	// Line 445, Address: 0x12c308, Func Offset: 0x698
-	// Line 446, Address: 0x12c310, Func Offset: 0x6a0
-	// Line 447, Address: 0x12c318, Func Offset: 0x6a8
-	// Line 463, Address: 0x12c320, Func Offset: 0x6b0
-	// Line 465, Address: 0x12c334, Func Offset: 0x6c4
-	// Line 466, Address: 0x12c33c, Func Offset: 0x6cc
-	// Line 467, Address: 0x12c340, Func Offset: 0x6d0
-	// Line 468, Address: 0x12c344, Func Offset: 0x6d4
-	// Line 465, Address: 0x12c348, Func Offset: 0x6d8
-	// Line 466, Address: 0x12c350, Func Offset: 0x6e0
-	// Line 467, Address: 0x12c360, Func Offset: 0x6f0
-	// Line 468, Address: 0x12c36c, Func Offset: 0x6fc
-	// Line 469, Address: 0x12c388, Func Offset: 0x718
-	// Line 470, Address: 0x12c390, Func Offset: 0x720
-	// Line 471, Address: 0x12c3a8, Func Offset: 0x738
-	// Line 472, Address: 0x12c3c0, Func Offset: 0x750
-	// Line 473, Address: 0x12c3d4, Func Offset: 0x764
-	// Line 474, Address: 0x12c3dc, Func Offset: 0x76c
-	// Line 475, Address: 0x12c3e4, Func Offset: 0x774
-	// Line 476, Address: 0x12c3ec, Func Offset: 0x77c
-	// Line 478, Address: 0x12c3f4, Func Offset: 0x784
-	// Line 481, Address: 0x12c3fc, Func Offset: 0x78c
-	// Line 482, Address: 0x12c400, Func Offset: 0x790
-	// Func End, Address: 0x12c43c, Func Offset: 0x7cc
-}*/
+    NJS_LINE lna;  
+    NJS_LINE lnb;       
+    NJS_LINE lnc;      
+    NJS_CAPSULE* capa; 
+    NJS_CAPSULE* capb; 
+    NJS_SPHERE sa;      
+    NJS_SPHERE sb;      
+    NJS_VECTOR vec;     
+    float inn;         
+    float lena;        
+    float lenb;       
+    float sca;               
+    float temp; // not from DWARF
+
+    lna.px = cpa->c1.x;
+    lna.py = cpa->c1.y;
+    lna.pz = cpa->c1.z;
+    
+    capb = cpa;
+    
+    lna.vx = cpa->c2.x - lna.px;
+    lna.vy = cpa->c2.y - lna.py;
+    lna.vz = cpa->c2.z - lna.pz;
+    
+    lnb.px = cpb->c1.x;
+    lnb.py = cpb->c1.y;
+    lnb.pz = cpb->c1.z; 
+    
+    lnb.vx = cpb->c2.x - lnb.px;
+    lnb.vy = cpb->c2.y - lnb.py;
+    lnb.vz = cpb->c2.z - lnb.pz;
+    
+    lena = njScalor((NJS_VECTOR*)&lna.vx);
+    lenb = njScalor((NJS_VECTOR*)&lnb.vx);
+    
+    if (lena > lenb) 
+    {
+        capa = cpb;
+        cpb = cpa;
+        capb = cpb;
+        
+        lnc = lna;
+        lna = lnb;
+        lnb = lnc;
+        
+        temp = lena;
+        lena = lenb;
+        lenb = temp;
+    } 
+    else 
+    {
+        capa = cpa;
+        capb = cpb;
+    }
+    
+    njDistanceL2L(&lna, &lnb, (NJS_POINT3*)&sa.c, (NJS_POINT3*)&sb.c);
+    
+    sa.r = capa->r;
+    sb.r = capb->r;
+    
+    vec.x = sa.c.x - lna.px;
+    vec.y = sa.c.y - lna.py;
+    vec.z = sa.c.z - lna.pz;
+    
+    sca = njScalor(&vec);
+    
+    njUnitVector(&vec);
+    njUnitVector((NJS_VECTOR*)&lna.vx);
+    
+    inn = njInnerProduct(&vec, (NJS_VECTOR*)&lna.vx);
+    
+    if (inn > 0) 
+    {
+        if (sca > lena) 
+        {
+            sa.c.x = capa->c2.x;
+            sa.c.y = capa->c2.y;
+            sa.c.z = capa->c2.z;
+        }
+    } 
+    else
+    {
+        sa.c.x = capa->c1.x;
+        sa.c.y = capa->c1.y;
+        sa.c.z = capa->c1.z;
+    }
+    
+    vec.x = sb.c.x - lnb.px;
+    vec.y = sb.c.y - lnb.py;
+    vec.z = sb.c.z - lnb.pz;
+    
+    sca = njScalor(&vec);
+    
+    njUnitVector(&vec);
+    njUnitVector((NJS_VECTOR*)&lnb.vx);
+    
+    inn = njInnerProduct((NJS_VECTOR*)&vec,(NJS_VECTOR*)&lnb.vx);
+    
+    if (inn > 0) 
+    {
+        if (sca > lenb)
+        {
+            sb.c.x = capb->c2.x;
+            sb.c.y = capb->c2.y;
+            sb.c.z = capb->c2.z;
+        }
+    } 
+    else 
+    {
+        sb.c.x = capb->c1.x;
+        sb.c.y = capb->c1.y;
+        sb.c.z = capb->c1.z;
+    }
+    
+    if (njCollisionCheckSS((NJS_SPHERE*)&sa, (NJS_SPHERE*)&sb) != 0) 
+    {
+        NJS_POINT3 scl; 
+        
+        scl.x = sb.c.x - sa.c.x;
+        scl.y = sb.c.y - sa.c.y;
+        scl.z = sb.c.z - sa.c.z; 
+        
+        if (njScalor(&scl) > sa.r) 
+        {
+            njUnitVector(&scl);
+            
+            pos->x = sa.c.x + (scl.x * sa.r);
+            pos->y = sa.c.y + (scl.y * sa.r);
+            pos->z = sa.c.z + (scl.z * sa.r);
+        }
+        else 
+        {
+            pos->x = sb.c.x;
+            pos->y = sb.c.y;
+            pos->z = sb.c.z;
+        }
+        
+        return 1;
+    }
+    
+    sa.c.x = capa->c1.x;
+    sa.c.y = capa->c1.y;
+    sa.c.z = capa->c1.z;
+    
+    njDistanceP2L(&sa.c, &lnb, (NJS_POINT3*)&sb.c);
+    
+    vec.x = sb.c.x - lnb.px;
+    vec.y = sb.c.y - lnb.py;
+    vec.z = sb.c.z - lnb.pz;
+    
+    sca = njScalor(&vec);
+    
+    njUnitVector(&vec);
+    
+    inn = njInnerProduct(&vec, (NJS_VECTOR*)&lnb.vx);
+    
+    if (inn > 0)
+    {
+        if (sca > lenb)
+        {
+            sb.c.x = capb->c2.x;
+            sb.c.y = capb->c2.y;
+            sb.c.z = capb->c2.z;
+        }
+    }
+    else
+    {
+        sb.c.x = capb->c1.x;
+        sb.c.y = capb->c1.y;
+        sb.c.z = capb->c1.z;
+    }
+    
+    if (njCollisionCheckSS(&sa, &sb) != 0) 
+    {
+        NJS_POINT3 scl; 
+        
+        scl.x = sb.c.x - sa.c.x;
+        scl.y = sb.c.y - sa.c.y;
+        scl.z = sb.c.z - sa.c.z; 
+        
+        if (njScalor(&scl) > sa.r) 
+        {
+            njUnitVector(&scl);
+            
+            pos->x = sa.c.x + (scl.x * sa.r);
+            pos->y = sa.c.y + (scl.y * sa.r);
+            pos->z = sa.c.z + (scl.z * sa.r);
+        }
+        else 
+        {
+            pos->x = sb.c.x;
+            pos->y = sb.c.y;
+            pos->z = sb.c.z;
+        }
+        
+        return 1;
+    }
+    
+    sa.c.x = capa->c2.x;
+    sa.c.y = capa->c2.y;
+    sa.c.z = capa->c2.z;
+    
+    njDistanceP2L(&sa.c, &lnb, (NJS_POINT3*)&sb.c);
+    
+    vec.x = sb.c.x - lnb.px;
+    vec.y = sb.c.y - lnb.py;
+    vec.z = sb.c.z - lnb.pz;
+    
+    sca = njScalor(&vec);
+    
+    njUnitVector(&vec);
+    
+    inn = njInnerProduct(&vec, (NJS_VECTOR*)&lnb.vx);
+    
+    if (inn > 0) 
+    {
+        if (sca > lenb) 
+        {
+            sb.c.x = capb->c2.x;
+            sb.c.y = capb->c2.y;
+            sb.c.z = capb->c2.z;
+        }
+    } 
+    else 
+    {
+        sb.c.x = capb->c1.x;
+        sb.c.y = capb->c1.y;
+        sb.c.z = capb->c1.z;
+    }
+    
+    if (njCollisionCheckSS(&sa, &sb) != 0) 
+    {
+        NJS_POINT3 scl; 
+        
+        scl.x = sb.c.x - sa.c.x;
+        scl.y = sb.c.y - sa.c.y;
+        scl.z = sb.c.z - sa.c.z; 
+        
+        if (njScalor(&scl) > sa.r) 
+        {
+            njUnitVector(&scl);
+            
+            pos->x = sa.c.x + (scl.x * sa.r);
+            pos->y = sa.c.y + (scl.y * sa.r);
+            pos->z = sa.c.z + (scl.z * sa.r);
+        }
+        else 
+        {
+            pos->x = sb.c.x;
+            pos->y = sb.c.y;
+            pos->z = sb.c.z;
+        }
+        
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
+}
 
 // 100% matching! 
 int npCollisionCheckSC(NJS_SPHERE* sa, NJS_CAPSULE* cpb) 
