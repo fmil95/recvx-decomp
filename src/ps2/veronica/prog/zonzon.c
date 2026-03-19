@@ -1040,39 +1040,56 @@ int bhEne_SetSanEffect2(BH_PWORK* epw, int no, _anon10* ltbl)
 	// Func End, Address: 0x2184f8, Func Offset: 0x258
 }*/
 
-// 
-// Start address: 0x218500
+// 100% matching!
 void bhEne_QuickSort(WORK* a, int first, int last)
 {
-	float t;
-	float x;
-	int indx;
-	int j;
-	int i;
-	// Line 1739, Address: 0x218500, Func Offset: 0
-	// Line 1744, Address: 0x218518, Func Offset: 0x18
-	// Line 1746, Address: 0x218524, Func Offset: 0x24
-	// Line 1747, Address: 0x218538, Func Offset: 0x38
-	// Line 1748, Address: 0x21853c, Func Offset: 0x3c
-	// Line 1752, Address: 0x218544, Func Offset: 0x44
-	// Line 1753, Address: 0x218570, Func Offset: 0x70
-	// Line 1754, Address: 0x218594, Func Offset: 0x94
-	// Line 1755, Address: 0x2185a0, Func Offset: 0xa0
-	// Line 1758, Address: 0x2185a8, Func Offset: 0xa8
-	// Line 1755, Address: 0x2185b0, Func Offset: 0xb0
-	// Line 1756, Address: 0x2185b4, Func Offset: 0xb4
-	// Line 1758, Address: 0x2185b8, Func Offset: 0xb8
-	// Line 1763, Address: 0x2185bc, Func Offset: 0xbc
-	// Line 1764, Address: 0x2185c0, Func Offset: 0xc0
-	// Line 1758, Address: 0x2185c4, Func Offset: 0xc4
-	// Line 1759, Address: 0x2185c8, Func Offset: 0xc8
-	// Line 1761, Address: 0x2185d0, Func Offset: 0xd0
-	// Line 1765, Address: 0x2185d4, Func Offset: 0xd4
-	// Line 1767, Address: 0x2185dc, Func Offset: 0xdc
-	// Line 1768, Address: 0x2185f4, Func Offset: 0xf4
-	// Line 1769, Address: 0x218610, Func Offset: 0x110
-	// Func End, Address: 0x218628, Func Offset: 0x128
-	scePrintf("bhEne_QuickSort - UNIMPLEMENTED!\n");
+    int i, j; 
+    int indx; 
+    float x; 
+    float t; 
+    WORK* swap_a, *swap_b; // not from DWARF
+
+    if (first < last) 
+    {
+        x = a[(first + last) / 2].wk;
+        
+        for (i = first, j = last; ; )
+        {
+            for ( ; a[i].wk < x; i++);
+            for ( ; a[j].wk > x; j--);
+    
+            if (j <= i) 
+            {
+                break;
+            }
+            
+            swap_a = &a[i];
+            swap_b = &a[j];
+                
+            t = swap_a->wk;
+            
+            indx = swap_a->indx;
+            
+            i++;
+            j--;
+            
+            swap_a->wk = swap_b->wk;
+            swap_a->indx = swap_b->indx;
+            
+            swap_b->wk = t; 
+            swap_b->indx = indx;
+        }
+        
+        if (first < (i - 1))
+        {
+            bhEne_QuickSort(a, first, i - 1);
+        }
+        
+        if ((j + 1) < last) 
+        {
+            bhEne_QuickSort(a, j + 1, last);
+        }
+    }
 }
 
 // 100% matching!
