@@ -16,6 +16,16 @@ typedef struct BT_WORK
     float len;   // offset 0x1C, size 0x4
 } BT_WORK;
 
+typedef struct BT_WRK 
+{
+    // total size: 0x1C
+    NJS_POINT3 ofs; // offset 0x0, size 0xC
+    int angX;       // offset 0xC, size 0x4
+    int angY;       // offset 0x10, size 0x4
+    int type;       // offset 0x14, size 0x4
+    int wcnt;       // offset 0x18, size 0x4
+} BT_WRK;
+
 // _anon4 = NJS_POINT3
 // _anon20 = O_WORK
 // _anon23 = ATR_WORK

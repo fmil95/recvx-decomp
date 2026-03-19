@@ -644,57 +644,89 @@ void bhEne_SetBlood3(BH_PWORK* epw, int lnk_obj, NJS_POINT3* ofs, NJS_POINT3* dv
     }
 }
 
-// 
-// Start address: 0x217630
+// 100% matching!
 void bhEne_SetBlood4(BH_PWORK* epw, int lnk_obj, NJS_POINT3* ofs, int tex_id, int type)
 {
-	int i;
-	int ang;
-	int angY;
-	//_anon4 v;
-	//_anon4 ps;
-	//_anon6* tbl;
-	int blood_n[4];
-	//_anon6 bld_tbl[20];
-	// Line 1146, Address: 0x217630, Func Offset: 0
-	// Line 1186, Address: 0x21765c, Func Offset: 0x2c
-	// Line 1187, Address: 0x217664, Func Offset: 0x34
-	// Line 1146, Address: 0x21766c, Func Offset: 0x3c
-	// Line 1187, Address: 0x217680, Func Offset: 0x50
-	// Line 1192, Address: 0x217688, Func Offset: 0x58
-	// Line 1194, Address: 0x2176b0, Func Offset: 0x80
-	// Line 1198, Address: 0x2176b4, Func Offset: 0x84
-	// Line 1199, Address: 0x2176c0, Func Offset: 0x90
-	// Line 1202, Address: 0x2176c4, Func Offset: 0x94
-	// Line 1196, Address: 0x2176c8, Func Offset: 0x98
-	// Line 1199, Address: 0x2176cc, Func Offset: 0x9c
-	// Line 1200, Address: 0x2176d4, Func Offset: 0xa4
-	// Line 1201, Address: 0x2176e0, Func Offset: 0xb0
-	// Line 1202, Address: 0x2176e8, Func Offset: 0xb8
-	// Line 1203, Address: 0x2176f0, Func Offset: 0xc0
-	// Line 1204, Address: 0x217714, Func Offset: 0xe4
-	// Line 1205, Address: 0x21771c, Func Offset: 0xec
-	// Line 1207, Address: 0x217728, Func Offset: 0xf8
-	// Line 1210, Address: 0x217738, Func Offset: 0x108
-	// Line 1212, Address: 0x217740, Func Offset: 0x110
-	// Line 1214, Address: 0x217750, Func Offset: 0x120
-	// Line 1216, Address: 0x217754, Func Offset: 0x124
-	// Line 1214, Address: 0x217758, Func Offset: 0x128
-	// Line 1216, Address: 0x21775c, Func Offset: 0x12c
-	// Line 1217, Address: 0x21777c, Func Offset: 0x14c
-	// Line 1218, Address: 0x217788, Func Offset: 0x158
-	// Line 1223, Address: 0x2177a0, Func Offset: 0x170
-	// Line 1218, Address: 0x2177a8, Func Offset: 0x178
-	// Line 1220, Address: 0x2177b0, Func Offset: 0x180
-	// Line 1223, Address: 0x2177b8, Func Offset: 0x188
-	// Line 1220, Address: 0x2177c0, Func Offset: 0x190
-	// Line 1221, Address: 0x2177c8, Func Offset: 0x198
-	// Line 1222, Address: 0x2177d8, Func Offset: 0x1a8
-	// Line 1223, Address: 0x2177e8, Func Offset: 0x1b8
-	// Line 1225, Address: 0x2177fc, Func Offset: 0x1cc
-	// Line 1226, Address: 0x217810, Func Offset: 0x1e0
-	// Func End, Address: 0x217844, Func Offset: 0x214
-	scePrintf("bhEne_SetBlood4 - UNIMPLEMENTED!\n");
+    BT_WRK* tbl; 
+    NJS_POINT3 ps; 
+    NJS_POINT3 v; 
+    int ang; // DWARF has this variable placed below angY 
+    int angY;  
+    int i; 
+    static BT_WRK bld_tbl[20] = // TODO: match this to 100%, the signed zeroes are causing trouble
+    {
+        { {  0.0f,  0.0f, 0.0f }, 0x00001000, 0x00002000, 4, 2 },
+        { {  0.0f,  0.0f, 0.0f }, 0x00001000, 0xFFFFE000, 4, 2 },
+        { {  0.0f,  0.0f, 0.0f }, 0x00001000, 0x00000004, 0, 0 },
+        { { -0.0f,  0.0f, 0.0f }, 0xFFFFF000, 4         , 0, 0 },
+        { {  0.2f,  0.0f, 0.0f }, 0x00002000, 0x00000000, 4, 3 },
+        { {  0.0f, -0.2f, 0.0f }, 0x00000000, 4         , 3, 0 },
+        { {  0.2f,  0.0f, 0.0f }, 0x00002000, 0x00009000, 4, 6 },
+        { {  0.0f, -0.2f, 0.0f }, 0xFFFFF000, 0x00008000, 4, 7 },
+        { {  0.0f,  0.2f, 0.0f }, 0x00002000, 0x00007000, 4, 8 },
+        { {  0.0f,  0.0f, 0.0f }, 0x00000000, 0xFFFFFFFF, 0, 0 },
+        { {  0.0f,  0.0f, 0.0f }, 0x00001000, 0x00000800, 8, 1 },
+        { {  0.0f, -0.0f, 0.0f }, 0x00001000, 0xFFFFF800, 8, 1 },
+        { {  0.0f,  0.0f, 0.0f }, 0x00002000, 0x00000000, 8, 0 },
+        { {  0.0f,  0.0f, 0.0f }, 0x00000000, 0xFFFFFFFF, 0, 0 },
+        { {  0.0f,  0.0f, 0.0f }, 0x00001000, 0x00000800, 4, 1 },
+        { {  0.0f, -0.0f, 0.0f }, 0x00001000, 0xFFFFF800, 4, 1 },
+        { {  0.0f,  0.0f, 0.0f }, 0x00002000, 0x00000000, 4, 0 },
+        { {  0.0f,  0.0f, 0.0f }, 0x00001000, 0x00009000, 4, 2 },
+        { {  0.0f, -0.0f, 0.0f }, 0x00001000, 0x00007000, 4, 2 },
+        { {  0.0f,  0.0f, 0.0f }, 0x00000000, 0xFFFFFFFF, 0, 0 }
+    };
+    static int blood_n[4] = { 5, 10, 2, 3 };
+
+    tbl = bld_tbl;
+    
+    angY = 0;
+    
+    if (type == 2)
+    {
+        if (bhDGCdirCheck2((NJS_VECTOR*)&epw->dvx, &epw->mlwP->owP[lnk_obj]) != 0)
+        {
+            angY = 32768;
+        }
+        
+        ps.z = 0;
+        ps.y = 0;
+        ps.x = 0;
+        
+        tbl = &tbl[10];
+        
+        v.x = -epw->dvx;
+        v.y = -epw->dvy;
+        v.z = -epw->dvz;
+        
+        njUnitVector(&v);
+        
+        bhEne_SetBlood3(epw, lnk_obj, &ps, &v, 1, 0, 9, 3);
+    } 
+    else if (type == 3)
+    {
+        tbl = &tbl[14];
+    }
+
+    for (i = 0; i < 10; i++, tbl++)
+    {
+        if (tbl->type == -1)
+        {
+            break;
+        }
+
+        ang = (tbl->angY + angY) & 0xFFFF;
+        
+        v.x = -(njSin(ang) * njCos(tbl->angX));
+        v.y = njSin(tbl->angX);
+        v.z = -(njCos(ang) * njCos(tbl->angX));
+        
+        ps.x = ofs->x + tbl->ofs.x;
+        ps.y = ofs->y + tbl->ofs.y;
+        ps.z = ofs->z + tbl->ofs.z;
+        
+        bhEne_SetBlood3(epw, lnk_obj, &ps, &v, blood_n[type], tex_id, tbl->type, tbl->wcnt);
+    }
 }
 
 /*// 
