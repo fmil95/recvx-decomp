@@ -595,61 +595,54 @@ void bhEne_SetBlood2(BH_PWORK* epw, unsigned char type, NJS_POINT3* ofp, short r
     }
 }
 
-/*// 
-// Start address: 0x2173c0
-void bhEne_SetBlood3(BH_PWORK* epw, int lnk_obj, _anon4* ofs, _anon4* dv, int n, int tex_id, int type, int wcnt)
-{
-	int eno;
-	// Line 1086, Address: 0x2173c0, Func Offset: 0
-	// Line 1089, Address: 0x2173dc, Func Offset: 0x1c
-	// Line 1090, Address: 0x217400, Func Offset: 0x40
-	// Line 1092, Address: 0x21740c, Func Offset: 0x4c
-	// Line 1096, Address: 0x217410, Func Offset: 0x50
-	// Line 1090, Address: 0x217414, Func Offset: 0x54
-	// Line 1091, Address: 0x217420, Func Offset: 0x60
-	// Line 1092, Address: 0x21743c, Func Offset: 0x7c
-	// Line 1093, Address: 0x217450, Func Offset: 0x90
-	// Line 1094, Address: 0x217464, Func Offset: 0xa4
-	// Line 1096, Address: 0x217474, Func Offset: 0xb4
-	// Line 1098, Address: 0x21747c, Func Offset: 0xbc
-	// Line 1101, Address: 0x217484, Func Offset: 0xc4
-	// Line 1098, Address: 0x217490, Func Offset: 0xd0
-	// Line 1099, Address: 0x21749c, Func Offset: 0xdc
-	// Line 1100, Address: 0x2174b0, Func Offset: 0xf0
-	// Line 1101, Address: 0x2174c4, Func Offset: 0x104
-	// Line 1102, Address: 0x2174dc, Func Offset: 0x11c
-	// Line 1105, Address: 0x2174e4, Func Offset: 0x124
-	// Line 1108, Address: 0x2174f0, Func Offset: 0x130
-	// Line 1105, Address: 0x2174f8, Func Offset: 0x138
-	// Line 1106, Address: 0x217504, Func Offset: 0x144
-	// Line 1107, Address: 0x21751c, Func Offset: 0x15c
-	// Line 1108, Address: 0x217534, Func Offset: 0x174
-	// Line 1111, Address: 0x217550, Func Offset: 0x190
-	// Line 1113, Address: 0x21755c, Func Offset: 0x19c
-	// Line 1114, Address: 0x21757c, Func Offset: 0x1bc
-	// Line 1113, Address: 0x217584, Func Offset: 0x1c4
-	// Line 1114, Address: 0x217588, Func Offset: 0x1c8
-	// Line 1113, Address: 0x21758c, Func Offset: 0x1cc
-	// Line 1114, Address: 0x217594, Func Offset: 0x1d4
-	// Line 1115, Address: 0x217598, Func Offset: 0x1d8
-	// Line 1114, Address: 0x2175a4, Func Offset: 0x1e4
-	// Line 1116, Address: 0x2175a8, Func Offset: 0x1e8
-	// Line 1114, Address: 0x2175b0, Func Offset: 0x1f0
-	// Line 1115, Address: 0x2175b4, Func Offset: 0x1f4
-	// Line 1116, Address: 0x2175b8, Func Offset: 0x1f8
-	// Line 1117, Address: 0x2175c0, Func Offset: 0x200
-	// Line 1116, Address: 0x2175cc, Func Offset: 0x20c
-	// Line 1117, Address: 0x2175d0, Func Offset: 0x210
-	// Line 1118, Address: 0x2175d4, Func Offset: 0x214
-	// Line 1117, Address: 0x2175e0, Func Offset: 0x220
-	// Line 1118, Address: 0x2175e4, Func Offset: 0x224
-	// Line 1119, Address: 0x2175e8, Func Offset: 0x228
-	// Line 1118, Address: 0x2175f4, Func Offset: 0x234
-	// Line 1119, Address: 0x2175f8, Func Offset: 0x238
-	// Line 1120, Address: 0x2175fc, Func Offset: 0x23c
-	// Line 1122, Address: 0x21760c, Func Offset: 0x24c
-	// Func End, Address: 0x21762c, Func Offset: 0x26c
-}*/
+// 100% matching!
+void bhEne_SetBlood3(BH_PWORK* epw, int lnk_obj, NJS_POINT3* ofs, NJS_POINT3* dv, int n, int tex_id, int type, int wcnt) 
+{   
+    int eno;
+
+    sys->ef.id = 370;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.type = type;
+    
+    sys->ef.sx = 3.5f;
+    sys->ef.sy = 3.5f;
+    sys->ef.sz = 0;
+    
+    if (lnk_obj != -1) 
+    {
+        sys->ef.px = 0;
+        sys->ef.py = 0;
+        sys->ef.pz = 0;
+        
+        eno = bhSetEffectTb(&sys->ef, ofs, (unsigned char*)epw, lnk_obj);
+    } 
+    else 
+    {
+        sys->ef.px = ofs->x;
+        sys->ef.py = ofs->y;
+        sys->ef.pz = ofs->z;
+        
+        eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    }
+    
+    if (eno != -1) 
+    {
+        eff[eno].stflg |= 0x20;
+        
+        eff[eno].txp[0] = epw->mlwP->texP;
+        
+        eff[eno].tex_id = tex_id;
+        
+        eff[eno].xn = dv->x;
+        eff[eno].yn = dv->y;
+        eff[eno].zn = dv->z;
+        
+        eff[eno].ct0 = wcnt;
+        eff[eno].ct1 = n;
+    }
+}
 
 // 
 // Start address: 0x217630
