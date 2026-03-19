@@ -3,6 +3,13 @@
 
 #include "types.h"
 
+typedef struct WORK 
+{
+    // total size: 0x8
+    float wk; // offset 0x0, size 0x4
+    int indx; // offset 0x4, size 0x4
+} WORK; 
+
 typedef struct BT_WORK 
 {
     // total size: 0x20
@@ -1563,32 +1570,26 @@ int bhDGCdirCheck(NJS_VECTOR* dv, int rot);
 int bhDGCdirCheck2(NJS_VECTOR* dv, O_WORK* owk);
 int bhDGCdirCheck3(NJS_VECTOR* dv, int rot);
 int bhEne_AngleCheck(NJS_VECTOR* vec, int rot, int chk_ang);
-/*
-void bhEne_GetTranslateMtn(BH_PWORK* epw, int frm, int mode);
+/*void bhEne_GetTranslateMtn(BH_PWORK* epw, int frm, int mode);
 void bhEne_GetTranslateMtn2(BH_PWORK* epw, int frm, int mode);*/
 void bhEne_CalcPartsPos(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* pos, char* tree, int parts_num, int clr_flg);
 /*_anon23* bhKaidanAtrCheck(BH_PWORK* epw, float len, int* idx);
-_anon23* bhEne_EnemyAtariCheck(_anon4* pos, int flr_no, unsigned char id, unsigned char type);
-*/
+_anon23* bhEne_EnemyAtariCheck(_anon4* pos, int flr_no, unsigned char id, unsigned char type);*/
 int bhEne_PosCheck(float px, float pz, float x, float z, float w, float h);
-/*
-void bhEne_SetBlood(BH_PWORK* epw, unsigned char type, _anon10* bt);*/
+/*void bhEne_SetBlood(BH_PWORK* epw, unsigned char type, _anon10* bt);*/
 void bhEne_SetBlood2(BH_PWORK* epw, unsigned char type, NJS_POINT3* ofp, short ry);
 /*void bhEne_SetBlood3(BH_PWORK* epw, int lnk_obj, _anon4* ofs, _anon4* dv, int n, int tex_id, int type, int wcnt);*/
 void bhEne_SetBlood4(BH_PWORK* epw, int lnk_obj, NJS_POINT3* ofs, int tex_id, int type);
 /*void bhEne_SetNikuhenEffect(BH_PWORK* epw, int type, _anon4* pos, _anon4* v, int tex_id);
 void bhEne_SetNikuhenEffect2(BH_PWORK* epw, int type, _anon4* pos, int n, int tex_id);
-int bhEne_SetDFireEffect(BH_PWORK* epw, int no, _anon10* ltbl, int type);
-void bhEne_SetDFireEffect2(BH_PWORK* epw, int no, _anon10* ltbl, int type);
-int bhEne_SetSanEffect(BH_PWORK* epw, int no, _anon10* ltbl);
-int bhEne_SetSanEffect2(BH_PWORK* epw, int no, _anon10* ltbl);
-void bhEne_QuickSort(_anon1* a, int first, int last);
-*/
+int bhEne_SetDFireEffect(BH_PWORK* epw, int no, _anon10* ltbl, int type);*/
+void bhEne_SetDFireEffect2(BH_PWORK* epw, int no, BT_WORK* ltbl, int type);
+/*int bhEne_SetSanEffect(BH_PWORK* epw, int no, _anon10* ltbl);
+int bhEne_SetSanEffect2(BH_PWORK* epw, int no, _anon10* ltbl);*/
+void bhEne_QuickSort(WORK* a, int first, int last);
 int bhEne_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate);
-/*
-int bhEne_CollisionCheckWall(BH_PWORK* pw, _anon4* ps, _anon4* pd, float ar, float ah);
-_anon23* bhEne_CollisionCheckWall2(BH_PWORK* pw, _anon4* ps, _anon4* ops, _anon4* pd, float ar, float ah);
-*/
+/*int bhEne_CollisionCheckWall(BH_PWORK* pw, _anon4* ps, _anon4* pd, float ar, float ah);
+_anon23* bhEne_CollisionCheckWall2(BH_PWORK* pw, _anon4* ps, _anon4* ops, _anon4* pd, float ar, float ah);*/
 ATR_WORK* bhEne_CheckDirWall(BH_PWORK* epw, int ang, float step);
 ATR_WORK* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step);
 ATR_WORK* bhEne_CheckDirWall3(BH_PWORK* epw, NJS_POINT3* pos, int ang, float step);
