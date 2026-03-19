@@ -329,28 +329,36 @@ _anon23* bhKaidanAtrCheck(BH_PWORK* epw, float len, int* idx)
 	// Line 685, Address: 0x216958, Func Offset: 0x1f8
 	// Line 686, Address: 0x21695c, Func Offset: 0x1fc
 	// Func End, Address: 0x216978, Func Offset: 0x218
-}
+}*/
 
-// 
-// Start address: 0x216980
-_anon23* bhEne_EnemyAtariCheck(_anon4* pos, int flr_no, unsigned char id, unsigned char type)
+// 100% matching!
+ATR_WORK* bhEne_EnemyAtariCheck(NJS_POINT3* pos, int flr_no, unsigned char id, unsigned char type) 
 {
-	int flr_n;
-	int i;
-	_anon23* fp;
-	// Line 708, Address: 0x216980, Func Offset: 0
-	// Line 712, Address: 0x2169a8, Func Offset: 0x28
-	// Line 713, Address: 0x2169d4, Func Offset: 0x54
-	// Line 716, Address: 0x2169ec, Func Offset: 0x6c
-	// Line 717, Address: 0x216a38, Func Offset: 0xb8
-	// Line 719, Address: 0x216a58, Func Offset: 0xd8
-	// Line 724, Address: 0x216aa0, Func Offset: 0x120
-	// Line 727, Address: 0x216aa8, Func Offset: 0x128
-	// Line 728, Address: 0x216ab8, Func Offset: 0x138
-	// Line 729, Address: 0x216abc, Func Offset: 0x13c
-	// Func End, Address: 0x216ae8, Func Offset: 0x168
+    ATR_WORK* fp;
+    int i; 
+    int flr_n; 
+
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++) 
+    {
+        if (rom->flr_n > i)
+        {
+            fp = rom->flrp + i;
+        }
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if (((fp->flg & 0x1)) && (fp->type == 2) && (bhEne_PosCheck(pos->x, pos->z, fp->px, fp->pz, fp->w, fp->d) != 0) && (fp->flr_no == flr_no) && ((fp->prm0 == id) && (fp->prm1 == type))) 
+        {
+            return fp;
+        }
+    }
+
+    return NULL;
 }
-*/
 
 // 100% matching!
 int bhEne_PosCheck(float px, float pz, float x, float z, float w, float h)
