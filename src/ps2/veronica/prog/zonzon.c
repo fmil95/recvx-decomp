@@ -1,5 +1,6 @@
 #include "zonzon.h"
 #include "hitchk.h"
+#include "ps2_NinjaCnk.h"
 #include "main.h"
 
 // 100% matching! 
@@ -258,30 +259,34 @@ void bhEne_GetTranslateMtn2(BH_PWORK* epw, int frm, int mode)
 	// Line 558, Address: 0x216628, Func Offset: 0xb8
 	// Line 559, Address: 0x216638, Func Offset: 0xc8
 	// Func End, Address: 0x216648, Func Offset: 0xd8
+}*/
+
+// 100% matching!
+void bhEne_CalcPartsPos(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* pos, char* tree, int parts_num, int clr_flg)
+{   
+    NJS_CNK_OBJECT* obj;
+    int i; 
+        
+    if (clr_flg != 0)
+    {
+        njUnitMatrix(mtx);
+        
+        njTranslate(mtx, epw->px, epw->py, epw->pz);
+        njRotateXYZ(mtx, epw->ax, epw->ay, epw->az);
+    }
+
+    for (i = 0; i < parts_num; i++, tree++) 
+    {
+        obj = &epw->mlwP->objP[*tree];
+        
+        njTranslate(mtx, obj->pos[0], obj->pos[1], obj->pos[2]);
+        njRotateXYZ(mtx, obj->ang[0], obj->ang[1], obj->ang[2]);
+    }
+
+    njGetTranslation(mtx, pos);
 }
 
-// 
-// Start address: 0x216650
-void bhEne_CalcPartsPos(BH_PWORK* epw, float mtx[16], _anon4* pos, char* tree, int parts_num, int clr_flg)
-{
-	int i;
-	npobj* obj;
-	// Line 585, Address: 0x216650, Func Offset: 0
-	// Line 589, Address: 0x216684, Func Offset: 0x34
-	// Line 591, Address: 0x21668c, Func Offset: 0x3c
-	// Line 592, Address: 0x216694, Func Offset: 0x44
-	// Line 593, Address: 0x2166a8, Func Offset: 0x58
-	// Line 596, Address: 0x2166bc, Func Offset: 0x6c
-	// Line 598, Address: 0x2166c8, Func Offset: 0x78
-	// Line 599, Address: 0x2166ec, Func Offset: 0x9c
-	// Line 600, Address: 0x216700, Func Offset: 0xb0
-	// Line 602, Address: 0x216714, Func Offset: 0xc4
-	// Line 603, Address: 0x216728, Func Offset: 0xd8
-	// Line 604, Address: 0x216734, Func Offset: 0xe4
-	// Func End, Address: 0x21675c, Func Offset: 0x10c
-}
-
-// 
+/*// 
 // Start address: 0x216760
 _anon23* bhKaidanAtrCheck(BH_PWORK* epw, float len, int* idx)
 {

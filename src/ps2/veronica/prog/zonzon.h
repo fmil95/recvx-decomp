@@ -1542,9 +1542,9 @@ int bhDGCdirCheck3(NJS_VECTOR* dv, int rot);
 int bhEne_AngleCheck(NJS_VECTOR* vec, int rot, int chk_ang);
 /*
 void bhEne_GetTranslateMtn(BH_PWORK* epw, int frm, int mode);
-void bhEne_GetTranslateMtn2(BH_PWORK* epw, int frm, int mode);
-void bhEne_CalcPartsPos(BH_PWORK* epw, float mtx[16], _anon4* pos, char* tree, int parts_num, int clr_flg);
-_anon23* bhKaidanAtrCheck(BH_PWORK* epw, float len, int* idx);
+void bhEne_GetTranslateMtn2(BH_PWORK* epw, int frm, int mode);*/
+void bhEne_CalcPartsPos(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* pos, char* tree, int parts_num, int clr_flg);
+/*_anon23* bhKaidanAtrCheck(BH_PWORK* epw, float len, int* idx);
 _anon23* bhEne_EnemyAtariCheck(_anon4* pos, int flr_no, unsigned char id, unsigned char type);
 */
 int bhEne_PosCheck(float px, float pz, float x, float z, float w, float h);
