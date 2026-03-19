@@ -1247,9 +1247,9 @@ void bhCheckWall2Box(BH_PWORK* pw)
 	// Line 1646, Address: 0x2612e8, Func Offset: 0x16f8
 	// Line 1654, Address: 0x2612ec, Func Offset: 0x16fc
 	// Func End, Address: 0x261334, Func Offset: 0x1744
-}
+}*/
 
-// */
+// 
 // Start address: 0x261340
 ATR_WORK* bhCheckWallType(NJS_POINT3* pos, unsigned int flg, float ar, float ah)
 {
@@ -1306,10 +1306,10 @@ ATR_WORK* bhCheckWallType(NJS_POINT3* pos, unsigned int flg, float ar, float ah)
 	// Line 1738, Address: 0x2617f0, Func Offset: 0x4b0
 	// Line 1739, Address: 0x2617f4, Func Offset: 0x4b4
 	// Func End, Address: 0x26182c, Func Offset: 0x4ec
+	scePrintf("bhCheckWallType - UNIMPLEMENTED!\n");
 }
-/*
 
-// 
+/*// 
 // Start address: 0x261830
 _anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, float ah, int idx_ct)
 {
@@ -3583,7 +3583,7 @@ void bhCheckFloorP(BH_PWORK* pp)
 	// Line 4324, Address: 0x268014, Func Offset: 0x5c4
 	// Line 4327, Address: 0x268024, Func Offset: 0x5d4
 	// Func End, Address: 0x268040, Func Offset: 0x5f0
-}
+}*/
 
 // 
 // Start address: 0x268040
@@ -3594,7 +3594,7 @@ void bhCheckDansa(BH_PWORK* pp)
 	float* dp;
 	float pz;
 	float px;
-	_anon0* exp;
+	//_anon0* exp;
 	// Line 4345, Address: 0x268040, Func Offset: 0
 	// Line 4342, Address: 0x268044, Func Offset: 0x4
 	// Line 4344, Address: 0x268048, Func Offset: 0x8
@@ -3615,9 +3615,10 @@ void bhCheckDansa(BH_PWORK* pp)
 	// Line 4364, Address: 0x268198, Func Offset: 0x158
 	// Line 4365, Address: 0x2681a8, Func Offset: 0x168
 	// Func End, Address: 0x2681b0, Func Offset: 0x170
+	scePrintf("bhCheckDansa - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2681b0
 int bhCheckFloorSound(BH_PWORK* pp, int flr_no, float px, float pz)
 {
@@ -4024,4 +4025,3 @@ int bhCheckWallAttrB89(_anon0* hp)
 	// Line 4913, Address: 0x269360, Func Offset: 0x80
 	// Func End, Address: 0x269368, Func Offset: 0x88
 }*/
-

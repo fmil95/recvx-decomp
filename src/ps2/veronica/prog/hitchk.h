@@ -3,7 +3,9 @@
 
 #include "types.h"
 
+void bhCheckWall(BH_PWORK* pw);
 ATR_WORK* bhCheckWallType(NJS_POINT3* pos, unsigned int flg, float ar, float ah);
+void bhCheckDansa(BH_PWORK* pp);
 
 /*typedef struct npobj;
 typedef struct _anon0;

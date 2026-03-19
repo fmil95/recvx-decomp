@@ -1111,53 +1111,56 @@ int bhEne_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate)
     return -1;
 }
 
-/*
-// 
-// Start address: 0x2186a0
-int bhEne_CollisionCheckWall(BH_PWORK* pw, _anon4* ps, _anon4* pd, float ar, float ah)
+// 100% matching!
+int bhEne_CollisionCheckWall(BH_PWORK* pw, NJS_POINT3* ps, NJS_POINT3* pd, float ar, float ah)
 {
-	unsigned int flg;
-	float h;
-	float r;
-	float z;
-	float y;
-	float x;
-	// Line 1835, Address: 0x2186a0, Func Offset: 0
-	// Line 1844, Address: 0x2186cc, Func Offset: 0x2c
-	// Line 1845, Address: 0x2186d0, Func Offset: 0x30
-	// Line 1846, Address: 0x2186d4, Func Offset: 0x34
-	// Line 1847, Address: 0x2186d8, Func Offset: 0x38
-	// Line 1848, Address: 0x2186dc, Func Offset: 0x3c
-	// Line 1850, Address: 0x2186e0, Func Offset: 0x40
-	// Line 1857, Address: 0x2186e4, Func Offset: 0x44
-	// Line 1850, Address: 0x2186f4, Func Offset: 0x54
-	// Line 1851, Address: 0x2186f8, Func Offset: 0x58
-	// Line 1852, Address: 0x218700, Func Offset: 0x60
-	// Line 1853, Address: 0x218708, Func Offset: 0x68
-	// Line 1854, Address: 0x21870c, Func Offset: 0x6c
-	// Line 1856, Address: 0x218710, Func Offset: 0x70
-	// Line 1857, Address: 0x218714, Func Offset: 0x74
-	// Line 1858, Address: 0x218718, Func Offset: 0x78
-	// Line 1859, Address: 0x218720, Func Offset: 0x80
-	// Line 1860, Address: 0x218728, Func Offset: 0x88
-	// Line 1862, Address: 0x21872c, Func Offset: 0x8c
-	// Line 1873, Address: 0x218734, Func Offset: 0x94
-	// Line 1862, Address: 0x21873c, Func Offset: 0x9c
-	// Line 1863, Address: 0x218744, Func Offset: 0xa4
-	// Line 1864, Address: 0x218754, Func Offset: 0xb4
-	// Line 1866, Address: 0x218764, Func Offset: 0xc4
-	// Line 1867, Address: 0x218768, Func Offset: 0xc8
-	// Line 1868, Address: 0x21876c, Func Offset: 0xcc
-	// Line 1869, Address: 0x218770, Func Offset: 0xd0
-	// Line 1870, Address: 0x218774, Func Offset: 0xd4
-	// Line 1873, Address: 0x218778, Func Offset: 0xd8
-	// Line 1874, Address: 0x2187a0, Func Offset: 0x100
-	// Line 1880, Address: 0x2187ac, Func Offset: 0x10c
-	// Line 1881, Address: 0x2187b0, Func Offset: 0x110
-	// Func End, Address: 0x2187e0, Func Offset: 0x140
+    float x, y, z; 
+    float r, h; 
+    unsigned int flg; 
+
+    x = pw->px;
+    y = pw->py;
+    z = pw->pz;
+    
+    h = pw->ah;
+    r = pw->ar;
+    
+    pw->px = ps->x;
+    pw->py = ps->y;
+    pw->pz = ps->z;
+    
+    pw->ah = ah;
+    pw->ar = ar;
+    
+    flg = pw->flg;
+    
+    pw->flg &= ~0x100;
+    
+    bhCheckDansa(pw);
+    bhCheckWall(pw);
+    
+    pw->flg = flg;
+    
+    pd->x = pw->px - ps->x;
+    pd->y = pw->py - ps->y;
+    pd->z = pw->pz - ps->z;
+    
+    pw->px = x;
+    pw->py = y;
+    pw->pz = z;
+    
+    pw->ah = h;
+    pw->ar = r;
+
+    if ((pd->x != 0) || (pd->z != 0)) 
+    {
+        return 1;
+    }
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x2187e0
 _anon23* bhEne_CollisionCheckWall2(BH_PWORK* pw, _anon4* ps, _anon4* ops, _anon4* pd, float ar, float ah)
 {
