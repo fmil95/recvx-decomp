@@ -1160,38 +1160,38 @@ int bhEne_CollisionCheckWall(BH_PWORK* pw, NJS_POINT3* ps, NJS_POINT3* pd, float
     return 0;
 }
 
-/*// 
-// Start address: 0x2187e0
-_anon23* bhEne_CollisionCheckWall2(BH_PWORK* pw, _anon4* ps, _anon4* ops, _anon4* pd, float ar, float ah)
+// 100% matching!
+ATR_WORK* bhEne_CollisionCheckWall2(BH_PWORK* pw, NJS_POINT3* ps, NJS_POINT3* ops, NJS_POINT3* pd, float ar, float ah)
 {
-	unsigned int flg;
-	_anon4 pos;
-	_anon23* hp;
-	// Line 1904, Address: 0x2187e0, Func Offset: 0
-	// Line 1915, Address: 0x218810, Func Offset: 0x30
-	// Line 1916, Address: 0x218814, Func Offset: 0x34
-	// Line 1917, Address: 0x21881c, Func Offset: 0x3c
-	// Line 1920, Address: 0x218824, Func Offset: 0x44
-	// Line 1915, Address: 0x218828, Func Offset: 0x48
-	// Line 1916, Address: 0x21882c, Func Offset: 0x4c
-	// Line 1905, Address: 0x218840, Func Offset: 0x60
-	// Line 1916, Address: 0x218844, Func Offset: 0x64
-	// Line 1917, Address: 0x218848, Func Offset: 0x68
-	// Line 1919, Address: 0x218850, Func Offset: 0x70
-	// Line 1920, Address: 0x218854, Func Offset: 0x74
-	// Line 1923, Address: 0x218858, Func Offset: 0x78
-	// Line 1924, Address: 0x218860, Func Offset: 0x80
-	// Line 1926, Address: 0x218880, Func Offset: 0xa0
-	// Line 1928, Address: 0x218898, Func Offset: 0xb8
-	// Line 1930, Address: 0x21889c, Func Offset: 0xbc
-	// Line 1934, Address: 0x2188a4, Func Offset: 0xc4
-	// Line 1930, Address: 0x2188a8, Func Offset: 0xc8
-	// Line 1931, Address: 0x2188b0, Func Offset: 0xd0
-	// Line 1932, Address: 0x2188c0, Func Offset: 0xe0
-	// Line 1935, Address: 0x2188d0, Func Offset: 0xf0
-	// Func End, Address: 0x218904, Func Offset: 0x124
+    ATR_WORK* hp;
+    NJS_POINT3 pos; 
+    unsigned int flg; 
+
+    hp = NULL;
+    
+    pos.x = ps->x;
+    pos.y = ps->y;
+    pos.z = ps->z;
+    
+    flg = pw->flg;
+    
+    pw->flg &= ~0x100;
+    
+    bhCheckDansa(pw);
+    
+    if (bhCheckWallEx(pw, &pos, ops, ar, ah) != 0)
+    {
+        hp = bhCheckWallType(ps, pw->flg, ar, ah);
+    }
+    
+    pw->flg = flg;
+    
+    pd->x = pos.x - ps->x;
+    pd->y = pos.y - ps->y;
+    pd->z = pos.z - ps->z;
+    
+    return hp;
 }
-*/
 
 // 100% matching!
 ATR_WORK* bhEne_CheckDirWall(BH_PWORK* epw, int ang, float step) 

@@ -4,6 +4,7 @@
 #include "types.h"
 
 void bhCheckWall(BH_PWORK* pw);
+int bhCheckWallEx(BH_PWORK* pw, NJS_POINT3* npos, NJS_POINT3* opos, float par, float pah);
 ATR_WORK* bhCheckWallType(NJS_POINT3* pos, unsigned int flg, float ar, float ah);
 void bhCheckDansa(BH_PWORK* pp);
 

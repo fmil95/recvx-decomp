@@ -435,13 +435,13 @@ void bhCheckWall(BH_PWORK* pw)
 	scePrintf("bhCheckWall - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x25e930
-int bhCheckWallEx(BH_PWORK* pw, _anon20* npos, _anon20* opos, float par, float pah)
+int bhCheckWallEx(BH_PWORK* pw, NJS_POINT3* npos, NJS_POINT3* opos, float par, float pah)
 {
 	float inn;
-	_anon20 vec1;
-	_anon20 vec0;
+	//_anon20 vec1;
+	//_anon20 vec0;
 	int ayp;
 	int r;
 	float pzz;
@@ -468,10 +468,10 @@ int bhCheckWallEx(BH_PWORK* pw, _anon20* npos, _anon20* opos, float par, float p
 	int hit;
 	int j;
 	int i;
-	_anon0 ht;
-	_anon0* hp;
-	_anon39 l;
-	_anon20 pd;
+	//_anon0 ht;
+	//_anon0* hp;
+	//_anon39 l;
+	//_anon20 pd;
 	// Line 622, Address: 0x25e930, Func Offset: 0
 	// Line 636, Address: 0x25e98c, Func Offset: 0x5c
 	// Line 638, Address: 0x25e9b8, Func Offset: 0x88
@@ -807,9 +807,10 @@ int bhCheckWallEx(BH_PWORK* pw, _anon20* npos, _anon20* opos, float par, float p
 	// Line 1141, Address: 0x25fb84, Func Offset: 0x1254
 	// Line 1143, Address: 0x25fb88, Func Offset: 0x1258
 	// Func End, Address: 0x25fbec, Func Offset: 0x12bc
+	scePrintf("bhCheckWallEx - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x25fbf0
 void bhCheckWall2Box(BH_PWORK* pw)
 {
