@@ -729,50 +729,42 @@ void bhEne_SetBlood4(BH_PWORK* epw, int lnk_obj, NJS_POINT3* ofs, int tex_id, in
     }
 }
 
-/*// 
-// Start address: 0x217850
-void bhEne_SetNikuhenEffect(BH_PWORK* epw, int type, _anon4* pos, _anon4* v, int tex_id)
+// 100% matching!
+void bhEne_SetNikuhenEffect(BH_PWORK* epw, int type, NJS_POINT3* pos, NJS_POINT3* v, int tex_id)
 {
-	int eno;
-	// Line 1311, Address: 0x217850, Func Offset: 0
-	// Line 1314, Address: 0x217864, Func Offset: 0x14
-	// Line 1315, Address: 0x217874, Func Offset: 0x24
-	// Line 1314, Address: 0x217878, Func Offset: 0x28
-	// Line 1315, Address: 0x217884, Func Offset: 0x34
-	// Line 1316, Address: 0x2178a0, Func Offset: 0x50
-	// Line 1317, Address: 0x2178b4, Func Offset: 0x64
-	// Line 1318, Address: 0x2178cc, Func Offset: 0x7c
-	// Line 1319, Address: 0x2178e4, Func Offset: 0x94
-	// Line 1320, Address: 0x2178f8, Func Offset: 0xa8
-	// Line 1323, Address: 0x21791c, Func Offset: 0xcc
-	// Line 1320, Address: 0x217924, Func Offset: 0xd4
-	// Line 1323, Address: 0x21793c, Func Offset: 0xec
-	// Line 1320, Address: 0x217940, Func Offset: 0xf0
-	// Line 1321, Address: 0x217948, Func Offset: 0xf8
-	// Line 1322, Address: 0x217968, Func Offset: 0x118
-	// Line 1323, Address: 0x21797c, Func Offset: 0x12c
-	// Line 1324, Address: 0x217994, Func Offset: 0x144
-	// Line 1326, Address: 0x2179a0, Func Offset: 0x150
-	// Line 1327, Address: 0x2179c4, Func Offset: 0x174
-	// Line 1326, Address: 0x2179d0, Func Offset: 0x180
-	// Line 1327, Address: 0x2179d8, Func Offset: 0x188
-	// Line 1328, Address: 0x2179dc, Func Offset: 0x18c
-	// Line 1327, Address: 0x2179e8, Func Offset: 0x198
-	// Line 1329, Address: 0x2179ec, Func Offset: 0x19c
-	// Line 1327, Address: 0x2179f4, Func Offset: 0x1a4
-	// Line 1328, Address: 0x2179f8, Func Offset: 0x1a8
-	// Line 1329, Address: 0x2179fc, Func Offset: 0x1ac
-	// Line 1330, Address: 0x217a04, Func Offset: 0x1b4
-	// Line 1329, Address: 0x217a0c, Func Offset: 0x1bc
-	// Line 1330, Address: 0x217a10, Func Offset: 0x1c0
-	// Line 1331, Address: 0x217a18, Func Offset: 0x1c8
-	// Line 1330, Address: 0x217a20, Func Offset: 0x1d0
-	// Line 1331, Address: 0x217a24, Func Offset: 0x1d4
-	// Line 1333, Address: 0x217a30, Func Offset: 0x1e0
-	// Func End, Address: 0x217a48, Func Offset: 0x1f8
+    int eno;
+
+    sys->ef.flg = 1;
+    
+    sys->ef.id = 362;
+    
+    sys->ef.type = type;
+    
+    sys->ef.px = pos->x;
+    sys->ef.py = pos->y;
+    sys->ef.pz = pos->z;
+    
+    sys->ef.sx = 2.0f + (-rand() / -2.1474836E9f);
+    sys->ef.sy = sys->ef.sx;
+    sys->ef.sz = 0;
+    
+    eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    
+    if (eno != -1) 
+    {
+        eff[eno].stflg |= 0x20;
+        
+        eff[eno].txp[0] = epw->mlwP->texP;
+        
+        eff[eno].tex_id = tex_id;
+        
+        eff[eno].xn = v->x;
+        eff[eno].yn = v->y;
+        eff[eno].zn = v->z;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x217a50
 void bhEne_SetNikuhenEffect2(BH_PWORK* epw, int type, _anon4* pos, int n, int tex_id)
 {
