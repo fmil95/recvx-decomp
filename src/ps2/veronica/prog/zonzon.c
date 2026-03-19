@@ -935,60 +935,72 @@ void bhEne_SetDFireEffect2(BH_PWORK* epw, int no, BT_WORK* ltbl, int type)
 	scePrintf("bhEne_SetDFireEffect2 - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x218100
-int bhEne_SetSanEffect(BH_PWORK* epw, int no, _anon10* ltbl)
+// 100% matching!
+int bhEne_SetSanEffect(BH_PWORK* epw, int no, BT_WORK* ltbl)
 {
-	int i;
-	int obj_num;
-	_anon4 pos;
-	_anon4 vec;
-	_anon20* owk;
-	_anon1* wp;
-	_anon1 work[42];
-	// Line 1601, Address: 0x218100, Func Offset: 0
-	// Line 1610, Address: 0x218124, Func Offset: 0x24
-	// Line 1611, Address: 0x218134, Func Offset: 0x34
-	// Line 1614, Address: 0x218148, Func Offset: 0x48
-	// Line 1615, Address: 0x21814c, Func Offset: 0x4c
-	// Line 1620, Address: 0x218150, Func Offset: 0x50
-	// Line 1617, Address: 0x218154, Func Offset: 0x54
-	// Line 1618, Address: 0x218158, Func Offset: 0x58
-	// Line 1620, Address: 0x21815c, Func Offset: 0x5c
-	// Line 1619, Address: 0x218160, Func Offset: 0x60
-	// Line 1620, Address: 0x218164, Func Offset: 0x64
-	// Line 1623, Address: 0x21816c, Func Offset: 0x6c
-	// Line 1625, Address: 0x218190, Func Offset: 0x90
-	// Line 1626, Address: 0x218194, Func Offset: 0x94
-	// Line 1627, Address: 0x218198, Func Offset: 0x98
-	// Line 1625, Address: 0x21819c, Func Offset: 0x9c
-	// Line 1627, Address: 0x2181a0, Func Offset: 0xa0
-	// Line 1630, Address: 0x2181a8, Func Offset: 0xa8
-	// Line 1632, Address: 0x2181b8, Func Offset: 0xb8
-	// Line 1633, Address: 0x2181c0, Func Offset: 0xc0
-	// Line 1634, Address: 0x2181c4, Func Offset: 0xc4
-	// Line 1635, Address: 0x2181c8, Func Offset: 0xc8
-	// Line 1632, Address: 0x2181cc, Func Offset: 0xcc
-	// Line 1633, Address: 0x2181d4, Func Offset: 0xd4
-	// Line 1634, Address: 0x2181e0, Func Offset: 0xe0
-	// Line 1635, Address: 0x2181e8, Func Offset: 0xe8
-	// Line 1636, Address: 0x2181f0, Func Offset: 0xf0
-	// Line 1639, Address: 0x2181f8, Func Offset: 0xf8
-	// Line 1640, Address: 0x218204, Func Offset: 0x104
-	// Line 1643, Address: 0x218208, Func Offset: 0x108
-	// Line 1641, Address: 0x21820c, Func Offset: 0x10c
-	// Line 1643, Address: 0x218210, Func Offset: 0x110
-	// Line 1646, Address: 0x218220, Func Offset: 0x120
-	// Line 1649, Address: 0x218230, Func Offset: 0x130
-	// Line 1652, Address: 0x218240, Func Offset: 0x140
-	// Line 1654, Address: 0x218248, Func Offset: 0x148
-	// Line 1655, Address: 0x218258, Func Offset: 0x158
-	// Line 1657, Address: 0x218268, Func Offset: 0x168
-	// Line 1658, Address: 0x21826c, Func Offset: 0x16c
-	// Func End, Address: 0x218294, Func Offset: 0x194
+    WORK work[42]; 
+    WORK* wp;
+    O_WORK* owk; 
+    NJS_POINT3 vec; 
+    NJS_POINT3 pos; 
+    int obj_num; 
+    int i;
+
+    obj_num = epw->mlwP->obj_num;
+    
+    if (obj_num > 42) 
+    {
+        return -1;
+    }
+    
+    wp = work;
+    
+    for (i = 0; i < 42; i++, wp++)
+    {
+        wp->wk = 0;
+        
+        wp->indx = 0;
+    }
+    
+    njGetTranslation(&epw->mlwP->owP[no].mtx, &pos);
+    
+    wp = work;
+    
+    owk = epw->mlwP->owP;
+    
+    for (i = 0; i < obj_num; i++, wp++, owk++) 
+    {
+        wp->indx = i;
+        
+        if ((no != i) && (i != 0))
+        {
+            vec.x = pos.x - owk->mtx[12];
+            vec.y = pos.y - owk->mtx[13];
+            vec.z = pos.z - owk->mtx[14];
+            
+            wp->wk = njScalor2(&vec);
+        } 
+        else 
+        {
+            wp->wk = 10000.0f;
+        }
+    }
+    
+    bhEne_QuickSort(work, 0, obj_num - 1);
+    
+    bhEne_SetSanEffect2(epw, no, ltbl);
+    
+    wp = work;
+    
+    for (i = 0; i < 3; i++, wp++)
+    {
+        bhEne_SetSanEffect2(epw, wp->indx, ltbl);
+    }
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x2182a0
 int bhEne_SetSanEffect2(BH_PWORK* epw, int no, _anon10* ltbl)
 {
