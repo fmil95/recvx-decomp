@@ -764,37 +764,36 @@ void bhEne_SetNikuhenEffect(BH_PWORK* epw, int type, NJS_POINT3* pos, NJS_POINT3
     }
 }
 
-/*// 
-// Start address: 0x217a50
-void bhEne_SetNikuhenEffect2(BH_PWORK* epw, int type, _anon4* pos, int n, int tex_id)
+// 100% matching!
+void bhEne_SetNikuhenEffect2(BH_PWORK* epw, int type, NJS_POINT3* pos, int n, int tex_id)
 {
-	int i;
-	int angZ;
-	int angY;
-	_anon4 v2;
-	_anon4 v;
-	// Line 1358, Address: 0x217a50, Func Offset: 0
-	// Line 1363, Address: 0x217a78, Func Offset: 0x28
-	// Line 1365, Address: 0x217a94, Func Offset: 0x44
-	// Line 1367, Address: 0x217a9c, Func Offset: 0x4c
-	// Line 1368, Address: 0x217ab8, Func Offset: 0x68
-	// Line 1374, Address: 0x217ac8, Func Offset: 0x78
-	// Line 1368, Address: 0x217ad4, Func Offset: 0x84
-	// Line 1374, Address: 0x217ad8, Func Offset: 0x88
-	// Line 1375, Address: 0x217ae0, Func Offset: 0x90
-	// Line 1378, Address: 0x217ae4, Func Offset: 0x94
-	// Line 1375, Address: 0x217ae8, Func Offset: 0x98
-	// Line 1376, Address: 0x217af0, Func Offset: 0xa0
-	// Line 1377, Address: 0x217afc, Func Offset: 0xac
-	// Line 1378, Address: 0x217b04, Func Offset: 0xb4
-	// Line 1379, Address: 0x217b0c, Func Offset: 0xbc
-	// Line 1380, Address: 0x217b1c, Func Offset: 0xcc
-	// Line 1381, Address: 0x217b34, Func Offset: 0xe4
-	// Line 1382, Address: 0x217b48, Func Offset: 0xf8
-	// Func End, Address: 0x217b70, Func Offset: 0x120
+    NJS_POINT3 v;
+    NJS_POINT3 v2; 
+    int angY; 
+    int angZ; 
+    int i;
+
+    for (i = 0; i < n; i++)
+    {
+        njUnitMatrix(NULL);
+
+        angZ = (rand() % 7281) - 3641;
+        angY = (rand() % 7281) - 3641;
+        
+        njRotateXYZ(NULL, 0, angY, angZ);
+        
+        v2.x = -epw->dvx;
+        v2.y = -epw->dvy;
+        v2.z = -epw->dvz;
+        
+        njUnitVector(&v2);
+        njCalcVector(NULL, &v2, &v);
+        
+        bhEne_SetNikuhenEffect(epw, type, pos, &v, tex_id);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x217b70
 int bhEne_SetDFireEffect(BH_PWORK* epw, int no, _anon10* ltbl, int type)
 {
