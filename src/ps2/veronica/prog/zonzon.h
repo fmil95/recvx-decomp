@@ -3,6 +3,19 @@
 
 #include "types.h"
 
+typedef struct BT_WORK 
+{
+    // total size: 0x20
+    int lnk_obj; // offset 0x0, size 0x4
+    float x;     // offset 0x4, size 0x4
+    float y;     // offset 0x8, size 0x4
+    float z;     // offset 0xC, size 0x4
+    float xlen;  // offset 0x10, size 0x4
+    float ylen;  // offset 0x14, size 0x4
+    float size;  // offset 0x18, size 0x4
+    float len;   // offset 0x1C, size 0x4
+} BT_WORK;
+
 // _anon4 = NJS_POINT3
 // _anon20 = O_WORK
 // _anon23 = ATR_WORK

@@ -372,47 +372,59 @@ int bhEne_PosCheck(float px, float pz, float x, float z, float w, float h)
     }
     return 0;
 }
-/*
 
-// 
-// Start address: 0x216b50
-void bhEne_SetBlood(BH_PWORK* epw, unsigned char type, _anon10* bt)
+// 100% matching!
+void bhEne_SetBlood(BH_PWORK* epw, unsigned char type, BT_WORK* bt)
 {
-	int fhit;
-	_anon4 ps;
-	_anon4 ofp;
-	_anon20* owk;
-	// Line 779, Address: 0x216b50, Func Offset: 0
-	// Line 784, Address: 0x216b6c, Func Offset: 0x1c
-	// Line 782, Address: 0x216b7c, Func Offset: 0x2c
-	// Line 784, Address: 0x216b80, Func Offset: 0x30
-	// Line 787, Address: 0x216b94, Func Offset: 0x44
-	// Line 792, Address: 0x216bb8, Func Offset: 0x68
-	// Line 796, Address: 0x216bc0, Func Offset: 0x70
-	// Line 792, Address: 0x216bc4, Func Offset: 0x74
-	// Line 793, Address: 0x216bcc, Func Offset: 0x7c
-	// Line 794, Address: 0x216bdc, Func Offset: 0x8c
-	// Line 796, Address: 0x216be4, Func Offset: 0x94
-	// Line 794, Address: 0x216be8, Func Offset: 0x98
-	// Line 796, Address: 0x216bec, Func Offset: 0x9c
-	// Line 797, Address: 0x216bf4, Func Offset: 0xa4
-	// Line 798, Address: 0x216bfc, Func Offset: 0xac
-	// Line 799, Address: 0x216c0c, Func Offset: 0xbc
-	// Line 802, Address: 0x216c14, Func Offset: 0xc4
-	// Line 804, Address: 0x216c28, Func Offset: 0xd8
-	// Line 807, Address: 0x216c2c, Func Offset: 0xdc
-	// Line 809, Address: 0x216c38, Func Offset: 0xe8
-	// Line 810, Address: 0x216c78, Func Offset: 0x128
-	// Line 815, Address: 0x216cb4, Func Offset: 0x164
-	// Line 816, Address: 0x216cbc, Func Offset: 0x16c
-	// Line 818, Address: 0x216ccc, Func Offset: 0x17c
-	// Line 819, Address: 0x216cd4, Func Offset: 0x184
-	// Line 821, Address: 0x216cdc, Func Offset: 0x18c
-	// Line 822, Address: 0x216cf8, Func Offset: 0x1a8
-	// Func End, Address: 0x216d18, Func Offset: 0x1c8
+    O_WORK* owk; 
+    NJS_POINT3 ofp; 
+    NJS_POINT3 ps; 
+    int fhit;
+    BT_WORK* btp; // not from DWARF
+
+    fhit = 0;
+    
+    owk = &epw->mlwP->owP[epw->djnt_no];
+    
+    if ((bt == NULL) || ((epw->wpnr_no == 13) || (epw->wpnr_no == 10)))
+    {
+        ps.x = epw->dpx - owk->mtx[12];
+        ps.y = epw->dpy - owk->mtx[13];
+        ps.z = epw->dpz - owk->mtx[14];
+        
+        njSetMatrix(NULL, &owk->mtx);
+        njInvertMatrix(NULL);
+        
+        njCalcVector(NULL, &ps, &ofp);
+    } 
+    else 
+    {
+        if (bhDGCdirCheck2((NJS_VECTOR*)&epw->dvx, owk) == 0)
+        {
+            fhit = 1;
+        }
+        
+        btp = &bt[epw->djnt_no];
+        
+        ofp.x = btp->x + (btp->xlen - ((2.0f * btp->xlen) * (-rand() / -2.1474836E9f)));
+        ofp.y = btp->y + (btp->ylen - ((2.0f * btp->ylen) * (-rand() / -2.1474836E9f)));
+        
+        if (fhit != 0) 
+        {
+            ofp.z = -btp->z;
+        }
+        else 
+        {
+            ofp.z = btp->z;
+        }
+        
+        epw->djnt_no = btp->lnk_obj;
+    }
+    
+    bhEne_SetBlood2(epw, type, &ofp, plp->way);
 }
 
-// 
+/*// 
 // Start address: 0x216d20
 void bhEne_SetBlood2(BH_PWORK* epw, unsigned char type, _anon4* ofp, short ry)
 {
