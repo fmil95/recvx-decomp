@@ -1562,11 +1562,11 @@ _anon23* bhEne_EnemyAtariCheck(_anon4* pos, int flr_no, unsigned char id, unsign
 */
 int bhEne_PosCheck(float px, float pz, float x, float z, float w, float h);
 /*
-void bhEne_SetBlood(BH_PWORK* epw, unsigned char type, _anon10* bt);
-void bhEne_SetBlood2(BH_PWORK* epw, unsigned char type, _anon4* ofp, short ry);
-void bhEne_SetBlood3(BH_PWORK* epw, int lnk_obj, _anon4* ofs, _anon4* dv, int n, int tex_id, int type, int wcnt);
-void bhEne_SetBlood4(BH_PWORK* epw, int lnk_obj, _anon4* ofs, int tex_id, int type);
-void bhEne_SetNikuhenEffect(BH_PWORK* epw, int type, _anon4* pos, _anon4* v, int tex_id);
+void bhEne_SetBlood(BH_PWORK* epw, unsigned char type, _anon10* bt);*/
+void bhEne_SetBlood2(BH_PWORK* epw, unsigned char type, NJS_POINT3* ofp, short ry);
+/*void bhEne_SetBlood3(BH_PWORK* epw, int lnk_obj, _anon4* ofs, _anon4* dv, int n, int tex_id, int type, int wcnt);*/
+void bhEne_SetBlood4(BH_PWORK* epw, int lnk_obj, NJS_POINT3* ofs, int tex_id, int type);
+/*void bhEne_SetNikuhenEffect(BH_PWORK* epw, int type, _anon4* pos, _anon4* v, int tex_id);
 void bhEne_SetNikuhenEffect2(BH_PWORK* epw, int type, _anon4* pos, int n, int tex_id);
 int bhEne_SetDFireEffect(BH_PWORK* epw, int no, _anon10* ltbl, int type);
 void bhEne_SetDFireEffect2(BH_PWORK* epw, int no, _anon10* ltbl, int type);
