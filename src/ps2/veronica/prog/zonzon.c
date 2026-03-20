@@ -1045,45 +1045,46 @@ int bhEne_SetSanEffect(BH_PWORK* epw, int no, BT_WORK* ltbl)
     return 0;
 }
 
-/*// 
-// Start address: 0x2182a0
-int bhEne_SetSanEffect2(BH_PWORK* epw, int no, _anon10* ltbl)
+// 100% matching!
+int bhEne_SetSanEffect2(BH_PWORK* epw, int no, BT_WORK* ltbl)
 {
-	_anon4 ofp;
-	_anon20* owk;
-	// Line 1677, Address: 0x2182a0, Func Offset: 0
-	// Line 1683, Address: 0x2182b8, Func Offset: 0x18
-	// Line 1684, Address: 0x2182c8, Func Offset: 0x28
-	// Line 1683, Address: 0x2182cc, Func Offset: 0x2c
-	// Line 1684, Address: 0x2182d8, Func Offset: 0x38
-	// Line 1686, Address: 0x2182f4, Func Offset: 0x54
-	// Line 1687, Address: 0x218308, Func Offset: 0x68
-	// Line 1688, Address: 0x21831c, Func Offset: 0x7c
-	// Line 1694, Address: 0x218330, Func Offset: 0x90
-	// Line 1695, Address: 0x218340, Func Offset: 0xa0
-	// Line 1697, Address: 0x21836c, Func Offset: 0xcc
-	// Line 1695, Address: 0x218378, Func Offset: 0xd8
-	// Line 1698, Address: 0x21837c, Func Offset: 0xdc
-	// Line 1695, Address: 0x218380, Func Offset: 0xe0
-	// Line 1698, Address: 0x218384, Func Offset: 0xe4
-	// Line 1695, Address: 0x218388, Func Offset: 0xe8
-	// Line 1697, Address: 0x21838c, Func Offset: 0xec
-	// Line 1700, Address: 0x218394, Func Offset: 0xf4
-	// Line 1701, Address: 0x2183f0, Func Offset: 0x150
-	// Line 1704, Address: 0x218404, Func Offset: 0x164
-	// Line 1705, Address: 0x218444, Func Offset: 0x1a4
-	// Line 1711, Address: 0x218460, Func Offset: 0x1c0
-	// Line 1710, Address: 0x218464, Func Offset: 0x1c4
-	// Line 1711, Address: 0x218468, Func Offset: 0x1c8
-	// Line 1705, Address: 0x21846c, Func Offset: 0x1cc
-	// Line 1711, Address: 0x218490, Func Offset: 0x1f0
-	// Line 1713, Address: 0x2184a0, Func Offset: 0x200
-	// Line 1714, Address: 0x2184a8, Func Offset: 0x208
-	// Line 1717, Address: 0x2184b0, Func Offset: 0x210
-	// Line 1719, Address: 0x2184b8, Func Offset: 0x218
-	// Line 1720, Address: 0x2184dc, Func Offset: 0x23c
-	// Func End, Address: 0x2184f8, Func Offset: 0x258
-}*/
+    O_WORK* owk;   
+    NJS_POINT3 ofp; 
+
+    sys->ef.id = 298;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.px = 0;
+    sys->ef.py = 0;
+    sys->ef.pz = 0;
+    
+    sys->ef.ay = 0;
+    
+    sys->ef.type = (short)(rand() % 8) + 12;
+
+    owk = &epw->mlwP->owP[no];
+
+    ltbl = &ltbl[no]; 
+    
+    sys->ef.sy = sys->ef.sx = 0.5f + (0.5f * (-rand() / -2.1474836E9f));
+    sys->ef.sz = 0;
+    
+    ofp.x = ltbl->x + (ltbl->xlen - ((2.0f * ltbl->xlen) * (-rand() / -2.1474836E9f)));
+    ofp.y = ltbl->y + (ltbl->ylen - ((2.0f * ltbl->ylen) * (-rand() / -2.1474836E9f)));
+    ofp.z = 0;
+    
+    if (bhDGCdirCheck2((NJS_VECTOR*)&epw->dvx, owk) == 0) 
+    {
+        ofp.z = -ltbl->z;
+    } 
+    else 
+    {
+        ofp.z = ltbl->z;
+    }
+    
+    return bhSetEffectTb(&sys->ef, &ofp, (unsigned char*)epw, ltbl->lnk_obj);
+}
 
 // 100% matching!
 void bhEne_QuickSort(WORK* a, int first, int last)
