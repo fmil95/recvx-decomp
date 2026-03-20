@@ -208,38 +208,51 @@ int bhEne_AngleCheck(NJS_VECTOR* vec, int rot, int chk_ang) {
     }
     
     return 0;
-}/*
-
-// 
-// Start address: 0x216420
-void bhEne_GetTranslateMtn(BH_PWORK* epw, int frm, int mode)
-{
-	_anon4 key;
-	_anon14* mkfP;
-	// Line 483, Address: 0x216420, Func Offset: 0
-	// Line 486, Address: 0x21642c, Func Offset: 0xc
-	// Line 490, Address: 0x216434, Func Offset: 0x14
-	// Line 486, Address: 0x21643c, Func Offset: 0x1c
-	// Line 490, Address: 0x216460, Func Offset: 0x40
-	// Line 492, Address: 0x216478, Func Offset: 0x58
-	// Line 494, Address: 0x216480, Func Offset: 0x60
-	// Line 495, Address: 0x216488, Func Offset: 0x68
-	// Line 496, Address: 0x216490, Func Offset: 0x70
-	// Line 497, Address: 0x216494, Func Offset: 0x74
-	// Line 500, Address: 0x21649c, Func Offset: 0x7c
-	// Line 501, Address: 0x2164ac, Func Offset: 0x8c
-	// Line 502, Address: 0x2164bc, Func Offset: 0x9c
-	// Line 504, Address: 0x2164cc, Func Offset: 0xac
-	// Line 506, Address: 0x2164d8, Func Offset: 0xb8
-	// Line 507, Address: 0x2164e4, Func Offset: 0xc4
-	// Line 508, Address: 0x2164f8, Func Offset: 0xd8
-	// Line 509, Address: 0x21650c, Func Offset: 0xec
-	// Line 512, Address: 0x21651c, Func Offset: 0xfc
-	// Line 514, Address: 0x21655c, Func Offset: 0x13c
-	// Func End, Address: 0x21656c, Func Offset: 0x14c
 }
 
-// 
+// 100% matching!
+void bhEne_GetTranslateMtn(BH_PWORK* epw, int frm, int mode)
+{
+    NJS_MKEY* mkfP;    
+    MN_WORK* mtnp; // not from DWARF
+    NJS_POINT3 key; 
+
+    mtnp = &epw->mnwP[epw->mtn_no];
+    
+    mkfP = (void*)&((NJS_POINT3*)mtnp->md2P->p[0])[frm];
+    
+    if ((epw->mtn_add != 0) || ((epw->frm_no / 65536) != frm)) 
+    {
+        if (frm == 0) 
+        {
+            key.x = mkfP->key[0];
+            key.y = mkfP->key[1];
+            key.z = mkfP->key[2];
+        }
+        else 
+        {
+            key.x = mkfP->key[0] - mkfP->key[-3];
+            key.y = mkfP->key[1] - mkfP->key[-2];
+            key.z = mkfP->key[2] - mkfP->key[-1];
+        }
+        
+        if (mode == 0) 
+        {
+            key.y = 0;
+        }
+        
+        njUnitMatrix(NULL);
+        
+        njTranslate(NULL, epw->px, epw->py, epw->pz);
+        njRotateXYZ(NULL, epw->ax, epw->ay, epw->az);
+        
+        njCalcPoint(NULL, (NJS_POINT3*)&key, (NJS_POINT3*)&epw->px);
+        
+        epw->py = (int)(100.0f * (0.001f + epw->py)) / 100.0f;
+    }
+}
+
+/*// 
 // Start address: 0x216570
 void bhEne_GetTranslateMtn2(BH_PWORK* epw, int frm, int mode)
 {

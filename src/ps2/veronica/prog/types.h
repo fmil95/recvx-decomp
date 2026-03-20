@@ -2151,6 +2151,12 @@ typedef struct NJS_PRIM
     NJS_COLOR uv[4]; // offset 0x18, size 0x10
 } NJS_PRIM;
 
+typedef struct NJS_MKEY 
+{
+    // total size: 0xC
+    float key[3]; // offset 0x0, size 0xC
+} NJS_MKEY;
+
 typedef struct UV_WORK 
 {
     // total size: 0x10
