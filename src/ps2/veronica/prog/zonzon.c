@@ -868,71 +868,93 @@ int bhEne_SetDFireEffect(BH_PWORK* epw, int no, BT_WORK* ltbl, int type)
     return 0;
 }
 
-// 
-// Start address: 0x217d40
+// 100% matching!
 void bhEne_SetDFireEffect2(BH_PWORK* epw, int no, BT_WORK* ltbl, int type)
 {
-	//_anon41 line;
-	int time;
-	int eno;
-	//_anon4 gpos;
-	//_anon4 ofp;
-	// Line 1491, Address: 0x217d40, Func Offset: 0
-	// Line 1499, Address: 0x217d5c, Func Offset: 0x1c
-	// Line 1503, Address: 0x217d7c, Func Offset: 0x3c
-	// Line 1508, Address: 0x217d80, Func Offset: 0x40
-	// Line 1517, Address: 0x217d84, Func Offset: 0x44
-	// Line 1503, Address: 0x217d8c, Func Offset: 0x4c
-	// Line 1504, Address: 0x217d90, Func Offset: 0x50
-	// Line 1505, Address: 0x217d98, Func Offset: 0x58
-	// Line 1507, Address: 0x217da0, Func Offset: 0x60
-	// Line 1508, Address: 0x217da4, Func Offset: 0x64
-	// Line 1517, Address: 0x217da8, Func Offset: 0x68
-	// Line 1518, Address: 0x217db0, Func Offset: 0x70
-	// Line 1519, Address: 0x217dbc, Func Offset: 0x7c
-	// Line 1522, Address: 0x217dc4, Func Offset: 0x84
-	// Line 1540, Address: 0x217dcc, Func Offset: 0x8c
-	// Line 1526, Address: 0x217dd4, Func Offset: 0x94
-	// Line 1528, Address: 0x217de0, Func Offset: 0xa0
-	// Line 1526, Address: 0x217de4, Func Offset: 0xa4
-	// Line 1527, Address: 0x217df0, Func Offset: 0xb0
-	// Line 1528, Address: 0x217e04, Func Offset: 0xc4
-	// Line 1530, Address: 0x217e18, Func Offset: 0xd8
-	// Line 1531, Address: 0x217e2c, Func Offset: 0xec
-	// Line 1532, Address: 0x217e40, Func Offset: 0x100
-	// Line 1538, Address: 0x217e54, Func Offset: 0x114
-	// Line 1542, Address: 0x217e64, Func Offset: 0x124
-	// Line 1543, Address: 0x217e80, Func Offset: 0x140
-	// Line 1544, Address: 0x217edc, Func Offset: 0x19c
-	// Line 1547, Address: 0x217ef0, Func Offset: 0x1b0
-	// Line 1548, Address: 0x217f30, Func Offset: 0x1f0
-	// Line 1554, Address: 0x217f4c, Func Offset: 0x20c
-	// Line 1548, Address: 0x217f50, Func Offset: 0x210
-	// Line 1554, Address: 0x217f74, Func Offset: 0x234
-	// Line 1556, Address: 0x217f9c, Func Offset: 0x25c
-	// Line 1557, Address: 0x217fa4, Func Offset: 0x264
-	// Line 1560, Address: 0x217fac, Func Offset: 0x26c
-	// Line 1564, Address: 0x217fb4, Func Offset: 0x274
-	// Line 1565, Address: 0x217fc0, Func Offset: 0x280
-	// Line 1564, Address: 0x217fc4, Func Offset: 0x284
-	// Line 1565, Address: 0x217fc8, Func Offset: 0x288
-	// Line 1564, Address: 0x217fcc, Func Offset: 0x28c
-	// Line 1565, Address: 0x217fd8, Func Offset: 0x298
-	// Line 1566, Address: 0x217ff4, Func Offset: 0x2b4
-	// Line 1568, Address: 0x218000, Func Offset: 0x2c0
-	// Line 1569, Address: 0x218028, Func Offset: 0x2e8
-	// Line 1570, Address: 0x218038, Func Offset: 0x2f8
-	// Line 1573, Address: 0x21804c, Func Offset: 0x30c
-	// Line 1574, Address: 0x218058, Func Offset: 0x318
-	// Line 1573, Address: 0x218060, Func Offset: 0x320
-	// Line 1574, Address: 0x21806c, Func Offset: 0x32c
-	// Line 1575, Address: 0x218088, Func Offset: 0x348
-	// Line 1577, Address: 0x218094, Func Offset: 0x354
-	// Line 1578, Address: 0x2180bc, Func Offset: 0x37c
-	// Line 1579, Address: 0x2180cc, Func Offset: 0x38c
-	// Line 1581, Address: 0x2180e0, Func Offset: 0x3a0
-	// Func End, Address: 0x218100, Func Offset: 0x3c0
-	scePrintf("bhEne_SetDFireEffect2 - UNIMPLEMENTED!\n");
+    NJS_POINT3 ofp; 
+    NJS_POINT3 gpos; 
+    int eno; 
+    int time; 
+    NJS_LINE line; 
+
+    if ((epw->stflg & 0x100000)) 
+    {
+        line.px = epw->px;
+        line.py = epw->py;
+        line.pz = epw->pz; 
+        
+        line.vx = 0;
+        line.vy = 20.0f;
+        line.vz = 0;
+        
+        bhCheckL2Water(&line, &gpos);
+        
+        if (&gpos == NULL)
+        {
+            gpos.y = 0;
+        }
+    } 
+    else 
+    {
+        gpos.y = -500.0f;
+    }
+
+    ltbl = &ltbl[no];
+    
+    sys->ef.id = 352;
+    
+    sys->ef.type = 0;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.px = 0;
+    sys->ef.py = 0;
+    sys->ef.pz = 0;
+    
+    sys->ef.ay = 0;
+
+    time = rand() % 10;
+    
+    sys->ef.sy = sys->ef.sx = ltbl->size + (0.5f * (-rand() / -2.1474836E9f));
+    sys->ef.sz = 0;
+    
+    ofp.x = ltbl->x + (ltbl->xlen - ((2.0f * ltbl->xlen) * (-rand() / -2.1474836E9f)));
+    ofp.y = ltbl->y + (ltbl->ylen - ((2.0f * ltbl->ylen) * (-rand() / -2.1474836E9f)));
+    
+    if (bhDGCdirCheck2((NJS_VECTOR*)&epw->dvx, &epw->mlwP->owP[ltbl->lnk_obj]) == 0)
+    {
+        ofp.z = -ltbl->z;
+    } 
+    else 
+    {
+        ofp.z = ltbl->z;
+    }
+    
+    sys->ef.type = type * 2;
+    
+    eno = bhSetEffectTb(&sys->ef, &ofp, (unsigned char*)epw, ltbl->lnk_obj);
+    
+    if (eno != -1) 
+    {
+        eff[eno].zn = ltbl->len;
+        
+        eff[eno].ct3 = time;
+        
+        eff[eno].shp_ct = gpos.y;
+    }
+    
+    sys->ef.type = (type * 2) + 1;
+    
+    eno = bhSetEffectTb(&sys->ef, &ofp, (unsigned char*)epw, ltbl->lnk_obj);
+    
+    if (eno != -1)
+    {
+        eff[eno].zn = ltbl->len;
+        
+        eff[eno].ct3 = time;
+        
+        eff[eno].shp_ct = gpos.y;
+    }
 }
 
 // 100% matching!

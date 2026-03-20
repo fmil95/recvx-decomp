@@ -3702,22 +3702,22 @@ _anon0* bhCheckWater(_anon20* pos)
 	// Line 4487, Address: 0x268688, Func Offset: 0x148
 	// Line 4488, Address: 0x26868c, Func Offset: 0x14c
 	// Func End, Address: 0x268694, Func Offset: 0x154
-}
+}*/
 
 // 
 // Start address: 0x2686a0
-_anon0* bhCheckL2Water(_anon39* lp, _anon20* pos)
+ATR_WORK* bhCheckL2Water(NJS_LINE* lp, NJS_POINT3* pos)
 {
 	int flr_n;
 	int i;
 	float sca;
 	float pz;
 	float px;
-	_anon20 ll;
-	_anon20 pt;
-	_anon20 ps;
-	_anon39 pl;
-	_anon0* fp;
+	//_anon20 ll;
+	//_anon20 pt;
+	//_anon20 ps;
+	//_anon39 pl;
+	//_anon0* fp;
 	// Line 4499, Address: 0x2686a0, Func Offset: 0
 	// Line 4505, Address: 0x2686cc, Func Offset: 0x2c
 	// Line 4507, Address: 0x2686dc, Func Offset: 0x3c
@@ -3768,7 +3768,8 @@ _anon0* bhCheckL2Water(_anon39* lp, _anon20* pos)
 	// Line 4542, Address: 0x268910, Func Offset: 0x270
 	// Line 4543, Address: 0x268914, Func Offset: 0x274
 	// Func End, Address: 0x268944, Func Offset: 0x2a4
-}*/
+	scePrintf("bhCheckL2Water - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 void bhResetAtariAttr()
