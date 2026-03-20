@@ -252,30 +252,40 @@ void bhEne_GetTranslateMtn(BH_PWORK* epw, int frm, int mode)
     }
 }
 
-/*// 
-// Start address: 0x216570
+// 100% matching!
 void bhEne_GetTranslateMtn2(BH_PWORK* epw, int frm, int mode)
 {
-	_anon4 key;
-	_anon14* mkfP;
-	// Line 533, Address: 0x216570, Func Offset: 0
-	// Line 536, Address: 0x21657c, Func Offset: 0xc
-	// Line 540, Address: 0x216584, Func Offset: 0x14
-	// Line 536, Address: 0x21658c, Func Offset: 0x1c
-	// Line 540, Address: 0x2165b0, Func Offset: 0x40
-	// Line 545, Address: 0x2165c8, Func Offset: 0x58
-	// Line 547, Address: 0x2165d0, Func Offset: 0x60
-	// Line 548, Address: 0x2165d8, Func Offset: 0x68
-	// Line 549, Address: 0x2165e0, Func Offset: 0x70
-	// Line 550, Address: 0x2165e4, Func Offset: 0x74
-	// Line 553, Address: 0x2165ec, Func Offset: 0x7c
-	// Line 554, Address: 0x2165fc, Func Offset: 0x8c
-	// Line 555, Address: 0x21660c, Func Offset: 0x9c
-	// Line 557, Address: 0x21661c, Func Offset: 0xac
-	// Line 558, Address: 0x216628, Func Offset: 0xb8
-	// Line 559, Address: 0x216638, Func Offset: 0xc8
-	// Func End, Address: 0x216648, Func Offset: 0xd8
-}*/
+    NJS_MKEY* mkfP;    
+    MN_WORK* mtnp; // not from DWARF
+    NJS_POINT3 key; 
+
+    mtnp = &epw->mnwP[epw->mtn_no];
+    
+    mkfP = (void*)&((NJS_POINT3*)mtnp->md2P->p[0])[frm];
+    
+    if ((epw->mtn_add != 0) || ((epw->frm_no / 65536) != frm)) 
+    {
+        if (frm == 0) 
+        {
+            key.x = mkfP->key[0];
+            key.y = mkfP->key[1];
+            key.z = mkfP->key[2];
+        }
+        else 
+        {
+            key.x = mkfP->key[0] - mkfP->key[-3];
+            key.y = mkfP->key[1] - mkfP->key[-2];
+            key.z = mkfP->key[2] - mkfP->key[-1];
+        }
+        
+        if (mode == 0) 
+        {
+            key.y = 0;
+        }
+        
+        epw->spd = njScalor(&key);
+    }
+}
 
 // 100% matching!
 void bhEne_CalcPartsPos(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* pos, char* tree, int parts_num, int clr_flg)
