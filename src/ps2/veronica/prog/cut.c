@@ -1922,200 +1922,175 @@ void bhControlEventCamera()
 	scePrintf("bhControlEventCamera - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x27f430
+// 100% matching!
 void bhCheckEvtCamLockPosition()
 {
-	short az1;
-	short az0;
-	short ay1;
-	short ay0;
-	short ax1;
-	short ax0;
-	int j;
-	int i;
-	float faz;
-	float fay;
-	float fax;
-	float pz;
-	float px;
-	float* an;
-	_anon17* jkfp;
-	_anon17* kfp;
-	_anon5* jecp;
-	_anon5* ecp;
-	_anon28 pos;
-	short az;
-	short ay;
-	short ax;
-	// Line 1923, Address: 0x27f430, Func Offset: 0
-	// Line 1940, Address: 0x27f468, Func Offset: 0x38
-	// Line 1941, Address: 0x27f48c, Func Offset: 0x5c
-	// Line 1942, Address: 0x27f49c, Func Offset: 0x6c
-	// Line 1943, Address: 0x27f4b0, Func Offset: 0x80
-	// Line 1944, Address: 0x27f4b8, Func Offset: 0x88
-	// Line 1943, Address: 0x27f4bc, Func Offset: 0x8c
-	// Line 1945, Address: 0x27f4cc, Func Offset: 0x9c
-	// Line 1946, Address: 0x27f4d4, Func Offset: 0xa4
-	// Line 1947, Address: 0x27f4d8, Func Offset: 0xa8
-	// Line 1948, Address: 0x27f4e0, Func Offset: 0xb0
-	// Line 1949, Address: 0x27f4f4, Func Offset: 0xc4
-	// Line 1952, Address: 0x27f4fc, Func Offset: 0xcc
-	// Line 1953, Address: 0x27f508, Func Offset: 0xd8
-	// Line 1956, Address: 0x27f514, Func Offset: 0xe4
-	// Line 1955, Address: 0x27f518, Func Offset: 0xe8
-	// Line 1956, Address: 0x27f520, Func Offset: 0xf0
-	// Line 1955, Address: 0x27f528, Func Offset: 0xf8
-	// Line 1956, Address: 0x27f52c, Func Offset: 0xfc
-	// Line 1957, Address: 0x27f530, Func Offset: 0x100
-	// Line 1959, Address: 0x27f53c, Func Offset: 0x10c
-	// Line 1963, Address: 0x27f564, Func Offset: 0x134
-	// Line 1959, Address: 0x27f574, Func Offset: 0x144
-	// Line 1963, Address: 0x27f580, Func Offset: 0x150
-	// Line 1964, Address: 0x27f5b0, Func Offset: 0x180
-	// Line 1965, Address: 0x27f5b8, Func Offset: 0x188
-	// Line 1966, Address: 0x27f5bc, Func Offset: 0x18c
-	// Line 1970, Address: 0x27f5c4, Func Offset: 0x194
-	// Line 1969, Address: 0x27f5c8, Func Offset: 0x198
-	// Line 1970, Address: 0x27f5cc, Func Offset: 0x19c
-	// Line 1968, Address: 0x27f5d0, Func Offset: 0x1a0
-	// Line 1969, Address: 0x27f5d4, Func Offset: 0x1a4
-	// Line 1970, Address: 0x27f5e0, Func Offset: 0x1b0
-	// Line 1972, Address: 0x27f5e4, Func Offset: 0x1b4
-	// Line 1969, Address: 0x27f5ec, Func Offset: 0x1bc
-	// Line 1971, Address: 0x27f5f0, Func Offset: 0x1c0
-	// Line 1969, Address: 0x27f5f8, Func Offset: 0x1c8
-	// Line 1971, Address: 0x27f5fc, Func Offset: 0x1cc
-	// Line 1973, Address: 0x27f600, Func Offset: 0x1d0
-	// Line 1974, Address: 0x27f604, Func Offset: 0x1d4
-	// Line 1971, Address: 0x27f608, Func Offset: 0x1d8
-	// Line 1975, Address: 0x27f60c, Func Offset: 0x1dc
-	// Line 1976, Address: 0x27f610, Func Offset: 0x1e0
-	// Line 1978, Address: 0x27f61c, Func Offset: 0x1ec
-	// Line 1979, Address: 0x27f628, Func Offset: 0x1f8
-	// Line 1982, Address: 0x27f634, Func Offset: 0x204
-	// Line 1981, Address: 0x27f638, Func Offset: 0x208
-	// Line 1982, Address: 0x27f640, Func Offset: 0x210
-	// Line 1981, Address: 0x27f648, Func Offset: 0x218
-	// Line 1982, Address: 0x27f64c, Func Offset: 0x21c
-	// Line 1983, Address: 0x27f650, Func Offset: 0x220
-	// Line 1985, Address: 0x27f65c, Func Offset: 0x22c
-	// Line 1989, Address: 0x27f684, Func Offset: 0x254
-	// Line 1985, Address: 0x27f694, Func Offset: 0x264
-	// Line 1989, Address: 0x27f6a0, Func Offset: 0x270
-	// Line 1990, Address: 0x27f6d0, Func Offset: 0x2a0
-	// Line 1991, Address: 0x27f6d8, Func Offset: 0x2a8
-	// Line 1992, Address: 0x27f6dc, Func Offset: 0x2ac
-	// Line 1996, Address: 0x27f6e4, Func Offset: 0x2b4
-	// Line 1995, Address: 0x27f6e8, Func Offset: 0x2b8
-	// Line 1996, Address: 0x27f6ec, Func Offset: 0x2bc
-	// Line 1994, Address: 0x27f6f0, Func Offset: 0x2c0
-	// Line 1995, Address: 0x27f6f4, Func Offset: 0x2c4
-	// Line 1996, Address: 0x27f700, Func Offset: 0x2d0
-	// Line 1997, Address: 0x27f704, Func Offset: 0x2d4
-	// Line 1995, Address: 0x27f70c, Func Offset: 0x2dc
-	// Line 1997, Address: 0x27f710, Func Offset: 0x2e0
-	// Line 1995, Address: 0x27f714, Func Offset: 0x2e4
-	// Line 1997, Address: 0x27f718, Func Offset: 0x2e8
-	// Line 2000, Address: 0x27f71c, Func Offset: 0x2ec
-	// Line 1999, Address: 0x27f720, Func Offset: 0x2f0
-	// Line 2001, Address: 0x27f724, Func Offset: 0x2f4
-	// Line 2002, Address: 0x27f728, Func Offset: 0x2f8
-	// Line 2003, Address: 0x27f72c, Func Offset: 0x2fc
-	// Line 2004, Address: 0x27f730, Func Offset: 0x300
-	// Line 2008, Address: 0x27f740, Func Offset: 0x310
-	// Line 2006, Address: 0x27f744, Func Offset: 0x314
-	// Line 2009, Address: 0x27f748, Func Offset: 0x318
-	// Line 2005, Address: 0x27f74c, Func Offset: 0x31c
-	// Line 2007, Address: 0x27f754, Func Offset: 0x324
-	// Line 2005, Address: 0x27f758, Func Offset: 0x328
-	// Line 2006, Address: 0x27f75c, Func Offset: 0x32c
-	// Line 2009, Address: 0x27f760, Func Offset: 0x330
-	// Line 2010, Address: 0x27f768, Func Offset: 0x338
-	// Line 2013, Address: 0x27f774, Func Offset: 0x344
-	// Line 2012, Address: 0x27f778, Func Offset: 0x348
-	// Line 2013, Address: 0x27f780, Func Offset: 0x350
-	// Line 2012, Address: 0x27f788, Func Offset: 0x358
-	// Line 2013, Address: 0x27f78c, Func Offset: 0x35c
-	// Line 2014, Address: 0x27f790, Func Offset: 0x360
-	// Line 2016, Address: 0x27f79c, Func Offset: 0x36c
-	// Line 2020, Address: 0x27f7cc, Func Offset: 0x39c
-	// Line 2016, Address: 0x27f7e0, Func Offset: 0x3b0
-	// Line 2020, Address: 0x27f7e4, Func Offset: 0x3b4
-	// Line 2021, Address: 0x27f814, Func Offset: 0x3e4
-	// Line 2022, Address: 0x27f81c, Func Offset: 0x3ec
-	// Line 2023, Address: 0x27f820, Func Offset: 0x3f0
-	// Line 2026, Address: 0x27f828, Func Offset: 0x3f8
-	// Line 2029, Address: 0x27f82c, Func Offset: 0x3fc
-	// Line 2026, Address: 0x27f830, Func Offset: 0x400
-	// Line 2027, Address: 0x27f834, Func Offset: 0x404
-	// Line 2029, Address: 0x27f838, Func Offset: 0x408
-	// Line 2026, Address: 0x27f83c, Func Offset: 0x40c
-	// Line 2025, Address: 0x27f840, Func Offset: 0x410
-	// Line 2026, Address: 0x27f844, Func Offset: 0x414
-	// Line 2027, Address: 0x27f848, Func Offset: 0x418
-	// Line 2028, Address: 0x27f850, Func Offset: 0x420
-	// Line 2029, Address: 0x27f85c, Func Offset: 0x42c
-	// Line 2030, Address: 0x27f864, Func Offset: 0x434
-	// Line 2029, Address: 0x27f86c, Func Offset: 0x43c
-	// Line 2031, Address: 0x27f878, Func Offset: 0x448
-	// Line 2030, Address: 0x27f880, Func Offset: 0x450
-	// Line 2029, Address: 0x27f888, Func Offset: 0x458
-	// Line 2030, Address: 0x27f88c, Func Offset: 0x45c
-	// Line 2031, Address: 0x27f898, Func Offset: 0x468
-	// Line 2029, Address: 0x27f8a0, Func Offset: 0x470
-	// Line 2031, Address: 0x27f8a4, Func Offset: 0x474
-	// Line 2032, Address: 0x27f8ac, Func Offset: 0x47c
-	// Line 2033, Address: 0x27f8b4, Func Offset: 0x484
-	// Line 2038, Address: 0x27f8d4, Func Offset: 0x4a4
-	// Line 2034, Address: 0x27f8d8, Func Offset: 0x4a8
-	// Line 2040, Address: 0x27f8dc, Func Offset: 0x4ac
-	// Line 2037, Address: 0x27f8e0, Func Offset: 0x4b0
-	// Line 2039, Address: 0x27f8e8, Func Offset: 0x4b8
-	// Line 2035, Address: 0x27f8ec, Func Offset: 0x4bc
-	// Line 2036, Address: 0x27f8f0, Func Offset: 0x4c0
-	// Line 2037, Address: 0x27f8f4, Func Offset: 0x4c4
-	// Line 2038, Address: 0x27f8f8, Func Offset: 0x4c8
-	// Line 2040, Address: 0x27f8fc, Func Offset: 0x4cc
-	// Line 2041, Address: 0x27f904, Func Offset: 0x4d4
-	// Line 2044, Address: 0x27f910, Func Offset: 0x4e0
-	// Line 2043, Address: 0x27f914, Func Offset: 0x4e4
-	// Line 2044, Address: 0x27f91c, Func Offset: 0x4ec
-	// Line 2043, Address: 0x27f924, Func Offset: 0x4f4
-	// Line 2044, Address: 0x27f928, Func Offset: 0x4f8
-	// Line 2045, Address: 0x27f92c, Func Offset: 0x4fc
-	// Line 2047, Address: 0x27f938, Func Offset: 0x508
-	// Line 2051, Address: 0x27f968, Func Offset: 0x538
-	// Line 2047, Address: 0x27f97c, Func Offset: 0x54c
-	// Line 2051, Address: 0x27f980, Func Offset: 0x550
-	// Line 2052, Address: 0x27f9b0, Func Offset: 0x580
-	// Line 2053, Address: 0x27f9b8, Func Offset: 0x588
-	// Line 2054, Address: 0x27f9bc, Func Offset: 0x58c
-	// Line 2055, Address: 0x27f9c4, Func Offset: 0x594
-	// Line 2057, Address: 0x27f9c8, Func Offset: 0x598
-	// Line 2060, Address: 0x27f9cc, Func Offset: 0x59c
-	// Line 2057, Address: 0x27f9d0, Func Offset: 0x5a0
-	// Line 2058, Address: 0x27f9d4, Func Offset: 0x5a4
-	// Line 2060, Address: 0x27f9d8, Func Offset: 0x5a8
-	// Line 2057, Address: 0x27f9dc, Func Offset: 0x5ac
-	// Line 2056, Address: 0x27f9e0, Func Offset: 0x5b0
-	// Line 2057, Address: 0x27f9e4, Func Offset: 0x5b4
-	// Line 2058, Address: 0x27f9e8, Func Offset: 0x5b8
-	// Line 2059, Address: 0x27f9f0, Func Offset: 0x5c0
-	// Line 2060, Address: 0x27f9fc, Func Offset: 0x5cc
-	// Line 2061, Address: 0x27fa04, Func Offset: 0x5d4
-	// Line 2060, Address: 0x27fa0c, Func Offset: 0x5dc
-	// Line 2062, Address: 0x27fa18, Func Offset: 0x5e8
-	// Line 2061, Address: 0x27fa20, Func Offset: 0x5f0
-	// Line 2060, Address: 0x27fa28, Func Offset: 0x5f8
-	// Line 2061, Address: 0x27fa2c, Func Offset: 0x5fc
-	// Line 2062, Address: 0x27fa38, Func Offset: 0x608
-	// Line 2060, Address: 0x27fa40, Func Offset: 0x610
-	// Line 2062, Address: 0x27fa44, Func Offset: 0x614
-	// Line 2065, Address: 0x27fa50, Func Offset: 0x620
-	// Line 2066, Address: 0x27fa60, Func Offset: 0x630
-	// Func End, Address: 0x27fa9c, Func Offset: 0x66c
-}*/
+    NJS_POINT3 pos;     
+    EVC_WORK* ecp;      
+    EVC_WORK* jecp;      
+    CAM_KEYF_WORK* kfp;  
+    CAM_KEYF_WORK* jkfp; 
+    float* an;          
+    float px;           
+    float pz;            
+    float fax;           
+    float fay;           
+    float faz;           
+    int i;               
+    int j;               
+    short ax0;           
+    short ax1;           
+    short ay0;           
+    short ay1;           
+    short az0;           
+    short az1;          
+    static short ax;     
+    static short ay;    
+    static short az;    
+
+    ecp = &rom->evcp[cam.evc_no];
+    
+    if (cam.evc_no == (ecp->nxt_no - 1))
+    {
+        jecp = &rom->evcp[ecp->nxt_no - 1];
+        
+        kfp = &jecp->keyf[jecp->keyf_n - 1];
+        jkfp = jecp->keyf;
+    }
+    else
+    {
+        kfp = ecp->keyf;
+        
+        if (ecp->nxt_no != 0) 
+        {
+            jecp = &rom->evcp[ecp->nxt_no - 1];
+            
+            jkfp = jecp->keyf;
+        }
+    }
+    
+    if (kfp->lkflg != 0) 
+    {
+        bhGetEvtCamLockPosition(kfp, &pos);
+        
+        ax1 = -(int)(10430.381f * atan2f(pos.y - kfp->py, njSqrt(((pos.x - kfp->px) * (pos.x - kfp->px)) + ((pos.z - kfp->pz) * (pos.z - kfp->pz)))));
+        ay1 = -(int)(10430.381f * atan2f(pos.x - kfp->px, pos.z - kfp->pz)) + (32767 + 1);
+    } 
+    else 
+    {
+        ax1 = kfp->ax;
+        ay1 = kfp->ay;
+    }
+    
+    az1 = kfp->az;
+
+    fax = 0.005493164f * ax1;
+    fay = 0.005493164f * ay1;
+    faz = 0.005493164f * az1;
+
+    an = cam.ian[0];
+    
+    *an++ = fax;
+    *an++ = fay;
+    *an++ = faz;  
+    
+    if (ecp->nxt_no != 0) 
+    {
+        kfp = ecp->keyf;
+        
+        if (kfp->lkflg != 0) 
+        {
+            bhGetEvtCamLockPosition(kfp, &pos);
+            
+            ax1 = -(int)(10430.381f * atan2f(pos.y - kfp->py, njSqrt(((pos.x - kfp->px) * (pos.x - kfp->px)) + ((pos.z - kfp->pz) * (pos.z - kfp->pz)))));
+            ay1 = -(int)(10430.381f * atan2f(pos.x - kfp->px, pos.z - kfp->pz)) + (32767 + 1);
+        } 
+        else 
+        {
+            ax1 = kfp->ax;
+            ay1 = kfp->ay;
+        }
+        
+        az1 = kfp->az;
+
+        fax = 0.005493164f * ax1;
+        fay = 0.005493164f * ay1;
+        faz = 0.005493164f * az1;
+    }
+    
+    for (i = 1, j = 0; i < 20; i++)  
+    {
+        *an++ = fax;
+        *an++ = fay;
+        *an++ = faz;
+        
+        if (i < ecp->keyf_n) 
+        {
+            kfp++;
+            
+            ax0 = ax1;
+            ay0 = ay1;
+            az0 = az1;
+            
+            if (kfp->lkflg != 0) 
+            {
+                bhGetEvtCamLockPosition(kfp, &pos);
+                
+                ax1 = -(int)(10430.381f * atan2f(pos.y - kfp->py, njSqrt(((pos.x - kfp->px) * (pos.x - kfp->px)) + ((pos.z - kfp->pz) * (pos.z - kfp->pz)))));
+                ay1 = -(int)(10430.381f * atan2f(pos.x - kfp->px, pos.z - kfp->pz)) + (32767 + 1);
+            } 
+            else
+            { 
+                ax1 = kfp->ax;
+                ay1 = kfp->ay;
+            }
+            
+            az1 = kfp->az;
+            
+            ax = ax1 - ax0;
+            ay = ay1 - ay0;
+            az = az1 - az0;
+
+            fax += 0.005493164f * ax;
+            fay += 0.005493164f * ay;
+            faz += 0.005493164f * az;
+        }
+        else if ((ecp->nxt_no != 0) && (j < jecp->keyf_n)) 
+        {
+            kfp = jkfp;
+            
+            jkfp++;
+            j++;
+            
+            ax0 = ax1;
+            ay0 = ay1;
+            az0 = az1;
+            
+            if (kfp->lkflg != 0)
+            {
+                bhGetEvtCamLockPosition(kfp, &pos);
+                
+                ax1 = -(int)(10430.381f * atan2f(pos.y - kfp->py, njSqrt(((pos.x - kfp->px) * (pos.x - kfp->px)) + ((pos.z - kfp->pz) * (pos.z - kfp->pz)))));
+                ay1 = -(int)(10430.381f * atan2f(pos.x - kfp->px, pos.z - kfp->pz)) + (32767 + 1);
+            } 
+            else 
+            {
+                ax1 = kfp->ax;
+                ay1 = kfp->ay;
+            }
+            
+            az1 = kfp->az;
+            
+            ax = ax1 - ax0;
+            ay = ay1 - ay0;
+            az = az1 - az0;
+
+            fax += 0.005493164f * ax;
+            fay += 0.005493164f * ay;
+            faz += 0.005493164f * az;
+        }
+    }
+}
 
 // 100% matching! 
 void bhGetEvtCamLockPosition(CAM_KEYF_WORK* kfp, NJS_POINT3* pos) 
