@@ -1762,164 +1762,239 @@ void bhInitEventCamera()
     } 
 }
 
-// 
-// Start address: 0x27e910
+// 100% matching!
 void bhControlEventCamera()
 {
-	float pz;
-	float px;
-	float ans[3];
-	//_anon28 pos;
-	//_anon17* kfp;
-	//_anon5* ecp;
-	// Line 1709, Address: 0x27e910, Func Offset: 0
-	// Line 1718, Address: 0x27e92c, Func Offset: 0x1c
-	// Line 1720, Address: 0x27e95c, Func Offset: 0x4c
-	// Line 1721, Address: 0x27e964, Func Offset: 0x54
-	// Line 1720, Address: 0x27e968, Func Offset: 0x58
-	// Line 1721, Address: 0x27e96c, Func Offset: 0x5c
-	// Line 1720, Address: 0x27e970, Func Offset: 0x60
-	// Line 1721, Address: 0x27e978, Func Offset: 0x68
-	// Line 1722, Address: 0x27e990, Func Offset: 0x80
-	// Line 1723, Address: 0x27e99c, Func Offset: 0x8c
-	// Line 1722, Address: 0x27e9a8, Func Offset: 0x98
-	// Line 1723, Address: 0x27e9b0, Func Offset: 0xa0
-	// Line 1724, Address: 0x27e9b8, Func Offset: 0xa8
-	// Line 1723, Address: 0x27e9bc, Func Offset: 0xac
-	// Line 1724, Address: 0x27e9c4, Func Offset: 0xb4
-	// Line 1726, Address: 0x27e9d4, Func Offset: 0xc4
-	// Line 1729, Address: 0x27e9e0, Func Offset: 0xd0
-	// Line 1726, Address: 0x27e9e4, Func Offset: 0xd4
-	// Line 1727, Address: 0x27e9f0, Func Offset: 0xe0
-	// Line 1728, Address: 0x27e9f8, Func Offset: 0xe8
-	// Line 1729, Address: 0x27ea00, Func Offset: 0xf0
-	// Line 1730, Address: 0x27ea04, Func Offset: 0xf4
-	// Line 1731, Address: 0x27ea0c, Func Offset: 0xfc
-	// Line 1733, Address: 0x27ea18, Func Offset: 0x108
-	// Line 1731, Address: 0x27ea1c, Func Offset: 0x10c
-	// Line 1733, Address: 0x27ea24, Func Offset: 0x114
-	// Line 1735, Address: 0x27ea34, Func Offset: 0x124
-	// Line 1736, Address: 0x27ea48, Func Offset: 0x138
-	// Line 1735, Address: 0x27ea50, Func Offset: 0x140
-	// Line 1736, Address: 0x27ea60, Func Offset: 0x150
-	// Line 1737, Address: 0x27ea68, Func Offset: 0x158
-	// Line 1738, Address: 0x27ea70, Func Offset: 0x160
-	// Line 1739, Address: 0x27ea7c, Func Offset: 0x16c
-	// Line 1741, Address: 0x27eaac, Func Offset: 0x19c
-	// Line 1743, Address: 0x27eab4, Func Offset: 0x1a4
-	// Line 1748, Address: 0x27eaec, Func Offset: 0x1dc
-	// Line 1752, Address: 0x27eaf4, Func Offset: 0x1e4
-	// Line 1749, Address: 0x27eaf8, Func Offset: 0x1e8
-	// Line 1750, Address: 0x27eafc, Func Offset: 0x1ec
-	// Line 1748, Address: 0x27eb00, Func Offset: 0x1f0
-	// Line 1749, Address: 0x27eb04, Func Offset: 0x1f4
-	// Line 1752, Address: 0x27eb0c, Func Offset: 0x1fc
-	// Line 1749, Address: 0x27eb14, Func Offset: 0x204
-	// Line 1750, Address: 0x27eb18, Func Offset: 0x208
-	// Line 1752, Address: 0x27eb20, Func Offset: 0x210
-	// Line 1750, Address: 0x27eb24, Func Offset: 0x214
-	// Line 1752, Address: 0x27eb28, Func Offset: 0x218
-	// Line 1754, Address: 0x27eb50, Func Offset: 0x240
-	// Line 1755, Address: 0x27eb70, Func Offset: 0x260
-	// Line 1756, Address: 0x27eb90, Func Offset: 0x280
-	// Line 1758, Address: 0x27ebb0, Func Offset: 0x2a0
-	// Line 1766, Address: 0x27ec50, Func Offset: 0x340
-	// Line 1768, Address: 0x27ec5c, Func Offset: 0x34c
-	// Line 1769, Address: 0x27ec64, Func Offset: 0x354
-	// Line 1768, Address: 0x27ec68, Func Offset: 0x358
-	// Line 1769, Address: 0x27ec6c, Func Offset: 0x35c
-	// Line 1768, Address: 0x27ec78, Func Offset: 0x368
-	// Line 1770, Address: 0x27ec7c, Func Offset: 0x36c
-	// Line 1769, Address: 0x27ec80, Func Offset: 0x370
-	// Line 1770, Address: 0x27ec84, Func Offset: 0x374
-	// Line 1772, Address: 0x27ec8c, Func Offset: 0x37c
-	// Line 1776, Address: 0x27ecc4, Func Offset: 0x3b4
-	// Line 1779, Address: 0x27ed10, Func Offset: 0x400
-	// Line 1781, Address: 0x27ed48, Func Offset: 0x438
-	// Line 1782, Address: 0x27ed68, Func Offset: 0x458
-	// Line 1785, Address: 0x27ed70, Func Offset: 0x460
-	// Line 1782, Address: 0x27ed7c, Func Offset: 0x46c
-	// Line 1783, Address: 0x27ed80, Func Offset: 0x470
-	// Line 1785, Address: 0x27ed88, Func Offset: 0x478
-	// Line 1783, Address: 0x27ed8c, Func Offset: 0x47c
-	// Line 1785, Address: 0x27ed90, Func Offset: 0x480
-	// Line 1787, Address: 0x27edb8, Func Offset: 0x4a8
-	// Line 1788, Address: 0x27edd8, Func Offset: 0x4c8
-	// Line 1789, Address: 0x27edfc, Func Offset: 0x4ec
-	// Line 1790, Address: 0x27ee1c, Func Offset: 0x50c
-	// Line 1791, Address: 0x27ee40, Func Offset: 0x530
-	// Line 1792, Address: 0x27ee60, Func Offset: 0x550
-	// Line 1796, Address: 0x27ee84, Func Offset: 0x574
-	// Line 1797, Address: 0x27eeb4, Func Offset: 0x5a4
-	// Line 1798, Address: 0x27eee0, Func Offset: 0x5d0
-	// Line 1800, Address: 0x27eef8, Func Offset: 0x5e8
-	// Line 1801, Address: 0x27ef00, Func Offset: 0x5f0
-	// Line 1802, Address: 0x27ef08, Func Offset: 0x5f8
-	// Line 1811, Address: 0x27ef1c, Func Offset: 0x60c
-	// Line 1812, Address: 0x27ef38, Func Offset: 0x628
-	// Line 1813, Address: 0x27ef44, Func Offset: 0x634
-	// Line 1814, Address: 0x27ef58, Func Offset: 0x648
-	// Line 1815, Address: 0x27ef60, Func Offset: 0x650
-	// Line 1817, Address: 0x27ef68, Func Offset: 0x658
-	// Line 1818, Address: 0x27ef74, Func Offset: 0x664
-	// Line 1819, Address: 0x27ef88, Func Offset: 0x678
-	// Line 1820, Address: 0x27ef8c, Func Offset: 0x67c
-	// Line 1826, Address: 0x27ef94, Func Offset: 0x684
-	// Line 1828, Address: 0x27efa8, Func Offset: 0x698
-	// Line 1830, Address: 0x27efb0, Func Offset: 0x6a0
-	// Line 1832, Address: 0x27efc8, Func Offset: 0x6b8
-	// Line 1834, Address: 0x27efd0, Func Offset: 0x6c0
-	// Line 1832, Address: 0x27efd4, Func Offset: 0x6c4
-	// Line 1834, Address: 0x27efdc, Func Offset: 0x6cc
-	// Line 1835, Address: 0x27f00c, Func Offset: 0x6fc
-	// Line 1836, Address: 0x27f014, Func Offset: 0x704
-	// Line 1838, Address: 0x27f01c, Func Offset: 0x70c
-	// Line 1840, Address: 0x27f054, Func Offset: 0x744
-	// Line 1844, Address: 0x27f05c, Func Offset: 0x74c
-	// Line 1841, Address: 0x27f060, Func Offset: 0x750
-	// Line 1842, Address: 0x27f064, Func Offset: 0x754
-	// Line 1840, Address: 0x27f068, Func Offset: 0x758
-	// Line 1841, Address: 0x27f06c, Func Offset: 0x75c
-	// Line 1844, Address: 0x27f074, Func Offset: 0x764
-	// Line 1841, Address: 0x27f07c, Func Offset: 0x76c
-	// Line 1842, Address: 0x27f080, Func Offset: 0x770
-	// Line 1844, Address: 0x27f088, Func Offset: 0x778
-	// Line 1842, Address: 0x27f08c, Func Offset: 0x77c
-	// Line 1844, Address: 0x27f090, Func Offset: 0x780
-	// Line 1846, Address: 0x27f0b8, Func Offset: 0x7a8
-	// Line 1847, Address: 0x27f0d8, Func Offset: 0x7c8
-	// Line 1848, Address: 0x27f0f8, Func Offset: 0x7e8
-	// Line 1850, Address: 0x27f118, Func Offset: 0x808
-	// Line 1857, Address: 0x27f1a0, Func Offset: 0x890
-	// Line 1859, Address: 0x27f1ac, Func Offset: 0x89c
-	// Line 1860, Address: 0x27f1b4, Func Offset: 0x8a4
-	// Line 1859, Address: 0x27f1b8, Func Offset: 0x8a8
-	// Line 1860, Address: 0x27f1bc, Func Offset: 0x8ac
-	// Line 1859, Address: 0x27f1c8, Func Offset: 0x8b8
-	// Line 1861, Address: 0x27f1cc, Func Offset: 0x8bc
-	// Line 1860, Address: 0x27f1d0, Func Offset: 0x8c0
-	// Line 1861, Address: 0x27f1d4, Func Offset: 0x8c4
-	// Line 1863, Address: 0x27f1dc, Func Offset: 0x8cc
-	// Line 1867, Address: 0x27f214, Func Offset: 0x904
-	// Line 1870, Address: 0x27f260, Func Offset: 0x950
-	// Line 1872, Address: 0x27f298, Func Offset: 0x988
-	// Line 1873, Address: 0x27f2b8, Func Offset: 0x9a8
-	// Line 1876, Address: 0x27f2c0, Func Offset: 0x9b0
-	// Line 1873, Address: 0x27f2cc, Func Offset: 0x9bc
-	// Line 1874, Address: 0x27f2d0, Func Offset: 0x9c0
-	// Line 1876, Address: 0x27f2d8, Func Offset: 0x9c8
-	// Line 1874, Address: 0x27f2dc, Func Offset: 0x9cc
-	// Line 1876, Address: 0x27f2e0, Func Offset: 0x9d0
-	// Line 1878, Address: 0x27f308, Func Offset: 0x9f8
-	// Line 1879, Address: 0x27f328, Func Offset: 0xa18
-	// Line 1880, Address: 0x27f34c, Func Offset: 0xa3c
-	// Line 1881, Address: 0x27f36c, Func Offset: 0xa5c
-	// Line 1882, Address: 0x27f390, Func Offset: 0xa80
-	// Line 1883, Address: 0x27f3b0, Func Offset: 0xaa0
-	// Line 1887, Address: 0x27f3d4, Func Offset: 0xac4
-	// Line 1919, Address: 0x27f404, Func Offset: 0xaf4
-	// Func End, Address: 0x27f424, Func Offset: 0xb14
-	scePrintf("bhControlEventCamera - UNIMPLEMENTED!\n");
+    EVC_WORK* ecp;      
+    CAM_KEYF_WORK* kfp; 
+    NJS_POINT3 pos;     
+    float ans[3];      
+    float px;          
+    float pz;           
+    
+    switch (cam.mode0)
+    {
+    case 0:
+        sys->st_flg |= 0x10;
+        
+        if ((sys->st_flg & 0x800000)) 
+        {
+            sys->st_flg &= ~0x800000;
+            sys->gm_flg &= ~0x80000;
+            
+            sys->pt_flg |= 0x1;
+        }
+        
+        cam.flg &= ~0x8;
+        
+        cam.ct0 = 0;
+        
+        cam.frm = 0;
+        
+        cam.mode0 = 1;
+        
+        bhInitEventCamera();
+        
+        sys->gm_flg |= 0x10;
+        
+        bhSetEventHideObjLgt(cam.evc_no, cam.keyf_no);
+    case 1:
+        ecp = &rom->evcp[cam.evc_no];
+        
+        kfp = &ecp->keyf[cam.keyf_no];
+        
+        bhCheckEvtCamLockPosition();
+        
+        if (kfp->frame != 0) 
+        {
+            cam.frm = (1.0f / kfp->frame) * cam.ct0;
+        }
+        else 
+        {
+            cam.frm = 0;
+        }
+        
+        njOverhauserSpline(cam.ips[cam.keyf_no], ans, NULL, cam.frm);
+        
+        cam.px = ans[0];
+        cam.py = ans[1];
+        cam.pz = ans[2];
+        
+        njOverhauserSpline(cam.ian[cam.keyf_no], ans, NULL, cam.frm);
+       
+        cam.ax = 182.04445f * ans[0];
+        cam.ay = 182.04445f * ans[1];
+        cam.az = 182.04445f * ans[2];
+        
+        if (!(((kfp->lkflg == 0) || ((short)kfp->lkflg != kfp[1].lkflg)) || ((kfp->lkno != kfp[1].lkno) || (kfp->lkono != kfp[1].lkono)) || ((kfp->lx != kfp[1].lx) || (kfp->ly != kfp[1].ly) || (kfp->lz != kfp[1].lz))) || ((kfp->lkflg != 0) && (ecp->keyf_n == 1))) 
+        {
+            bhGetEvtCamLockPosition(kfp, &pos);
+
+            px = pos.x - cam.px;
+            pz = pos.z - cam.pz;
+            
+            cam.ax = -(int)(10430.381f * atan2f(pos.y - cam.py, njSqrt((px * px) + (pz * pz))));
+            cam.ay = (-(int)(10430.381f * atan2f(pos.x - cam.px, pos.z - cam.pz)) + 32767) + 1;
+        }
+        
+        njOverhauserSpline(cam.ipf[cam.keyf_no], ans, NULL, cam.frm);
+
+        cam.pers = 182.04445f * ans[0];
+        
+        cam.fog_nr = ans[1];
+        cam.fog_fr = ans[2];
+        
+        njOverhauserSpline(cam.icr[cam.keyf_no], ans, NULL, cam.frm);
+        
+        if (ans[0] < 0)
+        {
+            ans[0] = 0;
+        }
+        
+        if (ans[0] > 255.0f) 
+        {
+            ans[0] = 255.0f;
+        }
+        
+        if (ans[1] < 0) 
+        {
+            ans[1] = 0;
+        }
+        
+        if (ans[1] > 255.0f) 
+        {
+            ans[1] = 255.0f;
+        }
+        
+        if (ans[2] < 0) 
+        {
+            ans[2] = 0;
+        }
+        
+        if (ans[2] > 255.0f) 
+        {
+            ans[2] = 255.0f;
+        }
+        
+        cam.fog_col = ((unsigned int)ans[0] << 16) | ((unsigned int)ans[1] << 8) | ((unsigned int)ans[2] << 0);
+        
+        if (!(sys->st_flg & 0x80)) 
+        {
+            cam.ct0++;
+        }
+        
+        if (kfp->frame <= cam.ct0) 
+        {
+            cam.ct0 = 0;
+            
+            cam.frm = 0;
+            
+            cam.keyf_no++;
+            
+            if (cam.keyf_no >= (ecp->keyf_n - 1))
+            {
+                if (ecp->nxt_no == 0) 
+                {
+                    if (cam.keyf_no >= ecp->keyf_n)
+                    {
+                        cam.keyf_no = ecp->keyf_n - 1;
+                    }
+                    
+                    cam.mode0 = 2;
+                    break;
+                }
+                
+                if (cam.keyf_no >= ecp->keyf_n)
+                {
+                    cam.evc_no = (short)ecp->nxt_no - 1;
+                    cam.keyf_no = 0;
+                    
+                    bhInitEventCamera();
+                }
+            }
+            
+            bhSetEventHideObjLgt(cam.evc_no, cam.keyf_no);
+        }
+        
+        break;
+    case 2:
+        if (!(sys->gm_flg & 0x1)) 
+        {
+            sys->st_flg &= ~0x10;
+            
+            kfp = &rom->evcp[cam.evc_no].keyf[cam.keyf_no];
+            
+            bhCheckEvtCamLockPosition();
+            
+            cam.frm = 0;
+            
+            njOverhauserSpline(cam.ips[cam.keyf_no], ans, NULL, cam.frm);
+            
+            cam.px = ans[0];
+            cam.py = ans[1];
+            cam.pz = ans[2];
+            
+            njOverhauserSpline(cam.ian[cam.keyf_no], ans, NULL, cam.frm);
+            
+            cam.ax = 182.04445f * ans[0];
+            cam.ay = 182.04445f * ans[1];
+            cam.az = 182.04445f * ans[2];
+            
+            if (((kfp->lkflg != 0) && ((short)kfp->lkflg == kfp[1].lkflg)) && ((kfp->lkno == kfp[1].lkno) && (kfp->lkono == kfp[1].lkono)) && ((kfp->lx == kfp[1].lx) && (kfp->ly == kfp[1].ly) && (kfp->lz == kfp[1].lz)))
+            {
+                bhGetEvtCamLockPosition(kfp, &pos);
+
+                px = pos.x - cam.px;
+                pz = pos.z - cam.pz;
+                
+                cam.ax = -(int)(10430.381f * atan2f(pos.y - cam.py, njSqrt((px * px) + (pz * pz)))); 
+                cam.ay = (-(int)(10430.381f * atan2f(pos.x - cam.px, pos.z - cam.pz)) + 32767) + 1;
+            }
+            
+            njOverhauserSpline(cam.ipf[cam.keyf_no], ans, NULL, cam.frm);
+            
+            cam.pers = 182.04445f * ans[0];
+            
+            cam.fog_nr = ans[1];
+            cam.fog_fr = ans[2];
+            
+            njOverhauserSpline(cam.icr[cam.keyf_no], ans, NULL, cam.frm);
+            
+            if (ans[0] < 0)
+            {
+                ans[0] = 0;
+            }
+            
+            if (ans[0] > 255.0f) 
+            {
+                ans[0] = 255.0f;
+            }
+            
+            if (ans[1] < 0) 
+            {
+                ans[1] = 0;
+            }
+            
+            if (ans[1] > 255.0f) 
+            {
+                ans[1] = 255.0f;
+            }
+            
+            if (ans[2] < 0) 
+            {
+                ans[2] = 0;
+            }
+            
+            if (ans[2] > 255.0f) 
+            {
+                ans[2] = 255.0f;
+            }
+            
+            cam.fog_col = ((unsigned int)ans[0] << 16) | ((unsigned int)ans[1] << 8) | ((unsigned int)ans[2] << 0);
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!
