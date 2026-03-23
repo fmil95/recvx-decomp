@@ -679,22 +679,22 @@ void bhEne_AddNullTrans(BH_PWORK* epw, NJS_VECTOR* mtn)
     epw->pz += v.z;
 }
 
-/*// 
-// Start address: 0x21a800
-void bhEne_AddNullTransDir(BH_PWORK* epw, int ay, _anon6* mtn)
+// 100% matching!
+void bhEne_AddNullTransDir(BH_PWORK* epw, int ay, NJS_POINT3* mtn)
 {
-	_anon6 v;
-	// Line 853, Address: 0x21a800, Func Offset: 0
-	// Line 856, Address: 0x21a820, Func Offset: 0x20
-	// Line 857, Address: 0x21a828, Func Offset: 0x28
-	// Line 858, Address: 0x21a834, Func Offset: 0x34
-	// Line 860, Address: 0x21a858, Func Offset: 0x58
-	// Line 861, Address: 0x21a868, Func Offset: 0x68
-	// Line 862, Address: 0x21a878, Func Offset: 0x78
-	// Func End, Address: 0x21a890, Func Offset: 0x90
+    NJS_VECTOR v; 
+
+    njUnitMatrix(NULL);
+    
+    njRotateY(NULL, ay);
+    
+    njCalcVector(NULL, &mtn[epw->frm_no / 65536], &v);
+    
+    epw->px += v.x;
+    epw->pz += v.z;
 }
 
-// 
+/*// 
 // Start address: 0x21a890
 float bhEne_GetShapeCnt(_anon40* p, int key)
 {
