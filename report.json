@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 25.403492,
+    "fuzzy_match_percent": 25.844606,
     "total_code": "1904472",
-    "matched_code": "408940",
-    "matched_code_percent": 21.472618,
+    "matched_code": "415964",
+    "matched_code_percent": 21.841434,
     "total_data": "28420060",
     "matched_data": "15267924",
     "matched_data_percent": 53.72235,
     "total_functions": 4529,
-    "matched_functions": 2029,
-    "matched_functions_percent": 44.80018,
+    "matched_functions": 2059,
+    "matched_functions_percent": 45.462574,
     "total_units": 199
   },
   "units": [
@@ -3962,7 +3962,7 @@
     {
       "name": "ps2/veronica/prog/eneset",
       "measures": {
-        "fuzzy_match_percent": 99.28691,
+        "fuzzy_match_percent": 99.295265,
         "total_code": "5744",
         "matched_code": "2504",
         "matched_code_percent": 43.593315,
@@ -3996,7 +3996,7 @@
         {
           "name": ".text",
           "size": "5792",
-          "fuzzy_match_percent": 99.28691,
+          "fuzzy_match_percent": 99.295265,
           "metadata": {}
         },
         {
@@ -4043,7 +4043,7 @@
         {
           "name": "bhEne56",
           "size": "2248",
-          "fuzzy_match_percent": 99.9573,
+          "fuzzy_match_percent": 99.978645,
           "metadata": {},
           "address": "2352"
         },
@@ -13667,14 +13667,14 @@
     {
       "name": "ps2/veronica/prog/zonzon1",
       "measures": {
-        "fuzzy_match_percent": 1.4097744,
+        "fuzzy_match_percent": 99.9906,
         "total_code": "8512",
-        "matched_code": "120",
-        "matched_code_percent": 1.4097744,
+        "matched_code": "7144",
+        "matched_code_percent": 83.92857,
         "total_data": "176",
         "total_functions": 33,
-        "matched_functions": 1,
-        "matched_functions_percent": 3.030303,
+        "matched_functions": 31,
+        "matched_functions_percent": 93.93939,
         "total_units": 1
       },
       "sections": [
@@ -13685,6 +13685,7 @@
         {
           "name": ".data",
           "size": "176",
+          "fuzzy_match_percent": 99.4186,
           "metadata": {}
         },
         {
@@ -13694,7 +13695,7 @@
         {
           "name": ".text",
           "size": "8640",
-          "fuzzy_match_percent": 1.4097744,
+          "fuzzy_match_percent": 99.9906,
           "metadata": {}
         },
         {
@@ -13706,144 +13707,168 @@
         {
           "name": "bhEne_SetMinceEffect",
           "size": "716",
+          "fuzzy_match_percent": 99.94414,
           "metadata": {},
           "address": "0"
         },
         {
           "name": "bhEne_SetMinceEffect2",
           "size": "652",
+          "fuzzy_match_percent": 99.93865,
           "metadata": {},
           "address": "720"
         },
         {
           "name": "bhEne_SetBloodEffect",
           "size": "12",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1376"
         },
         {
           "name": "bhEne_SetBloodEffect2",
           "size": "536",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1392"
         },
         {
           "name": "bhEne_SetBloodEffect4",
           "size": "400",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1936"
         },
         {
           "name": "bhEne_SetBloodEffect5",
           "size": "672",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2336"
         },
         {
           "name": "bhEne_SetBloodEffectBurst",
           "size": "580",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "3008"
         },
         {
           "name": "bhEne_SetBloodstain",
           "size": "740",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "3600"
         },
         {
           "name": "bhEne_SetFireEffect",
           "size": "384",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "4352"
         },
         {
           "name": "bhEne_BloodPool",
           "size": "32",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "4736"
         },
         {
           "name": "bhEne_SetAcidEffect",
           "size": "336",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "4768"
         },
         {
           "name": "bhEne_DirTarget",
           "size": "128",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5104"
         },
         {
           "name": "bhEne_CheckDirTarget",
           "size": "124",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5232"
         },
         {
           "name": "bhEne_GetPartsPos",
           "size": "200",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5360"
         },
         {
           "name": "bhEne_DirCheck",
           "size": "112",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5568"
         },
         {
           "name": "bhEne_DGDirCheck",
           "size": "12",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5680"
         },
         {
           "name": "bhEne_CallPlayerVoice",
           "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5696"
         },
         {
           "name": "bhEne_CheckEnemiesBall",
           "size": "496",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5712"
         },
         {
           "name": "bhEne_SetWeponAtr",
           "size": "120",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "6208"
         },
         {
           "name": "bhEne_AttackHitCheck",
           "size": "404",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "6336"
         },
         {
           "name": "bhEne_AddNullTrans",
           "size": "132",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "6752"
         },
         {
           "name": "bhEne_AddNullTransDir",
           "size": "144",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "6896"
         },
         {
           "name": "bhEne_GetShapeCnt",
           "size": "108",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "7040"
         },
         {
           "name": "bhEne_CalcDamage",
           "size": "544",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "7152"
         },
@@ -13857,48 +13882,56 @@
         {
           "name": "bhEne_CallSE",
           "size": "64",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "7824"
         },
         {
           "name": "bhEne_CallSE_EX",
           "size": "64",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "7888"
         },
         {
           "name": "bhEne_CallEffectSE",
           "size": "16",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "7952"
         },
         {
           "name": "bhEne_SetSEPan",
           "size": "32",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "7968"
         },
         {
           "name": "bhEne_CheckPlayEffectSE",
           "size": "12",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "8000"
         },
         {
           "name": "bhArcTan2",
           "size": "176",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "8016"
         },
         {
           "name": "bhEne_CheckEventAtr",
           "size": "324",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "8192"
         },
         {
           "name": "bhEne_EraseArrow",
           "size": "112",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "8528"
         }
@@ -15960,7 +15993,7 @@
     {
       "name": "ps2/veronica/prog/effsub3",
       "measures": {
-        "fuzzy_match_percent": 2.7329853,
+        "fuzzy_match_percent": 2.770524,
         "total_code": "24508",
         "matched_code": "392",
         "matched_code_percent": 1.5994778,
@@ -15995,13 +16028,13 @@
         {
           "name": ".rodata",
           "size": "2288",
-          "fuzzy_match_percent": 14.6312685,
+          "fuzzy_match_percent": 15.241419,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "24736",
-          "fuzzy_match_percent": 2.7329853,
+          "fuzzy_match_percent": 2.770524,
           "metadata": {}
         },
         {
@@ -16034,6 +16067,7 @@
         {
           "name": "bhSetBloodPoolLnk",
           "size": "572",
+          "fuzzy_match_percent": 1.6083916,
           "metadata": {},
           "address": "416"
         },
@@ -40046,16 +40080,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 21.99705,
+        "fuzzy_match_percent": 22.458519,
         "total_code": "1820460",
-        "matched_code": "330768",
-        "matched_code_percent": 18.169474,
+        "matched_code": "337792",
+        "matched_code_percent": 18.555311,
         "total_data": "28328660",
         "matched_data": "15232132",
         "matched_data_percent": 53.769333,
         "total_functions": 3834,
-        "matched_functions": 1355,
-        "matched_functions_percent": 35.34168,
+        "matched_functions": 1385,
+        "matched_functions_percent": 36.124153,
         "total_units": 151
       }
     },

@@ -883,25 +883,34 @@ int bhArcTan2(float y, float x)
     return ang;
 }
 
-/*// 
-// Start address: 0x21ad10
-_anon21* bhEne_CheckEventAtr(int flr_no, float px, float pz, int id, int min, int max)
+// 100% matching!
+ATR_WORK* bhEne_CheckEventAtr(int flr_no, float px, float pz, int id, int min, int max)
 {
-	int flr_n;
-	int i;
-	_anon21* fp;
-	// Line 1113, Address: 0x21ad10, Func Offset: 0
-	// Line 1114, Address: 0x21ad34, Func Offset: 0x24
-	// Line 1117, Address: 0x21ad44, Func Offset: 0x34
-	// Line 1116, Address: 0x21ad48, Func Offset: 0x38
-	// Line 1117, Address: 0x21ad84, Func Offset: 0x74
-	// Line 1122, Address: 0x21adc8, Func Offset: 0xb8
-	// Line 1125, Address: 0x21ae2c, Func Offset: 0x11c
-	// Line 1128, Address: 0x21ae34, Func Offset: 0x124
-	// Line 1129, Address: 0x21ae48, Func Offset: 0x138
-	// Line 1130, Address: 0x21ae4c, Func Offset: 0x13c
-	// Func End, Address: 0x21ae54, Func Offset: 0x144
-}*/
+    ATR_WORK* fp;
+    int i; 
+    int flr_n; 
+
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++)
+    {
+        if (i < rom->flr_n)
+        {
+            fp = &rom->flrp[i];
+        }
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if (((fp->flg & 0x1)) && (fp->type == 2) && (fp->prm0 == id) && ((fp->prm1 >= min) && (fp->prm1 <= max)) && ((fp->px <= px) && ((fp->px + fp->w) >= px)) && ((fp->pz <= pz) && ((fp->pz + fp->d) >= pz) && (fp->flr_no == flr_no)))
+        {
+            return fp;
+        }
+    }
+    
+    return NULL;
+}
 
 // 100% matching!
 void bhEne_EraseArrow(BH_PWORK* epw, int obj_no)
