@@ -18,6 +18,22 @@ typedef struct P_WORK
     float cnt; // offset 0x4, size 0x4
 } P_WORK;
 
+typedef struct COMBJOINT_WORK 
+{
+    // total size: 0x8
+    int flg;     // offset 0x0, size 0x4
+    int correct; // offset 0x4, size 0x4
+} COMBJOINT_WORK;
+
+typedef struct COMBWEP_WORK 
+{
+    // total size: 0x18
+    int crit;    // offset 0x0, size 0x4
+    int pt[3];   // offset 0x4, size 0xC
+    int timeout; // offset 0x10, size 0x4
+    int bonus;   // offset 0x14, size 0x4
+} COMBWEP_WORK;
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

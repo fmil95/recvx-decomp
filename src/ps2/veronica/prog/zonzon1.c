@@ -721,59 +721,86 @@ float bhEne_GetShapeCnt(P_WORK* p, int key)
     }
 }
 
-/*// 
-// Start address: 0x21a900
-void bhEne_CalcDamage(BH_PWORK* epw, _anon18* CombWepTbl, _anon20* CombJointTbl)
+// 100% matching!
+void bhEne_CalcDamage(BH_PWORK* epw, COMBWEP_WORK* CombWepTbl, COMBJOINT_WORK* CombJointTbl)
 {
-	_anon18* cwp;
-	_anon20* cjp;
-	unsigned int i;
-	int dam;
-	// Line 898, Address: 0x21a900, Func Offset: 0
-	// Line 902, Address: 0x21a90c, Func Offset: 0xc
-	// Line 905, Address: 0x21a910, Func Offset: 0x10
-	// Line 908, Address: 0x21a91c, Func Offset: 0x1c
-	// Line 902, Address: 0x21a920, Func Offset: 0x20
-	// Line 905, Address: 0x21a924, Func Offset: 0x24
-	// Line 902, Address: 0x21a92c, Func Offset: 0x2c
-	// Line 908, Address: 0x21a930, Func Offset: 0x30
-	// Line 902, Address: 0x21a934, Func Offset: 0x34
-	// Line 908, Address: 0x21a938, Func Offset: 0x38
-	// Line 902, Address: 0x21a93c, Func Offset: 0x3c
-	// Line 908, Address: 0x21a944, Func Offset: 0x44
-	// Line 910, Address: 0x21a94c, Func Offset: 0x4c
-	// Line 912, Address: 0x21a954, Func Offset: 0x54
-	// Line 914, Address: 0x21a960, Func Offset: 0x60
-	// Line 915, Address: 0x21a970, Func Offset: 0x70
-	// Line 916, Address: 0x21a98c, Func Offset: 0x8c
-	// Line 917, Address: 0x21a990, Func Offset: 0x90
-	// Line 919, Address: 0x21a998, Func Offset: 0x98
-	// Line 920, Address: 0x21a9a0, Func Offset: 0xa0
-	// Line 921, Address: 0x21a9a4, Func Offset: 0xa4
-	// Line 922, Address: 0x21a9ac, Func Offset: 0xac
-	// Line 924, Address: 0x21a9b0, Func Offset: 0xb0
-	// Line 925, Address: 0x21a9d0, Func Offset: 0xd0
-	// Line 926, Address: 0x21a9f0, Func Offset: 0xf0
-	// Line 930, Address: 0x21aa10, Func Offset: 0x110
-	// Line 931, Address: 0x21aa2c, Func Offset: 0x12c
-	// Line 932, Address: 0x21aa38, Func Offset: 0x138
-	// Line 933, Address: 0x21aa48, Func Offset: 0x148
-	// Line 934, Address: 0x21aa4c, Func Offset: 0x14c
-	// Line 936, Address: 0x21aa50, Func Offset: 0x150
-	// Line 937, Address: 0x21aa7c, Func Offset: 0x17c
-	// Line 939, Address: 0x21aa84, Func Offset: 0x184
-	// Line 940, Address: 0x21aaac, Func Offset: 0x1ac
-	// Line 943, Address: 0x21aab0, Func Offset: 0x1b0
-	// Line 957, Address: 0x21aabc, Func Offset: 0x1bc
-	// Line 943, Address: 0x21aac0, Func Offset: 0x1c0
-	// Line 957, Address: 0x21aac4, Func Offset: 0x1c4
-	// Line 960, Address: 0x21aae4, Func Offset: 0x1e4
-	// Line 961, Address: 0x21aaf4, Func Offset: 0x1f4
-	// Line 962, Address: 0x21aafc, Func Offset: 0x1fc
-	// Line 963, Address: 0x21ab04, Func Offset: 0x204
-	// Line 965, Address: 0x21ab10, Func Offset: 0x210
-	// Func End, Address: 0x21ab20, Func Offset: 0x220
-}*/
+    int dam; 
+    unsigned int i; 
+    COMBJOINT_WORK* cjp; 
+    COMBWEP_WORK* cwp; 
+
+    cjp = CombJointTbl;
+    
+    cwp = &CombWepTbl[epw->wpnr_no];
+
+    epw->comb_flg &= ~0xD;
+    
+    epw->total_dam = 0;
+    
+    for (i = 0; i < epw->mlwP->obj_num; i++, cjp++)
+    {
+        if ((i != 0) && (epw->dam[i] != 0))
+        {
+            if (!(cjp->flg & 0x1)) 
+            {
+                if ((epw->comb_wep == epw->wpnr_no) && (epw->comb_timeout != 0)) 
+                {
+                    epw->comb_timeout = cwp->timeout;
+                } 
+                else 
+                {
+                    epw->comb_wep = epw->wpnr_no;
+                    
+                    epw->comb_pnt = 0;
+                    
+                    epw->comb_timeout = cwp->timeout;
+                }
+                
+                if ((epw->comb_flg & 0x10)) 
+                {
+                    epw->comb_pnt += cwp->pt[0];
+                }
+                
+                if ((epw->comb_flg & 0x20)) 
+                {
+                    epw->comb_pnt += cwp->pt[1];
+                }
+                
+                if ((epw->comb_flg & 0x40)) 
+                {
+                    epw->comb_pnt += cwp->pt[2];
+                }
+            }
+            
+            if ((cwp->crit != 0) && (epw->comb_pnt >= cwp->crit))
+            {
+                epw->comb_flg |= 0x1;
+                
+                if (!(epw->comb_flg & 0x2)) 
+                {
+                    epw->comb_pnt = 0;
+                }
+                
+                dam = epw->dam[i] + ((epw->dam[i] * (cwp->bonus + cjp->correct)) / 100);
+            } 
+            else 
+            {
+                dam = epw->dam[i] + ((epw->dam[i] * cjp->correct) / 100);
+            }
+            
+            epw->total_dam += dam;
+        }
+    }
+    
+    if (bhEne_DGDirCheck(epw) != 0) 
+    {
+        epw->comb_flg |= 0x8;
+    }
+    else 
+    {
+        epw->comb_flg |= 0x4;
+    }
+}
 
 // 100% matching!
 void bhEne_InitDamage(BH_PWORK* epw)
