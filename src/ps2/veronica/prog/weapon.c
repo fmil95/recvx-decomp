@@ -1,5 +1,7 @@
 #include "weapon.h"
+#include "MdlPut.h"
 #include "effect.h"
+#include "ps2_NaMath.h"
 #include "ps2_NaMatrix.h"
 #include "sub1.h"
 #include "main.h"

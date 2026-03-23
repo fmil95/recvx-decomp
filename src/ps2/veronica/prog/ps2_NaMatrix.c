@@ -1698,23 +1698,27 @@ void njPers(tagNJS_SCRVECTOR* pScreen)
 	// Line 5885, Address: 0x2d7b9c, Func Offset: 0x6c
 	// Line 5890, Address: 0x2d7ba0, Func Offset: 0x70
 	// Func End, Address: 0x2d7ba8, Func Offset: 0x78
-}
-
-// 
-// Start address: 0x2d7bb0
-void njCopyMatrix(float pDstMat[16], float pSrcMat[16])
-{
-	// Line 5984, Address: 0x2d7bb0, Func Offset: 0
-	// Line 5985, Address: 0x2d7bb4, Func Offset: 0x4
-	// Line 5986, Address: 0x2d7bb8, Func Offset: 0x8
-	// Line 5987, Address: 0x2d7bbc, Func Offset: 0xc
-	// Line 5988, Address: 0x2d7bc0, Func Offset: 0x10
-	// Line 5989, Address: 0x2d7bc4, Func Offset: 0x14
-	// Line 5990, Address: 0x2d7bc8, Func Offset: 0x18
-	// Line 5991, Address: 0x2d7bcc, Func Offset: 0x1c
-	// Line 5996, Address: 0x2d7bd0, Func Offset: 0x20
-	// Func End, Address: 0x2d7bd8, Func Offset: 0x28
 }*/
+
+// 100% matching!
+void njCopyMatrix(NJS_MATRIX* pDstMat, NJS_MATRIX* pSrcMat) 
+{
+    asm volatile
+    ("
+    .set noreorder
+        lqc2 vf4, 0(%1) 
+        lqc2 vf5, 0x10(%1) 
+        lqc2 vf6, 0x20(%1) 
+        lqc2 vf7, 0x30(%1) 
+    
+        sqc2 vf4, 0(%0) 
+        sqc2 vf5, 0x10(%0) 
+        sqc2 vf6, 0x20(%0) 
+        sqc2 vf7, 0x30(%0) 
+    .set reorder
+    " : : "r"(pDstMat), "r"(pSrcMat) : 
+    );
+}
 
 // 100% matching!
 void njMulMatrixCN(NJS_MATRIX* pSrcMat1, NJS_MATRIX* pSrcMat2)
