@@ -895,22 +895,21 @@ _anon21* bhEne_CheckEventAtr(int flr_no, float px, float pz, int id, int min, in
 	// Line 1129, Address: 0x21ae48, Func Offset: 0x138
 	// Line 1130, Address: 0x21ae4c, Func Offset: 0x13c
 	// Func End, Address: 0x21ae54, Func Offset: 0x144
-}
+}*/
 
-// 
-// Start address: 0x21ae60
+// 100% matching!
 void bhEne_EraseArrow(BH_PWORK* epw, int obj_no)
 {
-	_anon0* op;
-	int i;
-	// Line 1145, Address: 0x21ae60, Func Offset: 0
-	// Line 1146, Address: 0x21ae68, Func Offset: 0x8
-	// Line 1148, Address: 0x21ae6c, Func Offset: 0xc
-	// Line 1147, Address: 0x21ae70, Func Offset: 0x10
-	// Line 1148, Address: 0x21ae8c, Func Offset: 0x2c
-	// Line 1151, Address: 0x21aeb0, Func Offset: 0x50
-	// Line 1153, Address: 0x21aeb4, Func Offset: 0x54
-	// Line 1154, Address: 0x21aeb8, Func Offset: 0x58
-	// Line 1155, Address: 0x21aec8, Func Offset: 0x68
-	// Func End, Address: 0x21aed0, Func Offset: 0x70
-}*/
+    int i; 
+    O_WRK* op; 
+
+    op = eff;
+    
+    for (i = 0; i < 512; i++, op++)
+    {
+        if ((((op->flg & 0x1)) && (!(op->flg & 0x2))) && (op->id == 13) && ((op->lkwkp == (unsigned char*)epw) && (op->lkono == obj_no))) 
+        {
+            op->flg = 0;
+        }
+    }
+}
