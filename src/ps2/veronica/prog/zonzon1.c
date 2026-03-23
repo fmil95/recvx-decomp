@@ -248,56 +248,65 @@ void bhEne_SetBloodEffect5(BH_PWORK* epw, int type1, int type2)
     bhSetEffectTb(&sys->ef, &ofp, (unsigned char*)epw, epw->djnt_no);
 }
 
-/*// 
-// Start address: 0x2198d0
-void bhEne_SetBloodEffectBurst(BH_PWORK* epw, int type, int jno, _anon6* pos, int flg)
-{
-	_anon6 ofp;
-	_anon0* op;
-	int eno;
-	// Line 349, Address: 0x2198d0, Func Offset: 0
-	// Line 354, Address: 0x2198f0, Func Offset: 0x20
-	// Line 357, Address: 0x2198f8, Func Offset: 0x28
-	// Line 365, Address: 0x219900, Func Offset: 0x30
-	// Line 367, Address: 0x219908, Func Offset: 0x38
-	// Line 371, Address: 0x219924, Func Offset: 0x54
-	// Line 372, Address: 0x21992c, Func Offset: 0x5c
-	// Line 373, Address: 0x219950, Func Offset: 0x80
-	// Line 374, Address: 0x219968, Func Offset: 0x98
-	// Line 375, Address: 0x219970, Func Offset: 0xa0
-	// Line 378, Address: 0x219980, Func Offset: 0xb0
-	// Line 394, Address: 0x219988, Func Offset: 0xb8
-	// Line 378, Address: 0x21998c, Func Offset: 0xbc
-	// Line 394, Address: 0x219990, Func Offset: 0xc0
-	// Line 378, Address: 0x219994, Func Offset: 0xc4
-	// Line 379, Address: 0x2199a0, Func Offset: 0xd0
-	// Line 390, Address: 0x2199ac, Func Offset: 0xdc
-	// Line 396, Address: 0x2199b0, Func Offset: 0xe0
-	// Line 379, Address: 0x2199b4, Func Offset: 0xe4
-	// Line 380, Address: 0x2199c0, Func Offset: 0xf0
-	// Line 396, Address: 0x2199c8, Func Offset: 0xf8
-	// Line 380, Address: 0x2199d0, Func Offset: 0x100
-	// Line 382, Address: 0x2199dc, Func Offset: 0x10c
-	// Line 390, Address: 0x219a18, Func Offset: 0x148
-	// Line 391, Address: 0x219a2c, Func Offset: 0x15c
-	// Line 392, Address: 0x219a40, Func Offset: 0x170
-	// Line 393, Address: 0x219a54, Func Offset: 0x184
-	// Line 394, Address: 0x219a68, Func Offset: 0x198
-	// Line 396, Address: 0x219a90, Func Offset: 0x1c0
-	// Line 397, Address: 0x219aa8, Func Offset: 0x1d8
-	// Line 398, Address: 0x219ab4, Func Offset: 0x1e4
-	// Line 399, Address: 0x219abc, Func Offset: 0x1ec
-	// Line 398, Address: 0x219ac0, Func Offset: 0x1f0
-	// Line 399, Address: 0x219ad4, Func Offset: 0x204
-	// Line 398, Address: 0x219ad8, Func Offset: 0x208
-	// Line 399, Address: 0x219adc, Func Offset: 0x20c
-	// Line 400, Address: 0x219ae0, Func Offset: 0x210
-	// Line 401, Address: 0x219aec, Func Offset: 0x21c
-	// Line 403, Address: 0x219af8, Func Offset: 0x228
-	// Func End, Address: 0x219b14, Func Offset: 0x244
+// 100% matching!
+void bhEne_SetBloodEffectBurst(BH_PWORK* epw, int type, int jno, NJS_POINT3* pos, int flg)
+{   
+    int eno;
+    O_WRK* op; 
+    NJS_POINT3 ofp; 
+
+    if (pos == NULL) 
+    {
+        ofp.z = 0;
+        ofp.y = 0;
+        ofp.x = 0;
+    }
+    else 
+    {
+        ofp = *pos; 
+    }
+    
+    if (flg != 0) 
+    {   
+        njSubVector(&ofp, (NJS_VECTOR*)&epw->mlwP->owP[jno].mtx[12]);
+        
+        njSetMatrix(NULL, (NJS_MATRIX*)epw->mlwP->owP[jno].mtx);
+        njInvertMatrix(NULL);
+        
+        njCalcVector(NULL, &ofp, &ofp);
+    }
+    
+    sys->ef.id = 297;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.type = type;
+    
+    sys->ef.pz = 0;
+    sys->ef.py = 0;
+    sys->ef.px = 0;
+    
+    sys->ef.sx = 1.0f;
+    sys->ef.sy = 1.0f;
+    sys->ef.sz = 1.0f;
+    
+    sys->ef.ay = 0;
+    
+    sys->ef.mdlver = BloodType[epw->id].color;
+    
+    eno = bhSetEffectTb(&sys->ef, &ofp, (unsigned char*)epw, jno);
+    
+    if (eno != -1) 
+    {
+        op = &eff[eno];
+        
+        op->xn = -epw->dvx;
+        op->yn = -epw->dvy;
+        op->zn = -epw->dvz;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x219b20
 void bhEne_SetBloodstain(BH_PWORK* epw, int type, int jno, _anon6* ofp)
 {
