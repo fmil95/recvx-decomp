@@ -69,12 +69,7 @@ int ikou3(BH_PWORK* epw, NJS_POINT3* pos, int add_dir)
 // 100% matching!
 int NitenDir_ck(float hontai_x, float hontai_z, float target_x, float target_z) 
 {
-    int uVar1;
-    float fVar2;
-
-    fVar2 = atan2f(hontai_x - target_x, hontai_z - target_z);
-    uVar1 = (int)(fVar2 * 10430.381f);
-    return uVar1;
+    return atan2f(hontai_x - target_x, hontai_z - target_z) * 10430.381f;
 }
 
 // 100% matching!
@@ -312,50 +307,67 @@ void bhEne_CalcPartsPos(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* pos, char* t
     njGetTranslation(mtx, pos);
 }
 
-/*// 
-// Start address: 0x216760
-_anon23* bhKaidanAtrCheck(BH_PWORK* epw, float len, int* idx)
+ATR_WORK* bhKaidanAtrCheck(BH_PWORK* epw, float len, int* idx)
 {
-	int etc_n;
-	int i;
-	float pz2;
-	float pz;
-	float px2;
-	float px;
-	_anon23* exp;
-	// Line 623, Address: 0x216760, Func Offset: 0
-	// Line 628, Address: 0x21677c, Func Offset: 0x1c
-	// Line 629, Address: 0x216790, Func Offset: 0x30
-	// Line 628, Address: 0x216794, Func Offset: 0x34
-	// Line 629, Address: 0x216798, Func Offset: 0x38
-	// Line 642, Address: 0x2167a0, Func Offset: 0x40
-	// Line 629, Address: 0x2167a8, Func Offset: 0x48
-	// Line 643, Address: 0x2167b0, Func Offset: 0x50
-	// Line 642, Address: 0x2167b4, Func Offset: 0x54
-	// Line 643, Address: 0x2167d0, Func Offset: 0x70
-	// Line 660, Address: 0x2167e0, Func Offset: 0x80
-	// Line 664, Address: 0x2167e4, Func Offset: 0x84
-	// Line 660, Address: 0x2167e8, Func Offset: 0x88
-	// Line 650, Address: 0x2167ec, Func Offset: 0x8c
-	// Line 653, Address: 0x2167f0, Func Offset: 0x90
-	// Line 646, Address: 0x2167f4, Func Offset: 0x94
-	// Line 648, Address: 0x216830, Func Offset: 0xd0
-	// Line 650, Address: 0x216840, Func Offset: 0xe0
-	// Line 653, Address: 0x216854, Func Offset: 0xf4
-	// Line 660, Address: 0x2168cc, Func Offset: 0x16c
-	// Line 664, Address: 0x2168d0, Func Offset: 0x170
-	// Line 661, Address: 0x2168d4, Func Offset: 0x174
-	// Line 662, Address: 0x2168d8, Func Offset: 0x178
-	// Line 664, Address: 0x2168dc, Func Offset: 0x17c
-	// Line 666, Address: 0x2168f0, Func Offset: 0x190
-	// Line 669, Address: 0x216914, Func Offset: 0x1b4
-	// Line 674, Address: 0x21691c, Func Offset: 0x1bc
-	// Line 677, Address: 0x21693c, Func Offset: 0x1dc
-	// Line 684, Address: 0x216944, Func Offset: 0x1e4
-	// Line 685, Address: 0x216958, Func Offset: 0x1f8
-	// Line 686, Address: 0x21695c, Func Offset: 0x1fc
-	// Func End, Address: 0x216978, Func Offset: 0x218
-}*/
+    ATR_WORK* exp;
+    float px, px2; 
+    float pz, pz2; 
+    int i; 
+    int etc_n; 
+
+    px = epw->px - (len * njSin(epw->ay));
+    pz = epw->pz - (len * njCos(epw->ay));
+    
+    etc_n = rom->etc_n + sys->metc_n;
+    
+    for (i = 0; i < etc_n; i++)
+    {
+        if (i < rom->etc_n) 
+        { 
+            exp = &rom->etcp[i]; 
+        }
+        else 
+        { 
+            exp = &sys->metcp[i - rom->etc_n]; 
+        }
+
+        if ((exp->flg & 0x1))
+        {
+            switch (exp->type)
+            {
+            case 1:
+                if (((exp->px <= px) && ((exp->px + exp->w) >= px)) && ((exp->pz <= pz) && ((exp->pz + exp->d) >= pz)) && (!(exp->attr & 0x400000)) && (exp->flr_no == epw->flr_no))
+                {   
+                    px = 0.5f + exp->px;
+                    pz = 0.5f + exp->pz;
+                    
+                    px2 = (exp->px + exp->w) - 0.5f;
+                    pz2 = (exp->pz + exp->d) - 0.5f;
+                    
+                    if ((exp->prm1 == 0) || (exp->prm1 == 2))
+                    {
+                        if ((px <= epw->px) && (px2 >= epw->px))
+                        {
+                            *idx = i;
+                            
+                            return exp;
+                        }
+                    }
+                    else if ((pz <= epw->pz) && (pz2 >= epw->pz))
+                    {
+                        *idx = i;
+                        
+                        return exp;
+                    }
+                }
+                
+                break;
+            }
+        }
+    }
+    
+    return NULL;
+}
 
 // 100% matching!
 ATR_WORK* bhEne_EnemyAtariCheck(NJS_POINT3* pos, int flr_no, unsigned char id, unsigned char type) 
