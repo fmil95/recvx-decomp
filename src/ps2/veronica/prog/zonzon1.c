@@ -509,15 +509,13 @@ int bhEne_DirCheck(int ay, NJS_VECTOR* vec)
     return ang;
 }
 
-/*// 
-// Start address: 0x21a340
+// 100% matching!
 int bhEne_DGDirCheck(BH_PWORK* epw)
 {
-	// Line 676, Address: 0x21a340, Func Offset: 0
-	// Func End, Address: 0x21a34c, Func Offset: 0xc
+    return bhEne_DirCheck(epw->ay, (NJS_VECTOR*)&epw->dvx);
 }
 
-// 
+/*// 
 // Start address: 0x21a350
 void bhEne_CallPlayerVoice(int no)
 {
