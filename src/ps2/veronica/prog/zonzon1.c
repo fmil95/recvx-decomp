@@ -90,17 +90,15 @@ void bhEne_SetMinceEffect2(BH_PWORK* epw, int type, float size, int num)
 	// Line 181, Address: 0x219240, Func Offset: 0x260
 	// Line 182, Address: 0x219250, Func Offset: 0x270
 	// Func End, Address: 0x21926c, Func Offset: 0x28c
-}
+}*/
 
-// 
-// Start address: 0x219270
+// 100% matching!
 void bhEne_SetBloodEffect(BH_PWORK* epw, int type)
 {
-	// Line 195, Address: 0x219274, Func Offset: 0x4
-	// Func End, Address: 0x21927c, Func Offset: 0xc
+    bhEne_SetBloodEffect5(epw, 0, type);
 }
 
-// 
+/*// 
 // Start address: 0x219280
 void bhEne_SetBloodEffect2(BH_PWORK* epw, int type, int jno, _anon6* ofp)
 {
@@ -171,14 +169,14 @@ void bhEne_SetBloodEffect4(_anon6* pos, _anon6* vec, int col, int type1, int typ
 	// Line 275, Address: 0x219600, Func Offset: 0x160
 	// Line 279, Address: 0x219618, Func Offset: 0x178
 	// Func End, Address: 0x219630, Func Offset: 0x190
-}
+}*/
 
 // 
 // Start address: 0x219630
 void bhEne_SetBloodEffect5(BH_PWORK* epw, int type1, int type2)
 {
-	_anon6 vec;
-	_anon6 ofp;
+	//_anon6 vec;
+	//_anon6 ofp;
 	// Line 291, Address: 0x219630, Func Offset: 0
 	// Line 296, Address: 0x219644, Func Offset: 0x14
 	// Line 297, Address: 0x21967c, Func Offset: 0x4c
@@ -217,9 +215,10 @@ void bhEne_SetBloodEffect5(BH_PWORK* epw, int type1, int type2)
 	// Line 330, Address: 0x21989c, Func Offset: 0x26c
 	// Line 334, Address: 0x2198b8, Func Offset: 0x288
 	// Func End, Address: 0x2198d0, Func Offset: 0x2a0
+	scePrintf("bhEne_SetBloodEffect5 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2198d0
 void bhEne_SetBloodEffectBurst(BH_PWORK* epw, int type, int jno, _anon6* pos, int flg)
 {

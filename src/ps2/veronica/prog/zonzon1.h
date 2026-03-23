@@ -1541,9 +1541,9 @@ void bhEne_SetMinceEffect(BH_PWORK* epw, int type, int num);
 void bhEne_SetMinceEffect2(BH_PWORK* epw, int type, float size, int num);
 void bhEne_SetBloodEffect(BH_PWORK* epw, int type);
 void bhEne_SetBloodEffect2(BH_PWORK* epw, int type, int jno, _anon6* ofp);
-void bhEne_SetBloodEffect4(_anon6* pos, _anon6* vec, int col, int type1, int type2);
+void bhEne_SetBloodEffect4(_anon6* pos, _anon6* vec, int col, int type1, int type2);*/
 void bhEne_SetBloodEffect5(BH_PWORK* epw, int type1, int type2);
-void bhEne_SetBloodEffectBurst(BH_PWORK* epw, int type, int jno, _anon6* pos, int flg);
+/*void bhEne_SetBloodEffectBurst(BH_PWORK* epw, int type, int jno, _anon6* pos, int flg);
 void bhEne_SetBloodstain(BH_PWORK* epw, int type, int jno, _anon6* ofp);
 void bhEne_SetFireEffect(BH_PWORK* epw, int jno, _anon6* ofp, float size, int len);
 void bhEne_BloodPool(BH_PWORK* epw, _anon6* pos, int ang, _anon39* param);
