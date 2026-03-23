@@ -1,6 +1,7 @@
 #include "weapon.h"
 #include "effect.h"
 #include "ps2_NaMatrix.h"
+#include "sub1.h"
 #include "main.h"
 
 /*short EneDamNear[22][31];
@@ -229,23 +230,27 @@ void bhActionWeapon(_anon0* op)
 	// Line 326, Address: 0x28ac1c, Func Offset: 0x60c
 	// Line 332, Address: 0x28ac20, Func Offset: 0x610
 	// Func End, Address: 0x28ac34, Func Offset: 0x624
-}
+}*/
 
-// 
-// Start address: 0x28ac40
-short bhCheckBullet()
+// 100% matching!
+short bhCheckBullet() 
 {
-	short bn;
-	short iw;
-	// Line 343, Address: 0x28ac40, Func Offset: 0
-	// Line 344, Address: 0x28ac4c, Func Offset: 0xc
-	// Line 349, Address: 0x28ac58, Func Offset: 0x18
-	// Line 350, Address: 0x28ac88, Func Offset: 0x48
-	// Line 353, Address: 0x28ac94, Func Offset: 0x54
-	// Func End, Address: 0x28ac9c, Func Offset: 0x5c
+    short iw; 
+    short bn;
+
+    iw = swork.pip[0];
+    
+    bn = swork.pip[iw];
+    
+    if ((((swork.pip[iw] >> 16) & 0x800)) || ((plp->at_flg & 0x40000000))) 
+    {
+        bn = -1;
+    }
+    
+    return bn;
 }
 
-// 
+/*// 
 // Start address: 0x28aca0
 int bhCountBullet()
 {
