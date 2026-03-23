@@ -824,18 +824,16 @@ void bhEne_InitDamage(BH_PWORK* epw)
     epw->flg2 &= ~0x4;
 }
 
-/*// 
-// Start address: 0x21aba0
-void bhEne_CallSE(BH_PWORK* epw, _anon6* pos, int se)
+// 100% matching!
+void bhEne_CallSE(BH_PWORK* epw, NJS_POINT3* pos, int se)
 {
-	// Line 1005, Address: 0x21aba0, Func Offset: 0
-	// Line 1006, Address: 0x21aba8, Func Offset: 0x8
-	// Line 1007, Address: 0x21abbc, Func Offset: 0x1c
-	// Line 1009, Address: 0x21abd4, Func Offset: 0x34
-	// Func End, Address: 0x21abe0, Func Offset: 0x40
+    if (!(epw->flg & 0x10000))
+    {
+        RequestEnemySe(sys->enow, pos, se);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x21abe0
 void bhEne_CallSE_EX(BH_PWORK* epw, _anon6* pos, int se, int fade)
 {
