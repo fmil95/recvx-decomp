@@ -2,6 +2,7 @@
 #include "effect.h"
 #include "effsub3.h"
 #include "ps2_NaMath.h"
+#include "sdfunc.h"
 #include "main.h"
 
 static BT_WK BloodType[31] = 
@@ -515,15 +516,15 @@ int bhEne_DGDirCheck(BH_PWORK* epw)
     return bhEne_DirCheck(epw->ay, (NJS_VECTOR*)&epw->dvx);
 }
 
-/*// 
-// Start address: 0x21a350
+// 100% matching!
 void bhEne_CallPlayerVoice(int no)
 {
-	// Line 688, Address: 0x21a350, Func Offset: 0
-	// Func End, Address: 0x21a358, Func Offset: 0x8
+    no |= 0x400;
+    
+    CallPlayerVoice(no);
 }
 
-// 
+/*// 
 // Start address: 0x21a360
 void bhEne_CheckEnemiesBall(BH_PWORK* epw)
 {
