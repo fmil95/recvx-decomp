@@ -1543,40 +1543,40 @@ _anon0 eff[0];
 _anon23* sys;
 BH_PWORK* plp;
 BH_PWORK ene[0];
-_anon10* rom;
+_anon10* rom;*/
 
 void bhEne_SetMinceEffect(BH_PWORK* epw, int type, int num);
 void bhEne_SetMinceEffect2(BH_PWORK* epw, int type, float size, int num);
 void bhEne_SetBloodEffect(BH_PWORK* epw, int type);
-void bhEne_SetBloodEffect2(BH_PWORK* epw, int type, int jno, _anon6* ofp);
+/*void bhEne_SetBloodEffect2(BH_PWORK* epw, int type, int jno, _anon6* ofp);
 void bhEne_SetBloodEffect4(_anon6* pos, _anon6* vec, int col, int type1, int type2);*/
 void bhEne_SetBloodEffect5(BH_PWORK* epw, int type1, int type2);
 /*void bhEne_SetBloodEffectBurst(BH_PWORK* epw, int type, int jno, _anon6* pos, int flg);
 void bhEne_SetBloodstain(BH_PWORK* epw, int type, int jno, _anon6* ofp);
 void bhEne_SetFireEffect(BH_PWORK* epw, int jno, _anon6* ofp, float size, int len);
 void bhEne_BloodPool(BH_PWORK* epw, _anon6* pos, int ang, _anon39* param);
-void bhEne_SetAcidEffect(BH_PWORK* epw, int jno, _anon6* ofp, float size);
+void bhEne_SetAcidEffect(BH_PWORK* epw, int jno, _anon6* ofp, float size);*/
 int bhEne_DirTarget(BH_PWORK* epw, float x, float z, int w);
 int bhEne_CheckDirTarget(BH_PWORK* epw, float x, float z, int w);
-void bhEne_GetPartsPos(BH_PWORK* epw, char* parts, _anon6* p);
-int bhEne_DirCheck(int ay, _anon6* vec);
+/*void bhEne_GetPartsPos(BH_PWORK* epw, char* parts, _anon6* p);
+int bhEne_DirCheck(int ay, _anon6* vec);*/
 int bhEne_DGDirCheck(BH_PWORK* epw);
 void bhEne_CallPlayerVoice(int no);
 void bhEne_CheckEnemiesBall(BH_PWORK* epw);
 void bhEne_SetWeponAtr(BH_PWORK* epw, char j1, char j2, float r);
-unsigned char bhEne_AttackHitCheck(BH_PWORK* pl, _anon6* pos, float ar);
+/*unsigned char bhEne_AttackHitCheck(BH_PWORK* pl, _anon6* pos, float ar);
 void bhEne_AddNullTrans(BH_PWORK* epw, _anon6* mtn);
 void bhEne_AddNullTransDir(BH_PWORK* epw, int ay, _anon6* mtn);
 float bhEne_GetShapeCnt(_anon40* p, int key);
-void bhEne_CalcDamage(BH_PWORK* epw, _anon18* CombWepTbl, _anon20* CombJointTbl);
+void bhEne_CalcDamage(BH_PWORK* epw, _anon18* CombWepTbl, _anon20* CombJointTbl);*/
 void bhEne_InitDamage(BH_PWORK* epw);
-void bhEne_CallSE(BH_PWORK* epw, _anon6* pos, int se);
+/*void bhEne_CallSE(BH_PWORK* epw, _anon6* pos, int se);
 void bhEne_CallSE_EX(BH_PWORK* epw, _anon6* pos, int se, int fade);
 void bhEne_CallEffectSE(_anon6* pos, int se);
-void bhEne_SetSEPan(_anon6* pos, int se);
+void bhEne_SetSEPan(_anon6* pos, int se);*/
 int bhEne_CheckPlayEffectSE(int se);
 int bhArcTan2(float y, float x);
-_anon21* bhEne_CheckEventAtr(int flr_no, float px, float pz, int id, int min, int max);
-void bhEne_EraseArrow(BH_PWORK* epw, int obj_no);*/
+/*_anon21* bhEne_CheckEventAtr(int flr_no, float px, float pz, int id, int min, int max);*/
+void bhEne_EraseArrow(BH_PWORK* epw, int obj_no);
 
 #endif

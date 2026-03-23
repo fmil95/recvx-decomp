@@ -306,54 +306,60 @@ void bhEne_SetBloodEffectBurst(BH_PWORK* epw, int type, int jno, NJS_POINT3* pos
     }
 }
 
-/*// 
-// Start address: 0x219b20
-void bhEne_SetBloodstain(BH_PWORK* epw, int type, int jno, _anon6* ofp)
+// 100% matching!
+void bhEne_SetBloodstain(BH_PWORK* epw, int type, int jno, NJS_POINT3* ofp)
 {
-	float d;
-	_anon6 pos;
-	// Line 416, Address: 0x219b20, Func Offset: 0
-	// Line 420, Address: 0x219b3c, Func Offset: 0x1c
-	// Line 421, Address: 0x219b44, Func Offset: 0x24
-	// Line 422, Address: 0x219b4c, Func Offset: 0x2c
-	// Line 423, Address: 0x219b64, Func Offset: 0x44
-	// Line 424, Address: 0x219b6c, Func Offset: 0x4c
-	// Line 426, Address: 0x219b84, Func Offset: 0x64
-	// Line 427, Address: 0x219b8c, Func Offset: 0x6c
-	// Line 428, Address: 0x219b94, Func Offset: 0x74
-	// Line 429, Address: 0x219bb8, Func Offset: 0x98
-	// Line 430, Address: 0x219bc8, Func Offset: 0xa8
-	// Line 431, Address: 0x219bd0, Func Offset: 0xb0
-	// Line 435, Address: 0x219c04, Func Offset: 0xe4
-	// Line 444, Address: 0x219c0c, Func Offset: 0xec
-	// Line 435, Address: 0x219c10, Func Offset: 0xf0
-	// Line 444, Address: 0x219c14, Func Offset: 0xf4
-	// Line 435, Address: 0x219c18, Func Offset: 0xf8
-	// Line 436, Address: 0x219c24, Func Offset: 0x104
-	// Line 441, Address: 0x219c30, Func Offset: 0x110
-	// Line 436, Address: 0x219c34, Func Offset: 0x114
-	// Line 437, Address: 0x219c40, Func Offset: 0x120
-	// Line 438, Address: 0x219c54, Func Offset: 0x134
-	// Line 439, Address: 0x219c6c, Func Offset: 0x14c
-	// Line 440, Address: 0x219c84, Func Offset: 0x164
-	// Line 441, Address: 0x219c9c, Func Offset: 0x17c
-	// Line 442, Address: 0x219cb0, Func Offset: 0x190
-	// Line 443, Address: 0x219cc4, Func Offset: 0x1a4
-	// Line 444, Address: 0x219cd8, Func Offset: 0x1b8
-	// Line 445, Address: 0x219d00, Func Offset: 0x1e0
-	// Line 446, Address: 0x219d14, Func Offset: 0x1f4
-	// Line 447, Address: 0x219d34, Func Offset: 0x214
-	// Line 448, Address: 0x219d50, Func Offset: 0x230
-	// Line 447, Address: 0x219d5c, Func Offset: 0x23c
-	// Line 448, Address: 0x219d68, Func Offset: 0x248
-	// Line 449, Address: 0x219d80, Func Offset: 0x260
-	// Line 450, Address: 0x219da4, Func Offset: 0x284
-	// Line 451, Address: 0x219dc8, Func Offset: 0x2a8
-	// Line 452, Address: 0x219dec, Func Offset: 0x2cc
-	// Func End, Address: 0x219e04, Func Offset: 0x2e4
+    NJS_POINT3 pos; 
+    float d; 
+
+    if (jno < 0)
+    {
+        if (ofp != NULL) 
+        {
+            pos = *ofp;
+        } 
+        else 
+        {
+            *(NJS_POINT3*)&pos = *(NJS_POINT3*)&epw->px;
+        }
+    }
+    else if (ofp != NULL)
+    {
+        njSetMatrix(NULL, (NJS_MATRIX*)epw->mlwP->owP[jno].mtx);
+		
+        njCalcPoint(NULL, ofp, &pos);
+    } 
+    else 
+    {
+        *(NJS_POINT3*)&pos = *(NJS_POINT3*)&epw->mlwP->owP[jno].mtx[12];
+    }
+    
+    sys->ef.id = 301;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.type = type;
+    
+    sys->ef.px = pos.x;
+    sys->ef.py = pos.y;
+    sys->ef.pz = pos.z;
+    
+    sys->ef.sx = 1.0f;
+    sys->ef.sy = 1.0f;
+    sys->ef.sz = 1.0f;
+    
+    sys->ef.mdlver = BloodType[epw->id].color;
+    
+    sys->ef.ax = bhArcTan2(epw->dvy, njSqrt((epw->dvx * epw->dvx) + (epw->dvz * epw->dvz)));
+    sys->ef.ay = bhArcTan2(-epw->dvx, -epw->dvz);
+    
+    bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    bhSetEffectTb(&sys->ef, NULL, NULL, 0);
 }
 
-// 
+/*// 
 // Start address: 0x219e10
 void bhEne_SetFireEffect(BH_PWORK* epw, int jno, _anon6* ofp, float size, int len)
 {
@@ -806,7 +812,7 @@ int bhEne_CheckPlayEffectSE(int se)
 {
 	// Line 1063, Address: 0x21ac54, Func Offset: 0x4
 	// Func End, Address: 0x21ac5c, Func Offset: 0xc
-}
+}*/
 
 // 
 // Start address: 0x21ac60
@@ -822,9 +828,10 @@ int bhArcTan2(float y, float x)
 	// Line 1085, Address: 0x21acec, Func Offset: 0x8c
 	// Line 1094, Address: 0x21acfc, Func Offset: 0x9c
 	// Func End, Address: 0x21ad10, Func Offset: 0xb0
+	scePrintf("bhArcTan2 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x21ad10
 _anon21* bhEne_CheckEventAtr(int flr_no, float px, float pz, int id, int min, int max)
 {
