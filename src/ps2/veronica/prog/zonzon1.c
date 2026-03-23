@@ -1,6 +1,7 @@
 #include "zonzon1.h"
 #include "effect.h"
 #include "effsub3.h"
+#include "njplus.h"
 #include "ps2_NaMath.h"
 #include "sdfunc.h"
 #include "main.h"
@@ -607,60 +608,64 @@ void bhEne_SetWeponAtr(BH_PWORK* epw, char j1, char j2, float r)
     epw->watr.r = r;
 }
 
-/*// 
-// Start address: 0x21a5d0
-unsigned char bhEne_AttackHitCheck(BH_PWORK* pl, _anon6* pos, float ar)
+// 100% matching!
+unsigned char bhEne_AttackHitCheck(BH_PWORK* pl, NJS_POINT3* pos, float ar)
 {
-	_anon45 sphere;
-	int kno;
-	int i;
-	float knr;
-	float ll;
-	_anon6 vec;
-	// Line 783, Address: 0x21a5d0, Func Offset: 0
-	// Line 789, Address: 0x21a5f8, Func Offset: 0x28
-	// Line 795, Address: 0x21a604, Func Offset: 0x34
-	// Line 794, Address: 0x21a60c, Func Offset: 0x3c
-	// Line 789, Address: 0x21a610, Func Offset: 0x40
-	// Line 790, Address: 0x21a614, Func Offset: 0x44
-	// Line 791, Address: 0x21a61c, Func Offset: 0x4c
-	// Line 795, Address: 0x21a624, Func Offset: 0x54
-	// Line 796, Address: 0x21a638, Func Offset: 0x68
-	// Line 797, Address: 0x21a63c, Func Offset: 0x6c
-	// Line 798, Address: 0x21a648, Func Offset: 0x78
-	// Line 799, Address: 0x21a650, Func Offset: 0x80
-	// Line 800, Address: 0x21a654, Func Offset: 0x84
-	// Line 798, Address: 0x21a658, Func Offset: 0x88
-	// Line 801, Address: 0x21a660, Func Offset: 0x90
-	// Line 798, Address: 0x21a664, Func Offset: 0x94
-	// Line 799, Address: 0x21a66c, Func Offset: 0x9c
-	// Line 800, Address: 0x21a688, Func Offset: 0xb8
-	// Line 801, Address: 0x21a6a0, Func Offset: 0xd0
-	// Line 802, Address: 0x21a6a8, Func Offset: 0xd8
-	// Line 804, Address: 0x21a6b8, Func Offset: 0xe8
-	// Line 805, Address: 0x21a6bc, Func Offset: 0xec
-	// Line 803, Address: 0x21a6c0, Func Offset: 0xf0
-	// Line 805, Address: 0x21a6c4, Func Offset: 0xf4
-	// Line 806, Address: 0x21a6cc, Func Offset: 0xfc
-	// Line 807, Address: 0x21a6d8, Func Offset: 0x108
-	// Line 808, Address: 0x21a6e4, Func Offset: 0x114
-	// Line 807, Address: 0x21a6e8, Func Offset: 0x118
-	// Line 809, Address: 0x21a6ec, Func Offset: 0x11c
-	// Line 810, Address: 0x21a704, Func Offset: 0x134
-	// Line 812, Address: 0x21a708, Func Offset: 0x138
-	// Line 813, Address: 0x21a710, Func Offset: 0x140
-	// Line 814, Address: 0x21a714, Func Offset: 0x144
-	// Line 818, Address: 0x21a718, Func Offset: 0x148
-	// Line 814, Address: 0x21a71c, Func Offset: 0x14c
-	// Line 815, Address: 0x21a720, Func Offset: 0x150
-	// Line 816, Address: 0x21a728, Func Offset: 0x158
-	// Line 818, Address: 0x21a72c, Func Offset: 0x15c
-	// Line 821, Address: 0x21a734, Func Offset: 0x164
-	// Line 822, Address: 0x21a738, Func Offset: 0x168
-	// Func End, Address: 0x21a764, Func Offset: 0x194
+    NJS_POINT3 vec; 
+    float ll; 
+    float knr; 
+    int i; 
+    int kno; 
+    NJS_SPHERE sphere; 
+
+    kno = -1;
+    
+    sphere.c.x = pos->x;
+    sphere.c.y = pos->y;
+    sphere.c.z = pos->z;
+    
+    sphere.r = ar;
+    
+    if (npCollisionCheckSC(&sphere, &pl->watr) != 0)
+    {
+        ll = ar * ar;
+        
+        for (i = 0; i < (int)pl->mlwP->obj_num; i++)
+        {
+            vec.x = pos->x - pl->mlwP->owP[i].mtx[12];
+            vec.y = pos->y - pl->mlwP->owP[i].mtx[13];
+            vec.z = pos->z - pl->mlwP->owP[i].mtx[14];
+            
+            knr = njScalor2(&vec);
+            
+            if (ll > knr) 
+            {
+                ll = knr;
+                
+                kno = i;
+                
+                pl->dvx = -vec.x;
+                pl->dvy = -vec.y;
+                pl->dvz = -vec.z;
+            }
+        }
+    }
+    
+    if (kno >= 0)
+    {
+        pl->djnt_no = kno;
+        
+        pl->dpx = pos->x;
+        pl->dpy = pos->y;
+        pl->dpz = pos->z;
+
+        return 1;
+    }
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x21a770
 void bhEne_AddNullTrans(BH_PWORK* epw, _anon6* mtn)
 {
