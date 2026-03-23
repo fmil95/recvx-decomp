@@ -860,21 +860,27 @@ int bhEne_CheckPlayEffectSE(int se)
     return ChechPlayEnemySe(127, se);
 }
 
-// 
-// Start address: 0x21ac60
+// 100% matching!
 int bhArcTan2(float y, float x)
 {
-	int ang;
-	float len;
-	// Line 1075, Address: 0x21ac60, Func Offset: 0
-	// Line 1079, Address: 0x21ac74, Func Offset: 0x14
-	// Line 1080, Address: 0x21ac84, Func Offset: 0x24
-	// Line 1082, Address: 0x21aca4, Func Offset: 0x44
-	// Line 1084, Address: 0x21acd4, Func Offset: 0x74
-	// Line 1085, Address: 0x21acec, Func Offset: 0x8c
-	// Line 1094, Address: 0x21acfc, Func Offset: 0x9c
-	// Func End, Address: 0x21ad10, Func Offset: 0xb0
-	scePrintf("bhArcTan2 - UNIMPLEMENTED!\n");
+    float len; 
+    int ang; 
+
+    len = njSqrt((x * x) + (y * y));
+    
+    if (len == 0) 
+    {
+        return 0;
+    }
+    
+    ang = 10430.381f * asinf(y / len);
+    
+    if (x < 0) 
+    {
+        ang = (short)(32768 - ang);
+    }
+    
+    return ang;
 }
 
 /*// 
