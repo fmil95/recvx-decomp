@@ -848,15 +848,13 @@ void bhEne_CallEffectSE(NJS_POINT3* pos, int se)
     RequestEnemySe(127, pos, se);
 }
 
-/*// 
-// Start address: 0x21ac30
-void bhEne_SetSEPan(_anon6* pos, int se)
+// 100% matching!
+void bhEne_SetSEPan(int param, NJS_POINT3* pos, int se) // first parameter is not present on DWARF
 {
-	// Line 1051, Address: 0x21ac30, Func Offset: 0
-	// Func End, Address: 0x21ac50, Func Offset: 0x20
+    RequestEnemySeBasic(sys->enow, pos, se, 0, 0);
 }
 
-// 
+/*// 
 // Start address: 0x21ac50
 int bhEne_CheckPlayEffectSE(int se)
 {
