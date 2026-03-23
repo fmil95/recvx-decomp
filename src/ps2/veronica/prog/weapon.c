@@ -6,9 +6,9 @@
 
 /*short EneDamNear[22][31];
 short EneDamMid[22][31];
-short EneDamFar[22][31];
-int WpnAngTab[3][21];
-unsigned int HitWalEff[8];
+short EneDamFar[22][31];*/
+const int WpnAngTab[21][3]; // DATA
+/*unsigned int HitWalEff[8];
 BH_PWORK* plp;
 _anon6* sys;
 _anon4 swork;
@@ -102,28 +102,27 @@ void bhSetWeapon(O_WRK* op, int wpn_no, int flg)
     plp->mlwP->owP[13].flg &= ~0x2;
 }
 
-/*// 
-// Start address: 0x28a550
-void bhObjWpn(_anon0* op)
+// 100% matching!
+void bhObjWpn(BH_PWORK* op)
 {
-	// Line 182, Address: 0x28a550, Func Offset: 0
-	// Line 183, Address: 0x28a560, Func Offset: 0x10
-	// Line 184, Address: 0x28a584, Func Offset: 0x34
-	// Line 185, Address: 0x28a590, Func Offset: 0x40
-	// Line 184, Address: 0x28a598, Func Offset: 0x48
-	// Line 185, Address: 0x28a5b0, Func Offset: 0x60
-	// Line 186, Address: 0x28a5b4, Func Offset: 0x64
-	// Line 185, Address: 0x28a5bc, Func Offset: 0x6c
-	// Line 186, Address: 0x28a5d4, Func Offset: 0x84
-	// Line 187, Address: 0x28a5ec, Func Offset: 0x9c
-	// Line 188, Address: 0x28a5f4, Func Offset: 0xa4
-	// Line 189, Address: 0x28a5f8, Func Offset: 0xa8
-	// Line 190, Address: 0x28a5fc, Func Offset: 0xac
-	// Line 193, Address: 0x28a600, Func Offset: 0xb0
-	// Func End, Address: 0x28a608, Func Offset: 0xb8
+    if (op->lkono == 9) 
+    {
+        if ((plp->mode1 == 0) || (plp->mode0 == 7)) 
+        {
+            op->ax = WpnAngTab[op->type][0];
+            op->ay = WpnAngTab[op->type][1];
+            op->az = WpnAngTab[op->type][2];
+        }
+        else
+        {
+            op->ax = 0;
+            op->ay = 0;
+            op->az = 0;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x28a610
 void bhActionWeapon(_anon0* op)
 {
