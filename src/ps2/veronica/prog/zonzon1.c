@@ -46,54 +46,45 @@ unsigned int BloodCol[4][2] =
     { 0xFF3F0000, 0xFF2F0000 }
 };
 
-/*// 
-// Start address: 0x218d10
+// 99.94% matching (matches on GC)
 void bhEne_SetMinceEffect(BH_PWORK* epw, int type, int num)
 {
-	float size;
-	int dam_ang;
-	int i;
-	int eno;
-	// Line 105, Address: 0x218d10, Func Offset: 0
-	// Line 110, Address: 0x218d28, Func Offset: 0x18
-	// Line 111, Address: 0x218d38, Func Offset: 0x28
-	// Line 110, Address: 0x218d3c, Func Offset: 0x2c
-	// Line 111, Address: 0x218d48, Func Offset: 0x38
-	// Line 112, Address: 0x218d60, Func Offset: 0x50
-	// Line 113, Address: 0x218d74, Func Offset: 0x64
-	// Line 114, Address: 0x218d8c, Func Offset: 0x7c
-	// Line 115, Address: 0x218da4, Func Offset: 0x94
-	// Line 116, Address: 0x218db8, Func Offset: 0xa8
-	// Line 117, Address: 0x218dd8, Func Offset: 0xc8
-	// Line 116, Address: 0x218de0, Func Offset: 0xd0
-	// Line 120, Address: 0x218df0, Func Offset: 0xe0
-	// Line 117, Address: 0x218df4, Func Offset: 0xe4
-	// Line 116, Address: 0x218dfc, Func Offset: 0xec
-	// Line 120, Address: 0x218e08, Func Offset: 0xf8
-	// Line 116, Address: 0x218e0c, Func Offset: 0xfc
-	// Line 117, Address: 0x218e18, Func Offset: 0x108
-	// Line 118, Address: 0x218e1c, Func Offset: 0x10c
-	// Line 119, Address: 0x218e30, Func Offset: 0x120
-	// Line 120, Address: 0x218e44, Func Offset: 0x134
-	// Line 122, Address: 0x218e6c, Func Offset: 0x15c
-	// Line 123, Address: 0x218e90, Func Offset: 0x180
-	// Line 122, Address: 0x218e94, Func Offset: 0x184
-	// Line 123, Address: 0x218e98, Func Offset: 0x188
-	// Line 126, Address: 0x218ea0, Func Offset: 0x190
-	// Line 131, Address: 0x218ef4, Func Offset: 0x1e4
-	// Line 126, Address: 0x218f00, Func Offset: 0x1f0
-	// Line 131, Address: 0x218f0c, Func Offset: 0x1fc
-	// Line 132, Address: 0x218f24, Func Offset: 0x214
-	// Line 133, Address: 0x218f30, Func Offset: 0x220
-	// Line 134, Address: 0x218f54, Func Offset: 0x244
-	// Line 135, Address: 0x218f5c, Func Offset: 0x24c
-	// Line 133, Address: 0x218f64, Func Offset: 0x254
-	// Line 134, Address: 0x218f6c, Func Offset: 0x25c
-	// Line 135, Address: 0x218f98, Func Offset: 0x288
-	// Line 137, Address: 0x218fb0, Func Offset: 0x2a0
-	// Line 138, Address: 0x218fc0, Func Offset: 0x2b0
-	// Func End, Address: 0x218fdc, Func Offset: 0x2cc
-}*/
+    int eno; 
+    int i; 
+    int dam_ang; 
+    float size; 
+
+    sys->ef.id = 250;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.type = type;
+    
+    sys->ef.px = epw->dpx;
+    sys->ef.py = epw->dpy;
+    sys->ef.pz = epw->dpz;
+    
+    sys->ef.sz = sys->ef.sy = sys->ef.sx = 0.2f + (0.1f * (-rand() / -2.1474836E9f));
+    
+    sys->ef.mdlver = BloodType[epw->id].color;
+    
+    dam_ang = bhArcTan2(plp->px - epw->px, plp->pz - epw->pz);
+    
+    for (i = 0; i < num; i++)
+    {
+        sys->ef.ay = dam_ang + (int)((21845.33f * (-rand() / -2.1474836E9f)) - 10922.66f);
+    
+        eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        if (eno != -1) 
+        {   
+            eff[eno].stflg |= 0x20;
+            
+            eff[eno].txp[0] = epw->mdl[BloodType[epw->id].mdlno].texP;
+            eff[eno].tex_id = BloodType[epw->id].tex_id;
+        }
+    }
+}
 
 // 99.94% matching (matches on GC)
 void bhEne_SetMinceEffect2(BH_PWORK* epw, int type, float size, int num)
