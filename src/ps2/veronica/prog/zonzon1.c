@@ -326,7 +326,7 @@ void bhEne_SetBloodstain(BH_PWORK* epw, int type, int jno, NJS_POINT3* ofp)
     else if (ofp != NULL)
     {
         njSetMatrix(NULL, (NJS_MATRIX*)epw->mlwP->owP[jno].mtx);
-		
+
         njCalcPoint(NULL, ofp, &pos);
     } 
     else 
@@ -359,39 +359,44 @@ void bhEne_SetBloodstain(BH_PWORK* epw, int type, int jno, NJS_POINT3* ofp)
     bhSetEffectTb(&sys->ef, NULL, NULL, 0);
 }
 
-/*// 
-// Start address: 0x219e10
-void bhEne_SetFireEffect(BH_PWORK* epw, int jno, _anon6* ofp, float size, int len)
+// 100% matching!
+void bhEne_SetFireEffect(BH_PWORK* epw, int jno, NJS_POINT3* ofp, float size, int len)
 {
-	int eno;
-	_anon6 org;
-	// Line 466, Address: 0x219e10, Func Offset: 0
-	// Line 467, Address: 0x219e20, Func Offset: 0x10
-	// Line 471, Address: 0x219e38, Func Offset: 0x28
-	// Line 474, Address: 0x219e44, Func Offset: 0x34
-	// Line 492, Address: 0x219e4c, Func Offset: 0x3c
-	// Line 474, Address: 0x219e54, Func Offset: 0x44
-	// Line 475, Address: 0x219e58, Func Offset: 0x48
-	// Line 474, Address: 0x219e5c, Func Offset: 0x4c
-	// Line 475, Address: 0x219e68, Func Offset: 0x58
-	// Line 488, Address: 0x219e70, Func Offset: 0x60
-	// Line 492, Address: 0x219e74, Func Offset: 0x64
-	// Line 475, Address: 0x219e78, Func Offset: 0x68
-	// Line 476, Address: 0x219e84, Func Offset: 0x74
-	// Line 478, Address: 0x219e98, Func Offset: 0x88
-	// Line 486, Address: 0x219ed4, Func Offset: 0xc4
-	// Line 487, Address: 0x219ee8, Func Offset: 0xd8
-	// Line 488, Address: 0x219efc, Func Offset: 0xec
-	// Line 489, Address: 0x219f10, Func Offset: 0x100
-	// Line 490, Address: 0x219f24, Func Offset: 0x114
-	// Line 492, Address: 0x219f38, Func Offset: 0x128
-	// Line 497, Address: 0x219f50, Func Offset: 0x140
-	// Line 498, Address: 0x219f5c, Func Offset: 0x14c
-	// Line 500, Address: 0x219f80, Func Offset: 0x170
-	// Func End, Address: 0x219f90, Func Offset: 0x180
+    NJS_POINT3 org = { 0 }; 
+    int eno; 
+    
+    if (ofp == NULL) 
+    {
+        ofp = &org;
+    }
+    
+    sys->ef.id = 252;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.type = 0;
+    
+    sys->ef.pz = 0;
+    sys->ef.py = 0;
+    sys->ef.px = 0;
+    
+    sys->ef.sx = size;
+    sys->ef.sy = size;
+    sys->ef.sz = 1.0f;
+    
+    sys->ef.ay = 0;
+    
+    sys->ef.mdlver = 0;
+    
+    eno = bhSetEffectTb(&sys->ef, ofp, (unsigned char*)epw, jno);
+    
+    if (eno != -1) 
+    {
+        eff[eno].ct0 = len;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x219f90
 void bhEne_BloodPool(BH_PWORK* epw, _anon6* pos, int ang, _anon39* param)
 {
