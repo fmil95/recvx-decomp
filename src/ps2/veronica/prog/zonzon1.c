@@ -480,23 +480,31 @@ void bhEne_GetPartsPos(BH_PWORK* epw, char* parts, _anon6* p)
 	// Line 641, Address: 0x21a2a4, Func Offset: 0xa4
 	// Line 642, Address: 0x21a2ac, Func Offset: 0xac
 	// Func End, Address: 0x21a2c8, Func Offset: 0xc8
-}
+}*/
 
-// 
-// Start address: 0x21a2d0
-int bhEne_DirCheck(int ay, _anon6* vec)
+// 100% matching!
+int bhEne_DirCheck(int ay, NJS_VECTOR* vec)
 {
-	_anon6 v;
-	// Line 653, Address: 0x21a2d0, Func Offset: 0
-	// Line 656, Address: 0x21a2e8, Func Offset: 0x18
-	// Line 657, Address: 0x21a2f0, Func Offset: 0x20
-	// Line 658, Address: 0x21a2fc, Func Offset: 0x2c
-	// Line 661, Address: 0x21a30c, Func Offset: 0x3c
-	// Line 665, Address: 0x21a32c, Func Offset: 0x5c
-	// Func End, Address: 0x21a340, Func Offset: 0x70
+    NJS_VECTOR v;    
+    int ang; // not from DWARF
+
+    njUnitMatrix(NULL);
+    
+    njRotateY(NULL, -ay);
+    
+    njCalcVector(NULL, vec, &v);
+    
+    ang = 1;
+    
+    if (v.z >= 0) 
+    {
+        ang = 0;
+    }
+    
+    return ang;
 }
 
-// 
+/*// 
 // Start address: 0x21a340
 int bhEne_DGDirCheck(BH_PWORK* epw)
 {
