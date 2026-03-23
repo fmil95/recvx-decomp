@@ -694,20 +694,34 @@ void bhEne_AddNullTransDir(BH_PWORK* epw, int ay, NJS_POINT3* mtn)
     epw->pz += v.z;
 }
 
-/*// 
-// Start address: 0x21a890
-float bhEne_GetShapeCnt(_anon40* p, int key)
-{
-	_anon40* pp;
-	// Line 878, Address: 0x21a890, Func Offset: 0
-	// Line 880, Address: 0x21a8a0, Func Offset: 0x10
-	// Line 882, Address: 0x21a8a8, Func Offset: 0x18
-	// Line 885, Address: 0x21a8b8, Func Offset: 0x28
-	// Line 886, Address: 0x21a8f4, Func Offset: 0x64
-	// Func End, Address: 0x21a8fc, Func Offset: 0x6c
+// 100% matching!
+float bhEne_GetShapeCnt(P_WORK* p, int key)
+{   
+    P_WORK* pp;
+  
+    while (TRUE)
+    {
+        pp = p;
+        
+        if (key <= pp->key) 
+        {
+            break;
+        }
+        
+        p++;
+    }
+    
+    if (pp->key == key)
+    {
+        return p->cnt;
+    }
+    else
+    {
+        return p[-1].cnt + (((p->cnt - p[-1].cnt) * (key - p[-1].key)) / (pp->key - p[-1].key));
+    }
 }
 
-// 
+/*// 
 // Start address: 0x21a900
 void bhEne_CalcDamage(BH_PWORK* epw, _anon18* CombWepTbl, _anon20* CombJointTbl)
 {

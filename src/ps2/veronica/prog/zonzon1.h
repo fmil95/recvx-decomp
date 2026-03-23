@@ -11,6 +11,13 @@ typedef struct BT_WK
     unsigned char tex_id; // offset 0x2, size 0x1
 } BT_WK;
 
+typedef struct P_WORK
+{
+    // total size: 0x8
+    int key;   // offset 0x0, size 0x4
+    float cnt; // offset 0x4, size 0x4
+} P_WORK;
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
