@@ -854,13 +854,11 @@ void bhEne_SetSEPan(int param, NJS_POINT3* pos, int se) // first parameter is no
     RequestEnemySeBasic(sys->enow, pos, se, 0, 0);
 }
 
-/*// 
-// Start address: 0x21ac50
+// 100% matching!
 int bhEne_CheckPlayEffectSE(int se)
 {
-	// Line 1063, Address: 0x21ac54, Func Offset: 0x4
-	// Func End, Address: 0x21ac5c, Func Offset: 0xc
-}*/
+    return ChechPlayEnemySe(127, se);
+}
 
 // 
 // Start address: 0x21ac60
