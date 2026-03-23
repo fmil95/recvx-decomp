@@ -396,15 +396,13 @@ void bhEne_SetFireEffect(BH_PWORK* epw, int jno, NJS_POINT3* ofp, float size, in
     }
 }
 
-/*// 
-// Start address: 0x219f90
-void bhEne_BloodPool(BH_PWORK* epw, _anon6* pos, int ang, _anon39* param)
+// 100% matching!
+void bhEne_BloodPool(BH_PWORK* epw, NJS_POINT3* pos, int ang, BP_WORK* param)
 {
-	// Line 515, Address: 0x219f90, Func Offset: 0
-	// Func End, Address: 0x219fb0, Func Offset: 0x20
+    bhSetBloodPoolLnk(epw, pos, ang, param, BloodType[epw->id].color);
 }
 
-// 
+/*// 
 // Start address: 0x219fb0
 void bhEne_SetAcidEffect(BH_PWORK* epw, int jno, _anon6* ofp, float size)
 {

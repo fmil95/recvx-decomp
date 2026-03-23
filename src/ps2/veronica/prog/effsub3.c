@@ -113,11 +113,11 @@ void bhClrEff_RY()
     }
 }
 
-/*// 
+// 
 // Start address: 0x2469a0
-int bhSetBloodPoolLnk(BH_PWORK* ewP, NJS_POINT3* posP, int ay, _anon52* tabP, int pal_bnk)
+int bhSetBloodPoolLnk(BH_PWORK* ewP, NJS_POINT3* posP, int ay, BP_WORK* tabP, int pal_bnk)
 {
-	_anon60* e17P;
+	//_anon60* e17P;
 	int eff_no;
 	O_WRK* o1P;
 	O_WRK* o0P;
@@ -193,7 +193,7 @@ int bhSetBloodPoolLnk(BH_PWORK* ewP, NJS_POINT3* posP, int ay, _anon52* tabP, in
 	// Line 388, Address: 0x246bb4, Func Offset: 0x214
 	// Func End, Address: 0x246bdc, Func Offset: 0x23c
 	scePrintf("bhSetBloodPoolLnk - UNIMPLEMENTED!\n");
-}*/
+}
 
 // 
 // Start address: 0x246be0

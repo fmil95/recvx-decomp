@@ -2197,7 +2197,7 @@ struct _anon82
 O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();
-/*int bhSetBloodPoolLnk(BH_PWORK* ewP, NJS_POINT3* posP, int ay, _anon52* tabP, int pal_bnk);*/
+int bhSetBloodPoolLnk(BH_PWORK* ewP, NJS_POINT3* posP, int ay, BP_WORK* tabP, int pal_bnk);
 void bhEff300(O_WRK* oP);
 void bhEff301(O_WRK* oP);
 O_WRK* bhSetEffParticle(BH_PWORK* ewP, int lnk_no, NJS_POINT3* offP, NJS_POINT3* dirP, unsigned int color, int typ_no);

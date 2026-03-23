@@ -2173,6 +2173,17 @@ typedef struct EFF_ANIM
     short timer; // offset 0x2, size 0x2
 } EFF_ANIM;
 
+typedef struct BP_WORK 
+{
+    // total size: 0x40
+    NJS_POINT3 off_pos; // offset 0x0, size 0xC
+    int srd_dir;        // offset 0xC, size 0x4
+    float srd_pos;      // offset 0x10, size 0x4
+    float bld_spd;      // offset 0x14, size 0x4
+    float srt_spd[5];   // offset 0x18, size 0x14
+    int srt_dir[5];     // offset 0x2C, size 0x14
+} BP_WORK;
+
 // constant definition for ClutType, ImageType in picture header
 enum TIM2_gattr_type {
 	TIM2_NONE = 0,			// no CLUT (for ClutType)
