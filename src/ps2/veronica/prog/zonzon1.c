@@ -427,22 +427,23 @@ void bhEne_SetAcidEffect(BH_PWORK* epw, int jno, NJS_POINT3* ofp, float size)
     bhSetEffectTb(&sys->ef, ofp, (unsigned char*)epw, jno);
 }
 
-/*// 
-// Start address: 0x21a100
+// 100% matching!
 int bhEne_DirTarget(BH_PWORK* epw, float x, float z, int w)
 {
-	int ang;
-	// Line 576, Address: 0x21a100, Func Offset: 0
-	// Line 582, Address: 0x21a110, Func Offset: 0x10
-	// Line 583, Address: 0x21a12c, Func Offset: 0x2c
-	// Line 585, Address: 0x21a13c, Func Offset: 0x3c
-	// Line 586, Address: 0x21a150, Func Offset: 0x50
-	// Line 589, Address: 0x21a168, Func Offset: 0x68
-	// Line 590, Address: 0x21a16c, Func Offset: 0x6c
-	// Func End, Address: 0x21a180, Func Offset: 0x80
+    int ang;
+
+    ang = bhArcTan2(epw->px - x, epw->pz - z);
+    ang = (short)(ang - epw->ay);
+    
+    if (w < abs(ang))
+    {
+        ang = (ang > 0) ? w : -w;
+    }
+    
+    return ang;
 }
 
-// 
+/*// 
 // Start address: 0x21a180
 int bhEne_CheckDirTarget(BH_PWORK* epw, float x, float z, int w)
 {
