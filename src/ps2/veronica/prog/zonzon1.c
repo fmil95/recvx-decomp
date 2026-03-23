@@ -664,22 +664,22 @@ unsigned char bhEne_AttackHitCheck(BH_PWORK* pl, NJS_POINT3* pos, float ar)
     return 0;
 }
 
-/*// 
-// Start address: 0x21a770
-void bhEne_AddNullTrans(BH_PWORK* epw, _anon6* mtn)
+// 100% matching!
+void bhEne_AddNullTrans(BH_PWORK* epw, NJS_VECTOR* mtn)
 {
-	_anon6 v;
-	// Line 833, Address: 0x21a770, Func Offset: 0
-	// Line 836, Address: 0x21a788, Func Offset: 0x18
-	// Line 837, Address: 0x21a790, Func Offset: 0x20
-	// Line 838, Address: 0x21a79c, Func Offset: 0x2c
-	// Line 840, Address: 0x21a7c0, Func Offset: 0x50
-	// Line 841, Address: 0x21a7d0, Func Offset: 0x60
-	// Line 842, Address: 0x21a7e0, Func Offset: 0x70
-	// Func End, Address: 0x21a7f4, Func Offset: 0x84
+    NJS_VECTOR v; 
+
+    njUnitMatrix(NULL);
+    
+    njRotateY(NULL, epw->ay);
+    
+    njCalcVector(NULL, &mtn[epw->frm_no / 65536], &v);
+    
+    epw->px += v.x;
+    epw->pz += v.z;
 }
 
-// 
+/*// 
 // Start address: 0x21a800
 void bhEne_AddNullTransDir(BH_PWORK* epw, int ay, _anon6* mtn)
 {
