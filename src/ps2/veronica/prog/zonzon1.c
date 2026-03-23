@@ -402,37 +402,43 @@ void bhEne_BloodPool(BH_PWORK* epw, NJS_POINT3* pos, int ang, BP_WORK* param)
     bhSetBloodPoolLnk(epw, pos, ang, param, BloodType[epw->id].color);
 }
 
-/*// 
-// Start address: 0x219fb0
-void bhEne_SetAcidEffect(BH_PWORK* epw, int jno, _anon6* ofp, float size)
+// 100% matching!
+void bhEne_SetAcidEffect(BH_PWORK* epw, int jno, NJS_POINT3* ofp, float size)
 {
-	_anon6 org;
-	// Line 529, Address: 0x219fb0, Func Offset: 0
-	// Line 530, Address: 0x219fb8, Func Offset: 0x8
-	// Line 529, Address: 0x219fc0, Func Offset: 0x10
-	// Line 530, Address: 0x219fc4, Func Offset: 0x14
-	// Line 533, Address: 0x219fd4, Func Offset: 0x24
-	// Line 536, Address: 0x219fe0, Func Offset: 0x30
-	// Line 537, Address: 0x219ff4, Func Offset: 0x44
-	// Line 539, Address: 0x219ffc, Func Offset: 0x4c
-	// Line 540, Address: 0x21a010, Func Offset: 0x60
-	// Line 542, Address: 0x21a018, Func Offset: 0x68
-	// Line 544, Address: 0x21a030, Func Offset: 0x80
-	// Line 559, Address: 0x21a038, Func Offset: 0x88
-	// Line 544, Address: 0x21a03c, Func Offset: 0x8c
-	// Line 559, Address: 0x21a040, Func Offset: 0x90
-	// Line 544, Address: 0x21a044, Func Offset: 0x94
-	// Line 546, Address: 0x21a050, Func Offset: 0xa0
-	// Line 554, Address: 0x21a08c, Func Offset: 0xdc
-	// Line 555, Address: 0x21a0a0, Func Offset: 0xf0
-	// Line 556, Address: 0x21a0b4, Func Offset: 0x104
-	// Line 557, Address: 0x21a0c8, Func Offset: 0x118
-	// Line 559, Address: 0x21a0dc, Func Offset: 0x12c
-	// Line 563, Address: 0x21a0f4, Func Offset: 0x144
-	// Func End, Address: 0x21a100, Func Offset: 0x150
+    NJS_POINT3 org = { 0 };
+    
+    if (ofp == NULL) 
+    {
+        ofp = &org;
+    }
+    
+    sys->ef.id = 298;
+    
+    if (jno >= 0) 
+    {
+        sys->ef.flg = 0x81;
+    }
+    else 
+    {
+        sys->ef.flg = 1;
+    }
+    
+    sys->ef.type = 20;
+    
+    sys->ef.pz = 0;
+    sys->ef.py = 0;
+    sys->ef.px = 0;
+    
+    sys->ef.sx = size;
+    sys->ef.sy = size;
+    sys->ef.sz = size;
+    
+    sys->ef.ay = 0;
+    
+    bhSetEffectTb(&sys->ef, ofp, (unsigned char*)epw, jno);
 }
 
-// 
+/*// 
 // Start address: 0x21a100
 int bhEne_DirTarget(BH_PWORK* epw, float x, float z, int w)
 {
