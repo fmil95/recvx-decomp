@@ -525,68 +525,67 @@ void bhEne_CallPlayerVoice(int no)
     CallPlayerVoice(no);
 }
 
-/*// 
-// Start address: 0x21a360
+// 100% matching!
 void bhEne_CheckEnemiesBall(BH_PWORK* epw)
 {
-	int i;
-	float r;
-	float ez1;
-	float ey1;
-	float ex1;
-	float ez0;
-	float ey0;
-	float ex0;
-	float ln;
-	float pz;
-	float py;
-	float px;
-	BH_PWORK* epp;
-	// Line 699, Address: 0x21a360, Func Offset: 0
-	// Line 704, Address: 0x21a38c, Func Offset: 0x2c
-	// Line 706, Address: 0x21a39c, Func Offset: 0x3c
-	// Line 707, Address: 0x21a3a4, Func Offset: 0x44
-	// Line 708, Address: 0x21a3ac, Func Offset: 0x4c
-	// Line 710, Address: 0x21a3b4, Func Offset: 0x54
-	// Line 706, Address: 0x21a3b8, Func Offset: 0x58
-	// Line 710, Address: 0x21a3bc, Func Offset: 0x5c
-	// Line 711, Address: 0x21a3c0, Func Offset: 0x60
-	// Line 707, Address: 0x21a3c4, Func Offset: 0x64
-	// Line 711, Address: 0x21a3c8, Func Offset: 0x68
-	// Line 712, Address: 0x21a3d0, Func Offset: 0x70
-	// Line 713, Address: 0x21a3f4, Func Offset: 0x94
-	// Line 714, Address: 0x21a410, Func Offset: 0xb0
-	// Line 716, Address: 0x21a418, Func Offset: 0xb8
-	// Line 715, Address: 0x21a420, Func Offset: 0xc0
-	// Line 714, Address: 0x21a428, Func Offset: 0xc8
-	// Line 716, Address: 0x21a42c, Func Offset: 0xcc
-	// Line 717, Address: 0x21a430, Func Offset: 0xd0
-	// Line 720, Address: 0x21a434, Func Offset: 0xd4
-	// Line 715, Address: 0x21a438, Func Offset: 0xd8
-	// Line 718, Address: 0x21a43c, Func Offset: 0xdc
-	// Line 720, Address: 0x21a440, Func Offset: 0xe0
-	// Line 719, Address: 0x21a448, Func Offset: 0xe8
-	// Line 720, Address: 0x21a44c, Func Offset: 0xec
-	// Line 721, Address: 0x21a454, Func Offset: 0xf4
-	// Line 726, Address: 0x21a470, Func Offset: 0x110
-	// Line 727, Address: 0x21a478, Func Offset: 0x118
-	// Line 736, Address: 0x21a480, Func Offset: 0x120
-	// Line 726, Address: 0x21a484, Func Offset: 0x124
-	// Line 727, Address: 0x21a48c, Func Offset: 0x12c
-	// Line 728, Address: 0x21a498, Func Offset: 0x138
-	// Line 727, Address: 0x21a49c, Func Offset: 0x13c
-	// Line 728, Address: 0x21a4a0, Func Offset: 0x140
-	// Line 729, Address: 0x21a4b0, Func Offset: 0x150
-	// Line 728, Address: 0x21a4b4, Func Offset: 0x154
-	// Line 729, Address: 0x21a4b8, Func Offset: 0x158
-	// Line 736, Address: 0x21a4cc, Func Offset: 0x16c
-	// Line 737, Address: 0x21a4d8, Func Offset: 0x178
-	// Line 738, Address: 0x21a4e0, Func Offset: 0x180
-	// Line 739, Address: 0x21a4e8, Func Offset: 0x188
-	// Line 743, Address: 0x21a4f4, Func Offset: 0x194
-	// Line 744, Address: 0x21a520, Func Offset: 0x1c0
-	// Func End, Address: 0x21a550, Func Offset: 0x1f0
-}*/
+    BH_PWORK* epp;
+    float px, py, pz; 
+    float ln; 
+    float ex0, ey0, ez0; 
+    float ex1, ey1, ez1; 
+    float ex2, ey2, ez2; // not from DWARF
+    float r; 
+    int i; 
+
+    if (!(epw->flg2 & 0x1)) 
+    {
+        px = epw->px + epw->aox;
+        py = epw->py + epw->aoy;
+        pz = epw->pz + epw->aoz;
+
+        epp = ene;
+        
+        for (i = 0; i < sys->ewk_n; i++, epp++)
+        {
+            if ((((epp->flg & 0x1)) && ((epp->flg & 0x8))) && (epw != epp) && ((epw != plp) || ((epp->flg & 0x40))))
+            {
+                ex0 = epp->px + epp->aox;
+                ey0 = epp->py + epp->aoy;
+                ez0 = epp->pz + epp->aoz;
+
+                ex1 = px - ex0;
+                ey1 = py - ey0;
+                ez1 = pz - ez0;
+                
+                ln = njSqrt((ex1 * ex1) + (ey1 * ey1) + (ez1 * ez1));
+                
+                r = epw->car + epp->car;
+                
+                if (ln < r) 
+                {
+                    r = (1.0f / ln) * r;
+                    
+                    ex2 = ex0 - px; 
+                    ey2 = ey0 - py; 
+                    ez2 = ez0 - pz; 
+                    
+                    epw->px = (ex0 - (ex2 * r)) - epw->aox;
+                    epw->py = (ey0 - (ey2 * r)) - epw->aoy;
+                    epw->pz = (ez0 - (ez2 * r)) - epw->aoz;
+                    
+                    if (epw == plp)
+                    {
+                        epp->stflg |= 0x4;
+                    } 
+                    else 
+                    {
+                        epp->stflg |= 0x2;
+                    }
+                }
+            }
+        }
+    }
+}
 
 // 100% matching!
 void bhEne_SetWeponAtr(BH_PWORK* epw, char j1, char j2, float r)
