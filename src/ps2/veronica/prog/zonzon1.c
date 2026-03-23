@@ -585,32 +585,29 @@ void bhEne_CheckEnemiesBall(BH_PWORK* epw)
 	// Line 743, Address: 0x21a4f4, Func Offset: 0x194
 	// Line 744, Address: 0x21a520, Func Offset: 0x1c0
 	// Func End, Address: 0x21a550, Func Offset: 0x1f0
-}
+}*/
 
-// 
-// Start address: 0x21a550
+// 100% matching!
 void bhEne_SetWeponAtr(BH_PWORK* epw, char j1, char j2, float r)
 {
-	_anon31* owk;
-	// Line 760, Address: 0x21a550, Func Offset: 0
-	// Line 765, Address: 0x21a554, Func Offset: 0x4
-	// Line 760, Address: 0x21a558, Func Offset: 0x8
-	// Line 765, Address: 0x21a568, Func Offset: 0x18
-	// Line 760, Address: 0x21a56c, Func Offset: 0x1c
-	// Line 765, Address: 0x21a574, Func Offset: 0x24
-	// Line 760, Address: 0x21a580, Func Offset: 0x30
-	// Line 761, Address: 0x21a584, Func Offset: 0x34
-	// Line 762, Address: 0x21a58c, Func Offset: 0x3c
-	// Line 763, Address: 0x21a594, Func Offset: 0x44
-	// Line 765, Address: 0x21a59c, Func Offset: 0x4c
-	// Line 766, Address: 0x21a5a8, Func Offset: 0x58
-	// Line 767, Address: 0x21a5b0, Func Offset: 0x60
-	// Line 768, Address: 0x21a5b8, Func Offset: 0x68
-	// Line 771, Address: 0x21a5c0, Func Offset: 0x70
-	// Func End, Address: 0x21a5c8, Func Offset: 0x78
+    O_WORK* owk;
+
+    owk = &epw->mlwP->owP[j1];
+    
+    epw->watr.c1.x = owk->mtx[12];
+    epw->watr.c1.y = owk->mtx[13];
+    epw->watr.c1.z = owk->mtx[14];
+    
+    owk = &epw->mlwP->owP[j2];
+    
+    epw->watr.c2.x = owk->mtx[12];
+    epw->watr.c2.y = owk->mtx[13];
+    epw->watr.c2.z = owk->mtx[14];
+    
+    epw->watr.r = r;
 }
 
-// 
+/*// 
 // Start address: 0x21a5d0
 unsigned char bhEne_AttackHitCheck(BH_PWORK* pl, _anon6* pos, float ar)
 {
