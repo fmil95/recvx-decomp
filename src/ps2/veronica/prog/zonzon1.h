@@ -3,6 +3,14 @@
 
 #include "types.h"
 
+typedef struct BT_WK 
+{
+    // total size: 0x3
+    unsigned char color;  // offset 0x0, size 0x1
+    unsigned char mdlno;  // offset 0x1, size 0x1
+    unsigned char tex_id; // offset 0x2, size 0x1
+} BT_WK;
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

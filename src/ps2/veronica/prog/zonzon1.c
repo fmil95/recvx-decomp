@@ -1,4 +1,49 @@
 #include "zonzon1.h"
+#include "effect.h"
+#include "effsub3.h"
+#include "main.h"
+
+static BT_WK BloodType[31] = 
+{
+    { 0, 0, 0 }, 
+    { 0, 0, 0 }, 
+    { 1, 0, 5 }, 
+    { 1, 1, 0 }, 
+    { 0, 0, 0 }, 
+    { 0, 0, 1 }, 
+    { 1, 1, 0 }, 
+    { 0, 0, 1 }, 
+    { 0, 0, 0 }, 
+    { 0, 0, 0 }, 
+    { 0, 0, 0 }, 
+    { 0, 0, 0 }, 
+    { 3, 2, 1 }, 
+    { 2, 3, 0 }, 
+    { 3, 0, 1 }, 
+    { 3, 0, 8 }, 
+    { 0, 0, 0 }, 
+    { 0, 0, 0 }, 
+    { 2, 0, 0 }, 
+    { 0, 0, 0 }, 
+    { 0, 0, 0 }, 
+    { 0, 0, 0 }, 
+    { 0, 0, 0 }, 
+    { 0, 1, 6 }, 
+    { 0, 1, 0 }, 
+    { 0, 0, 0 }, 
+    { 0, 0, 0 }, 
+    { 0, 1, 0 }, 
+    { 0, 0, 0 }, 
+    { 0, 0, 0 }, 
+    { 2, 0, 2 } 
+};
+unsigned int BloodCol[4][2] = 
+{
+    { 0xFF5F0000, 0xFF4F0000 },
+    { 0xFF4F3520, 0xFF20102F },
+    { 0xFF3F3F16, 0xFF102F18 },
+    { 0xFF3F0000, 0xFF2F0000 }
+};
 
 /*// 
 // Start address: 0x218d10
@@ -98,50 +143,43 @@ void bhEne_SetBloodEffect(BH_PWORK* epw, int type)
     bhEne_SetBloodEffect5(epw, 0, type);
 }
 
-/*// 
-// Start address: 0x219280
-void bhEne_SetBloodEffect2(BH_PWORK* epw, int type, int jno, _anon6* ofp)
+// 100% matching!
+void bhEne_SetBloodEffect2(BH_PWORK* epw, int type, int jno, NJS_POINT3* ofp)
 {
-	_anon6 vec;
-	_anon6 org;
-	// Line 209, Address: 0x219280, Func Offset: 0
-	// Line 210, Address: 0x21929c, Func Offset: 0x1c
-	// Line 214, Address: 0x2192c0, Func Offset: 0x40
-	// Line 217, Address: 0x2192cc, Func Offset: 0x4c
-	// Line 220, Address: 0x2192d0, Func Offset: 0x50
-	// Line 217, Address: 0x2192e0, Func Offset: 0x60
-	// Line 218, Address: 0x2192e8, Func Offset: 0x68
-	// Line 220, Address: 0x2192ec, Func Offset: 0x6c
-	// Line 218, Address: 0x2192f8, Func Offset: 0x78
-	// Line 219, Address: 0x219300, Func Offset: 0x80
-	// Line 220, Address: 0x219304, Func Offset: 0x84
-	// Line 219, Address: 0x219310, Func Offset: 0x90
-	// Line 220, Address: 0x219318, Func Offset: 0x98
-	// Line 223, Address: 0x219348, Func Offset: 0xc8
-	// Line 225, Address: 0x219350, Func Offset: 0xd0
-	// Line 239, Address: 0x219358, Func Offset: 0xd8
-	// Line 223, Address: 0x21935c, Func Offset: 0xdc
-	// Line 239, Address: 0x21936c, Func Offset: 0xec
-	// Line 224, Address: 0x219370, Func Offset: 0xf0
-	// Line 225, Address: 0x21937c, Func Offset: 0xfc
-	// Line 235, Address: 0x219380, Func Offset: 0x100
-	// Line 241, Address: 0x219384, Func Offset: 0x104
-	// Line 224, Address: 0x219388, Func Offset: 0x108
-	// Line 225, Address: 0x219394, Func Offset: 0x114
-	// Line 241, Address: 0x21939c, Func Offset: 0x11c
-	// Line 225, Address: 0x2193a4, Func Offset: 0x124
-	// Line 227, Address: 0x2193b0, Func Offset: 0x130
-	// Line 235, Address: 0x2193ec, Func Offset: 0x16c
-	// Line 236, Address: 0x219400, Func Offset: 0x180
-	// Line 237, Address: 0x219414, Func Offset: 0x194
-	// Line 238, Address: 0x219428, Func Offset: 0x1a8
-	// Line 239, Address: 0x21943c, Func Offset: 0x1bc
-	// Line 241, Address: 0x219464, Func Offset: 0x1e4
-	// Line 245, Address: 0x21947c, Func Offset: 0x1fc
-	// Func End, Address: 0x219498, Func Offset: 0x218
+    NJS_POINT3 org = { 0 }; 
+    NJS_POINT3 vec; 
+    
+    if (ofp == NULL) 
+    {
+        ofp = &org;
+    }
+    
+    vec.x = -epw->dvx;
+    vec.y = -epw->dvy;
+    vec.z = -epw->dvz;
+    
+    bhSetEffParticleMk2(epw, jno, ofp, &vec, BloodCol[BloodType[epw->id].color][0], BloodCol[BloodType[epw->id].color][1], type >> 16);
+    
+    sys->ef.id = 5;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.type = (char)(type & 0xFF);
+    
+    sys->ef.px = sys->ef.py = sys->ef.pz = 0;
+    
+    sys->ef.sx = 2.0f;
+    sys->ef.sy = 2.0f;
+    sys->ef.sz = 2.0f;
+    
+    sys->ef.ay = 0;
+    
+    sys->ef.mdlver = BloodType[epw->id].color;
+    
+    bhSetEffectTb(&sys->ef, ofp, (unsigned char*)epw, jno);
 }
 
-// 
+/*// 
 // Start address: 0x2194a0
 void bhEne_SetBloodEffect4(_anon6* pos, _anon6* vec, int col, int type1, int type2)
 {
