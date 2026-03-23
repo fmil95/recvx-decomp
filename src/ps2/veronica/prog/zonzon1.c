@@ -179,35 +179,31 @@ void bhEne_SetBloodEffect2(BH_PWORK* epw, int type, int jno, NJS_POINT3* ofp)
     bhSetEffectTb(&sys->ef, ofp, (unsigned char*)epw, jno);
 }
 
-/*// 
-// Start address: 0x2194a0
-void bhEne_SetBloodEffect4(_anon6* pos, _anon6* vec, int col, int type1, int type2)
+// 100% matching!
+void bhEne_SetBloodEffect4(NJS_POINT3* pos, NJS_POINT3* vec, int col, int type1, int type2)
 {
-	// Line 259, Address: 0x2194a0, Func Offset: 0
-	// Line 261, Address: 0x2194b0, Func Offset: 0x10
-	// Line 259, Address: 0x2194b4, Func Offset: 0x14
-	// Line 261, Address: 0x2194b8, Func Offset: 0x18
-	// Line 264, Address: 0x2194fc, Func Offset: 0x5c
-	// Line 265, Address: 0x219508, Func Offset: 0x68
-	// Line 266, Address: 0x21950c, Func Offset: 0x6c
-	// Line 264, Address: 0x219510, Func Offset: 0x70
-	// Line 265, Address: 0x21951c, Func Offset: 0x7c
-	// Line 271, Address: 0x219524, Func Offset: 0x84
-	// Line 275, Address: 0x219528, Func Offset: 0x88
-	// Line 265, Address: 0x219534, Func Offset: 0x94
-	// Line 266, Address: 0x219540, Func Offset: 0xa0
-	// Line 267, Address: 0x219554, Func Offset: 0xb4
-	// Line 268, Address: 0x219568, Func Offset: 0xc8
-	// Line 269, Address: 0x219580, Func Offset: 0xe0
-	// Line 270, Address: 0x219598, Func Offset: 0xf8
-	// Line 271, Address: 0x2195b0, Func Offset: 0x110
-	// Line 272, Address: 0x2195c4, Func Offset: 0x124
-	// Line 273, Address: 0x2195d8, Func Offset: 0x138
-	// Line 274, Address: 0x2195ec, Func Offset: 0x14c
-	// Line 275, Address: 0x219600, Func Offset: 0x160
-	// Line 279, Address: 0x219618, Func Offset: 0x178
-	// Func End, Address: 0x219630, Func Offset: 0x190
-}*/
+    bhSetEffParticleMk2(NULL, 0, pos, vec, BloodCol[col][0], BloodCol[col][1], type1);
+    
+    sys->ef.id = 5;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.type = type2 & 0xFF;
+    
+    sys->ef.mdlver = col;
+    
+    sys->ef.px = pos->x;
+    sys->ef.py = pos->y;
+    sys->ef.pz = pos->z;
+    
+    sys->ef.sx = 2.0f;
+    sys->ef.sy = 2.0f;
+    sys->ef.sz = 2.0f;
+    
+    sys->ef.ay = 0;
+    
+    bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+}
 
 // 
 // Start address: 0x219630
