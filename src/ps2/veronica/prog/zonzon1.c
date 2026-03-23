@@ -443,20 +443,23 @@ int bhEne_DirTarget(BH_PWORK* epw, float x, float z, int w)
     return ang;
 }
 
-/*// 
-// Start address: 0x21a180
+// 100% matching!
 int bhEne_CheckDirTarget(BH_PWORK* epw, float x, float z, int w)
 {
-	int ang;
-	// Line 603, Address: 0x21a180, Func Offset: 0
-	// Line 609, Address: 0x21a190, Func Offset: 0x10
-	// Line 610, Address: 0x21a1bc, Func Offset: 0x3c
-	// Line 611, Address: 0x21a1e4, Func Offset: 0x64
-	// Line 612, Address: 0x21a1e8, Func Offset: 0x68
-	// Func End, Address: 0x21a1fc, Func Offset: 0x7c
+    int ang;
+
+    ang = bhArcTan2(epw->px - x, epw->pz - z);
+    ang = (short)(ang - epw->ay);
+
+    if ((ang > w) || (ang < -w))
+    {
+        return 0;
+    }
+
+    return 1;
 }
 
-// 
+/*// 
 // Start address: 0x21a200
 void bhEne_GetPartsPos(BH_PWORK* epw, char* parts, _anon6* p)
 {
