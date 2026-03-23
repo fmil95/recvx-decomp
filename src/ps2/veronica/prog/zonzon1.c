@@ -459,28 +459,33 @@ int bhEne_CheckDirTarget(BH_PWORK* epw, float x, float z, int w)
     return 1;
 }
 
-/*// 
-// Start address: 0x21a200
-void bhEne_GetPartsPos(BH_PWORK* epw, char* parts, _anon6* p)
+// 100% matching!
+void bhEne_GetPartsPos(BH_PWORK* epw, char* parts, NJS_POINT3* p)
 {
-	npobj* objP;
-	_anon12* mlwP;
-	// Line 624, Address: 0x21a200, Func Offset: 0
-	// Line 625, Address: 0x21a218, Func Offset: 0x18
-	// Line 627, Address: 0x21a224, Func Offset: 0x24
-	// Line 629, Address: 0x21a22c, Func Offset: 0x2c
-	// Line 630, Address: 0x21a234, Func Offset: 0x34
-	// Line 631, Address: 0x21a23c, Func Offset: 0x3c
-	// Line 633, Address: 0x21a248, Func Offset: 0x48
-	// Line 634, Address: 0x21a250, Func Offset: 0x50
-	// Line 636, Address: 0x21a270, Func Offset: 0x70
-	// Line 637, Address: 0x21a278, Func Offset: 0x78
-	// Line 638, Address: 0x21a284, Func Offset: 0x84
-	// Line 639, Address: 0x21a298, Func Offset: 0x98
-	// Line 641, Address: 0x21a2a4, Func Offset: 0xa4
-	// Line 642, Address: 0x21a2ac, Func Offset: 0xac
-	// Func End, Address: 0x21a2c8, Func Offset: 0xc8
-}*/
+    ML_WORK* mlwP;
+    NJS_CNK_OBJECT* objP; 
+
+    mlwP = epw->mlwP;
+    
+    njPushMatrixEx();
+    
+    njUnitMatrix(NULL);
+    
+    njTranslateEx((NJS_VECTOR*)&epw->px);
+    njRotateEx(&epw->ax, 0);
+    
+    while (*parts != -1) 
+    {
+        objP = &mlwP->objP[*parts++];
+        
+        njTranslateEx((NJS_VECTOR*)objP->pos);
+        njRotateEx(objP->ang, 0);
+    }
+    
+    njGetTranslation(NULL, p);
+    
+    njPopMatrixEx();
+}
 
 // 100% matching!
 int bhEne_DirCheck(int ay, NJS_VECTOR* vec)
