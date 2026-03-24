@@ -386,17 +386,17 @@ void Init_PS2_SAVE_TEX()
     } 
 }
 
-/*// 
-// Start address: 0x2e68c0
-char* bhCopyTexmem2Mainmem(_anon3* tlp, char* adr)
+// 100% matching!
+char* bhCopyTexmem2Mainmem(NJS_TEXLIST* tlp, char* adr)
 {
-	// Line 464, Address: 0x2e68c0, Func Offset: 0
-	// Line 465, Address: 0x2e68d0, Func Offset: 0x10
-	// Line 466, Address: 0x2e68dc, Func Offset: 0x1c
-	// Line 467, Address: 0x2e68e4, Func Offset: 0x24
-	// Line 468, Address: 0x2e68e8, Func Offset: 0x28
-	// Func End, Address: 0x2e68fc, Func Offset: 0x3c
-}*/
+    char* temp; // not from DWARF
+
+    temp = bhCopyTexmem2MainmemSub(tlp, adr);
+    
+    njReleaseTexture(tlp);
+    
+    return temp;
+}
 
 // 
 // Start address: 0x2e6900
