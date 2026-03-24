@@ -341,16 +341,12 @@ void bhInitEvent()
     SendSoundCommand(4);
 }
 
-// 
-// Start address: 0x155ad0
+// 100% matching!
 void bhControlEvent()
 {
-	// Line 311, Address: 0x155ad0, Func Offset: 0
-	// Line 312, Address: 0x155ad8, Func Offset: 0x8
-	// Line 313, Address: 0x155ae4, Func Offset: 0x14
-	// Line 314, Address: 0x155aec, Func Offset: 0x1c
-	// Func End, Address: 0x155af8, Func Offset: 0x28
-	scePrintf("bhControlEvent - UNIMPLEMENTED!\n");
+    bhScenarioCheck((unsigned char*)bhScd2Ptr);
+    
+    bhEventScheduler2();
 }
 
 // 100% matching!
