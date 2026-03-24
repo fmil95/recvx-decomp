@@ -107,6 +107,7 @@ Additionally, some appreciation must go to:
 The primary way to discuss the project is through the `GC/Wii Decompilation` server on Discord, which has a dedicated channel for the decomp called `resident-evil-code-veronica-x`. See you there!
 
 [![Join the Discord](https://dcbadge.limes.pink/api/server/https://discord.gg/hKx3FJJgrV)](https://discord.gg/https://discord.gg/hKx3FJJgrV)
+[![Hypercommit](https://img.shields.io/badge/Hypercommit-DB2475)](https://hypercommit.com/recvx-decomp)
 
 ## Resources
 
