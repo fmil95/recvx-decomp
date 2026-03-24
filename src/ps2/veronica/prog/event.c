@@ -399,13 +399,10 @@ unsigned int bhEndif()
     return 1;
 }
 
-// 
-// Start address: 0x155c10
+// 100% matching!
 unsigned int dm0()
 {
-	// Line 364, Address: 0x155c10, Func Offset: 0
-	// Func End, Address: 0x155c18, Func Offset: 0x8
-	scePrintf("dm0 - UNIMPLEMENTED!\n");
+	return 0;
 }
 
 // 
