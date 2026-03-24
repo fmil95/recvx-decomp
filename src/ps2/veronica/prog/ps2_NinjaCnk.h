@@ -68,6 +68,10 @@ CHUNK_HEAD* njCnkDefaultShort(CHUNK_HEAD* pCnk);
 void njCnkEasyMultiDrawObjectI(NJS_CNK_OBJECT* pObject);
 
 extern int lCnkModClipFace;
+extern float fNaCnkConstantA;
+extern float fNaCnkConstantR;
+extern float fNaCnkConstantG;
+extern float fNaCnkConstantB;
 
 /*typedef struct _anon0;
 typedef struct tagCHUNK_HEAD;
