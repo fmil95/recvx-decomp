@@ -387,22 +387,16 @@ unsigned int bhElseCk()
     return 1;
 }
 
-// 
-// Start address: 0x155bc0
+// 100% matching!
 unsigned int bhEndif()
 {
-	// Line 353, Address: 0x155bc0, Func Offset: 0
-	// Line 356, Address: 0x155bc8, Func Offset: 0x8
-	// Line 354, Address: 0x155bcc, Func Offset: 0xc
-	// Line 353, Address: 0x155bd4, Func Offset: 0x14
-	// Line 355, Address: 0x155bd8, Func Offset: 0x18
-	// Line 354, Address: 0x155be0, Func Offset: 0x20
-	// Line 353, Address: 0x155be4, Func Offset: 0x24
-	// Line 354, Address: 0x155bec, Func Offset: 0x2c
-	// Line 355, Address: 0x155bf4, Func Offset: 0x34
-	// Line 357, Address: 0x155bfc, Func Offset: 0x3c
-	// Func End, Address: 0x155c04, Func Offset: 0x44
-	scePrintf("bhEndif - UNIMPLEMENTED!\n");
+    G_Sp--;
+    
+    bhIfelFlg--;
+    
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 
