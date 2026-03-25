@@ -1666,39 +1666,57 @@ void njRotTrans(_anon0* pPoint, _anon0* pOut)
 	// Line 5843, Address: 0x2d7b08, Func Offset: 0x28
 	// Line 5844, Address: 0x2d7b14, Func Offset: 0x34
 	// Func End, Address: 0x2d7b28, Func Offset: 0x48
-}
-
-// 
-// Start address: 0x2d7b30
-void njPers(tagNJS_SCRVECTOR* pScreen)
-{
-	// Line 5859, Address: 0x2d7b30, Func Offset: 0
-	// Line 5862, Address: 0x2d7b3c, Func Offset: 0xc
-	// Line 5863, Address: 0x2d7b40, Func Offset: 0x10
-	// Line 5864, Address: 0x2d7b44, Func Offset: 0x14
-	// Line 5865, Address: 0x2d7b48, Func Offset: 0x18
-	// Line 5866, Address: 0x2d7b4c, Func Offset: 0x1c
-	// Line 5868, Address: 0x2d7b50, Func Offset: 0x20
-	// Line 5869, Address: 0x2d7b54, Func Offset: 0x24
-	// Line 5870, Address: 0x2d7b58, Func Offset: 0x28
-	// Line 5871, Address: 0x2d7b60, Func Offset: 0x30
-	// Line 5872, Address: 0x2d7b68, Func Offset: 0x38
-	// Line 5873, Address: 0x2d7b6c, Func Offset: 0x3c
-	// Line 5874, Address: 0x2d7b70, Func Offset: 0x40
-	// Line 5875, Address: 0x2d7b74, Func Offset: 0x44
-	// Line 5876, Address: 0x2d7b78, Func Offset: 0x48
-	// Line 5877, Address: 0x2d7b7c, Func Offset: 0x4c
-	// Line 5878, Address: 0x2d7b80, Func Offset: 0x50
-	// Line 5879, Address: 0x2d7b84, Func Offset: 0x54
-	// Line 5880, Address: 0x2d7b88, Func Offset: 0x58
-	// Line 5881, Address: 0x2d7b8c, Func Offset: 0x5c
-	// Line 5882, Address: 0x2d7b90, Func Offset: 0x60
-	// Line 5883, Address: 0x2d7b94, Func Offset: 0x64
-	// Line 5884, Address: 0x2d7b98, Func Offset: 0x68
-	// Line 5885, Address: 0x2d7b9c, Func Offset: 0x6c
-	// Line 5890, Address: 0x2d7ba0, Func Offset: 0x70
-	// Func End, Address: 0x2d7ba8, Func Offset: 0x78
 }*/
+
+// 100% matching!
+void njPers(NJS_SCRVECTOR* pScreen)
+{
+    asm volatile
+    ("
+    .set noreorder
+        ldl      t0, 7(%0)
+        ldr      t0, 0(%0)
+        
+        lw       t1, 8(%0)
+        
+        pcpyld   t0, t1, t0
+
+        qmtc2    t0, vf18
+
+        vdiv     Q, vf0w, vf18z
+
+        mfc1     t0, %1
+
+        lw       t1, fNaViwOffsetX
+        lw       t2, fNaViwOffsetY
+
+        qmtc2    t0, vf4
+        qmtc2    t1, vf5
+        qmtc2    t2, vf6
+
+        vwaitq
+
+        vmulq.x  vf8, vf4, Q
+
+        vaddq.z  vf14, vf0, Q
+
+        vmulx.xy vf8, vf18, vf8
+        
+        vaddx.x  vf14, vf8, vf5
+        vaddx.y  vf14, vf8, vf6
+
+        qmfc2    t2, vf14
+    
+        pcpyud   t3, t2, t2
+    
+        sdl      t2, 7(%0)
+        sdr      t2, 0(%0)
+        
+        sw       t3, 12(%0)
+    .set reorder
+    " : : "r"(pScreen), "f"(_nj_screen_.dist) : 
+    );
+}
 
 // 100% matching!
 void njCopyMatrix(NJS_MATRIX* pDstMat, NJS_MATRIX* pSrcMat) 
