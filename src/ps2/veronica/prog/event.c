@@ -11682,26 +11682,46 @@ void bhScenarioCheck(unsigned char* next_ptr)
     }
 }
 
-// 
-// Start address: 0x171800
-unsigned int bhFlagCk(unsigned char type, unsigned int cnt, unsigned char flag)
+// 100% matching!
+unsigned int bhFlagCk(unsigned char type, unsigned int cnt, unsigned char flag) 
 {
-	int* v0;
-	// Line 12535, Address: 0x171800, Func Offset: 0
-	// Line 12536, Address: 0x17182c, Func Offset: 0x2c
-	// Line 12537, Address: 0x17183c, Func Offset: 0x3c
-	// Line 12538, Address: 0x17184c, Func Offset: 0x4c
-	// Line 12539, Address: 0x17185c, Func Offset: 0x5c
-	// Line 12540, Address: 0x17186c, Func Offset: 0x6c
-	// Line 12541, Address: 0x17187c, Func Offset: 0x7c
-	// Line 12542, Address: 0x17188c, Func Offset: 0x8c
-	// Line 12543, Address: 0x17189c, Func Offset: 0x9c
-	// Line 12544, Address: 0x1718ac, Func Offset: 0xac
-	// Line 12545, Address: 0x1718bc, Func Offset: 0xbc
-	// Line 12548, Address: 0x1718c8, Func Offset: 0xc8
-	// Line 12549, Address: 0x1718ec, Func Offset: 0xec
-	// Func End, Address: 0x1718f4, Func Offset: 0xf4
-	scePrintf("bhFlagCk - UNIMPLEMENTED!\n");
+    int* v0;
+
+    switch (type) 
+    {
+    case 1:
+        v0 = (int*)sys->ev_flg;
+        break;
+    case 2:
+        v0 = (int*)sys->ky_flg;
+        break;
+    case 3:
+        v0 = (int*)sys->ed_flg;
+        break;
+    case 4:
+        v0 = (int*)&sys->rm_flg;
+        break;
+    case 5:
+        v0 = (int*)&sys->st_flg;
+        break;
+    case 6:
+        v0 = (int*)&sys->sp_flg;
+        break;
+    case 7:
+        v0 = (int*)sys->it_flg;
+        break;
+    case 8:
+        v0 = (int*)sys->mp_flg;
+        break;
+    case 9:
+        v0 = (int*)sys->ic_flg;
+        break;
+    case 11:
+        v0 = (int*)&sys->gm_flg;
+        break;
+    }
+    
+    return flag ^ (v0[(cnt & 0x3FF) >> 5] << (cnt & 0x1F)) < 0;
 }
 
 // 
