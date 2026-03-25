@@ -3877,17 +3877,14 @@ unsigned int bhTFrameCheck()
 	scePrintf("bhTFrameCheck - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15e9a0
+// 100% matching! 
 unsigned int bhEventTimerClr()
 {
-	// Line 4529, Address: 0x15e9a0, Func Offset: 0
-	// Line 4528, Address: 0x15e9a8, Func Offset: 0x8
-	// Line 4530, Address: 0x15e9b0, Func Offset: 0x10
-	// Line 4528, Address: 0x15e9b4, Func Offset: 0x14
-	// Line 4531, Address: 0x15e9bc, Func Offset: 0x1c
-	// Func End, Address: 0x15e9c4, Func Offset: 0x24
-	scePrintf("bhEventTimerClr - UNIMPLEMENTED!\n");
+	Event_T_timer = 0;
+
+	bhScePtr += 2;
+
+	return 1;
 }
 
 // 
