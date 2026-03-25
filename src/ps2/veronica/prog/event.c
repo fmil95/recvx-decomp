@@ -8212,18 +8212,14 @@ int Player_controll()
 	scePrintf("Player_controll - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x168bf0
+// 100% matching!
 unsigned int bhObjCtr()
 {
-	// Line 9263, Address: 0x168bf0, Func Offset: 0
-	// Line 9264, Address: 0x168bf8, Func Offset: 0x8
-	// Line 9265, Address: 0x168c08, Func Offset: 0x18
-	// Line 9267, Address: 0x168c10, Func Offset: 0x20
-	// Line 9266, Address: 0x168c14, Func Offset: 0x24
-	// Line 9267, Address: 0x168c18, Func Offset: 0x28
-	// Func End, Address: 0x168c20, Func Offset: 0x30
-	scePrintf("bhObjCtr - UNIMPLEMENTED!\n");
+    bhScePtr++;
+    
+    Obj_controll();
+    
+    return 1;
 }
 
 // 
