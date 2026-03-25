@@ -598,39 +598,64 @@ unsigned int bhCmpW()
 	scePrintf("bhCmpW - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1563d0
+// 100% matching!
 unsigned int bhSv()
-{
-	unsigned int v1;
-	unsigned int v0;
-	// Line 658, Address: 0x1563d0, Func Offset: 0
-	// Line 664, Address: 0x1563d8, Func Offset: 0x8
-	// Line 658, Address: 0x1563dc, Func Offset: 0xc
-	// Line 659, Address: 0x1563e8, Func Offset: 0x18
-	// Line 660, Address: 0x1563f4, Func Offset: 0x24
-	// Line 661, Address: 0x156400, Func Offset: 0x30
-	// Line 662, Address: 0x15640c, Func Offset: 0x3c
-	// Line 664, Address: 0x156414, Func Offset: 0x44
-	// Line 665, Address: 0x1564a4, Func Offset: 0xd4
-	// Line 666, Address: 0x1564b4, Func Offset: 0xe4
-	// Line 667, Address: 0x1564c4, Func Offset: 0xf4
-	// Line 668, Address: 0x1564d0, Func Offset: 0x100
-	// Line 669, Address: 0x1564e0, Func Offset: 0x110
-	// Line 671, Address: 0x1564f8, Func Offset: 0x128
-	// Line 672, Address: 0x156504, Func Offset: 0x134
-	// Line 673, Address: 0x156514, Func Offset: 0x144
-	// Line 674, Address: 0x15651c, Func Offset: 0x14c
-	// Line 675, Address: 0x15652c, Func Offset: 0x15c
-	// Line 676, Address: 0x156544, Func Offset: 0x174
-	// Line 677, Address: 0x15655c, Func Offset: 0x18c
-	// Line 680, Address: 0x15656c, Func Offset: 0x19c
-	// Line 681, Address: 0x156580, Func Offset: 0x1b0
-	// Line 682, Address: 0x156588, Func Offset: 0x1b8
-	// Line 689, Address: 0x15659c, Func Offset: 0x1cc
-	// Line 690, Address: 0x1565a0, Func Offset: 0x1d0
-	// Func End, Address: 0x1565a8, Func Offset: 0x1d8
-	scePrintf("bhSv - UNIMPLEMENTED!\n");
+{   
+    unsigned int v0, v1;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    switch (v0) 
+    {
+    case 0:
+        sys->stg_no = v1;
+        break;
+    case 1:
+        sys->rom_no = v1;
+        break;
+    case 2:
+        cam.ncut = v1;
+        break;
+    case 16:
+        plp->flr_no = v1;
+        break;
+    case 8:
+        sys->sb_id = v1;
+        break;
+    case 18:
+        plp->wpnr_no = v1;
+        
+        sys->ply_wno[sys->ply_id] = v1;
+        break;
+    case 15:
+        sys->pos_no = v1;
+        break;
+    case 19:
+        sys->ef_slow = v1;
+        break;
+    case 20:
+        sys->etc_idx = v1;
+        break;
+    case 21:
+        sys->rcase = v1;
+        break;
+    case 22:
+        sys->itm[sys->ply_id * 16] = v1;
+        break;
+    case 25:
+        sys->costume = v1;
+        break;
+    }
+    
+    return 1;
 }
 
 // 
