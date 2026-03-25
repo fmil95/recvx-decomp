@@ -1422,18 +1422,14 @@ unsigned int bhFlrAtariSet()
 	scePrintf("bhFlrAtariSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x157d00
+// 100% matching!
 unsigned int bhSubStatus()
 {
-	// Line 1629, Address: 0x157d00, Func Offset: 0
-	// Line 1638, Address: 0x157d08, Func Offset: 0x8
-	// Line 1637, Address: 0x157d0c, Func Offset: 0xc
-	// Line 1629, Address: 0x157d14, Func Offset: 0x14
-	// Line 1637, Address: 0x157d20, Func Offset: 0x20
-	// Line 1639, Address: 0x157d28, Func Offset: 0x28
-	// Func End, Address: 0x157d30, Func Offset: 0x30
-	scePrintf("bhSubStatus - UNIMPLEMENTED!\n");
+    bhScePtr += 2;
+    
+    sys->ts_flg |= 0x200;
+    
+    return 1;
 }
 
 // 
