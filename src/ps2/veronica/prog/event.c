@@ -7725,16 +7725,12 @@ unsigned int bhEwhile2()
 	scePrintf("bhEwhile2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x167800
+// 100% matching! 
 unsigned int bhEvtNext()
 {
-	// Line 8816, Address: 0x167800, Func Offset: 0
-	// Line 8817, Address: 0x167808, Func Offset: 0x8
-	// Line 8816, Address: 0x16780c, Func Offset: 0xc
-	// Line 8818, Address: 0x167814, Func Offset: 0x14
-	// Func End, Address: 0x16781c, Func Offset: 0x1c
-	scePrintf("bhEvtNext - UNIMPLEMENTED!\n");
+	*bhScePtr++;
+
+	return 0;
 }
 
 // 
