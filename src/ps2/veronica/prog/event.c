@@ -7210,18 +7210,14 @@ unsigned int bhVoiceWait()
 	scePrintf("bhVoiceWait - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x166540
+// 100% matching! 
 unsigned int bhVoiceStart()
 {
-	// Line 8050, Address: 0x166540, Func Offset: 0
-	// Line 8051, Address: 0x166548, Func Offset: 0x8
-	// Line 8052, Address: 0x166558, Func Offset: 0x18
-	// Line 8054, Address: 0x166560, Func Offset: 0x20
-	// Line 8053, Address: 0x166564, Func Offset: 0x24
-	// Line 8054, Address: 0x166568, Func Offset: 0x28
-	// Func End, Address: 0x166570, Func Offset: 0x30
-	scePrintf("bhVoiceStart - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+	
+	ContinuePlayVoice();
+
+	return 1;
 }
 
 // 
