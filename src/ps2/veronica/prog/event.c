@@ -7794,19 +7794,16 @@ unsigned int bhNext()
 	scePrintf("bhNext - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1679d0
+// 100% matching!
 unsigned int bhPlCtr()
 {
-	// Line 8887, Address: 0x1679d0, Func Offset: 0
-	// Line 8888, Address: 0x1679d8, Func Offset: 0x8
-	// Line 8889, Address: 0x1679e8, Func Offset: 0x18
-	// Line 8891, Address: 0x1679f8, Func Offset: 0x28
-	// Line 8893, Address: 0x167a00, Func Offset: 0x30
-	// Line 8892, Address: 0x167a04, Func Offset: 0x34
-	// Line 8893, Address: 0x167a08, Func Offset: 0x38
-	// Func End, Address: 0x167a10, Func Offset: 0x40
-	scePrintf("bhPlCtr - UNIMPLEMENTED!\n");
+	bhCetask->mode0 = 1;
+	
+	bhScePtr++;
+    
+    Player_controll();
+    
+    return 1;
 }
 
 // 
