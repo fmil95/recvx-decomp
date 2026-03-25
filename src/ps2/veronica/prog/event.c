@@ -858,51 +858,64 @@ unsigned int bhBgmOff()
     return 1;
 }
 
-// 
-// Start address: 0x156cf0
+// 100% matching!
 unsigned int bhSeOn()
 {
-	BH_PWORK* e_ep;
-	//_anon39 pPos;
-	unsigned int v4;
-	unsigned int v3;
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 999, Address: 0x156cf0, Func Offset: 0
-	// Line 1005, Address: 0x156cf8, Func Offset: 0x8
-	// Line 1017, Address: 0x156d00, Func Offset: 0x10
-	// Line 1005, Address: 0x156d04, Func Offset: 0x14
-	// Line 1006, Address: 0x156d10, Func Offset: 0x20
-	// Line 1007, Address: 0x156d1c, Func Offset: 0x2c
-	// Line 1008, Address: 0x156d28, Func Offset: 0x38
-	// Line 1009, Address: 0x156d34, Func Offset: 0x44
-	// Line 1010, Address: 0x156d40, Func Offset: 0x50
-	// Line 1011, Address: 0x156d4c, Func Offset: 0x5c
-	// Line 1012, Address: 0x156d58, Func Offset: 0x68
-	// Line 1013, Address: 0x156d64, Func Offset: 0x74
-	// Line 1014, Address: 0x156d70, Func Offset: 0x80
-	// Line 1015, Address: 0x156d7c, Func Offset: 0x8c
-	// Line 1017, Address: 0x156d84, Func Offset: 0x94
-	// Line 1020, Address: 0x156da8, Func Offset: 0xb8
-	// Line 1021, Address: 0x156dc0, Func Offset: 0xd0
-	// Line 1022, Address: 0x156dd0, Func Offset: 0xe0
-	// Line 1023, Address: 0x156ddc, Func Offset: 0xec
-	// Line 1027, Address: 0x156de4, Func Offset: 0xf4
-	// Line 1029, Address: 0x156e24, Func Offset: 0x134
-	// Line 1030, Address: 0x156e34, Func Offset: 0x144
-	// Line 1031, Address: 0x156e44, Func Offset: 0x154
-	// Line 1032, Address: 0x156e50, Func Offset: 0x160
-	// Line 1035, Address: 0x156e58, Func Offset: 0x168
-	// Line 1037, Address: 0x156e84, Func Offset: 0x194
-	// Line 1038, Address: 0x156e94, Func Offset: 0x1a4
-	// Line 1039, Address: 0x156ea4, Func Offset: 0x1b4
-	// Line 1042, Address: 0x156eb4, Func Offset: 0x1c4
-	// Line 1045, Address: 0x156ec0, Func Offset: 0x1d0
-	// Line 1044, Address: 0x156ec4, Func Offset: 0x1d4
-	// Line 1045, Address: 0x156ec8, Func Offset: 0x1d8
-	// Func End, Address: 0x156ed0, Func Offset: 0x1e0
-	scePrintf("bhSeOn - UNIMPLEMENTED!\n");
+    unsigned int v0, v1, v2, v3, v4; 
+    NJS_POINT3 pPos; 
+    BH_PWORK* e_ep; 
+    ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v3 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    v4 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    switch (v1)
+    {
+    case 0:
+        pPos.x = plp->mlwP->owP->mtx[12];
+        pPos.y = plp->mlwP->owP->mtx[13];
+        pPos.z = plp->mlwP->owP->mtx[14];
+        break;
+    case 1:
+        enep = &rom->enep[v2];
+        
+        e_ep = &ene[enep->wrk_no];
+        
+        pPos.x = e_ep->mlwP->owP->mtx[12];
+        pPos.y = e_ep->mlwP->owP->mtx[13];
+        pPos.z = e_ep->mlwP->owP->mtx[14];
+        break;
+    case 2:
+        e_ep = (BH_PWORK*)&sys->obwp[v2];
+    
+        pPos.x = e_ep->mlwP->owP->mtx[12];
+        pPos.y = e_ep->mlwP->owP->mtx[13];
+        pPos.z = e_ep->mlwP->owP->mtx[14];
+        break;
+    }
+    
+    CallNativeEventSe(v0, &pPos, v3, v4);
+    
+    return 1;
 }
 
 // 100% matching!
