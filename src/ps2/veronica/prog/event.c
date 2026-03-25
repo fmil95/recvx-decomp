@@ -986,20 +986,18 @@ unsigned int bhUseItemCheck()
     return 0;
 }
 
-// 
-// Start address: 0x1570a0
+// 100% matching!
 unsigned int bhArmsItemCheck()
 {
-	int v0;
-	// Line 1137, Address: 0x1570a0, Func Offset: 0
-	// Line 1140, Address: 0x1570a8, Func Offset: 0x8
-	// Line 1137, Address: 0x1570b0, Func Offset: 0x10
-	// Line 1138, Address: 0x1570bc, Func Offset: 0x1c
-	// Line 1139, Address: 0x1570c8, Func Offset: 0x28
-	// Line 1140, Address: 0x1570d4, Func Offset: 0x34
-	// Line 1141, Address: 0x1570dc, Func Offset: 0x3c
-	// Func End, Address: 0x1570e4, Func Offset: 0x44
-	scePrintf("bhArmsItemCheck - UNIMPLEMENTED!\n");
+    int v0;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    return plp->wpnr_no == v0;
 }
 
 // 
