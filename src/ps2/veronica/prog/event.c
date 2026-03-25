@@ -358,22 +358,22 @@ unsigned int bhEnd()
 	return 0;
 }
 
-// 
-// Start address: 0x155b10
+// 99.17% matching (matches on GC)
 unsigned int bhIfelCk()
 {
-	unsigned int v0;
-	// Line 329, Address: 0x155b10, Func Offset: 0
-	// Line 337, Address: 0x155b18, Func Offset: 0x8
-	// Line 335, Address: 0x155b1c, Func Offset: 0xc
-	// Line 329, Address: 0x155b24, Func Offset: 0x14
-	// Line 330, Address: 0x155b28, Func Offset: 0x18
-	// Line 335, Address: 0x155b34, Func Offset: 0x24
-	// Line 333, Address: 0x155b40, Func Offset: 0x30
-	// Line 334, Address: 0x155b58, Func Offset: 0x48
-	// Line 338, Address: 0x155b68, Func Offset: 0x58
-	// Func End, Address: 0x155b70, Func Offset: 0x60
-	scePrintf("bhIfelCk - UNIMPLEMENTED!\n");
+    unsigned int v0; 
+
+    v0 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    G_Sp = (unsigned int*)&bhScePtr[v0 >> 8];
+    
+    G_Sp++;
+
+    bhIfelFlg++;
+    
+    return 1;
 }
 
 // 100% matching!
