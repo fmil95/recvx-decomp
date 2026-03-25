@@ -728,44 +728,41 @@ unsigned int bhCamSet()
 	scePrintf("bhCamSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1569a0
+// 100% matching!
 unsigned int bhCamSet2()
 {
-	unsigned int v1;
-	unsigned int v0;
-	// Line 845, Address: 0x1569a0, Func Offset: 0
-	// Line 850, Address: 0x1569a8, Func Offset: 0x8
-	// Line 859, Address: 0x1569b4, Func Offset: 0x14
-	// Line 852, Address: 0x1569b8, Func Offset: 0x18
-	// Line 850, Address: 0x1569c0, Func Offset: 0x20
-	// Line 852, Address: 0x1569cc, Func Offset: 0x2c
-	// Line 853, Address: 0x1569d8, Func Offset: 0x38
-	// Line 854, Address: 0x1569e4, Func Offset: 0x44
-	// Line 855, Address: 0x1569f0, Func Offset: 0x50
-	// Line 856, Address: 0x1569fc, Func Offset: 0x5c
-	// Line 858, Address: 0x156a08, Func Offset: 0x68
-	// Line 859, Address: 0x156a18, Func Offset: 0x78
-	// Line 861, Address: 0x156a30, Func Offset: 0x90
-	// Line 862, Address: 0x156a3c, Func Offset: 0x9c
-	// Line 861, Address: 0x156a40, Func Offset: 0xa0
-	// Line 862, Address: 0x156a48, Func Offset: 0xa8
-	// Line 863, Address: 0x156a50, Func Offset: 0xb0
-	// Line 862, Address: 0x156a54, Func Offset: 0xb4
-	// Line 863, Address: 0x156a5c, Func Offset: 0xbc
-	// Line 864, Address: 0x156a6c, Func Offset: 0xcc
-	// Line 865, Address: 0x156a84, Func Offset: 0xe4
-	// Line 867, Address: 0x156a8c, Func Offset: 0xec
-	// Line 868, Address: 0x156a98, Func Offset: 0xf8
-	// Line 867, Address: 0x156a9c, Func Offset: 0xfc
-	// Line 868, Address: 0x156aa0, Func Offset: 0x100
-	// Line 867, Address: 0x156aa4, Func Offset: 0x104
-	// Line 868, Address: 0x156aac, Func Offset: 0x10c
-	// Line 873, Address: 0x156abc, Func Offset: 0x11c
-	// Line 872, Address: 0x156ac0, Func Offset: 0x120
-	// Line 873, Address: 0x156ac4, Func Offset: 0x124
-	// Func End, Address: 0x156acc, Func Offset: 0x12c
-	scePrintf("bhCamSet2 - UNIMPLEMENTED!\n");
+    unsigned int v0, v1;
+	
+    cam.flg &= ~0x46;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+    bhScePtr++;
+    
+    switch (v0) 
+    { 
+    case 0:
+        sys->st_flg |= 0x1;
+        sys->gm_flg |= 0x1000;
+        
+        sys->fixcno = v1;
+        
+        bhSetFixedCut(sys->fixcno);
+        break;
+    case 1:
+        sys->st_flg &= ~0x1;
+        sys->gm_flg &= ~0x1000;
+        break;
+    }
+    
+    return 1;
 }
 
 // 100% matching!
@@ -823,8 +820,7 @@ unsigned int bhMessageSet()
 // 86.56% matching (matches on GC)
 unsigned int bhBgmOn()
 {
-    int v0;
-    int v1;
+    int v0, v1;
     
     bhScePtr++;
     
@@ -937,9 +933,7 @@ unsigned int bhSeOff()
 // 100% matching!
 unsigned int bhBGSeOn()
 {
-    unsigned int v0;
-    unsigned int v1;
-    unsigned int v2;
+    unsigned int v0, v1, v2;
 
     bhScePtr++;
     
