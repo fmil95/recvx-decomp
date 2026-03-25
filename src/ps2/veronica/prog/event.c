@@ -905,21 +905,20 @@ unsigned int bhSeOn()
 	scePrintf("bhSeOn - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x156ed0
+// 100% matching!
 unsigned int bhSeOff()
 {
-	unsigned char v0;
-	// Line 1053, Address: 0x156ed0, Func Offset: 0
-	// Line 1056, Address: 0x156ed8, Func Offset: 0x8
-	// Line 1057, Address: 0x156eec, Func Offset: 0x1c
-	// Line 1058, Address: 0x156ef8, Func Offset: 0x28
-	// Line 1059, Address: 0x156f00, Func Offset: 0x30
-	// Line 1062, Address: 0x156f08, Func Offset: 0x38
-	// Line 1061, Address: 0x156f0c, Func Offset: 0x3c
-	// Line 1062, Address: 0x156f10, Func Offset: 0x40
-	// Func End, Address: 0x156f18, Func Offset: 0x48
-	scePrintf("bhSeOff - UNIMPLEMENTED!\n");
+    unsigned char v0;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    StopNativeEventSe(v0);
+    
+    return 1;
 }
 
 // 100% matching!
