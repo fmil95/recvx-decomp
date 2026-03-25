@@ -2592,20 +2592,20 @@ unsigned int bhFadeSet()
 	scePrintf("bhFadeSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15ab10
+// 100% matching! 
 unsigned int bhRoomCaseNo()
 {
 	int v0;
-	// Line 2985, Address: 0x15ab10, Func Offset: 0
-	// Line 2991, Address: 0x15ab18, Func Offset: 0x8
-	// Line 2989, Address: 0x15ab1c, Func Offset: 0xc
-	// Line 2985, Address: 0x15ab24, Func Offset: 0x14
-	// Line 2986, Address: 0x15ab30, Func Offset: 0x20
-	// Line 2987, Address: 0x15ab3c, Func Offset: 0x2c
-	// Line 2992, Address: 0x15ab48, Func Offset: 0x38
-	// Func End, Address: 0x15ab50, Func Offset: 0x40
-	scePrintf("bhRoomCaseNo - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+
+	v0 = *bhScePtr;
+
+	bhScePtr++;
+
+	sys->rcase = v0;
+	
+	return 1;
 }
 
 // 
