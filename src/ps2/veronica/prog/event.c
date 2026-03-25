@@ -2802,16 +2802,12 @@ unsigned int bhLookGsetPlStop()
 	scePrintf("bhLookGsetPlStop - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15b410
-unsigned int bhSoundFadeOut()
+// 100% matching!
+unsigned int bhSoundFadeOut() 
 {
-	// Line 3318, Address: 0x15b410, Func Offset: 0
-	// Line 3319, Address: 0x15b418, Func Offset: 0x8
-	// Line 3318, Address: 0x15b41c, Func Offset: 0xc
-	// Line 3320, Address: 0x15b424, Func Offset: 0x14
-	// Func End, Address: 0x15b42c, Func Offset: 0x1c
-	scePrintf("bhSoundFadeOut - UNIMPLEMENTED!\n");
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 
