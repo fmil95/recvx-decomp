@@ -2,6 +2,7 @@
 #include "MdlPut.h"
 #include "Motion.h"
 #include "eneset.h"
+#include "message.h"
 #include "ps2_NaMath.h"
 #include "pwksub.h"
 #include "sdfunc.h"
@@ -830,32 +831,40 @@ unsigned int bhCamPauseSet()
     return 1;
 }
 
-// 
-// Start address: 0x156b40
+// 100% matching!
 unsigned int bhMessageSet()
 {
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 921, Address: 0x156b40, Func Offset: 0
-	// Line 924, Address: 0x156b48, Func Offset: 0x8
-	// Line 925, Address: 0x156b5c, Func Offset: 0x1c
-	// Line 926, Address: 0x156b68, Func Offset: 0x28
-	// Line 927, Address: 0x156b74, Func Offset: 0x34
-	// Line 928, Address: 0x156b80, Func Offset: 0x40
-	// Line 929, Address: 0x156b8c, Func Offset: 0x4c
-	// Line 930, Address: 0x156b94, Func Offset: 0x54
-	// Line 931, Address: 0x156b9c, Func Offset: 0x5c
-	// Line 932, Address: 0x156ba4, Func Offset: 0x64
-	// Line 934, Address: 0x156bbc, Func Offset: 0x7c
-	// Line 935, Address: 0x156bc8, Func Offset: 0x88
-	// Line 936, Address: 0x156bd0, Func Offset: 0x90
-	// Line 938, Address: 0x156be4, Func Offset: 0xa4
-	// Line 939, Address: 0x156bec, Func Offset: 0xac
-	// Line 938, Address: 0x156bf0, Func Offset: 0xb0
-	// Line 940, Address: 0x156bfc, Func Offset: 0xbc
-	// Func End, Address: 0x156c08, Func Offset: 0xc8
-	scePrintf("bhMessageSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1, v2;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+    
+    if (v0 == 0) 
+    {
+        if (v2 == 0)
+        {
+            sys->sp_flg &= ~0x7;
+        }
+        
+        bhSetMessage(0, v1);
+    } 
+    else 
+    {
+        sys->sp_flg |= 0x7;
+    }
+
+    bhScePtr++;
+    
+    return 1;
 }
 
 // 86.56% matching (matches on GC)
