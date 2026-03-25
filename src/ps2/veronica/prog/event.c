@@ -845,22 +845,20 @@ unsigned int bhBgmOn()
 	scePrintf("bhBgmOn - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x156c90
-unsigned int bhBgmOff()
+// 100% matching!
+unsigned int bhBgmOff() 
 {
-	unsigned int v0;
-	// Line 982, Address: 0x156c90, Func Offset: 0
-	// Line 985, Address: 0x156c98, Func Offset: 0x8
-	// Line 986, Address: 0x156cac, Func Offset: 0x1c
-	// Line 988, Address: 0x156cb8, Func Offset: 0x28
-	// Line 987, Address: 0x156cc4, Func Offset: 0x34
-	// Line 989, Address: 0x156ccc, Func Offset: 0x3c
-	// Line 991, Address: 0x156cd4, Func Offset: 0x44
-	// Line 990, Address: 0x156cd8, Func Offset: 0x48
-	// Line 991, Address: 0x156cdc, Func Offset: 0x4c
-	// Func End, Address: 0x156ce4, Func Offset: 0x54
-	scePrintf("bhBgmOff - UNIMPLEMENTED!\n");
+    unsigned int v0;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    StopBgm(v0 * 10);
+    
+    return 1;
 }
 
 // 
