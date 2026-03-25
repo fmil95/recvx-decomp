@@ -1000,26 +1000,24 @@ unsigned int bhArmsItemCheck()
     return plp->wpnr_no == v0;
 }
 
-// 
-// Start address: 0x1570f0
+// 100% matching!
 unsigned int bhArmsItemChange()
 {
-	int v0;
-	// Line 1152, Address: 0x1570f0, Func Offset: 0
-	// Line 1158, Address: 0x1570f8, Func Offset: 0x8
-	// Line 1160, Address: 0x1570fc, Func Offset: 0xc
-	// Line 1156, Address: 0x157100, Func Offset: 0x10
-	// Line 1152, Address: 0x157108, Func Offset: 0x18
-	// Line 1153, Address: 0x157114, Func Offset: 0x24
-	// Line 1154, Address: 0x157120, Func Offset: 0x30
-	// Line 1156, Address: 0x15712c, Func Offset: 0x3c
-	// Line 1157, Address: 0x157130, Func Offset: 0x40
-	// Line 1158, Address: 0x15713c, Func Offset: 0x4c
-	// Line 1157, Address: 0x157140, Func Offset: 0x50
-	// Line 1158, Address: 0x157148, Func Offset: 0x58
-	// Line 1161, Address: 0x157158, Func Offset: 0x68
-	// Func End, Address: 0x157160, Func Offset: 0x70
-	scePrintf("bhArmsItemChange - UNIMPLEMENTED!\n");
+    int v0;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    plp->wpnr_no = v0;
+    
+    sys->ply_wno[sys->ply_id] = v0;
+    
+    *(int*)&sys->mn_mode0 = 3;
+    
+    return 1;
 }
 
 // 
