@@ -2,6 +2,7 @@
 #include "MdlPut.h"
 #include "Motion.h"
 #include "eneset.h"
+#include "face.h"
 #include "message.h"
 #include "ps2_NaMath.h"
 #include "pwksub.h"
@@ -2834,19 +2835,18 @@ unsigned int bhLookGsetPlStart()
 	scePrintf("bhLookGsetPlStart - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15b3d0
+// 100% matching!
 unsigned int bhLookGsetPlStop()
 {
-	// Line 3304, Address: 0x15b3d0, Func Offset: 0
-	// Line 3306, Address: 0x15b3d8, Func Offset: 0x8
-	// Line 3307, Address: 0x15b3dc, Func Offset: 0xc
-	// Line 3306, Address: 0x15b3e0, Func Offset: 0x10
-	// Line 3304, Address: 0x15b3e8, Func Offset: 0x18
-	// Line 3306, Address: 0x15b3f4, Func Offset: 0x24
-	// Line 3308, Address: 0x15b400, Func Offset: 0x30
-	// Func End, Address: 0x15b408, Func Offset: 0x38
-	scePrintf("bhLookGsetPlStop - UNIMPLEMENTED!\n");
+	int* v0; // not from DWARF
+
+	bhScePtr += 2;
+
+	v0 = (int*)plp->exp1;
+	
+	*v0 &= ~0x18;
+
+	return 1;
 }
 
 // 100% matching!
