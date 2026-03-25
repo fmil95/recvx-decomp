@@ -769,23 +769,28 @@ unsigned int bhCamSet2()
 	scePrintf("bhCamSet2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x156ad0
+// 100% matching!
 unsigned int bhCamPauseSet()
 {
-	unsigned int v0;
-	// Line 885, Address: 0x156ad0, Func Offset: 0
-	// Line 888, Address: 0x156ad8, Func Offset: 0x8
-	// Line 885, Address: 0x156adc, Func Offset: 0xc
-	// Line 886, Address: 0x156ae8, Func Offset: 0x18
-	// Line 887, Address: 0x156af4, Func Offset: 0x24
-	// Line 888, Address: 0x156afc, Func Offset: 0x2c
-	// Line 889, Address: 0x156b14, Func Offset: 0x44
-	// Line 890, Address: 0x156b24, Func Offset: 0x54
-	// Line 895, Address: 0x156b2c, Func Offset: 0x5c
-	// Line 896, Address: 0x156b30, Func Offset: 0x60
-	// Func End, Address: 0x156b38, Func Offset: 0x68
-	scePrintf("bhCamPauseSet - UNIMPLEMENTED!\n");
+    unsigned int v0;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    switch (v0)
+    {                      
+    case 0:
+        cam.mode0 = 3;
+        break;
+    case 1:
+        cam.mode0 = 1;
+        break;
+    }
+    
+    return 1;
 }
 
 // 
