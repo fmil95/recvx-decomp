@@ -11491,46 +11491,54 @@ unsigned int bhLoadWork2()
 	scePrintf("bhLoadWork2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x171510
-int Event_init(BH_SCEWORK* a0, unsigned int evt_id)
+// 94.07% matching (matches on GC)
+int Event_init(BH_SCEWORK* a0, unsigned int evt_id) 
 {
-	// Line 12383, Address: 0x171510, Func Offset: 0
-	// Line 12384, Address: 0x171518, Func Offset: 0x8
-	// Line 12385, Address: 0x17151c, Func Offset: 0xc
-	// Line 12387, Address: 0x171524, Func Offset: 0x14
-	// Line 12388, Address: 0x171528, Func Offset: 0x18
-	// Line 12385, Address: 0x17152c, Func Offset: 0x1c
-	// Line 12387, Address: 0x171530, Func Offset: 0x20
-	// Line 12385, Address: 0x171534, Func Offset: 0x24
-	// Line 12387, Address: 0x171538, Func Offset: 0x28
-	// Line 12388, Address: 0x171554, Func Offset: 0x44
-	// Line 12390, Address: 0x171558, Func Offset: 0x48
-	// Line 12391, Address: 0x17155c, Func Offset: 0x4c
-	// Line 12392, Address: 0x171560, Func Offset: 0x50
-	// Line 12393, Address: 0x171564, Func Offset: 0x54
-	// Line 12394, Address: 0x171568, Func Offset: 0x58
-	// Line 12395, Address: 0x17156c, Func Offset: 0x5c
-	// Line 12396, Address: 0x171570, Func Offset: 0x60
-	// Line 12397, Address: 0x171574, Func Offset: 0x64
-	// Line 12398, Address: 0x171578, Func Offset: 0x68
-	// Line 12399, Address: 0x17157c, Func Offset: 0x6c
-	// Line 12400, Address: 0x171580, Func Offset: 0x70
-	// Line 12401, Address: 0x171584, Func Offset: 0x74
-	// Line 12402, Address: 0x171588, Func Offset: 0x78
-	// Line 12403, Address: 0x17158c, Func Offset: 0x7c
-	// Line 12404, Address: 0x171590, Func Offset: 0x80
-	// Line 12405, Address: 0x171594, Func Offset: 0x84
-	// Line 12406, Address: 0x171598, Func Offset: 0x88
-	// Line 12407, Address: 0x17159c, Func Offset: 0x8c
-	// Line 12408, Address: 0x1715a0, Func Offset: 0x90
-	// Line 12409, Address: 0x1715a4, Func Offset: 0x94
-	// Line 12410, Address: 0x1715a8, Func Offset: 0x98
-	// Line 12411, Address: 0x1715ac, Func Offset: 0x9c
-	// Line 12412, Address: 0x1715b0, Func Offset: 0xa0
-	// Line 12419, Address: 0x1715b4, Func Offset: 0xa4
-	// Func End, Address: 0x1715bc, Func Offset: 0xac
-	scePrintf("Event_init - UNIMPLEMENTED!\n");
+    EVT_WORK* evtp; // not from DWARF
+    
+    a0->status = 1;
+    
+    *(short*)&a0->mode0 = 0;
+    
+    a0->data = (unsigned char*)rom->evtp;
+    
+    evtp = (EVT_WORK*)&((int*)rom->evtp)[evt_id];
+    
+    a0->data = &a0->data[(int)evtp->evd];
+    
+    a0->loop = -1;
+    
+    a0->ips[0][0] = 0;
+    a0->ips[0][1] = 0;
+    a0->ips[0][2] = 0;
+    
+    a0->ips[1][0] = 0;
+    a0->ips[1][1] = 0;
+    a0->ips[1][2] = 0;
+    
+    a0->ips[2][0] = 0;
+    a0->ips[2][1] = 0;
+    a0->ips[2][2] = 0;
+    
+    a0->ips[3][0] = 0;
+    a0->ips[3][1] = 0;
+    a0->ips[3][2] = 0;
+    
+    a0->ian[0][0] = 0;
+    a0->ian[0][1] = 0;
+    a0->ian[0][2] = 0;
+    
+    a0->ian[1][0] = 0;
+    a0->ian[1][1] = 0;
+    a0->ian[1][2] = 0;
+    
+    a0->ian[2][0] = 0;
+    a0->ian[2][1] = 0;
+    a0->ian[2][2] = 0;
+    
+    a0->ian[3][0] = 0;
+    a0->ian[3][1] = 0;
+    a0->ian[3][2] = 0;
 }
 
 // 
