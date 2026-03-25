@@ -7733,16 +7733,12 @@ unsigned int bhEvtNext()
 	return 0;
 }
 
-// 
-// Start address: 0x167820
+// 100% matching! 
 unsigned int bhComNext()
 {
-	// Line 8827, Address: 0x167820, Func Offset: 0
-	// Line 8828, Address: 0x167828, Func Offset: 0x8
-	// Line 8827, Address: 0x16782c, Func Offset: 0xc
-	// Line 8829, Address: 0x167834, Func Offset: 0x14
-	// Func End, Address: 0x16783c, Func Offset: 0x1c
-	scePrintf("bhComNext - UNIMPLEMENTED!\n");
+	*bhScePtr++;
+
+	return 1;
 }
 
 // 
