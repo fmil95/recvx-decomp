@@ -685,47 +685,63 @@ unsigned int bhEvtOn()
     return 1;
 }
 
-// 
-// Start address: 0x156800
+// 99.88% matching
 unsigned int bhCamSet()
 {
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 788, Address: 0x156800, Func Offset: 0
-	// Line 792, Address: 0x156808, Func Offset: 0x8
-	// Line 801, Address: 0x156814, Func Offset: 0x14
-	// Line 794, Address: 0x156818, Func Offset: 0x18
-	// Line 792, Address: 0x156820, Func Offset: 0x20
-	// Line 794, Address: 0x15682c, Func Offset: 0x2c
-	// Line 795, Address: 0x156838, Func Offset: 0x38
-	// Line 796, Address: 0x156844, Func Offset: 0x44
-	// Line 797, Address: 0x156850, Func Offset: 0x50
-	// Line 798, Address: 0x15685c, Func Offset: 0x5c
-	// Line 799, Address: 0x156868, Func Offset: 0x68
-	// Line 800, Address: 0x156874, Func Offset: 0x74
-	// Line 801, Address: 0x15687c, Func Offset: 0x7c
-	// Line 803, Address: 0x156894, Func Offset: 0x94
-	// Line 804, Address: 0x15689c, Func Offset: 0x9c
-	// Line 805, Address: 0x1568a0, Func Offset: 0xa0
-	// Line 807, Address: 0x1568a8, Func Offset: 0xa8
-	// Line 808, Address: 0x1568c8, Func Offset: 0xc8
-	// Line 810, Address: 0x1568e8, Func Offset: 0xe8
-	// Line 812, Address: 0x1568f0, Func Offset: 0xf0
-	// Line 813, Address: 0x1568f8, Func Offset: 0xf8
-	// Line 812, Address: 0x1568fc, Func Offset: 0xfc
-	// Line 813, Address: 0x156908, Func Offset: 0x108
-	// Line 815, Address: 0x156910, Func Offset: 0x110
-	// Line 816, Address: 0x156928, Func Offset: 0x128
-	// Line 817, Address: 0x156938, Func Offset: 0x138
-	// Line 819, Address: 0x15695c, Func Offset: 0x15c
-	// Line 820, Address: 0x156970, Func Offset: 0x170
-	// Line 821, Address: 0x156978, Func Offset: 0x178
-	// Line 837, Address: 0x156990, Func Offset: 0x190
-	// Line 836, Address: 0x156994, Func Offset: 0x194
-	// Line 837, Address: 0x156998, Func Offset: 0x198
-	// Func End, Address: 0x1569a0, Func Offset: 0x1a0
-	scePrintf("bhCamSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1, v2;
+
+    cam.flg &= ~0x46;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    switch (v0) 
+    {     
+    case 0:
+        cam.evc_no = v1;
+        cam.keyf_no = v2;
+        
+        bhSetEventCamera(v1, v2);
+        
+        bhChangeViewClip(sys->stg_no, sys->rom_no, sys->rcase, cam.evc_no);
+        bhChangeClipVolume(sys->stg_no, sys->rom_no, sys->rcase, cam.evc_no);
+        break;
+    case 1:
+        sys->st_flg &= ~0x1;
+        
+        bhCheckCut(1);
+        
+        if ((sys->ts_flg & 0x200))
+        {
+            if ((sys->gm_flg & 0x40)) 
+            {
+                njClipZ(-1.0f, -20000.0f);
+            } 
+            else 
+            {
+                njClipZ(GameNear, GameFar);
+            }
+        } 
+        else 
+        {
+            njClipZ(-1.0f, -99.0f);
+        }
+        
+        break;
+    }
+    
+    return 1;
 }
 
 // 100% matching!
