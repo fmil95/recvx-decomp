@@ -1109,19 +1109,14 @@ unsigned int bhPlItemLost()
 	scePrintf("bhPlItemLost - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x157290
+// 100% matching! 
 unsigned int bhUseItemClear()
 {
-	// Line 1208, Address: 0x157290, Func Offset: 0
-	// Line 1209, Address: 0x157298, Func Offset: 0x8
-	// Line 1210, Address: 0x15729c, Func Offset: 0xc
-	// Line 1209, Address: 0x1572a0, Func Offset: 0x10
-	// Line 1208, Address: 0x1572a8, Func Offset: 0x18
-	// Line 1209, Address: 0x1572b4, Func Offset: 0x24
-	// Line 1211, Address: 0x1572bc, Func Offset: 0x2c
-	// Func End, Address: 0x1572c4, Func Offset: 0x34
-	scePrintf("bhUseItemClear - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+
+	sys->cb_flg &= ~0x400;
+
+	return 0;
 }
 
 // 
