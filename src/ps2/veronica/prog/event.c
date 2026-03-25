@@ -8495,18 +8495,14 @@ int Sub_controll()
 	scePrintf("Sub_controll - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x169560
+// 100% matching!
 unsigned int bhCommonCtr()
 {
-	// Line 9472, Address: 0x169560, Func Offset: 0
-	// Line 9473, Address: 0x169568, Func Offset: 0x8
-	// Line 9474, Address: 0x169578, Func Offset: 0x18
-	// Line 9476, Address: 0x169580, Func Offset: 0x20
-	// Line 9475, Address: 0x169584, Func Offset: 0x24
-	// Line 9476, Address: 0x169588, Func Offset: 0x28
-	// Func End, Address: 0x169590, Func Offset: 0x30
-	scePrintf("bhCommonCtr - UNIMPLEMENTED!\n");
+	bhScePtr++;
+    
+    Common_controll();
+    
+    return 1;
 }
 
 // 100% matching!

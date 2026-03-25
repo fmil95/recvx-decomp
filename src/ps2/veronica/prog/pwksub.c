@@ -38,12 +38,12 @@ unsigned char* bhGetFreeMemory(int size, int param) // second parameter is not p
     return temp;
 }
 
-/*// 
+// 
 // Start address: 0x14e0a0
 void bhCalcLinkModel(BH_PWORK* pp)
 {
 	int i;
-	_anon1* op;
+	//_anon1* op;
 	BH_PWORK* ep;
 	// Line 218, Address: 0x14e0a0, Func Offset: 0
 	// Line 223, Address: 0x14e0b4, Func Offset: 0x14
@@ -71,7 +71,8 @@ void bhCalcLinkModel(BH_PWORK* pp)
 	// Line 271, Address: 0x14e2f0, Func Offset: 0x250
 	// Line 272, Address: 0x14e300, Func Offset: 0x260
 	// Func End, Address: 0x14e318, Func Offset: 0x278
-}*/
+	scePrintf("bhCalcLinkModel - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhSetFloorNum(BH_PWORK* pp)
