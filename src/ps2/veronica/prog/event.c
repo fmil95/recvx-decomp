@@ -7,6 +7,7 @@
 #include "pwksub.h"
 #include "sdfunc.h"
 #include "sub1.h"
+#include "system.h"
 #include "main.h"
 
 unsigned char* bhScePtr;
@@ -7214,7 +7215,7 @@ unsigned int bhVoiceWait()
 unsigned int bhVoiceStart()
 {
 	bhScePtr += 2;
-	
+
 	ContinuePlayVoice();
 
 	return 1;
@@ -7337,21 +7338,20 @@ unsigned int bhEffClearEvt()
 	return 1;
 }
 
-// 
-// Start address: 0x166a30
+// 100% matching!
 unsigned int bhEvtTimerSet()
 {
 	int v0;
-	// Line 8180, Address: 0x166a30, Func Offset: 0
-	// Line 8183, Address: 0x166a38, Func Offset: 0x8
-	// Line 8184, Address: 0x166a4c, Func Offset: 0x1c
-	// Line 8185, Address: 0x166a58, Func Offset: 0x28
-	// Line 8187, Address: 0x166a60, Func Offset: 0x30
-	// Line 8190, Address: 0x166a68, Func Offset: 0x38
-	// Line 8189, Address: 0x166a6c, Func Offset: 0x3c
-	// Line 8190, Address: 0x166a70, Func Offset: 0x40
-	// Func End, Address: 0x166a78, Func Offset: 0x48
-	scePrintf("bhEvtTimerSet - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+
+	v0 = *bhScePtr;
+    
+    bhScePtr++;
+
+	bhSetEventTimer(v0);
+
+	return 1;
 }
 
 // 
