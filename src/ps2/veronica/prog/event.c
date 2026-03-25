@@ -1200,20 +1200,26 @@ unsigned int bhVoiceOff()
 	scePrintf("bhVoiceOff - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x157710
-unsigned int bhAdxCk()
+// 100% matching!
+unsigned int bhAdxCk() 
 {
-	unsigned int ret;
-	unsigned int v1;
-	// Line 1375, Address: 0x157710, Func Offset: 0
-	// Line 1377, Address: 0x157724, Func Offset: 0x14
-	// Line 1378, Address: 0x157738, Func Offset: 0x28
-	// Line 1379, Address: 0x157744, Func Offset: 0x34
-	// Line 1380, Address: 0x157750, Func Offset: 0x40
-	// Line 1382, Address: 0x157760, Func Offset: 0x50
-	// Func End, Address: 0x157768, Func Offset: 0x58
-	scePrintf("bhAdxCk - UNIMPLEMENTED!\n");
+    unsigned int v1;
+    unsigned int ret;
+
+    bhScePtr++;
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    ret = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    CheckPlayEndAdx(v1);
+
+    // they forgot to return here
 }
 
 // 
