@@ -967,20 +967,23 @@ unsigned int bhBGSeOff()
 	scePrintf("bhBGSeOff - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x157030
+// 100% matching!
 unsigned int bhUseItemCheck()
 {
-	unsigned char v0;
-	// Line 1117, Address: 0x157030, Func Offset: 0
-	// Line 1123, Address: 0x157038, Func Offset: 0x8
-	// Line 1117, Address: 0x157040, Func Offset: 0x10
-	// Line 1118, Address: 0x15704c, Func Offset: 0x1c
-	// Line 1119, Address: 0x157058, Func Offset: 0x28
-	// Line 1123, Address: 0x157064, Func Offset: 0x34
-	// Line 1126, Address: 0x157094, Func Offset: 0x64
-	// Func End, Address: 0x15709c, Func Offset: 0x6c
-	scePrintf("bhUseItemCheck - UNIMPLEMENTED!\n");
+    unsigned char v0;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    if ((sys->cb_flg & 0x400)) 
+    {
+        return sys->sb_id == v0;
+    }
+    
+    return 0;
 }
 
 // 
