@@ -7440,18 +7440,14 @@ unsigned int bhSyukanModeSet()
 	scePrintf("bhSyukanModeSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x166c80
+// 100% matching!
 unsigned int bhExGameItemInit()
 {
-	// Line 8275, Address: 0x166c80, Func Offset: 0
-	// Line 8276, Address: 0x166c88, Func Offset: 0x8
-	// Line 8277, Address: 0x166c98, Func Offset: 0x18
-	// Line 8279, Address: 0x166ca0, Func Offset: 0x20
-	// Line 8278, Address: 0x166ca4, Func Offset: 0x24
-	// Line 8279, Address: 0x166ca8, Func Offset: 0x28
-	// Func End, Address: 0x166cb0, Func Offset: 0x30
-	scePrintf("bhExGameItemInit - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+
+	ExtraGameItemInit();
+
+	return 1;
 }
 
 // 
@@ -7798,7 +7794,7 @@ unsigned int bhNext()
 unsigned int bhPlCtr()
 {
 	bhCetask->mode0 = 1;
-	
+
 	bhScePtr++;
     
     Player_controll();
