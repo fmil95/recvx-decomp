@@ -7331,18 +7331,14 @@ unsigned int bhPlItemTamaSet()
 	scePrintf("bhPlItemTamaSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x166a00
+// 100% matching! 
 unsigned int bhEffClearEvt()
 {
-	// Line 8166, Address: 0x166a00, Func Offset: 0
-	// Line 8167, Address: 0x166a08, Func Offset: 0x8
-	// Line 8169, Address: 0x166a18, Func Offset: 0x18
-	// Line 8172, Address: 0x166a20, Func Offset: 0x20
-	// Line 8171, Address: 0x166a24, Func Offset: 0x24
-	// Line 8172, Address: 0x166a28, Func Offset: 0x28
-	// Func End, Address: 0x166a30, Func Offset: 0x30
-	scePrintf("bhEffClearEvt - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+
+	bhClearEventEffect();
+
+	return 1;
 }
 
 // 

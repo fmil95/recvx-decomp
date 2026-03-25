@@ -4771,7 +4771,7 @@ void AllItemInit()
     sys->itm[383] = 1;
 }
 
-/*// 
+// 
 // Start address: 0x2a6ec0
 void ExtraGameItemInit()
 {
@@ -4780,7 +4780,7 @@ void ExtraGameItemInit()
 	int itemid;
 	int j;
 	int i;
-	_anon4* st;
+	//_anon4* st;
 	// Line 6781, Address: 0x2a6ec0, Func Offset: 0
 	// Line 6782, Address: 0x2a6ec4, Func Offset: 0x4
 	// Line 6788, Address: 0x2a6ec8, Func Offset: 0x8
@@ -4810,9 +4810,10 @@ void ExtraGameItemInit()
 	// Line 6842, Address: 0x2a7004, Func Offset: 0x144
 	// Line 6843, Address: 0x2a7018, Func Offset: 0x158
 	// Func End, Address: 0x2a7020, Func Offset: 0x160
+	scePrintf("ExtraGameItemInit - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2a7020
 void ItemBoxIconSet(_anon4* st)
 {
