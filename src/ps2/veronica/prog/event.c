@@ -922,28 +922,30 @@ unsigned int bhSeOff()
 	scePrintf("bhSeOff - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x156f20
+// 100% matching!
 unsigned int bhBGSeOn()
 {
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 1070, Address: 0x156f20, Func Offset: 0
-	// Line 1074, Address: 0x156f28, Func Offset: 0x8
-	// Line 1075, Address: 0x156f3c, Func Offset: 0x1c
-	// Line 1076, Address: 0x156f48, Func Offset: 0x28
-	// Line 1077, Address: 0x156f54, Func Offset: 0x34
-	// Line 1078, Address: 0x156f60, Func Offset: 0x40
-	// Line 1079, Address: 0x156f6c, Func Offset: 0x4c
-	// Line 1081, Address: 0x156f78, Func Offset: 0x58
-	// Line 1080, Address: 0x156f84, Func Offset: 0x64
-	// Line 1082, Address: 0x156f90, Func Offset: 0x70
-	// Line 1085, Address: 0x156f9c, Func Offset: 0x7c
-	// Line 1084, Address: 0x156fa0, Func Offset: 0x80
-	// Line 1085, Address: 0x156fa4, Func Offset: 0x84
-	// Func End, Address: 0x156fac, Func Offset: 0x8c
-	scePrintf("bhBGSeOn - UNIMPLEMENTED!\n");
+    unsigned int v0;
+    unsigned int v1;
+    unsigned int v2;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    CallBackGroundSeEx(v0, v1, v2 * 10);
+    
+    return 1;
 }
 
 // 100% matching!
