@@ -1,6 +1,7 @@
 #include "event.h"
 #include "MdlPut.h"
 #include "Motion.h"
+#include "effect.h"
 #include "eneset.h"
 #include "face.h"
 #include "message.h"
@@ -3949,18 +3950,14 @@ unsigned int bhEventSkipSet()
 	scePrintf("bhEventSkipSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15ebe0
+// 100% matching!
 unsigned int bhDelYakkyou()
 {
-	// Line 4614, Address: 0x15ebe0, Func Offset: 0
-	// Line 4615, Address: 0x15ebe8, Func Offset: 0x8
-	// Line 4616, Address: 0x15ebf8, Func Offset: 0x18
-	// Line 4618, Address: 0x15ec00, Func Offset: 0x20
-	// Line 4617, Address: 0x15ec04, Func Offset: 0x24
-	// Line 4618, Address: 0x15ec08, Func Offset: 0x28
-	// Func End, Address: 0x15ec10, Func Offset: 0x30
-	scePrintf("bhDelYakkyou - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+
+	bhDeleteYakkyou();
+
+	return 1;
 }
 
 // 
