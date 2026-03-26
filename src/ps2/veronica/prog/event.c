@@ -6087,19 +6087,14 @@ unsigned int bhEffTypeSet()
 	scePrintf("bhEffTypeSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1635c0
+// 100% matching!
 unsigned int bhPlayerPoison2Cr()
 {
-	// Line 6880, Address: 0x1635c0, Func Offset: 0
-	// Line 6881, Address: 0x1635c8, Func Offset: 0x8
-	// Line 6882, Address: 0x1635d0, Func Offset: 0x10
-	// Line 6881, Address: 0x1635d4, Func Offset: 0x14
-	// Line 6880, Address: 0x1635dc, Func Offset: 0x1c
-	// Line 6881, Address: 0x1635e8, Func Offset: 0x28
-	// Line 6883, Address: 0x1635f0, Func Offset: 0x30
-	// Func End, Address: 0x1635f8, Func Offset: 0x38
-	scePrintf("bhPlayerPoison2Cr - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+
+	sys->ply_stflg[0] &= ~0x200000;
+
+	return 1;
 }
 
 // 
