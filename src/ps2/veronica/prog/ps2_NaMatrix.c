@@ -1412,33 +1412,52 @@ void	njCalcVector(NJS_MATRIX *m, NJS_VECTOR *vs, NJS_VECTOR *vd)
     );
 }
 
-// 
-// Start address: 0x2d76b0
+// 100% matching!
 Float	njUnitVector(NJS_VECTOR *v)
 {
 	float ret;
-	// Line 4662, Address: 0x2d76b0, Func Offset: 0
-	// Line 4663, Address: 0x2d76b4, Func Offset: 0x4
-	// Line 4664, Address: 0x2d76b8, Func Offset: 0x8
-	// Line 4665, Address: 0x2d76bc, Func Offset: 0xc
-	// Line 4666, Address: 0x2d76c0, Func Offset: 0x10
-	// Line 4668, Address: 0x2d76c4, Func Offset: 0x14
-	// Line 4669, Address: 0x2d76c8, Func Offset: 0x18
-	// Line 4670, Address: 0x2d76cc, Func Offset: 0x1c
-	// Line 4672, Address: 0x2d76d0, Func Offset: 0x20
-	// Line 4673, Address: 0x2d76d4, Func Offset: 0x24
-	// Line 4674, Address: 0x2d76d8, Func Offset: 0x28
-	// Line 4675, Address: 0x2d76dc, Func Offset: 0x2c
-	// Line 4677, Address: 0x2d76e0, Func Offset: 0x30
-	// Line 4678, Address: 0x2d76e4, Func Offset: 0x34
-	// Line 4679, Address: 0x2d76e8, Func Offset: 0x38
-	// Line 4680, Address: 0x2d76ec, Func Offset: 0x3c
-	// Line 4681, Address: 0x2d76f0, Func Offset: 0x40
-	// Line 4682, Address: 0x2d76f4, Func Offset: 0x44
-	// Line 4683, Address: 0x2d76f8, Func Offset: 0x48
-	// Line 4689, Address: 0x2d76fc, Func Offset: 0x4c
-	// Func End, Address: 0x2d7704, Func Offset: 0x54
-    scePrintf("njUnitVector - UNIMPLEMENTED!\n");
+
+    asm volatile
+    ("
+    .set noreorder
+        ldl      a4, 0x7(%1)
+        ldr      a4,   0(%1)
+     
+        lw       a5, NJS_VECTOR.z(%1) 
+     
+        pcpyld   a4, a5, a4
+     
+        qmtc2.ni a4, vf4
+     
+        vmul     vf5, vf4, vf4
+     
+        vaddy    vf5, vf5, vf5
+        vaddz    vf5, vf5, vf5
+     
+        vrsqrt   Q, vf0w, vf5
+     
+        vwaitq   
+
+        vmulq    vf6, vf4, Q
+        vmulq    vf7, vf5, Q
+
+        qmfc2.ni a6, vf6
+
+        pcpyud   a7, a6, a6
+
+        sdl      a6, 0x7(%1)
+        sdr      a6,   0(%1)
+     
+        sw       a7, NJS_VECTOR.z(%1) 
+     
+        qmfc2.ni v0, vf7
+
+        mtc1     v0, %0
+    .set reorder
+    " : "=r"(ret) : "r"(v) : 
+    );
+
+    return ret;
 }
 
 // 100% matching!
