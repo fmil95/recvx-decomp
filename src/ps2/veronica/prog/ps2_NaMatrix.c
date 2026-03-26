@@ -1640,28 +1640,36 @@ Float	njInnerProduct(NJS_VECTOR *v1, NJS_VECTOR *v2)
     scePrintf("njInnerProduct - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d78f0
+// 100% matching! 
 void njTranslateEx(NJS_VECTOR *v)
 {
-	// Line 5152, Address: 0x2d78f0, Func Offset: 0
-	// Line 5155, Address: 0x2d78fc, Func Offset: 0xc
-	// Line 5156, Address: 0x2d7900, Func Offset: 0x10
-	// Line 5157, Address: 0x2d7904, Func Offset: 0x14
-	// Line 5158, Address: 0x2d7908, Func Offset: 0x18
-	// Line 5159, Address: 0x2d790c, Func Offset: 0x1c
-	// Line 5161, Address: 0x2d7910, Func Offset: 0x20
-	// Line 5162, Address: 0x2d7914, Func Offset: 0x24
-	// Line 5163, Address: 0x2d7918, Func Offset: 0x28
-	// Line 5164, Address: 0x2d791c, Func Offset: 0x2c
-	// Line 5166, Address: 0x2d7920, Func Offset: 0x30
-	// Line 5167, Address: 0x2d7924, Func Offset: 0x34
-	// Line 5168, Address: 0x2d7928, Func Offset: 0x38
-	// Line 5169, Address: 0x2d792c, Func Offset: 0x3c
-	// Line 5171, Address: 0x2d7930, Func Offset: 0x40
-	// Line 5178, Address: 0x2d7934, Func Offset: 0x44
-	// Func End, Address: 0x2d793c, Func Offset: 0x4c
-	scePrintf("njTranslateEx - UNIMPLEMENTED!\n");
+    asm volatile
+    ("
+    .set noreorder
+        ldl         a4, 0x7(%0)
+        ldr         a4,   0(%0)
+
+        lw          a5, NJS_VECTOR.z(%0) 
+
+        pcpyld      a4, a5, a4
+
+        qmtc2.ni    a4, vf4
+
+        lqc2        vf28,    0(%1)
+        lqc2        vf29, 0x10(%1)
+        lqc2        vf30, 0x20(%1)
+        lqc2        vf31, 0x30(%1)
+
+        vmulax.xyz  ACC,  vf28, vf4
+        
+        vmadday.xyz ACC,  vf29, vf4
+        vmaddaz.xyz ACC,  vf30, vf4
+        vmaddw.xyz  vf31, vf31, vf0
+    
+        sqc2        vf31,  0x30(%1)
+    .set reorder
+    " : : "r"(v), "r"(pNaMatMatrixStuckPtr) : 
+    );
 }
 
 // 100% matching! 
