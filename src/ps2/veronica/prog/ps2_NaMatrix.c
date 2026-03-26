@@ -1318,27 +1318,33 @@ void njCalcPointCN(NJS_POINT3* pSrcPoint, NJS_POINT3* pDstPoint)
     );
 }
 
-/*// 
-// Start address: 0x2d75d0
-void njAddVector(_anon0* pDstVec, _anon0* pSrcVec)
+// 100% matching!
+void	njAddVector(NJS_VECTOR *vd, NJS_VECTOR *vs)
 {
-	// Line 4354, Address: 0x2d75d0, Func Offset: 0
-	// Line 4355, Address: 0x2d75d4, Func Offset: 0x4
-	// Line 4356, Address: 0x2d75d8, Func Offset: 0x8
-	// Line 4357, Address: 0x2d75dc, Func Offset: 0xc
-	// Line 4358, Address: 0x2d75e0, Func Offset: 0x10
-	// Line 4359, Address: 0x2d75e4, Func Offset: 0x14
-	// Line 4360, Address: 0x2d75e8, Func Offset: 0x18
-	// Line 4361, Address: 0x2d75ec, Func Offset: 0x1c
-	// Line 4362, Address: 0x2d75f0, Func Offset: 0x20
-	// Line 4363, Address: 0x2d75f4, Func Offset: 0x24
-	// Line 4364, Address: 0x2d75f8, Func Offset: 0x28
-	// Line 4365, Address: 0x2d75fc, Func Offset: 0x2c
-	// Line 4370, Address: 0x2d7600, Func Offset: 0x30
-	// Func End, Address: 0x2d7608, Func Offset: 0x38
+	asm volatile
+    ("
+    .set noreorder
+        lwc1   f8, NJS_VECTOR.x(%0)
+        lwc1   f9, NJS_VECTOR.y(%0)
+        lwc1  f10, NJS_VECTOR.z(%0)
+
+        lwc1  f11, NJS_VECTOR.x(%1)
+        lwc1  f12, NJS_VECTOR.y(%1)
+        lwc1  f13, NJS_VECTOR.z(%1)
+
+        add.s  f8,  f8, f11
+        add.s  f9,  f9, f12
+        add.s f10, f10, f13
+
+        swc1   f8, NJS_VECTOR.x(%0)
+        swc1   f9, NJS_VECTOR.y(%0)
+        swc1  f10, NJS_VECTOR.z(%0)
+    .set reorder
+    " : : "r"(vd), "r"(vs) : 
+    );
 }
 
-// 
+/*// 
 // Start address: 0x2d7610
 void njSubVector(_anon0* pDstVec, _anon0* pSrcVec)
 {
