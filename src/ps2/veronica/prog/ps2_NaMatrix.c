@@ -1,4 +1,5 @@
 #include "ps2_NaMatrix.h"
+#include "ps2_NaFog.h"
 #include "ps2_NaView.h"
 #include "main.h"
 
@@ -1769,36 +1770,51 @@ Bool njPopMatrixEx( void )
     njPopMatrix(1);
 }
 
-// 
-// Start address: 0x2d7a30
+// 100% matching! 
 void njRotTransPers(NJS_POINT3* pPoint, NJS_SCRVECTOR* pScreen)
 {
-	// Line 5788, Address: 0x2d7a30, Func Offset: 0
-	// Line 5794, Address: 0x2d7a48, Func Offset: 0x18
-	// Line 5795, Address: 0x2d7a58, Func Offset: 0x28
-	// Line 5805, Address: 0x2d7a64, Func Offset: 0x34
-	// Line 5808, Address: 0x2d7a70, Func Offset: 0x40
-	// Line 5809, Address: 0x2d7a74, Func Offset: 0x44
-	// Line 5810, Address: 0x2d7a78, Func Offset: 0x48
-	// Line 5811, Address: 0x2d7a80, Func Offset: 0x50
-	// Line 5812, Address: 0x2d7a88, Func Offset: 0x58
-	// Line 5813, Address: 0x2d7a8c, Func Offset: 0x5c
-	// Line 5814, Address: 0x2d7a90, Func Offset: 0x60
-	// Line 5815, Address: 0x2d7a94, Func Offset: 0x64
-	// Line 5816, Address: 0x2d7a98, Func Offset: 0x68
-	// Line 5817, Address: 0x2d7a9c, Func Offset: 0x6c
-	// Line 5818, Address: 0x2d7aa0, Func Offset: 0x70
-	// Line 5819, Address: 0x2d7aa4, Func Offset: 0x74
-	// Line 5820, Address: 0x2d7aa8, Func Offset: 0x78
-	// Line 5821, Address: 0x2d7aac, Func Offset: 0x7c
-	// Line 5822, Address: 0x2d7ab0, Func Offset: 0x80
-	// Line 5823, Address: 0x2d7ab4, Func Offset: 0x84
-	// Line 5824, Address: 0x2d7ab8, Func Offset: 0x88
-	// Line 5825, Address: 0x2d7abc, Func Offset: 0x8c
-	// Line 5830, Address: 0x2d7ac0, Func Offset: 0x90
-	// Line 5832, Address: 0x2d7acc, Func Offset: 0x9c
-	// Func End, Address: 0x2d7ae0, Func Offset: 0xb0
-	scePrintf("njRotTransPers - UNIMPLEMENTED!\n");
+	njMulMatrixCN(&NaViewScreenMatrix, NULL);
+
+    njCalcPointCN(pPoint, (NJS_POINT3*)&pScreen->x);
+
+    asm volatile
+    ("
+    .set noreorder
+        vdiv     Q, vf0w, vf18z
+
+        mfc1     t0, %2
+
+        lw       t1, fNaViwOffsetX
+        lw       t2, fNaViwOffsetY
+
+        qmtc2    t0, vf4
+        qmtc2    t1, vf5
+        qmtc2    t2, vf6
+
+        vwaitq
+
+        vmulq.xy vf8,  vf4,  Q
+
+        vaddq.z  vf14, vf0,  Q
+
+        vmulx    vf8,  vf18, vf8
+        
+        vaddx.x  vf14, vf8,  vf5
+        vaddx.y  vf14, vf8,  vf6
+
+        qmfc2    a6, vf14
+    
+        pcpyud   a7, a6, a6
+    
+        sdl      a6, 7(%1)
+        sdr      a6, 0(%1)
+        
+        sw       a7, NJS_SCRVECTOR.iz(%1)
+    .set reorder
+    " : : "r"(pPoint), "r"(pScreen), "f"(_nj_screen_.dist) : 
+    );
+
+    pScreen->fog = njCalcFogPower(pScreen->z);
 }
 
 // 100% matching!
