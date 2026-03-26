@@ -1664,22 +1664,21 @@ void njTranslateEx(NJS_VECTOR *v)
 	scePrintf("njTranslateEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2d7940
+// 100% matching! 
 void njRotateEx( Angle *ang, Sint32 lv )
 {
-	// Line 5240, Address: 0x2d7940, Func Offset: 0
-	// Line 5241, Address: 0x2d794c, Func Offset: 0xc
-	// Line 5242, Address: 0x2d7954, Func Offset: 0x14
-	// Line 5243, Address: 0x2d7960, Func Offset: 0x20
-	// Line 5244, Address: 0x2d796c, Func Offset: 0x2c
-	// Line 5245, Address: 0x2d7978, Func Offset: 0x38
-	// Line 5246, Address: 0x2d7980, Func Offset: 0x40
-	// Line 5247, Address: 0x2d798c, Func Offset: 0x4c
-	// Line 5248, Address: 0x2d7998, Func Offset: 0x58
-	// Line 5250, Address: 0x2d79a4, Func Offset: 0x64
-	// Func End, Address: 0x2d79b4, Func Offset: 0x74
-	scePrintf("njRotateEx - UNIMPLEMENTED!\n");
+	if (lv != 0) 
+    {
+        njRotateY(NULL, ang[1]);
+        njRotateX(NULL, ang[0]);
+        njRotateZ(NULL, ang[2]);
+    }
+    else
+    {
+        njRotateZ(NULL, ang[2]);
+        njRotateY(NULL, ang[1]);
+        njRotateX(NULL, ang[0]);
+    }
 }
 
 // 
