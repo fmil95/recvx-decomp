@@ -5549,23 +5549,20 @@ unsigned int bhPuruPuruFlagSet()
 	scePrintf("bhPuruPuruFlagSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1625d0
+// 100% matching!
 unsigned int bhPuruPuruStart()
 {
 	unsigned int v0;
-	// Line 6359, Address: 0x1625d0, Func Offset: 0
-	// Line 6362, Address: 0x1625d8, Func Offset: 0x8
-	// Line 6373, Address: 0x1625e0, Func Offset: 0x10
-	// Line 6362, Address: 0x1625e4, Func Offset: 0x14
-	// Line 6363, Address: 0x1625f0, Func Offset: 0x20
-	// Line 6364, Address: 0x1625fc, Func Offset: 0x2c
-	// Line 6373, Address: 0x162604, Func Offset: 0x34
-	// Line 6377, Address: 0x16260c, Func Offset: 0x3c
-	// Line 6376, Address: 0x162610, Func Offset: 0x40
-	// Line 6377, Address: 0x162614, Func Offset: 0x44
-	// Func End, Address: 0x16261c, Func Offset: 0x4c
-	scePrintf("bhPuruPuruStart - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+
+	v0 = *bhScePtr;
+
+	bhScePtr++;
+
+	StartVibrationEx(2, v0);
+
+	return 1;
 }
 
 // 
