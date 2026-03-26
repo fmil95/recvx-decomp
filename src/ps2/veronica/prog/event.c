@@ -7177,22 +7177,16 @@ unsigned int bhVoiceStart()
 	return 1;
 }
 
-// 
-// Start address: 0x166570
+// 100% matching!
 unsigned int bhGameOverSet()
 {
-	// Line 8063, Address: 0x166570, Func Offset: 0
-	// Line 8064, Address: 0x166578, Func Offset: 0x8
-	// Line 8066, Address: 0x16657c, Func Offset: 0xc
-	// Line 8064, Address: 0x166580, Func Offset: 0x10
-	// Line 8063, Address: 0x166588, Func Offset: 0x18
-	// Line 8064, Address: 0x166594, Func Offset: 0x24
-	// Line 8065, Address: 0x166598, Func Offset: 0x28
-	// Line 8064, Address: 0x16659c, Func Offset: 0x2c
-	// Line 8065, Address: 0x1665a4, Func Offset: 0x34
-	// Line 8067, Address: 0x1665b4, Func Offset: 0x44
-	// Func End, Address: 0x1665bc, Func Offset: 0x4c
-	scePrintf("bhGameOverSet - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+
+	sys->ts_flg &= ~0x4000;
+
+	*(int*)&sys->gov_md0 = 0;
+
+	return 1;
 }
 
 // 
