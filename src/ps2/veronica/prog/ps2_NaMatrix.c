@@ -943,31 +943,42 @@ int njInvertMatrix(float pMatrix[16])
 	// Line 3385, Address: 0x2d7198, Func Offset: 0x78
 	// Line 3393, Address: 0x2d719c, Func Offset: 0x7c
 	// Func End, Address: 0x2d71a4, Func Offset: 0x84
-}
-
-// 
-// Start address: 0x2d71b0
-void njTransposeMatrix(float pMatrix[16])
-{
-	// Line 3473, Address: 0x2d71b0, Func Offset: 0
-	// Line 3533, Address: 0x2d71c4, Func Offset: 0x14
-	// Line 3534, Address: 0x2d71c8, Func Offset: 0x18
-	// Line 3535, Address: 0x2d71cc, Func Offset: 0x1c
-	// Line 3536, Address: 0x2d71d0, Func Offset: 0x20
-	// Line 3537, Address: 0x2d71d4, Func Offset: 0x24
-	// Line 3538, Address: 0x2d71d8, Func Offset: 0x28
-	// Line 3539, Address: 0x2d71dc, Func Offset: 0x2c
-	// Line 3540, Address: 0x2d71e0, Func Offset: 0x30
-	// Line 3541, Address: 0x2d71e4, Func Offset: 0x34
-	// Line 3542, Address: 0x2d71e8, Func Offset: 0x38
-	// Line 3543, Address: 0x2d71ec, Func Offset: 0x3c
-	// Line 3544, Address: 0x2d71f0, Func Offset: 0x40
-	// Line 3545, Address: 0x2d71f4, Func Offset: 0x44
-	// Line 3546, Address: 0x2d71f8, Func Offset: 0x48
-	// Line 3547, Address: 0x2d71fc, Func Offset: 0x4c
-	// Line 3554, Address: 0x2d7200, Func Offset: 0x50
-	// Func End, Address: 0x2d7208, Func Offset: 0x58
 }*/
+
+// 100% matching!
+void	njTransposeMatrix(NJS_MATRIX *m)
+{
+	if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        lqc2  vf4,    0(%0)
+        lqc2  vf5, 0x10(%0)
+        lqc2  vf6, 0x20(%0)
+
+        vaddx vf7, vf0, vf4
+        vaddx vf7, vf0, vf5
+        vaddx vf7, vf0, vf6
+
+        vaddy vf8, vf0, vf4
+        vaddy vf8, vf0, vf5
+        vaddy vf8, vf0, vf6
+
+        vaddz vf9, vf0, vf4
+        vaddz vf9, vf0, vf5
+        vaddz vf9, vf0, vf6
+
+        sqc2  vf7,    0(%0)
+        sqc2  vf8, 0x10(%0)
+        sqc2  vf9, 0x20(%0)
+    .set reorder
+    " : : "r"(m) : 
+    );
+}
 
 // 100% matching!
 static float njAtan2b(float a, float b)
