@@ -4609,21 +4609,20 @@ unsigned int bhEneSeOn()
 	scePrintf("bhEneSeOn - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x160ab0
+// 100% matching!
 unsigned int bhEneSeOff()
 {
 	unsigned char v0;
-	// Line 5286, Address: 0x160ab0, Func Offset: 0
-	// Line 5289, Address: 0x160ab8, Func Offset: 0x8
-	// Line 5290, Address: 0x160acc, Func Offset: 0x1c
-	// Line 5291, Address: 0x160ad8, Func Offset: 0x28
-	// Line 5292, Address: 0x160ae0, Func Offset: 0x30
-	// Line 5295, Address: 0x160ae8, Func Offset: 0x38
-	// Line 5294, Address: 0x160aec, Func Offset: 0x3c
-	// Line 5295, Address: 0x160af0, Func Offset: 0x40
-	// Func End, Address: 0x160af8, Func Offset: 0x48
-	scePrintf("bhEneSeOff - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+	
+	v0 = *bhScePtr;
+
+	bhScePtr++;
+
+	StopEnemySe(v0);
+
+	return 1;
 }
 
 // 
