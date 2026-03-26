@@ -11515,18 +11515,20 @@ int Event_init(BH_SCEWORK* a0, unsigned int evt_id)
     a0->ian[3][2] = 0;
 }
 
-// 
-// Start address: 0x1715c0
+// 100% matching!
 int Event_exec(unsigned int task_level, unsigned int evt_id)
 {
-	// Line 12432, Address: 0x1715c0, Func Offset: 0
-	// Line 12435, Address: 0x1715d4, Func Offset: 0x14
-	// Line 12436, Address: 0x1715e4, Func Offset: 0x24
-	// Line 12437, Address: 0x1715e8, Func Offset: 0x28
-	// Line 12438, Address: 0x1715fc, Func Offset: 0x3c
-	// Line 12451, Address: 0x171600, Func Offset: 0x40
-	// Func End, Address: 0x171618, Func Offset: 0x58
-	scePrintf("Event_exec - UNIMPLEMENTED!\n");
+    if (task_level >= 16)
+    {
+        task_level = 0;
+        
+        while ((bhEtask[task_level].status != 0) && (task_level != 15))
+        {
+            task_level++;
+        }
+    }
+
+    return Event_init(&bhEtask[task_level], evt_id);
 }
 
 // 100% matching!
