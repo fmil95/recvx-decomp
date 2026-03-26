@@ -6768,24 +6768,20 @@ unsigned int bhGrdPosMoveStart()
 	scePrintf("bhGrdPosMoveStart - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1653a0
+// 100% matching!
 unsigned int bhEvtKill()
 {
 	unsigned int v0;
-	// Line 7593, Address: 0x1653a0, Func Offset: 0
-	// Line 7597, Address: 0x1653a8, Func Offset: 0x8
-	// Line 7593, Address: 0x1653b4, Func Offset: 0x14
-	// Line 7594, Address: 0x1653c0, Func Offset: 0x20
-	// Line 7599, Address: 0x1653c8, Func Offset: 0x28
-	// Line 7594, Address: 0x1653cc, Func Offset: 0x2c
-	// Line 7595, Address: 0x1653d0, Func Offset: 0x30
-	// Line 7597, Address: 0x1653d4, Func Offset: 0x34
-	// Line 7595, Address: 0x1653d8, Func Offset: 0x38
-	// Line 7597, Address: 0x1653e0, Func Offset: 0x40
-	// Line 7600, Address: 0x1653e4, Func Offset: 0x44
-	// Func End, Address: 0x1653ec, Func Offset: 0x4c
-	scePrintf("bhEvtKill - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+	
+	v0 = *bhScePtr;
+
+	bhScePtr++;
+
+	bhEtask[v0].status = 0;
+
+	return 1;
 }
 
 // 
