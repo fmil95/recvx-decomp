@@ -3214,21 +3214,20 @@ unsigned int bhObjLinkSetEneEne()
 	scePrintf("bhObjLinkSetEneEne - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15c8e0
+// 100% matching!
 unsigned int bhDelObjSe()
 {
 	int v0;
-	// Line 3743, Address: 0x15c8e0, Func Offset: 0
-	// Line 3746, Address: 0x15c8e8, Func Offset: 0x8
-	// Line 3747, Address: 0x15c8fc, Func Offset: 0x1c
-	// Line 3748, Address: 0x15c908, Func Offset: 0x28
-	// Line 3750, Address: 0x15c910, Func Offset: 0x30
-	// Line 3752, Address: 0x15c918, Func Offset: 0x38
-	// Line 3751, Address: 0x15c91c, Func Offset: 0x3c
-	// Line 3752, Address: 0x15c920, Func Offset: 0x40
-	// Func End, Address: 0x15c928, Func Offset: 0x48
-	scePrintf("bhDelObjSe - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+
+	v0 = *bhScePtr;
+
+	bhScePtr++;
+
+	FreeObjectSe(v0);
+
+	return 1;
 }
 
 // 
