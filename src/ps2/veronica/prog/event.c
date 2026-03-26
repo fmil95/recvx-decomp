@@ -5392,21 +5392,20 @@ unsigned int bhFaceRep()
 	scePrintf("bhFaceRep - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x162260
+// 100% matching!
 unsigned int bhBGSeOff2()
 {
 	unsigned int v0;
-	// Line 6189, Address: 0x162260, Func Offset: 0
-	// Line 6193, Address: 0x162268, Func Offset: 0x8
-	// Line 6194, Address: 0x16227c, Func Offset: 0x1c
-	// Line 6195, Address: 0x162288, Func Offset: 0x28
-	// Line 6196, Address: 0x162290, Func Offset: 0x30
-	// Line 6198, Address: 0x162298, Func Offset: 0x38
-	// Line 6197, Address: 0x16229c, Func Offset: 0x3c
-	// Line 6198, Address: 0x1622a0, Func Offset: 0x40
-	// Func End, Address: 0x1622a8, Func Offset: 0x48
-	scePrintf("bhBGSeOff2 - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+
+	v0 = *bhScePtr;
+
+	bhScePtr++;
+
+	StopBackGroundSe2(v0);
+
+	return 1;
 }
 
 // 
