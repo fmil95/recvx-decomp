@@ -35,6 +35,7 @@ int Ps2ReplaceTexAddr(unsigned int gindex, void* rep_addr);
 int Ps2TextureGarbageCollectionAll();
 int ring_check();
 
+extern NJS_TEXMEMLIST* Ps2_tex_info;
 extern NJS_TEXLIST* Ps2_current_texlist;
 extern unsigned int Ps2_current_texno;
 extern NJS_TEXLIST* Ps2_current_texlist_bk;

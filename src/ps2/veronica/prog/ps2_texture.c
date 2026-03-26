@@ -1,4 +1,5 @@
 #include "ps2_texture.h"
+#include "ps2_NaTextureFunction.h"
 #include "ps2_dummy.h"
 #include "main.h"
 
@@ -432,41 +433,63 @@ char* bhCopyTexmem2MainmemSub(NJS_TEXLIST* tlp, char* adr)
     return adr; 
 } 
 
-// 
-// Start address: 0x2e6a10
-void bhCopyMainmem2Texmem(NJS_TEXLIST* tlp)
-{
-	//_anon23* tmp;
-	int no;
-	//_anon23* addr;
-	unsigned int num;
-	unsigned int i;
-	// Line 515, Address: 0x2e6a10, Func Offset: 0
-	// Line 526, Address: 0x2e6a38, Func Offset: 0x28
-	// Line 527, Address: 0x2e6a40, Func Offset: 0x30
-	// Line 528, Address: 0x2e6a64, Func Offset: 0x54
-	// Line 537, Address: 0x2e6a6c, Func Offset: 0x5c
-	// Line 538, Address: 0x2e6a84, Func Offset: 0x74
-	// Line 540, Address: 0x2e6aa0, Func Offset: 0x90
-	// Line 542, Address: 0x2e6ab0, Func Offset: 0xa0
-	// Line 543, Address: 0x2e6ab8, Func Offset: 0xa8
-	// Line 544, Address: 0x2e6ac0, Func Offset: 0xb0
-	// Line 545, Address: 0x2e6ad0, Func Offset: 0xc0
-	// Line 546, Address: 0x2e6ae8, Func Offset: 0xd8
-	// Line 547, Address: 0x2e6af0, Func Offset: 0xe0
-	// Line 549, Address: 0x2e6af8, Func Offset: 0xe8
-	// Line 550, Address: 0x2e6b2c, Func Offset: 0x11c
-	// Line 551, Address: 0x2e6b34, Func Offset: 0x124
-	// Line 553, Address: 0x2e6b38, Func Offset: 0x128
-	// Line 554, Address: 0x2e6b48, Func Offset: 0x138
-	// Line 558, Address: 0x2e6b50, Func Offset: 0x140
-	// Line 554, Address: 0x2e6b54, Func Offset: 0x144
-	// Line 558, Address: 0x2e6b60, Func Offset: 0x150
-	// Line 559, Address: 0x2e6b78, Func Offset: 0x168
-	// Line 560, Address: 0x2e6b80, Func Offset: 0x170
-	// Func End, Address: 0x2e6bac, Func Offset: 0x19c
-	scePrintf("bhCopyMainmem2Texmem - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+void bhCopyMainmem2Texmem(NJS_TEXLIST* tlp) 
+{ 
+    unsigned int i;       
+    unsigned int num;     
+    NJS_TEXMEMLIST* addr; 
+    int no;               
+    NJS_TEXMEMLIST* tmp;  
+
+    // debug code?
+    if (0) 
+    {
+        (void)&i;
+    }
+    
+    addr = Ps2_tex_info; 
+    
+    Ps2_tex_save->num = num = tlp->nbTexture; 
+    
+    for (i = 0; i < num; i++) 
+    {
+        tmp = &Ps2_tex_save->tmem[i]; 
+        
+        if ((no = SearchNumber(Ps2_tex_save->tmem[i].globalIndex, Ps2_tex_save->tmem[i].bank)) >= 0) 
+        { 
+            addr[no].count++; 
+            
+            ((TIM2_PICTUREHEADER_EX*)addr[no].texinfo.texsurface.pSurface)->admin.count++; 
+            
+            tlp->textures[i].texaddr = (unsigned int)&addr[no]; 
+        } 
+        else 
+        { 
+            if ((no = SearchNullNumber()) >= 0) 
+            { 
+                tlp->textures[i].texaddr = (unsigned int)&addr[no]; 
+            } 
+            else
+            { 
+                exit(0);
+            }
+            
+            addr[no] = *tmp; 
+            
+            addr[no].count = 1; 
+            
+            addr[no].texinfo.texaddr = Ps2_tex_save->addr[i]; 
+            
+            if (Ps2TextureMalloc(&addr[no]) < 0)
+            { 
+                exit(0);
+            }
+        }
+    } 
+    
+    Ps2_tex_save->num = 0; 
+} 
 
 // 100% matching!
 void bhPushAllTexture()
