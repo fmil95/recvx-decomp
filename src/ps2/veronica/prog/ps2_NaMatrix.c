@@ -1615,29 +1615,43 @@ float njOuterProduct(_anon0* pSrcVec1, _anon0* pSrcVec2, _anon0* pDstVec)
 	// Func End, Address: 0x2d789c, Func Offset: 0x6c
 }*/
 
-// 
-// Start address: 0x2d78a0
+// 100% matching! 
 Float	njInnerProduct(NJS_VECTOR *v1, NJS_VECTOR *v2)
 {
 	float ret;
-	// Line 5031, Address: 0x2d78a0, Func Offset: 0
-	// Line 5032, Address: 0x2d78a4, Func Offset: 0x4
-	// Line 5033, Address: 0x2d78a8, Func Offset: 0x8
-	// Line 5034, Address: 0x2d78ac, Func Offset: 0xc
-	// Line 5035, Address: 0x2d78b0, Func Offset: 0x10
-	// Line 5036, Address: 0x2d78b4, Func Offset: 0x14
-	// Line 5037, Address: 0x2d78b8, Func Offset: 0x18
-	// Line 5038, Address: 0x2d78bc, Func Offset: 0x1c
-	// Line 5039, Address: 0x2d78c0, Func Offset: 0x20
-	// Line 5040, Address: 0x2d78c4, Func Offset: 0x24
-	// Line 5042, Address: 0x2d78c8, Func Offset: 0x28
-	// Line 5043, Address: 0x2d78cc, Func Offset: 0x2c
-	// Line 5044, Address: 0x2d78d0, Func Offset: 0x30
-	// Line 5045, Address: 0x2d78d4, Func Offset: 0x34
-	// Line 5046, Address: 0x2d78d8, Func Offset: 0x38
-	// Line 5052, Address: 0x2d78dc, Func Offset: 0x3c
-	// Func End, Address: 0x2d78e4, Func Offset: 0x44
-    scePrintf("njInnerProduct - UNIMPLEMENTED!\n");
+
+	asm volatile
+    ("
+    .set noreorder
+        ldl      a4, 0x7(%1)
+        ldr      a4,   0(%1)
+     
+        lw       a5, NJS_VECTOR.z(%1) 
+
+        ldl      a6, 0x7(%2)
+        ldr      a6,   0(%2)
+     
+        lw       a7, NJS_VECTOR.z(%2) 
+     
+        pcpyld   a4, a5, a4
+        pcpyld   a6, a7, a6
+     
+        qmtc2.ni a4, vf4
+        qmtc2.ni a6, vf5
+     
+        vmul     vf6,  vf4, vf5
+     
+        vaddy    vf6,  vf6, vf6
+        vaddz    vf14, vf6, vf6
+     
+        qmfc2.ni v0, vf14
+        
+        mtc1     v0, %0
+    .set reorder
+    " : "=r"(ret) : "r"(v1), "r"(v2) : 
+    );
+
+    return ret;
 }
 
 // 100% matching! 
