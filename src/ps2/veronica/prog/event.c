@@ -5408,18 +5408,14 @@ unsigned int bhBGSeOff2()
 	return 1;
 }
 
-// 
-// Start address: 0x1622b0
+// 100% matching!
 unsigned int bhBgmOff2()
 {
-	// Line 6206, Address: 0x1622b0, Func Offset: 0
-	// Line 6207, Address: 0x1622b8, Func Offset: 0x8
-	// Line 6208, Address: 0x1622c8, Func Offset: 0x18
-	// Line 6210, Address: 0x1622d0, Func Offset: 0x20
-	// Line 6209, Address: 0x1622d4, Func Offset: 0x24
-	// Line 6210, Address: 0x1622d8, Func Offset: 0x28
-	// Func End, Address: 0x1622e0, Func Offset: 0x30
-	scePrintf("bhBgmOff2 - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+
+	StopBgm2();
+
+	return 1;
 }
 
 // 
