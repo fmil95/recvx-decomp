@@ -7575,18 +7575,17 @@ unsigned int bhSleep()
 	scePrintf("bhSleep - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x167560
+// 100% matching!
 unsigned int bhSleeping()
 {
-	// Line 8742, Address: 0x167560, Func Offset: 0
-	// Line 8746, Address: 0x167584, Func Offset: 0x24
-	// Line 8747, Address: 0x16758c, Func Offset: 0x2c
-	// Line 8746, Address: 0x167594, Func Offset: 0x34
-	// Line 8747, Address: 0x1675a0, Func Offset: 0x40
-	// Line 8750, Address: 0x1675ac, Func Offset: 0x4c
-	// Func End, Address: 0x1675b4, Func Offset: 0x54
-	scePrintf("bhSleeping - UNIMPLEMENTED!\n");
+	if (--bhCetask->cnt[bhCetask->loop] == 0) 
+	{
+		bhScePtr += 3;
+
+		bhCetask->loop--;
+	}
+
+	return 0;
 }
 
 // 
