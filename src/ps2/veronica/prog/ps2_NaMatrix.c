@@ -1441,29 +1441,45 @@ Float	njUnitVector(NJS_VECTOR *v)
     scePrintf("njUnitVector - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2d7710
-float njScalor(_anon0* pVector)
+// 100% matching!
+Float	njScalor(NJS_VECTOR *v)
 {
 	float ret;
-	// Line 4740, Address: 0x2d7710, Func Offset: 0
-	// Line 4741, Address: 0x2d7714, Func Offset: 0x4
-	// Line 4742, Address: 0x2d7718, Func Offset: 0x8
-	// Line 4743, Address: 0x2d771c, Func Offset: 0xc
-	// Line 4744, Address: 0x2d7720, Func Offset: 0x10
-	// Line 4745, Address: 0x2d7724, Func Offset: 0x14
-	// Line 4746, Address: 0x2d7728, Func Offset: 0x18
-	// Line 4747, Address: 0x2d772c, Func Offset: 0x1c
-	// Line 4748, Address: 0x2d7730, Func Offset: 0x20
-	// Line 4749, Address: 0x2d7734, Func Offset: 0x24
-	// Line 4750, Address: 0x2d7738, Func Offset: 0x28
-	// Line 4751, Address: 0x2d773c, Func Offset: 0x2c
-	// Line 4752, Address: 0x2d7740, Func Offset: 0x30
-	// Line 4758, Address: 0x2d7744, Func Offset: 0x34
-	// Func End, Address: 0x2d774c, Func Offset: 0x3c
+
+    asm volatile
+    ("
+    .set noreorder
+        ldl      a4, 0x7(%1)
+        ldr      a4,   0(%1)
+     
+        lw       a5, NJS_VECTOR.z(%1) 
+     
+        pcpyld   a4, a5, a4
+     
+        qmtc2.ni a4, vf4
+     
+        vmul     vf5, vf4, vf4
+     
+        vaddy    vf5, vf5, vf5
+        vaddz    vf5, vf5, vf5
+     
+        vsqrt    Q, vf5
+     
+        vwaitq   
+     
+        vaddq    vf6, vf0, Q
+     
+        qmfc2.ni v0, vf6
+        
+        mtc1     v0, %0
+    .set reorder
+    " : "=r"(ret) : "r"(v) : 
+    );
+
+    return ret;
 }
 
-// 
+/*// 
 // Start address: 0x2d7750
 float njScalor2(_anon0* pVector)
 {
