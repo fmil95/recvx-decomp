@@ -203,15 +203,21 @@ void    njGetTranslation(NJS_MATRIX *m, NJS_POINT3 *p)
     );
 }
 
-// 
-// Start address: 0x2d6860
+// 100% matching!
 void    njUnitTransPortion(NJS_MATRIX *m)
 {
-	// Line 556, Address: 0x2d6860, Func Offset: 0
-	// Line 582, Address: 0x2d6874, Func Offset: 0x14
-	// Line 589, Address: 0x2d6878, Func Offset: 0x18
-	// Func End, Address: 0x2d6880, Func Offset: 0x20
-	scePrintf("njUnitTransPortion - UNIMPLEMENTED!\n");
+	if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile 
+    ("
+    .set noreorder
+        sqc2 vf0, 0x30(%0)
+    .set reorder
+    " : : "r"(m) : 
+    );
 }
 
 // 100% matching! 
