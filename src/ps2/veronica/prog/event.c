@@ -5036,18 +5036,14 @@ unsigned int bhEasySESet()
 	scePrintf("bhEasySESet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x161780
+// 100% matching!
 unsigned int bhSoundFlagReSet()
 {
-	// Line 5788, Address: 0x161780, Func Offset: 0
-	// Line 5789, Address: 0x161788, Func Offset: 0x8
-	// Line 5790, Address: 0x161798, Func Offset: 0x18
-	// Line 5792, Address: 0x1617a0, Func Offset: 0x20
-	// Line 5791, Address: 0x1617a4, Func Offset: 0x24
-	// Line 5792, Address: 0x1617a8, Func Offset: 0x28
-	// Func End, Address: 0x1617b0, Func Offset: 0x30
-	scePrintf("bhSoundFlagReSet - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+
+	Reset3dSoundFlag();
+
+	return 1;
 }
 
 // 
