@@ -1581,39 +1581,62 @@ void	njProjectScreen(NJS_MATRIX *m, NJS_POINT3 *p3, NJS_POINT2 *p2)
     );
 }
 
-/*// 
-// Start address: 0x2d7830
-float njOuterProduct(_anon0* pSrcVec1, _anon0* pSrcVec2, _anon0* pDstVec)
+// 100% matching! 
+Float	njOuterProduct(NJS_VECTOR *v1, NJS_VECTOR *v2, NJS_VECTOR *ov)
 {
 	float ret;
-	// Line 4937, Address: 0x2d7830, Func Offset: 0
-	// Line 4938, Address: 0x2d7834, Func Offset: 0x4
-	// Line 4939, Address: 0x2d7838, Func Offset: 0x8
-	// Line 4940, Address: 0x2d783c, Func Offset: 0xc
-	// Line 4941, Address: 0x2d7840, Func Offset: 0x10
-	// Line 4942, Address: 0x2d7844, Func Offset: 0x14
-	// Line 4943, Address: 0x2d7848, Func Offset: 0x18
-	// Line 4944, Address: 0x2d784c, Func Offset: 0x1c
-	// Line 4945, Address: 0x2d7850, Func Offset: 0x20
-	// Line 4946, Address: 0x2d7854, Func Offset: 0x24
-	// Line 4948, Address: 0x2d7858, Func Offset: 0x28
-	// Line 4949, Address: 0x2d785c, Func Offset: 0x2c
-	// Line 4951, Address: 0x2d7860, Func Offset: 0x30
-	// Line 4952, Address: 0x2d7864, Func Offset: 0x34
-	// Line 4953, Address: 0x2d7868, Func Offset: 0x38
-	// Line 4954, Address: 0x2d786c, Func Offset: 0x3c
-	// Line 4956, Address: 0x2d7870, Func Offset: 0x40
-	// Line 4957, Address: 0x2d7874, Func Offset: 0x44
-	// Line 4958, Address: 0x2d7878, Func Offset: 0x48
-	// Line 4959, Address: 0x2d787c, Func Offset: 0x4c
-	// Line 4960, Address: 0x2d7880, Func Offset: 0x50
-	// Line 4962, Address: 0x2d7884, Func Offset: 0x54
-	// Line 4963, Address: 0x2d7888, Func Offset: 0x58
-	// Line 4964, Address: 0x2d788c, Func Offset: 0x5c
-	// Line 4965, Address: 0x2d7890, Func Offset: 0x60
-	// Line 4971, Address: 0x2d7894, Func Offset: 0x64
-	// Func End, Address: 0x2d789c, Func Offset: 0x6c
-}*/
+
+	asm volatile
+    ("
+    .set noreorder
+        ldl      a4, 0x7(%1)
+        ldr      a4,   0(%1)
+     
+        lw       a5, NJS_VECTOR.z(%1) 
+
+        ldl      a6, 0x7(%2)
+        ldr      a6,   0(%2)
+     
+        lw       a7, NJS_VECTOR.z(%2) 
+     
+        pcpyld   a4, a5, a4
+        pcpyld   a6, a7, a6
+     
+        qmtc2.ni a4, vf4
+        qmtc2.ni a6, vf5
+
+        vopmula  ACC, vf4, vf5
+        vopmsub  vf6, vf5, vf4
+     
+        vmul     vf7, vf6, vf6
+     
+        vaddy    vf7, vf7, vf7
+        vaddz    vf7, vf7, vf7
+
+        vsqrt    Q, vf7
+
+        qmfc2.ni a4, vf6
+
+        pcpyud   a5, a4, a4
+
+        sdl      a4, 0x7(%3)
+        sdr      a4,   0(%3)
+
+        sw       a5, NJS_VECTOR.z(%3)
+
+        vwaitq
+
+        vaddq    vf8, vf0, Q
+     
+        qmfc2.ni v0, vf8
+        
+        mtc1     v0, %0
+    .set reorder
+    " : "=r"(ret) : "r"(v1), "r"(v2), "r"(ov) : 
+    );
+
+    return ret;
+}
 
 // 100% matching! 
 Float	njInnerProduct(NJS_VECTOR *v1, NJS_VECTOR *v2)
