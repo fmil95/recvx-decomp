@@ -4232,18 +4232,14 @@ unsigned int bhEffPush()
 	return 1;
 }
 
-// 
-// Start address: 0x15fd80
+// 100% matching!
 unsigned int bhEffPop()
 {
-	// Line 4928, Address: 0x15fd80, Func Offset: 0
-	// Line 4929, Address: 0x15fd88, Func Offset: 0x8
-	// Line 4930, Address: 0x15fd98, Func Offset: 0x18
-	// Line 4932, Address: 0x15fda0, Func Offset: 0x20
-	// Line 4931, Address: 0x15fda4, Func Offset: 0x24
-	// Line 4932, Address: 0x15fda8, Func Offset: 0x28
-	// Func End, Address: 0x15fdb0, Func Offset: 0x30
-	scePrintf("bhEffPop - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+
+	bhPopEffectWork();
+
+	return 1;
 }
 
 // 
