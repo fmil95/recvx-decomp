@@ -6784,18 +6784,14 @@ unsigned int bhEvtKill()
 	return 1;
 }
 
-// 
-// Start address: 0x1653f0
+// 100% matching!
 unsigned int bhReTryPointSet()
 {
-	// Line 7608, Address: 0x1653f0, Func Offset: 0
-	// Line 7609, Address: 0x1653f8, Func Offset: 0x8
-	// Line 7610, Address: 0x165408, Func Offset: 0x18
-	// Line 7613, Address: 0x165410, Func Offset: 0x20
-	// Line 7612, Address: 0x165414, Func Offset: 0x24
-	// Line 7613, Address: 0x165418, Func Offset: 0x28
-	// Func End, Address: 0x165420, Func Offset: 0x30
-	scePrintf("bhReTryPointSet - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+
+	bhPushGameData();
+
+	return 1;
 }
 
 // 
