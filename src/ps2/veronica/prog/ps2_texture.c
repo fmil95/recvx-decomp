@@ -398,33 +398,39 @@ char* bhCopyTexmem2Mainmem(NJS_TEXLIST* tlp, char* adr)
     return temp;
 }
 
-// 
-// Start address: 0x2e6900
-char* bhCopyTexmem2MainmemSub(NJS_TEXLIST* tlp, char* adr)
-{
-	//_anon23* tmp;
-	unsigned int num;
-	unsigned int i;
-	// Line 474, Address: 0x2e6900, Func Offset: 0
-	// Line 483, Address: 0x2e6924, Func Offset: 0x24
-	// Line 489, Address: 0x2e6930, Func Offset: 0x30
-	// Line 490, Address: 0x2e6948, Func Offset: 0x48
-	// Line 492, Address: 0x2e6954, Func Offset: 0x54
-	// Line 493, Address: 0x2e6958, Func Offset: 0x58
-	// Line 492, Address: 0x2e6960, Func Offset: 0x60
-	// Line 493, Address: 0x2e6968, Func Offset: 0x68
-	// Line 499, Address: 0x2e698c, Func Offset: 0x8c
-	// Line 500, Address: 0x2e6994, Func Offset: 0x94
-	// Line 503, Address: 0x2e69a4, Func Offset: 0xa4
-	// Line 502, Address: 0x2e69a8, Func Offset: 0xa8
-	// Line 503, Address: 0x2e69b8, Func Offset: 0xb8
-	// Line 502, Address: 0x2e69bc, Func Offset: 0xbc
-	// Line 503, Address: 0x2e69c8, Func Offset: 0xc8
-	// Line 504, Address: 0x2e69e0, Func Offset: 0xe0
-	// Line 505, Address: 0x2e69e4, Func Offset: 0xe4
-	// Func End, Address: 0x2e6a08, Func Offset: 0x108
-	scePrintf("bhCopyTexmem2MainmemSub - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+char* bhCopyTexmem2MainmemSub(NJS_TEXLIST* tlp, char* adr) 
+{ 
+    unsigned int i;      
+    unsigned int num;    
+    NJS_TEXMEMLIST* tmp; 
+    
+    Ps2_tex_save->num = num = tlp->nbTexture; 
+    
+    // debug code?
+    if (0) 
+    { 
+        (void)&i; 
+        (void)&adr; 
+    }
+    
+    njSetTexture(tlp);
+    
+    for (i = 0; i < num; i++) 
+    {
+        tmp = (NJS_TEXMEMLIST*)tlp->textures[i].texaddr; 
+        
+        Ps2_tex_save->tmem[i] = *tmp; 
+        
+        Ps2_tex_save->addr[i] = adr; 
+        
+        Ps2MemCopy4(adr, tmp->texinfo.texsurface.pSurface, tmp->texinfo.texsurface.TextureSize / 4); 
+        
+        adr += tmp->texinfo.texsurface.TextureSize; 
+    } 
+    
+    return adr; 
+} 
 
 // 
 // Start address: 0x2e6a10
