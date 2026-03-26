@@ -3851,20 +3851,25 @@ unsigned int bhPadCheck()
 	scePrintf("bhPadCheck - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15e950
+// 100% matching!
 unsigned int bhTFrameCheck()
 {
 	int v0;
-	// Line 4511, Address: 0x15e950, Func Offset: 0
-	// Line 4516, Address: 0x15e958, Func Offset: 0x8
-	// Line 4511, Address: 0x15e960, Func Offset: 0x10
-	// Line 4512, Address: 0x15e96c, Func Offset: 0x1c
-	// Line 4513, Address: 0x15e978, Func Offset: 0x28
-	// Line 4516, Address: 0x15e980, Func Offset: 0x30
-	// Line 4519, Address: 0x15e998, Func Offset: 0x48
-	// Func End, Address: 0x15e9a0, Func Offset: 0x50
-	scePrintf("bhTFrameCheck - UNIMPLEMENTED!\n");
+
+	bhScePtr += 4;
+
+	v0 = *(unsigned short*)bhScePtr;
+
+	bhScePtr += 2;
+	
+	if (Event_T_timer >= v0) 
+	{
+		return 0;
+	}
+	else 
+	{
+		return 1;
+	}
 }
 
 // 100% matching! 
