@@ -1663,16 +1663,13 @@ void njRotTransPers(NJS_POINT3* pPoint, NJS_SCRVECTOR* pScreen)
 	scePrintf("njRotTransPers - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2d7ae0
-void njRotTrans(_anon0* pPoint, _anon0* pOut)
+// 100% matching!
+void njRotTrans(NJS_POINT3* pPoint, NJS_POINT3* pOut)
 {
-	// Line 5840, Address: 0x2d7ae0, Func Offset: 0
-	// Line 5842, Address: 0x2d7af8, Func Offset: 0x18
-	// Line 5843, Address: 0x2d7b08, Func Offset: 0x28
-	// Line 5844, Address: 0x2d7b14, Func Offset: 0x34
-	// Func End, Address: 0x2d7b28, Func Offset: 0x48
-}*/
+	njMulMatrixCN(&NaViewScreenMatrix, NULL);
+    
+    njCalcPointCN(pPoint, pOut);
+}
 
 // 100% matching!
 void njPers(NJS_SCRVECTOR* pScreen)
