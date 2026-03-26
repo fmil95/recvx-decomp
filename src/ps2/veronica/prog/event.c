@@ -7536,23 +7536,20 @@ unsigned int bhRankingCall()
 	scePrintf("bhRankingCall - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x167470
+// 100% matching!
 unsigned int bhCallSysSe()
 {
 	int v0;
-	// Line 8441, Address: 0x167470, Func Offset: 0
-	// Line 8444, Address: 0x167478, Func Offset: 0x8
-	// Line 8447, Address: 0x167480, Func Offset: 0x10
-	// Line 8444, Address: 0x167484, Func Offset: 0x14
-	// Line 8445, Address: 0x167490, Func Offset: 0x20
-	// Line 8446, Address: 0x16749c, Func Offset: 0x2c
-	// Line 8447, Address: 0x1674a4, Func Offset: 0x34
-	// Line 8450, Address: 0x1674ac, Func Offset: 0x3c
-	// Line 8449, Address: 0x1674b0, Func Offset: 0x40
-	// Line 8450, Address: 0x1674b4, Func Offset: 0x44
-	// Func End, Address: 0x1674bc, Func Offset: 0x4c
-	scePrintf("bhCallSysSe - UNIMPLEMENTED!\n");
+	
+	bhScePtr += 2;
+
+	v0 = *(unsigned short*)bhScePtr;
+
+	bhScePtr += 2;
+
+	CallSystemSe(0, v0);
+
+	return 1;
 }
 
 // 
