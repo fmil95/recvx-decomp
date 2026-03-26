@@ -6552,21 +6552,20 @@ unsigned int bhEtcAtariEvtPosSet()
 	scePrintf("bhEtcAtariEvtPosSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x164870
+// 100% matching!
 unsigned int bhRoomSoundCase()
 {
 	int v0;
-	// Line 7348, Address: 0x164870, Func Offset: 0
-	// Line 7351, Address: 0x164878, Func Offset: 0x8
-	// Line 7352, Address: 0x16488c, Func Offset: 0x1c
-	// Line 7353, Address: 0x164898, Func Offset: 0x28
-	// Line 7355, Address: 0x1648a0, Func Offset: 0x30
-	// Line 7358, Address: 0x1648a8, Func Offset: 0x38
-	// Line 7357, Address: 0x1648ac, Func Offset: 0x3c
-	// Line 7358, Address: 0x1648b0, Func Offset: 0x40
-	// Func End, Address: 0x1648b8, Func Offset: 0x48
-	scePrintf("bhRoomSoundCase - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+	
+	v0 = *bhScePtr;
+
+	bhScePtr++;
+
+	SetRoomSoundCaseNo(v0);
+
+	return 1;
 }
 
 // 
