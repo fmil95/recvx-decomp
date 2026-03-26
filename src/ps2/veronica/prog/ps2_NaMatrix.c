@@ -501,28 +501,42 @@ void	njTranslate(NJS_MATRIX *m, Float x, Float y, Float z)
     );
 }
 
-/*// 
-// Start address: 0x2d6ba0
-void njTranslateV(float pMatrix[16], _anon0* pVector)
+// 100% matching!
+void	njTranslateV(NJS_MATRIX *m, NJS_VECTOR *v)
 {
-	// Line 1611, Address: 0x2d6ba0, Func Offset: 0
-	// Line 1667, Address: 0x2d6bb4, Func Offset: 0x14
-	// Line 1668, Address: 0x2d6bb8, Func Offset: 0x18
-	// Line 1669, Address: 0x2d6bbc, Func Offset: 0x1c
-	// Line 1670, Address: 0x2d6bc0, Func Offset: 0x20
-	// Line 1671, Address: 0x2d6bc4, Func Offset: 0x24
-	// Line 1674, Address: 0x2d6bc8, Func Offset: 0x28
-	// Line 1675, Address: 0x2d6bcc, Func Offset: 0x2c
-	// Line 1676, Address: 0x2d6bd0, Func Offset: 0x30
-	// Line 1677, Address: 0x2d6bd4, Func Offset: 0x34
-	// Line 1678, Address: 0x2d6bd8, Func Offset: 0x38
-	// Line 1679, Address: 0x2d6bdc, Func Offset: 0x3c
-	// Line 1680, Address: 0x2d6be0, Func Offset: 0x40
-	// Line 1681, Address: 0x2d6be4, Func Offset: 0x44
-	// Line 1682, Address: 0x2d6be8, Func Offset: 0x48
-	// Line 1689, Address: 0x2d6bec, Func Offset: 0x4c
-	// Func End, Address: 0x2d6bf4, Func Offset: 0x54
-}*/
+	if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        ldl         a4, 0x7(%1)
+        ldr         a4,   0(%1)
+
+        lw          a5, NJS_VECTOR.z(%1) 
+
+        pcpyld      a4, a5, a4
+
+        qmtc2.ni    a4, vf4
+
+        lqc2        vf5, 0(%0)
+        lqc2        vf6, 0x10(%0)
+        lqc2        vf7, 0x20(%0)
+        lqc2        vf8, 0x30(%0)
+
+        vmulax.xyz  ACC,  vf5, vf4x
+        
+        vmadday.xyz ACC,  vf6, vf4y
+        vmaddaz.xyz ACC,  vf7, vf4z
+        vmaddw.xyz  vf9,  vf8, vf0w
+    
+        sqc2        vf9,  0x30(%0)
+    .set reorder
+    " : : "r"(m), "r"(v) : 
+    );
+}
 
 // 100% matching!
 void	njRotateX(NJS_MATRIX *m, Angle ang)
