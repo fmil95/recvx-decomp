@@ -4222,18 +4222,14 @@ unsigned int bhObjLinkSetObjPly()
 	scePrintf("bhObjLinkSetObjPly - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15fd50
+// 100% matching!
 unsigned int bhEffPush()
 {
-	// Line 4916, Address: 0x15fd50, Func Offset: 0
-	// Line 4917, Address: 0x15fd58, Func Offset: 0x8
-	// Line 4918, Address: 0x15fd68, Func Offset: 0x18
-	// Line 4920, Address: 0x15fd70, Func Offset: 0x20
-	// Line 4919, Address: 0x15fd74, Func Offset: 0x24
-	// Line 4920, Address: 0x15fd78, Func Offset: 0x28
-	// Func End, Address: 0x15fd80, Func Offset: 0x30
-	scePrintf("bhEffPush - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+
+	bhPushEffectWork();
+
+	return 1;
 }
 
 // 
