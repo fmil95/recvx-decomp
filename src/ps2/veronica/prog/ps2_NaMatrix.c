@@ -873,30 +873,43 @@ void	njScale(NJS_MATRIX *m, Float sx, Float sy, Float sz)
     );
 }
 
-/*// 
-// Start address: 0x2d70c0
-void njScaleV(float pMatrix[16], _anon0* pScale)
+// 100% matching!
+void	njScaleV(NJS_MATRIX *m, NJS_VECTOR *v)
 {
-	// Line 3059, Address: 0x2d70c0, Func Offset: 0
-	// Line 3132, Address: 0x2d70d4, Func Offset: 0x14
-	// Line 3133, Address: 0x2d70d8, Func Offset: 0x18
-	// Line 3134, Address: 0x2d70dc, Func Offset: 0x1c
-	// Line 3135, Address: 0x2d70e0, Func Offset: 0x20
-	// Line 3136, Address: 0x2d70e4, Func Offset: 0x24
-	// Line 3138, Address: 0x2d70e8, Func Offset: 0x28
-	// Line 3139, Address: 0x2d70ec, Func Offset: 0x2c
-	// Line 3140, Address: 0x2d70f0, Func Offset: 0x30
-	// Line 3141, Address: 0x2d70f4, Func Offset: 0x34
-	// Line 3142, Address: 0x2d70f8, Func Offset: 0x38
-	// Line 3143, Address: 0x2d70fc, Func Offset: 0x3c
-	// Line 3144, Address: 0x2d7100, Func Offset: 0x40
-	// Line 3145, Address: 0x2d7104, Func Offset: 0x44
-	// Line 3146, Address: 0x2d7108, Func Offset: 0x48
-	// Line 3153, Address: 0x2d710c, Func Offset: 0x4c
-	// Func End, Address: 0x2d7114, Func Offset: 0x54
+	if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        ldl         a4, 0x7(%1)
+        ldr         a4,   0(%1)
+
+        lw          a5, NJS_VECTOR.z(%1) 
+
+        pcpyld      a4, a5, a4
+
+        qmtc2.ni    a4, vf4
+
+        lqc2        vf5,    0(%0)
+        lqc2        vf6, 0x10(%0)
+        lqc2        vf7, 0x20(%0)
+
+        vmulx       vf5, vf5, vf4
+        vmuly       vf6, vf6, vf4
+        vmulz       vf7, vf7, vf4
+    
+        sqc2        vf5,     0(%0)
+        sqc2        vf6,  0x10(%0)
+        sqc2        vf7,  0x20(%0)
+    .set reorder
+    " : : "r"(m), "r"(v) : 
+    );
 }
 
-// 
+/*// 
 // Start address: 0x2d7120
 int njInvertMatrix(float pMatrix[16])
 {
