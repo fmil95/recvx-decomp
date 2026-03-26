@@ -1681,28 +1681,35 @@ void njRotateEx( Angle *ang, Sint32 lv )
     }
 }
 
-// 
-// Start address: 0x2d79c0
+// 100% matching! 
 void njScaleEx(NJS_VECTOR *v)
 {
-	// Line 5351, Address: 0x2d79c0, Func Offset: 0
-	// Line 5354, Address: 0x2d79cc, Func Offset: 0xc
-	// Line 5355, Address: 0x2d79d0, Func Offset: 0x10
-	// Line 5356, Address: 0x2d79d4, Func Offset: 0x14
-	// Line 5358, Address: 0x2d79d8, Func Offset: 0x18
-	// Line 5359, Address: 0x2d79dc, Func Offset: 0x1c
-	// Line 5360, Address: 0x2d79e0, Func Offset: 0x20
-	// Line 5361, Address: 0x2d79e4, Func Offset: 0x24
-	// Line 5362, Address: 0x2d79e8, Func Offset: 0x28
-	// Line 5364, Address: 0x2d79ec, Func Offset: 0x2c
-	// Line 5365, Address: 0x2d79f0, Func Offset: 0x30
-	// Line 5366, Address: 0x2d79f4, Func Offset: 0x34
-	// Line 5368, Address: 0x2d79f8, Func Offset: 0x38
-	// Line 5369, Address: 0x2d79fc, Func Offset: 0x3c
-	// Line 5370, Address: 0x2d7a00, Func Offset: 0x40
-	// Line 5377, Address: 0x2d7a04, Func Offset: 0x44
-	// Func End, Address: 0x2d7a0c, Func Offset: 0x4c
-	scePrintf("njScaleEx - UNIMPLEMENTED!\n");
+    asm volatile
+    ("
+    .set noreorder
+        lqc2     vf28,    0(%1)
+        lqc2     vf29, 0x10(%1)
+        lqc2     vf30, 0x20(%1)
+        
+        ldl      a4, 0x7(%0)
+        ldr      a4,   0(%0)
+        
+        lw       a5, NJS_VECTOR.z(%0) 
+        
+        pcpyld   a4, a5, a4
+        
+        qmtc2.ni a4, vf4
+        
+        vmulx    vf28, vf28, vf4
+        vmuly    vf29, vf29, vf4
+        vmulz    vf30, vf30, vf4
+        
+        sqc2     vf28,    0(%1)
+        sqc2     vf29, 0x10(%1)
+        sqc2     vf30, 0x20(%1)
+    .set reorder
+    " : : "r"(v), "r"(pNaMatMatrixStuckPtr) : 
+    );
 }
 
 // 100% matching!
