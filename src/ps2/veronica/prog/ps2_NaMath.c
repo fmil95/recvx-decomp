@@ -3,18 +3,6 @@
 
 static float SinTable[16384];
 
-/*void _Make_SinTable();
-float njSin(int lAngle);
-float njCos(int lAngle);
-void njSinCos(int lAngle, float* sin, float* cos);
-float njFraction(float fN);
-float njSqrt(float x);
-float njInvertSqrt(float x);
-void njLinear(float* fpIdata, float* fpOdata, float fFrame);
-void njOverhauserSpline(float* fpIdata, float* fpOdata, _anon0* pAttr, float fT);
-void njBezierSpline(float* fpIdata, float* fpOdata, _anon0* pAttr, float fFrame);
-unsigned int njFactorial(unsigned int ulN);*/
-
 // 100% matching! 
 void _Make_SinTable()
 { 
@@ -437,31 +425,31 @@ void	njOverhauserSpline(Float *idata, Float *odata, NJS_SPLINE *attr, Float fram
     );
 }
 
-/*// 
-// Start address: 0x2d80a0
-void njBezierSpline(float* fpIdata, float* fpOdata, _anon0* pAttr, float fFrame)
+// 100% matching! 
+void	njBezierSpline(Float *idata, Float *odata, NJS_SPLINE *attr, Float frame) 
 {
-	float fResult;
-	float fFactMax;
-	unsigned int ulMax;
-	unsigned int ulCnt;
-	// Line 692, Address: 0x2d80a0, Func Offset: 0
-	// Line 728, Address: 0x2d80d0, Func Offset: 0x30
-	// Line 729, Address: 0x2d80d4, Func Offset: 0x34
-	// Line 730, Address: 0x2d80d8, Func Offset: 0x38
-	// Line 733, Address: 0x2d80dc, Func Offset: 0x3c
-	// Line 734, Address: 0x2d80f4, Func Offset: 0x54
-	// Line 736, Address: 0x2d812c, Func Offset: 0x8c
-	// Line 739, Address: 0x2d8148, Func Offset: 0xa8
-	// Line 741, Address: 0x2d821c, Func Offset: 0x17c
-	// Line 744, Address: 0x2d8220, Func Offset: 0x180
-	// Line 741, Address: 0x2d8228, Func Offset: 0x188
-	// Line 742, Address: 0x2d8238, Func Offset: 0x198
-	// Line 743, Address: 0x2d824c, Func Offset: 0x1ac
-	// Line 744, Address: 0x2d8260, Func Offset: 0x1c0
-	// Line 746, Address: 0x2d8268, Func Offset: 0x1c8
-	// Func End, Address: 0x2d829c, Func Offset: 0x1fc
-}*/
+    unsigned int ulCnt; 
+    unsigned int ulMax; 
+    float fFactMax;     
+    float fResult;      
+    
+    odata[0] = 0;
+    odata[1] = 0;
+    odata[2] = 0;
+    
+    ulMax = *attr->iparam - 1;
+    
+    fResult = njFactorial(ulMax);
+
+    for (ulCnt = 0; ulCnt <= ulMax; ulCnt++)  
+    {            
+        fFactMax = (powf(frame, ulCnt) * (fResult / (njFactorial(ulCnt) * njFactorial(ulMax - ulCnt)))) * powf(1.0f - frame, ulMax - ulCnt);
+        
+        odata[0] += fFactMax * *idata++;
+        odata[1] += fFactMax * *idata++;
+        odata[2] += fFactMax * *idata++; 
+    }
+}
 
 // 100% matching! 
 unsigned int njFactorial(unsigned int ulN) 
