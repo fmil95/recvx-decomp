@@ -238,21 +238,32 @@ Float	njFraction  (Float n)
     return n - floorf(n); 
 } 
 
-// 
-// Start address: 0x2d7ef0
+// 100% matching! 
 Float	njSqrt(Float n)
 {
 	float ret;
-	// Line 438, Address: 0x2d7ef0, Func Offset: 0
-	// Line 439, Address: 0x2d7ef8, Func Offset: 0x8
-	// Line 440, Address: 0x2d7efc, Func Offset: 0xc
-	// Line 441, Address: 0x2d7f00, Func Offset: 0x10
-	// Line 442, Address: 0x2d7f04, Func Offset: 0x14
-	// Line 443, Address: 0x2d7f08, Func Offset: 0x18
-	// Line 444, Address: 0x2d7f0c, Func Offset: 0x1c
-	// Line 448, Address: 0x2d7f10, Func Offset: 0x20
-	// Func End, Address: 0x2d7f18, Func Offset: 0x28
-	scePrintf("njSqrt - UNIMPLEMENTED!\n");
+
+	ret = 0;
+    
+    asm volatile
+    ("
+        mfc1    t0, f12
+
+        qmtc2   t0, vf8
+    
+        vsqrt   Q,  vf8
+
+        vwaitq 
+
+        vaddq   vf8, vf0, Q
+        
+        qmfc2   v0,  vf8
+    
+        mtc1    v0, %0
+    " : "=f"(ret) : : 
+    );
+
+    return ret;
 }
 
 // 100% matching! 
@@ -268,13 +279,13 @@ Float	njInvertSqrt(Float n)
 
         qmtc2   t0, vf8
     
-        vrsqrt  Q, vf0w, vf8x
+        vrsqrt  Q,  vf0w, vf8
 
         vwaitq 
 
-        vaddq.x vf8, vf0, Q
+        vaddq   vf8, vf0, Q
         
-        qmfc2   v0, vf8
+        qmfc2   v0,  vf8
     
         mtc1    v0, %0
     " : "=f"(ret) : : 
