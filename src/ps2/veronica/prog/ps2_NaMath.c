@@ -306,12 +306,12 @@ void	njLinear(Float *idata, Float *odata, NJS_SPLINE *attr, Float frame)
         ldl      a6, 0x7(%0)
         ldr      a6,   0(%0)
      
-        lw       a7, NJS_VECTOR.z(%0) 
+        lw       a7,   8(%0) 
 
         ldl      t4, 0x7(a4)
         ldr      t4,   0(a4)
      
-        lw       t5, NJS_VECTOR.z(a4) 
+        lw       t5,   8(a4) 
      
         pcpyld   a6, a7, a6
         pcpyld   t4, t5, t4
@@ -333,73 +333,108 @@ void	njLinear(Float *idata, Float *odata, NJS_SPLINE *attr, Float frame)
 		sdl      a6, 0x7(%1)
         sdr      a6,   0(%1)
      
-        sw       a7, NJS_VECTOR.z(%1) 
+        sw       a7,   8(%1) 
     " : : "r"(idata), "r"(odata), "r"(attr), "f"(frame) : 
     );
 }
 
-// 
-// Start address: 0x2d7fb0
+// 100% matching! 
 void	njOverhauserSpline(Float *idata, Float *odata, NJS_SPLINE *attr, Float frame)
 {
-	float ftmp;
-	// Line 594, Address: 0x2d7fb0, Func Offset: 0
-	// Line 599, Address: 0x2d7fb8, Func Offset: 0x8
-	// Line 600, Address: 0x2d7fbc, Func Offset: 0xc
-	// Line 601, Address: 0x2d7fc0, Func Offset: 0x10
-	// Line 602, Address: 0x2d7fc4, Func Offset: 0x14
-	// Line 606, Address: 0x2d7fc8, Func Offset: 0x18
-	// Line 607, Address: 0x2d7fcc, Func Offset: 0x1c
-	// Line 609, Address: 0x2d7fd0, Func Offset: 0x20
-	// Line 610, Address: 0x2d7fd4, Func Offset: 0x24
-	// Line 611, Address: 0x2d7fd8, Func Offset: 0x28
-	// Line 613, Address: 0x2d7fdc, Func Offset: 0x2c
-	// Line 614, Address: 0x2d7fe0, Func Offset: 0x30
-	// Line 615, Address: 0x2d7fe4, Func Offset: 0x34
-	// Line 616, Address: 0x2d7fe8, Func Offset: 0x38
-	// Line 618, Address: 0x2d7fec, Func Offset: 0x3c
-	// Line 619, Address: 0x2d7ff0, Func Offset: 0x40
-	// Line 620, Address: 0x2d7ff4, Func Offset: 0x44
-	// Line 621, Address: 0x2d7ff8, Func Offset: 0x48
-	// Line 622, Address: 0x2d7ffc, Func Offset: 0x4c
-	// Line 624, Address: 0x2d8000, Func Offset: 0x50
-	// Line 625, Address: 0x2d8004, Func Offset: 0x54
-	// Line 626, Address: 0x2d800c, Func Offset: 0x5c
-	// Line 627, Address: 0x2d8010, Func Offset: 0x60
-	// Line 628, Address: 0x2d8014, Func Offset: 0x64
-	// Line 629, Address: 0x2d8018, Func Offset: 0x68
-	// Line 630, Address: 0x2d801c, Func Offset: 0x6c
-	// Line 631, Address: 0x2d8020, Func Offset: 0x70
-	// Line 632, Address: 0x2d8024, Func Offset: 0x74
-	// Line 633, Address: 0x2d8028, Func Offset: 0x78
-	// Line 634, Address: 0x2d802c, Func Offset: 0x7c
-	// Line 635, Address: 0x2d8030, Func Offset: 0x80
-	// Line 636, Address: 0x2d8034, Func Offset: 0x84
-	// Line 637, Address: 0x2d8038, Func Offset: 0x88
-	// Line 638, Address: 0x2d803c, Func Offset: 0x8c
-	// Line 639, Address: 0x2d8040, Func Offset: 0x90
-	// Line 640, Address: 0x2d8044, Func Offset: 0x94
-	// Line 641, Address: 0x2d8048, Func Offset: 0x98
-	// Line 642, Address: 0x2d804c, Func Offset: 0x9c
-	// Line 643, Address: 0x2d8050, Func Offset: 0xa0
-	// Line 644, Address: 0x2d8054, Func Offset: 0xa4
-	// Line 645, Address: 0x2d8058, Func Offset: 0xa8
-	// Line 646, Address: 0x2d805c, Func Offset: 0xac
-	// Line 650, Address: 0x2d8060, Func Offset: 0xb0
-	// Line 651, Address: 0x2d8064, Func Offset: 0xb4
-	// Line 652, Address: 0x2d8068, Func Offset: 0xb8
-	// Line 653, Address: 0x2d806c, Func Offset: 0xbc
-	// Line 655, Address: 0x2d8070, Func Offset: 0xc0
-	// Line 656, Address: 0x2d8074, Func Offset: 0xc4
-	// Line 657, Address: 0x2d8078, Func Offset: 0xc8
-	// Line 658, Address: 0x2d807c, Func Offset: 0xcc
-	// Line 659, Address: 0x2d8080, Func Offset: 0xd0
-	// Line 660, Address: 0x2d8084, Func Offset: 0xd4
-	// Line 661, Address: 0x2d8088, Func Offset: 0xd8
-	// Line 662, Address: 0x2d808c, Func Offset: 0xdc
-	// Line 667, Address: 0x2d8090, Func Offset: 0xe0
-	// Func End, Address: 0x2d8098, Func Offset: 0xe8
-	scePrintf("njOverhauserSpline - UNIMPLEMENTED!\n");
+	float ftmp; 
+
+	ftmp = 0.5f;
+
+	asm volatile
+    ("
+		mfc1     a4, %3
+
+		vaddw    vf12,  vf0, vf0
+		vaddw    vf12, vf12, vf0
+
+		qmtc2.ni a4, vf4
+
+		vmul     vf5,  vf4, vf4
+		vmul     vf6,  vf5, vf4
+
+		vadd     vf8,  vf5, vf5
+
+		vsub     vf8,  vf8, vf6
+		vsub     vf8,  vf8, vf4
+
+		vmulz    vf10, vf5, vf2
+		vmul     vf9,  vf6, vf2
+
+		vsub     vf9,  vf9, vf10
+
+		vadd     vf9,  vf9, vf12
+
+		vsub     vf7,  vf0, vf2
+
+		vmulx    vf7,  vf6, vf7
+		vmuly    vf10, vf5, vf2
+
+		vadd     vf10, vf10, vf4
+		vadd     vf10, vf10, vf7
+
+		vsub     vf11, vf6, vf5
+
+		mfc1     a5, %4
+		nop
+
+		qmtc2.ni a5, vf12
+
+        ldl      a4,  0x7(%0)
+        ldr      a4,    0(%0)
+     
+        lw       a5,    8(%0) 
+
+        ldl      a6, 0x13(%0)
+        ldr      a6,  0xC(%0)
+     
+        lw       a7,   20(%0) 
+
+		ldl      t4, 0x1F(%0)
+        ldr      t4, 0x18(%0)
+     
+        lw       t5,   32(%0) 
+
+        ldl      t6, 0x2B(%0)
+        ldr      t6, 0x24(%0)
+     
+        lw       t7,   44(%0) 
+     
+		pcpyld   a4, a5, a4
+		pcpyld   a6, a7, a6
+        pcpyld   t4, t5, t4
+        pcpyld   t6, t7, t6
+     
+		qmtc2.ni a4, vf4
+		qmtc2.ni a6, vf5
+		qmtc2.ni t4, vf6
+		qmtc2.ni t6, vf7
+		
+		vmulx    vf4, vf4, vf8
+		vmulx    vf5, vf5, vf9
+		vmulx    vf6, vf6, vf10
+		vmulx    vf7, vf7, vf11
+
+		vadd     vf4, vf4, vf5
+		vadd     vf4, vf4, vf6
+		vadd     vf4, vf4, vf7
+
+		vmulx    vf4, vf4, vf12
+
+		qmfc2.ni a6, vf4
+
+		pcpyud   a7, a6, a6
+
+		sdl      a6, 0x7(%1)
+        sdr      a6,   0(%1)
+     
+        sw       a7,   8(%1) 
+    " : : "r"(idata), "r"(odata), "r"(attr), "f"(frame), "f"(ftmp) : 
+    );
 }
 
 /*// 
