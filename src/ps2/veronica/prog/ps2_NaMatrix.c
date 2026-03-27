@@ -142,44 +142,69 @@ void	njInitMatrix(NJS_MATRIX *m, Sint32 n, Int flag)
     }
 }
 
-/*// 
-// Start address: 0x2d6780
-void njCalcPoints(float pMatrix[16], _anon0* pSrcPoints, _anon0* pDstPoints, int lNum)
+// 100% matching
+void	njCalcPoints(NJS_MATRIX *m, NJS_POINT3 *ps, NJS_POINT3 *pd, Int num)
 {
-	// Line 206, Address: 0x2d6780, Func Offset: 0
-	// Line 243, Address: 0x2d6784, Func Offset: 0x4
-	// Line 305, Address: 0x2d6798, Func Offset: 0x18
-	// Line 307, Address: 0x2d679c, Func Offset: 0x1c
-	// Line 308, Address: 0x2d67a0, Func Offset: 0x20
-	// Line 309, Address: 0x2d67a4, Func Offset: 0x24
-	// Line 310, Address: 0x2d67a8, Func Offset: 0x28
-	// Line 311, Address: 0x2d67ac, Func Offset: 0x2c
-	// Line 312, Address: 0x2d67b0, Func Offset: 0x30
-	// Line 314, Address: 0x2d67b4, Func Offset: 0x34
-	// Line 315, Address: 0x2d67b8, Func Offset: 0x38
-	// Line 316, Address: 0x2d67bc, Func Offset: 0x3c
-	// Line 317, Address: 0x2d67c0, Func Offset: 0x40
-	// Line 319, Address: 0x2d67c4, Func Offset: 0x44
-	// Line 321, Address: 0x2d67c8, Func Offset: 0x48
-	// Line 322, Address: 0x2d67cc, Func Offset: 0x4c
-	// Line 323, Address: 0x2d67d0, Func Offset: 0x50
-	// Line 324, Address: 0x2d67d4, Func Offset: 0x54
-	// Line 325, Address: 0x2d67d8, Func Offset: 0x58
-	// Line 326, Address: 0x2d67dc, Func Offset: 0x5c
-	// Line 327, Address: 0x2d67e0, Func Offset: 0x60
-	// Line 328, Address: 0x2d67e4, Func Offset: 0x64
-	// Line 329, Address: 0x2d67e8, Func Offset: 0x68
-	// Line 330, Address: 0x2d67ec, Func Offset: 0x6c
-	// Line 332, Address: 0x2d67f0, Func Offset: 0x70
-	// Line 333, Address: 0x2d67f4, Func Offset: 0x74
-	// Line 334, Address: 0x2d67f8, Func Offset: 0x78
-	// Line 335, Address: 0x2d67fc, Func Offset: 0x7c
-	// Line 336, Address: 0x2d6800, Func Offset: 0x80
-	// Line 338, Address: 0x2d6804, Func Offset: 0x84
-	// Line 339, Address: 0x2d6808, Func Offset: 0x88
-	// Line 346, Address: 0x2d6810, Func Offset: 0x90
-	// Func End, Address: 0x2d6818, Func Offset: 0x98
-}*/
+	if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        lw          a4,   0(%3)
+        
+        ldl         a6, 0x7(%1)
+        ldr         a6,   0(%1)
+
+        lw          a7, NJS_VECTOR.z(%1) 
+
+        pcpyld      a6, a7, a6
+
+        qmtc2.ni    a6, vf4
+
+        lqc2        vf5,    0(%0)
+        lqc2        vf6, 0x10(%0)
+        lqc2        vf7, 0x20(%0)
+        lqc2        vf8, 0x30(%0)
+
+        l_002D67C4:
+        addi        %1, %1, 12
+
+        vmulax.xyz  ACC,  vf5, vf4
+        
+        vmadday.xyz ACC,  vf6, vf4
+        vmaddaz.xyz ACC,  vf7, vf4
+        vmaddw.xyz  vf18, vf8, vf0
+
+        addi        a4, a4, -1
+
+        ldl         a6, 0x7(%1)
+        ldr         a6,   0(%1)
+
+        lw          a7, NJS_VECTOR.z(%1) 
+
+        pcpyld      a6, a7, a6
+
+        qmtc2.ni    a6, vf4
+        qmfc2.ni    t5, vf18
+
+        pcpyud      t6, t5, t5
+
+        sdl         t5, 0x7(%2)
+        sdr         t5,   0(%2)
+
+        sw          t6, NJS_VECTOR.z(%2) 
+
+        addi        %2, %2, 12
+
+        bgtz        a4, l_002D67C4
+        vnop
+    .set reorder
+    " : : "r"(m), "r"(ps), "r"(pd), "r"(&num) : 
+    );
+}
 
 // 100% matching! 
 void    njGetTranslation(NJS_MATRIX *m, NJS_POINT3 *p)
