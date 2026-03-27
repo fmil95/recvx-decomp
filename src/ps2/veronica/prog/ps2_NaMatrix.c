@@ -3,65 +3,14 @@
 #include "ps2_NaView.h"
 #include "main.h"
 
-/*_anon5 TempMatrix0;
-_anon5 TempMatrix1;*/
 int lNaMatIsUnitMatrix;
 int lNaMatMatrixStuckMax;
 int lNaMatMatrixStuckCnt;
 NJS_MATRIX* pNaMatMatrixStuckPtr;
 NJS_MATRIX* pNaMatMatrixStuckTop;
-/*_anon4 _nj_screen_;
-float NaViewScreenMatrix[16];
-
-void njInitMatrix(float pMatrix[16], int lSize, int lFlag);
-void njCalcPoints(float pMatrix[16], _anon0* pSrcPoints, _anon0* pDstPoints, int lNum);
-void njGetTranslation(float pMatrix[16], _anon0* pPoint);
-void njUnitTransPortion(float pMatrix[16]);
-void njUnitRotPortion(float pMatrix[16]);
-void njClearMatrix();
-int njPushMatrix(float pMatrix[16]);
-int njPopMatrix(unsigned int ulNumber);
-void njUnitMatrix(float pMatrix[16]);
-void njSetMatrix(float pDst[16], float pSrc[16]);
-void njSetMatrixCN(float pMat[16]);
-void njGetMatrix(float pMatrix[16]);
-void njMultiMatrix(float pDstMat[16], float pSrcMat[16]);
-void njTranslate(float pMatrix[16], float fX, float fY, float fZ);
-void njTranslateV(float pMatrix[16], _anon0* pVector);
-void njRotateX(float pMatrix[16], int lAngle);
-void njRotateY(float pMatrix[16], int lAngle);
-void njRotateZ(float pMatrix[16], int lAngle);
-void njRotateXYZ(float pMatrix[16], int lAngleX, int lAngleY, int lAngleZ);
-void njRotXYZ(float pMatrix[16], int lAngleX, int lAngleY, int lAngleZ);
-void njRotate(float pMatrix[16], _anon0* pAxis, int lAngle);
-void njScale(float pMatrix[16], float fScaleX, float fScaleY, float fScaleZ);
-void njScaleV(float pMatrix[16], _anon0* pScale);
-int njInvertMatrix(float pMatrix[16]);
-void njTransposeMatrix(float pMatrix[16]);
-static float njAtan2b(float a, float b);
-void njMirror(float pMatrix[16], _anon3* pPlane);
-void njCalcPoint(float pMatrix[16], _anon0* pSrcPoint, _anon0* pDstPoint);
-void njCalcPoint4(float pMatrix[16], _anon1* pSrcPoint, _anon1* pDstPoint);*/
-void njCalcPointCN(NJS_POINT3* pSrcPoint, NJS_POINT3* pDstPoint);
-/*void njAddVector(_anon0* pDstVec, _anon0* pSrcVec);
-void njSubVector(_anon0* pDstVec, _anon0* pSrcVec);
-void njCalcVector(float pMatrix[16], _anon0* pSrcVec, _anon0* pDstVec);
-float njUnitVector(_anon0* pVector);
-float njScalor(_anon0* pVector);
-float njScalor2(_anon0* pVector);
-void njProjectScreen(float pMatrix[16], _anon0* pPoint, _anon2* pScreen);
-float njOuterProduct(_anon0* pSrcVec1, _anon0* pSrcVec2, _anon0* pDstVec);
-float njInnerProduct(_anon0* pVec1, _anon0* pVec2);
-void njTranslateEx(_anon0* pVector);
-void njRotateEx(int* lpAngle, int lV);
-void njScaleEx(_anon0* pScale);
-int njPushMatrixEx();
-int njPopMatrixEx();
-void njRotTransPers(_anon0* pPoint, tagNJS_SCRVECTOR* pScreen);
-void njRotTrans(_anon0* pPoint, _anon0* pOut);
-void njPers(tagNJS_SCRVECTOR* pScreen);
-void njCopyMatrix(float pDstMat[16], float pSrcMat[16]);*/
-void njMulMatrixCN(NJS_MATRIX* pSrcMat1, NJS_MATRIX* pSrcMat2);
+/* unused below */
+/*NJS_MATRIX TempMatrix0;
+NJS_MATRIX TempMatrix1;*/
 
 extern void VU0_INIT_CALC_PROCESS() __attribute__((section(".vutext")));
 
@@ -784,85 +733,124 @@ void njRotXYZ(NJS_MATRIX* pMatrix, int lAngleX, int lAngleY, int lAngleZ)
     );
 }
 
-/*// 
-// Start address: 0x2d6f00
-void njRotate(float pMatrix[16], _anon0* pAxis, int lAngle)
+// 100% matching!
+void	njRotate(NJS_MATRIX *m, NJS_VECTOR *v, Angle ang)
 {
+    float fSin;
 	float fCos;
-	float fSin;
-	// Line 2356, Address: 0x2d6f00, Func Offset: 0
-	// Line 2370, Address: 0x2d6f14, Func Offset: 0x14
-	// Line 2372, Address: 0x2d6f28, Func Offset: 0x28
-	// Line 2373, Address: 0x2d6f2c, Func Offset: 0x2c
-	// Line 2376, Address: 0x2d6f30, Func Offset: 0x30
-	// Line 2575, Address: 0x2d6f40, Func Offset: 0x40
-	// Line 2579, Address: 0x2d6f4c, Func Offset: 0x4c
-	// Line 2580, Address: 0x2d6f50, Func Offset: 0x50
-	// Line 2581, Address: 0x2d6f54, Func Offset: 0x54
-	// Line 2582, Address: 0x2d6f58, Func Offset: 0x58
-	// Line 2583, Address: 0x2d6f5c, Func Offset: 0x5c
-	// Line 2585, Address: 0x2d6f60, Func Offset: 0x60
-	// Line 2586, Address: 0x2d6f64, Func Offset: 0x64
-	// Line 2587, Address: 0x2d6f68, Func Offset: 0x68
-	// Line 2588, Address: 0x2d6f6c, Func Offset: 0x6c
-	// Line 2589, Address: 0x2d6f70, Func Offset: 0x70
-	// Line 2590, Address: 0x2d6f74, Func Offset: 0x74
-	// Line 2591, Address: 0x2d6f78, Func Offset: 0x78
-	// Line 2592, Address: 0x2d6f7c, Func Offset: 0x7c
-	// Line 2593, Address: 0x2d6f80, Func Offset: 0x80
-	// Line 2594, Address: 0x2d6f84, Func Offset: 0x84
-	// Line 2599, Address: 0x2d6f88, Func Offset: 0x88
-	// Line 2600, Address: 0x2d6f8c, Func Offset: 0x8c
-	// Line 2601, Address: 0x2d6f90, Func Offset: 0x90
-	// Line 2602, Address: 0x2d6f94, Func Offset: 0x94
-	// Line 2603, Address: 0x2d6f98, Func Offset: 0x98
-	// Line 2604, Address: 0x2d6f9c, Func Offset: 0x9c
-	// Line 2605, Address: 0x2d6fa0, Func Offset: 0xa0
-	// Line 2608, Address: 0x2d6fa4, Func Offset: 0xa4
-	// Line 2609, Address: 0x2d6fa8, Func Offset: 0xa8
-	// Line 2610, Address: 0x2d6fac, Func Offset: 0xac
-	// Line 2612, Address: 0x2d6fb0, Func Offset: 0xb0
-	// Line 2613, Address: 0x2d6fb4, Func Offset: 0xb4
-	// Line 2615, Address: 0x2d6fb8, Func Offset: 0xb8
-	// Line 2616, Address: 0x2d6fbc, Func Offset: 0xbc
-	// Line 2619, Address: 0x2d6fc0, Func Offset: 0xc0
-	// Line 2620, Address: 0x2d6fc4, Func Offset: 0xc4
-	// Line 2622, Address: 0x2d6fc8, Func Offset: 0xc8
-	// Line 2623, Address: 0x2d6fcc, Func Offset: 0xcc
-	// Line 2624, Address: 0x2d6fd0, Func Offset: 0xd0
-	// Line 2626, Address: 0x2d6fd4, Func Offset: 0xd4
-	// Line 2627, Address: 0x2d6fd8, Func Offset: 0xd8
-	// Line 2630, Address: 0x2d6fdc, Func Offset: 0xdc
-	// Line 2631, Address: 0x2d6fe0, Func Offset: 0xe0
-	// Line 2633, Address: 0x2d6fe4, Func Offset: 0xe4
-	// Line 2634, Address: 0x2d6fe8, Func Offset: 0xe8
-	// Line 2636, Address: 0x2d6fec, Func Offset: 0xec
-	// Line 2637, Address: 0x2d6ff0, Func Offset: 0xf0
-	// Line 2638, Address: 0x2d6ff4, Func Offset: 0xf4
-	// Line 2640, Address: 0x2d6ff8, Func Offset: 0xf8
-	// Line 2641, Address: 0x2d6ffc, Func Offset: 0xfc
-	// Line 2642, Address: 0x2d7000, Func Offset: 0x100
-	// Line 2649, Address: 0x2d7004, Func Offset: 0x104
-	// Line 2650, Address: 0x2d7008, Func Offset: 0x108
-	// Line 2651, Address: 0x2d700c, Func Offset: 0x10c
-	// Line 2652, Address: 0x2d7010, Func Offset: 0x110
-	// Line 2653, Address: 0x2d7014, Func Offset: 0x114
-	// Line 2657, Address: 0x2d7018, Func Offset: 0x118
-	// Line 2658, Address: 0x2d701c, Func Offset: 0x11c
-	// Line 2659, Address: 0x2d7020, Func Offset: 0x120
-	// Line 2660, Address: 0x2d7024, Func Offset: 0x124
-	// Line 2661, Address: 0x2d7028, Func Offset: 0x128
-	// Line 2665, Address: 0x2d702c, Func Offset: 0x12c
-	// Line 2666, Address: 0x2d7030, Func Offset: 0x130
-	// Line 2667, Address: 0x2d7034, Func Offset: 0x134
-	// Line 2668, Address: 0x2d7038, Func Offset: 0x138
-	// Line 2669, Address: 0x2d703c, Func Offset: 0x13c
-	// Line 2671, Address: 0x2d7040, Func Offset: 0x140
-	// Line 2672, Address: 0x2d7044, Func Offset: 0x144
-	// Line 2673, Address: 0x2d7048, Func Offset: 0x148
-	// Line 2680, Address: 0x2d704c, Func Offset: 0x14c
-	// Func End, Address: 0x2d7060, Func Offset: 0x160
-}*/
+
+    if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    ang &= 0xFFFF;
+	ang /= 2;
+    
+    njSinCos(ang, &fSin, &fCos);
+
+    asm volatile
+    ("
+    .set noreorder
+        ldl      a4, 0x7(%1)
+        ldr      a4,   0(%1)
+
+        lw       a5, NJS_VECTOR.z(%1)
+
+        pcpyld   a4, a5, a4
+
+        qmtc2.ni a4, vf4
+
+        vmul     vf5, vf4, vf4
+
+        vaddy    vf5, vf5, vf5
+        vaddz    vf5, vf5, vf5
+
+        vrsqrt   Q, vf0w, vf5
+
+        mfc1     t4, %2 
+        mfc1     t5, %3
+    
+        qmtc2    t4, vf11
+        qmtc2    t5, vf12
+
+        vwaitq
+
+        vmulq    vf11, vf11, Q
+        vmulx    vf4,   vf4, vf11
+        vmul     vf5,  vf12, vf12
+
+        vaddx    vf5,  vf0,  vf5
+
+        vmulx    vf6,  vf4,  vf4
+        vmuly    vf7,  vf4,  vf4
+        vmulz    vf8,  vf4,  vf4
+        vmulx    vf9,  vf4,  vf12
+
+        vadd     vf11, vf5,  vf6
+
+        vsuby    vf11, vf11, vf7
+        vsubz    vf11, vf11, vf8
+        vsubz    vf12, vf7,  vf9
+
+        vadd     vf12, vf12, vf12
+        vaddy    vf13, vf8,  vf9
+        vadd     vf13, vf13, vf13
+        vaddz    vf11, vf6,  vf9
+        vadd     vf11, vf11, vf11
+
+        vsubx    vf12, vf5,  vf6
+
+        vadd     vf12, vf12, vf7
+
+        vsubz    vf12, vf12, vf8
+        vsubx    vf13, vf8,  vf9
+
+        vadd     vf13, vf13, vf13
+
+        vsuby    vf11, vf6,  vf9
+
+        vadd     vf11, vf11, vf11
+        vaddx    vf12, vf7,  vf9
+        vadd     vf12, vf12, vf12
+
+        vsubx    vf13, vf5,  vf6
+        vsuby    vf13, vf13, vf7
+
+        vadd     vf13, vf13, vf8
+
+        lqc2     vf4,    0(%0)
+        lqc2     vf5, 0x10(%0)
+        lqc2     vf6, 0x20(%0)
+
+        vmulx    vf7,  vf4, vf11
+        vmuly    vf10, vf5, vf11
+        vmulz    vf11, vf6, vf11
+
+        vadd     vf7,  vf7, vf10
+        vadd     vf7,  vf7, vf11
+
+        vmulx    vf8,  vf4, vf12
+        vmuly    vf10, vf5, vf12
+        vmulz    vf12, vf6, vf12
+
+        vadd     vf8,  vf8, vf10
+        vadd     vf8,  vf8, vf12
+    
+        vmulx    vf9,  vf4, vf13
+        vmuly    vf10, vf5, vf13
+        vmulz    vf13, vf6, vf13
+
+        vadd     vf9,  vf9, vf10
+        vadd     vf9,  vf9, vf13
+        
+        sqc2     vf7,    0(%0)
+        sqc2     vf8, 0x10(%0)
+        sqc2     vf9, 0x20(%0)
+    .set reorder
+    " : : "r"(m), "r"(v), "f"(fSin), "f"(fCos) : 
+    );
+}
 
 // 100% matching!
 void	njScale(NJS_MATRIX *m, Float sx, Float sy, Float sz)
