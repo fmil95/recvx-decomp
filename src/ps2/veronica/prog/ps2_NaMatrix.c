@@ -910,40 +910,61 @@ void	njScaleV(NJS_MATRIX *m, NJS_VECTOR *v)
     );
 }
 
-/*// 
-// Start address: 0x2d7120
-int njInvertMatrix(float pMatrix[16])
+// 100% matching!
+Bool	njInvertMatrix(NJS_MATRIX *m)
 {
-	// Line 3277, Address: 0x2d7120, Func Offset: 0
-	// Line 3355, Address: 0x2d7134, Func Offset: 0x14
-	// Line 3356, Address: 0x2d7138, Func Offset: 0x18
-	// Line 3357, Address: 0x2d713c, Func Offset: 0x1c
-	// Line 3358, Address: 0x2d7140, Func Offset: 0x20
-	// Line 3360, Address: 0x2d7144, Func Offset: 0x24
-	// Line 3361, Address: 0x2d7148, Func Offset: 0x28
-	// Line 3362, Address: 0x2d714c, Func Offset: 0x2c
-	// Line 3363, Address: 0x2d7150, Func Offset: 0x30
-	// Line 3365, Address: 0x2d7154, Func Offset: 0x34
-	// Line 3366, Address: 0x2d7158, Func Offset: 0x38
-	// Line 3367, Address: 0x2d715c, Func Offset: 0x3c
-	// Line 3368, Address: 0x2d7160, Func Offset: 0x40
-	// Line 3369, Address: 0x2d7164, Func Offset: 0x44
-	// Line 3370, Address: 0x2d7168, Func Offset: 0x48
-	// Line 3371, Address: 0x2d716c, Func Offset: 0x4c
-	// Line 3373, Address: 0x2d7170, Func Offset: 0x50
-	// Line 3374, Address: 0x2d7174, Func Offset: 0x54
-	// Line 3375, Address: 0x2d7178, Func Offset: 0x58
-	// Line 3377, Address: 0x2d717c, Func Offset: 0x5c
-	// Line 3378, Address: 0x2d7180, Func Offset: 0x60
-	// Line 3379, Address: 0x2d7184, Func Offset: 0x64
-	// Line 3380, Address: 0x2d7188, Func Offset: 0x68
-	// Line 3382, Address: 0x2d718c, Func Offset: 0x6c
-	// Line 3383, Address: 0x2d7190, Func Offset: 0x70
-	// Line 3384, Address: 0x2d7194, Func Offset: 0x74
-	// Line 3385, Address: 0x2d7198, Func Offset: 0x78
-	// Line 3393, Address: 0x2d719c, Func Offset: 0x7c
-	// Func End, Address: 0x2d71a4, Func Offset: 0x84
-}*/
+	if (m == NULL)
+    {
+        m = pNaMatMatrixStuckPtr;
+    }
+
+    asm volatile
+    ("
+    .set noreorder
+        lq       t0,     0(%0)
+        lq       t1,  0x10(%0)
+        lq       t2,  0x20(%0)
+        lqc2     vf4, 0x30(%0)
+
+        vmove    vf5, vf4
+
+        vsub     vf4, vf4, vf4
+
+        vmove    vf10, vf4
+
+        qmfc2.ni t3, vf4
+
+        pextlw   t4, t1, t0
+        pextuw   t5, t1, t0
+ 
+        pextlw   t6, t3, t2
+        pextuw   t7, t3, t2
+ 
+        pcpyld   t0, t6, t4
+        pcpyud   t1, t4, t6
+        pcpyld   t2, t7, t5
+ 
+        qmtc2.ni t0, vf7
+        qmtc2.ni t1, vf8
+        qmtc2.ni t2, vf9
+
+        vmulax   ACC, vf7, vf5
+
+        vmadday  ACC, vf8, vf5
+        vmaddz   vf4, vf9, vf5
+
+        vsub     vf4, vf10, vf4
+
+        sq       t0,     0(%0)
+        sq       t1,  0x10(%0)
+        sq       t2,  0x20(%0)
+        sqc2     vf4, 0x30(%0)
+    .set reorder
+    " : : "r"(m) : 
+    );
+
+    return TRUE;
+}
 
 // 100% matching!
 void	njTransposeMatrix(NJS_MATRIX *m)
