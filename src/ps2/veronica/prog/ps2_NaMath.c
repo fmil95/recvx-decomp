@@ -294,33 +294,48 @@ Float	njInvertSqrt(Float n)
     return ret;
 }
 
-// 
-// Start address: 0x2d7f50
+// 100% matching! 
 void	njLinear(Float *idata, Float *odata, NJS_SPLINE *attr, Float frame)
 {
-	// Line 526, Address: 0x2d7f50, Func Offset: 0
-	// Line 527, Address: 0x2d7f54, Func Offset: 0x4
-	// Line 528, Address: 0x2d7f58, Func Offset: 0x8
-	// Line 529, Address: 0x2d7f5c, Func Offset: 0xc
-	// Line 530, Address: 0x2d7f60, Func Offset: 0x10
-	// Line 531, Address: 0x2d7f64, Func Offset: 0x14
-	// Line 532, Address: 0x2d7f68, Func Offset: 0x18
-	// Line 533, Address: 0x2d7f6c, Func Offset: 0x1c
-	// Line 534, Address: 0x2d7f70, Func Offset: 0x20
-	// Line 535, Address: 0x2d7f74, Func Offset: 0x24
-	// Line 536, Address: 0x2d7f78, Func Offset: 0x28
-	// Line 537, Address: 0x2d7f7c, Func Offset: 0x2c
-	// Line 538, Address: 0x2d7f80, Func Offset: 0x30
-	// Line 539, Address: 0x2d7f84, Func Offset: 0x34
-	// Line 540, Address: 0x2d7f88, Func Offset: 0x38
-	// Line 541, Address: 0x2d7f8c, Func Offset: 0x3c
-	// Line 542, Address: 0x2d7f90, Func Offset: 0x40
-	// Line 543, Address: 0x2d7f94, Func Offset: 0x44
-	// Line 544, Address: 0x2d7f98, Func Offset: 0x48
-	// Line 545, Address: 0x2d7f9c, Func Offset: 0x4c
-	// Line 549, Address: 0x2d7fa0, Func Offset: 0x50
-	// Func End, Address: 0x2d7fa8, Func Offset: 0x58
-	scePrintf("njLinear - UNIMPLEMENTED!\n");
+	asm volatile
+    ("
+	    addi     a4, %0, 12
+
+		mfc1     a5, %3
+
+        ldl      a6, 0x7(%0)
+        ldr      a6,   0(%0)
+     
+        lw       a7, NJS_VECTOR.z(%0) 
+
+        ldl      t4, 0x7(a4)
+        ldr      t4,   0(a4)
+     
+        lw       t5, NJS_VECTOR.z(a4) 
+     
+        pcpyld   a6, a7, a6
+        pcpyld   t4, t5, t4
+     
+        qmtc2.ni a6, vf10
+        qmtc2.ni t4, vf11
+		qmtc2.ni a5, vf9
+		
+		vsub     vf12, vf11, vf10
+
+		vmulx    vf12, vf12, vf9
+
+		vadd     vf4,  vf12, vf10
+
+		qmfc2.ni a6, vf4
+
+		pcpyud   a7, a6, a6
+
+		sdl      a6, 0x7(%1)
+        sdr      a6,   0(%1)
+     
+        sw       a7, NJS_VECTOR.z(%1) 
+    " : : "r"(idata), "r"(odata), "r"(attr), "f"(frame) : 
+    );
 }
 
 // 
