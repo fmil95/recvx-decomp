@@ -89,39 +89,66 @@ Float	njSin(Angle n)
     );
 }
 
-// 
-// Start address: 0x2d7d40
+// 100% matching!
 Float	njCos(Angle n)
 {
 	float ret;
-	// Line 172, Address: 0x2d7d40, Func Offset: 0
-	// Line 208, Address: 0x2d7d44, Func Offset: 0x4
-	// Line 172, Address: 0x2d7d50, Func Offset: 0x10
-	// Line 210, Address: 0x2d7d54, Func Offset: 0x14
-	// Line 211, Address: 0x2d7d58, Func Offset: 0x18
-	// Line 212, Address: 0x2d7d5c, Func Offset: 0x1c
-	// Line 213, Address: 0x2d7d60, Func Offset: 0x20
-	// Line 215, Address: 0x2d7d68, Func Offset: 0x28
-	// Line 216, Address: 0x2d7d74, Func Offset: 0x34
-	// Line 217, Address: 0x2d7d78, Func Offset: 0x38
-	// Line 218, Address: 0x2d7d7c, Func Offset: 0x3c
-	// Line 219, Address: 0x2d7d80, Func Offset: 0x40
-	// Line 220, Address: 0x2d7d84, Func Offset: 0x44
-	// Line 221, Address: 0x2d7d88, Func Offset: 0x48
-	// Line 222, Address: 0x2d7d8c, Func Offset: 0x4c
-	// Line 225, Address: 0x2d7d94, Func Offset: 0x54
-	// Line 226, Address: 0x2d7d98, Func Offset: 0x58
-	// Line 227, Address: 0x2d7da4, Func Offset: 0x64
-	// Line 228, Address: 0x2d7da8, Func Offset: 0x68
-	// Line 229, Address: 0x2d7dac, Func Offset: 0x6c
-	// Line 230, Address: 0x2d7db0, Func Offset: 0x70
-	// Line 231, Address: 0x2d7db4, Func Offset: 0x74
-	// Line 232, Address: 0x2d7db8, Func Offset: 0x78
-	// Line 233, Address: 0x2d7dbc, Func Offset: 0x7c
-	// Line 235, Address: 0x2d7dc0, Func Offset: 0x80
-	// Line 245, Address: 0x2d7dc4, Func Offset: 0x84
-	// Func End, Address: 0x2d7dcc, Func Offset: 0x8c
-	scePrintf("njCos - UNIMPLEMENTED!\n");
+
+	asm volatile 
+    ("
+    .set noreorder
+        move  v0, %0
+        
+        lw    t0, 0(%1)
+        
+        addi  t2, zero, 16383
+    
+        andi  t3, t0, 0x4000
+        
+        beqz  t3, l_002D7D94
+        
+        and   t1, t0, t2
+    
+        muli  t1, t1, 4
+    
+        add   t1, t1, %2
+        
+        lwc1  f5, 0(t1)
+        
+        neg.s f7, f5
+        
+        mfc1  %2, f5
+		mfc1  t7, f7
+        
+        andi  t0, t0, 0x8000
+
+        b     l_002D7DC0
+
+        movz  %2, t7, t0
+
+        l_002D7D94:
+		sub   t2, t2, t1
+
+        muli  t2, t2, 4
+        
+        add   t2, t2, %2
+        
+        lwc1  f5, 0(t2)
+        
+        neg.s f7, f5
+        
+        mfc1  %2, f5
+        mfc1  t7, f7
+    
+        andi  t0, t0, 0x8000
+        
+        movn  %2, t7, t0
+
+        l_002D7DC0:
+        mtc1  %2, f0
+    .set reorder
+    " : "=r"(ret) : "r"(&n), "r"(SinTable) : 
+    );
 }
 
 // 100% matching!
@@ -205,7 +232,7 @@ void njSinCos(int lAngle, float* sin, float* cos)
     );
 }
 
-// 79.50% matching 
+// 100% matching! 
 Float	njFraction  (Float n) 
 { 
     return n - floorf(n); 
