@@ -1362,24 +1362,24 @@ unsigned int bhPlItemCheck()
     return 0;
 }
 
-// 
-// Start address: 0x1573a0
+// 100% matching!
 unsigned int bhMovieStart()
 {
-	unsigned int v0;
-	// Line 1249, Address: 0x1573a0, Func Offset: 0
-	// Line 1256, Address: 0x1573a8, Func Offset: 0x8
-	// Line 1261, Address: 0x1573ac, Func Offset: 0xc
-	// Line 1255, Address: 0x1573b0, Func Offset: 0x10
-	// Line 1249, Address: 0x1573b8, Func Offset: 0x18
-	// Line 1250, Address: 0x1573c4, Func Offset: 0x24
-	// Line 1251, Address: 0x1573d0, Func Offset: 0x30
-	// Line 1253, Address: 0x1573dc, Func Offset: 0x3c
-	// Line 1255, Address: 0x1573f0, Func Offset: 0x50
-	// Line 1256, Address: 0x1573fc, Func Offset: 0x5c
-	// Line 1262, Address: 0x15740c, Func Offset: 0x6c
-	// Func End, Address: 0x157414, Func Offset: 0x74
-	scePrintf("bhMovieStart - UNIMPLEMENTED!\n");
+    unsigned int v0;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    bhScePtr += 2;
+    
+    sys->mvi_no = v0;
+    
+    sys->cb_flg |= 0x4000000;
+    
+    return 1;
 }
 
 // 100% matching! 
