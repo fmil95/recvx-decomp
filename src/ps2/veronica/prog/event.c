@@ -1267,9 +1267,7 @@ unsigned int bhAdxCk()
     
     bhScePtr += 2;
     
-    CheckPlayEndAdx(v1);
-
-    // they forgot to return here
+    return CheckPlayEndAdx(v1);
 }
 
 // 
@@ -7257,29 +7255,33 @@ unsigned int bhEffBakuDrmSet()
 	scePrintf("bhEffBakuDrmSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x166940
+// 100% matching!
 unsigned int bhPlItemTamaSet()
 {
-	int v1;
-	int v0;
-	unsigned int cnt;
-	// Line 8145, Address: 0x166940, Func Offset: 0
-	// Line 8151, Address: 0x166948, Func Offset: 0x8
-	// Line 8145, Address: 0x166950, Func Offset: 0x10
-	// Line 8146, Address: 0x16695c, Func Offset: 0x1c
-	// Line 8147, Address: 0x166968, Func Offset: 0x28
-	// Line 8148, Address: 0x166974, Func Offset: 0x34
-	// Line 8149, Address: 0x166980, Func Offset: 0x40
-	// Line 8151, Address: 0x16698c, Func Offset: 0x4c
-	// Line 8152, Address: 0x1669a8, Func Offset: 0x68
-	// Line 8153, Address: 0x1669bc, Func Offset: 0x7c
-	// Line 8154, Address: 0x1669d0, Func Offset: 0x90
-	// Line 8156, Address: 0x1669dc, Func Offset: 0x9c
-	// Line 8157, Address: 0x1669ec, Func Offset: 0xac
-	// Line 8158, Address: 0x1669f0, Func Offset: 0xb0
-	// Func End, Address: 0x1669f8, Func Offset: 0xb8
-	scePrintf("bhPlItemTamaSet - UNIMPLEMENTED!\n");
+    unsigned int cnt;
+    int v0, v1;
+ 
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+
+    for (cnt = (sys->ply_id * 16) + 2; cnt < ((sys->ply_id * 16) + 12); cnt++) 
+    {
+        if (v0 == (unsigned char)(sys->itm[cnt] >> 16))
+        {
+            sys->itm[cnt] = (v0 << 16) + v1;
+
+            return 1;
+        }
+    }
+
+    return 1;
 }
 
 // 100% matching! 
