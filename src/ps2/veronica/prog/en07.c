@@ -1,4 +1,10 @@
 #include "en07.h"
+#include "MdlPut.h"
+#include "Motion.h"
+#include "hitchk.h"
+#include "main.h"
+#include "subpl.h"
+#include "zonzon1.h"
 
 /*typedef struct npobj;
 typedef struct _anon0;
@@ -1257,9 +1263,18 @@ char AtkPos[5];
 _anon5 AtkOffset[5];
 int AtkAngle[5];
 _anon25 BloodParam;
-_anon17 CapColTab[5];
-void(*bhEne07_Mode0)(BH_PWORK*)[6];
-void(*bhEne07_BrainType)(BH_PWORK*)[2];
+_anon17 CapColTab[5];*/
+typedef void (*bhEne07_Mode0_proc)(BH_PWORK* epw);
+bhEne07_Mode0_proc bhEne07_Mode0[6] = 
+{
+    bhEne07_Init,
+    bhEne07_Move,
+    bhEne07_Nage,
+    bhEne07_Damage,
+    bhEne07_Die,
+    bhEne_Event
+};
+/*void(*bhEne07_BrainType)(BH_PWORK*)[2];
 void(*bhEne07_MoveMode2)(BH_PWORK*)[9];
 void(*bhEne07_NageMode2)(BH_PWORK*)[2];
 void(*bhEne07_DamageMode2)(BH_PWORK*)[1];
@@ -1269,31 +1284,39 @@ _anon12* sys;
 _anon0 eff[0];
 BH_PWORK ene[0];*/
 
-// 
-// Start address: 0x1bfe80
+// 100% matching!
 void bhEne07(BH_PWORK* epw)
 {
-	// Line 304, Address: 0x1bfe80, Func Offset: 0
-	// Line 306, Address: 0x1bfe90, Func Offset: 0x10
-	// Line 309, Address: 0x1bfeb0, Func Offset: 0x30
-	// Line 312, Address: 0x1bfec4, Func Offset: 0x44
-	// Line 316, Address: 0x1bfed4, Func Offset: 0x54
-	// Line 312, Address: 0x1bfed8, Func Offset: 0x58
-	// Line 313, Address: 0x1bfeec, Func Offset: 0x6c
-	// Line 316, Address: 0x1bff08, Func Offset: 0x88
-	// Line 317, Address: 0x1bff10, Func Offset: 0x90
-	// Line 318, Address: 0x1bff18, Func Offset: 0x98
-	// Line 319, Address: 0x1bff20, Func Offset: 0xa0
-	// Line 320, Address: 0x1bff28, Func Offset: 0xa8
-	// Line 323, Address: 0x1bff30, Func Offset: 0xb0
-	// Line 326, Address: 0x1bff38, Func Offset: 0xb8
-	// Line 329, Address: 0x1bff50, Func Offset: 0xd0
-	// Line 330, Address: 0x1bff74, Func Offset: 0xf4
-	// Line 331, Address: 0x1bff8c, Func Offset: 0x10c
-	// Line 333, Address: 0x1bff94, Func Offset: 0x114
-	// Line 335, Address: 0x1bffb4, Func Offset: 0x134
-	// Func End, Address: 0x1bffc4, Func Offset: 0x144
-	scePrintf("bhEne07 - UNIMPLEMENTED!\n");
+    bhEne07_Mode0[epw->mode0](epw);
+    
+    bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+    
+    epw->ar +=  (((float*)epw->exp0)[15] - epw->ar) / 8.0f;
+    epw->car += (((float*)epw->exp0)[16] - epw->car) / 8.0f;
+    
+    bhCheckPlayer(epw);
+    bhCheckEnemies(epw);
+    
+    bhEne07_FloorCollision(epw);
+    bhEne07_CollisionWalls(epw);
+    bhEne07_FloorCollision(epw);
+    
+    bhCalcModel(epw);
+    
+    bhEne_SetWeponAtr(epw, 6, 11, 2.0f);
+    
+    if (((unsigned char*)epw->exp1)[6] == sys->enow)
+    {
+        if (plp->mode0 == 4) 
+        {
+            bhEne07_PlayerControl(epw);
+        }
+        
+        if (((unsigned char*)epw->exp1)[7] != 0)
+        {
+            ((unsigned char*)epw->exp1)[7]--;
+        }
+    }
 }
 
 /*// 
