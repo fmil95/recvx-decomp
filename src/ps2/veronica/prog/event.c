@@ -1688,30 +1688,36 @@ unsigned int bhWalAtariSet()
 	scePrintf("bhWalAtariSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x157be0
-unsigned int bhEtcAtariSet()
+// 100% matching! 
+unsigned int bhEtcAtariSet() 
 {
-	//_anon6* e_etcp;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 1567, Address: 0x157be0, Func Offset: 0
-	// Line 1577, Address: 0x157be8, Func Offset: 0x8
-	// Line 1567, Address: 0x157bf0, Func Offset: 0x10
-	// Line 1568, Address: 0x157bfc, Func Offset: 0x1c
-	// Line 1569, Address: 0x157c08, Func Offset: 0x28
-	// Line 1570, Address: 0x157c14, Func Offset: 0x34
-	// Line 1578, Address: 0x157c1c, Func Offset: 0x3c
-	// Line 1570, Address: 0x157c28, Func Offset: 0x48
-	// Line 1571, Address: 0x157c2c, Func Offset: 0x4c
-	// Line 1577, Address: 0x157c38, Func Offset: 0x58
-	// Line 1580, Address: 0x157c3c, Func Offset: 0x5c
-	// Line 1581, Address: 0x157c44, Func Offset: 0x64
-	// Line 1582, Address: 0x157c4c, Func Offset: 0x6c
-	// Line 1583, Address: 0x157c54, Func Offset: 0x74
-	// Line 1587, Address: 0x157c60, Func Offset: 0x80
-	// Func End, Address: 0x157c68, Func Offset: 0x88
-	scePrintf("bhEtcAtariSet - UNIMPLEMENTED!\n");
+    unsigned int v0, v1;
+    ATR_WORK* e_etcp;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;    
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    e_etcp = rom->etcp;
+    
+    e_etcp += v0;
+    
+    if (v1 != 0) 
+    {
+        e_etcp->flg &= ~0x1;
+    }
+    else 
+    {
+        e_etcp->flg |= 0x1;
+    }
+    
+    return 1;
 }
 
 // 
