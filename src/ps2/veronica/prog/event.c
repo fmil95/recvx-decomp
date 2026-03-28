@@ -1848,45 +1848,44 @@ unsigned int bhInitMotionPause()
     return 1;
 }
 
-// 
-// Start address: 0x157f20
+// 100% matching!
 unsigned int bhInitMotionPauseEx()
 {
-	BH_PWORK* e_ep;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 1737, Address: 0x157f20, Func Offset: 0
-	// Line 1748, Address: 0x157f28, Func Offset: 0x8
-	// Line 1750, Address: 0x157f30, Func Offset: 0x10
-	// Line 1748, Address: 0x157f34, Func Offset: 0x14
-	// Line 1737, Address: 0x157f3c, Func Offset: 0x1c
-	// Line 1751, Address: 0x157f40, Func Offset: 0x20
-	// Line 1737, Address: 0x157f44, Func Offset: 0x24
-	// Line 1738, Address: 0x157f4c, Func Offset: 0x2c
-	// Line 1757, Address: 0x157f54, Func Offset: 0x34
-	// Line 1738, Address: 0x157f58, Func Offset: 0x38
-	// Line 1739, Address: 0x157f5c, Func Offset: 0x3c
-	// Line 1740, Address: 0x157f68, Func Offset: 0x48
-	// Line 1748, Address: 0x157f70, Func Offset: 0x50
-	// Line 1740, Address: 0x157f7c, Func Offset: 0x5c
-	// Line 1741, Address: 0x157f80, Func Offset: 0x60
-	// Line 1748, Address: 0x157f8c, Func Offset: 0x6c
-	// Line 1755, Address: 0x157f90, Func Offset: 0x70
-	// Line 1748, Address: 0x157f94, Func Offset: 0x74
-	// Line 1750, Address: 0x157fb4, Func Offset: 0x94
-	// Line 1751, Address: 0x157fb8, Func Offset: 0x98
-	// Line 1752, Address: 0x157fbc, Func Offset: 0x9c
-	// Line 1753, Address: 0x157fc0, Func Offset: 0xa0
-	// Line 1755, Address: 0x157fc4, Func Offset: 0xa4
-	// Line 1757, Address: 0x157fd8, Func Offset: 0xb8
-	// Line 1758, Address: 0x157fe4, Func Offset: 0xc4
-	// Line 1759, Address: 0x157fec, Func Offset: 0xcc
-	// Line 1760, Address: 0x157ff4, Func Offset: 0xd4
-	// Line 1761, Address: 0x157ffc, Func Offset: 0xdc
-	// Line 1764, Address: 0x158004, Func Offset: 0xe4
-	// Line 1765, Address: 0x158008, Func Offset: 0xe8
-	// Func End, Address: 0x158010, Func Offset: 0xf0
-	scePrintf("bhInitMotionPauseEx - UNIMPLEMENTED!\n");
+    unsigned int v0, v1;
+    BH_PWORK* e_ep;
+    ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr += 2;
+
+    enep = &rom->enep[v0];
+    e_ep = &ene[enep->wrk_no];
+    
+    e_ep->mode0 = 5;
+    e_ep->mode3 = 4;
+    
+    e_ep->frm_no = 0;
+    e_ep->mtn_no = v1;
+    
+    e_ep->mnwP = sys->rmthp;
+    
+    if (e_ep->id == 1) 
+    {
+        ((BH_PWORK*)e_ep->exp1)->mode0 = 5;
+        ((BH_PWORK*)e_ep->exp1)->mode3 = 4;
+        
+        ((BH_PWORK*)e_ep->exp1)->frm_no = 0;
+        ((BH_PWORK*)e_ep->exp1)->mtn_no = v1;
+    }
+    
+    return 1;
 }
 
 // 
