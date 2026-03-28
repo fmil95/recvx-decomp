@@ -1820,33 +1820,32 @@ unsigned int bhMotionPauseSetPly()
     return 1;
 }
 
-// 
-// Start address: 0x157e70
+// 100% matching!
 unsigned int bhInitMotionPause()
 {
-	BH_PWORK* e_ep;
-	unsigned int v0;
-	// Line 1704, Address: 0x157e70, Func Offset: 0
-	// Line 1713, Address: 0x157e78, Func Offset: 0x8
-	// Line 1715, Address: 0x157e80, Func Offset: 0x10
-	// Line 1713, Address: 0x157e84, Func Offset: 0x14
-	// Line 1704, Address: 0x157e8c, Func Offset: 0x1c
-	// Line 1716, Address: 0x157e90, Func Offset: 0x20
-	// Line 1704, Address: 0x157e94, Func Offset: 0x24
-	// Line 1705, Address: 0x157e9c, Func Offset: 0x2c
-	// Line 1718, Address: 0x157ea4, Func Offset: 0x34
-	// Line 1705, Address: 0x157ea8, Func Offset: 0x38
-	// Line 1706, Address: 0x157eac, Func Offset: 0x3c
-	// Line 1713, Address: 0x157eb8, Func Offset: 0x48
-	// Line 1715, Address: 0x157ee8, Func Offset: 0x78
-	// Line 1716, Address: 0x157eec, Func Offset: 0x7c
-	// Line 1718, Address: 0x157ef0, Func Offset: 0x80
-	// Line 1719, Address: 0x157efc, Func Offset: 0x8c
-	// Line 1720, Address: 0x157f04, Func Offset: 0x94
-	// Line 1723, Address: 0x157f0c, Func Offset: 0x9c
-	// Line 1724, Address: 0x157f10, Func Offset: 0xa0
-	// Func End, Address: 0x157f18, Func Offset: 0xa8
-	scePrintf("bhInitMotionPause - UNIMPLEMENTED!\n");
+    unsigned int v0;
+    BH_PWORK* e_ep;
+    ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+
+    enep = &rom->enep[v0];
+    e_ep = &ene[enep->wrk_no];
+    
+    e_ep->mode0 = 5;
+    e_ep->mode3 = 4;
+    
+    if (e_ep->id == 1) 
+    {
+        ((BH_PWORK*)e_ep->exp1)->mode0 = 5;
+        ((BH_PWORK*)e_ep->exp1)->mode3 = 4;
+    }
+    
+    return 1;
 }
 
 // 
