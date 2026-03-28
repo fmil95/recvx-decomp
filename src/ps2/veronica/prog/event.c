@@ -1963,57 +1963,69 @@ unsigned int bhEffectSensyaSet()
     return 1;
 }
 
-// 
-// Start address: 0x158190
+// 100% matching!
 unsigned int bhEffectKokuenSet()
 {
-	int v0;
-	// Line 1827, Address: 0x158190, Func Offset: 0
-	// Line 1831, Address: 0x158198, Func Offset: 0x8
-	// Line 1832, Address: 0x1581a4, Func Offset: 0x14
-	// Line 1836, Address: 0x1581a8, Func Offset: 0x18
-	// Line 1831, Address: 0x1581ac, Func Offset: 0x1c
-	// Line 1832, Address: 0x1581b8, Func Offset: 0x28
-	// Line 1833, Address: 0x1581cc, Func Offset: 0x3c
-	// Line 1834, Address: 0x1581e0, Func Offset: 0x50
-	// Line 1835, Address: 0x1581f4, Func Offset: 0x64
-	// Line 1836, Address: 0x158208, Func Offset: 0x78
-	// Line 1837, Address: 0x15821c, Func Offset: 0x8c
-	// Line 1838, Address: 0x158230, Func Offset: 0xa0
-	// Line 1840, Address: 0x158244, Func Offset: 0xb4
-	// Line 1843, Address: 0x15824c, Func Offset: 0xbc
-	// Line 1840, Address: 0x158254, Func Offset: 0xc4
-	// Line 1841, Address: 0x158260, Func Offset: 0xd0
-	// Line 1842, Address: 0x15826c, Func Offset: 0xdc
-	// Line 1843, Address: 0x158278, Func Offset: 0xe8
-	// Line 1844, Address: 0x158284, Func Offset: 0xf4
-	// Line 1845, Address: 0x158300, Func Offset: 0x170
-	// Line 1846, Address: 0x158308, Func Offset: 0x178
-	// Line 1848, Address: 0x158398, Func Offset: 0x208
-	// Line 1849, Address: 0x1583a0, Func Offset: 0x210
-	// Line 1848, Address: 0x1583a8, Func Offset: 0x218
-	// Line 1849, Address: 0x1583b4, Func Offset: 0x224
-	// Line 1850, Address: 0x1583c0, Func Offset: 0x230
-	// Line 1851, Address: 0x158418, Func Offset: 0x288
-	// Line 1852, Address: 0x158420, Func Offset: 0x290
-	// Line 1854, Address: 0x15848c, Func Offset: 0x2fc
-	// Line 1855, Address: 0x158494, Func Offset: 0x304
-	// Line 1854, Address: 0x15849c, Func Offset: 0x30c
-	// Line 1855, Address: 0x1584a8, Func Offset: 0x318
-	// Line 1856, Address: 0x1584b4, Func Offset: 0x324
-	// Line 1857, Address: 0x158530, Func Offset: 0x3a0
-	// Line 1858, Address: 0x158538, Func Offset: 0x3a8
-	// Line 1860, Address: 0x1585c8, Func Offset: 0x438
-	// Line 1863, Address: 0x1585d0, Func Offset: 0x440
-	// Line 1862, Address: 0x1585dc, Func Offset: 0x44c
-	// Line 1860, Address: 0x1585e4, Func Offset: 0x454
-	// Line 1862, Address: 0x1585f0, Func Offset: 0x460
-	// Line 1863, Address: 0x1585fc, Func Offset: 0x46c
-	// Line 1866, Address: 0x158614, Func Offset: 0x484
-	// Line 1865, Address: 0x158618, Func Offset: 0x488
-	// Line 1866, Address: 0x15861c, Func Offset: 0x48c
-	// Func End, Address: 0x158624, Func Offset: 0x494
-	scePrintf("bhEffectKokuenSet - UNIMPLEMENTED!\n");
+    int v0;
+
+    sys->ef.id = 2;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.mdlver = 0;
+    
+    sys->ef.type = 1;
+    
+    sys->ef.flr_no = 0;
+    
+    sys->ef.sx = 4.0f;
+    sys->ef.sy = 4.0f;
+    sys->ef.sz = 4.0f;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    if (bhCetask->bpx == 0) 
+    {
+        sys->ef.px = (*(unsigned short*)bhScePtr / 100.0f) + bhEtask[v0].work->mlwP->objP->pos[0];
+    } 
+    else 
+    {
+        sys->ef.px = (-1.0f * (*(unsigned short*)bhScePtr / 100.0f)) + bhEtask[v0].work->mlwP->objP->pos[0];
+    }
+    
+    bhScePtr += 2;
+    
+    if (bhCetask->bpy == 0) 
+    {
+        sys->ef.py = *(unsigned short*)bhScePtr / 100.0f;
+    } 
+    else 
+    {
+        sys->ef.py = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    }
+    
+    bhScePtr += 2;
+    
+    if (bhCetask->bpz == 0)
+    {
+        sys->ef.pz = (*(unsigned short*)bhScePtr / 100.0f) + bhEtask[v0].work->mlwP->objP->pos[2];
+    } 
+    else 
+    {
+        sys->ef.pz = (-1.0f * (*(unsigned short*)bhScePtr / 100.0f)) + bhEtask[v0].work->mlwP->objP->pos[2];
+    }
+    
+    bhScePtr += 2;
+    
+    sys->ef.ay = 0;
+    
+    bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    
+    return 1;
 }
 
 // 
