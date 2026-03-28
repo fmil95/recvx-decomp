@@ -1768,32 +1768,40 @@ unsigned int bhSubStatus()
     return 1;
 }
 
-// 
-// Start address: 0x157d30
+// 100% matching!
 unsigned int bhMotionPauseSet()
 {
-	unsigned int v0;
-	// Line 1650, Address: 0x157d30, Func Offset: 0
-	// Line 1658, Address: 0x157d38, Func Offset: 0x8
-	// Line 1650, Address: 0x157d3c, Func Offset: 0xc
-	// Line 1651, Address: 0x157d48, Func Offset: 0x18
-	// Line 1652, Address: 0x157d54, Func Offset: 0x24
-	// Line 1658, Address: 0x157d5c, Func Offset: 0x2c
-	// Line 1660, Address: 0x157d74, Func Offset: 0x44
-	// Line 1661, Address: 0x157d84, Func Offset: 0x54
-	// Line 1660, Address: 0x157d88, Func Offset: 0x58
-	// Line 1661, Address: 0x157d8c, Func Offset: 0x5c
-	// Line 1662, Address: 0x157da0, Func Offset: 0x70
-	// Line 1664, Address: 0x157da4, Func Offset: 0x74
-	// Line 1666, Address: 0x157dac, Func Offset: 0x7c
-	// Line 1667, Address: 0x157db8, Func Offset: 0x88
-	// Line 1666, Address: 0x157dbc, Func Offset: 0x8c
-	// Line 1667, Address: 0x157dc0, Func Offset: 0x90
-	// Line 1668, Address: 0x157dd4, Func Offset: 0xa4
-	// Line 1672, Address: 0x157ddc, Func Offset: 0xac
-	// Line 1673, Address: 0x157de0, Func Offset: 0xb0
-	// Func End, Address: 0x157de8, Func Offset: 0xb8
-	scePrintf("bhMotionPauseSet - UNIMPLEMENTED!\n");
+    unsigned int v0;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    switch (v0) 
+    {
+    case 0:
+        bhCetask->work->mode3 = 4;
+        
+        if (bhCetask->work->id == 1)
+        {
+            ((BH_PWORK*)bhCetask->work->exp1)->mode3 = 4;
+        }
+        
+        break;
+    case 1:
+        bhCetask->work->mode3 = 1;
+        
+        if (bhCetask->work->id == 1) 
+        {
+            ((BH_PWORK*)bhCetask->work->exp1)->mode3 = 1;
+        }
+
+        break;
+    }
+    
+    return 1;
 }
 
 // 100% matching!
