@@ -7344,38 +7344,37 @@ unsigned int bhReturnTitleEvt()
     return 1;
 }
 
-// 
-// Start address: 0x166ba0
-unsigned int bhSyukanModeSet()
+// 100% matching!
+unsigned int bhSyukanModeSet() 
 {
-	unsigned int v0;
-	// Line 8251, Address: 0x166ba0, Func Offset: 0
-	// Line 8252, Address: 0x166bb4, Func Offset: 0x14
-	// Line 8253, Address: 0x166bc0, Func Offset: 0x20
-	// Line 8255, Address: 0x166bc8, Func Offset: 0x28
-	// Line 8256, Address: 0x166bd0, Func Offset: 0x30
-	// Line 8258, Address: 0x166bdc, Func Offset: 0x3c
-	// Line 8260, Address: 0x166be0, Func Offset: 0x40
-	// Line 8256, Address: 0x166be4, Func Offset: 0x44
-	// Line 8257, Address: 0x166be8, Func Offset: 0x48
-	// Line 8256, Address: 0x166bec, Func Offset: 0x4c
-	// Line 8257, Address: 0x166bf4, Func Offset: 0x54
-	// Line 8258, Address: 0x166bf8, Func Offset: 0x58
-	// Line 8259, Address: 0x166c00, Func Offset: 0x60
-	// Line 8260, Address: 0x166c0c, Func Offset: 0x6c
-	// Line 8259, Address: 0x166c10, Func Offset: 0x70
-	// Line 8260, Address: 0x166c18, Func Offset: 0x78
-	// Line 8261, Address: 0x166c20, Func Offset: 0x80
-	// Line 8260, Address: 0x166c24, Func Offset: 0x84
-	// Line 8261, Address: 0x166c2c, Func Offset: 0x8c
-	// Line 8262, Address: 0x166c34, Func Offset: 0x94
-	// Line 8263, Address: 0x166c3c, Func Offset: 0x9c
-	// Line 8264, Address: 0x166c50, Func Offset: 0xb0
-	// Line 8263, Address: 0x166c54, Func Offset: 0xb4
-	// Line 8264, Address: 0x166c5c, Func Offset: 0xbc
-	// Line 8267, Address: 0x166c6c, Func Offset: 0xcc
-	// Func End, Address: 0x166c74, Func Offset: 0xd4
-	scePrintf("bhSyukanModeSet - UNIMPLEMENTED!\n");
+    unsigned int v0;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    if (v0 == 0) 
+    {
+        sys->gm_flg |= 0x1000000;
+        
+        cam.pe_ax = 0;
+        cam.pe_pers = 11832;
+        
+        sys->gm_flg |= 0x2000;
+        sys->st_flg &= ~0x1;
+        
+        cam.axp = 0;
+        cam.ax = 0;
+    } 
+    else
+    {
+        sys->gm_flg &= ~0x10000C0;
+        sys->gm_flg |= 0x800;
+    }
+    
+    return 1;
 }
 
 // 100% matching!
