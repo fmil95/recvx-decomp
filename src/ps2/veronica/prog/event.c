@@ -7189,29 +7189,33 @@ unsigned int bhGameOverSet()
 	return 1;
 }
 
-// 
-// Start address: 0x1665c0
+// 100% matching!
 unsigned int bhPlItemChangeM()
 {
-	int v1;
-	int v0;
-	unsigned int cnt;
-	// Line 8079, Address: 0x1665c0, Func Offset: 0
-	// Line 8085, Address: 0x1665c8, Func Offset: 0x8
-	// Line 8079, Address: 0x1665d0, Func Offset: 0x10
-	// Line 8080, Address: 0x1665dc, Func Offset: 0x1c
-	// Line 8081, Address: 0x1665e8, Func Offset: 0x28
-	// Line 8082, Address: 0x1665f4, Func Offset: 0x34
-	// Line 8083, Address: 0x166600, Func Offset: 0x40
-	// Line 8085, Address: 0x16660c, Func Offset: 0x4c
-	// Line 8086, Address: 0x166628, Func Offset: 0x68
-	// Line 8087, Address: 0x16663c, Func Offset: 0x7c
-	// Line 8088, Address: 0x16664c, Func Offset: 0x8c
-	// Line 8090, Address: 0x166658, Func Offset: 0x98
-	// Line 8091, Address: 0x16666c, Func Offset: 0xac
-	// Line 8092, Address: 0x166670, Func Offset: 0xb0
-	// Func End, Address: 0x166678, Func Offset: 0xb8
-	scePrintf("bhPlItemChangeM - UNIMPLEMENTED!\n");
+    unsigned int cnt;
+    int v0, v1;
+ 
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr += 2;
+
+    for (cnt = (sys->ply_id * 16) + 2; cnt < ((sys->ply_id * 16) + 12); cnt++) 
+    {
+        if (v0 == (unsigned char)(sys->itm[cnt] >> 16))
+        {
+            sys->itm[cnt] = v1 << 16;
+
+            return 1;
+        }
+    }
+
+    return 1;
 }
 
 // 
