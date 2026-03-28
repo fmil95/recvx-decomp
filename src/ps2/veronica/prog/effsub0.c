@@ -729,7 +729,7 @@ void bhEff165(O_WRK* op)
 	scePrintf("bhEff165 - UNIMPLEMENTED!\n");
 }
 
-// 99.74% matching (https://decomp.me/scratch/V9yU4)
+// 100% matching!
 void bhEff166(O_WRK* op) 
 {
     op->flg |= 0x01000000;
@@ -743,21 +743,12 @@ void bhEff166(O_WRK* op)
 
     if (op->type != 0) 
     {
-        if (op->ct1 > 0) 
+        if ((op->ct1 <= 0) || (op->ct1 > 0xD))  
         {
-            if (op->ct1 >= 0xE) 
-            {
-                goto block_7;
-            }
-        } 
-        else 
-        // if ((op->ct1 > 0) && !(op->ct1 >= 0xE))
-        {
-block_7:
             setentry(0xA7U, 1U, op);
             op->mode1 = 0;
             op->ct1 = 0xD;
-        }
+        } 
         
         op->ct1 -= 1;
     }
@@ -1069,7 +1060,7 @@ void bhEff176(O_WRK* op)
 	scePrintf("bhEff176 - UNIMPLEMENTED!\n");
 }
 
-// 99.88% matching (https://decomp.me/scratch/QxlK6)
+// 100% matching!
 void bhEff177(O_WRK* op) 
 {
     int lNumber;
@@ -1089,7 +1080,7 @@ void bhEff177(O_WRK* op)
         
         if (lNumber != -1) 
         {
-            *(&eff->lkono + (lNumber * 0x4E0)) = op->lkono;
+            eff[lNumber].lkono = op->lkono;
         }
         
         op->mode1 = 0;
@@ -1144,7 +1135,7 @@ void bhEff178(O_WRK* op)
 	scePrintf("bhEff178 - UNIMPLEMENTED!\n");
 }
 
-// 99.81% matching (https://decomp.me/scratch/26l1A)
+// 100% matching!
 void bhEff179(O_WRK* op) 
 {
     op->flg |= 0x01000000;
@@ -1158,7 +1149,7 @@ void bhEff179(O_WRK* op)
     
     if (op->type != 0) 
     {
-        if (op->sz == 0.0f) 
+        if (!op->sz) 
         {
             setentry(0xB4U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
             op->mode1 = 0;
