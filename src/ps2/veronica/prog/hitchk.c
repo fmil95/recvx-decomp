@@ -6,37 +6,7 @@ _anon12* rom;
 _anon1 eff[0];
 BH_PWORK* plp;
 _anon38 cam;
-BH_PWORK ene[0];
-
-void bhCheckWall(BH_PWORK* pw);
-int bhCheckWallEx(BH_PWORK* pw, _anon20* npos, _anon20* opos, float par, float pah);
-void bhCheckWall2Box(BH_PWORK* pw);
-_anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, float ah, int idx_ct);
-_anon0* bhCheckWallRefAngle(_anon20* pos, unsigned int flg, float ar, float ah, int* ay);
-void bhSetWallRefAngle(_anon0* hp, _anon20* pos, float ar, float ah, int* ay);
-float bhGetGroundPosition(_anon20* pos);
-int bhCheckInnerTriangle(_anon0* hp, _anon20* pos, float ar, float ah);
-int bhCheckInnerTriangle2(_anon0* hp, _anon20* pos, float aw, float ad, float ah);
-int bhCheckInnerTriangle3(_anon0* hp, _anon20* pos);
-int bhCheckBox(_anon0* hp, _anon20* pos, float ar, float ah, unsigned int aflg);
-int bhCheckBox2Box(_anon0* hp, _anon20* pos, float aw, float ad, float ah);
-int bhCheckInnerP4(_anon33* pos, _anon33* p0, _anon33* p1, _anon33* p2, _anon33* p3);
-void bhCheckExmAtari(BH_PWORK* pp);
-void bhSetUseKaidanFlag(BH_PWORK* pp, _anon0* exp, int idx);
-void bhClrUseKaidanFlag(BH_PWORK* pp);
-void bhSetDansaLimitAtari(BH_PWORK* pp);
-_anon0* bhCheckDansaAtari(int flr_no, float px, float pz);
-void bhCheckFloorP(BH_PWORK* pp);
-void bhCheckDansa(BH_PWORK* pp);
-int bhCheckFloorSound(BH_PWORK* pp, int flr_no, float px, float pz);
-_anon0* bhCheckFloorEnemy(int flr_no, float px, float pz);
-_anon0* bhCheckFloorEffect(int flr_no, float px, float pz);
-_anon0* bhCheckWater(_anon20* pos);
-_anon0* bhCheckL2Water(_anon39* lp, _anon20* pos);
-void bhResetAtariAttr();
-void bhCheckPlayer(BH_PWORK* pp);
-void bhCheckEnemies(BH_PWORK* pp);
-int bhCheckWallAttrB89(_anon0* hp);*/
+BH_PWORK ene[0];*/
 
 // 
 // Start address: 0x25d590
@@ -3682,15 +3652,15 @@ _anon0* bhCheckFloorEffect(int flr_no, float px, float pz)
 	// Line 4460, Address: 0x268530, Func Offset: 0x110
 	// Line 4461, Address: 0x268534, Func Offset: 0x114
 	// Func End, Address: 0x26853c, Func Offset: 0x11c
-}
+}*/
 
 // 
 // Start address: 0x268540
-_anon0* bhCheckWater(_anon20* pos)
+ATR_WORK* bhCheckWater(NJS_POINT3* pos)
 {
 	int flr_n;
 	int i;
-	_anon0* fp;
+	//_anon0* fp;
 	// Line 4475, Address: 0x268540, Func Offset: 0
 	// Line 4476, Address: 0x268564, Func Offset: 0x24
 	// Line 4479, Address: 0x268574, Func Offset: 0x34
@@ -3702,7 +3672,8 @@ _anon0* bhCheckWater(_anon20* pos)
 	// Line 4487, Address: 0x268688, Func Offset: 0x148
 	// Line 4488, Address: 0x26868c, Func Offset: 0x14c
 	// Func End, Address: 0x268694, Func Offset: 0x154
-}*/
+	scePrintf("bhCheckWater - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2686a0
