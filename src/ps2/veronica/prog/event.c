@@ -631,44 +631,83 @@ unsigned int bhSet()
     }
 }
 
-// 
-// Start address: 0x156080
+// 86.57% matching (matches on GC)
 unsigned int bhCmpB()
 {
-	unsigned int v3;
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 554, Address: 0x156080, Func Offset: 0
-	// Line 562, Address: 0x156088, Func Offset: 0x8
-	// Line 554, Address: 0x15608c, Func Offset: 0xc
-	// Line 555, Address: 0x156098, Func Offset: 0x18
-	// Line 556, Address: 0x1560a4, Func Offset: 0x24
-	// Line 557, Address: 0x1560b0, Func Offset: 0x30
-	// Line 558, Address: 0x1560bc, Func Offset: 0x3c
-	// Line 559, Address: 0x1560c8, Func Offset: 0x48
-	// Line 560, Address: 0x1560d4, Func Offset: 0x54
-	// Line 562, Address: 0x1560dc, Func Offset: 0x5c
-	// Line 563, Address: 0x156154, Func Offset: 0xd4
-	// Line 564, Address: 0x156160, Func Offset: 0xe0
-	// Line 565, Address: 0x15616c, Func Offset: 0xec
-	// Line 566, Address: 0x156174, Func Offset: 0xf4
-	// Line 567, Address: 0x156180, Func Offset: 0x100
-	// Line 568, Address: 0x156194, Func Offset: 0x114
-	// Line 569, Address: 0x15619c, Func Offset: 0x11c
-	// Line 570, Address: 0x1561a8, Func Offset: 0x128
-	// Line 571, Address: 0x1561b4, Func Offset: 0x134
-	// Line 572, Address: 0x1561c0, Func Offset: 0x140
-	// Line 579, Address: 0x1561d8, Func Offset: 0x158
-	// Line 580, Address: 0x1561fc, Func Offset: 0x17c
-	// Line 581, Address: 0x156208, Func Offset: 0x188
-	// Line 582, Address: 0x156210, Func Offset: 0x190
-	// Line 583, Address: 0x15621c, Func Offset: 0x19c
-	// Line 584, Address: 0x156224, Func Offset: 0x1a4
-	// Line 585, Address: 0x156230, Func Offset: 0x1b0
-	// Line 592, Address: 0x156238, Func Offset: 0x1b8
-	// Func End, Address: 0x156240, Func Offset: 0x1c0
-	scePrintf("bhCmpB - UNIMPLEMENTED!\n");
+    unsigned int v0, v1, v2, v3; 
+    int ret; // not from DWARF
+    
+    bhScePtr++;
+    
+    v3 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+
+    switch (v3) 
+    {
+    case 0: 
+        v0 = sys->stg_no; 
+        break;
+    case 1: 
+        v0 = sys->rom_no; 
+        break;
+    case 2: 
+        v0 = cam.ncut; 
+        break;
+    case 15: 
+        v0 = sys->pos_no; 
+        break;
+    case 8: 
+        v0 = sys->sb_id; 
+        break;
+    case 17: 
+        v0 = bhEtask->wpnl_no; 
+        break;
+    case 21: 
+        v0 = sys->rcase; 
+        break;
+    case 23: 
+        v0 = sys->gm_mode; 
+        break;
+    case 24: 
+        v0 = sys->ply_id;
+        break;
+    case 25: 
+        v0 = sys->costume; 
+        break;
+    }
+
+    switch (v2)
+    {
+    case 0: 
+        ret = v0 == v1; 
+        break;
+    case 1: 
+        ret = v0 > v1; 
+        break;
+    case 2: 
+        ret = v0 >= v1; 
+        break;
+    case 3: 
+        ret = v0 < v1; 
+        break;
+    case 4: 
+        ret = v0 <= v1; 
+        break;
+    case 5: 
+        ret = v0 != v1; 
+        break;
+    }
+   
+    return ret;
 }
 
 // 100% matching! 
