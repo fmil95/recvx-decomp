@@ -2312,41 +2312,51 @@ unsigned int bhSetDebugLoopEx()
 	scePrintf("bhSetDebugLoopEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x159310
+// 98.88% matching (matches on GC)
 unsigned int bhInitSetKage()
 {
-	BH_PWORK* e_ep;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 2272, Address: 0x159310, Func Offset: 0
-	// Line 2277, Address: 0x159318, Func Offset: 0x8
-	// Line 2288, Address: 0x159320, Func Offset: 0x10
-	// Line 2277, Address: 0x159330, Func Offset: 0x20
-	// Line 2278, Address: 0x15933c, Func Offset: 0x2c
-	// Line 2279, Address: 0x159348, Func Offset: 0x38
-	// Line 2280, Address: 0x159354, Func Offset: 0x44
-	// Line 2288, Address: 0x15935c, Func Offset: 0x4c
-	// Line 2280, Address: 0x159368, Func Offset: 0x58
-	// Line 2281, Address: 0x15936c, Func Offset: 0x5c
-	// Line 2288, Address: 0x159378, Func Offset: 0x68
-	// Line 2290, Address: 0x15939c, Func Offset: 0x8c
-	// Line 2291, Address: 0x1593ac, Func Offset: 0x9c
-	// Line 2295, Address: 0x1593b4, Func Offset: 0xa4
-	// Line 2298, Address: 0x1593f4, Func Offset: 0xe4
-	// Line 2299, Address: 0x159414, Func Offset: 0x104
-	// Line 2302, Address: 0x15941c, Func Offset: 0x10c
-	// Line 2303, Address: 0x15943c, Func Offset: 0x12c
-	// Line 2306, Address: 0x159444, Func Offset: 0x134
-	// Line 2307, Address: 0x159468, Func Offset: 0x158
-	// Line 2310, Address: 0x159470, Func Offset: 0x160
-	// Line 2311, Address: 0x159494, Func Offset: 0x184
-	// Line 2314, Address: 0x15949c, Func Offset: 0x18c
-	// Line 2319, Address: 0x1594c0, Func Offset: 0x1b0
-	// Line 2318, Address: 0x1594c4, Func Offset: 0x1b4
-	// Line 2319, Address: 0x1594c8, Func Offset: 0x1b8
-	// Func End, Address: 0x1594d0, Func Offset: 0x1c0
-	scePrintf("bhInitSetKage - UNIMPLEMENTED!\n");
+	unsigned int v0, v1;
+    BH_PWORK* e_ep;
+    ETTY_WORK* enep; // not from DWARF
+     
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    enep = &rom->enep[v0];
+    e_ep = &ene[enep->wrk_no];
+    
+    if (!(e_ep->flg & 0x800))
+    {
+        e_ep->flg |= 0x800;
+        
+        switch (v1) 
+        {                        
+        case 0:
+            bhSetShadow(NULL, (unsigned char*)e_ep, 1, 4.5f, 4.0f, 3.5f);
+            break;
+        case 1:
+            bhSetShadow(NULL, (unsigned char*)e_ep, 1, 4.5f, 4.0f, 3.5f);
+            break;
+        case 2:
+            bhSetShadow(NULL, (unsigned char*)e_ep, 1, 4.5f, 4.0f, 3.5f);
+            break;
+        case 3:
+            bhSetShadow(NULL, (unsigned char*)e_ep, 1, 4.5f, 4.0f, 3.5f);
+            break;
+        case 4:
+            bhSetShadow(NULL, (unsigned char*)e_ep, 1, 6.5f, 4.0f, 4.5f);
+            break;
+        }
+    }
+    
+    return 1;
 }
 
 // 
