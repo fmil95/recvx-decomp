@@ -1796,23 +1796,28 @@ unsigned int bhMotionPauseSet()
 	scePrintf("bhMotionPauseSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x157df0
+// 100% matching!
 unsigned int bhMotionPauseSetPly()
 {
-	unsigned int v0;
-	// Line 1683, Address: 0x157df0, Func Offset: 0
-	// Line 1686, Address: 0x157df8, Func Offset: 0x8
-	// Line 1683, Address: 0x157dfc, Func Offset: 0xc
-	// Line 1684, Address: 0x157e08, Func Offset: 0x18
-	// Line 1685, Address: 0x157e14, Func Offset: 0x24
-	// Line 1686, Address: 0x157e1c, Func Offset: 0x2c
-	// Line 1687, Address: 0x157e34, Func Offset: 0x44
-	// Line 1688, Address: 0x157e50, Func Offset: 0x60
-	// Line 1690, Address: 0x157e64, Func Offset: 0x74
-	// Line 1691, Address: 0x157e68, Func Offset: 0x78
-	// Func End, Address: 0x157e70, Func Offset: 0x80
-	scePrintf("bhMotionPauseSetPly - UNIMPLEMENTED!\n");
+    unsigned int v0;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    switch (v0) 
+    {
+    case 0:
+        sys->sp_flg &= ~0x1;
+        break;
+    case 1:
+        sys->sp_flg |= 0x1;
+        break;
+    }
+    
+    return 1;
 }
 
 // 
