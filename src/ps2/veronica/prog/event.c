@@ -1927,29 +1927,25 @@ unsigned int bhEffectSet()
 	scePrintf("bhEffectSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x158110
+// 100% matching!
 unsigned int bhEffectSensyaSet()
 {
-	//_anon53 pnt;
-	// Line 1806, Address: 0x158110, Func Offset: 0
-	// Line 1811, Address: 0x158118, Func Offset: 0x8
-	// Line 1814, Address: 0x158120, Func Offset: 0x10
-	// Line 1815, Address: 0x15812c, Func Offset: 0x1c
-	// Line 1816, Address: 0x158134, Func Offset: 0x24
-	// Line 1811, Address: 0x15813c, Func Offset: 0x2c
-	// Line 1815, Address: 0x158140, Func Offset: 0x30
-	// Line 1816, Address: 0x158144, Func Offset: 0x34
-	// Line 1811, Address: 0x158148, Func Offset: 0x38
-	// Line 1812, Address: 0x158150, Func Offset: 0x40
-	// Line 1816, Address: 0x158158, Func Offset: 0x48
-	// Line 1812, Address: 0x15815c, Func Offset: 0x4c
-	// Line 1816, Address: 0x158168, Func Offset: 0x58
-	// Line 1819, Address: 0x158180, Func Offset: 0x70
-	// Line 1818, Address: 0x158184, Func Offset: 0x74
-	// Line 1819, Address: 0x158188, Func Offset: 0x78
-	// Func End, Address: 0x158190, Func Offset: 0x80
-	scePrintf("bhEffectSensyaSet - UNIMPLEMENTED!\n");
+    POINT pnt;
+
+    pnt.pz = 0;
+    pnt.py = 0;
+    pnt.px = 0;
+    
+    pnt.oz = 0;
+    pnt.oy = 0;
+    pnt.ox = 0;
+    
+    bhScePtr++;
+    bhScePtr++;
+    
+    bhCetask->ev_eff_no = bhSetEffect(120, &pnt, (unsigned char*)bhCetask->work, 0);
+    
+    return 1;
 }
 
 // 
