@@ -1896,35 +1896,50 @@ unsigned int bhInitMotionPauseEx()
     return 1;
 }
 
-// 
-// Start address: 0x158010
+// 100% matching!
 unsigned int bhEffectSet()
 {
-	//_anon53 pnt;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 1773, Address: 0x158010, Func Offset: 0
-	// Line 1778, Address: 0x158018, Func Offset: 0x8
-	// Line 1784, Address: 0x158020, Func Offset: 0x10
-	// Line 1778, Address: 0x158024, Func Offset: 0x14
-	// Line 1779, Address: 0x158030, Func Offset: 0x20
-	// Line 1780, Address: 0x15803c, Func Offset: 0x2c
-	// Line 1781, Address: 0x158048, Func Offset: 0x38
-	// Line 1782, Address: 0x158054, Func Offset: 0x44
-	// Line 1783, Address: 0x158060, Func Offset: 0x50
-	// Line 1784, Address: 0x158070, Func Offset: 0x60
-	// Line 1786, Address: 0x158088, Func Offset: 0x78
-	// Line 1787, Address: 0x158094, Func Offset: 0x84
-	// Line 1788, Address: 0x15809c, Func Offset: 0x8c
-	// Line 1789, Address: 0x1580b8, Func Offset: 0xa8
-	// Line 1791, Address: 0x1580c0, Func Offset: 0xb0
-	// Line 1792, Address: 0x1580cc, Func Offset: 0xbc
-	// Line 1793, Address: 0x1580d4, Func Offset: 0xc4
-	// Line 1798, Address: 0x1580f4, Func Offset: 0xe4
-	// Line 1797, Address: 0x1580f8, Func Offset: 0xe8
-	// Line 1798, Address: 0x1580fc, Func Offset: 0xec
-	// Func End, Address: 0x158104, Func Offset: 0xf4
-	scePrintf("bhEffectSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1;
+    POINT pnt;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr++;
+    bhScePtr++;
+    
+    switch (v0) 
+    {                      
+    case 0:
+        pnt.pz = 0;
+        pnt.py = 0;
+        pnt.px = 0;
+        
+        pnt.oz = 0;
+        pnt.oy = 0;
+        pnt.ox = 0;
+        
+        bhCetask->ev_eff_no = bhSetEffect(v1, &pnt, NULL, 0);
+        break;
+    case 1:
+        pnt.pz = 0;
+        pnt.py = 0;
+        pnt.px = 0;
+        
+        pnt.oz = 0;
+        pnt.oy = 0;
+        pnt.ox = 0;
+        
+        bhCetask->ev_eff_no = bhSetEffect(v1, &pnt, NULL, 0);
+        break;
+    }
+    
+    return 1;
 }
 
 // 100% matching!
