@@ -1392,58 +1392,74 @@ unsigned int bhMovieStop()
 	return 1;
 }
 
-// 
-// Start address: 0x157460
+// 100% matching!
 unsigned int bhVoiceOn()
 {
-	BH_PWORK* e_ep;
-	//_anon39 pPos;
-	unsigned int v4;
-	unsigned int v3;
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 1285, Address: 0x157460, Func Offset: 0
-	// Line 1291, Address: 0x15747c, Func Offset: 0x1c
-	// Line 1304, Address: 0x157484, Func Offset: 0x24
-	// Line 1291, Address: 0x15748c, Func Offset: 0x2c
-	// Line 1292, Address: 0x157498, Func Offset: 0x38
-	// Line 1304, Address: 0x1574a0, Func Offset: 0x40
-	// Line 1292, Address: 0x1574a4, Func Offset: 0x44
-	// Line 1293, Address: 0x1574a8, Func Offset: 0x48
-	// Line 1294, Address: 0x1574b4, Func Offset: 0x54
-	// Line 1295, Address: 0x1574c0, Func Offset: 0x60
-	// Line 1296, Address: 0x1574cc, Func Offset: 0x6c
-	// Line 1297, Address: 0x1574d8, Func Offset: 0x78
-	// Line 1298, Address: 0x1574e4, Func Offset: 0x84
-	// Line 1300, Address: 0x1574f0, Func Offset: 0x90
-	// Line 1299, Address: 0x1574fc, Func Offset: 0x9c
-	// Line 1301, Address: 0x157504, Func Offset: 0xa4
-	// Line 1302, Address: 0x157510, Func Offset: 0xb0
-	// Line 1304, Address: 0x15751c, Func Offset: 0xbc
-	// Line 1305, Address: 0x157528, Func Offset: 0xc8
-	// Line 1306, Address: 0x15752c, Func Offset: 0xcc
-	// Line 1309, Address: 0x157534, Func Offset: 0xd4
-	// Line 1312, Address: 0x15755c, Func Offset: 0xfc
-	// Line 1313, Address: 0x157574, Func Offset: 0x114
-	// Line 1314, Address: 0x157584, Func Offset: 0x124
-	// Line 1315, Address: 0x157590, Func Offset: 0x130
-	// Line 1319, Address: 0x157598, Func Offset: 0x138
-	// Line 1320, Address: 0x1575d8, Func Offset: 0x178
-	// Line 1321, Address: 0x1575e8, Func Offset: 0x188
-	// Line 1322, Address: 0x1575f8, Func Offset: 0x198
-	// Line 1323, Address: 0x157604, Func Offset: 0x1a4
-	// Line 1326, Address: 0x15760c, Func Offset: 0x1ac
-	// Line 1327, Address: 0x157638, Func Offset: 0x1d8
-	// Line 1328, Address: 0x157648, Func Offset: 0x1e8
-	// Line 1329, Address: 0x157658, Func Offset: 0x1f8
-	// Line 1332, Address: 0x157668, Func Offset: 0x208
-	// Line 1341, Address: 0x157674, Func Offset: 0x214
-	// Line 1344, Address: 0x15768c, Func Offset: 0x22c
-	// Line 1343, Address: 0x1576a4, Func Offset: 0x244
-	// Line 1344, Address: 0x1576a8, Func Offset: 0x248
-	// Func End, Address: 0x1576b0, Func Offset: 0x250
-	scePrintf("bhVoiceOn - UNIMPLEMENTED!\n");
+	unsigned int v0, v1, v2, v3, v4;
+	NJS_POINT3 pPos;
+    BH_PWORK* e_ep;
+    ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;    
+    
+    bhScePtr++;
+    
+    v1 = *(unsigned short *)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v3 = *bhScePtr;
+    
+    v3 *= 10;
+    
+    bhScePtr++;
+    
+    v4 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    if (bhCetask->mode2 != 0) 
+    {
+        bhCetask->mode2 = 0;
+        
+        StopVoice(0);
+    }
+    
+    switch (v0) 
+    {
+    case 0:
+        pPos.x = plp->mlwP->owP->mtx[12];
+        pPos.y = plp->mlwP->owP->mtx[13];
+        pPos.z = plp->mlwP->owP->mtx[14];
+        break;
+    case 1:
+        enep = &rom->enep[v4];
+        e_ep = &ene[enep->wrk_no];  
+        
+        pPos.x = e_ep->mlwP->owP->mtx[12];
+        pPos.y = e_ep->mlwP->owP->mtx[13];
+        pPos.z = e_ep->mlwP->owP->mtx[14];
+        break;
+    case 2:
+        e_ep = (BH_PWORK*)&sys->obwp[v4];
+        
+        pPos.x = e_ep->mlwP->owP->mtx[12];
+        pPos.y = e_ep->mlwP->owP->mtx[13];
+        pPos.z = e_ep->mlwP->owP->mtx[14];
+        break;
+    }
+    
+    bhCetask->mode2 = 1;
+    
+    PlayVoice(v1, &pPos, v2, v3);
+    
+    return 1;
 }
 
 // 100% matching!
