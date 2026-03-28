@@ -1121,28 +1121,32 @@ unsigned int bhUseItemClear()
 	return 0;
 }
 
-// 
-// Start address: 0x1572d0
+// 100% matching!
 unsigned int bhPlItemCheck()
 {
-	unsigned char v0;
-	unsigned int cnt;
-	// Line 1223, Address: 0x1572d0, Func Offset: 0
-	// Line 1227, Address: 0x1572d8, Func Offset: 0x8
-	// Line 1223, Address: 0x1572e0, Func Offset: 0x10
-	// Line 1224, Address: 0x1572ec, Func Offset: 0x1c
-	// Line 1225, Address: 0x1572f8, Func Offset: 0x28
-	// Line 1227, Address: 0x157304, Func Offset: 0x34
-	// Line 1228, Address: 0x157320, Func Offset: 0x50
-	// Line 1229, Address: 0x157334, Func Offset: 0x64
-	// Line 1230, Address: 0x157354, Func Offset: 0x84
-	// Line 1231, Address: 0x15735c, Func Offset: 0x8c
-	// Line 1234, Address: 0x15736c, Func Offset: 0x9c
-	// Line 1236, Address: 0x15737c, Func Offset: 0xac
-	// Line 1237, Address: 0x15738c, Func Offset: 0xbc
-	// Line 1238, Address: 0x157390, Func Offset: 0xc0
-	// Func End, Address: 0x157398, Func Offset: 0xc8
-	scePrintf("bhPlItemCheck - UNIMPLEMENTED!\n");
+    unsigned int cnt;
+    unsigned char v0;         
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+
+    for (cnt = (sys->ply_id * 16) + 1; cnt < ((sys->ply_id * 16) + 12); cnt++) 
+    {
+        if (v0 == (unsigned char)(sys->itm[cnt] >> 16)) 
+        {
+            if (((unsigned char)(sys->itm[cnt] >> 16) == 72) && ((sys->itm[cnt] >> 16) != 72)) 
+            {
+                sys->rm_flg |= 0x10000;
+            }
+            
+            return 1;
+        }
+    }
+    
+    return 0;
 }
 
 // 
