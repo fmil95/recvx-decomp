@@ -1446,25 +1446,22 @@ unsigned int bhVoiceOn()
 	scePrintf("bhVoiceOn - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1576b0
+// 100% matching!
 unsigned int bhVoiceOff()
 {
-	unsigned int v0;
-	// Line 1352, Address: 0x1576b0, Func Offset: 0
-	// Line 1355, Address: 0x1576b8, Func Offset: 0x8
-	// Line 1360, Address: 0x1576c0, Func Offset: 0x10
-	// Line 1355, Address: 0x1576c8, Func Offset: 0x18
-	// Line 1356, Address: 0x1576d4, Func Offset: 0x24
-	// Line 1358, Address: 0x1576e0, Func Offset: 0x30
-	// Line 1360, Address: 0x1576ec, Func Offset: 0x3c
-	// Line 1357, Address: 0x1576f0, Func Offset: 0x40
-	// Line 1361, Address: 0x1576f8, Func Offset: 0x48
-	// Line 1364, Address: 0x157700, Func Offset: 0x50
-	// Line 1363, Address: 0x157704, Func Offset: 0x54
-	// Line 1364, Address: 0x157708, Func Offset: 0x58
-	// Func End, Address: 0x157710, Func Offset: 0x60
-	scePrintf("bhVoiceOff - UNIMPLEMENTED!\n");
+    unsigned int v0;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    bhCetask->mode2 = 0;
+    
+    StopVoice(v0 * 10);
+    
+    return 1;
 }
 
 // 100% matching!
