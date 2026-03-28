@@ -409,61 +409,115 @@ unsigned int dm0()
 	return 0;
 }
 
-// 
-// Start address: 0x155c20
+// 100% matching! 
 unsigned int bhCk()
 {
-	unsigned char* a0;
-	unsigned char v4;
-	unsigned int v3;
-	unsigned int v2;
-	int v1;
-	int* v0;
-	// Line 379, Address: 0x155c20, Func Offset: 0
-	// Line 380, Address: 0x155c28, Func Offset: 0x8
-	// Line 381, Address: 0x155c2c, Func Offset: 0xc
-	// Line 383, Address: 0x155c38, Func Offset: 0x18
-	// Line 385, Address: 0x155c64, Func Offset: 0x44
-	// Line 387, Address: 0x155c74, Func Offset: 0x54
-	// Line 389, Address: 0x155c84, Func Offset: 0x64
-	// Line 391, Address: 0x155c94, Func Offset: 0x74
-	// Line 393, Address: 0x155ca4, Func Offset: 0x84
-	// Line 395, Address: 0x155cb4, Func Offset: 0x94
-	// Line 397, Address: 0x155cc4, Func Offset: 0xa4
-	// Line 399, Address: 0x155cd4, Func Offset: 0xb4
-	// Line 401, Address: 0x155ce4, Func Offset: 0xc4
-	// Line 403, Address: 0x155cf4, Func Offset: 0xd4
-	// Line 405, Address: 0x155d04, Func Offset: 0xe4
-	// Line 408, Address: 0x155d14, Func Offset: 0xf4
-	// Line 413, Address: 0x155d1c, Func Offset: 0xfc
-	// Line 412, Address: 0x155d20, Func Offset: 0x100
-	// Line 413, Address: 0x155d24, Func Offset: 0x104
-	// Line 415, Address: 0x155d44, Func Offset: 0x124
-	// Line 416, Address: 0x155d5c, Func Offset: 0x13c
-	// Line 417, Address: 0x155d64, Func Offset: 0x144
-	// Line 416, Address: 0x155d68, Func Offset: 0x148
-	// Line 417, Address: 0x155d70, Func Offset: 0x150
-	// Line 421, Address: 0x155d78, Func Offset: 0x158
-	// Line 422, Address: 0x155d90, Func Offset: 0x170
-	// Line 423, Address: 0x155d98, Func Offset: 0x178
-	// Line 422, Address: 0x155d9c, Func Offset: 0x17c
-	// Line 423, Address: 0x155da4, Func Offset: 0x184
-	// Line 429, Address: 0x155dac, Func Offset: 0x18c
-	// Line 431, Address: 0x155db8, Func Offset: 0x198
-	// Line 433, Address: 0x155dc8, Func Offset: 0x1a8
-	// Line 435, Address: 0x155dd8, Func Offset: 0x1b8
-	// Line 442, Address: 0x155de4, Func Offset: 0x1c4
-	// Line 444, Address: 0x155df0, Func Offset: 0x1d0
-	// Line 443, Address: 0x155df8, Func Offset: 0x1d8
-	// Line 444, Address: 0x155e0c, Func Offset: 0x1ec
-	// Line 445, Address: 0x155e10, Func Offset: 0x1f0
-	// Line 447, Address: 0x155e18, Func Offset: 0x1f8
-	// Line 445, Address: 0x155e24, Func Offset: 0x204
-	// Line 446, Address: 0x155e28, Func Offset: 0x208
-	// Line 447, Address: 0x155e34, Func Offset: 0x214
-	// Line 462, Address: 0x155e3c, Func Offset: 0x21c
-	// Func End, Address: 0x155e44, Func Offset: 0x224
-	scePrintf("bhCk - UNIMPLEMENTED!\n");
+    int* v0;     
+    int v1;           
+    unsigned int v2, v3;  
+    unsigned char v4;  
+    unsigned char* a0; 
+    
+    a0 = bhScePtr;
+    
+    v2 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    switch (v2 >> 8)
+    {
+    case 1:
+        v0 = (int*)sys->ev_flg; 
+        break;
+    case 2:
+        v0 = (int*)sys->ky_flg; 
+        break;
+    case 3:
+        v0 = (int*)sys->ed_flg; 
+        break;
+    case 4:
+        v0 = (int*)&sys->rm_flg; 
+        break;
+    case 5:
+        v0 = (int*)&sys->st_flg; 
+        break;
+    case 6:
+        v0 = (int*)&sys->sp_flg; 
+        break;
+    case 7:
+        v0 = (int*)sys->it_flg; 
+        break;
+    case 8:
+        v0 = (int*)sys->mp_flg; 
+        break;
+    case 9:
+        v0 = (int*)sys->ic_flg; 
+        break;
+    case 11:
+        v0 = (int*)&sys->gm_flg; 
+        break;
+    case 12:
+        v0 = (int*)&sys->ts_flg; 
+        break;
+    case 10:
+        v0 = (int*)&sys->cb_flg;
+
+        a0 += 4;
+        
+        v4 = *a0;
+
+        a0 -= 2;
+        
+        switch (*a0) 
+        {                        
+        case 23:                                    
+            if (sys->etc_idx != v4) 
+            {
+                bhScePtr += 4;
+                
+                return 0;
+            }
+            
+            break;
+        case 22:                                    
+            if (sys->flr_idx != v4) 
+            {
+                bhScePtr += 4;
+                
+                return 0;
+            }
+            
+            break;
+        }
+        
+        break;
+    case 13:
+        v0 = (int*)&plp->flg; 
+        break;
+    case 14:
+        v0 = (int*)&plp->stflg; 
+        break;
+    case 15:                                        
+        v0 = (int*)&plp->flg2; 
+        break;
+    case 16:
+        v0 = (int*)&sys->ssd_flg; 
+        break; 
+    }
+    
+    v3 = *(unsigned short*)bhScePtr;
+    
+    v2 = v0[(v3 & 0x3FF) >> 5];
+    
+    bhScePtr += 2;
+    
+    v1 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    v1 >>= 8;
+    
+    return v1 ^ (((int)(v2 << (v3 & 0x1F))) < 0);
 }
 
 // 
