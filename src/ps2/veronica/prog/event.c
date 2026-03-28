@@ -1500,44 +1500,99 @@ unsigned int bhAdxCk()
     return CheckPlayEndAdx(v1);
 }
 
-// 
-// Start address: 0x157770
-unsigned int bhAdxTimeCk()
+// 100% matching!
+unsigned int bhAdxTimeCk() 
 {
-	unsigned int ret;
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 1393, Address: 0x157770, Func Offset: 0
-	// Line 1396, Address: 0x157780, Func Offset: 0x10
-	// Line 1397, Address: 0x157794, Func Offset: 0x24
-	// Line 1398, Address: 0x1577a0, Func Offset: 0x30
-	// Line 1399, Address: 0x1577ac, Func Offset: 0x3c
-	// Line 1400, Address: 0x1577b8, Func Offset: 0x48
-	// Line 1401, Address: 0x1577c4, Func Offset: 0x54
-	// Line 1402, Address: 0x1577d0, Func Offset: 0x60
-	// Line 1404, Address: 0x1577d8, Func Offset: 0x68
-	// Line 1406, Address: 0x1577e0, Func Offset: 0x70
-	// Line 1408, Address: 0x157808, Func Offset: 0x98
-	// Line 1409, Address: 0x157818, Func Offset: 0xa8
-	// Line 1410, Address: 0x15781c, Func Offset: 0xac
-	// Line 1412, Address: 0x157824, Func Offset: 0xb4
-	// Line 1413, Address: 0x157828, Func Offset: 0xb8
-	// Line 1414, Address: 0x15782c, Func Offset: 0xbc
-	// Line 1416, Address: 0x157834, Func Offset: 0xc4
-	// Line 1417, Address: 0x157848, Func Offset: 0xd8
-	// Line 1418, Address: 0x15784c, Func Offset: 0xdc
-	// Line 1420, Address: 0x157854, Func Offset: 0xe4
-	// Line 1421, Address: 0x157858, Func Offset: 0xe8
-	// Line 1422, Address: 0x15785c, Func Offset: 0xec
-	// Line 1424, Address: 0x157864, Func Offset: 0xf4
-	// Line 1425, Address: 0x157868, Func Offset: 0xf8
-	// Line 1426, Address: 0x15786c, Func Offset: 0xfc
-	// Line 1428, Address: 0x157874, Func Offset: 0x104
-	// Line 1429, Address: 0x157884, Func Offset: 0x114
-	// Line 1433, Address: 0x157888, Func Offset: 0x118
-	// Func End, Address: 0x15789c, Func Offset: 0x12c
-	scePrintf("bhAdxTimeCk - UNIMPLEMENTED!\n");
+	unsigned int v0, v1, v2;
+    unsigned int ret;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    ret = GetTimeAdx(v0);
+    
+    switch (v2) 
+    {
+    case 0:
+        if (ret == v1) 
+        {
+            ret = 0;
+        }
+        else
+        {
+            ret = 1;
+        }
+        
+        break;
+    case 1:
+        if (ret > v1) 
+        {
+            ret = 0;
+        }
+        else 
+        {
+            ret = 1;
+        }
+        
+        break;
+    case 2:
+        if (ret >= v1) 
+        {
+            ret = 0;
+        }
+        else 
+        {
+            ret = 1;
+        }
+        
+        break;
+    case 3:
+        if (ret < v1) 
+        {
+            ret = 0;
+        }
+        else 
+        {
+            ret = 1;
+        }
+        
+        break;
+    case 4:
+        if (ret > v1) 
+        {
+            ret = 1;
+        }
+        else
+        {
+            ret = 0;
+        }
+        
+        break;
+    case 5:
+        if (ret != v1)
+        {
+            ret = 0;
+        }
+        else 
+        {
+            ret = 1;
+        }
+        
+        break;
+    }
+    
+    return ret;
 }
 
 // 100% matching!
