@@ -5686,24 +5686,24 @@ unsigned int bhBgmOff2()
 	return 1;
 }
 
-// 
-// Start address: 0x1622e0
+// 100% matching!
 unsigned int bhBGSeOn2()
 {
-	unsigned int v1;
-	unsigned int v0;
-	// Line 6218, Address: 0x1622e0, Func Offset: 0
-	// Line 6222, Address: 0x1622e8, Func Offset: 0x8
-	// Line 6223, Address: 0x1622fc, Func Offset: 0x1c
-	// Line 6224, Address: 0x162308, Func Offset: 0x28
-	// Line 6225, Address: 0x162314, Func Offset: 0x34
-	// Line 6226, Address: 0x162320, Func Offset: 0x40
-	// Line 6227, Address: 0x162328, Func Offset: 0x48
-	// Line 6229, Address: 0x162330, Func Offset: 0x50
-	// Line 6228, Address: 0x162334, Func Offset: 0x54
-	// Line 6229, Address: 0x162338, Func Offset: 0x58
-	// Func End, Address: 0x162340, Func Offset: 0x60
-	scePrintf("bhBGSeOn2 - UNIMPLEMENTED!\n");
+	unsigned int v0, v1;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    CallBackGroundSe2(v0, v1);
+    
+    return 1;
 }
 
 // 
