@@ -1278,35 +1278,51 @@ unsigned int bhArmsItemChange()
     return 1;
 }
 
-// 
-// Start address: 0x157160
+#pragma optimization_level 4
+
+// 100% matching!
 unsigned int bhPlItemLost()
 {
-	int v0;
-	unsigned int cnt;
-	// Line 1173, Address: 0x157160, Func Offset: 0
-	// Line 1181, Address: 0x157168, Func Offset: 0x8
-	// Line 1173, Address: 0x157170, Func Offset: 0x10
-	// Line 1174, Address: 0x15717c, Func Offset: 0x1c
-	// Line 1175, Address: 0x157188, Func Offset: 0x28
-	// Line 1181, Address: 0x157194, Func Offset: 0x34
-	// Line 1182, Address: 0x1571b0, Func Offset: 0x50
-	// Line 1183, Address: 0x1571c4, Func Offset: 0x64
-	// Line 1184, Address: 0x1571d0, Func Offset: 0x70
-	// Line 1185, Address: 0x15720c, Func Offset: 0xac
-	// Line 1187, Address: 0x157214, Func Offset: 0xb4
-	// Line 1188, Address: 0x15721c, Func Offset: 0xbc
-	// Line 1191, Address: 0x157228, Func Offset: 0xc8
-	// Line 1192, Address: 0x157230, Func Offset: 0xd0
-	// Line 1193, Address: 0x157238, Func Offset: 0xd8
-	// Line 1192, Address: 0x15723c, Func Offset: 0xdc
-	// Line 1194, Address: 0x157240, Func Offset: 0xe0
-	// Line 1195, Address: 0x157260, Func Offset: 0x100
-	// Line 1197, Address: 0x157268, Func Offset: 0x108
-	// Line 1199, Address: 0x15727c, Func Offset: 0x11c
-	// Func End, Address: 0x157284, Func Offset: 0x124
-	scePrintf("bhPlItemLost - UNIMPLEMENTED!\n");
+    unsigned int cnt;
+    int v0;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+
+    for (cnt = (sys->ply_id * 16) + 2; cnt < ((sys->ply_id * 16) + 12); cnt++) 
+    {
+        if (v0 == (unsigned char)(sys->itm[cnt] >> 16)) 
+        {
+            sys->itm[cnt] = 0;
+            
+            if (((cnt - (sys->ply_id * 16)) <= sys->itm[sys->ply_id * 16]) && (sys->itm[sys->ply_id * 16] != 0)) 
+            {
+                if (sys->itm[sys->ply_id * 16] == cnt) 
+                {
+                    sys->itm[sys->ply_id * 16] = 0;
+                } 
+                else
+                {
+                    sys->itm[sys->ply_id * 16]--;
+                }
+            }
+            
+            for ( ; cnt < ((sys->ply_id * 16) + 12); cnt++) 
+            {
+                sys->itm[cnt] = sys->itm[cnt + 1];
+            }
+            
+            return 1;
+        }
+    }
+    
+    return 1;
 }
+
+#pragma optimization_level 3
 
 // 100% matching! 
 unsigned int bhUseItemClear()
