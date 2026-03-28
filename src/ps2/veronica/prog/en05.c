@@ -1646,9 +1646,20 @@ _anon20 WE_41[4];
 _anon20 WE_23[6];
 _anon22 WaterEffectTbl[14];
 _anon27 CapColTab[25];
-void(*bhEne05_Mode0)(BH_PWORK*)[6];
-void(*bhEne05_BrainType)(BH_PWORK*)[8];
-void(*bhEne05_MoveMode2)(BH_PWORK*)[18];
+void(*bhEne05_Mode0)(BH_PWORK*)[6];*/
+typedef void (*bhEne05_BrainType_proc)(BH_PWORK* epw);
+bhEne05_BrainType_proc bhEne05_BrainType[8] =
+{
+    bhEne05_BR00,
+    bhEne05_BR00,
+    bhEne05_BR01,
+    bhEne05_BR01,
+    bhEne05_BR02,
+    bhEne05_BR02,
+    bhEne05_BR02,
+    bhEne05_BR02
+};
+/*void(*bhEne05_MoveMode2)(BH_PWORK*)[18];
 void(*bhEne05_NageMode2)(BH_PWORK*)[1];
 void(*bhEne05_DamageMode2)(BH_PWORK*)[14];
 void(*bhEne05_DeadMode2)(BH_PWORK*)[9];
@@ -1822,14 +1833,12 @@ void bhEne05_Init(BH_PWORK* epw)
 	// Line 954, Address: 0x1ace30, Func Offset: 0x420
 	// Line 955, Address: 0x1ace44, Func Offset: 0x434
 	// Func End, Address: 0x1ace54, Func Offset: 0x444
-}
+}*/
 
-// 
-// Start address: 0x1ace60
-void bhEne05_Brain(BH_PWORK* epw)
+// 100% matching!
+void bhEne05_Brain(BH_PWORK* epw) 
 {
-	// Line 966, Address: 0x1ace60, Func Offset: 0
-	// Func End, Address: 0x1ace80, Func Offset: 0x20
+    bhEne05_BrainType[epw->type](epw);
 }
 
 // 
@@ -1841,7 +1850,7 @@ void bhEne05_BR00(BH_PWORK* epw)
 	int kubikari;
 	int ang2;
 	int ang;
-	_anon6* hp;
+	//_anon6* hp;
 	int crit_hp[4];
 	// Line 977, Address: 0x1ace80, Func Offset: 0
 	// Line 986, Address: 0x1acea0, Func Offset: 0x20
@@ -2052,6 +2061,7 @@ void bhEne05_BR00(BH_PWORK* epw)
 	// Line 1301, Address: 0x1add20, Func Offset: 0xea0
 	// Line 1306, Address: 0x1add68, Func Offset: 0xee8
 	// Func End, Address: 0x1add8c, Func Offset: 0xf0c
+	scePrintf("bhEne05_BR00 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2060,6 +2070,7 @@ void bhEne05_BR01()
 {
 	// Line 1318, Address: 0x1add90, Func Offset: 0
 	// Func End, Address: 0x1add98, Func Offset: 0x8
+	scePrintf("bhEne05_BR01 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2071,9 +2082,10 @@ void bhEne05_BR02(BH_PWORK* epw)
 	// Line 1332, Address: 0x1addac, Func Offset: 0xc
 	// Line 1334, Address: 0x1addb0, Func Offset: 0x10
 	// Func End, Address: 0x1addb8, Func Offset: 0x18
+	scePrintf("bhEne05_BR02 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1addc0
 void bhEne05_Move(BH_PWORK* epw)
 {
