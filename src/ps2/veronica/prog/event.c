@@ -619,41 +619,65 @@ unsigned int bhCmpB()
 	scePrintf("bhCmpB - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x156240
+// 100% matching! 
 unsigned int bhCmpW()
 {
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 606, Address: 0x156240, Func Offset: 0
-	// Line 616, Address: 0x156248, Func Offset: 0x8
-	// Line 606, Address: 0x15624c, Func Offset: 0xc
-	// Line 607, Address: 0x156258, Func Offset: 0x18
-	// Line 608, Address: 0x156264, Func Offset: 0x24
-	// Line 609, Address: 0x156270, Func Offset: 0x30
-	// Line 610, Address: 0x15627c, Func Offset: 0x3c
-	// Line 611, Address: 0x156288, Func Offset: 0x48
-	// Line 612, Address: 0x156294, Func Offset: 0x54
-	// Line 613, Address: 0x1562a0, Func Offset: 0x60
-	// Line 614, Address: 0x1562ac, Func Offset: 0x6c
-	// Line 616, Address: 0x1562b4, Func Offset: 0x74
-	// Line 617, Address: 0x1562e8, Func Offset: 0xa8
-	// Line 618, Address: 0x1562f4, Func Offset: 0xb4
-	// Line 619, Address: 0x156308, Func Offset: 0xc8
-	// Line 626, Address: 0x156314, Func Offset: 0xd4
-	// Line 634, Address: 0x15635c, Func Offset: 0x11c
-	// Line 635, Address: 0x156380, Func Offset: 0x140
-	// Line 636, Address: 0x15638c, Func Offset: 0x14c
-	// Line 637, Address: 0x156394, Func Offset: 0x154
-	// Line 638, Address: 0x1563a0, Func Offset: 0x160
-	// Line 639, Address: 0x1563a8, Func Offset: 0x168
-	// Line 640, Address: 0x1563b4, Func Offset: 0x174
-	// Line 647, Address: 0x1563bc, Func Offset: 0x17c
-	// Func End, Address: 0x1563c4, Func Offset: 0x184
-	scePrintf("bhCmpW - UNIMPLEMENTED!\n");
+    int v0, v1, v2, v3, v4;
+    ETTY_WORK* enep; // not from DWARF
+    BH_PWORK* e_ep;  // not from DWARF
+
+    bhScePtr++;
+    
+    v4 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v3 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    switch (v3) 
+    {                              
+    case 5:          
+        v0 = plp->hp;
+        break;
+    case 7:    
+        v0 = sys->mes_sel;
+        break;
+    case 9:       
+        v0 = sys->stv_tm;  
+        break;
+    case 10:                
+        enep = &rom->enep[v4];
+        e_ep = &ene[enep->wrk_no];
+        
+        v0 = e_ep->hp;
+        break;
+    }
+    
+    switch (v2) 
+    {                              
+    case 0:                                         
+        return v0 == v1;
+    case 1:                                         
+        return v1 < v0;
+    case 2:                                         
+        return v0 >= v1;
+    case 3:                                         
+        return v0 < v1;
+    case 4:                                         
+        return v1 >= v0;
+    case 5:                                         
+        return v0 != v1; 
+    }
 }
 
 // 100% matching!
