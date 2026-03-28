@@ -1406,7 +1406,7 @@ unsigned int bhVoiceOn()
     
     bhScePtr++;
     
-    v1 = *(unsigned short *)bhScePtr;
+    v1 = *(unsigned short*)bhScePtr;
     
     bhScePtr += 2;
     
@@ -1540,86 +1540,71 @@ unsigned int bhAdxTimeCk()
 	scePrintf("bhAdxTimeCk - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1578a0
+// 100% matching!
 unsigned int bhCineSet()
 {
-	unsigned int v0;
-	// Line 1474, Address: 0x1578a0, Func Offset: 0
-	// Line 1475, Address: 0x1578b4, Func Offset: 0x14
-	// Line 1476, Address: 0x1578c0, Func Offset: 0x20
-	// Line 1477, Address: 0x1578cc, Func Offset: 0x2c
-	// Line 1479, Address: 0x1578f4, Func Offset: 0x54
-	// Line 1480, Address: 0x157904, Func Offset: 0x64
-	// Line 1479, Address: 0x157908, Func Offset: 0x68
-	// Line 1480, Address: 0x157910, Func Offset: 0x70
-	// Line 1481, Address: 0x157918, Func Offset: 0x78
-	// Line 1480, Address: 0x15791c, Func Offset: 0x7c
-	// Line 1481, Address: 0x157924, Func Offset: 0x84
-	// Line 1482, Address: 0x157930, Func Offset: 0x90
-	// Line 1484, Address: 0x157938, Func Offset: 0x98
-	// Line 1486, Address: 0x157950, Func Offset: 0xb0
-	// Line 1487, Address: 0x15795c, Func Offset: 0xbc
-	// Line 1489, Address: 0x157970, Func Offset: 0xd0
-	// Line 1491, Address: 0x15797c, Func Offset: 0xdc
-	// Line 1489, Address: 0x157980, Func Offset: 0xe0
-	// Line 1490, Address: 0x157984, Func Offset: 0xe4
-	// Line 1489, Address: 0x157988, Func Offset: 0xe8
-	// Line 1490, Address: 0x157990, Func Offset: 0xf0
-	// Line 1491, Address: 0x157998, Func Offset: 0xf8
-	// Line 1490, Address: 0x15799c, Func Offset: 0xfc
-	// Line 1491, Address: 0x1579a4, Func Offset: 0x104
-	// Line 1492, Address: 0x1579b0, Func Offset: 0x110
-	// Line 1494, Address: 0x1579b8, Func Offset: 0x118
-	// Line 1495, Address: 0x1579c8, Func Offset: 0x128
-	// Line 1494, Address: 0x1579cc, Func Offset: 0x12c
-	// Line 1495, Address: 0x1579d4, Func Offset: 0x134
-	// Line 1496, Address: 0x1579dc, Func Offset: 0x13c
-	// Line 1495, Address: 0x1579e0, Func Offset: 0x140
-	// Line 1496, Address: 0x1579e8, Func Offset: 0x148
-	// Line 1497, Address: 0x1579f8, Func Offset: 0x158
-	// Line 1498, Address: 0x157a08, Func Offset: 0x168
-	// Line 1500, Address: 0x157a10, Func Offset: 0x170
-	// Line 1501, Address: 0x157a1c, Func Offset: 0x17c
-	// Line 1500, Address: 0x157a20, Func Offset: 0x180
-	// Line 1501, Address: 0x157a28, Func Offset: 0x188
-	// Line 1502, Address: 0x157a30, Func Offset: 0x190
-	// Line 1501, Address: 0x157a34, Func Offset: 0x194
-	// Line 1502, Address: 0x157a3c, Func Offset: 0x19c
-	// Line 1503, Address: 0x157a48, Func Offset: 0x1a8
-	// Line 1505, Address: 0x157a50, Func Offset: 0x1b0
-	// Line 1506, Address: 0x157a5c, Func Offset: 0x1bc
-	// Line 1508, Address: 0x157a60, Func Offset: 0x1c0
-	// Line 1505, Address: 0x157a64, Func Offset: 0x1c4
-	// Line 1506, Address: 0x157a68, Func Offset: 0x1c8
-	// Line 1505, Address: 0x157a6c, Func Offset: 0x1cc
-	// Line 1506, Address: 0x157a74, Func Offset: 0x1d4
-	// Line 1507, Address: 0x157a7c, Func Offset: 0x1dc
-	// Line 1506, Address: 0x157a80, Func Offset: 0x1e0
-	// Line 1507, Address: 0x157a88, Func Offset: 0x1e8
-	// Line 1508, Address: 0x157a90, Func Offset: 0x1f0
-	// Line 1507, Address: 0x157a94, Func Offset: 0x1f4
-	// Line 1508, Address: 0x157a9c, Func Offset: 0x1fc
-	// Line 1509, Address: 0x157aa4, Func Offset: 0x204
-	// Line 1508, Address: 0x157aa8, Func Offset: 0x208
-	// Line 1509, Address: 0x157ab0, Func Offset: 0x210
-	// Line 1510, Address: 0x157ac0, Func Offset: 0x220
-	// Line 1511, Address: 0x157ad0, Func Offset: 0x230
-	// Line 1513, Address: 0x157ad8, Func Offset: 0x238
-	// Line 1514, Address: 0x157ae8, Func Offset: 0x248
-	// Line 1513, Address: 0x157aec, Func Offset: 0x24c
-	// Line 1514, Address: 0x157af4, Func Offset: 0x254
-	// Line 1515, Address: 0x157afc, Func Offset: 0x25c
-	// Line 1514, Address: 0x157b00, Func Offset: 0x260
-	// Line 1515, Address: 0x157b08, Func Offset: 0x268
-	// Line 1516, Address: 0x157b10, Func Offset: 0x270
-	// Line 1515, Address: 0x157b14, Func Offset: 0x274
-	// Line 1516, Address: 0x157b1c, Func Offset: 0x27c
-	// Line 1517, Address: 0x157b2c, Func Offset: 0x28c
-	// Line 1520, Address: 0x157b40, Func Offset: 0x2a0
-	// Line 1521, Address: 0x157b44, Func Offset: 0x2a4
-	// Func End, Address: 0x157b4c, Func Offset: 0x2ac
-	scePrintf("bhCineSet - UNIMPLEMENTED!\n");
+    unsigned int v0;
+  
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    switch (v0)
+    {
+    case 0:
+        sys->cb_flg &= ~0x40;
+        sys->cb_flg |= 0x4;
+        
+        sys->st_flg |= 0x4;
+        break;
+    case 1:
+        if ((sys->cb_flg & 0x40))
+        {
+            sys->cine_ap = 0;
+            sys->cine_an = 0;
+        }
+        
+        sys->cb_flg &= ~0x4;
+        sys->st_flg &= ~0x4;
+        
+        sys->sp_flg |= ~0;
+        break;
+    case 2:
+        sys->cb_flg &= ~0x4;
+        sys->st_flg &= ~0x4;
+        
+        sys->cine_ap = 0;
+        sys->cine_an = 0;
+        break;
+    case 3:
+        sys->cb_flg |= 0x4;
+        sys->cb_flg |= 0x40;
+        
+        sys->st_flg |= 0x4;
+        break;
+    case 4:
+        sys->cb_flg &= ~0x40;
+        sys->cb_flg &= ~0x4;
+        
+        sys->st_flg &= ~0x4;
+        sys->sp_flg |= ~0;
+        
+        sys->cine_ap = 0;
+        sys->cine_an = 0;
+        break;
+    case 5:
+        sys->cb_flg &= ~0x40;
+        sys->cb_flg |= 0x4;
+        
+        sys->st_flg |= 0x4;
+        
+        sys->cine_ap = 0;
+        sys->cine_an = 0;
+    }
+    
+    return 1;
 }
 
 // 
