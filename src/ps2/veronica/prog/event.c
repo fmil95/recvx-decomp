@@ -7330,22 +7330,18 @@ unsigned int bhEneLookFlgSet()
 	scePrintf("bhEneLookFlgSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x166b40
+// 100% matching!
 unsigned int bhReturnTitleEvt()
 {
-	// Line 8231, Address: 0x166b40, Func Offset: 0
-	// Line 8232, Address: 0x166b48, Func Offset: 0x8
-	// Line 8235, Address: 0x166b50, Func Offset: 0x10
-	// Line 8232, Address: 0x166b5c, Func Offset: 0x1c
-	// Line 8235, Address: 0x166b64, Func Offset: 0x24
-	// Line 8236, Address: 0x166b6c, Func Offset: 0x2c
-	// Line 8237, Address: 0x166b74, Func Offset: 0x34
-	// Line 8239, Address: 0x166b80, Func Offset: 0x40
-	// Line 8237, Address: 0x166b84, Func Offset: 0x44
-	// Line 8240, Address: 0x166b90, Func Offset: 0x50
-	// Func End, Address: 0x166b9c, Func Offset: 0x5c
-	scePrintf("bhReturnTitleEvt - UNIMPLEMENTED!\n");
+    bhScePtr += 2;
+    
+    RequestAllStopSoundEx(1, 1, 0);
+    
+    bhReturnTitle();
+    
+    sys->ss_flg &= ~0x1000;
+    
+    return 1;
 }
 
 // 
