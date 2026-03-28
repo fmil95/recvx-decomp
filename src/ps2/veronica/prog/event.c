@@ -831,40 +831,68 @@ unsigned int bhSv()
     return 1;
 }
 
-// 
-// Start address: 0x1565b0
-unsigned int bhSvW()
+// 100% matching! 
+unsigned int bhSvW() 
 {
-	int v1;
-	int v0;
-	// Line 703, Address: 0x1565b0, Func Offset: 0
-	// Line 709, Address: 0x1565b8, Func Offset: 0x8
-	// Line 703, Address: 0x1565bc, Func Offset: 0xc
-	// Line 704, Address: 0x1565c8, Func Offset: 0x18
-	// Line 705, Address: 0x1565d4, Func Offset: 0x24
-	// Line 706, Address: 0x1565e0, Func Offset: 0x30
-	// Line 707, Address: 0x1565ec, Func Offset: 0x3c
-	// Line 709, Address: 0x1565f4, Func Offset: 0x44
-	// Line 710, Address: 0x15664c, Func Offset: 0x9c
-	// Line 711, Address: 0x15665c, Func Offset: 0xac
-	// Line 718, Address: 0x15666c, Func Offset: 0xbc
-	// Line 719, Address: 0x156670, Func Offset: 0xc0
-	// Line 720, Address: 0x1566a0, Func Offset: 0xf0
-	// Line 727, Address: 0x1566a8, Func Offset: 0xf8
-	// Line 728, Address: 0x1566ac, Func Offset: 0xfc
-	// Line 729, Address: 0x1566dc, Func Offset: 0x12c
-	// Line 736, Address: 0x1566e4, Func Offset: 0x134
-	// Line 737, Address: 0x1566e8, Func Offset: 0x138
-	// Line 738, Address: 0x156718, Func Offset: 0x168
-	// Line 745, Address: 0x156720, Func Offset: 0x170
-	// Line 746, Address: 0x156724, Func Offset: 0x174
-	// Line 747, Address: 0x156754, Func Offset: 0x1a4
-	// Line 754, Address: 0x15675c, Func Offset: 0x1ac
-	// Line 755, Address: 0x156760, Func Offset: 0x1b0
-	// Line 763, Address: 0x156794, Func Offset: 0x1e4
-	// Line 764, Address: 0x156798, Func Offset: 0x1e8
-	// Func End, Address: 0x1567a0, Func Offset: 0x1f0
-	scePrintf("bhSvW - UNIMPLEMENTED!\n");
+    int v0, v1;  
+    BH_PWORK* enep; // not from DWARF
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    switch (v0) 
+    {
+    case 5: 
+        plp->hp = v1;
+        break;
+    case 9: 
+        sys->stv_tm = v1; 
+        break;
+    case 11:
+        v1 *= -1;
+        
+        enep = &ene[rom->enep[0].wrk_no]; 
+        
+        enep->hp = v1;
+        break;
+    case 12:
+        v1 *= -1;
+        
+        enep = &ene[rom->enep[1].wrk_no];
+        
+        enep->hp = v1;
+        break;
+    case 13:
+        v1 *= -1;
+        
+        enep = &ene[rom->enep[2].wrk_no]; 
+        
+        enep->hp = v1;
+        break;
+    case 14:
+        v1 *= -1;
+        
+        enep = &ene[rom->enep[3].wrk_no];
+        
+        enep->hp = v1;
+        break;
+    case 15:
+        v1 *= -1;
+        
+        enep = &ene[rom->enep[4].wrk_no]; 
+        
+        enep->hp = v1;
+        break;
+    }
+
+    return 1;
 }
 
 // 100% matching!
