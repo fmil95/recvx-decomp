@@ -520,63 +520,115 @@ unsigned int bhCk()
     return v1 ^ (((int)(v2 << (v3 & 0x1F))) < 0);
 }
 
-// 
-// Start address: 0x155e50
+// 100% matching!
 unsigned int bhSet()
 {
-	unsigned short* a1;
-	unsigned int v1;
-	int* a0;
-	int v0;
-	// Line 475, Address: 0x155e50, Func Offset: 0
-	// Line 476, Address: 0x155e58, Func Offset: 0x8
-	// Line 477, Address: 0x155e64, Func Offset: 0x14
-	// Line 479, Address: 0x155e90, Func Offset: 0x40
-	// Line 481, Address: 0x155ea0, Func Offset: 0x50
-	// Line 483, Address: 0x155eb0, Func Offset: 0x60
-	// Line 485, Address: 0x155ec0, Func Offset: 0x70
-	// Line 487, Address: 0x155ed0, Func Offset: 0x80
-	// Line 489, Address: 0x155ee0, Func Offset: 0x90
-	// Line 491, Address: 0x155ef0, Func Offset: 0xa0
-	// Line 493, Address: 0x155f00, Func Offset: 0xb0
-	// Line 495, Address: 0x155f10, Func Offset: 0xc0
-	// Line 497, Address: 0x155f20, Func Offset: 0xd0
-	// Line 499, Address: 0x155f30, Func Offset: 0xe0
-	// Line 502, Address: 0x155f40, Func Offset: 0xf0
-	// Line 504, Address: 0x155f50, Func Offset: 0x100
-	// Line 506, Address: 0x155f5c, Func Offset: 0x10c
-	// Line 508, Address: 0x155f6c, Func Offset: 0x11c
-	// Line 510, Address: 0x155f7c, Func Offset: 0x12c
-	// Line 518, Address: 0x155f88, Func Offset: 0x138
-	// Line 523, Address: 0x155f8c, Func Offset: 0x13c
-	// Line 519, Address: 0x155f90, Func Offset: 0x140
-	// Line 523, Address: 0x155fa0, Func Offset: 0x150
-	// Line 525, Address: 0x155fcc, Func Offset: 0x17c
-	// Line 526, Address: 0x155fd8, Func Offset: 0x188
-	// Line 525, Address: 0x155fdc, Func Offset: 0x18c
-	// Line 526, Address: 0x155fe0, Func Offset: 0x190
-	// Line 528, Address: 0x155fe8, Func Offset: 0x198
-	// Line 529, Address: 0x155ff8, Func Offset: 0x1a8
-	// Line 528, Address: 0x155ffc, Func Offset: 0x1ac
-	// Line 529, Address: 0x156000, Func Offset: 0x1b0
-	// Line 531, Address: 0x156008, Func Offset: 0x1b8
-	// Line 532, Address: 0x156014, Func Offset: 0x1c4
-	// Line 531, Address: 0x156018, Func Offset: 0x1c8
-	// Line 532, Address: 0x15601c, Func Offset: 0x1cc
-	// Line 534, Address: 0x156024, Func Offset: 0x1d4
-	// Line 535, Address: 0x156030, Func Offset: 0x1e0
-	// Line 534, Address: 0x156034, Func Offset: 0x1e4
-	// Line 535, Address: 0x156038, Func Offset: 0x1e8
-	// Line 537, Address: 0x156040, Func Offset: 0x1f0
-	// Line 538, Address: 0x156050, Func Offset: 0x200
-	// Line 537, Address: 0x156054, Func Offset: 0x204
-	// Line 538, Address: 0x156058, Func Offset: 0x208
-	// Line 540, Address: 0x156060, Func Offset: 0x210
-	// Line 541, Address: 0x15606c, Func Offset: 0x21c
-	// Line 540, Address: 0x156070, Func Offset: 0x220
-	// Line 543, Address: 0x156078, Func Offset: 0x228
-	// Func End, Address: 0x156080, Func Offset: 0x230
-	scePrintf("bhSet - UNIMPLEMENTED!\n");
+    int v0;             
+    int* a0;            
+    unsigned int v1;   
+    unsigned short* a1; 
+    
+    a1 = (unsigned short*)bhScePtr;
+
+    a1 += 3;
+    
+    bhScePtr = (unsigned char*)a1;
+
+    a1 -= 3;
+    
+    switch (*a1 >> 8) 
+    {                              
+    case 0:                                         
+        a0 = (int*)&sys->ev_flg;
+        break;
+    case 1:                                         
+        a0 = (int*)&sys->ky_flg;
+        break;
+    case 2:                                         
+        a0 = (int*)&sys->ed_flg;
+        break;
+    case 3:                                         
+        a0 = (int*)&sys->rm_flg;
+        break; 
+    case 4:                                         
+        a0 = (int*)&sys->st_flg;
+        break;
+    case 5:                                         
+        a0 = (int*)&sys->sp_flg;
+        break;
+    case 6:       
+        a0 = (int*)&sys->it_flg;
+        break;
+    case 7:        
+        a0 = (int*)&sys->mp_flg;
+        break;
+    case 8:            
+        a0 = (int*)&sys->ic_flg;
+        break;
+    case 9:      
+        a0 = (int*)&sys->gm_flg;
+        break;
+    case 11:   
+        a0 = (int*)&sys->ts_flg;
+        break;
+    case 12:        
+        a0 = (int*)&sys->cb_flg;
+        break;
+    case 10:     
+        a0 = (int*)&plp->flg; 
+        break;
+    case 13:      
+        a0 = (int*)&plp->stflg; 
+        break;
+    case 14:       
+        a0 = (int*)&plp->flg2; 
+        break;
+    case 15:                                        
+        break;
+    case 16:      
+        a0 = (int*)&sys->ssd_flg;
+        break;
+    }
+
+    a1++; 
+    
+    v1 = *a1;
+    
+    a0 += (v1 & 0x3E0) >> 5;
+    
+    v0 = v1 & 0x1F;
+    
+    a1++;
+    
+    v1 = *a1;
+    
+    switch (v1 >> 8) 
+    {                            
+    case 0:                                         
+        *a0 |= 0x80000000 >> v0;
+        
+        return 1;
+    case 1:                                         
+        *a0 &= ~(0x80000000 >> v0);
+        
+        return 1;
+    case 2:                                         
+        *a0 ^= 0x80000000 >> v0;
+        
+        return 1;
+    case 3:                                         
+        *a0 |= 0xFFFFFFFF >> v0;
+        
+        return 1;
+    case 4:                                         
+        *a0 &= ~(0xFFFFFFFF >> v0);
+        
+        return 1;
+    case 5:                                         
+        *a0 ^= 0xFFFFFFFF >> v0;
+        
+        return 1;
+    }
 }
 
 // 
