@@ -5768,27 +5768,31 @@ unsigned int bhBGSeOn2()
     return 1;
 }
 
-// 
-// Start address: 0x162340
+// 100% matching!
 unsigned int bhBgmOn2()
 {
-	int v2;
-	int v1;
-	int v0;
-	// Line 6237, Address: 0x162340, Func Offset: 0
-	// Line 6240, Address: 0x162348, Func Offset: 0x8
-	// Line 6244, Address: 0x162350, Func Offset: 0x10
-	// Line 6240, Address: 0x162354, Func Offset: 0x14
-	// Line 6241, Address: 0x162360, Func Offset: 0x20
-	// Line 6242, Address: 0x16236c, Func Offset: 0x2c
-	// Line 6243, Address: 0x162378, Func Offset: 0x38
-	// Line 6245, Address: 0x162384, Func Offset: 0x44
-	// Line 6249, Address: 0x162390, Func Offset: 0x50
-	// Line 6251, Address: 0x162398, Func Offset: 0x58
-	// Line 6250, Address: 0x16239c, Func Offset: 0x5c
-	// Line 6251, Address: 0x1623a0, Func Offset: 0x60
-	// Func End, Address: 0x1623a8, Func Offset: 0x68
-	scePrintf("bhBgmOn2 - UNIMPLEMENTED!\n");
+    int v0, v1, v2;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    v2 = -45;
+    
+    bhScePtr += 2;
+
+    if (v1 != 0)
+    {
+        v2 = -45;
+    }
+    
+    PlayBgm2(v0, v2);
+    
+    return 1;
 }
 
 // 
