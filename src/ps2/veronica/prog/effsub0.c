@@ -1,68 +1,56 @@
 #include "effsub0.h"
 
-// 
-// Start address: 0x21ee20
-int setentry(unsigned short id, unsigned short type, O_WRK* op)
+// 100% matching!
+int setentry(unsigned short id, unsigned short type, O_WRK* op) 
 {
-	// Line 124, Address: 0x21ee20, Func Offset: 0
-	// Line 137, Address: 0x21ee30, Func Offset: 0x10
-	// Line 124, Address: 0x21ee34, Func Offset: 0x14
-	// Line 125, Address: 0x21ee40, Func Offset: 0x20
-	// Line 126, Address: 0x21ee54, Func Offset: 0x34
-	// Line 127, Address: 0x21ee68, Func Offset: 0x48
-	// Line 137, Address: 0x21ee70, Func Offset: 0x50
-	// Line 127, Address: 0x21ee74, Func Offset: 0x54
-	// Line 128, Address: 0x21ee80, Func Offset: 0x60
-	// Line 129, Address: 0x21ee94, Func Offset: 0x74
-	// Line 130, Address: 0x21eeac, Func Offset: 0x8c
-	// Line 131, Address: 0x21eec4, Func Offset: 0xa4
-	// Line 132, Address: 0x21eedc, Func Offset: 0xbc
-	// Line 133, Address: 0x21eef4, Func Offset: 0xd4
-	// Line 134, Address: 0x21ef0c, Func Offset: 0xec
-	// Line 135, Address: 0x21ef24, Func Offset: 0x104
-	// Line 136, Address: 0x21ef3c, Func Offset: 0x11c
-	// Line 137, Address: 0x21ef54, Func Offset: 0x134
-	// Func End, Address: 0x21ef70, Func Offset: 0x150
-	scePrintf("setentry - UNIMPLEMENTED!\n");
+    sys->ef.flg = 0x04100001;
+    sys->ef.id = id;
+    sys->ef.type = type;
+    sys->ef.flr_no = 0;
+    sys->ef.mdlver = 0;
+    sys->ef.px = op->px;
+    sys->ef.py = op->py;
+    sys->ef.pz = op->pz;
+    sys->ef.sx = op->sx;
+    sys->ef.sy = op->sy;
+    sys->ef.sz = op->sz;
+    sys->ef.ax = op->ax;
+    sys->ef.ay = op->ay;
+    return bhSetEffectTb(&sys->ef, NULL, NULL, 0);
 }
 
-// 
-// Start address: 0x21ef70
-void effinit(O_WRK* op)
+// 100% matching!
+void effinit(O_WRK* op) 
 {
-	// Line 148, Address: 0x21ef70, Func Offset: 0
-	// Line 149, Address: 0x21ef78, Func Offset: 0x8
-	// Line 152, Address: 0x21ef7c, Func Offset: 0xc
-	// Line 161, Address: 0x21ef80, Func Offset: 0x10
-	// Line 148, Address: 0x21ef84, Func Offset: 0x14
-	// Line 149, Address: 0x21ef8c, Func Offset: 0x1c
-	// Line 150, Address: 0x21ef90, Func Offset: 0x20
-	// Line 151, Address: 0x21ef94, Func Offset: 0x24
-	// Line 152, Address: 0x21ef98, Func Offset: 0x28
-	// Line 153, Address: 0x21ef9c, Func Offset: 0x2c
-	// Line 154, Address: 0x21efa0, Func Offset: 0x30
-	// Line 155, Address: 0x21efa4, Func Offset: 0x34
-	// Line 156, Address: 0x21efa8, Func Offset: 0x38
-	// Line 157, Address: 0x21efac, Func Offset: 0x3c
-	// Line 158, Address: 0x21efb0, Func Offset: 0x40
-	// Line 159, Address: 0x21efb4, Func Offset: 0x44
-	// Line 160, Address: 0x21efb8, Func Offset: 0x48
-	// Line 161, Address: 0x21efbc, Func Offset: 0x4c
-	// Line 162, Address: 0x21efc0, Func Offset: 0x50
-	// Line 163, Address: 0x21efc4, Func Offset: 0x54
-	// Line 164, Address: 0x21efc8, Func Offset: 0x58
-	// Line 165, Address: 0x21efcc, Func Offset: 0x5c
-	// Line 166, Address: 0x21efd4, Func Offset: 0x64
-	// Line 167, Address: 0x21efdc, Func Offset: 0x6c
-	// Line 168, Address: 0x21effc, Func Offset: 0x8c
-	// Line 169, Address: 0x21f000, Func Offset: 0x90
-	// Line 170, Address: 0x21f008, Func Offset: 0x98
-	// Line 171, Address: 0x21f010, Func Offset: 0xa0
-	// Line 172, Address: 0x21f018, Func Offset: 0xa8
-	// Line 173, Address: 0x21f01c, Func Offset: 0xac
-	// Line 174, Address: 0x21f024, Func Offset: 0xb4
-	// Func End, Address: 0x21f02c, Func Offset: 0xbc
-	scePrintf("effinit - UNIMPLEMENTED!\n");
+    op->flg |= 0x04100000;
+    op->tv[0].x = -1.0f;
+    op->tv[0].y = -1.0f;
+    op->tv[0].z = 0.0f;
+    op->tv[1].x = 1.0f;
+    op->tv[1].y = -1.0f;
+    op->tv[1].z = 0.0f;
+    op->tv[2].x = -1.0f;
+    op->tv[2].y = 1.0f;
+    op->tv[2].z = 0.0f;
+    op->tv[3].x = 1.0f;
+    op->tv[3].y = 1.0f;
+    op->tv[3].z = 0.0f;
+    op->tv[0].col = -1U;
+    op->tv[1].col = -1U;
+    op->tv[2].col = -1U;
+    op->tv[3].col = -1U;
+    op->bl_src = 8;
+    op->bl_dst = 6;
+    op->bank = (s32) sys->ef_pbkb[op->tex_id];
+    op->ani_ct = 0;
+    op->ct1 = 0;
+    op->ct0 = 0;
+    op->sxb = op->sx;
+    op->syb = op->sy;
+    op->spd = 0.0f;
+    op->zn = 0.0f;
+    op->yn = 0.0f;
+    op->xn = 0.0f;
 }
 
 // 
@@ -135,20 +123,24 @@ void getuv(unsigned char type, O_WRK* op)
 	scePrintf("getuv - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x21f210
-void bhEff150(O_WRK* op)
+// 100% matching!
+void bhEff150(O_WRK* op) 
 {
-	// Line 293, Address: 0x21f210, Func Offset: 0
-	// Line 294, Address: 0x21f21c, Func Offset: 0xc
-	// Line 296, Address: 0x21f22c, Func Offset: 0x1c
-	// Line 297, Address: 0x21f24c, Func Offset: 0x3c
-	// Line 298, Address: 0x21f258, Func Offset: 0x48
-	// Line 299, Address: 0x21f270, Func Offset: 0x60
-	// Line 300, Address: 0x21f274, Func Offset: 0x64
-	// Line 303, Address: 0x21f278, Func Offset: 0x68
-	// Func End, Address: 0x21f288, Func Offset: 0x78
-	scePrintf("bhEff150 - UNIMPLEMENTED!\n");
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+        }
+    }
+    
+    if (op->type != 0) 
+    {
+        setentry(0x97U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        op->mode1 = 0;
+        op->type = 0;
+    }
 }
 
 // 
@@ -338,20 +330,24 @@ void bhEff155(O_WRK* op)
 	scePrintf("bhEff155 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x21fd20
-void bhEff156(O_WRK* op)
+// 100% matching!
+void bhEff156(O_WRK* op) 
 {
-	// Line 681, Address: 0x21fd20, Func Offset: 0
-	// Line 682, Address: 0x21fd2c, Func Offset: 0xc
-	// Line 684, Address: 0x21fd3c, Func Offset: 0x1c
-	// Line 685, Address: 0x21fd5c, Func Offset: 0x3c
-	// Line 686, Address: 0x21fd68, Func Offset: 0x48
-	// Line 687, Address: 0x21fd74, Func Offset: 0x54
-	// Line 688, Address: 0x21fd78, Func Offset: 0x58
-	// Line 691, Address: 0x21fd7c, Func Offset: 0x5c
-	// Func End, Address: 0x21fd8c, Func Offset: 0x6c
-	scePrintf("bhEff156 - UNIMPLEMENTED!\n");
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+        }
+    }
+    
+    if (op->type != 0) 
+    {
+        setentry(0x9DU, op->type, op);
+        op->mode1 = 0;
+        op->type = 0;
+    }
 }
 
 // 
@@ -470,20 +466,24 @@ void bhEff159(O_WRK* op)
 	scePrintf("bhEff159 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x220280
-void bhEff160(O_WRK* op)
+// 100% matching!
+void bhEff160(O_WRK* op) 
 {
-	// Line 942, Address: 0x220280, Func Offset: 0
-	// Line 943, Address: 0x22028c, Func Offset: 0xc
-	// Line 945, Address: 0x22029c, Func Offset: 0x1c
-	// Line 946, Address: 0x2202bc, Func Offset: 0x3c
-	// Line 947, Address: 0x2202c8, Func Offset: 0x48
-	// Line 948, Address: 0x2202e0, Func Offset: 0x60
-	// Line 949, Address: 0x2202e4, Func Offset: 0x64
-	// Line 952, Address: 0x2202e8, Func Offset: 0x68
-	// Func End, Address: 0x2202f8, Func Offset: 0x78
-	scePrintf("bhEff160 - UNIMPLEMENTED!\n");
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+        }
+    }
+
+    if (op->type != 0) 
+    {
+        setentry(0xA1U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        op->mode1 = 0;
+        op->type = 0;
+    }
 }
 
 // 
@@ -544,20 +544,24 @@ void bhEff161(O_WRK* op)
 	scePrintf("bhEff161 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x220530
-void bhEff162(O_WRK* op)
+// 100% matching!
+void bhEff162(O_WRK* op) 
 {
-	// Line 1079, Address: 0x220530, Func Offset: 0
-	// Line 1080, Address: 0x22053c, Func Offset: 0xc
-	// Line 1082, Address: 0x22054c, Func Offset: 0x1c
-	// Line 1083, Address: 0x22056c, Func Offset: 0x3c
-	// Line 1084, Address: 0x220578, Func Offset: 0x48
-	// Line 1085, Address: 0x220590, Func Offset: 0x60
-	// Line 1086, Address: 0x220594, Func Offset: 0x64
-	// Line 1089, Address: 0x220598, Func Offset: 0x68
-	// Func End, Address: 0x2205a8, Func Offset: 0x78
-	scePrintf("bhEff162 - UNIMPLEMENTED!\n");
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+        }
+    }
+
+    if (op->type != 0) 
+    {
+        setentry(0xA3U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        op->mode1 = 0;
+        op->type = 0;
+    }
 }
 
 // 
@@ -622,25 +626,33 @@ void bhEff163(O_WRK* op)
 	scePrintf("bhEff163 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x220840
-void bhEff164(O_WRK* op)
+// 100% matching!
+void bhEff164(O_WRK* op) 
 {
-	// Line 1217, Address: 0x220840, Func Offset: 0
-	// Line 1219, Address: 0x22084c, Func Offset: 0xc
-	// Line 1222, Address: 0x22085c, Func Offset: 0x1c
-	// Line 1223, Address: 0x220874, Func Offset: 0x34
-	// Line 1224, Address: 0x22087c, Func Offset: 0x3c
-	// Line 1226, Address: 0x220880, Func Offset: 0x40
-	// Line 1227, Address: 0x220898, Func Offset: 0x58
-	// Line 1230, Address: 0x2208a0, Func Offset: 0x60
-	// Line 1231, Address: 0x2208ac, Func Offset: 0x6c
-	// Line 1233, Address: 0x2208bc, Func Offset: 0x7c
-	// Line 1234, Address: 0x2208c8, Func Offset: 0x88
-	// Line 1235, Address: 0x2208d4, Func Offset: 0x94
-	// Line 1239, Address: 0x2208d8, Func Offset: 0x98
-	// Func End, Address: 0x2208e8, Func Offset: 0xa8
-	scePrintf("bhEff164 - UNIMPLEMENTED!\n");
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+            op->mode1 = 0;
+        }
+    }
+
+    if ((op->type != 0) && (op->ct0 == 0)) 
+    {
+        op->ct0 = op->type & 0xFFFF;
+    }
+
+    if (op->ct0 != 0) 
+    {
+        setentry(0x9FU, 2U, op);
+        op->ct0 -= 1;
+        if (op->ct0 == 0) 
+        {
+            op->type = 0;
+        }
+    }
 }
 
 // 
@@ -717,23 +729,38 @@ void bhEff165(O_WRK* op)
 	scePrintf("bhEff165 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x220ba0
-void bhEff166(O_WRK* op)
+// 99.74% matching (https://decomp.me/scratch/V9yU4)
+void bhEff166(O_WRK* op) 
 {
-	// Line 1349, Address: 0x220ba0, Func Offset: 0
-	// Line 1350, Address: 0x220bac, Func Offset: 0xc
-	// Line 1352, Address: 0x220bbc, Func Offset: 0x1c
-	// Line 1353, Address: 0x220bdc, Func Offset: 0x3c
-	// Line 1355, Address: 0x220be8, Func Offset: 0x48
-	// Line 1356, Address: 0x220c00, Func Offset: 0x60
-	// Line 1359, Address: 0x220c10, Func Offset: 0x70
-	// Line 1357, Address: 0x220c14, Func Offset: 0x74
-	// Line 1359, Address: 0x220c18, Func Offset: 0x78
-	// Line 1361, Address: 0x220c1c, Func Offset: 0x7c
-	// Line 1364, Address: 0x220c28, Func Offset: 0x88
-	// Func End, Address: 0x220c38, Func Offset: 0x98
-	scePrintf("bhEff166 - UNIMPLEMENTED!\n");
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+        }
+    }
+
+    if (op->type != 0) 
+    {
+        if (op->ct1 > 0) 
+        {
+            if (op->ct1 >= 0xE) 
+            {
+                goto block_7;
+            }
+        } 
+        else 
+        // if ((op->ct1 > 0) && !(op->ct1 >= 0xE))
+        {
+block_7:
+            setentry(0xA7U, 1U, op);
+            op->mode1 = 0;
+            op->ct1 = 0xD;
+        }
+        
+        op->ct1 -= 1;
+    }
 }
 
 // 
@@ -766,20 +793,24 @@ void bhEff167(O_WRK* op)
 	scePrintf("bhEff167 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x220d40
-void bhEff168(O_WRK* op)
+// 100% matching!
+void bhEff168(O_WRK* op) 
 {
-	// Line 1432, Address: 0x220d40, Func Offset: 0
-	// Line 1433, Address: 0x220d4c, Func Offset: 0xc
-	// Line 1435, Address: 0x220d5c, Func Offset: 0x1c
-	// Line 1436, Address: 0x220d7c, Func Offset: 0x3c
-	// Line 1437, Address: 0x220d88, Func Offset: 0x48
-	// Line 1438, Address: 0x220da0, Func Offset: 0x60
-	// Line 1439, Address: 0x220da4, Func Offset: 0x64
-	// Line 1442, Address: 0x220da8, Func Offset: 0x68
-	// Func End, Address: 0x220db8, Func Offset: 0x78
-	scePrintf("bhEff168 - UNIMPLEMENTED!\n");
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+        }
+    }
+    
+    if (op->type != 0) 
+    {
+        setentry(0xA9U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        op->mode1 = 0;
+        op->type = 0;
+    }
 }
 
 // 
@@ -935,20 +966,24 @@ void bhEff171(O_WRK* op)
 	scePrintf("bhEff171 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x221340
-void bhEff172(O_WRK* op)
+// 100% matching!
+void bhEff172(O_WRK* op) 
 {
-	// Line 1705, Address: 0x221340, Func Offset: 0
-	// Line 1706, Address: 0x22134c, Func Offset: 0xc
-	// Line 1708, Address: 0x22135c, Func Offset: 0x1c
-	// Line 1709, Address: 0x22137c, Func Offset: 0x3c
-	// Line 1710, Address: 0x221388, Func Offset: 0x48
-	// Line 1711, Address: 0x2213a0, Func Offset: 0x60
-	// Line 1712, Address: 0x2213a4, Func Offset: 0x64
-	// Line 1715, Address: 0x2213a8, Func Offset: 0x68
-	// Func End, Address: 0x2213b8, Func Offset: 0x78
-	scePrintf("bhEff172 - UNIMPLEMENTED!\n");
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+        }
+    }
+
+    if (op->type != 0) 
+    {
+        setentry(0xADU, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        op->mode1 = 0;
+        op->type = 0;
+    }
 }
 
 // 
@@ -996,20 +1031,24 @@ void bhEff174()
 
 }
 
-// 
-// Start address: 0x221530
-void bhEff175(O_WRK* op)
+// 100% matching!
+void bhEff175(O_WRK* op) 
 {
-	// Line 1792, Address: 0x221530, Func Offset: 0
-	// Line 1793, Address: 0x22153c, Func Offset: 0xc
-	// Line 1795, Address: 0x22154c, Func Offset: 0x1c
-	// Line 1796, Address: 0x22156c, Func Offset: 0x3c
-	// Line 1797, Address: 0x221578, Func Offset: 0x48
-	// Line 1798, Address: 0x221588, Func Offset: 0x58
-	// Line 1799, Address: 0x22158c, Func Offset: 0x5c
-	// Line 1802, Address: 0x221590, Func Offset: 0x60
-	// Func End, Address: 0x2215a0, Func Offset: 0x70
-	scePrintf("bhEff175 - UNIMPLEMENTED!\n");
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+        }
+    }
+    
+    if (op->type != 0) 
+    {
+        setentry(0xB0U, 0U, op);
+        op->mode1 = 0;
+        op->type = 0;
+    }
 }
 
 // 
@@ -1030,23 +1069,32 @@ void bhEff176(O_WRK* op)
 	scePrintf("bhEff176 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x221650
-void bhEff177(O_WRK* op)
+// 99.88% matching (https://decomp.me/scratch/QxlK6)
+void bhEff177(O_WRK* op) 
 {
-	int lNumber;
-	// Line 1844, Address: 0x221650, Func Offset: 0
-	// Line 1848, Address: 0x22165c, Func Offset: 0xc
-	// Line 1850, Address: 0x22166c, Func Offset: 0x1c
-	// Line 1851, Address: 0x22168c, Func Offset: 0x3c
-	// Line 1852, Address: 0x221698, Func Offset: 0x48
-	// Line 1853, Address: 0x2216b0, Func Offset: 0x60
-	// Line 1855, Address: 0x2216bc, Func Offset: 0x6c
-	// Line 1857, Address: 0x2216e4, Func Offset: 0x94
-	// Line 1858, Address: 0x2216e8, Func Offset: 0x98
-	// Line 1861, Address: 0x2216ec, Func Offset: 0x9c
-	// Func End, Address: 0x2216fc, Func Offset: 0xac
-	scePrintf("bhEff177 - UNIMPLEMENTED!\n");
+    int lNumber;
+
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+        }
+    }
+    
+    if (op->type != 0) 
+    {
+        lNumber = setentry(0xB2U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        
+        if (lNumber != -1) 
+        {
+            *(&eff->lkono + (lNumber * 0x4E0)) = op->lkono;
+        }
+        
+        op->mode1 = 0;
+        op->type = 0;
+    }
 }
 
 // 
@@ -1096,25 +1144,35 @@ void bhEff178(O_WRK* op)
 	scePrintf("bhEff178 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2218a0
-void bhEff179(O_WRK* op)
+// 99.81% matching (https://decomp.me/scratch/26l1A)
+void bhEff179(O_WRK* op) 
 {
-	// Line 1944, Address: 0x2218a0, Func Offset: 0
-	// Line 1945, Address: 0x2218ac, Func Offset: 0xc
-	// Line 1947, Address: 0x2218bc, Func Offset: 0x1c
-	// Line 1949, Address: 0x2218dc, Func Offset: 0x3c
-	// Line 1950, Address: 0x2218e8, Func Offset: 0x48
-	// Line 1951, Address: 0x221904, Func Offset: 0x64
-	// Line 1952, Address: 0x22191c, Func Offset: 0x7c
-	// Line 1954, Address: 0x221920, Func Offset: 0x80
-	// Line 1955, Address: 0x221928, Func Offset: 0x88
-	// Line 1956, Address: 0x221934, Func Offset: 0x94
-	// Line 1957, Address: 0x22194c, Func Offset: 0xac
-	// Line 1959, Address: 0x221958, Func Offset: 0xb8
-	// Line 1963, Address: 0x221964, Func Offset: 0xc4
-	// Func End, Address: 0x221974, Func Offset: 0xd4
-	scePrintf("bhEff179 - UNIMPLEMENTED!\n");
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+        }
+    }
+    
+    if (op->type != 0) 
+    {
+        if (op->sz == 0.0f) 
+        {
+            setentry(0xB4U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+            op->mode1 = 0;
+            op->type = 0;
+            return;
+        }
+
+        if (op->ct1 <= 0) 
+        {
+            setentry(0xB4U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+            op->ct1 = (int) (op->sz);
+        }
+        op->ct1 -= 1;
+    }
 }
 
 // 
@@ -1221,18 +1279,22 @@ void bhEff182(O_WRK* op)
 	scePrintf("bhEff182 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x221d20
-void bhEff183(O_WRK* op)
+// 100% matching!
+void bhEff183(O_WRK* op) 
 {
-	// Line 2360, Address: 0x221d20, Func Offset: 0
-	// Line 2361, Address: 0x221d28, Func Offset: 0x8
-	// Line 2363, Address: 0x221d38, Func Offset: 0x18
-	// Line 2364, Address: 0x221d58, Func Offset: 0x38
-	// Line 2365, Address: 0x221d64, Func Offset: 0x44
-	// Line 2370, Address: 0x221d78, Func Offset: 0x58
-	// Func End, Address: 0x221d84, Func Offset: 0x64
-	scePrintf("bhEff183 - UNIMPLEMENTED!\n");
+    op->flg |= 0x01000000;
+    if (op->type == 0) 
+    {
+        if (op->mode1 != 0) 
+        {
+            op->type = op->mode1 & 0xFF;
+        }
+    }
+
+    if (op->type != 0) 
+    {
+        setentry(0xB8U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+    }
 }
 
 // 
