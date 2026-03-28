@@ -1,4 +1,10 @@
 #include "en07.h"
+#include "MdlPut.h"
+#include "Motion.h"
+#include "hitchk.h"
+#include "main.h"
+#include "subpl.h"
+#include "zonzon1.h"
 
 /*typedef struct npobj;
 typedef struct _anon0;
@@ -1257,9 +1263,18 @@ char AtkPos[5];
 _anon5 AtkOffset[5];
 int AtkAngle[5];
 _anon25 BloodParam;
-_anon17 CapColTab[5];
-void(*bhEne07_Mode0)(BH_PWORK*)[6];
-void(*bhEne07_BrainType)(BH_PWORK*)[2];
+_anon17 CapColTab[5];*/
+typedef void (*bhEne07_Mode0_proc)(BH_PWORK* epw);
+bhEne07_Mode0_proc bhEne07_Mode0[6] = 
+{
+    bhEne07_Init,
+    bhEne07_Move,
+    bhEne07_Nage,
+    bhEne07_Damage,
+    bhEne07_Die,
+    bhEne_Event
+};
+/*void(*bhEne07_BrainType)(BH_PWORK*)[2];
 void(*bhEne07_MoveMode2)(BH_PWORK*)[9];
 void(*bhEne07_NageMode2)(BH_PWORK*)[2];
 void(*bhEne07_DamageMode2)(BH_PWORK*)[1];
@@ -1269,38 +1284,46 @@ _anon12* sys;
 _anon0 eff[0];
 BH_PWORK ene[0];*/
 
-// 
-// Start address: 0x1bfe80
+// 100% matching!
 void bhEne07(BH_PWORK* epw)
 {
-	// Line 304, Address: 0x1bfe80, Func Offset: 0
-	// Line 306, Address: 0x1bfe90, Func Offset: 0x10
-	// Line 309, Address: 0x1bfeb0, Func Offset: 0x30
-	// Line 312, Address: 0x1bfec4, Func Offset: 0x44
-	// Line 316, Address: 0x1bfed4, Func Offset: 0x54
-	// Line 312, Address: 0x1bfed8, Func Offset: 0x58
-	// Line 313, Address: 0x1bfeec, Func Offset: 0x6c
-	// Line 316, Address: 0x1bff08, Func Offset: 0x88
-	// Line 317, Address: 0x1bff10, Func Offset: 0x90
-	// Line 318, Address: 0x1bff18, Func Offset: 0x98
-	// Line 319, Address: 0x1bff20, Func Offset: 0xa0
-	// Line 320, Address: 0x1bff28, Func Offset: 0xa8
-	// Line 323, Address: 0x1bff30, Func Offset: 0xb0
-	// Line 326, Address: 0x1bff38, Func Offset: 0xb8
-	// Line 329, Address: 0x1bff50, Func Offset: 0xd0
-	// Line 330, Address: 0x1bff74, Func Offset: 0xf4
-	// Line 331, Address: 0x1bff8c, Func Offset: 0x10c
-	// Line 333, Address: 0x1bff94, Func Offset: 0x114
-	// Line 335, Address: 0x1bffb4, Func Offset: 0x134
-	// Func End, Address: 0x1bffc4, Func Offset: 0x144
-	scePrintf("bhEne07 - UNIMPLEMENTED!\n");
+    bhEne07_Mode0[epw->mode0](epw);
+    
+    bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+    
+    epw->ar +=  (((float*)epw->exp0)[15] - epw->ar) / 8.0f;
+    epw->car += (((float*)epw->exp0)[16] - epw->car) / 8.0f;
+    
+    bhCheckPlayer(epw);
+    bhCheckEnemies(epw);
+    
+    bhEne07_FloorCollision(epw);
+    bhEne07_CollisionWalls(epw);
+    bhEne07_FloorCollision(epw);
+    
+    bhCalcModel(epw);
+    
+    bhEne_SetWeponAtr(epw, 6, 11, 2.0f);
+    
+    if (((unsigned char*)epw->exp1)[6] == sys->enow)
+    {
+        if (plp->mode0 == 4) 
+        {
+            bhEne07_PlayerControl(epw);
+        }
+        
+        if (((unsigned char*)epw->exp1)[7] != 0)
+        {
+            ((unsigned char*)epw->exp1)[7]--;
+        }
+    }
 }
 
-/*// 
+// 
 // Start address: 0x1bffd0
 void bhEne07_Init(BH_PWORK* epw)
 {
-	_anon5 p;
+	//_anon5 p;
 	int sdw;
 	BH_PWORK* ep;
 	int i;
@@ -1409,9 +1432,10 @@ void bhEne07_Init(BH_PWORK* epw)
 	// Line 472, Address: 0x1c03ec, Func Offset: 0x41c
 	// Line 473, Address: 0x1c03f8, Func Offset: 0x428
 	// Func End, Address: 0x1c040c, Func Offset: 0x43c
+	scePrintf("bhEne07_Init - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1c0410
 void bhEne07_Brain(BH_PWORK* epw)
 {
@@ -1516,7 +1540,7 @@ void bhEne07_BR01(BH_PWORK* epw)
 	// Line 644, Address: 0x1c0954, Func Offset: 0x64
 	// Line 647, Address: 0x1c099c, Func Offset: 0xac
 	// Func End, Address: 0x1c09ac, Func Offset: 0xbc
-}
+}*/
 
 // 
 // Start address: 0x1c09b0
@@ -1532,9 +1556,10 @@ void bhEne07_Move(BH_PWORK* epw)
 	// Line 671, Address: 0x1c0a28, Func Offset: 0x78
 	// Line 672, Address: 0x1c0a30, Func Offset: 0x80
 	// Func End, Address: 0x1c0a40, Func Offset: 0x90
+	scePrintf("bhEne07_Move - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1c0a40
 void bhEne07_MV00(BH_PWORK* epw)
 {
@@ -1854,7 +1879,7 @@ void bhEne07_MV08(BH_PWORK* epw)
 	// Line 1102, Address: 0x1c1cbc, Func Offset: 0x16c
 	// Line 1106, Address: 0x1c1cd4, Func Offset: 0x184
 	// Func End, Address: 0x1c1ce4, Func Offset: 0x194
-}
+}*/
 
 // 
 // Start address: 0x1c1cf0
@@ -1862,9 +1887,10 @@ void bhEne07_Nage(BH_PWORK* epw)
 {
 	// Line 1117, Address: 0x1c1cf0, Func Offset: 0
 	// Func End, Address: 0x1c1d10, Func Offset: 0x20
+	scePrintf("bhEne07_Nage - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1c1d10
 void bhEne07_NG00(BH_PWORK* epw)
 {
@@ -2074,14 +2100,14 @@ void bhEne07_NG01(BH_PWORK* epw)
 	// Line 1354, Address: 0x1c2588, Func Offset: 0x468
 	// Line 1358, Address: 0x1c2590, Func Offset: 0x470
 	// Func End, Address: 0x1c25a4, Func Offset: 0x484
-}
+}*/
 
 // 
 // Start address: 0x1c25b0
 void bhEne07_Damage(BH_PWORK* epw)
 {
-	_anon5 ofp;
-	_anon5 ofp;
+	//_anon5 ofp;
+	//_anon5 ofp;
 	int dam;
 	int i;
 	// Line 1368, Address: 0x1c25b0, Func Offset: 0
@@ -2162,6 +2188,7 @@ void bhEne07_Damage(BH_PWORK* epw)
 	// Line 1466, Address: 0x1c2a6c, Func Offset: 0x4bc
 	// Line 1468, Address: 0x1c2a70, Func Offset: 0x4c0
 	// Func End, Address: 0x1c2a8c, Func Offset: 0x4dc
+	scePrintf("bhEne07_Damage - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2170,9 +2197,10 @@ void bhEne07_Die(BH_PWORK* epw)
 {
 	// Line 1490, Address: 0x1c2a90, Func Offset: 0
 	// Func End, Address: 0x1c2ab0, Func Offset: 0x20
+	scePrintf("bhEne07_Die - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1c2ab0
 void bhEne07_DD00(BH_PWORK* epw)
 {
@@ -2936,13 +2964,13 @@ void bhEne07_SearchPlayer(BH_PWORK* epw)
 	// Line 2339, Address: 0x1c4868, Func Offset: 0x78
 	// Line 2340, Address: 0x1c487c, Func Offset: 0x8c
 	// Func End, Address: 0x1c488c, Func Offset: 0x9c
-}
+}*/
 
 // 
 // Start address: 0x1c4890
 void bhEne07_CollisionWalls(BH_PWORK* epw)
 {
-	_anon5 ofp;
+	//_anon5 ofp;
 	// Line 2350, Address: 0x1c4890, Func Offset: 0
 	// Line 2354, Address: 0x1c48a0, Func Offset: 0x10
 	// Line 2356, Address: 0x1c48b0, Func Offset: 0x20
@@ -2958,14 +2986,15 @@ void bhEne07_CollisionWalls(BH_PWORK* epw)
 	// Line 2362, Address: 0x1c4910, Func Offset: 0x80
 	// Line 2363, Address: 0x1c4920, Func Offset: 0x90
 	// Func End, Address: 0x1c4938, Func Offset: 0xa8
+	scePrintf("bhEne07_CollisionWalls - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1c4940
 void bhEne07_FloorCollision(BH_PWORK* epw)
 {
-	_anon29* hp;
-	_anon5 n;
+	//_anon29* hp;
+	//_anon5 n;
 	// Line 2373, Address: 0x1c4940, Func Offset: 0
 	// Line 2380, Address: 0x1c4950, Func Offset: 0x10
 	// Line 2381, Address: 0x1c496c, Func Offset: 0x2c
@@ -2981,9 +3010,10 @@ void bhEne07_FloorCollision(BH_PWORK* epw)
 	// Line 2395, Address: 0x1c4a18, Func Offset: 0xd8
 	// Line 2398, Address: 0x1c4a20, Func Offset: 0xe0
 	// Func End, Address: 0x1c4a34, Func Offset: 0xf4
+	scePrintf("bhEne07_FloorCollision - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1c4a40
 int bhEne07_CheckLeaningWall()
 {
@@ -3251,7 +3281,7 @@ void bhEne07_PlayerBloodEffect(BH_PWORK* epw, unsigned char size)
 	// Line 2719, Address: 0x1c55fc, Func Offset: 0xac
 	// Line 2720, Address: 0x1c5604, Func Offset: 0xb4
 	// Func End, Address: 0x1c5618, Func Offset: 0xc8
-}
+}*/
 
 // 
 // Start address: 0x1c5620
@@ -3395,9 +3425,10 @@ void bhEne07_PlayerControl(BH_PWORK* epw)
 	// Line 2829, Address: 0x1c5ae4, Func Offset: 0x4c4
 	// Line 2834, Address: 0x1c5afc, Func Offset: 0x4dc
 	// Func End, Address: 0x1c5b08, Func Offset: 0x4e8
+	scePrintf("bhEne07_PlayerControl - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1c5b10
 int bhEne07_ObjEdge(BH_PWORK* epw)
 {
