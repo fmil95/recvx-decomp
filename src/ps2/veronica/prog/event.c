@@ -2591,62 +2591,95 @@ unsigned int bhItmSetCk()
 	scePrintf("bhItmSetCk - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x159f50
+// 100% matching! 
 unsigned int bhInitModelSet()
 {
-	//_anon0* e_ip;
-	BH_PWORK* e_ep;
-	unsigned int v4;
-	unsigned int v3;
-	unsigned int v2;
-	// Line 2640, Address: 0x159f50, Func Offset: 0
-	// Line 2648, Address: 0x159f58, Func Offset: 0x8
-	// Line 2640, Address: 0x159f5c, Func Offset: 0xc
-	// Line 2641, Address: 0x159f68, Func Offset: 0x18
-	// Line 2642, Address: 0x159f74, Func Offset: 0x24
-	// Line 2643, Address: 0x159f80, Func Offset: 0x30
-	// Line 2644, Address: 0x159f8c, Func Offset: 0x3c
-	// Line 2645, Address: 0x159f98, Func Offset: 0x48
-	// Line 2646, Address: 0x159fa4, Func Offset: 0x54
-	// Line 2648, Address: 0x159fac, Func Offset: 0x5c
-	// Line 2650, Address: 0x159fdc, Func Offset: 0x8c
-	// Line 2651, Address: 0x159fe4, Func Offset: 0x94
-	// Line 2653, Address: 0x159ff0, Func Offset: 0xa0
-	// Line 2651, Address: 0x159ff4, Func Offset: 0xa4
-	// Line 2653, Address: 0x159ff8, Func Offset: 0xa8
-	// Line 2651, Address: 0x159ffc, Func Offset: 0xac
-	// Line 2653, Address: 0x15a004, Func Offset: 0xb4
-	// Line 2656, Address: 0x15a030, Func Offset: 0xe0
-	// Line 2659, Address: 0x15a034, Func Offset: 0xe4
-	// Line 2660, Address: 0x15a03c, Func Offset: 0xec
-	// Line 2662, Address: 0x15a054, Func Offset: 0x104
-	// Line 2670, Address: 0x15a05c, Func Offset: 0x10c
-	// Line 2671, Address: 0x15a098, Func Offset: 0x148
-	// Line 2672, Address: 0x15a0a0, Func Offset: 0x150
-	// Line 2673, Address: 0x15a0b0, Func Offset: 0x160
-	// Line 2674, Address: 0x15a0b8, Func Offset: 0x168
-	// Line 2675, Address: 0x15a0c0, Func Offset: 0x170
-	// Line 2676, Address: 0x15a0cc, Func Offset: 0x17c
-	// Line 2675, Address: 0x15a0d0, Func Offset: 0x180
-	// Line 2676, Address: 0x15a0d8, Func Offset: 0x188
-	// Line 2677, Address: 0x15a0e8, Func Offset: 0x198
-	// Line 2680, Address: 0x15a0f4, Func Offset: 0x1a4
-	// Line 2686, Address: 0x15a0fc, Func Offset: 0x1ac
-	// Line 2687, Address: 0x15a124, Func Offset: 0x1d4
-	// Line 2688, Address: 0x15a12c, Func Offset: 0x1dc
-	// Line 2689, Address: 0x15a138, Func Offset: 0x1e8
-	// Line 2690, Address: 0x15a140, Func Offset: 0x1f0
-	// Line 2692, Address: 0x15a150, Func Offset: 0x200
-	// Line 2699, Address: 0x15a158, Func Offset: 0x208
-	// Line 2700, Address: 0x15a180, Func Offset: 0x230
-	// Line 2701, Address: 0x15a188, Func Offset: 0x238
-	// Line 2702, Address: 0x15a194, Func Offset: 0x244
-	// Line 2703, Address: 0x15a19c, Func Offset: 0x24c
-	// Line 2707, Address: 0x15a1b0, Func Offset: 0x260
-	// Line 2708, Address: 0x15a1b4, Func Offset: 0x264
-	// Func End, Address: 0x15a1bc, Func Offset: 0x26c
-	scePrintf("bhInitModelSet - UNIMPLEMENTED!\n");
+    unsigned int v2, v3, v4; 
+    BH_PWORK* e_ep;  
+    O_WRK* e_ip;     
+    ETTY_WORK* enep; // not from DWARF
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v3 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v4 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    switch (v2) 
+    {                       
+    case 0:
+        if (v4 == 0) 
+        {
+            plp->stflg |= 0x1000000;
+            
+            if (((sys->stg_no == 9) && (sys->rom_no == 30)) && (sys->rcase == 2)) 
+            {
+                pl_sleep_cnt = 2;
+            }
+        }
+        else 
+        {
+            plp->stflg &= ~0x1000000;
+        }
+        
+        break;
+    case 1:
+        enep = &rom->enep[v3];
+        e_ep = &ene[enep->wrk_no];
+        
+        if (v4 == 0) 
+        {
+            e_ep->stflg |= 0x1000000;
+            e_ep->flg |= 0x8000;
+        } 
+        else
+        {
+            e_ep->stflg &= ~0x1000000;
+            
+            if (!(e_ep->flg & 0x80000000))
+            {
+                e_ep->flg &= ~0x8000;
+            }
+        }
+        
+        break;
+    case 2:
+        e_ip = &sys->obwp[v3];
+        
+        if (v4 == 0) 
+        {
+            e_ip->stflg |= 0x1000000;
+        } 
+        else 
+        {
+            e_ip->stflg &= ~0x1000000;
+        }
+        
+        break;
+    case 3:
+        e_ip = &sys->itwp[v3];
+        
+        if (v4 == 0) 
+        {
+            e_ip->stflg |= 0x1000000;
+        } 
+        else 
+        {
+            e_ip->stflg &= ~0x1000000;
+        }
+        
+        break;
+    }
+    
+    return 1;
 }
 
 // 
