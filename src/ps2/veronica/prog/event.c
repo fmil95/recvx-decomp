@@ -3692,67 +3692,89 @@ unsigned int bhObjLinkSetEneItem()
 
 #pragma optimization_level 3
 
-// 
-// Start address: 0x15c510
+// 100% matching!
 unsigned int bhObjLinkSetEneEne()
 {
+    int v0, v1;
 	BH_PWORK* e_ep2;
-	int v1;
-	int v0;
-	// Line 3676, Address: 0x15c510, Func Offset: 0
-	// Line 3690, Address: 0x15c518, Func Offset: 0x8
-	// Line 3692, Address: 0x15c520, Func Offset: 0x10
-	// Line 3690, Address: 0x15c528, Func Offset: 0x18
-	// Line 3676, Address: 0x15c530, Func Offset: 0x20
-	// Line 3677, Address: 0x15c53c, Func Offset: 0x2c
-	// Line 3678, Address: 0x15c548, Func Offset: 0x38
-	// Line 3690, Address: 0x15c554, Func Offset: 0x44
-	// Line 3679, Address: 0x15c558, Func Offset: 0x48
-	// Line 3692, Address: 0x15c560, Func Offset: 0x50
-	// Line 3679, Address: 0x15c568, Func Offset: 0x58
-	// Line 3692, Address: 0x15c56c, Func Offset: 0x5c
-	// Line 3694, Address: 0x15c574, Func Offset: 0x64
-	// Line 3692, Address: 0x15c578, Func Offset: 0x68
-	// Line 3690, Address: 0x15c57c, Func Offset: 0x6c
-	// Line 3692, Address: 0x15c590, Func Offset: 0x80
-	// Line 3690, Address: 0x15c5a8, Func Offset: 0x98
-	// Line 3692, Address: 0x15c5c0, Func Offset: 0xb0
-	// Line 3694, Address: 0x15c5c4, Func Offset: 0xb4
-	// Line 3695, Address: 0x15c5d4, Func Offset: 0xc4
-	// Line 3698, Address: 0x15c5e0, Func Offset: 0xd0
-	// Line 3696, Address: 0x15c5e4, Func Offset: 0xd4
-	// Line 3698, Address: 0x15c5e8, Func Offset: 0xd8
-	// Line 3700, Address: 0x15c5f8, Func Offset: 0xe8
-	// Line 3701, Address: 0x15c60c, Func Offset: 0xfc
-	// Line 3702, Address: 0x15c614, Func Offset: 0x104
-	// Line 3703, Address: 0x15c61c, Func Offset: 0x10c
-	// Line 3705, Address: 0x15c62c, Func Offset: 0x11c
-	// Line 3706, Address: 0x15c640, Func Offset: 0x130
-	// Line 3708, Address: 0x15c64c, Func Offset: 0x13c
-	// Line 3711, Address: 0x15c658, Func Offset: 0x148
-	// Line 3712, Address: 0x15c664, Func Offset: 0x154
-	// Line 3713, Address: 0x15c6c0, Func Offset: 0x1b0
-	// Line 3714, Address: 0x15c6c8, Func Offset: 0x1b8
-	// Line 3716, Address: 0x15c718, Func Offset: 0x208
-	// Line 3719, Address: 0x15c720, Func Offset: 0x210
-	// Line 3716, Address: 0x15c724, Func Offset: 0x214
-	// Line 3719, Address: 0x15c72c, Func Offset: 0x21c
-	// Line 3720, Address: 0x15c734, Func Offset: 0x224
-	// Line 3721, Address: 0x15c790, Func Offset: 0x280
-	// Line 3722, Address: 0x15c798, Func Offset: 0x288
-	// Line 3724, Address: 0x15c7e8, Func Offset: 0x2d8
-	// Line 3727, Address: 0x15c7f0, Func Offset: 0x2e0
-	// Line 3724, Address: 0x15c7f4, Func Offset: 0x2e4
-	// Line 3727, Address: 0x15c7fc, Func Offset: 0x2ec
-	// Line 3728, Address: 0x15c804, Func Offset: 0x2f4
-	// Line 3729, Address: 0x15c860, Func Offset: 0x350
-	// Line 3730, Address: 0x15c868, Func Offset: 0x358
-	// Line 3732, Address: 0x15c8b8, Func Offset: 0x3a8
-	// Line 3734, Address: 0x15c8c0, Func Offset: 0x3b0
-	// Line 3732, Address: 0x15c8c4, Func Offset: 0x3b4
-	// Line 3735, Address: 0x15c8cc, Func Offset: 0x3bc
-	// Func End, Address: 0x15c8d4, Func Offset: 0x3c4
-	scePrintf("bhObjLinkSetEneEne - UNIMPLEMENTED!\n");
+	int v2;          // not from DWARF
+    ETTY_WORK* enep; // not from DWARF
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;    
+    
+    bhScePtr++; 
+    
+    v1 = *bhScePtr;
+
+    enep = &rom->enep[v1]; 
+
+    e_ep2 = &ene[enep->wrk_no];
+
+    enep = &rom->enep[v0]; 
+    
+    e_ep2->lkwkp = (unsigned char*)&ene[enep->wrk_no]; 
+    
+    bhScePtr++; 
+    
+    v2 = *bhScePtr;
+    
+    e_ep2->lkono = v2;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    if (v2 == 0)
+    {
+        e_ep2->flg |= 0x80;
+    } 
+    else 
+    {
+        e_ep2->flg &= ~0x80;
+    }
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+ 
+    if ((v2 & 0x1)) 
+    {
+        e_ep2->lox = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else
+    {
+        e_ep2->lox = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+
+    if ((v2 & 0x2))
+    {
+        e_ep2->loy = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        e_ep2->loy = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+    
+    if ((v2 & 0x4)) 
+    {
+        e_ep2->loz = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else
+    {
+        e_ep2->loz = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 100% matching!
