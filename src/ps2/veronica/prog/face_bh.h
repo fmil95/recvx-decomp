@@ -13,10 +13,10 @@ void _fmCnkSetTangObject(_anon2* fm, cnkobj* tang);
 void _fmCnkSetToothObject(_anon2* fm, cnkobj* tooth);
 void _fmCnkSetJaw(_anon2* fm, unsigned int v0, unsigned int v1);
 void fmCnkInitContext(_anon2* fm, void* data, cnkobj* root, _anon5* mlwP);
-void fmCnkSetParam(_anon2* fm, _anon4* param);
-void fmCnkSetParamLip(_anon2* fm, _anon4* param, unsigned int flag);
-void fmCnkSetInterParam(_anon2* fm, _anon4* p1, _anon4* p2, float t, float lv, unsigned int mask);
-void fmCnkSetInterParamLip(_anon2* fm, _anon4* p1, _anon4* p2, float t, float lv, unsigned int mask);*/
+void fmCnkSetParam(_anon2* fm, _anon4* param);*/
+void fmCnkSetParamLip(MASK_WORK* fm, PARAM_WORK* param, unsigned int flag);
+/*void fmCnkSetInterParam(_anon2* fm, _anon4* p1, _anon4* p2, float t, float lv, unsigned int mask);*/
+void fmCnkSetInterParamLip(MASK_WORK* fm, PARAM_WORK* p1, PARAM_WORK* p2, float t, float lv, unsigned int mask);
 void fmCnkSetCurrentFrame(MASK_WORK* fm, float frame);
 /*unsigned int fmCnkGetLastFrame(_anon2* fm);
 void _fmCnkCalcMuscle(_anon2* fm);

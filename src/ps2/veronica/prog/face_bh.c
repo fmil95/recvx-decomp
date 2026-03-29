@@ -2,43 +2,62 @@
 #include "face_bh.h"
 #include "ps2_NaMem.h"
 
-// 
-// Start address: 0x298820
+// 100% matching!
 void fmSetLipSyncParam(MASK_WORK* fm, PARAM_WORK* base, LIP_WORK* lip, unsigned int mask)
 {
-	float level;
-	float rate;
-	// Line 57, Address: 0x298820, Func Offset: 0
-	// Line 60, Address: 0x29882c, Func Offset: 0xc
-	// Line 61, Address: 0x298840, Func Offset: 0x20
-	// Line 62, Address: 0x298848, Func Offset: 0x28
-	// Line 63, Address: 0x29885c, Func Offset: 0x3c
-	// Line 65, Address: 0x298860, Func Offset: 0x40
-	// Line 67, Address: 0x298868, Func Offset: 0x48
-	// Line 68, Address: 0x298878, Func Offset: 0x58
-	// Line 69, Address: 0x29888c, Func Offset: 0x6c
-	// Line 71, Address: 0x29889c, Func Offset: 0x7c
-	// Line 73, Address: 0x2988a4, Func Offset: 0x84
-	// Line 77, Address: 0x2988a8, Func Offset: 0x88
-	// Line 78, Address: 0x2988cc, Func Offset: 0xac
-	// Line 79, Address: 0x2988d8, Func Offset: 0xb8
-	// Line 80, Address: 0x2988e8, Func Offset: 0xc8
-	// Line 79, Address: 0x2988ec, Func Offset: 0xcc
-	// Line 80, Address: 0x2988f8, Func Offset: 0xd8
-	// Line 81, Address: 0x29890c, Func Offset: 0xec
-	// Line 83, Address: 0x298914, Func Offset: 0xf4
-	// Line 84, Address: 0x298928, Func Offset: 0x108
-	// Line 83, Address: 0x29892c, Func Offset: 0x10c
-	// Line 84, Address: 0x298930, Func Offset: 0x110
-	// Line 83, Address: 0x298934, Func Offset: 0x114
-	// Line 86, Address: 0x298938, Func Offset: 0x118
-	// Line 87, Address: 0x298978, Func Offset: 0x158
-	// Line 89, Address: 0x298980, Func Offset: 0x160
-	// Line 93, Address: 0x2989a4, Func Offset: 0x184
-	// Line 94, Address: 0x2989b0, Func Offset: 0x190
-	// Line 96, Address: 0x2989bc, Func Offset: 0x19c
-	// Func End, Address: 0x2989cc, Func Offset: 0x1ac
-	scePrintf("fmSetLipSyncParam - UNIMPLEMENTED!\n");
+    float rate, level;
+
+    if (lip->cnt >= lip->time)
+    {
+        lip->cnt -= lip->time;
+        
+        if (*lip->ptr == 0xFF)
+        {
+            lip->cur = 0;
+            
+            lip->flag = 0;
+        } 
+        else 
+        {
+            lip->cur = *lip->ptr++;
+            
+            lip->time = *lip->ptr++;
+            
+            if (*lip->ptr == 0xFF)
+            {
+                lip->next = 0;
+            }
+            else
+            {
+                lip->next = *lip->ptr;
+            }
+        }
+    }
+    
+    if (((lip->time - lip->cnt) < 10) && (lip->flag != 0))
+    {
+        if (lip->time < 10)
+        {
+            rate = (float)lip->cnt / lip->time;
+            level = lip->time / 10.0f;
+        } 
+        else 
+        {
+            rate = (10 - (lip->time - lip->cnt)) / 10.0f;
+            level = 1.0f;
+        }
+        
+        fmCnkSetInterParamLip(fm, &base[lip->cur], &base[lip->next], rate, level, mask);
+    } 
+    else 
+    {
+        fmCnkSetParamLip(fm, &base[lip->cur], mask);
+    }
+    
+    if (lip->flag != 0) 
+    {
+        lip->cnt += 2;
+    }
 }
 
 /*// 
@@ -452,7 +471,7 @@ void fmCnkSetParam(MASK_WORK* fm, PARAM_WORK* param)
 	njMemCopy(&fm->param, param, sizeof(PARAM_WORK));
 }
 
-/*// 
+// 
 // Start address: 0x2996e0
 void fmCnkSetParamLip(MASK_WORK* fm, PARAM_WORK* param, unsigned int flag)
 {
@@ -470,9 +489,10 @@ void fmCnkSetParamLip(MASK_WORK* fm, PARAM_WORK* param, unsigned int flag)
 	// Line 1167, Address: 0x299760, Func Offset: 0x80
 	// Line 1168, Address: 0x299764, Func Offset: 0x84
 	// Func End, Address: 0x29976c, Func Offset: 0x8c
+	scePrintf("fmCnkSetParamLip - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x299770
 void fmCnkSetInterParam(MASK_WORK* fm, PARAM_WORK* p1, PARAM_WORK* p2, float t, float lv, unsigned int mask)
 {
@@ -503,7 +523,7 @@ void fmCnkSetInterParam(MASK_WORK* fm, PARAM_WORK* p1, PARAM_WORK* p2, float t, 
 	// Line 1296, Address: 0x299938, Func Offset: 0x1c8
 	// Line 1297, Address: 0x299954, Func Offset: 0x1e4
 	// Func End, Address: 0x299974, Func Offset: 0x204
-}
+}*/
 
 // 
 // Start address: 0x299980
@@ -535,7 +555,8 @@ void fmCnkSetInterParamLip(MASK_WORK* fm, PARAM_WORK* p1, PARAM_WORK* p2, float 
 	// Line 1364, Address: 0x299b50, Func Offset: 0x1d0
 	// Line 1365, Address: 0x299b6c, Func Offset: 0x1ec
 	// Func End, Address: 0x299b8c, Func Offset: 0x20c
-}*/
+	scePrintf("fmCnkSetInterParamLip - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x299b90
