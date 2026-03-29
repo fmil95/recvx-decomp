@@ -6305,24 +6305,24 @@ unsigned int bhObjLinkSetPlyItem()
 	scePrintf("bhObjLinkSetPlyItem - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x162cc0
+// 100% matching!
 unsigned int bhPlayerKaidanMotion()
 {
-	unsigned int v1;
-	unsigned int v0;
-	// Line 6542, Address: 0x162cc0, Func Offset: 0
-	// Line 6545, Address: 0x162cc8, Func Offset: 0x8
-	// Line 6546, Address: 0x162cdc, Func Offset: 0x1c
-	// Line 6547, Address: 0x162ce8, Func Offset: 0x28
-	// Line 6548, Address: 0x162cf4, Func Offset: 0x34
-	// Line 6549, Address: 0x162d00, Func Offset: 0x40
-	// Line 6555, Address: 0x162d08, Func Offset: 0x48
-	// Line 6558, Address: 0x162d10, Func Offset: 0x50
-	// Line 6557, Address: 0x162d14, Func Offset: 0x54
-	// Line 6558, Address: 0x162d18, Func Offset: 0x58
-	// Func End, Address: 0x162d20, Func Offset: 0x60
-	scePrintf("bhPlayerKaidanMotion - UNIMPLEMENTED!\n");
+	unsigned int v0, v1;
+
+	bhScePtr++;
+
+	v0 = *bhScePtr;
+
+	bhScePtr++;
+
+	v1 = *bhScePtr;
+
+	bhScePtr += 2;
+
+	bhKaidanPlayerMotion(v0, v1);
+	
+	return 1;
 }
 
 // 
