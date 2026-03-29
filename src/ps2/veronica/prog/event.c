@@ -1,6 +1,7 @@
 #include "event.h"
 #include "MdlPut.h"
 #include "Motion.h"
+#include "cut.h"
 #include "effect.h"
 #include "eneset.h"
 #include "face.h"
@@ -2306,33 +2307,37 @@ unsigned int bhDieEventCk()
 	scePrintf("bhDieEventCk - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x159230
+// 100% matching!
 unsigned int bhSetDebugLoopEx()
 {
-	// Line 2247, Address: 0x159230, Func Offset: 0
-	// Line 2248, Address: 0x159238, Func Offset: 0x8
-	// Line 2255, Address: 0x159240, Func Offset: 0x10
-	// Line 2248, Address: 0x159244, Func Offset: 0x14
-	// Line 2250, Address: 0x159248, Func Offset: 0x18
-	// Line 2248, Address: 0x15924c, Func Offset: 0x1c
-	// Line 2250, Address: 0x159254, Func Offset: 0x24
-	// Line 2251, Address: 0x159264, Func Offset: 0x34
-	// Line 2252, Address: 0x159278, Func Offset: 0x48
-	// Line 2254, Address: 0x159284, Func Offset: 0x54
-	// Line 2255, Address: 0x15928c, Func Offset: 0x5c
-	// Line 2256, Address: 0x159290, Func Offset: 0x60
-	// Line 2257, Address: 0x159298, Func Offset: 0x68
-	// Line 2259, Address: 0x1592a4, Func Offset: 0x74
-	// Line 2257, Address: 0x1592a8, Func Offset: 0x78
-	// Line 2259, Address: 0x1592b0, Func Offset: 0x80
-	// Line 2260, Address: 0x1592c0, Func Offset: 0x90
-	// Line 2261, Address: 0x1592e8, Func Offset: 0xb8
-	// Line 2263, Address: 0x1592f4, Func Offset: 0xc4
-	// Line 2262, Address: 0x1592f8, Func Offset: 0xc8
-	// Line 2263, Address: 0x1592fc, Func Offset: 0xcc
-	// Func End, Address: 0x159304, Func Offset: 0xd4
-	scePrintf("bhSetDebugLoopEx - UNIMPLEMENTED!\n");
+    sys->st_flg |= 0x10;
+    
+    bhScePtr += 2;
+    
+    cam.ct0 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2; 
+    
+    cam.frm = 0;
+    
+    cam.mode0 = 1;
+    
+    bhInitEventCamera();
+    
+    sys->gm_flg |= 0x10;
+    
+    bhSetEventHideObjLgt(cam.evc_no, cam.keyf_no);
+    
+    if (!(sys->gm_flg & 0x800)) 
+    {
+        bhCheckCut(0);
+    }
+    else 
+    {
+        bhCheckCut(1);
+    }
+    
+    return 1;
 }
 
 // 98.88% matching (matches on GC)
