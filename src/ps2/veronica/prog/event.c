@@ -2187,29 +2187,27 @@ unsigned int bhObjLinkSet()
 	scePrintf("bhObjLinkSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x158e00
+// 100% matching!
 unsigned int bhSetObjMotion()
 {
-	unsigned char* a0;
-	BH_PWORK* ob_ep;
-	// Line 2083, Address: 0x158e00, Func Offset: 0
-	// Line 2088, Address: 0x158e0c, Func Offset: 0xc
-	// Line 2099, Address: 0x158e14, Func Offset: 0x14
-	// Line 2097, Address: 0x158e18, Func Offset: 0x18
-	// Line 2089, Address: 0x158e20, Func Offset: 0x20
-	// Line 2097, Address: 0x158e24, Func Offset: 0x24
-	// Line 2089, Address: 0x158e28, Func Offset: 0x28
-	// Line 2091, Address: 0x158e30, Func Offset: 0x30
-	// Line 2097, Address: 0x158e44, Func Offset: 0x44
-	// Line 2099, Address: 0x158e6c, Func Offset: 0x6c
-	// Line 2100, Address: 0x158e88, Func Offset: 0x88
-	// Line 2102, Address: 0x158e9c, Func Offset: 0x9c
-	// Line 2107, Address: 0x158ea4, Func Offset: 0xa4
-	// Line 2106, Address: 0x158eac, Func Offset: 0xac
-	// Line 2107, Address: 0x158eb0, Func Offset: 0xb0
-	// Func End, Address: 0x158eb8, Func Offset: 0xb8
-	scePrintf("bhSetObjMotion - UNIMPLEMENTED!\n");
+    BH_PWORK* ob_ep;
+    unsigned char* a0;
+
+    a0 = bhScePtr;
+
+    bhScePtr++;
+    bhScePtr++;
+
+    ob_ep = (BH_PWORK*)&sys->obwp[*++a0];
+    
+    if ((ob_ep->mode3 == 1) && ((sys->sp_flg & 0x4)))
+    {
+        bhSetMotion(ob_ep, (int)ob_ep->mtn_add, ob_ep->mtn_md, ob_ep->mtn_tp);
+        
+        bhCalcModel(ob_ep);
+    }
+    
+    return 1;
 }
 
 // 
