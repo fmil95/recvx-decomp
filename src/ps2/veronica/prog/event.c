@@ -2701,48 +2701,55 @@ unsigned int bhEneSetCk()
     return 1;
 }
 
-// 
-// Start address: 0x159e00
-unsigned int bhItmSetCk()
+// 99.27% matching (matches on GC)
+unsigned int bhItmSetCk() 
 {
-	//_anon6* e_etcp;
-	unsigned int v5;
-	unsigned int v4;
-	unsigned int v3;
-	unsigned int v2;
-	// Line 2590, Address: 0x159e00, Func Offset: 0
-	// Line 2608, Address: 0x159e08, Func Offset: 0x8
-	// Line 2590, Address: 0x159e10, Func Offset: 0x10
-	// Line 2591, Address: 0x159e1c, Func Offset: 0x1c
-	// Line 2608, Address: 0x159e24, Func Offset: 0x24
-	// Line 2591, Address: 0x159e28, Func Offset: 0x28
-	// Line 2592, Address: 0x159e2c, Func Offset: 0x2c
-	// Line 2593, Address: 0x159e38, Func Offset: 0x38
-	// Line 2594, Address: 0x159e44, Func Offset: 0x44
-	// Line 2595, Address: 0x159e50, Func Offset: 0x50
-	// Line 2608, Address: 0x159e58, Func Offset: 0x58
-	// Line 2595, Address: 0x159e68, Func Offset: 0x68
-	// Line 2596, Address: 0x159e6c, Func Offset: 0x6c
-	// Line 2608, Address: 0x159e70, Func Offset: 0x70
-	// Line 2596, Address: 0x159e74, Func Offset: 0x74
-	// Line 2597, Address: 0x159e7c, Func Offset: 0x7c
-	// Line 2598, Address: 0x159e88, Func Offset: 0x88
-	// Line 2608, Address: 0x159e94, Func Offset: 0x94
-	// Line 2609, Address: 0x159eac, Func Offset: 0xac
-	// Line 2610, Address: 0x159eb4, Func Offset: 0xb4
-	// Line 2609, Address: 0x159ec0, Func Offset: 0xc0
-	// Line 2611, Address: 0x159ec4, Func Offset: 0xc4
-	// Line 2612, Address: 0x159ecc, Func Offset: 0xcc
-	// Line 2616, Address: 0x159ed8, Func Offset: 0xd8
-	// Line 2617, Address: 0x159f10, Func Offset: 0x110
-	// Line 2618, Address: 0x159f18, Func Offset: 0x118
-	// Line 2619, Address: 0x159f20, Func Offset: 0x120
-	// Line 2618, Address: 0x159f2c, Func Offset: 0x12c
-	// Line 2619, Address: 0x159f30, Func Offset: 0x130
-	// Line 2620, Address: 0x159f34, Func Offset: 0x134
-	// Line 2623, Address: 0x159f40, Func Offset: 0x140
-	// Func End, Address: 0x159f48, Func Offset: 0x148
-	scePrintf("bhItmSetCk - UNIMPLEMENTED!\n");
+	unsigned int v2, v3, v4, v5;
+    ATR_WORK* e_etcp;
+    int* v0;   // not from DWARF
+    O_WRK* op; // not from DWARF
+
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v3 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+
+    v4 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v5 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v0 = (int*)&sys->it_flg;
+        
+    if (!(((v0[(v3 & 0x1FF) >> 5] << (v3 & 0x1F)) < 0) ^ 1)) 
+    {
+        e_etcp = &rom->etcp[v4];
+        
+        if (v5 == 0) 
+        {
+            e_etcp->flg &= ~0x1;
+        }
+
+        op = &sys->itwp[v2];
+        
+        op->stflg |= 0x1000000;
+    } 
+    else 
+    {
+        e_etcp = &rom->etcp[v4];
+        
+        e_etcp->flg |= 0x1;
+    }
+    
+    return 1;
 }
 
 // 100% matching! 
