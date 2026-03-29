@@ -3508,63 +3508,84 @@ unsigned int bhObjLinkSetObjEne()
 	scePrintf("bhObjLinkSetObjEne - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15bc30
+#pragma optimization_level 4
+
+// 100% matching! 
 unsigned int bhObjLinkSetObjItem()
 {
 	int v1;
-	// Line 3536, Address: 0x15bc30, Func Offset: 0
-	// Line 3546, Address: 0x15bc38, Func Offset: 0x8
-	// Line 3536, Address: 0x15bc40, Func Offset: 0x10
-	// Line 3537, Address: 0x15bc4c, Func Offset: 0x1c
-	// Line 3538, Address: 0x15bc58, Func Offset: 0x28
-	// Line 3546, Address: 0x15bc64, Func Offset: 0x34
-	// Line 3548, Address: 0x15bca0, Func Offset: 0x70
-	// Line 3546, Address: 0x15bca4, Func Offset: 0x74
-	// Line 3548, Address: 0x15bcc0, Func Offset: 0x90
-	// Line 3550, Address: 0x15bcc4, Func Offset: 0x94
-	// Line 3548, Address: 0x15bccc, Func Offset: 0x9c
-	// Line 3550, Address: 0x15bcd8, Func Offset: 0xa8
-	// Line 3549, Address: 0x15bce4, Func Offset: 0xb4
-	// Line 3550, Address: 0x15bcec, Func Offset: 0xbc
-	// Line 3549, Address: 0x15bcf0, Func Offset: 0xc0
-	// Line 3552, Address: 0x15bcf4, Func Offset: 0xc4
-	// Line 3550, Address: 0x15bcf8, Func Offset: 0xc8
-	// Line 3552, Address: 0x15bcfc, Func Offset: 0xcc
-	// Line 3554, Address: 0x15bd0c, Func Offset: 0xdc
-	// Line 3555, Address: 0x15bd20, Func Offset: 0xf0
-	// Line 3556, Address: 0x15bd40, Func Offset: 0x110
-	// Line 3557, Address: 0x15bd48, Func Offset: 0x118
-	// Line 3559, Address: 0x15bd70, Func Offset: 0x140
-	// Line 3560, Address: 0x15bd84, Func Offset: 0x154
-	// Line 3562, Address: 0x15bd90, Func Offset: 0x160
-	// Line 3565, Address: 0x15bd9c, Func Offset: 0x16c
-	// Line 3566, Address: 0x15bda8, Func Offset: 0x178
-	// Line 3567, Address: 0x15be18, Func Offset: 0x1e8
-	// Line 3568, Address: 0x15be20, Func Offset: 0x1f0
-	// Line 3570, Address: 0x15be84, Func Offset: 0x254
-	// Line 3573, Address: 0x15be8c, Func Offset: 0x25c
-	// Line 3570, Address: 0x15be90, Func Offset: 0x260
-	// Line 3573, Address: 0x15be98, Func Offset: 0x268
-	// Line 3574, Address: 0x15bea0, Func Offset: 0x270
-	// Line 3575, Address: 0x15bf10, Func Offset: 0x2e0
-	// Line 3576, Address: 0x15bf18, Func Offset: 0x2e8
-	// Line 3578, Address: 0x15bf7c, Func Offset: 0x34c
-	// Line 3581, Address: 0x15bf84, Func Offset: 0x354
-	// Line 3578, Address: 0x15bf88, Func Offset: 0x358
-	// Line 3581, Address: 0x15bf90, Func Offset: 0x360
-	// Line 3582, Address: 0x15bf98, Func Offset: 0x368
-	// Line 3583, Address: 0x15c008, Func Offset: 0x3d8
-	// Line 3584, Address: 0x15c010, Func Offset: 0x3e0
-	// Line 3586, Address: 0x15c074, Func Offset: 0x444
-	// Line 3588, Address: 0x15c07c, Func Offset: 0x44c
-	// Line 3586, Address: 0x15c080, Func Offset: 0x450
-	// Line 3589, Address: 0x15c088, Func Offset: 0x458
-	// Func End, Address: 0x15c090, Func Offset: 0x460
-	scePrintf("bhObjLinkSetObjItem - UNIMPLEMENTED!\n");
-}
+	int v0, v2;      // not from DWARF
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;    
+    
+    bhScePtr++; 
+    
+    v1 = *bhScePtr;
+    
+    sys->itwp[v1].lkwkp = (unsigned char*)&sys->obwp[v0]; 
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    sys->itwp[v1].lkono = v2;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    if (v2 == 0)
+    {
+        sys->itwp[v1].flg |= 0x80;
+    } 
+    else 
+    {
+        sys->itwp[v1].flg &= ~0x80;
+    }
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+ 
+    if ((v2 & 0x1)) 
+    {
+        sys->itwp[v1].lox = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else
+    {
+        sys->itwp[v1].lox = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
 
-#pragma optimization_level 4
+    if ((v2 & 0x2))
+    {
+        sys->itwp[v1].loy = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        sys->itwp[v1].loy = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+    
+    if ((v2 & 0x4)) 
+    {
+        sys->itwp[v1].loz = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else
+    {
+        sys->itwp[v1].loz = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+    
+    return 1;
+}
 
 // 100% matching! 
 unsigned int bhObjLinkSetEneItem()
