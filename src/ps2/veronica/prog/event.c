@@ -3446,66 +3446,87 @@ unsigned int bhEffAmbSet()
 	scePrintf("bhEffAmbSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15b870
+// 100% matching!
 unsigned int bhObjLinkSetObjEne()
 {
-	BH_PWORK* e_ep;
-	int v1;
-	int v0;
-	// Line 3466, Address: 0x15b870, Func Offset: 0
-	// Line 3477, Address: 0x15b878, Func Offset: 0x8
-	// Line 3466, Address: 0x15b888, Func Offset: 0x18
-	// Line 3478, Address: 0x15b88c, Func Offset: 0x1c
-	// Line 3466, Address: 0x15b894, Func Offset: 0x24
-	// Line 3467, Address: 0x15b89c, Func Offset: 0x2c
-	// Line 3468, Address: 0x15b8a8, Func Offset: 0x38
-	// Line 3478, Address: 0x15b8b4, Func Offset: 0x44
-	// Line 3477, Address: 0x15b8bc, Func Offset: 0x4c
-	// Line 3478, Address: 0x15b8c0, Func Offset: 0x50
-	// Line 3469, Address: 0x15b8c8, Func Offset: 0x58
-	// Line 3478, Address: 0x15b8d0, Func Offset: 0x60
-	// Line 3469, Address: 0x15b8e0, Func Offset: 0x70
-	// Line 3478, Address: 0x15b8e4, Func Offset: 0x74
-	// Line 3480, Address: 0x15b8e8, Func Offset: 0x78
-	// Line 3477, Address: 0x15b8ec, Func Offset: 0x7c
-	// Line 3478, Address: 0x15b918, Func Offset: 0xa8
-	// Line 3480, Address: 0x15b91c, Func Offset: 0xac
-	// Line 3481, Address: 0x15b92c, Func Offset: 0xbc
-	// Line 3484, Address: 0x15b938, Func Offset: 0xc8
-	// Line 3482, Address: 0x15b93c, Func Offset: 0xcc
-	// Line 3484, Address: 0x15b940, Func Offset: 0xd0
-	// Line 3486, Address: 0x15b950, Func Offset: 0xe0
-	// Line 3487, Address: 0x15b964, Func Offset: 0xf4
-	// Line 3488, Address: 0x15b96c, Func Offset: 0xfc
-	// Line 3489, Address: 0x15b974, Func Offset: 0x104
-	// Line 3491, Address: 0x15b984, Func Offset: 0x114
-	// Line 3492, Address: 0x15b998, Func Offset: 0x128
-	// Line 3494, Address: 0x15b9a4, Func Offset: 0x134
-	// Line 3497, Address: 0x15b9b0, Func Offset: 0x140
-	// Line 3498, Address: 0x15b9bc, Func Offset: 0x14c
-	// Line 3499, Address: 0x15ba18, Func Offset: 0x1a8
-	// Line 3500, Address: 0x15ba20, Func Offset: 0x1b0
-	// Line 3502, Address: 0x15ba70, Func Offset: 0x200
-	// Line 3505, Address: 0x15ba78, Func Offset: 0x208
-	// Line 3502, Address: 0x15ba7c, Func Offset: 0x20c
-	// Line 3505, Address: 0x15ba84, Func Offset: 0x214
-	// Line 3506, Address: 0x15ba8c, Func Offset: 0x21c
-	// Line 3507, Address: 0x15bae8, Func Offset: 0x278
-	// Line 3508, Address: 0x15baf0, Func Offset: 0x280
-	// Line 3510, Address: 0x15bb40, Func Offset: 0x2d0
-	// Line 3513, Address: 0x15bb48, Func Offset: 0x2d8
-	// Line 3510, Address: 0x15bb4c, Func Offset: 0x2dc
-	// Line 3513, Address: 0x15bb54, Func Offset: 0x2e4
-	// Line 3514, Address: 0x15bb5c, Func Offset: 0x2ec
-	// Line 3515, Address: 0x15bbb8, Func Offset: 0x348
-	// Line 3516, Address: 0x15bbc0, Func Offset: 0x350
-	// Line 3518, Address: 0x15bc10, Func Offset: 0x3a0
-	// Line 3520, Address: 0x15bc18, Func Offset: 0x3a8
-	// Line 3518, Address: 0x15bc1c, Func Offset: 0x3ac
-	// Line 3521, Address: 0x15bc24, Func Offset: 0x3b4
-	// Func End, Address: 0x15bc2c, Func Offset: 0x3bc
-	scePrintf("bhObjLinkSetObjEne - UNIMPLEMENTED!\n");
+	int v0, v1;
+    BH_PWORK* e_ep;
+	int v2;          // not from DWARF
+    ETTY_WORK* enep; // not from DWARF
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;    
+    
+    bhScePtr++; 
+    
+    v1 = *bhScePtr;
+
+    enep = &rom->enep[v1];
+
+    e_ep = (BH_PWORK*)&ene[enep->wrk_no];
+    
+    e_ep->lkwkp = (unsigned char*)&sys->obwp[v0]; 
+    
+    bhScePtr++; 
+    
+    v2 = *bhScePtr;
+    
+    e_ep->lkono = v2;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    if (v2 == 0)
+    {
+        e_ep->flg |= 0x80;
+    } 
+    else 
+    {
+        e_ep->flg &= ~0x80;
+    }
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+ 
+    if ((v2 & 0x1)) 
+    {
+        e_ep->lox = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else
+    {
+        e_ep->lox = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+
+    if ((v2 & 0x2))
+    {
+        e_ep->loy = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        e_ep->loy = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+    
+    if ((v2 & 0x4)) 
+    {
+        e_ep->loz = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else
+    {
+        e_ep->loz = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 #pragma optimization_level 4
