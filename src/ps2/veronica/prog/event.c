@@ -2464,61 +2464,82 @@ unsigned int bhInitSetKage()
     return 1;
 }
 
-// 
-// Start address: 0x1594d0
+#pragma optimization_level 4
+
+// 100% matching!
 unsigned int bhObjLinkSetPly()
 {
-	int v1;
-	// Line 2331, Address: 0x1594d0, Func Offset: 0
-	// Line 2333, Address: 0x1594d8, Func Offset: 0x8
-	// Line 2331, Address: 0x1594e0, Func Offset: 0x10
-	// Line 2333, Address: 0x1594e4, Func Offset: 0x14
-	// Line 2331, Address: 0x1594ec, Func Offset: 0x1c
-	// Line 2333, Address: 0x1594f4, Func Offset: 0x24
-	// Line 2339, Address: 0x15950c, Func Offset: 0x3c
-	// Line 2333, Address: 0x159510, Func Offset: 0x40
-	// Line 2339, Address: 0x15952c, Func Offset: 0x5c
-	// Line 2341, Address: 0x159530, Func Offset: 0x60
-	// Line 2339, Address: 0x159538, Func Offset: 0x68
-	// Line 2341, Address: 0x159544, Func Offset: 0x74
-	// Line 2340, Address: 0x159550, Func Offset: 0x80
-	// Line 2341, Address: 0x159558, Func Offset: 0x88
-	// Line 2340, Address: 0x15955c, Func Offset: 0x8c
-	// Line 2343, Address: 0x159560, Func Offset: 0x90
-	// Line 2341, Address: 0x159564, Func Offset: 0x94
-	// Line 2343, Address: 0x159568, Func Offset: 0x98
-	// Line 2345, Address: 0x159578, Func Offset: 0xa8
-	// Line 2346, Address: 0x15958c, Func Offset: 0xbc
-	// Line 2348, Address: 0x1595ac, Func Offset: 0xdc
-	// Line 2349, Address: 0x1595b4, Func Offset: 0xe4
-	// Line 2352, Address: 0x1595dc, Func Offset: 0x10c
-	// Line 2353, Address: 0x1595f0, Func Offset: 0x120
-	// Line 2355, Address: 0x1595fc, Func Offset: 0x12c
-	// Line 2358, Address: 0x159608, Func Offset: 0x138
-	// Line 2359, Address: 0x159614, Func Offset: 0x144
-	// Line 2360, Address: 0x159684, Func Offset: 0x1b4
-	// Line 2361, Address: 0x15968c, Func Offset: 0x1bc
-	// Line 2363, Address: 0x1596f0, Func Offset: 0x220
-	// Line 2366, Address: 0x1596f8, Func Offset: 0x228
-	// Line 2363, Address: 0x1596fc, Func Offset: 0x22c
-	// Line 2366, Address: 0x159704, Func Offset: 0x234
-	// Line 2367, Address: 0x15970c, Func Offset: 0x23c
-	// Line 2368, Address: 0x15977c, Func Offset: 0x2ac
-	// Line 2369, Address: 0x159784, Func Offset: 0x2b4
-	// Line 2371, Address: 0x1597e8, Func Offset: 0x318
-	// Line 2374, Address: 0x1597f0, Func Offset: 0x320
-	// Line 2371, Address: 0x1597f4, Func Offset: 0x324
-	// Line 2374, Address: 0x1597fc, Func Offset: 0x32c
-	// Line 2375, Address: 0x159804, Func Offset: 0x334
-	// Line 2376, Address: 0x159874, Func Offset: 0x3a4
-	// Line 2377, Address: 0x15987c, Func Offset: 0x3ac
-	// Line 2379, Address: 0x1598e0, Func Offset: 0x410
-	// Line 2381, Address: 0x1598e8, Func Offset: 0x418
-	// Line 2379, Address: 0x1598ec, Func Offset: 0x41c
-	// Line 2382, Address: 0x1598f4, Func Offset: 0x424
-	// Func End, Address: 0x1598fc, Func Offset: 0x42c
-	scePrintf("bhObjLinkSetPly - UNIMPLEMENTED!\n");
+    int v1;
+    int v0; // not from DWARF
+
+    bhScePtr += 2;
+    
+    v0 = *bhScePtr;
+    
+    sys->obwp[v0].lkwkp = (unsigned char*)plp;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    sys->obwp[v0].lkono = v1;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    if (v1 == 0)
+    {
+        sys->obwp[v0].flg |= 0x80;
+    } 
+    else 
+    {
+        sys->obwp[v0].flg &= ~0x80;
+    }
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    if ((v1 & 0x1)) 
+    {
+        sys->obwp[v0].lox = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else
+    {
+        sys->obwp[v0].lox = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+
+    if ((v1 & 0x2))
+    {
+        sys->obwp[v0].loy = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        sys->obwp[v0].loy = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+    
+    if ((v1 & 0x4)) 
+    {
+        sys->obwp[v0].loz = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else
+    {
+        sys->obwp[v0].loz = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+    
+    return 1;
 }
+
+#pragma optimization_level 3
 
 // 100% matching!
 unsigned int bhSetNextRoomBgm()
