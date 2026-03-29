@@ -2452,15 +2452,15 @@ unsigned int bhSetNextRoomBgm()
     bhScePtr++;
     bhScePtr++;
 
-    v1 = *bhScePtr;
+    v0 = *bhScePtr;
     
-    NextSoundInfo.ComNextBgm = v1;
+    NextSoundInfo.ComNextBgm = v0;
     
     bhScePtr++;
 
-    v1 = *bhScePtr;
+    v0 = *bhScePtr;
     
-    NextSoundInfo.PointNextBgm = v1;
+    NextSoundInfo.PointNextBgm = v0;
     
     bhScePtr++;
     
@@ -2472,67 +2472,62 @@ unsigned int bhSetNextRoomBgm()
     
     bhScePtr++;
     
-    v0 = *bhScePtr;
+    v1 = *bhScePtr;
     
     bhScePtr++;
     
-    NextSoundInfo.FadeNextBgm = v0 * 10;
+    NextSoundInfo.FadeNextBgm = v1 * 10;
     
     return 1;
 }
 
-// 
-// Start address: 0x1599e0
+// 100% matching!
 unsigned int bhSetNextRoomBgSe()
 {
-	int v1;
-	int v0;
-	// Line 2440, Address: 0x1599e0, Func Offset: 0
-	// Line 2444, Address: 0x1599e8, Func Offset: 0x8
-	// Line 2447, Address: 0x1599f0, Func Offset: 0x10
-	// Line 2440, Address: 0x1599f8, Func Offset: 0x18
-	// Line 2441, Address: 0x159a04, Func Offset: 0x24
-	// Line 2450, Address: 0x159a0c, Func Offset: 0x2c
-	// Line 2453, Address: 0x159a14, Func Offset: 0x34
-	// Line 2441, Address: 0x159a1c, Func Offset: 0x3c
-	// Line 2442, Address: 0x159a20, Func Offset: 0x40
-	// Line 2443, Address: 0x159a2c, Func Offset: 0x4c
-	// Line 2444, Address: 0x159a34, Func Offset: 0x54
-	// Line 2447, Address: 0x159a38, Func Offset: 0x58
-	// Line 2450, Address: 0x159a3c, Func Offset: 0x5c
-	// Line 2443, Address: 0x159a40, Func Offset: 0x60
-	// Line 2450, Address: 0x159a44, Func Offset: 0x64
-	// Line 2453, Address: 0x159a48, Func Offset: 0x68
-	// Line 2444, Address: 0x159a50, Func Offset: 0x70
-	// Line 2445, Address: 0x159a54, Func Offset: 0x74
-	// Line 2456, Address: 0x159a5c, Func Offset: 0x7c
-	// Line 2445, Address: 0x159a68, Func Offset: 0x88
-	// Line 2446, Address: 0x159a74, Func Offset: 0x94
-	// Line 2448, Address: 0x159a80, Func Offset: 0xa0
-	// Line 2447, Address: 0x159a84, Func Offset: 0xa4
-	// Line 2448, Address: 0x159a88, Func Offset: 0xa8
-	// Line 2449, Address: 0x159a98, Func Offset: 0xb8
-	// Line 2451, Address: 0x159aa4, Func Offset: 0xc4
-	// Line 2450, Address: 0x159aa8, Func Offset: 0xc8
-	// Line 2451, Address: 0x159aac, Func Offset: 0xcc
-	// Line 2452, Address: 0x159abc, Func Offset: 0xdc
-	// Line 2454, Address: 0x159ac8, Func Offset: 0xe8
-	// Line 2453, Address: 0x159acc, Func Offset: 0xec
-	// Line 2454, Address: 0x159ad0, Func Offset: 0xf0
-	// Line 2456, Address: 0x159ae0, Func Offset: 0x100
-	// Line 2457, Address: 0x159aec, Func Offset: 0x10c
-	// Line 2456, Address: 0x159af0, Func Offset: 0x110
-	// Line 2457, Address: 0x159b00, Func Offset: 0x120
-	// Line 2459, Address: 0x159b10, Func Offset: 0x130
-	// Line 2460, Address: 0x159b24, Func Offset: 0x144
-	// Line 2461, Address: 0x159b34, Func Offset: 0x154
-	// Line 2462, Address: 0x159b3c, Func Offset: 0x15c
-	// Line 2464, Address: 0x159b4c, Func Offset: 0x16c
-	// Line 2466, Address: 0x159b54, Func Offset: 0x174
-	// Line 2464, Address: 0x159b58, Func Offset: 0x178
-	// Line 2467, Address: 0x159b60, Func Offset: 0x180
-	// Func End, Address: 0x159b68, Func Offset: 0x188
-	scePrintf("bhSetNextRoomBgSe - UNIMPLEMENTED!\n");
+    int v0, v1;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    NextSoundInfo.ComNextBgSe[v0] = v1;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    NextSoundInfo.PointNextBgSe[v0] = v1;
+    
+    bhScePtr++;
+    
+    NextSoundInfo.OfsPointBgSe[v0] = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    NextSoundInfo.NextBgSeNo[v0] = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    NextSoundInfo.FadeNextBgSe[v0] = *bhScePtr * 10;
+    
+    bhScePtr++;
+    
+    if (*bhScePtr == 0) 
+    {
+        NextSoundInfo.SetNextBgSeFlag[v0] = 1;
+    }
+    else 
+    {
+        NextSoundInfo.SetNextBgSeFlag[v0] = 0;
+    }
+    
+    bhScePtr++;
+    
+    return 1;
 }
 
 // 
