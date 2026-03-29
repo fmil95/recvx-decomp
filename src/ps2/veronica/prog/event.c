@@ -6,6 +6,7 @@
 #include "eneset.h"
 #include "face.h"
 #include "message.h"
+#include "player.h"
 #include "ps2_NaMath.h"
 #include "pwksub.h"
 #include "room.h"
@@ -6122,24 +6123,27 @@ unsigned int bhObjAspdSet()
 	scePrintf("bhObjAspdSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x162570
+// 100% matching!
 unsigned int bhPuruPuruFlagSet()
 {
 	unsigned int v0;
-	// Line 6339, Address: 0x162570, Func Offset: 0
-	// Line 6342, Address: 0x162578, Func Offset: 0x8
-	// Line 6343, Address: 0x16258c, Func Offset: 0x1c
-	// Line 6344, Address: 0x162598, Func Offset: 0x28
-	// Line 6345, Address: 0x1625a0, Func Offset: 0x30
-	// Line 6346, Address: 0x1625a8, Func Offset: 0x38
-	// Line 6347, Address: 0x1625b0, Func Offset: 0x40
-	// Line 6348, Address: 0x1625b8, Func Offset: 0x48
-	// Line 6351, Address: 0x1625c0, Func Offset: 0x50
-	// Line 6350, Address: 0x1625c4, Func Offset: 0x54
-	// Line 6351, Address: 0x1625c8, Func Offset: 0x58
-	// Func End, Address: 0x1625d0, Func Offset: 0x60
-	scePrintf("bhPuruPuruFlagSet - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+
+	v0 = *bhScePtr;
+
+	bhScePtr++;
+	
+	if (v0 == 0) 
+	{
+		SetEventVibrationMode(1);
+	}
+	else
+	{
+		SetEventVibrationMode(0);
+	}
+
+	return 1;
 }
 
 // 100% matching!

@@ -590,11 +590,11 @@ void bhStandPlayerMotion()
     bhCalcModel(plp);
 }
 
-/*// 
+// 
 // Start address: 0x139fb0
 void bhKaidanPlayerMotion(int flg, int idx)
 {
-	_anon22* exp;
+	//_anon22* exp;
 	// Line 475, Address: 0x139fb0, Func Offset: 0
 	// Line 477, Address: 0x139fc0, Func Offset: 0x10
 	// Line 478, Address: 0x139fdc, Func Offset: 0x2c
@@ -633,7 +633,8 @@ void bhKaidanPlayerMotion(int flg, int idx)
 	// Line 502, Address: 0x13a12c, Func Offset: 0x17c
 	// Line 504, Address: 0x13a18c, Func Offset: 0x1dc
 	// Func End, Address: 0x13a1a0, Func Offset: 0x1f0
-}*/
+	scePrintf("bhKaidanPlayerMotion - UNIMPLEMENTED!\n");
+}
 
 // 
 // 100% matching!
