@@ -229,6 +229,7 @@ extern int RoomFxLevel;
 extern char FxLevelTimer;
 extern int CurrentFxLevel;
 extern int AddFxLevel;
+extern NEXTSOUND_INFO NextSoundInfo;
 extern int PatId[4];
 
 #endif

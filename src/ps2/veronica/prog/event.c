@@ -2443,33 +2443,42 @@ unsigned int bhObjLinkSetPly()
 	scePrintf("bhObjLinkSetPly - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x159900
+// 100% matching!
 unsigned int bhSetNextRoomBgm()
 {
-	int v0;
-	// Line 2396, Address: 0x159900, Func Offset: 0
-	// Line 2425, Address: 0x159908, Func Offset: 0x8
-	// Line 2396, Address: 0x15990c, Func Offset: 0xc
-	// Line 2408, Address: 0x159918, Func Offset: 0x18
-	// Line 2409, Address: 0x15992c, Func Offset: 0x2c
-	// Line 2410, Address: 0x159938, Func Offset: 0x38
-	// Line 2411, Address: 0x159940, Func Offset: 0x40
-	// Line 2412, Address: 0x15994c, Func Offset: 0x4c
-	// Line 2413, Address: 0x159958, Func Offset: 0x58
-	// Line 2414, Address: 0x159960, Func Offset: 0x60
-	// Line 2415, Address: 0x15996c, Func Offset: 0x6c
-	// Line 2416, Address: 0x159978, Func Offset: 0x78
-	// Line 2417, Address: 0x159980, Func Offset: 0x80
-	// Line 2418, Address: 0x15998c, Func Offset: 0x8c
-	// Line 2419, Address: 0x159998, Func Offset: 0x98
-	// Line 2420, Address: 0x1599a0, Func Offset: 0xa0
-	// Line 2422, Address: 0x1599ac, Func Offset: 0xac
-	// Line 2423, Address: 0x1599b8, Func Offset: 0xb8
-	// Line 2422, Address: 0x1599c4, Func Offset: 0xc4
-	// Line 2426, Address: 0x1599d4, Func Offset: 0xd4
-	// Func End, Address: 0x1599dc, Func Offset: 0xdc
-	scePrintf("bhSetNextRoomBgm - UNIMPLEMENTED!\n");
+    int v0;
+    int v1; // not from DWARF
+
+    bhScePtr++;
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+    
+    NextSoundInfo.ComNextBgm = v1;
+    
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+    
+    NextSoundInfo.PointNextBgm = v1;
+    
+    bhScePtr++;
+    
+    NextSoundInfo.OfsPointBgm = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    NextSoundInfo.NextBgmNo = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    NextSoundInfo.FadeNextBgm = v0 * 10;
+    
+    return 1;
 }
 
 // 
