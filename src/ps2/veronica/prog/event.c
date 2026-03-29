@@ -2030,38 +2030,43 @@ unsigned int bhEffectKokuenSet()
     return 1;
 }
 
-// 
-// Start address: 0x158630
-unsigned int bhDieCk()
+// 100% matching!
+unsigned int bhDieCk() 
 {
-	//_anon21* e_enep;
-	unsigned char* a0;
-	unsigned int v2;
-	int* v0;
-	// Line 1883, Address: 0x158630, Func Offset: 0
-	// Line 1889, Address: 0x158638, Func Offset: 0x8
-	// Line 1884, Address: 0x158640, Func Offset: 0x10
-	// Line 1889, Address: 0x15864c, Func Offset: 0x1c
-	// Line 1886, Address: 0x158650, Func Offset: 0x20
-	// Line 1887, Address: 0x158664, Func Offset: 0x34
-	// Line 1893, Address: 0x158670, Func Offset: 0x40
-	// Line 1899, Address: 0x15869c, Func Offset: 0x6c
-	// Line 1904, Address: 0x1586ac, Func Offset: 0x7c
-	// Line 1899, Address: 0x1586b4, Func Offset: 0x84
-	// Line 1904, Address: 0x1586c8, Func Offset: 0x98
-	// Line 1909, Address: 0x1586f4, Func Offset: 0xc4
-	// Line 1912, Address: 0x158704, Func Offset: 0xd4
-	// Line 1914, Address: 0x158710, Func Offset: 0xe0
-	// Line 1915, Address: 0x158714, Func Offset: 0xe4
-	// Line 1912, Address: 0x158718, Func Offset: 0xe8
-	// Line 1914, Address: 0x158720, Func Offset: 0xf0
-	// Line 1915, Address: 0x15872c, Func Offset: 0xfc
-	// Line 1918, Address: 0x158734, Func Offset: 0x104
-	// Line 1919, Address: 0x15873c, Func Offset: 0x10c
-	// Line 1918, Address: 0x158740, Func Offset: 0x110
-	// Line 1920, Address: 0x15874c, Func Offset: 0x11c
-	// Func End, Address: 0x158754, Func Offset: 0x124
-	scePrintf("bhDieCk - UNIMPLEMENTED!\n");
+    int* v0;
+    unsigned int v2;
+    unsigned char* a0;
+    ETTY_WORK* e_enep;
+    int v1; // not from DWARF
+
+    a0 = bhScePtr;
+    
+    bhScePtr++;
+    bhScePtr++;
+    
+    v2 = *(unsigned short*)bhScePtr;
+
+    v0 = (int*)&sys->ed_flg;
+
+    if (((v0[(v2 & 0x3FF) >> 5] << (v2 & 0x1F)) < 0) ^ 1)
+    {
+        e_enep = &rom->enep[*++a0]; 
+
+        if ((ene[e_enep->wrk_no].flg & 0x2)) 
+        {
+            v1 = v2 & 0x1F;
+            
+            v0[(v2 & 0x3E0) >> 5] |= 0x80000000 >> v1;
+            
+            bhScePtr += 2;
+            
+            return 1;
+        }
+    }
+    
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 
