@@ -3331,39 +3331,56 @@ unsigned int bhSoundFadeOut()
     return 1;
 }
 
-// 
-// Start address: 0x15b430
+// 100% matching!
 unsigned int bhDefModelSet()
 {
-	BH_PWORK* epw;
-	unsigned int v3;
-	unsigned int v2;
-	int v1;
-	int v0;
-	// Line 3335, Address: 0x15b430, Func Offset: 0
-	// Line 3345, Address: 0x15b438, Func Offset: 0x8
-	// Line 3335, Address: 0x15b43c, Func Offset: 0xc
-	// Line 3336, Address: 0x15b448, Func Offset: 0x18
-	// Line 3337, Address: 0x15b454, Func Offset: 0x24
-	// Line 3338, Address: 0x15b460, Func Offset: 0x30
-	// Line 3339, Address: 0x15b46c, Func Offset: 0x3c
-	// Line 3340, Address: 0x15b478, Func Offset: 0x48
-	// Line 3341, Address: 0x15b484, Func Offset: 0x54
-	// Line 3342, Address: 0x15b490, Func Offset: 0x60
-	// Line 3343, Address: 0x15b49c, Func Offset: 0x6c
-	// Line 3345, Address: 0x15b4a4, Func Offset: 0x74
-	// Line 3347, Address: 0x15b4c8, Func Offset: 0x98
-	// Line 3348, Address: 0x15b4cc, Func Offset: 0x9c
-	// Line 3354, Address: 0x15b4d4, Func Offset: 0xa4
-	// Line 3355, Address: 0x15b510, Func Offset: 0xe0
-	// Line 3360, Address: 0x15b518, Func Offset: 0xe8
-	// Line 3364, Address: 0x15b544, Func Offset: 0x114
-	// Line 3365, Address: 0x15b54c, Func Offset: 0x11c
-	// Line 3366, Address: 0x15b574, Func Offset: 0x144
-	// Line 3367, Address: 0x15b57c, Func Offset: 0x14c
-	// Line 3370, Address: 0x15b5ac, Func Offset: 0x17c
-	// Func End, Address: 0x15b5b4, Func Offset: 0x184
-	scePrintf("bhDefModelSet - UNIMPLEMENTED!\n");
+    int v0, v1;
+	unsigned int v2, v3;
+    BH_PWORK* epw;
+    ETTY_WORK* e_enep; // not from DWARF
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v3 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    switch (v0)
+    {                          
+    case 0: 
+        epw = plp;
+        break;
+    case 1:
+        e_enep = &rom->enep[v1];
+        epw = &ene[e_enep->wrk_no];
+        break;
+    case 2:
+        epw = (BH_PWORK*)&sys->obwp[v1];
+        break; 
+    }
+    
+    if (v3 == 0)
+    {
+        epw->mlwP->objP[v2].evalflags |= 0x8;
+    } 
+    else
+    {
+        epw->mlwP->objP[v2].evalflags &= ~0x8; 
+    }
+    
+    return 1;
 }
 
 // 
