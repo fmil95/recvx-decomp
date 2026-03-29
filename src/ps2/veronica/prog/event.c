@@ -8,6 +8,7 @@
 #include "message.h"
 #include "ps2_NaMath.h"
 #include "pwksub.h"
+#include "room.h"
 #include "sdfunc.h"
 #include "sub1.h"
 #include "system.h"
@@ -2245,33 +2246,37 @@ unsigned int bhSetDispObj()
 	scePrintf("bhSetDispObj - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x159030
+// 100% matching!
 unsigned int bhSetDoorCall()
 {
-	unsigned int v4;
-	unsigned int v3;
-	unsigned int v2;
-	int v1;
-	int v0;
-	// Line 2166, Address: 0x159030, Func Offset: 0
-	// Line 2170, Address: 0x159038, Func Offset: 0x8
-	// Line 2171, Address: 0x15904c, Func Offset: 0x1c
-	// Line 2172, Address: 0x159058, Func Offset: 0x28
-	// Line 2173, Address: 0x159064, Func Offset: 0x34
-	// Line 2174, Address: 0x159070, Func Offset: 0x40
-	// Line 2175, Address: 0x15907c, Func Offset: 0x4c
-	// Line 2176, Address: 0x159088, Func Offset: 0x58
-	// Line 2177, Address: 0x159094, Func Offset: 0x64
-	// Line 2178, Address: 0x1590a0, Func Offset: 0x70
-	// Line 2179, Address: 0x1590ac, Func Offset: 0x7c
-	// Line 2180, Address: 0x1590b8, Func Offset: 0x88
-	// Line 2182, Address: 0x1590c0, Func Offset: 0x90
-	// Line 2185, Address: 0x1590c8, Func Offset: 0x98
-	// Line 2184, Address: 0x1590cc, Func Offset: 0x9c
-	// Line 2185, Address: 0x1590d0, Func Offset: 0xa0
-	// Func End, Address: 0x1590d8, Func Offset: 0xa8
-	scePrintf("bhSetDoorCall - UNIMPLEMENTED!\n");
+    int v0, v1;
+    unsigned int v2, v3, v4;
+
+    bhScePtr += 2;
+    
+    v0 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v3 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v4 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    bhSetDoorDemo(v0, v1, v2, v3, v4);
+    
+    return 1;
 }
 
 // 
