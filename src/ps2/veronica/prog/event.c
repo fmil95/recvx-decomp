@@ -1069,7 +1069,7 @@ unsigned int bhMessageSet()
     return 1;
 }
 
-// 86.56% matching (matches on GC)
+// 100% matching!
 unsigned int bhBgmOn()
 {
     int v0, v1;
@@ -1081,11 +1081,13 @@ unsigned int bhBgmOn()
     bhScePtr++;
     
     v1 = *bhScePtr;
+
+    v1 *= 10;
     
     bhScePtr++;
     bhScePtr++;
     
-    PlayBgm(v0, v1 * 10);
+    PlayBgm(v0, v1);
     
     return 1;
 }
