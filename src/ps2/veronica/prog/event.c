@@ -2210,38 +2210,54 @@ unsigned int bhSetObjMotion()
     return 1;
 }
 
-// 
-// Start address: 0x158ec0
+// 100% matching!
 unsigned int bhSetDispObj()
 {
-	BH_PWORK* e_workp;
-	int v2;
-	int v1;
-	int v0;
-	// Line 2120, Address: 0x158ec0, Func Offset: 0
-	// Line 2128, Address: 0x158ec8, Func Offset: 0x8
-	// Line 2120, Address: 0x158ecc, Func Offset: 0xc
-	// Line 2121, Address: 0x158ed8, Func Offset: 0x18
-	// Line 2122, Address: 0x158ee4, Func Offset: 0x24
-	// Line 2123, Address: 0x158ef0, Func Offset: 0x30
-	// Line 2124, Address: 0x158efc, Func Offset: 0x3c
-	// Line 2125, Address: 0x158f08, Func Offset: 0x48
-	// Line 2126, Address: 0x158f14, Func Offset: 0x54
-	// Line 2128, Address: 0x158f1c, Func Offset: 0x5c
-	// Line 2130, Address: 0x158f4c, Func Offset: 0x8c
-	// Line 2131, Address: 0x158f50, Func Offset: 0x90
-	// Line 2137, Address: 0x158f58, Func Offset: 0x98
-	// Line 2138, Address: 0x158f94, Func Offset: 0xd4
-	// Line 2143, Address: 0x158f9c, Func Offset: 0xdc
-	// Line 2144, Address: 0x158fc4, Func Offset: 0x104
-	// Line 2149, Address: 0x158fcc, Func Offset: 0x10c
-	// Line 2152, Address: 0x158ff8, Func Offset: 0x138
-	// Line 2153, Address: 0x159000, Func Offset: 0x140
-	// Line 2154, Address: 0x159008, Func Offset: 0x148
-	// Line 2155, Address: 0x159010, Func Offset: 0x150
-	// Line 2158, Address: 0x159020, Func Offset: 0x160
-	// Func End, Address: 0x159028, Func Offset: 0x168
-	scePrintf("bhSetDispObj - UNIMPLEMENTED!\n");
+    int v0, v1, v2;
+    BH_PWORK* e_workp;
+    ETTY_WORK* enep; // not from DWARF
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    switch (v1) 
+    {
+    case 0:
+        e_workp = plp;
+        break;
+    case 1:
+        enep = &rom->enep[v0];
+        e_workp = &ene[enep->wrk_no];
+        break;
+    case 2:
+        e_workp = (BH_PWORK*)&sys->obwp[v0];
+        break;
+    case 3:
+        e_workp = (BH_PWORK*)&sys->itwp[v0];
+        break;
+    }
+    
+    if (v2 == 0) 
+    {
+        e_workp->mdflg |= 0x1;
+    }
+    else 
+    {
+        e_workp->mdflg &= ~0x1;
+    }
+    
+    return 1;
 }
 
 // 100% matching!
