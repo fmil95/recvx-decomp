@@ -2069,70 +2069,97 @@ unsigned int bhDieCk()
     return 1;
 }
 
-// 
-// Start address: 0x158760
-unsigned int bhItmCk()
+#pragma optimization_level 4
+
+// 100% matching!
+unsigned int bhItmCk() 
 {
-	//_anon6* e_etcp;
-	unsigned int v5;
-	unsigned int v4;
-	unsigned int v2;
-	int v1;
-	int* v0;
-	// Line 1940, Address: 0x158760, Func Offset: 0
-	// Line 1948, Address: 0x158768, Func Offset: 0x8
-	// Line 1940, Address: 0x158770, Func Offset: 0x10
-	// Line 1942, Address: 0x15877c, Func Offset: 0x1c
-	// Line 1943, Address: 0x158790, Func Offset: 0x30
-	// Line 1944, Address: 0x15879c, Func Offset: 0x3c
-	// Line 1945, Address: 0x1587a8, Func Offset: 0x48
-	// Line 1946, Address: 0x1587b4, Func Offset: 0x54
-	// Line 1947, Address: 0x1587c0, Func Offset: 0x60
-	// Line 1948, Address: 0x1587cc, Func Offset: 0x6c
-	// Line 1955, Address: 0x1587d8, Func Offset: 0x78
-	// Line 1956, Address: 0x1587ec, Func Offset: 0x8c
-	// Line 1962, Address: 0x1587f4, Func Offset: 0x94
-	// Line 1968, Address: 0x158804, Func Offset: 0xa4
-	// Line 1969, Address: 0x158834, Func Offset: 0xd4
-	// Line 1970, Address: 0x15883c, Func Offset: 0xdc
-	// Line 1969, Address: 0x158848, Func Offset: 0xe8
-	// Line 1971, Address: 0x15884c, Func Offset: 0xec
-	// Line 1972, Address: 0x158854, Func Offset: 0xf4
-	// Line 1976, Address: 0x158860, Func Offset: 0x100
-	// Line 1979, Address: 0x15886c, Func Offset: 0x10c
-	// Line 1980, Address: 0x158874, Func Offset: 0x114
-	// Line 1984, Address: 0x158878, Func Offset: 0x118
-	// Line 1976, Address: 0x15887c, Func Offset: 0x11c
-	// Line 1979, Address: 0x158880, Func Offset: 0x120
-	// Line 1976, Address: 0x158884, Func Offset: 0x124
-	// Line 1984, Address: 0x1588a0, Func Offset: 0x140
-	// Line 1976, Address: 0x1588a4, Func Offset: 0x144
-	// Line 1981, Address: 0x1588b0, Func Offset: 0x150
-	// Line 1978, Address: 0x1588b8, Func Offset: 0x158
-	// Line 1984, Address: 0x1588bc, Func Offset: 0x15c
-	// Line 1986, Address: 0x1588c0, Func Offset: 0x160
-	// Line 1976, Address: 0x1588c4, Func Offset: 0x164
-	// Line 1978, Address: 0x1588cc, Func Offset: 0x16c
-	// Line 1979, Address: 0x1588d4, Func Offset: 0x174
-	// Line 1981, Address: 0x1588d8, Func Offset: 0x178
-	// Line 1983, Address: 0x1588dc, Func Offset: 0x17c
-	// Line 1981, Address: 0x1588e0, Func Offset: 0x180
-	// Line 1983, Address: 0x1588e8, Func Offset: 0x188
-	// Line 1984, Address: 0x1588f0, Func Offset: 0x190
-	// Line 1986, Address: 0x1588f4, Func Offset: 0x194
-	// Line 1989, Address: 0x1588fc, Func Offset: 0x19c
-	// Line 1994, Address: 0x158904, Func Offset: 0x1a4
-	// Line 1996, Address: 0x158934, Func Offset: 0x1d4
-	// Line 1995, Address: 0x15893c, Func Offset: 0x1dc
-	// Line 1996, Address: 0x158940, Func Offset: 0x1e0
-	// Line 1998, Address: 0x158948, Func Offset: 0x1e8
-	// Line 2001, Address: 0x15895c, Func Offset: 0x1fc
-	// Line 2002, Address: 0x158968, Func Offset: 0x208
-	// Line 2001, Address: 0x15896c, Func Offset: 0x20c
-	// Line 2003, Address: 0x158978, Func Offset: 0x218
-	// Func End, Address: 0x158980, Func Offset: 0x220
-	scePrintf("bhItmCk - UNIMPLEMENTED!\n");
+    int* v0;
+    int v1;
+    unsigned int v2, v4, v5; 
+    ATR_WORK* e_etcp;
+    O_WRK* op; // not from DWARF
+    
+    bhScePtr++; 
+    bhScePtr++;
+    
+    v2 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    v4 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v5 = *bhScePtr;
+    
+    (void)&sys->cb_flg;
+    
+    bhScePtr++;
+    
+    if (sys->etc_idx != v4) 
+    {
+        return 1;
+    }
+    
+    if ((sys->cb_flg & 0x800)) 
+    { 
+        v0 = (int*)&sys->it_flg;
+        
+        if (((v0[(v2 & 0x3FF) >> 5] << (v2 & 0x1F)) < 0) ^ 1) 
+        {
+            e_etcp = rom->etcp;
+            
+            e_etcp += v4;
+            
+            if (v5 == 0) 
+            {
+                e_etcp->flg &= ~0x1;
+            }
+            
+            op = &sys->itwp[e_etcp->prm0];
+            
+            op->stflg |= 0x1000000;
+            
+            v0 = (int*)&sys->it_flg;
+          
+            v0 += (v2 & 0x3E0) >> 5;
+            
+            v1 = v2 & 0x1F;
+            
+            *v0 |= 0x80000000 >> v1;
+            
+            v0 = (int*)&sys->ic_flg;
+            
+            v0 += (v2 & 0x1E0) >> 5;
+            
+            v1 = v2 & 0x1F;
+            
+            *v0 &= ~(0x80000000 >> v1);
+        }
+    }
+    else 
+    { 
+        v0 = (int*)&sys->it_flg;
+        
+        if (((v0[(v2 & 0x3FF) >> 5] << (v2 & 0x1F)) < 0) ^ 1)
+        {
+            v0 = (int*)&sys->ic_flg;
+            
+            v0 += (v2 & 0x3E0) >> 5;
+            
+            v1 = v2 & 0x1F;
+            
+            *v0 |= 0x80000000 >> v1;
+        }
+    }
+    
+    sys->cb_flg &= ~0x800;
+    
+    return 1;
 }
+
+#pragma optimization_level 3
 
 // 
 // Start address: 0x158980
