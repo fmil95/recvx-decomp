@@ -581,14 +581,10 @@ void fmCnkSetCurrentFrame(MASK_WORK* fm, float frame)
 	scePrintf("fmCnkSetCurrentFrame - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x299d00
+// 100% matching! 
 unsigned int fmCnkGetLastFrame(MASK_WORK* fm)
 {
-	// Line 1409, Address: 0x299d00, Func Offset: 0
-	// Line 1410, Address: 0x299d20, Func Offset: 0x20
-	// Func End, Address: 0x299d28, Func Offset: 0x28
-	scePrintf("fmCnkGetLastFrame - UNIMPLEMENTED!\n");
+	return fm->face[fm->fnum - 1].frame;
 }
 
 /*// 

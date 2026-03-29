@@ -18,8 +18,8 @@ void fmCnkSetParamLip(MASK_WORK* fm, PARAM_WORK* param, unsigned int flag);
 /*void fmCnkSetInterParam(_anon2* fm, _anon4* p1, _anon4* p2, float t, float lv, unsigned int mask);*/
 void fmCnkSetInterParamLip(MASK_WORK* fm, PARAM_WORK* p1, PARAM_WORK* p2, float t, float lv, unsigned int mask);
 void fmCnkSetCurrentFrame(MASK_WORK* fm, float frame);
-/*unsigned int fmCnkGetLastFrame(_anon2* fm);
-void _fmCnkCalcMuscle(_anon2* fm);
+unsigned int fmCnkGetLastFrame(MASK_WORK* fm);
+/*void _fmCnkCalcMuscle(_anon2* fm);
 void _fmCnkCalcJaw(_anon2* fm);
 void _fmCnkCalcEye(_anon2* fm);
 void _fmCnkCalcTang(_anon2* fm);
