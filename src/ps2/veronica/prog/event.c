@@ -2669,33 +2669,36 @@ unsigned int bhFootSeCall()
 	scePrintf("bhFootSeCall - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x159d20
+// 100% matching!
 unsigned int bhEneSetCk()
 {
-	//_anon21* e_enep;
-	unsigned char* a0;
 	unsigned int v2;
-	// Line 2545, Address: 0x159d20, Func Offset: 0
-	// Line 2559, Address: 0x159d28, Func Offset: 0x8
-	// Line 2546, Address: 0x159d30, Func Offset: 0x10
-	// Line 2548, Address: 0x159d3c, Func Offset: 0x1c
-	// Line 2559, Address: 0x159d44, Func Offset: 0x24
-	// Line 2548, Address: 0x159d48, Func Offset: 0x28
-	// Line 2549, Address: 0x159d54, Func Offset: 0x34
-	// Line 2559, Address: 0x159d60, Func Offset: 0x40
-	// Line 2560, Address: 0x159d8c, Func Offset: 0x6c
-	// Line 2566, Address: 0x159d9c, Func Offset: 0x7c
-	// Line 2560, Address: 0x159da4, Func Offset: 0x84
-	// Line 2566, Address: 0x159da8, Func Offset: 0x88
-	// Line 2560, Address: 0x159dac, Func Offset: 0x8c
-	// Line 2566, Address: 0x159dbc, Func Offset: 0x9c
-	// Line 2568, Address: 0x159de4, Func Offset: 0xc4
-	// Line 2569, Address: 0x159dec, Func Offset: 0xcc
-	// Line 2568, Address: 0x159df0, Func Offset: 0xd0
-	// Line 2570, Address: 0x159df8, Func Offset: 0xd8
-	// Func End, Address: 0x159e00, Func Offset: 0xe0
-	scePrintf("bhEneSetCk - UNIMPLEMENTED!\n");
+    unsigned char* a0;
+    ETTY_WORK* e_enep;
+    BH_PWORK* e_ep; // not from DWARF
+    int* v0;        // not from DWARF
+
+    a0 = bhScePtr;
+    
+    bhScePtr = &a0[1];
+    
+    bhScePtr++;
+
+    v0 = (int*)&sys->ed_flg;
+    
+    v2 = *(unsigned short*)bhScePtr;
+ 
+    if (!(((v0[(v2 & 0x1FF) >> 5] << (v2 & 0x1F)) < 0) ^ 1)) 
+    {
+        e_enep = &rom->enep[*++a0];
+        e_ep = &ene[e_enep->wrk_no];
+        
+        e_ep->stflg |= 0x1000000;
+    }
+    
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 
