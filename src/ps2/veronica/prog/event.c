@@ -3356,40 +3356,41 @@ unsigned int bhMaskSet()
 
     enep = &rom->enep[v1];
     e_ep = &ene[enep->wrk_no];
-	
+
     bhSetMask(e_ep, v2, 0);
     
     return 1;
 }
 
-// 
-// Start address: 0x15ae00
+// 100% matching!
 unsigned int bhLipSet()
 {
+	int v0, v1, v2;
 	BH_PWORK* pp;
-	int v2;
-	int v1;
-	int v0;
-	// Line 3123, Address: 0x15ae00, Func Offset: 0
-	// Line 3132, Address: 0x15ae08, Func Offset: 0x8
-	// Line 3145, Address: 0x15ae10, Func Offset: 0x10
-	// Line 3132, Address: 0x15ae20, Func Offset: 0x20
-	// Line 3133, Address: 0x15ae2c, Func Offset: 0x2c
-	// Line 3134, Address: 0x15ae38, Func Offset: 0x38
-	// Line 3135, Address: 0x15ae44, Func Offset: 0x44
-	// Line 3136, Address: 0x15ae50, Func Offset: 0x50
-	// Line 3137, Address: 0x15ae5c, Func Offset: 0x5c
-	// Line 3145, Address: 0x15ae64, Func Offset: 0x64
-	// Line 3137, Address: 0x15ae70, Func Offset: 0x70
-	// Line 3138, Address: 0x15ae74, Func Offset: 0x74
-	// Line 3145, Address: 0x15ae80, Func Offset: 0x80
-	// Line 3147, Address: 0x15aea4, Func Offset: 0xa4
-	// Line 3149, Address: 0x15aea8, Func Offset: 0xa8
-	// Line 3152, Address: 0x15aeb0, Func Offset: 0xb0
-	// Line 3151, Address: 0x15aeb4, Func Offset: 0xb4
-	// Line 3152, Address: 0x15aeb8, Func Offset: 0xb8
-	// Func End, Address: 0x15aec0, Func Offset: 0xc0
-	scePrintf("bhLipSet - UNIMPLEMENTED!\n");
+	ETTY_WORK* enep; // not from DWARF
+
+	bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+	
+    enep = &rom->enep[v1];
+    pp = &ene[enep->wrk_no];
+    
+    ((int*)pp->exp0)[4] = v0;
+    
+    bhSetLip(pp, v2);
+    
+    return 1;
 }
 
 // 
