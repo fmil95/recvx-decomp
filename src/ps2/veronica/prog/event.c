@@ -3468,35 +3468,40 @@ unsigned int bhItmAspdSet()
     bhScePtr += 2;
     
     op = &sys->itwp[v0];
-	
+
     op->aspd = v1;
     
     return 1;
 }
 
-// 
-// Start address: 0x15b640
+// 100% matching!
 unsigned int bhEffDispSet()
 {
-	//_anon0* e_ep;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 3408, Address: 0x15b640, Func Offset: 0
-	// Line 3418, Address: 0x15b648, Func Offset: 0x8
-	// Line 3408, Address: 0x15b658, Func Offset: 0x18
-	// Line 3409, Address: 0x15b664, Func Offset: 0x24
-	// Line 3410, Address: 0x15b670, Func Offset: 0x30
-	// Line 3418, Address: 0x15b67c, Func Offset: 0x3c
-	// Line 3411, Address: 0x15b684, Func Offset: 0x44
-	// Line 3412, Address: 0x15b690, Func Offset: 0x50
-	// Line 3418, Address: 0x15b69c, Func Offset: 0x5c
-	// Line 3419, Address: 0x15b6bc, Func Offset: 0x7c
-	// Line 3420, Address: 0x15b6c4, Func Offset: 0x84
-	// Line 3421, Address: 0x15b6d0, Func Offset: 0x90
-	// Line 3422, Address: 0x15b6d8, Func Offset: 0x98
-	// Line 3425, Address: 0x15b6ec, Func Offset: 0xac
-	// Func End, Address: 0x15b6f4, Func Offset: 0xb4
-	scePrintf("bhEffDispSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1;
+	O_WRK* e_ep;
+
+	bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    e_ep = &eff[sys->efid[v0]];
+
+    if (v1 == 0) 
+	{
+        e_ep->stflg |= 0x1000000;
+    } 
+	else 
+	{
+        e_ep->stflg &= ~0x1000000;
+    }
+
+    return 1;
 }
 
 // 
