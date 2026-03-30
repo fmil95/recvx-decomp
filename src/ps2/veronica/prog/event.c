@@ -3273,7 +3273,7 @@ unsigned int bhFrameCheck()
     
     if (v2 != 0) 
 	{
-       v4 += 32767 + 1;
+    	v4 += 32767 + 1;
     }
     
     switch (v0) 
@@ -3302,28 +3302,34 @@ unsigned int bhFrameCheck()
 	return 1;
 }
 
-// 
-// Start address: 0x15acb0
+// 100% matching!
 unsigned int bhCamInfoSet()
 {
-	//_anon16* cp;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 3061, Address: 0x15acb0, Func Offset: 0
-	// Line 3071, Address: 0x15acb8, Func Offset: 0x8
-	// Line 3061, Address: 0x15acc0, Func Offset: 0x10
-	// Line 3062, Address: 0x15accc, Func Offset: 0x1c
-	// Line 3063, Address: 0x15acd8, Func Offset: 0x28
-	// Line 3064, Address: 0x15ace4, Func Offset: 0x34
-	// Line 3065, Address: 0x15acf0, Func Offset: 0x40
-	// Line 3071, Address: 0x15acfc, Func Offset: 0x4c
-	// Line 3073, Address: 0x15ad14, Func Offset: 0x64
-	// Line 3074, Address: 0x15ad1c, Func Offset: 0x6c
-	// Line 3075, Address: 0x15ad24, Func Offset: 0x74
-	// Line 3076, Address: 0x15ad2c, Func Offset: 0x7c
-	// Line 3080, Address: 0x15ad38, Func Offset: 0x88
-	// Func End, Address: 0x15ad40, Func Offset: 0x90
-	scePrintf("bhCamInfoSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1;
+	CUT_WORK* cp;
+
+	bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    cp = &rom->cutp[v1];
+    
+    if (v0 == 0) 
+	{
+        cp->flg |= 0x1;
+    } 
+	else 
+	{
+        cp->flg &= ~0x1;
+    }
+    
+    return 1;
 }
 
 // 
