@@ -2413,7 +2413,7 @@ void bhSetWaterSplash4(_anon23* pos, int ang, int type, float sx, float sy, floa
 	// Line 2605, Address: 0x153c10, Func Offset: 0x160
 	// Line 2606, Address: 0x153c2c, Func Offset: 0x17c
 	// Func End, Address: 0x153c3c, Func Offset: 0x18c
-}
+}*/
 
 // 
 // Start address: 0x153c40
@@ -2421,16 +2421,16 @@ void bhSetGunFire(BH_PWORK* pp, int wno, int jno, int hand, int ang)
 {
 	float len;
 	int walhit;
-	_anon0* wlp;
-	_anon23 wps;
-	_anon41 gline;
-	_anon1* op;
-	_anon18* lp;
+	//_anon0* wlp;
+	//_anon23 wps;
+	//_anon41 gline;
+	//_anon1* op;
+	//_anon18* lp;
 	int i;
-	_anon23 ps2;
-	_anon23 ps;
-	_anon23 ops;
-	_anon13* eft;
+	//_anon23 ps2;
+	//_anon23 ps;
+	//_anon23 ops;
+	//_anon13* eft;
 	// Line 2618, Address: 0x153c40, Func Offset: 0
 	// Line 2624, Address: 0x153c60, Func Offset: 0x20
 	// Line 2618, Address: 0x153c6c, Func Offset: 0x2c
@@ -2843,9 +2843,10 @@ void bhSetGunFire(BH_PWORK* pp, int wno, int jno, int hand, int ang)
 	// Line 3048, Address: 0x15507c, Func Offset: 0x143c
 	// Line 3055, Address: 0x155094, Func Offset: 0x1454
 	// Func End, Address: 0x1550c4, Func Offset: 0x1484
+	scePrintf("bhSetGunFire - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1550d0
 void bhSetYakkyou(BH_PWORK* pp, int wno, int jno, int hand)
 {

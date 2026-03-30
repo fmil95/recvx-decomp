@@ -2991,77 +2991,129 @@ unsigned int bhLightSet()
     return 1;
 }
 
-// 
-// Start address: 0x15a3c0
+// 100% matching!
 unsigned int bhWeaponSeCall()
 {
-	BH_PWORK* e_ep;
-	int v8;
-	int v7;
-	int v6;
-	int v5;
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 2805, Address: 0x15a3c0, Func Offset: 0
-	// Line 2810, Address: 0x15a3e4, Func Offset: 0x24
-	// Line 2811, Address: 0x15a3f8, Func Offset: 0x38
-	// Line 2812, Address: 0x15a404, Func Offset: 0x44
-	// Line 2813, Address: 0x15a410, Func Offset: 0x50
-	// Line 2814, Address: 0x15a41c, Func Offset: 0x5c
-	// Line 2815, Address: 0x15a428, Func Offset: 0x68
-	// Line 2816, Address: 0x15a434, Func Offset: 0x74
-	// Line 2817, Address: 0x15a440, Func Offset: 0x80
-	// Line 2818, Address: 0x15a44c, Func Offset: 0x8c
-	// Line 2819, Address: 0x15a458, Func Offset: 0x98
-	// Line 2820, Address: 0x15a464, Func Offset: 0xa4
-	// Line 2821, Address: 0x15a470, Func Offset: 0xb0
-	// Line 2822, Address: 0x15a47c, Func Offset: 0xbc
-	// Line 2828, Address: 0x15a488, Func Offset: 0xc8
-	// Line 2823, Address: 0x15a48c, Func Offset: 0xcc
-	// Line 2824, Address: 0x15a498, Func Offset: 0xd8
-	// Line 2825, Address: 0x15a4a4, Func Offset: 0xe4
-	// Line 2826, Address: 0x15a4b0, Func Offset: 0xf0
-	// Line 2828, Address: 0x15a4b8, Func Offset: 0xf8
-	// Line 2829, Address: 0x15a4c0, Func Offset: 0x100
-	// Line 2831, Address: 0x15a4c4, Func Offset: 0x104
-	// Line 2833, Address: 0x15a4e4, Func Offset: 0x124
-	// Line 2835, Address: 0x15a518, Func Offset: 0x158
-	// Line 2836, Address: 0x15a520, Func Offset: 0x160
-	// Line 2837, Address: 0x15a558, Func Offset: 0x198
-	// Line 2840, Address: 0x15a56c, Func Offset: 0x1ac
-	// Line 2841, Address: 0x15a588, Func Offset: 0x1c8
-	// Line 2842, Address: 0x15a590, Func Offset: 0x1d0
-	// Line 2843, Address: 0x15a5c8, Func Offset: 0x208
-	// Line 2846, Address: 0x15a5dc, Func Offset: 0x21c
-	// Line 2848, Address: 0x15a5f8, Func Offset: 0x238
-	// Line 2856, Address: 0x15a600, Func Offset: 0x240
-	// Line 2857, Address: 0x15a63c, Func Offset: 0x27c
-	// Line 2858, Address: 0x15a644, Func Offset: 0x284
-	// Line 2859, Address: 0x15a67c, Func Offset: 0x2bc
-	// Line 2862, Address: 0x15a6a0, Func Offset: 0x2e0
-	// Line 2863, Address: 0x15a6b8, Func Offset: 0x2f8
-	// Line 2864, Address: 0x15a6c0, Func Offset: 0x300
-	// Line 2865, Address: 0x15a6f8, Func Offset: 0x338
-	// Line 2868, Address: 0x15a71c, Func Offset: 0x35c
-	// Line 2870, Address: 0x15a734, Func Offset: 0x374
-	// Line 2872, Address: 0x15a73c, Func Offset: 0x37c
-	// Line 2873, Address: 0x15a744, Func Offset: 0x384
-	// Line 2874, Address: 0x15a760, Func Offset: 0x3a0
-	// Line 2875, Address: 0x15a768, Func Offset: 0x3a8
-	// Line 2877, Address: 0x15a784, Func Offset: 0x3c4
-	// Line 2883, Address: 0x15a78c, Func Offset: 0x3cc
-	// Line 2884, Address: 0x15a7c8, Func Offset: 0x408
-	// Line 2885, Address: 0x15a7d0, Func Offset: 0x410
-	// Line 2886, Address: 0x15a7e4, Func Offset: 0x424
-	// Line 2887, Address: 0x15a7ec, Func Offset: 0x42c
-	// Line 2892, Address: 0x15a800, Func Offset: 0x440
-	// Line 2891, Address: 0x15a820, Func Offset: 0x460
-	// Line 2892, Address: 0x15a824, Func Offset: 0x464
-	// Func End, Address: 0x15a82c, Func Offset: 0x46c
-	scePrintf("bhWeaponSeCall - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4, v5, v6, v7, v8;
+    BH_PWORK* e_ep;
+	ETTY_WORK* enep; // not from DWARF
+    
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v7 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+
+    v5 = *bhScePtr;
+
+    bhScePtr++;
+
+    v8 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    if ((v4 & 0x2)) 
+	{
+        v5 = -v5;
+    }
+
+    v6 = 182.04445f * v5;
+    
+    switch (v0) 
+	{
+	case 0:
+		if (v2 == 0) 
+		{
+			if (WpnTab[plp->wpnr_no].seno0 != 0) 
+			{
+				CallPlayerWeaponSeEx((NJS_POINT3*)&plp->mlwP->owP[13].mtx[12], WpnTab[plp->wpnr_no].seno0, v8);
+			}
+			
+			bhSetGunFire(plp, plp->wpnr_no, 13, v2, v6);
+		} 
+		else 
+		{
+			if (WpnTab[plp->wpnr_no].seno0 != 0) 
+			{
+				CallPlayerWeaponSeEx((NJS_POINT3*)&plp->mlwP->owP[9].mtx[12], WpnTab[plp->wpnr_no].seno0, v8);
+			}
+
+			bhSetGunFire(plp, plp->wpnr_no, 9, v2, v6);
+		}
+
+		break;
+	case 1:
+		enep = &rom->enep[v7];
+		e_ep = &ene[enep->wrk_no];
+
+		if (v2 == 0) 
+		{
+			if (WpnTab[plp->wpnr_no].seno0 != 0) 
+			{
+				CallPlayerWeaponSeEx((NJS_POINT3*)&e_ep->mlwP->owP[v1].mtx[12], WpnTab[plp->wpnr_no].seno0, v8);
+			}
+			
+			bhSetGunFire(e_ep, v3, v1, v2, v6);
+		} 
+		else 
+		{
+			if (WpnTab[plp->wpnr_no].seno0 != 0) 
+			{
+				CallPlayerWeaponSeEx((NJS_POINT3*)&e_ep->mlwP->owP[v1].mtx[12], WpnTab[plp->wpnr_no].seno0, v8);
+			}
+			
+			bhSetGunFire(e_ep, v3, v1, v2, v6);
+		}
+
+		break;
+	case 2:
+		if (v2 == 0) 
+		{
+			bhSetGunFire(plp, plp->wpnr_no, 13, v2, v6);
+		} 
+		else 
+		{
+			bhSetGunFire(plp, plp->wpnr_no, 9, v2, v6);
+		}
+
+		break;
+	case 3:
+		enep = &rom->enep[v7];
+		e_ep = &ene[enep->wrk_no];
+
+		if (v2 == 0) 
+		{
+			bhSetGunFire(e_ep, v3, v1, v2, v6);
+		} 
+		else
+		{
+			bhSetGunFire(e_ep, v3, v1, v2, v6);
+		}
+
+		break;
+    }
+
+    return 1;
 }
 
 // 
