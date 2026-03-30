@@ -2702,7 +2702,7 @@ unsigned int bhEneSetCk()
     return 1;
 }
 
-// 99.27% matching (matches on GC)
+// 100% matching!
 unsigned int bhItmSetCk() 
 {
 	unsigned int v2, v3, v4, v5;
@@ -2732,7 +2732,9 @@ unsigned int bhItmSetCk()
         
     if (!(((v0[(v3 & 0x1FF) >> 5] << (v3 & 0x1F)) < 0) ^ 1)) 
     {
-        e_etcp = &rom->etcp[v4];
+        e_etcp = rom->etcp;
+
+		e_etcp += v4;
         
         if (v5 == 0) 
         {
@@ -2745,7 +2747,9 @@ unsigned int bhItmSetCk()
     } 
     else 
     {
-        e_etcp = &rom->etcp[v4];
+        e_etcp = rom->etcp;
+
+		e_etcp += v4;
         
         e_etcp->flg |= 0x1;
     }
