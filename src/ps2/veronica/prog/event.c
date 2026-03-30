@@ -2896,50 +2896,58 @@ unsigned int bhInitModelSet()
     return 1;
 }
 
-// 
-// Start address: 0x15a1c0
-unsigned int bhEtcAtariSet2()
+// 100% matching! 
+unsigned int bhEtcAtariSet2() 
 {
-	//_anon6* e_etcp;
 	unsigned int v1;
-	// Line 2722, Address: 0x15a1c0, Func Offset: 0
-	// Line 2756, Address: 0x15a1c8, Func Offset: 0x8
-	// Line 2728, Address: 0x15a1cc, Func Offset: 0xc
-	// Line 2722, Address: 0x15a1d4, Func Offset: 0x14
-	// Line 2729, Address: 0x15a1e0, Func Offset: 0x20
-	// Line 2728, Address: 0x15a1e8, Func Offset: 0x28
-	// Line 2729, Address: 0x15a1ec, Func Offset: 0x2c
-	// Line 2731, Address: 0x15a1f0, Func Offset: 0x30
-	// Line 2729, Address: 0x15a1fc, Func Offset: 0x3c
-	// Line 2732, Address: 0x15a204, Func Offset: 0x44
-	// Line 2729, Address: 0x15a20c, Func Offset: 0x4c
-	// Line 2732, Address: 0x15a214, Func Offset: 0x54
-	// Line 2735, Address: 0x15a218, Func Offset: 0x58
-	// Line 2733, Address: 0x15a21c, Func Offset: 0x5c
-	// Line 2735, Address: 0x15a220, Func Offset: 0x60
-	// Line 2736, Address: 0x15a230, Func Offset: 0x70
-	// Line 2739, Address: 0x15a23c, Func Offset: 0x7c
-	// Line 2737, Address: 0x15a240, Func Offset: 0x80
-	// Line 2739, Address: 0x15a244, Func Offset: 0x84
-	// Line 2740, Address: 0x15a254, Func Offset: 0x94
-	// Line 2743, Address: 0x15a260, Func Offset: 0xa0
-	// Line 2741, Address: 0x15a264, Func Offset: 0xa4
-	// Line 2743, Address: 0x15a268, Func Offset: 0xa8
-	// Line 2744, Address: 0x15a278, Func Offset: 0xb8
-	// Line 2747, Address: 0x15a284, Func Offset: 0xc4
-	// Line 2745, Address: 0x15a288, Func Offset: 0xc8
-	// Line 2747, Address: 0x15a28c, Func Offset: 0xcc
-	// Line 2748, Address: 0x15a29c, Func Offset: 0xdc
-	// Line 2751, Address: 0x15a2a8, Func Offset: 0xe8
-	// Line 2749, Address: 0x15a2ac, Func Offset: 0xec
-	// Line 2751, Address: 0x15a2b0, Func Offset: 0xf0
-	// Line 2752, Address: 0x15a2c0, Func Offset: 0x100
-	// Line 2754, Address: 0x15a2cc, Func Offset: 0x10c
-	// Line 2753, Address: 0x15a2d0, Func Offset: 0x110
-	// Line 2754, Address: 0x15a2d4, Func Offset: 0x114
-	// Line 2757, Address: 0x15a2e0, Func Offset: 0x120
-	// Func End, Address: 0x15a2e8, Func Offset: 0x128
-	scePrintf("bhEtcAtariSet2 - UNIMPLEMENTED!\n");
+    ATR_WORK* e_etcp;
+    unsigned int v0; // not from DWARF
+    
+    bhScePtr++;
+    
+    e_etcp = rom->etcp;
+    
+    e_etcp += *bhScePtr;
+    
+    bhScePtr++;
+    
+    v0 = *(unsigned short*)bhScePtr;
+    
+    e_etcp->attr = v0;
+    
+    bhScePtr += 2;
+    
+    v0 = *bhScePtr;
+    
+    e_etcp->prm0 = v0;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    e_etcp->prm1 = v0;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    e_etcp->prm2 = v0;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    e_etcp->prm3 = v0;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    e_etcp->type = v0;
+    
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 
