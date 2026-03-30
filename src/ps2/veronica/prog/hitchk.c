@@ -3589,14 +3589,14 @@ void bhCheckDansa(BH_PWORK* pp)
 	scePrintf("bhCheckDansa - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2681b0
 int bhCheckFloorSound(BH_PWORK* pp, int flr_no, float px, float pz)
 {
 	int sno;
 	int flr_n;
 	int i;
-	_anon0* fp;
+	//_anon0* fp;
 	// Line 4383, Address: 0x2681b0, Func Offset: 0
 	// Line 4382, Address: 0x2681b8, Func Offset: 0x8
 	// Line 4383, Address: 0x2681bc, Func Offset: 0xc
@@ -3612,9 +3612,10 @@ int bhCheckFloorSound(BH_PWORK* pp, int flr_no, float px, float pz)
 	// Line 4401, Address: 0x2682e0, Func Offset: 0x130
 	// Line 4403, Address: 0x2682f0, Func Offset: 0x140
 	// Func End, Address: 0x2682f8, Func Offset: 0x148
+	scePrintf("bhCheckFloorSound - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x268300
 _anon0* bhCheckFloorEnemy(int flr_no, float px, float pz)
 {

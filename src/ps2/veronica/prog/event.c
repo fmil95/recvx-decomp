@@ -5,6 +5,7 @@
 #include "effect.h"
 #include "eneset.h"
 #include "face.h"
+#include "hitchk.h"
 #include "message.h"
 #include "player.h"
 #include "ps2_NaMath.h"
@@ -2372,7 +2373,7 @@ unsigned int bhDieEventCk()
 
     die_cnt = 0;
 
-    for (; v2 != 0; v2--)
+    for ( ; v2 != 0; v2--)
     {
         v1 = (int*)&sys->ed_flg;
         
@@ -2663,45 +2664,58 @@ unsigned int bhSetNextRoomBgSe()
     return 1;
 }
 
-// 
-// Start address: 0x159b70
+// 100% matching!
 unsigned int bhFootSeCall()
 {
-	int v6;
-	int v5;
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	int flr_no;
-	int fsnd;
-	// Line 2475, Address: 0x159b70, Func Offset: 0
-	// Line 2481, Address: 0x159b90, Func Offset: 0x20
-	// Line 2507, Address: 0x159b98, Func Offset: 0x28
-	// Line 2481, Address: 0x159ba0, Func Offset: 0x30
-	// Line 2482, Address: 0x159bac, Func Offset: 0x3c
-	// Line 2483, Address: 0x159bb8, Func Offset: 0x48
-	// Line 2484, Address: 0x159bc4, Func Offset: 0x54
-	// Line 2485, Address: 0x159bd0, Func Offset: 0x60
-	// Line 2486, Address: 0x159bdc, Func Offset: 0x6c
-	// Line 2487, Address: 0x159be8, Func Offset: 0x78
-	// Line 2488, Address: 0x159bf4, Func Offset: 0x84
-	// Line 2489, Address: 0x159c00, Func Offset: 0x90
-	// Line 2490, Address: 0x159c0c, Func Offset: 0x9c
-	// Line 2491, Address: 0x159c18, Func Offset: 0xa8
-	// Line 2507, Address: 0x159c24, Func Offset: 0xb4
-	// Line 2509, Address: 0x159c30, Func Offset: 0xc0
-	// Line 2517, Address: 0x159c50, Func Offset: 0xe0
-	// Line 2521, Address: 0x159cbc, Func Offset: 0x14c
-	// Line 2522, Address: 0x159cc0, Func Offset: 0x150
-	// Line 2523, Address: 0x159cc8, Func Offset: 0x158
-	// Line 2525, Address: 0x159ccc, Func Offset: 0x15c
-	// Line 2528, Address: 0x159cf8, Func Offset: 0x188
-	// Line 2527, Address: 0x159d14, Func Offset: 0x1a4
-	// Line 2528, Address: 0x159d18, Func Offset: 0x1a8
-	// Func End, Address: 0x159d20, Func Offset: 0x1b0
-	scePrintf("bhFootSeCall - UNIMPLEMENTED!\n");
+	int fsnd, flr_no;
+    int v0, v1, v2, v3, v4, v5, v6;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v3 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v4 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    if (bhCetask->work != NULL)
+    {
+        flr_no = bhCheckFloorNum(bhCetask->work->mlwP->owP[v4].mtx[13]);
+        
+        if (v1 != 0) 
+        {   
+            fsnd = bhCheckFloorSound(bhCetask->work, flr_no, bhCetask->work->mlwP->owP[(int)v4].mtx[12], bhCetask->work->mlwP->owP[(int)v4].mtx[14]);
+        } 
+        else 
+        {
+            fsnd = bhCheckFloorSound(bhCetask->work, flr_no, bhCetask->work->mlwP->owP[v4].mtx[12], bhCetask->work->mlwP->owP[v4].mtx[14]);
+        }
+        
+        v5 = 0;
+        
+        if (v0 == 0) 
+        {
+            v5 = 1;
+        }
+
+        CallPlayerFootStepSeEx(fsnd, v3, v5, v2, (NJS_POINT3*)&bhCetask->work->mlwP->owP[v4].mtx[12]);
+    }
+    
+    return 1;
 }
 
 // 100% matching!
