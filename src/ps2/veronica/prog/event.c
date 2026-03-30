@@ -3332,29 +3332,34 @@ unsigned int bhCamInfoSet()
     return 1;
 }
 
-// 
-// Start address: 0x15ad40
+// 100% matching!
 unsigned int bhMaskSet()
 {
-	int v2;
-	int v1;
-	// Line 3088, Address: 0x15ad40, Func Offset: 0
-	// Line 3097, Address: 0x15ad48, Func Offset: 0x8
-	// Line 3112, Address: 0x15ad50, Func Offset: 0x10
-	// Line 3097, Address: 0x15ad64, Func Offset: 0x24
-	// Line 3099, Address: 0x15ad70, Func Offset: 0x30
-	// Line 3100, Address: 0x15ad84, Func Offset: 0x44
-	// Line 3101, Address: 0x15ad90, Func Offset: 0x50
-	// Line 3102, Address: 0x15ad9c, Func Offset: 0x5c
-	// Line 3112, Address: 0x15ada4, Func Offset: 0x64
-	// Line 3102, Address: 0x15adb0, Func Offset: 0x70
-	// Line 3103, Address: 0x15adb4, Func Offset: 0x74
-	// Line 3112, Address: 0x15adc0, Func Offset: 0x80
-	// Line 3115, Address: 0x15ade8, Func Offset: 0xa8
-	// Line 3114, Address: 0x15adec, Func Offset: 0xac
-	// Line 3115, Address: 0x15adf0, Func Offset: 0xb0
-	// Func End, Address: 0x15adf8, Func Offset: 0xb8
-	scePrintf("bhMaskSet - UNIMPLEMENTED!\n");
+	int v1, v2;
+	int v0;          // not from DWARF
+	ETTY_WORK* enep; // not from DWARF
+    BH_PWORK* e_ep;  // not from DWARF
+
+	bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    enep = &rom->enep[v1];
+    e_ep = &ene[enep->wrk_no];
+	
+    bhSetMask(e_ep, v2, 0);
+    
+    return 1;
 }
 
 // 
