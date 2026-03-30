@@ -11,6 +11,7 @@
 #include "ps2_NaMath.h"
 #include "pwksub.h"
 #include "room.h"
+#include "screen.h"
 #include "sdfunc.h"
 #include "sub1.h"
 #include "system.h"
@@ -3192,40 +3193,36 @@ unsigned int bhYakkyouSet()
     return 1;
 }
 
-// 
-// Start address: 0x15aa40
+// 100% matching!
 unsigned int bhFadeSet()
 {
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 2956, Address: 0x15aa40, Func Offset: 0
-	// Line 2959, Address: 0x15aa48, Func Offset: 0x8
-	// Line 2960, Address: 0x15aa5c, Func Offset: 0x1c
-	// Line 2961, Address: 0x15aa68, Func Offset: 0x28
-	// Line 2962, Address: 0x15aa74, Func Offset: 0x34
-	// Line 2971, Address: 0x15aa7c, Func Offset: 0x3c
-	// Line 2962, Address: 0x15aa80, Func Offset: 0x40
-	// Line 2963, Address: 0x15aa84, Func Offset: 0x44
-	// Line 2971, Address: 0x15aa90, Func Offset: 0x50
-	// Line 2964, Address: 0x15aa98, Func Offset: 0x58
-	// Line 2965, Address: 0x15aaa4, Func Offset: 0x64
-	// Line 2971, Address: 0x15aab0, Func Offset: 0x70
-	// Line 2966, Address: 0x15aab8, Func Offset: 0x78
-	// Line 2967, Address: 0x15aac4, Func Offset: 0x84
-	// Line 2971, Address: 0x15aad0, Func Offset: 0x90
-	// Line 2968, Address: 0x15aad4, Func Offset: 0x94
-	// Line 2969, Address: 0x15aae0, Func Offset: 0xa0
-	// Line 2971, Address: 0x15aae4, Func Offset: 0xa4
-	// Line 2969, Address: 0x15aae8, Func Offset: 0xa8
-	// Line 2971, Address: 0x15aaec, Func Offset: 0xac
-	// Line 2974, Address: 0x15aaf8, Func Offset: 0xb8
-	// Line 2973, Address: 0x15aafc, Func Offset: 0xbc
-	// Line 2974, Address: 0x15ab00, Func Offset: 0xc0
-	// Func End, Address: 0x15ab08, Func Offset: 0xc8
-	scePrintf("bhFadeSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4;
+
+	bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+    
+    bhSetScreenFade(v3 | ((v2 << 8) | ((v0 << 24) | (v1 << 16))), v4);
+ 
+    return 1;
 }
 
 // 100% matching! 
