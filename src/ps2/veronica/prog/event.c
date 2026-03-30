@@ -2352,37 +2352,71 @@ unsigned int bhSetDoorCall()
     return 1;
 }
 
-// 
-// Start address: 0x1590e0
-unsigned int bhDieEventCk()
+// 98.77% matching (matches on GC)
+unsigned int bhDieEventCk() 
 {
-	unsigned int die_cnt;
-	unsigned int v3;
-	unsigned int v2;
-	// Line 2197, Address: 0x1590e0, Func Offset: 0
-	// Line 2198, Address: 0x1590f4, Func Offset: 0x14
-	// Line 2199, Address: 0x159100, Func Offset: 0x20
-	// Line 2200, Address: 0x15910c, Func Offset: 0x2c
-	// Line 2202, Address: 0x159118, Func Offset: 0x38
-	// Line 2207, Address: 0x15912c, Func Offset: 0x4c
-	// Line 2208, Address: 0x159160, Func Offset: 0x80
-	// Line 2209, Address: 0x159164, Func Offset: 0x84
-	// Line 2210, Address: 0x159168, Func Offset: 0x88
-	// Line 2211, Address: 0x159178, Func Offset: 0x98
-	// Line 2212, Address: 0x15918c, Func Offset: 0xac
-	// Line 2213, Address: 0x159198, Func Offset: 0xb8
-	// Line 2214, Address: 0x1591a4, Func Offset: 0xc4
-	// Line 2215, Address: 0x1591b0, Func Offset: 0xd0
-	// Line 2217, Address: 0x1591bc, Func Offset: 0xdc
-	// Line 2218, Address: 0x1591e0, Func Offset: 0x100
-	// Line 2219, Address: 0x1591ec, Func Offset: 0x10c
-	// Line 2220, Address: 0x1591f4, Func Offset: 0x114
-	// Line 2221, Address: 0x159200, Func Offset: 0x120
-	// Line 2222, Address: 0x159208, Func Offset: 0x128
-	// Line 2223, Address: 0x159214, Func Offset: 0x134
-	// Line 2225, Address: 0x15921c, Func Offset: 0x13c
-	// Func End, Address: 0x159224, Func Offset: 0x144
-	scePrintf("bhDieEventCk - UNIMPLEMENTED!\n");
+	unsigned int v4;      // not from DWARF
+    unsigned int v3;
+    unsigned int v2;
+    unsigned int die_cnt;
+    int* v1;              // not from DWARF
+    int ret;              // not from DWARF
+
+    bhScePtr++;
+    
+    v2 = *bhScePtr; 
+
+    bhScePtr++;
+    
+    v3 = *(unsigned short*)bhScePtr; 
+
+    die_cnt = 0;
+
+    for (; v2 != 0; v2--)
+    {
+        v1 = (int*)&sys->ed_flg;
+        
+        v4 = v3 + (v2 - 1);
+        
+        if (!(((v1[(v4 & 0x1FF) >> 5] << (v4 & 0x1F)) < 0) ^ 1)) 
+        {
+            die_cnt++;
+        }
+    }
+
+    bhScePtr += 2;
+    
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+    
+    switch (v3) 
+    {
+    case 0: 
+        ret = die_cnt == v2; 
+        break;
+    case 1: 
+        ret = die_cnt > v2; 
+        break;
+    case 2: 
+        ret = die_cnt >= v2; 
+        break;
+    case 3: 
+        ret = die_cnt < v2; 
+        break;
+    case 4: 
+        ret = die_cnt <= v2;
+        break;
+    case 5: 
+        ret = die_cnt != v2; 
+        break;
+    }
+    
+    return ret; 
 }
 
 // 100% matching!
