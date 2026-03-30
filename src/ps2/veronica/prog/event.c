@@ -3469,21 +3469,27 @@ unsigned int bhLipStart()
     return 1;
 }
 
-// 
-// Start address: 0x15b060
+// 100% matching!
 unsigned int bhMutekiSetPl()
 {
 	int v0;
-	// Line 3241, Address: 0x15b060, Func Offset: 0
-	// Line 3242, Address: 0x15b074, Func Offset: 0x14
-	// Line 3243, Address: 0x15b080, Func Offset: 0x20
-	// Line 3245, Address: 0x15b088, Func Offset: 0x28
-	// Line 3246, Address: 0x15b090, Func Offset: 0x30
-	// Line 3247, Address: 0x15b0a4, Func Offset: 0x44
-	// Line 3248, Address: 0x15b0ac, Func Offset: 0x4c
-	// Line 3251, Address: 0x15b0c0, Func Offset: 0x60
-	// Func End, Address: 0x15b0c8, Func Offset: 0x68
-	scePrintf("bhMutekiSetPl - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if (v0 == 0) 
+	{
+        plp->flg &= ~0x4;
+    } 
+	else 
+	{
+        plp->flg |= 0x4;
+    }
+
+    return 1;
 }
 
 // 
