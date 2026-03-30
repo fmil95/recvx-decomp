@@ -25,7 +25,7 @@ void bhSetWaterSplash(BH_PWORK* pp, int jno, int type, float sx, float sy, float
 void bhSetWaterSplash3(_anon23* pos, int ang, int type, float sx, float sy, float sz);
 void bhSetWaterSplash4(_anon23* pos, int ang, int type, float sx, float sy, float sz);*/
 void bhSetGunFire(BH_PWORK* pp, int wno, int jno, int hand, int ang);
-void bhSetYakkyou(BH_PWORK* pp, int wno, int jno, int hand);
+void bhSetYakkyou(BH_PWORK* pp, int wno, int jno, int hand, int ang);
 void bhSetMagazine(BH_PWORK* pp, int wno, int jno, int hand, int ang);
 /*void bhSetLighterFire(_anon1* op, int flg);*/
 

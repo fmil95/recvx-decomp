@@ -3116,55 +3116,80 @@ unsigned int bhWeaponSeCall()
     return 1;
 }
 
-// 
-// Start address: 0x15a830
+// 100% matching!
 unsigned int bhYakkyouSet()
 {
-	BH_PWORK* e_ep;
-	int v7;
-	int v6;
-	int v5;
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 2900, Address: 0x15a830, Func Offset: 0
-	// Line 2905, Address: 0x15a84c, Func Offset: 0x1c
-	// Line 2906, Address: 0x15a860, Func Offset: 0x30
-	// Line 2907, Address: 0x15a86c, Func Offset: 0x3c
-	// Line 2908, Address: 0x15a878, Func Offset: 0x48
-	// Line 2909, Address: 0x15a884, Func Offset: 0x54
-	// Line 2910, Address: 0x15a890, Func Offset: 0x60
-	// Line 2911, Address: 0x15a89c, Func Offset: 0x6c
-	// Line 2912, Address: 0x15a8a8, Func Offset: 0x78
-	// Line 2913, Address: 0x15a8b4, Func Offset: 0x84
-	// Line 2914, Address: 0x15a8c0, Func Offset: 0x90
-	// Line 2915, Address: 0x15a8cc, Func Offset: 0x9c
-	// Line 2916, Address: 0x15a8d8, Func Offset: 0xa8
-	// Line 2917, Address: 0x15a8e4, Func Offset: 0xb4
-	// Line 2921, Address: 0x15a8f0, Func Offset: 0xc0
-	// Line 2918, Address: 0x15a8f4, Func Offset: 0xc4
-	// Line 2919, Address: 0x15a900, Func Offset: 0xd0
-	// Line 2921, Address: 0x15a908, Func Offset: 0xd8
-	// Line 2922, Address: 0x15a910, Func Offset: 0xe0
-	// Line 2924, Address: 0x15a914, Func Offset: 0xe4
-	// Line 2926, Address: 0x15a930, Func Offset: 0x100
-	// Line 2928, Address: 0x15a94c, Func Offset: 0x11c
-	// Line 2929, Address: 0x15a954, Func Offset: 0x124
-	// Line 2930, Address: 0x15a970, Func Offset: 0x140
-	// Line 2931, Address: 0x15a978, Func Offset: 0x148
-	// Line 2933, Address: 0x15a994, Func Offset: 0x164
-	// Line 2939, Address: 0x15a99c, Func Offset: 0x16c
-	// Line 2940, Address: 0x15a9d8, Func Offset: 0x1a8
-	// Line 2941, Address: 0x15a9e0, Func Offset: 0x1b0
-	// Line 2942, Address: 0x15a9f4, Func Offset: 0x1c4
-	// Line 2943, Address: 0x15a9fc, Func Offset: 0x1cc
-	// Line 2948, Address: 0x15aa10, Func Offset: 0x1e0
-	// Line 2947, Address: 0x15aa28, Func Offset: 0x1f8
-	// Line 2948, Address: 0x15aa2c, Func Offset: 0x1fc
-	// Func End, Address: 0x15aa34, Func Offset: 0x204
-	scePrintf("bhYakkyouSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4, v5, v6, v7;
+	ETTY_WORK* enep; // not from DWARF
+    BH_PWORK* e_ep;
+    
+    bhScePtr++;
+	
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+
+    v7 = *bhScePtr;
+
+    bhScePtr++;
+
+    v5 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if ((v7 & 0x2)) 
+	{
+        v5 = -v5;
+    }
+
+    v6 = 182.04445f * v5;
+    
+    switch (v0)
+	{
+	case 0:
+		if (v2 == 0) 
+		{
+			bhSetYakkyou(plp, plp->wpnr_no, 13, v2, v6);
+		} 
+		else 
+		{
+			bhSetYakkyou(plp, plp->wpnr_no, 9, v2, v6);
+		}
+
+		break;
+	case 1:
+		enep = &rom->enep[v4];
+		e_ep = &ene[enep->wrk_no];
+
+		if (v2 == 0) 
+		{
+			bhSetYakkyou(e_ep, v3, v1, v2, v6);
+		} 
+		else 
+		{
+			bhSetYakkyou(e_ep, v3, v1, v2, v6);
+		}
+
+		break;
+    }
+
+    return 1;
 }
 
 // 

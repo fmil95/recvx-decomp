@@ -2846,14 +2846,14 @@ void bhSetGunFire(BH_PWORK* pp, int wno, int jno, int hand, int ang)
 	scePrintf("bhSetGunFire - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x1550d0
-void bhSetYakkyou(BH_PWORK* pp, int wno, int jno, int hand)
+void bhSetYakkyou(BH_PWORK* pp, int wno, int jno, int hand, int ang) // fifth parameter is not present on DWARF
 {
-	_anon23 jps;
-	_anon23 wps;
-	_anon23 ops;
-	_anon13* eft;
+	//_anon23 jps;
+	//_anon23 wps;
+	//_anon23 ops;
+	//_anon13* eft;
 	short hl;
 	short hr;
 	// Line 3067, Address: 0x1550d0, Func Offset: 0
@@ -2966,9 +2966,10 @@ void bhSetYakkyou(BH_PWORK* pp, int wno, int jno, int hand)
 	// Line 3154, Address: 0x155634, Func Offset: 0x564
 	// Line 3158, Address: 0x15564c, Func Offset: 0x57c
 	// Func End, Address: 0x155678, Func Offset: 0x5a8
+	scePrintf("bhSetYakkyou - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x155680
 void bhSetMagazine(BH_PWORK* pp, int wno, int jno, int hand, int ang)
 {
