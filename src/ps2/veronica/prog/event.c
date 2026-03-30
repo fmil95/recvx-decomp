@@ -3431,31 +3431,42 @@ unsigned int bhMaskStart()
     return 1;
 }
 
-// 
-// Start address: 0x15af90
+// 100% matching!
 unsigned int bhLipStart()
 {
-	BH_PWORK* pp;
-	unsigned int v2;
 	int v1;
-	// Line 3207, Address: 0x15af90, Func Offset: 0
-	// Line 3220, Address: 0x15af98, Func Offset: 0x8
-	// Line 3207, Address: 0x15afa8, Func Offset: 0x18
-	// Line 3209, Address: 0x15afb4, Func Offset: 0x24
-	// Line 3210, Address: 0x15afc8, Func Offset: 0x38
-	// Line 3211, Address: 0x15afd4, Func Offset: 0x44
-	// Line 3212, Address: 0x15afe0, Func Offset: 0x50
-	// Line 3220, Address: 0x15afe8, Func Offset: 0x58
-	// Line 3212, Address: 0x15aff4, Func Offset: 0x64
-	// Line 3213, Address: 0x15aff8, Func Offset: 0x68
-	// Line 3220, Address: 0x15b004, Func Offset: 0x74
-	// Line 3222, Address: 0x15b024, Func Offset: 0x94
-	// Line 3223, Address: 0x15b02c, Func Offset: 0x9c
-	// Line 3224, Address: 0x15b038, Func Offset: 0xa8
-	// Line 3225, Address: 0x15b040, Func Offset: 0xb0
-	// Line 3228, Address: 0x15b054, Func Offset: 0xc4
-	// Func End, Address: 0x15b05c, Func Offset: 0xcc
-	scePrintf("bhLipStart - UNIMPLEMENTED!\n");
+	unsigned int v2;
+	BH_PWORK* pp;
+	int v0;          // not from DWARF
+	ETTY_WORK* enep; // not from DWARF
+	
+	bhScePtr++;
+    
+	v0 = *bhScePtr;
+    
+	bhScePtr++;
+    
+	v1 = *bhScePtr;
+    
+	bhScePtr++;
+    
+	v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    enep = &rom->enep[v1];
+    pp = &ene[enep->wrk_no];
+    
+    if (v2 == 0) 
+	{
+        ((int*)pp->exp0)[0] |= 0x4;
+    } 
+	else 
+	{
+        ((int*)pp->exp0)[0] &= ~0x4;
+    }
+    
+    return 1;
 }
 
 // 
