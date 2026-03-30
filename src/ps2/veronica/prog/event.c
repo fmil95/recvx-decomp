@@ -3241,37 +3241,65 @@ unsigned int bhRoomCaseNo()
 	return 1;
 }
 
-// 
-// Start address: 0x15ab50
+// 100% matching! 
 unsigned int bhFrameCheck()
 {
-	int v5;
-	int v4;
-	unsigned int v3;
-	unsigned int v2;
-	int v1;
-	int v0;
-	// Line 3009, Address: 0x15ab50, Func Offset: 0
-	// Line 3010, Address: 0x15ab64, Func Offset: 0x14
-	// Line 3011, Address: 0x15ab70, Func Offset: 0x20
-	// Line 3012, Address: 0x15ab7c, Func Offset: 0x2c
-	// Line 3013, Address: 0x15ab88, Func Offset: 0x38
-	// Line 3014, Address: 0x15ab94, Func Offset: 0x44
-	// Line 3015, Address: 0x15aba0, Func Offset: 0x50
-	// Line 3016, Address: 0x15abac, Func Offset: 0x5c
-	// Line 3017, Address: 0x15abb8, Func Offset: 0x68
-	// Line 3020, Address: 0x15abc4, Func Offset: 0x74
-	// Line 3021, Address: 0x15abcc, Func Offset: 0x7c
-	// Line 3024, Address: 0x15abd4, Func Offset: 0x84
-	// Line 3026, Address: 0x15abfc, Func Offset: 0xac
-	// Line 3027, Address: 0x15ac04, Func Offset: 0xb4
-	// Line 3034, Address: 0x15ac0c, Func Offset: 0xbc
-	// Line 3035, Address: 0x15ac4c, Func Offset: 0xfc
-	// Line 3041, Address: 0x15ac54, Func Offset: 0x104
-	// Line 3045, Address: 0x15ac88, Func Offset: 0x138
-	// Line 3048, Address: 0x15aca0, Func Offset: 0x150
-	// Func End, Address: 0x15aca8, Func Offset: 0x158
-	scePrintf("bhFrameCheck - UNIMPLEMENTED!\n");
+	int v0, v1;
+	unsigned int v2, v3;
+	int v4, v5;
+	O_WRK* e_ip;     // not from DWARF
+    ETTY_WORK* enep; // not from DWARF
+    BH_PWORK* e_ep;  // not from DWARF
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;  
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v4 = v3 << 16;
+    
+    if (v2 != 0) 
+	{
+       v4 += 32767 + 1;
+    }
+    
+    switch (v0) 
+	{
+	case 0:
+		v5 = plp->frm_no;
+		break;
+	case 1:
+		enep = &rom->enep[v1];
+		e_ep = &ene[enep->wrk_no];
+
+		v5 = e_ep->frm_no;
+		break;
+	case 2:
+		e_ip = &sys->obwp[v1];
+
+		v5 = e_ip->frm_no;
+		break;
+    }
+    
+    if (v5 >= v4)
+	{
+		return 0;
+	}
+
+	return 1;
 }
 
 // 
