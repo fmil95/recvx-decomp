@@ -3504,39 +3504,34 @@ unsigned int bhEffDispSet()
     return 1;
 }
 
-// 
-// Start address: 0x15b700
+// 100% matching!
 unsigned int bhEffAmbSet()
 {
-	unsigned int v3;
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 3437, Address: 0x15b700, Func Offset: 0
-	// Line 3447, Address: 0x15b708, Func Offset: 0x8
-	// Line 3437, Address: 0x15b714, Func Offset: 0x14
-	// Line 3438, Address: 0x15b720, Func Offset: 0x20
-	// Line 3439, Address: 0x15b72c, Func Offset: 0x2c
-	// Line 3440, Address: 0x15b738, Func Offset: 0x38
-	// Line 3441, Address: 0x15b744, Func Offset: 0x44
-	// Line 3442, Address: 0x15b750, Func Offset: 0x50
-	// Line 3443, Address: 0x15b75c, Func Offset: 0x5c
-	// Line 3444, Address: 0x15b768, Func Offset: 0x68
-	// Line 3445, Address: 0x15b774, Func Offset: 0x74
-	// Line 3447, Address: 0x15b77c, Func Offset: 0x7c
-	// Line 3448, Address: 0x15b7b8, Func Offset: 0xb8
-	// Line 3447, Address: 0x15b7c0, Func Offset: 0xc0
-	// Line 3448, Address: 0x15b7c4, Func Offset: 0xc4
-	// Line 3447, Address: 0x15b7c8, Func Offset: 0xc8
-	// Line 3448, Address: 0x15b7cc, Func Offset: 0xcc
-	// Line 3449, Address: 0x15b808, Func Offset: 0x108
-	// Line 3448, Address: 0x15b814, Func Offset: 0x114
-	// Line 3449, Address: 0x15b818, Func Offset: 0x118
-	// Line 3450, Address: 0x15b854, Func Offset: 0x154
-	// Line 3449, Address: 0x15b858, Func Offset: 0x158
-	// Line 3451, Address: 0x15b85c, Func Offset: 0x15c
-	// Func End, Address: 0x15b864, Func Offset: 0x164
-	scePrintf("bhEffAmbSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1, v2, v3;
+    
+    bhScePtr++;
+	
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    rom->amb_r[v3] = 0.1f * v0;
+    rom->amb_g[v3] = 0.1f * v1;
+    rom->amb_b[v3] = 0.1f * v2;
+
+    return 1;
 }
 
 // 100% matching!
