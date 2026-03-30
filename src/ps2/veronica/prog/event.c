@@ -3492,47 +3492,55 @@ unsigned int bhMutekiSetPl()
     return 1;
 }
 
-// 
-// Start address: 0x15b0d0
+// 100% matching!
 unsigned int bhLookGsetPlStart()
 {
 	int v1;
-	// Line 3264, Address: 0x15b0d0, Func Offset: 0
-	// Line 3269, Address: 0x15b0d8, Func Offset: 0x8
-	// Line 3268, Address: 0x15b0dc, Func Offset: 0xc
-	// Line 3264, Address: 0x15b0e4, Func Offset: 0x14
-	// Line 3265, Address: 0x15b0f0, Func Offset: 0x20
-	// Line 3266, Address: 0x15b0fc, Func Offset: 0x2c
-	// Line 3268, Address: 0x15b108, Func Offset: 0x38
-	// Line 3269, Address: 0x15b10c, Func Offset: 0x3c
-	// Line 3268, Address: 0x15b110, Func Offset: 0x40
-	// Line 3272, Address: 0x15b114, Func Offset: 0x44
-	// Line 3268, Address: 0x15b118, Func Offset: 0x48
-	// Line 3269, Address: 0x15b120, Func Offset: 0x50
-	// Line 3272, Address: 0x15b128, Func Offset: 0x58
-	// Line 3273, Address: 0x15b130, Func Offset: 0x60
-	// Line 3274, Address: 0x15b194, Func Offset: 0xc4
-	// Line 3275, Address: 0x15b19c, Func Offset: 0xcc
-	// Line 3277, Address: 0x15b1f4, Func Offset: 0x124
-	// Line 3280, Address: 0x15b1fc, Func Offset: 0x12c
-	// Line 3277, Address: 0x15b200, Func Offset: 0x130
-	// Line 3280, Address: 0x15b208, Func Offset: 0x138
-	// Line 3281, Address: 0x15b210, Func Offset: 0x140
-	// Line 3282, Address: 0x15b274, Func Offset: 0x1a4
-	// Line 3283, Address: 0x15b27c, Func Offset: 0x1ac
-	// Line 3285, Address: 0x15b2d4, Func Offset: 0x204
-	// Line 3288, Address: 0x15b2dc, Func Offset: 0x20c
-	// Line 3285, Address: 0x15b2e0, Func Offset: 0x210
-	// Line 3288, Address: 0x15b2e8, Func Offset: 0x218
-	// Line 3289, Address: 0x15b2f0, Func Offset: 0x220
-	// Line 3290, Address: 0x15b354, Func Offset: 0x284
-	// Line 3291, Address: 0x15b35c, Func Offset: 0x28c
-	// Line 3293, Address: 0x15b3b4, Func Offset: 0x2e4
-	// Line 3294, Address: 0x15b3bc, Func Offset: 0x2ec
-	// Line 3293, Address: 0x15b3c0, Func Offset: 0x2f0
-	// Line 3295, Address: 0x15b3c8, Func Offset: 0x2f8
-	// Func End, Address: 0x15b3d0, Func Offset: 0x300
-	scePrintf("bhLookGsetPlStart - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+    
+    ((int*)plp->exp1)[0] |= 0x18;
+
+    ((int*)plp->exp1)[16] = 1;
+    
+    if ((v1 & 0x1)) 
+	{
+        ((float*)plp->exp1)[18] = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        ((float*)plp->exp1)[18] = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v1 & 0x2)) 
+	{
+        ((float*)plp->exp1)[19] = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else
+	{
+        ((float*)plp->exp1)[19] = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v1 & 0x4)) 
+	{
+        ((float*)plp->exp1)[20] = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else
+	{
+        ((float*)plp->exp1)[20] = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+
+    return 1;
 }
 
 // 100% matching!
