@@ -2950,29 +2950,45 @@ unsigned int bhEtcAtariSet2()
     return 1;
 }
 
-// 
-// Start address: 0x15a2f0
+// 100% matching! 
 unsigned int bhLightSet()
 {
-	//_anon11* lp;
-	int v2;
-	int v1;
-	int v0;
-	// Line 2769, Address: 0x15a2f0, Func Offset: 0
-	// Line 2770, Address: 0x15a304, Func Offset: 0x14
-	// Line 2771, Address: 0x15a310, Func Offset: 0x20
-	// Line 2772, Address: 0x15a31c, Func Offset: 0x2c
-	// Line 2773, Address: 0x15a328, Func Offset: 0x38
-	// Line 2774, Address: 0x15a334, Func Offset: 0x44
-	// Line 2775, Address: 0x15a340, Func Offset: 0x50
-	// Line 2786, Address: 0x15a348, Func Offset: 0x58
-	// Line 2789, Address: 0x15a38c, Func Offset: 0x9c
-	// Line 2790, Address: 0x15a394, Func Offset: 0xa4
-	// Line 2791, Address: 0x15a39c, Func Offset: 0xac
-	// Line 2792, Address: 0x15a3a4, Func Offset: 0xb4
-	// Line 2795, Address: 0x15a3b4, Func Offset: 0xc4
-	// Func End, Address: 0x15a3bc, Func Offset: 0xcc
-	scePrintf("bhLightSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2;
+    LGT_WORK* lp;
+    
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if (v0 == 0) 
+	{
+        lp = &rom->lgtp[v1];
+    } 
+	else 
+	{
+        lp = &rom->evlp[v1];
+    }
+    
+    if (v2 == 0) 
+	{
+        lp->flg |= 0x1;
+    } 
+	else 
+	{
+        lp->flg &= ~0x1;
+    }
+
+    return 1;
 }
 
 // 
@@ -3510,7 +3526,7 @@ unsigned int bhEffAmbSet()
 	unsigned int v0, v1, v2, v3;
     
     bhScePtr++;
-	
+
     v0 = *bhScePtr;
 
     bhScePtr++;
