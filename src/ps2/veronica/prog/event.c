@@ -636,11 +636,10 @@ unsigned int bhSet()
     }
 }
 
-// 86.57% matching (matches on GC)
+// 100% matching!
 unsigned int bhCmpB()
 {
     unsigned int v0, v1, v2, v3; 
-    int ret; // not from DWARF
     
     bhScePtr++;
     
@@ -693,26 +692,18 @@ unsigned int bhCmpB()
     switch (v2)
     {
     case 0: 
-        ret = v0 == v1; 
-        break;
+        return v0 == v1; 
     case 1: 
-        ret = v0 > v1; 
-        break;
+        return v0 > v1; 
     case 2: 
-        ret = v0 >= v1; 
-        break;
+        return v0 >= v1; 
     case 3: 
-        ret = v0 < v1; 
-        break;
+        return v0 < v1; 
     case 4: 
-        ret = v0 <= v1; 
-        break;
+        return v0 <= v1; 
     case 5: 
-        ret = v0 != v1; 
-        break;
+        return v0 != v1; 
     }
-   
-    return ret;
 }
 
 // 100% matching! 
