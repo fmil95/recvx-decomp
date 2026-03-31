@@ -6416,21 +6416,27 @@ unsigned int bhMapSystemOn()
 	scePrintf("bhMapSystemOn - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x162790
+// 100% matching! 
 unsigned int bhTrapDamageSet()
 {
-	unsigned int v0;
-	// Line 6435, Address: 0x162790, Func Offset: 0
-	// Line 6436, Address: 0x1627a4, Func Offset: 0x14
-	// Line 6437, Address: 0x1627b0, Func Offset: 0x20
-	// Line 6439, Address: 0x1627b8, Func Offset: 0x28
-	// Line 6440, Address: 0x1627c0, Func Offset: 0x30
-	// Line 6441, Address: 0x1627d0, Func Offset: 0x40
-	// Line 6442, Address: 0x1627d8, Func Offset: 0x48
-	// Line 6445, Address: 0x1627f0, Func Offset: 0x60
-	// Func End, Address: 0x1627f8, Func Offset: 0x68
-	scePrintf("bhTrapDamageSet - UNIMPLEMENTED!\n");
+    unsigned int v0;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    if (v0 == 0) 
+    {
+        plp->stflg |= 0x1000;
+    } 
+    else 
+    {
+        plp->stflg &= ~0x1000;
+    }
+    
+    return 1;
 }
 
 // 
