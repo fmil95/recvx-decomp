@@ -8487,28 +8487,29 @@ unsigned int bhEwhile()
     return 1;
 }
 
-// 
-// Start address: 0x167720
+// 100% matching! 
 unsigned int bhEwhile2()
 {
-	// Line 8791, Address: 0x167720, Func Offset: 0
-	// Line 8792, Address: 0x167728, Func Offset: 0x8
-	// Line 8795, Address: 0x167730, Func Offset: 0x10
-	// Line 8792, Address: 0x167738, Func Offset: 0x18
-	// Line 8793, Address: 0x167744, Func Offset: 0x24
-	// Line 8795, Address: 0x167764, Func Offset: 0x44
-	// Line 8797, Address: 0x16778c, Func Offset: 0x6c
-	// Line 8798, Address: 0x1677a8, Func Offset: 0x88
-	// Line 8800, Address: 0x1677b0, Func Offset: 0x90
-	// Line 8803, Address: 0x1677b8, Func Offset: 0x98
-	// Line 8800, Address: 0x1677bc, Func Offset: 0x9c
-	// Line 8801, Address: 0x1677c8, Func Offset: 0xa8
-	// Line 8802, Address: 0x1677dc, Func Offset: 0xbc
-	// Line 8803, Address: 0x1677e4, Func Offset: 0xc4
-	// Line 8806, Address: 0x1677ec, Func Offset: 0xcc
-	// Line 8807, Address: 0x1677f0, Func Offset: 0xd0
-	// Func End, Address: 0x1677fc, Func Offset: 0xdc
-	scePrintf("bhEwhile2 - UNIMPLEMENTED!\n");
+	bhCetask->data = bhScePtr;
+    
+    bhScePtr = bhCetask->lcondition[bhCetask->loop];
+
+    if (bhScenarioJmpT[*bhScePtr]() != 0) 
+    {
+        bhScePtr = bhCetask->lstack[bhCetask->loop];
+    } 
+    else 
+    {
+        bhScePtr = bhCetask->data;
+        
+        bhScePtr++;
+        
+        bhCetask->loop--;
+        
+        return 1;
+    }
+
+    return 1;
 }
 
 // 100% matching! 
