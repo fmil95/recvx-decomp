@@ -366,7 +366,7 @@ unsigned int bhEnd()
 	return 0;
 }
 
-// 99.17% matching (matches on GC)
+// 100% matching!
 unsigned int bhIfelCk()
 {
     unsigned int v0; 
@@ -375,7 +375,7 @@ unsigned int bhIfelCk()
     
     bhScePtr += 2;
     
-    G_Sp = (unsigned int*)&bhScePtr[v0 >> 8];
+    G_Sp = (unsigned int*)((int)bhScePtr + (v0 >> 8));
     
     G_Sp++;
 
