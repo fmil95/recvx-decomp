@@ -6370,22 +6370,37 @@ unsigned int bhPuruPuruStart()
 	return 1;
 }
 
-// 
-// Start address: 0x162620
+// 100% matching!
 unsigned int bhSubMapBusyCk()
 {
-	unsigned int v0;
-	// Line 6388, Address: 0x162620, Func Offset: 0
-	// Line 6391, Address: 0x162628, Func Offset: 0x8
-	// Line 6388, Address: 0x162634, Func Offset: 0x14
-	// Line 6389, Address: 0x162640, Func Offset: 0x20
-	// Line 6390, Address: 0x16264c, Func Offset: 0x2c
-	// Line 6391, Address: 0x162658, Func Offset: 0x38
-	// Line 6392, Address: 0x162674, Func Offset: 0x54
-	// Line 6395, Address: 0x162680, Func Offset: 0x60
-	// Line 6397, Address: 0x16268c, Func Offset: 0x6c
-	// Func End, Address: 0x162694, Func Offset: 0x74
-	scePrintf("bhSubMapBusyCk - UNIMPLEMENTED!\n");
+    unsigned int v0;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    if (((sys->st_flg & 0x40000)) || ((sys->st_flg & 0x8))) 
+    {
+        if (v0 != 0)
+        {
+            return 0;
+        }
+        else 
+        {
+            return 1;
+        }
+    }
+    
+    if (v0 == 0) 
+    {
+        return 0;
+    }
+    else 
+    {
+        return 1;
+    }
 }
 
 // 
