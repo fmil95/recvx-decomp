@@ -2345,15 +2345,13 @@ unsigned int bhSetDoorCall()
     return 1;
 }
 
-// 98.77% matching (matches on GC)
+// 100% matching!
 unsigned int bhDieEventCk() 
 {
-	unsigned int v4;      // not from DWARF
     unsigned int v3;
     unsigned int v2;
     unsigned int die_cnt;
     int* v1;              // not from DWARF
-    int ret;              // not from DWARF
 
     bhScePtr++;
     
@@ -2369,9 +2367,7 @@ unsigned int bhDieEventCk()
     {
         v1 = (int*)&sys->ed_flg;
         
-        v4 = v3 + (v2 - 1);
-        
-        if (!(((v1[(v4 & 0x1FF) >> 5] << (v4 & 0x1F)) < 0) ^ 1)) 
+        if (!(((v1[((v3 + (v2 - 1)) & 0x1FF) >> 5] << ((v3 + (v2 - 1)) & 0x1F)) < 0) ^ 1)) 
         {
             die_cnt++;
         }
@@ -2390,26 +2386,18 @@ unsigned int bhDieEventCk()
     switch (v3) 
     {
     case 0: 
-        ret = die_cnt == v2; 
-        break;
+        return die_cnt == v2; 
     case 1: 
-        ret = die_cnt > v2; 
-        break;
+        return die_cnt > v2; 
     case 2: 
-        ret = die_cnt >= v2; 
-        break;
+        return die_cnt >= v2; 
     case 3: 
-        ret = die_cnt < v2; 
-        break;
+        return die_cnt < v2; 
     case 4: 
-        ret = die_cnt <= v2;
-        break;
+        return die_cnt <= v2;
     case 5: 
-        ret = die_cnt != v2; 
-        break;
+        return die_cnt != v2; 
     }
-    
-    return ret; 
 }
 
 // 100% matching!
