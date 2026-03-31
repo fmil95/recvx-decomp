@@ -12458,31 +12458,71 @@ unsigned int bhFlagCk(unsigned char type, unsigned int cnt, unsigned char flag)
     return flag ^ (v0[(cnt & 0x3FF) >> 5] << (cnt & 0x1F)) < 0;
 }
 
-// 
-// Start address: 0x171900
+// 100% matching! 
 unsigned int bhFlagSet(unsigned char type, unsigned int cnt, unsigned char flag)
 {
-	int v1;
-	int* v0;
-	// Line 12565, Address: 0x171900, Func Offset: 0
-	// Line 12566, Address: 0x17192c, Func Offset: 0x2c
-	// Line 12567, Address: 0x17193c, Func Offset: 0x3c
-	// Line 12568, Address: 0x17194c, Func Offset: 0x4c
-	// Line 12569, Address: 0x17195c, Func Offset: 0x5c
-	// Line 12570, Address: 0x17196c, Func Offset: 0x6c
-	// Line 12571, Address: 0x17197c, Func Offset: 0x7c
-	// Line 12572, Address: 0x17198c, Func Offset: 0x8c
-	// Line 12573, Address: 0x17199c, Func Offset: 0x9c
-	// Line 12574, Address: 0x1719ac, Func Offset: 0xac
-	// Line 12575, Address: 0x1719bc, Func Offset: 0xbc
-	// Line 12577, Address: 0x1719c8, Func Offset: 0xc8
-	// Line 12579, Address: 0x1719d8, Func Offset: 0xd8
-	// Line 12581, Address: 0x171a04, Func Offset: 0x104
-	// Line 12583, Address: 0x171a1c, Func Offset: 0x11c
-	// Line 12585, Address: 0x171a38, Func Offset: 0x138
-	// Line 12587, Address: 0x171a50, Func Offset: 0x150
-	// Func End, Address: 0x171a58, Func Offset: 0x158
-	scePrintf("bhFlagSet - UNIMPLEMENTED!\n");
+    int* v0;
+    int v1; 
+    
+    switch (type) 
+    {
+    case 1:
+        v0 = (int*)&sys->ev_flg;
+        break;
+    case 2:
+        v0 = (int*)&sys->ky_flg;
+        break;
+    case 3:
+        v0 = (int*)&sys->ed_flg;
+        break;
+    case 4:
+        v0 = (int*)&sys->rm_flg;
+        break;
+    case 5:
+        v0 = (int*)&sys->st_flg;
+        break;
+    case 6:
+        v0 = (int*)&sys->sp_flg;
+        break;
+    case 7:
+        v0 = (int*)&sys->it_flg;
+        break;
+    case 8:
+        v0 = (int*)&sys->mp_flg;
+        break;
+    case 9:
+        v0 = (int*)&sys->ic_flg;
+        break;
+    case 11:
+        v0 = (int*)&sys->gm_flg;
+        break;
+    }
+
+    v0 = &v0[(cnt & 0x3E0) >> 5]; 
+    
+    cnt &= 0x1F;
+
+    switch (flag) 
+    {     
+    case 0:          
+        v1 = 0x80000000 >> cnt;
+        
+        *v0 |= v1;
+        
+        return 1;
+    case 1:         
+        v1 = ~(0x80000000 >> cnt);
+            
+        *v0 &= v1;
+        
+        return 1;
+    case 2:            
+        v1 = 0x80000000 >> cnt;
+        
+        *v0 ^= v1;
+        
+        return 1;
+    }
 }
 
 // 
