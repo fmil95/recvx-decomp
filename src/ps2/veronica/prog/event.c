@@ -12220,55 +12220,57 @@ unsigned int bhLoadWorkEx()
 	scePrintf("bhLoadWorkEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x171370
+// 100% matching! 
 unsigned int bhLoadWork2()
 {
-	unsigned int tk_no;
-	unsigned char* a0;
-	//_anon21* e_enep;
-	//unsigned char* a0;
-	// Line 12322, Address: 0x171370, Func Offset: 0
-	// Line 12323, Address: 0x171378, Func Offset: 0x8
-	// Line 12322, Address: 0x17137c, Func Offset: 0xc
-	// Line 12323, Address: 0x171388, Func Offset: 0x18
-	// Line 12325, Address: 0x1713b8, Func Offset: 0x48
-	// Line 12326, Address: 0x1713c0, Func Offset: 0x50
-	// Line 12327, Address: 0x1713c4, Func Offset: 0x54
-	// Line 12325, Address: 0x1713c8, Func Offset: 0x58
-	// Line 12326, Address: 0x1713d4, Func Offset: 0x64
-	// Line 12327, Address: 0x1713e0, Func Offset: 0x70
-	// Line 12326, Address: 0x1713e4, Func Offset: 0x74
-	// Line 12327, Address: 0x1713e8, Func Offset: 0x78
-	// Line 12336, Address: 0x1713f0, Func Offset: 0x80
-	// Line 12327, Address: 0x1713f4, Func Offset: 0x84
-	// Line 12336, Address: 0x171400, Func Offset: 0x90
-	// Line 12337, Address: 0x171408, Func Offset: 0x98
-	// Line 12336, Address: 0x17140c, Func Offset: 0x9c
-	// Line 12337, Address: 0x171418, Func Offset: 0xa8
-	// Line 12338, Address: 0x17141c, Func Offset: 0xac
-	// Line 12345, Address: 0x171424, Func Offset: 0xb4
-	// Line 12347, Address: 0x171434, Func Offset: 0xc4
-	// Line 12345, Address: 0x17143c, Func Offset: 0xcc
-	// Line 12347, Address: 0x171440, Func Offset: 0xd0
-	// Line 12345, Address: 0x171448, Func Offset: 0xd8
-	// Line 12347, Address: 0x171458, Func Offset: 0xe8
-	// Line 12349, Address: 0x171474, Func Offset: 0x104
-	// Line 12357, Address: 0x17147c, Func Offset: 0x10c
-	// Line 12360, Address: 0x171480, Func Offset: 0x110
-	// Line 12358, Address: 0x171488, Func Offset: 0x118
-	// Line 12360, Address: 0x171490, Func Offset: 0x120
-	// Line 12362, Address: 0x1714b8, Func Offset: 0x148
-	// Line 12360, Address: 0x1714c4, Func Offset: 0x154
-	// Line 12362, Address: 0x1714dc, Func Offset: 0x16c
-	// Line 12360, Address: 0x1714e0, Func Offset: 0x170
-	// Line 12362, Address: 0x1714e4, Func Offset: 0x174
-	// Line 12366, Address: 0x1714ec, Func Offset: 0x17c
-	// Line 12367, Address: 0x1714f4, Func Offset: 0x184
-	// Line 12366, Address: 0x1714f8, Func Offset: 0x188
-	// Line 12368, Address: 0x171500, Func Offset: 0x190
-	// Func End, Address: 0x171508, Func Offset: 0x198
-	scePrintf("bhLoadWork2 - UNIMPLEMENTED!\n");
+    ETTY_WORK* e_enep;
+    unsigned int tk_no;
+
+    bhScePtr++;
+    
+    switch (*bhScePtr) 
+    {                             
+    case 0:
+        bhCetask->work = plp;
+        
+        bhCetask->work->mode0 = 7;
+        
+        bhCetask->work->stflg |= 0x10000;
+        bhCetask->work->flg |= 0x10000;
+        
+        bhCetask->model_cno = 0;
+        break;
+    case 1:
+    {
+        unsigned char* a0;
+        
+        a0 = bhScePtr;
+        
+        e_enep = &rom->enep[*++a0]; 
+        
+        bhCetask->work = &ene[e_enep->wrk_no];
+        break;
+    }
+    case 2:
+    {
+        unsigned char* a0; 
+        
+        a0 = bhScePtr;
+        
+        a0++;
+        
+        tk_no = *++a0;
+        
+        bhEtask[tk_no].work = (BH_PWORK*)&sys->obwp[*++a0];
+        
+        bhEtask[tk_no].model_cno = *++a0;
+        break;
+    }
+    }
+    
+    bhScePtr += 5;
+    
+    return 1;
 }
 
 // 94.07% matching (matches on GC)
