@@ -8997,32 +8997,33 @@ unsigned int bhObjCtr()
     return 1;
 }
 
-// 
-// Start address: 0x168c20
+// 100% matching!
 int Obj_controll()
 {
-	unsigned char v0;
-	// Line 9275, Address: 0x168c20, Func Offset: 0
-	// Line 9285, Address: 0x168c4c, Func Offset: 0x2c
-	// Line 9281, Address: 0x168c50, Func Offset: 0x30
-	// Line 9285, Address: 0x168c54, Func Offset: 0x34
-	// Line 9281, Address: 0x168c58, Func Offset: 0x38
-	// Line 9282, Address: 0x168c60, Func Offset: 0x40
-	// Line 9285, Address: 0x168c68, Func Offset: 0x48
-	// Line 9282, Address: 0x168c70, Func Offset: 0x50
-	// Line 9283, Address: 0x168c74, Func Offset: 0x54
-	// Line 9285, Address: 0x168c78, Func Offset: 0x58
-	// Line 9283, Address: 0x168c7c, Func Offset: 0x5c
-	// Line 9285, Address: 0x168c84, Func Offset: 0x64
-	// Line 9286, Address: 0x168c90, Func Offset: 0x70
-	// Line 9285, Address: 0x168c94, Func Offset: 0x74
-	// Line 9286, Address: 0x168cac, Func Offset: 0x8c
-	// Line 9288, Address: 0x168ccc, Func Offset: 0xac
-	// Line 9292, Address: 0x168cd4, Func Offset: 0xb4
-	// Line 9293, Address: 0x168cdc, Func Offset: 0xbc
-	// Line 9296, Address: 0x168cf0, Func Offset: 0xd0
-	// Func End, Address: 0x168cf8, Func Offset: 0xd8
-	scePrintf("Obj_controll - UNIMPLEMENTED!\n");
+    unsigned char v0;
+
+    v0 = *bhScePtr;
+    
+    switch (v0)
+    {                       
+    case 20:
+        bhScePtr++;
+        
+        v0 = *bhScePtr;
+        
+        bhScePtr += 2;
+
+        bhCetask->work->px += bhEtask[v0].work->mlwP->objP->pos[0];
+        bhCetask->work->pz += bhEtask[v0].work->mlwP->objP->pos[2];
+        break;
+    case 1:
+        bhCetask->mode1 = 0;
+        
+        bhScePtr++;
+        break;
+    default:
+        return;
+    }
 }
 
 // 100% matching!
