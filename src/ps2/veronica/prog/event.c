@@ -8,7 +8,10 @@
 #include "hitchk.h"
 #include "message.h"
 #include "player.h"
+#include "ps2_NaFog.h"
 #include "ps2_NaMath.h"
+#include "ps2_dummy.h"
+#include "ps2_texture.h"
 #include "pwksub.h"
 #include "room.h"
 #include "screen.h"
@@ -8318,33 +8321,39 @@ unsigned int bhEffLinkOffsetSet()
 	scePrintf("bhEffLinkOffsetSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x167350
+// 100% matching! 
 unsigned int bhRankingCall()
 {
-	// Line 8414, Address: 0x167350, Func Offset: 0
-	// Line 8415, Address: 0x167358, Func Offset: 0x8
-	// Line 8416, Address: 0x167360, Func Offset: 0x10
-	// Line 8415, Address: 0x16736c, Func Offset: 0x1c
-	// Line 8416, Address: 0x167378, Func Offset: 0x28
-	// Line 8417, Address: 0x167380, Func Offset: 0x30
-	// Line 8418, Address: 0x167388, Func Offset: 0x38
-	// Line 8419, Address: 0x167398, Func Offset: 0x48
-	// Line 8421, Address: 0x1673a0, Func Offset: 0x50
-	// Line 8423, Address: 0x1673a8, Func Offset: 0x58
-	// Line 8425, Address: 0x1673d8, Func Offset: 0x88
-	// Line 8431, Address: 0x1673e8, Func Offset: 0x98
-	// Line 8432, Address: 0x1673f0, Func Offset: 0xa0
-	// Line 8425, Address: 0x1673f4, Func Offset: 0xa4
-	// Line 8426, Address: 0x1673f8, Func Offset: 0xa8
-	// Line 8427, Address: 0x167404, Func Offset: 0xb4
-	// Line 8428, Address: 0x167410, Func Offset: 0xc0
-	// Line 8429, Address: 0x16741c, Func Offset: 0xcc
-	// Line 8430, Address: 0x167430, Func Offset: 0xe0
-	// Line 8431, Address: 0x167450, Func Offset: 0x100
-	// Line 8433, Address: 0x167464, Func Offset: 0x114
-	// Func End, Address: 0x167470, Func Offset: 0x120
-	scePrintf("bhRankingCall - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+    
+    sys->ss_flg |= 0x20000;
+    
+    njFogDisable();
+    
+    njSetBackColor(0, 0, 0);
+    
+    bhReleaseMainTexture();
+    
+    Ps2ClearOT();
+    
+    if (sys->fade_an > 0) 
+    {
+        bhDrawScreenFade();
+    }
+    
+    sys->tk_flg = 0x702040;
+    sys->ts_flg = 0;
+    
+    sys->typ_md0 = 0;
+    sys->typ_flg = 0;
+    
+    sys->ssv_tim = 0;
+    
+    sys->memp = sys->mempb;
+    
+    sys->ss_flg &= ~0x20000;
+    
+    return 1;
 }
 
 // 100% matching!
