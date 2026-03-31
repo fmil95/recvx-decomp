@@ -12072,108 +12072,99 @@ int Common_controll()
     }
 }
 
-// 
-// Start address: 0x170cd0
+// 100% matching! 
 unsigned int bhLoadWork()
 {
-	unsigned char* a0;
-	//unsigned char* a0;
-	//unsigned char* a0;
-	//_anon21* e_enep;
-	//unsigned char* a0;
-	// Line 12111, Address: 0x170cd0, Func Offset: 0
-	// Line 12112, Address: 0x170cd8, Func Offset: 0x8
-	// Line 12111, Address: 0x170cdc, Func Offset: 0xc
-	// Line 12112, Address: 0x170ce8, Func Offset: 0x18
-	// Line 12114, Address: 0x170d30, Func Offset: 0x60
-	// Line 12115, Address: 0x170d38, Func Offset: 0x68
-	// Line 12118, Address: 0x170d3c, Func Offset: 0x6c
-	// Line 12119, Address: 0x170d40, Func Offset: 0x70
-	// Line 12114, Address: 0x170d44, Func Offset: 0x74
-	// Line 12115, Address: 0x170d50, Func Offset: 0x80
-	// Line 12120, Address: 0x170d58, Func Offset: 0x88
-	// Line 12115, Address: 0x170d5c, Func Offset: 0x8c
-	// Line 12116, Address: 0x170d60, Func Offset: 0x90
-	// Line 12115, Address: 0x170d64, Func Offset: 0x94
-	// Line 12116, Address: 0x170d68, Func Offset: 0x98
-	// Line 12117, Address: 0x170d70, Func Offset: 0xa0
-	// Line 12116, Address: 0x170d74, Func Offset: 0xa4
-	// Line 12117, Address: 0x170d78, Func Offset: 0xa8
-	// Line 12118, Address: 0x170d80, Func Offset: 0xb0
-	// Line 12117, Address: 0x170d84, Func Offset: 0xb4
-	// Line 12118, Address: 0x170d88, Func Offset: 0xb8
-	// Line 12119, Address: 0x170d90, Func Offset: 0xc0
-	// Line 12118, Address: 0x170d94, Func Offset: 0xc4
-	// Line 12119, Address: 0x170d98, Func Offset: 0xc8
-	// Line 12120, Address: 0x170da0, Func Offset: 0xd0
-	// Line 12119, Address: 0x170da4, Func Offset: 0xd4
-	// Line 12120, Address: 0x170db0, Func Offset: 0xe0
-	// Line 12121, Address: 0x170db8, Func Offset: 0xe8
-	// Line 12120, Address: 0x170dbc, Func Offset: 0xec
-	// Line 12121, Address: 0x170dc8, Func Offset: 0xf8
-	// Line 12131, Address: 0x170dd0, Func Offset: 0x100
-	// Line 12132, Address: 0x170ddc, Func Offset: 0x10c
-	// Line 12131, Address: 0x170de0, Func Offset: 0x110
-	// Line 12132, Address: 0x170dec, Func Offset: 0x11c
-	// Line 12133, Address: 0x170df8, Func Offset: 0x128
-	// Line 12149, Address: 0x170e00, Func Offset: 0x130
-	// Line 12143, Address: 0x170e08, Func Offset: 0x138
-	// Line 12151, Address: 0x170e0c, Func Offset: 0x13c
-	// Line 12149, Address: 0x170e10, Func Offset: 0x140
-	// Line 12143, Address: 0x170e14, Func Offset: 0x144
-	// Line 12145, Address: 0x170e1c, Func Offset: 0x14c
-	// Line 12151, Address: 0x170e24, Func Offset: 0x154
-	// Line 12145, Address: 0x170e30, Func Offset: 0x160
-	// Line 12149, Address: 0x170e3c, Func Offset: 0x16c
-	// Line 12153, Address: 0x170e44, Func Offset: 0x174
-	// Line 12149, Address: 0x170e48, Func Offset: 0x178
-	// Line 12151, Address: 0x170e58, Func Offset: 0x188
-	// Line 12153, Address: 0x170e5c, Func Offset: 0x18c
-	// Line 12151, Address: 0x170e60, Func Offset: 0x190
-	// Line 12153, Address: 0x170e7c, Func Offset: 0x1ac
-	// Line 12154, Address: 0x170e88, Func Offset: 0x1b8
-	// Line 12155, Address: 0x170e94, Func Offset: 0x1c4
-	// Line 12154, Address: 0x170e98, Func Offset: 0x1c8
-	// Line 12155, Address: 0x170ea0, Func Offset: 0x1d0
-	// Line 12156, Address: 0x170ea8, Func Offset: 0x1d8
-	// Line 12155, Address: 0x170eac, Func Offset: 0x1dc
-	// Line 12156, Address: 0x170eb4, Func Offset: 0x1e4
-	// Line 12158, Address: 0x170ec0, Func Offset: 0x1f0
-	// Line 12172, Address: 0x170ec8, Func Offset: 0x1f8
-	// Line 12165, Address: 0x170ed0, Func Offset: 0x200
-	// Line 12172, Address: 0x170ed4, Func Offset: 0x204
-	// Line 12165, Address: 0x170ed8, Func Offset: 0x208
-	// Line 12167, Address: 0x170ee0, Func Offset: 0x210
-	// Line 12172, Address: 0x170ee8, Func Offset: 0x218
-	// Line 12167, Address: 0x170ef0, Func Offset: 0x220
-	// Line 12172, Address: 0x170efc, Func Offset: 0x22c
-	// Line 12174, Address: 0x170f24, Func Offset: 0x254
-	// Line 12172, Address: 0x170f28, Func Offset: 0x258
-	// Line 12174, Address: 0x170f2c, Func Offset: 0x25c
-	// Line 12176, Address: 0x170f38, Func Offset: 0x268
-	// Line 12189, Address: 0x170f40, Func Offset: 0x270
-	// Line 12183, Address: 0x170f48, Func Offset: 0x278
-	// Line 12189, Address: 0x170f4c, Func Offset: 0x27c
-	// Line 12183, Address: 0x170f50, Func Offset: 0x280
-	// Line 12185, Address: 0x170f58, Func Offset: 0x288
-	// Line 12189, Address: 0x170f60, Func Offset: 0x290
-	// Line 12185, Address: 0x170f68, Func Offset: 0x298
-	// Line 12189, Address: 0x170f74, Func Offset: 0x2a4
-	// Line 12190, Address: 0x170fa0, Func Offset: 0x2d0
-	// Line 12192, Address: 0x170fa8, Func Offset: 0x2d8
-	// Line 12205, Address: 0x170fb0, Func Offset: 0x2e0
-	// Line 12199, Address: 0x170fb8, Func Offset: 0x2e8
-	// Line 12205, Address: 0x170fbc, Func Offset: 0x2ec
-	// Line 12199, Address: 0x170fc4, Func Offset: 0x2f4
-	// Line 12201, Address: 0x170fcc, Func Offset: 0x2fc
-	// Line 12205, Address: 0x170fd4, Func Offset: 0x304
-	// Line 12201, Address: 0x170fe0, Func Offset: 0x310
-	// Line 12205, Address: 0x170fec, Func Offset: 0x31c
-	// Line 12206, Address: 0x171020, Func Offset: 0x350
-	// Line 12212, Address: 0x17102c, Func Offset: 0x35c
-	// Line 12213, Address: 0x171030, Func Offset: 0x360
-	// Func End, Address: 0x171038, Func Offset: 0x368
-	scePrintf("bhLoadWork - UNIMPLEMENTED!\n");
+    ETTY_WORK* e_enep;
+
+    bhScePtr++;
+    
+    switch (*bhScePtr) 
+    {                         
+    case 0:
+        bhCetask->work = plp;
+        
+        bhCetask->work->mode0 = 7;
+        bhCetask->work->mode2 = 0;
+        bhCetask->work->mode2 = 0; // strange this wasn't optimized out
+        
+        *(unsigned char*)&bhCetask->work->mtn_no = 42;
+        
+        bhCetask->work->stflg |= 0x10000;
+        bhCetask->work->stflg &= ~0x80;
+        
+        bhCetask->model_cno = 0;
+        
+        bhCetask->work->flg |= 0x10000;
+        
+        bhScePtr += 3;
+        break;
+    case 1:
+    {
+        unsigned char* a0;
+        
+        a0 = bhScePtr;
+        
+        bhScePtr++;
+        bhScePtr += 2;
+        
+        e_enep = &rom->enep[*++a0];
+        
+        bhCetask->work = &ene[e_enep->wrk_no];
+        
+        bhCetask->model_cno = *++a0;
+        
+        bhCetask->mtn_md = bhCetask->work->mtn_md;
+        bhCetask->mdflg = bhCetask->work->mdflg;
+        
+        bhCetask->hokan_rate = bhCetask->work->hokan_rate;
+        break;
+    }
+    case 2:
+    {
+        unsigned char* a0;
+        
+        a0 = bhScePtr;
+        
+        bhScePtr++;
+        bhScePtr += 2;
+        
+        bhCetask->work = (BH_PWORK*)&sys->obwp[*++a0];
+        
+        bhCetask->model_cno = *++a0;
+        break;
+    }
+    case 3:
+    {
+        unsigned char* a0;
+        
+        a0 = bhScePtr;
+        
+        bhScePtr++;
+        bhScePtr += 2;
+        
+        bhCetask->work = (BH_PWORK*)&sys->itwp[*++a0];
+        
+        bhCetask->model_cno = 0;
+        break;
+    }
+    case 4:
+    {
+        unsigned char* a0;
+        
+        a0 = bhScePtr;
+        
+        bhScePtr++;
+        bhScePtr += 2;
+        
+        bhCetask->work = (BH_PWORK*)&eff[sys->efid[*++a0]];
+        
+        bhCetask->model_cno = 0;
+        break;
+    }
+    }
+    
+    return 1;
 }
 
 // 
