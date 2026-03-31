@@ -12168,89 +12168,99 @@ unsigned int bhLoadWork()
     return 1;
 }
 
-// 
-// Start address: 0x171040
+// 100% matching! 
 unsigned int bhLoadWorkEx()
 {
-	unsigned char* a0;
-	//unsigned char* a0;
-	//unsigned char* a0;
-	//_anon21* e_enep;
-	//unsigned char* a0;
-	// Line 12222, Address: 0x171040, Func Offset: 0
-	// Line 12223, Address: 0x171048, Func Offset: 0x8
-	// Line 12222, Address: 0x17104c, Func Offset: 0xc
-	// Line 12223, Address: 0x171058, Func Offset: 0x18
-	// Line 12225, Address: 0x1710a0, Func Offset: 0x60
-	// Line 12226, Address: 0x1710a8, Func Offset: 0x68
-	// Line 12229, Address: 0x1710ac, Func Offset: 0x6c
-	// Line 12230, Address: 0x1710b0, Func Offset: 0x70
-	// Line 12225, Address: 0x1710b4, Func Offset: 0x74
-	// Line 12226, Address: 0x1710bc, Func Offset: 0x7c
-	// Line 12231, Address: 0x1710c4, Func Offset: 0x84
-	// Line 12226, Address: 0x1710c8, Func Offset: 0x88
-	// Line 12227, Address: 0x1710cc, Func Offset: 0x8c
-	// Line 12228, Address: 0x1710d8, Func Offset: 0x98
-	// Line 12229, Address: 0x1710e4, Func Offset: 0xa4
-	// Line 12230, Address: 0x1710f0, Func Offset: 0xb0
-	// Line 12231, Address: 0x1710fc, Func Offset: 0xbc
-	// Line 12230, Address: 0x171100, Func Offset: 0xc0
-	// Line 12231, Address: 0x171108, Func Offset: 0xc8
-	// Line 12232, Address: 0x171110, Func Offset: 0xd0
-	// Line 12231, Address: 0x171114, Func Offset: 0xd4
-	// Line 12232, Address: 0x17111c, Func Offset: 0xdc
-	// Line 12233, Address: 0x171124, Func Offset: 0xe4
-	// Line 12232, Address: 0x171128, Func Offset: 0xe8
-	// Line 12233, Address: 0x171130, Func Offset: 0xf0
-	// Line 12234, Address: 0x171134, Func Offset: 0xf4
-	// Line 12235, Address: 0x171144, Func Offset: 0x104
-	// Line 12251, Address: 0x17114c, Func Offset: 0x10c
-	// Line 12245, Address: 0x171154, Func Offset: 0x114
-	// Line 12251, Address: 0x171158, Func Offset: 0x118
-	// Line 12245, Address: 0x17115c, Func Offset: 0x11c
-	// Line 12247, Address: 0x171164, Func Offset: 0x124
-	// Line 12253, Address: 0x17116c, Func Offset: 0x12c
-	// Line 12247, Address: 0x171174, Func Offset: 0x134
-	// Line 12251, Address: 0x171180, Func Offset: 0x140
-	// Line 12253, Address: 0x171188, Func Offset: 0x148
-	// Line 12251, Address: 0x17118c, Func Offset: 0x14c
-	// Line 12253, Address: 0x17119c, Func Offset: 0x15c
-	// Line 12255, Address: 0x1711a0, Func Offset: 0x160
-	// Line 12253, Address: 0x1711a4, Func Offset: 0x164
-	// Line 12255, Address: 0x1711c0, Func Offset: 0x180
-	// Line 12257, Address: 0x1711cc, Func Offset: 0x18c
-	// Line 12258, Address: 0x1711e0, Func Offset: 0x1a0
-	// Line 12259, Address: 0x1711f4, Func Offset: 0x1b4
-	// Line 12261, Address: 0x171204, Func Offset: 0x1c4
-	// Line 12275, Address: 0x17120c, Func Offset: 0x1cc
-	// Line 12268, Address: 0x171214, Func Offset: 0x1d4
-	// Line 12275, Address: 0x171218, Func Offset: 0x1d8
-	// Line 12268, Address: 0x17121c, Func Offset: 0x1dc
-	// Line 12270, Address: 0x171224, Func Offset: 0x1e4
-	// Line 12275, Address: 0x171238, Func Offset: 0x1f8
-	// Line 12277, Address: 0x171268, Func Offset: 0x228
-	// Line 12279, Address: 0x171274, Func Offset: 0x234
-	// Line 12292, Address: 0x17127c, Func Offset: 0x23c
-	// Line 12286, Address: 0x171284, Func Offset: 0x244
-	// Line 12292, Address: 0x171288, Func Offset: 0x248
-	// Line 12286, Address: 0x17128c, Func Offset: 0x24c
-	// Line 12288, Address: 0x171294, Func Offset: 0x254
-	// Line 12292, Address: 0x1712a8, Func Offset: 0x268
-	// Line 12293, Address: 0x1712d8, Func Offset: 0x298
-	// Line 12295, Address: 0x1712dc, Func Offset: 0x29c
-	// Line 12308, Address: 0x1712e4, Func Offset: 0x2a4
-	// Line 12302, Address: 0x1712ec, Func Offset: 0x2ac
-	// Line 12308, Address: 0x1712f0, Func Offset: 0x2b0
-	// Line 12302, Address: 0x1712f4, Func Offset: 0x2b4
-	// Line 12304, Address: 0x1712fc, Func Offset: 0x2bc
-	// Line 12308, Address: 0x171304, Func Offset: 0x2c4
-	// Line 12304, Address: 0x17130c, Func Offset: 0x2cc
-	// Line 12308, Address: 0x171318, Func Offset: 0x2d8
-	// Line 12309, Address: 0x171350, Func Offset: 0x310
-	// Line 12313, Address: 0x171358, Func Offset: 0x318
-	// Line 12314, Address: 0x17135c, Func Offset: 0x31c
-	// Func End, Address: 0x171364, Func Offset: 0x324
-	scePrintf("bhLoadWorkEx - UNIMPLEMENTED!\n");
+    ETTY_WORK* e_enep;
+
+    bhScePtr++;
+    
+    switch (*bhScePtr) 
+    {                         
+    case 0:
+        bhEtask->work = plp;
+        
+        bhEtask->work->mode0 = 7;
+        bhEtask->work->mode2 = 0;
+        bhEtask->work->mode2 = 0; // strange this wasn't optimized out
+        
+        *(unsigned char*)&bhEtask->work->mtn_no = 42;
+        
+        bhEtask->work->stflg |= 0x10000;
+        bhEtask->work->stflg &= ~0x80;
+        
+        bhEtask->work->flg |= 0x10000;
+
+        bhEtask->model_cno = 0;
+        
+        bhScePtr += 3;
+        break;
+    case 1:
+    {
+        unsigned char* a0;
+        
+        a0 = bhScePtr;
+        
+        bhScePtr++;
+        bhScePtr += 2;
+        
+        e_enep = &rom->enep[*++a0];
+        
+        bhEtask->work = &ene[e_enep->wrk_no];
+        
+        bhEtask->model_cno = *++a0;
+        
+        bhEtask->mtn_md = bhEtask->work->mtn_md;
+        bhEtask->mdflg = bhEtask->work->mdflg;
+        
+        bhEtask->hokan_rate = bhEtask->work->hokan_rate;
+        break;
+    }
+    case 2:
+    {
+        unsigned char* a0;
+        
+        a0 = bhScePtr;
+        
+        bhScePtr++;
+        bhScePtr += 2;
+        
+        bhEtask->work = (BH_PWORK*)&sys->obwp[*++a0];
+        
+        bhEtask->model_cno = *++a0;
+        break;
+    }
+    case 3:
+    {
+        unsigned char* a0;
+        
+        a0 = bhScePtr;
+        
+        bhScePtr++;
+        bhScePtr += 2;
+        
+        bhEtask->work = (BH_PWORK*)&sys->itwp[*++a0];
+        
+        bhEtask->model_cno = 0;
+        break;
+    }
+    case 4:
+    {
+        unsigned char* a0;
+        
+        a0 = bhScePtr;
+        
+        bhScePtr++;
+        bhScePtr += 2;
+        
+        bhEtask->work = (BH_PWORK*)&eff[sys->efid[*++a0]];
+        
+        bhEtask->model_cno = 0;
+        break;
+    }
+    }
+    
+    return 1;
 }
 
 // 100% matching! 
