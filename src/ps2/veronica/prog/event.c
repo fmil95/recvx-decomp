@@ -32,8 +32,22 @@ unsigned int Event_T_timer;
 float GameNear;
 float GameFar;
 
-/*_anon52 evnt_BldTbl;
-_anon52 evnt_BldTbl2;*/
+BP_WORK evnt_BldTbl = 
+{
+    0.0f, 0.1f, 0.0f,
+    0,
+    0.0f, 0.08f,
+    1.0f, 0.8f, 1.0f, 0.8f, 0.0f,
+    0, 4, 8, 12, 0
+};
+BP_WORK evnt_BldTbl2 = 
+{
+    0.0f, 0.1f, 0.0f,
+    0,
+    0.0f, 0.07f,
+    1.0f, 0.2f, 0.5f, 0.8f, 0.0f,
+    1, 4, 12, 15, 0
+};
 unsigned int (*bhScenarioJmpT[256])() = 
 {
 	bhEnd, 
