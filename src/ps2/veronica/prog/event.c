@@ -8363,27 +8363,23 @@ unsigned int bhCallSysSe()
 	return 1;
 }
 
-// 
-// Start address: 0x1674c0
+// 100% matching! 
 unsigned int bhSleep()
 {
-	// Line 8725, Address: 0x1674c0, Func Offset: 0
-	// Line 8726, Address: 0x1674cc, Func Offset: 0xc
-	// Line 8725, Address: 0x1674d0, Func Offset: 0x10
-	// Line 8726, Address: 0x1674d8, Func Offset: 0x18
-	// Line 8728, Address: 0x1674e8, Func Offset: 0x28
-	// Line 8726, Address: 0x1674ec, Func Offset: 0x2c
-	// Line 8728, Address: 0x1674fc, Func Offset: 0x3c
-	// Line 8729, Address: 0x167500, Func Offset: 0x40
-	// Line 8728, Address: 0x167508, Func Offset: 0x48
-	// Line 8729, Address: 0x167514, Func Offset: 0x54
-	// Line 8733, Address: 0x167530, Func Offset: 0x70
-	// Line 8734, Address: 0x167538, Func Offset: 0x78
-	// Line 8733, Address: 0x167540, Func Offset: 0x80
-	// Line 8734, Address: 0x16754c, Func Offset: 0x8c
-	// Line 8737, Address: 0x167558, Func Offset: 0x98
-	// Func End, Address: 0x167560, Func Offset: 0xa0
-	scePrintf("bhSleep - UNIMPLEMENTED!\n");
+    bhCetask->loop++;
+    
+    bhCetask->cnt[bhCetask->loop] = *(unsigned short*)&bhScePtr[2];
+    
+    bhScePtr++;
+    
+    if (--bhCetask->cnt[bhCetask->loop] == 0) 
+    {
+        bhScePtr += 3;
+        
+        bhCetask->loop--;
+    }
+    
+    return 0;
 }
 
 // 100% matching!
