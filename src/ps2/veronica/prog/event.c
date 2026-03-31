@@ -8553,27 +8553,26 @@ unsigned int bhFor()
     return 1;
 }
 
-// 
-// Start address: 0x167910
+// 100% matching! 
 unsigned int bhNext()
 {
-	// Line 8867, Address: 0x167910, Func Offset: 0
-	// Line 8868, Address: 0x167934, Func Offset: 0x24
-	// Line 8870, Address: 0x167940, Func Offset: 0x30
-	// Line 8868, Address: 0x167944, Func Offset: 0x34
-	// Line 8870, Address: 0x167954, Func Offset: 0x44
-	// Line 8871, Address: 0x16796c, Func Offset: 0x5c
-	// Line 8873, Address: 0x167974, Func Offset: 0x64
-	// Line 8876, Address: 0x16797c, Func Offset: 0x6c
-	// Line 8875, Address: 0x167980, Func Offset: 0x70
-	// Line 8873, Address: 0x167988, Func Offset: 0x78
-	// Line 8874, Address: 0x167994, Func Offset: 0x84
-	// Line 8875, Address: 0x1679a8, Func Offset: 0x98
-	// Line 8876, Address: 0x1679b0, Func Offset: 0xa0
-	// Line 8878, Address: 0x1679b8, Func Offset: 0xa8
-	// Line 8879, Address: 0x1679bc, Func Offset: 0xac
-	// Func End, Address: 0x1679c4, Func Offset: 0xb4
-	scePrintf("bhNext - UNIMPLEMENTED!\n");
+    if (--bhCetask->cnt[bhCetask->loop] != 0) 
+    {
+        bhCetask->cnt2 = bhCetask->cnt[bhCetask->loop];
+        
+        bhScePtr = bhCetask->lstack[bhCetask->loop];
+    }
+    else 
+    {
+        bhScePtr++;
+        bhScePtr++;
+        
+        bhCetask->loop--;
+        
+        return 1;
+    }
+
+    return 1;
 }
 
 // 100% matching!
