@@ -132,13 +132,13 @@ void bhEff150(O_WRK* op)
     {
         if (op->mode1 != 0) 
         {
-            op->type = op->mode1 & 0xFF;
+            op->type = op->mode1;
         }
     }
     
     if (op->type != 0) 
     {
-        setentry(0x97U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        setentry(0x97U, (unsigned short)op->type - 1, op);
         op->mode1 = 0;
         op->type = 0;
     }
@@ -339,7 +339,7 @@ void bhEff156(O_WRK* op)
     {
         if (op->mode1 != 0) 
         {
-            op->type = op->mode1 & 0xFF;
+            op->type = op->mode1;
         }
     }
     
@@ -475,13 +475,13 @@ void bhEff160(O_WRK* op)
     {
         if (op->mode1 != 0) 
         {
-            op->type = op->mode1 & 0xFF;
+            op->type = op->mode1;
         }
     }
 
     if (op->type != 0) 
     {
-        setentry(0xA1U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        setentry(0xA1U, (unsigned short) op->type - 1, op);
         op->mode1 = 0;
         op->type = 0;
     }
@@ -553,13 +553,13 @@ void bhEff162(O_WRK* op)
     {
         if (op->mode1 != 0) 
         {
-            op->type = op->mode1 & 0xFF;
+            op->type = op->mode1;
         }
     }
 
     if (op->type != 0) 
     {
-        setentry(0xA3U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        setentry(0xA3U, (unsigned short) op->type - 1, op);
         op->mode1 = 0;
         op->type = 0;
     }
@@ -635,7 +635,7 @@ void bhEff164(O_WRK* op)
     {
         if (op->mode1 != 0) 
         {
-            op->type = op->mode1 & 0xFF;
+            op->type = op->mode1;
             op->mode1 = 0;
         }
     }
@@ -799,7 +799,7 @@ void bhEff168(O_WRK* op)
     
     if (op->type != 0) 
     {
-        setentry(0xA9U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        setentry(0xA9U, (unsigned short) op->type - 1, op);
         op->mode1 = 0;
         op->type = 0;
     }
@@ -966,13 +966,13 @@ void bhEff172(O_WRK* op)
     {
         if (op->mode1 != 0) 
         {
-            op->type = op->mode1 & 0xFF;
+            op->type = op->mode1;
         }
     }
 
     if (op->type != 0) 
     {
-        setentry(0xADU, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        setentry(0xAD, (unsigned short)op->type - 1, op);
         op->mode1 = 0;
         op->type = 0;
     }
@@ -1031,13 +1031,13 @@ void bhEff175(O_WRK* op)
     {
         if (op->mode1 != 0) 
         {
-            op->type = op->mode1 & 0xFF;
+            op->type = op->mode1;
         }
     }
     
     if (op->type != 0) 
     {
-        setentry(0xB0U, 0U, op);
+        setentry(0xB0, 0, op);
         op->mode1 = 0;
         op->type = 0;
     }
@@ -1071,13 +1071,13 @@ void bhEff177(O_WRK* op)
     {
         if (op->mode1 != 0) 
         {
-            op->type = op->mode1 & 0xFF;
+            op->type = op->mode1;
         }
     }
     
     if (op->type != 0) 
     {
-        lNumber = setentry(0xB2U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        lNumber = setentry(0xB2, (unsigned short)op->type - 1, op);
         
         if (lNumber != -1) 
         {
@@ -1144,7 +1144,7 @@ void bhEff179(O_WRK* op)
     {
         if (op->mode1 != 0) 
         {
-            op->type = op->mode1 & 0xFF;
+            op->type = op->mode1;
         }
     }
     
@@ -1152,7 +1152,7 @@ void bhEff179(O_WRK* op)
     {
         if (!op->sz) 
         {
-            setentry(0xB4U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+            setentry(0xB4, (unsigned short)op->type - 1, op);
             op->mode1 = 0;
             op->type = 0;
             return;
@@ -1160,7 +1160,7 @@ void bhEff179(O_WRK* op)
 
         if (op->ct1 <= 0) 
         {
-            setentry(0xB4U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+            setentry(0xB4, (unsigned short)op->type - 1, op);
             op->ct1 = (int) (op->sz);
         }
         op->ct1 -= 1;
@@ -1279,13 +1279,13 @@ void bhEff183(O_WRK* op)
     {
         if (op->mode1 != 0) 
         {
-            op->type = op->mode1 & 0xFF;
+            op->type = op->mode1;
         }
     }
 
     if (op->type != 0) 
     {
-        setentry(0xB8U, ((op->type & 0xFFFF) - 1) & 0xFFFF, op);
+        setentry(0xB8, (unsigned short)op->type - 1, op);
     }
 }
 
