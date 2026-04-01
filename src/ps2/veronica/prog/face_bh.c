@@ -471,25 +471,26 @@ void fmCnkSetParam(MASK_WORK* fm, PARAM_WORK* param)
 	njMemCopy(&fm->param, param, sizeof(PARAM_WORK));
 }
 
-// 
-// Start address: 0x2996e0
+// 100% matching!
 void fmCnkSetParamLip(MASK_WORK* fm, PARAM_WORK* param, unsigned int flag)
 {
-	int i;
-	// Line 1158, Address: 0x2996e0, Func Offset: 0
-	// Line 1159, Address: 0x2996ec, Func Offset: 0xc
-	// Line 1160, Address: 0x299700, Func Offset: 0x20
-	// Line 1162, Address: 0x299708, Func Offset: 0x28
-	// Line 1160, Address: 0x299710, Func Offset: 0x30
-	// Line 1162, Address: 0x299714, Func Offset: 0x34
-	// Line 1163, Address: 0x29971c, Func Offset: 0x3c
-	// Line 1164, Address: 0x299738, Func Offset: 0x58
-	// Line 1165, Address: 0x299740, Func Offset: 0x60
-	// Line 1166, Address: 0x299750, Func Offset: 0x70
-	// Line 1167, Address: 0x299760, Func Offset: 0x80
-	// Line 1168, Address: 0x299764, Func Offset: 0x84
-	// Func End, Address: 0x29976c, Func Offset: 0x8c
-	scePrintf("fmCnkSetParamLip - UNIMPLEMENTED!\n");
+    int i;
+    
+    for (i = 0; i < 32; i++)
+    {
+        if ((flag & (1 << i)))  
+        {
+            fm->param.muscle[i] = param->muscle[i];
+        }
+    }
+    
+    fm->param.jawang = 0.005493164f * *(int*)&param->jawang;
+    
+    fm->param.jawtrans = param->jawtrans;
+    
+    fm->param.tangx = 0.005493164f * *(int*)&param->tangx;
+    fm->param.tangy = 0.005493164f * *(int*)&param->tangy;
+    fm->param.tangz = param->tangz;
 }
 
 /*// 
