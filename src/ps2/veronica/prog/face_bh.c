@@ -257,61 +257,60 @@ void _fmCnkSetEyeballObject(MASK_WORK* fm, unsigned int id, cnkobj* eye, cnkobj*
 	// Line 582, Address: 0x298ffc, Func Offset: 0x1ec
 	// Line 583, Address: 0x299008, Func Offset: 0x1f8
 	// Func End, Address: 0x299030, Func Offset: 0x220
-}
-
-// 
-// Start address: 0x299030
-void _fmCnkSetTangObject(MASK_WORK* fm, cnkobj* tang)
-{
-	<unknown fundamental type (0xa510)>* dst_128;
-	<unknown fundamental type (0xa510)>* src_128;
-	int i;
-	// Line 631, Address: 0x299030, Func Offset: 0
-	// Line 635, Address: 0x299044, Func Offset: 0x14
-	// Line 638, Address: 0x29904c, Func Offset: 0x1c
-	// Line 639, Address: 0x299050, Func Offset: 0x20
-	// Line 640, Address: 0x299064, Func Offset: 0x34
-	// Line 641, Address: 0x299074, Func Offset: 0x44
-	// Line 644, Address: 0x299078, Func Offset: 0x48
-	// Line 641, Address: 0x29907c, Func Offset: 0x4c
-	// Line 644, Address: 0x299080, Func Offset: 0x50
-	// Line 646, Address: 0x2990ac, Func Offset: 0x7c
-	// Line 647, Address: 0x2990b0, Func Offset: 0x80
-	// Line 648, Address: 0x2990b4, Func Offset: 0x84
-	// Line 646, Address: 0x2990b8, Func Offset: 0x88
-	// Line 647, Address: 0x2990bc, Func Offset: 0x8c
-	// Line 648, Address: 0x2990c0, Func Offset: 0x90
-	// Line 649, Address: 0x2990e0, Func Offset: 0xb0
-	// Line 650, Address: 0x2990e4, Func Offset: 0xb4
-	// Line 649, Address: 0x2990e8, Func Offset: 0xb8
-	// Line 650, Address: 0x2990f4, Func Offset: 0xc4
-	// Line 653, Address: 0x299100, Func Offset: 0xd0
-	// Line 654, Address: 0x299110, Func Offset: 0xe0
-	// Line 655, Address: 0x299114, Func Offset: 0xe4
-	// Line 657, Address: 0x299118, Func Offset: 0xe8
-	// Line 656, Address: 0x299120, Func Offset: 0xf0
-	// Line 658, Address: 0x299124, Func Offset: 0xf4
-	// Line 655, Address: 0x299128, Func Offset: 0xf8
-	// Line 656, Address: 0x29912c, Func Offset: 0xfc
-	// Line 657, Address: 0x299130, Func Offset: 0x100
-	// Line 659, Address: 0x299134, Func Offset: 0x104
-	// Line 660, Address: 0x299138, Func Offset: 0x108
-	// Line 657, Address: 0x299144, Func Offset: 0x114
-	// Line 658, Address: 0x29914c, Func Offset: 0x11c
-	// Line 659, Address: 0x299158, Func Offset: 0x128
-	// Line 664, Address: 0x299164, Func Offset: 0x134
-	// Line 661, Address: 0x299168, Func Offset: 0x138
-	// Line 666, Address: 0x29916c, Func Offset: 0x13c
-	// Line 661, Address: 0x299174, Func Offset: 0x144
-	// Line 662, Address: 0x299178, Func Offset: 0x148
-	// Line 663, Address: 0x299180, Func Offset: 0x150
-	// Line 664, Address: 0x299184, Func Offset: 0x154
-	// Line 665, Address: 0x299188, Func Offset: 0x158
-	// Line 666, Address: 0x299190, Func Offset: 0x160
-	// Line 667, Address: 0x299198, Func Offset: 0x168
-	// Line 668, Address: 0x29919c, Func Offset: 0x16c
-	// Func End, Address: 0x2991b0, Func Offset: 0x180
 }*/
+
+// 100% matching!
+void _fmCnkSetTangObject(MASK_WORK* fm, NJS_CNK_OBJECT* tang)
+{
+    int i; 
+    u_long128* src_128; 
+    u_long128* dst_128; 
+
+    if (tang != NULL) 
+    {
+        fm->tangsrc = tang->model;
+        fm->tangdst = (NJS_CNK_MODEL*)bhGetFreeMemory(24, 64);
+        
+        njMemCopy(fm->tangdst, fm->tangsrc, 24);
+        
+        tang->model = fm->tangdst;
+        
+        fm->tangdst->vlist = (int*)bhGetFreeMemory((((fm->tangsrc->vlist[1] >> 16) * fm->vofs) + 128) * 4, 64);
+        
+        src_128 = (u_long128*)fm->tangsrc->vlist;
+        dst_128 = (u_long128*)fm->tangdst->vlist;
+        
+        for (i = ((((unsigned int)(fm->tangsrc->vlist[1] >> 16) * fm->vofs) + 128) * 4) >> 2; i > 0; i--)
+        {
+            *dst_128++ = *src_128++;
+        }
+        
+        njMemCopy(&fm->tangobj, tang, 52);
+        
+        fm->tangobj.child = NULL;
+        fm->tangobj.sibling = tang->child;
+        
+        tang->child = &fm->tangobj;
+        
+        tang->evalflags |= 0xA0000008;
+        
+        tang->evalflags &= ~0x10;
+        tang->evalflags &= ~0x2;
+
+        for (i = 0; i < 3; i++)
+        {
+            fm->tangpos[i] = tang->pos[i];
+            fm->tangang[i] = tang->ang[i];
+            
+            fm->tangobj.pos[i] = 0;
+            
+            tang->scl[i] = 1.0f;
+            tang->ang[i] = 0;
+        }
+        
+        fm->tangorg = tang;
+    }
+}
 
 // 100% matching!
 void _fmCnkSetToothObject(MASK_WORK* fm, NJS_CNK_OBJECT* tooth)
