@@ -198,66 +198,90 @@ void _fmCnkSetFaceObject(MASK_WORK* fm, cnkobj* face)
 	// Line 454, Address: 0x298dc8, Func Offset: 0x88
 	// Line 455, Address: 0x298df4, Func Offset: 0xb4
 	// Func End, Address: 0x298e08, Func Offset: 0xc8
-}
-
-// 
-// Start address: 0x298e10
-void _fmCnkSetEyeballObject(MASK_WORK* fm, unsigned int id, cnkobj* eye, cnkobj* root)
-{
-	int sp;
-	cnkobj* stack[256];
-	cnkobj* obj;
-	int i;
-	// Line 529, Address: 0x298e10, Func Offset: 0
-	// Line 535, Address: 0x298e38, Func Offset: 0x28
-	// Line 538, Address: 0x298e5c, Func Offset: 0x4c
-	// Line 539, Address: 0x298e84, Func Offset: 0x74
-	// Line 540, Address: 0x298e8c, Func Offset: 0x7c
-	// Line 542, Address: 0x298e90, Func Offset: 0x80
-	// Line 545, Address: 0x298e9c, Func Offset: 0x8c
-	// Line 540, Address: 0x298ea0, Func Offset: 0x90
-	// Line 541, Address: 0x298ea4, Func Offset: 0x94
-	// Line 542, Address: 0x298ea8, Func Offset: 0x98
-	// Line 543, Address: 0x298eb0, Func Offset: 0xa0
-	// Line 544, Address: 0x298eb4, Func Offset: 0xa4
-	// Line 542, Address: 0x298eb8, Func Offset: 0xa8
-	// Line 545, Address: 0x298ec0, Func Offset: 0xb0
-	// Line 543, Address: 0x298ec4, Func Offset: 0xb4
-	// Line 545, Address: 0x298ec8, Func Offset: 0xb8
-	// Line 543, Address: 0x298ed0, Func Offset: 0xc0
-	// Line 544, Address: 0x298ed8, Func Offset: 0xc8
-	// Line 549, Address: 0x298ee4, Func Offset: 0xd4
-	// Line 546, Address: 0x298ee8, Func Offset: 0xd8
-	// Line 551, Address: 0x298eec, Func Offset: 0xdc
-	// Line 546, Address: 0x298ef4, Func Offset: 0xe4
-	// Line 547, Address: 0x298ef8, Func Offset: 0xe8
-	// Line 548, Address: 0x298f00, Func Offset: 0xf0
-	// Line 549, Address: 0x298f04, Func Offset: 0xf4
-	// Line 550, Address: 0x298f08, Func Offset: 0xf8
-	// Line 551, Address: 0x298f14, Func Offset: 0x104
-	// Line 552, Address: 0x298f1c, Func Offset: 0x10c
-	// Line 555, Address: 0x298f28, Func Offset: 0x118
-	// Line 556, Address: 0x298f30, Func Offset: 0x120
-	// Line 558, Address: 0x298f38, Func Offset: 0x128
-	// Line 560, Address: 0x298f40, Func Offset: 0x130
-	// Line 561, Address: 0x298f4c, Func Offset: 0x13c
-	// Line 562, Address: 0x298f54, Func Offset: 0x144
-	// Line 564, Address: 0x298f68, Func Offset: 0x158
-	// Line 565, Address: 0x298f7c, Func Offset: 0x16c
-	// Line 566, Address: 0x298f90, Func Offset: 0x180
-	// Line 567, Address: 0x298fa4, Func Offset: 0x194
-	// Line 568, Address: 0x298fb0, Func Offset: 0x1a0
-	// Line 569, Address: 0x298fbc, Func Offset: 0x1ac
-	// Line 571, Address: 0x298fc4, Func Offset: 0x1b4
-	// Line 573, Address: 0x298fd0, Func Offset: 0x1c0
-	// Line 574, Address: 0x298fd8, Func Offset: 0x1c8
-	// Line 575, Address: 0x298fe0, Func Offset: 0x1d0
-	// Line 576, Address: 0x298fe8, Func Offset: 0x1d8
-	// Line 577, Address: 0x298ff4, Func Offset: 0x1e4
-	// Line 582, Address: 0x298ffc, Func Offset: 0x1ec
-	// Line 583, Address: 0x299008, Func Offset: 0x1f8
-	// Func End, Address: 0x299030, Func Offset: 0x220
 }*/
+
+// 100% matching!
+void _fmCnkSetEyeballObject(MASK_WORK* fm, unsigned int id, NJS_CNK_OBJECT* eye, NJS_CNK_OBJECT* root)
+{   
+    int i; 
+    NJS_CNK_OBJECT* obj; 
+    NJS_CNK_OBJECT* stack[256]; 
+    int sp; 
+
+    obj = root;
+
+    if ((id >= 9) || (eye == NULL)) 
+    {
+        return;
+    }
+    
+    njMemCopy(&fm->eye[id], eye, 52);
+    
+    fm->eye[id].child = NULL;
+    fm->eye[id].sibling = eye->child;
+    
+    eye->child = &fm->eye[id];
+    
+    eye->evalflags |= 0xA0000008;
+    
+    eye->evalflags &= ~0x10;
+    eye->evalflags &= ~0x2;
+    
+    for (i = 0; i < 3; i++)
+    {
+        fm->eyepos[id][i] = eye->pos[i];
+        fm->eyeang[id][i] = eye->ang[i];
+        
+        fm->eye[id].pos[i] = 0;
+        
+        eye->scl[i] = 1.0f;
+        eye->ang[i] = 0;
+    }
+    
+    fm->eyesrc[id] = eye;
+    
+    njPushMatrix(NULL);
+    njUnitMatrix(NULL);
+    
+    sp = 0;
+    
+    while (TRUE)
+    {
+        if (obj->sibling != NULL) 
+        {
+            njPushMatrix(NULL);
+            
+            stack[sp++] = obj->sibling;
+        }
+        
+        njTranslate(NULL, obj->pos[0], obj->pos[1], obj->pos[2]);
+        njRotateXYZ(NULL, obj->ang[0], obj->ang[1], obj->ang[2]);
+        njScale(NULL, obj->scl[0], obj->scl[1], obj->scl[2]);
+        
+        if (obj == fm->eyesrc[id])
+        {
+            njGetMatrix(&fm->eyemat[id]);
+            break;
+        }
+
+        if (obj->child != NULL)
+        {
+            obj = obj->child;
+            continue;
+        }
+        
+        if (sp == 0) 
+        {
+            break;
+        }
+            
+        njPopMatrix(1);
+        
+        obj = stack[--sp];
+    }
+    
+    njPopMatrix(1);
+}
 
 // 100% matching!
 void _fmCnkSetTangObject(MASK_WORK* fm, NJS_CNK_OBJECT* tang)
