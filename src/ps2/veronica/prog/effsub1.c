@@ -1,5 +1,9 @@
 #include "effsub1.h"
 #include "effect.h"
+#include "hitchk.h"
+#include "ps2_NaMath.h"
+#include "ps2_NaMatrix.h"
+#include "sdfunc.h"
 #include "main.h"
 
 /*_anon7* sys;
@@ -478,75 +482,136 @@ void bhEff000(O_WRK* op)
 	scePrintf("bhEff000 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x225650
-void bhEff001(O_WRK* op)
+// 100% matching!
+void bhEff001(O_WRK* op) 
 {
-	float scz;
-	float scx;
-	float maxz;
-	float maxx;
-	float minz;
-	float minx;
-	//_anon17* mp;
-	int jno;
-	int i;
-	//_anon41 ps1;
-	//_anon41 ps0;
-	BH_PWORK* pp;
-	// Line 514, Address: 0x225650, Func Offset: 0
-	// Line 520, Address: 0x225678, Func Offset: 0x28
-	// Line 522, Address: 0x225698, Func Offset: 0x48
-	// Line 524, Address: 0x2256a8, Func Offset: 0x58
-	// Line 526, Address: 0x2256b0, Func Offset: 0x60
-	// Line 527, Address: 0x2256b4, Func Offset: 0x64
-	// Line 528, Address: 0x2256b8, Func Offset: 0x68
-	// Line 529, Address: 0x2256c0, Func Offset: 0x70
-	// Line 530, Address: 0x2256cc, Func Offset: 0x7c
-	// Line 531, Address: 0x2256dc, Func Offset: 0x8c
-	// Line 533, Address: 0x2256ec, Func Offset: 0x9c
-	// Line 535, Address: 0x2256fc, Func Offset: 0xac
-	// Line 536, Address: 0x225708, Func Offset: 0xb8
-	// Line 538, Address: 0x225710, Func Offset: 0xc0
-	// Line 537, Address: 0x225714, Func Offset: 0xc4
-	// Line 536, Address: 0x22571c, Func Offset: 0xcc
-	// Line 537, Address: 0x225720, Func Offset: 0xd0
-	// Line 539, Address: 0x225724, Func Offset: 0xd4
-	// Line 540, Address: 0x225728, Func Offset: 0xd8
-	// Line 541, Address: 0x22573c, Func Offset: 0xec
-	// Line 543, Address: 0x225750, Func Offset: 0x100
-	// Line 541, Address: 0x225754, Func Offset: 0x104
-	// Line 542, Address: 0x225764, Func Offset: 0x114
-	// Line 543, Address: 0x225778, Func Offset: 0x128
-	// Line 544, Address: 0x225780, Func Offset: 0x130
-	// Line 545, Address: 0x225790, Func Offset: 0x140
-	// Line 546, Address: 0x2257a0, Func Offset: 0x150
-	// Line 547, Address: 0x2257b8, Func Offset: 0x168
-	// Line 548, Address: 0x2257d0, Func Offset: 0x180
-	// Line 549, Address: 0x2257e8, Func Offset: 0x198
-	// Line 550, Address: 0x225800, Func Offset: 0x1b0
-	// Line 551, Address: 0x225810, Func Offset: 0x1c0
-	// Line 553, Address: 0x22581c, Func Offset: 0x1cc
-	// Line 551, Address: 0x225820, Func Offset: 0x1d0
-	// Line 552, Address: 0x225824, Func Offset: 0x1d4
-	// Line 551, Address: 0x225828, Func Offset: 0x1d8
-	// Line 553, Address: 0x22582c, Func Offset: 0x1dc
-	// Line 554, Address: 0x225840, Func Offset: 0x1f0
-	// Line 555, Address: 0x225858, Func Offset: 0x208
-	// Line 556, Address: 0x22587c, Func Offset: 0x22c
-	// Line 557, Address: 0x2258a0, Func Offset: 0x250
-	// Line 558, Address: 0x2258a4, Func Offset: 0x254
-	// Line 560, Address: 0x2258a8, Func Offset: 0x258
-	// Line 562, Address: 0x2258b8, Func Offset: 0x268
-	// Line 564, Address: 0x2258c0, Func Offset: 0x270
-	// Line 570, Address: 0x225938, Func Offset: 0x2e8
-	// Line 572, Address: 0x22594c, Func Offset: 0x2fc
-	// Line 573, Address: 0x225958, Func Offset: 0x308
-	// Line 572, Address: 0x22595c, Func Offset: 0x30c
-	// Line 573, Address: 0x225964, Func Offset: 0x314
-	// Line 577, Address: 0x225998, Func Offset: 0x348
-	// Func End, Address: 0x2259c4, Func Offset: 0x374
-	scePrintf("bhEff001 - UNIMPLEMENTED!\n");
+    BH_PWORK* pp;   
+    NJS_POINT3 ps0; 
+    NJS_POINT3 ps1; 
+    int i;         
+    int jno;        
+    ML_WORK* mp;    
+    float minx;    
+    float minz;     
+    float maxx;     
+    float maxz;     
+    float scx;      
+    float scz;      
+
+    switch (op->mode0) 
+    {                             
+    case 0:
+        op->flg |= 0x8000000;
+        
+        op->mode0 = 1;
+        break;
+    case 1:
+        pp = (BH_PWORK*)op->lkwkp;
+        
+        mp = pp->mlwP;
+        
+        op->ay = pp->ay; 
+        
+        if (op->mdlver == 0) 
+        {
+            if (!(pp->stflg & 0x2000)) 
+            {
+                op->py = bhGetGroundPosition((NJS_POINT3*)&op->px);
+            } 
+            else 
+            {
+                op->py = ((O_WRK*)pp->mlwP->owP)->pyb;
+            }
+        }
+        
+        if (op->type == 0) 
+        {
+            minx = minz = 100.0f; 
+            maxx = maxz = -100.0f;
+            
+            ps0.y = 0;
+            
+            for (i = 0; i < 15; i++) 
+            {
+                jno = op->jno[i];
+                
+                if (jno == -1)
+                {
+                    break;
+                }
+                
+                ps0.x = mp->owP[jno].mtx[12] - op->px;
+                ps0.z = mp->owP[jno].mtx[14] - op->pz;  
+                
+                njUnitMatrix(NULL);
+                njRotateY(NULL, -op->ay);
+                
+                njCalcPoint(NULL, &ps0, &ps1);
+                
+                if (minx > ps1.x) 
+                {
+                    minx = ps1.x;
+                }
+                
+                if (minz > ps1.z)
+                {
+                    minz = ps1.z;
+                }
+                
+                if (maxx < ps1.x)
+                {
+                    maxx = ps1.x;
+                }
+                
+                if (maxz < ps1.z) 
+                {
+                    maxz = ps1.z;
+                }
+            }
+            
+            scx = 0.8f * (maxx - minx);
+            scz = 0.8f * (maxz - minz);
+            
+            if (scx < op->sxb)
+            {
+                scx = op->sxb;
+            }
+            
+            if (scz < op->szb)
+            {
+                scz = op->szb;
+            }
+            
+            if (scx > (2.0f * op->sxb))
+            {
+                scx = 2.0f * op->sxb;
+            }
+            
+            if (scz > (2.0f * op->szb)) 
+            {
+                scz = 2.0f * op->szb;
+            }
+            
+            op->sx = scx;
+            op->sz = scz;
+        }
+        
+        if (!(pp->flg & 0x1))
+        {
+            op->flg = 0;
+            break;
+        }
+        
+        if ((((pp->stflg & 0x8)) || ((pp->stflg & 0x1000000)) || ((pp->mdflg & 0x1)) || ((pp->stflg & 0x40000000)) && (!(sys->pt_flg & 0x1))) || ((!(pp->stflg & 0x40000000)) && (!(sys->pt_flg & 0x2))))
+        {
+            op->flg |= 0x1000000;
+            break;
+        }
+        
+        op->flg &= ~0x1000000;
+        
+        sys->ef_mdf[sys->ef_mdfn++] = op;
+    }
 }
 
 // 

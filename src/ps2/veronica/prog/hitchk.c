@@ -1805,11 +1805,11 @@ _anon0* bhCheckWallRefAngle(_anon20* pos, unsigned int flg, float ar, float ah, 
 	// Line 2363, Address: 0x263280, Func Offset: 0x13d0
 	// Line 2364, Address: 0x263284, Func Offset: 0x13d4
 	// Func End, Address: 0x2632e0, Func Offset: 0x1430
-}
+}*/
 
 // 
 // Start address: 0x2632e0
-void bhSetWallRefAngle(_anon0* hp, _anon20* pos, float ar, float ah, int* ay)
+void bhSetWallRefAngle(ATR_WORK* hp, NJS_POINT3* pos, float ar, float ah, int* ay)
 {
 	int r;
 	float abz;
@@ -1825,9 +1825,9 @@ void bhSetWallRefAngle(_anon0* hp, _anon20* pos, float ar, float ah, int* ay)
 	float pz;
 	float py;
 	float px;
-	_anon0 ht;
-	_anon39 l;
-	_anon20 pd;
+	//_anon0 ht;
+	//_anon39 l;
+	//_anon20 pd;
 	// Line 2378, Address: 0x2632e0, Func Offset: 0
 	// Line 2388, Address: 0x2632e4, Func Offset: 0x4
 	// Line 2378, Address: 0x2632e8, Func Offset: 0x8
@@ -2235,11 +2235,12 @@ void bhSetWallRefAngle(_anon0* hp, _anon20* pos, float ar, float ah, int* ay)
 	// Line 2814, Address: 0x2642ac, Func Offset: 0xfcc
 	// Line 2821, Address: 0x2642b8, Func Offset: 0xfd8
 	// Func End, Address: 0x264304, Func Offset: 0x1024
+	scePrintf("bhSetWallRefAngle - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x264310
-float bhGetGroundPosition(_anon20* pos)
+float bhGetGroundPosition(NJS_POINT3* pos)
 {
 	float nr;
 	float yn;
@@ -2250,8 +2251,8 @@ float bhGetGroundPosition(_anon20* pos)
 	float px;
 	int wal_n;
 	int i;
-	_anon0* hp;
-	_anon20 pd;
+	//_anon0* hp;
+	//_anon20 pd;
 	// Line 2834, Address: 0x264310, Func Offset: 0
 	// Line 2843, Address: 0x264340, Func Offset: 0x30
 	// Line 2844, Address: 0x264348, Func Offset: 0x38
@@ -2345,9 +2346,10 @@ float bhGetGroundPosition(_anon20* pos)
 	// Line 2945, Address: 0x264888, Func Offset: 0x578
 	// Line 2946, Address: 0x26488c, Func Offset: 0x57c
 	// Func End, Address: 0x2648c0, Func Offset: 0x5b0
+	scePrintf("bhGetGroundPosition - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2648c0
 int bhCheckInnerTriangle(_anon0* hp, _anon20* pos, float ar, float ah)
 {
@@ -2611,11 +2613,11 @@ int bhCheckInnerTriangle2(_anon0* hp, _anon20* pos, float aw, float ad, float ah
 	// Line 3176, Address: 0x2653c8, Func Offset: 0x578
 	// Line 3177, Address: 0x2653cc, Func Offset: 0x57c
 	// Func End, Address: 0x2653f8, Func Offset: 0x5a8
-}
+}*/
 
 // 
 // Start address: 0x265400
-int bhCheckInnerTriangle3(_anon0* hp, _anon20* pos)
+int bhCheckInnerTriangle3(ATR_WORK* hp, NJS_POINT3* pos)
 {
 	float h;
 	// Line 3190, Address: 0x265400, Func Offset: 0
@@ -2637,9 +2639,10 @@ int bhCheckInnerTriangle3(_anon0* hp, _anon20* pos)
 	// Line 3217, Address: 0x265560, Func Offset: 0x160
 	// Line 3219, Address: 0x265594, Func Offset: 0x194
 	// Func End, Address: 0x2655ac, Func Offset: 0x1ac
+	scePrintf("bhCheckInnerTriangle3 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2655b0
 int bhCheckBox(_anon0* hp, _anon20* pos, float ar, float ah, unsigned int aflg)
 {
