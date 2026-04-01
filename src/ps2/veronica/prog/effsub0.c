@@ -1,4 +1,5 @@
 #include "effsub0.h"
+#include "main.h"
 
 // 100% matching!
 int setentry(unsigned short id, unsigned short type, O_WRK* op) 
@@ -41,7 +42,7 @@ void effinit(O_WRK* op)
     op->tv[3].col = -1U;
     op->bl_src = 8;
     op->bl_dst = 6;
-    op->bank = (s32) sys->ef_pbkb[op->tex_id];
+    op->bank = sys->ef_pbkb[op->tex_id];
     op->ani_ct = 0;
     op->ct1 = 0;
     op->ct0 = 0;
