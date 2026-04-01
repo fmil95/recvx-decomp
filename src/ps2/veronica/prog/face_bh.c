@@ -131,58 +131,95 @@ cnkobj* _fmCnkSearchObject(MASK_WORK* fm, cnkobj* root, char id)
 	// Line 252, Address: 0x298bb0, Func Offset: 0xf0
 	// Line 253, Address: 0x298bb4, Func Offset: 0xf4
 	// Func End, Address: 0x298bbc, Func Offset: 0xfc
-}
+}*/
 
-// 
-// Start address: 0x298bc0
+// 100% matching!
 void _fmGetVChunkType(MASK_WORK* fm)
 {
-	// Line 339, Address: 0x298bc0, Func Offset: 0
-	// Line 344, Address: 0x298bd0, Func Offset: 0x10
-	// Line 346, Address: 0x298c00, Func Offset: 0x40
-	// Line 347, Address: 0x298c08, Func Offset: 0x48
-	// Line 348, Address: 0x298c10, Func Offset: 0x50
-	// Line 349, Address: 0x298c14, Func Offset: 0x54
-	// Line 351, Address: 0x298c1c, Func Offset: 0x5c
-	// Line 352, Address: 0x298c24, Func Offset: 0x64
-	// Line 353, Address: 0x298c28, Func Offset: 0x68
-	// Line 354, Address: 0x298c30, Func Offset: 0x70
-	// Line 355, Address: 0x298c38, Func Offset: 0x78
-	// Line 363, Address: 0x298c40, Func Offset: 0x80
-	// Line 364, Address: 0x298c48, Func Offset: 0x88
-	// Line 365, Address: 0x298c4c, Func Offset: 0x8c
-	// Line 366, Address: 0x298c54, Func Offset: 0x94
-	// Line 367, Address: 0x298c5c, Func Offset: 0x9c
-	// Line 369, Address: 0x298c64, Func Offset: 0xa4
-	// Line 370, Address: 0x298c6c, Func Offset: 0xac
-	// Line 371, Address: 0x298c74, Func Offset: 0xb4
-	// Line 372, Address: 0x298c78, Func Offset: 0xb8
-	// Line 379, Address: 0x298c80, Func Offset: 0xc0
-	// Line 380, Address: 0x298c88, Func Offset: 0xc8
-	// Line 381, Address: 0x298c90, Func Offset: 0xd0
-	// Line 382, Address: 0x298c94, Func Offset: 0xd4
-	// Line 384, Address: 0x298c9c, Func Offset: 0xdc
-	// Line 385, Address: 0x298ca4, Func Offset: 0xe4
-	// Line 386, Address: 0x298cac, Func Offset: 0xec
-	// Line 387, Address: 0x298cb4, Func Offset: 0xf4
-	// Line 388, Address: 0x298cbc, Func Offset: 0xfc
-	// Line 391, Address: 0x298cc4, Func Offset: 0x104
-	// Line 392, Address: 0x298ccc, Func Offset: 0x10c
-	// Line 393, Address: 0x298cd4, Func Offset: 0x114
-	// Line 394, Address: 0x298cd8, Func Offset: 0x118
-	// Line 395, Address: 0x298ce0, Func Offset: 0x120
-	// Line 397, Address: 0x298ce8, Func Offset: 0x128
-	// Line 398, Address: 0x298cf0, Func Offset: 0x130
-	// Line 399, Address: 0x298cf8, Func Offset: 0x138
-	// Line 400, Address: 0x298d00, Func Offset: 0x140
-	// Line 401, Address: 0x298d08, Func Offset: 0x148
-	// Line 403, Address: 0x298d10, Func Offset: 0x150
-	// Line 404, Address: 0x298d18, Func Offset: 0x158
-	// Line 405, Address: 0x298d1c, Func Offset: 0x15c
-	// Line 406, Address: 0x298d20, Func Offset: 0x160
-	// Line 409, Address: 0x298d2c, Func Offset: 0x16c
-	// Func End, Address: 0x298d34, Func Offset: 0x174
-}*/
+    fm->vtype = *(unsigned short*)*(unsigned int*)fm->src;
+
+    switch (fm->vtype)
+    {
+    case 32:
+    case 35:
+    case 36:
+    case 37:
+    case 38:
+    case 39:
+    case 40:
+        fm->vtop = 2;
+        fm->ntop = 6;
+        
+        fm->vofs = 8;
+        break;
+    case 33:
+        fm->vtop = 2;
+        fm->ntop = 2;
+        
+        fm->vofs = 3;
+        
+        fm->mode |= 0x1;
+        break;
+    case 34:
+        fm->vtop = 2;
+        fm->ntop = 2;
+        
+        fm->vofs = 4;
+        
+        fm->mode |= 0x1;
+        break;
+    case 41:
+        fm->vtop = 2;
+        fm->ntop = 5;
+        
+        fm->vofs = 6;
+        break;
+    case 42:
+    case 43:
+    case 44:
+    case 45:
+    case 46:
+    case 47:
+        fm->vtop = 2;
+        fm->ntop = 5;
+        
+        fm->vofs = 7;
+        break;
+    case 48:
+        fm->vtop = 2;
+        fm->ntop = 5;
+        
+        fm->vofs = 4;
+        
+        fm->mode |= 0x1;
+        break;
+    case 49:
+    case 50:
+        fm->vtop = 2;
+        fm->ntop = 5;
+        
+        fm->vofs = 5;
+        
+        fm->mode |= 0x1;
+        break;
+    case 51:
+        fm->vtop = 16;
+        fm->ntop = 20;
+        
+        fm->vofs = 8;
+        
+        fm->mode |= 0x1;
+        break;
+    default:
+        fm->vtop = 2;
+        fm->ntop = 2;
+        
+        fm->vofs = 0;
+        
+        fm->mode |= 0x1;
+        break;
+    }
+}
 
 // 100% matching!
 void _fmCnkSetFaceObject(MASK_WORK* fm, NJS_CNK_OBJECT* face)
