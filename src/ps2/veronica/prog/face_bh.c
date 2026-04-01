@@ -311,44 +311,43 @@ void _fmCnkSetTangObject(MASK_WORK* fm, cnkobj* tang)
 	// Line 667, Address: 0x299198, Func Offset: 0x168
 	// Line 668, Address: 0x29919c, Func Offset: 0x16c
 	// Func End, Address: 0x2991b0, Func Offset: 0x180
-}
+}*/
 
-// 
-// Start address: 0x2991b0
-void _fmCnkSetToothObject(MASK_WORK* fm, cnkobj* tooth)
+// 100% matching!
+void _fmCnkSetToothObject(MASK_WORK* fm, NJS_CNK_OBJECT* tooth)
 {
-	int i;
-	// Line 707, Address: 0x2991b0, Func Offset: 0
-	// Line 710, Address: 0x2991c4, Func Offset: 0x14
-	// Line 713, Address: 0x2991cc, Func Offset: 0x1c
-	// Line 714, Address: 0x2991d8, Func Offset: 0x28
-	// Line 715, Address: 0x2991dc, Func Offset: 0x2c
-	// Line 717, Address: 0x2991e0, Func Offset: 0x30
-	// Line 716, Address: 0x2991e8, Func Offset: 0x38
-	// Line 718, Address: 0x2991ec, Func Offset: 0x3c
-	// Line 715, Address: 0x2991f0, Func Offset: 0x40
-	// Line 716, Address: 0x2991f4, Func Offset: 0x44
-	// Line 717, Address: 0x2991f8, Func Offset: 0x48
-	// Line 719, Address: 0x2991fc, Func Offset: 0x4c
-	// Line 720, Address: 0x299200, Func Offset: 0x50
-	// Line 717, Address: 0x29920c, Func Offset: 0x5c
-	// Line 718, Address: 0x299214, Func Offset: 0x64
-	// Line 719, Address: 0x299220, Func Offset: 0x70
-	// Line 724, Address: 0x29922c, Func Offset: 0x7c
-	// Line 721, Address: 0x299230, Func Offset: 0x80
-	// Line 726, Address: 0x299234, Func Offset: 0x84
-	// Line 721, Address: 0x29923c, Func Offset: 0x8c
-	// Line 722, Address: 0x299240, Func Offset: 0x90
-	// Line 723, Address: 0x299248, Func Offset: 0x98
-	// Line 724, Address: 0x29924c, Func Offset: 0x9c
-	// Line 725, Address: 0x299250, Func Offset: 0xa0
-	// Line 726, Address: 0x299258, Func Offset: 0xa8
-	// Line 727, Address: 0x299260, Func Offset: 0xb0
-	// Line 728, Address: 0x299264, Func Offset: 0xb4
-	// Func End, Address: 0x299278, Func Offset: 0xc8
+    int i;
+
+    if (tooth != NULL) 
+    {
+        njMemCopy(&fm->tooth, tooth, 52);
+        
+        fm->tooth.child = NULL;
+        fm->tooth.sibling = tooth->child;
+        
+        tooth->child = &fm->tooth;
+        
+        tooth->evalflags |= 0xA0000008;
+        
+        tooth->evalflags &= ~0x10;
+        tooth->evalflags &= ~0x2;
+
+        for (i = 0; i < 3; i++)
+        {
+            fm->toothpos[i] = tooth->pos[i];
+            fm->toothang[i] = tooth->ang[i];
+            
+            fm->tooth.pos[i] = 0;
+            
+            tooth->scl[i] = 1.0f;
+            tooth->ang[i] = 0;
+        }
+        
+        fm->toothsrc = tooth;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x299280
 void _fmCnkSetJaw(MASK_WORK* fm, unsigned int v0, unsigned int v1)
 {
