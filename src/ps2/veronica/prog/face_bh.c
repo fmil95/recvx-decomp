@@ -1,6 +1,8 @@
 #include "face.h"
 #include "face_bh.h"
+#include "ps2_NaMatrix.h"
 #include "ps2_NaMem.h"
+#include "pwksub.h"
 
 // 100% matching!
 void fmSetLipSyncParam(MASK_WORK* fm, PARAM_WORK* base, LIP_WORK* lip, unsigned int mask)
@@ -180,25 +182,29 @@ void _fmGetVChunkType(MASK_WORK* fm)
 	// Line 406, Address: 0x298d20, Func Offset: 0x160
 	// Line 409, Address: 0x298d2c, Func Offset: 0x16c
 	// Func End, Address: 0x298d34, Func Offset: 0x174
-}
-
-// 
-// Start address: 0x298d40
-void _fmCnkSetFaceObject(MASK_WORK* fm, cnkobj* face)
-{
-	// Line 441, Address: 0x298d40, Func Offset: 0
-	// Line 442, Address: 0x298d54, Func Offset: 0x14
-	// Line 445, Address: 0x298d5c, Func Offset: 0x1c
-	// Line 446, Address: 0x298d60, Func Offset: 0x20
-	// Line 447, Address: 0x298d64, Func Offset: 0x24
-	// Line 448, Address: 0x298d78, Func Offset: 0x38
-	// Line 449, Address: 0x298d88, Func Offset: 0x48
-	// Line 452, Address: 0x298d8c, Func Offset: 0x4c
-	// Line 453, Address: 0x298d98, Func Offset: 0x58
-	// Line 454, Address: 0x298dc8, Func Offset: 0x88
-	// Line 455, Address: 0x298df4, Func Offset: 0xb4
-	// Func End, Address: 0x298e08, Func Offset: 0xc8
 }*/
+
+// 100% matching!
+void _fmCnkSetFaceObject(MASK_WORK* fm, NJS_CNK_OBJECT* face)
+{
+    if (face != NULL) 
+    {
+        fm->obj = face;
+        
+        fm->src = face->model;
+        fm->dst = (NJS_CNK_MODEL*)bhGetFreeMemory(sizeof(NJS_CNK_MODEL), 64);
+        
+        njMemCopy(fm->dst, fm->src, sizeof(NJS_CNK_MODEL));
+        
+        face->model = fm->dst;
+        
+        _fmGetVChunkType(fm);
+        
+        fm->dst->vlist = (int*)bhGetFreeMemory((((fm->src->vlist[1] >> 16) * fm->vofs) + 128) * 4, 64);
+        
+        njMemCopy(fm->dst->vlist, fm->src->vlist, (((fm->src->vlist[1] >> 16) * fm->vofs) + 128) * 4);
+    }
+}
 
 // 100% matching!
 void _fmCnkSetEyeballObject(MASK_WORK* fm, unsigned int id, NJS_CNK_OBJECT* eye, NJS_CNK_OBJECT* root)
@@ -215,7 +221,7 @@ void _fmCnkSetEyeballObject(MASK_WORK* fm, unsigned int id, NJS_CNK_OBJECT* eye,
         return;
     }
     
-    njMemCopy(&fm->eye[id], eye, 52);
+    njMemCopy(&fm->eye[id], eye, sizeof(NJS_CNK_OBJECT));
     
     fm->eye[id].child = NULL;
     fm->eye[id].sibling = eye->child;
@@ -293,9 +299,9 @@ void _fmCnkSetTangObject(MASK_WORK* fm, NJS_CNK_OBJECT* tang)
     if (tang != NULL) 
     {
         fm->tangsrc = tang->model;
-        fm->tangdst = (NJS_CNK_MODEL*)bhGetFreeMemory(24, 64);
+        fm->tangdst = (NJS_CNK_MODEL*)bhGetFreeMemory(sizeof(NJS_CNK_MODEL), 64);
         
-        njMemCopy(fm->tangdst, fm->tangsrc, 24);
+        njMemCopy(fm->tangdst, fm->tangsrc, sizeof(NJS_CNK_MODEL));
         
         tang->model = fm->tangdst;
         
@@ -309,7 +315,7 @@ void _fmCnkSetTangObject(MASK_WORK* fm, NJS_CNK_OBJECT* tang)
             *dst_128++ = *src_128++;
         }
         
-        njMemCopy(&fm->tangobj, tang, 52);
+        njMemCopy(&fm->tangobj, tang, sizeof(NJS_CNK_OBJECT));
         
         fm->tangobj.child = NULL;
         fm->tangobj.sibling = tang->child;
@@ -343,7 +349,7 @@ void _fmCnkSetToothObject(MASK_WORK* fm, NJS_CNK_OBJECT* tooth)
 
     if (tooth != NULL) 
     {
-        njMemCopy(&fm->tooth, tooth, 52);
+        njMemCopy(&fm->tooth, tooth, sizeof(NJS_CNK_OBJECT));
         
         fm->tooth.child = NULL;
         fm->tooth.sibling = tooth->child;
