@@ -8155,30 +8155,36 @@ unsigned int bhEvtTimerSet()
 	return 1;
 }
 
-// 
-// Start address: 0x166a80
+// 100% matching!
 unsigned int bhEneLookFlgSet()
 {
-	BH_PWORK* e_ep;
-	unsigned int v3;
-	unsigned int v2;
-	// Line 8204, Address: 0x166a80, Func Offset: 0
-	// Line 8216, Address: 0x166a88, Func Offset: 0x8
-	// Line 8204, Address: 0x166a98, Func Offset: 0x18
-	// Line 8205, Address: 0x166aa4, Func Offset: 0x24
-	// Line 8206, Address: 0x166ab0, Func Offset: 0x30
-	// Line 8207, Address: 0x166abc, Func Offset: 0x3c
-	// Line 8216, Address: 0x166ac4, Func Offset: 0x44
-	// Line 8207, Address: 0x166ad0, Func Offset: 0x50
-	// Line 8208, Address: 0x166ad4, Func Offset: 0x54
-	// Line 8216, Address: 0x166ae0, Func Offset: 0x60
-	// Line 8217, Address: 0x166b00, Func Offset: 0x80
-	// Line 8218, Address: 0x166b08, Func Offset: 0x88
-	// Line 8219, Address: 0x166b18, Func Offset: 0x98
-	// Line 8220, Address: 0x166b20, Func Offset: 0xa0
-	// Line 8223, Address: 0x166b2c, Func Offset: 0xac
-	// Func End, Address: 0x166b34, Func Offset: 0xb4
-	scePrintf("bhEneLookFlgSet - UNIMPLEMENTED!\n");
+    unsigned int v2, v3;
+    BH_PWORK* e_ep;
+	ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+	
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    enep = &rom->enep[v2];
+    e_ep = &ene[enep->wrk_no];
+
+    if (v3 == 0) 
+	{
+        e_ep->flg &= ~0x8000;
+    } 
+	else 
+	{
+        e_ep->flg |= 0x8000;
+    }
+
+    return 1;
 }
 
 // 100% matching!
