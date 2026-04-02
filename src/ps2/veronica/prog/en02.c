@@ -2936,7 +2936,7 @@ void bhEne02_SetSandEffect(BH_PWORK* epw, _anon22* pos, int type)
 {
 	// Line 2206, Address: 0x192d20, Func Offset: 0
 	// Func End, Address: 0x192d34, Func Offset: 0x14
-}
+}*/
 
 // 
 // Start address: 0x192d40
@@ -2944,9 +2944,10 @@ void bhEne02_SetSandEffectEV(int eno, int type1, int type2)
 {
 	// Line 2220, Address: 0x192d40, Func Offset: 0
 	// Func End, Address: 0x192d70, Func Offset: 0x30
+	scePrintf("bhEne02_SetSandEffectEV - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x192d70
 void bhEne02_SetSandEffectMain(int type0, _anon22* pos, int type)
 {

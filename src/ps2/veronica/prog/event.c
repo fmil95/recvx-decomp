@@ -3,6 +3,7 @@
 #include "Motion.h"
 #include "cut.h"
 #include "effect.h"
+#include "en02.h"
 #include "en11.h"
 #include "eneset.h"
 #include "face.h"
@@ -7917,27 +7918,28 @@ unsigned int bhItemGetGetEx()
 	scePrintf("bhItemGetGetEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x166250
+// 100% matching!
 unsigned int bhEffectSandSetMatsumoto()
 {
-	int v2;
-	int v1;
-	int v0;
-	// Line 7954, Address: 0x166250, Func Offset: 0
-	// Line 7957, Address: 0x166258, Func Offset: 0x8
-	// Line 7958, Address: 0x16626c, Func Offset: 0x1c
-	// Line 7959, Address: 0x166278, Func Offset: 0x28
-	// Line 7960, Address: 0x166284, Func Offset: 0x34
-	// Line 7961, Address: 0x166290, Func Offset: 0x40
-	// Line 7962, Address: 0x16629c, Func Offset: 0x4c
-	// Line 7963, Address: 0x1662a8, Func Offset: 0x58
-	// Line 7969, Address: 0x1662b0, Func Offset: 0x60
-	// Line 7972, Address: 0x1662b8, Func Offset: 0x68
-	// Line 7971, Address: 0x1662bc, Func Offset: 0x6c
-	// Line 7972, Address: 0x1662c0, Func Offset: 0x70
-	// Func End, Address: 0x1662c8, Func Offset: 0x78
-	scePrintf("bhEffectSandSetMatsumoto - UNIMPLEMENTED!\n");
+	int v0, v1, v2;
+
+    bhScePtr++;
+	
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+	
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    bhEne02_SetSandEffectEV(v0, v1, v2);
+    
+    return 1;
 }
 
 // 100% matching!
