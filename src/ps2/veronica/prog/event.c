@@ -7330,56 +7330,48 @@ unsigned int bhEtcAtariEnePosSet()
 	scePrintf("bhEtcAtariEnePosSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x164750
+// 100% matching!
 unsigned int bhEtcAtariEvtPosSet()
 {
-	//_anon3* e_posp;
-	//_anon6* e_etcp;
-	BH_PWORK* epw;
-	int v3;
-	int v1;
-	int v0;
-	// Line 7313, Address: 0x164750, Func Offset: 0
-	// Line 7329, Address: 0x164758, Func Offset: 0x8
-	// Line 7339, Address: 0x164760, Func Offset: 0x10
-	// Line 7321, Address: 0x164764, Func Offset: 0x14
-	// Line 7313, Address: 0x16476c, Func Offset: 0x1c
-	// Line 7327, Address: 0x164770, Func Offset: 0x20
-	// Line 7313, Address: 0x164778, Func Offset: 0x28
-	// Line 7314, Address: 0x164780, Func Offset: 0x30
-	// Line 7315, Address: 0x16478c, Func Offset: 0x3c
-	// Line 7316, Address: 0x164798, Func Offset: 0x48
-	// Line 7327, Address: 0x1647a0, Func Offset: 0x50
-	// Line 7316, Address: 0x1647a4, Func Offset: 0x54
-	// Line 7317, Address: 0x1647a8, Func Offset: 0x58
-	// Line 7318, Address: 0x1647b4, Func Offset: 0x64
-	// Line 7322, Address: 0x1647bc, Func Offset: 0x6c
-	// Line 7318, Address: 0x1647c8, Func Offset: 0x78
-	// Line 7319, Address: 0x1647cc, Func Offset: 0x7c
-	// Line 7321, Address: 0x1647d8, Func Offset: 0x88
-	// Line 7327, Address: 0x1647dc, Func Offset: 0x8c
-	// Line 7333, Address: 0x1647e0, Func Offset: 0x90
-	// Line 7322, Address: 0x1647e4, Func Offset: 0x94
-	// Line 7326, Address: 0x1647e8, Func Offset: 0x98
-	// Line 7329, Address: 0x1647ec, Func Offset: 0x9c
-	// Line 7327, Address: 0x1647f0, Func Offset: 0xa0
-	// Line 7333, Address: 0x1647f4, Func Offset: 0xa4
-	// Line 7327, Address: 0x1647fc, Func Offset: 0xac
-	// Line 7329, Address: 0x164800, Func Offset: 0xb0
-	// Line 7333, Address: 0x164808, Func Offset: 0xb8
-	// Line 7329, Address: 0x164814, Func Offset: 0xc4
-	// Line 7330, Address: 0x16481c, Func Offset: 0xcc
-	// Line 7331, Address: 0x164824, Func Offset: 0xd4
-	// Line 7333, Address: 0x164838, Func Offset: 0xe8
-	// Line 7335, Address: 0x16483c, Func Offset: 0xec
-	// Line 7333, Address: 0x164840, Func Offset: 0xf0
-	// Line 7335, Address: 0x164850, Func Offset: 0x100
-	// Line 7336, Address: 0x164854, Func Offset: 0x104
-	// Line 7337, Address: 0x16485c, Func Offset: 0x10c
-	// Line 7340, Address: 0x164860, Func Offset: 0x110
-	// Func End, Address: 0x164868, Func Offset: 0x118
-	scePrintf("bhEtcAtariEvtPosSet - UNIMPLEMENTED!\n");
+    int v0, v1, v3;
+    ATR_WORK* e_etcp;
+    POS* e_posp;
+    BH_PWORK* epw;
+	int v2;    // not from DWARF
+    O_WRK* op; // not from DWARF
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+	
+    bhScePtr++;
+    
+    e_etcp = rom->etcp;
+    e_etcp += v1;
+
+    e_posp = rom->posp;
+
+    e_posp += sys->evt_posno[v0];
+    
+    e_etcp->px = e_posp->px - (e_etcp->w / 2.0f);
+    e_etcp->py = e_posp->py;
+    e_etcp->pz = e_posp->pz - (e_etcp->d / 2.0f);
+    
+    op = &sys->itwp[v3];
+    
+    op->px = e_posp->px;
+    op->py = e_posp->py;
+    op->pz = e_posp->pz;
+    
+    return 1;
 }
 
 // 100% matching!
