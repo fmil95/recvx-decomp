@@ -11480,18 +11480,18 @@ int Common_controll()
         case 0x6:
         {
             unsigned int v0; 
-            
-            bhScePtr++;
-            v0 = *bhScePtr;
-            bhCetask->addax = (int)(v0 * 182.04445f) >> 0x1;
-            bhScePtr++;
-            v0 = *bhScePtr;
-            bhCetask->adday = (int)(*bhScePtr * 182.04445f) >> 0x1;
-            bhScePtr++;
-            v0 = *bhScePtr;
-            bhCetask->addaz = (int)(v0 * 182.04445f) >> 0x1;
-            bhScePtr++;
-            bhScePtr++;
+    
+			bhScePtr++;
+			v0 = *bhScePtr;
+			bhCetask->addax = (int)(v0 * (65536.0f / 360.0f)) >> 0x1;
+			bhScePtr++;
+			v0 = *bhScePtr;
+			bhCetask->adday = (int)(v0 * (65536.0f / 360.0f)) >> 0x1;
+			bhScePtr++;
+			v0 = *bhScePtr;
+			bhCetask->addaz = (int)(v0 * (65536.0f / 360.0f)) >> 0x1;
+			bhScePtr++;
+			bhScePtr++;
         }
         break;
         case 0xC:
