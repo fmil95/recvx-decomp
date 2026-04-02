@@ -7590,49 +7590,43 @@ unsigned int bhGrdPosMoveCSet()
     return 1;
 }
 
-// 
-// Start address: 0x165280
+// 100% matching!
 unsigned int bhGrdPosMoveStart()
 {
-	float ans[3];
-	float ips_w[3][4];
-	//_anon6* e_walp;
-	// Line 7537, Address: 0x165280, Func Offset: 0
-	// Line 7546, Address: 0x16528c, Func Offset: 0xc
-	// Line 7575, Address: 0x165294, Func Offset: 0x14
-	// Line 7553, Address: 0x1652a4, Func Offset: 0x24
-	// Line 7546, Address: 0x1652ac, Func Offset: 0x2c
-	// Line 7575, Address: 0x1652b0, Func Offset: 0x30
-	// Line 7558, Address: 0x1652b4, Func Offset: 0x34
-	// Line 7546, Address: 0x1652bc, Func Offset: 0x3c
-	// Line 7554, Address: 0x1652c4, Func Offset: 0x44
-	// Line 7553, Address: 0x1652cc, Func Offset: 0x4c
-	// Line 7555, Address: 0x1652d0, Func Offset: 0x50
-	// Line 7554, Address: 0x1652d4, Func Offset: 0x54
-	// Line 7555, Address: 0x1652d8, Func Offset: 0x58
-	// Line 7558, Address: 0x1652e0, Func Offset: 0x60
-	// Line 7554, Address: 0x1652e4, Func Offset: 0x64
-	// Line 7558, Address: 0x1652f4, Func Offset: 0x74
-	// Line 7559, Address: 0x1652f8, Func Offset: 0x78
-	// Line 7560, Address: 0x165300, Func Offset: 0x80
-	// Line 7561, Address: 0x165308, Func Offset: 0x88
-	// Line 7563, Address: 0x165310, Func Offset: 0x90
-	// Line 7564, Address: 0x165318, Func Offset: 0x98
-	// Line 7565, Address: 0x165320, Func Offset: 0xa0
-	// Line 7566, Address: 0x165328, Func Offset: 0xa8
-	// Line 7568, Address: 0x165330, Func Offset: 0xb0
-	// Line 7569, Address: 0x165338, Func Offset: 0xb8
-	// Line 7570, Address: 0x165340, Func Offset: 0xc0
-	// Line 7571, Address: 0x165348, Func Offset: 0xc8
-	// Line 7575, Address: 0x165350, Func Offset: 0xd0
-	// Line 7577, Address: 0x165370, Func Offset: 0xf0
-	// Line 7581, Address: 0x165374, Func Offset: 0xf4
-	// Line 7577, Address: 0x165378, Func Offset: 0xf8
-	// Line 7578, Address: 0x16537c, Func Offset: 0xfc
-	// Line 7579, Address: 0x165384, Func Offset: 0x104
-	// Line 7582, Address: 0x16538c, Func Offset: 0x10c
-	// Func End, Address: 0x16539c, Func Offset: 0x11c
-	scePrintf("bhGrdPosMoveStart - UNIMPLEMENTED!\n");
+	ATR_WORK* e_walp;
+    float ips_w[4][3]; 
+    float ans[3]; 
+    
+    bhScePtr++;
+    
+    e_walp = rom->walp;
+	
+    e_walp += *bhScePtr;
+
+    bhScePtr++;
+    
+    ips_w[0][0] = bhCetask->e_lgt[1][0];
+    ips_w[1][0] = bhCetask->e_lgt[1][0];
+    ips_w[2][0] = bhCetask->e_lgt[0][0];
+    ips_w[3][0] = bhCetask->e_lgt[0][0];
+    
+    ips_w[0][1] = bhCetask->e_lgt[1][1];
+    ips_w[1][1] = bhCetask->e_lgt[1][1];
+    ips_w[2][1] = bhCetask->e_lgt[0][1];
+    ips_w[3][1] = bhCetask->e_lgt[0][1];
+    
+    ips_w[0][2] = bhCetask->e_lgt[1][2];
+    ips_w[1][2] = bhCetask->e_lgt[1][2];
+    ips_w[2][2] = bhCetask->e_lgt[0][2];
+    ips_w[3][2] = bhCetask->e_lgt[0][2];
+    
+    njOverhauserSpline((float*)ips_w, (float*)ans, NULL, (1.0f / bhCetask->cnt3) * bhCetask->cnt2);
+    
+    e_walp->px = ans[0];
+    e_walp->py = ans[1];
+    e_walp->pz = ans[2];
+    
+    return 0;
 }
 
 // 100% matching!
