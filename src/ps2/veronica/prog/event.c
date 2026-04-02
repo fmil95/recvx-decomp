@@ -7870,52 +7870,71 @@ unsigned int bhArmsItemSet()
 	scePrintf("bhArmsItemSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x166090
+// 100% matching!
 unsigned int bhItemGetGetEx()
 {
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	unsigned int wicnt;
-	unsigned int icnt;
-	unsigned int cnt;
-	// Line 7908, Address: 0x166090, Func Offset: 0
-	// Line 7918, Address: 0x166098, Func Offset: 0x8
-	// Line 7908, Address: 0x1660a4, Func Offset: 0x14
-	// Line 7909, Address: 0x1660b0, Func Offset: 0x20
-	// Line 7910, Address: 0x1660bc, Func Offset: 0x2c
-	// Line 7911, Address: 0x1660c8, Func Offset: 0x38
-	// Line 7912, Address: 0x1660d4, Func Offset: 0x44
-	// Line 7913, Address: 0x1660e0, Func Offset: 0x50
-	// Line 7914, Address: 0x1660ec, Func Offset: 0x5c
-	// Line 7915, Address: 0x1660f8, Func Offset: 0x68
-	// Line 7916, Address: 0x166104, Func Offset: 0x74
-	// Line 7918, Address: 0x166110, Func Offset: 0x80
-	// Line 7919, Address: 0x166120, Func Offset: 0x90
-	// Line 7920, Address: 0x166140, Func Offset: 0xb0
-	// Line 7922, Address: 0x16614c, Func Offset: 0xbc
-	// Line 7924, Address: 0x166158, Func Offset: 0xc8
-	// Line 7925, Address: 0x16616c, Func Offset: 0xdc
-	// Line 7926, Address: 0x166174, Func Offset: 0xe4
-	// Line 7927, Address: 0x166194, Func Offset: 0x104
-	// Line 7929, Address: 0x1661a0, Func Offset: 0x110
-	// Line 7931, Address: 0x1661ac, Func Offset: 0x11c
-	// Line 7932, Address: 0x1661c4, Func Offset: 0x134
-	// Line 7934, Address: 0x1661c8, Func Offset: 0x138
-	// Line 7935, Address: 0x1661d0, Func Offset: 0x140
-	// Line 7936, Address: 0x1661e0, Func Offset: 0x150
-	// Line 7937, Address: 0x1661e8, Func Offset: 0x158
-	// Line 7936, Address: 0x1661ec, Func Offset: 0x15c
-	// Line 7937, Address: 0x1661f8, Func Offset: 0x168
-	// Line 7938, Address: 0x166200, Func Offset: 0x170
-	// Line 7940, Address: 0x16621c, Func Offset: 0x18c
-	// Line 7941, Address: 0x166224, Func Offset: 0x194
-	// Line 7945, Address: 0x166238, Func Offset: 0x1a8
-	// Line 7946, Address: 0x16623c, Func Offset: 0x1ac
-	// Func End, Address: 0x166244, Func Offset: 0x1b4
-	scePrintf("bhItemGetGetEx - UNIMPLEMENTED!\n");
+	unsigned int cnt, icnt, wicnt;
+    int v0, v1, v2, v3;
+
+    bhScePtr++;
+	
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+    
+    if ((sys->gm_flg & 0x8000000)) 
+	{
+        for (wicnt = 0, icnt = 2, cnt = (v0 * 16) + 2; cnt < (v0 * 16) + 12; cnt++, icnt++) 
+		{
+            if (sys->itm[cnt] == 0) 
+			{
+                wicnt = icnt;
+                break;
+            }
+        }
+    } 
+	else 
+	{
+        for (wicnt = 0, icnt = 2, cnt = (v0 * 16) + 2; cnt < (v0 * 16) + 10; cnt++, icnt++) 
+		{
+            if (sys->itm[cnt] == 0) 
+			{
+                wicnt = icnt;
+                break;
+            }
+        }
+    }
+ 
+    if (wicnt != 0) 
+	{
+        sys->itm[cnt] = v1 << 16;
+
+        sys->itm[cnt] |= v2;
+
+        if (v1 == 33) 
+		{
+            sys->itm[v0 * 16]++;
+        }
+
+        if (v3 == 0) 
+		{
+            sys->itm[v0 * 16] = wicnt;
+        }
+    }
+    
+    return 1;
 }
 
 // 100% matching!
@@ -7924,7 +7943,7 @@ unsigned int bhEffectSandSetMatsumoto()
 	int v0, v1, v2;
 
     bhScePtr++;
-	
+
     v0 = *bhScePtr;
 
     bhScePtr++;
