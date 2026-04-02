@@ -7450,47 +7450,59 @@ unsigned int bhItemSBoxToIBox()
     return 1;
 }
 
-// 
-// Start address: 0x164a20
+// 100% matching!
 unsigned int bhGrdPosSet()
 {
-	//_anon6* e_walp;
 	unsigned int v1;
-	// Line 7425, Address: 0x164a20, Func Offset: 0
-	// Line 7432, Address: 0x164a28, Func Offset: 0x8
-	// Line 7425, Address: 0x164a30, Func Offset: 0x10
-	// Line 7432, Address: 0x164a3c, Func Offset: 0x1c
-	// Line 7433, Address: 0x164a40, Func Offset: 0x20
-	// Line 7435, Address: 0x164a4c, Func Offset: 0x2c
-	// Line 7433, Address: 0x164a58, Func Offset: 0x38
-	// Line 7436, Address: 0x164a60, Func Offset: 0x40
-	// Line 7433, Address: 0x164a68, Func Offset: 0x48
-	// Line 7436, Address: 0x164a70, Func Offset: 0x50
-	// Line 7437, Address: 0x164a74, Func Offset: 0x54
-	// Line 7440, Address: 0x164a80, Func Offset: 0x60
-	// Line 7441, Address: 0x164a8c, Func Offset: 0x6c
-	// Line 7442, Address: 0x164ae8, Func Offset: 0xc8
-	// Line 7443, Address: 0x164af0, Func Offset: 0xd0
-	// Line 7445, Address: 0x164b40, Func Offset: 0x120
-	// Line 7448, Address: 0x164b48, Func Offset: 0x128
-	// Line 7445, Address: 0x164b4c, Func Offset: 0x12c
-	// Line 7448, Address: 0x164b54, Func Offset: 0x134
-	// Line 7449, Address: 0x164b5c, Func Offset: 0x13c
-	// Line 7450, Address: 0x164bb8, Func Offset: 0x198
-	// Line 7451, Address: 0x164bc0, Func Offset: 0x1a0
-	// Line 7453, Address: 0x164c10, Func Offset: 0x1f0
-	// Line 7456, Address: 0x164c18, Func Offset: 0x1f8
-	// Line 7453, Address: 0x164c1c, Func Offset: 0x1fc
-	// Line 7456, Address: 0x164c24, Func Offset: 0x204
-	// Line 7457, Address: 0x164c2c, Func Offset: 0x20c
-	// Line 7458, Address: 0x164c88, Func Offset: 0x268
-	// Line 7459, Address: 0x164c90, Func Offset: 0x270
-	// Line 7461, Address: 0x164ce0, Func Offset: 0x2c0
-	// Line 7464, Address: 0x164ce8, Func Offset: 0x2c8
-	// Line 7461, Address: 0x164cec, Func Offset: 0x2cc
-	// Line 7465, Address: 0x164cf4, Func Offset: 0x2d4
-	// Func End, Address: 0x164cfc, Func Offset: 0x2dc
-	scePrintf("bhGrdPosSet - UNIMPLEMENTED!\n");
+    ATR_WORK* e_walp;
+	unsigned int v0; // not from DWARF
+ 
+    bhScePtr++;
+ 
+    e_walp = rom->walp;
+	
+    e_walp += *bhScePtr;
+    
+    bhScePtr += 2;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if ((v1 & 0x1)) 
+	{
+        e_walp->px = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        e_walp->px = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v1 & 0x2)) 
+	{
+        e_walp->py = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        e_walp->py = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v1 & 0x4)) 
+	{
+        e_walp->pz = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        e_walp->pz = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 
