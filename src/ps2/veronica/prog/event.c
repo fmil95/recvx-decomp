@@ -562,55 +562,55 @@ unsigned int bhSet()
     
     switch (*a1 >> 8) 
     {                              
-    case 0:                                         
-        a0 = (int*)&sys->ev_flg;
-        break;
     case 1:                                         
-        a0 = (int*)&sys->ky_flg;
-        break;
+        a0 = (int*)&sys->ev_flg; 
+		break;
     case 2:                                         
-        a0 = (int*)&sys->ed_flg;
-        break;
+        a0 = (int*)&sys->ky_flg; 
+		break;
     case 3:                                         
-        a0 = (int*)&sys->rm_flg;
-        break; 
+        a0 = (int*)&sys->ed_flg; 
+		break;
     case 4:                                         
-        a0 = (int*)&sys->st_flg;
-        break;
+        a0 = (int*)&sys->rm_flg; 
+		break; 
     case 5:                                         
-        a0 = (int*)&sys->sp_flg;
-        break;
-    case 6:       
-        a0 = (int*)&sys->it_flg;
-        break;
-    case 7:        
-        a0 = (int*)&sys->mp_flg;
-        break;
-    case 8:            
-        a0 = (int*)&sys->ic_flg;
-        break;
-    case 9:      
-        a0 = (int*)&sys->gm_flg;
-        break;
-    case 11:   
-        a0 = (int*)&sys->ts_flg;
-        break;
-    case 12:        
-        a0 = (int*)&sys->cb_flg;
-        break;
-    case 10:     
-        a0 = (int*)&plp->flg; 
-        break;
-    case 13:      
+        a0 = (int*)&sys->st_flg; 
+		break;
+    case 6:                                         
+        a0 = (int*)&sys->sp_flg; 
+		break;
+    case 7:
+        a0 = (int*)sys->it_flg; 
+		break;
+    case 8:
+        a0 = (int*)sys->mp_flg; 
+		break;
+    case 9:
+        a0 = (int*)sys->ic_flg; 
+		break;
+    case 11:
+        a0 = (int*)&sys->gm_flg; 
+		break;
+    case 12:
+        a0 = (int*)&sys->ts_flg; 
+		break;
+    case 10:
+        a0 = (int*)&sys->cb_flg; 
+		break;
+    case 13:
+        a0 = (int*)plp; 
+		break;
+    case 14:
         a0 = (int*)&plp->stflg; 
-        break;
-    case 14:       
+		break;
+    case 15:
         a0 = (int*)&plp->flg2; 
-        break;
-    case 15:                                        
-        break;
-    case 16:      
-        a0 = (int*)&sys->ssd_flg;
+		break;
+    case 16:
+        a0 = (int*)&sys->ssd_flg; 
+		break;
+    case 0:
         break;
     }
 
