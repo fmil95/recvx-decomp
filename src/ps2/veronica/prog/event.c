@@ -7212,48 +7212,56 @@ unsigned int bhObjDposCk()
 	scePrintf("bhObjDposCk - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1643d0
+// 100% matching!
 unsigned int bhItemGetGet()
 {
-	int v2;
-	int v1;
-	int v0;
-	// Line 7205, Address: 0x1643d0, Func Offset: 0
-	// Line 7216, Address: 0x1643d8, Func Offset: 0x8
-	// Line 7215, Address: 0x1643dc, Func Offset: 0xc
-	// Line 7205, Address: 0x1643e4, Func Offset: 0x14
-	// Line 7206, Address: 0x1643f0, Func Offset: 0x20
-	// Line 7207, Address: 0x1643fc, Func Offset: 0x2c
-	// Line 7208, Address: 0x164408, Func Offset: 0x38
-	// Line 7215, Address: 0x164410, Func Offset: 0x40
-	// Line 7208, Address: 0x164418, Func Offset: 0x48
-	// Line 7209, Address: 0x16441c, Func Offset: 0x4c
-	// Line 7210, Address: 0x164428, Func Offset: 0x58
-	// Line 7215, Address: 0x164430, Func Offset: 0x60
-	// Line 7210, Address: 0x164434, Func Offset: 0x64
-	// Line 7211, Address: 0x164438, Func Offset: 0x68
-	// Line 7216, Address: 0x164444, Func Offset: 0x74
-	// Line 7217, Address: 0x16444c, Func Offset: 0x7c
-	// Line 7219, Address: 0x164464, Func Offset: 0x94
-	// Line 7221, Address: 0x164480, Func Offset: 0xb0
-	// Line 7222, Address: 0x164488, Func Offset: 0xb8
-	// Line 7221, Address: 0x16448c, Func Offset: 0xbc
-	// Line 7222, Address: 0x164490, Func Offset: 0xc0
-	// Line 7223, Address: 0x164498, Func Offset: 0xc8
-	// Line 7225, Address: 0x1644a8, Func Offset: 0xd8
-	// Line 7227, Address: 0x1644b0, Func Offset: 0xe0
-	// Line 7229, Address: 0x1644bc, Func Offset: 0xec
-	// Line 7227, Address: 0x1644c0, Func Offset: 0xf0
-	// Line 7228, Address: 0x1644c8, Func Offset: 0xf8
-	// Line 7227, Address: 0x1644cc, Func Offset: 0xfc
-	// Line 7228, Address: 0x1644d4, Func Offset: 0x104
-	// Line 7229, Address: 0x1644dc, Func Offset: 0x10c
-	// Line 7230, Address: 0x1644e4, Func Offset: 0x114
-	// Line 7234, Address: 0x1644f8, Func Offset: 0x128
-	// Line 7235, Address: 0x1644fc, Func Offset: 0x12c
-	// Func End, Address: 0x164504, Func Offset: 0x134
-	scePrintf("bhItemGetGet - UNIMPLEMENTED!\n");
+	int v0, v1, v2;
+    
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+    
+    sys->itm[(v0 * 16) + 2] = v1 << 16;
+
+    if (v1 == 34) 
+	{
+        sys->itm[(v0 * 16) + 2] += 500;
+    }
+
+    switch (v2) 
+	{
+	case 0:
+		sys->itm[v0 * 16] = 2;
+		
+		if (v1 == 34) 
+		{
+			sys->ply_wno[v0] = 8;
+		}
+
+		break;
+	case 2:
+		sys->itm[(v0 * 16) + 2] |= 0x8000000;
+		sys->itm[v0 * 16] = 2;
+
+		if (v1 == 34) 
+		{
+			sys->ply_wno[v0] = 8;
+		}
+
+		break;
+    }
+
+    return 1;
 }
 
 // 100% matching!
@@ -7307,7 +7315,7 @@ unsigned int bhEtcAtariEnePosSet()
     for (cnt = v2, cnt2 = v2; cnt < v3; cnt++, e_posp++) 
 	{
         sw1 = njDistanceP2P((NJS_POINT3*)e_posp, (NJS_POINT3*)&epw->mlwP->owP[v5].mtx[12]);
-		
+
         if (sw1 < sw2) 
 		{
             sw2 = sw1;
