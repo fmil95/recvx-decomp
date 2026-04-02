@@ -2040,7 +2040,7 @@ void bhEne11_MoveNearWall(BH_PWORK* epw)
 	// Line 1255, Address: 0x1d4fec, Func Offset: 0xbc
 	// Line 1257, Address: 0x1d4ff8, Func Offset: 0xc8
 	// Func End, Address: 0x1d5010, Func Offset: 0xe0
-}
+}*/
 
 // 
 // Start address: 0x1d5010
@@ -2063,9 +2063,10 @@ void bhEne11_LightControl(BH_PWORK* epw, int flg)
 	// Line 1287, Address: 0x1d50a4, Func Offset: 0x94
 	// Line 1290, Address: 0x1d50b0, Func Offset: 0xa0
 	// Func End, Address: 0x1d50b8, Func Offset: 0xa8
+	scePrintf("bhEne11_LightControl - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1d50c0
 int bhEne11_SelectDir(BH_PWORK* epw)
 {
