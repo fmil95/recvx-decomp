@@ -8061,43 +8061,54 @@ unsigned int bhPlItemChangeM()
     return 1;
 }
 
-// 
-// Start address: 0x166680
+// 100% matching!
 unsigned int bhEffBakuDrmSet()
 {
-	//_anon39 pPos;
 	int v2;
-	// Line 8100, Address: 0x166680, Func Offset: 0
-	// Line 8104, Address: 0x166688, Func Offset: 0x8
-	// Line 8105, Address: 0x16669c, Func Offset: 0x1c
-	// Line 8106, Address: 0x1666a8, Func Offset: 0x28
-	// Line 8109, Address: 0x1666b4, Func Offset: 0x34
-	// Line 8110, Address: 0x1666c0, Func Offset: 0x40
-	// Line 8111, Address: 0x16671c, Func Offset: 0x9c
-	// Line 8112, Address: 0x166724, Func Offset: 0xa4
-	// Line 8114, Address: 0x166774, Func Offset: 0xf4
-	// Line 8116, Address: 0x16677c, Func Offset: 0xfc
-	// Line 8114, Address: 0x166780, Func Offset: 0x100
-	// Line 8116, Address: 0x166788, Func Offset: 0x108
-	// Line 8117, Address: 0x166790, Func Offset: 0x110
-	// Line 8118, Address: 0x1667ec, Func Offset: 0x16c
-	// Line 8119, Address: 0x1667f4, Func Offset: 0x174
-	// Line 8121, Address: 0x166844, Func Offset: 0x1c4
-	// Line 8123, Address: 0x16684c, Func Offset: 0x1cc
-	// Line 8121, Address: 0x166850, Func Offset: 0x1d0
-	// Line 8123, Address: 0x166858, Func Offset: 0x1d8
-	// Line 8124, Address: 0x166860, Func Offset: 0x1e0
-	// Line 8125, Address: 0x1668bc, Func Offset: 0x23c
-	// Line 8126, Address: 0x1668c4, Func Offset: 0x244
-	// Line 8128, Address: 0x166914, Func Offset: 0x294
-	// Line 8130, Address: 0x16691c, Func Offset: 0x29c
-	// Line 8128, Address: 0x166920, Func Offset: 0x2a0
-	// Line 8130, Address: 0x166928, Func Offset: 0x2a8
-	// Line 8133, Address: 0x166930, Func Offset: 0x2b0
-	// Line 8132, Address: 0x166934, Func Offset: 0x2b4
-	// Line 8133, Address: 0x166938, Func Offset: 0x2b8
-	// Func End, Address: 0x166940, Func Offset: 0x2c0
-	scePrintf("bhEffBakuDrmSet - UNIMPLEMENTED!\n");
+    NJS_VECTOR pPos;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    if ((v2 & 0x1)) 
+	{
+        pPos.x = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        pPos.x = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v2 & 0x2)) 
+	{
+        pPos.y = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        pPos.y = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v2 & 0x4)) 
+	{
+        pPos.z = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        pPos.z = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    bhSetExplosionEffect(&pPos);
+    
+    return 1;
 }
 
 // 100% matching!
@@ -8163,7 +8174,7 @@ unsigned int bhEneLookFlgSet()
 	ETTY_WORK* enep; // not from DWARF
 
     bhScePtr++;
-	
+
     v2 = *bhScePtr;
 
     bhScePtr++;
