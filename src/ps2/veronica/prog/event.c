@@ -7624,53 +7624,80 @@ unsigned int bhReTryPointSet()
 	return 1;
 }
 
-// 
-// Start address: 0x165420
+// 100% matching!
 unsigned int bhPlyDposCk()
 {
-	BH_PWORK* e_ep;
-	int eay2;
-	int eay;
-	int v3;
-	int v2;
-	int v1;
-	// Line 7621, Address: 0x165420, Func Offset: 0
-	// Line 7627, Address: 0x16542c, Func Offset: 0xc
-	// Line 7629, Address: 0x165440, Func Offset: 0x20
-	// Line 7630, Address: 0x165454, Func Offset: 0x34
-	// Line 7631, Address: 0x165460, Func Offset: 0x40
-	// Line 7640, Address: 0x16546c, Func Offset: 0x4c
-	// Line 7632, Address: 0x165470, Func Offset: 0x50
-	// Line 7634, Address: 0x16547c, Func Offset: 0x5c
-	// Line 7635, Address: 0x165488, Func Offset: 0x68
-	// Line 7636, Address: 0x165494, Func Offset: 0x74
-	// Line 7638, Address: 0x1654a0, Func Offset: 0x80
-	// Line 7640, Address: 0x1654b0, Func Offset: 0x90
-	// Line 7641, Address: 0x1654b8, Func Offset: 0x98
-	// Line 7642, Address: 0x1654c0, Func Offset: 0xa0
-	// Line 7645, Address: 0x1654c4, Func Offset: 0xa4
-	// Line 7646, Address: 0x1654e0, Func Offset: 0xc0
-	// Line 7645, Address: 0x1654ec, Func Offset: 0xcc
-	// Line 7646, Address: 0x1654f0, Func Offset: 0xd0
-	// Line 7648, Address: 0x165504, Func Offset: 0xe4
-	// Line 7649, Address: 0x16550c, Func Offset: 0xec
-	// Line 7650, Address: 0x165514, Func Offset: 0xf4
-	// Line 7651, Address: 0x165520, Func Offset: 0x100
-	// Line 7652, Address: 0x16552c, Func Offset: 0x10c
-	// Line 7653, Address: 0x165540, Func Offset: 0x120
-	// Line 7654, Address: 0x165550, Func Offset: 0x130
-	// Line 7655, Address: 0x165558, Func Offset: 0x138
-	// Line 7657, Address: 0x165560, Func Offset: 0x140
-	// Line 7659, Address: 0x16556c, Func Offset: 0x14c
-	// Line 7660, Address: 0x165578, Func Offset: 0x158
-	// Line 7661, Address: 0x16558c, Func Offset: 0x16c
-	// Line 7662, Address: 0x16559c, Func Offset: 0x17c
-	// Line 7663, Address: 0x1655a4, Func Offset: 0x184
-	// Line 7665, Address: 0x1655ac, Func Offset: 0x18c
-	// Line 7668, Address: 0x1655b8, Func Offset: 0x198
-	// Line 7669, Address: 0x1655bc, Func Offset: 0x19c
-	// Func End, Address: 0x1655cc, Func Offset: 0x1ac
-	scePrintf("bhPlyDposCk - UNIMPLEMENTED!\n");
+	int v1, v2, v3; 
+    int eay, eay2;
+    BH_PWORK* e_ep;
+	int v0, v4; // not from DWARF
+    
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+
+    if (((v1 & 0x2)) && (v2 != 0))
+	{
+		v2 -= 360;
+    }
+
+    eay = v2 * (65536.0f / 360.0f);
+    eay2 = v3 * (65536.0f / 360.0f);
+    
+    e_ep = plp;
+
+    e_ep->ay = (short)e_ep->ay;
+
+    if (eay != (unsigned short)e_ep->ay) 
+	{
+        if (eay < (unsigned short)e_ep->ay) 
+		{
+            e_ep->ay -= (short)eay2;
+
+            if (eay >= (unsigned short)e_ep->ay) 
+			{
+                e_ep->ay = (unsigned short)eay;
+
+                return 0;
+            }
+
+            return 1;
+        }
+
+        if ((unsigned short)e_ep->ay < eay) 
+		{
+            e_ep->ay += (short)eay2;
+
+            if (eay <= (unsigned short)e_ep->ay) 
+			{
+                e_ep->ay = (unsigned short)eay;
+
+                return 0;
+            }
+
+            return 1;
+        }
+    }
+
+    return 0;
 }
 
 // 100% matching!
