@@ -8238,27 +8238,29 @@ unsigned int bhExGameItemInit()
 	return 1;
 }
 
-// 
-// Start address: 0x166cb0
+// 100% matching!
 unsigned int bhEneLifeSetM()
 {
-	int v1;
-	int v0;
-	// Line 8292, Address: 0x166cb0, Func Offset: 0
-	// Line 8303, Address: 0x166cb8, Func Offset: 0x8
-	// Line 8305, Address: 0x166cc0, Func Offset: 0x10
-	// Line 8303, Address: 0x166cc4, Func Offset: 0x14
-	// Line 8292, Address: 0x166ccc, Func Offset: 0x1c
-	// Line 8293, Address: 0x166cd8, Func Offset: 0x28
-	// Line 8294, Address: 0x166ce4, Func Offset: 0x34
-	// Line 8295, Address: 0x166cf0, Func Offset: 0x40
-	// Line 8303, Address: 0x166cf8, Func Offset: 0x48
-	// Line 8295, Address: 0x166d04, Func Offset: 0x54
-	// Line 8296, Address: 0x166d08, Func Offset: 0x58
-	// Line 8303, Address: 0x166d14, Func Offset: 0x64
-	// Line 8306, Address: 0x166d38, Func Offset: 0x88
-	// Func End, Address: 0x166d40, Func Offset: 0x90
-	scePrintf("bhEneLifeSetM - UNIMPLEMENTED!\n");
+    int v0, v1;
+    ETTY_WORK* enep; // not from DWARF
+    BH_PWORK* e_ep;  // not from DWARF
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+    
+    enep = &rom->enep[v0];
+    e_ep = &ene[enep->wrk_no];
+
+    e_ep->hp = v1;
+    
+    return 1;
 }
 
 // 
