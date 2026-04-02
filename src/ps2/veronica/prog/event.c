@@ -7673,44 +7673,53 @@ unsigned int bhPlyDposCk()
 	scePrintf("bhPlyDposCk - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1655d0
+// 100% matching!
 unsigned int bhPlItemLostEx()
 {
-	int v1;
-	int v0;
-	unsigned int cnt2;
-	unsigned int cnt;
-	// Line 7681, Address: 0x1655d0, Func Offset: 0
-	// Line 7693, Address: 0x1655d8, Func Offset: 0x8
-	// Line 7681, Address: 0x1655e0, Func Offset: 0x10
-	// Line 7682, Address: 0x1655ec, Func Offset: 0x1c
-	// Line 7683, Address: 0x1655f8, Func Offset: 0x28
-	// Line 7684, Address: 0x165604, Func Offset: 0x34
-	// Line 7685, Address: 0x165610, Func Offset: 0x40
-	// Line 7693, Address: 0x16561c, Func Offset: 0x4c
-	// Line 7687, Address: 0x165620, Func Offset: 0x50
-	// Line 7693, Address: 0x165624, Func Offset: 0x54
-	// Line 7694, Address: 0x16563c, Func Offset: 0x6c
-	// Line 7696, Address: 0x165650, Func Offset: 0x80
-	// Line 7698, Address: 0x165668, Func Offset: 0x98
-	// Line 7696, Address: 0x16566c, Func Offset: 0x9c
-	// Line 7698, Address: 0x165670, Func Offset: 0xa0
-	// Line 7699, Address: 0x16567c, Func Offset: 0xac
-	// Line 7700, Address: 0x1656b8, Func Offset: 0xe8
-	// Line 7702, Address: 0x1656c0, Func Offset: 0xf0
-	// Line 7703, Address: 0x1656c8, Func Offset: 0xf8
-	// Line 7706, Address: 0x1656d4, Func Offset: 0x104
-	// Line 7707, Address: 0x1656dc, Func Offset: 0x10c
-	// Line 7708, Address: 0x1656e4, Func Offset: 0x114
-	// Line 7707, Address: 0x1656e8, Func Offset: 0x118
-	// Line 7709, Address: 0x1656ec, Func Offset: 0x11c
-	// Line 7710, Address: 0x165710, Func Offset: 0x140
-	// Line 7712, Address: 0x165718, Func Offset: 0x148
-	// Line 7713, Address: 0x16572c, Func Offset: 0x15c
-	// Line 7714, Address: 0x165730, Func Offset: 0x160
-	// Func End, Address: 0x165738, Func Offset: 0x168
-	scePrintf("bhPlItemLostEx - UNIMPLEMENTED!\n");
+	unsigned int cnt, cnt2;
+    int v0, v1;
+  
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+
+    cnt2 = v1 + (14 * 16);
+
+    for (cnt = (sys->ply_id * 16) + 2; cnt < ((sys->ply_id * 16) + 12); cnt++) 
+	{
+        if (v0 == (unsigned char)(sys->itm[cnt] >> 16)) 
+		{
+            sys->itm[cnt2] = sys->itm[cnt];
+            sys->itm[cnt] = 0;
+            
+			if ((sys->itm[sys->ply_id * 16] >= (cnt - (sys->ply_id * 16))) && (sys->itm[sys->ply_id * 16] != 0)) 
+			{
+                if (sys->itm[sys->ply_id * 16] == cnt) 
+				{
+                    sys->itm[sys->ply_id * 16] = 0;
+                } 
+				else
+				{
+                    sys->itm[sys->ply_id * 16]--;
+                }
+            }
+
+            for ( ; cnt < ((sys->ply_id * 16) + 12); cnt++) 
+			{
+                sys->itm[cnt] = sys->itm[cnt + 1];
+            }
+
+            return 1;
+        }
+    }
+
+    return 1;
 }
 
 // 100% matching!
