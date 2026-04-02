@@ -12575,30 +12575,91 @@ void bhChangeViewClipRM()
 	scePrintf("bhChangeViewClipRM - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x171cf0
+// 100% matching!
 void bhChangeClipVolume(char stg_no, char rom_no, char rcase, int evc_no)
 {
-	float y;
-	float x;
 	int i;
-	//_anon2* ViewClipTbl;
-	//_anon2* ViewClipStage[10];
-	// Line 13030, Address: 0x171cf0, Func Offset: 0
-	// Line 13027, Address: 0x171cfc, Func Offset: 0xc
-	// Line 13028, Address: 0x171d08, Func Offset: 0x18
-	// Line 13030, Address: 0x171d14, Func Offset: 0x24
-	// Line 13029, Address: 0x171d30, Func Offset: 0x40
-	// Line 13030, Address: 0x171d34, Func Offset: 0x44
-	// Line 13032, Address: 0x171d44, Func Offset: 0x54
-	// Line 13035, Address: 0x171d68, Func Offset: 0x78
-	// Line 13036, Address: 0x171d78, Func Offset: 0x88
-	// Line 13040, Address: 0x171d7c, Func Offset: 0x8c
-	// Line 13041, Address: 0x171d84, Func Offset: 0x94
-	// Line 13045, Address: 0x171d90, Func Offset: 0xa0
-	// Line 13046, Address: 0x171d98, Func Offset: 0xa8
-	// Func End, Address: 0x171da0, Func Offset: 0xb0
-	scePrintf("bhChangeClipVolume - UNIMPLEMENTED!\n");
+	float x, y;
+	static VIEW_CLIP* ViewClipTbl;
+    static VIEW_CLIP ViewClipSt0[1] = 
+	{
+        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP ViewClipSt1[1] = 
+	{
+        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP ViewClipSt2[1] = 
+	{
+        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP ViewClipSt3[2] = 
+	{
+        { /* room */ 15, /* rcase */ 0,  /* evc_no */ 3,  /* near */ -320.0f, /* far */ -240.0f },
+        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP ViewClipSt4[1] = 
+	{
+        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP ViewClipSt5[2] = 
+	{
+        { /* room */ 0,  /* rcase */ 1,  /* evc_no */ 0,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP ViewClipSt6[3] = 
+	{
+        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 24, /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 30, /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP ViewClipSt7[1] = 
+	{
+        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP ViewClipSt8[1] = 
+	{
+        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP ViewClipSt9[4] = 
+	{
+        { /* room */ 28, /* rcase */ 0,  /* evc_no */ 7,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ 29, /* rcase */ 0,  /* evc_no */ 0,  /* near */ -320.0f, /* far */ -240.0f },
+        { /* room */ 35, /* rcase */ 0,  /* evc_no */ 45, /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP* ViewClipStage[10] = 
+	{
+        ViewClipSt0,
+        ViewClipSt1,
+        ViewClipSt2,
+        ViewClipSt3,
+        ViewClipSt4,
+        ViewClipSt5,
+        ViewClipSt6,
+        ViewClipSt7,
+        ViewClipSt8,
+        ViewClipSt9
+    };
+    
+    x = 320.0f;
+    y = 240.0f;
+
+    for (i = 0, ViewClipTbl = ViewClipStage[stg_no]; ; i++) 
+	{
+        if (((rom_no == ViewClipTbl[i].room) && (rcase == ViewClipTbl[i].rcase)) && (evc_no == ViewClipTbl[i].evc_no)) 
+		{
+            x = ViewClipTbl[i].near;
+            y = ViewClipTbl[i].far;
+            break;
+        } 
+		else if (ViewClipTbl[i].room < 0) 
+		{
+            break;
+        }
+    }
+
+    _Make_ClipVolume(x, y);
 }
 
 // 100% matching!
@@ -12646,11 +12707,11 @@ void bhChangeClipVolumeRM()
     };
     static VIEW_CLIP ViewClipSt6[5] = 
 	{
-        { /* room */  3,  /* rcase */  0,  /* evc_no */  0,  /* near */ 1024.0f, /* far */ 960.0f },
-        { /* room */  3,  /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
-        { /* room */  9,  /* rcase */  0,  /* evc_no */  0,  /* near */ 1024.0f, /* far */ 960.0f },
-        { /* room */  9,  /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
-        { /* room */ -1,  /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,    /* far */ 0.0f   }
+        { /* room */  3, /* rcase */  0,  /* evc_no */  0,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */  3, /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */  9, /* rcase */  0,  /* evc_no */  0,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */  9, /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ -1, /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,    /* far */ 0.0f   }
     };
     static VIEW_CLIP ViewClipSt7[8] = 
 	{
@@ -12696,15 +12757,13 @@ void bhChangeClipVolumeRM()
         ViewClipSt6,
         ViewClipSt7,
         ViewClipSt8,
-        ViewClipSt9,
+        ViewClipSt9
     };
 
     x = 320.0f;
     y = 240.0f;
 
-    ViewClipTbl = ViewClipStage[sys->stg_no];
-	
-    for (i = 0; ; i++)
+    for (i = 0, ViewClipTbl = ViewClipStage[sys->stg_no]; ; i++)
 	{
         if ((sys->rom_no == ViewClipTbl[i].room) && (cam.ncut == ViewClipTbl[i].evc_no)) 
 		{
