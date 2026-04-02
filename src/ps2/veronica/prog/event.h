@@ -3,6 +3,16 @@
 
 #include "types.h"
 
+typedef struct VIEW_CLIP 
+{
+	// total size: 0xC
+	char room;   // offset 0x0, size 0x1
+	char rcase;  // offset 0x1, size 0x1
+	char evc_no; // offset 0x2, size 0x1
+	float near;  // offset 0x4, size 0x4
+	float far;   // offset 0x8, size 0x4
+} VIEW_CLIP;
+
 void bhInitEvent();
 void bhControlEvent();
 unsigned int bhEnd();

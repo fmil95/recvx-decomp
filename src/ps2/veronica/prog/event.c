@@ -11,6 +11,7 @@
 #include "player.h"
 #include "ps2_NaFog.h"
 #include "ps2_NaMath.h"
+#include "ps2_NaView.h"
 #include "ps2_dummy.h"
 #include "ps2_texture.h"
 #include "pwksub.h"
@@ -12600,30 +12601,122 @@ void bhChangeClipVolume(char stg_no, char rom_no, char rcase, int evc_no)
 	scePrintf("bhChangeClipVolume - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x171da0
+// 100% matching!
 void bhChangeClipVolumeRM()
 {
-	float y;
-	float x;
-	int i;
-	//_anon2* ViewClipTbl;
-	//_anon2* ViewClipStage[10];
-	// Line 13140, Address: 0x171da0, Func Offset: 0
-	// Line 13138, Address: 0x171da8, Func Offset: 0x8
-	// Line 13141, Address: 0x171db0, Func Offset: 0x10
-	// Line 13139, Address: 0x171db4, Func Offset: 0x14
-	// Line 13140, Address: 0x171dbc, Func Offset: 0x1c
-	// Line 13141, Address: 0x171dc4, Func Offset: 0x24
-	// Line 13140, Address: 0x171dcc, Func Offset: 0x2c
-	// Line 13141, Address: 0x171de4, Func Offset: 0x44
-	// Line 13143, Address: 0x171df4, Func Offset: 0x54
-	// Line 13145, Address: 0x171e0c, Func Offset: 0x6c
-	// Line 13146, Address: 0x171e1c, Func Offset: 0x7c
-	// Line 13150, Address: 0x171e20, Func Offset: 0x80
-	// Line 13151, Address: 0x171e28, Func Offset: 0x88
-	// Line 13155, Address: 0x171e34, Func Offset: 0x94
-	// Line 13156, Address: 0x171e3c, Func Offset: 0x9c
-	// Func End, Address: 0x171e44, Func Offset: 0xa4
-	scePrintf("bhChangeClipVolumeRM - UNIMPLEMENTED!\n");
+    int i;
+	float x, y;
+	static VIEW_CLIP* ViewClipTbl;
+    static VIEW_CLIP ViewClipSt0[5] =
+	{
+        { /* room */  7, /* rcase */  0,  /* evc_no */  6,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */  9, /* rcase */  0,  /* evc_no */  0,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */  9, /* rcase */  0,  /* evc_no */  2,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ 15, /* rcase */  0,  /* evc_no */  0,  /* near */ 1740.0f, /* far */ 1740.0f },
+        { /* room */ -1, /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP ViewClipSt1[3] = 
+	{
+        { /* room */  0, /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */  6, /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ -1, /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,    /* far */ 0.0f   }
+    };
+    static VIEW_CLIP ViewClipSt2[1] = 
+	{
+        { /* room */ -1, /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,    /* far */ 0.0f   }
+    };
+    static VIEW_CLIP ViewClipSt3[4] = 
+	{
+        { /* room */  8, /* rcase */  0,  /* evc_no */  7,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ 12, /* rcase */  0,  /* evc_no */  3,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ 16, /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ -1, /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,    /* far */ 0.0f   }
+    };
+    static VIEW_CLIP ViewClipSt4[1] = 
+	{
+        { /* room */ -1, /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,    /* far */ 0.0f   }
+    };
+    static VIEW_CLIP ViewClipSt5[5] = 
+	{
+        { /* room */ 54, /* rcase */  0,  /* evc_no */  7,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ 63, /* rcase */  0,  /* evc_no */  3,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ 66, /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ 68, /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ -1, /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,    /* far */ 0.0f   }
+    };
+    static VIEW_CLIP ViewClipSt6[5] = 
+	{
+        { /* room */  3,  /* rcase */  0,  /* evc_no */  0,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */  3,  /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */  9,  /* rcase */  0,  /* evc_no */  0,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */  9,  /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ -1,  /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,    /* far */ 0.0f   }
+    };
+    static VIEW_CLIP ViewClipSt7[8] = 
+	{
+        { /* room */ 3,  /* rcase */  1,  /* evc_no */  3,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ 7,  /* rcase */  0,  /* evc_no */  5,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ 8,  /* rcase */  0,  /* evc_no */  3,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ 8,  /* rcase */  0,  /* evc_no */  4,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ 9,  /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ 20, /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ 22, /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f },
+        { /* room */ -1, /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,    /* far */ 0.0f   }
+    };
+    static VIEW_CLIP ViewClipSt8[1] = 
+	{
+        { /* room */ -1, /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,   /* far */ 0.0f   }
+    };
+    static VIEW_CLIP ViewClipSt9[15] = 
+	{
+        { /* room */ 3,  /* rcase */  0,  /* evc_no */  0,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ 3,  /* rcase */  0,  /* evc_no */  1,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ 3,  /* rcase */  0,  /* evc_no */  2,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ 5,  /* rcase */  0,  /* evc_no */  0,  /* near */ 1740.0f, /* far */ 1740.0f },
+        { /* room */ 5,  /* rcase */  0,  /* evc_no */  1,  /* near */ 1740.0f, /* far */ 1740.0f },
+        { /* room */ 5,  /* rcase */  0,  /* evc_no */  2,  /* near */ 1740.0f, /* far */ 1740.0f },
+        { /* room */ 5,  /* rcase */  0,  /* evc_no */  3,  /* near */ 1740.0f, /* far */ 1740.0f },
+        { /* room */ 12, /* rcase */  0,  /* evc_no */  1,  /* near */ 1740.0f, /* far */ 1740.0f },
+        { /* room */ 12, /* rcase */  0,  /* evc_no */  2,  /* near */ 1740.0f, /* far */ 1740.0f },
+        { /* room */ 15, /* rcase */  0,  /* evc_no */  3,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ 15, /* rcase */  0,  /* evc_no */  8,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ 18, /* rcase */  0,  /* evc_no */  1,  /* near */ 1740.0f, /* far */ 1740.0f },
+        { /* room */ 32, /* rcase */  0,  /* evc_no */  8,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ 32, /* rcase */  1,  /* evc_no */  8,  /* near */ 1024.0f, /* far */ 960.0f  },
+        { /* room */ -1, /* rcase */ -1,  /* evc_no */ -1,  /* near */ 0.0f,    /* far */ 0.0f    }
+    };
+    static VIEW_CLIP* ViewClipStage[10] = 
+	{
+        ViewClipSt0,
+        ViewClipSt1,
+        ViewClipSt2,
+        ViewClipSt3,
+        ViewClipSt4,
+        ViewClipSt5,
+        ViewClipSt6,
+        ViewClipSt7,
+        ViewClipSt8,
+        ViewClipSt9,
+    };
+
+    x = 320.0f;
+    y = 240.0f;
+
+    ViewClipTbl = ViewClipStage[sys->stg_no];
+	
+    for (i = 0; ; i++)
+	{
+        if ((sys->rom_no == ViewClipTbl[i].room) && (cam.ncut == ViewClipTbl[i].evc_no)) 
+		{
+            x = ViewClipTbl[i].near;
+            y = ViewClipTbl[i].far;
+            break;
+        } 
+		else if (ViewClipTbl[i].room < 0) 
+		{
+            break;
+        }
+    }
+	
+    _Make_ClipVolume(x, y);
 }
