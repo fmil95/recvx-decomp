@@ -7460,7 +7460,7 @@ unsigned int bhGrdPosSet()
     bhScePtr++;
  
     e_walp = rom->walp;
-	
+
     e_walp += *bhScePtr;
     
     bhScePtr += 2;
@@ -7505,61 +7505,89 @@ unsigned int bhGrdPosSet()
     return 1;
 }
 
-// 
-// Start address: 0x164d00
+// 100% matching!
 unsigned int bhGrdPosMoveCSet()
 {
-	int v1;
-	int v0;
-	// Line 7478, Address: 0x164d00, Func Offset: 0
-	// Line 7479, Address: 0x164d14, Func Offset: 0x14
-	// Line 7480, Address: 0x164d20, Func Offset: 0x20
-	// Line 7482, Address: 0x164d2c, Func Offset: 0x2c
-	// Line 7483, Address: 0x164d38, Func Offset: 0x38
-	// Line 7484, Address: 0x164d98, Func Offset: 0x98
-	// Line 7485, Address: 0x164da0, Func Offset: 0xa0
-	// Line 7487, Address: 0x164df4, Func Offset: 0xf4
-	// Line 7489, Address: 0x164dfc, Func Offset: 0xfc
-	// Line 7487, Address: 0x164e00, Func Offset: 0x100
-	// Line 7489, Address: 0x164e08, Func Offset: 0x108
-	// Line 7490, Address: 0x164e10, Func Offset: 0x110
-	// Line 7491, Address: 0x164e70, Func Offset: 0x170
-	// Line 7492, Address: 0x164e78, Func Offset: 0x178
-	// Line 7494, Address: 0x164ecc, Func Offset: 0x1cc
-	// Line 7496, Address: 0x164ed4, Func Offset: 0x1d4
-	// Line 7494, Address: 0x164ed8, Func Offset: 0x1d8
-	// Line 7496, Address: 0x164ee0, Func Offset: 0x1e0
-	// Line 7497, Address: 0x164ee8, Func Offset: 0x1e8
-	// Line 7498, Address: 0x164f48, Func Offset: 0x248
-	// Line 7499, Address: 0x164f50, Func Offset: 0x250
-	// Line 7501, Address: 0x164fa4, Func Offset: 0x2a4
-	// Line 7503, Address: 0x164fb8, Func Offset: 0x2b8
-	// Line 7504, Address: 0x164fcc, Func Offset: 0x2cc
-	// Line 7505, Address: 0x164fd8, Func Offset: 0x2d8
-	// Line 7507, Address: 0x164fe4, Func Offset: 0x2e4
-	// Line 7508, Address: 0x164ff0, Func Offset: 0x2f0
-	// Line 7509, Address: 0x165050, Func Offset: 0x350
-	// Line 7510, Address: 0x165058, Func Offset: 0x358
-	// Line 7512, Address: 0x1650ac, Func Offset: 0x3ac
-	// Line 7514, Address: 0x1650b4, Func Offset: 0x3b4
-	// Line 7512, Address: 0x1650b8, Func Offset: 0x3b8
-	// Line 7514, Address: 0x1650c0, Func Offset: 0x3c0
-	// Line 7515, Address: 0x1650c8, Func Offset: 0x3c8
-	// Line 7516, Address: 0x165128, Func Offset: 0x428
-	// Line 7517, Address: 0x165130, Func Offset: 0x430
-	// Line 7519, Address: 0x165184, Func Offset: 0x484
-	// Line 7521, Address: 0x16518c, Func Offset: 0x48c
-	// Line 7519, Address: 0x165190, Func Offset: 0x490
-	// Line 7521, Address: 0x165198, Func Offset: 0x498
-	// Line 7522, Address: 0x1651a0, Func Offset: 0x4a0
-	// Line 7523, Address: 0x165200, Func Offset: 0x500
-	// Line 7524, Address: 0x165208, Func Offset: 0x508
-	// Line 7526, Address: 0x16525c, Func Offset: 0x55c
-	// Line 7528, Address: 0x165264, Func Offset: 0x564
-	// Line 7526, Address: 0x165268, Func Offset: 0x568
-	// Line 7529, Address: 0x165270, Func Offset: 0x570
-	// Func End, Address: 0x165278, Func Offset: 0x578
-	scePrintf("bhGrdPosMoveCSet - UNIMPLEMENTED!\n");
+	int v0, v1;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if ((v0 & 0x1)) 
+	{
+        bhCetask->e_lgt[0][0] = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        bhCetask->e_lgt[0][0] = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+
+    if ((v0 & 0x2)) 
+	{
+        bhCetask->e_lgt[0][1] = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        bhCetask->e_lgt[0][1] = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v0 & 0x4)) 
+	{
+        bhCetask->e_lgt[0][2] = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        bhCetask->e_lgt[0][2] = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if ((v1 & 0x1)) 
+	{
+        bhCetask->e_lgt[1][0] = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        bhCetask->e_lgt[1][0] = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v1 & 0x2)) 
+	{
+        bhCetask->e_lgt[1][1] = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        bhCetask->e_lgt[1][1] = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v1 & 0x4)) 
+	{
+        bhCetask->e_lgt[1][2] = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    }
+	else 
+	{
+        bhCetask->e_lgt[1][2] = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 
