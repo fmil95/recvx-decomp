@@ -62,39 +62,50 @@ void fmSetLipSyncParam(MASK_WORK* fm, PARAM_WORK* base, LIP_WORK* lip, unsigned 
     }
 }
 
-/*// 
-// Start address: 0x2989d0
-void _fmSetObjP(_anon5* mlwP)
+// 100% matching!
+void _fmSetObjP(ML_WORK* mlwP) 
 {
-	int sp;
-	npobj* stack[256];
-	npobj* obj2;
-	npobj* obj;
-	// Line 133, Address: 0x2989d0, Func Offset: 0
-	// Line 139, Address: 0x2989e4, Func Offset: 0x14
-	// Line 138, Address: 0x2989e8, Func Offset: 0x18
-	// Line 139, Address: 0x2989f0, Func Offset: 0x20
-	// Line 140, Address: 0x298a10, Func Offset: 0x40
-	// Line 139, Address: 0x298a14, Func Offset: 0x44
-	// Line 140, Address: 0x298a18, Func Offset: 0x48
-	// Line 143, Address: 0x298a30, Func Offset: 0x60
-	// Line 144, Address: 0x298a38, Func Offset: 0x68
-	// Line 146, Address: 0x298a48, Func Offset: 0x78
-	// Line 147, Address: 0x298a54, Func Offset: 0x84
-	// Line 148, Address: 0x298a64, Func Offset: 0x94
-	// Line 149, Address: 0x298a68, Func Offset: 0x98
-	// Line 151, Address: 0x298a74, Func Offset: 0xa4
-	// Line 152, Address: 0x298a7c, Func Offset: 0xac
-	// Line 153, Address: 0x298a84, Func Offset: 0xb4
-	// Line 154, Address: 0x298a90, Func Offset: 0xc0
-	// Line 156, Address: 0x298a98, Func Offset: 0xc8
-	// Line 157, Address: 0x298a9c, Func Offset: 0xcc
-	// Line 158, Address: 0x298aa0, Func Offset: 0xd0
-	// Line 159, Address: 0x298aa8, Func Offset: 0xd8
-	// Func End, Address: 0x298ac0, Func Offset: 0xf0
+    NJS_CNK_OBJECT* obj; 
+    NJS_CNK_OBJECT* obj2; 
+    NJS_CNK_OBJECT* stack[256]; 
+    int sp;   
+
+    obj = mlwP->objP;
+    obj2 = mlwP->objP = (NJS_CNK_OBJECT*)bhGetFreeMemory(mlwP->obj_num * sizeof(NJS_CNK_OBJECT), 64);
+    
+    mlwP->owP = (O_WORK*)bhGetFreeMemory(mlwP->obj_num * sizeof(O_WORK), 64); 
+    
+    sp = 0;
+    
+    while (obj != NULL) 
+    {
+        njMemCopy(obj2, obj, sizeof(NJS_CNK_OBJECT));
+        
+        obj2++;
+        
+        if (obj->sibling != NULL) 
+        { 
+            stack[sp++] = obj->sibling;
+        }
+        
+        if (obj->child != NULL)
+        {
+            obj = obj->child;
+            continue;
+        }
+        
+        if (sp != 0) 
+        {
+            obj = stack[--sp];
+        }
+        else 
+        { 
+            obj = NULL;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x298ac0
 cnkobj* _fmCnkSearchObject(MASK_WORK* fm, cnkobj* root, char id)
 {
