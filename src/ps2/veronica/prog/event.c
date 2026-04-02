@@ -7130,86 +7130,140 @@ unsigned int bhHEffectSet2()
 	scePrintf("bhHEffectSet2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1640a0
+// 100% matching!
 unsigned int bhObjDposCk()
 {
-	//npobj* objP;
-	BH_PWORK* e_ep;
-	int eay2;
-	int eay;
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 7080, Address: 0x1640a0, Func Offset: 0
-	// Line 7087, Address: 0x1640b4, Func Offset: 0x14
-	// Line 7088, Address: 0x1640c8, Func Offset: 0x28
-	// Line 7089, Address: 0x1640d4, Func Offset: 0x34
-	// Line 7090, Address: 0x1640e0, Func Offset: 0x40
-	// Line 7091, Address: 0x1640ec, Func Offset: 0x4c
-	// Line 7092, Address: 0x1640f8, Func Offset: 0x58
-	// Line 7101, Address: 0x164104, Func Offset: 0x64
-	// Line 7102, Address: 0x164110, Func Offset: 0x70
-	// Line 7103, Address: 0x16411c, Func Offset: 0x7c
-	// Line 7104, Address: 0x164128, Func Offset: 0x88
-	// Line 7105, Address: 0x164134, Func Offset: 0x94
-	// Line 7108, Address: 0x16413c, Func Offset: 0x9c
-	// Line 7109, Address: 0x164144, Func Offset: 0xa4
-	// Line 7110, Address: 0x164150, Func Offset: 0xb0
-	// Line 7111, Address: 0x164158, Func Offset: 0xb8
-	// Line 7114, Address: 0x16415c, Func Offset: 0xbc
-	// Line 7115, Address: 0x164178, Func Offset: 0xd8
-	// Line 7114, Address: 0x164184, Func Offset: 0xe4
-	// Line 7115, Address: 0x164188, Func Offset: 0xe8
-	// Line 7117, Address: 0x16419c, Func Offset: 0xfc
-	// Line 7118, Address: 0x1641c8, Func Offset: 0x128
-	// Line 7119, Address: 0x1641d0, Func Offset: 0x130
-	// Line 7120, Address: 0x1641dc, Func Offset: 0x13c
-	// Line 7121, Address: 0x1641e8, Func Offset: 0x148
-	// Line 7122, Address: 0x1641fc, Func Offset: 0x15c
-	// Line 7123, Address: 0x16420c, Func Offset: 0x16c
-	// Line 7124, Address: 0x164214, Func Offset: 0x174
-	// Line 7126, Address: 0x16421c, Func Offset: 0x17c
-	// Line 7128, Address: 0x164228, Func Offset: 0x188
-	// Line 7129, Address: 0x164234, Func Offset: 0x194
-	// Line 7130, Address: 0x164248, Func Offset: 0x1a8
-	// Line 7131, Address: 0x164258, Func Offset: 0x1b8
-	// Line 7132, Address: 0x164260, Func Offset: 0x1c0
-	// Line 7134, Address: 0x164268, Func Offset: 0x1c8
-	// Line 7139, Address: 0x164274, Func Offset: 0x1d4
-	// Line 7140, Address: 0x164280, Func Offset: 0x1e0
-	// Line 7142, Address: 0x164284, Func Offset: 0x1e4
-	// Line 7143, Address: 0x1642a0, Func Offset: 0x200
-	// Line 7142, Address: 0x1642ac, Func Offset: 0x20c
-	// Line 7143, Address: 0x1642b0, Func Offset: 0x210
-	// Line 7142, Address: 0x1642b8, Func Offset: 0x218
-	// Line 7143, Address: 0x1642bc, Func Offset: 0x21c
-	// Line 7148, Address: 0x1642c8, Func Offset: 0x228
-	// Line 7143, Address: 0x1642d0, Func Offset: 0x230
-	// Line 7148, Address: 0x1642d4, Func Offset: 0x234
-	// Line 7149, Address: 0x1642f4, Func Offset: 0x254
-	// Line 7148, Address: 0x1642fc, Func Offset: 0x25c
-	// Line 7149, Address: 0x164318, Func Offset: 0x278
-	// Line 7151, Address: 0x164328, Func Offset: 0x288
-	// Line 7152, Address: 0x164330, Func Offset: 0x290
-	// Line 7153, Address: 0x16433c, Func Offset: 0x29c
-	// Line 7154, Address: 0x164348, Func Offset: 0x2a8
-	// Line 7155, Address: 0x164350, Func Offset: 0x2b0
-	// Line 7156, Address: 0x164360, Func Offset: 0x2c0
-	// Line 7157, Address: 0x164364, Func Offset: 0x2c4
-	// Line 7159, Address: 0x16436c, Func Offset: 0x2cc
-	// Line 7161, Address: 0x164378, Func Offset: 0x2d8
-	// Line 7162, Address: 0x164384, Func Offset: 0x2e4
-	// Line 7163, Address: 0x16438c, Func Offset: 0x2ec
-	// Line 7164, Address: 0x16439c, Func Offset: 0x2fc
-	// Line 7165, Address: 0x1643a0, Func Offset: 0x300
-	// Line 7167, Address: 0x1643a8, Func Offset: 0x308
-	// Line 7192, Address: 0x1643b4, Func Offset: 0x314
-	// Line 7193, Address: 0x1643b8, Func Offset: 0x318
-	// Func End, Address: 0x1643d0, Func Offset: 0x330
-	scePrintf("bhObjDposCk - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4;
+	int eay, eay2;
+    BH_PWORK *e_ep;
+    NJS_CNK_OBJECT *objP;
+	ETTY_WORK *enep; // not from DWARF
+    O_WRK *op;       // not from DWARF
+    
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if (v4 == 0) 
+	{
+        if ((v1 & 0x2)) 
+		{
+            if (v2 != 0) 
+			{
+                v2 -= 360;
+            }
+        }
+
+        eay = v2 * (65536.0f / 360.0f);
+        eay2 = v3 * (65536.0f / 360.0f);
+        
+        op = &sys->obwp[v0];
+
+        op->ay = (short)op->ay;
+
+        if (eay != (unsigned short)op->ay) 
+		{
+            if (eay < (unsigned short)op->ay)
+			{
+                op->ay -= (short)eay2;
+
+                if (eay >= (unsigned short)op->ay) 
+				{
+                    op->ay = (unsigned short)eay;
+
+                    return 0;
+                }
+
+                return 1;
+            }
+
+            if ((unsigned short)op->ay < eay) 
+			{
+                op->ay += (short)eay2;
+
+                if (eay <= (unsigned short)op->ay) 
+				{
+                    op->ay = (unsigned short)eay;
+
+                    return 0;
+                }
+
+                return 1;
+            }
+        }
+    } 
+	else 
+	{
+        if ((v1 & 0x2)) 
+		{
+            v2 = -v2;
+        }
+
+        eay = v2 * (65536.0f / 360.0f); 
+		eay = (short)eay;
+
+        eay2 = v3 * (65536.0f / 360.0f);
+		eay2 = (short)eay2;
+        
+        enep = &rom->enep[v0];
+        e_ep = &ene[enep->wrk_no];
+
+        objP = e_ep->mdl->objP;
+        objP += v4;
+        
+        objP->ang[0] = (short)objP->ang[0];
+
+        if (eay != objP->ang[0]) 
+		{
+            if (eay < objP->ang[0]) 
+			{
+                objP->ang[0] -= eay2;
+
+                if (eay >= objP->ang[0]) 
+				{
+                    objP->ang[0] = eay;
+
+                    return 0;
+                }
+
+                return 1;
+            }
+
+            if (objP->ang[0] < eay) 
+			{
+                objP->ang[0] += eay2;
+
+                if (eay <= objP->ang[0]) 
+				{
+                    objP->ang[0] = eay;
+
+                    return 0;
+                }
+
+                return 1;
+            }
+        }
+    }
+    
+    return 0;
 }
 
 // 100% matching!
@@ -7251,6 +7305,7 @@ unsigned int bhItemGetGet()
 		break;
 	case 2:
 		sys->itm[(v0 * 16) + 2] |= 0x8000000;
+		
 		sys->itm[v0 * 16] = 2;
 
 		if (v1 == 34) 
