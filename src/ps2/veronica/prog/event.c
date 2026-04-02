@@ -7398,35 +7398,30 @@ unsigned int bhRoomSoundCase()
 	return 1;
 }
 
-// 
-// Start address: 0x1648c0
+// 100% matching!
 unsigned int bhItemPlToSBox()
 {
-	int v0;
-	unsigned int cnt2;
-	unsigned int cnt;
-	// Line 7371, Address: 0x1648c0, Func Offset: 0
-	// Line 7376, Address: 0x1648c8, Func Offset: 0x8
-	// Line 7371, Address: 0x1648d0, Func Offset: 0x10
-	// Line 7372, Address: 0x1648dc, Func Offset: 0x1c
-	// Line 7373, Address: 0x1648e8, Func Offset: 0x28
-	// Line 7377, Address: 0x1648f4, Func Offset: 0x34
-	// Line 7378, Address: 0x1648fc, Func Offset: 0x3c
-	// Line 7377, Address: 0x164904, Func Offset: 0x44
-	// Line 7378, Address: 0x16490c, Func Offset: 0x4c
-	// Line 7380, Address: 0x164914, Func Offset: 0x54
-	// Line 7381, Address: 0x164930, Func Offset: 0x70
-	// Line 7383, Address: 0x164938, Func Offset: 0x78
-	// Line 7381, Address: 0x164940, Func Offset: 0x80
-	// Line 7382, Address: 0x164948, Func Offset: 0x88
-	// Line 7381, Address: 0x16494c, Func Offset: 0x8c
-	// Line 7382, Address: 0x164954, Func Offset: 0x94
-	// Line 7383, Address: 0x164958, Func Offset: 0x98
-	// Line 7382, Address: 0x16495c, Func Offset: 0x9c
-	// Line 7383, Address: 0x164968, Func Offset: 0xa8
-	// Line 7386, Address: 0x164974, Func Offset: 0xb4
-	// Func End, Address: 0x16497c, Func Offset: 0xbc
-	scePrintf("bhItemPlToSBox - UNIMPLEMENTED!\n");
+	unsigned int cnt, cnt2;
+    int v0;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    for (cnt = 12 * 16; cnt < 256; cnt++)
+	{
+        sys->itm[cnt] = 0;
+    }
+    
+    for (cnt = (v0 * 16) + 2, cnt2 = 12 * 16; cnt < ((v0 * 16) + 16); cnt++, cnt2++) 
+	{
+        sys->itm[cnt2] = sys->itm[cnt];
+        sys->itm[cnt] = 0;
+    }
+    
+    return 1;
 }
 
 // 
