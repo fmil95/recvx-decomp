@@ -7838,36 +7838,47 @@ unsigned int bhCyodanSetEx()
 	scePrintf("bhCyodanSetEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x165f60
-unsigned int bhArmsItemSet()
+// 100% matching!
+unsigned int bhArmsItemSet() 
 {
-	int v0;
-	unsigned int wicnt;
-	unsigned int icnt;
-	unsigned int cnt;
-	// Line 7872, Address: 0x165f60, Func Offset: 0
-	// Line 7876, Address: 0x165f68, Func Offset: 0x8
-	// Line 7872, Address: 0x165f74, Func Offset: 0x14
-	// Line 7873, Address: 0x165f80, Func Offset: 0x20
-	// Line 7874, Address: 0x165f8c, Func Offset: 0x2c
-	// Line 7876, Address: 0x165f98, Func Offset: 0x38
-	// Line 7877, Address: 0x165fa8, Func Offset: 0x48
-	// Line 7878, Address: 0x165fcc, Func Offset: 0x6c
-	// Line 7880, Address: 0x165fe0, Func Offset: 0x80
-	// Line 7882, Address: 0x165fec, Func Offset: 0x8c
-	// Line 7883, Address: 0x166004, Func Offset: 0xa4
-	// Line 7884, Address: 0x16600c, Func Offset: 0xac
-	// Line 7885, Address: 0x166030, Func Offset: 0xd0
-	// Line 7887, Address: 0x166044, Func Offset: 0xe4
-	// Line 7889, Address: 0x166050, Func Offset: 0xf0
-	// Line 7890, Address: 0x166064, Func Offset: 0x104
-	// Line 7892, Address: 0x166068, Func Offset: 0x108
-	// Line 7893, Address: 0x166070, Func Offset: 0x110
-	// Line 7895, Address: 0x166080, Func Offset: 0x120
-	// Line 7896, Address: 0x166084, Func Offset: 0x124
-	// Func End, Address: 0x16608c, Func Offset: 0x12c
-	scePrintf("bhArmsItemSet - UNIMPLEMENTED!\n");
+    unsigned int cnt, icnt, wicnt;
+    int v0;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if ((sys->gm_flg & 0x8000000))
+	{
+        for (wicnt = 0, icnt = 2, cnt = (sys->ply_id * 16) + 2; cnt < ((sys->ply_id * 16) + 12); cnt++, icnt++) 
+		{
+            if ((unsigned char)(sys->itm[cnt] >> 16) == v0) 
+			{
+                wicnt = icnt;
+                break;
+            }
+        }
+    } 
+	else 
+	{
+        for (wicnt = 0, icnt = 2, cnt = (sys->ply_id * 16) + 2; cnt < ((sys->ply_id * 16) + 10); cnt++, icnt++) 
+		{
+            if ((unsigned char)(sys->itm[cnt] >> 16) == v0) 
+			{
+                wicnt = icnt;
+                break;
+            }
+        }
+    }
+ 
+    if (wicnt != 0) 
+	{
+        sys->itm[sys->ply_id * 16] = wicnt;
+    }
+
+    return 1;
 }
 
 // 100% matching!
@@ -7877,7 +7888,7 @@ unsigned int bhItemGetGetEx()
     int v0, v1, v2, v3;
 
     bhScePtr++;
-	
+
     v0 = *bhScePtr;
 
     bhScePtr++;
@@ -7896,7 +7907,7 @@ unsigned int bhItemGetGetEx()
     
     if ((sys->gm_flg & 0x8000000)) 
 	{
-        for (wicnt = 0, icnt = 2, cnt = (v0 * 16) + 2; cnt < (v0 * 16) + 12; cnt++, icnt++) 
+        for (wicnt = 0, icnt = 2, cnt = (v0 * 16) + 2; cnt < ((v0 * 16) + 12); cnt++, icnt++) 
 		{
             if (sys->itm[cnt] == 0) 
 			{
@@ -7907,7 +7918,7 @@ unsigned int bhItemGetGetEx()
     } 
 	else 
 	{
-        for (wicnt = 0, icnt = 2, cnt = (v0 * 16) + 2; cnt < (v0 * 16) + 10; cnt++, icnt++) 
+        for (wicnt = 0, icnt = 2, cnt = (v0 * 16) + 2; cnt < ((v0 * 16) + 10); cnt++, icnt++) 
 		{
             if (sys->itm[cnt] == 0) 
 			{
