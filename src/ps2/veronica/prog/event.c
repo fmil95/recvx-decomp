@@ -20,6 +20,8 @@
 #include "system.h"
 #include "main.h"
 
+#pragma optimization_level 4 // TODO: remove this pragma and compile the file passing the -O4,p flag instead 
+
 unsigned char* bhScePtr;
 unsigned short* bhScdPtr;
 unsigned short* bhScd2Ptr;
@@ -1293,8 +1295,6 @@ unsigned int bhArmsItemChange()
     return 1;
 }
 
-#pragma optimization_level 4
-
 // 100% matching!
 unsigned int bhPlItemLost()
 {
@@ -1336,8 +1336,6 @@ unsigned int bhPlItemLost()
     
     return 1;
 }
-
-#pragma optimization_level 3
 
 // 100% matching! 
 unsigned int bhUseItemClear()
@@ -2082,8 +2080,6 @@ unsigned int bhDieCk()
     return 1;
 }
 
-#pragma optimization_level 4
-
 // 100% matching!
 unsigned int bhItmCk() 
 {
@@ -2253,8 +2249,6 @@ unsigned int bhObjLinkSet()
     
     return 1;
 }
-
-#pragma optimization_level 3
 
 // 100% matching!
 unsigned int bhSetObjMotion()
@@ -2497,8 +2491,6 @@ unsigned int bhInitSetKage()
     return 1;
 }
 
-#pragma optimization_level 4
-
 // 100% matching!
 unsigned int bhObjLinkSetPly()
 {
@@ -2571,8 +2563,6 @@ unsigned int bhObjLinkSetPly()
     
     return 1;
 }
-
-#pragma optimization_level 3
 
 // 100% matching!
 unsigned int bhSetNextRoomBgm()
@@ -3779,8 +3769,6 @@ unsigned int bhObjLinkSetObjEne()
     return 1;
 }
 
-#pragma optimization_level 4
-
 // 100% matching! 
 unsigned int bhObjLinkSetObjItem()
 {
@@ -3939,8 +3927,6 @@ unsigned int bhObjLinkSetEneItem()
     
     return 1;
 }
-
-#pragma optimization_level 3
 
 // 100% matching!
 unsigned int bhObjLinkSetEneEne()
