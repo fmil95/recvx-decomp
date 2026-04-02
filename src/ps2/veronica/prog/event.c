@@ -7424,28 +7424,30 @@ unsigned int bhItemPlToSBox()
     return 1;
 }
 
-// 
-// Start address: 0x164980
+// 100% matching!
 unsigned int bhItemSBoxToIBox()
 {
-	unsigned int cnt2;
-	unsigned int cnt;
-	// Line 7398, Address: 0x164980, Func Offset: 0
-	// Line 7401, Address: 0x164988, Func Offset: 0x8
-	// Line 7398, Address: 0x164994, Func Offset: 0x14
-	// Line 7401, Address: 0x1649a0, Func Offset: 0x20
-	// Line 7403, Address: 0x1649a8, Func Offset: 0x28
-	// Line 7404, Address: 0x1649c0, Func Offset: 0x40
-	// Line 7405, Address: 0x1649d4, Func Offset: 0x54
-	// Line 7406, Address: 0x1649d8, Func Offset: 0x58
-	// Line 7407, Address: 0x1649e0, Func Offset: 0x60
-	// Line 7406, Address: 0x1649e4, Func Offset: 0x64
-	// Line 7407, Address: 0x1649f0, Func Offset: 0x70
-	// Line 7409, Address: 0x1649f4, Func Offset: 0x74
-	// Line 7411, Address: 0x164a10, Func Offset: 0x90
-	// Line 7412, Address: 0x164a14, Func Offset: 0x94
-	// Func End, Address: 0x164a1c, Func Offset: 0x9c
-	scePrintf("bhItemSBoxToIBox - UNIMPLEMENTED!\n");
+	unsigned int cnt, cnt2;
+
+    bhScePtr += 2;
+    
+    for (cnt = 4 * 16, cnt2 = 12 * 16; (cnt < (12 * 16)) || (cnt2 < (13 * 16)); cnt++) 
+	{
+        if (sys->itm[cnt2] == 0) 
+		{ 
+			break;
+		}
+
+        if (sys->itm[cnt] == 0) 
+		{
+            sys->itm[cnt] = sys->itm[cnt2];
+            sys->itm[cnt2] = 0;
+
+            cnt2++;
+        }
+    }
+    
+    return 1;
 }
 
 // 
