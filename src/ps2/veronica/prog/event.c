@@ -12259,20 +12259,15 @@ unsigned int bhLoadWork2()
     return 1;
 }
 
-// 94.07% matching (matches on GC)
+// 100% matching!
 int Event_init(BH_SCEWORK* a0, unsigned int evt_id) 
 {
-    EVT_WORK* evtp; // not from DWARF
-    
     a0->status = 1;
     
     *(short*)&a0->mode0 = 0;
     
     a0->data = (unsigned char*)rom->evtp;
-    
-    evtp = (EVT_WORK*)&((int*)rom->evtp)[evt_id];
-    
-    a0->data = &a0->data[(int)evtp->evd];
+    a0->data = (unsigned char*)a0->data + ((int*)rom->evtp)[evt_id + ((sizeof(EVT_WORK) / 4) - 1)];
     
     a0->loop = -1;
     
