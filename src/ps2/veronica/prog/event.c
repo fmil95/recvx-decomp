@@ -8263,50 +8263,58 @@ unsigned int bhEneLifeSetM()
     return 1;
 }
 
-// 
-// Start address: 0x166d40
+// 100% matching!
 unsigned int bhEffSSizeSet()
 {
-	//_anon0* e_ep;
-	int v1;
-	int v0;
-	// Line 8319, Address: 0x166d40, Func Offset: 0
-	// Line 8329, Address: 0x166d48, Func Offset: 0x8
-	// Line 8319, Address: 0x166d58, Func Offset: 0x18
-	// Line 8320, Address: 0x166d64, Func Offset: 0x24
-	// Line 8321, Address: 0x166d70, Func Offset: 0x30
-	// Line 8329, Address: 0x166d7c, Func Offset: 0x3c
-	// Line 8322, Address: 0x166d80, Func Offset: 0x40
-	// Line 8329, Address: 0x166d88, Func Offset: 0x48
-	// Line 8322, Address: 0x166d8c, Func Offset: 0x4c
-	// Line 8323, Address: 0x166d90, Func Offset: 0x50
-	// Line 8329, Address: 0x166d9c, Func Offset: 0x5c
-	// Line 8332, Address: 0x166da8, Func Offset: 0x68
-	// Line 8329, Address: 0x166dac, Func Offset: 0x6c
-	// Line 8332, Address: 0x166dc0, Func Offset: 0x80
-	// Line 8333, Address: 0x166dc8, Func Offset: 0x88
-	// Line 8334, Address: 0x166e28, Func Offset: 0xe8
-	// Line 8335, Address: 0x166e30, Func Offset: 0xf0
-	// Line 8337, Address: 0x166e84, Func Offset: 0x144
-	// Line 8340, Address: 0x166e8c, Func Offset: 0x14c
-	// Line 8337, Address: 0x166e90, Func Offset: 0x150
-	// Line 8340, Address: 0x166e98, Func Offset: 0x158
-	// Line 8341, Address: 0x166ea0, Func Offset: 0x160
-	// Line 8342, Address: 0x166f00, Func Offset: 0x1c0
-	// Line 8343, Address: 0x166f08, Func Offset: 0x1c8
-	// Line 8345, Address: 0x166f5c, Func Offset: 0x21c
-	// Line 8348, Address: 0x166f64, Func Offset: 0x224
-	// Line 8345, Address: 0x166f68, Func Offset: 0x228
-	// Line 8348, Address: 0x166f70, Func Offset: 0x230
-	// Line 8349, Address: 0x166f78, Func Offset: 0x238
-	// Line 8350, Address: 0x166fd8, Func Offset: 0x298
-	// Line 8351, Address: 0x166fe0, Func Offset: 0x2a0
-	// Line 8353, Address: 0x167034, Func Offset: 0x2f4
-	// Line 8355, Address: 0x16703c, Func Offset: 0x2fc
-	// Line 8353, Address: 0x167040, Func Offset: 0x300
-	// Line 8356, Address: 0x167048, Func Offset: 0x308
-	// Func End, Address: 0x167050, Func Offset: 0x310
-	scePrintf("bhEffSSizeSet - UNIMPLEMENTED!\n");
+	int v0, v1;
+    O_WRK* e_ep;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr += 2;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+    
+    e_ep = &eff[sys->efid[v0]];
+    
+    if ((v1 & 0x1)) 
+	{
+        e_ep->sxb = e_ep->sx = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        e_ep->sxb = e_ep->sx = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v1 & 0x2)) 
+	{
+        e_ep->syb = e_ep->sy = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        e_ep->syb = e_ep->sy = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v1 & 0x4)) 
+	{
+        e_ep->szb = e_ep->sz = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+	else 
+	{
+        e_ep->szb = e_ep->sz = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 
