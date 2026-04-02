@@ -105,44 +105,79 @@ void _fmSetObjP(ML_WORK* mlwP)
     }
 }
 
-/*// 
-// Start address: 0x298ac0
-cnkobj* _fmCnkSearchObject(MASK_WORK* fm, cnkobj* root, char id)
+// 100% matching!
+NJS_CNK_OBJECT* _fmCnkSearchObject(MASK_WORK* fm, NJS_CNK_OBJECT* root, char id)
 {
-	int dummy;
-	int i;
-	int n;
-	int sp;
-	cnkobj* stack[256];
-	cnkobj* obj;
-	// Line 218, Address: 0x298ac0, Func Offset: 0
-	// Line 221, Address: 0x298adc, Func Offset: 0x1c
-	// Line 223, Address: 0x298ae0, Func Offset: 0x20
-	// Line 224, Address: 0x298ae8, Func Offset: 0x28
-	// Line 225, Address: 0x298af4, Func Offset: 0x34
-	// Line 227, Address: 0x298b00, Func Offset: 0x40
-	// Line 228, Address: 0x298b0c, Func Offset: 0x4c
-	// Line 229, Address: 0x298b1c, Func Offset: 0x5c
-	// Line 231, Address: 0x298b20, Func Offset: 0x60
-	// Line 232, Address: 0x298b2c, Func Offset: 0x6c
-	// Line 234, Address: 0x298b30, Func Offset: 0x70
-	// Line 235, Address: 0x298b3c, Func Offset: 0x7c
-	// Line 237, Address: 0x298b40, Func Offset: 0x80
-	// Line 238, Address: 0x298b48, Func Offset: 0x88
-	// Line 239, Address: 0x298b54, Func Offset: 0x94
-	// Line 241, Address: 0x298b58, Func Offset: 0x98
-	// Line 242, Address: 0x298b68, Func Offset: 0xa8
-	// Line 244, Address: 0x298b7c, Func Offset: 0xbc
-	// Line 245, Address: 0x298b84, Func Offset: 0xc4
-	// Line 246, Address: 0x298b8c, Func Offset: 0xcc
-	// Line 247, Address: 0x298b98, Func Offset: 0xd8
-	// Line 249, Address: 0x298ba0, Func Offset: 0xe0
-	// Line 250, Address: 0x298ba4, Func Offset: 0xe4
-	// Line 251, Address: 0x298ba8, Func Offset: 0xe8
-	// Line 252, Address: 0x298bb0, Func Offset: 0xf0
-	// Line 253, Address: 0x298bb4, Func Offset: 0xf4
-	// Func End, Address: 0x298bbc, Func Offset: 0xfc
-}*/
+    NJS_CNK_OBJECT* obj; 
+    NJS_CNK_OBJECT* stack[256]; 
+    int sp; 
+    int n; 
+    int i;
+    int dummy; 
+    
+    if (id == -1) 
+    {
+        return NULL;
+    }
+    
+    obj = root;
+    
+    sp = 0;
+    n = 0;
+    
+    while (obj != NULL)
+    {
+        if (obj->model != NULL)
+        {
+            if (n++ == id) 
+            { 
+                break;
+            }
+        }
+        
+        if (obj->sibling != NULL) 
+        { 
+            stack[sp++] = obj->sibling; 
+        }
+        
+        dummy = 0;
+        
+        if (obj == fm->tangorg) 
+        {
+            dummy = 1;
+        }
+        
+        if (obj == fm->toothsrc)
+        { 
+            dummy = 1;
+        }
+
+        for (i = 0; i < 9; i++)
+        {
+            if (obj == fm->eyesrc[i]) 
+            {
+                dummy = 1;
+            }
+        }
+
+        if ((obj->child != NULL) && (dummy == 0))
+        {
+            obj = obj->child;
+            continue;
+        }
+        
+        if (sp != 0) 
+        {
+            obj = stack[--sp];
+        }
+        else 
+        { 
+            obj = NULL;
+        }
+    }
+    
+    return obj;
+}
 
 // 100% matching!
 void _fmGetVChunkType(MASK_WORK* fm)
