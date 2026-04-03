@@ -604,38 +604,56 @@ void fmCnkSetParamLip(MASK_WORK* fm, PARAM_WORK* param, unsigned int flag)
     fm->param.tangz = param->tangz;
 }
 
-/*// 
-// Start address: 0x299770
+// 99.53% matching (matches on GC)
 void fmCnkSetInterParam(MASK_WORK* fm, PARAM_WORK* p1, PARAM_WORK* p2, float t, float lv, unsigned int mask)
 {
-	float rate;
-	int i;
-	// Line 1250, Address: 0x299770, Func Offset: 0
-	// Line 1255, Address: 0x299790, Func Offset: 0x20
-	// Line 1261, Address: 0x2997dc, Func Offset: 0x6c
-	// Line 1263, Address: 0x2997e4, Func Offset: 0x74
-	// Line 1264, Address: 0x2997ec, Func Offset: 0x7c
-	// Line 1267, Address: 0x2997f4, Func Offset: 0x84
-	// Line 1268, Address: 0x299818, Func Offset: 0xa8
-	// Line 1270, Address: 0x299820, Func Offset: 0xb0
-	// Line 1277, Address: 0x299824, Func Offset: 0xb4
-	// Line 1278, Address: 0x299834, Func Offset: 0xc4
-	// Line 1280, Address: 0x299848, Func Offset: 0xd8
-	// Line 1281, Address: 0x299864, Func Offset: 0xf4
-	// Line 1282, Address: 0x299868, Func Offset: 0xf8
-	// Line 1280, Address: 0x299870, Func Offset: 0x100
-	// Line 1282, Address: 0x299878, Func Offset: 0x108
-	// Line 1285, Address: 0x299880, Func Offset: 0x110
-	// Line 1286, Address: 0x29989c, Func Offset: 0x12c
-	// Line 1288, Address: 0x2998b8, Func Offset: 0x148
-	// Line 1289, Address: 0x2998d0, Func Offset: 0x160
-	// Line 1290, Address: 0x2998e8, Func Offset: 0x178
-	// Line 1294, Address: 0x299900, Func Offset: 0x190
-	// Line 1295, Address: 0x29991c, Func Offset: 0x1ac
-	// Line 1296, Address: 0x299938, Func Offset: 0x1c8
-	// Line 1297, Address: 0x299954, Func Offset: 0x1e4
-	// Func End, Address: 0x299974, Func Offset: 0x204
-}*/
+    int i;
+    float rate;
+    float pp; // not from DWARF
+
+    switch (p1->flag) 
+    {
+    case 0:
+        rate = t;
+        break;
+    case 1:
+        rate = t * t;
+        break;
+    case 2:
+        rate = njSqrt(t);
+        break; 
+    case 3:
+        rate = 0.5f - (0.5f * njCos((65536 / 2) * t));
+        break;
+    case 4:
+        rate = 0;
+        break;
+    default:
+        rate = t;
+        break;
+    }
+    
+    for (i = 0; i < 32; i++) 
+    {
+        if ((mask & (1 << i))) 
+        {
+            pp = p1->muscle[i] + (rate * (p2->muscle[i] - p1->muscle[i]));
+            
+            fm->param.muscle[i] = pp * lv;
+        }
+    }
+    
+    fm->param.jawang = lv * (p1->jawang + (rate * (p2->jawang - p1->jawang)));
+    fm->param.jawtrans = lv * (p1->jawtrans + (rate * (p2->jawtrans - p1->jawtrans)));
+    
+    fm->param.eye.x = p1->eye.x + (rate * (p2->eye.x - p1->eye.x));
+    fm->param.eye.y = p1->eye.y + (rate * (p2->eye.y - p1->eye.y));
+    fm->param.eye.z = p1->eye.z + (rate * (p2->eye.z - p1->eye.z));
+    
+    fm->param.tangx = lv * (p1->tangx + (rate * (p2->tangx - p1->tangx)));
+    fm->param.tangy = lv * (p1->tangy + (rate * (p2->tangy - p1->tangy)));
+    fm->param.tangz = lv * (p1->tangz + (rate * (p2->tangz - p1->tangz)));
+}
 
 // 
 // Start address: 0x299980
