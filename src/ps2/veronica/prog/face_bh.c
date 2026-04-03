@@ -459,7 +459,7 @@ void _fmCnkSetToothObject(MASK_WORK* fm, NJS_CNK_OBJECT* tooth)
     }
 }
 
-/*// 
+// 
 // Start address: 0x299280
 void _fmCnkSetJaw(MASK_WORK* fm, unsigned int v0, unsigned int v1)
 {
@@ -513,67 +513,90 @@ void _fmCnkSetJaw(MASK_WORK* fm, unsigned int v0, unsigned int v1)
 	// Line 857, Address: 0x299414, Func Offset: 0x194
 	// Line 859, Address: 0x29941c, Func Offset: 0x19c
 	// Func End, Address: 0x299448, Func Offset: 0x1c8
-}*/
+	scePrintf("_fmCnkSetJaw - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x299450
+// 100% matching!
 void fmCnkInitContext(MASK_WORK* fm, void* data, NJS_CNK_OBJECT* root, ML_WORK* mlwP)
 {
-	unsigned int vofs;
-	NJS_CNK_OBJECT* obj;
-	int j;
-	int i;
-	int* dvp;
+    VLIST_WORK* vlist;
 	unsigned int* nlist;
-	//_anon6* vlist;
-	// Line 937, Address: 0x299450, Func Offset: 0
-	// Line 945, Address: 0x299470, Func Offset: 0x20
-	// Line 947, Address: 0x299484, Func Offset: 0x34
-	// Line 949, Address: 0x299488, Func Offset: 0x38
-	// Line 950, Address: 0x2994a8, Func Offset: 0x58
-	// Line 951, Address: 0x2994bc, Func Offset: 0x6c
-	// Line 952, Address: 0x2994c4, Func Offset: 0x74
-	// Line 953, Address: 0x2994d0, Func Offset: 0x80
-	// Line 955, Address: 0x2994dc, Func Offset: 0x8c
-	// Line 956, Address: 0x2994f0, Func Offset: 0xa0
-	// Line 957, Address: 0x2994f8, Func Offset: 0xa8
-	// Line 958, Address: 0x299504, Func Offset: 0xb4
-	// Line 961, Address: 0x299510, Func Offset: 0xc0
-	// Line 962, Address: 0x299514, Func Offset: 0xc4
-	// Line 963, Address: 0x29952c, Func Offset: 0xdc
-	// Line 964, Address: 0x299534, Func Offset: 0xe4
-	// Line 965, Address: 0x299548, Func Offset: 0xf8
-	// Line 966, Address: 0x299554, Func Offset: 0x104
-	// Line 967, Address: 0x299558, Func Offset: 0x108
-	// Line 970, Address: 0x299568, Func Offset: 0x118
-	// Line 975, Address: 0x29956c, Func Offset: 0x11c
-	// Line 970, Address: 0x299570, Func Offset: 0x120
-	// Line 971, Address: 0x299578, Func Offset: 0x128
-	// Line 974, Address: 0x299590, Func Offset: 0x140
-	// Line 972, Address: 0x299598, Func Offset: 0x148
-	// Line 973, Address: 0x29959c, Func Offset: 0x14c
-	// Line 976, Address: 0x2995a0, Func Offset: 0x150
-	// Line 974, Address: 0x2995a4, Func Offset: 0x154
-	// Line 977, Address: 0x2995ac, Func Offset: 0x15c
-	// Line 979, Address: 0x2995b4, Func Offset: 0x164
-	// Line 980, Address: 0x2995bc, Func Offset: 0x16c
-	// Line 981, Address: 0x2995d0, Func Offset: 0x180
-	// Line 982, Address: 0x2995d4, Func Offset: 0x184
-	// Line 986, Address: 0x2995ec, Func Offset: 0x19c
-	// Line 987, Address: 0x2995f0, Func Offset: 0x1a0
-	// Line 988, Address: 0x299608, Func Offset: 0x1b8
-	// Line 989, Address: 0x29960c, Func Offset: 0x1bc
-	// Line 990, Address: 0x29962c, Func Offset: 0x1dc
-	// Line 992, Address: 0x299644, Func Offset: 0x1f4
-	// Line 993, Address: 0x29965c, Func Offset: 0x20c
-	// Line 994, Address: 0x299668, Func Offset: 0x218
-	// Line 995, Address: 0x299674, Func Offset: 0x224
-	// Line 996, Address: 0x299680, Func Offset: 0x230
-	// Line 997, Address: 0x29968c, Func Offset: 0x23c
-	// Line 999, Address: 0x2996a0, Func Offset: 0x250
-	// Line 1000, Address: 0x2996a8, Func Offset: 0x258
-	// Func End, Address: 0x2996c4, Func Offset: 0x274
-	scePrintf("fmCnkInitContext - UNIMPLEMENTED!\n");
+    int* dvp;
+    int i;
+    int j;
+    NJS_CNK_OBJECT* obj;
+    unsigned int vofs;
+
+    memset(fm, 0, sizeof(MASK_WORK));
+    
+    fm->head = data;
+    
+    _fmCnkSetFaceObject(fm, _fmCnkSearchObject(fm, root, fm->head->faceId));
+    
+    obj = _fmCnkSearchObject(fm, root, fm->head->toothId);
+    
+    if (obj != NULL) 
+    {
+        _fmCnkSetToothObject(fm, obj);
+        
+        mlwP->obj_num++;
+    }
+    
+    obj = _fmCnkSearchObject(fm, root, fm->head->tangId);
+    
+    if (obj != NULL) 
+    {
+        _fmCnkSetTangObject(fm, obj);
+        
+        mlwP->obj_num++;
+    }
+    
+    for (i = 0; i < 9; i++) 
+    {
+        obj = _fmCnkSearchObject(fm, root, fm->head->eyeId[i]);
+        
+        if (obj != NULL) 
+        {
+            _fmCnkSetEyeballObject(fm, i, obj, root);
+            
+            mlwP->obj_num++;
+        }
+    }
+    
+    fm->vlist = (VLIST_WORK*)&fm->head[1];
+    
+    fm->nvpt = (NJS_POINT3*)&fm->vlist[fm->head->nList];
+    
+    nlist = (unsigned int*)fm->nvpt;
+    vlist = fm->vlist;
+    
+    dvp = &fm->dst->vlist[fm->vtop];
+    
+    vofs = fm->vofs;
+    
+    for (i = 0; i++ < fm->head->nList; vlist++) 
+    {
+        for (j = 0; j++ < vlist->nvnum; ) 
+        {
+            *nlist++ = (int)&dvp[*nlist * vofs];
+        } 
+    }
+    
+    fm->list = (LIST_WORK*)nlist;
+    
+    fm->jaw = (TANG_WORK*)&fm->list[fm->head->nConnect];
+    
+    fm->tang = &fm->jaw[fm->head->nJaw];
+    
+    fm->face = (PARAM_WORK*)&fm->tang[fm->head->nTang];
+    
+    fm->lnum = fm->head->nList;
+    fm->jnum = fm->head->nJaw;
+    fm->tnum = fm->head->nTang;
+    fm->fnum = fm->head->nFace;
+    
+    _fmCnkSetJaw(fm, fm->head->jawId[0], fm->head->jawId[1]);
+    _fmSetObjP(mlwP);
 }
 
 // 100% matching!
