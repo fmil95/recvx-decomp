@@ -699,23 +699,23 @@ unsigned int fmCnkGetLastFrame(MASK_WORK* fm)
 	return fm->face[fm->fnum - 1].frame;
 }
 
-/*// 
+// 
 // Start address: 0x299d30
 void _fmCnkCalcMuscle(MASK_WORK* fm)
 {
 	float rsum;
 	unsigned int vofs;
 	float para;
-	_anon3* jaw;
+	//_anon3* jaw;
 	float rate;
 	float sum;
 	float* mrp;
-	_anon0** mvp;
+	//_anon0** mvp;
 	float mrate[32];
-	_anon0* mvec[32];
+	//_anon0* mvec[32];
 	float* param;
-	_anon6* list;
-	_anon7* con;
+	//_anon6* list;
+	//_anon7* con;
 	float* dvp;
 	float* svp;
 	int m;
@@ -812,6 +812,7 @@ void _fmCnkCalcMuscle(MASK_WORK* fm)
 	// Line 1646, Address: 0x299f58, Func Offset: 0x228
 	// Line 1652, Address: 0x299f60, Func Offset: 0x230
 	// Func End, Address: 0x299f68, Func Offset: 0x238
+	scePrintf("_fmCnkCalcMuscle - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -823,14 +824,14 @@ void _fmCnkCalcJaw(MASK_WORK* fm)
 	float jmat2[16];
 	float jmat1[16];
 	unsigned int vofs;
-	_anon13 vec;
-	_anon13* dvp1;
+	//_anon13 vec;
+	//_anon13* dvp1;
 	float* dvp;
 	float mat2[16];
 	float mat[16];
 	unsigned char mt2[64];
 	unsigned char mt1[64];
-	_anon3* jaw;
+	//_anon3* jaw;
 	int i;
 	// Line 2051, Address: 0x299f70, Func Offset: 0
 	// Line 2076, Address: 0x299fa4, Func Offset: 0x34
@@ -935,6 +936,7 @@ void _fmCnkCalcJaw(MASK_WORK* fm)
 	// Line 2201, Address: 0x29a1f8, Func Offset: 0x288
 	// Line 2206, Address: 0x29a218, Func Offset: 0x2a8
 	// Func End, Address: 0x29a250, Func Offset: 0x2e0
+	scePrintf("_fmCnkCalcJaw - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -942,10 +944,10 @@ void _fmCnkCalcJaw(MASK_WORK* fm)
 void _fmCnkCalcEye(MASK_WORK* fm)
 {
 	int i;
-	_anon0 r3;
-	_anon0 q3;
-	_anon0 t3;
-	cnkobj* obj;
+	//_anon0 r3;
+	//_anon0 q3;
+	//_anon0 t3;
+	//cnkobj* obj;
 	float dz;
 	float dy;
 	float dx;
@@ -1015,6 +1017,7 @@ void _fmCnkCalcEye(MASK_WORK* fm)
 	// Line 2398, Address: 0x29a488, Func Offset: 0x238
 	// Line 2402, Address: 0x29a49c, Func Offset: 0x24c
 	// Func End, Address: 0x29a4c0, Func Offset: 0x270
+	scePrintf("_fmCnkCalcEye - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1030,7 +1033,7 @@ void _fmCnkCalcTang(MASK_WORK* fm)
 	float* svp;
 	float mat[16];
 	unsigned char mt1[64];
-	_anon3* tang;
+	//_anon3* tang;
 	int i;
 	// Line 2446, Address: 0x29a4c0, Func Offset: 0
 	// Line 2464, Address: 0x29a4ec, Func Offset: 0x2c
@@ -1083,6 +1086,7 @@ void _fmCnkCalcTang(MASK_WORK* fm)
 	// Line 2560, Address: 0x29a614, Func Offset: 0x154
 	// Line 2564, Address: 0x29a620, Func Offset: 0x160
 	// Func End, Address: 0x29a650, Func Offset: 0x190
+	scePrintf("_fmCnkCalcTang - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1090,11 +1094,11 @@ void _fmCnkCalcTang(MASK_WORK* fm)
 void _fmCnkCalcNormal(MASK_WORK* fm)
 {
 	unsigned int vofs;
-	_anon0** nvp;
-	_anon6* list;
-	_anon0 norm;
-	_anon0* dnp1;
-	_anon0* dvp1;
+	//_anon0** nvp;
+	//_anon6* list;
+	//_anon0 norm;
+	//_anon0* dnp1;
+	//_anon0* dvp1;
 	float* dnp;
 	float* dvp;
 	int n;
@@ -1130,23 +1134,24 @@ void _fmCnkCalcNormal(MASK_WORK* fm)
 	// Line 2714, Address: 0x29a758, Func Offset: 0x108
 	// Line 2715, Address: 0x29a76c, Func Offset: 0x11c
 	// Func End, Address: 0x29a79c, Func Offset: 0x14c
-}*/
+	scePrintf("_fmCnkCalcNormal - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x29a7a0
-void fmCnkCalcFace(MASK_WORK* fm)
+// 100% matching!
+void fmCnkCalcFace(MASK_WORK* fm) 
 {
-	// Line 2813, Address: 0x29a7a0, Func Offset: 0
-	// Line 2814, Address: 0x29a7ac, Func Offset: 0xc
-	// Line 2846, Address: 0x29a7b8, Func Offset: 0x18
-	// Line 2847, Address: 0x29a7c0, Func Offset: 0x20
-	// Line 2848, Address: 0x29a7c8, Func Offset: 0x28
-	// Line 2850, Address: 0x29a7d0, Func Offset: 0x30
-	// Line 2852, Address: 0x29a7d8, Func Offset: 0x38
-	// Line 2853, Address: 0x29a7e8, Func Offset: 0x48
-	// Line 2856, Address: 0x29a7f0, Func Offset: 0x50
-	// Func End, Address: 0x29a800, Func Offset: 0x60
-	scePrintf("fmCnkCalcFace - UNIMPLEMENTED!\n");
+    if (fm->dst != NULL) 
+    {
+        _fmCnkCalcMuscle(fm);
+        _fmCnkCalcJaw(fm);
+        _fmCnkCalcTang(fm);
+        _fmCnkCalcEye(fm);
+        
+        if (!(fm->mode & 0x1)) 
+        {
+            _fmCnkCalcNormal(fm);
+        }
+    }
 }
 
 // 
