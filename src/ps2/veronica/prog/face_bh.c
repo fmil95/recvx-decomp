@@ -655,37 +655,54 @@ void fmCnkSetInterParam(MASK_WORK* fm, PARAM_WORK* p1, PARAM_WORK* p2, float t, 
     fm->param.tangz = lv * (p1->tangz + (rate * (p2->tangz - p1->tangz)));
 }
 
-// 
-// Start address: 0x299980
+// 99.54% matching (matches on GC)
 void fmCnkSetInterParamLip(MASK_WORK* fm, PARAM_WORK* p1, PARAM_WORK* p2, float t, float lv, unsigned int mask)
 {
-	float* fm_muscle;
-	float rate;
 	int i;
-	// Line 1313, Address: 0x299980, Func Offset: 0
-	// Line 1321, Address: 0x2999a0, Func Offset: 0x20
-	// Line 1327, Address: 0x2999ec, Func Offset: 0x6c
-	// Line 1329, Address: 0x2999f4, Func Offset: 0x74
-	// Line 1330, Address: 0x2999fc, Func Offset: 0x7c
-	// Line 1333, Address: 0x299a04, Func Offset: 0x84
-	// Line 1334, Address: 0x299a28, Func Offset: 0xa8
-	// Line 1336, Address: 0x299a30, Func Offset: 0xb0
-	// Line 1345, Address: 0x299a34, Func Offset: 0xb4
-	// Line 1346, Address: 0x299a38, Func Offset: 0xb8
-	// Line 1347, Address: 0x299a44, Func Offset: 0xc4
-	// Line 1349, Address: 0x299a58, Func Offset: 0xd8
-	// Line 1350, Address: 0x299a74, Func Offset: 0xf4
-	// Line 1351, Address: 0x299a78, Func Offset: 0xf8
-	// Line 1349, Address: 0x299a80, Func Offset: 0x100
-	// Line 1351, Address: 0x299a88, Func Offset: 0x108
-	// Line 1360, Address: 0x299a90, Func Offset: 0x110
-	// Line 1361, Address: 0x299acc, Func Offset: 0x14c
-	// Line 1362, Address: 0x299ae8, Func Offset: 0x168
-	// Line 1363, Address: 0x299b1c, Func Offset: 0x19c
-	// Line 1364, Address: 0x299b50, Func Offset: 0x1d0
-	// Line 1365, Address: 0x299b6c, Func Offset: 0x1ec
-	// Func End, Address: 0x299b8c, Func Offset: 0x20c
-	scePrintf("fmCnkSetInterParamLip - UNIMPLEMENTED!\n");
+    float rate;
+    float* fm_muscle;
+    float pp; // not from DWARF
+
+    switch (p1->flag) 
+    {
+    case 0:
+        rate = t;
+        break;
+    case 1:
+        rate = t * t;
+        break;
+    case 2:
+        rate = njSqrt(t);
+        break; 
+    case 3:
+        rate = 0.5f - (0.5f * njCos((65536 / 2) * t));
+        break;
+    case 4:
+        rate = 0;
+        break;
+    default:
+        rate = t; 
+        break;
+    }
+    
+    fm_muscle = fm->param.muscle;
+    
+    for (i = 0; i < 32; i++) 
+    {
+        if ((mask & (1 << i))) 
+        {
+            pp = p1->muscle[i] + (rate * (p2->muscle[i] - p1->muscle[i]));
+            
+            fm_muscle[i] = pp * lv;
+        }
+    }
+    
+    fm->param.jawang = lv * ((0.005493164f * *(int*)&p1->jawang) + (rate * (0.005493164f * (*(int*)&p2->jawang - *(int*)&p1->jawang))));
+    fm->param.jawtrans = lv * (p1->jawtrans + (rate * (p2->jawtrans - p1->jawtrans)));
+    
+    fm->param.tangx = lv * ((0.005493164f * *(int*)&p1->tangx) + (rate * (0.005493164f * (*(int*)&p2->tangx - *(int*)&p1->tangx))));
+    fm->param.tangy = lv * ((0.005493164f * *(int*)&p1->tangy) + (rate * (0.005493164f * (*(int*)&p2->tangy - *(int*)&p1->tangy))));
+    fm->param.tangz = lv * (p1->tangz + (rate * (p2->tangz - p1->tangz)));
 }
 
 // 100% matching!
