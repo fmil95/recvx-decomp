@@ -688,27 +688,34 @@ void fmCnkSetInterParamLip(MASK_WORK* fm, PARAM_WORK* p1, PARAM_WORK* p2, float 
 	scePrintf("fmCnkSetInterParamLip - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x299b90
+// 100% matching!
 void fmCnkSetCurrentFrame(MASK_WORK* fm, float frame)
 {
-	unsigned int key;
-	int i;
-	// Line 1376, Address: 0x299b90, Func Offset: 0
-	// Line 1381, Address: 0x299bb0, Func Offset: 0x20
-	// Line 1382, Address: 0x299bc8, Func Offset: 0x38
-	// Line 1385, Address: 0x299bec, Func Offset: 0x5c
-	// Line 1390, Address: 0x299c00, Func Offset: 0x70
-	// Line 1391, Address: 0x299c08, Func Offset: 0x78
-	// Line 1392, Address: 0x299c14, Func Offset: 0x84
-	// Line 1393, Address: 0x299c1c, Func Offset: 0x8c
-	// Line 1394, Address: 0x299c24, Func Offset: 0x94
-	// Line 1395, Address: 0x299c4c, Func Offset: 0xbc
-	// Line 1397, Address: 0x299c54, Func Offset: 0xc4
-	// Line 1400, Address: 0x299c58, Func Offset: 0xc8
-	// Line 1402, Address: 0x299cd8, Func Offset: 0x148
-	// Func End, Address: 0x299cfc, Func Offset: 0x16c
-	scePrintf("fmCnkSetCurrentFrame - UNIMPLEMENTED!\n");
+    int i;
+    unsigned int key;
+
+    for (i = 0; i < fm->fnum; i++)
+    {
+        if (fm->face[i].frame > (unsigned int)frame)
+        {
+            break;
+        }
+    }
+    
+    if (i == 0) 
+    {
+        fmCnkSetParam(fm, fm->face);
+    }
+    else if (i == fm->fnum) 
+    {
+        fmCnkSetParam(fm, &fm->face[fm->fnum - 1]);
+    }
+    else
+    {
+        key = i - 1;
+        
+        fmCnkSetInterParam(fm, &fm->face[key], &fm->face[key + 1], (frame - fm->face[key].frame) / ((float)fm->face[key + 1].frame - fm->face[key].frame), 1.0f, -1);
+    }
 }
 
 // 100% matching! 
