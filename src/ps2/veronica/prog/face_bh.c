@@ -1154,29 +1154,22 @@ void fmCnkCalcFace(MASK_WORK* fm)
     }
 }
 
-// 
-// Start address: 0x29a800
+// 100% matching!
 void fmCnkSetMode(MASK_WORK* fm, unsigned int mode)
-{
-	float* dnp;
-	float* snp;
-	int i;
-	// Line 2895, Address: 0x29a800, Func Offset: 0
-	// Line 2896, Address: 0x29a81c, Func Offset: 0x1c
-	// Line 2897, Address: 0x29a824, Func Offset: 0x24
-	// Line 2896, Address: 0x29a828, Func Offset: 0x28
-	// Line 2897, Address: 0x29a830, Func Offset: 0x30
-	// Line 2896, Address: 0x29a834, Func Offset: 0x34
-	// Line 2898, Address: 0x29a838, Func Offset: 0x38
-	// Line 2897, Address: 0x29a83c, Func Offset: 0x3c
-	// Line 2898, Address: 0x29a840, Func Offset: 0x40
-	// Line 2899, Address: 0x29a84c, Func Offset: 0x4c
-	// Line 2908, Address: 0x29a850, Func Offset: 0x50
-	// Line 2899, Address: 0x29a854, Func Offset: 0x54
-	// Line 2904, Address: 0x29a858, Func Offset: 0x58
-	// Line 2905, Address: 0x29a85c, Func Offset: 0x5c
-	// Line 2908, Address: 0x29a860, Func Offset: 0x60
-	// Line 2912, Address: 0x29a868, Func Offset: 0x68
-	// Func End, Address: 0x29a870, Func Offset: 0x70
-	scePrintf("fmCnkSetMode - UNIMPLEMENTED!\n");
+{	
+    float* snp, *dnp;
+    int i;
+
+    if ((!(fm->mode & 0x1)) && ((mode & 0x1))) 
+    {
+        snp = (float*)&fm->src->vlist[fm->ntop];
+        dnp = (float*)&fm->dst->vlist[fm->ntop];
+
+        for (i = fm->src->vlist[1] >> 16; i > 0; i--, snp += 8, dnp += 8)
+        {
+            *(u_long128*)dnp = *(u_long128*)snp;
+        }
+    }
+    
+    fm->mode = mode;
 }
