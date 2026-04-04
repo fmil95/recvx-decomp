@@ -84,24 +84,6 @@ python mkiso.py -m insert
 
 If successful, you will now see an ISO called "RECVX_NEW" in the elf/iso folder that you can use to test the results with an emulator (preferrably PCSX2 for its debugging capabilities) or console.  
 
-## Credits
-
-This work couldn't have been possible without the contributions of the following users:
-
-* [WuGambinos](https://github.com/WuGambinos) and [daru](https://github.com/davnpsh): Officially part of the RE: CVX decompilation team. 
-* [benoitren](https://git.sr.ht/~benoitren): First to tag along when mentioning an interest to reverse-engineer the game in the PS1/PS2 Decompilation server. Decompiled several files on his own.
-* [Mc-Muffin](https://github.com/Mc-Muffin): Created the splat config for the game binary, solved an important issue with the compiler, developed the script for rebuilding the game ISO and provided the most help with matching the functions, in quality and quantity. Also implemented objdiff for local diffing and progress report generation.  
-* [karas84](https://github.com/karas84): Helped to match very difficult functions like PS2DrawOTagSub which involved complex logic for rendering graphics on the PS2, as well as many other ones like Ps2TextureGarbageCollectionAll.
-
-Additionally, some appreciation must go to:
-
-* [simonlindholm](https://github.com/simonlindholm): For his brilliant asm-differ, m2c and permuter tools.
-* [Fothsid](https://github.com/Fothsid): For sharing his experience with reversing Resident Evil Outbreak.
-* [apstygo](https://github.com/apstygo): For his CRI Middleware decompilation work on Street Fighter III: 3rd Strike. 
-* [GirianSeed](https://github.com/GirianSeed): For providing knowledge of the many different versions of the PS2 API, and finding extra debug info for CRI ADX not present in the game.
-* [patope](https://github.com/patope), [Lovey847](https://github.com/Lovey847), [ladysilverberg](https://github.com/ladysilverberg), [ThirstyWraith](https://github.com/ThirstyWraith), [break-core](https://github.com/break-core) and [Hertzole](https://github.com/Hertzole): For giving additional help with function matching.
-* [Video Game Esoterica](https://www.youtube.com/@VideoGameEsoterica): For covering the project on the channel.
-
 ## Community
 
 The primary way to discuss the project is through the `GC/Wii Decompilation` server on Discord, which has a dedicated channel for the decomp called `resident-evil-code-veronica-x`. See you there!
