@@ -2238,115 +2238,146 @@ void bhSetWallRefAngle(ATR_WORK* hp, NJS_POINT3* pos, float ar, float ah, int* a
 	scePrintf("bhSetWallRefAngle - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x264310
-float bhGetGroundPosition(NJS_POINT3* pos)
+// 99.79% matching
+float bhGetGroundPosition(NJS_POINT3* pos) 
 {
-	float nr;
-	float yn;
-	float yy;
-	float h;
-	float ln;
-	float pz;
-	float px;
-	int wal_n;
-	int i;
-	//_anon0* hp;
-	//_anon20 pd;
-	// Line 2834, Address: 0x264310, Func Offset: 0
-	// Line 2843, Address: 0x264340, Func Offset: 0x30
-	// Line 2844, Address: 0x264348, Func Offset: 0x38
-	// Line 2845, Address: 0x264354, Func Offset: 0x44
-	// Line 2843, Address: 0x26435c, Func Offset: 0x4c
-	// Line 2845, Address: 0x264364, Func Offset: 0x54
-	// Line 2843, Address: 0x264368, Func Offset: 0x58
-	// Line 2846, Address: 0x26436c, Func Offset: 0x5c
-	// Line 2847, Address: 0x264390, Func Offset: 0x80
-	// Line 2849, Address: 0x2643a0, Func Offset: 0x90
-	// Line 2850, Address: 0x2643ec, Func Offset: 0xdc
-	// Line 2852, Address: 0x2643fc, Func Offset: 0xec
-	// Line 2853, Address: 0x264428, Func Offset: 0x118
-	// Line 2855, Address: 0x26446c, Func Offset: 0x15c
-	// Line 2856, Address: 0x264470, Func Offset: 0x160
-	// Line 2855, Address: 0x264478, Func Offset: 0x168
-	// Line 2856, Address: 0x26447c, Func Offset: 0x16c
-	// Line 2855, Address: 0x264480, Func Offset: 0x170
-	// Line 2856, Address: 0x264484, Func Offset: 0x174
-	// Line 2859, Address: 0x2644ec, Func Offset: 0x1dc
-	// Line 2862, Address: 0x2644fc, Func Offset: 0x1ec
-	// Line 2860, Address: 0x264504, Func Offset: 0x1f4
-	// Line 2861, Address: 0x264508, Func Offset: 0x1f8
-	// Line 2862, Address: 0x26450c, Func Offset: 0x1fc
-	// Line 2865, Address: 0x264514, Func Offset: 0x204
-	// Line 2867, Address: 0x26451c, Func Offset: 0x20c
-	// Line 2868, Address: 0x264520, Func Offset: 0x210
-	// Line 2869, Address: 0x264528, Func Offset: 0x218
-	// Line 2867, Address: 0x264530, Func Offset: 0x220
-	// Line 2868, Address: 0x264538, Func Offset: 0x228
-	// Line 2869, Address: 0x26453c, Func Offset: 0x22c
-	// Line 2870, Address: 0x264540, Func Offset: 0x230
-	// Line 2867, Address: 0x264544, Func Offset: 0x234
-	// Line 2870, Address: 0x264548, Func Offset: 0x238
-	// Line 2871, Address: 0x264550, Func Offset: 0x240
-	// Line 2873, Address: 0x26457c, Func Offset: 0x26c
-	// Line 2876, Address: 0x26458c, Func Offset: 0x27c
-	// Line 2875, Address: 0x264590, Func Offset: 0x280
-	// Line 2876, Address: 0x264594, Func Offset: 0x284
-	// Line 2874, Address: 0x264598, Func Offset: 0x288
-	// Line 2875, Address: 0x26459c, Func Offset: 0x28c
-	// Line 2876, Address: 0x2645a0, Func Offset: 0x290
-	// Line 2879, Address: 0x2645a8, Func Offset: 0x298
-	// Line 2881, Address: 0x2645b0, Func Offset: 0x2a0
-	// Line 2882, Address: 0x2645b8, Func Offset: 0x2a8
-	// Line 2885, Address: 0x2645bc, Func Offset: 0x2ac
-	// Line 2881, Address: 0x2645c4, Func Offset: 0x2b4
-	// Line 2882, Address: 0x2645c8, Func Offset: 0x2b8
-	// Line 2883, Address: 0x2645cc, Func Offset: 0x2bc
-	// Line 2881, Address: 0x2645d0, Func Offset: 0x2c0
-	// Line 2883, Address: 0x2645d4, Func Offset: 0x2c4
-	// Line 2884, Address: 0x2645d8, Func Offset: 0x2c8
-	// Line 2885, Address: 0x2645dc, Func Offset: 0x2cc
-	// Line 2887, Address: 0x264604, Func Offset: 0x2f4
-	// Line 2890, Address: 0x264614, Func Offset: 0x304
-	// Line 2889, Address: 0x264618, Func Offset: 0x308
-	// Line 2890, Address: 0x26461c, Func Offset: 0x30c
-	// Line 2888, Address: 0x264620, Func Offset: 0x310
-	// Line 2889, Address: 0x264624, Func Offset: 0x314
-	// Line 2890, Address: 0x264628, Func Offset: 0x318
-	// Line 2893, Address: 0x264630, Func Offset: 0x320
-	// Line 2896, Address: 0x264638, Func Offset: 0x328
-	// Line 2895, Address: 0x264640, Func Offset: 0x330
-	// Line 2896, Address: 0x264648, Func Offset: 0x338
-	// Line 2899, Address: 0x2646b4, Func Offset: 0x3a4
-	// Line 2902, Address: 0x2646ec, Func Offset: 0x3dc
-	// Line 2903, Address: 0x264700, Func Offset: 0x3f0
-	// Line 2906, Address: 0x264708, Func Offset: 0x3f8
-	// Line 2907, Address: 0x26471c, Func Offset: 0x40c
-	// Line 2910, Address: 0x264724, Func Offset: 0x414
-	// Line 2911, Address: 0x264738, Func Offset: 0x428
-	// Line 2914, Address: 0x264740, Func Offset: 0x430
-	// Line 2917, Address: 0x264758, Func Offset: 0x448
-	// Line 2918, Address: 0x26475c, Func Offset: 0x44c
-	// Line 2921, Address: 0x26476c, Func Offset: 0x45c
-	// Line 2919, Address: 0x264774, Func Offset: 0x464
-	// Line 2920, Address: 0x264778, Func Offset: 0x468
-	// Line 2921, Address: 0x26477c, Func Offset: 0x46c
-	// Line 2924, Address: 0x264784, Func Offset: 0x474
-	// Line 2926, Address: 0x26478c, Func Offset: 0x47c
-	// Line 2928, Address: 0x264794, Func Offset: 0x484
-	// Line 2926, Address: 0x26479c, Func Offset: 0x48c
-	// Line 2928, Address: 0x2647a0, Func Offset: 0x490
-	// Line 2930, Address: 0x2647d8, Func Offset: 0x4c8
-	// Line 2933, Address: 0x26484c, Func Offset: 0x53c
-	// Line 2936, Address: 0x26485c, Func Offset: 0x54c
-	// Line 2934, Address: 0x264864, Func Offset: 0x554
-	// Line 2935, Address: 0x264868, Func Offset: 0x558
-	// Line 2936, Address: 0x26486c, Func Offset: 0x55c
-	// Line 2941, Address: 0x264878, Func Offset: 0x568
-	// Line 2945, Address: 0x264888, Func Offset: 0x578
-	// Line 2946, Address: 0x26488c, Func Offset: 0x57c
-	// Func End, Address: 0x2648c0, Func Offset: 0x5b0
-	scePrintf("bhGetGroundPosition - UNIMPLEMENTED!\n");
+    NJS_POINT3 pd; 
+    ATR_WORK* hp;  
+    int i;        
+    int wal_n;     
+    float px, pz;     
+    float ln;    
+    float h;     
+    float yy;     
+    float yn, nr;     
+
+    sys->htp = NULL;
+    
+    yn = -1000.0f;
+    nr = 10000.0f;
+    
+    wal_n = rom->wal_n + sys->mwal_n;
+    
+    for (i = 0; i < wal_n; i++)
+    {
+        if (i < rom->wal_n) 
+        {
+            hp = &rom->walp[i];
+        } 
+        else
+        {
+            hp = &sys->mwalp[i - rom->wal_n];
+        }
+        
+        if ((hp->flg & 0x1)) 
+        {
+            if (hp->h) 
+            {
+                h = hp->h;
+            } 
+            else 
+            {
+                h = rom->h;
+            }
+            
+            switch (hp->type) 
+            {                 
+            case 0:                             
+                yy = pos->y - (hp->py + h);
+                
+                if ((((pos->x - hp->px) >= 0) && ((pos->x - hp->px) < hp->w)) && (((pos->z - hp->pz) >= 0) && ((pos->z - hp->pz) < hp->d)) && ((yy >= 0) && (yy < nr)))  
+                {
+                    nr = yy;
+                    yn = hp->py + h;
+                    
+                    sys->htp = hp;
+                }
+                
+                break;
+            case 2:                             
+                yy = pos->y - (hp->py + h);
+                
+                px = hp->px - pos->x;
+                pz = hp->pz - pos->z;
+                
+                if ((njSqrt((px * px) + (pz * pz)) < hp->w) && ((yy >= 0) && (yy < nr)))
+                {
+                    nr = yy;
+                    yn = hp->py + h;
+                    
+                    sys->htp = hp;
+                }
+                
+                break;
+            case 4:                             
+                yy = pos->y - (hp->py + h);
+                
+                pd.x = pos->x;
+                pd.y = hp->py; 
+                pd.z = pos->z;
+                
+                if ((bhCheckInnerTriangle3(hp, &pd) != 0) && ((yy >= 0) && (yy < nr))) 
+                {
+                    nr = yy;
+                    yn = hp->py + h;
+                    
+                    sys->htp = hp;
+                }
+                
+                break;
+            case 6:                             
+                yy = pos->y - hp->py;
+                
+                if ((((pos->x - hp->px) >= 0) && ((pos->x - hp->px) < hp->w)) && (((pos->z - hp->pz) >= 0) && ((pos->z - hp->pz) < hp->d)) && (yy >= 0)) 
+                {
+                    switch (hp->id)  
+                    { 
+                    case 0:         
+                        ln = hp->py + ((hp->h / hp->w) * (pos->x - hp->px));
+                        break;
+                    case 1:         
+                        ln = hp->h + (hp->py + ((hp->h / hp->d) * (hp->pz - pos->z)));
+                        break;
+                    case 2:         
+                        ln = hp->py + ((hp->h / hp->d) * (pos->z - hp->pz));
+                        break;
+                    case 3:         
+                        ln = hp->h + (hp->py + ((hp->h / hp->w) * (hp->px - pos->x)));
+                        break;
+                    }
+                    
+                    if ((pos->y - ln) < nr) 
+                    {
+                        nr = pos->y - ln;
+                        yn = ln;
+                        
+                        sys->htp = hp;
+                    }
+                }
+                
+                break;
+            case 7:                             
+                yy = pos->y - hp->py;
+                
+                if ((yy <= 0) && (yy >= -0.0001f))
+                {
+                    yy = 0;
+                }
+                
+                if ((((pos->x - hp->px) >= 0) && ((pos->x - hp->px) < hp->w)) && (((pos->z - hp->pz) >= 0) && ((pos->z - hp->pz) < hp->d)) && ((yy >= 0) && (yy < nr))) 
+                {
+                    nr = yy;
+                    yn = hp->py;
+                
+                    sys->htp = hp;
+                }
+                
+                break;
+            }
+        }
+    }
+    
+    return yn;
 }
 
 /*// 
