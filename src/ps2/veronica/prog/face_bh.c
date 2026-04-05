@@ -1,5 +1,6 @@
 #include "face.h"
 #include "face_bh.h"
+#include "ps2_NaColi.h"
 #include "ps2_NaMatrix.h"
 #include "ps2_NaMem.h"
 #include "pwksub.h"
@@ -1154,52 +1155,50 @@ void _fmCnkCalcTang(MASK_WORK* fm)
 	scePrintf("_fmCnkCalcTang - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x29a650
-void _fmCnkCalcNormal(MASK_WORK* fm)
+// 100% matching! 
+void _fmCnkCalcNormal(MASK_WORK* fm) 
 {
-	unsigned int vofs;
-	//_anon0** nvp;
-	//_anon6* list;
-	//_anon0 norm;
-	//_anon0* dnp1;
-	//_anon0* dvp1;
-	float* dnp;
-	float* dvp;
-	int n;
-	int i;
-	// Line 2683, Address: 0x29a650, Func Offset: 0
-	// Line 2693, Address: 0x29a67c, Func Offset: 0x2c
-	// Line 2694, Address: 0x29a684, Func Offset: 0x34
-	// Line 2695, Address: 0x29a688, Func Offset: 0x38
-	// Line 2696, Address: 0x29a68c, Func Offset: 0x3c
-	// Line 2698, Address: 0x29a690, Func Offset: 0x40
-	// Line 2693, Address: 0x29a694, Func Offset: 0x44
-	// Line 2697, Address: 0x29a6a0, Func Offset: 0x50
-	// Line 2694, Address: 0x29a6a4, Func Offset: 0x54
-	// Line 2693, Address: 0x29a6a8, Func Offset: 0x58
-	// Line 2694, Address: 0x29a6ac, Func Offset: 0x5c
-	// Line 2699, Address: 0x29a6b0, Func Offset: 0x60
-	// Line 2700, Address: 0x29a6b8, Func Offset: 0x68
-	// Line 2703, Address: 0x29a6bc, Func Offset: 0x6c
-	// Line 2700, Address: 0x29a6c0, Func Offset: 0x70
-	// Line 2701, Address: 0x29a6cc, Func Offset: 0x7c
-	// Line 2702, Address: 0x29a6d0, Func Offset: 0x80
-	// Line 2704, Address: 0x29a6dc, Func Offset: 0x8c
-	// Line 2705, Address: 0x29a6e4, Func Offset: 0x94
-	// Line 2706, Address: 0x29a6f8, Func Offset: 0xa8
-	// Line 2707, Address: 0x29a700, Func Offset: 0xb0
-	// Line 2710, Address: 0x29a708, Func Offset: 0xb8
-	// Line 2707, Address: 0x29a70c, Func Offset: 0xbc
-	// Line 2708, Address: 0x29a714, Func Offset: 0xc4
-	// Line 2709, Address: 0x29a724, Func Offset: 0xd4
-	// Line 2711, Address: 0x29a734, Func Offset: 0xe4
-	// Line 2712, Address: 0x29a74c, Func Offset: 0xfc
-	// Line 2713, Address: 0x29a754, Func Offset: 0x104
-	// Line 2714, Address: 0x29a758, Func Offset: 0x108
-	// Line 2715, Address: 0x29a76c, Func Offset: 0x11c
-	// Func End, Address: 0x29a79c, Func Offset: 0x14c
-	scePrintf("_fmCnkCalcNormal - UNIMPLEMENTED!\n");
+    int i, n;             
+    float* dvp, *dnp;        
+    NJS_POINT3* dvp1, *dnp1;  
+    NJS_POINT3 norm;   
+    VLIST_WORK* list;  
+    NJS_POINT3** nvp;  
+    unsigned int vofs; 
+
+    dvp = (float*)&fm->dst->vlist[fm->vtop];
+    dnp = (float*)&fm->dst->vlist[fm->ntop];
+    
+    list = fm->vlist;
+    
+    nvp = (NJS_POINT3**)fm->nvpt;
+    
+    vofs = fm->vofs;
+    
+    for (n = 0; n++ < fm->lnum; list++) 
+    {
+        dvp1 = (NJS_POINT3*)&dvp[list->id * vofs];
+        dnp1 = (NJS_POINT3*)&dnp[list->id * vofs];
+        
+        dnp1->z = 0;
+        dnp1->y = 0;
+        dnp1->x = 0;
+        
+        for (i = 0; i++ < list->nvnum; )
+        {
+            njGetPlaneNormal2(dvp1, nvp[0], nvp[1], &norm);
+            
+            njUnitVector(&norm);
+            
+            nvp += 2; 
+            
+            dnp1->x += norm.x;
+            dnp1->y += norm.y;
+            dnp1->z += norm.z;
+        }
+        
+        njUnitVector(dnp1);
+    }
 }
 
 // 100% matching!
