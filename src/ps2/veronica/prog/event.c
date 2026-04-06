@@ -6119,26 +6119,27 @@ unsigned int bhFaceReSet()
 	scePrintf("bhFaceReSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x162050
+// 100% matching!
 unsigned int bhEffModeSet()
 {
-	int v1;
-	int v0;
-	// Line 6104, Address: 0x162050, Func Offset: 0
-	// Line 6115, Address: 0x162058, Func Offset: 0x8
-	// Line 6117, Address: 0x162060, Func Offset: 0x10
-	// Line 6115, Address: 0x162064, Func Offset: 0x14
-	// Line 6104, Address: 0x16206c, Func Offset: 0x1c
-	// Line 6105, Address: 0x162078, Func Offset: 0x28
-	// Line 6106, Address: 0x162084, Func Offset: 0x34
-	// Line 6115, Address: 0x162090, Func Offset: 0x40
-	// Line 6107, Address: 0x162098, Func Offset: 0x48
-	// Line 6108, Address: 0x1620a4, Func Offset: 0x54
-	// Line 6115, Address: 0x1620b0, Func Offset: 0x60
-	// Line 6118, Address: 0x1620d4, Func Offset: 0x84
-	// Func End, Address: 0x1620dc, Func Offset: 0x8c
-	scePrintf("bhEffModeSet - UNIMPLEMENTED!\n");
+	int v0, v1;
+    O_WRK* op; // not from DWARF
+    
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+   
+    op = &eff[sys->efid[v0]];
+    
+    op->mode1 = v1;
+    
+    return 1;
 }
 
 // 100% matching!
@@ -6161,7 +6162,7 @@ unsigned int bhEnemyHpUp()
     enep = &rom->enep[v0];
     e_ep = &ene[enep->wrk_no];
     
-    e_ep->hp = e_ep->hp + (e_ep->hp / 100) * v1;
+    e_ep->hp = e_ep->hp + ((e_ep->hp / 100) * v1);
 
     return 1;
 }
