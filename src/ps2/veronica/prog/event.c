@@ -5924,22 +5924,37 @@ unsigned int bhPlayerChangeSet()
 	scePrintf("bhPlayerChangeSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x161940
+// 100% matching!
 unsigned int bhPlayerPoisonCk()
 {
 	int v0;
-	// Line 5865, Address: 0x161940, Func Offset: 0
-	// Line 5869, Address: 0x161948, Func Offset: 0x8
-	// Line 5865, Address: 0x161954, Func Offset: 0x14
-	// Line 5866, Address: 0x161960, Func Offset: 0x20
-	// Line 5867, Address: 0x16196c, Func Offset: 0x2c
-	// Line 5869, Address: 0x161978, Func Offset: 0x38
-	// Line 5870, Address: 0x161988, Func Offset: 0x48
-	// Line 5873, Address: 0x161994, Func Offset: 0x54
-	// Line 5876, Address: 0x1619a0, Func Offset: 0x60
-	// Func End, Address: 0x1619a8, Func Offset: 0x68
-	scePrintf("bhPlayerPoisonCk - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if ((plp->stflg & 0x200000)) 
+    {
+        if (v0 == 0) 
+        {
+            return 1;
+        } 
+        else 
+        {
+            return 0;
+        }
+    }
+
+    if (v0 == 0) 
+    { 
+        return 0;
+    }
+    else 
+    {
+        return 1;
+    }
 }
 
 // 100% matching!
