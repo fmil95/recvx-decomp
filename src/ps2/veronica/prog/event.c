@@ -5990,38 +5990,47 @@ unsigned int bhAddObjSe()
 	scePrintf("bhAddObjSe - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x161cc0
+// 100% matching!
 unsigned int bhRandTest()
 {
-	unsigned int v1;
 	int v0;
-	// Line 5930, Address: 0x161cc0, Func Offset: 0
-	// Line 5938, Address: 0x161cc8, Func Offset: 0x8
-	// Line 5939, Address: 0x161cdc, Func Offset: 0x1c
-	// Line 5940, Address: 0x161ce8, Func Offset: 0x28
-	// Line 5941, Address: 0x161cf4, Func Offset: 0x34
-	// Line 5943, Address: 0x161d00, Func Offset: 0x40
-	// Line 5944, Address: 0x161d0c, Func Offset: 0x4c
-	// Line 5942, Address: 0x161d14, Func Offset: 0x54
-	// Line 5944, Address: 0x161d18, Func Offset: 0x58
-	// Line 5945, Address: 0x161d1c, Func Offset: 0x5c
-	// Line 5948, Address: 0x161d28, Func Offset: 0x68
-	// Line 5949, Address: 0x161d30, Func Offset: 0x70
-	// Line 5950, Address: 0x161d38, Func Offset: 0x78
-	// Line 5954, Address: 0x161d50, Func Offset: 0x90
-	// Line 5950, Address: 0x161d58, Func Offset: 0x98
-	// Line 5954, Address: 0x161d6c, Func Offset: 0xac
-	// Line 5955, Address: 0x161d74, Func Offset: 0xb4
-	// Line 5956, Address: 0x161d7c, Func Offset: 0xbc
-	// Line 5960, Address: 0x161d94, Func Offset: 0xd4
-	// Line 5956, Address: 0x161d9c, Func Offset: 0xdc
-	// Line 5960, Address: 0x161db0, Func Offset: 0xf0
-	// Line 5977, Address: 0x161dbc, Func Offset: 0xfc
-	// Line 5976, Address: 0x161dc0, Func Offset: 0x100
-	// Line 5977, Address: 0x161dc4, Func Offset: 0x104
-	// Func End, Address: 0x161dcc, Func Offset: 0x10c
-	scePrintf("bhRandTest - UNIMPLEMENTED!\n");
+    unsigned int v1;
+    unsigned int v2; // not from DWARF
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *(unsigned short*)bhScePtr;
+
+    v1 <<= 16;
+
+    bhScePtr += 2;
+
+    v2 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v1 |= v2;
+    
+    if (v0 == 0) 
+    {
+        srand(v1);
+        
+        bhEtask->addpx = -rand() / -2.1474836E9f;
+        
+        bhEtask->wpnl_no = *(int*)&bhEtask->addpx;
+    } 
+    else 
+    {
+        bhEtask->addpx = -rand() / -2.1474836E9f;
+        
+        bhEtask->wpnl_no = *(int*)&bhEtask->addpx;
+    }
+    
+    return 1;
 }
 
 // 100% matching!
@@ -6030,7 +6039,7 @@ unsigned int bhEvtComSet()
 	int v0;
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
