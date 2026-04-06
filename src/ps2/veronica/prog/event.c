@@ -6268,24 +6268,30 @@ unsigned int bhBgmOn2()
     return 1;
 }
 
-// 
-// Start address: 0x1623b0
+// 100% matching!
 unsigned int bhMovieCk()
 {
-	int ret;
 	int v0;
-	// Line 6259, Address: 0x1623b0, Func Offset: 0
-	// Line 6262, Address: 0x1623b8, Func Offset: 0x8
-	// Line 6263, Address: 0x1623cc, Func Offset: 0x1c
-	// Line 6264, Address: 0x1623e0, Func Offset: 0x30
-	// Line 6266, Address: 0x1623f4, Func Offset: 0x44
-	// Line 6267, Address: 0x162404, Func Offset: 0x54
-	// Line 6268, Address: 0x16240c, Func Offset: 0x5c
-	// Line 6270, Address: 0x162414, Func Offset: 0x64
-	// Line 6271, Address: 0x16241c, Func Offset: 0x6c
-	// Line 6274, Address: 0x162420, Func Offset: 0x70
-	// Func End, Address: 0x16242c, Func Offset: 0x7c
-	scePrintf("bhMovieCk - UNIMPLEMENTED!\n");
+    int ret;
+
+    bhScePtr += 2;
+    bhScePtr += 2;
+    
+    bhScePtr++;
+    bhScePtr++;
+
+    v0 = CheckPlayEndMovie();
+
+    if (v0 == 0) 
+    {
+        ret = 0;
+    } 
+    else 
+    {
+        ret = 1;
+    }
+
+    return ret;
 }
 
 // 100% matching!
