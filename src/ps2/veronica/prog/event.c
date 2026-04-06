@@ -6487,60 +6487,77 @@ unsigned int bhEvtLighterFireSet()
 	scePrintf("bhEvtLighterFireSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x162890
+// 100% matching!
 unsigned int bhObjLinkSetPlyItem()
 {
 	int v1;
-	// Line 6483, Address: 0x162890, Func Offset: 0
-	// Line 6485, Address: 0x162898, Func Offset: 0x8
-	// Line 6483, Address: 0x1628a0, Func Offset: 0x10
-	// Line 6485, Address: 0x1628a4, Func Offset: 0x14
-	// Line 6483, Address: 0x1628ac, Func Offset: 0x1c
-	// Line 6485, Address: 0x1628b4, Func Offset: 0x24
-	// Line 6487, Address: 0x1628cc, Func Offset: 0x3c
-	// Line 6485, Address: 0x1628d0, Func Offset: 0x40
-	// Line 6487, Address: 0x1628ec, Func Offset: 0x5c
-	// Line 6494, Address: 0x1628f0, Func Offset: 0x60
-	// Line 6487, Address: 0x1628f8, Func Offset: 0x68
-	// Line 6494, Address: 0x162904, Func Offset: 0x74
-	// Line 6493, Address: 0x162910, Func Offset: 0x80
-	// Line 6494, Address: 0x162918, Func Offset: 0x88
-	// Line 6493, Address: 0x16291c, Func Offset: 0x8c
-	// Line 6496, Address: 0x162920, Func Offset: 0x90
-	// Line 6494, Address: 0x162924, Func Offset: 0x94
-	// Line 6496, Address: 0x162928, Func Offset: 0x98
-	// Line 6498, Address: 0x162938, Func Offset: 0xa8
-	// Line 6499, Address: 0x16294c, Func Offset: 0xbc
-	// Line 6500, Address: 0x16296c, Func Offset: 0xdc
-	// Line 6501, Address: 0x162974, Func Offset: 0xe4
-	// Line 6504, Address: 0x16299c, Func Offset: 0x10c
-	// Line 6505, Address: 0x1629b0, Func Offset: 0x120
-	// Line 6507, Address: 0x1629bc, Func Offset: 0x12c
-	// Line 6510, Address: 0x1629c8, Func Offset: 0x138
-	// Line 6511, Address: 0x1629d4, Func Offset: 0x144
-	// Line 6512, Address: 0x162a44, Func Offset: 0x1b4
-	// Line 6513, Address: 0x162a4c, Func Offset: 0x1bc
-	// Line 6515, Address: 0x162ab0, Func Offset: 0x220
-	// Line 6518, Address: 0x162ab8, Func Offset: 0x228
-	// Line 6515, Address: 0x162abc, Func Offset: 0x22c
-	// Line 6518, Address: 0x162ac4, Func Offset: 0x234
-	// Line 6519, Address: 0x162acc, Func Offset: 0x23c
-	// Line 6520, Address: 0x162b3c, Func Offset: 0x2ac
-	// Line 6521, Address: 0x162b44, Func Offset: 0x2b4
-	// Line 6523, Address: 0x162ba8, Func Offset: 0x318
-	// Line 6526, Address: 0x162bb0, Func Offset: 0x320
-	// Line 6523, Address: 0x162bb4, Func Offset: 0x324
-	// Line 6526, Address: 0x162bbc, Func Offset: 0x32c
-	// Line 6527, Address: 0x162bc4, Func Offset: 0x334
-	// Line 6528, Address: 0x162c34, Func Offset: 0x3a4
-	// Line 6529, Address: 0x162c3c, Func Offset: 0x3ac
-	// Line 6531, Address: 0x162ca0, Func Offset: 0x410
-	// Line 6533, Address: 0x162ca8, Func Offset: 0x418
-	// Line 6531, Address: 0x162cac, Func Offset: 0x41c
-	// Line 6534, Address: 0x162cb4, Func Offset: 0x424
-	// Func End, Address: 0x162cbc, Func Offset: 0x42c
-	scePrintf("bhObjLinkSetPlyItem - UNIMPLEMENTED!\n");
+    int v0; // not from DWARF
+    
+    bhScePtr += 2;
+    
+    v1 = *bhScePtr;
+    
+    sys->itwp[v1].lkwkp = (unsigned char*)plp;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    sys->itwp[v1].lkono = v0;
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    if (v0 == 0) 
+    {
+        sys->itwp[v1].flg |= 0x80;
+    } 
+    else 
+    {
+        sys->itwp[v1].flg &= ~0x80;
+    }
+    
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+
+    if ((v0 & 0x1)) 
+    {
+        sys->itwp[v1].lox = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        sys->itwp[v1].lox = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v0 & 0x2)) 
+    {
+        sys->itwp[v1].loy = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        sys->itwp[v1].loy = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v0 & 0x4)) 
+    {
+        sys->itwp[v1].loz = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    }
+    else 
+    {
+        sys->itwp[v1].loz = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 100% matching!
@@ -6571,7 +6588,7 @@ unsigned int bhEneRenderSet()
     ETTY_WORK* enep; // not from DWARF
     
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
