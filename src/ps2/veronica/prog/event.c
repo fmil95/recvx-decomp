@@ -6635,81 +6635,56 @@ unsigned int bhBgmOn2Ex()
 	scePrintf("bhBgmOn2Ex - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x162ed0
+// 100% matching!
 unsigned int bhFogParameterCSet()
 {
-	int v7;
-	int v6;
-	int v5;
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 6644, Address: 0x162ed0, Func Offset: 0
-	// Line 6673, Address: 0x162ed8, Func Offset: 0x8
-	// Line 6663, Address: 0x162edc, Func Offset: 0xc
-	// Line 6644, Address: 0x162ee4, Func Offset: 0x14
-	// Line 6645, Address: 0x162ef0, Func Offset: 0x20
-	// Line 6646, Address: 0x162efc, Func Offset: 0x2c
-	// Line 6663, Address: 0x162f04, Func Offset: 0x34
-	// Line 6646, Address: 0x162f08, Func Offset: 0x38
-	// Line 6647, Address: 0x162f0c, Func Offset: 0x3c
-	// Line 6663, Address: 0x162f14, Func Offset: 0x44
-	// Line 6647, Address: 0x162f18, Func Offset: 0x48
-	// Line 6648, Address: 0x162f1c, Func Offset: 0x4c
-	// Line 6664, Address: 0x162f24, Func Offset: 0x54
-	// Line 6648, Address: 0x162f28, Func Offset: 0x58
-	// Line 6649, Address: 0x162f2c, Func Offset: 0x5c
-	// Line 6664, Address: 0x162f34, Func Offset: 0x64
-	// Line 6649, Address: 0x162f38, Func Offset: 0x68
-	// Line 6650, Address: 0x162f3c, Func Offset: 0x6c
-	// Line 6665, Address: 0x162f44, Func Offset: 0x74
-	// Line 6650, Address: 0x162f48, Func Offset: 0x78
-	// Line 6651, Address: 0x162f4c, Func Offset: 0x7c
-	// Line 6665, Address: 0x162f54, Func Offset: 0x84
-	// Line 6651, Address: 0x162f58, Func Offset: 0x88
-	// Line 6652, Address: 0x162f5c, Func Offset: 0x8c
-	// Line 6666, Address: 0x162f64, Func Offset: 0x94
-	// Line 6652, Address: 0x162f68, Func Offset: 0x98
-	// Line 6654, Address: 0x162f6c, Func Offset: 0x9c
-	// Line 6666, Address: 0x162f74, Func Offset: 0xa4
-	// Line 6654, Address: 0x162f78, Func Offset: 0xa8
-	// Line 6655, Address: 0x162f7c, Func Offset: 0xac
-	// Line 6668, Address: 0x162f84, Func Offset: 0xb4
-	// Line 6655, Address: 0x162f88, Func Offset: 0xb8
-	// Line 6656, Address: 0x162f8c, Func Offset: 0xbc
-	// Line 6668, Address: 0x162f94, Func Offset: 0xc4
-	// Line 6656, Address: 0x162f98, Func Offset: 0xc8
-	// Line 6657, Address: 0x162f9c, Func Offset: 0xcc
-	// Line 6669, Address: 0x162fa4, Func Offset: 0xd4
-	// Line 6657, Address: 0x162fa8, Func Offset: 0xd8
-	// Line 6658, Address: 0x162fac, Func Offset: 0xdc
-	// Line 6669, Address: 0x162fb4, Func Offset: 0xe4
-	// Line 6658, Address: 0x162fb8, Func Offset: 0xe8
-	// Line 6659, Address: 0x162fbc, Func Offset: 0xec
-	// Line 6670, Address: 0x162fc4, Func Offset: 0xf4
-	// Line 6659, Address: 0x162fc8, Func Offset: 0xf8
-	// Line 6660, Address: 0x162fcc, Func Offset: 0xfc
-	// Line 6670, Address: 0x162fd4, Func Offset: 0x104
-	// Line 6660, Address: 0x162fd8, Func Offset: 0x108
-	// Line 6661, Address: 0x162fdc, Func Offset: 0x10c
-	// Line 6671, Address: 0x162fe4, Func Offset: 0x114
-	// Line 6661, Address: 0x162fe8, Func Offset: 0x118
-	// Line 6663, Address: 0x162fec, Func Offset: 0x11c
-	// Line 6664, Address: 0x162ff0, Func Offset: 0x120
-	// Line 6671, Address: 0x162ff8, Func Offset: 0x128
-	// Line 6664, Address: 0x162ffc, Func Offset: 0x12c
-	// Line 6665, Address: 0x163000, Func Offset: 0x130
-	// Line 6666, Address: 0x16300c, Func Offset: 0x13c
-	// Line 6668, Address: 0x163018, Func Offset: 0x148
-	// Line 6669, Address: 0x163024, Func Offset: 0x154
-	// Line 6670, Address: 0x163030, Func Offset: 0x160
-	// Line 6671, Address: 0x16303c, Func Offset: 0x16c
-	// Line 6674, Address: 0x163044, Func Offset: 0x174
-	// Func End, Address: 0x16304c, Func Offset: 0x17c
-	scePrintf("bhFogParameterCSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4, v5, v6, v7;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+
+    v5 = *bhScePtr;
+
+    bhScePtr++;
+
+    v6 = *bhScePtr;
+
+    bhScePtr++;
+
+    v7 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    bhCetask->e_lgt[0][0] = v0;
+    bhCetask->e_lgt[0][1] = v1;
+    bhCetask->e_lgt[0][2] = v2;
+    bhCetask->e_lgt[0][3] = v3;
+    
+    bhCetask->e_lgt[1][0] = v4;
+    bhCetask->e_lgt[1][1] = v5;
+    bhCetask->e_lgt[1][2] = v6;
+    bhCetask->e_lgt[1][3] = v7;
+    
+    return 1;
 }
 
 // 100% matching!
