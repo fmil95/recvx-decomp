@@ -5849,61 +5849,49 @@ unsigned int bhSoundFlagReSet()
 	return 1;
 }
 
-// 
-// Start address: 0x1617b0
+// 100% matching!
 unsigned int bhEffUVSet()
 {
-	//_anon0* e_ep;
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 5804, Address: 0x1617b0, Func Offset: 0
-	// Line 5820, Address: 0x1617b8, Func Offset: 0x8
-	// Line 5822, Address: 0x1617c0, Func Offset: 0x10
-	// Line 5820, Address: 0x1617c8, Func Offset: 0x18
-	// Line 5804, Address: 0x1617d0, Func Offset: 0x20
-	// Line 5834, Address: 0x1617d4, Func Offset: 0x24
-	// Line 5804, Address: 0x1617d8, Func Offset: 0x28
-	// Line 5805, Address: 0x1617e0, Func Offset: 0x30
-	// Line 5806, Address: 0x1617ec, Func Offset: 0x3c
-	// Line 5820, Address: 0x1617f8, Func Offset: 0x48
-	// Line 5807, Address: 0x161800, Func Offset: 0x50
-	// Line 5808, Address: 0x16180c, Func Offset: 0x5c
-	// Line 5822, Address: 0x161810, Func Offset: 0x60
-	// Line 5808, Address: 0x161814, Func Offset: 0x64
-	// Line 5822, Address: 0x161818, Func Offset: 0x68
-	// Line 5808, Address: 0x16181c, Func Offset: 0x6c
-	// Line 5809, Address: 0x161820, Func Offset: 0x70
-	// Line 5822, Address: 0x161828, Func Offset: 0x78
-	// Line 5809, Address: 0x16182c, Func Offset: 0x7c
-	// Line 5810, Address: 0x161830, Func Offset: 0x80
-	// Line 5811, Address: 0x16183c, Func Offset: 0x8c
-	// Line 5812, Address: 0x161848, Func Offset: 0x98
-	// Line 5813, Address: 0x161854, Func Offset: 0xa4
-	// Line 5825, Address: 0x16185c, Func Offset: 0xac
-	// Line 5823, Address: 0x161860, Func Offset: 0xb0
-	// Line 5825, Address: 0x161868, Func Offset: 0xb8
-	// Line 5813, Address: 0x16186c, Func Offset: 0xbc
-	// Line 5814, Address: 0x161870, Func Offset: 0xc0
-	// Line 5825, Address: 0x161874, Func Offset: 0xc4
-	// Line 5814, Address: 0x161878, Func Offset: 0xc8
-	// Line 5820, Address: 0x161880, Func Offset: 0xd0
-	// Line 5822, Address: 0x1618a4, Func Offset: 0xf4
-	// Line 5823, Address: 0x1618a8, Func Offset: 0xf8
-	// Line 5829, Address: 0x1618ac, Func Offset: 0xfc
-	// Line 5823, Address: 0x1618b4, Func Offset: 0x104
-	// Line 5829, Address: 0x1618b8, Func Offset: 0x108
-	// Line 5823, Address: 0x1618bc, Func Offset: 0x10c
-	// Line 5825, Address: 0x1618c0, Func Offset: 0x110
-	// Line 5826, Address: 0x1618c4, Func Offset: 0x114
-	// Line 5828, Address: 0x1618c8, Func Offset: 0x118
-	// Line 5829, Address: 0x1618cc, Func Offset: 0x11c
-	// Line 5831, Address: 0x1618d4, Func Offset: 0x124
-	// Line 5835, Address: 0x1618d8, Func Offset: 0x128
-	// Func End, Address: 0x1618e0, Func Offset: 0x130
-	scePrintf("bhEffUVSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4;
+    O_WRK* e_ep;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v2 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v3 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v4 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+   
+    e_ep = &eff[sys->efid[v0]];
+    
+    e_ep->tv[0].u = v1 / 256.0f;
+    e_ep->tv[0].v = v2 / 256.0f;
+    
+    e_ep->tv[1].u = v3 / 256.0f;
+    e_ep->tv[1].v = v2 / 256.0f;
+    
+    e_ep->tv[2].u = v1 / 256.0f;
+    e_ep->tv[2].v = v4 / 256.0f;
+    
+    e_ep->tv[3].u = v3 / 256.0f;
+    e_ep->tv[3].v = v4 / 256.0f;
+    
+    return 1;
 }
 
 // 100% matching!
@@ -5918,7 +5906,7 @@ unsigned int bhPlayerChangeSet()
     bhScePtr++;
     
     sys->cng_pid = v0;
-    
+
     sys->cb_flg |= 0x80;
     
     return 1;
