@@ -6589,30 +6589,32 @@ unsigned int bhEneRenderSet()
 	scePrintf("bhEneRenderSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x162dd0
+// 100% matching!
 unsigned int bhBgmOnEx()
 {
-	int v2;
-	int v1;
-	int v0;
-	// Line 6599, Address: 0x162dd0, Func Offset: 0
-	// Line 6602, Address: 0x162dd8, Func Offset: 0x8
-	// Line 6603, Address: 0x162dec, Func Offset: 0x1c
-	// Line 6604, Address: 0x162df8, Func Offset: 0x28
-	// Line 6605, Address: 0x162e04, Func Offset: 0x34
-	// Line 6607, Address: 0x162e10, Func Offset: 0x40
-	// Line 6606, Address: 0x162e1c, Func Offset: 0x4c
-	// Line 6608, Address: 0x162e24, Func Offset: 0x54
-	// Line 6606, Address: 0x162e2c, Func Offset: 0x5c
-	// Line 6608, Address: 0x162e30, Func Offset: 0x60
-	// Line 6610, Address: 0x162e34, Func Offset: 0x64
-	// Line 6611, Address: 0x162e40, Func Offset: 0x70
-	// Line 6613, Address: 0x162e48, Func Offset: 0x78
-	// Line 6612, Address: 0x162e4c, Func Offset: 0x7c
-	// Line 6613, Address: 0x162e50, Func Offset: 0x80
-	// Func End, Address: 0x162e58, Func Offset: 0x88
-	scePrintf("bhBgmOnEx - UNIMPLEMENTED!\n");
+	int v0, v1, v2;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    v1 *= 10;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    v2 *= -1;
+
+    bhScePtr++;
+
+    PlayBgmEx(v0, v1, v2);
+
+    return 1;
 }
 
 // 100% matching!
@@ -6621,7 +6623,7 @@ unsigned int bhBgmOn2Ex()
 	int v0, v1;
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
