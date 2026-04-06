@@ -6024,25 +6024,22 @@ unsigned int bhRandTest()
 	scePrintf("bhRandTest - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x161dd0
+// 100% matching!
 unsigned int bhEvtComSet()
 {
 	int v0;
-	// Line 5988, Address: 0x161dd0, Func Offset: 0
-	// Line 5992, Address: 0x161dd8, Func Offset: 0x8
-	// Line 5995, Address: 0x161ddc, Func Offset: 0xc
-	// Line 5992, Address: 0x161de0, Func Offset: 0x10
-	// Line 5988, Address: 0x161de8, Func Offset: 0x18
-	// Line 5989, Address: 0x161df4, Func Offset: 0x24
-	// Line 5990, Address: 0x161e00, Func Offset: 0x30
-	// Line 5992, Address: 0x161e0c, Func Offset: 0x3c
-	// Line 5993, Address: 0x161e10, Func Offset: 0x40
-	// Line 5992, Address: 0x161e14, Func Offset: 0x44
-	// Line 5993, Address: 0x161e1c, Func Offset: 0x4c
-	// Line 5996, Address: 0x161e28, Func Offset: 0x58
-	// Func End, Address: 0x161e30, Func Offset: 0x60
-	scePrintf("bhEvtComSet - UNIMPLEMENTED!\n");
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    sys->cb_flg |= 0x400000;
+
+    sys->com_num = v0;
+    
+    return 1;
 }
 
 // 100% matching!
@@ -6053,7 +6050,7 @@ unsigned int bhZombieUpDieCk()
     ETTY_WORK* enep; // not from DWARF
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
