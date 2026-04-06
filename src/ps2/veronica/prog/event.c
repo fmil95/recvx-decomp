@@ -6313,27 +6313,27 @@ unsigned int bhSetItmMotion()
 	scePrintf("bhSetItmMotion - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1624f0
+// 100% matching!
 unsigned int bhObjAspdSet()
 {
-	unsigned int v1;
-	unsigned int v0;
-	// Line 6317, Address: 0x1624f0, Func Offset: 0
-	// Line 6330, Address: 0x1624f8, Func Offset: 0x8
-	// Line 6328, Address: 0x1624fc, Func Offset: 0xc
-	// Line 6317, Address: 0x162504, Func Offset: 0x14
-	// Line 6318, Address: 0x162510, Func Offset: 0x20
-	// Line 6319, Address: 0x16251c, Func Offset: 0x2c
-	// Line 6320, Address: 0x162528, Func Offset: 0x38
-	// Line 6328, Address: 0x162530, Func Offset: 0x40
-	// Line 6320, Address: 0x162540, Func Offset: 0x50
-	// Line 6328, Address: 0x162544, Func Offset: 0x54
-	// Line 6321, Address: 0x162548, Func Offset: 0x58
-	// Line 6328, Address: 0x162554, Func Offset: 0x64
-	// Line 6331, Address: 0x162564, Func Offset: 0x74
-	// Func End, Address: 0x16256c, Func Offset: 0x7c
-	scePrintf("bhObjAspdSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1;
+    O_WRK* op; // not from DWARF
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+   
+    op = &sys->obwp[v0];
+
+    op->aspd = v1;
+    
+    return 1;
 }
 
 // 100% matching!
