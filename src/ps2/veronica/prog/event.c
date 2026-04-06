@@ -6855,52 +6855,113 @@ unsigned int bhBGColorSet()
 	scePrintf("bhBGColorSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1633f0
+// 100% matching!
 unsigned int bhMovieTimeCk()
 {
-	unsigned int ret2;
-	unsigned int ret;
-	unsigned int v2;
-	unsigned int v1;
-	// Line 6802, Address: 0x1633f0, Func Offset: 0
-	// Line 6805, Address: 0x163400, Func Offset: 0x10
-	// Line 6807, Address: 0x163414, Func Offset: 0x24
-	// Line 6808, Address: 0x163428, Func Offset: 0x38
-	// Line 6809, Address: 0x163434, Func Offset: 0x44
-	// Line 6810, Address: 0x163440, Func Offset: 0x50
-	// Line 6811, Address: 0x16344c, Func Offset: 0x5c
-	// Line 6813, Address: 0x163454, Func Offset: 0x64
-	// Line 6814, Address: 0x16345c, Func Offset: 0x6c
-	// Line 6816, Address: 0x16346c, Func Offset: 0x7c
-	// Line 6818, Address: 0x163474, Func Offset: 0x84
-	// Line 6820, Address: 0x16349c, Func Offset: 0xac
-	// Line 6821, Address: 0x1634ac, Func Offset: 0xbc
-	// Line 6822, Address: 0x1634b0, Func Offset: 0xc0
-	// Line 6824, Address: 0x1634b8, Func Offset: 0xc8
-	// Line 6825, Address: 0x1634bc, Func Offset: 0xcc
-	// Line 6826, Address: 0x1634c0, Func Offset: 0xd0
-	// Line 6828, Address: 0x1634c8, Func Offset: 0xd8
-	// Line 6829, Address: 0x1634dc, Func Offset: 0xec
-	// Line 6830, Address: 0x1634e0, Func Offset: 0xf0
-	// Line 6832, Address: 0x1634e8, Func Offset: 0xf8
-	// Line 6833, Address: 0x1634ec, Func Offset: 0xfc
-	// Line 6834, Address: 0x1634f0, Func Offset: 0x100
-	// Line 6836, Address: 0x1634f8, Func Offset: 0x108
-	// Line 6837, Address: 0x1634fc, Func Offset: 0x10c
-	// Line 6838, Address: 0x163500, Func Offset: 0x110
-	// Line 6840, Address: 0x163508, Func Offset: 0x118
-	// Line 6841, Address: 0x163518, Func Offset: 0x128
-	// Line 6845, Address: 0x16351c, Func Offset: 0x12c
-	// Func End, Address: 0x163530, Func Offset: 0x140
-	scePrintf("bhMovieTimeCk - UNIMPLEMENTED!\n");
+	unsigned int v1, v2, ret, ret2;
+    unsigned int v0; // not from DWARF
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v2 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    ret2 = CheckPlayEndMovie();
+
+    if (ret2 == 0) 
+    {
+        return 1;
+    }
+    
+    ret = GetTimeMoive();
+    
+    switch (v2) 
+    {
+    case 0:
+        if (ret == v1) 
+        {
+             ret = 0; 
+        }
+        else 
+        {
+             ret = 1; 
+        }
+
+        break;
+    case 1:
+        if (ret > v1) 
+        { 
+            ret = 0; 
+        }
+        else 
+        { 
+            ret = 1; 
+        }
+
+        break;
+    case 2:
+        if (ret >= v1) 
+        { 
+            ret = 0; 
+        }
+        else 
+        { 
+            ret = 1; 
+        }
+
+        break;
+    case 3:
+        if (ret < v1) 
+        { 
+            ret = 0; 
+        }
+        else 
+        { 
+            ret = 1; 
+        }
+
+        break;
+    case 4:
+        if (ret <= v1) 
+        { 
+            ret = 0;
+        }
+        else 
+        { 
+            ret = 1; 
+        }
+
+        break;
+    case 5:
+        if (ret != v1) 
+        { 
+            ret = 0; 
+        }
+        else 
+        { 
+            ret = 1; 
+        }
+
+        break;
+    }
+
+    return ret;
 }
 
 // 100% matching!
 unsigned int bhEffTypeSet()
 {
 	unsigned int v0, v1;
-    O_WRK* op;
+    O_WRK* op; // not from DWARF
 
     bhScePtr++;
     
