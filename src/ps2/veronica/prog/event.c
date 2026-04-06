@@ -6817,42 +6817,40 @@ unsigned int bhEffUVSet2()
 	scePrintf("bhEffUVSet2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x163310
+// 100% matching!
 unsigned int bhBGColorSet()
 {
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 6776, Address: 0x163310, Func Offset: 0
-	// Line 6793, Address: 0x163318, Func Offset: 0x8
-	// Line 6788, Address: 0x16331c, Func Offset: 0xc
-	// Line 6776, Address: 0x163324, Func Offset: 0x14
-	// Line 6777, Address: 0x163330, Func Offset: 0x20
-	// Line 6778, Address: 0x16333c, Func Offset: 0x2c
-	// Line 6779, Address: 0x163348, Func Offset: 0x38
-	// Line 6789, Address: 0x163350, Func Offset: 0x40
-	// Line 6779, Address: 0x163354, Func Offset: 0x44
-	// Line 6780, Address: 0x163358, Func Offset: 0x48
-	// Line 6789, Address: 0x163364, Func Offset: 0x54
-	// Line 6781, Address: 0x16336c, Func Offset: 0x5c
-	// Line 6782, Address: 0x163378, Func Offset: 0x68
-	// Line 6789, Address: 0x163384, Func Offset: 0x74
-	// Line 6783, Address: 0x16338c, Func Offset: 0x7c
-	// Line 6784, Address: 0x163398, Func Offset: 0x88
-	// Line 6789, Address: 0x1633a4, Func Offset: 0x94
-	// Line 6785, Address: 0x1633a8, Func Offset: 0x98
-	// Line 6786, Address: 0x1633b4, Func Offset: 0xa4
-	// Line 6788, Address: 0x1633c0, Func Offset: 0xb0
-	// Line 6789, Address: 0x1633c4, Func Offset: 0xb4
-	// Line 6788, Address: 0x1633c8, Func Offset: 0xb8
-	// Line 6789, Address: 0x1633d0, Func Offset: 0xc0
-	// Line 6790, Address: 0x1633d8, Func Offset: 0xc8
-	// Line 6794, Address: 0x1633e8, Func Offset: 0xd8
-	// Func End, Address: 0x1633f0, Func Offset: 0xe0
-	scePrintf("bhBGColorSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+    
+    sys->gm_flg |= 0x8000;
+
+    rom->bak_col = v3 | ((v2 << 8) | ((v0 << 24) | (v1 << 16)));
+
+    sys->bcl_ct = v4;
+
+    return 1;
 }
 
 // 100% matching!
@@ -6862,7 +6860,7 @@ unsigned int bhMovieTimeCk()
     unsigned int v0; // not from DWARF
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
