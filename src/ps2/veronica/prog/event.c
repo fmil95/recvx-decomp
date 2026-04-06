@@ -6760,61 +6760,52 @@ unsigned int bhFogParameterStart()
 	scePrintf("bhFogParameterStart - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1631d0
+// 100% matching!
 unsigned int bhEffUVSet2()
 {
-	//_anon10* tvp;
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 6732, Address: 0x1631d0, Func Offset: 0
-	// Line 6750, Address: 0x1631d8, Func Offset: 0x8
-	// Line 6752, Address: 0x1631e0, Func Offset: 0x10
-	// Line 6750, Address: 0x1631e8, Func Offset: 0x18
-	// Line 6732, Address: 0x1631f0, Func Offset: 0x20
-	// Line 6764, Address: 0x1631f4, Func Offset: 0x24
-	// Line 6732, Address: 0x1631f8, Func Offset: 0x28
-	// Line 6733, Address: 0x163200, Func Offset: 0x30
-	// Line 6734, Address: 0x16320c, Func Offset: 0x3c
-	// Line 6750, Address: 0x163218, Func Offset: 0x48
-	// Line 6735, Address: 0x163220, Func Offset: 0x50
-	// Line 6736, Address: 0x16322c, Func Offset: 0x5c
-	// Line 6752, Address: 0x163230, Func Offset: 0x60
-	// Line 6736, Address: 0x163234, Func Offset: 0x64
-	// Line 6752, Address: 0x163238, Func Offset: 0x68
-	// Line 6736, Address: 0x16323c, Func Offset: 0x6c
-	// Line 6737, Address: 0x163240, Func Offset: 0x70
-	// Line 6752, Address: 0x163248, Func Offset: 0x78
-	// Line 6737, Address: 0x16324c, Func Offset: 0x7c
-	// Line 6738, Address: 0x163250, Func Offset: 0x80
-	// Line 6739, Address: 0x16325c, Func Offset: 0x8c
-	// Line 6740, Address: 0x163268, Func Offset: 0x98
-	// Line 6741, Address: 0x163274, Func Offset: 0xa4
-	// Line 6755, Address: 0x16327c, Func Offset: 0xac
-	// Line 6753, Address: 0x163280, Func Offset: 0xb0
-	// Line 6755, Address: 0x163288, Func Offset: 0xb8
-	// Line 6741, Address: 0x16328c, Func Offset: 0xbc
-	// Line 6742, Address: 0x163290, Func Offset: 0xc0
-	// Line 6755, Address: 0x163294, Func Offset: 0xc4
-	// Line 6742, Address: 0x163298, Func Offset: 0xc8
-	// Line 6750, Address: 0x1632a0, Func Offset: 0xd0
-	// Line 6752, Address: 0x1632c8, Func Offset: 0xf8
-	// Line 6753, Address: 0x1632cc, Func Offset: 0xfc
-	// Line 6759, Address: 0x1632d0, Func Offset: 0x100
-	// Line 6753, Address: 0x1632d8, Func Offset: 0x108
-	// Line 6759, Address: 0x1632dc, Func Offset: 0x10c
-	// Line 6753, Address: 0x1632e0, Func Offset: 0x110
-	// Line 6755, Address: 0x1632e4, Func Offset: 0x114
-	// Line 6756, Address: 0x1632e8, Func Offset: 0x118
-	// Line 6758, Address: 0x1632ec, Func Offset: 0x11c
-	// Line 6759, Address: 0x1632f0, Func Offset: 0x120
-	// Line 6761, Address: 0x1632f8, Func Offset: 0x128
-	// Line 6765, Address: 0x1632fc, Func Offset: 0x12c
-	// Func End, Address: 0x163304, Func Offset: 0x134
-	scePrintf("bhEffUVSet2 - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4;
+    NJS_TEXTUREH_VTX* tvp;
+    O_WRK* op; // not from DWARF
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v2 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v3 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v4 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+    
+    op = &eff[sys->efid[v0]];
+
+    tvp = (NJS_TEXTUREH_VTX*)op->pvp;
+    
+    tvp[0].u = v1 / 512.0f;
+    tvp[0].v = v2 / 512.0f;
+    
+    tvp[1].u = v3 / 512.0f;
+    tvp[1].v = v2 / 512.0f;
+    
+    tvp[2].u = v1 / 512.0f;
+    tvp[2].v = v4 / 512.0f;
+    
+    tvp[3].u = v3 / 512.0f;
+    tvp[3].v = v4 / 512.0f;
+    
+    return 1;
 }
 
 // 100% matching!
@@ -6823,7 +6814,7 @@ unsigned int bhBGColorSet()
 	int v0, v1, v2, v3, v4;
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
