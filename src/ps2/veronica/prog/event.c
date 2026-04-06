@@ -6045,34 +6045,32 @@ unsigned int bhEvtComSet()
 	scePrintf("bhEvtComSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x161e30
+// 100% matching!
 unsigned int bhZombieUpDieCk()
 {
-	BH_PWORK* e_ep;
-	int v1;
-	int v0;
-	// Line 6004, Address: 0x161e30, Func Offset: 0
-	// Line 6009, Address: 0x161e38, Func Offset: 0x8
-	// Line 6020, Address: 0x161e40, Func Offset: 0x10
-	// Line 6021, Address: 0x161e48, Func Offset: 0x18
-	// Line 6020, Address: 0x161e4c, Func Offset: 0x1c
-	// Line 6009, Address: 0x161e54, Func Offset: 0x24
-	// Line 6010, Address: 0x161e60, Func Offset: 0x30
-	// Line 6011, Address: 0x161e6c, Func Offset: 0x3c
-	// Line 6012, Address: 0x161e78, Func Offset: 0x48
-	// Line 6020, Address: 0x161e80, Func Offset: 0x50
-	// Line 6012, Address: 0x161e8c, Func Offset: 0x5c
-	// Line 6013, Address: 0x161e90, Func Offset: 0x60
-	// Line 6020, Address: 0x161e9c, Func Offset: 0x6c
-	// Line 6021, Address: 0x161ec0, Func Offset: 0x90
-	// Line 6022, Address: 0x161ecc, Func Offset: 0x9c
-	// Line 6023, Address: 0x161ee0, Func Offset: 0xb0
-	// Line 6027, Address: 0x161eec, Func Offset: 0xbc
-	// Line 6026, Address: 0x161ef0, Func Offset: 0xc0
-	// Line 6027, Address: 0x161ef4, Func Offset: 0xc4
-	// Func End, Address: 0x161efc, Func Offset: 0xcc
-	scePrintf("bhZombieUpDieCk - UNIMPLEMENTED!\n");
+	int v0, v1;
+    BH_PWORK* e_ep;
+    ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+    
+    enep = &rom->enep[v0];
+    e_ep = &ene[enep->wrk_no];
+
+    if ((e_ep->id == 1) && ((((int*)e_ep->exp1)[0] & 0x2)))
+    {
+        bhFlagSet(4, v1, 0);
+    }
+
+    return 1;
 }
 
 // 100% matching!
