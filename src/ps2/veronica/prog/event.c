@@ -6288,29 +6288,27 @@ unsigned int bhMovieCk()
 	scePrintf("bhMovieCk - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x162430
+// 100% matching!
 unsigned int bhSetItmMotion()
 {
+    BH_PWORK* ob_ep;
 	unsigned char* a0;
-	BH_PWORK* ob_ep;
-	// Line 6282, Address: 0x162430, Func Offset: 0
-	// Line 6287, Address: 0x16243c, Func Offset: 0xc
-	// Line 6298, Address: 0x162444, Func Offset: 0x14
-	// Line 6296, Address: 0x162448, Func Offset: 0x18
-	// Line 6288, Address: 0x162450, Func Offset: 0x20
-	// Line 6296, Address: 0x162454, Func Offset: 0x24
-	// Line 6288, Address: 0x162458, Func Offset: 0x28
-	// Line 6290, Address: 0x162460, Func Offset: 0x30
-	// Line 6296, Address: 0x162474, Func Offset: 0x44
-	// Line 6298, Address: 0x16249c, Func Offset: 0x6c
-	// Line 6299, Address: 0x1624b8, Func Offset: 0x88
-	// Line 6301, Address: 0x1624cc, Func Offset: 0x9c
-	// Line 6305, Address: 0x1624d4, Func Offset: 0xa4
-	// Line 6304, Address: 0x1624dc, Func Offset: 0xac
-	// Line 6305, Address: 0x1624e0, Func Offset: 0xb0
-	// Func End, Address: 0x1624e8, Func Offset: 0xb8
-	scePrintf("bhSetItmMotion - UNIMPLEMENTED!\n");
+
+	a0 = bhScePtr;
+
+    bhScePtr++;
+    bhScePtr++;
+    
+    ob_ep = (BH_PWORK*)&sys->itwp[*++a0];
+    
+    if ((ob_ep->mode3 == 1) && ((sys->sp_flg & 0x4))) 
+    {
+        bhSetMotion(ob_ep, (int)ob_ep->mtn_add, ob_ep->mtn_md, ob_ep->mtn_tp);
+    
+        bhCalcModel(ob_ep);
+    }
+    
+    return 1;
 }
 
 // 100% matching!
