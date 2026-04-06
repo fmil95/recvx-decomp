@@ -5942,52 +5942,66 @@ unsigned int bhPlayerPoisonCk()
 	scePrintf("bhPlayerPoisonCk - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1619b0
+// 100% matching!
 unsigned int bhAddObjSe()
 {
-	//_anon39 pPos;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 5884, Address: 0x1619b0, Func Offset: 0
-	// Line 5888, Address: 0x1619b8, Func Offset: 0x8
-	// Line 5889, Address: 0x1619cc, Func Offset: 0x1c
-	// Line 5890, Address: 0x1619d8, Func Offset: 0x28
-	// Line 5891, Address: 0x1619e4, Func Offset: 0x34
-	// Line 5892, Address: 0x1619f0, Func Offset: 0x40
-	// Line 5893, Address: 0x1619fc, Func Offset: 0x4c
-	// Line 5894, Address: 0x161a08, Func Offset: 0x58
-	// Line 5897, Address: 0x161a14, Func Offset: 0x64
-	// Line 5898, Address: 0x161a20, Func Offset: 0x70
-	// Line 5899, Address: 0x161a7c, Func Offset: 0xcc
-	// Line 5900, Address: 0x161a84, Func Offset: 0xd4
-	// Line 5902, Address: 0x161ad4, Func Offset: 0x124
-	// Line 5904, Address: 0x161adc, Func Offset: 0x12c
-	// Line 5902, Address: 0x161ae0, Func Offset: 0x130
-	// Line 5904, Address: 0x161ae8, Func Offset: 0x138
-	// Line 5905, Address: 0x161af0, Func Offset: 0x140
-	// Line 5906, Address: 0x161b4c, Func Offset: 0x19c
-	// Line 5907, Address: 0x161b54, Func Offset: 0x1a4
-	// Line 5909, Address: 0x161ba4, Func Offset: 0x1f4
-	// Line 5911, Address: 0x161bac, Func Offset: 0x1fc
-	// Line 5909, Address: 0x161bb0, Func Offset: 0x200
-	// Line 5911, Address: 0x161bb8, Func Offset: 0x208
-	// Line 5912, Address: 0x161bc0, Func Offset: 0x210
-	// Line 5913, Address: 0x161c1c, Func Offset: 0x26c
-	// Line 5914, Address: 0x161c24, Func Offset: 0x274
-	// Line 5916, Address: 0x161c74, Func Offset: 0x2c4
-	// Line 5920, Address: 0x161c7c, Func Offset: 0x2cc
-	// Line 5916, Address: 0x161c80, Func Offset: 0x2d0
-	// Line 5917, Address: 0x161c8c, Func Offset: 0x2dc
-	// Line 5918, Address: 0x161c98, Func Offset: 0x2e8
-	// Line 5920, Address: 0x161ca0, Func Offset: 0x2f0
-	// Line 5922, Address: 0x161ca8, Func Offset: 0x2f8
-	// Line 5921, Address: 0x161cac, Func Offset: 0x2fc
-	// Line 5922, Address: 0x161cb0, Func Offset: 0x300
-	// Func End, Address: 0x161cb8, Func Offset: 0x308
-	scePrintf("bhAddObjSe - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3;
+    NJS_POINT3 pPos;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if ((v2 & 0x1)) 
+    {
+        pPos.x = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        pPos.x = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+
+    if ((v2 & 0x2)) 
+    {
+        pPos.y = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        pPos.y = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v2 & 0x4)) 
+    {
+        pPos.z = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        pPos.z = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;    
+
+    v3 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+    
+    RegistObjectSe(v0, &pPos, v3, v1);
+
+    return 1;
 }
 
 // 100% matching!
@@ -6018,7 +6032,7 @@ unsigned int bhRandTest()
     if (v0 == 0) 
     {
         srand(v1);
-        
+
         bhEtask->addpx = -rand() / -2.1474836E9f;
         
         bhEtask->wpnl_no = *(int*)&bhEtask->addpx;
