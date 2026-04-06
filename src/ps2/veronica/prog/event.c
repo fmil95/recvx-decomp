@@ -6408,35 +6408,37 @@ unsigned int bhSubMapBusyCk()
     }
 }
 
-// 
-// Start address: 0x1626a0
+// 100% matching!
 unsigned int bhMapSystemOn()
 {
-	unsigned int v3;
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 6408, Address: 0x1626a0, Func Offset: 0
-	// Line 6422, Address: 0x1626a8, Func Offset: 0x8
-	// Line 6423, Address: 0x1626ac, Func Offset: 0xc
-	// Line 6418, Address: 0x1626b0, Func Offset: 0x10
-	// Line 6408, Address: 0x1626b8, Func Offset: 0x18
-	// Line 6409, Address: 0x1626c4, Func Offset: 0x24
-	// Line 6410, Address: 0x1626d0, Func Offset: 0x30
-	// Line 6411, Address: 0x1626dc, Func Offset: 0x3c
-	// Line 6412, Address: 0x1626e8, Func Offset: 0x48
-	// Line 6413, Address: 0x1626f4, Func Offset: 0x54
-	// Line 6414, Address: 0x162700, Func Offset: 0x60
-	// Line 6415, Address: 0x16270c, Func Offset: 0x6c
-	// Line 6416, Address: 0x162718, Func Offset: 0x78
-	// Line 6418, Address: 0x162724, Func Offset: 0x84
-	// Line 6419, Address: 0x162730, Func Offset: 0x90
-	// Line 6420, Address: 0x162744, Func Offset: 0xa4
-	// Line 6421, Address: 0x162758, Func Offset: 0xb8
-	// Line 6422, Address: 0x16276c, Func Offset: 0xcc
-	// Line 6424, Address: 0x16277c, Func Offset: 0xdc
-	// Func End, Address: 0x162784, Func Offset: 0xe4
-	scePrintf("bhMapSystemOn - UNIMPLEMENTED!\n");
+	unsigned int v0, v1, v2, v3;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    sys->mp_prm[0] = v0;
+    sys->mp_prm[1] = v1;
+    sys->mp_prm[2] = v3;
+    sys->mp_prm[3] = v2;
+
+    sys->cb_flg |= 0x10000;
+
+    return 1;
 }
 
 // 100% matching! 
@@ -6468,7 +6470,7 @@ unsigned int bhEvtLighterFireSet()
 	unsigned int v0, v1;
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
