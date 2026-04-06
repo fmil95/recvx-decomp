@@ -6141,32 +6141,29 @@ unsigned int bhEffModeSet()
 	scePrintf("bhEffModeSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1620e0
+// 100% matching!
 unsigned int bhEnemyHpUp()
 {
-	BH_PWORK* e_ep;
-	int v1;
-	int v0;
-	// Line 6131, Address: 0x1620e0, Func Offset: 0
-	// Line 6142, Address: 0x1620e8, Func Offset: 0x8
-	// Line 6144, Address: 0x1620f0, Func Offset: 0x10
-	// Line 6142, Address: 0x1620f4, Func Offset: 0x14
-	// Line 6131, Address: 0x1620fc, Func Offset: 0x1c
-	// Line 6132, Address: 0x162108, Func Offset: 0x28
-	// Line 6144, Address: 0x162110, Func Offset: 0x30
-	// Line 6145, Address: 0x162114, Func Offset: 0x34
-	// Line 6132, Address: 0x162118, Func Offset: 0x38
-	// Line 6133, Address: 0x16211c, Func Offset: 0x3c
-	// Line 6134, Address: 0x162128, Func Offset: 0x48
-	// Line 6142, Address: 0x162130, Func Offset: 0x50
-	// Line 6134, Address: 0x16213c, Func Offset: 0x5c
-	// Line 6135, Address: 0x162140, Func Offset: 0x60
-	// Line 6142, Address: 0x16214c, Func Offset: 0x6c
-	// Line 6144, Address: 0x162170, Func Offset: 0x90
-	// Line 6146, Address: 0x162194, Func Offset: 0xb4
-	// Func End, Address: 0x16219c, Func Offset: 0xbc
-	scePrintf("bhEnemyHpUp - UNIMPLEMENTED!\n");
+	int v0, v1;
+    BH_PWORK* e_ep;
+    ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    enep = &rom->enep[v0];
+    e_ep = &ene[enep->wrk_no];
+    
+    e_ep->hp = e_ep->hp + (e_ep->hp / 100) * v1;
+
+    return 1;
 }
 
 // 100% matching!
@@ -6183,7 +6180,7 @@ unsigned int bhFaceRep()
     bhScePtr++;
 
     v1 = *bhScePtr;
-    
+
     bhScePtr += 2;
     
     enep = &rom->enep[v0];
