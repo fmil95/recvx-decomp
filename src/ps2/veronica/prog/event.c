@@ -6462,29 +6462,24 @@ unsigned int bhTrapDamageSet()
     return 1;
 }
 
-// 
-// Start address: 0x162800
+// 100% matching!
 unsigned int bhEvtLighterFireSet()
 {
-	unsigned int v1;
-	unsigned int v0;
-	// Line 6453, Address: 0x162800, Func Offset: 0
-	// Line 6457, Address: 0x162808, Func Offset: 0x8
-	// Line 6468, Address: 0x162810, Func Offset: 0x10
-	// Line 6457, Address: 0x162818, Func Offset: 0x18
-	// Line 6458, Address: 0x162824, Func Offset: 0x24
-	// Line 6459, Address: 0x162830, Func Offset: 0x30
-	// Line 6460, Address: 0x16283c, Func Offset: 0x3c
-	// Line 6468, Address: 0x162844, Func Offset: 0x44
-	// Line 6460, Address: 0x162854, Func Offset: 0x54
-	// Line 6468, Address: 0x162858, Func Offset: 0x58
-	// Line 6461, Address: 0x16285c, Func Offset: 0x5c
-	// Line 6468, Address: 0x162868, Func Offset: 0x68
-	// Line 6471, Address: 0x16287c, Func Offset: 0x7c
-	// Line 6470, Address: 0x162880, Func Offset: 0x80
-	// Line 6471, Address: 0x162884, Func Offset: 0x84
-	// Func End, Address: 0x16288c, Func Offset: 0x8c
-	scePrintf("bhEvtLighterFireSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    bhSetLighterFire(&sys->obwp[v0], v1);
+    
+    return 1;
 }
 
 // 100% matching!

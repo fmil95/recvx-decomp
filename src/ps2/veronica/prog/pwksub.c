@@ -3013,11 +3013,11 @@ void bhSetMagazine(BH_PWORK* pp, int wno, int jno, int hand, int ang)
 	// Line 3214, Address: 0x155794, Func Offset: 0x114
 	// Line 3216, Address: 0x1557b8, Func Offset: 0x138
 	// Func End, Address: 0x1557c4, Func Offset: 0x144
-}
+}*/
 
 // 
 // Start address: 0x1557d0
-void bhSetLighterFire(_anon1* op, int flg)
+void bhSetLighterFire(O_WRK* op, int flg)
 {
 	// Line 3226, Address: 0x1557d0, Func Offset: 0
 	// Line 3228, Address: 0x1557dc, Func Offset: 0xc
@@ -3068,5 +3068,5 @@ void bhSetLighterFire(_anon1* op, int flg)
 	// Line 3255, Address: 0x155994, Func Offset: 0x1c4
 	// Line 3257, Address: 0x1559a4, Func Offset: 0x1d4
 	// Func End, Address: 0x1559b4, Func Offset: 0x1e4
-}*/
-
+	scePrintf("bhSetLighterFire - UNIMPLEMENTED!\n");
+}
