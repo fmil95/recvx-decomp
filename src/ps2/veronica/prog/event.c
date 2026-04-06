@@ -5906,22 +5906,22 @@ unsigned int bhEffUVSet()
 	scePrintf("bhEffUVSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1618e0
+// 100% matching!
 unsigned int bhPlayerChangeSet()
 {
 	int v0;
-	// Line 5846, Address: 0x1618e0, Func Offset: 0
-	// Line 5853, Address: 0x1618e8, Func Offset: 0x8
-	// Line 5850, Address: 0x1618ec, Func Offset: 0xc
-	// Line 5846, Address: 0x1618f4, Func Offset: 0x14
-	// Line 5847, Address: 0x161900, Func Offset: 0x20
-	// Line 5848, Address: 0x16190c, Func Offset: 0x2c
-	// Line 5850, Address: 0x161918, Func Offset: 0x38
-	// Line 5851, Address: 0x161924, Func Offset: 0x44
-	// Line 5854, Address: 0x161934, Func Offset: 0x54
-	// Func End, Address: 0x16193c, Func Offset: 0x5c
-	scePrintf("bhPlayerChangeSet - UNIMPLEMENTED!\n");
+
+	bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    sys->cng_pid = v0;
+    
+    sys->cb_flg |= 0x80;
+    
+    return 1;
 }
 
 // 100% matching!
