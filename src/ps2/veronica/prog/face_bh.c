@@ -1005,85 +1005,121 @@ void _fmCnkCalcJaw(MASK_WORK* fm)
 	scePrintf("_fmCnkCalcJaw - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x29a250
-void _fmCnkCalcEye(MASK_WORK* fm)
+// 100% matching! 
+void _fmCnkCalcEye(MASK_WORK* fm) 
 {
-	int i;
-	//_anon0 r3;
-	//_anon0 q3;
-	//_anon0 t3;
-	//cnkobj* obj;
-	float dz;
-	float dy;
-	float dx;
-	// Line 2294, Address: 0x29a250, Func Offset: 0
-	// Line 2304, Address: 0x29a270, Func Offset: 0x20
-	// Line 2305, Address: 0x29a274, Func Offset: 0x24
-	// Line 2306, Address: 0x29a278, Func Offset: 0x28
-	// Line 2307, Address: 0x29a284, Func Offset: 0x34
-	// Line 2308, Address: 0x29a28c, Func Offset: 0x3c
-	// Line 2309, Address: 0x29a298, Func Offset: 0x48
-	// Line 2310, Address: 0x29a2a0, Func Offset: 0x50
-	// Line 2325, Address: 0x29a2a8, Func Offset: 0x58
-	// Line 2327, Address: 0x29a2c8, Func Offset: 0x78
-	// Line 2328, Address: 0x29a2cc, Func Offset: 0x7c
-	// Line 2329, Address: 0x29a2d0, Func Offset: 0x80
-	// Line 2330, Address: 0x29a2d4, Func Offset: 0x84
-	// Line 2331, Address: 0x29a2d8, Func Offset: 0x88
-	// Line 2332, Address: 0x29a2dc, Func Offset: 0x8c
-	// Line 2333, Address: 0x29a2e0, Func Offset: 0x90
-	// Line 2334, Address: 0x29a2e4, Func Offset: 0x94
-	// Line 2335, Address: 0x29a2e8, Func Offset: 0x98
-	// Line 2336, Address: 0x29a2ec, Func Offset: 0x9c
-	// Line 2337, Address: 0x29a2f0, Func Offset: 0xa0
-	// Line 2338, Address: 0x29a2f4, Func Offset: 0xa4
-	// Line 2339, Address: 0x29a2f8, Func Offset: 0xa8
-	// Line 2340, Address: 0x29a2fc, Func Offset: 0xac
-	// Line 2341, Address: 0x29a300, Func Offset: 0xb0
-	// Line 2342, Address: 0x29a304, Func Offset: 0xb4
-	// Line 2343, Address: 0x29a308, Func Offset: 0xb8
-	// Line 2344, Address: 0x29a30c, Func Offset: 0xbc
-	// Line 2345, Address: 0x29a310, Func Offset: 0xc0
-	// Line 2346, Address: 0x29a314, Func Offset: 0xc4
-	// Line 2347, Address: 0x29a318, Func Offset: 0xc8
-	// Line 2348, Address: 0x29a31c, Func Offset: 0xcc
-	// Line 2349, Address: 0x29a320, Func Offset: 0xd0
-	// Line 2350, Address: 0x29a324, Func Offset: 0xd4
-	// Line 2351, Address: 0x29a328, Func Offset: 0xd8
-	// Line 2352, Address: 0x29a32c, Func Offset: 0xdc
-	// Line 2353, Address: 0x29a330, Func Offset: 0xe0
-	// Line 2354, Address: 0x29a334, Func Offset: 0xe4
-	// Line 2355, Address: 0x29a338, Func Offset: 0xe8
-	// Line 2356, Address: 0x29a33c, Func Offset: 0xec
-	// Line 2357, Address: 0x29a340, Func Offset: 0xf0
-	// Line 2358, Address: 0x29a344, Func Offset: 0xf4
-	// Line 2359, Address: 0x29a348, Func Offset: 0xf8
-	// Line 2360, Address: 0x29a34c, Func Offset: 0xfc
-	// Line 2361, Address: 0x29a350, Func Offset: 0x100
-	// Line 2362, Address: 0x29a354, Func Offset: 0x104
-	// Line 2363, Address: 0x29a358, Func Offset: 0x108
-	// Line 2364, Address: 0x29a35c, Func Offset: 0x10c
-	// Line 2365, Address: 0x29a360, Func Offset: 0x110
-	// Line 2375, Address: 0x29a364, Func Offset: 0x114
-	// Line 2369, Address: 0x29a36c, Func Offset: 0x11c
-	// Line 2370, Address: 0x29a370, Func Offset: 0x120
-	// Line 2375, Address: 0x29a374, Func Offset: 0x124
-	// Line 2377, Address: 0x29a384, Func Offset: 0x134
-	// Line 2381, Address: 0x29a3ac, Func Offset: 0x15c
-	// Line 2384, Address: 0x29a3b4, Func Offset: 0x164
-	// Line 2388, Address: 0x29a3e4, Func Offset: 0x194
-	// Line 2389, Address: 0x29a3e8, Func Offset: 0x198
-	// Line 2390, Address: 0x29a400, Func Offset: 0x1b0
-	// Line 2391, Address: 0x29a430, Func Offset: 0x1e0
-	// Line 2393, Address: 0x29a438, Func Offset: 0x1e8
-	// Line 2394, Address: 0x29a474, Func Offset: 0x224
-	// Line 2396, Address: 0x29a478, Func Offset: 0x228
-	// Line 2397, Address: 0x29a484, Func Offset: 0x234
-	// Line 2398, Address: 0x29a488, Func Offset: 0x238
-	// Line 2402, Address: 0x29a49c, Func Offset: 0x24c
-	// Func End, Address: 0x29a4c0, Func Offset: 0x270
-	scePrintf("_fmCnkCalcEye - UNIMPLEMENTED!\n");
+    float dx;            
+    float dy;         
+    float dz;          
+    NJS_CNK_OBJECT* obj;
+    NJS_POINT3 t3;      
+    NJS_POINT3 q3;      
+    NJS_POINT3 r3;       
+    int i;             
+
+    t3.x = 0;
+    t3.y = 0;
+    t3.z = -100.0f;
+    
+    for (i = 0; i < 9; i++) 
+    {
+        obj = fm->eyesrc[i];
+        
+        if (obj != NULL) 
+        { 
+            njPushMatrix(NULL);
+            
+            asm volatile
+            ("
+            .set noreorder
+                ldl         t0, 7(%1)
+                ldr         t0, 0(%1)
+                lw          t1, NJS_POINT3.z(%1)
+                
+                pcpyld      t0, t1, t0
+            
+                qmtc2       t0, vf4
+            
+                ldl         t2, 7(%3)
+                ldr         t2, 0(%3)
+                lw          t3, NJS_POINT3.z(%3)
+                
+                pcpyld      t2, t3, t2
+            
+                qmtc2       t2, vf5
+            
+                ldl         t4, 7(%5)
+                ldr         t4, 0(%5)
+                lw          t5, NJS_POINT3.z(%5)
+                
+                pcpyld      t4, t5, t4
+        
+                qmtc2       t4, vf6
+            
+                lqc2        vf7,     0(%0)
+                lqc2        vf8,  0x10(%0)
+                lqc2        vf9,  0x20(%0)
+                lqc2        vf10, 0x30(%0)
+                
+                vmulax.xyz  ACC,  vf7,  vf4
+                
+                vmadday.xyz ACC,  vf8,  vf4
+                vmaddaz.xyz ACC,  vf9,  vf4
+                vmaddw.xyz  vf11, vf10, vf0
+                
+                vmulax.xyz  ACC,  vf7,  vf5
+                
+                vmadday.xyz ACC,  vf8,  vf5
+                vmaddaz.xyz ACC,  vf9,  vf5
+                vmaddw.xyz  vf12, vf10, vf0
+                
+                vadd.xyz    vf7,  vf11, vf6
+                vsub.xyz    vf8,  vf7,  vf11
+                
+                qmfc2       t0, vf12
+                qmfc2       t2, vf8
+            
+                pcpyud      t1, t0, t0
+                pcpyud      t3, t2, t2
+            
+                sdl         t0, 7(%4)
+                sdr         t0, 0(%4)
+                sw          t1, NJS_POINT3.z(%4)
+                
+                sdl         t2, 7(%2)
+                sdr         t2, 0(%2)
+                sw          t3, NJS_POINT3.z(%2)
+            .set reorder
+            " : : "r"(&fm->eyemat[i]), "r"(&obj->pos), "r"(&q3), "r"(&t3), "r"(&r3), "r"(&fm->param.eye) : 
+            ); 
+
+            dx = q3.x;
+            dy = q3.y;
+            dz = q3.z;
+           
+            if (r3.z < 0) 
+            {
+                obj->ang[0] = (int)(10430.381f * atanf(dy * njInvertSqrt((dx * dx) + (dz * dz))));
+            } 
+            else 
+            {
+                obj->ang[0] = -(int)(10430.381f * atanf(dy * njInvertSqrt((dx * dx) + (dz * dz))));
+            }
+            
+            if (dz < 0) 
+            {
+                obj->ang[1] = (int)(10430.381f * atanf(dx / dz));
+            }
+            else 
+            {
+                obj->ang[1] = (int)(10430.381f * atanf(dx / dz)) + (32767 + 1);
+            }
+            
+            obj->ang[2] = 0;
+            
+            njPopMatrix(1);
+        }
+    }
 }
 
 // 
