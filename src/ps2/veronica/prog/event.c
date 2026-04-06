@@ -6101,22 +6101,25 @@ unsigned int bhFacePauseSet()
 	scePrintf("bhFacePauseSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x161fc0
+// 100% matching!
 unsigned int bhFaceReSet()
 {
 	int v1;
-	// Line 6078, Address: 0x161fc0, Func Offset: 0
-	// Line 6089, Address: 0x161fc8, Func Offset: 0x8
-	// Line 6091, Address: 0x161fd0, Func Offset: 0x10
-	// Line 6089, Address: 0x161fd4, Func Offset: 0x14
-	// Line 6078, Address: 0x161fdc, Func Offset: 0x1c
-	// Line 6079, Address: 0x161fe8, Func Offset: 0x28
-	// Line 6080, Address: 0x161ff4, Func Offset: 0x34
-	// Line 6089, Address: 0x162000, Func Offset: 0x40
-	// Line 6092, Address: 0x16203c, Func Offset: 0x7c
-	// Func End, Address: 0x162044, Func Offset: 0x84
-	scePrintf("bhFaceReSet - UNIMPLEMENTED!\n");
+    BH_PWORK* pp;    // not from DWARF
+    ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+    
+    enep = &rom->enep[v1];
+    pp = &ene[enep->wrk_no];
+
+    ((int*)pp->exp0)[0] |= 0x20;
+
+    return 1;
 }
 
 // 100% matching!
@@ -6136,7 +6139,7 @@ unsigned int bhEffModeSet()
     bhScePtr += 2;
    
     op = &eff[sys->efid[v0]];
-    
+
     op->mode1 = v1;
     
     return 1;
