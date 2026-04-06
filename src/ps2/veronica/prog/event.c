@@ -6169,30 +6169,36 @@ unsigned int bhEnemyHpUp()
 	scePrintf("bhEnemyHpUp - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1621a0
+// 100% matching!
 unsigned int bhFaceRep()
 {
-	BH_PWORK* pp;
-	int v1;
-	int v0;
-	// Line 6162, Address: 0x1621a0, Func Offset: 0
-	// Line 6173, Address: 0x1621a8, Func Offset: 0x8
-	// Line 6162, Address: 0x1621b8, Func Offset: 0x18
-	// Line 6163, Address: 0x1621c4, Func Offset: 0x24
-	// Line 6164, Address: 0x1621d0, Func Offset: 0x30
-	// Line 6165, Address: 0x1621dc, Func Offset: 0x3c
-	// Line 6173, Address: 0x1621e4, Func Offset: 0x44
-	// Line 6165, Address: 0x1621f0, Func Offset: 0x50
-	// Line 6166, Address: 0x1621f4, Func Offset: 0x54
-	// Line 6173, Address: 0x162200, Func Offset: 0x60
-	// Line 6175, Address: 0x162220, Func Offset: 0x80
-	// Line 6176, Address: 0x162228, Func Offset: 0x88
-	// Line 6177, Address: 0x162234, Func Offset: 0x94
-	// Line 6178, Address: 0x16223c, Func Offset: 0x9c
-	// Line 6181, Address: 0x162250, Func Offset: 0xb0
-	// Func End, Address: 0x162258, Func Offset: 0xb8
-	scePrintf("bhFaceRep - UNIMPLEMENTED!\n");
+	int v0, v1;
+    BH_PWORK* pp;
+    ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    enep = &rom->enep[v0];
+    pp = &ene[enep->wrk_no];
+    
+    if (v1 == 0) 
+    {
+        ((int*)pp->exp0)[0] |= 0x2;
+    } 
+    else 
+    {
+        ((int*)pp->exp0)[0] &= ~0x2;
+    }
+
+    return 1;
 }
 
 // 100% matching!
@@ -6276,7 +6282,7 @@ unsigned int bhMovieCk()
 
     bhScePtr += 2;
     bhScePtr += 2;
-    
+
     bhScePtr++;
     bhScePtr++;
 
