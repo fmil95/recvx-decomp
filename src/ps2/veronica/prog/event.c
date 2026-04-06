@@ -6712,52 +6712,44 @@ unsigned int bhFogParameterCSet()
 	scePrintf("bhFogParameterCSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x163050
+// 100% matching!
 unsigned int bhFogParameterStart()
 {
-	float frm;
-	float ans[3];
-	float ips_w[3][4];
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 6682, Address: 0x163050, Func Offset: 0
-	// Line 6689, Address: 0x16306c, Func Offset: 0x1c
-	// Line 6701, Address: 0x163074, Func Offset: 0x24
-	// Line 6693, Address: 0x16307c, Func Offset: 0x2c
-	// Line 6702, Address: 0x163080, Func Offset: 0x30
-	// Line 6692, Address: 0x163084, Func Offset: 0x34
-	// Line 6689, Address: 0x16308c, Func Offset: 0x3c
-	// Line 6702, Address: 0x163090, Func Offset: 0x40
-	// Line 6689, Address: 0x163098, Func Offset: 0x48
-	// Line 6692, Address: 0x1630a0, Func Offset: 0x50
-	// Line 6693, Address: 0x1630a8, Func Offset: 0x58
-	// Line 6695, Address: 0x1630b0, Func Offset: 0x60
-	// Line 6696, Address: 0x1630b8, Func Offset: 0x68
-	// Line 6698, Address: 0x1630c0, Func Offset: 0x70
-	// Line 6699, Address: 0x1630c8, Func Offset: 0x78
-	// Line 6701, Address: 0x1630d0, Func Offset: 0x80
-	// Line 6702, Address: 0x1630e8, Func Offset: 0x98
-	// Line 6703, Address: 0x1630f0, Func Offset: 0xa0
-	// Line 6704, Address: 0x1630f8, Func Offset: 0xa8
-	// Line 6705, Address: 0x163104, Func Offset: 0xb4
-	// Line 6707, Address: 0x163114, Func Offset: 0xc4
-	// Line 6710, Address: 0x16311c, Func Offset: 0xcc
-	// Line 6707, Address: 0x16312c, Func Offset: 0xdc
-	// Line 6708, Address: 0x163134, Func Offset: 0xe4
-	// Line 6710, Address: 0x163138, Func Offset: 0xe8
-	// Line 6713, Address: 0x163140, Func Offset: 0xf0
-	// Line 6714, Address: 0x163168, Func Offset: 0x118
-	// Line 6718, Address: 0x16316c, Func Offset: 0x11c
-	// Line 6713, Address: 0x163170, Func Offset: 0x120
-	// Line 6714, Address: 0x16317c, Func Offset: 0x12c
-	// Line 6715, Address: 0x163188, Func Offset: 0x138
-	// Line 6714, Address: 0x16318c, Func Offset: 0x13c
-	// Line 6715, Address: 0x163194, Func Offset: 0x144
-	// Line 6719, Address: 0x1631a4, Func Offset: 0x154
-	// Func End, Address: 0x1631c4, Func Offset: 0x174
-	scePrintf("bhFogParameterStart - UNIMPLEMENTED!\n");
+	unsigned int v0, v1, v2;
+    float ips_w[4][3]; 
+    float ans[3]; 
+    float frm; 
+
+    bhScePtr += 2;
+    
+    ips_w[0][0] = bhCetask->e_lgt[1][0];
+    ips_w[1][0] = bhCetask->e_lgt[0][0];
+    
+    ips_w[0][1] = bhCetask->e_lgt[1][1];
+    ips_w[1][1] = bhCetask->e_lgt[0][1];
+    
+    ips_w[0][2] = bhCetask->e_lgt[1][2];
+    ips_w[1][2] = bhCetask->e_lgt[0][2];
+    
+    frm = (1.0f / bhCetask->cnt3) * bhCetask->cnt2;
+    
+    njLinear(ips_w[0], ans, NULL, frm);
+
+    v0 = ans[0];
+    v1 = ans[1];
+    v2 = ans[2];
+    
+    ips_w[0][0] = bhCetask->e_lgt[1][3];
+    ips_w[1][0] = bhCetask->e_lgt[0][3];
+    
+    njLinear(ips_w[0], ans, NULL, frm);
+    
+    sys->fog_col = (unsigned int)ans[0] | ((v2 << 8) | ((v0 << 24) | (v1 << 16)));
+
+    sys->st_flg |= 0x100000;
+    sys->gm_flg |= 0x10;
+    
+    return 0;
 }
 
 // 100% matching!
@@ -6768,7 +6760,7 @@ unsigned int bhEffUVSet2()
     O_WRK* op; // not from DWARF
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
