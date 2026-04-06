@@ -6563,30 +6563,36 @@ unsigned int bhPlayerKaidanMotion()
 	return 1;
 }
 
-// 
-// Start address: 0x162d20
+// 100% matching!
 unsigned int bhEneRenderSet()
 {
-	BH_PWORK* epw;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 6571, Address: 0x162d20, Func Offset: 0
-	// Line 6582, Address: 0x162d28, Func Offset: 0x8
-	// Line 6571, Address: 0x162d38, Func Offset: 0x18
-	// Line 6572, Address: 0x162d44, Func Offset: 0x24
-	// Line 6573, Address: 0x162d50, Func Offset: 0x30
-	// Line 6574, Address: 0x162d5c, Func Offset: 0x3c
-	// Line 6582, Address: 0x162d64, Func Offset: 0x44
-	// Line 6574, Address: 0x162d70, Func Offset: 0x50
-	// Line 6575, Address: 0x162d74, Func Offset: 0x54
-	// Line 6582, Address: 0x162d80, Func Offset: 0x60
-	// Line 6584, Address: 0x162da0, Func Offset: 0x80
-	// Line 6585, Address: 0x162da8, Func Offset: 0x88
-	// Line 6586, Address: 0x162db0, Func Offset: 0x90
-	// Line 6587, Address: 0x162db8, Func Offset: 0x98
-	// Line 6591, Address: 0x162dc8, Func Offset: 0xa8
-	// Func End, Address: 0x162dd0, Func Offset: 0xb0
-	scePrintf("bhEneRenderSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1;
+    BH_PWORK* epw;
+    ETTY_WORK* enep; // not from DWARF
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    enep = &rom->enep[v0];
+    epw = &ene[enep->wrk_no];
+    
+    if (v1 == 0) 
+    {
+        epw->mdflg |= 0x200;
+    } 
+    else 
+    {
+        epw->mdflg &= ~0x200;
+    }
+    
+    return 1;
 }
 
 // 100% matching!
@@ -6595,7 +6601,7 @@ unsigned int bhBgmOnEx()
 	int v0, v1, v2;
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
