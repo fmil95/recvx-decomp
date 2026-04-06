@@ -6896,26 +6896,27 @@ unsigned int bhMovieTimeCk()
 	scePrintf("bhMovieTimeCk - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x163530
+// 100% matching!
 unsigned int bhEffTypeSet()
 {
-	unsigned int v1;
-	unsigned int v0;
-	// Line 6857, Address: 0x163530, Func Offset: 0
-	// Line 6868, Address: 0x163538, Func Offset: 0x8
-	// Line 6870, Address: 0x163540, Func Offset: 0x10
-	// Line 6868, Address: 0x163544, Func Offset: 0x14
-	// Line 6857, Address: 0x16354c, Func Offset: 0x1c
-	// Line 6858, Address: 0x163558, Func Offset: 0x28
-	// Line 6859, Address: 0x163564, Func Offset: 0x34
-	// Line 6868, Address: 0x163570, Func Offset: 0x40
-	// Line 6860, Address: 0x163578, Func Offset: 0x48
-	// Line 6861, Address: 0x163584, Func Offset: 0x54
-	// Line 6868, Address: 0x163590, Func Offset: 0x60
-	// Line 6871, Address: 0x1635b4, Func Offset: 0x84
-	// Func End, Address: 0x1635bc, Func Offset: 0x8c
-	scePrintf("bhEffTypeSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1;
+    O_WRK* op;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+  
+    op = &eff[sys->efid[v0]];
+
+    op->type = v1;
+    
+    return 1;
 }
 
 // 100% matching!
@@ -6936,7 +6937,7 @@ unsigned int bhPlyHandChange()
     int v0, v2; // not from DWARF
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     sys->obwp[v0].lkwkp = (unsigned char*)plp;
