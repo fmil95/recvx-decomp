@@ -5,8 +5,8 @@
     "matched_code": "521040",
     "matched_code_percent": 27.358765,
     "total_data": "28420060",
-    "matched_data": "15272996",
-    "matched_data_percent": 53.740196,
+    "matched_data": "15278684",
+    "matched_data_percent": 53.760212,
     "total_functions": 4529,
     "matched_functions": 2361,
     "matched_functions_percent": 52.13071,
@@ -31975,6 +31975,8 @@
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,
         "total_data": "4576",
+        "matched_data": "3576",
+        "matched_data_percent": 78.14685,
         "matched_functions_percent": 100.0,
         "complete_code_percent": 100.0,
         "total_units": 1
@@ -31987,7 +31989,7 @@
         {
           "name": ".data",
           "size": "1000",
-          "fuzzy_match_percent": 35.04367,
+          "fuzzy_match_percent": 31.360949,
           "metadata": {}
         },
         {
@@ -31997,7 +31999,7 @@
         {
           "name": ".rodata",
           "size": "3576",
-          "fuzzy_match_percent": 95.775475,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -34209,6 +34211,8 @@
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,
         "total_data": "2112",
+        "matched_data": "2112",
+        "matched_data_percent": 100.0,
         "matched_functions_percent": 100.0,
         "complete_code_percent": 100.0,
         "total_units": 1
@@ -34227,7 +34231,7 @@
         {
           "name": ".rodata",
           "size": "2112",
-          "fuzzy_match_percent": 98.46154,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -40183,8 +40187,8 @@
         "matched_code": "442868",
         "matched_code_percent": 24.327257,
         "total_data": "28328660",
-        "matched_data": "15237204",
-        "matched_data_percent": 53.78724,
+        "matched_data": "15240780",
+        "matched_data_percent": 53.799862,
         "total_functions": 3834,
         "matched_functions": 1687,
         "matched_functions_percent": 44.00104,
@@ -40200,8 +40204,8 @@
         "matched_code": "70980",
         "matched_code_percent": 92.39781,
         "total_data": "87696",
-        "matched_data": "32088",
-        "matched_data_percent": 36.59004,
+        "matched_data": "34200",
+        "matched_data_percent": 38.99836,
         "total_functions": 661,
         "matched_functions": 640,
         "matched_functions_percent": 96.823,
