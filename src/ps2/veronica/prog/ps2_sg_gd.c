@@ -1,4 +1,5 @@
 #include "ps2_sg_gd.h"
+#include "ps2_dvd_image.h"
 
 //#include <string.h> /* ERROR: causes linker to fail */
 
@@ -6,29 +7,6 @@ static GDFS_HANDLE* __file_handle __attribute__((aligned(64)));
 static GDFS_WORK* __gds_fs_work;
 GDFS_DIRREC_ENT* __gdfs_dir_ent;
 GDFS_DIRREC_TBL* __current_dir;
-int dvd_image_data_max = 19;
-DVD_IMAGE_DATA dvd_image_data[19] __attribute__((aligned(64))) = 
-{
-	{ "RDX_LNK.AFS" , rdx_files },
-    { "SYSTEM.AFS"  , 0 },
-    { "MRY.AFS"     , 0 },
-    { "ADV.AFS"     , 0 },
-	{ "BGM1.AFS"    , 0 },
-	{ "ITEM1.AFS"   , 0 },
-	{ "MULTSPQ1.AFS", 0 },
-	{ "VOICE1.AFS"  , 0 },
-	{ "MULTSPQ1.IDX", 0 },
-	{ "DISCID.BIN"  , 0 },
-	{ "MANATEE.DRV" , 0 },
-	{ "COMMON.MLT"  , 0 },
-	{ "SYSMES.ALD"  , 0 },
-	{ "BIO_CV.ICO"  , 0 },
-	{ "BGM2.AFS"    , 0 },
-	{ "ITEM2.AFS"   , 0 },
-	{ "MULTSPQ2.AFS", 0 },
-	{ "VOICE2.AFS"  , 0 },
-	{ "MULTSPQ2.IDX", 0 }
-}; 
 
 // 100% matching! 
 void  gdFsClose(GDFS gdfs)

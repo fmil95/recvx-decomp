@@ -1,7 +1,7 @@
 #ifndef _PS2_DVD_IMAGE_H_
 #define _PS2_DVD_IMAGE_H_
 
-// the link_file field in the struct below was originally char* but got turned into char** because it matches gdFsInit() higher
+// the second field of the struct below was originally char* but got turned into char** because it matches gdFsInit() higher
 typedef struct DVD_IMAGE_DATA
 {
 	// total size: 0x8
@@ -10,19 +10,8 @@ typedef struct DVD_IMAGE_DATA
 } DVD_IMAGE_DATA;
 
 extern char* rdx_files[205];
+extern DVD_IMAGE_DATA dvd_image_data[19];
+extern int dvd_image_data_max;
 extern int rdx_image_data_max;
-
-/*typedef struct _anon0;
-
-
-typedef char* type_0[205];
-typedef _anon0 type_1[19];
-typedef char* type_2[18];
-
-struct _anon0
-{
-	char* file_name;
-	char* link_file;
-};*/
 
 #endif

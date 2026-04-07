@@ -1,6 +1,7 @@
 #include "ps2_dvd_image.h"
 
-char* rdx_files[205] = { 
+char* rdx_files[205] = 
+{ 
 	"RM_0000.RDX", "RM_0010.RDX", "RM_0020.RDX", "RM_0021.RDX", "RM_0030.RDX", "RM_0031.RDX", "RM_0040.RDX", "RM_0050.RDX", "RM_0060.RDX", "RM_0070.RDX",
 	"RM_0080.RDX", "RM_0090.RDX", "RM_0100.RDX", "RM_0110.RDX", "RM_0120.RDX", "RM_0130.RDX", "RM_0140.RDX", "RM_0150.RDX", "RM_0160.RDX", "RM_1000.RDX",
 	"RM_1001.RDX", "RM_1002.RDX", "RM_1020.RDX", "RM_1021.RDX", "RM_1030.RDX", "RM_1040.RDX", "RM_1050.RDX", "RM_1060.RDX", "RM_1070.RDX", "RM_1080.RDX",
@@ -23,7 +24,28 @@ char* rdx_files[205] = {
 	"RM_9250.RDX", "RM_9260.RDX", "RM_9270.RDX", "RM_9280.RDX", "RM_9290.RDX", "RM_9300.RDX", "RM_9301.RDX", "RM_9302.RDX", "RM_9310.RDX", "RM_9320.RDX",
 	"RM_9321.RDX", "RM_9340.RDX", "RM_9350.RDX", "RM_9360.RDX", "RM_9370.RDX"
 };
-/*char* pss_files[18];
-_anon0 dvd_image_data[19];
-int dvd_image_data_max;*/
+DVD_IMAGE_DATA dvd_image_data[19] __attribute__((aligned(64))) = 
+{
+	{ "RDX_LNK.AFS" , rdx_files },
+    { "SYSTEM.AFS"  , 0         },
+    { "MRY.AFS"     , 0         },
+    { "ADV.AFS"     , 0         },
+	{ "BGM1.AFS"    , 0         },
+	{ "ITEM1.AFS"   , 0         },
+	{ "MULTSPQ1.AFS", 0         },
+	{ "VOICE1.AFS"  , 0         },
+	{ "MULTSPQ1.IDX", 0         },
+	{ "DISCID.BIN"  , 0         },
+	{ "MANATEE.DRV" , 0         },
+	{ "COMMON.MLT"  , 0         },
+	{ "SYSMES.ALD"  , 0         },
+	{ "BIO_CV.ICO"  , 0         },
+	{ "BGM2.AFS"    , 0         },
+	{ "ITEM2.AFS"   , 0         },
+	{ "MULTSPQ2.AFS", 0         },
+	{ "VOICE2.AFS"  , 0         },
+	{ "MULTSPQ2.IDX", 0         }
+}; 
+int dvd_image_data_max = 19;
 int rdx_image_data_max = 205;
+/*char* pss_files[18]; - unused*/
