@@ -4686,35 +4686,53 @@ unsigned int bhEventTimerClr()
 	return 1;
 }
 
-// 
-// Start address: 0x15e9d0
+// 100% matching!
 unsigned int bhCamCheck()
 {
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 4542, Address: 0x15e9d0, Func Offset: 0
-	// Line 4551, Address: 0x15e9d8, Func Offset: 0x8
-	// Line 4542, Address: 0x15e9e0, Func Offset: 0x10
-	// Line 4543, Address: 0x15e9ec, Func Offset: 0x1c
-	// Line 4544, Address: 0x15e9f8, Func Offset: 0x28
-	// Line 4545, Address: 0x15ea04, Func Offset: 0x34
-	// Line 4546, Address: 0x15ea10, Func Offset: 0x40
-	// Line 4547, Address: 0x15ea1c, Func Offset: 0x4c
-	// Line 4548, Address: 0x15ea28, Func Offset: 0x58
-	// Line 4549, Address: 0x15ea34, Func Offset: 0x64
-	// Line 4551, Address: 0x15ea48, Func Offset: 0x78
-	// Line 4552, Address: 0x15ea60, Func Offset: 0x90
-	// Line 4553, Address: 0x15ea70, Func Offset: 0xa0
-	// Line 4554, Address: 0x15ea84, Func Offset: 0xb4
-	// Line 4555, Address: 0x15ea94, Func Offset: 0xc4
-	// Line 4556, Address: 0x15ea9c, Func Offset: 0xcc
-	// Line 4557, Address: 0x15eaac, Func Offset: 0xdc
-	// Line 4560, Address: 0x15eab4, Func Offset: 0xe4
-	// Line 4565, Address: 0x15eac0, Func Offset: 0xf0
-	// Line 4566, Address: 0x15eac4, Func Offset: 0xf4
-	// Func End, Address: 0x15eacc, Func Offset: 0xfc
-	scePrintf("bhCamCheck - UNIMPLEMENTED!\n");
+	unsigned int v0, v1, v2;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+    bhScePtr += 2;
+    
+    if (!(sys->sp_flg & 0x40)) 
+    { 
+        return 1;
+    }
+
+    if ((sys->st_flg & 0x1)) 
+    {
+        if ((cam.flg & 0x2)) 
+        {
+            if (cam.evc_no == v0) 
+            {
+                if (v2 != 0) 
+                {
+                    if (cam.keyf_no == v1) 
+                    {
+                        return 0;
+                    }
+                } 
+                else 
+                {
+                    return 0;
+                }
+            }
+        }
+    }
+
+    return 1;
 }
 
 // 100% matching!
