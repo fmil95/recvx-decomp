@@ -5244,24 +5244,24 @@ unsigned int bhLightParameterStart()
 	scePrintf("bhLightParameterStart - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x160680
+// 100% matching!
 unsigned int bhInitMidiSlotSet()
 {
-	int v1;
-	int v0;
-	// Line 5128, Address: 0x160680, Func Offset: 0
-	// Line 5131, Address: 0x160688, Func Offset: 0x8
-	// Line 5132, Address: 0x16069c, Func Offset: 0x1c
-	// Line 5133, Address: 0x1606a8, Func Offset: 0x28
-	// Line 5134, Address: 0x1606b4, Func Offset: 0x34
-	// Line 5135, Address: 0x1606c0, Func Offset: 0x40
-	// Line 5137, Address: 0x1606c8, Func Offset: 0x48
-	// Line 5140, Address: 0x1606d0, Func Offset: 0x50
-	// Line 5139, Address: 0x1606d4, Func Offset: 0x54
-	// Line 5140, Address: 0x1606d8, Func Offset: 0x58
-	// Func End, Address: 0x1606e0, Func Offset: 0x60
-	scePrintf("bhInitMidiSlotSet - UNIMPLEMENTED!\n");
+	int v0, v1;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+
+    CustomMidiSlotDef(v0, v1);
+    
+    return 1;
 }
 
 // 100% matching!
@@ -5270,7 +5270,7 @@ unsigned int bh3dSoundFlagSet()
 	int v0, v1, v2;
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
