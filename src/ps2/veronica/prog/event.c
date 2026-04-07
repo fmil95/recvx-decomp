@@ -4451,23 +4451,20 @@ unsigned int bhCyoutenHenkeiSet()
 	scePrintf("bhCyoutenHenkeiSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15df50
+// 100% matching!
 unsigned int bhCyoutenHenkeiStart()
 {
-	// Line 4251, Address: 0x15df50, Func Offset: 0
-	// Line 4258, Address: 0x15df58, Func Offset: 0x8
-	// Line 4251, Address: 0x15df60, Func Offset: 0x10
-	// Line 4253, Address: 0x15df6c, Func Offset: 0x1c
-	// Line 4258, Address: 0x15df80, Func Offset: 0x30
-	// Line 4259, Address: 0x15df8c, Func Offset: 0x3c
-	// Line 4260, Address: 0x15df90, Func Offset: 0x40
-	// Line 4259, Address: 0x15df9c, Func Offset: 0x4c
-	// Line 4260, Address: 0x15dfa4, Func Offset: 0x54
-	// Line 4263, Address: 0x15dfcc, Func Offset: 0x7c
-	// Line 4264, Address: 0x15dfd0, Func Offset: 0x80
-	// Func End, Address: 0x15dfd8, Func Offset: 0x88
-	scePrintf("bhCyoutenHenkeiStart - UNIMPLEMENTED!\n");
+	bhScePtr++;
+    bhScePtr++;
+    
+    if (bhCetask->work != NULL) 
+    {
+        bhCetask->work->mdflg |= 0x2;
+
+        bhCetask->work->shp_ct = 1000.0f - ((1000.0f / bhCetask->cnt3) * bhCetask->cnt2);
+    }
+    
+    return 0;
 }
 
 // 100% matching!
@@ -4476,7 +4473,7 @@ unsigned int bhFixEventCamPly()
 	int v0;
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
