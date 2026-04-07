@@ -4540,31 +4540,35 @@ unsigned int bhObjLinkSetObjObj()
 	scePrintf("bhObjLinkSetObjObj - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15e4a0
+// 100% matching!
 unsigned int bhCamYureSet()
 {
-	int v1;
-	int v0;
-	// Line 4361, Address: 0x15e4a0, Func Offset: 0
-	// Line 4364, Address: 0x15e4b0, Func Offset: 0x10
-	// Line 4365, Address: 0x15e4c4, Func Offset: 0x24
-	// Line 4366, Address: 0x15e4d0, Func Offset: 0x30
-	// Line 4367, Address: 0x15e4dc, Func Offset: 0x3c
-	// Line 4368, Address: 0x15e4e8, Func Offset: 0x48
-	// Line 4370, Address: 0x15e4f0, Func Offset: 0x50
-	// Line 4372, Address: 0x15e4f8, Func Offset: 0x58
-	// Line 4373, Address: 0x15e53c, Func Offset: 0x9c
-	// Line 4374, Address: 0x15e568, Func Offset: 0xc8
-	// Line 4375, Address: 0x15e594, Func Offset: 0xf4
-	// Line 4376, Address: 0x15e59c, Func Offset: 0xfc
-	// Line 4377, Address: 0x15e5a4, Func Offset: 0x104
-	// Line 4378, Address: 0x15e5ac, Func Offset: 0x10c
-	// Line 4381, Address: 0x15e5b4, Func Offset: 0x114
-	// Line 4380, Address: 0x15e5c0, Func Offset: 0x120
-	// Line 4381, Address: 0x15e5c4, Func Offset: 0x124
-	// Func End, Address: 0x15e5cc, Func Offset: 0x12c
-	scePrintf("bhCamYureSet - UNIMPLEMENTED!\n");
+	int v0, v1;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    if (v0 == 0) 
+    {
+        cam.ofx = (0.01f * v1) * (-rand() / -2.1474836E9f);
+        cam.ofy = (0.01f * v1) * (-rand() / -2.1474836E9f);
+        cam.ofz = (0.01f * v1) * (-rand() / -2.1474836E9f);
+    } 
+    else 
+    {
+        cam.ofx = 0.0f;
+        cam.ofy = 0.0f;
+        cam.ofz = 0.0f;
+    }
+
+    return 1;
 }
 
 // 100% matching!
