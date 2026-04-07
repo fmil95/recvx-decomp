@@ -4887,89 +4887,129 @@ unsigned int bhCyodanSet()
 	scePrintf("bhCyodanSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15f360
+// 100% matching!
 unsigned int bhHEffectSet()
 {
-	//_anon53 pnt;
-	int ay;
-	int ax;
-	int v3;
-	int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 4759, Address: 0x15f360, Func Offset: 0
-	// Line 4765, Address: 0x15f374, Func Offset: 0x14
-	// Line 4766, Address: 0x15f388, Func Offset: 0x28
-	// Line 4767, Address: 0x15f394, Func Offset: 0x34
-	// Line 4768, Address: 0x15f3a0, Func Offset: 0x40
-	// Line 4769, Address: 0x15f3ac, Func Offset: 0x4c
-	// Line 4772, Address: 0x15f3b8, Func Offset: 0x58
-	// Line 4773, Address: 0x15f3c4, Func Offset: 0x64
-	// Line 4774, Address: 0x15f420, Func Offset: 0xc0
-	// Line 4775, Address: 0x15f428, Func Offset: 0xc8
-	// Line 4777, Address: 0x15f478, Func Offset: 0x118
-	// Line 4780, Address: 0x15f480, Func Offset: 0x120
-	// Line 4777, Address: 0x15f484, Func Offset: 0x124
-	// Line 4780, Address: 0x15f48c, Func Offset: 0x12c
-	// Line 4781, Address: 0x15f494, Func Offset: 0x134
-	// Line 4782, Address: 0x15f4f0, Func Offset: 0x190
-	// Line 4783, Address: 0x15f4f8, Func Offset: 0x198
-	// Line 4785, Address: 0x15f548, Func Offset: 0x1e8
-	// Line 4788, Address: 0x15f550, Func Offset: 0x1f0
-	// Line 4785, Address: 0x15f554, Func Offset: 0x1f4
-	// Line 4788, Address: 0x15f55c, Func Offset: 0x1fc
-	// Line 4789, Address: 0x15f564, Func Offset: 0x204
-	// Line 4790, Address: 0x15f5c0, Func Offset: 0x260
-	// Line 4791, Address: 0x15f5c8, Func Offset: 0x268
-	// Line 4793, Address: 0x15f618, Func Offset: 0x2b8
-	// Line 4795, Address: 0x15f62c, Func Offset: 0x2cc
-	// Line 4796, Address: 0x15f638, Func Offset: 0x2d8
-	// Line 4797, Address: 0x15f644, Func Offset: 0x2e4
-	// Line 4799, Address: 0x15f64c, Func Offset: 0x2ec
-	// Line 4800, Address: 0x15f658, Func Offset: 0x2f8
-	// Line 4802, Address: 0x15f65c, Func Offset: 0x2fc
-	// Line 4804, Address: 0x15f678, Func Offset: 0x318
-	// Line 4802, Address: 0x15f680, Func Offset: 0x320
-	// Line 4806, Address: 0x15f684, Func Offset: 0x324
-	// Line 4804, Address: 0x15f688, Func Offset: 0x328
-	// Line 4805, Address: 0x15f694, Func Offset: 0x334
-	// Line 4806, Address: 0x15f69c, Func Offset: 0x33c
-	// Line 4807, Address: 0x15f6a4, Func Offset: 0x344
-	// Line 4809, Address: 0x15f6a8, Func Offset: 0x348
-	// Line 4812, Address: 0x15f6c4, Func Offset: 0x364
-	// Line 4813, Address: 0x15f6d8, Func Offset: 0x378
-	// Line 4814, Address: 0x15f6e4, Func Offset: 0x384
-	// Line 4817, Address: 0x15f6f0, Func Offset: 0x390
-	// Line 4818, Address: 0x15f6fc, Func Offset: 0x39c
-	// Line 4819, Address: 0x15f758, Func Offset: 0x3f8
-	// Line 4820, Address: 0x15f760, Func Offset: 0x400
-	// Line 4822, Address: 0x15f7b0, Func Offset: 0x450
-	// Line 4825, Address: 0x15f7b8, Func Offset: 0x458
-	// Line 4822, Address: 0x15f7bc, Func Offset: 0x45c
-	// Line 4825, Address: 0x15f7c4, Func Offset: 0x464
-	// Line 4826, Address: 0x15f7cc, Func Offset: 0x46c
-	// Line 4827, Address: 0x15f828, Func Offset: 0x4c8
-	// Line 4828, Address: 0x15f830, Func Offset: 0x4d0
-	// Line 4830, Address: 0x15f880, Func Offset: 0x520
-	// Line 4833, Address: 0x15f888, Func Offset: 0x528
-	// Line 4830, Address: 0x15f88c, Func Offset: 0x52c
-	// Line 4833, Address: 0x15f894, Func Offset: 0x534
-	// Line 4834, Address: 0x15f89c, Func Offset: 0x53c
-	// Line 4835, Address: 0x15f8f8, Func Offset: 0x598
-	// Line 4836, Address: 0x15f900, Func Offset: 0x5a0
-	// Line 4843, Address: 0x15f950, Func Offset: 0x5f0
-	// Line 4838, Address: 0x15f954, Func Offset: 0x5f4
-	// Line 4843, Address: 0x15f95c, Func Offset: 0x5fc
-	// Line 4838, Address: 0x15f968, Func Offset: 0x608
-	// Line 4839, Address: 0x15f974, Func Offset: 0x614
-	// Line 4840, Address: 0x15f980, Func Offset: 0x620
-	// Line 4843, Address: 0x15f988, Func Offset: 0x628
-	// Line 4845, Address: 0x15f990, Func Offset: 0x630
-	// Line 4844, Address: 0x15f9a0, Func Offset: 0x640
-	// Line 4845, Address: 0x15f9a4, Func Offset: 0x644
-	// Func End, Address: 0x15f9ac, Func Offset: 0x64c
-	scePrintf("bhHEffectSet - UNIMPLEMENTED!\n");
+    // modified order of local variables in regards to DWARF
+	unsigned int v0, v1;
+    int ax, ay;
+    int v2, v3; 
+    POINT pnt;
+    int v4, v5, v6; // not from DWARF
+    
+    bhScePtr += 2;
+    
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if ((v0 & 0x1)) 
+    {
+        pnt.px = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        pnt.px = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+
+    if ((v0 & 0x2)) 
+    {
+        pnt.py = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        pnt.py = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+
+    if ((v0 & 0x4)) 
+    {
+        pnt.pz = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    }
+    else 
+    {
+        pnt.pz = *(unsigned short*)bhScePtr / 100.0f;
+    }
+    
+    bhScePtr += 2;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    if ((v2 & 0x1)) 
+    {
+        v3 = -v3;
+    }
+
+    ax = v3 * (65536.0f / 360.0f);
+
+    bhScePtr++;
+    
+    v4 = *bhScePtr;
+
+    if ((v2 & 0x2)) 
+    {
+        v4 = -v4;
+    }
+    
+    ay = v4 * (65536.0f / 360.0f);
+    
+    bhScePtr++;
+    
+    v5 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    if ((v5 & 0x1)) 
+    {
+        pnt.ox = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        pnt.ox = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v5 & 0x2)) 
+    {
+        pnt.oy = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        pnt.oy = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v5 & 0x4)) 
+    {
+        pnt.oz = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        pnt.oz = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    v6 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+    
+    bhSetEffectEvt(v6, &pnt, v1, ax, ay);
+
+    return 1;
 }
 
 // 100% matching!
