@@ -5320,54 +5320,59 @@ unsigned int bhSoundVolumeSet()
 	scePrintf("bhSoundVolumeSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x160810
+// 100% matching!
 unsigned int bhLightParameterSet()
 {
-	//_anon11* lp;
-	int v6;
-	int v5;
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 5205, Address: 0x160810, Func Offset: 0
-	// Line 5206, Address: 0x160824, Func Offset: 0x14
-	// Line 5207, Address: 0x160830, Func Offset: 0x20
-	// Line 5208, Address: 0x16083c, Func Offset: 0x2c
-	// Line 5209, Address: 0x160848, Func Offset: 0x38
-	// Line 5210, Address: 0x160854, Func Offset: 0x44
-	// Line 5211, Address: 0x160860, Func Offset: 0x50
-	// Line 5212, Address: 0x16086c, Func Offset: 0x5c
-	// Line 5213, Address: 0x160878, Func Offset: 0x68
-	// Line 5214, Address: 0x160884, Func Offset: 0x74
-	// Line 5215, Address: 0x160890, Func Offset: 0x80
-	// Line 5216, Address: 0x16089c, Func Offset: 0x8c
-	// Line 5217, Address: 0x1608a8, Func Offset: 0x98
-	// Line 5218, Address: 0x1608b4, Func Offset: 0xa4
-	// Line 5219, Address: 0x1608c0, Func Offset: 0xb0
-	// Line 5230, Address: 0x1608c8, Func Offset: 0xb8
-	// Line 5233, Address: 0x16090c, Func Offset: 0xfc
-	// Line 5234, Address: 0x160910, Func Offset: 0x100
-	// Line 5233, Address: 0x160918, Func Offset: 0x108
-	// Line 5239, Address: 0x160920, Func Offset: 0x110
-	// Line 5233, Address: 0x160924, Func Offset: 0x114
-	// Line 5234, Address: 0x160928, Func Offset: 0x118
-	// Line 5233, Address: 0x16092c, Func Offset: 0x11c
-	// Line 5234, Address: 0x160934, Func Offset: 0x124
-	// Line 5235, Address: 0x16093c, Func Offset: 0x12c
-	// Line 5236, Address: 0x160940, Func Offset: 0x130
-	// Line 5235, Address: 0x160948, Func Offset: 0x138
-	// Line 5236, Address: 0x16094c, Func Offset: 0x13c
-	// Line 5235, Address: 0x160950, Func Offset: 0x140
-	// Line 5236, Address: 0x160954, Func Offset: 0x144
-	// Line 5235, Address: 0x160958, Func Offset: 0x148
-	// Line 5236, Address: 0x16095c, Func Offset: 0x14c
-	// Line 5237, Address: 0x160960, Func Offset: 0x150
-	// Line 5240, Address: 0x160978, Func Offset: 0x168
-	// Func End, Address: 0x160980, Func Offset: 0x170
-	scePrintf("bhLightParameterSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4, v5, v6;
+    LGT_WORK* lp;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+
+    v2 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v3 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v4 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v5 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v6 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    if (v1 == 0) 
+    {
+        lp = &rom->lgtp[v0];
+    } 
+    else 
+    {
+        lp = &rom->evlp[v0];
+    }
+    
+    lp->r = v2 / 100.0f;
+    lp->g = v3 / 100.0f;
+    lp->b = v4 / 100.0f;
+
+    lp->nr = v5 / 100.0f;
+    lp->fr = v6 / 100.0f;
+    
+    return 1;
 }
 
 // 100% matching!
