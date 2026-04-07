@@ -5728,31 +5728,29 @@ unsigned int bhCyoutenHenkeiSetEX()
 	scePrintf("bhCyoutenHenkeiSetEX - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1613f0
+// 100% matching!
 unsigned int bhCyoutenHenkeiStartEX()
 {
-	float frm1;
-	float frm0;
 	int v0;
-	// Line 5656, Address: 0x1613f0, Func Offset: 0
-	// Line 5662, Address: 0x1613f8, Func Offset: 0x8
-	// Line 5667, Address: 0x161400, Func Offset: 0x10
-	// Line 5656, Address: 0x161408, Func Offset: 0x18
-	// Line 5658, Address: 0x161414, Func Offset: 0x24
-	// Line 5659, Address: 0x161420, Func Offset: 0x30
-	// Line 5661, Address: 0x161424, Func Offset: 0x34
-	// Line 5659, Address: 0x161428, Func Offset: 0x38
-	// Line 5661, Address: 0x16142c, Func Offset: 0x3c
-	// Line 5659, Address: 0x161430, Func Offset: 0x40
-	// Line 5667, Address: 0x161434, Func Offset: 0x44
-	// Line 5668, Address: 0x161440, Func Offset: 0x50
-	// Line 5669, Address: 0x161444, Func Offset: 0x54
-	// Line 5668, Address: 0x161448, Func Offset: 0x58
-	// Line 5669, Address: 0x161450, Func Offset: 0x60
-	// Line 5672, Address: 0x16147c, Func Offset: 0x8c
-	// Func End, Address: 0x161484, Func Offset: 0x94
-	scePrintf("bhCyoutenHenkeiStartEX - UNIMPLEMENTED!\n");
+    float frm0, frm1;
+
+    bhScePtr += 2;
+
+    v0 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+
+    frm0 = v0;
+    frm1 = 1000.0f - frm0;
+    
+    if (bhCetask->work != NULL) 
+    {
+        bhCetask->work->mdflg |= 0x2;
+
+        bhCetask->work->shp_ct = frm0 + (frm1 - (bhCetask->cnt2 * (frm1 / bhCetask->cnt3)));
+    }
+
+    return 0;
 }
 
 // 100% matching!
@@ -5764,7 +5762,7 @@ unsigned int bhEasySESet()
     ETTY_WORK* enep; // not from DWARF
     
     bhScePtr++;
-    
+
     gp.Type = *bhScePtr;
 
     bhScePtr++;
