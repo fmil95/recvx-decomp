@@ -5583,51 +5583,84 @@ unsigned int bhMotionPosSetEnePly()
 	scePrintf("bhMotionPosSetEnePly - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x160f50
+// 100% matching!
 unsigned int bhKageSwSet()
 {
-	//_anon0* e_ip;
-	BH_PWORK* e_ep;
-	unsigned int v4;
-	unsigned int v3;
-	unsigned int v2;
-	// Line 5475, Address: 0x160f50, Func Offset: 0
-	// Line 5483, Address: 0x160f58, Func Offset: 0x8
-	// Line 5475, Address: 0x160f5c, Func Offset: 0xc
-	// Line 5476, Address: 0x160f68, Func Offset: 0x18
-	// Line 5477, Address: 0x160f74, Func Offset: 0x24
-	// Line 5478, Address: 0x160f80, Func Offset: 0x30
-	// Line 5479, Address: 0x160f8c, Func Offset: 0x3c
-	// Line 5480, Address: 0x160f98, Func Offset: 0x48
-	// Line 5481, Address: 0x160fa4, Func Offset: 0x54
-	// Line 5483, Address: 0x160fac, Func Offset: 0x5c
-	// Line 5485, Address: 0x160fdc, Func Offset: 0x8c
-	// Line 5486, Address: 0x160fe4, Func Offset: 0x94
-	// Line 5487, Address: 0x160ff4, Func Offset: 0xa4
-	// Line 5488, Address: 0x160ffc, Func Offset: 0xac
-	// Line 5490, Address: 0x161010, Func Offset: 0xc0
-	// Line 5496, Address: 0x161018, Func Offset: 0xc8
-	// Line 5497, Address: 0x161054, Func Offset: 0x104
-	// Line 5498, Address: 0x16105c, Func Offset: 0x10c
-	// Line 5499, Address: 0x161064, Func Offset: 0x114
-	// Line 5500, Address: 0x16106c, Func Offset: 0x11c
-	// Line 5502, Address: 0x161078, Func Offset: 0x128
-	// Line 5507, Address: 0x161080, Func Offset: 0x130
-	// Line 5508, Address: 0x1610a8, Func Offset: 0x158
-	// Line 5509, Address: 0x1610b0, Func Offset: 0x160
-	// Line 5510, Address: 0x1610b8, Func Offset: 0x168
-	// Line 5511, Address: 0x1610c0, Func Offset: 0x170
-	// Line 5513, Address: 0x1610cc, Func Offset: 0x17c
-	// Line 5518, Address: 0x1610d4, Func Offset: 0x184
-	// Line 5519, Address: 0x1610fc, Func Offset: 0x1ac
-	// Line 5520, Address: 0x161104, Func Offset: 0x1b4
-	// Line 5521, Address: 0x16110c, Func Offset: 0x1bc
-	// Line 5522, Address: 0x161114, Func Offset: 0x1c4
-	// Line 5526, Address: 0x161124, Func Offset: 0x1d4
-	// Line 5527, Address: 0x161128, Func Offset: 0x1d8
-	// Func End, Address: 0x161130, Func Offset: 0x1e0
-	scePrintf("bhKageSwSet - UNIMPLEMENTED!\n");
+	unsigned int v2, v3, v4;
+    BH_PWORK* e_ep;
+    O_WRK* e_ip;
+    ETTY_WORK* enep; // not from DWARF
+    
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+    
+    switch (v2) 
+    {
+    case 0:
+        if (v4 == 0) 
+        {
+            plp->stflg |= 0x8;
+        } 
+        else 
+        {
+            plp->stflg &= ~0x8;
+        }
+
+        break;
+    case 1:
+        enep = &rom->enep[v3];
+        e_ep = &ene[enep->wrk_no];
+
+        if (v4 == 0) 
+        {
+            e_ep->stflg |= 0x8;
+        } 
+        else 
+        {
+            e_ep->stflg &= ~0x8;
+        }
+
+        break;
+    case 2:
+        e_ep = (BH_PWORK*)&sys->obwp[v3];
+
+        if (v4 == 0) 
+        {
+            e_ep->stflg |= 0x8;
+        } 
+        else 
+        {
+            e_ep->stflg &= ~0x8;
+        }
+
+        break;
+    case 3:
+        e_ep = (BH_PWORK*)&sys->itwp[v3];
+
+        if (v4 == 0) 
+        {
+            e_ep->stflg |= 0x8;
+        } 
+        else
+        {
+            e_ep->stflg &= ~0x8;
+        }
+
+        break;
+    }
+
+    return 1;
 }
 
 // 100% matching!
@@ -5647,13 +5680,13 @@ unsigned int bhSoundPanSet()
 
     v2 = *bhScePtr;
 
-    v2 -= 0x80;
+    v2 -= 128;
 
     bhScePtr++;
 
     v3 = *bhScePtr;
 
-    v3 -= 0x80;
+    v3 -= 128;
 
     bhScePtr++;
 
