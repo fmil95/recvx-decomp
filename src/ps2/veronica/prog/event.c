@@ -4470,21 +4470,27 @@ unsigned int bhCyoutenHenkeiStart()
 	scePrintf("bhCyoutenHenkeiStart - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15dfe0
+// 100% matching!
 unsigned int bhFixEventCamPly()
 {
 	int v0;
-	// Line 4275, Address: 0x15dfe0, Func Offset: 0
-	// Line 4276, Address: 0x15dff4, Func Offset: 0x14
-	// Line 4277, Address: 0x15e000, Func Offset: 0x20
-	// Line 4279, Address: 0x15e008, Func Offset: 0x28
-	// Line 4280, Address: 0x15e010, Func Offset: 0x30
-	// Line 4281, Address: 0x15e024, Func Offset: 0x44
-	// Line 4282, Address: 0x15e02c, Func Offset: 0x4c
-	// Line 4285, Address: 0x15e048, Func Offset: 0x68
-	// Func End, Address: 0x15e050, Func Offset: 0x70
-	scePrintf("bhFixEventCamPly - UNIMPLEMENTED!\n");
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if (v0 == 0) 
+    {
+        sys->gm_flg |= 0x20000;
+    } 
+    else 
+    {
+        sys->gm_flg &= ~0x20000;
+    }
+
+    return 1;
 }
 
 // 100% matching!
