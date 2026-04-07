@@ -5630,37 +5630,40 @@ unsigned int bhKageSwSet()
 	scePrintf("bhKageSwSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x161130
+// 100% matching!
 unsigned int bhSoundPanSet()
 {
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 5536, Address: 0x161130, Func Offset: 0
-	// Line 5540, Address: 0x161138, Func Offset: 0x8
-	// Line 5541, Address: 0x16114c, Func Offset: 0x1c
-	// Line 5542, Address: 0x161158, Func Offset: 0x28
-	// Line 5543, Address: 0x161164, Func Offset: 0x34
-	// Line 5544, Address: 0x161170, Func Offset: 0x40
-	// Line 5545, Address: 0x16117c, Func Offset: 0x4c
-	// Line 5547, Address: 0x161188, Func Offset: 0x58
-	// Line 5548, Address: 0x161194, Func Offset: 0x64
-	// Line 5554, Address: 0x16119c, Func Offset: 0x6c
-	// Line 5548, Address: 0x1611a0, Func Offset: 0x70
-	// Line 5550, Address: 0x1611a4, Func Offset: 0x74
-	// Line 5551, Address: 0x1611b0, Func Offset: 0x80
-	// Line 5554, Address: 0x1611b8, Func Offset: 0x88
-	// Line 5551, Address: 0x1611bc, Func Offset: 0x8c
-	// Line 5552, Address: 0x1611c0, Func Offset: 0x90
-	// Line 5554, Address: 0x1611c8, Func Offset: 0x98
-	// Line 5557, Address: 0x1611d0, Func Offset: 0xa0
-	// Line 5556, Address: 0x1611d4, Func Offset: 0xa4
-	// Line 5557, Address: 0x1611d8, Func Offset: 0xa8
-	// Func End, Address: 0x1611e0, Func Offset: 0xb0
-	scePrintf("bhSoundPanSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    v2 -= 0x80;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    v3 -= 0x80;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+    
+    SetUserSoundPan(v0, v1, v2, v3, v4);
+    
+    return 1;
 }
 
 // 100% matching!
@@ -5688,7 +5691,7 @@ unsigned int bhInitPonySet()
     case 1:
         enep = &rom->enep[v3];
         e_ep = &ene[enep->wrk_no];
-        
+
         e_ep->flg2 |= 0x2;
         break;
     }
