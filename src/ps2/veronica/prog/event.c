@@ -4065,38 +4065,44 @@ unsigned int bhLightTypeSet()
 // 100% matching!
 unsigned int bhFogColorSet()
 {
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 3792, Address: 0x15c9c0, Func Offset: 0
-	// Line 3793, Address: 0x15c9d4, Func Offset: 0x14
-	// Line 3794, Address: 0x15c9e0, Func Offset: 0x20
-	// Line 3795, Address: 0x15c9ec, Func Offset: 0x2c
-	// Line 3796, Address: 0x15c9f8, Func Offset: 0x38
-	// Line 3797, Address: 0x15ca04, Func Offset: 0x44
-	// Line 3798, Address: 0x15ca10, Func Offset: 0x50
-	// Line 3799, Address: 0x15ca1c, Func Offset: 0x5c
-	// Line 3800, Address: 0x15ca28, Func Offset: 0x68
-	// Line 3801, Address: 0x15ca34, Func Offset: 0x74
-	// Line 3802, Address: 0x15ca40, Func Offset: 0x80
-	// Line 3804, Address: 0x15ca48, Func Offset: 0x88
-	// Line 3805, Address: 0x15ca50, Func Offset: 0x90
-	// Line 3806, Address: 0x15ca70, Func Offset: 0xb0
-	// Line 3805, Address: 0x15ca74, Func Offset: 0xb4
-	// Line 3806, Address: 0x15ca80, Func Offset: 0xc0
-	// Line 3807, Address: 0x15ca8c, Func Offset: 0xcc
-	// Line 3806, Address: 0x15ca90, Func Offset: 0xd0
-	// Line 3807, Address: 0x15ca98, Func Offset: 0xd8
-	// Line 3808, Address: 0x15caa4, Func Offset: 0xe4
-	// Line 3809, Address: 0x15caac, Func Offset: 0xec
-	// Line 3810, Address: 0x15cac0, Func Offset: 0x100
-	// Line 3809, Address: 0x15cac4, Func Offset: 0x104
-	// Line 3810, Address: 0x15cacc, Func Offset: 0x10c
-	// Line 3815, Address: 0x15cadc, Func Offset: 0x11c
-	// Func End, Address: 0x15cae4, Func Offset: 0x124
-	scePrintf("bhFogColorSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+
+    if (v4 == 0) 
+    {
+        sys->fog_col = v3 | ((v2 << 8) | ((v0 << 24) | (v1 << 16)));
+
+        sys->st_flg |= 0x100000;
+        sys->gm_flg |= 0x10;
+    } 
+    else 
+    {
+        sys->st_flg &= ~0x100000;
+        sys->gm_flg |= 0x10;
+    }
+    
+    return 1;
 }
 
 // 100% matching!
