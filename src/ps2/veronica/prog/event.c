@@ -5287,37 +5287,40 @@ unsigned int bh3dSoundFlagSet()
 	scePrintf("bh3dSoundFlagSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x160760
+// 100% matching!
 unsigned int bhSoundVolumeSet()
 {
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 5171, Address: 0x160760, Func Offset: 0
-	// Line 5175, Address: 0x160768, Func Offset: 0x8
-	// Line 5176, Address: 0x16077c, Func Offset: 0x1c
-	// Line 5177, Address: 0x160788, Func Offset: 0x28
-	// Line 5178, Address: 0x160794, Func Offset: 0x34
-	// Line 5179, Address: 0x1607a0, Func Offset: 0x40
-	// Line 5180, Address: 0x1607ac, Func Offset: 0x4c
-	// Line 5182, Address: 0x1607b8, Func Offset: 0x58
-	// Line 5183, Address: 0x1607c4, Func Offset: 0x64
-	// Line 5181, Address: 0x1607cc, Func Offset: 0x6c
-	// Line 5183, Address: 0x1607d0, Func Offset: 0x70
-	// Line 5185, Address: 0x1607d4, Func Offset: 0x74
-	// Line 5186, Address: 0x1607e0, Func Offset: 0x80
-	// Line 5184, Address: 0x1607e8, Func Offset: 0x88
-	// Line 5186, Address: 0x1607ec, Func Offset: 0x8c
-	// Line 5187, Address: 0x1607f0, Func Offset: 0x90
-	// Line 5189, Address: 0x1607f8, Func Offset: 0x98
-	// Line 5192, Address: 0x160800, Func Offset: 0xa0
-	// Line 5191, Address: 0x160804, Func Offset: 0xa4
-	// Line 5192, Address: 0x160808, Func Offset: 0xa8
-	// Func End, Address: 0x160810, Func Offset: 0xb0
-	scePrintf("bhSoundVolumeSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    v2 *= -1;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    v3 *= -1;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+    
+    SetUserSoundVolume(v0, v1, v2, v3, v4);
+    
+    return 1;
 }
 
 // 100% matching!
