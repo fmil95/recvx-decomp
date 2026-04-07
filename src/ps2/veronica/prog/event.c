@@ -4597,23 +4597,19 @@ unsigned int bhInitCamSet()
 	scePrintf("bhInitCamSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15e660
+// 100% matching!
 unsigned int bhMesDispEndSet()
 {
-	// Line 4411, Address: 0x15e660, Func Offset: 0
-	// Line 4416, Address: 0x15e668, Func Offset: 0x8
-	// Line 4417, Address: 0x15e66c, Func Offset: 0xc
-	// Line 4412, Address: 0x15e670, Func Offset: 0x10
-	// Line 4411, Address: 0x15e678, Func Offset: 0x18
-	// Line 4412, Address: 0x15e684, Func Offset: 0x24
-	// Line 4413, Address: 0x15e690, Func Offset: 0x30
-	// Line 4414, Address: 0x15e6a4, Func Offset: 0x44
-	// Line 4415, Address: 0x15e6b8, Func Offset: 0x58
-	// Line 4416, Address: 0x15e6cc, Func Offset: 0x6c
-	// Line 4418, Address: 0x15e6dc, Func Offset: 0x7c
-	// Func End, Address: 0x15e6e4, Func Offset: 0x84
-	scePrintf("bhMesDispEndSet - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+    
+    sys->mes_ct = 0;
+    sys->mes_tim = 0;
+    sys->mes_fls = 0;
+    sys->mes_sel = 0;
+
+    sys->st_flg &= ~0x200;
+
+    return 1;
 }
 
 // 100% matching!
