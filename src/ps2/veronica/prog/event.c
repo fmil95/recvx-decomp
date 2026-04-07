@@ -5474,50 +5474,44 @@ unsigned int bhWalAtariSet2()
 	scePrintf("bhWalAtariSet2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x160c30
+// 100% matching!
 unsigned int bhFlrAtariSet2()
 {
-	//_anon6* e_flrp;
 	unsigned int v1;
-	// Line 5359, Address: 0x160c30, Func Offset: 0
-	// Line 5394, Address: 0x160c38, Func Offset: 0x8
-	// Line 5366, Address: 0x160c3c, Func Offset: 0xc
-	// Line 5359, Address: 0x160c44, Func Offset: 0x14
-	// Line 5367, Address: 0x160c50, Func Offset: 0x20
-	// Line 5366, Address: 0x160c58, Func Offset: 0x28
-	// Line 5367, Address: 0x160c5c, Func Offset: 0x2c
-	// Line 5369, Address: 0x160c60, Func Offset: 0x30
-	// Line 5367, Address: 0x160c6c, Func Offset: 0x3c
-	// Line 5370, Address: 0x160c74, Func Offset: 0x44
-	// Line 5367, Address: 0x160c7c, Func Offset: 0x4c
-	// Line 5370, Address: 0x160c84, Func Offset: 0x54
-	// Line 5373, Address: 0x160c88, Func Offset: 0x58
-	// Line 5371, Address: 0x160c8c, Func Offset: 0x5c
-	// Line 5373, Address: 0x160c90, Func Offset: 0x60
-	// Line 5374, Address: 0x160ca0, Func Offset: 0x70
-	// Line 5377, Address: 0x160cac, Func Offset: 0x7c
-	// Line 5375, Address: 0x160cb0, Func Offset: 0x80
-	// Line 5377, Address: 0x160cb4, Func Offset: 0x84
-	// Line 5378, Address: 0x160cc4, Func Offset: 0x94
-	// Line 5381, Address: 0x160cd0, Func Offset: 0xa0
-	// Line 5379, Address: 0x160cd4, Func Offset: 0xa4
-	// Line 5381, Address: 0x160cd8, Func Offset: 0xa8
-	// Line 5382, Address: 0x160ce8, Func Offset: 0xb8
-	// Line 5385, Address: 0x160cf4, Func Offset: 0xc4
-	// Line 5383, Address: 0x160cf8, Func Offset: 0xc8
-	// Line 5385, Address: 0x160cfc, Func Offset: 0xcc
-	// Line 5386, Address: 0x160d0c, Func Offset: 0xdc
-	// Line 5389, Address: 0x160d18, Func Offset: 0xe8
-	// Line 5387, Address: 0x160d1c, Func Offset: 0xec
-	// Line 5389, Address: 0x160d20, Func Offset: 0xf0
-	// Line 5390, Address: 0x160d30, Func Offset: 0x100
-	// Line 5392, Address: 0x160d3c, Func Offset: 0x10c
-	// Line 5391, Address: 0x160d40, Func Offset: 0x110
-	// Line 5392, Address: 0x160d44, Func Offset: 0x114
-	// Line 5395, Address: 0x160d50, Func Offset: 0x120
-	// Func End, Address: 0x160d58, Func Offset: 0x128
-	scePrintf("bhFlrAtariSet2 - UNIMPLEMENTED!\n");
+    ATR_WORK* e_flrp;
+
+    bhScePtr++;
+    
+    e_walp = rom->flrp;
+    e_walp += *bhScePtr;
+    
+    bhScePtr++;
+    v1 = *(unsigned short*)bhScePtr;
+    e_walp->attr = v1;
+    
+    bhScePtr += 2;
+    v1 = *bhScePtr;
+    e_walp->prm0 = v1;
+    
+    bhScePtr++;
+    v1 = *bhScePtr;
+    e_walp->prm1 = v1;
+
+    bhScePtr++;
+    v1 = *bhScePtr;
+    e_walp->prm2 = v1;
+    
+    bhScePtr++;
+    v1 = *bhScePtr;
+    e_walp->prm3 = v1;
+
+    bhScePtr++;
+    v1 = *bhScePtr;
+    e_walp->type = v1;
+
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 100% matching!
