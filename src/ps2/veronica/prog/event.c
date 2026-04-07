@@ -4035,31 +4035,32 @@ unsigned int bhDelObjSe()
 	return 1;
 }
 
-// 
-// Start address: 0x15c930
+// 100% matching!
 unsigned int bhLightTypeSet()
 {
-	//_anon11* lp;
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 3764, Address: 0x15c930, Func Offset: 0
-	// Line 3780, Address: 0x15c938, Func Offset: 0x8
-	// Line 3776, Address: 0x15c93c, Func Offset: 0xc
-	// Line 3764, Address: 0x15c944, Func Offset: 0x14
-	// Line 3765, Address: 0x15c950, Func Offset: 0x20
-	// Line 3766, Address: 0x15c95c, Func Offset: 0x2c
-	// Line 3767, Address: 0x15c968, Func Offset: 0x38
-	// Line 3776, Address: 0x15c970, Func Offset: 0x40
-	// Line 3767, Address: 0x15c97c, Func Offset: 0x4c
-	// Line 3768, Address: 0x15c980, Func Offset: 0x50
-	// Line 3769, Address: 0x15c98c, Func Offset: 0x5c
-	// Line 3770, Address: 0x15c998, Func Offset: 0x68
-	// Line 3776, Address: 0x15c9a4, Func Offset: 0x74
-	// Line 3777, Address: 0x15c9ac, Func Offset: 0x7c
-	// Line 3781, Address: 0x15c9b0, Func Offset: 0x80
-	// Func End, Address: 0x15c9b8, Func Offset: 0x88
-	scePrintf("bhLightTypeSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1, v2;
+    LGT_WORK* lp;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+    
+    lp = &rom->lgtp[v0];
+
+    lp->type = v1;
+    lp->aspd = v2;
+    
+    return 1;
 }
 
 // 100% matching!
