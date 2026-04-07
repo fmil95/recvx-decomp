@@ -5073,7 +5073,7 @@ unsigned int bhAreaSearchObj()
         e_workp = &ene[enep->wrk_no];
         break;
     case 2:
-        e_workp = (BH_PWORK*)&sys->itwp[v0];
+        e_workp = (BH_PWORK*)&sys->obwp[v0];
         break;
     case 3:
         e_workp = (BH_PWORK*)&sys->itwp[v0];
@@ -5205,63 +5205,63 @@ unsigned int bhLightParameterCSet()
     return 1;
 }
 
-// 
-// Start address: 0x1604d0
+// 100% matching!
 unsigned int bhLightParameterStart()
 {
-	float frm;
-	float ans[3];
-	float ips_w[3][4];
-	//_anon11* lp;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 5066, Address: 0x1604d0, Func Offset: 0
-	// Line 5074, Address: 0x1604f0, Func Offset: 0x20
-	// Line 5075, Address: 0x160504, Func Offset: 0x34
-	// Line 5076, Address: 0x160510, Func Offset: 0x40
-	// Line 5077, Address: 0x16051c, Func Offset: 0x4c
-	// Line 5078, Address: 0x160528, Func Offset: 0x58
-	// Line 5089, Address: 0x160530, Func Offset: 0x60
-	// Line 5093, Address: 0x160574, Func Offset: 0xa4
-	// Line 5102, Address: 0x16057c, Func Offset: 0xac
-	// Line 5094, Address: 0x160580, Func Offset: 0xb0
-	// Line 5102, Address: 0x160584, Func Offset: 0xb4
-	// Line 5096, Address: 0x160588, Func Offset: 0xb8
-	// Line 5093, Address: 0x16058c, Func Offset: 0xbc
-	// Line 5097, Address: 0x160590, Func Offset: 0xc0
-	// Line 5103, Address: 0x160594, Func Offset: 0xc4
-	// Line 5093, Address: 0x16059c, Func Offset: 0xcc
-	// Line 5094, Address: 0x1605a0, Func Offset: 0xd0
-	// Line 5103, Address: 0x1605a4, Func Offset: 0xd4
-	// Line 5094, Address: 0x1605a8, Func Offset: 0xd8
-	// Line 5096, Address: 0x1605ac, Func Offset: 0xdc
-	// Line 5097, Address: 0x1605b4, Func Offset: 0xe4
-	// Line 5099, Address: 0x1605bc, Func Offset: 0xec
-	// Line 5100, Address: 0x1605c4, Func Offset: 0xf4
-	// Line 5102, Address: 0x1605cc, Func Offset: 0xfc
-	// Line 5103, Address: 0x1605e4, Func Offset: 0x114
-	// Line 5104, Address: 0x1605ec, Func Offset: 0x11c
-	// Line 5105, Address: 0x1605f0, Func Offset: 0x120
-	// Line 5114, Address: 0x1605f4, Func Offset: 0x124
-	// Line 5108, Address: 0x1605f8, Func Offset: 0x128
-	// Line 5114, Address: 0x1605fc, Func Offset: 0x12c
-	// Line 5104, Address: 0x160600, Func Offset: 0x130
-	// Line 5105, Address: 0x160604, Func Offset: 0x134
-	// Line 5114, Address: 0x160608, Func Offset: 0x138
-	// Line 5105, Address: 0x160610, Func Offset: 0x140
-	// Line 5106, Address: 0x160614, Func Offset: 0x144
-	// Line 5108, Address: 0x16061c, Func Offset: 0x14c
-	// Line 5109, Address: 0x160628, Func Offset: 0x158
-	// Line 5111, Address: 0x160630, Func Offset: 0x160
-	// Line 5112, Address: 0x160638, Func Offset: 0x168
-	// Line 5114, Address: 0x16063c, Func Offset: 0x16c
-	// Line 5115, Address: 0x160644, Func Offset: 0x174
-	// Line 5118, Address: 0x160648, Func Offset: 0x178
-	// Line 5115, Address: 0x16064c, Func Offset: 0x17c
-	// Line 5116, Address: 0x160650, Func Offset: 0x180
-	// Line 5119, Address: 0x160658, Func Offset: 0x188
-	// Func End, Address: 0x16067c, Func Offset: 0x1ac
-	scePrintf("bhLightParameterStart - UNIMPLEMENTED!\n");
+	int v0, v1;
+    LGT_WORK* lp;
+    float ips_w[3][4]; // TODO: should be [4][3] instead
+    float ans[3]; 
+    float frm; 
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    if (v1 == 0) 
+    {
+        lp = &rom->lgtp[v0];
+    } 
+    else 
+    {
+        lp = &rom->evlp[v0];
+    }
+    
+    ips_w[0][0] = bhCetask->e_lgt[1][0];
+    ips_w[0][3] = bhCetask->e_lgt[0][0];
+    
+    ips_w[0][1] = bhCetask->e_lgt[1][1];
+    ips_w[1][0] = bhCetask->e_lgt[0][1];
+    
+    ips_w[0][2] = bhCetask->e_lgt[1][2];
+    ips_w[1][1] = bhCetask->e_lgt[0][2];
+    
+    frm = (1.0f / bhCetask->cnt3) * bhCetask->cnt2;
+
+    njLinear(ips_w[0], ans, NULL, frm);
+
+    lp->r = ans[0];
+    lp->g = ans[1];
+    lp->b = ans[2];
+    
+    ips_w[0][0] = bhCetask->e_lgt[1][3];
+    ips_w[0][3] = bhCetask->e_lgt[0][3];
+    
+    ips_w[0][1] = bhCetask->e_lgt[1][4];
+    ips_w[1][0] = bhCetask->e_lgt[0][4];
+
+    njLinear(ips_w[0], ans, NULL, frm);
+
+    lp->nr = ans[0];
+    lp->fr = ans[1];
+
+    return 0;
 }
 
 // 100% matching!
