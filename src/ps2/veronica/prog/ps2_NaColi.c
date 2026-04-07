@@ -95,9 +95,9 @@ Float	njDistanceP2P(NJS_POINT3 *p1, NJS_POINT3 *p2)
     return njSqrt((fDeltaX * fDeltaX) + (fDeltaY * fDeltaY) + (fDeltaZ * fDeltaZ));
 }
 
-/*// 
+// 
 // Start address: 0x2e3380
-float njDistanceP2L(_anon0* pPoint, _anon1* pLine, _anon0* pCross)
+Float	njDistanceP2L(NJS_POINT3 *p, NJS_LINE *l, NJS_POINT3 *cp)
 {
 	float fDl;
 	float fDz;
@@ -138,9 +138,10 @@ float njDistanceP2L(_anon0* pPoint, _anon1* pLine, _anon0* pCross)
 	// Line 244, Address: 0x2e3488, Func Offset: 0x108
 	// Line 270, Address: 0x2e3494, Func Offset: 0x114
 	// Func End, Address: 0x2e34b8, Func Offset: 0x138
+	scePrintf("njDistanceP2L - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2e34c0
 float njDistanceP2PL(_anon0* pPoint, _anon1* pPlane, _anon0* pCross)
 {
