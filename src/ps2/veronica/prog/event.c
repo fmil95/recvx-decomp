@@ -4416,39 +4416,48 @@ unsigned int bhEffBloodPoolSet2()
 	scePrintf("bhEffBloodPoolSet2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15de40
+// 100% matching!
 unsigned int bhCyoutenHenkeiSet()
 {
-	BH_PWORK* epw;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 4202, Address: 0x15de40, Func Offset: 0
-	// Line 4212, Address: 0x15de48, Func Offset: 0x8
-	// Line 4202, Address: 0x15de4c, Func Offset: 0xc
-	// Line 4203, Address: 0x15de58, Func Offset: 0x18
-	// Line 4204, Address: 0x15de64, Func Offset: 0x24
-	// Line 4205, Address: 0x15de70, Func Offset: 0x30
-	// Line 4206, Address: 0x15de7c, Func Offset: 0x3c
-	// Line 4207, Address: 0x15de88, Func Offset: 0x48
-	// Line 4208, Address: 0x15de94, Func Offset: 0x54
-	// Line 4209, Address: 0x15dea0, Func Offset: 0x60
-	// Line 4210, Address: 0x15deac, Func Offset: 0x6c
-	// Line 4212, Address: 0x15deb4, Func Offset: 0x74
-	// Line 4214, Address: 0x15decc, Func Offset: 0x8c
-	// Line 4215, Address: 0x15ded0, Func Offset: 0x90
-	// Line 4221, Address: 0x15ded8, Func Offset: 0x98
-	// Line 4226, Address: 0x15df18, Func Offset: 0xd8
-	// Line 4229, Address: 0x15df28, Func Offset: 0xe8
-	// Line 4239, Address: 0x15df30, Func Offset: 0xf0
-	// Line 4226, Address: 0x15df34, Func Offset: 0xf4
-	// Line 4228, Address: 0x15df38, Func Offset: 0xf8
-	// Line 4229, Address: 0x15df40, Func Offset: 0x100
-	// Line 4240, Address: 0x15df44, Func Offset: 0x104
-	// Func End, Address: 0x15df4c, Func Offset: 0x10c
-	scePrintf("bhCyoutenHenkeiSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3; 
+    BH_PWORK* epw; 
+    ETTY_WORK* enep; // not from DWARF
+    
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    switch (v0) 
+    {
+    case 0:
+        epw = plp;
+        break;
+    case 1:
+        enep = &rom->enep[v1];
+        epw = &ene[enep->wrk_no];
+        break;
+    }
+    
+    epw->mlwP->objP = epw->mbp[v2];
+    
+    epw->obj_a = epw->mbp[v2];
+    epw->obj_b = epw->mbp[v3];
+    
+    return 1;
 }
 
 // 100% matching!
