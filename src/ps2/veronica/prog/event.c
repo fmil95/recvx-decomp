@@ -4338,82 +4338,99 @@ unsigned int bhEffBloodPoolSet()
 	scePrintf("bhEffBloodPoolSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15d950
+// 100% matching!
 unsigned int bhEffBloodPoolSet2()
 {
-	int ang;
-	//_anon39 gpos;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 4115, Address: 0x15d950, Func Offset: 0
-	// Line 4122, Address: 0x15d964, Func Offset: 0x14
-	// Line 4123, Address: 0x15d978, Func Offset: 0x28
-	// Line 4124, Address: 0x15d984, Func Offset: 0x34
-	// Line 4127, Address: 0x15d990, Func Offset: 0x40
-	// Line 4128, Address: 0x15d99c, Func Offset: 0x4c
-	// Line 4129, Address: 0x15d9f8, Func Offset: 0xa8
-	// Line 4130, Address: 0x15da00, Func Offset: 0xb0
-	// Line 4132, Address: 0x15da50, Func Offset: 0x100
-	// Line 4135, Address: 0x15da58, Func Offset: 0x108
-	// Line 4132, Address: 0x15da5c, Func Offset: 0x10c
-	// Line 4135, Address: 0x15da64, Func Offset: 0x114
-	// Line 4136, Address: 0x15da6c, Func Offset: 0x11c
-	// Line 4137, Address: 0x15dac8, Func Offset: 0x178
-	// Line 4138, Address: 0x15dad0, Func Offset: 0x180
-	// Line 4140, Address: 0x15db20, Func Offset: 0x1d0
-	// Line 4143, Address: 0x15db28, Func Offset: 0x1d8
-	// Line 4140, Address: 0x15db2c, Func Offset: 0x1dc
-	// Line 4143, Address: 0x15db34, Func Offset: 0x1e4
-	// Line 4144, Address: 0x15db3c, Func Offset: 0x1ec
-	// Line 4145, Address: 0x15db98, Func Offset: 0x248
-	// Line 4146, Address: 0x15dba0, Func Offset: 0x250
-	// Line 4148, Address: 0x15dbf0, Func Offset: 0x2a0
-	// Line 4151, Address: 0x15dc04, Func Offset: 0x2b4
-	// Line 4152, Address: 0x15dc18, Func Offset: 0x2c8
-	// Line 4153, Address: 0x15dc24, Func Offset: 0x2d4
-	// Line 4154, Address: 0x15dc30, Func Offset: 0x2e0
-	// Line 4159, Address: 0x15dc38, Func Offset: 0x2e8
-	// Line 4154, Address: 0x15dc3c, Func Offset: 0x2ec
-	// Line 4155, Address: 0x15dc40, Func Offset: 0x2f0
-	// Line 4156, Address: 0x15dc4c, Func Offset: 0x2fc
-	// Line 4157, Address: 0x15dc58, Func Offset: 0x308
-	// Line 4159, Address: 0x15dc60, Func Offset: 0x310
-	// Line 4160, Address: 0x15dc68, Func Offset: 0x318
-	// Line 4163, Address: 0x15dc6c, Func Offset: 0x31c
-	// Line 4165, Address: 0x15dc94, Func Offset: 0x344
-	// Line 4167, Address: 0x15dcd0, Func Offset: 0x380
-	// Line 4168, Address: 0x15dcdc, Func Offset: 0x38c
-	// Line 4167, Address: 0x15dce4, Func Offset: 0x394
-	// Line 4168, Address: 0x15dce8, Func Offset: 0x398
-	// Line 4170, Address: 0x15dcf4, Func Offset: 0x3a4
-	// Line 4168, Address: 0x15dd00, Func Offset: 0x3b0
-	// Line 4170, Address: 0x15dd04, Func Offset: 0x3b4
-	// Line 4172, Address: 0x15dd18, Func Offset: 0x3c8
-	// Line 4174, Address: 0x15dd20, Func Offset: 0x3d0
-	// Line 4175, Address: 0x15dd50, Func Offset: 0x400
-	// Line 4176, Address: 0x15dd5c, Func Offset: 0x40c
-	// Line 4175, Address: 0x15dd64, Func Offset: 0x414
-	// Line 4176, Address: 0x15dd68, Func Offset: 0x418
-	// Line 4177, Address: 0x15dd74, Func Offset: 0x424
-	// Line 4176, Address: 0x15dd80, Func Offset: 0x430
-	// Line 4177, Address: 0x15dd84, Func Offset: 0x434
-	// Line 4178, Address: 0x15dd98, Func Offset: 0x448
-	// Line 4180, Address: 0x15dda0, Func Offset: 0x450
-	// Line 4181, Address: 0x15ddd0, Func Offset: 0x480
-	// Line 4182, Address: 0x15dddc, Func Offset: 0x48c
-	// Line 4181, Address: 0x15dde4, Func Offset: 0x494
-	// Line 4182, Address: 0x15dde8, Func Offset: 0x498
-	// Line 4183, Address: 0x15ddf4, Func Offset: 0x4a4
-	// Line 4182, Address: 0x15de00, Func Offset: 0x4b0
-	// Line 4183, Address: 0x15de04, Func Offset: 0x4b4
-	// Line 4187, Address: 0x15de18, Func Offset: 0x4c8
-	// Line 4186, Address: 0x15de28, Func Offset: 0x4d8
-	// Line 4187, Address: 0x15de2c, Func Offset: 0x4dc
-	// Func End, Address: 0x15de34, Func Offset: 0x4e4
-	scePrintf("bhEffBloodPoolSet2 - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3; 
+    NJS_POINT3 gpos; 
+    int ang;
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if ((v0 & 0x1)) 
+    {
+        gpos.x = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        gpos.x = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+
+    if ((v0 & 0x2)) 
+    {
+        gpos.y = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        gpos.y = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v0 & 0x4)) 
+    {
+        gpos.z = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        gpos.z = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr += 2;
+    
+    v3 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+    
+    if ((v1 & 0x2)) 
+    {
+        v2 = -v2;
+    }
+
+    switch (v1) 
+    {
+    case 0:
+        ang = (unsigned short)((short)((short)v2 * (65536.0f / 360.0f)) + (32767 + 1));
+        
+        gpos.x = gpos.x - njSin(ang);
+        gpos.z = gpos.z - njCos(ang);
+        
+        bhSetBloodPoolLnk(NULL, &gpos, ang, &evnt_BldTbl2, v3);
+        break;
+    case 1:
+        ang = (short)((short)v2 * (65536.0f / 360.0f));
+        
+        gpos.x = gpos.x - njSin(ang);
+        gpos.z = gpos.z - njCos(ang);
+
+        bhSetBloodPoolLnk(NULL, &gpos, ang, &evnt_BldTbl2, v3);
+        break;
+    case 2:
+        ang = (short)((short)v2 * (65536.0f / 360.0f));
+
+        gpos.x = gpos.x - njSin(ang);
+        gpos.z = gpos.z - njCos(ang);
+
+        bhSetBloodPoolLnk(NULL, &gpos, ang, &evnt_BldTbl, v3);
+        break;
+    }
+
+    return 1;
 }
 
 // 100% matching!
@@ -4438,7 +4455,7 @@ unsigned int bhCyoutenHenkeiSet()
     bhScePtr++;
 
     v3 = *bhScePtr;
-    
+
     bhScePtr += 2;
     
     switch (v0) 
