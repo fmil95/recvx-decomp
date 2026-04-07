@@ -1,6 +1,9 @@
 #ifndef	_MACROS_H_
 #define	_MACROS_H_
 
+#define PI 3.141592f
+#define PI_2 (PI * 2.0f)
+
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define MAX(a, b) ((a) < (b) ? (b) : (a))
 

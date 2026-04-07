@@ -2,6 +2,7 @@
 #define _FACE_BH_H_
 
 #include "types.h"
+#include "macros.h"
 
 /*void fmSetLipSyncParam(_anon2* fm, _anon4* base, _anon9* lip, unsigned int mask);
 void _fmSetObjP(_anon5* mlwP);

@@ -460,61 +460,59 @@ void _fmCnkSetToothObject(MASK_WORK* fm, NJS_CNK_OBJECT* tooth)
     }
 }
 
-// 
-// Start address: 0x299280
+// 90.70% matching
 void _fmCnkSetJaw(MASK_WORK* fm, unsigned int v0, unsigned int v1)
-{
-	float svp0[4];
-	unsigned int vofs;
-	int rz;
-	int ry;
-	float z;
-	float y;
-	float x;
-	float* svp;
-	// Line 797, Address: 0x299280, Func Offset: 0
-	// Line 804, Address: 0x2992a8, Func Offset: 0x28
-	// Line 806, Address: 0x2992ac, Func Offset: 0x2c
-	// Line 807, Address: 0x2992b4, Func Offset: 0x34
-	// Line 812, Address: 0x2992b8, Func Offset: 0x38
-	// Line 811, Address: 0x2992bc, Func Offset: 0x3c
-	// Line 806, Address: 0x2992c0, Func Offset: 0x40
-	// Line 813, Address: 0x2992c8, Func Offset: 0x48
-	// Line 806, Address: 0x2992cc, Func Offset: 0x4c
-	// Line 807, Address: 0x2992d0, Func Offset: 0x50
-	// Line 811, Address: 0x2992d4, Func Offset: 0x54
-	// Line 806, Address: 0x2992d8, Func Offset: 0x58
-	// Line 807, Address: 0x2992dc, Func Offset: 0x5c
-	// Line 811, Address: 0x2992e8, Func Offset: 0x68
-	// Line 807, Address: 0x2992ec, Func Offset: 0x6c
-	// Line 811, Address: 0x2992f0, Func Offset: 0x70
-	// Line 812, Address: 0x2992f8, Func Offset: 0x78
-	// Line 813, Address: 0x299300, Func Offset: 0x80
-	// Line 811, Address: 0x299308, Func Offset: 0x88
-	// Line 812, Address: 0x29930c, Func Offset: 0x8c
-	// Line 814, Address: 0x299310, Func Offset: 0x90
-	// Line 813, Address: 0x299314, Func Offset: 0x94
-	// Line 814, Address: 0x299318, Func Offset: 0x98
-	// Line 816, Address: 0x29933c, Func Offset: 0xbc
-	// Line 821, Address: 0x299368, Func Offset: 0xe8
-	// Line 823, Address: 0x299370, Func Offset: 0xf0
-	// Line 824, Address: 0x299378, Func Offset: 0xf8
-	// Line 825, Address: 0x299384, Func Offset: 0x104
-	// Line 826, Address: 0x299390, Func Offset: 0x110
-	// Line 829, Address: 0x2993b0, Func Offset: 0x130
-	// Line 830, Address: 0x2993b8, Func Offset: 0x138
-	// Line 831, Address: 0x2993cc, Func Offset: 0x14c
-	// Line 832, Address: 0x2993d8, Func Offset: 0x158
-	// Line 834, Address: 0x2993e4, Func Offset: 0x164
-	// Line 837, Address: 0x2993ec, Func Offset: 0x16c
-	// Line 844, Address: 0x2993f8, Func Offset: 0x178
-	// Line 845, Address: 0x2993fc, Func Offset: 0x17c
-	// Line 849, Address: 0x299404, Func Offset: 0x184
-	// Line 856, Address: 0x299410, Func Offset: 0x190
-	// Line 857, Address: 0x299414, Func Offset: 0x194
-	// Line 859, Address: 0x29941c, Func Offset: 0x19c
-	// Func End, Address: 0x299448, Func Offset: 0x1c8
-	scePrintf("_fmCnkSetJaw - UNIMPLEMENTED!\n");
+{   
+    float* svp;       
+    float x;           
+    float y;          
+    float z;       
+    int ry;           
+    int rz;           
+    unsigned int vofs; 
+    float svp0[4];     
+
+    vofs = fm->vofs;
+    
+    svp = (float*)&fm->src->vlist[fm->vtop];
+    
+    *(u_long128*)svp0 = *(u_long128*)&svp[v0 * vofs];
+    
+    x = svp[(v1 * vofs) + 0] - svp0[0];
+    y = svp[(v1 * vofs) + 1] - svp0[1];
+    z = svp[(v1 * vofs) + 2] - svp0[2];
+    
+    ry = (65536.0f / PI_2) * atanf(y / x);
+    rz = (65536.0f / PI_2) * atanf(z * njInvertSqrt((x * x) + (y * y)));
+    
+    njPushMatrixEx();
+    njUnitMatrix(&fm->jmat1);
+    
+    njRotateY(&fm->jmat1, -rz);
+    njRotateZ(&fm->jmat1, -ry);
+    
+    njTranslate(&fm->jmat1, -svp0[0], -svp0[1], -svp0[2]);
+    
+    njUnitMatrix(&fm->jmat2);
+    
+    njTranslate(&fm->jmat2, svp0[0], svp0[1], svp0[2]);
+    
+    njRotateZ(&fm->jmat2, ry);
+    njRotateY(&fm->jmat2, rz);
+    
+    njPopMatrixEx();
+    
+    if (fm->toothsrc != NULL)
+    {
+        fm->toothsrc->ang[1] = rz;
+        fm->toothsrc->ang[2] = ry;
+    }
+    
+    if (fm->tangorg != NULL)
+    {
+        fm->tangorg->ang[1] = rz;
+        fm->tangorg->ang[2] = ry;
+    }
 }
 
 // 100% matching!
