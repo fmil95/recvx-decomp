@@ -20,7 +20,7 @@ void bhEne02_DG01(BH_PWORK* epw);
 void bhEne02_Die(BH_PWORK* epw);
 void bhEne02_DD00(BH_PWORK* epw);
 void bhEne02_DD01(BH_PWORK* epw);
-/*void bhEne02_SetSandEffect(BH_PWORK* epw, _anon22* pos, int type);*/
+void bhEne02_SetSandEffect(BH_PWORK* epw, NJS_POINT3* pos, int type);
 void bhEne02_SetSandEffectEV(int eno, int type1, int type2);
 /*void bhEne02_SetSandEffectMain(int type0, _anon22* pos, int type);
 void bhEne02_SetSandSpr(int type0, _anon22* pos, int type, int flip, float size, int ang);*/

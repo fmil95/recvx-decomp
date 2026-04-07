@@ -4062,8 +4062,7 @@ unsigned int bhLightTypeSet()
 	scePrintf("bhLightTypeSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15c9c0
+// 100% matching!
 unsigned int bhFogColorSet()
 {
 	int v4;
@@ -4205,7 +4204,7 @@ unsigned int bhEffectSandSet()
 
     bhScePtr += 2;
     
-    bhEne02_SetSandEffect(epw, &pos, v1, v2);
+    bhEne02_SetSandEffect(epw, &pos, v1);
     
     return 1;
 }

@@ -2928,15 +2928,16 @@ void bhEne02_DD01(BH_PWORK* epw)
 	// Line 2185, Address: 0x192cfc, Func Offset: 0x11c
 	// Line 2189, Address: 0x192d10, Func Offset: 0x130
 	// Func End, Address: 0x192d18, Func Offset: 0x138
-}
+}*/
 
 // 
 // Start address: 0x192d20
-void bhEne02_SetSandEffect(BH_PWORK* epw, _anon22* pos, int type)
+void bhEne02_SetSandEffect(BH_PWORK* epw, NJS_POINT3* pos, int type)
 {
 	// Line 2206, Address: 0x192d20, Func Offset: 0
 	// Func End, Address: 0x192d34, Func Offset: 0x14
-}*/
+	scePrintf("bhEne02_SetSandEffect - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x192d40
