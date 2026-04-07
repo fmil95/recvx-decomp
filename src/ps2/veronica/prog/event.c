@@ -5520,67 +5520,51 @@ unsigned int bhFlrAtariSet2()
 	scePrintf("bhFlrAtariSet2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x160d60
+// 100% matching!
 unsigned int bhMotionPosSetEnePly()
 {
 	short ay;
 	BH_PWORK* e_workp;
 	int v1;
 	int v0;
-	// Line 5403, Address: 0x160d60, Func Offset: 0
-	// Line 5411, Address: 0x160d6c, Func Offset: 0xc
-	// Line 5421, Address: 0x160d74, Func Offset: 0x14
-	// Line 5411, Address: 0x160d84, Func Offset: 0x24
-	// Line 5427, Address: 0x160d88, Func Offset: 0x28
-	// Line 5411, Address: 0x160d90, Func Offset: 0x30
-	// Line 5412, Address: 0x160d98, Func Offset: 0x38
-	// Line 5413, Address: 0x160da4, Func Offset: 0x44
-	// Line 5414, Address: 0x160db0, Func Offset: 0x50
-	// Line 5421, Address: 0x160db8, Func Offset: 0x58
-	// Line 5414, Address: 0x160dc8, Func Offset: 0x68
-	// Line 5423, Address: 0x160dcc, Func Offset: 0x6c
-	// Line 5421, Address: 0x160dd0, Func Offset: 0x70
-	// Line 5423, Address: 0x160dd8, Func Offset: 0x78
-	// Line 5431, Address: 0x160de0, Func Offset: 0x80
-	// Line 5421, Address: 0x160de4, Func Offset: 0x84
-	// Line 5425, Address: 0x160dec, Func Offset: 0x8c
-	// Line 5421, Address: 0x160df4, Func Offset: 0x94
-	// Line 5425, Address: 0x160e04, Func Offset: 0xa4
-	// Line 5427, Address: 0x160e10, Func Offset: 0xb0
-	// Line 5428, Address: 0x160e14, Func Offset: 0xb4
-	// Line 5427, Address: 0x160e18, Func Offset: 0xb8
-	// Line 5428, Address: 0x160e24, Func Offset: 0xc4
-	// Line 5431, Address: 0x160e3c, Func Offset: 0xdc
-	// Line 5428, Address: 0x160e40, Func Offset: 0xe0
-	// Line 5431, Address: 0x160e44, Func Offset: 0xe4
-	// Line 5432, Address: 0x160e58, Func Offset: 0xf8
-	// Line 5431, Address: 0x160e5c, Func Offset: 0xfc
-	// Line 5432, Address: 0x160e60, Func Offset: 0x100
-	// Line 5435, Address: 0x160e68, Func Offset: 0x108
-	// Line 5432, Address: 0x160e6c, Func Offset: 0x10c
-	// Line 5435, Address: 0x160e70, Func Offset: 0x110
-	// Line 5437, Address: 0x160e88, Func Offset: 0x128
-	// Line 5438, Address: 0x160e98, Func Offset: 0x138
-	// Line 5437, Address: 0x160e9c, Func Offset: 0x13c
-	// Line 5438, Address: 0x160ea4, Func Offset: 0x144
-	// Line 5450, Address: 0x160ebc, Func Offset: 0x15c
-	// Line 5438, Address: 0x160ec0, Func Offset: 0x160
-	// Line 5442, Address: 0x160ec4, Func Offset: 0x164
-	// Line 5450, Address: 0x160ec8, Func Offset: 0x168
-	// Line 5442, Address: 0x160ecc, Func Offset: 0x16c
-	// Line 5450, Address: 0x160edc, Func Offset: 0x17c
-	// Line 5442, Address: 0x160ee0, Func Offset: 0x180
-	// Line 5450, Address: 0x160efc, Func Offset: 0x19c
-	// Line 5451, Address: 0x160f18, Func Offset: 0x1b8
-	// Line 5455, Address: 0x160f24, Func Offset: 0x1c4
-	// Line 5451, Address: 0x160f28, Func Offset: 0x1c8
-	// Line 5455, Address: 0x160f2c, Func Offset: 0x1cc
-	// Line 5458, Address: 0x160f34, Func Offset: 0x1d4
-	// Line 5457, Address: 0x160f3c, Func Offset: 0x1dc
-	// Line 5458, Address: 0x160f40, Func Offset: 0x1e0
-	// Func End, Address: 0x160f48, Func Offset: 0x1e8
-	scePrintf("bhMotionPosSetEnePly - UNIMPLEMENTED!\n");
+    ETTY_WORK* enep; // not from DWARF
+
+	bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+    
+    enep = &rom->enep[v0];
+    e_workp = &ene[enep->wrk_no];
+    
+    bhScePtr++;
+    bhScePtr++;
+    
+    plp->px = e_workp->mlwP->owP->mtx[12];
+    
+    ((float*)plp->exp0)[18] = plp->pxb = plp->px;
+    
+    plp->py = rom->grand[v1 + 1];
+    plp->pyb = plp->py;
+    
+    plp->flr_no = bhCheckFloorNum(plp->py);
+    
+    plp->pz = e_workp->mlwP->owP->mtx[14];
+
+    ((float*)plp->exp0)[20] = plp->pzb = plp->pz;
+    
+    ay = e_workp->mdl->objP[0].ang[1] - e_workp->mdl->objP[1].ang[1] - e_workp->mdl->objP[2].ang[1] - e_workp->mdl->objP[3].ang[1] - e_workp->mdl->objP[4].ang[1];
+
+    plp->ayb = plp->ay = (short)(ay + (32767 + 1));
+
+    plp->mdl->objP->ang[1] = 0;
+    
+    bhCalcModel(plp);
+    
+    return 1;
 }
 
 // 100% matching!
