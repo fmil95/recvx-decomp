@@ -5370,46 +5370,42 @@ unsigned int bhLightParameterSet()
 	scePrintf("bhLightParameterSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x160980
+// 100% matching!
 unsigned int bhEneSeOn()
 {
-	BH_PWORK* epw;
-	//_anon39 pPos;
-	unsigned int v3;
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 5248, Address: 0x160980, Func Offset: 0
-	// Line 5254, Address: 0x160988, Func Offset: 0x8
-	// Line 5269, Address: 0x160990, Func Offset: 0x10
-	// Line 5275, Address: 0x160998, Func Offset: 0x18
-	// Line 5269, Address: 0x16099c, Func Offset: 0x1c
-	// Line 5254, Address: 0x1609a4, Func Offset: 0x24
-	// Line 5255, Address: 0x1609b0, Func Offset: 0x30
-	// Line 5256, Address: 0x1609bc, Func Offset: 0x3c
-	// Line 5257, Address: 0x1609c8, Func Offset: 0x48
-	// Line 5258, Address: 0x1609d4, Func Offset: 0x54
-	// Line 5259, Address: 0x1609e0, Func Offset: 0x60
-	// Line 5269, Address: 0x1609e8, Func Offset: 0x68
-	// Line 5259, Address: 0x1609f4, Func Offset: 0x74
-	// Line 5260, Address: 0x1609f8, Func Offset: 0x78
-	// Line 5261, Address: 0x160a04, Func Offset: 0x84
-	// Line 5271, Address: 0x160a0c, Func Offset: 0x8c
-	// Line 5261, Address: 0x160a1c, Func Offset: 0x9c
-	// Line 5262, Address: 0x160a20, Func Offset: 0xa0
-	// Line 5271, Address: 0x160a24, Func Offset: 0xa4
-	// Line 5262, Address: 0x160a28, Func Offset: 0xa8
-	// Line 5269, Address: 0x160a30, Func Offset: 0xb0
-	// Line 5271, Address: 0x160a54, Func Offset: 0xd4
-	// Line 5272, Address: 0x160a68, Func Offset: 0xe8
-	// Line 5273, Address: 0x160a7c, Func Offset: 0xfc
-	// Line 5275, Address: 0x160a8c, Func Offset: 0x10c
-	// Line 5278, Address: 0x160a94, Func Offset: 0x114
-	// Line 5277, Address: 0x160a98, Func Offset: 0x118
-	// Line 5278, Address: 0x160a9c, Func Offset: 0x11c
-	// Func End, Address: 0x160aa4, Func Offset: 0x124
-	scePrintf("bhEneSeOn - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3;
+    NJS_VECTOR pPos;
+    BH_PWORK* epw;
+    ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+    
+    enep = &rom->enep[v1];
+    epw = &ene[enep->wrk_no];
+    
+    pPos.x = epw->mlwP->objP[v2].pos[0];
+    pPos.y = epw->mlwP->objP[v2].pos[1];
+    pPos.z = epw->mlwP->objP[v2].pos[2];
+    
+    CallEnemySe(v0, &pPos, v3);
+    
+    return 1;
 }
 
 // 100% matching!
