@@ -5686,46 +5686,56 @@ unsigned int bhInitPonySet()
 	scePrintf("bhInitPonySet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1612b0
+// 100% matching!
 unsigned int bhCyoutenHenkeiSetEX()
 {
-	BH_PWORK* epw;
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 5605, Address: 0x1612b0, Func Offset: 0
-	// Line 5617, Address: 0x1612b8, Func Offset: 0x8
-	// Line 5605, Address: 0x1612bc, Func Offset: 0xc
-	// Line 5606, Address: 0x1612c8, Func Offset: 0x18
-	// Line 5607, Address: 0x1612d4, Func Offset: 0x24
-	// Line 5608, Address: 0x1612e0, Func Offset: 0x30
-	// Line 5609, Address: 0x1612ec, Func Offset: 0x3c
-	// Line 5610, Address: 0x1612f8, Func Offset: 0x48
-	// Line 5611, Address: 0x161304, Func Offset: 0x54
-	// Line 5612, Address: 0x161310, Func Offset: 0x60
-	// Line 5613, Address: 0x16131c, Func Offset: 0x6c
-	// Line 5614, Address: 0x161328, Func Offset: 0x78
-	// Line 5615, Address: 0x161334, Func Offset: 0x84
-	// Line 5617, Address: 0x16133c, Func Offset: 0x8c
-	// Line 5619, Address: 0x161354, Func Offset: 0xa4
-	// Line 5620, Address: 0x161358, Func Offset: 0xa8
-	// Line 5626, Address: 0x161360, Func Offset: 0xb0
-	// Line 5631, Address: 0x1613a0, Func Offset: 0xf0
-	// Line 5639, Address: 0x1613a8, Func Offset: 0xf8
-	// Line 5631, Address: 0x1613ac, Func Offset: 0xfc
-	// Line 5634, Address: 0x1613b4, Func Offset: 0x104
-	// Line 5639, Address: 0x1613bc, Func Offset: 0x10c
-	// Line 5642, Address: 0x1613c0, Func Offset: 0x110
-	// Line 5631, Address: 0x1613c4, Func Offset: 0x114
-	// Line 5633, Address: 0x1613c8, Func Offset: 0x118
-	// Line 5634, Address: 0x1613d0, Func Offset: 0x120
-	// Line 5638, Address: 0x1613d8, Func Offset: 0x128
-	// Line 5643, Address: 0x1613e4, Func Offset: 0x134
-	// Func End, Address: 0x1613ec, Func Offset: 0x13c
-	scePrintf("bhCyoutenHenkeiSetEX - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4;
+    BH_PWORK* epw;
+    ETTY_WORK* enep;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr += 2;
+
+    v4 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+    
+    switch (v0) 
+    {
+    case 0:
+        epw = plp;
+        break;
+    case 1:
+        enep = &rom->enep[v1];
+        epw = &ene[enep->wrk_no];
+        break;
+    }
+    
+    epw->mlwP->objP = epw->mbp[v2];
+
+    epw->obj_a = epw->mbp[v2];
+    epw->obj_b = epw->mbp[v3];
+    
+    epw->mdflg |= 0x2;
+
+    epw->shp_ct = v4;
+
+    return 1;
 }
 
 // 100% matching!
@@ -5737,7 +5747,7 @@ unsigned int bhCyoutenHenkeiStartEX()
     bhScePtr += 2;
 
     v0 = *(unsigned short*)bhScePtr;
-    
+
     bhScePtr += 2;
 
     frm0 = v0;
