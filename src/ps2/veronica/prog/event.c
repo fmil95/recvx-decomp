@@ -4168,53 +4168,86 @@ unsigned int bhEffectSandSet()
 	scePrintf("bhEffectSandSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15d0c0
+// 100% matching!
 unsigned int bhPlItemBlockCk()
 {
-	int v1;
-	int v0;
-	unsigned int wicnt;
-	unsigned int icnt;
-	unsigned int cnt;
-	// Line 3919, Address: 0x15d0c0, Func Offset: 0
-	// Line 3925, Address: 0x15d0c8, Func Offset: 0x8
-	// Line 3919, Address: 0x15d0d4, Func Offset: 0x14
-	// Line 3920, Address: 0x15d0e0, Func Offset: 0x20
-	// Line 3921, Address: 0x15d0ec, Func Offset: 0x2c
-	// Line 3922, Address: 0x15d0f8, Func Offset: 0x38
-	// Line 3923, Address: 0x15d104, Func Offset: 0x44
-	// Line 3925, Address: 0x15d110, Func Offset: 0x50
-	// Line 3926, Address: 0x15d120, Func Offset: 0x60
-	// Line 3927, Address: 0x15d15c, Func Offset: 0x9c
-	// Line 3928, Address: 0x15d168, Func Offset: 0xa8
-	// Line 3929, Address: 0x15d16c, Func Offset: 0xac
-	// Line 3930, Address: 0x15d170, Func Offset: 0xb0
-	// Line 3938, Address: 0x15d1b0, Func Offset: 0xf0
-	// Line 3940, Address: 0x15d1b4, Func Offset: 0xf4
-	// Line 3938, Address: 0x15d1b8, Func Offset: 0xf8
-	// Line 3941, Address: 0x15d1bc, Func Offset: 0xfc
-	// Line 3942, Address: 0x15d1cc, Func Offset: 0x10c
-	// Line 3943, Address: 0x15d1d4, Func Offset: 0x114
-	// Line 3944, Address: 0x15d210, Func Offset: 0x150
-	// Line 3945, Address: 0x15d21c, Func Offset: 0x15c
-	// Line 3947, Address: 0x15d220, Func Offset: 0x160
-	// Line 3955, Address: 0x15d260, Func Offset: 0x1a0
-	// Line 3957, Address: 0x15d264, Func Offset: 0x1a4
-	// Line 3955, Address: 0x15d268, Func Offset: 0x1a8
-	// Line 3958, Address: 0x15d26c, Func Offset: 0x1ac
-	// Line 3959, Address: 0x15d27c, Func Offset: 0x1bc
-	// Line 3963, Address: 0x15d280, Func Offset: 0x1c0
-	// Line 3964, Address: 0x15d2a8, Func Offset: 0x1e8
-	// Line 3965, Address: 0x15d2b4, Func Offset: 0x1f4
-	// Line 3966, Address: 0x15d2bc, Func Offset: 0x1fc
-	// Line 3967, Address: 0x15d2c8, Func Offset: 0x208
-	// Line 3968, Address: 0x15d2d0, Func Offset: 0x210
-	// Line 3969, Address: 0x15d2dc, Func Offset: 0x21c
-	// Line 3971, Address: 0x15d2e8, Func Offset: 0x228
-	// Line 3972, Address: 0x15d2ec, Func Offset: 0x22c
-	// Func End, Address: 0x15d2f4, Func Offset: 0x234
-	scePrintf("bhPlItemBlockCk - UNIMPLEMENTED!\n");
+	unsigned int cnt, icnt, wicnt;
+    int v0, v1;
+
+    bhScePtr += 1;
+
+    v0 = *bhScePtr;
+
+    bhScePtr += 1;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    if ((sys->gm_flg & 0x8000000)) 
+    {
+        for (wicnt = 0, icnt = 0, cnt = (sys->ply_id * 16) + 2; cnt < ((sys->ply_id * 16) + 12); cnt++) 
+        {
+            if (sys->itm[cnt] == 0) 
+            {
+                icnt++;
+            }
+
+            switch ((unsigned char)(sys->itm[cnt] >> 16)) 
+            {
+                case 1:
+                case 2:
+                case 3:
+                case 33:
+                case 34:
+                case 142:
+                    wicnt++;
+                    break;
+            }
+        }
+    } 
+    else 
+    {
+        for (wicnt = 0, icnt = 0, cnt = (sys->ply_id * 16) + 2; (cnt < (sys->ply_id * 16) + 10); cnt++) 
+        {
+            if (sys->itm[cnt] == 0) 
+            {
+                icnt++;
+            }
+
+            switch ((unsigned char)(sys->itm[cnt] >> 16)) 
+            {
+            case 1:
+            case 2:
+            case 3:
+            case 33:
+            case 34:
+            case 142:
+                wicnt++;
+                break;
+            }
+        }
+    }
+
+    icnt -= wicnt;
+
+    switch (v0) 
+    {
+    case 0: 
+        return icnt == v1;
+    case 1: 
+        return icnt >  v1;
+    case 2: 
+        return icnt >= v1;
+    case 3: 
+        return icnt <  v1;
+    case 4: 
+        return icnt <= v1;
+    case 5: 
+        return icnt != v1;
+    }
+
+    return 1;
 }
 
 // 100% matching!
