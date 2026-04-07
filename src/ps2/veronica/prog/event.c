@@ -5264,27 +5264,28 @@ unsigned int bhInitMidiSlotSet()
 	scePrintf("bhInitMidiSlotSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1606e0
+// 100% matching!
 unsigned int bh3dSoundFlagSet()
 {
-	int v2;
-	int v1;
-	int v0;
-	// Line 5148, Address: 0x1606e0, Func Offset: 0
-	// Line 5151, Address: 0x1606e8, Func Offset: 0x8
-	// Line 5152, Address: 0x1606fc, Func Offset: 0x1c
-	// Line 5153, Address: 0x160708, Func Offset: 0x28
-	// Line 5154, Address: 0x160714, Func Offset: 0x34
-	// Line 5155, Address: 0x160720, Func Offset: 0x40
-	// Line 5156, Address: 0x16072c, Func Offset: 0x4c
-	// Line 5157, Address: 0x160738, Func Offset: 0x58
-	// Line 5159, Address: 0x160740, Func Offset: 0x60
-	// Line 5162, Address: 0x160748, Func Offset: 0x68
-	// Line 5161, Address: 0x16074c, Func Offset: 0x6c
-	// Line 5162, Address: 0x160750, Func Offset: 0x70
-	// Func End, Address: 0x160758, Func Offset: 0x78
-	scePrintf("bh3dSoundFlagSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    Set3dSoundFlag(v0, v1, v2);
+    
+    return 1;
 }
 
 // 100% matching!
@@ -5293,7 +5294,7 @@ unsigned int bhSoundVolumeSet()
 	int v0, v1, v2, v3, v4;
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
