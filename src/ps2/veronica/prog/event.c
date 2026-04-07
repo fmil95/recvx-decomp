@@ -5095,94 +5095,66 @@ unsigned int bhAreaSearchObj()
 	scePrintf("bhAreaSearchObj - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1602b0
+// 100% matching!
 unsigned int bhLightParameterCSet()
 {
-	int v9;
-	int v8;
-	int v7;
-	int v6;
-	int v5;
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 5022, Address: 0x1602b0, Func Offset: 0
-	// Line 5045, Address: 0x1602b8, Func Offset: 0x8
-	// Line 5057, Address: 0x1602c0, Func Offset: 0x10
-	// Line 5045, Address: 0x1602c4, Func Offset: 0x14
-	// Line 5022, Address: 0x1602cc, Func Offset: 0x1c
-	// Line 5023, Address: 0x1602d8, Func Offset: 0x28
-	// Line 5024, Address: 0x1602e4, Func Offset: 0x34
-	// Line 5045, Address: 0x1602ec, Func Offset: 0x3c
-	// Line 5024, Address: 0x1602f0, Func Offset: 0x40
-	// Line 5025, Address: 0x1602f4, Func Offset: 0x44
-	// Line 5045, Address: 0x1602fc, Func Offset: 0x4c
-	// Line 5025, Address: 0x160300, Func Offset: 0x50
-	// Line 5026, Address: 0x160304, Func Offset: 0x54
-	// Line 5045, Address: 0x160308, Func Offset: 0x58
-	// Line 5026, Address: 0x16030c, Func Offset: 0x5c
-	// Line 5027, Address: 0x160314, Func Offset: 0x64
-	// Line 5028, Address: 0x160320, Func Offset: 0x70
-	// Line 5029, Address: 0x16032c, Func Offset: 0x7c
-	// Line 5046, Address: 0x160338, Func Offset: 0x88
-	// Line 5047, Address: 0x16033c, Func Offset: 0x8c
-	// Line 5046, Address: 0x160344, Func Offset: 0x94
-	// Line 5030, Address: 0x160348, Func Offset: 0x98
-	// Line 5031, Address: 0x160354, Func Offset: 0xa4
-	// Line 5046, Address: 0x16035c, Func Offset: 0xac
-	// Line 5031, Address: 0x160360, Func Offset: 0xb0
-	// Line 5032, Address: 0x160364, Func Offset: 0xb4
-	// Line 5034, Address: 0x160370, Func Offset: 0xc0
-	// Line 5035, Address: 0x16037c, Func Offset: 0xcc
-	// Line 5036, Address: 0x160388, Func Offset: 0xd8
-	// Line 5047, Address: 0x160390, Func Offset: 0xe0
-	// Line 5036, Address: 0x160394, Func Offset: 0xe4
-	// Line 5047, Address: 0x160398, Func Offset: 0xe8
-	// Line 5037, Address: 0x16039c, Func Offset: 0xec
-	// Line 5038, Address: 0x1603a8, Func Offset: 0xf8
-	// Line 5039, Address: 0x1603b4, Func Offset: 0x104
-	// Line 5040, Address: 0x1603c0, Func Offset: 0x110
-	// Line 5048, Address: 0x1603cc, Func Offset: 0x11c
-	// Line 5049, Address: 0x1603d0, Func Offset: 0x120
-	// Line 5048, Address: 0x1603d8, Func Offset: 0x128
-	// Line 5041, Address: 0x1603dc, Func Offset: 0x12c
-	// Line 5042, Address: 0x1603e8, Func Offset: 0x138
-	// Line 5049, Address: 0x1603f0, Func Offset: 0x140
-	// Line 5042, Address: 0x1603f4, Func Offset: 0x144
-	// Line 5048, Address: 0x1603f8, Func Offset: 0x148
-	// Line 5043, Address: 0x1603fc, Func Offset: 0x14c
-	// Line 5045, Address: 0x160408, Func Offset: 0x158
-	// Line 5046, Address: 0x16040c, Func Offset: 0x15c
-	// Line 5047, Address: 0x160418, Func Offset: 0x168
-	// Line 5048, Address: 0x160424, Func Offset: 0x174
-	// Line 5049, Address: 0x16042c, Func Offset: 0x17c
-	// Line 5048, Address: 0x160430, Func Offset: 0x180
-	// Line 5049, Address: 0x160434, Func Offset: 0x184
-	// Line 5051, Address: 0x16043c, Func Offset: 0x18c
-	// Line 5049, Address: 0x160440, Func Offset: 0x190
-	// Line 5051, Address: 0x160444, Func Offset: 0x194
-	// Line 5052, Address: 0x160448, Func Offset: 0x198
-	// Line 5051, Address: 0x160450, Func Offset: 0x1a0
-	// Line 5052, Address: 0x16045c, Func Offset: 0x1ac
-	// Line 5051, Address: 0x160460, Func Offset: 0x1b0
-	// Line 5052, Address: 0x160464, Func Offset: 0x1b4
-	// Line 5053, Address: 0x160470, Func Offset: 0x1c0
-	// Line 5052, Address: 0x160474, Func Offset: 0x1c4
-	// Line 5053, Address: 0x160478, Func Offset: 0x1c8
-	// Line 5054, Address: 0x16047c, Func Offset: 0x1cc
-	// Line 5053, Address: 0x160484, Func Offset: 0x1d4
-	// Line 5054, Address: 0x160490, Func Offset: 0x1e0
-	// Line 5053, Address: 0x160498, Func Offset: 0x1e8
-	// Line 5054, Address: 0x16049c, Func Offset: 0x1ec
-	// Line 5055, Address: 0x1604a4, Func Offset: 0x1f4
-	// Line 5054, Address: 0x1604a8, Func Offset: 0x1f8
-	// Line 5055, Address: 0x1604ac, Func Offset: 0x1fc
-	// Line 5058, Address: 0x1604c4, Func Offset: 0x214
-	// Func End, Address: 0x1604cc, Func Offset: 0x21c
-	scePrintf("bhLightParameterCSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4, v5, v6, v7, v8, v9;
+
+    bhScePtr += 2;
+    
+    v0 = *(unsigned short*)bhScePtr;
+    
+    bhScePtr += 2;
+
+    v1 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v2 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v3 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v4 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+    
+    v5 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v6 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v7 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v8 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    v9 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+    
+    bhCetask->e_lgt[0][0] = v0 / 100.0f;
+    bhCetask->e_lgt[0][1] = v1 / 100.0f;
+    bhCetask->e_lgt[0][2] = v2 / 100.0f;
+    bhCetask->e_lgt[0][3] = v3 / 100.0f;
+    bhCetask->e_lgt[0][4] = v4 / 100.0f;
+    
+    bhCetask->e_lgt[1][0] = v5 / 100.0f;
+    bhCetask->e_lgt[1][1] = v6 / 100.0f;
+    bhCetask->e_lgt[1][2] = v7 / 100.0f;
+    bhCetask->e_lgt[1][3] = v8 / 100.0f;
+    bhCetask->e_lgt[1][4] = v9 / 100.0f;
+    
+    return 1;
 }
 
 // 
