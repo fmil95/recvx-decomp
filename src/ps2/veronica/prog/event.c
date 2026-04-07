@@ -4717,23 +4717,22 @@ unsigned int bhCamCheck()
 	scePrintf("bhCamCheck - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15ead0
+// 100% matching!
 unsigned int bhRandamSet()
 {
-	int v1;
-	int v0;
-	// Line 4574, Address: 0x15ead0, Func Offset: 0
-	// Line 4578, Address: 0x15eadc, Func Offset: 0xc
-	// Line 4579, Address: 0x15eaf0, Func Offset: 0x20
-	// Line 4580, Address: 0x15eafc, Func Offset: 0x2c
-	// Line 4582, Address: 0x15eb04, Func Offset: 0x34
-	// Line 4583, Address: 0x15eb40, Func Offset: 0x70
-	// Line 4584, Address: 0x15eb54, Func Offset: 0x84
-	// Line 4583, Address: 0x15eb58, Func Offset: 0x88
-	// Line 4585, Address: 0x15eb5c, Func Offset: 0x8c
-	// Func End, Address: 0x15eb6c, Func Offset: 0x9c
-	scePrintf("bhRandamSet - UNIMPLEMENTED!\n");
+	int v0, v1;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+    
+    v0 = 100.0f * (-rand() / -2.1474836E9f);
+
+    bhEtask->wpnl_no = v0 % v1;
+
+    return 1;
 }
 
 // 100% matching!
@@ -4742,7 +4741,7 @@ unsigned int bhEventSkipSet()
 	int v0;
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
