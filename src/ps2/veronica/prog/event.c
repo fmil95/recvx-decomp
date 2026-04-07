@@ -4763,43 +4763,51 @@ unsigned int bhDelYakkyou()
 	return 1;
 }
 
-// 
-// Start address: 0x15ec10
+// 100% matching!
 unsigned int bhObjAlphaSet()
 {
-	//_anon0* op;
-	int v5;
-	int v4;
-	int v3;
-	int v2;
-	int v1;
-	int v0;
-	// Line 4627, Address: 0x15ec10, Func Offset: 0
-	// Line 4631, Address: 0x15ec18, Func Offset: 0x8
-	// Line 4645, Address: 0x15ec20, Func Offset: 0x10
-	// Line 4631, Address: 0x15ec24, Func Offset: 0x14
-	// Line 4632, Address: 0x15ec30, Func Offset: 0x20
-	// Line 4633, Address: 0x15ec3c, Func Offset: 0x2c
-	// Line 4634, Address: 0x15ec48, Func Offset: 0x38
-	// Line 4635, Address: 0x15ec54, Func Offset: 0x44
-	// Line 4636, Address: 0x15ec60, Func Offset: 0x50
-	// Line 4637, Address: 0x15ec6c, Func Offset: 0x5c
-	// Line 4638, Address: 0x15ec78, Func Offset: 0x68
-	// Line 4639, Address: 0x15ec84, Func Offset: 0x74
-	// Line 4640, Address: 0x15ec90, Func Offset: 0x80
-	// Line 4641, Address: 0x15ec9c, Func Offset: 0x8c
-	// Line 4642, Address: 0x15eca8, Func Offset: 0x98
-	// Line 4643, Address: 0x15ecb4, Func Offset: 0xa4
-	// Line 4645, Address: 0x15ecbc, Func Offset: 0xac
-	// Line 4650, Address: 0x15ecd8, Func Offset: 0xc8
-	// Line 4651, Address: 0x15ed00, Func Offset: 0xf0
-	// Line 4656, Address: 0x15ed08, Func Offset: 0xf8
-	// Line 4659, Address: 0x15ed34, Func Offset: 0x124
-	// Line 4661, Address: 0x15ed3c, Func Offset: 0x12c
-	// Line 4660, Address: 0x15ed40, Func Offset: 0x130
-	// Line 4661, Address: 0x15ed44, Func Offset: 0x134
-	// Func End, Address: 0x15ed4c, Func Offset: 0x13c
-	scePrintf("bhObjAlphaSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2, v3, v4, v5;
+    O_WRK* op;
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+
+    v5 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    switch (v0) 
+    {
+    case 2:
+        op = &sys->obwp[v1];
+        break;
+    case 3:
+        op = &sys->itwp[v1];
+        break;
+    }
+
+    bhSetAlphaFadeObject(op, v2, v3, v4, v5);
+
+    return 1;
 }
 
 // 100% matching!
