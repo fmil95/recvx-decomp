@@ -4487,57 +4487,81 @@ unsigned int bhFixEventCamPly()
 	scePrintf("bhFixEventCamPly - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15e050
+// 100% matching!
 unsigned int bhObjLinkSetObjObj()
 {
-	int v4;
-	int v1;
-	int v0;
-	// Line 4300, Address: 0x15e050, Func Offset: 0
-	// Line 4311, Address: 0x15e058, Func Offset: 0x8
-	// Line 4300, Address: 0x15e060, Func Offset: 0x10
-	// Line 4301, Address: 0x15e06c, Func Offset: 0x1c
-	// Line 4302, Address: 0x15e078, Func Offset: 0x28
-	// Line 4303, Address: 0x15e084, Func Offset: 0x34
-	// Line 4311, Address: 0x15e08c, Func Offset: 0x3c
-	// Line 4303, Address: 0x15e09c, Func Offset: 0x4c
-	// Line 4311, Address: 0x15e0a0, Func Offset: 0x50
-	// Line 4304, Address: 0x15e0a4, Func Offset: 0x54
-	// Line 4311, Address: 0x15e0b0, Func Offset: 0x60
-	// Line 4314, Address: 0x15e0dc, Func Offset: 0x8c
-	// Line 4316, Address: 0x15e104, Func Offset: 0xb4
-	// Line 4318, Address: 0x15e118, Func Offset: 0xc8
-	// Line 4319, Address: 0x15e12c, Func Offset: 0xdc
-	// Line 4320, Address: 0x15e14c, Func Offset: 0xfc
-	// Line 4321, Address: 0x15e154, Func Offset: 0x104
-	// Line 4323, Address: 0x15e17c, Func Offset: 0x12c
-	// Line 4324, Address: 0x15e190, Func Offset: 0x140
-	// Line 4326, Address: 0x15e19c, Func Offset: 0x14c
-	// Line 4329, Address: 0x15e1a8, Func Offset: 0x158
-	// Line 4330, Address: 0x15e1b4, Func Offset: 0x164
-	// Line 4331, Address: 0x15e224, Func Offset: 0x1d4
-	// Line 4332, Address: 0x15e22c, Func Offset: 0x1dc
-	// Line 4334, Address: 0x15e290, Func Offset: 0x240
-	// Line 4337, Address: 0x15e298, Func Offset: 0x248
-	// Line 4334, Address: 0x15e29c, Func Offset: 0x24c
-	// Line 4337, Address: 0x15e2a4, Func Offset: 0x254
-	// Line 4338, Address: 0x15e2ac, Func Offset: 0x25c
-	// Line 4339, Address: 0x15e31c, Func Offset: 0x2cc
-	// Line 4340, Address: 0x15e324, Func Offset: 0x2d4
-	// Line 4342, Address: 0x15e388, Func Offset: 0x338
-	// Line 4345, Address: 0x15e390, Func Offset: 0x340
-	// Line 4342, Address: 0x15e394, Func Offset: 0x344
-	// Line 4345, Address: 0x15e39c, Func Offset: 0x34c
-	// Line 4346, Address: 0x15e3a4, Func Offset: 0x354
-	// Line 4347, Address: 0x15e414, Func Offset: 0x3c4
-	// Line 4348, Address: 0x15e41c, Func Offset: 0x3cc
-	// Line 4350, Address: 0x15e480, Func Offset: 0x430
-	// Line 4352, Address: 0x15e488, Func Offset: 0x438
-	// Line 4350, Address: 0x15e48c, Func Offset: 0x43c
-	// Line 4353, Address: 0x15e494, Func Offset: 0x444
-	// Func End, Address: 0x15e49c, Func Offset: 0x44c
-	scePrintf("bhObjLinkSetObjObj - UNIMPLEMENTED!\n");
+	int v0, v1, v4;
+    int v2, v3; // not from DWARF
+
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+    
+    sys->obwp[v1].lkwkp = (unsigned char*)&sys->obwp[v0];
+    
+    v2 = *bhScePtr;
+
+    sys->obwp[v1].lkono = v2;
+    
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    if (v3 == 0) 
+    {
+        sys->obwp[v1].flg |= 0x80;
+    } 
+    else 
+    {
+        sys->obwp[v1].flg &= ~0x80;
+    }
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    if ((v4 & 0x1)) 
+    {
+        sys->obwp[v1].lox = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        sys->obwp[v1].lox = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v4 & 0x2)) 
+    {
+        sys->obwp[v1].loy = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        sys->obwp[v1].loy = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v4 & 0x4)) 
+    {
+        sys->obwp[v1].loz = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        sys->obwp[v1].loz = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 100% matching!
@@ -4552,7 +4576,7 @@ unsigned int bhCamYureSet()
     bhScePtr++;
 
     v1 = *(unsigned short*)bhScePtr;
-    
+
     bhScePtr += 2;
     
     if (v0 == 0) 
@@ -4563,9 +4587,9 @@ unsigned int bhCamYureSet()
     } 
     else 
     {
-        cam.ofx = 0.0f;
-        cam.ofy = 0.0f;
-        cam.ofz = 0.0f;
+        cam.ofx = 0;
+        cam.ofy = 0;
+        cam.ofz = 0;
     }
 
     return 1;
