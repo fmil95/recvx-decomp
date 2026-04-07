@@ -101,22 +101,25 @@ void bhSetFloorNum(BH_PWORK* pp)
     }
 }
 
-// 
-// Start address: 0x14e3c0
+// 100% matching!
 int bhCheckFloorNum(float py)
 {
-	int fno;
-	int i;
-	// Line 305, Address: 0x14e3c0, Func Offset: 0
-	// Line 304, Address: 0x14e3c8, Func Offset: 0x8
-	// Line 305, Address: 0x14e3cc, Func Offset: 0xc
-	// Line 306, Address: 0x14e3d0, Func Offset: 0x10
-	// Line 308, Address: 0x14e418, Func Offset: 0x58
-	// Line 309, Address: 0x14e41c, Func Offset: 0x5c
-	// Line 310, Address: 0x14e420, Func Offset: 0x60
-	// Line 312, Address: 0x14e430, Func Offset: 0x70
-	// Func End, Address: 0x14e438, Func Offset: 0x78
-	scePrintf("bhCheckFloorNum - UNIMPLEMENTED!\n");
+    int i;
+    int fno;
+
+    fno = 2;
+    
+    for (i = 0; i < 31; i++)
+    {
+        if (((rom->grand[i]) && (py >= rom->grand[i])) || ((i == 2) && (py >= rom->grand[i]))) 
+        {
+            fno = i;
+        }
+    }
+
+    fno -= 2;
+    
+    return fno;
 }
 
 // 
