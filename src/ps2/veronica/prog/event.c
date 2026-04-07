@@ -4736,21 +4736,27 @@ unsigned int bhRandamSet()
 	scePrintf("bhRandamSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15eb70
+// 100% matching!
 unsigned int bhEventSkipSet()
 {
 	int v0;
-	// Line 4596, Address: 0x15eb70, Func Offset: 0
-	// Line 4597, Address: 0x15eb84, Func Offset: 0x14
-	// Line 4598, Address: 0x15eb90, Func Offset: 0x20
-	// Line 4600, Address: 0x15eb98, Func Offset: 0x28
-	// Line 4601, Address: 0x15eba0, Func Offset: 0x30
-	// Line 4602, Address: 0x15ebb4, Func Offset: 0x44
-	// Line 4603, Address: 0x15ebbc, Func Offset: 0x4c
-	// Line 4606, Address: 0x15ebd8, Func Offset: 0x68
-	// Func End, Address: 0x15ebe0, Func Offset: 0x70
-	scePrintf("bhEventSkipSet - UNIMPLEMENTED!\n");
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+    
+    if (v0 == 0) 
+    {
+        sys->gm_flg |= 0x40000000;
+    } 
+    else 
+    {
+        sys->gm_flg &= ~0x40000000;
+    }
+
+    return 1;
 }
 
 // 100% matching!
@@ -4770,7 +4776,7 @@ unsigned int bhObjAlphaSet()
     O_WRK* op;
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;

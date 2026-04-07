@@ -401,9 +401,9 @@ void bhDrawSpObject(O_WRK* op)
 	scePrintf("bhDrawSpObject - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2845d0
-void bhSetAlphaFadeObject(_anon0* op, int jntno, int jnt_n, int alpha, int count)
+void bhSetAlphaFadeObject(O_WRK* op, int jntno, int jnt_n, int alpha, int count)
 {
 	float* fwk;
 	int* iwk;
@@ -418,9 +418,10 @@ void bhSetAlphaFadeObject(_anon0* op, int jntno, int jnt_n, int alpha, int count
 	// Line 694, Address: 0x2845f8, Func Offset: 0x28
 	// Line 696, Address: 0x2845fc, Func Offset: 0x2c
 	// Func End, Address: 0x284604, Func Offset: 0x34
+	scePrintf("bhSetAlphaFadeObject - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x284610
 void bhControlAlphaFadeObject(_anon0* op)
 {
