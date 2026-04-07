@@ -4567,41 +4567,30 @@ unsigned int bhCamYureSet()
 	scePrintf("bhCamYureSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15e5d0
+// 100% matching!
 unsigned int bhInitCamSet()
 {
-	// Line 4389, Address: 0x15e5d0, Func Offset: 0
-	// Line 4390, Address: 0x15e5d8, Func Offset: 0x8
-	// Line 4396, Address: 0x15e5e0, Func Offset: 0x10
-	// Line 4398, Address: 0x15e5e4, Func Offset: 0x14
-	// Line 4392, Address: 0x15e5e8, Func Offset: 0x18
-	// Line 4390, Address: 0x15e5f0, Func Offset: 0x20
-	// Line 4392, Address: 0x15e5fc, Func Offset: 0x2c
-	// Line 4393, Address: 0x15e600, Func Offset: 0x30
-	// Line 4392, Address: 0x15e604, Func Offset: 0x34
-	// Line 4393, Address: 0x15e608, Func Offset: 0x38
-	// Line 4394, Address: 0x15e610, Func Offset: 0x40
-	// Line 4393, Address: 0x15e614, Func Offset: 0x44
-	// Line 4394, Address: 0x15e618, Func Offset: 0x48
-	// Line 4396, Address: 0x15e620, Func Offset: 0x50
-	// Line 4394, Address: 0x15e624, Func Offset: 0x54
-	// Line 4396, Address: 0x15e628, Func Offset: 0x58
-	// Line 4398, Address: 0x15e634, Func Offset: 0x64
-	// Line 4399, Address: 0x15e63c, Func Offset: 0x6c
-	// Line 4400, Address: 0x15e644, Func Offset: 0x74
-	// Line 4402, Address: 0x15e64c, Func Offset: 0x7c
-	// Line 4401, Address: 0x15e650, Func Offset: 0x80
-	// Line 4402, Address: 0x15e654, Func Offset: 0x84
-	// Func End, Address: 0x15e65c, Func Offset: 0x8c
-	scePrintf("bhInitCamSet - UNIMPLEMENTED!\n");
+	bhScePtr += 2;
+    
+    plp->gpx = plp->px;
+    plp->gpy = plp->py;
+    plp->gpz = plp->pz;
+
+    sys->st_flg &= ~0x1;
+    
+    bhCheckCut(1);
+
+    bhControlCamera();
+    bhControlLight();
+
+    return 1;
 }
 
 // 100% matching!
 unsigned int bhMesDispEndSet()
 {
 	bhScePtr += 2;
-    
+
     sys->mes_ct = 0;
     sys->mes_tim = 0;
     sys->mes_fls = 0;
