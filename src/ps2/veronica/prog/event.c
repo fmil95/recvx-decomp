@@ -5045,54 +5045,102 @@ unsigned int bhEffPop()
 	return 1;
 }
 
-// 
-// Start address: 0x15fdb0
+// 100% matching!
 unsigned int bhAreaSearchObj()
 {
-	float w_pz2;
-	float w_px2;
-	float w_pz1;
-	float w_px1;
-	BH_PWORK* e_workp;
-	int v2;
-	int v0;
-	// Line 4948, Address: 0x15fdb0, Func Offset: 0
-	// Line 4953, Address: 0x15fdb8, Func Offset: 0x8
-	// Line 4948, Address: 0x15fdbc, Func Offset: 0xc
-	// Line 4949, Address: 0x15fdc8, Func Offset: 0x18
-	// Line 4950, Address: 0x15fdd4, Func Offset: 0x24
-	// Line 4953, Address: 0x15fde0, Func Offset: 0x30
-	// Line 4955, Address: 0x15fe1c, Func Offset: 0x6c
-	// Line 4956, Address: 0x15fe20, Func Offset: 0x70
-	// Line 4962, Address: 0x15fe28, Func Offset: 0x78
-	// Line 4963, Address: 0x15fe64, Func Offset: 0xb4
-	// Line 4968, Address: 0x15fe6c, Func Offset: 0xbc
-	// Line 4969, Address: 0x15fe94, Func Offset: 0xe4
-	// Line 4974, Address: 0x15fe9c, Func Offset: 0xec
-	// Line 4978, Address: 0x15fec8, Func Offset: 0x118
-	// Line 4979, Address: 0x15fedc, Func Offset: 0x12c
-	// Line 4980, Address: 0x15fee8, Func Offset: 0x138
-	// Line 4984, Address: 0x15fef4, Func Offset: 0x144
-	// Line 4985, Address: 0x15ffac, Func Offset: 0x1fc
-	// Line 4988, Address: 0x15ffb4, Func Offset: 0x204
-	// Line 4985, Address: 0x15ffb8, Func Offset: 0x208
-	// Line 4988, Address: 0x15ffc0, Func Offset: 0x210
-	// Line 4989, Address: 0x160074, Func Offset: 0x2c4
-	// Line 4991, Address: 0x160088, Func Offset: 0x2d8
-	// Line 4992, Address: 0x16009c, Func Offset: 0x2ec
-	// Line 4993, Address: 0x1600a8, Func Offset: 0x2f8
-	// Line 4997, Address: 0x1600b4, Func Offset: 0x304
-	// Line 4998, Address: 0x16016c, Func Offset: 0x3bc
-	// Line 5001, Address: 0x160174, Func Offset: 0x3c4
-	// Line 4998, Address: 0x160178, Func Offset: 0x3c8
-	// Line 5001, Address: 0x160180, Func Offset: 0x3d0
-	// Line 5002, Address: 0x160234, Func Offset: 0x484
-	// Line 5004, Address: 0x160248, Func Offset: 0x498
-	// Line 5007, Address: 0x160290, Func Offset: 0x4e0
-	// Line 5009, Address: 0x160298, Func Offset: 0x4e8
-	// Line 5010, Address: 0x16029c, Func Offset: 0x4ec
-	// Func End, Address: 0x1602a4, Func Offset: 0x4f4
-	scePrintf("bhAreaSearchObj - UNIMPLEMENTED!\n");
+	int v0, v2; 
+    BH_PWORK* e_workp; 
+    float w_px1, w_pz1; 
+    float w_px2, w_pz2; 
+    int v1;          // not from DWARF
+    ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    switch (v1) 
+    {
+    case 0:
+        e_workp = plp;
+        break;
+    case 1:
+        enep = &rom->enep[v0];
+        e_workp = &ene[enep->wrk_no];
+        break;
+    case 2:
+        e_workp = (BH_PWORK*)&sys->itwp[v0];
+        break;
+    case 3:
+        e_workp = (BH_PWORK*)&sys->itwp[v0];
+        break;
+    }
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    if ((v2 & 0x1)) 
+    { 
+        w_px1 = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    }
+    else 
+    { 
+        w_px1 = *(unsigned short*)bhScePtr / 100.0f; 
+    }
+
+    bhScePtr += 2;
+
+    if ((v2 & 0x4)) 
+    { 
+        w_pz1 = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    }
+    else 
+    { 
+        w_pz1 = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+
+    if ((v2 & 0x1)) 
+    { 
+        w_px2 = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    }
+    else 
+    { 
+        w_px2 = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v2 & 0x4)) 
+    { 
+        w_pz2 = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    }
+    else 
+    { 
+        w_pz2 = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+
+    if (((w_px1 <= e_workp->px) && (w_px2 > e_workp->px)) && ((w_pz1 <= e_workp->pz) && (w_pz2 > e_workp->pz))) 
+    {
+        return 1;
+    }
+
+    return 0;
 }
 
 // 100% matching!
@@ -5101,7 +5149,7 @@ unsigned int bhLightParameterCSet()
 	int v0, v1, v2, v3, v4, v5, v6, v7, v8, v9;
 
     bhScePtr += 2;
-    
+
     v0 = *(unsigned short*)bhScePtr;
     
     bhScePtr += 2;
