@@ -4299,66 +4299,66 @@ unsigned int bhEffBloodSet()
     return 1;
 }
 
-// 
-// Start address: 0x15d6d0
+// 100% matching!
 unsigned int bhEffBloodPoolSet()
 {
-	int ang;
-	//_anon39 gpos;
-	BH_PWORK* epw;
-	int v2;
-	int v1;
-	int v0;
-	// Line 4051, Address: 0x15d6d0, Func Offset: 0
-	// Line 4058, Address: 0x15d6e8, Func Offset: 0x18
-	// Line 4071, Address: 0x15d6f0, Func Offset: 0x20
-	// Line 4074, Address: 0x15d6f8, Func Offset: 0x28
-	// Line 4071, Address: 0x15d6fc, Func Offset: 0x2c
-	// Line 4058, Address: 0x15d704, Func Offset: 0x34
-	// Line 4059, Address: 0x15d710, Func Offset: 0x40
-	// Line 4060, Address: 0x15d71c, Func Offset: 0x4c
-	// Line 4061, Address: 0x15d728, Func Offset: 0x58
-	// Line 4071, Address: 0x15d730, Func Offset: 0x60
-	// Line 4061, Address: 0x15d73c, Func Offset: 0x6c
-	// Line 4062, Address: 0x15d740, Func Offset: 0x70
-	// Line 4063, Address: 0x15d74c, Func Offset: 0x7c
-	// Line 4064, Address: 0x15d758, Func Offset: 0x88
-	// Line 4071, Address: 0x15d764, Func Offset: 0x94
-	// Line 4074, Address: 0x15d788, Func Offset: 0xb8
-	// Line 4076, Address: 0x15d7ac, Func Offset: 0xdc
-	// Line 4077, Address: 0x15d7b8, Func Offset: 0xe8
-	// Line 4076, Address: 0x15d7bc, Func Offset: 0xec
-	// Line 4077, Address: 0x15d7c0, Func Offset: 0xf0
-	// Line 4076, Address: 0x15d7c4, Func Offset: 0xf4
-	// Line 4077, Address: 0x15d7d4, Func Offset: 0x104
-	// Line 4078, Address: 0x15d7e4, Func Offset: 0x114
-	// Line 4079, Address: 0x15d7f4, Func Offset: 0x124
-	// Line 4083, Address: 0x15d80c, Func Offset: 0x13c
-	// Line 4085, Address: 0x15d82c, Func Offset: 0x15c
-	// Line 4087, Address: 0x15d834, Func Offset: 0x164
-	// Line 4088, Address: 0x15d840, Func Offset: 0x170
-	// Line 4087, Address: 0x15d844, Func Offset: 0x174
-	// Line 4088, Address: 0x15d848, Func Offset: 0x178
-	// Line 4087, Address: 0x15d84c, Func Offset: 0x17c
-	// Line 4088, Address: 0x15d850, Func Offset: 0x180
-	// Line 4089, Address: 0x15d860, Func Offset: 0x190
-	// Line 4090, Address: 0x15d870, Func Offset: 0x1a0
-	// Line 4094, Address: 0x15d888, Func Offset: 0x1b8
-	// Line 4095, Address: 0x15d8a8, Func Offset: 0x1d8
-	// Line 4097, Address: 0x15d8b0, Func Offset: 0x1e0
-	// Line 4098, Address: 0x15d8bc, Func Offset: 0x1ec
-	// Line 4097, Address: 0x15d8c0, Func Offset: 0x1f0
-	// Line 4098, Address: 0x15d8c4, Func Offset: 0x1f4
-	// Line 4097, Address: 0x15d8c8, Func Offset: 0x1f8
-	// Line 4098, Address: 0x15d8cc, Func Offset: 0x1fc
-	// Line 4099, Address: 0x15d8dc, Func Offset: 0x20c
-	// Line 4100, Address: 0x15d8ec, Func Offset: 0x21c
-	// Line 4101, Address: 0x15d904, Func Offset: 0x234
-	// Line 4106, Address: 0x15d924, Func Offset: 0x254
-	// Line 4105, Address: 0x15d938, Func Offset: 0x268
-	// Line 4106, Address: 0x15d93c, Func Offset: 0x26c
-	// Func End, Address: 0x15d944, Func Offset: 0x274
-	scePrintf("bhEffBloodPoolSet - UNIMPLEMENTED!\n");
+	int v0, v1, v2; 
+    BH_PWORK* epw; 
+    NJS_POINT3 gpos; 
+    int ang; 
+    ETTY_WORK* enep; // not from DWARF
+    
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+
+    v2 = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+    
+    enep = &rom->enep[v0];
+    epw = &ene[enep->wrk_no];
+
+    epw->djnt_no = v1;
+    
+    switch (v1) 
+    { 
+    case 0:
+        ang = (unsigned short)((epw->ay + epw->mlwP->objP[1].ang[1]) + (32767 + 1));
+
+        gpos.x = epw->mlwP->owP->mtx[12] - njSin(ang);
+        gpos.y = epw->mlwP->owP->mtx[13];
+        gpos.z = epw->mlwP->owP->mtx[14] - njCos(ang);
+        
+        bhSetBloodPoolLnk(NULL, &gpos, ang, &evnt_BldTbl2, v2);
+        break;
+    case 1:
+        ang = epw->ay + epw->mlwP->objP[1].ang[1];
+
+        gpos.x = epw->mlwP->owP->mtx[12] - njSin(ang);
+        gpos.y = epw->mlwP->owP->mtx[13];
+        gpos.z = epw->mlwP->owP->mtx[14] - njCos(ang);
+        
+        bhSetBloodPoolLnk(NULL, &gpos, ang, &evnt_BldTbl2, v2);
+        break;
+    case 2:
+        ang = epw->ay + epw->mlwP->objP[1].ang[1];
+
+        gpos.x = epw->mlwP->owP->mtx[12] - njSin(ang);
+        gpos.y = epw->mlwP->owP->mtx[13];
+        gpos.z = epw->mlwP->owP->mtx[14] - njCos(ang);
+
+        bhSetBloodPoolLnk(NULL, &gpos, ang, &evnt_BldTbl, v2);
+        break;
+    }
+    
+    return 1;
 }
 
 // 100% matching!
