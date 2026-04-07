@@ -23,6 +23,7 @@
 #include "sdfunc.h"
 #include "sub1.h"
 #include "system.h"
+#include "zonzon.h"
 #include "main.h"
 
 #pragma optimization_level 4 // TODO: remove this pragma and compile the file passing the -O4,p flag instead 
@@ -4216,64 +4217,86 @@ unsigned int bhPlItemBlockCk()
 	scePrintf("bhPlItemBlockCk - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15d300
+// 100% matching!
 unsigned int bhEffBloodSet()
 {
-	//_anon39 ofp;
-	BH_PWORK* epw;
-	int v2;
-	int v1;
-	int v0;
-	// Line 3981, Address: 0x15d300, Func Offset: 0
-	// Line 3987, Address: 0x15d310, Func Offset: 0x10
-	// Line 4000, Address: 0x15d318, Func Offset: 0x18
-	// Line 3987, Address: 0x15d328, Func Offset: 0x28
-	// Line 3988, Address: 0x15d334, Func Offset: 0x34
-	// Line 3989, Address: 0x15d340, Func Offset: 0x40
-	// Line 3990, Address: 0x15d34c, Func Offset: 0x4c
-	// Line 4000, Address: 0x15d354, Func Offset: 0x54
-	// Line 3990, Address: 0x15d360, Func Offset: 0x60
-	// Line 3991, Address: 0x15d364, Func Offset: 0x64
-	// Line 3992, Address: 0x15d370, Func Offset: 0x70
-	// Line 3993, Address: 0x15d37c, Func Offset: 0x7c
-	// Line 4000, Address: 0x15d388, Func Offset: 0x88
-	// Line 4004, Address: 0x15d394, Func Offset: 0x94
-	// Line 4000, Address: 0x15d398, Func Offset: 0x98
-	// Line 4004, Address: 0x15d3b0, Func Offset: 0xb0
-	// Line 4005, Address: 0x15d3b8, Func Offset: 0xb8
-	// Line 4006, Address: 0x15d414, Func Offset: 0x114
-	// Line 4007, Address: 0x15d41c, Func Offset: 0x11c
-	// Line 4009, Address: 0x15d46c, Func Offset: 0x16c
-	// Line 4012, Address: 0x15d474, Func Offset: 0x174
-	// Line 4009, Address: 0x15d478, Func Offset: 0x178
-	// Line 4012, Address: 0x15d480, Func Offset: 0x180
-	// Line 4013, Address: 0x15d488, Func Offset: 0x188
-	// Line 4014, Address: 0x15d4e4, Func Offset: 0x1e4
-	// Line 4015, Address: 0x15d4ec, Func Offset: 0x1ec
-	// Line 4017, Address: 0x15d53c, Func Offset: 0x23c
-	// Line 4020, Address: 0x15d544, Func Offset: 0x244
-	// Line 4017, Address: 0x15d548, Func Offset: 0x248
-	// Line 4020, Address: 0x15d550, Func Offset: 0x250
-	// Line 4021, Address: 0x15d558, Func Offset: 0x258
-	// Line 4022, Address: 0x15d5b4, Func Offset: 0x2b4
-	// Line 4023, Address: 0x15d5bc, Func Offset: 0x2bc
-	// Line 4025, Address: 0x15d60c, Func Offset: 0x30c
-	// Line 4027, Address: 0x15d620, Func Offset: 0x320
-	// Line 4028, Address: 0x15d62c, Func Offset: 0x32c
-	// Line 4029, Address: 0x15d638, Func Offset: 0x338
-	// Line 4030, Address: 0x15d644, Func Offset: 0x344
-	// Line 4034, Address: 0x15d650, Func Offset: 0x350
-	// Line 4031, Address: 0x15d654, Func Offset: 0x354
-	// Line 4032, Address: 0x15d660, Func Offset: 0x360
-	// Line 4034, Address: 0x15d668, Func Offset: 0x368
-	// Line 4035, Address: 0x15d670, Func Offset: 0x370
-	// Line 4039, Address: 0x15d674, Func Offset: 0x374
-	// Line 4043, Address: 0x15d6b4, Func Offset: 0x3b4
-	// Line 4042, Address: 0x15d6c0, Func Offset: 0x3c0
-	// Line 4043, Address: 0x15d6c4, Func Offset: 0x3c4
-	// Func End, Address: 0x15d6cc, Func Offset: 0x3cc
-	scePrintf("bhEffBloodSet - UNIMPLEMENTED!\n");
+    int v0, v1, v2;
+    BH_PWORK* epw;
+    NJS_POINT3 ofp;
+    ETTY_WORK* enep; // not from DWARF
+    
+    bhScePtr++;
+    
+    v0 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    v2 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    enep = &rom->enep[v0];
+    epw = &ene[enep->wrk_no];
+    
+    epw->djnt_no = v1;
+    
+    if ((v2 & 0x1)) 
+    {
+        ofp.x = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        ofp.x = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+
+    if ((v2 & 0x2)) 
+    {
+        ofp.y = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else
+    {
+        ofp.y = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v2 & 0x4)) 
+    {
+        ofp.z = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        ofp.z = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    if ((v1 & 0x2)) 
+    {
+        v2 = -v2;
+    } 
+    
+    bhEne_SetBlood2(epw, v0, &ofp, (short)((short)v2 * (65536.0f / 360.0f)) + 0);
+    
+    return 1;
 }
 
 // 
