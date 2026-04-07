@@ -4616,43 +4616,88 @@ unsigned int bhMesDispEndSet()
 	scePrintf("bhMesDispEndSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15e6f0
+// 100% matching!
 unsigned int bhPadCheck()
 {
-	int v1;
-	int v0;
-	// Line 4434, Address: 0x15e6f0, Func Offset: 0
-	// Line 4444, Address: 0x15e6f8, Func Offset: 0x8
-	// Line 4434, Address: 0x15e700, Func Offset: 0x10
-	// Line 4435, Address: 0x15e70c, Func Offset: 0x1c
-	// Line 4436, Address: 0x15e718, Func Offset: 0x28
-	// Line 4437, Address: 0x15e724, Func Offset: 0x34
-	// Line 4438, Address: 0x15e730, Func Offset: 0x40
-	// Line 4444, Address: 0x15e73c, Func Offset: 0x4c
-	// Line 4446, Address: 0x15e74c, Func Offset: 0x5c
-	// Line 4448, Address: 0x15e774, Func Offset: 0x84
-	// Line 4450, Address: 0x15e7a0, Func Offset: 0xb0
-	// Line 4454, Address: 0x15e7a8, Func Offset: 0xb8
-	// Line 4456, Address: 0x15e7e0, Func Offset: 0xf0
-	// Line 4460, Address: 0x15e7e8, Func Offset: 0xf8
-	// Line 4462, Address: 0x15e814, Func Offset: 0x124
-	// Line 4464, Address: 0x15e81c, Func Offset: 0x12c
-	// Line 4466, Address: 0x15e840, Func Offset: 0x150
-	// Line 4470, Address: 0x15e848, Func Offset: 0x158
-	// Line 4472, Address: 0x15e868, Func Offset: 0x178
-	// Line 4476, Address: 0x15e870, Func Offset: 0x180
-	// Line 4478, Address: 0x15e89c, Func Offset: 0x1ac
-	// Line 4482, Address: 0x15e8a4, Func Offset: 0x1b4
-	// Line 4484, Address: 0x15e8c4, Func Offset: 0x1d4
-	// Line 4486, Address: 0x15e8cc, Func Offset: 0x1dc
-	// Line 4488, Address: 0x15e8ec, Func Offset: 0x1fc
-	// Line 4492, Address: 0x15e8f4, Func Offset: 0x204
-	// Line 4494, Address: 0x15e930, Func Offset: 0x240
-	// Line 4499, Address: 0x15e938, Func Offset: 0x248
-	// Line 4500, Address: 0x15e93c, Func Offset: 0x24c
-	// Func End, Address: 0x15e944, Func Offset: 0x254
-	scePrintf("bhPadCheck - UNIMPLEMENTED!\n");
+	int v0, v1;
+    
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr += 4;
+    
+    if (!(sys->ts_flg & 0x80)) 
+    {
+        switch (v1) 
+        {
+        case 0:
+            if ((sys->pad_ps & (1 << v0)) && (!(sys->pad_ps & 0xE000))) 
+            {
+                return 0;
+            }
+
+            break;
+        case 1:
+            if ((sys->pad_on & (1 << v0)) && (!(sys->pad_ps & 0xE000))) 
+            {
+                return 0;
+            }
+
+            break;
+        case 2:
+            if ((sys->pad_ps & (1 << v0)) && (!(sys->pad_ps & 0xE000))) 
+            {
+                return 0;
+            }
+
+            if ((sys->pad_on & (1 << v0)) && (!(sys->pad_ps & 0xE000))) 
+            {
+                return 0;
+            }
+
+            break;
+        case 3:
+            if ((sys->pad_ps != 0) && (!(sys->pad_ps & 0xE000))) 
+            {
+                return 0;
+            }
+
+            break;
+        case 4:
+            if ((sys->pad_on != 0) && (!(sys->pad_ps & 0xE000))) 
+            {
+                return 0;
+            }
+
+            break;
+        case 5:
+            if ((sys->pad_ps != 0) && (!(sys->pad_ps & 0xE000))) 
+            {
+                return 0;
+            }
+
+            if ((sys->pad_on != 0) && (!(sys->pad_ps & 0xE000))) 
+            {
+                return 0;
+            }
+
+            break;
+        case 6:
+            if (((sys->pad_ps & 0x200)) && (!(sys->pad_on & 0x10)) && (!(sys->pad_ps & 0xE000))) 
+            {
+                return 0;
+            }
+
+            break;
+        }
+    }
+
+    return 1;
 }
 
 // 100% matching!
@@ -5326,7 +5371,7 @@ unsigned int bhLightParameterStart()
 {
 	int v0, v1;
     LGT_WORK* lp;
-    float ips_w[3][4]; // TODO: should be [4][3] instead
+    float ips_w[4][3]; 
     float ans[3]; 
     float frm; 
 
@@ -5350,13 +5395,13 @@ unsigned int bhLightParameterStart()
     }
     
     ips_w[0][0] = bhCetask->e_lgt[1][0];
-    ips_w[0][3] = bhCetask->e_lgt[0][0];
+    ips_w[1][0] = bhCetask->e_lgt[0][0];
     
     ips_w[0][1] = bhCetask->e_lgt[1][1];
-    ips_w[1][0] = bhCetask->e_lgt[0][1];
+    ips_w[1][1] = bhCetask->e_lgt[0][1];
     
     ips_w[0][2] = bhCetask->e_lgt[1][2];
-    ips_w[1][1] = bhCetask->e_lgt[0][2];
+    ips_w[1][2] = bhCetask->e_lgt[0][2];
     
     frm = (1.0f / bhCetask->cnt3) * bhCetask->cnt2;
 
@@ -5367,10 +5412,10 @@ unsigned int bhLightParameterStart()
     lp->b = ans[2];
     
     ips_w[0][0] = bhCetask->e_lgt[1][3];
-    ips_w[0][3] = bhCetask->e_lgt[0][3];
+    ips_w[1][0] = bhCetask->e_lgt[0][3];
     
     ips_w[0][1] = bhCetask->e_lgt[1][4];
-    ips_w[1][0] = bhCetask->e_lgt[0][4];
+    ips_w[1][1] = bhCetask->e_lgt[0][4];
 
     njLinear(ips_w[0], ans, NULL, frm);
 
