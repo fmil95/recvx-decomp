@@ -4972,57 +4972,77 @@ unsigned int bhHEffectSet()
 	scePrintf("bhHEffectSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15f9b0
+// 100% matching!
 unsigned int bhObjLinkSetObjPly()
 {
 	int v1;
-	// Line 4857, Address: 0x15f9b0, Func Offset: 0
-	// Line 4861, Address: 0x15f9b8, Func Offset: 0x8
-	// Line 4857, Address: 0x15f9c0, Func Offset: 0x10
-	// Line 4861, Address: 0x15f9c4, Func Offset: 0x14
-	// Line 4857, Address: 0x15f9cc, Func Offset: 0x1c
-	// Line 4861, Address: 0x15f9d4, Func Offset: 0x24
-	// Line 4867, Address: 0x15f9ec, Func Offset: 0x3c
-	// Line 4861, Address: 0x15f9f0, Func Offset: 0x40
-	// Line 4867, Address: 0x15fa0c, Func Offset: 0x5c
-	// Line 4869, Address: 0x15fa10, Func Offset: 0x60
-	// Line 4867, Address: 0x15fa18, Func Offset: 0x68
-	// Line 4868, Address: 0x15fa24, Func Offset: 0x74
-	// Line 4871, Address: 0x15fa30, Func Offset: 0x80
-	// Line 4869, Address: 0x15fa34, Func Offset: 0x84
-	// Line 4871, Address: 0x15fa38, Func Offset: 0x88
-	// Line 4873, Address: 0x15fa48, Func Offset: 0x98
-	// Line 4874, Address: 0x15fa5c, Func Offset: 0xac
-	// Line 4875, Address: 0x15fa6c, Func Offset: 0xbc
-	// Line 4876, Address: 0x15fa74, Func Offset: 0xc4
-	// Line 4878, Address: 0x15fa8c, Func Offset: 0xdc
-	// Line 4879, Address: 0x15faa0, Func Offset: 0xf0
-	// Line 4881, Address: 0x15faac, Func Offset: 0xfc
-	// Line 4884, Address: 0x15fab8, Func Offset: 0x108
-	// Line 4885, Address: 0x15fac4, Func Offset: 0x114
-	// Line 4886, Address: 0x15fb24, Func Offset: 0x174
-	// Line 4887, Address: 0x15fb2c, Func Offset: 0x17c
-	// Line 4889, Address: 0x15fb80, Func Offset: 0x1d0
-	// Line 4892, Address: 0x15fb88, Func Offset: 0x1d8
-	// Line 4889, Address: 0x15fb8c, Func Offset: 0x1dc
-	// Line 4892, Address: 0x15fb94, Func Offset: 0x1e4
-	// Line 4893, Address: 0x15fb9c, Func Offset: 0x1ec
-	// Line 4894, Address: 0x15fbfc, Func Offset: 0x24c
-	// Line 4895, Address: 0x15fc04, Func Offset: 0x254
-	// Line 4897, Address: 0x15fc58, Func Offset: 0x2a8
-	// Line 4900, Address: 0x15fc60, Func Offset: 0x2b0
-	// Line 4897, Address: 0x15fc64, Func Offset: 0x2b4
-	// Line 4900, Address: 0x15fc6c, Func Offset: 0x2bc
-	// Line 4901, Address: 0x15fc74, Func Offset: 0x2c4
-	// Line 4902, Address: 0x15fcd4, Func Offset: 0x324
-	// Line 4903, Address: 0x15fcdc, Func Offset: 0x32c
-	// Line 4905, Address: 0x15fd30, Func Offset: 0x380
-	// Line 4907, Address: 0x15fd38, Func Offset: 0x388
-	// Line 4905, Address: 0x15fd3c, Func Offset: 0x38c
-	// Line 4908, Address: 0x15fd44, Func Offset: 0x394
-	// Func End, Address: 0x15fd4c, Func Offset: 0x39c
-	scePrintf("bhObjLinkSetObjPly - UNIMPLEMENTED!\n");
+    int v0; // not from DWARF
+
+	bhScePtr++;
+    
+    v0 = *bhScePtr;
+
+    plp->lkwkp = (unsigned char*)&sys->obwp[v0];
+
+    bhScePtr += 2;
+
+    v1 = *bhScePtr;
+
+    plp->lkono = v1;
+    
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    if (v1 == 0) 
+    {
+        plp->flg |= 0x80;
+    } 
+    else 
+    {
+        plp->flg &= ~0x80;
+    }
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+    
+    bhScePtr++;
+    
+    if ((v1 & 0x1)) 
+    {
+        plp->lox = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        plp->lox = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v1 & 0x2)) 
+    {
+        plp->loy = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        plp->loy = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    if ((v1 & 0x4)) 
+    {
+        plp->loz = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+    } 
+    else 
+    {
+        plp->loz = *(unsigned short*)bhScePtr / 100.0f;
+    }
+
+    bhScePtr += 2;
+    
+    return 1;
 }
 
 // 100% matching!
