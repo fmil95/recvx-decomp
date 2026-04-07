@@ -4100,72 +4100,114 @@ unsigned int bhFogColorSet()
 	scePrintf("bhFogColorSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x15caf0
+// 100% matching!
 unsigned int bhEffectSandSet()
 {
-	//_anon39 pos;
-	BH_PWORK* epw;
-	unsigned int v2;
-	unsigned int v1;
-	unsigned int v0;
-	// Line 3824, Address: 0x15caf0, Func Offset: 0
-	// Line 3832, Address: 0x15caf8, Func Offset: 0x8
-	// Line 3845, Address: 0x15cb00, Func Offset: 0x10
-	// Line 3832, Address: 0x15cb10, Func Offset: 0x20
-	// Line 3833, Address: 0x15cb1c, Func Offset: 0x2c
-	// Line 3834, Address: 0x15cb28, Func Offset: 0x38
-	// Line 3835, Address: 0x15cb34, Func Offset: 0x44
-	// Line 3845, Address: 0x15cb3c, Func Offset: 0x4c
-	// Line 3835, Address: 0x15cb48, Func Offset: 0x58
-	// Line 3836, Address: 0x15cb4c, Func Offset: 0x5c
-	// Line 3837, Address: 0x15cb58, Func Offset: 0x68
-	// Line 3838, Address: 0x15cb64, Func Offset: 0x74
-	// Line 3845, Address: 0x15cb70, Func Offset: 0x80
-	// Line 3847, Address: 0x15cb90, Func Offset: 0xa0
-	// Line 3849, Address: 0x15cb98, Func Offset: 0xa8
-	// Line 3850, Address: 0x15cba4, Func Offset: 0xb4
-	// Line 3851, Address: 0x15cc00, Func Offset: 0x110
-	// Line 3852, Address: 0x15cc08, Func Offset: 0x118
-	// Line 3854, Address: 0x15cc58, Func Offset: 0x168
-	// Line 3857, Address: 0x15cc60, Func Offset: 0x170
-	// Line 3854, Address: 0x15cc64, Func Offset: 0x174
-	// Line 3857, Address: 0x15cc6c, Func Offset: 0x17c
-	// Line 3858, Address: 0x15cc74, Func Offset: 0x184
-	// Line 3859, Address: 0x15ccd0, Func Offset: 0x1e0
-	// Line 3860, Address: 0x15ccd8, Func Offset: 0x1e8
-	// Line 3862, Address: 0x15cd28, Func Offset: 0x238
-	// Line 3865, Address: 0x15cd30, Func Offset: 0x240
-	// Line 3862, Address: 0x15cd34, Func Offset: 0x244
-	// Line 3865, Address: 0x15cd3c, Func Offset: 0x24c
-	// Line 3866, Address: 0x15cd44, Func Offset: 0x254
-	// Line 3867, Address: 0x15cda0, Func Offset: 0x2b0
-	// Line 3868, Address: 0x15cda8, Func Offset: 0x2b8
-	// Line 3870, Address: 0x15cdf8, Func Offset: 0x308
-	// Line 3871, Address: 0x15ce08, Func Offset: 0x318
-	// Line 3876, Address: 0x15ce10, Func Offset: 0x320
-	// Line 3878, Address: 0x15cec8, Func Offset: 0x3d8
-	// Line 3884, Address: 0x15ced0, Func Offset: 0x3e0
-	// Line 3878, Address: 0x15ced4, Func Offset: 0x3e4
-	// Line 3884, Address: 0x15cedc, Func Offset: 0x3ec
-	// Line 3886, Address: 0x15cf90, Func Offset: 0x4a0
-	// Line 3892, Address: 0x15cf98, Func Offset: 0x4a8
-	// Line 3886, Address: 0x15cf9c, Func Offset: 0x4ac
-	// Line 3892, Address: 0x15cfa4, Func Offset: 0x4b4
-	// Line 3894, Address: 0x15d058, Func Offset: 0x568
-	// Line 3895, Address: 0x15d06c, Func Offset: 0x57c
-	// Line 3897, Address: 0x15d078, Func Offset: 0x588
-	// Line 3898, Address: 0x15d07c, Func Offset: 0x58c
-	// Line 3901, Address: 0x15d088, Func Offset: 0x598
-	// Line 3904, Address: 0x15d090, Func Offset: 0x5a0
-	// Line 3901, Address: 0x15d094, Func Offset: 0x5a4
-	// Line 3902, Address: 0x15d098, Func Offset: 0x5a8
-	// Line 3904, Address: 0x15d0a0, Func Offset: 0x5b0
-	// Line 3907, Address: 0x15d0a8, Func Offset: 0x5b8
-	// Line 3906, Address: 0x15d0ac, Func Offset: 0x5bc
-	// Line 3907, Address: 0x15d0b0, Func Offset: 0x5c0
-	// Func End, Address: 0x15d0b8, Func Offset: 0x5c8
-	scePrintf("bhEffectSandSet - UNIMPLEMENTED!\n");
+	unsigned int v0, v1, v2;
+    BH_PWORK* epw; 
+    NJS_POINT3 pos;
+    ETTY_WORK* enep; // not from DWARF
+    float x, y, z;   // not from DWARF
+    
+    bhScePtr++;
+
+    v0 = *bhScePtr;
+
+    bhScePtr++;
+
+    v1 = *bhScePtr;
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+   
+    enep = &rom->enep[v0];
+    epw = &ene[enep->wrk_no];
+
+    if (v2 == 0) 
+    {
+        if ((v1 & 0x1)) 
+        {
+            pos.x = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+        } 
+        else 
+        {
+            pos.x = *(unsigned short*)bhScePtr / 100.0f;
+        }
+
+        bhScePtr += 2;
+        
+        if ((v1 & 0x2)) 
+        {
+            pos.y = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+        } 
+        else 
+        {
+            pos.y = *(unsigned short*)bhScePtr / 100.0f;
+        }
+
+        bhScePtr += 2;
+        
+        if ((v1 & 0x4)) 
+        {
+            pos.z = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+        } 
+        else 
+        {
+            pos.z = *(unsigned short*)bhScePtr / 100.0f;;
+        }
+
+        bhScePtr += 2;
+    } 
+    else 
+    {
+        if ((v1 & 0x1)) 
+        {
+            x = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+        } 
+        else 
+        {
+            x = *(unsigned short*)bhScePtr / 100.0f;
+        }
+
+        bhScePtr += 2;
+
+        if ((v1 & 0x2)) 
+        {
+            y = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+        } 
+        else 
+        {
+            y = *(unsigned short*)bhScePtr / 100.0f;
+        }
+
+        bhScePtr += 2;
+
+        if ((v1 & 0x4)) 
+        {
+            z = -1.0f * (*(unsigned short*)bhScePtr / 100.0f);
+        } 
+        else 
+        {
+            z = *(unsigned short*)bhScePtr / 100.0f;
+        }
+
+        bhScePtr += 2;
+
+        pos.x = epw->px + x;
+        pos.y = y;
+        pos.z = epw->pz + z;
+    }
+    
+    v1 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    bhEne02_SetSandEffect(epw, &pos, v1, v2);
+    
+    return 1;
 }
 
 // 100% matching!
@@ -4195,20 +4237,20 @@ unsigned int bhPlItemBlockCk()
 
             switch ((unsigned char)(sys->itm[cnt] >> 16)) 
             {
-                case 1:
-                case 2:
-                case 3:
-                case 33:
-                case 34:
-                case 142:
-                    wicnt++;
-                    break;
+            case 1:
+            case 2:
+            case 3:
+            case 33:
+            case 34:
+            case 142:
+                wicnt++;
+                break;
             }
         }
     } 
     else 
     {
-        for (wicnt = 0, icnt = 0, cnt = (sys->ply_id * 16) + 2; (cnt < (sys->ply_id * 16) + 10); cnt++) 
+        for (wicnt = 0, icnt = 0, cnt = (sys->ply_id * 16) + 2; cnt < ((sys->ply_id * 16) + 10); cnt++) 
         {
             if (sys->itm[cnt] == 0) 
             {
