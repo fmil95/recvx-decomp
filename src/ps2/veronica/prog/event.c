@@ -5663,27 +5663,37 @@ unsigned int bhSoundPanSet()
 	scePrintf("bhSoundPanSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1611e0
+// 100% matching!
 unsigned int bhInitPonySet()
 {
-	unsigned int v3;
-	unsigned int v2;
-	// Line 5573, Address: 0x1611e0, Func Offset: 0
-	// Line 5579, Address: 0x1611e8, Func Offset: 0x8
-	// Line 5573, Address: 0x1611ec, Func Offset: 0xc
-	// Line 5574, Address: 0x1611f8, Func Offset: 0x18
-	// Line 5575, Address: 0x161204, Func Offset: 0x24
-	// Line 5576, Address: 0x161210, Func Offset: 0x30
-	// Line 5577, Address: 0x16121c, Func Offset: 0x3c
-	// Line 5579, Address: 0x161224, Func Offset: 0x44
-	// Line 5581, Address: 0x16123c, Func Offset: 0x5c
-	// Line 5582, Address: 0x16124c, Func Offset: 0x6c
-	// Line 5586, Address: 0x161254, Func Offset: 0x74
-	// Line 5589, Address: 0x1612a0, Func Offset: 0xc0
-	// Line 5590, Address: 0x1612a4, Func Offset: 0xc4
-	// Func End, Address: 0x1612ac, Func Offset: 0xcc
-	scePrintf("bhInitPonySet - UNIMPLEMENTED!\n");
+	unsigned int v2, v3;
+    BH_PWORK* e_ep;  // not from DWARF
+    ETTY_WORK* enep; // not from DWARF
+
+    bhScePtr++;
+
+    v2 = *bhScePtr;
+
+    bhScePtr++;
+
+    v3 = *bhScePtr;
+
+    bhScePtr += 2;
+    
+    switch (v2) 
+    {
+    case 0:
+        plp->flg2 |= 0x2;
+        break;
+    case 1:
+        enep = &rom->enep[v3];
+        e_ep = &ene[enep->wrk_no];
+        
+        e_ep->flg2 |= 0x2;
+        break;
+    }
+
+    return 1;
 }
 
 // 100% matching!
@@ -5694,7 +5704,7 @@ unsigned int bhCyoutenHenkeiSetEX()
     ETTY_WORK* enep;
 
     bhScePtr++;
-    
+
     v0 = *bhScePtr;
 
     bhScePtr++;
