@@ -5755,88 +5755,96 @@ unsigned int bhCyoutenHenkeiStartEX()
 	scePrintf("bhCyoutenHenkeiStartEX - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x161490
+// 100% matching!
 unsigned int bhEasySESet()
 {
-	BH_PWORK* epw;
-	//_anon1 gp;
-	int v8;
-	int v7;
-	int v6;
-	int v5;
-	int v4;
-	// Line 5685, Address: 0x161490, Func Offset: 0
-	// Line 5695, Address: 0x161498, Func Offset: 0x8
-	// Line 5700, Address: 0x1614a0, Func Offset: 0x10
-	// Line 5703, Address: 0x1614a4, Func Offset: 0x14
-	// Line 5706, Address: 0x1614a8, Func Offset: 0x18
-	// Line 5695, Address: 0x1614ac, Func Offset: 0x1c
-	// Line 5696, Address: 0x1614b8, Func Offset: 0x28
-	// Line 5709, Address: 0x1614c0, Func Offset: 0x30
-	// Line 5724, Address: 0x1614c4, Func Offset: 0x34
-	// Line 5696, Address: 0x1614c8, Func Offset: 0x38
-	// Line 5697, Address: 0x1614cc, Func Offset: 0x3c
-	// Line 5698, Address: 0x1614d8, Func Offset: 0x48
-	// Line 5696, Address: 0x1614e0, Func Offset: 0x50
-	// Line 5698, Address: 0x1614e4, Func Offset: 0x54
-	// Line 5699, Address: 0x1614e8, Func Offset: 0x58
-	// Line 5700, Address: 0x1614f4, Func Offset: 0x64
-	// Line 5698, Address: 0x1614fc, Func Offset: 0x6c
-	// Line 5700, Address: 0x161500, Func Offset: 0x70
-	// Line 5702, Address: 0x161504, Func Offset: 0x74
-	// Line 5700, Address: 0x161508, Func Offset: 0x78
-	// Line 5701, Address: 0x16150c, Func Offset: 0x7c
-	// Line 5702, Address: 0x161518, Func Offset: 0x88
-	// Line 5703, Address: 0x161528, Func Offset: 0x98
-	// Line 5705, Address: 0x161534, Func Offset: 0xa4
-	// Line 5703, Address: 0x161538, Func Offset: 0xa8
-	// Line 5704, Address: 0x16153c, Func Offset: 0xac
-	// Line 5705, Address: 0x161548, Func Offset: 0xb8
-	// Line 5706, Address: 0x161558, Func Offset: 0xc8
-	// Line 5708, Address: 0x161564, Func Offset: 0xd4
-	// Line 5706, Address: 0x161568, Func Offset: 0xd8
-	// Line 5707, Address: 0x16156c, Func Offset: 0xdc
-	// Line 5708, Address: 0x161578, Func Offset: 0xe8
-	// Line 5709, Address: 0x161588, Func Offset: 0xf8
-	// Line 5711, Address: 0x161594, Func Offset: 0x104
-	// Line 5709, Address: 0x161598, Func Offset: 0x108
-	// Line 5710, Address: 0x16159c, Func Offset: 0x10c
-	// Line 5711, Address: 0x1615a8, Func Offset: 0x118
-	// Line 5712, Address: 0x1615b8, Func Offset: 0x128
-	// Line 5713, Address: 0x1615c4, Func Offset: 0x134
-	// Line 5714, Address: 0x1615d0, Func Offset: 0x140
-	// Line 5712, Address: 0x1615d8, Func Offset: 0x148
-	// Line 5714, Address: 0x1615dc, Func Offset: 0x14c
-	// Line 5715, Address: 0x1615e0, Func Offset: 0x150
-	// Line 5717, Address: 0x1615ec, Func Offset: 0x15c
-	// Line 5718, Address: 0x1615f8, Func Offset: 0x168
-	// Line 5719, Address: 0x161604, Func Offset: 0x174
-	// Line 5720, Address: 0x161610, Func Offset: 0x180
-	// Line 5721, Address: 0x16161c, Func Offset: 0x18c
-	// Line 5722, Address: 0x161628, Func Offset: 0x198
-	// Line 5724, Address: 0x161630, Func Offset: 0x1a0
-	// Line 5726, Address: 0x161660, Func Offset: 0x1d0
-	// Line 5727, Address: 0x161664, Func Offset: 0x1d4
-	// Line 5730, Address: 0x16166c, Func Offset: 0x1dc
-	// Line 5731, Address: 0x1616a8, Func Offset: 0x218
-	// Line 5733, Address: 0x1616b0, Func Offset: 0x220
-	// Line 5734, Address: 0x1616d8, Func Offset: 0x248
-	// Line 5736, Address: 0x1616e0, Func Offset: 0x250
-	// Line 5766, Address: 0x16170c, Func Offset: 0x27c
-	// Line 5773, Address: 0x161714, Func Offset: 0x284
-	// Line 5766, Address: 0x161724, Func Offset: 0x294
-	// Line 5767, Address: 0x161728, Func Offset: 0x298
-	// Line 5768, Address: 0x161734, Func Offset: 0x2a4
-	// Line 5769, Address: 0x161740, Func Offset: 0x2b0
-	// Line 5768, Address: 0x161748, Func Offset: 0x2b8
-	// Line 5769, Address: 0x16174c, Func Offset: 0x2bc
-	// Line 5773, Address: 0x161750, Func Offset: 0x2c0
-	// Line 5780, Address: 0x161764, Func Offset: 0x2d4
-	// Line 5779, Address: 0x161768, Func Offset: 0x2d8
-	// Line 5780, Address: 0x16176c, Func Offset: 0x2dc
-	// Func End, Address: 0x161774, Func Offset: 0x2e4
-	scePrintf("bhEasySESet - UNIMPLEMENTED!\n");
+	int v4, v5, v6, v7, v8;
+    GAME_WORK gp;
+    BH_PWORK* epw;
+    ETTY_WORK* enep; // not from DWARF
+    
+    bhScePtr++;
+    
+    gp.Type = *bhScePtr;
+
+    bhScePtr++;
+
+    gp.SlotNo = *bhScePtr;
+
+    bhScePtr++;
+
+    gp.StartVol = *bhScePtr;
+
+    gp.StartVol *= -1;
+
+    bhScePtr++;
+
+    gp.LastVol = *bhScePtr;
+
+    gp.LastVol *= -1;
+
+    bhScePtr++;
+
+    gp.StartPan = *bhScePtr;
+
+    gp.StartPan -= 128;
+
+    bhScePtr++;
+
+    gp.LastPan = *bhScePtr;
+
+    gp.LastPan -= 128;
+
+    bhScePtr++;
+
+    gp.Frame = *bhScePtr;
+
+    bhScePtr++;
+
+    v4 = *bhScePtr;
+
+    bhScePtr++;
+    
+    v5 = *bhScePtr;
+
+    bhScePtr++;
+
+    v6 = *bhScePtr;
+
+    bhScePtr++;
+
+    v7 = *bhScePtr;
+
+    bhScePtr++;
+    
+    switch (v5) 
+    {
+    case 0:
+        epw = plp;
+        break;
+    case 1:
+        enep = &rom->enep[v6];
+        epw = &ene[enep->wrk_no];
+        break;
+    case 2:
+        epw = (BH_PWORK*)&sys->obwp[v6];
+        break;
+    case 3:
+        epw = (BH_PWORK*)&sys->itwp[v6];
+        break;
+    }
+    
+    v8 = *bhScePtr;
+
+    bhScePtr += 2;
+
+    gp.SeNo = *(unsigned short*)bhScePtr;
+
+    bhScePtr += 2;
+
+    PlayGameSe4Event(&gp, (NJS_POINT3*)&epw->mlwP->owP[v7].mtx[12], v4, v8);
+    
+    return 1;
 }
 
 // 100% matching!
