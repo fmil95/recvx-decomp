@@ -1,5 +1,5 @@
-#include "effsub2.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/effsub2.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*void* bhJumpEffect[0];
 _anon5* sys;

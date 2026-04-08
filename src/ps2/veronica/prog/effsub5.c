@@ -1,4 +1,4 @@
-#include "effsub5.h"
+#include "../../../ps2/veronica/prog/effsub5.h"
 
 /*_anon5* sys;
 O_WRK eff[0];

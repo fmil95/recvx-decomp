@@ -1,4 +1,4 @@
-#include "ps2_sg_syrtc.h"
+#include "../../../ps2/veronica/prog/ps2_sg_syrtc.h"
 
 // 100% matching! 
 void syRtcFinish( void )

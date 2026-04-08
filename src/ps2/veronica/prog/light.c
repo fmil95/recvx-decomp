@@ -1,9 +1,9 @@
-#include "light.h"
-#include "ps2_NaMath.h"
-#include "ps2_NaMatrix.h"
-#include "ps2_NaView.h"
-#include "ps2_NinjaCnk.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/light.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 LGT_WORK lgttab[5] = 
 {

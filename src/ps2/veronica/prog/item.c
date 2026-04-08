@@ -1,4 +1,4 @@
-#include "item.h"
+#include "../../../ps2/veronica/prog/item.h"
 
 /*short combidata[410];
 _anon0 itemdata[156];

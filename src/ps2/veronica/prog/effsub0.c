@@ -1,5 +1,5 @@
-#include "effsub0.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/effsub0.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 // 100% matching!
 int setentry(unsigned short id, unsigned short type, O_WRK* op) 

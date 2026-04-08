@@ -1,5 +1,5 @@
-#include "ps2_pxlconv.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_pxlconv.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 //#include <string.h>
 

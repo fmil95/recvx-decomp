@@ -1,4 +1,4 @@
-#include "effsub1b.h"
+#include "../../../ps2/veronica/prog/effsub1b.h"
 
 /*_anon4* sys;
 void(*bhDraw134)(O_WRK*);

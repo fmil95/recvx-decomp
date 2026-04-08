@@ -1,5 +1,5 @@
-#include "itemview.h"
-#include "njplus.h"
+#include "../../../ps2/veronica/prog/itemview.h"
+#include "../../../ps2/veronica/prog/njplus.h"
 
 /*unsigned char(*actionprg)(_anon5*)[3];
 unsigned int* wp_;

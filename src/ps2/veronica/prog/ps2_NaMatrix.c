@@ -1,7 +1,7 @@
-#include "ps2_NaMatrix.h"
-#include "ps2_NaFog.h"
-#include "ps2_NaView.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaFog.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 int lNaMatIsUnitMatrix;
 int lNaMatMatrixStuckMax;

@@ -1,5 +1,5 @@
-#include "rutchk.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/rutchk.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 // 100% matching! 
 unsigned char bhCheckRoute(NJS_POINT3* ps0, NJS_POINT3* ps1, NJS_POINT3* ps2)

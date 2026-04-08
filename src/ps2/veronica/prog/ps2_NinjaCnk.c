@@ -1,12 +1,12 @@
-#include "ps2_NinjaCnk.h"
-#include "ps2_dummy.h"
-#include "ps2_NaFog.h"
-#include "ps2_NaMath.h"
-#include "ps2_NaMatrix.h"
-#include "ps2_NaSystem.h"
-#include "ps2_NaTextureFunction.h"
-#include "ps2_NaView.h"
-#include "ps2_Vu1Strip.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaFog.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
+#include "../../../ps2/veronica/prog/ps2_Vu1Strip.h"
 
 static VU1_STRIP_BUF* pNaCnkVerBufTop;
 static int iNaCnkVerBufMax;

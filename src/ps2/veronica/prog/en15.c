@@ -1,5 +1,5 @@
-#include "en15.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/en15.h"
+#include "../../../ps2/veronica/prog/main.h"
 //#include <string.h>
 
 /*typedef struct _anon0;

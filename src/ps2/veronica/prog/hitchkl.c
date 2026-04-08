@@ -1,4 +1,4 @@
-#include "hitchkl.h"
+#include "../../../ps2/veronica/prog/hitchkl.h"
 
 /*_anon37 PLANE;
 _anon0* sys;

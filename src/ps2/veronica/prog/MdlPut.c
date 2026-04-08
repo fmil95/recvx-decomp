@@ -1,9 +1,9 @@
-#include "MdlPut.h"
-#include "njplus.h"
-#include "ps2_NaMatrix.h"
-#include "ps2_NaTextureFunction.h"
-#include "ps2_NinjaCnk.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 void (*bhJumpCnkDraw[4])(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int obj_num) = 
 { 

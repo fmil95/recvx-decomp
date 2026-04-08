@@ -1,4 +1,4 @@
-#include "ps2_sg_syhw.h"
+#include "../../../ps2/veronica/prog/ps2_sg_syhw.h"
 
 // 100% matching! 
 void syHwFinish(void)

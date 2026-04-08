@@ -1,4 +1,4 @@
-#include "door.h"
+#include "../../../ps2/veronica/prog/door.h"
 
 /*_anon41 FadeProcTbl[2];
 _anon41 ViewProcTbl[8];

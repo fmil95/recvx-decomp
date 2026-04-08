@@ -1,7 +1,7 @@
-#include "face.h"
-#include "face_bh.h"
-#include "pwksub.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/face.h"
+#include "../../../ps2/veronica/prog/face_bh.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 // 100% matching!
 void bhInitMask(BH_PWORK* pp)

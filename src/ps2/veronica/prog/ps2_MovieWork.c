@@ -1,4 +1,4 @@
-#include "ps2_MovieWork.h"
+#include "../../../ps2/veronica/prog/ps2_MovieWork.h"
 
 /*_anon4* timeStamp;
 char* videoDecStack;

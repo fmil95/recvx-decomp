@@ -1,5 +1,5 @@
-#include "backup.h"
-#include "ps2_sg_maloc.h"
+#include "../../../ps2/veronica/prog/backup.h"
+#include "../../../ps2/veronica/prog/ps2_sg_maloc.h"
 
 //#include <string.h>
 

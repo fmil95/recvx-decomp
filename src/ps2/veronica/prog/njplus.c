@@ -1,8 +1,8 @@
-#include "njplus.h"
-#include "ps2_dummy.h"
-#include "ps2_NaColi.h"
-#include "ps2_NaMatrix.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 NP_WORK np;
 

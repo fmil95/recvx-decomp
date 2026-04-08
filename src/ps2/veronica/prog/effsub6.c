@@ -1,4 +1,4 @@
-#include "effsub6.h"
+#include "../../../ps2/veronica/prog/effsub6.h"
 
 /*_anon33 eye_ofs[2];
 BH_PWORK ene[0];

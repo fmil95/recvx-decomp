@@ -1,8 +1,8 @@
-#include "ps2_sg_pad.h" 
-#include "padman.h"
-#include "ps2_dummy.h"
-#include "ps2_sg_pdvib.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_sg_pad.h" 
+#include "../../../ps2/veronica/prog/padman.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_sg_pdvib.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 static u_long128 Padd1[scePadDmaBufferMax] __attribute__((aligned(64)));
 static u_long128 Padd2[scePadDmaBufferMax] __attribute__((aligned(64)));

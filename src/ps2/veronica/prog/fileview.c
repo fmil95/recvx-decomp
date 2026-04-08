@@ -1,9 +1,9 @@
-#include "fileview.h"
-#include "message.h"
-#include "ps2_texture.h"
-#include "sdfunc.h"
-#include "sub1.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/fileview.h"
+#include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/ps2_texture.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/sub1.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*unsigned int fstbl[24];
 unsigned int fsheader[24];

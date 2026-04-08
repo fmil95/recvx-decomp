@@ -1,5 +1,5 @@
-#include "ps2_Vu1Scissor2.h"
-#include "ps2_Vu1Strip.h"
+#include "../../../ps2/veronica/prog/ps2_Vu1Scissor2.h"
+#include "../../../ps2/veronica/prog/ps2_Vu1Strip.h"
 
 extern void VU0_CLIP_VIEW_VOLUME() __attribute__((section(".vutext")));
 extern void VU0_CLIP_VIEW_VOLUME_ALL() __attribute__((section(".vutext")));

@@ -1,6 +1,6 @@
-#include "message.h"
-#include "ps2_NaDraw2D.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*float mes_spos[4][3];*/
 float FontScaleX;

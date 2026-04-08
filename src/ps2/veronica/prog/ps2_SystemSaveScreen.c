@@ -1,11 +1,11 @@
-#include "ps2_SystemSaveScreen.h"
-#include "adv.h"
-#include "message.h"
-#include "padman.h"
-#include "ps2_McSaveFile.h"
-#include "ps2_MemoryCard..h"
-#include "sdfunc.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_SystemSaveScreen.h"
+#include "../../../ps2/veronica/prog/adv.h"
+#include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/padman.h"
+#include "../../../ps2/veronica/prog/ps2_McSaveFile.h"
+#include "../../../ps2/veronica/prog/ps2_MemoryCard..h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 SYSSAVE_SCREEN* CreateSysSaveScreen(SYSSAVE_SCREEN* pSysSave, void* vpWorkPtrSys, unsigned short usSaveMesMode, unsigned short usSaveWriteMode);
 void DispSysSaveMessageSelect(SYSSAVE_SCREEN* pSysSave);

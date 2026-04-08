@@ -1,9 +1,9 @@
-#include "face.h"
-#include "face_bh.h"
-#include "ps2_NaColi.h"
-#include "ps2_NaMatrix.h"
-#include "ps2_NaMem.h"
-#include "pwksub.h"
+#include "../../../ps2/veronica/prog/face.h"
+#include "../../../ps2/veronica/prog/face_bh.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaMem.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 
 // 100% matching!
 void fmSetLipSyncParam(MASK_WORK* fm, PARAM_WORK* base, LIP_WORK* lip, unsigned int mask)

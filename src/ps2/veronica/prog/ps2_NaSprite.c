@@ -1,6 +1,6 @@
-#include "ps2_NaSprite.h"
-#include "ps2_NinjaCnk.h"
-#include "ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaSprite.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
 
 // 100% matching!
 void	njDrawSprite2D( NJS_SPRITE *sp, Int n, Float pri, Uint32 attr )

@@ -1,5 +1,5 @@
-#include "ps2_NaFog.h"
-#include "ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaFog.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
 
 float fNaFogNear;
 float fNaFogFar;

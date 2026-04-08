@@ -1,12 +1,12 @@
-#include "ranking.h"
-#include "event.h"
-#include "flag.h"
-#include "message.h"
-#include "room.h"
-#include "sdfunc.h"
-#include "sub1.h"
-#include "system.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ranking.h"
+#include "../../../ps2/veronica/prog/event.h"
+#include "../../../ps2/veronica/prog/flag.h"
+#include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/room.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/sub1.h"
+#include "../../../ps2/veronica/prog/system.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*void(*RankingMode)()[6];
 */

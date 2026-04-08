@@ -1,4 +1,4 @@
-#include "en05sub.h"
+#include "../../../ps2/veronica/prog/en05sub.h"
 
 /*typedef struct npobj;
 typedef struct _anon0;

@@ -1,9 +1,9 @@
-#include "ps2_sg_sd.h"  
-#include "ps2_MovieFunc.h"
-#include "ps2_sfd_mw.h"
-#include "ps2_snddrv.h"
-#include "sdfunc.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_sg_sd.h"  
+#include "../../../ps2/veronica/prog/ps2_MovieFunc.h"
+#include "../../../ps2/veronica/prog/ps2_sfd_mw.h"
+#include "../../../ps2/veronica/prog/ps2_snddrv.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 //#include <string.h>
 

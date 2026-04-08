@@ -1,4 +1,4 @@
-#include "ps2_NaMem.h"
+#include "../../../ps2/veronica/prog/ps2_NaMem.h"
 
 // 100% matching! 
 void	njMemCopy(  void *dst, const void *src, Sint32 num )

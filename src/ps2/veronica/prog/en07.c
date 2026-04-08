@@ -1,10 +1,10 @@
-#include "en07.h"
-#include "MdlPut.h"
-#include "Motion.h"
-#include "hitchk.h"
-#include "main.h"
-#include "subpl.h"
-#include "zonzon1.h"
+#include "../../../ps2/veronica/prog/en07.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/Motion.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/subpl.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
 
 /*typedef struct npobj;
 typedef struct _anon0;

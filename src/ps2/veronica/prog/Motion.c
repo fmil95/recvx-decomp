@@ -1,5 +1,5 @@
-#include "Motion.h"
-#include "ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/Motion.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 
 /*char NormalTbl[64];
 _anon3 NullMka;

@@ -1,4 +1,4 @@
-#include "en29.h"
+#include "../../../ps2/veronica/prog/en29.h"
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;

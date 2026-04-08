@@ -1,8 +1,8 @@
-#include "ps2_NaTextureFunction.h"
-#include "ps2_dummy.h"
-#include "ps2_loadtim2.h"
-#include "ps2_texture.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_loadtim2.h"
+#include "../../../ps2/veronica/prog/ps2_texture.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 NJS_TEXMEMLIST* Ps2_tex_info __attribute__((aligned(64)));
 unsigned int Ps2_texmemlist_num;

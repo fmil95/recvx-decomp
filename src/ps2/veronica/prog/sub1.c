@@ -1,5 +1,5 @@
-#include "sub1.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/sub1.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 S_WORK swork;
 

@@ -1,4 +1,4 @@
-#include "vibman.h"
+#include "../../../ps2/veronica/prog/vibman.h"
 
 unsigned int VibStopTime;
 int EnadleVibrationFlag;

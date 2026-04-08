@@ -1,5 +1,5 @@
-#include "playpch.h"
-#include "pwksub.h"
+#include "../../../ps2/veronica/prog/playpch.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 
 /*BH_PWORK* plp;
 _anon10* sys;

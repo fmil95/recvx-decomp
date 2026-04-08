@@ -1,8 +1,8 @@
-#include "ps2_Vu1Strip.h"
-#include "ps2_NaFog.h"
-#include "ps2_NaView.h"
-#include "ps2_dummy.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_Vu1Strip.h"
+#include "../../../ps2/veronica/prog/ps2_NaFog.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 static SCISSOR_PLANE planeset;
 static SCISSOR scissorflip;

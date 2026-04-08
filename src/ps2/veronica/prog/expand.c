@@ -1,4 +1,4 @@
-#include "expand.h"
+#include "../../../ps2/veronica/prog/expand.h"
 
 EXPAND_CTRL_BUF ExpandCtrlBuf __attribute__((aligned(64)));
 

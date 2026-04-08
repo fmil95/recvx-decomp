@@ -1,4 +1,4 @@
-#include "sp_evt.h"
+#include "../../../ps2/veronica/prog/sp_evt.h"
 
 /*char* comevt_message_tst[27];
 unsigned char comevt_script_tst[181];

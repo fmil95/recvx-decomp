@@ -1,11 +1,11 @@
-#include "player.h"
-#include "MdlPut.h"
-#include "Motion.h"
-#include "eneset.h"
-#include "flag.h"
-#include "njplus.h"
-#include "pwksub.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/player.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/Motion.h"
+#include "../../../ps2/veronica/prog/eneset.h"
+#include "../../../ps2/veronica/prog/flag.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*float PlyInfo[2][4];
 _anon18 lkmtab[2];

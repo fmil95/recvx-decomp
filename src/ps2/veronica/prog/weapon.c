@@ -1,10 +1,10 @@
-#include "weapon.h"
-#include "MdlPut.h"
-#include "effect.h"
-#include "ps2_NaMath.h"
-#include "ps2_NaMatrix.h"
-#include "sub1.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/weapon.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/effect.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/sub1.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*short EneDamNear[22][31];
 short EneDamMid[22][31];

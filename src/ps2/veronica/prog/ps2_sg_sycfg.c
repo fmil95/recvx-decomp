@@ -1,4 +1,4 @@
-#include "ps2_sg_sycfg.h"
+#include "../../../ps2/veronica/prog/ps2_sg_sycfg.h"
 
 int SoundMode;
 

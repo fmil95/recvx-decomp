@@ -1,7 +1,7 @@
-#include "subpl.h"
-#include "MdlPut.h"
-#include "Motion.h"
-#include "pwksub.h"
+#include "../../../ps2/veronica/prog/subpl.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/Motion.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 
 typedef void (*Subpl_proc)(BH_PWORK*);
 typedef void (*InitSubpl_proc)(BH_PWORK*);

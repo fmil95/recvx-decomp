@@ -1,12 +1,12 @@
-#include "cut.h"
-#include "camera.h"
-#include "event.h"
-#include "flag.h"
-#include "ps2_event.h"
-#include "ps2_NaMath.h"
-#include "ps2_NaMatrix.h"
-#include "ps2_NaView.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/cut.h"
+#include "../../../ps2/veronica/prog/camera.h"
+#include "../../../ps2/veronica/prog/event.h"
+#include "../../../ps2/veronica/prog/flag.h"
+#include "../../../ps2/veronica/prog/ps2_event.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 // 100% matching!
 void bhCheckCut(int flg)

@@ -1,11 +1,11 @@
-#include "dread.h"
-#include "binfunc.h"
-#include "njplus.h"
-#include "ps2_NaTextureFunction.h"
-#include "ps2_texture.h"
-#include "pwksub.h"
-#include "weapon.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/dread.h"
+#include "../../../ps2/veronica/prog/binfunc.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_texture.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/weapon.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*char* mshp_tab[16]; - unused*/
 

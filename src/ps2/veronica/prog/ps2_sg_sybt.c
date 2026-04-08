@@ -1,4 +1,4 @@
-#include "ps2_sg_sybt.h"  
+#include "../../../ps2/veronica/prog/ps2_sg_sybt.h"  
 
 // 100% matching!
 Void   syBtExit     ( Void )

@@ -1,10 +1,10 @@
-#include "effsub1.h"
-#include "effect.h"
-#include "hitchk.h"
-#include "ps2_NaMath.h"
-#include "ps2_NaMatrix.h"
-#include "sdfunc.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/effsub1.h"
+#include "../../../ps2/veronica/prog/effect.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*_anon7* sys;
 _anon49 cam;

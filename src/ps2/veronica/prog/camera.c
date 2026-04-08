@@ -1,7 +1,7 @@
-#include "camera.h"
-#include "njplus.h"
-#include "ps2_dummy.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/camera.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 // 100% matching!
 void bhInitCamera() {

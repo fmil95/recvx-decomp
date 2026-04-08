@@ -1,4 +1,4 @@
-#include "flag.h"
+#include "../../../ps2/veronica/prog/flag.h"
 
 // 100% matching! 
 void bhStFlg(unsigned int* flg, unsigned int bit)

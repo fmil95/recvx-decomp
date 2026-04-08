@@ -1,6 +1,6 @@
-#include "ps2_NinjaPtcl.h"
-#include "ps2_NaMatrix.h"
-#include "ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 
 unsigned int Ps2_ptcl_poly_col;
 int Ps2_ptcl_spr_flag;

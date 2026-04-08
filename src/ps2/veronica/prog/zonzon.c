@@ -1,10 +1,10 @@
-#include "zonzon.h"
-#include "effect.h"
-#include "effsub3.h"
-#include "hitchk.h"
-#include "ps2_NaMath.h"
-#include "ps2_NinjaCnk.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/zonzon.h"
+#include "../../../ps2/veronica/prog/effect.h"
+#include "../../../ps2/veronica/prog/effsub3.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 // 100% matching! 
 void ikou(BH_PWORK* epw, NJS_POINT3* pos, int add_dir)

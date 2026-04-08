@@ -1,4 +1,4 @@
-#include "ps2_sg_bup.h"
+#include "../../../ps2/veronica/prog/ps2_sg_bup.h"
 
 int(*__bu_completecallback_func)(int, int, int, unsigned int);
 int(*__bu_progresscallback_func)(int, int, int, int);

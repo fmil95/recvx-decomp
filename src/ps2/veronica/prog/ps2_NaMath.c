@@ -1,5 +1,5 @@
-#include "ps2_NaMath.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 static float SinTable[16384];
 

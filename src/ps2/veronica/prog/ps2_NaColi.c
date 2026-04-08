@@ -1,5 +1,5 @@
-#include "ps2_NaColi.h"
-#include "ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 
 /*int njIsParalellL2L(_anon1* pLine1, _anon1* pLine2);
 int njIsParalellL2PL(_anon1* pLine, _anon1* pPlane);

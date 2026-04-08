@@ -1,5 +1,5 @@
-#include "ps2_sg_gd.h"
-#include "ps2_dvd_image.h"
+#include "../../../ps2/veronica/prog/ps2_sg_gd.h"
+#include "../../../ps2/veronica/prog/ps2_dvd_image.h"
 
 //#include <string.h> /* ERROR: causes linker to fail */
 

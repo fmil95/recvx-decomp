@@ -1,5 +1,5 @@
-#include "ps2_NaGraphics3D.h"
-#include "ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaGraphics3D.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
 
 PS2_PLANE sc_plane = { { 0, 0, 1.0f, 1.0f }, { 0, 0, 2.0f, 1.0f } };
 PS2_PLANE c_plane[5] = { { { 0, 0, 1.0f, 1.0f }, { 0, 0, 2.0f, 1.0f } }, 

@@ -1,12 +1,12 @@
-#include "ps2_McSaveFile.h"
-#include "bup_00.h"
-#include "flag.h"
-#include "message.h" // TODO: in the original codebase, they forgot to include this, find a way to obtain a match
-#include "ps2_MemoryCard..h"
-#include "ps2_NaDraw.h"
-#include "sdfunc.h"
-#include "sub1.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_McSaveFile.h"
+#include "../../../ps2/veronica/prog/bup_00.h"
+#include "../../../ps2/veronica/prog/flag.h"
+#include "../../../ps2/veronica/prog/message.h" // TODO: in the original codebase, they forgot to include this, find a way to obtain a match
+#include "../../../ps2/veronica/prog/ps2_MemoryCard..h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/sub1.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 //#include <string.h>
 

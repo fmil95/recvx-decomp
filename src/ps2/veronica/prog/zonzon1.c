@@ -1,10 +1,10 @@
-#include "zonzon1.h"
-#include "effect.h"
-#include "effsub3.h"
-#include "njplus.h"
-#include "ps2_NaMath.h"
-#include "sdfunc.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
+#include "../../../ps2/veronica/prog/effect.h"
+#include "../../../ps2/veronica/prog/effsub3.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 static BT_WK BloodType[31] = 
 {

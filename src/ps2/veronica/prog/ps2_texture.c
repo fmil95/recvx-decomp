@@ -1,7 +1,7 @@
-#include "ps2_texture.h"
-#include "ps2_NaTextureFunction.h"
-#include "ps2_dummy.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_texture.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 static NJS_TEXINFO info;
 PS2_TEX_SAVE Ps2_tex_save[2];

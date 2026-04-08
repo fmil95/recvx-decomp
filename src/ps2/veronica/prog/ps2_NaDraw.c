@@ -1,7 +1,7 @@
-#include "ps2_NaDraw.h"
-#include "ps2_dummy.h"
-#include "ps2_NaTextureFunction.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*int Ps2_3DEx_trans;
 int Ps2_3DEx_count;

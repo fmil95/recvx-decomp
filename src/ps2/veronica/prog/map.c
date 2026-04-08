@@ -1,5 +1,5 @@
-#include "map.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/map.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*_anon11 MapPal[32];
 _anon39 MapCol[3];

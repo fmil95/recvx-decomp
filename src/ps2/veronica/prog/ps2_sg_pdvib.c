@@ -1,5 +1,5 @@
-#include "ps2_sg_pdvib.h"  
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_sg_pdvib.h"  
+#include "../../../ps2/veronica/prog/main.h"
 
 PAD_ACT Pad_act[20];
 unsigned char Ps2_pad_motor[6];

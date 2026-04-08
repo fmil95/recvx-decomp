@@ -5,29 +5,29 @@
 #include <PREFIX_PS2_DEBUG.h>
 #include <eeregs.h>
 
-#include "override_katana.h"
+#include "../../../ps2/veronica/prog/override_katana.h"
 // KATANA library
 #include <ninja.h>
-#include <katana_extra.h>
+#include <../../../ps2/veronica/prog/katana_extra.h>
 
-#include "types.h"
-#include "enums.h"
-#include "macros.h"
+#include "../../../ps2/veronica/prog/types.h"
+#include "../../../ps2/veronica/prog/enums.h"
+#include "../../../ps2/veronica/prog/macros.h"
 
-#include "main.h"
-#include "backup.h"
-#include "expand.h"
-#include "fileview.h"
-#include "flag.h"
-#include "njplus.h"
-#include "ps2_dummy.h"
-#include "ps2_pxlconv.h"
-#include "ps2_sg_maloc.h"
-#include "ps2_sg_sybt.h"
-#include "sbinit.h"
-#include "sdfunc.h"
-#include "sync.h"
-#include "system.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/backup.h"
+#include "../../../ps2/veronica/prog/expand.h"
+#include "../../../ps2/veronica/prog/fileview.h"
+#include "../../../ps2/veronica/prog/flag.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_pxlconv.h"
+#include "../../../ps2/veronica/prog/ps2_sg_maloc.h"
+#include "../../../ps2/veronica/prog/ps2_sg_sybt.h"
+#include "../../../ps2/veronica/prog/sbinit.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/sync.h"
+#include "../../../ps2/veronica/prog/system.h"
 
 typedef void(*fn)();
 

@@ -1,6 +1,6 @@
-#include "objitm.h"
-#include "njplus.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/objitm.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*void(*bhJumpObject)()[101];
 void(*bhJumpObject2)()[13];*/

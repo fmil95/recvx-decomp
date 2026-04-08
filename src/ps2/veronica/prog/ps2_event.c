@@ -1,6 +1,6 @@
-#include "ps2_event.h"
-#include "ps2_NaSystem.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_event.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 unsigned char BackColorFlag;
 

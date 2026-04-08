@@ -1,6 +1,6 @@
-#include "sdc.h"
-#include "ps2_sg_sycfg.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/sdc.h"
+#include "../../../ps2/veronica/prog/ps2_sg_sycfg.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 SDS_INFO MidiInfo[8];
 SDMIDI MidiHandle[8] __attribute__((aligned(64)));

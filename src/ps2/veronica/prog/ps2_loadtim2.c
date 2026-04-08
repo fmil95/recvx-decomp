@@ -1,6 +1,6 @@
-#include "ps2_loadtim2.h"
-#include "ps2_dummy.h"
-#include "ps2_pxlconv.h"
+#include "../../../ps2/veronica/prog/ps2_loadtim2.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_pxlconv.h"
 
 //#include <string.h>
 

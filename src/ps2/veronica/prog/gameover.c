@@ -1,7 +1,7 @@
-#include "gameover.h"
-#include "room.h"
-#include "system.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/gameover.h"
+#include "../../../ps2/veronica/prog/room.h"
+#include "../../../ps2/veronica/prog/system.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 typedef void (*mode0_proc)();
 mode0_proc bhCtrGov_mode0[4] = { bhSelectContinue, bhInitGameOver, bhMainGameOver, bhExitGameOver };

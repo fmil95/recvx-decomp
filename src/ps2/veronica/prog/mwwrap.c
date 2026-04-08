@@ -1,7 +1,7 @@
-#include "mwwrap.h"
-#include "ps2_sfd_mw.h"
-#include "ps2_sg_maloc.h"
-#include "sdc.h"
+#include "../../../ps2/veronica/prog/mwwrap.h"
+#include "../../../ps2/veronica/prog/ps2_sfd_mw.h"
+#include "../../../ps2/veronica/prog/ps2_sg_maloc.h"
+#include "../../../ps2/veronica/prog/sdc.h"
 
 //#include <string.h>
 

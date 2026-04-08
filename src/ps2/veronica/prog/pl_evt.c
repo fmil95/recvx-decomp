@@ -1,4 +1,4 @@
-#include "pl_evt.h"
+#include "../../../ps2/veronica/prog/pl_evt.h"
 
 /*unsigned char basic_motion_pl[2][32];
 void(*bhCPM0_event_tbl)()[10];

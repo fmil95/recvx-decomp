@@ -1,11 +1,11 @@
-#include "ps2_SystemLoadScreen.h"
-#include "adv.h"
-#include "message.h"
-#include "padman.h"
-#include "ps2_McSaveFile.h"
-#include "ps2_MemoryCard..h"
-#include "vibman.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_SystemLoadScreen.h"
+#include "../../../ps2/veronica/prog/adv.h"
+#include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/padman.h"
+#include "../../../ps2/veronica/prog/ps2_McSaveFile.h"
+#include "../../../ps2/veronica/prog/ps2_MemoryCard..h"
+#include "../../../ps2/veronica/prog/vibman.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 //#include <string.h> // TODO: removing this matches ExecuteStateSysLoadScreenSysLoad() higher
 

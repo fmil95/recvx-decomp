@@ -1,6 +1,6 @@
-#include "gdlib.h"
-#include "ps2_sg_maloc.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/gdlib.h"
+#include "../../../ps2/veronica/prog/ps2_sg_maloc.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 unsigned char* pDirWork;
 unsigned char* pDirTbl;

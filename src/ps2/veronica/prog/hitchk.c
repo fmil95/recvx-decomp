@@ -1,9 +1,9 @@
-#include "hitchk.h"
-#include "effsub3.h"
-#include "main.h"
-#include "ps2_NaColi.h"
-#include "ps2_NaMath.h"
-#include "ps2_NaView.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/effsub3.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
 
 /*_anon4* sys;
 _anon12* rom;

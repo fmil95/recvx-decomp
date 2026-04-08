@@ -1,4 +1,4 @@
-#include "ps2_MemoryCard..h"
+#include "../../../ps2/veronica/prog/ps2_MemoryCard..h"
 
 //#include <string.h>
 

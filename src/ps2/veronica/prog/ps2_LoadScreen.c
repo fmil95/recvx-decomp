@@ -1,9 +1,9 @@
-#include "ps2_LoadScreen.h"
-#include "message.h"
-#include "ps2_McSaveFile.h"
-#include "ps2_MemoryCard..h"
-#include "sdfunc.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_LoadScreen.h"
+#include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/ps2_McSaveFile.h"
+#include "../../../ps2/veronica/prog/ps2_MemoryCard..h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 // 100% matching!
 LOAD_SCREEN* CreateLoadScreen(LOAD_SCREEN* pLoad, void* vpWorkPtrSys) // second parameter is not present on the debugging symbols

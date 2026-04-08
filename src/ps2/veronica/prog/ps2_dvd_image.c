@@ -1,4 +1,4 @@
-#include "ps2_dvd_image.h"
+#include "../../../ps2/veronica/prog/ps2_dvd_image.h"
 
 char* rdx_files[205] = 
 { 

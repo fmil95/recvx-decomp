@@ -1,4 +1,4 @@
-#include "en54.h"
+#include "../../../ps2/veronica/prog/en54.h"
 
 /*typedef struct BH_PWORK;
 typedef struct _anon0;

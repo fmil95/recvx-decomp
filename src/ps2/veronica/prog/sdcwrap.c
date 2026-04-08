@@ -1,9 +1,9 @@
-#include "sdcwrap.h"
-#include "gdlib.h"
-#include "ps2_sg_maloc.h"
-#include "sdc.h"
-#include "sdfunc.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/sdcwrap.h"
+#include "../../../ps2/veronica/prog/gdlib.h"
+#include "../../../ps2/veronica/prog/ps2_sg_maloc.h"
+#include "../../../ps2/veronica/prog/sdc.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*int GdDaPlayFlag; - unused */
 

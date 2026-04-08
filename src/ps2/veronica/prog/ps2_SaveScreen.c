@@ -1,11 +1,11 @@
-#include "ps2_SaveScreen.h"
-#include "flag.h"
-#include "message.h"
-#include "ps2_McSaveFile.h"
-#include "ps2_MemoryCard..h"
-#include "room.h"
-#include "sdfunc.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_SaveScreen.h"
+#include "../../../ps2/veronica/prog/flag.h"
+#include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/ps2_McSaveFile.h"
+#include "../../../ps2/veronica/prog/ps2_MemoryCard..h"
+#include "../../../ps2/veronica/prog/room.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 // 100% matching! 
 SAVE_SCREEN* CreateSaveScreen(SAVE_SCREEN* pSave, void* vpWorkPtrSys) 

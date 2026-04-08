@@ -1,9 +1,9 @@
-#include "pad.h"
-#include "message.h"
-#include "screen.h"
-#include "sdfunc.h"
-#include "system.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/pad.h"
+#include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/screen.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/system.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 unsigned int pad_tab_a[18] = { 0x1000, 0x4000, 0x8000, 0x2000, 0x8, 0x1000, 0x4000, 0x4, 0xC0, 0xC0, 0x20, 0xC0, 0x20, 0x10, 0xC00, 0x100, 0x100, 0x800 };
 unsigned int pad_tab_b[18] = { 0x1000, 0x4000, 0x8000, 0x2000, 0x8, 0x1000, 0x4000, 0x4, 0x60, 0x60, 0x80, 0x60, 0x80, 0x10, 0xC00, 0x100, 0x100, 0x800 };

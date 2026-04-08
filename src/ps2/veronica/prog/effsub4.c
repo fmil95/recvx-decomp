@@ -1,5 +1,5 @@
-#include "effsub4.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/effsub4.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*void(*bhEff_PtclSpriteDraw)(O_WRK*);
 O_WRK eff[0];

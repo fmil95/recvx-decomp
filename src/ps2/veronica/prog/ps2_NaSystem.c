@@ -1,7 +1,7 @@
-#include "ps2_NaSystem.h"
-#include "ps2_dummy.h"
-#include "ps2_loadtim2.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_loadtim2.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 PS2_NJ_SAVE Ps2_nj_save_current __attribute__((aligned(64)));
 

@@ -1,11 +1,11 @@
-#include "ps2_dummy.h"
-#include "ps2_loadtim2.h"
-#include "ps2_NaDraw2D.h"
-#include "ps2_NaMath.h"
-#include "ps2_NaSystem.h"
-#include "ps2_sg_pad.h"
-#include "ps2_texture.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_loadtim2.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/ps2_sg_pad.h"
+#include "../../../ps2/veronica/prog/ps2_texture.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
 unsigned int Ps2_tex_load_tp_cancel;

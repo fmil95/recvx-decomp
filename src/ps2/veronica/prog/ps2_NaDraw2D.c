@@ -1,7 +1,7 @@
-#include "ps2_NaDraw2D.h"
-#include "ps2_NaView.h"
-#include "ps2_dummy.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 float Ps2_zbuff_a;
 float Ps2_zbuff_b;

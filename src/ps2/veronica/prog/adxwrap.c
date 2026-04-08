@@ -1,7 +1,7 @@
-#include "adxwrap.h"
-#include "ps2_dvd_image.h"
-#include "ps2_sg_maloc.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/adxwrap.h"
+#include "../../../ps2/veronica/prog/ps2_dvd_image.h"
+#include "../../../ps2/veronica/prog/ps2_sg_maloc.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.h"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_sudv.h"

@@ -1,7 +1,7 @@
-#include "pwksub.h"
-#include "njplus.h"
-#include "ps2_NaMatrix.h"
-#include "main.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*_anon12* sys;
 BH_PWORK* plp;
