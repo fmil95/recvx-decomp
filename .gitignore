@@ -14,10 +14,10 @@ elf/*.s
 elf/main.elf
 elf/main.elf.xMAP
 elf/report.txt
-elf/iso/data
-elf/iso/RE_CVX.iso
-elf/iso/RECVX_NEW.iso
-elf/iso/RECVX_FILELIST.TXT
+iso/data
+iso/RE_CVX.iso
+iso/RECVX_NEW.iso
+iso/RECVX_FILELIST.TXT
 compile_config.json
 compile_wibo.py
 dwarfdump.txt

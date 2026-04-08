@@ -72,9 +72,9 @@ python compile.py
 If you're using Linux, an installation of wibo is needed in order to run the Windows-only MWCC binary, 
 a small prompt with install steps will be shown if the script can't find wibo in your path.
 
-With the main.elf from compilation, you can repackage RE: CVX's ISO file with it to see the decompiled code in action. You need to put your copy of the game's DVD on the elf/iso folder, and dump its contents with the following command:
+With the main.elf from compilation, you can repackage RE: CVX's ISO file with it to see the decompiled code in action. You need to put your copy of the game's DVD on the iso folder, and dump its contents with the following command:
 ```
-python mkiso.py -m extract --iso elf/iso/RE_CVX.iso
+python mkiso.py -m extract --iso iso/RE_CVX.iso
 ```
 
 Then rebuild the disk with:
@@ -82,7 +82,7 @@ Then rebuild the disk with:
 python mkiso.py -m insert
 ```
 
-If successful, you will now see an ISO called "RECVX_NEW" in the elf/iso folder that you can use to test the results with an emulator (preferrably PCSX2 for its debugging capabilities) or console.  
+If successful, you will now see an ISO called "RECVX_NEW" in the iso folder that you can use to test the results with an emulator (preferrably PCSX2 for its debugging capabilities) or console.  
 
 ## Community
 
