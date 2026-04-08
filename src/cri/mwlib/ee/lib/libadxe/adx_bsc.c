@@ -1,11 +1,11 @@
-#include "adx_bsc.h"
-#include "adx_baif.h"
-#include "adx_bau.h"
-#include "adx_bsps.h"
-#include "adx_bwav.h"
-#include "adx_dcd.h"
-#include "adx_dcd3.h"
-#include "adx_xpnd.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_bsc.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_baif.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_bau.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_bsps.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_bwav.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd3.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
 
 //#include <string.h>
 

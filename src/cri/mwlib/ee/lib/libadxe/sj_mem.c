@@ -1,4 +1,4 @@
-#include "sj_mem.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/sj_mem.h"
 
 //#include <string.h>
 

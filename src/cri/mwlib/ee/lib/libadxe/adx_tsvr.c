@@ -1,13 +1,13 @@
-#include "adx_tsvr.h"
-#include "adx_amp.h"
-#include "adx_crs.h"
-#include "adx_dcd.h"
-#include "adx_errs.h"
-#include "adx_inis.h"
-#include "adx_rnap.h"
-#include "adx_sjd.h"
-#include "adx_stmc.h"
-#include "adx_tlk.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_tsvr.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_amp.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_inis.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_rnap.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_sjd.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.h"
 
 //#include <string.h>
 

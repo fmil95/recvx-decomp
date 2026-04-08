@@ -1,5 +1,5 @@
-#include "adx_bsps.h"
-#include "adx_xpnd.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_bsps.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
 
 //#include <string.h>
 

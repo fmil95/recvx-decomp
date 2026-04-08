@@ -1,6 +1,6 @@
-#include "adx_xpnd.h"
-#include "adx_dcd.h"
-#include "adx_dcd3.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd3.h"
 
 //#include <string.h>
 

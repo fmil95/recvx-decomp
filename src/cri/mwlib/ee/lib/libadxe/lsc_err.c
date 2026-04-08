@@ -1,4 +1,4 @@
-#include "lsc_err.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/lsc_err.h"
 
 #include <stdio.h>
 

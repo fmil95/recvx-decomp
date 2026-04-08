@@ -1,4 +1,4 @@
-#include "adx_errs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
 
 //#include <string.h>
 

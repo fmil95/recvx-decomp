@@ -1,5 +1,5 @@
-#include "adx_bau.h"
-#include "adx_xpnd.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_bau.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
 
 //#include <string.h>
 

@@ -1,7 +1,7 @@
-#include "adx_sjd.h"
-#include "adx_bsc.h"
-#include "adx_crs.h"
-#include "sj_rbf.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_sjd.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_bsc.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/sj_rbf.h"
 
 //#include <string.h>
 

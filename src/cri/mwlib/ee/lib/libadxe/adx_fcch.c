@@ -1,4 +1,4 @@
-#include "adx_fcch.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_fcch.h"
 
 #include <eetypes.h>
 #include <eekernel.h>

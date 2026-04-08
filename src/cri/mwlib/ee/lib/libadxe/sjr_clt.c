@@ -1,5 +1,5 @@
-#include "sjr_clt.h"
-#include "dtx.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/sjr_clt.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/dtx.h"
 
 Char8* volatile sjrmt_build = "\nSJRMT Ver 0.93 Build:Jan 26 2001 09:59:44\n";
 Sint32 sjrmt_init_cnt = 0;

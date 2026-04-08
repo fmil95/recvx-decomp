@@ -1,4 +1,4 @@
-#include "sj_uni.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/sj_uni.h"
 
 //#include <string.h>
 

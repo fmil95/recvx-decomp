@@ -1,5 +1,5 @@
-#include "adx_rnap.h"
-#include "ps2_rna.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_rnap.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/ps2_rna.h"
 
 #include <stdio.h>
 

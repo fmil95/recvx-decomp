@@ -1,5 +1,5 @@
-#include "dvci.h"
-#include "dvci_sub.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/dvci.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/dvci_sub.h"
 
 #include <eetypes.h>
 #include <eekernel.h>

@@ -1,10 +1,10 @@
-#include "adx_inis.h"
-#include "adx_crs.h"
-#include "adx_errs.h"
-#include "adx_rnap.h"
-#include "adx_sjd.h"
-#include "adx_stmc.h"
-#include "lsc_ini.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_inis.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_rnap.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_sjd.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/lsc_ini.h"
 
 //#include <string.h>
 

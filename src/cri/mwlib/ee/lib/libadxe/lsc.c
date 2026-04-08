@@ -1,9 +1,9 @@
-#include "lsc.h"
-#include "adx_stmc.h"
-#include "lsc_crs.h"
-#include "lsc_err.h"
-#include "lsc_ini.h"
-#include "lsc_svr.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/lsc.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/lsc_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/lsc_err.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/lsc_ini.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/lsc_svr.h"
 
 //#include <string.h>
 

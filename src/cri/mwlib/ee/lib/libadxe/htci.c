@@ -1,5 +1,5 @@
-#include "htci.h"
-#include "htci_sub.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/htci.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/htci_sub.h"
 
 #include <stdio.h>
 //#include <string.h>

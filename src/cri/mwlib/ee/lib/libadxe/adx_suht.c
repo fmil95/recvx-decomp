@@ -1,8 +1,8 @@
-#include "adx_suht.h"
-#include "adx_errs.h"
-#include "cri_cvfs.h"
-#include "htci.h"
-#include "htci_sub.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_suht.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/cri_cvfs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/htci.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/htci_sub.h"
 
 // 100% matching!
 void adxt_err_host(void *obj, const char *msg, void *hndl)

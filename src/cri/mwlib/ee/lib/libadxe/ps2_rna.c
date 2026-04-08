@@ -1,7 +1,7 @@
-#include "ps2_rna.h"
-#include "dtx.h"
-#include "rna_crs.h"
-#include "sjr_clt.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/ps2_rna.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/dtx.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/rna_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/sjr_clt.h"
 
 #include <stdio.h>
 //#include <string.h>

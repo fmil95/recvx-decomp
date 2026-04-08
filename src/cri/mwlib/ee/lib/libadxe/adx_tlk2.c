@@ -1,10 +1,10 @@
-#include "adx_tlk2.h"
-#include "adx_crs.h"
-#include "adx_errs.h"
-#include "adx_fs.h"
-#include "adx_stmc.h"
-#include "adx_tlk.h"
-#include "lsc.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk2.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/lsc.h"
 
 Char8* volatile adxt_build = "\nADXT Ver.6.24 Build:Mar 14 2001 14:23:32\n";
 

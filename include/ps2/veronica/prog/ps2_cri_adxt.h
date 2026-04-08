@@ -1,7 +1,7 @@
 #ifndef _PS2_CRI_ADXT_H_
 #define _PS2_CRI_ADXT_H_
 
-#include "adx_tlk.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.h"
 
 void ADXT_Pause(ADXT adxt, Sint32 sw);
 

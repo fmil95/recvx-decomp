@@ -1,5 +1,5 @@
-#include "adx_dcd3.h"
-#include "adx_qtbl.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd3.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_qtbl.h"
 
 Sint32 adx_decode_output_mono_flag = 0;
 

@@ -1,4 +1,4 @@
-#include "sj_utl.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/sj_utl.h"
 
 // 100% matching!
 void SJ_SplitChunk(SJCK *ck, Sint32 nbyte, SJCK *ck1, SJCK *ck2)

@@ -1,5 +1,5 @@
-#include "adx_crs.h"
-#include "adx_mps2.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_mps2.h"
 
 Sint32 adxcrs_lvl = 0;
 Sint32 adxcrs_msk = 0; /* unused */

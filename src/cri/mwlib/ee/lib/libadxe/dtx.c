@@ -1,4 +1,4 @@
-#include "dtx.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/dtx.h"
 
 #include <stdio.h>
 //#include <string.h>

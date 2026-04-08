@@ -1,5 +1,5 @@
-#include "adx_bwav.h"
-#include "adx_xpnd.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_bwav.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
 
 //#include <string.h>
 

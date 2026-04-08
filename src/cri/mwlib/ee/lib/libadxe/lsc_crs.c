@@ -1,4 +1,4 @@
-#include "lsc_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/lsc_crs.h"
 
 // 100% matching!
 void LSC_LockCrs(LSC_CRS *crs)

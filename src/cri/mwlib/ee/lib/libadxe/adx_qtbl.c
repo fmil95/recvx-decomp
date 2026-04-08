@@ -1,4 +1,4 @@
-#include "adx_qtbl.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_qtbl.h"
 
 const Float32 AdxQtblFloat[16] = 
 {

@@ -1,6 +1,6 @@
-#include "adx_stmc.h"
-#include "adx_crs.h"
-#include "adx_errs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
 
 //#include <string.h>
 

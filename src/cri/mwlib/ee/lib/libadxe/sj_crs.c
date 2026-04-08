@@ -1,4 +1,4 @@
-#include "sj_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/sj_crs.h"
 
 Sint32 sjcrs_lvl = 0;
 Sint32 sjcrs_msk = 0; /* unused */

@@ -1,5 +1,5 @@
-#include "dvci_sub.h"
-#include "dvci.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/dvci_sub.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/dvci.h"
 
 #include <stdio.h>
 //#include <string.h>

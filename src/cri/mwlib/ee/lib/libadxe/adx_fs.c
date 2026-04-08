@@ -1,9 +1,9 @@
-#include "adx_fs.h"
-#include "adx_crs.h"
-#include "adx_errs.h"
-#include "adx_fcch.h"
-#include "adx_fini.h"
-#include "adx_stmc.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_fcch.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_fini.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
 
 //#include <string.h>
 

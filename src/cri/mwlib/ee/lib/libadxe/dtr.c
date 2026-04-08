@@ -1,5 +1,5 @@
-#include "dtr.h"
-#include "dtx.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/dtr.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/dtx.h"
 
 #include <stdio.h>
 //#include <string.h>

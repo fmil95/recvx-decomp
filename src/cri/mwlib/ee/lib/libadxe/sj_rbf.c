@@ -1,4 +1,4 @@
-#include "sj_rbf.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/sj_rbf.h"
 
 //#include <string.h>
 

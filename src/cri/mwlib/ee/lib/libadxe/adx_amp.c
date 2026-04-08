@@ -1,5 +1,5 @@
-#include "adx_amp.h"
-#include "adx_crs.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_amp.h"
+#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
 
 //#include <string.h>
 
