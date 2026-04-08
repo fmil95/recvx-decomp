@@ -1,3 +1,20 @@
+// ignored folders
+__pycache__
+.splache
+.venv
+.wineprefix
+build
+context
+elf
+iso
+
+// ignored files 
+compile_config.json
+dwarfdump.txt
+objdiff.exe
+objdiff.json
+
+// ignored files from config 
 config/.venv
 config/asm
 config/assets
@@ -7,23 +24,6 @@ config/SLUS_201.84
 config/SLUS_201.84.ld
 config/undefined_funcs_auto.txt
 config/undefined_syms_auto.txt
-context
-build/*
-elf/*.o
-elf/*.s
-elf/main.elf
-elf/main.elf.xMAP
-elf/report.txt
-iso/data
-iso/RE_CVX.iso
-iso/RECVX_NEW.iso
-iso/RECVX_FILELIST.TXT
-compile_config.json
-compile_wibo.py
-dwarfdump.txt
-.wineprefix
-.venv
-.splache
-__pycache__
-objdiff.json
-objdiff.exe
+
+// exceptions
+!iso/.gitkeep
