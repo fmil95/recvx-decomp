@@ -3851,30 +3851,44 @@ void bhCheckDansa(BH_PWORK* pp)
 	scePrintf("bhCheckDansa - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2681b0
+// 100% matching! 
 int bhCheckFloorSound(BH_PWORK* pp, int flr_no, float px, float pz)
 {
-	int sno;
-	int flr_n;
-	int i;
-	//_anon0* fp;
-	// Line 4383, Address: 0x2681b0, Func Offset: 0
-	// Line 4382, Address: 0x2681b8, Func Offset: 0x8
-	// Line 4383, Address: 0x2681bc, Func Offset: 0xc
-	// Line 4384, Address: 0x2681d8, Func Offset: 0x28
-	// Line 4387, Address: 0x2681e8, Func Offset: 0x38
-	// Line 4386, Address: 0x2681ec, Func Offset: 0x3c
-	// Line 4387, Address: 0x268228, Func Offset: 0x78
-	// Line 4388, Address: 0x268244, Func Offset: 0x94
-	// Line 4391, Address: 0x2682a8, Func Offset: 0xf8
-	// Line 4394, Address: 0x2682c8, Func Offset: 0x118
-	// Line 4396, Address: 0x2682d0, Func Offset: 0x120
-	// Line 4397, Address: 0x2682d8, Func Offset: 0x128
-	// Line 4401, Address: 0x2682e0, Func Offset: 0x130
-	// Line 4403, Address: 0x2682f0, Func Offset: 0x140
-	// Func End, Address: 0x2682f8, Func Offset: 0x148
-	scePrintf("bhCheckFloorSound - UNIMPLEMENTED!\n");
+    ATR_WORK* fp; 
+    int i;        
+    int flr_n;    
+    int sno;     
+    
+    sno = 0;
+    
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++) 
+    {
+        if (i < rom->flr_n) 
+        {
+            fp = &rom->flrp[i];
+        } 
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n]; 
+        }
+        
+        if ((((fp->flg & 0x1)) && (fp->type == 1)) && ((fp->px <= px) && ((fp->px + fp->w) >= px)) && (((fp->pz <= pz) && ((fp->pz + fp->d) >= pz)) && (fp->flr_no == flr_no))) 
+        {
+            if (((fp->attr & 0x1)) && ((pp->stflg & 0x10))) 
+            {
+                return fp->prm0;
+            }
+            
+            if (!(fp->attr & 0x1)) 
+            {
+                sno = fp->prm0;
+            }
+        }
+    }
+    
+    return sno;
 }
 
 /*// 
