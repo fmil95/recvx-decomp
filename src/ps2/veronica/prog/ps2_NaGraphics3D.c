@@ -58,30 +58,33 @@ float Calc_Intersection2(sceVu0FVECTOR v0, sceVu0FVECTOR v1, PS2_PLANE* plane)
     return -sceVu0InnerProduct(plane->norm, tmp0) / tmpf;
 }
 
-/*// 
-// Start address: 0x2dfc00
-int CalcIntersectionCone(float* ans, float* v0, float* v1)
+// 100% matching! 
+int CalcIntersectionCone(float* ans, float* v0, float* v1) 
 {
-	float f;
-	float tmpf;
-	float tmp1[4];
-	int i;
-	// Line 125, Address: 0x2dfc00, Func Offset: 0
-	// Line 128, Address: 0x2dfc1c, Func Offset: 0x1c
-	// Line 125, Address: 0x2dfc24, Func Offset: 0x24
-	// Line 128, Address: 0x2dfc28, Func Offset: 0x28
-	// Line 130, Address: 0x2dfc38, Func Offset: 0x38
-	// Line 131, Address: 0x2dfc50, Func Offset: 0x50
-	// Line 132, Address: 0x2dfc54, Func Offset: 0x54
-	// Line 133, Address: 0x2dfc64, Func Offset: 0x64
-	// Line 134, Address: 0x2dfc90, Func Offset: 0x90
-	// Line 135, Address: 0x2dfca0, Func Offset: 0xa0
-	// Line 136, Address: 0x2dfcb0, Func Offset: 0xb0
-	// Line 137, Address: 0x2dfcc0, Func Offset: 0xc0
-	// Func End, Address: 0x2dfce4, Func Offset: 0xe4
+    int i;         
+    float tmp1[4]; 
+    float tmpf;    
+    float f;       
+    
+    tmpf = 1.0E7f;
+    
+    sceVu0SubVector(tmp1, v1, v0);
+    
+    for (i = 0; i < 5; i++) 
+    {
+        f = Calc_Intersection2(v0, v1, &c_plane[i]);
+        
+        if ((f >= 0) && (f < tmpf)) 
+        {
+            tmpf = f; 
+        }
+    } 
+    
+    sceVu0ScaleVector(ans, tmp1, tmpf);
+    sceVu0AddVector(ans, ans, v0);
 }
 
-// 
+/*// 
 // Start address: 0x2dfcf0
 float Head_or_Tail(float* v)
 {
