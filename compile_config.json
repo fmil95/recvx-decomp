@@ -201,7 +201,6 @@
       "src/ps2/veronica/prog/ps2_dummy.c",
       "src/ps2/veronica/prog/ps2_NinjaCnk.c",
       "src/ps2/veronica/prog/ps2_Vu1Strip.c",
-      "src/ps2/veronica/prog/ps2_Vu1Scissor2.c",
       "src/ps2/veronica/prog/ps2_NaFog.c",
       "src/ps2/veronica/prog/ps2_NaMatrix.c",
       "src/ps2/veronica/prog/ps2_NaMath.c",

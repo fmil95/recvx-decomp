@@ -339,7 +339,6 @@ segments:
       - [0x1CF3E0, c, ps2/veronica/prog/ps2_NinjaCnk]
       # - [0x1D2620, c, ps2/veronica/prog/ps2_NinjaCnk_prog.h]
       - [0x1D3940, c, ps2/veronica/prog/ps2_Vu1Strip]
-      - [0x1D3B80, c, ps2/veronica/prog/ps2_Vu1Scissor2]
       - [0x1D5FE0, c, ps2/veronica/prog/ps2_NaFog]
       - [0x1D6730, c, ps2/veronica/prog/ps2_NaMatrix]
       - [0x1D7CD0, c, ps2/veronica/prog/ps2_NaMath]

@@ -209,6 +209,8 @@ void vu1SetAlphaRatio(float fAlpha)
     );
 }
 
+#include "ps2_Vu1Scissor2.c"
+
 // 100% matching!
 void InitNodeArraySet(SCISSOR* scissor)
 {

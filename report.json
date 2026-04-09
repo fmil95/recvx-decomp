@@ -1,16 +1,16 @@
 {
   "measures": {
-    "fuzzy_match_percent": 31.611687,
+    "fuzzy_match_percent": 32.09295,
     "total_code": "1904472",
-    "matched_code": "522180",
-    "matched_code_percent": 27.418623,
+    "matched_code": "530180",
+    "matched_code_percent": 27.838686,
     "total_data": "28420132",
     "matched_data": "28077660",
     "matched_data_percent": 98.79497,
     "total_functions": 4529,
-    "matched_functions": 2370,
-    "matched_functions_percent": 52.329433,
-    "total_units": 200
+    "matched_functions": 2399,
+    "matched_functions_percent": 52.96975,
+    "total_units": 199
   },
   "units": [
     {
@@ -17743,7 +17743,7 @@
     {
       "name": "ps2/veronica/prog/ps2_SaveScreen",
       "measures": {
-        "fuzzy_match_percent": 98.92294,
+        "fuzzy_match_percent": 98.85098,
         "total_code": "11784",
         "matched_code": "8836",
         "matched_code_percent": 74.98303,
@@ -17785,7 +17785,7 @@
         {
           "name": ".text",
           "size": "12176",
-          "fuzzy_match_percent": 98.92294,
+          "fuzzy_match_percent": 98.85098,
           "metadata": {}
         },
         {
@@ -17804,7 +17804,7 @@
         {
           "name": "DispMessageSelect",
           "size": "1520",
-          "fuzzy_match_percent": 92.95263,
+          "fuzzy_match_percent": 92.39474,
           "metadata": {},
           "address": "240"
         },
@@ -27822,16 +27822,16 @@
     {
       "name": "ps2/veronica/prog/ps2_Vu1Strip",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "total_code": "540",
-        "matched_code": "540",
-        "matched_code_percent": 100.0,
+        "fuzzy_match_percent": 99.36285,
+        "total_code": "9668",
+        "matched_code": "7572",
+        "matched_code_percent": 78.32023,
         "total_data": "3552",
         "matched_data": "3360",
         "matched_data_percent": 94.59459,
-        "total_functions": 8,
-        "matched_functions": 8,
-        "matched_functions_percent": 100.0,
+        "total_functions": 46,
+        "matched_functions": 39,
+        "matched_functions_percent": 84.78261,
         "total_units": 1
       },
       "sections": [
@@ -27857,8 +27857,8 @@
         },
         {
           "name": ".text",
-          "size": "576",
-          "fuzzy_match_percent": 100.0,
+          "size": "9888",
+          "fuzzy_match_percent": 99.36285,
           "metadata": {}
         },
         {
@@ -27922,290 +27922,276 @@
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "528"
-        }
-      ],
-      "metadata": {
-        "source_path": "config/src/ps2/veronica/prog/ps2_Vu1Strip.c",
-        "progress_categories": [
-          "game"
-        ]
-      }
-    },
-    {
-      "name": "ps2/veronica/prog/ps2_Vu1Scissor2",
-      "measures": {
-        "fuzzy_match_percent": 13.269062,
-        "total_code": "9128",
-        "matched_code": "360",
-        "matched_code_percent": 3.943909,
-        "matched_data_percent": 100.0,
-        "total_functions": 38,
-        "matched_functions": 4,
-        "matched_functions_percent": 10.526316,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "metadata": {}
         },
-        {
-          "name": ".data",
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "9312",
-          "fuzzy_match_percent": 13.269062,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "metadata": {}
-        }
-      ],
-      "functions": [
         {
           "name": "DrawScissorPolygonOpaque2",
           "size": "200",
           "fuzzy_match_percent": 98.8,
           "metadata": {},
-          "address": "0"
+          "address": "576"
         },
         {
           "name": "InitNodeArraySet2",
           "size": "16",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "208"
+          "address": "784"
         },
         {
           "name": "_Clip_ViewVolume2",
           "size": "32",
           "fuzzy_match_percent": 92.5,
           "metadata": {},
-          "address": "224"
+          "address": "800"
         },
         {
           "name": "_Get_ClipViewVolume2",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "256"
+          "address": "832"
         },
         {
           "name": "_Get_ClipVolumePlane",
           "size": "16",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "272"
+          "address": "848"
         },
         {
           "name": "_Check_ClipViewAll",
           "size": "28",
           "fuzzy_match_percent": 91.42857,
           "metadata": {},
-          "address": "288"
+          "address": "864"
         },
         {
           "name": "_Set_NodeArray",
           "size": "60",
           "fuzzy_match_percent": 96.0,
           "metadata": {},
-          "address": "320"
+          "address": "896"
         },
         {
           "name": "_ClipInter",
           "size": "560",
           "fuzzy_match_percent": 96.57143,
           "metadata": {},
-          "address": "384"
+          "address": "960"
         },
         {
           "name": "_Check_ScissorPlane",
           "size": "316",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "944"
+          "address": "1520"
         },
         {
           "name": "InitNodeArraySet",
           "size": "48",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "1264"
+          "address": "1840"
         },
         {
           "name": "InitScissorPlane",
           "size": "88",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "1312"
+          "address": "1888"
         },
         {
           "name": "_Init_ScissorSystem",
           "size": "44",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "1408"
+          "address": "1984"
         },
         {
           "name": "_Clip_ViewVolume",
           "size": "56",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "1456"
+          "address": "2032"
         },
         {
           "name": "PushTriangleNodeArray",
           "size": "104",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "1520"
+          "address": "2096"
         },
         {
           "name": "ResetNodeArraySet",
           "size": "40",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "1632"
+          "address": "2208"
         },
         {
           "name": "ScissorTriangle",
           "size": "1212",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "1680"
+          "address": "2256"
         },
         {
           "name": "_Check_DisplayAreaPoint",
           "size": "172",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "2896"
+          "address": "3472"
         },
         {
           "name": "DrawScissorPolygonOpaque",
           "size": "188",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "3072"
+          "address": "3648"
         },
         {
           "name": "vu1DrawTriangleStripOpaqueSingle",
           "size": "800",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "3264"
+          "address": "3840"
         },
         {
           "name": "vu1DrawTriangleStripOpaqueDouble",
           "size": "688",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "4064"
+          "address": "4640"
         },
         {
           "name": "vu1DrawTriangleStripTransSingle",
           "size": "800",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "4752"
+          "address": "5328"
         },
         {
           "name": "_Clip_Screen",
           "size": "64",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "5552"
+          "address": "6128"
         },
         {
           "name": "vu1DrawTriangleStripTransDouble",
           "size": "1148",
+          "fuzzy_match_percent": 98.53658,
           "metadata": {},
-          "address": "5616"
+          "address": "6192"
         },
         {
           "name": "vu1GetVertexColor",
           "size": "64",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "6768"
+          "address": "7344"
         },
         {
           "name": "vu1GetVertexColorCM",
           "size": "36",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "6832"
+          "address": "7408"
         },
         {
           "name": "vu1GetVertexColorIgnore",
           "size": "40",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "6880"
+          "address": "7456"
         },
         {
           "name": "vu1GetVertexColorDif",
           "size": "52",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "6928"
+          "address": "7504"
         },
         {
           "name": "vu1GetVertexColorDifAmb",
           "size": "44",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "6992"
+          "address": "7568"
         },
         {
           "name": "vu1GetVertexColorDifSpe1",
           "size": "68",
+          "fuzzy_match_percent": 76.47059,
           "metadata": {},
-          "address": "7040"
+          "address": "7616"
         },
         {
           "name": "vu1GetVertexColorDifSpe2",
           "size": "100",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "7120"
+          "address": "7696"
         },
         {
           "name": "vu1GetVertexColorDifSpe3",
           "size": "120",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "7232"
+          "address": "7808"
         },
         {
           "name": "vu1GetVertexColorDifSpe1Amb",
           "size": "100",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "7360"
+          "address": "7936"
         },
         {
           "name": "vu1GetVertexColorDifSpe2Amb",
           "size": "100",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "7472"
+          "address": "8048"
         },
         {
           "name": "vu1GetVertexColorDifSpe3Amb",
           "size": "136",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "7584"
+          "address": "8160"
         },
         {
           "name": "vu1RotTransStripBuf",
           "size": "128",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "7728"
+          "address": "8304"
         },
         {
           "name": "vu1DrawTriangleStripTransDoubleI",
           "size": "556",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "7856"
+          "address": "8432"
         },
         {
           "name": "DrawScissorPolygonTrans1P",
           "size": "188",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "8416"
+          "address": "8992"
         },
         {
           "name": "vu1DrawTriangleStripTransDouble1P",
           "size": "704",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "8608"
+          "address": "9184"
         }
       ],
       "metadata": {
-        "source_path": "config/src/ps2/veronica/prog/ps2_Vu1Scissor2.c",
+        "source_path": "config/src/ps2/veronica/prog/ps2_Vu1Strip.c",
         "progress_categories": [
           "game"
         ]
@@ -30860,16 +30846,16 @@
     {
       "name": "ps2/veronica/prog/ps2_NaGraphics3D",
       "measures": {
-        "fuzzy_match_percent": 16.066309,
+        "fuzzy_match_percent": 45.609318,
         "total_code": "4464",
-        "matched_code": "708",
-        "matched_code_percent": 15.860215,
+        "matched_code": "2036",
+        "matched_code_percent": 45.609318,
         "total_data": "16688",
         "matched_data": "208",
         "matched_data_percent": 1.2464046,
         "total_functions": 10,
-        "matched_functions": 4,
-        "matched_functions_percent": 40.0,
+        "matched_functions": 6,
+        "matched_functions_percent": 60.000004,
         "total_units": 1
       },
       "sections": [
@@ -30895,13 +30881,13 @@
         {
           "name": ".rodata",
           "size": "96",
-          "fuzzy_match_percent": 79.36508,
+          "fuzzy_match_percent": 81.01266,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "4528",
-          "fuzzy_match_percent": 16.066309,
+          "fuzzy_match_percent": 45.609318,
           "metadata": {}
         },
         {
@@ -30953,7 +30939,7 @@
         {
           "name": "njDrawLine3D",
           "size": "800",
-          "fuzzy_match_percent": 1.15,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "960"
         },
@@ -30966,6 +30952,7 @@
         {
           "name": "njDrawTriangle3D",
           "size": "528",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2912"
         },
@@ -40231,17 +40218,17 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 28.491743,
+        "fuzzy_match_percent": 28.995216,
         "total_code": "1820460",
-        "matched_code": "444008",
-        "matched_code_percent": 24.38988,
+        "matched_code": "452008",
+        "matched_code_percent": 24.82933,
         "total_data": "28328732",
         "matched_data": "28039756",
         "matched_data_percent": 98.97992,
         "total_functions": 3834,
-        "matched_functions": 1696,
-        "matched_functions_percent": 44.235783,
-        "total_units": 152
+        "matched_functions": 1725,
+        "matched_functions_percent": 44.992176,
+        "total_units": 151
       }
     },
     {
