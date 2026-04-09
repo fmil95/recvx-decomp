@@ -673,7 +673,7 @@ void npDrawPlane(NJS_POINT3* ps0, NJS_POINT3* ps1, NJS_POINT3* ps2, NJS_POINT3* 
     njDrawPolygon3D(&p3c, 4, 96);
 }
 
-// 99.57% matching
+// 100% matching!
 void npCalcMorphing(NJS_CNK_OBJECT* obj_a, NJS_CNK_OBJECT* obj_b, float no, int obj_n)
 {
     int i;
@@ -683,16 +683,16 @@ void npCalcMorphing(NJS_CNK_OBJECT* obj_a, NJS_CNK_OBJECT* obj_b, float no, int 
     njPushMatrix(NULL);
     
     np.mxp[128][2] = np.mxp[128][1];
-    
-    for (i = 0; i < obj_n; i++) 
-    {
-        if ((obj_a[i].model != NULL) && (!(obj_a[i].evalflags & 0x8))) 
-        {
-            obj_a[i].pos[0] = (no * (0.001f * (obj_b[i].pos[0] - obj_a[i].pos[0]))) + obj_a[i].pos[0];
-            obj_a[i].pos[1] = (no * (0.001f * (obj_b[i].pos[1] - obj_a[i].pos[1]))) + obj_a[i].pos[1];
-            obj_a[i].pos[2] = (no * (0.001f * (obj_b[i].pos[2] - obj_a[i].pos[2]))) + obj_a[i].pos[2];
 
-            nb = ((unsigned short*)obj_a[i].model->vlist)[3];
+    for (i = 0; i < obj_n; i++, obj_a++, obj_b++) 
+    {
+        if ((obj_a->model != NULL) && (!(obj_a->evalflags & 0x8))) 
+        {
+            obj_a->pos[0] = (no * (0.001f * (obj_b->pos[0] - obj_a->pos[0]))) + obj_a->pos[0];
+            obj_a->pos[1] = (no * (0.001f * (obj_b->pos[1] - obj_a->pos[1]))) + obj_a->pos[1];
+            obj_a->pos[2] = (no * (0.001f * (obj_b->pos[2] - obj_a->pos[2]))) + obj_a->pos[2];
+
+            nb = ((unsigned short*)obj_a->model->vlist)[3];
 
             np.vlp2[i] = (int*)np.mxp[128][2]; 
             
@@ -702,7 +702,7 @@ void npCalcMorphing(NJS_CNK_OBJECT* obj_a, NJS_CNK_OBJECT* obj_b, float no, int 
             
             np.mxp[128][2] = (NJS_MATRIX*)((int)np.mxp[128][2] + ulSize);
             
-            npTransform(&obj_a[i], &obj_b[i], no, i);
+            npTransform(obj_a, obj_b, no, i);
         }
     } 
     

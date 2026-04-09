@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 31.61162,
+    "fuzzy_match_percent": 31.611687,
     "total_code": "1904472",
-    "matched_code": "521808",
-    "matched_code_percent": 27.39909,
+    "matched_code": "522180",
+    "matched_code_percent": 27.418623,
     "total_data": "28420132",
     "matched_data": "28077660",
     "matched_data_percent": 98.79497,
     "total_functions": 4529,
-    "matched_functions": 2369,
-    "matched_functions_percent": 52.307354,
+    "matched_functions": 2370,
+    "matched_functions_percent": 52.329433,
     "total_units": 200
   },
   "units": [
@@ -207,16 +207,16 @@
     {
       "name": "ps2/veronica/prog/njplus",
       "measures": {
-        "fuzzy_match_percent": 99.990456,
+        "fuzzy_match_percent": 100.0,
         "total_code": "13416",
-        "matched_code": "13044",
-        "matched_code_percent": 97.22719,
+        "matched_code": "13416",
+        "matched_code_percent": 100.0,
         "total_data": "12208",
         "matched_data": "12208",
         "matched_data_percent": 100.0,
         "total_functions": 37,
-        "matched_functions": 36,
-        "matched_functions_percent": 97.2973,
+        "matched_functions": 37,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -243,7 +243,7 @@
         {
           "name": ".text",
           "size": "13632",
-          "fuzzy_match_percent": 99.990456,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -297,7 +297,7 @@
         {
           "name": "npCalcMorphing",
           "size": "372",
-          "fuzzy_match_percent": 99.655914,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "4848"
         },
@@ -40231,16 +40231,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 28.491674,
+        "fuzzy_match_percent": 28.491743,
         "total_code": "1820460",
-        "matched_code": "443636",
-        "matched_code_percent": 24.369446,
+        "matched_code": "444008",
+        "matched_code_percent": 24.38988,
         "total_data": "28328732",
         "matched_data": "28039756",
         "matched_data_percent": 98.97992,
         "total_functions": 3834,
-        "matched_functions": 1695,
-        "matched_functions_percent": 44.209705,
+        "matched_functions": 1696,
+        "matched_functions_percent": 44.235783,
         "total_units": 152
       }
     },
