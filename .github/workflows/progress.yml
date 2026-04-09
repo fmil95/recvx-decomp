@@ -1,4 +1,4 @@
-name: Upload Objdiff Progress Report Artifacts
+name: Upload Objdiff Progress Report Artifact
 
 on:
   push:

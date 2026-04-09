@@ -1,2 +1,2 @@
-splat64[mips]>=0.36.3,<1.0.0
-intervaltree==3.1.0
+splat64[mips]>=0.39.1,<1.0.0
+intervaltree==3.2.1
