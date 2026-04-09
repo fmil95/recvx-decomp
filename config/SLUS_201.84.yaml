@@ -377,6 +377,7 @@ segments:
       - [0x1E8130, c, ps2/veronica/prog/effsub6]
       - [0x1E9920, c, ps2/veronica/prog/ps2_snddrv]
       - [0x1EB610, c, ps2/veronica/prog/ps2_MovieFunc]
+      - [auto, c, ps2/veronica/prog/ps2_MovieWork]
       # - [0x1EC9F0, c, ps2/veronica/prog/ps2_MovieFunc.h]
       # CRI library
       - [0x1EE120, c, cri/mwlib/ee/lib/libadxe/adx_amp]

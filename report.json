@@ -1,16 +1,16 @@
 {
   "measures": {
-    "fuzzy_match_percent": 31.599648,
+    "fuzzy_match_percent": 31.61162,
     "total_code": "1904472",
-    "matched_code": "521580",
-    "matched_code_percent": 27.38712,
-    "total_data": "28420060",
-    "matched_data": "15278684",
-    "matched_data_percent": 53.760212,
+    "matched_code": "521808",
+    "matched_code_percent": 27.39909,
+    "total_data": "28420132",
+    "matched_data": "28077660",
+    "matched_data_percent": 98.79497,
     "total_functions": 4529,
-    "matched_functions": 2368,
-    "matched_functions_percent": 52.28527,
-    "total_units": 199
+    "matched_functions": 2369,
+    "matched_functions_percent": 52.307354,
+    "total_units": 200
   },
   "units": [
     {
@@ -92,7 +92,7 @@
         {
           "name": ".data",
           "size": "168",
-          "fuzzy_match_percent": 42.473118,
+          "fuzzy_match_percent": 51.38889,
           "metadata": {}
         },
         {
@@ -17748,6 +17748,8 @@
         "matched_code": "8836",
         "matched_code_percent": 74.98303,
         "total_data": "4224",
+        "matched_data": "3656",
+        "matched_data_percent": 86.55303,
         "total_functions": 58,
         "matched_functions": 54,
         "matched_functions_percent": 93.10345,
@@ -17757,7 +17759,7 @@
         {
           "name": ".bss",
           "size": "3656",
-          "fuzzy_match_percent": 20.0,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -17767,6 +17769,7 @@
         {
           "name": ".data",
           "size": "360",
+          "fuzzy_match_percent": 85.27778,
           "metadata": {}
         },
         {
@@ -26961,6 +26964,8 @@
         "matched_code": "6748",
         "matched_code_percent": 40.023727,
         "total_data": "12796504",
+        "matched_data": "12795248",
+        "matched_data_percent": 99.99018,
         "total_functions": 43,
         "matched_functions": 28,
         "matched_functions_percent": 65.11628,
@@ -26970,7 +26975,7 @@
         {
           "name": ".bss",
           "size": "12795248",
-          "fuzzy_match_percent": 99.80688,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -30855,16 +30860,16 @@
     {
       "name": "ps2/veronica/prog/ps2_NaGraphics3D",
       "measures": {
-        "fuzzy_match_percent": 10.958781,
+        "fuzzy_match_percent": 16.066309,
         "total_code": "4464",
-        "matched_code": "480",
-        "matched_code_percent": 10.752688,
+        "matched_code": "708",
+        "matched_code_percent": 15.860215,
         "total_data": "16688",
         "matched_data": "208",
         "matched_data_percent": 1.2464046,
         "total_functions": 10,
-        "matched_functions": 3,
-        "matched_functions_percent": 30.000002,
+        "matched_functions": 4,
+        "matched_functions_percent": 40.0,
         "total_units": 1
       },
       "sections": [
@@ -30896,7 +30901,7 @@
         {
           "name": ".text",
           "size": "4528",
-          "fuzzy_match_percent": 10.958781,
+          "fuzzy_match_percent": 16.066309,
           "metadata": {}
         },
         {
@@ -30929,6 +30934,7 @@
         {
           "name": "CalcIntersectionCone",
           "size": "228",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "512"
         },
@@ -33165,6 +33171,45 @@
       ],
       "metadata": {
         "source_path": "config/src/ps2/veronica/prog/ps2_MovieFunc.c",
+        "progress_categories": [
+          "game"
+        ]
+      }
+    },
+    {
+      "name": "ps2/veronica/prog/ps2_MovieWork",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "total_data": "72",
+        "matched_data": "72",
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".bss",
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "source_path": "config/src/ps2/veronica/prog/ps2_MovieWork.c",
         "progress_categories": [
           "game"
         ]
@@ -40186,17 +40231,17 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 28.479149,
+        "fuzzy_match_percent": 28.491674,
         "total_code": "1820460",
-        "matched_code": "443408",
-        "matched_code_percent": 24.35692,
-        "total_data": "28328660",
-        "matched_data": "15240780",
-        "matched_data_percent": 53.799862,
+        "matched_code": "443636",
+        "matched_code_percent": 24.369446,
+        "total_data": "28328732",
+        "matched_data": "28039756",
+        "matched_data_percent": 98.97992,
         "total_functions": 3834,
-        "matched_functions": 1694,
-        "matched_functions_percent": 44.18362,
-        "total_units": 151
+        "matched_functions": 1695,
+        "matched_functions_percent": 44.209705,
+        "total_units": 152
       }
     },
     {
