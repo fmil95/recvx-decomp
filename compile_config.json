@@ -237,6 +237,7 @@
       "src/ps2/veronica/prog/ps2_event.c",
       "src/ps2/veronica/prog/effsub6.c",
       "src/ps2/veronica/prog/ps2_snddrv.c",
+      "src/ps2/veronica/prog/ps2_MovieWork.c",
       "src/ps2/veronica/prog/ps2_MovieFunc.c",
       "src/cri/mwlib/ee/lib/libadxe/adx_amp.c",
       "src/cri/mwlib/ee/lib/libadxe/adx_baif.c",

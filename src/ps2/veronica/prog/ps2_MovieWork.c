@@ -1,12 +1,12 @@
 #include "../../../ps2/veronica/prog/ps2_MovieWork.h"
 
-/*_anon4* timeStamp;
-char* videoDecStack;
+VoTag* voBufTag __attribute__((aligned(64)));
+VoData* voBufData;
+READ_BUF* readBuf;
 unsigned char* audioBuff;
-_anon3* readBuf;
-<unknown fundamental type (0xa510)>* viBufData;
-<unknown fundamental type (0xa510)>* viBufTag;
-_anon2* voBufData;
-_anon0* voBufTag;
+TimeStamp* timeStamp;
+u_long128* viBufTag;
+u_long128* viBufData;
 unsigned char* mpegWork;
-void* vpWorkMemoryTop;*/
+char* videoDecStack;
+/*void* vpWorkMemoryTop; - unused */

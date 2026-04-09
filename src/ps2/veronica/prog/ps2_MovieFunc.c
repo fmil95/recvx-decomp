@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/ps2_MovieFunc.h"
+#include "../../../ps2/veronica/prog/ps2_MovieWork.h"
 #include "../../../ps2/veronica/prog/adxwrap.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_loadtim2.h"
@@ -10,15 +11,6 @@
 
 //#include <string.h>
 
-VoTag* voBufTag __attribute__((aligned(64)));
-VoData* voBufData;
-READ_BUF* readBuf;
-unsigned char* audioBuff;
-TimeStamp* timeStamp;
-u_long128* viBufTag;
-u_long128* viBufData;
-unsigned char* mpegWork;
-char* videoDecStack;
 int videoDecTh;
 int frd;
 int movie_draw;
