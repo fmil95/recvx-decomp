@@ -221,7 +221,7 @@ int PageConv4to32(int width, int height, u_char *p_input, u_char *p_output)
         17, 19, 25, 27,
         20, 22, 28, 30,
         21, 23, 29, 31
-    }; // TODO: find out where the data location for these values is, can't find it in game.data.s
+    }; 
     static unsigned int block_table32[32] = 
     {
          0,  1,  4,  5, 16, 17, 20, 21,

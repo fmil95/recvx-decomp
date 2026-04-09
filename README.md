@@ -19,8 +19,6 @@ While function matching with [objdiff](https://github.com/encounter/objdiff) is 
 
 Additionally, this project also consists of reverse-engineering the CRI Middleware library that was employed by the developers to handle different aspects of the game such as audio and the AFS filesystem. There is also an on-going [decompilation of the Nintendo GameCube version](https://github.com/fmil95/recvx-gc-decomp), which does compile a matching binary so if you prefer that setup and have some knowledge of PowerPC and don't mind working with less debug info, feel free to contribute to that one instead. The [Dreamcast version is being decompiled](https://github.com/fmil95/recv-dc-decomp), too, but even though it can build a matching executable, the tools for decompiling DC need to be expanded upon greatly.
 
-*¹ This version of MWCCPS2 also seems to have an issue where unreferenced functions affect code-gen throughout the compile unit, see this [decomp.me scratch](https://decomp.me/scratch/NIx9k) for an example. MWLDPS2 removes all functions with no references during linktime and while some can be recovered from the Dreamcast version, files that are only present on PS2 have all that unused code erased beyond recovery.*
-
 ## Building
 
 The very first step should be to clone the repository: 
