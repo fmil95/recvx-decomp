@@ -86,20 +86,17 @@ int CalcIntersectionCone(float* ans, float* v0, float* v1)
     sceVu0AddVector(ans, ans, v0);
 }
 
-// 
-// Start address: 0x2dfcf0
+// 100% matching!
 float Head_or_Tail(PS2_PLANE* plane, float* v) // first parameter is not present on DWARF
 {
-	float tmp[4];
-	//_anon1 p;
-	// Line 141, Address: 0x2dfcf0, Func Offset: 0
-	// Line 144, Address: 0x2dfd04, Func Offset: 0x14
-	// Line 141, Address: 0x2dfd08, Func Offset: 0x18
-	// Line 144, Address: 0x2dfd0c, Func Offset: 0x1c
-	// Line 145, Address: 0x2dfd18, Func Offset: 0x28
-	// Line 146, Address: 0x2dfd24, Func Offset: 0x34
-	// Func End, Address: 0x2dfd30, Func Offset: 0x40
-	scePrintf("Head_or_Tail - UNIMPLEMENTED!\n");
+    PS2_PLANE p;       
+    sceVu0FVECTOR tmp; 
+
+    p = *plane;
+
+    sceVu0SubVector(tmp, v, p.pos);
+    
+    return sceVu0InnerProduct(tmp, p.norm);
 }
 
 // 100% matching!
