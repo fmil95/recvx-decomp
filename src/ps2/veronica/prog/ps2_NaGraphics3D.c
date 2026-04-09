@@ -102,22 +102,19 @@ float Head_or_Tail(PS2_PLANE* plane, float* v) // first parameter is not present
 	scePrintf("Head_or_Tail - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2dfd30
+// 100% matching!
 float Across_Plane(PS2_PLANE* plane, float* v0, float* v1) // first parameter is not present on DWARF
 {
-	float tmp1[4];
-	float tmp0[4];
-	//_anon1 p;
-	// Line 150, Address: 0x2dfd30, Func Offset: 0
-	// Line 153, Address: 0x2dfd50, Func Offset: 0x20
-	// Line 150, Address: 0x2dfd58, Func Offset: 0x28
-	// Line 153, Address: 0x2dfd5c, Func Offset: 0x2c
-	// Line 154, Address: 0x2dfd6c, Func Offset: 0x3c
-	// Line 155, Address: 0x2dfd7c, Func Offset: 0x4c
-	// Line 156, Address: 0x2dfd9c, Func Offset: 0x6c
-	// Func End, Address: 0x2dfdb4, Func Offset: 0x84
-	scePrintf("Across_Plane - UNIMPLEMENTED!\n");
+    PS2_PLANE p;
+    sceVu0FVECTOR tmp0; 
+    sceVu0FVECTOR tmp1; 
+    
+    p = *plane;
+    
+    sceVu0SubVector(tmp0, v0, p.pos);
+    sceVu0SubVector(tmp1, v1, p.pos);
+    
+    return sceVu0InnerProduct(tmp0, p.norm) * sceVu0InnerProduct(tmp1, p.norm);
 }
 
 // 100% matching!
