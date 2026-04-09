@@ -55,11 +55,6 @@ Use the following command to setup objdiff:
 python compile.py --setup
 ```
 
-Or run this command to setup the ASM dump to create decomp.me scratches more easily:
-```
-python compile.py --split
-```
-
 Either command should run without errors and generate an `objdiff.json` project file or a `config/asm` folder respectively.
 
 From now on to build the project you just need to type the following command:
