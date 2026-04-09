@@ -318,6 +318,7 @@ segments:
       - [0x198050, c, ps2/veronica/prog/face]
       - [0x1988A0, c, ps2/veronica/prog/face_bh]
       - [0x19A8F0, c, ps2/veronica/prog/sub1]
+      - [auto, c, ps2/veronica/prog/item]
       - [0x1A98F0, c, ps2/veronica/prog/itemview]
       - [0x1AC040, c, ps2/veronica/prog/fileview]
       - [0x1AECB0, c, ps2/veronica/prog/door]

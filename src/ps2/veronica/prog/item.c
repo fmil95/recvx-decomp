@@ -1,14 +1,16 @@
 #include "../../../ps2/veronica/prog/item.h"
 
-/*short combidata[410];
-_anon0 itemdata[156];
-_anon1 dsptbl[160];
-unsigned char curedata[10];
-short c_a[6][14];
-unsigned short mestbl[14];
-unsigned char itemflg[8][41];
-unsigned short itemidtbl[16];
-unsigned short getmestbl[16];
-unsigned short idsettbl[16];
-_anon2 hoseipos[10];
-unsigned int getbulletmax[4][156];*/
+// TODO: all these below need data definition
+
+const unsigned int getbulletmax[156][4];
+const NJS_POINT3 hoseipos[10];
+const unsigned short idsettbl[16];
+const unsigned short getmestbl[16];
+const unsigned short itemidtbl[16];
+const unsigned char itemflg[41][8];
+const unsigned short mestbl[14];
+const short c_a[14][6];
+const unsigned char curedata[10];
+const DSP_WORK dsptbl[160];
+const ITEM_WORK itemdata[156];
+const short combidata[410];

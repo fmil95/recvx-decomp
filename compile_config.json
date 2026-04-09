@@ -181,6 +181,7 @@
       "src/ps2/veronica/prog/face.c",
       "src/ps2/veronica/prog/face_bh.c",
       "src/ps2/veronica/prog/sub1.c",
+      "src/ps2/veronica/prog/item.c",
       "src/ps2/veronica/prog/itemview.c",
       "src/ps2/veronica/prog/fileview.c",
       "src/ps2/veronica/prog/door.c",

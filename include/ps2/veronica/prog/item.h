@@ -1,47 +1,36 @@
 #ifndef _ITEM_H_
 #define _ITEM_H_
 
-/*typedef struct _anon0;
-typedef struct _anon1;
-typedef struct _anon2;
+#include "types.h"
 
-
-typedef short type_0[6];
-typedef short type_1[6][14];
-typedef _anon1 type_2[160];
-typedef short type_3[410];
-typedef unsigned short type_4[16];
-typedef _anon2 type_5[10];
-typedef unsigned short type_6[14];
-typedef unsigned short type_7[16];
-typedef unsigned int type_8[4];
-typedef unsigned int type_9[4][156];
-typedef unsigned char type_10[10];
-typedef _anon0 type_11[156];
-typedef unsigned char type_12[8];
-typedef unsigned char type_13[8][41];
-typedef unsigned short type_14[16];
-
-struct _anon0
+typedef struct ITEM_WORK 
 {
-	unsigned short max;
-	short cmb;
-	unsigned short type;
-};
+    // total size: 0x6
+    unsigned short max;  // offset 0x0, size 0x2
+    short cmb;           // offset 0x2, size 0x2
+    unsigned short type; // offset 0x4, size 0x2
+} ITEM_WORK;
 
-struct _anon1
+typedef struct DSP_WORK 
 {
-	short ax;
-	short ay;
-	short az;
-	short hide;
-};
+    // total size: 0x8
+    short ax;   // offset 0x0, size 0x2
+    short ay;   // offset 0x2, size 0x2
+    short az;   // offset 0x4, size 0x2
+    short hide; // offset 0x6, size 0x2
+} DSP_WORK;
 
-struct _anon2
-{
-	float x;
-	float y;
-	float z;
-};*/
+extern const unsigned int getbulletmax[156][4];
+extern const NJS_POINT3 hoseipos[10];
+extern const unsigned short idsettbl[16];
+extern const unsigned short getmestbl[16];
+extern const unsigned short itemidtbl[16];
+extern const unsigned char itemflg[41][8];
+extern const unsigned short mestbl[14];
+extern const short c_a[14][6];
+extern const unsigned char curedata[10];
+extern const DSP_WORK dsptbl[160];
+extern const ITEM_WORK itemdata[156];
+extern const short combidata[410];
 
 #endif
