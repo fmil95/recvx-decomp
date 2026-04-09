@@ -87,4 +87,12 @@ void ExecuteStateSaveScreenErrDer(SAVE_SCREEN* pSave);
 void SetDispSelectMessage();
 void CheckDispMemoryCard(SAVE_SCREEN* pSave);
 
+extern SELECTFILEWINDOW SelectFileWindow;
+extern SELECTFILEINFO SelectFileInfo[15];
+extern char* cpNameList[18];
+extern ICONINFORMATION IconInfo;
+extern MEMORYCARDSTATE McState;
+extern SAVEFILE SaveFile;
+extern CONFIGFILE ConfigFile;
+
 #endif

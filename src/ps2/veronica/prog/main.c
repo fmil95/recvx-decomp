@@ -84,18 +84,6 @@ ROM_WORK romp;
 ROM_WORK* rom = &romp;
 unsigned int palbuf[4096] __attribute__((aligned(64)));
 /*static */ float SinTable[16384];
-SELECTFILEWINDOW SelectFileWindow;
-SELECTFILEINFO SelectFileInfo[15] __attribute__((aligned(64)));
-char* cpNameList[18] = 
-{
-    "icon.sys", "bio_cv.ico", "BASLUS-20184", "SAVEDATA-00", "SAVEDATA-01", "SAVEDATA-02", "SAVEDATA-03",
-    "SAVEDATA-04", "SAVEDATA-05", "SAVEDATA-06", "SAVEDATA-07", "SAVEDATA-08", "SAVEDATA-09", "SAVEDATA-10",
-    "SAVEDATA-11", "SAVEDATA-12", "SAVEDATA-13", "SAVEDATA-14"
-}; 
-ICONINFORMATION IconInfo;
-MEMORYCARDSTATE McState;
-SAVEFILE SaveFile;
-CONFIGFILE ConfigFile;
 CAM_WORK cam;
 
 // 100% matching!

@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/ps2_LoadScreen.h"
+#include "../../../ps2/veronica/prog/ps2_SaveScreen.h"
 #include "../../../ps2/veronica/prog/message.h"
 #include "../../../ps2/veronica/prog/ps2_McSaveFile.h"
 #include "../../../ps2/veronica/prog/ps2_MemoryCard..h"

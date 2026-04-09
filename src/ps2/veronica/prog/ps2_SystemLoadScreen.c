@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/ps2_SystemLoadScreen.h"
+#include "../../../ps2/veronica/prog/ps2_SaveScreen.h"
 #include "../../../ps2/veronica/prog/adv.h"
 #include "../../../ps2/veronica/prog/message.h"
 #include "../../../ps2/veronica/prog/padman.h"

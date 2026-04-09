@@ -7,6 +7,37 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/main.h"
 
+CONFIGFILE ConfigFile;
+SAVEFILE SaveFile;
+ICONINFORMATION IconInfo;
+MEMORYCARDSTATE McState;
+SELECTFILEINFO SelectFileInfo[15] __attribute__((aligned(64)));
+SELECTFILEWINDOW SelectFileWindow;
+
+char cIconSys[9] = "icon.sys"; 
+char cBioCvIco[11] = "bio_cv.ico"; 
+char cSysData[13] = "BASLUS-20184"; 
+char cSaveData00[12] = "SAVEDATA-00";
+char cSaveData01[12] = "SAVEDATA-01";
+char cSaveData02[12] = "SAVEDATA-02";
+char cSaveData03[12] = "SAVEDATA-03";
+char cSaveData04[12] = "SAVEDATA-04";
+char cSaveData05[12] = "SAVEDATA-05";
+char cSaveData06[12] = "SAVEDATA-06";
+char cSaveData07[12] = "SAVEDATA-07";
+char cSaveData08[12] = "SAVEDATA-08";
+char cSaveData09[12] = "SAVEDATA-09";
+char cSaveData10[12] = "SAVEDATA-10";
+char cSaveData11[12] = "SAVEDATA-11";
+char cSaveData12[12] = "SAVEDATA-12";
+char cSaveData13[12] = "SAVEDATA-13";
+char cSaveData14[12] = "SAVEDATA-14";
+char* cpNameList[18] = 
+{
+    cIconSys, cBioCvIco, cSysData, cSaveData00, cSaveData01, cSaveData02, cSaveData03, cSaveData04, cSaveData05, cSaveData06, cSaveData07, 
+    cSaveData08, cSaveData09, cSaveData10, cSaveData11, cSaveData12, cSaveData13, cSaveData14
+}; 
+
 // 100% matching! 
 SAVE_SCREEN* CreateSaveScreen(SAVE_SCREEN* pSave, void* vpWorkPtrSys) 
 {
