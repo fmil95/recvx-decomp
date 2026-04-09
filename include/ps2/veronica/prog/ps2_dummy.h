@@ -141,7 +141,7 @@ extern unsigned char* Ps2_MOVIE;
 extern unsigned int Ps2_ice_flag;
 extern unsigned int palbuf[4096];
 extern float mbuf[128][16];
-extern float cmmat[16];
+extern float cmmat[2][16];
 extern NJS_MATRIX crmat;
 extern float Ps2_shadow_fog;
 extern float Ps2_shadow_vec[4];

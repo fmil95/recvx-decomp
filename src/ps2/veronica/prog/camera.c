@@ -13,8 +13,8 @@ void bhInitCamera() {
     cam.ocut = -1;
     cam.ocflg = 0;
     cam.attr = 0;
-    cam.mtx = &cmmat;
-    cam.mtxb = (&cmmat + 0x1);
+    cam.mtx = cmmat;
+    cam.mtxb = (cmmat + 0x1);
     njUnitMatrix(cam.mtx);
     njUnitMatrix(cam.mtxb);
 }

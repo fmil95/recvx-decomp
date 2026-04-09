@@ -9,68 +9,54 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
-unsigned int Ps2_tex_load_tp_cancel;
-/*unsigned int Ps2_highlight;
-float Ps2_rand_seed[4];*/
-unsigned int PS2_Render_tex_sub_flag;
-unsigned int Ps2_ice_flag;
-/*unsigned int Ps2_albinoid_flag;*/
-unsigned char Ps2_tex_mem[10485760] __attribute__((aligned(64)));
-/*float Ps2_zbuff_a;
-float Ps2_zbuff_b;*/
-unsigned int Ps2_use_pt_flag;
-NJS_TEXMEMLIST* Ps2_now_tex;
-unsigned int Ps2_ot_list_no;
-void* Ps2_PP;
-PS2_OT Ps2_ot_list[8192];
-unsigned int Ps2_now_bank;
-PS2_OT* Ps2_OT[4096][2] __attribute__((aligned(64)));
-float Ps2AddPrimPrio;
-PS2_TP_TAG Ps2_tp_tag[64];
-PS2_TP_CACHE ps2_tp_cache[64];
-unsigned int Ps2_tex_cache_num;
-unsigned int Ps2_tex_cache_beflag[4];
-void* Ps2_tex_cache_buff[4];
-unsigned char Ps2_PBUFF[1835008] __attribute__((aligned(64)));
 sceGsDBuffDc Db;
-PS2_GS_SAVE Ps2_gs_save __attribute__((aligned(64)));
-unsigned int Ps2_albinoid_flag;
-unsigned int Ps2_sys_cnt;
-/*_anon4* Ps2_tex_info;
-unsigned long ulNaFogB;
-unsigned long ulNaFogG;
-unsigned long ulNaFogR;
-unsigned int Ps2_divide_flag;
-_anon19 Ps2_pad;*/
-float Ps2_shadow_fog;
-float Ps2_shadow_vec[4];
-int Ps2_shadow_z;
-/*int ViewType;*/
-unsigned int palbuf[4096] __attribute__((aligned(64)));
-float mbuf[128][16] __attribute__((aligned(64)));
-NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
-//float cmmat[2][16] __attribute__((aligned(64))); // TODO: use this definition
-float cmmat[16];
-/*float cmmat[16][2];*/
-NJS_MATRIX crmat;
-Uint8* _BSG_END;
-/*int _nj_tex_count;*/
-NJS_VERTEX_BUF* _nj_vertex_buf_;
-NJS_SCREEN _nj_screen_;
-void (* VsyncFunc)();
-void (* EorFunc)();
+void (*EorFunc)();
+void (*VsyncFunc)();
 unsigned int Ps2_vcount;
 unsigned int Ps2_dbuff;
-unsigned int _nj_control_3d_flag_;
-/*_anon28 _nj_screen_;*/
-unsigned char Ps2_DRAW_TMP[16384];
-/*unsigned int Ps2_sys_cnt;*/
 unsigned int Ps2_njControl3D_flag;
-/*unsigned int Ps2_dbuff;
-unsigned int Ps2_vcount;
-void(*VsyncFunc)();
-void(*EorFunc)();*/
+unsigned int Ps2_sys_cnt;
+unsigned char Ps2_DRAW_TMP[16384];
+NJS_SCREEN _nj_screen_;
+unsigned int _nj_control_3d_flag_;
+NJS_VERTEX_BUF* _nj_vertex_buf_;
+Uint8* _BSG_END;
+unsigned int Ps2_use_pt_flag;
+NJS_MATRIX crmat;
+float cmmat[2][16] __attribute__((aligned(64))); 
+NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
+float mbuf[128][16] __attribute__((aligned(64)));
+unsigned int palbuf[4096] __attribute__((aligned(64)));
+unsigned char Ps2_tex_mem[10485760] __attribute__((aligned(64)));
+PS2_OT* Ps2_OT[4096][2] __attribute__((aligned(64)));
+unsigned char Ps2_PBUFF[1835008] __attribute__((aligned(64)));
+void* Ps2_PP;
+PS2_OT Ps2_ot_list[8192];
+unsigned int Ps2_ot_list_no;
+PS2_TP_TAG Ps2_tp_tag[64];
+PS2_TP_CACHE ps2_tp_cache[64];
+float Ps2_shadow_vec[4];
+float Ps2_shadow_fog;
+int Ps2_shadow_z;
+void* Ps2_tex_cache_buff[4];
+unsigned int Ps2_tex_cache_beflag[4];
+unsigned int Ps2_tex_cache_num;
+PS2_GS_SAVE Ps2_gs_save __attribute__((aligned(64)));
+NJS_TEXMEMLIST* Ps2_now_tex;
+unsigned int Ps2_now_bank;
+float Ps2AddPrimPrio;
+int ViewType;
+unsigned int Ps2_albinoid_flag;
+unsigned int Ps2_ice_flag;
+unsigned int PS2_Render_tex_sub_flag;
+unsigned int Ps2_tex_load_tp_cancel;
+/* unused below
+unsigned int Ps2_highlight;
+float Ps2_rand_seed[4];
+unsigned int Ps2_divide_flag;
+int _nj_tex_count;*/
+
+unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
 
 extern int ps2_vu0sub0 __attribute__((section(".vudata")));
 extern int ps2_vu1sub0 __attribute__((section(".vudata")));
