@@ -36,8 +36,10 @@ int Ps2TextureGarbageCollectionAll();
 int ring_check();
 
 extern NJS_TEXMEMLIST* Ps2_tex_info;
+extern void* Ps2_tex_buff;
 extern NJS_TEXLIST* Ps2_current_texlist;
 extern unsigned int Ps2_current_texno;
+extern unsigned int Ps2_current_texbreak;
 extern NJS_TEXLIST* Ps2_current_texlist_bk;
 extern unsigned int Ps2_current_texno_bk;
 extern int Ps2_quad_trans;

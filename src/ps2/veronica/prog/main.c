@@ -29,24 +29,35 @@
 #include "../../../ps2/veronica/prog/sync.h"
 #include "../../../ps2/veronica/prog/system.h"
 
-typedef void(*fn)();
+typedef void(*bhSysTaskJumpTab_proc)();
 
-BH_PWORK ene[128];
-BH_PWORK ply;
-BH_PWORK* plp = &ply;
 NJS_TEXMEMLIST tbuf[256];
 NJS_VIEW view;
 HWS_WORK hwsp;
-HWS_WORK* hws = &hwsp;
 SYS_WORK sysp;
-SYS_WORK* sys = &sysp;
-char BIO_CURRENT[64]; /* unused */
+ROM_WORK romp;
+CAM_WORK cam;
+BH_PWORK ply;
+BH_PWORK ene[128];
+O_WRK eff[512];
+unsigned char* freemem;
+unsigned char* keepmem;
+unsigned char* njpmemp __attribute__((aligned(64)));
+unsigned char* vwbmemp;
+unsigned char* vebmemp;
+/* unused below:
+char BIO_CURRENT[64];
+unsigned char* fsize;*/
+
+NJS_MATRIX* cmat = &crmat;
 float BHD_ASPECT_X = 1.174f;
 float BHD_ASPECT_Y = 1.0f;
-NJS_MATRIX crmat;
-NJS_MATRIX* cmat = &crmat;
-float mbuf[128][16] __attribute__((aligned(64)));
-fn bhSysTaskJumpTab[23] = 
+int pd_port = -1;
+HWS_WORK* hws = &hwsp;
+SYS_WORK* sys = &sysp;
+ROM_WORK* rom = &romp;
+BH_PWORK* plp = &ply;
+bhSysTaskJumpTab_proc bhSysTaskJumpTab[23] = 
 {
     bhSysCallInit,
     bhSysCallWarning,
@@ -72,19 +83,6 @@ fn bhSysTaskJumpTab[23] =
     bhSysCallSndMonitor,
     bhSysCallScreenSaver
 };
-int pd_port = -1;
-unsigned char* freemem;
-unsigned char* fsize; /* unused */
-unsigned char* keepmem;
-unsigned char* njpmemp __attribute__((aligned(64)));
-unsigned char* vebmemp;
-unsigned char* vwbmemp;
-O_WRK eff[512];
-ROM_WORK romp;
-ROM_WORK* rom = &romp;
-unsigned int palbuf[4096] __attribute__((aligned(64)));
-/*static */ float SinTable[16384];
-CAM_WORK cam;
 
 // 100% matching!
 void njUserInit(void)
@@ -165,7 +163,7 @@ void njUserInit(void)
     
     npPlusInit(); 
     
-    njInitTexture((NJS_TEXMEMLIST*)&tbuf, 256); 
+    njInitTexture(tbuf, 256); 
     
     njSetPaletteMode(2); 
     

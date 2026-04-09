@@ -1,24 +1,11 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
-// TODO: include sg_sybt.h and remove the below struct
-struct tag_SYS_BT_SYSTEMID{                   /*                    */
-    Sint32 nNo ;                              /*                    */
-    Sint32 nAll ;                             /*                    */
-    Sint8  szProduct[16];                     /*                    */
-} ;                                           /*                    */
-typedef struct tag_SYS_BT_SYSTEMID SYS_BT_SYSTEMID ;
-
 extern CAM_WORK cam;
 extern ROM_WORK* rom;
 extern unsigned char* njpmemp;
 extern NJS_MATRIX* cmat;
-extern unsigned int palbuf[4096];
-extern float SinTable[16384];
 extern SYS_WORK* sys;
-extern void* Ps2_tex_buff;
-extern unsigned int Ps2_current_texbreak;
-extern MOV_INFO MovieInfo;
 extern O_WRK eff[512];
 extern BH_PWORK* plp;
 extern HWS_WORK* hws;
@@ -26,7 +13,6 @@ extern int pd_port;
 extern unsigned char* freemem;
 extern unsigned char* vwbmemp;
 extern NJS_TEXMEMLIST tbuf[256];
-extern CAM_WORK cam;
 extern unsigned char* vebmemp;
 extern unsigned char* keepmem;
 extern BH_PWORK ply;

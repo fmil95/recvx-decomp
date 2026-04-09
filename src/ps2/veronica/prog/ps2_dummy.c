@@ -3,8 +3,10 @@
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_sg_pad.h"
 #include "../../../ps2/veronica/prog/ps2_texture.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/main.h"
 
 unsigned char* Ps2_MOVIE = &Ps2_PBUFF[1179648]; 
@@ -44,14 +46,14 @@ _anon19 Ps2_pad;*/
 float Ps2_shadow_fog;
 float Ps2_shadow_vec[4];
 int Ps2_shadow_z;
-/*int ViewType;
-unsigned int palbuf[4096];
-float mbuf[16][128];*/
+/*int ViewType;*/
+unsigned int palbuf[4096] __attribute__((aligned(64)));
+float mbuf[128][16] __attribute__((aligned(64)));
 NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
 //float cmmat[2][16] __attribute__((aligned(64))); // TODO: use this definition
 float cmmat[16];
-/*float cmmat[16][2];
-float crmat[16];*/
+/*float cmmat[16][2];*/
+NJS_MATRIX crmat;
 Uint8* _BSG_END;
 /*int _nj_tex_count;*/
 NJS_VERTEX_BUF* _nj_vertex_buf_;

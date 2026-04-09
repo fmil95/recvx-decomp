@@ -225,6 +225,7 @@ void ReadPlayLog();
 void WritePlayLog(int param1, int param2);
 
 extern int OpenDriveTrayFlag;
+extern MOV_INFO MovieInfo;
 extern int RoomFxLevel;
 extern char FxLevelTimer;
 extern int CurrentFxLevel;

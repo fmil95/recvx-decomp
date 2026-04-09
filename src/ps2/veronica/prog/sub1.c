@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/sub1.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
 
 S_WORK swork;
 
