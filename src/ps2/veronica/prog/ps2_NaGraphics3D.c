@@ -118,95 +118,122 @@ float Across_Plane(float* v0, float* v1)
 	// Func End, Address: 0x2dfdb4, Func Offset: 0x84
 }*/
 
-// 
-// Start address: 0x2dfdc0
+// 100% matching!
 void    njDrawLine3D(NJS_POINT3COL *p, Int n, Uint32 attr)
 {
-	//tagNJS_SCRVECTOR scr;
-	unsigned long prim;
-	unsigned int i;
-	float bp[4];
-	float buff[4][32];
-	float invz;
-	// Line 173, Address: 0x2dfdc0, Func Offset: 0
-	// Line 180, Address: 0x2dfdec, Func Offset: 0x2c
-	// Line 173, Address: 0x2dfdf0, Func Offset: 0x30
-	// Line 180, Address: 0x2dfdfc, Func Offset: 0x3c
-	// Line 181, Address: 0x2dfe04, Func Offset: 0x44
-	// Line 182, Address: 0x2dfe08, Func Offset: 0x48
-	// Line 189, Address: 0x2dfe0c, Func Offset: 0x4c
-	// Line 182, Address: 0x2dfe14, Func Offset: 0x54
-	// Line 189, Address: 0x2dfe18, Func Offset: 0x58
-	// Line 191, Address: 0x2dfe30, Func Offset: 0x70
-	// Line 196, Address: 0x2dfe34, Func Offset: 0x74
-	// Line 191, Address: 0x2dfe38, Func Offset: 0x78
-	// Line 192, Address: 0x2dfe44, Func Offset: 0x84
-	// Line 193, Address: 0x2dfe54, Func Offset: 0x94
-	// Line 194, Address: 0x2dfe64, Func Offset: 0xa4
-	// Line 196, Address: 0x2dfe74, Func Offset: 0xb4
-	// Line 197, Address: 0x2dfe80, Func Offset: 0xc0
-	// Line 198, Address: 0x2dfe88, Func Offset: 0xc8
-	// Line 199, Address: 0x2dfe90, Func Offset: 0xd0
-	// Line 200, Address: 0x2dfe98, Func Offset: 0xd8
-	// Line 203, Address: 0x2dfea0, Func Offset: 0xe0
-	// Line 204, Address: 0x2dfea8, Func Offset: 0xe8
-	// Line 208, Address: 0x2dfeac, Func Offset: 0xec
-	// Line 204, Address: 0x2dfeb4, Func Offset: 0xf4
-	// Line 205, Address: 0x2dfec4, Func Offset: 0x104
-	// Line 206, Address: 0x2dfed8, Func Offset: 0x118
-	// Line 208, Address: 0x2dfedc, Func Offset: 0x11c
-	// Line 209, Address: 0x2dfee4, Func Offset: 0x124
-	// Line 210, Address: 0x2dfef0, Func Offset: 0x130
-	// Line 212, Address: 0x2dfefc, Func Offset: 0x13c
-	// Line 213, Address: 0x2dff04, Func Offset: 0x144
-	// Line 214, Address: 0x2dff08, Func Offset: 0x148
-	// Line 215, Address: 0x2dff0c, Func Offset: 0x14c
-	// Line 216, Address: 0x2dff10, Func Offset: 0x150
-	// Line 217, Address: 0x2dff14, Func Offset: 0x154
-	// Line 218, Address: 0x2dff18, Func Offset: 0x158
-	// Line 216, Address: 0x2dff1c, Func Offset: 0x15c
-	// Line 218, Address: 0x2dff24, Func Offset: 0x164
-	// Line 219, Address: 0x2dff30, Func Offset: 0x170
-	// Line 220, Address: 0x2dff38, Func Offset: 0x178
-	// Line 221, Address: 0x2dff3c, Func Offset: 0x17c
-	// Line 228, Address: 0x2dff44, Func Offset: 0x184
-	// Line 221, Address: 0x2dff4c, Func Offset: 0x18c
-	// Line 228, Address: 0x2dff50, Func Offset: 0x190
-	// Line 230, Address: 0x2dff68, Func Offset: 0x1a8
-	// Line 235, Address: 0x2dff6c, Func Offset: 0x1ac
-	// Line 230, Address: 0x2dff70, Func Offset: 0x1b0
-	// Line 231, Address: 0x2dff7c, Func Offset: 0x1bc
-	// Line 232, Address: 0x2dff8c, Func Offset: 0x1cc
-	// Line 233, Address: 0x2dff9c, Func Offset: 0x1dc
-	// Line 235, Address: 0x2dffac, Func Offset: 0x1ec
-	// Line 236, Address: 0x2dffb8, Func Offset: 0x1f8
-	// Line 237, Address: 0x2dffc0, Func Offset: 0x200
-	// Line 238, Address: 0x2dffc8, Func Offset: 0x208
-	// Line 239, Address: 0x2dffd0, Func Offset: 0x210
-	// Line 242, Address: 0x2dffd8, Func Offset: 0x218
-	// Line 243, Address: 0x2dffe0, Func Offset: 0x220
-	// Line 247, Address: 0x2dffe4, Func Offset: 0x224
-	// Line 243, Address: 0x2dffec, Func Offset: 0x22c
-	// Line 244, Address: 0x2dfffc, Func Offset: 0x23c
-	// Line 245, Address: 0x2e0010, Func Offset: 0x250
-	// Line 247, Address: 0x2e0014, Func Offset: 0x254
-	// Line 248, Address: 0x2e001c, Func Offset: 0x25c
-	// Line 249, Address: 0x2e0028, Func Offset: 0x268
-	// Line 251, Address: 0x2e0034, Func Offset: 0x274
-	// Line 252, Address: 0x2e003c, Func Offset: 0x27c
-	// Line 253, Address: 0x2e0040, Func Offset: 0x280
-	// Line 254, Address: 0x2e0044, Func Offset: 0x284
-	// Line 255, Address: 0x2e0048, Func Offset: 0x288
-	// Line 256, Address: 0x2e004c, Func Offset: 0x28c
-	// Line 257, Address: 0x2e0050, Func Offset: 0x290
-	// Line 255, Address: 0x2e0054, Func Offset: 0x294
-	// Line 257, Address: 0x2e005c, Func Offset: 0x29c
-	// Line 259, Address: 0x2e0068, Func Offset: 0x2a8
-	// Line 260, Address: 0x2e0080, Func Offset: 0x2c0
-	// Line 262, Address: 0x2e009c, Func Offset: 0x2dc
-	// Line 263, Address: 0x2e00ac, Func Offset: 0x2ec
-	// Func End, Address: 0x2e00e0, Func Offset: 0x320
-	scePrintf("njDrawLine3D - UNIMPLEMENTED!\n");
+    float invz;      
+    float buff[32][4]; 
+    float (*bp)[4];    
+    unsigned int i;    
+    unsigned long prim; 
+    NJS_SCRVECTOR scr; 
+    
+    if ((attr & 0x2)) 
+    {
+        n++;
+        
+        prim = 0x15000000000000;
+
+        bp = buff;
+    
+        for (i = 0; i < n; i++, bp += 3) 
+        {
+            *(unsigned int*)&bp[1][0] = ((unsigned char*)&p->col[i])[2];
+            *(unsigned int*)&bp[1][1] = ((unsigned char*)&p->col[i])[1];
+            *(unsigned int*)&bp[1][2] = ((unsigned char*)&p->col[i])[0];
+            *(unsigned int*)&bp[1][3] = ((unsigned char*)&p->col[i])[3];
+            
+            njRotTransPers(&p->p[i], &scr);
+            
+            bp[2][0] = scr.x;
+            bp[2][1] = scr.y;
+            bp[2][2] = scr.z;
+            bp[2][3] = scr.fog;
+            
+            invz = scr.iz; 
+            
+            if ((attr & 0x80000000)) 
+            {
+                *(unsigned int*)&bp[0][0] = p->tex[i].tex.u << 4;
+                *(unsigned int*)&bp[0][1] = p->tex[i].tex.v << 4;
+                *(unsigned int*)&bp[0][2] = 0;
+                *(unsigned int*)&bp[0][3] = 0;
+                
+                sceVu0ITOF12Vector(bp[0], (int*)bp);
+                
+                bp[0][0] *= invz;
+                bp[0][1] *= invz;
+                
+                bp[0][2] = invz;
+            } 
+            else 
+            {
+                bp[0][0] = 0;
+                bp[0][1] = 0;
+                bp[0][2] = invz;
+                bp[0][3] = 0;
+            }
+        }
+    }
+    else  
+    {
+        n *= 2;
+        
+        prim = 0x14800000000000;
+
+        bp = buff;
+    
+        for (i = 0; i < n; i++, bp += 3) 
+        {
+            *(unsigned int*)&bp[1][0] = ((unsigned char*)&p->col[i])[2];
+            *(unsigned int*)&bp[1][1] = ((unsigned char*)&p->col[i])[1];
+            *(unsigned int*)&bp[1][2] = ((unsigned char*)&p->col[i])[0];
+            *(unsigned int*)&bp[1][3] = ((unsigned char*)&p->col[i])[3];
+            
+            njRotTransPers(&p->p[i], &scr);
+            
+            bp[2][0] = scr.x;
+            bp[2][1] = scr.y;
+            bp[2][2] = scr.z;
+            bp[2][3] = scr.fog;
+            
+            invz = scr.iz; 
+            
+            if ((attr & 0x80000000)) 
+            {
+                *(unsigned int*)&bp[0][0] = p->tex[i].tex.u << 4;
+                *(unsigned int*)&bp[0][1] = p->tex[i].tex.v << 4;
+                *(unsigned int*)&bp[0][2] = 0;
+                *(unsigned int*)&bp[0][3] = 0;
+                
+                sceVu0ITOF12Vector(bp[0], (int*)bp);
+                
+                bp[0][0] *= invz;
+                bp[0][1] *= invz;
+                
+                bp[0][2] = invz;
+            } 
+            else 
+            {
+                bp[0][0] = 0;
+                bp[0][1] = 0;
+                bp[0][2] = invz;
+                bp[0][3] = 0;
+            }
+        } 
+    }
+    
+    if ((attr & 0x40)) 
+    {
+        prim |= 0x20000000000000;
+    }
+    
+    if ((attr & 0x80000000)) 
+    {
+        prim |= 0x8000000000000; 
+    }
+    
+    Ps2AddPrim3D(prim, buff, n);
 }
 
 /*// 
@@ -374,8 +401,8 @@ void    njDrawTriangle3D(NJS_POINT3COL *p, Int n, Uint32 attr)
         
         if ((attr & 0x80000000)) 
         {
-            *(unsigned int*)&bp[0][0] = p->tex[i].tex.u * 16;
-            *(unsigned int*)&bp[0][1] = p->tex[i].tex.v * 16;
+            *(unsigned int*)&bp[0][0] = p->tex[i].tex.u << 4;
+            *(unsigned int*)&bp[0][1] = p->tex[i].tex.v << 4;
             *(unsigned int*)&bp[0][2] = 0;
             *(unsigned int*)&bp[0][3] = 0;
             
