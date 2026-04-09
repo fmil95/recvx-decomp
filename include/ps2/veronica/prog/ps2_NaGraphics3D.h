@@ -7,8 +7,8 @@ void Ps2SetPlane(PS2_PLANE* p, sceVu0FVECTOR v0, sceVu0FVECTOR v1, sceVu0FVECTOR
 void Ps2CalcScreenCone();
 float Calc_Intersection2(sceVu0FVECTOR v0, sceVu0FVECTOR v1, PS2_PLANE* plane);
 int CalcIntersectionCone(float* ans, float* v0, float* v1);
-float Head_or_Tail(float* v);
-float Across_Plane(float* v0, float* v1);
+float Head_or_Tail(PS2_PLANE* plane, float* v);
+float Across_Plane(PS2_PLANE* plane, float* v0, float* v1);
 /*void njDrawLine3D(_anon2* p, int n, unsigned int attr);
 void njDrawLine3DEx(_anon2* p, int n, unsigned int attr);
 void njDrawTriangle3D(_anon2* p, int n, unsigned int attr);
