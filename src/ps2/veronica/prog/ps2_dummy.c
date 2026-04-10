@@ -1262,20 +1262,21 @@ void Ps2InitTexCache()
     Ps2_tex_cache_num = 4;
 }
 
-// 
-// Start address: 0x2cd3a0
+// 100% matching!
 int Ps2GlobalIndexTexLoad(unsigned int index)
 {
 	int no;
-	// Line 2534, Address: 0x2cd3a0, Func Offset: 0
-	// Line 2537, Address: 0x2cd3ac, Func Offset: 0xc
-	// Line 2538, Address: 0x2cd3b8, Func Offset: 0x18
-	// Line 2539, Address: 0x2cd3c0, Func Offset: 0x20
-	// Line 2540, Address: 0x2cd3dc, Func Offset: 0x3c
-	// Line 2541, Address: 0x2cd3e4, Func Offset: 0x44
-	// Line 2544, Address: 0x2cd3f4, Func Offset: 0x54
-	// Func End, Address: 0x2cd404, Func Offset: 0x64
-	scePrintf("Ps2GlobalIndexTexLoad - UNIMPLEMENTED!\n");
+
+	no = SearchNumber(index, -1);
+
+    if (no >= 0) 
+	{
+        Ps2TexLoad(&Ps2_tex_info[no]);
+    }
+	else 
+	{
+    	printf("Ps2GlobalIndexTexLoad ERROR!!! %08x\n", index);
+	}
 }
 
 // 97.17% matching
