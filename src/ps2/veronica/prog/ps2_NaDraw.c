@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_Vu1Strip.h"
 #include "../../../ps2/veronica/prog/main.h"
 
 /*void njDrawPolygon(_anon5* polygon, int count, int trans);
@@ -372,36 +373,40 @@ void njDrawTextureSub3D(NJS_TEXTURE_VTX* polygon, int count, int flag)
 	scePrintf("njDrawTextureSub3D - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2deb00
+// 100% matching!
 void njDrawTextureSub3D1P(NJS_TEXTURE_VTX* polygon, int count, int flag)
 {
-	VU1_STRIP_BUF* vp;
-	unsigned long prim;
-	unsigned int i;
-	VU1_STRIP_BUF vb[256];
-	// Line 643, Address: 0x2deb00, Func Offset: 0
-	// Line 660, Address: 0x2deb1c, Func Offset: 0x1c
-	// Line 643, Address: 0x2deb20, Func Offset: 0x20
-	// Line 660, Address: 0x2deb24, Func Offset: 0x24
-	// Line 677, Address: 0x2deb3c, Func Offset: 0x3c
-	// Line 678, Address: 0x2deb94, Func Offset: 0x94
-	// Line 679, Address: 0x2debec, Func Offset: 0xec
-	// Line 680, Address: 0x2dec3c, Func Offset: 0x13c
-	// Line 682, Address: 0x2dec88, Func Offset: 0x188
-	// Line 680, Address: 0x2dec8c, Func Offset: 0x18c
-	// Line 682, Address: 0x2dec90, Func Offset: 0x190
-	// Line 684, Address: 0x2deca0, Func Offset: 0x1a0
-	// Line 687, Address: 0x2deca4, Func Offset: 0x1a4
-	// Line 684, Address: 0x2decac, Func Offset: 0x1ac
-	// Line 685, Address: 0x2decb0, Func Offset: 0x1b0
-	// Line 687, Address: 0x2decbc, Func Offset: 0x1bc
-	// Line 689, Address: 0x2decc8, Func Offset: 0x1c8
-	// Line 690, Address: 0x2decd0, Func Offset: 0x1d0
-	// Line 691, Address: 0x2dece8, Func Offset: 0x1e8
-	// Line 695, Address: 0x2decfc, Func Offset: 0x1fc
-	// Func End, Address: 0x2ded1c, Func Offset: 0x21c
-	scePrintf("njDrawTextureSub3D1P - UNIMPLEMENTED!\n");
+    unsigned int i;               
+    unsigned long prim;        
+    VU1_STRIP_BUF* vp;          
+    static VU1_STRIP_BUF vb[256]; 
+    unsigned short temp; // not from DWARF
+
+    vp = vb;
+    
+    for (i = 0; i < count; i++, vp++) 
+    {
+        vp->fIr = ((((polygon[i].col >> 16) & 0xFF) + 1) >> 1) / 128.0f;
+        vp->fIg = ((((polygon[i].col >>  8) & 0xFF) + 1) >> 1) / 128.0f;
+        vp->fIb = ((((polygon[i].col >>  0) & 0xFF) + 1) >> 1) / 128.0f;
+        vp->fA =  ((((polygon[i].col >> 24) & 0xFF) + 1) >> 1) / 256.0f;
+        
+        vu1RotTransStripBuf(NULL, (NJS_VECTOR*)&polygon[i].x, vp);
+        
+        vp->fU = polygon[i].u;
+        vp->fV = polygon[i].v;
+    } 
+
+    prim = 0x1E000000000000;
+    
+    if (flag == 1) 
+    {
+        prim |= 0x20000000000000; 
+    }
+
+    // this is likely undefined behavior, given that the function matches without the temp when ignoring vu1DrawTriangleStripTransDouble1P's prototype
+    temp = count;
+    vu1DrawTriangleStripTransDouble1P(prim, vb, temp, 0);
 }
 
 // 100% matching!
