@@ -242,45 +242,47 @@ void	njDrawPolygon3DExStart(Int trans)
 	Ps2_3DEx_trans = trans;
 }
 
-// 
-// Start address: 0x2de790
+// 100% matching!
 void njDrawPolygonSub3D(NJS_POLYGON_VTX* polygon, int count, int flag)
 {
-	NJS_SCRVECTOR scr;
-	unsigned int i;
-	float bp[4];
-	float buff[4][64];
-	float invz;
-	// Line 382, Address: 0x2de790, Func Offset: 0
-	// Line 393, Address: 0x2de7b0, Func Offset: 0x20
-	// Line 395, Address: 0x2de7c8, Func Offset: 0x38
-	// Line 400, Address: 0x2de7cc, Func Offset: 0x3c
-	// Line 395, Address: 0x2de7d4, Func Offset: 0x44
-	// Line 396, Address: 0x2de7dc, Func Offset: 0x4c
-	// Line 397, Address: 0x2de7e8, Func Offset: 0x58
-	// Line 398, Address: 0x2de7f0, Func Offset: 0x60
-	// Line 400, Address: 0x2de7f8, Func Offset: 0x68
-	// Line 402, Address: 0x2de800, Func Offset: 0x70
-	// Line 412, Address: 0x2de804, Func Offset: 0x74
-	// Line 411, Address: 0x2de808, Func Offset: 0x78
-	// Line 412, Address: 0x2de80c, Func Offset: 0x7c
-	// Line 402, Address: 0x2de810, Func Offset: 0x80
-	// Line 403, Address: 0x2de814, Func Offset: 0x84
-	// Line 404, Address: 0x2de81c, Func Offset: 0x8c
-	// Line 405, Address: 0x2de824, Func Offset: 0x94
-	// Line 407, Address: 0x2de82c, Func Offset: 0x9c
-	// Line 408, Address: 0x2de830, Func Offset: 0xa0
-	// Line 409, Address: 0x2de834, Func Offset: 0xa4
-	// Line 410, Address: 0x2de838, Func Offset: 0xa8
-	// Line 411, Address: 0x2de83c, Func Offset: 0xac
-	// Line 412, Address: 0x2de840, Func Offset: 0xb0
-	// Line 415, Address: 0x2de848, Func Offset: 0xb8
-	// Line 416, Address: 0x2de854, Func Offset: 0xc4
-	// Line 418, Address: 0x2de868, Func Offset: 0xd8
-	// Line 419, Address: 0x2de870, Func Offset: 0xe0
-	// Line 423, Address: 0x2de884, Func Offset: 0xf4
-	// Func End, Address: 0x2de8a4, Func Offset: 0x114
-	scePrintf("njDrawPolygonSub3D - UNIMPLEMENTED!\n");
+    float invz;       
+    float buff[64][4]; 
+    float (*bp)[4];    
+    unsigned int i;    
+    NJS_SCRVECTOR scr; 
+    
+    bp = buff;
+    
+    for (i = 0; i < count; i++, bp += 3) 
+    {
+        *(unsigned int*)&bp[1][0] = polygon[i].col >> 16;
+        *(unsigned int*)&bp[1][1] = polygon[i].col >> 8;
+        *(unsigned int*)&bp[1][2] = polygon[i].col >> 0;
+        *(unsigned int*)&bp[1][3] = polygon[i].col >> 25;
+        
+        njRotTransPers((NJS_POINT3*)&polygon[i].x, &scr);
+        
+        bp[2][0] = scr.x;
+        bp[2][1] = scr.y;
+        bp[2][2] = scr.z;
+        bp[2][3] = scr.fog;
+       
+        invz = scr.iz;
+        
+        bp[0][0] = 0;
+        bp[0][1] = 0;
+        bp[0][2] = invz;
+        bp[0][3] = 0; 
+    }
+    
+    if (flag == 1) 
+    {
+        Ps2AddPrim3D(0x26000000000000, buff, count);
+    }
+    else 
+    {
+        Ps2AddPrim3D(0x6000000000000, buff, count);
+    }
 }
 
 // 100% matching!
