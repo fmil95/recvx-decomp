@@ -248,11 +248,11 @@ void	njDrawPolygon3DExStart(Int trans)
 	Ps2_3DEx_trans = trans;
 }
 
-/*// 
+// 
 // Start address: 0x2de790
-void njDrawPolygonSub3D(_anon5* polygon, int count, int flag)
+void njDrawPolygonSub3D(NJS_POLYGON_VTX* polygon, int count, int flag)
 {
-	tagNJS_SCRVECTOR scr;
+	NJS_SCRVECTOR scr;
 	unsigned int i;
 	float bp[4];
 	float buff[4][64];
@@ -286,17 +286,16 @@ void njDrawPolygonSub3D(_anon5* polygon, int count, int flag)
 	// Line 419, Address: 0x2de870, Func Offset: 0xe0
 	// Line 423, Address: 0x2de884, Func Offset: 0xf4
 	// Func End, Address: 0x2de8a4, Func Offset: 0x114
-}*/
+	scePrintf("njDrawPolygonSub3D - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x2de8b0
+// 100% matching!
 void    njDrawPolygon3DExSetData( NJS_POLYGON_VTX *p, Int count)
 {
-	// Line 440, Address: 0x2de8b0, Func Offset: 0
-	// Line 441, Address: 0x2de8b8, Func Offset: 0x8
-	// Line 443, Address: 0x2de8c0, Func Offset: 0x10
-	// Func End, Address: 0x2de8cc, Func Offset: 0x1c
-	scePrintf("njDrawPolygon3DExSetData - UNIMPLEMENTED!\n");
+	Ps2_3DEx_p = p;
+	Ps2_3DEx_count = count;
+
+	njDrawPolygonSub3D(p, count, Ps2_3DEx_trans);
 }
 
 // 100% matching!
