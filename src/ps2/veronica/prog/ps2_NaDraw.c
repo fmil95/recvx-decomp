@@ -45,10 +45,10 @@ void    njDrawPolygon( NJS_POLYGON_VTX *polygon, Int count, Int trans )
         bp[0][2] = 0;
         bp[0][3] = 0;
         
-        *(int*)&bp[1][0] = polygon[i].col >> 16;
-        *(int*)&bp[1][1] = polygon[i].col >> 8;
-        *(int*)&bp[1][2] = polygon[i].col;
-        *(int*)&bp[1][3] = polygon[i].col >> 25;
+        *(unsigned int*)&bp[1][0] = polygon[i].col >> 16;
+        *(unsigned int*)&bp[1][1] = polygon[i].col >> 8;
+        *(unsigned int*)&bp[1][2] = polygon[i].col;
+        *(unsigned int*)&bp[1][3] = polygon[i].col >> 25;
         
         bp[2][0] = 1728.0f + polygon[i].x;
         bp[2][1] = 1808.0f + polygon[i].y;
@@ -81,57 +81,63 @@ void    njDrawPolygon( NJS_POLYGON_VTX *polygon, Int count, Int trans )
     }
 }
 
-/*// 
-// Start address: 0x2de2a0
+// 100% matching!
 void njDrawTextureSub(NJS_TEXTURE_VTX* polygon, int count, int flag)
 {
-	unsigned int i;
-	float bp[4];
-	float buff[4][128];
-	float sz;
-	// Line 121, Address: 0x2de2a0, Func Offset: 0
-	// Line 131, Address: 0x2de2a4, Func Offset: 0x4
-	// Line 121, Address: 0x2de2ac, Func Offset: 0xc
-	// Line 131, Address: 0x2de2b0, Func Offset: 0x10
-	// Line 157, Address: 0x2de2b8, Func Offset: 0x18
-	// Line 150, Address: 0x2de2c0, Func Offset: 0x20
-	// Line 158, Address: 0x2de2c4, Func Offset: 0x24
-	// Line 150, Address: 0x2de2cc, Func Offset: 0x2c
-	// Line 135, Address: 0x2de2d0, Func Offset: 0x30
-	// Line 151, Address: 0x2de2d4, Func Offset: 0x34
-	// Line 156, Address: 0x2de2d8, Func Offset: 0x38
-	// Line 158, Address: 0x2de2dc, Func Offset: 0x3c
-	// Line 151, Address: 0x2de2e0, Func Offset: 0x40
-	// Line 153, Address: 0x2de2e4, Func Offset: 0x44
-	// Line 133, Address: 0x2de2e8, Func Offset: 0x48
-	// Line 134, Address: 0x2de2f0, Func Offset: 0x50
-	// Line 135, Address: 0x2de2f8, Func Offset: 0x58
-	// Line 136, Address: 0x2de2fc, Func Offset: 0x5c
-	// Line 144, Address: 0x2de300, Func Offset: 0x60
-	// Line 145, Address: 0x2de318, Func Offset: 0x78
-	// Line 146, Address: 0x2de330, Func Offset: 0x90
-	// Line 147, Address: 0x2de340, Func Offset: 0xa0
-	// Line 150, Address: 0x2de358, Func Offset: 0xb8
-	// Line 151, Address: 0x2de364, Func Offset: 0xc4
-	// Line 153, Address: 0x2de370, Func Offset: 0xd0
-	// Line 154, Address: 0x2de384, Func Offset: 0xe4
-	// Line 156, Address: 0x2de388, Func Offset: 0xe8
-	// Line 157, Address: 0x2de39c, Func Offset: 0xfc
-	// Line 158, Address: 0x2de3b0, Func Offset: 0x110
-	// Line 159, Address: 0x2de3c0, Func Offset: 0x120
-	// Line 160, Address: 0x2de3c8, Func Offset: 0x128
-	// Line 161, Address: 0x2de3cc, Func Offset: 0x12c
-	// Line 162, Address: 0x2de3d0, Func Offset: 0x130
-	// Line 164, Address: 0x2de3d4, Func Offset: 0x134
-	// Line 163, Address: 0x2de3d8, Func Offset: 0x138
-	// Line 164, Address: 0x2de3e0, Func Offset: 0x140
-	// Line 166, Address: 0x2de3f0, Func Offset: 0x150
-	// Line 167, Address: 0x2de3fc, Func Offset: 0x15c
-	// Line 169, Address: 0x2de410, Func Offset: 0x170
-	// Line 170, Address: 0x2de418, Func Offset: 0x178
-	// Line 173, Address: 0x2de42c, Func Offset: 0x18c
-	// Func End, Address: 0x2de438, Func Offset: 0x198
-}*/
+    float sz;        
+    float buff[128][4]; 
+    float (*bp)[4];    
+    unsigned int i;     
+    
+    bp = buff;
+    
+    for (i = 0; i < count; i++, bp += 3) 
+    {
+        bp[0][0] = polygon[i].u;
+        bp[0][1] = polygon[i].v;
+        bp[0][2] = 1.0f;
+        bp[0][3] = 0;
+        
+        *(unsigned int*)&bp[1][0] = (((polygon[i].col >> 16) & 0xFF) + 1) >> 1;
+        *(unsigned int*)&bp[1][1] = (((polygon[i].col >>  8) & 0xFF) + 1) >> 1;
+        *(unsigned int*)&bp[1][2] = (((polygon[i].col >>  0) & 0xFF) + 1) >> 1;
+        *(unsigned int*)&bp[1][3] = (((polygon[i].col >> 24) & 0xFF) + 1) >> 1;  
+
+        bp[2][0] = 1728.0f + polygon[i].x;
+        bp[2][1] = 1808.0f + polygon[i].y;
+        
+        if (polygon[i].z < 1.0f) 
+        {
+            polygon[i].z = 1.0f;
+        }
+        
+        if (polygon[i].z) 
+        {
+            sz = -1.0f / polygon[i].z;
+            
+            if (sz < -65534.0f) 
+            {
+                sz = -65534.0f;
+            }
+        } 
+        else 
+        {
+            sz = -65534.0f;
+        }
+        
+        bp[2][2] = sz;
+        bp[2][3] = 0;
+    }
+    
+    if (flag == 1) 
+    {
+        Ps2AddPrim2D(0x2E000000000000, buff, count);
+    }
+    else 
+    {
+        Ps2AddPrim2D(0xE000000000000, buff, count);
+    }
+}
 
 // 100% matching!
 void    njDrawTexture( NJS_TEXTURE_VTX *polygon, Int count, Int tex, Int flag )
@@ -541,10 +547,10 @@ void njDrawQuadTexture(QUAD* q, float z)
     buff[3][2] = 1.0f;
     buff[3][3] = 0;
     
-    *(int*)&buff[4][0] = (((rgba >> 16) & 0xFF) + 1) >> 1;
-    *(int*)&buff[4][1] = (((rgba >> 8) & 0xFF) + 1) >> 1;
-    *(int*)&buff[4][2] = ((rgba & 0xFF) + 1) >> 1;
-    *(int*)&buff[4][3] = (((rgba >> 24) & 0xFF) + 1) >> 1;  
+    *(unsigned int*)&buff[4][0] = (((rgba >> 16) & 0xFF) + 1) >> 1;
+    *(unsigned int*)&buff[4][1] = (((rgba >> 8) & 0xFF) + 1) >> 1;
+    *(unsigned int*)&buff[4][2] = ((rgba & 0xFF) + 1) >> 1;
+    *(unsigned int*)&buff[4][3] = (((rgba >> 24) & 0xFF) + 1) >> 1;  
     
     buff[2][0] = 1728.0f + q->x1;
     buff[2][1] = 1808.0f + q->y1;

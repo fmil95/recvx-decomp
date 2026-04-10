@@ -1262,7 +1262,7 @@ void Ps2InitTexCache()
     Ps2_tex_cache_num = 4;
 }
 
-/*// 
+// 
 // Start address: 0x2cd3a0
 int Ps2GlobalIndexTexLoad(unsigned int index)
 {
@@ -1275,7 +1275,8 @@ int Ps2GlobalIndexTexLoad(unsigned int index)
 	// Line 2541, Address: 0x2cd3e4, Func Offset: 0x44
 	// Line 2544, Address: 0x2cd3f4, Func Offset: 0x54
 	// Func End, Address: 0x2cd404, Func Offset: 0x64
-}*/
+	scePrintf("Ps2GlobalIndexTexLoad - UNIMPLEMENTED!\n");
+}
 
 // 97.17% matching
 int Ps2TexLoad(NJS_TEXMEMLIST* addr)
