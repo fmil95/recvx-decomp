@@ -295,16 +295,12 @@ void	njDrawPolygon3DExEnd(void)
 
 }
 
-// 
-// Start address: 0x2de8e0
+// 100% matching!
 void	njDrawTexture3DEx( NJS_TEXTURE_VTX *p, Int count, Int trans )
 {
-	// Line 469, Address: 0x2de8e0, Func Offset: 0
-	// Line 470, Address: 0x2de8f8, Func Offset: 0x18
-	// Line 471, Address: 0x2de900, Func Offset: 0x20
-	// Line 473, Address: 0x2de90c, Func Offset: 0x2c
-	// Func End, Address: 0x2de920, Func Offset: 0x40
-	scePrintf("njDrawTexture3DEx - UNIMPLEMENTED!\n");
+	njDrawTexture3DExStart(trans);
+
+	njDrawTexture3DExSetData(p, count);
 }
 
 // 100% matching!
