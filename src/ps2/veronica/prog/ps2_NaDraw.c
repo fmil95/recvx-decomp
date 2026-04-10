@@ -200,32 +200,32 @@ void njDrawTextureSubH(NJS_TEXTUREH_VTX* polygon, int count, int flag)
     }
 }
 
-// 
-// Start address: 0x2de610
+// 100% matching!
 void    njDrawTextureH( NJS_TEXTUREH_VTX *polygon, Int count, Int tex, Int flag )
 {
-	int i;
-	//_anon0 poly[32];
-	// Line 304, Address: 0x2de610, Func Offset: 0
-	// Line 317, Address: 0x2de628, Func Offset: 0x18
-	// Line 318, Address: 0x2de654, Func Offset: 0x44
-	// Line 319, Address: 0x2de65c, Func Offset: 0x4c
-	// Line 338, Address: 0x2de66c, Func Offset: 0x5c
-	// Line 320, Address: 0x2de670, Func Offset: 0x60
-	// Line 339, Address: 0x2de674, Func Offset: 0x64
-	// Line 320, Address: 0x2de67c, Func Offset: 0x6c
-	// Line 321, Address: 0x2de680, Func Offset: 0x70
-	// Line 322, Address: 0x2de688, Func Offset: 0x78
-	// Line 323, Address: 0x2de690, Func Offset: 0x80
-	// Line 324, Address: 0x2de698, Func Offset: 0x88
-	// Line 336, Address: 0x2de6a0, Func Offset: 0x90
-	// Line 338, Address: 0x2de6f4, Func Offset: 0xe4
-	// Line 339, Address: 0x2de6fc, Func Offset: 0xec
-	// Line 341, Address: 0x2de708, Func Offset: 0xf8
-	// Line 342, Address: 0x2de718, Func Offset: 0x108
-	// Line 344, Address: 0x2de720, Func Offset: 0x110
-	// Func End, Address: 0x2de73c, Func Offset: 0x12c
-	scePrintf("njDrawTextureH - UNIMPLEMENTED!\n");
+    NJS_TEXTUREH_VTX poly[32];
+    int i;
+	
+    Ps2SetFogColorSys((polygon->ocol >> 16) & 0xFF, (polygon->ocol >> 8) & 0xFF, (polygon->ocol >> 0) & 0xFF);
+    
+    Ps2GlobalIndexTexLoad(tex);
+    
+    for (i = 0; i < count; i++) 
+    {
+        poly[i].x = polygon[i].x;
+        poly[i].y = polygon[i].y;
+        poly[i].z = polygon[i].z;
+        
+        poly[i].u = polygon[i].u;
+        poly[i].v = polygon[i].v;
+        
+        poly[i].ocol = (((polygon[i].bcol >> 24) & 0xFF) << 24) | ((((((polygon[i].bcol >> 16) & 0xFF) << 8) >> 8) << 16) | ((((polygon[i].bcol & 0xFF) << 8) >> 8) | (((((polygon[i].bcol >> 8) & 0xFF) << 8) >> 8) << 8)));
+        poly[i].bcol = 0x80;
+    } 
+    
+    njDrawTextureSubH(poly, count, flag);
+    
+    Ps2SetFogColor();
 }
 
 // 100% matching!

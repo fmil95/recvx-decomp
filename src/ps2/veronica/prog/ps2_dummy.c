@@ -1444,7 +1444,7 @@ void Ps2SetFogColor()
 	scePrintf("Ps2SetFogColor - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2cd9c0
 void Ps2SetFogColorSys(unsigned int r, unsigned int g, unsigned int b)
 {
@@ -1464,7 +1464,8 @@ void Ps2SetFogColorSys(unsigned int r, unsigned int g, unsigned int b)
 	// Line 2780, Address: 0x2cda6c, Func Offset: 0xac
 	// Line 2781, Address: 0x2cda74, Func Offset: 0xb4
 	// Func End, Address: 0x2cda8c, Func Offset: 0xcc
-}*/
+	scePrintf("Ps2SetFogColorSys - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void Ps2AlphaIs000(unsigned int* cp, unsigned int num)
