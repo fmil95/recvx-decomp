@@ -1,16 +1,16 @@
 {
   "measures": {
-    "fuzzy_match_percent": 32.09295,
+    "fuzzy_match_percent": 32.220882,
     "total_code": "1904472",
-    "matched_code": "530180",
-    "matched_code_percent": 27.838686,
-    "total_data": "28420132",
-    "matched_data": "28077660",
-    "matched_data_percent": 98.79497,
+    "matched_code": "532608",
+    "matched_code_percent": 27.966177,
+    "total_data": "28426468",
+    "matched_data": "28094140",
+    "matched_data_percent": 98.83092,
     "total_functions": 4529,
-    "matched_functions": 2399,
-    "matched_functions_percent": 52.96975,
-    "total_units": 199
+    "matched_functions": 2403,
+    "matched_functions_percent": 53.05807,
+    "total_units": 200
   },
   "units": [
     {
@@ -17743,7 +17743,7 @@
     {
       "name": "ps2/veronica/prog/ps2_SaveScreen",
       "measures": {
-        "fuzzy_match_percent": 98.85098,
+        "fuzzy_match_percent": 98.92294,
         "total_code": "11784",
         "matched_code": "8836",
         "matched_code_percent": 74.98303,
@@ -17785,7 +17785,7 @@
         {
           "name": ".text",
           "size": "12176",
-          "fuzzy_match_percent": 98.85098,
+          "fuzzy_match_percent": 98.92294,
           "metadata": {}
         },
         {
@@ -17804,7 +17804,7 @@
         {
           "name": "DispMessageSelect",
           "size": "1520",
-          "fuzzy_match_percent": 92.39474,
+          "fuzzy_match_percent": 92.95263,
           "metadata": {},
           "address": "240"
         },
@@ -23924,6 +23924,43 @@
       ],
       "metadata": {
         "source_path": "config/src/ps2/veronica/prog/sub1.c",
+        "progress_categories": [
+          "game"
+        ]
+      }
+    },
+    {
+      "name": "ps2/veronica/prog/item",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "total_data": "6336",
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "metadata": {}
+        },
+        {
+          "name": ".rodata",
+          "size": "6336",
+          "fuzzy_match_percent": 62.84722,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "source_path": "config/src/ps2/veronica/prog/item.c",
         "progress_categories": [
           "game"
         ]
@@ -30846,22 +30883,23 @@
     {
       "name": "ps2/veronica/prog/ps2_NaGraphics3D",
       "measures": {
-        "fuzzy_match_percent": 45.609318,
+        "fuzzy_match_percent": 100.0,
         "total_code": "4464",
-        "matched_code": "2036",
-        "matched_code_percent": 45.609318,
+        "matched_code": "4464",
+        "matched_code_percent": 100.0,
         "total_data": "16688",
-        "matched_data": "208",
-        "matched_data_percent": 1.2464046,
+        "matched_data": "16688",
+        "matched_data_percent": 100.0,
         "total_functions": 10,
-        "matched_functions": 6,
-        "matched_functions_percent": 60.000004,
+        "matched_functions": 10,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".bss",
           "size": "16384",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -30881,13 +30919,13 @@
         {
           "name": ".rodata",
           "size": "96",
-          "fuzzy_match_percent": 81.01266,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "4528",
-          "fuzzy_match_percent": 45.609318,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -30927,12 +30965,14 @@
         {
           "name": "Head_or_Tail",
           "size": "64",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "752"
         },
         {
           "name": "Across_Plane",
           "size": "132",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "816"
         },
@@ -30946,6 +30986,7 @@
         {
           "name": "njDrawLine3DEx",
           "size": "1144",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1760"
         },
@@ -30959,6 +31000,7 @@
         {
           "name": "njDrawPolygon3D",
           "size": "1088",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "3440"
         }
@@ -40218,17 +40260,17 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 28.995216,
+        "fuzzy_match_percent": 29.129055,
         "total_code": "1820460",
-        "matched_code": "452008",
-        "matched_code_percent": 24.82933,
-        "total_data": "28328732",
-        "matched_data": "28039756",
-        "matched_data_percent": 98.97992,
+        "matched_code": "454436",
+        "matched_code_percent": 24.962702,
+        "total_data": "28335068",
+        "matched_data": "28056236",
+        "matched_data_percent": 99.015945,
         "total_functions": 3834,
-        "matched_functions": 1725,
-        "matched_functions_percent": 44.992176,
-        "total_units": 151
+        "matched_functions": 1729,
+        "matched_functions_percent": 45.096504,
+        "total_units": 152
       }
     },
     {

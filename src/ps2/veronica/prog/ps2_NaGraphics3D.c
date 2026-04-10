@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaGraphics3D.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_Vu1Strip.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 
 PS2_PLANE sc_plane = { { 0, 0, 1.0f, 1.0f }, { 0, 0, 2.0f, 1.0f } };
@@ -473,82 +474,114 @@ void    njDrawTriangle3D(NJS_POINT3COL *p, Int n, Uint32 attr)
     Ps2AddPrim3D(prim, buff, n);
 }
 
-/*// 
-// Start address: 0x2e0770
-void njDrawPolygon3D(_anon2* p, int n, unsigned int attr)
+// 100% matching!
+void    njDrawPolygon3D(NJS_POINT3COL *p, Int n, Uint32 attr)
 {
-	tagVU1_STRIP_BUF* vp;
-	tagNJS_SCRVECTOR scr;
-	unsigned long prim;
-	unsigned int i;
-	float bp[4];
-	float buff[4][64];
-	float invz;
-	tagVU1_STRIP_BUF vb[256];
-	// Line 496, Address: 0x2e0770, Func Offset: 0
-	// Line 507, Address: 0x2e079c, Func Offset: 0x2c
-	// Line 496, Address: 0x2e07a0, Func Offset: 0x30
-	// Line 507, Address: 0x2e07ac, Func Offset: 0x3c
-	// Line 508, Address: 0x2e07b4, Func Offset: 0x44
-	// Line 509, Address: 0x2e07c0, Func Offset: 0x50
-	// Line 519, Address: 0x2e07c8, Func Offset: 0x58
-	// Line 520, Address: 0x2e07d4, Func Offset: 0x64
-	// Line 521, Address: 0x2e07dc, Func Offset: 0x6c
-	// Line 528, Address: 0x2e0800, Func Offset: 0x90
-	// Line 529, Address: 0x2e0850, Func Offset: 0xe0
-	// Line 530, Address: 0x2e08a0, Func Offset: 0x130
-	// Line 532, Address: 0x2e08f0, Func Offset: 0x180
-	// Line 535, Address: 0x2e0934, Func Offset: 0x1c4
-	// Line 532, Address: 0x2e0938, Func Offset: 0x1c8
-	// Line 535, Address: 0x2e093c, Func Offset: 0x1cc
-	// Line 532, Address: 0x2e0940, Func Offset: 0x1d0
-	// Line 535, Address: 0x2e0944, Func Offset: 0x1d4
-	// Line 549, Address: 0x2e0950, Func Offset: 0x1e0
-	// Line 550, Address: 0x2e0958, Func Offset: 0x1e8
-	// Line 551, Address: 0x2e0980, Func Offset: 0x210
-	// Line 553, Address: 0x2e09a0, Func Offset: 0x230
-	// Line 551, Address: 0x2e09a4, Func Offset: 0x234
-	// Line 553, Address: 0x2e09ac, Func Offset: 0x23c
-	// Line 554, Address: 0x2e09b8, Func Offset: 0x248
-	// Line 555, Address: 0x2e09d0, Func Offset: 0x260
-	// Line 557, Address: 0x2e09ec, Func Offset: 0x27c
-	// Line 558, Address: 0x2e0a04, Func Offset: 0x294
-	// Line 559, Address: 0x2e0a0c, Func Offset: 0x29c
-	// Line 560, Address: 0x2e0a14, Func Offset: 0x2a4
-	// Line 559, Address: 0x2e0a1c, Func Offset: 0x2ac
-	// Line 560, Address: 0x2e0a20, Func Offset: 0x2b0
-	// Line 562, Address: 0x2e0a38, Func Offset: 0x2c8
-	// Line 567, Address: 0x2e0a3c, Func Offset: 0x2cc
-	// Line 562, Address: 0x2e0a40, Func Offset: 0x2d0
-	// Line 563, Address: 0x2e0a4c, Func Offset: 0x2dc
-	// Line 564, Address: 0x2e0a5c, Func Offset: 0x2ec
-	// Line 565, Address: 0x2e0a6c, Func Offset: 0x2fc
-	// Line 567, Address: 0x2e0a7c, Func Offset: 0x30c
-	// Line 568, Address: 0x2e0a88, Func Offset: 0x318
-	// Line 569, Address: 0x2e0a90, Func Offset: 0x320
-	// Line 570, Address: 0x2e0a98, Func Offset: 0x328
-	// Line 571, Address: 0x2e0aa0, Func Offset: 0x330
-	// Line 574, Address: 0x2e0aa8, Func Offset: 0x338
-	// Line 575, Address: 0x2e0ab0, Func Offset: 0x340
-	// Line 579, Address: 0x2e0ab4, Func Offset: 0x344
-	// Line 575, Address: 0x2e0abc, Func Offset: 0x34c
-	// Line 576, Address: 0x2e0acc, Func Offset: 0x35c
-	// Line 577, Address: 0x2e0ae0, Func Offset: 0x370
-	// Line 579, Address: 0x2e0ae4, Func Offset: 0x374
-	// Line 580, Address: 0x2e0aec, Func Offset: 0x37c
-	// Line 581, Address: 0x2e0af8, Func Offset: 0x388
-	// Line 583, Address: 0x2e0b04, Func Offset: 0x394
-	// Line 584, Address: 0x2e0b0c, Func Offset: 0x39c
-	// Line 585, Address: 0x2e0b10, Func Offset: 0x3a0
-	// Line 586, Address: 0x2e0b14, Func Offset: 0x3a4
-	// Line 587, Address: 0x2e0b18, Func Offset: 0x3a8
-	// Line 588, Address: 0x2e0b1c, Func Offset: 0x3ac
-	// Line 589, Address: 0x2e0b20, Func Offset: 0x3b0
-	// Line 587, Address: 0x2e0b24, Func Offset: 0x3b4
-	// Line 589, Address: 0x2e0b2c, Func Offset: 0x3bc
-	// Line 590, Address: 0x2e0b38, Func Offset: 0x3c8
-	// Line 591, Address: 0x2e0b50, Func Offset: 0x3e0
-	// Line 592, Address: 0x2e0b6c, Func Offset: 0x3fc
-	// Line 594, Address: 0x2e0b7c, Func Offset: 0x40c
-	// Func End, Address: 0x2e0bb0, Func Offset: 0x440
-}*/
+    float invz;                  
+    float buff[64][4];            
+    float (*bp)[4];              
+    unsigned int i;              
+    unsigned long prim;          
+    NJS_SCRVECTOR scr;           
+    VU1_STRIP_BUF* vp;            
+    static VU1_STRIP_BUF vb[256]; 
+
+    if (!(attr & 0x20)) 
+    {
+        printf("NOT SUPPORT! njDrawPolygon3D\n");
+        
+        exit(0);
+    }
+    
+    if (n == 3) 
+    {
+        prim = 0x16000000000000;
+        
+        vp = vb;
+        
+        for (i = 0; i < n; i++, vp++) 
+        {
+            vp->fIr = ((unsigned char*)&p->col[i])[2] / 256.0f;
+            vp->fIg = ((unsigned char*)&p->col[i])[1] / 256.0f;
+            vp->fIb = ((unsigned char*)&p->col[i])[0] / 256.0f;
+            vp->fA =  ((unsigned char*)&p->col[i])[3] / 256.0f;
+            
+            vu1RotTransStripBuf(NULL, &p->p[i], vp);
+            
+            if ((attr & 0x80000000)) 
+            {
+                vp->fU = p->tex[i].tex.u / 256.0f;
+                vp->fV = p->tex[i].tex.v / 256.0f;
+            }
+        } 
+        
+        if ((attr & 0x40)) 
+        {
+            prim |= 0x20000000000000;
+        }
+        
+        if ((attr & 0x80000000)) 
+        {
+            prim |= 0x8000000000000; 
+        }
+        
+        vu1DrawTriangleStripTransDouble(prim, vb, n, 0);
+    }
+    else 
+    {
+        prim = 0x16800000000000;
+    
+        bp = buff;
+    
+        for (i = 0; i < n; i++, bp += 3) 
+        {
+            *(unsigned int*)&bp[1][0] = ((unsigned char*)&p->col[i])[2];
+            *(unsigned int*)&bp[1][1] = ((unsigned char*)&p->col[i])[1];
+            *(unsigned int*)&bp[1][2] = ((unsigned char*)&p->col[i])[0];
+            *(unsigned int*)&bp[1][3] = ((unsigned char*)&p->col[i])[3];
+            
+            njRotTransPers(&p->p[i], &scr);
+            
+            bp[2][0] = scr.x;
+            bp[2][1] = scr.y;
+            bp[2][2] = scr.z;
+            bp[2][3] = scr.fog;
+            
+            invz = scr.iz; 
+            
+            if ((attr & 0x80000000)) 
+            {
+                *(unsigned int*)&bp[0][0] = p->tex[i].tex.u << 4;
+                *(unsigned int*)&bp[0][1] = p->tex[i].tex.v << 4;
+                *(unsigned int*)&bp[0][2] = 0;
+                *(unsigned int*)&bp[0][3] = 0;
+                
+                sceVu0ITOF12Vector(bp[0], (int*)bp);
+                
+                bp[0][0] *= invz;
+                bp[0][1] *= invz;
+                
+                bp[0][2] = invz;
+            } 
+            else 
+            {
+                bp[0][0] = 0;
+                bp[0][1] = 0;
+                bp[0][2] = invz;
+                bp[0][3] = 0;
+            }
+        } 
+        
+        if ((attr & 0x40)) 
+        {
+            prim |= 0x20000000000000;
+        }
+        
+        if ((attr & 0x80000000)) 
+        {
+            prim |= 0x8000000000000; 
+        }
+        
+        Ps2AddPrim3D(prim, buff, n);
+    }
+}
