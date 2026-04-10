@@ -147,53 +147,58 @@ void    njDrawTexture( NJS_TEXTURE_VTX *polygon, Int count, Int tex, Int flag )
 	njDrawTextureSub(polygon, count, flag);
 }
 
-/*// 
-// Start address: 0x2de490
-void njDrawTextureSubH(_anon0* polygon, int count, int flag)
+// 100% matching!
+void njDrawTextureSubH(NJS_TEXTUREH_VTX* polygon, int count, int flag)
 {
-	unsigned int i;
-	float bp[4];
-	float buff[4][128];
-	float sz;
-	// Line 206, Address: 0x2de490, Func Offset: 0
-	// Line 216, Address: 0x2de494, Func Offset: 0x4
-	// Line 206, Address: 0x2de49c, Func Offset: 0xc
-	// Line 216, Address: 0x2de4a0, Func Offset: 0x10
-	// Line 231, Address: 0x2de4a8, Func Offset: 0x18
-	// Line 230, Address: 0x2de4b0, Func Offset: 0x20
-	// Line 232, Address: 0x2de4b4, Func Offset: 0x24
-	// Line 228, Address: 0x2de4bc, Func Offset: 0x2c
-	// Line 232, Address: 0x2de4c4, Func Offset: 0x34
-	// Line 229, Address: 0x2de4c8, Func Offset: 0x38
-	// Line 220, Address: 0x2de4d0, Func Offset: 0x40
-	// Line 218, Address: 0x2de4d4, Func Offset: 0x44
-	// Line 219, Address: 0x2de4dc, Func Offset: 0x4c
-	// Line 220, Address: 0x2de4e4, Func Offset: 0x54
-	// Line 221, Address: 0x2de4e8, Func Offset: 0x58
-	// Line 223, Address: 0x2de4ec, Func Offset: 0x5c
-	// Line 224, Address: 0x2de4f8, Func Offset: 0x68
-	// Line 225, Address: 0x2de504, Func Offset: 0x74
-	// Line 226, Address: 0x2de50c, Func Offset: 0x7c
-	// Line 228, Address: 0x2de518, Func Offset: 0x88
-	// Line 229, Address: 0x2de524, Func Offset: 0x94
-	// Line 230, Address: 0x2de530, Func Offset: 0xa0
-	// Line 231, Address: 0x2de544, Func Offset: 0xb4
-	// Line 232, Address: 0x2de558, Func Offset: 0xc8
-	// Line 233, Address: 0x2de568, Func Offset: 0xd8
-	// Line 234, Address: 0x2de570, Func Offset: 0xe0
-	// Line 235, Address: 0x2de574, Func Offset: 0xe4
-	// Line 236, Address: 0x2de578, Func Offset: 0xe8
-	// Line 238, Address: 0x2de57c, Func Offset: 0xec
-	// Line 239, Address: 0x2de5b0, Func Offset: 0x120
-	// Line 238, Address: 0x2de5b4, Func Offset: 0x124
-	// Line 239, Address: 0x2de5bc, Func Offset: 0x12c
-	// Line 241, Address: 0x2de5c8, Func Offset: 0x138
-	// Line 242, Address: 0x2de5d4, Func Offset: 0x144
-	// Line 244, Address: 0x2de5e8, Func Offset: 0x158
-	// Line 245, Address: 0x2de5f0, Func Offset: 0x160
-	// Line 248, Address: 0x2de604, Func Offset: 0x174
-	// Func End, Address: 0x2de610, Func Offset: 0x180
-}*/
+	float sz;        
+    float buff[128][4]; 
+    float (*bp)[4];    
+    unsigned int i;     
+    
+    bp = buff;
+    
+    for (i = 0; i < count; i++, bp += 3) 
+    {
+        bp[0][0] = polygon[i].u;
+        bp[0][1] = polygon[i].v;
+        bp[0][2] = 1.0f;
+        bp[0][3] = 0;
+        
+        *(unsigned int*)&bp[1][0] = polygon[i].ocol >> 16;
+        *(unsigned int*)&bp[1][1] = polygon[i].ocol >>  8;
+        *(unsigned int*)&bp[1][2] = polygon[i].ocol >>  0;
+        *(unsigned int*)&bp[1][3] = polygon[i].ocol >> 25;  
+
+        bp[2][0] = 1728.0f + polygon[i].x;
+        bp[2][1] = 1808.0f + polygon[i].y;
+        
+        if (polygon[i].z) 
+        {
+            sz = -1.0f / polygon[i].z;
+            
+            if (sz < -65534.0f) 
+            {
+                sz = -65534.0f;
+            }
+        } 
+        else 
+        {
+            sz = -65534.0f;
+        }
+        
+		bp[2][2] = sz;
+        bp[2][3] = polygon[i].bcol;
+    }
+    
+    if (flag == 1) 
+    {
+        Ps2AddPrim2D(0x3E000000000000, buff, count);
+    }
+    else 
+    {
+        Ps2AddPrim2D(0x1E000000000000, buff, count);
+    }
+}
 
 // 
 // Start address: 0x2de610
