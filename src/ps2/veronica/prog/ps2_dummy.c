@@ -1945,18 +1945,18 @@ void Ps2ShadowDraw()
 	scePrintf("Ps2ShadowDraw - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ce9a0
+// 100% matching! 
 void Ps2ShadowMain0()
 {
-	unsigned long shadow_head[8];
-	// Line 3899, Address: 0x2ce9a0, Func Offset: 0
-	// Line 3900, Address: 0x2ce9ac, Func Offset: 0xc
-	// Line 3901, Address: 0x2ce9b4, Func Offset: 0x14
-	// Line 3902, Address: 0x2ce9c0, Func Offset: 0x20
-	// Line 3903, Address: 0x2ce9c8, Func Offset: 0x28
-	// Func End, Address: 0x2ce9d4, Func Offset: 0x34
-	scePrintf("Ps2ShadowMain0 - UNIMPLEMENTED!\n");
+	static const unsigned long shadow_head[8] = { 0x70000003UL, 0x0UL, 0x1000000000008002UL, 0x0EUL, 0x13A00012CUL, 0x4FUL, 0x8000000029UL, 0x43UL };
+
+	Ps2_shadow_vec[0] =  65536.0f;
+	Ps2_shadow_vec[1] =  65536.0f;
+
+	Ps2_shadow_vec[2] = -65536.0f;
+	Ps2_shadow_vec[3] = -65536.0f;
+
+	loadImage((void*)shadow_head);
 }
 
 // 100% matching! 
