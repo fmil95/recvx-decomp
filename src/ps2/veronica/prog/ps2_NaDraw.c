@@ -428,47 +428,47 @@ void	njDrawTexture3DExEnd(void)
 
 }
 
-// 
-// Start address: 0x2ded70
+// 100% matching!
 void njDrawTextureSub3DH(NJS_TEXTUREH_VTX* polygon, int count, int flag)
 {
-	NJS_SCRVECTOR scr;
-	unsigned int i;
-	float bp[4];
-	float buff[4][64];
-	float invz;
-	// Line 798, Address: 0x2ded70, Func Offset: 0
-	// Line 809, Address: 0x2ded90, Func Offset: 0x20
-	// Line 811, Address: 0x2deda8, Func Offset: 0x38
-	// Line 816, Address: 0x2dedac, Func Offset: 0x3c
-	// Line 811, Address: 0x2dedb4, Func Offset: 0x44
-	// Line 812, Address: 0x2dedc8, Func Offset: 0x58
-	// Line 813, Address: 0x2dede0, Func Offset: 0x70
-	// Line 814, Address: 0x2dedf0, Func Offset: 0x80
-	// Line 816, Address: 0x2dee04, Func Offset: 0x94
-	// Line 817, Address: 0x2dee0c, Func Offset: 0x9c
-	// Line 828, Address: 0x2dee10, Func Offset: 0xa0
-	// Line 821, Address: 0x2dee14, Func Offset: 0xa4
-	// Line 828, Address: 0x2dee18, Func Offset: 0xa8
-	// Line 817, Address: 0x2dee1c, Func Offset: 0xac
-	// Line 818, Address: 0x2dee20, Func Offset: 0xb0
-	// Line 819, Address: 0x2dee28, Func Offset: 0xb8
-	// Line 821, Address: 0x2dee30, Func Offset: 0xc0
-	// Line 823, Address: 0x2dee34, Func Offset: 0xc4
-	// Line 824, Address: 0x2dee38, Func Offset: 0xc8
-	// Line 825, Address: 0x2dee44, Func Offset: 0xd4
-	// Line 827, Address: 0x2dee4c, Func Offset: 0xdc
-	// Line 825, Address: 0x2dee50, Func Offset: 0xe0
-	// Line 826, Address: 0x2dee54, Func Offset: 0xe4
-	// Line 827, Address: 0x2dee58, Func Offset: 0xe8
-	// Line 828, Address: 0x2dee5c, Func Offset: 0xec
-	// Line 831, Address: 0x2dee68, Func Offset: 0xf8
-	// Line 832, Address: 0x2dee74, Func Offset: 0x104
-	// Line 834, Address: 0x2dee88, Func Offset: 0x118
-	// Line 835, Address: 0x2dee90, Func Offset: 0x120
-	// Line 839, Address: 0x2deea4, Func Offset: 0x134
-	// Func End, Address: 0x2deec4, Func Offset: 0x154
-	scePrintf("njDrawTextureSub3DH - UNIMPLEMENTED!\n");
+    float invz;       
+    float buff[64][4]; 
+    float (*bp)[4];    
+    unsigned int i;    
+    NJS_SCRVECTOR scr; 
+    
+    bp = buff;
+    
+    for (i = 0; i < count; i++, bp += 3) 
+    {
+        *(unsigned int*)&bp[1][0] = (((polygon[i].ocol >> 16) & 0xFF) + 1) >> 1; 
+        *(unsigned int*)&bp[1][1] = (((polygon[i].ocol >>  8) & 0xFF) + 1) >> 1;
+        *(unsigned int*)&bp[1][2] = (((polygon[i].ocol >>  0) & 0xFF) + 1) >> 1;
+        *(unsigned int*)&bp[1][3] = (((polygon[i].ocol >> 24) & 0xFF) + 1) >> 1;
+        
+        njRotTransPers((NJS_POINT3*)&polygon[i].x, &scr);
+        
+        bp[2][0] = scr.x;
+        bp[2][1] = scr.y;
+        bp[2][2] = scr.z;
+        bp[2][3] = 128.0f;
+       
+        invz = scr.iz;
+        
+        bp[0][0] = invz * polygon[i].u;
+        bp[0][1] = invz * polygon[i].v;
+        bp[0][2] = invz;
+        bp[0][3] = 0; 
+    }
+    
+    if (flag == 1) 
+    {
+        Ps2AddPrim3D(0x3E000000000000, buff, count);
+    }
+    else 
+    {
+        Ps2AddPrim3D(0x1E000000000000, buff, count);
+    }
 }
 
 // 100% matching!
