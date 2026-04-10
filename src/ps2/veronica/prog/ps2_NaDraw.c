@@ -6,8 +6,8 @@
 /*void njDrawPolygon(_anon5* polygon, int count, int trans);
 void njDrawTextureSub(NJS_TEXTURE_VTX* polygon, int count, int flag);
 void njDrawTexture(NJS_TEXTURE_VTX* polygon, int count, int tex, int flag);
-void njDrawTextureSubH(_anon0* polygon, int count, int flag);
-void njDrawTextureH(_anon0* polygon, int count, int tex, int flag);
+void njDrawTextureSubH(NJS_TEXTUREH_VTX* polygon, int count, int flag);
+void njDrawTextureH(NJS_TEXTUREH_VTX* polygon, int count, int tex, int flag);
 void njDrawPolygon3DEx(_anon5* p, int count, int trans);
 void njDrawPolygon3DExStart(int trans);
 void njDrawPolygonSub3D(_anon5* polygon, int count, int flag);
@@ -21,8 +21,8 @@ void njDrawTextureSub3D1P(NJS_TEXTURE_VTX* polygon, int count, int flag);
 void njDrawTexture3DExSetData(NJS_TEXTURE_VTX* p, int count);*/
 void njDrawTexture3DExSetData1P(NJS_TEXTURE_VTX* p, int count);
 /*void njDrawTexture3DExEnd();
-void njDrawTextureSub3DH(_anon0* polygon, int count, int flag);
-void njDrawTexture3DHEx(_anon0* p, int count, int trans);
+void njDrawTextureSub3DH(NJS_TEXTUREH_VTX* polygon, int count, int flag);
+void njDrawTexture3DHEx(NJS_TEXTUREH_VTX* p, int count, int trans);
 void njQuadTextureStart(int trans);
 void njQuadTextureEnd();
 void njSetQuadTexture(int texid, unsigned int col);
@@ -426,11 +426,11 @@ void	njDrawTexture3DExEnd(void)
 
 }
 
-/*// 
+// 
 // Start address: 0x2ded70
-void njDrawTextureSub3DH(_anon0* polygon, int count, int flag)
+void njDrawTextureSub3DH(NJS_TEXTUREH_VTX* polygon, int count, int flag)
 {
-	tagNJS_SCRVECTOR scr;
+	NJS_SCRVECTOR scr;
 	unsigned int i;
 	float bp[4];
 	float buff[4][64];
@@ -466,33 +466,33 @@ void njDrawTextureSub3DH(_anon0* polygon, int count, int flag)
 	// Line 835, Address: 0x2dee90, Func Offset: 0x120
 	// Line 839, Address: 0x2deea4, Func Offset: 0x134
 	// Func End, Address: 0x2deec4, Func Offset: 0x154
-}*/
+	scePrintf("njDrawTextureSub3DH - UNIMPLEMENTED!\n");
+}
 
-// 
-// Start address: 0x2deed0
+// 100% matching!
 void njDrawTexture3DHEx(NJS_TEXTUREH_VTX* p, int count, int trans)
 {
-	int i;
-	NJS_TEXTUREH_VTX poly[4];
-	// Line 854, Address: 0x2deed0, Func Offset: 0
-	// Line 865, Address: 0x2deee4, Func Offset: 0x14
-	// Line 866, Address: 0x2def0c, Func Offset: 0x3c
-	// Line 878, Address: 0x2def1c, Func Offset: 0x4c
-	// Line 867, Address: 0x2def20, Func Offset: 0x50
-	// Line 879, Address: 0x2def24, Func Offset: 0x54
-	// Line 867, Address: 0x2def2c, Func Offset: 0x5c
-	// Line 868, Address: 0x2def30, Func Offset: 0x60
-	// Line 869, Address: 0x2def38, Func Offset: 0x68
-	// Line 870, Address: 0x2def40, Func Offset: 0x70
-	// Line 871, Address: 0x2def48, Func Offset: 0x78
-	// Line 877, Address: 0x2def50, Func Offset: 0x80
-	// Line 878, Address: 0x2defa4, Func Offset: 0xd4
-	// Line 879, Address: 0x2defac, Func Offset: 0xdc
-	// Line 881, Address: 0x2defb8, Func Offset: 0xe8
-	// Line 882, Address: 0x2defc8, Func Offset: 0xf8
-	// Line 883, Address: 0x2defd0, Func Offset: 0x100
-	// Func End, Address: 0x2defe8, Func Offset: 0x118
-	scePrintf("njDrawTexture3DHEx - UNIMPLEMENTED!\n");
+    NJS_TEXTUREH_VTX poly[4];
+    int i;
+	
+    Ps2SetFogColorSys((p->ocol >> 16) & 0xFF, (p->ocol >> 8) & 0xFF, (p->ocol >> 0) & 0xFF);
+    
+    for (i = 0; i < count; i++) 
+    {
+        poly[i].x = p[i].x;
+        poly[i].y = p[i].y;
+        poly[i].z = p[i].z;
+        
+        poly[i].u = p[i].u;
+        poly[i].v = p[i].v;
+        
+        poly[i].ocol = (((p[i].bcol >> 24) & 0xFF) << 24) | ((((((p[i].bcol >> 16) & 0xFF) << 8) >> 8) << 16) | ((((p[i].bcol & 0xFF) << 8) >> 8) | (((((p[i].bcol >> 8) & 0xFF) << 8) >> 8) << 8)));
+        poly[i].bcol = 0x80;
+    } 
+    
+    njDrawTextureSub3DH(poly, count, trans);
+    
+    Ps2SetFogColor();
 }
 
 // 100% matching!
