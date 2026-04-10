@@ -326,14 +326,14 @@ void njDrawTexture3DExStart(int trans)
 	// Line 496, Address: 0x2de960, Func Offset: 0
 	// Line 497, Address: 0x2de964, Func Offset: 0x4
 	// Func End, Address: 0x2de96c, Func Offset: 0xc
-}
+}*/
 
 // 
 // Start address: 0x2de970
 void njDrawTextureSub3D(NJS_TEXTURE_VTX* polygon, int count, int flag)
 {
 	unsigned int cflag;
-	tagNJS_SCRVECTOR scr;
+	NJS_SCRVECTOR scr;
 	unsigned int col;
 	unsigned int i;
 	float bp[4];
@@ -375,7 +375,8 @@ void njDrawTextureSub3D(NJS_TEXTURE_VTX* polygon, int count, int flag)
 	// Line 577, Address: 0x2deac0, Func Offset: 0x150
 	// Line 583, Address: 0x2dead4, Func Offset: 0x164
 	// Func End, Address: 0x2deaf8, Func Offset: 0x188
-}*/
+	scePrintf("njDrawTextureSub3D - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2deb00
@@ -409,15 +410,14 @@ void njDrawTextureSub3D1P(NJS_TEXTURE_VTX* polygon, int count, int flag)
 	scePrintf("njDrawTextureSub3D1P - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2ded20
+// 100% matching!
 void njDrawTexture3DExSetData(NJS_TEXTURE_VTX* p, int count)
 {
-	// Line 773, Address: 0x2ded20, Func Offset: 0
-	// Line 774, Address: 0x2ded28, Func Offset: 0x8
-	// Line 776, Address: 0x2ded30, Func Offset: 0x10
-	// Func End, Address: 0x2ded3c, Func Offset: 0x1c
-}*/
+	Ps2_tex3DEx_p = p;
+	Ps2_tex3DEx_count = count;
+
+	njDrawTextureSub3D(p, count, Ps2_tex3DEx_trans);
+}
 
 // 100% matching!
 void njDrawTexture3DExSetData1P(NJS_TEXTURE_VTX* p, int count)
