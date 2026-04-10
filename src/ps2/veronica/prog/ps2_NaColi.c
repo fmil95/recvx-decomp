@@ -316,31 +316,31 @@ void	njGetPlaneNormal2(NJS_POINT3 *p0, NJS_POINT3 *p1, NJS_POINT3 *p2, NJS_VECTO
     v->z = ((p1->x - p0->x) * (p2->y - p1->y)) - ((p1->y - p0->y) * (p2->x - p1->x));
 }
 
-/*// 
-// Start address: 0x2e3b20
-int njCollisionCheckSS(_anon4* pSphere1, _anon4* pSphere2)
+// 100% matching!
+Int     njCollisionCheckSS(NJS_SPHERE *sphere1, NJS_SPHERE *sphere2)
 {
+	NJS_POINT3* pCenter1, *pCenter2;
+    float fDx, fDy, fDz;
 	float fR;
-	float fDz;
-	float fDy;
-	float fDx;
-	_anon0* pCenter2;
-	_anon0* pCenter1;
-	// Line 576, Address: 0x2e3b20, Func Offset: 0
-	// Line 578, Address: 0x2e3b28, Func Offset: 0x8
-	// Line 577, Address: 0x2e3b30, Func Offset: 0x10
-	// Line 580, Address: 0x2e3b38, Func Offset: 0x18
-	// Line 576, Address: 0x2e3b3c, Func Offset: 0x1c
-	// Line 580, Address: 0x2e3b40, Func Offset: 0x20
-	// Line 578, Address: 0x2e3b44, Func Offset: 0x24
-	// Line 577, Address: 0x2e3b48, Func Offset: 0x28
-	// Line 580, Address: 0x2e3b4c, Func Offset: 0x2c
-	// Line 586, Address: 0x2e3b50, Func Offset: 0x30
-	// Line 592, Address: 0x2e3b80, Func Offset: 0x60
-	// Func End, Address: 0x2e3b88, Func Offset: 0x68
+
+	pCenter1 = &sphere1->c;
+	pCenter2 = &sphere2->c;
+
+	fDx = pCenter2->x - pCenter1->x;
+	fDy = pCenter2->y - pCenter1->y;
+	fDz = pCenter2->z - pCenter1->z;
+
+	fR = sphere1->r + sphere2->r;
+	
+	if (((fDx * fDx) + (fDy * fDy) + (fDz * fDz)) <= (fR * fR)) 
+	{
+		return 1;
+	}
+
+	return 0;
 }
 
-// 
+/*// 
 // Start address: 0x2e3b90
 int njCollisionCheckCC(_anon2* pCap1, _anon2* pCap2)
 {
