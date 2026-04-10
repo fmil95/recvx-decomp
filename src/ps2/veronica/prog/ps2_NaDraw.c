@@ -3,18 +3,9 @@
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-/*int Ps2_3DEx_trans;
-int Ps2_3DEx_count;
-_anon5* Ps2_3DEx_p;
-int Ps2_tex3DEx_trans;
-int Ps2_tex3DEx_count;
-_anon3* Ps2_tex3DEx_p;
-int Ps2_quad_trans;
-unsigned int Ps2_quad_color;
-
-void njDrawPolygon(_anon5* polygon, int count, int trans);
-void njDrawTextureSub(_anon3* polygon, int count, int flag);
-void njDrawTexture(_anon3* polygon, int count, int tex, int flag);
+/*void njDrawPolygon(_anon5* polygon, int count, int trans);
+void njDrawTextureSub(NJS_TEXTURE_VTX* polygon, int count, int flag);
+void njDrawTexture(NJS_TEXTURE_VTX* polygon, int count, int tex, int flag);
 void njDrawTextureSubH(_anon0* polygon, int count, int flag);
 void njDrawTextureH(_anon0* polygon, int count, int tex, int flag);
 void njDrawPolygon3DEx(_anon5* p, int count, int trans);
@@ -22,13 +13,13 @@ void njDrawPolygon3DExStart(int trans);
 void njDrawPolygonSub3D(_anon5* polygon, int count, int flag);
 void njDrawPolygon3DExSetData(_anon5* p, int count);
 void njDrawPolygon3DExEnd();
-void njDrawTexture3DEx(_anon3* p, int count, int trans);
-void njDrawTexture3DEx1P(_anon3* p, int count, int trans);
+void njDrawTexture3DEx(NJS_TEXTURE_VTX* p, int count, int trans);
+void njDrawTexture3DEx1P(NJS_TEXTURE_VTX* p, int count, int trans);
 void njDrawTexture3DExStart(int trans);
-void njDrawTextureSub3D(_anon3* polygon, int count, int flag);
-void njDrawTextureSub3D1P(_anon3* polygon, int count, int flag);
-void njDrawTexture3DExSetData(_anon3* p, int count);
-void njDrawTexture3DExSetData1P(_anon3* p, int count);
+void njDrawTextureSub3D(NJS_TEXTURE_VTX* polygon, int count, int flag);
+void njDrawTextureSub3D1P(NJS_TEXTURE_VTX* polygon, int count, int flag);
+void njDrawTexture3DExSetData(NJS_TEXTURE_VTX* p, int count);
+void njDrawTexture3DExSetData1P(NJS_TEXTURE_VTX* p, int count);
 void njDrawTexture3DExEnd();
 void njDrawTextureSub3DH(_anon0* polygon, int count, int flag);
 void njDrawTexture3DHEx(_anon0* p, int count, int trans);
@@ -92,7 +83,7 @@ void    njDrawPolygon( NJS_POLYGON_VTX *polygon, Int count, Int trans )
 
 /*// 
 // Start address: 0x2de2a0
-void njDrawTextureSub(_anon3* polygon, int count, int flag)
+void njDrawTextureSub(NJS_TEXTURE_VTX* polygon, int count, int flag)
 {
 	unsigned int i;
 	float bp[4];
@@ -339,7 +330,7 @@ void njDrawTexture3DExStart(int trans)
 
 // 
 // Start address: 0x2de970
-void njDrawTextureSub3D(_anon3* polygon, int count, int flag)
+void njDrawTextureSub3D(NJS_TEXTURE_VTX* polygon, int count, int flag)
 {
 	unsigned int cflag;
 	tagNJS_SCRVECTOR scr;
@@ -384,16 +375,16 @@ void njDrawTextureSub3D(_anon3* polygon, int count, int flag)
 	// Line 577, Address: 0x2deac0, Func Offset: 0x150
 	// Line 583, Address: 0x2dead4, Func Offset: 0x164
 	// Func End, Address: 0x2deaf8, Func Offset: 0x188
-}
+}*/
 
 // 
 // Start address: 0x2deb00
-void njDrawTextureSub3D1P(_anon3* polygon, int count, int flag)
+void njDrawTextureSub3D1P(NJS_TEXTURE_VTX* polygon, int count, int flag)
 {
-	tagVU1_STRIP_BUF* vp;
+	VU1_STRIP_BUF* vp;
 	unsigned long prim;
 	unsigned int i;
-	tagVU1_STRIP_BUF vb[256];
+	VU1_STRIP_BUF vb[256];
 	// Line 643, Address: 0x2deb00, Func Offset: 0
 	// Line 660, Address: 0x2deb1c, Func Offset: 0x1c
 	// Line 643, Address: 0x2deb20, Func Offset: 0x20
@@ -415,27 +406,27 @@ void njDrawTextureSub3D1P(_anon3* polygon, int count, int flag)
 	// Line 691, Address: 0x2dece8, Func Offset: 0x1e8
 	// Line 695, Address: 0x2decfc, Func Offset: 0x1fc
 	// Func End, Address: 0x2ded1c, Func Offset: 0x21c
+	scePrintf("njDrawTextureSub3D1P - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2ded20
-void njDrawTexture3DExSetData(_anon3* p, int count)
+void njDrawTexture3DExSetData(NJS_TEXTURE_VTX* p, int count)
 {
 	// Line 773, Address: 0x2ded20, Func Offset: 0
 	// Line 774, Address: 0x2ded28, Func Offset: 0x8
 	// Line 776, Address: 0x2ded30, Func Offset: 0x10
 	// Func End, Address: 0x2ded3c, Func Offset: 0x1c
-}
-
-// 
-// Start address: 0x2ded40
-void njDrawTexture3DExSetData1P(_anon3* p, int count)
-{
-	// Line 781, Address: 0x2ded40, Func Offset: 0
-	// Line 782, Address: 0x2ded48, Func Offset: 0x8
-	// Line 784, Address: 0x2ded50, Func Offset: 0x10
-	// Func End, Address: 0x2ded5c, Func Offset: 0x1c
 }*/
+
+// 100% matching!
+void njDrawTexture3DExSetData1P(NJS_TEXTURE_VTX* p, int count)
+{
+	Ps2_tex3DEx_p = p;
+	Ps2_tex3DEx_count = count;
+
+	njDrawTextureSub3D1P(p, count, Ps2_tex3DEx_trans);
+}
 
 // 100% matching!
 void	njDrawTexture3DExEnd(void) 
