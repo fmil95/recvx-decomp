@@ -133,16 +133,12 @@ void njDrawTextureSub(NJS_TEXTURE_VTX* polygon, int count, int flag)
 	// Func End, Address: 0x2de438, Func Offset: 0x198
 }*/
 
-// 
-// Start address: 0x2de440
+// 100% matching!
 void    njDrawTexture( NJS_TEXTURE_VTX *polygon, Int count, Int tex, Int flag )
 {
-	// Line 191, Address: 0x2de440, Func Offset: 0
-	// Line 201, Address: 0x2de460, Func Offset: 0x20
-	// Line 202, Address: 0x2de468, Func Offset: 0x28
-	// Line 203, Address: 0x2de478, Func Offset: 0x38
-	// Func End, Address: 0x2de490, Func Offset: 0x50
-	scePrintf("njDrawTexture - UNIMPLEMENTED!\n");
+	Ps2GlobalIndexTexLoad(tex);
+
+	njDrawTextureSub(polygon, count, flag);
 }
 
 /*// 
