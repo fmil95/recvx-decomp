@@ -293,27 +293,27 @@ float njDistanceL2PL(_anon1* pLine, _anon1* pPlane, _anon0* pCross)
 	// Line 492, Address: 0x2e39a0, Func Offset: 0x150
 	// Line 493, Address: 0x2e39a4, Func Offset: 0x154
 	// Func End, Address: 0x2e39d8, Func Offset: 0x188
-}
-
-// 
-// Start address: 0x2e39e0
-void njGetPlaneNormal(_anon0* pPoint, _anon0* pVector)
-{
-	_anon0* pP3;
-	_anon0* pP2;
-	// Line 518, Address: 0x2e39e0, Func Offset: 0
-	// Line 519, Address: 0x2e3a14, Func Offset: 0x34
-	// Line 520, Address: 0x2e3a48, Func Offset: 0x68
-	// Line 521, Address: 0x2e3a78, Func Offset: 0x98
-	// Func End, Address: 0x2e3a80, Func Offset: 0xa0
 }*/
+
+// 100% matching!
+void	njGetPlaneNormal(NJS_POINT3 *p, NJS_VECTOR *v)
+{
+	NJS_POINT3* pP2, *pP3;
+
+	pP2 = &p[1];
+	pP3 = &p[2];
+
+	v->x = ((pP2->y - p->y) * (pP3->z - pP2->z)) - ((pP2->z - p->z) * (pP3->y - pP2->y));
+    v->y = ((pP2->z - p->z) * (pP3->x - pP2->x)) - ((pP2->x - p->x) * (pP3->z - pP2->z));
+    v->z = ((pP2->x - p->x) * (pP3->y - pP2->y)) - ((pP2->y - p->y) * (pP3->x - pP2->x));
+}
 
 // 100% matching!
 void	njGetPlaneNormal2(NJS_POINT3 *p0, NJS_POINT3 *p1, NJS_POINT3 *p2, NJS_VECTOR *v)
 {
-  v->x = ((p1->y - p0->y) * (p2->z - p1->z)) - ((p1->z - p0->z) * (p2->y - p1->y));
-  v->y = ((p1->z - p0->z) * (p2->x - p1->x)) - ((p1->x - p0->x) * (p2->z - p1->z));
-  v->z = ((p1->x - p0->x) * (p2->y - p1->y)) - ((p1->y - p0->y) * (p2->x - p1->x));
+	v->x = ((p1->y - p0->y) * (p2->z - p1->z)) - ((p1->z - p0->z) * (p2->y - p1->y));
+    v->y = ((p1->z - p0->z) * (p2->x - p1->x)) - ((p1->x - p0->x) * (p2->z - p1->z));
+    v->z = ((p1->x - p0->x) * (p2->y - p1->y)) - ((p1->y - p0->y) * (p2->x - p1->x));
 }
 
 /*// 
