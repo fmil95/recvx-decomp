@@ -44,6 +44,7 @@ extern NJS_TEXLIST* Ps2_current_texlist_bk;
 extern unsigned int Ps2_current_texno_bk;
 extern int Ps2_quad_trans;
 extern unsigned int Ps2_quad_color;
+extern int Ps2_3DEx_trans;
 extern NJS_TEXMEMLIST* Ps2_current_texmemlist;
 
 #endif

@@ -242,14 +242,10 @@ void    njDrawPolygon3DEx( NJS_POLYGON_VTX *p, Int count, Int trans )
 	scePrintf("njDrawPolygon3DEx - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2de780
+// 100% matching!
 void	njDrawPolygon3DExStart(Int trans)
 {
-	// Line 378, Address: 0x2de780, Func Offset: 0
-	// Line 379, Address: 0x2de784, Func Offset: 0x4
-	// Func End, Address: 0x2de78c, Func Offset: 0xc
-	scePrintf("njDrawPolygon3DExStart - UNIMPLEMENTED!\n");
+	Ps2_3DEx_trans = trans;
 }
 
 /*// 
