@@ -1959,14 +1959,12 @@ void Ps2ShadowMain0()
 	scePrintf("Ps2ShadowMain0 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ce9e0
+// 100% matching! 
 void Ps2ShadowMain1()
 {
-	unsigned long shadow_tail[6];
-	// Line 3915, Address: 0x2ce9e0, Func Offset: 0
-	// Func End, Address: 0x2ce9ec, Func Offset: 0xc
-	scePrintf("Ps2ShadowMain1 - UNIMPLEMENTED!\n");
+	static const unsigned long shadow_tail[6] = { 0x70000002UL, 0x0UL, 0x1000000000008001UL, 0x0EUL, 0x80000000A1UL, 0x43UL };
+
+	loadImage((void*)shadow_tail);
 }
 
 // 100% matching! 
