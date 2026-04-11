@@ -180,7 +180,7 @@ void mv00_subpl0Ex(BH_PWORK* epw)
     }
 }
 
-// 92.50% matching (matches on GC)
+// 100% matching! 
 void mv00_subpl1(BH_PWORK* epw)
 {
     switch (epw->mode3) 
@@ -197,11 +197,11 @@ void mv00_subpl1(BH_PWORK* epw)
         
         epw->frm_mode = 0;
     case 1:
-        epw->ay += bhSub_DirTarget(epw, (short)(epw->ct0 >> 16) * 0.01f, (short)(unsigned short)epw->ct0 * 0.01f, 182);
+        epw->ay += bhSub_DirTarget(epw, (short)(epw->ct0 >> 16) * 0.01f, (int)*(unsigned short*)&epw->ct0 * 0.01f, 182);
         
         epw->spd = 0.01f * (float)epw->ct3;
         
-        bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+        bhSetMotion(epw, (int)epw->mtn_add, epw->mtn_md, epw->mtn_tp);
         
         bhAddSpeed(epw, 0);
         break;
@@ -246,7 +246,7 @@ void mv00_subpl2_0(BH_PWORK* epw)
     }
 }
 
-// 93.77% matching (matches on GC)
+// 100% matching! 
 void mv00_subpl3(BH_PWORK* epw)
 {
     switch (epw->mode3) 
@@ -260,7 +260,7 @@ void mv00_subpl3(BH_PWORK* epw)
         
         epw->frm_mode = 0;
     case 1:
-        epw->ay += bhSub_DirTarget(epw, (short)(epw->ct0 >> 16) * 0.01f, (short)epw->ct0 * 0.01f, 182);
+        epw->ay += bhSub_DirTarget(epw, (short)(epw->ct0 >> 16) * 0.01f, *(short*)&epw->ct0 * 0.01f, 182);
         
         epw->spd = 0.01f * epw->ct3;
         
@@ -269,7 +269,7 @@ void mv00_subpl3(BH_PWORK* epw)
     }
 }
 
-// 93.65% matching (matches on GC)
+// 100% matching! 
 void mv00_subpl3_0(BH_PWORK* epw)
 {
     switch (epw->mode3) 
@@ -283,7 +283,7 @@ void mv00_subpl3_0(BH_PWORK* epw)
         
         epw->frm_mode = 0;
     case 1:
-        epw->ay += bhSub_DirTarget(epw, (short)(epw->ct0 >> 16) * 0.01f, (short)epw->ct0 * 0.01f, 182);
+        epw->ay += bhSub_DirTarget(epw, (short)(epw->ct0 >> 16) * 0.01f, *(short*)&epw->ct0 * 0.01f, 182);
         
         epw->spd = 0.01f * epw->ct3;
         
