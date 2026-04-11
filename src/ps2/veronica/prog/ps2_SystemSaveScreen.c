@@ -1259,7 +1259,7 @@ void ExecuteStateSysSaveTitleExit()
     }
 }
 
-// 99.55% matching
+// 100% matching!
 void SysSaveHikaku(CONFIGFILE* pConfig)
 {
     unsigned int Count;
@@ -1270,7 +1270,7 @@ void SysSaveHikaku(CONFIGFILE* pConfig)
 
         for (Count = 0; Count < 8; Count++)
         {
-            if ((pConfig->best_tm[Count] < sys->best_tm[Count]) && (pConfig->best_tm[Count] != 0))
+            if ((sys->best_tm[Count] > pConfig->best_tm[Count]) && (pConfig->best_tm[Count] != 0))
             {
                 sys->best_tm[Count] = pConfig->best_tm[Count];
             }
