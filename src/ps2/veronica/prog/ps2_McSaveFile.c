@@ -833,7 +833,7 @@ void mcSetTyepWriteMode(SELECTFILEWINDOW* pWin, unsigned int SetState)
 // 100% matching!
 int mcSetStringSaveFile(SELECTFILEINFO* pFileInfo)
 {
-    return Type_Space[pFileInfo->saveroom][0] - pFileInfo->ply_id;
+    return Type_Space[pFileInfo->saveroom - 1][0] - pFileInfo->ply_id;
 }
 
 // 100% matching!
