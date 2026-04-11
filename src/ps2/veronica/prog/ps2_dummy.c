@@ -1444,27 +1444,23 @@ void Ps2SetFogColor()
     D2_SyncTag();
 }
 
-// 
-// Start address: 0x2cd9c0
+// 100% matching!
 void Ps2SetFogColorSys(unsigned int r, unsigned int g, unsigned int b)
 {
-	// Line 2763, Address: 0x2cd9c0, Func Offset: 0
-	// Line 2768, Address: 0x2cd9dc, Func Offset: 0x1c
-	// Line 2776, Address: 0x2cd9e4, Func Offset: 0x24
-	// Line 2770, Address: 0x2cda0c, Func Offset: 0x4c
-	// Line 2773, Address: 0x2cda1c, Func Offset: 0x5c
-	// Line 2771, Address: 0x2cda20, Func Offset: 0x60
-	// Line 2773, Address: 0x2cda24, Func Offset: 0x64
-	// Line 2771, Address: 0x2cda28, Func Offset: 0x68
-	// Line 2773, Address: 0x2cda2c, Func Offset: 0x6c
-	// Line 2774, Address: 0x2cda3c, Func Offset: 0x7c
-	// Line 2776, Address: 0x2cda48, Func Offset: 0x88
-	// Line 2777, Address: 0x2cda58, Func Offset: 0x98
-	// Line 2779, Address: 0x2cda64, Func Offset: 0xa4
-	// Line 2780, Address: 0x2cda6c, Func Offset: 0xac
-	// Line 2781, Address: 0x2cda74, Func Offset: 0xb4
-	// Func End, Address: 0x2cda8c, Func Offset: 0xcc
-	scePrintf("Ps2SetFogColorSys - UNIMPLEMENTED!\n");
+    D2_SyncTag();
+    
+    ((u_long*)WORKBASE)[0] = DMAend | 0x2;
+    ((u_long*)WORKBASE)[1] = 0;
+    
+    ((u_long*)WORKBASE)[2] = SCE_GIF_SET_TAG(1, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1);
+    ((u_long*)WORKBASE)[3] = SCE_GIF_PACKED_AD;
+    
+    ((u_long*)WORKBASE)[4] = Ps2_gs_save.FOGCOL = SCE_GS_SET_RGBAQ(r, g, b, 0, 0);
+    ((u_long*)WORKBASE)[5] = SCE_GS_FOGCOL;
+    
+    loadImage((void*)0xF0000000); 
+    
+    D2_SyncTag();
 }
 
 // 100% matching!
