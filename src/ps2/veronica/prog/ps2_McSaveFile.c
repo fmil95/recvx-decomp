@@ -10,7 +10,11 @@
 
 //#include <string.h>
 
-const int Type_Space[18][3] __attribute__((aligned(64))); // TODO: define data for this
+const int Type_Space[18][3] __attribute__((aligned(64))) = 
+{
+    { 28, -1, -1 }, { 29, -1, -1 }, { 29, -1, -1 }, { 28, -1, -1 }, { 28, -1, -1 }, { 29, -1, -1 }, { 29, -1, -1 },  { 28, -1, -1 }, { 28, -1, -1 }, 
+    { 29, -1, -1 }, { 27, -1, -1 }, { 30, -1, -1 }, { 28, -1, -1 }, { 29, -1, -1 }, { 29, -1, -1 }, { 29, -1, -1 },  { 29, -1, -1 }, { 28, -1, -1 }  
+};
 static char cSubDirName[13] = "BASLUS-20184";
 unsigned short MesNumTbl[10] = { 0x0010, 0x0011, 0x0012, 0x0013, 0x0014, 0x0015, 0x0016, 0x0017, 0x0018, 0x0019 };
 
