@@ -1796,50 +1796,47 @@ void Ps2ZbuffOn()
     D2_SyncTag();
 }
 
-// 
-// Start address: 0x2ce330
+// 100% matching! 
 void Ps2ShadowStart()
 {
-	// Line 3688, Address: 0x2ce330, Func Offset: 0
-	// Line 3691, Address: 0x2ce334, Func Offset: 0x4
-	// Line 3688, Address: 0x2ce338, Func Offset: 0x8
-	// Line 3691, Address: 0x2ce33c, Func Offset: 0xc
-	// Line 3694, Address: 0x2ce340, Func Offset: 0x10
-	// Line 3696, Address: 0x2ce348, Func Offset: 0x18
-	// Line 3699, Address: 0x2ce358, Func Offset: 0x28
-	// Line 3697, Address: 0x2ce35c, Func Offset: 0x2c
-	// Line 3699, Address: 0x2ce360, Func Offset: 0x30
-	// Line 3697, Address: 0x2ce364, Func Offset: 0x34
-	// Line 3699, Address: 0x2ce368, Func Offset: 0x38
-	// Line 3700, Address: 0x2ce378, Func Offset: 0x48
-	// Line 3703, Address: 0x2ce384, Func Offset: 0x54
-	// Line 3710, Address: 0x2ce394, Func Offset: 0x64
-	// Line 3705, Address: 0x2ce398, Func Offset: 0x68
-	// Line 3707, Address: 0x2ce3a4, Func Offset: 0x74
-	// Line 3710, Address: 0x2ce3b0, Func Offset: 0x80
-	// Line 3708, Address: 0x2ce3b4, Func Offset: 0x84
-	// Line 3710, Address: 0x2ce3c0, Func Offset: 0x90
-	// Line 3711, Address: 0x2ce3d4, Func Offset: 0xa4
-	// Line 3713, Address: 0x2ce3e0, Func Offset: 0xb0
-	// Line 3714, Address: 0x2ce3ec, Func Offset: 0xbc
-	// Line 3716, Address: 0x2ce3f4, Func Offset: 0xc4
-	// Line 3717, Address: 0x2ce3fc, Func Offset: 0xcc
-	// Line 3719, Address: 0x2ce404, Func Offset: 0xd4
-	// Line 3722, Address: 0x2ce414, Func Offset: 0xe4
-	// Line 3720, Address: 0x2ce41c, Func Offset: 0xec
-	// Line 3722, Address: 0x2ce428, Func Offset: 0xf8
-	// Line 3723, Address: 0x2ce434, Func Offset: 0x104
-	// Line 3725, Address: 0x2ce43c, Func Offset: 0x10c
-	// Line 3728, Address: 0x2ce448, Func Offset: 0x118
-	// Line 3726, Address: 0x2ce44c, Func Offset: 0x11c
-	// Line 3728, Address: 0x2ce450, Func Offset: 0x120
-	// Line 3726, Address: 0x2ce454, Func Offset: 0x124
-	// Line 3728, Address: 0x2ce458, Func Offset: 0x128
-	// Line 3729, Address: 0x2ce468, Func Offset: 0x138
-	// Line 3731, Address: 0x2ce474, Func Offset: 0x144
-	// Line 3732, Address: 0x2ce47c, Func Offset: 0x14c
-	// Func End, Address: 0x2ce488, Func Offset: 0x158
-	scePrintf("Ps2ShadowStart - UNIMPLEMENTED!\n");
+	Ps2_current_texbreak = 1;
+    
+    D2_SyncTag();
+    
+    ((u_long*)WORKBASE)[0] = DMAend | 0xA;
+    ((u_long*)WORKBASE)[1] = 0;
+    
+    ((u_long*)WORKBASE)[2] = SCE_GIF_SET_TAG(9, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1);
+    ((u_long*)WORKBASE)[3] = SCE_GIF_PACKED_AD;
+    
+    ((u_long*)WORKBASE)[4] = SCE_GS_SET_FRAME_2(380, 10, SCE_GS_PSMCT16S, 0); 
+    ((u_long*)WORKBASE)[5] = SCE_GS_FRAME_2;
+    
+    ((u_long*)WORKBASE)[6] = SCE_GS_SET_TEST_2(0, 0, 0, 0, 0, 0, 3, 0);
+    ((u_long*)WORKBASE)[7] = SCE_GS_TEST_2;
+    
+    ((u_long*)WORKBASE)[8] = SCE_GS_SET_ZBUF_2(300, SCE_GS_PSMZ16S, 1);
+    ((u_long*)WORKBASE)[9] = SCE_GS_ZBUF_2;
+    
+    ((u_long*)WORKBASE)[10] = SCE_GS_SET_PRIM(6, 0, 0, 0, 0, 0, 2, 0, 0);
+    ((u_long*)WORKBASE)[11] = SCE_GS_PRIM; 
+
+    ((u_long*)WORKBASE)[12] = SCE_GS_SET_RGBAQ(0, 0, 0, 0, 0);
+    ((u_long*)WORKBASE)[13] = SCE_GS_RGBAQ; 
+    
+    ((u_long*)WORKBASE)[14] = SCE_GS_SET_XYZ2(GS_X_COORD_MOD(0),          GS_Y_COORD_MOD(0),           0);
+    ((u_long*)WORKBASE)[15] = SCE_GS_XYZ2;
+    
+    ((u_long*)WORKBASE)[16] = SCE_GS_SET_XYZ2(GS_X_COORD_MOD(SCR_WIDTH2), GS_Y_COORD_MOD(SCR_HEIGHT2), 0);
+    ((u_long*)WORKBASE)[17] = SCE_GS_XYZ2;
+    
+    ((u_long*)WORKBASE)[18] = SCE_GS_SET_TEST_2(0, SCE_GS_ALPHA_NEVER, 0, SCE_GS_AFAIL_KEEP, 0, 0, 1, SCE_GS_DEPTH_GEQUAL);
+    ((u_long*)WORKBASE)[19] = SCE_GS_TEST_2;
+    
+    ((u_long*)WORKBASE)[20] = SCE_GS_SET_TEXA(0, 1, 128); 
+    ((u_long*)WORKBASE)[21] = SCE_GS_TEXA; 
+    
+    loadImage((void*)0xF0000000);
 }
 
 // 
