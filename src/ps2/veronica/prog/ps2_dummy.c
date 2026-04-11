@@ -9,6 +9,11 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/main.h"
 
+// the three vars below were originally defined as unsigned int in ps2_NaFog.c, and redeclared as unsigned long here
+extern unsigned long ulNaFogR;
+extern unsigned long ulNaFogG;
+extern unsigned long ulNaFogB;
+
 sceGsDBuffDc Db;
 void (*EorFunc)();
 void (*VsyncFunc)();
@@ -1420,29 +1425,23 @@ label:
     return cache_flag;
 }
 
-// 
-// Start address: 0x2cd910
+// 100% matching!
 void Ps2SetFogColor()
 {
-	// Line 2742, Address: 0x2cd910, Func Offset: 0
-	// Line 2747, Address: 0x2cd918, Func Offset: 0x8
-	// Line 2749, Address: 0x2cd920, Func Offset: 0x10
-	// Line 2752, Address: 0x2cd930, Func Offset: 0x20
-	// Line 2750, Address: 0x2cd934, Func Offset: 0x24
-	// Line 2752, Address: 0x2cd938, Func Offset: 0x28
-	// Line 2750, Address: 0x2cd93c, Func Offset: 0x2c
-	// Line 2752, Address: 0x2cd940, Func Offset: 0x30
-	// Line 2753, Address: 0x2cd950, Func Offset: 0x40
-	// Line 2755, Address: 0x2cd95c, Func Offset: 0x4c
-	// Line 2756, Address: 0x2cd964, Func Offset: 0x54
-	// Line 2758, Address: 0x2cd968, Func Offset: 0x58
-	// Line 2755, Address: 0x2cd96c, Func Offset: 0x5c
-	// Line 2756, Address: 0x2cd99c, Func Offset: 0x8c
-	// Line 2758, Address: 0x2cd9a0, Func Offset: 0x90
-	// Line 2759, Address: 0x2cd9a8, Func Offset: 0x98
-	// Line 2760, Address: 0x2cd9b0, Func Offset: 0xa0
-	// Func End, Address: 0x2cd9bc, Func Offset: 0xac
-	scePrintf("Ps2SetFogColor - UNIMPLEMENTED!\n");
+	D2_SyncTag();
+    
+    ((u_long*)WORKBASE)[0] = DMAend | 0x2;
+    ((u_long*)WORKBASE)[1] = 0;
+    
+    ((u_long*)WORKBASE)[2] = SCE_GIF_SET_TAG(1, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1);
+    ((u_long*)WORKBASE)[3] = SCE_GIF_PACKED_AD;
+    
+    ((u_long*)WORKBASE)[4] = Ps2_gs_save.FOGCOL = SCE_GS_SET_RGBAQ(ulNaFogR, ulNaFogG, ulNaFogB, 0, 0);
+    ((u_long*)WORKBASE)[5] = SCE_GS_FOGCOL;
+    
+    loadImage((void*)0xF0000000); 
+    
+    D2_SyncTag();
 }
 
 // 
