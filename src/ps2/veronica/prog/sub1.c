@@ -164,25 +164,23 @@ _anon55 fade;
 int SoftResetFlag;
 _anon20 st_cam;*/
 
-// 
-// Start address: 0x29a870
+// 100% matching! 
 void Ps2ZbuffOffI()
 {
-	// Line 1004, Address: 0x29a870, Func Offset: 0
-	// Line 1016, Address: 0x29a878, Func Offset: 0x8
-	// Line 1018, Address: 0x29a880, Func Offset: 0x10
-	// Line 1021, Address: 0x29a890, Func Offset: 0x20
-	// Line 1019, Address: 0x29a894, Func Offset: 0x24
-	// Line 1021, Address: 0x29a898, Func Offset: 0x28
-	// Line 1019, Address: 0x29a89c, Func Offset: 0x2c
-	// Line 1021, Address: 0x29a8a0, Func Offset: 0x30
-	// Line 1022, Address: 0x29a8b0, Func Offset: 0x40
-	// Line 1029, Address: 0x29a8bc, Func Offset: 0x4c
-	// Line 1030, Address: 0x29a8cc, Func Offset: 0x5c
-	// Line 1033, Address: 0x29a8d8, Func Offset: 0x68
-	// Line 1034, Address: 0x29a8e0, Func Offset: 0x70
-	// Line 1035, Address: 0x29a8e8, Func Offset: 0x78
-	// Func End, Address: 0x29a8f4, Func Offset: 0x84
+	D2_SyncTag();
+    
+    ((u_long*)WORKBASE)[0] = DMAend | 0x2;
+    ((u_long*)WORKBASE)[1] = 0;
+    
+    ((u_long*)WORKBASE)[2] = SCE_GIF_SET_TAG(1, SCE_GS_TRUE, SCE_GS_FALSE, 0, SCE_GIF_PACKED, 1);
+    ((u_long*)WORKBASE)[3] = SCE_GIF_PACKED_AD;
+    
+    ((u_long*)WORKBASE)[4] = SCE_GS_SET_TEST_1(1, SCE_GS_ALPHA_GEQUAL, 128, SCE_GS_AFAIL_KEEP, 0, 0, 1, SCE_GS_DEPTH_GEQUAL);
+    ((u_long*)WORKBASE)[5] = SCE_GS_TEST_1;
+    
+    loadImage((void*)0xF0000000);
+    
+    D2_SyncTag();
 }
 
 // 
