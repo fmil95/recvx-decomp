@@ -77,6 +77,7 @@ void StatusMapFlagInit();
 
 extern S_WORK swork;
 extern PARTS parts_22b[6]; 
+extern FADE fade;
 
 /*typedef struct _anon0;
 typedef struct _anon1;

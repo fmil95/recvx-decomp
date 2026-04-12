@@ -159,9 +159,9 @@ float y_k;
 float xend;
 short u_k;
 short v_k;
-short uend;
-_anon55 fade;
-int SoftResetFlag;
+short uend;*/
+FADE fade;
+/*int SoftResetFlag;
 _anon20 st_cam;*/
 
 // 100% matching! 
@@ -6036,21 +6036,20 @@ void DrawPoly2D(_anon11* pos00, _anon14* col00, _anon14* uv00, float pri, unsign
 	// Line 8056, Address: 0x2a960c, Func Offset: 0xfc
 	// Line 8057, Address: 0x2a9620, Func Offset: 0x110
 	// Func End, Address: 0x2a9644, Func Offset: 0x134
-}
+}*/
 
-// 
-// Start address: 0x2a9650
+// 100% matching! 
 void DispFadeInit()
 {
-	// Line 8068, Address: 0x2a9650, Func Offset: 0
-	// Line 8069, Address: 0x2a9658, Func Offset: 0x8
-	// Line 8070, Address: 0x2a9660, Func Offset: 0x10
-	// Line 8071, Address: 0x2a9668, Func Offset: 0x18
-	// Line 8072, Address: 0x2a9670, Func Offset: 0x20
-	// Line 8073, Address: 0x2a9678, Func Offset: 0x28
-	// Line 8074, Address: 0x2a967c, Func Offset: 0x2c
-	// Func End, Address: 0x2a9684, Func Offset: 0x34
-}*/
+	fade.flg = 0;
+
+	fade.alpha = 0;
+	fade.alphaset = 0;
+
+	fade.cnt00 = 0;
+	fade.cnt01 = 0;
+	fade.cnt02 = 0;
+}
 
 // 
 // Start address: 0x2a9690

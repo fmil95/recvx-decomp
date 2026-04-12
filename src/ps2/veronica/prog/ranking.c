@@ -11,7 +11,6 @@
 /*void(*RankingMode)()[6];
 */
 RANK_WORK rkw;
-FADE fade;
 
 /*
 tagSYSSAVE_SCREEN* pRankingSys;
