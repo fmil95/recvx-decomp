@@ -4724,17 +4724,14 @@ void SpriteOnOff(_anon4* st)
 	// Line 6580, Address: 0x2a6a88, Func Offset: 0x698
 	// Line 6584, Address: 0x2a6a98, Func Offset: 0x6a8
 	// Func End, Address: 0x2a6ab8, Func Offset: 0x6c8
-}
-
-// 
-// Start address: 0x2a6ac0
-void NameChangeSet(_anon4* st)
-{
-	// Line 6589, Address: 0x2a6ac0, Func Offset: 0
-	// Line 6590, Address: 0x2a6ac8, Func Offset: 0x8
-	// Line 6591, Address: 0x2a6acc, Func Offset: 0xc
-	// Func End, Address: 0x2a6ad4, Func Offset: 0x14
 }*/
+
+// 100% matching! 
+void NameChangeSet(S_WORK* st)
+{
+	st->dnum = 1;
+	st->wn_num = 2;
+}
 
 // 100% matching! 
 void AllItemInit() 
