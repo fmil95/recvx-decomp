@@ -516,8 +516,6 @@ segments:
       - [0x221610, .data, ps2/veronica/prog/en55]
       - [0x221650, .data, ps2/veronica/prog/en71]
       - [0x221670, .data, ps2/veronica/prog/effect]
-      - [0x221CD0, .data, ps2/veronica/prog/effsub1b]
-      - [0x221CF0, .data, ps2/veronica/prog/effect]
       - [0x221D70, .data, ps2/veronica/prog/effsub0]
       - [0x224580, .data, ps2/veronica/prog/effsub1]
       - [0x227538, .data, ps2/veronica/prog/effsub1b]
