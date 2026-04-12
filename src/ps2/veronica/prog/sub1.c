@@ -5216,19 +5216,13 @@ void EraseItem(unsigned int* wp)
 	scePrintf("EraseItem - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2a7c50
+// 100% matching!
 void PushPalletBuffer()
 {
-	// Line 7220, Address: 0x2a7c50, Func Offset: 0
-	// Line 7219, Address: 0x2a7c58, Func Offset: 0x8
-	// Line 7220, Address: 0x2a7c5c, Func Offset: 0xc
-	// Line 7219, Address: 0x2a7c64, Func Offset: 0x14
-	// Line 7220, Address: 0x2a7c68, Func Offset: 0x18
-	// Line 7221, Address: 0x2a7c70, Func Offset: 0x20
-	// Line 7222, Address: 0x2a7c78, Func Offset: 0x28
-	// Func End, Address: 0x2a7c84, Func Offset: 0x34
-}*/
+    njMemCopy4(&palbuf[3072], palbuf, 1024); 
+
+	njSetPaletteMode(6); 
+}
 
 // 100% matching!
 void PopPalletBuffer()
