@@ -1,9 +1,11 @@
 #include "../../../ps2/veronica/prog/sub1.h"
+#include "../../../ps2/veronica/prog/fileview.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/padman.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_texture.h"
 
 S_WORK swork;
 
@@ -777,7 +779,7 @@ void SpriteSet2D(_anon3* cbjim, _anon7* anim1, _anon10* tlist)
 	// Line 1744, Address: 0x29bfa0, Func Offset: 0x160
 	// Line 1745, Address: 0x29bfb4, Func Offset: 0x174
 	// Func End, Address: 0x29bfc8, Func Offset: 0x188
-}
+}*/
 
 // 
 // Start address: 0x29bfd0
@@ -787,7 +789,7 @@ void ItemSort()
 	unsigned int num1;
 	unsigned int itmbk[10];
 	unsigned int wpn;
-	_anon4* st;
+	S_WORK* st;
 	// Line 1747, Address: 0x29bfd0, Func Offset: 0
 	// Line 1748, Address: 0x29bfd4, Func Offset: 0x4
 	// Line 1752, Address: 0x29bfd8, Func Offset: 0x8
@@ -836,9 +838,10 @@ void ItemSort()
 	// Line 1802, Address: 0x29c208, Func Offset: 0x238
 	// Line 1803, Address: 0x29c210, Func Offset: 0x240
 	// Func End, Address: 0x29c218, Func Offset: 0x248
+	scePrintf("ItemSort - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x29c220
 void ItemSet(_anon4* st)
 {
@@ -5202,21 +5205,23 @@ unsigned int* ItemSearch(unsigned short itemid)
 	scePrintf("ItemSearch - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a7bf0
+// 100% matching!
 void EraseItem(unsigned int* wp)
 {
-	//_anon4* st;
-	// Line 7203, Address: 0x2a7bf0, Func Offset: 0
-	// Line 7206, Address: 0x2a7bf8, Func Offset: 0x8
-	// Line 7207, Address: 0x2a7bfc, Func Offset: 0xc
-	// Line 7204, Address: 0x2a7c04, Func Offset: 0x14
-	// Line 7207, Address: 0x2a7c0c, Func Offset: 0x1c
-	// Line 7208, Address: 0x2a7c24, Func Offset: 0x34
-	// Line 7209, Address: 0x2a7c30, Func Offset: 0x40
-	// Line 7211, Address: 0x2a7c38, Func Offset: 0x48
-	// Func End, Address: 0x2a7c44, Func Offset: 0x54
-	scePrintf("EraseItem - UNIMPLEMENTED!\n");
+	S_WORK* st;
+
+	*wp = 0;
+
+	st = &swork;
+
+	if (wp >= (st->pip + *st->pip)) 
+	{
+		return;
+	}
+
+	*st->pip -= 1;
+
+	ItemSort();
 }
 
 // 100% matching!

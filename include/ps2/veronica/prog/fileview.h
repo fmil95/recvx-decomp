@@ -26,6 +26,8 @@ void ReadFstx();
 unsigned int FileNumberSwitch(unsigned int num);
 int PlayPageCheck();
 
+extern FV_WORK fvwork;
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;
