@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/sub1.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/padman.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
@@ -6104,15 +6105,15 @@ void FadePolyDisp()
 	scePrintf("FadePolyDisp - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a9840
+// 100% matching!
 void StatusMapFlagInit()
 {
-	//_anon4* st;
-	// Line 8126, Address: 0x2a9840, Func Offset: 0
-	// Line 8125, Address: 0x2a9848, Func Offset: 0x8
-	// Line 8126, Address: 0x2a9850, Func Offset: 0x10
-	// Line 8127, Address: 0x2a9868, Func Offset: 0x28
-	// Func End, Address: 0x2a9870, Func Offset: 0x30
-	scePrintf("StatusMapFlagInit - UNIMPLEMENTED!\n");
+	S_WORK* st;
+
+	st = &swork;
+	
+	if (SoftResetFlag == 1) 
+	{
+		st->subscreenmode &= ~0x40;
+	}
 }
