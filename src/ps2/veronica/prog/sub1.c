@@ -3511,17 +3511,15 @@ unsigned char Use_02()
 	// Line 5053, Address: 0x2a381c, Func Offset: 0x4c
 	// Line 5054, Address: 0x2a3820, Func Offset: 0x50
 	// Func End, Address: 0x2a3828, Func Offset: 0x58
-}
+}*/
 
-// 
-// Start address: 0x2a3830
+// 100% matching!
 unsigned char Use_04()
 {
-	// Line 5062, Address: 0x2a3830, Func Offset: 0
-	// Func End, Address: 0x2a3838, Func Offset: 0x8
+	return 0;
 }
 
-// 
+/*// 
 // Start address: 0x2a3840
 unsigned char Use_05(_anon4* st)
 {
