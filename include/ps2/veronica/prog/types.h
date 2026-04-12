@@ -2338,6 +2338,8 @@ typedef struct {
 #define GS_X_COORD_MOD(x) ((2048 - (SCR_WIDTH2 / 2) + x) * 16)
 #define GS_Y_COORD_MOD(y) ((2048 - (SCR_HEIGHT2 / 2) + y) * 16)
 
+#define GS_COORD(v) ((unsigned int)((v) * 16))
+
 #define WORKBASE (0x70000000)
 
 #define DMAnext             (2<<28)
