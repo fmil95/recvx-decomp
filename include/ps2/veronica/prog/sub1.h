@@ -76,6 +76,7 @@ void FadePolyDisp();
 void StatusMapFlagInit();
 
 extern S_WORK swork;
+extern PARTS parts_22b[6]; 
 
 /*typedef struct _anon0;
 typedef struct _anon1;

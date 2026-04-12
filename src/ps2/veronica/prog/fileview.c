@@ -11,7 +11,6 @@ unsigned int wallpaper[24];*/
 typedef void (*FileViewMode_proc)();
 FileViewMode_proc FileViewMode[5] = { FileSelect, FileViewInit, FileViewMain, FileViewExit, FileGetWait };
 FV_WORK fvwork;
-PARTS parts_22b[6]; // TODO: need to define data here
 /*char ViewCnt;
 _anon23 tbuf[0];
 unsigned char menuanim[4][0];

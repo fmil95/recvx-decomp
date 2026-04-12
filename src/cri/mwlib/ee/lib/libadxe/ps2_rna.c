@@ -7,7 +7,7 @@
 //#include <string.h>
 
 Char8* volatile ps2rna_build = "\nPS2RNA Ver 0.98 Build:Jan 26 2001 09:57:43\n";
-Uint32 ps2rna_dbtbl[1000] = // TODO: double-check all values are correct
+Uint32 ps2rna_dbtbl[1000] = 
 { 
     256, 253, 250, 247, 244, 241, 238, 236, 233, 230, 228, 225, 222, 220, 217, 215, 212, 210, 208, 205, 203, 201, 198,
     196, 194, 191, 189, 187, 185, 183, 181, 179, 177, 175, 173, 171, 169, 167, 165, 163, 161, 159, 157, 156, 154, 152,

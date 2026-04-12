@@ -43,9 +43,9 @@ _anon3 parts_17b[10];
 _anon3 parts_18b[16];
 _anon3 parts_19b[40];
 _anon3 parts_20b[8];
-_anon3 parts_21b[40];
-_anon3 parts_22b[6];
-float cen_pos99[6][12];
+_anon3 parts_21b[40];*/
+PARTS parts_22b[6]; // TODO: need to define data here
+/*float cen_pos99[6][12];
 float cen_pos[6][12];
 unsigned char menuanim[4][3];
 _anon7* testset[23];
