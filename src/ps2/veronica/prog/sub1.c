@@ -44,7 +44,81 @@ _anon3 parts_18b[16];
 _anon3 parts_19b[40];
 _anon3 parts_20b[8];
 _anon3 parts_21b[40];*/
-PARTS parts_22b[6]; // TODO: need to define data here
+PARTS parts_22b[6] = 
+{
+    { 
+        { 60.0f, 0.0f, 2.0f },            /* pos */
+        0,                                /* ang */
+        0x80,                             /* atr */
+        0,                                /* anim */
+        0,                                /* cen_no */
+        22,                               /* parts_num */
+        0.0f,                             /* move */
+        0,                                /* setnum */
+        { 1.0f, 0.9f, 0.9f, 0.9f },       /* col */
+        0                                 /* color */
+    },
+    { 
+        { 162.0f, 80.0f, 20.0f },         /* pos */
+        0,                                /* ang */
+        0x40,                             /* atr */
+        1,                                /* anim */
+        0,                                /* cen_no */
+        22,                               /* parts_num */
+        0.0f,                             /* move */
+        0,                                /* setnum */
+        { 1.0f, 0.5f, 0.5f, 0.5f },       /* col */
+        0                                 /* color */
+    },
+    { 
+        { 16.0f, 224.0f, 2.0f },          /* pos */
+        0,                                /* ang */
+        0x40,                             /* atr */
+        5,                                /* anim */
+        0,                                /* cen_no */
+        22,                               /* parts_num */
+        0.0f,                             /* move */
+        0,                                /* setnum */
+        { 1.0f, 0.0f, 1.0f, 0.0f },       /* col */
+        0                                 /* color */
+    },
+    { 
+        { 592.0f, 224.0f, 2.0f },         /* pos */
+        0,                                /* ang */
+        0x40,                             /* atr */
+        6,                                /* anim */
+        0,                                /* cen_no */
+        22,                               /* parts_num */
+        0.0f,                             /* move */
+        0,                                /* setnum */
+        { 1.0f, 0.0f, 1.0f, 0.0f },       /* col */
+        0                                 /* color */
+    },
+    { 
+        { 560.0f, 224.0f, 2.0f },         /* pos */
+        0,                                /* ang */
+        0x44,                             /* atr */
+        7,                                /* anim */
+        0,                                /* cen_no */
+        22,                               /* parts_num */
+        0.0f,                             /* move */
+        0,                                /* setnum */
+        { 1.0f, 1.0f, 1.0f, 1.0f },       /* col */
+        8                                 /* color */
+    },
+    { 
+        { 0.0f, 0.0f, 0.0f },             /* pos */
+        0,                                /* ang */
+        0,                                /* atr */
+        -1,                               /* anim */
+        0,                                /* cen_no */
+        0,                                /* parts_num */
+        0.0f,                             /* move */
+        0,                                /* setnum */
+        { 0.0f, 0.0f, 0.0f, 0.0f },       /* col */
+        0                                 /* color */
+    }
+};
 /*float cen_pos99[6][12];
 float cen_pos[6][12];
 unsigned char menuanim[4][3];
