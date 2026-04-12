@@ -1,5 +1,7 @@
 #include "../../../ps2/veronica/prog/sub1.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMem.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 
 S_WORK swork;
@@ -183,25 +185,30 @@ void Ps2ZbuffOffI()
     D2_SyncTag();
 }
 
-// 
-// Start address: 0x29a900
+// 100% matching! 
 void Ps2DrawOTagI()
 {
 	int i;
-	// Line 1038, Address: 0x29a900, Func Offset: 0
-	// Line 1041, Address: 0x29a908, Func Offset: 0x8
-	// Line 1042, Address: 0x29a910, Func Offset: 0x10
-	// Line 1043, Address: 0x29a914, Func Offset: 0x14
-	// Line 1044, Address: 0x29a920, Func Offset: 0x20
-	// Line 1045, Address: 0x29a934, Func Offset: 0x34
-	// Line 1046, Address: 0x29a93c, Func Offset: 0x3c
-	// Line 1047, Address: 0x29a944, Func Offset: 0x44
-	// Line 1048, Address: 0x29a948, Func Offset: 0x48
-	// Line 1049, Address: 0x29a954, Func Offset: 0x54
-	// Line 1050, Address: 0x29a968, Func Offset: 0x68
-	// Line 1051, Address: 0x29a970, Func Offset: 0x70
-	// Line 1052, Address: 0x29a97c, Func Offset: 0x7c
-	// Func End, Address: 0x29a988, Func Offset: 0x88
+	
+	Ps2ZbuffOffI();
+
+	for (i = 0; i < 4096; ) 
+	{
+		i = Ps2DrawOTagSub(i);
+	}
+
+	SyncPath();
+
+	Ps2ZbuffOff2();
+
+	for (i = 0; i < 4096; ) 
+	{
+		i = Ps2DrawOTagSub(i);
+	}
+
+	Ps2ZbuffOn();
+
+	Ps2_current_texbreak = 1;
 }
 
 /*// 
