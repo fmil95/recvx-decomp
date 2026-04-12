@@ -13,7 +13,19 @@ char PlyEyeTab[8];
 int KnfAtrTab[4];
 char PlyLegRoute[7][2];
 char PlyFlip[23];*/
-const unsigned short PlMtnAct[2][3][7]; // TODO: define data for this
+const unsigned short PlMtnAct[2][3][7] = 
+{
+    {
+        { 42, 39,  0, 4,  16, 52, 9 },  
+        { 43, 40,  2, 7,  18, 52, 9 },  
+        { 44, 41,  3, 8,  19, 52, 9 }  
+    },
+    {
+        { 42, 39,  1, 6,  17, 54, 9 },  
+        { 43, 40,  2, 7,  18, 54, 9 },  
+        { 44, 41,  3, 8,  19, 54, 9 }  
+    }
+};
 /*unsigned short PlMtnWpn[5];
 char PlFootSnd[7][2][4];
 char PlKDU[3][2][4];*/

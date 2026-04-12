@@ -78,7 +78,7 @@ int isVQ(unsigned char type)
     return 1; 
 } 
 
-// 99.70% matching
+// 99.79% matching
 int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset)
 {
     unsigned int pal[64]; 
@@ -103,7 +103,6 @@ int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset)
     unsigned char* ap;   
     unsigned char* dp;    
     unsigned char* palp;  
-    int* temp; // not from the debugging symbols
 
     palnum = 0; 
     
@@ -218,11 +217,9 @@ int bhSetMemPvpTexture(NJS_TEXLIST* tlp, unsigned char* datp, int offset)
                 
                 clutp = (unsigned int*)((ap + ((TIM2_PICTUREHEADER_EX*)ap)->ImageSize) + 256); 
                 
-                temp = (int*)((TIM2_PICTUREHEADER_EX*)ap)->PalData;
-                
                 for (lop = 0; lop < palnum; lop++) 
                 {
-                    temp[lop] = ((int*)&pal[lop])[0];  
+                    ((unsigned int*)((TIM2_PICTUREHEADER_EX*)ap)->PalData)[lop] = pal[lop];   
                     
                     TEXflag = ((unsigned char*)&pal[lop])[0]; 
                     
