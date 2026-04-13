@@ -5240,21 +5240,15 @@ void PopPalletBuffer()
     njMemCopy4(palbuf, &palbuf[3072], 1024); 
 } 
 
-// 
-// Start address: 0x2a7cd0
+// 100% matching!
 void SbsTextureInit()
 {
-	// Line 7232, Address: 0x2a7cd0, Func Offset: 0
-	// Line 7237, Address: 0x2a7cd8, Func Offset: 0x8
-	// Line 7239, Address: 0x2a7ce0, Func Offset: 0x10
-	// Line 7238, Address: 0x2a7ce8, Func Offset: 0x18
-	// Line 7239, Address: 0x2a7cf0, Func Offset: 0x20
-	// Line 7238, Address: 0x2a7cf4, Func Offset: 0x24
-	// Line 7239, Address: 0x2a7cfc, Func Offset: 0x2c
-	// Line 7241, Address: 0x2a7d1c, Func Offset: 0x4c
-	// Line 7243, Address: 0x2a7d24, Func Offset: 0x54
-	// Func End, Address: 0x2a7d30, Func Offset: 0x60
-	scePrintf("SbsTextureInit - UNIMPLEMENTED!\n");
+	PushPalletBuffer();
+    
+    swork.subtx_list.textures = swork.subtx;
+    swork.subtx_list.nbTexture = bhSetMemPvpTexture(&swork.subtx_list, sys->subtxp, 0);
+	
+    fvwork.tex_flg = 0;
 }
 
 /*// 
