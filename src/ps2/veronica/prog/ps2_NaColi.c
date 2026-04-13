@@ -404,39 +404,57 @@ int njCollisionCheckCC(_anon2* pCap1, _anon2* pCap2)
 	// Line 674, Address: 0x2e3e0c, Func Offset: 0x27c
 	// Line 677, Address: 0x2e3e40, Func Offset: 0x2b0
 	// Func End, Address: 0x2e3e64, Func Offset: 0x2d4
-}
+}*/
 
-// 
-// Start address: 0x2e3e70
-int njCollisionCheckSC(_anon4* pSphere, _anon2* pCapsule)
+// 100% matching!
+Int     njCollisionCheckSC(NJS_SPHERE *sphere, NJS_CAPSULE *capsule) 
 {
-	_anon0 Point;
-	float fLength;
-	_anon1 Line;
-	_anon0* pP2;
-	// Line 698, Address: 0x2e3e70, Func Offset: 0
-	// Line 709, Address: 0x2e3e88, Func Offset: 0x18
-	// Line 716, Address: 0x2e3e94, Func Offset: 0x24
-	// Line 706, Address: 0x2e3e9c, Func Offset: 0x2c
-	// Line 709, Address: 0x2e3ea0, Func Offset: 0x30
-	// Line 710, Address: 0x2e3ea8, Func Offset: 0x38
-	// Line 711, Address: 0x2e3eb8, Func Offset: 0x48
-	// Line 712, Address: 0x2e3ec8, Func Offset: 0x58
-	// Line 713, Address: 0x2e3ed0, Func Offset: 0x60
-	// Line 714, Address: 0x2e3ed8, Func Offset: 0x68
-	// Line 716, Address: 0x2e3ee0, Func Offset: 0x70
-	// Line 718, Address: 0x2e3f04, Func Offset: 0x94
-	// Line 722, Address: 0x2e3f0c, Func Offset: 0x9c
-	// Line 723, Address: 0x2e3f18, Func Offset: 0xa8
-	// Line 722, Address: 0x2e3f1c, Func Offset: 0xac
-	// Line 723, Address: 0x2e3f20, Func Offset: 0xb0
-	// Line 724, Address: 0x2e3f54, Func Offset: 0xe4
-	// Line 727, Address: 0x2e3f88, Func Offset: 0x118
-	// Line 729, Address: 0x2e3fbc, Func Offset: 0x14c
-	// Func End, Address: 0x2e3fd8, Func Offset: 0x168
+    NJS_POINT3* pP2;  
+    NJS_LINE Line;    
+    float fLength;    
+    NJS_POINT3 Point; 
+
+    pP2 = &capsule->c2;
+    
+    Line.vx = capsule->c2.x - capsule->c1.x;
+    Line.vy = capsule->c2.y - capsule->c1.y;
+    Line.vz = capsule->c2.z - capsule->c1.z;
+    
+    Line.px = capsule->c1.x;
+    Line.py = capsule->c1.y;
+    Line.pz = capsule->c1.z;
+    
+    fLength = capsule->r + sphere->r;
+    
+    if (fLength <= njDistanceP2L(&sphere->c, &Line, &Point)) 
+    {
+        return 0;
+    }
+    
+    fLength = njDistanceP2P(&capsule->c1, pP2);
+    
+    if (fLength < njDistanceP2P(&Point, &capsule->c1)) 
+    {
+        Point.x = pP2->x;
+        Point.y = pP2->y;
+        Point.z = pP2->z;
+    }
+    else if (fLength < njDistanceP2P(&Point, pP2))
+    {
+        Point.x = capsule->c1.x;
+        Point.y = capsule->c1.y;
+        Point.z = capsule->c1.z;
+    }
+    
+    if (njDistanceP2P(&sphere->c, &Point) < (capsule->r + sphere->r)) 
+    {
+        return 1;
+    }
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x2e3fe0
 int njCollisionCheckBS(_anon3* pBox, _anon4* pSphere)
 {
