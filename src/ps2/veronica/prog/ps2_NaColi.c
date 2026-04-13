@@ -341,70 +341,157 @@ Int     njCollisionCheckSS(NJS_SPHERE *sphere1, NJS_SPHERE *sphere2)
 	return 0;
 }
 
-/*// 
-// Start address: 0x2e3b90
-int njCollisionCheckCC(_anon2* pCap1, _anon2* pCap2)
+// 100% matching!
+Int     njCollisionCheckBS(NJS_BOX *box, NJS_SPHERE *sphere)
 {
-	_anon4 Sphere;
-	_anon0 Point2;
-	_anon0 Point1;
-	float fLength;
-	_anon1 Line2;
-	_anon1 Line1;
-	_anon0* pP22;
-	_anon0* pP12;
-	// Line 613, Address: 0x2e3b90, Func Offset: 0
-	// Line 626, Address: 0x2e3bb0, Func Offset: 0x20
-	// Line 622, Address: 0x2e3bc0, Func Offset: 0x30
-	// Line 624, Address: 0x2e3bc4, Func Offset: 0x34
-	// Line 626, Address: 0x2e3bc8, Func Offset: 0x38
-	// Line 627, Address: 0x2e3bd0, Func Offset: 0x40
-	// Line 628, Address: 0x2e3be0, Func Offset: 0x50
-	// Line 629, Address: 0x2e3bf0, Func Offset: 0x60
-	// Line 630, Address: 0x2e3bf8, Func Offset: 0x68
-	// Line 631, Address: 0x2e3c00, Func Offset: 0x70
-	// Line 632, Address: 0x2e3c08, Func Offset: 0x78
-	// Line 641, Address: 0x2e3c10, Func Offset: 0x80
-	// Line 632, Address: 0x2e3c14, Func Offset: 0x84
-	// Line 633, Address: 0x2e3c1c, Func Offset: 0x8c
-	// Line 634, Address: 0x2e3c2c, Func Offset: 0x9c
-	// Line 635, Address: 0x2e3c3c, Func Offset: 0xac
-	// Line 636, Address: 0x2e3c44, Func Offset: 0xb4
-	// Line 637, Address: 0x2e3c4c, Func Offset: 0xbc
-	// Line 641, Address: 0x2e3c50, Func Offset: 0xc0
-	// Line 644, Address: 0x2e3c64, Func Offset: 0xd4
-	// Line 646, Address: 0x2e3c68, Func Offset: 0xd8
-	// Line 647, Address: 0x2e3c6c, Func Offset: 0xdc
-	// Line 648, Address: 0x2e3c70, Func Offset: 0xe0
-	// Line 644, Address: 0x2e3c74, Func Offset: 0xe4
-	// Line 645, Address: 0x2e3c78, Func Offset: 0xe8
-	// Line 648, Address: 0x2e3c7c, Func Offset: 0xec
-	// Line 645, Address: 0x2e3c80, Func Offset: 0xf0
-	// Line 646, Address: 0x2e3c84, Func Offset: 0xf4
-	// Line 647, Address: 0x2e3c8c, Func Offset: 0xfc
-	// Line 648, Address: 0x2e3c90, Func Offset: 0x100
-	// Line 649, Address: 0x2e3ca8, Func Offset: 0x118
-	// Line 652, Address: 0x2e3cac, Func Offset: 0x11c
-	// Line 649, Address: 0x2e3cb4, Func Offset: 0x124
-	// Line 650, Address: 0x2e3cb8, Func Offset: 0x128
-	// Line 651, Address: 0x2e3cc0, Func Offset: 0x130
-	// Line 652, Address: 0x2e3cc4, Func Offset: 0x134
-	// Line 660, Address: 0x2e3cdc, Func Offset: 0x14c
-	// Line 662, Address: 0x2e3d0c, Func Offset: 0x17c
-	// Line 666, Address: 0x2e3d14, Func Offset: 0x184
-	// Line 667, Address: 0x2e3d20, Func Offset: 0x190
-	// Line 666, Address: 0x2e3d24, Func Offset: 0x194
-	// Line 667, Address: 0x2e3d28, Func Offset: 0x198
-	// Line 668, Address: 0x2e3d5c, Func Offset: 0x1cc
-	// Line 669, Address: 0x2e3d90, Func Offset: 0x200
-	// Line 670, Address: 0x2e3d9c, Func Offset: 0x20c
-	// Line 669, Address: 0x2e3da0, Func Offset: 0x210
-	// Line 670, Address: 0x2e3da4, Func Offset: 0x214
-	// Line 671, Address: 0x2e3dd8, Func Offset: 0x248
-	// Line 674, Address: 0x2e3e0c, Func Offset: 0x27c
-	// Line 677, Address: 0x2e3e40, Func Offset: 0x2b0
-	// Func End, Address: 0x2e3e64, Func Offset: 0x2d4
-}*/
+    float fCx, fCy, fCz;          
+    float fR;            
+    NJS_CAPSULE Capsule; 
+
+    fR = sphere->r;
+    
+    fCx = sphere->c.x;
+    fCy = sphere->c.y;
+    fCz = sphere->c.z;
+    
+    if (((fCx <= (box->v[0].x - fR)) || ((box->v[6].x + fR) <= fCx)) || ((fCy <= (box->v[6].y - fR)) || ((box->v[0].y + fR) <= fCy)) || ((fCz <= (box->v[6].z - fR)) || ((box->v[0].z + fR) <= fCz))) 
+    {
+        return 0;
+    }
+    
+    if (((box->v[0].x <= fCx) && (fCx <= box->v[6].x)) && ((box->v[6].z <= fCz) && (fCz <= box->v[0].z)))
+    {
+        return 1;
+    }
+    
+    if (((box->v[6].y <= fCy) && (fCy <= box->v[0].y)) && ((box->v[6].z <= fCz) && (fCz <= box->v[0].z))) 
+    {
+        return 1;
+    }
+    
+    if (((box->v[0].x <= fCx) && (fCx <= box->v[6].x)) && ((box->v[6].y <= fCy) && (fCy <= box->v[0].y))) 
+    {
+        return 1;
+    }
+    
+    Capsule.r = 0;
+    
+    Capsule.c1.x = box->v[0].x;
+    Capsule.c1.y = box->v[0].y;
+    Capsule.c1.z = box->v[0].z;
+    
+    Capsule.c2.x = box->v[3].x;
+    Capsule.c2.y = box->v[3].y;
+    Capsule.c2.z = box->v[3].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0) 
+    {
+        return 1;
+    }
+    
+    Capsule.c2.x = box->v[4].x;
+    Capsule.c2.y = box->v[4].y;
+    Capsule.c2.z = box->v[4].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0) 
+    {
+        return 1;
+    }
+    
+    Capsule.c2.x = box->v[1].x;
+    Capsule.c2.y = box->v[1].y;
+    Capsule.c2.z = box->v[1].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0) 
+    {
+        return 1;
+    }
+    
+    Capsule.c1.x = box->v[5].x;
+    Capsule.c1.y = box->v[5].y;
+    Capsule.c1.z = box->v[5].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0) 
+    {
+        return 1;
+    }
+    
+    Capsule.c2.x = box->v[4].x;
+    Capsule.c2.y = box->v[4].y;
+    Capsule.c2.z = box->v[4].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0) 
+    {
+        return 1;
+    }
+    
+    Capsule.c2.x = box->v[6].x;
+    Capsule.c2.y = box->v[6].y;
+    Capsule.c2.z = box->v[6].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0) 
+    {
+        return 1;
+    }
+    
+    Capsule.c1.x = box->v[2].x;
+    Capsule.c1.y = box->v[2].y;
+    Capsule.c1.z = box->v[2].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0) 
+    {
+        return 1;
+    }
+    
+    Capsule.c2.x = box->v[1].x;
+    Capsule.c2.y = box->v[1].y;
+    Capsule.c2.z = box->v[1].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0)
+    {
+        return 1;
+    }
+    
+    Capsule.c2.x = box->v[3].x;
+    Capsule.c2.y = box->v[3].y;
+    Capsule.c2.z = box->v[3].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0) 
+    {
+        return 1;
+    }
+    
+    Capsule.c1.x = box->v[7].x;
+    Capsule.c1.y = box->v[7].y;
+    Capsule.c1.z = box->v[7].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0) 
+    {
+        return 1;
+    }
+    
+    Capsule.c2.x = box->v[4].x;
+    Capsule.c2.y = box->v[4].y;
+    Capsule.c2.z = box->v[4].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0) 
+    {
+        return 1;
+    }
+    
+    Capsule.c2.x = box->v[6].x;
+    Capsule.c2.y = box->v[6].y;
+    Capsule.c2.z = box->v[6].z;
+    
+    if (njCollisionCheckSC(sphere, &Capsule) != 0) 
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
+}
 
 // 100% matching!
 Int     njCollisionCheckSC(NJS_SPHERE *sphere, NJS_CAPSULE *capsule) 
