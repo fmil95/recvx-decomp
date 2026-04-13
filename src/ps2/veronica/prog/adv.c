@@ -1596,7 +1596,7 @@ void DisplayPressStartPlate(float FadeRate)
     AdvEasyDrawTextureS(1, ((unsigned int)FadeRate << 24) | 0xFFFFFF, qp, FadeRate, 1, temp);
 }
 
-// 89.93% matching
+// 95.58% matching
 void DisplayGameModePlate(int Cursor, int CursorMax, float FadeRate, int Flag)
 {
     ADV_WORK* ap = (ADV_WORK*)&AdvWork; 
@@ -1607,21 +1607,23 @@ void DisplayGameModePlate(int Cursor, int CursorMax, float FadeRate, int Flag)
     float PosYDef[2][4] = { { 288.0f, 320.0f, 352.0f, 384.0f }, { 272.0f, 304.0f, 336.0f, 368.0f } }; 
     float VDef[2][4] = { { 64.0f, 96.0f, 128.0f, 224.0f }, { 64.0f, 96.0f, 224.0f, 128.0f } }; 
 
-    DivTbl[Cursor] = (ap->ExtraFlag == 0) ? 1 : 0;
+    DivTbl[Cursor] = 1;
+
+    i = (ap->ExtraFlag == 0) ? 0 : 1;
     
     qp = &Qtex[1]; 
     
-    SetQuadPos(64.0f, PosYDef[0][Cursor], 513.0f, 33.0f, qp);
-    SetQuadUv2(0, VDef[0][Cursor], 513.0f, 33.0f, 1, qp);
+    SetQuadPos(64.0f, PosYDef[i][0], 513.0f, 33.0f, qp);
+    SetQuadUv2(0, VDef[i][0], 513.0f, 33.0f, 1, qp);
     
-    SetQuadPos(64.0f, PosYDef[0][Cursor + 1], 513.0f, 33.0f, &qp[1]);
-    SetQuadUv2(0, VDef[0][Cursor + 1], 513.0f, 33.0f, 1, &qp[1]);
+    SetQuadPos(64.0f, PosYDef[i][1], 513.0f, 33.0f, &qp[1]);
+    SetQuadUv2(0, VDef[i][1], 513.0f, 33.0f, 1, &qp[1]);
     
-    SetQuadPos(64.0f, PosYDef[0][Cursor + 2], 513.0f, 33.0f, &qp[2]);
-    SetQuadUv2(0, VDef[0][Cursor + 2], 513.0f, 33.0f, 1, &qp[2]);
+    SetQuadPos(64.0f, PosYDef[i][2], 513.0f, 33.0f, &qp[2]);
+    SetQuadUv2(0, VDef[i][2], 513.0f, 33.0f, 1, &qp[2]);
     
-    SetQuadPos(64.0f, PosYDef[0][Cursor + 3], 513.0f, 33.0f, &qp[3]);
-    SetQuadUv2(0, VDef[0][Cursor + 3], 513.0f, 33.0f, 1, &qp[3]);
+    SetQuadPos(64.0f, PosYDef[i][3], 513.0f, 33.0f, &qp[3]);
+    SetQuadUv2(0, VDef[i][3], 513.0f, 33.0f, 1, &qp[3]);
 
     for (i = 0; i < CursorMax; i++) 
     {
