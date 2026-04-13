@@ -53,12 +53,8 @@ Bool	njIsParalellL2L(NJS_LINE *l1, NJS_LINE *l2)
 Bool	njIsParalellL2PL(NJS_LINE *l, NJS_PLANE *pl)
 {
     float fLength;
-    float fPx;
-    float fPy;
-    float fPz;
-    float fLx;
-    float fLy;
-    float fLz;
+    float fPx, fPy, fPz;
+    float fLx, fLy, fLz;
     
     fPx = pl->vx;
     fPy = pl->vy;  

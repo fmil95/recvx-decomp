@@ -11,9 +11,4 @@ void	njGenerateFogTable3(NJS_FOG_TABLE fog, Float n, Float f);
 float njCalcFogPowerEx(float INVZ);
 float njCalcFogPower(float fVSZ);
 
-/*typedef int type_0[4];
-typedef float type_1[8];
-typedef float type_2[128];
-typedef float type_3[8];*/
-
 #endif
