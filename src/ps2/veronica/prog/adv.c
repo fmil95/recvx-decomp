@@ -1578,7 +1578,7 @@ void DisplayTitleBg()
     AdvEasyDrawTextureS(1, 0xFFFFFFFF, qp, 0.15f, 1, 192); 
 } 
 
-// 97.50% matching
+// 97.75% matching
 void DisplayPressStartPlate(float FadeRate)
 { 
     QUAD* qp; 
@@ -1588,8 +1588,8 @@ void DisplayPressStartPlate(float FadeRate)
 
     DisplayTitleBg();
     
-    SetQuadPos(64.0f, 512.0f, 304.0f, 32.0f, qp); 
-    SetQuadUv2(0, 512.0f, 32.0f, 32.0f, 1, qp); 
+    SetQuadPos(64.0f, 304.0f, 512.0f, 32.0f, qp); 
+    SetQuadUv2(0, 32.0f, 512.0f, 32.0f, 1, qp); 
 
     temp = 0.5f;
     
