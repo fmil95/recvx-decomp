@@ -342,6 +342,106 @@ Int     njCollisionCheckSS(NJS_SPHERE *sphere1, NJS_SPHERE *sphere2)
 }
 
 // 100% matching!
+Int     njCollisionCheckCC(NJS_CAPSULE *h1, NJS_CAPSULE *h2)
+{
+    NJS_POINT3* pP12, *pP22;  
+    NJS_LINE Line1, Line2;    
+    float fLength;   
+    NJS_POINT3 Point1, Point2; 
+    NJS_SPHERE Sphere; 
+
+    pP12 = &h1->c2;
+    pP22 = &h2->c2;
+    
+    Line1.vx = h1->c2.x - h1->c1.x;
+    Line1.vy = h1->c2.y - h1->c1.y;
+    Line1.vz = h1->c2.z - h1->c1.z;
+    
+    Line1.px = h1->c1.x;
+    Line1.py = h1->c1.y;
+    Line1.pz = h1->c1.z;
+    
+    Line2.vx = h2->c2.x - h2->c1.x;
+    Line2.vy = h2->c2.y - h2->c1.y;
+    Line2.vz = h2->c2.z - h2->c1.z;
+    
+    Line2.px = h2->c1.x;
+    Line2.py = h2->c1.y;
+    Line2.pz = h2->c1.z;
+    
+    if (njIsParalellL2L(&Line1, &Line2) != 0) 
+    {
+        Sphere.r = h1->r;
+        
+        Sphere.c.x = h1->c1.x;
+        Sphere.c.y = h1->c1.y;
+        Sphere.c.z = h1->c1.z;
+        
+        if (njCollisionCheckSC(&Sphere, h2) != 0) 
+        {
+            return 1;
+        }
+        
+        Sphere.c.x = pP12->x;
+        Sphere.c.y = pP12->y;
+        Sphere.c.z = pP12->z;
+        
+        if (njCollisionCheckSC(&Sphere, h2) != 0)
+        {
+            return 1;
+        }
+        else 
+        {
+            return 0;
+        }
+    }
+    
+    fLength = h1->r + h2->r;
+    
+    if (fLength <= njDistanceL2L(&Line1, &Line2, &Point1, &Point2)) 
+    {
+        return 0;
+    }
+    
+    fLength = njDistanceP2P(&h1->c1, pP12);
+    
+    if (fLength < njDistanceP2P(&Point1, &h1->c1)) 
+    {
+        Point1.x = pP12->x;
+        Point1.y = pP12->y;
+        Point1.z = pP12->z;
+    }
+    else if (fLength < njDistanceP2P(&Point1, pP12)) 
+    {
+        Point1.x = h1->c1.x;
+        Point1.y = h1->c1.y;
+        Point1.z = h1->c1.z;
+    }
+    
+    fLength = njDistanceP2P(&h2->c1, pP22);
+    
+    if (fLength < njDistanceP2P(&Point2, &h2->c1)) 
+    {
+        Point2.x = pP22->x;
+        Point2.y = pP22->y;
+        Point2.z = pP22->z;
+    }
+    else if (fLength < njDistanceP2P(&Point2, pP22)) 
+    {
+        Point2.x = h2->c1.x;
+        Point2.y = h2->c1.y;
+        Point2.z = h2->c1.z;
+    }
+    
+    if (njDistanceP2P(&Point1, &Point2) < (h1->r + h2->r)) 
+    {
+        return 1;
+    }
+    
+    return 0;
+}
+
+// 100% matching!
 Int     njCollisionCheckBS(NJS_BOX *box, NJS_SPHERE *sphere)
 {
     float fCx, fCy, fCz;          
