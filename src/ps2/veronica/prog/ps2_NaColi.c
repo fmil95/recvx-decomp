@@ -242,57 +242,62 @@ float njDistanceL2L(_anon1* pLine1, _anon1* pLine2, _anon0* pCross1, _anon0* pCr
 	// Line 419, Address: 0x2e37e8, Func Offset: 0x238
 	// Line 423, Address: 0x2e380c, Func Offset: 0x25c
 	// Func End, Address: 0x2e3844, Func Offset: 0x294
-}
-
-// 
-// Start address: 0x2e3850
-float njDistanceL2PL(_anon1* pLine, _anon1* pPlane, _anon0* pCross)
-{
-	float fT;
-	float fZ;
-	float fY;
-	float fX;
-	float fN;
-	float fM;
-	float fL;
-	float fC;
-	float fB;
-	float fA;
-	// Line 447, Address: 0x2e3850, Func Offset: 0
-	// Line 453, Address: 0x2e3880, Func Offset: 0x30
-	// Line 454, Address: 0x2e3884, Func Offset: 0x34
-	// Line 455, Address: 0x2e3888, Func Offset: 0x38
-	// Line 456, Address: 0x2e3898, Func Offset: 0x48
-	// Line 461, Address: 0x2e38ac, Func Offset: 0x5c
-	// Line 462, Address: 0x2e38b0, Func Offset: 0x60
-	// Line 457, Address: 0x2e38b4, Func Offset: 0x64
-	// Line 463, Address: 0x2e38b8, Func Offset: 0x68
-	// Line 458, Address: 0x2e38bc, Func Offset: 0x6c
-	// Line 459, Address: 0x2e38c0, Func Offset: 0x70
-	// Line 464, Address: 0x2e38c4, Func Offset: 0x74
-	// Line 465, Address: 0x2e38d8, Func Offset: 0x88
-	// Line 466, Address: 0x2e38dc, Func Offset: 0x8c
-	// Line 467, Address: 0x2e38e0, Func Offset: 0x90
-	// Line 469, Address: 0x2e38e4, Func Offset: 0x94
-	// Line 471, Address: 0x2e38f0, Func Offset: 0xa0
-	// Line 474, Address: 0x2e38f8, Func Offset: 0xa8
-	// Line 476, Address: 0x2e3920, Func Offset: 0xd0
-	// Line 479, Address: 0x2e3924, Func Offset: 0xd4
-	// Line 477, Address: 0x2e3928, Func Offset: 0xd8
-	// Line 479, Address: 0x2e392c, Func Offset: 0xdc
-	// Line 478, Address: 0x2e3930, Func Offset: 0xe0
-	// Line 479, Address: 0x2e3934, Func Offset: 0xe4
-	// Line 483, Address: 0x2e3938, Func Offset: 0xe8
-	// Line 479, Address: 0x2e393c, Func Offset: 0xec
-	// Line 480, Address: 0x2e3960, Func Offset: 0x110
-	// Line 481, Address: 0x2e396c, Func Offset: 0x11c
-	// Line 482, Address: 0x2e3978, Func Offset: 0x128
-	// Line 483, Address: 0x2e3980, Func Offset: 0x130
-	// Line 488, Address: 0x2e3988, Func Offset: 0x138
-	// Line 492, Address: 0x2e39a0, Func Offset: 0x150
-	// Line 493, Address: 0x2e39a4, Func Offset: 0x154
-	// Func End, Address: 0x2e39d8, Func Offset: 0x188
 }*/
+
+// 100% matching!
+Float	njDistanceL2PL(NJS_LINE *l, NJS_PLANE *pl, NJS_POINT3 *cp)
+{
+    float fA, fB, fC;      
+    float fL, fM, fN;    
+    float fX, fY, fZ;      
+    float fT;      
+  
+    fA = pl->vx;
+    fB = pl->vy;
+    fC = pl->vz;
+
+    fT = njInvertSqrt((fA * fA) + (fB * fB) + (fC * fC));
+
+    fA *= fT;
+    fB *= fT;
+    fC *= fT;
+
+    fL = l->vx;
+    fM = l->vy;
+    fN = l->vz;
+
+    fT = njInvertSqrt((fL * fL) + (fM * fM) + (fN * fN));
+
+    fL *= fT;
+    fM *= fT;
+    fN *= fT;
+
+    fT = (fA * fL) + (fB * fM) + (fC * fN);
+    
+    if (cp != NULL) 
+    {
+        if (0.025f < fabsf(fT)) 
+        {
+            fX = l->px;
+            fY = l->py;
+            fZ = l->pz;
+            
+            fT = -((fA * (fX - pl->px)) + (fB * (fY - pl->py)) + (fC * (fZ - pl->pz))) / fT;
+            
+            cp->x = fX + (fL * fT);
+            cp->y = fY + (fM * fT);
+            cp->z = fZ + (fN * fT);
+
+            return 0;
+        }
+        else 
+        {
+            return njDistanceP2PL((NJS_POINT3*)&l->px, pl, cp);
+        }
+    }
+    
+    return fT;
+}
 
 // 100% matching!
 void	njGetPlaneNormal(NJS_POINT3 *p, NJS_VECTOR *v)
