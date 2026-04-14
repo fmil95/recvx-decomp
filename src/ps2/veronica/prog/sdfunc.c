@@ -262,7 +262,7 @@ void ExitSofdecSystem()
     }
 }
 
-// 97.61% matching
+// 100% matching! 
 void InitSoundProgram()
 {
     int i;
@@ -307,7 +307,7 @@ void InitSoundProgram()
     
     InitAdx();
     
-    RegistAdxStreamEx(2, 4, AdxDef);
+    RegistAdxStreamEx(2, 4, (ADX_WORK*)AdxDef);
     
     if (MountSoundAfs() != 0) 
     {
