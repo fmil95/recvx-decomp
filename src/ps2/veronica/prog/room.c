@@ -722,15 +722,13 @@ void bhSetRoomMtn(unsigned char* datp)
     }
 }
 
-// 96.70% matching (matches on GC)
+// 100% matching!
 void bhSetObjMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // third parameter is not present on the debugging symbols
 {
     O_WRK* epp;
     int sz;
 
-    epp = bhSetObject(ep, eno, NULL);
-    
-    if (epp != NULL)
+    if ((epp = bhSetObject(ep, eno, NULL)) != NULL)
     {
         npSetMemory((unsigned char*)epp->mdl, sizeof(O_WRK) / 50, 0);
         
@@ -755,14 +753,12 @@ void bhSetObjMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // thir
     }
 }
 
-// 93.40% matching (matches on GC)
+// 100% matching!
 void bhSetItmMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // third parameter is not present on the debugging symbols
 {
     O_WRK* epp;
 
-    epp = bhSetItem(ep, eno, NULL);
-    
-    if (epp != NULL) 
+    if ((epp = bhSetItem(ep, eno, NULL)) != NULL) 
     {
         npSetMemory((unsigned char*)epp->mdl, sizeof(O_WRK) / 50, 0);
         
