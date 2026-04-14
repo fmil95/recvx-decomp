@@ -310,26 +310,24 @@ void ControlSoundTiming(_door_wrk* dwP)
 	// Line 765, Address: 0x2af794, Func Offset: 0x44
 	// Line 777, Address: 0x2af7a8, Func Offset: 0x58
 	// Func End, Address: 0x2af7c0, Func Offset: 0x70
-}
-
-// 
-// Start address: 0x2af7c0
-void SetSoundTiming(_door_wrk* dwP)
-{
-	int* bsP;
-	int* sfP;
-	int i;
-	int SetFlag[11];
-	// Line 804, Address: 0x2af7c0, Func Offset: 0
-	// Line 803, Address: 0x2af7c4, Func Offset: 0x4
-	// Line 806, Address: 0x2af7cc, Func Offset: 0xc
-	// Line 807, Address: 0x2af7d0, Func Offset: 0x10
-	// Line 808, Address: 0x2af7d4, Func Offset: 0x14
-	// Line 807, Address: 0x2af7d8, Func Offset: 0x18
-	// Line 808, Address: 0x2af7dc, Func Offset: 0x1c
-	// Line 810, Address: 0x2af7ec, Func Offset: 0x2c
-	// Func End, Address: 0x2af7f4, Func Offset: 0x34
 }*/
+
+// 100% matching!
+static void SetSoundTiming(_door_wrk* dwP)
+{
+	int i;
+	int* sfP, *bsP;
+	static const int SetFlag[11] = { 0, 0, 0, 0, 0, 0x1000000, 0x2000000, 0x4000000, 0x10, 0x20, -1 };
+
+    bsP = dwP->BgmSet;
+
+    sfP = SetFlag;
+
+	for (i = 11; i > 0; i--) 
+	{
+    	*bsP++ = *sfP++;
+	}
+}
 
 // 
 // Start address: 0x2af800
