@@ -1,16 +1,27 @@
 #include "../../../ps2/veronica/prog/door.h"
 
-/*_anon41 FadeProcTbl[2];
-_anon41 ViewProcTbl[8];
-_anon41 DoorProcTbl[8];
-_anon41 LightProcTbl[3];
-_anon41 PuruProcTbl[2];
 _door_wrk DoorWrk;
-_anon25* sys;
-float BHD_ASPECT_Y;
-float BHD_ASPECT_X;
-float lcmat[16][0];
-int PruSndTbl[1];*/
+const _proc_wrk FadeProcTbl[2] = 
+{ 
+	NULL, (void*)FadeProc1 
+}; 
+const _proc_wrk ViewProcTbl[8] = 
+{ 
+	NULL, (void*)ViewProc1, (void*)ViewProc2, (void*)ViewProc3, (void*)ViewProc4, (void*)ViewProc5, (void*)ViewProc6, (void*)ViewProc7 
+};  
+const _proc_wrk DoorProcTbl[8] = 
+{ 
+	NULL, (void*)DoorProc1, (void*)DoorProc2, (void*)DoorProc3, (void*)DoorProc4, (void*)DoorProc5, (void*)DoorProc6, (void*)DoorProc7 
+};  
+const _proc_wrk LightProcTbl[3] = 
+{ 
+	NULL, (void*)LightProc1, (void*)LightProc2 
+};
+const _proc_wrk PuruProcTbl[2] = 
+{ 
+	NULL, (void*)PuruProc1 
+};
+const int PruSndTbl[1] = { 10 };
 
 // 
 // Start address: 0x2aec30
@@ -200,17 +211,16 @@ void bhExitDoor()
 	scePrintf("bhExitDoor - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2af350
+// 100% matching!
 int AnalyzeDoor(_door_wrk* dwP, int typ_no, int attr)
 {
-	// Line 558, Address: 0x2af350, Func Offset: 0
-	// Line 560, Address: 0x2af354, Func Offset: 0x4
-	// Line 559, Address: 0x2af358, Func Offset: 0x8
-	// Line 560, Address: 0x2af35c, Func Offset: 0xc
-	// Line 563, Address: 0x2af364, Func Offset: 0x14
-	// Func End, Address: 0x2af36c, Func Offset: 0x1c
-}*/
+	dwP->dmo_typ = typ_no;
+	dwP->dmo_atr = attr;
+
+	dwP->cse_no = (attr & 0x180) >> 7;
+
+	return 1;
+}
 
 // 
 // Start address: 0x2af370
@@ -319,13 +329,13 @@ void SetSoundTiming(_door_wrk* dwP)
 	// Line 808, Address: 0x2af7dc, Func Offset: 0x1c
 	// Line 810, Address: 0x2af7ec, Func Offset: 0x2c
 	// Func End, Address: 0x2af7f4, Func Offset: 0x34
-}
+}*/
 
 // 
 // Start address: 0x2af800
 void FadeProc1(_door_wrk* dwP)
 {
-	_anon11* fpP;
+	//_anon11* fpP;
 	// Line 822, Address: 0x2af800, Func Offset: 0
 	// Line 825, Address: 0x2af810, Func Offset: 0x10
 	// Line 823, Address: 0x2af814, Func Offset: 0x14
@@ -364,9 +374,10 @@ void FadeProc1(_door_wrk* dwP)
 	// Line 886, Address: 0x2af9a0, Func Offset: 0x1a0
 	// Line 893, Address: 0x2af9ac, Func Offset: 0x1ac
 	// Func End, Address: 0x2af9c0, Func Offset: 0x1c0
+	scePrintf("FadeProc1 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2af9c0
 void ViewProc1(_door_wrk* dwP)
 {
@@ -1023,14 +1034,14 @@ void DoorProc7(_door_wrk* dwP)
 	// Line 1953, Address: 0x2b16b0, Func Offset: 0x3a0
 	// Line 1956, Address: 0x2b16c8, Func Offset: 0x3b8
 	// Func End, Address: 0x2b16f4, Func Offset: 0x3e4
-}
+}*/
 
 // 
 // Start address: 0x2b1700
 void LightProc1(_door_wrk* dwP)
 {
 	int lgt_no;
-	_anon46* lpP;
+	//_anon46* lpP;
 	// Line 1969, Address: 0x2b1700, Func Offset: 0
 	// Line 1972, Address: 0x2b1718, Func Offset: 0x18
 	// Line 1970, Address: 0x2b171c, Func Offset: 0x1c
@@ -1042,6 +1053,7 @@ void LightProc1(_door_wrk* dwP)
 	// Line 1989, Address: 0x2b1778, Func Offset: 0x78
 	// Line 1994, Address: 0x2b1790, Func Offset: 0x90
 	// Func End, Address: 0x2b17ac, Func Offset: 0xac
+	scePrintf("LightProc1 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1049,7 +1061,7 @@ void LightProc1(_door_wrk* dwP)
 void LightProc2(_door_wrk* dwP)
 {
 	int lgt_no;
-	_anon49* lpP;
+	//_anon49* lpP;
 	// Line 2004, Address: 0x2b17b0, Func Offset: 0
 	// Line 2007, Address: 0x2b17c8, Func Offset: 0x18
 	// Line 2005, Address: 0x2b17cc, Func Offset: 0x1c
@@ -1062,7 +1074,8 @@ void LightProc2(_door_wrk* dwP)
 	// Line 2025, Address: 0x2b1840, Func Offset: 0x90
 	// Line 2030, Address: 0x2b1858, Func Offset: 0xa8
 	// Func End, Address: 0x2b1874, Func Offset: 0xc4
-}*/
+	scePrintf("LightProc2 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 static int CompareSint32(int val_a, int cmp_typ, int val_b)
@@ -1225,13 +1238,13 @@ void ryExcuteFade(float pri, int col, float rate)
 	// Line 2177, Address: 0x2b1cdc, Func Offset: 0xbc
 	// Line 2179, Address: 0x2b1cf8, Func Offset: 0xd8
 	// Func End, Address: 0x2b1d14, Func Offset: 0xf4
-}
+}*/
 
 // 
 // Start address: 0x2b1d20
 void PuruProc1(_door_wrk* dwP)
 {
-	_anon43* ppP;
+	//_anon43* ppP;
 	// Line 2189, Address: 0x2b1d20, Func Offset: 0
 	// Line 2190, Address: 0x2b1d30, Func Offset: 0x10
 	// Line 2192, Address: 0x2b1d38, Func Offset: 0x18
@@ -1254,9 +1267,10 @@ void PuruProc1(_door_wrk* dwP)
 	// Line 2220, Address: 0x2b1e0c, Func Offset: 0xec
 	// Line 2224, Address: 0x2b1e28, Func Offset: 0x108
 	// Func End, Address: 0x2b1e3c, Func Offset: 0x11c
+	scePrintf("PuruProc1 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2b1e40
 void DokiProcLgt(_door_wrk* dwP)
 {
@@ -1279,4 +1293,3 @@ void DokiProcLgt(_door_wrk* dwP)
 	// Line 2257, Address: 0x2b1edc, Func Offset: 0x9c
 	// Func End, Address: 0x2b1eec, Func Offset: 0xac
 }*/
-
