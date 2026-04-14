@@ -426,6 +426,18 @@ typedef struct LGT_WORK
 	NJS_LIGHT_PTR* light; // offset 0xDC, size 0x4
 } LGT_WORK;
 
+typedef struct LGT_WRK
+{
+	// total size: 0x24
+	unsigned int lgt_mod; // offset 0x0, size 0x4
+	float col_r;          // offset 0x4, size 0x4
+	float col_g;          // offset 0x8, size 0x4
+	float col_b;          // offset 0xC, size 0x4
+	NJS_POINT3 pos;       // offset 0x10, size 0xC
+	float n_rang;         // offset 0x1C, size 0x4
+	float f_rang;         // offset 0x20, size 0x4
+} LGT_WRK; 
+
 typedef struct LPTB
 {
     // total size: 0x20

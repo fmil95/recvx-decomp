@@ -9,158 +9,89 @@ typedef struct _proc_wrk
     void (*procP)(void*); // offset 0x0, size 0x4
 } _proc_wrk;
 
+typedef enum SPD_MDE
+{
+	DMO_SPD_1 = 0,
+	DMO_SPD_2 = 1,
+	DMO_SPD_3 = 2
+} SPD_MDE;
+
+typedef struct HRT_WORK
+{
+	// total size: 0xC
+	int mode; // offset 0x0, size 0x4
+	int time; // offset 0x4, size 0x4
+	int wait; // offset 0x8, size 0x4
+} HRT_WORK;
+
 typedef struct _door_wrk 
 {
     // total size: 0x1F4
-    int dmo_atr; // offset 0x0, size 0x4
-    char dmo_typ; // offset 0x4, size 0x1
-    char cse_no; // offset 0x5, size 0x1
-    char dummy[2]; // offset 0x6, size 0x2
-    int status; // offset 0x8, size 0x4
-    int dmo_mode; // offset 0xC, size 0x4
-    int time; // offset 0x10, size 0x4
-    int prti_no; // offset 0x14, size 0x4
-    int slot_no; // offset 0x18, size 0x4
-    void* dmo_bufP; // offset 0x1C, size 0x4
-    void* dmo_prmP; // offset 0x20, size 0x4
-    void* tex_pacP; // offset 0x24, size 0x4
-    enum 
-	{
-        DMO_SPD_1 = 0,
-        DMO_SPD_2 = 1,
-        DMO_SPD_3 = 2,
-    } spd_mde; // offset 0x28, size 0x4
+    int dmo_atr;             // offset 0x0, size 0x4
+    char dmo_typ;            // offset 0x4, size 0x1
+    char cse_no;             // offset 0x5, size 0x1
+    char dummy[2];           // offset 0x6, size 0x2
+    int status;              // offset 0x8, size 0x4
+    int dmo_mode;            // offset 0xC, size 0x4
+    int time;                // offset 0x10, size 0x4
+    int prti_no;             // offset 0x14, size 0x4
+    int slot_no;             // offset 0x18, size 0x4
+    void* dmo_bufP;          // offset 0x1C, size 0x4
+    void* dmo_prmP;          // offset 0x20, size 0x4
+    void* tex_pacP;          // offset 0x24, size 0x4
+    SPD_MDE spd_mde;         // offset 0x28, size 0x4
     void (*fde_prcP)(void*); // offset 0x2C, size 0x4
-    int fde_mode; // offset 0x30, size 0x4
-    int fde_reg; // offset 0x34, size 0x4
-    void* fpP; // offset 0x38, size 0x4
-    float fde_rate; // offset 0x3C, size 0x4
-    int fde_col; // offset 0x40, size 0x4
+    int fde_mode;            // offset 0x30, size 0x4
+    int fde_reg;             // offset 0x34, size 0x4
+    void* fpP;               // offset 0x38, size 0x4
+    float fde_rate;          // offset 0x3C, size 0x4
+    int fde_col;             // offset 0x40, size 0x4
     void (*vew_prcP)(void*); // offset 0x44, size 0x4
-    int vew_mode; // offset 0x48, size 0x4
-    int vew_reg; // offset 0x4C, size 0x4
-    int vew_tmp; // offset 0x50, size 0x4
-    void* vpP; // offset 0x54, size 0x4
-    struct 
-	{
-        // total size: 0xC
-        float x; // offset 0x0, size 0x4
-        float y; // offset 0x4, size 0x4
-        float z; // offset 0x8, size 0x4
-    } vew_pos; // offset 0x58, size 0xC
-    struct 
-	{
-        // total size: 0xC
-        float x; // offset 0x0, size 0x4
-        float y; // offset 0x4, size 0x4
-        float z; // offset 0x8, size 0x4
-    } vew_bak; // offset 0x64, size 0xC
-    int vew_ang[3]; // offset 0x70, size 0xC
-    int vew_ang_speed; // offset 0x7C, size 0x4
-    int vew_yaw; // offset 0x80, size 0x4
-    int vew_pitch; // offset 0x84, size 0x4
-    float vew_speed; // offset 0x88, size 0x4
-    float vew_adj_pos; // offset 0x8C, size 0x4
-    float vew_adj_ang; // offset 0x90, size 0x4
-    float vew_adj_pos_add; // offset 0x94, size 0x4
-    float vew_adj_ang_add; // offset 0x98, size 0x4
+    int vew_mode;            // offset 0x48, size 0x4
+    int vew_reg;             // offset 0x4C, size 0x4
+    int vew_tmp;             // offset 0x50, size 0x4
+    void* vpP;               // offset 0x54, size 0x4
+	NJS_POINT3 vew_pos;      // offset 0x58, size 0xC
+    NJS_POINT3 vew_bak;      // offset 0x64, size 0xC
+    int vew_ang[3];          // offset 0x70, size 0xC
+    int vew_ang_speed;       // offset 0x7C, size 0x4
+    int vew_yaw;             // offset 0x80, size 0x4
+    int vew_pitch;           // offset 0x84, size 0x4
+    float vew_speed;         // offset 0x88, size 0x4
+    float vew_adj_pos;       // offset 0x8C, size 0x4
+    float vew_adj_ang;       // offset 0x90, size 0x4
+    float vew_adj_pos_add;   // offset 0x94, size 0x4
+    float vew_adj_ang_add;   // offset 0x98, size 0x4
     void (*dor_prcP)(void*); // offset 0x9C, size 0x4
-    int dor_mode; // offset 0xA0, size 0x4
-    int dor_reg; // offset 0xA4, size 0x4
-    float dor_flt; // offset 0xA8, size 0x4
-    int dor_snd; // offset 0xAC, size 0x4
-    int dor_snd_exd; // offset 0xB0, size 0x4
-    void* dpP; // offset 0xB4, size 0x4
-    struct 
-	{
-        // total size: 0x18
-        unsigned int flg; // offset 0x0, size 0x4
-        unsigned int obj_num; // offset 0x4, size 0x4
-        void* datP; // offset 0x8, size 0x4
-        NJS_CNK_OBJECT* objP; // offset 0xC, size 0x4
-        struct 
-		{
-            // total size: 0x8
-            struct 
-			{
-                // total size: 0xC
-                void* filename; // offset 0x0, size 0x4
-                unsigned int attr; // offset 0x4, size 0x4
-                unsigned int texaddr; // offset 0x8, size 0x4
-            } * textures; // offset 0x0, size 0x4
-            unsigned int nbTexture; // offset 0x4, size 0x4
-        } * texP; // offset 0x10, size 0x4
-        struct 
-		{
-            // total size: 0x50
-            unsigned int flg; // offset 0x0, size 0x4
-            int dmy; // offset 0x4, size 0x4
-            unsigned int dummy[2]; // offset 0x8, size 0x8
-            float mtx[16]; // offset 0x10, size 0x40
-        } * owP; // offset 0x14, size 0x4
-    } dor_mdl; // offset 0xB8, size 0x18
-    NJS_CNK_OBJECT* objP; // offset 0xD0, size 0x4
-    struct 
-	{
-        // total size: 0xC
-        float x; // offset 0x0, size 0x4
-        float y; // offset 0x4, size 0x4
-        float z; // offset 0x8, size 0x4
-    } dor_bak; // offset 0xD4, size 0xC
-    int dor_yaw; // offset 0xE0, size 0x4
-    int dor_pitch; // offset 0xE4, size 0x4
-    float dor_speed; // offset 0xE8, size 0x4
-    int dor_ang_speed; // offset 0xEC, size 0x4
+    int dor_mode;            // offset 0xA0, size 0x4
+    int dor_reg;             // offset 0xA4, size 0x4
+    float dor_flt;           // offset 0xA8, size 0x4
+    int dor_snd;             // offset 0xAC, size 0x4
+    int dor_snd_exd;         // offset 0xB0, size 0x4
+    void* dpP;               // offset 0xB4, size 0x4
+    ML_WORK dor_mdl;         // offset 0xB8, size 0x18
+    NJS_CNK_OBJECT* objP;    // offset 0xD0, size 0x4
+    NJS_POINT3 dor_bak;      // offset 0xD4, size 0xC
+    int dor_yaw;             // offset 0xE0, size 0x4
+    int dor_pitch;           // offset 0xE4, size 0x4
+    float dor_speed;         // offset 0xE8, size 0x4
+    int dor_ang_speed;       // offset 0xEC, size 0x4
     void (*lgt_prcP)(void*); // offset 0xF0, size 0x4
-    int lgt_mode; // offset 0xF4, size 0x4
-    int lgt_reg; // offset 0xF8, size 0x4
-    int lgt_atr[3]; // offset 0xFC, size 0xC
-    void *lpP; // offset 0x108, size 0x4
-    struct 
-	{
-        // total size: 0xC
-        float x; // offset 0x0, size 0x4
-        float y; // offset 0x4, size 0x4
-        float z; // offset 0x8, size 0x4
-    } lgt_amb_off; // offset 0x10C, size 0xC
-    struct 
-	{
-        // total size: 0xC
-        float x; // offset 0x0, size 0x4
-        float y; // offset 0x4, size 0x4
-        float z; // offset 0x8, size 0x4
-    } lgt_pnt_rte; // offset 0x118, size 0xC
-    struct 
-	{
-        // total size: 0x24
-        unsigned int lgt_mod; // offset 0x0, size 0x4
-        float col_r; // offset 0x4, size 0x4
-        float col_g; // offset 0x8, size 0x4
-        float col_b; // offset 0xC, size 0x4
-        struct 
-		{
-            // total size: 0xC
-            float x; // offset 0x0, size 0x4
-            float y; // offset 0x4, size 0x4
-            float z; // offset 0x8, size 0x4
-        } pos; // offset 0x10, size 0xC
-        float n_rang; // offset 0x1C, size 0x4
-        float f_rang; // offset 0x20, size 0x4
-    } lgt_buf[3]; // offset 0x124, size 0x6C
+    int lgt_mode;            // offset 0xF4, size 0x4
+    int lgt_reg;             // offset 0xF8, size 0x4
+    int lgt_atr[3];          // offset 0xFC, size 0xC
+    void *lpP;               // offset 0x108, size 0x4
+    NJS_POINT3 lgt_amb_off;  // offset 0x10C, size 0xC
+    NJS_POINT3 lgt_pnt_rte;  // offset 0x118, size 0xC
+    LGT_WRK lgt_buf[3];      // offset 0x124, size 0x6C
     void (*pru_prcP)(void*); // offset 0x190, size 0x4
-    int pru_mode; // offset 0x194, size 0x4
-    int pru_reg; // offset 0x198, size 0x4
-    int pru_tim; // offset 0x19C, size 0x4
-    void* ppP; // offset 0x1A0, size 0x4
-    int dki_mode; // offset 0x1A4, size 0x4
-    int BgmSet[16]; // offset 0x1A8, size 0x40
-    struct 
-	{
-        // total size: 0xC
-        int mode; // offset 0x0, size 0x4
-        int time; // offset 0x4, size 0x4
-        int wait; // offset 0x8, size 0x4
-    } hrt_prm; // offset 0x1E8, size 0xC
+    int pru_mode;            // offset 0x194, size 0x4
+    int pru_reg;             // offset 0x198, size 0x4
+    int pru_tim;             // offset 0x19C, size 0x4
+    void* ppP;               // offset 0x1A0, size 0x4
+    int dki_mode;            // offset 0x1A4, size 0x4
+    int BgmSet[16];          // offset 0x1A8, size 0x40
+    HRT_WORK hrt_prm;        // offset 0x1E8, size 0xC
 } _door_wrk;
 
 void bhInitDoor();

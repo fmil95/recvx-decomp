@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/door.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
 
 _door_wrk DoorWrk;
 const _proc_wrk FadeProcTbl[2] = 
@@ -293,24 +294,27 @@ int bhControlDoor()
 	scePrintf("bhControlDoor - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2af750
-void ControlSoundTiming(_door_wrk* dwP)
+// 100% matching!
+static void ControlSoundTiming(_door_wrk* dwP) 
 {
-	int sts;
-	int cmd_no;
-	// Line 754, Address: 0x2af750, Func Offset: 0
-	// Line 758, Address: 0x2af764, Func Offset: 0x14
-	// Line 760, Address: 0x2af76c, Func Offset: 0x1c
-	// Line 761, Address: 0x2af774, Func Offset: 0x24
-	// Line 762, Address: 0x2af780, Func Offset: 0x30
-	// Line 763, Address: 0x2af788, Func Offset: 0x38
-	// Line 764, Address: 0x2af78c, Func Offset: 0x3c
-	// Line 763, Address: 0x2af790, Func Offset: 0x40
-	// Line 765, Address: 0x2af794, Func Offset: 0x44
-	// Line 777, Address: 0x2af7a8, Func Offset: 0x58
-	// Func End, Address: 0x2af7c0, Func Offset: 0x70
-}*/
+    int cmd_no;
+    int sts;
+    int* bsP; // not from DWARF
+    
+    sts = dwP->status;
+    
+    bsP = dwP->BgmSet;
+    
+    for (cmd_no = 0; *bsP != -1; bsP++, cmd_no++) 
+    {
+        if ((sts & *bsP)) 
+        {
+            SendSoundCommand(cmd_no);
+            
+            *bsP = 0;
+        }
+    }
+}
 
 // 100% matching!
 static void SetSoundTiming(_door_wrk* dwP)
@@ -320,7 +324,6 @@ static void SetSoundTiming(_door_wrk* dwP)
 	static const int SetFlag[11] = { 0, 0, 0, 0, 0, 0x1000000, 0x2000000, 0x4000000, 0x10, 0x20, -1 };
 
     bsP = dwP->BgmSet;
-
     sfP = SetFlag;
 
 	for (i = 11; i > 0; i--) 
