@@ -1,4 +1,6 @@
 #include "../../../ps2/veronica/prog/door.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
 _door_wrk DoorWrk;
@@ -24,33 +26,26 @@ const _proc_wrk PuruProcTbl[2] =
 };
 const int PruSndTbl[1] = { 10 };
 
-// 
-// Start address: 0x2aec30
+// 100% matching!
 void bhInitDoor()
 {
-	//_anon12 amb_ini;
-	//_anon12 vct_ini;
-	// Line 158, Address: 0x2aec30, Func Offset: 0
-	// Line 177, Address: 0x2aec34, Func Offset: 0x4
-	// Line 158, Address: 0x2aec40, Func Offset: 0x10
-	// Line 177, Address: 0x2aec44, Func Offset: 0x14
-	// Line 180, Address: 0x2aec4c, Func Offset: 0x1c
-	// Line 183, Address: 0x2aec54, Func Offset: 0x24
-	// Line 180, Address: 0x2aec5c, Func Offset: 0x2c
-	// Line 183, Address: 0x2aec70, Func Offset: 0x40
-	// Line 195, Address: 0x2aec8c, Func Offset: 0x5c
-	// Line 188, Address: 0x2aec90, Func Offset: 0x60
-	// Line 195, Address: 0x2aec94, Func Offset: 0x64
-	// Line 188, Address: 0x2aec98, Func Offset: 0x68
-	// Line 195, Address: 0x2aec9c, Func Offset: 0x6c
-	// Line 196, Address: 0x2aecb0, Func Offset: 0x80
-	// Line 195, Address: 0x2aecb4, Func Offset: 0x84
-	// Line 196, Address: 0x2aecb8, Func Offset: 0x88
-	// Line 195, Address: 0x2aecbc, Func Offset: 0x8c
-	// Line 196, Address: 0x2aecc4, Func Offset: 0x94
-	// Line 203, Address: 0x2aece4, Func Offset: 0xb4
-	// Func End, Address: 0x2aecf0, Func Offset: 0xc0
-	scePrintf("bhInitDoor - UNIMPLEMENTED!\n");
+    _door_wrk* dwP; // not from DWARF        
+    static const NJS_POINT3 amb_ini = { 0 }; 
+    static const NJS_POINT3 vct_ini = { 1.0f, 1.0f, 1.0f }; 
+
+    dwP = &DoorWrk;
+    
+    npSetMemory((unsigned char*)dwP, sizeof(_door_wrk), 0);
+    
+    dwP->dmo_bufP = sys->doordp;
+    
+    AnalyzeDoor(dwP, sys->door.dor_tp, sys->door.flg);
+    
+    dwP->spd_mde = DMO_SPD_1;
+    dwP->spd_mde = DMO_SPD_1;
+    
+    dwP->lgt_pnt_rte = vct_ini;
+    dwP->lgt_amb_off = amb_ini;
 }
 
 // 
