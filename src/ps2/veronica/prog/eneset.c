@@ -48,14 +48,6 @@
 
 typedef void (*JumpEnemy_proc)(BH_PWORK*);
 
-CPCL En00CapColTab[5] =
-{
-    { 0, 0,   35 },
-    { 0, 50,  0  },
-    { 0, 0,   35 },
-    { 0, 100, 0  },
-    { 0, 0,   0  },
-};
 JumpEnemy_proc bhJumpEnemy[100] = 
 {
 	bhEne00,
@@ -158,6 +150,14 @@ JumpEnemy_proc bhJumpEnemy[100] =
 	bhSubpl,
 	bhSubpl,
 	bhSubpl
+};
+CPCL En00CapColTab[5] =
+{
+    { 0, 0,   35 },
+    { 0, 50,  0  },
+    { 0, 0,   35 },
+    { 0, 100, 0  },
+    { 0, 0,   0  },
 };
 
 // 100% matching! 

@@ -91,50 +91,52 @@ Float	njDistanceP2P(NJS_POINT3 *p1, NJS_POINT3 *p2)
     return njSqrt((fDeltaX * fDeltaX) + (fDeltaY * fDeltaY) + (fDeltaZ * fDeltaZ));
 }
 
-// 
-// Start address: 0x2e3380
-Float	njDistanceP2L(NJS_POINT3 *p, NJS_LINE *l, NJS_POINT3 *cp)
+// 100% matching! 
+Float	njDistanceP2L(NJS_POINT3 *p, NJS_LINE *l, NJS_POINT3 *cp) 
 {
-	float fDl;
-	float fDz;
-	float fDy;
-	float fDx;
-	float fLl;
-	float fLz;
-	float fLy;
-	float fLx;
-	// Line 199, Address: 0x2e3380, Func Offset: 0
-	// Line 210, Address: 0x2e33a0, Func Offset: 0x20
-	// Line 211, Address: 0x2e33a4, Func Offset: 0x24
-	// Line 212, Address: 0x2e33a8, Func Offset: 0x28
-	// Line 213, Address: 0x2e33b8, Func Offset: 0x38
-	// Line 218, Address: 0x2e33cc, Func Offset: 0x4c
-	// Line 219, Address: 0x2e33d4, Func Offset: 0x54
-	// Line 217, Address: 0x2e33dc, Func Offset: 0x5c
-	// Line 214, Address: 0x2e33e4, Func Offset: 0x64
-	// Line 218, Address: 0x2e33e8, Func Offset: 0x68
-	// Line 219, Address: 0x2e33ec, Func Offset: 0x6c
-	// Line 217, Address: 0x2e33f0, Func Offset: 0x70
-	// Line 215, Address: 0x2e33f4, Func Offset: 0x74
-	// Line 216, Address: 0x2e33f8, Func Offset: 0x78
-	// Line 222, Address: 0x2e33fc, Func Offset: 0x7c
-	// Line 224, Address: 0x2e3408, Func Offset: 0x88
-	// Line 222, Address: 0x2e340c, Func Offset: 0x8c
-	// Line 224, Address: 0x2e3410, Func Offset: 0x90
-	// Line 226, Address: 0x2e3420, Func Offset: 0xa0
-	// Line 228, Address: 0x2e3428, Func Offset: 0xa8
-	// Line 229, Address: 0x2e342c, Func Offset: 0xac
-	// Line 230, Address: 0x2e3434, Func Offset: 0xb4
-	// Line 232, Address: 0x2e343c, Func Offset: 0xbc
-	// Line 236, Address: 0x2e3448, Func Offset: 0xc8
-	// Line 238, Address: 0x2e3454, Func Offset: 0xd4
-	// Line 240, Address: 0x2e345c, Func Offset: 0xdc
-	// Line 241, Address: 0x2e3468, Func Offset: 0xe8
-	// Line 242, Address: 0x2e3478, Func Offset: 0xf8
-	// Line 244, Address: 0x2e3488, Func Offset: 0x108
-	// Line 270, Address: 0x2e3494, Func Offset: 0x114
-	// Func End, Address: 0x2e34b8, Func Offset: 0x138
-	scePrintf("njDistanceP2L - UNIMPLEMENTED!\n");
+    float fLx, fLy, fLz;   
+    float fLl;  
+    float fDx, fDy, fDz;    
+    float fDl;  
+
+    fDx = l->vx;
+    fDy = l->vy;
+    fDz = l->vz;
+
+    fDl = njInvertSqrt((fDx * fDx) + (fDy * fDy) + (fDz * fDz));
+    
+    fDx *= fDl;
+    fDy *= fDl;
+    fDz *= fDl;
+
+    fLx = p->x - l->px;
+    fLy = p->y - l->py;
+    fLz = p->z - l->pz;
+
+    fLl = (fLx * fLx) + (fLy * fLy) + (fLz * fLz); 
+
+    if (fLl == 0) 
+    {
+        if (cp != NULL) 
+        {
+            cp->x = l->px;
+            cp->y = l->py;
+            cp->z = l->pz;
+        }
+        
+        return 0;
+    }
+
+    fDl = (fDx * fLx) + (fDy * fLy) + (fDz * fLz);
+    
+    if (cp != NULL) 
+    {
+        cp->x = l->px + (fDx * fDl);
+        cp->y = l->py + (fDy * fDl);
+        cp->z = l->pz + (fDz * fDl);
+    }
+
+    return njSqrt(fLl - (fDl * fDl));
 }
 
 // 100% matching!
