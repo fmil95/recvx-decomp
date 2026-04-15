@@ -2194,7 +2194,7 @@ struct _anon82
 	float y_rate;
 };*/
 
-O_WRK* AllocOwork();
+static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();
 int bhSetBloodPoolLnk(BH_PWORK* ewP, NJS_POINT3* posP, int ay, BP_WORK* tabP, int pal_bnk);

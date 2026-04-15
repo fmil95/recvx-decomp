@@ -1,7 +1,7 @@
 #include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-unsigned int owk_scn_noG;
+static unsigned int owk_scn_noG;
 /*_anon9 Tex5uv[9];
 _anon11* sys;
 _anon70 cam;
