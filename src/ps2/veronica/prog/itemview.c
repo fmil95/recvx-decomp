@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/itemview.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/sub1.h"
 
 /*unsigned char(*actionprg)(_anon5*)[3];
 unsigned int* wp_;
@@ -10,12 +11,11 @@ int ang_02[3];
 _anon32 vec_00;
 float check[16];
 float testf;*/
-NJS_VECTOR whd;
+static NJS_VECTOR whd;
 /*unsigned int ItemViewTypeTbl[168];
 int ViewType;
-_anon33 fvwork;*/
-STCAM_WRK st_cam;
-/*_anon6 dsptbl[0];
+_anon33 fvwork;
+_anon6 dsptbl[0];
 _anon2 swork;
 _anon24* sys;
 _anon5 sitem;

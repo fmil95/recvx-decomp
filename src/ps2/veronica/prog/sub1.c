@@ -187,9 +187,9 @@ float xend;
 short u_k;
 short v_k;
 short uend;*/
+STCAM_WRK st_cam;
 FADE fade;
-/*int SoftResetFlag;
-_anon20 st_cam;*/
+/*int SoftResetFlag;*/
 
 // 100% matching! 
 void Ps2ZbuffOffI()

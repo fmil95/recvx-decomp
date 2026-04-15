@@ -2391,7 +2391,7 @@ _anon1* MapCheckNextMap(_anon1* mnP)
 }*/
 
 // 100% matching!
-int GetGameMode()
+static int GetGameMode()
 {
     if (sys->stg_no >= 7) 
     {

@@ -64,7 +64,7 @@ void MapCncInit(int map_num, int flr_num);
 void MapCnc(_enum_3 dst, _enum_3 src, int status);*/
 void MapCncConnect(unsigned short* datP);
 /*_anon1* MapCheckNextMap(_anon1* mnP);*/
-int GetGameMode();
+static int GetGameMode();
 
 /*typedef struct npobj;
 typedef struct _anon0;

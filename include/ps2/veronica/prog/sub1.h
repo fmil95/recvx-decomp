@@ -79,6 +79,7 @@ extern S_WORK swork;
 extern PARTS parts_22b[6]; 
 extern float cen_pos99[12][6];
 extern float cen_pos[12][6];
+extern STCAM_WRK st_cam;
 extern FADE fade;
 
 /*typedef struct _anon0;
