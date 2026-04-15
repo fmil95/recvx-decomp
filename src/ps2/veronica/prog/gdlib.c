@@ -39,7 +39,7 @@ void CallbackGdErrorFunc(int param, int err) // first parameter is not present o
     }
 }
 
-// 99.18% matching
+// 100% matching! 
 unsigned int InitGdSystem() 
 { 
     unsigned int i;
@@ -56,7 +56,7 @@ unsigned int InitGdSystem()
 
     for (i = 0; i < 128; i++) 
     { 
-        GdErrorCode = gdFsInit(14, pDirWork, MaxDirectoryEntry, pDirTbl); 
+        GdErrorCode = gdFsInit(14, (void*)pDirWork, MaxDirectoryEntry, pDirTbl); 
 
         if ((GdErrorCode == -23) || (GdErrorCode == -33)) 
         {
@@ -65,7 +65,7 @@ unsigned int InitGdSystem()
 
         if (GdErrorCode == 0) 
         {
-            GdDirRec = gdFsCreateDirhn(pDirTbl, MaxDirectoryEntry);
+            GdDirRec = gdFsCreateDirhn((void*)pDirTbl, MaxDirectoryEntry);
             
             gdFsLoadDir("\\", GdDirRec); 
             gdFsSetDir(GdDirRec);
