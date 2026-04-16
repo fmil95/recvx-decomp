@@ -46,7 +46,7 @@ MWPLY ps2mwPlyCreateSofdec(MWS_PLY_CPRM_SFD* cprm, char* fname)
     sceGsSyncV(0);
     sceGsSyncV(0);
 
-    for (i = 0; i < strlen(fname); i++) 
+    for (i = 0; i < (unsigned int)strlen(fname); i++) // TODO: remove cast and import strlen() properly
     {
         if ((fname[i] >= 'a') && (fname[i] <= 'z')) 
         {
