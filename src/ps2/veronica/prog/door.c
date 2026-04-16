@@ -1213,23 +1213,25 @@ static void LightSubAmb(int param, NJS_POINT3* ambP, NJS_POINT3* offP)
     njCnkSetEasyMultiAmbient(amb.x, amb.y, amb.z);
 }
 
-/*// 
-// Start address: 0x2b1b50
-void LightSubPnt(_door_wrk* dwP, int lgt_no, _anon35* ldP, _anon12* rteP)
+// 100% matching!
+static void LightSubPnt(_door_wrk* dwP, int lgt_no, LGT_WRK* ldP, NJS_POINT3* rteP)
 {
-	_anon12 vct;
-	// Line 2117, Address: 0x2b1b50, Func Offset: 0
-	// Line 2126, Address: 0x2b1b64, Func Offset: 0x14
-	// Line 2128, Address: 0x2b1b8c, Func Offset: 0x3c
-	// Line 2129, Address: 0x2b1ba0, Func Offset: 0x50
-	// Line 2133, Address: 0x2b1bb4, Func Offset: 0x64
-	// Line 2134, Address: 0x2b1be0, Func Offset: 0x90
-	// Line 2135, Address: 0x2b1bf0, Func Offset: 0xa0
-	// Line 2137, Address: 0x2b1bfc, Func Offset: 0xac
-	// Func End, Address: 0x2b1c14, Func Offset: 0xc4
+    NJS_VECTOR vct;
+
+    vct = ldP->pos;
+    
+    if (ldP->lgt_mod != 0) 
+    {
+        njAddVector(&vct, &dwP->vew_pos);
+    }
+    
+    njCnkSetEasyMultiLightPoint(lgt_no + 2, vct.x, vct.y, vct.z);
+    njCnkSetEasyMultiLightColor(lgt_no + 2, ldP->col_r * rteP->x, ldP->col_g * rteP->y, ldP->col_b * rteP->z);
+    njCnkSetEasyMultiLightRange(lgt_no + 2, ldP->n_rang, ldP->f_rang);
+    njCnkSetEasyMultiLightSwitch(lgt_no + 2, 1);
 }
 
-// 
+/*// 
 // Start address: 0x2b1c20
 void ryExcuteFade(float pri, int col, float rate)
 {
