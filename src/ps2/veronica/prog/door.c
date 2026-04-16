@@ -1041,24 +1041,28 @@ void DoorProc7(_door_wrk* dwP)
 	// Func End, Address: 0x2b16f4, Func Offset: 0x3e4
 }*/
 
-// 
-// Start address: 0x2b1700
-void LightProc1(_door_wrk* dwP)
+// 100% matching!
+static void LightProc1(_door_wrk* dwP) 
 {
-	int lgt_no;
-	//_anon46* lpP;
-	// Line 1969, Address: 0x2b1700, Func Offset: 0
-	// Line 1972, Address: 0x2b1718, Func Offset: 0x18
-	// Line 1970, Address: 0x2b171c, Func Offset: 0x1c
-	// Line 1972, Address: 0x2b1720, Func Offset: 0x20
-	// Line 1978, Address: 0x2b173c, Func Offset: 0x3c
-	// Line 1980, Address: 0x2b1748, Func Offset: 0x48
-	// Line 1987, Address: 0x2b1754, Func Offset: 0x54
-	// Line 1988, Address: 0x2b1760, Func Offset: 0x60
-	// Line 1989, Address: 0x2b1778, Func Offset: 0x78
-	// Line 1994, Address: 0x2b1790, Func Offset: 0x90
-	// Func End, Address: 0x2b17ac, Func Offset: 0xac
-	scePrintf("LightProc1 - UNIMPLEMENTED!\n");
+    LIGHTPROC_WORK* lpP; 
+    int lgt_no;        
+    
+    lpP = dwP->lpP;
+    
+    switch (dwP->lgt_mode) 
+    {                            
+    case 0:
+        LightSubAmb(dwP, (NJS_POINT3*)&lpP->amb_r, &dwP->lgt_amb_off);
+        
+        dwP->lgt_mode++;
+    case 1:
+        for (lgt_no = 0; lgt_no < lpP->lgt_num; lgt_no++) 
+        {
+            LightSubPnt(dwP, lgt_no, &lpP->lgt_dat[lgt_no], &dwP->lgt_pnt_rte);
+        }
+        
+        break;
+    }
 }
 
 // 
@@ -1184,7 +1188,7 @@ void VectorMove(_anon12* posP, int yaw, int pitch, float speed)
 }*/
 
 // 100% matching!
-static void LightSubAmb(int param, NJS_POINT3* ambP, NJS_POINT3* offP) 
+static void LightSubAmb(_door_wrk* dwP, NJS_POINT3* ambP, NJS_POINT3* offP) // first parameter is not present on DWARF
 {
     NJS_POINT3 amb;
 

@@ -9,6 +9,16 @@ typedef struct _proc_wrk
     void (*procP)(void*); // offset 0x0, size 0x4
 } _proc_wrk;
 
+typedef struct LIGHTPROC_WORK
+{
+    // total size: 0x7C
+    float amb_r;        // offset 0x0, size 0x4
+    float amb_g;        // offset 0x4, size 0x4
+    float amb_b;        // offset 0x8, size 0x4
+    int lgt_num;        // offset 0xC, size 0x4
+    LGT_WRK lgt_dat[3]; // offset 0x10, size 0x6C
+} LIGHTPROC_WORK;
+
 typedef enum SPD_MDE
 {
 	DMO_SPD_1 = 0,
@@ -121,9 +131,9 @@ void LightProc1(_door_wrk* dwP);
 void LightProc2(_door_wrk* dwP);
 int CompareSint32(int val_a, int cmp_typ, int val_b);
 static int CompareFloat(float val_a, int cmp_typ, float val_b);
-/*void VectorMove(_anon12* posP, int yaw, int pitch, float speed);
-void LightSubAmb(_anon12* ambP, _anon12* offP);
-void LightSubPnt(_door_wrk* dwP, int lgt_no, _anon35* ldP, _anon12* rteP);*/
+/*void VectorMove(_anon12* posP, int yaw, int pitch, float speed);*/
+static void LightSubAmb(_door_wrk* dwP, NJS_POINT3* ambP, NJS_POINT3* offP);
+static void LightSubPnt(_door_wrk* dwP, int lgt_no, LGT_WRK* ldP, NJS_POINT3* rteP);
 void ryExcuteFade(float pri, int col, float rate);
 void PuruProc1(_door_wrk* dwP);
 void DokiProcLgt(_door_wrk* dwP);
