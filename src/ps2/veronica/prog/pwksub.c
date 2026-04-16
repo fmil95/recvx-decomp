@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/main.h"
 
@@ -122,19 +123,15 @@ int bhCheckFloorNum(float py)
     return fno;
 }
 
-// 
-// Start address: 0x14e440
+// 100% matching!
 void bhAddSpeed(BH_PWORK* pp, int r)
 {
-	// Line 321, Address: 0x14e440, Func Offset: 0
-	// Line 322, Address: 0x14e450, Func Offset: 0x10
-	// Line 323, Address: 0x14e460, Func Offset: 0x20
-	// Line 324, Address: 0x14e470, Func Offset: 0x30
-	// Line 323, Address: 0x14e474, Func Offset: 0x34
-	// Line 324, Address: 0x14e47c, Func Offset: 0x3c
-	// Line 325, Address: 0x14e498, Func Offset: 0x58
-	// Func End, Address: 0x14e4ac, Func Offset: 0x6c
-	scePrintf("bhAddSpeed - UNIMPLEMENTED!\n");
+    int angle; // not from DWARF
+
+    angle = (pp->ay + r) & 0xFFFF;
+    
+    pp->px -= pp->spd * njSin(angle);
+    pp->pz -= pp->spd * njCos(angle);
 }
 
 /*// 
