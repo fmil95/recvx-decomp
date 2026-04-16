@@ -629,7 +629,7 @@ void mcDisplaySelectFileInfo(SELECTFILEINFO* pFileInfo, float fx, float fy)
     mcDispFileName(pFileInfo, fy);
 }
 
-// 93.88% matching
+// 95.37% matching
 void mcDisplaySelectFileInfoMesCount(SELECTFILEINFO* pFileInfo, float fx, float fy, unsigned int CountMes)
 {
     NJS_POINT2 pos; 
@@ -746,7 +746,7 @@ void mcCallMessageTypeSe(SELECTFILEINFO* pFileInfo, int CountMes)
     }
 }
 
-// 92.35% matching 
+// 95.99% matching 
 void mcDispFileNumber(SELECTFILEINFO* pFileInfo, float fx, float fy)
 {
     NJS_POINT2 pos; 
@@ -781,7 +781,7 @@ void mcDispFileNumber(SELECTFILEINFO* pFileInfo, float fx, float fy)
     CountDisplay(14, &pos, col, 0);
 }
 
-// 93.22% matching
+// 95.89% matching
 void mcDispFileName(SELECTFILEINFO* pFileInfo, float fy)
 {
 	NJS_POINT2 pos; 
