@@ -1839,102 +1839,147 @@ void Ps2ShadowStart()
     loadImage((void*)0xF0000000);
 }
 
-// 
-// Start address: 0x2ce490
+// 100% matching!
 void Ps2ShadowDraw()
 {
-	int iv0[4];
-	int iv4[4];
-	unsigned long xy1;
-	unsigned long xy0;
-	unsigned long uv1;
-	unsigned long uv0;
-	// Line 3735, Address: 0x2ce490, Func Offset: 0
-	// Line 3747, Address: 0x2ce4a8, Func Offset: 0x18
-	// Line 3748, Address: 0x2ce4ec, Func Offset: 0x5c
-	// Line 3749, Address: 0x2ce518, Func Offset: 0x88
-	// Line 3750, Address: 0x2ce544, Func Offset: 0xb4
-	// Line 3753, Address: 0x2ce570, Func Offset: 0xe0
-	// Line 3754, Address: 0x2ce590, Func Offset: 0x100
-	// Line 3755, Address: 0x2ce5bc, Func Offset: 0x12c
-	// Line 3756, Address: 0x2ce5e8, Func Offset: 0x158
-	// Line 3757, Address: 0x2ce614, Func Offset: 0x184
-	// Line 3758, Address: 0x2ce640, Func Offset: 0x1b0
-	// Line 3759, Address: 0x2ce66c, Func Offset: 0x1dc
-	// Line 3760, Address: 0x2ce698, Func Offset: 0x208
-	// Line 3762, Address: 0x2ce6c4, Func Offset: 0x234
-	// Line 3763, Address: 0x2ce6d4, Func Offset: 0x244
-	// Line 3764, Address: 0x2ce6dc, Func Offset: 0x24c
-	// Line 3765, Address: 0x2ce6e4, Func Offset: 0x254
-	// Line 3766, Address: 0x2ce6ec, Func Offset: 0x25c
-	// Line 3768, Address: 0x2ce6f4, Func Offset: 0x264
-	// Line 3769, Address: 0x2ce700, Func Offset: 0x270
-	// Line 3771, Address: 0x2ce710, Func Offset: 0x280
-	// Line 3773, Address: 0x2ce714, Func Offset: 0x284
-	// Line 3771, Address: 0x2ce718, Func Offset: 0x288
-	// Line 3773, Address: 0x2ce71c, Func Offset: 0x28c
-	// Line 3774, Address: 0x2ce720, Func Offset: 0x290
-	// Line 3773, Address: 0x2ce724, Func Offset: 0x294
-	// Line 3772, Address: 0x2ce728, Func Offset: 0x298
-	// Line 3773, Address: 0x2ce730, Func Offset: 0x2a0
-	// Line 3774, Address: 0x2ce734, Func Offset: 0x2a4
-	// Line 3773, Address: 0x2ce738, Func Offset: 0x2a8
-	// Line 3774, Address: 0x2ce73c, Func Offset: 0x2ac
-	// Line 3773, Address: 0x2ce740, Func Offset: 0x2b0
-	// Line 3774, Address: 0x2ce748, Func Offset: 0x2b8
-	// Line 3773, Address: 0x2ce74c, Func Offset: 0x2bc
-	// Line 3774, Address: 0x2ce750, Func Offset: 0x2c0
-	// Line 3773, Address: 0x2ce760, Func Offset: 0x2d0
-	// Line 3774, Address: 0x2ce764, Func Offset: 0x2d4
-	// Line 3773, Address: 0x2ce768, Func Offset: 0x2d8
-	// Line 3774, Address: 0x2ce770, Func Offset: 0x2e0
-	// Line 3773, Address: 0x2ce778, Func Offset: 0x2e8
-	// Line 3774, Address: 0x2ce780, Func Offset: 0x2f0
-	// Line 3773, Address: 0x2ce788, Func Offset: 0x2f8
-	// Line 3784, Address: 0x2ce78c, Func Offset: 0x2fc
-	// Line 3786, Address: 0x2ce794, Func Offset: 0x304
-	// Line 3789, Address: 0x2ce7a4, Func Offset: 0x314
-	// Line 3787, Address: 0x2ce7ac, Func Offset: 0x31c
-	// Line 3789, Address: 0x2ce7b0, Func Offset: 0x320
-	// Line 3787, Address: 0x2ce7b4, Func Offset: 0x324
-	// Line 3789, Address: 0x2ce7b8, Func Offset: 0x328
-	// Line 3790, Address: 0x2ce7c8, Func Offset: 0x338
-	// Line 3792, Address: 0x2ce7e8, Func Offset: 0x358
-	// Line 3793, Address: 0x2ce7f4, Func Offset: 0x364
-	// Line 3795, Address: 0x2ce800, Func Offset: 0x370
-	// Line 3796, Address: 0x2ce810, Func Offset: 0x380
-	// Line 3799, Address: 0x2ce81c, Func Offset: 0x38c
-	// Line 3800, Address: 0x2ce838, Func Offset: 0x3a8
-	// Line 3815, Address: 0x2ce844, Func Offset: 0x3b4
-	// Line 3816, Address: 0x2ce888, Func Offset: 0x3f8
-	// Line 3818, Address: 0x2ce894, Func Offset: 0x404
-	// Line 3819, Address: 0x2ce89c, Func Offset: 0x40c
-	// Line 3822, Address: 0x2ce8a8, Func Offset: 0x418
-	// Line 3824, Address: 0x2ce8b0, Func Offset: 0x420
-	// Line 3826, Address: 0x2ce8b8, Func Offset: 0x428
-	// Line 3827, Address: 0x2ce8c0, Func Offset: 0x430
-	// Line 3830, Address: 0x2ce8c8, Func Offset: 0x438
-	// Line 3832, Address: 0x2ce8d0, Func Offset: 0x440
-	// Line 3835, Address: 0x2ce8d8, Func Offset: 0x448
-	// Line 3836, Address: 0x2ce8e0, Func Offset: 0x450
-	// Line 3839, Address: 0x2ce8ec, Func Offset: 0x45c
-	// Line 3840, Address: 0x2ce8fc, Func Offset: 0x46c
-	// Line 3842, Address: 0x2ce908, Func Offset: 0x478
-	// Line 3843, Address: 0x2ce914, Func Offset: 0x484
-	// Line 3845, Address: 0x2ce920, Func Offset: 0x490
-	// Line 3846, Address: 0x2ce92c, Func Offset: 0x49c
-	// Line 3848, Address: 0x2ce934, Func Offset: 0x4a4
-	// Line 3849, Address: 0x2ce93c, Func Offset: 0x4ac
-	// Line 3851, Address: 0x2ce944, Func Offset: 0x4b4
-	// Line 3853, Address: 0x2ce94c, Func Offset: 0x4bc
-	// Line 3855, Address: 0x2ce954, Func Offset: 0x4c4
-	// Line 3857, Address: 0x2ce95c, Func Offset: 0x4cc
-	// Line 3859, Address: 0x2ce964, Func Offset: 0x4d4
-	// Line 3860, Address: 0x2ce970, Func Offset: 0x4e0
-	// Line 3862, Address: 0x2ce978, Func Offset: 0x4e8
-	// Line 3864, Address: 0x2ce980, Func Offset: 0x4f0
-	// Func End, Address: 0x2ce99c, Func Offset: 0x50c
-	scePrintf("Ps2ShadowDraw - UNIMPLEMENTED!\n");
+    unsigned long uv0, uv1; 
+    unsigned long xy0, xy1; 
+    int iv4[4], iv0[4];       
+
+    if ((Ps2_shadow_vec[0] < 1536.0f) || (Ps2_shadow_vec[0] >= 2560.0f))
+    {
+        return;
+    }
+
+    if ((Ps2_shadow_vec[1] < 1536.0f) || (Ps2_shadow_vec[1] >= 2560.0f))
+    {
+        return;
+    }
+
+    if ((Ps2_shadow_vec[2] < 1536.0f) || (Ps2_shadow_vec[2] >= 2560.0f))
+    {
+        return;
+    }
+
+    if ((Ps2_shadow_vec[3] < 1536.0f) || (Ps2_shadow_vec[3] >= 2560.0f))
+    {
+        return;
+    }
+
+    if (Ps2_shadow_vec[0] < 1728.0f) 
+    {
+        Ps2_shadow_vec[0] = 1728.0f;
+    }
+    
+    if (Ps2_shadow_vec[0] > 2368.0f) 
+    {
+        Ps2_shadow_vec[0] = 2368.0f;
+    }
+    
+    if (Ps2_shadow_vec[1] < 1808.0f) 
+    {
+        Ps2_shadow_vec[1] = 1808.0f;
+    }
+    
+    if (Ps2_shadow_vec[1] > 2288.0f) 
+    {
+        Ps2_shadow_vec[1] = 2288.0f;
+    }
+    
+    if (Ps2_shadow_vec[2] < 1728.0f) 
+    {
+        Ps2_shadow_vec[2] = 1728.0f;
+    }
+    
+    if (Ps2_shadow_vec[2] > 2368.0f)
+    {
+        Ps2_shadow_vec[2] = 2368.0f;
+    }
+    
+    if (Ps2_shadow_vec[3] < 1808.0f) 
+    {
+        Ps2_shadow_vec[3] = 1808.0f;
+    }
+    
+    if (Ps2_shadow_vec[3] > 2288.0f) 
+    {
+        Ps2_shadow_vec[3] = 2288.0f;
+    }
+    
+    if (Ps2_shadow_z != 0)
+    {
+        Ps2_shadow_vec[0] = 0;
+        Ps2_shadow_vec[1] = 0;
+        Ps2_shadow_vec[2] = 0;
+        Ps2_shadow_vec[3] = 0;
+    }
+    
+    sceVu0FTOI4Vector(iv4, Ps2_shadow_vec);
+    sceVu0FTOI0Vector(iv0, Ps2_shadow_vec);
+    
+    xy0 = *(unsigned long*)&iv4[0];
+    xy1 = *(unsigned long*)&iv4[2];
+
+    uv0 = SCE_GS_SET_UV(((iv0[0] - 1728) * 16) + 8, ((iv0[1] - 1808) * 16) + 8);
+    uv1 = SCE_GS_SET_UV(((iv0[2] - 1728) * 16) + 8, ((iv0[3] - 1808) * 16) + 8);
+
+    D2_SyncTag();
+    
+    ((u_long*)WORKBASE)[0] = DMAend | 0x11;
+    ((u_long*)WORKBASE)[1] = 0;
+    
+    ((u_long*)WORKBASE)[2] = SCE_GIF_SET_TAG(1, SCE_GS_TRUE, SCE_GS_TRUE, SCE_GS_SET_PRIM(SCE_GS_PRIM_SPRITE, 0, 1, 0, 1, 0, 1, 1, 0), SCE_GIF_PACKED, 0);
+    ((u_long*)WORKBASE)[3] = 0xE44EEEEE4E4EEEEE;
+    
+    ((u_long*)WORKBASE)[4] = SCE_GS_SET_FRAME_2(0, 10, SCE_GS_PSMCT32, 0);
+    ((u_long*)WORKBASE)[5] = SCE_GS_FRAME_2;
+    
+    ((u_long*)WORKBASE)[6] = SCE_GS_SET_TEST_2(1, SCE_GS_ALPHA_GREATER, 0, SCE_GS_AFAIL_KEEP, 0, 0, 1, SCE_GS_DEPTH_ALWAYS);
+    ((u_long*)WORKBASE)[7] = SCE_GS_TEST_2;
+    
+    ((u_long*)WORKBASE)[8] = SCE_GS_SET_TEX0_2(12160, 10, SCE_GS_PSMCT16S, 10, 9, 1, SCE_GS_MODULATE, 0, SCE_GS_PSMCT32, 0, 0, 0);
+    ((u_long*)WORKBASE)[9] = SCE_GS_TEX0_2;
+
+    ((u_long*)WORKBASE)[10] = SCE_GS_SET_RGBAQ(((unsigned int)Ps2_shadow_fog * 3) / 16, ((unsigned int)Ps2_shadow_fog * 3) / 16, ((unsigned int)Ps2_shadow_fog * 3) / 16, 128, 0);
+    ((u_long*)WORKBASE)[11] = SCE_GS_RGBAQ;
+    
+    ((u_long*)WORKBASE)[12] = uv0;
+    ((u_long*)WORKBASE)[13] = SCE_GS_UV;
+    
+    ((u_long*)WORKBASE)[14] = xy0;
+    ((u_long*)WORKBASE)[15] = SCE_GS_PRIM;
+    
+    ((u_long*)WORKBASE)[16] = uv1;
+    ((u_long*)WORKBASE)[17] = SCE_GS_UV;
+    
+    ((u_long*)WORKBASE)[18] = xy1;
+    ((u_long*)WORKBASE)[19] = SCE_GS_PRIM;
+    
+    ((u_long*)WORKBASE)[20] = 0;
+    ((u_long*)WORKBASE)[21] = SCE_GS_TEXFLUSH;
+    
+    ((u_long*)WORKBASE)[22] = SCE_GS_SET_FRAME_2(380, 10, SCE_GS_PSMCT16S, 0);
+    ((u_long*)WORKBASE)[23] = SCE_GS_FRAME_2;
+    
+    ((u_long*)WORKBASE)[24] = SCE_GS_SET_TEST_2(0, SCE_GS_ALPHA_NEVER, 0, SCE_GS_AFAIL_KEEP, 0, 0, 1, SCE_GS_DEPTH_ALWAYS);
+    ((u_long*)WORKBASE)[25] = SCE_GS_TEST_2;
+    
+    ((u_long*)WORKBASE)[26] = SCE_GS_SET_PRIM(SCE_GS_PRIM_SPRITE, 0, 0, 0, 0, 0, 0, 1, 0);
+    ((u_long*)WORKBASE)[27] = SCE_GS_PRIM;
+    
+    ((u_long*)WORKBASE)[28] = SCE_GS_SET_RGBAQ(0, 0, 0, 0, 0);
+    ((u_long*)WORKBASE)[29] = SCE_GS_RGBAQ;
+    
+    ((u_long*)WORKBASE)[30] = xy0;
+    ((u_long*)WORKBASE)[31] = SCE_GS_PRIM;
+    
+    ((u_long*)WORKBASE)[32] = xy1;
+    ((u_long*)WORKBASE)[33] = SCE_GS_PRIM;
+    
+    ((u_long*)WORKBASE)[34] = SCE_GS_SET_TEST_2(0, SCE_GS_ALPHA_NEVER, 0, SCE_GS_AFAIL_KEEP, 0, 0, 1, SCE_GS_DEPTH_GEQUAL);
+    ((u_long*)WORKBASE)[35] = SCE_GS_TEST_2;
+    
+    loadImage((void*)0xF0000000);
 }
 
 // 100% matching! 
