@@ -1290,26 +1290,34 @@ void PuruProc1(_door_wrk* dwP)
 	scePrintf("PuruProc1 - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2b1e40
-void DokiProcLgt(_door_wrk* dwP)
+// 100% matching!
+static void DokiProcLgt(_door_wrk* dwP) 
 {
-	int ang;
-	_anon12* offP;
-	_anon12* rteP;
-	// Line 2232, Address: 0x2b1e40, Func Offset: 0
-	// Line 2234, Address: 0x2b1e4c, Func Offset: 0xc
-	// Line 2237, Address: 0x2b1e6c, Func Offset: 0x2c
-	// Line 2243, Address: 0x2b1e74, Func Offset: 0x34
-	// Line 2241, Address: 0x2b1e78, Func Offset: 0x38
-	// Line 2242, Address: 0x2b1e7c, Func Offset: 0x3c
-	// Line 2243, Address: 0x2b1e80, Func Offset: 0x40
-	// Line 2245, Address: 0x2b1e84, Func Offset: 0x44
-	// Line 2247, Address: 0x2b1e98, Func Offset: 0x58
-	// Line 2248, Address: 0x2b1ea0, Func Offset: 0x60
-	// Line 2251, Address: 0x2b1ea4, Func Offset: 0x64
-	// Line 2252, Address: 0x2b1ed0, Func Offset: 0x90
-	// Line 2253, Address: 0x2b1ed8, Func Offset: 0x98
-	// Line 2257, Address: 0x2b1edc, Func Offset: 0x9c
-	// Func End, Address: 0x2b1eec, Func Offset: 0xac
-}*/
+    NJS_POINT3* rteP, *offP; 
+    int ang;        
+    
+    switch (dwP->dki_mode) 
+    {                         
+    case 0:
+        dwP->dki_mode++;
+    case 1:
+        ang = dwP->time * 1024;
+        
+        rteP = &dwP->lgt_pnt_rte;
+        offP = &dwP->lgt_amb_off; 
+        
+        if ((ang & 0x8000)) 
+        {
+            ang = ~ang + 1;
+        }
+        
+        offP->x = 0.5f;
+        offP->y = 0.5f;
+        offP->z = 0.5f;
+        
+        rteP->x = 0.5 + njSin(ang); // very likely a mistake
+        rteP->y = 0.5f;
+        rteP->z = 0.5f;
+        break;
+    }
+}
