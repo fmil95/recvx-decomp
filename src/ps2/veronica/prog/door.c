@@ -1,6 +1,8 @@
 #include "../../../ps2/veronica/prog/door.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
 _door_wrk DoorWrk;
@@ -1179,26 +1181,39 @@ void VectorMove(_anon12* posP, int yaw, int pitch, float speed)
 	// Line 2091, Address: 0x2b1a3c, Func Offset: 0x8c
 	// Line 2092, Address: 0x2b1a5c, Func Offset: 0xac
 	// Func End, Address: 0x2b1a78, Func Offset: 0xc8
-}
+}*/
 
-// 
-// Start address: 0x2b1a80
-void LightSubAmb(_anon12* ambP, _anon12* offP)
+// 100% matching!
+static void LightSubAmb(int param, NJS_POINT3* ambP, NJS_POINT3* offP) 
 {
-	_anon12 amb;
-	// Line 2098, Address: 0x2b1a80, Func Offset: 0
-	// Line 2101, Address: 0x2b1a88, Func Offset: 0x8
-	// Line 2103, Address: 0x2b1aa0, Func Offset: 0x20
-	// Line 2104, Address: 0x2b1aa8, Func Offset: 0x28
-	// Line 2105, Address: 0x2b1ab0, Func Offset: 0x30
-	// Line 2106, Address: 0x2b1ad8, Func Offset: 0x58
-	// Line 2107, Address: 0x2b1b04, Func Offset: 0x84
-	// Line 2110, Address: 0x2b1b30, Func Offset: 0xb0
-	// Line 2111, Address: 0x2b1b40, Func Offset: 0xc0
-	// Func End, Address: 0x2b1b4c, Func Offset: 0xcc
+    NJS_POINT3 amb;
+
+    amb = *ambP;
+    
+    if (offP != NULL) 
+    {
+        njAddVector(&amb, offP);
+        
+        if (amb.x > 0.4f) 
+        {
+            amb.x = 0.4f;
+        }
+        
+        if (amb.y > 0.4f) 
+        {
+            amb.y = 0.4f; 
+        }
+        
+        if (amb.z > 0.4f) 
+        {
+            amb.z = 0.4f;
+        }
+    }
+    
+    njCnkSetEasyMultiAmbient(amb.x, amb.y, amb.z);
 }
 
-// 
+/*// 
 // Start address: 0x2b1b50
 void LightSubPnt(_door_wrk* dwP, int lgt_no, _anon35* ldP, _anon12* rteP)
 {
