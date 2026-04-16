@@ -188,23 +188,30 @@ void bhSetDoor()
 	scePrintf("bhSetDoor - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2af2a0
+// 100% matching!
 void bhExitDoor()
 {
-	//_door_wrk* dwP;
-	// Line 523, Address: 0x2af2a0, Func Offset: 0
-	// Line 524, Address: 0x2af2ac, Func Offset: 0xc
-	// Line 527, Address: 0x2af2b4, Func Offset: 0x14
-	// Line 528, Address: 0x2af2d0, Func Offset: 0x30
-	// Line 531, Address: 0x2af2e4, Func Offset: 0x44
-	// Line 532, Address: 0x2af2f4, Func Offset: 0x54
-	// Line 534, Address: 0x2af2fc, Func Offset: 0x5c
-	// Line 537, Address: 0x2af308, Func Offset: 0x68
-	// Line 539, Address: 0x2af310, Func Offset: 0x70
-	// Line 547, Address: 0x2af340, Func Offset: 0xa0
-	// Func End, Address: 0x2af350, Func Offset: 0xb0
-	scePrintf("bhExitDoor - UNIMPLEMENTED!\n");
+	_door_wrk* dwP;
+
+	dwP = &DoorWrk;
+
+	njClipZ(-2.0f, -20000.0f);
+
+    njSetAspect(BHD_ASPECT_X, BHD_ASPECT_Y);
+
+    if (dwP->dor_mdl.texP != NULL) 
+	{
+        njReleaseTexture(dwP->dor_mdl.texP);
+		
+        bhGarbageTexture(NULL, 0);
+
+        Ps2ClearOT();
+
+        if (sys->fade_an > 0) 
+		{
+            bhDrawScreenFade();
+        }
+    }
 }
 
 // 100% matching!
