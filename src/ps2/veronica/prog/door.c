@@ -1065,25 +1065,33 @@ static void LightProc1(_door_wrk* dwP)
     }
 }
 
-// 
-// Start address: 0x2b17b0
-void LightProc2(_door_wrk* dwP)
+// 100% matching!
+static void LightProc2(_door_wrk* dwP)
 {
-	int lgt_no;
-	//_anon49* lpP;
-	// Line 2004, Address: 0x2b17b0, Func Offset: 0
-	// Line 2007, Address: 0x2b17c8, Func Offset: 0x18
-	// Line 2005, Address: 0x2b17cc, Func Offset: 0x1c
-	// Line 2007, Address: 0x2b17d0, Func Offset: 0x20
-	// Line 2009, Address: 0x2b17e0, Func Offset: 0x30
-	// Line 2015, Address: 0x2b1800, Func Offset: 0x50
-	// Line 2017, Address: 0x2b1810, Func Offset: 0x60
-	// Line 2023, Address: 0x2b181c, Func Offset: 0x6c
-	// Line 2024, Address: 0x2b1828, Func Offset: 0x78
-	// Line 2025, Address: 0x2b1840, Func Offset: 0x90
-	// Line 2030, Address: 0x2b1858, Func Offset: 0xa8
-	// Func End, Address: 0x2b1874, Func Offset: 0xc4
-	scePrintf("LightProc2 - UNIMPLEMENTED!\n");
+	LIGHTPROC_WORK* lpP; 
+    int lgt_no;        
+    
+    lpP = dwP->lpP;
+
+	if ((dwP->status & 0x4000)) 
+	{
+		lpP++;	
+	}
+    
+    switch (dwP->lgt_mode) 
+    {                            
+    case 0:
+        LightSubAmb(dwP, (NJS_POINT3*)&lpP->amb_r, &dwP->lgt_amb_off);
+        
+        dwP->lgt_mode++;
+    case 1:
+        for (lgt_no = 0; lgt_no < lpP->lgt_num; lgt_no++) 
+        {
+            LightSubPnt(dwP, lgt_no, &lpP->lgt_dat[lgt_no], &dwP->lgt_pnt_rte);
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!
