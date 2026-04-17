@@ -826,121 +826,185 @@ l_002CC2B0:
     return;
 }
 
-// 
-// Start address: 0x2cc2d0
+// 100% matching!
 void Ps2AddPrim3DEx1P(unsigned long prim, void* dp, unsigned int num)
 {
-	float zbuff_ab_vec[4];
-	float zsum;
-	unsigned int st_clip_flag;
-	unsigned int clut_flag;
-	unsigned int clip_flag;
-	//_anon0* timp;
-	unsigned long* p;
-	float zclip_ab_vec[4];
-	float near_far_vec[4];
-	float clip_vec[4];
-	// Line 1896, Address: 0x2cc2d0, Func Offset: 0
-	// Line 1907, Address: 0x2cc2e0, Func Offset: 0x10
-	// Line 1896, Address: 0x2cc2e4, Func Offset: 0x14
-	// Line 1907, Address: 0x2cc2ec, Func Offset: 0x1c
-	// Line 1911, Address: 0x2cc310, Func Offset: 0x40
-	// Line 1907, Address: 0x2cc31c, Func Offset: 0x4c
-	// Line 1911, Address: 0x2cc338, Func Offset: 0x68
-	// Line 1912, Address: 0x2cc340, Func Offset: 0x70
-	// Line 1914, Address: 0x2cc350, Func Offset: 0x80
-	// Line 1915, Address: 0x2cc364, Func Offset: 0x94
-	// Line 1916, Address: 0x2cc374, Func Offset: 0xa4
-	// Line 1919, Address: 0x2cc394, Func Offset: 0xc4
-	// Line 1920, Address: 0x2cc3a8, Func Offset: 0xd8
-	// Line 1921, Address: 0x2cc3b4, Func Offset: 0xe4
-	// Line 1922, Address: 0x2cc3c0, Func Offset: 0xf0
-	// Line 1923, Address: 0x2cc3c8, Func Offset: 0xf8
-	// Line 1924, Address: 0x2cc3d0, Func Offset: 0x100
-	// Line 1926, Address: 0x2cc3d4, Func Offset: 0x104
-	// Line 1928, Address: 0x2cc3dc, Func Offset: 0x10c
-	// Line 1930, Address: 0x2cc3ec, Func Offset: 0x11c
-	// Line 1929, Address: 0x2cc3f4, Func Offset: 0x124
-	// Line 1930, Address: 0x2cc3fc, Func Offset: 0x12c
-	// Line 1931, Address: 0x2cc404, Func Offset: 0x134
-	// Line 1943, Address: 0x2cc40c, Func Offset: 0x13c
-	// Line 1944, Address: 0x2cc410, Func Offset: 0x140
-	// Line 1946, Address: 0x2cc418, Func Offset: 0x148
-	// Line 1949, Address: 0x2cc41c, Func Offset: 0x14c
-	// Line 1946, Address: 0x2cc42c, Func Offset: 0x15c
-	// Line 1947, Address: 0x2cc450, Func Offset: 0x180
-	// Line 1949, Address: 0x2cc458, Func Offset: 0x188
-	// Line 1950, Address: 0x2cc460, Func Offset: 0x190
-	// Line 1953, Address: 0x2cc468, Func Offset: 0x198
-	// Line 1950, Address: 0x2cc46c, Func Offset: 0x19c
-	// Line 1953, Address: 0x2cc470, Func Offset: 0x1a0
-	// Line 1956, Address: 0x2cc480, Func Offset: 0x1b0
-	// Line 1953, Address: 0x2cc494, Func Offset: 0x1c4
-	// Line 1954, Address: 0x2cc498, Func Offset: 0x1c8
-	// Line 1956, Address: 0x2cc4a0, Func Offset: 0x1d0
-	// Line 1954, Address: 0x2cc4a8, Func Offset: 0x1d8
-	// Line 1959, Address: 0x2cc4ac, Func Offset: 0x1dc
-	// Line 1956, Address: 0x2cc4b0, Func Offset: 0x1e0
-	// Line 1957, Address: 0x2cc4bc, Func Offset: 0x1ec
-	// Line 1959, Address: 0x2cc4c4, Func Offset: 0x1f4
-	// Line 1957, Address: 0x2cc4dc, Func Offset: 0x20c
-	// Line 1959, Address: 0x2cc4e0, Func Offset: 0x210
-	// Line 1962, Address: 0x2cc4e4, Func Offset: 0x214
-	// Line 1963, Address: 0x2cc4e8, Func Offset: 0x218
-	// Line 1964, Address: 0x2cc4ec, Func Offset: 0x21c
-	// Line 1965, Address: 0x2cc4f0, Func Offset: 0x220
-	// Line 1966, Address: 0x2cc4f4, Func Offset: 0x224
-	// Line 1967, Address: 0x2cc4f8, Func Offset: 0x228
-	// Line 1969, Address: 0x2cc4fc, Func Offset: 0x22c
-	// Line 1968, Address: 0x2cc500, Func Offset: 0x230
-	// Line 1969, Address: 0x2cc504, Func Offset: 0x234
-	// Line 1970, Address: 0x2cc508, Func Offset: 0x238
-	// Line 1971, Address: 0x2cc50c, Func Offset: 0x23c
-	// Line 1972, Address: 0x2cc510, Func Offset: 0x240
-	// Line 1973, Address: 0x2cc514, Func Offset: 0x244
-	// Line 1974, Address: 0x2cc518, Func Offset: 0x248
-	// Line 1976, Address: 0x2cc51c, Func Offset: 0x24c
-	// Line 1977, Address: 0x2cc520, Func Offset: 0x250
-	// Line 1978, Address: 0x2cc524, Func Offset: 0x254
-	// Line 1980, Address: 0x2cc528, Func Offset: 0x258
-	// Line 1981, Address: 0x2cc52c, Func Offset: 0x25c
-	// Line 1982, Address: 0x2cc530, Func Offset: 0x260
-	// Line 1983, Address: 0x2cc534, Func Offset: 0x264
-	// Line 1984, Address: 0x2cc538, Func Offset: 0x268
-	// Line 1986, Address: 0x2cc53c, Func Offset: 0x26c
-	// Line 1987, Address: 0x2cc540, Func Offset: 0x270
-	// Line 1988, Address: 0x2cc544, Func Offset: 0x274
-	// Line 1989, Address: 0x2cc548, Func Offset: 0x278
-	// Line 1990, Address: 0x2cc54c, Func Offset: 0x27c
-	// Line 1991, Address: 0x2cc550, Func Offset: 0x280
-	// Line 1992, Address: 0x2cc554, Func Offset: 0x284
-	// Line 1993, Address: 0x2cc558, Func Offset: 0x288
-	// Line 1994, Address: 0x2cc55c, Func Offset: 0x28c
-	// Line 1995, Address: 0x2cc560, Func Offset: 0x290
-	// Line 1996, Address: 0x2cc564, Func Offset: 0x294
-	// Line 1998, Address: 0x2cc56c, Func Offset: 0x29c
-	// Line 2000, Address: 0x2cc570, Func Offset: 0x2a0
-	// Line 2001, Address: 0x2cc574, Func Offset: 0x2a4
-	// Line 2002, Address: 0x2cc578, Func Offset: 0x2a8
-	// Line 2003, Address: 0x2cc57c, Func Offset: 0x2ac
-	// Line 2004, Address: 0x2cc580, Func Offset: 0x2b0
-	// Line 2005, Address: 0x2cc584, Func Offset: 0x2b4
-	// Line 2006, Address: 0x2cc588, Func Offset: 0x2b8
-	// Line 2007, Address: 0x2cc58c, Func Offset: 0x2bc
-	// Line 2008, Address: 0x2cc590, Func Offset: 0x2c0
-	// Line 2010, Address: 0x2cc598, Func Offset: 0x2c8
-	// Line 2011, Address: 0x2cc59c, Func Offset: 0x2cc
-	// Line 2013, Address: 0x2cc5a4, Func Offset: 0x2d4
-	// Line 2014, Address: 0x2cc5a8, Func Offset: 0x2d8
-	// Line 2028, Address: 0x2cc5ac, Func Offset: 0x2dc
-	// Line 2029, Address: 0x2cc5bc, Func Offset: 0x2ec
-	// Line 2030, Address: 0x2cc5d0, Func Offset: 0x300
-	// Line 2031, Address: 0x2cc5e8, Func Offset: 0x318
-	// Line 2034, Address: 0x2cc5f0, Func Offset: 0x320
-	// Line 2035, Address: 0x2cc5f8, Func Offset: 0x328
-	// Line 2038, Address: 0x2cc600, Func Offset: 0x330
-	// Func End, Address: 0x2cc618, Func Offset: 0x348
-	scePrintf("Ps2AddPrim3DEx1P - UNIMPLEMENTED!\n");
+    unsigned long* p;             
+    TIM2_PICTUREHEADER_EX* timp;  
+    unsigned int clip_flag;    // needs use   
+    unsigned int clut_flag;    // needs use
+    unsigned int st_clip_flag; // needs use
+    float zsum;                  
+    float zbuff_ab_vec[4] = { 0 }; 
+    static const float clip_vec[4] = { 2048.0f, 2048.0f, 0, 2047.0f };  
+    static const float near_far_vec[4] = { 1.0f, 65534.0f, 0, 0 };
+    static const float zclip_ab_vec[4] = { 0.062501907f, 0, -2048.0625f, 0 };
+    
+    zbuff_ab_vec[0] = -Ps2_zbuff_b;
+    zbuff_ab_vec[2] = -Ps2_zbuff_a;
+    zbuff_ab_vec[3] = *(float*)&num;  
+    
+    if ((prim & 0x8000000000000)) 
+    {
+        if (Ps2_now_tex == NULL) 
+        {
+            return;
+        }
+
+        if ((prim & 0x20000000000000)) 
+        {
+            if (Ps2_use_pt_flag != 0)
+            {
+                prim &= ~SCE_GIF_SET_TAG(0, 0, 0, SCE_GS_SET_PRIM(0, 0, 0, 0, 1, 0, 0, 0, 0), 0, 0);
+            }
+        } 
+        
+        if (!(prim & 0x20000000000000)) 
+        {
+            timp = (TIM2_PICTUREHEADER_EX*)Ps2_now_tex->texinfo.texsurface.pSurface;
+            
+            if (timp->TpFlag != 0) 
+            {
+                Ps2_tex_load_tp_cancel = 1;
+                
+                Ps2TexLoad(Ps2_now_tex);
+                
+                Ps2_tex_load_tp_cancel = 0;
+            }
+        } 
+        else if (Ps2_albinoid_flag != 0) 
+        {
+            Ps2_tex_load_tp_cancel = 1;
+                
+            Ps2TexLoad(Ps2_now_tex);
+            
+            Ps2_tex_load_tp_cancel = 0;
+        }
+    } 
+
+    p = (unsigned long*)WORKBASE;
+    
+    D2_SyncTag();
+
+    *p++ = ((num * 3) + 3) | 0x70000000;
+    *p++ = 0;
+    
+    *p++ = SCE_GIF_SET_TAG(1, 0, SCE_GIF_PACKED, 0, 0, 1);
+    *p++ = SCE_GIF_PACKED_AD;
+    
+    *p++ = Ps2_gs_save.TEST = SCE_GS_SET_TEST_1(1, SCE_GS_ALPHA_GREATER, 0, SCE_GS_AFAIL_KEEP, 0, 0, 1, SCE_GS_DEPTH_GEQUAL);
+    *p++ = SCE_GS_TEST_1;
+    
+    *p++ = (SCE_GIF_SET_TAG(0, 1, SCE_GIF_REGLIST, 0, 0, 3) | prim) | num;
+    *p++ = GIF_REGLIST(SCE_GS_ST, SCE_GS_RGBAQ, SCE_GS_XYZF2);
+    
+    asm volatile
+    ("
+    .set noreorder
+        lqc2        vf10, 0(%3)
+        lqc2        vf13, 0(%0)
+        lqc2        vf12, 0(%1)
+        lqc2        vf11, 0(%2)
+        
+        vitof0.w    vf10, vf10
+        
+        vsub.xyzw   vf9, vf9, vf9
+        
+        lui         at, (0x3FFFF >> 16)
+        
+        ori         v0, zero,  0x8000
+    
+        ori         a0,   at, (0x3FFFF & 0xFFFF)
+        
+        ctc2        zero, vi18
+        ctc2        v0,   vi2
+    
+        viaddi      vi4, vi0, 0
+    
+        addu        v0, %6, zero
+        
+        vdiv        Q, vf0w, vf10w
+    
+    l_002CC51C:
+        lqc2        vf4,    0(%4)
+        lqc2        vf5, 0x10(%4)
+        lqc2        vf6, 0x20(%4)
+        
+        vmtir       vi3, vf4w
+    
+        vadda.z     ACC, vf6, vf11
+        vmaddx.z    vf7, vf6, vf11x
+        
+        vsub.xy     vf7, vf6, vf13
+        
+        vclipw.xyz  vf7, vf13w        
+        
+        vadda.z     ACC, vf0, vf10
+        vmaddx.z    vf6, vf4, vf10x
+        
+        vmax.z      vf6, vf6, vf0
+        
+        vftoi0.xyzw vf5, vf5
+        
+        vminiy.z    vf6, vf6, vf12y
+        
+        vaddz.w     vf9, vf9, vf6z
+        
+        vftoi4.xyzw vf6, vf6
+        
+        vmtir       vi5, vf6w
+    
+        cfc2        v1, vi18
+    
+        and         v1, v1, a0
+    
+        beqz        v1, l_002CC570
+        nop
+    
+        vior        vi3, vi3, vi2
+        
+    l_002CC570:
+        vior        vi5, vi5, vi3
+        viand       vi4, vi4, vi5
+    
+        vmfir.w     vf6, vi5
+        
+        sqc2        vf4,    0(%5)
+        sqc2        vf5, 0x10(%5)
+        sqc2        vf6, 0x20(%5) 
+        
+        addi        v0, v0, -1
+        addiu       %5, %5, 48
+        
+        bnez        v0, l_002CC51C
+        
+        addiu       %4, %4, 48
+        
+        cfc2        v1, vi4
+        
+        bnez        v0, l_002CC600
+        nop
+    
+        vmulq.w     vf4, vf9, Q
+        
+        sqc2        vf4, 0(%5) 
+    .set reorder
+    " : : "r"(clip_vec), "r"(near_far_vec), "r"(zclip_ab_vec), "r"(zbuff_ab_vec), "r"(dp), "r"(p), "r"(num) : 
+    );
+
+    if ((Ps2_albinoid_flag == 0) && ((prim & 0x20000000000000))) 
+    {
+        Ps2AddOT((void*)0x70000000, num, Ps2AddPrimPrio, prim);
+    }
+    else 
+    {
+        SyncPath();
+        
+        loadImage((void*)0xF0000000); 
+    }
+    
+l_002CC600:
+    return;
 }
 
 // 100% matching!
