@@ -2,10 +2,15 @@
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-/*float mes_spos[4][3];*/
 float FontScaleX;
 float FontScaleY;
 float FontScaleCR;
+const float mes_spos[3][4] = 
+{
+    { 68.0f, 374.0f, 306.0f, 434.0f },
+    { 44.0f, 342.0f, 212.0f, 432.0f },
+    { 68.0f, 371.0f, 306.0f, 434.0f }
+};
 const unsigned char FontSz[126] = { 0x1c, 0x0e, 0x0e, 0x1c, 0x1c, 0x1c, 0x1c, 0x0e, 0x0e, 0x0e, 0x1c, 0x16, 0x0e, 0x14, 0x0e, 0x1c, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x0e, 0x0e, 0x1c, 0x1c, 0x1c, 0x14, 0x1c, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x0e, 0x12, 0x1a, 0x14, 0x1c, 0x1a, 0x18, 0x16, 0x18, 0x18, 0x14, 0x14, 0x18, 0x16, 0x1c, 0x16, 0x16, 0x14, 0x0e, 0x1c, 0x0e, 0x1c, 0x14, 0x1c, 0x10, 0x10, 0x0c, 0x10, 0x0e, 0x0e, 0x12, 0x12, 0x0a, 0x0c, 0x12, 0x0a, 0x18, 0x12, 0x10, 0x10, 0x10, 0x0e, 0x0e, 0x0c, 0x12, 0x10, 0x14, 0x10, 0x10, 0x0e, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c };
 
 // 100% matching! 
@@ -41,198 +46,319 @@ void bhSetMessage(int mes_typ, int mes_idx)
     sys->cb_flg &= ~(0x20000000 | 0x2000 | 0x1000);
 }
 
-// 
-// Start address: 0x2b7670
-void bhControlMessage(int mode)
+// 100% matching! 
+void bhControlMessage(int mode) 
 {
-	int itn;
-	int end;
-	int col;
-	int mct;
-	unsigned short id;
-	unsigned short cd;
-	unsigned short* dt;
-	//_anon2 pos;
-	// Line 160, Address: 0x2b7670, Func Offset: 0
-	// Line 164, Address: 0x2b7698, Func Offset: 0x28
-	// Line 165, Address: 0x2b76ac, Func Offset: 0x3c
-	// Line 166, Address: 0x2b76b4, Func Offset: 0x44
-	// Line 167, Address: 0x2b76e8, Func Offset: 0x78
-	// Line 168, Address: 0x2b76fc, Func Offset: 0x8c
-	// Line 167, Address: 0x2b7708, Func Offset: 0x98
-	// Line 168, Address: 0x2b770c, Func Offset: 0x9c
-	// Line 169, Address: 0x2b7714, Func Offset: 0xa4
-	// Line 170, Address: 0x2b7718, Func Offset: 0xa8
-	// Line 171, Address: 0x2b771c, Func Offset: 0xac
-	// Line 172, Address: 0x2b7720, Func Offset: 0xb0
-	// Line 174, Address: 0x2b7728, Func Offset: 0xb8
-	// Line 176, Address: 0x2b772c, Func Offset: 0xbc
-	// Line 178, Address: 0x2b7838, Func Offset: 0x1c8
-	// Line 180, Address: 0x2b7858, Func Offset: 0x1e8
-	// Line 179, Address: 0x2b785c, Func Offset: 0x1ec
-	// Line 180, Address: 0x2b7860, Func Offset: 0x1f0
-	// Line 181, Address: 0x2b7868, Func Offset: 0x1f8
-	// Line 183, Address: 0x2b7870, Func Offset: 0x200
-	// Line 184, Address: 0x2b7874, Func Offset: 0x204
-	// Line 183, Address: 0x2b7884, Func Offset: 0x214
-	// Line 184, Address: 0x2b7888, Func Offset: 0x218
-	// Line 185, Address: 0x2b7894, Func Offset: 0x224
-	// Line 188, Address: 0x2b789c, Func Offset: 0x22c
-	// Line 189, Address: 0x2b78b4, Func Offset: 0x244
-	// Line 192, Address: 0x2b78bc, Func Offset: 0x24c
-	// Line 195, Address: 0x2b78e8, Func Offset: 0x278
-	// Line 196, Address: 0x2b78ec, Func Offset: 0x27c
-	// Line 198, Address: 0x2b78f4, Func Offset: 0x284
-	// Line 199, Address: 0x2b78f8, Func Offset: 0x288
-	// Line 198, Address: 0x2b78fc, Func Offset: 0x28c
-	// Line 199, Address: 0x2b7900, Func Offset: 0x290
-	// Line 201, Address: 0x2b7918, Func Offset: 0x2a8
-	// Line 202, Address: 0x2b791c, Func Offset: 0x2ac
-	// Line 201, Address: 0x2b7920, Func Offset: 0x2b0
-	// Line 203, Address: 0x2b7924, Func Offset: 0x2b4
-	// Line 205, Address: 0x2b792c, Func Offset: 0x2bc
-	// Line 206, Address: 0x2b7934, Func Offset: 0x2c4
-	// Line 209, Address: 0x2b793c, Func Offset: 0x2cc
-	// Line 210, Address: 0x2b7940, Func Offset: 0x2d0
-	// Line 215, Address: 0x2b7960, Func Offset: 0x2f0
-	// Line 217, Address: 0x2b7984, Func Offset: 0x314
-	// Line 219, Address: 0x2b798c, Func Offset: 0x31c
-	// Line 222, Address: 0x2b7994, Func Offset: 0x324
-	// Line 225, Address: 0x2b799c, Func Offset: 0x32c
-	// Line 226, Address: 0x2b79ac, Func Offset: 0x33c
-	// Line 227, Address: 0x2b79b0, Func Offset: 0x340
-	// Line 226, Address: 0x2b79b8, Func Offset: 0x348
-	// Line 227, Address: 0x2b79c0, Func Offset: 0x350
-	// Line 229, Address: 0x2b79e0, Func Offset: 0x370
-	// Line 232, Address: 0x2b79e8, Func Offset: 0x378
-	// Line 229, Address: 0x2b79f0, Func Offset: 0x380
-	// Line 230, Address: 0x2b7a14, Func Offset: 0x3a4
-	// Line 231, Address: 0x2b7a40, Func Offset: 0x3d0
-	// Line 232, Address: 0x2b7a64, Func Offset: 0x3f4
-	// Line 233, Address: 0x2b7a78, Func Offset: 0x408
-	// Line 237, Address: 0x2b7a80, Func Offset: 0x410
-	// Line 238, Address: 0x2b7a88, Func Offset: 0x418
-	// Line 239, Address: 0x2b7a90, Func Offset: 0x420
-	// Line 238, Address: 0x2b7a94, Func Offset: 0x424
-	// Line 239, Address: 0x2b7a9c, Func Offset: 0x42c
-	// Line 240, Address: 0x2b7aa8, Func Offset: 0x438
-	// Line 244, Address: 0x2b7ab0, Func Offset: 0x440
-	// Line 248, Address: 0x2b7ab8, Func Offset: 0x448
-	// Line 252, Address: 0x2b7ac0, Func Offset: 0x450
-	// Line 256, Address: 0x2b7ac8, Func Offset: 0x458
-	// Line 260, Address: 0x2b7ad0, Func Offset: 0x460
-	// Line 269, Address: 0x2b7ad8, Func Offset: 0x468
-	// Line 270, Address: 0x2b7ae8, Func Offset: 0x478
-	// Line 271, Address: 0x2b7af4, Func Offset: 0x484
-	// Line 272, Address: 0x2b7b00, Func Offset: 0x490
-	// Line 271, Address: 0x2b7b04, Func Offset: 0x494
-	// Line 273, Address: 0x2b7b0c, Func Offset: 0x49c
-	// Line 276, Address: 0x2b7b14, Func Offset: 0x4a4
-	// Line 280, Address: 0x2b7b1c, Func Offset: 0x4ac
-	// Line 281, Address: 0x2b7b30, Func Offset: 0x4c0
-	// Line 282, Address: 0x2b7b34, Func Offset: 0x4c4
-	// Line 281, Address: 0x2b7b38, Func Offset: 0x4c8
-	// Line 282, Address: 0x2b7b40, Func Offset: 0x4d0
-	// Line 284, Address: 0x2b7b58, Func Offset: 0x4e8
-	// Line 305, Address: 0x2b7b60, Func Offset: 0x4f0
-	// Line 307, Address: 0x2b7b68, Func Offset: 0x4f8
-	// Line 308, Address: 0x2b7b84, Func Offset: 0x514
-	// Line 309, Address: 0x2b7b98, Func Offset: 0x528
-	// Line 308, Address: 0x2b7b9c, Func Offset: 0x52c
-	// Line 310, Address: 0x2b7ba8, Func Offset: 0x538
-	// Line 311, Address: 0x2b7bd0, Func Offset: 0x560
-	// Line 313, Address: 0x2b7bf0, Func Offset: 0x580
-	// Line 314, Address: 0x2b7c00, Func Offset: 0x590
-	// Line 316, Address: 0x2b7c18, Func Offset: 0x5a8
-	// Line 317, Address: 0x2b7c3c, Func Offset: 0x5cc
-	// Line 319, Address: 0x2b7c50, Func Offset: 0x5e0
-	// Line 317, Address: 0x2b7c54, Func Offset: 0x5e4
-	// Line 319, Address: 0x2b7c5c, Func Offset: 0x5ec
-	// Line 321, Address: 0x2b7c70, Func Offset: 0x600
-	// Line 322, Address: 0x2b7c74, Func Offset: 0x604
-	// Line 321, Address: 0x2b7c78, Func Offset: 0x608
-	// Line 322, Address: 0x2b7c80, Func Offset: 0x610
-	// Line 323, Address: 0x2b7c8c, Func Offset: 0x61c
-	// Line 325, Address: 0x2b7c94, Func Offset: 0x624
-	// Line 326, Address: 0x2b7cb8, Func Offset: 0x648
-	// Line 327, Address: 0x2b7cc4, Func Offset: 0x654
-	// Line 328, Address: 0x2b7cd8, Func Offset: 0x668
-	// Line 327, Address: 0x2b7cdc, Func Offset: 0x66c
-	// Line 328, Address: 0x2b7ce4, Func Offset: 0x674
-	// Line 329, Address: 0x2b7d0c, Func Offset: 0x69c
-	// Line 332, Address: 0x2b7d20, Func Offset: 0x6b0
-	// Line 334, Address: 0x2b7d28, Func Offset: 0x6b8
-	// Line 336, Address: 0x2b7d30, Func Offset: 0x6c0
-	// Line 334, Address: 0x2b7d34, Func Offset: 0x6c4
-	// Line 336, Address: 0x2b7d3c, Func Offset: 0x6cc
-	// Line 337, Address: 0x2b7d58, Func Offset: 0x6e8
-	// Line 339, Address: 0x2b7d64, Func Offset: 0x6f4
-	// Line 337, Address: 0x2b7d6c, Func Offset: 0x6fc
-	// Line 338, Address: 0x2b7d7c, Func Offset: 0x70c
-	// Line 339, Address: 0x2b7d8c, Func Offset: 0x71c
-	// Line 341, Address: 0x2b7d94, Func Offset: 0x724
-	// Line 342, Address: 0x2b7db4, Func Offset: 0x744
-	// Line 344, Address: 0x2b7dc0, Func Offset: 0x750
-	// Line 342, Address: 0x2b7dc8, Func Offset: 0x758
-	// Line 343, Address: 0x2b7dd8, Func Offset: 0x768
-	// Line 344, Address: 0x2b7de8, Func Offset: 0x778
-	// Line 346, Address: 0x2b7df0, Func Offset: 0x780
-	// Line 347, Address: 0x2b7e28, Func Offset: 0x7b8
-	// Line 348, Address: 0x2b7e58, Func Offset: 0x7e8
-	// Line 349, Address: 0x2b7e78, Func Offset: 0x808
-	// Line 351, Address: 0x2b7e88, Func Offset: 0x818
-	// Line 349, Address: 0x2b7e94, Func Offset: 0x824
-	// Line 351, Address: 0x2b7e98, Func Offset: 0x828
-	// Line 349, Address: 0x2b7e9c, Func Offset: 0x82c
-	// Line 351, Address: 0x2b7eac, Func Offset: 0x83c
-	// Line 349, Address: 0x2b7eb4, Func Offset: 0x844
-	// Line 350, Address: 0x2b7eb8, Func Offset: 0x848
-	// Line 351, Address: 0x2b7ed0, Func Offset: 0x860
-	// Line 353, Address: 0x2b7ed8, Func Offset: 0x868
-	// Line 354, Address: 0x2b7ef8, Func Offset: 0x888
-	// Line 357, Address: 0x2b7f00, Func Offset: 0x890
-	// Line 358, Address: 0x2b7f14, Func Offset: 0x8a4
-	// Line 359, Address: 0x2b7f1c, Func Offset: 0x8ac
-	// Line 358, Address: 0x2b7f20, Func Offset: 0x8b0
-	// Line 359, Address: 0x2b7f28, Func Offset: 0x8b8
-	// Line 360, Address: 0x2b7f30, Func Offset: 0x8c0
-	// Line 359, Address: 0x2b7f34, Func Offset: 0x8c4
-	// Line 360, Address: 0x2b7f3c, Func Offset: 0x8cc
-	// Line 361, Address: 0x2b7f50, Func Offset: 0x8e0
-	// Line 362, Address: 0x2b7f54, Func Offset: 0x8e4
-	// Line 363, Address: 0x2b7f64, Func Offset: 0x8f4
-	// Line 362, Address: 0x2b7f68, Func Offset: 0x8f8
-	// Line 363, Address: 0x2b7f70, Func Offset: 0x900
-	// Line 364, Address: 0x2b7f8c, Func Offset: 0x91c
-	// Line 365, Address: 0x2b7fac, Func Offset: 0x93c
-	// Line 367, Address: 0x2b7fc8, Func Offset: 0x958
-	// Line 370, Address: 0x2b7fd0, Func Offset: 0x960
-	// Line 371, Address: 0x2b7fe4, Func Offset: 0x974
-	// Line 372, Address: 0x2b7ffc, Func Offset: 0x98c
-	// Line 373, Address: 0x2b8008, Func Offset: 0x998
-	// Line 377, Address: 0x2b8010, Func Offset: 0x9a0
-	// Line 373, Address: 0x2b8014, Func Offset: 0x9a4
-	// Line 374, Address: 0x2b8020, Func Offset: 0x9b0
-	// Line 375, Address: 0x2b8034, Func Offset: 0x9c4
-	// Line 376, Address: 0x2b8048, Func Offset: 0x9d8
-	// Line 377, Address: 0x2b805c, Func Offset: 0x9ec
-	// Line 379, Address: 0x2b8070, Func Offset: 0xa00
-	// Line 380, Address: 0x2b8090, Func Offset: 0xa20
-	// Line 382, Address: 0x2b80a0, Func Offset: 0xa30
-	// Line 381, Address: 0x2b80ac, Func Offset: 0xa3c
-	// Line 380, Address: 0x2b80b8, Func Offset: 0xa48
-	// Line 381, Address: 0x2b80bc, Func Offset: 0xa4c
-	// Line 382, Address: 0x2b80c0, Func Offset: 0xa50
-	// Line 384, Address: 0x2b80d4, Func Offset: 0xa64
-	// Line 385, Address: 0x2b80f4, Func Offset: 0xa84
-	// Line 388, Address: 0x2b80fc, Func Offset: 0xa8c
-	// Line 389, Address: 0x2b811c, Func Offset: 0xaac
-	// Line 391, Address: 0x2b813c, Func Offset: 0xacc
-	// Line 392, Address: 0x2b8150, Func Offset: 0xae0
-	// Line 393, Address: 0x2b8158, Func Offset: 0xae8
-	// Line 395, Address: 0x2b815c, Func Offset: 0xaec
-	// Func End, Address: 0x2b8188, Func Offset: 0xb18
-	scePrintf("bhControlMessage - UNIMPLEMENTED!\n");
+    NJS_POINT2 pos;
+    unsigned short* dt;
+    unsigned short cd, id;
+    int mct, col, end;
+    int itn;
+    
+    dt = (unsigned short*)sys->mes_dp;
+    
+    sys->mes_seln = 0;
+    
+    if ((mode == 0) && (((sys->tk_flg & 0x1000)) && (!(sys->ts_flg & 0x1000)))) 
+    {
+        mode = 2;
+    }
+    
+    pos.x = mes_spos[mode][0];
+    pos.y = mes_spos[mode][1];
+    
+    mct = 0;
+    col = 0;
+    end = 0;
+    
+    while (mct <= sys->mes_ct) 
+    {
+        cd = *dt++;
+        
+        switch (cd) 
+        {
+        case 65535:
+            if (!(sys->st_flg & 0x800)) 
+            {
+                sys->st_flg |= 0x1000;
+            }
+            
+            end = 1;
+            
+            sys->st_flg |= 0x4000;
+            break;
+        case 65280:
+            pos.x = mes_spos[mode][0];
+            
+            pos.y += 30.0f * FontScaleCR;
+            continue;
+        case 65281:
+            pos.x += 14.0f * FontScaleX;
+            continue;
+        case 65282:
+            if ((sys->mes_tim != 0) || (((sys->st_flg & 0x4000)) || ((sys->st_flg & 0x800)))) 
+            {
+                dt++;
+            }
+            else 
+            {
+                sys->mes_tim = *dt++;
+                
+                if (sys->mes_tim == 0) 
+                {
+                    sys->st_flg |= 0x1000;
+                    
+                    end = 1;
+                    break;
+                }
+                
+                sys->st_flg |= 0x800;
+            }
+            
+            continue;
+        case 65283:
+            id = *dt++;
+            
+            if (id == 65535) 
+            { 
+                id = sys->sb_id;
+            }
+            
+            itn = bhDispItemName(&pos, id, 0, (sys->mes_ct - mct) + 1, -0.9f);
+            
+            if (itn == 0) 
+            {
+                end = 1;
+                break;
+            }
+            
+            mct += itn;
+            continue;
+        case 65284:
+            if (!(sys->st_flg & 0x8000)) 
+            {
+                sys->st_flg |= 0x8000;
+                
+                sys->mes_ct += 65536;
+            }
+            
+            sys->mes_sps[sys->mes_seln].x = pos.x;
+            sys->mes_sps[sys->mes_seln].y = pos.y;
+            
+            sys->mes_seln++;
+            
+            pos.x += 28.0f * FontScaleX;
+            continue;
+        case 65024:
+            if (mct >= sys->mes_ct) 
+            { 
+                sys->mes_ct += 65536;
+            
+                sys->st_flg |= 0x400;
+            }
+            
+            continue;
+        case 65025:
+            col = 0;
+            continue;
+        case 65026:
+            col = 1;
+            continue;
+        case 65027:
+            col = 2;
+            continue;
+        case 65028:
+            col = 3;
+            continue;
+        case 65029:
+            col = 4;
+            continue;
+        case 65030:
+            continue;
+        case 65031:
+            continue;
+        case 65032:
+            if (sys->mes_tim == 0) 
+            {
+                sys->mes_dp = (unsigned int*)dt;
+                
+                sys->st_flg &= ~0x800;
+                
+                end = 1;
+            } 
+            else 
+            {
+                end = 1;
+            }
+            
+            break;
+        case 65033:
+            if (!(sys->st_flg & 0x80000)) 
+            {
+                sys->st_flg |= 0x80000;
+                
+                sys->mes_sel = sys->mes_seln;
+            }
+            
+            continue;
+        case 65034:
+            continue;
+        case 65035:
+            continue;
+        case 65036:
+            continue;
+        case 65037:
+            continue;
+        case 65038:
+            continue;
+        case 65039:
+            continue;
+        }
+        
+        if (end != 0) 
+        { 
+            break;
+        }
+        
+        bhDispFont(&pos, cd, col, -0.9f);
+        pos.x += FontScaleX * bhGetFontSize(cd);
+        
+        mct++;
+    }
+    
+    if (sys->mes_tim == 0) 
+    {
+        if ((sys->st_flg & 0x8000)) 
+        {
+            if ((sys->pad_ps & 0x800)) 
+            {
+                if ((sys->st_flg & 0x8)) 
+                { 
+                    sys->mes_sel += 100;
+                }
+                
+                sys->st_flg &= ~0x8000;
+                
+                if (!(sys->st_flg & 0x2000)) 
+                {
+                    sys->cb_flg |= 0x1000;
+                    sys->st_flg |= 0x4000;
+                } 
+                else 
+                {
+                    if (((sys->gm_flg & 0x10000)) && ((sys->gm_flg & 0x20000))) 
+                    {
+                        sys->sp_flg |= 0x40;
+                    }
+                    
+                    sys->cb_flg |= 0x20002000;
+                    
+                    if ((sys->st_flg & 0x80)) 
+                    { 
+                        sys->st_flg |= 0x200000;
+                    }
+                    
+                    sys->st_flg |= 0x400000;
+                }
+                
+                return;
+            }
+                
+            sys->st_flg &= ~0x4000;
+            
+            if ((sys->pad_ps & 0x4)) 
+            {
+                sys->mes_sel--;
+                
+                sys->mes_fls = 0;
+                
+                CallSystemSe(0, 2);
+            }
+            
+            if ((sys->pad_ps & 0x8)) 
+            {
+                sys->mes_sel++;
+                
+                sys->mes_fls = 0;
+                
+                CallSystemSe(0, 2);
+            }
+            
+            if (sys->mes_sel >= sys->mes_seln) 
+            { 
+                sys->mes_sel = 0;
+            }
+            
+            if (sys->mes_sel < 0) 
+            {
+                sys->mes_sel = sys->mes_seln - 1;
+            }
+            
+            if (sys->mes_fls < 24) 
+            {
+                pos.x = sys->mes_sps[sys->mes_sel].x;
+                pos.y = sys->mes_sps[sys->mes_sel].y;
+                
+                bhDispFont(&pos, 28, 0, -0.9f);
+            }
+            
+            sys->mes_fls = (sys->mes_fls + 1) & 0x1F;
+        }
+        else if (((sys->st_flg & 0x4000)) && (!(sys->st_flg & 0x1000))) 
+        {
+            sys->st_flg &= ~0x200;
+            sys->cb_flg |= 0x2000;
+            
+            if ((sys->st_flg & 0x2000))
+            {
+                sys->sp_flg = -1;
+                
+                sys->st_flg &= ~0x2204;
+                
+                sys->pad_on = sys->pad_onb;
+                sys->pad_ps = sys->pad_psb;
+                sys->pad_old = sys->pad_oldb;
+            }
+            
+            return;
+        }
+        else if ((!(sys->st_flg & 0x4000)) && ((sys->st_flg & 0x1000))) 
+        {
+            if ((sys->pad_ps & 0x800))
+            {
+                sys->mes_dp = (unsigned int*)dt;
+                
+                sys->mes_ct = 0;
+                sys->mes_tim = 0;
+                sys->mes_fls = 0;
+                sys->mes_sel = 0;
+                
+                sys->st_flg &= ~0x1000;
+            }
+            
+            if (sys->mes_fls < 24) 
+            {
+                pos.x = mes_spos[mode][2];
+                pos.y = mes_spos[mode][3];
+                
+                bhDispFont(&pos, 29, 0, -0.9f);
+            }
+            
+            sys->mes_fls = (sys->mes_fls + 1) & 0x1F;
+        }
+        else if (((sys->pad_on & 0x800)) && (!(sys->st_flg & 0x400))) 
+        {
+            sys->mes_ct += 4;
+        }
+        else 
+        {
+            sys->mes_ct++;
+        }
+    } 
+    else 
+    {
+        sys->mes_tim--;
+    }
 }
 
 // 100% matching! 
