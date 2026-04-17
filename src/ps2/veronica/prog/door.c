@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/door.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
@@ -1177,24 +1178,20 @@ static int CompareFloat(float val_a, int cmp_typ, float val_b)
     }
 }
 
-/*// 
-// Start address: 0x2b19b0
-void VectorMove(_anon12* posP, int yaw, int pitch, float speed)
+// 100% matching! 
+static void VectorMove(NJS_POINT3* posP, int yaw, int pitch, float speed)
 {
-	// Line 2080, Address: 0x2b19b0, Func Offset: 0
-	// Line 2083, Address: 0x2b19c8, Func Offset: 0x18
-	// Line 2080, Address: 0x2b19cc, Func Offset: 0x1c
-	// Line 2083, Address: 0x2b19d0, Func Offset: 0x20
-	// Line 2085, Address: 0x2b19e4, Func Offset: 0x34
-	// Line 2087, Address: 0x2b19f8, Func Offset: 0x48
-	// Line 2085, Address: 0x2b1a00, Func Offset: 0x50
-	// Line 2087, Address: 0x2b1a08, Func Offset: 0x58
-	// Line 2088, Address: 0x2b1a14, Func Offset: 0x64
-	// Line 2089, Address: 0x2b1a24, Func Offset: 0x74
-	// Line 2091, Address: 0x2b1a3c, Func Offset: 0x8c
-	// Line 2092, Address: 0x2b1a5c, Func Offset: 0xac
-	// Func End, Address: 0x2b1a78, Func Offset: 0xc8
-}*/
+    njUnitMatrix(lcmat);
+    
+	*(NJS_POINT3*)&lcmat[0][12] = *posP;
+    
+    njRotateY(lcmat, yaw);
+    njRotateX(lcmat, pitch);
+    
+    njTranslate(lcmat, 0, 0, -speed);
+    
+	*posP = *(NJS_POINT3*)&lcmat[0][12];
+}
 
 // 100% matching!
 static void LightSubAmb(_door_wrk* dwP, NJS_POINT3* ambP, NJS_POINT3* offP) // first parameter is not present on DWARF
