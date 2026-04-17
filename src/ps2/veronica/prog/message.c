@@ -382,7 +382,7 @@ void bhDispFontEx(NJS_POINT2* pos, int code, unsigned int argb, float pri)
     njDrawPolygon2DM(&p2c, 4, pri, 0x80000060);
 }
 
-// 99.52% matching
+// 100% matching!
 int bhDispItemName(NJS_POINT2* pos, int id, int color, int count, float pri)
 {
     unsigned short* dp; 
@@ -394,7 +394,14 @@ int bhDispItemName(NJS_POINT2* pos, int id, int color, int count, float pri)
     
     dp = (unsigned short*)((char*)sys->mes_ip + sys->mes_ip[id + 1]);
     
-    cflg = (count == 0) ? 0 : 1;
+    if (count != 0) 
+    { 
+        cflg = 1;
+    }
+    else 
+    {
+        cflg = 0;
+    }
 
     while (TRUE)
     {
