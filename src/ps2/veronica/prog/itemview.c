@@ -1,25 +1,26 @@
+#include "../../../ps2/veronica/prog/item.h"
 #include "../../../ps2/veronica/prog/itemview.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/sub1.h"
 
-/*unsigned char(*actionprg)(_anon5*)[3];
+/*unsigned char(*actionprg)(SITEM*)[3];
 unsigned int* wp_;
 unsigned char flg[3];
 int ang_00[3];
 int ang_01[3];
 int ang_02[3];
-_anon32 vec_00;
+NJS_POINT3 vec_00;
 float check[16];
 float testf;*/
 static NJS_VECTOR whd;
 /*unsigned int ItemViewTypeTbl[168];
 int ViewType;
-_anon33 fvwork;
-_anon6 dsptbl[0];
-_anon2 swork;
+FV_WORK fvwork;
+DSP_WORK dsptbl[0];
+S_WORK swork;
 _anon24* sys;
-_anon5 sitem;
-_anon32 hoseipos[0];
+SITEM sitem;
+NJS_POINT3 hoseipos[0];
 unsigned char itemflg[8][0];
 unsigned short getmestbl[0];
 _anon23 itemdata[0];
@@ -27,15 +28,16 @@ unsigned short mestbl[0];
 short c_a[6][0];
 _anon41 parts_10b[0];
 unsigned short idsettbl[0];
+*/
 
 // 
 // Start address: 0x2a9870
-void DrawSubItem(_anon2* st, _anon5* si)
+void DrawSubItem(S_WORK* st, SITEM* si)
 {
-	_anon32 pos00;
-	_anon6* dw_a;
-	_anon33* fv;
-	_anon1* sc;
+	NJS_POINT3 pos00;
+	DSP_WORK* dw_a;
+	FV_WORK* fv;
+	STCAM_WRK* sc;
 	float testtest[16];
 	// Line 173, Address: 0x2a9870, Func Offset: 0
 	// Line 184, Address: 0x2a988c, Func Offset: 0x1c
@@ -176,13 +178,14 @@ void DrawSubItem(_anon2* st, _anon5* si)
 	// Line 437, Address: 0x2aa258, Func Offset: 0x9e8
 	// Line 440, Address: 0x2aa260, Func Offset: 0x9f0
 	// Func End, Address: 0x2aa280, Func Offset: 0xa10
+	scePrintf("DrawSubItem - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2aa280
 void Model_Read_Start()
 {
-	_anon5* si;
+	SITEM* si;
 	// Line 448, Address: 0x2aa280, Func Offset: 0
 	// Line 444, Address: 0x2aa288, Func Offset: 0x8
 	// Line 448, Address: 0x2aa28c, Func Offset: 0xc
@@ -203,14 +206,15 @@ void Model_Read_Start()
 	// Line 464, Address: 0x2aa394, Func Offset: 0x114
 	// Line 467, Address: 0x2aa3a8, Func Offset: 0x128
 	// Func End, Address: 0x2aa3b0, Func Offset: 0x130
+	scePrintf("Model_Read_start - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2aa3b0
-void Model_Read_Set(_anon2* st)
+void Model_Read_Set(S_WORK* st)
 {
-	_anon6* dw;
-	_anon5* si;
+	DSP_WORK* dw;
+	SITEM* si;
 	// Line 471, Address: 0x2aa3b0, Func Offset: 0
 	// Line 472, Address: 0x2aa3c4, Func Offset: 0x14
 	// Line 478, Address: 0x2aa3cc, Func Offset: 0x1c
@@ -266,7 +270,8 @@ void Model_Read_Set(_anon2* st)
 	// Line 533, Address: 0x2aa660, Func Offset: 0x2b0
 	// Line 536, Address: 0x2aa674, Func Offset: 0x2c4
 	// Func End, Address: 0x2aa68c, Func Offset: 0x2dc
-}*/
+	scePrintf("Model_Read_set - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void CameraInit()
@@ -311,11 +316,11 @@ void CameraSet()
     njGetMatrix(&st_cam.cmat1);
 }
 
-/*// 
+// 
 // Start address: 0x2aa7e0
 void ItemView()
 {
-	_anon2* st;
+	S_WORK* st;
 	// Line 576, Address: 0x2aa7e0, Func Offset: 0
 	// Line 585, Address: 0x2aa7e8, Func Offset: 0x8
 	// Line 577, Address: 0x2aa7ec, Func Offset: 0xc
@@ -348,14 +353,15 @@ void ItemView()
 	// Line 625, Address: 0x2aa8f8, Func Offset: 0x118
 	// Line 628, Address: 0x2aa900, Func Offset: 0x120
 	// Func End, Address: 0x2aa90c, Func Offset: 0x12c
+	scePrintf("ItemView - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2aa910
 void ItemModelChangeZoomIn()
 {
-	_anon1* sc;
-	_anon2* st;
+	STCAM_WRK* sc;
+	S_WORK* st;
 	// Line 630, Address: 0x2aa910, Func Offset: 0
 	// Line 638, Address: 0x2aa91c, Func Offset: 0xc
 	// Line 631, Address: 0x2aa924, Func Offset: 0x14
@@ -383,6 +389,7 @@ void ItemModelChangeZoomIn()
 	// Line 652, Address: 0x2aa9fc, Func Offset: 0xec
 	// Line 654, Address: 0x2aaa14, Func Offset: 0x104
 	// Func End, Address: 0x2aaa24, Func Offset: 0x114
+	scePrintf("ItemModelChangeZoomIn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -397,10 +404,10 @@ void ItemModelCheck()
 	unsigned int* wp;
 	int c01;
 	int c00;
-	_anon6* dw;
-	_anon1* sc;
-	_anon5* si;
-	_anon2* st;
+	DSP_WORK* dw;
+	STCAM_WRK* sc;
+	SITEM* si;
+	S_WORK* st;
 	short at_ang;
 	// Line 656, Address: 0x2aaa30, Func Offset: 0
 	// Line 660, Address: 0x2aaa5c, Func Offset: 0x2c
@@ -537,14 +544,15 @@ void ItemModelCheck()
 	// Line 886, Address: 0x2ab0b0, Func Offset: 0x680
 	// Line 888, Address: 0x2ab0b4, Func Offset: 0x684
 	// Func End, Address: 0x2ab0e4, Func Offset: 0x6b4
+	scePrintf("ItemModelCheck - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2ab0f0
 void ItemModelActionSet()
 {
-	_anon6* dw;
-	_anon2* st;
+	DSP_WORK* dw;
+	S_WORK* st;
 	// Line 891, Address: 0x2ab0f0, Func Offset: 0
 	// Line 895, Address: 0x2ab0fc, Func Offset: 0xc
 	// Line 892, Address: 0x2ab104, Func Offset: 0x14
@@ -558,6 +566,7 @@ void ItemModelActionSet()
 	// Line 901, Address: 0x2ab180, Func Offset: 0x90
 	// Line 903, Address: 0x2ab188, Func Offset: 0x98
 	// Func End, Address: 0x2ab198, Func Offset: 0xa8
+	scePrintf("ItemModelActionSet - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -565,10 +574,10 @@ void ItemModelActionSet()
 void ItemModelChangeZoomOut()
 {
 	int chkang;
-	_anon6* dw;
-	_anon5* si;
-	_anon1* sc;
-	_anon2* st;
+	DSP_WORK* dw;
+	SITEM* si;
+	STCAM_WRK* sc;
+	S_WORK* st;
 	// Line 906, Address: 0x2ab1a0, Func Offset: 0
 	// Line 915, Address: 0x2ab1b8, Func Offset: 0x18
 	// Line 907, Address: 0x2ab1c0, Func Offset: 0x20
@@ -631,14 +640,15 @@ void ItemModelChangeZoomOut()
 	// Line 960, Address: 0x2ab41c, Func Offset: 0x27c
 	// Line 962, Address: 0x2ab428, Func Offset: 0x288
 	// Func End, Address: 0x2ab444, Func Offset: 0x2a4
+	scePrintf("ItemModelChangeZoomOut - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2ab450
 void ItemModelMessageWait()
 {
-	_anon6* dw;
-	_anon2* st;
+	DSP_WORK* dw;
+	S_WORK* st;
 	// Line 966, Address: 0x2ab450, Func Offset: 0
 	// Line 965, Address: 0x2ab45c, Func Offset: 0xc
 	// Line 966, Address: 0x2ab460, Func Offset: 0x10
@@ -666,6 +676,7 @@ void ItemModelMessageWait()
 	// Line 983, Address: 0x2ab538, Func Offset: 0xe8
 	// Line 987, Address: 0x2ab540, Func Offset: 0xf0
 	// Func End, Address: 0x2ab548, Func Offset: 0xf8
+	scePrintf("ItemModelMessageWait - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -678,11 +689,12 @@ unsigned char MdlDirChk(short* dirang, short mdlang)
 	// Line 999, Address: 0x2ab570, Func Offset: 0x20
 	// Line 1005, Address: 0x2ab590, Func Offset: 0x40
 	// Func End, Address: 0x2ab598, Func Offset: 0x48
+	scePrintf("MdlDirChk - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2ab5a0
-unsigned char MdlAction00(_anon5* si)
+unsigned char MdlAction00(SITEM* si)
 {
 	// Line 1009, Address: 0x2ab5a0, Func Offset: 0
 	// Line 1011, Address: 0x2ab5dc, Func Offset: 0x3c
@@ -701,11 +713,12 @@ unsigned char MdlAction00(_anon5* si)
 	// Line 1030, Address: 0x2ab6a0, Func Offset: 0x100
 	// Line 1032, Address: 0x2ab6a4, Func Offset: 0x104
 	// Func End, Address: 0x2ab6ac, Func Offset: 0x10c
+	scePrintf("MdlAction00 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2ab6b0
-unsigned char MdlAction01(_anon5* si)
+unsigned char MdlAction01(SITEM* si)
 {
 	// Line 1036, Address: 0x2ab6b0, Func Offset: 0
 	// Line 1038, Address: 0x2ab6e0, Func Offset: 0x30
@@ -745,11 +758,12 @@ unsigned char MdlAction01(_anon5* si)
 	// Line 1076, Address: 0x2ab914, Func Offset: 0x264
 	// Line 1077, Address: 0x2ab918, Func Offset: 0x268
 	// Func End, Address: 0x2ab920, Func Offset: 0x270
+	scePrintf("MdlAction01 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2ab920
-unsigned char MdlAction02(_anon5* si)
+unsigned char MdlAction02(SITEM* si)
 {
 	// Line 1081, Address: 0x2ab920, Func Offset: 0
 	// Line 1083, Address: 0x2ab950, Func Offset: 0x30
@@ -767,6 +781,7 @@ unsigned char MdlAction02(_anon5* si)
 	// Line 1100, Address: 0x2aba14, Func Offset: 0xf4
 	// Line 1101, Address: 0x2aba18, Func Offset: 0xf8
 	// Func End, Address: 0x2aba20, Func Offset: 0x100
+	scePrintf("MdlAction02 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -775,11 +790,12 @@ void MdlEvalflagsSet(unsigned short evalchk)
 {
 	// Line 1108, Address: 0x2aba20, Func Offset: 0
 	// Func End, Address: 0x2aba48, Func Offset: 0x28
+	scePrintf("MdlEvalFlagsSet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2aba50
-void MdlHideCheck(npobj* op, unsigned char el, unsigned char chk)
+void MdlHideCheck(NJS_CNK_OBJECT* op, unsigned char el, unsigned char chk)
 {
 	// Line 1112, Address: 0x2aba50, Func Offset: 0
 	// Line 1113, Address: 0x2aba68, Func Offset: 0x18
@@ -796,7 +812,8 @@ void MdlHideCheck(npobj* op, unsigned char el, unsigned char chk)
 	// Line 1124, Address: 0x2abb04, Func Offset: 0xb4
 	// Line 1127, Address: 0x2abb1c, Func Offset: 0xcc
 	// Func End, Address: 0x2abb34, Func Offset: 0xe4
-}*/
+	scePrintf("MdlHideCheck - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 float ModelScaleSet(SITEM* itemmodel, int flg)
@@ -868,9 +885,9 @@ void MakeTag(unsigned short flg)
 	int i;
 	_anon38 p3c;
 	_anon18 col[4];
-	_anon32 p[4];
-	_anon33* fv;
-	_anon2* st;
+	NJS_POINT3 p[4];
+	FV_WORK* fv;
+	S_WORK* st;
 	// Line 1254, Address: 0x2abd20, Func Offset: 0
 	// Line 1256, Address: 0x2abd3c, Func Offset: 0x1c
 	// Line 1258, Address: 0x2abd44, Func Offset: 0x24

@@ -30,7 +30,7 @@ void ControlFileView()
 // Start address: 0x2ac000
 void FileSelect()
 {
-	//_anon11* fv;
+	//FV_WORK* fv;
 	// Line 171, Address: 0x2ac000, Func Offset: 0
 	// Line 175, Address: 0x2ac008, Func Offset: 0x8
 	// Line 173, Address: 0x2ac00c, Func Offset: 0xc
@@ -110,8 +110,8 @@ void GetFile()
 // Start address: 0x2ac1e0
 void FileViewInit()
 {
-	//_anon11* fv;
-	//_anon12* st;
+	//FV_WORK* fv;
+	//S_WORK* st;
 	// Line 247, Address: 0x2ac1e0, Func Offset: 0
 	// Line 250, Address: 0x2ac1ec, Func Offset: 0xc
 	// Line 248, Address: 0x2ac1f0, Func Offset: 0x10
@@ -186,13 +186,14 @@ void FileViewExit()
     }
 }
 
-/*// 
+// 
 // Start address: 0x2ac440
 void FileExit00()
 {
 	// Line 326, Address: 0x2ac440, Func Offset: 0
 	// Line 356, Address: 0x2ac454, Func Offset: 0x14
 	// Func End, Address: 0x2ac45c, Func Offset: 0x1c
+	scePrintf("FileExit00 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -202,8 +203,8 @@ void FileExit01()
 	unsigned int* itm;
 	unsigned int* wp;
 	int num;
-	_anon11* fv;
-	_anon12* st;
+	FV_WORK* fv;
+	S_WORK* st;
 	// Line 360, Address: 0x2ac460, Func Offset: 0
 	// Line 363, Address: 0x2ac46c, Func Offset: 0xc
 	// Line 361, Address: 0x2ac474, Func Offset: 0x14
@@ -274,7 +275,8 @@ void FileExit01()
 	// Line 453, Address: 0x2ac6e8, Func Offset: 0x288
 	// Line 460, Address: 0x2ac700, Func Offset: 0x2a0
 	// Func End, Address: 0x2ac710, Func Offset: 0x2b0
-}*/
+	scePrintf("FileExit01 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int SearchTag(int dir)
@@ -311,8 +313,8 @@ void SelectFile()
 	unsigned int tagbak;
 	short i;
 	_anon14* si;
-	_anon12* st;
-	_anon11* fv;
+	S_WORK* st;
+	FV_WORK* fv;
 	// Line 481, Address: 0x2ac780, Func Offset: 0
 	// Line 482, Address: 0x2ac78c, Func Offset: 0xc
 	// Line 481, Address: 0x2ac790, Func Offset: 0x10
@@ -478,8 +480,8 @@ void SelectTag()
 	short i;
 	_anon26 mpos;
 	_anon14* si;
-	_anon11* fv;
-	_anon12* st;
+	FV_WORK* fv;
+	S_WORK* st;
 	// Line 648, Address: 0x2acf10, Func Offset: 0
 	// Line 650, Address: 0x2acf20, Func Offset: 0x10
 	// Line 657, Address: 0x2acf28, Func Offset: 0x18
@@ -644,8 +646,8 @@ void FileScreenCancel()
 void FileScrollSet()
 {
 	int page_end;
-	//_anon11* fv;
-	//_anon12* st;
+	//FV_WORK* fv;
+	//S_WORK* st;
 	// Line 811, Address: 0x2ad640, Func Offset: 0
 	// Line 815, Address: 0x2ad650, Func Offset: 0x10
 	// Line 812, Address: 0x2ad654, Func Offset: 0x14
@@ -773,7 +775,7 @@ void FileGetWait()
 void PageScroll()
 {
 	int page_end;
-	//_anon11* fv;
+	//FV_WORK* fv;
 	// Line 938, Address: 0x2adb90, Func Offset: 0
 	// Line 943, Address: 0x2adb9c, Func Offset: 0xc
 	// Line 940, Address: 0x2adba4, Func Offset: 0x14
@@ -871,7 +873,7 @@ void PageScroll()
 void FileEtcDisplay()
 {
 	int page_end;
-	//_anon11* fv;
+	//FV_WORK* fv;
 	unsigned short flg;
 	unsigned short count;
 	// Line 1069, Address: 0x2ae080, Func Offset: 0
@@ -963,8 +965,8 @@ void ReadFstx()
 {
 	unsigned int num;
 	int sz;
-	//_anon11* fv;
-	//_anon12* st;
+	//FV_WORK* fv;
+	//S_WORK* st;
 	// Line 1160, Address: 0x2ae4b0, Func Offset: 0
 	// Line 1167, Address: 0x2ae4c0, Func Offset: 0x10
 	// Line 1161, Address: 0x2ae4c8, Func Offset: 0x18
