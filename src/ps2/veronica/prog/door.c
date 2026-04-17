@@ -6,6 +6,7 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
 _door_wrk DoorWrk;
+
 const _proc_wrk FadeProcTbl[2] = 
 { 
 	NULL, (void*)FadeProc1 
@@ -1272,34 +1273,56 @@ void ryExcuteFade(float pri, int col, float rate)
 	// Func End, Address: 0x2b1d14, Func Offset: 0xf4
 }*/
 
-// 
-// Start address: 0x2b1d20
-void PuruProc1(_door_wrk* dwP)
+// 100% matching!
+static void PuruProc1(_door_wrk* dwP) 
 {
-	//_anon43* ppP;
-	// Line 2189, Address: 0x2b1d20, Func Offset: 0
-	// Line 2190, Address: 0x2b1d30, Func Offset: 0x10
-	// Line 2192, Address: 0x2b1d38, Func Offset: 0x18
-	// Line 2195, Address: 0x2b1d64, Func Offset: 0x44
-	// Line 2196, Address: 0x2b1d6c, Func Offset: 0x4c
-	// Line 2197, Address: 0x2b1d74, Func Offset: 0x54
-	// Line 2201, Address: 0x2b1d80, Func Offset: 0x60
-	// Line 2203, Address: 0x2b1d9c, Func Offset: 0x7c
-	// Line 2204, Address: 0x2b1da0, Func Offset: 0x80
-	// Line 2209, Address: 0x2b1da8, Func Offset: 0x88
-	// Line 2210, Address: 0x2b1db4, Func Offset: 0x94
-	// Line 2212, Address: 0x2b1dbc, Func Offset: 0x9c
-	// Line 2213, Address: 0x2b1dc8, Func Offset: 0xa8
-	// Line 2215, Address: 0x2b1dcc, Func Offset: 0xac
-	// Line 2213, Address: 0x2b1dd4, Func Offset: 0xb4
-	// Line 2215, Address: 0x2b1dd8, Func Offset: 0xb8
-	// Line 2216, Address: 0x2b1df0, Func Offset: 0xd0
-	// Line 2217, Address: 0x2b1dfc, Func Offset: 0xdc
-	// Line 2218, Address: 0x2b1e04, Func Offset: 0xe4
-	// Line 2220, Address: 0x2b1e0c, Func Offset: 0xec
-	// Line 2224, Address: 0x2b1e28, Func Offset: 0x108
-	// Func End, Address: 0x2b1e3c, Func Offset: 0x11c
-	scePrintf("PuruProc1 - UNIMPLEMENTED!\n");
+    PURUPROC_WORK* ppP; 
+    
+    ppP = dwP->ppP;
+    
+    switch (dwP->pru_mode) 
+    {                           
+    case 0:
+        dwP->pru_reg = ppP->wait_time;
+        dwP->pru_tim = ppP->loop_time;
+        
+        dwP->pru_mode++;
+    case 1:
+        if (dwP->pru_reg == 0) 
+        {
+            dwP->pru_mode++;
+        }
+        else 
+        {
+            dwP->pru_reg--;
+            break;
+        }
+    case 2:
+        if (dwP->pru_tim != 0)
+        {
+            dwP->pru_tim--;
+            
+            if (dwP->pru_reg == 0) 
+            {
+                dwP->pru_reg = ppP->pru_wait;
+                
+                CallSystemSe(0, PruSndTbl[ppP->snd_no]);
+                
+                StartVibrationEx(2, ppP->pru_no);
+            } 
+            else 
+            {
+                dwP->pru_reg--;
+            }
+            
+            if (dwP->pru_reg == ppP->pru_wait) 
+            {
+                StartVibrationEx(2, ppP->pru_no);
+            }
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!

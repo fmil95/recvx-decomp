@@ -19,6 +19,16 @@ typedef struct LIGHTPROC_WORK
     LGT_WRK lgt_dat[3]; // offset 0x10, size 0x6C
 } LIGHTPROC_WORK;
 
+typedef struct PURUPROC_WORK 
+{
+    // total size: 0x14
+    int wait_time; // offset 0x0, size 0x4
+    int loop_time; // offset 0x4, size 0x4
+    int snd_no;    // offset 0x8, size 0x4
+    int pru_no;    // offset 0xC, size 0x4
+    int pru_wait;  // offset 0x10, size 0x4
+} PURUPROC_WORK;
+
 typedef enum SPD_MDE
 {
 	DMO_SPD_1 = 0,
