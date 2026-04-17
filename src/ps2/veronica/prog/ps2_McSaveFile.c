@@ -786,6 +786,7 @@ void mcDispFileName(SELECTFILEINFO* pFileInfo, float fy)
 {
 	NJS_POINT2 pos; 
     unsigned int col; 
+    unsigned int code; // not from DWARF
     
     if ((pFileInfo->save_ct == 0) && (pFileInfo->gm_mode == 0) && (pFileInfo->ply_id == 0) && (pFileInfo->saveroom == 0)) 
     {
@@ -815,11 +816,13 @@ void mcDispFileName(SELECTFILEINFO* pFileInfo, float fy)
     
     pos.x = 262.0f;
     
-    bhDispFontEx(&pos, MesNumTbl[pFileInfo->save_ct / 10], col, -1.0f);
+    code = MesNumTbl[pFileInfo->save_ct / 10];
+    bhDispFontEx(&pos, code, col, -1.0f);
     
     pos.x = 288.0f;
     
-    bhDispFontEx(&pos, MesNumTbl[pFileInfo->save_ct % 10], col, -1.0f);
+    code = MesNumTbl[pFileInfo->save_ct % 10];
+    bhDispFontEx(&pos, code, col, -1.0f);
     
     pos.x = 320.0f;
     
