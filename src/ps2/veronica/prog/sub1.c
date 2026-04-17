@@ -1,11 +1,19 @@
 #include "../../../ps2/veronica/prog/sub1.h"
+#include "../../../ps2/veronica/prog/event.h"
 #include "../../../ps2/veronica/prog/fileview.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/message.h"
 #include "../../../ps2/veronica/prog/padman.h"
+#include "../../../ps2/veronica/prog/player.h"
+#include "../../../ps2/veronica/prog/ps2_NaFog.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_texture.h"
+#include "../../../ps2/veronica/prog/screen.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
 
 S_WORK swork;
 
@@ -1334,176 +1342,221 @@ void BGFadeOut()
 	// Func End, Address: 0x29d568, Func Offset: 0x78
 }*/
 
-// 
-// Start address: 0x29d570
+// 99.79% matching 
 void ItemTaskCheck()
 {
-	//_anon4* st;
-	// Line 2289, Address: 0x29d570, Func Offset: 0
-	// Line 2296, Address: 0x29d57c, Func Offset: 0xc
-	// Line 2293, Address: 0x29d584, Func Offset: 0x14
-	// Line 2296, Address: 0x29d58c, Func Offset: 0x1c
-	// Line 2297, Address: 0x29d5ac, Func Offset: 0x3c
-	// Line 2299, Address: 0x29d5b4, Func Offset: 0x44
-	// Line 2301, Address: 0x29d5bc, Func Offset: 0x4c
-	// Line 2308, Address: 0x29d5c0, Func Offset: 0x50
-	// Line 2309, Address: 0x29d5c4, Func Offset: 0x54
-	// Line 2310, Address: 0x29d5c8, Func Offset: 0x58
-	// Line 2299, Address: 0x29d5cc, Func Offset: 0x5c
-	// Line 2311, Address: 0x29d5d8, Func Offset: 0x68
-	// Line 2312, Address: 0x29d5dc, Func Offset: 0x6c
-	// Line 2314, Address: 0x29d5e0, Func Offset: 0x70
-	// Line 2299, Address: 0x29d5e4, Func Offset: 0x74
-	// Line 2301, Address: 0x29d5e8, Func Offset: 0x78
-	// Line 2304, Address: 0x29d5f4, Func Offset: 0x84
-	// Line 2301, Address: 0x29d5f8, Func Offset: 0x88
-	// Line 2304, Address: 0x29d600, Func Offset: 0x90
-	// Line 2308, Address: 0x29d610, Func Offset: 0xa0
-	// Line 2309, Address: 0x29d614, Func Offset: 0xa4
-	// Line 2310, Address: 0x29d618, Func Offset: 0xa8
-	// Line 2311, Address: 0x29d61c, Func Offset: 0xac
-	// Line 2314, Address: 0x29d620, Func Offset: 0xb0
-	// Line 2315, Address: 0x29d628, Func Offset: 0xb8
-	// Line 2319, Address: 0x29d638, Func Offset: 0xc8
-	// Line 2330, Address: 0x29d63c, Func Offset: 0xcc
-	// Line 2327, Address: 0x29d640, Func Offset: 0xd0
-	// Line 2328, Address: 0x29d644, Func Offset: 0xd4
-	// Line 2329, Address: 0x29d648, Func Offset: 0xd8
-	// Line 2319, Address: 0x29d64c, Func Offset: 0xdc
-	// Line 2321, Address: 0x29d654, Func Offset: 0xe4
-	// Line 2330, Address: 0x29d658, Func Offset: 0xe8
-	// Line 2334, Address: 0x29d65c, Func Offset: 0xec
-	// Line 2321, Address: 0x29d664, Func Offset: 0xf4
-	// Line 2322, Address: 0x29d66c, Func Offset: 0xfc
-	// Line 2323, Address: 0x29d678, Func Offset: 0x108
-	// Line 2324, Address: 0x29d684, Func Offset: 0x114
-	// Line 2325, Address: 0x29d690, Func Offset: 0x120
-	// Line 2326, Address: 0x29d69c, Func Offset: 0x12c
-	// Line 2327, Address: 0x29d6a8, Func Offset: 0x138
-	// Line 2328, Address: 0x29d6b8, Func Offset: 0x148
-	// Line 2329, Address: 0x29d6cc, Func Offset: 0x15c
-	// Line 2330, Address: 0x29d6e0, Func Offset: 0x170
-	// Line 2332, Address: 0x29d6f4, Func Offset: 0x184
-	// Line 2334, Address: 0x29d6f8, Func Offset: 0x188
-	// Line 2335, Address: 0x29d700, Func Offset: 0x190
-	// Line 2336, Address: 0x29d708, Func Offset: 0x198
-	// Line 2335, Address: 0x29d710, Func Offset: 0x1a0
-	// Line 2336, Address: 0x29d71c, Func Offset: 0x1ac
-	// Line 2338, Address: 0x29d72c, Func Offset: 0x1bc
-	// Line 2339, Address: 0x29d73c, Func Offset: 0x1cc
-	// Line 2340, Address: 0x29d74c, Func Offset: 0x1dc
-	// Line 2341, Address: 0x29d764, Func Offset: 0x1f4
-	// Line 2343, Address: 0x29d778, Func Offset: 0x208
-	// Line 2344, Address: 0x29d788, Func Offset: 0x218
-	// Line 2347, Address: 0x29d798, Func Offset: 0x228
-	// Line 2350, Address: 0x29d7d8, Func Offset: 0x268
-	// Line 2351, Address: 0x29d7e4, Func Offset: 0x274
-	// Line 2352, Address: 0x29d7ec, Func Offset: 0x27c
-	// Line 2350, Address: 0x29d7f0, Func Offset: 0x280
-	// Line 2351, Address: 0x29d7f8, Func Offset: 0x288
-	// Line 2352, Address: 0x29d800, Func Offset: 0x290
-	// Line 2351, Address: 0x29d804, Func Offset: 0x294
-	// Line 2352, Address: 0x29d808, Func Offset: 0x298
-	// Line 2351, Address: 0x29d80c, Func Offset: 0x29c
-	// Line 2352, Address: 0x29d814, Func Offset: 0x2a4
-	// Line 2354, Address: 0x29d824, Func Offset: 0x2b4
-	// Line 2355, Address: 0x29d82c, Func Offset: 0x2bc
-	// Line 2356, Address: 0x29d834, Func Offset: 0x2c4
-	// Line 2355, Address: 0x29d83c, Func Offset: 0x2cc
-	// Line 2356, Address: 0x29d848, Func Offset: 0x2d8
-	// Line 2358, Address: 0x29d854, Func Offset: 0x2e4
-	// Line 2359, Address: 0x29d85c, Func Offset: 0x2ec
-	// Line 2362, Address: 0x29d89c, Func Offset: 0x32c
-	// Line 2364, Address: 0x29d8a4, Func Offset: 0x334
-	// Line 2366, Address: 0x29d8b0, Func Offset: 0x340
-	// Line 2367, Address: 0x29d8c4, Func Offset: 0x354
-	// Line 2368, Address: 0x29d8cc, Func Offset: 0x35c
-	// Line 2370, Address: 0x29d8e4, Func Offset: 0x374
-	// Line 2373, Address: 0x29d8f0, Func Offset: 0x380
-	// Line 2370, Address: 0x29d8f8, Func Offset: 0x388
-	// Line 2373, Address: 0x29d900, Func Offset: 0x390
-	// Line 2370, Address: 0x29d904, Func Offset: 0x394
-	// Line 2373, Address: 0x29d908, Func Offset: 0x398
-	// Line 2374, Address: 0x29d918, Func Offset: 0x3a8
-	// Line 2377, Address: 0x29d928, Func Offset: 0x3b8
-	// Line 2378, Address: 0x29d948, Func Offset: 0x3d8
-	// Line 2381, Address: 0x29d95c, Func Offset: 0x3ec
-	// Line 2384, Address: 0x29d99c, Func Offset: 0x42c
-	// Line 2385, Address: 0x29d9a8, Func Offset: 0x438
-	// Line 2386, Address: 0x29d9b0, Func Offset: 0x440
-	// Line 2384, Address: 0x29d9b4, Func Offset: 0x444
-	// Line 2385, Address: 0x29d9bc, Func Offset: 0x44c
-	// Line 2386, Address: 0x29d9c4, Func Offset: 0x454
-	// Line 2385, Address: 0x29d9c8, Func Offset: 0x458
-	// Line 2386, Address: 0x29d9cc, Func Offset: 0x45c
-	// Line 2385, Address: 0x29d9d0, Func Offset: 0x460
-	// Line 2386, Address: 0x29d9d8, Func Offset: 0x468
-	// Line 2391, Address: 0x29d9e8, Func Offset: 0x478
-	// Line 2392, Address: 0x29d9f0, Func Offset: 0x480
-	// Line 2391, Address: 0x29d9f4, Func Offset: 0x484
-	// Line 2392, Address: 0x29d9f8, Func Offset: 0x488
-	// Line 2391, Address: 0x29d9fc, Func Offset: 0x48c
-	// Line 2392, Address: 0x29da04, Func Offset: 0x494
-	// Line 2394, Address: 0x29da14, Func Offset: 0x4a4
-	// Line 2397, Address: 0x29da24, Func Offset: 0x4b4
-	// Line 2398, Address: 0x29da30, Func Offset: 0x4c0
-	// Line 2399, Address: 0x29da34, Func Offset: 0x4c4
-	// Line 2397, Address: 0x29da38, Func Offset: 0x4c8
-	// Line 2398, Address: 0x29da44, Func Offset: 0x4d4
-	// Line 2401, Address: 0x29da4c, Func Offset: 0x4dc
-	// Line 2398, Address: 0x29da50, Func Offset: 0x4e0
-	// Line 2399, Address: 0x29da54, Func Offset: 0x4e4
-	// Line 2398, Address: 0x29da58, Func Offset: 0x4e8
-	// Line 2399, Address: 0x29da60, Func Offset: 0x4f0
-	// Line 2400, Address: 0x29da68, Func Offset: 0x4f8
-	// Line 2399, Address: 0x29da6c, Func Offset: 0x4fc
-	// Line 2400, Address: 0x29da74, Func Offset: 0x504
-	// Line 2402, Address: 0x29da84, Func Offset: 0x514
-	// Line 2404, Address: 0x29da8c, Func Offset: 0x51c
-	// Line 2405, Address: 0x29da9c, Func Offset: 0x52c
-	// Line 2404, Address: 0x29daa0, Func Offset: 0x530
-	// Line 2405, Address: 0x29daa8, Func Offset: 0x538
-	// Line 2408, Address: 0x29daac, Func Offset: 0x53c
-	// Line 2405, Address: 0x29dab4, Func Offset: 0x544
-	// Line 2408, Address: 0x29dac0, Func Offset: 0x550
-	// Line 2409, Address: 0x29dad8, Func Offset: 0x568
-	// Line 2411, Address: 0x29daf4, Func Offset: 0x584
-	// Line 2412, Address: 0x29dafc, Func Offset: 0x58c
-	// Line 2413, Address: 0x29db04, Func Offset: 0x594
-	// Line 2414, Address: 0x29db0c, Func Offset: 0x59c
-	// Line 2416, Address: 0x29db14, Func Offset: 0x5a4
-	// Line 2417, Address: 0x29db28, Func Offset: 0x5b8
-	// Line 2422, Address: 0x29db30, Func Offset: 0x5c0
-	// Line 2423, Address: 0x29db58, Func Offset: 0x5e8
-	// Line 2426, Address: 0x29db60, Func Offset: 0x5f0
-	// Line 2427, Address: 0x29db70, Func Offset: 0x600
-	// Line 2428, Address: 0x29db94, Func Offset: 0x624
-	// Line 2430, Address: 0x29dbbc, Func Offset: 0x64c
-	// Line 2431, Address: 0x29dbd8, Func Offset: 0x668
-	// Line 2432, Address: 0x29dbfc, Func Offset: 0x68c
-	// Line 2434, Address: 0x29dc1c, Func Offset: 0x6ac
-	// Line 2440, Address: 0x29dc30, Func Offset: 0x6c0
-	// Line 2441, Address: 0x29dc60, Func Offset: 0x6f0
-	// Line 2446, Address: 0x29dc78, Func Offset: 0x708
-	// Line 2447, Address: 0x29dc80, Func Offset: 0x710
-	// Line 2448, Address: 0x29dc8c, Func Offset: 0x71c
-	// Line 2447, Address: 0x29dc90, Func Offset: 0x720
-	// Line 2448, Address: 0x29dc98, Func Offset: 0x728
-	// Line 2449, Address: 0x29dca8, Func Offset: 0x738
-	// Line 2450, Address: 0x29dccc, Func Offset: 0x75c
-	// Line 2457, Address: 0x29dcd8, Func Offset: 0x768
-	// Line 2458, Address: 0x29dce4, Func Offset: 0x774
-	// Line 2457, Address: 0x29dce8, Func Offset: 0x778
-	// Line 2458, Address: 0x29dcf0, Func Offset: 0x780
-	// Line 2459, Address: 0x29dcf8, Func Offset: 0x788
-	// Line 2460, Address: 0x29dd18, Func Offset: 0x7a8
-	// Line 2461, Address: 0x29dd20, Func Offset: 0x7b0
-	// Line 2462, Address: 0x29dd2c, Func Offset: 0x7bc
-	// Line 2464, Address: 0x29dd34, Func Offset: 0x7c4
-	// Line 2468, Address: 0x29dd40, Func Offset: 0x7d0
-	// Line 2472, Address: 0x29dd4c, Func Offset: 0x7dc
-	// Func End, Address: 0x29dd5c, Func Offset: 0x7ec
-	scePrintf("ItemTaskCheck - UNIMPLEMENTED!\n");
+    S_WORK* st;
+    
+    st = &swork;
+
+    if (((sys->ts_flg & 0x200)) || ((st->subscreenmode & 0x40))) 
+    {
+        StopVibrationEx();
+        
+        st->subp = sys->memp;
+        
+        sys->ts_flg &= ~0x200;
+        sys->ts_flg |= 0x80;
+        
+        st->scr.dist = 500.0f;
+        
+        st->scr.w = 352.0f;
+        st->scr.h = 184.0f;
+        
+        st->scr.cx = 235.0f;
+        st->scr.cy = 224.0f;
+        
+        njSetScreen(&st->scr);
+        njSetAspect(1.0f, 1.0f);
+        
+        st->subscreenmode |= 0x1;
+
+        st->subscreenmode &= ~0x2;
+        st->subscreenmode &= ~0x4;
+        st->subscreenmode &= ~0x8;
+        st->subscreenmode &= ~0x10;
+        st->subscreenmode &= ~0x20;
+        st->subscreenmode &= ~0x80;
+        
+        swork.statusflg |= 0x80;
+        swork.statusflg |= 0x10000;
+        
+        swork.statusflg &= ~0x10;
+        swork.statusflg &= ~0x8000;
+        
+        st->flgtest = 0;
+        
+        st->taskloop = 0;
+        
+        CallSystemSe(0, 3);
+        
+        sys->pad_ps = 0;
+        
+        swork.statusflg &= ~0x80000;
+    } 
+    else if (!(sys->ts_flg & 0x200)) 
+    {
+        if ((st->flgchk & 0x2)) 
+        {
+            if ((swork.statusflg & 0x80000)) 
+            {
+                swork.statusflg &= ~0x80000;
+                
+                if ((sys->cb_flg & 0x10)) 
+                {
+                    sys->cb_flg &= ~0x10;
+                }
+                
+                if (((sys->cb_flg & 0x40000)) || ((sys->cb_flg & 0x80000)) || ((sys->cb_flg & 0x100000))) 
+                {
+                    sys->cb_flg &= ~0x40000;
+                    sys->cb_flg &= ~0x80000;
+                    sys->cb_flg &= ~0x100000;
+                }
+                
+                st->subscreenmode = 1;
+                
+                swork.statusflg |= 0x200;
+                
+                sys->memp = st->subp;
+            }
+        } 
+        else if (((swork.statusflg & 0x80000)) && (st->taskloop == 4) && (*(int*)&sys->mn_md0 == 0)) 
+        {
+            bhStandPlayerMotion();
+            
+            sys->typ_flg = 0;
+            
+            if ((fvwork.afsmode & 0x400)) 
+            {
+                bhReleaseFreeMemory(st->ssp);
+                
+                fvwork.afsmode &= ~0x400;
+            }
+            
+            fvwork.afsmode &= ~0xF80;
+            
+            if ((sys->cb_flg & 0x10)) 
+            {
+                sys->cb_flg &= ~0x10;
+            }
+            
+            if ((sys->cb_flg & 0x20000)) 
+            {
+                sys->cb_flg &= ~0x20000;
+            }
+            
+            if (((sys->cb_flg & 0x40000)) || ((sys->cb_flg & 0x80000)) || ((sys->cb_flg & 0x100000))) 
+            {
+                sys->cb_flg &= ~0x40000;
+                sys->cb_flg &= ~0x80000;
+                sys->cb_flg &= ~0x100000;
+            }
+            
+            sys->ts_flg |= 0x200;
+            
+            sys->st_flg &= ~0x8;
+
+            if ((st->flgchk & 0x8)) 
+            {
+                sys->mpmd = 4;
+                
+                sys->st_flg |= 0x40000;
+                
+                sys->ts_flg &= ~0x400;
+                
+                swork.flgchk &= ~0xF;
+                
+                st->subscreenmode = 0x40;
+            } 
+            else 
+            {
+                sys->ts_flg &= ~0x80;
+                
+                swork.flgchk &= ~0xF;
+                
+                sys->memp = sys->sbs_sp;
+                
+                if (rom->mdl.texP != NULL) 
+                { 
+                    bhCopyMainmem2Texmem(rom->mdl.texP); 
+                }
+                
+                st->scr.w = 640.0f;
+                st->scr.h = 480.0f;
+                
+                st->scr.cx = 320.0f;
+                st->scr.cy = 240.0f;
+                
+                njSetAspect(BHD_ASPECT_X, BHD_ASPECT_Y);
+                njSetScreen(&st->scr);
+                
+                if ((sys->stg_no == 1) && (sys->rom_no == 5)) 
+                {
+                    Ps2_rendertex_initflag = 1;
+                }
+                
+                if ((sys->gm_flg & 0x40))
+                {
+                    if ((plp->wpnr_no == 10) || (plp->wpnr_no == 19)) 
+                    {
+                        njClipZ(-1.1f, -20000.0f);
+                    }
+                    else 
+                    {
+                        njClipZ(-1.0f, -20000.0f);
+                    }
+                } 
+                else if ((plp->stflg & 0x1000000)) 
+                {
+                    bhChangeViewClip(sys->stg_no, sys->rom_no, sys->rcase, cam.evc_no);
+                }
+                else 
+                {
+                    njClipZ(GameNear, GameFar);
+                }
+                
+                if (!(sys->st_flg & 0x100000)) 
+                {
+                    njSetFogColor(cam.fog_col);
+                }
+                else 
+                {
+                    njSetFogColor(sys->fog_col & 0xFFFFFF);
+                }
+                
+                PopPalletBuffer();
+                
+                sys->gm_flg |= 0x4;
+				
+                sys->pad_ps = 0;
+                
+                if (!(sys->cb_flg & 0x4)) 
+                {
+                    sys->sp_flg = -1;
+                }
+                else 
+                { 
+                    sys->sp_flg |= 0xCC;
+                }
+            }
+            
+            swork.statusflg &= ~0x200;
+            
+            njControl3D(0);
+        }
+        else if (((swork.statusflg & 0x80000)) && (st->taskloop != 4)) 
+        {
+            if ((st->taskloop == 0) && (!(st->flgchk & 0x8)))
+            {
+                njReleaseTexture(&st->subtx_list);
+                
+                bhGarbageTexture(NULL, 0);
+            }
+            
+            st->taskloop++;
+        } 
+    }
 }
 
 // 
