@@ -9,6 +9,25 @@ typedef struct _proc_wrk
     void (*procP)(void*); // offset 0x0, size 0x4
 } _proc_wrk;
 
+typedef struct VIEWPROC_WORK 
+{
+    // total size: 0x50
+    int wait_push;       // offset 0x0, size 0x4
+    NJS_POINT3 pos_push; // offset 0x4, size 0xC
+    int wait_pull;       // offset 0x10, size 0x4
+    NJS_POINT3 pos_pull; // offset 0x14, size 0xC
+    int ang[3];          // offset 0x20, size 0xC
+    int vew0_yaw;        // offset 0x2C, size 0x4
+    int vew0_pitch;      // offset 0x30, size 0x4
+    float vew0_speed;    // offset 0x34, size 0x4
+    float vew0_accel;    // offset 0x38, size 0x4
+    float vew0_goal_pz;  // offset 0x3C, size 0x4
+    int vew0_cmp;        // offset 0x40, size 0x4
+    int vew0_goal_dy;    // offset 0x44, size 0x4
+    int vew0_speed_dy;   // offset 0x48, size 0x4
+    int vew0_cmp_dy;     // offset 0x4C, size 0x4
+} VIEWPROC_WORK;
+
 typedef struct LIGHTPROC_WORK
 {
     // total size: 0x7C
@@ -141,7 +160,7 @@ void LightProc1(_door_wrk* dwP);
 void LightProc2(_door_wrk* dwP);
 int CompareSint32(int val_a, int cmp_typ, int val_b);
 static int CompareFloat(float val_a, int cmp_typ, float val_b);
-/*void VectorMove(_anon12* posP, int yaw, int pitch, float speed);*/
+static void VectorMove(NJS_POINT3* posP, int yaw, int pitch, float speed);
 static void LightSubAmb(_door_wrk* dwP, NJS_POINT3* ambP, NJS_POINT3* offP);
 static void LightSubPnt(_door_wrk* dwP, int lgt_no, LGT_WRK* ldP, NJS_POINT3* rteP);
 void ryExcuteFade(float pri, int col, float rate);

@@ -384,48 +384,90 @@ void FadeProc1(_door_wrk* dwP)
 	scePrintf("FadeProc1 - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2af9c0
-void ViewProc1(_door_wrk* dwP)
+// 100% matching!
+static void ViewProc1(_door_wrk* dwP)
 {
-	_anon21* vpP;
-	int flp;
-	// Line 905, Address: 0x2af9c0, Func Offset: 0
-	// Line 910, Address: 0x2af9d4, Func Offset: 0x14
-	// Line 908, Address: 0x2af9d8, Func Offset: 0x18
-	// Line 910, Address: 0x2af9e0, Func Offset: 0x20
-	// Line 912, Address: 0x2af9e8, Func Offset: 0x28
-	// Line 910, Address: 0x2af9ec, Func Offset: 0x2c
-	// Line 912, Address: 0x2af9f4, Func Offset: 0x34
-	// Line 915, Address: 0x2afa24, Func Offset: 0x64
-	// Line 917, Address: 0x2afa30, Func Offset: 0x70
-	// Line 918, Address: 0x2afa48, Func Offset: 0x88
-	// Line 919, Address: 0x2afa4c, Func Offset: 0x8c
-	// Line 921, Address: 0x2afa54, Func Offset: 0x94
-	// Line 922, Address: 0x2afa6c, Func Offset: 0xac
-	// Line 925, Address: 0x2afa74, Func Offset: 0xb4
-	// Line 926, Address: 0x2afa7c, Func Offset: 0xbc
-	// Line 927, Address: 0x2afa84, Func Offset: 0xc4
-	// Line 929, Address: 0x2afa8c, Func Offset: 0xcc
-	// Line 930, Address: 0x2afaa4, Func Offset: 0xe4
-	// Line 932, Address: 0x2afab0, Func Offset: 0xf0
-	// Line 933, Address: 0x2afab8, Func Offset: 0xf8
-	// Line 934, Address: 0x2afac0, Func Offset: 0x100
-	// Line 938, Address: 0x2afacc, Func Offset: 0x10c
-	// Line 940, Address: 0x2afadc, Func Offset: 0x11c
-	// Line 941, Address: 0x2afaec, Func Offset: 0x12c
-	// Line 946, Address: 0x2afaf8, Func Offset: 0x138
-	// Line 947, Address: 0x2afb10, Func Offset: 0x150
-	// Line 948, Address: 0x2afb24, Func Offset: 0x164
-	// Line 950, Address: 0x2afb34, Func Offset: 0x174
-	// Line 951, Address: 0x2afb54, Func Offset: 0x194
-	// Line 953, Address: 0x2afb64, Func Offset: 0x1a4
-	// Line 955, Address: 0x2afb6c, Func Offset: 0x1ac
-	// Line 961, Address: 0x2afb78, Func Offset: 0x1b8
-	// Func End, Address: 0x2afb90, Func Offset: 0x1d0
+    int flp;            
+    VIEWPROC_WORK* vpP; 
+
+    dwP->status = dwP->status;
+    
+    vpP = dwP->vpP;
+    
+    if ((dwP->status & 0x8000)) 
+    {
+        flp = -1;
+    } 
+    else 
+    {
+        flp = 1;
+    }
+    
+    switch (dwP->vew_mode) 
+    {              
+    case 0:
+        if ((dwP->status & 0x4000)) 
+        {
+            dwP->vew_pos = vpP->pos_pull;
+            dwP->vew_reg = vpP->wait_pull;
+        } 
+        else 
+        {
+            dwP->vew_pos = vpP->pos_push;
+            dwP->vew_reg = vpP->wait_push;
+        }
+        
+        dwP->vew_ang[0] = vpP->ang[0];
+        dwP->vew_ang[1] = vpP->ang[1];
+        dwP->vew_ang[2] = vpP->ang[2];
+        
+        if ((dwP->status & 0x1000)) 
+        {
+            dwP->vew_yaw = 0;
+        } 
+        else 
+        {
+            dwP->vew_yaw = vpP->vew0_yaw * flp;
+        }
+        
+        dwP->vew_pitch = vpP->vew0_pitch;
+        dwP->vew_speed = vpP->vew0_speed;
+        
+        dwP->vew_mode++;
+    case 1:
+        if (dwP->vew_reg-- <= 0) 
+        {
+            dwP->status |= 0x8000000;
+            
+            dwP->vew_mode++;
+        } 
+        else 
+        {
+            break;
+        }
+    case 2:
+        if (CompareFloat(dwP->vew_pos.z, vpP->vew0_cmp, vpP->vew0_goal_pz) != 0) 
+        {
+            VectorMove(&dwP->vew_pos, dwP->vew_yaw, dwP->vew_pitch, dwP->vew_speed);
+            
+            dwP->vew_speed += vpP->vew0_accel;
+            
+            if (CompareSint32(dwP->vew_yaw, vpP->vew0_cmp_dy * flp, vpP->vew0_goal_dy * flp) != 0) 
+            {
+                dwP->vew_yaw += vpP->vew0_speed_dy * flp;
+                break;
+            }
+        } 
+        else 
+        {
+            dwP->vew_mode++;
+        }
+    case 3:
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2afb90
 void ViewProc2(_door_wrk* dwP)
 {
