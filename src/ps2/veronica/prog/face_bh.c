@@ -879,128 +879,178 @@ void _fmCnkCalcMuscle(MASK_WORK* fm)
 	scePrintf("_fmCnkCalcMuscle - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x299f70
-void _fmCnkCalcJaw(MASK_WORK* fm)
+// 99.32% matching
+void _fmCnkCalcJaw(MASK_WORK* fm) 
 {
-	float jawtrans;
-	float jawang;
-	float jmat2[16];
-	float jmat1[16];
-	unsigned int vofs;
-	//_anon13 vec;
-	//_anon13* dvp1;
-	float* dvp;
-	float mat2[16];
-	float mat[16];
-	unsigned char mt2[64];
-	unsigned char mt1[64];
-	//_anon3* jaw;
-	int i;
-	// Line 2051, Address: 0x299f70, Func Offset: 0
-	// Line 2076, Address: 0x299fa4, Func Offset: 0x34
-	// Line 2058, Address: 0x299fa8, Func Offset: 0x38
-	// Line 2059, Address: 0x299fac, Func Offset: 0x3c
-	// Line 2076, Address: 0x299fb0, Func Offset: 0x40
-	// Line 2082, Address: 0x299fb8, Func Offset: 0x48
-	// Line 2085, Address: 0x299fbc, Func Offset: 0x4c
-	// Line 2083, Address: 0x299fc0, Func Offset: 0x50
-	// Line 2084, Address: 0x299fc4, Func Offset: 0x54
-	// Line 2087, Address: 0x299fc8, Func Offset: 0x58
-	// Line 2082, Address: 0x299fcc, Func Offset: 0x5c
-	// Line 2087, Address: 0x299fd0, Func Offset: 0x60
-	// Line 2088, Address: 0x299fd8, Func Offset: 0x68
-	// Line 2089, Address: 0x299ff8, Func Offset: 0x88
-	// Line 2090, Address: 0x29a00c, Func Offset: 0x9c
-	// Line 2093, Address: 0x29a018, Func Offset: 0xa8
-	// Line 2094, Address: 0x29a020, Func Offset: 0xb0
-	// Line 2095, Address: 0x29a024, Func Offset: 0xb4
-	// Line 2096, Address: 0x29a028, Func Offset: 0xb8
-	// Line 2093, Address: 0x29a02c, Func Offset: 0xbc
-	// Line 2096, Address: 0x29a038, Func Offset: 0xc8
-	// Line 2097, Address: 0x29a040, Func Offset: 0xd0
-	// Line 2098, Address: 0x29a044, Func Offset: 0xd4
-	// Line 2097, Address: 0x29a050, Func Offset: 0xe0
-	// Line 2098, Address: 0x29a054, Func Offset: 0xe4
-	// Line 2097, Address: 0x29a058, Func Offset: 0xe8
-	// Line 2098, Address: 0x29a060, Func Offset: 0xf0
-	// Line 2102, Address: 0x29a068, Func Offset: 0xf8
-	// Line 2104, Address: 0x29a06c, Func Offset: 0xfc
-	// Line 2105, Address: 0x29a070, Func Offset: 0x100
-	// Line 2106, Address: 0x29a074, Func Offset: 0x104
-	// Line 2107, Address: 0x29a078, Func Offset: 0x108
-	// Line 2108, Address: 0x29a07c, Func Offset: 0x10c
-	// Line 2109, Address: 0x29a080, Func Offset: 0x110
-	// Line 2110, Address: 0x29a084, Func Offset: 0x114
-	// Line 2111, Address: 0x29a088, Func Offset: 0x118
-	// Line 2112, Address: 0x29a08c, Func Offset: 0x11c
-	// Line 2113, Address: 0x29a090, Func Offset: 0x120
-	// Line 2114, Address: 0x29a094, Func Offset: 0x124
-	// Line 2115, Address: 0x29a098, Func Offset: 0x128
-	// Line 2116, Address: 0x29a09c, Func Offset: 0x12c
-	// Line 2117, Address: 0x29a0a0, Func Offset: 0x130
-	// Line 2118, Address: 0x29a0a4, Func Offset: 0x134
-	// Line 2119, Address: 0x29a0a8, Func Offset: 0x138
-	// Line 2120, Address: 0x29a0ac, Func Offset: 0x13c
-	// Line 2121, Address: 0x29a0b0, Func Offset: 0x140
-	// Line 2125, Address: 0x29a0b4, Func Offset: 0x144
-	// Line 2131, Address: 0x29a0bc, Func Offset: 0x14c
-	// Line 2139, Address: 0x29a0c8, Func Offset: 0x158
-	// Line 2140, Address: 0x29a0f4, Func Offset: 0x184
-	// Line 2142, Address: 0x29a0f8, Func Offset: 0x188
-	// Line 2143, Address: 0x29a0fc, Func Offset: 0x18c
-	// Line 2144, Address: 0x29a100, Func Offset: 0x190
-	// Line 2145, Address: 0x29a104, Func Offset: 0x194
-	// Line 2146, Address: 0x29a108, Func Offset: 0x198
-	// Line 2147, Address: 0x29a10c, Func Offset: 0x19c
-	// Line 2148, Address: 0x29a110, Func Offset: 0x1a0
-	// Line 2149, Address: 0x29a114, Func Offset: 0x1a4
-	// Line 2150, Address: 0x29a118, Func Offset: 0x1a8
-	// Line 2151, Address: 0x29a11c, Func Offset: 0x1ac
-	// Line 2152, Address: 0x29a120, Func Offset: 0x1b0
-	// Line 2153, Address: 0x29a124, Func Offset: 0x1b4
-	// Line 2154, Address: 0x29a128, Func Offset: 0x1b8
-	// Line 2155, Address: 0x29a12c, Func Offset: 0x1bc
-	// Line 2156, Address: 0x29a130, Func Offset: 0x1c0
-	// Line 2157, Address: 0x29a134, Func Offset: 0x1c4
-	// Line 2158, Address: 0x29a138, Func Offset: 0x1c8
-	// Line 2159, Address: 0x29a13c, Func Offset: 0x1cc
-	// Line 2160, Address: 0x29a140, Func Offset: 0x1d0
-	// Line 2161, Address: 0x29a144, Func Offset: 0x1d4
-	// Line 2162, Address: 0x29a148, Func Offset: 0x1d8
-	// Line 2163, Address: 0x29a14c, Func Offset: 0x1dc
-	// Line 2164, Address: 0x29a150, Func Offset: 0x1e0
-	// Line 2165, Address: 0x29a154, Func Offset: 0x1e4
-	// Line 2166, Address: 0x29a158, Func Offset: 0x1e8
-	// Line 2167, Address: 0x29a15c, Func Offset: 0x1ec
-	// Line 2168, Address: 0x29a160, Func Offset: 0x1f0
-	// Line 2169, Address: 0x29a164, Func Offset: 0x1f4
-	// Line 2170, Address: 0x29a168, Func Offset: 0x1f8
-	// Line 2171, Address: 0x29a16c, Func Offset: 0x1fc
-	// Line 2172, Address: 0x29a170, Func Offset: 0x200
-	// Line 2173, Address: 0x29a174, Func Offset: 0x204
-	// Line 2174, Address: 0x29a178, Func Offset: 0x208
-	// Line 2175, Address: 0x29a17c, Func Offset: 0x20c
-	// Line 2176, Address: 0x29a180, Func Offset: 0x210
-	// Line 2177, Address: 0x29a184, Func Offset: 0x214
-	// Line 2178, Address: 0x29a188, Func Offset: 0x218
-	// Line 2179, Address: 0x29a18c, Func Offset: 0x21c
-	// Line 2180, Address: 0x29a190, Func Offset: 0x220
-	// Line 2181, Address: 0x29a194, Func Offset: 0x224
-	// Line 2182, Address: 0x29a198, Func Offset: 0x228
-	// Line 2186, Address: 0x29a19c, Func Offset: 0x22c
-	// Line 2187, Address: 0x29a1a0, Func Offset: 0x230
-	// Line 2191, Address: 0x29a1a8, Func Offset: 0x238
-	// Line 2192, Address: 0x29a1ac, Func Offset: 0x23c
-	// Line 2187, Address: 0x29a1b0, Func Offset: 0x240
-	// Line 2192, Address: 0x29a1b4, Func Offset: 0x244
-	// Line 2195, Address: 0x29a1c0, Func Offset: 0x250
-	// Line 2196, Address: 0x29a1cc, Func Offset: 0x25c
-	// Line 2200, Address: 0x29a1ec, Func Offset: 0x27c
-	// Line 2201, Address: 0x29a1f8, Func Offset: 0x288
-	// Line 2206, Address: 0x29a218, Func Offset: 0x2a8
-	// Func End, Address: 0x29a250, Func Offset: 0x2e0
-	scePrintf("_fmCnkCalcJaw - UNIMPLEMENTED!\n");
+    int i;                
+    TANG_WORK* jaw;       
+    unsigned char mt1[64], mt2[64];
+    NJS_MATRIX* mat, *mat2;       
+    float* dvp;           
+    NJS_POINT4* dvp1;      
+    NJS_POINT4 vec;       
+    unsigned int vofs;    
+    NJS_MATRIX* jmat1, *jmat2;   
+    float jawang, jawtrans;         
+
+    mat = (NJS_MATRIX*)mt1;
+    mat2 = (NJS_MATRIX*)mt2;
+
+    if (fm->jnum != 0) 
+    {
+        jawang = -fm->param.jawang;
+        jawtrans = fm->param.jawtrans;
+        
+        jmat1 = &fm->jmat1;
+        jmat2 = &fm->jmat2;
+        
+        njSetMatrix(mat, jmat2);
+        
+        njRotateX(mat, (int)(182.04445f * jawang) & 0xFFFF);
+        njTranslate(mat, jawtrans, 0, 0);
+        
+        njMultiMatrix(mat, jmat1);
+        
+        jaw = fm->jaw;
+        
+        vofs = fm->vofs;
+        
+        dvp = (float*)&fm->dst->vlist[fm->vtop];
+        
+        for (i = fm->jnum; i > 0; i--)  
+        {
+            dvp1 = (NJS_POINT4*)&dvp[jaw->id * vofs];
+            
+            if (jaw->rate == 1.0f) 
+            {
+                asm volatile
+                ("
+                .set noreorder
+                    ldl         t0, 0x7(%2) 
+                    ldr         t0,   0(%2)
+                    
+                    lw          t1, NJS_POINT4.z(%2) 
+                    
+                    pcpyld      t0, t1, t0
+                
+                    qmtc2       t0, vf4
+                
+                    lqc2        vf5,    0(%1)
+                    lqc2        vf6, 0x10(%1)
+                    lqc2        vf7, 0x20(%1) 
+                    lqc2        vf8, 0x30(%1) 
+                    
+                    vmulax.xyz  ACC,  vf5, vf4
+                    
+                    vmadday.xyz ACC,  vf6, vf4
+                    vmaddaz.xyz ACC,  vf7, vf4
+                    vmaddw.xyz  vf18, vf8, vf0w
+                    
+                    qmfc2       t0, vf18
+                
+                    pcpyud      t1, t0, t0
+                
+                    sdl         t0, 0x7(%0)
+                    sdr         t0,   0(%0) 
+                    
+                    sw          t1, NJS_POINT4.z(%0) 
+                .set reorder
+                " : : "r"(&vec), "r"(mat), "r"(dvp1) : 
+                ); 
+            } 
+            else 
+            {
+                njCopyMatrix(mat2, jmat2);
+                
+                njRotateX(mat2, (int)(182.04445f * (jawang * jaw->rate)) & 0xFFFF);
+                
+                asm volatile
+                ("
+                .set noreorder
+                    mfc1        t0, %4
+                    
+                    lqc2        vf5,    0(%3)
+                    lqc2        vf6, 0x10(%3)
+                    lqc2        vf7, 0x20(%3)
+                    lqc2        vf8, 0x30(%3) 
+                    
+                    qmtc2       t0, vf4 
+                
+                    lqc2        vf9,     0(%2)  
+                    lqc2        vf10, 0x10(%2)
+                    lqc2        vf11, 0x20(%2)
+                    lqc2        vf12, 0x30(%2)
+                    
+                    vmulax.xyz  ACC, vf5, vf4
+                    
+                    vmaddax.xyz ACC, vf6, vf0
+                    vmaddax.xyz ACC, vf7, vf0
+                    vmaddw.xyz  vf8, vf8, vf0w
+                    
+                    ldl         t0, 0x7(%1) 
+                    ldr         t0,   0(%1) 
+                    
+                    lw          t1, NJS_POINT4.z(%1) 
+                    
+                    vmulax.xyz  ACC, vf5, vf9
+                    
+                    vmadday.xyz ACC, vf6, vf9
+                    vmaddz.xyz  vf9, vf7, vf9
+                    
+                    pcpyld      t0, t1, t0
+                
+                    vmulax.xyz  ACC,  vf5, vf10
+                    
+                    vmadday.xyz ACC,  vf6, vf10
+                    vmaddz.xyz  vf10, vf7, vf10
+                    
+                    qmtc2       t0, vf13
+                
+                    vmulax.xyz  ACC,  vf5, vf11
+                    
+                    vmadday.xyz ACC,  vf6, vf11
+                    vmaddz.xyz  vf11, vf7, vf11
+                    
+                    vmulax.xyz  ACC,  vf5, vf12
+                    
+                    vmadday.xyz ACC,  vf6, vf12
+                    vmaddaz.xyz ACC,  vf7, vf12
+                    vmaddw.xyz  vf12, vf8, vf0w
+                    
+                    vmulax.xyz  ACC,  vf9,  vf13
+                    
+                    vmadday.xyz ACC,  vf10, vf13
+                    vmaddaz.xyz ACC,  vf11, vf13
+                    vmaddw.xyz  vf18, vf12, vf0w
+                    
+                    qmfc2       t0, vf18 
+                
+                    pcpyud      t1, t0, t0
+                
+                    sdl         t0, 0x7(%0) 
+                    sdr         t0,   0(%0) 
+                    
+                    sw          t1, NJS_POINT4.z(%0) 
+                .set reorder
+                " : : "r"(&vec), "r"(dvp1), "r"(jmat1), "r"(mat2), "f"(jawtrans) : 
+                ); 
+            }
+            
+            *(u_long128*)dvp1 = *(u_long128*)&vec;
+            
+            jaw++;
+        }
+        
+        if (fm->toothsrc != NULL) 
+        {
+            fm->toothsrc->ang[0] = (int)(182.04445f * jawang) & 0xFFFF;
+        }
+        
+        if (fm->tangorg != NULL) 
+        {
+            fm->tangorg->ang[0] = (int)(182.04445f * jawang) & 0xFFFF;
+        }
+    }
 }
 
 // 100% matching! 
