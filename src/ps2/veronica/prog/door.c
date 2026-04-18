@@ -738,36 +738,57 @@ void ViewProc6(_door_wrk* dwP)
 	// Line 1265, Address: 0x2b0598, Func Offset: 0x2f8
 	// Line 1270, Address: 0x2b059c, Func Offset: 0x2fc
 	// Func End, Address: 0x2b05b8, Func Offset: 0x318
-}
+}*/
 
-// 
-// Start address: 0x2b05c0
-void ViewProc7(_door_wrk* dwP)
+// 100% matching!
+static void ViewProc7(_door_wrk* dwP) 
 {
-	_anon21* vpP;
-	int flp;
-	// Line 1281, Address: 0x2b05c0, Func Offset: 0
-	// Line 1285, Address: 0x2b05c8, Func Offset: 0x8
-	// Line 1287, Address: 0x2b05cc, Func Offset: 0xc
-	// Line 1283, Address: 0x2b05d0, Func Offset: 0x10
-	// Line 1285, Address: 0x2b05d4, Func Offset: 0x14
-	// Line 1287, Address: 0x2b05e0, Func Offset: 0x20
-	// Line 1288, Address: 0x2b05e8, Func Offset: 0x28
-	// Line 1290, Address: 0x2b05f4, Func Offset: 0x34
-	// Line 1291, Address: 0x2b05f8, Func Offset: 0x38
-	// Line 1293, Address: 0x2b0600, Func Offset: 0x40
-	// Line 1296, Address: 0x2b0608, Func Offset: 0x48
-	// Line 1297, Address: 0x2b0620, Func Offset: 0x60
-	// Line 1299, Address: 0x2b062c, Func Offset: 0x6c
-	// Line 1300, Address: 0x2b0634, Func Offset: 0x74
-	// Line 1301, Address: 0x2b063c, Func Offset: 0x7c
-	// Line 1302, Address: 0x2b0644, Func Offset: 0x84
-	// Line 1303, Address: 0x2b064c, Func Offset: 0x8c
-	// Line 1305, Address: 0x2b0654, Func Offset: 0x94
-	// Func End, Address: 0x2b0660, Func Offset: 0xa0
+    int flp;
+    VIEWPROC7_WORK* vpP;
+    
+    vpP = dwP->vpP;
+    
+    if (!(dwP->status & 0x8000)) 
+    {
+        flp = 1;
+    }
+    else 
+    {
+        flp = -1; 
+    }
+    
+    if (dwP->vew_mode == 0) 
+    {
+        if ((dwP->status & 0x4000)) 
+        {
+            dwP->vew_reg = vpP->wait_pull;
+        }
+        else 
+        {
+            dwP->vew_reg = vpP->wait_push;
+        }
+        
+        if ((dwP->status & 0x1000)) 
+        {
+            dwP->vew_yaw = 0;
+        } 
+        else 
+        {
+            dwP->vew_yaw = vpP->vew0_yaw * flp;
+        }
+        
+        dwP->vew_pitch = vpP->vew0_pitch;
+        dwP->vew_speed = vpP->vew0_speed;
+        
+        dwP->vew_mode++;
+    }
+    else 
+    {
+        ViewProc1(dwP);
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2b0660
 void DoorProc1(_door_wrk* dwP)
 {
