@@ -59,6 +59,26 @@ typedef struct VIEWPROC4_WORK
     int chg_vew;         // offset 0x34, size 0x4
 } VIEWPROC4_WORK;
 
+typedef struct VIEWPROC5_WORK 
+{
+    // total size: 0x5C
+    NJS_POINT3 pos_low;  // offset 0x0, size 0xC
+    int ang_low[3];      // offset 0xC, size 0xC
+    NJS_POINT3 pos_high; // offset 0x18, size 0xC
+    int ang_high[3];     // offset 0x24, size 0xC
+    int wait0;           // offset 0x30, size 0x4
+    float fde_rte0;      // offset 0x34, size 0x4
+    float fde_spd0;      // offset 0x38, size 0x4
+    float fde_gol0;      // offset 0x3C, size 0x4
+    int fde_cmp0;        // offset 0x40, size 0x4
+    int wait1;           // offset 0x44, size 0x4
+    float fde_rte1;      // offset 0x48, size 0x4
+    float fde_spd1;      // offset 0x4C, size 0x4
+    float fde_gol1;      // offset 0x50, size 0x4
+    int fde_cmp1;        // offset 0x54, size 0x4
+    int chg_vew;         // offset 0x58, size 0x4
+} VIEWPROC5_WORK;
+
 typedef struct LIGHTPROC_WORK
 {
     // total size: 0x7C
