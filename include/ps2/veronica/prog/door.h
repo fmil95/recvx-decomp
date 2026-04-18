@@ -28,6 +28,26 @@ typedef struct VIEWPROC_WORK
     int vew0_cmp_dy;     // offset 0x4C, size 0x4
 } VIEWPROC_WORK;
 
+typedef struct VIEWPROC2_WORK
+{
+    // total size: 0x5C
+    NJS_POINT3 pos_low;  // offset 0x0, size 0xC
+    NJS_POINT3 tgt_low;  // offset 0xC, size 0xC
+    int roll_low;        // offset 0x18, size 0x4
+    int yaw_low;         // offset 0x1C, size 0x4
+    int pitch_low;       // offset 0x20, size 0x4
+    float speed_low;     // offset 0x24, size 0x4
+    float accel_low;     // offset 0x28, size 0x4
+    NJS_POINT3 pos_high; // offset 0x2C, size 0xC
+    NJS_POINT3 tgt_high; // offset 0x38, size 0xC
+    int roll_high;       // offset 0x44, size 0x4
+    int yaw_high;        // offset 0x48, size 0x4
+    int pitxh_high;      // offset 0x4C, size 0x4
+    float speed_high;    // offset 0x50, size 0x4
+    float accel_high;    // offset 0x54, size 0x4
+    int wait;            // offset 0x58, size 0x4
+} VIEWPROC2_WORK;
+
 typedef struct LIGHTPROC_WORK
 {
     // total size: 0x7C

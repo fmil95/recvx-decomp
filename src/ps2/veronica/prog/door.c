@@ -467,46 +467,63 @@ static void ViewProc1(_door_wrk* dwP)
     }
 }
 
-/*// 
-// Start address: 0x2afb90
-void ViewProc2(_door_wrk* dwP)
+// 100% matching!
+static void ViewProc2(_door_wrk* dwP) 
 {
-	_anon12 vct;
-	_anon19* prmP;
-	_anon19* vpP;
-	// Line 970, Address: 0x2afb90, Func Offset: 0
-	// Line 975, Address: 0x2afba4, Func Offset: 0x14
-	// Line 973, Address: 0x2afba8, Func Offset: 0x18
-	// Line 975, Address: 0x2afbb0, Func Offset: 0x20
-	// Line 977, Address: 0x2afbc0, Func Offset: 0x30
-	// Line 981, Address: 0x2afbec, Func Offset: 0x5c
-	// Line 982, Address: 0x2afbf4, Func Offset: 0x64
-	// Line 983, Address: 0x2afc0c, Func Offset: 0x7c
-	// Line 984, Address: 0x2afc14, Func Offset: 0x84
-	// Line 985, Address: 0x2afc1c, Func Offset: 0x8c
-	// Line 987, Address: 0x2afc24, Func Offset: 0x94
-	// Line 989, Address: 0x2afc2c, Func Offset: 0x9c
-	// Line 993, Address: 0x2afc38, Func Offset: 0xa8
-	// Line 996, Address: 0x2afc48, Func Offset: 0xb8
-	// Line 997, Address: 0x2afc50, Func Offset: 0xc0
-	// Line 998, Address: 0x2afc54, Func Offset: 0xc4
-	// Line 996, Address: 0x2afc58, Func Offset: 0xc8
-	// Line 997, Address: 0x2afc60, Func Offset: 0xd0
-	// Line 998, Address: 0x2afc6c, Func Offset: 0xdc
-	// Line 1000, Address: 0x2afc78, Func Offset: 0xe8
-	// Line 1005, Address: 0x2afc84, Func Offset: 0xf4
-	// Line 1006, Address: 0x2afc98, Func Offset: 0x108
-	// Line 1014, Address: 0x2afca8, Func Offset: 0x118
-	// Line 1015, Address: 0x2afcb8, Func Offset: 0x128
-	// Line 1014, Address: 0x2afcbc, Func Offset: 0x12c
-	// Line 1015, Address: 0x2afcc4, Func Offset: 0x134
-	// Line 1016, Address: 0x2afccc, Func Offset: 0x13c
-	// Line 1017, Address: 0x2afd0c, Func Offset: 0x17c
-	// Line 1020, Address: 0x2afd38, Func Offset: 0x1a8
-	// Func End, Address: 0x2afd50, Func Offset: 0x1c0
+    VIEWPROC2_WORK* vpP, *prmP;   
+    NJS_VECTOR vct;     
+    float y; // not from DWARF
+    
+    vpP = prmP = dwP->vpP;
+    
+    if ((dwP->status & 0x4000)) 
+    {
+        vpP = (VIEWPROC2_WORK*)&prmP->pos_high;
+    }
+    
+    switch (dwP->vew_mode) 
+    {                         
+    case 0:
+        dwP->vew_reg = prmP->wait;
+        
+        dwP->vew_pos = vpP->pos_low;
+        dwP->vew_yaw = vpP->yaw_low;
+        dwP->vew_pitch = vpP->pitch_low;
+        dwP->vew_speed = vpP->speed_low;
+        dwP->vew_ang[2] = vpP->roll_low;
+        
+        dwP->vew_mode++;
+    case 1:
+        if (dwP->vew_reg-- <= 0) 
+        {
+            dwP->status |= 0x10000;
+            dwP->status |= 0x200000;
+            dwP->status |= 0x8000000;
+            
+            dwP->vew_mode++;
+        } 
+        else 
+        {
+            break;
+        }
+    case 2:
+        VectorMove(&dwP->vew_pos, dwP->vew_yaw, dwP->vew_pitch, dwP->vew_speed);
+        
+        dwP->vew_speed += vpP->accel_low;
+        break;
+    }
+    
+    vct = vpP->tgt_low;
+    
+    njSubVector(&vct, &dwP->vew_pos);
+    
+    y = vct.y; 
+    
+    dwP->vew_ang[0] = (int)(10430.381f * atan2f(y, njSqrt((vct.x * vct.x) + (vct.z * vct.z))));
+    dwP->vew_ang[1] = (int)(10430.381f * atan2f(-vct.x, -vct.z));
 }
 
-// 
+/*// 
 // Start address: 0x2afd50
 void ViewProc3(_door_wrk* dwP)
 {
