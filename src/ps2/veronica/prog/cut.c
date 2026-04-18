@@ -2246,164 +2246,156 @@ void bhGetEvtCamLockPosition(CAM_KEYF_WORK* kfp, NJS_POINT3* pos)
     }
 }
 
-// 
-// Start address: 0x27fd30
-void bhControlPlEyeCamera(unsigned int attr)
+#pragma divbyzerocheck on 
+
+// 99.84% matching
+void bhControlPlEyeCamera(unsigned int attr) 
 {
-	short ahkn;
-	short ay;
-	short ax;
-	int ct;
-	float hkn;
-	//_anon21* ci;
-	// Line 2123, Address: 0x27fd30, Func Offset: 0
-	// Line 2130, Address: 0x27fd38, Func Offset: 0x8
-	// Line 2132, Address: 0x27fd40, Func Offset: 0x10
-	// Line 2130, Address: 0x27fd48, Func Offset: 0x18
-	// Line 2132, Address: 0x27fd8c, Func Offset: 0x5c
-	// Line 2137, Address: 0x27fd90, Func Offset: 0x60
-	// Line 2130, Address: 0x27fd98, Func Offset: 0x68
-	// Line 2132, Address: 0x27fd9c, Func Offset: 0x6c
-	// Line 2138, Address: 0x27fda4, Func Offset: 0x74
-	// Line 2132, Address: 0x27fda8, Func Offset: 0x78
-	// Line 2136, Address: 0x27fdac, Func Offset: 0x7c
-	// Line 2138, Address: 0x27fdb0, Func Offset: 0x80
-	// Line 2136, Address: 0x27fdb8, Func Offset: 0x88
-	// Line 2132, Address: 0x27fdbc, Func Offset: 0x8c
-	// Line 2138, Address: 0x27fdc8, Func Offset: 0x98
-	// Line 2140, Address: 0x27fdec, Func Offset: 0xbc
-	// Line 2147, Address: 0x27fdf4, Func Offset: 0xc4
-	// Line 2159, Address: 0x27fdf8, Func Offset: 0xc8
-	// Line 2155, Address: 0x27fdfc, Func Offset: 0xcc
-	// Line 2147, Address: 0x27fe04, Func Offset: 0xd4
-	// Line 2140, Address: 0x27fe08, Func Offset: 0xd8
-	// Line 2156, Address: 0x27fe10, Func Offset: 0xe0
-	// Line 2159, Address: 0x27fe14, Func Offset: 0xe4
-	// Line 2140, Address: 0x27fe18, Func Offset: 0xe8
-	// Line 2144, Address: 0x27fe20, Func Offset: 0xf0
-	// Line 2140, Address: 0x27fe24, Func Offset: 0xf4
-	// Line 2141, Address: 0x27fe2c, Func Offset: 0xfc
-	// Line 2142, Address: 0x27fe40, Func Offset: 0x110
-	// Line 2143, Address: 0x27fe54, Func Offset: 0x124
-	// Line 2144, Address: 0x27fe5c, Func Offset: 0x12c
-	// Line 2145, Address: 0x27fe6c, Func Offset: 0x13c
-	// Line 2147, Address: 0x27fe74, Func Offset: 0x144
-	// Line 2148, Address: 0x27fe9c, Func Offset: 0x16c
-	// Line 2149, Address: 0x27fec4, Func Offset: 0x194
-	// Line 2155, Address: 0x27feec, Func Offset: 0x1bc
-	// Line 2156, Address: 0x27fef4, Func Offset: 0x1c4
-	// Line 2157, Address: 0x27fefc, Func Offset: 0x1cc
-	// Line 2158, Address: 0x27ff04, Func Offset: 0x1d4
-	// Line 2159, Address: 0x27ff0c, Func Offset: 0x1dc
-	// Line 2160, Address: 0x27ff28, Func Offset: 0x1f8
-	// Line 2159, Address: 0x27ff2c, Func Offset: 0x1fc
-	// Line 2160, Address: 0x27ff3c, Func Offset: 0x20c
-	// Line 2161, Address: 0x27ff40, Func Offset: 0x210
-	// Line 2162, Address: 0x27ff48, Func Offset: 0x218
-	// Line 2163, Address: 0x27ff50, Func Offset: 0x220
-	// Line 2164, Address: 0x27ff6c, Func Offset: 0x23c
-	// Line 2163, Address: 0x27ff70, Func Offset: 0x240
-	// Line 2164, Address: 0x27ff80, Func Offset: 0x250
-	// Line 2166, Address: 0x27ff84, Func Offset: 0x254
-	// Line 2167, Address: 0x27ff8c, Func Offset: 0x25c
-	// Line 2170, Address: 0x27ffb0, Func Offset: 0x280
-	// Line 2168, Address: 0x27ffb4, Func Offset: 0x284
-	// Line 2167, Address: 0x27ffb8, Func Offset: 0x288
-	// Line 2170, Address: 0x27ffbc, Func Offset: 0x28c
-	// Line 2167, Address: 0x27ffc0, Func Offset: 0x290
-	// Line 2168, Address: 0x27ffcc, Func Offset: 0x29c
-	// Line 2170, Address: 0x27ffd0, Func Offset: 0x2a0
-	// Line 2174, Address: 0x27fff8, Func Offset: 0x2c8
-	// Line 2175, Address: 0x28002c, Func Offset: 0x2fc
-	// Line 2176, Address: 0x280040, Func Offset: 0x310
-	// Line 2177, Address: 0x280054, Func Offset: 0x324
-	// Line 2185, Address: 0x28005c, Func Offset: 0x32c
-	// Line 2177, Address: 0x280060, Func Offset: 0x330
-	// Line 2178, Address: 0x28006c, Func Offset: 0x33c
-	// Line 2179, Address: 0x280080, Func Offset: 0x350
-	// Line 2180, Address: 0x280094, Func Offset: 0x364
-	// Line 2181, Address: 0x28009c, Func Offset: 0x36c
-	// Line 2182, Address: 0x2800ac, Func Offset: 0x37c
-	// Line 2183, Address: 0x2800b4, Func Offset: 0x384
-	// Line 2184, Address: 0x2800c4, Func Offset: 0x394
-	// Line 2185, Address: 0x2800d4, Func Offset: 0x3a4
-	// Line 2187, Address: 0x2800d8, Func Offset: 0x3a8
-	// Line 2189, Address: 0x2800e0, Func Offset: 0x3b0
-	// Line 2190, Address: 0x2800e8, Func Offset: 0x3b8
-	// Line 2191, Address: 0x2800fc, Func Offset: 0x3cc
-	// Line 2192, Address: 0x280118, Func Offset: 0x3e8
-	// Line 2194, Address: 0x280134, Func Offset: 0x404
-	// Line 2195, Address: 0x280144, Func Offset: 0x414
-	// Line 2204, Address: 0x28014c, Func Offset: 0x41c
-	// Line 2195, Address: 0x280150, Func Offset: 0x420
-	// Line 2196, Address: 0x28015c, Func Offset: 0x42c
-	// Line 2197, Address: 0x280170, Func Offset: 0x440
-	// Line 2199, Address: 0x280184, Func Offset: 0x454
-	// Line 2200, Address: 0x28018c, Func Offset: 0x45c
-	// Line 2201, Address: 0x2801b0, Func Offset: 0x480
-	// Line 2202, Address: 0x2801b8, Func Offset: 0x488
-	// Line 2203, Address: 0x2801c8, Func Offset: 0x498
-	// Line 2204, Address: 0x2801cc, Func Offset: 0x49c
-	// Line 2205, Address: 0x2801d4, Func Offset: 0x4a4
-	// Line 2213, Address: 0x2801dc, Func Offset: 0x4ac
-	// Line 2205, Address: 0x2801e0, Func Offset: 0x4b0
-	// Line 2206, Address: 0x2801e4, Func Offset: 0x4b4
-	// Line 2207, Address: 0x2801f0, Func Offset: 0x4c0
-	// Line 2208, Address: 0x2801fc, Func Offset: 0x4cc
-	// Line 2209, Address: 0x280208, Func Offset: 0x4d8
-	// Line 2210, Address: 0x280214, Func Offset: 0x4e4
-	// Line 2211, Address: 0x280220, Func Offset: 0x4f0
-	// Line 2212, Address: 0x28022c, Func Offset: 0x4fc
-	// Line 2213, Address: 0x280234, Func Offset: 0x504
-	// Line 2214, Address: 0x28023c, Func Offset: 0x50c
-	// Line 2215, Address: 0x280248, Func Offset: 0x518
-	// Line 2217, Address: 0x28024c, Func Offset: 0x51c
-	// Line 2220, Address: 0x280254, Func Offset: 0x524
-	// Line 2230, Address: 0x280260, Func Offset: 0x530
-	// Line 2220, Address: 0x280264, Func Offset: 0x534
-	// Line 2230, Address: 0x280268, Func Offset: 0x538
-	// Line 2220, Address: 0x28026c, Func Offset: 0x53c
-	// Line 2221, Address: 0x28028c, Func Offset: 0x55c
-	// Line 2222, Address: 0x2802b4, Func Offset: 0x584
-	// Line 2228, Address: 0x2802dc, Func Offset: 0x5ac
-	// Line 2229, Address: 0x2802e4, Func Offset: 0x5b4
-	// Line 2230, Address: 0x2802ec, Func Offset: 0x5bc
-	// Line 2231, Address: 0x280308, Func Offset: 0x5d8
-	// Line 2230, Address: 0x28030c, Func Offset: 0x5dc
-	// Line 2231, Address: 0x28031c, Func Offset: 0x5ec
-	// Line 2232, Address: 0x280320, Func Offset: 0x5f0
-	// Line 2233, Address: 0x280328, Func Offset: 0x5f8
-	// Line 2234, Address: 0x280330, Func Offset: 0x600
-	// Line 2235, Address: 0x28034c, Func Offset: 0x61c
-	// Line 2234, Address: 0x280350, Func Offset: 0x620
-	// Line 2235, Address: 0x280360, Func Offset: 0x630
-	// Line 2237, Address: 0x280364, Func Offset: 0x634
-	// Line 2238, Address: 0x28036c, Func Offset: 0x63c
-	// Line 2241, Address: 0x280390, Func Offset: 0x660
-	// Line 2239, Address: 0x280394, Func Offset: 0x664
-	// Line 2238, Address: 0x280398, Func Offset: 0x668
-	// Line 2241, Address: 0x28039c, Func Offset: 0x66c
-	// Line 2238, Address: 0x2803a0, Func Offset: 0x670
-	// Line 2239, Address: 0x2803ac, Func Offset: 0x67c
-	// Line 2241, Address: 0x2803b0, Func Offset: 0x680
-	// Line 2245, Address: 0x2803d8, Func Offset: 0x6a8
-	// Line 2246, Address: 0x28040c, Func Offset: 0x6dc
-	// Line 2247, Address: 0x280420, Func Offset: 0x6f0
-	// Line 2248, Address: 0x280434, Func Offset: 0x704
-	// Line 2256, Address: 0x28043c, Func Offset: 0x70c
-	// Line 2248, Address: 0x280440, Func Offset: 0x710
-	// Line 2249, Address: 0x280448, Func Offset: 0x718
-	// Line 2250, Address: 0x280458, Func Offset: 0x728
-	// Line 2251, Address: 0x280468, Func Offset: 0x738
-	// Line 2252, Address: 0x280478, Func Offset: 0x748
-	// Line 2253, Address: 0x280488, Func Offset: 0x758
-	// Line 2254, Address: 0x280498, Func Offset: 0x768
-	// Line 2255, Address: 0x2804a4, Func Offset: 0x774
-	// Line 2256, Address: 0x2804b0, Func Offset: 0x780
-	// Line 2260, Address: 0x2804c4, Func Offset: 0x794
-	// Func End, Address: 0x2804d0, Func Offset: 0x7a0
-	scePrintf("bhControlPlEyeCamera - UNIMPLEMENTED!\n");
+    CAM_WRK* ci; 
+    float hkn;   
+    int ct;    
+    short ax, ay;  
+    short ahkn; 
+
+    ci = &rom->cutp[cam.ncut].cam[cam.camver];
+    
+    hkn = 1.0f / (ci->spd + 1);
+    ahkn = ci->spd + 1;
+    
+    ct = cam.ct0;
+    
+    switch (cam.mode0) 
+    {                         
+    case 0:
+        cam.pxp = plp->mlwP->owP[5].mtx[12];
+        cam.pyp = plp->mlwP->owP[5].mtx[13];
+        cam.pzp = plp->mlwP->owP[5].mtx[14];
+        
+        cam.axp = 0;
+        cam.ayp = -plp->ay;
+        cam.azp = 0;
+        
+        cam.px = cam.px + (ct * (hkn * (cam.pxp - cam.px)));
+        cam.py = cam.py + (ct * (hkn * (cam.pyp - cam.py)));
+        cam.pz = cam.pz + (ct * (hkn * (cam.pzp - cam.pz)));
+        
+        cam.pln = -2.2f;
+        
+        cam.ppers = 11832;
+        
+        cam.ax = (short)((short)cam.ax + (ct * (((short)((short)cam.axp - (short)cam.ax)) / ahkn)));
+        cam.ay = (short)((short)cam.ay + (ct * (((short)((short)cam.ayp - (short)cam.ay)) / ahkn)));
+        cam.az = (short)((short)cam.az + (ct * (((short)((short)cam.azp - (short)cam.az)) / ahkn)));
+        
+        cam.ln = cam.ln + (ct * (hkn * (cam.pln - cam.ln)));
+        
+        cam.pers = cam.pers + (ct * ((cam.ppers - cam.pers) / ahkn));
+        
+        cam.ct0++;
+        
+        if (cam.ct0 >= ahkn) 
+        {
+            cam.px = plp->mlwP->owP[5].mtx[12];
+            cam.py = plp->mlwP->owP[5].mtx[13];
+            cam.pz = plp->mlwP->owP[5].mtx[14];
+            
+            cam.ax = 0;
+            cam.ay = -plp->ay;
+            cam.az = 0;
+            
+            cam.ln = cam.pln;
+            
+            cam.pers = cam.ppers;
+            
+            cam.mode0 = 1;
+        }
+        
+        break;
+    case 1:
+        cam.axp = 0;
+        
+        if (plp->mode1 != 0) 
+        {
+            if ((plp->at_flg & 0x4)) 
+            {
+                cam.axp = 57344;
+            }
+            
+            if ((plp->at_flg & 0x8)) 
+            {
+                cam.axp = 7281;
+            }
+        }
+        
+        cam.ln = -2.2f;
+        
+        cam.px = plp->mlwP->owP[5].mtx[12];
+        cam.py = plp->mlwP->owP[5].mtx[13];
+        cam.pz = plp->mlwP->owP[5].mtx[14];
+        
+        cam.ax = (short)((short)cam.ax + ((short)(((short)cam.axp - (short)cam.ax) / 4)));
+        cam.ay = -plp->ay;
+        cam.az = 0;
+        
+        if (!(attr & 0x4000)) 
+        {
+            cam.axp = ci->ax;
+            cam.ayp = ci->ay;
+            cam.azp = ci->az;
+            
+            cam.pxp = ci->px;
+            cam.pyp = ci->py;
+            cam.pzp = ci->pz;
+            
+            cam.pln = ci->ln;
+            
+            cam.ppers = ci->pers;
+            
+            bhInitActiveCamera(0);
+            
+            cam.mode0 = 2;
+            
+            cam.ct0 = 0;
+        }
+        
+        break;
+    case 2:
+        cam.px = cam.px + (ct * (hkn * (cam.pxp - cam.px)));
+        cam.py = cam.py + (ct * (hkn * (cam.pyp - cam.py)));
+        cam.pz = cam.pz + (ct * (hkn * (cam.pzp - cam.pz)));
+        
+        cam.ax = (short)((short)cam.ax + (ct * (((short)((short)cam.axp - (short)cam.ax)) / ahkn)));
+        cam.ay = (short)((short)cam.ay + (ct * (((short)((short)cam.ayp - (short)cam.ay)) / ahkn)));
+        cam.az = (short)((short)cam.az + (ct * (((short)((short)cam.azp - (short)cam.az)) / ahkn)));
+        
+        cam.ln = cam.ln + (ct * (hkn * (cam.pln - cam.ln)));
+        
+        cam.pers = cam.pers + (ct * ((cam.ppers - cam.pers) / ahkn));
+        
+        cam.ct0++;
+        
+        if (cam.ct0 >= ahkn) 
+        {
+            cam.ax = cam.axp;
+            cam.ay = cam.ayp;
+            cam.az = cam.azp;
+            
+            cam.px = cam.pxp;
+            cam.py = cam.pyp;
+            cam.pz = cam.pzp;
+            
+            cam.ln = ci->ln;
+            
+            cam.pers = ci->pers;
+            
+            cam.flg &= ~0x4;
+        }
+        
+        break;
+    }
 }
+
+#pragma divbyzerocheck off 
 
 // 100% matching!
 void bhInitPlEyeCamera()
@@ -2450,7 +2442,7 @@ void bhInitPlEyeCamera()
     
     sys->st_flg &= ~0x1;
     
-    for (i = 0; i < rom->mdl.obj_num; i++)
+    for (i = 0; i < (int)rom->mdl.obj_num; i++)
     {
         obj = &rom->mdl.objP[i];
         
