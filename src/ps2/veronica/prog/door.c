@@ -575,35 +575,47 @@ void ViewProc3(_door_wrk* dwP)
 	// Line 1089, Address: 0x2affe8, Func Offset: 0x298
 	// Line 1091, Address: 0x2afff8, Func Offset: 0x2a8
 	// Func End, Address: 0x2b0010, Func Offset: 0x2c0
-}
+}*/
 
-// 
-// Start address: 0x2b0010
-void ViewProc4(_door_wrk* dwP)
+// 100% matching!
+static void ViewProc4(_door_wrk* dwP) 
 {
-	_anon34* prmP;
-	_anon34* vpP;
-	// Line 1105, Address: 0x2b0010, Func Offset: 0
-	// Line 1103, Address: 0x2b0014, Func Offset: 0x4
-	// Line 1105, Address: 0x2b0018, Func Offset: 0x8
-	// Line 1107, Address: 0x2b0028, Func Offset: 0x18
-	// Line 1111, Address: 0x2b0048, Func Offset: 0x38
-	// Line 1113, Address: 0x2b0050, Func Offset: 0x40
-	// Line 1114, Address: 0x2b0068, Func Offset: 0x58
-	// Line 1115, Address: 0x2b0070, Func Offset: 0x60
-	// Line 1116, Address: 0x2b0078, Func Offset: 0x68
-	// Line 1117, Address: 0x2b0080, Func Offset: 0x70
-	// Line 1121, Address: 0x2b008c, Func Offset: 0x7c
-	// Line 1124, Address: 0x2b009c, Func Offset: 0x8c
-	// Line 1125, Address: 0x2b00a0, Func Offset: 0x90
-	// Line 1126, Address: 0x2b00ac, Func Offset: 0x9c
-	// Line 1125, Address: 0x2b00b0, Func Offset: 0xa0
-	// Line 1126, Address: 0x2b00c0, Func Offset: 0xb0
-	// Line 1131, Address: 0x2b00c4, Func Offset: 0xb4
-	// Func End, Address: 0x2b00cc, Func Offset: 0xbc
+    VIEWPROC4_WORK* vpP, *prmP;
+    
+    vpP = prmP = dwP->vpP;
+    
+    if ((dwP->status & 0x4000))
+    {
+        vpP = (VIEWPROC4_WORK*)&prmP->pos_high;
+    }
+    
+    switch (dwP->vew_mode) 
+    {                            
+    case 0:
+        dwP->vew_reg = prmP->wait;
+        
+        dwP->vew_pos = vpP->pos_low;
+        
+        dwP->vew_ang[0] = vpP->ang_low[0];
+        dwP->vew_ang[1] = vpP->ang_low[1];
+        dwP->vew_ang[2] = vpP->ang_low[2];
+        
+        dwP->vew_mode++;
+    case 1:
+        if (dwP->vew_reg-- <= 0) 
+        {
+            dwP->vew_mode = 0;
+            
+            dwP->vew_prcP = ViewProcTbl[prmP->chg_vew].procP;
+            
+            dwP->vpP = &prmP[1];
+        }
+        
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2b00d0
 void ViewProc5(_door_wrk* dwP)
 {
