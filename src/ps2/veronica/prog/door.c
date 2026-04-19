@@ -985,72 +985,123 @@ static void DoorProc1(_door_wrk* dwP)
     }
 }
 
-/*// 
-// Start address: 0x2b09f0
-void DoorProc2(_door_wrk* dwP)
+// 100% matching!
+static void DoorProc2(_door_wrk* dwP)
 {
-	float pos_x;
-	int ang_z;
-	int pole;
-	npobj* objP;
-	npobj* basP;
-	int j;
-	int i;
-	npobj* basP;
-	_anon0* dpP;
-	// Line 1450, Address: 0x2b09f0, Func Offset: 0
-	// Line 1455, Address: 0x2b0a04, Func Offset: 0x14
-	// Line 1457, Address: 0x2b0a08, Func Offset: 0x18
-	// Line 1454, Address: 0x2b0a0c, Func Offset: 0x1c
-	// Line 1457, Address: 0x2b0a10, Func Offset: 0x20
-	// Line 1460, Address: 0x2b0a48, Func Offset: 0x58
-	// Line 1462, Address: 0x2b0a50, Func Offset: 0x60
-	// Line 1463, Address: 0x2b0a58, Func Offset: 0x68
-	// Line 1464, Address: 0x2b0a60, Func Offset: 0x70
-	// Line 1466, Address: 0x2b0a64, Func Offset: 0x74
-	// Line 1468, Address: 0x2b0a70, Func Offset: 0x80
-	// Line 1476, Address: 0x2b0a74, Func Offset: 0x84
-	// Line 1466, Address: 0x2b0a78, Func Offset: 0x88
-	// Line 1468, Address: 0x2b0a80, Func Offset: 0x90
-	// Line 1469, Address: 0x2b0a8c, Func Offset: 0x9c
-	// Line 1473, Address: 0x2b0a98, Func Offset: 0xa8
-	// Line 1477, Address: 0x2b0aa4, Func Offset: 0xb4
-	// Line 1478, Address: 0x2b0ac4, Func Offset: 0xd4
-	// Line 1481, Address: 0x2b0ad4, Func Offset: 0xe4
-	// Line 1482, Address: 0x2b0ad8, Func Offset: 0xe8
-	// Line 1484, Address: 0x2b0ae8, Func Offset: 0xf8
-	// Line 1487, Address: 0x2b0aec, Func Offset: 0xfc
-	// Line 1488, Address: 0x2b0af0, Func Offset: 0x100
-	// Line 1484, Address: 0x2b0af4, Func Offset: 0x104
-	// Line 1487, Address: 0x2b0af8, Func Offset: 0x108
-	// Line 1488, Address: 0x2b0b04, Func Offset: 0x114
-	// Line 1489, Address: 0x2b0b10, Func Offset: 0x120
-	// Line 1494, Address: 0x2b0b1c, Func Offset: 0x12c
-	// Line 1495, Address: 0x2b0b34, Func Offset: 0x144
-	// Line 1496, Address: 0x2b0b44, Func Offset: 0x154
-	// Line 1497, Address: 0x2b0b48, Func Offset: 0x158
-	// Line 1498, Address: 0x2b0b50, Func Offset: 0x160
-	// Line 1499, Address: 0x2b0b58, Func Offset: 0x168
-	// Line 1512, Address: 0x2b0b68, Func Offset: 0x178
-	// Line 1514, Address: 0x2b0b6c, Func Offset: 0x17c
-	// Line 1517, Address: 0x2b0b80, Func Offset: 0x190
-	// Line 1518, Address: 0x2b0bb0, Func Offset: 0x1c0
-	// Line 1526, Address: 0x2b0bbc, Func Offset: 0x1cc
-	// Line 1521, Address: 0x2b0bc0, Func Offset: 0x1d0
-	// Line 1518, Address: 0x2b0bc4, Func Offset: 0x1d4
-	// Line 1526, Address: 0x2b0bcc, Func Offset: 0x1dc
-	// Line 1520, Address: 0x2b0bd0, Func Offset: 0x1e0
-	// Line 1521, Address: 0x2b0bd8, Func Offset: 0x1e8
-	// Line 1522, Address: 0x2b0be0, Func Offset: 0x1f0
-	// Line 1523, Address: 0x2b0be8, Func Offset: 0x1f8
-	// Line 1524, Address: 0x2b0bf0, Func Offset: 0x200
-	// Line 1525, Address: 0x2b0bf8, Func Offset: 0x208
-	// Line 1526, Address: 0x2b0c00, Func Offset: 0x210
-	// Line 1530, Address: 0x2b0c08, Func Offset: 0x218
-	// Func End, Address: 0x2b0c20, Func Offset: 0x230
+    DOORPROC2_WORK* dpP;    
+    NJS_CNK_OBJECT* basP;   
+    int i, j;             
+    int pole;             
+    int ang_z;           
+    float pos_x;           
+
+    dpP = dwP->dpP;
+    basP = &dwP->objP[2];
+    
+    switch (dwP->dor_mode)
+    {     
+    case 0:
+        dwP->dor_reg = dpP->wait;
+        
+        dwP->dor_yaw = dpP->yaw;
+        dwP->dor_pitch = dpP->pitch;
+        dwP->dor_speed = 0;
+        
+        dwP->dor_flt = basP->pos[0] / njSin(basP[6].ang[2]);
+        
+        dwP->status |= 0x200000;
+        
+        dwP->dor_mode++;
+        
+        {
+        NJS_CNK_OBJECT* basP, *objP; 
+            
+        basP = objP = &dwP->objP[3];
+            
+        for (i = 0; i < 7; i++, objP++) 
+        {
+            for (j = 0; j < 6; j++, objP++) 
+            {
+                objP->model = basP->model;
+            }
+        }
+        }
+    case 1:
+        if (dwP->dor_reg-- <= 0) 
+        {
+            dwP->dor_speed = dpP->speed;
+            
+            dwP->status |= 0x10000;
+            dwP->status |= 0x1000000;
+            
+            dwP->dor_mode++;
+        }
+        else 
+        {
+            break;
+        }
+    case 2:
+        if (CompareFloat(basP->pos[0], 1, dpP->goal) != 0) 
+        {
+            dwP->status |= 0x2000000;
+            
+            dwP->dor_speed = 0;
+            
+            dwP->dor_mode++;
+        } 
+        else 
+        {
+            dwP->dor_speed += dpP->decel;
+        }
+        
+        break;
+    case 3:
+        break;
+    }
+    
+    for (j = 0; j < 7; j++, basP++) 
+    {
+        VectorMove((NJS_POINT3*)basP->pos, dwP->dor_yaw, dwP->dor_pitch, dwP->dor_speed);
+        
+        ang_z = (int)(10430.381f * asinf(basP->pos[0] / dwP->dor_flt));
+        
+        pole = -ang_z;
+        
+        pos_x = -basP->pos[0] / 2.0f;
+        
+        basP++;
+        
+        basP->pos[0] = pos_x;
+        basP->ang[2] = ang_z;
+        
+        basP++;
+        
+        basP->pos[0] = pos_x;
+        basP->ang[2] = pole;
+        
+        basP++;
+        
+        basP->pos[0] = pos_x;
+        basP->ang[2] = ang_z;
+        
+        basP++;
+        
+        basP->pos[0] = pos_x;
+        basP->ang[2] = pole;
+        
+        basP++;
+        
+        basP->pos[0] = pos_x;
+        basP->ang[2] = ang_z;
+        
+        basP++;
+        
+        basP->pos[0] = pos_x;
+        basP->ang[2] = pole;
+    } 
 }
 
-// 
+/*// 
 // Start address: 0x2b0c20
 void DoorProc3(_door_wrk* dwP)
 {
