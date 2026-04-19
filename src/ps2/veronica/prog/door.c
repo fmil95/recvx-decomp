@@ -1299,56 +1299,92 @@ static void DoorProc4(_door_wrk* dwP)
     }
 }
 
-/*// 
-// Start address: 0x2b10a0
-void DoorProc5(_door_wrk* dwP)
+// 100% matching!
+static void DoorProc5(_door_wrk* dwP) 
 {
-	_anon30* dpP;
-	npobj* objP;
-	// Line 1716, Address: 0x2b10a0, Func Offset: 0
-	// Line 1723, Address: 0x2b10b4, Func Offset: 0x14
-	// Line 1717, Address: 0x2b10b8, Func Offset: 0x18
-	// Line 1720, Address: 0x2b10bc, Func Offset: 0x1c
-	// Line 1723, Address: 0x2b10c0, Func Offset: 0x20
-	// Line 1726, Address: 0x2b10e8, Func Offset: 0x48
-	// Line 1727, Address: 0x2b10f0, Func Offset: 0x50
-	// Line 1728, Address: 0x2b10f8, Func Offset: 0x58
-	// Line 1732, Address: 0x2b1104, Func Offset: 0x64
-	// Line 1735, Address: 0x2b1114, Func Offset: 0x74
-	// Line 1737, Address: 0x2b1118, Func Offset: 0x78
-	// Line 1742, Address: 0x2b111c, Func Offset: 0x7c
-	// Line 1737, Address: 0x2b1120, Func Offset: 0x80
-	// Line 1738, Address: 0x2b1124, Func Offset: 0x84
-	// Line 1739, Address: 0x2b112c, Func Offset: 0x8c
-	// Line 1742, Address: 0x2b1138, Func Offset: 0x98
-	// Line 1747, Address: 0x2b1144, Func Offset: 0xa4
-	// Line 1748, Address: 0x2b115c, Func Offset: 0xbc
-	// Line 1749, Address: 0x2b116c, Func Offset: 0xcc
-	// Line 1752, Address: 0x2b117c, Func Offset: 0xdc
-	// Line 1754, Address: 0x2b119c, Func Offset: 0xfc
-	// Line 1755, Address: 0x2b11a8, Func Offset: 0x108
-	// Line 1757, Address: 0x2b11b0, Func Offset: 0x110
-	// Line 1761, Address: 0x2b11bc, Func Offset: 0x11c
-	// Line 1764, Address: 0x2b11cc, Func Offset: 0x12c
-	// Line 1768, Address: 0x2b11d0, Func Offset: 0x130
-	// Line 1764, Address: 0x2b11d4, Func Offset: 0x134
-	// Line 1765, Address: 0x2b11d8, Func Offset: 0x138
-	// Line 1768, Address: 0x2b11e4, Func Offset: 0x144
-	// Line 1773, Address: 0x2b11f0, Func Offset: 0x150
-	// Line 1774, Address: 0x2b1208, Func Offset: 0x168
-	// Line 1775, Address: 0x2b1218, Func Offset: 0x178
-	// Line 1776, Address: 0x2b1224, Func Offset: 0x184
-	// Line 1777, Address: 0x2b122c, Func Offset: 0x18c
-	// Line 1778, Address: 0x2b123c, Func Offset: 0x19c
-	// Line 1781, Address: 0x2b124c, Func Offset: 0x1ac
-	// Line 1782, Address: 0x2b1264, Func Offset: 0x1c4
-	// Line 1786, Address: 0x2b126c, Func Offset: 0x1cc
-	// Line 1782, Address: 0x2b1270, Func Offset: 0x1d0
-	// Line 1783, Address: 0x2b1278, Func Offset: 0x1d8
-	// Line 1786, Address: 0x2b1284, Func Offset: 0x1e4
-	// Line 1796, Address: 0x2b1290, Func Offset: 0x1f0
-	// Func End, Address: 0x2b12a8, Func Offset: 0x208
-}*/
+    NJS_CNK_OBJECT* objP; 
+    DOORPROC5_WORK* dpP; 
+
+    objP = dwP->objP;
+    dpP = dwP->dpP;
+    
+    switch (dwP->dor_mode) 
+    {
+    case 0:
+        dwP->dor_reg = dpP->dor0_wait;
+        dwP->dor_snd = dpP->snd_wait;
+        
+        dwP->dor_mode++;
+    case 1:
+        if (dwP->dor_reg-- <= 0) 
+        {
+            objP[1].ang[0] = 0;
+            
+            dwP->dor_ang_speed = dpP->dor0_speed;
+            
+            dwP->dor_reg = dpP->dor1_wait;
+            
+            dwP->dor_mode++;
+            
+            dwP->status |= 0x400000;
+        }
+        else 
+        {
+            break;
+        }
+    case 2:
+        if (CompareSint32(dwP->dor_ang_speed, dpP->dor0_cmp, dpP->dor0_goal_speed) != 0) 
+        {
+            objP[1].ang[0] += dwP->dor_ang_speed;
+            dwP->dor_ang_speed += dpP->dor0_accel;
+            
+            if (dwP->dor_snd-- == 0) 
+            {
+                dwP->status |= 0x80000;
+            }
+            
+            dwP->status |= 0x1000000;
+            break;
+        }
+        
+        dwP->dor_mode++;
+    case 3:
+        if (dwP->dor_reg-- <= 0) 
+        {
+            dwP->dor_ang_speed = dpP->dor1_speed;
+            
+            dwP->dor_mode++;
+            
+            dwP->status |= 0x20000;
+        }
+        else 
+        {
+            break;
+        }
+    case 4:
+        if (CompareSint32(objP[1].ang[0], dpP->dor1_cmp, dpP->dor1_goal_angle) != 0) 
+        {
+            objP[1].ang[0] += dwP->dor_ang_speed;
+            dwP->dor_ang_speed += dpP->dor1_accel;
+        } 
+        else 
+        {
+            dwP->dor_ang_speed += dpP->dor1_decel;
+            objP[1].ang[0] += dwP->dor_ang_speed;
+        }
+        
+        if (CompareSint32(dwP->dor_ang_speed, dpP->dor1_cmp, 0) != 0) 
+        {
+            dwP->status |= 0x2000000;
+            
+            dwP->dor_mode++;
+            
+            dwP->status |= 0x40000;
+        }
+    case 5:
+        break;
+    }
+}
 
 // 100% matching!
 static void DoorProc6(_door_wrk* dwP) 
