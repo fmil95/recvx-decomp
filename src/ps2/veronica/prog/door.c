@@ -826,76 +826,166 @@ static void ViewProc7(_door_wrk* dwP)
     }
 }
 
-/*// 
-// Start address: 0x2b0660
-void DoorProc1(_door_wrk* dwP)
+// 100% matching!
+static void DoorProc1(_door_wrk* dwP) 
 {
-	_anon51* dpP;
-	npobj* objP;
-	npobj* obP;
-	npobj* oaP;
-	int flp_n;
-	int flp_d;
-	// Line 1322, Address: 0x2b0660, Func Offset: 0
-	// Line 1327, Address: 0x2b0680, Func Offset: 0x20
-	// Line 1328, Address: 0x2b0684, Func Offset: 0x24
-	// Line 1331, Address: 0x2b068c, Func Offset: 0x2c
-	// Line 1332, Address: 0x2b06a8, Func Offset: 0x48
-	// Line 1334, Address: 0x2b06b0, Func Offset: 0x50
-	// Line 1336, Address: 0x2b06c4, Func Offset: 0x64
-	// Line 1337, Address: 0x2b06d8, Func Offset: 0x78
-	// Line 1340, Address: 0x2b06e0, Func Offset: 0x80
-	// Line 1343, Address: 0x2b070c, Func Offset: 0xac
-	// Line 1344, Address: 0x2b0714, Func Offset: 0xb4
-	// Line 1348, Address: 0x2b0720, Func Offset: 0xc0
-	// Line 1351, Address: 0x2b0730, Func Offset: 0xd0
-	// Line 1358, Address: 0x2b0734, Func Offset: 0xd4
-	// Line 1351, Address: 0x2b0738, Func Offset: 0xd8
-	// Line 1352, Address: 0x2b0740, Func Offset: 0xe0
-	// Line 1353, Address: 0x2b074c, Func Offset: 0xec
-	// Line 1354, Address: 0x2b0754, Func Offset: 0xf4
-	// Line 1356, Address: 0x2b075c, Func Offset: 0xfc
-	// Line 1358, Address: 0x2b0764, Func Offset: 0x104
-	// Line 1359, Address: 0x2b0770, Func Offset: 0x110
-	// Line 1364, Address: 0x2b077c, Func Offset: 0x11c
-	// Line 1365, Address: 0x2b079c, Func Offset: 0x13c
-	// Line 1366, Address: 0x2b07ac, Func Offset: 0x14c
-	// Line 1369, Address: 0x2b07c0, Func Offset: 0x160
-	// Line 1370, Address: 0x2b07dc, Func Offset: 0x17c
-	// Line 1372, Address: 0x2b07e4, Func Offset: 0x184
-	// Line 1376, Address: 0x2b07f0, Func Offset: 0x190
-	// Line 1380, Address: 0x2b0800, Func Offset: 0x1a0
-	// Line 1382, Address: 0x2b080c, Func Offset: 0x1ac
-	// Line 1383, Address: 0x2b0818, Func Offset: 0x1b8
-	// Line 1384, Address: 0x2b0820, Func Offset: 0x1c0
-	// Line 1389, Address: 0x2b082c, Func Offset: 0x1cc
-	// Line 1390, Address: 0x2b084c, Func Offset: 0x1ec
-	// Line 1391, Address: 0x2b085c, Func Offset: 0x1fc
-	// Line 1395, Address: 0x2b0870, Func Offset: 0x210
-	// Line 1397, Address: 0x2b0890, Func Offset: 0x230
-	// Line 1399, Address: 0x2b08b0, Func Offset: 0x250
-	// Line 1400, Address: 0x2b08bc, Func Offset: 0x25c
-	// Line 1402, Address: 0x2b08c4, Func Offset: 0x264
-	// Line 1406, Address: 0x2b08d0, Func Offset: 0x270
-	// Line 1409, Address: 0x2b08e0, Func Offset: 0x280
-	// Line 1410, Address: 0x2b08ec, Func Offset: 0x28c
-	// Line 1415, Address: 0x2b08f8, Func Offset: 0x298
-	// Line 1416, Address: 0x2b0918, Func Offset: 0x2b8
-	// Line 1417, Address: 0x2b0928, Func Offset: 0x2c8
-	// Line 1418, Address: 0x2b0938, Func Offset: 0x2d8
-	// Line 1419, Address: 0x2b0940, Func Offset: 0x2e0
-	// Line 1420, Address: 0x2b0954, Func Offset: 0x2f4
-	// Line 1423, Address: 0x2b0964, Func Offset: 0x304
-	// Line 1424, Address: 0x2b0980, Func Offset: 0x320
-	// Line 1425, Address: 0x2b0990, Func Offset: 0x330
-	// Line 1435, Address: 0x2b099c, Func Offset: 0x33c
-	// Line 1436, Address: 0x2b09ac, Func Offset: 0x34c
-	// Line 1437, Address: 0x2b09b8, Func Offset: 0x358
-	// Line 1440, Address: 0x2b09c4, Func Offset: 0x364
-	// Func End, Address: 0x2b09e8, Func Offset: 0x388
+    int flp_d, flp_n;           
+    NJS_CNK_OBJECT* oaP, *obP, *objP;  
+    DOORPROC1_WORK* dpP; 
+    
+    objP = dwP->objP;
+    dpP = dwP->dpP;
+    
+    if ((dwP->status & 0x800)) 
+    {
+        flp_d = -1;
+        flp_n = 1;
+    } 
+    else 
+    {
+        flp_d = 1;
+        flp_n = 1;
+    }
+    
+    if ((dwP->status & 0x2000)) 
+    {
+        flp_d = -flp_d;
+        flp_n = -flp_n;
+    }
+    
+    if ((dwP->status & 0x2000)) 
+    {
+        oaP = (NJS_CNK_OBJECT*)&objP[3];
+        obP = (NJS_CNK_OBJECT*)&objP[1];
+    } 
+    else 
+    {
+        oaP = (NJS_CNK_OBJECT*)&objP[1];
+        obP = (NJS_CNK_OBJECT*)&objP[3];
+    }
+    
+    switch (dwP->dor_mode) 
+    {
+    case 0:
+        dwP->dor_reg = dpP->wait;
+        
+        dwP->dor_mode++;
+    case 1:
+        if (dwP->dor_reg-- <= 0) 
+        {
+            oaP[1].ang[2] = dpP->nob_first * flp_n;
+            dwP->dor_ang_speed = dpP->nob_speed * flp_n;
+            
+            dwP->dor_snd = dpP->snd_wait;
+            dwP->dor_reg = dpP->dor0_wait;
+            dwP->dor_snd_exd = dpP->snd_wait1;
+            
+            dwP->status |= 0x200000;
+            
+            dwP->dor_mode++;
+        }
+        else 
+        {
+            break; 
+        }
+    case 2:
+        if (CompareSint32(oaP[1].ang[2], dpP->nob_cmp * flp_n, dpP->nob_goal * flp_n) != 0) 
+        {
+            oaP[1].ang[2] += dwP->dor_ang_speed;
+            dwP->dor_ang_speed += dpP->nob_accel * flp_n;
+            
+            if (dwP->dor_snd-- == 0) 
+            {
+                dwP->status |= 0x10000;
+                break; 
+            }
+            else 
+            {
+                break; 
+            }
+        }
+        else
+        {
+            dwP->dor_mode++; 
+        }
+    case 3:
+        if (dwP->dor_reg-- <= 0) 
+        {
+            oaP->ang[1] = dpP->dor0_first * flp_d;
+            dwP->dor_ang_speed = dpP->dor0_speed * flp_d;
+            
+            dwP->dor_reg = dpP->dor1_wait;
+            
+            dwP->dor_mode++;
+        }
+        else 
+        {
+            break;
+        }
+    case 4:
+        if (CompareSint32(dwP->dor_ang_speed, dpP->dor0_cmp * flp_d, dpP->dor0_goal_speed * flp_d) != 0) 
+        {
+            oaP->ang[1] += dwP->dor_ang_speed;
+            dwP->dor_ang_speed += dpP->dor0_accel * flp_d;
+            
+            if (dwP->dor_snd_exd-- == 0)
+            {
+                dwP->status |= 0x40000;
+            }
+            
+            if (dwP->dor_snd-- == 0) 
+            {
+                dwP->status |= 0x10000;
+            }
+            
+            dwP->status |= 0x1000000;
+            break;
+        }
+        else 
+        {
+            dwP->dor_mode++;
+        }
+    case 5: 
+        if (dwP->dor_reg-- <= 0) 
+        {
+            dwP->dor_ang_speed = dpP->dor1_speed * flp_d;
+            
+            dwP->dor_mode++;
+        }
+        else 
+        {
+            break;
+        }
+    case 6:
+        if (CompareSint32(oaP->ang[1], dpP->dor1_cmp * flp_d, dpP->dor1_goal_angle * flp_d) != 0) 
+        {
+            oaP->ang[1] += dwP->dor_ang_speed;
+            dwP->dor_ang_speed += dpP->dor1_accel * flp_d;
+        }
+        else
+        {
+            dwP->dor_ang_speed += dpP->dor1_decel * flp_d;
+            oaP->ang[1] += dwP->dor_ang_speed;
+        }
+        
+        if (CompareSint32(dwP->dor_ang_speed, dpP->dor1_cmp * flp_d, 0) != 0) 
+        {
+            dwP->status |= 0x2000000;
+            
+            dwP->dor_mode++;
+        }
+    case 7:
+        break;
+    }
+    
+    if ((dwP->status & 0x1000)) 
+    {
+        obP->ang[1] = -oaP->ang[1];
+        obP[1].ang[2] = -oaP[1].ang[2];
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2b09f0
 void DoorProc2(_door_wrk* dwP)
 {
