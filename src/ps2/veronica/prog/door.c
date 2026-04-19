@@ -1104,7 +1104,7 @@ static void DoorProc2(_door_wrk* dwP)
 // 100% matching!
 static void DoorProc3(_door_wrk* dwP) 
 {
-    int flp_d, flp_n;           
+    int flp_d, flp_n; // flp_d needs use       
     NJS_CNK_OBJECT* oaP, *obP, *objP;  
     DOORPROC3_WORK* dpP; 
    
@@ -1226,48 +1226,80 @@ static void DoorProc3(_door_wrk* dwP)
     }
 }
 
-/*// 
-// Start address: 0x2b0ee0
-void DoorProc4(_door_wrk* dwP)
+// 100% matching!
+static void DoorProc4(_door_wrk* dwP) 
 {
-	_anon6* prmP;
-	_anon6* dpP;
-	npobj* objP;
-	// Line 1647, Address: 0x2b0ee0, Func Offset: 0
-	// Line 1653, Address: 0x2b0ef4, Func Offset: 0x14
-	// Line 1651, Address: 0x2b0ef8, Func Offset: 0x18
-	// Line 1648, Address: 0x2b0efc, Func Offset: 0x1c
-	// Line 1653, Address: 0x2b0f04, Func Offset: 0x24
-	// Line 1655, Address: 0x2b0f14, Func Offset: 0x34
-	// Line 1658, Address: 0x2b0f4c, Func Offset: 0x6c
-	// Line 1666, Address: 0x2b0f50, Func Offset: 0x70
-	// Line 1658, Address: 0x2b0f54, Func Offset: 0x74
-	// Line 1659, Address: 0x2b0f58, Func Offset: 0x78
-	// Line 1660, Address: 0x2b0f60, Func Offset: 0x80
-	// Line 1661, Address: 0x2b0f68, Func Offset: 0x88
-	// Line 1662, Address: 0x2b0f70, Func Offset: 0x90
-	// Line 1664, Address: 0x2b0f78, Func Offset: 0x98
-	// Line 1666, Address: 0x2b0f80, Func Offset: 0xa0
-	// Line 1674, Address: 0x2b0f8c, Func Offset: 0xac
-	// Line 1676, Address: 0x2b0f98, Func Offset: 0xb8
-	// Line 1680, Address: 0x2b0fa4, Func Offset: 0xc4
-	// Line 1681, Address: 0x2b0fb4, Func Offset: 0xd4
-	// Line 1682, Address: 0x2b0fc4, Func Offset: 0xe4
-	// Line 1684, Address: 0x2b0fe8, Func Offset: 0x108
-	// Line 1686, Address: 0x2b1004, Func Offset: 0x124
-	// Line 1687, Address: 0x2b100c, Func Offset: 0x12c
-	// Line 1688, Address: 0x2b1014, Func Offset: 0x134
-	// Line 1690, Address: 0x2b101c, Func Offset: 0x13c
-	// Line 1693, Address: 0x2b1024, Func Offset: 0x144
-	// Line 1694, Address: 0x2b1034, Func Offset: 0x154
-	// Line 1698, Address: 0x2b1040, Func Offset: 0x160
-	// Line 1699, Address: 0x2b1058, Func Offset: 0x178
-	// Line 1700, Address: 0x2b106c, Func Offset: 0x18c
-	// Line 1705, Address: 0x2b107c, Func Offset: 0x19c
-	// Func End, Address: 0x2b1094, Func Offset: 0x1b4
+    NJS_CNK_OBJECT* objP; 
+    DOORPROC4_WORK* dpP, *prmP;  
+    
+    dpP = prmP = dwP->dpP;
+
+    objP = dwP->objP;
+    
+    if ((dwP->status & 0x4000)) 
+    {
+        dpP = (DOORPROC4_WORK*)&prmP->pos_y_high;
+    }
+    
+    switch (dwP->dor_mode) 
+    {                    
+    case 0:
+        dwP->dor_reg = prmP->wait;
+        dwP->dor_snd = prmP->snd_wait;
+        
+        dwP->dor_speed = prmP->speed;
+        
+        dwP->dor_yaw = dpP->yaw_low;
+        dwP->dor_pitch = dpP->pitch_low;
+        objP[2].pos[1] = dpP->pos_y_low;
+        
+        dwP->status |= 0x200000;
+        
+        objP[3].evalflags |= 0x8;
+        
+        dwP->dor_mode++;
+    case 1:
+        if (dwP->dor_reg-- > 0) 
+        {
+            if (dwP->dor_reg < 3) 
+            {
+                objP[2].pos[1] += 0.2f * njCos(dwP->dor_reg * 16384);
+            }
+            
+            if (dwP->dor_reg == 1) 
+            {
+                dwP->status |= 0x10000;
+            }
+            
+            break;
+        }
+        
+        dwP->dor_reg = 6;
+        
+        dwP->dor_mode++;
+        break;
+    case 2:
+        if (dwP->dor_reg-- <= 0) 
+        {
+            dwP->dor_mode++;
+        }
+        else 
+        {
+            break;
+        }
+    case 3:
+        if (CompareFloat(dwP->dor_speed, prmP->cmp, prmP->goal) != 0) 
+        {
+            VectorMove((NJS_POINT3*)&objP[2].pos, dwP->dor_yaw, dwP->dor_pitch, dwP->dor_speed);
+            
+            dwP->vew_speed += prmP->accel;
+        }
+        
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2b10a0
 void DoorProc5(_door_wrk* dwP)
 {
