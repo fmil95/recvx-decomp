@@ -63,21 +63,18 @@ void FileFlagInit01()
     njClipZ(-2.0f, -20000.0f); 
 }
 
-/*// 
-// Start address: 0x2ac0f0
+// 100% matching!
 void FileFlagInit()
 {
-	// Line 219, Address: 0x2ac0f0, Func Offset: 0
-	// Line 214, Address: 0x2ac0f8, Func Offset: 0x8
-	// Line 215, Address: 0x2ac104, Func Offset: 0x14
-	// Line 218, Address: 0x2ac10c, Func Offset: 0x1c
-	// Line 219, Address: 0x2ac114, Func Offset: 0x24
-	// Line 220, Address: 0x2ac120, Func Offset: 0x30
-	// Line 218, Address: 0x2ac128, Func Offset: 0x38
-	// Line 220, Address: 0x2ac134, Func Offset: 0x44
-	// Line 221, Address: 0x2ac13c, Func Offset: 0x4c
-	// Func End, Address: 0x2ac144, Func Offset: 0x54
-}*/
+	fvwork.mode_00 = 1;
+    fvwork.mode_01 = 0;
+    
+    parts_22b[2].atr &= ~0x20;
+    
+    fvwork.afsmode &= 0x780;
+    
+    parts_22b[3].atr &= ~0x20;
+}
 
 // 100% matching!
 void GetFile()
