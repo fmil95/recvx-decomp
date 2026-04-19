@@ -338,50 +338,88 @@ static void SetSoundTiming(_door_wrk* dwP)
 	}
 }
 
-// 
-// Start address: 0x2af800
-void FadeProc1(_door_wrk* dwP)
+// 100% matching!
+static void FadeProc1(_door_wrk* dwP) 
 {
-	//_anon11* fpP;
-	// Line 822, Address: 0x2af800, Func Offset: 0
-	// Line 825, Address: 0x2af810, Func Offset: 0x10
-	// Line 823, Address: 0x2af814, Func Offset: 0x14
-	// Line 825, Address: 0x2af818, Func Offset: 0x18
-	// Line 828, Address: 0x2af840, Func Offset: 0x40
-	// Line 829, Address: 0x2af848, Func Offset: 0x48
-	// Line 832, Address: 0x2af854, Func Offset: 0x54
-	// Line 838, Address: 0x2af864, Func Offset: 0x64
-	// Line 840, Address: 0x2af86c, Func Offset: 0x6c
-	// Line 841, Address: 0x2af874, Func Offset: 0x74
-	// Line 842, Address: 0x2af880, Func Offset: 0x80
-	// Line 843, Address: 0x2af88c, Func Offset: 0x8c
-	// Line 848, Address: 0x2af898, Func Offset: 0x98
-	// Line 849, Address: 0x2af8a8, Func Offset: 0xa8
-	// Line 850, Address: 0x2af8bc, Func Offset: 0xbc
-	// Line 851, Address: 0x2af8cc, Func Offset: 0xcc
-	// Line 852, Address: 0x2af8d4, Func Offset: 0xd4
-	// Line 854, Address: 0x2af8dc, Func Offset: 0xdc
-	// Line 857, Address: 0x2af8e4, Func Offset: 0xe4
-	// Line 863, Address: 0x2af8f4, Func Offset: 0xf4
-	// Line 865, Address: 0x2af8fc, Func Offset: 0xfc
-	// Line 866, Address: 0x2af904, Func Offset: 0x104
-	// Line 867, Address: 0x2af910, Func Offset: 0x110
-	// Line 872, Address: 0x2af91c, Func Offset: 0x11c
-	// Line 873, Address: 0x2af92c, Func Offset: 0x12c
-	// Line 874, Address: 0x2af940, Func Offset: 0x140
-	// Line 875, Address: 0x2af948, Func Offset: 0x148
-	// Line 874, Address: 0x2af94c, Func Offset: 0x14c
-	// Line 875, Address: 0x2af954, Func Offset: 0x154
-	// Line 876, Address: 0x2af960, Func Offset: 0x160
-	// Line 877, Address: 0x2af96c, Func Offset: 0x16c
-	// Line 878, Address: 0x2af974, Func Offset: 0x174
-	// Line 880, Address: 0x2af97c, Func Offset: 0x17c
-	// Line 883, Address: 0x2af984, Func Offset: 0x184
-	// Line 885, Address: 0x2af994, Func Offset: 0x194
-	// Line 886, Address: 0x2af9a0, Func Offset: 0x1a0
-	// Line 893, Address: 0x2af9ac, Func Offset: 0x1ac
-	// Func End, Address: 0x2af9c0, Func Offset: 0x1c0
-	scePrintf("FadeProc1 - UNIMPLEMENTED!\n");
+    FADEPROC_WORK* fpP; 
+    
+    fpP = dwP->fpP;
+    
+    switch (dwP->fde_mode) 
+    {
+    case 0:
+        dwP->fde_reg = fpP->wait0;
+        
+        dwP->fde_mode++;
+    case 1:
+        if (dwP->fde_reg-- <= 0) 
+        {
+            dwP->fde_col = fpP->color0;
+            dwP->fde_rate = fpP->rate0;
+            
+            dwP->status |= 0x100;
+            dwP->status |= 0x200;
+            
+            dwP->fde_mode++;
+        }
+        else 
+        {
+            break; 
+        }
+    case 2:
+        dwP->fde_rate += fpP->speed0;
+        
+        if (CompareFloat(dwP->fde_rate, fpP->cmp0, fpP->goal0) != 0) 
+        {
+            dwP->status &= ~0x100;
+            
+            dwP->fde_reg = fpP->wait1;
+            
+            dwP->fde_mode++;
+        }
+        
+        break;
+    case 3:
+        if (dwP->fde_reg-- <= 0) 
+        {
+            dwP->fde_col = fpP->color1;
+            dwP->fde_rate = fpP->rate1;
+            
+            dwP->status |= 0x100;
+            
+            dwP->fde_mode++;
+        }
+        else 
+        {
+            break;
+        }
+    case 4:
+        dwP->fde_rate += fpP->speed1;
+        
+        if (CompareFloat(dwP->fde_rate, fpP->cmp1, fpP->goal1) != 0) 
+        {
+            dwP->status &= ~0x100;
+            dwP->status &= ~0x200;
+            dwP->status |= 0x20;
+            
+            dwP->fde_reg = fpP->wait2;
+            
+            dwP->fde_mode++;
+        }
+        
+        break;
+    case 5:
+        if (dwP->fde_reg-- <= 0) 
+        {
+            dwP->status |= 0x40;
+            
+            dwP->fde_mode++;
+        }
+        
+        break;
+    case 6:
+        break; 
+    }
 }
 
 // 100% matching!

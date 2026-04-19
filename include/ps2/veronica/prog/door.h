@@ -9,6 +9,24 @@ typedef struct _proc_wrk
     void (*procP)(void*); // offset 0x0, size 0x4
 } _proc_wrk;
 
+typedef struct FADEPROC_WORK 
+{
+    // total size: 0x34
+    int wait0;           // offset 0x0, size 0x4
+    unsigned int color0; // offset 0x4, size 0x4
+    float rate0;         // offset 0x8, size 0x4
+    float speed0;        // offset 0xC, size 0x4
+    float goal0;         // offset 0x10, size 0x4
+    int cmp0;            // offset 0x14, size 0x4
+    int wait1;           // offset 0x18, size 0x4
+    unsigned int color1; // offset 0x1C, size 0x4
+    float rate1;         // offset 0x20, size 0x4
+    float speed1;        // offset 0x24, size 0x4
+    float goal1;         // offset 0x28, size 0x4
+    int cmp1;            // offset 0x2C, size 0x4
+    int wait2;           // offset 0x30, size 0x4
+} FADEPROC_WORK;
+
 typedef struct VIEWPROC_WORK 
 {
     // total size: 0x50
@@ -78,6 +96,21 @@ typedef struct VIEWPROC5_WORK
     int fde_cmp1;        // offset 0x54, size 0x4
     int chg_vew;         // offset 0x58, size 0x4
 } VIEWPROC5_WORK;
+
+typedef struct VIEWPROC6_WORK 
+{
+    // total size: 0x58
+    NJS_POINT3 dst_pos_low;  // offset 0x0, size 0xC
+    int dst_ang_low[3];      // offset 0xC, size 0xC
+    NJS_POINT3 dst_pos_high; // offset 0x18, size 0xC
+    int dst_ang_high[3];     // offset 0x24, size 0xC
+    int wait_pos;            // offset 0x30, size 0x4
+    int wait_ang;            // offset 0x34, size 0x4
+    NJS_POINT3 pos_rte;      // offset 0x38, size 0xC
+    NJS_POINT3 ang_rte;      // offset 0x44, size 0xC
+    int total_time;          // offset 0x50, size 0x4
+    int chg_vew;             // offset 0x54, size 0x4
+} VIEWPROC6_WORK;
 
 typedef struct VIEWPROC7_WORK
 {
