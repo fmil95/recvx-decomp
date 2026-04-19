@@ -3,6 +3,8 @@
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
@@ -229,75 +231,149 @@ int AnalyzeDoor(_door_wrk* dwP, int typ_no, int attr)
 	return 1;
 }
 
-// 
-// Start address: 0x2af370
+// 100% matching!
 int bhControlDoor()
 {
-	int lop;
-	//_door_wrk* dwP;
-	// Line 573, Address: 0x2af370, Func Offset: 0
-	// Line 575, Address: 0x2af380, Func Offset: 0x10
-	// Line 574, Address: 0x2af388, Func Offset: 0x18
-	// Line 582, Address: 0x2af390, Func Offset: 0x20
-	// Line 588, Address: 0x2af3a4, Func Offset: 0x34
-	// Line 589, Address: 0x2af3b4, Func Offset: 0x44
-	// Line 590, Address: 0x2af3d0, Func Offset: 0x60
-	// Line 591, Address: 0x2af3f8, Func Offset: 0x88
-	// Line 592, Address: 0x2af420, Func Offset: 0xb0
-	// Line 593, Address: 0x2af448, Func Offset: 0xd8
-	// Line 594, Address: 0x2af470, Func Offset: 0x100
-	// Line 595, Address: 0x2af498, Func Offset: 0x128
-	// Line 596, Address: 0x2af4a4, Func Offset: 0x134
-	// Line 597, Address: 0x2af4a8, Func Offset: 0x138
-	// Line 609, Address: 0x2af4b4, Func Offset: 0x144
-	// Line 610, Address: 0x2af4c8, Func Offset: 0x158
-	// Line 611, Address: 0x2af4d4, Func Offset: 0x164
-	// Line 612, Address: 0x2af4dc, Func Offset: 0x16c
-	// Line 613, Address: 0x2af4ec, Func Offset: 0x17c
-	// Line 614, Address: 0x2af4f8, Func Offset: 0x188
-	// Line 615, Address: 0x2af500, Func Offset: 0x190
-	// Line 616, Address: 0x2af510, Func Offset: 0x1a0
-	// Line 617, Address: 0x2af51c, Func Offset: 0x1ac
-	// Line 618, Address: 0x2af524, Func Offset: 0x1b4
-	// Line 619, Address: 0x2af534, Func Offset: 0x1c4
-	// Line 623, Address: 0x2af540, Func Offset: 0x1d0
-	// Line 665, Address: 0x2af554, Func Offset: 0x1e4
-	// Line 667, Address: 0x2af564, Func Offset: 0x1f4
-	// Line 670, Address: 0x2af56c, Func Offset: 0x1fc
-	// Line 671, Address: 0x2af574, Func Offset: 0x204
-	// Line 674, Address: 0x2af580, Func Offset: 0x210
-	// Line 675, Address: 0x2af590, Func Offset: 0x220
-	// Line 676, Address: 0x2af5a0, Func Offset: 0x230
-	// Line 677, Address: 0x2af5b0, Func Offset: 0x240
-	// Line 680, Address: 0x2af5d0, Func Offset: 0x260
-	// Line 683, Address: 0x2af5d8, Func Offset: 0x268
-	// Line 686, Address: 0x2af5f4, Func Offset: 0x284
-	// Line 689, Address: 0x2af608, Func Offset: 0x298
-	// Line 691, Address: 0x2af614, Func Offset: 0x2a4
-	// Line 700, Address: 0x2af624, Func Offset: 0x2b4
-	// Line 701, Address: 0x2af63c, Func Offset: 0x2cc
-	// Line 704, Address: 0x2af644, Func Offset: 0x2d4
-	// Line 705, Address: 0x2af64c, Func Offset: 0x2dc
-	// Line 707, Address: 0x2af654, Func Offset: 0x2e4
-	// Line 713, Address: 0x2af660, Func Offset: 0x2f0
-	// Line 715, Address: 0x2af66c, Func Offset: 0x2fc
-	// Line 725, Address: 0x2af67c, Func Offset: 0x30c
-	// Line 726, Address: 0x2af68c, Func Offset: 0x31c
-	// Line 727, Address: 0x2af698, Func Offset: 0x328
-	// Line 728, Address: 0x2af6a0, Func Offset: 0x330
-	// Line 729, Address: 0x2af6b0, Func Offset: 0x340
-	// Line 730, Address: 0x2af6bc, Func Offset: 0x34c
-	// Line 731, Address: 0x2af6c4, Func Offset: 0x354
-	// Line 732, Address: 0x2af6d4, Func Offset: 0x364
-	// Line 733, Address: 0x2af6e0, Func Offset: 0x370
-	// Line 734, Address: 0x2af6e8, Func Offset: 0x378
-	// Line 735, Address: 0x2af6f8, Func Offset: 0x388
-	// Line 739, Address: 0x2af704, Func Offset: 0x394
-	// Line 741, Address: 0x2af718, Func Offset: 0x3a8
-	// Line 742, Address: 0x2af730, Func Offset: 0x3c0
-	// Line 744, Address: 0x2af734, Func Offset: 0x3c4
-	// Func End, Address: 0x2af748, Func Offset: 0x3d8
-	scePrintf("bhControlDoor - UNIMPLEMENTED!\n");
+    _door_wrk* dwP;
+    int lop;     
+
+    dwP = &DoorWrk;
+    
+    lop = dwP->spd_mde;
+    
+    if (!(dwP->status & 0x40))
+    {
+        do 
+        {
+            if (!(dwP->status & 0x80)) 
+            {
+                if ((dwP->status & 0x40000000)) 
+                {
+                    DokiProcLgt(dwP);
+                }
+                
+                if (((dwP->status & 0x1)) && (dwP->fde_prcP != NULL)) 
+                {
+                    dwP->fde_prcP(dwP);
+                }
+                
+                if (((dwP->status & 0x2)) && (dwP->vew_prcP != NULL)) 
+                {
+                    dwP->vew_prcP(dwP);
+                }
+                
+                if (((dwP->status & 0x4)) && (dwP->dor_prcP != NULL)) 
+                {
+                    dwP->dor_prcP(dwP);
+                }
+                
+                if (((dwP->status & 0x8)) && (dwP->lgt_prcP != NULL)) 
+                {
+                    dwP->lgt_prcP(dwP);
+                }
+                
+                if (((dwP->status & 0x10000000)) && (dwP->pru_prcP != NULL))
+                {
+                    dwP->pru_prcP(dwP);
+                }
+                
+                dwP->time++;
+            }
+        } while (lop-- != DMO_SPD_1);
+        
+        if ((dwP->status & 0x20000)) 
+        {
+            CallDoorSe(0x80000101);
+        } 
+        else if ((dwP->status & 0x80000)) 
+        {
+            CallDoorSe(0x80000103);
+        }
+        else if ((dwP->status & 0x40000)) 
+        {
+            CallDoorSe(0x80000102);
+        } 
+        else if ((dwP->status & 0x10000)) 
+        {
+            CallDoorSe(0x80000100);
+        }
+        
+        dwP->status &= ~0xF0000;
+        
+        if ((dwP->status & 0x200)) 
+        {
+            njPushMatrix(NULL);
+            njUnitMatrix(NULL);
+            
+            njRotateX(NULL, 32768);
+            
+            njRotateZ(NULL, -dwP->vew_ang[2]);
+            njRotateX(NULL, -dwP->vew_ang[0]);
+            njRotateY(NULL, -dwP->vew_ang[1]);
+            
+            njTranslate(NULL, -dwP->vew_pos.x, -dwP->vew_pos.y, -dwP->vew_pos.z);
+            
+            njCnkSetEasyMultiLightMatrices();
+            
+            if ((dwP->status & 0x400)) 
+            {
+                njRotateY(NULL, 32768);
+            }
+            
+            if (dwP->dor_mdl.texP != NULL) 
+            {
+                njSetTexture(dwP->dor_mdl.texP);
+            }
+            
+            njSetPerspective(12743);
+            
+            if ((dwP->status & 0x100))
+            {
+                ryExcuteFade(-0.8f, dwP->fde_col, dwP->fde_rate);
+                
+                njCnkEasyMultiDrawObject(dwP->dor_mdl.objP);
+            } 
+            else 
+            {
+                njCnkEasyMultiDrawObject(dwP->dor_mdl.objP);
+            }
+            
+            njPopMatrix(1);
+        }
+    }
+    
+    ControlSoundTiming(dwP);
+    
+    if ((dwP->status & 0x20)) 
+    {
+        if ((dwP->status & 0x200000)) 
+        {
+            CallDoorSe(0x80000101);
+        } 
+        else if ((dwP->status & 0x800000)) 
+        {
+            CallDoorSe(0x80000103);
+        } 
+        else if ((dwP->status & 0x400000)) 
+        {
+            CallDoorSe(0x80000102);
+        } 
+        else if ((dwP->status & 0x100000)) 
+        {
+            CallDoorSe(0x80000100);
+        }
+        
+        dwP->status &= ~0xF00000;
+    }
+    
+    if (!(dwP->status & 0x40)) 
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
 }
 
 // 100% matching!
@@ -1773,14 +1849,14 @@ static void LightSubPnt(_door_wrk* dwP, int lgt_no, LGT_WRK* ldP, NJS_POINT3* rt
     njCnkSetEasyMultiLightSwitch(lgt_no + 2, 1);
 }
 
-/*// 
+// 
 // Start address: 0x2b1c20
 void ryExcuteFade(float pri, int col, float rate)
 {
 	unsigned int tmp;
 	int pal;
-	_anon47 p2c;
-	_anon24 col_buf[4];
+	//_anon47 p2c;
+	//_anon24 col_buf[4];
 	// Line 2148, Address: 0x2b1c20, Func Offset: 0
 	// Line 2161, Address: 0x2b1c34, Func Offset: 0x14
 	// Line 2148, Address: 0x2b1c3c, Func Offset: 0x1c
@@ -1800,7 +1876,8 @@ void ryExcuteFade(float pri, int col, float rate)
 	// Line 2177, Address: 0x2b1cdc, Func Offset: 0xbc
 	// Line 2179, Address: 0x2b1cf8, Func Offset: 0xd8
 	// Func End, Address: 0x2b1d14, Func Offset: 0xf4
-}*/
+	scePrintf("ryExcuteFade - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 static void PuruProc1(_door_wrk* dwP) 
