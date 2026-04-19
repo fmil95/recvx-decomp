@@ -189,6 +189,23 @@ typedef struct DOORPROC3_WORK
     int type;         // offset 0x3C, size 0x4
 } DOORPROC3_WORK;
 
+typedef struct DOORPROC4_WORK
+{
+    // total size: 0x30
+    float pos_y_low;  // offset 0x0, size 0x4
+    int yaw_low;      // offset 0x4, size 0x4
+    int pitch_low;    // offset 0x8, size 0x4
+    float pos_y_high; // offset 0xC, size 0x4
+    int yaw_high;     // offset 0x10, size 0x4
+    int pitch_high;   // offset 0x14, size 0x4
+    int wait;         // offset 0x18, size 0x4
+    int snd_wait;     // offset 0x1C, size 0x4
+    float speed;      // offset 0x20, size 0x4
+    float accel;      // offset 0x24, size 0x4
+    float goal;       // offset 0x28, size 0x4
+    int cmp;          // offset 0x2C, size 0x4
+} DOORPROC4_WORK;
+
 typedef struct LIGHTPROC_WORK
 {
     // total size: 0x7C

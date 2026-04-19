@@ -1316,22 +1316,34 @@ void DoorProc5(_door_wrk* dwP)
 	// Line 1786, Address: 0x2b1284, Func Offset: 0x1e4
 	// Line 1796, Address: 0x2b1290, Func Offset: 0x1f0
 	// Func End, Address: 0x2b12a8, Func Offset: 0x208
-}
+}*/
 
-// 
-// Start address: 0x2b12b0
-void DoorProc6(_door_wrk* dwP)
+// 100% matching!
+static void DoorProc6(_door_wrk* dwP) 
 {
-	npobj* objP;
-	// Line 1812, Address: 0x2b12b0, Func Offset: 0
-	// Line 1816, Address: 0x2b12d0, Func Offset: 0x20
-	// Line 1817, Address: 0x2b12f0, Func Offset: 0x40
-	// Line 1819, Address: 0x2b12fc, Func Offset: 0x4c
-	// Line 1826, Address: 0x2b1308, Func Offset: 0x58
-	// Func End, Address: 0x2b1310, Func Offset: 0x60
+    NJS_CNK_OBJECT* objP;
+
+    objP = dwP->objP;
+    
+    switch (dwP->dor_mode) 
+    {                             
+    case 0:
+        if ((dwP->status & 0x4000)) 
+        {
+            objP[3].evalflags |= 0x8;
+        } 
+        else 
+        {
+            objP[2].evalflags |= 0x8;
+        }
+        
+        dwP->dor_mode++;
+    case 1:
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2b1310
 void DoorProc7(_door_wrk* dwP)
 {
