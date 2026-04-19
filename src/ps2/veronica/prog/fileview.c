@@ -186,14 +186,10 @@ void FileViewExit()
     }
 }
 
-// 
-// Start address: 0x2ac440
+// 100% matching!
 void FileExit00()
 {
-	// Line 326, Address: 0x2ac440, Func Offset: 0
-	// Line 356, Address: 0x2ac454, Func Offset: 0x14
-	// Func End, Address: 0x2ac45c, Func Offset: 0x1c
-	scePrintf("FileExit00 - UNIMPLEMENTED!\n");
+	swork.statusflg |= 0x80000;
 }
 
 // 
