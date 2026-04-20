@@ -26,24 +26,29 @@ void ControlFileView()
     ReadFstx();
 }
 
-// 
-// Start address: 0x2ac000
+// 100% matching!
 void FileSelect()
 {
-	//FV_WORK* fv;
-	// Line 171, Address: 0x2ac000, Func Offset: 0
-	// Line 175, Address: 0x2ac008, Func Offset: 0x8
-	// Line 173, Address: 0x2ac00c, Func Offset: 0xc
-	// Line 175, Address: 0x2ac014, Func Offset: 0x14
-	// Line 178, Address: 0x2ac040, Func Offset: 0x40
-	// Line 180, Address: 0x2ac044, Func Offset: 0x44
-	// Line 181, Address: 0x2ac04c, Func Offset: 0x4c
-	// Line 184, Address: 0x2ac054, Func Offset: 0x54
-	// Line 185, Address: 0x2ac05c, Func Offset: 0x5c
-	// Line 187, Address: 0x2ac064, Func Offset: 0x64
-	// Line 190, Address: 0x2ac06c, Func Offset: 0x6c
-	// Func End, Address: 0x2ac078, Func Offset: 0x78
-	scePrintf("FileSelect - UNIMPLEMENTED!\n");
+	FV_WORK* fv;
+
+	fv = &fvwork;
+
+    switch (fv->mode_01)                        
+    {
+    case 0:
+        fv->mode_01 = 1;
+
+        fv->filecsr = 0;
+
+        SearchTag(1);
+        break;
+    case 1:
+        SelectFile();
+        break;
+    case 2:
+        SelectTag();
+        break;
+    }
 }
 
 // 74.29% matching
@@ -299,13 +304,13 @@ int SearchTag(int dir)
     }
 }
 
-/*// 
+// 
 // Start address: 0x2ac780
 void SelectFile()
 {
 	unsigned int tagbak;
 	short i;
-	_anon14* si;
+	//_anon14* si;
 	S_WORK* st;
 	FV_WORK* fv;
 	// Line 481, Address: 0x2ac780, Func Offset: 0
@@ -462,6 +467,7 @@ void SelectFile()
 	// Line 642, Address: 0x2acef4, Func Offset: 0x774
 	// Line 644, Address: 0x2acef8, Func Offset: 0x778
 	// Func End, Address: 0x2acf10, Func Offset: 0x790
+	scePrintf("SelectFile - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -471,8 +477,8 @@ void SelectTag()
 	int title;
 	int tagbak;
 	short i;
-	_anon26 mpos;
-	_anon14* si;
+	//_anon26 mpos;
+	//_anon14* si;
 	FV_WORK* fv;
 	S_WORK* st;
 	// Line 648, Address: 0x2acf10, Func Offset: 0
@@ -575,7 +581,8 @@ void SelectTag()
 	// Line 759, Address: 0x2ad434, Func Offset: 0x524
 	// Line 763, Address: 0x2ad438, Func Offset: 0x528
 	// Func End, Address: 0x2ad44c, Func Offset: 0x53c
-}*/
+	scePrintf("SelectTag - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void FileScreenCancel()
