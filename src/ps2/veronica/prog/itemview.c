@@ -184,32 +184,38 @@ void DrawSubItem(S_WORK* st, SITEM* si)
 	scePrintf("DrawSubItem - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2aa280
+// 100% matching!
 void Model_Read_Start()
 {
 	SITEM* si;
-	// Line 448, Address: 0x2aa280, Func Offset: 0
-	// Line 444, Address: 0x2aa288, Func Offset: 0x8
-	// Line 448, Address: 0x2aa28c, Func Offset: 0xc
-	// Line 450, Address: 0x2aa298, Func Offset: 0x18
-	// Line 453, Address: 0x2aa2a4, Func Offset: 0x24
-	// Line 450, Address: 0x2aa2a8, Func Offset: 0x28
-	// Line 451, Address: 0x2aa2b4, Func Offset: 0x34
-	// Line 452, Address: 0x2aa2cc, Func Offset: 0x4c
-	// Line 453, Address: 0x2aa2e0, Func Offset: 0x60
-	// Line 454, Address: 0x2aa2f8, Func Offset: 0x78
-	// Line 455, Address: 0x2aa304, Func Offset: 0x84
-	// Line 458, Address: 0x2aa310, Func Offset: 0x90
-	// Line 459, Address: 0x2aa32c, Func Offset: 0xac
-	// Line 460, Address: 0x2aa33c, Func Offset: 0xbc
-	// Line 461, Address: 0x2aa344, Func Offset: 0xc4
-	// Line 462, Address: 0x2aa35c, Func Offset: 0xdc
-	// Line 463, Address: 0x2aa374, Func Offset: 0xf4
-	// Line 464, Address: 0x2aa394, Func Offset: 0x114
-	// Line 467, Address: 0x2aa3a8, Func Offset: 0x128
-	// Func End, Address: 0x2aa3b0, Func Offset: 0x130
-	scePrintf("Model_Read_start - UNIMPLEMENTED!\n");
+
+    si = &sitem;
+    
+    if ((si->mw.flg & 0x1))
+    {
+        sys->sb_rdp = si->keep;
+        sys->sb_rdid = si->mw.rdid;
+        
+        sys->sb_ppp = NULL;
+        
+        *(int*)&sys->mn_mode0 = 6;
+        
+        si->mw.flg &= ~0x1;
+        
+        si->mw.flg |= 0x2;
+    }
+    
+    if ((sys->sb_ppp != NULL) && ((si->mw.flg & 0x2))) 
+    {
+        si->mw.flg &= ~0x2;
+        
+        si->mw.mdl_p = sys->sb_mlb;
+        si->mw.tex_p = sys->sb_ppp;
+        
+        si->keep += sys->sb_rdsz;
+        
+        swork.statusflg |= 0x400;
+    }
 }
 
 // 
