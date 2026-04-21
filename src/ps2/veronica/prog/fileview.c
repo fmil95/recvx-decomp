@@ -956,102 +956,150 @@ void FileGetWait()
     }
 }
 
-// 
-// Start address: 0x2adb90
+// 100% matching!
 void PageScroll()
 {
-	int page_end;
-	//FV_WORK* fv;
-	// Line 938, Address: 0x2adb90, Func Offset: 0
-	// Line 943, Address: 0x2adb9c, Func Offset: 0xc
-	// Line 940, Address: 0x2adba4, Func Offset: 0x14
-	// Line 943, Address: 0x2adbac, Func Offset: 0x1c
-	// Line 946, Address: 0x2adbbc, Func Offset: 0x2c
-	// Line 947, Address: 0x2adbd0, Func Offset: 0x40
-	// Line 948, Address: 0x2adbec, Func Offset: 0x5c
-	// Line 949, Address: 0x2adbf8, Func Offset: 0x68
-	// Line 950, Address: 0x2adc04, Func Offset: 0x74
-	// Line 951, Address: 0x2adc20, Func Offset: 0x90
-	// Line 952, Address: 0x2adc3c, Func Offset: 0xac
-	// Line 954, Address: 0x2adc44, Func Offset: 0xb4
-	// Line 955, Address: 0x2adc4c, Func Offset: 0xbc
-	// Line 956, Address: 0x2adc68, Func Offset: 0xd8
-	// Line 957, Address: 0x2adc84, Func Offset: 0xf4
-	// Line 959, Address: 0x2adc90, Func Offset: 0x100
-	// Line 960, Address: 0x2adcc4, Func Offset: 0x134
-	// Line 961, Address: 0x2adcd0, Func Offset: 0x140
-	// Line 962, Address: 0x2adcdc, Func Offset: 0x14c
-	// Line 964, Address: 0x2add08, Func Offset: 0x178
-	// Line 967, Address: 0x2add10, Func Offset: 0x180
-	// Line 966, Address: 0x2add14, Func Offset: 0x184
-	// Line 967, Address: 0x2add18, Func Offset: 0x188
-	// Line 964, Address: 0x2add1c, Func Offset: 0x18c
-	// Line 965, Address: 0x2add28, Func Offset: 0x198
-	// Line 966, Address: 0x2add3c, Func Offset: 0x1ac
-	// Line 967, Address: 0x2add44, Func Offset: 0x1b4
-	// Line 968, Address: 0x2add4c, Func Offset: 0x1bc
-	// Line 969, Address: 0x2add54, Func Offset: 0x1c4
-	// Line 971, Address: 0x2add5c, Func Offset: 0x1cc
-	// Line 972, Address: 0x2add64, Func Offset: 0x1d4
-	// Line 973, Address: 0x2add68, Func Offset: 0x1d8
-	// Line 974, Address: 0x2add6c, Func Offset: 0x1dc
-	// Line 971, Address: 0x2add70, Func Offset: 0x1e0
-	// Line 972, Address: 0x2add7c, Func Offset: 0x1ec
-	// Line 973, Address: 0x2add80, Func Offset: 0x1f0
-	// Line 974, Address: 0x2add84, Func Offset: 0x1f4
-	// Line 975, Address: 0x2add88, Func Offset: 0x1f8
-	// Line 982, Address: 0x2add98, Func Offset: 0x208
-	// Line 983, Address: 0x2addd0, Func Offset: 0x240
-	// Line 984, Address: 0x2adde8, Func Offset: 0x258
-	// Line 985, Address: 0x2addf4, Func Offset: 0x264
-	// Line 986, Address: 0x2addf8, Func Offset: 0x268
-	// Line 985, Address: 0x2addfc, Func Offset: 0x26c
-	// Line 984, Address: 0x2ade04, Func Offset: 0x274
-	// Line 985, Address: 0x2ade10, Func Offset: 0x280
-	// Line 986, Address: 0x2ade1c, Func Offset: 0x28c
-	// Line 988, Address: 0x2ade20, Func Offset: 0x290
-	// Line 989, Address: 0x2ade2c, Func Offset: 0x29c
-	// Line 991, Address: 0x2ade38, Func Offset: 0x2a8
-	// Line 990, Address: 0x2ade3c, Func Offset: 0x2ac
-	// Line 993, Address: 0x2ade40, Func Offset: 0x2b0
-	// Line 994, Address: 0x2ade60, Func Offset: 0x2d0
-	// Line 995, Address: 0x2ade6c, Func Offset: 0x2dc
-	// Line 996, Address: 0x2ade78, Func Offset: 0x2e8
-	// Line 997, Address: 0x2ade94, Func Offset: 0x304
-	// Line 998, Address: 0x2adeb0, Func Offset: 0x320
-	// Line 1000, Address: 0x2adeb8, Func Offset: 0x328
-	// Line 1001, Address: 0x2adec0, Func Offset: 0x330
-	// Line 1002, Address: 0x2adedc, Func Offset: 0x34c
-	// Line 1003, Address: 0x2adef8, Func Offset: 0x368
-	// Line 1005, Address: 0x2adf04, Func Offset: 0x374
-	// Line 1006, Address: 0x2adf38, Func Offset: 0x3a8
-	// Line 1007, Address: 0x2adf44, Func Offset: 0x3b4
-	// Line 1008, Address: 0x2adf50, Func Offset: 0x3c0
-	// Line 1009, Address: 0x2adf58, Func Offset: 0x3c8
-	// Line 1010, Address: 0x2adf5c, Func Offset: 0x3cc
-	// Line 1011, Address: 0x2adf60, Func Offset: 0x3d0
-	// Line 1008, Address: 0x2adf64, Func Offset: 0x3d4
-	// Line 1009, Address: 0x2adf70, Func Offset: 0x3e0
-	// Line 1010, Address: 0x2adf74, Func Offset: 0x3e4
-	// Line 1011, Address: 0x2adf78, Func Offset: 0x3e8
-	// Line 1012, Address: 0x2adf7c, Func Offset: 0x3ec
-	// Line 1019, Address: 0x2adf8c, Func Offset: 0x3fc
-	// Line 1020, Address: 0x2adfc4, Func Offset: 0x434
-	// Line 1021, Address: 0x2adfd0, Func Offset: 0x440
-	// Line 1023, Address: 0x2adfdc, Func Offset: 0x44c
-	// Line 1022, Address: 0x2adfe0, Func Offset: 0x450
-	// Line 1026, Address: 0x2adfe4, Func Offset: 0x454
-	// Line 1027, Address: 0x2adfec, Func Offset: 0x45c
-	// Line 1028, Address: 0x2ae000, Func Offset: 0x470
-	// Line 1029, Address: 0x2ae00c, Func Offset: 0x47c
-	// Line 1044, Address: 0x2ae018, Func Offset: 0x488
-	// Line 1029, Address: 0x2ae01c, Func Offset: 0x48c
-	// Line 1045, Address: 0x2ae028, Func Offset: 0x498
-	// Line 1046, Address: 0x2ae030, Func Offset: 0x4a0
-	// Line 1061, Address: 0x2ae038, Func Offset: 0x4a8
-	// Line 1064, Address: 0x2ae064, Func Offset: 0x4d4
-	// Func End, Address: 0x2ae074, Func Offset: 0x4e4
-	scePrintf("PageScroll - UNIMPLEMENTED!\n");
+    FV_WORK* fv;
+    int page_end;
+    
+    fv = &fvwork;  
+
+    page_end = 0;
+    
+    if (fv->filenum == 0) 
+    {
+        page_end = PlayPageCheck();
+    }
+    
+    if (!(fvwork.afsmode & 0x800)) 
+    {
+        if ((fv->scrol == 1) || (fv->scrol == 3)) 
+        {
+            if (fv->scrol == 3) 
+            {
+                if (fv->mode_02 == 0)
+                {
+                    parts_22b[0].pos[0] -= fv->move;
+                    parts_22b[4].pos[0] -= fv->move;
+                    
+                    fv->move += fv->move;
+                }
+            } 
+            else 
+            {
+                parts_22b[0].pos[0] -= fv->move;
+                parts_22b[4].pos[0] -= fv->move;
+                
+                fv->move += fv->move;
+            }
+            
+            if ((fv->move > 640.0f) && (fv->scrol == 1)) 
+            {
+                parts_22b[0].pos[0] = 708.0f;
+                parts_22b[4].pos[0] = 1200.0f;
+                
+                if (fv->page == ((fstbl[fv->filenum] & 0xF) - page_end)) 
+                {
+                    parts_22b[4].atr |= 0x24;
+                    parts_22b[4].color |= 0x8;
+                    
+                    parts_22b[4].col.a = 1.0f;
+                    parts_22b[4].col.r = 0.4f;
+                    parts_22b[4].col.g = 0.4f;
+                    parts_22b[4].col.b = 0.4f;
+                }
+                
+                fvwork.afsmode |= 0x800;
+                
+                fv->pagewait00 = 8;
+                
+                fv->scrol = 3;
+                
+                fv->move = 10;
+                
+                parts_22b->atr &= ~0x20;
+            } 
+            else if ((parts_22b->pos[0] < 0) && (fv->scrol == 3)) 
+            {
+                if ((fvwork.afsmode |= 0x4) != 0) 
+                {
+                    fvwork.afsmode &= ~0x4;
+                    
+                    swork.statusflg &= ~0x40;
+                    
+                    fv->pagewait01 = 2;
+                }
+                
+                parts_22b[0].pos[0] = 68.0f;
+                parts_22b[4].pos[0] = 560.0f;
+                
+                fv->scrol = 0;
+                
+                fv->move = 10;
+            }
+        } 
+        else if ((fv->scrol == 2) || (fv->scrol == 4)) 
+        {
+            if (fv->scrol == 4)
+            {
+                if (fv->mode_02 == 0) 
+                {
+                    parts_22b[0].pos[0] += fv->move;
+                    parts_22b[4].pos[0] += fv->move;
+                    
+                    fv->move += fv->move;
+                }
+            } 
+            else 
+            {
+                parts_22b[0].pos[0] += fv->move;
+                parts_22b[4].pos[0] += fv->move;
+                
+                fv->move += fv->move;
+            }
+            
+            if ((fv->move > 640.0f) && (fv->scrol == 2)) 
+            {
+                parts_22b[0].pos[0] = -572.0f;
+                parts_22b[4].pos[0] = -80.0f;
+                
+                fvwork.afsmode |= 0x800;
+                
+                fv->pagewait00 = 8;
+                
+                fv->move = 10;
+                
+                fv->scrol = 4;
+                
+                parts_22b->atr &= ~0x20;
+            } 
+            else if ((parts_22b->pos[0] > 0) && (fv->scrol == 4)) 
+            {
+                parts_22b[0].pos[0] = 68.0f;
+                parts_22b[4].pos[0] = 560.0f;
+                
+                fv->scrol = 0;
+                
+                fv->move = 10;
+            }
+        }
+    } 
+    else if (GetReadFileStatus() == 1) 
+    {
+        return;
+    } 
+    else if (fv->pagewait00 == 0) 
+    {
+        fvwork.afsmode &= ~0x800;
+        
+        fv->pagewait01 = 2;
+    }
+    else 
+    {
+        fv->pagewait00--;
+    }
+    
+    bhDispMessage(parts_22b->pos[0], 64.0f, -1.0f, 1, fv->bufnum, 0, 0);
 }
 
 // 100% matching!
