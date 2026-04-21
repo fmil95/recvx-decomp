@@ -1,11 +1,12 @@
 #include "../../../ps2/veronica/prog/item.h"
 #include "../../../ps2/veronica/prog/itemview.h"
+#include "../../../ps2/veronica/prog/message.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/sub1.h"
 
-/*unsigned char(*actionprg)(SITEM*)[3];
-unsigned int* wp_;
-unsigned char flg[3];
+/*unsigned char(*actionprg)(SITEM*)[3];*/
+static unsigned int* wp_;
+/*unsigned char flg[3];
 int ang_00[3];
 int ang_01[3];
 int ang_02[3];
@@ -356,40 +357,38 @@ void ItemView()
 	scePrintf("ItemView - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2aa910
+// 100% matching!
 void ItemModelChangeZoomIn()
 {
+    S_WORK* st;
 	STCAM_WRK* sc;
-	S_WORK* st;
-	// Line 630, Address: 0x2aa910, Func Offset: 0
-	// Line 638, Address: 0x2aa91c, Func Offset: 0xc
-	// Line 631, Address: 0x2aa924, Func Offset: 0x14
-	// Line 633, Address: 0x2aa92c, Func Offset: 0x1c
-	// Line 639, Address: 0x2aa934, Func Offset: 0x24
-	// Line 638, Address: 0x2aa93c, Func Offset: 0x2c
-	// Line 640, Address: 0x2aa950, Func Offset: 0x40
-	// Line 639, Address: 0x2aa958, Func Offset: 0x48
-	// Line 638, Address: 0x2aa964, Func Offset: 0x54
-	// Line 640, Address: 0x2aa96c, Func Offset: 0x5c
-	// Line 642, Address: 0x2aa970, Func Offset: 0x60
-	// Line 640, Address: 0x2aa978, Func Offset: 0x68
-	// Line 641, Address: 0x2aa980, Func Offset: 0x70
-	// Line 642, Address: 0x2aa990, Func Offset: 0x80
-	// Line 643, Address: 0x2aa998, Func Offset: 0x88
-	// Line 645, Address: 0x2aa99c, Func Offset: 0x8c
-	// Line 644, Address: 0x2aa9a0, Func Offset: 0x90
-	// Line 645, Address: 0x2aa9a4, Func Offset: 0x94
-	// Line 647, Address: 0x2aa9a8, Func Offset: 0x98
-	// Line 649, Address: 0x2aa9b8, Func Offset: 0xa8
-	// Line 647, Address: 0x2aa9bc, Func Offset: 0xac
-	// Line 649, Address: 0x2aa9d8, Func Offset: 0xc8
-	// Line 647, Address: 0x2aa9dc, Func Offset: 0xcc
-	// Line 649, Address: 0x2aa9e4, Func Offset: 0xd4
-	// Line 652, Address: 0x2aa9fc, Func Offset: 0xec
-	// Line 654, Address: 0x2aaa14, Func Offset: 0x104
-	// Func End, Address: 0x2aaa24, Func Offset: 0x114
-	scePrintf("ItemModelChangeZoomIn - UNIMPLEMENTED!\n");
+
+    st = &swork;
+    sc = &st_cam;
+
+    sc->pos_0.z += 3.2f;
+    
+    st->actioncount--;
+    
+    sitem.mw.ay1 += 4095;
+    sitem.mw.az1 += 2047;
+    
+    if (st->actioncount == 0) 
+    {
+        sc->cay = 0;
+        sc->caz = 0;
+        
+        st->testmode = 2;
+        
+        *wp_ = (st->ips1 << 16) | itemdata[st->ips1].max;
+        
+        bhSetMessage(1, getmestbl[st->mesid]);
+            
+        if (st->ips1 == 85)
+        {
+            st->testmode = 7;
+        }
+    }
 }
 
 // 
