@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/fileview.h"
 #include "../../../ps2/veronica/prog/message.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
 #include "../../../ps2/veronica/prog/ps2_texture.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
@@ -603,118 +604,180 @@ void SelectFile()
     }
 }
 
-// 
-// Start address: 0x2acf10
+// 100% matching!
 void SelectTag()
 {
-	int title;
-	int tagbak;
-	short i;
-	//_anon26 mpos;
-	//_anon14* si;
-	FV_WORK* fv;
-	S_WORK* st;
-	// Line 648, Address: 0x2acf10, Func Offset: 0
-	// Line 650, Address: 0x2acf20, Func Offset: 0x10
-	// Line 657, Address: 0x2acf28, Func Offset: 0x18
-	// Line 651, Address: 0x2acf2c, Func Offset: 0x1c
-	// Line 657, Address: 0x2acf34, Func Offset: 0x24
-	// Line 652, Address: 0x2acf38, Func Offset: 0x28
-	// Line 657, Address: 0x2acf3c, Func Offset: 0x2c
-	// Line 659, Address: 0x2acf58, Func Offset: 0x48
-	// Line 663, Address: 0x2acf90, Func Offset: 0x80
-	// Line 664, Address: 0x2acf9c, Func Offset: 0x8c
-	// Line 667, Address: 0x2acfa4, Func Offset: 0x94
-	// Line 669, Address: 0x2acfa8, Func Offset: 0x98
-	// Line 666, Address: 0x2acfac, Func Offset: 0x9c
-	// Line 667, Address: 0x2acfb8, Func Offset: 0xa8
-	// Line 668, Address: 0x2acfc8, Func Offset: 0xb8
-	// Line 669, Address: 0x2acfd4, Func Offset: 0xc4
-	// Line 670, Address: 0x2acffc, Func Offset: 0xec
-	// Line 671, Address: 0x2ad008, Func Offset: 0xf8
-	// Line 674, Address: 0x2ad010, Func Offset: 0x100
-	// Line 675, Address: 0x2ad01c, Func Offset: 0x10c
-	// Line 680, Address: 0x2ad024, Func Offset: 0x114
-	// Line 677, Address: 0x2ad028, Func Offset: 0x118
-	// Line 678, Address: 0x2ad034, Func Offset: 0x124
-	// Line 679, Address: 0x2ad048, Func Offset: 0x138
-	// Line 680, Address: 0x2ad054, Func Offset: 0x144
-	// Line 681, Address: 0x2ad07c, Func Offset: 0x16c
-	// Line 686, Address: 0x2ad088, Func Offset: 0x178
-	// Line 689, Address: 0x2ad0a8, Func Offset: 0x198
-	// Line 694, Address: 0x2ad0b0, Func Offset: 0x1a0
-	// Line 691, Address: 0x2ad0b8, Func Offset: 0x1a8
-	// Line 692, Address: 0x2ad0bc, Func Offset: 0x1ac
-	// Line 689, Address: 0x2ad0c0, Func Offset: 0x1b0
-	// Line 690, Address: 0x2ad0cc, Func Offset: 0x1bc
-	// Line 694, Address: 0x2ad0d0, Func Offset: 0x1c0
-	// Line 691, Address: 0x2ad0dc, Func Offset: 0x1cc
-	// Line 690, Address: 0x2ad0e0, Func Offset: 0x1d0
-	// Line 694, Address: 0x2ad0e4, Func Offset: 0x1d4
-	// Line 698, Address: 0x2ad0ec, Func Offset: 0x1dc
-	// Line 700, Address: 0x2ad0f4, Func Offset: 0x1e4
-	// Line 704, Address: 0x2ad118, Func Offset: 0x208
-	// Line 705, Address: 0x2ad140, Func Offset: 0x230
-	// Line 706, Address: 0x2ad14c, Func Offset: 0x23c
-	// Line 707, Address: 0x2ad154, Func Offset: 0x244
-	// Line 708, Address: 0x2ad15c, Func Offset: 0x24c
-	// Line 711, Address: 0x2ad164, Func Offset: 0x254
-	// Line 709, Address: 0x2ad168, Func Offset: 0x258
-	// Line 708, Address: 0x2ad170, Func Offset: 0x260
-	// Line 709, Address: 0x2ad17c, Func Offset: 0x26c
-	// Line 710, Address: 0x2ad188, Func Offset: 0x278
-	// Line 711, Address: 0x2ad18c, Func Offset: 0x27c
-	// Line 712, Address: 0x2ad190, Func Offset: 0x280
-	// Line 715, Address: 0x2ad1a4, Func Offset: 0x294
-	// Line 716, Address: 0x2ad1b8, Func Offset: 0x2a8
-	// Line 717, Address: 0x2ad1c4, Func Offset: 0x2b4
-	// Line 719, Address: 0x2ad1d4, Func Offset: 0x2c4
-	// Line 718, Address: 0x2ad1d8, Func Offset: 0x2c8
-	// Line 719, Address: 0x2ad1dc, Func Offset: 0x2cc
-	// Line 718, Address: 0x2ad1e0, Func Offset: 0x2d0
-	// Line 719, Address: 0x2ad1e4, Func Offset: 0x2d4
-	// Line 720, Address: 0x2ad1fc, Func Offset: 0x2ec
-	// Line 723, Address: 0x2ad200, Func Offset: 0x2f0
-	// Line 724, Address: 0x2ad208, Func Offset: 0x2f8
-	// Line 725, Address: 0x2ad218, Func Offset: 0x308
-	// Line 726, Address: 0x2ad230, Func Offset: 0x320
-	// Line 727, Address: 0x2ad244, Func Offset: 0x334
-	// Line 728, Address: 0x2ad24c, Func Offset: 0x33c
-	// Line 730, Address: 0x2ad254, Func Offset: 0x344
-	// Line 729, Address: 0x2ad258, Func Offset: 0x348
-	// Line 730, Address: 0x2ad25c, Func Offset: 0x34c
-	// Line 732, Address: 0x2ad268, Func Offset: 0x358
-	// Line 731, Address: 0x2ad26c, Func Offset: 0x35c
-	// Line 732, Address: 0x2ad270, Func Offset: 0x360
-	// Line 731, Address: 0x2ad274, Func Offset: 0x364
-	// Line 732, Address: 0x2ad278, Func Offset: 0x368
-	// Line 733, Address: 0x2ad294, Func Offset: 0x384
-	// Line 734, Address: 0x2ad29c, Func Offset: 0x38c
-	// Line 736, Address: 0x2ad2b0, Func Offset: 0x3a0
-	// Line 737, Address: 0x2ad2c4, Func Offset: 0x3b4
-	// Line 738, Address: 0x2ad2dc, Func Offset: 0x3cc
-	// Line 740, Address: 0x2ad300, Func Offset: 0x3f0
-	// Line 741, Address: 0x2ad320, Func Offset: 0x410
-	// Line 742, Address: 0x2ad348, Func Offset: 0x438
-	// Line 744, Address: 0x2ad350, Func Offset: 0x440
-	// Line 745, Address: 0x2ad36c, Func Offset: 0x45c
-	// Line 746, Address: 0x2ad390, Func Offset: 0x480
-	// Line 748, Address: 0x2ad398, Func Offset: 0x488
-	// Line 749, Address: 0x2ad3b4, Func Offset: 0x4a4
-	// Line 752, Address: 0x2ad3e0, Func Offset: 0x4d0
-	// Line 753, Address: 0x2ad3e8, Func Offset: 0x4d8
-	// Line 754, Address: 0x2ad3f0, Func Offset: 0x4e0
-	// Line 755, Address: 0x2ad3f4, Func Offset: 0x4e4
-	// Line 757, Address: 0x2ad400, Func Offset: 0x4f0
-	// Line 756, Address: 0x2ad404, Func Offset: 0x4f4
-	// Line 757, Address: 0x2ad408, Func Offset: 0x4f8
-	// Line 756, Address: 0x2ad40c, Func Offset: 0x4fc
-	// Line 757, Address: 0x2ad410, Func Offset: 0x500
-	// Line 758, Address: 0x2ad42c, Func Offset: 0x51c
-	// Line 759, Address: 0x2ad434, Func Offset: 0x524
-	// Line 763, Address: 0x2ad438, Func Offset: 0x528
-	// Func End, Address: 0x2ad44c, Func Offset: 0x53c
-	scePrintf("SelectTag - UNIMPLEMENTED!\n");
+    S_WORK* st;    
+    FV_WORK* fv;   
+    SITEM* si;   
+    NJS_POINT2 mpos;
+    short i;        
+    int tagbak;     
+    int title;       
+
+    st = &swork;
+    fv = &fvwork;
+    
+    si = &sitem;
+
+    if ((fv->z == 0) && (!(fvwork.afsmode & 0x40))) 
+    {
+        if ((!(sys->pad_ps & 0x1800)) && (!(swork.statusflg & 0x40000000))) 
+        {
+            if ((sys->pad_ps & 0x1))
+            {
+                tagbak = fv->tag;
+                
+                while (TRUE) 
+                {
+                    fv->tag--;
+                    
+                    if (fv->tag < 0) 
+                    {
+                        fv->tag = 7;
+                    }
+                    
+                    if (fv->tag == tagbak) 
+                    {
+                        break;
+                    }
+                    
+                    if (sys->itm[383] & (1 << (fv->tag + (fv->filecsr * 8)))) 
+                    {
+                        CallSystemSe(0, 3);
+                        break;
+                    }
+                }
+            } 
+            else if ((sys->pad_ps & 0x2)) 
+            {
+                tagbak = fv->tag;
+                
+                while (TRUE) 
+                {
+                    fv->tag++;
+                    
+                    if (fv->tag > 7)
+                    {
+                        fv->tag = 0;
+                    }
+                    
+                    if (fv->tag == tagbak) 
+                    {
+                        break;
+                    }
+                    
+                    if (sys->itm[383] & (1 << (fv->tag + (fv->filecsr * 8)))) 
+                    {
+                        CallSystemSe(0, 3);
+                        break;
+                    } 
+                }
+            }
+            
+            if ((fv->z == 0) && (!(fvwork.afsmode & 0x40)))
+            {
+                fv->filenum = fv->tag + (fv->filecsr * 8);
+                
+                title = fv->filenum + 159;
+                
+                mpos.x = 42.0f;
+                mpos.y = 342.0f;
+              
+                bhDispItemName(&mpos, title, 0, 0, -1.0f);
+            }
+        } 
+        else if (((sys->pad_ps & 0x800)) || ((swork.statusflg & 0x40000000))) 
+        {
+            if (sys->itm[383] & (1 << (fv->tag + (fv->filecsr * 8)))) 
+            {
+                CallSystemSe(0, 3);
+                
+                FileFlagInit();
+                
+                StatusToFileView();
+                
+                fvwork.afsmode |= 0x40;
+                
+                swork.statusflg |= 0x40;
+                
+                fv->page = 0;
+                
+                st->subscreenmode = 0x80;
+                
+                fvwork.afsmode |= 0x20;
+                
+                fv->pagewait01 = 0;
+            }
+        }
+        else if ((sys->pad_ps & 0x1000))
+        {
+            CallSystemSe(0, 0);
+            
+            for (i = 0; i < 6; i++)
+            {
+                fv->koma2[i] = 1820;
+            }
+            
+            fv->z = 1;
+        }
+    } 
+    else if (fv->z == 1)
+    {
+        if ((short)fv->koma2[fv->j] != 0) 
+        {
+            fv->ang00 += fv->koma2[fv->j];
+            
+            fv->j++;
+            return;
+        } 
+        
+        fv->j = 0;
+        
+        for (i = 0; i < 6; i++)
+        {
+            fv->koma2[i] = 1820;
+        }
+        
+        fv->z = 2;
+        
+        fvwork.afsmode &= ~0x20;
+    } 
+    else if (fv->z == 2)
+    {
+        if ((short)fv->koma2[fv->j] != 0) 
+        {
+            switch (fv->filecsr) 
+            {       
+            case 0:                         
+                si->mdl.objP->child->sibling->ang[1] -= fv->koma2[fv->j];
+                si->mdl.objP->child->sibling->sibling->ang[1] += fv->koma2[fv->j];
+                break;
+            case 1:                         
+                si->mdl.objP->child->ang[1] -= fv->koma2[fv->j];
+                si->mdl.objP->child->sibling->ang[1] += fv->koma2[fv->j];
+                break;
+            case 2:                         
+                si->mdl.objP->child->ang[1] += fv->koma2[fv->j];
+                si->mdl.objP->child->sibling->sibling->ang[1] -= fv->koma2[fv->j];
+                break;
+            }
+            
+            fv->j++;
+            return;
+        }
+        
+        fv->j = 0;
+        
+        for (i = 0; i < 6; i++)
+        {
+            fv->koma2[i] = 0;
+        }
+        
+        st->testmode = 8;
+        
+        fv->z = 0;
+    }
 }
 
 // 100% matching!
