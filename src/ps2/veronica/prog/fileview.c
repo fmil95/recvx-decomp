@@ -2,6 +2,7 @@
 #include "../../../ps2/veronica/prog/message.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_texture.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/sub1.h"
 #include "../../../ps2/veronica/prog/main.h"
@@ -1134,91 +1135,139 @@ void StatusToFileView()
     fv->mode_02 = 1;
 }
 
-// 
-// Start address: 0x2ae4b0
-void ReadFstx()
+// 100% matching!
+void ReadFstx() 
 {
-	unsigned int num;
-	int sz;
-	//FV_WORK* fv;
-	//S_WORK* st;
-	// Line 1160, Address: 0x2ae4b0, Func Offset: 0
-	// Line 1167, Address: 0x2ae4c0, Func Offset: 0x10
-	// Line 1161, Address: 0x2ae4c8, Func Offset: 0x18
-	// Line 1162, Address: 0x2ae4d0, Func Offset: 0x20
-	// Line 1167, Address: 0x2ae4d8, Func Offset: 0x28
-	// Line 1169, Address: 0x2ae4e0, Func Offset: 0x30
-	// Line 1167, Address: 0x2ae4e4, Func Offset: 0x34
-	// Line 1169, Address: 0x2ae4e8, Func Offset: 0x38
-	// Line 1170, Address: 0x2ae508, Func Offset: 0x58
-	// Line 1172, Address: 0x2ae51c, Func Offset: 0x6c
-	// Line 1176, Address: 0x2ae548, Func Offset: 0x98
-	// Line 1178, Address: 0x2ae554, Func Offset: 0xa4
-	// Line 1176, Address: 0x2ae558, Func Offset: 0xa8
-	// Line 1178, Address: 0x2ae564, Func Offset: 0xb4
-	// Line 1179, Address: 0x2ae56c, Func Offset: 0xbc
-	// Line 1181, Address: 0x2ae570, Func Offset: 0xc0
-	// Line 1182, Address: 0x2ae584, Func Offset: 0xd4
-	// Line 1183, Address: 0x2ae594, Func Offset: 0xe4
-	// Line 1186, Address: 0x2ae5a8, Func Offset: 0xf8
-	// Line 1188, Address: 0x2ae5b8, Func Offset: 0x108
-	// Line 1190, Address: 0x2ae5bc, Func Offset: 0x10c
-	// Line 1193, Address: 0x2ae5c4, Func Offset: 0x114
-	// Line 1195, Address: 0x2ae5d4, Func Offset: 0x124
-	// Line 1197, Address: 0x2ae5e0, Func Offset: 0x130
-	// Line 1195, Address: 0x2ae5e4, Func Offset: 0x134
-	// Line 1197, Address: 0x2ae5f0, Func Offset: 0x140
-	// Line 1198, Address: 0x2ae5f4, Func Offset: 0x144
-	// Line 1199, Address: 0x2ae608, Func Offset: 0x158
-	// Line 1200, Address: 0x2ae618, Func Offset: 0x168
-	// Line 1203, Address: 0x2ae620, Func Offset: 0x170
-	// Line 1221, Address: 0x2ae634, Func Offset: 0x184
-	// Line 1223, Address: 0x2ae638, Func Offset: 0x188
-	// Line 1252, Address: 0x2ae640, Func Offset: 0x190
-	// Line 1254, Address: 0x2ae650, Func Offset: 0x1a0
-	// Line 1255, Address: 0x2ae658, Func Offset: 0x1a8
-	// Line 1256, Address: 0x2ae66c, Func Offset: 0x1bc
-	// Line 1257, Address: 0x2ae674, Func Offset: 0x1c4
-	// Line 1258, Address: 0x2ae67c, Func Offset: 0x1cc
-	// Line 1259, Address: 0x2ae688, Func Offset: 0x1d8
-	// Line 1260, Address: 0x2ae690, Func Offset: 0x1e0
-	// Line 1259, Address: 0x2ae694, Func Offset: 0x1e4
-	// Line 1260, Address: 0x2ae698, Func Offset: 0x1e8
-	// Line 1265, Address: 0x2ae6a0, Func Offset: 0x1f0
-	// Line 1294, Address: 0x2ae6a8, Func Offset: 0x1f8
-	// Line 1307, Address: 0x2ae6b0, Func Offset: 0x200
-	// Line 1310, Address: 0x2ae6b8, Func Offset: 0x208
-	// Line 1311, Address: 0x2ae6cc, Func Offset: 0x21c
-	// Line 1312, Address: 0x2ae6e0, Func Offset: 0x230
-	// Line 1313, Address: 0x2ae6f0, Func Offset: 0x240
-	// Line 1315, Address: 0x2ae704, Func Offset: 0x254
-	// Line 1316, Address: 0x2ae71c, Func Offset: 0x26c
-	// Line 1317, Address: 0x2ae720, Func Offset: 0x270
-	// Line 1319, Address: 0x2ae728, Func Offset: 0x278
-	// Line 1321, Address: 0x2ae738, Func Offset: 0x288
-	// Line 1320, Address: 0x2ae73c, Func Offset: 0x28c
-	// Line 1321, Address: 0x2ae740, Func Offset: 0x290
-	// Line 1322, Address: 0x2ae744, Func Offset: 0x294
-	// Line 1326, Address: 0x2ae754, Func Offset: 0x2a4
-	// Line 1327, Address: 0x2ae760, Func Offset: 0x2b0
-	// Line 1329, Address: 0x2ae768, Func Offset: 0x2b8
-	// Line 1331, Address: 0x2ae770, Func Offset: 0x2c0
-	// Line 1334, Address: 0x2ae774, Func Offset: 0x2c4
-	// Line 1327, Address: 0x2ae778, Func Offset: 0x2c8
-	// Line 1328, Address: 0x2ae784, Func Offset: 0x2d4
-	// Line 1329, Address: 0x2ae798, Func Offset: 0x2e8
-	// Line 1330, Address: 0x2ae7ac, Func Offset: 0x2fc
-	// Line 1331, Address: 0x2ae7b0, Func Offset: 0x300
-	// Line 1332, Address: 0x2ae7b8, Func Offset: 0x308
-	// Line 1331, Address: 0x2ae7c0, Func Offset: 0x310
-	// Line 1332, Address: 0x2ae7cc, Func Offset: 0x31c
-	// Line 1334, Address: 0x2ae7dc, Func Offset: 0x32c
-	// Line 1335, Address: 0x2ae7e8, Func Offset: 0x338
-	// Line 1336, Address: 0x2ae7f0, Func Offset: 0x340
-	// Line 1337, Address: 0x2ae7f8, Func Offset: 0x348
-	// Line 1343, Address: 0x2ae800, Func Offset: 0x350
-	// Func End, Address: 0x2ae814, Func Offset: 0x364
-	scePrintf("ReadFstx - UNIMPLEMENTED!\n");
+    S_WORK* st;
+    FV_WORK* fv;
+    int sz;
+    unsigned int num;
+
+    st = &swork;
+    fv = &fvwork;
+
+    fv->part_id = sys->itm_partid;
+    
+    if ((!(sys->cb_flg & 0x20000)) && (st->itemid != 85)) 
+    {
+        fv->filenum = fv->tag + (fv->filecsr * 8);
+    }
+    
+    switch (fv->mode_02)
+    {
+    case 1:
+        num = wallpaper[fv->filenum];
+        
+        fv->rdsz = GetInsideFileSize(fv->part_id, num);
+        
+        if (!(fvwork.afsmode & 0x80)) 
+        {
+            fv->fsp = bhGetFreeMemory(fv->rdsz, 32);
+            
+            fvwork.afsmode |= 0x80;
+        }
+        
+        RequestReadInsideFile(fv->part_id, num, fv->fsp);
+        
+        fv->mode_02 = 2;
+        break;
+    case 2:
+        if (GetReadFileStatus() == 0) 
+        {
+            fvwork.afsmode &= ~0x1;
+            
+            fv->mode_02 = 3;
+            
+            fvwork.afsmode |= 0x4;
+            fvwork.afsmode |= 0x2;
+            break;
+        }
+    default:
+        break;
+    case 3:
+        if (GetReadFileStatus() != 1)
+        {
+            fv->mode_02 = 4;
+        }
+        
+        break;
+    case 4:
+        if (fv->page > 1) 
+        {
+            fv->mode_02 = 0;
+            break;
+        }
+        
+        if ((fvwork.afsmode & 0x4)) 
+        {
+            fv->scrol = 3;
+            
+            fv->move = 10;
+            
+            parts_22b->pos[0] = 708.0f;
+            parts_22b[4].pos[0] = 1200.0f;
+            
+            CallSystemSe(0, 4);
+            
+            fv->mode_02 = 0;
+        }
+        
+        break;
+    case 5:
+        fv->mode_02 = 0;
+        break;
+    case 6:
+        fv->mode_02 = 0;
+        break;
+    case 7:
+        if (!(fvwork.afsmode & 0x400)) 
+        {
+            sz = GetInsideFileSize(sys->itm_partid, 145);
+            
+            st->ssp = bhGetFreeMemory(sz, 32);
+            
+            fvwork.afsmode |= 0x400;
+        }
+        
+        RequestReadInsideFile(sys->itm_partid, 145, st->ssp);
+        
+        fv->mode_02 = 8;
+        break;
+    case 8:
+        if (GetReadFileStatus() == 0) 
+        {
+            st->subtx_list.textures = st->subtx;
+            st->subtx_list.nbTexture = 5;
+            
+            bhSetMemPvpTexture(&st->subtx_list, st->ssp, 0);
+            
+            fv->tex_flg = 0;
+            
+            njSetTexture(&st->subtx_list);
+            
+            swork.statusflg |= 0x2000;
+            swork.statusflg |= 0x40;
+            
+            swork.statusflg &= ~0x1020000;
+            
+            fv->mode_02 = 0;
+            
+            fvwork.afsmode &= ~0x400;
+            
+            sys->memp = st->sspb;
+            
+            if (st->itemid != 85) 
+            {
+                st->testmode = 9;
+                st->subscreenmode = 2;
+                st->mode = 8;
+            }
+        }
+        
+        break;
+    case 9:
+        break;
+    }
 }
 
 // 100% matching! 
