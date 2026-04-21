@@ -81,6 +81,7 @@ extern float cen_pos99[12][6];
 extern float cen_pos[12][6];
 extern STCAM_WRK st_cam;
 extern FADE fade;
+extern SITEM sitem;
 
 /*typedef struct _anon0;
 typedef struct _anon1;

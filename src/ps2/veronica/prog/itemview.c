@@ -784,13 +784,10 @@ unsigned char MdlAction02(SITEM* si)
 	scePrintf("MdlAction02 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2aba20
+// 100% matching!
 void MdlEvalflagsSet(unsigned short evalchk)
 {
-	// Line 1108, Address: 0x2aba20, Func Offset: 0
-	// Func End, Address: 0x2aba48, Func Offset: 0x28
-	scePrintf("MdlEvalFlagsSet - UNIMPLEMENTED!\n");
+	MdlHideCheck(sitem.mdl.objP, itemflg[(unsigned short)evalchk][0], 1);
 }
 
 // 
