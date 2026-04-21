@@ -76,6 +76,7 @@ void FadePolyDisp();
 void StatusMapFlagInit();
 
 extern S_WORK swork;
+extern char ViewCnt;
 extern PARTS parts_22b[6]; 
 extern float cen_pos99[12][6];
 extern float cen_pos[12][6];

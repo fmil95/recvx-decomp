@@ -1,22 +1,42 @@
 #include "../../../ps2/veronica/prog/fileview.h"
 #include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_texture.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/sub1.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-/*unsigned int fstbl[24];
-unsigned int fsheader[24];
-unsigned int wallpaper[24];*/
+FV_WORK fvwork;
+
+unsigned int fstbl[24] = 
+{
+    13,  4, 4,  5,
+     5,  7, 3,  6,
+     8,  4, 4, 13,
+     1,  1, 6,  7,
+     9,  5, 4,  4,
+     6, 11, 7,  6
+};
+unsigned int fsheader[24] = 
+{
+      0,  14,  19,  24,
+     30,  36,  44,  48,
+     55,  64,  69,  74,
+     88,  90,  92,  99,
+    107, 117, 123, 128,
+    133, 140, 152, 160
+};
+unsigned int wallpaper[24] = 
+{
+    159, 157, 151, 148,
+    150, 153, 158, 151,
+    147, 146, 146, 146,
+    155, 154, 152, 147,
+    147, 156, 149, 149,
+    148, 149, 152, 152
+};
 typedef void (*FileViewMode_proc)();
 FileViewMode_proc FileViewMode[5] = { FileSelect, FileViewInit, FileViewMain, FileViewExit, FileGetWait };
-FV_WORK fvwork;
-/*char ViewCnt;
-_anon23 tbuf[0];
-unsigned char menuanim[4][0];
-_anon35 parts_00b[24];
-_anon35 parts_10b[0];
-_anon14 sitem;*/
 
 // 100% matching!
 void ControlFileView()
@@ -108,50 +128,70 @@ void GetFile()
     fv->page = 0;
 }
 
-// 
-// Start address: 0x2ac1e0
+// 100% matching!
 void FileViewInit()
 {
-	//FV_WORK* fv;
-	//S_WORK* st;
-	// Line 247, Address: 0x2ac1e0, Func Offset: 0
-	// Line 250, Address: 0x2ac1ec, Func Offset: 0xc
-	// Line 248, Address: 0x2ac1f0, Func Offset: 0x10
-	// Line 250, Address: 0x2ac1f8, Func Offset: 0x18
-	// Line 249, Address: 0x2ac1fc, Func Offset: 0x1c
-	// Line 250, Address: 0x2ac200, Func Offset: 0x20
-	// Line 253, Address: 0x2ac228, Func Offset: 0x48
-	// Line 254, Address: 0x2ac25c, Func Offset: 0x7c
-	// Line 255, Address: 0x2ac264, Func Offset: 0x84
-	// Line 256, Address: 0x2ac274, Func Offset: 0x94
-	// Line 257, Address: 0x2ac284, Func Offset: 0xa4
-	// Line 256, Address: 0x2ac288, Func Offset: 0xa8
-	// Line 257, Address: 0x2ac294, Func Offset: 0xb4
-	// Line 261, Address: 0x2ac298, Func Offset: 0xb8
-	// Line 262, Address: 0x2ac2bc, Func Offset: 0xdc
-	// Line 263, Address: 0x2ac2c4, Func Offset: 0xe4
-	// Line 264, Address: 0x2ac2d4, Func Offset: 0xf4
-	// Line 269, Address: 0x2ac2dc, Func Offset: 0xfc
-	// Line 271, Address: 0x2ac2e4, Func Offset: 0x104
-	// Line 274, Address: 0x2ac2f8, Func Offset: 0x118
-	// Line 277, Address: 0x2ac300, Func Offset: 0x120
-	// Line 278, Address: 0x2ac308, Func Offset: 0x128
-	// Line 279, Address: 0x2ac318, Func Offset: 0x138
-	// Line 280, Address: 0x2ac324, Func Offset: 0x144
-	// Line 281, Address: 0x2ac328, Func Offset: 0x148
-	// Line 283, Address: 0x2ac330, Func Offset: 0x150
-	// Line 284, Address: 0x2ac334, Func Offset: 0x154
-	// Line 282, Address: 0x2ac338, Func Offset: 0x158
-	// Line 281, Address: 0x2ac340, Func Offset: 0x160
-	// Line 282, Address: 0x2ac34c, Func Offset: 0x16c
-	// Line 283, Address: 0x2ac358, Func Offset: 0x178
-	// Line 284, Address: 0x2ac36c, Func Offset: 0x18c
-	// Line 285, Address: 0x2ac370, Func Offset: 0x190
-	// Line 286, Address: 0x2ac374, Func Offset: 0x194
-	// Line 288, Address: 0x2ac378, Func Offset: 0x198
-	// Line 292, Address: 0x2ac380, Func Offset: 0x1a0
-	// Func End, Address: 0x2ac390, Func Offset: 0x1b0
-	scePrintf("FileViewInit - UNIMPLEMENTED!\n");
+    S_WORK* st;
+    FV_WORK* fv;
+
+    st = &swork;
+    fv = &fvwork; 
+    
+    switch (fv->mode_01) 
+    {                    
+    case 0:
+        if (((swork.statusflg & 0x40000)) && (!(sys->cb_flg & 0x20000)))
+        {
+            njReleaseTexture(&st->subtx_list);
+            
+            bhGarbageTexture(tbuf, 256);
+            
+            swork.statusflg &= ~0x40000;
+            
+            fv->mode_01 = 1;
+            
+            fv->tex_flg = 1;
+        }
+        else if ((sys->cb_flg & 0x20000)) 
+        {
+            njReleaseTexture(&st->subtx_list);
+            
+            bhGarbageTexture(tbuf, 256);
+            
+            fv->mode_01 = 1;
+            
+            fv->tex_flg = 1;
+        }
+        
+        break;
+    case 1:
+        if ((fvwork.afsmode & 0x2)) 
+        {
+            fv->mode_01 = 2;
+        }
+        
+        break;
+    case 2:
+        fv->fstx_list.textures = fv->fstx;
+        fv->fstx_list.nbTexture = bhSetMemPvpTexture(&fv->fstx_list, fv->fsp, 0);
+        
+        njSetTexture(&fv->fstx_list);
+        
+        fv->page = 0;
+        
+        parts_22b[1].atr |= 0x20;
+        
+        swork.statusflg |= 0x800;
+        swork.statusflg |= 0x2000000;
+        
+        fv->mode_00 = 2;
+        fv->mode_01 = 0;
+        
+        fv->bufnum = 0;
+        
+        ViewCnt = 2;
+        break;
+    }
 }
 
 // 100% matching!
