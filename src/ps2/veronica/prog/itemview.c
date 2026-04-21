@@ -9,18 +9,47 @@
 #include "../../../ps2/veronica/prog/ps2_texture.h"
 #include "../../../ps2/veronica/prog/sub1.h"
 
-/*unsigned char(*actionprg)(SITEM*)[3];*/
 static unsigned int* wp_;
-/*unsigned char flg[3];
-int ang_00[3];
-int ang_01[3];
-int ang_02[3];
-NJS_POINT3 vec_00;
-float check[16];*/
+static unsigned char flg[3];
+static int ang_00[3];
+static int ang_01[3];
+static int ang_02[3];
+static NJS_POINT3 vec_00;
+static float check[16];
 static float testf;
 static NJS_VECTOR whd;
-/*unsigned int ItemViewTypeTbl[168];
-int ViewType;
+
+unsigned char (*actionprg[3])(SITEM* si) = 
+{ 
+	MdlAction00,
+	MdlAction01,
+	MdlAction02
+};
+static unsigned int ItemViewTypeTbl[168] = 
+{
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 3, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2, 
+    2, 2, 2, 2, 2, 2, 2, 2 
+};
+/*int ViewType;
 FV_WORK fvwork;
 DSP_WORK dsptbl[0];
 S_WORK swork;
@@ -602,26 +631,24 @@ void ItemModelCheck()
 	scePrintf("ItemModelCheck - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ab0f0
-void ItemModelActionSet()
+// 100% matching!
+void ItemModelActionSet() 
 {
-	DSP_WORK* dw;
-	S_WORK* st;
-	// Line 891, Address: 0x2ab0f0, Func Offset: 0
-	// Line 895, Address: 0x2ab0fc, Func Offset: 0xc
-	// Line 892, Address: 0x2ab104, Func Offset: 0x14
-	// Line 895, Address: 0x2ab10c, Func Offset: 0x1c
-	// Line 897, Address: 0x2ab114, Func Offset: 0x24
-	// Line 895, Address: 0x2ab120, Func Offset: 0x30
-	// Line 899, Address: 0x2ab128, Func Offset: 0x38
-	// Line 897, Address: 0x2ab12c, Func Offset: 0x3c
-	// Line 899, Address: 0x2ab138, Func Offset: 0x48
-	// Line 900, Address: 0x2ab178, Func Offset: 0x88
-	// Line 901, Address: 0x2ab180, Func Offset: 0x90
-	// Line 903, Address: 0x2ab188, Func Offset: 0x98
-	// Func End, Address: 0x2ab198, Func Offset: 0xa8
-	scePrintf("ItemModelActionSet - UNIMPLEMENTED!\n");
+    S_WORK* st;
+    DSP_WORK* dw;
+
+    st = &swork;
+    
+    dw = (DSP_WORK*)&dsptbl[st->itemid];
+	
+    swork.statusflg |= 0x20000000;
+    
+    if ((actionprg - 1)[itemflg[dw->hide][1]](&sitem))
+    {
+        st->testmode = 5;
+        
+        st->actioncount = 32;
+    }
 }
 
 // 
