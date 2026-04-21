@@ -2019,7 +2019,7 @@ void bhSysCallMonitor()
             sys->mn_md1 = 4;
             break;
         case 4:
-            ItemTaskCheck(4);
+            ItemTaskCheck();
             
             SET_SYS_MN_MD(0, 0, 0, 0);
             break;
