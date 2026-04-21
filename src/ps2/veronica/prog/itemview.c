@@ -1,5 +1,7 @@
 #include "../../../ps2/veronica/prog/item.h"
+#include "../../../ps2/veronica/prog/fileview.h"
 #include "../../../ps2/veronica/prog/itemview.h"
+#include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/message.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/sub1.h"
@@ -317,44 +319,66 @@ void CameraSet()
     njGetMatrix(&st_cam.cmat1);
 }
 
-// 
-// Start address: 0x2aa7e0
+// 100% matching!
 void ItemView()
 {
 	S_WORK* st;
-	// Line 576, Address: 0x2aa7e0, Func Offset: 0
-	// Line 585, Address: 0x2aa7e8, Func Offset: 0x8
-	// Line 577, Address: 0x2aa7ec, Func Offset: 0xc
-	// Line 585, Address: 0x2aa7f4, Func Offset: 0x14
-	// Line 586, Address: 0x2aa804, Func Offset: 0x24
-	// Line 588, Address: 0x2aa808, Func Offset: 0x28
-	// Line 590, Address: 0x2aa834, Func Offset: 0x54
-	// Line 591, Address: 0x2aa844, Func Offset: 0x64
-	// Line 592, Address: 0x2aa848, Func Offset: 0x68
-	// Line 593, Address: 0x2aa850, Func Offset: 0x70
-	// Line 595, Address: 0x2aa854, Func Offset: 0x74
-	// Line 597, Address: 0x2aa85c, Func Offset: 0x7c
-	// Line 598, Address: 0x2aa864, Func Offset: 0x84
-	// Line 600, Address: 0x2aa86c, Func Offset: 0x8c
-	// Line 601, Address: 0x2aa874, Func Offset: 0x94
-	// Line 605, Address: 0x2aa87c, Func Offset: 0x9c
-	// Line 606, Address: 0x2aa884, Func Offset: 0xa4
-	// Line 608, Address: 0x2aa88c, Func Offset: 0xac
-	// Line 609, Address: 0x2aa894, Func Offset: 0xb4
-	// Line 611, Address: 0x2aa89c, Func Offset: 0xbc
-	// Line 612, Address: 0x2aa8a4, Func Offset: 0xc4
-	// Line 614, Address: 0x2aa8ac, Func Offset: 0xcc
-	// Line 615, Address: 0x2aa8c4, Func Offset: 0xe4
-	// Line 616, Address: 0x2aa8c8, Func Offset: 0xe8
-	// Line 617, Address: 0x2aa8d0, Func Offset: 0xf0
-	// Line 618, Address: 0x2aa8d8, Func Offset: 0xf8
-	// Line 620, Address: 0x2aa8e0, Func Offset: 0x100
-	// Line 622, Address: 0x2aa8e8, Func Offset: 0x108
-	// Line 623, Address: 0x2aa8f0, Func Offset: 0x110
-	// Line 625, Address: 0x2aa8f8, Func Offset: 0x118
-	// Line 628, Address: 0x2aa900, Func Offset: 0x120
-	// Func End, Address: 0x2aa90c, Func Offset: 0x12c
-	scePrintf("ItemView - UNIMPLEMENTED!\n");
+
+    st = &swork;
+    
+    if (sitem.mw.rdid == 139)
+    {
+        st->itemid = 139;
+    }
+    
+    switch (st->testmode)
+    {
+    case 0:
+        if (st->itemid == 139)
+        {
+            st->testmode = 8;
+        }
+        else 
+        {
+            st->testmode = 2;
+        }
+        
+        break;
+    case 1:
+        ItemModelChangeZoomIn();
+        break;
+    case 2:
+        ItemModelCheck();
+        break;
+    case 4:
+        ItemModelActionSet();
+        break;
+    case 5:
+        ItemModelChangeZoomOut();
+        break;
+    case 6:
+        ItemModelMessageWait();
+        break;
+    case 7:
+        if (!(sys->st_flg & 0x200))
+        {
+            st->subscreenmode = 0x80;
+            
+            FileFlagInit();
+            
+            StatusToFileView();
+            
+            GetFile();
+        }
+        
+        break;
+    case 8:
+        SelectFile();
+        break;
+    case 9:
+        SelectTag();
+        break;
+    }
 }
 
 // 100% matching!
