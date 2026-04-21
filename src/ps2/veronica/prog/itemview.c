@@ -927,16 +927,16 @@ void FileSyu(NJS_CNK_OBJECT* op)
     op->sibling->sibling->ang[1] = 32768;
 }
 
-/*// 
+// 
 // Start address: 0x2abd20
-void MakeTag(unsigned short flg)
+void MakeTag(NJS_CNK_OBJECT* param, unsigned short flg) // first parameter is not present on DWARF
 {
 	float zpos;
 	float ypos;
 	int tagcol;
 	int i;
-	_anon38 p3c;
-	_anon18 col[4];
+	//_anon38 p3c;
+	//_anon18 col[4];
 	NJS_POINT3 p[4];
 	FV_WORK* fv;
 	S_WORK* st;
@@ -1018,4 +1018,5 @@ void MakeTag(unsigned short flg)
 	// Line 1346, Address: 0x2abf88, Func Offset: 0x268
 	// Line 1348, Address: 0x2abf94, Func Offset: 0x274
 	// Func End, Address: 0x2abfbc, Func Offset: 0x29c
-}*/
+	scePrintf("MakeTag - UNIMPLEMENTED!\n");
+}

@@ -24,7 +24,7 @@ float ModelScaleSet(SITEM* itemmodel, int flg);
 void FlagErase(NJS_CNK_OBJECT* op);
 void LighterOpen(NJS_CNK_OBJECT* object);
 void FileSyu(NJS_CNK_OBJECT* op);
-void MakeTag(unsigned short flg);
+void MakeTag(NJS_CNK_OBJECT* param, unsigned short flg);
 
 /*typedef struct npobj;
 typedef struct _anon0;

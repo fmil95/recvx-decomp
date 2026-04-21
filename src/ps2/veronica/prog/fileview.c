@@ -774,94 +774,147 @@ void FileScreenCancel()
     }
 }
 
-// 
-// Start address: 0x2ad640
+// 100% matching!
 void FileScrollSet()
 {
-	int page_end;
-	//FV_WORK* fv;
-	//S_WORK* st;
-	// Line 811, Address: 0x2ad640, Func Offset: 0
-	// Line 815, Address: 0x2ad650, Func Offset: 0x10
-	// Line 812, Address: 0x2ad654, Func Offset: 0x14
-	// Line 815, Address: 0x2ad65c, Func Offset: 0x1c
-	// Line 813, Address: 0x2ad660, Func Offset: 0x20
-	// Line 815, Address: 0x2ad668, Func Offset: 0x28
-	// Line 818, Address: 0x2ad67c, Func Offset: 0x3c
-	// Line 819, Address: 0x2ad698, Func Offset: 0x58
-	// Line 820, Address: 0x2ad69c, Func Offset: 0x5c
-	// Line 819, Address: 0x2ad6a4, Func Offset: 0x64
-	// Line 820, Address: 0x2ad6ac, Func Offset: 0x6c
-	// Line 825, Address: 0x2ad6cc, Func Offset: 0x8c
-	// Line 826, Address: 0x2ad6ec, Func Offset: 0xac
-	// Line 827, Address: 0x2ad70c, Func Offset: 0xcc
-	// Line 828, Address: 0x2ad718, Func Offset: 0xd8
-	// Line 829, Address: 0x2ad738, Func Offset: 0xf8
-	// Line 830, Address: 0x2ad750, Func Offset: 0x110
-	// Line 832, Address: 0x2ad77c, Func Offset: 0x13c
-	// Line 833, Address: 0x2ad780, Func Offset: 0x140
-	// Line 832, Address: 0x2ad784, Func Offset: 0x144
-	// Line 833, Address: 0x2ad788, Func Offset: 0x148
-	// Line 834, Address: 0x2ad78c, Func Offset: 0x14c
-	// Line 835, Address: 0x2ad798, Func Offset: 0x158
-	// Line 836, Address: 0x2ad7a8, Func Offset: 0x168
-	// Line 837, Address: 0x2ad7b0, Func Offset: 0x170
-	// Line 839, Address: 0x2ad7b4, Func Offset: 0x174
-	// Line 840, Address: 0x2ad7c0, Func Offset: 0x180
-	// Line 843, Address: 0x2ad7d0, Func Offset: 0x190
-	// Line 845, Address: 0x2ad7d8, Func Offset: 0x198
-	// Line 843, Address: 0x2ad7dc, Func Offset: 0x19c
-	// Line 844, Address: 0x2ad7e8, Func Offset: 0x1a8
-	// Line 845, Address: 0x2ad7fc, Func Offset: 0x1bc
-	// Line 846, Address: 0x2ad804, Func Offset: 0x1c4
-	// Line 847, Address: 0x2ad80c, Func Offset: 0x1cc
-	// Line 848, Address: 0x2ad814, Func Offset: 0x1d4
-	// Line 850, Address: 0x2ad818, Func Offset: 0x1d8
-	// Line 851, Address: 0x2ad82c, Func Offset: 0x1ec
-	// Line 852, Address: 0x2ad838, Func Offset: 0x1f8
-	// Line 853, Address: 0x2ad84c, Func Offset: 0x20c
-	// Line 854, Address: 0x2ad854, Func Offset: 0x214
-	// Line 855, Address: 0x2ad858, Func Offset: 0x218
-	// Line 853, Address: 0x2ad85c, Func Offset: 0x21c
-	// Line 854, Address: 0x2ad868, Func Offset: 0x228
-	// Line 855, Address: 0x2ad86c, Func Offset: 0x22c
-	// Line 856, Address: 0x2ad870, Func Offset: 0x230
-	// Line 857, Address: 0x2ad87c, Func Offset: 0x23c
-	// Line 858, Address: 0x2ad88c, Func Offset: 0x24c
-	// Line 859, Address: 0x2ad894, Func Offset: 0x254
-	// Line 861, Address: 0x2ad89c, Func Offset: 0x25c
-	// Line 862, Address: 0x2ad8a8, Func Offset: 0x268
-	// Line 864, Address: 0x2ad8b0, Func Offset: 0x270
-	// Line 865, Address: 0x2ad8b8, Func Offset: 0x278
-	// Line 868, Address: 0x2ad8c0, Func Offset: 0x280
-	// Line 867, Address: 0x2ad8c4, Func Offset: 0x284
-	// Line 868, Address: 0x2ad8c8, Func Offset: 0x288
-	// Line 865, Address: 0x2ad8cc, Func Offset: 0x28c
-	// Line 866, Address: 0x2ad8d8, Func Offset: 0x298
-	// Line 867, Address: 0x2ad8ec, Func Offset: 0x2ac
-	// Line 868, Address: 0x2ad8f4, Func Offset: 0x2b4
-	// Line 869, Address: 0x2ad8fc, Func Offset: 0x2bc
-	// Line 870, Address: 0x2ad904, Func Offset: 0x2c4
-	// Line 874, Address: 0x2ad908, Func Offset: 0x2c8
-	// Line 875, Address: 0x2ad910, Func Offset: 0x2d0
-	// Line 877, Address: 0x2ad930, Func Offset: 0x2f0
-	// Line 878, Address: 0x2ad954, Func Offset: 0x314
-	// Line 880, Address: 0x2ad95c, Func Offset: 0x31c
-	// Line 881, Address: 0x2ad96c, Func Offset: 0x32c
-	// Line 882, Address: 0x2ad974, Func Offset: 0x334
-	// Line 883, Address: 0x2ad980, Func Offset: 0x340
-	// Line 885, Address: 0x2ad988, Func Offset: 0x348
-	// Line 886, Address: 0x2ad99c, Func Offset: 0x35c
-	// Line 887, Address: 0x2ad9c0, Func Offset: 0x380
-	// Line 889, Address: 0x2ad9c8, Func Offset: 0x388
-	// Line 890, Address: 0x2ad9d8, Func Offset: 0x398
-	// Line 891, Address: 0x2ad9e0, Func Offset: 0x3a0
-	// Line 892, Address: 0x2ad9e8, Func Offset: 0x3a8
-	// Line 896, Address: 0x2ad9f4, Func Offset: 0x3b4
-	// Line 897, Address: 0x2ad9fc, Func Offset: 0x3bc
-	// Line 902, Address: 0x2ada04, Func Offset: 0x3c4
-	// Func End, Address: 0x2ada18, Func Offset: 0x3d8
-	scePrintf("FileScrollSet - UNIMPLEMENTED!\n");
+    S_WORK* st;
+    FV_WORK* fv;
+    int page_end;
+	
+    st = &swork;
+    fv = &fvwork;
+
+    page_end = 0;
+    
+    if (fv->filenum == 0) 
+    {
+        page_end = PlayPageCheck();
+    }
+    
+    if ((fv->scrol == 3) || (fv->scrol == 4)) 
+    {
+        fv->bufnum = fv->page + 280;
+        fv->bufnum = (fv->page + 280) + fsheader[fv->filenum];
+    }
+    
+    if (((!(fvwork.afsmode & 0x800)) && (fv->scrol == 0) && (fv->mode_02 == 0)) && (!(swork.statusflg & 0x40))) 
+    {
+        if (fv->pagewait01 == 0)
+        {
+            if (!(sys->pad_ps & 0x1800)) 
+            {
+                if ((sys->pad_on & 0x8)) 
+                {
+                    if (fv->page != ((fstbl[fv->filenum] & 0xF) - page_end))
+                    {
+                        fv->scrol = 1;
+                        
+                        fv->move = 10;
+                        
+                        fv->page++;
+                        
+                        if (!(fv->page & 0x1))
+                        {
+                            fv->mode_02 = 3;
+                            fv->mode_03 = 1;
+                        }
+                        
+                        CallSystemSe(0, 4);
+                        return;
+                    }
+                    
+                    if (fv->page == ((fstbl[fv->filenum] & 0xF) - page_end)) 
+                    {
+                        parts_22b[4].color &= ~0x8;
+                        parts_22b[4].atr &= ~0x4;
+                        
+                        parts_22b[4].col.a = 1.0f;
+                        parts_22b[4].col.r = 1.0f;
+                        parts_22b[4].col.g = 1.0f;
+                        parts_22b[4].col.b = 1.0f;
+                    }
+                }
+                else if (((sys->pad_on & 0x4)) && (fv->page != 0)) 
+                {
+                    if ((parts_22b[4].color & 0x8))
+                    {
+                        parts_22b[4].atr &= ~0x20;
+                        
+                        fv->scrol = 2;
+                        
+                        fv->move = 10;
+                        
+                        fv->page--;
+                        
+                        if ((fv->page & 0x1))
+                        {
+                            fv->mode_02 = 5;
+                            fv->mode_03 = 1;
+                        }
+                        
+                        CallSystemSe(0, 4);
+                        return;
+                    }
+                    
+                    fv->pagewait01 = 2;
+                    
+                    parts_22b[4].color |= 0x8;
+                    parts_22b[4].atr |= 0x4;
+                    
+                    parts_22b[4].col.a = 1.0f;
+                    parts_22b[4].col.r = 0.4f;
+                    parts_22b[4].col.g = 0.4f;
+                    parts_22b[4].col.b = 0.4f;
+                }
+            } 
+            else 
+            {
+                if ((sys->pad_ps & 0x800)) 
+                {
+                    if (!(parts_22b[4].color & 0x8))
+                    {
+                        if (((sys->cb_flg & 0x20000)) || (st->itemid == 85)) 
+                        {
+                            fv->mode_00 = 4;
+                            fv->mode_01 = 0;
+                            
+                            CallSystemSe(0, 3);
+                            return;
+                        }
+                        else 
+                        {
+                            CallSystemSe(0, 3);
+                            
+                            FileScreenCancel();
+                            return;
+                        }
+                    }
+                }
+                if ((sys->pad_ps & 0x1000)) 
+                {
+                    if (((sys->cb_flg & 0x20000)) || (st->itemid == 85)) 
+                    {
+                        fv->mode_00 = 4;
+                        fv->mode_01 = 0;
+                        
+                        CallSystemSe(0, 3);
+                        return;
+                    } 
+                    else 
+                    {
+                        FileScreenCancel();
+                        
+                        CallSystemSe(0, 0);
+                        return;
+                    }
+                }
+            }
+        }
+        else 
+        {
+            fv->pagewait01--;
+        }
+    }
 }
 
 // 100% matching! 
