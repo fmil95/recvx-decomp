@@ -362,170 +362,244 @@ int SearchTag(int dir)
     }
 }
 
-// 
-// Start address: 0x2ac780
+// 100% matching!
 void SelectFile()
 {
-	unsigned int tagbak;
-	short i;
-	//_anon14* si;
-	S_WORK* st;
-	FV_WORK* fv;
-	// Line 481, Address: 0x2ac780, Func Offset: 0
-	// Line 482, Address: 0x2ac78c, Func Offset: 0xc
-	// Line 481, Address: 0x2ac790, Func Offset: 0x10
-	// Line 482, Address: 0x2ac794, Func Offset: 0x14
-	// Line 481, Address: 0x2ac798, Func Offset: 0x18
-	// Line 488, Address: 0x2ac79c, Func Offset: 0x1c
-	// Line 484, Address: 0x2ac7a0, Func Offset: 0x20
-	// Line 488, Address: 0x2ac7a4, Func Offset: 0x24
-	// Line 484, Address: 0x2ac7a8, Func Offset: 0x28
-	// Line 485, Address: 0x2ac7ac, Func Offset: 0x2c
-	// Line 488, Address: 0x2ac7b4, Func Offset: 0x34
-	// Line 489, Address: 0x2ac7bc, Func Offset: 0x3c
-	// Line 490, Address: 0x2ac7e8, Func Offset: 0x68
-	// Line 491, Address: 0x2ac7f8, Func Offset: 0x78
-	// Line 492, Address: 0x2ac800, Func Offset: 0x80
-	// Line 493, Address: 0x2ac808, Func Offset: 0x88
-	// Line 494, Address: 0x2ac810, Func Offset: 0x90
-	// Line 495, Address: 0x2ac818, Func Offset: 0x98
-	// Line 498, Address: 0x2ac820, Func Offset: 0xa0
-	// Line 502, Address: 0x2ac850, Func Offset: 0xd0
-	// Line 503, Address: 0x2ac864, Func Offset: 0xe4
-	// Line 504, Address: 0x2ac870, Func Offset: 0xf0
-	// Line 506, Address: 0x2ac894, Func Offset: 0x114
-	// Line 507, Address: 0x2ac8a0, Func Offset: 0x120
-	// Line 508, Address: 0x2ac8a8, Func Offset: 0x128
-	// Line 509, Address: 0x2ac8b0, Func Offset: 0x130
-	// Line 510, Address: 0x2ac8b4, Func Offset: 0x134
-	// Line 511, Address: 0x2ac8b8, Func Offset: 0x138
-	// Line 510, Address: 0x2ac8bc, Func Offset: 0x13c
-	// Line 511, Address: 0x2ac8c4, Func Offset: 0x144
-	// Line 512, Address: 0x2ac8c8, Func Offset: 0x148
-	// Line 513, Address: 0x2ac8dc, Func Offset: 0x15c
-	// Line 515, Address: 0x2ac8ec, Func Offset: 0x16c
-	// Line 514, Address: 0x2ac8f0, Func Offset: 0x170
-	// Line 515, Address: 0x2ac8f4, Func Offset: 0x174
-	// Line 514, Address: 0x2ac8f8, Func Offset: 0x178
-	// Line 515, Address: 0x2ac8fc, Func Offset: 0x17c
-	// Line 516, Address: 0x2ac914, Func Offset: 0x194
-	// Line 517, Address: 0x2ac918, Func Offset: 0x198
-	// Line 516, Address: 0x2ac91c, Func Offset: 0x19c
-	// Line 517, Address: 0x2ac920, Func Offset: 0x1a0
-	// Line 518, Address: 0x2ac928, Func Offset: 0x1a8
-	// Line 519, Address: 0x2ac948, Func Offset: 0x1c8
-	// Line 520, Address: 0x2ac954, Func Offset: 0x1d4
-	// Line 521, Address: 0x2ac95c, Func Offset: 0x1dc
-	// Line 523, Address: 0x2ac964, Func Offset: 0x1e4
-	// Line 524, Address: 0x2ac968, Func Offset: 0x1e8
-	// Line 525, Address: 0x2ac96c, Func Offset: 0x1ec
-	// Line 524, Address: 0x2ac970, Func Offset: 0x1f0
-	// Line 525, Address: 0x2ac978, Func Offset: 0x1f8
-	// Line 526, Address: 0x2ac97c, Func Offset: 0x1fc
-	// Line 527, Address: 0x2ac990, Func Offset: 0x210
-	// Line 529, Address: 0x2ac9a0, Func Offset: 0x220
-	// Line 528, Address: 0x2ac9a4, Func Offset: 0x224
-	// Line 529, Address: 0x2ac9a8, Func Offset: 0x228
-	// Line 528, Address: 0x2ac9ac, Func Offset: 0x22c
-	// Line 529, Address: 0x2ac9b0, Func Offset: 0x230
-	// Line 530, Address: 0x2ac9cc, Func Offset: 0x24c
-	// Line 531, Address: 0x2ac9d0, Func Offset: 0x250
-	// Line 530, Address: 0x2ac9d4, Func Offset: 0x254
-	// Line 531, Address: 0x2ac9d8, Func Offset: 0x258
-	// Line 534, Address: 0x2ac9e0, Func Offset: 0x260
-	// Line 535, Address: 0x2ac9e8, Func Offset: 0x268
-	// Line 537, Address: 0x2ac9f4, Func Offset: 0x274
-	// Line 541, Address: 0x2aca10, Func Offset: 0x290
-	// Line 542, Address: 0x2aca24, Func Offset: 0x2a4
-	// Line 543, Address: 0x2aca28, Func Offset: 0x2a8
-	// Line 542, Address: 0x2aca2c, Func Offset: 0x2ac
-	// Line 543, Address: 0x2aca30, Func Offset: 0x2b0
-	// Line 544, Address: 0x2aca38, Func Offset: 0x2b8
-	// Line 546, Address: 0x2aca48, Func Offset: 0x2c8
-	// Line 545, Address: 0x2aca4c, Func Offset: 0x2cc
-	// Line 546, Address: 0x2aca50, Func Offset: 0x2d0
-	// Line 545, Address: 0x2aca54, Func Offset: 0x2d4
-	// Line 546, Address: 0x2aca58, Func Offset: 0x2d8
-	// Line 547, Address: 0x2aca74, Func Offset: 0x2f4
-	// Line 548, Address: 0x2aca88, Func Offset: 0x308
-	// Line 549, Address: 0x2aca90, Func Offset: 0x310
-	// Line 551, Address: 0x2acaa8, Func Offset: 0x328
-	// Line 553, Address: 0x2acabc, Func Offset: 0x33c
-	// Line 554, Address: 0x2acac4, Func Offset: 0x344
-	// Line 555, Address: 0x2acacc, Func Offset: 0x34c
-	// Line 556, Address: 0x2acad0, Func Offset: 0x350
-	// Line 558, Address: 0x2acad4, Func Offset: 0x354
-	// Line 559, Address: 0x2acae0, Func Offset: 0x360
-	// Line 560, Address: 0x2acae4, Func Offset: 0x364
-	// Line 561, Address: 0x2acaf0, Func Offset: 0x370
-	// Line 560, Address: 0x2acaf8, Func Offset: 0x378
-	// Line 561, Address: 0x2acb00, Func Offset: 0x380
-	// Line 567, Address: 0x2acb08, Func Offset: 0x388
-	// Line 569, Address: 0x2acb38, Func Offset: 0x3b8
-	// Line 570, Address: 0x2acb50, Func Offset: 0x3d0
-	// Line 571, Address: 0x2acb6c, Func Offset: 0x3ec
-	// Line 572, Address: 0x2acb94, Func Offset: 0x414
-	// Line 573, Address: 0x2acbc0, Func Offset: 0x440
-	// Line 574, Address: 0x2acbc8, Func Offset: 0x448
-	// Line 576, Address: 0x2acbd0, Func Offset: 0x450
-	// Line 589, Address: 0x2acbdc, Func Offset: 0x45c
-	// Line 576, Address: 0x2acbe0, Func Offset: 0x460
-	// Line 579, Address: 0x2acbf8, Func Offset: 0x478
-	// Line 582, Address: 0x2acc1c, Func Offset: 0x49c
-	// Line 586, Address: 0x2acc44, Func Offset: 0x4c4
-	// Line 587, Address: 0x2acc48, Func Offset: 0x4c8
-	// Line 589, Address: 0x2acc4c, Func Offset: 0x4cc
-	// Line 591, Address: 0x2acc54, Func Offset: 0x4d4
-	// Line 590, Address: 0x2acc58, Func Offset: 0x4d8
-	// Line 591, Address: 0x2acc5c, Func Offset: 0x4dc
-	// Line 590, Address: 0x2acc60, Func Offset: 0x4e0
-	// Line 591, Address: 0x2acc64, Func Offset: 0x4e4
-	// Line 593, Address: 0x2acc7c, Func Offset: 0x4fc
-	// Line 595, Address: 0x2acc84, Func Offset: 0x504
-	// Line 596, Address: 0x2acc9c, Func Offset: 0x51c
-	// Line 598, Address: 0x2accc4, Func Offset: 0x544
-	// Line 599, Address: 0x2acce4, Func Offset: 0x564
-	// Line 600, Address: 0x2acd0c, Func Offset: 0x58c
-	// Line 602, Address: 0x2acd14, Func Offset: 0x594
-	// Line 603, Address: 0x2acd30, Func Offset: 0x5b0
-	// Line 604, Address: 0x2acd54, Func Offset: 0x5d4
-	// Line 606, Address: 0x2acd5c, Func Offset: 0x5dc
-	// Line 607, Address: 0x2acd78, Func Offset: 0x5f8
-	// Line 610, Address: 0x2acda4, Func Offset: 0x624
-	// Line 611, Address: 0x2acdac, Func Offset: 0x62c
-	// Line 613, Address: 0x2acdb4, Func Offset: 0x634
-	// Line 612, Address: 0x2acdb8, Func Offset: 0x638
-	// Line 613, Address: 0x2acdbc, Func Offset: 0x63c
-	// Line 615, Address: 0x2acdc8, Func Offset: 0x648
-	// Line 614, Address: 0x2acdcc, Func Offset: 0x64c
-	// Line 615, Address: 0x2acdd0, Func Offset: 0x650
-	// Line 614, Address: 0x2acdd4, Func Offset: 0x654
-	// Line 615, Address: 0x2acdd8, Func Offset: 0x658
-	// Line 616, Address: 0x2acdf4, Func Offset: 0x674
-	// Line 617, Address: 0x2acdfc, Func Offset: 0x67c
-	// Line 619, Address: 0x2ace0c, Func Offset: 0x68c
-	// Line 621, Address: 0x2ace14, Func Offset: 0x694
-	// Line 622, Address: 0x2ace2c, Func Offset: 0x6ac
-	// Line 623, Address: 0x2ace40, Func Offset: 0x6c0
-	// Line 624, Address: 0x2ace48, Func Offset: 0x6c8
-	// Line 625, Address: 0x2ace50, Func Offset: 0x6d0
-	// Line 627, Address: 0x2ace54, Func Offset: 0x6d4
-	// Line 629, Address: 0x2ace64, Func Offset: 0x6e4
-	// Line 628, Address: 0x2ace68, Func Offset: 0x6e8
-	// Line 629, Address: 0x2ace6c, Func Offset: 0x6ec
-	// Line 628, Address: 0x2ace70, Func Offset: 0x6f0
-	// Line 629, Address: 0x2ace74, Func Offset: 0x6f4
-	// Line 632, Address: 0x2ace8c, Func Offset: 0x70c
-	// Line 630, Address: 0x2ace90, Func Offset: 0x710
-	// Line 632, Address: 0x2ace94, Func Offset: 0x714
-	// Line 635, Address: 0x2ace98, Func Offset: 0x718
-	// Line 636, Address: 0x2acec8, Func Offset: 0x748
-	// Line 637, Address: 0x2aced0, Func Offset: 0x750
-	// Line 638, Address: 0x2acee8, Func Offset: 0x768
-	// Line 642, Address: 0x2acef4, Func Offset: 0x774
-	// Line 644, Address: 0x2acef8, Func Offset: 0x778
-	// Func End, Address: 0x2acf10, Func Offset: 0x790
-	scePrintf("SelectFile - UNIMPLEMENTED!\n");
+    FV_WORK* fv;
+    S_WORK* st;
+    SITEM* si;
+    short i; 
+    unsigned int tagbak; 
+
+    fv = &fvwork;
+    st = &swork;
+    
+    si = &sitem;
+    
+    si->mdl.objP->pos[1] = 0.5f;
+    
+    if ((!(swork.statusflg & 0x40)) && ((fv->mode_02 == 0) && (fv->z == 0))) 
+    {
+        parts_10b[13].col.r = 0.7f;
+        parts_10b[13].col.g = 0.7f;
+        parts_10b[13].col.b = 0.7f;
+        
+        parts_10b[14].col.r = 0.7f;
+        parts_10b[14].col.g = 0.7f;
+        parts_10b[14].col.b = 0.7f;
+        
+        if ((!(sys->pad_ps & 0x1800)) && (!(swork.statusflg & 0x40000000)))
+        {
+            swork.statusflg &= ~0x20000000;
+            
+            if (fv->roll == 0) 
+            {
+                if (((sys->pad_on & 0x4)) && (fv->j == 0))
+                {
+                    parts_10b[14].col.r = 1.0f;
+                    parts_10b[14].col.g = 1.0f;
+                    parts_10b[14].col.b = 1.0f;
+
+                    fv->tag = 0;
+                    
+                    fv->filecsr++;
+                    
+                    fv->roll = 1;
+                    
+                    if (fv->filecsr > 2) 
+                    {
+                        fv->filecsr = 0;
+                    }
+                    
+                    for (i = 0; i < 8; i++) 
+                    {
+                        fv->koma[i] = 2730;
+                    }
+                    
+                    fv->z = 1;
+                    
+                    CallSystemSe(0, 6);
+                }
+                else if (((sys->pad_on & 0x8)) && (fv->j == 0)) 
+                {
+                    parts_10b[13].col.r = 1.0f;
+                    parts_10b[13].col.g = 1.0f;
+                    parts_10b[13].col.b = 1.0f;
+
+                    fv->tag = 0;
+                    
+                    fv->filecsr--;
+                    
+                    fv->roll = 1;
+                    
+                    if (fv->filecsr < 0) 
+                    {
+                        fv->filecsr = 2;
+                    }
+                    
+                    for (i = 0; i < 8; i++)
+                    {
+                        fv->koma[i] = -2730;
+                    }
+                    
+                    fv->z = 1;
+                    
+                    CallSystemSe(0, 6);
+                }
+            }
+        } 
+        else if (fv->roll == 0)
+        {
+            if (((sys->pad_ps & 0x800)) || ((swork.statusflg & 0x40000000))) 
+            {
+                if (SearchTag(1) != 0)
+                {
+                    fv->z = 2;
+                    
+                    CallSystemSe(0, 3);
+                    
+                    for (i = 0; i < 6; i++) 
+                    {
+                        fv->koma2[i] = 1820;
+                    }
+                    
+                    swork.statusflg |= 0x20000000;
+                } 
+                else 
+                {
+                    swork.statusflg &= ~0x20000000;
+                }
+            } 
+            else if ((sys->pad_ps & 0x1000)) 
+            {
+                st->mode = 2;
+                st->testmode = 1;
+                
+                st->maincsr = 1;
+                
+                st->number = 1;
+                
+                st->wait = 0;
+                
+                NameChangeSet(st);
+                
+                st->wn = 0;
+                
+                swork.statusflg |= 0x20000;
+                
+                CallSystemSe(0, 0);
+            }
+        }
+    }
+    
+    switch (fv->z) 
+    {                             
+    case 1:                                         
+        if ((short)fv->koma[fv->j] != 0) 
+        {
+            si->mdl.objP->child->ang[1] += fv->koma[fv->j];
+            si->mdl.objP->child->sibling->ang[1] += fv->koma[fv->j];
+            si->mdl.objP->child->sibling->sibling->ang[1] += fv->koma[fv->j];
+            
+            fv->j++;
+            break;
+        }
+        
+        si->mdl.objP->child->ang[1] = (short)((fv->filecsr * 21845) - 32768);
+        si->mdl.objP->child->sibling->ang[1] = (short)((fv->filecsr * 21845) - 32768); 
+        si->mdl.objP->child->sibling->sibling->ang[1] = (short)((fv->filecsr * 21845) - 32768);
+        
+        fv->roll = 0;
+        
+        fv->z = 0;
+        fv->j = 0;
+        
+        for (i = 0; i < 16; i++)
+        {
+            fv->koma[i] = 0;
+        }
+        
+        break;
+    case 2:                                         
+        if ((short)fv->koma2[fv->j] != 0) 
+        {
+            switch (fv->filecsr) 
+            {               
+            case 0:                                 
+                si->mdl.objP->child->sibling->ang[1] += fv->koma2[fv->j];
+                si->mdl.objP->child->sibling->sibling->ang[1] -= fv->koma2[fv->j];
+                break;
+            case 1:                                 
+                si->mdl.objP->child->ang[1] += fv->koma2[fv->j];
+                si->mdl.objP->child->sibling->ang[1] -= fv->koma2[fv->j];
+                break;
+            case 2:                                 
+                si->mdl.objP->child->ang[1] -= fv->koma2[fv->j];
+                si->mdl.objP->child->sibling->sibling->ang[1] += fv->koma2[fv->j];
+                break;
+            }
+            
+            fv->j++;
+            break;
+        }
+        
+        fv->j = 0;
+        
+        for (i = 0; i < 6; i++) 
+        {
+            fv->koma2[i] = 1820;
+        }
+        
+        fv->z = 3;
+        
+        fvwork.afsmode |= 0x20;
+        break;
+    case 3:                                         
+        if ((short)fv->koma2[fv->j] != 0) 
+        {
+            fv->ang00 -= fv->koma2[fv->j];
+            
+            fv->j++;
+            break;
+        }
+        
+        tagbak = fv->tag;
+        
+        fv->j = 0;
+        
+        for (i = 0; i < 6; i++) 
+        {
+            fv->koma2[i] = 0;
+        }
+        
+        fv->z = 0;
+        
+        st->testmode = 9;
+        
+        while (TRUE)
+        { 
+            if (!(sys->itm[383] & (1 << (fv->tag + (fv->filecsr * 8))))) 
+            {
+                fv->tag++;
+                
+                if (fv->tag > 7) 
+                {
+                    fv->tag = 0;
+                }
+                
+                if (fv->tag == tagbak) 
+                {
+                    break;
+                }  
+            }
+            else
+            {
+                break;
+            }
+        }
+        
+        break;
+    }
 }
 
 // 
