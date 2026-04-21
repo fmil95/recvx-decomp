@@ -77,6 +77,9 @@ void StatusMapFlagInit();
 
 extern S_WORK swork;
 extern char ViewCnt;
+extern unsigned char menuanim[3][4];
+extern PARTS parts_00b[24];
+extern PARTS parts_10b[24];
 extern PARTS parts_22b[6]; 
 extern float cen_pos99[12][6];
 extern float cen_pos[12][6];

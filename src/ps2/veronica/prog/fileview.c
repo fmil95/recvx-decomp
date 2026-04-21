@@ -234,86 +234,104 @@ void FileExit00()
 	swork.statusflg |= 0x80000;
 }
 
-// 
-// Start address: 0x2ac460
+// 100% matching!
 void FileExit01()
 {
-	unsigned int* itm;
-	unsigned int* wp;
-	int num;
-	FV_WORK* fv;
-	S_WORK* st;
-	// Line 360, Address: 0x2ac460, Func Offset: 0
-	// Line 363, Address: 0x2ac46c, Func Offset: 0xc
-	// Line 361, Address: 0x2ac474, Func Offset: 0x14
-	// Line 362, Address: 0x2ac47c, Func Offset: 0x1c
-	// Line 365, Address: 0x2ac480, Func Offset: 0x20
-	// Line 363, Address: 0x2ac484, Func Offset: 0x24
-	// Line 365, Address: 0x2ac498, Func Offset: 0x38
-	// Line 366, Address: 0x2ac4a8, Func Offset: 0x48
-	// Line 367, Address: 0x2ac4bc, Func Offset: 0x5c
-	// Line 368, Address: 0x2ac4c8, Func Offset: 0x68
-	// Line 370, Address: 0x2ac4d0, Func Offset: 0x70
-	// Line 369, Address: 0x2ac4d8, Func Offset: 0x78
-	// Line 371, Address: 0x2ac4dc, Func Offset: 0x7c
-	// Line 368, Address: 0x2ac4e0, Func Offset: 0x80
-	// Line 369, Address: 0x2ac4ec, Func Offset: 0x8c
-	// Line 372, Address: 0x2ac4f4, Func Offset: 0x94
-	// Line 369, Address: 0x2ac4f8, Func Offset: 0x98
-	// Line 370, Address: 0x2ac504, Func Offset: 0xa4
-	// Line 371, Address: 0x2ac518, Func Offset: 0xb8
-	// Line 372, Address: 0x2ac51c, Func Offset: 0xbc
-	// Line 373, Address: 0x2ac520, Func Offset: 0xc0
-	// Line 376, Address: 0x2ac524, Func Offset: 0xc4
-	// Line 377, Address: 0x2ac52c, Func Offset: 0xcc
-	// Line 378, Address: 0x2ac538, Func Offset: 0xd8
-	// Line 379, Address: 0x2ac540, Func Offset: 0xe0
-	// Line 380, Address: 0x2ac548, Func Offset: 0xe8
-	// Line 381, Address: 0x2ac54c, Func Offset: 0xec
-	// Line 385, Address: 0x2ac550, Func Offset: 0xf0
-	// Line 379, Address: 0x2ac554, Func Offset: 0xf4
-	// Line 380, Address: 0x2ac560, Func Offset: 0x100
-	// Line 389, Address: 0x2ac568, Func Offset: 0x108
-	// Line 380, Address: 0x2ac56c, Func Offset: 0x10c
-	// Line 381, Address: 0x2ac578, Func Offset: 0x118
-	// Line 382, Address: 0x2ac57c, Func Offset: 0x11c
-	// Line 385, Address: 0x2ac580, Func Offset: 0x120
-	// Line 383, Address: 0x2ac588, Func Offset: 0x128
-	// Line 384, Address: 0x2ac59c, Func Offset: 0x13c
-	// Line 386, Address: 0x2ac5b0, Func Offset: 0x150
-	// Line 387, Address: 0x2ac5b4, Func Offset: 0x154
-	// Line 388, Address: 0x2ac5b8, Func Offset: 0x158
-	// Line 389, Address: 0x2ac5bc, Func Offset: 0x15c
-	// Line 402, Address: 0x2ac5d0, Func Offset: 0x170
-	// Line 403, Address: 0x2ac5e8, Func Offset: 0x188
-	// Line 404, Address: 0x2ac5fc, Func Offset: 0x19c
-	// Line 416, Address: 0x2ac600, Func Offset: 0x1a0
-	// Line 418, Address: 0x2ac60c, Func Offset: 0x1ac
-	// Line 420, Address: 0x2ac614, Func Offset: 0x1b4
-	// Line 424, Address: 0x2ac634, Func Offset: 0x1d4
-	// Line 420, Address: 0x2ac638, Func Offset: 0x1d8
-	// Line 426, Address: 0x2ac640, Func Offset: 0x1e0
-	// Line 429, Address: 0x2ac644, Func Offset: 0x1e4
-	// Line 425, Address: 0x2ac648, Func Offset: 0x1e8
-	// Line 427, Address: 0x2ac654, Func Offset: 0x1f4
-	// Line 428, Address: 0x2ac65c, Func Offset: 0x1fc
-	// Line 429, Address: 0x2ac664, Func Offset: 0x204
-	// Line 430, Address: 0x2ac668, Func Offset: 0x208
-	// Line 431, Address: 0x2ac66c, Func Offset: 0x20c
-	// Line 433, Address: 0x2ac670, Func Offset: 0x210
-	// Line 431, Address: 0x2ac678, Func Offset: 0x218
-	// Line 433, Address: 0x2ac67c, Func Offset: 0x21c
-	// Line 434, Address: 0x2ac684, Func Offset: 0x224
-	// Line 436, Address: 0x2ac68c, Func Offset: 0x22c
-	// Line 438, Address: 0x2ac698, Func Offset: 0x238
-	// Line 440, Address: 0x2ac6b4, Func Offset: 0x254
-	// Line 447, Address: 0x2ac6bc, Func Offset: 0x25c
-	// Line 449, Address: 0x2ac6d0, Func Offset: 0x270
-	// Line 452, Address: 0x2ac6d8, Func Offset: 0x278
-	// Line 453, Address: 0x2ac6e8, Func Offset: 0x288
-	// Line 460, Address: 0x2ac700, Func Offset: 0x2a0
-	// Func End, Address: 0x2ac710, Func Offset: 0x2b0
-	scePrintf("FileExit01 - UNIMPLEMENTED!\n");
+    S_WORK* st;    
+    FV_WORK* fv;       
+    int num;         
+    unsigned int* wp; 
+    unsigned int* itm; 
+
+    st = &swork;
+    fv = &fvwork;
+
+    sys->memp = st->sspb;
+    
+    if (st->itemid != 85) 
+    {
+        if ((swork.statusflg & 0x8000))
+        {
+            swork.statusflg |= 0x80;
+            swork.statusflg |= 0x40;
+            
+            swork.statusflg &= ~0x10;
+            swork.statusflg &= ~0x8000;
+            
+            st->testmode = 1;
+            st->mode = 2;
+            st->subscreenmode = 2;
+            
+            st->maincsr = 1;
+        }
+    } 
+    else if (fv->mode_02 == 0) 
+    {
+        st->subscreenmode = 2;
+        
+        swork.statusflg |= 0x80;
+        swork.statusflg &= ~0x10;
+        
+        st->mode = 1;
+        st->testmode = 0;
+        
+        parts_10b[15].anim = 5;
+        
+        parts_22b[2].atr &= ~0x20;
+        parts_22b[3].atr &= ~0x20;
+        
+        st->wait = 0;
+        
+        st->number = 0;
+        
+        st->flag = 0;
+        
+        fvwork.afsmode &= ~0x20;
+    }
+    
+    if ((swork.statusflg & 0x40000000)) 
+    {
+        swork.statusflg &= ~0x40000000;
+        
+        st->maincsr = 1;
+
+		wp = ItemSearch(145);
+        
+        EraseItem(wp);
+        
+        sys->ic_flg[15] |= 0x80000000;
+        
+        for (num = 0; num < 4; num++) 
+        {
+            if (num == st->maincsr) 
+            {
+                parts_00b[num + 11].parts_num = 13;
+            } 
+            else 
+            {
+                parts_00b[num + 11].anim = menuanim[0][num];
+                parts_00b[num + 11].parts_num = 10;
+                
+                parts_00b[num].anim = 0;
+                parts_00b[num].parts_num = 0;
+            }
+        } 
+    }
+    else if ((fv->filenum == 0) && (!(sys->ic_flg[15] & 0x80000000))) 
+    {
+        itm = sys->itm;
+        
+        for (num = 0; num < 192; num++, itm++) 
+        {
+            if (*itm == 0x910001) 
+            {
+                *itm = 0;
+                break;
+            } 
+        } 
+        
+        sys->ic_flg[15] |= 0x80000000;
+    }
 }
 
 // 100% matching!

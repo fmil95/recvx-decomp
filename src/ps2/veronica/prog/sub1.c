@@ -600,8 +600,13 @@ SITEM sitem;
 static unsigned short cnt;
 char ViewCnt;
 
-/*unsigned char menuanim[4][3];
-short standard[2][3];
+unsigned char menuanim[3][4] = 
+{
+    { 0, 1, 2, 3 },
+    { 0, 1, 2, 3 },
+    { 0, 1, 2, 3 }
+};
+/*short standard[2][3];
 unsigned short sakai;
 unsigned short cnt;
 unsigned int Ps2_current_texbreak;
