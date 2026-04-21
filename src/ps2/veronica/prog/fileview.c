@@ -1000,54 +1000,97 @@ void PageScroll()
 	scePrintf("PageScroll - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ae080
+// 100% matching!
 void FileEtcDisplay()
 {
-	int page_end;
-	//FV_WORK* fv;
-	unsigned short flg;
-	unsigned short count;
-	// Line 1069, Address: 0x2ae080, Func Offset: 0
-	// Line 1076, Address: 0x2ae08c, Func Offset: 0xc
-	// Line 1071, Address: 0x2ae094, Func Offset: 0x14
-	// Line 1076, Address: 0x2ae09c, Func Offset: 0x1c
-	// Line 1077, Address: 0x2ae0bc, Func Offset: 0x3c
-	// Line 1079, Address: 0x2ae0d0, Func Offset: 0x50
-	// Line 1080, Address: 0x2ae0e8, Func Offset: 0x68
-	// Line 1081, Address: 0x2ae100, Func Offset: 0x80
-	// Line 1083, Address: 0x2ae128, Func Offset: 0xa8
-	// Line 1084, Address: 0x2ae154, Func Offset: 0xd4
-	// Line 1085, Address: 0x2ae168, Func Offset: 0xe8
-	// Line 1086, Address: 0x2ae178, Func Offset: 0xf8
-	// Line 1087, Address: 0x2ae180, Func Offset: 0x100
-	// Line 1088, Address: 0x2ae194, Func Offset: 0x114
-	// Line 1090, Address: 0x2ae1a4, Func Offset: 0x124
-	// Line 1091, Address: 0x2ae1ac, Func Offset: 0x12c
-	// Line 1092, Address: 0x2ae1cc, Func Offset: 0x14c
-	// Line 1093, Address: 0x2ae1d4, Func Offset: 0x154
-	// Line 1092, Address: 0x2ae1dc, Func Offset: 0x15c
-	// Line 1093, Address: 0x2ae1e8, Func Offset: 0x168
-	// Line 1095, Address: 0x2ae20c, Func Offset: 0x18c
-	// Line 1096, Address: 0x2ae228, Func Offset: 0x1a8
-	// Line 1097, Address: 0x2ae230, Func Offset: 0x1b0
-	// Line 1099, Address: 0x2ae240, Func Offset: 0x1c0
-	// Line 1100, Address: 0x2ae248, Func Offset: 0x1c8
-	// Line 1101, Address: 0x2ae25c, Func Offset: 0x1dc
-	// Line 1105, Address: 0x2ae270, Func Offset: 0x1f0
-	// Line 1106, Address: 0x2ae284, Func Offset: 0x204
-	// Line 1107, Address: 0x2ae298, Func Offset: 0x218
-	// Line 1108, Address: 0x2ae2a0, Func Offset: 0x220
-	// Line 1110, Address: 0x2ae2b8, Func Offset: 0x238
-	// Line 1111, Address: 0x2ae2cc, Func Offset: 0x24c
-	// Line 1112, Address: 0x2ae2dc, Func Offset: 0x25c
-	// Line 1113, Address: 0x2ae2fc, Func Offset: 0x27c
-	// Line 1114, Address: 0x2ae30c, Func Offset: 0x28c
-	// Line 1115, Address: 0x2ae314, Func Offset: 0x294
-	// Line 1116, Address: 0x2ae334, Func Offset: 0x2b4
-	// Line 1120, Address: 0x2ae348, Func Offset: 0x2c8
-	// Func End, Address: 0x2ae358, Func Offset: 0x2d8
-	scePrintf("FileEtcDisplay - UNIMPLEMENTED!\n");
+    FV_WORK* fv;
+    int page_end;
+	static unsigned short flg;
+	static unsigned short count;
+
+    fv = &fvwork;
+
+    page_end = 0;
+    
+    if (fv->page == 0) 
+    {
+        fvwork.flg |= 0x1;
+    } 
+    else 
+    {
+        fvwork.flg &= ~0x1;
+    }
+    
+    if (fv->filenum == 0) 
+    { 
+        page_end = PlayPageCheck(fv->filenum);
+    }
+    
+    if ((fv->page != 0) && (fv->scrol == 0)) 
+    {
+        if (fv->page == ((fstbl[fv->filenum] & 0xF) - page_end)) 
+        {
+            if ((parts_22b[4].color & 0x8)) 
+            {
+                parts_22b[2].atr |= 0x20;
+            } 
+            else 
+            {
+                parts_22b[2].atr &= ~0x20;
+            }
+            
+            parts_22b[3].atr &= ~0x20;
+        } 
+        else 
+        {
+            parts_22b[2].atr |= 0x20;
+            parts_22b[3].atr |= 0x20;
+        }
+    }
+    else if ((fv->scrol == 0) && ((fvwork.flg & 0x1)))
+    {
+        parts_22b[2].atr &= ~0x20;
+        
+        if (fv->page != ((fstbl[fv->filenum] & 0xF) - page_end)) 
+        {
+            if (fv->mode_02 == 0) 
+            {
+                parts_22b[3].atr |= 0x20;
+            }
+        } 
+        else 
+        {
+            parts_22b[3].atr &= ~0x20;
+        }
+    } 
+    else 
+    {
+        parts_22b[2].atr &= ~0x20;
+        parts_22b[3].atr &= ~0x20;
+    }
+    
+    count++;
+    
+    if (count > 4) 
+    {
+        count = 0;
+        
+        flg = (flg + 1) & 0x1;
+    }
+    
+    if (count == 3) 
+    {
+        if (flg != 0) 
+        {
+            parts_22b[2].pos[0] -= 2.0f;
+            parts_22b[3].pos[0] += 2.0f;
+        } 
+        else 
+        {
+            parts_22b[2].pos[0] += 2.0f;
+            parts_22b[3].pos[0] -= 2.0f;
+        }
+    }
 }
 
 // 100% matching!
