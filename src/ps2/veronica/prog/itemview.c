@@ -856,27 +856,38 @@ unsigned char MdlAction01(SITEM* si)
 	scePrintf("MdlAction01 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ab920
+// 100% matching!
 unsigned char MdlAction02(SITEM* si)
 {
-	// Line 1081, Address: 0x2ab920, Func Offset: 0
-	// Line 1083, Address: 0x2ab950, Func Offset: 0x30
-	// Line 1085, Address: 0x2ab958, Func Offset: 0x38
-	// Line 1087, Address: 0x2ab95c, Func Offset: 0x3c
-	// Line 1085, Address: 0x2ab960, Func Offset: 0x40
-	// Line 1086, Address: 0x2ab978, Func Offset: 0x58
-	// Line 1087, Address: 0x2ab98c, Func Offset: 0x6c
-	// Line 1088, Address: 0x2ab9ac, Func Offset: 0x8c
-	// Line 1090, Address: 0x2ab9b8, Func Offset: 0x98
-	// Line 1091, Address: 0x2ab9dc, Func Offset: 0xbc
-	// Line 1092, Address: 0x2ab9f0, Func Offset: 0xd0
-	// Line 1096, Address: 0x2aba00, Func Offset: 0xe0
-	// Line 1098, Address: 0x2aba08, Func Offset: 0xe8
-	// Line 1100, Address: 0x2aba14, Func Offset: 0xf4
-	// Line 1101, Address: 0x2aba18, Func Offset: 0xf8
-	// Func End, Address: 0x2aba20, Func Offset: 0x100
-	scePrintf("MdlAction02 - UNIMPLEMENTED!\n");
+    switch (swork.maincsr) 
+    {                   
+    case 0:
+        swork.maincsr = 1;
+    case 1:
+        si->mdl.objP->child->child->child->ang[2] += 1456;
+        si->mdl.objP->child->ang[2] -= 728;
+        
+        if (si->mdl.objP->child->child->child->ang[2] >= 32768) 
+        {
+            swork.maincsr = 2;
+        }
+        
+        if (si->mw.pos.y > -0.76f) 
+        {
+            si->mw.pos.y -= 0.05f;
+            
+            if (si->mw.pos.y < -0.76f) 
+            {
+                si->mw.pos.y = -0.76f;
+            }
+        }
+        
+        break;
+    case 2:
+        return 1;
+    }
+
+    return 0;
 }
 
 // 100% matching!
