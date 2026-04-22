@@ -131,6 +131,7 @@ void PS2_Render_Tex_Sub();
 
 extern unsigned int PS2_Render_tex_sub_flag;
 extern float Ps2AddPrimPrio;
+extern int ViewType;
 extern unsigned char Ps2_PBUFF[1835008];
 extern unsigned int Ps2_use_pt_flag;
 extern sceGsDBuffDc Db;

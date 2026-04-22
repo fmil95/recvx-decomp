@@ -6,6 +6,10 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/message.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_texture.h"
 #include "../../../ps2/veronica/prog/sub1.h"
 
@@ -65,155 +69,230 @@ _anon41 parts_10b[0];
 unsigned short idsettbl[0];
 */
 
-// 
-// Start address: 0x2a9870
+// 100% matching!
 void DrawSubItem(S_WORK* st, SITEM* si)
 {
-	NJS_POINT3 pos00;
-	DSP_WORK* dw_a;
-	FV_WORK* fv;
-	STCAM_WRK* sc;
-	float testtest[16];
-	// Line 173, Address: 0x2a9870, Func Offset: 0
-	// Line 184, Address: 0x2a988c, Func Offset: 0x1c
-	// Line 187, Address: 0x2a9894, Func Offset: 0x24
-	// Line 185, Address: 0x2a9898, Func Offset: 0x28
-	// Line 187, Address: 0x2a98a0, Func Offset: 0x30
-	// Line 213, Address: 0x2a98b8, Func Offset: 0x48
-	// Line 214, Address: 0x2a98c0, Func Offset: 0x50
-	// Line 216, Address: 0x2a98d0, Func Offset: 0x60
-	// Line 218, Address: 0x2a98d8, Func Offset: 0x68
-	// Line 221, Address: 0x2a9910, Func Offset: 0xa0
-	// Line 222, Address: 0x2a9918, Func Offset: 0xa8
-	// Line 223, Address: 0x2a994c, Func Offset: 0xdc
-	// Line 224, Address: 0x2a9980, Func Offset: 0x110
-	// Line 225, Address: 0x2a99b4, Func Offset: 0x144
-	// Line 227, Address: 0x2a99bc, Func Offset: 0x14c
-	// Line 228, Address: 0x2a99c8, Func Offset: 0x158
-	// Line 229, Address: 0x2a99d4, Func Offset: 0x164
-	// Line 230, Address: 0x2a99e0, Func Offset: 0x170
-	// Line 232, Address: 0x2a99e8, Func Offset: 0x178
-	// Line 234, Address: 0x2a99f0, Func Offset: 0x180
-	// Line 235, Address: 0x2a9a00, Func Offset: 0x190
-	// Line 236, Address: 0x2a9a0c, Func Offset: 0x19c
-	// Line 237, Address: 0x2a9a18, Func Offset: 0x1a8
-	// Line 238, Address: 0x2a9a24, Func Offset: 0x1b4
-	// Line 239, Address: 0x2a9a38, Func Offset: 0x1c8
-	// Line 240, Address: 0x2a9a44, Func Offset: 0x1d4
-	// Line 241, Address: 0x2a9a50, Func Offset: 0x1e0
-	// Line 242, Address: 0x2a9a5c, Func Offset: 0x1ec
-	// Line 243, Address: 0x2a9a64, Func Offset: 0x1f4
-	// Line 244, Address: 0x2a9a70, Func Offset: 0x200
-	// Line 245, Address: 0x2a9a7c, Func Offset: 0x20c
-	// Line 249, Address: 0x2a9a88, Func Offset: 0x218
-	// Line 250, Address: 0x2a9a94, Func Offset: 0x224
-	// Line 251, Address: 0x2a9a9c, Func Offset: 0x22c
-	// Line 252, Address: 0x2a9aa8, Func Offset: 0x238
-	// Line 254, Address: 0x2a9ab0, Func Offset: 0x240
-	// Line 255, Address: 0x2a9aec, Func Offset: 0x27c
-	// Line 256, Address: 0x2a9b24, Func Offset: 0x2b4
-	// Line 258, Address: 0x2a9b60, Func Offset: 0x2f0
-	// Line 259, Address: 0x2a9b6c, Func Offset: 0x2fc
-	// Line 260, Address: 0x2a9b78, Func Offset: 0x308
-	// Line 262, Address: 0x2a9b84, Func Offset: 0x314
-	// Line 272, Address: 0x2a9b8c, Func Offset: 0x31c
-	// Line 262, Address: 0x2a9b94, Func Offset: 0x324
-	// Line 263, Address: 0x2a9bb8, Func Offset: 0x348
-	// Line 264, Address: 0x2a9be4, Func Offset: 0x374
-	// Line 272, Address: 0x2a9c0c, Func Offset: 0x39c
-	// Line 273, Address: 0x2a9c30, Func Offset: 0x3c0
-	// Line 274, Address: 0x2a9c58, Func Offset: 0x3e8
-	// Line 276, Address: 0x2a9c80, Func Offset: 0x410
-	// Line 280, Address: 0x2a9c88, Func Offset: 0x418
-	// Line 276, Address: 0x2a9c8c, Func Offset: 0x41c
-	// Line 277, Address: 0x2a9cb0, Func Offset: 0x440
-	// Line 278, Address: 0x2a9cdc, Func Offset: 0x46c
-	// Line 280, Address: 0x2a9d04, Func Offset: 0x494
-	// Line 282, Address: 0x2a9d0c, Func Offset: 0x49c
-	// Line 283, Address: 0x2a9d20, Func Offset: 0x4b0
-	// Line 285, Address: 0x2a9d2c, Func Offset: 0x4bc
-	// Line 286, Address: 0x2a9d34, Func Offset: 0x4c4
-	// Line 287, Address: 0x2a9d3c, Func Offset: 0x4cc
-	// Line 288, Address: 0x2a9d44, Func Offset: 0x4d4
-	// Line 300, Address: 0x2a9d4c, Func Offset: 0x4dc
-	// Line 301, Address: 0x2a9d54, Func Offset: 0x4e4
-	// Line 302, Address: 0x2a9d6c, Func Offset: 0x4fc
-	// Line 303, Address: 0x2a9d84, Func Offset: 0x514
-	// Line 304, Address: 0x2a9da0, Func Offset: 0x530
-	// Line 305, Address: 0x2a9db8, Func Offset: 0x548
-	// Line 307, Address: 0x2a9dc0, Func Offset: 0x550
-	// Line 309, Address: 0x2a9dc8, Func Offset: 0x558
-	// Line 310, Address: 0x2a9dd0, Func Offset: 0x560
-	// Line 312, Address: 0x2a9ddc, Func Offset: 0x56c
-	// Line 313, Address: 0x2a9de8, Func Offset: 0x578
-	// Line 314, Address: 0x2a9df4, Func Offset: 0x584
-	// Line 316, Address: 0x2a9e00, Func Offset: 0x590
-	// Line 317, Address: 0x2a9e08, Func Offset: 0x598
-	// Line 318, Address: 0x2a9e1c, Func Offset: 0x5ac
-	// Line 319, Address: 0x2a9e2c, Func Offset: 0x5bc
-	// Line 320, Address: 0x2a9e48, Func Offset: 0x5d8
-	// Line 321, Address: 0x2a9e50, Func Offset: 0x5e0
-	// Line 323, Address: 0x2a9e68, Func Offset: 0x5f8
-	// Line 325, Address: 0x2a9e74, Func Offset: 0x604
-	// Line 326, Address: 0x2a9e84, Func Offset: 0x614
-	// Line 327, Address: 0x2a9e8c, Func Offset: 0x61c
-	// Line 328, Address: 0x2a9eac, Func Offset: 0x63c
-	// Line 329, Address: 0x2a9eb8, Func Offset: 0x648
-	// Line 330, Address: 0x2a9ec0, Func Offset: 0x650
-	// Line 331, Address: 0x2a9ed4, Func Offset: 0x664
-	// Line 332, Address: 0x2a9ee8, Func Offset: 0x678
-	// Line 333, Address: 0x2a9efc, Func Offset: 0x68c
-	// Line 334, Address: 0x2a9f14, Func Offset: 0x6a4
-	// Line 335, Address: 0x2a9f1c, Func Offset: 0x6ac
-	// Line 336, Address: 0x2a9f30, Func Offset: 0x6c0
-	// Line 337, Address: 0x2a9f3c, Func Offset: 0x6cc
-	// Line 343, Address: 0x2a9f48, Func Offset: 0x6d8
-	// Line 345, Address: 0x2a9f58, Func Offset: 0x6e8
-	// Line 347, Address: 0x2a9f68, Func Offset: 0x6f8
-	// Line 349, Address: 0x2a9f74, Func Offset: 0x704
-	// Line 350, Address: 0x2a9f7c, Func Offset: 0x70c
-	// Line 351, Address: 0x2a9fa0, Func Offset: 0x730
-	// Line 352, Address: 0x2a9fac, Func Offset: 0x73c
-	// Line 353, Address: 0x2a9fb4, Func Offset: 0x744
-	// Line 354, Address: 0x2a9fcc, Func Offset: 0x75c
-	// Line 355, Address: 0x2a9fe4, Func Offset: 0x774
-	// Line 356, Address: 0x2a9ffc, Func Offset: 0x78c
-	// Line 359, Address: 0x2aa018, Func Offset: 0x7a8
-	// Line 360, Address: 0x2aa020, Func Offset: 0x7b0
-	// Line 361, Address: 0x2aa034, Func Offset: 0x7c4
-	// Line 362, Address: 0x2aa044, Func Offset: 0x7d4
-	// Line 369, Address: 0x2aa050, Func Offset: 0x7e0
-	// Line 372, Address: 0x2aa064, Func Offset: 0x7f4
-	// Line 375, Address: 0x2aa078, Func Offset: 0x808
-	// Line 377, Address: 0x2aa084, Func Offset: 0x814
-	// Line 378, Address: 0x2aa08c, Func Offset: 0x81c
-	// Line 379, Address: 0x2aa0b0, Func Offset: 0x840
-	// Line 380, Address: 0x2aa0bc, Func Offset: 0x84c
-	// Line 381, Address: 0x2aa0c4, Func Offset: 0x854
-	// Line 382, Address: 0x2aa0e0, Func Offset: 0x870
-	// Line 383, Address: 0x2aa0fc, Func Offset: 0x88c
-	// Line 384, Address: 0x2aa118, Func Offset: 0x8a8
-	// Line 387, Address: 0x2aa138, Func Offset: 0x8c8
-	// Line 388, Address: 0x2aa140, Func Offset: 0x8d0
-	// Line 389, Address: 0x2aa154, Func Offset: 0x8e4
-	// Line 390, Address: 0x2aa164, Func Offset: 0x8f4
-	// Line 398, Address: 0x2aa170, Func Offset: 0x900
-	// Line 401, Address: 0x2aa188, Func Offset: 0x918
-	// Line 404, Address: 0x2aa1a0, Func Offset: 0x930
-	// Line 406, Address: 0x2aa1ac, Func Offset: 0x93c
-	// Line 409, Address: 0x2aa1b4, Func Offset: 0x944
-	// Line 423, Address: 0x2aa1d4, Func Offset: 0x964
-	// Line 425, Address: 0x2aa1dc, Func Offset: 0x96c
-	// Line 428, Address: 0x2aa204, Func Offset: 0x994
-	// Line 429, Address: 0x2aa22c, Func Offset: 0x9bc
-	// Line 430, Address: 0x2aa234, Func Offset: 0x9c4
-	// Line 431, Address: 0x2aa23c, Func Offset: 0x9cc
-	// Line 435, Address: 0x2aa244, Func Offset: 0x9d4
-	// Line 436, Address: 0x2aa250, Func Offset: 0x9e0
-	// Line 437, Address: 0x2aa258, Func Offset: 0x9e8
-	// Line 440, Address: 0x2aa260, Func Offset: 0x9f0
-	// Func End, Address: 0x2aa280, Func Offset: 0xa10
-	scePrintf("DrawSubItem - UNIMPLEMENTED!\n");
+	NJS_MATRIX testtest; 
+    STCAM_WRK* sc; 
+    FV_WORK* fv; 
+    DSP_WORK* dw_a; 
+    NJS_POINT3 pos00;
+    
+    sc = &st_cam;
+    fv = &fvwork;
+    
+    dw_a = &dsptbl[st->itemid];
+    
+    njPushMatrix(NULL);
+    njSetMatrix(NULL, &sc->rotmat);
+    njTransposeMatrix(NULL);
+    
+    switch (st->subcsr) 
+    {
+    case 0:
+    case 1:
+        st->subcsr = 2;
+        
+        njRotateX(NULL, (int)(182.04445f * -dw_a->ax) & 0xFFFF);
+        njRotateY(NULL, (int)(182.04445f * -dw_a->ay) & 0xFFFF);
+        njRotateZ(NULL, (int)(182.04445f * -dw_a->az) & 0xFFFF);
+        break;
+    case 2:
+        njRotateX(NULL, sc->cax);
+        njRotateY(NULL, sc->cay);
+        njRotateZ(NULL, sc->caz);
+        break;
+    case 3:
+        st->subcsr = 2;
+        
+        if (st->itemid == 105) 
+        {
+            njRotateX(NULL, 50245);
+            njRotateY(NULL, 51519);
+            njRotateZ(NULL, 1457);
+        }
+        else if (st->itemid == 30) 
+        {
+            njRotateX(NULL, 50245);
+            njRotateY(NULL, 57709);
+            njRotateZ(NULL, 42235);
+        } 
+        else 
+        {
+            njRotateX(NULL, 21846);
+            njRotateY(NULL, 0);
+            njRotateZ(NULL, 0);
+        }
+    }
+    
+    njTransposeMatrix(NULL);
+    njGetMatrix(&sc->rotmat);
+    njGetMatrix(&check);
+    njPopMatrix(1);
+    
+    ang_01[0] = ang_00[0] = (int)(10430.381f * atan2f(check[6], check[10])) & 0xFFFF;
+    ang_01[0] = ang_00[1] = (int)(10430.381f * asinf(-check[2])) & 0xFFFF;
+    ang_01[0] = ang_00[2] = (int)(10430.381f * atan2f(check[1], check[0])) & 0xFFFF;
+    
+    si->mw.ang[0] = ang_00[0];
+    si->mw.ang[1] = ang_00[1];
+    si->mw.ang[2] = ang_00[2];
+    
+    ang_00[0] = ((ang_00[0] * 360) >> 16) & 0xFFFF;
+    ang_00[1] = ((ang_00[1] * 360) >> 16) & 0xFFFF;
+    ang_00[2] = ((ang_00[2] * 360) >> 16) & 0xFFFF;
+    
+    ang_02[0] = (int)(10430.381f * acosf(vec_00.x));
+    ang_02[1] = (int)(10430.381f * acosf(vec_00.y));
+    ang_02[2] = (int)(10430.381f * acosf(vec_00.z));
+    
+    ang_02[0] = ((ang_02[0] * 360) >> 16) & 0xFFFF;
+    ang_02[1] = ((ang_02[1] * 360) >> 16) & 0xFFFF;
+    ang_02[2] = ((ang_02[2] * 360) >> 16) & 0xFFFF;
+    
+    njPushMatrix(NULL);
+    njTranslate(NULL, 0, 0, 0);
+    njMultiMatrix(NULL, &sc->rotmat);
+    njPushMatrix(NULL);
+    njGetMatrix(&testtest);
+    njUnitMatrix(NULL);
+    njPushMatrix(NULL);
+                  
+    njCnkSetEasyMultiLight(1);
+    njCnkSetEasyMultiLightPoint(1, 0, 0, 12.0f);
+    njCnkSetEasyMultiLightRange(1, 4.0f, 140.0f);
+    njCnkSetEasyMultiAmbient(0.4f, 0.4f, 0.4f);
+    njCnkSetEasyMultiLightColor(1, 30.0f, 30.0f, 30.0f);
+    
+    njClearMatrix();
+    
+    njCnkSetEasyMultiLightMatrices();
+    
+    njPopMatrix(1);
+    njSetMatrix(NULL, &testtest);
+	
+    njRotateX(NULL, si->mw.ax1);
+    njRotateY(NULL, si->mw.ay1);
+    njRotateZ(NULL, si->mw.az1);
+
+    njPushMatrix(NULL);
+    njTranslate(NULL, si->mw.pos.x, si->mw.pos.y, si->mw.pos.z);
+    
+    if (si->mw.rdid == 139) 
+    {
+        njScale(NULL, 0.58f, 0.58f, 0.58f);
+    }
+    else 
+    {
+        njScale(NULL, testf, testf, testf);
+    }
+    
+    njSetTexture(si->mdl.texP);
+    
+    if (si->mw.rdid == 139) 
+    {
+        njPushMatrix(NULL);
+        
+        if ((!(fvwork.afsmode & 0x20)) || (fv->filecsr == 0))
+        {
+            njPushMatrix(NULL);
+            njUnitMatrix(NULL);
+            
+            njRotateX(NULL, si->mdl.objP->child->ang[0]);
+            njRotateY(NULL, si->mdl.objP->child->ang[1]);
+            njRotateZ(NULL, si->mdl.objP->child->ang[2]);
+            
+            njCalcPoint(NULL, (NJS_POINT3*)si->mdl.objP->child->pos, &pos00);
+            
+            njPopMatrix(1);
+            njTranslate(NULL, pos00.x, pos00.y, pos00.z);
+            
+            if (fv->filecsr == 0) 
+            {
+                njRotateY(NULL, fv->ang00);
+            }
+            
+            njCnkEasyMultiDrawModel(si->mdl.objP->child->model);
+            
+            MakeTag(si->mdl.objP->child, 0);
+        }
+        
+        njPopMatrix(1);
+        njPushMatrix(NULL);
+        
+        if ((!(fvwork.afsmode & 0x20)) || (fv->filecsr == 2))
+        {
+            njPushMatrix(NULL);
+            njUnitMatrix(NULL);
+            
+            njRotateX(NULL, si->mdl.objP->child->sibling->ang[0]);
+            njRotateY(NULL, si->mdl.objP->child->sibling->ang[1]);
+            njRotateZ(NULL, si->mdl.objP->child->sibling->ang[2]);
+            
+            njCalcPoint(0, (NJS_POINT3*)si->mdl.objP->child->sibling->pos, &pos00);
+            
+            njPopMatrix(1);
+            njTranslate(NULL, pos00.x, pos00.y, pos00.z);
+            
+            if (fv->filecsr == 2) 
+            {
+                njRotateY(NULL, fv->ang00);
+            }
+            
+            njCnkEasyMultiDrawModel(si->mdl.objP->child->sibling->model);
+            
+            MakeTag(si->mdl.objP->child->sibling, 2);
+        }
+        
+        njPopMatrix(1);
+        njPushMatrix(NULL);
+        
+        if ((!(fvwork.afsmode & 0x20)) || (fv->filecsr == 1))
+        {
+            njPushMatrix(NULL);
+            njUnitMatrix(NULL);
+            
+            njRotateX(NULL, si->mdl.objP->child->sibling->sibling->ang[0]);
+            njRotateY(NULL, si->mdl.objP->child->sibling->sibling->ang[1]);
+            njRotateZ(NULL, si->mdl.objP->child->sibling->sibling->ang[2]);
+            
+            njCalcPoint(NULL, (NJS_POINT3*)si->mdl.objP->child->sibling->sibling->pos, &pos00);
+            
+            njPopMatrix(1);
+            njTranslate(NULL, pos00.x, pos00.y, pos00.z);
+            
+            if (fv->filecsr == 1)
+            {
+                njRotateY(NULL, fv->ang00);
+            }
+            
+            njCnkEasyMultiDrawModel(si->mdl.objP->child->sibling->sibling->model);
+            
+            MakeTag(si->mdl.objP->child->sibling->sibling, 1);
+        }
+        
+        njPopMatrix(1);
+    } 
+    else 
+    {
+        ViewType = ItemViewTypeTbl[st->itemid];
+        
+        njCnkEasyMultiDrawObjectI(si->mdl.objP);
+        
+        if ((st->itemid == 33) || (st->itemid == 34) || (st->itemid == 142))
+        {
+            njTranslate(NULL, 0.1f, 1.0f, 0.2f);
+            njPushMatrix(NULL);
+            
+            njCnkEasyMultiDrawObjectI(si->mdl.objP);
+            
+            njPopMatrix(1);
+        }
+    }
+    
+    njPopMatrix(1);
+    njPopMatrix(1);
+    njPopMatrix(1);
 }
 
 // 100% matching!
