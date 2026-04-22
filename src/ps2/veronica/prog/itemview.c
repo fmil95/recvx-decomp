@@ -811,49 +811,71 @@ unsigned char MdlAction00(SITEM* si)
     return 0;
 }
 
-// 
-// Start address: 0x2ab6b0
-unsigned char MdlAction01(SITEM* si)
+// 100% matching!
+unsigned char MdlAction01(SITEM* si) 
 {
-	// Line 1036, Address: 0x2ab6b0, Func Offset: 0
-	// Line 1038, Address: 0x2ab6e0, Func Offset: 0x30
-	// Line 1040, Address: 0x2ab6e8, Func Offset: 0x38
-	// Line 1041, Address: 0x2ab6fc, Func Offset: 0x4c
-	// Line 1043, Address: 0x2ab700, Func Offset: 0x50
-	// Line 1041, Address: 0x2ab704, Func Offset: 0x54
-	// Line 1042, Address: 0x2ab724, Func Offset: 0x74
-	// Line 1043, Address: 0x2ab738, Func Offset: 0x88
-	// Line 1044, Address: 0x2ab760, Func Offset: 0xb0
-	// Line 1046, Address: 0x2ab768, Func Offset: 0xb8
-	// Line 1047, Address: 0x2ab77c, Func Offset: 0xcc
-	// Line 1049, Address: 0x2ab780, Func Offset: 0xd0
-	// Line 1047, Address: 0x2ab784, Func Offset: 0xd4
-	// Line 1048, Address: 0x2ab7a0, Func Offset: 0xf0
-	// Line 1049, Address: 0x2ab7b4, Func Offset: 0x104
-	// Line 1050, Address: 0x2ab7d8, Func Offset: 0x128
-	// Line 1052, Address: 0x2ab7e0, Func Offset: 0x130
-	// Line 1053, Address: 0x2ab7f4, Func Offset: 0x144
-	// Line 1055, Address: 0x2ab7f8, Func Offset: 0x148
-	// Line 1053, Address: 0x2ab7fc, Func Offset: 0x14c
-	// Line 1054, Address: 0x2ab814, Func Offset: 0x164
-	// Line 1055, Address: 0x2ab828, Func Offset: 0x178
-	// Line 1056, Address: 0x2ab848, Func Offset: 0x198
-	// Line 1058, Address: 0x2ab850, Func Offset: 0x1a0
-	// Line 1059, Address: 0x2ab858, Func Offset: 0x1a8
-	// Line 1061, Address: 0x2ab85c, Func Offset: 0x1ac
-	// Line 1059, Address: 0x2ab860, Func Offset: 0x1b0
-	// Line 1060, Address: 0x2ab878, Func Offset: 0x1c8
-	// Line 1061, Address: 0x2ab88c, Func Offset: 0x1dc
-	// Line 1062, Address: 0x2ab8ac, Func Offset: 0x1fc
-	// Line 1065, Address: 0x2ab8b8, Func Offset: 0x208
-	// Line 1066, Address: 0x2ab8dc, Func Offset: 0x22c
-	// Line 1067, Address: 0x2ab8f0, Func Offset: 0x240
-	// Line 1072, Address: 0x2ab900, Func Offset: 0x250
-	// Line 1074, Address: 0x2ab908, Func Offset: 0x258
-	// Line 1076, Address: 0x2ab914, Func Offset: 0x264
-	// Line 1077, Address: 0x2ab918, Func Offset: 0x268
-	// Func End, Address: 0x2ab920, Func Offset: 0x270
-	scePrintf("MdlAction01 - UNIMPLEMENTED!\n");
+    switch (swork.maincsr) 
+    {                        
+    case 0:                                         
+        swork.maincsr = 1;
+    case 1:                                         
+        if (swork.itemid == 128)
+        {                                  
+            si->mdl.objP->child->child->child->child->child->ang[0] += 1456;
+            si->mdl.objP->child->ang[0] -= 728;
+            
+            if (si->mdl.objP->child->child->child->child->child->ang[0] >= 32768) 
+            {
+                swork.maincsr = 2;
+            }
+        }
+        else if (swork.itemid == 63)
+        {  
+            si->mdl.objP->child->child->child->child->ang[0] += 1456;
+            si->mdl.objP->child->ang[0] -= 728;
+            
+            if (si->mdl.objP->child->child->child->child->ang[0] >= 32768) 
+            {
+                swork.maincsr = 2;
+            }
+        }
+        else if (swork.itemid == 129) 
+        {  
+            si->mdl.objP->child->child->child->ang[0] += 1456;
+            si->mdl.objP->child->ang[0] -= 728;
+            
+            if (si->mdl.objP->child->child->child->ang[0] >= 32768) 
+            {
+                swork.maincsr = 2;
+            }
+        }
+        else
+        {                                    
+            si->mdl.objP->child->child->child->ang[0] += 1456;
+            si->mdl.objP->child->ang[0] -= 728;
+            
+            if (si->mdl.objP->child->child->child->ang[0] >= 32768) 
+            {
+                swork.maincsr = 2;
+            }
+        }
+        
+        if (si->mw.pos.y > -0.76f) 
+        {
+            si->mw.pos.y -= 0.05f;
+            
+            if (si->mw.pos.y < -0.76f) 
+            {
+                si->mw.pos.y = -0.76f;
+            }
+        }
+
+        break;
+    case 2:                                         
+        return 1;
+    }
+
+    return 0;
 }
 
 // 100% matching!
