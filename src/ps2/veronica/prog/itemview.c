@@ -170,7 +170,7 @@ void DrawSubItem(S_WORK* st, SITEM* si)
     
     njPopMatrix(1);
     njSetMatrix(NULL, &testtest);
-	
+
     njRotateX(NULL, si->mw.ax1);
     njRotateY(NULL, si->mw.ay1);
     njRotateZ(NULL, si->mw.az1);
@@ -840,18 +840,26 @@ void ItemModelMessageWait()
 	scePrintf("ItemModelMessageWait - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ab550
-unsigned char MdlDirChk(short* dirang, short mdlang)
-{
-	// Line 994, Address: 0x2ab550, Func Offset: 0
-	// Line 999, Address: 0x2ab55c, Func Offset: 0xc
-	// Line 997, Address: 0x2ab560, Func Offset: 0x10
-	// Line 999, Address: 0x2ab570, Func Offset: 0x20
-	// Line 1005, Address: 0x2ab590, Func Offset: 0x40
-	// Func End, Address: 0x2ab598, Func Offset: 0x48
-	scePrintf("MdlDirChk - UNIMPLEMENTED!\n");
-}
+// 100% matching!
+unsigned char MdlDirChk(short* dirang, short mdlang) 
+{ 
+    int ang; // not from DWARF
+    
+    if (dirang[0] != 0) 
+    {
+        mdlang = (mdlang + dirang[0]) & 0xFFFF;
+        ang = mdlang - dirang[1];
+        
+        if ((ang & 0xFFFF) > ((short)dirang[0] * 2)) 
+        {
+            return 0;
+        }
+        
+        return 1;
+    }
+
+    return 1;
+} 
 
 // 100% matching!
 unsigned char MdlAction00(SITEM* si)
