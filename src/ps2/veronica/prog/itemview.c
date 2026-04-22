@@ -885,26 +885,41 @@ void MdlEvalflagsSet(unsigned short evalchk)
 	MdlHideCheck(sitem.mdl.objP, itemflg[(unsigned short)evalchk][0], 1);
 }
 
-// 
-// Start address: 0x2aba50
+// 100% matching!
 void MdlHideCheck(NJS_CNK_OBJECT* op, unsigned char el, unsigned char chk)
 {
-	// Line 1112, Address: 0x2aba50, Func Offset: 0
-	// Line 1113, Address: 0x2aba68, Func Offset: 0x18
-	// Line 1114, Address: 0x2aba80, Func Offset: 0x30
-	// Line 1116, Address: 0x2aba84, Func Offset: 0x34
-	// Line 1117, Address: 0x2aba90, Func Offset: 0x40
-	// Line 1114, Address: 0x2aba98, Func Offset: 0x48
-	// Line 1119, Address: 0x2aba9c, Func Offset: 0x4c
-	// Line 1120, Address: 0x2ababc, Func Offset: 0x6c
-	// Line 1121, Address: 0x2abadc, Func Offset: 0x8c
-	// Line 1123, Address: 0x2abaec, Func Offset: 0x9c
-	// Line 1122, Address: 0x2abaf0, Func Offset: 0xa0
-	// Line 1123, Address: 0x2abaf4, Func Offset: 0xa4
-	// Line 1124, Address: 0x2abb04, Func Offset: 0xb4
-	// Line 1127, Address: 0x2abb1c, Func Offset: 0xcc
-	// Func End, Address: 0x2abb34, Func Offset: 0xe4
-	scePrintf("MdlHideCheck - UNIMPLEMENTED!\n");
+    if (el & chk) 
+    {
+        op->evalflags |= 0x8;
+        
+        el &= ~chk;
+        
+        chk *= 2;
+        
+        if ((el != 0) && (op->child != NULL)) 
+        {
+            MdlHideCheck(op->child, el, chk);
+        } 
+        
+        if ((el != 0) && (op->sibling != NULL))
+        {
+            MdlHideCheck(op->sibling, el, chk);
+        }
+    }
+    else if (el) 
+    {
+        chk *= 2;
+        
+        if (op->child != NULL)
+        { 
+            MdlHideCheck(op->child, el, chk);
+        }
+        
+        if (op->sibling != NULL) 
+        {
+            MdlHideCheck(op->sibling, el, chk);
+        }
+    }
 }
 
 // 100% matching!
