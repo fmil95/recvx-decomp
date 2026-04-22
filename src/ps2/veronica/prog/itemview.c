@@ -774,28 +774,41 @@ unsigned char MdlDirChk(short* dirang, short mdlang)
 	scePrintf("MdlDirChk - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ab5a0
+// 100% matching!
 unsigned char MdlAction00(SITEM* si)
 {
-	// Line 1009, Address: 0x2ab5a0, Func Offset: 0
-	// Line 1011, Address: 0x2ab5dc, Func Offset: 0x3c
-	// Line 1013, Address: 0x2ab5e0, Func Offset: 0x40
-	// Line 1015, Address: 0x2ab5e8, Func Offset: 0x48
-	// Line 1017, Address: 0x2ab5ec, Func Offset: 0x4c
-	// Line 1015, Address: 0x2ab5f0, Func Offset: 0x50
-	// Line 1016, Address: 0x2ab608, Func Offset: 0x68
-	// Line 1017, Address: 0x2ab61c, Func Offset: 0x7c
-	// Line 1018, Address: 0x2ab63c, Func Offset: 0x9c
-	// Line 1020, Address: 0x2ab644, Func Offset: 0xa4
-	// Line 1021, Address: 0x2ab668, Func Offset: 0xc8
-	// Line 1022, Address: 0x2ab67c, Func Offset: 0xdc
-	// Line 1026, Address: 0x2ab68c, Func Offset: 0xec
-	// Line 1028, Address: 0x2ab694, Func Offset: 0xf4
-	// Line 1030, Address: 0x2ab6a0, Func Offset: 0x100
-	// Line 1032, Address: 0x2ab6a4, Func Offset: 0x104
-	// Func End, Address: 0x2ab6ac, Func Offset: 0x10c
-	scePrintf("MdlAction00 - UNIMPLEMENTED!\n");
+    switch (swork.maincsr) 
+    {                
+    case 0:
+        swork.maincsr = 2;
+        break;
+    case 1:
+        break;
+    case 2:
+        si->mdl.objP->child->child->child->ang[0] += 1456;
+        si->mdl.objP->child->ang[0] -= 728;
+        
+        if (si->mdl.objP->child->child->child->ang[0] >= 32768) 
+        {
+            swork.maincsr = 3;
+        }
+        
+        if (si->mw.pos.y > -0.76f) 
+        {
+            si->mw.pos.y -= 0.05f;
+            
+            if (si->mw.pos.y < -0.76f) 
+            {
+                si->mw.pos.y = -0.76f;
+            }
+        }
+        
+        break;
+    case 3:
+        return 1;
+    }
+
+    return 0;
 }
 
 // 
