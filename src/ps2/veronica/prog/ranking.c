@@ -8,33 +8,38 @@
 #include "../../../ps2/veronica/prog/system.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-/*void(*RankingMode)()[6];
-*/
 RANK_WORK rkw;
 
-/*
-tagSYSSAVE_SCREEN* pRankingSys;
+typedef void (*RankingMode_proc)();
+RankingMode_proc RankingMode[6] =
+{
+	RankingInit,
+	RankingVmsWait,
+	RankingSave,
+	RankingErrorMessage,
+	RankingMain,
+	RankingExit
+};
+
+/*tagSYSSAVE_SCREEN* pRankingSys;
 unsigned char* vwbmemp;
 tagSYSSAVE_SCREEN RankingSys;
 unsigned short mesdeftbl[0];*/
 
-// 
-// Start address: 0x2bb210
+// 100% matching!
 void ControlRanking()
 {
-	// Line 146, Address: 0x2bb210, Func Offset: 0
-	// Func End, Address: 0x2bb238, Func Offset: 0x28
-	scePrintf("ControlRanking - UNIMPLEMENTED!\n");
+    RankingMode[sys->typ_md0]();
 }
 
-/*// 
+// 
 // Start address: 0x2bb240
 void RankingInit()
 {
 	unsigned int ply_id;
 	int j;
-	_anon6* sfe;
-	_anon5* rk;
+	//_anon6* sfe;
+	//_anon5* rk;
 	// Line 151, Address: 0x2bb240, Func Offset: 0
 	// Line 152, Address: 0x2bb254, Func Offset: 0x14
 	// Line 153, Address: 0x2bb25c, Func Offset: 0x1c
@@ -167,7 +172,8 @@ void RankingInit()
 	// Line 348, Address: 0x2bb7d4, Func Offset: 0x594
 	// Line 351, Address: 0x2bb7d8, Func Offset: 0x598
 	// Func End, Address: 0x2bb7f0, Func Offset: 0x5b0
-}*/
+	scePrintf("RankingInit - UNIMPLEMENTED!\n");
+}
 
 // 100% matching
 void RankingVmsWait() 
@@ -180,12 +186,12 @@ void RankingVmsWait()
 // 100% matching
 void RankingSave() {}
 
-/*// 
+// 
 // Start address: 0x2bb830
 void RankingErrorMessage()
 {
-	_anon6* sfe;
-	_anon5* rk;
+	//_anon6* sfe;
+	//_anon5* rk;
 	unsigned int ulState;
 	unsigned int SaveCheck;
 	// Line 390, Address: 0x2bb830, Func Offset: 0
@@ -211,7 +217,8 @@ void RankingErrorMessage()
 	// Line 424, Address: 0x2bb934, Func Offset: 0x104
 	// Line 513, Address: 0x2bb93c, Func Offset: 0x10c
 	// Func End, Address: 0x2bb950, Func Offset: 0x120
-}*/
+	scePrintf("RankingErrorMessage - UNIMPLEMENTED!\n");
+}
 
 // 99.84% matching
 void RankingMain()

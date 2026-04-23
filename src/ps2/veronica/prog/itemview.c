@@ -66,8 +66,7 @@ _anon23 itemdata[0];
 unsigned short mestbl[0];
 short c_a[6][0];
 _anon41 parts_10b[0];
-unsigned short idsettbl[0];
-*/
+unsigned short idsettbl[0];*/
 
 // 100% matching!
 void DrawSubItem(S_WORK* st, SITEM* si)
