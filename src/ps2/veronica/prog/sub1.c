@@ -1762,22 +1762,20 @@ void SpriteUV(S_WORK* st)
 	scePrintf("SpriteUV - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x29d470
+// 100% matching! 
 void BGFadeIn()
 {
-	unsigned short i;
-	// Line 2268, Address: 0x29d470, Func Offset: 0
-	// Line 2269, Address: 0x29d48c, Func Offset: 0x1c
-	// Line 2270, Address: 0x29d4a0, Func Offset: 0x30
-	// Line 2273, Address: 0x29d4a4, Func Offset: 0x34
-	// Line 2270, Address: 0x29d4ac, Func Offset: 0x3c
-	// Line 2271, Address: 0x29d4b4, Func Offset: 0x44
-	// Line 2272, Address: 0x29d4c0, Func Offset: 0x50
-	// Line 2273, Address: 0x29d4d0, Func Offset: 0x60
-	// Line 2275, Address: 0x29d4e0, Func Offset: 0x70
-	// Func End, Address: 0x29d4e8, Func Offset: 0x78
-	scePrintf("BGFadeIn - UNIMPLEMENTED!\n");
+    unsigned short i;
+
+    if ((swork.statusflg & 0x1)) 
+    {
+        for (i = 0; i < 6; i++) 
+        {
+            parts_07b[i].col.r += 0.057142857f;
+            parts_07b[i].col.g += 0.057142857f;
+            parts_07b[i].col.b += 0.057142857f;
+        } 
+    }
 }
 
 // 
