@@ -5893,21 +5893,17 @@ void CenterPositionInit()
 	scePrintf("CenterPositionInit - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a7a80
+// 100% matching!
 void BgColorInit()
 {
 	unsigned short i;
-	// Line 7130, Address: 0x2a7a88, Func Offset: 0x8
-	// Line 7131, Address: 0x2a7a90, Func Offset: 0x10
-	// Line 7132, Address: 0x2a7a94, Func Offset: 0x14
-	// Line 7133, Address: 0x2a7a98, Func Offset: 0x18
-	// Line 7134, Address: 0x2a7a9c, Func Offset: 0x1c
-	// Line 7133, Address: 0x2a7aa0, Func Offset: 0x20
-	// Line 7134, Address: 0x2a7aa4, Func Offset: 0x24
-	// Line 7135, Address: 0x2a7ab8, Func Offset: 0x38
-	// Func End, Address: 0x2a7ac0, Func Offset: 0x40
-	scePrintf("BgColorInit - UNIMPLEMENTED!\n");
+	
+	for (i = 0; i < 6; i++) 
+	{
+		parts_07b[i].col.r = 0;
+		parts_07b[i].col.g = 0;
+		parts_07b[i].col.b = 0;
+	}
 }
 
 // 
