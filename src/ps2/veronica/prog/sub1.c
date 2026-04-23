@@ -2935,44 +2935,52 @@ void MainCommand(S_WORK* st)
 	scePrintf("MainCommand - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a00b0
-void StatusCancel(S_WORK* st)
+// 100% matching! 
+void StatusCancel(S_WORK* st) 
 {
-	unsigned short num1;
-	// Line 3589, Address: 0x2a00b0, Func Offset: 0
-	// Line 3590, Address: 0x2a00b8, Func Offset: 0x8
-	// Line 3589, Address: 0x2a00bc, Func Offset: 0xc
-	// Line 3590, Address: 0x2a00c8, Func Offset: 0x18
-	// Line 3591, Address: 0x2a00cc, Func Offset: 0x1c
-	// Line 3592, Address: 0x2a00dc, Func Offset: 0x2c
-	// Line 3593, Address: 0x2a00ec, Func Offset: 0x3c
-	// Line 3594, Address: 0x2a00f4, Func Offset: 0x44
-	// Line 3595, Address: 0x2a0100, Func Offset: 0x50
-	// Line 3594, Address: 0x2a0108, Func Offset: 0x58
-	// Line 3595, Address: 0x2a0114, Func Offset: 0x64
-	// Line 3598, Address: 0x2a0128, Func Offset: 0x78
-	// Line 3599, Address: 0x2a0134, Func Offset: 0x84
-	// Line 3600, Address: 0x2a0140, Func Offset: 0x90
-	// Line 3601, Address: 0x2a014c, Func Offset: 0x9c
-	// Line 3602, Address: 0x2a0158, Func Offset: 0xa8
-	// Line 3603, Address: 0x2a0164, Func Offset: 0xb4
-	// Line 3604, Address: 0x2a0170, Func Offset: 0xc0
-	// Line 3605, Address: 0x2a017c, Func Offset: 0xcc
-	// Line 3606, Address: 0x2a0184, Func Offset: 0xd4
-	// Line 3607, Address: 0x2a0190, Func Offset: 0xe0
-	// Line 3609, Address: 0x2a01a4, Func Offset: 0xf4
-	// Line 3610, Address: 0x2a01b8, Func Offset: 0x108
-	// Line 3611, Address: 0x2a01c0, Func Offset: 0x110
-	// Line 3612, Address: 0x2a01d0, Func Offset: 0x120
-	// Line 3613, Address: 0x2a01dc, Func Offset: 0x12c
-	// Line 3614, Address: 0x2a01e4, Func Offset: 0x134
-	// Line 3616, Address: 0x2a01f0, Func Offset: 0x140
-	// Line 3614, Address: 0x2a01f4, Func Offset: 0x144
-	// Line 3616, Address: 0x2a01f8, Func Offset: 0x148
-	// Line 3617, Address: 0x2a0210, Func Offset: 0x160
-	// Func End, Address: 0x2a0218, Func Offset: 0x168
-	scePrintf("StatusCancel - UNIMPLEMENTED!\n");
+    unsigned short num1;
+    float* cpP; // not from DWARF
+
+    swork.statusflg |= 0x4;
+    
+    st->mode = 0x20;
+    
+    if ((st->subscreenmode & 0x4)) 
+    {
+        swork.statusflg |= 0x2000;
+    }
+    else 
+    {
+        swork.statusflg |= 0x20000;
+        
+        swork.statusflg &= ~0x10000;
+    }
+
+    cen_pos[1][3]  = -80;
+    cen_pos[2][2]  = -448;
+    cen_pos[3][2]  = 640;
+    cen_pos[4][2]  = 808;
+    cen_pos[5][2]  = 644;
+    cen_pos[6][3]  = 484;
+    cen_pos[8][2]  = -380;
+    cen_pos[9][2]  = 644;
+    cen_pos[10][3] = -384;
+    cen_pos[11][2] = 660;
+
+    for (num1 = 1; num1 < 12; num1++) 
+    {
+        cpP = cen_pos[num1];
+        
+        if (num1 != 3) 
+        {
+            cpP[4] = cpP[2] - cpP[0];
+            cpP[5] = cpP[3] - cpP[1];
+        } 
+        else
+        {
+            cpP[4] = cpP[2] - 352.0f;
+        }
+    }
 }
 
 // 
