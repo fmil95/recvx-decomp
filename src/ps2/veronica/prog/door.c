@@ -1731,9 +1731,9 @@ static int CompareSint32(int val_a, int cmp_typ, int val_b)
     return ret;
 }
 
-/* 97.56% matching - with this same code, this function matches 100% on Dreamcast but for some reason not here. However, compiling 
-   this function with a different version of MWCC (2.3 as opposed to 2.3.3) does match, which might indicate that the project is
-   using the wrong compiler? */ 
+#pragma optimization_level 4
+
+// 100% matching! 
 static int CompareFloat(float val_a, int cmp_typ, float val_b)
 {
     switch (cmp_typ) 
@@ -1785,6 +1785,8 @@ static int CompareFloat(float val_a, int cmp_typ, float val_b)
         break;
     }
 }
+
+#pragma optimization_level 3
 
 // 100% matching! 
 static void VectorMove(NJS_POINT3* posP, int yaw, int pitch, float speed)
