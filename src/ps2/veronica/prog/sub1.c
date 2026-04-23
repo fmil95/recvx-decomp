@@ -5935,26 +5935,26 @@ void CursorInit(NJS_TEXANIM* disp_a00, PARTS* disp_b00, S_WORK* st)
 	scePrintf("CursorInit - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a7b90
+// 100% matching!
 unsigned int* ItemSearch(unsigned short itemid)
 {
-	unsigned short num1;
-	unsigned int searchid;
-	unsigned int* wp;
-	// Line 7187, Address: 0x2a7b90, Func Offset: 0
-	// Line 7190, Address: 0x2a7b9c, Func Offset: 0xc
-	// Line 7191, Address: 0x2a7ba8, Func Offset: 0x18
-	// Line 7192, Address: 0x2a7bac, Func Offset: 0x1c
-	// Line 7193, Address: 0x2a7bb4, Func Offset: 0x24
-	// Line 7194, Address: 0x2a7bbc, Func Offset: 0x2c
-	// Line 7197, Address: 0x2a7bc4, Func Offset: 0x34
-	// Line 7196, Address: 0x2a7bc8, Func Offset: 0x38
-	// Line 7197, Address: 0x2a7bcc, Func Offset: 0x3c
-	// Line 7198, Address: 0x2a7be0, Func Offset: 0x50
-	// Line 7199, Address: 0x2a7be4, Func Offset: 0x54
-	// Func End, Address: 0x2a7bec, Func Offset: 0x5c
-	scePrintf("ItemSearch - UNIMPLEMENTED!\n");
+	unsigned int* wp;      
+	unsigned int searchid; 
+	unsigned short num1;  
+
+    wp = &swork.pip[1];
+	
+	for (num1 = 0; num1 < 11; num1++) 
+	{
+		if (itemid == (unsigned char)(*wp >> 16))
+		{
+			return wp;
+		}
+
+		wp++;
+	}
+
+	return NULL;
 }
 
 // 100% matching!
