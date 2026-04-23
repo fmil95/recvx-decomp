@@ -384,6 +384,38 @@ typedef struct _door_wrk
     HRT_WORK hrt_prm;        // offset 0x1E8, size 0xC
 } _door_wrk;
 
+typedef struct DMO_CLIP 
+{
+    // total size: 0x14
+    short dmo_typ; // offset 0x0, size 0x2
+    int prti_no;   // offset 0x4, size 0x4
+    short vew_no;  // offset 0x8, size 0x2
+    float near;    // offset 0xC, size 0x4
+    float far;     // offset 0x10, size 0x4
+} DMO_CLIP; 
+
+typedef struct PT_WORK 
+{
+    // total size: 0x14
+    short fde_no;  // offset 0x0, size 0x2
+    short fde_off; // offset 0x2, size 0x2
+    short vew_no;  // offset 0x4, size 0x2
+    short vew_off; // offset 0x6, size 0x2
+    short dor_no;  // offset 0x8, size 0x2
+    short dor_off; // offset 0xA, size 0x2
+    short lgt_no;  // offset 0xC, size 0x2
+    short lgt_off; // offset 0xE, size 0x2
+    short pru_no;  // offset 0x10, size 0x2
+    short pru_off; // offset 0x12, size 0x2 
+} PT_WORK;
+
+typedef struct PH_WORK 
+{
+    // total size: 0x4
+    char nam[3];  // offset 0x0, size 0x3
+    char prm_num; // offset 0x3, size 0x1
+} PH_WORK;
+
 void bhInitDoor();
 int bhReadDoorData();
 void bhSetDoor();

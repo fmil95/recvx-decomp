@@ -1,13 +1,14 @@
 #include "../../../ps2/veronica/prog/door.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
-#include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_NaView.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_texture.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
 _door_wrk DoorWrk;
@@ -111,89 +112,169 @@ int bhReadDoorData()
 	scePrintf("bhReadDoorData - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2aeec0
+// 100% matching!
 void bhSetDoor()
 {
-	//_anon3* ptP;
-	//_anon36* phP;
-	//_anon3* ptP;
-	//_anon36* phP;
-	//_door_wrk* dwP;
-	int i;
-	float far;
-	float near;
-	//_anon43 DkiPru;
-	//_anon33 dmo_clip[2];
-	// Line 392, Address: 0x2aeec0, Func Offset: 0
-	// Line 402, Address: 0x2aeecc, Func Offset: 0xc
-	// Line 406, Address: 0x2aeed4, Func Offset: 0x14
-	// Line 407, Address: 0x2aeedc, Func Offset: 0x1c
-	// Line 409, Address: 0x2aeee0, Func Offset: 0x20
-	// Line 410, Address: 0x2aeef8, Func Offset: 0x38
-	// Line 412, Address: 0x2aef0c, Func Offset: 0x4c
-	// Line 414, Address: 0x2aef14, Func Offset: 0x54
-	// Line 413, Address: 0x2aef18, Func Offset: 0x58
-	// Line 414, Address: 0x2aef28, Func Offset: 0x68
-	// Line 415, Address: 0x2aef30, Func Offset: 0x70
-	// Line 418, Address: 0x2aef5c, Func Offset: 0x9c
-	// Line 419, Address: 0x2aef78, Func Offset: 0xb8
-	// Line 420, Address: 0x2aef84, Func Offset: 0xc4
-	// Line 422, Address: 0x2aef90, Func Offset: 0xd0
-	// Line 429, Address: 0x2aefa8, Func Offset: 0xe8
-	// Line 434, Address: 0x2aefb0, Func Offset: 0xf0
-	// Line 435, Address: 0x2aefcc, Func Offset: 0x10c
-	// Line 438, Address: 0x2aefdc, Func Offset: 0x11c
-	// Line 439, Address: 0x2aefe4, Func Offset: 0x124
-	// Line 442, Address: 0x2aefec, Func Offset: 0x12c
-	// Line 445, Address: 0x2af004, Func Offset: 0x144
-	// Line 446, Address: 0x2af010, Func Offset: 0x150
-	// Line 451, Address: 0x2af01c, Func Offset: 0x15c
-	// Line 454, Address: 0x2af020, Func Offset: 0x160
-	// Line 455, Address: 0x2af034, Func Offset: 0x174
-	// Line 458, Address: 0x2af044, Func Offset: 0x184
-	// Line 461, Address: 0x2af050, Func Offset: 0x190
-	// Line 458, Address: 0x2af058, Func Offset: 0x198
-	// Line 459, Address: 0x2af068, Func Offset: 0x1a8
-	// Line 464, Address: 0x2af06c, Func Offset: 0x1ac
-	// Line 467, Address: 0x2af074, Func Offset: 0x1b4
-	// Line 459, Address: 0x2af07c, Func Offset: 0x1bc
-	// Line 461, Address: 0x2af084, Func Offset: 0x1c4
-	// Line 470, Address: 0x2af088, Func Offset: 0x1c8
-	// Line 461, Address: 0x2af090, Func Offset: 0x1d0
-	// Line 462, Address: 0x2af0a0, Func Offset: 0x1e0
-	// Line 464, Address: 0x2af0ac, Func Offset: 0x1ec
-	// Line 465, Address: 0x2af0c0, Func Offset: 0x200
-	// Line 467, Address: 0x2af0cc, Func Offset: 0x20c
-	// Line 468, Address: 0x2af0e0, Func Offset: 0x220
-	// Line 470, Address: 0x2af0ec, Func Offset: 0x22c
-	// Line 471, Address: 0x2af100, Func Offset: 0x240
-	// Line 476, Address: 0x2af10c, Func Offset: 0x24c
-	// Line 477, Address: 0x2af128, Func Offset: 0x268
-	// Line 478, Address: 0x2af144, Func Offset: 0x284
-	// Line 479, Address: 0x2af160, Func Offset: 0x2a0
-	// Line 481, Address: 0x2af17c, Func Offset: 0x2bc
-	// Line 484, Address: 0x2af19c, Func Offset: 0x2dc
-	// Line 485, Address: 0x2af1ac, Func Offset: 0x2ec
-	// Line 487, Address: 0x2af1b8, Func Offset: 0x2f8
-	// Line 488, Address: 0x2af1d8, Func Offset: 0x318
-	// Line 492, Address: 0x2af1e8, Func Offset: 0x328
-	// Line 493, Address: 0x2af208, Func Offset: 0x348
-	// Line 497, Address: 0x2af228, Func Offset: 0x368
-	// Line 498, Address: 0x2af22c, Func Offset: 0x36c
-	// Line 501, Address: 0x2af234, Func Offset: 0x374
-	// Line 497, Address: 0x2af238, Func Offset: 0x378
-	// Line 498, Address: 0x2af240, Func Offset: 0x380
-	// Line 501, Address: 0x2af248, Func Offset: 0x388
-	// Line 504, Address: 0x2af250, Func Offset: 0x390
-	// Line 507, Address: 0x2af264, Func Offset: 0x3a4
-	// Line 509, Address: 0x2af270, Func Offset: 0x3b0
-	// Line 510, Address: 0x2af278, Func Offset: 0x3b8
-	// Line 509, Address: 0x2af280, Func Offset: 0x3c0
-	// Line 510, Address: 0x2af284, Func Offset: 0x3c4
-	// Line 513, Address: 0x2af288, Func Offset: 0x3c8
-	// Func End, Address: 0x2af298, Func Offset: 0x3d8
-	scePrintf("bhSetDoor - UNIMPLEMENTED!\n");
+    float near, far; 
+    int i;
+    _door_wrk* dwP; 
+    PH_WORK* phP; 
+    PT_WORK* ptP; 
+    static DMO_CLIP dmo_clip[2] = 
+    {
+        {
+            1,        /* dmo_typ */
+            5,        /* prti_no */
+            4,        /* vew_no */
+            -10.0f,   /* near */
+            -34.0f    /* far */
+        },
+        {
+            -1,       /* dmo_typ */
+            -1,       /* prti_no */
+            -1,       /* vew_no */
+            -2.0f,    /* near */
+            -20000.0f /* far */
+        }
+    };
+    static const PURUPROC_WORK DkiPru = 
+    {
+        0,   /* wait_time */
+        768, /* loop_time */
+        0,   /* snd_no */
+        13,  /* pru_no */
+        20   /* pru_wait */
+    };  
+    
+    dwP = &DoorWrk;
+
+    phP = (PH_WORK*)dwP->dmo_prmP;
+    ptP = (void*)((int)dwP->dmo_prmP + 4);
+    
+    if (dwP->cse_no < phP->prm_num) 
+    {
+        ptP += dwP->cse_no;
+    }
+    
+    near = -2.0f;
+    far = -20000.0f;
+    
+    for (i = 0; dmo_clip[i].dmo_typ >= 0; i++)
+    {
+        if ((dwP->dmo_typ == dmo_clip[i].dmo_typ) && (dwP->prti_no == dmo_clip[i].prti_no) && (ptP->vew_no == dmo_clip[i].vew_no))
+        {
+            near = dmo_clip[i].near;
+            far = dmo_clip[i].far;
+            break;
+        }
+    } 
+    
+    njClipZ(near, far);
+    
+    njSetAspect(1.174f, 1.0f);
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+    
+    dwP->objP = dwP->dor_mdl.objP;
+    
+    npCnkFlatOff(dwP->objP);
+    
+    if (dwP->dor_mdl.texP != NULL) 
+    {
+        bhSetMemPvpTexture(dwP->dor_mdl.texP, dwP->tex_pacP, 0);
+    }
+    
+    njCnkSetEasyMultiLight(4);
+    njCnkSetEasyMultiLightSwitch(0, 0);
+    
+    {
+    PH_WORK* phP; 
+    PT_WORK* ptP; 
+        
+    phP = (PH_WORK*)dwP->dmo_prmP;
+    ptP = (PT_WORK*)((int)phP + 4);
+        
+    if (dwP->cse_no < phP->prm_num) 
+    {
+        ptP += dwP->cse_no;
+    }
+        
+    dwP->fde_prcP = FadeProcTbl[ptP->fde_no].procP;
+    dwP->fpP = (void*)((int)phP + ptP->fde_off);
+        
+    dwP->vew_prcP = ViewProcTbl[ptP->vew_no].procP;
+    dwP->vpP = (void*)((int)phP + ptP->vew_off);
+        
+    dwP->dor_prcP = DoorProcTbl[ptP->dor_no].procP;
+    dwP->dpP = (void*)((int)phP + ptP->dor_off);
+        
+    dwP->lgt_prcP = LightProcTbl[ptP->lgt_no].procP;
+    dwP->lpP = (void*)((int)phP + ptP->lgt_off);
+        
+    dwP->pru_prcP = PuruProcTbl[ptP->pru_no].procP;
+    dwP->ppP = (void*)((int)phP + ptP->pru_off);
+    }
+    
+    if ((dwP->dmo_atr & 0x1)) 
+    {
+        dwP->status |= 0x4000;
+    }
+    
+    if ((dwP->dmo_atr & 0x4)) 
+    {
+        dwP->status |= 0x4800;
+    }
+    
+    if ((dwP->dmo_atr & 0x10)) 
+    {
+        dwP->status |= 0xA000;
+    }
+    
+    if ((dwP->dmo_atr & 0x8)) 
+    {
+        dwP->status |= 0x1000;
+    }
+    
+    if (dwP->dor_mdl.obj_num < 5) 
+    {
+        dwP->status &= ~0x3000;
+    }
+    
+    if ((dwP->dmo_atr & 0x2)) 
+    {
+        dwP->status ^= 0xC00;
+        
+        if (dwP->dor_mdl.obj_num >= 5) 
+        {
+            dwP->status ^= 0x2000;
+        } 
+        else 
+        {
+            dwP->status &= ~0x2000;
+        }
+    }
+    
+    if ((dwP->dmo_atr & 0x20)) 
+    {
+        dwP->status |= 0x40000000;
+    }
+    
+    if ((dwP->dmo_atr & 0x40))
+    {
+        dwP->status |= 0x20000000;
+    }
+    
+    dwP->status |= 0x10;
+    dwP->status |= 0x1000000F;
+    
+    SetSoundTiming(dwP);
+    
+    if ((dwP->status & 0x20000000)) 
+    {
+        dwP->status |= 0x10000000;
+        
+        dwP->pru_prcP = PuruProcTbl[1].procP;
+        dwP->ppP = &DkiPru;
+    }
 }
 
 // 100% matching!
