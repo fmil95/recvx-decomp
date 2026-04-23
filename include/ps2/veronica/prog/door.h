@@ -66,6 +66,36 @@ typedef struct VIEWPROC2_WORK
     int wait;            // offset 0x58, size 0x4
 } VIEWPROC2_WORK;
 
+typedef struct VIEWPROC3_WORK 
+{
+    // total size: 0x94
+    NJS_POINT3 pos_low;  // offset 0x0, size 0xC
+    int ang_low[3];      // offset 0xC, size 0xC
+    int dst_ang_low[3];  // offset 0x18, size 0xC
+    float ang_rte_low;   // offset 0x24, size 0x4
+    int yaw_low;         // offset 0x28, size 0x4
+    int pitch_low;       // offset 0x2C, size 0x4
+    float speed_low;     // offset 0x30, size 0x4
+    float accel_low;     // offset 0x34, size 0x4
+    int speed_dx_low;    // offset 0x38, size 0x4
+    int accel_dx_low;    // offset 0x3C, size 0x4
+    int loop_wait_low;   // offset 0x40, size 0x4
+    NJS_POINT3 pos_high; // offset 0x44, size 0xC
+    int ang_high[3];     // offset 0x50, size 0xC
+    int dst_ang_high[3]; // offset 0x5C, size 0xC
+    float ang_rte_high;  // offset 0x68, size 0x4
+    int yaw_high;        // offset 0x6C, size 0x4
+    int pitch_high;      // offset 0x70, size 0x4
+    float speed_high;    // offset 0x74, size 0x4
+    float accel_high;    // offset 0x78, size 0x4
+    int speed_dx_high;   // offset 0x7C, size 0x4
+    int accel_dx_high;   // offset 0x80, size 0x4
+    int loop_wait_high;  // offset 0x84, size 0x4
+    int pos_wait;        // offset 0x88, size 0x4
+    int ang_wait;        // offset 0x8C, size 0x4
+    int slope_ax;        // offset 0x90, size 0x4
+} VIEWPROC3_WORK;
+
 typedef struct VIEWPROC4_WORK 
 {
     // total size: 0x38
