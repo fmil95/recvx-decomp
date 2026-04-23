@@ -8,6 +8,8 @@
 #include "../../../ps2/veronica/prog/system.h"
 #include "../../../ps2/veronica/prog/main.h"
 
+void bhDispFontEx(NJS_POINT2* pos, int code, unsigned int argb, float pri); // see message.h for more info about why this is being included here
+
 RANK_WORK rkw;
 
 typedef void (*RankingMode_proc)();
@@ -541,26 +543,37 @@ void WallPaperDisp()
 	scePrintf("WallPaperDisp - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2bc2a0
-void DispRank(_anon12* pos, unsigned int color, int rank)
+// 100% matching!
+void DispRank(NJS_POINT2* pos, unsigned int color, int rank) 
 {
-	int code;
-	// Line 887, Address: 0x2bc2a0, Func Offset: 0
-	// Line 889, Address: 0x2bc2f0, Func Offset: 0x50
-	// Line 890, Address: 0x2bc2f4, Func Offset: 0x54
-	// Line 892, Address: 0x2bc2fc, Func Offset: 0x5c
-	// Line 893, Address: 0x2bc300, Func Offset: 0x60
-	// Line 895, Address: 0x2bc308, Func Offset: 0x68
-	// Line 896, Address: 0x2bc30c, Func Offset: 0x6c
-	// Line 898, Address: 0x2bc314, Func Offset: 0x74
-	// Line 899, Address: 0x2bc318, Func Offset: 0x78
-	// Line 901, Address: 0x2bc320, Func Offset: 0x80
-	// Line 902, Address: 0x2bc324, Func Offset: 0x84
-	// Line 904, Address: 0x2bc32c, Func Offset: 0x8c
-	// Line 909, Address: 0x2bc330, Func Offset: 0x90
-	// Func End, Address: 0x2bc344, Func Offset: 0xa4
-}*/
+    int code;
+
+    code = color;
+
+    switch (rank)
+    {
+    case 1:
+        code = 33;
+        break;
+    case 2:
+        code = 34;
+        break;
+    case 4:
+        code = 35;
+        break;
+    case 8:
+        code = 36;
+        break;
+    case 16:
+        code = 37;
+        break;
+    case 32:
+        code = 38;
+        break;
+    }
+
+    bhDispFontEx(pos, code, color, -2);
+}
 
 // 
 // Start address: 0x2bc350
