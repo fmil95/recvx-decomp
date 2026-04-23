@@ -4560,21 +4560,22 @@ unsigned char Combi_02(short ps, unsigned int* moto, unsigned int* aite)
 	scePrintf("Combi_02 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a42d0
+// 100% matching!
 unsigned char Combi_03(short ps, unsigned int* moto, unsigned int* aite)
 {
-	unsigned short bullet2;
-	// Line 5454, Address: 0x2a42d0, Func Offset: 0
-	// Line 5455, Address: 0x2a4318, Func Offset: 0x48
-	// Line 5468, Address: 0x2a4320, Func Offset: 0x50
-	// Line 5470, Address: 0x2a4324, Func Offset: 0x54
-	// Line 5455, Address: 0x2a4328, Func Offset: 0x58
-	// Line 5467, Address: 0x2a432c, Func Offset: 0x5c
-	// Line 5468, Address: 0x2a4330, Func Offset: 0x60
-	// Line 5472, Address: 0x2a4334, Func Offset: 0x64
-	// Func End, Address: 0x2a433c, Func Offset: 0x6c
-	scePrintf("Combi_03 - UNIMPLEMENTED!\n");
+    unsigned short bullet2;
+    unsigned short tmp; // not from DWARF
+
+    bullet2 = (&combidata[1])[ps];
+    
+    swork.gb = (unsigned int*)&getbulletmax[bullet2][sys->gm_mode];
+
+    tmp = *(unsigned short*)swork.gb;
+    
+    *moto = 0;
+    *aite = (bullet2 << 16) | tmp;
+
+    return 1;
 }
 
 // 
