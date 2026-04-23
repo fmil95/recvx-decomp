@@ -678,17 +678,15 @@ void DispNumber(_anon12* pos, int num, unsigned int col)
 	// Line 1047, Address: 0x2bc8a4, Func Offset: 0x84
 	// Line 1049, Address: 0x2bc8c4, Func Offset: 0xa4
 	// Func End, Address: 0x2bc8dc, Func Offset: 0xbc
-}
+}*/
 
-// 
-// Start address: 0x2bc8e0
-void DispTime(_anon12* pos, int time, unsigned int col, unsigned int mode)
+// 100% matching!
+void DispTime(NJS_POINT2* pos, int time, unsigned int col, unsigned int mode)
 {
-	// Line 1057, Address: 0x2bc8e4, Func Offset: 0x4
-	// Func End, Address: 0x2bc900, Func Offset: 0x20
+	bhDispTimeEx(pos, mode, time, col, -2.0f);
 }
 
-// 
+/*// 
 // Start address: 0x2bc900
 int AllRanking(int score, unsigned int mode)
 {
