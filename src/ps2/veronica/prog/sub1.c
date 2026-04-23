@@ -1778,22 +1778,20 @@ void BGFadeIn()
     }
 }
 
-// 
-// Start address: 0x29d4f0
+// 100% matching! 
 void BGFadeOut()
 {
-	unsigned short i;
-	// Line 2279, Address: 0x29d4f0, Func Offset: 0
-	// Line 2280, Address: 0x29d50c, Func Offset: 0x1c
-	// Line 2281, Address: 0x29d520, Func Offset: 0x30
-	// Line 2284, Address: 0x29d524, Func Offset: 0x34
-	// Line 2281, Address: 0x29d52c, Func Offset: 0x3c
-	// Line 2282, Address: 0x29d534, Func Offset: 0x44
-	// Line 2283, Address: 0x29d540, Func Offset: 0x50
-	// Line 2284, Address: 0x29d550, Func Offset: 0x60
-	// Line 2286, Address: 0x29d560, Func Offset: 0x70
-	// Func End, Address: 0x29d568, Func Offset: 0x78
-	scePrintf("BGFadeOut - UNIMPLEMENTED!\n");
+    unsigned short i;
+
+    if ((swork.statusflg & 0x2)) 
+    {
+        for (i = 0; i < 6; i++) 
+        {
+            parts_07b[i].col.r -= 0.057142857f;
+            parts_07b[i].col.g -= 0.057142857f;
+            parts_07b[i].col.b -= 0.057142857f;
+        } 
+    }
 }
 
 // 99.79% matching 
