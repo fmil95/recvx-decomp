@@ -1,7 +1,9 @@
 #include "../../../ps2/veronica/prog/ranking.h"
+#include "../../../ps2/veronica/prog/bup_00.h"
 #include "../../../ps2/veronica/prog/event.h"
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/ps2_SystemSaveScreen.h"
 #include "../../../ps2/veronica/prog/room.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/sub1.h"
@@ -10,6 +12,8 @@
 
 void bhDispFontEx(NJS_POINT2* pos, int code, unsigned int argb, float pri); // see message.h for more info about why this is being included here
 
+SYSSAVE_SCREEN RankingSys;
+SYSSAVE_SCREEN* pRankingSys;
 RANK_WORK rkw;
 
 typedef void (*RankingMode_proc)();
@@ -22,11 +26,6 @@ RankingMode_proc RankingMode[6] =
 	RankingMain,
 	RankingExit
 };
-
-/*tagSYSSAVE_SCREEN* pRankingSys;
-unsigned char* vwbmemp;
-tagSYSSAVE_SCREEN RankingSys;
-unsigned short mesdeftbl[0];*/
 
 // 100% matching!
 void ControlRanking()

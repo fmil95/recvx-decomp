@@ -85,4 +85,6 @@ void TypewriterInit();
 void TypewriterMain();
 void TypewriterExit();
 
+extern unsigned short mesdeftbl[10];
+
 #endif

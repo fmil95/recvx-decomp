@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/door.h"
+#include "../../../ps2/veronica/prog/binfunc.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
@@ -11,29 +12,31 @@
 #include "../../../ps2/veronica/prog/ps2_texture.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
+#pragma optimization_level 4
+
 _door_wrk DoorWrk;
 
-const _proc_wrk FadeProcTbl[2] = 
+static const _proc_wrk FadeProcTbl[2] = 
 { 
 	NULL, (void*)FadeProc1 
 }; 
-const _proc_wrk ViewProcTbl[8] = 
+static const _proc_wrk ViewProcTbl[8] = 
 { 
 	NULL, (void*)ViewProc1, (void*)ViewProc2, (void*)ViewProc3, (void*)ViewProc4, (void*)ViewProc5, (void*)ViewProc6, (void*)ViewProc7 
 };  
-const _proc_wrk DoorProcTbl[8] = 
+static const _proc_wrk DoorProcTbl[8] = 
 { 
 	NULL, (void*)DoorProc1, (void*)DoorProc2, (void*)DoorProc3, (void*)DoorProc4, (void*)DoorProc5, (void*)DoorProc6, (void*)DoorProc7 
 };  
-const _proc_wrk LightProcTbl[3] = 
+static const _proc_wrk LightProcTbl[3] = 
 { 
 	NULL, (void*)LightProc1, (void*)LightProc2 
 };
-const _proc_wrk PuruProcTbl[2] = 
+static const _proc_wrk PuruProcTbl[2] = 
 { 
 	NULL, (void*)PuruProc1 
 };
-const int PruSndTbl[1] = { 10 };
+static const int PruSndTbl[1] = { 10 };
 
 // 100% matching!
 void bhInitDoor()
@@ -57,59 +60,124 @@ void bhInitDoor()
     dwP->lgt_amb_off = amb_ini;
 }
 
-// 
-// Start address: 0x2aecf0
-int bhReadDoorData()
+// 100% matching!
+int bhReadDoorData() 
 {
-	int* pacP;
-	int next;
-	int status;
-	//_door_wrk* dwP;
-	int code;
-	// Line 223, Address: 0x2aecf0, Func Offset: 0
-	// Line 229, Address: 0x2aed04, Func Offset: 0x14
-	// Line 226, Address: 0x2aed08, Func Offset: 0x18
-	// Line 229, Address: 0x2aed10, Func Offset: 0x20
-	// Line 273, Address: 0x2aed3c, Func Offset: 0x4c
-	// Line 274, Address: 0x2aed4c, Func Offset: 0x5c
-	// Line 289, Address: 0x2aed68, Func Offset: 0x78
-	// Line 291, Address: 0x2aed70, Func Offset: 0x80
-	// Line 299, Address: 0x2aed7c, Func Offset: 0x8c
-	// Line 300, Address: 0x2aed84, Func Offset: 0x94
-	// Line 302, Address: 0x2aed98, Func Offset: 0xa8
-	// Line 306, Address: 0x2aeda0, Func Offset: 0xb0
-	// Line 313, Address: 0x2aeda8, Func Offset: 0xb8
-	// Line 315, Address: 0x2aedbc, Func Offset: 0xcc
-	// Line 319, Address: 0x2aedc0, Func Offset: 0xd0
-	// Line 316, Address: 0x2aedc4, Func Offset: 0xd4
-	// Line 317, Address: 0x2aedc8, Func Offset: 0xd8
-	// Line 319, Address: 0x2aedcc, Func Offset: 0xdc
-	// Line 320, Address: 0x2aedd4, Func Offset: 0xe4
-	// Line 322, Address: 0x2aede0, Func Offset: 0xf0
-	// Line 323, Address: 0x2aede8, Func Offset: 0xf8
-	// Line 324, Address: 0x2aedec, Func Offset: 0xfc
-	// Line 326, Address: 0x2aedf8, Func Offset: 0x108
-	// Line 328, Address: 0x2aedfc, Func Offset: 0x10c
-	// Line 326, Address: 0x2aee00, Func Offset: 0x110
-	// Line 329, Address: 0x2aee04, Func Offset: 0x114
-	// Line 330, Address: 0x2aee08, Func Offset: 0x118
-	// Line 334, Address: 0x2aee10, Func Offset: 0x120
-	// Line 340, Address: 0x2aee18, Func Offset: 0x128
-	// Line 342, Address: 0x2aee20, Func Offset: 0x130
-	// Line 343, Address: 0x2aee30, Func Offset: 0x140
-	// Line 344, Address: 0x2aee38, Func Offset: 0x148
-	// Line 346, Address: 0x2aee3c, Func Offset: 0x14c
-	// Line 348, Address: 0x2aee48, Func Offset: 0x158
-	// Line 350, Address: 0x2aee54, Func Offset: 0x164
-	// Line 352, Address: 0x2aee60, Func Offset: 0x170
-	// Line 354, Address: 0x2aee6c, Func Offset: 0x17c
-	// Line 356, Address: 0x2aee74, Func Offset: 0x184
-	// Line 358, Address: 0x2aee80, Func Offset: 0x190
-	// Line 362, Address: 0x2aee88, Func Offset: 0x198
-	// Line 363, Address: 0x2aeea0, Func Offset: 0x1b0
-	// Line 373, Address: 0x2aeea4, Func Offset: 0x1b4
-	// Func End, Address: 0x2aeebc, Func Offset: 0x1cc
-	scePrintf("bhReadDoorData - UNIMPLEMENTED!\n");
+    int code;  
+    _door_wrk* dwP;
+    int status;    
+    int next; 
+    int* pacP;    
+
+    code = 0;
+    
+    dwP = &DoorWrk;
+    
+    status = dwP->dmo_mode; 
+
+    switch (status) 
+    {                
+    case 0:                                  
+        dwP->prti_no = sys->dor_partid;
+        
+        if (RequestReadInsideFile(dwP->prti_no, dwP->dmo_typ + 71, dwP->dmo_bufP) != 0)
+        {
+            code = -1; 
+            break;
+        }
+        
+        dwP->dmo_mode++;
+    case 1:                                  
+        pacP = dwP->dmo_bufP;
+        
+        status = GetReadFileStatus();
+        
+        if (status == -1) 
+        {                
+            code = -1; 
+            break;
+        } 
+        else if (status == 0)
+        {
+            DeletePartition(dwP->prti_no);
+            
+            if ((int)*pacP++ == 0x4341504D) 
+            {
+                next = *pacP;
+                
+                pacP = (int*)((int)pacP + next);
+                
+                next = *pacP++;
+                
+                if (next != -1) 
+                {
+                    bhMlbBinRealize(pacP, &dwP->dor_mdl);
+                    
+                    pacP = (int*)((int)pacP + next);
+                    
+                    next = *pacP++;
+                    
+                    if (next != -1) 
+                    {
+                        dwP->tex_pacP = pacP;
+                        
+                        pacP = (int*)((int)pacP + next);
+                        
+                        next = *pacP++;
+                        
+                        if (next != -1) 
+                        {
+                            RequestDoorSoundBank(*pacP);
+                            
+                            pacP = (int*)((int)pacP + next);
+                            
+                            next = *pacP++;
+                            
+                            if (next != -1) 
+                            {
+                                dwP->dmo_prmP = pacP;
+                                dwP->dmo_mode = 2; 
+                                
+                                code = 2; 
+                                break;
+                            }
+                            
+                            code = -6; 
+                            break;
+                        }
+                        
+                        code = -5; 
+                        break;
+                    }
+                    
+                    code = -4; 
+                    break;
+                }
+                
+                code = -3; 
+                break;
+            }
+            
+            code = -2; 
+            break;
+        }       
+        
+        code = 0; 
+        break;
+    case 2:                                        
+        if (CheckTransEndSoundBank(status) == 0)
+        {
+            code = 1; 
+            break;
+        } 
+        else 
+        {
+            code = 2; 
+            break;
+        }
+    }
+
+    return code;
 }
 
 // 100% matching!
@@ -585,7 +653,7 @@ static void FadeProc1(_door_wrk* dwP)
 static void ViewProc1(_door_wrk* dwP)
 {
     int flp;            
-    VIEWPROC_WORK* vpP; 
+    VIEWPROC1_WORK* vpP; 
 
     dwP->status = dwP->status;
     
@@ -1883,8 +1951,6 @@ static int CompareSint32(int val_a, int cmp_typ, int val_b)
     
     return ret;
 }
-
-#pragma optimization_level 4
 
 // 100% matching! 
 static int CompareFloat(float val_a, int cmp_typ, float val_b)
