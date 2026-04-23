@@ -4241,19 +4241,17 @@ unsigned char Use_01(S_WORK* st)
 	scePrintf("Use_01 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a37d0
+// 100% matching!
 unsigned char Use_02()
 {
-	// Line 5047, Address: 0x2a37d0, Func Offset: 0
-	// Line 5049, Address: 0x2a37d8, Func Offset: 0x8
-	// Line 5050, Address: 0x2a37f0, Func Offset: 0x20
-	// Line 5051, Address: 0x2a37fc, Func Offset: 0x2c
-	// Line 5054, Address: 0x2a3818, Func Offset: 0x48
-	// Line 5053, Address: 0x2a381c, Func Offset: 0x4c
-	// Line 5054, Address: 0x2a3820, Func Offset: 0x50
-	// Func End, Address: 0x2a3828, Func Offset: 0x58
-	scePrintf("Use_02 - UNIMPLEMENTED!\n");
+	if (!(sys->st_flg & 0x200))
+    {
+        bhSetMessage(1, 161);
+
+        swork.statusflg &= ~0x100000;
+    }
+
+    return 0;
 }
 
 // 100% matching!
@@ -5943,7 +5941,7 @@ unsigned int* ItemSearch(unsigned short itemid)
 	unsigned short num1;  
 
     wp = &swork.pip[1];
-	
+
 	for (num1 = 0; num1 < 11; num1++) 
 	{
 		if (itemid == (unsigned char)(*wp >> 16))
