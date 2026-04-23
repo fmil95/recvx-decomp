@@ -2,7 +2,9 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_NaView.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
@@ -1851,34 +1853,43 @@ static void LightSubPnt(_door_wrk* dwP, int lgt_no, LGT_WRK* ldP, NJS_POINT3* rt
     njCnkSetEasyMultiLightSwitch(lgt_no + 2, 1);
 }
 
-// 
-// Start address: 0x2b1c20
-void ryExcuteFade(float pri, int col, float rate)
+// 98.77% matching (matches on GC)
+static void ryExcuteFade(float pri, int col, float rate) 
 {
-	unsigned int tmp;
-	int pal;
-	//_anon47 p2c;
-	//_anon24 col_buf[4];
-	// Line 2148, Address: 0x2b1c20, Func Offset: 0
-	// Line 2161, Address: 0x2b1c34, Func Offset: 0x14
-	// Line 2148, Address: 0x2b1c3c, Func Offset: 0x1c
-	// Line 2161, Address: 0x2b1c40, Func Offset: 0x20
-	// Line 2162, Address: 0x2b1c54, Func Offset: 0x34
-	// Line 2165, Address: 0x2b1c64, Func Offset: 0x44
-	// Line 2162, Address: 0x2b1c68, Func Offset: 0x48
-	// Line 2165, Address: 0x2b1c6c, Func Offset: 0x4c
-	// Line 2167, Address: 0x2b1c74, Func Offset: 0x54
-	// Line 2166, Address: 0x2b1c78, Func Offset: 0x58
-	// Line 2167, Address: 0x2b1c7c, Func Offset: 0x5c
-	// Line 2168, Address: 0x2b1c88, Func Offset: 0x68
-	// Line 2171, Address: 0x2b1c98, Func Offset: 0x78
-	// Line 2173, Address: 0x2b1ca4, Func Offset: 0x84
-	// Line 2174, Address: 0x2b1cb0, Func Offset: 0x90
-	// Line 2176, Address: 0x2b1cbc, Func Offset: 0x9c
-	// Line 2177, Address: 0x2b1cdc, Func Offset: 0xbc
-	// Line 2179, Address: 0x2b1cf8, Func Offset: 0xd8
-	// Func End, Address: 0x2b1d14, Func Offset: 0xf4
-	scePrintf("ryExcuteFade - UNIMPLEMENTED!\n");
+	int pal; 
+    unsigned int tmp; 
+    static NJS_POINT2 pnt_dat[4] = 
+    {
+        0, 0, 640.0f, 0, 640.0f, 480.0f, 0, 480.0f
+    };
+    static NJS_COLOR col_buf[4]; 
+    static NJS_POINT2COL p2c = 
+    {
+        pnt_dat, col_buf, NULL, 4
+    };    
+    
+    tmp = (int)(256.0f * rate);
+    tmp = ((col & 0xFF00FF) * tmp) >> 8;
+    
+    pal = tmp & 0xFF00FF;
+    
+    tmp = (int)(256.0f * rate);
+    
+    col >>= 8;
+    
+    tmp = (col & 0xFF00FF) * tmp;
+    
+    pal |= tmp & 0xFF00FF00;
+    
+    if ((pal & 0xFF000000))
+    {
+        njColorBlendingMode(0, 8);
+        njColorBlendingMode(1, 6);
+        
+        col_buf[0].color = col_buf[1].color = col_buf[2].color = col_buf[3].color = pal;
+        
+        njDrawPolygon2D(&p2c, p2c.num, pri, 96);
+    }
 }
 
 // 100% matching!
