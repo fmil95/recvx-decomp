@@ -691,23 +691,14 @@ void DispRankingData01()
 	scePrintf("DispRankingData01 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2bc820
+// 66.38% matching (matches on GC)
 void DispNumber(NJS_POINT2* pos, int num, unsigned int col)
 {
-	// Line 1039, Address: 0x2bc820, Func Offset: 0
-	// Line 1045, Address: 0x2bc824, Func Offset: 0x4
-	// Line 1039, Address: 0x2bc828, Func Offset: 0x8
-	// Line 1045, Address: 0x2bc834, Func Offset: 0x14
-	// Line 1039, Address: 0x2bc848, Func Offset: 0x28
-	// Line 1045, Address: 0x2bc84c, Func Offset: 0x2c
-	// Line 1046, Address: 0x2bc87c, Func Offset: 0x5c
-	// Line 1047, Address: 0x2bc888, Func Offset: 0x68
-	// Line 1046, Address: 0x2bc89c, Func Offset: 0x7c
-	// Line 1047, Address: 0x2bc8a4, Func Offset: 0x84
-	// Line 1049, Address: 0x2bc8c4, Func Offset: 0xa4
-	// Func End, Address: 0x2bc8dc, Func Offset: 0xbc
-	scePrintf("DispNumber - UNIMPLEMENTED!\n");
+	bhDispFontEx(pos, mesdeftbl[num / 10], col, -2.0f);
+
+    pos->x += 28.0f;
+
+    bhDispFontEx(pos, mesdeftbl[num % 10], col, -2.0f);
 }
 
 // 100% matching!
