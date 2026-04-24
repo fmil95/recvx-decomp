@@ -1418,18 +1418,15 @@ void bhObj010(_anon0* op)
 	// Line 2477, Address: 0x2870f0, Func Offset: 0x60
 	// Line 2480, Address: 0x287108, Func Offset: 0x78
 	// Func End, Address: 0x287118, Func Offset: 0x88
-}
+}*/
 
-// 
-// Start address: 0x287120
-void bhObj011(_anon0* op)
+// 100% matching!
+void bhObj011(O_WRK* op)
 {
-	// Line 2488, Address: 0x287120, Func Offset: 0
-	// Line 2489, Address: 0x287128, Func Offset: 0x8
-	// Func End, Address: 0x287130, Func Offset: 0x10
+	op->mdflg |= 0x8;
 }
 
-// 
+/*// 
 // Start address: 0x287130
 void bhObj012(_anon0* op)
 {
