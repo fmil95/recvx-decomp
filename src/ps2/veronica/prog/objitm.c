@@ -456,17 +456,15 @@ void bhControlAlphaFadeObject(_anon0* op)
 	// Line 730, Address: 0x284778, Func Offset: 0x168
 	// Line 731, Address: 0x28477c, Func Offset: 0x16c
 	// Func End, Address: 0x2847a4, Func Offset: 0x194
-}
+}*/
 
-// 
-// Start address: 0x2847b0
+// 100% matching!
 void bhObjDmy()
 {
-	// Line 746, Address: 0x2847b0, Func Offset: 0
-	// Func End, Address: 0x2847b8, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x2847c0
 void bhObjItmBox(_anon0* op)
 {
@@ -1728,5 +1726,5 @@ void bhObjClpn(_anon0* op)
 // 100% matching!
 void bhObjWssg()
 {
-	
+
 }
