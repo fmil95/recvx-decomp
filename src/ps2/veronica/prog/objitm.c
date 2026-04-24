@@ -786,18 +786,15 @@ void bhObj002(O_WRK* op)
 	op->ay += (int)(182.04445f * (0.5f * op->aspd)) & 0xFFFF;
 }
 
-/*// 
-// Start address: 0x2855a0
-void bhObj003(_anon0* op)
+// 100% matching!
+void bhObj003(O_WRK* op)
 {
-	// Line 1037, Address: 0x2855a0, Func Offset: 0
-	// Line 1038, Address: 0x2855b0, Func Offset: 0x10
-	// Line 1039, Address: 0x2855d0, Func Offset: 0x30
-	// Line 1040, Address: 0x2855dc, Func Offset: 0x3c
-	// Func End, Address: 0x2855ec, Func Offset: 0x4c
+	op->az = (int)(65536.0f * njSin(op->ct0)) / 32;
+
+    op->ct0 += 1024;
 }
 
-// 
+/*// 
 // Start address: 0x2855f0
 void bhObj004(_anon0* op)
 {
