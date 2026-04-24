@@ -636,59 +636,82 @@ void DispRankingData00()
     DispNumber(&pos, sys->retry_ct, argb);
 }
 
-// 
-// Start address: 0x2bc510
+// 96.93% matching
 void DispRankingData01()
 {
-	unsigned int argb;
-	int ranking;
-	int score;
-	//_anon12 pos;
-	//_anon5* rk;
-	// Line 957, Address: 0x2bc510, Func Offset: 0
-	// Line 958, Address: 0x2bc524, Func Offset: 0x14
-	// Line 967, Address: 0x2bc52c, Func Offset: 0x1c
-	// Line 969, Address: 0x2bc53c, Func Offset: 0x2c
-	// Line 967, Address: 0x2bc550, Func Offset: 0x40
-	// Line 969, Address: 0x2bc558, Func Offset: 0x48
-	// Line 971, Address: 0x2bc570, Func Offset: 0x60
-	// Line 973, Address: 0x2bc59c, Func Offset: 0x8c
-	// Line 975, Address: 0x2bc5c8, Func Offset: 0xb8
-	// Line 977, Address: 0x2bc5f4, Func Offset: 0xe4
-	// Line 979, Address: 0x2bc604, Func Offset: 0xf4
-	// Line 977, Address: 0x2bc618, Func Offset: 0x108
-	// Line 979, Address: 0x2bc620, Func Offset: 0x110
-	// Line 981, Address: 0x2bc638, Func Offset: 0x128
-	// Line 983, Address: 0x2bc668, Func Offset: 0x158
-	// Line 985, Address: 0x2bc694, Func Offset: 0x184
-	// Line 986, Address: 0x2bc69c, Func Offset: 0x18c
-	// Line 992, Address: 0x2bc6a8, Func Offset: 0x198
-	// Line 994, Address: 0x2bc6fc, Func Offset: 0x1ec
-	// Line 995, Address: 0x2bc704, Func Offset: 0x1f4
-	// Line 997, Address: 0x2bc70c, Func Offset: 0x1fc
-	// Line 998, Address: 0x2bc734, Func Offset: 0x224
-	// Line 999, Address: 0x2bc748, Func Offset: 0x238
-	// Line 1003, Address: 0x2bc758, Func Offset: 0x248
-	// Line 1004, Address: 0x2bc760, Func Offset: 0x250
-	// Line 1006, Address: 0x2bc768, Func Offset: 0x258
-	// Line 1010, Address: 0x2bc774, Func Offset: 0x264
-	// Line 1006, Address: 0x2bc780, Func Offset: 0x270
-	// Line 1010, Address: 0x2bc788, Func Offset: 0x278
-	// Line 1011, Address: 0x2bc798, Func Offset: 0x288
-	// Line 1014, Address: 0x2bc7a8, Func Offset: 0x298
-	// Line 1015, Address: 0x2bc7b4, Func Offset: 0x2a4
-	// Line 1017, Address: 0x2bc7bc, Func Offset: 0x2ac
-	// Line 1019, Address: 0x2bc7c0, Func Offset: 0x2b0
-	// Line 1017, Address: 0x2bc7c4, Func Offset: 0x2b4
-	// Line 1019, Address: 0x2bc7d0, Func Offset: 0x2c0
-	// Line 1020, Address: 0x2bc7d8, Func Offset: 0x2c8
-	// Line 1027, Address: 0x2bc7e4, Func Offset: 0x2d4
-	// Line 1020, Address: 0x2bc7e8, Func Offset: 0x2d8
-	// Line 1027, Address: 0x2bc7ec, Func Offset: 0x2dc
-	// Line 1028, Address: 0x2bc7f4, Func Offset: 0x2e4
-	// Line 1034, Address: 0x2bc800, Func Offset: 0x2f0
-	// Func End, Address: 0x2bc818, Func Offset: 0x308
-	scePrintf("DispRankingData01 - UNIMPLEMENTED!\n");
+    RANK_WORK* rk; 
+    NJS_POINT2 pos;    
+    int score;       
+    int ranking;       
+    unsigned int argb; 
+    
+    rk = &rkw;
+
+    argb = (rk->alpha << 24) | 0xFFFFFF;
+    
+    bhDispMessageEx(121.0f, 64.0f, -2.0f, 1, 264, argb, 0);
+    bhDispMessageEx(40.0f, 128.0f, -2.0f, 1, 266, argb, 0);
+    bhDispMessageEx(119.0f, 224.0f, -2.0f, 1, 268, argb, 0);
+    bhDispMessageEx(78.0f, 328.0f, -2.0f, 1, 269, argb, 0);
+    
+    argb = (rk->alpha << 24) | 0x20FF20;
+    
+    bhDispMessageEx(360.0f, 128.0f, -2.0f, 1, 267, argb, 0);
+    bhDispMessageEx(439.0f, 224.0f, -2.0f, 1, 268, argb, 0);
+    bhDispMessageEx(398.0f, 328.0f, -2.0f, 1, 269, argb, 0);
+    
+    pos.x = 88.0f;
+    pos.y = 264.0f;
+    
+    if (rk->col != 0) 
+    {
+        argb = (rk->alpha << 24) | 0xFF2020;
+    } 
+    else
+    {
+        argb = (rk->alpha << 24) | 0xFFFFFF;
+    }
+    
+    // sys->time gets placed correctly in the ASM of the GC version using this same code
+    DispTime(&pos, sys->time, argb, 7);
+    
+    pos.x = 408.0f;
+    pos.y = 264.0f;
+    
+    if (rk->col == 2)
+    {
+        argb = (rk->alpha << 24) | 0xFF2020;
+    } 
+    else
+    {
+        argb = (rk->alpha << 24) | 0x20FF20;
+    }
+    
+    DispTime(&pos, rk->tmbk, argb, 7);
+    
+    pos.x = 149.0f;
+    pos.y = 368.0f;
+    
+    argb = (rk->alpha << 24) | 0xFFFFFF;
+    
+    if (bhCkFlg(sys->ev_flg, 75) == 0)
+    {
+        DispRank(&pos, argb, rk->ranking);
+    }
+    
+    pos.x = 469.0f;
+    pos.y = 368.0f;
+    
+    argb = (rk->alpha << 24) | 0x20FF20;
+    
+    score = GameClearScore(rk->tmbk);
+    
+    ranking = AllRanking(score, 1);
+    
+    if (ranking != 32) 
+    {
+        DispRank(&pos, argb, ranking);
+    }
 }
 
 // 66.38% matching (matches on GC)
@@ -707,7 +730,7 @@ void DispTime(NJS_POINT2* pos, int time, unsigned int col, unsigned int mode)
 	bhDispTimeEx(pos, mode, time, col, -2.0f);
 }
 
-/*// 
+// 
 // Start address: 0x2bc900
 int AllRanking(int score, unsigned int mode)
 {
@@ -742,6 +765,7 @@ int AllRanking(int score, unsigned int mode)
 	// Line 1133, Address: 0x2bcad4, Func Offset: 0x1d4
 	// Line 1134, Address: 0x2bcad8, Func Offset: 0x1d8
 	// Func End, Address: 0x2bcaec, Func Offset: 0x1ec
+	scePrintf("AllRanking - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -784,7 +808,8 @@ int GameClearScore(int time)
 	// Line 1244, Address: 0x2bcd28, Func Offset: 0x238
 	// Line 1248, Address: 0x2bcd38, Func Offset: 0x248
 	// Func End, Address: 0x2bcd44, Func Offset: 0x254
-}*/
+	scePrintf("GameClearScore - UNIMPLEMENTED!\n");
+}
 
 // 100% matching
 int RodorigoEventScore(void) {
