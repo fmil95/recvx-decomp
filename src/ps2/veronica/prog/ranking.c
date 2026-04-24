@@ -1,10 +1,13 @@
 #include "../../../ps2/veronica/prog/ranking.h"
 #include "../../../ps2/veronica/prog/bup_00.h"
+#include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/event.h"
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/message.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_SystemSaveScreen.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/room.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/sub1.h"
@@ -428,102 +431,153 @@ void RankingExit()
     sys->typ_md1 = sys->typ_md0 = 0;
 }
 
-/*// 
-// Start address: 0x2bbd70
-void RankingTextureInit()
+// 100% matching! 
+void RankingTextureInit() 
 {
-	unsigned char* datp;
-	unsigned int dt;
-	int no;
-	int sz;
-	_anon5* rk;
-	// Line 638, Address: 0x2bbd70, Func Offset: 0
-	// Line 639, Address: 0x2bbd80, Func Offset: 0x10
-	// Line 646, Address: 0x2bbd88, Func Offset: 0x18
-	// Line 647, Address: 0x2bbda4, Func Offset: 0x34
-	// Line 648, Address: 0x2bbda8, Func Offset: 0x38
-	// Line 651, Address: 0x2bbdbc, Func Offset: 0x4c
-	// Line 652, Address: 0x2bbdd4, Func Offset: 0x64
-	// Line 654, Address: 0x2bbde8, Func Offset: 0x78
-	// Line 657, Address: 0x2bbdf0, Func Offset: 0x80
-	// Line 658, Address: 0x2bbdf8, Func Offset: 0x88
-	// Line 701, Address: 0x2bbdfc, Func Offset: 0x8c
-	// Line 704, Address: 0x2bbe28, Func Offset: 0xb8
-	// Line 705, Address: 0x2bbe38, Func Offset: 0xc8
-	// Line 710, Address: 0x2bbe40, Func Offset: 0xd0
-	// Line 713, Address: 0x2bbe48, Func Offset: 0xd8
-	// Line 710, Address: 0x2bbe50, Func Offset: 0xe0
-	// Line 713, Address: 0x2bbe64, Func Offset: 0xf4
-	// Line 710, Address: 0x2bbe68, Func Offset: 0xf8
-	// Line 713, Address: 0x2bbe74, Func Offset: 0x104
-	// Line 714, Address: 0x2bbe88, Func Offset: 0x118
-	// Line 716, Address: 0x2bbe90, Func Offset: 0x120
-	// Line 714, Address: 0x2bbe9c, Func Offset: 0x12c
-	// Line 715, Address: 0x2bbeb4, Func Offset: 0x144
-	// Line 716, Address: 0x2bbed4, Func Offset: 0x164
-	// Line 717, Address: 0x2bbee4, Func Offset: 0x174
-	// Line 716, Address: 0x2bbee8, Func Offset: 0x178
-	// Line 730, Address: 0x2bbef4, Func Offset: 0x184
-	// Line 733, Address: 0x2bbefc, Func Offset: 0x18c
-	// Line 734, Address: 0x2bbf0c, Func Offset: 0x19c
-	// Line 742, Address: 0x2bbf14, Func Offset: 0x1a4
-	// Line 734, Address: 0x2bbf18, Func Offset: 0x1a8
-	// Line 741, Address: 0x2bbf28, Func Offset: 0x1b8
-	// Line 735, Address: 0x2bbf2c, Func Offset: 0x1bc
-	// Line 736, Address: 0x2bbf30, Func Offset: 0x1c0
-	// Line 737, Address: 0x2bbf34, Func Offset: 0x1c4
-	// Line 738, Address: 0x2bbf38, Func Offset: 0x1c8
-	// Line 741, Address: 0x2bbf3c, Func Offset: 0x1cc
-	// Line 743, Address: 0x2bbf50, Func Offset: 0x1e0
-	// Line 747, Address: 0x2bbf58, Func Offset: 0x1e8
-	// Line 748, Address: 0x2bbf68, Func Offset: 0x1f8
-	// Line 749, Address: 0x2bbf7c, Func Offset: 0x20c
-	// Line 754, Address: 0x2bbf84, Func Offset: 0x214
-	// Line 757, Address: 0x2bbfa0, Func Offset: 0x230
-	// Line 754, Address: 0x2bbfa4, Func Offset: 0x234
-	// Line 757, Address: 0x2bbfb0, Func Offset: 0x240
-	// Line 758, Address: 0x2bbfcc, Func Offset: 0x25c
-	// Line 760, Address: 0x2bbfd0, Func Offset: 0x260
-	// Line 763, Address: 0x2bbfd8, Func Offset: 0x268
-	// Line 764, Address: 0x2bbfe8, Func Offset: 0x278
-	// Line 765, Address: 0x2bc000, Func Offset: 0x290
-	// Line 766, Address: 0x2bc004, Func Offset: 0x294
-	// Line 768, Address: 0x2bc00c, Func Offset: 0x29c
-	// Line 769, Address: 0x2bc020, Func Offset: 0x2b0
-	// Line 774, Address: 0x2bc028, Func Offset: 0x2b8
-	// Line 777, Address: 0x2bc02c, Func Offset: 0x2bc
-	// Line 769, Address: 0x2bc030, Func Offset: 0x2c0
-	// Line 774, Address: 0x2bc048, Func Offset: 0x2d8
-	// Line 778, Address: 0x2bc06c, Func Offset: 0x2fc
-	// Line 780, Address: 0x2bc074, Func Offset: 0x304
-	// Line 781, Address: 0x2bc084, Func Offset: 0x314
-	// Line 782, Address: 0x2bc098, Func Offset: 0x328
-	// Line 787, Address: 0x2bc0a0, Func Offset: 0x330
-	// Line 790, Address: 0x2bc0bc, Func Offset: 0x34c
-	// Line 787, Address: 0x2bc0c0, Func Offset: 0x350
-	// Line 790, Address: 0x2bc0cc, Func Offset: 0x35c
-	// Line 791, Address: 0x2bc0e8, Func Offset: 0x378
-	// Line 792, Address: 0x2bc0f0, Func Offset: 0x380
-	// Line 791, Address: 0x2bc0f4, Func Offset: 0x384
-	// Line 794, Address: 0x2bc10c, Func Offset: 0x39c
-	// Line 796, Address: 0x2bc114, Func Offset: 0x3a4
-	// Line 797, Address: 0x2bc124, Func Offset: 0x3b4
-	// Line 798, Address: 0x2bc128, Func Offset: 0x3b8
-	// Line 797, Address: 0x2bc134, Func Offset: 0x3c4
-	// Line 798, Address: 0x2bc138, Func Offset: 0x3c8
-	// Line 800, Address: 0x2bc140, Func Offset: 0x3d0
-	// Line 801, Address: 0x2bc150, Func Offset: 0x3e0
-	// Line 802, Address: 0x2bc154, Func Offset: 0x3e4
-	// Line 804, Address: 0x2bc15c, Func Offset: 0x3ec
-	// Line 805, Address: 0x2bc160, Func Offset: 0x3f0
-	// Line 807, Address: 0x2bc180, Func Offset: 0x410
-	// Line 805, Address: 0x2bc184, Func Offset: 0x414
-	// Line 808, Address: 0x2bc188, Func Offset: 0x418
-	// Line 810, Address: 0x2bc190, Func Offset: 0x420
-	// Line 811, Address: 0x2bc198, Func Offset: 0x428
-	// Line 815, Address: 0x2bc19c, Func Offset: 0x42c
-	// Func End, Address: 0x2bc1b0, Func Offset: 0x440
-}*/
+    RANK_WORK* rk;      
+    int sz;             
+    int no;           
+    unsigned int dt;    
+    unsigned char* datp;
+
+    rk = &rkw;
+
+    if (!(sys->typ_flg & 0x80000000)) 
+    {
+        rk->mode_00 = 0;
+        
+        sys->typ_flg |= 0x80000000;
+    }
+    
+    if (!(sys->ss_flg & 0x1)) 
+    {
+        if (sys->costume != 0) 
+        {
+            no = 4;
+        } 
+        else 
+        {
+            no = sys->ply_id;
+        }
+    }
+    else 
+    {
+        no = 0;
+    }
+    
+    switch (rk->mode_00) 
+    {
+    case 0:
+        sz = GetIsoFileSize("sysmes.ald");
+        
+        if (sz != 0)
+        {
+            sys->memp = (unsigned char*)(((int)sys->memp + 0x3F) & ~0x3F);
+             
+            RequestReadIsoFile("sysmes.ald", sys->memp);
+            
+            sys->mes_ip = (unsigned int*)sys->memp;
+            
+            sys->memp += sz;
+            
+            sys->doordp = bhGetFreeMemory(0x2A000, 0x20);
+            
+            rk->mode_00 = 1;
+        }
+        
+        break;
+    default:
+        break;
+    case 1:
+        if (GetReadFileStatus() == 0) 
+        {
+            datp = (unsigned char*)sys->mes_ip; 
+                
+            dt = *sys->mes_ip; 
+            
+            datp += 4; 
+            
+            sys->mes_ip = (unsigned int*)datp; 
+            
+            datp += dt; 
+            
+            sys->mes_sp = (unsigned int*)(datp + 4);
+            
+            rk->mode_00 = 2;
+        }
+        
+        break;
+    case 2:
+        if ((GetReadFileStatus() == 0) && (GetInsideFileSize(sys->sys_partid, 1) != 0)) 
+        {
+            sys->memp = (unsigned char*)(((int)sys->memp + 0x3F) & ~0x3F);
+            
+            RequestReadInsideFile(sys->sys_partid, 1, sys->memp);
+            
+            rk->mode_00 = 3;
+        }
+		
+        break;
+    case 3:
+        if (GetReadFileStatus() == 0) 
+        {
+            bhSetFontTexture(sys->memp);
+            
+            rk->mode_00 = 4;
+        }
+        
+        break;
+    case 4:
+        if (GetReadFileStatus() != 1) 
+        {
+            sys->sbs_sp = sys->memp;
+            
+            sys->memp = (unsigned char*)(((int)sys->memp + 0x3F) & ~0x3F);
+            
+            rk->mode_00 = 5;
+        }
+        
+        break;
+    case 5:
+        if ((GetReadFileStatus() == 0) && (GetInsideFileSize(sys->itm_partid, no + 277) != 0))
+        {
+            sys->memp = (unsigned char*)(((int)sys->memp + 0x3F) & ~0x3F);
+            
+            RequestReadInsideFile(sys->itm_partid, no + 277, sys->memp);
+            
+            sys->subtxp = sys->memp;
+            
+            rk->mode_00 = 6;
+        }
+        
+        break;
+    case 6:
+        if (!(sys->ts_flg & 0x80)) 
+        {
+            sys->ts_flg |= 0x80;
+            
+            njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+        }
+        
+        if (GetReadFileStatus() == 0)
+        {
+            rk->mode_00 = 7;
+        }
+        
+        break;
+    case 7:
+        rk->rktx_list.textures = rk->rktx;
+        rk->rktx_list.nbTexture = bhSetMemPvpTexture(&rk->rktx_list, sys->subtxp, 0);
+        
+        rk->mode_00 = 8;
+        break;
+    case 8:
+        sys->typ_md0 = 2;
+        
+        rk->mode_01 = 0;
+        break;
+    }
+}
 
 // 100% matching!
 void WallPaperDisp()
