@@ -46,11 +46,11 @@ void RankingMain();
 void RankingExit();
 void RankingTextureInit();
 void WallPaperDisp();
-/*void DispRank(_anon12* pos, unsigned int color, int rank);*/
+void DispRank(NJS_POINT2* pos, unsigned int color, int rank);
 void DispRankingData00();
 void DispRankingData01();
-/*void DispNumber(_anon12* pos, int num, unsigned int col);
-void DispTime(_anon12* pos, int time, unsigned int col, unsigned int mode);*/
+void DispNumber(NJS_POINT2* pos, int num, unsigned int col);
+void DispTime(NJS_POINT2* pos, int time, unsigned int col, unsigned int mode);
 int AllRanking(int score, unsigned int mode);
 int GameClearScore(int time);
 int RodorigoEventScore();
