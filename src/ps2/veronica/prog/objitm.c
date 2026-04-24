@@ -1723,13 +1723,10 @@ void bhObjClpn(_anon0* op)
 	// Line 2742, Address: 0x287b50, Func Offset: 0x8a0
 	// Line 2747, Address: 0x287b60, Func Offset: 0x8b0
 	// Func End, Address: 0x287b9c, Func Offset: 0x8ec
-}
-
-// 
-// Start address: 0x287ba0
-void bhObjWssg()
-{
-	// Line 2761, Address: 0x287ba0, Func Offset: 0
-	// Func End, Address: 0x287ba8, Func Offset: 0x8
 }*/
 
+// 100% matching!
+void bhObjWssg()
+{
+	
+}
