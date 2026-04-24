@@ -188,38 +188,56 @@ void RankingVmsWait()
 // 100% matching
 void RankingSave() {}
 
-// 
-// Start address: 0x2bb830
+// 100% matching!
 void RankingErrorMessage()
 {
-	//_anon6* sfe;
-	//_anon5* rk;
-	unsigned int ulState;
-	unsigned int SaveCheck;
-	// Line 390, Address: 0x2bb830, Func Offset: 0
-	// Line 393, Address: 0x2bb840, Func Offset: 0x10
-	// Line 399, Address: 0x2bb848, Func Offset: 0x18
-	// Line 394, Address: 0x2bb850, Func Offset: 0x20
-	// Line 399, Address: 0x2bb854, Func Offset: 0x24
-	// Line 402, Address: 0x2bb870, Func Offset: 0x40
-	// Line 404, Address: 0x2bb890, Func Offset: 0x60
-	// Line 403, Address: 0x2bb898, Func Offset: 0x68
-	// Line 405, Address: 0x2bb8a0, Func Offset: 0x70
-	// Line 408, Address: 0x2bb8a8, Func Offset: 0x78
-	// Line 409, Address: 0x2bb8bc, Func Offset: 0x8c
-	// Line 411, Address: 0x2bb8d0, Func Offset: 0xa0
-	// Line 412, Address: 0x2bb8d8, Func Offset: 0xa8
-	// Line 413, Address: 0x2bb8e8, Func Offset: 0xb8
-	// Line 415, Address: 0x2bb8f4, Func Offset: 0xc4
-	// Line 417, Address: 0x2bb8fc, Func Offset: 0xcc
-	// Line 418, Address: 0x2bb904, Func Offset: 0xd4
-	// Line 420, Address: 0x2bb910, Func Offset: 0xe0
-	// Line 421, Address: 0x2bb918, Func Offset: 0xe8
-	// Line 422, Address: 0x2bb928, Func Offset: 0xf8
-	// Line 424, Address: 0x2bb934, Func Offset: 0x104
-	// Line 513, Address: 0x2bb93c, Func Offset: 0x10c
-	// Func End, Address: 0x2bb950, Func Offset: 0x120
-	scePrintf("RankingErrorMessage - UNIMPLEMENTED!\n");
+    RANK_WORK* rk; 
+    FADE* sfe;   
+    static unsigned int ulState; 
+    static unsigned int SaveCheck; 
+
+    rk = &rkw;
+    sfe = &fade;
+    
+    switch (ulState) 
+    {                     
+    case 0:                        
+        pRankingSys = CreateSysSaveScreen(&RankingSys, vwbmemp, 1, 1);
+        
+        SaveCheck = 0;
+        
+        ulState = 1;
+        break;
+    case 1:                              
+        SaveCheck = ExecuteSysSaveScreen(pRankingSys);
+        
+        if (SaveCheck == 1) 
+        {                           
+            ulState = 0;
+            
+            sys->typ_md0 = 4;
+            
+            sfe->flg |= 0x1;
+            
+            rk->mode_01 = 0;
+            
+            RankingBgmSet();
+        }
+        else if (SaveCheck == 2) 
+        {                                    
+            ulState = 0;
+            
+            sys->typ_md0 = 4;
+            
+            sfe->flg |= 0x1;
+            
+            rk->mode_01 = 0;
+            
+            RankingBgmSet();
+        }
+        
+        break;
+    }
 }
 
 // 99.84% matching
