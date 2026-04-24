@@ -3,6 +3,7 @@
 #include "../../../ps2/veronica/prog/event.h"
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_SystemSaveScreen.h"
 #include "../../../ps2/veronica/prog/room.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
@@ -506,40 +507,48 @@ void RankingTextureInit()
 	// Func End, Address: 0x2bc1b0, Func Offset: 0x440
 }*/
 
-// 
-// Start address: 0x2bc1b0
+// 100% matching!
 void WallPaperDisp()
 {
-	//_anon23 twt[4];
-	// Line 822, Address: 0x2bc1b0, Func Offset: 0
-	// Line 826, Address: 0x2bc1b4, Func Offset: 0x4
-	// Line 822, Address: 0x2bc1b8, Func Offset: 0x8
-	// Line 826, Address: 0x2bc1bc, Func Offset: 0xc
-	// Line 828, Address: 0x2bc1c8, Func Offset: 0x18
-	// Line 829, Address: 0x2bc1d0, Func Offset: 0x20
-	// Line 830, Address: 0x2bc1d4, Func Offset: 0x24
-	// Line 831, Address: 0x2bc1d8, Func Offset: 0x28
-	// Line 832, Address: 0x2bc1e0, Func Offset: 0x30
-	// Line 834, Address: 0x2bc1e8, Func Offset: 0x38
-	// Line 835, Address: 0x2bc1ec, Func Offset: 0x3c
-	// Line 836, Address: 0x2bc1f0, Func Offset: 0x40
-	// Line 837, Address: 0x2bc1f8, Func Offset: 0x48
-	// Line 839, Address: 0x2bc204, Func Offset: 0x54
-	// Line 840, Address: 0x2bc214, Func Offset: 0x64
-	// Line 842, Address: 0x2bc228, Func Offset: 0x78
-	// Line 843, Address: 0x2bc234, Func Offset: 0x84
-	// Line 844, Address: 0x2bc238, Func Offset: 0x88
-	// Line 845, Address: 0x2bc240, Func Offset: 0x90
-	// Line 847, Address: 0x2bc248, Func Offset: 0x98
-	// Line 848, Address: 0x2bc24c, Func Offset: 0x9c
-	// Line 849, Address: 0x2bc250, Func Offset: 0xa0
-	// Line 850, Address: 0x2bc258, Func Offset: 0xa8
-	// Line 852, Address: 0x2bc264, Func Offset: 0xb4
-	// Line 853, Address: 0x2bc274, Func Offset: 0xc4
-	// Line 854, Address: 0x2bc288, Func Offset: 0xd8
-	// Line 856, Address: 0x2bc290, Func Offset: 0xe0
-	// Func End, Address: 0x2bc2a0, Func Offset: 0xf0
-	scePrintf("WallPaperDisp - UNIMPLEMENTED!\n");
+    QUAD twt[4]; 
+  
+    njSetTexture(&rkw.rktx_list);
+    
+    njQuadTextureStart(0);
+    
+    twt[0].x1 = 0;
+    twt[0].y1 = 0;
+    
+    twt[0].x2 = 512.0f;
+    twt[0].y2 = 480.0f;
+    
+    twt[0].u1 = 0;
+    twt[0].v1 = 0;
+    
+    twt[0].u2 = 1.0f;
+    twt[0].v2 = 0.93f;
+    
+    njSetQuadTexture(0, 0xFF808080);
+    
+    njDrawQuadTexture(&twt[0], 0.1f);
+    
+    twt[1].x1 = 512.0f;
+    twt[1].y1 = 0;
+    
+    twt[1].x2 = 640.0f;
+    twt[1].y2 = 480.0f;
+    
+    twt[1].u1 = 0;
+    twt[1].v1 = 0;
+    
+    twt[1].u2 = 0.5f;
+    twt[1].v2 = 0.93f;
+    
+    njSetQuadTexture(1, 0xFF808080);
+    
+    njDrawQuadTexture(&twt[1], 0.1f);
+    
+    njQuadTextureEnd();
 }
 
 // 100% matching!
