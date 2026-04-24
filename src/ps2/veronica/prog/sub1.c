@@ -5909,33 +5909,39 @@ void BgColorInit()
 	}
 }
 
-// 
-// Start address: 0x2a7ac0
+// 100% matching!
 void CursorInit(NJS_TEXANIM* disp_a00, PARTS* disp_b00, S_WORK* st)
 {
-	// Line 7155, Address: 0x2a7ac0, Func Offset: 0
-	// Line 7156, Address: 0x2a7af8, Func Offset: 0x38
-	// Line 7157, Address: 0x2a7afc, Func Offset: 0x3c
-	// Line 7158, Address: 0x2a7b04, Func Offset: 0x44
-	// Line 7162, Address: 0x2a7b0c, Func Offset: 0x4c
-	// Line 7163, Address: 0x2a7b1c, Func Offset: 0x5c
-	// Line 7164, Address: 0x2a7b24, Func Offset: 0x64
-	// Line 7165, Address: 0x2a7b2c, Func Offset: 0x6c
-	// Line 7167, Address: 0x2a7b38, Func Offset: 0x78
-	// Line 7168, Address: 0x2a7b40, Func Offset: 0x80
-	// Line 7170, Address: 0x2a7b48, Func Offset: 0x88
-	// Line 7177, Address: 0x2a7b4c, Func Offset: 0x8c
-	// Line 7174, Address: 0x2a7b54, Func Offset: 0x94
-	// Line 7179, Address: 0x2a7b58, Func Offset: 0x98
-	// Line 7170, Address: 0x2a7b5c, Func Offset: 0x9c
-	// Line 7172, Address: 0x2a7b64, Func Offset: 0xa4
-	// Line 7174, Address: 0x2a7b70, Func Offset: 0xb0
-	// Line 7175, Address: 0x2a7b74, Func Offset: 0xb4
-	// Line 7177, Address: 0x2a7b78, Func Offset: 0xb8
-	// Line 7178, Address: 0x2a7b7c, Func Offset: 0xbc
-	// Line 7181, Address: 0x2a7b80, Func Offset: 0xc0
-	// Func End, Address: 0x2a7b88, Func Offset: 0xc8
-	scePrintf("CursorInit - UNIMPLEMENTED!\n");
+    if ((((unsigned short*)&itemdata->type)[((st->pip[2] >> 16) & 0xFF) * 3] & 0x100))  
+    {
+        disp_a00->sx = 144;
+    }
+    else 
+    {
+        disp_a00->sx = 76;
+    }
+    
+    if (st->mode == 1) 
+    {
+        disp_b00->atr |= 0x20;
+    } 
+    else 
+    {
+        disp_b00->atr &= ~0x20;
+    }
+    
+    disp_b00->pos[0] = 20.0f;
+    disp_b00->pos[1] = 4.0f;
+    
+    disp_b00[1].atr &= ~0x20;
+    disp_b00[2].atr &= ~0x20;
+    
+    st->listcsr_0 = 2;
+    st->listcsr_2 = 2;
+    
+    st->color00 = 0.6f;
+    st->colorcount = 0;
+    st->colorflg = 1;
 }
 
 // 100% matching!
