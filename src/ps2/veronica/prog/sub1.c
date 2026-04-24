@@ -5873,27 +5873,21 @@ int bhSearchBullet()
 	scePrintf("bhSearchBullet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a7a00
-void CenterPositionInit()
+// 100% matching!
+void CenterPositionInit() 
 {
-	unsigned int count01;
-	unsigned int count00;
-	// Line 7117, Address: 0x2a7a10, Func Offset: 0x10
-	// Line 7119, Address: 0x2a7a14, Func Offset: 0x14
-	// Line 7122, Address: 0x2a7a1c, Func Offset: 0x1c
-	// Line 7119, Address: 0x2a7a28, Func Offset: 0x28
-	// Line 7120, Address: 0x2a7a30, Func Offset: 0x30
-	// Line 7123, Address: 0x2a7a40, Func Offset: 0x40
-	// Line 7124, Address: 0x2a7a44, Func Offset: 0x44
-	// Line 7123, Address: 0x2a7a4c, Func Offset: 0x4c
-	// Line 7124, Address: 0x2a7a54, Func Offset: 0x54
-	// Line 7125, Address: 0x2a7a5c, Func Offset: 0x5c
-	// Line 7124, Address: 0x2a7a60, Func Offset: 0x60
-	// Line 7125, Address: 0x2a7a64, Func Offset: 0x64
-	// Line 7126, Address: 0x2a7a70, Func Offset: 0x70
-	// Func End, Address: 0x2a7a78, Func Offset: 0x78
-	scePrintf("CenterPositionInit - UNIMPLEMENTED!\n");
+    unsigned int count00, count01; 
+    
+    for (count00 = 0; count00 < 12; count00++) 
+    {
+        cen_pos99[count00][4] = cen_pos99[count00][2] - cen_pos99[count00][0];
+        cen_pos99[count00][5] = cen_pos99[count00][3] - cen_pos99[count00][1];
+        
+        for (count01 = 0; count01 < 6; count01++) 
+        {
+            cen_pos[count00][count01] = cen_pos99[count00][count01];
+        }
+    }
 }
 
 // 100% matching!
