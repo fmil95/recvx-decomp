@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 
 /*char NormalTbl[64];
 _anon3 NullMka;
@@ -592,40 +593,55 @@ void bhFixPosition(BH_PWORK* ewP, char* datP)
     ewP->pz -= pos.z;
 }
 
-// 
-// Start address: 0x130de0
+// 100% matching! 
 void bhCalcFixOffset(BH_PWORK* ewP, char* datP, NJS_POINT3* offP, NJS_POINT3* rtnP)
 {
-	//_anon10 dst;
-	//_anon10 src;
-	//npobj* objP;
-	//_anon9* mlwP;
-	//_anon10 off;
-	// Line 779, Address: 0x130de0, Func Offset: 0
-	// Line 782, Address: 0x130dfc, Func Offset: 0x1c
-	// Line 785, Address: 0x130e0c, Func Offset: 0x2c
-	// Line 787, Address: 0x130e1c, Func Offset: 0x3c
-	// Line 789, Address: 0x130e24, Func Offset: 0x44
-	// Line 792, Address: 0x130e34, Func Offset: 0x54
-	// Line 793, Address: 0x130e60, Func Offset: 0x80
-	// Line 794, Address: 0x130e74, Func Offset: 0x94
-	// Line 795, Address: 0x130e88, Func Offset: 0xa8
-	// Line 796, Address: 0x130e90, Func Offset: 0xb0
-	// Line 797, Address: 0x130e9c, Func Offset: 0xbc
-	// Line 798, Address: 0x130eb0, Func Offset: 0xd0
-	// Line 801, Address: 0x130ec4, Func Offset: 0xe4
-	// Line 803, Address: 0x130ecc, Func Offset: 0xec
-	// Line 805, Address: 0x130eec, Func Offset: 0x10c
-	// Line 806, Address: 0x130f00, Func Offset: 0x120
-	// Line 807, Address: 0x130f14, Func Offset: 0x134
-	// Line 812, Address: 0x130f28, Func Offset: 0x148
-	// Line 813, Address: 0x130f38, Func Offset: 0x158
-	// Line 814, Address: 0x130f60, Func Offset: 0x180
-	// Line 815, Address: 0x130f6c, Func Offset: 0x18c
-	// Line 818, Address: 0x130f84, Func Offset: 0x1a4
-	// Line 820, Address: 0x130f8c, Func Offset: 0x1ac
-	// Func End, Address: 0x130fac, Func Offset: 0x1cc
-	scePrintf("bhCalcFixOffset - UNIMPLEMENTED!\n");
+    ML_WORK* mlwP;           
+    NJS_CNK_OBJECT* objP;      
+    NJS_POINT3 src;      
+    NJS_POINT3 dst;          
+    static const NJS_POINT3 off = { 0 }; 
+    
+    mlwP = ewP->mlwP;
+    
+    if (offP == NULL) 
+    {
+        offP = &off;
+    }
+    
+    njPushMatrixEx();
+    
+    if ((ewP->flg & 0x80))
+    {
+        njSetMatrix(NULL, &((BH_PWORK*)ewP->lkwkp)->mlwP->owP[ewP->lkono].mtx);
+        
+        njTranslate(NULL, ewP->lox, ewP->loy, ewP->loz);
+        njRotateXYZ(NULL, ewP->ax, ewP->ay, ewP->az);
+    }
+    else
+    {
+        njUnitMatrix(NULL);
+        
+        njTranslate(NULL, ewP->px, ewP->py, ewP->pz);
+        njRotateXYZ(NULL, ewP->ax, ewP->ay, ewP->az);
+    }
+    
+    while (*datP != -1)
+    {
+        objP = &mlwP->objP[*datP++];
+        
+        njTranslate(NULL, objP->pos[0], objP->pos[1], objP->pos[2]);
+        njRotateXYZ(NULL, objP->ang[0], objP->ang[1], objP->ang[2]);
+    }
+    
+    njCalcPoint(NULL, offP, &dst);
+    njCalcPoint(&mlwP->owP[datP[-1]].mtx, offP, &src);
+    
+    njSubVector(&dst, &src);
+    
+    *rtnP = dst;
+    
+    njPopMatrixEx();
 }
 
 /*// 
