@@ -1177,17 +1177,19 @@ void bhDrawSpEvtBoxLine()
 	// Line 1113, Address: 0x2bfba0, Func Offset: 0x150
 	// Line 1114, Address: 0x2bfba8, Func Offset: 0x158
 	// Func End, Address: 0x2bfbc8, Func Offset: 0x178
-}
+}*/
 
-// 
-// Start address: 0x2bfbd0
+// 100% matching!
 void bhClearComEvtText()
 {
-	// Line 1122, Address: 0x2bfbd0, Func Offset: 0
-	// Func End, Address: 0x2bfbf4, Func Offset: 0x24
+	COM_EVT_WORK* ce; // not from DWARF
+
+	ce = sys->com_exp;
+
+    npSetMemoryL((unsigned int*)ce->txt, sizeof(ce->txt) / 4, 0);
 }
 
-// 
+/*// 
 // Start address: 0x2bfc00
 void bhInitComEvtScript()
 {
