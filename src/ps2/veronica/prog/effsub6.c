@@ -3,6 +3,8 @@
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 
 static NJS_POINT3 eye_ofs[2] =
 {
@@ -539,33 +541,42 @@ void bhEff144(O_WRK* op)
     sys->ef_trs[sys->ef_trsn++] = op;
 }
 
-// 
-// Start address: 0x2e91a0
+// 100% matching!
 void bhEff143_sub(O_WRK* op)
 {
-	//_anon21* pp;
-	// Line 997, Address: 0x2e91a0, Func Offset: 0
-	// Line 1001, Address: 0x2e91b0, Func Offset: 0x10
-	// Line 998, Address: 0x2e91b4, Func Offset: 0x14
-	// Line 1001, Address: 0x2e91b8, Func Offset: 0x18
-	// Line 1002, Address: 0x2e91c4, Func Offset: 0x24
-	// Line 1003, Address: 0x2e91dc, Func Offset: 0x3c
-	// Line 1004, Address: 0x2e91e4, Func Offset: 0x44
-	// Line 1006, Address: 0x2e91ec, Func Offset: 0x4c
-	// Line 1007, Address: 0x2e9200, Func Offset: 0x60
-	// Line 1008, Address: 0x2e9208, Func Offset: 0x68
-	// Line 1009, Address: 0x2e9210, Func Offset: 0x70
-	// Line 1013, Address: 0x2e921c, Func Offset: 0x7c
-	// Line 1014, Address: 0x2e9228, Func Offset: 0x88
-	// Line 1017, Address: 0x2e9234, Func Offset: 0x94
-	// Line 1018, Address: 0x2e9244, Func Offset: 0xa4
-	// Line 1019, Address: 0x2e9254, Func Offset: 0xb4
-	// Line 1020, Address: 0x2e9268, Func Offset: 0xc8
-	// Line 1023, Address: 0x2e9270, Func Offset: 0xd0
-	// Line 1025, Address: 0x2e927c, Func Offset: 0xdc
-	// Line 1027, Address: 0x2e9288, Func Offset: 0xe8
-	// Func End, Address: 0x2e929c, Func Offset: 0xfc
-	scePrintf("bhEff143_sub - UNIMPLEMENTED!\n");
+    P_WORK* pp; 
+
+    pp = (P_WORK*)op->exp0;
+    
+    if (!(op->stflg & 0x20)) 
+    {
+        njSetTexture(&sys->ef_tlist);
+    }
+    else 
+    {
+        njSetTexture(op->txp[0]);
+    }
+    
+    if ((op->flg & 0x20000000)) 
+    {
+        njTextureFilterMode(0);
+    } 
+    else 
+    {
+        njTextureFilterMode(1);
+    }
+    
+    njColorBlendingMode(0, op->bl_src);
+    njColorBlendingMode(1, op->bl_dst);
+    
+    njSetMatrix(NULL, cam.mtx);
+    
+    njPtclSpriteStart(op->tex_id, pp->col, 1);
+    njPtclDrawSprite(pp->pos, pp->num, pp->sx, pp->sy);
+    njPtclSpriteEnd();
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
 }
 
 // 
