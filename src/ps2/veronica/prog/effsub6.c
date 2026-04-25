@@ -4,8 +4,12 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 
-/*_anon33 eye_ofs[2];
-BH_PWORK ene[0];
+static NJS_POINT3 eye_ofs[2] =
+{
+    {  0.28f, 0.82f, -0.90f },
+    { -0.28f, 0.82f, -0.90f }
+};
+/*BH_PWORK ene[0];
 _anon9* rom;
 _anon5* sys;
 O_WRK eff[0];
@@ -94,44 +98,50 @@ void bhEff145(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x2e82f0
+// 100% matching!
 void bhEff146_Init(O_WRK* op)
 {
-	int eno;
-	int i;
-	// Line 193, Address: 0x2e82f0, Func Offset: 0
-	// Line 202, Address: 0x2e8308, Func Offset: 0x18
-	// Line 210, Address: 0x2e8310, Func Offset: 0x20
-	// Line 202, Address: 0x2e8314, Func Offset: 0x24
-	// Line 210, Address: 0x2e8318, Func Offset: 0x28
-	// Line 204, Address: 0x2e831c, Func Offset: 0x2c
-	// Line 202, Address: 0x2e8320, Func Offset: 0x30
-	// Line 203, Address: 0x2e832c, Func Offset: 0x3c
-	// Line 204, Address: 0x2e8344, Func Offset: 0x54
-	// Line 210, Address: 0x2e8358, Func Offset: 0x68
-	// Line 211, Address: 0x2e836c, Func Offset: 0x7c
-	// Line 212, Address: 0x2e8380, Func Offset: 0x90
-	// Line 215, Address: 0x2e8394, Func Offset: 0xa4
-	// Line 216, Address: 0x2e83a8, Func Offset: 0xb8
-	// Line 221, Address: 0x2e83b4, Func Offset: 0xc4
-	// Line 225, Address: 0x2e83e4, Func Offset: 0xf4
-	// Line 227, Address: 0x2e83e8, Func Offset: 0xf8
-	// Line 229, Address: 0x2e8408, Func Offset: 0x118
-	// Line 230, Address: 0x2e842c, Func Offset: 0x13c
-	// Line 229, Address: 0x2e8430, Func Offset: 0x140
-	// Line 230, Address: 0x2e8434, Func Offset: 0x144
-	// Line 232, Address: 0x2e8448, Func Offset: 0x158
-	// Line 233, Address: 0x2e8490, Func Offset: 0x1a0
-	// Line 234, Address: 0x2e84b8, Func Offset: 0x1c8
-	// Line 235, Address: 0x2e84e0, Func Offset: 0x1f0
-	// Line 236, Address: 0x2e84e4, Func Offset: 0x1f4
-	// Line 237, Address: 0x2e84e8, Func Offset: 0x1f8
-	// Line 238, Address: 0x2e84f0, Func Offset: 0x200
-	// Line 240, Address: 0x2e84f8, Func Offset: 0x208
-	// Line 241, Address: 0x2e8508, Func Offset: 0x218
-	// Func End, Address: 0x2e8524, Func Offset: 0x234
-	scePrintf("bhEff146_Init - UNIMPLEMENTED!\n");
+    int i;
+    int eno;
+    
+    sys->ef.id = 146;
+    
+    sys->ef.type = op->type;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.sx = 0.05f;
+    sys->ef.sy = 0.05f;
+    sys->ef.sz = 0.05f;
+    
+    sys->ef.mdlver = 0;
+    
+    if (op->lkwkp != NULL)
+    {
+        njSetMatrix(op->mtx, &((BH_PWORK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
+    }
+    
+    for (i = 0; i < 2; i++) 
+    {
+        njCalcPoint(op->mtx, &eye_ofs[i], (NJS_POINT3*)&sys->ef.px);
+        
+        eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        if ((eno != -1) || (eno < 512)) 
+        {
+            eff[eno].ax = (int)(10430.381f * atan2f(op->mtx[0][6], op->mtx[0][10]));
+            eff[eno].ay = (int)(10430.381f * asinf(-op->mtx[0][2]));
+            eff[eno].az = (int)(10430.381f * atan2f(op->mtx[0][1], op->mtx[0][0]));
+            
+            eff[eno].ct3 = 0;
+            
+            eff[eno].exp0 = (unsigned char*)op;
+            
+            eff[eno].mode1 = op->mode1;
+            
+            eff[eno].tv->col = op->tv->col;
+        }
+    } 
 }
 
 // 100% matching! 
