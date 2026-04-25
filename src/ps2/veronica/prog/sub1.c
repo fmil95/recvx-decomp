@@ -4202,47 +4202,61 @@ unsigned char Use_00(S_WORK* st)
 	scePrintf("Use_00 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a35e0
+// 100% matching!
 unsigned char Use_01(S_WORK* st)
 {
-	ATR_WORK* evit;
-	// Line 5002, Address: 0x2a35e0, Func Offset: 0
-	// Line 5006, Address: 0x2a35ec, Func Offset: 0xc
-	// Line 5007, Address: 0x2a3604, Func Offset: 0x24
-	// Line 5008, Address: 0x2a3624, Func Offset: 0x44
-	// Line 5007, Address: 0x2a3628, Func Offset: 0x48
-	// Line 5008, Address: 0x2a362c, Func Offset: 0x4c
-	// Line 5007, Address: 0x2a3630, Func Offset: 0x50
-	// Line 5008, Address: 0x2a3634, Func Offset: 0x54
-	// Line 5013, Address: 0x2a3668, Func Offset: 0x88
-	// Line 5014, Address: 0x2a3674, Func Offset: 0x94
-	// Line 5015, Address: 0x2a3678, Func Offset: 0x98
-	// Line 5014, Address: 0x2a367c, Func Offset: 0x9c
-	// Line 5016, Address: 0x2a3684, Func Offset: 0xa4
-	// Line 5017, Address: 0x2a368c, Func Offset: 0xac
-	// Line 5018, Address: 0x2a36a4, Func Offset: 0xc4
-	// Line 5019, Address: 0x2a36b4, Func Offset: 0xd4
-	// Line 5021, Address: 0x2a36d0, Func Offset: 0xf0
-	// Line 5022, Address: 0x2a36dc, Func Offset: 0xfc
-	// Line 5023, Address: 0x2a36e4, Func Offset: 0x104
-	// Line 5025, Address: 0x2a36f0, Func Offset: 0x110
-	// Line 5027, Address: 0x2a3708, Func Offset: 0x128
-	// Line 5028, Address: 0x2a3710, Func Offset: 0x130
-	// Line 5029, Address: 0x2a3720, Func Offset: 0x140
-	// Line 5030, Address: 0x2a372c, Func Offset: 0x14c
-	// Line 5034, Address: 0x2a3744, Func Offset: 0x164
-	// Line 5035, Address: 0x2a374c, Func Offset: 0x16c
-	// Line 5036, Address: 0x2a375c, Func Offset: 0x17c
-	// Line 5037, Address: 0x2a3778, Func Offset: 0x198
-	// Line 5038, Address: 0x2a3784, Func Offset: 0x1a4
-	// Line 5039, Address: 0x2a378c, Func Offset: 0x1ac
-	// Line 5041, Address: 0x2a3798, Func Offset: 0x1b8
-	// Line 5045, Address: 0x2a37b4, Func Offset: 0x1d4
-	// Line 5044, Address: 0x2a37bc, Func Offset: 0x1dc
-	// Line 5045, Address: 0x2a37c0, Func Offset: 0x1e0
-	// Func End, Address: 0x2a37c8, Func Offset: 0x1e8
-	scePrintf("Use_01 - UNIMPLEMENTED!\n");
+    ATR_WORK* evit;
+    
+    if ((sys->cb_flg & 0x200))
+    {
+        evit = &rom->flrp[sys->flr_idx];
+        
+        if ((evit->prm0 == sys->sb_id) || (evit->prm1 == sys->sb_id) || (evit->prm2 == sys->sb_id) || (evit->prm3 == sys->sb_id))
+        {
+            StatusCancel(st);
+            
+            st->flgchk &= ~0x2;
+            
+            st->testmode = 4;
+        } 
+        else if ((evit->prm0 != 59) && (evit->prm0 != 85)) 
+        {
+            if (!(sys->st_flg & 0x200)) 
+            {
+                if ((st->itemid == 36) || (st->itemid == 18)) 
+                {
+                    bhSetMessage(1, 197); 
+                }
+                else 
+                {
+                    bhSetMessage(1, 160);
+                }
+                
+                swork.statusflg &= ~0x100000;
+            }
+        } 
+        else if (!(sys->st_flg & 0x200)) 
+        {
+            bhSetMessage(1, 174);
+            
+            swork.statusflg &= ~0x100000;
+        }
+    } 
+    else if (!(sys->st_flg & 0x200)) 
+    {
+        if ((st->itemid == 36) || (st->itemid == 18)) 
+        {
+            bhSetMessage(1, 197);
+        }
+        else
+        {
+            bhSetMessage(1, 160);
+        }
+        
+        swork.statusflg &= ~0x100000;
+    }
+    
+    return 0;
 }
 
 // 100% matching!
