@@ -1,4 +1,8 @@
 #include "../../../ps2/veronica/prog/effsub5.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 
 /*_anon5* sys;
 O_WRK eff[0];
@@ -2534,22 +2538,21 @@ void bhEff236(O_WRK* op)
 	scePrintf("bhEff236 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2591e0
+// 100% matching!
 void bhDrawEff236(O_WRK* op)
 {
-	// Line 4063, Address: 0x2591e0, Func Offset: 0
-	// Line 4065, Address: 0x2591ec, Func Offset: 0xc
-	// Line 4066, Address: 0x259208, Func Offset: 0x28
-	// Line 4067, Address: 0x259234, Func Offset: 0x54
-	// Line 4071, Address: 0x25923c, Func Offset: 0x5c
-	// Line 4072, Address: 0x259248, Func Offset: 0x68
-	// Line 4076, Address: 0x259254, Func Offset: 0x74
-	// Line 4080, Address: 0x259264, Func Offset: 0x84
-	// Line 4081, Address: 0x259270, Func Offset: 0x90
-	// Line 4082, Address: 0x25927c, Func Offset: 0x9c
-	// Func End, Address: 0x25928c, Func Offset: 0xac
-	scePrintf("bhDrawEff236 - UNIMPLEMENTED!\n");
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(sys->ef_tn[op->tex_id] + op->ani_ct);
+    
+    njTextureFilterMode(1);
+    
+    njColorBlendingMode(0, op->bl_src);
+    njColorBlendingMode(1, op->bl_dst);
+    
+    njDrawTexture3DEx(op->tvp, 4, 1);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
 }
 
 // 
