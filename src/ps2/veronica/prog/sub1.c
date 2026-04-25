@@ -6639,49 +6639,44 @@ void Pulse00(NJS_POINT2* pos, NJS_COLOR* texuv)
 	scePrintf("Pulse00 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a91b0
+// 100% matching!
 void MultiWindowBack()
 {
-	float y;
-	float x;
-	NJS_COLOR uv[4];
-	NJS_COLOR col[4];
-	NJS_POINT2 p[4];
-	// Line 7848, Address: 0x2a91b0, Func Offset: 0
-	// Line 7857, Address: 0x2a91b8, Func Offset: 0x8
-	// Line 7863, Address: 0x2a91c8, Func Offset: 0x18
-	// Line 7858, Address: 0x2a91cc, Func Offset: 0x1c
-	// Line 7862, Address: 0x2a91dc, Func Offset: 0x2c
-	// Line 7857, Address: 0x2a91e0, Func Offset: 0x30
-	// Line 7858, Address: 0x2a91e4, Func Offset: 0x34
-	// Line 7859, Address: 0x2a91e8, Func Offset: 0x38
-	// Line 7868, Address: 0x2a91ec, Func Offset: 0x3c
-	// Line 7862, Address: 0x2a91f0, Func Offset: 0x40
-	// Line 7860, Address: 0x2a91f8, Func Offset: 0x48
-	// Line 7862, Address: 0x2a91fc, Func Offset: 0x4c
-	// Line 7868, Address: 0x2a9200, Func Offset: 0x50
-	// Line 7861, Address: 0x2a9204, Func Offset: 0x54
-	// Line 7863, Address: 0x2a9208, Func Offset: 0x58
-	// Line 7862, Address: 0x2a920c, Func Offset: 0x5c
-	// Line 7863, Address: 0x2a9210, Func Offset: 0x60
-	// Line 7868, Address: 0x2a9214, Func Offset: 0x64
-	// Line 7863, Address: 0x2a9218, Func Offset: 0x68
-	// Line 7864, Address: 0x2a921c, Func Offset: 0x6c
-	// Line 7865, Address: 0x2a9220, Func Offset: 0x70
-	// Line 7868, Address: 0x2a9224, Func Offset: 0x74
-	// Line 7869, Address: 0x2a922c, Func Offset: 0x7c
-	// Line 7870, Address: 0x2a9234, Func Offset: 0x84
-	// Line 7871, Address: 0x2a9238, Func Offset: 0x88
-	// Line 7873, Address: 0x2a923c, Func Offset: 0x8c
-	// Line 7874, Address: 0x2a9244, Func Offset: 0x94
-	// Line 7875, Address: 0x2a9250, Func Offset: 0xa0
-	// Line 7876, Address: 0x2a9254, Func Offset: 0xa4
-	// Line 7877, Address: 0x2a9258, Func Offset: 0xa8
-	// Line 7884, Address: 0x2a925c, Func Offset: 0xac
-	// Line 7887, Address: 0x2a927c, Func Offset: 0xcc
-	// Func End, Address: 0x2a9288, Func Offset: 0xd8
-	scePrintf("MultiWindowBack - UNIMPLEMENTED!\n");
+    NJS_POINT2 p[4];  
+    NJS_COLOR col[4], uv[4]; 
+    float x, y;        
+
+    x = 60.0f + cen_pos[2][0];
+    y = 32.0f + cen_pos[2][1];
+    
+    p[0].x = x;
+    p[0].y = y;
+    
+    p[1].x = x;
+    p[1].y = 184.0f + y;
+    
+    p[2].x = 352.0f + x;
+    p[2].y = 184.0f + y;
+    
+    p[3].x = 352.0f + x;
+    p[3].y = y;
+    
+    if ((swork.statusflg & 0x80)) 
+    {
+        col[0].color = 0xFF000000;
+        col[1].color = 0xFF000000;
+        col[2].color = 0xFF000000;
+        col[3].color = 0xFF000000;
+    } 
+    else 
+    {
+        col[0].color = 0xFF000030;
+        col[1].color = 0xFF000030;
+        col[2].color = 0xFF000030;
+        col[3].color = 0xFF000030;
+    }
+    
+    DrawPoly2D(p, col, uv, -31.0f, 0x60, 0);
 }
 
 // 
