@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/sp_evt.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*char* comevt_message_tst[27];
 unsigned char comevt_script_tst[181];
@@ -1016,25 +1017,25 @@ void bhDrawSpEvtComCharacter()
 	// Line 994, Address: 0x2bf76c, Func Offset: 0x29c
 	// Line 996, Address: 0x2bf77c, Func Offset: 0x2ac
 	// Func End, Address: 0x2bf7a4, Func Offset: 0x2d4
-}
+}*/
 
-// 
-// Start address: 0x2bf7b0
+// 100% matching!
 void bhSetSpEvtComFade(float fdst, float fcnt)
 {
-	_anon7* ce;
-	// Line 1003, Address: 0x2bf7b0, Func Offset: 0
-	// Line 1004, Address: 0x2bf7c4, Func Offset: 0x14
-	// Line 1005, Address: 0x2bf7c8, Func Offset: 0x18
-	// Line 1007, Address: 0x2bf7cc, Func Offset: 0x1c
-	// Line 1005, Address: 0x2bf7d0, Func Offset: 0x20
-	// Line 1006, Address: 0x2bf7dc, Func Offset: 0x2c
-	// Line 1007, Address: 0x2bf7e0, Func Offset: 0x30
-	// Line 1008, Address: 0x2bf7fc, Func Offset: 0x4c
-	// Func End, Address: 0x2bf804, Func Offset: 0x54
+	COM_EVT_WORK* ce;
+
+	ce = sys->com_exp;
+
+    ce->fdst = fdst;
+
+    ce->fcal = (fdst - ce->fsrc) / fcnt;
+	
+    ce->fcnt = fcnt;
+
+    sys->com_flg |= 0x2;
 }
 
-// 
+/*// 
 // Start address: 0x2bf810
 void bhCalcSpEvtComFade()
 {
