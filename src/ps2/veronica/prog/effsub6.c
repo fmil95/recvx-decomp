@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/effsub6.h"
+#include "../../../ps2/veronica/prog/effsub2.h"
 #include "../../../ps2/veronica/prog/main.h"
 
 /*_anon33 eye_ofs[2];
@@ -190,46 +191,52 @@ void bhEff_Sub146(O_WRK* op)
 	scePrintf("bhEff_Sub146 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2e8780
+// 100% matching!
 void bhEff147(O_WRK* op)
 {
-	// Line 342, Address: 0x2e8780, Func Offset: 0
-	// Line 355, Address: 0x2e878c, Func Offset: 0xc
-	// Line 359, Address: 0x2e87a0, Func Offset: 0x20
-	// Line 360, Address: 0x2e87a4, Func Offset: 0x24
-	// Line 361, Address: 0x2e87a8, Func Offset: 0x28
-	// Line 366, Address: 0x2e87ac, Func Offset: 0x2c
-	// Line 359, Address: 0x2e87b0, Func Offset: 0x30
-	// Line 360, Address: 0x2e87b8, Func Offset: 0x38
-	// Line 361, Address: 0x2e87bc, Func Offset: 0x3c
-	// Line 362, Address: 0x2e87c0, Func Offset: 0x40
-	// Line 363, Address: 0x2e87c4, Func Offset: 0x44
-	// Line 364, Address: 0x2e87c8, Func Offset: 0x48
-	// Line 365, Address: 0x2e87cc, Func Offset: 0x4c
-	// Line 366, Address: 0x2e87d0, Func Offset: 0x50
-	// Line 367, Address: 0x2e87d4, Func Offset: 0x54
-	// Line 368, Address: 0x2e87d8, Func Offset: 0x58
-	// Line 369, Address: 0x2e87dc, Func Offset: 0x5c
-	// Line 370, Address: 0x2e87e0, Func Offset: 0x60
-	// Line 371, Address: 0x2e87e4, Func Offset: 0x64
-	// Line 372, Address: 0x2e87e8, Func Offset: 0x68
-	// Line 373, Address: 0x2e87ec, Func Offset: 0x6c
-	// Line 374, Address: 0x2e87f8, Func Offset: 0x78
-	// Line 375, Address: 0x2e8800, Func Offset: 0x80
-	// Line 376, Address: 0x2e8808, Func Offset: 0x88
-	// Line 378, Address: 0x2e8814, Func Offset: 0x94
-	// Line 379, Address: 0x2e881c, Func Offset: 0x9c
-	// Line 380, Address: 0x2e8820, Func Offset: 0xa0
-	// Line 378, Address: 0x2e8824, Func Offset: 0xa4
-	// Line 379, Address: 0x2e882c, Func Offset: 0xac
-	// Line 380, Address: 0x2e8830, Func Offset: 0xb0
-	// Line 382, Address: 0x2e8834, Func Offset: 0xb4
-	// Line 383, Address: 0x2e8854, Func Offset: 0xd4
-	// Line 384, Address: 0x2e8868, Func Offset: 0xe8
-	// Line 386, Address: 0x2e888c, Func Offset: 0x10c
-	// Func End, Address: 0x2e889c, Func Offset: 0x11c
-	scePrintf("bhEff147 - UNIMPLEMENTED!\n");
+    if (!(op->stflg & 0x1000000)) 
+    {
+        op->flg |= 0x1;
+        
+        op->tex_id = 80;
+        
+        op->tv[0].x = -1.0f;
+        op->tv[0].y = 0;
+        op->tv[0].z = -1.0f;
+        
+        op->tv[1].x = -1.0f;
+        op->tv[1].y = 0;
+        op->tv[1].z = 1.0f;
+        
+        op->tv[2].x = 1.0f;
+        op->tv[2].y = 0;
+        op->tv[2].z = -1.0f;
+        
+        op->tv[3].x = 1.0f;
+        op->tv[3].y = 0;
+        op->tv[3].z = 1.0f;
+        
+        if (op->type != 0) 
+        {
+            bhEff_SetBaseColor(op, 0xFF5F0000);
+        } 
+        else 
+        {
+            bhEff_SetBaseColor(op, 0xFF400000);
+        }
+        
+        op->flg |= 0x4000000;
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        if (sys->ef_trsn < 512) 
+        {
+            sys->ef_trs[sys->ef_trsn] = op;
+            
+            sys->ef_trsn++;
+        }
+    }
 }
 
 // 
