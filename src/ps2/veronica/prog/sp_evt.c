@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/sp_evt.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 
 /*char* comevt_message_tst[27];
 unsigned char comevt_script_tst[181];
@@ -42,17 +43,15 @@ void bhControlSpEvtComputer()
 	scePrintf("bhControlSpEvtComputer - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2bd080
+// 100% matching!
 void bhKeepSpEvtComputer()
 {
-	// Line 100, Address: 0x2bd080, Func Offset: 0
-	// Line 101, Address: 0x2bd088, Func Offset: 0x8
-	// Line 103, Address: 0x2bd0ac, Func Offset: 0x2c
-	// Line 104, Address: 0x2bd0b4, Func Offset: 0x34
-	// Line 106, Address: 0x2bd0d4, Func Offset: 0x54
-	// Func End, Address: 0x2bd0e0, Func Offset: 0x60
-	scePrintf("bhKeepSpEvtComputer - UNIMPLEMENTED!\n");
+    if (!(sys->com_flg & 0x1))
+    {
+        sys->com_flg |= 0x1;
+        
+        sys->com_exp = bhGetFreeMemory(sizeof(COM_EVT_WORK), 32);
+    }
 }
 
 /*// 
@@ -1029,7 +1028,7 @@ void bhSetSpEvtComFade(float fdst, float fcnt)
     ce->fdst = fdst;
 
     ce->fcal = (fdst - ce->fsrc) / fcnt;
-	
+
     ce->fcnt = fcnt;
 
     sys->com_flg |= 0x2;
