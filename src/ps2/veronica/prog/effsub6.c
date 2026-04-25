@@ -1,6 +1,8 @@
 #include "../../../ps2/veronica/prog/effsub6.h"
 #include "../../../ps2/veronica/prog/effsub2.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 
 /*_anon33 eye_ofs[2];
 BH_PWORK ene[0];
@@ -239,78 +241,105 @@ void bhEff147(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x2e88a0
+// 100% matching!
 void bhEff148(O_WRK* op)
 {
-	//_anon33 pos;
-	// Line 396, Address: 0x2e88a0, Func Offset: 0
-	// Line 416, Address: 0x2e88ac, Func Offset: 0xc
-	// Line 417, Address: 0x2e88b8, Func Offset: 0x18
-	// Line 418, Address: 0x2e88bc, Func Offset: 0x1c
-	// Line 420, Address: 0x2e88c0, Func Offset: 0x20
-	// Line 425, Address: 0x2e88c4, Func Offset: 0x24
-	// Line 431, Address: 0x2e88c8, Func Offset: 0x28
-	// Line 418, Address: 0x2e88cc, Func Offset: 0x2c
-	// Line 420, Address: 0x2e88d4, Func Offset: 0x34
-	// Line 421, Address: 0x2e88d8, Func Offset: 0x38
-	// Line 422, Address: 0x2e88dc, Func Offset: 0x3c
-	// Line 423, Address: 0x2e88e0, Func Offset: 0x40
-	// Line 425, Address: 0x2e88e4, Func Offset: 0x44
-	// Line 426, Address: 0x2e88e8, Func Offset: 0x48
-	// Line 432, Address: 0x2e88ec, Func Offset: 0x4c
-	// Line 435, Address: 0x2e88f0, Func Offset: 0x50
-	// Line 436, Address: 0x2e88f4, Func Offset: 0x54
-	// Line 426, Address: 0x2e88f8, Func Offset: 0x58
-	// Line 431, Address: 0x2e8904, Func Offset: 0x64
-	// Line 432, Address: 0x2e8908, Func Offset: 0x68
-	// Line 435, Address: 0x2e890c, Func Offset: 0x6c
-	// Line 441, Address: 0x2e8910, Func Offset: 0x70
-	// Line 437, Address: 0x2e891c, Func Offset: 0x7c
-	// Line 435, Address: 0x2e8920, Func Offset: 0x80
-	// Line 436, Address: 0x2e8928, Func Offset: 0x88
-	// Line 437, Address: 0x2e892c, Func Offset: 0x8c
-	// Line 438, Address: 0x2e8930, Func Offset: 0x90
-	// Line 439, Address: 0x2e8934, Func Offset: 0x94
-	// Line 441, Address: 0x2e8938, Func Offset: 0x98
-	// Line 448, Address: 0x2e893c, Func Offset: 0x9c
-	// Line 441, Address: 0x2e8940, Func Offset: 0xa0
-	// Line 442, Address: 0x2e8948, Func Offset: 0xa8
-	// Line 443, Address: 0x2e8954, Func Offset: 0xb4
-	// Line 445, Address: 0x2e8960, Func Offset: 0xc0
-	// Line 446, Address: 0x2e8968, Func Offset: 0xc8
-	// Line 447, Address: 0x2e8970, Func Offset: 0xd0
-	// Line 448, Address: 0x2e8974, Func Offset: 0xd4
-	// Line 450, Address: 0x2e8980, Func Offset: 0xe0
-	// Line 451, Address: 0x2e8984, Func Offset: 0xe4
-	// Line 452, Address: 0x2e8988, Func Offset: 0xe8
-	// Line 453, Address: 0x2e8990, Func Offset: 0xf0
-	// Line 454, Address: 0x2e8994, Func Offset: 0xf4
-	// Line 455, Address: 0x2e899c, Func Offset: 0xfc
-	// Line 456, Address: 0x2e89a4, Func Offset: 0x104
-	// Line 457, Address: 0x2e89ac, Func Offset: 0x10c
-	// Line 473, Address: 0x2e89b4, Func Offset: 0x114
-	// Line 476, Address: 0x2e89e0, Func Offset: 0x140
-	// Line 477, Address: 0x2e89f0, Func Offset: 0x150
-	// Line 482, Address: 0x2e89fc, Func Offset: 0x15c
-	// Line 483, Address: 0x2e8a24, Func Offset: 0x184
-	// Line 485, Address: 0x2e8a34, Func Offset: 0x194
-	// Line 486, Address: 0x2e8a38, Func Offset: 0x198
-	// Line 488, Address: 0x2e8a40, Func Offset: 0x1a0
-	// Line 489, Address: 0x2e8a78, Func Offset: 0x1d8
-	// Line 490, Address: 0x2e8a88, Func Offset: 0x1e8
-	// Line 492, Address: 0x2e8a9c, Func Offset: 0x1fc
-	// Line 491, Address: 0x2e8aa0, Func Offset: 0x200
-	// Line 494, Address: 0x2e8aa4, Func Offset: 0x204
-	// Line 496, Address: 0x2e8aac, Func Offset: 0x20c
-	// Line 497, Address: 0x2e8ab0, Func Offset: 0x210
-	// Line 498, Address: 0x2e8ab8, Func Offset: 0x218
-	// Line 543, Address: 0x2e8abc, Func Offset: 0x21c
-	// Line 544, Address: 0x2e8ac8, Func Offset: 0x228
-	// Line 545, Address: 0x2e8af0, Func Offset: 0x250
-	// Line 549, Address: 0x2e8b14, Func Offset: 0x274
-	// Func End, Address: 0x2e8b24, Func Offset: 0x284
-	scePrintf("bhEff148 - UNIMPLEMENTED!\n");
+    NJS_POINT3 pos;
+
+    if (op->mode0 == 0) 
+    {
+        op->stflg = 0;
+        
+        op->flg |= 0x8000;
+        
+        op->mode0 = 1;
+        op->mode1 = 0;
+        op->mode2 = 0;
+        op->mode3 = 0;
+        
+        op->tv[0].col = 0xFF400000;
+        op->tv[3].col = op->tv[2].col = op->tv[1].col = op->tv[0].col;
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        op->flg |= 0x4120000;
+        
+        op->ani_ct = 2;
+        
+        op->tex_id = 4;
+        
+        op->ct1 = 0;
+        op->ct2 = 0;
+        
+        op->sx = 0.1f * op->sxb;
+        op->sy = 0.1f * op->syb;
+        op->sz = 0.1f * op->szb;
+        
+        pos.x = op->px;
+        pos.y = op->py;
+        pos.z = op->pz;
+        
+        op->gpy = bhGetGroundPosition(&pos);
+        
+        op->tv[0].u = 0;
+        op->tv[0].v = 0;
+        
+        op->tv[3].u = 1.0f;
+        op->tv[3].v = 1.0f;
+        
+        op->tv[1].u = op->tv[3].u;
+        op->tv[1].v = op->tv[0].v;
+        
+        op->tv[2].u = op->tv[0].u;
+        op->tv[2].v = op->tv[3].v;
+    }
+    
+    switch (op->mode1)
+    {                            
+    case 0:
+        op->flg &= ~0x80;
+        
+        if (op->lkwkp != NULL) 
+        {
+            njSetMatrix(op->mtx, &((BH_PWORK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
+            
+            njCalcPoint(op->mtx, (NJS_POINT3*)&op->lox, (NJS_POINT3*)&op->px);
+        }
+        
+        op->ofy = op->py;
+        break;
+    case 1:
+        if (op->yn > -2.0f) 
+        {
+            op->yn -= 0.1f;
+        }
+        
+        op->py += op->yn;
+        
+        if (op->py < op->gpy) 
+        {
+            op->py = op->gpy;
+            
+            op->mode1 = 2;
+        }
+        
+        break;
+    case 2:
+        op->mode1 = 0;
+        
+        op->py = op->ofy;
+        
+        op->yn = 0;
+        break;
+    }
+    
+    if (op->mode1 != 0) 
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
 
 // 
