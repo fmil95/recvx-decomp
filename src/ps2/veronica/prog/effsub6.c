@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/effsub6.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*_anon33 eye_ofs[2];
 BH_PWORK ene[0];
@@ -412,24 +413,34 @@ void bhEff149(O_WRK* op)
 	scePrintf("bhEff149 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2e90c0
+// 100% matching!
 void bhEff144(O_WRK* op)
 {
-	// Line 967, Address: 0x2e90c0, Func Offset: 0
-	// Line 969, Address: 0x2e90e0, Func Offset: 0x20
-	// Line 970, Address: 0x2e90e4, Func Offset: 0x24
-	// Line 971, Address: 0x2e90e8, Func Offset: 0x28
-	// Line 973, Address: 0x2e90f0, Func Offset: 0x30
-	// Line 975, Address: 0x2e90f8, Func Offset: 0x38
-	// Line 976, Address: 0x2e9104, Func Offset: 0x44
-	// Line 977, Address: 0x2e9114, Func Offset: 0x54
-	// Line 978, Address: 0x2e9148, Func Offset: 0x88
-	// Line 983, Address: 0x2e9150, Func Offset: 0x90
-	// Line 985, Address: 0x2e9154, Func Offset: 0x94
-	// Line 986, Address: 0x2e918c, Func Offset: 0xcc
-	// Func End, Address: 0x2e9194, Func Offset: 0xd4
-	scePrintf("bhEff144 - UNIMPLEMENTED!\n");
+    switch (op->mode0) 
+    {
+    case 0:
+        op->ct0 = 0;
+        op->ct1 = 0;
+        
+        op->ani_ct = op->mdlver;
+        
+        op->mode0 = 1;
+        break;
+    case 1:
+        op->ct1++;
+        
+        if (op->ct1 < 6) 
+        {
+            sys->ef_trs[sys->ef_trsn++] = op;
+            return;
+        }
+        
+        break;
+    }
+    
+    op->ct1 = 0;
+    
+    sys->ef_trs[sys->ef_trsn++] = op;
 }
 
 // 
