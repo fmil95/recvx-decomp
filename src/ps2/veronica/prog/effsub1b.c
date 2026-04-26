@@ -1,4 +1,7 @@
 #include "../../../ps2/veronica/prog/effsub1b.h"
+#include "../../../ps2/veronica/prog/flag.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
 
 /*_anon4* sys;
 void(*bhDraw134)(O_WRK*);
@@ -10,62 +13,88 @@ void(*bhDraw137)(O_WRK*);
 _anon7* rom;
 void(*bhDraw138)(O_WRK*);*/
 
-// 
-// Start address: 0x238ec0
+// 100% matching!
 void bhEff133(O_WRK* op)
 {
-	char lmt[2][3];
-	// Line 50, Address: 0x238ec0, Func Offset: 0
-	// Line 56, Address: 0x238ecc, Func Offset: 0xc
-	// Line 57, Address: 0x238edc, Func Offset: 0x1c
-	// Line 60, Address: 0x238f04, Func Offset: 0x44
-	// Line 61, Address: 0x238f10, Func Offset: 0x50
-	// Line 60, Address: 0x238f14, Func Offset: 0x54
-	// Line 61, Address: 0x238f20, Func Offset: 0x60
-	// Line 63, Address: 0x238f48, Func Offset: 0x88
-	// Line 64, Address: 0x238f50, Func Offset: 0x90
-	// Line 63, Address: 0x238f54, Func Offset: 0x94
-	// Line 64, Address: 0x238f58, Func Offset: 0x98
-	// Line 63, Address: 0x238f5c, Func Offset: 0x9c
-	// Line 64, Address: 0x238f60, Func Offset: 0xa0
-	// Line 65, Address: 0x238f68, Func Offset: 0xa8
-	// Line 64, Address: 0x238f6c, Func Offset: 0xac
-	// Line 65, Address: 0x238f74, Func Offset: 0xb4
-	// Line 66, Address: 0x238f90, Func Offset: 0xd0
-	// Line 68, Address: 0x238f94, Func Offset: 0xd4
-	// Line 69, Address: 0x238fa8, Func Offset: 0xe8
-	// Line 70, Address: 0x238fc8, Func Offset: 0x108
-	// Line 72, Address: 0x239014, Func Offset: 0x154
-	// Line 73, Address: 0x23901c, Func Offset: 0x15c
-	// Line 74, Address: 0x239028, Func Offset: 0x168
-	// Line 73, Address: 0x239030, Func Offset: 0x170
-	// Line 74, Address: 0x239038, Func Offset: 0x178
-	// Line 76, Address: 0x239040, Func Offset: 0x180
-	// Line 78, Address: 0x2390a0, Func Offset: 0x1e0
-	// Line 79, Address: 0x2390a8, Func Offset: 0x1e8
-	// Line 80, Address: 0x2390b4, Func Offset: 0x1f4
-	// Line 79, Address: 0x2390bc, Func Offset: 0x1fc
-	// Line 80, Address: 0x2390c4, Func Offset: 0x204
-	// Line 83, Address: 0x2390cc, Func Offset: 0x20c
-	// Line 84, Address: 0x239104, Func Offset: 0x244
-	// Line 85, Address: 0x23910c, Func Offset: 0x24c
-	// Line 87, Address: 0x239118, Func Offset: 0x258
-	// Line 88, Address: 0x239154, Func Offset: 0x294
-	// Line 89, Address: 0x23915c, Func Offset: 0x29c
-	// Line 91, Address: 0x239168, Func Offset: 0x2a8
-	// Line 92, Address: 0x2391a0, Func Offset: 0x2e0
-	// Line 93, Address: 0x2391a8, Func Offset: 0x2e8
-	// Line 95, Address: 0x2391b0, Func Offset: 0x2f0
-	// Line 98, Address: 0x2391b8, Func Offset: 0x2f8
-	// Line 101, Address: 0x239204, Func Offset: 0x344
-	// Line 103, Address: 0x239210, Func Offset: 0x350
-	// Line 104, Address: 0x23921c, Func Offset: 0x35c
-	// Line 103, Address: 0x239228, Func Offset: 0x368
-	// Line 104, Address: 0x23922c, Func Offset: 0x36c
-	// Line 105, Address: 0x23923c, Func Offset: 0x37c
-	// Line 109, Address: 0x239240, Func Offset: 0x380
-	// Func End, Address: 0x239250, Func Offset: 0x390
-	scePrintf("bhEff133 - UNIMPLEMENTED!\n");
+	static char lmt[3][2] = 
+    {
+        { 1, 5 },
+        { 0, 9 },
+        { 0, 9 }
+    };
+
+    op->flg |= 0x1000000;
+    
+    if ((op->mode1 != 0) || ((sys->st_flg & 0x40000000))) 
+    {
+        sys->st_flg |= 0x40000000;
+        
+        switch (op->mode0)
+        {
+        case 0:
+            op->ct3 = sys->sp_flg;
+            
+            sys->sp_flg &= ~0x3;
+            
+            sys->ond_tnm = sys->ef_tn[42];
+            
+            op->mode0 = 1;
+        case 1:
+            sys->ond_ud = 0;
+            
+            if (sys->ond_cx < 3)
+            {
+                if (((sys->pad_ps & 0x1)) && (sys->ond_n[sys->ond_cx] < lmt[sys->ond_cx][1])) 
+                {
+                    sys->ond_n[sys->ond_cx]++;
+                    sys->ond_ud = 1;
+                    
+                    CallSystemSe(0, 2);
+                }
+                
+                if (((sys->pad_ps & 0x2)) && (sys->ond_n[sys->ond_cx] > lmt[sys->ond_cx][0]))
+                {
+                    sys->ond_n[sys->ond_cx]--;
+                    sys->ond_ud = -1;
+                    
+                    CallSystemSe(0, 2);
+                }
+            }
+            
+            if (((sys->pad_ps & 0x4)) && (sys->ond_cx > 0))
+            {
+                sys->ond_cx--;
+                
+                CallSystemSe(0, 2);
+            }
+            
+            if (((sys->pad_ps & 0x8)) && (sys->ond_cx < 3))
+            {
+                sys->ond_cx++;
+            
+                CallSystemSe(0, 2);
+            }
+            
+            if (((sys->pad_ps & 0x800)) && (sys->ond_cx == 3)) 
+            {
+                op->mode0 = 2;
+                
+                CallSystemSe(0, 3);
+            }
+            
+            break;
+        case 2:
+            if ((sys->ond_n[0] == 1) && (sys->ond_n[1] == 2) && (sys->ond_n[2] == 8))
+            {
+                bhStFlg(sys->ev_flg, 58);
+            }
+            
+            sys->sp_flg = op->ct3;
+            sys->st_flg &= ~0x40000000; 
+            
+            *(int*)&op->mode0 = 0;
+        }
+    }
 }
 
 // 
