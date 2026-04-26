@@ -14,46 +14,61 @@ static NJS_POINT3 eye_ofs[2] =
     { -0.28f, 0.82f, -0.90f }
 };
 
-// 
-// Start address: 0x2e80b0
+// 100% matching!
 void bhEff085(O_WRK* op)
 {
-	//_anon6* effp;
-	//_anon1* tnp2;
-	//_anon1* tnp;
-	// Line 86, Address: 0x2e80b0, Func Offset: 0
-	// Line 88, Address: 0x2e80d0, Func Offset: 0x20
-	// Line 89, Address: 0x2e80dc, Func Offset: 0x2c
-	// Line 90, Address: 0x2e80e0, Func Offset: 0x30
-	// Line 91, Address: 0x2e80e4, Func Offset: 0x34
-	// Line 92, Address: 0x2e80e8, Func Offset: 0x38
-	// Line 94, Address: 0x2e80ec, Func Offset: 0x3c
-	// Line 97, Address: 0x2e80f4, Func Offset: 0x44
-	// Line 99, Address: 0x2e8100, Func Offset: 0x50
-	// Line 101, Address: 0x2e810c, Func Offset: 0x5c
-	// Line 103, Address: 0x2e8110, Func Offset: 0x60
-	// Line 101, Address: 0x2e8114, Func Offset: 0x64
-	// Line 99, Address: 0x2e811c, Func Offset: 0x6c
-	// Line 101, Address: 0x2e812c, Func Offset: 0x7c
-	// Line 99, Address: 0x2e8130, Func Offset: 0x80
-	// Line 101, Address: 0x2e813c, Func Offset: 0x8c
-	// Line 99, Address: 0x2e8144, Func Offset: 0x94
-	// Line 101, Address: 0x2e8148, Func Offset: 0x98
-	// Line 99, Address: 0x2e8150, Func Offset: 0xa0
-	// Line 103, Address: 0x2e8158, Func Offset: 0xa8
-	// Line 99, Address: 0x2e815c, Func Offset: 0xac
-	// Line 103, Address: 0x2e8160, Func Offset: 0xb0
-	// Line 105, Address: 0x2e8168, Func Offset: 0xb8
-	// Line 107, Address: 0x2e8198, Func Offset: 0xe8
-	// Line 108, Address: 0x2e81a0, Func Offset: 0xf0
-	// Line 111, Address: 0x2e81a8, Func Offset: 0xf8
-	// Line 114, Address: 0x2e81b8, Func Offset: 0x108
-	// Line 116, Address: 0x2e81d4, Func Offset: 0x124
-	// Line 119, Address: 0x2e81e0, Func Offset: 0x130
-	// Line 121, Address: 0x2e8218, Func Offset: 0x168
-	// Line 128, Address: 0x2e821c, Func Offset: 0x16c
-	// Func End, Address: 0x2e8224, Func Offset: 0x174
-	scePrintf("bhEff085 - UNIMPLEMENTED!\n");
+    NJS_TEXNAME* tnp, *tnp2;
+    EF_WRK* effp;
+    BH_PWORK* enep, *enep2; // not from DWARF
+	
+    switch (op->mode0) 
+    {                     
+    case 0:
+        op->flg |= 0x1;
+        
+        op->stflg = 0;
+        
+        op->mode0 = 1;
+        op->mode1 = 0;
+        op->mode2 = 0;
+        op->mode3 = 0;
+        break;
+    case 1:
+        if (op->mode1 == 1) 
+        {
+            tnp = &sys->ef_tlist.textures[sys->ef_tn[op->id]];
+            
+            effp = &rom->effp[op->type];
+            
+            if (effp->lkflg == 2) 
+            {
+                enep = &ene[effp->lkno];
+                
+                tnp2 = (NJS_TEXNAME*)&enep->mlwP->texP->textures[3];
+                
+                op->exp0 = (unsigned char*)tnp2->texaddr; 
+                
+                tnp2->texaddr = tnp->texaddr;
+            }
+            
+            op->mode1 = 0;
+        }
+        else if (op->mode1 == 2) 
+        {
+            effp = &rom->effp[op->type];
+            
+            if (effp->lkflg == 2) 
+            {
+                enep2 = &ene[effp->lkno];
+                
+                enep2->mlwP->texP->textures[3].texaddr = (int)op->exp0;
+            }
+            
+            op->mode1 = 0;
+        }
+        
+        return;
+    }
 }
 
 // 100% matching!
