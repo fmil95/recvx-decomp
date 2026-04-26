@@ -862,47 +862,131 @@ int AllRanking(int score, unsigned int mode)
     return ret;
 }
 
-// 
-// Start address: 0x2bcaf0
+// 100% matching!
 int GameClearScore(int time)
 {
-	int timescore[8][2];
-	int cleartime[2][48];
-	int gm_mode;
-	int i;
-	int ret;
-	// Line 1140, Address: 0x2bcaf0, Func Offset: 0
-	// Line 1145, Address: 0x2bcaf4, Func Offset: 0x4
-	// Line 1142, Address: 0x2bcb04, Func Offset: 0x14
-	// Line 1145, Address: 0x2bcb08, Func Offset: 0x18
-	// Line 1203, Address: 0x2bcb28, Func Offset: 0x38
-	// Line 1210, Address: 0x2bcb44, Func Offset: 0x54
-	// Line 1203, Address: 0x2bcb48, Func Offset: 0x58
-	// Line 1210, Address: 0x2bcb58, Func Offset: 0x68
-	// Line 1212, Address: 0x2bcb64, Func Offset: 0x74
-	// Line 1214, Address: 0x2bcb6c, Func Offset: 0x7c
-	// Line 1215, Address: 0x2bcb80, Func Offset: 0x90
-	// Line 1217, Address: 0x2bcb94, Func Offset: 0xa4
-	// Line 1218, Address: 0x2bcb9c, Func Offset: 0xac
-	// Line 1222, Address: 0x2bcba4, Func Offset: 0xb4
-	// Line 1224, Address: 0x2bcbcc, Func Offset: 0xdc
-	// Line 1225, Address: 0x2bcbd4, Func Offset: 0xe4
-	// Line 1227, Address: 0x2bcc00, Func Offset: 0x110
-	// Line 1228, Address: 0x2bcc08, Func Offset: 0x118
-	// Line 1230, Address: 0x2bcc34, Func Offset: 0x144
-	// Line 1231, Address: 0x2bcc3c, Func Offset: 0x14c
-	// Line 1233, Address: 0x2bcc68, Func Offset: 0x178
-	// Line 1234, Address: 0x2bcc70, Func Offset: 0x180
-	// Line 1236, Address: 0x2bcc9c, Func Offset: 0x1ac
-	// Line 1237, Address: 0x2bcca4, Func Offset: 0x1b4
-	// Line 1239, Address: 0x2bccd0, Func Offset: 0x1e0
-	// Line 1240, Address: 0x2bccd8, Func Offset: 0x1e8
-	// Line 1242, Address: 0x2bcd04, Func Offset: 0x214
-	// Line 1243, Address: 0x2bcd0c, Func Offset: 0x21c
-	// Line 1244, Address: 0x2bcd28, Func Offset: 0x238
-	// Line 1248, Address: 0x2bcd38, Func Offset: 0x248
-	// Func End, Address: 0x2bcd44, Func Offset: 0x254
-	scePrintf("GameClearScore - UNIMPLEMENTED!\n");
+    int ret = 0;               
+    int i;                  
+    int gm_mode;              
+    int cleartime[48][2] = // TODO: verify this 2D array and the one below are correctly defined
+    {
+        { 0,       972060  },
+        { 972060,  1080572 },
+        { 1080572, 1187036 },
+        { 1187036, 1317660 },
+        { 1317660, 1620060 },
+        { 1620060, 0       },
+        { 0,       0       },
+        { 0,       22200   },
+        { 22200,   22800   },
+        { 22800,   23400   },
+        { 23400,   24000   },
+        { 24000,   24000   },
+        { 24000,   24000   },
+        { 24000,   24000   },
+        { 24000,   24000   },
+        { 0,       23400   },
+        { 23400,   30600   },
+        { 30600,   34200   },
+        { 23400,   37800   },
+        { 37800,   37800   },
+        { 37800,   37800   },
+        { 37800,   37800   },
+        { 37800,   37800   },
+        { 0,       36000   },
+        { 36000,   45000   },
+        { 45000,   48600   },
+        { 48600,   52200   },
+        { 52200,   52200   },
+        { 52200,   52200   },
+        { 52200,   52200   },
+        { 52200,   0       },
+        { 218340,  218340  },
+        { 218340,  218340  },
+        { 218340,  218340  },
+        { 218340,  218340  },
+        { 218340,  218340  },
+        { 218340,  218340  },
+        { 218340,  218340  },
+        { 0,       28740   },
+        { 28740,   32340   },
+        { 32340,   35940   },
+        { 35940,   39540   },
+        { 39540,   43140   },
+        { 43140,   43140   },
+        { 43140,   43140   },
+        { 43140,   43140   },
+        { 43140,   43140   },
+        { 43140,   43140   }
+    };
+    int timescore[2][8] = 
+    {
+        { 7550, 7000, 6450, 5500, 5000, 2500, 2000, 10000 },
+        { 8000, 6000, 4000,    0,    0,    0,    0,     0 }
+    };
+    unsigned int ply_id; // not from DWARF
+
+    gm_mode = sys->gm_mode;
+    
+    if (gm_mode != 0)
+    {
+        i = 1;
+    } 
+    else 
+    {
+        i = 0;
+    }
+    
+    if (gm_mode == 0)
+    {
+        ply_id = 0;
+    } 
+    else if (gm_mode == 3)
+    {
+        if (sys->costume != 0) 
+        {
+            ply_id = 5;
+        } 
+        else
+        { 
+            ply_id = sys->ply_id + 1;
+        }
+    }
+    
+    if ((time >= cleartime[8 * ply_id][0]) && (time < cleartime[8 * ply_id][1]))
+    {
+        ret = timescore[i][0]; 
+    } 
+    else if ((time >= cleartime[(8 * ply_id) + 1][0]) && (time < cleartime[(8 * ply_id) + 1][1]))
+    {
+        ret = timescore[i][1]; 
+    }
+    else if ((time >= cleartime[(8 * ply_id) + 2][0]) && (time < cleartime[(8 * ply_id) + 2][1])) 
+    {
+        ret = timescore[i][2]; 
+    } 
+    else if ((time >= cleartime[(8 * ply_id) + 3][0]) && (time < cleartime[(8 * ply_id) + 3][1]))
+    {
+        ret = timescore[i][3]; 
+    } 
+    else if ((time >= cleartime[(8 * ply_id) + 4][0]) && (time < cleartime[(8 * ply_id) + 4][1])) 
+    {
+        ret = timescore[i][4];  
+    } 
+    else if ((time >= cleartime[(8 * ply_id) + 5][0]) && (time < cleartime[(8 * ply_id) + 5][1])) 
+    {
+        ret = timescore[i][5]; 
+    } 
+    else if ((time >= cleartime[(8 * ply_id) + 6][0]) && (time < cleartime[(8 * ply_id) + 6][1])) 
+    {
+        ret = timescore[i][6]; 
+    } 
+    else if (time >= cleartime[(8 * ply_id) + 7][0]) 
+    {
+        ret = timescore[i][7];  
+    }
+    
+    return ret;
 }
 
 // 100% matching
