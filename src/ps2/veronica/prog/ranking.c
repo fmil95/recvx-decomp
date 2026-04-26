@@ -784,42 +784,82 @@ void DispTime(NJS_POINT2* pos, int time, unsigned int col, unsigned int mode)
 	bhDispTimeEx(pos, mode, time, col, -2.0f);
 }
 
-// 
-// Start address: 0x2bc900
+// 100% matching!
 int AllRanking(int score, unsigned int mode)
 {
-	int rankscore[4][5];
-	int ret;
-	int i;
-	unsigned int ply_id;
-	// Line 1073, Address: 0x2bc900, Func Offset: 0
-	// Line 1078, Address: 0x2bc90c, Func Offset: 0xc
-	// Line 1073, Address: 0x2bc914, Func Offset: 0x14
-	// Line 1078, Address: 0x2bc91c, Func Offset: 0x1c
-	// Line 1089, Address: 0x2bc930, Func Offset: 0x30
-	// Line 1078, Address: 0x2bc934, Func Offset: 0x34
-	// Line 1089, Address: 0x2bc94c, Func Offset: 0x4c
-	// Line 1091, Address: 0x2bc95c, Func Offset: 0x5c
-	// Line 1092, Address: 0x2bc970, Func Offset: 0x70
-	// Line 1095, Address: 0x2bc974, Func Offset: 0x74
-	// Line 1097, Address: 0x2bc98c, Func Offset: 0x8c
-	// Line 1100, Address: 0x2bc9b4, Func Offset: 0xb4
-	// Line 1103, Address: 0x2bc9e0, Func Offset: 0xe0
-	// Line 1106, Address: 0x2bca0c, Func Offset: 0x10c
-	// Line 1109, Address: 0x2bca38, Func Offset: 0x138
-	// Line 1110, Address: 0x2bca40, Func Offset: 0x140
-	// Line 1115, Address: 0x2bca44, Func Offset: 0x144
-	// Line 1116, Address: 0x2bca4c, Func Offset: 0x14c
-	// Line 1117, Address: 0x2bca68, Func Offset: 0x168
-	// Line 1121, Address: 0x2bca74, Func Offset: 0x174
-	// Line 1125, Address: 0x2bca7c, Func Offset: 0x17c
-	// Line 1126, Address: 0x2bcaa0, Func Offset: 0x1a0
-	// Line 1127, Address: 0x2bcab4, Func Offset: 0x1b4
-	// Line 1128, Address: 0x2bcad0, Func Offset: 0x1d0
-	// Line 1133, Address: 0x2bcad4, Func Offset: 0x1d4
-	// Line 1134, Address: 0x2bcad8, Func Offset: 0x1d8
-	// Func End, Address: 0x2bcaec, Func Offset: 0x1ec
-	scePrintf("AllRanking - UNIMPLEMENTED!\n");
+    unsigned int ply_id;        
+    int i;                      
+    int ret;               
+    int rankscore[5][4] = 
+    {
+        { -1,   10000, -1,   10000 },
+        { 9999, 6999,  9999, 6999  },
+        { 6999, 4999,  6999, 4999  },
+        { 4999, 1000,  4999, 1000  },
+        { 1000, 0,     1000, 0     }
+    };
+    
+    i = 0;
+    
+    if (sys->gm_mode == 0) 
+    {
+        i = 0;
+    } 
+    else if (sys->gm_mode == 3) 
+    {
+        i = 1;
+    }
+    
+    if (score >= rankscore[0][(2 * i) + 1]) 
+    {
+        ret = 1;
+    } 
+    else if ((score <= rankscore[1][2 * i]) && (score > rankscore[1][(2 * i) + 1])) 
+    {
+        ret = 2;
+    }
+    else if ((score <= rankscore[2][2 * i]) && (score > rankscore[2][(2 * i) + 1])) 
+    {
+        ret = 4;
+    } 
+    else if ((score <= rankscore[3][2 * i]) && (score > rankscore[3][(2 * i) + 1]))
+    {
+        ret = 8;
+    }
+    else if ((score <= rankscore[4][2 * i]) && (score > rankscore[4][(2 * i) + 1])) 
+    {
+        ret = 16;
+    }
+    else
+    {
+        ret = 16;
+    }
+    
+    if (sys->gm_mode == 0) 
+    {
+        if ((bhCkFlg(sys->ev_flg, 75) != 0) && (mode == 0) && (!(ret & 0x10)))
+        {
+            ret *= 2;
+        }
+    } 
+    else 
+    {
+        if (sys->costume != 0) 
+        {
+            ply_id = 4;
+        }
+        else 
+        {
+            ply_id = sys->ply_id;
+        }
+        
+        if ((bhCkFlg(sys->ev_flg, 75) != 0) && (sys->best_tm[ply_id] == 0)) 
+        {
+            ret = 32;
+        }
+    }
+    
+    return ret;
 }
 
 // 
