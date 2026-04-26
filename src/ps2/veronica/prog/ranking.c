@@ -37,147 +37,229 @@ void ControlRanking()
     RankingMode[sys->typ_md0]();
 }
 
-// 
-// Start address: 0x2bb240
+// 100% matching!
 void RankingInit()
 {
-	unsigned int ply_id;
-	int j;
-	//_anon6* sfe;
-	//_anon5* rk;
-	// Line 151, Address: 0x2bb240, Func Offset: 0
-	// Line 152, Address: 0x2bb254, Func Offset: 0x14
-	// Line 153, Address: 0x2bb25c, Func Offset: 0x1c
-	// Line 161, Address: 0x2bb264, Func Offset: 0x24
-	// Line 162, Address: 0x2bb26c, Func Offset: 0x2c
-	// Line 163, Address: 0x2bb284, Func Offset: 0x44
-	// Line 165, Address: 0x2bb28c, Func Offset: 0x4c
-	// Line 163, Address: 0x2bb294, Func Offset: 0x54
-	// Line 165, Address: 0x2bb29c, Func Offset: 0x5c
-	// Line 166, Address: 0x2bb2a4, Func Offset: 0x64
-	// Line 167, Address: 0x2bb2ac, Func Offset: 0x6c
-	// Line 169, Address: 0x2bb2b0, Func Offset: 0x70
-	// Line 166, Address: 0x2bb2b4, Func Offset: 0x74
-	// Line 167, Address: 0x2bb2b8, Func Offset: 0x78
-	// Line 166, Address: 0x2bb2bc, Func Offset: 0x7c
-	// Line 167, Address: 0x2bb2c8, Func Offset: 0x88
-	// Line 169, Address: 0x2bb2d0, Func Offset: 0x90
-	// Line 170, Address: 0x2bb2e4, Func Offset: 0xa4
-	// Line 172, Address: 0x2bb2ec, Func Offset: 0xac
-	// Line 173, Address: 0x2bb2f4, Func Offset: 0xb4
-	// Line 174, Address: 0x2bb2f8, Func Offset: 0xb8
-	// Line 176, Address: 0x2bb300, Func Offset: 0xc0
-	// Line 177, Address: 0x2bb304, Func Offset: 0xc4
-	// Line 178, Address: 0x2bb308, Func Offset: 0xc8
-	// Line 179, Address: 0x2bb30c, Func Offset: 0xcc
-	// Line 180, Address: 0x2bb324, Func Offset: 0xe4
-	// Line 181, Address: 0x2bb334, Func Offset: 0xf4
-	// Line 182, Address: 0x2bb344, Func Offset: 0x104
-	// Line 183, Address: 0x2bb354, Func Offset: 0x114
-	// Line 184, Address: 0x2bb364, Func Offset: 0x124
-	// Line 185, Address: 0x2bb374, Func Offset: 0x134
-	// Line 186, Address: 0x2bb388, Func Offset: 0x148
-	// Line 187, Address: 0x2bb398, Func Offset: 0x158
-	// Line 188, Address: 0x2bb3ac, Func Offset: 0x16c
-	// Line 189, Address: 0x2bb3bc, Func Offset: 0x17c
-	// Line 190, Address: 0x2bb3cc, Func Offset: 0x18c
-	// Line 191, Address: 0x2bb3d0, Func Offset: 0x190
-	// Line 192, Address: 0x2bb3d4, Func Offset: 0x194
-	// Line 193, Address: 0x2bb3d8, Func Offset: 0x198
-	// Line 194, Address: 0x2bb3dc, Func Offset: 0x19c
-	// Line 190, Address: 0x2bb3e0, Func Offset: 0x1a0
-	// Line 191, Address: 0x2bb3e8, Func Offset: 0x1a8
-	// Line 192, Address: 0x2bb3ec, Func Offset: 0x1ac
-	// Line 193, Address: 0x2bb3f0, Func Offset: 0x1b0
-	// Line 199, Address: 0x2bb3f4, Func Offset: 0x1b4
-	// Line 200, Address: 0x2bb410, Func Offset: 0x1d0
-	// Line 201, Address: 0x2bb414, Func Offset: 0x1d4
-	// Line 200, Address: 0x2bb420, Func Offset: 0x1e0
-	// Line 201, Address: 0x2bb428, Func Offset: 0x1e8
-	// Line 202, Address: 0x2bb42c, Func Offset: 0x1ec
-	// Line 203, Address: 0x2bb43c, Func Offset: 0x1fc
-	// Line 204, Address: 0x2bb440, Func Offset: 0x200
-	// Line 203, Address: 0x2bb444, Func Offset: 0x204
-	// Line 206, Address: 0x2bb448, Func Offset: 0x208
-	// Line 207, Address: 0x2bb464, Func Offset: 0x224
-	// Line 208, Address: 0x2bb480, Func Offset: 0x240
-	// Line 213, Address: 0x2bb48c, Func Offset: 0x24c
-	// Line 212, Address: 0x2bb490, Func Offset: 0x250
-	// Line 215, Address: 0x2bb494, Func Offset: 0x254
-	// Line 216, Address: 0x2bb4a4, Func Offset: 0x264
-	// Line 218, Address: 0x2bb4ac, Func Offset: 0x26c
-	// Line 219, Address: 0x2bb4b4, Func Offset: 0x274
-	// Line 220, Address: 0x2bb4b8, Func Offset: 0x278
-	// Line 223, Address: 0x2bb4c0, Func Offset: 0x280
-	// Line 226, Address: 0x2bb4ec, Func Offset: 0x2ac
-	// Line 230, Address: 0x2bb4f0, Func Offset: 0x2b0
-	// Line 226, Address: 0x2bb4f4, Func Offset: 0x2b4
-	// Line 227, Address: 0x2bb4fc, Func Offset: 0x2bc
-	// Line 228, Address: 0x2bb500, Func Offset: 0x2c0
-	// Line 229, Address: 0x2bb504, Func Offset: 0x2c4
-	// Line 230, Address: 0x2bb508, Func Offset: 0x2c8
-	// Line 231, Address: 0x2bb520, Func Offset: 0x2e0
-	// Line 233, Address: 0x2bb530, Func Offset: 0x2f0
-	// Line 234, Address: 0x2bb54c, Func Offset: 0x30c
-	// Line 235, Address: 0x2bb568, Func Offset: 0x328
-	// Line 238, Address: 0x2bb574, Func Offset: 0x334
-	// Line 239, Address: 0x2bb57c, Func Offset: 0x33c
-	// Line 242, Address: 0x2bb580, Func Offset: 0x340
-	// Line 259, Address: 0x2bb588, Func Offset: 0x348
-	// Line 260, Address: 0x2bb5a8, Func Offset: 0x368
-	// Line 261, Address: 0x2bb5ac, Func Offset: 0x36c
-	// Line 260, Address: 0x2bb5b0, Func Offset: 0x370
-	// Line 262, Address: 0x2bb5b8, Func Offset: 0x378
-	// Line 263, Address: 0x2bb5d0, Func Offset: 0x390
-	// Line 264, Address: 0x2bb5d4, Func Offset: 0x394
-	// Line 263, Address: 0x2bb5d8, Func Offset: 0x398
-	// Line 265, Address: 0x2bb5dc, Func Offset: 0x39c
-	// Line 266, Address: 0x2bb5e4, Func Offset: 0x3a4
-	// Line 267, Address: 0x2bb5e8, Func Offset: 0x3a8
-	// Line 289, Address: 0x2bb5ec, Func Offset: 0x3ac
-	// Line 290, Address: 0x2bb5fc, Func Offset: 0x3bc
-	// Line 292, Address: 0x2bb638, Func Offset: 0x3f8
-	// Line 293, Address: 0x2bb648, Func Offset: 0x408
-	// Line 295, Address: 0x2bb650, Func Offset: 0x410
-	// Line 296, Address: 0x2bb660, Func Offset: 0x420
-	// Line 298, Address: 0x2bb668, Func Offset: 0x428
-	// Line 299, Address: 0x2bb678, Func Offset: 0x438
-	// Line 301, Address: 0x2bb680, Func Offset: 0x440
-	// Line 302, Address: 0x2bb690, Func Offset: 0x450
-	// Line 304, Address: 0x2bb698, Func Offset: 0x458
-	// Line 316, Address: 0x2bb6ac, Func Offset: 0x46c
-	// Line 317, Address: 0x2bb6cc, Func Offset: 0x48c
-	// Line 318, Address: 0x2bb6e0, Func Offset: 0x4a0
-	// Line 319, Address: 0x2bb6e8, Func Offset: 0x4a8
-	// Line 320, Address: 0x2bb6f0, Func Offset: 0x4b0
-	// Line 321, Address: 0x2bb6f8, Func Offset: 0x4b8
-	// Line 322, Address: 0x2bb6fc, Func Offset: 0x4bc
-	// Line 321, Address: 0x2bb700, Func Offset: 0x4c0
-	// Line 327, Address: 0x2bb704, Func Offset: 0x4c4
-	// Line 329, Address: 0x2bb720, Func Offset: 0x4e0
-	// Line 330, Address: 0x2bb73c, Func Offset: 0x4fc
-	// Line 331, Address: 0x2bb740, Func Offset: 0x500
-	// Line 330, Address: 0x2bb74c, Func Offset: 0x50c
-	// Line 331, Address: 0x2bb754, Func Offset: 0x514
-	// Line 332, Address: 0x2bb758, Func Offset: 0x518
-	// Line 333, Address: 0x2bb768, Func Offset: 0x528
-	// Line 334, Address: 0x2bb76c, Func Offset: 0x52c
-	// Line 336, Address: 0x2bb770, Func Offset: 0x530
-	// Line 338, Address: 0x2bb778, Func Offset: 0x538
-	// Line 339, Address: 0x2bb794, Func Offset: 0x554
-	// Line 340, Address: 0x2bb798, Func Offset: 0x558
-	// Line 339, Address: 0x2bb7a4, Func Offset: 0x564
-	// Line 340, Address: 0x2bb7ac, Func Offset: 0x56c
-	// Line 341, Address: 0x2bb7b0, Func Offset: 0x570
-	// Line 342, Address: 0x2bb7c0, Func Offset: 0x580
-	// Line 343, Address: 0x2bb7c4, Func Offset: 0x584
-	// Line 342, Address: 0x2bb7c8, Func Offset: 0x588
-	// Line 348, Address: 0x2bb7cc, Func Offset: 0x58c
-	// Line 347, Address: 0x2bb7d0, Func Offset: 0x590
-	// Line 348, Address: 0x2bb7d4, Func Offset: 0x594
-	// Line 351, Address: 0x2bb7d8, Func Offset: 0x598
-	// Func End, Address: 0x2bb7f0, Func Offset: 0x5b0
-	scePrintf("RankingInit - UNIMPLEMENTED!\n");
+    RANK_WORK* rk;      
+    FADE* sfe;           
+    int j;              
+    unsigned int ply_id; 
+    unsigned int* flg; // not from DWARF
+    
+    rk = &rkw;
+    sfe = &fade;
+
+    j = 0;
+    
+    RankingTextureInit();
+    
+    if (sys->typ_md0 == 2)
+    {
+        sys->cb_flg &= ~0x4;
+        
+        rk->mesloop = 0;
+        
+        ReadPlayLog(&rk->gameest00, &rk->gamecarry00);
+        
+        sys->typ_flg &= 0x7FFFFFFF;
+        sys->typ_md0 = 1;
+        
+        if (sys->gm_mode != 3)
+        {
+            DispFadeInit();
+            
+            sfe->alphaset = 255.0f;
+            
+            sfe->cnt00 = 255.0f;
+            sfe->cnt01 = -12.0f;
+            
+            rk->alpha = 0;
+            
+            rk->filebak = 0;
+            
+            rk->allscore = 0;
+            
+            rk->allscore += GameClearScore(sys->time);
+            rk->allscore += RodorigoEventScore();
+            rk->allscore += SteveEventScore();
+            rk->allscore += MapScore();
+            rk->allscore += HealItemUseScore();
+            rk->allscore += SaveCountScore();
+            rk->allscore += RetryCountScore();
+            
+            rk->ranking = AllRanking(rk->allscore, 0);
+            
+            if ((sys->gm_mode == 0) && (rk->ranking == 1) && (!(sys->ssd_flg & 0x2))) 
+            {
+                sys->ssd_flg |= 0x2;
+                
+                rk->mesnum[0] = 273;
+                
+                rk->mespos[0].x = 112.0f;
+                rk->mespos[0].y = 368.0f;
+                
+                j++; 
+            }
+            
+            if (!(sys->ssd_flg & 0x1)) 
+            {
+                sys->ssd_flg |= 0xD;
+                
+                rk->mesnum[j] = 276;
+                
+                rk->mespos[j].x = 112.0f;
+                rk->mespos[j].y = 368.0f;
+                
+                j++;
+            }
+            
+            if ((bhCkFlg(sys->it_flg, 326) != 0) && (!(sys->ssd_flg & 0x10))) 
+            {
+                sys->ssd_flg |= 0x10;
+            }
+            
+            rk->mesloop = j;
+            rk->mescol = 12;
+        }
+        else if (sys->gm_mode == 3) 
+        {
+            DispFadeInit();
+            
+            sfe->alphaset = 255.0f;
+            
+            sfe->cnt00 = 255.0f;
+            sfe->cnt01 = -12.0f;
+            
+            if (sys->costume != 0) 
+            {
+                ply_id = 4;
+            } 
+            else 
+            {
+                ply_id = sys->ply_id;
+            }
+            
+            sys->ssd_flg |= 0x1;
+            
+            rk->alpha = 0;
+            
+            rk->filebak = 0;
+            
+            rk->allscore = 0;
+            
+            rk->allscore += GameClearScore(sys->time);
+            
+            rk->ranking = AllRanking(rk->allscore, 0);
+            
+            if (bhCkFlg(sys->ev_flg, 75) != 0) 
+            {
+                if (sys->best_tm[ply_id] == 0) 
+                {
+                    rk->tmbk = 0x354E4;
+                    
+                    rk->col = 0;
+                } 
+                else
+                {
+                    rk->tmbk = sys->best_tm[ply_id];
+                    
+                    rk->col = 0;
+                }
+            }
+            else if (sys->best_tm[ply_id] == 0) 
+            {
+                rk->tmbk = sys->best_tm[ply_id] = sys->time;
+                
+                rk->col = 2;
+            } 
+            else if (sys->time < sys->best_tm[ply_id]) 
+            {
+                rk->tmbk = sys->best_tm[ply_id] = sys->time;
+                
+                rk->col = 1; 
+            }
+            else 
+            {
+                rk->tmbk = sys->best_tm[ply_id];
+                
+                rk->col = 0;
+            }
+            
+            if (rk->ranking == 1)
+            {
+                switch (ply_id) 
+                {                   
+                case 0:                             
+                    sys->ssd_flg |= 0x80;
+                    break;
+                case 1:                             
+                    sys->ssd_flg |= 0x100;
+                    break;
+                case 2:                             
+                    sys->ssd_flg |= 0x200;
+                    break;
+                case 3:                             
+                    sys->ssd_flg |= 0x800;
+                    break;
+                case 4:                             
+                    sys->ssd_flg |= 0x400;
+                    break;
+                }
+            }
+
+            if ((sys->ssd_flg & 0xF80) == 0xF80) 
+            {
+                flg = &sys->ssd_flg; // I'm as puzzled as you are
+                
+                if (!(*flg & 0x80000000))
+                {
+                    *flg |= 0x80000000;
+                    
+                    rk->mesnum[j] = 279;
+                    
+                    rk->mespos[j].x = 128.0f; 
+                    rk->mespos[j].y = 368.0f;
+                    
+                    j++;
+                }
+            }
+            
+            switch (ply_id) 
+            {                       
+            case 0:                                 
+                if (!(sys->ssd_flg & 0x20)) 
+                {
+                    sys->ssd_flg |= 0x20;
+                    
+                    rk->mesnum[j] = 277;
+                    
+                    rk->mespos[j].x = 80.0f;
+                    rk->mespos[j].y = 368.0f;
+                    
+                    j++;
+                }
+                
+                break;
+            case 1:                                 
+                if (!(sys->ssd_flg & 0x40)) 
+                {
+                    sys->ssd_flg |= 0x40;
+                    
+                    rk->mesnum[j] = 278;
+                    
+                    rk->mespos[j].x = 208.0f;
+                    rk->mespos[j].y = 368.0f;
+                    
+                    j++;
+                }
+                
+                break;
+            }
+            
+            rk->mesloop = j;
+            rk->mescol = 12;
+        }
+    }
 }
 
 // 100% matching
@@ -1087,4 +1169,3 @@ void RankingBgmSet() {
     rk->mesalpha = 1;
     rk->mescol= 0xC;
 }
-

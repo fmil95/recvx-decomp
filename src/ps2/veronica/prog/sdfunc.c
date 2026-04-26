@@ -3452,7 +3452,7 @@ void ExitPlayLogSystem()
 }
 
 // 100% matching! 
-void ReadPlayLog()
+void ReadPlayLog(unsigned char* param1, unsigned char* param2) // parameters are not present on the debugging symbols
 {
 
 }

@@ -221,7 +221,7 @@ void RequestAdjustDisplay(int AdjustX, int AdjustY);
 void ExecAdjustDisplay();
 void InitPlayLogSystem();
 void ExitPlayLogSystem();
-void ReadPlayLog();
+void ReadPlayLog(unsigned char* param1, unsigned char* param2);
 void WritePlayLog(int param1, int param2);
 
 extern int OpenDriveTrayFlag;
