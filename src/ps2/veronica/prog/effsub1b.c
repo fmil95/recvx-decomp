@@ -1,6 +1,11 @@
 #include "../../../ps2/veronica/prog/effsub1b.h"
+#include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
 /*_anon4* sys;
@@ -97,88 +102,113 @@ void bhEff133(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x239250
+// 100% matching!
 void bhDraw134(O_WRK* op)
 {
-	int i;
-	unsigned int argb;
-	//_anon23 col[4];
-	//_anon34 p[4];
-	//_anon39 p2c;
-	//_anon48 ef134tb[8];
-	// Line 122, Address: 0x239250, Func Offset: 0
-	// Line 144, Address: 0x23927c, Func Offset: 0x2c
-	// Line 145, Address: 0x239284, Func Offset: 0x34
-	// Line 146, Address: 0x239290, Func Offset: 0x40
-	// Line 147, Address: 0x23929c, Func Offset: 0x4c
-	// Line 148, Address: 0x2392a4, Func Offset: 0x54
-	// Line 149, Address: 0x2392bc, Func Offset: 0x6c
-	// Line 150, Address: 0x2392d4, Func Offset: 0x84
-	// Line 151, Address: 0x2392dc, Func Offset: 0x8c
-	// Line 152, Address: 0x2392e4, Func Offset: 0x94
-	// Line 155, Address: 0x2392ec, Func Offset: 0x9c
-	// Line 156, Address: 0x2392f0, Func Offset: 0xa0
-	// Line 155, Address: 0x2392f4, Func Offset: 0xa4
-	// Line 157, Address: 0x2392f8, Func Offset: 0xa8
-	// Line 156, Address: 0x2392fc, Func Offset: 0xac
-	// Line 158, Address: 0x239300, Func Offset: 0xb0
-	// Line 157, Address: 0x239304, Func Offset: 0xb4
-	// Line 158, Address: 0x239308, Func Offset: 0xb8
-	// Line 159, Address: 0x23930c, Func Offset: 0xbc
-	// Line 161, Address: 0x239324, Func Offset: 0xd4
-	// Line 163, Address: 0x239328, Func Offset: 0xd8
-	// Line 164, Address: 0x239330, Func Offset: 0xe0
-	// Line 165, Address: 0x239344, Func Offset: 0xf4
-	// Line 166, Address: 0x239348, Func Offset: 0xf8
-	// Line 167, Address: 0x23934c, Func Offset: 0xfc
-	// Line 168, Address: 0x239350, Func Offset: 0x100
-	// Line 169, Address: 0x239358, Func Offset: 0x108
-	// Line 170, Address: 0x239360, Func Offset: 0x110
-	// Line 169, Address: 0x239364, Func Offset: 0x114
-	// Line 170, Address: 0x239368, Func Offset: 0x118
-	// Line 171, Address: 0x239370, Func Offset: 0x120
-	// Line 172, Address: 0x239378, Func Offset: 0x128
-	// Line 171, Address: 0x23937c, Func Offset: 0x12c
-	// Line 173, Address: 0x239380, Func Offset: 0x130
-	// Line 172, Address: 0x239384, Func Offset: 0x134
-	// Line 173, Address: 0x239388, Func Offset: 0x138
-	// Line 174, Address: 0x23938c, Func Offset: 0x13c
-	// Line 176, Address: 0x2393a8, Func Offset: 0x158
-	// Line 177, Address: 0x2393b0, Func Offset: 0x160
-	// Line 178, Address: 0x2393c4, Func Offset: 0x174
-	// Line 179, Address: 0x2393c8, Func Offset: 0x178
-	// Line 180, Address: 0x2393cc, Func Offset: 0x17c
-	// Line 181, Address: 0x2393d0, Func Offset: 0x180
-	// Line 182, Address: 0x2393d8, Func Offset: 0x188
-	// Line 183, Address: 0x2393e0, Func Offset: 0x190
-	// Line 184, Address: 0x2393e8, Func Offset: 0x198
-	// Line 185, Address: 0x2393f0, Func Offset: 0x1a0
-	// Line 186, Address: 0x2393f4, Func Offset: 0x1a4
-	// Line 187, Address: 0x2393fc, Func Offset: 0x1ac
-	// Line 189, Address: 0x239418, Func Offset: 0x1c8
-	// Line 190, Address: 0x239430, Func Offset: 0x1e0
-	// Line 191, Address: 0x239440, Func Offset: 0x1f0
-	// Line 193, Address: 0x239458, Func Offset: 0x208
-	// Line 194, Address: 0x239468, Func Offset: 0x218
-	// Line 197, Address: 0x239480, Func Offset: 0x230
-	// Line 198, Address: 0x239484, Func Offset: 0x234
-	// Line 199, Address: 0x2394c0, Func Offset: 0x270
-	// Line 200, Address: 0x2394d8, Func Offset: 0x288
-	// Line 205, Address: 0x2394e4, Func Offset: 0x294
-	// Line 200, Address: 0x2394f4, Func Offset: 0x2a4
-	// Line 201, Address: 0x239504, Func Offset: 0x2b4
-	// Line 202, Address: 0x239508, Func Offset: 0x2b8
-	// Line 203, Address: 0x23950c, Func Offset: 0x2bc
-	// Line 204, Address: 0x239510, Func Offset: 0x2c0
-	// Line 205, Address: 0x239514, Func Offset: 0x2c4
-	// Line 206, Address: 0x239534, Func Offset: 0x2e4
-	// Line 208, Address: 0x239544, Func Offset: 0x2f4
-	// Line 209, Address: 0x239550, Func Offset: 0x300
-	// Line 210, Address: 0x23955c, Func Offset: 0x30c
-	// Line 211, Address: 0x239564, Func Offset: 0x314
-	// Func End, Address: 0x239594, Func Offset: 0x344
-	scePrintf("bhDraw134 - UNIMPLEMENTED!\n");
+    NJS_POINT2COL p2c; 
+    NJS_POINT2 p[4]; 
+    NJS_COLOR col[4];
+    unsigned int argb; 
+    int i; 
+    int tmp; // not from DWARF
+    static NJS_PRIM ef134tb[8]; // DATA
+
+    njPushMatrixEx();
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njTextureFilterMode(0);
+    
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(sys->ef_tn[44]);
+    
+    p2c.p = p;
+    p2c.col = col;
+    p2c.num = 1;
+    
+    col[3].color = col[2].color = col[1].color = col[0].color = -1;
+    
+    bhDrawPARAM2D(ef134tb, &p2c, -1.5f);
+    
+    p2c.tex = NULL;
+    
+    tmp = (int)op->aoy;
+    
+    argb = (((int)tmp << 24) | 0xFF0000) | ((int)tmp << 8);
+    
+    col[2].color = col[1].color = col[0].color = argb;
+    
+    p[0].x = 320.0f;
+    p[0].y = 336.0f;
+        
+    p[1].x = 304.0f;
+    p[1].y = 360.0f;
+    
+    p[2].x = 336.0f;
+    p[2].y = 360.0f;
+    
+    njDrawPolygon2D(&p2c, 3, -1.4f, 96);
+    
+    tmp = (int)op->aox;
+    
+    argb = ((tmp << 24) | 0xFF0000) | (tmp << 8);
+    
+    col[2].color = col[1].color = col[0].color = argb;
+    
+    p[0].x = 216.0f;
+    p[0].y = 412.0f;
+    
+    p[1].x = 240.0f;
+    p[1].y = 396.0f;
+    
+    p[2].x = 240.0f;
+    p[2].y = 428.0f;
+    
+    njDrawPolygon2D(&p2c, 3, -1.4f, 96);
+    
+    if ((sys->sp_flg & 0x8)) 
+    {
+        if ((op->ct2 & 0x2)) 
+        {
+            if (op->aspd < 12) 
+            {
+                op->aspd++;
+            }
+        }
+        
+        if ((op->ct2 & 0x8)) 
+        {
+            if (op->aspd < 24)
+            {
+                op->aspd++;
+            }
+        }
+    }
+    
+    for (i = 0; i < 7; i++)
+    {
+        if ((op->jno[i] > 0) && ((sys->sp_flg & 0x8))) 
+        {
+            op->jno[i]--;
+        }
+        
+        if ((op->aspd >> 2) == i) 
+        {
+            op->jno[i] = 17;
+        }
+        
+        argb = (op->jno[i] * 0xF000000) | 0xFFFFFF;
+        
+        col[3].color = col[2].color = col[1].color = col[0].color = argb;
+        
+        bhDrawPARAM2D(&ef134tb[i + 1], &p2c, -1.4f);
+    }
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njPopMatrixEx();
 }
 
 // 
