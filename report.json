@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 36.44206,
+    "fuzzy_match_percent": 36.445965,
     "total_code": "1904472",
-    "matched_code": "606580",
-    "matched_code_percent": 31.850296,
+    "matched_code": "607116",
+    "matched_code_percent": 31.87844,
     "total_data": "28428132",
     "matched_data": "28119412",
     "matched_data_percent": 98.91403,
     "total_functions": 4529,
-    "matched_functions": 2566,
-    "matched_functions_percent": 56.6571,
+    "matched_functions": 2571,
+    "matched_functions_percent": 56.767498,
     "total_units": 200
   },
   "units": [
@@ -17753,7 +17753,7 @@
     {
       "name": "ps2/veronica/prog/ps2_SaveScreen",
       "measures": {
-        "fuzzy_match_percent": 98.997284,
+        "fuzzy_match_percent": 98.92294,
         "total_code": "11784",
         "matched_code": "8836",
         "matched_code_percent": 74.98303,
@@ -17795,7 +17795,7 @@
         {
           "name": ".text",
           "size": "12176",
-          "fuzzy_match_percent": 98.997284,
+          "fuzzy_match_percent": 98.92294,
           "metadata": {}
         },
         {
@@ -17814,7 +17814,7 @@
         {
           "name": "DispMessageSelect",
           "size": "1520",
-          "fuzzy_match_percent": 93.528946,
+          "fuzzy_match_percent": 92.95263,
           "metadata": {},
           "address": "240"
         },
@@ -37327,14 +37327,14 @@
     {
       "name": "cri/mwlib/ee/lib/libadxe/cri_cvfs",
       "measures": {
-        "fuzzy_match_percent": 98.64384,
+        "fuzzy_match_percent": 100.0,
         "total_code": "6132",
-        "matched_code": "5596",
-        "matched_code_percent": 91.258965,
+        "matched_code": "6132",
+        "matched_code_percent": 100.0,
         "total_data": "3200",
         "total_functions": 45,
-        "matched_functions": 40,
-        "matched_functions_percent": 88.88889,
+        "matched_functions": 45,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -37347,6 +37347,7 @@
         {
           "name": ".data",
           "size": "16",
+          "fuzzy_match_percent": 81.25,
           "metadata": {}
         },
         {
@@ -37357,7 +37358,7 @@
         {
           "name": ".text",
           "size": "6272",
-          "fuzzy_match_percent": 98.64384,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         }
       ],
@@ -37365,27 +37366,28 @@
         {
           "name": "cvFsCallUsrErrFn",
           "size": "44",
-          "fuzzy_match_percent": 78.63636,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         },
         {
           "name": "cvFsError",
           "size": "20",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "48"
         },
         {
           "name": "cvFsInit",
           "size": "176",
-          "fuzzy_match_percent": 86.27273,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "72"
         },
         {
           "name": "cvFsFinish",
           "size": "256",
-          "fuzzy_match_percent": 95.78125,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "248"
         },
@@ -37658,7 +37660,7 @@
         {
           "name": "cvFsEntryErrFunc",
           "size": "40",
-          "fuzzy_match_percent": 53.0,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "6024"
         },
@@ -40449,7 +40451,7 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 33.518665,
+        "fuzzy_match_percent": 33.518185,
         "total_code": "1820460",
         "matched_code": "527928",
         "matched_code_percent": 28.999704,
@@ -40466,16 +40468,16 @@
       "id": "cri",
       "name": "CRI Middleware (ADX - EE)",
       "measures": {
-        "fuzzy_match_percent": 99.769485,
+        "fuzzy_match_percent": 99.87774,
         "total_code": "76820",
-        "matched_code": "71460",
-        "matched_code_percent": 93.02265,
+        "matched_code": "71996",
+        "matched_code_percent": 93.72038,
         "total_data": "87696",
         "matched_data": "34200",
         "matched_data_percent": 38.99836,
         "total_functions": 661,
-        "matched_functions": 643,
-        "matched_functions_percent": 97.276855,
+        "matched_functions": 648,
+        "matched_functions_percent": 98.03329,
         "total_units": 47
       }
     },

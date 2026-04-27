@@ -75,6 +75,7 @@
         "adx_mps2.c": 8,
         "adx_fini.c": 0,
         "adx_fs.c": 0,
+        "cri_cvfs.c": 0,
         "dvci.c": 0,
         "dvci_sub.c": 0,
         "htci.c": 0,
