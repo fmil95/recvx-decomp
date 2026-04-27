@@ -53,20 +53,6 @@ static unsigned int ItemViewTypeTbl[168] =
     2, 2, 2, 2, 2, 2, 2, 2, 
     2, 2, 2, 2, 2, 2, 2, 2 
 };
-/*int ViewType;
-FV_WORK fvwork;
-DSP_WORK dsptbl[0];
-S_WORK swork;
-_anon24* sys;
-SITEM sitem;
-NJS_POINT3 hoseipos[0];
-unsigned char itemflg[8][0];
-unsigned short getmestbl[0];
-_anon23 itemdata[0];
-unsigned short mestbl[0];
-short c_a[6][0];
-_anon41 parts_10b[0];
-unsigned short idsettbl[0];*/
 
 // 100% matching!
 void DrawSubItem(S_WORK* st, SITEM* si)
@@ -554,159 +540,251 @@ void ItemModelChangeZoomIn()
     }
 }
 
-// 
-// Start address: 0x2aaa30
-void ItemModelCheck()
+// 100% matching!
+void ItemModelCheck() 
 {
-	unsigned char chkcode;
-	unsigned char y;
-	unsigned char x;
-	unsigned short mesnum;
-	short* d_a;
-	unsigned int* wp;
-	int c01;
-	int c00;
-	DSP_WORK* dw;
-	STCAM_WRK* sc;
-	SITEM* si;
-	S_WORK* st;
-	short at_ang;
-	// Line 656, Address: 0x2aaa30, Func Offset: 0
-	// Line 660, Address: 0x2aaa5c, Func Offset: 0x2c
-	// Line 657, Address: 0x2aaa64, Func Offset: 0x34
-	// Line 658, Address: 0x2aaa6c, Func Offset: 0x3c
-	// Line 671, Address: 0x2aaa74, Func Offset: 0x44
-	// Line 660, Address: 0x2aaa7c, Func Offset: 0x4c
-	// Line 671, Address: 0x2aaa8c, Func Offset: 0x5c
-	// Line 659, Address: 0x2aaa90, Func Offset: 0x60
-	// Line 660, Address: 0x2aaa94, Func Offset: 0x64
-	// Line 659, Address: 0x2aaa98, Func Offset: 0x68
-	// Line 668, Address: 0x2aaa9c, Func Offset: 0x6c
-	// Line 671, Address: 0x2aaaa0, Func Offset: 0x70
-	// Line 672, Address: 0x2aaaac, Func Offset: 0x7c
-	// Line 673, Address: 0x2aaac0, Func Offset: 0x90
-	// Line 676, Address: 0x2aaad8, Func Offset: 0xa8
-	// Line 677, Address: 0x2aaae8, Func Offset: 0xb8
-	// Line 679, Address: 0x2aaaf8, Func Offset: 0xc8
-	// Line 677, Address: 0x2aab08, Func Offset: 0xd8
-	// Line 680, Address: 0x2aab14, Func Offset: 0xe4
-	// Line 681, Address: 0x2aab1c, Func Offset: 0xec
-	// Line 682, Address: 0x2aab24, Func Offset: 0xf4
-	// Line 683, Address: 0x2aab2c, Func Offset: 0xfc
-	// Line 684, Address: 0x2aab34, Func Offset: 0x104
-	// Line 685, Address: 0x2aab3c, Func Offset: 0x10c
-	// Line 686, Address: 0x2aab44, Func Offset: 0x114
-	// Line 687, Address: 0x2aab4c, Func Offset: 0x11c
-	// Line 688, Address: 0x2aab54, Func Offset: 0x124
-	// Line 689, Address: 0x2aab5c, Func Offset: 0x12c
-	// Line 690, Address: 0x2aab64, Func Offset: 0x134
-	// Line 691, Address: 0x2aab6c, Func Offset: 0x13c
-	// Line 692, Address: 0x2aab84, Func Offset: 0x154
-	// Line 693, Address: 0x2aab8c, Func Offset: 0x15c
-	// Line 694, Address: 0x2aab98, Func Offset: 0x168
-	// Line 695, Address: 0x2aaba0, Func Offset: 0x170
-	// Line 696, Address: 0x2aaba4, Func Offset: 0x174
-	// Line 697, Address: 0x2aabb8, Func Offset: 0x188
-	// Line 698, Address: 0x2aabc0, Func Offset: 0x190
-	// Line 699, Address: 0x2aabcc, Func Offset: 0x19c
-	// Line 700, Address: 0x2aabd4, Func Offset: 0x1a4
-	// Line 701, Address: 0x2aabd8, Func Offset: 0x1a8
-	// Line 702, Address: 0x2aabe0, Func Offset: 0x1b0
-	// Line 705, Address: 0x2aabe4, Func Offset: 0x1b4
-	// Line 706, Address: 0x2aac04, Func Offset: 0x1d4
-	// Line 707, Address: 0x2aac0c, Func Offset: 0x1dc
-	// Line 708, Address: 0x2aac18, Func Offset: 0x1e8
-	// Line 709, Address: 0x2aac20, Func Offset: 0x1f0
-	// Line 710, Address: 0x2aac24, Func Offset: 0x1f4
-	// Line 711, Address: 0x2aac38, Func Offset: 0x208
-	// Line 712, Address: 0x2aac40, Func Offset: 0x210
-	// Line 713, Address: 0x2aac4c, Func Offset: 0x21c
-	// Line 714, Address: 0x2aac54, Func Offset: 0x224
-	// Line 715, Address: 0x2aac58, Func Offset: 0x228
-	// Line 716, Address: 0x2aac60, Func Offset: 0x230
-	// Line 719, Address: 0x2aac64, Func Offset: 0x234
-	// Line 720, Address: 0x2aac84, Func Offset: 0x254
-	// Line 721, Address: 0x2aac90, Func Offset: 0x260
-	// Line 722, Address: 0x2aacb0, Func Offset: 0x280
-	// Line 724, Address: 0x2aacc4, Func Offset: 0x294
-	// Line 725, Address: 0x2aacd8, Func Offset: 0x2a8
-	// Line 726, Address: 0x2aacf8, Func Offset: 0x2c8
-	// Line 799, Address: 0x2aad0c, Func Offset: 0x2dc
-	// Line 800, Address: 0x2aad14, Func Offset: 0x2e4
-	// Line 801, Address: 0x2aad18, Func Offset: 0x2e8
-	// Line 802, Address: 0x2aad1c, Func Offset: 0x2ec
-	// Line 803, Address: 0x2aad20, Func Offset: 0x2f0
-	// Line 804, Address: 0x2aad40, Func Offset: 0x310
-	// Line 805, Address: 0x2aad48, Func Offset: 0x318
-	// Line 807, Address: 0x2aad50, Func Offset: 0x320
-	// Line 804, Address: 0x2aad58, Func Offset: 0x328
-	// Line 805, Address: 0x2aad68, Func Offset: 0x338
-	// Line 807, Address: 0x2aad7c, Func Offset: 0x34c
-	// Line 808, Address: 0x2aad94, Func Offset: 0x364
-	// Line 809, Address: 0x2aad98, Func Offset: 0x368
-	// Line 810, Address: 0x2aada0, Func Offset: 0x370
-	// Line 811, Address: 0x2aada8, Func Offset: 0x378
-	// Line 812, Address: 0x2aadc4, Func Offset: 0x394
-	// Line 813, Address: 0x2aadd4, Func Offset: 0x3a4
-	// Line 815, Address: 0x2aade8, Func Offset: 0x3b8
-	// Line 814, Address: 0x2aadec, Func Offset: 0x3bc
-	// Line 815, Address: 0x2aadf4, Func Offset: 0x3c4
-	// Line 816, Address: 0x2aae08, Func Offset: 0x3d8
-	// Line 817, Address: 0x2aae30, Func Offset: 0x400
-	// Line 820, Address: 0x2aae38, Func Offset: 0x408
-	// Line 824, Address: 0x2aae70, Func Offset: 0x440
-	// Line 826, Address: 0x2aae74, Func Offset: 0x444
-	// Line 827, Address: 0x2aae84, Func Offset: 0x454
-	// Line 829, Address: 0x2aae98, Func Offset: 0x468
-	// Line 827, Address: 0x2aae9c, Func Offset: 0x46c
-	// Line 829, Address: 0x2aaea0, Func Offset: 0x470
-	// Line 830, Address: 0x2aaed4, Func Offset: 0x4a4
-	// Line 832, Address: 0x2aaee4, Func Offset: 0x4b4
-	// Line 833, Address: 0x2aaef4, Func Offset: 0x4c4
-	// Line 834, Address: 0x2aaf00, Func Offset: 0x4d0
-	// Line 835, Address: 0x2aaf08, Func Offset: 0x4d8
-	// Line 838, Address: 0x2aaf14, Func Offset: 0x4e4
-	// Line 839, Address: 0x2aaf1c, Func Offset: 0x4ec
-	// Line 840, Address: 0x2aaf38, Func Offset: 0x508
-	// Line 841, Address: 0x2aaf44, Func Offset: 0x514
-	// Line 845, Address: 0x2aaf64, Func Offset: 0x534
-	// Line 846, Address: 0x2aaf78, Func Offset: 0x548
-	// Line 847, Address: 0x2aaf7c, Func Offset: 0x54c
-	// Line 848, Address: 0x2aaf80, Func Offset: 0x550
-	// Line 846, Address: 0x2aaf84, Func Offset: 0x554
-	// Line 847, Address: 0x2aaf88, Func Offset: 0x558
-	// Line 849, Address: 0x2aaf8c, Func Offset: 0x55c
-	// Line 850, Address: 0x2aaf94, Func Offset: 0x564
-	// Line 851, Address: 0x2aaf9c, Func Offset: 0x56c
-	// Line 852, Address: 0x2aafa4, Func Offset: 0x574
-	// Line 853, Address: 0x2aafb4, Func Offset: 0x584
-	// Line 857, Address: 0x2aafb8, Func Offset: 0x588
-	// Line 859, Address: 0x2aafc0, Func Offset: 0x590
-	// Line 860, Address: 0x2aafcc, Func Offset: 0x59c
-	// Line 861, Address: 0x2aafd4, Func Offset: 0x5a4
-	// Line 862, Address: 0x2aafdc, Func Offset: 0x5ac
-	// Line 863, Address: 0x2aaff8, Func Offset: 0x5c8
-	// Line 864, Address: 0x2ab000, Func Offset: 0x5d0
-	// Line 865, Address: 0x2ab008, Func Offset: 0x5d8
-	// Line 869, Address: 0x2ab014, Func Offset: 0x5e4
-	// Line 870, Address: 0x2ab028, Func Offset: 0x5f8
-	// Line 871, Address: 0x2ab030, Func Offset: 0x600
-	// Line 872, Address: 0x2ab034, Func Offset: 0x604
-	// Line 873, Address: 0x2ab03c, Func Offset: 0x60c
-	// Line 874, Address: 0x2ab040, Func Offset: 0x610
-	// Line 875, Address: 0x2ab04c, Func Offset: 0x61c
-	// Line 874, Address: 0x2ab050, Func Offset: 0x620
-	// Line 875, Address: 0x2ab05c, Func Offset: 0x62c
-	// Line 876, Address: 0x2ab068, Func Offset: 0x638
-	// Line 877, Address: 0x2ab070, Func Offset: 0x640
-	// Line 878, Address: 0x2ab078, Func Offset: 0x648
-	// Line 883, Address: 0x2ab0a0, Func Offset: 0x670
-	// Line 884, Address: 0x2ab0a8, Func Offset: 0x678
-	// Line 885, Address: 0x2ab0ac, Func Offset: 0x67c
-	// Line 886, Address: 0x2ab0b0, Func Offset: 0x680
-	// Line 888, Address: 0x2ab0b4, Func Offset: 0x684
-	// Func End, Address: 0x2ab0e4, Func Offset: 0x6b4
-	scePrintf("ItemModelCheck - UNIMPLEMENTED!\n");
+    S_WORK* st;            
+    SITEM* si;            
+    STCAM_WRK* sc;     
+    DSP_WORK* dw;       
+    int c00, c01;             
+    unsigned int* wp;    
+    short* d_a;           
+    unsigned short mesnum; 
+    unsigned char x, y;       
+    unsigned char chkcode; 
+    static short at_ang;   
+
+    st = &swork;
+    si = &sitem; 
+    sc = &st_cam; 
+    
+    dw = (DSP_WORK*)&dsptbl[st->itemid];
+    
+    x = 0;
+    
+    chkcode = 0;  
+    
+    if (!(sys->st_flg & 0x200)) 
+    {
+        if (!(swork.statusflg & 0x40)) 
+        {
+            if (!(sys->pad_ps & 0x1800)) 
+            {
+                swork.statusflg |= 0x100000;
+                
+                swork.statusflg &= ~0x20000000;
+                
+                parts_10b[11].col.r = 0.7f;
+                parts_10b[11].col.g = 0.7f;
+                parts_10b[11].col.b = 0.7f;
+                
+                parts_10b[11].col.r = 0.7f;
+                parts_10b[12].col.g = 0.7f;
+                parts_10b[12].col.b = 0.7f;
+                
+                parts_10b[13].col.r = 0.7f;
+                parts_10b[13].col.g = 0.7f;
+                parts_10b[13].col.b = 0.7f;
+                
+                parts_10b[14].col.r = 0.7f;
+                parts_10b[14].col.g = 0.7f;
+                parts_10b[14].col.b = 0.7f;
+                
+                if ((sys->pad_on & 0x4))
+                {
+                    sc->cay = -546;
+                    
+                    parts_10b[14].col.r = 1.0f;
+                    parts_10b[14].col.g = 1.0f;
+                    parts_10b[14].col.b = 1.0f;
+                }
+                else if ((sys->pad_on & 0x8)) 
+                {
+                    sc->cay = 546;
+                    
+                    parts_10b[13].col.r = 1.0f;
+                    parts_10b[13].col.g = 1.0f;
+                    parts_10b[13].col.b = 1.0f;
+                } 
+                else 
+                {
+                    sc->cay = 0;
+                }
+                
+                if ((sys->pad_on & 0x1)) 
+                {
+                    sc->cax = 546;
+                    
+                    parts_10b[12].col.r = 1.0f;
+                    parts_10b[12].col.g = 1.0f;
+                    parts_10b[12].col.b = 1.0f;
+                } 
+                else if ((sys->pad_on & 0x2)) 
+                {
+                    sc->cax = -546;
+                    
+                    parts_10b[11].col.r = 1.0f;
+                    parts_10b[11].col.g = 1.0f;
+                    parts_10b[11].col.b = 1.0f;
+                } 
+                else 
+                {
+                    sc->cax = 0;
+                }
+                
+                if ((sys->pad_on & 0x90))
+                {
+                    if ((sys->pad_on & 0x80))
+                    {
+                        if (sc->pos_1.z < 3.0f) 
+                        {
+                            sc->pos_1.z += 0.1f;
+                        }
+                    } 
+                    else if (((sys->pad_on & 0x10)) && (sc->pos_1.z > -3.0f)) 
+                    {
+                        sc->pos_1.z -= 0.1f;
+                    }
+                }
+            } 
+            else
+            {
+                sc->cax = 0;
+                sc->cay = 0;
+                sc->caz = 0;
+                
+                if ((sys->pad_ps & 0x800)) 
+                {
+                    swork.statusflg |= 0x20000000;
+                    
+                    swork.statusflg &= ~0x100000;
+                    
+                    c01 = itemflg[dw->hide][4];
+                    
+                    c00 = c01 & 0xF;
+                    c01 = (c01 & 0xF0) >> 4;
+                    
+                    if (c00 != 0)
+                    {
+                        for (x = 0; (x < c01) && (chkcode != 3); x++)
+                        { 
+                            d_a = (short*)c_a[c00 + x];
+                            
+                            for (y = 0, chkcode = 0; y < 3; y++)
+                            {
+                                chkcode += MdlDirChk(d_a, si->mw.ang[y]);
+                                
+                                d_a += 2;  
+                            }
+                        }
+                        
+                        x--;
+                    }
+                    
+                    if ((st->itemid == 19) || ((st->itemid - 33) <= 1) || (st->itemid == 136) || (st->itemid == 142)) 
+                    {
+                        chkcode = 0;
+                    }
+                    
+                    if (chkcode == 3) 
+                    {
+                        flg[2] = 0;
+                        flg[1] = 0;
+                        flg[0] = 0; 
+                        
+                        mesnum = mestbl[x + itemflg[dw->hide][5]];
+                        
+                        if ((mesnum & 0xFFF) == 181)
+                        {
+                            if (ItemSearch(50) != NULL) 
+                            {
+                                bhSetMessage(1, mesnum & 0xFFF);
+                            } 
+                            else 
+                            {
+                                bhSetMessage(1, 188);
+                                
+                                mesnum = 0;
+                            }
+                        }
+                        else 
+                        {
+                            if (st->itemid != 106)
+                            {
+                                bhSetMessage(1, mesnum & 0xFFF);
+                            }
+                            
+                            if ((mesnum & 0xFFF) == 72)
+                            {
+                                st->pip[st->listcsr_0] |= 0x80000000;
+                            }
+                        }
+                        
+                        if ((mesnum & 0xF000) == 0x2000) 
+                        {
+                            st->mesid = st->itemid;
+                            
+                            st->testmode = 4;
+                            
+                            at_ang = 0;
+                        }
+                        else if ((mesnum & 0xF000))
+                        {
+                            st->testmode = 6;
+                            
+                            if (st->itemid != 83)
+                            {
+                                at_ang = 0;
+                            }
+                        }
+                    } 
+                    else 
+                    {
+                        if (st->itemid != 82) 
+                        {
+                            bhSetMessage(1, st->itemid);
+                            return;
+                        }
+                        
+                        if ((unsigned char)st->pip[st->listcsr_0] != 0)
+                        {
+                            bhSetMessage(1, st->itemid);
+                            return;
+                        }
+                        
+                        bhSetMessage(1, 140);
+                    }
+                } 
+                else if ((sys->pad_ps & 0x1000)) 
+                {
+                    st->mode = 1;
+                    st->testmode = 1;
+                    
+                    NameChangeSet(st);
+                    
+                    st->wn = 0;
+                    
+                    swork.statusflg |= 0x20000;
+                    
+                    if (st->itemid == 30) 
+                    {
+                        wp = ItemSearch(st->itemid);
+                        
+                        st->itemid = 13;
+                        
+                        *wp = (st->itemid << 16) | itemdata[st->itemid].max;
+                    }
+                }
+            }
+        }
+    } 
+    else 
+    {
+        sc->cax = 0;
+        sc->cay = 0;
+        sc->caz = 0;
+    }
 }
 
 // 100% matching!
