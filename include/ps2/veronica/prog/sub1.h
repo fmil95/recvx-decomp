@@ -3,6 +3,27 @@
 
 #include "types.h"
 
+typedef struct PULSE_WORK 
+{
+    // total size: 0x120
+    NJS_POINT2 pos_00[5];         // offset 0x0, size 0x28
+    NJS_POINT2 pos_01[5];         // offset 0x28, size 0x28
+    NJS_POINT2 pos_02[5];         // offset 0x50, size 0x28
+    NJS_POINT2 heal_pos00;        // offset 0x78, size 0x8
+    NJS_POINT2 heal_pos01;        // offset 0x80, size 0x8
+    NJS_COLOR uv_00[5];           // offset 0x88, size 0x14
+    NJS_COLOR uv_01[5];           // offset 0x9C, size 0x14
+    NJS_COLOR col00[5];           // offset 0xB0, size 0x14
+    NJS_COLOR col01[5];           // offset 0xC4, size 0x14
+    unsigned int ocol00[5];       // offset 0xD8, size 0x14
+    unsigned int ocol01[5];       // offset 0xEC, size 0x14
+    unsigned short fadework00[5]; // offset 0x100, size 0xA
+    unsigned short fadework01[5]; // offset 0x10A, size 0xA
+    unsigned int pulseflg;        // offset 0x114, size 0x4
+    unsigned int fadeflg;         // offset 0x118, size 0x4
+    unsigned int count;           // offset 0x11C, size 0x4
+} PULSE_WORK;
+
 void Ps2ZbuffOffI();
 void Ps2DrawOTagI();
 void StatusInit(S_WORK* st);
