@@ -7,6 +7,7 @@
 #include "../../../ps2/veronica/prog/item.h"
 #include "../../../ps2/veronica/prog/ps2_NaFog.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
+#include "../../../ps2/veronica/prog/ps2_NaSprite.h"
 #include "../../../ps2/veronica/prog/ps2_NaView.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
@@ -1713,46 +1714,64 @@ void CursorSet(S_WORK* st)
     }
 }
 
-// 
-// Start address: 0x29be40
+// 99.49% matching (matches on GC)
 void SpriteSet2D(S_WORK* st, PARTS* cbjim, NJS_TEXANIM* anim1, NJS_TEXLIST* tlist)
 {
-	unsigned int atr[5];
-	unsigned int atr1;
-	NJS_SPRITE spr2d;
-	// Line 1705, Address: 0x29be40, Func Offset: 0
-	// Line 1708, Address: 0x29be4c, Func Offset: 0xc
-	// Line 1705, Address: 0x29be50, Func Offset: 0x10
-	// Line 1708, Address: 0x29be54, Func Offset: 0x14
-	// Line 1713, Address: 0x29be70, Func Offset: 0x30
-	// Line 1714, Address: 0x29be84, Func Offset: 0x44
-	// Line 1716, Address: 0x29be8c, Func Offset: 0x4c
-	// Line 1717, Address: 0x29be98, Func Offset: 0x58
-	// Line 1719, Address: 0x29bea0, Func Offset: 0x60
-	// Line 1720, Address: 0x29beac, Func Offset: 0x6c
-	// Line 1722, Address: 0x29beb4, Func Offset: 0x74
-	// Line 1723, Address: 0x29beb8, Func Offset: 0x78
-	// Line 1724, Address: 0x29bec4, Func Offset: 0x84
-	// Line 1726, Address: 0x29becc, Func Offset: 0x8c
-	// Line 1727, Address: 0x29bed8, Func Offset: 0x98
-	// Line 1731, Address: 0x29bee0, Func Offset: 0xa0
-	// Line 1732, Address: 0x29bee4, Func Offset: 0xa4
-	// Line 1733, Address: 0x29bee8, Func Offset: 0xa8
-	// Line 1734, Address: 0x29bef0, Func Offset: 0xb0
-	// Line 1735, Address: 0x29bef4, Func Offset: 0xb4
-	// Line 1737, Address: 0x29bf20, Func Offset: 0xe0
-	// Line 1738, Address: 0x29bf2c, Func Offset: 0xec
-	// Line 1739, Address: 0x29bf38, Func Offset: 0xf8
-	// Line 1740, Address: 0x29bf3c, Func Offset: 0xfc
-	// Line 1739, Address: 0x29bf40, Func Offset: 0x100
-	// Line 1740, Address: 0x29bf44, Func Offset: 0x104
-	// Line 1739, Address: 0x29bf4c, Func Offset: 0x10c
-	// Line 1740, Address: 0x29bf54, Func Offset: 0x114
-	// Line 1742, Address: 0x29bf90, Func Offset: 0x150
-	// Line 1744, Address: 0x29bfa0, Func Offset: 0x160
-	// Line 1745, Address: 0x29bfb4, Func Offset: 0x174
-	// Func End, Address: 0x29bfc8, Func Offset: 0x188
-	scePrintf("SpriteSet2D - UNIMPLEMENTED!\n");
+    NJS_SPRITE spr2d; 
+    unsigned int atr1 = 0;
+    unsigned int atr[5] = { 32, 1, 2, 4, 8 }; 
+    unsigned char atr2; // not from DWARF
+    
+    atr2 = cbjim->atr & 0x1F;
+    
+    if ((atr2 & 0x1)) 
+    {
+        atr1 |= atr[0];
+    }
+    
+    if ((atr2 & 0x2)) 
+    {
+        atr1 |= atr[1];
+    }
+    
+    if ((atr2 & 0x4)) 
+    {
+        atr1 |= atr[2];
+    }
+    
+    atr1 |= atr[2];
+    
+    if ((atr2 & 0x8)) 
+    {
+        atr1 |= atr[3];
+    }
+    
+    if ((atr2 & 0x10)) 
+    {
+        atr1 |= atr[4];
+    }
+    
+    spr2d.tlist = tlist;
+    spr2d.tanim = anim1;
+    
+    spr2d.sx = 1.0f;
+    spr2d.sy = 1.0f;
+    
+    spr2d.ang = (int)(182.04445f * cbjim->ang) & 0xFFFF;
+    
+    spr2d.p.x = floorf(cbjim->pos[0]);
+    spr2d.p.y = floorf(cbjim->pos[1]);
+    spr2d.p.z = -cbjim->pos[2];
+    
+    if ((spr2d.p.z == -1.0f) && (!(swork.statusflg & 0x10))) 
+    {
+        spr2d.p.z += -4.0f;
+    }
+    
+    if (ViewCnt == 0) 
+    {
+        njDrawSprite2D(&spr2d, cbjim->anim, spr2d.p.z, atr1 | 0x20);
+    }
 }
 
 // 
