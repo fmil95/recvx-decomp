@@ -729,78 +729,76 @@ void ItemModelActionSet()
     }
 }
 
-// 
-// Start address: 0x2ab1a0
+// 100% matching!
 void ItemModelChangeZoomOut()
 {
-	int chkang;
-	DSP_WORK* dw;
-	SITEM* si;
-	STCAM_WRK* sc;
-	S_WORK* st;
-	// Line 906, Address: 0x2ab1a0, Func Offset: 0
-	// Line 915, Address: 0x2ab1b8, Func Offset: 0x18
-	// Line 907, Address: 0x2ab1c0, Func Offset: 0x20
-	// Line 908, Address: 0x2ab1c8, Func Offset: 0x28
-	// Line 916, Address: 0x2ab1d0, Func Offset: 0x30
-	// Line 909, Address: 0x2ab1d8, Func Offset: 0x38
-	// Line 915, Address: 0x2ab1e0, Func Offset: 0x40
-	// Line 918, Address: 0x2ab1e4, Func Offset: 0x44
-	// Line 915, Address: 0x2ab1ec, Func Offset: 0x4c
-	// Line 916, Address: 0x2ab1f4, Func Offset: 0x54
-	// Line 918, Address: 0x2ab200, Func Offset: 0x60
-	// Line 916, Address: 0x2ab204, Func Offset: 0x64
-	// Line 918, Address: 0x2ab208, Func Offset: 0x68
-	// Line 919, Address: 0x2ab210, Func Offset: 0x70
-	// Line 921, Address: 0x2ab218, Func Offset: 0x78
-	// Line 919, Address: 0x2ab220, Func Offset: 0x80
-	// Line 916, Address: 0x2ab224, Func Offset: 0x84
-	// Line 919, Address: 0x2ab22c, Func Offset: 0x8c
-	// Line 921, Address: 0x2ab230, Func Offset: 0x90
-	// Line 924, Address: 0x2ab238, Func Offset: 0x98
-	// Line 927, Address: 0x2ab240, Func Offset: 0xa0
-	// Line 924, Address: 0x2ab248, Func Offset: 0xa8
-	// Line 927, Address: 0x2ab258, Func Offset: 0xb8
-	// Line 928, Address: 0x2ab264, Func Offset: 0xc4
-	// Line 927, Address: 0x2ab26c, Func Offset: 0xcc
-	// Line 929, Address: 0x2ab278, Func Offset: 0xd8
-	// Line 927, Address: 0x2ab280, Func Offset: 0xe0
-	// Line 928, Address: 0x2ab290, Func Offset: 0xf0
-	// Line 929, Address: 0x2ab2a4, Func Offset: 0x104
-	// Line 932, Address: 0x2ab2b0, Func Offset: 0x110
-	// Line 933, Address: 0x2ab2bc, Func Offset: 0x11c
-	// Line 934, Address: 0x2ab2c4, Func Offset: 0x124
-	// Line 936, Address: 0x2ab2d0, Func Offset: 0x130
-	// Line 934, Address: 0x2ab2d8, Func Offset: 0x138
-	// Line 936, Address: 0x2ab2e0, Func Offset: 0x140
-	// Line 938, Address: 0x2ab300, Func Offset: 0x160
-	// Line 939, Address: 0x2ab308, Func Offset: 0x168
-	// Line 940, Address: 0x2ab328, Func Offset: 0x188
-	// Line 939, Address: 0x2ab338, Func Offset: 0x198
-	// Line 943, Address: 0x2ab34c, Func Offset: 0x1ac
-	// Line 939, Address: 0x2ab350, Func Offset: 0x1b0
-	// Line 940, Address: 0x2ab354, Func Offset: 0x1b4
-	// Line 941, Address: 0x2ab358, Func Offset: 0x1b8
-	// Line 940, Address: 0x2ab368, Func Offset: 0x1c8
-	// Line 942, Address: 0x2ab374, Func Offset: 0x1d4
-	// Line 940, Address: 0x2ab378, Func Offset: 0x1d8
-	// Line 941, Address: 0x2ab390, Func Offset: 0x1f0
-	// Line 943, Address: 0x2ab3b8, Func Offset: 0x218
-	// Line 944, Address: 0x2ab3c0, Func Offset: 0x220
-	// Line 946, Address: 0x2ab3c8, Func Offset: 0x228
-	// Line 947, Address: 0x2ab3cc, Func Offset: 0x22c
-	// Line 948, Address: 0x2ab3d0, Func Offset: 0x230
-	// Line 949, Address: 0x2ab3d4, Func Offset: 0x234
-	// Line 952, Address: 0x2ab3fc, Func Offset: 0x25c
-	// Line 953, Address: 0x2ab400, Func Offset: 0x260
-	// Line 954, Address: 0x2ab408, Func Offset: 0x268
-	// Line 957, Address: 0x2ab410, Func Offset: 0x270
-	// Line 958, Address: 0x2ab414, Func Offset: 0x274
-	// Line 959, Address: 0x2ab418, Func Offset: 0x278
-	// Line 960, Address: 0x2ab41c, Func Offset: 0x27c
-	// Line 962, Address: 0x2ab428, Func Offset: 0x288
-	// Func End, Address: 0x2ab444, Func Offset: 0x2a4
-	scePrintf("ItemModelChangeZoomOut - UNIMPLEMENTED!\n");
+    S_WORK* st;
+    STCAM_WRK* sc;
+    SITEM* si;
+    DSP_WORK* dw;
+    int chkang;
+	
+    st = &swork;
+    sc = &st_cam;
+    si = &sitem;
+
+    st->actioncount--;
+    
+    sc->pos_0.z -= 3.2f;
+    
+    si->mw.ay1 += 4095;
+    si->mw.az1 += 2047;
+    
+    if (st->actioncount == 0)
+    {
+        wp_ = &st->pip[st->listcsr_0];
+        
+        st->ips1 = st->itemid = idsettbl[st->mesid = itemflg[dsptbl[st->mesid].hide][6]];
+        
+        dw = (DSP_WORK*)&dsptbl[st->itemid];
+        
+        if (dw->hide != 0) 
+        {
+            MdlEvalflagsSet(dw->hide);
+            
+            dw = &dsptbl[st->itemid];
+            
+            testf = ModelScaleSet(si, itemflg[dw->hide][3]);
+        }
+        
+        st->testmode = 1;
+        
+        si->mw.pos.x = hoseipos[itemflg[dw->hide][2]].x;
+        si->mw.pos.y = hoseipos[itemflg[dw->hide][2]].y;
+        si->mw.pos.z = hoseipos[itemflg[dw->hide][2]].z;
+        
+        st->actioncount = 32;
+        
+        njUnitMatrix(&sc->rotmat);
+        njUnitMatrix(NULL);
+        
+        si->mw.ax1 = 0;
+        si->mw.ay1 = 0;
+        si->mw.az1 = 0;
+
+        if ((st->itemid == 105) || (st->itemid == 30) || (st->itemid == 35))
+        {
+            chkang = 3;
+        }
+        else
+        {
+            chkang = 1;
+        }
+        
+        st->subcsr = chkang;
+        
+        sc->pos_1.z = 0;
+        
+        sc->cay = 0;
+        sc->caz = 0;
+        
+        si->mdl.objP->child->ang[0] = 0;
+    }
 }
 
 // 100% matching!
