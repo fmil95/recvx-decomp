@@ -1102,96 +1102,101 @@ void FileSyu(NJS_CNK_OBJECT* op)
     op->sibling->sibling->ang[1] = 32768;
 }
 
-// 
-// Start address: 0x2abd20
+// 100% matching!
 void MakeTag(NJS_CNK_OBJECT* param, unsigned short flg) // first parameter is not present on DWARF
 {
-	float zpos;
-	float ypos;
-	int tagcol;
-	int i;
-	//_anon38 p3c;
-	//_anon18 col[4];
-	NJS_POINT3 p[4];
-	FV_WORK* fv;
-	S_WORK* st;
-	// Line 1254, Address: 0x2abd20, Func Offset: 0
-	// Line 1256, Address: 0x2abd3c, Func Offset: 0x1c
-	// Line 1258, Address: 0x2abd44, Func Offset: 0x24
-	// Line 1254, Address: 0x2abd4c, Func Offset: 0x2c
-	// Line 1275, Address: 0x2abd50, Func Offset: 0x30
-	// Line 1254, Address: 0x2abd54, Func Offset: 0x34
-	// Line 1277, Address: 0x2abd58, Func Offset: 0x38
-	// Line 1275, Address: 0x2abd5c, Func Offset: 0x3c
-	// Line 1277, Address: 0x2abd60, Func Offset: 0x40
-	// Line 1275, Address: 0x2abd64, Func Offset: 0x44
-	// Line 1278, Address: 0x2abd74, Func Offset: 0x54
-	// Line 1277, Address: 0x2abd78, Func Offset: 0x58
-	// Line 1278, Address: 0x2abd84, Func Offset: 0x64
-	// Line 1279, Address: 0x2abd98, Func Offset: 0x78
-	// Line 1282, Address: 0x2abdac, Func Offset: 0x8c
-	// Line 1284, Address: 0x2abdb0, Func Offset: 0x90
-	// Line 1285, Address: 0x2abdd4, Func Offset: 0xb4
-	// Line 1286, Address: 0x2abde4, Func Offset: 0xc4
-	// Line 1289, Address: 0x2abe04, Func Offset: 0xe4
-	// Line 1290, Address: 0x2abe0c, Func Offset: 0xec
-	// Line 1292, Address: 0x2abe10, Func Offset: 0xf0
-	// Line 1293, Address: 0x2abe18, Func Offset: 0xf8
-	// Line 1295, Address: 0x2abe20, Func Offset: 0x100
-	// Line 1298, Address: 0x2abe54, Func Offset: 0x134
-	// Line 1299, Address: 0x2abe5c, Func Offset: 0x13c
-	// Line 1303, Address: 0x2abe60, Func Offset: 0x140
-	// Line 1304, Address: 0x2abe68, Func Offset: 0x148
-	// Line 1306, Address: 0x2abe70, Func Offset: 0x150
-	// Line 1305, Address: 0x2abe74, Func Offset: 0x154
-	// Line 1306, Address: 0x2abe78, Func Offset: 0x158
-	// Line 1309, Address: 0x2abe7c, Func Offset: 0x15c
-	// Line 1308, Address: 0x2abe80, Func Offset: 0x160
-	// Line 1310, Address: 0x2abe84, Func Offset: 0x164
-	// Line 1309, Address: 0x2abe88, Func Offset: 0x168
-	// Line 1310, Address: 0x2abe8c, Func Offset: 0x16c
-	// Line 1311, Address: 0x2abe90, Func Offset: 0x170
-	// Line 1312, Address: 0x2abe94, Func Offset: 0x174
-	// Line 1340, Address: 0x2abea0, Func Offset: 0x180
-	// Line 1314, Address: 0x2abea4, Func Offset: 0x184
-	// Line 1311, Address: 0x2abea8, Func Offset: 0x188
-	// Line 1312, Address: 0x2abeac, Func Offset: 0x18c
-	// Line 1314, Address: 0x2abeb0, Func Offset: 0x190
-	// Line 1321, Address: 0x2abeb8, Func Offset: 0x198
-	// Line 1312, Address: 0x2abebc, Func Offset: 0x19c
-	// Line 1313, Address: 0x2abec4, Func Offset: 0x1a4
-	// Line 1314, Address: 0x2abecc, Func Offset: 0x1ac
-	// Line 1315, Address: 0x2abed8, Func Offset: 0x1b8
-	// Line 1316, Address: 0x2abee4, Func Offset: 0x1c4
-	// Line 1317, Address: 0x2abeec, Func Offset: 0x1cc
-	// Line 1318, Address: 0x2abef8, Func Offset: 0x1d8
-	// Line 1319, Address: 0x2abf00, Func Offset: 0x1e0
-	// Line 1321, Address: 0x2abf04, Func Offset: 0x1e4
-	// Line 1322, Address: 0x2abf08, Func Offset: 0x1e8
-	// Line 1323, Address: 0x2abf0c, Func Offset: 0x1ec
-	// Line 1324, Address: 0x2abf10, Func Offset: 0x1f0
-	// Line 1326, Address: 0x2abf14, Func Offset: 0x1f4
-	// Line 1327, Address: 0x2abf18, Func Offset: 0x1f8
-	// Line 1328, Address: 0x2abf1c, Func Offset: 0x1fc
-	// Line 1329, Address: 0x2abf20, Func Offset: 0x200
-	// Line 1331, Address: 0x2abf24, Func Offset: 0x204
-	// Line 1332, Address: 0x2abf28, Func Offset: 0x208
-	// Line 1333, Address: 0x2abf2c, Func Offset: 0x20c
-	// Line 1334, Address: 0x2abf30, Func Offset: 0x210
-	// Line 1336, Address: 0x2abf34, Func Offset: 0x214
-	// Line 1337, Address: 0x2abf38, Func Offset: 0x218
-	// Line 1338, Address: 0x2abf3c, Func Offset: 0x21c
-	// Line 1319, Address: 0x2abf40, Func Offset: 0x220
-	// Line 1340, Address: 0x2abf44, Func Offset: 0x224
-	// Line 1341, Address: 0x2abf4c, Func Offset: 0x22c
-	// Line 1342, Address: 0x2abf5c, Func Offset: 0x23c
-	// Line 1343, Address: 0x2abf64, Func Offset: 0x244
-	// Line 1344, Address: 0x2abf68, Func Offset: 0x248
-	// Line 1346, Address: 0x2abf74, Func Offset: 0x254
-	// Line 1344, Address: 0x2abf78, Func Offset: 0x258
-	// Line 1345, Address: 0x2abf7c, Func Offset: 0x25c
-	// Line 1346, Address: 0x2abf88, Func Offset: 0x268
-	// Line 1348, Address: 0x2abf94, Func Offset: 0x274
-	// Func End, Address: 0x2abfbc, Func Offset: 0x29c
-	scePrintf("MakeTag - UNIMPLEMENTED!\n");
+    S_WORK* st;     
+    FV_WORK* fv;      
+    NJS_POINT3 p[4]; 
+    NJS_COLOR col[4]; 
+    NJS_POINT3COL p3c;
+    int i;             
+    int tagcol;      
+    float ypos, zpos;      
+
+    st = &swork; 
+    fv = &fvwork; 
+
+    ypos = 1.2f;
+    zpos = 0.04f;
+    
+    sys->itm[383] |= 0x1;
+    
+    if ((sys->ssd_flg & 0x1000)) 
+    {
+        sys->itm[383] |= 0x800;
+    }
+
+    for (i = 0; i < 8; i++) 
+    {
+        if (sys->itm[383] & (1 << (i + (unsigned int)(flg << 3)))) 
+        {
+            if (st->testmode == 9) 
+            {
+                if ((1 << (fv->tag + (fv->filecsr * 8))) & (sys->itm[383] & (1 << (i + (unsigned int)(flg << 3))))) 
+                {
+                    tagcol = 192;
+                }
+                else 
+                {
+                    tagcol = 128;
+                }
+            } 
+            else 
+            {
+                SearchTag(1);
+                
+                if ((1 << (fv->tag + (fv->filecsr * 8))) & (sys->itm[383] & (1 << (i + (unsigned int)(flg << 3)))))
+                {
+                    tagcol = 192;
+                }
+                else 
+                {
+                    tagcol = 128;
+                }
+            }
+            
+            p3c.p = p;
+            p3c.col = col;
+            p3c.tex = NULL;
+            p3c.num = 4;
+            
+            p[0].x = 0;
+            p[0].y = ypos;
+            p[0].z = zpos;
+            
+            p[1].x = p[0].x;
+            p[1].y = 0.2f + p[0].y;
+            p[1].z = p[0].z;
+            
+            p[2].x = 1.2f + p[0].x;
+            p[2].y = 0.2f + p[0].y;
+            p[2].z = p[0].z;
+            
+            p[3].x = 1.2f + p[0].x;
+            p[3].y = p[0].y;
+            p[3].z = p[0].z;
+            
+            col[0].argb.a = 0xFF;
+            col[0].argb.b = col[0].argb.g = col[0].argb.r = tagcol;
+
+            col[1].argb.a = 0xFF;
+            col[1].argb.b = col[1].argb.g = col[1].argb.r = tagcol;
+
+            col[2].argb.a = 0xFF;
+            col[2].argb.b = col[2].argb.g = col[2].argb.r = tagcol;
+
+            col[3].argb.a = 0xFF;
+            col[3].argb.b = col[3].argb.g = col[3].argb.r = tagcol;
+
+            njPushMatrix(NULL);
+            
+            njDrawPolygon3D(&p3c, 4, 32);
+            
+            njPopMatrix(1);
+        }
+        
+        ypos -= 0.35f;
+        zpos -= 0.02f;
+    } 
 }
