@@ -9,7 +9,7 @@ static Sint8 dvg_rbuf[4096] __attribute__((aligned(64)));
 sceCdRMode dvg_ci_cdrmode = { 0 };
 
 // 100% matching!
-static Sint32 analysis_flist_dup(void *inf, Sint8 *buf, Sint32 num)
+static Sint32 analysis_flist(void *inf, Sint8 *buf, Sint32 num)
 {
     Sint32 pos;
 	Sint32 begin;
@@ -48,7 +48,7 @@ static Sint32 analysis_flist_dup(void *inf, Sint8 *buf, Sint32 num)
 }
 
 // 100% matching!
-void conv_to_tpath_dup(Sint8 *spath, Sint8 *tpath)
+static void conv_to_tpath(Sint8 *spath, Sint8 *tpath)
 {
     strcpy(spath, tpath);
     
@@ -98,16 +98,16 @@ Sint32 dvCiLoadFpCache(Sint8 *fls_fname, Sint8 *fpc_ptr, Sint32 fpc_size)
         return 0;
     }
     
-    conv_to_tpath_dup((Sint8*)fname, fls_fname);
+    conv_to_tpath((Sint8*)fname, fls_fname);
     
-    if (load_flist_dup((Sint8*)fname, dvg_rbuf) == 0)
+    if (load_flist((Sint8*)fname, dvg_rbuf) == 0)
     {
         dvci_call_errfn(NULL, "E0111501:can't read filelist.(dvCiLoadDirInfo)");
         
         return 0;
     }
     
-    return search_fstate(fpc_ptr, analysis_flist_dup(fpc_ptr, dvg_rbuf, (Uint32)fpc_size / 140)) * 140;
+    return search_fstate(fpc_ptr, analysis_flist(fpc_ptr, dvg_rbuf, (Uint32)fpc_size / 140)) * 140;
 }
 
 // 100% matching!
@@ -145,7 +145,7 @@ static void get_fp_from_fname(sceCdlFILE *fp, const Sint8 *fname, void *inf, Sin
 }
 
 // 100% matching!
-static Sint32 load_flist_dup(Sint8 *fname, Sint8 *rbuf)
+static Sint32 load_flist(Sint8 *fname, Sint8 *rbuf)
 {
     sceCdlFILE fp;
     sceCdRMode mode;

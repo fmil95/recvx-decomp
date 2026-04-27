@@ -4,7 +4,7 @@
 #include <stdio.h>
 //#include <string.h>
 
-Sint32 htg_found = FALSE;
+static Sint32 htg_found = FALSE;
 static HTCI_FLIST_TBL htg_flist_tbl = { 0 };
 Sint32 htg_ci_open_mode = 0x8001;
 static Sint8 htg_rbuf[4096] __attribute__((aligned(64)));
@@ -117,7 +117,7 @@ static Sint32 close_file_all(void)
 }
 
 // 100% matching!
-void conv_to_tpath(Char8 *spath, Char8 *tpath)
+static void conv_to_tpath(Char8 *spath, Char8 *tpath)
 {
     Sint32 i;
 	Sint32 flen;
@@ -244,7 +244,7 @@ void htCiSetOpenMode(Sint32 mode)
 }
 
 // 100% matching!
-Sint32 load_flist(Sint8 *fname, Sint8 *rbuf)
+static Sint32 load_flist(Sint8 *fname, Sint8 *rbuf)
 {
     int fd;
 	Sint32 fsize;

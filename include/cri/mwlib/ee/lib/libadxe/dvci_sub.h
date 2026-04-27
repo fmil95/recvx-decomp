@@ -22,14 +22,14 @@ typedef struct
 
 extern sceCdRMode dvg_ci_cdrmode;
 
-static Sint32 analysis_flist_dup(void *inf, Sint8 *buf, Sint32 num);
-void conv_to_tpath_dup(Sint8 *spath, Sint8 *tpath);
+static Sint32 analysis_flist(void *inf, Sint8 *buf, Sint32 num);
+static void conv_to_tpath(Sint8 *spath, Sint8 *tpath);
 void dvci_get_fstate(const Sint8 *fname, sceCdlFILE *fp);
 void dvci_init_flist(void);
 Sint32 dvCiLoadFpCache(Sint8 *fls_fname, Sint8 *fpc_ptr, Sint32 fpc_size);
 void dvCiSetRdMode(Sint32 nrtry, Sint32 speed, Sint32 dtype);
 static void get_fp_from_fname(sceCdlFILE *fp, const Sint8 *fname, void *inf, Sint32 num);
-static Sint32 load_flist_dup(Sint8 *fname, Sint8 *rbuf);
+static Sint32 load_flist(Sint8 *fname, Sint8 *rbuf);
 static Sint32 search_fstate(void *inf, Sint32 num);
 
 #endif

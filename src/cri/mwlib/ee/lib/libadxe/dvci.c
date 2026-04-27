@@ -85,7 +85,7 @@ void dvci_to_large_to_yen(Sint8 *fname)
 }
 
 // 100% matching!
-void dvci_wait(void)
+static void dvci_wait(void)
 {
     Sint32 i;
 
