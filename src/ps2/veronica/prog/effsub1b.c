@@ -2,11 +2,13 @@
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/screen.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
@@ -668,42 +670,50 @@ void bhEff135(O_WRK* op)
 	scePrintf("bhEff135 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x23a6f0
+// 100% matching!
 void bhDraw136(O_WRK* op)
 {
-	BH_PWORK* pwp;
-	int* vp;
-	// Line 589, Address: 0x23a6f0, Func Offset: 0
-	// Line 594, Address: 0x23a704, Func Offset: 0x14
-	// Line 596, Address: 0x23a710, Func Offset: 0x20
-	// Line 597, Address: 0x23a718, Func Offset: 0x28
-	// Line 598, Address: 0x23a720, Func Offset: 0x30
-	// Line 602, Address: 0x23a72c, Func Offset: 0x3c
-	// Line 606, Address: 0x23a730, Func Offset: 0x40
-	// Line 599, Address: 0x23a738, Func Offset: 0x48
-	// Line 602, Address: 0x23a73c, Func Offset: 0x4c
-	// Line 603, Address: 0x23a740, Func Offset: 0x50
-	// Line 602, Address: 0x23a744, Func Offset: 0x54
-	// Line 606, Address: 0x23a74c, Func Offset: 0x5c
-	// Line 602, Address: 0x23a750, Func Offset: 0x60
-	// Line 606, Address: 0x23a758, Func Offset: 0x68
-	// Line 602, Address: 0x23a75c, Func Offset: 0x6c
-	// Line 606, Address: 0x23a780, Func Offset: 0x90
-	// Line 607, Address: 0x23a788, Func Offset: 0x98
-	// Line 608, Address: 0x23a7a4, Func Offset: 0xb4
-	// Line 610, Address: 0x23a7c8, Func Offset: 0xd8
-	// Line 612, Address: 0x23a81c, Func Offset: 0x12c
-	// Line 613, Address: 0x23a82c, Func Offset: 0x13c
-	// Line 614, Address: 0x23a874, Func Offset: 0x184
-	// Line 616, Address: 0x23a888, Func Offset: 0x198
-	// Line 617, Address: 0x23a89c, Func Offset: 0x1ac
-	// Line 621, Address: 0x23a8b8, Func Offset: 0x1c8
-	// Line 625, Address: 0x23a8f4, Func Offset: 0x204
-	// Line 626, Address: 0x23a92c, Func Offset: 0x23c
-	// Line 627, Address: 0x23a934, Func Offset: 0x244
-	// Func End, Address: 0x23a94c, Func Offset: 0x25c
-	scePrintf("bhDraw136 - UNIMPLEMENTED!\n");
+    int* vp;
+    BH_PWORK* pwp;
+
+    if (op->flg != 0) 
+    {
+        njPushMatrixEx();
+        
+        njControl3D(0x800);
+        
+        njSetConstantAttr(0, 0xA00);
+        
+        pwp = (BH_PWORK*)op->lkwkp;
+        vp = pwp->mdl[op->mdlver].objP[op->lkono].model->vlist; 
+        
+        pwp->mdl[op->mdlver].objP[op->lkono].model->vlist = (int*)op->exp0;
+        
+        njCnkSetSimpleLightColor(1.0f, 1.0f, 1.0f);
+        njCnkSetSimpleLightIntensity(1.0f, 0.8f);
+        njCnkSetSimpleLight(0, 0.3f, 0.7f);
+        
+        npSetAllMatAlphaColor(&pwp->mdl[op->mdlver].objP[op->lkono], 1, (op->ct0 + 1) * 40);
+        
+        njSetMatrix(NULL, cam.mtx);
+        
+        if (!(pwp->mdl[op->mdlver].objP[op->lkono].evalflags & 0x80000000)) 
+        {
+            njMultiMatrix(NULL, op->mtx);
+        }
+        else 
+        {
+            njTranslate(NULL, op->px, op->py, op->pz);
+        }
+        
+        njSetTexture(pwp->mdl[op->mdlver].texP);
+        
+        njCnkSimpleDrawModel(pwp->mdl[op->mdlver].objP[op->lkono].model);
+        
+        pwp->mdl[op->mdlver].objP[op->lkono].model->vlist = vp;
+        
+        njPopMatrixEx();
+    }
 }
 
 // 
