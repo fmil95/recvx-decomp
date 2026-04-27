@@ -803,40 +803,43 @@ void ItemModelChangeZoomOut()
 	scePrintf("ItemModelChangeZoomOut - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2ab450
+// 100% matching!
 void ItemModelMessageWait()
 {
-	DSP_WORK* dw;
-	S_WORK* st;
-	// Line 966, Address: 0x2ab450, Func Offset: 0
-	// Line 965, Address: 0x2ab45c, Func Offset: 0xc
-	// Line 966, Address: 0x2ab460, Func Offset: 0x10
-	// Line 968, Address: 0x2ab464, Func Offset: 0x14
-	// Line 966, Address: 0x2ab46c, Func Offset: 0x1c
-	// Line 968, Address: 0x2ab474, Func Offset: 0x24
-	// Line 969, Address: 0x2ab494, Func Offset: 0x44
-	// Line 970, Address: 0x2ab49c, Func Offset: 0x4c
-	// Line 969, Address: 0x2ab4a4, Func Offset: 0x54
-	// Line 970, Address: 0x2ab4ac, Func Offset: 0x5c
-	// Line 971, Address: 0x2ab4b0, Func Offset: 0x60
-	// Line 970, Address: 0x2ab4b4, Func Offset: 0x64
-	// Line 971, Address: 0x2ab4b8, Func Offset: 0x68
-	// Line 970, Address: 0x2ab4bc, Func Offset: 0x6c
-	// Line 971, Address: 0x2ab4c4, Func Offset: 0x74
-	// Line 973, Address: 0x2ab4f0, Func Offset: 0xa0
-	// Line 975, Address: 0x2ab4f4, Func Offset: 0xa4
-	// Line 973, Address: 0x2ab4fc, Func Offset: 0xac
-	// Line 975, Address: 0x2ab500, Func Offset: 0xb0
-	// Line 976, Address: 0x2ab518, Func Offset: 0xc8
-	// Line 977, Address: 0x2ab51c, Func Offset: 0xcc
-	// Line 978, Address: 0x2ab524, Func Offset: 0xd4
-	// Line 979, Address: 0x2ab52c, Func Offset: 0xdc
-	// Line 981, Address: 0x2ab530, Func Offset: 0xe0
-	// Line 983, Address: 0x2ab538, Func Offset: 0xe8
-	// Line 987, Address: 0x2ab540, Func Offset: 0xf0
-	// Func End, Address: 0x2ab548, Func Offset: 0xf8
-	scePrintf("ItemModelMessageWait - UNIMPLEMENTED!\n");
+    S_WORK* st;
+    DSP_WORK* dw;
+	
+    st = &swork;
+    
+    dw = (DSP_WORK*)&dsptbl[st->itemid];
+
+    if (((sys->st_flg & 0x4000)) && ((sys->cb_flg & 0x1000))) 
+    {
+        sys->cb_flg &= ~0x1000;
+        sys->st_flg &= ~0x200;
+        
+        switch (sys->mes_sel) 
+        {                        
+        case 100:
+            st->mesid = st->itemid;
+            
+            if (itemflg[dw->hide][1] != 0) 
+            {
+                st->testmode = 4;
+            } 
+            else 
+            {
+                st->testmode = 5;
+                
+                st->actioncount = 32;
+            } 
+            
+            break;
+        case 101:
+            st->testmode = 2;
+            break;
+        }
+    }
 }
 
 // 100% matching!
