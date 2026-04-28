@@ -3924,31 +3924,44 @@ void ArmsSet(S_WORK* st)
 	scePrintf("ArmsSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a12d0
+// 100% matching!
 void WindowJyoutai(S_WORK* st)
 {
-	unsigned short anim[5][3];
-	// Line 4114, Address: 0x2a12d0, Func Offset: 0
-	// Line 4112, Address: 0x2a12e4, Func Offset: 0x14
-	// Line 4114, Address: 0x2a12e8, Func Offset: 0x18
-	// Line 4119, Address: 0x2a1300, Func Offset: 0x30
-	// Line 4120, Address: 0x2a1318, Func Offset: 0x48
-	// Line 4121, Address: 0x2a1320, Func Offset: 0x50
-	// Line 4122, Address: 0x2a132c, Func Offset: 0x5c
-	// Line 4123, Address: 0x2a133c, Func Offset: 0x6c
-	// Line 4124, Address: 0x2a134c, Func Offset: 0x7c
-	// Line 4125, Address: 0x2a1354, Func Offset: 0x84
-	// Line 4126, Address: 0x2a135c, Func Offset: 0x8c
-	// Line 4128, Address: 0x2a1364, Func Offset: 0x94
-	// Line 4130, Address: 0x2a1370, Func Offset: 0xa0
-	// Line 4128, Address: 0x2a1374, Func Offset: 0xa4
-	// Line 4129, Address: 0x2a1394, Func Offset: 0xc4
-	// Line 4130, Address: 0x2a13a8, Func Offset: 0xd8
-	// Line 4131, Address: 0x2a13ac, Func Offset: 0xdc
-	// Line 4134, Address: 0x2a13bc, Func Offset: 0xec
-	// Func End, Address: 0x2a13c8, Func Offset: 0xf8
-	scePrintf("WindowJyoutai - UNIMPLEMENTED!\n");
+	unsigned short anim[3][5] = 
+    {
+        {  5,  6,  7,  8,  9 },
+        { 14, 13, 12, 11, 10 },
+        { 19, 18, 17, 16, 15 }
+    };
+
+    if ((st->wn_num != 0) && (st->dnum != 0)) 
+    {
+        st->wn_num--;
+        
+        if (st->wn_num == 0) 
+        {
+            st->dflg += st->dnum;
+            
+            if (st->dflg > 4) 
+            {
+                st->dflg = 4;
+                st->dnum = 255;
+                
+                st->sprflg = st->wn;
+            }
+            
+            parts_10b[15].anim = anim[st->sprflg][st->dflg];
+            
+            parts_10b[15].atr |= 0x20;
+            
+            st->wn_num = 1;
+            
+            if (st->dflg == 0) 
+            {
+                st->dnum = 0;
+            }
+        }
+    }
 }
 
 // 100% matching!
