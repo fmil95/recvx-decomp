@@ -4457,25 +4457,25 @@ void ItemCombination(S_WORK* st)
 	scePrintf("ItemCombination - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a2a30
+// 100% matching!
 void SidePackSet()
 {
-	// Line 4700, Address: 0x2a2a30, Func Offset: 0
-	// Line 4701, Address: 0x2a2a4c, Func Offset: 0x1c
-	// Line 4702, Address: 0x2a2a58, Func Offset: 0x28
-	// Line 4703, Address: 0x2a2a64, Func Offset: 0x34
-	// Line 4704, Address: 0x2a2a70, Func Offset: 0x40
-	// Line 4705, Address: 0x2a2a78, Func Offset: 0x48
-	// Line 4706, Address: 0x2a2a7c, Func Offset: 0x4c
-	// Line 4707, Address: 0x2a2a84, Func Offset: 0x54
-	// Line 4708, Address: 0x2a2a90, Func Offset: 0x60
-	// Line 4709, Address: 0x2a2a9c, Func Offset: 0x6c
-	// Line 4710, Address: 0x2a2aa8, Func Offset: 0x78
-	// Line 4711, Address: 0x2a2ab0, Func Offset: 0x80
-	// Line 4713, Address: 0x2a2ab8, Func Offset: 0x88
-	// Func End, Address: 0x2a2ac0, Func Offset: 0x90
-	scePrintf("SidePackSet - UNIMPLEMENTED!\n");
+    if ((sys->gm_flg & 0x8000000)) 
+    {
+        parts_04b[6].pos[1] = 208.0f;
+        parts_04b[8].pos[1] = 248.0f;
+        parts_04b[9].pos[1] = 268.0f;
+        parts_04b[13].pos[1] = 248.0f;
+        parts_04b[14].pos[1] = 268.0f;
+    } 
+    else 
+    {
+        parts_04b[6].pos[1] = 160.0f;
+        parts_04b[8].pos[1] = 200.0f;
+        parts_04b[9].pos[1] = 220.0f;
+        parts_04b[13].pos[1] = 200.0f;
+        parts_04b[14].pos[1] = 220.0f;
+    }
 }
 
 // 
