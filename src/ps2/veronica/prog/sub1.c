@@ -4478,50 +4478,60 @@ void SidePackSet()
     }
 }
 
-// 
-// Start address: 0x2a2ac0
+// 100% matching!
 void TrigerSet(S_WORK* st)
 {
-	// Line 4718, Address: 0x2a2ac0, Func Offset: 0
-	// Line 4719, Address: 0x2a2ac8, Func Offset: 0x8
-	// Line 4720, Address: 0x2a2af4, Func Offset: 0x34
-	// Line 4721, Address: 0x2a2b00, Func Offset: 0x40
-	// Line 4722, Address: 0x2a2b0c, Func Offset: 0x4c
-	// Line 4723, Address: 0x2a2b14, Func Offset: 0x54
-	// Line 4724, Address: 0x2a2b20, Func Offset: 0x60
-	// Line 4728, Address: 0x2a2b2c, Func Offset: 0x6c
-	// Line 4725, Address: 0x2a2b34, Func Offset: 0x74
-	// Line 4728, Address: 0x2a2b38, Func Offset: 0x78
-	// Line 4725, Address: 0x2a2b3c, Func Offset: 0x7c
-	// Line 4726, Address: 0x2a2b44, Func Offset: 0x84
-	// Line 4727, Address: 0x2a2b50, Func Offset: 0x90
-	// Line 4728, Address: 0x2a2b54, Func Offset: 0x94
-	// Line 4729, Address: 0x2a2b68, Func Offset: 0xa8
-	// Line 4730, Address: 0x2a2b70, Func Offset: 0xb0
-	// Line 4731, Address: 0x2a2b78, Func Offset: 0xb8
-	// Line 4734, Address: 0x2a2b80, Func Offset: 0xc0
-	// Line 4735, Address: 0x2a2b88, Func Offset: 0xc8
-	// Line 4736, Address: 0x2a2b94, Func Offset: 0xd4
-	// Line 4737, Address: 0x2a2b9c, Func Offset: 0xdc
-	// Line 4738, Address: 0x2a2ba8, Func Offset: 0xe8
-	// Line 4739, Address: 0x2a2bb4, Func Offset: 0xf4
-	// Line 4740, Address: 0x2a2bc0, Func Offset: 0x100
-	// Line 4741, Address: 0x2a2bcc, Func Offset: 0x10c
-	// Line 4742, Address: 0x2a2bd4, Func Offset: 0x114
-	// Line 4743, Address: 0x2a2be8, Func Offset: 0x128
-	// Line 4745, Address: 0x2a2bf8, Func Offset: 0x138
-	// Line 4746, Address: 0x2a2c00, Func Offset: 0x140
-	// Line 4747, Address: 0x2a2c0c, Func Offset: 0x14c
-	// Line 4748, Address: 0x2a2c14, Func Offset: 0x154
-	// Line 4749, Address: 0x2a2c20, Func Offset: 0x160
-	// Line 4750, Address: 0x2a2c2c, Func Offset: 0x16c
-	// Line 4751, Address: 0x2a2c38, Func Offset: 0x178
-	// Line 4752, Address: 0x2a2c44, Func Offset: 0x184
-	// Line 4753, Address: 0x2a2c4c, Func Offset: 0x18c
-	// Line 4754, Address: 0x2a2c60, Func Offset: 0x1a0
-	// Line 4756, Address: 0x2a2c74, Func Offset: 0x1b4
-	// Func End, Address: 0x2a2c80, Func Offset: 0x1c0
-	scePrintf("TriggerSet - UNIMPLEMENTED!\n");
+    if ((itemdata[st->itemid].type & 0x1))
+    {
+        if (st->itemid == 10) 
+        {
+            parts_06b[2].pos[1] = 148.0f;
+            parts_06b[3].pos[1] = 148.0f;
+            parts_06b[5].pos[1] = 184.0f;
+            parts_06b[7].pos[1] = 180.0f;
+            
+            parts_06b[8].setnum = 3;
+            parts_06b[9].setnum = 4;
+            parts_06b[10].setnum = 4;
+            
+            if (bhCkFlg(sys->ev_flg, 74) != 0) 
+            {
+                parts_06b[17].anim = 12;
+            }
+            else
+            {
+                parts_06b[17].anim = 11;
+            }
+        }
+        else 
+        {
+            parts_06b[2].pos[1] = 116.0f;
+            parts_06b[3].pos[1] = 116.0f;
+            parts_06b[5].pos[1] = 152.0f;
+            parts_06b[7].pos[1] = 148.0f;
+            
+            parts_06b[8].setnum = 2;
+            parts_06b[9].setnum = 3;
+            parts_06b[10].setnum = 3;
+            
+            parts_06b[11].atr &= ~0x20;
+            parts_06b[12].atr &= ~0x20;
+        }
+    }
+    else 
+    {
+        parts_06b[2].pos[1] = 84.0f;
+        parts_06b[3].pos[1] = 84.0f;
+        parts_06b[5].pos[1] = 120.0f;
+        parts_06b[7].pos[1] = 116.0f;
+        
+        parts_06b[8].setnum = 1;
+        parts_06b[9].setnum = 2;
+        parts_06b[10].setnum = 2;
+        
+        parts_06b[11].atr &= ~0x20;
+        parts_06b[12].atr &= ~0x20;
+    }
 }
 
 // 
