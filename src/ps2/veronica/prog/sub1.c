@@ -3951,65 +3951,81 @@ void WindowJyoutai(S_WORK* st)
 	scePrintf("WindowJyoutai - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a13d0
-void ItemCommandErase(S_WORK* st, int arg1/* unused */)
+// 100% matching!
+void ItemCommandErase(S_WORK* st, int param) // second parameter not present on DWARF
 {
 	unsigned char x;
-	// Line 4141, Address: 0x2a13d0, Func Offset: 0
-	// Line 4142, Address: 0x2a13e8, Func Offset: 0x18
-	// Line 4143, Address: 0x2a13f4, Func Offset: 0x24
-	// Line 4144, Address: 0x2a13fc, Func Offset: 0x2c
-	// Line 4145, Address: 0x2a1404, Func Offset: 0x34
-	// Line 4147, Address: 0x2a140c, Func Offset: 0x3c
-	// Line 4148, Address: 0x2a1418, Func Offset: 0x48
-	// Line 4149, Address: 0x2a143c, Func Offset: 0x6c
-	// Line 4150, Address: 0x2a1444, Func Offset: 0x74
-	// Line 4151, Address: 0x2a144c, Func Offset: 0x7c
-	// Line 4152, Address: 0x2a1450, Func Offset: 0x80
-	// Line 4153, Address: 0x2a1454, Func Offset: 0x84
-	// Line 4154, Address: 0x2a1474, Func Offset: 0xa4
-	// Line 4153, Address: 0x2a1478, Func Offset: 0xa8
-	// Line 4154, Address: 0x2a147c, Func Offset: 0xac
-	// Line 4155, Address: 0x2a1484, Func Offset: 0xb4
-	// Line 4161, Address: 0x2a1488, Func Offset: 0xb8
-	// Line 4155, Address: 0x2a1490, Func Offset: 0xc0
-	// Line 4156, Address: 0x2a1498, Func Offset: 0xc8
-	// Line 4157, Address: 0x2a14a4, Func Offset: 0xd4
-	// Line 4158, Address: 0x2a14a8, Func Offset: 0xd8
-	// Line 4159, Address: 0x2a14ac, Func Offset: 0xdc
-	// Line 4160, Address: 0x2a14b0, Func Offset: 0xe0
-	// Line 4161, Address: 0x2a14b8, Func Offset: 0xe8
-	// Line 4162, Address: 0x2a14d0, Func Offset: 0x100
-	// Line 4163, Address: 0x2a14d8, Func Offset: 0x108
-	// Line 4164, Address: 0x2a14dc, Func Offset: 0x10c
-	// Line 4163, Address: 0x2a14e4, Func Offset: 0x114
-	// Line 4164, Address: 0x2a14f0, Func Offset: 0x120
-	// Line 4165, Address: 0x2a1500, Func Offset: 0x130
-	// Line 4166, Address: 0x2a1524, Func Offset: 0x154
-	// Line 4170, Address: 0x2a152c, Func Offset: 0x15c
-	// Line 4171, Address: 0x2a1540, Func Offset: 0x170
-	// Line 4173, Address: 0x2a1544, Func Offset: 0x174
-	// Line 4172, Address: 0x2a1548, Func Offset: 0x178
-	// Line 4173, Address: 0x2a154c, Func Offset: 0x17c
-	// Line 4174, Address: 0x2a1550, Func Offset: 0x180
-	// Line 4175, Address: 0x2a1554, Func Offset: 0x184
-	// Line 4176, Address: 0x2a1564, Func Offset: 0x194
-	// Line 4175, Address: 0x2a1570, Func Offset: 0x1a0
-	// Line 4176, Address: 0x2a1578, Func Offset: 0x1a8
-	// Line 4177, Address: 0x2a1584, Func Offset: 0x1b4
-	// Line 4183, Address: 0x2a1588, Func Offset: 0x1b8
-	// Line 4177, Address: 0x2a1590, Func Offset: 0x1c0
-	// Line 4178, Address: 0x2a1598, Func Offset: 0x1c8
-	// Line 4179, Address: 0x2a15a4, Func Offset: 0x1d4
-	// Line 4180, Address: 0x2a15a8, Func Offset: 0x1d8
-	// Line 4181, Address: 0x2a15ac, Func Offset: 0x1dc
-	// Line 4182, Address: 0x2a15b0, Func Offset: 0x1e0
-	// Line 4183, Address: 0x2a15b8, Func Offset: 0x1e8
-	// Line 4184, Address: 0x2a15c8, Func Offset: 0x1f8
-	// Line 4186, Address: 0x2a15e0, Func Offset: 0x210
-	// Func End, Address: 0x2a15e8, Func Offset: 0x218
-	scePrintf("ItemCommandErase - UNIMPLEMENTED!\n");
+
+    if ((swork.statusflg & 0x800000)) 
+    {
+        if (st->flag_ == 0) 
+        {
+            st->wait_ = 24;
+            st->number_ = 4;
+            st->flag_ = 1;
+        }
+        
+        if (st->number_ != 0) 
+        {
+            cen_pos[11][0] += st->wait_;
+            
+            st->number_--;
+        }
+        else 
+        {
+            st->maincsr = 0;
+        
+            st->flag_ = 0;
+            
+            swork.statusflg &= ~0x800000;
+            
+            for (x = 0; x < 5; x++)
+            {
+                parts_06b[x + 13].atr &= ~0x4;
+                parts_06b[x + 13].color &= ~0x8;
+                
+                parts_06b[x + 13].col.a = 1.0f;
+                parts_06b[x + 13].col.r = 1.0f;
+                parts_06b[x + 13].col.g = 1.0f;
+                parts_06b[x + 13].col.b = 1.0f;
+            }
+            
+            for (x = 0; x < 18; x++)
+            {
+                parts_06b[x].atr &= ~0x20;
+            }
+            
+            if ((!(st->mode & 0x8)) && (!(swork.statusflg & 0x4))) 
+            {
+                st->mode = 1;
+                st->testmode = 1;
+            }
+        }
+    } 
+    else if ((swork.statusflg & 0x8)) 
+    {
+        st->maincsr = 0;
+        
+        st->flag_ = 0;
+        
+        st->mode = 1;
+        st->testmode = 1;
+        
+        cen_pos[11][0] += 96.0f;
+        
+        for (x = 0; x < 5; x++)
+        {
+            parts_06b[x + 13].atr &= ~0x4;
+            parts_06b[x + 13].color &= ~0x8;
+            
+            parts_06b[x + 13].col.a = 1.0f;
+            parts_06b[x + 13].col.r = 1.0f;
+            parts_06b[x + 13].col.g = 1.0f;
+            parts_06b[x + 13].col.b = 1.0f;
+        }
+        
+        swork.statusflg &= ~0x8;
+    }
 }
 
 // 
