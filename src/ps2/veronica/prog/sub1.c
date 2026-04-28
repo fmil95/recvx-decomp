@@ -5184,43 +5184,54 @@ unsigned char Combi_03(short ps, unsigned int* moto, unsigned int* aite)
     return 1;
 }
 
-// 
-// Start address: 0x2a4340
+// 100% matching!
 unsigned char Combi_04(short ps, unsigned int* moto, unsigned int* aite)
 {
-	unsigned char ok;
-	unsigned short itemid2;
-	unsigned short itemid1;
-	unsigned short bullet2;
-	unsigned short bullet1;
-	// Line 5481, Address: 0x2a4340, Func Offset: 0
-	// Line 5482, Address: 0x2a4344, Func Offset: 0x4
-	// Line 5483, Address: 0x2a4348, Func Offset: 0x8
-	// Line 5484, Address: 0x2a434c, Func Offset: 0xc
-	// Line 5480, Address: 0x2a4350, Func Offset: 0x10
-	// Line 5481, Address: 0x2a4354, Func Offset: 0x14
-	// Line 5482, Address: 0x2a4358, Func Offset: 0x18
-	// Line 5481, Address: 0x2a435c, Func Offset: 0x1c
-	// Line 5486, Address: 0x2a4360, Func Offset: 0x20
-	// Line 5488, Address: 0x2a436c, Func Offset: 0x2c
-	// Line 5487, Address: 0x2a4378, Func Offset: 0x38
-	// Line 5488, Address: 0x2a4380, Func Offset: 0x40
-	// Line 5490, Address: 0x2a4390, Func Offset: 0x50
-	// Line 5492, Address: 0x2a4398, Func Offset: 0x58
-	// Line 5491, Address: 0x2a43b4, Func Offset: 0x74
-	// Line 5495, Address: 0x2a43bc, Func Offset: 0x7c
-	// Line 5497, Address: 0x2a43c4, Func Offset: 0x84
-	// Line 5496, Address: 0x2a43c8, Func Offset: 0x88
-	// Line 5497, Address: 0x2a43cc, Func Offset: 0x8c
-	// Line 5499, Address: 0x2a43d0, Func Offset: 0x90
-	// Line 5501, Address: 0x2a43d8, Func Offset: 0x98
-	// Line 5500, Address: 0x2a43dc, Func Offset: 0x9c
-	// Line 5501, Address: 0x2a43e0, Func Offset: 0xa0
-	// Line 5504, Address: 0x2a43e4, Func Offset: 0xa4
-	// Line 5505, Address: 0x2a43f8, Func Offset: 0xb8
-	// Line 5509, Address: 0x2a4408, Func Offset: 0xc8
-	// Func End, Address: 0x2a4410, Func Offset: 0xd0
-	scePrintf("Combi_04 - UNIMPLEMENTED!\n");
+    unsigned short bullet1, bullet2; 
+    unsigned short itemid1, itemid2; 
+    unsigned char ok;      
+
+    ok = 0;
+   
+    bullet1 = *moto;
+    bullet2 = *aite;
+    
+    itemid1 = (*moto >> 16) & 0xFF;
+    itemid2 = (*aite >> 16) & 0xFF;
+    
+    if (bullet2 <= bullet1) 
+    {
+        bullet1 -= bullet2;
+        
+        itemid2 = combidata[ps + 1];
+        
+        ok = 128;
+    } 
+    else 
+    {
+        itemid1 = combidata[ps + 1];
+        
+        bullet2 -= bullet1;
+    }
+    
+    if (!bullet1) 
+    {
+        itemid1 = 0;
+        
+        ok |= 0x1;
+    }
+    
+    if (!bullet2) 
+    {
+        itemid2 = 0;
+        
+        ok |= 0x2;
+    }
+    
+    *moto = (itemid1 << 16) | bullet1;
+    *aite = (itemid2 << 16) | bullet2;
+    
+    return ok;
 }
 
 // 
