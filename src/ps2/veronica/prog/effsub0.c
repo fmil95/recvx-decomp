@@ -1682,44 +1682,56 @@ void bhEff186(O_WRK* op)
 	scePrintf("bhEff186 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x222510
+// 100% matching!
 void bhEff187(O_WRK* op)
 {
-	unsigned char dt_interval1[10];
-	unsigned char dt_interval0[10];
-	// Line 2698, Address: 0x222510, Func Offset: 0
-	// Line 2700, Address: 0x222514, Func Offset: 0x4
-	// Line 2698, Address: 0x222518, Func Offset: 0x8
-	// Line 2700, Address: 0x222520, Func Offset: 0x10
-	// Line 2705, Address: 0x222530, Func Offset: 0x20
-	// Line 2700, Address: 0x22253c, Func Offset: 0x2c
-	// Line 2705, Address: 0x222544, Func Offset: 0x34
-	// Line 2711, Address: 0x222548, Func Offset: 0x38
-	// Line 2705, Address: 0x22254c, Func Offset: 0x3c
-	// Line 2711, Address: 0x222558, Func Offset: 0x48
-	// Line 2713, Address: 0x222564, Func Offset: 0x54
-	// Line 2715, Address: 0x222584, Func Offset: 0x74
-	// Line 2716, Address: 0x222590, Func Offset: 0x80
-	// Line 2718, Address: 0x2225c0, Func Offset: 0xb0
-	// Line 2719, Address: 0x2225d0, Func Offset: 0xc0
-	// Line 2721, Address: 0x2225d4, Func Offset: 0xc4
-	// Line 2723, Address: 0x2225dc, Func Offset: 0xcc
-	// Line 2724, Address: 0x2225e8, Func Offset: 0xd8
-	// Line 2725, Address: 0x2225f8, Func Offset: 0xe8
-	// Line 2727, Address: 0x222644, Func Offset: 0x134
-	// Line 2728, Address: 0x22264c, Func Offset: 0x13c
-	// Line 2730, Address: 0x222654, Func Offset: 0x144
-	// Line 2731, Address: 0x222660, Func Offset: 0x150
-	// Line 2732, Address: 0x222670, Func Offset: 0x160
-	// Line 2734, Address: 0x2226bc, Func Offset: 0x1ac
-	// Line 2735, Address: 0x2226c4, Func Offset: 0x1b4
-	// Line 2737, Address: 0x2226cc, Func Offset: 0x1bc
-	// Line 2738, Address: 0x2226dc, Func Offset: 0x1cc
-	// Line 2739, Address: 0x2226e0, Func Offset: 0x1d0
-	// Line 2744, Address: 0x2226e4, Func Offset: 0x1d4
-	// Func End, Address: 0x2226f4, Func Offset: 0x1e4
-	scePrintf("bhEff187 - UNIMPLEMENTED!\n");
+    unsigned char dt_interval0[10] = { 0 } /* DATA */, dt_interval1[10] = { 0 }; // DATA
+    
+    op->flg |= 0x1000000;
+    
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type != 0) 
+    {
+        switch ((unsigned short)op->type)
+        {
+        case 2:
+            setentry(188, 1, op);
+            
+            op->mode1 = 0;
+            op->type = 0;
+            break;
+        case 3:
+            if (op->ct1 <= 0) 
+            {
+                setentry(188, 0, op);
+                
+                op->ct1 = dt_interval0[(unsigned char)(10.0f * (-rand() / -2.1474836E9f))];
+            }
+            
+            op->ct1--;
+            break;
+        case 4:
+            if (op->ct1 <= 0) 
+            {
+                setentry(188, 1, op);
+                
+                op->ct1 = dt_interval1[(unsigned char)(10.0f * (-rand() / -2.1474836E9f))];
+            }
+            
+            op->ct1--;
+            break;
+        default:
+            setentry(188, 0, op);
+            
+            op->mode1 = 0;
+            op->type = 0;
+            break;
+        }
+    }
 }
 
 // 100% matching!
