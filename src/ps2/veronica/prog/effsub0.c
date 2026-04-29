@@ -125,50 +125,81 @@ void bhEff150(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x21f290
+// 100% matching!
 void bhEff151(O_WRK* op)
 {
-	UV_WORK* uvp;
-	UV_WORK uvinfo_koisi[11];
-	UV_WORK uvinfo_mokuhen[11];
-	// Line 312, Address: 0x21f290, Func Offset: 0
-	// Line 344, Address: 0x21f29c, Func Offset: 0xc
-	// Line 346, Address: 0x21f2b0, Func Offset: 0x20
-	// Line 347, Address: 0x21f2b4, Func Offset: 0x24
-	// Line 349, Address: 0x21f2bc, Func Offset: 0x2c
-	// Line 351, Address: 0x21f2c8, Func Offset: 0x38
-	// Line 354, Address: 0x21f2d8, Func Offset: 0x48
-	// Line 351, Address: 0x21f2dc, Func Offset: 0x4c
-	// Line 354, Address: 0x21f2e4, Func Offset: 0x54
-	// Line 356, Address: 0x21f2f8, Func Offset: 0x68
-	// Line 357, Address: 0x21f304, Func Offset: 0x74
-	// Line 358, Address: 0x21f30c, Func Offset: 0x7c
-	// Line 360, Address: 0x21f314, Func Offset: 0x84
-	// Line 361, Address: 0x21f320, Func Offset: 0x90
-	// Line 364, Address: 0x21f32c, Func Offset: 0x9c
-	// Line 370, Address: 0x21f334, Func Offset: 0xa4
-	// Line 371, Address: 0x21f344, Func Offset: 0xb4
-	// Line 372, Address: 0x21f348, Func Offset: 0xb8
-	// Line 374, Address: 0x21f360, Func Offset: 0xd0
-	// Line 376, Address: 0x21f36c, Func Offset: 0xdc
-	// Line 378, Address: 0x21f374, Func Offset: 0xe4
-	// Line 379, Address: 0x21f380, Func Offset: 0xf0
-	// Line 386, Address: 0x21f38c, Func Offset: 0xfc
-	// Line 387, Address: 0x21f3b8, Func Offset: 0x128
-	// Line 392, Address: 0x21f3c0, Func Offset: 0x130
-	// Line 387, Address: 0x21f3cc, Func Offset: 0x13c
-	// Line 391, Address: 0x21f3d4, Func Offset: 0x144
-	// Line 392, Address: 0x21f3e4, Func Offset: 0x154
-	// Line 394, Address: 0x21f3f8, Func Offset: 0x168
-	// Line 397, Address: 0x21f400, Func Offset: 0x170
-	// Line 398, Address: 0x21f40c, Func Offset: 0x17c
-	// Line 399, Address: 0x21f410, Func Offset: 0x180
-	// Line 398, Address: 0x21f414, Func Offset: 0x184
-	// Line 399, Address: 0x21f41c, Func Offset: 0x18c
-	// Line 400, Address: 0x21f450, Func Offset: 0x1c0
-	// Func End, Address: 0x21f460, Func Offset: 0x1d0
-	scePrintf("bhEff151 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    static UV_WORK uvinfo_koisi[11];  // DATA
+    static UV_WORK uvinfo_mokuhen[11]; // DATA
+
+    switch (op->mode0) 
+    {
+    case 0:
+        op->tex_id = 50;
+        
+        effinit(op);
+        
+        op->yn = -0.1f;
+        
+        op->spd = 0.02f * op->sz;
+
+        switch (op->type)
+        {
+        case 1:
+            op->exp0 = (unsigned char*)&uvinfo_mokuhen;
+            
+            op->ani_ct = op->type = 1;
+            break;
+        default:
+            op->exp0 = (unsigned char*)&uvinfo_koisi;
+            
+            op->ani_ct = op->type = 0;
+            break;
+        }
+        
+        op->mode0 = 1;
+    }
+    
+    if (op->ani_ct != op->type) 
+    {
+        op->ct0 = 0;
+
+        switch (op->type) 
+        { 
+        case 1:
+            op->exp0 = (unsigned char*)&uvinfo_mokuhen;
+            
+            op->ani_ct = 1;
+            break;
+        default: 
+            op->exp0 = (unsigned char*)&uvinfo_koisi;
+            
+            op->ani_ct = op->type = 0;
+            break;
+        }
+    }
+    
+    if (op->yn > -3.0f) 
+    {
+        op->yn -= op->spd;
+    }
+    
+    op->py += op->yn;
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+    
+    if (uvp->u == -1.0f)
+    {
+        op->flg = 0;
+    }
+    else
+    {
+        effset(op, uvp, 0);
+    
+        op->ct0++;
+        
+        sys->ef_trs[sys->ef_trsn++] = op;
+    }
 }
 
 // 
