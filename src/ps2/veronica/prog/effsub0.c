@@ -929,82 +929,122 @@ void bhEff169(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x220f30
+// 100% matching!
 void bhEff170(O_WRK* op)
 {
-	//_anon24 vd;
-	//_anon24 vs;
 	float py;
-	// Line 1534, Address: 0x220f30, Func Offset: 0
-	// Line 1539, Address: 0x220f3c, Func Offset: 0xc
-	// Line 1542, Address: 0x220f4c, Func Offset: 0x1c
-	// Line 1543, Address: 0x220f64, Func Offset: 0x34
-	// Line 1544, Address: 0x220f6c, Func Offset: 0x3c
-	// Line 1546, Address: 0x220f70, Func Offset: 0x40
-	// Line 1547, Address: 0x220f88, Func Offset: 0x58
-	// Line 1549, Address: 0x220f94, Func Offset: 0x64
-	// Line 1550, Address: 0x220f9c, Func Offset: 0x6c
-	// Line 1551, Address: 0x220fa0, Func Offset: 0x70
-	// Line 1552, Address: 0x220fac, Func Offset: 0x7c
-	// Line 1553, Address: 0x220fc0, Func Offset: 0x90
-	// Line 1554, Address: 0x220fd0, Func Offset: 0xa0
-	// Line 1555, Address: 0x220fd8, Func Offset: 0xa8
-	// Line 1556, Address: 0x220fe0, Func Offset: 0xb0
-	// Line 1557, Address: 0x220fe8, Func Offset: 0xb8
-	// Line 1559, Address: 0x220fec, Func Offset: 0xbc
-	// Line 1560, Address: 0x220ff4, Func Offset: 0xc4
-	// Line 1561, Address: 0x220ffc, Func Offset: 0xcc
-	// Line 1562, Address: 0x221004, Func Offset: 0xd4
-	// Line 1563, Address: 0x22100c, Func Offset: 0xdc
-	// Line 1564, Address: 0x221014, Func Offset: 0xe4
-	// Line 1565, Address: 0x22101c, Func Offset: 0xec
-	// Line 1566, Address: 0x221020, Func Offset: 0xf0
-	// Line 1567, Address: 0x221024, Func Offset: 0xf4
-	// Line 1570, Address: 0x221028, Func Offset: 0xf8
-	// Line 1571, Address: 0x221034, Func Offset: 0x104
-	// Line 1572, Address: 0x221040, Func Offset: 0x110
-	// Line 1575, Address: 0x221050, Func Offset: 0x120
-	// Line 1589, Address: 0x221058, Func Offset: 0x128
-	// Line 1575, Address: 0x22106c, Func Offset: 0x13c
-	// Line 1576, Address: 0x221074, Func Offset: 0x144
-	// Line 1577, Address: 0x221084, Func Offset: 0x154
-	// Line 1578, Address: 0x221094, Func Offset: 0x164
-	// Line 1580, Address: 0x2210a4, Func Offset: 0x174
-	// Line 1581, Address: 0x2210b4, Func Offset: 0x184
-	// Line 1582, Address: 0x2210c4, Func Offset: 0x194
-	// Line 1583, Address: 0x2210d4, Func Offset: 0x1a4
-	// Line 1589, Address: 0x2210e4, Func Offset: 0x1b4
-	// Line 1590, Address: 0x2210f0, Func Offset: 0x1c0
-	// Line 1591, Address: 0x2210f8, Func Offset: 0x1c8
-	// Line 1592, Address: 0x2210fc, Func Offset: 0x1cc
-	// Line 1593, Address: 0x221108, Func Offset: 0x1d8
-	// Line 1594, Address: 0x22111c, Func Offset: 0x1ec
-	// Line 1595, Address: 0x22112c, Func Offset: 0x1fc
-	// Line 1605, Address: 0x221130, Func Offset: 0x200
-	// Line 1595, Address: 0x221134, Func Offset: 0x204
-	// Line 1596, Address: 0x221138, Func Offset: 0x208
-	// Line 1597, Address: 0x221140, Func Offset: 0x210
-	// Line 1605, Address: 0x221144, Func Offset: 0x214
-	// Line 1606, Address: 0x22114c, Func Offset: 0x21c
-	// Line 1607, Address: 0x221160, Func Offset: 0x230
-	// Line 1608, Address: 0x22117c, Func Offset: 0x24c
-	// Line 1610, Address: 0x221194, Func Offset: 0x264
-	// Line 1611, Address: 0x22119c, Func Offset: 0x26c
-	// Line 1612, Address: 0x2211ac, Func Offset: 0x27c
-	// Line 1620, Address: 0x2211b0, Func Offset: 0x280
-	// Line 1622, Address: 0x2211cc, Func Offset: 0x29c
-	// Line 1623, Address: 0x2211d8, Func Offset: 0x2a8
-	// Line 1624, Address: 0x2211e4, Func Offset: 0x2b4
-	// Line 1626, Address: 0x2211e8, Func Offset: 0x2b8
-	// Line 1627, Address: 0x2211f0, Func Offset: 0x2c0
-	// Line 1628, Address: 0x2211f8, Func Offset: 0x2c8
-	// Line 1629, Address: 0x221200, Func Offset: 0x2d0
-	// Line 1630, Address: 0x221208, Func Offset: 0x2d8
-	// Line 1631, Address: 0x221210, Func Offset: 0x2e0
-	// Line 1641, Address: 0x221218, Func Offset: 0x2e8
-	// Func End, Address: 0x221228, Func Offset: 0x2f8
-	scePrintf("bhEff170 - UNIMPLEMENTED!\n");
+    NJS_POINT3 vs, vd;
+
+    op->flg |= 0x1000000;
+    
+    if ((op->type == 0) && (op->mode1 != 0)) 
+    {
+        op->type = (unsigned char)op->mode1;
+        
+        op->mode1 = 0;
+    }
+    
+    if ((op->type != 0) && (op->ct0 == 0)) 
+    {
+        op->ct0 = (unsigned short)op->type * 2;
+        
+        vs.y = 0;
+        vs.x = 0;
+        vs.z = op->sz;
+        
+        njUnitMatrix(NULL);
+        
+        njRotateXYZ(NULL, op->ax, op->ay, 0);
+        njCalcVector(NULL, &vs, &vd);
+        
+        op->xn = vd.x;
+        op->yn = vd.y;
+        op->zn = vd.z;
+        
+        op->spd = 0;
+        
+        op->aox = op->px;
+        op->aoy = op->py;
+        op->aoz = op->pz;
+        
+        op->axp = op->ax;
+        op->ayp = op->ay;
+        op->azp = op->az;
+        
+        op->lox = 0;
+        op->loy = 0;
+        op->loz = 0;
+    }
+    
+    if (op->ct0 != 0) 
+    {
+        if (!(op->ct0 & 0x1)) 
+        {
+            setentry(171, 1, op);
+        }
+        
+        op->px += op->xn;
+        op->py += op->yn;
+        op->pz += op->zn;
+        
+        op->py += op->spd;
+        
+        op->lox += op->xn;
+        op->loy += op->yn;
+        op->loz += op->zn;
+        
+        op->loy += op->spd;
+        
+        bhCheckWallRefAngle((NJS_POINT3*)&op->px, op->flg, 0.1f, 0.1f, &op->ay);
+        
+        vs.y = 0;
+        vs.x = 0;
+        vs.z = op->sz;
+        
+        njUnitMatrix(NULL);
+        
+        njRotateXYZ(NULL, op->ax, op->ay, 0);
+        njCalcVector(NULL, &vs, &vd);
+        
+        op->xn = vd.x;
+        op->yn = vd.y;
+        op->zn = vd.z;
+        
+        py = bhGetGroundPosition((NJS_POINT3*)&op->px);
+        
+        if (py >= op->py) 
+        {
+            if (op->yn < 0) 
+            {
+                op->spd = 2.0f * -op->yn;
+                
+                op->yn = 0;
+            }
+            else 
+            {
+                op->yn = -(op->yn + op->spd);
+                
+                op->spd = 0;
+            }
+        }
+        
+        op->spd -= 0.1f;
+        
+        op->ct0--;
+        
+        if (op->ct0 == 0) 
+        {
+            op->type = 0;
+            
+            op->px = op->aox;
+            op->py = op->aoy;
+            op->pz = op->aoz;
+            
+            op->ax = op->axp;
+            op->ay = op->ayp;
+            op->az = op->azp;
+        }
+    }
 }
 
 // 
