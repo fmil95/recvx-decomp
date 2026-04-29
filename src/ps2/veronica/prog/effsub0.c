@@ -1407,28 +1407,41 @@ void bhEff180(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x221a80
+// 100% matching!
 void bhEff181(O_WRK* op)
 {
 	unsigned short typ;
-	// Line 2046, Address: 0x221a80, Func Offset: 0
-	// Line 2048, Address: 0x221a90, Func Offset: 0x10
-	// Line 2050, Address: 0x221aa0, Func Offset: 0x20
-	// Line 2052, Address: 0x221ac0, Func Offset: 0x40
-	// Line 2054, Address: 0x221acc, Func Offset: 0x4c
-	// Line 2053, Address: 0x221ad0, Func Offset: 0x50
-	// Line 2054, Address: 0x221ad4, Func Offset: 0x54
-	// Line 2055, Address: 0x221af4, Func Offset: 0x74
-	// Line 2056, Address: 0x221b04, Func Offset: 0x84
-	// Line 2058, Address: 0x221b08, Func Offset: 0x88
-	// Line 2059, Address: 0x221b10, Func Offset: 0x90
-	// Line 2060, Address: 0x221b1c, Func Offset: 0x9c
-	// Line 2061, Address: 0x221b2c, Func Offset: 0xac
-	// Line 2063, Address: 0x221b40, Func Offset: 0xc0
-	// Line 2067, Address: 0x221b4c, Func Offset: 0xcc
-	// Func End, Address: 0x221b60, Func Offset: 0xe0
-	scePrintf("bhEff181 - UNIMPLEMENTED!\n");
+
+    op->flg |= 0x1000000;
+    
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type != 0) 
+    {
+        typ = op->type - 1;
+        
+        if (!floorf(op->sz)) 
+        {
+            setentry(182, typ, op);
+            
+            op->mode1 = 0;
+            
+            op->type = 0;
+            return;
+        }
+        
+        if (op->ct1 < 1) 
+        {
+            setentry(182, typ, op);
+            
+            op->ct1 = floorf(op->sz);
+        }
+        
+        op->ct1--;
+    }
 }
 
 // 
