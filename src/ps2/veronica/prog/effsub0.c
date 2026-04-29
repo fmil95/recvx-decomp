@@ -1687,67 +1687,82 @@ void bhEff190(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x222cf0
+// 100% matching!
 void bhEff191(O_WRK* op)
-{
-	//tagEFF0UVWHUC* pInfo;
-	//tagEFF0UVWHUC Eff191UvInfo[20];
-	// Line 3005, Address: 0x222cf0, Func Offset: 0
-	// Line 3018, Address: 0x222d00, Func Offset: 0x10
-	// Line 3021, Address: 0x222d20, Func Offset: 0x30
-	// Line 3022, Address: 0x222d28, Func Offset: 0x38
-	// Line 3024, Address: 0x222d2c, Func Offset: 0x3c
-	// Line 3021, Address: 0x222d30, Func Offset: 0x40
-	// Line 3022, Address: 0x222d38, Func Offset: 0x48
-	// Line 3023, Address: 0x222d3c, Func Offset: 0x4c
-	// Line 3024, Address: 0x222d40, Func Offset: 0x50
-	// Line 3025, Address: 0x222d44, Func Offset: 0x54
-	// Line 3026, Address: 0x222d4c, Func Offset: 0x5c
-	// Line 3029, Address: 0x222d50, Func Offset: 0x60
-	// Line 3030, Address: 0x222d58, Func Offset: 0x68
-	// Line 3031, Address: 0x222d74, Func Offset: 0x84
-	// Line 3033, Address: 0x222d7c, Func Offset: 0x8c
-	// Line 3034, Address: 0x222d84, Func Offset: 0x94
-	// Line 3035, Address: 0x222ddc, Func Offset: 0xec
-	// Line 3036, Address: 0x222e34, Func Offset: 0x144
-	// Line 3038, Address: 0x222e44, Func Offset: 0x154
-	// Line 3041, Address: 0x222e4c, Func Offset: 0x15c
-	// Line 3047, Address: 0x222e60, Func Offset: 0x170
-	// Line 3050, Address: 0x222e64, Func Offset: 0x174
-	// Line 3047, Address: 0x222e68, Func Offset: 0x178
-	// Line 3048, Address: 0x222e6c, Func Offset: 0x17c
-	// Line 3051, Address: 0x222e74, Func Offset: 0x184
-	// Line 3054, Address: 0x222e7c, Func Offset: 0x18c
-	// Line 3057, Address: 0x222e88, Func Offset: 0x198
-	// Line 3060, Address: 0x222e98, Func Offset: 0x1a8
-	// Line 3064, Address: 0x222ea0, Func Offset: 0x1b0
-	// Line 3069, Address: 0x222ea8, Func Offset: 0x1b8
-	// Line 3072, Address: 0x222eb4, Func Offset: 0x1c4
-	// Line 3064, Address: 0x222eb8, Func Offset: 0x1c8
-	// Line 3072, Address: 0x222ebc, Func Offset: 0x1cc
-	// Line 3064, Address: 0x222ec0, Func Offset: 0x1d0
-	// Line 3065, Address: 0x222ec4, Func Offset: 0x1d4
-	// Line 3072, Address: 0x222ecc, Func Offset: 0x1dc
-	// Line 3065, Address: 0x222ed0, Func Offset: 0x1e0
-	// Line 3066, Address: 0x222ed8, Func Offset: 0x1e8
-	// Line 3069, Address: 0x222ee8, Func Offset: 0x1f8
-	// Line 3072, Address: 0x222ef4, Func Offset: 0x204
-	// Line 3077, Address: 0x222f00, Func Offset: 0x210
-	// Line 3081, Address: 0x222f14, Func Offset: 0x224
-	// Line 3082, Address: 0x222f70, Func Offset: 0x280
-	// Line 3086, Address: 0x222fcc, Func Offset: 0x2dc
-	// Line 3087, Address: 0x223018, Func Offset: 0x328
-	// Line 3088, Address: 0x223040, Func Offset: 0x350
-	// Line 3093, Address: 0x22307c, Func Offset: 0x38c
-	// Line 3088, Address: 0x223080, Func Offset: 0x390
-	// Line 3089, Address: 0x22308c, Func Offset: 0x39c
-	// Line 3093, Address: 0x2230b4, Func Offset: 0x3c4
-	// Line 3095, Address: 0x2230d0, Func Offset: 0x3e0
-	// Line 3096, Address: 0x2230e4, Func Offset: 0x3f4
-	// Line 3098, Address: 0x223108, Func Offset: 0x418
-	// Func End, Address: 0x223118, Func Offset: 0x428
-	scePrintf("bhEff191 - UNIMPLEMENTED!\n");
+{	
+    EFF0UVWHUC* pInfo;
+    static EFF0UVWHUC Eff191UvInfo[20]; // DATA
+    
+    switch (op->mode0) 
+    {
+    case 0:
+        op->flg |= 0x4180000;
+        
+        op->tex_id = 429;
+        
+        op->ani_ct = 0;
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        op->ct0 = 0;
+        
+        op->yn = 0;
+        op->xn = 0;
+        op->zn = op->sz / 10.0f;
+        
+        njPushMatrixEx();
+        
+        njUnitMatrix(NULL);
+        
+        njRotateY(NULL, op->ay + (((short)(3072.0f * (-rand() / -2.1474836E9f))) - 1536));
+        njRotateX(NULL, op->ax + (((short)(3072.0f * (-rand() / -2.1474836E9f))) - 1536));
+        
+        njCalcPoint(NULL, (NJS_POINT3*)&op->xn, (NJS_POINT3*)&op->xn);
+        
+        njPopMatrixEx();
+        
+        op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = -1;
+        
+        op->sxb = op->sx;
+        op->syb = op->sy;
+        
+        op->mode0 = 1;
+        break;
+    case 1:
+        op->ct0++;
+        
+        if (op->ct0 >= 20)
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        op->px += op->xn;
+        op->py += op->yn;
+        op->pz += op->zn;
+        
+        op->yn -= 0.0326f;
+        op->yn *= 0.95f;
+    }
+    
+    pInfo = &Eff191UvInfo[op->ct0];
+    
+    op->sx = 4.0f * (op->sxb * (pInfo->w / 256.0f));
+    op->sy = 4.0f * (op->syb * (pInfo->h / 256.0f));
+    
+    op->tv[0].u = op->tv[2].u = pInfo->u / 256.0f;
+    op->tv[1].u = op->tv[3].u = (pInfo->u + (pInfo->w - 1)) / 256.0f;
+    
+    op->tv[0].v = op->tv[1].v = pInfo->v / 256.0f;
+    op->tv[2].v = op->tv[3].v = (pInfo->v + (pInfo->h - 1)) / 256.0f;
+    
+    if (sys->ef_trsn < 512)
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
 
 // 100% matching!
