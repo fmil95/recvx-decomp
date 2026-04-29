@@ -3,6 +3,13 @@
 
 #include "types.h"
 
+typedef struct EFF0UV 
+{
+    // total size: 0x4
+    short u; // offset 0x0, size 0x2
+    short v; // offset 0x2, size 0x2
+} EFF0UV;
+
 typedef struct EFF0UVWHUC 
 {
     // total size: 0x4
