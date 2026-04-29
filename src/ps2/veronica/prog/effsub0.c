@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/effsub0.h"
+#include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
@@ -1758,45 +1759,53 @@ void bhEff191(O_WRK* op)
 	scePrintf("bhEff191 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x223120
+// 100% matching!
 void bhEff192(O_WRK* op)
 {
+    EF_WORK* pEffect;
 	int lLoop;
-	//_anon12* pEffect;
-	// Line 3107, Address: 0x223120, Func Offset: 0
-	// Line 3112, Address: 0x223134, Func Offset: 0x14
-	// Line 3113, Address: 0x223154, Func Offset: 0x34
-	// Line 3115, Address: 0x223160, Func Offset: 0x40
-	// Line 3116, Address: 0x22316c, Func Offset: 0x4c
-	// Line 3118, Address: 0x223174, Func Offset: 0x54
-	// Line 3121, Address: 0x223180, Func Offset: 0x60
-	// Line 3122, Address: 0x223184, Func Offset: 0x64
-	// Line 3118, Address: 0x223188, Func Offset: 0x68
-	// Line 3121, Address: 0x223190, Func Offset: 0x70
-	// Line 3123, Address: 0x223194, Func Offset: 0x74
-	// Line 3135, Address: 0x223198, Func Offset: 0x78
-	// Line 3121, Address: 0x22319c, Func Offset: 0x7c
-	// Line 3122, Address: 0x2231a8, Func Offset: 0x88
-	// Line 3123, Address: 0x2231ac, Func Offset: 0x8c
-	// Line 3124, Address: 0x2231b0, Func Offset: 0x90
-	// Line 3125, Address: 0x2231b4, Func Offset: 0x94
-	// Line 3126, Address: 0x2231b8, Func Offset: 0x98
-	// Line 3127, Address: 0x2231bc, Func Offset: 0x9c
-	// Line 3128, Address: 0x2231c4, Func Offset: 0xa4
-	// Line 3129, Address: 0x2231cc, Func Offset: 0xac
-	// Line 3130, Address: 0x2231d4, Func Offset: 0xb4
-	// Line 3131, Address: 0x2231dc, Func Offset: 0xbc
-	// Line 3132, Address: 0x2231e4, Func Offset: 0xc4
-	// Line 3133, Address: 0x2231ec, Func Offset: 0xcc
-	// Line 3134, Address: 0x2231f4, Func Offset: 0xd4
-	// Line 3135, Address: 0x2231f8, Func Offset: 0xd8
-	// Line 3137, Address: 0x223200, Func Offset: 0xe0
-	// Line 3138, Address: 0x223214, Func Offset: 0xf4
-	// Line 3140, Address: 0x223228, Func Offset: 0x108
-	// Line 3141, Address: 0x223238, Func Offset: 0x118
-	// Func End, Address: 0x223250, Func Offset: 0x130
-	scePrintf("bhEff192 - UNIMPLEMENTED!\n");
+
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type == 0) 
+    {
+        op->flg |= 0x1000000;
+        return;
+    }
+    
+    op->flg &= ~0x1000000;
+    
+    pEffect = &sys->ef;
+    
+    pEffect->flg = 1;
+    
+    pEffect->id = 193;
+    pEffect->type = 0;
+    
+    pEffect->flr_no = 0;
+    
+    pEffect->mdlver = 0;
+    
+    pEffect->px = op->px;
+    pEffect->py = op->py;
+    pEffect->pz = op->pz;
+    
+    pEffect->sx = op->sx;
+    pEffect->sy = op->sy;
+    pEffect->sz = op->sz;
+    
+    pEffect->ay = op->ay;
+    pEffect->ax = op->ax;
+    
+    for (lLoop = 0; lLoop < op->lkono; lLoop++)
+    {
+        bhSetEffectTb(pEffect, NULL, NULL, 0xFF);
+    }
+    
+    op->type = op->mode0 = op->mode1 = 0;
 }
 
 // 
