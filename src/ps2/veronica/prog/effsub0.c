@@ -1361,35 +1361,50 @@ void bhEff179(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x221980
+// 100% matching!
 void bhEff180(O_WRK* op)
 {
-	UV_WORK* uvp;
-	UV_WORK uvinfo_hiba2_0[11];
-	UV_WORK uvinfo_hiba2_1[11];
-	// Line 1972, Address: 0x221980, Func Offset: 0
-	// Line 2004, Address: 0x22198c, Func Offset: 0xc
-	// Line 2006, Address: 0x2219a0, Func Offset: 0x20
-	// Line 2007, Address: 0x2219a4, Func Offset: 0x24
-	// Line 2010, Address: 0x2219ac, Func Offset: 0x2c
-	// Line 2012, Address: 0x2219c4, Func Offset: 0x44
-	// Line 2015, Address: 0x2219d0, Func Offset: 0x50
-	// Line 2017, Address: 0x2219d8, Func Offset: 0x58
-	// Line 2020, Address: 0x2219e4, Func Offset: 0x64
-	// Line 2028, Address: 0x2219ec, Func Offset: 0x6c
-	// Line 2029, Address: 0x2219f4, Func Offset: 0x74
-	// Line 2028, Address: 0x2219fc, Func Offset: 0x7c
-	// Line 2029, Address: 0x221a04, Func Offset: 0x84
-	// Line 2031, Address: 0x221a18, Func Offset: 0x98
-	// Line 2034, Address: 0x221a20, Func Offset: 0xa0
-	// Line 2035, Address: 0x221a2c, Func Offset: 0xac
-	// Line 2036, Address: 0x221a30, Func Offset: 0xb0
-	// Line 2035, Address: 0x221a34, Func Offset: 0xb4
-	// Line 2036, Address: 0x221a3c, Func Offset: 0xbc
-	// Line 2037, Address: 0x221a70, Func Offset: 0xf0
-	// Func End, Address: 0x221a80, Func Offset: 0x100
-	scePrintf("bhEff180 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    static UV_WORK uvinfo_hiba2_0[11]; // DATA
+	static UV_WORK uvinfo_hiba2_1[11]; // DATA
+
+    switch (op->mode0)
+    {
+    case 0:
+        op->tex_id = 408;
+        
+        effinit(op);
+
+        switch (op->type)
+        {
+        case 1:
+            op->exp0 = (unsigned char*)&uvinfo_hiba2_1;
+            
+            op->ani_ct = 1;
+            break;
+        default:
+            op->exp0 = (unsigned char*)&uvinfo_hiba2_0;
+            break;
+        }
+        
+        op->mode0 = 1;
+        break;
+    }
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+    
+    if (uvp->u == -1.0f) 
+    {
+        op->flg = 0;
+    }
+    else 
+    {
+        effset(op, uvp, 0);
+        
+        op->ct0++;
+        
+        sys->ef_trs[sys->ef_trsn++] = op;
+    }
 }
 
 // 
