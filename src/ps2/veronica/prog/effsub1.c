@@ -1,8 +1,10 @@
 #include "../../../ps2/veronica/prog/effsub1.h"
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/main.h"
 
@@ -3359,100 +3361,75 @@ void bhEff019(O_WRK* op)
 	scePrintf("bhEff019 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x22c540
+// 100% matching!
 void bhDraw021()
 {
-	//_anon27 col[4];
-	//_anon40 p[4];
-	//_anon46 p2c;
-	// Line 3685, Address: 0x22c540, Func Offset: 0
-	// Line 3691, Address: 0x22c558, Func Offset: 0x18
-	// Line 3692, Address: 0x22c568, Func Offset: 0x28
-	// Line 3693, Address: 0x22c574, Func Offset: 0x34
-	// Line 3694, Address: 0x22c57c, Func Offset: 0x3c
-	// Line 3696, Address: 0x22c588, Func Offset: 0x48
-	// Line 3695, Address: 0x22c58c, Func Offset: 0x4c
-	// Line 3696, Address: 0x22c590, Func Offset: 0x50
-	// Line 3704, Address: 0x22c594, Func Offset: 0x54
-	// Line 3709, Address: 0x22c59c, Func Offset: 0x5c
-	// Line 3710, Address: 0x22c5a4, Func Offset: 0x64
-	// Line 3704, Address: 0x22c5a8, Func Offset: 0x68
-	// Line 3705, Address: 0x22c5ac, Func Offset: 0x6c
-	// Line 3716, Address: 0x22c5b0, Func Offset: 0x70
-	// Line 3711, Address: 0x22c5bc, Func Offset: 0x7c
-	// Line 3705, Address: 0x22c5c0, Func Offset: 0x80
-	// Line 3706, Address: 0x22c5c4, Func Offset: 0x84
-	// Line 3713, Address: 0x22c5c8, Func Offset: 0x88
-	// Line 3715, Address: 0x22c5d0, Func Offset: 0x90
-	// Line 3706, Address: 0x22c5d4, Func Offset: 0x94
-	// Line 3707, Address: 0x22c5d8, Func Offset: 0x98
-	// Line 3716, Address: 0x22c5dc, Func Offset: 0x9c
-	// Line 3707, Address: 0x22c5e8, Func Offset: 0xa8
-	// Line 3708, Address: 0x22c5ec, Func Offset: 0xac
-	// Line 3709, Address: 0x22c5f0, Func Offset: 0xb0
-	// Line 3710, Address: 0x22c5f4, Func Offset: 0xb4
-	// Line 3711, Address: 0x22c5f8, Func Offset: 0xb8
-	// Line 3712, Address: 0x22c5fc, Func Offset: 0xbc
-	// Line 3713, Address: 0x22c600, Func Offset: 0xc0
-	// Line 3714, Address: 0x22c604, Func Offset: 0xc4
-	// Line 3716, Address: 0x22c608, Func Offset: 0xc8
-	// Line 3717, Address: 0x22c610, Func Offset: 0xd0
-	// Line 3725, Address: 0x22c614, Func Offset: 0xd4
-	// Line 3717, Address: 0x22c61c, Func Offset: 0xdc
-	// Line 3725, Address: 0x22c620, Func Offset: 0xe0
-	// Line 3721, Address: 0x22c624, Func Offset: 0xe4
-	// Line 3717, Address: 0x22c628, Func Offset: 0xe8
-	// Line 3718, Address: 0x22c62c, Func Offset: 0xec
-	// Line 3723, Address: 0x22c630, Func Offset: 0xf0
-	// Line 3725, Address: 0x22c634, Func Offset: 0xf4
-	// Line 3718, Address: 0x22c63c, Func Offset: 0xfc
-	// Line 3719, Address: 0x22c640, Func Offset: 0x100
-	// Line 3725, Address: 0x22c644, Func Offset: 0x104
-	// Line 3719, Address: 0x22c648, Func Offset: 0x108
-	// Line 3720, Address: 0x22c64c, Func Offset: 0x10c
-	// Line 3721, Address: 0x22c654, Func Offset: 0x114
-	// Line 3722, Address: 0x22c658, Func Offset: 0x118
-	// Line 3723, Address: 0x22c65c, Func Offset: 0x11c
-	// Line 3725, Address: 0x22c660, Func Offset: 0x120
-	// Line 3728, Address: 0x22c668, Func Offset: 0x128
-	// Line 3736, Address: 0x22c66c, Func Offset: 0x12c
-	// Line 3728, Address: 0x22c674, Func Offset: 0x134
-	// Line 3736, Address: 0x22c678, Func Offset: 0x138
-	// Line 3732, Address: 0x22c67c, Func Offset: 0x13c
-	// Line 3728, Address: 0x22c680, Func Offset: 0x140
-	// Line 3729, Address: 0x22c684, Func Offset: 0x144
-	// Line 3734, Address: 0x22c688, Func Offset: 0x148
-	// Line 3736, Address: 0x22c68c, Func Offset: 0x14c
-	// Line 3729, Address: 0x22c694, Func Offset: 0x154
-	// Line 3730, Address: 0x22c698, Func Offset: 0x158
-	// Line 3736, Address: 0x22c69c, Func Offset: 0x15c
-	// Line 3730, Address: 0x22c6a0, Func Offset: 0x160
-	// Line 3731, Address: 0x22c6a4, Func Offset: 0x164
-	// Line 3732, Address: 0x22c6ac, Func Offset: 0x16c
-	// Line 3733, Address: 0x22c6b0, Func Offset: 0x170
-	// Line 3734, Address: 0x22c6b4, Func Offset: 0x174
-	// Line 3736, Address: 0x22c6b8, Func Offset: 0x178
-	// Line 3737, Address: 0x22c6c0, Func Offset: 0x180
-	// Line 3745, Address: 0x22c6c4, Func Offset: 0x184
-	// Line 3739, Address: 0x22c6d0, Func Offset: 0x190
-	// Line 3741, Address: 0x22c6d4, Func Offset: 0x194
-	// Line 3737, Address: 0x22c6d8, Func Offset: 0x198
-	// Line 3738, Address: 0x22c6dc, Func Offset: 0x19c
-	// Line 3743, Address: 0x22c6e0, Func Offset: 0x1a0
-	// Line 3745, Address: 0x22c6e4, Func Offset: 0x1a4
-	// Line 3738, Address: 0x22c6ec, Func Offset: 0x1ac
-	// Line 3739, Address: 0x22c6f0, Func Offset: 0x1b0
-	// Line 3745, Address: 0x22c6f4, Func Offset: 0x1b4
-	// Line 3739, Address: 0x22c6f8, Func Offset: 0x1b8
-	// Line 3740, Address: 0x22c6fc, Func Offset: 0x1bc
-	// Line 3741, Address: 0x22c704, Func Offset: 0x1c4
-	// Line 3742, Address: 0x22c708, Func Offset: 0x1c8
-	// Line 3743, Address: 0x22c70c, Func Offset: 0x1cc
-	// Line 3745, Address: 0x22c710, Func Offset: 0x1d0
-	// Line 3746, Address: 0x22c718, Func Offset: 0x1d8
-	// Func End, Address: 0x22c738, Func Offset: 0x1f8
-	scePrintf("bhDraw021 - UNIMPLEMENTED!\n");
+	NJS_POINT2COL p2c;     
+    NJS_POINT2 p[4];    
+    NJS_COLOR col[4];  
+
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    p2c.p = p;
+    p2c.col = col;
+    p2c.tex = NULL;
+    p2c.num = 1;
+    
+    p2c.col[0].color = 0xFF000000;
+    p2c.col[1].color = 0xFF000000;
+    p2c.col[2].color = 0xFF000000;
+    p2c.col[3].color = 0xFF000000;
+    
+    p[0].x = 0;
+    p[0].y = -40.0f;
+    
+    p[1].x = 640.0f;
+    p[1].y = -40.0f;
+    
+    p[2].x = 640.0f;
+    p[2].y = 40.0f;
+    
+    p[3].x = 0;
+    p[3].y = 40.0f;
+    
+    njDrawPolygon2D(&p2c, 4, -0.9f, 96);
+    
+    p2c.col[0].color = 0xFF000000;
+    p2c.col[1].color = 0xFF000000;
+    p2c.col[2].color = 0;
+    p2c.col[3].color = 0;
+    
+    p[0].y = 40.0f;
+    p[1].y = 40.0f;
+    p[2].y = 104.0f;
+    p[3].y = 104.0f;
+    
+    njDrawPolygon2D(&p2c, 4, -0.9f, 96);
+    
+    p2c.col[0].color = 0xFF000000;
+    p2c.col[1].color = 0xFF000000;
+    p2c.col[2].color = 0xFF000000;
+    p2c.col[3].color = 0xFF000000;
+    
+    p[0].y = 440.0f;
+    p[1].y = 440.0f;
+    p[2].y = 520.0f;
+    p[3].y = 520.0f;
+    
+    njDrawPolygon2D(&p2c, 4, -0.9f, 96);
+    
+    p2c.col[0].color = 0;
+    p2c.col[1].color = 0;
+    p2c.col[2].color = 0xFF000000;
+    p2c.col[3].color = 0xFF000000;
+    
+    p[0].y = 376.0f;
+    p[1].y = 376.0f;
+    p[2].y = 440.0f;
+    p[3].y = 440.0f;
+    
+    njDrawPolygon2D(&p2c, 4, -0.9f, 96);
 }
 
 // 100% matching!
