@@ -374,20 +374,34 @@ void bhEff157(O_WRK* op)
 	scePrintf("bhEff157 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x21fef0
+// 100% matching!
 void bhEff158(O_WRK* op)
 {
-	// Line 767, Address: 0x21fef0, Func Offset: 0
-	// Line 769, Address: 0x21fefc, Func Offset: 0xc
-	// Line 772, Address: 0x21ff0c, Func Offset: 0x1c
-	// Line 773, Address: 0x21ff2c, Func Offset: 0x3c
-	// Line 774, Address: 0x21ff38, Func Offset: 0x48
-	// Line 775, Address: 0x21ff64, Func Offset: 0x74
-	// Line 776, Address: 0x21ff68, Func Offset: 0x78
-	// Line 779, Address: 0x21ff6c, Func Offset: 0x7c
-	// Func End, Address: 0x21ff7c, Func Offset: 0x8c
-	scePrintf("bhEff158 - UNIMPLEMENTED!\n");
+    int type; // not from DWARF
+    
+    op->flg |= 0x1000000;
+    
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type != 0) 
+    {
+        if ((unsigned int)op->type == 2) 
+        {
+            type = 1;
+        }
+        else 
+        {
+            type = 0;
+        }
+        
+        setentry(159, type, op);
+        
+        op->mode1 = 0;
+        op->type = 0;
+    }
 }
 
 // 
