@@ -83,40 +83,25 @@ void effset(O_WRK* op, UV_WORK* uvp, unsigned short num)
     op->tv[3].v = uvp->v + uvp->ys;
 }
 
-// 
-// Start address: 0x21f120
+// 100% matching!
 void getuv(unsigned char type, O_WRK* op)
 {
-	unsigned char i;
-	//_anon24 vd;
-	//_anon24 vs;
-	float tab_type[3][4][2];
-	// Line 250, Address: 0x21f120, Func Offset: 0
-	// Line 251, Address: 0x21f12c, Func Offset: 0xc
-	// Line 250, Address: 0x21f130, Func Offset: 0x10
-	// Line 251, Address: 0x21f138, Func Offset: 0x18
-	// Line 271, Address: 0x21f150, Func Offset: 0x30
-	// Line 251, Address: 0x21f154, Func Offset: 0x34
-	// Line 271, Address: 0x21f180, Func Offset: 0x60
-	// Line 251, Address: 0x21f188, Func Offset: 0x68
-	// Line 271, Address: 0x21f18c, Func Offset: 0x6c
-	// Line 272, Address: 0x21f194, Func Offset: 0x74
-	// Line 275, Address: 0x21f198, Func Offset: 0x78
-	// Line 272, Address: 0x21f1a4, Func Offset: 0x84
-	// Line 273, Address: 0x21f1a8, Func Offset: 0x88
-	// Line 274, Address: 0x21f1b0, Func Offset: 0x90
-	// Line 275, Address: 0x21f1b4, Func Offset: 0x94
-	// Line 276, Address: 0x21f1bc, Func Offset: 0x9c
-	// Line 279, Address: 0x21f1c0, Func Offset: 0xa0
-	// Line 278, Address: 0x21f1c4, Func Offset: 0xa4
-	// Line 279, Address: 0x21f1c8, Func Offset: 0xa8
-	// Line 276, Address: 0x21f1cc, Func Offset: 0xac
-	// Line 277, Address: 0x21f1d0, Func Offset: 0xb0
-	// Line 278, Address: 0x21f1d8, Func Offset: 0xb8
-	// Line 279, Address: 0x21f1e4, Func Offset: 0xc4
-	// Line 280, Address: 0x21f1f8, Func Offset: 0xd8
-	// Func End, Address: 0x21f210, Func Offset: 0xf0
-	scePrintf("getuv - UNIMPLEMENTED!\n");
+	float tab_type[2][4][3] = { 0 }; // DATA
+    NJS_POINT3 vs, vd; 
+    unsigned char i;
+
+    for (i = 0; i < 4; i++)
+    {
+        vs.x = tab_type[type][i][0];
+        vs.y = tab_type[type][i][1];
+        vs.z = tab_type[type][i][2];
+        
+        njCalcVector(NULL, &vs, &vd);
+    
+        op->tv[i].x = vd.x;
+        op->tv[i].y = vd.y;
+        op->tv[i].z = vd.z;
+    }
 }
 
 // 100% matching!
