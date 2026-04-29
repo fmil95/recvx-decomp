@@ -332,47 +332,58 @@ void bhEff156(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x21fd90
+// 100% matching!
 void bhEff157(O_WRK* op)
 {
-	//_anon24 vd;
-	//_anon24 vs;
-	UV_WORK* uvp;
-	UV_WORK uvinfo_mos[13];
-	// Line 700, Address: 0x21fd90, Func Offset: 0
-	// Line 722, Address: 0x21fd9c, Func Offset: 0xc
-	// Line 724, Address: 0x21fdb0, Func Offset: 0x20
-	// Line 725, Address: 0x21fdb4, Func Offset: 0x24
-	// Line 727, Address: 0x21fdbc, Func Offset: 0x2c
-	// Line 728, Address: 0x21fdc4, Func Offset: 0x34
-	// Line 729, Address: 0x21fdc8, Func Offset: 0x38
-	// Line 730, Address: 0x21fdd4, Func Offset: 0x44
-	// Line 731, Address: 0x21fde8, Func Offset: 0x58
-	// Line 732, Address: 0x21fdf8, Func Offset: 0x68
-	// Line 736, Address: 0x21fdfc, Func Offset: 0x6c
-	// Line 737, Address: 0x21fe04, Func Offset: 0x74
-	// Line 732, Address: 0x21fe08, Func Offset: 0x78
-	// Line 733, Address: 0x21fe0c, Func Offset: 0x7c
-	// Line 734, Address: 0x21fe14, Func Offset: 0x84
-	// Line 736, Address: 0x21fe1c, Func Offset: 0x8c
-	// Line 737, Address: 0x21fe20, Func Offset: 0x90
-	// Line 743, Address: 0x21fe24, Func Offset: 0x94
-	// Line 749, Address: 0x21fe2c, Func Offset: 0x9c
-	// Line 743, Address: 0x21fe38, Func Offset: 0xa8
-	// Line 744, Address: 0x21fe40, Func Offset: 0xb0
-	// Line 745, Address: 0x21fe50, Func Offset: 0xc0
-	// Line 748, Address: 0x21fe60, Func Offset: 0xd0
-	// Line 749, Address: 0x21fe70, Func Offset: 0xe0
-	// Line 751, Address: 0x21fe84, Func Offset: 0xf4
-	// Line 755, Address: 0x21fe8c, Func Offset: 0xfc
-	// Line 756, Address: 0x21fe98, Func Offset: 0x108
-	// Line 757, Address: 0x21fe9c, Func Offset: 0x10c
-	// Line 756, Address: 0x21fea0, Func Offset: 0x110
-	// Line 757, Address: 0x21fea8, Func Offset: 0x118
-	// Line 758, Address: 0x21fedc, Func Offset: 0x14c
-	// Func End, Address: 0x21feec, Func Offset: 0x15c
-	scePrintf("bhEff157 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    NJS_POINT3 vs, vd;
+    static UV_WORK uvinfo_mos[13]; // DATA
+
+    switch (op->mode0) 
+    {
+    case 0:
+        op->tex_id = 53;
+        
+        effinit(op);
+        
+        vs.y = 0;
+        vs.x = 0;
+        vs.z = op->sz;
+        
+        njUnitMatrix(NULL);
+        
+        njRotateXYZ(NULL, op->ax, op->ay, 0);
+        
+        njCalcVector(NULL, &vs, &vd);
+        
+        op->xn = vd.x;
+        op->yn = vd.y;
+        op->zn = vd.z;
+        
+        op->exp0 = (unsigned char*)&uvinfo_mos;
+        
+        op->mode0 = 1;
+        break;
+    }
+    
+    op->px += op->xn;
+    op->py += op->yn;
+    op->pz += op->zn;
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+    
+    if (uvp->u == -1.0f) 
+    {
+        op->flg = 0;
+    }
+    else
+    {
+        effset(op, uvp, 0);
+        
+        op->ct0++;
+        
+        sys->ef_trs[sys->ef_trsn++] = op;
+    }
 }
 
 // 100% matching!
