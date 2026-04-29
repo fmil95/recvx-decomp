@@ -2024,32 +2024,35 @@ void bhEff197()
 
 }
 
-// 
-// Start address: 0x223d50
+// 100% matching!
 void bhEff198(O_WRK* op)
 {
-	// Line 3502, Address: 0x223d50, Func Offset: 0
-	// Line 3504, Address: 0x223d70, Func Offset: 0x20
-	// Line 3505, Address: 0x223d7c, Func Offset: 0x2c
-	// Line 3506, Address: 0x223d84, Func Offset: 0x34
-	// Line 3507, Address: 0x223d8c, Func Offset: 0x3c
-	// Line 3508, Address: 0x223d90, Func Offset: 0x40
-	// Line 3509, Address: 0x223d94, Func Offset: 0x44
-	// Line 3510, Address: 0x223d98, Func Offset: 0x48
-	// Line 3511, Address: 0x223d9c, Func Offset: 0x4c
-	// Line 3512, Address: 0x223da0, Func Offset: 0x50
-	// Line 3513, Address: 0x223da8, Func Offset: 0x58
-	// Line 3514, Address: 0x223dac, Func Offset: 0x5c
-	// Line 3515, Address: 0x223db0, Func Offset: 0x60
-	// Line 3516, Address: 0x223db8, Func Offset: 0x68
-	// Line 3517, Address: 0x223dbc, Func Offset: 0x6c
-	// Line 3518, Address: 0x223dc0, Func Offset: 0x70
-	// Line 3519, Address: 0x223dc8, Func Offset: 0x78
-	// Line 3520, Address: 0x223dd0, Func Offset: 0x80
-	// Line 3522, Address: 0x223dd4, Func Offset: 0x84
-	// Line 3525, Address: 0x223e0c, Func Offset: 0xbc
-	// Func End, Address: 0x223e14, Func Offset: 0xc4
-	scePrintf("bhEff198 - UNIMPLEMENTED!\n");
+    switch (op->mode0) 
+    {
+    case 0:
+        op->flg = 0x4100001;
+        
+        op->tex_id = 94;
+        
+        op->tv[3].col = op->tv[2].col = op->tv[1].col = op->tv[0].col = -1;
+        
+        op->tv[0].v = op->tv[0].u = 0;
+        op->tv[1].u = 0.625f;
+        
+        op->tv[2].u = op->tv[1].v = 0;
+        op->tv[2].v = 0.46875f;
+        
+        op->tv[3].u = 0.625f;
+        op->tv[3].v = 0.46875f;
+        
+        op->bl_src = 8;
+        op->bl_dst = 6;
+        
+        op->mode0 = 1;
+    case 1:
+        sys->ef_opq[sys->ef_opqn++] = op;
+        break;
+    }
 }
 
 // 100% matching!
