@@ -230,27 +230,45 @@ void bhEff152(O_WRK* op)
 	scePrintf("bhEff152 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x21f900
+// 100% matching!
 void bhEff153(O_WRK* op)
 {
-	UV_WORK uvinfo_geki[12];
-	// Line 475, Address: 0x21f900, Func Offset: 0
-	// Line 494, Address: 0x21f90c, Func Offset: 0xc
-	// Line 496, Address: 0x21f938, Func Offset: 0x38
-	// Line 497, Address: 0x21f93c, Func Offset: 0x3c
-	// Line 499, Address: 0x21f944, Func Offset: 0x44
-	// Line 501, Address: 0x21f950, Func Offset: 0x50
-	// Line 499, Address: 0x21f954, Func Offset: 0x54
-	// Line 502, Address: 0x21f960, Func Offset: 0x60
-	// Line 505, Address: 0x21f968, Func Offset: 0x68
-	// Line 508, Address: 0x21f970, Func Offset: 0x70
-	// Line 513, Address: 0x21f978, Func Offset: 0x78
-	// Line 522, Address: 0x21f988, Func Offset: 0x88
-	// Line 529, Address: 0x21f9f4, Func Offset: 0xf4
-	// Line 530, Address: 0x21fa2c, Func Offset: 0x12c
-	// Func End, Address: 0x21fa3c, Func Offset: 0x13c
-	scePrintf("bhEff153 - UNIMPLEMENTED!\n");
+    unsigned int argb; // not from DWARF
+    static UV_WORK uvinfo_geki[12]; // DATA
+    
+    switch (op->mode0)
+    { 
+    case 0:
+        op->tex_id = 51;
+        
+        effinit(op);
+        
+        op->exp0 = (unsigned char*)&uvinfo_geki[op->type];
+        
+        op->mode0 = 1;
+        break;
+    case 1:
+        op->mode0 = 2;
+        break;
+    case 2:
+        op->flg = 0;
+        return;
+    }
+    
+    effset(op, (UV_WORK*)op->exp0, 0);
+    
+    if (op->flr_no >= 20) 
+    {
+        argb = 0;
+    }
+    else 
+    {
+        argb = 255 - (unsigned int)((char)op->flr_no * 255) / 20;
+    }
+    
+    op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = (argb << 24) + 0xFFFFFF;
+    
+    sys->ef_trs[sys->ef_trsn++] = op;
 }
 
 // 
