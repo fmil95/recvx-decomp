@@ -57,38 +57,30 @@ void effinit(O_WRK* op)
     op->xn = 0.0f;
 }
 
-// 
-// Start address: 0x21f030
+// 100% matching!
 void effset(O_WRK* op, UV_WORK* uvp, unsigned short num)
 {
-	unsigned int kcol[4][10];
-	// Line 226, Address: 0x21f030, Func Offset: 0
-	// Line 229, Address: 0x21f038, Func Offset: 0x8
-	// Line 226, Address: 0x21f040, Func Offset: 0x10
-	// Line 229, Address: 0x21f04c, Func Offset: 0x1c
-	// Line 226, Address: 0x21f058, Func Offset: 0x28
-	// Line 230, Address: 0x21f05c, Func Offset: 0x2c
-	// Line 226, Address: 0x21f068, Func Offset: 0x38
-	// Line 227, Address: 0x21f06c, Func Offset: 0x3c
-	// Line 231, Address: 0x21f074, Func Offset: 0x44
-	// Line 227, Address: 0x21f080, Func Offset: 0x50
-	// Line 232, Address: 0x21f084, Func Offset: 0x54
-	// Line 227, Address: 0x21f090, Func Offset: 0x60
-	// Line 229, Address: 0x21f098, Func Offset: 0x68
-	// Line 230, Address: 0x21f0a0, Func Offset: 0x70
-	// Line 231, Address: 0x21f0a8, Func Offset: 0x78
-	// Line 232, Address: 0x21f0b0, Func Offset: 0x80
-	// Line 234, Address: 0x21f0b8, Func Offset: 0x88
-	// Line 235, Address: 0x21f0c0, Func Offset: 0x90
-	// Line 236, Address: 0x21f0c8, Func Offset: 0x98
-	// Line 237, Address: 0x21f0d8, Func Offset: 0xa8
-	// Line 238, Address: 0x21f0e0, Func Offset: 0xb0
-	// Line 239, Address: 0x21f0e8, Func Offset: 0xb8
-	// Line 240, Address: 0x21f0f8, Func Offset: 0xc8
-	// Line 241, Address: 0x21f108, Func Offset: 0xd8
-	// Line 242, Address: 0x21f114, Func Offset: 0xe4
-	// Func End, Address: 0x21f11c, Func Offset: 0xec
-	scePrintf("effset - UNIMPLEMENTED!\n");
+    static unsigned int kcol[10][4]; // DATA
+    
+    op->sx = 4.0f * (op->sxb * uvp->xs);
+    op->sy = 4.0f * (op->syb * uvp->ys);
+    
+    op->tv[0].col = kcol[num][0];
+    op->tv[1].col = kcol[num][1];
+    op->tv[2].col = kcol[num][2];
+    op->tv[3].col = kcol[num][3];
+    
+    op->tv[0].u = uvp->u;
+    op->tv[0].v = uvp->v;
+    
+    op->tv[1].u = uvp->u + uvp->xs;
+    op->tv[1].v = uvp->v;
+    
+    op->tv[2].u = uvp->u;
+    op->tv[2].v = uvp->v + uvp->ys;
+    
+    op->tv[3].u = uvp->u + uvp->xs;
+    op->tv[3].v = uvp->v + uvp->ys;
 }
 
 // 
