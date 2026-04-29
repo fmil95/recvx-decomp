@@ -749,34 +749,45 @@ void bhEff166(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x220c40
+// 100% matching!
 void bhEff167(O_WRK* op)
 {
 	UV_WORK* uvp;
-	UV_WORK uvinfo_e29[14];
-	// Line 1373, Address: 0x220c40, Func Offset: 0
-	// Line 1396, Address: 0x220c4c, Func Offset: 0xc
-	// Line 1398, Address: 0x220c60, Func Offset: 0x20
-	// Line 1399, Address: 0x220c64, Func Offset: 0x24
-	// Line 1401, Address: 0x220c6c, Func Offset: 0x2c
-	// Line 1402, Address: 0x220c74, Func Offset: 0x34
-	// Line 1403, Address: 0x220c8c, Func Offset: 0x4c
-	// Line 1407, Address: 0x220c98, Func Offset: 0x58
-	// Line 1408, Address: 0x220ca4, Func Offset: 0x64
-	// Line 1414, Address: 0x220cac, Func Offset: 0x6c
-	// Line 1415, Address: 0x220cb4, Func Offset: 0x74
-	// Line 1414, Address: 0x220cbc, Func Offset: 0x7c
-	// Line 1415, Address: 0x220cc4, Func Offset: 0x84
-	// Line 1417, Address: 0x220cd8, Func Offset: 0x98
-	// Line 1420, Address: 0x220ce0, Func Offset: 0xa0
-	// Line 1421, Address: 0x220cec, Func Offset: 0xac
-	// Line 1422, Address: 0x220cf0, Func Offset: 0xb0
-	// Line 1421, Address: 0x220cf4, Func Offset: 0xb4
-	// Line 1422, Address: 0x220cfc, Func Offset: 0xbc
-	// Line 1423, Address: 0x220d30, Func Offset: 0xf0
-	// Func End, Address: 0x220d40, Func Offset: 0x100
-	scePrintf("bhEff167 - UNIMPLEMENTED!\n");
+    static UV_WORK uvinfo_e29[14]; // DATA
+
+    switch (op->mode0)
+    {
+    case 0:
+        op->tex_id = 57;
+        
+        effinit(op);
+        
+        njUnitMatrix(NULL);
+        
+        njRotateXYZ(NULL, 0, op->ay, -op->ax);
+        
+        getuv(0, op);
+        
+        op->exp0 = (unsigned char*)&uvinfo_e29;
+        
+        op->mode0 = 1;
+        break;
+    }
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+    
+    if (uvp->u == -1.0f) 
+    {
+        op->flg = 0;
+    }
+    else
+    {
+        effset(op, uvp, 0);
+        
+        op->ct0++;
+        
+        sys->ef_trs[sys->ef_trsn++] = op;
+    }
 }
 
 // 100% matching!
