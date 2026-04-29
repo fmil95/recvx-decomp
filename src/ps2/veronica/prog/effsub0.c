@@ -1646,40 +1646,54 @@ void bhEff185(O_WRK* op)
 	scePrintf("bhEff185 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2223b0
+// 100% matching!
 void bhEff186(O_WRK* op)
 {
-	UV_WORK* uvp;
-	UV_WORK* uvinfo_button[6];
-	// Line 2601, Address: 0x2223b0, Func Offset: 0
-	// Line 2656, Address: 0x2223c0, Func Offset: 0x10
-	// Line 2658, Address: 0x2223d4, Func Offset: 0x24
-	// Line 2659, Address: 0x2223d8, Func Offset: 0x28
-	// Line 2661, Address: 0x2223e0, Func Offset: 0x30
-	// Line 2662, Address: 0x2223f0, Func Offset: 0x40
-	// Line 2664, Address: 0x2223f4, Func Offset: 0x44
-	// Line 2665, Address: 0x222400, Func Offset: 0x50
-	// Line 2666, Address: 0x222418, Func Offset: 0x68
-	// Line 2668, Address: 0x222424, Func Offset: 0x74
-	// Line 2666, Address: 0x222428, Func Offset: 0x78
-	// Line 2668, Address: 0x222438, Func Offset: 0x88
-	// Line 2673, Address: 0x22243c, Func Offset: 0x8c
-	// Line 2674, Address: 0x222444, Func Offset: 0x94
-	// Line 2673, Address: 0x22244c, Func Offset: 0x9c
-	// Line 2674, Address: 0x222454, Func Offset: 0xa4
-	// Line 2678, Address: 0x222468, Func Offset: 0xb8
-	// Line 2681, Address: 0x222470, Func Offset: 0xc0
-	// Line 2682, Address: 0x222480, Func Offset: 0xd0
-	// Line 2683, Address: 0x222494, Func Offset: 0xe4
-	// Line 2685, Address: 0x2224a0, Func Offset: 0xf0
-	// Line 2687, Address: 0x2224b0, Func Offset: 0x100
-	// Line 2688, Address: 0x2224b4, Func Offset: 0x104
-	// Line 2687, Address: 0x2224b8, Func Offset: 0x108
-	// Line 2688, Address: 0x2224c0, Func Offset: 0x110
-	// Line 2689, Address: 0x2224f4, Func Offset: 0x144
-	// Func End, Address: 0x222508, Func Offset: 0x158
-	scePrintf("bhEff186 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    static UV_WORK* uvinfo_button[6]; // DATA
+
+    switch (op->mode0)
+    {
+    case 0:
+        op->tex_id = 410;
+        
+        effinit(op);
+        
+        if (op->type >= 6) 
+        {
+            op->type = 0;
+        }
+        
+        njUnitMatrix(NULL);
+        
+        njRotateXYZ(NULL, 0, op->ay, -op->ax);
+        
+        op->exp0 = (unsigned char*)uvinfo_button[op->type];
+        
+        op->mode0 = 1;
+        break;
+    }
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+    
+    if (uvp->u == -1.0f)
+    {
+        op->flg = 0;
+    }
+    else 
+    {
+        njSetMatrix(NULL, cam.mtx);
+        
+        njRotateXYZ(NULL, op->ax, op->ay, 0);
+        
+        getuv(0, op);
+        
+        effset(op, uvp, 0);
+        
+        op->ct0++;
+        
+        sys->ef_trs[sys->ef_trsn++] = op;
+    }
 }
 
 // 100% matching!
