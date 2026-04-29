@@ -1208,22 +1208,27 @@ void bhEff175(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x2215a0
+// 100% matching!
 void bhEff176(O_WRK* op)
 {
-	UV_WORK uvinfo_moon[1];
-	// Line 1811, Address: 0x2215a0, Func Offset: 0
-	// Line 1819, Address: 0x2215ac, Func Offset: 0xc
-	// Line 1821, Address: 0x2215c0, Func Offset: 0x20
-	// Line 1822, Address: 0x2215c4, Func Offset: 0x24
-	// Line 1824, Address: 0x2215cc, Func Offset: 0x2c
-	// Line 1825, Address: 0x2215d8, Func Offset: 0x38
-	// Line 1833, Address: 0x2215e0, Func Offset: 0x40
-	// Line 1834, Address: 0x2215fc, Func Offset: 0x5c
-	// Line 1835, Address: 0x221634, Func Offset: 0x94
-	// Func End, Address: 0x221644, Func Offset: 0xa4
-	scePrintf("bhEff176 - UNIMPLEMENTED!\n");
+	static UV_WORK uvinfo_moon[1]; // DATA
+
+    switch (op->mode0)
+    {
+    case 0:
+        op->tex_id = 68;
+        
+        effinit(op);
+        
+        op->exp0 = (unsigned char*)&uvinfo_moon;
+        
+        op->mode0 = 1;
+        break;
+    }
+    
+    effset(op, (UV_WORK*)op->exp0 + op->ct0, 0);
+        
+    sys->ef_trs[sys->ef_trsn++] = op;
 }
 
 // 100% matching!
