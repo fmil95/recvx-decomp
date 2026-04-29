@@ -1089,51 +1089,75 @@ void bhEff177(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x221700
+// 100% matching!
 void bhEff178(O_WRK* op)
 {
-	UV_WORK* uvp;
-	//_anon24 vd;
-	//_anon24 vs;
-	UV_WORK uvinfo_hiko[7];
-	// Line 1870, Address: 0x221700, Func Offset: 0
-	// Line 1893, Address: 0x22170c, Func Offset: 0xc
-	// Line 1895, Address: 0x221720, Func Offset: 0x20
-	// Line 1896, Address: 0x221724, Func Offset: 0x24
-	// Line 1898, Address: 0x22172c, Func Offset: 0x2c
-	// Line 1899, Address: 0x221734, Func Offset: 0x34
-	// Line 1903, Address: 0x221748, Func Offset: 0x48
-	// Line 1899, Address: 0x22174c, Func Offset: 0x4c
-	// Line 1903, Address: 0x221750, Func Offset: 0x50
-	// Line 1901, Address: 0x221754, Func Offset: 0x54
-	// Line 1903, Address: 0x221758, Func Offset: 0x58
-	// Line 1904, Address: 0x22175c, Func Offset: 0x5c
-	// Line 1910, Address: 0x221764, Func Offset: 0x64
-	// Line 1911, Address: 0x221770, Func Offset: 0x70
-	// Line 1914, Address: 0x221784, Func Offset: 0x84
-	// Line 1917, Address: 0x22178c, Func Offset: 0x8c
-	// Line 1918, Address: 0x221794, Func Offset: 0x94
-	// Line 1919, Address: 0x221798, Func Offset: 0x98
-	// Line 1920, Address: 0x2217a4, Func Offset: 0xa4
-	// Line 1921, Address: 0x2217b8, Func Offset: 0xb8
-	// Line 1922, Address: 0x2217c8, Func Offset: 0xc8
-	// Line 1927, Address: 0x2217d0, Func Offset: 0xd0
-	// Line 1922, Address: 0x2217dc, Func Offset: 0xdc
-	// Line 1923, Address: 0x2217e4, Func Offset: 0xe4
-	// Line 1924, Address: 0x2217f4, Func Offset: 0xf4
-	// Line 1926, Address: 0x221804, Func Offset: 0x104
-	// Line 1927, Address: 0x221814, Func Offset: 0x114
-	// Line 1928, Address: 0x221828, Func Offset: 0x128
-	// Line 1929, Address: 0x22182c, Func Offset: 0x12c
-	// Line 1932, Address: 0x22183c, Func Offset: 0x13c
-	// Line 1933, Address: 0x221848, Func Offset: 0x148
-	// Line 1934, Address: 0x22184c, Func Offset: 0x14c
-	// Line 1933, Address: 0x221850, Func Offset: 0x150
-	// Line 1934, Address: 0x221858, Func Offset: 0x158
-	// Line 1935, Address: 0x22188c, Func Offset: 0x18c
-	// Func End, Address: 0x22189c, Func Offset: 0x19c
-	scePrintf("bhEff178 - UNIMPLEMENTED!\n");
+    NJS_POINT3 vs, vd;
+    UV_WORK* uvp;
+    int type; // not from DWARF
+    static UV_WORK uvinfo_hiko[7]; // DATA
+
+    switch (op->mode0)
+    {
+    case 0:
+        op->tex_id = 69;
+        
+        effinit(op);
+        
+        op->spd = op->sz;
+
+        type = op->type;
+        
+        if (op->type >= 6) 
+        {
+            type = 0;
+        }
+        
+        op->ct0 = type;
+        op->ct1 = 0;
+        
+        op->exp0 = (unsigned char*)&uvinfo_hiko;
+        
+        op->mode0 = 1;
+    }
+    
+    op->ct1++;
+    
+    if (op->lkono <= op->ct1) 
+    {
+        op->flg = 0;
+    }
+    else 
+    {
+        vs.y = 0;
+        vs.x = 0;
+        vs.z = op->spd;
+        
+        njUnitMatrix(NULL);
+        
+        njRotateXYZ(NULL, op->ax, op->ay, 0);
+        
+        njCalcVector(NULL, &vs, &vd);
+        
+        op->px += vd.x;
+        op->py += vd.y;
+        op->pz += vd.z;
+        
+        uvp = (UV_WORK*)op->exp0 + op->ct0;
+        
+        if (uvp->u == -1.0f) 
+        {
+            op->ct0 = 0;
+            
+            uvp = (UV_WORK*)op->exp0 + op->ct0;
+        }
+        
+        effset(op, uvp, 0);
+        
+        op->ct0++;
+        
+        sys->ef_trs[sys->ef_trsn++] = op;
+    }
 }
 
 // 100% matching!
