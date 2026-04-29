@@ -1369,11 +1369,11 @@ _anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, flo
 	// Line 1848, Address: 0x261e60, Func Offset: 0x630
 	// Line 1849, Address: 0x261e64, Func Offset: 0x634
 	// Func End, Address: 0x261ea8, Func Offset: 0x678
-}
+}*/
 
 // 
 // Start address: 0x261eb0
-_anon0* bhCheckWallRefAngle(_anon20* pos, unsigned int flg, float ar, float ah, int* ay)
+ATR_WORK* bhCheckWallRefAngle(NJS_POINT3* pos, unsigned int flg, float ar, float ah, int* ay)
 {
 	int r;
 	float abz;
@@ -1391,10 +1391,10 @@ _anon0* bhCheckWallRefAngle(_anon20* pos, unsigned int flg, float ar, float ah, 
 	float px;
 	int wal_n;
 	int i;
-	_anon0 ht;
-	_anon0* hp;
-	_anon39 l;
-	_anon20 pd;
+	//_anon0 ht;
+	//_anon0* hp;
+	//_anon39 l;
+	//_anon20 pd;
 	// Line 1865, Address: 0x261eb0, Func Offset: 0
 	// Line 1875, Address: 0x261f08, Func Offset: 0x58
 	// Line 1876, Address: 0x261f3c, Func Offset: 0x8c
@@ -1809,7 +1809,8 @@ _anon0* bhCheckWallRefAngle(_anon20* pos, unsigned int flg, float ar, float ah, 
 	// Line 2363, Address: 0x263280, Func Offset: 0x13d0
 	// Line 2364, Address: 0x263284, Func Offset: 0x13d4
 	// Func End, Address: 0x2632e0, Func Offset: 0x1430
-}*/
+	scePrintf("bhCheckWallRefAngle - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhSetWallRefAngle(ATR_WORK* hp, NJS_POINT3* pos, float ar, float ah, int* ay) 

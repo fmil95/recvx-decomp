@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/effsub0.h"
 #include "../../../ps2/veronica/prog/effect.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
@@ -650,78 +651,114 @@ void bhEff164(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x2208f0
+// 100% matching!
 void bhEff165(O_WRK* op)
 {
-	//_anon24 vd;
-	//_anon24 vs;
 	float py;
-	// Line 1248, Address: 0x2208f0, Func Offset: 0
-	// Line 1253, Address: 0x2208fc, Func Offset: 0xc
-	// Line 1256, Address: 0x22090c, Func Offset: 0x1c
-	// Line 1257, Address: 0x220924, Func Offset: 0x34
-	// Line 1258, Address: 0x22092c, Func Offset: 0x3c
-	// Line 1260, Address: 0x220930, Func Offset: 0x40
-	// Line 1261, Address: 0x220948, Func Offset: 0x58
-	// Line 1263, Address: 0x220954, Func Offset: 0x64
-	// Line 1264, Address: 0x22095c, Func Offset: 0x6c
-	// Line 1265, Address: 0x220960, Func Offset: 0x70
-	// Line 1266, Address: 0x22096c, Func Offset: 0x7c
-	// Line 1267, Address: 0x220980, Func Offset: 0x90
-	// Line 1268, Address: 0x220990, Func Offset: 0xa0
-	// Line 1269, Address: 0x220998, Func Offset: 0xa8
-	// Line 1270, Address: 0x2209a0, Func Offset: 0xb0
-	// Line 1271, Address: 0x2209a8, Func Offset: 0xb8
-	// Line 1273, Address: 0x2209ac, Func Offset: 0xbc
-	// Line 1274, Address: 0x2209b4, Func Offset: 0xc4
-	// Line 1275, Address: 0x2209bc, Func Offset: 0xcc
-	// Line 1276, Address: 0x2209c4, Func Offset: 0xd4
-	// Line 1277, Address: 0x2209cc, Func Offset: 0xdc
-	// Line 1278, Address: 0x2209d4, Func Offset: 0xe4
-	// Line 1281, Address: 0x2209dc, Func Offset: 0xec
-	// Line 1282, Address: 0x2209e8, Func Offset: 0xf8
-	// Line 1283, Address: 0x2209f4, Func Offset: 0x104
-	// Line 1286, Address: 0x220a04, Func Offset: 0x114
-	// Line 1291, Address: 0x220a0c, Func Offset: 0x11c
-	// Line 1296, Address: 0x220a18, Func Offset: 0x128
-	// Line 1286, Address: 0x220a1c, Func Offset: 0x12c
-	// Line 1296, Address: 0x220a20, Func Offset: 0x130
-	// Line 1286, Address: 0x220a30, Func Offset: 0x140
-	// Line 1287, Address: 0x220a34, Func Offset: 0x144
-	// Line 1288, Address: 0x220a44, Func Offset: 0x154
-	// Line 1290, Address: 0x220a54, Func Offset: 0x164
-	// Line 1291, Address: 0x220a64, Func Offset: 0x174
-	// Line 1296, Address: 0x220a70, Func Offset: 0x180
-	// Line 1297, Address: 0x220a7c, Func Offset: 0x18c
-	// Line 1298, Address: 0x220a84, Func Offset: 0x194
-	// Line 1299, Address: 0x220a88, Func Offset: 0x198
-	// Line 1300, Address: 0x220a94, Func Offset: 0x1a4
-	// Line 1301, Address: 0x220aa8, Func Offset: 0x1b8
-	// Line 1302, Address: 0x220ab8, Func Offset: 0x1c8
-	// Line 1312, Address: 0x220abc, Func Offset: 0x1cc
-	// Line 1302, Address: 0x220ac0, Func Offset: 0x1d0
-	// Line 1303, Address: 0x220ac4, Func Offset: 0x1d4
-	// Line 1304, Address: 0x220acc, Func Offset: 0x1dc
-	// Line 1312, Address: 0x220ad0, Func Offset: 0x1e0
-	// Line 1313, Address: 0x220ad8, Func Offset: 0x1e8
-	// Line 1314, Address: 0x220aec, Func Offset: 0x1fc
-	// Line 1315, Address: 0x220b08, Func Offset: 0x218
-	// Line 1317, Address: 0x220b20, Func Offset: 0x230
-	// Line 1318, Address: 0x220b28, Func Offset: 0x238
-	// Line 1319, Address: 0x220b38, Func Offset: 0x248
-	// Line 1327, Address: 0x220b3c, Func Offset: 0x24c
-	// Line 1328, Address: 0x220b48, Func Offset: 0x258
-	// Line 1329, Address: 0x220b54, Func Offset: 0x264
-	// Line 1331, Address: 0x220b58, Func Offset: 0x268
-	// Line 1332, Address: 0x220b60, Func Offset: 0x270
-	// Line 1333, Address: 0x220b68, Func Offset: 0x278
-	// Line 1334, Address: 0x220b70, Func Offset: 0x280
-	// Line 1335, Address: 0x220b78, Func Offset: 0x288
-	// Line 1336, Address: 0x220b80, Func Offset: 0x290
-	// Line 1340, Address: 0x220b88, Func Offset: 0x298
-	// Func End, Address: 0x220b98, Func Offset: 0x2a8
-	scePrintf("bhEff165 - UNIMPLEMENTED!\n");
+    NJS_POINT3 vs, vd;
+
+    op->flg |= 0x1000000;
+    
+    if ((op->type == 0) && (op->mode1 != 0)) 
+    {
+        op->type = (unsigned char)op->mode1;
+        
+        op->mode1 = 0;
+    }
+    
+    if ((op->type != 0) && (op->ct0 == 0)) 
+    {
+        op->ct0 = (unsigned short)op->type * 2;
+        
+        vs.y = 0;
+        vs.x = 0;
+        vs.z = op->sz;
+        
+        njUnitMatrix(NULL);
+        
+        njRotateXYZ(NULL, op->ax, op->ay, 0);
+        
+        njCalcVector(NULL, &vs, &vd);
+        
+        op->xn = vd.x;
+        op->yn = vd.y;
+        op->zn = vd.z;
+        
+        op->spd = 0;
+        
+        op->aox = op->px;
+        op->aoy = op->py;
+        op->aoz = op->pz;
+        
+        op->axp = op->ax;
+        op->ayp = op->ay;
+        op->azp = op->az;
+    }
+    
+    if (op->ct0 != 0) 
+    {
+        if (!(op->ct0 & 0x1)) 
+        {
+            setentry(159, 1, op);
+        }
+        
+        op->px += op->xn;
+        op->py += op->yn;
+        op->pz += op->zn;
+        
+        op->py += op->spd;
+        
+        op->spd -= 0.05f;
+        
+        bhCheckWallRefAngle((NJS_POINT3*)&op->px, op->flg, 0.1f, 0.1f, &op->ay);
+        
+        vs.y = 0;
+        vs.x = 0;
+        vs.z = op->sz;
+        
+        njUnitMatrix(NULL);
+        
+        njRotateXYZ(NULL, op->ax, op->ay, 0);
+        
+        njCalcVector(NULL, &vs, &vd);
+        
+        op->xn = vd.x;
+        op->yn = vd.y;
+        op->zn = vd.z;
+
+        py = bhGetGroundPosition((NJS_POINT3*)&op->px);
+        
+        if (py >= op->py) 
+        {
+            if (op->yn < 0) 
+            {
+                op->spd = 2.0f * -op->yn;
+                
+                op->yn = 0;
+            }
+            else 
+            {
+                op->yn = -(op->yn + op->spd);
+                
+                op->spd = 0;
+            }
+        }
+        
+        op->ct0--;
+        
+        if (op->ct0 == 0) 
+        {
+            op->type = 0;
+            
+            op->px = op->aox;
+            op->py = op->aoy;
+            op->pz = op->aoz;
+            
+            op->ax = op->axp;
+            op->ay = op->ayp;
+            op->az = op->azp;
+        }
+    }
 }
 
 // 100% matching!

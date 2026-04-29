@@ -8,8 +8,8 @@ void bhCheckWall(BH_PWORK* pw);
 int bhCheckWallEx(BH_PWORK* pw, NJS_POINT3* npos, NJS_POINT3* opos, float par, float pah);
 void bhCheckWall2Box(BH_PWORK* pw);
 ATR_WORK* bhCheckWallType(NJS_POINT3* pos, unsigned int flg, float ar, float ah);
-/*_anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, float ah, int idx_ct);
-_anon0* bhCheckWallRefAngle(_anon20* pos, unsigned int flg, float ar, float ah, int* ay);*/
+/*_anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, float ah, int idx_ct);*/
+ATR_WORK* bhCheckWallRefAngle(NJS_POINT3* pos, unsigned int flg, float ar, float ah, int* ay);
 void bhSetWallRefAngle(ATR_WORK* hp, NJS_POINT3* pos, float ar, float ah, int* ay);
 float bhGetGroundPosition(NJS_POINT3* pos); 
 int bhCheckInnerTriangle(ATR_WORK* hp, NJS_POINT3* pos, float ar, float ah);
