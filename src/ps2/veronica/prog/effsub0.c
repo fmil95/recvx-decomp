@@ -1722,35 +1722,47 @@ void bhEff187(O_WRK* op)
 	scePrintf("bhEff187 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x222700
+// 100% matching!
 void bhEff188(O_WRK* op)
 {
-	UV_WORK* uvp;
-	UV_WORK uvinfo_houden_0[13];
-	UV_WORK uvinfo_houden_1[6];
-	// Line 2753, Address: 0x222700, Func Offset: 0
-	// Line 2782, Address: 0x22270c, Func Offset: 0xc
-	// Line 2784, Address: 0x222720, Func Offset: 0x20
-	// Line 2785, Address: 0x222724, Func Offset: 0x24
-	// Line 2787, Address: 0x22272c, Func Offset: 0x2c
-	// Line 2789, Address: 0x222744, Func Offset: 0x44
-	// Line 2790, Address: 0x22274c, Func Offset: 0x4c
-	// Line 2792, Address: 0x222754, Func Offset: 0x54
-	// Line 2795, Address: 0x222760, Func Offset: 0x60
-	// Line 2801, Address: 0x222768, Func Offset: 0x68
-	// Line 2802, Address: 0x222770, Func Offset: 0x70
-	// Line 2801, Address: 0x222778, Func Offset: 0x78
-	// Line 2802, Address: 0x222780, Func Offset: 0x80
-	// Line 2804, Address: 0x222794, Func Offset: 0x94
-	// Line 2807, Address: 0x22279c, Func Offset: 0x9c
-	// Line 2808, Address: 0x2227a8, Func Offset: 0xa8
-	// Line 2809, Address: 0x2227ac, Func Offset: 0xac
-	// Line 2808, Address: 0x2227b0, Func Offset: 0xb0
-	// Line 2809, Address: 0x2227b8, Func Offset: 0xb8
-	// Line 2810, Address: 0x2227ec, Func Offset: 0xec
-	// Func End, Address: 0x2227fc, Func Offset: 0xfc
-	scePrintf("bhEff188 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    static UV_WORK uvinfo_houden_0[13]; // DATA
+	static UV_WORK uvinfo_houden_1[6];  // DATA
+
+    switch (op->mode0)
+    {
+    case 0:
+        op->tex_id = 412;
+        
+        effinit(op);
+
+        switch (op->type)
+        {
+        case 1:
+            op->exp0 = (unsigned char*)&uvinfo_houden_1;
+            break;
+        default:
+            op->exp0 = (unsigned char*)&uvinfo_houden_0;
+            break;
+        }
+        
+        op->mode0 = 1;
+    }
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+    
+    if (uvp->u == -1.0f) 
+    {
+        op->flg = 0;
+    }
+    else 
+    {
+        effset(op, uvp, 0);
+        
+        op->ct0++;
+        
+        sys->ef_trs[sys->ef_trsn++] = op;
+    }
 }
 
 // 100% matching!
