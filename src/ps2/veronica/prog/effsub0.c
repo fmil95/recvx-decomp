@@ -1,5 +1,7 @@
 #include "../../../ps2/veronica/prog/effsub0.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
 
 // 100% matching!
 int setentry(unsigned short id, unsigned short type, O_WRK* op) 
@@ -2050,32 +2052,31 @@ void bhEff198(O_WRK* op)
 	scePrintf("bhEff198 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x223e20
+// 100% matching!
 void bhEff199()
 {
-	//_anon24 ptcl[11];
-	// Line 3534, Address: 0x223e20, Func Offset: 0
-	// Line 3536, Address: 0x223e24, Func Offset: 0x4
-	// Line 3534, Address: 0x223e34, Func Offset: 0x14
-	// Line 3536, Address: 0x223e38, Func Offset: 0x18
-	// Line 3552, Address: 0x223e5c, Func Offset: 0x3c
-	// Line 3536, Address: 0x223e60, Func Offset: 0x40
-	// Line 3552, Address: 0x223e64, Func Offset: 0x44
-	// Line 3554, Address: 0x223e70, Func Offset: 0x50
-	// Line 3555, Address: 0x223e7c, Func Offset: 0x5c
-	// Line 3556, Address: 0x223e90, Func Offset: 0x70
-	// Line 3557, Address: 0x223ea4, Func Offset: 0x84
-	// Line 3558, Address: 0x223eb8, Func Offset: 0x98
-	// Line 3559, Address: 0x223ecc, Func Offset: 0xac
-	// Line 3560, Address: 0x223ee0, Func Offset: 0xc0
-	// Line 3561, Address: 0x223ef4, Func Offset: 0xd4
-	// Line 3562, Address: 0x223f08, Func Offset: 0xe8
-	// Line 3563, Address: 0x223f1c, Func Offset: 0xfc
-	// Line 3564, Address: 0x223f30, Func Offset: 0x110
-	// Line 3565, Address: 0x223f44, Func Offset: 0x124
-	// Line 3566, Address: 0x223f58, Func Offset: 0x138
-	// Line 3567, Address: 0x223f60, Func Offset: 0x140
-	// Func End, Address: 0x223f6c, Func Offset: 0x14c
-	scePrintf("bhEff199 - UNIMPLEMENTED!\n");
+	NJS_POINT3 ptcl[11] = { 0 }; // DATA
+    
+    njSetMatrix(NULL, cam.mtx);
+    
+    njPtclPolygonStart(0xFFAFAFFF);
+    
+    njPtclDrawPolygon(ptcl, 11, 1.0f);
+    njRotateXYZ(NULL, -256, 256, 0);
+    
+    njPtclDrawPolygon(ptcl, 11, 1.0f);
+    njRotateXYZ(NULL, -256, 256, 0);
+    
+    njPtclDrawPolygon(ptcl, 11, 1.0f);
+    njRotateXYZ(NULL, -256, 256, 0);
+    
+    njPtclDrawPolygon(ptcl, 11, 1.0f);
+    njRotateXYZ(NULL, -256, 256, 0);
+    
+    njPtclDrawPolygon(ptcl, 11, 1.0f);
+    njRotateXYZ(NULL, -256, 256, 0);
+    
+    njPtclDrawPolygon(ptcl, 11, 1.0f);
+    
+    njPtclPolygonEnd();
 }
