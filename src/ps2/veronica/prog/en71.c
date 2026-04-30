@@ -339,13 +339,10 @@ void bhEne71_Damage()
 {
 	// Line 247, Address: 0x21bb40, Func Offset: 0
 	// Func End, Address: 0x21bb48, Func Offset: 0x8
-}
-
-// 
-// Start address: 0x21bb50
-void bhEne71_Die()
-{
-	// Line 259, Address: 0x21bb50, Func Offset: 0
-	// Func End, Address: 0x21bb58, Func Offset: 0x8
 }*/
 
+// 100% matching!
+void bhEne71_Die()
+{
+	
+}
