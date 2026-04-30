@@ -323,20 +323,18 @@ void bhEne71_Move()
 {
 	// Line 223, Address: 0x21bb20, Func Offset: 0
 	// Func End, Address: 0x21bb28, Func Offset: 0x8
-}
+}*/
 
-// 
-// Start address: 0x21bb30
+// 100% matching!
 void bhEne71_Nage()
 {
-	// Line 235, Address: 0x21bb30, Func Offset: 0
-	// Func End, Address: 0x21bb38, Func Offset: 0x8
-}*/
+	
+}
 
 // 100% matching!
 void bhEne71_Damage()
 {
-	
+
 }
 
 // 100% matching!
