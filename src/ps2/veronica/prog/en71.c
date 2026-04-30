@@ -1,4 +1,7 @@
 #include "../../../ps2/veronica/prog/en71.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/Motion.h"
+#include "../../../ps2/veronica/prog/subpl.h"
 
 /*typedef struct npobj;
 typedef struct _anon0;
@@ -257,31 +260,46 @@ struct _anon9
 	_anon8 c1;
 	_anon8 c2;
 	float r;
+};*/
+
+typedef void (*bhEne71_Mode0_proc)(BH_PWORK* epw);
+bhEne71_Mode0_proc bhEne71_Mode0[6] = 
+{
+	bhEne71_Init,
+	bhEne71_Move,
+	bhEne71_Nage,
+	bhEne71_Damage,
+	bhEne71_Die,
+	bhEne_Event
 };
 
-void(*bhEne71_Mode0)(BH_PWORK*)[6];*/
-
-// 
-// Start address: 0x21b950
-void bhEne71(BH_PWORK* epw)
+// 100% matching!
+void bhEne71(BH_PWORK* epw) 
 {
-	// Line 121, Address: 0x21b950, Func Offset: 0
-	// Line 123, Address: 0x21b960, Func Offset: 0x10
-	// Line 126, Address: 0x21b980, Func Offset: 0x30
-	// Line 127, Address: 0x21b98c, Func Offset: 0x3c
-	// Line 128, Address: 0x21b99c, Func Offset: 0x4c
-	// Line 129, Address: 0x21b9a0, Func Offset: 0x50
-	// Line 130, Address: 0x21b9ac, Func Offset: 0x5c
-	// Line 131, Address: 0x21b9bc, Func Offset: 0x6c
-	// Line 133, Address: 0x21b9c0, Func Offset: 0x70
-	// Line 136, Address: 0x21b9dc, Func Offset: 0x8c
-	// Line 144, Address: 0x21b9f0, Func Offset: 0xa0
-	// Line 145, Address: 0x21b9f8, Func Offset: 0xa8
-	// Func End, Address: 0x21ba08, Func Offset: 0xb8
-	scePrintf("bhEne71 - UNIMPLEMENTED!\n");
+    bhEne71_Mode0[epw->mode0](epw);
+    
+    epw->mode2++;
+    
+    if (epw->mode2 > 2) 
+    {
+        epw->mode2 = 0;
+        
+        epw->mode3++;
+        
+        if (epw->mode3 > 3) 
+        {
+            epw->mode3 = 0;
+        }
+    }
+    
+    epw->mlwP = &epw->mdl[epw->mode3];
+    
+    bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+    
+    bhCalcModel(epw);
 }
 
-/*// 
+// 
 // Start address: 0x21ba10
 void bhEne71_Init(BH_PWORK* epw)
 {
@@ -315,12 +333,13 @@ void bhEne71_Init(BH_PWORK* epw)
 	// Line 198, Address: 0x21bb00, Func Offset: 0xf0
 	// Line 199, Address: 0x21bb10, Func Offset: 0x100
 	// Func End, Address: 0x21bb20, Func Offset: 0x110
-}*/
+	scePrintf("bhEne71_Init - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhEne71_Move()
 {
-	
+
 }
 
 // 100% matching!
