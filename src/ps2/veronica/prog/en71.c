@@ -315,20 +315,18 @@ void bhEne71_Init(BH_PWORK* epw)
 	// Line 198, Address: 0x21bb00, Func Offset: 0xf0
 	// Line 199, Address: 0x21bb10, Func Offset: 0x100
 	// Func End, Address: 0x21bb20, Func Offset: 0x110
-}
+}*/
 
-// 
-// Start address: 0x21bb20
+// 100% matching!
 void bhEne71_Move()
 {
-	// Line 223, Address: 0x21bb20, Func Offset: 0
-	// Func End, Address: 0x21bb28, Func Offset: 0x8
-}*/
+	
+}
 
 // 100% matching!
 void bhEne71_Nage()
 {
-	
+
 }
 
 // 100% matching!
