@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/en55.h"
+//#include "../../../ps2/veronica/prog/Motion.h" /* they might have forgotten to include this in the original codebase */
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
 
@@ -34,21 +35,26 @@ bhEne55_DamageMode2_proc bhEne55_DamageMode2[1] =
 	bhEne55_DG00
 };
 
-// 
-// Start address: 0x21b410
+// 100% matching!
 void bhEne55(BH_PWORK* epw)
 {
 	int i;
-	// Line 154, Address: 0x21b410, Func Offset: 0
-	// Line 158, Address: 0x21b41c, Func Offset: 0xc
-	// Line 161, Address: 0x21b424, Func Offset: 0x14
-	// Line 163, Address: 0x21b434, Func Offset: 0x24
-	// Line 164, Address: 0x21b458, Func Offset: 0x48
-	// Line 168, Address: 0x21b468, Func Offset: 0x58
-	// Line 171, Address: 0x21b474, Func Offset: 0x64
-	// Line 173, Address: 0x21b47c, Func Offset: 0x6c
-	// Func End, Address: 0x21b48c, Func Offset: 0x7c
-	scePrintf("bhEne55 - UNIMPLEMENTED!\n");
+	
+	bhEne55_MainLoop(epw);
+	
+    if ((epw->flg & 0x4))
+    {
+        for (i = 0; i < 64; i++)
+        {
+            epw->dam[i] = 0;
+        }
+
+        epw->flg &= ~0x4;
+    }
+
+    bhEne55_CalcEnemy(epw);
+
+    bhEne55_CollCheck(epw);
 }
 
 // 100% matching!
