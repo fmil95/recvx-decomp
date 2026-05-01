@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/en55.h"
 #include "../../../ps2/veronica/prog/subpl.h"
+#include "../../../ps2/veronica/prog/zonzon.h"
 
 typedef void (*bhEne55_Mode0_proc)(BH_PWORK* epw);
 typedef void (*bhEne55_MoveType_proc)(BH_PWORK* epw);
@@ -184,17 +185,20 @@ void bhEne55_MVType00(BH_PWORK* epw)
 	bhEne55_MoveMode2[epw->mode2](epw);
 }
 
-// 
-// Start address: 0x21b7f0
+// 100% matching!
 void bhEne55_MV00(BH_PWORK* epw)
 {
-	// Line 459, Address: 0x21b7f0, Func Offset: 0
-	// Line 460, Address: 0x21b7fc, Func Offset: 0xc
-	// Line 463, Address: 0x21b81c, Func Offset: 0x2c
-	// Line 464, Address: 0x21b82c, Func Offset: 0x3c
-	// Line 465, Address: 0x21b830, Func Offset: 0x40
-	// Line 470, Address: 0x21b83c, Func Offset: 0x4c
-	// Func End, Address: 0x21b84c, Func Offset: 0x5c
+    switch (epw->mode3)                               
+    {
+    case 0:
+        bhEne_ChgMtn(epw, 0, 0, 0);
+		
+        epw->mtn_add = 0;
+
+        epw->mode3++;
+    case 1:
+        break;
+    }
 }
 
 // 100% matching!
