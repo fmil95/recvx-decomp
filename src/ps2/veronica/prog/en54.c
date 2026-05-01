@@ -1,5 +1,11 @@
 #include "../../../ps2/veronica/prog/en54.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+//#include "../../../ps2/veronica/prog/Motion.h" /* they might have forgotten to include this in the original codebase */
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/subpl.h"
+#include "../../../ps2/veronica/prog/zonzon.h"
 
 typedef void (*bhEne54_Mode0_proc)(BH_PWORK* epw);
 typedef void (*bhEne54_MoveType_proc)(BH_PWORK* epw);
@@ -63,18 +69,23 @@ void bhEne54_MainLoop(BH_PWORK* epw)
 	bhEne54_SetMtn(epw);
 }
 
-// 
-// Start address: 0x21afa0
+// 100% matching!
 int bhEne54_SetMtn(BH_PWORK* epw)
 {
 	int ret;
-	// Line 226, Address: 0x21afa0, Func Offset: 0
-	// Line 232, Address: 0x21afb0, Func Offset: 0x10
-	// Line 235, Address: 0x21afc0, Func Offset: 0x20
-	// Line 236, Address: 0x21afc8, Func Offset: 0x28
-	// Line 238, Address: 0x21afdc, Func Offset: 0x3c
-	// Line 241, Address: 0x21aff0, Func Offset: 0x50
-	// Func End, Address: 0x21b000, Func Offset: 0x60
+
+	ret = bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+
+    if (ret != 0)
+    {
+        epw->flg |= 0x2000000;
+    }
+    else
+    {
+        epw->flg &= ~0x2000000;
+    }
+
+    return ret;
 }
 
 // 
