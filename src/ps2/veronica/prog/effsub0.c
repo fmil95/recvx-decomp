@@ -2404,60 +2404,73 @@ void bhEff195(O_WRK* op)
 	scePrintf("bhEff195 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x223af0
+// 100% matching! 
 void bhEff196(O_WRK* op)
 {
-	int lColor;
-	int lType;
-	//tagEFF0UV* pInfo;
-	//tagEFF0UV* pEff196UvInfoTop[4];
-	unsigned int ulEff196UvInfoMax[4];
-	// Line 3422, Address: 0x223af0, Func Offset: 0
-	// Line 3423, Address: 0x223b10, Func Offset: 0x20
-	// Line 3425, Address: 0x223b1c, Func Offset: 0x2c
-	// Line 3426, Address: 0x223b28, Func Offset: 0x38
-	// Line 3428, Address: 0x223b30, Func Offset: 0x40
-	// Line 3432, Address: 0x223b3c, Func Offset: 0x4c
-	// Line 3431, Address: 0x223b40, Func Offset: 0x50
-	// Line 3428, Address: 0x223b44, Func Offset: 0x54
-	// Line 3431, Address: 0x223b4c, Func Offset: 0x5c
-	// Line 3432, Address: 0x223b50, Func Offset: 0x60
-	// Line 3431, Address: 0x223b54, Func Offset: 0x64
-	// Line 3432, Address: 0x223b68, Func Offset: 0x78
-	// Line 3433, Address: 0x223b94, Func Offset: 0xa4
-	// Line 3436, Address: 0x223bb4, Func Offset: 0xc4
-	// Line 3437, Address: 0x223bbc, Func Offset: 0xcc
-	// Line 3438, Address: 0x223bc0, Func Offset: 0xd0
-	// Line 3436, Address: 0x223bc4, Func Offset: 0xd4
-	// Line 3437, Address: 0x223bcc, Func Offset: 0xdc
-	// Line 3438, Address: 0x223bd0, Func Offset: 0xe0
-	// Line 3439, Address: 0x223bd4, Func Offset: 0xe4
-	// Line 3444, Address: 0x223bdc, Func Offset: 0xec
-	// Line 3441, Address: 0x223be0, Func Offset: 0xf0
-	// Line 3444, Address: 0x223be4, Func Offset: 0xf4
-	// Line 3450, Address: 0x223bf4, Func Offset: 0x104
-	// Line 3453, Address: 0x223bfc, Func Offset: 0x10c
-	// Line 3456, Address: 0x223c00, Func Offset: 0x110
-	// Line 3453, Address: 0x223c10, Func Offset: 0x120
-	// Line 3456, Address: 0x223c18, Func Offset: 0x128
-	// Line 3458, Address: 0x223c2c, Func Offset: 0x13c
-	// Line 3469, Address: 0x223c30, Func Offset: 0x140
-	// Line 3465, Address: 0x223c3c, Func Offset: 0x14c
-	// Line 3469, Address: 0x223c40, Func Offset: 0x150
-	// Line 3477, Address: 0x223c4c, Func Offset: 0x15c
-	// Line 3470, Address: 0x223c50, Func Offset: 0x160
-	// Line 3469, Address: 0x223c58, Func Offset: 0x168
-	// Line 3470, Address: 0x223c60, Func Offset: 0x170
-	// Line 3471, Address: 0x223c7c, Func Offset: 0x18c
-	// Line 3472, Address: 0x223c9c, Func Offset: 0x1ac
-	// Line 3473, Address: 0x223cb8, Func Offset: 0x1c8
-	// Line 3477, Address: 0x223cd8, Func Offset: 0x1e8
-	// Line 3479, Address: 0x223cf4, Func Offset: 0x204
-	// Line 3480, Address: 0x223d08, Func Offset: 0x218
-	// Line 3482, Address: 0x223d2c, Func Offset: 0x23c
-	// Func End, Address: 0x223d34, Func Offset: 0x244
-	scePrintf("bhEff196 - UNIMPLEMENTED!\n");
+    EFF0UV* pInfo;
+    int lType, lColor; 
+    static EFF0UV* pEff196UvInfoTop[4];       // DATA
+	static unsigned int ulEff196UvInfoMax[4]; // DATA
+
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type == 0) 
+    {
+        op->flg |= 0x1000000;
+        return;
+    }
+    
+    op->flg &= ~0x1000000;
+
+    lColor = (op->type - 1) % 6;
+    lType = ((op->type - 1) / 6) % 4;
+    
+    switch (op->mode0) 
+    {
+    case 0:
+        op->flg |= 0x4080000;
+        
+        op->tex_id = 414;
+        
+        op->bl_src = 8;
+        op->bl_dst = 6;
+        
+        op->ct0 = 0;
+        
+        op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = -1;
+        
+        op->mode0 = 1;
+        break;
+    case 1:
+        op->ct0++;
+        
+        if (ulEff196UvInfoMax[lType] <= op->ct0) 
+        {
+            op->ct0 = 0;
+        }
+        
+        break;
+    }
+    
+    op->ani_ct = lColor;
+    
+    pInfo = &pEff196UvInfoTop[lType][op->ct0];
+    
+    op->tv[0].u = op->tv[2].u = pInfo->u / 256.0f;
+    op->tv[1].u = op->tv[3].u = (pInfo->u + 31) / 256.0f;
+    
+    op->tv[0].v = op->tv[1].v = pInfo->v / 256.0f;
+    op->tv[2].v = op->tv[3].v = (pInfo->v + 31) / 256.0f;
+    
+    if (sys->ef_trsn < 512)
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
 
 // 100% matching!
