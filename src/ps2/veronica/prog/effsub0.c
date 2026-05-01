@@ -2,6 +2,7 @@
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
 
@@ -1560,53 +1561,57 @@ void bhEff181(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x221b60
+// 100% matching!
 void bhEff182(O_WRK* op)
 {
+    unsigned short ktype, kcolor;
+    NJS_POINT3 vs, vd;   
 	UV_WORK* uvp;
-	//_anon24 vd;
-	//_anon24 vs;
-	unsigned short kcolor;
-	unsigned short ktype;
-	UV_WORK* uvinfo_kemu[10];
-	int texid_kemu[10];
-	// Line 2076, Address: 0x221b60, Func Offset: 0
-	// Line 2320, Address: 0x221b74, Func Offset: 0x14
-	// Line 2322, Address: 0x221b7c, Func Offset: 0x1c
-	// Line 2321, Address: 0x221b80, Func Offset: 0x20
-	// Line 2320, Address: 0x221b8c, Func Offset: 0x2c
-	// Line 2321, Address: 0x221b9c, Func Offset: 0x3c
-	// Line 2320, Address: 0x221ba4, Func Offset: 0x44
-	// Line 2321, Address: 0x221bac, Func Offset: 0x4c
-	// Line 2322, Address: 0x221bb8, Func Offset: 0x58
-	// Line 2324, Address: 0x221bc8, Func Offset: 0x68
-	// Line 2325, Address: 0x221be0, Func Offset: 0x80
-	// Line 2326, Address: 0x221be8, Func Offset: 0x88
-	// Line 2327, Address: 0x221bf8, Func Offset: 0x98
-	// Line 2326, Address: 0x221bfc, Func Offset: 0x9c
-	// Line 2327, Address: 0x221c00, Func Offset: 0xa0
-	// Line 2332, Address: 0x221c04, Func Offset: 0xa4
-	// Line 2333, Address: 0x221c0c, Func Offset: 0xac
-	// Line 2334, Address: 0x221c18, Func Offset: 0xb8
-	// Line 2335, Address: 0x221c20, Func Offset: 0xc0
-	// Line 2336, Address: 0x221c34, Func Offset: 0xd4
-	// Line 2337, Address: 0x221c44, Func Offset: 0xe4
-	// Line 2343, Address: 0x221c4c, Func Offset: 0xec
-	// Line 2337, Address: 0x221c58, Func Offset: 0xf8
-	// Line 2338, Address: 0x221c60, Func Offset: 0x100
-	// Line 2339, Address: 0x221c70, Func Offset: 0x110
-	// Line 2342, Address: 0x221c80, Func Offset: 0x120
-	// Line 2343, Address: 0x221c90, Func Offset: 0x130
-	// Line 2345, Address: 0x221ca4, Func Offset: 0x144
-	// Line 2348, Address: 0x221cac, Func Offset: 0x14c
-	// Line 2349, Address: 0x221cb8, Func Offset: 0x158
-	// Line 2350, Address: 0x221cbc, Func Offset: 0x15c
-	// Line 2349, Address: 0x221cc0, Func Offset: 0x160
-	// Line 2350, Address: 0x221cc8, Func Offset: 0x168
-	// Line 2351, Address: 0x221cfc, Func Offset: 0x19c
-	// Func End, Address: 0x221d14, Func Offset: 0x1b4
-	scePrintf("bhEff182 - UNIMPLEMENTED!\n");
+    static int texid_kemu[10];       // DATA
+    static UV_WORK* uvinfo_kemu[10]; // DATA
+
+    kcolor = op->type % 10;
+    ktype = op->type / 10;
+    
+    switch (op->mode0)
+    {
+    case 0:
+        op->tex_id = texid_kemu[kcolor];
+        
+        effinit(op);
+        
+        op->exp0 = (unsigned char*)uvinfo_kemu[kcolor];
+        
+        op->mode0 = 1;
+        break;
+    }
+    
+    vs.y = 0;
+    vs.x = 0;
+    vs.z = njFraction(op->sz);
+    
+    njUnitMatrix(NULL);
+    
+    njRotateXYZ(NULL, op->ax, op->ay, 0);
+    njCalcVector(NULL, &vs, &vd);
+    
+    op->px += vd.x;
+    op->py += vd.y;
+    op->pz += vd.z;
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+        
+    if (uvp->u == -1.0f) 
+    {
+        op->flg = 0;
+        return;
+    }
+    
+    effset(op, uvp, ktype);
+    
+    op->ct0++;
+    
+    sys->ef_trs[sys->ef_trsn++] = op;
 }
 
 // 100% matching!
