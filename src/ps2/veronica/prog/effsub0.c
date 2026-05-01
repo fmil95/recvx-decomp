@@ -727,66 +727,97 @@ void bhEff162(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x2205b0
+// 99.63% matching (matches on GC)
 void bhEff163(O_WRK* op)
 {
-	//_anon24 vd;
-	//_anon24 vs;
-	UV_WORK* uvp;
-	UV_WORK uvinfo_bub_0[18];
-	UV_WORK uvinfo_bub_1[14];
-	// Line 1098, Address: 0x2205b0, Func Offset: 0
-	// Line 1141, Address: 0x2205bc, Func Offset: 0xc
-	// Line 1143, Address: 0x2205d0, Func Offset: 0x20
-	// Line 1144, Address: 0x2205d4, Func Offset: 0x24
-	// Line 1146, Address: 0x2205dc, Func Offset: 0x2c
-	// Line 1148, Address: 0x2205f4, Func Offset: 0x44
-	// Line 1150, Address: 0x220600, Func Offset: 0x50
-	// Line 1151, Address: 0x220608, Func Offset: 0x58
-	// Line 1152, Address: 0x220620, Func Offset: 0x70
-	// Line 1154, Address: 0x22062c, Func Offset: 0x7c
-	// Line 1156, Address: 0x220634, Func Offset: 0x84
-	// Line 1157, Address: 0x220640, Func Offset: 0x90
-	// Line 1159, Address: 0x220644, Func Offset: 0x94
-	// Line 1160, Address: 0x22064c, Func Offset: 0x9c
-	// Line 1161, Address: 0x220654, Func Offset: 0xa4
-	// Line 1162, Address: 0x22065c, Func Offset: 0xac
-	// Line 1163, Address: 0x220670, Func Offset: 0xc0
-	// Line 1164, Address: 0x220680, Func Offset: 0xd0
-	// Line 1165, Address: 0x220688, Func Offset: 0xd8
-	// Line 1166, Address: 0x220690, Func Offset: 0xe0
-	// Line 1171, Address: 0x220698, Func Offset: 0xe8
-	// Line 1172, Address: 0x2206a4, Func Offset: 0xf4
-	// Line 1171, Address: 0x2206a8, Func Offset: 0xf8
-	// Line 1172, Address: 0x2206ac, Func Offset: 0xfc
-	// Line 1178, Address: 0x2206b0, Func Offset: 0x100
-	// Line 1179, Address: 0x2206bc, Func Offset: 0x10c
-	// Line 1180, Address: 0x2206cc, Func Offset: 0x11c
-	// Line 1181, Address: 0x2206dc, Func Offset: 0x12c
-	// Line 1182, Address: 0x2206ec, Func Offset: 0x13c
-	// Line 1186, Address: 0x2206fc, Func Offset: 0x14c
-	// Line 1187, Address: 0x220704, Func Offset: 0x154
-	// Line 1186, Address: 0x22070c, Func Offset: 0x15c
-	// Line 1187, Address: 0x220714, Func Offset: 0x164
-	// Line 1189, Address: 0x220728, Func Offset: 0x178
-	// Line 1190, Address: 0x220730, Func Offset: 0x180
-	// Line 1193, Address: 0x22074c, Func Offset: 0x19c
-	// Line 1194, Address: 0x220770, Func Offset: 0x1c0
-	// Line 1195, Address: 0x220780, Func Offset: 0x1d0
-	// Line 1196, Address: 0x220788, Func Offset: 0x1d8
-	// Line 1197, Address: 0x220790, Func Offset: 0x1e0
-	// Line 1199, Address: 0x220798, Func Offset: 0x1e8
-	// Line 1200, Address: 0x2207bc, Func Offset: 0x20c
-	// Line 1201, Address: 0x2207c0, Func Offset: 0x210
-	// Line 1205, Address: 0x2207c8, Func Offset: 0x218
-	// Line 1206, Address: 0x2207e4, Func Offset: 0x234
-	// Line 1207, Address: 0x2207e8, Func Offset: 0x238
-	// Line 1206, Address: 0x2207ec, Func Offset: 0x23c
-	// Line 1207, Address: 0x2207f4, Func Offset: 0x244
-	// Line 1208, Address: 0x220828, Func Offset: 0x278
-	// Func End, Address: 0x220838, Func Offset: 0x288
-	scePrintf("bhEff163 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    NJS_POINT3 vs, vd;
+    static UV_WORK uvinfo_bub_0[18]; // DATA
+	static UV_WORK uvinfo_bub_1[14]; // DATA
+
+    switch (op->mode0)
+    {
+    case 0:
+        op->tex_id = 56;
+        
+        effinit(op);
+        
+        switch (op->type)
+        {
+        case 1:
+            op->exp0 = (unsigned char*)&uvinfo_bub_1;
+            
+            njUnitMatrix(NULL);
+            
+            njRotateXYZ(NULL, 0, op->ay, -op->ax);
+            
+            getuv(0, op);
+            break;
+        default:
+            op->exp0 = (unsigned char*)&uvinfo_bub_0;
+            
+            op->type = 0;
+            
+            vs.z = 0;
+            vs.x = 0;
+            vs.y = 0.5f;
+            
+            njUnitMatrix(NULL);
+            
+            njRotateXYZ(NULL, op->ax, op->ay, 0);
+            njCalcVector(NULL, &vs, &vd);
+            
+            op->xn = vd.x;
+            op->yn = vd.y;
+            op->zn = vd.z;
+            break;
+        }
+        
+        op->ct1 = op->sz;
+        
+        op->mode0 = 1;
+    }
+    
+    if ((op->type == 0) && (op->ct0 < 13)) 
+    {
+        op->px += op->xn;
+        op->py += op->yn;
+        op->pz += op->zn;
+    }
+
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+
+    if (uvp->u == -1.0f)
+    {
+        op->flg = 0;
+        return;
+    }
+    else if (uvp->u == -2.0f) 
+    {
+        op->ct0 = 0;
+    }
+    else if (uvp->u == -3.0f)
+    {       
+        if (--op->ct1 > 0) 
+        {
+            op->ct0 = uvp->v;
+        }
+        else 
+        {
+            op->ct0++;
+        }
+    }
+    else if (uvp->u == -4.0f) 
+    {
+        op->ct0++;
+        return;
+    }
+
+    effset(op, (UV_WORK*)op->exp0 + op->ct0, 0);
+    
+    op->ct0++;
+    
+    sys->ef_trs[sys->ef_trsn++] = op;
 }
 
 // 100% matching!
