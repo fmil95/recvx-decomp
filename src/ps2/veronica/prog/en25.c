@@ -1481,20 +1481,18 @@ void bhEne25_Nage()
 {
 	// Line 476, Address: 0x209240, Func Offset: 0
 	// Func End, Address: 0x209248, Func Offset: 0x8
-}
+}*/
 
-// 
-// Start address: 0x209250
+// 100% matching!
 void bhEne25_Damage()
 {
-	// Line 488, Address: 0x209250, Func Offset: 0
-	// Func End, Address: 0x209258, Func Offset: 0x8
-}*/
+	
+}
 
 // 100% matching!
 void bhEne25_Die()
 {
-	
+
 }
 
 /*// 
