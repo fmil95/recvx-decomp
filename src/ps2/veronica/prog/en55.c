@@ -124,7 +124,7 @@ void bhEne55_CalcEnemy(BH_PWORK* epw)
 	O_WORK* owk;
 
     bhCalcModel(epw);
-	
+
 	owk = &epw->mlwP->owP[12];
 
     epw->cah = epw->ah = owk->mtx[13] - epw->py;
@@ -144,40 +144,52 @@ void bhEne55_CalcEnemy(BH_PWORK* epw)
     epw->watr.r = 3.0f;
 }
 
-// 
-// Start address: 0x21b6d0
+// 100% matching!
 void bhEne55_Init(BH_PWORK* epw)
 {
 	int i;
-	// Line 347, Address: 0x21b6d0, Func Offset: 0
-	// Line 348, Address: 0x21b6d8, Func Offset: 0x8
-	// Line 349, Address: 0x21b6e0, Func Offset: 0x10
-	// Line 350, Address: 0x21b6e4, Func Offset: 0x14
-	// Line 351, Address: 0x21b6e8, Func Offset: 0x18
-	// Line 352, Address: 0x21b6ec, Func Offset: 0x1c
-	// Line 353, Address: 0x21b6f0, Func Offset: 0x20
-	// Line 354, Address: 0x21b6f8, Func Offset: 0x28
-	// Line 355, Address: 0x21b6fc, Func Offset: 0x2c
-	// Line 358, Address: 0x21b720, Func Offset: 0x50
-	// Line 359, Address: 0x21b724, Func Offset: 0x54
-	// Line 360, Address: 0x21b728, Func Offset: 0x58
-	// Line 361, Address: 0x21b72c, Func Offset: 0x5c
-	// Line 362, Address: 0x21b730, Func Offset: 0x60
-	// Line 363, Address: 0x21b734, Func Offset: 0x64
-	// Line 364, Address: 0x21b738, Func Offset: 0x68
-	// Line 368, Address: 0x21b73c, Func Offset: 0x6c
-	// Line 369, Address: 0x21b740, Func Offset: 0x70
-	// Line 372, Address: 0x21b744, Func Offset: 0x74
-	// Line 375, Address: 0x21b748, Func Offset: 0x78
-	// Line 368, Address: 0x21b74c, Func Offset: 0x7c
-	// Line 369, Address: 0x21b754, Func Offset: 0x84
-	// Line 372, Address: 0x21b760, Func Offset: 0x90
-	// Line 373, Address: 0x21b764, Func Offset: 0x94
-	// Line 375, Address: 0x21b770, Func Offset: 0xa0
-	// Line 376, Address: 0x21b774, Func Offset: 0xa4
-	// Line 377, Address: 0x21b778, Func Offset: 0xa8
-	// Line 379, Address: 0x21b77c, Func Offset: 0xac
-	// Func End, Address: 0x21b784, Func Offset: 0xb4
+
+    epw->ar = 6.0f;
+
+    epw->ah = 20.0f;
+    epw->aw = 0;
+
+    epw->ad = 0;
+
+    epw->car = 6.0f;
+    epw->cah = 20.0f;
+
+    epw->hp = 250;
+
+    epw->stflg = 0;
+
+    for (i = 0; i < 64; i++)
+	{
+		epw->dam[i] = 0;
+	}
+
+    epw->hokan_rate = 0;
+    epw->hokan_count = 0;
+
+    epw->mtn_no = 0;
+    epw->mtn_add = 0;
+
+    epw->frm_no = 0;
+
+    epw->mtn_tp = NULL;
+    epw->mtn_md = 0;
+
+    epw->flg |= 0x8000;
+    epw->flg &= ~0x2;
+
+    epw->clp_jno[0] = -1;
+
+    epw->mdflg |= 0x20;
+
+    epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
 }
 
 // 100% matching!
