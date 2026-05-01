@@ -59,18 +59,23 @@ void bhEne55_MainLoop(BH_PWORK* epw)
 	bhEne55_SetMtn(epw);
 }
 
-// 
-// Start address: 0x21b4e0
+// 100% matching!
 int bhEne55_SetMtn(BH_PWORK* epw)
 {
 	int ret;
-	// Line 226, Address: 0x21b4e0, Func Offset: 0
-	// Line 232, Address: 0x21b4f0, Func Offset: 0x10
-	// Line 235, Address: 0x21b500, Func Offset: 0x20
-	// Line 236, Address: 0x21b508, Func Offset: 0x28
-	// Line 238, Address: 0x21b51c, Func Offset: 0x3c
-	// Line 241, Address: 0x21b530, Func Offset: 0x50
-	// Func End, Address: 0x21b540, Func Offset: 0x60
+
+	ret = bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+
+    if (ret != 0)
+    {
+        epw->flg |= 0x2000000;
+    }
+    else
+    {
+        epw->flg &= ~0x2000000;
+    }
+
+    return ret;
 }
 
 // 
@@ -227,7 +232,7 @@ void bhEne55_DG00(BH_PWORK* epw)
         if ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num - 1))
         {
             epw->mtn_add = 0;
-			
+
             epw->mode3++;
         }
     case 2:
