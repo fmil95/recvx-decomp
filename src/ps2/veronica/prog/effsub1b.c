@@ -9,6 +9,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/screen.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
@@ -616,58 +617,88 @@ void bhEff134(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x23a3a0
+// 100% matching!
 void bhEff135(O_WRK* op)
 {
-	int i;
-	BH_PWORK* pp;
-	// Line 500, Address: 0x23a3a0, Func Offset: 0
-	// Line 503, Address: 0x23a3ac, Func Offset: 0xc
-	// Line 505, Address: 0x23a3b4, Func Offset: 0x14
-	// Line 503, Address: 0x23a3b8, Func Offset: 0x18
-	// Line 505, Address: 0x23a3c0, Func Offset: 0x20
-	// Line 506, Address: 0x23a3d8, Func Offset: 0x38
-	// Line 511, Address: 0x23a3dc, Func Offset: 0x3c
-	// Line 506, Address: 0x23a3e4, Func Offset: 0x44
-	// Line 511, Address: 0x23a3e8, Func Offset: 0x48
-	// Line 513, Address: 0x23a404, Func Offset: 0x64
-	// Line 515, Address: 0x23a424, Func Offset: 0x84
-	// Line 517, Address: 0x23a444, Func Offset: 0xa4
-	// Line 520, Address: 0x23a460, Func Offset: 0xc0
-	// Line 536, Address: 0x23a4ac, Func Offset: 0x10c
-	// Line 537, Address: 0x23a4c0, Func Offset: 0x120
-	// Line 542, Address: 0x23a4d4, Func Offset: 0x134
-	// Line 537, Address: 0x23a4dc, Func Offset: 0x13c
-	// Line 542, Address: 0x23a4e8, Func Offset: 0x148
-	// Line 543, Address: 0x23a4f4, Func Offset: 0x154
-	// Line 542, Address: 0x23a4f8, Func Offset: 0x158
-	// Line 543, Address: 0x23a4fc, Func Offset: 0x15c
-	// Line 547, Address: 0x23a53c, Func Offset: 0x19c
-	// Line 554, Address: 0x23a54c, Func Offset: 0x1ac
-	// Line 558, Address: 0x23a57c, Func Offset: 0x1dc
-	// Line 557, Address: 0x23a580, Func Offset: 0x1e0
-	// Line 560, Address: 0x23a584, Func Offset: 0x1e4
-	// Line 562, Address: 0x23a58c, Func Offset: 0x1ec
-	// Line 564, Address: 0x23a598, Func Offset: 0x1f8
-	// Line 563, Address: 0x23a5a0, Func Offset: 0x200
-	// Line 564, Address: 0x23a5a4, Func Offset: 0x204
-	// Line 572, Address: 0x23a5a8, Func Offset: 0x208
-	// Line 564, Address: 0x23a5ac, Func Offset: 0x20c
-	// Line 565, Address: 0x23a5b8, Func Offset: 0x218
-	// Line 566, Address: 0x23a5cc, Func Offset: 0x22c
-	// Line 567, Address: 0x23a5e4, Func Offset: 0x244
-	// Line 568, Address: 0x23a5fc, Func Offset: 0x25c
-	// Line 569, Address: 0x23a614, Func Offset: 0x274
-	// Line 570, Address: 0x23a62c, Func Offset: 0x28c
-	// Line 571, Address: 0x23a644, Func Offset: 0x2a4
-	// Line 572, Address: 0x23a65c, Func Offset: 0x2bc
-	// Line 574, Address: 0x23a688, Func Offset: 0x2e8
-	// Line 576, Address: 0x23a6b8, Func Offset: 0x318
-	// Line 577, Address: 0x23a6c4, Func Offset: 0x324
-	// Line 581, Address: 0x23a6d8, Func Offset: 0x338
-	// Func End, Address: 0x23a6e8, Func Offset: 0x348
-	scePrintf("bhEff135 - UNIMPLEMENTED!\n");
+    BH_PWORK* pp; 
+    int i;        
+    int eno; // not from DWARF
+    
+    op->flg |= 0x1000000;
+    
+    if (!(sys->ef_flg & 0x4)) 
+    {
+        sys->ef_flg |= 0x4;
+        
+        sys->zan_memp = bhGetFreeMemory(0x200000, 64);
+        sys->zanp = sys->zan_memp;
+    }
+    
+    switch (op->mode0)
+    {                            
+    case 0:
+        if (((op->flg & 0x80)) && (op->mode1 != 0)) 
+        {
+            pp = (BH_PWORK*)op->lkwkp;
+            
+            if ((pp->mdl[op->type].objP != NULL) && (pp->mdl[op->type].objP[op->lkono].model != NULL)) 
+            {
+                i = ((pp->mdl[op->type].objP[op->lkono].model->vlist[1] >> 16) << 5) + 72;
+                
+                i += 64 - (i % 64);
+                
+                op->exp0 = sys->zanp;
+                
+                if (!(&sys->zanp[8 * i] >= (sys->zan_memp + 0x200000))) 
+                {
+                    sys->zanp = (unsigned char*)(((int)&sys->zanp[8 * i] + 63) & ~0x3F);
+                    
+                    ef_Zanzo[0] = ef_Zanzo[1] = ef_Zanzo[2] = ef_Zanzo[3] = ef_Zanzo[4] = ef_Zanzo[5] = NULL;
+                    
+                    op->ct0 = 0;
+                    
+                    op->mode0 = 1;
+                }
+            }
+        }
+        
+        break;
+    case 1:
+        if (op->mode1 != 0)
+        {
+            pp = (BH_PWORK*)op->lkwkp;
+            
+            sys->ef.id = 136;
+            
+            sys->ef.flg = 1;
+            
+            sys->ef.type = op->idx;
+            
+            sys->ef.flr_no = op->ct0;
+            
+            sys->ef.mdlver = op->type;
+            
+            sys->ef.px = pp->px;
+            sys->ef.py = pp->py;
+            sys->ef.pz = pp->pz;
+            
+            eno = bhSetEffectTb(&sys->ef, NULL, op->lkwkp, op->lkono);
+            
+            if (eno != -1) 
+            {
+                eff[eno].flg &= ~0x80;
+            }
+            
+            op->ct0++;
+            
+            if (op->ct0 > 5)
+            {
+                op->ct0 = 0;
+            }
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!

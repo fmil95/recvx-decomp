@@ -39,4 +39,6 @@ void bhDrawNtxEffect2D(unsigned int* owp, int ct);
 void bhDrawTrsEffect2D(unsigned int* owp, int ct);
 void bhDrawThunder();
 
+extern O_WORK* ef_Zanzo[6];
+
 #endif
