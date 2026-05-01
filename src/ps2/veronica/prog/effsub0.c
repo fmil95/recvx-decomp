@@ -202,63 +202,81 @@ void bhEff151(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x21f460
+// 100% matching!
 void bhEff152(O_WRK* op)
 {
-	unsigned short j;
-	unsigned short i;
-	//_anon24 vd;
-	//_anon24 vs;
-	// Line 409, Address: 0x21f460, Func Offset: 0
-	// Line 413, Address: 0x21f484, Func Offset: 0x24
-	// Line 415, Address: 0x21f494, Func Offset: 0x34
-	// Line 417, Address: 0x21f4b4, Func Offset: 0x54
-	// Line 418, Address: 0x21f4c0, Func Offset: 0x60
-	// Line 419, Address: 0x21f4c8, Func Offset: 0x68
-	// Line 420, Address: 0x21f4cc, Func Offset: 0x6c
-	// Line 421, Address: 0x21f4d8, Func Offset: 0x78
-	// Line 422, Address: 0x21f4ec, Func Offset: 0x8c
-	// Line 427, Address: 0x21f4fc, Func Offset: 0x9c
-	// Line 424, Address: 0x21f500, Func Offset: 0xa0
-	// Line 425, Address: 0x21f504, Func Offset: 0xa4
-	// Line 426, Address: 0x21f508, Func Offset: 0xa8
-	// Line 427, Address: 0x21f50c, Func Offset: 0xac
-	// Line 428, Address: 0x21f518, Func Offset: 0xb8
-	// Line 430, Address: 0x21f524, Func Offset: 0xc4
-	// Line 429, Address: 0x21f528, Func Offset: 0xc8
-	// Line 432, Address: 0x21f52c, Func Offset: 0xcc
-	// Line 433, Address: 0x21f538, Func Offset: 0xd8
-	// Line 434, Address: 0x21f5dc, Func Offset: 0x17c
-	// Line 435, Address: 0x21f680, Func Offset: 0x220
-	// Line 441, Address: 0x21f718, Func Offset: 0x2b8
-	// Line 442, Address: 0x21f724, Func Offset: 0x2c4
-	// Line 435, Address: 0x21f728, Func Offset: 0x2c8
-	// Line 454, Address: 0x21f72c, Func Offset: 0x2cc
-	// Line 435, Address: 0x21f738, Func Offset: 0x2d8
-	// Line 441, Address: 0x21f744, Func Offset: 0x2e4
-	// Line 442, Address: 0x21f754, Func Offset: 0x2f4
-	// Line 443, Address: 0x21f768, Func Offset: 0x308
-	// Line 444, Address: 0x21f77c, Func Offset: 0x31c
-	// Line 445, Address: 0x21f794, Func Offset: 0x334
-	// Line 446, Address: 0x21f7a8, Func Offset: 0x348
-	// Line 447, Address: 0x21f7c0, Func Offset: 0x360
-	// Line 448, Address: 0x21f7d8, Func Offset: 0x378
-	// Line 449, Address: 0x21f7f0, Func Offset: 0x390
-	// Line 450, Address: 0x21f808, Func Offset: 0x3a8
-	// Line 451, Address: 0x21f820, Func Offset: 0x3c0
-	// Line 452, Address: 0x21f838, Func Offset: 0x3d8
-	// Line 453, Address: 0x21f850, Func Offset: 0x3f0
-	// Line 454, Address: 0x21f868, Func Offset: 0x408
-	// Line 456, Address: 0x21f880, Func Offset: 0x420
-	// Line 457, Address: 0x21f8a4, Func Offset: 0x444
-	// Line 459, Address: 0x21f8c4, Func Offset: 0x464
-	// Line 460, Address: 0x21f8c8, Func Offset: 0x468
-	// Line 461, Address: 0x21f8cc, Func Offset: 0x46c
-	// Line 462, Address: 0x21f8d0, Func Offset: 0x470
-	// Line 466, Address: 0x21f8d4, Func Offset: 0x474
-	// Func End, Address: 0x21f8fc, Func Offset: 0x49c
-	scePrintf("bhEff152 - UNIMPLEMENTED!\n");
+    NJS_POINT3 vs, vd;  
+    unsigned short i, j;
+    float px, py, pz; // not from DWARF
+
+    op->flg |= 0x1000000;
+    
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type != 0) 
+    {
+        vs.y = 0;
+        vs.x = 0;
+        vs.z = op->sz;
+        
+        njUnitMatrix(NULL);
+        
+        njRotateXYZ(NULL, op->ax, op->ay, 0);
+        njCalcVector(NULL, &vs, &vd);
+        
+        px = op->px;
+        py = op->py;
+        pz = op->pz;
+        
+        j = ++op->ct1;
+        
+        if (j >= 12) 
+        {
+            op->ct1 = 0;
+            
+            j = 0;
+        }
+        
+        for (i = 0; i < op->type; i++)
+        {
+            op->px = (px + (vd.x * i)) + (2.0f * ((-rand() / -2.1474836E9f) - (-rand() / -2.1474836E9f)));
+            op->py = (py + (vd.y * i)) + (2.0f * ((-rand() / -2.1474836E9f) - (-rand() / -2.1474836E9f)));
+            op->pz = (pz + (vd.z * i)) + (2.0f * ((-rand() / -2.1474836E9f) - (-rand() / -2.1474836E9f)));
+            
+            sys->ef.flg = 0x4100001;
+            
+            sys->ef.id = 153;
+            sys->ef.type = j;
+            
+            sys->ef.flr_no = op->lkono;
+            
+            sys->ef.mdlver = 0;
+            
+            sys->ef.px = op->px;
+            sys->ef.py = op->py;
+            sys->ef.pz = op->pz;
+            
+            sys->ef.sx = op->sx;
+            sys->ef.sy = op->sy;
+            sys->ef.sz = op->sz;
+            
+            sys->ef.ax = op->ax;
+            sys->ef.ay = op->ay;
+            
+            bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+
+            j = !j ? 11 : --j; 
+        }
+        
+        op->px = px;
+        op->py = py;
+        op->pz = pz;
+        
+        op->mode1 = 0;
+    }
 }
 
 // 100% matching!
