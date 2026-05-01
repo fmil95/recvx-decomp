@@ -1,6 +1,9 @@
 #include "../../../ps2/veronica/prog/en55.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 //#include "../../../ps2/veronica/prog/Motion.h" /* they might have forgotten to include this in the original codebase */
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
 
@@ -85,37 +88,44 @@ int bhEne55_SetMtn(BH_PWORK* epw)
     return ret;
 }
 
-// 
-// Start address: 0x21b540
+// 100% matching!
 void bhEne55_CollCheck(BH_PWORK* epw)
 {
-	int i;
-	//_anon20 ps;
-	//_anon31 at;
-	//_anon4* owk;
-	BH_PWORK* epp;
-	// Line 260, Address: 0x21b540, Func Offset: 0
-	// Line 267, Address: 0x21b550, Func Offset: 0x10
-	// Line 270, Address: 0x21b580, Func Offset: 0x40
-	// Line 273, Address: 0x21b598, Func Offset: 0x58
-	// Line 276, Address: 0x21b59c, Func Offset: 0x5c
-	// Line 277, Address: 0x21b5a0, Func Offset: 0x60
-	// Line 273, Address: 0x21b5a8, Func Offset: 0x68
-	// Line 274, Address: 0x21b5b4, Func Offset: 0x74
-	// Line 275, Address: 0x21b5b8, Func Offset: 0x78
-	// Line 277, Address: 0x21b5bc, Func Offset: 0x7c
-	// Line 278, Address: 0x21b5c8, Func Offset: 0x88
-	// Line 279, Address: 0x21b5cc, Func Offset: 0x8c
-	// Line 281, Address: 0x21b5e4, Func Offset: 0xa4
-	// Line 282, Address: 0x21b5ec, Func Offset: 0xac
-	// Line 281, Address: 0x21b5f0, Func Offset: 0xb0
-	// Line 282, Address: 0x21b5fc, Func Offset: 0xbc
-	// Line 283, Address: 0x21b600, Func Offset: 0xc0
-	// Line 284, Address: 0x21b604, Func Offset: 0xc4
-	// Line 287, Address: 0x21b608, Func Offset: 0xc8
-	// Line 289, Address: 0x21b610, Func Offset: 0xd0
-	// Line 290, Address: 0x21b628, Func Offset: 0xe8
-	// Func End, Address: 0x21b63c, Func Offset: 0xfc
+	BH_PWORK* epp; 
+	O_WORK* owk;   
+	NJS_SPHERE at; 
+	NJS_POINT3 ps; 
+	int i;         
+	
+    epp = ene;
+
+    for (i = 0; i < sys->ewk_n; i++, epp++)
+    {
+        if ((epp->id == 17) && (epw->mode0 == 1))
+        {
+			owk = &((O_WRK*)epp->exp2)->mlwP->owP[1];
+
+            ps.x = 0;
+            ps.y = 0;
+            ps.z = -17.5f;
+
+            njCalcPoint(&owk->mtx, &ps, &at.c);
+
+            at.r = 4.0f;
+
+            if (npCollisionCheckSC(&at, &epw->watr) != 0)
+            {
+                ((unsigned int*)epp->exp0)[2] |= 0x20000000;
+
+                epw->mode0 = 3;
+                epw->mode1 = 0;
+                epw->mode2 = 0;
+                epw->mode3 = 0;
+            }
+
+            break;
+        }
+    }
 }
 
 // 100% matching!
