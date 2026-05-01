@@ -236,12 +236,10 @@ void bhEne54_MV00(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x21b310
+// 100% matching!
 void bhEne54_DGType00(BH_PWORK* epw)
 {
-	// Line 489, Address: 0x21b310, Func Offset: 0
-	// Func End, Address: 0x21b330, Func Offset: 0x20
+	bhEne54_DamageMode2[epw->mode2](epw);
 }
 
 // 
