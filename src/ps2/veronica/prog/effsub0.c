@@ -387,38 +387,51 @@ void bhEff154(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x21fc00
+// 100% matching!
 void bhEff155(O_WRK* op)
 {
-	UV_WORK* uvp;
-	UV_WORK uvinfo_hibana_0[8];
-	UV_WORK uvinfo_hibana_2[8];
-	UV_WORK uvinfo_hibana_1[8];
-	// Line 573, Address: 0x21fc00, Func Offset: 0
-	// Line 609, Address: 0x21fc0c, Func Offset: 0xc
-	// Line 611, Address: 0x21fc20, Func Offset: 0x20
-	// Line 612, Address: 0x21fc24, Func Offset: 0x24
-	// Line 615, Address: 0x21fc2c, Func Offset: 0x2c
-	// Line 617, Address: 0x21fc50, Func Offset: 0x50
-	// Line 618, Address: 0x21fc58, Func Offset: 0x58
-	// Line 620, Address: 0x21fc60, Func Offset: 0x60
-	// Line 621, Address: 0x21fc68, Func Offset: 0x68
-	// Line 623, Address: 0x21fc70, Func Offset: 0x70
-	// Line 625, Address: 0x21fc7c, Func Offset: 0x7c
-	// Line 631, Address: 0x21fc84, Func Offset: 0x84
-	// Line 632, Address: 0x21fc8c, Func Offset: 0x8c
-	// Line 631, Address: 0x21fc94, Func Offset: 0x94
-	// Line 632, Address: 0x21fc9c, Func Offset: 0x9c
-	// Line 666, Address: 0x21fcb0, Func Offset: 0xb0
-	// Line 669, Address: 0x21fcb8, Func Offset: 0xb8
-	// Line 670, Address: 0x21fcc4, Func Offset: 0xc4
-	// Line 671, Address: 0x21fcc8, Func Offset: 0xc8
-	// Line 670, Address: 0x21fccc, Func Offset: 0xcc
-	// Line 671, Address: 0x21fcd4, Func Offset: 0xd4
-	// Line 672, Address: 0x21fd08, Func Offset: 0x108
-	// Func End, Address: 0x21fd18, Func Offset: 0x118
-	scePrintf("bhEff155 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    static UV_WORK uvinfo_hibana_0[8]; // DATA
+	static UV_WORK uvinfo_hibana_1[8]; // DATA
+    static UV_WORK uvinfo_hibana_2[8]; // DATA
+
+    switch (op->mode0) 
+    {
+    case 0:
+        op->tex_id = 52;
+        
+        effinit(op);
+        
+        switch (op->type)
+        { 
+        case 1:
+            op->exp0 = (unsigned char*)uvinfo_hibana_1;
+            break;
+        case 2:
+            op->exp0 = (unsigned char*)uvinfo_hibana_2;
+            break;
+        default:
+            op->exp0 = (unsigned char*)uvinfo_hibana_0;
+            break;
+        }
+        
+        op->mode0 = 1;
+    }
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+    
+    if (uvp->u == -1.0f) 
+    {
+        op->flg = 0;
+    }
+    else
+    {
+        effset(op, uvp, 0);
+        
+        op->ct0++;
+        
+        sys->ef_trs[sys->ef_trsn++] = op;
+    }
 }
 
 // 100% matching!
