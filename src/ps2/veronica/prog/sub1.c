@@ -5,6 +5,7 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/padman.h"
 #include "../../../ps2/veronica/prog/item.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaFog.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaSprite.h"
@@ -7499,43 +7500,51 @@ void KazariAnim()
 	scePrintf("KazariAnim - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a9510
+// 100% matching!
 void DrawPoly2D(NJS_POINT2* pos00, NJS_COLOR* col00, NJS_COLOR* uv00, float pri, unsigned int atr, int texnum)
 {
-	short i;
-	NJS_COLOR uv[4];
-	NJS_COLOR col[4];
-	NJS_POINT2 p[4];
-	NJS_POINT2COL p2c;
-	// Line 8027, Address: 0x2a9510, Func Offset: 0
-	// Line 8034, Address: 0x2a9534, Func Offset: 0x24
-	// Line 8035, Address: 0x2a9554, Func Offset: 0x44
-	// Line 8037, Address: 0x2a955c, Func Offset: 0x4c
-	// Line 8038, Address: 0x2a9564, Func Offset: 0x54
-	// Line 8039, Address: 0x2a956c, Func Offset: 0x5c
-	// Line 8040, Address: 0x2a9588, Func Offset: 0x78
-	// Line 8041, Address: 0x2a958c, Func Offset: 0x7c
-	// Line 8043, Address: 0x2a9590, Func Offset: 0x80
-	// Line 8041, Address: 0x2a959c, Func Offset: 0x8c
-	// Line 8043, Address: 0x2a95a0, Func Offset: 0x90
-	// Line 8044, Address: 0x2a95a8, Func Offset: 0x98
-	// Line 8045, Address: 0x2a95b0, Func Offset: 0xa0
-	// Line 8047, Address: 0x2a95b8, Func Offset: 0xa8
-	// Line 8046, Address: 0x2a95bc, Func Offset: 0xac
-	// Line 8048, Address: 0x2a95c0, Func Offset: 0xb0
-	// Line 8050, Address: 0x2a95c4, Func Offset: 0xb4
-	// Line 8051, Address: 0x2a95cc, Func Offset: 0xbc
-	// Line 8052, Address: 0x2a95d4, Func Offset: 0xc4
-	// Line 8053, Address: 0x2a95d8, Func Offset: 0xc8
-	// Line 8052, Address: 0x2a95dc, Func Offset: 0xcc
-	// Line 8055, Address: 0x2a95e0, Func Offset: 0xd0
-	// Line 8053, Address: 0x2a95e8, Func Offset: 0xd8
-	// Line 8055, Address: 0x2a95f4, Func Offset: 0xe4
-	// Line 8056, Address: 0x2a960c, Func Offset: 0xfc
-	// Line 8057, Address: 0x2a9620, Func Offset: 0x110
-	// Func End, Address: 0x2a9644, Func Offset: 0x134
-	scePrintf("DrawPoly2D - UNIMPLEMENTED!\n");
+    NJS_POINT2COL p2c; 
+    NJS_POINT2 p[4]; 
+    NJS_COLOR col[4], uv[4]; 
+    short i;         
+    
+    njSetTexture(&swork.subtx_list);
+    njSetTextureNum(texnum);
+    
+    p2c.p = p;
+    p2c.col = col;
+    
+    if ((atr & 0x80000000))
+    {
+        p2c.tex = uv;
+    } 
+    else 
+    {
+        p2c.tex = NULL;
+    }
+    
+    p2c.num = 1;
+    
+    for (i = 0; i < 4; i++) 
+    {
+        p[i].x = pos00->x;
+        p[i].y = pos00->y;
+        
+        col[i].color = col00->color;
+        
+        pos00++;
+        col00++;
+        
+        if ((atr & 0x80000000)) 
+        {
+            uv[i].tex.u = uv00->tex.u; 
+            uv[i].tex.v = uv00->tex.v;
+            
+            uv00++;
+        }
+    }
+    
+    njDrawPolygon2D(&p2c, 4, pri, atr);
 }
 
 // 100% matching! 
