@@ -192,7 +192,7 @@ void bhEne55_MV00(BH_PWORK* epw)
     {
     case 0:
         bhEne_ChgMtn(epw, 0, 0, 0);
-		
+
         epw->mtn_add = 0;
 
         epw->mode3++;
@@ -207,20 +207,30 @@ void bhEne55_DGType00(BH_PWORK* epw)
 	bhEne55_DamageMode2[epw->mode2](epw);
 }
 
-// 
-// Start address: 0x21b870
+// 100% matching!
 void bhEne55_DG00(BH_PWORK* epw)
 {
-	// Line 510, Address: 0x21b870, Func Offset: 0
-	// Line 511, Address: 0x21b87c, Func Offset: 0xc
-	// Line 514, Address: 0x21b8a8, Func Offset: 0x38
-	// Line 516, Address: 0x21b8c8, Func Offset: 0x58
-	// Line 517, Address: 0x21b8d4, Func Offset: 0x64
-	// Line 520, Address: 0x21b8dc, Func Offset: 0x6c
-	// Line 522, Address: 0x21b8ec, Func Offset: 0x7c
-	// Line 525, Address: 0x21b8f8, Func Offset: 0x88
-	// Line 527, Address: 0x21b928, Func Offset: 0xb8
-	// Line 528, Address: 0x21b92c, Func Offset: 0xbc
-	// Line 535, Address: 0x21b938, Func Offset: 0xc8
-	// Func End, Address: 0x21b948, Func Offset: 0xd8
+    switch (epw->mode3)                        
+    {
+    case 0:
+        if (epw->pz < 20.0f)
+        {
+            bhEne_ChgMtn(epw, 1, 0, 0);
+        }
+        else
+        {
+            bhEne_ChgMtn(epw, 0, 0, 0);
+        }
+
+        epw->mode3++;
+    case 1:
+        if ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num - 1))
+        {
+            epw->mtn_add = 0;
+			
+            epw->mode3++;
+        }
+    case 2:
+        break;
+    }
 }
