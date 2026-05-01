@@ -1,10 +1,15 @@
 #include "../../../ps2/veronica/prog/en55.h"
 
-/*void(*bhEne55_Mode0)(BH_PWORK*)[6];
-void(*bhEne55_MoveType)(BH_PWORK*)[1];
-void(*bhEne55_MoveMode2)(BH_PWORK*)[1];
-void(*bhEne55_DamageType)(BH_PWORK*)[1];*/
+typedef void (*bhEne55_MoveMode2_proc)(BH_PWORK* epw);
 typedef void (*bhEne55_DamageMode2_proc)(BH_PWORK* epw);
+
+/*void(*bhEne55_Mode0)(BH_PWORK*)[6];
+void(*bhEne55_MoveType)(BH_PWORK*)[1];*/
+bhEne55_MoveMode2_proc bhEne55_MoveMode2[1] = 
+{
+	bhEne55_MV00
+};
+/*void(*bhEne55_DamageType)(BH_PWORK*)[1];*/
 bhEne55_DamageMode2_proc bhEne55_DamageMode2[1] = 
 {
 	bhEne55_DG00
@@ -162,12 +167,10 @@ void bhEne55_Damage(BH_PWORK* epw)
 	// Func End, Address: 0x21b7d0, Func Offset: 0x20
 }
 
-// 
-// Start address: 0x21b7d0
+// 100% matching!
 void bhEne55_MVType00(BH_PWORK* epw)
 {
-	// Line 438, Address: 0x21b7d0, Func Offset: 0
-	// Func End, Address: 0x21b7f0, Func Offset: 0x20
+	bhEne55_MoveMode2[epw->mode2](epw);
 }
 
 // 
