@@ -2358,50 +2358,70 @@ void bhEff194(O_WRK* op)
     op->type = op->mode1 = 0;
 }
 
-// 
-// Start address: 0x2237a0
+// 99.50% matching (matches on GC)
 void bhEff195(O_WRK* op)
 {
-	//tagEFF0UVWHUC* pInfo;
-	//tagEFF0UVWHUC* pEff195UvInfoTop[3];
-	int lEff195UvInfoMax[3];
-	// Line 3302, Address: 0x2237a0, Func Offset: 0
-	// Line 3326, Address: 0x2237ac, Func Offset: 0xc
-	// Line 3329, Address: 0x2237cc, Func Offset: 0x2c
-	// Line 3330, Address: 0x2237d4, Func Offset: 0x34
-	// Line 3331, Address: 0x2237d8, Func Offset: 0x38
-	// Line 3329, Address: 0x2237dc, Func Offset: 0x3c
-	// Line 3330, Address: 0x2237e4, Func Offset: 0x44
-	// Line 3331, Address: 0x2237e8, Func Offset: 0x48
-	// Line 3332, Address: 0x2237ec, Func Offset: 0x4c
-	// Line 3335, Address: 0x2237f4, Func Offset: 0x54
-	// Line 3340, Address: 0x223808, Func Offset: 0x68
-	// Line 3341, Address: 0x223810, Func Offset: 0x70
-	// Line 3343, Address: 0x223818, Func Offset: 0x78
-	// Line 3345, Address: 0x223820, Func Offset: 0x80
-	// Line 3348, Address: 0x223828, Func Offset: 0x88
-	// Line 3353, Address: 0x223834, Func Offset: 0x94
-	// Line 3356, Address: 0x223838, Func Offset: 0x98
-	// Line 3353, Address: 0x223840, Func Offset: 0xa0
-	// Line 3356, Address: 0x223844, Func Offset: 0xa4
-	// Line 3357, Address: 0x22385c, Func Offset: 0xbc
-	// Line 3360, Address: 0x223880, Func Offset: 0xe0
-	// Line 3362, Address: 0x223888, Func Offset: 0xe8
-	// Line 3365, Address: 0x2238c8, Func Offset: 0x128
-	// Line 3369, Address: 0x2238ec, Func Offset: 0x14c
-	// Line 3370, Address: 0x223948, Func Offset: 0x1a8
-	// Line 3374, Address: 0x2239a4, Func Offset: 0x204
-	// Line 3375, Address: 0x2239f0, Func Offset: 0x250
-	// Line 3376, Address: 0x223a18, Func Offset: 0x278
-	// Line 3381, Address: 0x223a54, Func Offset: 0x2b4
-	// Line 3376, Address: 0x223a58, Func Offset: 0x2b8
-	// Line 3377, Address: 0x223a64, Func Offset: 0x2c4
-	// Line 3381, Address: 0x223a8c, Func Offset: 0x2ec
-	// Line 3383, Address: 0x223aa8, Func Offset: 0x308
-	// Line 3384, Address: 0x223abc, Func Offset: 0x31c
-	// Line 3386, Address: 0x223ae0, Func Offset: 0x340
-	// Func End, Address: 0x223af0, Func Offset: 0x350
-	scePrintf("bhEff195 - UNIMPLEMENTED!\n");
+    EFF0UVWHUC* pInfo;
+    static EFF0UVWHUC* pEff195UvInfoTop[3]; // DATA
+    static int lEff195UvInfoMax[3];         // DATA
+
+    switch (op->mode0) 
+    {
+    case 0:
+        op->flg |= 0x4180000;
+        
+        op->tex_id = 431;
+        
+        op->bl_src = 8;
+        op->bl_dst = 6;
+        
+        op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = -1;
+        
+        op->sxb = op->sx;
+        op->syb = op->sy;
+        
+        op->ct1 = 0;
+        op->ct0 = 0;
+        
+        op->mode0 = 1;
+        break;
+    case 1:
+        op->ct0++;
+        break;
+    }
+    
+    op->ani_ct = op->type;
+    
+    if (op->sz < 1.0f) 
+    {
+        op->sz = 1.0f;
+    }
+    
+    if (op->sz <= op->ct0) 
+    {
+        op->flg = 0;
+        return;
+    }
+    
+    op->ct1 = (op->ct0 * lEff195UvInfoMax[op->type]) / op->sz;
+    
+    pInfo = &pEff195UvInfoTop[op->type][op->ct1];
+    
+    op->sx = 4.0f * (op->sxb * (pInfo->w / 256.0f));
+    op->sy = 4.0f * (op->syb * (pInfo->h / 256.0f));
+    
+    op->tv[0].u = op->tv[2].u = pInfo->u / 256.0f;
+    op->tv[1].u = op->tv[3].u = (pInfo->u + (pInfo->w - 1)) / 256.0f;
+    
+    op->tv[0].v = op->tv[1].v = pInfo->v / 256.0f;
+    op->tv[2].v = op->tv[3].v = (pInfo->v + (pInfo->h - 1)) / 256.0f;
+    
+    if (sys->ef_trsn < 512) 
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
 
 // 100% matching! 
