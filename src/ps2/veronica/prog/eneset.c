@@ -903,7 +903,7 @@ void bhDrawEneObject()
 }
 
 // 100% matching!
-void* bhEne_CallocWork(int size)
+void* bhEne_CallocWork(int size, int param) // second parameter not present on DWARF
 {
     unsigned char* ret_addr; 
     unsigned char* addr;     
