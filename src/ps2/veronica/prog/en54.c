@@ -220,17 +220,20 @@ void bhEne54_MVType00(BH_PWORK* epw)
 	bhEne54_MoveMode2[epw->mode2](epw);
 }
 
-// 
-// Start address: 0x21b2b0
+// 100% matching!
 void bhEne54_MV00(BH_PWORK* epw)
 {
-	// Line 459, Address: 0x21b2b0, Func Offset: 0
-	// Line 460, Address: 0x21b2bc, Func Offset: 0xc
-	// Line 463, Address: 0x21b2dc, Func Offset: 0x2c
-	// Line 464, Address: 0x21b2ec, Func Offset: 0x3c
-	// Line 465, Address: 0x21b2f0, Func Offset: 0x40
-	// Line 470, Address: 0x21b2fc, Func Offset: 0x4c
-	// Func End, Address: 0x21b30c, Func Offset: 0x5c
+	switch (epw->mode3)                               
+    {
+    case 0:
+        bhEne_ChgMtn(epw, 0, 0, 0);
+
+        epw->mtn_add = 0;
+
+        epw->mode3++;
+    case 1:
+        break;
+    }
 }
 
 // 
