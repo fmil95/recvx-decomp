@@ -302,29 +302,71 @@ void bhEff153(O_WRK* op)
     sys->ef_trs[sys->ef_trsn++] = op;
 }
 
-// 
-// Start address: 0x21fa40
+// 100% matching!
 void bhEff154(O_WRK* op)
 {
-	// Line 539, Address: 0x21fa40, Func Offset: 0
-	// Line 540, Address: 0x21fa4c, Func Offset: 0xc
-	// Line 542, Address: 0x21fa5c, Func Offset: 0x1c
-	// Line 543, Address: 0x21fa7c, Func Offset: 0x3c
-	// Line 545, Address: 0x21fa88, Func Offset: 0x48
-	// Line 546, Address: 0x21faa0, Func Offset: 0x60
-	// Line 548, Address: 0x21fac4, Func Offset: 0x84
-	// Line 549, Address: 0x21fb14, Func Offset: 0xd4
-	// Line 551, Address: 0x21fb1c, Func Offset: 0xdc
-	// Line 552, Address: 0x21fb6c, Func Offset: 0x12c
-	// Line 554, Address: 0x21fb74, Func Offset: 0x134
-	// Line 556, Address: 0x21fbc8, Func Offset: 0x188
-	// Line 559, Address: 0x21fbd8, Func Offset: 0x198
-	// Line 557, Address: 0x21fbdc, Func Offset: 0x19c
-	// Line 559, Address: 0x21fbe0, Func Offset: 0x1a0
-	// Line 561, Address: 0x21fbe4, Func Offset: 0x1a4
-	// Line 564, Address: 0x21fbf0, Func Offset: 0x1b0
-	// Func End, Address: 0x21fc00, Func Offset: 0x1c0
-	scePrintf("bhEff154 - UNIMPLEMENTED!\n");
+    int ct0; // not from DWARF
+    
+    op->flg |= 0x1000000;
+    
+    if ((op->type == 0) && (op->mode1 != 0)) 
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type != 0) 
+    {
+        if ((op->ct1 < 1) || (op->ct1 > 7)) 
+        {
+            switch (op->ct0) 
+            {
+            case 1:
+                if ((-rand() / -2.1474836E9f) >= 0.5f) 
+                { 
+                    ct0 = 2;
+                }
+                else 
+                { 
+                    ct0 = 0;
+                }
+                
+                op->ct0 = ct0;
+                break;
+            case 2:
+                if ((-rand() / -2.1474836E9f) >= 0.5f) 
+                { 
+                    ct0 = 1;
+                }
+                else 
+                { 
+                    ct0 = 0;
+                }
+                
+                op->ct0 = ct0;
+                break;
+            default:
+                if ((-rand() / -2.1474836E9f) >= 0.5f) 
+                { 
+                    ct0 = 2;
+                }
+                else 
+                { 
+                    ct0 = 1; 
+                }
+                
+                op->ct0 = ct0;
+                break;
+            }
+            
+            setentry(155, op->ct0, op);
+            
+            op->mode1 = 0;
+            
+            op->ct1 = 7;
+        }
+        
+        op->ct1--;
+    }
 }
 
 // 
