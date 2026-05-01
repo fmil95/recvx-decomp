@@ -7418,86 +7418,81 @@ void MultiWindowBack()
     DrawPoly2D(p, col, uv, -31.0f, 0x60, 0);
 }
 
-// 
-// Start address: 0x2a9290
+// 100% matching!
 void KazariAnim()
 {
-	unsigned short flg02;
-	unsigned short i;
-	float y;
-	float x;
-	NJS_COLOR uv[4];
-	NJS_COLOR col[4];
-	NJS_POINT2 p[4];
-	unsigned short flg01;
-	unsigned short flg03;
-	unsigned short flg00;
-	// Line 7959, Address: 0x2a9290, Func Offset: 0
-	// Line 7975, Address: 0x2a92a8, Func Offset: 0x18
-	// Line 7976, Address: 0x2a92b8, Func Offset: 0x28
-	// Line 7977, Address: 0x2a92c8, Func Offset: 0x38
-	// Line 7975, Address: 0x2a92cc, Func Offset: 0x3c
-	// Line 7979, Address: 0x2a92d0, Func Offset: 0x40
-	// Line 7977, Address: 0x2a92d8, Func Offset: 0x48
-	// Line 7978, Address: 0x2a92e0, Func Offset: 0x50
-	// Line 7979, Address: 0x2a92ec, Func Offset: 0x5c
-	// Line 7980, Address: 0x2a92f8, Func Offset: 0x68
-	// Line 7981, Address: 0x2a9300, Func Offset: 0x70
-	// Line 7982, Address: 0x2a9308, Func Offset: 0x78
-	// Line 7981, Address: 0x2a930c, Func Offset: 0x7c
-	// Line 7982, Address: 0x2a9318, Func Offset: 0x88
-	// Line 7983, Address: 0x2a9328, Func Offset: 0x98
-	// Line 7985, Address: 0x2a932c, Func Offset: 0x9c
-	// Line 7986, Address: 0x2a9334, Func Offset: 0xa4
-	// Line 7988, Address: 0x2a9340, Func Offset: 0xb0
-	// Line 7989, Address: 0x2a9348, Func Offset: 0xb8
-	// Line 7988, Address: 0x2a934c, Func Offset: 0xbc
-	// Line 7989, Address: 0x2a9358, Func Offset: 0xc8
-	// Line 7990, Address: 0x2a9368, Func Offset: 0xd8
-	// Line 7993, Address: 0x2a9370, Func Offset: 0xe0
-	// Line 7995, Address: 0x2a9380, Func Offset: 0xf0
-	// Line 7997, Address: 0x2a93bc, Func Offset: 0x12c
-	// Line 7998, Address: 0x2a93c0, Func Offset: 0x130
-	// Line 8008, Address: 0x2a93c4, Func Offset: 0x134
-	// Line 7995, Address: 0x2a93c8, Func Offset: 0x138
-	// Line 8003, Address: 0x2a93d0, Func Offset: 0x140
-	// Line 8008, Address: 0x2a93d4, Func Offset: 0x144
-	// Line 7997, Address: 0x2a93d8, Func Offset: 0x148
-	// Line 7995, Address: 0x2a93dc, Func Offset: 0x14c
-	// Line 7996, Address: 0x2a93e0, Func Offset: 0x150
-	// Line 7998, Address: 0x2a93e4, Func Offset: 0x154
-	// Line 7996, Address: 0x2a93ec, Func Offset: 0x15c
-	// Line 7997, Address: 0x2a93f0, Func Offset: 0x160
-	// Line 7998, Address: 0x2a93fc, Func Offset: 0x16c
-	// Line 7999, Address: 0x2a9408, Func Offset: 0x178
-	// Line 8000, Address: 0x2a9414, Func Offset: 0x184
-	// Line 8001, Address: 0x2a9420, Func Offset: 0x190
-	// Line 8003, Address: 0x2a9424, Func Offset: 0x194
-	// Line 8004, Address: 0x2a9428, Func Offset: 0x198
-	// Line 8005, Address: 0x2a942c, Func Offset: 0x19c
-	// Line 8001, Address: 0x2a9430, Func Offset: 0x1a0
-	// Line 8008, Address: 0x2a9434, Func Offset: 0x1a4
-	// Line 8009, Address: 0x2a943c, Func Offset: 0x1ac
-	// Line 8010, Address: 0x2a9444, Func Offset: 0x1b4
-	// Line 8012, Address: 0x2a9448, Func Offset: 0x1b8
-	// Line 8021, Address: 0x2a9450, Func Offset: 0x1c0
-	// Line 8013, Address: 0x2a9458, Func Offset: 0x1c8
-	// Line 8012, Address: 0x2a9468, Func Offset: 0x1d8
-	// Line 8021, Address: 0x2a946c, Func Offset: 0x1dc
-	// Line 8013, Address: 0x2a9474, Func Offset: 0x1e4
-	// Line 8014, Address: 0x2a947c, Func Offset: 0x1ec
-	// Line 8021, Address: 0x2a9480, Func Offset: 0x1f0
-	// Line 8014, Address: 0x2a9490, Func Offset: 0x200
-	// Line 8015, Address: 0x2a9494, Func Offset: 0x204
-	// Line 8016, Address: 0x2a94a0, Func Offset: 0x210
-	// Line 8017, Address: 0x2a94ac, Func Offset: 0x21c
-	// Line 8018, Address: 0x2a94b8, Func Offset: 0x228
-	// Line 8019, Address: 0x2a94c4, Func Offset: 0x234
-	// Line 8021, Address: 0x2a94c8, Func Offset: 0x238
-	// Line 8022, Address: 0x2a94d0, Func Offset: 0x240
-	// Line 8023, Address: 0x2a94f0, Func Offset: 0x260
-	// Func End, Address: 0x2a950c, Func Offset: 0x27c
-	scePrintf("KazariAnim - UNIMPLEMENTED!\n");
+    NJS_POINT2 p[4];     
+    NJS_COLOR col[4], uv[4];    
+    float x, y;
+    unsigned short i;   
+    unsigned short flg02;
+    static unsigned short flg00, flg01, flg03;
+    
+    x = 84.0f + cen_pos[2][0];
+    y = 184.0f + cen_pos[2][1];
+    
+    u_k = 200;
+    v_k = 116;
+    
+    if (flg00 == 4) 
+    {
+        flg00 = 0;
+        flg01++;
+        
+        if (flg01 == 11) 
+        {
+            flg01 = 0;
+        }
+    } 
+    else 
+    {
+        flg00++;
+    }
+    
+    flg03++;
+    
+    if (flg03 == 11)
+    {
+        flg03 = 0;
+    }
+    
+    flg02 = flg01;
+    
+    for (i = 0; i < 4; i++, flg02 += 3) 
+    {
+        p[0].x = x;
+        p[0].y = y + (4.0f * i);
+        
+        p[1].x = p[0].x;
+        p[1].y = 4.0f + p[0].y;
+        
+        p[2].x = 64.0f + p[0].x;
+        p[2].y = 4.0f + p[0].y;
+        
+        p[3].x = 64.0f + p[0].x;
+        p[3].y = p[0].y;
+        
+        col[3].color = col[2].color = col[1].color = col[0].color = -1;
+        
+        if (flg02 > 10) 
+        {
+            flg02 -= 10;
+        }
+        
+        uv[0].tex.u = u_k;
+        uv[0].tex.v = v_k + (flg02 * 2);
+        
+        uv[1].tex.u = uv[0].tex.u;
+        uv[1].tex.v = uv[0].tex.v + 2;
+        
+        uv[2].tex.u = uv[0].tex.u + 32;
+        uv[2].tex.v = uv[0].tex.v + 2;
+        
+        uv[3].tex.u = uv[0].tex.u + 32;
+        uv[3].tex.v = uv[0].tex.v;
+        
+        DrawPoly2D(p, col, uv, -21.0f, 0x80000060, 2);
+    }
 }
 
 // 100% matching!
