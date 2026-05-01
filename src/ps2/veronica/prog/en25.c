@@ -1489,17 +1489,15 @@ void bhEne25_Damage()
 {
 	// Line 488, Address: 0x209250, Func Offset: 0
 	// Func End, Address: 0x209258, Func Offset: 0x8
-}
+}*/
 
-// 
-// Start address: 0x209260
+// 100% matching!
 void bhEne25_Die()
 {
-	// Line 500, Address: 0x209260, Func Offset: 0
-	// Func End, Address: 0x209268, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x209270
 void bhEne25_SetEffect(BH_PWORK* epw)
 {
@@ -1600,4 +1598,3 @@ void bhEne25_PlayerControl(BH_PWORK* epw)
 	// Line 583, Address: 0x2096b8, Func Offset: 0x108
 	// Func End, Address: 0x2096c4, Func Offset: 0x114
 }*/
-
