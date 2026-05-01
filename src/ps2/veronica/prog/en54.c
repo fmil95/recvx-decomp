@@ -88,37 +88,44 @@ int bhEne54_SetMtn(BH_PWORK* epw)
     return ret;
 }
 
-// 
-// Start address: 0x21b000
+// 100% matching!
 void bhEne54_CollCheck(BH_PWORK* epw)
 {
-	int i;
-	//_anon20 ps;
-	//_anon31 at;
-	//_anon4* owk;
-	BH_PWORK* epp;
-	// Line 260, Address: 0x21b000, Func Offset: 0
-	// Line 267, Address: 0x21b010, Func Offset: 0x10
-	// Line 270, Address: 0x21b040, Func Offset: 0x40
-	// Line 273, Address: 0x21b058, Func Offset: 0x58
-	// Line 276, Address: 0x21b05c, Func Offset: 0x5c
-	// Line 277, Address: 0x21b060, Func Offset: 0x60
-	// Line 273, Address: 0x21b068, Func Offset: 0x68
-	// Line 274, Address: 0x21b074, Func Offset: 0x74
-	// Line 275, Address: 0x21b078, Func Offset: 0x78
-	// Line 277, Address: 0x21b07c, Func Offset: 0x7c
-	// Line 278, Address: 0x21b088, Func Offset: 0x88
-	// Line 279, Address: 0x21b08c, Func Offset: 0x8c
-	// Line 281, Address: 0x21b0a4, Func Offset: 0xa4
-	// Line 282, Address: 0x21b0ac, Func Offset: 0xac
-	// Line 281, Address: 0x21b0b0, Func Offset: 0xb0
-	// Line 282, Address: 0x21b0bc, Func Offset: 0xbc
-	// Line 283, Address: 0x21b0c0, Func Offset: 0xc0
-	// Line 284, Address: 0x21b0c4, Func Offset: 0xc4
-	// Line 287, Address: 0x21b0c8, Func Offset: 0xc8
-	// Line 289, Address: 0x21b0d0, Func Offset: 0xd0
-	// Line 290, Address: 0x21b0e8, Func Offset: 0xe8
-	// Func End, Address: 0x21b0fc, Func Offset: 0xfc
+	BH_PWORK* epp; 
+	O_WORK* owk;   
+	NJS_SPHERE at; 
+	NJS_POINT3 ps; 
+	int i;         
+	
+    epp = ene;
+
+    for (i = 0; i < sys->ewk_n; i++, epp++)
+    {
+        if ((epp->id == 17) && (epw->mode0 == 1))
+        {
+			owk = &((O_WRK*)epp->exp2)->mlwP->owP[1];
+
+            ps.x = 0;
+            ps.y = 0;
+            ps.z = -17.5f;
+
+            njCalcPoint(&owk->mtx, &ps, &at.c);
+
+            at.r = 4.0f;
+
+            if (npCollisionCheckSC(&at, &epw->watr) != 0)
+            {
+                ((unsigned int*)epp->exp0)[2] |= 0x20000000;
+
+                epw->mode0 = 3;
+                epw->mode1 = 0;
+                epw->mode2 = 0;
+                epw->mode3 = 0;
+            }
+
+            break;
+        }
+    }
 }
 
 // 
