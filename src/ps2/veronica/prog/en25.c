@@ -1295,17 +1295,15 @@ void bhEne25_Init(BH_PWORK* epw)
 	// Line 221, Address: 0x208bdc, Func Offset: 0x20c
 	// Line 222, Address: 0x208be8, Func Offset: 0x218
 	// Func End, Address: 0x208bf8, Func Offset: 0x228
-}
+}*/
 
-// 
-// Start address: 0x208c00
+// 100% matching!
 void bhEne25_Brain()
 {
-	// Line 234, Address: 0x208c00, Func Offset: 0
-	// Func End, Address: 0x208c08, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x208c10
 void bhEne25_Move(BH_PWORK* epw)
 {
@@ -1478,7 +1476,7 @@ void bhEne25_MV03(BH_PWORK* epw)
 // 100% matching!
 void bhEne25_Nage()
 {
-	
+
 }
 
 // 100% matching!
