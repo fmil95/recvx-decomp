@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/en55.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
 //#include "../../../ps2/veronica/prog/Motion.h" /* they might have forgotten to include this in the original codebase */
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
@@ -41,7 +42,7 @@ void bhEne55(BH_PWORK* epw)
 	int i;
 	
 	bhEne55_MainLoop(epw);
-	
+
     if ((epw->flg & 0x4))
     {
         for (i = 0; i < 64; i++)
@@ -117,29 +118,30 @@ void bhEne55_CollCheck(BH_PWORK* epw)
 	// Func End, Address: 0x21b63c, Func Offset: 0xfc
 }
 
-// 
-// Start address: 0x21b640
+// 100% matching!
 void bhEne55_CalcEnemy(BH_PWORK* epw)
 {
-	//_anon4* owk;
-	// Line 307, Address: 0x21b640, Func Offset: 0
-	// Line 311, Address: 0x21b64c, Func Offset: 0xc
-	// Line 314, Address: 0x21b654, Func Offset: 0x14
-	// Line 315, Address: 0x21b658, Func Offset: 0x18
-	// Line 326, Address: 0x21b65c, Func Offset: 0x1c
-	// Line 314, Address: 0x21b660, Func Offset: 0x20
-	// Line 315, Address: 0x21b664, Func Offset: 0x24
-	// Line 318, Address: 0x21b674, Func Offset: 0x34
-	// Line 319, Address: 0x21b67c, Func Offset: 0x3c
-	// Line 320, Address: 0x21b684, Func Offset: 0x44
-	// Line 321, Address: 0x21b68c, Func Offset: 0x4c
-	// Line 322, Address: 0x21b694, Func Offset: 0x54
-	// Line 323, Address: 0x21b69c, Func Offset: 0x5c
-	// Line 324, Address: 0x21b6a4, Func Offset: 0x64
-	// Line 325, Address: 0x21b6ac, Func Offset: 0x6c
-	// Line 326, Address: 0x21b6b4, Func Offset: 0x74
-	// Line 327, Address: 0x21b6b8, Func Offset: 0x78
-	// Func End, Address: 0x21b6c8, Func Offset: 0x88
+	O_WORK* owk;
+
+    bhCalcModel(epw);
+	
+	owk = &epw->mlwP->owP[12];
+
+    epw->cah = epw->ah = owk->mtx[13] - epw->py;
+
+    owk = &epw->mlwP->owP[12];
+
+    epw->watr.c1.x = owk->mtx[12];
+    epw->watr.c1.y = owk->mtx[13];
+    epw->watr.c1.z = owk->mtx[14];
+
+	owk = epw->mlwP->owP;
+
+    epw->watr.c2.x = owk->mtx[12];
+    epw->watr.c2.y = owk->mtx[13];
+    epw->watr.c2.z = owk->mtx[14];
+
+    epw->watr.r = 3.0f;
 }
 
 // 
