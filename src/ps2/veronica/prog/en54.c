@@ -1,10 +1,37 @@
 #include "../../../ps2/veronica/prog/en54.h"
+#include "../../../ps2/veronica/prog/subpl.h"
 
-/*void(*bhEne54_Mode0)(BH_PWORK*)[6];
-void(*bhEne54_MoveType)(BH_PWORK*)[1];
-void(*bhEne54_MoveMode2)(BH_PWORK*)[1];
-void(*bhEne54_DamageType)(BH_PWORK*)[1];
-void(*bhEne54_DamageMode2)(BH_PWORK*)[1];*/
+typedef void (*bhEne54_Mode0_proc)(BH_PWORK* epw);
+typedef void (*bhEne54_MoveType_proc)(BH_PWORK* epw);
+typedef void (*bhEne54_MoveMode2_proc)(BH_PWORK* epw);
+typedef void (*bhEne54_DamageType_proc)(BH_PWORK* epw);
+typedef void (*bhEne54_DamageMode2_proc)(BH_PWORK* epw);
+
+bhEne54_Mode0_proc bhEne54_Mode0[6] = 
+{
+	bhEne54_Init,
+	bhEne54_Move,
+	NULL,
+	bhEne54_Damage,
+	NULL,
+	bhEne_Event
+};
+bhEne54_MoveType_proc bhEne54_MoveType[1] = 
+{
+	bhEne54_MVType00
+};
+bhEne54_MoveMode2_proc bhEne54_MoveMode2[1] = 
+{
+	bhEne54_MV00
+};
+bhEne54_DamageType_proc bhEne54_DamageType[1] = 
+{
+	bhEne54_DGType00
+};
+bhEne54_DamageMode2_proc bhEne54_DamageMode2[1] = 
+{
+	bhEne54_DG00
+};
 
 // 100% matching!
 void bhEne54(BH_PWORK* epw)
@@ -28,15 +55,12 @@ void bhEne54(BH_PWORK* epw)
     bhEne54_CollCheck(epw);
 }
 
-// 
-// Start address: 0x21af50
+// 100% matching!
 void bhEne54_MainLoop(BH_PWORK* epw)
 {
-	// Line 193, Address: 0x21af50, Func Offset: 0
-	// Line 197, Address: 0x21af60, Func Offset: 0x10
-	// Line 200, Address: 0x21af80, Func Offset: 0x30
-	// Line 210, Address: 0x21af88, Func Offset: 0x38
-	// Func End, Address: 0x21af98, Func Offset: 0x48
+	bhEne54_Mode0[epw->mode0](epw);
+
+	bhEne54_SetMtn(epw);
 }
 
 // 
