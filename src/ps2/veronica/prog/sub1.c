@@ -7560,55 +7560,66 @@ void DispFadeInit()
 	fade.cnt02 = 0;
 }
 
-// 
-// Start address: 0x2a9690
-void FadePolyDisp()
+// 100% matching!
+void FadePolyDisp() 
 {
-	NJS_COLOR col[4];
-	NJS_POINT2 p[4];
-	NJS_POINT2COL p2c;
-	FADE* sfe;
-	// Line 8080, Address: 0x2a9690, Func Offset: 0
-	// Line 8092, Address: 0x2a969c, Func Offset: 0xc
-	// Line 8081, Address: 0x2a96a0, Func Offset: 0x10
-	// Line 8092, Address: 0x2a96a4, Func Offset: 0x14
-	// Line 8081, Address: 0x2a96a8, Func Offset: 0x18
-	// Line 8087, Address: 0x2a96ac, Func Offset: 0x1c
-	// Line 8088, Address: 0x2a96b4, Func Offset: 0x24
-	// Line 8092, Address: 0x2a96b8, Func Offset: 0x28
-	// Line 8088, Address: 0x2a96c0, Func Offset: 0x30
-	// Line 8093, Address: 0x2a96c4, Func Offset: 0x34
-	// Line 8090, Address: 0x2a96cc, Func Offset: 0x3c
-	// Line 8089, Address: 0x2a96d0, Func Offset: 0x40
-	// Line 8093, Address: 0x2a96d4, Func Offset: 0x44
-	// Line 8094, Address: 0x2a96e0, Func Offset: 0x50
-	// Line 8095, Address: 0x2a9718, Func Offset: 0x88
-	// Line 8096, Address: 0x2a9720, Func Offset: 0x90
-	// Line 8097, Address: 0x2a9730, Func Offset: 0xa0
-	// Line 8099, Address: 0x2a9738, Func Offset: 0xa8
-	// Line 8100, Address: 0x2a975c, Func Offset: 0xcc
-	// Line 8103, Address: 0x2a9760, Func Offset: 0xd0
-	// Line 8104, Address: 0x2a9768, Func Offset: 0xd8
-	// Line 8108, Address: 0x2a976c, Func Offset: 0xdc
-	// Line 8107, Address: 0x2a9770, Func Offset: 0xe0
-	// Line 8108, Address: 0x2a9774, Func Offset: 0xe4
-	// Line 8109, Address: 0x2a9778, Func Offset: 0xe8
-	// Line 8110, Address: 0x2a977c, Func Offset: 0xec
-	// Line 8111, Address: 0x2a9784, Func Offset: 0xf4
-	// Line 8109, Address: 0x2a9790, Func Offset: 0x100
-	// Line 8110, Address: 0x2a9794, Func Offset: 0x104
-	// Line 8111, Address: 0x2a97a0, Func Offset: 0x110
-	// Line 8112, Address: 0x2a97ac, Func Offset: 0x11c
-	// Line 8113, Address: 0x2a97b8, Func Offset: 0x128
-	// Line 8114, Address: 0x2a97c4, Func Offset: 0x134
-	// Line 8115, Address: 0x2a97cc, Func Offset: 0x13c
-	// Line 8116, Address: 0x2a97dc, Func Offset: 0x14c
-	// Line 8117, Address: 0x2a97ec, Func Offset: 0x15c
-	// Line 8118, Address: 0x2a97fc, Func Offset: 0x16c
-	// Line 8120, Address: 0x2a980c, Func Offset: 0x17c
-	// Line 8122, Address: 0x2a9824, Func Offset: 0x194
-	// Func End, Address: 0x2a9834, Func Offset: 0x1a4
-	scePrintf("FadePolyDisp - UNIMPLEMENTED!\n");
+    FADE* sfe;        
+    NJS_POINT2COL p2c; 
+    NJS_POINT2 p[4];   
+    NJS_COLOR col[4];  
+	
+    sfe = &fade;
+
+    sfe->alpha = sfe->cnt00;
+    
+    p2c.p = p;
+    p2c.col = col;
+    p2c.tex = NULL;
+    p2c.num = 4;
+    
+    if ((sfe->flg & 0x1)) 
+    {
+        if ((sfe->cnt00 > 0) && (sfe->cnt00 < 256.0f)) 
+        {
+            sfe->cnt00 += sfe->cnt01;
+            
+            if (sfe->cnt00 < 0) 
+            {
+                sfe->cnt00 = 1.0f;
+                
+                sfe->flg = 0;
+            }
+            else if (sfe->cnt00 > 255.0f) 
+            {
+                sfe->cnt00 = 255.0f;
+                
+                sfe->flg = 0;
+            }
+        } 
+        else 
+        {
+            sfe->flg = 0;
+        }
+    }
+    
+    p[0].x = 0;
+    p[0].y = 0;
+    
+    p[1].x = p[0].x;
+    p[1].y = 480.0f + p[0].y;
+    
+    p[2].x = 640.0f + p[0].x;
+    p[2].y = 480.0f + p[0].y;
+    
+    p[3].x = 640.0f + p[0].x;
+    p[3].y = p[0].y;
+    
+    col[0].color = (unsigned int)sfe->alpha << 24;
+    col[1].color = (unsigned int)sfe->alpha << 24;
+    col[2].color = (unsigned int)sfe->alpha << 24;
+    col[3].color = (unsigned int)sfe->alpha << 24;
+    
+    njDrawPolygon2D(&p2c, 4, -1.5f, 0x60);
 }
 
 // 100% matching!
