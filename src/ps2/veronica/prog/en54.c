@@ -202,12 +202,10 @@ void bhEne54_Init(BH_PWORK* epw)
     epw->mode3 = 0;
 }
 
-// 
-// Start address: 0x21b250
+// 100% matching!
 void bhEne54_Move(BH_PWORK* epw)
 {
-	// Line 399, Address: 0x21b250, Func Offset: 0
-	// Func End, Address: 0x21b270, Func Offset: 0x20
+	bhEne54_MoveType[epw->type](epw);
 }
 
 // 
