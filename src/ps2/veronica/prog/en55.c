@@ -1,11 +1,21 @@
 #include "../../../ps2/veronica/prog/en55.h"
+#include "../../../ps2/veronica/prog/subpl.h"
 
+typedef void (*bhEne55_Mode0_proc)(BH_PWORK* epw);
 typedef void (*bhEne55_MoveType_proc)(BH_PWORK* epw);
 typedef void (*bhEne55_MoveMode2_proc)(BH_PWORK* epw);
 typedef void (*bhEne55_DamageType_proc)(BH_PWORK* epw);
 typedef void (*bhEne55_DamageMode2_proc)(BH_PWORK* epw);
 
-/*void(*bhEne55_Mode0)(BH_PWORK*)[6];*/
+bhEne55_Mode0_proc bhEne55_Mode0[6] = 
+{
+	bhEne55_Init,
+	bhEne55_Move,
+	NULL,
+	bhEne55_Damage,
+	NULL,
+	bhEne_Event
+};
 bhEne55_MoveType_proc bhEne55_MoveType[1] = 
 {
 	bhEne55_MVType00
@@ -40,15 +50,12 @@ void bhEne55(BH_PWORK* epw)
 	scePrintf("bhEne55 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x21b490
+// 100% matching!
 void bhEne55_MainLoop(BH_PWORK* epw)
 {
-	// Line 193, Address: 0x21b490, Func Offset: 0
-	// Line 197, Address: 0x21b4a0, Func Offset: 0x10
-	// Line 200, Address: 0x21b4c0, Func Offset: 0x30
-	// Line 210, Address: 0x21b4c8, Func Offset: 0x38
-	// Func End, Address: 0x21b4d8, Func Offset: 0x48
+	bhEne55_Mode0[epw->mode0](epw);
+
+	bhEne55_SetMtn(epw);
 }
 
 // 
