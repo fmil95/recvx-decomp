@@ -111,34 +111,38 @@ void bhEne02sub_MV01(BH_PWORK* epw)
     }
 }
 
-/*// 
-// Start address: 0x1964f0
+// 100% matching!
 void bhEne02sub_MV02(BH_PWORK* epw)
 {
-	// Line 252, Address: 0x1964f0, Func Offset: 0
-	// Line 253, Address: 0x196500, Func Offset: 0x10
-	// Line 255, Address: 0x196520, Func Offset: 0x30
-	// Line 256, Address: 0x196524, Func Offset: 0x34
-	// Line 260, Address: 0x196528, Func Offset: 0x38
-	// Line 255, Address: 0x19652c, Func Offset: 0x3c
-	// Line 256, Address: 0x196534, Func Offset: 0x44
-	// Line 257, Address: 0x196540, Func Offset: 0x50
-	// Line 260, Address: 0x196544, Func Offset: 0x54
-	// Line 262, Address: 0x196548, Func Offset: 0x58
-	// Line 264, Address: 0x196554, Func Offset: 0x64
-	// Line 265, Address: 0x196568, Func Offset: 0x78
-	// Line 266, Address: 0x196578, Func Offset: 0x88
-	// Line 267, Address: 0x19657c, Func Offset: 0x8c
-	// Line 266, Address: 0x196580, Func Offset: 0x90
-	// Line 267, Address: 0x196588, Func Offset: 0x98
-	// Line 269, Address: 0x196594, Func Offset: 0xa4
-	// Line 273, Address: 0x196598, Func Offset: 0xa8
-	// Line 275, Address: 0x1965b4, Func Offset: 0xc4
-	// Line 278, Address: 0x1965c0, Func Offset: 0xd0
-	// Func End, Address: 0x1965d0, Func Offset: 0xe0
+    switch (epw->mode3) 
+    {
+    case 0:
+        epw->mdflg |= 0x2;
+        epw->mdflg &= ~0x1;
+        
+        epw->ct0 = 0;
+        
+        epw->car = 10.0f;
+        
+        epw->mode3++;
+    case 1:
+        epw->shp_ct = bhEne_GetShapeCnt(Close, epw->ct0);
+        
+        if (epw->ct0 > 10) 
+        {
+            epw->mdflg |= 0x1;
+            epw->flg &= ~0x48;
+            
+            epw->mode2 = 0;
+        }
+        
+        epw->car += -epw->car / 16.0f;
+        
+        epw->ct0++;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x1965d0
 void bhEne02sub_MV03(BH_PWORK* epw)
 {
