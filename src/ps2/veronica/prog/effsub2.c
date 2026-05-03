@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/effsub2.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 
 /*void* bhJumpEffect[0];
 _anon5* sys;
@@ -2993,18 +2994,12 @@ void bhEff_DamagePoint(O_WRK* op)
 	scePrintf("bhEff_DamagePoint - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2461b0
+// 100% matching!
 void bhEff_DamagePointDraw(O_WRK* op)
 {
-	//_anon38 pos;
-	// Line 4683, Address: 0x2461b0, Func Offset: 0
-	// Line 4686, Address: 0x2461b4, Func Offset: 0x4
-	// Line 4683, Address: 0x2461b8, Func Offset: 0x8
-	// Line 4686, Address: 0x2461bc, Func Offset: 0xc
-	// Line 4692, Address: 0x2461cc, Func Offset: 0x1c
-	// Func End, Address: 0x2461d8, Func Offset: 0x28
-	scePrintf("bhEff_DamagePointDraw - UNIMPLEMENTED!\n");
+    NJS_POINT2 pos;
+
+    njProjectScreen(cam.mtx, (NJS_POINT3*)&op->px, &pos);
 }
 
 // 
