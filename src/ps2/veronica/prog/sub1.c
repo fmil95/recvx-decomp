@@ -7666,79 +7666,87 @@ void PulseFadeAnim()
 	scePrintf("PulseFadeAnim - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a8b30
-void PulseHealAnim(NJS_POINT2* pos)
+// 100% matching!
+void PulseHealAnim(NJS_POINT2* pos) 
 {
-	NJS_TEXTUREH_VTX poly[4];
-	// _anon29* pw;
-	// Line 7678, Address: 0x2a8b30, Func Offset: 0
-	// Line 7682, Address: 0x2a8b38, Func Offset: 0x8
-	// Line 7679, Address: 0x2a8b40, Func Offset: 0x10
-	// Line 7682, Address: 0x2a8b44, Func Offset: 0x14
-	// Line 7683, Address: 0x2a8b50, Func Offset: 0x20
-	// Line 7684, Address: 0x2a8b70, Func Offset: 0x40
-	// Line 7685, Address: 0x2a8b80, Func Offset: 0x50
-	// Line 7686, Address: 0x2a8b9c, Func Offset: 0x6c
-	// Line 7688, Address: 0x2a8ba4, Func Offset: 0x74
-	// Line 7689, Address: 0x2a8bac, Func Offset: 0x7c
-	// Line 7692, Address: 0x2a8bbc, Func Offset: 0x8c
-	// Line 7693, Address: 0x2a8bcc, Func Offset: 0x9c
-	// Line 7694, Address: 0x2a8bec, Func Offset: 0xbc
-	// Line 7695, Address: 0x2a8bfc, Func Offset: 0xcc
-	// Line 7696, Address: 0x2a8c04, Func Offset: 0xd4
-	// Line 7697, Address: 0x2a8c10, Func Offset: 0xe0
-	// Line 7698, Address: 0x2a8c14, Func Offset: 0xe4
-	// Line 7696, Address: 0x2a8c18, Func Offset: 0xe8
-	// Line 7697, Address: 0x2a8c24, Func Offset: 0xf4
-	// Line 7698, Address: 0x2a8c30, Func Offset: 0x100
-	// Line 7703, Address: 0x2a8c3c, Func Offset: 0x10c
-	// Line 7705, Address: 0x2a8c44, Func Offset: 0x114
-	// Line 7707, Address: 0x2a8c4c, Func Offset: 0x11c
-	// Line 7725, Address: 0x2a8c54, Func Offset: 0x124
-	// Line 7703, Address: 0x2a8c58, Func Offset: 0x128
-	// Line 7720, Address: 0x2a8c5c, Func Offset: 0x12c
-	// Line 7726, Address: 0x2a8c64, Func Offset: 0x134
-	// Line 7703, Address: 0x2a8c68, Func Offset: 0x138
-	// Line 7704, Address: 0x2a8c6c, Func Offset: 0x13c
-	// Line 7734, Address: 0x2a8c70, Func Offset: 0x140
-	// Line 7728, Address: 0x2a8c74, Func Offset: 0x144
-	// Line 7729, Address: 0x2a8c78, Func Offset: 0x148
-	// Line 7734, Address: 0x2a8c7c, Func Offset: 0x14c
-	// Line 7704, Address: 0x2a8c80, Func Offset: 0x150
-	// Line 7705, Address: 0x2a8c84, Func Offset: 0x154
-	// Line 7706, Address: 0x2a8c88, Func Offset: 0x158
-	// Line 7734, Address: 0x2a8c90, Func Offset: 0x160
-	// Line 7706, Address: 0x2a8c98, Func Offset: 0x168
-	// Line 7707, Address: 0x2a8ca0, Func Offset: 0x170
-	// Line 7708, Address: 0x2a8cac, Func Offset: 0x17c
-	// Line 7709, Address: 0x2a8cb0, Func Offset: 0x180
-	// Line 7710, Address: 0x2a8cc0, Func Offset: 0x190
-	// Line 7711, Address: 0x2a8cc8, Func Offset: 0x198
-	// Line 7712, Address: 0x2a8ccc, Func Offset: 0x19c
-	// Line 7713, Address: 0x2a8cdc, Func Offset: 0x1ac
-	// Line 7734, Address: 0x2a8ce4, Func Offset: 0x1b4
-	// Line 7713, Address: 0x2a8ce8, Func Offset: 0x1b8
-	// Line 7714, Address: 0x2a8cec, Func Offset: 0x1bc
-	// Line 7716, Address: 0x2a8cf0, Func Offset: 0x1c0
-	// Line 7717, Address: 0x2a8cf4, Func Offset: 0x1c4
-	// Line 7718, Address: 0x2a8cf8, Func Offset: 0x1c8
-	// Line 7719, Address: 0x2a8cfc, Func Offset: 0x1cc
-	// Line 7720, Address: 0x2a8d00, Func Offset: 0x1d0
-	// Line 7721, Address: 0x2a8d04, Func Offset: 0x1d4
-	// Line 7722, Address: 0x2a8d08, Func Offset: 0x1d8
-	// Line 7723, Address: 0x2a8d0c, Func Offset: 0x1dc
-	// Line 7725, Address: 0x2a8d10, Func Offset: 0x1e0
-	// Line 7726, Address: 0x2a8d14, Func Offset: 0x1e4
-	// Line 7727, Address: 0x2a8d18, Func Offset: 0x1e8
-	// Line 7728, Address: 0x2a8d1c, Func Offset: 0x1ec
-	// Line 7729, Address: 0x2a8d20, Func Offset: 0x1f0
-	// Line 7730, Address: 0x2a8d24, Func Offset: 0x1f4
-	// Line 7731, Address: 0x2a8d28, Func Offset: 0x1f8
-	// Line 7734, Address: 0x2a8d2c, Func Offset: 0x1fc
-	// Line 7735, Address: 0x2a8d34, Func Offset: 0x204
-	// Func End, Address: 0x2a8d40, Func Offset: 0x210
-	scePrintf("PulseHealAnim - UNIMPLEMENTED!\n");
+    PULSE_WORK* pw;
+    NJS_TEXTUREH_VTX poly[4];
+
+    pw = &pulsework;
+
+    if ((pw->pulseflg & 0x1)) 
+    {
+        if (pw->heal_pos01.x < 216.0f) 
+        {
+            pw->heal_pos01.x += 16.0f;
+            
+            if (pw->heal_pos01.x > 54.0f) 
+            {
+                pw->pulseflg |= 0x2;
+            }
+        } 
+        else 
+        {
+            pw->pulseflg &= ~0x1;
+        }
+    }
+    
+    if ((pw->pulseflg & 0x2)) 
+    {
+        if (pw->heal_pos00.x < 216.0f) 
+        {
+            pw->heal_pos00.x += 16.0f;
+        } 
+        else 
+        {
+            swork.statusflg &= ~0x20;
+            
+            pw->pulseflg &= ~0x40;
+            pw->pulseflg &= ~0x2;
+        }
+    }
+    
+    poly[0].x = pos->x + pw->heal_pos00.x;
+    poly[0].y = pos->y;
+    poly[0].z = 0.2f; 
+    
+    poly[1].x = pos->x + pw->heal_pos00.x;
+    poly[1].y = 72.0f + pos->y;
+    poly[1].z = 0.2f;
+    
+    poly[2].x = pos->x + pw->heal_pos01.x;
+    poly[2].y = pos->y;
+    poly[2].z = 0.2f;
+    
+    poly[3].x = pos->x + pw->heal_pos01.x;
+    poly[3].y = 72.0f + pos->y;
+    poly[3].z = 0.2f;
+    
+    poly[0].bcol = 0;
+    poly[0].ocol = 0;
+    
+    poly[1].bcol = 0;
+    poly[1].ocol = 0;
+    
+    poly[2].bcol = 0xFF00FF00;
+    poly[2].ocol = 0xFF00FF00;
+    
+    poly[3].bcol = 0xFF00FF00;
+    poly[3].ocol = 0xFF00FF00;
+    
+    poly[0].u = 0.84375f;
+    poly[0].v = 0.8125f;
+    
+    poly[1].u = 0.84375f;
+    poly[1].v = 0.8144531f;
+    
+    poly[2].u = 0.8457031f;
+    poly[2].v = 0.8125f;
+    
+    poly[3].u = 0.8457031f;
+    poly[3].v = 0.8144531f;
+    
+    njDrawTextureH(poly, 4, 200004, 1);
 }
 
 // 100% matching!
