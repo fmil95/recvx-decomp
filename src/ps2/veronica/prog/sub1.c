@@ -7244,76 +7244,99 @@ void SbsTextureInit()
     fvwork.tex_flg = 0;
 }
 
-// 
-// Start address: 0x2a7d30
+// 100% matching!
 void PulseInit()
 {
-	unsigned short i;
-	float panelpos[5][5];
-	// _anon29* pw;
-	S_WORK* st;
-	// Line 7253, Address: 0x2a7d30, Func Offset: 0
-	// Line 7254, Address: 0x2a7d3c, Func Offset: 0xc
-	// Line 7255, Address: 0x2a7d40, Func Offset: 0x10
-	// Line 7256, Address: 0x2a7d44, Func Offset: 0x14
-	// Line 7253, Address: 0x2a7d48, Func Offset: 0x18
-	// Line 7254, Address: 0x2a7d4c, Func Offset: 0x1c
-	// Line 7255, Address: 0x2a7d50, Func Offset: 0x20
-	// Line 7256, Address: 0x2a7d54, Func Offset: 0x24
-	// Line 7253, Address: 0x2a7d60, Func Offset: 0x30
-	// Line 7256, Address: 0x2a7d64, Func Offset: 0x34
-	// Line 7268, Address: 0x2a7d90, Func Offset: 0x60
-	// Line 7256, Address: 0x2a7da8, Func Offset: 0x78
-	// Line 7268, Address: 0x2a7dac, Func Offset: 0x7c
-	// Line 7269, Address: 0x2a7de4, Func Offset: 0xb4
-	// Line 7270, Address: 0x2a7de8, Func Offset: 0xb8
-	// Line 7271, Address: 0x2a7dec, Func Offset: 0xbc
-	// Line 7272, Address: 0x2a7df0, Func Offset: 0xc0
-	// Line 7273, Address: 0x2a7df4, Func Offset: 0xc4
-	// Line 7274, Address: 0x2a7df8, Func Offset: 0xc8
-	// Line 7275, Address: 0x2a7dfc, Func Offset: 0xcc
-	// Line 7276, Address: 0x2a7e00, Func Offset: 0xd0
-	// Line 7277, Address: 0x2a7e04, Func Offset: 0xd4
-	// Line 7278, Address: 0x2a7e08, Func Offset: 0xd8
-	// Line 7280, Address: 0x2a7e0c, Func Offset: 0xdc
-	// Line 7282, Address: 0x2a7e40, Func Offset: 0x110
-	// Line 7284, Address: 0x2a7e50, Func Offset: 0x120
-	// Line 7285, Address: 0x2a7e58, Func Offset: 0x128
-	// Line 7286, Address: 0x2a7e5c, Func Offset: 0x12c
-	// Line 7287, Address: 0x2a7e60, Func Offset: 0x130
-	// Line 7288, Address: 0x2a7e64, Func Offset: 0x134
-	// Line 7290, Address: 0x2a7e6c, Func Offset: 0x13c
-	// Line 7292, Address: 0x2a7e74, Func Offset: 0x144
-	// Line 7293, Address: 0x2a7e78, Func Offset: 0x148
-	// Line 7294, Address: 0x2a7e7c, Func Offset: 0x14c
-	// Line 7296, Address: 0x2a7e84, Func Offset: 0x154
-	// Line 7298, Address: 0x2a7e8c, Func Offset: 0x15c
-	// Line 7299, Address: 0x2a7e90, Func Offset: 0x160
-	// Line 7300, Address: 0x2a7e94, Func Offset: 0x164
-	// Line 7302, Address: 0x2a7e9c, Func Offset: 0x16c
-	// Line 7304, Address: 0x2a7ea4, Func Offset: 0x174
-	// Line 7305, Address: 0x2a7ea8, Func Offset: 0x178
-	// Line 7306, Address: 0x2a7eac, Func Offset: 0x17c
-	// Line 7308, Address: 0x2a7eb4, Func Offset: 0x184
-	// Line 7310, Address: 0x2a7ebc, Func Offset: 0x18c
-	// Line 7311, Address: 0x2a7ec0, Func Offset: 0x190
-	// Line 7312, Address: 0x2a7ec4, Func Offset: 0x194
-	// Line 7313, Address: 0x2a7ecc, Func Offset: 0x19c
-	// Line 7317, Address: 0x2a7ed0, Func Offset: 0x1a0
-	// Line 7313, Address: 0x2a7ed4, Func Offset: 0x1a4
-	// Line 7317, Address: 0x2a7ee0, Func Offset: 0x1b0
-	// Line 7319, Address: 0x2a7ef8, Func Offset: 0x1c8
-	// Line 7320, Address: 0x2a7efc, Func Offset: 0x1cc
-	// Line 7321, Address: 0x2a7f00, Func Offset: 0x1d0
-	// Line 7322, Address: 0x2a7f04, Func Offset: 0x1d4
-	// Line 7323, Address: 0x2a7f08, Func Offset: 0x1d8
-	// Line 7324, Address: 0x2a7f0c, Func Offset: 0x1dc
-	// Line 7325, Address: 0x2a7f10, Func Offset: 0x1e0
-	// Line 7326, Address: 0x2a7f14, Func Offset: 0x1e4
-	// Line 7327, Address: 0x2a7f20, Func Offset: 0x1f0
-	// Line 7328, Address: 0x2a7f2c, Func Offset: 0x1fc
-	// Func End, Address: 0x2a7f44, Func Offset: 0x214
-	scePrintf("PulseInit - UNIMPLEMENTED!\n");
+    S_WORK* st = &swork;        
+    PULSE_WORK* pw = &pulsework; 
+    float panelpos[5][5] = 
+    {
+        { 34.0f,  89.0f, 144.0f, 216.0f, 0 },
+        { 34.0f,  89.0f, 144.0f, 216.0f, 0 },
+        { 23.0f,  82.0f, 141.0f, 216.0f, 0 },
+        { 34.0f,  74.0f, 118.0f, 216.0f, 0 },
+        { 23.0f, 113.0f, 183.0f, 216.0f, 0 }
+    };
+    unsigned short i;            
+
+    for (i = 0; i < 5; i++)
+    {
+        pw->pos_00[i].x = 0;
+        pw->pos_00[i].y = 0;
+        
+        pw->pos_01[i].x = 0;
+        pw->pos_01[i].y = 0;
+        
+        pw->col00[i].color = -1;
+        pw->col01[i].color = -1;
+        
+        pw->uv_00[i].tex.u = 0;
+        pw->uv_00[i].tex.v = 0;
+        
+        pw->uv_01[i].tex.u = 0;
+        pw->uv_01[i].tex.v = 0;
+        
+        switch (st->hp) 
+        {                         
+        case 0:
+            if ((!i) || (i == 4)) 
+            {
+                pw->ocol00[i] = 0;
+            } 
+            else 
+            {
+                pw->ocol00[i] = 0xFF00FF00;
+            }
+            
+            pw->ocol01[i] = 0xFF80FF80;
+            
+            pw->pos_02[i].x = panelpos[0][i];
+            pw->pos_02[i].y = 0;
+            break;
+        case 1:
+            pw->ocol00[i] = 0;
+            pw->ocol01[i] = 0xADAD00;
+            
+            pw->pos_02[i].x = panelpos[1][i];
+            pw->pos_02[i].y = 0;
+            break;
+        case 2:
+            pw->ocol00[i] = 0;
+            pw->ocol01[i] = 0xD64200;
+            
+            pw->pos_02[i].x = panelpos[2][i];
+            pw->pos_02[i].y = 0;
+            break;
+        case 3:
+            pw->ocol00[i] = 0;
+            pw->ocol01[i] = 0xAD0000;
+            
+            pw->pos_02[i].x = panelpos[3][i];
+            pw->pos_02[i].y = 0;
+            break;
+        case 4:
+            pw->ocol00[i] = 0;
+            pw->ocol01[i] = 0xBD008C;
+            
+            pw->pos_02[i].x = panelpos[4][i];
+            pw->pos_02[i].y = 0;
+            break;
+        }
+    }
+    
+    pw->pulseflg = 0;
+    pw->fadeflg = 0;
+    
+    pw->count = 0;
+    
+    pw->heal_pos00.x = 0;
+    pw->heal_pos00.y = 0;
+    
+    pw->heal_pos01.x = 0;
+    pw->heal_pos01.y = 0;
+    
+    pw->pulseflg |= 0x1;
+    pw->fadeflg |= 0x1;
 }
 
 // 
