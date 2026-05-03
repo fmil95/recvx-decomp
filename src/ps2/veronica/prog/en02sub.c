@@ -1,5 +1,8 @@
 #include "../../../ps2/veronica/prog/en02sub.h"
+#include "../../../ps2/veronica/prog/en02.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 
 typedef void (*bhEne02sub_Mode0_proc)(BH_PWORK* epw);
@@ -196,46 +199,51 @@ void bhEne02sub_MV03(BH_PWORK* epw)
 	// Line 360, Address: 0x19681c, Func Offset: 0x24c
 	// Line 368, Address: 0x196820, Func Offset: 0x250
 	// Func End, Address: 0x196834, Func Offset: 0x264
-}
+}*/
 
-// 
-// Start address: 0x196840
+// 100% matching!
 void bhEne02sub_MV04(BH_PWORK* epw)
 {
 	BH_PWORK* ep;
-	// Line 378, Address: 0x196840, Func Offset: 0
-	// Line 379, Address: 0x196850, Func Offset: 0x10
-	// Line 381, Address: 0x196858, Func Offset: 0x18
-	// Line 383, Address: 0x196878, Func Offset: 0x38
-	// Line 384, Address: 0x19687c, Func Offset: 0x3c
-	// Line 383, Address: 0x196880, Func Offset: 0x40
-	// Line 384, Address: 0x196888, Func Offset: 0x48
-	// Line 385, Address: 0x196894, Func Offset: 0x54
-	// Line 386, Address: 0x196898, Func Offset: 0x58
-	// Line 387, Address: 0x1968b8, Func Offset: 0x78
-	// Line 390, Address: 0x1968d0, Func Offset: 0x90
-	// Line 391, Address: 0x1968d4, Func Offset: 0x94
-	// Line 387, Address: 0x1968d8, Func Offset: 0x98
-	// Line 390, Address: 0x1968e0, Func Offset: 0xa0
-	// Line 388, Address: 0x1968e4, Func Offset: 0xa4
-	// Line 389, Address: 0x1968e8, Func Offset: 0xa8
-	// Line 390, Address: 0x1968f0, Func Offset: 0xb0
-	// Line 391, Address: 0x1968fc, Func Offset: 0xbc
-	// Line 392, Address: 0x196900, Func Offset: 0xc0
-	// Line 395, Address: 0x19690c, Func Offset: 0xcc
-	// Line 396, Address: 0x196910, Func Offset: 0xd0
-	// Line 395, Address: 0x196918, Func Offset: 0xd8
-	// Line 396, Address: 0x19691c, Func Offset: 0xdc
-	// Line 399, Address: 0x196924, Func Offset: 0xe4
-	// Line 402, Address: 0x196954, Func Offset: 0x114
-	// Line 399, Address: 0x19695c, Func Offset: 0x11c
-	// Line 402, Address: 0x196960, Func Offset: 0x120
-	// Line 404, Address: 0x19696c, Func Offset: 0x12c
-	// Line 405, Address: 0x196980, Func Offset: 0x140
-	// Line 406, Address: 0x196984, Func Offset: 0x144
-	// Line 405, Address: 0x196988, Func Offset: 0x148
-	// Line 406, Address: 0x196990, Func Offset: 0x150
-	// Line 408, Address: 0x19699c, Func Offset: 0x15c
-	// Line 412, Address: 0x1969a0, Func Offset: 0x160
-	// Func End, Address: 0x1969b4, Func Offset: 0x174
-}*/
+
+    ep = (BH_PWORK*)epw->lkwkp;
+    
+    switch (epw->mode3)
+    {                         
+    case 0:
+        epw->flg |= 0x48;
+        epw->mdflg &= ~0x1;
+        
+        epw->ct0 = 0;
+        
+        epw->px = ep->px + (20.0f * njSin(ep->ay));
+        epw->pz = ep->pz + (20.0f * njCos(ep->ay));
+        
+        epw->ax = 0;
+        epw->ay = ep->ay;
+        
+        epw->yn = ep->py - 5.0f;
+        
+        epw->spd = 1.0f;
+        
+        epw->mode3++;
+    case 1:
+        epw->ax += 2184;
+        
+        bhAddSpeed(epw, 0);
+        
+        epw->py = epw->yn + (2.0f * njSin((epw->ct0 * 2184) - 16384));
+        
+        bhEne02_SetSandEffect(ep, (NJS_POINT3*)&epw->px, 8);
+        
+        if (epw->ct0++ > 30)
+        {
+            epw->mdflg |= 0x1;
+            epw->flg &= ~0x40;
+            
+            epw->mode2 = 0;
+        }
+        
+        break;
+    }
+}
