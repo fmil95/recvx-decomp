@@ -51,71 +51,104 @@ void	njSetFogTable(NJS_FOG_TABLE fog)
     fpNaFogTblTop = fog; 
 } 
 
-// 
-// Start address: 0x2d6110
+// 100% matching!
 void	njGenerateFogTable3(NJS_FOG_TABLE fog, Float n, Float f)
-{
-	int exp[4];
-	int count;
-	int tmp;
-	int i;
-	float fr1;
-	float fr0;
-	// Line 151, Address: 0x2d6110, Func Offset: 0
-	// Line 158, Address: 0x2d6118, Func Offset: 0x8
-	// Line 151, Address: 0x2d611c, Func Offset: 0xc
-	// Line 158, Address: 0x2d6124, Func Offset: 0x14
-	// Line 151, Address: 0x2d6128, Func Offset: 0x18
-	// Line 158, Address: 0x2d612c, Func Offset: 0x1c
-	// Line 160, Address: 0x2d6144, Func Offset: 0x34
-	// Line 161, Address: 0x2d614c, Func Offset: 0x3c
-	// Line 162, Address: 0x2d6154, Func Offset: 0x44
-	// Line 164, Address: 0x2d6160, Func Offset: 0x50
-	// Line 165, Address: 0x2d6164, Func Offset: 0x54
-	// Line 167, Address: 0x2d6174, Func Offset: 0x64
-	// Line 169, Address: 0x2d6184, Func Offset: 0x74
-	// Line 173, Address: 0x2d618c, Func Offset: 0x7c
-	// Line 179, Address: 0x2d61d4, Func Offset: 0xc4
-	// Line 181, Address: 0x2d61fc, Func Offset: 0xec
-	// Line 182, Address: 0x2d6204, Func Offset: 0xf4
-	// Line 186, Address: 0x2d620c, Func Offset: 0xfc
-	// Line 185, Address: 0x2d621c, Func Offset: 0x10c
-	// Line 189, Address: 0x2d622c, Func Offset: 0x11c
-	// Line 190, Address: 0x2d6230, Func Offset: 0x120
-	// Line 202, Address: 0x2d6234, Func Offset: 0x124
-	// Line 195, Address: 0x2d6240, Func Offset: 0x130
-	// Line 202, Address: 0x2d6244, Func Offset: 0x134
-	// Line 204, Address: 0x2d6294, Func Offset: 0x184
-	// Line 205, Address: 0x2d62a4, Func Offset: 0x194
-	// Line 207, Address: 0x2d62a8, Func Offset: 0x198
-	// Line 208, Address: 0x2d62ac, Func Offset: 0x19c
-	// Line 227, Address: 0x2d62b8, Func Offset: 0x1a8
-	// Line 228, Address: 0x2d62c8, Func Offset: 0x1b8
-	// Line 229, Address: 0x2d62d4, Func Offset: 0x1c4
-	// Line 230, Address: 0x2d62e8, Func Offset: 0x1d8
-	// Line 229, Address: 0x2d62f0, Func Offset: 0x1e0
-	// Line 233, Address: 0x2d62f8, Func Offset: 0x1e8
-	// Line 234, Address: 0x2d6304, Func Offset: 0x1f4
-	// Line 235, Address: 0x2d6308, Func Offset: 0x1f8
-	// Line 233, Address: 0x2d630c, Func Offset: 0x1fc
-	// Line 235, Address: 0x2d631c, Func Offset: 0x20c
-	// Line 236, Address: 0x2d6324, Func Offset: 0x214
-	// Line 237, Address: 0x2d6338, Func Offset: 0x228
-	// Line 239, Address: 0x2d6344, Func Offset: 0x234
-	// Line 242, Address: 0x2d6360, Func Offset: 0x250
-	// Line 241, Address: 0x2d6364, Func Offset: 0x254
-	// Line 243, Address: 0x2d6368, Func Offset: 0x258
-	// Line 241, Address: 0x2d636c, Func Offset: 0x25c
-	// Line 243, Address: 0x2d6370, Func Offset: 0x260
-	// Line 245, Address: 0x2d637c, Func Offset: 0x26c
-	// Line 251, Address: 0x2d6388, Func Offset: 0x278
-	// Line 252, Address: 0x2d638c, Func Offset: 0x27c
-	// Line 253, Address: 0x2d6398, Func Offset: 0x288
-	// Line 252, Address: 0x2d63a0, Func Offset: 0x290
-	// Line 253, Address: 0x2d63ac, Func Offset: 0x29c
-	// Line 256, Address: 0x2d63b4, Func Offset: 0x2a4
-	// Func End, Address: 0x2d63cc, Func Offset: 0x2bc
-	scePrintf("njGenerateFogTable3 - UNIMPLEMENTED!\n");
+{ 
+    float fr0, fr1;
+    int i; 
+    int tmp; 
+    int count; 
+    int exp[4];
+    float x, k, m; // not from DWARF
+    int l;         // not from DWARF
+
+    if (-65535.0f > n)
+    {
+        fNaFogDensity = 65536.0f;
+    } 
+    else 
+    {
+        fr0 = frexpf(-f, exp);
+        
+        count = exp[0] - 1;
+        
+        k = fr0 * 65536.0f;
+        
+        tmp = ((int)k & 0xFF00) | count;
+
+        l = 1 << count;
+        
+        k = (tmp & 0x7F00) / (65536.0f / 2.0f);
+        m = (tmp >> 15) * l;
+        
+        fNaFogDensity = (k * l) + m; 
+    }
+
+    if ((f / 256.0f) > n) 
+    {
+        fr0 = -f;
+    } 
+    else 
+    {
+        fr0 = 1.0f;
+    }
+
+    fNaFogFar = -f;
+    fNaFogNear = -n;
+    
+    for (count = 0, i = 0; count < 128; count++)
+    {
+        tmp = count / 16;
+        
+        if (tmp < 0) 
+        {
+            fr1 = 1 >> -tmp;
+        } 
+        else 
+        {
+            fr1 = 1 << tmp;
+        }
+        
+        x = count & 0xF; 
+        x += 16.0f;
+        
+        fNaFogTbl[count] = fr0 / ((fr1 * x) / 16.0f);
+
+        if (fNaFogTbl[count] >= -n) 
+        {
+            i++;
+        }
+    }
+
+    if (-f == fr0) 
+    {
+        if (i > 1) 
+        {
+            fr1 = f + fNaFogTbl[i - 1];
+            
+            count = 0;
+            
+            do
+            {
+                fNaFogTbl[count] = 1.0f - ((f + fNaFogTbl[count]) / fr1);
+                
+                count++;
+            } while (count < i);
+        } 
+        else if (i == 1) 
+        {
+            fNaFogTbl[0] = 1.0f;
+        }
+        for ( ; i < 128; i++)
+        {
+            fNaFogTbl[i] = 0;
+        }
+    }
+
+    for (count = 0; count < 128; count++) 
+    {
+        fNaFogTbl[count] = 255.0f - (255.0f * fNaFogTbl[count]);
+    }
 }
 
 // 100% matching!
