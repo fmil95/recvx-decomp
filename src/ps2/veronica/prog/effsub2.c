@@ -3130,16 +3130,10 @@ void bhEff_SetAlign(O_WRK* op, unsigned int flg)
 	scePrintf("bhEff_SetAlign - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x246710
+// 100% matching!
 void bhEff_SetBaseColor(O_WRK* op, unsigned int col)
 {
-	// Line 4896, Address: 0x246710, Func Offset: 0
-	// Line 4897, Address: 0x246714, Func Offset: 0x4
-	// Line 4898, Address: 0x246718, Func Offset: 0x8
-	// Line 4900, Address: 0x24671c, Func Offset: 0xc
-	// Func End, Address: 0x246724, Func Offset: 0x14
-	scePrintf("bhEff_SetBaseColor - UNIMPLEMENTED!\n");
+    op->tv[3].col = op->tv[2].col = op->tv[1].col = op->tv[0].col = col;
 }
 
 // 100% matching!
