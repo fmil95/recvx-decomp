@@ -13,16 +13,6 @@
 #include "../../../ps2/veronica/prog/screen.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
-/*_anon4* sys;
-void(*bhDraw134)(O_WRK*);
-O_WRK eff[0];
-O_WRK* ef_Zanzo[6];
-_anon41 cam;
-void(*bhDraw136)(O_WRK*);
-void(*bhDraw137)(O_WRK*);
-_anon7* rom;
-void(*bhDraw138)(O_WRK*);*/
-
 // 100% matching!
 void bhEff133(O_WRK* op)
 {
@@ -757,54 +747,81 @@ void bhDraw136(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x23a950
+// 100% matching!
 void bhEff136(O_WRK* op)
 {
-	int i;
-	//_anon12* mlwPb;
-	//_anon12* mlwP;
-	BH_PWORK* pwp;
-	// Line 630, Address: 0x23a950, Func Offset: 0
-	// Line 634, Address: 0x23a968, Func Offset: 0x18
-	// Line 637, Address: 0x23a97c, Func Offset: 0x2c
-	// Line 636, Address: 0x23a980, Func Offset: 0x30
-	// Line 638, Address: 0x23a984, Func Offset: 0x34
-	// Line 637, Address: 0x23a98c, Func Offset: 0x3c
-	// Line 638, Address: 0x23a9a0, Func Offset: 0x50
-	// Line 646, Address: 0x23a9bc, Func Offset: 0x6c
-	// Line 648, Address: 0x23a9f4, Func Offset: 0xa4
-	// Line 651, Address: 0x23aa0c, Func Offset: 0xbc
-	// Line 648, Address: 0x23aa10, Func Offset: 0xc0
-	// Line 651, Address: 0x23aa18, Func Offset: 0xc8
-	// Line 652, Address: 0x23aa4c, Func Offset: 0xfc
-	// Line 655, Address: 0x23aa64, Func Offset: 0x114
-	// Line 657, Address: 0x23aa70, Func Offset: 0x120
-	// Line 656, Address: 0x23aa74, Func Offset: 0x124
-	// Line 657, Address: 0x23aa78, Func Offset: 0x128
-	// Line 658, Address: 0x23aa90, Func Offset: 0x140
-	// Line 659, Address: 0x23aaa0, Func Offset: 0x150
-	// Line 660, Address: 0x23aabc, Func Offset: 0x16c
-	// Line 661, Address: 0x23aac4, Func Offset: 0x174
-	// Line 663, Address: 0x23aae0, Func Offset: 0x190
-	// Line 665, Address: 0x23aae4, Func Offset: 0x194
-	// Line 666, Address: 0x23ab14, Func Offset: 0x1c4
-	// Line 667, Address: 0x23ab20, Func Offset: 0x1d0
-	// Line 670, Address: 0x23ab28, Func Offset: 0x1d8
-	// Line 672, Address: 0x23ab58, Func Offset: 0x208
-	// Line 673, Address: 0x23ab64, Func Offset: 0x214
-	// Line 674, Address: 0x23ab6c, Func Offset: 0x21c
-	// Line 675, Address: 0x23ab70, Func Offset: 0x220
-	// Line 678, Address: 0x23ab78, Func Offset: 0x228
-	// Line 684, Address: 0x23ab84, Func Offset: 0x234
-	// Line 687, Address: 0x23ab8c, Func Offset: 0x23c
-	// Line 694, Address: 0x23ac08, Func Offset: 0x2b8
-	// Line 695, Address: 0x23ac3c, Func Offset: 0x2ec
-	// Line 698, Address: 0x23ac44, Func Offset: 0x2f4
-	// Line 703, Address: 0x23ac58, Func Offset: 0x308
-	// Line 704, Address: 0x23ac64, Func Offset: 0x314
-	// Func End, Address: 0x23ac80, Func Offset: 0x330
-	scePrintf("bhEff136 - UNIMPLEMENTED!\n");
+    BH_PWORK* pwp;  
+    ML_WORK* mlwP, *mlwPb;  
+    int i;         
+
+    switch (op->mode0) 
+    {
+    case 0: 
+        pwp = (BH_PWORK*)op->lkwkp;
+        
+        mlwP = &pwp->mdl[op->mdlver];
+        
+        njSetMatrix(op->mtx, &mlwP->owP[op->lkono].mtx);
+
+        i = ((mlwP->objP[op->lkono].model->vlist[1] >> 16) << 5) + 72;
+        
+        i += 64 - (i % 64);
+        
+        op->exp0 = (unsigned char*)(((O_WRK*)&eff->exp0)[op->type].flg + (i * op->flr_no));
+
+        if (pwp->skp[op->mdlver] != NULL) 
+        {
+            npPushMdlstr(mlwP->objP, mlwP->obj_num);
+            
+            mlwPb = pwp->mlwP;
+            
+            pwp->mlwP = &pwp->mdl[op->mdlver];
+            
+            if ((pwp->mdflg & 0x100)) 
+            {
+                npCalcSkinFM(pwp, mlwP->obj_num, pwp->skp[op->mdlver]);
+            } 
+            else 
+            {
+                npCalcSkin(pwp, mlwP->obj_num, pwp->skp[op->mdlver]);
+            }
+            
+            pwp->mlwP = mlwPb;
+            
+            npCopyVlist((int*)op->exp0, mlwP->objP[op->lkono].model->vlist);
+            
+            npPopMdlstr(mlwP->objP, mlwP->obj_num);
+        }
+        else 
+        {
+            npCopyVlist((int*)op->exp0, mlwP->objP[op->lkono].model->vlist);
+        }
+        
+        op->func = (void*)bhDraw136;
+        
+        op->ct0 = 5;
+        
+        op->mode0 = 1;
+        break;
+    default:
+        if (op->ct0 == 0) 
+        {
+            op->flg = 0;
+        }
+        else
+        {
+            if ((((sys->stg_no == 1) && (sys->rom_no == 0)) && (sys->rcase == 2)) || ((sys->stg_no == 5) && (sys->rom_no == 82)) || (((sys->stg_no == 9) && (sys->rom_no == 32)) && (sys->rcase == 1)))
+            {
+                sys->ef_fnc[sys->ef_fncn++] = op;
+            }
+            else 
+            {
+                ef_Zanzo[op->ct0] = (O_WORK*)op;
+            }
+
+            op->ct0--;
+        }
+    }
 }
 
 // 91.70% matching (matches on GC)
