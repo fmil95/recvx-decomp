@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/effsub2.h"
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/effsub6.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/hitchkl.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
@@ -276,58 +277,105 @@ void bhEff_E00_DrawParticlePly(O_WRK* op)
     njPtclPolygonEnd();
 }
 
-// 
-// Start address: 0x23dd00
+// 100% matching!
 void bhEff_E00_DropBlood(O_WRK* op)
 {
-	UV_WORK* uvp;
-	UV_WORK* uvtble[2];
-	// Line 335, Address: 0x23dd00, Func Offset: 0
-	// Line 360, Address: 0x23dd0c, Func Offset: 0xc
-	// Line 362, Address: 0x23dd38, Func Offset: 0x38
-	// Line 363, Address: 0x23dd3c, Func Offset: 0x3c
-	// Line 364, Address: 0x23dd48, Func Offset: 0x48
-	// Line 365, Address: 0x23dd50, Func Offset: 0x50
-	// Line 366, Address: 0x23dd58, Func Offset: 0x58
-	// Line 367, Address: 0x23dd5c, Func Offset: 0x5c
-	// Line 368, Address: 0x23dd60, Func Offset: 0x60
-	// Line 371, Address: 0x23dd68, Func Offset: 0x68
-	// Line 368, Address: 0x23dd6c, Func Offset: 0x6c
-	// Line 369, Address: 0x23dd74, Func Offset: 0x74
-	// Line 370, Address: 0x23dd7c, Func Offset: 0x7c
-	// Line 371, Address: 0x23dd80, Func Offset: 0x80
-	// Line 372, Address: 0x23dd9c, Func Offset: 0x9c
-	// Line 371, Address: 0x23dda4, Func Offset: 0xa4
-	// Line 372, Address: 0x23dda8, Func Offset: 0xa8
-	// Line 373, Address: 0x23ddac, Func Offset: 0xac
-	// Line 376, Address: 0x23ddb8, Func Offset: 0xb8
-	// Line 377, Address: 0x23ddc4, Func Offset: 0xc4
-	// Line 376, Address: 0x23ddcc, Func Offset: 0xcc
-	// Line 377, Address: 0x23ddd4, Func Offset: 0xd4
-	// Line 378, Address: 0x23dde8, Func Offset: 0xe8
-	// Line 379, Address: 0x23ddf0, Func Offset: 0xf0
-	// Line 381, Address: 0x23ddfc, Func Offset: 0xfc
-	// Line 383, Address: 0x23de00, Func Offset: 0x100
-	// Line 381, Address: 0x23de08, Func Offset: 0x108
-	// Line 382, Address: 0x23de10, Func Offset: 0x110
-	// Line 383, Address: 0x23de20, Func Offset: 0x120
-	// Line 386, Address: 0x23de4c, Func Offset: 0x14c
-	// Line 387, Address: 0x23de64, Func Offset: 0x164
-	// Line 388, Address: 0x23de68, Func Offset: 0x168
-	// Line 390, Address: 0x23de70, Func Offset: 0x170
-	// Line 393, Address: 0x23de78, Func Offset: 0x178
-	// Line 394, Address: 0x23de84, Func Offset: 0x184
-	// Line 393, Address: 0x23de8c, Func Offset: 0x18c
-	// Line 394, Address: 0x23de94, Func Offset: 0x194
-	// Line 396, Address: 0x23dea8, Func Offset: 0x1a8
-	// Line 398, Address: 0x23deb0, Func Offset: 0x1b0
-	// Line 403, Address: 0x23deb8, Func Offset: 0x1b8
-	// Line 405, Address: 0x23dec8, Func Offset: 0x1c8
-	// Line 406, Address: 0x23dee8, Func Offset: 0x1e8
-	// Line 407, Address: 0x23defc, Func Offset: 0x1fc
-	// Line 409, Address: 0x23df20, Func Offset: 0x220
-	// Func End, Address: 0x23df30, Func Offset: 0x230
-	scePrintf("bhEff_E00_DropBlood - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    static UV_WORK BH_UVTAB0[6] = 
+    {
+        { 0.84375f,  0.15625f, 0.0625f, 0.0625f },
+        { 0.90625f,  0.15625f, 0.0625f, 0.0625f },
+        { 0.53125f,  0.21875f, 0.0625f, 0.0625f },
+        { 0.59375f,  0.21875f, 0.0625f, 0.0625f },
+        { 0.65625f,  0.21875f, 0.0625f, 0.0625f },
+        { -1.0f,     0.0f,     0.0f,    0.0f    },
+    };
+    static UV_WORK BH_UVTAB1[6] = 
+    {
+        { 0.71875f,  0.21875f, 0.0625f,  0.0625f  },
+        { 0.78125f,  0.21875f, 0.09375f, 0.09375f },
+        { 0.875f,    0.21875f, 0.09375f, 0.09375f },
+        { 0.9375f,   0.3125f,  0.0625f,  0.0625f  },
+        { 0.9375f,   0.375f,   0.0625f,  0.0625f  },
+        { -1.0f,     0.0f,     0.0f,     0.0f     }
+    };
+    static UV_WORK* uvtble[2] = 
+    {
+        BH_UVTAB0,
+        BH_UVTAB1
+    };
+
+    switch (op->mode0) 
+    {
+    case 0:
+        op->tex_id = 5;
+        
+        bhEff_SetBaseColor(op, -1);
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        op->ct0    = 0;
+        op->ct1    = 0;
+        
+        op->flg   |= 0x180000;
+        
+        op->sxb    = op->sx;
+        op->syb    = op->sy;
+        
+        op->yn     = bhGetGroundPosition((NJS_POINT3*)&op->px) + 0.2f;
+        
+        op->ofy    = -0.71f;
+        
+        op->mode0++;
+    case 1:
+        uvp = &uvtble[0][op->ct1];
+        
+        if (uvp->u == -1.0f) 
+        {
+            op->ct1 = 1;
+            
+            uvp = &uvtble[0][1];
+        }
+        
+        op->ct1++;
+
+        op->py += op->ofy;
+        
+        if (op->ofy > -2.0f)
+        {
+            op->ofy -= 0.15f;
+        }
+        
+        if (op->py < op->yn) 
+        {
+            op->py = op->yn;
+            
+            op->mode0++;
+        }
+        
+        break;
+    case 2:
+        uvp = &uvtble[1][op->ct1];
+        
+        if (uvp->u == -1.0f) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        op->ct1++;
+        break;
+    }
+
+    bhEff_SetUVInfo(op, uvp, 0.0625f);
+
+    if (sys->ef_trsn < 512) 
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
 
 // 
