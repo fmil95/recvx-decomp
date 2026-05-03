@@ -4,18 +4,6 @@
 _anon0* sys;
 _anon12* rom;
 
-_anon6* bhCollisionCheckLine(_anon2* p1, _anon2* p2);
-_anon6* bhCollisionCheckLine2(_anon2* p1, _anon2* p2, unsigned int flg, char flr_no);
-_anon6* bhCollisionCheckLine3(_anon2* p1, _anon2* p2, unsigned int flg, char flr_no);
-int bhCollisionCheckLineMain(_anon6* hp, _anon2* vec, _anon2* p1, _anon2* p2);
-int bhCollisionCheckL2PL(_anon2* p1, _anon2* p2, _anon2* area, int num);
-int bhInOutCheck(_anon2* p, _anon2* area, _anon2* normal, int num);
-int bhCollisionCheckL2MDL(_anon2* p1, _anon2* p2, _anon31* mdl, float mtx[16]);
-int bhCollisionCheckL2XZPL(_anon2* p1, _anon2* p2, _anon2* pos, float w, float d, int flg);
-int bhCollisionCheckL2XYPL(_anon2* p1, _anon2* p2, _anon2* pos, float w, float h, int flg);
-int bhCollisionCheckL2YZPL(_anon2* p1, _anon2* p2, _anon2* pos, float h, float d, int flg);
-void bhGetHitCollisionNormal(_anon2* n);
-
 // 
 // Start address: 0x269370
 _anon6* bhCollisionCheckLine(_anon2* p1, _anon2* p2)
@@ -46,17 +34,17 @@ _anon6* bhCollisionCheckLine(_anon2* p1, _anon2* p2)
 	// Line 103, Address: 0x269490, Func Offset: 0x120
 	// Line 104, Address: 0x269494, Func Offset: 0x124
 	// Func End, Address: 0x2694bc, Func Offset: 0x14c
-}
+}*/
 
 // 
 // Start address: 0x2694c0
-_anon6* bhCollisionCheckLine2(_anon2* p1, _anon2* p2, unsigned int flg, char flr_no)
+ATR_WORK* bhCollisionCheckLine2(NJS_POINT3* p1, NJS_POINT3* p2, unsigned int flg, char flr_no)
 {
-	_anon2 vec;
+	//_anon2 vec;
 	int wal_n;
 	int i;
-	_anon6* ret;
-	_anon6* hp;
+	//_anon6* ret;
+	//_anon6* hp;
 	// Line 118, Address: 0x2694c0, Func Offset: 0
 	// Line 124, Address: 0x2694ec, Func Offset: 0x2c
 	// Line 128, Address: 0x2694f4, Func Offset: 0x34
@@ -81,9 +69,10 @@ _anon6* bhCollisionCheckLine2(_anon2* p1, _anon2* p2, unsigned int flg, char flr
 	// Line 147, Address: 0x269658, Func Offset: 0x198
 	// Line 148, Address: 0x26965c, Func Offset: 0x19c
 	// Func End, Address: 0x26968c, Func Offset: 0x1cc
+	scePrintf("bhCollisionCheckLine2 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x269690
 _anon6* bhCollisionCheckLine3(_anon2* p1, _anon2* p2, unsigned int flg, char flr_no)
 {
@@ -833,16 +822,16 @@ int bhCollisionCheckL2YZPL(_anon2* p1, _anon2* p2, _anon2* pos, float h, float d
 	// Line 1071, Address: 0x26b878, Func Offset: 0x178
 	// Line 1072, Address: 0x26b87c, Func Offset: 0x17c
 	// Func End, Address: 0x26b89c, Func Offset: 0x19c
-}
+}*/
 
 // 
 // Start address: 0x26b8a0
-void bhGetHitCollisionNormal(_anon2* n)
+void bhGetHitCollisionNormal(NJS_POINT3* n)
 {
 	// Line 1083, Address: 0x26b8a0, Func Offset: 0
 	// Line 1084, Address: 0x26b8ac, Func Offset: 0xc
 	// Line 1085, Address: 0x26b8b8, Func Offset: 0x18
 	// Line 1086, Address: 0x26b8c0, Func Offset: 0x20
 	// Func End, Address: 0x26b8c8, Func Offset: 0x28
-}*/
-
+	scePrintf("bhGetHitCollisionNormal - UNIMPLEMENTED!\n");
+}
