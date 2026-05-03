@@ -6,6 +6,7 @@
 #include "../../../ps2/veronica/prog/message.h"
 #include "../../../ps2/veronica/prog/padman.h"
 #include "../../../ps2/veronica/prog/item.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaFog.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
@@ -7819,61 +7820,54 @@ void PulsePoisonHealAnim(NJS_POINT2* pos)
 	scePrintf("PulsePoisonHealAnim - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a8f60
-void Pulse00(NJS_POINT2* pos, NJS_COLOR* texuv)
+// 100% matching!
+void Pulse00(NJS_POINT2* pos, NJS_COLOR* texuv) 
 {
-	unsigned short i;
-	NJS_TEXTUREH_VTX poly[4];
-	// Line 7801, Address: 0x2a8f60, Func Offset: 0
-	// Line 7808, Address: 0x2a8f94, Func Offset: 0x34
-	// Line 7810, Address: 0x2a8f9c, Func Offset: 0x3c
-	// Line 7812, Address: 0x2a8fa4, Func Offset: 0x44
-	// Line 7814, Address: 0x2a8fac, Func Offset: 0x4c
-	// Line 7811, Address: 0x2a8fb4, Func Offset: 0x54
-	// Line 7810, Address: 0x2a8fb8, Func Offset: 0x58
-	// Line 7833, Address: 0x2a8fbc, Func Offset: 0x5c
-	// Line 7842, Address: 0x2a8fc0, Func Offset: 0x60
-	// Line 7810, Address: 0x2a8fc4, Func Offset: 0x64
-	// Line 7811, Address: 0x2a8fc8, Func Offset: 0x68
-	// Line 7833, Address: 0x2a8fcc, Func Offset: 0x6c
-	// Line 7842, Address: 0x2a8fd0, Func Offset: 0x70
-	// Line 7811, Address: 0x2a8fdc, Func Offset: 0x7c
-	// Line 7812, Address: 0x2a8fe0, Func Offset: 0x80
-	// Line 7813, Address: 0x2a8fe4, Func Offset: 0x84
-	// Line 7842, Address: 0x2a8fe8, Func Offset: 0x88
-	// Line 7813, Address: 0x2a8fec, Func Offset: 0x8c
-	// Line 7814, Address: 0x2a8ff0, Func Offset: 0x90
-	// Line 7815, Address: 0x2a8ffc, Func Offset: 0x9c
-	// Line 7816, Address: 0x2a9000, Func Offset: 0xa0
-	// Line 7817, Address: 0x2a9010, Func Offset: 0xb0
-	// Line 7818, Address: 0x2a9018, Func Offset: 0xb8
-	// Line 7819, Address: 0x2a901c, Func Offset: 0xbc
-	// Line 7820, Address: 0x2a902c, Func Offset: 0xcc
-	// Line 7821, Address: 0x2a9038, Func Offset: 0xd8
-	// Line 7823, Address: 0x2a903c, Func Offset: 0xdc
-	// Line 7824, Address: 0x2a9044, Func Offset: 0xe4
-	// Line 7825, Address: 0x2a904c, Func Offset: 0xec
-	// Line 7826, Address: 0x2a9054, Func Offset: 0xf4
-	// Line 7828, Address: 0x2a905c, Func Offset: 0xfc
-	// Line 7829, Address: 0x2a9064, Func Offset: 0x104
-	// Line 7830, Address: 0x2a906c, Func Offset: 0x10c
-	// Line 7831, Address: 0x2a9074, Func Offset: 0x114
-	// Line 7833, Address: 0x2a907c, Func Offset: 0x11c
-	// Line 7834, Address: 0x2a909c, Func Offset: 0x13c
-	// Line 7835, Address: 0x2a90b4, Func Offset: 0x154
-	// Line 7836, Address: 0x2a90d4, Func Offset: 0x174
-	// Line 7837, Address: 0x2a90f0, Func Offset: 0x190
-	// Line 7838, Address: 0x2a9110, Func Offset: 0x1b0
-	// Line 7839, Address: 0x2a9128, Func Offset: 0x1c8
-	// Line 7840, Address: 0x2a9148, Func Offset: 0x1e8
-	// Line 7842, Address: 0x2a9168, Func Offset: 0x208
-	// Line 7843, Address: 0x2a9170, Func Offset: 0x210
-	// Line 7842, Address: 0x2a9174, Func Offset: 0x214
-	// Line 7843, Address: 0x2a917c, Func Offset: 0x21c
-	// Line 7844, Address: 0x2a9190, Func Offset: 0x230
-	// Func End, Address: 0x2a91b0, Func Offset: 0x250
-	scePrintf("Pulse00 - UNIMPLEMENTED!\n");
+    NJS_TEXTUREH_VTX poly[4];
+    unsigned short i;
+   
+    for (i = 0; i < 5; i++) 
+    {
+        poly[0].x = pos->x + pulsework.pos_00[i].x;
+        poly[0].y = pos->y;
+        poly[0].z = 0.1f; 
+        
+        poly[1].x = poly[0].x;
+        poly[1].y = 72.0f + poly[0].y;
+        poly[1].z = 0.1f;
+        
+        poly[2].x = pos->x + pulsework.pos_01[i].x;
+        poly[2].y = poly[0].y;
+        poly[2].z = 0.1f;
+        
+        poly[3].x = pos->x + pulsework.pos_01[i].x;
+        poly[3].y = 72.0f + poly[0].y;
+        poly[3].z = 0.1f;
+        
+        poly[0].bcol = pulsework.col00[i].color;
+        poly[1].bcol = pulsework.col00[i].color;
+        poly[2].bcol = pulsework.col01[i].color;
+        poly[3].bcol = pulsework.col01[i].color;
+        
+        poly[0].ocol = pulsework.ocol00[i];
+        poly[1].ocol = pulsework.ocol00[i];
+        poly[2].ocol = pulsework.ocol01[i];
+        poly[3].ocol = pulsework.ocol01[i];
+        
+        poly[0].u = (texuv->tex.u + pulsework.uv_00[i].tex.u) / 512.0f;
+        poly[0].v = texuv->tex.v / 512.0f;
+        
+        poly[1].u = (texuv->tex.u + pulsework.uv_00[i].tex.u) / 512.0f;
+        poly[1].v = (texuv->tex.v + 72) / 512.0f;
+        
+        poly[2].u = (texuv->tex.u + pulsework.uv_01[i].tex.u) / 512.0f;
+        poly[2].v = texuv->tex.v / 512.0f;
+        
+        poly[3].u = (texuv->tex.u + pulsework.uv_01[i].tex.u) / 512.0f;
+        poly[3].v = (texuv->tex.v + 72) / 512.0f;
+        
+        njDrawTextureH(poly, 4, 200004, 1);
+    }
 }
 
 // 100% matching!
