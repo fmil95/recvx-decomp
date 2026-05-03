@@ -26,22 +26,25 @@ void bhEne02sub(BH_PWORK* epw)
     bhEne02sub_Mode0[epw->mode0](epw);
 }
 
-/*// 
-// Start address: 0x196350
-void bhEne02sub_Init(BH_PWORK* epw)
+// 100% matching!
+void bhEne02sub_Init(BH_PWORK* epw) 
 {
-	// Line 141, Address: 0x196350, Func Offset: 0
-	// Line 142, Address: 0x19635c, Func Offset: 0xc
-	// Line 143, Address: 0x196368, Func Offset: 0x18
-	// Line 145, Address: 0x196374, Func Offset: 0x24
-	// Line 146, Address: 0x196380, Func Offset: 0x30
-	// Line 147, Address: 0x196388, Func Offset: 0x38
-	// Line 151, Address: 0x196390, Func Offset: 0x40
-	// Line 152, Address: 0x196398, Func Offset: 0x48
-	// Line 153, Address: 0x19639c, Func Offset: 0x4c
-	// Line 176, Address: 0x1963a0, Func Offset: 0x50
-	// Func End, Address: 0x1963a8, Func Offset: 0x58
-}*/
+    epw->mdflg |= 0x4;
+    epw->mdflg |= 0x1;
+    
+    epw->flg2 |= 0x1;
+    
+    if (epw->type == 0) 
+    {
+        epw->car = 10.0f;
+        epw->cah = 20.0f;
+    }
+    
+    epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
+}
 
 // 100% matching!
 void bhEne02sub_Move(BH_PWORK* epw)
