@@ -659,303 +659,442 @@ void bhSetHideObject(int offset)
     }
 }
 
-// 
-// Start address: 0x27b900
+// TODO: remove these and call njArcTan2 directly, which currently gets called incorrectly from ninjaapi.h
+#define NJD_PI_MOD  3.141592f
+#define NJM_RAD_ANG_MOD(n)  ((Angle)((n) * (65536.0f / (2 * NJD_PI_MOD))))
+#define njArcTan2_MOD(y,x)   ((Angle)NJM_RAD_ANG_MOD(atan2f ((Float)(y),(Float)(x)) ))
+
+// 99.76% matching 
 void bhInitActiveCamera(int flg)
 {
-	//_anon28 sca;
-	short ay;
-	short ax;
-	int yr;
-	int xr;
-	unsigned int attr;
-	float d;
-	float w;
-	float pz;
-	float py;
-	float px;
-	float nrz;
-	float nrx;
-	//_anon21* ci;
-	//_anon10* cp;
-	// Line 656, Address: 0x27b900, Func Offset: 0
-	// Line 664, Address: 0x27b920, Func Offset: 0x20
-	// Line 665, Address: 0x27b938, Func Offset: 0x38
-	// Line 664, Address: 0x27b940, Func Offset: 0x40
-	// Line 667, Address: 0x27b950, Func Offset: 0x50
-	// Line 664, Address: 0x27b958, Func Offset: 0x58
-	// Line 667, Address: 0x27b960, Func Offset: 0x60
-	// Line 665, Address: 0x27b970, Func Offset: 0x70
-	// Line 667, Address: 0x27b978, Func Offset: 0x78
-	// Line 665, Address: 0x27b97c, Func Offset: 0x7c
-	// Line 668, Address: 0x27b984, Func Offset: 0x84
-	// Line 665, Address: 0x27b98c, Func Offset: 0x8c
-	// Line 668, Address: 0x27b994, Func Offset: 0x94
-	// Line 665, Address: 0x27b998, Func Offset: 0x98
-	// Line 668, Address: 0x27b99c, Func Offset: 0x9c
-	// Line 669, Address: 0x27b9b4, Func Offset: 0xb4
-	// Line 671, Address: 0x27b9d0, Func Offset: 0xd0
-	// Line 673, Address: 0x27b9e8, Func Offset: 0xe8
-	// Line 674, Address: 0x27ba18, Func Offset: 0x118
-	// Line 675, Address: 0x27ba24, Func Offset: 0x124
-	// Line 676, Address: 0x27ba38, Func Offset: 0x138
-	// Line 677, Address: 0x27ba40, Func Offset: 0x140
-	// Line 676, Address: 0x27ba44, Func Offset: 0x144
-	// Line 677, Address: 0x27ba48, Func Offset: 0x148
-	// Line 678, Address: 0x27ba4c, Func Offset: 0x14c
-	// Line 679, Address: 0x27ba54, Func Offset: 0x154
-	// Line 680, Address: 0x27ba68, Func Offset: 0x168
-	// Line 682, Address: 0x27ba74, Func Offset: 0x174
-	// Line 683, Address: 0x27ba84, Func Offset: 0x184
-	// Line 682, Address: 0x27ba88, Func Offset: 0x188
-	// Line 683, Address: 0x27ba94, Func Offset: 0x194
-	// Line 682, Address: 0x27ba98, Func Offset: 0x198
-	// Line 683, Address: 0x27ba9c, Func Offset: 0x19c
-	// Line 682, Address: 0x27baa0, Func Offset: 0x1a0
-	// Line 684, Address: 0x27baa8, Func Offset: 0x1a8
-	// Line 683, Address: 0x27baac, Func Offset: 0x1ac
-	// Line 684, Address: 0x27bab0, Func Offset: 0x1b0
-	// Line 683, Address: 0x27bab4, Func Offset: 0x1b4
-	// Line 682, Address: 0x27bab8, Func Offset: 0x1b8
-	// Line 683, Address: 0x27babc, Func Offset: 0x1bc
-	// Line 684, Address: 0x27bac0, Func Offset: 0x1c0
-	// Line 687, Address: 0x27bb00, Func Offset: 0x200
-	// Line 688, Address: 0x27bb08, Func Offset: 0x208
-	// Line 689, Address: 0x27bb10, Func Offset: 0x210
-	// Line 693, Address: 0x27bb24, Func Offset: 0x224
-	// Line 694, Address: 0x27bb54, Func Offset: 0x254
-	// Line 695, Address: 0x27bb60, Func Offset: 0x260
-	// Line 696, Address: 0x27bb74, Func Offset: 0x274
-	// Line 697, Address: 0x27bb7c, Func Offset: 0x27c
-	// Line 696, Address: 0x27bb80, Func Offset: 0x280
-	// Line 697, Address: 0x27bb84, Func Offset: 0x284
-	// Line 698, Address: 0x27bb88, Func Offset: 0x288
-	// Line 699, Address: 0x27bb90, Func Offset: 0x290
-	// Line 700, Address: 0x27bba4, Func Offset: 0x2a4
-	// Line 702, Address: 0x27bbb0, Func Offset: 0x2b0
-	// Line 703, Address: 0x27bbc0, Func Offset: 0x2c0
-	// Line 702, Address: 0x27bbc4, Func Offset: 0x2c4
-	// Line 703, Address: 0x27bbd0, Func Offset: 0x2d0
-	// Line 702, Address: 0x27bbd4, Func Offset: 0x2d4
-	// Line 703, Address: 0x27bbd8, Func Offset: 0x2d8
-	// Line 702, Address: 0x27bbdc, Func Offset: 0x2dc
-	// Line 704, Address: 0x27bbe4, Func Offset: 0x2e4
-	// Line 703, Address: 0x27bbe8, Func Offset: 0x2e8
-	// Line 704, Address: 0x27bbec, Func Offset: 0x2ec
-	// Line 703, Address: 0x27bbf0, Func Offset: 0x2f0
-	// Line 702, Address: 0x27bbf4, Func Offset: 0x2f4
-	// Line 703, Address: 0x27bbf8, Func Offset: 0x2f8
-	// Line 704, Address: 0x27bbfc, Func Offset: 0x2fc
-	// Line 707, Address: 0x27bc3c, Func Offset: 0x33c
-	// Line 708, Address: 0x27bc44, Func Offset: 0x344
-	// Line 709, Address: 0x27bc4c, Func Offset: 0x34c
-	// Line 713, Address: 0x27bc60, Func Offset: 0x360
-	// Line 714, Address: 0x27bcb8, Func Offset: 0x3b8
-	// Line 715, Address: 0x27bcc4, Func Offset: 0x3c4
-	// Line 716, Address: 0x27bcd8, Func Offset: 0x3d8
-	// Line 717, Address: 0x27bce0, Func Offset: 0x3e0
-	// Line 716, Address: 0x27bce4, Func Offset: 0x3e4
-	// Line 717, Address: 0x27bce8, Func Offset: 0x3e8
-	// Line 718, Address: 0x27bcec, Func Offset: 0x3ec
-	// Line 719, Address: 0x27bcf4, Func Offset: 0x3f4
-	// Line 720, Address: 0x27bd08, Func Offset: 0x408
-	// Line 722, Address: 0x27bd14, Func Offset: 0x414
-	// Line 725, Address: 0x27bd5c, Func Offset: 0x45c
-	// Line 726, Address: 0x27bd74, Func Offset: 0x474
-	// Line 727, Address: 0x27bd7c, Func Offset: 0x47c
-	// Line 731, Address: 0x27bda0, Func Offset: 0x4a0
-	// Line 732, Address: 0x27bdd0, Func Offset: 0x4d0
-	// Line 733, Address: 0x27bddc, Func Offset: 0x4dc
-	// Line 734, Address: 0x27bdf0, Func Offset: 0x4f0
-	// Line 735, Address: 0x27bdf8, Func Offset: 0x4f8
-	// Line 734, Address: 0x27bdfc, Func Offset: 0x4fc
-	// Line 735, Address: 0x27be00, Func Offset: 0x500
-	// Line 736, Address: 0x27be04, Func Offset: 0x504
-	// Line 737, Address: 0x27be0c, Func Offset: 0x50c
-	// Line 738, Address: 0x27be20, Func Offset: 0x520
-	// Line 740, Address: 0x27be2c, Func Offset: 0x52c
-	// Line 743, Address: 0x27be74, Func Offset: 0x574
-	// Line 744, Address: 0x27be94, Func Offset: 0x594
-	// Line 745, Address: 0x27be9c, Func Offset: 0x59c
-	// Line 749, Address: 0x27bec8, Func Offset: 0x5c8
-	// Line 750, Address: 0x27bed8, Func Offset: 0x5d8
-	// Line 751, Address: 0x27bee4, Func Offset: 0x5e4
-	// Line 752, Address: 0x27bef8, Func Offset: 0x5f8
-	// Line 753, Address: 0x27bf00, Func Offset: 0x600
-	// Line 752, Address: 0x27bf04, Func Offset: 0x604
-	// Line 753, Address: 0x27bf08, Func Offset: 0x608
-	// Line 754, Address: 0x27bf0c, Func Offset: 0x60c
-	// Line 755, Address: 0x27bf14, Func Offset: 0x614
-	// Line 756, Address: 0x27bf28, Func Offset: 0x628
-	// Line 758, Address: 0x27bf34, Func Offset: 0x634
-	// Line 761, Address: 0x27bf7c, Func Offset: 0x67c
-	// Line 762, Address: 0x27bf94, Func Offset: 0x694
-	// Line 763, Address: 0x27bf9c, Func Offset: 0x69c
-	// Line 767, Address: 0x27bfc0, Func Offset: 0x6c0
-	// Line 769, Address: 0x27bfd0, Func Offset: 0x6d0
-	// Line 770, Address: 0x27bfdc, Func Offset: 0x6dc
-	// Line 771, Address: 0x27bff0, Func Offset: 0x6f0
-	// Line 772, Address: 0x27bff8, Func Offset: 0x6f8
-	// Line 771, Address: 0x27bffc, Func Offset: 0x6fc
-	// Line 772, Address: 0x27c000, Func Offset: 0x700
-	// Line 773, Address: 0x27c004, Func Offset: 0x704
-	// Line 774, Address: 0x27c00c, Func Offset: 0x70c
-	// Line 775, Address: 0x27c020, Func Offset: 0x720
-	// Line 777, Address: 0x27c02c, Func Offset: 0x72c
-	// Line 778, Address: 0x27c03c, Func Offset: 0x73c
-	// Line 777, Address: 0x27c044, Func Offset: 0x744
-	// Line 779, Address: 0x27c048, Func Offset: 0x748
-	// Line 778, Address: 0x27c04c, Func Offset: 0x74c
-	// Line 779, Address: 0x27c058, Func Offset: 0x758
-	// Line 781, Address: 0x27c060, Func Offset: 0x760
-	// Line 783, Address: 0x27c098, Func Offset: 0x798
-	// Line 786, Address: 0x27c0e0, Func Offset: 0x7e0
-	// Line 787, Address: 0x27c0e8, Func Offset: 0x7e8
-	// Line 788, Address: 0x27c0f0, Func Offset: 0x7f0
-	// Line 791, Address: 0x27c104, Func Offset: 0x804
-	// Line 792, Address: 0x27c110, Func Offset: 0x810
-	// Line 793, Address: 0x27c124, Func Offset: 0x824
-	// Line 794, Address: 0x27c12c, Func Offset: 0x82c
-	// Line 793, Address: 0x27c130, Func Offset: 0x830
-	// Line 794, Address: 0x27c134, Func Offset: 0x834
-	// Line 795, Address: 0x27c138, Func Offset: 0x838
-	// Line 796, Address: 0x27c140, Func Offset: 0x840
-	// Line 797, Address: 0x27c154, Func Offset: 0x854
-	// Line 801, Address: 0x27c160, Func Offset: 0x860
-	// Line 803, Address: 0x27c1a8, Func Offset: 0x8a8
-	// Line 801, Address: 0x27c1ac, Func Offset: 0x8ac
-	// Line 803, Address: 0x27c1b4, Func Offset: 0x8b4
-	// Line 806, Address: 0x27c1f8, Func Offset: 0x8f8
-	// Line 807, Address: 0x27c200, Func Offset: 0x900
-	// Line 808, Address: 0x27c208, Func Offset: 0x908
-	// Line 810, Address: 0x27c218, Func Offset: 0x918
-	// Line 811, Address: 0x27c220, Func Offset: 0x920
-	// Line 814, Address: 0x27c22c, Func Offset: 0x92c
-	// Line 816, Address: 0x27c238, Func Offset: 0x938
-	// Line 817, Address: 0x27c244, Func Offset: 0x944
-	// Line 818, Address: 0x27c258, Func Offset: 0x958
-	// Line 819, Address: 0x27c260, Func Offset: 0x960
-	// Line 818, Address: 0x27c264, Func Offset: 0x964
-	// Line 819, Address: 0x27c268, Func Offset: 0x968
-	// Line 820, Address: 0x27c26c, Func Offset: 0x96c
-	// Line 821, Address: 0x27c274, Func Offset: 0x974
-	// Line 822, Address: 0x27c288, Func Offset: 0x988
-	// Line 824, Address: 0x27c294, Func Offset: 0x994
-	// Line 825, Address: 0x27c2a4, Func Offset: 0x9a4
-	// Line 824, Address: 0x27c2ac, Func Offset: 0x9ac
-	// Line 826, Address: 0x27c2b0, Func Offset: 0x9b0
-	// Line 825, Address: 0x27c2b4, Func Offset: 0x9b4
-	// Line 826, Address: 0x27c2c0, Func Offset: 0x9c0
-	// Line 828, Address: 0x27c2c8, Func Offset: 0x9c8
-	// Line 831, Address: 0x27c2f8, Func Offset: 0x9f8
-	// Line 828, Address: 0x27c2fc, Func Offset: 0x9fc
-	// Line 829, Address: 0x27c308, Func Offset: 0xa08
-	// Line 831, Address: 0x27c310, Func Offset: 0xa10
-	// Line 829, Address: 0x27c318, Func Offset: 0xa18
-	// Line 831, Address: 0x27c31c, Func Offset: 0xa1c
-	// Line 832, Address: 0x27c334, Func Offset: 0xa34
-	// Line 833, Address: 0x27c350, Func Offset: 0xa50
-	// Line 836, Address: 0x27c398, Func Offset: 0xa98
-	// Line 837, Address: 0x27c3a0, Func Offset: 0xaa0
-	// Line 838, Address: 0x27c3a8, Func Offset: 0xaa8
-	// Line 842, Address: 0x27c3bc, Func Offset: 0xabc
-	// Line 844, Address: 0x27c3c8, Func Offset: 0xac8
-	// Line 845, Address: 0x27c3d4, Func Offset: 0xad4
-	// Line 846, Address: 0x27c3e8, Func Offset: 0xae8
-	// Line 847, Address: 0x27c3f0, Func Offset: 0xaf0
-	// Line 846, Address: 0x27c3f4, Func Offset: 0xaf4
-	// Line 847, Address: 0x27c3f8, Func Offset: 0xaf8
-	// Line 848, Address: 0x27c3fc, Func Offset: 0xafc
-	// Line 849, Address: 0x27c404, Func Offset: 0xb04
-	// Line 850, Address: 0x27c418, Func Offset: 0xb18
-	// Line 854, Address: 0x27c424, Func Offset: 0xb24
-	// Line 857, Address: 0x27c46c, Func Offset: 0xb6c
-	// Line 854, Address: 0x27c470, Func Offset: 0xb70
-	// Line 855, Address: 0x27c47c, Func Offset: 0xb7c
-	// Line 857, Address: 0x27c484, Func Offset: 0xb84
-	// Line 855, Address: 0x27c48c, Func Offset: 0xb8c
-	// Line 857, Address: 0x27c490, Func Offset: 0xb90
-	// Line 858, Address: 0x27c4a8, Func Offset: 0xba8
-	// Line 859, Address: 0x27c4c4, Func Offset: 0xbc4
-	// Line 862, Address: 0x27c50c, Func Offset: 0xc0c
-	// Line 863, Address: 0x27c514, Func Offset: 0xc14
-	// Line 864, Address: 0x27c51c, Func Offset: 0xc1c
-	// Line 867, Address: 0x27c52c, Func Offset: 0xc2c
-	// Line 870, Address: 0x27c534, Func Offset: 0xc34
-	// Line 872, Address: 0x27c540, Func Offset: 0xc40
-	// Line 873, Address: 0x27c54c, Func Offset: 0xc4c
-	// Line 874, Address: 0x27c560, Func Offset: 0xc60
-	// Line 875, Address: 0x27c568, Func Offset: 0xc68
-	// Line 874, Address: 0x27c56c, Func Offset: 0xc6c
-	// Line 875, Address: 0x27c570, Func Offset: 0xc70
-	// Line 876, Address: 0x27c574, Func Offset: 0xc74
-	// Line 877, Address: 0x27c57c, Func Offset: 0xc7c
-	// Line 878, Address: 0x27c590, Func Offset: 0xc90
-	// Line 880, Address: 0x27c59c, Func Offset: 0xc9c
-	// Line 881, Address: 0x27c5ac, Func Offset: 0xcac
-	// Line 880, Address: 0x27c5b4, Func Offset: 0xcb4
-	// Line 882, Address: 0x27c5b8, Func Offset: 0xcb8
-	// Line 881, Address: 0x27c5bc, Func Offset: 0xcbc
-	// Line 882, Address: 0x27c5c8, Func Offset: 0xcc8
-	// Line 884, Address: 0x27c5d0, Func Offset: 0xcd0
-	// Line 888, Address: 0x27c600, Func Offset: 0xd00
-	// Line 884, Address: 0x27c604, Func Offset: 0xd04
-	// Line 885, Address: 0x27c610, Func Offset: 0xd10
-	// Line 886, Address: 0x27c618, Func Offset: 0xd18
-	// Line 888, Address: 0x27c61c, Func Offset: 0xd1c
-	// Line 885, Address: 0x27c624, Func Offset: 0xd24
-	// Line 888, Address: 0x27c628, Func Offset: 0xd28
-	// Line 889, Address: 0x27c638, Func Offset: 0xd38
-	// Line 891, Address: 0x27c640, Func Offset: 0xd40
-	// Line 892, Address: 0x27c654, Func Offset: 0xd54
-	// Line 894, Address: 0x27c65c, Func Offset: 0xd5c
-	// Line 897, Address: 0x27c6a4, Func Offset: 0xda4
-	// Line 898, Address: 0x27c6ac, Func Offset: 0xdac
-	// Line 899, Address: 0x27c6b4, Func Offset: 0xdb4
-	// Line 903, Address: 0x27c6c8, Func Offset: 0xdc8
-	// Line 905, Address: 0x27c6d4, Func Offset: 0xdd4
-	// Line 906, Address: 0x27c6e0, Func Offset: 0xde0
-	// Line 907, Address: 0x27c6f4, Func Offset: 0xdf4
-	// Line 908, Address: 0x27c6fc, Func Offset: 0xdfc
-	// Line 907, Address: 0x27c700, Func Offset: 0xe00
-	// Line 908, Address: 0x27c704, Func Offset: 0xe04
-	// Line 909, Address: 0x27c708, Func Offset: 0xe08
-	// Line 910, Address: 0x27c710, Func Offset: 0xe10
-	// Line 911, Address: 0x27c724, Func Offset: 0xe24
-	// Line 915, Address: 0x27c730, Func Offset: 0xe30
-	// Line 917, Address: 0x27c778, Func Offset: 0xe78
-	// Line 915, Address: 0x27c77c, Func Offset: 0xe7c
-	// Line 919, Address: 0x27c780, Func Offset: 0xe80
-	// Line 915, Address: 0x27c784, Func Offset: 0xe84
-	// Line 916, Address: 0x27c78c, Func Offset: 0xe8c
-	// Line 919, Address: 0x27c798, Func Offset: 0xe98
-	// Line 920, Address: 0x27c7b0, Func Offset: 0xeb0
-	// Line 922, Address: 0x27c7b8, Func Offset: 0xeb8
-	// Line 923, Address: 0x27c7cc, Func Offset: 0xecc
-	// Line 925, Address: 0x27c7d4, Func Offset: 0xed4
-	// Line 928, Address: 0x27c81c, Func Offset: 0xf1c
-	// Line 929, Address: 0x27c824, Func Offset: 0xf24
-	// Line 930, Address: 0x27c82c, Func Offset: 0xf2c
-	// Line 936, Address: 0x27c840, Func Offset: 0xf40
-	// Line 938, Address: 0x27c850, Func Offset: 0xf50
-	// Line 939, Address: 0x27c858, Func Offset: 0xf58
-	// Line 942, Address: 0x27c864, Func Offset: 0xf64
-	// Line 940, Address: 0x27c868, Func Offset: 0xf68
-	// Line 939, Address: 0x27c86c, Func Offset: 0xf6c
-	// Line 940, Address: 0x27c870, Func Offset: 0xf70
-	// Line 939, Address: 0x27c874, Func Offset: 0xf74
-	// Line 940, Address: 0x27c878, Func Offset: 0xf78
-	// Line 941, Address: 0x27c87c, Func Offset: 0xf7c
-	// Line 940, Address: 0x27c884, Func Offset: 0xf84
-	// Line 941, Address: 0x27c88c, Func Offset: 0xf8c
-	// Line 942, Address: 0x27c894, Func Offset: 0xf94
-	// Line 943, Address: 0x27c89c, Func Offset: 0xf9c
-	// Line 945, Address: 0x27c8a8, Func Offset: 0xfa8
-	// Line 946, Address: 0x27c8e0, Func Offset: 0xfe0
-	// Line 947, Address: 0x27c904, Func Offset: 0x1004
-	// Line 949, Address: 0x27c928, Func Offset: 0x1028
-	// Func End, Address: 0x27c94c, Func Offset: 0x104c
-	scePrintf("bhInitActiveCamera - UNIMPLEMENTED!\n");
+    CUT_WORK* cp;     
+    CAM_WRK* ci;      
+    float nrx, nrz;      
+    float px, py, pz;        
+    float w, d;          
+    unsigned int attr;
+    int xr, yr;            
+    short ax, ay;         
+    NJS_POINT3 sca;    
+    float inn; // not from DWARF
+    float len; // not from DWARF
+    
+    cp = &rom->cutp[cam.ncut];
+    
+    ci = &cp->cam[cam.camver]; 
+    
+    cam.plx = ((float*)plp->exp0)[24] = plp->gpx;
+    cam.ply = ((float*)plp->exp0)[25] = plp->gpy + ci->h;
+    cam.plz = ((float*)plp->exp0)[26] = plp->gpz;
+    
+    attr = bhCheckCutAttribute(plp->gpx, plp->gpz, plp->flr_no);
+    
+    if ((ci->w) && (cp->cw)) 
+    {
+        if ((attr & 0x20))
+        {
+            bhCheckNearAttrOffCutRange(cp, 32, &nrx, &nrz);
+            
+            cam.plx = nrx;
+            cam.plz = nrz;
+        } 
+        else 
+        {
+            cam.plx = plp->gpx;
+            cam.plz = plp->gpz;
+        }
+        
+        px = ci->px - (0.5f * ((0.01f * cp->cw) * ci->w));
+        
+        w = ((cam.plx - cp->cx) * 0.01f) * ci->w;
+        
+        if ((((ci->flg & 0x2)) && (flg == 0)) || (((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4))) 
+        {
+            cam.pxp = px + w;
+        } 
+        else 
+        {
+            cam.px = cam.pxp = px + w;
+        }
+    }
+    
+    if ((ci->d) && (cp->cd)) 
+    {
+        if ((attr & 0x8))
+        {
+            bhCheckNearAttrOffCutRange(cp, 8, &nrx, &nrz);
+            
+            cam.plx = nrx;
+            cam.plz = nrz;
+        }
+        else 
+        {
+            cam.plx = plp->gpx;
+            cam.plz = plp->gpz;
+        }
+        
+        pz = ci->pz - (0.5f * ((0.01f * cp->cd) * ci->d));
+        
+        d = ((cam.plz - cp->cz) * 0.01f) * ci->d;
+        
+        if ((((ci->flg & 0x2)) && (flg == 0)) || (((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4)))
+        {
+            cam.pzp = pz + d;
+        } 
+        else 
+        {
+            cam.pz = cam.pzp = pz + d;
+        }
+    }
+    
+    if ((ci->y0) || (ci->y1) || (ci->y2) || (ci->y3)) 
+    {
+        if ((attr & 0x10)) 
+        {
+            bhCheckNearAttrOffCutRange(cp, 16, &nrx, &nrz);
+            
+            cam.plx = nrx;
+            cam.plz = nrz;
+        } 
+        else 
+        {
+            cam.plx = plp->gpx;
+            cam.plz = plp->gpz;
+        }
+        
+        if ((((ci->flg & 0x2)) && (flg == 0)) || ((((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4))))
+        {
+            cam.pyp = ci->py + bhCalcActiveYpos(cp);
+        } 
+        else 
+        {
+            cam.py = cam.pyp = ci->py + bhCalcActiveYpos(cp);
+        }
+    }
+    
+    if ((ci->laz0 != 0) || (ci->laz1 != 0) || (ci->laz2 != 0) || (ci->laz3 != 0)) 
+    {
+        if ((attr & 0x1)) 
+        {
+            bhCheckNearAttrOffCutRange(cp, 1, &nrx, &nrz);
+            
+            cam.plx = nrx;
+            cam.plz = nrz;
+        } 
+        else 
+        {
+            cam.plx = plp->gpx;
+            cam.plz = plp->gpz;
+        }
+        
+        if ((((ci->flg & 0x2)) && (flg == 0)) || ((((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4)))) 
+        {
+            cam.azp = (short)ci->az + bhCalcActiveZang(cp);
+        } 
+        else 
+        {
+            cam.az = cam.azp = (short)ci->az + bhCalcActiveZang(cp);
+        }   
+    }
+    
+    if ((ci->flg & 0x20)) 
+    {
+        if ((attr & 0x40))
+        {
+            bhCheckNearAttrOffCutRange(cp, 64, &nrx, &nrz);
+            
+            cam.plx = nrx;
+            cam.plz = nrz;
+        } 
+        else 
+        {
+            cam.plx = plp->gpx;
+            cam.plz = plp->gpz;
+        }
+        
+        if ((((ci->flg & 0x2)) && (flg == 0)) || ((((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4)))) 
+        {
+            cam.ppers = bhCalcActivePers(cp);
+        } 
+        else 
+        {
+            cam.pers = cam.ppers = bhCalcActivePers(cp);
+        }
+    }
+    
+    if ((ci->flg & 0x4)) 
+    {
+        if ((attr & 0x4)) 
+        {
+            bhCheckNearAttrOffCutRange(cp, 4, &nrx, &nrz);
+            
+            cam.plx = nrx;
+            cam.plz = nrz;
+        } 
+        else 
+        {
+            cam.plx = plp->gpx;
+            cam.plz = plp->gpz;
+        }
+        
+        px = cam.plx - cam.px;
+        pz = cam.plz - cam.pz;
+        
+        d = njSqrt((px * px) + (pz * pz));
+        
+        py = cam.ply - cam.py;
+        
+        ax = -njArcTan2_MOD(py, d);
+        
+        if ((((ci->flg & 0x2)) && (flg == 0)) || ((((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4)))) 
+        {
+            cam.axp = (unsigned short)ax; 
+        } 
+        else 
+        {
+            cam.ax = cam.axp = (unsigned short)ax;
+        }
+        
+        if ((attr & 0x2))
+        {
+            bhCheckNearAttrOffCutRange(cp, 2, &nrx, &nrz);
+            
+            cam.plx = nrx;
+            cam.plz = nrz;
+        } 
+        else 
+        {
+            cam.plx = plp->gpx;
+            cam.plz = plp->gpz;
+        }
+        
+        ay = (-njArcTan2_MOD(cam.plx - cam.px, cam.plz - cam.pz) + 32767) + 1;
+        
+        if ((((ci->flg & 0x2)) && (flg == 0)) || ((((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4)))) 
+        {
+            cam.ayp = (unsigned short)ay;
+        } 
+        else 
+        {
+            cam.ay = cam.ayp = (unsigned short)ay;
+        }
+    }
+    else if (!(ci->flg & 0x1)) 
+    {
+        if (ci->lax != 0)
+        { 
+            ax = ci->ax;
+                            
+            if ((attr & 0x4)) 
+            {
+                bhCheckNearAttrOffCutRange(cp, 4, &nrx, &nrz);
+                
+                cam.plx = nrx;
+                cam.plz = nrz;
+            } 
+            else 
+            {
+                cam.plx = plp->gpx;
+                cam.plz = plp->gpz;
+            }
+                            
+            px = cam.plx - cam.px;
+            pz = cam.plz - cam.pz;
+            
+            d = njSqrt((px * px) + (pz * pz));
+            
+            py = cam.ply - cam.py;
+            
+            xr = (short)-njArcTan2_MOD(py, d);
+            
+            ax = xr - ax;
+            
+            if (ax < (short)-ci->lax) 
+            { 
+                xr = ci->ax - ci->lax; 
+            }
+            
+            if ((short)ci->lax < ax) 
+            { 
+                xr = ci->ax + ci->lax; 
+            }
+                            
+            if ((((ci->flg & 0x2)) && (flg == 0)) || ((((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4))))
+            {
+                cam.axp = (unsigned short)xr;
+            } 
+            else 
+            {
+                cam.ax = cam.axp = (unsigned short)xr;  
+            }
+        }
+        
+        if (ci->lay != 0) 
+        {
+            ay = ci->ay;
+            
+            if ((attr & 0x2)) 
+            {
+                bhCheckNearAttrOffCutRange(cp, 2, &nrx, &nrz);
+                
+                cam.plx = nrx;
+                cam.plz = nrz;
+            } 
+            else 
+            {
+                cam.plx = plp->gpx; 
+                cam.plz = plp->gpz;
+            }
+            
+            yr = (short)(-njArcTan2_MOD(cam.plx - cam.px, cam.plz - cam.pz) + 32767 + 1); 
+            
+            ay = yr - ay;
+            
+            if (ay < (short)-ci->lay) 
+            {
+                yr = ci->ay - ci->lay;
+            }
+            
+            if ((short)ci->lay < ay) 
+            { 
+                yr = ci->ay + ci->lay;
+            }
+            
+            if ((((ci->flg & 0x2)) && (flg == 0)) || ((((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4)))) 
+            {
+                cam.ayp = (unsigned short)yr; 
+            } 
+            else 
+            {
+                cam.ay = cam.ayp = (unsigned short)yr;
+            }
+        }
+    }
+    else 
+    {
+        if (ci->lax != 0) 
+        {
+            ax = ci->ax;
+            
+            if ((attr & 0x4)) 
+            {
+                bhCheckNearAttrOffCutRange(cp, 4, &nrx, &nrz);
+                
+                cam.plx = nrx;
+                cam.plz = nrz;
+            } 
+            else 
+            {
+                cam.plx = plp->gpx;
+                cam.plz = plp->gpz;
+            }
+            
+            px = cam.plx - cam.px;
+            pz = cam.plz - cam.pz;
+            
+            d = njSqrt((px * px) + (pz * pz));
+            
+            py = cam.ply - cam.py;
+            
+            ay = -njArcTan2_MOD(py, d);
+            ay -= ax;
+            
+            yr = ci->ax;
+            
+            if (ay < (short)-ci->lax) 
+            {
+                yr = ci->ax + (ay + ci->lax);
+            }
+            
+            if ((short)ci->lax < ay) 
+            {
+                yr = ci->ax + (ay - ci->lax);
+            }
+            
+            if ((((ci->flg & 0x2)) && (flg == 0)) || ((((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4)))) 
+            {
+                cam.axp = (unsigned short)yr;
+            } 
+            else 
+            {
+                cam.ax = cam.axp = (unsigned short)yr;
+            }
+        }
+      
+        if (ci->lay != 0) 
+        {
+            ay = ci->ay;
+            
+            if ((attr & 0x2)) 
+            {
+                bhCheckNearAttrOffCutRange(cp, 2, &nrx, &nrz);
+                
+                cam.plx = nrx;
+                cam.plz = nrz;
+            } 
+            else 
+            {
+                cam.plx = plp->gpx;
+                cam.plz = plp->gpz;
+            }
+            
+            ax = (-njArcTan2_MOD(cam.plx - cam.px, cam.plz - cam.pz) + 32767) + 1;
+            ax -= ay;
+            
+            yr = ci->ay;
+            
+            if (ax < (short)-ci->lay) 
+            {
+                yr = ci->ay + (ax + ci->lay);
+            }
+            
+            if ((short)ci->lay < ax) 
+            {
+                yr = ci->ay + (ax - ci->lay);
+            } 
+            
+            if ((((ci->flg & 0x2)) && (flg == 0)) || ((((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4)))) 
+            {
+                cam.ayp = (unsigned short)yr;
+            } 
+            else 
+            {
+                cam.ay = cam.ayp = (unsigned short)yr;
+            }
+        }
+    }
+    
+    if ((ci->flg & 0xC0)) 
+    {
+        bhGetCameraPosition();
+        
+        sca.x = cam.wpx - ci->px;
+        sca.y = cam.wpy - ci->py;
+        sca.z = cam.wpz - ci->pz;
+        
+        len = njScalor(&sca);
+        
+        njUnitVector(&sca);
+        
+        if (len) 
+        {
+            inn = njInnerProduct((NJS_VECTOR*)&cam.vx, &sca);
+        }
+        else 
+        { 
+            inn = 1.0f;
+        }
+        
+        if ((ci->flg & 0x40)) 
+        { 
+            cam.fog_nr = ci->fog_nr + (len * inn);
+        }
+        
+        if ((ci->flg & 0x80)) 
+        { 
+            cam.fog_fr = ci->fog_fr + (len * inn);
+        }
+    }
 }
 
 // 100% matching!

@@ -13,7 +13,7 @@ void bhSetRenderCut(int cno);
 void bhSetHideObjLgt(int cno);
 void bhSetHideObject(int offset);
 void bhInitActiveCamera(int flg);
-/*void bhCheckNearAttrOffCutRange(_anon10* cp, unsigned int sft, float* px, float* pz);*/
+void bhCheckNearAttrOffCutRange(CUT_WORK* cp, unsigned int sft, float* px, float* pz);
 void bhControlActiveCamera();
 void bhSetEventCamera(int evc_no, int key_no);
 void bhSetEventFixedCut(int cno, int kno);
@@ -26,8 +26,8 @@ void bhControlPlEyeCamera(unsigned int attr);
 void bhInitPlEyeCamera();
 void bhSetPlEyeCamera();
 void bhControlMonitorCamera();
-/*float bhCalcActiveYpos(_anon10* cp);
-short bhCalcActiveZang(_anon10* cp);
-short bhCalcActivePers(_anon10* cp);*/
+float bhCalcActiveYpos(CUT_WORK* cp);
+short bhCalcActiveZang(CUT_WORK* cp);
+short bhCalcActivePers(CUT_WORK* cp);
 
 #endif
