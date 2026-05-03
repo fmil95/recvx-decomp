@@ -610,57 +610,75 @@ void bhEff_E00_Acid(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x23e560
-void bhEff_E00_AcidGenerator(O_WRK* op)
+// 100% matching!
+void bhEff_E00_AcidGenerator(O_WRK* op) 
 {
-	BH_PWORK* pp;
-	// Line 636, Address: 0x23e560, Func Offset: 0
-	// Line 640, Address: 0x23e56c, Func Offset: 0xc
-	// Line 641, Address: 0x23e570, Func Offset: 0x10
-	// Line 642, Address: 0x23e578, Func Offset: 0x18
-	// Line 648, Address: 0x23e58c, Func Offset: 0x2c
-	// Line 651, Address: 0x23e5b8, Func Offset: 0x58
-	// Line 652, Address: 0x23e5c0, Func Offset: 0x60
-	// Line 654, Address: 0x23e5cc, Func Offset: 0x6c
-	// Line 655, Address: 0x23e5dc, Func Offset: 0x7c
-	// Line 657, Address: 0x23e5e4, Func Offset: 0x84
-	// Line 660, Address: 0x23e5ec, Func Offset: 0x8c
-	// Line 661, Address: 0x23e5f8, Func Offset: 0x98
-	// Line 671, Address: 0x23e5fc, Func Offset: 0x9c
-	// Line 660, Address: 0x23e600, Func Offset: 0xa0
-	// Line 661, Address: 0x23e60c, Func Offset: 0xac
-	// Line 671, Address: 0x23e614, Func Offset: 0xb4
-	// Line 661, Address: 0x23e61c, Func Offset: 0xbc
-	// Line 662, Address: 0x23e628, Func Offset: 0xc8
-	// Line 663, Address: 0x23e63c, Func Offset: 0xdc
-	// Line 664, Address: 0x23e654, Func Offset: 0xf4
-	// Line 665, Address: 0x23e66c, Func Offset: 0x10c
-	// Line 666, Address: 0x23e684, Func Offset: 0x124
-	// Line 667, Address: 0x23e69c, Func Offset: 0x13c
-	// Line 668, Address: 0x23e6b4, Func Offset: 0x154
-	// Line 669, Address: 0x23e6cc, Func Offset: 0x16c
-	// Line 670, Address: 0x23e6e0, Func Offset: 0x180
-	// Line 671, Address: 0x23e6f4, Func Offset: 0x194
-	// Line 673, Address: 0x23e70c, Func Offset: 0x1ac
-	// Line 674, Address: 0x23e760, Func Offset: 0x200
-	// Line 675, Address: 0x23e7b4, Func Offset: 0x254
-	// Line 676, Address: 0x23e7d8, Func Offset: 0x278
-	// Line 675, Address: 0x23e7dc, Func Offset: 0x27c
-	// Line 676, Address: 0x23e7fc, Func Offset: 0x29c
-	// Line 681, Address: 0x23e800, Func Offset: 0x2a0
-	// Line 675, Address: 0x23e80c, Func Offset: 0x2ac
-	// Line 676, Address: 0x23e820, Func Offset: 0x2c0
-	// Line 677, Address: 0x23e840, Func Offset: 0x2e0
-	// Line 678, Address: 0x23e85c, Func Offset: 0x2fc
-	// Line 679, Address: 0x23e878, Func Offset: 0x318
-	// Line 680, Address: 0x23e88c, Func Offset: 0x32c
-	// Line 681, Address: 0x23e8a0, Func Offset: 0x340
-	// Line 684, Address: 0x23e8b8, Func Offset: 0x358
-	// Line 686, Address: 0x23e8cc, Func Offset: 0x36c
-	// Line 688, Address: 0x23e8dc, Func Offset: 0x37c
-	// Func End, Address: 0x23e8ec, Func Offset: 0x38c
-	scePrintf("bhEff_E00_AcidGenerator - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    O_WRK* owp; // not from DWARF
+    
+    owp = (O_WRK*)op->lkwkp;
+    
+    if ((owp == NULL) || (!(owp->stflg & 0x1000000)))
+    {
+        switch (op->mode0)
+        {                          
+        case 0:
+            op->ct0 = 5;
+            
+            op->mode0++;
+        case 1:
+            if (op->ct0-- == 0)
+            {
+                op->mode0++;
+                return;
+            }
+            
+            break;
+        case 2:
+            sys->ef.id = 257;
+            
+            sys->ef.flg = 1;
+            sys->ef.type = 0;
+            
+            sys->ef.px = op->px;
+            sys->ef.py = op->py;
+            sys->ef.pz = op->pz;
+            
+            sys->ef.sx = op->sx;
+            sys->ef.sy = op->sy;
+            sys->ef.sz = op->sz;
+            
+            sys->ef.ax = 0;
+            sys->ef.ay = 0;
+            
+            bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+            
+            sys->ef.px = op->px + (0.5f * (op->sx * ((-rand() / -2.1474836E9f) - 0.5f)));
+            sys->ef.py = op->py + (0.5f * (op->sy * ((-rand() / -2.1474836E9f) - 0.5f)));
+            sys->ef.pz = op->pz + (0.5f * (op->sz * ((-rand() / -2.1474836E9f) - 0.5f)));
+            
+            sys->ef.sx = 0.4f * op->sx;
+            sys->ef.sy = 0.4f * op->sy;
+            sys->ef.sz = 0.4f * op->sz;
+            
+            sys->ef.ax = 0;
+            sys->ef.ay = 0;
+            
+            bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+            
+            if (op->type > 0)
+            {
+                op->type--;
+            }
+            
+            if (op->type == 0) 
+            {
+                op->flg = 0;
+            }
+            
+            break;
+        }
+    }
 }
 
 // 
