@@ -607,9 +607,9 @@ void bhEff144(O_WRK* op)
 // 100% matching!
 void bhEff143_sub(O_WRK* op)
 {
-    P_WORK* pp; 
+    P_WRK* pp; 
 
-    pp = (P_WORK*)op->exp0;
+    pp = (P_WRK*)op->exp0;
     
     if (!(op->stflg & 0x20)) 
     {
@@ -647,7 +647,7 @@ void bhEff143(O_WRK* op)
 {
     NJS_POINT3* p, *v;              
     int i;                  
-    P_WORK* pp; // different order in regards to DWARF                 
+    P_WRK* pp; // different order in regards to DWARF                 
     unsigned int col[3] = 
     { 
         0xE233200,
@@ -688,7 +688,7 @@ void bhEff143(O_WRK* op)
         op->func = (void*)bhEff143_sub;
         break;
     case 1:                                         
-        pp = (P_WORK*)op->exp0;
+        pp = (P_WRK*)op->exp0;
         
         p = pp->pos;
         v = pp->vec;
@@ -722,7 +722,7 @@ void bhEff143(O_WRK* op)
     case 0:                                     
         return;
     case 1:                                     
-        pp = (P_WORK*)op->exp0;
+        pp = (P_WRK*)op->exp0;
         
         p = pp->pos;
         v = pp->vec;

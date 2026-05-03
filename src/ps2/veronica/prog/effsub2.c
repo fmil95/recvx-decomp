@@ -1,6 +1,8 @@
 #include "../../../ps2/veronica/prog/effsub2.h"
+#include "../../../ps2/veronica/prog/effsub6.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
 
 /*void* bhJumpEffect[0];
 _anon5* sys;
@@ -173,20 +175,18 @@ void bhEff_E00_DrawParticleSpr(O_WRK* op)
 	scePrintf("bhEff_E00_DrawParticleSpr - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x23dcb0
+// 100% matching!
 void bhEff_E00_DrawParticlePly(O_WRK* op)
 {
-	//_anon6* pp;
-	// Line 317, Address: 0x23dcb0, Func Offset: 0
-	// Line 318, Address: 0x23dcbc, Func Offset: 0xc
-	// Line 320, Address: 0x23dcc0, Func Offset: 0x10
-	// Line 321, Address: 0x23dcd0, Func Offset: 0x20
-	// Line 322, Address: 0x23dcd8, Func Offset: 0x28
-	// Line 323, Address: 0x23dce8, Func Offset: 0x38
-	// Line 325, Address: 0x23dcf0, Func Offset: 0x40
-	// Func End, Address: 0x23dd00, Func Offset: 0x50
-	scePrintf("bhEff_E00_DrawParticlePly - UNIMPLEMENTED!\n");
+    P_WRK* pp;
+
+    pp = (P_WRK*)op->exp0;
+    
+    njSetMatrix(NULL, cam.mtx);
+    
+    njPtclPolygonStart(pp->col);
+    njPtclDrawPolygon(pp->pos, pp->num, pp->sx);
+    njPtclPolygonEnd();
 }
 
 // 
