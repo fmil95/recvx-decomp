@@ -378,70 +378,146 @@ void bhEff_E00_DropBlood(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x23df30
-void bhEff_E00_Fire(O_WRK* op)
+// 100% matching!
+void bhEff_E00_Fire(O_WRK* op) 
 {
-	BH_PWORK* pp;
-	UV_WORK* uvp;
-	UV_WORK* uvtble[3];
-	// Line 419, Address: 0x23df30, Func Offset: 0
-	// Line 468, Address: 0x23df3c, Func Offset: 0xc
-	// Line 469, Address: 0x23df40, Func Offset: 0x10
-	// Line 470, Address: 0x23df48, Func Offset: 0x18
-	// Line 476, Address: 0x23df5c, Func Offset: 0x2c
-	// Line 478, Address: 0x23df94, Func Offset: 0x64
-	// Line 479, Address: 0x23df9c, Func Offset: 0x6c
-	// Line 483, Address: 0x23dfa0, Func Offset: 0x70
-	// Line 478, Address: 0x23dfa8, Func Offset: 0x78
-	// Line 479, Address: 0x23dfb0, Func Offset: 0x80
-	// Line 483, Address: 0x23dfb4, Func Offset: 0x84
-	// Line 484, Address: 0x23dfbc, Func Offset: 0x8c
-	// Line 485, Address: 0x23dfc4, Func Offset: 0x94
-	// Line 486, Address: 0x23dfcc, Func Offset: 0x9c
-	// Line 488, Address: 0x23dfd0, Func Offset: 0xa0
-	// Line 486, Address: 0x23dfd8, Func Offset: 0xa8
-	// Line 487, Address: 0x23dfdc, Func Offset: 0xac
-	// Line 488, Address: 0x23dfe4, Func Offset: 0xb4
-	// Line 489, Address: 0x23dfe8, Func Offset: 0xb8
-	// Line 491, Address: 0x23dfec, Func Offset: 0xbc
-	// Line 492, Address: 0x23dff0, Func Offset: 0xc0
-	// Line 493, Address: 0x23dff4, Func Offset: 0xc4
-	// Line 494, Address: 0x23dffc, Func Offset: 0xcc
-	// Line 496, Address: 0x23e004, Func Offset: 0xd4
-	// Line 497, Address: 0x23e010, Func Offset: 0xe0
-	// Line 498, Address: 0x23e018, Func Offset: 0xe8
-	// Line 499, Address: 0x23e058, Func Offset: 0x128
-	// Line 500, Address: 0x23e064, Func Offset: 0x134
-	// Line 501, Address: 0x23e06c, Func Offset: 0x13c
-	// Line 503, Address: 0x23e074, Func Offset: 0x144
-	// Line 504, Address: 0x23e094, Func Offset: 0x164
-	// Line 505, Address: 0x23e0ac, Func Offset: 0x17c
-	// Line 507, Address: 0x23e0b4, Func Offset: 0x184
-	// Line 508, Address: 0x23e0c4, Func Offset: 0x194
-	// Line 509, Address: 0x23e0d0, Func Offset: 0x1a0
-	// Line 510, Address: 0x23e0d4, Func Offset: 0x1a4
-	// Line 512, Address: 0x23e0dc, Func Offset: 0x1ac
-	// Line 514, Address: 0x23e0e4, Func Offset: 0x1b4
-	// Line 516, Address: 0x23e0f0, Func Offset: 0x1c0
-	// Line 518, Address: 0x23e0f8, Func Offset: 0x1c8
-	// Line 519, Address: 0x23e124, Func Offset: 0x1f4
-	// Line 523, Address: 0x23e138, Func Offset: 0x208
-	// Line 525, Address: 0x23e144, Func Offset: 0x214
-	// Line 523, Address: 0x23e14c, Func Offset: 0x21c
-	// Line 525, Address: 0x23e150, Func Offset: 0x220
-	// Line 523, Address: 0x23e154, Func Offset: 0x224
-	// Line 524, Address: 0x23e164, Func Offset: 0x234
-	// Line 523, Address: 0x23e16c, Func Offset: 0x23c
-	// Line 525, Address: 0x23e170, Func Offset: 0x240
-	// Line 526, Address: 0x23e1a0, Func Offset: 0x270
-	// Line 530, Address: 0x23e1a4, Func Offset: 0x274
-	// Line 532, Address: 0x23e1b4, Func Offset: 0x284
-	// Line 533, Address: 0x23e1d4, Func Offset: 0x2a4
-	// Line 534, Address: 0x23e1e8, Func Offset: 0x2b8
-	// Line 536, Address: 0x23e20c, Func Offset: 0x2dc
-	// Func End, Address: 0x23e21c, Func Offset: 0x2ec
-	scePrintf("bhEff_E00_Fire - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    BH_PWORK* pp;
+    static UV_WORK BH_UVTAB0[11] = 
+    {
+        {  0.0f,    0.375f,  0.1875f, 0.1875f },
+        {  0.1875f, 0.375f,  0.1875f, 0.1875f },
+        {  0.375f,  0.375f,  0.1875f, 0.1875f },
+        {  0.5625f, 0.375f,  0.1875f, 0.1875f },
+        {  0.75f,   0.375f,  0.1875f, 0.1875f },
+        {  0.0f,    0.5625f, 0.1875f, 0.1875f },
+        {  0.1875f, 0.5625f, 0.1875f, 0.1875f },
+        {  0.375f,  0.5625f, 0.1875f, 0.1875f },
+        {  0.5625f, 0.5625f, 0.1875f, 0.1875f },
+        {  0.75f,   0.5625f, 0.1875f, 0.1875f },
+        { -1.0f,    0.0f,    0.0f,    0.0f    }
+    };
+    static UV_WORK BH_UVTAB1[11] = 
+    {
+        {  0.0f,    0.0f,    0.1875f, 0.1875f },
+        {  0.1875f, 0.0f,    0.1875f, 0.1875f },
+        {  0.375f,  0.0f,    0.1875f, 0.1875f },
+        {  0.5625f, 0.0f,    0.1875f, 0.1875f },
+        {  0.75f,   0.0f,    0.1875f, 0.1875f },
+        {  0.0f,    0.1875f, 0.1875f, 0.1875f },
+        {  0.1875f, 0.1875f, 0.1875f, 0.1875f },
+        {  0.375f,  0.1875f, 0.1875f, 0.1875f },
+        {  0.5625f, 0.1875f, 0.1875f, 0.1875f },
+        {  0.75f,   0.1875f, 0.1875f, 0.1875f },
+        { -1.0f,    0.0f,    0.0f,    0.0f    }
+    };
+    static UV_WORK BH_UVTAB2[11] = 
+    {
+        {  0.75f,   0.5625f, 0.1875f, 0.1875f },
+        {  0.5625f, 0.5625f, 0.1875f, 0.1875f },
+        {  0.375f,  0.5625f, 0.1875f, 0.1875f },
+        {  0.1875f, 0.5625f, 0.1875f, 0.1875f },
+        {  0.0f,    0.5625f, 0.1875f, 0.1875f },
+        {  0.75f,   0.375f,  0.1875f, 0.1875f },
+        {  0.5625f, 0.375f,  0.1875f, 0.1875f },
+        {  0.375f,  0.375f,  0.1875f, 0.1875f },
+        {  0.1875f, 0.375f,  0.1875f, 0.1875f },
+        {  0.0f,    0.375f,  0.1875f, 0.1875f },
+        { -1.0f,    0.0f,    0.0f,    0.0f    }
+    };
+    static UV_WORK* uvtble[3] = 
+    {
+        BH_UVTAB0,
+        BH_UVTAB1,
+        BH_UVTAB2
+    };
+
+    pp = (BH_PWORK*)op->lkwkp;
+    
+    if ((pp != NULL) && ((pp->stflg & 0x1000000))) 
+    {
+        return;
+    }
+
+    switch (op->mode0) 
+    {
+    case 0:
+        op->flg    |= 0x4180000;
+        
+        op->tex_id  = 8;
+        
+        bhEff_SetBaseColor(op, 0x80FFFFFF);
+        
+        op->bl_src  = 8;
+        op->bl_dst  = 10;
+        
+        op->sxb     = op->sx;
+        op->syb     = op->sy;
+        
+        op->sx      = 0.1f;
+        op->sy      = 0.1f;
+        
+        op->mtn_no  = 0;
+        op->frm_no  = 0;
+        
+        op->mode0++;
+        break;
+    case 1:
+        if (op->frm_no == 0) 
+        {
+            op->mtn_no++;
+            
+            op->frm_no = 10.0f * (-rand() / -2.1474836E9f);
+            
+            op->mode0++;
+            
+            op->sx      = op->sxb;
+            op->sy      = op->syb;
+        }
+
+        op->sx += (op->sxb - op->sx) / 32.0f;
+        op->sy += (op->syb - op->sy) / 32.0f;
+        break;
+    case 2:
+        if (op->ct0-- == 0) 
+        {
+            op->mtn_no++;
+            
+            op->frm_no  = 0;
+            
+            op->mode0++;
+        }
+        
+        break;
+    case 3:
+        if (op->frm_no == 0)
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        op->sx += (0.01f - op->sx) / 32.0f;
+        op->sy += (0.01f - op->sy) / 32.0f;
+        break;
+    }
+
+    uvp = &uvtble[op->mtn_no][op->frm_no];
+    
+    op->frm_no++;
+    
+    if (uvtble[op->mtn_no][op->frm_no].u < 0) 
+    {
+        op->frm_no = 0;
+    }
+
+    bhEff_SetUVInfo(op, uvp, 0.125f);
+
+    if (sys->ef_trsn < 512) 
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
 
 // 
