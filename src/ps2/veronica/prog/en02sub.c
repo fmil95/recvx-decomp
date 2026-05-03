@@ -1,20 +1,24 @@
 #include "../../../ps2/veronica/prog/en02sub.h"
+#include "../../../ps2/veronica/prog/main.h"
+
+typedef void (*bhEne02sub_Mode0_proc)(BH_PWORK* epw);
 
 /*_anon10 Open[4];
-_anon10 Close[3];
-void(*bhEne02sub_Mode0)(BH_PWORK*)[2];
-void(*bhEne02sub_MoveMode2)(BH_PWORK*)[5];
-BH_PWORK* plp;
+_anon10 Close[3];*/
+bhEne02sub_Mode0_proc bhEne02sub_Mode0[2] = 
+{
+	bhEne02sub_Init,
+	bhEne02sub_Move
+};
+/*void(*bhEne02sub_MoveMode2)(BH_PWORK*)[5];*/
 
-// 
-// Start address: 0x196330
+// 100% matching!
 void bhEne02sub(BH_PWORK* epw)
 {
-	// Line 128, Address: 0x196330, Func Offset: 0
-	// Func End, Address: 0x196350, Func Offset: 0x20
+    bhEne02sub_Mode0[epw->mode0](epw);
 }
 
-// 
+/*// 
 // Start address: 0x196350
 void bhEne02sub_Init(BH_PWORK* epw)
 {
@@ -42,7 +46,7 @@ void bhEne02sub_Move(BH_PWORK* epw)
 // 100% matching!
 void bhEne02sub_MV00()
 {
-	
+
 }
 
 /*// 
@@ -200,4 +204,3 @@ void bhEne02sub_MV04(BH_PWORK* epw)
 	// Line 412, Address: 0x1969a0, Func Offset: 0x160
 	// Func End, Address: 0x1969b4, Func Offset: 0x174
 }*/
-
