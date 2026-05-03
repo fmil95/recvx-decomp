@@ -2240,64 +2240,84 @@ void SpriteSet2D(S_WORK* st, PARTS* cbjim, NJS_TEXANIM* anim1, NJS_TEXLIST* tlis
     }
 }
 
-// 
-// Start address: 0x29bfd0
+// 100% matching!
 void ItemSort()
 {
-	unsigned int num2;
-	unsigned int num1;
-	unsigned int itmbk[10];
-	unsigned int wpn;
 	S_WORK* st;
-	// Line 1747, Address: 0x29bfd0, Func Offset: 0
-	// Line 1748, Address: 0x29bfd4, Func Offset: 0x4
-	// Line 1752, Address: 0x29bfd8, Func Offset: 0x8
-	// Line 1748, Address: 0x29bfdc, Func Offset: 0xc
-	// Line 1751, Address: 0x29bfe0, Func Offset: 0x10
-	// Line 1752, Address: 0x29bfe4, Func Offset: 0x14
-	// Line 1754, Address: 0x29bfec, Func Offset: 0x1c
-	// Line 1753, Address: 0x29bff0, Func Offset: 0x20
-	// Line 1754, Address: 0x29bff8, Func Offset: 0x28
-	// Line 1756, Address: 0x29c008, Func Offset: 0x38
-	// Line 1758, Address: 0x29c020, Func Offset: 0x50
-	// Line 1762, Address: 0x29c028, Func Offset: 0x58
-	// Line 1757, Address: 0x29c02c, Func Offset: 0x5c
-	// Line 1758, Address: 0x29c040, Func Offset: 0x70
-	// Line 1760, Address: 0x29c060, Func Offset: 0x90
-	// Line 1762, Address: 0x29c068, Func Offset: 0x98
-	// Line 1763, Address: 0x29c074, Func Offset: 0xa4
-	// Line 1762, Address: 0x29c078, Func Offset: 0xa8
-	// Line 1764, Address: 0x29c07c, Func Offset: 0xac
-	// Line 1766, Address: 0x29c080, Func Offset: 0xb0
-	// Line 1769, Address: 0x29c090, Func Offset: 0xc0
-	// Line 1771, Address: 0x29c0b4, Func Offset: 0xe4
-	// Line 1777, Address: 0x29c0bc, Func Offset: 0xec
-	// Line 1770, Address: 0x29c0c0, Func Offset: 0xf0
-	// Line 1771, Address: 0x29c0d4, Func Offset: 0x104
-	// Line 1772, Address: 0x29c100, Func Offset: 0x130
-	// Line 1774, Address: 0x29c104, Func Offset: 0x134
-	// Line 1777, Address: 0x29c128, Func Offset: 0x158
-	// Line 1778, Address: 0x29c134, Func Offset: 0x164
-	// Line 1779, Address: 0x29c138, Func Offset: 0x168
-	// Line 1781, Address: 0x29c150, Func Offset: 0x180
-	// Line 1782, Address: 0x29c15c, Func Offset: 0x18c
-	// Line 1781, Address: 0x29c160, Func Offset: 0x190
-	// Line 1783, Address: 0x29c164, Func Offset: 0x194
-	// Line 1785, Address: 0x29c168, Func Offset: 0x198
-	// Line 1788, Address: 0x29c178, Func Offset: 0x1a8
-	// Line 1789, Address: 0x29c180, Func Offset: 0x1b0
-	// Line 1790, Address: 0x29c188, Func Offset: 0x1b8
-	// Line 1789, Address: 0x29c190, Func Offset: 0x1c0
-	// Line 1790, Address: 0x29c19c, Func Offset: 0x1cc
-	// Line 1792, Address: 0x29c1a4, Func Offset: 0x1d4
-	// Line 1796, Address: 0x29c1a8, Func Offset: 0x1d8
-	// Line 1797, Address: 0x29c1e8, Func Offset: 0x218
-	// Line 1799, Address: 0x29c1f4, Func Offset: 0x224
-	// Line 1800, Address: 0x29c204, Func Offset: 0x234
-	// Line 1802, Address: 0x29c208, Func Offset: 0x238
-	// Line 1803, Address: 0x29c210, Func Offset: 0x240
-	// Func End, Address: 0x29c218, Func Offset: 0x248
-	scePrintf("ItemSort - UNIMPLEMENTED!\n");
+    unsigned int wpn;
+    unsigned int itmbk[10];   
+    unsigned int num1, num2;
+
+    st = &swork;
+    
+    num2 = 0;
+
+    for (num1 = 0; num1 < 10; num1++)
+    {
+        itmbk[num1] = 0;
+    }
+    
+    for (num1 = 0; num1 < 10; num1++)
+    {
+        wpn = (((NJS_TEXNAME *)&st->pip[num1])->texaddr >> 16) & 0xFF;
+        
+        if ((itemdata[wpn].type & 0x100))
+        {
+            itmbk[num2] = ((NJS_TEXNAME*)&st->pip[num1])->texaddr;
+            
+            if ((swork.flgchk & 0x10)) 
+            {
+                itmbk[num2] |= 0x8000000;
+            }
+            
+            num2++;
+        }
+    }
+    
+    for (num1 = 0; num1 < 10; num1++)
+    {
+        wpn = (((NJS_TEXNAME*)&st->pip[num1])->texaddr >> 16) & 0xFF;
+        
+        if ((!(itemdata[wpn].type & 0x100)) && (wpn != 0))
+        {
+            itmbk[num2] = ((NJS_TEXNAME*)&st->pip[num1])->texaddr;
+            
+            if ((((itemdata[wpn].type & 0x1)) || ((itemdata[wpn].type & 0x10))) && ((swork.flgchk & 0x10)))
+            {
+                itmbk[num2] |= 0x8000000;
+            }
+            
+            if (((itemdata[wpn].type & 0x2)) && ((swork.flgchk & 0x20))) 
+            {
+                itmbk[num2] |= 0x8000000;
+            }
+                
+            num2++;
+        }
+    }
+    
+    for (num1 = 0; num1 < 10; num1++)
+    {
+        ((NJS_TEXNAME*)&st->pip[num1])->texaddr = itmbk[num1];
+    }
+    
+    num1 = 0;
+    
+    do
+    {
+        wpn = (((NJS_TEXNAME*)&st->pip[num1])->texaddr >> 16) & 0xFF;
+        
+        if (!(itemdata[wpn].type & 0x100))
+        {
+            sakai = num1 + 2;
+            
+            num1 = 0;
+        } 
+        else if ((itemdata[wpn].type & 0x100))
+        {
+            num1++;
+        }
+    } while (num1 != 0);
 }
  
 // Start address: 0x29c220
