@@ -145,61 +145,83 @@ void bhEne02sub_MV02(BH_PWORK* epw)
     }
 }
 
-/*// 
-// Start address: 0x1965d0
+// 100% matching!
 void bhEne02sub_MV03(BH_PWORK* epw)
 {
-	_anon8 pos;
 	BH_PWORK* ep;
-	// Line 288, Address: 0x1965d0, Func Offset: 0
-	// Line 289, Address: 0x1965e0, Func Offset: 0x10
-	// Line 292, Address: 0x1965e8, Func Offset: 0x18
-	// Line 295, Address: 0x196620, Func Offset: 0x50
-	// Line 310, Address: 0x196628, Func Offset: 0x58
-	// Line 295, Address: 0x19662c, Func Offset: 0x5c
-	// Line 312, Address: 0x196634, Func Offset: 0x64
-	// Line 313, Address: 0x196674, Func Offset: 0xa4
-	// Line 316, Address: 0x196680, Func Offset: 0xb0
-	// Line 317, Address: 0x196698, Func Offset: 0xc8
-	// Line 319, Address: 0x1966a0, Func Offset: 0xd0
-	// Line 320, Address: 0x1966b8, Func Offset: 0xe8
-	// Line 321, Address: 0x1966d0, Func Offset: 0x100
-	// Line 323, Address: 0x1966e0, Func Offset: 0x110
-	// Line 321, Address: 0x1966e4, Func Offset: 0x114
-	// Line 322, Address: 0x1966e8, Func Offset: 0x118
-	// Line 321, Address: 0x1966ec, Func Offset: 0x11c
-	// Line 322, Address: 0x1966f4, Func Offset: 0x124
-	// Line 323, Address: 0x1966fc, Func Offset: 0x12c
-	// Line 322, Address: 0x196700, Func Offset: 0x130
-	// Line 323, Address: 0x196708, Func Offset: 0x138
-	// Line 324, Address: 0x196710, Func Offset: 0x140
-	// Line 325, Address: 0x19671c, Func Offset: 0x14c
-	// Line 326, Address: 0x196728, Func Offset: 0x158
-	// Line 329, Address: 0x196734, Func Offset: 0x164
-	// Line 330, Address: 0x196740, Func Offset: 0x170
-	// Line 329, Address: 0x196744, Func Offset: 0x174
-	// Line 330, Address: 0x19674c, Func Offset: 0x17c
-	// Line 331, Address: 0x196760, Func Offset: 0x190
-	// Line 336, Address: 0x196764, Func Offset: 0x194
-	// Line 338, Address: 0x196780, Func Offset: 0x1b0
-	// Line 340, Address: 0x19678c, Func Offset: 0x1bc
-	// Line 341, Address: 0x1967a0, Func Offset: 0x1d0
-	// Line 344, Address: 0x1967a4, Func Offset: 0x1d4
-	// Line 347, Address: 0x1967a8, Func Offset: 0x1d8
-	// Line 344, Address: 0x1967b4, Func Offset: 0x1e4
-	// Line 345, Address: 0x1967b8, Func Offset: 0x1e8
-	// Line 346, Address: 0x1967c0, Func Offset: 0x1f0
-	// Line 347, Address: 0x1967c4, Func Offset: 0x1f4
-	// Line 349, Address: 0x1967cc, Func Offset: 0x1fc
-	// Line 351, Address: 0x1967d4, Func Offset: 0x204
-	// Line 353, Address: 0x1967dc, Func Offset: 0x20c
-	// Line 356, Address: 0x1967e4, Func Offset: 0x214
-	// Line 357, Address: 0x196800, Func Offset: 0x230
-	// Line 358, Address: 0x196810, Func Offset: 0x240
-	// Line 360, Address: 0x19681c, Func Offset: 0x24c
-	// Line 368, Address: 0x196820, Func Offset: 0x250
-	// Func End, Address: 0x196834, Func Offset: 0x264
-}*/
+    NJS_POINT3 pos;   
+
+    ep = (BH_PWORK*)epw->lkwkp;
+    
+    switch (epw->mode3)
+    {   
+    case 0:
+        epw->mdflg &= ~0x1;
+            
+        epw->yn = -2.0f;
+        
+        epw->ct0 = (int)(60.0f * (-rand() / -2.1474836E9f));
+        
+        epw->mode3++;
+    case 1:
+        if (epw->ct0-- == 0) 
+        {
+            epw->mode3++;
+        }
+        
+        break;
+    case 2:
+        if ((!(plp->flg & 0x4)) && (bhEne_AttackHitCheck(plp, (NJS_POINT3*)&epw->px, 5.0f)))
+        {
+            plp->flg |= 0x10004;
+            plp->stflg |= 0x10000;
+            
+            plp->mode0 = 2;
+            plp->mode1 = 0;
+            plp->mode2 = 0;
+            plp->mode3 = 0;
+            
+            plp->hp -= 20;
+            
+            if (plp->hp < 0) 
+            {
+                plp->hp = 0;
+            }
+        }
+        
+        epw->yn -= 0.4f;
+        
+        epw->py += epw->yn;
+         
+        if (epw->py < ep->py)
+        {
+            epw->py = ep->py;
+            
+            pos.x = epw->px;
+            pos.z = epw->pz;
+            pos.y = ep->py;
+            
+            bhEne02_SetSandEffect(ep, &pos, 7);
+            
+            epw->ct0 = 30;
+            
+            epw->mode3++;
+        }
+        
+        break;
+    case 3:
+        epw->py -= 0.1f;
+        
+        if (epw->ct0-- == 0) 
+        {
+            epw->mdflg |= 0x1;
+            
+            epw->mode2 = 0;
+        }
+
+        break;
+    }
+}
 
 // 100% matching!
 void bhEne02sub_MV04(BH_PWORK* epw)
