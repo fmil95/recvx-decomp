@@ -1,11 +1,23 @@
 #include "../../../ps2/veronica/prog/en02sub.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
 
 typedef void (*bhEne02sub_Mode0_proc)(BH_PWORK* epw);
 typedef void (*bhEne02sub_MoveMode2_proc)(BH_PWORK* epw);
 
-/*_anon10 Open[4];
-_anon10 Close[3];*/
+static P_WORK Open[4] = 
+{
+    { 0x00000000, 0.0f    },
+    { 0x00000006, 900.0f  },
+    { 0x0000000A, 1000.0f },
+    { 0x000003E7, 1000.0f }
+};
+static P_WORK Close[3] = 
+{
+    { 0x00000000, 1000.0f },
+    { 0x0000000A, 0.0f    },
+    { 0x000003E7, 0.0f    }
+};
 bhEne02sub_Mode0_proc bhEne02sub_Mode0[2] = 
 {
 	bhEne02sub_Init,
@@ -58,38 +70,48 @@ void bhEne02sub_MV00()
 
 }
 
-/*// 
-// Start address: 0x1963e0
+// 100% matching!
 void bhEne02sub_MV01(BH_PWORK* epw)
 {
 	BH_PWORK* ep;
-	// Line 210, Address: 0x1963e0, Func Offset: 0
-	// Line 213, Address: 0x1963f0, Func Offset: 0x10
-	// Line 215, Address: 0x196410, Func Offset: 0x30
-	// Line 226, Address: 0x196414, Func Offset: 0x34
-	// Line 217, Address: 0x196418, Func Offset: 0x38
-	// Line 226, Address: 0x19641c, Func Offset: 0x3c
-	// Line 215, Address: 0x196420, Func Offset: 0x40
-	// Line 216, Address: 0x196428, Func Offset: 0x48
-	// Line 217, Address: 0x196434, Func Offset: 0x54
-	// Line 218, Address: 0x196440, Func Offset: 0x60
-	// Line 220, Address: 0x196444, Func Offset: 0x64
-	// Line 221, Address: 0x196448, Func Offset: 0x68
-	// Line 222, Address: 0x196450, Func Offset: 0x70
-	// Line 223, Address: 0x196458, Func Offset: 0x78
-	// Line 224, Address: 0x196460, Func Offset: 0x80
-	// Line 226, Address: 0x196470, Func Offset: 0x90
-	// Line 228, Address: 0x196474, Func Offset: 0x94
-	// Line 230, Address: 0x196480, Func Offset: 0xa0
-	// Line 231, Address: 0x196494, Func Offset: 0xb4
-	// Line 233, Address: 0x1964a4, Func Offset: 0xc4
-	// Line 237, Address: 0x1964a8, Func Offset: 0xc8
-	// Line 239, Address: 0x1964d0, Func Offset: 0xf0
-	// Line 242, Address: 0x1964dc, Func Offset: 0xfc
-	// Func End, Address: 0x1964ec, Func Offset: 0x10c
+
+    switch (epw->mode3)
+    { 
+    case 0:
+        epw->flg |= 0x48;
+        
+        epw->mdflg |= 0x2;
+        epw->mdflg &= ~0x1;
+        
+        epw->ct0 = 0;
+        
+        ep = (BH_PWORK*)epw->lkwkp;
+        
+        epw->px = ep->px;
+        epw->py = ep->py;
+        epw->pz = ep->pz;
+        
+        epw->ay = (ep->ay + 32767) + 1;
+        
+        epw->car = 0.1f;
+        
+        epw->mode3++;
+    case 1:
+        epw->shp_ct = bhEne_GetShapeCnt(Open, epw->ct0);
+        
+        if (epw->ct0 > 30) 
+        {
+            epw->mode2 = 0;
+        }
+        
+        epw->car += (10.0f - epw->car) / 16.0f;
+        
+        epw->ct0++;
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x1964f0
 void bhEne02sub_MV02(BH_PWORK* epw)
 {
