@@ -5,9 +5,11 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
 
-// 100% matching!
+// 99.93% matching
 void bhEff_E00_Mince(O_WRK* op) 
 {
     NJS_POINT3 n;
@@ -62,7 +64,7 @@ void bhEff_E00_Mince(O_WRK* op)
         {  0.5f,    0.375f,  0.125f, 0.125f },
         { -1.0f,    0.0f,    0.0f,   0.0f   }
     };
-    static UV_WORK* uvtble_39[4] = 
+    static UV_WORK* uvtble[4] = 
     {
         BH_UVTAB0,
         BH_UVTAB1,
@@ -212,7 +214,7 @@ void bhEff_E00_Mince(O_WRK* op)
         }
     }
 
-    bhEff_SetUVInfo(op, &uvtble_39[op->mtn_no][op->frm_no], 0.0625f);
+    bhEff_SetUVInfo(op, &uvtble[op->mtn_no][op->frm_no], 0.0625f);
 
     if (sys->ef_trsn < 512) 
     {
@@ -222,33 +224,42 @@ void bhEff_E00_Mince(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x23dbb0
-void bhEff_E00_DrawParticleSpr(O_WRK* op)
+// 100% matching!
+void bhEff_E00_DrawParticleSpr(O_WRK* op) 
 {
-	//_anon6* pp;
-	// Line 277, Address: 0x23dbb0, Func Offset: 0
-	// Line 281, Address: 0x23dbc0, Func Offset: 0x10
-	// Line 278, Address: 0x23dbc4, Func Offset: 0x14
-	// Line 281, Address: 0x23dbc8, Func Offset: 0x18
-	// Line 282, Address: 0x23dbd4, Func Offset: 0x24
-	// Line 283, Address: 0x23dbec, Func Offset: 0x3c
-	// Line 284, Address: 0x23dbf4, Func Offset: 0x44
-	// Line 286, Address: 0x23dbfc, Func Offset: 0x4c
-	// Line 287, Address: 0x23dc10, Func Offset: 0x60
-	// Line 288, Address: 0x23dc18, Func Offset: 0x68
-	// Line 289, Address: 0x23dc20, Func Offset: 0x70
-	// Line 293, Address: 0x23dc2c, Func Offset: 0x7c
-	// Line 294, Address: 0x23dc38, Func Offset: 0x88
-	// Line 297, Address: 0x23dc44, Func Offset: 0x94
-	// Line 298, Address: 0x23dc54, Func Offset: 0xa4
-	// Line 299, Address: 0x23dc64, Func Offset: 0xb4
-	// Line 300, Address: 0x23dc78, Func Offset: 0xc8
-	// Line 303, Address: 0x23dc80, Func Offset: 0xd0
-	// Line 305, Address: 0x23dc8c, Func Offset: 0xdc
-	// Line 307, Address: 0x23dc98, Func Offset: 0xe8
-	// Func End, Address: 0x23dcac, Func Offset: 0xfc
-	scePrintf("bhEff_E00_DrawParticleSpr - UNIMPLEMENTED!\n");
+   	P_WRK* pp;
+
+    pp = (P_WRK*)op->exp0;
+    
+    if (!(op->stflg & 0x20)) 
+    {
+        njSetTexture(&sys->ef_tlist);
+    }
+    else
+    {
+        njSetTexture(op->txp[0]);
+    }
+    
+    if ((op->flg & 0x20000000)) 
+    {
+        njTextureFilterMode(0);
+    } 
+    else 
+    {
+        njTextureFilterMode(1);
+    }
+    
+    njColorBlendingMode(0, op->bl_src);
+    njColorBlendingMode(1, op->bl_dst);
+    
+    njSetMatrix(NULL, cam.mtx);
+    
+    njPtclSpriteStart(op->tex_id, pp->col, 1);
+    njPtclDrawSprite(pp->pos, pp->num, pp->sx, pp->sy);
+    njPtclSpriteEnd();
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
 }
 
 // 100% matching!
