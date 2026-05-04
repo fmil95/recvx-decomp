@@ -4025,43 +4025,58 @@ void bhEff_E14_MucusDraw(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x245ff0
-void bhEff_DamagePoint(O_WRK* op)
+// 100% matching!
+void bhEff_DamagePoint(O_WRK* op) 
 {
-	// Line 4641, Address: 0x245ff0, Func Offset: 0
-	// Line 4642, Address: 0x246000, Func Offset: 0x10
-	// Line 4644, Address: 0x24602c, Func Offset: 0x3c
-	// Line 4645, Address: 0x246038, Func Offset: 0x48
-	// Line 4646, Address: 0x246040, Func Offset: 0x50
-	// Line 4647, Address: 0x246048, Func Offset: 0x58
-	// Line 4648, Address: 0x24606c, Func Offset: 0x7c
-	// Line 4649, Address: 0x246074, Func Offset: 0x84
-	// Line 4651, Address: 0x24607c, Func Offset: 0x8c
-	// Line 4652, Address: 0x246084, Func Offset: 0x94
-	// Line 4651, Address: 0x246094, Func Offset: 0xa4
-	// Line 4652, Address: 0x24609c, Func Offset: 0xac
-	// Line 4653, Address: 0x2460a8, Func Offset: 0xb8
-	// Line 4654, Address: 0x2460c0, Func Offset: 0xd0
-	// Line 4655, Address: 0x2460d0, Func Offset: 0xe0
-	// Line 4656, Address: 0x2460d4, Func Offset: 0xe4
-	// Line 4655, Address: 0x2460d8, Func Offset: 0xe8
-	// Line 4656, Address: 0x2460e0, Func Offset: 0xf0
-	// Line 4658, Address: 0x2460e4, Func Offset: 0xf4
-	// Line 4659, Address: 0x2460f4, Func Offset: 0x104
-	// Line 4658, Address: 0x2460f8, Func Offset: 0x108
-	// Line 4659, Address: 0x2460fc, Func Offset: 0x10c
-	// Line 4658, Address: 0x246100, Func Offset: 0x110
-	// Line 4659, Address: 0x246104, Func Offset: 0x114
-	// Line 4661, Address: 0x246120, Func Offset: 0x130
-	// Line 4663, Address: 0x246128, Func Offset: 0x138
-	// Line 4665, Address: 0x246138, Func Offset: 0x148
-	// Line 4669, Address: 0x246140, Func Offset: 0x150
-	// Line 4670, Address: 0x246160, Func Offset: 0x170
-	// Line 4671, Address: 0x246174, Func Offset: 0x184
-	// Line 4673, Address: 0x246198, Func Offset: 0x1a8
-	// Func End, Address: 0x2461a8, Func Offset: 0x1b8
-	scePrintf("bhEff_DamagePoint - UNIMPLEMENTED!\n");
+    switch (op->mode0) 
+    {                            
+    case 0:
+        op->func = (void*)bhEff_DamagePointDraw;
+        
+        op->ct0 = 5;
+        
+        op->ofy = 0.6f;
+        
+        op->yn = 0.2f + bhGetGroundPosition((NJS_POINT3*)&op->px);
+        
+        op->mode0++;
+        break;
+    case 1:
+        op->py += op->ofy;
+        
+        op->ofy -= 0.2f;
+        
+        if (op->py < op->yn) 
+        {
+            if (op->ct0-- == 0) 
+            {
+                op->mode0++;
+                
+                op->ct0 = 5;
+            }
+            
+            op->ofy *= -0.4f;
+            
+            op->py = op->yn + (0.6f * (op->yn - op->py));
+        }
+        
+        break;
+    case 2:
+        if (op->ct0-- == 0) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        break;
+    }
+    
+    if (sys->ef_fncn < 128) 
+    {
+        sys->ef_fnc[sys->ef_fncn] = op;
+        
+        sys->ef_fncn++;
+    }
 }
 
 // 100% matching!
