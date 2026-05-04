@@ -1226,76 +1226,103 @@ void bhEff_E02_SandDust(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x23f260
-void bhEff_E02_SandParticle(O_WRK* op)
+// 100% matching!
+void bhEff_E02_SandParticle(O_WRK* op) 
 {
-	unsigned int col[3];
+	P_WRK* pp;
+	NJS_POINT3* p, *v;
 	int i;
-	NJS_POINT3* v;
-	NJS_POINT3* p;
-	//_anon6* pp;
-	// Line 1232, Address: 0x23f260, Func Offset: 0
-	// Line 1237, Address: 0x23f278, Func Offset: 0x18
-	// Line 1232, Address: 0x23f27c, Func Offset: 0x1c
-	// Line 1237, Address: 0x23f280, Func Offset: 0x20
-	// Line 1232, Address: 0x23f284, Func Offset: 0x24
-	// Line 1237, Address: 0x23f288, Func Offset: 0x28
-	// Line 1243, Address: 0x23f2a0, Func Offset: 0x40
-	// Line 1246, Address: 0x23f2c0, Func Offset: 0x60
-	// Line 1247, Address: 0x23f2cc, Func Offset: 0x6c
-	// Line 1249, Address: 0x23f2d4, Func Offset: 0x74
-	// Line 1253, Address: 0x23f2dc, Func Offset: 0x7c
-	// Line 1252, Address: 0x23f2e0, Func Offset: 0x80
-	// Line 1254, Address: 0x23f2e4, Func Offset: 0x84
-	// Line 1255, Address: 0x23f2e8, Func Offset: 0x88
-	// Line 1253, Address: 0x23f2ec, Func Offset: 0x8c
-	// Line 1256, Address: 0x23f2f0, Func Offset: 0x90
-	// Line 1257, Address: 0x23f2f8, Func Offset: 0x98
-	// Line 1258, Address: 0x23f358, Func Offset: 0xf8
-	// Line 1259, Address: 0x23f3b8, Func Offset: 0x158
-	// Line 1260, Address: 0x23f418, Func Offset: 0x1b8
-	// Line 1261, Address: 0x23f478, Func Offset: 0x218
-	// Line 1262, Address: 0x23f4d8, Func Offset: 0x278
-	// Line 1263, Address: 0x23f518, Func Offset: 0x2b8
-	// Line 1262, Address: 0x23f51c, Func Offset: 0x2bc
-	// Line 1263, Address: 0x23f524, Func Offset: 0x2c4
-	// Line 1262, Address: 0x23f528, Func Offset: 0x2c8
-	// Line 1263, Address: 0x23f540, Func Offset: 0x2e0
-	// Line 1265, Address: 0x23f558, Func Offset: 0x2f8
-	// Line 1266, Address: 0x23f560, Func Offset: 0x300
-	// Line 1268, Address: 0x23f564, Func Offset: 0x304
-	// Line 1270, Address: 0x23f574, Func Offset: 0x314
-	// Line 1272, Address: 0x23f5b4, Func Offset: 0x354
-	// Line 1275, Address: 0x23f5bc, Func Offset: 0x35c
-	// Line 1272, Address: 0x23f5c4, Func Offset: 0x364
-	// Line 1275, Address: 0x23f5cc, Func Offset: 0x36c
-	// Line 1276, Address: 0x23f5d0, Func Offset: 0x370
-	// Line 1277, Address: 0x23f5d8, Func Offset: 0x378
-	// Line 1279, Address: 0x23f5e0, Func Offset: 0x380
-	// Line 1282, Address: 0x23f5e4, Func Offset: 0x384
-	// Line 1280, Address: 0x23f600, Func Offset: 0x3a0
-	// Line 1282, Address: 0x23f604, Func Offset: 0x3a4
-	// Line 1283, Address: 0x23f60c, Func Offset: 0x3ac
-	// Line 1291, Address: 0x23f614, Func Offset: 0x3b4
-	// Line 1283, Address: 0x23f618, Func Offset: 0x3b8
-	// Line 1284, Address: 0x23f620, Func Offset: 0x3c0
-	// Line 1285, Address: 0x23f630, Func Offset: 0x3d0
-	// Line 1288, Address: 0x23f640, Func Offset: 0x3e0
-	// Line 1291, Address: 0x23f644, Func Offset: 0x3e4
-	// Line 1288, Address: 0x23f648, Func Offset: 0x3e8
-	// Line 1289, Address: 0x23f650, Func Offset: 0x3f0
-	// Line 1290, Address: 0x23f65c, Func Offset: 0x3fc
-	// Line 1291, Address: 0x23f668, Func Offset: 0x408
-	// Line 1293, Address: 0x23f680, Func Offset: 0x420
-	// Line 1294, Address: 0x23f690, Func Offset: 0x430
-	// Line 1296, Address: 0x23f694, Func Offset: 0x434
-	// Line 1299, Address: 0x23f69c, Func Offset: 0x43c
-	// Line 1300, Address: 0x23f6bc, Func Offset: 0x45c
-	// Line 1301, Address: 0x23f6d0, Func Offset: 0x470
-	// Line 1304, Address: 0x23f6f4, Func Offset: 0x494
-	// Func End, Address: 0x23f718, Func Offset: 0x4b8
-	scePrintf("bhEff_E02_SandParticle - UNIMPLEMENTED!\n");
+    unsigned int col[3] = 
+    {
+        0xFF332417,
+        0xFF322320,
+        0xFF211816
+    };
+    float px, py, pz; // not from DWARF
+
+    switch (op->mode0) 
+    {                             
+    case 0:
+        pp = (P_WRK*)bhSetExtraEffectWork();
+        
+        if (pp == NULL) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        op->exp0 = (unsigned char*)pp;
+        
+        p = pp->pos;
+        v = pp->vec;
+        
+        pp->num = 16;
+        
+        for (i = 0; i < pp->num; i++, p++, v++)  
+        {
+            px   = op->px + (op->sx * (-rand() / -2.1474836E9f));
+            p->x = px - (op->sx * (-rand() / -2.1474836E9f));
+            
+            py   = op->py + (op->sy * (-rand() / -2.1474836E9f));
+            p->y = py - (op->sy * (-rand() / -2.1474836E9f));
+            
+            pz   = op->pz + (op->sz * (-rand() / -2.1474836E9f));
+            p->z = pz - (op->sz * (-rand() / -2.1474836E9f));
+            
+            px   = op->xn + (op->sxb * (-rand() / -2.1474836E9f));
+            v->x = px - (op->sxb * (-rand() / -2.1474836E9f));
+            
+            py   = op->yn + (op->syb * (-rand() / -2.1474836E9f));
+            v->y = py - (op->syb * (-rand() / -2.1474836E9f));
+           
+            pz   = op->zn + (op->szb * (-rand() / -2.1474836E9f));
+            v->z = pz - (op->szb * (-rand() / -2.1474836E9f));
+         }
+        
+        pp->sx = 1.0f;
+        pp->sy = 1.0f;
+        
+        pp->col = col[op->type];
+        
+        op->ct0 = 10.0f + (10.0f * (-rand() / -2.1474836E9f));
+        
+        op->flg |= 0x20000000;
+        
+        op->func = (void*)bhEff_E00_DrawParticlePly;
+        
+        op->mode0++;
+        break;
+    case 1:
+        pp = (P_WRK*)op->exp0;
+        
+        p = pp->pos;
+        v = pp->vec;
+        
+        for (i = 0; i < pp->num; i++, p++, v++) 
+        {
+            p->x += v->x;
+            p->y += v->y;
+            p->z += v->z;
+            
+            v->y -= 0.4f;
+            v->x *= 0.8f;
+            v->z *= 0.8f;
+        }
+        
+        if (op->ct0-- == 0) 
+        {
+            op->flg = 0;
+            pp->flg = 0;
+            return;
+        }
+        
+        if (sys->ef_fncn < 128) 
+        {
+            sys->ef_fnc[sys->ef_fncn] = op;
+            
+            sys->ef_fncn++;
+        }
+    }
 }
 
 // 
