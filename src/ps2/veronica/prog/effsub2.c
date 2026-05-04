@@ -3999,25 +3999,30 @@ void bhEff_E14_Mucus(O_WRK* op)
 	scePrintf("bhEff_E14_Mucus - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x245f00
+// 100% matching!
 void bhEff_E14_MucusDraw(O_WRK* op)
 {
-	// Line 4599, Address: 0x245f00, Func Offset: 0
-	// Line 4602, Address: 0x245f0c, Func Offset: 0xc
-	// Line 4604, Address: 0x245f34, Func Offset: 0x34
-	// Line 4608, Address: 0x245f3c, Func Offset: 0x3c
-	// Line 4611, Address: 0x245f48, Func Offset: 0x48
-	// Line 4614, Address: 0x245f50, Func Offset: 0x50
-	// Line 4616, Address: 0x245f68, Func Offset: 0x68
-	// Line 4619, Address: 0x245f94, Func Offset: 0x94
-	// Line 4620, Address: 0x245fa0, Func Offset: 0xa0
-	// Line 4623, Address: 0x245fac, Func Offset: 0xac
-	// Line 4626, Address: 0x245fbc, Func Offset: 0xbc
-	// Line 4628, Address: 0x245fc8, Func Offset: 0xc8
-	// Line 4631, Address: 0x245fd4, Func Offset: 0xd4
-	// Func End, Address: 0x245fe4, Func Offset: 0xe4
-	scePrintf("bhEff_E14_MucusDraw - UNIMPLEMENTED!\n");
+    if (((op->flg & 0x1000000)) || ((op->stflg & 0x1000000))) 
+    {
+        return;
+    } 
+    else
+    {
+        njSetMatrix(NULL, cam.mtx);
+        
+        njTextureFilterMode(1);
+        
+        njSetTexture(&sys->ef_tlist);
+        njSetTextureNum(sys->ef_tn[op->tex_id] + op->ani_ct);
+        
+        njColorBlendingMode(0, op->bl_src);
+        njColorBlendingMode(1, op->bl_dst);
+        
+        njDrawTexture3DEx(op->tvp, op->pn, 1);
+        
+        njColorBlendingMode(0, 8);
+        njColorBlendingMode(1, 6);
+    }
 }
 
 // 
