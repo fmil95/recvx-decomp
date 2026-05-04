@@ -957,52 +957,94 @@ void bhEff_E00_Blood(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x23ee90
+// 100% matching!
 void bhEff_E00_Dust(O_WRK* op)
 {
-	UV_WORK* uvp;
-	UV_WORK* uvtble[1];
-	// Line 982, Address: 0x23ee90, Func Offset: 0
-	// Line 1014, Address: 0x23ee9c, Func Offset: 0xc
-	// Line 1016, Address: 0x23eebc, Func Offset: 0x2c
-	// Line 1017, Address: 0x23eec0, Func Offset: 0x30
-	// Line 1018, Address: 0x23eec8, Func Offset: 0x38
-	// Line 1019, Address: 0x23eed0, Func Offset: 0x40
-	// Line 1020, Address: 0x23eed8, Func Offset: 0x48
-	// Line 1023, Address: 0x23eee0, Func Offset: 0x50
-	// Line 1025, Address: 0x23eee4, Func Offset: 0x54
-	// Line 1020, Address: 0x23eee8, Func Offset: 0x58
-	// Line 1021, Address: 0x23eef0, Func Offset: 0x60
-	// Line 1022, Address: 0x23eef8, Func Offset: 0x68
-	// Line 1023, Address: 0x23ef00, Func Offset: 0x70
-	// Line 1024, Address: 0x23ef04, Func Offset: 0x74
-	// Line 1025, Address: 0x23ef08, Func Offset: 0x78
-	// Line 1028, Address: 0x23ef0c, Func Offset: 0x7c
-	// Line 1029, Address: 0x23ef28, Func Offset: 0x98
-	// Line 1031, Address: 0x23ef2c, Func Offset: 0x9c
-	// Line 1032, Address: 0x23ef30, Func Offset: 0xa0
-	// Line 1029, Address: 0x23ef34, Func Offset: 0xa4
-	// Line 1031, Address: 0x23ef3c, Func Offset: 0xac
-	// Line 1032, Address: 0x23ef4c, Func Offset: 0xbc
-	// Line 1034, Address: 0x23ef60, Func Offset: 0xd0
-	// Line 1036, Address: 0x23ef68, Func Offset: 0xd8
-	// Line 1039, Address: 0x23ef70, Func Offset: 0xe0
-	// Line 1041, Address: 0x23ef80, Func Offset: 0xf0
-	// Line 1044, Address: 0x23ef88, Func Offset: 0xf8
-	// Line 1048, Address: 0x23ef94, Func Offset: 0x104
-	// Line 1041, Address: 0x23ef98, Func Offset: 0x108
-	// Line 1042, Address: 0x23efa0, Func Offset: 0x110
-	// Line 1043, Address: 0x23efb0, Func Offset: 0x120
-	// Line 1044, Address: 0x23efc0, Func Offset: 0x130
-	// Line 1045, Address: 0x23efcc, Func Offset: 0x13c
-	// Line 1046, Address: 0x23efd8, Func Offset: 0x148
-	// Line 1048, Address: 0x23efe4, Func Offset: 0x154
-	// Line 1049, Address: 0x23f000, Func Offset: 0x170
-	// Line 1050, Address: 0x23f014, Func Offset: 0x184
-	// Line 1053, Address: 0x23f038, Func Offset: 0x1a8
-	// Func End, Address: 0x23f048, Func Offset: 0x1b8
-	scePrintf("bhEff_E00_Dust - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    static UV_WORK BH_UVTAB0[23] = 
+    {
+        {  0.25f,   0.0f,    0.125f,  0.125f  },
+        {  0.5f,    0.0f,    0.125f,  0.125f  },
+        {  0.75f,   0.0f,    0.125f,  0.125f  },
+        {  0.0f,    0.125f,  0.1875f, 0.1875f },
+        {  0.0f,    0.125f,  0.1875f, 0.1875f },
+        {  0.375f,  0.125f,  0.1875f, 0.1875f },
+        {  0.375f,  0.125f,  0.1875f, 0.1875f },
+        {  0.1875f, 0.3125f, 0.1875f, 0.1875f },
+        {  0.1875f, 0.3125f, 0.1875f, 0.1875f },
+        {  0.1875f, 0.3125f, 0.1875f, 0.1875f },
+        {  0.0f,    0.5f,    0.1875f, 0.1875f },
+        {  0.0f,    0.5f,    0.1875f, 0.1875f },
+        {  0.0f,    0.5f,    0.1875f, 0.1875f },
+        {  0.375f,  0.5f,    0.1875f, 0.1875f },
+        {  0.375f,  0.5f,    0.1875f, 0.1875f },
+        {  0.375f,  0.5f,    0.1875f, 0.1875f },
+        {  0.375f,  0.5f,    0.1875f, 0.1875f },
+        {  0.375f,  0.5f,    0.1875f, 0.1875f },
+        {  0.375f,  0.5f,    0.1875f, 0.1875f },
+        {  0.375f,  0.5f,    0.1875f, 0.1875f },
+        {  0.375f,  0.5f,    0.1875f, 0.1875f },
+        {  0.375f,  0.5f,    0.1875f, 0.1875f },
+        { -1.0f,    0.0f,    0.0f,    0.0f    }
+    };
+    static UV_WORK* uvtble[1] = 
+    {
+        BH_UVTAB0
+    };
+
+    switch (op->mode0)
+    {                             
+    case 0:
+        op->tex_id = 2;
+        
+        bhEff_SetAlign(op, 2);
+        
+        op->bl_src = 8;
+        op->bl_dst = 10;
+        
+        op->flg |= 0x180000;
+        
+        op->sxb = op->sx;
+        op->syb = op->sy;
+        
+        op->ct0 = 50;
+        op->ct1 = 0;
+        
+        op->mode0 = 1;
+    case 1:
+        bhEff_SetBaseColor(op, (op->ct0 << 24) | 0x373737);
+        
+        op->ct0 -= 2;
+        
+        uvp = &uvtble[0][op->ct1];
+        
+        if (uvp->u < 0) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        op->ct1++;
+        
+        bhEff_SetUVInfo(op, uvp, 0.09375f);
+        
+        op->px += op->xn;
+        op->py += op->yn;
+        op->pz += op->zn;
+        
+        op->xn *= 0.8f;
+        op->yn *= 0.8f;
+        op->zn *= 0.8f;
+        
+        if (sys->ef_trsn < 512) 
+        {
+            sys->ef_trs[sys->ef_trsn] = op;
+            
+            sys->ef_trsn++;
+        }
+        
+        break;
+    }
 }
 
 // 
