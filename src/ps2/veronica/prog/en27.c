@@ -1620,17 +1620,15 @@ void bhEne27_Move(BH_PWORK* epw)
 	// Line 295, Address: 0x20ff14, Func Offset: 0x24
 	// Line 296, Address: 0x20ff34, Func Offset: 0x44
 	// Func End, Address: 0x20ff44, Func Offset: 0x54
-}
+}*/
 
-// 
-// Start address: 0x20ff50
+// 100% matching!
 void bhEne27_MV00()
 {
-	// Line 307, Address: 0x20ff50, Func Offset: 0
-	// Func End, Address: 0x20ff58, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x20ff60
 void bhEne27_MV01(BH_PWORK* epw)
 {
