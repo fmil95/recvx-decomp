@@ -3139,28 +3139,39 @@ void bhEff_E12_FireSpark(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x243ea0
-void bhEff_E12_FireManager(O_WRK* op)
+// 100% matching!
+void bhEff_E12_FireManager(O_WRK* op) 
 {
-	// Line 3538, Address: 0x243ea0, Func Offset: 0
-	// Line 3548, Address: 0x243eb0, Func Offset: 0x10
-	// Line 3551, Address: 0x243ed0, Func Offset: 0x30
-	// Line 3552, Address: 0x243edc, Func Offset: 0x3c
-	// Line 3555, Address: 0x243ee8, Func Offset: 0x48
-	// Line 3556, Address: 0x243ef0, Func Offset: 0x50
-	// Line 3557, Address: 0x243ef8, Func Offset: 0x58
-	// Line 3558, Address: 0x243f00, Func Offset: 0x60
-	// Line 3563, Address: 0x243f08, Func Offset: 0x68
-	// Line 3565, Address: 0x243f14, Func Offset: 0x74
-	// Line 3566, Address: 0x243f1c, Func Offset: 0x7c
-	// Line 3569, Address: 0x243f24, Func Offset: 0x84
-	// Line 3572, Address: 0x243f28, Func Offset: 0x88
-	// Line 3573, Address: 0x243f48, Func Offset: 0xa8
-	// Line 3574, Address: 0x243f5c, Func Offset: 0xbc
-	// Line 3577, Address: 0x243f80, Func Offset: 0xe0
-	// Func End, Address: 0x243f90, Func Offset: 0xf0
-	scePrintf("bhEff_E12_FireManager - UNIMPLEMENTED!\n");
+    switch (op->mode0) 
+    {                           
+    case 0:
+        if (op->exp0 == NULL) 
+        {
+            op->exp0 = (unsigned char*)bhSetExtraEffectWork();
+        }
+        
+        op->tex_id = 80;
+        
+        op->ani_ct = 1;
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        op->func = (void*)bhEff_E12_FireBurstDraw;
+        
+        op->mode0++;
+        break;
+    case 1:
+        op->ct0 = 0;
+        break;
+    }
+    
+    if (sys->ef_fncn < 128) 
+    {
+        sys->ef_fnc[sys->ef_fncn] = op;
+        
+        sys->ef_fncn++;
+    }
 }
 
 // 
