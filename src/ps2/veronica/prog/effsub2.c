@@ -760,68 +760,71 @@ void bhEff_E00_BloodBurst(O_WRK* op)
         
         op->mode0++; 
     case 1:
-    label:
-        p = &TypeList[op->type][op->frm_no];
-
-        if (p->type1 >= 0) 
+    	while (TRUE) 
         {
-            if (p->spd > 0)
-            {
-                bhSetEffParticleMk2((BH_PWORK*)op->lkwkp, op->lkono, (NJS_POINT3*)&op->lox, (NJS_POINT3*)&op->xn, BloodCol[op->mdlver][0], BloodCol[op->mdlver][1], p->type1);
-            } 
-            else
-            {
-                v.x = -op->xn;
-                v.y = -op->yn;
-                v.z = -op->zn;
-                
-                bhSetEffParticleMk2((BH_PWORK*)op->lkwkp, op->lkono, (NJS_POINT3*)&op->lox, &v, BloodCol[op->mdlver][0], BloodCol[op->mdlver][1], p->type1);
-            }
-        }
+			p = &TypeList[op->type][op->frm_no];
 
-        if (p->type2 >= 0) 
-        {
-            sys->ef.id     = 296;
-            
-            sys->ef.flg    = 1;
-            sys->ef.type   = p->type2;
-            
-            sys->ef.sx     = op->sx * p->size;
-            sys->ef.sy     = op->sy * p->size;
-            sys->ef.sz     = 1.0f;
-            
-            sys->ef.ax     = 0;
-            sys->ef.ay     = 0;
-            
-            sys->ef.mdlver = op->mdlver;
+			if (p->type1 >= 0) 
+			{
+				if (p->spd > 0)
+				{
+					bhSetEffParticleMk2((BH_PWORK*)op->lkwkp, op->lkono, (NJS_POINT3*)&op->lox, (NJS_POINT3*)&op->xn, BloodCol[op->mdlver][0], BloodCol[op->mdlver][1], p->type1);
+				} 
+				else
+				{
+					v.x = -op->xn;
+					v.y = -op->yn;
+					v.z = -op->zn;
+					
+					bhSetEffParticleMk2((BH_PWORK*)op->lkwkp, op->lkono, (NJS_POINT3*)&op->lox, &v, BloodCol[op->mdlver][0], BloodCol[op->mdlver][1], p->type1);
+				}
+			}
 
-            owp = (O_WRK*)op->lkwkp;
-            
-            njCalcPoint(&owp->mlwP->owP[op->lkono].mtx, (NJS_POINT3*)&op->lox, (NJS_POINT3*)&sys->ef.px);
+			if (p->type2 >= 0) 
+			{
+				sys->ef.id     = 296;
+				
+				sys->ef.flg    = 1;
+				sys->ef.type   = p->type2;
+				
+				sys->ef.sx     = op->sx * p->size;
+				sys->ef.sy     = op->sy * p->size;
+				sys->ef.sz     = 1.0f;
+				
+				sys->ef.ax     = 0;
+				sys->ef.ay     = 0;
+				
+				sys->ef.mdlver = op->mdlver;
 
-            eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
-            
-            if (eno != -1) 
-            {
-                eff[eno].xn = op->xn * p->spd;
-                eff[eno].yn = op->yn * p->spd;
-                eff[eno].zn = op->zn * p->spd;
-            }
-        }
+				owp = (O_WRK*)op->lkwkp;
+				
+				njCalcPoint(&owp->mlwP->owP[op->lkono].mtx, (NJS_POINT3*)&op->lox, (NJS_POINT3*)&sys->ef.px);
 
-        op->ct0 = p->wait;
+				eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+				
+				if (eno != -1) 
+				{
+					eff[eno].xn = op->xn * p->spd;
+					eff[eno].yn = op->yn * p->spd;
+					eff[eno].zn = op->zn * p->spd;
+				}
+			}
 
-        if (p->wait == -1)
-        {
-            op->flg = 0;
-            return;
-        }
+			op->ct0 = p->wait;
 
-        if (p->wait == 0) 
-        {
-            op->frm_no++;
-            goto label;
-        }
+			if (p->wait == -1)
+			{
+				op->flg = 0;
+				return;
+			}
+
+			if (p->wait != 0) 
+			{
+				break;
+			}
+
+			op->frm_no++;
+		}
 
         op->frm_no++;
         
@@ -1047,56 +1050,180 @@ void bhEff_E00_Dust(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x23f050
+// 100% matching!
 void bhEff_E02_SandDust(O_WRK* op)
 {
-	UV_WORK* uvp;
-	UV_WORK* uvtble[6];
-	// Line 1063, Address: 0x23f050, Func Offset: 0
-	// Line 1176, Address: 0x23f05c, Func Offset: 0xc
-	// Line 1178, Address: 0x23f07c, Func Offset: 0x2c
-	// Line 1179, Address: 0x23f088, Func Offset: 0x38
-	// Line 1180, Address: 0x23f098, Func Offset: 0x48
-	// Line 1181, Address: 0x23f0a0, Func Offset: 0x50
-	// Line 1182, Address: 0x23f0a8, Func Offset: 0x58
-	// Line 1186, Address: 0x23f0ac, Func Offset: 0x5c
-	// Line 1187, Address: 0x23f0b0, Func Offset: 0x60
-	// Line 1190, Address: 0x23f0b4, Func Offset: 0x64
-	// Line 1182, Address: 0x23f0b8, Func Offset: 0x68
-	// Line 1183, Address: 0x23f0c0, Func Offset: 0x70
-	// Line 1184, Address: 0x23f0c4, Func Offset: 0x74
-	// Line 1185, Address: 0x23f0c8, Func Offset: 0x78
-	// Line 1186, Address: 0x23f0cc, Func Offset: 0x7c
-	// Line 1187, Address: 0x23f0d8, Func Offset: 0x88
-	// Line 1188, Address: 0x23f0e4, Func Offset: 0x94
-	// Line 1189, Address: 0x23f0ec, Func Offset: 0x9c
-	// Line 1190, Address: 0x23f0f4, Func Offset: 0xa4
-	// Line 1192, Address: 0x23f0f8, Func Offset: 0xa8
-	// Line 1193, Address: 0x23f10c, Func Offset: 0xbc
-	// Line 1192, Address: 0x23f110, Func Offset: 0xc0
-	// Line 1193, Address: 0x23f130, Func Offset: 0xe0
-	// Line 1195, Address: 0x23f144, Func Offset: 0xf4
-	// Line 1197, Address: 0x23f14c, Func Offset: 0xfc
-	// Line 1200, Address: 0x23f154, Func Offset: 0x104
-	// Line 1205, Address: 0x23f15c, Func Offset: 0x10c
-	// Line 1200, Address: 0x23f160, Func Offset: 0x110
-	// Line 1201, Address: 0x23f168, Func Offset: 0x118
-	// Line 1202, Address: 0x23f178, Func Offset: 0x128
-	// Line 1205, Address: 0x23f188, Func Offset: 0x138
-	// Line 1206, Address: 0x23f194, Func Offset: 0x144
-	// Line 1207, Address: 0x23f1b0, Func Offset: 0x160
-	// Line 1208, Address: 0x23f1bc, Func Offset: 0x16c
-	// Line 1212, Address: 0x23f1c8, Func Offset: 0x178
-	// Line 1215, Address: 0x23f1d8, Func Offset: 0x188
-	// Line 1212, Address: 0x23f1e0, Func Offset: 0x190
-	// Line 1215, Address: 0x23f1e4, Func Offset: 0x194
-	// Line 1217, Address: 0x23f1f0, Func Offset: 0x1a0
-	// Line 1218, Address: 0x23f210, Func Offset: 0x1c0
-	// Line 1219, Address: 0x23f224, Func Offset: 0x1d4
-	// Line 1222, Address: 0x23f248, Func Offset: 0x1f8
-	// Func End, Address: 0x23f258, Func Offset: 0x208
-	scePrintf("bhEff_E02_SandDust - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    static UV_WORK BH_UVTAB0[12] = 
+    {
+        {  0.3125f,   0.09375f, 0.03125f,  0.03125f },
+        { 0.34375f, 0.0859375f, 0.03125f,  0.03125f },
+        {  0.3125f,     0.125f,  0.0625f,   0.0625f },
+        {     0.0f,       0.0f, 0.09375f,  0.09375f },
+        { 0.09375f,       0.0f, 0.09375f,  0.09375f },
+        {  0.1875f,       0.0f, 0.09375f, 0.078125f },
+        { 0.28125f,       0.0f, 0.09375f, 0.078125f },
+        {   0.375f,       0.0f,   0.125f,    0.125f },
+        {     0.5f,  0.015625f, 0.15625f,    0.125f },
+        { 0.65625f,  0.015625f, 0.15625f,    0.125f },
+        {  0.8125f,  0.015625f, 0.15625f,    0.125f },
+        {    -1.0f,       0.0f,     0.0f,      0.0f }
+	};
+    static UV_WORK BH_UVTAB1[15] = 
+    {
+        { 0.33984375f,   0.359375f,  0.03125f,  0.03125f },
+        {      0.375f,  0.3515625f,  0.03125f,  0.03125f },
+        {    0.34375f, 0.38671875f,   0.0625f,   0.0625f },
+        { 0.42578125f, 0.37109375f,   0.0625f,   0.0625f },
+        {  0.5078125f,   0.359375f, 0.078125f, 0.078125f },
+        { 0.58984375f, 0.31640625f,  0.09375f,  0.09375f },
+        {   0.703125f,   0.328125f,  0.09375f,  0.09375f },
+        {     0.8125f,  0.3203125f, 0.109375f, 0.109375f },
+        { 0.01171875f,  0.2109375f,    0.125f,    0.125f },
+        {    0.15625f,   0.203125f,  0.15625f,  0.15625f },
+        {     0.3125f, 0.19921875f,  0.15625f,  0.15625f },
+        {    0.46875f,  0.1484375f,  0.15625f,  0.15625f },
+        {      0.625f,  0.1484375f,  0.15625f,  0.15625f },
+        {    0.78125f,  0.1484375f,  0.15625f,  0.15625f },
+        {       -1.0f,        0.0f,      0.0f,      0.0f }
+    };
+    static UV_WORK BH_UVTAB2[16] = 
+    {
+        {    0.0f,  0.4453125f, 0.1875f,     0.1875f },
+        { 0.1875f,  0.4453125f, 0.1875f,     0.1875f },
+        {  0.375f,     0.4375f, 0.1875f,     0.1875f },
+        { 0.5625f,     0.4375f, 0.1875f,     0.1875f },
+        {   0.75f,     0.4375f, 0.1875f,     0.1875f },
+        {    0.0f,      0.625f, 0.1875f,     0.1875f },
+        { 0.1875f, 0.62109375f, 0.1875f,     0.1875f },
+        {  0.375f, 0.62109375f, 0.1875f,     0.1875f },
+        { 0.5625f,      0.625f, 0.1875f, 0.18359375f },
+        {   0.75f,      0.625f, 0.1875f, 0.18359375f },
+        {    0.0f,     0.8125f, 0.1875f,     0.1875f },
+        { 0.1875f, 0.80859375f, 0.1875f,     0.1875f },
+        {  0.375f, 0.80859375f, 0.1875f,     0.1875f },
+        { 0.5625f, 0.80859375f, 0.1875f,     0.1875f },
+        {   0.75f, 0.80859375f, 0.1875f,     0.1875f },
+        {   -1.0f,        0.0f,    0.0f,        0.0f }
+    };
+    static UV_WORK BH_UVTAB3[15] = 
+    {
+        {  0.3125f, 0.09375f, 0.03125f, 0.03125f },
+        { 0.34375f, 0.09375f, 0.03125f, 0.03125f },
+        {  0.3125f,   0.125f,  0.0625f,  0.0625f },
+        {     0.0f,     0.0f, 0.09375f, 0.09375f },
+        { 0.09375f,     0.0f, 0.09375f, 0.09375f },
+        {  0.1875f,     0.0f, 0.09375f, 0.09375f },
+        { 0.28125f,     0.0f, 0.09375f, 0.09375f },
+        {     0.0f, 0.09375f, 0.09375f, 0.09375f },
+        { 0.09375f, 0.09375f, 0.09375f, 0.09375f },
+        {  0.1875f, 0.09375f,   0.125f,   0.125f },
+        {   0.375f,     0.0f,   0.125f,   0.125f },
+        {     0.5f,     0.0f, 0.15625f, 0.15625f },
+        { 0.65625f,     0.0f, 0.15625f, 0.15625f },
+        {  0.8125f,     0.0f, 0.15625f, 0.15625f },
+        {    -1.0f,     0.0f,     0.0f,     0.0f }
+    };
+    static UV_WORK BH_UVTAB4[15] = 
+    {
+        {     0.0f,   0.375f, 0.03125f, 0.03125f },
+        { 0.03125f,   0.375f, 0.03125f, 0.03125f },
+        {     0.0f, 0.40625f,  0.0625f,  0.0625f },
+        {  0.0625f,   0.375f, 0.09375f, 0.09375f },
+        { 0.15625f,   0.375f, 0.09375f, 0.09375f },
+        {    0.25f,   0.375f, 0.09375f, 0.09375f },
+        { 0.34375f,   0.375f,   0.125f,   0.125f },
+        { 0.46875f,   0.375f,   0.125f,   0.125f },
+        {     0.0f, 0.21875f, 0.15625f, 0.15625f },
+        { 0.15625f, 0.21875f, 0.15625f, 0.15625f },
+        {  0.3125f, 0.21875f, 0.15625f, 0.15625f },
+        { 0.46875f, 0.21875f, 0.15625f, 0.15625f },
+        {   0.625f, 0.21875f, 0.15625f, 0.15625f },
+        { 0.78125f, 0.21875f, 0.15625f, 0.15625f },
+        {    -1.0f,     0.0f,     0.0f,     0.0f }
+    };
+    static UV_WORK BH_UVTAB5[11] =
+    {
+        {    0.0f, 0.5625f, 0.1875f, 0.1875f },
+        { 0.1875f, 0.5625f, 0.1875f, 0.1875f },
+        {  0.375f, 0.5625f, 0.1875f, 0.1875f },
+        { 0.5625f, 0.5625f, 0.1875f, 0.1875f },
+        {   0.75f, 0.5625f, 0.1875f, 0.1875f },
+        {    0.0f,   0.75f, 0.1875f, 0.1875f },
+        { 0.1875f,   0.75f, 0.1875f, 0.1875f },
+        {  0.375f,   0.75f, 0.1875f, 0.1875f },
+        { 0.5625f,   0.75f, 0.1875f, 0.1875f },
+        {   0.75f,   0.75f, 0.1875f, 0.1875f },
+        {   -1.0f,    0.0f,    0.0f,    0.0f }
+    };
+    static UV_WORK* uvtble[6] = 
+    {
+        BH_UVTAB0,
+        BH_UVTAB1,
+        BH_UVTAB2,
+        BH_UVTAB3,
+        BH_UVTAB4,
+        BH_UVTAB5
+    };
+
+    switch (op->mode0) 
+    {                              
+    case 0:
+        bhEff_SetAlign(op, 2);
+        bhEff_SetBaseColor(op, 0xFF404040);
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        op->tex_id = op->mdlver + 82;
+        
+        op->ani_ct = 0;
+        
+        op->ct0 = 0;
+        op->ct1 = 0;
+        
+        op->flg |= 0x180000;
+        op->flg |= 0x4000000;
+        
+        op->sxb = op->sx;
+        op->syb = op->sy;
+        
+        op->mode0 = 1;
+    case 1:
+        uvp = &uvtble[op->type + (op->mdlver * 3)][op->ct1];
+        
+        if (uvtble[op->type + (op->mdlver * 3)][op->ct1].u < 0) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        op->ct1++;
+        
+        op->px += op->xn;
+        op->py += op->yn;
+        op->pz += op->zn;
+        
+        if (op->type != 2) 
+        {
+            op->xn *= 0.9f;
+            op->yn *= 0.9f;
+            op->zn *= 0.9f;
+        }
+        
+        op->yn -= 0.1f;
+        
+        bhEff_SetUVInfo(op, uvp, 0.0625f);
+        
+        if (sys->ef_trsn < 512) 
+        {
+            sys->ef_trs[sys->ef_trsn] = op;
+            
+            sys->ef_trsn++;
+        }
+        
+        break;
+    }
 }
 
 // 
