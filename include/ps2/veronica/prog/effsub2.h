@@ -13,6 +13,14 @@ typedef struct P_WK
     short wait;  // offset 0xC, size 0x2
 } P_WK;  
 
+typedef struct ACID_WORK
+{
+    // total size: 0xC
+    int dam;      // offset 0x0, size 0x4
+    float poison; // offset 0x4, size 0x4
+    int se;       // offset 0x8, size 0x4
+} ACID_WORK;
+
 void bhEff_E00_Mince(O_WRK* op);
 void bhEff_E00_DrawParticleSpr(O_WRK* op);
 void bhEff_E00_DrawParticlePly(O_WRK* op);

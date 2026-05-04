@@ -5,6 +5,7 @@
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/hitchkl.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
@@ -1595,30 +1596,42 @@ void bhEff_E03_Acid(O_WRK* op)
 	scePrintf("bhEff_E03_Acid - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2404b0
-void bhEff_E03_Shadow(O_WRK* op)
+// 100% matching!
+void bhEff_E03_Shadow(O_WRK* op) 
 {
-	BH_PWORK* pp;
-	// Line 1651, Address: 0x2404b0, Func Offset: 0
-	// Line 1653, Address: 0x2404d0, Func Offset: 0x20
-	// Line 1654, Address: 0x2404dc, Func Offset: 0x2c
-	// Line 1653, Address: 0x2404e4, Func Offset: 0x34
-	// Line 1654, Address: 0x2404ec, Func Offset: 0x3c
-	// Line 1655, Address: 0x2404f8, Func Offset: 0x48
-	// Line 1657, Address: 0x2404fc, Func Offset: 0x4c
-	// Line 1659, Address: 0x240504, Func Offset: 0x54
-	// Line 1661, Address: 0x240514, Func Offset: 0x64
-	// Line 1663, Address: 0x24051c, Func Offset: 0x6c
-	// Line 1666, Address: 0x24054c, Func Offset: 0x9c
-	// Line 1667, Address: 0x240558, Func Offset: 0xa8
-	// Line 1668, Address: 0x240560, Func Offset: 0xb0
-	// Line 1669, Address: 0x24056c, Func Offset: 0xbc
-	// Line 1668, Address: 0x240570, Func Offset: 0xc0
-	// Line 1669, Address: 0x240578, Func Offset: 0xc8
-	// Line 1673, Address: 0x2405ac, Func Offset: 0xfc
-	// Func End, Address: 0x2405b4, Func Offset: 0x104
-	scePrintf("bhEff_E03_Shadow - UNIMPLEMENTED!\n");
+    BH_PWORK* pp;
+    O_WRK* owp; // not from DWARF
+    
+    owp = (O_WRK*)op->lkwkp;
+    
+    switch (op->mode0) 
+    {                             
+    case 0:
+        op->flg |= 0x8000080;
+        op->flg &= ~0x200000;
+        
+        op->lkono = 0;
+        
+        op->mode0 = 1;
+        break;
+    case 1:
+        if (!(owp->flg & 0x1)) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        if (((owp->stflg & 0x8)) || ((owp->mdflg & 0x1)) || ((owp->stflg & 0x1000000))) 
+        {
+            op->flg |= 0x1000000;
+            return;
+        }
+        
+        op->flg &= ~0x1000000;
+        
+        sys->ef_mdf[sys->ef_mdfn++] = op;
+        break;
+    }
 }
 
 // 
