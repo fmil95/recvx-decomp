@@ -1864,20 +1864,18 @@ void bhEne27_MV02(BH_PWORK* epw)
 	// Line 542, Address: 0x210790, Func Offset: 0x700
 	// Line 545, Address: 0x210794, Func Offset: 0x704
 	// Func End, Address: 0x2107a8, Func Offset: 0x718
-}
+}*/
 
-// 
-// Start address: 0x2107b0
+// 100% matching!
 void bhEne27_Nage()
 {
-	// Line 556, Address: 0x2107b0, Func Offset: 0
-	// Func End, Address: 0x2107b8, Func Offset: 0x8
-}*/
+	
+}
 
 // 100% matching!
 void bhEne27_Damage()
 {
-	
+
 }
 
 // 100% matching!
