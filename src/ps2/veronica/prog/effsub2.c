@@ -3217,69 +3217,112 @@ void bhEff_E12_FireBurstDraw(O_WRK* owp)
 	scePrintf("bhEff_E12_FireBurstDraw - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x244120
-void bhEff_E12_Fire2(O_WRK* op)
+// 100% matching!
+void bhEff_E12_Fire2(O_WRK* op) 
 {
-	UV_WORK* uvp;
-	UV_WORK* uvtble[1];
-	// Line 3650, Address: 0x244120, Func Offset: 0
-	// Line 3676, Address: 0x24412c, Func Offset: 0xc
-	// Line 3678, Address: 0x244164, Func Offset: 0x44
-	// Line 3680, Address: 0x24416c, Func Offset: 0x4c
-	// Line 3681, Address: 0x24417c, Func Offset: 0x5c
-	// Line 3682, Address: 0x244184, Func Offset: 0x64
-	// Line 3683, Address: 0x24418c, Func Offset: 0x6c
-	// Line 3684, Address: 0x244194, Func Offset: 0x74
-	// Line 3683, Address: 0x24419c, Func Offset: 0x7c
-	// Line 3684, Address: 0x2441a0, Func Offset: 0x80
-	// Line 3686, Address: 0x2441a8, Func Offset: 0x88
-	// Line 3687, Address: 0x2441e8, Func Offset: 0xc8
-	// Line 3694, Address: 0x2441ec, Func Offset: 0xcc
-	// Line 3689, Address: 0x2441f0, Func Offset: 0xd0
-	// Line 3691, Address: 0x2441f4, Func Offset: 0xd4
-	// Line 3694, Address: 0x2441f8, Func Offset: 0xd8
-	// Line 3687, Address: 0x2441fc, Func Offset: 0xdc
-	// Line 3688, Address: 0x244200, Func Offset: 0xe0
-	// Line 3689, Address: 0x244208, Func Offset: 0xe8
-	// Line 3690, Address: 0x24420c, Func Offset: 0xec
-	// Line 3691, Address: 0x244210, Func Offset: 0xf0
-	// Line 3694, Address: 0x244214, Func Offset: 0xf4
-	// Line 3696, Address: 0x244218, Func Offset: 0xf8
-	// Line 3698, Address: 0x244224, Func Offset: 0x104
-	// Line 3699, Address: 0x244230, Func Offset: 0x110
-	// Line 3700, Address: 0x244234, Func Offset: 0x114
-	// Line 3702, Address: 0x24423c, Func Offset: 0x11c
-	// Line 3704, Address: 0x244244, Func Offset: 0x124
-	// Line 3706, Address: 0x24424c, Func Offset: 0x12c
-	// Line 3707, Address: 0x244258, Func Offset: 0x138
-	// Line 3708, Address: 0x24425c, Func Offset: 0x13c
-	// Line 3709, Address: 0x244264, Func Offset: 0x144
-	// Line 3711, Address: 0x244268, Func Offset: 0x148
-	// Line 3713, Address: 0x244270, Func Offset: 0x150
-	// Line 3714, Address: 0x24427c, Func Offset: 0x15c
-	// Line 3716, Address: 0x244288, Func Offset: 0x168
-	// Line 3718, Address: 0x244290, Func Offset: 0x170
-	// Line 3723, Address: 0x2442a4, Func Offset: 0x184
-	// Line 3725, Address: 0x2442b0, Func Offset: 0x190
-	// Line 3723, Address: 0x2442b8, Func Offset: 0x198
-	// Line 3725, Address: 0x2442bc, Func Offset: 0x19c
-	// Line 3723, Address: 0x2442c0, Func Offset: 0x1a0
-	// Line 3724, Address: 0x2442d0, Func Offset: 0x1b0
-	// Line 3723, Address: 0x2442d8, Func Offset: 0x1b8
-	// Line 3725, Address: 0x2442dc, Func Offset: 0x1bc
-	// Line 3726, Address: 0x24430c, Func Offset: 0x1ec
-	// Line 3730, Address: 0x244310, Func Offset: 0x1f0
-	// Line 3731, Address: 0x244320, Func Offset: 0x200
-	// Line 3734, Address: 0x244328, Func Offset: 0x208
-	// Line 3731, Address: 0x24432c, Func Offset: 0x20c
-	// Line 3732, Address: 0x244334, Func Offset: 0x214
-	// Line 3734, Address: 0x244344, Func Offset: 0x224
-	// Line 3735, Address: 0x244360, Func Offset: 0x240
-	// Line 3736, Address: 0x244374, Func Offset: 0x254
-	// Line 3738, Address: 0x244398, Func Offset: 0x278
-	// Func End, Address: 0x2443a8, Func Offset: 0x288
-	scePrintf("bhEff_E12_Fire2 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    static UV_WORK BH_UVTAB0[11] = 
+    {
+        {  0.0f,    0.0f,    0.1875f, 0.1875f },
+        {  0.1875f, 0.0f,    0.1875f, 0.1875f },
+        {  0.375f,  0.0f,    0.1875f, 0.1875f },
+        {  0.5625f, 0.0f,    0.1875f, 0.1875f },
+        {  0.75f,   0.0f,    0.1875f, 0.1875f },
+        {  0.0f,    0.1875f, 0.1875f, 0.1875f },
+        {  0.1875f, 0.1875f, 0.1875f, 0.1875f },
+        {  0.375f,  0.1875f, 0.1875f, 0.1875f },
+        {  0.5625f, 0.1875f, 0.1875f, 0.1875f },
+        {  0.75f,   0.1875f, 0.1875f, 0.1875f },
+        { -1.0f,    0.0f,    0.0f,    0.0f    }
+    };
+    static UV_WORK* uvtble[1] = 
+    {
+        BH_UVTAB0
+    };
+
+    switch (op->mode0) 
+    {                          
+    case 0:
+        op->tex_id = 8;
+        
+        op->ani_ct = 0;
+        
+        bhEff_SetBaseColor(op, 0xFF808080);
+        
+        op->bl_src = 8;
+        op->bl_dst = 10;
+        
+        op->flg |= 0x4180000;
+        
+        bhEff_SetAlign(op, 2);
+        
+        op->mtn_no = 0;
+        op->frm_no = 8.0f * (-rand() / -2.1474836E9f);
+        
+        op->sxb = op->sx;
+        op->syb = op->sy;
+        
+        op->aw = 1.0f;
+        op->ah = 1.0f;
+        
+        op->ct3 = 0xFF;
+        
+        op->func = (void*)bhEff_Draw3DSprite;
+        
+        op->mode0++;
+    case 1:
+        if (op->ct1 != 0) 
+        {
+            op->ct1--;
+            return;
+        }
+        
+        op->mode0++;
+        break;
+    case 2:
+        if (op->ct0 != 0) 
+        {
+            op->ct0--;
+        }
+        else 
+        {
+            op->mode0++;
+        }
+        
+        break;
+    case 3:
+        op->ct3 -= 8;
+        
+        if (op->ct3 < 0) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        bhEff_SetBaseColor(op, (op->ct3 << 24) | 0xFFFFFF);
+        break;
+    }
+    
+    uvp = &uvtble[op->mtn_no][op->frm_no];
+    
+    op->frm_no++;
+    
+    if (uvtble[op->mtn_no][op->frm_no].u < 0) 
+    {
+        op->frm_no = 0;
+    }
+    
+    bhEff_SetUVInfo(op, uvp, 0.09375f);
+    
+    op->sx *= op->aw;
+    op->sy *= op->ah;
+    
+    if (sys->ef_fncn < 128) 
+    {
+        sys->ef_fnc[sys->ef_fncn] = op;
+        
+        sys->ef_fncn++;
+    }
 }
 
 // 
