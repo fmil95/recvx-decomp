@@ -3599,81 +3599,86 @@ void bhEff_E13_Fluid(O_WRK* op)
 	scePrintf("bhEff_E13_Fluid - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x244c20
-void bhEff_E14_Explosion(O_WRK* op)
-{
-	// Line 4063, Address: 0x244c20, Func Offset: 0
-	// Line 4064, Address: 0x244c2c, Func Offset: 0xc
-	// Line 4066, Address: 0x244c4c, Func Offset: 0x2c
-	// Line 4067, Address: 0x244c54, Func Offset: 0x34
-	// Line 4066, Address: 0x244c58, Func Offset: 0x38
-	// Line 4067, Address: 0x244c5c, Func Offset: 0x3c
-	// Line 4070, Address: 0x244c60, Func Offset: 0x40
-	// Line 4066, Address: 0x244c64, Func Offset: 0x44
-	// Line 4067, Address: 0x244c70, Func Offset: 0x50
-	// Line 4078, Address: 0x244c78, Func Offset: 0x58
-	// Line 4067, Address: 0x244c84, Func Offset: 0x64
-	// Line 4068, Address: 0x244c90, Func Offset: 0x70
-	// Line 4069, Address: 0x244ca4, Func Offset: 0x84
-	// Line 4070, Address: 0x244cb8, Func Offset: 0x98
-	// Line 4071, Address: 0x244ccc, Func Offset: 0xac
-	// Line 4072, Address: 0x244ce0, Func Offset: 0xc0
-	// Line 4073, Address: 0x244cf4, Func Offset: 0xd4
-	// Line 4074, Address: 0x244d0c, Func Offset: 0xec
-	// Line 4075, Address: 0x244d24, Func Offset: 0x104
-	// Line 4076, Address: 0x244d3c, Func Offset: 0x11c
-	// Line 4077, Address: 0x244d50, Func Offset: 0x130
-	// Line 4078, Address: 0x244d64, Func Offset: 0x144
-	// Line 4080, Address: 0x244d7c, Func Offset: 0x15c
-	// Line 4081, Address: 0x244d84, Func Offset: 0x164
-	// Line 4080, Address: 0x244d88, Func Offset: 0x168
-	// Line 4081, Address: 0x244d8c, Func Offset: 0x16c
-	// Line 4082, Address: 0x244d90, Func Offset: 0x170
-	// Line 4080, Address: 0x244d94, Func Offset: 0x174
-	// Line 4081, Address: 0x244da0, Func Offset: 0x180
-	// Line 4084, Address: 0x244da8, Func Offset: 0x188
-	// Line 4092, Address: 0x244dac, Func Offset: 0x18c
-	// Line 4081, Address: 0x244db8, Func Offset: 0x198
-	// Line 4082, Address: 0x244dc4, Func Offset: 0x1a4
-	// Line 4083, Address: 0x244dd8, Func Offset: 0x1b8
-	// Line 4084, Address: 0x244dec, Func Offset: 0x1cc
-	// Line 4085, Address: 0x244e00, Func Offset: 0x1e0
-	// Line 4086, Address: 0x244e14, Func Offset: 0x1f4
-	// Line 4087, Address: 0x244e28, Func Offset: 0x208
-	// Line 4088, Address: 0x244e40, Func Offset: 0x220
-	// Line 4089, Address: 0x244e58, Func Offset: 0x238
-	// Line 4090, Address: 0x244e70, Func Offset: 0x250
-	// Line 4091, Address: 0x244e84, Func Offset: 0x264
-	// Line 4092, Address: 0x244e98, Func Offset: 0x278
-	// Line 4094, Address: 0x244eb0, Func Offset: 0x290
-	// Line 4095, Address: 0x244eb4, Func Offset: 0x294
-	// Line 4096, Address: 0x244ebc, Func Offset: 0x29c
-	// Line 4098, Address: 0x244ec4, Func Offset: 0x2a4
-	// Line 4099, Address: 0x244ed0, Func Offset: 0x2b0
-	// Line 4100, Address: 0x244ee0, Func Offset: 0x2c0
-	// Line 4101, Address: 0x244ee8, Func Offset: 0x2c8
-	// Line 4104, Address: 0x244ef0, Func Offset: 0x2d0
-	// Line 4100, Address: 0x244ef4, Func Offset: 0x2d4
-	// Line 4104, Address: 0x244f04, Func Offset: 0x2e4
-	// Line 4101, Address: 0x244f08, Func Offset: 0x2e8
-	// Line 4112, Address: 0x244f10, Func Offset: 0x2f0
-	// Line 4101, Address: 0x244f1c, Func Offset: 0x2fc
-	// Line 4102, Address: 0x244f28, Func Offset: 0x308
-	// Line 4103, Address: 0x244f3c, Func Offset: 0x31c
-	// Line 4104, Address: 0x244f50, Func Offset: 0x330
-	// Line 4105, Address: 0x244f64, Func Offset: 0x344
-	// Line 4106, Address: 0x244f78, Func Offset: 0x358
-	// Line 4107, Address: 0x244f8c, Func Offset: 0x36c
-	// Line 4108, Address: 0x244fb0, Func Offset: 0x390
-	// Line 4109, Address: 0x244fd4, Func Offset: 0x3b4
-	// Line 4110, Address: 0x244ff8, Func Offset: 0x3d8
-	// Line 4111, Address: 0x24500c, Func Offset: 0x3ec
-	// Line 4112, Address: 0x245020, Func Offset: 0x400
-	// Line 4114, Address: 0x245038, Func Offset: 0x418
-	// Line 4118, Address: 0x24503c, Func Offset: 0x41c
-	// Func End, Address: 0x24504c, Func Offset: 0x42c
-	scePrintf("bhEff_E14_Explosion - UNIMPLEMENTED!\n");
+// 100% matching!
+void bhEff_E14_Explosion(O_WRK* op) 
+{ 
+    switch (op->mode0) 
+    {                         
+    case 0:
+        sys->ef.id = 19;
+        
+        sys->ef.flg = 0x4100001;
+        sys->ef.type = 0;
+        
+        sys->ef.mdlver = 0;
+        
+        sys->ef.sx = 2.5f;
+        sys->ef.sy = 2.5f;
+        sys->ef.sz = 2.5f;
+        
+        sys->ef.px = op->px;
+        sys->ef.py = op->py;
+        sys->ef.pz = op->pz;
+        
+        sys->ef.ay = 0;
+        sys->ef.ax = 0;
+        
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        sys->ef.id = 19;
+        
+        sys->ef.flg = 0x4100001;
+        sys->ef.type = 2;
+        
+        sys->ef.mdlver = 0;
+        
+        sys->ef.sx = 5.0f;
+        sys->ef.sy = 5.0f;
+        sys->ef.sz = 5.0f;
+        
+        sys->ef.px = op->px;
+        sys->ef.py = op->py;
+        sys->ef.pz = op->pz;
+        
+        sys->ef.ay = 0;
+        sys->ef.ax = 0;
+        
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        op->ct0 = 0;
+        
+        op->mode0++;
+        break;
+    case 1:
+        op->ct0++;
+        
+        if (op->ct0 > 2) 
+        {
+            sys->ef.id = 19;
+            
+            sys->ef.flg = 0x4100001;
+            sys->ef.type = 1;
+            
+            sys->ef.mdlver = 0;
+            
+            sys->ef.sx = 2.8f;
+            sys->ef.sy = 2.8f;
+            sys->ef.sz = 2.8f;
+            
+            sys->ef.px = op->px + cam.vx;
+            sys->ef.py = op->py + cam.vy;
+            sys->ef.pz = op->pz + cam.vz;
+            
+            sys->ef.ay = 0;
+            sys->ef.ax = 0;
+            
+            bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+            
+            op->flg = 0;
+        }
+        
+        break;
+    }
 }
 
 // 
