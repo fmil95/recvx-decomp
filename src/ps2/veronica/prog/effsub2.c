@@ -7,6 +7,8 @@
 #include "../../../ps2/veronica/prog/hitchkl.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
+#include "../../../ps2/veronica/prog/ps2_NaFog.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
@@ -3175,47 +3177,68 @@ void bhEff_E12_FireManager(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x243f90
+// 100% matching!
 void bhEff_E12_FireBurstDraw(O_WRK* owp)
 {
-	char atr[192];
-	O_WRK** opp;
-	O_WRK* op;
-	int num;
-	// Line 3587, Address: 0x243f90, Func Offset: 0
-	// Line 3593, Address: 0x243fa4, Func Offset: 0x14
-	// Line 3596, Address: 0x243fb8, Func Offset: 0x28
-	// Line 3598, Address: 0x243fc0, Func Offset: 0x30
-	// Line 3599, Address: 0x243fd8, Func Offset: 0x48
-	// Line 3601, Address: 0x244004, Func Offset: 0x74
-	// Line 3602, Address: 0x24400c, Func Offset: 0x7c
-	// Line 3603, Address: 0x244018, Func Offset: 0x88
-	// Line 3605, Address: 0x244024, Func Offset: 0x94
-	// Line 3607, Address: 0x24402c, Func Offset: 0x9c
-	// Line 3608, Address: 0x244030, Func Offset: 0xa0
-	// Line 3609, Address: 0x244034, Func Offset: 0xa4
-	// Line 3610, Address: 0x24403c, Func Offset: 0xac
-	// Line 3611, Address: 0x244040, Func Offset: 0xb0
-	// Line 3613, Address: 0x244044, Func Offset: 0xb4
-	// Line 3616, Address: 0x24404c, Func Offset: 0xbc
-	// Line 3617, Address: 0x244054, Func Offset: 0xc4
-	// Line 3618, Address: 0x24405c, Func Offset: 0xcc
-	// Line 3619, Address: 0x244064, Func Offset: 0xd4
-	// Line 3620, Address: 0x244070, Func Offset: 0xe0
-	// Line 3621, Address: 0x244078, Func Offset: 0xe8
-	// Line 3623, Address: 0x244080, Func Offset: 0xf0
-	// Line 3626, Address: 0x24408c, Func Offset: 0xfc
-	// Line 3627, Address: 0x2440a0, Func Offset: 0x110
-	// Line 3629, Address: 0x2440a8, Func Offset: 0x118
-	// Line 3632, Address: 0x2440b4, Func Offset: 0x124
-	// Line 3634, Address: 0x2440c4, Func Offset: 0x134
-	// Line 3635, Address: 0x2440cc, Func Offset: 0x13c
-	// Line 3638, Address: 0x2440d8, Func Offset: 0x148
-	// Line 3639, Address: 0x2440e0, Func Offset: 0x150
-	// Line 3640, Address: 0x244100, Func Offset: 0x170
-	// Func End, Address: 0x244118, Func Offset: 0x188
-	scePrintf("bhEff_E12_FireBurstDraw - UNIMPLEMENTED!\n");
+    O_WRK* op;
+    O_WRK** opp;
+    int num; // modified original position from DWARF
+    char atr[192];
+
+    njSetMatrix(NULL, cam.mtx);
+    
+    njTextureFilterMode(0);
+    
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(sys->ef_tn[owp->tex_id] + owp->ani_ct);
+    
+    njGetSystemAttr((NJS_SYS_ATTR*)&atr);
+    
+    njColorBlendingMode(0, owp->bl_src);
+    njColorBlendingMode(1, owp->bl_dst);
+    
+    njFogDisable();
+
+    opp = (O_WRK**)&owp->exp0[4];
+    
+    for (num = owp->ct0; num != 0; )
+    {
+        op = *opp++;
+        
+        num--;
+        
+        njPushMatrixEx();
+        njPushMatrixEx();
+        
+        njUnitMatrix(NULL);
+        
+        njTranslateEx((NJS_VECTOR*)&op->px);
+        njRotateEx((Angle*)&op->ax, 0);
+        
+        njGetMatrix(op->mtx);
+        
+        njPopMatrixEx();
+        
+        njMultiMatrix(NULL, op->mtx);
+
+        if ((op->flg & 0x100000)) 
+        {
+            njUnitRotPortion(NULL);
+        }
+
+        njScaleEx((NJS_VECTOR*)&op->sx);
+        
+        njDrawTexture3DEx(op->tvp, op->pn, 1);
+        
+        njPopMatrixEx();
+    } 
+    
+    njSetSystemAttr((NJS_SYS_ATTR*)&atr);
+     
+    if ((sys->st_flg & 0x2)) 
+    {
+        njFogEnable();
+    }
 }
 
 // 100% matching!
@@ -3412,7 +3435,7 @@ void bhEff_E12_BintaEffControl(O_WRK* op)
                 break;
             case 1:                                 
                 bhEne12_SetFireBintaEffect(ep, 0);
-				
+
                 op->mode1 = 0;
                 break;
             case 2:                                 
