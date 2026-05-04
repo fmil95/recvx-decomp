@@ -1872,15 +1872,13 @@ void bhEne27_Nage()
 {
 	// Line 556, Address: 0x2107b0, Func Offset: 0
 	// Func End, Address: 0x2107b8, Func Offset: 0x8
-}
+}*/
 
-// 
-// Start address: 0x2107c0
+// 100% matching!
 void bhEne27_Damage()
 {
-	// Line 567, Address: 0x2107c0, Func Offset: 0
-	// Func End, Address: 0x2107c8, Func Offset: 0x8
-}*/
+	
+}
 
 // 100% matching!
 void bhEne27_Die()
