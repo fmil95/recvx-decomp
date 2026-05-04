@@ -1325,46 +1325,57 @@ void bhEff_E02_SandParticle(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x23f720
-void bhEff_E02_SandParticle2(O_WRK* op)
+// 99.93% matching
+void bhEff_E02_SandParticle2(O_WRK* op) 
 {
-	int eno;
-	O_WRK* opw;
-	// Line 1314, Address: 0x23f720, Func Offset: 0
-	// Line 1318, Address: 0x23f730, Func Offset: 0x10
-	// Line 1320, Address: 0x23f750, Func Offset: 0x30
-	// Line 1321, Address: 0x23f794, Func Offset: 0x74
-	// Line 1322, Address: 0x23f79c, Func Offset: 0x7c
-	// Line 1324, Address: 0x23f7a4, Func Offset: 0x84
-	// Line 1327, Address: 0x23f7b4, Func Offset: 0x94
-	// Line 1328, Address: 0x23f7fc, Func Offset: 0xdc
-	// Line 1329, Address: 0x23f808, Func Offset: 0xe8
-	// Line 1338, Address: 0x23f80c, Func Offset: 0xec
-	// Line 1328, Address: 0x23f810, Func Offset: 0xf0
-	// Line 1329, Address: 0x23f81c, Func Offset: 0xfc
-	// Line 1338, Address: 0x23f824, Func Offset: 0x104
-	// Line 1329, Address: 0x23f82c, Func Offset: 0x10c
-	// Line 1330, Address: 0x23f838, Func Offset: 0x118
-	// Line 1331, Address: 0x23f84c, Func Offset: 0x12c
-	// Line 1332, Address: 0x23f864, Func Offset: 0x144
-	// Line 1333, Address: 0x23f87c, Func Offset: 0x15c
-	// Line 1334, Address: 0x23f894, Func Offset: 0x174
-	// Line 1335, Address: 0x23f8a8, Func Offset: 0x188
-	// Line 1338, Address: 0x23f8bc, Func Offset: 0x19c
-	// Line 1339, Address: 0x23f8d4, Func Offset: 0x1b4
-	// Line 1340, Address: 0x23f8dc, Func Offset: 0x1bc
-	// Line 1343, Address: 0x23f8fc, Func Offset: 0x1dc
-	// Line 1344, Address: 0x23f904, Func Offset: 0x1e4
-	// Line 1345, Address: 0x23f908, Func Offset: 0x1e8
-	// Line 1347, Address: 0x23f90c, Func Offset: 0x1ec
-	// Line 1348, Address: 0x23f914, Func Offset: 0x1f4
-	// Line 1347, Address: 0x23f918, Func Offset: 0x1f8
-	// Line 1348, Address: 0x23f91c, Func Offset: 0x1fc
-	// Line 1349, Address: 0x23f924, Func Offset: 0x204
-	// Line 1354, Address: 0x23f928, Func Offset: 0x208
-	// Func End, Address: 0x23f938, Func Offset: 0x218
-	scePrintf("bhEff_E02_SandParticle2 - UNIMPLEMENTED!\n");
+    O_WRK* opw;
+    int eno;
+    
+    switch (op->mode0) 
+    {                              
+    case 0:
+        op->ct0 = 120.0f + (30.0f * ( -rand() / -2.1474836E9f));
+        
+        op->mode0++;
+        break;
+    case 1:
+        if (op->ct0-- == 0) 
+        {
+            op->mode0 = 0;
+            
+            if ((-rand() / -2.1474836E9f) < 0.3f) 
+            {
+                sys->ef.id = 254;
+                
+                sys->ef.flg = 1;
+                sys->ef.type = 0;
+                
+                sys->ef.px = op->px;
+                sys->ef.py = op->py;
+                sys->ef.pz = op->pz;
+                
+                sys->ef.ax = 0;
+                sys->ef.ay = 0;
+                
+                eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+                
+                if (eno >= 0) 
+                {
+                    opw = &eff[eno];
+                    
+                    opw->sx = 3.0f;
+                    opw->sy = 3.0f;
+                    opw->sz = 3.0f;
+                    
+                    opw->sxb = 0.2f;
+                    opw->syb = 0.3f;
+                    opw->szb = 0.2f;
+                }
+            }
+        }
+        
+        break;
+    }
 }
 
 // 
