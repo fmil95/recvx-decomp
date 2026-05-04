@@ -2253,23 +2253,41 @@ int bhEff_E11_CheckCollisionPlayer(NJS_POINT3* p1, NJS_POINT3* p2)
 	scePrintf("bhEff_E11_CheckCollisionPlayer - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x241bd0
-void bhEff_E16_LaserSight(O_WRK* op)
+// 100% matching!
+void bhEff_E16_LaserSight(O_WRK* op) 
 {
-	// Line 2409, Address: 0x241bd0, Func Offset: 0
-	// Line 2411, Address: 0x241be8, Func Offset: 0x18
-	// Line 2414, Address: 0x241bf0, Func Offset: 0x20
-	// Line 2416, Address: 0x241c10, Func Offset: 0x40
-	// Line 2417, Address: 0x241c18, Func Offset: 0x48
-	// Line 2419, Address: 0x241c20, Func Offset: 0x50
-	// Line 2423, Address: 0x241c28, Func Offset: 0x58
-	// Line 2427, Address: 0x241c38, Func Offset: 0x68
-	// Line 2428, Address: 0x241c54, Func Offset: 0x84
-	// Line 2429, Address: 0x241c68, Func Offset: 0x98
-	// Line 2431, Address: 0x241c8c, Func Offset: 0xbc
-	// Func End, Address: 0x241c94, Func Offset: 0xc4
-	scePrintf("bhEff_E16_LaserSight - UNIMPLEMENTED!\n");
+    O_WRK* opp; // not from DWARF
+
+    opp = (O_WRK*)op->lkwkp;
+    
+    if ((opp->flg != 0) ^ 1) 
+    {
+        op->flg = 0;
+        return;
+    }
+    
+    switch (op->mode0) 
+    {                             
+    case 0:
+        op->func = (void*)bhEff_E16_LaserSightDraw;
+		
+        op->mode0++;
+        break;
+    default:
+        if (!(opp->stflg & 0x1000000)) 
+        {
+            if (sys->ef_fncn < 128)
+            {
+                sys->ef_fnc[sys->ef_fncn] = op;
+                
+                sys->ef_fncn++;
+            }
+        }
+        
+        break;
+    case 1:
+        return;
+    }
 }
 
 // 
