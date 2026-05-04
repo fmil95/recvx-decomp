@@ -4138,23 +4138,23 @@ void bhEff_Draw3DSprite(O_WRK* op)
 	scePrintf("bhEff_Draw3DSprite - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x246580
+// 100% matching!
 void bhEff_SetUVInfo(O_WRK* op, UV_WORK* uvp, float BaseSize)
 {
-	// Line 4814, Address: 0x246580, Func Offset: 0
-	// Line 4815, Address: 0x246588, Func Offset: 0x8
-	// Line 4816, Address: 0x246590, Func Offset: 0x10
-	// Line 4817, Address: 0x2465a0, Func Offset: 0x20
-	// Line 4818, Address: 0x2465a8, Func Offset: 0x28
-	// Line 4819, Address: 0x2465b0, Func Offset: 0x30
-	// Line 4820, Address: 0x2465c0, Func Offset: 0x40
-	// Line 4821, Address: 0x2465c8, Func Offset: 0x48
-	// Line 4822, Address: 0x2465d0, Func Offset: 0x50
-	// Line 4823, Address: 0x2465e4, Func Offset: 0x64
-	// Line 4824, Address: 0x2465fc, Func Offset: 0x7c
-	// Func End, Address: 0x246604, Func Offset: 0x84
-	scePrintf("bhEff_SetUVInfo - UNIMPLEMENTED!\n");
+    op->tv[0].u = uvp->u;
+    op->tv[0].v = uvp->v;
+    
+    op->tv[1].u = uvp->u + uvp->xs;
+    op->tv[1].v = op->tv[0].v;
+    
+    op->tv[2].u = op->tv[0].u;
+    op->tv[2].v = uvp->v + uvp->ys;
+    
+    op->tv[3].u = op->tv[1].u;
+    op->tv[3].v = op->tv[2].v;
+    
+    op->sx = (op->sxb * uvp->xs) / BaseSize;
+    op->sy = (op->syb * uvp->ys) / BaseSize;
 }
 
 // 
