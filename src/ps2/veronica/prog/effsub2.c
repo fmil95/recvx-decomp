@@ -2,6 +2,7 @@
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/effsub6.h"
+#include "../../../ps2/veronica/prog/en12.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/hitchkl.h"
 #include "../../../ps2/veronica/prog/main.h"
@@ -3389,25 +3390,44 @@ void bhEff_E12_Fire3(O_WRK* op)
 	scePrintf("bhEff_E12_Fire3 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x244710
-void bhEff_E12_BintaEffControl(O_WRK* op)
+// 100% matching!
+void bhEff_E12_BintaEffControl(O_WRK* op) 
 {
-	BH_PWORK* ep;
-	// Line 3860, Address: 0x244710, Func Offset: 0
-	// Line 3863, Address: 0x244720, Func Offset: 0x10
-	// Line 3865, Address: 0x244740, Func Offset: 0x30
-	// Line 3866, Address: 0x244750, Func Offset: 0x40
-	// Line 3868, Address: 0x24475c, Func Offset: 0x4c
-	// Line 3869, Address: 0x244764, Func Offset: 0x54
-	// Line 3873, Address: 0x24479c, Func Offset: 0x8c
-	// Line 3875, Address: 0x2447a8, Func Offset: 0x98
-	// Line 3877, Address: 0x2447b0, Func Offset: 0xa0
-	// Line 3879, Address: 0x2447bc, Func Offset: 0xac
-	// Line 3881, Address: 0x2447c4, Func Offset: 0xb4
-	// Line 3886, Address: 0x2447d0, Func Offset: 0xc0
-	// Func End, Address: 0x2447e0, Func Offset: 0xd0
-	scePrintf("bhEff_E12_BintaEffControl - UNIMPLEMENTED!\n");
+    BH_PWORK* ep;
+
+    ep = (BH_PWORK*)op->lkwkp;
+    
+    switch (op->mode0) 
+    {                             
+    case 0:                                         
+        op->flg |= 0x1000000;
+        
+        op->mode0++;
+    case 1:                                         
+        if (ep != NULL) 
+        {
+            switch (op->mode1) 
+            { 
+            case 0:
+                break;
+            case 1:                                 
+                bhEne12_SetFireBintaEffect(ep, 0);
+				
+                op->mode1 = 0;
+                break;
+            case 2:                                 
+                bhEne12_SetFireBintaEffect(ep, 1);
+
+                op->mode1 = 0;
+                break;
+            case 3:                                 
+                bhEne12_SetFireBintaEffect(ep, 2);
+                break;
+            }
+        } 
+        
+        break;
+    }
 }
 
 // 

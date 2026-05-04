@@ -2871,20 +2871,20 @@ void bhEne12_CallFootSE(BH_PWORK* epw, int flg)
 	// Line 2372, Address: 0x1d9c00, Func Offset: 0xa0
 	// Line 2374, Address: 0x1d9c14, Func Offset: 0xb4
 	// Func End, Address: 0x1d9c24, Func Offset: 0xc4
-}
+}*/
 
 // 
 // Start address: 0x1d9c30
 void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act)
 {
 	float scale;
-	_anon25 vec2;
-	_anon25 vec;
-	_anon25 ofp;
-	_anon1* owk;
+	//_anon25 vec2;
+	//_anon25 vec;
+	//_anon25 ofp;
+	//_anon1* owk;
 	int eno;
 	int i;
-	_anon24* efp;
+	//_anon24* efp;
 	// Line 2385, Address: 0x1d9c30, Func Offset: 0
 	// Line 2393, Address: 0x1d9c44, Func Offset: 0x14
 	// Line 2385, Address: 0x1d9c48, Func Offset: 0x18
@@ -3017,5 +3017,5 @@ void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act)
 	// Line 2481, Address: 0x1da314, Func Offset: 0x6e4
 	// Line 2483, Address: 0x1da320, Func Offset: 0x6f0
 	// Func End, Address: 0x1da33c, Func Offset: 0x70c
-}*/
-
+	scePrintf("bhEne12_SetFireBintaEffect - UNIMPLEMENTED!\n");
+}
