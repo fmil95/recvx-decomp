@@ -1964,52 +1964,82 @@ void bhEff_E06_Rinpun(O_WRK* op)
 	scePrintf("bhEff_E06_Rinpun - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x240f60
+// 100% matching!
 void bhEff_E11_SearchLight(O_WRK* op)
 {
-	// Line 1910, Address: 0x240f60, Func Offset: 0
-	// Line 1919, Address: 0x240f6c, Func Offset: 0xc
-	// Line 1921, Address: 0x240fac, Func Offset: 0x4c
-	// Line 1922, Address: 0x240fb0, Func Offset: 0x50
-	// Line 1925, Address: 0x240fb4, Func Offset: 0x54
-	// Line 1923, Address: 0x240fb8, Func Offset: 0x58
-	// Line 1925, Address: 0x240fbc, Func Offset: 0x5c
-	// Line 1924, Address: 0x240fc0, Func Offset: 0x60
-	// Line 1925, Address: 0x240fc4, Func Offset: 0x64
-	// Line 1926, Address: 0x240fc8, Func Offset: 0x68
-	// Line 1929, Address: 0x240fcc, Func Offset: 0x6c
-	// Line 1930, Address: 0x240fd8, Func Offset: 0x78
-	// Line 1932, Address: 0x240fe0, Func Offset: 0x80
-	// Line 1935, Address: 0x240fe8, Func Offset: 0x88
-	// Line 1936, Address: 0x241000, Func Offset: 0xa0
-	// Line 1938, Address: 0x24100c, Func Offset: 0xac
-	// Line 1939, Address: 0x24102c, Func Offset: 0xcc
-	// Line 1940, Address: 0x241034, Func Offset: 0xd4
-	// Line 1942, Address: 0x24103c, Func Offset: 0xdc
-	// Line 1943, Address: 0x241040, Func Offset: 0xe0
-	// Line 1945, Address: 0x241048, Func Offset: 0xe8
-	// Line 1946, Address: 0x241054, Func Offset: 0xf4
-	// Line 1947, Address: 0x24105c, Func Offset: 0xfc
-	// Line 1948, Address: 0x241064, Func Offset: 0x104
-	// Line 1950, Address: 0x24106c, Func Offset: 0x10c
-	// Line 1952, Address: 0x241074, Func Offset: 0x114
-	// Line 1953, Address: 0x241080, Func Offset: 0x120
-	// Line 1954, Address: 0x24108c, Func Offset: 0x12c
-	// Line 1955, Address: 0x241090, Func Offset: 0x130
-	// Line 1957, Address: 0x241094, Func Offset: 0x134
-	// Line 1958, Address: 0x2410a4, Func Offset: 0x144
-	// Line 1965, Address: 0x2410b0, Func Offset: 0x150
-	// Line 1966, Address: 0x2410e0, Func Offset: 0x180
-	// Line 1967, Address: 0x241110, Func Offset: 0x1b0
-	// Line 1969, Address: 0x241120, Func Offset: 0x1c0
-	// Line 1967, Address: 0x241124, Func Offset: 0x1c4
-	// Line 1969, Address: 0x24113c, Func Offset: 0x1dc
-	// Line 1970, Address: 0x241158, Func Offset: 0x1f8
-	// Line 1971, Address: 0x24116c, Func Offset: 0x20c
-	// Line 1973, Address: 0x241190, Func Offset: 0x230
-	// Func End, Address: 0x2411a0, Func Offset: 0x240
-	scePrintf("bhEff_E11_SearchLight - UNIMPLEMENTED!\n");
+    switch (op->mode0) 
+    {
+    case 0:
+        op->ct0  = 0;
+        op->ct1  = 0;
+        op->ct2  = 0;
+        
+        op->ax   = 0;
+        
+        op->func = (void*)bhEff_E11_SearchLightDraw;
+        
+        op->mode0 = 0xFF;
+        
+        if (op->exp0 != NULL) 
+        {
+            return;
+        }
+        
+        op->exp0 = (unsigned char*)bhSetExtraEffectWork();
+        return;
+    case 1:
+        if (++op->ct0 >= 32) 
+        {
+            op->mode0++;
+        }
+        
+        op->ax += (short)(op->axp - op->ax) / 16;
+        
+        op->ct1 += 10;
+        break;
+    case 2:
+        op->ct0 = 32;
+        
+        op->ax  = op->axp;
+        
+        if (op->ct2 != 0) 
+        {
+            op->ct1 += 14;
+        } 
+        else 
+        {
+            op->ct1 += 6;
+        }
+        
+        break;
+    case 3:
+        op->ct0 -= 3;
+        
+        if (op->ct0 <= 0) 
+        {
+            op->ct0   = 0;
+            
+            op->mode0 = 0;
+        }
+        
+        op->ax   = op->ax - (op->ax / 8);
+        
+        op->ct1 += 2;
+        break;
+    case 0xFF:
+        return;
+    }
+
+    op->sx = -rand() / -2.147483648E9f;
+    op->sy = -rand() / -2.147483648E9f;
+    op->sz = -rand() / -2.147483648E9f;
+
+    if (sys->ef_fncn < 128)
+    {
+        sys->ef_fnc[sys->ef_fncn] = op;
+        
+        sys->ef_fncn++;
+    }
 }
 
 // 

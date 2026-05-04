@@ -96,22 +96,6 @@ BH_PWORK ene[0];
 _anon42 cam;
 _anon11* rom;*/
 
-void bhSetWeapon(O_WRK* op, int wpn_no, int flg);
-/*void bhObjWpn(_anon0* op);
-void bhActionWeapon(_anon0* op);
-short bhCheckBullet();
-int bhCountBullet();
-int bhCheckGunAtari(_anon21* gap);
-void bhCheckKnifeAtari(_anon21* gap);
-int bhCheckFlyAtari(_anon21* gap, int eidx);
-void bhSetBowDamage();
-void bhCheckBombAtari(_anon1* pos, float ar, int dmax, int dmin);
-int bhCheckCapCol2Capsule(BH_PWORK* pp, _anon34* cap, _anon1* hps);
-void bhSetGunSplash(_anon21* gap, _anon1* pos, int wattr);
-void bhSetExplosion(_anon1* pos);
-void bhSetExplosionEffect(_anon1* pos);
-void bhSetExplosionEffectEx(_anon1* pos, float scl);*/
-
 // 100% matching! 
 void bhSetWeapon(O_WRK* op, int wpn_no, int flg)
 {
@@ -1182,15 +1166,15 @@ void bhSetBowDamage()
 	// Line 1244, Address: 0x28cf84, Func Offset: 0x224
 	// Line 1245, Address: 0x28cfb0, Func Offset: 0x250
 	// Func End, Address: 0x28cfe0, Func Offset: 0x280
-}
+}*/
 
 // 
 // Start address: 0x28cfe0
-void bhCheckBombAtari(_anon1* pos, float ar, int dmax, int dmin)
+void bhCheckBombAtari(NJS_POINT3* pos, float ar, int dmax, int dmin)
 {
 	float inn;
-	_anon1 vec1;
-	_anon1 vec0;
+	//_anon1 vec1;
+	//_anon1 vec0;
 	BH_PWORK* pp;
 	int kno;
 	int j;
@@ -1198,10 +1182,10 @@ void bhCheckBombAtari(_anon1* pos, float ar, int dmax, int dmin)
 	float nr;
 	float ll;
 	float knr;
-	_anon1 ps;
-	_anon1 sca;
-	_anon46 spr;
-	_anon34 wal;
+	//_anon1 ps;
+	//_anon1 sca;
+	//_anon46 spr;
+	//_anon34 wal;
 	// Line 1257, Address: 0x28cfe0, Func Offset: 0
 	// Line 1268, Address: 0x28d010, Func Offset: 0x30
 	// Line 1271, Address: 0x28d014, Func Offset: 0x34
@@ -1349,9 +1333,10 @@ void bhCheckBombAtari(_anon1* pos, float ar, int dmax, int dmin)
 	// Line 1452, Address: 0x28d62c, Func Offset: 0x64c
 	// Line 1456, Address: 0x28d658, Func Offset: 0x678
 	// Func End, Address: 0x28d68c, Func Offset: 0x6ac
+	scePrintf("bhCheckBombAtari - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x28d690
 int bhCheckCapCol2Capsule(BH_PWORK* pp, _anon34* cap, _anon1* hps)
 {

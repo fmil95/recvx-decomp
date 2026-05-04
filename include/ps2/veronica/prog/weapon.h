@@ -1705,4 +1705,20 @@ struct _anon48
 	float oz;
 };*/
 
+void bhSetWeapon(O_WRK* op, int wpn_no, int flg);
+/*void bhObjWpn(_anon0* op);
+void bhActionWeapon(_anon0* op);*/
+short bhCheckBullet();
+int bhCountBullet();
+/*int bhCheckGunAtari(_anon21* gap);
+void bhCheckKnifeAtari(_anon21* gap);
+int bhCheckFlyAtari(_anon21* gap, int eidx);*/
+void bhSetBowDamage();
+void bhCheckBombAtari(NJS_POINT3* pos, float ar, int dmax, int dmin);
+/*int bhCheckCapCol2Capsule(BH_PWORK* pp, _anon34* cap, _anon1* hps);
+void bhSetGunSplash(_anon21* gap, _anon1* pos, int wattr);
+void bhSetExplosion(_anon1* pos);
+void bhSetExplosionEffect(_anon1* pos);
+void bhSetExplosionEffectEx(_anon1* pos, float scl);*/
+
 #endif
