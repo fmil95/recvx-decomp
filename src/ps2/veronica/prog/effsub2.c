@@ -4172,47 +4172,70 @@ void bhEff_SetUVInfo(O_WRK* op, UV_WORK* uvp, float BaseSize)
     op->sy = (op->syb * uvp->ys) / BaseSize;
 }
 
-// 
-// Start address: 0x246610
-void bhEff_SetAlign(O_WRK* op, unsigned int flg)
+// 100% matching!
+void bhEff_SetAlign(O_WRK* op, unsigned int flg) 
 {
-	// Line 4837, Address: 0x246610, Func Offset: 0
-	// Line 4838, Address: 0x24661c, Func Offset: 0xc
-	// Line 4839, Address: 0x246628, Func Offset: 0x18
-	// Line 4840, Address: 0x246630, Func Offset: 0x20
-	// Line 4841, Address: 0x246634, Func Offset: 0x24
-	// Line 4843, Address: 0x246638, Func Offset: 0x28
-	// Line 4844, Address: 0x24664c, Func Offset: 0x3c
-	// Line 4845, Address: 0x246650, Func Offset: 0x40
-	// Line 4846, Address: 0x246654, Func Offset: 0x44
-	// Line 4848, Address: 0x24665c, Func Offset: 0x4c
-	// Line 4849, Address: 0x246664, Func Offset: 0x54
-	// Line 4850, Address: 0x24666c, Func Offset: 0x5c
-	// Line 4851, Address: 0x246670, Func Offset: 0x60
-	// Line 4854, Address: 0x246678, Func Offset: 0x68
-	// Line 4855, Address: 0x246680, Func Offset: 0x70
-	// Line 4856, Address: 0x24668c, Func Offset: 0x7c
-	// Line 4857, Address: 0x246690, Func Offset: 0x80
-	// Line 4858, Address: 0x246694, Func Offset: 0x84
-	// Line 4860, Address: 0x24669c, Func Offset: 0x8c
-	// Line 4861, Address: 0x2466b0, Func Offset: 0xa0
-	// Line 4862, Address: 0x2466b8, Func Offset: 0xa8
-	// Line 4863, Address: 0x2466bc, Func Offset: 0xac
-	// Line 4865, Address: 0x2466c0, Func Offset: 0xb0
-	// Line 4866, Address: 0x2466c8, Func Offset: 0xb8
-	// Line 4867, Address: 0x2466d0, Func Offset: 0xc0
-	// Line 4868, Address: 0x2466d4, Func Offset: 0xc4
-	// Line 4869, Address: 0x2466dc, Func Offset: 0xcc
-	// Line 4874, Address: 0x2466e0, Func Offset: 0xd0
-	// Line 4875, Address: 0x2466e8, Func Offset: 0xd8
-	// Line 4876, Address: 0x2466f0, Func Offset: 0xe0
-	// Line 4877, Address: 0x2466f4, Func Offset: 0xe4
-	// Line 4880, Address: 0x2466f8, Func Offset: 0xe8
-	// Line 4881, Address: 0x2466fc, Func Offset: 0xec
-	// Line 4882, Address: 0x246700, Func Offset: 0xf0
-	// Line 4884, Address: 0x246704, Func Offset: 0xf4
-	// Func End, Address: 0x24670c, Func Offset: 0xfc
-	scePrintf("bhEff_SetAlign - UNIMPLEMENTED!\n");
+    if ((flg & 0x1))
+    {
+        if ((flg & 0x2)) 
+        {
+            op->tv[0].y = 2;
+            op->tv[1].y = 2;
+            op->tv[2].y = 0;
+            op->tv[3].y = 0;
+        } 
+        else 
+        {
+            if ((flg & 0x4)) 
+            {
+                op->tv[0].y = 0;
+                op->tv[1].y = 0;
+                op->tv[2].y = -2;
+                op->tv[3].y = -2;
+            } 
+            else 
+            {
+                op->tv[0].y = -1;
+                op->tv[1].y = -1;
+                op->tv[2].y = 1;
+                op->tv[3].y = 1;
+            }
+        }
+    } 
+    else 
+    {
+        if ((flg & 0x4)) 
+        {
+            op->tv[0].y = 0;
+            op->tv[1].y = 0;
+            op->tv[2].y = 2;
+            op->tv[3].y = 2;
+        }
+        else if ((flg & 0x2))
+        {
+            op->tv[0].y = -2;
+            op->tv[1].y = -2;
+            op->tv[2].y = 0;
+            op->tv[3].y = 0;
+        } 
+        else 
+        {
+            op->tv[0].y = -1;
+            op->tv[1].y = -1;
+            op->tv[2].y = 1;
+            op->tv[3].y = 1;
+        }
+    }
+    
+    op->tv[0].x = -1;
+    op->tv[1].x = 1;
+    op->tv[2].x = -1;
+    op->tv[3].x = 1;
+    
+    op->tv[0].z = 0;
+    op->tv[1].z = 0;
+    op->tv[2].z = 0;
+    op->tv[3].z = 0;
 }
 
 // 100% matching!
