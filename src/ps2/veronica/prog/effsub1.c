@@ -3048,18 +3048,21 @@ void bhEff015(O_WRK* op)
 	scePrintf("bhEff015 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x22b8c0
+// 100% matching!
 void bhEff016(O_WRK* op)
 {
-	// Line 3229, Address: 0x22b8c0, Func Offset: 0
-	// Line 3230, Address: 0x22b8cc, Func Offset: 0xc
-	// Line 3231, Address: 0x22b8d8, Func Offset: 0x18
-	// Line 3232, Address: 0x22b8ec, Func Offset: 0x2c
-	// Line 3233, Address: 0x22b904, Func Offset: 0x44
-	// Line 3235, Address: 0x22b908, Func Offset: 0x48
-	// Func End, Address: 0x22b918, Func Offset: 0x58
-	scePrintf("bhEff016 - UNIMPLEMENTED!\n");
+    float ar; // not from DWARF
+
+    ar = 20.0f;
+    
+    op->ct0++;
+
+    if (op->ct0 >= op->lkono)
+    {
+        bhCheckBombAtari((NJS_POINT3*)&op->px, (float)ar, 150, 100);
+
+        op->flg = 0;
+    }
 }
 
 // 
