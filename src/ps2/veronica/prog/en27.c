@@ -1625,7 +1625,7 @@ void bhEne27_Move(BH_PWORK* epw)
 // 100% matching!
 void bhEne27_MV00()
 {
-	
+
 }
 
 /*// 
@@ -1880,17 +1880,15 @@ void bhEne27_Damage()
 {
 	// Line 567, Address: 0x2107c0, Func Offset: 0
 	// Func End, Address: 0x2107c8, Func Offset: 0x8
-}
+}*/
 
-// 
-// Start address: 0x2107d0
+// 100% matching!
 void bhEne27_Die()
 {
-	// Line 578, Address: 0x2107d0, Func Offset: 0
-	// Func End, Address: 0x2107d8, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x2107e0
 void bhEne27_IncubateEffect(BH_PWORK* epw)
 {
@@ -1938,4 +1936,3 @@ void bhEne27_CallSE(BH_PWORK* epw)
 	// Line 641, Address: 0x2109ec, Func Offset: 0xfc
 	// Func End, Address: 0x210a00, Func Offset: 0x110
 }*/
-
