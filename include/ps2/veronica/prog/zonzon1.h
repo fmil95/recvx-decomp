@@ -68,4 +68,6 @@ int bhArcTan2(float y, float x);
 ATR_WORK* bhEne_CheckEventAtr(int flr_no, float px, float pz, int id, int min, int max);
 void bhEne_EraseArrow(BH_PWORK* epw, int obj_no);
 
+extern unsigned int BloodCol[4][2];
+
 #endif

@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/effsub2.h"
 #include "../../../ps2/veronica/prog/effect.h"
+#include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/effsub6.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/hitchkl.h"
@@ -9,6 +10,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
 
 // 99.93% matching
 void bhEff_E00_Mince(O_WRK* op) 
@@ -681,74 +683,158 @@ void bhEff_E00_AcidGenerator(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x23e8f0
+// 100% matching!
 void bhEff_E00_BloodBurst(O_WRK* op)
 {
-	int eno;
-	NJS_POINT3 v;
-	BH_PWORK* pp;
-	//_anon32* p;
-	//_anon32* TypeList[7];
-	// Line 698, Address: 0x23e8f0, Func Offset: 0
-	// Line 754, Address: 0x23e900, Func Offset: 0x10
-	// Line 755, Address: 0x23e904, Func Offset: 0x14
-	// Line 756, Address: 0x23e90c, Func Offset: 0x1c
-	// Line 762, Address: 0x23e920, Func Offset: 0x30
-	// Line 765, Address: 0x23e94c, Func Offset: 0x5c
-	// Line 767, Address: 0x23e958, Func Offset: 0x68
-	// Line 768, Address: 0x23e95c, Func Offset: 0x6c
-	// Line 771, Address: 0x23e968, Func Offset: 0x78
-	// Line 774, Address: 0x23e98c, Func Offset: 0x9c
-	// Line 775, Address: 0x23e998, Func Offset: 0xa8
-	// Line 776, Address: 0x23e9b4, Func Offset: 0xc4
-	// Line 785, Address: 0x23e9e4, Func Offset: 0xf4
-	// Line 788, Address: 0x23e9ec, Func Offset: 0xfc
-	// Line 791, Address: 0x23e9f0, Func Offset: 0x100
-	// Line 788, Address: 0x23e9fc, Func Offset: 0x10c
-	// Line 789, Address: 0x23ea04, Func Offset: 0x114
-	// Line 790, Address: 0x23ea10, Func Offset: 0x120
-	// Line 791, Address: 0x23ea1c, Func Offset: 0x12c
-	// Line 801, Address: 0x23ea44, Func Offset: 0x154
-	// Line 804, Address: 0x23ea48, Func Offset: 0x158
-	// Line 809, Address: 0x23ea54, Func Offset: 0x164
-	// Line 810, Address: 0x23ea60, Func Offset: 0x170
-	// Line 814, Address: 0x23ea64, Func Offset: 0x174
-	// Line 809, Address: 0x23ea68, Func Offset: 0x178
-	// Line 810, Address: 0x23ea74, Func Offset: 0x184
-	// Line 822, Address: 0x23ea7c, Func Offset: 0x18c
-	// Line 810, Address: 0x23ea80, Func Offset: 0x190
-	// Line 811, Address: 0x23ea8c, Func Offset: 0x19c
-	// Line 812, Address: 0x23eaa4, Func Offset: 0x1b4
-	// Line 813, Address: 0x23eac4, Func Offset: 0x1d4
-	// Line 814, Address: 0x23eae4, Func Offset: 0x1f4
-	// Line 815, Address: 0x23eaf8, Func Offset: 0x208
-	// Line 816, Address: 0x23eb0c, Func Offset: 0x21c
-	// Line 817, Address: 0x23eb20, Func Offset: 0x230
-	// Line 822, Address: 0x23eb38, Func Offset: 0x248
-	// Line 825, Address: 0x23eb74, Func Offset: 0x284
-	// Line 826, Address: 0x23eb98, Func Offset: 0x2a8
-	// Line 827, Address: 0x23eba4, Func Offset: 0x2b4
-	// Line 828, Address: 0x23ebd4, Func Offset: 0x2e4
-	// Line 829, Address: 0x23ebe4, Func Offset: 0x2f4
-	// Line 831, Address: 0x23ebf4, Func Offset: 0x304
-	// Line 833, Address: 0x23ebf8, Func Offset: 0x308
-	// Line 834, Address: 0x23ebfc, Func Offset: 0x30c
-	// Line 833, Address: 0x23ec00, Func Offset: 0x310
-	// Line 834, Address: 0x23ec04, Func Offset: 0x314
-	// Line 837, Address: 0x23ec10, Func Offset: 0x320
-	// Line 838, Address: 0x23ec18, Func Offset: 0x328
-	// Line 840, Address: 0x23ec20, Func Offset: 0x330
-	// Line 841, Address: 0x23ec28, Func Offset: 0x338
-	// Line 843, Address: 0x23ec30, Func Offset: 0x340
-	// Line 844, Address: 0x23ec3c, Func Offset: 0x34c
-	// Line 849, Address: 0x23ec48, Func Offset: 0x358
-	// Line 850, Address: 0x23ec54, Func Offset: 0x364
-	// Line 851, Address: 0x23ec58, Func Offset: 0x368
-	// Line 852, Address: 0x23ec60, Func Offset: 0x370
-	// Line 855, Address: 0x23ec6c, Func Offset: 0x37c
-	// Func End, Address: 0x23ec80, Func Offset: 0x390
-	scePrintf("bhEff_E00_BloodBurst - UNIMPLEMENTED!\n");
+    P_WK* p;
+    BH_PWORK* pp;
+    NJS_POINT3 v;
+    int eno;
+    O_WRK* owp; // not from DWARF
+    static P_WK type0[2] = 
+    {
+        { 17,     1, 1.5f, 0.3f, 4      },
+        { 0xFFFF, 2, 0.7f, 0.5f, 0xFFFF }
+    };
+    static P_WK type1[4] = 
+    {
+        { 17,     1, 1.5f, -0.8f, 0      },
+        { 9,      1, 1.5f,  0.3f, 4      },
+        { 17,     2, 1.5f,  0.3f, 2      },
+        { 0xFFFF, 2, 1.0f,  0.5f, 0xFFFF } 
+    };
+    static P_WK type2[5] = 
+    {
+        { 17, 1, 1.5f,  0.1f, 0      },
+        { 17, 1, 1.5f, -0.8f, 0      },
+        { 9,  1, 1.8f,  0.3f, 4      },
+        { 17, 2, 2.3f,  0.3f, 2      },
+        { 9,  1, 1.7f,  0.5f, 0xFFFF }
+    };
+    static P_WK type3[2] = 
+    {
+        { 9,  2, 1.8f, 0.3f, 3      },
+        { 10, 1, 1.7f, 0.5f, 0xFFFF }
+    };
+    static P_WK type4[5] = 
+    {
+        { 17,     1, 1.5f, 0.1f, 0      },
+        { 0xFFFF, 2, 1.5f, 0.8f, 0      },
+        { 10,     2, 1.3f, 0.6f, 6      },
+        { 17,     2, 1.5f, 0.4f, 0      },
+        { 9,      1, 1.0f, 0.7f, 0xFFFF }
+    };
+    static P_WK type5[2] = 
+    {
+        { 17, 1, 1.5f, 0.8f, 0      },
+        { 10, 2, 1.3f, 0.6f, 0xFFFF }
+    };
+    static P_WK type6[1] = 
+    {
+        { 17, 2, 1.5f, 0.8f, 0xFFFF }
+    };
+    static P_WK* TypeList[7] = 
+    {
+        type0,
+        type1,
+        type2,
+        type3,
+        type4,
+        type5,
+        type6
+    };
+
+    pp = (BH_PWORK*)op->lkwkp;
+    
+    if ((pp != NULL) && ((pp->stflg & 0x1000000))) 
+    {
+        return;
+    }
+
+    switch (op->mode0) 
+    {
+    case 0:
+        njUnitVector((NJS_VECTOR*)&op->xn);
+        
+        op->frm_no = 0;
+        
+        op->mode0++; 
+    case 1:
+    label:
+        p = &TypeList[op->type][op->frm_no];
+
+        if (p->type1 >= 0) 
+        {
+            if (p->spd > 0)
+            {
+                bhSetEffParticleMk2((BH_PWORK*)op->lkwkp, op->lkono, (NJS_POINT3*)&op->lox, (NJS_POINT3*)&op->xn, BloodCol[op->mdlver][0], BloodCol[op->mdlver][1], p->type1);
+            } 
+            else
+            {
+                v.x = -op->xn;
+                v.y = -op->yn;
+                v.z = -op->zn;
+                
+                bhSetEffParticleMk2((BH_PWORK*)op->lkwkp, op->lkono, (NJS_POINT3*)&op->lox, &v, BloodCol[op->mdlver][0], BloodCol[op->mdlver][1], p->type1);
+            }
+        }
+
+        if (p->type2 >= 0) 
+        {
+            sys->ef.id     = 296;
+            
+            sys->ef.flg    = 1;
+            sys->ef.type   = p->type2;
+            
+            sys->ef.sx     = op->sx * p->size;
+            sys->ef.sy     = op->sy * p->size;
+            sys->ef.sz     = 1.0f;
+            
+            sys->ef.ax     = 0;
+            sys->ef.ay     = 0;
+            
+            sys->ef.mdlver = op->mdlver;
+
+            owp = (O_WRK*)op->lkwkp;
+            
+            njCalcPoint(&owp->mlwP->owP[op->lkono].mtx, (NJS_POINT3*)&op->lox, (NJS_POINT3*)&sys->ef.px);
+
+            eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+            
+            if (eno != -1) 
+            {
+                eff[eno].xn = op->xn * p->spd;
+                eff[eno].yn = op->yn * p->spd;
+                eff[eno].zn = op->zn * p->spd;
+            }
+        }
+
+        op->ct0 = p->wait;
+
+        if (p->wait == -1)
+        {
+            op->flg = 0;
+            return;
+        }
+
+        if (p->wait == 0) 
+        {
+            op->frm_no++;
+            goto label;
+        }
+
+        op->frm_no++;
+        
+        op->mode0++;
+    case 2:
+        if (op->ct0 != 0) 
+        {
+            op->ct0--;
+            return;
+        }
+        
+        op->mode0--;
+    }
 }
 
 // 100% matching!
@@ -757,19 +843,19 @@ void bhEff_E00_Blood(O_WRK* op)
     UV_WORK* uvp;
     static UV_WORK BH_UVTAB0[13] =
     {
-        {  0.3125f,  0.5f,      0.0625f,  0.0625f  },
-        {  0.375f,   0.4375f,   0.125f,   0.125f   },
-        {  0.5f,     0.4375f,   0.15625f, 0.15625f },
-        {  0.65625f, 0.4375f,   0.15625f, 0.15625f },
-        {  0.8125f,  0.4375f,   0.15625f, 0.15625f },
-        {  0.0f,     0.5625f,   0.1875f,  0.1875f  },
-        {  0.1875f,  0.5625f,   0.1875f,  0.1875f  },
-        {  0.375f,   0.59375f,  0.1875f,  0.1875f  },
-        {  0.5625f,  0.59375f,  0.1875f,  0.1875f  },
-        {  0.0f,     0.78125f,  0.21875f, 0.21875f },
-        {  0.21875f, 0.78125f,  0.21875f, 0.21875f },
-        {  0.4375f,  0.78125f,  0.21875f, 0.21875f },
-        { -1.0f,     0.0f,      0.0f,     0.0f     }
+        {  0.3125f,  0.5f,     0.0625f,  0.0625f  },
+        {  0.375f,   0.4375f,  0.125f,   0.125f   },
+        {  0.5f,     0.4375f,  0.15625f, 0.15625f },
+        {  0.65625f, 0.4375f,  0.15625f, 0.15625f },
+        {  0.8125f,  0.4375f,  0.15625f, 0.15625f },
+        {  0.0f,     0.5625f,  0.1875f,  0.1875f  },
+        {  0.1875f,  0.5625f,  0.1875f,  0.1875f  },
+        {  0.375f,   0.59375f, 0.1875f,  0.1875f  },
+        {  0.5625f,  0.59375f, 0.1875f,  0.1875f  },
+        {  0.0f,     0.78125f, 0.21875f, 0.21875f },
+        {  0.21875f, 0.78125f, 0.21875f, 0.21875f },
+        {  0.4375f,  0.78125f, 0.21875f, 0.21875f },
+        { -1.0f,     0.0f,     0.0f,     0.0f     }
     };
     static UV_WORK BH_UVTAB1[12] = 
     {
@@ -788,20 +874,20 @@ void bhEff_E00_Blood(O_WRK* op)
     };
     static UV_WORK BH_UVTAB2[14] =
     {
-        {  0.0f,     0.3125f,  0.0625f, 0.0625f },
-        {  0.0f,     0.5f,     0.0625f, 0.0625f },
-        {  0.0f,     0.375f,   0.0625f, 0.0625f },
-        {  0.0f,     0.4375f,  0.0625f, 0.0625f },
-        {  0.0625f,  0.3125f,  0.125f,  0.125f  },
-        {  0.1875f,  0.3125f,  0.125f,  0.125f  },
-        {  0.3125f,  0.3125f,  0.125f,  0.125f  },
-        {  0.4375f,  0.3125f,  0.125f,  0.125f  },
-        {  0.5625f,  0.3125f,  0.125f,  0.125f  },
-        {  0.6875f,  0.3125f,  0.125f,  0.125f  },
-        {  0.8125f,  0.3125f,  0.125f,  0.125f  },
-        {  0.0625f,  0.4375f,  0.125f,  0.125f  },
-        {  0.1875f,  0.4375f,  0.125f,  0.125f  },
-        { -1.0f,     0.0f,     0.0f,    0.0f    }
+        {  0.0f,    0.3125f, 0.0625f, 0.0625f },
+        {  0.0f,    0.5f,    0.0625f, 0.0625f },
+        {  0.0f,    0.375f,  0.0625f, 0.0625f },
+        {  0.0f,    0.4375f, 0.0625f, 0.0625f },
+        {  0.0625f, 0.3125f, 0.125f,  0.125f  },
+        {  0.1875f, 0.3125f, 0.125f,  0.125f  },
+        {  0.3125f, 0.3125f, 0.125f,  0.125f  },
+        {  0.4375f, 0.3125f, 0.125f,  0.125f  },
+        {  0.5625f, 0.3125f, 0.125f,  0.125f  },
+        {  0.6875f, 0.3125f, 0.125f,  0.125f  },
+        {  0.8125f, 0.3125f, 0.125f,  0.125f  },
+        {  0.0625f, 0.4375f, 0.125f,  0.125f  },
+        {  0.1875f, 0.4375f, 0.125f,  0.125f  },
+        { -1.0f,    0.0f,    0.0f,    0.0f    }
     };
     static UV_WORK* uvtble[3] = 
     {

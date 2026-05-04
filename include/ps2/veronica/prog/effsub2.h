@@ -3,6 +3,16 @@
 
 #include "types.h"
 
+typedef struct P_WK
+{
+	// total size: 0x10
+    short type1; // offset 0x0, size 0x2
+    short type2; // offset 0x2, size 0x2
+    float size;  // offset 0x4, size 0x4
+    float spd;   // offset 0x8, size 0x4
+    short wait;  // offset 0xC, size 0x2
+} P_WK;  
+
 void bhEff_E00_Mince(O_WRK* op);
 void bhEff_E00_DrawParticleSpr(O_WRK* op);
 void bhEff_E00_DrawParticlePly(O_WRK* op);
