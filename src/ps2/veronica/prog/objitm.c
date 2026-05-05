@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/objitm.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"

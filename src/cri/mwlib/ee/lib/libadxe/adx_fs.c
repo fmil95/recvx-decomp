@@ -9,7 +9,7 @@
 
 Uint32 adxf_tcnt[10] = { 0 };
 Uint32 adxf_chkp_tcnt[10] = { 0 };
-static Sint32 work[16];
+static Sint32 work[2112];
 static Sint8 *wrk32;
 static Sint32 *buf;
 
