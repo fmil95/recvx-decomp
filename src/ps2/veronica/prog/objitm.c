@@ -401,24 +401,23 @@ void bhDrawSpObject(O_WRK* op)
 	scePrintf("bhDrawSpObject - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2845d0
+// 100% matching!
 void bhSetAlphaFadeObject(O_WRK* op, int jntno, int jnt_n, int alpha, int count)
 {
-	float* fwk;
 	int* iwk;
-	// Line 694, Address: 0x2845d0, Func Offset: 0
-	// Line 695, Address: 0x2845d4, Func Offset: 0x4
-	// Line 689, Address: 0x2845d8, Func Offset: 0x8
-	// Line 694, Address: 0x2845e0, Func Offset: 0x10
-	// Line 689, Address: 0x2845e4, Func Offset: 0x14
-	// Line 692, Address: 0x2845ec, Func Offset: 0x1c
-	// Line 693, Address: 0x2845f0, Func Offset: 0x20
-	// Line 695, Address: 0x2845f4, Func Offset: 0x24
-	// Line 694, Address: 0x2845f8, Func Offset: 0x28
-	// Line 696, Address: 0x2845fc, Func Offset: 0x2c
-	// Func End, Address: 0x284604, Func Offset: 0x34
-	scePrintf("bhSetAlphaFadeObject - UNIMPLEMENTED!\n");
+	float* fwk;
+
+	op->flg |= 0x200000;
+
+	iwk = (int*)&op->pv[0];
+
+    iwk[0] = jntno;
+    iwk[1] = jnt_n;
+
+	fwk = (float*)&op->pv[1];
+
+    fwk[0] = alpha;
+    fwk[1] = count;
 }
 
 /*// 
