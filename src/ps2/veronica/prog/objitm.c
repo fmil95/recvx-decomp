@@ -1,16 +1,13 @@
 #include "../../../ps2/veronica/prog/objitm.h"
 #include "../../../ps2/veronica/prog/flag.h"
-#include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
 
 /*void(*bhJumpObject)()[101];
 void(*bhJumpObject2)()[13];*/
 unsigned int ulDrawGeneralPurposeWater;
-/*_anon1* sys;
-_anon4* rom;
-unsigned char pl_sleep_cnt;
-_anon41 cam;
-BH_PWORK* plp;*/
 
 // 100% matching! 
 void bhInitObjItm()
@@ -464,30 +461,43 @@ void bhObjDmy()
 
 }
 
-/*// 
-// Start address: 0x2847c0
-void bhObjItmBox(_anon0* op)
+// 100% matching!
+void bhObjItmBox(O_WRK* op)
 {
-	// Line 753, Address: 0x2847c0, Func Offset: 0
-	// Line 754, Address: 0x2847d0, Func Offset: 0x10
-	// Line 756, Address: 0x284808, Func Offset: 0x48
-	// Line 758, Address: 0x28480c, Func Offset: 0x4c
-	// Line 757, Address: 0x284810, Func Offset: 0x50
-	// Line 758, Address: 0x284814, Func Offset: 0x54
-	// Line 760, Address: 0x284820, Func Offset: 0x60
-	// Line 761, Address: 0x28482c, Func Offset: 0x6c
-	// Line 762, Address: 0x284844, Func Offset: 0x84
-	// Line 763, Address: 0x284878, Func Offset: 0xb8
-	// Line 765, Address: 0x284880, Func Offset: 0xc0
-	// Line 767, Address: 0x284898, Func Offset: 0xd8
-	// Line 769, Address: 0x2848a0, Func Offset: 0xe0
-	// Line 770, Address: 0x2848bc, Func Offset: 0xfc
-	// Line 771, Address: 0x2848c0, Func Offset: 0x100
-	// Line 774, Address: 0x2848c4, Func Offset: 0x104
-	// Func End, Address: 0x2848d4, Func Offset: 0x114
+    switch (op->mode0) 
+    {                            
+    case 0:
+        op->ct0 = 0;
+        
+        op->mode0 = 1;
+        
+        CallSystemSe(0, 0x80000240);
+    case 1:
+        op->ct0 += 384;
+        
+        if (op->ct0 > 15360) 
+        {
+            op->mode0 = 2;
+        }
+        
+        op->ax = -((int)(182.04445f * (80.0f * njSin(op->ct0))) & 0xFFFF);
+        break;
+    case 2:
+        sys->cb_flg |= 0x40000;
+        
+        op->mode0 = 3;
+        break;
+    case 3:
+        plp->stflg &= ~0x10000;
+        
+        op->ax = 0;
+        
+        op->type = 0;
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2848e0
 void bhObj001(_anon0* op)
 {
