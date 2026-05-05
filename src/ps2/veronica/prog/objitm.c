@@ -793,24 +793,27 @@ void bhObj003(O_WRK* op)
     op->ct0 += 1024;
 }
 
-/*// 
-// Start address: 0x2855f0
-void bhObj004(_anon0* op)
+// 100% matching!
+void bhObj004(O_WRK* op)
 {
-	// Line 1047, Address: 0x2855f0, Func Offset: 0
-	// Line 1048, Address: 0x285600, Func Offset: 0x10
-	// Line 1050, Address: 0x285620, Func Offset: 0x30
-	// Line 1051, Address: 0x285624, Func Offset: 0x34
-	// Line 1052, Address: 0x285628, Func Offset: 0x38
-	// Line 1053, Address: 0x28562c, Func Offset: 0x3c
-	// Line 1054, Address: 0x285640, Func Offset: 0x50
-	// Line 1055, Address: 0x285644, Func Offset: 0x54
-	// Line 1057, Address: 0x28564c, Func Offset: 0x5c
-	// Line 1060, Address: 0x285670, Func Offset: 0x80
-	// Func End, Address: 0x285680, Func Offset: 0x90
+    switch (op->mode0) 
+    {                            
+    case 0:
+        op->px = 0;
+        op->py = 0;
+        op->pz = 0;
+        
+        npChangeMatAlphaColor(op->mlwP->objP, op->mlwP->obj_num, 0);
+        
+        op->mode0 = 1;
+        break;
+    case 1:
+        npChangeMatAlphaColor(op->mlwP->objP, op->mlwP->obj_num, sys->thunder);
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x285680
 void bhObj005(_anon0* op)
 {
