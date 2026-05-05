@@ -1261,65 +1261,63 @@ void bhObj007(_anon0* op)
 	// Line 2311, Address: 0x286980, Func Offset: 0x820
 	// Line 2319, Address: 0x286984, Func Offset: 0x824
 	// Func End, Address: 0x2869bc, Func Offset: 0x85c
-}
+}*/
 
-// 
-// Start address: 0x2869c0
-void bhObj008(_anon0* op)
+// 100% matching!
+void bhObj008(O_WRK* op) 
 {
-	_anon22* hp;
-	// Line 2328, Address: 0x2869c0, Func Offset: 0
-	// Line 2329, Address: 0x2869cc, Func Offset: 0xc
-	// Line 2330, Address: 0x2869e0, Func Offset: 0x20
-	// Line 2331, Address: 0x2869e4, Func Offset: 0x24
-	// Line 2333, Address: 0x2869ec, Func Offset: 0x2c
-	// Line 2334, Address: 0x2869f4, Func Offset: 0x34
-	// Line 2343, Address: 0x2869f8, Func Offset: 0x38
-	// Line 2337, Address: 0x286a00, Func Offset: 0x40
-	// Line 2339, Address: 0x286a04, Func Offset: 0x44
-	// Line 2334, Address: 0x286a08, Func Offset: 0x48
-	// Line 2335, Address: 0x286a0c, Func Offset: 0x4c
-	// Line 2345, Address: 0x286a10, Func Offset: 0x50
-	// Line 2346, Address: 0x286a18, Func Offset: 0x58
-	// Line 2347, Address: 0x286a1c, Func Offset: 0x5c
-	// Line 2348, Address: 0x286a20, Func Offset: 0x60
-	// Line 2335, Address: 0x286a24, Func Offset: 0x64
-	// Line 2336, Address: 0x286a28, Func Offset: 0x68
-	// Line 2353, Address: 0x286a2c, Func Offset: 0x6c
-	// Line 2336, Address: 0x286a30, Func Offset: 0x70
-	// Line 2337, Address: 0x286a34, Func Offset: 0x74
-	// Line 2338, Address: 0x286a58, Func Offset: 0x98
-	// Line 2339, Address: 0x286a80, Func Offset: 0xc0
-	// Line 2340, Address: 0x286a84, Func Offset: 0xc4
-	// Line 2341, Address: 0x286a88, Func Offset: 0xc8
-	// Line 2344, Address: 0x286a8c, Func Offset: 0xcc
-	// Line 2341, Address: 0x286a90, Func Offset: 0xd0
-	// Line 2342, Address: 0x286a94, Func Offset: 0xd4
-	// Line 2343, Address: 0x286a98, Func Offset: 0xd8
-	// Line 2344, Address: 0x286aa4, Func Offset: 0xe4
-	// Line 2345, Address: 0x286abc, Func Offset: 0xfc
-	// Line 2346, Address: 0x286ac8, Func Offset: 0x108
-	// Line 2347, Address: 0x286acc, Func Offset: 0x10c
-	// Line 2348, Address: 0x286ad0, Func Offset: 0x110
-	// Line 2349, Address: 0x286ad4, Func Offset: 0x114
-	// Line 2354, Address: 0x286ae4, Func Offset: 0x124
-	// Line 2356, Address: 0x286aec, Func Offset: 0x12c
-	// Line 2355, Address: 0x286af4, Func Offset: 0x134
-	// Line 2358, Address: 0x286af8, Func Offset: 0x138
-	// Line 2356, Address: 0x286b00, Func Offset: 0x140
-	// Line 2355, Address: 0x286b04, Func Offset: 0x144
-	// Line 2356, Address: 0x286b14, Func Offset: 0x154
-	// Line 2355, Address: 0x286b18, Func Offset: 0x158
-	// Line 2356, Address: 0x286b20, Func Offset: 0x160
-	// Line 2355, Address: 0x286b24, Func Offset: 0x164
-	// Line 2356, Address: 0x286b30, Func Offset: 0x170
-	// Line 2357, Address: 0x286b38, Func Offset: 0x178
-	// Line 2358, Address: 0x286b48, Func Offset: 0x188
-	// Line 2360, Address: 0x286b5c, Func Offset: 0x19c
-	// Func End, Address: 0x286b64, Func Offset: 0x1a4
+    ATR_WORK* hp;
+    
+    if (op->mode0 == 0) 
+    {
+        if ((op->flg & 0x100000)) 
+        {
+            op->mode0 = 1;
+            return;
+        }
+        
+        op->flg |= 0x100000;
+        
+        op->gpx = op->px;
+        op->gpy = op->py;
+        op->gpz = op->pz;
+        
+        op->ct0 = sys->mwal_n++;
+        
+        hp = &sys->mwalp[op->ct0];
+        
+        hp->flg = 129;
+        hp->type = 0;
+        
+        hp->flr_no = op->flr_no;
+        
+        hp->attr = 0;
+        
+        hp->px = op->px - 6.0f;
+        hp->py = rom->grand[hp->flr_no + 2];
+        hp->pz = op->pz - 11.0f;
+        
+        hp->w = 12.0f;
+        hp->h = 20.0f;
+        hp->d = 22.0f;
+        
+        hp->prm3 = 0;
+        hp->prm2 = 0;
+        hp->prm1 = 0;
+        hp->prm0 = 0;
+        
+        op->mode0 = 1;
+        return;
+    }
+    
+    hp = &sys->mwalp[op->ct0];
+    
+    hp->px = op->mlwP->owP->mtx[12] - 6.0f;
+    hp->py = op->mlwP->owP->mtx[13]; 
+    hp->pz = op->mlwP->owP->mtx[14] - 11.0f;
 }
 
-// 
+/*// 
 // Start address: 0x286b70
 void bhObj009(_anon0* op)
 {
@@ -1463,7 +1461,7 @@ void bhObj012(O_WRK* op)
         
         hp->w = 4.0f;
         hp->h = 15.0f;
-        hp->d = 0.0f;
+        hp->d = 0;
         
         hp->prm2 = 0;
         hp->prm1 = 0;
