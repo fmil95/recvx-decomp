@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/objitm.h"
+#include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/main.h"
 
@@ -1406,21 +1407,23 @@ void bhObj009(_anon0* op)
 	// Line 2460, Address: 0x287070, Func Offset: 0x500
 	// Line 2465, Address: 0x287074, Func Offset: 0x504
 	// Func End, Address: 0x287090, Func Offset: 0x520
-}
-
-// 
-// Start address: 0x287090
-void bhObj010(_anon0* op)
-{
-	// Line 2472, Address: 0x287090, Func Offset: 0
-	// Line 2473, Address: 0x28709c, Func Offset: 0xc
-	// Line 2474, Address: 0x2870bc, Func Offset: 0x2c
-	// Line 2475, Address: 0x2870d4, Func Offset: 0x44
-	// Line 2476, Address: 0x2870e4, Func Offset: 0x54
-	// Line 2477, Address: 0x2870f0, Func Offset: 0x60
-	// Line 2480, Address: 0x287108, Func Offset: 0x78
-	// Func End, Address: 0x287118, Func Offset: 0x88
 }*/
+
+// 100% matching!
+void bhObj010(O_WRK* op)
+{
+	if (bhCkFlg(&sys->rm_flg, 31) != 0)
+    {
+        npSetOffsetUV(op->mlwP->objP->model, 32, 0);
+
+        op->ct0 = (op->ct0 + 32) & 0x3FF;
+
+        if (op->ct0 == 0)
+        {
+            npSetOffsetUV(op->mlwP->objP->model, -1024, 0);
+        }
+    }
+}
 
 // 100% matching!
 void bhObj011(O_WRK* op)
