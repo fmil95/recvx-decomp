@@ -52,7 +52,7 @@ void ItemCommandErase(S_WORK* st, int param);
 void ItemCombination(S_WORK* st);
 void SidePackSet();
 void TrigerSet(S_WORK* st);
-PARTS* BulletSet(PARTS* pb1, PARTS* pb2, unsigned int itemid, unsigned short mode);
+PARTS* BulletSet(S_WORK* st, PARTS* pb1, PARTS* pb2, unsigned int itemid, unsigned short mode);
 unsigned char Use_00(S_WORK* st);
 unsigned char Use_01(S_WORK* st);
 unsigned char Use_02();

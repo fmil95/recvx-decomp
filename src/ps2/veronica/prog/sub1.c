@@ -2496,69 +2496,101 @@ void ItemSet(S_WORK* st, unsigned char flg) // second parameter is not present o
 	scePrintf("ItemSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x29c760
+// 100% matching!
 void KazuSet(S_WORK* st, unsigned char flg)
 {
-	unsigned char max;
-	unsigned int itemid;
-	short ips2;
-	unsigned int num2;
-	unsigned int num1;
-	PARTS* pb99;
-	PARTS* pb;
-	// Line 1976, Address: 0x29c760, Func Offset: 0
-	// Line 1985, Address: 0x29c78c, Func Offset: 0x2c
-	// Line 1981, Address: 0x29c7ac, Func Offset: 0x4c
-	// Line 1985, Address: 0x29c7b0, Func Offset: 0x50
-	// Line 1987, Address: 0x29c7b8, Func Offset: 0x58
-	// Line 1988, Address: 0x29c7c0, Func Offset: 0x60
-	// Line 1989, Address: 0x29c7c8, Func Offset: 0x68
-	// Line 1990, Address: 0x29c7cc, Func Offset: 0x6c
-	// Line 1991, Address: 0x29c7e4, Func Offset: 0x84
-	// Line 1992, Address: 0x29c7ec, Func Offset: 0x8c
-	// Line 1995, Address: 0x29c7f4, Func Offset: 0x94
-	// Line 1996, Address: 0x29c804, Func Offset: 0xa4
-	// Line 1998, Address: 0x29c80c, Func Offset: 0xac
-	// Line 1999, Address: 0x29c814, Func Offset: 0xb4
-	// Line 2001, Address: 0x29c82c, Func Offset: 0xcc
-	// Line 2003, Address: 0x29c830, Func Offset: 0xd0
-	// Line 2004, Address: 0x29c838, Func Offset: 0xd8
-	// Line 2006, Address: 0x29c840, Func Offset: 0xe0
-	// Line 2005, Address: 0x29c848, Func Offset: 0xe8
-	// Line 2009, Address: 0x29c84c, Func Offset: 0xec
-	// Line 2011, Address: 0x29c850, Func Offset: 0xf0
-	// Line 2009, Address: 0x29c854, Func Offset: 0xf4
-	// Line 2011, Address: 0x29c85c, Func Offset: 0xfc
-	// Line 2013, Address: 0x29c86c, Func Offset: 0x10c
-	// Line 2014, Address: 0x29c874, Func Offset: 0x114
-	// Line 2015, Address: 0x29c87c, Func Offset: 0x11c
-	// Line 2016, Address: 0x29c890, Func Offset: 0x130
-	// Line 2017, Address: 0x29c8ac, Func Offset: 0x14c
-	// Line 2018, Address: 0x29c8bc, Func Offset: 0x15c
-	// Line 2019, Address: 0x29c8c4, Func Offset: 0x164
-	// Line 2020, Address: 0x29c8cc, Func Offset: 0x16c
-	// Line 2022, Address: 0x29c8d4, Func Offset: 0x174
-	// Line 2023, Address: 0x29c8dc, Func Offset: 0x17c
-	// Line 2025, Address: 0x29c8e8, Func Offset: 0x188
-	// Line 2026, Address: 0x29c8f4, Func Offset: 0x194
-	// Line 2025, Address: 0x29c8f8, Func Offset: 0x198
-	// Line 2026, Address: 0x29c8fc, Func Offset: 0x19c
-	// Line 2025, Address: 0x29c904, Func Offset: 0x1a4
-	// Line 2029, Address: 0x29c910, Func Offset: 0x1b0
-	// Line 2030, Address: 0x29c920, Func Offset: 0x1c0
-	// Line 2031, Address: 0x29c950, Func Offset: 0x1f0
-	// Line 2032, Address: 0x29c958, Func Offset: 0x1f8
-	// Line 2033, Address: 0x29c96c, Func Offset: 0x20c
-	// Line 2034, Address: 0x29c974, Func Offset: 0x214
-	// Line 2037, Address: 0x29c98c, Func Offset: 0x22c
-	// Line 2039, Address: 0x29c990, Func Offset: 0x230
-	// Line 2038, Address: 0x29c994, Func Offset: 0x234
-	// Line 2039, Address: 0x29c998, Func Offset: 0x238
-	// Line 2041, Address: 0x29c9a8, Func Offset: 0x248
-	// Line 2043, Address: 0x29c9b0, Func Offset: 0x250
-	// Func End, Address: 0x29c9e0, Func Offset: 0x280
-	scePrintf("KazuSet - UNIMPLEMENTED!\n");
+	PARTS* pb, *pb99;
+    unsigned int num1, num2;
+    short ips2;
+    unsigned int itemid;
+    unsigned char max;
+
+    itemid = 0;
+    
+    if ((sys->gm_flg & 0x8000000))
+    { 
+        max = 10;
+    } 
+    else 
+    {
+        max = 8;
+    }
+    
+    if (!flg)
+    {
+        pb = &parts_14b[1];
+        pb99 = parts_19b;
+    }
+    else if (flg == 1) 
+    {
+        pb = parts_20b;
+        pb99 = parts_21b;
+    }
+    
+    if ((st->subscreenmode & 0x4))
+    {
+        if (!flg) 
+        {
+            num2 = max + 2;
+            num1 = 1;
+        }
+        else if (flg == 1)
+        {
+            num2 = 7;
+            num1 = 0;
+        }
+    }
+    else if (!flg) 
+    {
+        num2 = max + 2;
+        num1 = 1;
+    }
+    
+    ips2 = st->ips1 - 3;
+    
+    for ( ; num1 < num2; num1++)
+    {
+        if (!flg) 
+        {
+            itemid = st->pip[num1];
+        }
+        else if (flg == 1) 
+        {
+            if ((sys->cb_flg & 0x40000))
+            {
+                if ((sys->cb_flg & 0x180000))
+                {
+                    ips2 &= 0x1F;
+                }
+                else 
+                {
+                    ips2 &= 0x7F;
+                }
+            }
+            else 
+            {
+                ips2 &= 0x7F;
+            }
+            
+            itemid = st->bxp[ips2++];
+        }
+        
+        if (((pb->atr & 0x20)) && ((itemdata[(unsigned char)(itemid >> 16)].type & 0x3800))) 
+        {
+            if (!flg) 
+            {
+                pb99 = BulletSet(st, pb99, pb, itemid, 0);
+            }
+            else 
+            {
+                pb99 = BulletSet(st, pb99, pb, itemid, 1); 
+            }
+        }
+        
+        pb++;
+    }
+    
+    pb99->anim = -1;
 }
 
 // 
@@ -5121,7 +5153,7 @@ void TrigerSet(S_WORK* st)
 
 // 
 // Start address: 0x2a2c80
-PARTS* BulletSet(PARTS* pb1, PARTS* pb2, unsigned int itemid, unsigned short mode)
+PARTS* BulletSet(S_WORK* st, PARTS* pb1, PARTS* pb2, unsigned int itemid, unsigned short mode) // first parameter not present on DWARF
 {
 	unsigned short mugen;
 	unsigned short bullettype;
