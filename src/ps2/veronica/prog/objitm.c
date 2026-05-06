@@ -3,8 +3,11 @@
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaFog.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/system.h"
 
 /*void(*bhJumpObject)()[101];
 void(*bhJumpObject2)()[13];*/
@@ -347,28 +350,57 @@ void bhDrawObjItm()
 	scePrintf("bhDrawObjItm - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x284270
-void bhDrawObject(_anon0* op)
+// 100% matching! 
+void bhDrawObject(O_WRK* op) 
 {
-	// Line 548, Address: 0x284270, Func Offset: 0
-	// Line 551, Address: 0x28427c, Func Offset: 0xc
-	// Line 553, Address: 0x28428c, Func Offset: 0x1c
-	// Line 554, Address: 0x2842b4, Func Offset: 0x44
-	// Line 555, Address: 0x2842c8, Func Offset: 0x58
-	// Line 560, Address: 0x2842ec, Func Offset: 0x7c
-	// Line 563, Address: 0x284338, Func Offset: 0xc8
-	// Line 571, Address: 0x284340, Func Offset: 0xd0
-	// Line 575, Address: 0x28436c, Func Offset: 0xfc
-	// Line 583, Address: 0x2843a0, Func Offset: 0x130
-	// Line 584, Address: 0x2843b0, Func Offset: 0x140
-	// Line 587, Address: 0x2843b8, Func Offset: 0x148
-	// Line 598, Address: 0x2843e8, Func Offset: 0x178
-	// Line 603, Address: 0x2843f4, Func Offset: 0x184
-	// Line 604, Address: 0x2843fc, Func Offset: 0x18c
-	// Line 605, Address: 0x284428, Func Offset: 0x1b8
-	// Func End, Address: 0x284438, Func Offset: 0x1c8
-}*/
+    O_WRK* opp; // not from DWARF
+    
+    if ((op->flg & 0x80))
+    {
+        opp = (O_WRK*)op->lkwkp;
+        
+        if ((opp->stflg & 0x1000000)) 
+        {
+            op->stflg |= 0x1000000;
+        }
+        else
+        {
+            op->stflg &= ~0x1000000;
+        }
+
+        if (!((op->id < 1210) || ((sys->pt_flg & 0x1)))) 
+        {
+            return;
+        }
+    }
+
+    if ((((op->stflg & 0x1000000)) && (pl_sleep_cnt == 0)) || (((sys->gm_flg & 0x4000)) && ((op->mdflg & 0x40)))) 
+    {
+        return;
+    }
+    
+    if ((!(op->flg & 0x40000000)) || ((sys->gm_flg & 0x40)) || ((cam.flg & 0x46)) || ((cam.ncut == op->hide[0]) || (cam.ncut == op->hide[1]) || (cam.ncut == op->hide[2]) || (cam.ncut == op->hide[3])))
+    {
+        if ((op->mdflg & 0x8)) 
+        {
+            njControl3D(0x2500);
+        }
+        
+        if (((op->mdflg & 0x10)) && ((sys->st_flg & 0x2))) 
+        {
+            njFogDisable();
+        }
+        
+        bhPutModel((BH_PWORK*)op);
+        
+        njControl3D(0x100);
+        
+        if (((op->mdflg & 0x10)) && ((sys->st_flg & 0x2))) 
+        {
+            njFogEnable();
+        }
+    }
+}
 
 // 
 // Start address: 0x284440
