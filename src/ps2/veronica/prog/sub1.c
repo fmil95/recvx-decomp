@@ -6413,129 +6413,150 @@ void ItemBoxChange(S_WORK* st, unsigned short ibcsr)
 	scePrintf("ItemBoxChange - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a5eb0
-void BorderLineSet(S_WORK* st, unsigned char border, float ypos)
+// 100% matching!
+void BorderLineSet(S_WORK* st, unsigned char border, float ypos) 
 {
-	unsigned char num1;
-	NJS_COLOR col[6];
-	NJS_POINT2 p[6];
-	NJS_POINT2COL p2c[6];
-	unsigned char colset;
-	unsigned char flg2;
-	unsigned char flg1;
-	// Line 6291, Address: 0x2a5eb0, Func Offset: 0
-	// Line 6298, Address: 0x2a5ed8, Func Offset: 0x28
-	// Line 6299, Address: 0x2a5ef4, Func Offset: 0x44
-	// Line 6300, Address: 0x2a5f04, Func Offset: 0x54
-	// Line 6301, Address: 0x2a5f14, Func Offset: 0x64
-	// Line 6302, Address: 0x2a5f1c, Func Offset: 0x6c
-	// Line 6305, Address: 0x2a5f30, Func Offset: 0x80
-	// Line 6306, Address: 0x2a5f44, Func Offset: 0x94
-	// Line 6307, Address: 0x2a5f4c, Func Offset: 0x9c
-	// Line 6308, Address: 0x2a5f5c, Func Offset: 0xac
-	// Line 6310, Address: 0x2a5f64, Func Offset: 0xb4
-	// Line 6311, Address: 0x2a5f68, Func Offset: 0xb8
-	// Line 6312, Address: 0x2a5f70, Func Offset: 0xc0
-	// Line 6315, Address: 0x2a5f7c, Func Offset: 0xcc
-	// Line 6316, Address: 0x2a5f84, Func Offset: 0xd4
-	// Line 6321, Address: 0x2a5f90, Func Offset: 0xe0
-	// Line 6322, Address: 0x2a5f98, Func Offset: 0xe8
-	// Line 6323, Address: 0x2a5fa0, Func Offset: 0xf0
-	// Line 6322, Address: 0x2a5fa4, Func Offset: 0xf4
-	// Line 6323, Address: 0x2a5fa8, Func Offset: 0xf8
-	// Line 6324, Address: 0x2a5fb8, Func Offset: 0x108
-	// Line 6325, Address: 0x2a5fbc, Func Offset: 0x10c
-	// Line 6323, Address: 0x2a5fc0, Func Offset: 0x110
-	// Line 6324, Address: 0x2a5fc4, Func Offset: 0x114
-	// Line 6325, Address: 0x2a5fcc, Func Offset: 0x11c
-	// Line 6334, Address: 0x2a5fdc, Func Offset: 0x12c
-	// Line 6326, Address: 0x2a5fe4, Func Offset: 0x134
-	// Line 6325, Address: 0x2a5fe8, Func Offset: 0x138
-	// Line 6326, Address: 0x2a5fec, Func Offset: 0x13c
-	// Line 6327, Address: 0x2a5ff4, Func Offset: 0x144
-	// Line 6328, Address: 0x2a5ffc, Func Offset: 0x14c
-	// Line 6329, Address: 0x2a6004, Func Offset: 0x154
-	// Line 6330, Address: 0x2a600c, Func Offset: 0x15c
-	// Line 6331, Address: 0x2a6014, Func Offset: 0x164
-	// Line 6332, Address: 0x2a601c, Func Offset: 0x16c
-	// Line 6333, Address: 0x2a6024, Func Offset: 0x174
-	// Line 6338, Address: 0x2a602c, Func Offset: 0x17c
-	// Line 6339, Address: 0x2a6030, Func Offset: 0x180
-	// Line 6338, Address: 0x2a6034, Func Offset: 0x184
-	// Line 6339, Address: 0x2a6038, Func Offset: 0x188
-	// Line 6338, Address: 0x2a603c, Func Offset: 0x18c
-	// Line 6339, Address: 0x2a604c, Func Offset: 0x19c
-	// Line 6341, Address: 0x2a6060, Func Offset: 0x1b0
-	// Line 6340, Address: 0x2a6068, Func Offset: 0x1b8
-	// Line 6341, Address: 0x2a6070, Func Offset: 0x1c0
-	// Line 6339, Address: 0x2a6074, Func Offset: 0x1c4
-	// Line 6340, Address: 0x2a607c, Func Offset: 0x1cc
-	// Line 6341, Address: 0x2a608c, Func Offset: 0x1dc
-	// Line 6342, Address: 0x2a609c, Func Offset: 0x1ec
-	// Line 6343, Address: 0x2a60a4, Func Offset: 0x1f4
-	// Line 6341, Address: 0x2a60a8, Func Offset: 0x1f8
-	// Line 6342, Address: 0x2a60b0, Func Offset: 0x200
-	// Line 6343, Address: 0x2a60bc, Func Offset: 0x20c
-	// Line 6344, Address: 0x2a60e0, Func Offset: 0x230
-	// Line 6345, Address: 0x2a60fc, Func Offset: 0x24c
-	// Line 6346, Address: 0x2a6110, Func Offset: 0x260
-	// Line 6347, Address: 0x2a6118, Func Offset: 0x268
-	// Line 6348, Address: 0x2a6128, Func Offset: 0x278
-	// Line 6350, Address: 0x2a6134, Func Offset: 0x284
-	// Line 6351, Address: 0x2a6138, Func Offset: 0x288
-	// Line 6352, Address: 0x2a6140, Func Offset: 0x290
-	// Line 6350, Address: 0x2a6144, Func Offset: 0x294
-	// Line 6351, Address: 0x2a614c, Func Offset: 0x29c
-	// Line 6352, Address: 0x2a6158, Func Offset: 0x2a8
-	// Line 6353, Address: 0x2a617c, Func Offset: 0x2cc
-	// Line 6354, Address: 0x2a6198, Func Offset: 0x2e8
-	// Line 6355, Address: 0x2a61ac, Func Offset: 0x2fc
-	// Line 6356, Address: 0x2a61b4, Func Offset: 0x304
-	// Line 6357, Address: 0x2a61c4, Func Offset: 0x314
-	// Line 6359, Address: 0x2a61d0, Func Offset: 0x320
-	// Line 6364, Address: 0x2a61d4, Func Offset: 0x324
-	// Line 6359, Address: 0x2a61e4, Func Offset: 0x334
-	// Line 6364, Address: 0x2a61ec, Func Offset: 0x33c
-	// Line 6365, Address: 0x2a61f0, Func Offset: 0x340
-	// Line 6364, Address: 0x2a61fc, Func Offset: 0x34c
-	// Line 6365, Address: 0x2a6204, Func Offset: 0x354
-	// Line 6366, Address: 0x2a6214, Func Offset: 0x364
-	// Line 6365, Address: 0x2a6224, Func Offset: 0x374
-	// Line 6366, Address: 0x2a622c, Func Offset: 0x37c
-	// Line 6367, Address: 0x2a6230, Func Offset: 0x380
-	// Line 6366, Address: 0x2a623c, Func Offset: 0x38c
-	// Line 6367, Address: 0x2a6244, Func Offset: 0x394
-	// Line 6368, Address: 0x2a6254, Func Offset: 0x3a4
-	// Line 6369, Address: 0x2a6258, Func Offset: 0x3a8
-	// Line 6367, Address: 0x2a625c, Func Offset: 0x3ac
-	// Line 6368, Address: 0x2a6264, Func Offset: 0x3b4
-	// Line 6369, Address: 0x2a6270, Func Offset: 0x3c0
-	// Line 6370, Address: 0x2a6294, Func Offset: 0x3e4
-	// Line 6371, Address: 0x2a62b0, Func Offset: 0x400
-	// Line 6372, Address: 0x2a62c4, Func Offset: 0x414
-	// Line 6373, Address: 0x2a62cc, Func Offset: 0x41c
-	// Line 6374, Address: 0x2a62dc, Func Offset: 0x42c
-	// Line 6376, Address: 0x2a62e8, Func Offset: 0x438
-	// Line 6377, Address: 0x2a62ec, Func Offset: 0x43c
-	// Line 6378, Address: 0x2a62f4, Func Offset: 0x444
-	// Line 6376, Address: 0x2a62f8, Func Offset: 0x448
-	// Line 6377, Address: 0x2a6300, Func Offset: 0x450
-	// Line 6378, Address: 0x2a630c, Func Offset: 0x45c
-	// Line 6379, Address: 0x2a6330, Func Offset: 0x480
-	// Line 6380, Address: 0x2a634c, Func Offset: 0x49c
-	// Line 6381, Address: 0x2a6360, Func Offset: 0x4b0
-	// Line 6382, Address: 0x2a6368, Func Offset: 0x4b8
-	// Line 6383, Address: 0x2a6378, Func Offset: 0x4c8
-	// Line 6385, Address: 0x2a6384, Func Offset: 0x4d4
-	// Line 6387, Address: 0x2a6388, Func Offset: 0x4d8
-	// Line 6385, Address: 0x2a638c, Func Offset: 0x4dc
-	// Line 6387, Address: 0x2a6390, Func Offset: 0x4e0
-	// Line 6385, Address: 0x2a6394, Func Offset: 0x4e4
-	// Line 6389, Address: 0x2a639c, Func Offset: 0x4ec
-	// Line 6391, Address: 0x2a63c0, Func Offset: 0x510
-	// Func End, Address: 0x2a63ec, Func Offset: 0x53c
-	scePrintf("BorderLineSet - UNIMPLEMENTED!\n");
+    NJS_POINT2COL p2c[6]; 
+    NJS_POINT2 p[6];      
+    NJS_COLOR col[6];     
+    unsigned char num1;  
+    static unsigned char colset;
+    static unsigned char flg1, flg2;
+
+    num1 = 0;
+    
+    if (flg2 == 3) 
+    {
+        if (flg1 != 0) 
+        {
+            colset -= 32;
+        }
+        else 
+        {
+            colset += 32;
+        }
+        
+        if (colset > 64) 
+        {
+            flg1 = 1;
+        } 
+        else if (colset == 0) 
+        {
+            flg1 = 0;
+        }
+        
+        flg2 = 0;
+    } 
+    else
+    {
+        flg2++;
+    }
+    
+    p2c->p = p;
+    p2c->col = col;
+    p2c->tex = NULL;
+    
+    if (border) 
+    {
+        p2c->p[0].x = 44.0f;
+        p2c->p[0].y = floorf(ypos + cen_pos[10][1]);
+        
+        p2c->p[1].x = 408.0f;
+        p2c->p[1].y = floorf(ypos + cen_pos[10][1]);
+        
+        p2c->col[0].argb.a = 0xFF;
+        p2c->col[0].argb.r = 0xFF;
+        p2c->col[0].argb.g = 0;
+        p2c->col[0].argb.b = 0;
+        
+        p2c->col[1].argb.a = 0xFF;
+        p2c->col[1].argb.r = 0xFF;
+        p2c->col[1].argb.g = 0; 
+        p2c->col[1].argb.b = 0;
+        
+        num1 += 2;
+    }
+    
+    p2c->p[num1].x = 44.0f;
+    p2c->p[num1].y = floorf(145.0f + cen_pos[10][1]);
+    
+    p2c->p[num1 + 1].x = 408.0f;
+    p2c->p[num1 + 1].y = floorf(145.0f + cen_pos[10][1]);
+    
+    p2c->col[num1].argb.a = 0x80;
+    
+    if ((st->testmode == 2) && (!(sys->st_flg & 0x200))) 
+    {
+        p2c->col[num1].argb.r = 0xFF - colset;
+        p2c->col[num1].argb.g = 0xFF - colset;
+    } 
+    else 
+    {
+        p2c->col[num1].argb.r = 0x9F;
+        p2c->col[num1].argb.g = 0x9F;
+    }
+    
+    p2c->col[num1].argb.b = 0;
+    p2c->col[num1 + 1].argb.a = 0x80;
+    
+    if ((st->testmode == 2) && (!(sys->st_flg & 0x200))) 
+    {
+        p2c->col[num1 + 1].argb.r = 0xFF - colset;
+        p2c->col[num1 + 1].argb.g = 0xFF - colset;
+    } 
+    else 
+    {
+        p2c->col[num1 + 1].argb.r = 0x9F;
+        p2c->col[num1 + 1].argb.g = 0x9F;
+    }
+    
+    p2c->col[num1 + 1].argb.b = 0;
+
+    num1 += 2;
+
+    p2c->p[num1].x = 36.0f;
+    p2c->p[num1].y = floorf(183.0f + cen_pos[10][1]);
+    
+    p2c->p[num1 + 1].x = 408.0f;
+    p2c->p[num1 + 1].y = floorf(183.0f + cen_pos[10][1]);
+    
+    p2c->col[num1].argb.a = 0;
+    
+    if ((st->testmode == 2) && (!(sys->st_flg & 0x200))) 
+    {
+        p2c->col[num1].argb.r = 0xFF - colset;
+        p2c->col[num1].argb.g = 0xFF - colset;
+    } 
+    else
+    {
+        p2c->col[num1].argb.r = 0x9F;
+        p2c->col[num1].argb.g = 0x9F;
+    }
+    
+    p2c->col[num1].argb.b = 0;
+    p2c->col[num1 + 1].argb.a = 0x80;
+    
+    if ((st->testmode == 2) && (!(sys->st_flg & 0x200))) 
+    {
+        p2c->col[num1 + 1].argb.r = 0xFF - colset;
+        p2c->col[num1 + 1].argb.g = 0xFF - colset;
+    } 
+    else 
+    {
+        p2c->col[num1 + 1].argb.r = 0x9F;
+        p2c->col[num1 + 1].argb.g = 0x9F;
+    }
+    
+    p2c->col[num1 + 1].argb.b = 0x80;
+
+    num1 += 2;
+    
+    p2c->num = num1;
+    
+    if (num1)
+    {
+        njDrawLine2D(p2c, num1 / 2, -20.9f, 0);
+    }
 }
 
 // 100% matching!
