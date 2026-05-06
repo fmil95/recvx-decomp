@@ -5,6 +5,7 @@
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_NaFog.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/system.h"
@@ -402,34 +403,42 @@ void bhDrawObject(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x284440
-void bhDrawSpObject(O_WRK* op)
+// 100% matching!
+void bhDrawSpObject(O_WRK* op) 
 {
-	//_anon32 vec;
-	//_anon3* lp;
-	// Line 611, Address: 0x284440, Func Offset: 0
-	// Line 620, Address: 0x284454, Func Offset: 0x14
-	// Line 624, Address: 0x284494, Func Offset: 0x54
-	// Line 632, Address: 0x2844cc, Func Offset: 0x8c
-	// Line 637, Address: 0x2844e4, Func Offset: 0xa4
-	// Line 638, Address: 0x2844f0, Func Offset: 0xb0
-	// Line 637, Address: 0x2844f4, Func Offset: 0xb4
-	// Line 638, Address: 0x284504, Func Offset: 0xc4
-	// Line 639, Address: 0x28450c, Func Offset: 0xcc
-	// Line 640, Address: 0x28451c, Func Offset: 0xdc
-	// Line 641, Address: 0x28452c, Func Offset: 0xec
-	// Line 642, Address: 0x284540, Func Offset: 0x100
-	// Line 643, Address: 0x28454c, Func Offset: 0x10c
-	// Line 644, Address: 0x284554, Func Offset: 0x114
-	// Line 645, Address: 0x28455c, Func Offset: 0x11c
-	// Line 646, Address: 0x284570, Func Offset: 0x130
-	// Line 647, Address: 0x284580, Func Offset: 0x140
-	// Line 648, Address: 0x28459c, Func Offset: 0x15c
-	// Line 651, Address: 0x2845ac, Func Offset: 0x16c
-	// Line 654, Address: 0x2845b8, Func Offset: 0x178
-	// Func End, Address: 0x2845cc, Func Offset: 0x18c
-	scePrintf("bhDrawSpObject - UNIMPLEMENTED!\n");
+    LGT_WORK* lp;
+    NJS_VECTOR vec;
+
+    if (!((!(op->flg & 0x40000000)) || ((sys->gm_flg & 0x40)) || ((cam.flg & 0x46)) || ((cam.ncut == op->hide[0]) || (cam.ncut == op->hide[1]) || (cam.ncut == op->hide[2]) || (cam.ncut == op->hide[3]))))
+    {
+        return;
+    }
+
+    switch (op->type) 
+    {
+    case 5:
+        lp = &rom->lgtp[op->aspd];
+        
+        if (op->draw_tp == 0) 
+        {
+            njSetMatrix(NULL, cam.mtx);
+            
+            njCnkSetEasyMultiLightVector(lp->vx, lp->vy, lp->vz);
+            njCnkSetEasyMultiLightColor(1, lp->r, lp->g, lp->b);
+            njCnkSetEasyMultiLightSwitch(1, 1);
+            njCnkSetEasyMultiLightMatrices();
+        } 
+        else 
+        {
+            njCalcVector(cam.mtx, (NJS_VECTOR*)&lp->vx, &vec);
+            
+            njCnkSetEasyLightColor(lp->r, lp->g, lp->b);
+            njCnkSetEasyLightIntensity(1.0f, 0.2f);
+            njCnkSetEasyLight(vec.x, vec.y, vec.z);
+        }
+        
+        bhPutModel((BH_PWORK*)op);
+    }
 }
 
 // 100% matching!
