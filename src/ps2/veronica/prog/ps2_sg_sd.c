@@ -1858,7 +1858,7 @@ SDE_ERR	sdMemBlkSetTransferMode( SDE_MEMBLK_TRANSFER_MODE transfer_mode)
     return (__sg_sd_snd_init__ != 0) ? SDE_ERR_NOTHING : SDE_ERR_NO_INIT;
 }
 
-// 88.73% matching
+// 100% matching!
 SDE_ERR	sdMultiUnitDownload( SDMEMBLK handle)
 {
     char* UnitAddress;
@@ -1879,13 +1879,14 @@ SDE_ERR	sdMultiUnitDownload( SDMEMBLK handle)
         
         sdBankDownload(handle, SDE_DATA_TYPE_SHOT_BANK, 0); 
 
-        /* ERROR: enabling this loop makes PCSX2 stuck, see ps2_snddrv.c for more information
+    #ifdef SDK_303
         do 
         {
             sndr_trans_func();
             
             SdrSendReq(0);
-        } while (snd_data_down_load != 0); */
+        } while (snd_data_down_load != 0); 
+    #endif
         
         handle->m_Member[1] = (int)(UnitAddress + ((int*)UnitAddress)[4]);
         handle->m_Member[2] = ((int*)UnitAddress)[5];

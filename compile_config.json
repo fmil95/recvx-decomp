@@ -57,6 +57,26 @@
       "include/recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/ee/lib",
       "include/recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/lib/gcc-lib/ee/2.9-ee-991111-01" 
   ],
+  "sdk303_overrides": {
+    "common_includes": [
+        "src/cri/mwlib/ee/lib/libadxe",
+        "src/ps2/veronica/prog",
+        "include/recvx-decomp-katana/KATANA/Include",
+        "include/recvx-decomp-cri/cri/mwlib/include",
+        "include/recvx-decomp-cri/cri/mwlib/ee/include",
+        "include/recvx-decomp-ps2_sdk303/usr/local/sce/ee/include",
+        "include/recvx-decomp-ps2_sdk303/usr/local/sce/common/include",
+        "include/recvx-decomp-ps2_sdk303/usr/local/sce/ee/gcc/ee/include",
+        "include/recvx-decomp-ps2_sdk303/usr/local/sce/ee/gcc/lib/gcc-lib/ee/3.2-ee-040921/include",
+        "include/recvx-decomp-ps2_sdk303/usr/local/sce/iop/gcc/lib/gcc-lib/mipsel-scei-elfl/2.8.1/include"
+    ],
+    "libraries": [
+        "include/recvx-decomp-ps2_sdk303/usr/local/sce/ee/lib",
+        "include/recvx-decomp-ps2_sdk303/usr/local/sce/ee/gcc/lib",
+        "include/recvx-decomp-ps2_sdk303/usr/local/sce/ee/gcc/ee/lib",
+        "include/recvx-decomp-ps2_sdk303/usr/local/sce/ee/gcc/lib/gcc-lib/ee/3.2-ee-040921" 
+    ]
+  },
   "defines": [
     "DEBUG"
   ],

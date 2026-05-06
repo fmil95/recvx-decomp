@@ -470,6 +470,16 @@ def main(args):
         return
 
     raw_cfg = load_json(args.env_file)
+
+    if args.sdk303:
+        overrides = raw_cfg.get("sdk303_overrides", {})
+        if not overrides:
+            print("WARNING: --sdk303 was passed but no 'sdk303_overrides' key found in config.")
+        else:
+            raw_cfg.update(overrides)
+            raw_cfg["defines"].append("SDK_303")
+            print("[CONFIG] Using EE 3.0.3 includes.")
+
     compilers = cfg_get_compilers(raw_cfg)
     current_objects = cfg_get_current_objects(raw_cfg, compilers)
     expected_objects = cfg_get_expected_objects(raw_cfg, compilers)
@@ -550,6 +560,7 @@ if __name__ == "__main__":
     parser.add_argument('--setup', action="store_true", help="Generates original asm and objdiff project files.")
     parser.add_argument('--progress', action="store_true", help="Make all the objects needed for progress reporting.")
     parser.add_argument('--verbose', action="store_true", help="More info for each command.")
+    parser.add_argument('--sdk303', action="store_true", help="Use EE 3.0.3 includes instead of the default ones.")
 
     args = parser.parse_args()
 

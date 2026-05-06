@@ -6,19 +6,33 @@ from dataclasses import dataclass, field
 from typing import BinaryIO
 
 SCRIPT_DIR = Path("./").resolve()
-REPLACEMENTS = {
-    "SLUS_201.84"                   : "elf/main.elf",
-    "PS2_DATA/MODULES/IOPRP213.IMG" : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/ioprp20.img",
-    "PS2_DATA/MODULES/SIO2MAN.IRX"  : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/sio2man.irx",
-    "PS2_DATA/MODULES/PADMAN.IRX"   : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/padman.irx",
-    "PS2_DATA/MODULES/MCMAN.IRX"    : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/mcman.irx",
-    "PS2_DATA/MODULES/MCSERV.IRX"   : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/mcserv.irx",
-    "PS2_DATA/MODULES/LIBSD.IRX"    : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/libsd.irx",
-    "PS2_DATA/MODULES/MODHSYN.IRX"  : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/modhsyn.irx",
-    "PS2_DATA/MODULES/MODMIDI.IRX"  : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/modmidi.irx",
-    "PS2_DATA/MODULES/MODMSIN.IRX"  : "include/recvx-decomp-ps2_sdk/usr/local/sce/iop/modules/modmsin.irx",
-    # "PS2_DATA/MODULES/TSNDDRV.IRX"  : "tsnddrv.irx",
+SDK_DEFAULT = "include/recvx-decomp-ps2_sdk"
+SDK_303 = "include/recvx-decomp-ps2_sdk303"
+REPLACEMENTS_TEMPLATE = {
+    "SLUS_201.84"                   : ("elf/main.elf",                                         False),
+    "PS2_DATA/MODULES/IOPRP213.IMG" : ("usr/local/sce/iop/modules/ioprp{ioprp}.img",           True),
+    "PS2_DATA/MODULES/SIO2MAN.IRX"  : ("usr/local/sce/iop/modules/sio2man.irx",                True),
+    "PS2_DATA/MODULES/PADMAN.IRX"   : ("usr/local/sce/iop/modules/padman.irx",                 True),
+    "PS2_DATA/MODULES/MCMAN.IRX"    : ("usr/local/sce/iop/modules/mcman.irx",                  True),
+    "PS2_DATA/MODULES/MCSERV.IRX"   : ("usr/local/sce/iop/modules/mcserv.irx",                 True),
+    "PS2_DATA/MODULES/LIBSD.IRX"    : ("usr/local/sce/iop/modules/libsd.irx",                  True),
+    "PS2_DATA/MODULES/MODHSYN.IRX"  : ("usr/local/sce/iop/modules/modhsyn.irx",                True),
+    "PS2_DATA/MODULES/MODMIDI.IRX"  : ("usr/local/sce/iop/modules/modmidi.irx",                True),
+    "PS2_DATA/MODULES/MODMSIN.IRX"  : ("usr/local/sce/iop/modules/modmsin.irx",                True),
+    # "PS2_DATA/MODULES/TSNDDRV.IRX" : ("tsnddrv.irx",                                          False),
 }
+
+
+def build_replacements(use_sdk303: bool) -> dict:
+    sdk_dir  = SDK_303 if use_sdk303 else SDK_DEFAULT
+    ioprp_ver = "300" if use_sdk303 else "20"
+    result = {}
+    for disc_path, (rel_path, uses_sdk) in REPLACEMENTS_TEMPLATE.items():
+        rel_path = rel_path.format(ioprp=ioprp_ver)
+        full_path = f"{sdk_dir}/{rel_path}" if uses_sdk else rel_path
+        result[disc_path] = full_path
+    return result
+
 
 SECTOR_SIZE = 0x800
 READ_CHUNK = 0x50_0000 # 5MiB
@@ -75,7 +89,10 @@ def main():
         else:
             pad_mode = PAD_NONE
 
-        rebuild_iso(args.filelist, args.files, args.output, pad_mode)
+        replacements = build_replacements(args.sdk303)
+        ioprp_label = "ioprp300 (EE 3.03)" if args.sdk303 else "ioprp20 (default)"
+
+        rebuild_iso(args.filelist, args.files, args.output, pad_mode, replacements)
         print("rebuild finished")
 
 
@@ -121,6 +138,13 @@ def get_arguments(argv=None):
         required=False,
         action="store_false",
         help="dry run, parses the iso without saving the files",
+    )
+
+    parser.add_argument(
+        "--sdk303",
+        required=False,
+        action="store_true",
+        help="use ioprp300 image (EE 3.03) instead of the default ioprp20 one",
     )
 
     args = parser.parse_args()
@@ -375,15 +399,15 @@ def validate_rebuild(filelist: Path, iso_files: Path) -> bool:
     return True
 
 
-def write_new_pvd(iso: BinaryIO, iso_files: Path, add_padding: int, layer_info: IsoLayer, pvd_loc: int) -> int:
+def write_new_pvd(iso: BinaryIO, iso_files: Path, add_padding: int, layer_info: IsoLayer, pvd_loc: int, replacements: dict) -> int:
     iso.write(layer_info.header)
 
     for inode in layer_info.meta.files:
 
         start_pos = iso.tell()
-        if inode.path.as_posix() in REPLACEMENTS:
-            fp = SCRIPT_DIR / REPLACEMENTS[inode.path.as_posix()]
-            print(f"Inserting {REPLACEMENTS[inode.path.as_posix()]} (replaces {inode.path})...")
+        if inode.path.as_posix() in replacements:
+            fp = SCRIPT_DIR / replacements[inode.path.as_posix()]
+            print(f"Inserting {replacements[inode.path.as_posix()]} (replaces {inode.path})...")
         else:
             fp = iso_files / inode.path
             print(f"Inserting {inode.path}...")
@@ -451,7 +475,7 @@ def write_new_pvd(iso: BinaryIO, iso_files: Path, add_padding: int, layer_info: 
     return iso.tell()
 
 
-def rebuild_iso(filelist: Path, iso_files: Path, output: Path, add_padding: int) -> None:
+def rebuild_iso(filelist: Path, iso_files: Path, output: Path, add_padding: int, replacements: dict) -> None:
     # Validate args
     if not validate_rebuild(filelist, iso_files):
         return
@@ -474,7 +498,7 @@ def rebuild_iso(filelist: Path, iso_files: Path, output: Path, add_padding: int)
         iso_info.layers[0].footer = head.read(SECTOR_SIZE)
 
     with open(output, "wb+") as f:
-        write_new_pvd(f, iso_files, add_padding, iso_info.layers[0], SYSTEM_AREA_SIZE)
+        write_new_pvd(f, iso_files, add_padding, iso_info.layers[0], SYSTEM_AREA_SIZE, replacements)
 
 
 if __name__ == "__main__":

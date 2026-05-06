@@ -132,7 +132,7 @@ void initAll()
     rmi.iMovieState = 1;
     rmi.iMovieFrame = Ps2_vcount;
     
-    th_param.entry = videoDecMain;
+    th_param.entry = (void*)videoDecMain;
     
     th_param.stack = videoDecStack;
     th_param.stackSize = 16384;

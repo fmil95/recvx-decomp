@@ -7,6 +7,7 @@ build
 context
 elf
 iso
+include/recvx-decomp-ps2_sdk303
 
 // ignored files 
 compile_config.json
@@ -27,3 +28,4 @@ config/undefined_syms_auto.txt
 
 // exceptions
 !iso/.gitkeep
+!include/recvx-decomp-ps2_sdk303/.gitkeep
