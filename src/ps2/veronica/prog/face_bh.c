@@ -1170,73 +1170,101 @@ void _fmCnkCalcEye(MASK_WORK* fm)
     }
 }
 
-// 
-// Start address: 0x29a4c0
-void _fmCnkCalcTang(MASK_WORK* fm)
+// 99.35% matching
+void _fmCnkCalcTang(MASK_WORK* fm) 
 {
-	unsigned int calc_ofs;
-	float tangz;
-	float tangy;
-	float tangx;
-	unsigned int vofs;
-	float* dvp;
-	float* svp;
-	float mat[16];
-	unsigned char mt1[64];
-	//_anon3* tang;
-	int i;
-	// Line 2446, Address: 0x29a4c0, Func Offset: 0
-	// Line 2464, Address: 0x29a4ec, Func Offset: 0x2c
-	// Line 2474, Address: 0x29a4f8, Func Offset: 0x38
-	// Line 2475, Address: 0x29a4fc, Func Offset: 0x3c
-	// Line 2474, Address: 0x29a500, Func Offset: 0x40
-	// Line 2470, Address: 0x29a504, Func Offset: 0x44
-	// Line 2471, Address: 0x29a508, Func Offset: 0x48
-	// Line 2472, Address: 0x29a50c, Func Offset: 0x4c
-	// Line 2474, Address: 0x29a510, Func Offset: 0x50
-	// Line 2475, Address: 0x29a514, Func Offset: 0x54
-	// Line 2473, Address: 0x29a518, Func Offset: 0x58
-	// Line 2476, Address: 0x29a51c, Func Offset: 0x5c
-	// Line 2474, Address: 0x29a520, Func Offset: 0x60
-	// Line 2499, Address: 0x29a528, Func Offset: 0x68
-	// Line 2517, Address: 0x29a530, Func Offset: 0x70
-	// Line 2518, Address: 0x29a534, Func Offset: 0x74
-	// Line 2519, Address: 0x29a538, Func Offset: 0x78
-	// Line 2520, Address: 0x29a53c, Func Offset: 0x7c
-	// Line 2521, Address: 0x29a540, Func Offset: 0x80
-	// Line 2522, Address: 0x29a544, Func Offset: 0x84
-	// Line 2523, Address: 0x29a548, Func Offset: 0x88
-	// Line 2524, Address: 0x29a54c, Func Offset: 0x8c
-	// Line 2527, Address: 0x29a550, Func Offset: 0x90
-	// Line 2528, Address: 0x29a57c, Func Offset: 0xbc
-	// Line 2529, Address: 0x29a5a8, Func Offset: 0xe8
-	// Line 2531, Address: 0x29a5b0, Func Offset: 0xf0
-	// Line 2533, Address: 0x29a5bc, Func Offset: 0xfc
-	// Line 2534, Address: 0x29a5c0, Func Offset: 0x100
-	// Line 2535, Address: 0x29a5c4, Func Offset: 0x104
-	// Line 2536, Address: 0x29a5c8, Func Offset: 0x108
-	// Line 2537, Address: 0x29a5cc, Func Offset: 0x10c
-	// Line 2538, Address: 0x29a5d0, Func Offset: 0x110
-	// Line 2539, Address: 0x29a5d4, Func Offset: 0x114
-	// Line 2540, Address: 0x29a5d8, Func Offset: 0x118
-	// Line 2541, Address: 0x29a5dc, Func Offset: 0x11c
-	// Line 2542, Address: 0x29a5e0, Func Offset: 0x120
-	// Line 2543, Address: 0x29a5e4, Func Offset: 0x124
-	// Line 2544, Address: 0x29a5e8, Func Offset: 0x128
-	// Line 2546, Address: 0x29a5ec, Func Offset: 0x12c
-	// Line 2547, Address: 0x29a5f0, Func Offset: 0x130
-	// Line 2548, Address: 0x29a5f4, Func Offset: 0x134
-	// Line 2549, Address: 0x29a5f8, Func Offset: 0x138
-	// Line 2551, Address: 0x29a5fc, Func Offset: 0x13c
-	// Line 2552, Address: 0x29a600, Func Offset: 0x140
-	// Line 2553, Address: 0x29a604, Func Offset: 0x144
-	// Line 2554, Address: 0x29a608, Func Offset: 0x148
-	// Line 2555, Address: 0x29a60c, Func Offset: 0x14c
-	// Line 2559, Address: 0x29a610, Func Offset: 0x150
-	// Line 2560, Address: 0x29a614, Func Offset: 0x154
-	// Line 2564, Address: 0x29a620, Func Offset: 0x160
-	// Func End, Address: 0x29a650, Func Offset: 0x190
-	scePrintf("_fmCnkCalcTang - UNIMPLEMENTED!\n");
+    int i;                
+    TANG_WORK* tang;       
+    unsigned char mt1[64]; 
+    NJS_MATRIX* mat;       
+    float* svp, *dvp;         
+    unsigned int vofs;     
+    float tangx, tangy, tangz;           
+    unsigned int calc_ofs; 
+    
+    i = fm->tnum;
+
+    mat = (NJS_MATRIX*)mt1;
+    
+    if (i != 0) 
+    {
+        svp = (float*)&fm->tangsrc->vlist[fm->vtop];
+        dvp = (float*)&fm->tangdst->vlist[fm->vtop];
+        
+        tangx = fm->param.tangx;
+        tangy = fm->param.tangy;
+        tangz = fm->param.tangz;
+        
+        vofs = fm->vofs;
+        
+        tang = fm->tang;
+       
+        for ( ; i > 0; i--) 
+        { 
+            asm volatile
+            ("
+            .set noreorder
+                vmulw.xyzw vf4, vf0, vf0w
+                
+                vmr32.xyzw vf5, vf4
+                vmr32.xyzw vf6, vf5
+                vmr32.xyzw vf7, vf6
+                
+                sqc2       vf4, 0x30(%0)
+                sqc2       vf5, 0x20(%0)
+                sqc2       vf6, 0x10(%0)
+                sqc2       vf7,    0(%0)
+            .set reorder
+            " : : "r"(mat) : 
+            ); 
+            
+            njRotateX(mat, (int)(182.04445f * (tangx * tang->rate)) & 0xFFFF);
+            njRotateY(mat, (int)(182.04445f * (tangy * tang->rate)) & 0xFFFF);
+            
+            calc_ofs = tang->id * vofs;
+            
+            asm volatile  
+            ("
+            .set noreorder
+                mfc1        t2, %2
+                
+                ldl         t0, 0x7(%0)
+                ldr         t0,   0(%0)
+                
+                lw          t1, 0x8(%0)
+                
+                pcpyld      t0, t1, t0
+            
+                qmtc2       t2, vf9
+                qmtc2       t0, vf4
+            
+                lqc2        vf5,    0(%3)
+                lqc2        vf6, 0x10(%3)
+                lqc2        vf7, 0x20(%3)
+                lqc2        vf8, 0x30(%3)
+                
+                vmulx.xyz   vf7,  vf7, vf9x
+                vmulax.xyz  ACC,  vf5, vf4x
+                
+                vmadday.xyz ACC,  vf6, vf4y
+                vmaddaz.xyz ACC,  vf7, vf4z
+                vmaddw.xyz  vf18, vf8, vf0w
+                
+                qmfc2       t0, vf18
+            
+                pcpyud      t1, t0, t0
+            
+                sdl         t0, 7(%1)
+                sdr         t0, 0(%1)
+                
+                sw          t1, 8(%1)
+            .set reorder
+            " : : "r"(&svp[calc_ofs]), "r"(&dvp[calc_ofs]), "f"(tangz), "r"(mat) : 
+            );
+            
+            tang++; 
+        }
+    }
 }
 
 // 100% matching! 
