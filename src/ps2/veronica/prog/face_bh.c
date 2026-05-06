@@ -763,120 +763,273 @@ unsigned int fmCnkGetLastFrame(MASK_WORK* fm)
 	return fm->face[fm->fnum - 1].frame;
 }
 
-// 
-// Start address: 0x299d30
-void _fmCnkCalcMuscle(MASK_WORK* fm)
+// 100% matching!
+// TODO: while this code matches, this is not how they wrote the function and it needs binding to the inline ASM all of the local variables 
+void _fmCnkCalcMuscle(MASK_WORK* fm)  
 {
-	float rsum;
-	unsigned int vofs;
-	float para;
-	//_anon3* jaw;
-	float rate;
-	float sum;
-	float* mrp;
-	//_anon0** mvp;
-	float mrate[32];
-	//_anon0* mvec[32];
-	float* param;
-	//_anon6* list;
-	//_anon7* con;
-	float* dvp;
-	float* svp;
-	int m;
-	int n;
-	int i;
-	// Line 1513, Address: 0x299d30, Func Offset: 0
-	// Line 1514, Address: 0x299d34, Func Offset: 0x4
-	// Line 1513, Address: 0x299d38, Func Offset: 0x8
-	// Line 1517, Address: 0x299d3c, Func Offset: 0xc
-	// Line 1492, Address: 0x299d40, Func Offset: 0x10
-	// Line 1513, Address: 0x299d44, Func Offset: 0x14
-	// Line 1514, Address: 0x299d48, Func Offset: 0x18
-	// Line 1513, Address: 0x299d4c, Func Offset: 0x1c
-	// Line 1536, Address: 0x299d50, Func Offset: 0x20
-	// Line 1514, Address: 0x299d54, Func Offset: 0x24
-	// Line 1513, Address: 0x299d58, Func Offset: 0x28
-	// Line 1536, Address: 0x299d5c, Func Offset: 0x2c
-	// Line 1537, Address: 0x299d6c, Func Offset: 0x3c
-	// Line 1539, Address: 0x299d78, Func Offset: 0x48
-	// Line 1541, Address: 0x299d80, Func Offset: 0x50
-	// Line 1544, Address: 0x299d8c, Func Offset: 0x5c
-	// Line 1545, Address: 0x299d98, Func Offset: 0x68
-	// Line 1546, Address: 0x299d9c, Func Offset: 0x6c
-	// Line 1547, Address: 0x299da0, Func Offset: 0x70
-	// Line 1548, Address: 0x299da4, Func Offset: 0x74
-	// Line 1549, Address: 0x299da8, Func Offset: 0x78
-	// Line 1550, Address: 0x299dac, Func Offset: 0x7c
-	// Line 1551, Address: 0x299db0, Func Offset: 0x80
-	// Line 1561, Address: 0x299dbc, Func Offset: 0x8c
-	// Line 1562, Address: 0x299dc0, Func Offset: 0x90
-	// Line 1564, Address: 0x299dc4, Func Offset: 0x94
-	// Line 1566, Address: 0x299dc8, Func Offset: 0x98
-	// Line 1571, Address: 0x299ddc, Func Offset: 0xac
-	// Line 1567, Address: 0x299de4, Func Offset: 0xb4
-	// Line 1568, Address: 0x299de8, Func Offset: 0xb8
-	// Line 1569, Address: 0x299dec, Func Offset: 0xbc
-	// Line 1571, Address: 0x299df0, Func Offset: 0xc0
-	// Line 1570, Address: 0x299df8, Func Offset: 0xc8
-	// Line 1571, Address: 0x299dfc, Func Offset: 0xcc
-	// Line 1572, Address: 0x299e08, Func Offset: 0xd8
-	// Line 1573, Address: 0x299e0c, Func Offset: 0xdc
-	// Line 1574, Address: 0x299e14, Func Offset: 0xe4
-	// Line 1575, Address: 0x299e24, Func Offset: 0xf4
-	// Line 1576, Address: 0x299e34, Func Offset: 0x104
-	// Line 1577, Address: 0x299e38, Func Offset: 0x108
-	// Line 1576, Address: 0x299e3c, Func Offset: 0x10c
-	// Line 1577, Address: 0x299e40, Func Offset: 0x110
-	// Line 1580, Address: 0x299e5c, Func Offset: 0x12c
-	// Line 1577, Address: 0x299e60, Func Offset: 0x130
-	// Line 1579, Address: 0x299e64, Func Offset: 0x134
-	// Line 1578, Address: 0x299e6c, Func Offset: 0x13c
-	// Line 1579, Address: 0x299e70, Func Offset: 0x140
-	// Line 1581, Address: 0x299e74, Func Offset: 0x144
-	// Line 1582, Address: 0x299e78, Func Offset: 0x148
-	// Line 1583, Address: 0x299e7c, Func Offset: 0x14c
-	// Line 1584, Address: 0x299e80, Func Offset: 0x150
-	// Line 1586, Address: 0x299e90, Func Offset: 0x160
-	// Line 1587, Address: 0x299e9c, Func Offset: 0x16c
-	// Line 1607, Address: 0x299ea4, Func Offset: 0x174
-	// Line 1587, Address: 0x299eac, Func Offset: 0x17c
-	// Line 1588, Address: 0x299ebc, Func Offset: 0x18c
-	// Line 1587, Address: 0x299ec8, Func Offset: 0x198
-	// Line 1588, Address: 0x299ecc, Func Offset: 0x19c
-	// Line 1609, Address: 0x299ed0, Func Offset: 0x1a0
-	// Line 1611, Address: 0x299edc, Func Offset: 0x1ac
-	// Line 1612, Address: 0x299ee0, Func Offset: 0x1b0
-	// Line 1613, Address: 0x299ee4, Func Offset: 0x1b4
-	// Line 1614, Address: 0x299ee8, Func Offset: 0x1b8
-	// Line 1615, Address: 0x299eec, Func Offset: 0x1bc
-	// Line 1616, Address: 0x299ef0, Func Offset: 0x1c0
-	// Line 1617, Address: 0x299ef4, Func Offset: 0x1c4
-	// Line 1618, Address: 0x299ef8, Func Offset: 0x1c8
-	// Line 1619, Address: 0x299efc, Func Offset: 0x1cc
-	// Line 1621, Address: 0x299f00, Func Offset: 0x1d0
-	// Line 1622, Address: 0x299f04, Func Offset: 0x1d4
-	// Line 1623, Address: 0x299f08, Func Offset: 0x1d8
-	// Line 1624, Address: 0x299f0c, Func Offset: 0x1dc
-	// Line 1625, Address: 0x299f10, Func Offset: 0x1e0
-	// Line 1626, Address: 0x299f14, Func Offset: 0x1e4
-	// Line 1627, Address: 0x299f18, Func Offset: 0x1e8
-	// Line 1628, Address: 0x299f1c, Func Offset: 0x1ec
-	// Line 1629, Address: 0x299f20, Func Offset: 0x1f0
-	// Line 1630, Address: 0x299f24, Func Offset: 0x1f4
-	// Line 1631, Address: 0x299f28, Func Offset: 0x1f8
-	// Line 1632, Address: 0x299f2c, Func Offset: 0x1fc
-	// Line 1633, Address: 0x299f30, Func Offset: 0x200
-	// Line 1634, Address: 0x299f34, Func Offset: 0x204
-	// Line 1635, Address: 0x299f38, Func Offset: 0x208
-	// Line 1637, Address: 0x299f44, Func Offset: 0x214
-	// Line 1638, Address: 0x299f48, Func Offset: 0x218
-	// Line 1639, Address: 0x299f4c, Func Offset: 0x21c
-	// Line 1644, Address: 0x299f50, Func Offset: 0x220
-	// Line 1645, Address: 0x299f54, Func Offset: 0x224
-	// Line 1646, Address: 0x299f58, Func Offset: 0x228
-	// Line 1652, Address: 0x299f60, Func Offset: 0x230
-	// Func End, Address: 0x299f68, Func Offset: 0x238
-	scePrintf("_fmCnkCalcMuscle - UNIMPLEMENTED!\n");
+    float rsum;           // needs use    
+    unsigned int vofs;    // needs use
+    float para;           // needs use     
+    TANG_WORK* jaw;      
+    float rate;           // needs use         
+    float sum;            // needs use        
+    float* mrp;           // needs use         
+    NJS_POINT3** mvp;     // needs use    
+    float mrate[32];      // needs use   
+    NJS_POINT3* mvec[32]; // needs use
+    float* param;         // needs use     
+    VLIST_WORK list;      // needs use    
+    LIST_WORK* con;       // needs use    
+    float* dvp, *svp;     // need use        
+    int m, n, i;          // need use            
+
+    asm volatile
+    ("
+    .set noreorder
+        lw     a1, MASK_WORK.vtop(%0)
+        lw     v1, MASK_WORK.src(%0)
+        lw     a2, MASK_WORK.dst(%0)
+        lw     %1, MASK_WORK.jaw(%0)
+        
+        addiu  sp, sp, -0x100
+        
+        sll    a3, a1, 2
+        
+        lw     a1, 0x0(v1)
+        lw     a2, 0x0(a2)
+        lw     v1, 0x0(%1)
+        
+        addu   t4, a1, a3
+        addu   t5, a2, a3
+    
+        sll    a1, v1, 5
+    
+        addu   v1, t4, a1
+        
+        lq     v1, 0x0(v1)
+        
+        pref   0x00, 0x0(v1)
+        
+        addu   v1, t5, a1
+    
+        lq     v1, 0x0(v1)
+        
+        pref   0x00, 0x0(v1)
+        
+        lw     v1, MASK_WORK.jnum(%0)
+        nop
+    
+        slt    at, zero, v1
+        beqz   at, l_00299DBC
+    
+        lw     t0, 0x0(%1)
+        
+    l_00299D8C:
+        muli   t0, t0, 0x20  
+    
+        add    t1, t5, t0 
+        add    t2, t4, t0 
+    
+        lq     t3, 0x0(t2)
+        
+        addi   %1, %1, 0x8 
+        addi   v1, v1, -0x1 
+        
+        lw     t0, 0x0(%1)
+        
+        slt    at, zero, v1
+        bnez   at, l_00299D8C
+    
+        sq     t3, 0x0(t1)
+        
+    l_00299DBC:
+        lw     a1, MASK_WORK.list(%0)
+        lw     a2, MASK_WORK.vlist(%0)
+        lw     v1, MASK_WORK.lnum(%0)
+        
+        li     t0, 0x3F800000
+        
+        mtc1   zero, f9
+        mtc1   t0, f0
+    
+        b      l_00299F58
+    
+        addiu  a3, %0, MASK_WORK.param
+        
+    l_00299DDC:
+        lw     t5, MASK_WORK.dst(%0)
+        lh     t0, 0x0(a2)
+    
+        mtc1   zero, f2
+    
+        paddub t3, zero, zero
+    
+        addiu  t1, sp, 0x0
+    
+        lw     t5, 0x0(t5)
+        
+        sll    t0, t0, 5
+    
+        addiu  t2, sp, 0x80
+        addu   t0, t0, t5
+        
+        lw     t0, 0x40(t0)
+        
+        pref   0x00, 0x0(t0)
+        pref   0x00, 0x0(t6)
+        
+        b      l_00299E88
+    
+        lb     t5, 0x2(a2)
+        
+    l_00299E14:
+        lw     t0, 0x0(a1)
+        
+        sll    t0, t0, 2
+    
+        addu   t0, a3, t0
+        
+        lwc1   f4, 0x0(t0)
+        
+        c.eq.s f9, f4
+        nop
+        bc1tl  l_00299E7C
+    
+        addiu  a1, a1, 0x14
+        addiu  t0, a1, 0x4
+        
+        c.lt.s f4, f9
+        
+        sw     t0, 0x0(t1)
+        
+        bc1f   l_00299E50
+    
+        addiu  t1, t1, 0x4
+    
+        b      l_00299E58
+    
+        neg.s  f3, f4
+        
+    l_00299E50:
+        mov.s  f3, f4
+        nop
+    
+    l_00299E58:
+        lwc1   f1, 0x10(a1)
+    
+        addiu  t3, t3, 0x1
+        
+        mul.s  f3, f1, f3
+        mul.s  f1, f4, f3
+        
+        swc1   f1, 0x0(t2)
+        
+        add.s  f2, f2, f3
+        
+        addiu  t2, t2, 0x4
+        nop
+        addiu  a1, a1, 0x14
+    
+    l_00299E7C:
+        pref   0x00, 0x0(t7)
+        
+        addiu  t5, t5, -0x1
+        nop
+        
+    l_00299E88:
+        bgtz   t5, l_00299E14
+        nop
+        nop
+        nop
+    
+        div.s  f1, f0, f2
+        
+        lh     t9, 0x0(a2)
+        lw     t0, MASK_WORK.dst(%0)
+        
+        paddub t6, t1, zero
+        paddub t7, t2, zero
+    
+        sll    t5, t9, 3
+    
+        addiu  %1, t5, 0x10
+        
+        lw     t5, 0x0(t0)
+        
+        sll    %1, %1, 2
+        sll    t0, t9, 5
+        
+        addu   t0, t4, t0
+        
+        lq     t0, 0x0(t0)
+        
+        addu   t5, t5, %1
+    
+        sq     t0, 0x0(t5)
+        
+        slt    at, zero, t3
+        beqz   at, l_00299F50
+    
+        mfc1   t0, f1
+    
+        addi   t6, t1, -0x4 
+        addi   t7, t2, -0x4 
+        addi   t3, t3, -0x1 
+        
+        mtc1   t0, f8
+        
+        lwc1   f7, 0x0(t7)
+        
+        lw     t1, 0x0(t6)
+        
+        lwc1   f1, 0x0(t5)
+        lwc1   f2, 0x4(t5)
+        lwc1   f3, 0x8(t5)
+        
+    l_00299F00:
+        mul.s  f7, f7, f8
+        
+        lwc1   f4, 0x0(t1)
+        lwc1   f5, 0x4(t1)
+        lwc1   f6, 0x8(t1)
+        
+        addi   t7, t7, -0x4 
+        
+        mul.s  f4, f4, f7
+        mul.s  f5, f5, f7
+        mul.s  f6, f6, f7
+        
+        addi   t6, t6, -0x4 
+        
+        add.s  f1, f1, f4
+        add.s  f2, f2, f5
+        add.s  f3, f3, f6
+        
+        addi   t3, t3, -0x1 
+        
+        lwc1   f7, 0x0(t7)
+        
+        slt    at, t3, zero
+        beqz   at, l_00299F00
+    
+        lw     t1, 0x0(t6)
+        
+        swc1   f1, 0x0(t5)
+        swc1   f2, 0x4(t5)
+        swc1   f3, 0x8(t5)
+        
+    l_00299F50:
+        addiu  a2, a2, 0x4
+        addiu  v1, v1, -0x1
+        
+    l_00299F58:
+        bgtz   v1, l_00299DDC
+        nop
+    .set reorder
+    " : : "r"(fm), "r"(jaw) : 
+    ); 
+
+    asm("addiu  sp, sp, 0x100");
 }
 
 // 99.32% matching
