@@ -1,10 +1,12 @@
 #include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
+#include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/main.h"
 
 /*float PlyInfo[2][4];
@@ -1036,90 +1038,71 @@ int bhCheckPlayerKegaMotion(int wpntp, int dmlvl, int num)
 	// Func End, Address: 0x13a3ac, Func Offset: 0x1ac
 }*/
 
-// 
-// Start address: 0x13a3b0
+// 100% matching!
 void bhCheckEvtTimer()
 {
-	//_anon49 pnt;
-	// Line 563, Address: 0x13a3b0, Func Offset: 0
-	// Line 566, Address: 0x13a3b8, Func Offset: 0x8
-	// Line 581, Address: 0x13a464, Func Offset: 0xb4
-	// Line 584, Address: 0x13a478, Func Offset: 0xc8
-	// Line 585, Address: 0x13a494, Func Offset: 0xe4
-	// Line 586, Address: 0x13a49c, Func Offset: 0xec
-	// Line 587, Address: 0x13a4a0, Func Offset: 0xf0
-	// Line 585, Address: 0x13a4a4, Func Offset: 0xf4
-	// Line 586, Address: 0x13a4ac, Func Offset: 0xfc
-	// Line 587, Address: 0x13a4b4, Func Offset: 0x104
-	// Line 586, Address: 0x13a4b8, Func Offset: 0x108
-	// Line 587, Address: 0x13a4c0, Func Offset: 0x110
-	// Line 589, Address: 0x13a4d0, Func Offset: 0x120
-	// Line 590, Address: 0x13a4e4, Func Offset: 0x134
-	// Line 591, Address: 0x13a4f0, Func Offset: 0x140
-	// Line 590, Address: 0x13a4f4, Func Offset: 0x144
-	// Line 591, Address: 0x13a4f8, Func Offset: 0x148
-	// Line 593, Address: 0x13a508, Func Offset: 0x158
-	// Line 595, Address: 0x13a524, Func Offset: 0x174
-	// Line 601, Address: 0x13a52c, Func Offset: 0x17c
-	// Line 597, Address: 0x13a530, Func Offset: 0x180
-	// Line 599, Address: 0x13a534, Func Offset: 0x184
-	// Line 595, Address: 0x13a538, Func Offset: 0x188
-	// Line 596, Address: 0x13a53c, Func Offset: 0x18c
-	// Line 601, Address: 0x13a544, Func Offset: 0x194
-	// Line 603, Address: 0x13a548, Func Offset: 0x198
-	// Line 596, Address: 0x13a54c, Func Offset: 0x19c
-	// Line 597, Address: 0x13a550, Func Offset: 0x1a0
-	// Line 596, Address: 0x13a554, Func Offset: 0x1a4
-	// Line 597, Address: 0x13a55c, Func Offset: 0x1ac
-	// Line 598, Address: 0x13a564, Func Offset: 0x1b4
-	// Line 597, Address: 0x13a568, Func Offset: 0x1b8
-	// Line 598, Address: 0x13a570, Func Offset: 0x1c0
-	// Line 599, Address: 0x13a578, Func Offset: 0x1c8
-	// Line 598, Address: 0x13a57c, Func Offset: 0x1cc
-	// Line 599, Address: 0x13a584, Func Offset: 0x1d4
-	// Line 600, Address: 0x13a58c, Func Offset: 0x1dc
-	// Line 599, Address: 0x13a590, Func Offset: 0x1e0
-	// Line 600, Address: 0x13a598, Func Offset: 0x1e8
-	// Line 601, Address: 0x13a5a0, Func Offset: 0x1f0
-	// Line 600, Address: 0x13a5a4, Func Offset: 0x1f4
-	// Line 601, Address: 0x13a5ac, Func Offset: 0x1fc
-	// Line 602, Address: 0x13a5b4, Func Offset: 0x204
-	// Line 601, Address: 0x13a5b8, Func Offset: 0x208
-	// Line 602, Address: 0x13a5c0, Func Offset: 0x210
-	// Line 603, Address: 0x13a5d4, Func Offset: 0x224
-	// Line 605, Address: 0x13a5e4, Func Offset: 0x234
-	// Line 607, Address: 0x13a600, Func Offset: 0x250
-	// Line 608, Address: 0x13a608, Func Offset: 0x258
-	// Line 614, Address: 0x13a610, Func Offset: 0x260
-	// Line 610, Address: 0x13a614, Func Offset: 0x264
-	// Line 612, Address: 0x13a618, Func Offset: 0x268
-	// Line 608, Address: 0x13a61c, Func Offset: 0x26c
-	// Line 609, Address: 0x13a620, Func Offset: 0x270
-	// Line 614, Address: 0x13a628, Func Offset: 0x278
-	// Line 616, Address: 0x13a62c, Func Offset: 0x27c
-	// Line 609, Address: 0x13a630, Func Offset: 0x280
-	// Line 610, Address: 0x13a634, Func Offset: 0x284
-	// Line 609, Address: 0x13a638, Func Offset: 0x288
-	// Line 610, Address: 0x13a640, Func Offset: 0x290
-	// Line 611, Address: 0x13a648, Func Offset: 0x298
-	// Line 610, Address: 0x13a64c, Func Offset: 0x29c
-	// Line 611, Address: 0x13a654, Func Offset: 0x2a4
-	// Line 612, Address: 0x13a65c, Func Offset: 0x2ac
-	// Line 611, Address: 0x13a660, Func Offset: 0x2b0
-	// Line 612, Address: 0x13a668, Func Offset: 0x2b8
-	// Line 613, Address: 0x13a670, Func Offset: 0x2c0
-	// Line 612, Address: 0x13a674, Func Offset: 0x2c4
-	// Line 613, Address: 0x13a67c, Func Offset: 0x2cc
-	// Line 614, Address: 0x13a684, Func Offset: 0x2d4
-	// Line 613, Address: 0x13a688, Func Offset: 0x2d8
-	// Line 614, Address: 0x13a690, Func Offset: 0x2e0
-	// Line 615, Address: 0x13a698, Func Offset: 0x2e8
-	// Line 614, Address: 0x13a69c, Func Offset: 0x2ec
-	// Line 615, Address: 0x13a6a4, Func Offset: 0x2f4
-	// Line 616, Address: 0x13a6b8, Func Offset: 0x308
-	// Line 620, Address: 0x13a6c8, Func Offset: 0x318
-	// Func End, Address: 0x13a6d4, Func Offset: 0x324
-	scePrintf("bhCheckEvtTimer - UNIMPLEMENTED!\n");
+    POINT pnt; 
+
+    if ((sys->evt_tim == 0) && (((sys->sp_flg & 0x200)) && ((sys->gm_flg & 0x20000000)) && (!(sys->ts_flg & 0x80)) && ((sys->ts_flg & 0x4000)) && ((sys->ts_flg & 0x1000)) && ((sys->ts_flg & 0x200)) && ((sys->ts_flg & 0x400)) && ((sys->ts_flg & 0x800)) && ((sys->ts_flg & 0x10000)) && (!(sys->cb_flg & 0x1))))
+    {
+        if (bhCkFlg(sys->ev_flg, 69) != 0) 
+        {
+            if ((sys->st_flg & 0x200)) 
+            {
+                sys->st_flg |= 0x400000;
+                
+                sys->cb_flg |= 0x2000;
+                sys->cb_flg &= ~0x1000;
+            }
+            
+            bhSetEffect(26, &pnt, NULL, 0);
+            
+            plp->hp = -1;
+            
+            bhCrFlg(sys->ev_flg, 69);
+        }
+        
+        if (bhCkFlg(sys->ev_flg, 67) != 0) 
+        {
+            sys->sp_flg = 0;
+            
+            sys->sp_flg |= 0x20;
+            
+            sys->st_flg &= ~0x200;
+            
+            sys->gm_flg |= 0x400;
+            
+            sys->ts_flg &= ~0x4000;
+            sys->ts_flg |= 0x100;
+            
+            plp->flg |= 0x10002;
+            
+            *(int*)&sys->gov_md0 = 0;
+            
+            bhCrFlg(sys->ev_flg, 67);
+        }
+        
+        if (bhCkFlg(sys->ev_flg, 70) != 0) 
+        {
+            CallSystemVoice(11);
+            
+            sys->sp_flg = 0;
+            sys->sp_flg |= 0x20;
+            
+            sys->st_flg &= ~0x200;
+            
+            sys->gm_flg |= 0x400;
+            
+            sys->ts_flg &= ~0x4000;
+            sys->ts_flg |= 0x100;
+            
+            plp->flg |= 0x10002;
+            
+            *(int*)&sys->gov_md0 = 0;
+            
+            bhCrFlg(sys->ev_flg, 70);
+        }
+    }
 }
 
 // 
