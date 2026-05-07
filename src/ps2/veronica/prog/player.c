@@ -1008,35 +1008,44 @@ void bhFixPositionXYZ(BH_PWORK* ewP, char* datP)
     ewP->pz -= pos.z;
 }
 
-/*// 
-// Start address: 0x13a200
+// 100% matching!
 int bhCheckPlayerKegaMotion(int wpntp, int dmlvl, int num)
 {
-	// Line 526, Address: 0x13a200, Func Offset: 0
-	// Line 527, Address: 0x13a208, Func Offset: 0x8
-	// Line 528, Address: 0x13a220, Func Offset: 0x20
-	// Line 529, Address: 0x13a234, Func Offset: 0x34
-	// Line 530, Address: 0x13a23c, Func Offset: 0x3c
-	// Line 531, Address: 0x13a244, Func Offset: 0x44
-	// Line 535, Address: 0x13a258, Func Offset: 0x58
-	// Line 536, Address: 0x13a260, Func Offset: 0x60
-	// Line 537, Address: 0x13a26c, Func Offset: 0x6c
-	// Line 540, Address: 0x13a284, Func Offset: 0x84
-	// Line 541, Address: 0x13a28c, Func Offset: 0x8c
-	// Line 542, Address: 0x13a2a4, Func Offset: 0xa4
-	// Line 546, Address: 0x13a2a8, Func Offset: 0xa8
-	// Line 548, Address: 0x13a2c0, Func Offset: 0xc0
-	// Line 549, Address: 0x13a2fc, Func Offset: 0xfc
-	// Line 548, Address: 0x13a314, Func Offset: 0x114
-	// Line 549, Address: 0x13a318, Func Offset: 0x118
-	// Line 553, Address: 0x13a380, Func Offset: 0x180
-	// Line 549, Address: 0x13a384, Func Offset: 0x184
-	// Line 553, Address: 0x13a388, Func Offset: 0x188
-	// Line 554, Address: 0x13a390, Func Offset: 0x190
-	// Line 556, Address: 0x13a39c, Func Offset: 0x19c
-	// Line 557, Address: 0x13a3a0, Func Offset: 0x1a0
-	// Func End, Address: 0x13a3ac, Func Offset: 0x1ac
-}*/
+    if (plp->hp >= 120) 
+    {
+        if ((plp->stflg & 0x280000)) 
+        {
+            ((EXP_WORK*)plp->exp0)->dmlvl = 1;
+        }
+        else if (((EXP_WORK*)plp->exp0)->dmlvl != 0) 
+        {
+            ((EXP_WORK*)plp->exp0)->dmlvl = 0;
+        }
+    }
+    else if (plp->hp >= 30) 
+    {
+        if (((EXP_WORK*)plp->exp0)->dmlvl != 1)
+        {
+            ((EXP_WORK*)plp->exp0)->dmlvl = 1;
+        }
+    } 
+    else if (((EXP_WORK*)plp->exp0)->dmlvl != 2)
+    {
+        ((EXP_WORK*)plp->exp0)->dmlvl = 2;
+    }
+    
+    if (((EXP_WORK*)plp->exp0)->dmlvl != dmlvl)
+    {
+        plp->mtn_no = PlMtnAct[wpntp][((EXP_WORK*)plp->exp0)->dmlvl][num];
+        plp->frm_no = bhGetFrameNum(plp->mnwP[PlMtnAct[wpntp][dmlvl][num]].frm_num, plp->mnwP[PlMtnAct[wpntp][((EXP_WORK*)plp->exp0)->dmlvl][num]].frm_num, plp->frm_no);
+        
+        plp->hokan_count = 3;
+
+        return 1;
+    }
+    
+    return 0;
+}
 
 // 100% matching!
 void bhCheckEvtTimer()
@@ -1065,7 +1074,6 @@ void bhCheckEvtTimer()
         if (bhCkFlg(sys->ev_flg, 67) != 0) 
         {
             sys->sp_flg = 0;
-            
             sys->sp_flg |= 0x20;
             
             sys->st_flg &= ~0x200;
