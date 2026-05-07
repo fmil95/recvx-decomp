@@ -43,5 +43,15 @@ void vu1DrawTriangleStripTransDouble1P(unsigned long ulType, VU1_STRIP_BUF* pS, 
 
 extern float fVu1Projection;
 extern VU1_PRIM_BUF vu1ScessorBuf[16];
+extern VU1_COLOR vu1Diffuse;
+extern VU1_COLOR vu1Specula;
+extern VU1_COLOR vu1Ambient;
+extern float fVu1NearClip;
+extern float fVu1FarClip;
+extern float fVu1OffsetX;
+extern float fVu1OffsetY;
+extern float fVu1AspectW;
+extern float fVu1AspectH;
+extern float fVu1AlphaRatio;
 
 #endif

@@ -28,5 +28,6 @@ extern float fNaViwClipNear;
 extern float fNaViwClipFar;
 extern float _fNaViwClipNear;
 extern float _fNaViwClipFar;
+extern sceVu0FMATRIX ClipScreenMatrix;
 
 #endif

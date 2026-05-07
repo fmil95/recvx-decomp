@@ -158,5 +158,7 @@ extern void (* VsyncFunc)();
 extern void (* EorFunc)();
 extern unsigned int Ps2_vcount;
 extern unsigned int Ps2_dbuff;
+extern unsigned int Ps2_tex_load_tp_cancel;
+extern NJS_TEXMEMLIST* Ps2_now_tex;
 
 #endif

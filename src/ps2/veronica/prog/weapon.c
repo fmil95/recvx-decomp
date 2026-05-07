@@ -407,32 +407,41 @@ short bhCheckBullet()
     return bn;
 }
 
-/*// 
-// Start address: 0x28aca0
+// 100% matching!
 int bhCountBullet()
 {
-	short bn;
-	short iw;
-	// Line 365, Address: 0x28aca0, Func Offset: 0
-	// Line 366, Address: 0x28acac, Func Offset: 0xc
-	// Line 367, Address: 0x28acb8, Func Offset: 0x18
-	// Line 368, Address: 0x28ace8, Func Offset: 0x48
-	// Line 371, Address: 0x28acf4, Func Offset: 0x54
-	// Line 373, Address: 0x28ad0c, Func Offset: 0x6c
-	// Line 375, Address: 0x28ad38, Func Offset: 0x98
-	// Line 374, Address: 0x28ad3c, Func Offset: 0x9c
-	// Line 375, Address: 0x28ad44, Func Offset: 0xa4
-	// Line 374, Address: 0x28ad50, Func Offset: 0xb0
-	// Line 376, Address: 0x28ad54, Func Offset: 0xb4
-	// Line 374, Address: 0x28ad58, Func Offset: 0xb8
-	// Line 375, Address: 0x28ad60, Func Offset: 0xc0
-	// Line 374, Address: 0x28ad64, Func Offset: 0xc4
-	// Line 375, Address: 0x28ad6c, Func Offset: 0xcc
-	// Line 377, Address: 0x28ad80, Func Offset: 0xe0
-	// Func End, Address: 0x28ad88, Func Offset: 0xe8
+    short iw;
+    short bn; 
+
+    iw = swork.pip[0];
+	
+    bn = swork.pip[iw];
+    
+    if ((((swork.pip[iw] >> 16) & 0x800)) || ((plp->at_flg & 0x40000000)))
+    {
+        return 1;
+    }
+    else if (bn < 1)
+    {
+        return 0; 
+    }
+    else
+    {
+        bn--;
+        
+        if (bn < 1)
+        {
+            sys->gm_flg |= 0x40000;
+        }
+        
+        swork.pip[iw] &= 0xFFFF0000;
+        swork.pip[iw] |= bn & 0xFFFF;
+    }
+    
+    return 1;
 }
 
-// 
+/*// 
 // Start address: 0x28ad90
 int bhCheckGunAtari(_anon21* gap)
 {

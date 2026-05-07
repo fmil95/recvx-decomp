@@ -30,6 +30,8 @@ void bhObj012(_anon0* op);
 void bhObjClpn(_anon0* op);*/
 void bhObjWssg();
 
+extern unsigned int ulDrawGeneralPurposeWater;
+
 /*typedef struct _anon0;
 typedef struct _anon1;
 typedef struct _anon2;

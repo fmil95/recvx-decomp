@@ -24,4 +24,13 @@
 #define	CheckCmdReq(vol, pan, pitch) (0x00|0|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
 #define	CheckCmdChg(vol, pan, pitch) (0x00|8|((vol)&1)|(((pan)&1)<<1)|(((pitch)&1)<<2))
 
+#define SPR_ADDR(_val) ((0x70000000) | _val)
+
+#define JOIN_TAGS(_lo, _hi) ((_lo) | ((long)(_hi) << 0x20))
+
+#define SCE_UPF_V4_32  (0x0c) /* 0b1100 */
+
+#define SET_VEC4_AT(_src, _off, _data) (*((u_long128*)(((unsigned char*)(_src)) + _off)) = *(u_long128*)_data)
+#define SET_DATA_AT(_src, _off, _type, _data) (*((_type*)(((unsigned char*)(_src)) + _off)) = _data)
+
 #endif

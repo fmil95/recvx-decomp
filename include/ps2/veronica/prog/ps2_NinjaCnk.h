@@ -2,6 +2,7 @@
 #define _PS2_NINJACNK_H_
 
 #include "types.h"
+#include "macros.h"
 
 void	njInit3D( NJS_VERTEX_BUF *vbuf, Int vn );
 void	njDrawModel( NJS_MODEL *model );
