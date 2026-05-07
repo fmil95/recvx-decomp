@@ -3487,13 +3487,13 @@ void bhCheckExmAtari(BH_PWORK* pp)
 	// Line 3962, Address: 0x26711c, Func Offset: 0xeac
 	// Line 3965, Address: 0x267120, Func Offset: 0xeb0
 	// Func End, Address: 0x267138, Func Offset: 0xec8
-}
+}*/
 
 // 
 // Start address: 0x267140
-void bhSetUseKaidanFlag(BH_PWORK* pp, _anon0* exp, int idx)
+void bhSetUseKaidanFlag(BH_PWORK* pp, ATR_WORK* exp, int idx)
 {
-	_anon0* exp2;
+	ATR_WORK* exp2;
 	// Line 3978, Address: 0x267140, Func Offset: 0
 	// Line 3979, Address: 0x267144, Func Offset: 0x4
 	// Line 3980, Address: 0x267148, Func Offset: 0x8
@@ -3509,9 +3509,10 @@ void bhSetUseKaidanFlag(BH_PWORK* pp, _anon0* exp, int idx)
 	// Line 3992, Address: 0x2671ec, Func Offset: 0xac
 	// Line 3994, Address: 0x267218, Func Offset: 0xd8
 	// Func End, Address: 0x267220, Func Offset: 0xe0
+	scePrintf("bhSetUseKaidanFlag - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x267220
 void bhClrUseKaidanFlag(BH_PWORK* pp)
 {

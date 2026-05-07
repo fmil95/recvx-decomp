@@ -4,6 +4,7 @@
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/flag.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
@@ -951,50 +952,57 @@ void bhStandPlayerMotion()
     bhCalcModel(plp);
 }
 
-// 
-// Start address: 0x139fb0
+// 100% matching!
 void bhKaidanPlayerMotion(int flg, int idx)
 {
-	//_anon22* exp;
-	// Line 475, Address: 0x139fb0, Func Offset: 0
-	// Line 477, Address: 0x139fc0, Func Offset: 0x10
-	// Line 478, Address: 0x139fdc, Func Offset: 0x2c
-	// Line 477, Address: 0x139fe8, Func Offset: 0x38
-	// Line 478, Address: 0x139fec, Func Offset: 0x3c
-	// Line 479, Address: 0x139ff4, Func Offset: 0x44
-	// Line 480, Address: 0x13a004, Func Offset: 0x54
-	// Line 481, Address: 0x13a00c, Func Offset: 0x5c
-	// Line 479, Address: 0x13a010, Func Offset: 0x60
-	// Line 480, Address: 0x13a014, Func Offset: 0x64
-	// Line 479, Address: 0x13a018, Func Offset: 0x68
-	// Line 480, Address: 0x13a020, Func Offset: 0x70
-	// Line 481, Address: 0x13a028, Func Offset: 0x78
-	// Line 480, Address: 0x13a02c, Func Offset: 0x7c
-	// Line 481, Address: 0x13a034, Func Offset: 0x84
-	// Line 482, Address: 0x13a03c, Func Offset: 0x8c
-	// Line 481, Address: 0x13a040, Func Offset: 0x90
-	// Line 482, Address: 0x13a048, Func Offset: 0x98
-	// Line 483, Address: 0x13a050, Func Offset: 0xa0
-	// Line 482, Address: 0x13a054, Func Offset: 0xa4
-	// Line 483, Address: 0x13a05c, Func Offset: 0xac
-	// Line 484, Address: 0x13a068, Func Offset: 0xb8
-	// Line 486, Address: 0x13a070, Func Offset: 0xc0
-	// Line 487, Address: 0x13a080, Func Offset: 0xd0
-	// Line 488, Address: 0x13a08c, Func Offset: 0xdc
-	// Line 489, Address: 0x13a09c, Func Offset: 0xec
-	// Line 491, Address: 0x13a0b0, Func Offset: 0x100
-	// Line 492, Address: 0x13a0c0, Func Offset: 0x110
-	// Line 493, Address: 0x13a0c8, Func Offset: 0x118
-	// Line 495, Address: 0x13a0d0, Func Offset: 0x120
-	// Line 496, Address: 0x13a0e0, Func Offset: 0x130
-	// Line 497, Address: 0x13a0ec, Func Offset: 0x13c
-	// Line 498, Address: 0x13a0fc, Func Offset: 0x14c
-	// Line 500, Address: 0x13a110, Func Offset: 0x160
-	// Line 501, Address: 0x13a120, Func Offset: 0x170
-	// Line 502, Address: 0x13a12c, Func Offset: 0x17c
-	// Line 504, Address: 0x13a18c, Func Offset: 0x1dc
-	// Func End, Address: 0x13a1a0, Func Offset: 0x1f0
-	scePrintf("bhKaidanPlayerMotion - UNIMPLEMENTED!\n");
+	ATR_WORK* exp;
+
+    exp = &rom->etcp[idx];
+    
+    bhSetUseKaidanFlag(plp, exp, idx);
+    
+    plp->stflg |= 0x80010010;
+    
+    plp->flg |= 0x10400;
+    plp->flg &= ~0x110;
+    
+    plp->flg2 |= 0x1;
+    
+    sys->pl_htp = exp;
+    
+    if (flg == 0) 
+    {
+        plp->mode0 = 1;
+        plp->mode1 = 0;
+        
+        if ((exp->attr & 0x1))
+        {
+            plp->mode2 = 20;
+        }
+        else 
+        {
+            plp->mode2 = 14;
+        }
+        
+        plp->mode3 = 0;
+        return;
+    }
+    
+    plp->mode0 = 1;
+    plp->mode1 = 0;
+    
+    if ((exp->attr & 0x1))
+    {
+        plp->mode2 = 21;
+    }
+    else 
+    {
+        plp->mode2 = 15;
+    }
+    
+    plp->mode3 = 0;
+    
+    plp->flr_no = bhCheckFloorNum(plp->py - (2.0f * exp->prm2));
 }
 
 // 

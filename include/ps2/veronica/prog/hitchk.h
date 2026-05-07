@@ -19,7 +19,7 @@ int bhCheckBox(ATR_WORK* hp, NJS_POINT3* pos, float ar, float ah, unsigned int a
 /*int bhCheckBox2Box(_anon0* hp, _anon20* pos, float aw, float ad, float ah);
 int bhCheckInnerP4(_anon33* pos, _anon33* p0, _anon33* p1, _anon33* p2, _anon33* p3);*/
 void bhCheckExmAtari(BH_PWORK* pp);
-/*void bhSetUseKaidanFlag(BH_PWORK* pp, _anon0* exp, int idx);*/
+void bhSetUseKaidanFlag(BH_PWORK* pp, ATR_WORK* exp, int idx);
 void bhClrUseKaidanFlag(BH_PWORK* pp);
 void bhSetDansaLimitAtari(BH_PWORK* pp);
 /*_anon0* bhCheckDansaAtari(int flr_no, float px, float pz);*/
