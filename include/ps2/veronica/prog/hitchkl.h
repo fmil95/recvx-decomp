@@ -1486,9 +1486,9 @@ ATR_WORK* bhCollisionCheckLine2(NJS_POINT3* p1, NJS_POINT3* p2, unsigned int flg
 /*_anon6* bhCollisionCheckLine3(_anon2* p1, _anon2* p2, unsigned int flg, char flr_no);
 int bhCollisionCheckLineMain(_anon6* hp, _anon2* vec, _anon2* p1, _anon2* p2);
 int bhCollisionCheckL2PL(_anon2* p1, _anon2* p2, _anon2* area, int num);
-int bhInOutCheck(_anon2* p, _anon2* area, _anon2* normal, int num);
-int bhCollisionCheckL2MDL(_anon2* p1, _anon2* p2, _anon31* mdl, float mtx[16]);
-int bhCollisionCheckL2XZPL(_anon2* p1, _anon2* p2, _anon2* pos, float w, float d, int flg);
+int bhInOutCheck(_anon2* p, _anon2* area, _anon2* normal, int num);*/
+int bhCollisionCheckL2MDL(NJS_POINT3* p1, NJS_POINT3* p2, NJS_CNK_MODEL* mdl, NJS_MATRIX mtx);
+/*int bhCollisionCheckL2XZPL(_anon2* p1, _anon2* p2, _anon2* pos, float w, float d, int flg);
 int bhCollisionCheckL2XYPL(_anon2* p1, _anon2* p2, _anon2* pos, float w, float h, int flg);
 int bhCollisionCheckL2YZPL(_anon2* p1, _anon2* p2, _anon2* pos, float h, float d, int flg);*/
 void bhGetHitCollisionNormal(NJS_POINT3* n);

@@ -652,16 +652,16 @@ int bhInOutCheck(_anon2* p, _anon2* area, _anon2* normal, int num)
 	// Line 739, Address: 0x26b1d8, Func Offset: 0x128
 	// Line 740, Address: 0x26b1dc, Func Offset: 0x12c
 	// Func End, Address: 0x26b1f4, Func Offset: 0x144
-}
+}*/
 
 // 
 // Start address: 0x26b200
-int bhCollisionCheckL2MDL(_anon2* p1, _anon2* p2, _anon31* mdl, float mtx[16])
+int bhCollisionCheckL2MDL(NJS_POINT3* p1, NJS_POINT3* p2, NJS_CNK_MODEL* mdl, NJS_MATRIX mtx)
 {
-	_anon37 ln;
-	_anon2 center;
-	_anon2 area[4];
-	_anon2* pd;
+	//_anon37 ln;
+	//_anon2 center;
+	//_anon2 area[4];
+	//_anon2* pd;
 	short pnum;
 	int j;
 	int i;
@@ -701,9 +701,10 @@ int bhCollisionCheckL2MDL(_anon2* p1, _anon2* p2, _anon31* mdl, float mtx[16])
 	// Line 913, Address: 0x26b394, Func Offset: 0x194
 	// Line 914, Address: 0x26b398, Func Offset: 0x198
 	// Func End, Address: 0x26b3c0, Func Offset: 0x1c0
+	scePrintf("bhCollisionCheckL2MDL - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x26b3c0
 int bhCollisionCheckL2XZPL(_anon2* p1, _anon2* p2, _anon2* pos, float w, float d, int flg)
 {

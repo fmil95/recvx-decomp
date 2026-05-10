@@ -2237,54 +2237,61 @@ void bhEff_E11_SearchLightDraw(O_WRK* op)
 	scePrintf("bhEff_E11_SearchLightDraw - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x241a10
+// 100% matching!
 int bhEff_E11_CheckCollisionPlayer(NJS_POINT3* p1, NJS_POINT3* p2)
 {
-	BH_PWORK* ep;
-	//npobj* pObj;
-	int ret;
-	int j;
-	int i;
-	int num;
-	//_anon12* mtn;
-	// Line 2353, Address: 0x241a10, Func Offset: 0
-	// Line 2360, Address: 0x241a3c, Func Offset: 0x2c
-	// Line 2355, Address: 0x241a44, Func Offset: 0x34
-	// Line 2360, Address: 0x241a4c, Func Offset: 0x3c
-	// Line 2362, Address: 0x241a50, Func Offset: 0x40
-	// Line 2360, Address: 0x241a54, Func Offset: 0x44
-	// Line 2361, Address: 0x241a58, Func Offset: 0x48
-	// Line 2363, Address: 0x241a5c, Func Offset: 0x4c
-	// Line 2364, Address: 0x241a64, Func Offset: 0x54
-	// Line 2365, Address: 0x241a70, Func Offset: 0x60
-	// Line 2366, Address: 0x241a7c, Func Offset: 0x6c
-	// Line 2367, Address: 0x241a94, Func Offset: 0x84
-	// Line 2371, Address: 0x241a98, Func Offset: 0x88
-	// Line 2369, Address: 0x241a9c, Func Offset: 0x8c
-	// Line 2371, Address: 0x241aa0, Func Offset: 0x90
-	// Line 2372, Address: 0x241aac, Func Offset: 0x9c
-	// Line 2375, Address: 0x241ab0, Func Offset: 0xa0
-	// Line 2376, Address: 0x241ab8, Func Offset: 0xa8
-	// Line 2377, Address: 0x241ac0, Func Offset: 0xb0
-	// Line 2378, Address: 0x241ad0, Func Offset: 0xc0
-	// Line 2380, Address: 0x241b08, Func Offset: 0xf8
-	// Line 2382, Address: 0x241b0c, Func Offset: 0xfc
-	// Line 2381, Address: 0x241b10, Func Offset: 0x100
-	// Line 2383, Address: 0x241b14, Func Offset: 0x104
-	// Line 2384, Address: 0x241b1c, Func Offset: 0x10c
-	// Line 2385, Address: 0x241b28, Func Offset: 0x118
-	// Line 2386, Address: 0x241b34, Func Offset: 0x124
-	// Line 2387, Address: 0x241b4c, Func Offset: 0x13c
-	// Line 2391, Address: 0x241b50, Func Offset: 0x140
-	// Line 2389, Address: 0x241b54, Func Offset: 0x144
-	// Line 2391, Address: 0x241b58, Func Offset: 0x148
-	// Line 2394, Address: 0x241b64, Func Offset: 0x154
-	// Line 2395, Address: 0x241b68, Func Offset: 0x158
-	// Line 2397, Address: 0x241b90, Func Offset: 0x180
-	// Line 2398, Address: 0x241b94, Func Offset: 0x184
-	// Func End, Address: 0x241bc4, Func Offset: 0x1b4
-	scePrintf("bhEff_E11_CheckCollisionPlayer - UNIMPLEMENTED!\n");
+    O_WORK* mtn;
+    int num;
+    int i, j;
+    int ret;
+    NJS_CNK_OBJECT* pObj;
+    BH_PWORK* ep;
+
+    ret  = -1;
+    
+    mtn  = plp->mlwP->owP;
+    
+    num  = plp->mlwP->obj_num;
+    
+    pObj = plp->mdl[3].objP;
+
+    if (pObj != NULL) 
+    {
+        for (i = 0; i < num; pObj++, mtn++, i++) 
+        {
+            if ((pObj->model != NULL) && (bhCollisionCheckL2MDL(p1, p2, pObj->model, mtn->mtx) != 0))
+            {
+                ret = i;
+            }
+        }
+    }
+
+    ep = ene;
+    
+    for (j = 0; j < sys->ewk_n; j++, ep++)
+    {
+        if (((ep->flg & 0x1)) && (((ep->id >= 41) && (ep->id <= 43)) || ((ep->id >= 91) && (ep->id <= 93)))) 
+        { 
+            mtn = ep->mlwP->owP;
+            
+            num = ep->mlwP->obj_num;
+            
+            pObj = ep->mdl[1].objP;
+    
+            if (pObj != NULL) 
+            { 
+                for (i = 0; i < num; pObj++, mtn++, i++) 
+                {
+                    if ((pObj->model != NULL) && (bhCollisionCheckL2MDL(p1, p2, pObj->model, mtn->mtx) != 0)) 
+                    {
+                        ret = i;
+                    }
+                }
+            }
+        }
+    }
+
+    return ret;
 }
 
 // 100% matching!
