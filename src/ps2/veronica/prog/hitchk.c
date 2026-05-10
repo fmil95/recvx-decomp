@@ -3718,7 +3718,7 @@ ATR_WORK* bhCheckDansaAtari(int flr_no, float px, float pz)
     return NULL;
 }
 
-/*// 
+// 
 // Start address: 0x267a50
 void bhCheckFloorP(BH_PWORK* pp)
 {
@@ -3731,7 +3731,7 @@ void bhCheckFloorP(BH_PWORK* pp)
 	float pz;
 	float py;
 	float px;
-	_anon0* fp;
+	//_anon0* fp;
 	// Line 4212, Address: 0x267a50, Func Offset: 0
 	// Line 4219, Address: 0x267a68, Func Offset: 0x18
 	// Line 4220, Address: 0x267a6c, Func Offset: 0x1c
@@ -3818,7 +3818,8 @@ void bhCheckFloorP(BH_PWORK* pp)
 	// Line 4324, Address: 0x268014, Func Offset: 0x5c4
 	// Line 4327, Address: 0x268024, Func Offset: 0x5d4
 	// Func End, Address: 0x268040, Func Offset: 0x5f0
-}*/
+	scePrintf("bhCheckFloorP - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x268040
