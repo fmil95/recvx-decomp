@@ -7207,46 +7207,54 @@ void AllItemInit()
     sys->itm[383] = 1;
 }
 
-// 
-// Start address: 0x2a6ec0
-void ExtraGameItemInit()
+// 100% matching!
+void ExtraGameItemInit() 
 {
-	int itemset[16][5];
-	int ply_id;
-	int itemid;
-	int j;
-	int i;
-	S_WORK* st;
-	// Line 6781, Address: 0x2a6ec0, Func Offset: 0
-	// Line 6782, Address: 0x2a6ec4, Func Offset: 0x4
-	// Line 6788, Address: 0x2a6ec8, Func Offset: 0x8
-	// Line 6782, Address: 0x2a6ecc, Func Offset: 0xc
-	// Line 6788, Address: 0x2a6ed0, Func Offset: 0x10
-	// Line 6825, Address: 0x2a6efc, Func Offset: 0x3c
-	// Line 6828, Address: 0x2a6f30, Func Offset: 0x70
-	// Line 6829, Address: 0x2a6f3c, Func Offset: 0x7c
-	// Line 6828, Address: 0x2a6f40, Func Offset: 0x80
-	// Line 6829, Address: 0x2a6f50, Func Offset: 0x90
-	// Line 6832, Address: 0x2a6f68, Func Offset: 0xa8
-	// Line 6830, Address: 0x2a6f74, Func Offset: 0xb4
-	// Line 6831, Address: 0x2a6f78, Func Offset: 0xb8
-	// Line 6833, Address: 0x2a6f7c, Func Offset: 0xbc
-	// Line 6834, Address: 0x2a6f84, Func Offset: 0xc4
-	// Line 6835, Address: 0x2a6f88, Func Offset: 0xc8
-	// Line 6838, Address: 0x2a6fa0, Func Offset: 0xe0
-	// Line 6840, Address: 0x2a6fb0, Func Offset: 0xf0
-	// Line 6839, Address: 0x2a6fb8, Func Offset: 0xf8
-	// Line 6842, Address: 0x2a6fbc, Func Offset: 0xfc
-	// Line 6840, Address: 0x2a6fc4, Func Offset: 0x104
-	// Line 6841, Address: 0x2a6fd4, Func Offset: 0x114
-	// Line 6840, Address: 0x2a6fd8, Func Offset: 0x118
-	// Line 6841, Address: 0x2a6fe4, Func Offset: 0x124
-	// Line 6842, Address: 0x2a6fec, Func Offset: 0x12c
-	// Line 6841, Address: 0x2a6ff0, Func Offset: 0x130
-	// Line 6842, Address: 0x2a7004, Func Offset: 0x144
-	// Line 6843, Address: 0x2a7018, Func Offset: 0x158
-	// Func End, Address: 0x2a7020, Func Offset: 0x160
-	scePrintf("ExtraGameItemInit - UNIMPLEMENTED!\n");
+    S_WORK* st = &swork;        
+    int i, j;                  
+    int itemid;              
+    int ply_id;                 
+    int itemset[5][16] = 
+    {
+        { 8, 8, 9,    10247, 2060, 29,   29,   29, 29, 0, 0, 0, 0, 0, 0, 0 },
+        { 6, 8, 4,    2080,  2062, 29,   29,    0,  0, 0, 0, 0, 0, 0, 0, 0 },
+        { 5, 8, 2081, 2082,  29,   29,    0,    0,  0, 0, 0, 0, 0, 0, 0, 0 },
+        { 4, 8, 29,   29,    29,    0,    0,    0,  0, 0, 0, 0, 0, 0, 0, 0 },
+        { 7, 8, 6,    2050,  29, 2063, 2064, 2065,  0, 0, 0, 0, 0, 0, 0, 0 }
+    };
+    
+    if (sys->costume != 0) 
+    {
+        ply_id = 4;
+    } 
+    else 
+    {
+        ply_id = sys->cng_pid;
+    }
+    
+    st->pip = &sys->itm[sys->cng_pid * 16];
+    
+    if ((sys->ssd_flg & 0x80000000)) 
+    {
+        i = 1;
+        j = 0;
+        
+        st->pip[2] = 0x80B0001;
+    } 
+    else 
+    {
+        i = 0;
+        j = 0;
+    }
+    
+    for (; j < itemset[ply_id][0]; i++, j++) 
+    {
+        itemid = itemset[ply_id][j + 1];
+         
+        st->gb = (unsigned int*)&getbulletmax[(unsigned char)itemid][sys->gm_mode];
+        
+        st->pip[i + 2] = (itemid << 16) | *st->gb;
+    }
 }
 
 // 
