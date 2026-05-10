@@ -2341,159 +2341,222 @@ void ItemSort()
     } while (num1 != 0);
 }
  
-// Start address: 0x29c220
+// 100% matching!
 void ItemSet(S_WORK* st, unsigned char flg) // second parameter is not present on DWARF
 {
-	unsigned char max;
-	unsigned char setanm;
-	unsigned short item;
-	unsigned short itemno;
-	unsigned int itemid;
-	unsigned int num3;
-	unsigned int num2;
-	unsigned int num1;
-	PARTS* pb;
-	NJS_TEXANIM* pa;
-	// Line 1817, Address: 0x29c220, Func Offset: 0
-	// Line 1822, Address: 0x29c228, Func Offset: 0x8
-	// Line 1817, Address: 0x29c22c, Func Offset: 0xc
-	// Line 1822, Address: 0x29c23c, Func Offset: 0x1c
-	// Line 1820, Address: 0x29c240, Func Offset: 0x20
-	// Line 1814, Address: 0x29c248, Func Offset: 0x28
-	// Line 1819, Address: 0x29c24c, Func Offset: 0x2c
-	// Line 1817, Address: 0x29c250, Func Offset: 0x30
-	// Line 1819, Address: 0x29c258, Func Offset: 0x38
-	// Line 1822, Address: 0x29c25c, Func Offset: 0x3c
-	// Line 1824, Address: 0x29c264, Func Offset: 0x44
-	// Line 1823, Address: 0x29c26c, Func Offset: 0x4c
-	// Line 1826, Address: 0x29c270, Func Offset: 0x50
-	// Line 1828, Address: 0x29c278, Func Offset: 0x58
-	// Line 1827, Address: 0x29c280, Func Offset: 0x60
-	// Line 1829, Address: 0x29c284, Func Offset: 0x64
-	// Line 1832, Address: 0x29c288, Func Offset: 0x68
-	// Line 1835, Address: 0x29c298, Func Offset: 0x78
-	// Line 1839, Address: 0x29c29c, Func Offset: 0x7c
-	// Line 1835, Address: 0x29c2a0, Func Offset: 0x80
-	// Line 1839, Address: 0x29c2b0, Func Offset: 0x90
-	// Line 1841, Address: 0x29c338, Func Offset: 0x118
-	// Line 1842, Address: 0x29c33c, Func Offset: 0x11c
-	// Line 1846, Address: 0x29c344, Func Offset: 0x124
-	// Line 1847, Address: 0x29c348, Func Offset: 0x128
-	// Line 1849, Address: 0x29c350, Func Offset: 0x130
-	// Line 1850, Address: 0x29c354, Func Offset: 0x134
-	// Line 1852, Address: 0x29c35c, Func Offset: 0x13c
-	// Line 1853, Address: 0x29c360, Func Offset: 0x140
-	// Line 1855, Address: 0x29c368, Func Offset: 0x148
-	// Line 1856, Address: 0x29c36c, Func Offset: 0x14c
-	// Line 1858, Address: 0x29c374, Func Offset: 0x154
-	// Line 1859, Address: 0x29c378, Func Offset: 0x158
-	// Line 1861, Address: 0x29c380, Func Offset: 0x160
-	// Line 1862, Address: 0x29c384, Func Offset: 0x164
-	// Line 1864, Address: 0x29c38c, Func Offset: 0x16c
-	// Line 1865, Address: 0x29c390, Func Offset: 0x170
-	// Line 1868, Address: 0x29c398, Func Offset: 0x178
-	// Line 1871, Address: 0x29c39c, Func Offset: 0x17c
-	// Line 1877, Address: 0x29c3a0, Func Offset: 0x180
-	// Line 1879, Address: 0x29c3a4, Func Offset: 0x184
-	// Line 1880, Address: 0x29c3b0, Func Offset: 0x190
-	// Line 1883, Address: 0x29c3b8, Func Offset: 0x198
-	// Line 1884, Address: 0x29c3c8, Func Offset: 0x1a8
-	// Line 1885, Address: 0x29c3e0, Func Offset: 0x1c0
-	// Line 1886, Address: 0x29c3e8, Func Offset: 0x1c8
-	// Line 1887, Address: 0x29c400, Func Offset: 0x1e0
-	// Line 1888, Address: 0x29c40c, Func Offset: 0x1ec
-	// Line 1889, Address: 0x29c424, Func Offset: 0x204
-	// Line 1890, Address: 0x29c430, Func Offset: 0x210
-	// Line 1891, Address: 0x29c434, Func Offset: 0x214
-	// Line 1893, Address: 0x29c43c, Func Offset: 0x21c
-	// Line 1895, Address: 0x29c444, Func Offset: 0x224
-	// Line 1898, Address: 0x29c448, Func Offset: 0x228
-	// Line 1899, Address: 0x29c450, Func Offset: 0x230
-	// Line 1900, Address: 0x29c460, Func Offset: 0x240
-	// Line 1901, Address: 0x29c47c, Func Offset: 0x25c
-	// Line 1902, Address: 0x29c484, Func Offset: 0x264
-	// Line 1903, Address: 0x29c488, Func Offset: 0x268
-	// Line 1904, Address: 0x29c490, Func Offset: 0x270
-	// Line 1905, Address: 0x29c498, Func Offset: 0x278
-	// Line 1906, Address: 0x29c4a0, Func Offset: 0x280
-	// Line 1907, Address: 0x29c4a8, Func Offset: 0x288
-	// Line 1908, Address: 0x29c4ac, Func Offset: 0x28c
-	// Line 1907, Address: 0x29c4b0, Func Offset: 0x290
-	// Line 1908, Address: 0x29c4b8, Func Offset: 0x298
-	// Line 1909, Address: 0x29c4bc, Func Offset: 0x29c
-	// Line 1910, Address: 0x29c4c0, Func Offset: 0x2a0
-	// Line 1912, Address: 0x29c4c4, Func Offset: 0x2a4
-	// Line 1913, Address: 0x29c4cc, Func Offset: 0x2ac
-	// Line 1915, Address: 0x29c4d4, Func Offset: 0x2b4
-	// Line 1916, Address: 0x29c4dc, Func Offset: 0x2bc
-	// Line 1917, Address: 0x29c4e4, Func Offset: 0x2c4
-	// Line 1918, Address: 0x29c4e8, Func Offset: 0x2c8
-	// Line 1919, Address: 0x29c4f0, Func Offset: 0x2d0
-	// Line 1920, Address: 0x29c4f8, Func Offset: 0x2d8
-	// Line 1921, Address: 0x29c500, Func Offset: 0x2e0
-	// Line 1922, Address: 0x29c508, Func Offset: 0x2e8
-	// Line 1923, Address: 0x29c50c, Func Offset: 0x2ec
-	// Line 1922, Address: 0x29c510, Func Offset: 0x2f0
-	// Line 1923, Address: 0x29c518, Func Offset: 0x2f8
-	// Line 1924, Address: 0x29c51c, Func Offset: 0x2fc
-	// Line 1925, Address: 0x29c520, Func Offset: 0x300
-	// Line 1928, Address: 0x29c524, Func Offset: 0x304
-	// Line 1929, Address: 0x29c52c, Func Offset: 0x30c
-	// Line 1930, Address: 0x29c578, Func Offset: 0x358
-	// Line 1929, Address: 0x29c57c, Func Offset: 0x35c
-	// Line 1930, Address: 0x29c580, Func Offset: 0x360
-	// Line 1931, Address: 0x29c5c8, Func Offset: 0x3a8
-	// Line 1930, Address: 0x29c5cc, Func Offset: 0x3ac
-	// Line 1933, Address: 0x29c5d0, Func Offset: 0x3b0
-	// Line 1934, Address: 0x29c5d4, Func Offset: 0x3b4
-	// Line 1930, Address: 0x29c5d8, Func Offset: 0x3b8
-	// Line 1931, Address: 0x29c5dc, Func Offset: 0x3bc
-	// Line 1932, Address: 0x29c5e0, Func Offset: 0x3c0
-	// Line 1933, Address: 0x29c5e4, Func Offset: 0x3c4
-	// Line 1934, Address: 0x29c5e8, Func Offset: 0x3c8
-	// Line 1935, Address: 0x29c5ec, Func Offset: 0x3cc
-	// Line 1936, Address: 0x29c5f4, Func Offset: 0x3d4
-	// Line 1937, Address: 0x29c5f8, Func Offset: 0x3d8
-	// Line 1936, Address: 0x29c5fc, Func Offset: 0x3dc
-	// Line 1937, Address: 0x29c604, Func Offset: 0x3e4
-	// Line 1938, Address: 0x29c608, Func Offset: 0x3e8
-	// Line 1939, Address: 0x29c60c, Func Offset: 0x3ec
-	// Line 1940, Address: 0x29c610, Func Offset: 0x3f0
-	// Line 1941, Address: 0x29c614, Func Offset: 0x3f4
-	// Line 1945, Address: 0x29c618, Func Offset: 0x3f8
-	// Line 1946, Address: 0x29c620, Func Offset: 0x400
-	// Line 1952, Address: 0x29c658, Func Offset: 0x438
-	// Line 1947, Address: 0x29c65c, Func Offset: 0x43c
-	// Line 1952, Address: 0x29c664, Func Offset: 0x444
-	// Line 1949, Address: 0x29c66c, Func Offset: 0x44c
-	// Line 1950, Address: 0x29c670, Func Offset: 0x450
-	// Line 1953, Address: 0x29c674, Func Offset: 0x454
-	// Line 1952, Address: 0x29c678, Func Offset: 0x458
-	// Line 1953, Address: 0x29c67c, Func Offset: 0x45c
-	// Line 1952, Address: 0x29c688, Func Offset: 0x468
-	// Line 1953, Address: 0x29c698, Func Offset: 0x478
-	// Line 1955, Address: 0x29c6b8, Func Offset: 0x498
-	// Line 1956, Address: 0x29c6c4, Func Offset: 0x4a4
-	// Line 1957, Address: 0x29c6e0, Func Offset: 0x4c0
-	// Line 1959, Address: 0x29c6e4, Func Offset: 0x4c4
-	// Line 1957, Address: 0x29c6e8, Func Offset: 0x4c8
-	// Line 1959, Address: 0x29c6ec, Func Offset: 0x4cc
-	// Line 1960, Address: 0x29c6f4, Func Offset: 0x4d4
-	// Line 1961, Address: 0x29c6f8, Func Offset: 0x4d8
-	// Line 1962, Address: 0x29c700, Func Offset: 0x4e0
-	// Line 1965, Address: 0x29c708, Func Offset: 0x4e8
-	// Line 1967, Address: 0x29c70c, Func Offset: 0x4ec
-	// Line 1970, Address: 0x29c720, Func Offset: 0x500
-	// Line 1971, Address: 0x29c724, Func Offset: 0x504
-	// Line 1970, Address: 0x29c728, Func Offset: 0x508
-	// Line 1968, Address: 0x29c72c, Func Offset: 0x50c
-	// Line 1969, Address: 0x29c730, Func Offset: 0x510
-	// Line 1970, Address: 0x29c734, Func Offset: 0x514
-	// Line 1971, Address: 0x29c738, Func Offset: 0x518
-	// Line 1972, Address: 0x29c748, Func Offset: 0x528
-	// Line 1973, Address: 0x29c74c, Func Offset: 0x52c
-	// Func End, Address: 0x29c754, Func Offset: 0x534
-	scePrintf("ItemSet - UNIMPLEMENTED!\n");
+	NJS_TEXANIM* pa;   
+    PARTS* pb;           
+    unsigned int num1, num2, num3;   
+    unsigned int itemid;   
+    unsigned short itemno; 
+    unsigned short item;  
+    unsigned char setanm;  
+    unsigned char max;     
+    
+    if (!(sys->gm_flg & 0x8000000)) 
+    {
+        max = 8;
+    }
+    else 
+    {
+        max = 10;
+    }
+    
+    pa = &parts_18[1];
+    pb = &parts_14b[1];
+    
+    setanm = 0;
+    
+    if ((st->subscreenmode & 0x4)) 
+    {
+        num1 = 0;
+        num2 = max + 1;
+        num3 = 0;
+    } 
+    else 
+    {
+        num1 = 0;
+        num2 = max + 1;
+        num3 = 0;
+    }
+    
+    for ( ; num3 < num2; pa++, pb++, num1++, num3++, setanm++) 
+    {
+        itemid = (unsigned char)(st->pip[num1 + 1] >> 16);
+        itemno = itemid;
+        
+        switch (itemid)
+        {                      
+        case 30:
+            itemno = 13;
+            break;
+        case 63:
+        case 128:
+        case 129:
+            itemno = 41;
+            break;
+        case 130:
+            itemno = 35;
+            break;
+        case 136:
+            itemno = 47;
+            break;
+        case 138:
+            itemno = 48;
+            break;
+        case 142:
+            itemno = 128;
+            break;
+        case 143:
+            itemno = 49;
+            break;
+        case 144:
+            itemno = 102;
+            break;
+        case 145:
+            itemno = 133;
+            break;
+        }
+        
+        item = itemno;
+        
+        if (item > 63)
+        {
+            itemno -= 64;
+        }
+        
+        if (item < 64) 
+        {
+            if ((itemno) && (itemno < 4)) 
+            {
+                itemno = (itemno * 2) - 1;
+            } 
+            else if ((unsigned short)itemno < 33) 
+            { 
+                if (itemno) 
+                {
+                    itemno += 4;
+                }
+            }
+            else if (((unsigned short)itemno == 33) || ((unsigned short)itemno == 34))
+            {
+                itemno = ((itemno + (itemno - 33)) & 0xFFFF) + 4; // very likely there is a cast here instead of & 0xFFFF
+            } 
+            else 
+            {
+                itemno += 6;
+            }
+        }
+        
+        if (num3 == 0) 
+        {
+            if ((st->subscreenmode & 0x4))
+            {
+                if ((sys->cb_flg & 0x180000)) 
+                {
+                    pb->pos[0] = 8.0f;
+                    pb->pos[1] = 8.0f;
+                    pb->pos[2] = 4.0f;
+                    
+                    pb->anim = 1;
+                    
+                    pb->cen_no = 9;
+                    pb->parts_num = 18;
+                    
+                    pb->atr |= 0x20;
+                    
+                    pb->col.a = 1.0f;
+                    pb->col.r = 1.0f;
+                    pb->col.g = 1.0f;
+                    pb->col.b = 1.0f;
+                } 
+                else
+                {
+                    pb->atr &= ~0x20;
+                }
+            } 
+            else
+            {
+                pb->pos[0] = 8.0f;
+                pb->pos[1] = 8.0f;
+                pb->pos[2] = 4.0f;
+                
+                pb->anim = 1;
+                
+                pb->cen_no = 4;
+                pb->parts_num = 18;
+                
+                pb->atr |= 0x20;
+                
+                pb->col.a = 1.0f;
+                pb->col.r = 1.0f;
+                pb->col.g = 1.0f;
+                pb->col.b = 1.0f;
+            }
+        } 
+        else
+        {
+            pb->pos[0] = 24.0f + (((num3 - 1) & 1) * 68);
+            pb->pos[1] = 8.0f  + (((num3 - 1) / 2) * 48);
+            pb->pos[2] = 4.0f;
+            
+            pb->ang = 0;
+            
+            pb->anim = setanm + 1;
+            
+            pb->cen_no = 5;
+            pb->parts_num = 18;
+            
+            pb->atr |= 0x20;
+            
+            pb->col.a = 1.0f;
+            pb->col.r = 1.0f;
+            pb->col.g = 1.0f;
+            pb->col.b = 1.0f;
+        }
+        
+        pa->sx = 68;
+        
+        if ((itemdata[itemid].type & 0x100)) 
+        {
+            pa->sx = 136;
+        }
+        
+        pa->sy = 48;
+        
+        pa->cx = 0;
+        pa->cy = 0;
+        
+        pa->u1 = (itemno % 7) * 34;
+        pa->v1 = (itemno / 7) * 24;
+        
+        pa->u2 = pa->u1 + 34;
+        
+        if ((itemdata[itemid].type & 0x100)) 
+        {
+            pa->u2 = pa->u1 + 68;
+        }
+        
+        pa->v2 = pa->v1 + 24;
+        
+        if (item < 64) 
+        {
+            pa->texid = 4;
+        } 
+        else 
+        {
+            pa->texid = 3;
+        }
+        
+        pa->attr = 0;
+        
+        if ((itemdata[itemid].type & 0x100))
+        {
+            num3++;
+        }
+    } 
+    
+    pb->anim = -1;
 }
 
 // 100% matching!
@@ -2602,7 +2665,7 @@ unsigned char ItemUse(S_WORK* st)
     unsigned char ok;      
 
     ok = 0;
-    
+
     useon = 0;
 
     bullet = st->pip[st->listcsr_0];
