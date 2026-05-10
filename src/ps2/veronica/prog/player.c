@@ -6,13 +6,14 @@
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/objitm.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-/*float PlyInfo[2][4];
-_anon18 lkmtab[2];
-char PlyEyeTab[8];
+ETTY_WORK lkmtab[2];       // DATA
+const float PlyInfo[4][2]; // DATA
+/*char PlyEyeTab[8];
 int KnfAtrTab[4];
 char PlyLegRoute[7][2];
 char PlyFlip[23];*/
@@ -738,98 +739,97 @@ void bhInitRoomChangePlayer()
 	scePrintf("bhInitRoomChangePlayer - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1396f0
+// 100% matching!
 void bhResetPlayer()
 {
+    BH_PWORK* epp;
 	int i;
-	BH_PWORK* epp;
-	// Line 305, Address: 0x1396f0, Func Offset: 0
-	// Line 309, Address: 0x1396f8, Func Offset: 0x8
-	// Line 310, Address: 0x139708, Func Offset: 0x18
-	// Line 309, Address: 0x139710, Func Offset: 0x20
-	// Line 311, Address: 0x139714, Func Offset: 0x24
-	// Line 309, Address: 0x139718, Func Offset: 0x28
-	// Line 311, Address: 0x139720, Func Offset: 0x30
-	// Line 310, Address: 0x13972c, Func Offset: 0x3c
-	// Line 309, Address: 0x139730, Func Offset: 0x40
-	// Line 310, Address: 0x139740, Func Offset: 0x50
-	// Line 312, Address: 0x139744, Func Offset: 0x54
-	// Line 315, Address: 0x13974c, Func Offset: 0x5c
-	// Line 310, Address: 0x139750, Func Offset: 0x60
-	// Line 311, Address: 0x139768, Func Offset: 0x78
-	// Line 310, Address: 0x13976c, Func Offset: 0x7c
-	// Line 311, Address: 0x139770, Func Offset: 0x80
-	// Line 312, Address: 0x13978c, Func Offset: 0x9c
-	// Line 311, Address: 0x139790, Func Offset: 0xa0
-	// Line 312, Address: 0x139798, Func Offset: 0xa8
-	// Line 313, Address: 0x1397b4, Func Offset: 0xc4
-	// Line 312, Address: 0x1397b8, Func Offset: 0xc8
-	// Line 313, Address: 0x1397c0, Func Offset: 0xd0
-	// Line 315, Address: 0x1397cc, Func Offset: 0xdc
-	// Line 318, Address: 0x1397f0, Func Offset: 0x100
-	// Line 319, Address: 0x139808, Func Offset: 0x118
-	// Line 321, Address: 0x139810, Func Offset: 0x120
-	// Line 322, Address: 0x139818, Func Offset: 0x128
-	// Line 319, Address: 0x139820, Func Offset: 0x130
-	// Line 320, Address: 0x139834, Func Offset: 0x144
-	// Line 321, Address: 0x13984c, Func Offset: 0x15c
-	// Line 322, Address: 0x139864, Func Offset: 0x174
-	// Line 323, Address: 0x13987c, Func Offset: 0x18c
-	// Line 324, Address: 0x13989c, Func Offset: 0x1ac
-	// Line 323, Address: 0x1398a0, Func Offset: 0x1b0
-	// Line 324, Address: 0x1398b0, Func Offset: 0x1c0
-	// Line 325, Address: 0x1398cc, Func Offset: 0x1dc
-	// Line 324, Address: 0x1398d0, Func Offset: 0x1e0
-	// Line 325, Address: 0x139910, Func Offset: 0x220
-	// Line 326, Address: 0x139924, Func Offset: 0x234
-	// Line 329, Address: 0x13992c, Func Offset: 0x23c
-	// Line 330, Address: 0x139944, Func Offset: 0x254
-	// Line 332, Address: 0x13994c, Func Offset: 0x25c
-	// Line 333, Address: 0x139954, Func Offset: 0x264
-	// Line 330, Address: 0x13995c, Func Offset: 0x26c
-	// Line 331, Address: 0x139970, Func Offset: 0x280
-	// Line 332, Address: 0x139988, Func Offset: 0x298
-	// Line 333, Address: 0x1399a0, Func Offset: 0x2b0
-	// Line 334, Address: 0x1399b8, Func Offset: 0x2c8
-	// Line 335, Address: 0x1399d8, Func Offset: 0x2e8
-	// Line 334, Address: 0x1399dc, Func Offset: 0x2ec
-	// Line 335, Address: 0x139a1c, Func Offset: 0x32c
-	// Line 339, Address: 0x139a34, Func Offset: 0x344
-	// Line 340, Address: 0x139a3c, Func Offset: 0x34c
-	// Line 339, Address: 0x139a40, Func Offset: 0x350
-	// Line 340, Address: 0x139a58, Func Offset: 0x368
-	// Line 339, Address: 0x139a5c, Func Offset: 0x36c
-	// Line 340, Address: 0x139a60, Func Offset: 0x370
-	// Line 342, Address: 0x139a68, Func Offset: 0x378
-	// Line 340, Address: 0x139a6c, Func Offset: 0x37c
-	// Line 342, Address: 0x139a74, Func Offset: 0x384
-	// Line 343, Address: 0x139a90, Func Offset: 0x3a0
-	// Line 342, Address: 0x139a94, Func Offset: 0x3a4
-	// Line 343, Address: 0x139a98, Func Offset: 0x3a8
-	// Line 344, Address: 0x139aac, Func Offset: 0x3bc
-	// Line 345, Address: 0x139ac0, Func Offset: 0x3d0
-	// Line 346, Address: 0x139ac8, Func Offset: 0x3d8
-	// Line 347, Address: 0x139ad0, Func Offset: 0x3e0
-	// Line 351, Address: 0x139ae4, Func Offset: 0x3f4
-	// Line 352, Address: 0x139aec, Func Offset: 0x3fc
-	// Line 353, Address: 0x139af8, Func Offset: 0x408
-	// Line 356, Address: 0x139b10, Func Offset: 0x420
-	// Line 357, Address: 0x139b18, Func Offset: 0x428
-	// Line 358, Address: 0x139b30, Func Offset: 0x440
-	// Line 363, Address: 0x139b34, Func Offset: 0x444
-	// Line 364, Address: 0x139b3c, Func Offset: 0x44c
-	// Line 365, Address: 0x139b40, Func Offset: 0x450
-	// Line 366, Address: 0x139b68, Func Offset: 0x478
-	// Line 368, Address: 0x139b78, Func Offset: 0x488
-	// Line 370, Address: 0x139b80, Func Offset: 0x490
-	// Line 372, Address: 0x139b88, Func Offset: 0x498
-	// Line 373, Address: 0x139b94, Func Offset: 0x4a4
-	// Line 372, Address: 0x139b98, Func Offset: 0x4a8
-	// Line 373, Address: 0x139ba8, Func Offset: 0x4b8
-	// Line 374, Address: 0x139bc0, Func Offset: 0x4d0
-	// Func End, Address: 0x139bcc, Func Offset: 0x4dc
-	scePrintf("bhResetPlayer - UNIMPLEMENTED!\n");
+
+    plp->ar = PlyInfo[sys->ply_id][0]; 
+    plp->ah = PlyInfo[sys->ply_id][1];
+    
+    plp->car = PlyInfo[sys->ply_id][0] - 1.0f;
+    plp->cah = PlyInfo[sys->ply_id][1] - 1.0f;
+    
+    plp->mlwP = plp->mdl;
+    
+    switch (sys->ply_id)
+    {
+    case 0:
+        bhSetObject(lkmtab, 2, (unsigned char*)plp);
+        
+        sys->obwp[2].lkono = 5;
+        
+        sys->obwp[2].lox   = 0;
+        sys->obwp[2].loy   = 1.5869f;
+        sys->obwp[2].loz   = 0.7747f;
+        
+        sys->obwp[2].skp[0] = plp->skp[sys->obwp[2].mdlver];
+        sys->obwp[2].mdl[0] = plp->mdl[sys->obwp[2].mdlver];
+        
+        sys->obwp[2].mlwP = &sys->obwp[2].mdl[0];
+        break;
+    case 3:
+        bhSetObject(&lkmtab[1], 2, (unsigned char*)plp);
+    
+        sys->obwp[2].lkono = 5;
+        
+        sys->obwp[2].lox   = 0;
+        sys->obwp[2].loy   = 0.85f;
+        sys->obwp[2].loz   = -1.03f;
+        
+        sys->obwp[2].mdl[0] = plp->mdl[sys->obwp[2].mdlver];
+        
+        sys->obwp[2].mlwP = &sys->obwp[2].mdl[0];
+        break;
+    }
+    
+    plp->stflg = sys->ply_stflg[sys->ply_id];
+    plp->stflg |= 0x40000000;
+    
+    plp->hp = sys->ply_hp[sys->ply_id];
+    
+    if (plp->hp >= 120) 
+    {
+        if ((plp->stflg & 0x280000)) 
+        {
+            ((EXP_WORK*)plp->exp0)->dmlvl = 1;
+        }
+        else if (((EXP_WORK*)plp->exp0)->dmlvl != 0)
+        {
+            ((EXP_WORK*)plp->exp0)->dmlvl = 0;
+        } 
+    }
+    else if (plp->hp >= 30) 
+    {
+        if (((EXP_WORK*)plp->exp0)->dmlvl != 1)
+        {
+            ((EXP_WORK*)plp->exp0)->dmlvl = 1;
+        }
+    }
+    else 
+    {
+        if (((EXP_WORK*)plp->exp0)->dmlvl != 2)
+        {
+            ((EXP_WORK*)plp->exp0)->dmlvl = 2;
+        }
+    }
+    
+    epp = ene;
+    
+    for (i = 0; i < 128; i++, epp++)
+    {
+        if (((epp->flg & 0x1)) && (epp->id == 27)) 
+        {
+            epp->flg = 0;
+        }
+    }
+    
+    bhCheckMothEgg();
+    bhCheckSubPack();
+    
+    plp->mlwP->owP[7].flg  |= 0x8;
+    plp->mlwP->owP[11].flg |= 0x8;
 }
 
 // 100% matching! 
