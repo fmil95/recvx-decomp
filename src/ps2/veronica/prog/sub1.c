@@ -6080,37 +6080,50 @@ unsigned char Combi_04(short ps, unsigned int* moto, unsigned int* aite)
     return ok;
 }
 
-// 
-// Start address: 0x2a4410
-unsigned char Combi_05(unsigned int* moto, unsigned int* aite)
+// 100% matching!
+unsigned char Combi_05(short ps, unsigned int* moto, unsigned int* aite) // first parameter not present on DWARF
 {
-	unsigned short chgid;
-	unsigned short bullet2;
-	unsigned short bullet1;
-	unsigned short dbwtbl[4][4];
-	S_WORK* st;
-	// Line 5515, Address: 0x2a4410, Func Offset: 0
-	// Line 5516, Address: 0x2a4418, Func Offset: 0x8
-	// Line 5514, Address: 0x2a4428, Func Offset: 0x18
-	// Line 5516, Address: 0x2a442c, Func Offset: 0x1c
-	// Line 5532, Address: 0x2a4438, Func Offset: 0x28
-	// Line 5528, Address: 0x2a443c, Func Offset: 0x2c
-	// Line 5532, Address: 0x2a4440, Func Offset: 0x30
-	// Line 5538, Address: 0x2a4480, Func Offset: 0x70
-	// Line 5541, Address: 0x2a4488, Func Offset: 0x78
-	// Line 5543, Address: 0x2a4490, Func Offset: 0x80
-	// Line 5551, Address: 0x2a4494, Func Offset: 0x84
-	// Line 5563, Address: 0x2a44b8, Func Offset: 0xa8
-	// Line 5551, Address: 0x2a44bc, Func Offset: 0xac
-	// Line 5552, Address: 0x2a44dc, Func Offset: 0xcc
-	// Line 5561, Address: 0x2a44e0, Func Offset: 0xd0
-	// Line 5552, Address: 0x2a44e4, Func Offset: 0xd4
-	// Line 5559, Address: 0x2a44e8, Func Offset: 0xd8
-	// Line 5558, Address: 0x2a44ec, Func Offset: 0xdc
-	// Line 5559, Address: 0x2a44f0, Func Offset: 0xe0
-	// Line 5563, Address: 0x2a44f4, Func Offset: 0xe4
-	// Func End, Address: 0x2a44fc, Func Offset: 0xec
-	scePrintf("Combi_05 - UNIMPLEMENTED!\n");
+    S_WORK* st = &swork;                 
+    unsigned short dbwtbl[4][4] = 
+    {
+        { 122, 123, 124, 66 },
+        { 123, 124,  66,  0 },
+        { 124,  66,   0,  0 },
+        {  66,   0,   0,  0 }
+    };
+    unsigned short bullet1, bullet2;             
+    unsigned short chgid;                
+   
+    bullet1 = *moto;
+    
+    chgid = 0;
+    
+    switch ((unsigned char)(*aite >> 16)) 
+    {                     
+    case 79:
+        chgid = 0;
+        break;
+    case 122:
+        chgid = 1;
+        break;
+    case 123:
+        chgid = 2;
+        break;
+    case 124:
+        chgid = 3;
+        break;
+    }
+    
+    bullet2 = dbwtbl[chgid][bullet1 - 1];  
+    
+    st->gb = (unsigned int*)&getbulletmax[bullet2][sys->gm_mode]; 
+
+    bullet1 = *st->gb;
+    
+    *moto = 0;
+    *aite = (bullet2 << 16) | bullet1;
+    
+    return 1; 
 }
 
 // 
