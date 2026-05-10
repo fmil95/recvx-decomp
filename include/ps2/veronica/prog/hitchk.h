@@ -26,8 +26,8 @@ void bhSetDansaLimitAtari(BH_PWORK* pp);
 void bhCheckFloorP(BH_PWORK* pp);
 void bhCheckDansa(BH_PWORK* pp);
 int bhCheckFloorSound(BH_PWORK* pp, int flr_no, float px, float pz);
-/*_anon0* bhCheckFloorEnemy(int flr_no, float px, float pz);
-_anon0* bhCheckFloorEffect(int flr_no, float px, float pz);*/
+/*_anon0* bhCheckFloorEnemy(int flr_no, float px, float pz);*/
+ATR_WORK* bhCheckFloorEffect(int flr_no, float px, float pz);
 ATR_WORK* bhCheckWater(NJS_POINT3* pos);
 ATR_WORK* bhCheckL2Water(NJS_LINE* lp, NJS_POINT3* pos);
 void bhResetAtariAttr();

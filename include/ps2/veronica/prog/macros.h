@@ -43,4 +43,6 @@
 #define EXP1_I(o) (*(int   *)((char *)plp->exp1 + (o)))
 #define EXP1_F(o) (*(float *)((char *)plp->exp1 + (o)))
 
+#define EP_EXP0_I(o) (*(int   *)((char *)ep->exp0 + (o)))
+
 #endif
