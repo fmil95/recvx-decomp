@@ -368,7 +368,7 @@ int bhSearchNearEnemyB(_anon23* pos, int ay, int ar, float len)
 	// Line 597, Address: 0x14ed18, Func Offset: 0x238
 	// Line 598, Address: 0x14ed1c, Func Offset: 0x23c
 	// Func End, Address: 0x14ed44, Func Offset: 0x264
-}
+}*/
 
 // 
 // Start address: 0x14ed50
@@ -386,10 +386,10 @@ int bhSearchNearEnemy2(BH_PWORK* pp, int* r, float* h, int* id)
 	float epz;
 	float epy;
 	float epx;
-	_anon40 cap;
-	_anon23 vc2;
-	_anon23 vc1;
-	_anon23 vc0;
+	//_anon40 cap;
+	//_anon23 vc2;
+	//_anon23 vc1;
+	//_anon23 vc0;
 	// Line 616, Address: 0x14ed50, Func Offset: 0
 	// Line 632, Address: 0x14ed94, Func Offset: 0x44
 	// Line 635, Address: 0x14ed9c, Func Offset: 0x4c
@@ -457,9 +457,10 @@ int bhSearchNearEnemy2(BH_PWORK* pp, int* r, float* h, int* id)
 	// Line 710, Address: 0x14f064, Func Offset: 0x314
 	// Line 711, Address: 0x14f068, Func Offset: 0x318
 	// Func End, Address: 0x14f0ac, Func Offset: 0x35c
+	scePrintf("bhSearchNearEnemy2 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x14f0b0
 int bhSearchNextEnemy(BH_PWORK* pp, int r, float h)
 {

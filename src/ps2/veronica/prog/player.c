@@ -6096,56 +6096,53 @@ void bhControlPlayerHead()
 	// Line 5069, Address: 0x149a4c, Func Offset: 0x99c
 	// Line 5073, Address: 0x149a5c, Func Offset: 0x9ac
 	// Func End, Address: 0x149a74, Func Offset: 0x9c4
-}
+}*/
 
-// 
-// Start address: 0x149a80
+// 100% matching!
 void bhLookNearEnemy()
-{
-	int id;
-	int ay;
-	float h;
-	// Line 5079, Address: 0x149a80, Func Offset: 0
-	// Line 5084, Address: 0x149a88, Func Offset: 0x8
-	// Line 5083, Address: 0x149a90, Func Offset: 0x10
-	// Line 5085, Address: 0x149a98, Func Offset: 0x18
-	// Line 5084, Address: 0x149a9c, Func Offset: 0x1c
-	// Line 5085, Address: 0x149aa4, Func Offset: 0x24
-	// Line 5084, Address: 0x149aac, Func Offset: 0x2c
-	// Line 5085, Address: 0x149ab4, Func Offset: 0x34
-	// Line 5086, Address: 0x149ac4, Func Offset: 0x44
-	// Line 5087, Address: 0x149ae0, Func Offset: 0x60
-	// Line 5088, Address: 0x149af4, Func Offset: 0x74
-	// Line 5091, Address: 0x149afc, Func Offset: 0x7c
-	// Line 5089, Address: 0x149b04, Func Offset: 0x84
-	// Line 5088, Address: 0x149b08, Func Offset: 0x88
-	// Line 5089, Address: 0x149b0c, Func Offset: 0x8c
-	// Line 5088, Address: 0x149b10, Func Offset: 0x90
-	// Line 5089, Address: 0x149b1c, Func Offset: 0x9c
-	// Line 5090, Address: 0x149b24, Func Offset: 0xa4
-	// Line 5089, Address: 0x149b28, Func Offset: 0xa8
-	// Line 5090, Address: 0x149b2c, Func Offset: 0xac
-	// Line 5091, Address: 0x149b38, Func Offset: 0xb8
-	// Line 5090, Address: 0x149b3c, Func Offset: 0xbc
-	// Line 5091, Address: 0x149b40, Func Offset: 0xc0
-	// Line 5093, Address: 0x149b68, Func Offset: 0xe8
-	// Line 5094, Address: 0x149b70, Func Offset: 0xf0
-	// Line 5095, Address: 0x149b8c, Func Offset: 0x10c
-	// Line 5099, Address: 0x149b94, Func Offset: 0x114
-	// Line 5100, Address: 0x149ba0, Func Offset: 0x120
-	// Line 5099, Address: 0x149ba4, Func Offset: 0x124
-	// Line 5100, Address: 0x149ba8, Func Offset: 0x128
-	// Line 5099, Address: 0x149bac, Func Offset: 0x12c
-	// Line 5100, Address: 0x149bb8, Func Offset: 0x138
-	// Line 5101, Address: 0x149bc0, Func Offset: 0x140
-	// Line 5100, Address: 0x149bc4, Func Offset: 0x144
-	// Line 5101, Address: 0x149bc8, Func Offset: 0x148
-	// Line 5104, Address: 0x149bd4, Func Offset: 0x154
-	// Line 5105, Address: 0x149c00, Func Offset: 0x180
-	// Func End, Address: 0x149c0c, Func Offset: 0x18c
+{    
+    float h; 
+    int ay; 
+    int id; 
+
+    ay = 23665;
+    
+    h = EXP1_F(16) - plp->py;
+    
+    if (bhSearchNearEnemy2(plp, &ay, &h, &id) != 0)
+    {
+        if (EXP1_I(60) > 30)
+        {
+            if (EXP1_S(68) != id)
+            {
+                EXP1_I(60) = 0;
+            }
+            
+            EXP1_I(0) |= 0x10;
+            
+            EXP1_I(64) = 2;
+            EXP1_S(68) = id;
+            
+            EXP1_S(70) = ene[id].lok_jno;
+        }
+    } 
+    else if ((EXP1_I(0) & 0x10))
+    {
+        EXP1_I(0) |= 0x1E0;
+        
+        EXP1_I(0) &= ~0x10;
+        
+        EXP1_S(68) = -1;
+        EXP1_I(60) = 0;
+    }
+    
+    if (EXP1_I(60) < 1024)
+    {
+        EXP1_I(60)++;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x149c10
 void bhSetHeadRotation(short ax, short ay)
 {
