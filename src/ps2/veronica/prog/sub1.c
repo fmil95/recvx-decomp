@@ -6306,7 +6306,7 @@ unsigned char Combi_05(short ps, unsigned int* moto, unsigned int* aite) // firs
 
 // 
 // Start address: 0x2a4500
-unsigned char Combi_99(unsigned short moto, unsigned short aite)
+unsigned char Combi_99(short ps, unsigned short moto, unsigned short aite) // first parameter not present on DWARF
 {
 	unsigned char ok;
 	unsigned short bt;
@@ -7603,63 +7603,84 @@ void ItemBoxIconSet(S_WORK* st)
 	scePrintf("ItemBoxIconSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a7820
+// 93.13% matching (matches on NGC)
 int bhSearchBullet()
 {
-	unsigned short bullettype;
-	unsigned int z;
-	unsigned int y;
-	unsigned int x;
-	int wpn;
-	unsigned int it;
-	int max;
-	int i;
-	S_WORK* st;
-	// Line 7058, Address: 0x2a7820, Func Offset: 0
-	// Line 7059, Address: 0x2a7840, Func Offset: 0x20
-	// Line 7066, Address: 0x2a7848, Func Offset: 0x28
-	// Line 7068, Address: 0x2a7850, Func Offset: 0x30
-	// Line 7066, Address: 0x2a7854, Func Offset: 0x34
-	// Line 7068, Address: 0x2a7864, Func Offset: 0x44
-	// Line 7066, Address: 0x2a7868, Func Offset: 0x48
-	// Line 7069, Address: 0x2a7870, Func Offset: 0x50
-	// Line 7072, Address: 0x2a787c, Func Offset: 0x5c
-	// Line 7069, Address: 0x2a7880, Func Offset: 0x60
-	// Line 7070, Address: 0x2a7888, Func Offset: 0x68
-	// Line 7072, Address: 0x2a788c, Func Offset: 0x6c
-	// Line 7073, Address: 0x2a7894, Func Offset: 0x74
-	// Line 7074, Address: 0x2a78a4, Func Offset: 0x84
-	// Line 7079, Address: 0x2a78a8, Func Offset: 0x88
-	// Line 7077, Address: 0x2a78ac, Func Offset: 0x8c
-	// Line 7079, Address: 0x2a78b0, Func Offset: 0x90
-	// Line 7080, Address: 0x2a78bc, Func Offset: 0x9c
-	// Line 7084, Address: 0x2a78c0, Func Offset: 0xa0
-	// Line 7080, Address: 0x2a78c8, Func Offset: 0xa8
-	// Line 7081, Address: 0x2a78d0, Func Offset: 0xb0
-	// Line 7082, Address: 0x2a78d4, Func Offset: 0xb4
-	// Line 7084, Address: 0x2a78d8, Func Offset: 0xb8
-	// Line 7085, Address: 0x2a78f8, Func Offset: 0xd8
-	// Line 7087, Address: 0x2a78fc, Func Offset: 0xdc
-	// Line 7089, Address: 0x2a7910, Func Offset: 0xf0
-	// Line 7090, Address: 0x2a7928, Func Offset: 0x108
-	// Line 7091, Address: 0x2a7934, Func Offset: 0x114
-	// Line 7092, Address: 0x2a7944, Func Offset: 0x124
-	// Line 7093, Address: 0x2a7960, Func Offset: 0x140
-	// Line 7094, Address: 0x2a796c, Func Offset: 0x14c
-	// Line 7095, Address: 0x2a7984, Func Offset: 0x164
-	// Line 7097, Address: 0x2a798c, Func Offset: 0x16c
-	// Line 7098, Address: 0x2a7990, Func Offset: 0x170
-	// Line 7099, Address: 0x2a7998, Func Offset: 0x178
-	// Line 7103, Address: 0x2a79a0, Func Offset: 0x180
-	// Line 7099, Address: 0x2a79a4, Func Offset: 0x184
-	// Line 7103, Address: 0x2a79a8, Func Offset: 0x188
-	// Line 7106, Address: 0x2a79b0, Func Offset: 0x190
-	// Line 7107, Address: 0x2a79b8, Func Offset: 0x198
-	// Line 7109, Address: 0x2a79c8, Func Offset: 0x1a8
-	// Line 7112, Address: 0x2a79dc, Func Offset: 0x1bc
-	// Func End, Address: 0x2a7a00, Func Offset: 0x1e0
-	scePrintf("bhSearchBullet - UNIMPLEMENTED!\n");
+    // order of locals modified from DWARF
+    S_WORK* st;  
+    unsigned int x, y;          
+    int i;              
+    int max;                
+    unsigned int it;
+    int wpn;                  
+    unsigned int z;  
+    unsigned short bullettype; 
+
+    st = &swork; 
+
+    if (!(sys->st_flg & 0x8000000)) 
+    {
+        max = 8;
+    }
+    else 
+    {
+        max = 10;
+    }
+
+    wpn = (st->pip[*st->pip] >> 16) & 0xFF;
+    
+    bullettype = (st->pip[*st->pip] >> 16) & 0xFF00;
+
+    if ((wpn == 7) && ((bullettype & 0x2000)))
+    {
+        wpn = 155;
+    }
+    
+    x = 0;
+    
+    for (i = 0; i < max; i++)
+    {
+        y = ((st->pip + i)[2] >> 16) & 0xFF;
+        
+        if ((itemdata[y].type & 0x2))
+        {
+            z = combidata[itemdata[y].cmb];
+            
+            it = itemdata[y].cmb + 1;
+            
+            for (; z != 0; z--)
+            {
+                if ((wpn == combidata[it]) && ((combidata[it + 2] & 0xF000)))
+                {
+                    x = Combi_99(it, i + 2, (unsigned short)*st->pip);
+                    
+                    if ((x == 1) && (*st->pip > (i + 2)))
+                    {
+                        *st->pip = *st->pip - 1;
+                    }
+                    
+                    ItemSort();
+                    break;
+                }
+
+                it += 3;
+            }
+        }
+        
+        if (x != 0)
+        {
+            break;
+        }
+    }
+
+    if (i == max) 
+    {
+        return 0;
+    } 
+    else 
+    {
+        return 1;
+    }
 }
 
 // 100% matching!

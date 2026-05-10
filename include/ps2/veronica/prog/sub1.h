@@ -64,7 +64,7 @@ unsigned char Combi_02(short ps, unsigned int* moto, unsigned int* aite);
 unsigned char Combi_03(short ps, unsigned int* moto, unsigned int* aite);
 unsigned char Combi_04(short ps, unsigned int* moto, unsigned int* aite);
 unsigned char Combi_05(short ps, unsigned int* moto, unsigned int* aite);
-unsigned char Combi_99(unsigned short moto, unsigned short aite);
+unsigned char Combi_99(short ps, unsigned short moto, unsigned short aite);
 void ItemBox(S_WORK* st);
 void ItemBoxChange(S_WORK* st, unsigned short ibcsr);
 void BorderLineSet(S_WORK* st, unsigned char border, float ypos);
