@@ -2593,57 +2593,82 @@ void KazuSet(S_WORK* st, unsigned char flg)
     pb99->anim = -1;
 }
 
-// 
-// Start address: 0x29c9e0
+// 100% matching!
 unsigned char ItemUse(S_WORK* st)
 {
-	unsigned char ok;
-	unsigned short useon;
-	unsigned short bullet;
-	unsigned short itemid;
-	// Line 2045, Address: 0x29c9e0, Func Offset: 0
-	// Line 2049, Address: 0x29c9f4, Func Offset: 0x14
-	// Line 2055, Address: 0x29c9fc, Func Offset: 0x1c
-	// Line 2052, Address: 0x29ca04, Func Offset: 0x24
-	// Line 2049, Address: 0x29ca08, Func Offset: 0x28
-	// Line 2052, Address: 0x29ca10, Func Offset: 0x30
-	// Line 2049, Address: 0x29ca14, Func Offset: 0x34
-	// Line 2050, Address: 0x29ca18, Func Offset: 0x38
-	// Line 2047, Address: 0x29ca20, Func Offset: 0x40
-	// Line 2052, Address: 0x29ca24, Func Offset: 0x44
-	// Line 2049, Address: 0x29ca28, Func Offset: 0x48
-	// Line 2052, Address: 0x29ca2c, Func Offset: 0x4c
-	// Line 2049, Address: 0x29ca30, Func Offset: 0x50
-	// Line 2052, Address: 0x29ca34, Func Offset: 0x54
-	// Line 2053, Address: 0x29ca38, Func Offset: 0x58
-	// Line 2055, Address: 0x29ca3c, Func Offset: 0x5c
-	// Line 2053, Address: 0x29ca44, Func Offset: 0x64
-	// Line 2055, Address: 0x29ca48, Func Offset: 0x68
-	// Line 2053, Address: 0x29ca54, Func Offset: 0x74
-	// Line 2055, Address: 0x29ca60, Func Offset: 0x80
-	// Line 2057, Address: 0x29cac0, Func Offset: 0xe0
-	// Line 2059, Address: 0x29cacc, Func Offset: 0xec
-	// Line 2061, Address: 0x29cad4, Func Offset: 0xf4
-	// Line 2063, Address: 0x29cae0, Func Offset: 0x100
-	// Line 2065, Address: 0x29cae8, Func Offset: 0x108
-	// Line 2067, Address: 0x29caf4, Func Offset: 0x114
-	// Line 2069, Address: 0x29cafc, Func Offset: 0x11c
-	// Line 2071, Address: 0x29cb08, Func Offset: 0x128
-	// Line 2073, Address: 0x29cb10, Func Offset: 0x130
-	// Line 2075, Address: 0x29cb1c, Func Offset: 0x13c
-	// Line 2078, Address: 0x29cb24, Func Offset: 0x144
-	// Line 2079, Address: 0x29cb34, Func Offset: 0x154
-	// Line 2084, Address: 0x29cb38, Func Offset: 0x158
-	// Line 2087, Address: 0x29cb48, Func Offset: 0x168
-	// Line 2088, Address: 0x29cb54, Func Offset: 0x174
-	// Line 2089, Address: 0x29cb64, Func Offset: 0x184
-	// Line 2091, Address: 0x29cb68, Func Offset: 0x188
-	// Line 2092, Address: 0x29cb90, Func Offset: 0x1b0
-	// Line 2093, Address: 0x29cbb0, Func Offset: 0x1d0
-	// Line 2094, Address: 0x29cbd0, Func Offset: 0x1f0
-	// Line 2101, Address: 0x29cbd8, Func Offset: 0x1f8
-	// Func End, Address: 0x29cbf0, Func Offset: 0x210
-	scePrintf("ItemUse - UNIMPLEMENTED!\n");
+	unsigned short itemid; 
+    unsigned short bullet; 
+    unsigned short useon;  
+    unsigned char ok;      
+
+    ok = 0;
+    
+    useon = 0;
+
+    bullet = st->pip[st->listcsr_0];
+
+    itemid = (unsigned char)(st->pip[st->listcsr_0] >> 16);
+    
+    sys->sb_id = itemid;
+
+    sys->cb_flg |= 0x400; 
+
+    switch (itemdata[itemid].type & 0x5F) 
+    {                             
+    case 0x8:
+        ok = Use_00(st);
+        
+        useon = 2;
+        break;
+    case 0x2:
+        ok = Use_01(st);
+        
+        useon = 2;
+        break;
+    case 0x4:
+        ok = Use_02(st);
+        
+        useon = 2;
+        break;
+    case 0x10:
+        ok = Use_02(st);
+        
+        useon = 2;
+        break;
+    case 0x20:
+        ok = Use_04(st);
+        
+        useon = 2;
+        break;
+    case 0x40:
+    case 0x1:
+        ok = Use_05(st);
+        
+        useon = 2;
+        break;
+    }
+    
+    if ((bullet) && (ok)) 
+    {
+        bullet--;
+        
+        if (!bullet) 
+        {
+            if ((itemdata[itemid].type & 0x8)) 
+            {
+                st->itemid = 0;
+            }
+    
+            st->pip[st->listcsr_0] = (st->itemid << 16) | bullet;
+            
+            if ((sys->sb_id != 82) && ((st->listcsr_0 < *st->pip) && (*st->pip != 0)))
+            {
+                *st->pip = *st->pip - 1;
+            }
+        }
+    }
+    
+    return useon;
 }
 
 // 100% matching!
