@@ -1868,15 +1868,13 @@ void(*bhEne01_DieTypeB)(BH_PWORK*)[0];
 _anon28 WpnTab[0];
 BH_PWORK ene[0];
 float lcmat[16][0];
-_anon1 eff[0];
+_anon1 eff[0];*/
 
-// 
-// Start address: 0x175da0
+// 100% matching!
 void bhEne01_DmgCheckTypeDmmy()
 {
-	// Line 99, Address: 0x175da0, Func Offset: 0
-	// Func End, Address: 0x175da8, Func Offset: 0x8
-}*/
+	
+}
 
 // 100% matching!
 void bhEne01(BH_PWORK* epw)
