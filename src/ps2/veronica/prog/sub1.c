@@ -4295,89 +4295,137 @@ void StatusCancel(S_WORK* st)
     }
 }
 
-// 
-// Start address: 0x2a0220
+// 100% matching!
 void WeaponSet(unsigned int wpncsr, unsigned int lt_c)
 {
-	unsigned int wpnno;
-	unsigned int itemid;
-	S_WORK* st;
-	// Line 3619, Address: 0x2a0220, Func Offset: 0
-	// Line 3621, Address: 0x2a0238, Func Offset: 0x18
-	// Line 3620, Address: 0x2a0244, Func Offset: 0x24
-	// Line 3626, Address: 0x2a024c, Func Offset: 0x2c
-	// Line 3622, Address: 0x2a0250, Func Offset: 0x30
-	// Line 3621, Address: 0x2a0258, Func Offset: 0x38
-	// Line 3622, Address: 0x2a0260, Func Offset: 0x40
-	// Line 3621, Address: 0x2a0264, Func Offset: 0x44
-	// Line 3626, Address: 0x2a0268, Func Offset: 0x48
-	// Line 3630, Address: 0x2a0344, Func Offset: 0x124
-	// Line 3633, Address: 0x2a034c, Func Offset: 0x12c
-	// Line 3634, Address: 0x2a0350, Func Offset: 0x130
-	// Line 3637, Address: 0x2a0358, Func Offset: 0x138
-	// Line 3638, Address: 0x2a035c, Func Offset: 0x13c
-	// Line 3640, Address: 0x2a0364, Func Offset: 0x144
-	// Line 3641, Address: 0x2a0368, Func Offset: 0x148
-	// Line 3645, Address: 0x2a0370, Func Offset: 0x150
-	// Line 3648, Address: 0x2a0378, Func Offset: 0x158
-	// Line 3649, Address: 0x2a037c, Func Offset: 0x15c
-	// Line 3651, Address: 0x2a0384, Func Offset: 0x164
-	// Line 3653, Address: 0x2a03b4, Func Offset: 0x194
-	// Line 3654, Address: 0x2a03b8, Func Offset: 0x198
-	// Line 3656, Address: 0x2a03c0, Func Offset: 0x1a0
-	// Line 3657, Address: 0x2a03c4, Func Offset: 0x1a4
-	// Line 3659, Address: 0x2a03cc, Func Offset: 0x1ac
-	// Line 3660, Address: 0x2a03d0, Func Offset: 0x1b0
-	// Line 3662, Address: 0x2a03d8, Func Offset: 0x1b8
-	// Line 3665, Address: 0x2a03dc, Func Offset: 0x1bc
-	// Line 3668, Address: 0x2a03e4, Func Offset: 0x1c4
-	// Line 3670, Address: 0x2a03fc, Func Offset: 0x1dc
-	// Line 3671, Address: 0x2a0400, Func Offset: 0x1e0
-	// Line 3673, Address: 0x2a0408, Func Offset: 0x1e8
-	// Line 3676, Address: 0x2a040c, Func Offset: 0x1ec
-	// Line 3679, Address: 0x2a0414, Func Offset: 0x1f4
-	// Line 3680, Address: 0x2a0418, Func Offset: 0x1f8
-	// Line 3683, Address: 0x2a0420, Func Offset: 0x200
-	// Line 3684, Address: 0x2a0424, Func Offset: 0x204
-	// Line 3687, Address: 0x2a042c, Func Offset: 0x20c
-	// Line 3688, Address: 0x2a0434, Func Offset: 0x214
-	// Line 3689, Address: 0x2a0444, Func Offset: 0x224
-	// Line 3690, Address: 0x2a0458, Func Offset: 0x238
-	// Line 3691, Address: 0x2a0460, Func Offset: 0x240
-	// Line 3693, Address: 0x2a0474, Func Offset: 0x254
-	// Line 3696, Address: 0x2a047c, Func Offset: 0x25c
-	// Line 3697, Address: 0x2a0480, Func Offset: 0x260
-	// Line 3700, Address: 0x2a0488, Func Offset: 0x268
-	// Line 3701, Address: 0x2a048c, Func Offset: 0x26c
-	// Line 3704, Address: 0x2a0494, Func Offset: 0x274
-	// Line 3705, Address: 0x2a0498, Func Offset: 0x278
-	// Line 3708, Address: 0x2a04a0, Func Offset: 0x280
-	// Line 3709, Address: 0x2a04a4, Func Offset: 0x284
-	// Line 3712, Address: 0x2a04ac, Func Offset: 0x28c
-	// Line 3713, Address: 0x2a04b0, Func Offset: 0x290
-	// Line 3715, Address: 0x2a04b8, Func Offset: 0x298
-	// Line 3716, Address: 0x2a04c0, Func Offset: 0x2a0
-	// Line 3717, Address: 0x2a04d4, Func Offset: 0x2b4
-	// Line 3719, Address: 0x2a04dc, Func Offset: 0x2bc
-	// Line 3723, Address: 0x2a04e4, Func Offset: 0x2c4
-	// Line 3724, Address: 0x2a04fc, Func Offset: 0x2dc
-	// Line 3725, Address: 0x2a050c, Func Offset: 0x2ec
-	// Line 3726, Address: 0x2a0510, Func Offset: 0x2f0
-	// Line 3727, Address: 0x2a0514, Func Offset: 0x2f4
-	// Line 3726, Address: 0x2a0520, Func Offset: 0x300
-	// Line 3727, Address: 0x2a0524, Func Offset: 0x304
-	// Line 3728, Address: 0x2a0530, Func Offset: 0x310
-	// Line 3731, Address: 0x2a0538, Func Offset: 0x318
-	// Line 3732, Address: 0x2a0540, Func Offset: 0x320
-	// Line 3735, Address: 0x2a0548, Func Offset: 0x328
-	// Line 3737, Address: 0x2a0554, Func Offset: 0x334
-	// Line 3736, Address: 0x2a0558, Func Offset: 0x338
-	// Line 3735, Address: 0x2a0560, Func Offset: 0x340
-	// Line 3736, Address: 0x2a056c, Func Offset: 0x34c
-	// Line 3737, Address: 0x2a0570, Func Offset: 0x350
-	// Line 3739, Address: 0x2a0588, Func Offset: 0x368
-	// Func End, Address: 0x2a05a0, Func Offset: 0x380
-	scePrintf("WeaponSet - UNIMPLEMENTED!\n");
+    S_WORK* st;        
+    unsigned int itemid; 
+    unsigned int wpnno;  
+	
+    st = &swork;
+
+    itemid = st->pip[wpncsr] >> 16;
+    
+    wpnno = plp->wpnr_no;
+    
+    switch ((unsigned char)itemid) 
+    {             
+    case 0:                                       
+        plp->wpnr_no = 0;
+        break;
+    case 1:                                       
+        plp->wpnr_no = 20;
+        break;
+    case 2:                                       
+        plp->wpnr_no = 12;
+        break;
+    case 3:                                       
+        plp->wpnr_no = 13;
+        break;
+    case 4:                                       
+        plp->wpnr_no = 11;
+        break;
+    case 5:                                       
+        plp->wpnr_no = 3;
+        break;
+    case 6:                                       
+        switch (itemid & 0x7000) 
+        {                          
+        case 0x1000:                                
+            plp->wpnr_no = 15;
+            break;
+        case 0x2000:                                
+            plp->wpnr_no = 16;
+            break;
+        case 0x4000:                                
+            plp->wpnr_no = 17;
+            break;
+        default:                                    
+            plp->wpnr_no = 14;
+            break;
+        }
+        
+        break;
+    case 7:     
+        switch ((itemid & 0x2000))
+        {
+        case 0x2000:
+            plp->wpnr_no = 19;
+            break;
+        default:
+            plp->wpnr_no = 10;
+            break;
+        }
+        
+        break;
+    case 8:                                       
+        plp->wpnr_no = 2;
+        break;
+    case 9:                                       
+        plp->wpnr_no = 4;
+        break;
+    case 10:                                       
+        plp->wpnr_no = 5;
+        
+        if (parts_06b[17].anim == 11)
+        {
+            bhCrFlg(sys->ev_flg, 74);
+        } 
+        else
+        {
+            bhStFlg(sys->ev_flg, 74);
+        }
+        
+        break;
+    case 11:                                       
+        plp->wpnr_no = 18;
+        break;
+    case 32:                                      
+        plp->wpnr_no = 6;
+        break;
+    case 33:                                      
+        plp->wpnr_no = 7;
+        break;
+    case 34:                                      
+        plp->wpnr_no = 8;
+        break;
+    case 55:                                      
+        plp->wpnr_no = 1;
+        break;
+    case 131:                                      
+        plp->wpnr_no = 3;
+        
+        sys->gm_flg |= 0x10000000;
+        break;
+    case 142:                                      
+        plp->wpnr_no = 9;
+        break;
+    }
+    
+    if (plp->wpnr_no == wpnno) 
+    {
+        if (*st->pip == lt_c)
+        {
+            plp->wpnr_no = 0;
+            
+            *st->pip = 0;
+            
+            sys->gm_flg &= ~0x10000000;
+        }
+        else
+        {
+            *st->pip = lt_c;
+        }
+    } 
+    else 
+    {
+        *st->pip = lt_c;
+    }
+    
+    swork.statusflg |= 0x4000000;
+    
+    plp->mode3 = 0;
+    *(int*)&sys->mn_mode0 = 3;
 }
 
 // 
