@@ -1522,97 +1522,146 @@ void bhCPM0_action()
 	// Line 1121, Address: 0x13b9fc, Func Offset: 0x19c
 	// Line 1122, Address: 0x13ba04, Func Offset: 0x1a4
 	// Func End, Address: 0x13ba10, Func Offset: 0x1b0
-}
+}*/
 
-// 
-// Start address: 0x13ba10
+// 100% matching!
 void bhControlPlayerPad()
 {
-	// Line 1130, Address: 0x13ba10, Func Offset: 0
-	// Line 1131, Address: 0x13ba48, Func Offset: 0x38
-	// Line 1132, Address: 0x13ba50, Func Offset: 0x40
-	// Line 1131, Address: 0x13ba58, Func Offset: 0x48
-	// Line 1132, Address: 0x13ba60, Func Offset: 0x50
-	// Line 1133, Address: 0x13ba74, Func Offset: 0x64
-	// Line 1136, Address: 0x13ba7c, Func Offset: 0x6c
-	// Line 1137, Address: 0x13ba84, Func Offset: 0x74
-	// Line 1138, Address: 0x13ba8c, Func Offset: 0x7c
-	// Line 1139, Address: 0x13ba90, Func Offset: 0x80
-	// Line 1136, Address: 0x13ba94, Func Offset: 0x84
-	// Line 1137, Address: 0x13ba98, Func Offset: 0x88
-	// Line 1138, Address: 0x13baa4, Func Offset: 0x94
-	// Line 1137, Address: 0x13baa8, Func Offset: 0x98
-	// Line 1138, Address: 0x13bab0, Func Offset: 0xa0
-	// Line 1139, Address: 0x13bab8, Func Offset: 0xa8
-	// Line 1138, Address: 0x13babc, Func Offset: 0xac
-	// Line 1139, Address: 0x13bac4, Func Offset: 0xb4
-	// Line 1140, Address: 0x13bacc, Func Offset: 0xbc
-	// Line 1139, Address: 0x13bad0, Func Offset: 0xc0
-	// Line 1140, Address: 0x13bad8, Func Offset: 0xc8
-	// Line 1142, Address: 0x13bb14, Func Offset: 0x104
-	// Line 1143, Address: 0x13bb30, Func Offset: 0x120
-	// Line 1144, Address: 0x13bb38, Func Offset: 0x128
-	// Line 1146, Address: 0x13bb40, Func Offset: 0x130
-	// Line 1147, Address: 0x13bb5c, Func Offset: 0x14c
-	// Line 1148, Address: 0x13bb64, Func Offset: 0x154
-	// Line 1150, Address: 0x13bb6c, Func Offset: 0x15c
-	// Line 1151, Address: 0x13bb7c, Func Offset: 0x16c
-	// Line 1150, Address: 0x13bb80, Func Offset: 0x170
-	// Line 1151, Address: 0x13bb88, Func Offset: 0x178
-	// Line 1152, Address: 0x13bb9c, Func Offset: 0x18c
-	// Line 1153, Address: 0x13bba0, Func Offset: 0x190
-	// Line 1154, Address: 0x13bbc4, Func Offset: 0x1b4
-	// Line 1156, Address: 0x13bbcc, Func Offset: 0x1bc
-	// Line 1157, Address: 0x13bbdc, Func Offset: 0x1cc
-	// Line 1156, Address: 0x13bbe0, Func Offset: 0x1d0
-	// Line 1157, Address: 0x13bbe8, Func Offset: 0x1d8
-	// Line 1158, Address: 0x13bbfc, Func Offset: 0x1ec
-	// Line 1159, Address: 0x13bc00, Func Offset: 0x1f0
-	// Line 1160, Address: 0x13bc24, Func Offset: 0x214
-	// Line 1162, Address: 0x13bc2c, Func Offset: 0x21c
-	// Line 1163, Address: 0x13bc3c, Func Offset: 0x22c
-	// Line 1162, Address: 0x13bc40, Func Offset: 0x230
-	// Line 1163, Address: 0x13bc48, Func Offset: 0x238
-	// Line 1164, Address: 0x13bc5c, Func Offset: 0x24c
-	// Line 1165, Address: 0x13bc60, Func Offset: 0x250
-	// Line 1166, Address: 0x13bc84, Func Offset: 0x274
-	// Line 1168, Address: 0x13bc8c, Func Offset: 0x27c
-	// Line 1169, Address: 0x13bc98, Func Offset: 0x288
-	// Line 1168, Address: 0x13bc9c, Func Offset: 0x28c
-	// Line 1169, Address: 0x13bca0, Func Offset: 0x290
-	// Line 1168, Address: 0x13bca4, Func Offset: 0x294
-	// Line 1169, Address: 0x13bcac, Func Offset: 0x29c
-	// Line 1170, Address: 0x13bcc0, Func Offset: 0x2b0
-	// Line 1171, Address: 0x13bcc4, Func Offset: 0x2b4
-	// Line 1172, Address: 0x13bce8, Func Offset: 0x2d8
-	// Line 1174, Address: 0x13bcf0, Func Offset: 0x2e0
-	// Line 1175, Address: 0x13bcfc, Func Offset: 0x2ec
-	// Line 1174, Address: 0x13bd00, Func Offset: 0x2f0
-	// Line 1175, Address: 0x13bd04, Func Offset: 0x2f4
-	// Line 1174, Address: 0x13bd08, Func Offset: 0x2f8
-	// Line 1175, Address: 0x13bd10, Func Offset: 0x300
-	// Line 1176, Address: 0x13bd24, Func Offset: 0x314
-	// Line 1177, Address: 0x13bd28, Func Offset: 0x318
-	// Line 1178, Address: 0x13bd4c, Func Offset: 0x33c
-	// Line 1180, Address: 0x13bd54, Func Offset: 0x344
-	// Line 1181, Address: 0x13bd60, Func Offset: 0x350
-	// Line 1180, Address: 0x13bd64, Func Offset: 0x354
-	// Line 1181, Address: 0x13bd68, Func Offset: 0x358
-	// Line 1180, Address: 0x13bd6c, Func Offset: 0x35c
-	// Line 1181, Address: 0x13bd74, Func Offset: 0x364
-	// Line 1182, Address: 0x13bd88, Func Offset: 0x378
-	// Line 1183, Address: 0x13bd8c, Func Offset: 0x37c
-	// Line 1184, Address: 0x13bdb0, Func Offset: 0x3a0
-	// Line 1186, Address: 0x13bdb8, Func Offset: 0x3a8
-	// Line 1187, Address: 0x13bdc0, Func Offset: 0x3b0
-	// Line 1186, Address: 0x13bdc4, Func Offset: 0x3b4
-	// Line 1187, Address: 0x13bdcc, Func Offset: 0x3bc
-	// Line 1188, Address: 0x13bde0, Func Offset: 0x3d0
-	// Line 1189, Address: 0x13bde8, Func Offset: 0x3d8
-	// Func End, Address: 0x13bdf0, Func Offset: 0x3e0
+    if ((!(sys->pad_on & 0x1)) && ((plp->stflg & 0x80))) 
+    {
+        plp->flg |= 0x200000;
+        
+        if (plp->mode3 == 5) 
+        {
+            plp->mode3 = 6;
+        }
+    } 
+    else 
+    {
+        plp->mode1 = 0;
+        
+        plp->flg &= ~0x200000;
+        
+        plp->stflg &= ~0x400;
+        sys->st_flg &= ~0x4;
+        
+        switch (sys->pad_on & 0xF) 
+        {
+        case 8:
+            if (plp->mode2 != 1) 
+            {
+                plp->mode3 = 0;
+            }
+            
+            plp->mode2 = 1;
+            break;
+        case 4:
+            if (plp->mode2 != 2) 
+            {
+                plp->mode3 = 0;
+            }
+            
+            plp->mode2 = 2;
+            break;
+        case 1:
+            plp->flg |= 0x200000;
+            
+            if (!(plp->stflg & 0x80)) 
+            {
+                plp->mode2 = 3;
+                
+                if (!(sys->pad_old & 0x1)) 
+                {
+                    plp->mode3 = 0;
+                }
+            }
+            
+            return;
+        case 9:
+            plp->flg |= 0x200000;
+            
+            if (!(plp->stflg & 0x80)) 
+            {
+                plp->mode2 = 4;
+                
+                if (!(sys->pad_old & 0x1)) 
+                {
+                    plp->mode3 = 0;
+                }
+            }
+            
+            break;
+        case 5:
+            plp->flg |= 0x200000;
+            
+            if (!(plp->stflg & 0x80))
+            {
+                plp->mode2 = 5;
+                
+                if (!(sys->pad_old & 0x1)) 
+                {
+                    plp->mode3 = 0;
+                }
+            }
+            
+            break;
+        case 2:
+            plp->flg |= 0x200000;
+            
+            if (plp->mode2 != 12) 
+            {
+                plp->mode2 = 9;
+                
+                if (!(sys->pad_old & 0x2)) 
+                {
+                    plp->mode3 = 0;
+                }
+            }
+            
+            break;
+        case 10:
+            plp->flg |= 0x200000;
+            
+            if (plp->mode2 != 12) 
+            {
+                plp->mode2 = 10;
+                
+                if (!(sys->pad_old & 0x2)) 
+                {
+                    plp->mode3 = 0;
+                }
+            }
+            
+            break;
+        case 6:
+            plp->flg |= 0x200000;
+            
+            if (plp->mode2 != 12) 
+            {
+                plp->mode2 = 11;
+                
+                if (!(sys->pad_old & 0x2)) 
+                {
+                    plp->mode3 = 0;
+                }
+            }
+            
+            break;
+        default:
+            plp->flg |= 0x10;
+            
+            if (plp->mode2 != 0) 
+            {
+                plp->mode3 = 0;
+            }
+            
+            plp->mode2 = 0;
+            break;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x13bdf0
 void bhCPM1_act_bas()
 {
