@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/en01.h"
+#include "../../../ps2/veronica/prog/main.h"
 
 /*typedef struct _anon0;
 typedef struct BH_PWORK;
@@ -1877,28 +1878,44 @@ void bhEne01_DmgCheckTypeDmmy()
 	// Func End, Address: 0x175da8, Func Offset: 0x8
 }*/
 
-// 
-// Start address: 0x175db0
+// 100% matching!
 void bhEne01(BH_PWORK* epw)
 {
-	// Line 493, Address: 0x175db0, Func Offset: 0
-	// Line 496, Address: 0x175dbc, Func Offset: 0xc
-	// Line 500, Address: 0x175dc4, Func Offset: 0x14
-	// Line 503, Address: 0x175dcc, Func Offset: 0x1c
-	// Line 509, Address: 0x175ddc, Func Offset: 0x2c
-	// Line 513, Address: 0x175de8, Func Offset: 0x38
-	// Line 514, Address: 0x175e08, Func Offset: 0x58
-	// Line 515, Address: 0x175e28, Func Offset: 0x78
-	// Line 518, Address: 0x175e48, Func Offset: 0x98
-	// Line 521, Address: 0x175e54, Func Offset: 0xa4
-	// Line 522, Address: 0x175e6c, Func Offset: 0xbc
-	// Line 525, Address: 0x175e7c, Func Offset: 0xcc
-	// Line 527, Address: 0x175e88, Func Offset: 0xd8
-	// Func End, Address: 0x175e98, Func Offset: 0xe8
-	scePrintf("bhEne01 - UNIMPLEMENTED!\n");
+    bhEne01_DmgCheck(epw);
+    
+    bhEne01_MainLoop(epw);
+    
+    if ((epw->flg & 0x4)) 
+    {
+        epw->flg &= ~0x4;
+    }
+    
+    if (EXP0_UC(47) > 0)
+    {
+        EXP0_UC(47)--;
+    }
+    
+    if (EXP0_I(48) > 0)
+    {
+        EXP0_I(48)--;
+    }
+    
+    if (EXP0_I(52) > 0)
+    {
+        EXP0_I(52)--;
+    }
+    
+    bhEne01_CollCheck(epw);
+    
+    if ((EXP0_I(64) & 0x80000))
+    {
+        bhEne01_PlayerLink(plp, epw);
+    }
+    
+    bhEne01_CalcEnemy(epw); 
 }
 
-/*// 
+// 
 // Start address: 0x175ea0
 void bhEne01_MainLoop(BH_PWORK* epw)
 {
@@ -1913,9 +1930,10 @@ void bhEne01_MainLoop(BH_PWORK* epw)
 	// Line 575, Address: 0x175f8c, Func Offset: 0xec
 	// Line 717, Address: 0x175f94, Func Offset: 0xf4
 	// Func End, Address: 0x175fa4, Func Offset: 0x104
+	scePrintf("bhEne01_MainLoop - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x175fb0
 void bhEne01_Init(BH_PWORK* epw)
 {
@@ -2303,19 +2321,19 @@ void bhEne01_SearchNeck(BH_PWORK* epw)
 	// Line 1385, Address: 0x177074, Func Offset: 0x194
 	// Line 1388, Address: 0x177080, Func Offset: 0x1a0
 	// Func End, Address: 0x177094, Func Offset: 0x1b4
-}
+}*/
 
 // 
 // Start address: 0x1770a0
 void bhEne01_PlayerLink(BH_PWORK* ply, BH_PWORK* epw)
 {
 	int mtn_no;
-	_anon11 pd;
-	_anon11 ps;
-	_anon11 opos;
-	_anon11 pos;
-	_anon29* ply_pos_p;
-	_anon29* ply_pos[16];
+	//_anon11 pd;
+	//_anon11 ps;
+	//_anon11 opos;
+	//_anon11 pos;
+	//_anon29* ply_pos_p;
+	//_anon29* ply_pos[16];
 	// Line 1404, Address: 0x1770a0, Func Offset: 0
 	// Line 1405, Address: 0x1770b8, Func Offset: 0x18
 	// Line 1404, Address: 0x1770bc, Func Offset: 0x1c
@@ -2373,14 +2391,15 @@ void bhEne01_PlayerLink(BH_PWORK* ply, BH_PWORK* epw)
 	// Line 1497, Address: 0x177330, Func Offset: 0x290
 	// Line 1498, Address: 0x177340, Func Offset: 0x2a0
 	// Func End, Address: 0x177364, Func Offset: 0x2c4
+	scePrintf("bhEne01_PlayerLink - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x177370
 void bhEne01_CalcEnemy(BH_PWORK* epw)
 {
-	_anon11 ps;
-	_anon2* owk;
+	//_anon11 ps;
+	//_anon2* owk;
 	BH_PWORK* epp;
 	// Line 1514, Address: 0x177370, Func Offset: 0
 	// Line 1520, Address: 0x17738c, Func Offset: 0x1c
@@ -2457,6 +2476,7 @@ void bhEne01_CalcEnemy(BH_PWORK* epw)
 	// Line 1615, Address: 0x177678, Func Offset: 0x308
 	// Line 1618, Address: 0x177694, Func Offset: 0x324
 	// Func End, Address: 0x1776b4, Func Offset: 0x344
+	scePrintf("bhEne01_CalcEnemy - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2551,9 +2571,10 @@ void bhEne01_DmgCheck(BH_PWORK* epw)
 	// Line 1782, Address: 0x177b94, Func Offset: 0x4d4
 	// Line 1785, Address: 0x177ba0, Func Offset: 0x4e0
 	// Func End, Address: 0x177bb8, Func Offset: 0x4f8
+	scePrintf("bhEne01_DmgCheck - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x177bc0
 void bhEne01_SetBlood(BH_PWORK* epw, int hp)
 {
@@ -2973,14 +2994,14 @@ int bhEne01_DmgModeJumpCheck(BH_PWORK* epw)
 	// Line 2657, Address: 0x17909c, Func Offset: 0x2cc
 	// Line 2658, Address: 0x1790a0, Func Offset: 0x2d0
 	// Func End, Address: 0x1790b8, Func Offset: 0x2e8
-}
+}*/
 
 // 
 // Start address: 0x1790c0
 void bhEne01_CollCheck(BH_PWORK* epw)
 {
-	_anon0* hp;
-	_anon2* owk;
+	//_anon0* hp;
+	//_anon2* owk;
 	BH_PWORK* ep;
 	BH_PWORK* epp;
 	// Line 2677, Address: 0x1790c0, Func Offset: 0
@@ -3027,9 +3048,10 @@ void bhEne01_CollCheck(BH_PWORK* epw)
 	// Line 2774, Address: 0x1792b0, Func Offset: 0x1f0
 	// Line 2790, Address: 0x1792c0, Func Offset: 0x200
 	// Func End, Address: 0x1792d4, Func Offset: 0x214
+	scePrintf("bhEne01_CollCheck - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1792e0
 void bhEne01_CollCheckPush(BH_PWORK* epw, BH_PWORK* top_epw)
 {

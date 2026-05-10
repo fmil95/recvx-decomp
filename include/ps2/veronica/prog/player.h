@@ -2,6 +2,7 @@
 #define _PLAYER_H_
 
 #include "types.h"
+#include "macros.h"
 
 typedef struct WPN_TAB
 {

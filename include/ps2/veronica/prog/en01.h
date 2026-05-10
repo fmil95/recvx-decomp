@@ -2,6 +2,7 @@
 #define _EN01_H_
 
 #include "types.h"
+#include "macros.h"
 
 void bhEne01_DmgCheckTypeDmmy();
 void bhEne01(BH_PWORK* epw);
