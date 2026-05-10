@@ -42,7 +42,7 @@ static CVFS_IF addDevice(Sint8 *devname, CVF_FS_VTBLFN func)
 
     cvfs_tbl[lp].vtbl = fsif;
     
-    memcpy(cvfs_tbl[lp].dname, devname, strlen((const char*)devname) + 1);
+    strcpy_s((char*)cvfs_tbl[lp].dname, sizeof(cvfs_tbl[lp].dname), (const char*)devname);
 
     return fsif;
 }
