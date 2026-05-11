@@ -1441,15 +1441,13 @@ void bhEne01_DGType00B(BH_PWORK* epw)
 	bhEne01_DamageMode2B[epw->mode2](epw);
 }
 
-/*// 
-// Start address: 0x18ab60
+// 100% matching!
 void bhEne01_DGType02B(BH_PWORK* epw)
 {
-	// Line 604, Address: 0x18ab60, Func Offset: 0
-	// Func End, Address: 0x18ab80, Func Offset: 0x20
+	bhEne01_DamageMode2B[epw->mode2 + 10](epw);
 }
 
-// 
+/*// 
 // Start address: 0x18ab80
 void bhEne01_DDType00B(BH_PWORK* epw)
 {
