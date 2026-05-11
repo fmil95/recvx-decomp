@@ -1846,9 +1846,9 @@ void(*bhEne01_MoveTypeW)(BH_PWORK*)[16];
 void(*bhEne01_MoveMode2W)(BH_PWORK*)[17];
 void(*bhEne01_NageTypeW)(BH_PWORK*)[16];
 void(*bhEne01_NageMode2W)(BH_PWORK*)[4];
-void(*bhEne01_DamageTypeW)(BH_PWORK*)[16];
-void(*bhEne01_DamageMode2W)(BH_PWORK*)[17];
-void(*bhEne01_DieTypeW)(BH_PWORK*)[16];
+void(*bhEne01_DamageTypeW)(BH_PWORK*)[16];*/
+void (*bhEne01_DamageMode2W[17])(BH_PWORK*);
+/*void(*bhEne01_DieTypeW)(BH_PWORK*)[16];
 void(*bhEne01_DieMode2W)(BH_PWORK*)[4];
 void(*bhEne01_PlyDmgMode)(BH_PWORK*, BH_PWORK*)[2];
 void(*bhEne01_DmgCheckType)(BH_PWORK*)[16];
@@ -6167,17 +6167,15 @@ void bhEne01_EnemyPushChk(BH_PWORK* epw, int mode)
 	// Line 8106, Address: 0x182340, Func Offset: 0x320
 	// Line 8107, Address: 0x182368, Func Offset: 0x348
 	// Func End, Address: 0x18238c, Func Offset: 0x36c
-}
+}*/
 
-// 
-// Start address: 0x182390
+// 100% matching!
 void bhEne01_DGType00(BH_PWORK* epw)
 {
-	// Line 8127, Address: 0x182390, Func Offset: 0
-	// Func End, Address: 0x1823b0, Func Offset: 0x20
+	bhEne01_DamageMode2W[epw->mode2](epw);
 }
 
-// 
+/*// 
 // Start address: 0x1823b0
 void bhEne01_DGType02(BH_PWORK* epw)
 {
