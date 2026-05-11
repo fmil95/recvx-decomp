@@ -1716,17 +1716,15 @@ void bhEne01Arm_Init(BH_PWORK* epw)
 	// Line 463, Address: 0x18c00c, Func Offset: 0x6c
 	// Line 464, Address: 0x18c010, Func Offset: 0x70
 	// Func End, Address: 0x18c020, Func Offset: 0x80
-}
+}*/
 
-// 
-// Start address: 0x18c020
+// 100% matching!
 void bhEne01Arm_Move(BH_PWORK* epw)
 {
-	// Line 481, Address: 0x18c020, Func Offset: 0
-	// Func End, Address: 0x18c028, Func Offset: 0x8
+	bhEne01Arm_MV00();
 }
 
-// 
+/*// 
 // Start address: 0x18c030
 void bhEne01Arm_MV00()
 {
