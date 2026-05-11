@@ -1563,9 +1563,9 @@ void bhEne01Leg_MV00();
 void bhEne01Leg_DG00(BH_PWORK* epw);
 void bhEne01Head(BH_PWORK* epw);
 void bhEne01Head_Init(BH_PWORK* epw);
-void bhEne01Head_Move(BH_PWORK* epw);
+void bhEne01Head_Move(BH_PWORK* epw);*/
 void bhEne01Head_MV00();
-void bhEne01Head_Damage(BH_PWORK* epw);
+/*void bhEne01Head_Damage(BH_PWORK* epw);
 void bhEne01Head_DG00(BH_PWORK* epw);
 void bhEne01Cap(BH_PWORK* epw);
 void bhEne01Cap_Init(BH_PWORK* epw);
@@ -2205,17 +2205,15 @@ void bhEne01Head_Init(BH_PWORK* epw)
 	// Line 1190, Address: 0x18d2b8, Func Offset: 0x68
 	// Line 1191, Address: 0x18d2bc, Func Offset: 0x6c
 	// Func End, Address: 0x18d2cc, Func Offset: 0x7c
-}
+}*/
 
-// 
-// Start address: 0x18d2d0
+// 100% matching!
 void bhEne01Head_Move(BH_PWORK* epw)
 {
-	// Line 1208, Address: 0x18d2d0, Func Offset: 0
-	// Func End, Address: 0x18d2d8, Func Offset: 0x8
+	bhEne01Head_MV00();
 }
 
-// 
+/*// 
 // Start address: 0x18d2e0
 void bhEne01Head_MV00()
 {
