@@ -1228,9 +1228,9 @@ struct _anon33
 	float r;
 };
 
-void(*bhEne01_MoveTypeB)(BH_PWORK*)[16];
-void(*bhEne01_MoveMode2B)(BH_PWORK*)[17];
-void(*bhEne01_NageTypeB)(BH_PWORK*)[16];
+void(*bhEne01_MoveTypeB)(BH_PWORK*)[16];*/
+void (*bhEne01_MoveMode2B[17])(BH_PWORK*); // DATA
+/*void(*bhEne01_NageTypeB)(BH_PWORK*)[16];
 void(*bhEne01_NageMode2B)(BH_PWORK*)[4];
 void(*bhEne01_DamageTypeB)(BH_PWORK*)[16];
 void(*bhEne01_DamageMode2B)(BH_PWORK*)[17];
@@ -1285,17 +1285,15 @@ void bhEne01_Brain02B(BH_PWORK* epw)
 	// Line 281, Address: 0x18a4fc, Func Offset: 0x8c
 	// Line 284, Address: 0x18a50c, Func Offset: 0x9c
 	// Func End, Address: 0x18a51c, Func Offset: 0xac
-}
+}*/
 
-// 
-// Start address: 0x18a520
+// 100% matching!
 void bhEne01_MVType00B(BH_PWORK* epw)
 {
-	// Line 301, Address: 0x18a520, Func Offset: 0
-	// Func End, Address: 0x18a540, Func Offset: 0x20
+	bhEne01_MoveMode2B[epw->mode2](epw);
 }
 
-// 
+/*// 
 // Start address: 0x18a540
 void bhEne01_MVType02B(BH_PWORK* epw)
 {
