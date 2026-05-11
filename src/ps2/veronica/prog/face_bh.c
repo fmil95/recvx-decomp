@@ -764,272 +764,169 @@ unsigned int fmCnkGetLastFrame(MASK_WORK* fm)
 }
 
 // 100% matching!
-// TODO: while this code matches, this is not how they wrote the function and it needs binding to the inline ASM all of the local variables 
 void _fmCnkCalcMuscle(MASK_WORK* fm)  
 {
-    float rsum;           // needs use    
-    unsigned int vofs;    // needs use
-    float para;           // needs use     
-    TANG_WORK* jaw;      
-    float rate;           // needs use         
-    float sum;            // needs use        
-    float* mrp;           // needs use         
-    NJS_POINT3** mvp;     // needs use    
-    float mrate[32];      // needs use   
-    NJS_POINT3* mvec[32]; // needs use
-    float* param;         // needs use     
-    VLIST_WORK list;      // needs use    
-    LIST_WORK* con;       // needs use    
-    float* dvp, *svp;     // need use        
-    int m, n, i;          // need use            
+    int m, n, i;  
+    float* dvp, *svp;    
+    LIST_WORK* con;  
+    VLIST_WORK* list; 
+    float* param; 
+    NJS_POINT3* mvec[32]; 
+    float mrate[32];     
+    NJS_POINT3** mvp;  
+    float* mrp; 
+    float sum; 
+    float rate;
+    TANG_WORK* jaw;  
+    float para; 
+    unsigned int vofs;  
+    float rsum;          
+    void* p0, *p1; // not from DWARF
 
+    dvp = (float*)&fm->dst->vlist[fm->vtop];
+    svp = (float*)&fm->src->vlist[fm->vtop];
+
+    jaw = fm->jaw;
+
+    PREFETCH(*(u_long128*)&svp[jaw->id * 8]);
+    PREFETCH(*(u_long128*)&dvp[jaw->id * 8]);
+    
+    n = fm->jnum;
+    
     asm volatile
     ("
     .set noreorder
-        lw     a1, MASK_WORK.vtop(%0)
-        lw     v1, MASK_WORK.src(%0)
-        lw     a2, MASK_WORK.dst(%0)
-        lw     %1, MASK_WORK.jaw(%0)
+        ble  %0, zero, lbl_8C
         
-        addiu  sp, sp, -0x100
+        lw   t0, TANG_WORK.id(%1)
         
-        sll    a3, a1, 2
+    lbl_5C:
+        muli t0, t0, 32
         
-        lw     a1, 0x0(v1)
-        lw     a2, 0x0(a2)
-        lw     v1, TANG_WORK.id(%1)
+        add  t1, %4, t0
+        add  t2, %3, t0
         
-        addu   t4, a1, a3
-        addu   t5, a2, a3
-    
-        sll    a1, v1, 5
-    
-        addu   v1, t4, a1
+        lq   t3, 0(t2)
         
-        lq     v1, 0x0(v1)
+        addi %1, %1,  8
+        addi %0, %0, -1
         
-        pref   0x00, 0x0(v1)
+        lw   t0, TANG_WORK.id(%1)
         
-        addu   v1, t5, a1
-    
-        lq     v1, 0x0(v1)
+        bgt  %0, zero, lbl_5C
         
-        pref   0x00, 0x0(v1)
+        sq   t3, 0(t1)
         
-        lw     v1, MASK_WORK.jnum(%0)
-        nop
-    
-        slt    at, zero, v1
-        beqz   at, l_00299DBC
-    
-        lw     t0, TANG_WORK.id(%1)
-        
-    l_00299D8C:
-        muli   t0, t0, 0x20  
-    
-        add    t1, t5, t0 
-        add    t2, t4, t0 
-    
-        lq     t3, 0x0(t2)
-        
-        addi   %1, %1, sizeof(TANG_WORK) 
-        addi   v1, v1, -0x1 
-        
-        lw     t0, TANG_WORK.id(%1)
-        
-        slt    at, zero, v1
-        bnez   at, l_00299D8C
-    
-        sq     t3, 0x0(t1)
-        
-    l_00299DBC:
-        lw     a1, MASK_WORK.list(%0)
-        lw     a2, MASK_WORK.vlist(%0)
-        lw     v1, MASK_WORK.lnum(%0)
-        
-        li     t0, 0x3F800000
-        
-        mtc1   zero, f9
-        mtc1   t0, f0
-    
-        b      l_00299F58
-    
-        addiu  a3, %0, MASK_WORK.param
-        
-    l_00299DDC:
-        lw     t5, MASK_WORK.dst(%0)
-        lh     t0, 0x0(a2)
-    
-        mtc1   zero, f2
-    
-        paddub t3, zero, zero
-    
-        addiu  t1, sp, 0x0
-    
-        lw     t5, 0x0(t5)
-        
-        sll    t0, t0, 5
-    
-        addiu  t2, sp, 0x80
-        addu   t0, t0, t5
-        
-        lw     t0, 0x40(t0)
-        
-        pref   0x00, 0x0(t0)
-        pref   0x00, 0x0(t6)
-        
-        b      l_00299E88
-    
-        lb     t5, 0x2(a2)
-        
-    l_00299E14:
-        lw     t0, 0x0(a1)
-        
-        sll    t0, t0, 2
-    
-        addu   t0, a3, t0
-        
-        lwc1   f4, 0x0(t0)
-        
-        c.eq.s f9, f4
-        nop
-        bc1tl  l_00299E7C
-    
-        addiu  a1, a1, 0x14
-        addiu  t0, a1, 0x4
-        
-        c.lt.s f4, f9
-        
-        sw     t0, 0x0(t1)
-        
-        bc1f   l_00299E50
-    
-        addiu  t1, t1, 0x4
-    
-        b      l_00299E58
-    
-        neg.s  f3, f4
-        
-    l_00299E50:
-        mov.s  f3, f4
-        nop
-    
-    l_00299E58:
-        lwc1   f1, 0x10(a1)
-    
-        addiu  t3, t3, 0x1
-        
-        mul.s  f3, f1, f3
-        mul.s  f1, f4, f3
-        
-        swc1   f1, 0x0(t2)
-        
-        add.s  f2, f2, f3
-        
-        addiu  t2, t2, 0x4
-        nop
-        addiu  a1, a1, 0x14
-    
-    l_00299E7C:
-        pref   0x00, 0x0(t7)
-        
-        addiu  t5, t5, -0x1
-        nop
-        
-    l_00299E88:
-        bgtz   t5, l_00299E14
-        nop
-        nop
-        nop
-    
-        div.s  f1, f0, f2
-        
-        lh     t9, 0x0(a2)
-        lw     t0, MASK_WORK.dst(%0)
-        
-        paddub t6, t1, zero
-        paddub t7, t2, zero
-    
-        sll    t5, t9, 3
-    
-        addiu  %1, t5, 0x10
-        
-        lw     t5, 0x0(t0)
-        
-        sll    %1, %1, 2
-        sll    t0, t9, 5
-        
-        addu   t0, t4, t0
-        
-        lq     t0, 0x0(t0)
-        
-        addu   t5, t5, %1
-    
-        sq     t0, 0x0(t5)
-        
-        slt    at, zero, t3
-        beqz   at, l_00299F50
-    
-        mfc1   t0, f1
-    
-        addi   t6, t1, -0x4 
-        addi   t7, t2, -0x4 
-        addi   t3, t3, -0x1 
-        
-        mtc1   t0, f8
-        
-        lwc1   f7, 0x0(t7)
-        
-        lw     t1, 0x0(t6)
-        
-        lwc1   f1, 0x0(t5)
-        lwc1   f2, 0x4(t5)
-        lwc1   f3, 0x8(t5)
-        
-    l_00299F00:
-        mul.s  f7, f7, f8
-        
-        lwc1   f4, 0x0(t1)
-        lwc1   f5, 0x4(t1)
-        lwc1   f6, 0x8(t1)
-        
-        addi   t7, t7, -0x4 
-        
-        mul.s  f4, f4, f7
-        mul.s  f5, f5, f7
-        mul.s  f6, f6, f7
-        
-        addi   t6, t6, -0x4 
-        
-        add.s  f1, f1, f4
-        add.s  f2, f2, f5
-        add.s  f3, f3, f6
-        
-        addi   t3, t3, -0x1 
-        
-        lwc1   f7, 0x0(t7)
-        
-        slt    at, t3, zero
-        beqz   at, l_00299F00
-    
-        lw     t1, 0x0(t6)
-        
-        swc1   f1, 0x0(t5)
-        swc1   f2, 0x4(t5)
-        swc1   f3, 0x8(t5)
-        
-    l_00299F50:
-        addiu  a2, a2, 0x4
-        addiu  v1, v1, -0x1
-        
-    l_00299F58:
-        bgtz   v1, l_00299DDC
-        nop
+    lbl_8C:
     .set reorder
-    " : : "r"(fm), "r"(jaw) : 
-    ); 
+    " : "=r"(n), "=r"(jaw) : "r"(jaw->id), "r"(svp), "r"(dvp) : "t0", "t1", "t2", "t3", "memory" 
+    );
+    
+    con = fm->list;
+    list = fm->vlist;
 
-    asm("addiu  sp, sp, 0x100");
+    param = (float*)&fm->param;
+    
+    for (n = fm->lnum; n > 0; list++, n--) 
+    {
+        sum = 0;
+        
+        m = 0;
+        
+        mvp = mvec;
+        mrp = mrate;
+        
+        PREFETCH(fm->dst->vlist[(list->id * 8) + 16]);
+        PREFETCH(p0);
+        
+        for (i = list->mnum; i > 0; i--) 
+        {
+            para = param[con->id];
+            
+            if (para != 0) 
+            {
+                *mvp++ = &con->vec;
+                
+                rate = con->scal * ((para < 0) ? -para : para);
+                
+                sum += rate;
+                
+                *mrp++ = para * rate;
+                
+                m++;
+            }
+            
+            con++;
+            
+            PREFETCH(p1);
+        }
+
+        rsum = 1.0f / sum;
+        
+        dvp = (float*)&fm->dst->vlist[(list->id * 8) + 16];
+        *(u_long128*)dvp = *(u_long128*)&svp[list->id * 8];
+
+        p0 = mvp;
+        p1 = mrp;
+        
+        asm volatile
+        ("
+        .set noreorder
+            ble   %7, zero, lbl_220
+            
+            mfc1  t0, %4
+            
+            addi  %2, %5, -4
+            addi  %3, %6, -4
+            addi  %7, %7, -1
+            
+            mtc1  t0, f8
+            
+            lwc1  f7, 0(%3)
+            
+            lw    t1, 0(%2)
+            
+            lwc1  f1, 0(%1)
+            lwc1  f2, 4(%1)
+            lwc1  f3, 8(%1)
+            
+        lbl_1D0:
+            mul.s f7, f7, f8
+            
+            lwc1  f4, 0(t1)
+            lwc1  f5, 4(t1)
+            lwc1  f6, 8(t1)
+            
+            addi  %3, %3, -4
+            
+            mul.s f4, f4, f7
+            mul.s f5, f5, f7
+            mul.s f6, f6, f7
+            
+            addi  %2, %2, -4
+            
+            add.s f1, f1, f4
+            add.s f2, f2, f5
+            add.s f3, f3, f6
+            
+            addi  %7, %7, -1
+            
+            lwc1  f7, 0(%3)
+            
+            bge   %7, zero, lbl_1D0
+            
+            lw    t1, 0(%2)
+            
+            swc1  f1, 0(%1)
+            swc1  f2, 4(%1)
+            swc1  f3, 8(%1)
+            
+        lbl_220:
+        .set reorder
+        " : "=r"(svp), "=r"(dvp), "=r"(p0), "=r"(p1) : "f"(rsum), "r"(mvp), "r"(mrp), "r"(m)
+          : "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "t0", "t1", "memory"
+        );
+    }
 }
 
 // 99.32% matching

@@ -45,4 +45,6 @@
 
 #define EP_EXP0_I(o) (*(int   *)((char *)ep->exp0 + (o)))
 
+#define PREFETCH(_v) asm("pref 0x0,0(%0)": : "r"(_v) : "memory")
+
 #endif
