@@ -1258,17 +1258,15 @@ void bhEne01_DG13B(BH_PWORK* epw);
 void bhEne01_DD02B(BH_PWORK* epw);
 void bhEne01_RotNeck(BH_PWORK* epw, int neck_no, BH_PWORK* ply, int ply_neck_no);
 int bhEne01_SideRotNeck(BH_PWORK* epw, int neck_no, _anon14* trg, int neck_ry, int neck_ry_max, int ang);
-int bhSearchPlayer2(BH_PWORK* epw, _anon14* pp, int pp_r, int r);
+int bhSearchPlayer2(BH_PWORK* epw, _anon14* pp, int pp_r, int r);*/
 
-// 
-// Start address: 0x18a460
+// 100% matching!
 void bhEne01_Dummy()
 {
-	// Line 101, Address: 0x18a460, Func Offset: 0
-	// Func End, Address: 0x18a468, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x18a470
 void bhEne01_Brain02B(BH_PWORK* epw)
 {
