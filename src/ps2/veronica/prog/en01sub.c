@@ -2213,15 +2213,13 @@ void bhEne01Head_Move(BH_PWORK* epw)
 	bhEne01Head_MV00();
 }
 
-/*// 
-// Start address: 0x18d2e0
+// 100% matching!
 void bhEne01Head_MV00()
 {
-	// Line 1228, Address: 0x18d2e0, Func Offset: 0
-	// Func End, Address: 0x18d2e8, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x18d2f0
 void bhEne01Head_Damage(BH_PWORK* epw)
 {
