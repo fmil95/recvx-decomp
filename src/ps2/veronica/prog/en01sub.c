@@ -2628,7 +2628,7 @@ void bhEne01Worm_Move(BH_PWORK* epw)
 // 100% matching!
 void bhEne01Worm_MV00()
 {
-	
+
 }
 
 /*// 
@@ -3175,17 +3175,15 @@ void bhEne01Scope_Init(BH_PWORK* epw)
 	// Line 2606, Address: 0x18f5f0, Func Offset: 0x50
 	// Line 2608, Address: 0x18f5f4, Func Offset: 0x54
 	// Func End, Address: 0x18f5fc, Func Offset: 0x5c
-}
+}*/
 
-// 
-// Start address: 0x18f600
+// 100% matching!
 void bhEne01Scope_Move()
 {
-	// Line 2625, Address: 0x18f600, Func Offset: 0
-	// Func End, Address: 0x18f608, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x18f610
 void bhEne01Scope_Effect(BH_PWORK* epw)
 {
