@@ -1234,9 +1234,9 @@ void (*bhEne01_MoveMode2B[17])(BH_PWORK*); // DATA
 void(*bhEne01_NageMode2B)(BH_PWORK*)[4];
 void(*bhEne01_DamageTypeB)(BH_PWORK*)[16];*/
 void (*bhEne01_DamageMode2B[17])(BH_PWORK*); // DATA
-/*void(*bhEne01_DieTypeB)(BH_PWORK*)[16];
-void(*bhEne01_DieMode2B)(BH_PWORK*)[4];
-BH_PWORK* plp;
+/*void(*bhEne01_DieTypeB)(BH_PWORK*)[16];*/
+void (*bhEne01_DieMode2B[4])(BH_PWORK*); // DATA
+/*BH_PWORK* plp;
 _anon9* sys;
 _anon23 en01_BldTbl;
 
@@ -1447,15 +1447,13 @@ void bhEne01_DGType02B(BH_PWORK* epw)
 	bhEne01_DamageMode2B[epw->mode2 + 10](epw);
 }
 
-/*// 
-// Start address: 0x18ab80
+// 100% matching!
 void bhEne01_DDType00B(BH_PWORK* epw)
 {
-	// Line 625, Address: 0x18ab80, Func Offset: 0
-	// Func End, Address: 0x18aba0, Func Offset: 0x20
+	bhEne01_DieMode2B[epw->mode2](epw);
 }
 
-// 
+/*// 
 // Start address: 0x18aba0
 void bhEne01_DDType02B(BH_PWORK* epw)
 {
