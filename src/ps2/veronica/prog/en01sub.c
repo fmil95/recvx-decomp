@@ -2088,17 +2088,15 @@ void bhEne01Leg_Init(BH_PWORK* epw)
 	// Line 963, Address: 0x18cf1c, Func Offset: 0x6c
 	// Line 964, Address: 0x18cf20, Func Offset: 0x70
 	// Func End, Address: 0x18cf30, Func Offset: 0x80
-}
+}*/
 
-// 
-// Start address: 0x18cf30
+// 100% matching!
 void bhEne01Leg_Move(BH_PWORK* epw)
 {
-	// Line 981, Address: 0x18cf30, Func Offset: 0
-	// Func End, Address: 0x18cf38, Func Offset: 0x8
+	bhEne01Leg_MV00();
 }
 
-// 
+/*// 
 // Start address: 0x18cf40
 void bhEne01Leg_MV00()
 {
