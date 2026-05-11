@@ -1519,10 +1519,10 @@ struct _anon43
 	float prm_3;
 	float prm_4;
 	unsigned char* recp;
-};
+};*/
 
-void(*bhEne01Parent_Mode0)(BH_PWORK*)[2];
-void(*bhEne01Arm_Mode0)(BH_PWORK*)[4];
+void (*bhEne01Parent_Mode0[2])(BH_PWORK*); // DATA
+/*void(*bhEne01Arm_Mode0)(BH_PWORK*)[4];
 void(*bhEne01Arm_DamageMode)(BH_PWORK*)[2];
 void(*bhEne01Leg_Mode0)(BH_PWORK*)[4];
 void(*bhEne01Leg_DamageMode)(BH_PWORK*)[1];
@@ -1586,17 +1586,15 @@ void bhEne01Bom_Move(BH_PWORK* epw);
 void bhEne01Scope(BH_PWORK* epw);
 void bhEne01Scope_Init(BH_PWORK* epw);
 void bhEne01Scope_Move();
-void bhEne01Scope_Effect(BH_PWORK* epw);
+void bhEne01Scope_Effect(BH_PWORK* epw);*/
 
-// 
-// Start address: 0x18bc70
+// 100% matching!
 void bhEne01Parent(BH_PWORK* epw)
 {
-	// Line 225, Address: 0x18bc70, Func Offset: 0
-	// Func End, Address: 0x18bc90, Func Offset: 0x20
+	bhEne01Parent_Mode0[epw->mode0](epw);
 }
 
-// 
+/*// 
 // Start address: 0x18bc90
 void bhEne01Parent_Init(BH_PWORK* epw)
 {
@@ -3222,4 +3220,3 @@ void bhEne01Scope_Effect(BH_PWORK* epw)
 	// Line 2682, Address: 0x18f808, Func Offset: 0x1f8
 	// Func End, Address: 0x18f828, Func Offset: 0x218
 }*/
-

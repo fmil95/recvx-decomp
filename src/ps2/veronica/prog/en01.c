@@ -8985,4 +8985,3 @@ void bhEne01_FlyingCap(BH_PWORK* epw, int tbl_no)
 	// Line 13425, Address: 0x18a444, Func Offset: 0xe4
 	// Func End, Address: 0x18a458, Func Offset: 0xf8
 }*/
-
