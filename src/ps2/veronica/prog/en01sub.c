@@ -1550,9 +1550,9 @@ void bhEne01Parent_NearestCheck();
 void bhEne01Parent_NoKaidanCheck();
 void bhEne01Arm(BH_PWORK* epw);
 void bhEne01Arm_Init(BH_PWORK* epw);
-void bhEne01Arm_Move(BH_PWORK* epw);
+void bhEne01Arm_Move(BH_PWORK* epw);*/
 void bhEne01Arm_MV00();
-void bhEne01Arm_Damage(BH_PWORK* epw);
+/*void bhEne01Arm_Damage(BH_PWORK* epw);
 void bhEne01Arm_DG00(BH_PWORK* epw);
 void bhEne01Arm_DG01(BH_PWORK* epw);
 void bhEne01Leg(BH_PWORK* epw);
@@ -1724,15 +1724,13 @@ void bhEne01Arm_Move(BH_PWORK* epw)
 	bhEne01Arm_MV00();
 }
 
-/*// 
-// Start address: 0x18c030
+// 100% matching!
 void bhEne01Arm_MV00()
 {
-	// Line 501, Address: 0x18c030, Func Offset: 0
-	// Func End, Address: 0x18c038, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x18c040
 void bhEne01Arm_Damage(BH_PWORK* epw)
 {
