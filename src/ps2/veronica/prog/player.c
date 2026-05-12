@@ -1647,82 +1647,135 @@ void bhControlPlayerPad()
     }
 }
 
-/*// 
-// Start address: 0x13bdf0
+// 100% matching!
 void bhCPM1_act_bas()
 {
-	// Line 1195, Address: 0x13bdf0, Func Offset: 0
-	// Line 1197, Address: 0x13bdfc, Func Offset: 0xc
-	// Line 1201, Address: 0x13be2c, Func Offset: 0x3c
-	// Line 1202, Address: 0x13be5c, Func Offset: 0x6c
-	// Line 1203, Address: 0x13be68, Func Offset: 0x78
-	// Line 1204, Address: 0x13be78, Func Offset: 0x88
-	// Line 1206, Address: 0x13be7c, Func Offset: 0x8c
-	// Line 1209, Address: 0x13be84, Func Offset: 0x94
-	// Line 1211, Address: 0x13be9c, Func Offset: 0xac
-	// Line 1212, Address: 0x13becc, Func Offset: 0xdc
-	// Line 1214, Address: 0x13bed4, Func Offset: 0xe4
-	// Line 1225, Address: 0x13bf08, Func Offset: 0x118
-	// Line 1227, Address: 0x13bf40, Func Offset: 0x150
-	// Line 1229, Address: 0x13bf74, Func Offset: 0x184
-	// Line 1230, Address: 0x13bf7c, Func Offset: 0x18c
-	// Line 1232, Address: 0x13bf84, Func Offset: 0x194
-	// Line 1233, Address: 0x13bfb8, Func Offset: 0x1c8
-	// Line 1232, Address: 0x13bfc0, Func Offset: 0x1d0
-	// Line 1233, Address: 0x13bfc8, Func Offset: 0x1d8
-	// Line 1234, Address: 0x13bfcc, Func Offset: 0x1dc
-	// Line 1235, Address: 0x13bfd4, Func Offset: 0x1e4
-	// Line 1237, Address: 0x13bfdc, Func Offset: 0x1ec
-	// Line 1238, Address: 0x13c010, Func Offset: 0x220
-	// Line 1237, Address: 0x13c018, Func Offset: 0x228
-	// Line 1238, Address: 0x13c020, Func Offset: 0x230
-	// Line 1239, Address: 0x13c024, Func Offset: 0x234
-	// Line 1240, Address: 0x13c02c, Func Offset: 0x23c
-	// Line 1242, Address: 0x13c034, Func Offset: 0x244
-	// Line 1243, Address: 0x13c03c, Func Offset: 0x24c
-	// Line 1245, Address: 0x13c044, Func Offset: 0x254
-	// Line 1246, Address: 0x13c078, Func Offset: 0x288
-	// Line 1247, Address: 0x13c080, Func Offset: 0x290
-	// Line 1249, Address: 0x13c088, Func Offset: 0x298
-	// Line 1250, Address: 0x13c0bc, Func Offset: 0x2cc
-	// Line 1251, Address: 0x13c0c4, Func Offset: 0x2d4
-	// Line 1253, Address: 0x13c0cc, Func Offset: 0x2dc
-	// Line 1254, Address: 0x13c0d4, Func Offset: 0x2e4
-	// Line 1256, Address: 0x13c0dc, Func Offset: 0x2ec
-	// Line 1257, Address: 0x13c0e4, Func Offset: 0x2f4
-	// Line 1259, Address: 0x13c0ec, Func Offset: 0x2fc
-	// Line 1260, Address: 0x13c120, Func Offset: 0x330
-	// Line 1261, Address: 0x13c128, Func Offset: 0x338
-	// Line 1263, Address: 0x13c130, Func Offset: 0x340
-	// Line 1264, Address: 0x13c164, Func Offset: 0x374
-	// Line 1265, Address: 0x13c16c, Func Offset: 0x37c
-	// Line 1267, Address: 0x13c174, Func Offset: 0x384
-	// Line 1268, Address: 0x13c17c, Func Offset: 0x38c
-	// Line 1270, Address: 0x13c184, Func Offset: 0x394
-	// Line 1271, Address: 0x13c18c, Func Offset: 0x39c
-	// Line 1273, Address: 0x13c194, Func Offset: 0x3a4
-	// Line 1274, Address: 0x13c19c, Func Offset: 0x3ac
-	// Line 1276, Address: 0x13c1a4, Func Offset: 0x3b4
-	// Line 1277, Address: 0x13c1ac, Func Offset: 0x3bc
-	// Line 1279, Address: 0x13c1b4, Func Offset: 0x3c4
-	// Line 1280, Address: 0x13c1bc, Func Offset: 0x3cc
-	// Line 1282, Address: 0x13c1c4, Func Offset: 0x3d4
-	// Line 1283, Address: 0x13c1cc, Func Offset: 0x3dc
-	// Line 1285, Address: 0x13c1d4, Func Offset: 0x3e4
-	// Line 1286, Address: 0x13c1dc, Func Offset: 0x3ec
-	// Line 1288, Address: 0x13c1e4, Func Offset: 0x3f4
-	// Line 1289, Address: 0x13c1ec, Func Offset: 0x3fc
-	// Line 1291, Address: 0x13c1f4, Func Offset: 0x404
-	// Line 1292, Address: 0x13c1fc, Func Offset: 0x40c
-	// Line 1294, Address: 0x13c204, Func Offset: 0x414
-	// Line 1295, Address: 0x13c20c, Func Offset: 0x41c
-	// Line 1297, Address: 0x13c214, Func Offset: 0x424
-	// Line 1300, Address: 0x13c21c, Func Offset: 0x42c
-	// Line 1301, Address: 0x13c238, Func Offset: 0x448
-	// Func End, Address: 0x13c248, Func Offset: 0x458
+    BH_PWORK* p; // not from DWARF
+    
+    if ((!(sys->gm_flg & 0x40)) || ((plp->stflg & 0x30))) 
+    {
+        switch (((EXP_WORK*)plp->exp0)->dmlvl)
+        {
+        case 1:
+            ((EXP_WORK*)plp->exp0)->rtspd = 1.0f;
+            break;
+        case 2:
+            ((EXP_WORK*)plp->exp0)->rtspd = 0.8f;
+            break;
+        default:
+            ((EXP_WORK*)plp->exp0)->rtspd = 1.0f;
+            break;
+        }
+    }
+    else 
+    {
+        if ((sys->pad_on & 0xC))
+        {
+            ((EXP_WORK*)plp->exp0)->rtspd = 0.0078125f * fabsf(sys->pad_dx);
+        }
+        else 
+        {
+            ((EXP_WORK*)plp->exp0)->rtspd = 0.0078125f * fabsf(sys->pad_ax);
+        }
+        
+        if (((EXP_WORK*)plp->exp0)->dmlvl == 2)
+        {
+            ((EXP_WORK*)plp->exp0)->rtspd *= 0.8f;
+        }
+    }
+    
+    p = plp;
+    
+    switch (plp->mode2) 
+    {
+    case 0:           
+        bhCPM2_act_std();
+        break;
+    case 1:           
+        p->ay -= (int)(182.04445f * (7.2f * ((EXP_WORK*)plp->exp0)->rtspd));
+            
+        plp->mtn_add = -65536;
+        
+        bhCPM2_act_srt();
+        break;
+    case 2:           
+        p->ay += (int)(182.04445f * (7.2f * ((EXP_WORK*)plp->exp0)->rtspd));
+        
+        plp->mtn_add = 65536;
+        
+        bhCPM2_act_srt();
+        break;
+    case 3:           
+        bhCPM2_act_wlk();
+        break;
+    case 4:           
+        p->ay -= (int)(182.04445f * (4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
+        
+        bhCPM2_act_wlk();
+        break;
+    case 5:           
+        p->ay += (int)(182.04445f * (4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
+        
+        bhCPM2_act_wlk();
+        break;
+    case 6:           
+        bhCPM2_act_run();
+        break;
+    case 9:           
+        bhCPM2_act_bak();
+        break;
+    case 10:          
+        p->ay -= (int)(182.04445f * (4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
+        
+        bhCPM2_act_bak();
+        break;
+    case 11:          
+        p->ay += (int)(182.04445f * (4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
+        
+        bhCPM2_act_bak();
+        break;
+    case 12:          
+        bhCPM2_act_bk2();
+        break;
+    case 13:          
+        bhCPM2_act_sta();
+        break;
+    case 14:          
+        bhCPM2_act_kdu();
+        break;
+    case 15:          
+        bhCPM2_act_kdd();
+        break;
+    case 16:          
+        bhCPM2_act_dnu();
+        break;
+    case 17:          
+        bhCPM2_act_dnd();
+        break;
+    case 18:          
+        bhCPM2_act_psh();
+        break;
+    case 19:          
+        bhCPM2_act_cro();
+        break;
+    case 20:          
+        bhCPM2_act_hsu();
+        break;
+    case 21:          
+        bhCPM2_act_hsd();
+        break;
+    case 22:          
+        bhCPM2_act_rpsh();
+        break;
+    }
+    
+    if (plp->mode2 != 3) 
+    {
+        plp->psh_ct = 0;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x13c250
 void bhCPM2_act_std()
 {
