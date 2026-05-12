@@ -1530,9 +1530,9 @@ void(*bhEne01Head_Mode0)(BH_PWORK*)[4];
 void(*bhEne01Head_DamageMode)(BH_PWORK*)[1];
 void(*bhEne01Cap_Mode0)(BH_PWORK*)[4];
 void(*bhEne01Cap_DamageMode)(BH_PWORK*)[2];
-void(*bhEne01Worm_Mode0)(BH_PWORK*)[4];
-void(*bhEne01Worm_MoveMode)(BH_PWORK*)[3];
-void(*bhEne01Bom_Mode0)(BH_PWORK*)[2];
+void(*bhEne01Worm_Mode0)(BH_PWORK*)[4];*/
+void (*bhEne01Worm_MoveMode[3])(BH_PWORK*); // DATA
+/*void(*bhEne01Bom_Mode0)(BH_PWORK*)[2];
 void(*bhEne01Scope_Mode0)(BH_PWORK*)[2];
 _anon16* sys;
 BH_PWORK ene[0];
@@ -2611,15 +2611,13 @@ void bhEne01Worm_Init(BH_PWORK* epw)
 	// Line 1920, Address: 0x18e2b4, Func Offset: 0x104
 	// Line 1921, Address: 0x18e2b8, Func Offset: 0x108
 	// Func End, Address: 0x18e2c8, Func Offset: 0x118
-}
+}*/
 
-// 
-// Start address: 0x18e2d0
+// 100% matching!
 void bhEne01Worm_Move(BH_PWORK* epw)
 {
-	// Line 1938, Address: 0x18e2d0, Func Offset: 0
-	// Func End, Address: 0x18e2f0, Func Offset: 0x20
-}*/
+	bhEne01Worm_MoveMode[epw->mode2](epw);
+}
 
 // 100% matching!
 void bhEne01Worm_MV00()
