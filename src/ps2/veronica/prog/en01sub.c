@@ -1523,8 +1523,8 @@ struct _anon43
 
 void (*bhEne01Parent_Mode0[2])(BH_PWORK*); // DATA
 void (*bhEne01Arm_Mode0[4])(BH_PWORK*);    // DATA
-/*void(*bhEne01Arm_DamageMode)(BH_PWORK*)[2];
-void(*bhEne01Leg_Mode0)(BH_PWORK*)[4];*/
+/*void(*bhEne01Arm_DamageMode)(BH_PWORK*)[2];*/
+void (*bhEne01Leg_Mode0[4])(BH_PWORK*); // DATA
 void (*bhEne01Leg_DamageMode[1])(BH_PWORK*); // DATA
 void (*bhEne01Head_Mode0[4])(BH_PWORK*); // DATA
 void (*bhEne01Head_DamageMode[1])(BH_PWORK*); // DATA
@@ -2052,17 +2052,15 @@ void bhEne01Arm_DG01(BH_PWORK* epw)
 	// Line 908, Address: 0x18ce50, Func Offset: 0x8c0
 	// Line 909, Address: 0x18ce6c, Func Offset: 0x8dc
 	// Func End, Address: 0x18ce90, Func Offset: 0x900
-}
+}*/
 
-// 
-// Start address: 0x18ce90
+// 100% matching!
 void bhEne01Leg(BH_PWORK* epw)
 {
-	// Line 927, Address: 0x18ce90, Func Offset: 0
-	// Func End, Address: 0x18ceb0, Func Offset: 0x20
+	bhEne01Leg_Mode0[epw->mode0](epw);
 }
 
-// 
+/*// 
 // Start address: 0x18ceb0
 void bhEne01Leg_Init(BH_PWORK* epw)
 {
