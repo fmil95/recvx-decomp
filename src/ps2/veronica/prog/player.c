@@ -33,9 +33,9 @@ const unsigned short PlMtnAct[2][3][7] =
         { 44, 41,  3, 8,  19, 54, 9 }  
     }
 };
-/*unsigned short PlMtnWpn[5];
-char PlFootSnd[7][2][4];
-char PlKDU[3][2][4];*/
+/*unsigned short PlMtnWpn[5];*/
+char PlFootSnd[4][2][7]; // DATA
+/*char PlKDU[3][2][4];*/
 const WPN_TAB WpnTab[23] = 
 {
     { 
@@ -1847,66 +1847,82 @@ void bhCPM2_act_std()
     bhCheckPlayerKegaMotion(((EXP_WORK*)plp->exp0)->wpntp, ((EXP_WORK*)plp->exp0)->dmlvl, 0);
 }
 
-/*// 
-// Start address: 0x13c530
+// 99.91% matching
 void bhCPM2_act_srt()
 {
-	int dmlvl;
-	// Line 1357, Address: 0x13c530, Func Offset: 0
-	// Line 1360, Address: 0x13c538, Func Offset: 0x8
-	// Line 1361, Address: 0x13c570, Func Offset: 0x40
-	// Line 1363, Address: 0x13c598, Func Offset: 0x68
-	// Line 1364, Address: 0x13c5a4, Func Offset: 0x74
-	// Line 1366, Address: 0x13c5a8, Func Offset: 0x78
-	// Line 1364, Address: 0x13c5ac, Func Offset: 0x7c
-	// Line 1363, Address: 0x13c5b0, Func Offset: 0x80
-	// Line 1364, Address: 0x13c5b8, Func Offset: 0x88
-	// Line 1366, Address: 0x13c5bc, Func Offset: 0x8c
-	// Line 1364, Address: 0x13c5cc, Func Offset: 0x9c
-	// Line 1365, Address: 0x13c5d0, Func Offset: 0xa0
-	// Line 1367, Address: 0x13c5d4, Func Offset: 0xa4
-	// Line 1368, Address: 0x13c5d8, Func Offset: 0xa8
-	// Line 1364, Address: 0x13c5dc, Func Offset: 0xac
-	// Line 1365, Address: 0x13c5e4, Func Offset: 0xb4
-	// Line 1366, Address: 0x13c5ec, Func Offset: 0xbc
-	// Line 1365, Address: 0x13c5f0, Func Offset: 0xc0
-	// Line 1366, Address: 0x13c5fc, Func Offset: 0xcc
-	// Line 1367, Address: 0x13c604, Func Offset: 0xd4
-	// Line 1366, Address: 0x13c608, Func Offset: 0xd8
-	// Line 1367, Address: 0x13c630, Func Offset: 0x100
-	// Line 1368, Address: 0x13c638, Func Offset: 0x108
-	// Line 1370, Address: 0x13c644, Func Offset: 0x114
-	// Line 1371, Address: 0x13c650, Func Offset: 0x120
-	// Line 1372, Address: 0x13c65c, Func Offset: 0x12c
-	// Line 1371, Address: 0x13c660, Func Offset: 0x130
-	// Line 1372, Address: 0x13c664, Func Offset: 0x134
-	// Line 1375, Address: 0x13c674, Func Offset: 0x144
-	// Line 1377, Address: 0x13c6cc, Func Offset: 0x19c
-	// Line 1380, Address: 0x13c6e4, Func Offset: 0x1b4
-	// Line 1377, Address: 0x13c6e8, Func Offset: 0x1b8
-	// Line 1380, Address: 0x13c6ec, Func Offset: 0x1bc
-	// Line 1381, Address: 0x13c700, Func Offset: 0x1d0
-	// Line 1382, Address: 0x13c708, Func Offset: 0x1d8
-	// Line 1381, Address: 0x13c70c, Func Offset: 0x1dc
-	// Line 1382, Address: 0x13c710, Func Offset: 0x1e0
-	// Line 1381, Address: 0x13c714, Func Offset: 0x1e4
-	// Line 1382, Address: 0x13c71c, Func Offset: 0x1ec
-	// Line 1383, Address: 0x13c730, Func Offset: 0x200
-	// Line 1384, Address: 0x13c744, Func Offset: 0x214
-	// Line 1385, Address: 0x13c784, Func Offset: 0x254
-	// Line 1386, Address: 0x13c7a4, Func Offset: 0x274
-	// Line 1387, Address: 0x13c7ac, Func Offset: 0x27c
-	// Line 1391, Address: 0x13c7cc, Func Offset: 0x29c
-	// Line 1392, Address: 0x13c7e4, Func Offset: 0x2b4
-	// Line 1393, Address: 0x13c81c, Func Offset: 0x2ec
-	// Line 1395, Address: 0x13c848, Func Offset: 0x318
-	// Line 1396, Address: 0x13c850, Func Offset: 0x320
-	// Line 1404, Address: 0x13c87c, Func Offset: 0x34c
-	// Line 1405, Address: 0x13c898, Func Offset: 0x368
-	// Func End, Address: 0x13c8a4, Func Offset: 0x374
+    int dmlvl;
+    float px; // not from DWARF
+
+    if ((sys->gm_flg & 0x1000000))
+    {
+        dmlvl = 0;
+    }
+    else 
+    {
+        dmlvl = ((EXP_WORK*)plp->exp0)->dmlvl;
+    }
+    
+    switch (plp->mode3)
+    {
+    case 0:
+        plp->flg  &= ~0x28C0000;
+        plp->flg2 &= ~0x1;
+        
+        EXP1_I(0) |= 0x4;
+        
+        plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][dmlvl][1];
+        
+        plp->hokan_rate = 42598;
+        plp->hokan_count = 8;
+        
+        plp->frm_no = 0;
+        
+        ((EXP_WORK*)plp->exp0)->arp = 0;
+        
+        plp->mode3++;
+    case 1:
+        if ((((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][4]) || (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][1][4])) 
+        {
+            plp->flr_snd = bhCheckFloorSound(plp, (int)plp->flr_no, plp->gpx, plp->gpz);
+            
+            CallPlayerFootStepSe(plp->flr_snd, 0, 1);
+            
+            plp->stflg |= 0x200;
+
+            px = 0.8f;
+            
+            if ((plp->stflg & 0x100000)) 
+            {
+                bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
+
+                if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][4]) 
+                {
+                    bhSetWaterSplash(plp, 15, 0, px, px, px);
+                }
+                else 
+                {
+                    bhSetWaterSplash(plp, 19, 0, px, 0.8f, 0.8f);
+                }
+            }
+            
+            if ((plp->flg2 & 0x8)) 
+            {
+                if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][4]) 
+                {
+                    bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[17].mtx[12], plp->ay, plp->footeff, px, 0.8f, 0.8f);
+                } 
+                else 
+                {
+                    bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[21].mtx[12], plp->ay, plp->footeff, 0.8f, 0.8f, 0.8f);
+                }
+            }
+        }
+    }
+    
+    bhCheckPlayerKegaMotion(((EXP_WORK*)plp->exp0)->wpntp, ((EXP_WORK*)plp->exp0)->dmlvl, 1);
 }
 
-// 
+/*// 
 // Start address: 0x13c8b0
 void bhCPM2_act_sta()
 {

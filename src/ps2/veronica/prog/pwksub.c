@@ -2348,11 +2348,11 @@ void bhSetWaterSplash2(BH_PWORK* pp, _anon23* pos, int type, float sx, float sy,
 	// Line 2550, Address: 0x1538d4, Func Offset: 0x214
 	// Line 2552, Address: 0x1538f0, Func Offset: 0x230
 	// Func End, Address: 0x153918, Func Offset: 0x258
-}
+}*/
 
 // 
 // Start address: 0x153920
-void bhSetWaterSplash3(_anon23* pos, int ang, int type, float sx, float sy, float sz)
+void bhSetWaterSplash3(NJS_POINT3* pos, int ang, int type, float sx, float sy, float sz)
 {
 	// Line 2563, Address: 0x153920, Func Offset: 0
 	// Line 2564, Address: 0x15392c, Func Offset: 0xc
@@ -2381,9 +2381,10 @@ void bhSetWaterSplash3(_anon23* pos, int ang, int type, float sx, float sy, floa
 	// Line 2578, Address: 0x153a7c, Func Offset: 0x15c
 	// Line 2579, Address: 0x153a98, Func Offset: 0x178
 	// Func End, Address: 0x153aa8, Func Offset: 0x188
+	scePrintf("bhSetWaterSplash3 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x153ab0
 void bhSetWaterSplash4(_anon23* pos, int ang, int type, float sx, float sy, float sz)
 {
