@@ -1775,72 +1775,79 @@ void bhCPM1_act_bas()
     }
 }
 
-/*// 
-// Start address: 0x13c250
-void bhCPM2_act_std()
+// 100% matching!
+void bhCPM2_act_std() 
 {
-	int dmlvl;
-	// Line 1310, Address: 0x13c250, Func Offset: 0
-	// Line 1311, Address: 0x13c288, Func Offset: 0x38
-	// Line 1314, Address: 0x13c2b0, Func Offset: 0x60
-	// Line 1315, Address: 0x13c2c0, Func Offset: 0x70
-	// Line 1316, Address: 0x13c2d0, Func Offset: 0x80
-	// Line 1317, Address: 0x13c2d8, Func Offset: 0x88
-	// Line 1319, Address: 0x13c2ec, Func Offset: 0x9c
-	// Line 1321, Address: 0x13c2f4, Func Offset: 0xa4
-	// Line 1319, Address: 0x13c304, Func Offset: 0xb4
-	// Line 1321, Address: 0x13c30c, Func Offset: 0xbc
-	// Line 1320, Address: 0x13c310, Func Offset: 0xc0
-	// Line 1322, Address: 0x13c314, Func Offset: 0xc4
-	// Line 1319, Address: 0x13c318, Func Offset: 0xc8
-	// Line 1320, Address: 0x13c320, Func Offset: 0xd0
-	// Line 1328, Address: 0x13c324, Func Offset: 0xd4
-	// Line 1323, Address: 0x13c330, Func Offset: 0xe0
-	// Line 1320, Address: 0x13c334, Func Offset: 0xe4
-	// Line 1321, Address: 0x13c338, Func Offset: 0xe8
-	// Line 1324, Address: 0x13c33c, Func Offset: 0xec
-	// Line 1320, Address: 0x13c340, Func Offset: 0xf0
-	// Line 1321, Address: 0x13c34c, Func Offset: 0xfc
-	// Line 1322, Address: 0x13c354, Func Offset: 0x104
-	// Line 1321, Address: 0x13c358, Func Offset: 0x108
-	// Line 1322, Address: 0x13c380, Func Offset: 0x130
-	// Line 1323, Address: 0x13c388, Func Offset: 0x138
-	// Line 1324, Address: 0x13c394, Func Offset: 0x144
-	// Line 1325, Address: 0x13c3a0, Func Offset: 0x150
-	// Line 1326, Address: 0x13c3ac, Func Offset: 0x15c
-	// Line 1327, Address: 0x13c3b8, Func Offset: 0x168
-	// Line 1328, Address: 0x13c3c4, Func Offset: 0x174
-	// Line 1327, Address: 0x13c3c8, Func Offset: 0x178
-	// Line 1328, Address: 0x13c3cc, Func Offset: 0x17c
-	// Line 1329, Address: 0x13c3d8, Func Offset: 0x188
-	// Line 1328, Address: 0x13c3dc, Func Offset: 0x18c
-	// Line 1329, Address: 0x13c3ec, Func Offset: 0x19c
-	// Line 1330, Address: 0x13c3f8, Func Offset: 0x1a8
-	// Line 1329, Address: 0x13c3fc, Func Offset: 0x1ac
-	// Line 1330, Address: 0x13c40c, Func Offset: 0x1bc
-	// Line 1332, Address: 0x13c41c, Func Offset: 0x1cc
-	// Line 1333, Address: 0x13c430, Func Offset: 0x1e0
-	// Line 1334, Address: 0x13c440, Func Offset: 0x1f0
-	// Line 1335, Address: 0x13c448, Func Offset: 0x1f8
-	// Line 1336, Address: 0x13c454, Func Offset: 0x204
-	// Line 1337, Address: 0x13c45c, Func Offset: 0x20c
-	// Line 1336, Address: 0x13c460, Func Offset: 0x210
-	// Line 1337, Address: 0x13c46c, Func Offset: 0x21c
-	// Line 1340, Address: 0x13c484, Func Offset: 0x234
-	// Line 1341, Address: 0x13c490, Func Offset: 0x240
-	// Line 1340, Address: 0x13c494, Func Offset: 0x244
-	// Line 1341, Address: 0x13c49c, Func Offset: 0x24c
-	// Line 1343, Address: 0x13c4c0, Func Offset: 0x270
-	// Line 1344, Address: 0x13c4e4, Func Offset: 0x294
-	// Line 1345, Address: 0x13c4ec, Func Offset: 0x29c
-	// Line 1344, Address: 0x13c4f4, Func Offset: 0x2a4
-	// Line 1345, Address: 0x13c4fc, Func Offset: 0x2ac
-	// Line 1346, Address: 0x13c504, Func Offset: 0x2b4
-	// Line 1350, Address: 0x13c510, Func Offset: 0x2c0
-	// Func End, Address: 0x13c52c, Func Offset: 0x2dc
+    int dmlvl;
+
+    if ((sys->gm_flg & 0x1000000)) 
+    {
+        dmlvl = 0;
+    }
+    else 
+    {
+        dmlvl = ((EXP_WORK*)plp->exp0)->dmlvl;
+    }
+    
+    switch (plp->mode3)
+    {
+    case 0:
+        if ((plp->stflg & 0x8000))
+        {
+            plp->flg &= ~0x2801000;
+        }
+        else 
+        {
+            plp->flg &= ~0x2811000;
+        }
+        
+        plp->flg2 &= ~0x1;
+        
+        EXP1_I(0) |= 0x4;
+            
+        plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][dmlvl][0];
+        
+        plp->hokan_rate = 42598;
+        plp->hokan_count = 5;
+        
+        plp->mtn_add = 65536;
+        
+        plp->frm_no = 0;
+        
+        plp->ct3 = 0;
+        
+        ((EXP_WORK*)plp->exp0)->arp = 0;
+        
+        ((EXP_WORK*)plp->exp0)->spxn = 0.3f * (((EXP_WORK*)plp->exp0)->spx - plp->px);
+        ((EXP_WORK*)plp->exp0)->spzn = 0.3f * (((EXP_WORK*)plp->exp0)->spz - plp->pz);
+        
+        plp->mode3++;
+    case 1:
+        if (plp->hokan_count == 0) 
+        {
+            plp->flg &= ~0xC0000;
+        }
+        else if (plp->hokan_count > 2) 
+        {
+            plp->px += ((EXP_WORK*)plp->exp0)->spxn;
+            plp->pz += ((EXP_WORK*)plp->exp0)->spzn;
+        }
+        
+        plp->ct3++;
+        
+        if ((plp->ct3 > 300) && (((EXP_WORK*)plp->exp0)->dmlvl == 0) && ((sys->ply_id != 1) || (plp->wpnr_no != 1))) 
+        {
+            plp->flg |= 0x10000;
+            
+            plp->mode2 = 0xD;
+            plp->mode3 = 0;
+        }
+    }
+    
+    bhCheckPlayerKegaMotion(((EXP_WORK*)plp->exp0)->wpntp, ((EXP_WORK*)plp->exp0)->dmlvl, 0);
 }
 
-// 
+/*// 
 // Start address: 0x13c530
 void bhCPM2_act_srt()
 {
