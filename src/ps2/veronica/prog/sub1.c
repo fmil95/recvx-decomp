@@ -6336,55 +6336,65 @@ unsigned char Combi_05(short ps, unsigned int* moto, unsigned int* aite) // firs
     return 1; 
 }
 
-// 
-// Start address: 0x2a4500
+// 100% matching!
 unsigned char Combi_99(short ps, unsigned short moto, unsigned short aite) // first parameter not present on DWARF
 {
-	unsigned char ok;
-	unsigned short bt;
-	unsigned short bullettype;
-	unsigned short itemid2;
-	unsigned short itemid1;
-	unsigned short bullet2;
-	unsigned short bullet1;
-	S_WORK* st;
-	// Line 5575, Address: 0x2a4500, Func Offset: 0
-	// Line 5576, Address: 0x2a4508, Func Offset: 0x8
-	// Line 5569, Address: 0x2a4510, Func Offset: 0x10
-	// Line 5575, Address: 0x2a4518, Func Offset: 0x18
-	// Line 5576, Address: 0x2a4528, Func Offset: 0x28
-	// Line 5575, Address: 0x2a4530, Func Offset: 0x30
-	// Line 5576, Address: 0x2a4538, Func Offset: 0x38
-	// Line 5581, Address: 0x2a453c, Func Offset: 0x3c
-	// Line 5578, Address: 0x2a4544, Func Offset: 0x44
-	// Line 5576, Address: 0x2a4548, Func Offset: 0x48
-	// Line 5580, Address: 0x2a454c, Func Offset: 0x4c
-	// Line 5583, Address: 0x2a4554, Func Offset: 0x54
-	// Line 5584, Address: 0x2a4560, Func Offset: 0x60
-	// Line 5585, Address: 0x2a458c, Func Offset: 0x8c
-	// Line 5587, Address: 0x2a4594, Func Offset: 0x94
-	// Line 5589, Address: 0x2a459c, Func Offset: 0x9c
-	// Line 5588, Address: 0x2a45a4, Func Offset: 0xa4
-	// Line 5589, Address: 0x2a45ac, Func Offset: 0xac
-	// Line 5590, Address: 0x2a45d0, Func Offset: 0xd0
-	// Line 5591, Address: 0x2a45e4, Func Offset: 0xe4
-	// Line 5593, Address: 0x2a45e8, Func Offset: 0xe8
-	// Line 5591, Address: 0x2a45ec, Func Offset: 0xec
-	// Line 5594, Address: 0x2a45f4, Func Offset: 0xf4
-	// Line 5595, Address: 0x2a45fc, Func Offset: 0xfc
-	// Line 5596, Address: 0x2a4600, Func Offset: 0x100
-	// Line 5597, Address: 0x2a4604, Func Offset: 0x104
-	// Line 5601, Address: 0x2a4608, Func Offset: 0x108
-	// Line 5602, Address: 0x2a4618, Func Offset: 0x118
-	// Line 5605, Address: 0x2a4620, Func Offset: 0x120
-	// Line 5606, Address: 0x2a463c, Func Offset: 0x13c
-	// Line 5605, Address: 0x2a4654, Func Offset: 0x154
-	// Line 5606, Address: 0x2a4658, Func Offset: 0x158
-	// Line 5605, Address: 0x2a465c, Func Offset: 0x15c
-	// Line 5606, Address: 0x2a4664, Func Offset: 0x164
-	// Line 5609, Address: 0x2a466c, Func Offset: 0x16c
-	// Func End, Address: 0x2a4674, Func Offset: 0x174
-	scePrintf("Combi_99 - UNIMPLEMENTED!\n");
+    S_WORK* st;      
+    unsigned short bullet1, bullet2;   
+    unsigned short itemid1, itemid2;   
+    unsigned short bullettype, bt; 
+    unsigned char ok;       
+
+    st = &swork; 
+    
+    itemid1    = (st->pip[moto] >> 16) & 0xFF;
+    itemid2    = (st->pip[aite] >> 16) & 0xFF;
+    
+    bt         = (st->pip[moto] >> 16) & 0xFF00;
+    bullettype = (st->pip[aite] >> 16) & 0xFF00;
+    
+    bullet2    = st->pip[aite];
+    bullet1    = st->pip[moto];
+    
+    if ((bt & 0x800)) 
+    {
+        st->gb = (unsigned int*)&getbulletmax[itemid2][sys->gm_mode];
+        
+        bullet2 = *st->gb;
+        
+        ok = 2;
+    } 
+    else
+    {
+        bullet2 += bullet1;
+        
+        st->gb = (unsigned int*)&getbulletmax[itemid2][sys->gm_mode];
+        
+        if (*st->gb < bullet2) 
+        {
+            ok = 2;
+            
+            bullet1 = bullet2 - *st->gb;
+            bullet2 = *st->gb;
+        } 
+        else 
+        {
+            itemid1 = 0;
+            bullet1 = 0;
+            
+            ok = 1;
+        }
+    }
+    
+    if (((bullettype & 0xFF00) & 0x2000)) 
+    {
+        itemid2 |= 0x2000;
+    }
+    
+    st->pip[moto] = bullet1 | ((itemid1 | (bt & 0x800)) << 16);
+    st->pip[aite] = bullet2 | ((itemid2 | ((bullettype & 0xFF00) & 0x800)) << 16);
+    
+    return ok;
 }
 
 // 
