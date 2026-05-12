@@ -1922,64 +1922,57 @@ void bhCPM2_act_srt()
     bhCheckPlayerKegaMotion(((EXP_WORK*)plp->exp0)->wpntp, ((EXP_WORK*)plp->exp0)->dmlvl, 1);
 }
 
-/*// 
-// Start address: 0x13c8b0
+// 100% matching!
 void bhCPM2_act_sta()
 {
-	// Line 1411, Address: 0x13c8b0, Func Offset: 0
-	// Line 1412, Address: 0x13c8b8, Func Offset: 0x8
-	// Line 1414, Address: 0x13c8ec, Func Offset: 0x3c
-	// Line 1418, Address: 0x13c8f4, Func Offset: 0x44
-	// Line 1415, Address: 0x13c8f8, Func Offset: 0x48
-	// Line 1414, Address: 0x13c900, Func Offset: 0x50
-	// Line 1415, Address: 0x13c908, Func Offset: 0x58
-	// Line 1418, Address: 0x13c90c, Func Offset: 0x5c
-	// Line 1419, Address: 0x13c910, Func Offset: 0x60
-	// Line 1420, Address: 0x13c914, Func Offset: 0x64
-	// Line 1415, Address: 0x13c918, Func Offset: 0x68
-	// Line 1416, Address: 0x13c91c, Func Offset: 0x6c
-	// Line 1421, Address: 0x13c920, Func Offset: 0x70
-	// Line 1415, Address: 0x13c924, Func Offset: 0x74
-	// Line 1416, Address: 0x13c92c, Func Offset: 0x7c
-	// Line 1418, Address: 0x13c934, Func Offset: 0x84
-	// Line 1416, Address: 0x13c938, Func Offset: 0x88
-	// Line 1418, Address: 0x13c944, Func Offset: 0x94
-	// Line 1419, Address: 0x13c94c, Func Offset: 0x9c
-	// Line 1418, Address: 0x13c950, Func Offset: 0xa0
-	// Line 1419, Address: 0x13c988, Func Offset: 0xd8
-	// Line 1420, Address: 0x13c990, Func Offset: 0xe0
-	// Line 1421, Address: 0x13c99c, Func Offset: 0xec
-	// Line 1422, Address: 0x13c9a8, Func Offset: 0xf8
-	// Line 1423, Address: 0x13c9b4, Func Offset: 0x104
-	// Line 1424, Address: 0x13c9c0, Func Offset: 0x110
-	// Line 1423, Address: 0x13c9c4, Func Offset: 0x114
-	// Line 1424, Address: 0x13c9c8, Func Offset: 0x118
-	// Line 1426, Address: 0x13c9d8, Func Offset: 0x128
-	// Line 1427, Address: 0x13ca18, Func Offset: 0x168
-	// Line 1428, Address: 0x13ca20, Func Offset: 0x170
-	// Line 1429, Address: 0x13ca28, Func Offset: 0x178
-	// Line 1427, Address: 0x13ca2c, Func Offset: 0x17c
-	// Line 1432, Address: 0x13ca38, Func Offset: 0x188
-	// Line 1427, Address: 0x13ca3c, Func Offset: 0x18c
-	// Line 1430, Address: 0x13ca68, Func Offset: 0x1b8
-	// Line 1427, Address: 0x13ca6c, Func Offset: 0x1bc
-	// Line 1428, Address: 0x13ca74, Func Offset: 0x1c4
-	// Line 1429, Address: 0x13ca7c, Func Offset: 0x1cc
-	// Line 1430, Address: 0x13ca88, Func Offset: 0x1d8
-	// Line 1431, Address: 0x13ca94, Func Offset: 0x1e4
-	// Line 1432, Address: 0x13caa0, Func Offset: 0x1f0
-	// Line 1438, Address: 0x13caac, Func Offset: 0x1fc
-	// Line 1441, Address: 0x13caf0, Func Offset: 0x240
-	// Line 1442, Address: 0x13cb00, Func Offset: 0x250
-	// Line 1441, Address: 0x13cb04, Func Offset: 0x254
-	// Line 1442, Address: 0x13cb08, Func Offset: 0x258
-	// Line 1441, Address: 0x13cb0c, Func Offset: 0x25c
-	// Line 1442, Address: 0x13cb14, Func Offset: 0x264
-	// Line 1444, Address: 0x13cb34, Func Offset: 0x284
-	// Func End, Address: 0x13cb40, Func Offset: 0x290
+    switch (plp->mode3)
+    {
+    case 0:
+        plp->flg  |= 0xD0000;
+        plp->flg2 &= ~0x1;
+        
+        EXP1_I(0) |= 0x4;
+        
+        plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][6];
+        
+        plp->hokan_rate = 49152;
+        plp->hokan_count = 8;
+        
+        plp->mtn_add = 65536;
+        plp->frm_no = 0;
+        
+        ((EXP_WORK*)plp->exp0)->arp = 0;
+        
+        plp->mode3++;
+    case 1:
+        if (((unsigned int)plp->frm_no / 65536) >= (plp->mnwP[plp->mtn_no].frm_num - 1)) 
+        {
+            plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][6] + 1;
+            
+            plp->hokan_rate = 49152;
+            plp->hokan_count = 4;
+            
+            plp->mtn_add = 65536;
+            
+            plp->frm_no = 0;
+            
+            plp->mode3 = 2;
+        }
+        
+        break;
+    case 2:
+        break;
+    }
+    
+    if (((sys->pad_on & 0x1F)) || (bhCheckPlayerKegaMotion(((EXP_WORK*)plp->exp0)->wpntp, ((EXP_WORK*)plp->exp0)->dmlvl, 6) != 0))
+    {
+        plp->flg &= ~0x10000;
+        
+        sys->pad_on &= ~0xF;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x13cb40
 void bhCPM2_act_wlk()
 {
