@@ -11,4 +11,6 @@ void bhSetLight();
 void bhSetHalfLight();
 void bhGetLightVector(int xr, int yr, int zr, NJS_VECTOR* vec);
 
+extern LGT_WORK lgttab[5];
+
 #endif

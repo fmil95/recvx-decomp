@@ -3189,7 +3189,7 @@ int bhCheckInnerP4(_anon33* pos, _anon33* p0, _anon33* p1, _anon33* p2, _anon33*
 	// Line 3587, Address: 0x266264, Func Offset: 0x454
 	// Line 3588, Address: 0x266268, Func Offset: 0x458
 	// Func End, Address: 0x266270, Func Offset: 0x460
-}
+}*/
 
 // 
 // Start address: 0x266270
@@ -3205,10 +3205,10 @@ void bhCheckExmAtari(BH_PWORK* pp)
 	float pxx;
 	float pz;
 	float px;
-	_anon1* op;
-	_anon0* ckp;
-	_anon0* exp;
-	_anon20 ps;
+	//_anon1* op;
+	//_anon0* ckp;
+	//_anon0* exp;
+	//_anon20 ps;
 	// Line 3599, Address: 0x266270, Func Offset: 0
 	// Line 3610, Address: 0x266288, Func Offset: 0x18
 	// Line 3612, Address: 0x266298, Func Offset: 0x28
@@ -3487,7 +3487,8 @@ void bhCheckExmAtari(BH_PWORK* pp)
 	// Line 3962, Address: 0x26711c, Func Offset: 0xeac
 	// Line 3965, Address: 0x267120, Func Offset: 0xeb0
 	// Func End, Address: 0x267138, Func Offset: 0xec8
-}*/
+	scePrintf("bhCheckExmAtari - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x267140
@@ -3512,13 +3513,13 @@ void bhSetUseKaidanFlag(BH_PWORK* pp, ATR_WORK* exp, int idx)
 	scePrintf("bhSetUseKaidanFlag - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x267220
 void bhClrUseKaidanFlag(BH_PWORK* pp)
 {
 	int idx;
-	_anon0* exp2;
-	_anon0* exp;
+	//_anon0* exp2;
+	//_anon0* exp;
 	// Line 4006, Address: 0x267220, Func Offset: 0
 	// Line 4007, Address: 0x267224, Func Offset: 0x4
 	// Line 4008, Address: 0x26722c, Func Offset: 0xc
@@ -3535,9 +3536,10 @@ void bhClrUseKaidanFlag(BH_PWORK* pp)
 	// Line 4021, Address: 0x2672dc, Func Offset: 0xbc
 	// Line 4023, Address: 0x267308, Func Offset: 0xe8
 	// Func End, Address: 0x267310, Func Offset: 0xf0
+	scePrintf("bhClrUseKaidanFlag - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x267310
 void bhSetDansaLimitAtari(BH_PWORK* pp)
 {
@@ -4261,9 +4263,9 @@ void bhCheckEnemies(BH_PWORK* pp)
 	scePrintf("bhCheckEnemies - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2692e0
-int bhCheckWallAttrB89(_anon0* hp)
+int bhCheckWallAttrB89(ATR_WORK* hp)
 {
 	unsigned char* cnop;
 	int i;
@@ -4278,4 +4280,5 @@ int bhCheckWallAttrB89(_anon0* hp)
 	// Line 4912, Address: 0x26935c, Func Offset: 0x7c
 	// Line 4913, Address: 0x269360, Func Offset: 0x80
 	// Func End, Address: 0x269368, Func Offset: 0x88
-}*/
+	scePrintf("bhCheckWallAttrB89 - UNIMPLEMENTED!\n");
+}

@@ -622,13 +622,13 @@ int bhSearchPlayer(BH_PWORK* pp, int r)
 	// Line 941, Address: 0x14f738, Func Offset: 0x158
 	// Line 944, Address: 0x14f73c, Func Offset: 0x15c
 	// Func End, Address: 0x14f75c, Func Offset: 0x17c
-}
+}*/
 
 // 
 // Start address: 0x14f760
-int bhCheckL2Wall(_anon41* lp, unsigned int flg, float* len)
+int bhCheckL2Wall(NJS_LINE* lp, unsigned int flg, float* len)
 {
-	_anon41 cln;
+	//_anon41 cln;
 	int hit;
 	int wal_n;
 	int i;
@@ -642,13 +642,13 @@ int bhCheckL2Wall(_anon41* lp, unsigned int flg, float* len)
 	float py;
 	float px;
 	float* psp;
-	_anon23 pt;
-	_anon23 ps;
-	_anon41 pl;
-	_anon40 cap2;
-	_anon40 cap;
-	_anon47 box;
-	_anon0* hp;
+	//_anon23 pt;
+	//_anon23 ps;
+	//_anon41 pl;
+	//_anon40 cap2;
+	//_anon40 cap;
+	//_anon47 box;
+	//_anon0* hp;
 	// Line 960, Address: 0x14f760, Func Offset: 0
 	// Line 974, Address: 0x14f7b4, Func Offset: 0x54
 	// Line 980, Address: 0x14f7b8, Func Offset: 0x58
@@ -1695,7 +1695,8 @@ int bhCheckL2Wall(_anon41* lp, unsigned int flg, float* len)
 	// Line 1939, Address: 0x152160, Func Offset: 0x2a00
 	// Line 1940, Address: 0x152164, Func Offset: 0x2a04
 	// Func End, Address: 0x1521bc, Func Offset: 0x2a5c
-}*/
+	scePrintf("bhCheckL2Wall - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x1521c0
@@ -2255,13 +2256,13 @@ int bhCheckClipPoint(NJS_POINT3* pos)
 	// Func End, Address: 0x153440, Func Offset: 0xe0
 }
 
-/*// 
+// 
 // Start address: 0x153440
 void bhSetWaterSplash(BH_PWORK* pp, int jno, int type, float sx, float sy, float sz)
 {
-	_anon23 ps;
-	_anon0* hp;
-	_anon31* owp;
+	//_anon23 ps;
+	//_anon0* hp;
+	//_anon31* owp;
 	// Line 2486, Address: 0x153440, Func Offset: 0
 	// Line 2487, Address: 0x153468, Func Offset: 0x28
 	// Line 2490, Address: 0x15346c, Func Offset: 0x2c
@@ -2303,9 +2304,10 @@ void bhSetWaterSplash(BH_PWORK* pp, int jno, int type, float sx, float sy, float
 	// Line 2512, Address: 0x153674, Func Offset: 0x234
 	// Line 2514, Address: 0x153690, Func Offset: 0x250
 	// Func End, Address: 0x1536bc, Func Offset: 0x27c
+	scePrintf("bhSetWaterSplash - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1536c0
 void bhSetWaterSplash2(BH_PWORK* pp, _anon23* pos, int type, float sx, float sy, float sz)
 {

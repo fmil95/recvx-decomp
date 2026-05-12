@@ -15,16 +15,16 @@ void PlyPchInit(BH_PWORK* ewP)
     ewP->exp2 = bhGetFreeMemory(1712, 32);
 }
 
-/*// 
+// 
 // Start address: 0x14a5e0
 void PlyPchMain(BH_PWORK* ewP)
 {
 	int* dstP;
 	int* atP;
 	int dir;
-	npobj* objP;
-	_anon11* mlwP;
-	_anon3* ppP;
+	//npobj* objP;
+	//_anon11* mlwP;
+	//_anon3* ppP;
 	char RouteArmLn_0[5];
 	char RouteArmRn_0[5];
 	// Line 101, Address: 0x14a5e0, Func Offset: 0
@@ -112,9 +112,10 @@ void PlyPchMain(BH_PWORK* ewP)
 	// Line 213, Address: 0x14aa80, Func Offset: 0x4a0
 	// Line 218, Address: 0x14aa84, Func Offset: 0x4a4
 	// Func End, Address: 0x14aa9c, Func Offset: 0x4bc
+	scePrintf("PlyPchMain - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x14aaa0
 void MixSetToJointRot(npobj* basP, char* rutP, npobj* objP, int yaw)
 {
@@ -818,23 +819,23 @@ void bhCPM2_SearchPch()
 	// Line 1210, Address: 0x14cf40, Func Offset: 0x110
 	// Line 1216, Address: 0x14cf4c, Func Offset: 0x11c
 	// Func End, Address: 0x14cf58, Func Offset: 0x128
-}
+}*/
 
 // 
 // Start address: 0x14cf60
-void bhArmIkMdk(BH_PWORK* ewP, int bas_no, _anon27* effP, int rot)
+void bhArmIkMdk(BH_PWORK* ewP, int bas_no, NJS_POINT3* effP, int rot)
 {
-	npobj* obj1P;
-	npobj* obj0P;
-	_anon27* vtP;
-	_anon27* vb1P;
-	_anon27* vyP;
-	_anon27* vhP;
+	//npobj* obj1P;
+	//npobj* obj0P;
+	//_anon27* vtP;
+	//_anon27* vb1P;
+	//_anon27* vyP;
+	//_anon27* vhP;
 	float l01;
 	float lb0;
 	float lb1;
 	int Ta;
-	_anon27 vu;
+	//_anon27 vu;
 	// Line 1235, Address: 0x14cf60, Func Offset: 0
 	// Line 1241, Address: 0x14cf8c, Func Offset: 0x2c
 	// Line 1235, Address: 0x14cf90, Func Offset: 0x30
@@ -887,5 +888,5 @@ void bhArmIkMdk(BH_PWORK* ewP, int bas_no, _anon27* effP, int rot)
 	// Line 1293, Address: 0x14d204, Func Offset: 0x2a4
 	// Line 1295, Address: 0x14d20c, Func Offset: 0x2ac
 	// Func End, Address: 0x14d250, Func Offset: 0x2f0
-}*/
-
+	scePrintf("bhArmIkMdk - UNIMPLEMENTED!\n");
+}
