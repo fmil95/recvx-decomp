@@ -5988,82 +5988,131 @@ unsigned char Use_05(S_WORK* st)
     return 0;
 }
 
-// 
-// Start address: 0x2a3ae0
+// 100% matching!
 unsigned char Combi_00(short ps, unsigned int* moto, unsigned int* aite)
 {
-	unsigned char ok;
-	unsigned short bltmax;
-	unsigned short bullettype;
-	unsigned short bullettype0;
-	unsigned short itemid2;
-	unsigned short itemid1;
-	unsigned short bullet2;
-	unsigned short bullet1;
-	S_WORK* st;
-	// Line 5139, Address: 0x2a3ae0, Func Offset: 0
-	// Line 5150, Address: 0x2a3b0c, Func Offset: 0x2c
-	// Line 5154, Address: 0x2a3b10, Func Offset: 0x30
-	// Line 5158, Address: 0x2a3b14, Func Offset: 0x34
-	// Line 5151, Address: 0x2a3b18, Func Offset: 0x38
-	// Line 5158, Address: 0x2a3b1c, Func Offset: 0x3c
-	// Line 5155, Address: 0x2a3b24, Func Offset: 0x44
-	// Line 5150, Address: 0x2a3b28, Func Offset: 0x48
-	// Line 5152, Address: 0x2a3b34, Func Offset: 0x54
-	// Line 5151, Address: 0x2a3b3c, Func Offset: 0x5c
-	// Line 5153, Address: 0x2a3b44, Func Offset: 0x64
-	// Line 5158, Address: 0x2a3b48, Func Offset: 0x68
-	// Line 5140, Address: 0x2a3b64, Func Offset: 0x84
-	// Line 5153, Address: 0x2a3b6c, Func Offset: 0x8c
-	// Line 5158, Address: 0x2a3b70, Func Offset: 0x90
-	// Line 5159, Address: 0x2a3b74, Func Offset: 0x94
-	// Line 5158, Address: 0x2a3b78, Func Offset: 0x98
-	// Line 5148, Address: 0x2a3b7c, Func Offset: 0x9c
-	// Line 5159, Address: 0x2a3b80, Func Offset: 0xa0
-	// Line 5161, Address: 0x2a3b94, Func Offset: 0xb4
-	// Line 5162, Address: 0x2a3b9c, Func Offset: 0xbc
-	// Line 5166, Address: 0x2a3ba8, Func Offset: 0xc8
-	// Line 5169, Address: 0x2a3bd4, Func Offset: 0xf4
-	// Line 5170, Address: 0x2a3be4, Func Offset: 0x104
-	// Line 5171, Address: 0x2a3bf0, Func Offset: 0x110
-	// Line 5172, Address: 0x2a3c00, Func Offset: 0x120
-	// Line 5171, Address: 0x2a3c04, Func Offset: 0x124
-	// Line 5174, Address: 0x2a3c0c, Func Offset: 0x12c
-	// Line 5175, Address: 0x2a3c14, Func Offset: 0x134
-	// Line 5177, Address: 0x2a3c28, Func Offset: 0x148
-	// Line 5178, Address: 0x2a3c38, Func Offset: 0x158
-	// Line 5179, Address: 0x2a3c50, Func Offset: 0x170
-	// Line 5180, Address: 0x2a3c58, Func Offset: 0x178
-	// Line 5183, Address: 0x2a3c78, Func Offset: 0x198
-	// Line 5185, Address: 0x2a3c9c, Func Offset: 0x1bc
-	// Line 5186, Address: 0x2a3cb0, Func Offset: 0x1d0
-	// Line 5187, Address: 0x2a3cb4, Func Offset: 0x1d4
-	// Line 5188, Address: 0x2a3cbc, Func Offset: 0x1dc
-	// Line 5192, Address: 0x2a3cc8, Func Offset: 0x1e8
-	// Line 5193, Address: 0x2a3ce8, Func Offset: 0x208
-	// Line 5194, Address: 0x2a3cf8, Func Offset: 0x218
-	// Line 5195, Address: 0x2a3d00, Func Offset: 0x220
-	// Line 5197, Address: 0x2a3d04, Func Offset: 0x224
-	// Line 5198, Address: 0x2a3d0c, Func Offset: 0x22c
-	// Line 5201, Address: 0x2a3d10, Func Offset: 0x230
-	// Line 5202, Address: 0x2a3d18, Func Offset: 0x238
-	// Line 5203, Address: 0x2a3d24, Func Offset: 0x244
-	// Line 5205, Address: 0x2a3d28, Func Offset: 0x248
-	// Line 5206, Address: 0x2a3d44, Func Offset: 0x264
-	// Line 5207, Address: 0x2a3d48, Func Offset: 0x268
-	// Line 5208, Address: 0x2a3d4c, Func Offset: 0x26c
-	// Line 5213, Address: 0x2a3d50, Func Offset: 0x270
-	// Line 5218, Address: 0x2a3d60, Func Offset: 0x280
-	// Line 5214, Address: 0x2a3d68, Func Offset: 0x288
-	// Line 5215, Address: 0x2a3d6c, Func Offset: 0x28c
-	// Line 5218, Address: 0x2a3d70, Func Offset: 0x290
-	// Line 5221, Address: 0x2a3d94, Func Offset: 0x2b4
-	// Line 5222, Address: 0x2a3da0, Func Offset: 0x2c0
-	// Line 5224, Address: 0x2a3da8, Func Offset: 0x2c8
-	// Line 5225, Address: 0x2a3db8, Func Offset: 0x2d8
-	// Line 5228, Address: 0x2a3dc8, Func Offset: 0x2e8
-	// Func End, Address: 0x2a3df8, Func Offset: 0x318
-	scePrintf("Combi_00 - UNIMPLEMENTED!\n");
+    S_WORK* st;       
+    unsigned short bullet1, bullet2;  
+    unsigned short itemid1, itemid2;    
+    unsigned short bullettype0, bullettype; 
+    unsigned short bltmax;     
+    unsigned char ok;      
+
+    st = &swork;
+
+    ok = 0;
+
+    itemid1 = (*moto >> 16) & 0xFF;
+    itemid2 = (*aite >> 16) & 0xFF;
+
+    bullet1 = *moto;
+    bullet2 = *aite;
+
+    bullettype0 = (*moto >> 16) & 0xFF00;
+    bullettype  = (*aite >> 16) & 0xFF00;
+
+    st->gb = (unsigned int*)&getbulletmax[itemid2][sys->gm_mode];
+    
+    if ((itemid1 == 42) || (itemid2 == 42))
+    {
+        bltmax = 300;
+    } 
+    else 
+    {
+        bltmax = *st->gb;
+    }
+    
+    if ((bullet2 == bltmax) && (itemid1 != 19) && (!(bullettype & 0x800))) 
+    {
+        if (!(sys->st_flg & 0x200)) 
+        {
+            bhSetMessage(1, 156); 
+            
+            swork.statusflg &= ~0x100000;
+            
+            ok = 4;
+        }
+    }
+    else
+    {
+        if (itemid1 != 19) 
+        {
+            bullet2 += bullet1;
+        }
+        
+        if ((bullettype & 0x2000)) 
+        {
+            itemid2 = combidata[1 + ps];
+        } 
+        else 
+        {
+            itemid2 = combidata[1 + ps];
+        }
+        
+        st->gb = (unsigned int*)&getbulletmax[itemid2][sys->gm_mode];
+        
+        if ((itemid1 == 42) || (itemid2 == 42)) 
+        {
+            bltmax = 300;
+        } 
+        else 
+        {
+            bltmax = *st->gb;
+        }
+        
+        if ((bullet2 > bltmax) && (!(bullettype & 0x800))) 
+        {
+            if (!(bullettype0 & 0x800))
+            {
+                bullet1 = bullet2 - bltmax;
+                bullet2 = bltmax;
+                
+                ok = 2;
+            } 
+            else 
+            {
+                bullet2 = bltmax;
+                
+                ok = 2;
+            }
+        } 
+        else
+        {
+            if ((bullettype & 0x800)) 
+            {
+                bullet2 = bltmax;
+            }
+            
+            if ((itemid1 != 19) && (!(bullettype0 & 0x800))) 
+            {
+                itemid1 = 0;
+                bullet1 = 0;
+                
+                ok = 1;
+            }
+        }
+    }
+    
+    if (itemid1 == 19) 
+    {
+        itemid1 = 0;
+        bullet1 = 0;
+        
+        ok = 1;
+        
+        if ((unsigned char)(st->pip[*st->pip] >> 16) == 9) 
+        {
+            ok = 129;
+        }
+    }
+    
+    itemid1 |= bullettype0 & 0x800;
+    itemid2 |= bullettype;
+    
+    *moto = (itemid1 << 16) | bullet1;
+    *aite = (itemid2 << 16) | bullet2;
+    
+    return ok;
 }
 
 // 
@@ -6353,8 +6402,8 @@ unsigned char Combi_99(short ps, unsigned short moto, unsigned short aite) // fi
     bt         = (st->pip[moto] >> 16) & 0xFF00;
     bullettype = (st->pip[aite] >> 16) & 0xFF00;
     
-    bullet2    = st->pip[aite];
     bullet1    = st->pip[moto];
+    bullet2    = st->pip[aite];
     
     if ((bt & 0x800)) 
     {
