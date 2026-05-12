@@ -1467,41 +1467,48 @@ void bhControlPlayer()
 	scePrintf("bhControlPlayer - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x13b860
+// 100% matching!
 void bhCPM0_action()
 {
-	// Line 1088, Address: 0x13b860, Func Offset: 0
-	// Line 1089, Address: 0x13b868, Func Offset: 0x8
-	// Line 1091, Address: 0x13b870, Func Offset: 0x10
-	// Line 1089, Address: 0x13b874, Func Offset: 0x14
-	// Line 1091, Address: 0x13b878, Func Offset: 0x18
-	// Line 1092, Address: 0x13b8a0, Func Offset: 0x40
-	// Line 1093, Address: 0x13b8a8, Func Offset: 0x48
-	// Line 1094, Address: 0x13b8b4, Func Offset: 0x54
-	// Line 1097, Address: 0x13b8c0, Func Offset: 0x60
-	// Line 1105, Address: 0x13b92c, Func Offset: 0xcc
-	// Line 1106, Address: 0x13b934, Func Offset: 0xd4
-	// Line 1107, Address: 0x13b93c, Func Offset: 0xdc
-	// Line 1109, Address: 0x13b940, Func Offset: 0xe0
-	// Line 1111, Address: 0x13b944, Func Offset: 0xe4
-	// Line 1106, Address: 0x13b948, Func Offset: 0xe8
-	// Line 1107, Address: 0x13b94c, Func Offset: 0xec
-	// Line 1106, Address: 0x13b950, Func Offset: 0xf0
-	// Line 1107, Address: 0x13b958, Func Offset: 0xf8
-	// Line 1108, Address: 0x13b960, Func Offset: 0x100
-	// Line 1109, Address: 0x13b96c, Func Offset: 0x10c
-	// Line 1110, Address: 0x13b978, Func Offset: 0x118
-	// Line 1111, Address: 0x13b984, Func Offset: 0x124
-	// Line 1112, Address: 0x13b990, Func Offset: 0x130
-	// Line 1111, Address: 0x13b994, Func Offset: 0x134
-	// Line 1112, Address: 0x13b9a0, Func Offset: 0x140
-	// Line 1118, Address: 0x13b9b4, Func Offset: 0x154
-	// Line 1120, Address: 0x13b9d8, Func Offset: 0x178
-	// Line 1121, Address: 0x13b9fc, Func Offset: 0x19c
-	// Line 1122, Address: 0x13ba04, Func Offset: 0x1a4
-	// Func End, Address: 0x13ba10, Func Offset: 0x1b0
-}*/
+    plp->mtn_md = 0;
+    
+    if (((sys->gm_flg & 0x1000000)) && (!(sys->gm_flg & 0x40)))
+    {
+        cam.pe_ax = 0;
+        cam.pe_pers = 11832;
+        
+        sys->gm_flg |= 0x2000;
+    }
+    
+    if (((sys->pad_on & 0x10)) && (((plp->flg & 0x20000)) && (!(plp->flg & 0x4000000))) && (((!(plp->stflg & 0x400)) && (!(plp->stflg & 0x10000))))) 
+    {
+        plp->flg |= 0x10000;
+        plp->stflg |= 0x400;
+        
+        plp->at_flg = 1;
+        
+        plp->mode1 = 1;
+        plp->mode2 = 0x40;
+        plp->mode3 = 0;
+        
+        EXP1_I(0) &= ~0x4;
+        EXP1_I(0) |= 0x1E0;
+    }
+    
+    if (!(plp->flg & 0x10000)) 
+    {
+        bhControlPlayerPad();
+    }
+    
+    if (plp->mode1 == 0) 
+    {
+        bhCPM1_act_bas();
+    }
+    else 
+    {
+        bhCPM1_act_atk();
+    }
+}
 
 // 100% matching!
 void bhControlPlayerPad()
