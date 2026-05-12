@@ -5890,70 +5890,102 @@ unsigned char Use_04()
 	return 0;
 }
 
-// 
-// Start address: 0x2a3840
+// 100% matching!
 unsigned char Use_05(S_WORK* st)
 {
-	ATR_WORK* evit;
-	// Line 5064, Address: 0x2a3840, Func Offset: 0
-	// Line 5067, Address: 0x2a384c, Func Offset: 0xc
-	// Line 5068, Address: 0x2a3864, Func Offset: 0x24
-	// Line 5069, Address: 0x2a3884, Func Offset: 0x44
-	// Line 5068, Address: 0x2a3888, Func Offset: 0x48
-	// Line 5069, Address: 0x2a388c, Func Offset: 0x4c
-	// Line 5068, Address: 0x2a3890, Func Offset: 0x50
-	// Line 5069, Address: 0x2a3894, Func Offset: 0x54
-	// Line 5073, Address: 0x2a38c8, Func Offset: 0x88
-	// Line 5074, Address: 0x2a38d4, Func Offset: 0x94
-	// Line 5075, Address: 0x2a38f0, Func Offset: 0xb0
-	// Line 5076, Address: 0x2a38f8, Func Offset: 0xb8
-	// Line 5077, Address: 0x2a38fc, Func Offset: 0xbc
-	// Line 5078, Address: 0x2a3900, Func Offset: 0xc0
-	// Line 5076, Address: 0x2a3904, Func Offset: 0xc4
-	// Line 5078, Address: 0x2a390c, Func Offset: 0xcc
-	// Line 5080, Address: 0x2a3914, Func Offset: 0xd4
-	// Line 5081, Address: 0x2a3934, Func Offset: 0xf4
-	// Line 5082, Address: 0x2a3940, Func Offset: 0x100
-	// Line 5083, Address: 0x2a3948, Func Offset: 0x108
-	// Line 5084, Address: 0x2a3954, Func Offset: 0x114
-	// Line 5085, Address: 0x2a3958, Func Offset: 0x118
-	// Line 5084, Address: 0x2a395c, Func Offset: 0x11c
-	// Line 5088, Address: 0x2a3964, Func Offset: 0x124
-	// Line 5089, Address: 0x2a3978, Func Offset: 0x138
-	// Line 5090, Address: 0x2a3980, Func Offset: 0x140
-	// Line 5089, Address: 0x2a3984, Func Offset: 0x144
-	// Line 5090, Address: 0x2a3990, Func Offset: 0x150
-	// Line 5091, Address: 0x2a3998, Func Offset: 0x158
-	// Line 5092, Address: 0x2a399c, Func Offset: 0x15c
-	// Line 5091, Address: 0x2a39a0, Func Offset: 0x160
-	// Line 5093, Address: 0x2a39a8, Func Offset: 0x168
-	// Line 5094, Address: 0x2a39b0, Func Offset: 0x170
-	// Line 5095, Address: 0x2a39bc, Func Offset: 0x17c
-	// Line 5096, Address: 0x2a39c0, Func Offset: 0x180
-	// Line 5095, Address: 0x2a39c4, Func Offset: 0x184
-	// Line 5098, Address: 0x2a39cc, Func Offset: 0x18c
-	// Line 5099, Address: 0x2a39d4, Func Offset: 0x194
-	// Line 5103, Address: 0x2a39e4, Func Offset: 0x1a4
-	// Line 5104, Address: 0x2a39f0, Func Offset: 0x1b0
-	// Line 5105, Address: 0x2a39fc, Func Offset: 0x1bc
-	// Line 5106, Address: 0x2a3a08, Func Offset: 0x1c8
-	// Line 5107, Address: 0x2a3a10, Func Offset: 0x1d0
-	// Line 5109, Address: 0x2a3a1c, Func Offset: 0x1dc
-	// Line 5110, Address: 0x2a3a30, Func Offset: 0x1f0
-	// Line 5111, Address: 0x2a3a38, Func Offset: 0x1f8
-	// Line 5112, Address: 0x2a3a44, Func Offset: 0x204
-	// Line 5113, Address: 0x2a3a4c, Func Offset: 0x20c
-	// Line 5115, Address: 0x2a3a58, Func Offset: 0x218
-	// Line 5116, Address: 0x2a3a60, Func Offset: 0x220
-	// Line 5118, Address: 0x2a3a6c, Func Offset: 0x22c
-	// Line 5121, Address: 0x2a3a84, Func Offset: 0x244
-	// Line 5122, Address: 0x2a3a8c, Func Offset: 0x24c
-	// Line 5123, Address: 0x2a3a9c, Func Offset: 0x25c
-	// Line 5124, Address: 0x2a3aa8, Func Offset: 0x268
-	// Line 5127, Address: 0x2a3ac4, Func Offset: 0x284
-	// Line 5128, Address: 0x2a3ac8, Func Offset: 0x288
-	// Func End, Address: 0x2a3ad8, Func Offset: 0x298
-	scePrintf("Use_05 - UNIMPLEMENTED!\n");
+    ATR_WORK* evit; 
+
+    if ((sys->cb_flg & 0x200))
+    {
+        evit = &rom->flrp[sys->flr_idx];
+        
+        if ((evit->prm0 == sys->sb_id) || (evit->prm1 == sys->sb_id) || (evit->prm2 == sys->sb_id) || (evit->prm3 == sys->sb_id)) 
+        {
+            if (sys->sb_id == 82)
+            {
+                if ((unsigned char)st->pip[st->listcsr_0] != 0) 
+                {
+                    StatusCancel(st);
+                    
+                    st->flgchk &= ~0x2;
+                    
+                    st->testmode = 4;
+                    
+                    return 1;
+                }
+                
+                if ((sys->stg_no == 9) && (sys->rom_no == 8)) 
+                {
+                    bhSetMessage(1, 195);
+                } 
+                else 
+                {               
+                    StatusCancel(st);
+                    
+                    st->flgchk &= ~0x2;
+                    
+                    st->testmode = 4;
+                }
+            } 
+            else if (sys->sb_id == 4) 
+            {   
+                sys->itm[224] = (unsigned char)st->pip[st->listcsr_0];
+                
+                StatusCancel(st);
+                
+                st->flgchk &= ~0x2;
+                
+                st->testmode = 4;
+            } 
+            else
+            {
+                StatusCancel(st);
+                
+                st->flgchk &= ~0x2;
+                
+                st->testmode = 4;
+            }
+        }
+        else if (!(sys->st_flg & 0x200)) 
+        {
+            if (evit->prm0 == 59)
+            {
+                if (sys->sb_id == 85) 
+                {
+                    bhSetMessage(1, 175);
+                }
+                else 
+                {
+                    bhSetMessage(1, 174);
+                }
+            } 
+            else if (evit->prm0 == 85)
+            {
+                if (sys->sb_id == 59) 
+                {
+                    bhSetMessage(1, 176);
+                } 
+                else 
+                {
+                    bhSetMessage(1, 174);
+                }
+            } 
+            else
+            {
+                bhSetMessage(1, 161);
+            }
+            
+            swork.statusflg &= ~0x100000;
+        }
+    } 
+    else if (!(sys->st_flg & 0x200))
+    {
+        bhSetMessage(1, 161);
+        
+        swork.statusflg &= ~0x100000;
+    }
+    
+    return 0;
 }
 
 // 
