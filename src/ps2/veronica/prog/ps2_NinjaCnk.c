@@ -1862,8 +1862,8 @@ CHUNK_HEAD* njCnkCsUvh(CHUNK_HEAD* pCnk)
     unsigned char ucFlag;                                                           
     unsigned long ulType, ulType2;                                     
     unsigned short* uspCnk;                                                       
-    VU1_STRIP_BUF* pV, *pS, *pSorg;                                                            
-    unsigned short usNext;                                                       
+    VU1_STRIP_BUF* pV, *pS, *pSorg; // pSorg needs use                                                          
+    unsigned short usNext; // needs use                                                    
     unsigned short usStrip;                                                   
     unsigned short usCnt;                                                         
     unsigned short usMax;                                                       
@@ -1873,7 +1873,7 @@ CHUNK_HEAD* njCnkCsUvh(CHUNK_HEAD* pCnk)
     void (*pVu1Func)(unsigned long, VU1_STRIP_BUF*, unsigned short, unsigned short); 
     int sExit;                                                                    
     unsigned long* ulpP;                                                          
-    unsigned long ulVuflag;                                                         
+    unsigned long ulVuflag; // needs use                                                  
     unsigned long vu1func_tag;                                                                                                                 
     unsigned long* p; // not from DWARF 
 
@@ -2294,8 +2294,8 @@ CHUNK_HEAD* njCnkCsUvn(CHUNK_HEAD* pCnk)
     unsigned char ucFlag;                                                           
     unsigned long ulType, ulType2;                                     
     unsigned short* uspCnk;                                                       
-    VU1_STRIP_BUF* pV, *pS, *pSorg;                                                            
-    unsigned short usNext;                                                       
+    VU1_STRIP_BUF* pV, *pS, *pSorg; // pSorg needs use                                                             
+    unsigned short usNext; // needs use                                                    
     unsigned short usStrip;                                                   
     unsigned short usCnt;                                                         
     unsigned short usMax;                                                       
@@ -2305,7 +2305,7 @@ CHUNK_HEAD* njCnkCsUvn(CHUNK_HEAD* pCnk)
     void (*pVu1Func)(unsigned long, VU1_STRIP_BUF*, unsigned short, unsigned short); 
     int sExit;                                                                    
     unsigned long* ulpP;                                                          
-    unsigned long ulVuflag;                                                         
+    unsigned long ulVuflag; // needs use                                                        
     unsigned long vu1func_tag;                                                                                                                 
     unsigned long* p; // not from DWARF 
 
