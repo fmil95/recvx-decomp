@@ -6204,30 +6204,33 @@ void bhCPM0_enedie()
 	// Line 4842, Address: 0x148fa4, Func Offset: 0x1c4
 	// Line 4844, Address: 0x148fb8, Func Offset: 0x1d8
 	// Func End, Address: 0x148fc0, Func Offset: 0x1e0
-}
+}*/
 
-// 
-// Start address: 0x148fc0
+// 100% matching!
 void bhCPM0_nothing()
 {
-	// Line 4862, Address: 0x148fc0, Func Offset: 0
-	// Line 4864, Address: 0x148fe8, Func Offset: 0x28
-	// Line 4865, Address: 0x148ff0, Func Offset: 0x30
-	// Line 4866, Address: 0x148ffc, Func Offset: 0x3c
-	// Line 4867, Address: 0x149000, Func Offset: 0x40
-	// Line 4865, Address: 0x149004, Func Offset: 0x44
-	// Line 4866, Address: 0x149008, Func Offset: 0x48
-	// Line 4867, Address: 0x149014, Func Offset: 0x54
-	// Line 4868, Address: 0x149020, Func Offset: 0x60
-	// Line 4869, Address: 0x14902c, Func Offset: 0x6c
-	// Line 4871, Address: 0x149040, Func Offset: 0x80
-	// Line 4872, Address: 0x149088, Func Offset: 0xc8
-	// Line 4873, Address: 0x14908c, Func Offset: 0xcc
-	// Line 4872, Address: 0x149090, Func Offset: 0xd0
-	// Line 4873, Address: 0x14909c, Func Offset: 0xdc
-	// Line 4881, Address: 0x1490a4, Func Offset: 0xe4
-	// Func End, Address: 0x1490ac, Func Offset: 0xec
-}*/
+    switch (plp->mode3)
+    {
+    case 0:
+        plp->mtn_no = 218;
+        
+        plp->hokan_rate = 49152;
+        plp->hokan_count = 8;
+        
+        plp->mtn_add = 65536;
+        
+        plp->frm_no = 0;
+        
+        plp->mode3++;
+    case 1:
+        if (((unsigned int)plp->frm_no / 65536) >= (plp->mnwP[plp->mtn_no].frm_num - 1)) 
+        {
+            plp->frm_no = (plp->mnwP[plp->mtn_no].frm_num - 1) * 65536;
+            
+            plp->mtn_add = 0;
+        }
+    }
+}
 
 // 
 // Start address: 0x1490b0
