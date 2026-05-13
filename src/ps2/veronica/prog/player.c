@@ -3625,66 +3625,56 @@ void bhCPM2_act_psh()
 	// Line 2604, Address: 0x14173c, Func Offset: 0x57c
 	// Line 2609, Address: 0x14175c, Func Offset: 0x59c
 	// Func End, Address: 0x14176c, Func Offset: 0x5ac
-}
+}*/
 
-// 
-// Start address: 0x141770
+// 100% matching!
 void bhCPM2_act_cro()
 {
-	// Line 2616, Address: 0x141770, Func Offset: 0
-	// Line 2617, Address: 0x141778, Func Offset: 0x8
-	// Line 2616, Address: 0x14177c, Func Offset: 0xc
-	// Line 2617, Address: 0x141780, Func Offset: 0x10
-	// Line 2616, Address: 0x141784, Func Offset: 0x14
-	// Line 2617, Address: 0x14178c, Func Offset: 0x1c
-	// Line 2619, Address: 0x1417ac, Func Offset: 0x3c
-	// Line 2620, Address: 0x1417b4, Func Offset: 0x44
-	// Line 2621, Address: 0x1417b8, Func Offset: 0x48
-	// Line 2627, Address: 0x1417bc, Func Offset: 0x4c
-	// Line 2619, Address: 0x1417c0, Func Offset: 0x50
-	// Line 2620, Address: 0x1417c8, Func Offset: 0x58
-	// Line 2628, Address: 0x1417cc, Func Offset: 0x5c
-	// Line 2629, Address: 0x1417d0, Func Offset: 0x60
-	// Line 2620, Address: 0x1417d4, Func Offset: 0x64
-	// Line 2621, Address: 0x1417d8, Func Offset: 0x68
-	// Line 2620, Address: 0x1417dc, Func Offset: 0x6c
-	// Line 2621, Address: 0x1417e4, Func Offset: 0x74
-	// Line 2622, Address: 0x1417ec, Func Offset: 0x7c
-	// Line 2621, Address: 0x1417f0, Func Offset: 0x80
-	// Line 2622, Address: 0x1417fc, Func Offset: 0x8c
-	// Line 2626, Address: 0x141804, Func Offset: 0x94
-	// Line 2622, Address: 0x141808, Func Offset: 0x98
-	// Line 2626, Address: 0x141814, Func Offset: 0xa4
-	// Line 2627, Address: 0x14181c, Func Offset: 0xac
-	// Line 2626, Address: 0x141820, Func Offset: 0xb0
-	// Line 2627, Address: 0x141828, Func Offset: 0xb8
-	// Line 2628, Address: 0x141830, Func Offset: 0xc0
-	// Line 2629, Address: 0x14183c, Func Offset: 0xcc
-	// Line 2630, Address: 0x141848, Func Offset: 0xd8
-	// Line 2631, Address: 0x141854, Func Offset: 0xe4
-	// Line 2632, Address: 0x141860, Func Offset: 0xf0
-	// Line 2633, Address: 0x14186c, Func Offset: 0xfc
-	// Line 2632, Address: 0x141870, Func Offset: 0x100
-	// Line 2633, Address: 0x141874, Func Offset: 0x104
-	// Line 2635, Address: 0x141884, Func Offset: 0x114
-	// Line 2637, Address: 0x1418c4, Func Offset: 0x154
-	// Line 2639, Address: 0x1418d4, Func Offset: 0x164
-	// Line 2640, Address: 0x1418f0, Func Offset: 0x180
-	// Line 2641, Address: 0x141900, Func Offset: 0x190
-	// Line 2643, Address: 0x141908, Func Offset: 0x198
-	// Line 2641, Address: 0x14190c, Func Offset: 0x19c
-	// Line 2642, Address: 0x141910, Func Offset: 0x1a0
-	// Line 2641, Address: 0x141914, Func Offset: 0x1a4
-	// Line 2642, Address: 0x14191c, Func Offset: 0x1ac
-	// Line 2643, Address: 0x141924, Func Offset: 0x1b4
-	// Line 2644, Address: 0x141930, Func Offset: 0x1c0
-	// Line 2643, Address: 0x141934, Func Offset: 0x1c4
-	// Line 2644, Address: 0x14193c, Func Offset: 0x1cc
-	// Line 2648, Address: 0x14194c, Func Offset: 0x1dc
-	// Func End, Address: 0x141954, Func Offset: 0x1e4
+    sys->st_flg |= 0x4;
+    
+    switch (plp->mode3)
+    {
+    case 0:
+        plp->flg   |= 0x10000;
+        plp->stflg |= 0x10000;
+        
+        EXP1_I(0) &= ~0x4;
+        EXP1_I(0) |= 0x1E0;
+        
+        plp->flg2 |= 0x1;
+        
+        plp->mtn_no = 45;
+        
+        plp->hokan_rate = 49152;
+        plp->hokan_count = 4;
+        
+        plp->mtn_add = 65536;
+        
+        plp->frm_no = 0;
+        
+        ((EXP_WORK*)plp->exp0)->arp = 0;
+        
+        plp->mode3++;
+    case 1:
+        if (((int)plp->frm_no / 65536) >= (plp->mnwP[plp->mtn_no].frm_num - 6)) 
+        {
+            plp->flg &= ~0x8;
+        }
+         
+        if ((plp->flg & 0x400000))
+        {
+            plp->flg   &= ~0x10000;
+            plp->stflg &= ~0x10000;
+            
+            plp->mtn_add = 0;
+            
+            sys->st_flg &= ~0x4;
+            sys->cb_flg |= 0x10;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x141960
 void bhCPM2_act_hsu()
 {
