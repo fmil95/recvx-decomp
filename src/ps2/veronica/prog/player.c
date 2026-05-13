@@ -5358,48 +5358,69 @@ void bhCPM2_act_rld()
 	// Line 4354, Address: 0x147a38, Func Offset: 0x978
 	// Line 4359, Address: 0x147a44, Func Offset: 0x984
 	// Func End, Address: 0x147a58, Func Offset: 0x998
-}
+}*/
 
-// 
-// Start address: 0x147a60
+// 100% matching!
 void bhCPM2_act_knf()
 {
-	// Line 4366, Address: 0x147a60, Func Offset: 0
-	// Line 4368, Address: 0x147a88, Func Offset: 0x28
-	// Line 4369, Address: 0x147a90, Func Offset: 0x30
-	// Line 4368, Address: 0x147a98, Func Offset: 0x38
-	// Line 4369, Address: 0x147aa0, Func Offset: 0x40
-	// Line 4372, Address: 0x147ad4, Func Offset: 0x74
-	// Line 4375, Address: 0x147adc, Func Offset: 0x7c
-	// Line 4377, Address: 0x147ae4, Func Offset: 0x84
-	// Line 4380, Address: 0x147ae8, Func Offset: 0x88
-	// Line 4381, Address: 0x147af4, Func Offset: 0x94
-	// Line 4382, Address: 0x147af8, Func Offset: 0x98
-	// Line 4384, Address: 0x147afc, Func Offset: 0x9c
-	// Line 4380, Address: 0x147b00, Func Offset: 0xa0
-	// Line 4381, Address: 0x147b04, Func Offset: 0xa4
-	// Line 4382, Address: 0x147b10, Func Offset: 0xb0
-	// Line 4383, Address: 0x147b1c, Func Offset: 0xbc
-	// Line 4384, Address: 0x147b28, Func Offset: 0xc8
-	// Line 4385, Address: 0x147b34, Func Offset: 0xd4
-	// Line 4384, Address: 0x147b38, Func Offset: 0xd8
-	// Line 4385, Address: 0x147b3c, Func Offset: 0xdc
-	// Line 4387, Address: 0x147b4c, Func Offset: 0xec
-	// Line 4388, Address: 0x147b8c, Func Offset: 0x12c
-	// Line 4390, Address: 0x147bc0, Func Offset: 0x160
-	// Line 4391, Address: 0x147bc4, Func Offset: 0x164
-	// Line 4392, Address: 0x147bd0, Func Offset: 0x170
-	// Line 4394, Address: 0x147bd8, Func Offset: 0x178
-	// Line 4395, Address: 0x147bdc, Func Offset: 0x17c
-	// Line 4396, Address: 0x147be8, Func Offset: 0x188
-	// Line 4398, Address: 0x147bf0, Func Offset: 0x190
-	// Line 4399, Address: 0x147bf4, Func Offset: 0x194
-	// Line 4402, Address: 0x147c04, Func Offset: 0x1a4
-	// Line 4413, Address: 0x147c10, Func Offset: 0x1b0
-	// Func End, Address: 0x147c18, Func Offset: 0x1b8
+    switch (plp->mode3) 
+    {
+    case 0:
+        plp->flg |= 0xC0000;
+        
+        switch (plp->at_flg & 0xE)
+        {
+        case 2:
+            plp->mtn_no = 103;
+            break;
+        case 4:
+            plp->mtn_no = 108;
+            break;
+        case 8:
+            plp->mtn_no = 113;
+            break;
+        }
+        
+        plp->hokan_rate = 45875;
+        plp->hokan_count = 4;
+        
+        plp->mtn_add = 65536;
+        
+        plp->frm_no = 0;
+        
+        ((EXP_WORK*)plp->exp0)->arp = 2.0f;
+        
+        plp->mode3++;
+    case 1:
+        if ((plp->frm_no / 65536) >= (plp->mnwP[plp->mtn_no].frm_num - 1))
+        {
+            switch (plp->at_flg & 0xE)
+            {
+            case 2:
+                plp->hokan_count = 1;
+                
+                plp->mode2 = 65;
+                break;
+            case 4:
+                plp->hokan_count = 1;
+                
+                plp->mode2 = 66;
+                break;
+            case 8:
+                plp->hokan_count = 1;
+                
+                plp->mode2 = 67;
+                break;
+            }
+            
+            plp->mode3 = 0;
+        }
+        
+        return;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x147c20
 void bhCPM0_damage()
 {
