@@ -391,8 +391,8 @@ const WPN_TAB WpnTab[23] =
 char PlySdwTab[8];*/
 CPCL PlyCapColTab[18]; // DATA
 EF_WORK WpnEffTab[23][4]; // DATA
-/*char PlyTrsZ[3][6];
-BH_PWORK* plp;
+char PlyTrsZ[6][3]; // DATA
+/*BH_PWORK* plp;
 _anon10* rom;
 BH_PWORK ply;
 BH_PWORK ene[0];*/
@@ -2039,126 +2039,146 @@ void bhCPM2_act_sta()
     }
 }
 
-/*// 
-// Start address: 0x13cb40
+// 100% matching!
 void bhCPM2_act_wlk()
 {
-	int dmlvl;
-	int fsnd;
 	float* trsz;
-	// Line 1450, Address: 0x13cb40, Func Offset: 0
-	// Line 1454, Address: 0x13cb4c, Func Offset: 0xc
-	// Line 1455, Address: 0x13cb84, Func Offset: 0x44
-	// Line 1457, Address: 0x13cbac, Func Offset: 0x6c
-	// Line 1458, Address: 0x13cbb8, Func Offset: 0x78
-	// Line 1457, Address: 0x13cbc0, Func Offset: 0x80
-	// Line 1458, Address: 0x13cbc8, Func Offset: 0x88
-	// Line 1459, Address: 0x13cbcc, Func Offset: 0x8c
-	// Line 1458, Address: 0x13cbd0, Func Offset: 0x90
-	// Line 1459, Address: 0x13cbd4, Func Offset: 0x94
-	// Line 1458, Address: 0x13cbd8, Func Offset: 0x98
-	// Line 1459, Address: 0x13cbe0, Func Offset: 0xa0
-	// Line 1460, Address: 0x13cbf4, Func Offset: 0xb4
-	// Line 1461, Address: 0x13cbf8, Func Offset: 0xb8
-	// Line 1462, Address: 0x13cc00, Func Offset: 0xc0
-	// Line 1466, Address: 0x13cc84, Func Offset: 0x144
-	// Line 1468, Address: 0x13cc94, Func Offset: 0x154
-	// Line 1466, Address: 0x13cc9c, Func Offset: 0x15c
-	// Line 1468, Address: 0x13cca0, Func Offset: 0x160
-	// Line 1467, Address: 0x13ccac, Func Offset: 0x16c
-	// Line 1469, Address: 0x13ccb0, Func Offset: 0x170
-	// Line 1466, Address: 0x13ccb4, Func Offset: 0x174
-	// Line 1467, Address: 0x13ccbc, Func Offset: 0x17c
-	// Line 1470, Address: 0x13ccc0, Func Offset: 0x180
-	// Line 1471, Address: 0x13ccc4, Func Offset: 0x184
-	// Line 1472, Address: 0x13ccc8, Func Offset: 0x188
-	// Line 1473, Address: 0x13cccc, Func Offset: 0x18c
-	// Line 1467, Address: 0x13ccd0, Func Offset: 0x190
-	// Line 1468, Address: 0x13ccd4, Func Offset: 0x194
-	// Line 1467, Address: 0x13ccd8, Func Offset: 0x198
-	// Line 1468, Address: 0x13cce4, Func Offset: 0x1a4
-	// Line 1469, Address: 0x13ccec, Func Offset: 0x1ac
-	// Line 1468, Address: 0x13ccf0, Func Offset: 0x1b0
-	// Line 1469, Address: 0x13cd18, Func Offset: 0x1d8
-	// Line 1470, Address: 0x13cd20, Func Offset: 0x1e0
-	// Line 1471, Address: 0x13cd2c, Func Offset: 0x1ec
-	// Line 1472, Address: 0x13cd38, Func Offset: 0x1f8
-	// Line 1473, Address: 0x13cd44, Func Offset: 0x204
-	// Line 1472, Address: 0x13cd48, Func Offset: 0x208
-	// Line 1473, Address: 0x13cd4c, Func Offset: 0x20c
-	// Line 1474, Address: 0x13cd60, Func Offset: 0x220
-	// Line 1475, Address: 0x13cd74, Func Offset: 0x234
-	// Line 1477, Address: 0x13cd88, Func Offset: 0x248
-	// Line 1479, Address: 0x13cda8, Func Offset: 0x268
-	// Line 1478, Address: 0x13cdb0, Func Offset: 0x270
-	// Line 1477, Address: 0x13cdb4, Func Offset: 0x274
-	// Line 1478, Address: 0x13cdb8, Func Offset: 0x278
-	// Line 1479, Address: 0x13cdbc, Func Offset: 0x27c
-	// Line 1477, Address: 0x13cdc0, Func Offset: 0x280
-	// Line 1478, Address: 0x13cde4, Func Offset: 0x2a4
-	// Line 1479, Address: 0x13cdf4, Func Offset: 0x2b4
-	// Line 1480, Address: 0x13cdfc, Func Offset: 0x2bc
-	// Line 1481, Address: 0x13ce04, Func Offset: 0x2c4
-	// Line 1480, Address: 0x13ce08, Func Offset: 0x2c8
-	// Line 1481, Address: 0x13ce0c, Func Offset: 0x2cc
-	// Line 1480, Address: 0x13ce10, Func Offset: 0x2d0
-	// Line 1481, Address: 0x13ce24, Func Offset: 0x2e4
-	// Line 1482, Address: 0x13ce54, Func Offset: 0x314
-	// Line 1483, Address: 0x13ce70, Func Offset: 0x330
-	// Line 1484, Address: 0x13cea0, Func Offset: 0x360
-	// Line 1485, Address: 0x13cec0, Func Offset: 0x380
-	// Line 1489, Address: 0x13cedc, Func Offset: 0x39c
-	// Line 1490, Address: 0x13cf1c, Func Offset: 0x3dc
-	// Line 1493, Address: 0x13cf34, Func Offset: 0x3f4
-	// Line 1494, Address: 0x13cf44, Func Offset: 0x404
-	// Line 1495, Address: 0x13cf4c, Func Offset: 0x40c
-	// Line 1494, Address: 0x13cf50, Func Offset: 0x410
-	// Line 1495, Address: 0x13cf54, Func Offset: 0x414
-	// Line 1494, Address: 0x13cf58, Func Offset: 0x418
-	// Line 1495, Address: 0x13cf60, Func Offset: 0x420
-	// Line 1496, Address: 0x13cf74, Func Offset: 0x434
-	// Line 1497, Address: 0x13cf88, Func Offset: 0x448
-	// Line 1500, Address: 0x13cfb0, Func Offset: 0x470
-	// Line 1501, Address: 0x13cfc8, Func Offset: 0x488
-	// Line 1507, Address: 0x13cff4, Func Offset: 0x4b4
-	// Line 1508, Address: 0x13d034, Func Offset: 0x4f4
-	// Line 1511, Address: 0x13d04c, Func Offset: 0x50c
-	// Line 1512, Address: 0x13d05c, Func Offset: 0x51c
-	// Line 1513, Address: 0x13d064, Func Offset: 0x524
-	// Line 1512, Address: 0x13d068, Func Offset: 0x528
-	// Line 1513, Address: 0x13d06c, Func Offset: 0x52c
-	// Line 1512, Address: 0x13d070, Func Offset: 0x530
-	// Line 1513, Address: 0x13d078, Func Offset: 0x538
-	// Line 1514, Address: 0x13d08c, Func Offset: 0x54c
-	// Line 1515, Address: 0x13d0a0, Func Offset: 0x560
-	// Line 1518, Address: 0x13d0c8, Func Offset: 0x588
-	// Line 1519, Address: 0x13d0e0, Func Offset: 0x5a0
-	// Line 1526, Address: 0x13d10c, Func Offset: 0x5cc
-	// Line 1527, Address: 0x13d11c, Func Offset: 0x5dc
-	// Line 1528, Address: 0x13d13c, Func Offset: 0x5fc
-	// Line 1529, Address: 0x13d148, Func Offset: 0x608
-	// Line 1528, Address: 0x13d14c, Func Offset: 0x60c
-	// Line 1529, Address: 0x13d150, Func Offset: 0x610
-	// Line 1528, Address: 0x13d154, Func Offset: 0x614
-	// Line 1529, Address: 0x13d15c, Func Offset: 0x61c
-	// Line 1530, Address: 0x13d164, Func Offset: 0x624
-	// Line 1531, Address: 0x13d16c, Func Offset: 0x62c
-	// Line 1533, Address: 0x13d174, Func Offset: 0x634
-	// Line 1534, Address: 0x13d19c, Func Offset: 0x65c
-	// Line 1535, Address: 0x13d1a0, Func Offset: 0x660
-	// Line 1536, Address: 0x13d1ac, Func Offset: 0x66c
-	// Line 1534, Address: 0x13d1b0, Func Offset: 0x670
-	// Line 1535, Address: 0x13d1b8, Func Offset: 0x678
-	// Line 1536, Address: 0x13d1c0, Func Offset: 0x680
-	// Line 1535, Address: 0x13d1c4, Func Offset: 0x684
-	// Line 1536, Address: 0x13d1cc, Func Offset: 0x68c
-	// Line 1537, Address: 0x13d1d4, Func Offset: 0x694
-	// Line 1539, Address: 0x13d1e0, Func Offset: 0x6a0
-	// Line 1540, Address: 0x13d1fc, Func Offset: 0x6bc
-	// Func End, Address: 0x13d20c, Func Offset: 0x6cc
+    int fsnd;
+    int dmlvl;
+    float px; // not from DWARF
+
+    if ((sys->gm_flg & 0x1000000)) 
+    {
+        dmlvl = 0;
+    }
+    else 
+    {
+        dmlvl = ((EXP_WORK*)plp->exp0)->dmlvl;
+    }
+    
+    switch (plp->mode3) 
+    {
+    case 0:
+        plp->flg &= ~0xC0000;
+        plp->flg2 &= ~0x1;
+        
+        if (!(plp->flg & 0x800000))
+        {
+            plp->frm_no = 327680;
+        }
+        else 
+        {
+            plp->frm_no = bhGetFrameNum(plp->mnwP[plp->mtn_no].frm_num, plp->mnwP[PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][dmlvl][2]].frm_num, plp->frm_no);
+        }
+        
+        plp->flg &= ~0x800000;
+        
+        EXP1_I(0) |= 0x4;
+        
+        plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][dmlvl][2];
+        
+        plp->hokan_rate = 42598;
+        plp->hokan_count = 8;
+        
+        plp->mtn_add = 65536;
+        
+        ((EXP_WORK*)plp->exp0)->arp = 2.0f;
+        
+        if ((plp->stflg & 0x100000)) 
+        {
+            bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
+        }
+        
+        plp->mode3++;
+    case 1:
+        plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][dmlvl][2];
+        
+        plp->flg |= 0x2000000;
+        
+        trsz = bhGetTransZ(PlyTrsZ[0][dmlvl]);
+        
+        plp->spd = trsz[(plp->frm_no / 65536) + 1];
+        
+        if ((plp->stflg & 0x100000)) 
+        {
+            plp->spd *= 0.8f;
+        }
+        
+        if ((sys->gm_flg & 0x1000000)) 
+        {
+            switch (((EXP_WORK*)plp->exp0)->dmlvl) 
+            {
+            case 1:
+                plp->spd *= 0.8f;
+                break;
+            case 2:
+                plp->spd *= 0.6f;
+            }
+        }
+        
+        px = 0.8f;
+        
+        if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][0])
+        {
+            CallPlayerFootStepSe(bhCheckFloorSound(plp, (int)plp->flr_no, plp->mlwP->owP[17].mtx[12], plp->mlwP->owP[17].mtx[14]), 0, 1);
+            
+            plp->stflg |= 0x200;
+            
+            if ((plp->stflg & 0x100000)) 
+            {
+                bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
+                bhSetWaterSplash(plp, 15, 0, px, px, 0.8f);
+            }
+            
+            if ((plp->flg2 & 0x8)) 
+            {
+                bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[17].mtx[12], plp->ay, plp->footeff, (float)px, px, px);
+            }
+        }
+        
+        if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][1][0])
+        {
+            CallPlayerFootStepSe(bhCheckFloorSound(plp, (int)plp->flr_no, plp->mlwP->owP[21].mtx[12], plp->mlwP->owP[21].mtx[14]), 0, 1);
+            
+            plp->stflg |= 0x200;
+            
+            if ((plp->stflg & 0x100000)) 
+            {
+                bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
+                bhSetWaterSplash(plp, 19, 0, (float)px, px, px);
+            }
+            
+            if ((plp->flg2 & 0x8)) 
+            {
+                bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[21].mtx[12], plp->ay, plp->footeff, (float)px, px, px);
+            }
+        }
+    }
+    
+    bhAddSpeed(plp, 0);
+    
+    if ((sys->pad_on & 0x400)) 
+    {
+        plp->flg |= 0x10000;
+        
+        plp->mode2 = 6;
+        plp->mode3 = 0;
+        return;
+    }
+    
+    if ((plp->psh_ct > 5) && (!(plp->stflg & 0x80))) 
+    {
+        sys->st_flg |= 0x4;
+        plp->stflg |= 0x10080;
+        
+        plp->mode2 = 18;
+        plp->mode3 = 0;
+    }
+    
+    bhCheckPlayerKegaMotion(((EXP_WORK*)plp->exp0)->wpntp, ((EXP_WORK*)plp->exp0)->dmlvl, 2);
 }
 
-// 
+/*// 
 // Start address: 0x13d210
 void bhCPM2_act_run()
 {
