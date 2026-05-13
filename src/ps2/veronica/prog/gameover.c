@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/gameover.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/room.h"
 #include "../../../ps2/veronica/prog/system.h"
 #include "../../../ps2/veronica/prog/main.h"
@@ -19,26 +20,21 @@ void bhControlGameOver()
     bhCtrGov_mode0[sys->gov_md0]();
 }
 
-// 
-// Start address: 0x2b9aa0
+// 100% matching!
 void bhSelectContinue()
 {
-	//_anon0* gv;
-	// Line 188, Address: 0x2b9aa0, Func Offset: 0
-	// Line 191, Address: 0x2b9aa4, Func Offset: 0x4
-	// Line 188, Address: 0x2b9aa8, Func Offset: 0x8
-	// Line 191, Address: 0x2b9aac, Func Offset: 0xc
-	// Line 196, Address: 0x2b9abc, Func Offset: 0x1c
-	// Line 191, Address: 0x2b9ac0, Func Offset: 0x20
-	// Line 192, Address: 0x2b9acc, Func Offset: 0x2c
-	// Line 193, Address: 0x2b9ae0, Func Offset: 0x40
-	// Line 194, Address: 0x2b9ae4, Func Offset: 0x44
-	// Line 195, Address: 0x2b9ae8, Func Offset: 0x48
-	// Line 196, Address: 0x2b9aec, Func Offset: 0x4c
-	// Line 197, Address: 0x2b9b00, Func Offset: 0x60
-	// Line 198, Address: 0x2b9b14, Func Offset: 0x74
-	// Func End, Address: 0x2b9b20, Func Offset: 0x80
-	scePrintf("bhSelectContinue - UNIMPLEMENTED!\n");
+    GV_WORK* gv;
+
+    sys->gov_exp = bhGetFreeMemory(sizeof(GV_WORK), 32);
+    
+    gv = sys->gov_exp;
+    
+    gv->cont_x = 0;
+    gv->count = 0;
+    gv->cur_ct = 0; 
+    
+    sys->gov_md0 = 1;
+    sys->gov_md1 = 0;
 }
 
 // 
