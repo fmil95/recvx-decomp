@@ -1847,9 +1847,34 @@ void(*bhEne01_MoveMode2W)(BH_PWORK*)[17];
 void(*bhEne01_NageTypeW)(BH_PWORK*)[16];
 void(*bhEne01_NageMode2W)(BH_PWORK*)[4];
 void(*bhEne01_DamageTypeW)(BH_PWORK*)[16];*/
-void (*bhEne01_DamageMode2W[17])(BH_PWORK*); // DATA
+void (*bhEne01_DamageMode2W[17])(BH_PWORK*) = 
+{
+	bhEne01_DG00,
+	bhEne01_DG01,
+	bhEne01_DG02,
+	bhEne01_DG03,
+	bhEne01_DG04,
+	bhEne01_DG05,
+	bhEne01_DG06,
+	bhEne01_DG07,
+	bhEne01_DG08,
+	bhEne01_DG09,
+	bhEne01_DG10,
+	bhEne01_DG11,
+	NULL,
+	NULL,
+	bhEne01_DG14,
+	bhEne01_DG15,
+	bhEne01_DG16
+}; 
 /*void(*bhEne01_DieTypeW)(BH_PWORK*)[16];*/
-void (*bhEne01_DieMode2W[4])(BH_PWORK*); // DATA
+void (*bhEne01_DieMode2W[4])(BH_PWORK*) =
+{
+	bhEne01_DD00,
+	bhEne01_DD01,
+	bhEne01_DD02,
+	bhEne01_DD03
+}; 
 /*void(*bhEne01_PlyDmgMode)(BH_PWORK*, BH_PWORK*)[2];
 void(*bhEne01_DmgCheckType)(BH_PWORK*)[16];
 BH_PWORK* plp;
