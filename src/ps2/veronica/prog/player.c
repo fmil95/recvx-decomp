@@ -6061,55 +6061,48 @@ void bhCPM0_die()
 	// Line 4710, Address: 0x148aa0, Func Offset: 0x920
 	// Line 4713, Address: 0x148ab0, Func Offset: 0x930
 	// Func End, Address: 0x148abc, Func Offset: 0x93c
-}
+}*/
 
-// 
-// Start address: 0x148ac0
-void bhCPM0_nage()
+// 100% matching!
+void bhCPM0_nage() 
 {
-	// Line 4726, Address: 0x148ac0, Func Offset: 0
-	// Line 4727, Address: 0x148adc, Func Offset: 0x1c
-	// Line 4728, Address: 0x148ae8, Func Offset: 0x28
-	// Line 4733, Address: 0x148b00, Func Offset: 0x40
-	// Line 4737, Address: 0x148b08, Func Offset: 0x48
-	// Line 4733, Address: 0x148b10, Func Offset: 0x50
-	// Line 4734, Address: 0x148b14, Func Offset: 0x54
-	// Line 4733, Address: 0x148b18, Func Offset: 0x58
-	// Line 4734, Address: 0x148b20, Func Offset: 0x60
-	// Line 4735, Address: 0x148b28, Func Offset: 0x68
-	// Line 4734, Address: 0x148b2c, Func Offset: 0x6c
-	// Line 4735, Address: 0x148b34, Func Offset: 0x74
-	// Line 4736, Address: 0x148b3c, Func Offset: 0x7c
-	// Line 4735, Address: 0x148b40, Func Offset: 0x80
-	// Line 4736, Address: 0x148b48, Func Offset: 0x88
-	// Line 4737, Address: 0x148b50, Func Offset: 0x90
-	// Line 4736, Address: 0x148b54, Func Offset: 0x94
-	// Line 4737, Address: 0x148b58, Func Offset: 0x98
-	// Line 4745, Address: 0x148b60, Func Offset: 0xa0
-	// Line 4737, Address: 0x148b64, Func Offset: 0xa4
-	// Line 4745, Address: 0x148b6c, Func Offset: 0xac
-	// Line 4746, Address: 0x148b84, Func Offset: 0xc4
-	// Line 4747, Address: 0x148b8c, Func Offset: 0xcc
-	// Line 4746, Address: 0x148b94, Func Offset: 0xd4
-	// Line 4747, Address: 0x148b9c, Func Offset: 0xdc
-	// Line 4748, Address: 0x148bc4, Func Offset: 0x104
-	// Line 4749, Address: 0x148bcc, Func Offset: 0x10c
-	// Line 4748, Address: 0x148bd0, Func Offset: 0x110
-	// Line 4749, Address: 0x148bd4, Func Offset: 0x114
-	// Line 4748, Address: 0x148bd8, Func Offset: 0x118
-	// Line 4749, Address: 0x148be0, Func Offset: 0x120
-	// Line 4750, Address: 0x148bf8, Func Offset: 0x138
-	// Line 4751, Address: 0x148c04, Func Offset: 0x144
-	// Line 4750, Address: 0x148c10, Func Offset: 0x150
-	// Line 4751, Address: 0x148c18, Func Offset: 0x158
-	// Line 4752, Address: 0x148c20, Func Offset: 0x160
-	// Line 4751, Address: 0x148c24, Func Offset: 0x164
-	// Line 4752, Address: 0x148c2c, Func Offset: 0x16c
-	// Line 4755, Address: 0x148c3c, Func Offset: 0x17c
-	// Func End, Address: 0x148c44, Func Offset: 0x184
+    if ((EXP1_I(0) & 4))
+    {
+        EXP1_I(0) &= ~0x4;
+        EXP1_I(0) |= 0x1E0;
+    }
+    
+    sys->st_flg |= 0x4;
+    
+    ((EXP_WORK*)plp->exp0)->spx = plp->px;
+    ((EXP_WORK*)plp->exp0)->spz = plp->pz;
+    
+    ((EXP_WORK*)plp->exp0)->arp = 0;
+    
+    plp->flg &= ~0x36900000;
+    
+    if ((sys->gm_flg & 0x40)) 
+    {
+        sys->gm_flg &= ~0x40;
+        
+        if (!(sys->gm_flg & 0x1000000)) 
+        {
+            sys->gm_flg &= ~0x80;
+        }
+        
+        sys->gm_flg |= 0x800;
+        
+        if ((sys->st_flg & 0x800000)) 
+        {
+            sys->st_flg &= ~0x800000;
+            sys->gm_flg &= ~0x80000;
+            
+            sys->pt_flg |= 0x1;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x148c50
 void bhCPM0_enedam()
 {
