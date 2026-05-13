@@ -625,8 +625,6 @@ void bhSetPlayer()
 // 100% matching!
 void bhInitRoomChangePlayer()
 {
-    float px, py, pz; // not from DWARF
-    
     plp = &ply;
     
     plp->flg &= 0x20119;
@@ -675,11 +673,7 @@ void bhInitRoomChangePlayer()
     
     plp->mlwP->texP = plp->txp[0];
     
-    px = 4.5f;
-    py = 4.0f;
-    pz = 3.5f;
-    
-    bhSetShadow(NULL, (unsigned char*)plp, 1, px, 4.0f, pz);
+    bhSetShadow(NULL, (unsigned char*)plp, 1, 4.5f, 4.0f, 3.5f);
     
     plp->flg |= 0x800;
 
@@ -1918,7 +1912,6 @@ void bhCPM2_act_std()
 void bhCPM2_act_srt()
 {
     int dmlvl;
-    float px; // not from DWARF
 
     if ((sys->gm_flg & 0x1000000))
     {
@@ -1956,19 +1949,17 @@ void bhCPM2_act_srt()
             
             plp->stflg |= 0x200;
 
-            px = 0.8f;
-            
             if ((plp->stflg & 0x100000)) 
             {
                 bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
 
                 if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][4]) 
                 {
-                    bhSetWaterSplash(plp, 15, 0, px, px, px);
+                    bhSetWaterSplash(plp, 15, 0, 0.8f, 0.8f, 0.8f);
                 }
                 else 
                 {
-                    bhSetWaterSplash(plp, 19, 0, px, 0.8f, 0.8f);
+                    bhSetWaterSplash(plp, 19, 0, 0.8f, 0.8f, 0.8f);
                 }
             }
             
@@ -1976,7 +1967,7 @@ void bhCPM2_act_srt()
             {
                 if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][4]) 
                 {
-                    bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[17].mtx[12], plp->ay, plp->footeff, px, 0.8f, 0.8f);
+                    bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[17].mtx[12], plp->ay, plp->footeff, 0.8f, 0.8f, 0.8f);
                 } 
                 else 
                 {
@@ -2046,7 +2037,6 @@ void bhCPM2_act_wlk()
 	float* trsz;
     int fsnd;
     int dmlvl;
-    float px; // not from DWARF
 
     if ((sys->gm_flg & 0x1000000)) 
     {
@@ -2117,8 +2107,6 @@ void bhCPM2_act_wlk()
             }
         }
         
-        px = 0.8f;
-        
         if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][0])
         {
             CallPlayerFootStepSe(bhCheckFloorSound(plp, (int)plp->flr_no, plp->mlwP->owP[17].mtx[12], plp->mlwP->owP[17].mtx[14]), 0, 1);
@@ -2128,12 +2116,12 @@ void bhCPM2_act_wlk()
             if ((plp->stflg & 0x100000)) 
             {
                 bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
-                bhSetWaterSplash(plp, 15, 0, px, px, 0.8f);
+                bhSetWaterSplash(plp, 15, 0, 0.8f, 0.8f, 0.8f);
             }
             
             if ((plp->flg2 & 0x8)) 
             {
-                bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[17].mtx[12], plp->ay, plp->footeff, (float)px, px, px);
+                bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[17].mtx[12], plp->ay, plp->footeff, 0.8f, 0.8f, 0.8f);
             }
         }
         
@@ -2146,12 +2134,12 @@ void bhCPM2_act_wlk()
             if ((plp->stflg & 0x100000)) 
             {
                 bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
-                bhSetWaterSplash(plp, 19, 0, (float)px, px, px);
+                bhSetWaterSplash(plp, 19, 0, 0.8f, 0.8f, 0.8f);
             }
             
             if ((plp->flg2 & 0x8)) 
             {
-                bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[21].mtx[12], plp->ay, plp->footeff, (float)px, px, px);
+                bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[21].mtx[12], plp->ay, plp->footeff, 0.8f, 0.8f, 0.8f);
             }
         }
     }
@@ -2186,7 +2174,6 @@ void bhCPM2_act_run()
     int fsnd;
     int dmlvl;
     float fSin, fCos;    
-    float px, py; // not from DWARF
 
     if ((sys->gm_flg & 0x1000000)) 
     {
@@ -2287,9 +2274,6 @@ void bhCPM2_act_run()
             ((EXP_WORK*)plp->exp0)->spz = plp->pz;
         }
 
-        px = 0.8f;
-        py = 1.6f;
-        
         if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][1]) 
         {
             CallPlayerFootStepSe(bhCheckFloorSound(plp, (int)plp->flr_no, plp->mlwP->owP[17].mtx[12], plp->mlwP->owP[17].mtx[14]), 1, 1);
@@ -2304,7 +2288,7 @@ void bhCPM2_act_run()
             
             if ((plp->flg2 & 0x8)) 
             {
-                bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[17].mtx[12], plp->ay, plp->footeff, (float)px, px, px);
+                bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[17].mtx[12], plp->ay, plp->footeff, 0.8f, 0.8f, 0.8f);
             }
         }
         
@@ -2317,12 +2301,12 @@ void bhCPM2_act_run()
             if ((plp->stflg & 0x100000)) 
             {
                 bhSetEffect(108, (POINT*)&plp->px, NULL, 13);
-                bhSetWaterSplash(plp, 19, 1, 1.6f, 1.6f, py);
+                bhSetWaterSplash(plp, 19, 1, 1.6f, 1.6f, 1.6f);
             }
             
             if ((plp->flg2 & 0x8)) 
             {
-                bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[21].mtx[12], plp->ay, plp->footeff, px, (float)px, px);
+                bhSetWaterSplash3((NJS_POINT3*)&plp->mlwP->owP[21].mtx[12], plp->ay, plp->footeff, 0.8f, 0.8f, 0.8f);
             }
         }
     default:
@@ -4227,13 +4211,9 @@ void bhCPM2_act_suw()
         
         if ((plp->stflg & 0x100000)) 
         {
-            float xyz; // not from DWARF
-            
-            xyz = 0.8f;
-            
             bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
-            bhSetWaterSplash(plp, 15, 0, xyz, xyz, xyz);
-            bhSetWaterSplash(plp, 19, 0, xyz, xyz, xyz);
+            bhSetWaterSplash(plp, 15, 0, 0.8f, 0.8f, 0.8f);
+            bhSetWaterSplash(plp, 19, 0, 0.8f, 0.8f, 0.8f);
         }
         
         if (!bhCheckBullet()) 
@@ -4728,7 +4708,7 @@ void bhCPM2_act_wre()
             plp->flg &= ~0x80000;
         }
         
-        plp->mtn_no = *PlMtnWpn;
+        plp->mtn_no = PlMtnWpn[0];
         
         plp->hokan_rate = 45875;
         plp->hokan_count = 12;
@@ -5041,11 +5021,7 @@ void bhCPM2_act_atk()
                     
                     if ((sys->eor_ct & 0x10)) 
                     {
-                        float xyz; // not from DWARF
-
-                        xyz = 0.8f;
-                        
-                        bhSetWaterSplash(plp, 15, 0, xyz, (float)xyz, (float)xyz); 
+                        bhSetWaterSplash(plp, 15, 0, 0.8f, 0.8f, 0.8f); 
                     }
                     else 
                     {
@@ -5064,11 +5040,7 @@ void bhCPM2_act_atk()
                     
                     if ((sys->eor_ct & 0x10)) 
                     {
-                        float xyz; // not from DWARF
-
-                        xyz = 0.8f;
-                        
-                        bhSetWaterSplash(plp, 15, 0, xyz, xyz, (float)xyz);
+                        bhSetWaterSplash(plp, 15, 0, 0.8f, 0.8f, 0.8f);
                     }
                     else
                     {
@@ -5427,11 +5399,7 @@ void bhCPM2_act_atk()
                 
                 if ((sys->eor_ct & 0x10)) 
                 {
-                    float xyz; // not from DWARF
-                        
-                    xyz = 0.8f;
-                    
-                    bhSetWaterSplash(plp, 15, 0, xyz, xyz, (float)xyz);
+                    bhSetWaterSplash(plp, 15, 0, 0.8f, 0.8f, 0.8f);
                 }
                 else 
                 {
@@ -5450,11 +5418,7 @@ void bhCPM2_act_atk()
                 
                 if ((sys->eor_ct & 0x10)) 
                 {
-                    float xyz; // not from DWARF
-                        
-                    xyz = 0.8f;
-                        
-                    bhSetWaterSplash(plp, 15, 0, xyz, xyz, (float)xyz);
+                    bhSetWaterSplash(plp, 15, 0, 0.8f, 0.8f, 0.8f);
                 }
                 else 
                 {
