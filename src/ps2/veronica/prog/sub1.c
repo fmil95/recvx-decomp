@@ -6219,91 +6219,149 @@ unsigned char Combi_01(short ps, unsigned int* moto, unsigned int* aite)
     return ok;
 }
 
-// 
-// Start address: 0x2a4000
+// 100% matching!
 unsigned char Combi_02(short ps, unsigned int* moto, unsigned int* aite)
 {
-	unsigned char sine;
-	unsigned char ok;
-	unsigned short kayaku;
-	unsigned short bullettype0;
-	unsigned short bullettype;
-	unsigned short itemid3;
-	unsigned short itemid2;
-	unsigned short itemid1;
-	unsigned short bullet3;
-	unsigned short bullet2;
-	unsigned short bullet1;
-	// Line 5331, Address: 0x2a4000, Func Offset: 0
-	// Line 5332, Address: 0x2a4004, Func Offset: 0x4
-	// Line 5335, Address: 0x2a4008, Func Offset: 0x8
-	// Line 5336, Address: 0x2a400c, Func Offset: 0xc
-	// Line 5343, Address: 0x2a4010, Func Offset: 0x10
-	// Line 5331, Address: 0x2a4014, Func Offset: 0x14
-	// Line 5332, Address: 0x2a4018, Func Offset: 0x18
-	// Line 5331, Address: 0x2a401c, Func Offset: 0x1c
-	// Line 5333, Address: 0x2a4020, Func Offset: 0x20
-	// Line 5334, Address: 0x2a4028, Func Offset: 0x28
-	// Line 5332, Address: 0x2a402c, Func Offset: 0x2c
-	// Line 5328, Address: 0x2a4030, Func Offset: 0x30
-	// Line 5329, Address: 0x2a4034, Func Offset: 0x34
-	// Line 5342, Address: 0x2a403c, Func Offset: 0x3c
-	// Line 5343, Address: 0x2a4040, Func Offset: 0x40
-	// Line 5344, Address: 0x2a4048, Func Offset: 0x48
-	// Line 5345, Address: 0x2a4074, Func Offset: 0x74
-	// Line 5347, Address: 0x2a4078, Func Offset: 0x78
-	// Line 5349, Address: 0x2a40a8, Func Offset: 0xa8
-	// Line 5350, Address: 0x2a40ac, Func Offset: 0xac
-	// Line 5352, Address: 0x2a40b4, Func Offset: 0xb4
-	// Line 5353, Address: 0x2a40b8, Func Offset: 0xb8
-	// Line 5355, Address: 0x2a40c0, Func Offset: 0xc0
-	// Line 5359, Address: 0x2a40c4, Func Offset: 0xc4
-	// Line 5361, Address: 0x2a40f8, Func Offset: 0xf8
-	// Line 5362, Address: 0x2a40fc, Func Offset: 0xfc
-	// Line 5364, Address: 0x2a4104, Func Offset: 0x104
-	// Line 5365, Address: 0x2a4108, Func Offset: 0x108
-	// Line 5367, Address: 0x2a4110, Func Offset: 0x110
-	// Line 5368, Address: 0x2a4114, Func Offset: 0x114
-	// Line 5370, Address: 0x2a411c, Func Offset: 0x11c
-	// Line 5373, Address: 0x2a4120, Func Offset: 0x120
-	// Line 5374, Address: 0x2a4134, Func Offset: 0x134
-	// Line 5375, Address: 0x2a4160, Func Offset: 0x160
-	// Line 5376, Address: 0x2a4164, Func Offset: 0x164
-	// Line 5379, Address: 0x2a4194, Func Offset: 0x194
-	// Line 5381, Address: 0x2a4198, Func Offset: 0x198
-	// Line 5383, Address: 0x2a41a0, Func Offset: 0x1a0
-	// Line 5387, Address: 0x2a41a4, Func Offset: 0x1a4
-	// Line 5389, Address: 0x2a41c0, Func Offset: 0x1c0
-	// Line 5390, Address: 0x2a41c4, Func Offset: 0x1c4
-	// Line 5392, Address: 0x2a41cc, Func Offset: 0x1cc
-	// Line 5397, Address: 0x2a41d0, Func Offset: 0x1d0
-	// Line 5400, Address: 0x2a41d8, Func Offset: 0x1d8
-	// Line 5397, Address: 0x2a41dc, Func Offset: 0x1dc
-	// Line 5400, Address: 0x2a41e0, Func Offset: 0x1e0
-	// Line 5401, Address: 0x2a41f8, Func Offset: 0x1f8
-	// Line 5402, Address: 0x2a41fc, Func Offset: 0x1fc
-	// Line 5405, Address: 0x2a4200, Func Offset: 0x200
-	// Line 5406, Address: 0x2a4208, Func Offset: 0x208
-	// Line 5412, Address: 0x2a4234, Func Offset: 0x234
-	// Line 5413, Address: 0x2a423c, Func Offset: 0x23c
-	// Line 5414, Address: 0x2a4240, Func Offset: 0x240
-	// Line 5415, Address: 0x2a4250, Func Offset: 0x250
-	// Line 5417, Address: 0x2a4258, Func Offset: 0x258
-	// Line 5418, Address: 0x2a4260, Func Offset: 0x260
-	// Line 5421, Address: 0x2a4268, Func Offset: 0x268
-	// Line 5422, Address: 0x2a4270, Func Offset: 0x270
-	// Line 5423, Address: 0x2a4274, Func Offset: 0x274
-	// Line 5424, Address: 0x2a4278, Func Offset: 0x278
-	// Line 5427, Address: 0x2a427c, Func Offset: 0x27c
-	// Line 5429, Address: 0x2a4288, Func Offset: 0x288
-	// Line 5428, Address: 0x2a428c, Func Offset: 0x28c
-	// Line 5430, Address: 0x2a4290, Func Offset: 0x290
-	// Line 5431, Address: 0x2a4298, Func Offset: 0x298
-	// Line 5434, Address: 0x2a42a0, Func Offset: 0x2a0
-	// Line 5435, Address: 0x2a42b4, Func Offset: 0x2b4
-	// Line 5439, Address: 0x2a42c8, Func Offset: 0x2c8
-	// Func End, Address: 0x2a42d0, Func Offset: 0x2d0
-	scePrintf("Combi_02 - UNIMPLEMENTED!\n");
+    unsigned short bullet1, bullet2, bullet3;   
+    unsigned short itemid1, itemid2, itemid3;    
+    unsigned short bullettype, bullettype0;  
+    unsigned short kayaku;   
+    unsigned char ok;           
+    unsigned char sine;        
+
+    kayaku = 0;
+    
+    ok = 0;
+    
+    sine = 0;
+
+    itemid1 = (*moto >> 16) & 0xFF;
+    itemid2 = (*aite >> 16) & 0xFF;
+    itemid3 = 0;
+
+    bullet1 = *moto;
+    bullet2 = *aite;
+
+    bullettype0 = (*moto >> 16) & 0xFF00;
+    bullettype  = (*aite >> 16) & 0xFF00;
+    
+    if (itemid2 == 6)
+    {
+        if ((*swork.pip == swork.listcsr_0) || (*swork.pip == swork.listcsr_1))
+        {
+            ok = 128;
+        }
+        
+        switch (itemid1)
+        {                        
+        case 16:                               
+            itemid3 = 4096;
+            break;
+        case 17:                                   
+            itemid3 = 8192;
+            break;
+        case 37:                               
+            itemid3 = 16384;
+            break;
+        }
+        
+        switch (bullettype & 0x7000) 
+        {                        
+        case 0x1000:                               
+            itemid1 = 16;
+            break;
+        case 0x2000:                                   
+            itemid1 = 17;
+            break;
+        case 0x4000:                               
+            itemid1 = 37;
+            break;
+        default:
+            itemid1 = 15;
+            break;
+        }
+    } 
+    else if (itemid2 == 7)
+    {
+        if ((*swork.pip == swork.listcsr_0) || (*swork.pip == swork.listcsr_1)) 
+        {
+            ok = 128;
+        }
+        
+        switch (itemid1) 
+        {                      
+        case 35:                               
+        case 130:                                  
+            kayaku = 1;
+            itemid3 = 8192;
+            break;
+        case 36:                                
+            itemid3 = 8192;
+            break;
+        }
+
+        switch (bullettype & 0x2000) 
+        {
+        case 0x2000:
+            itemid1 = 36;
+            break;
+        default:
+            itemid1 = 18;
+            break;
+        }
+    }
+    
+    itemid1 |= bullettype0 & 0x800;
+    
+    if ((itemid2 == 7) && (kayaku) && (!bullet2)) 
+    {
+        ok = 0;
+        
+        sine = 1;
+    }
+    
+    if (!sine) 
+    {
+        itemid3 = ((itemid3 | combidata[ps + 1]) | (bullettype & 0x800)) | (bullettype0 & 0x800);
+        
+        if (kayaku) 
+        {
+            bullet3 = bullet1;
+            
+            if (bullet2 < bullet3) 
+            {
+                bullet1 = bullet1 - bullet2;
+                itemid1 = 35;
+            } 
+            else 
+            {
+                bullet1 = bullet2 - bullet1;
+                bullet2 = bullet3;
+            }
+        } 
+        else 
+        {
+            bullet3 = bullet1;
+            bullet1 = bullet2;
+            bullet2 = bullet3;
+        }
+        
+        if (bullet1 == 0)
+        {
+            itemid1 = 0; 
+            
+            ok |= 0x1;
+        } 
+        else 
+        {
+            ok |= 0x3;
+        }
+        
+        *moto = (itemid1 << 16) | bullet1;
+        *aite = (itemid3 << 16) | bullet2;
+    }
+    
+    return ok;
 }
 
 // 100% matching!
