@@ -6115,73 +6115,108 @@ unsigned char Combi_00(short ps, unsigned int* moto, unsigned int* aite)
     return ok;
 }
 
-// 
-// Start address: 0x2a3e00
+// 100% matching!
 unsigned char Combi_01(short ps, unsigned int* moto, unsigned int* aite)
 {
-	unsigned char ok;
-	unsigned short bltmax;
-	unsigned short bullettype01;
-	unsigned short bullettype00;
-	unsigned short itemid3;
-	unsigned short itemid2;
-	unsigned short itemid1;
-	unsigned short bullet2;
-	unsigned short bullet1;
-	// Line 5239, Address: 0x2a3e00, Func Offset: 0
-	// Line 5240, Address: 0x2a3e04, Func Offset: 0x4
-	// Line 5244, Address: 0x2a3e08, Func Offset: 0x8
-	// Line 5245, Address: 0x2a3e0c, Func Offset: 0xc
-	// Line 5247, Address: 0x2a3e10, Func Offset: 0x10
-	// Line 5239, Address: 0x2a3e14, Func Offset: 0x14
-	// Line 5240, Address: 0x2a3e18, Func Offset: 0x18
-	// Line 5242, Address: 0x2a3e1c, Func Offset: 0x1c
-	// Line 5239, Address: 0x2a3e20, Func Offset: 0x20
-	// Line 5243, Address: 0x2a3e24, Func Offset: 0x24
-	// Line 5241, Address: 0x2a3e28, Func Offset: 0x28
-	// Line 5242, Address: 0x2a3e2c, Func Offset: 0x2c
-	// Line 5240, Address: 0x2a3e30, Func Offset: 0x30
-	// Line 5247, Address: 0x2a3e34, Func Offset: 0x34
-	// Line 5249, Address: 0x2a3e48, Func Offset: 0x48
-	// Line 5250, Address: 0x2a3e50, Func Offset: 0x50
-	// Line 5254, Address: 0x2a3e54, Func Offset: 0x54
-	// Line 5255, Address: 0x2a3e64, Func Offset: 0x64
-	// Line 5257, Address: 0x2a3e90, Func Offset: 0x90
-	// Line 5258, Address: 0x2a3e94, Func Offset: 0x94
-	// Line 5260, Address: 0x2a3e9c, Func Offset: 0x9c
-	// Line 5261, Address: 0x2a3ea0, Func Offset: 0xa0
-	// Line 5263, Address: 0x2a3ea8, Func Offset: 0xa8
-	// Line 5267, Address: 0x2a3eac, Func Offset: 0xac
-	// Line 5269, Address: 0x2a3ee0, Func Offset: 0xe0
-	// Line 5270, Address: 0x2a3ee4, Func Offset: 0xe4
-	// Line 5272, Address: 0x2a3eec, Func Offset: 0xec
-	// Line 5273, Address: 0x2a3ef0, Func Offset: 0xf0
-	// Line 5275, Address: 0x2a3ef8, Func Offset: 0xf8
-	// Line 5276, Address: 0x2a3efc, Func Offset: 0xfc
-	// Line 5278, Address: 0x2a3f04, Func Offset: 0x104
-	// Line 5281, Address: 0x2a3f08, Func Offset: 0x108
-	// Line 5282, Address: 0x2a3f1c, Func Offset: 0x11c
-	// Line 5284, Address: 0x2a3f30, Func Offset: 0x130
-	// Line 5287, Address: 0x2a3f34, Func Offset: 0x134
-	// Line 5289, Address: 0x2a3f50, Func Offset: 0x150
-	// Line 5290, Address: 0x2a3f54, Func Offset: 0x154
-	// Line 5292, Address: 0x2a3f5c, Func Offset: 0x15c
-	// Line 5297, Address: 0x2a3f60, Func Offset: 0x160
-	// Line 5300, Address: 0x2a3f68, Func Offset: 0x168
-	// Line 5305, Address: 0x2a3f90, Func Offset: 0x190
-	// Line 5300, Address: 0x2a3f94, Func Offset: 0x194
-	// Line 5305, Address: 0x2a3f9c, Func Offset: 0x19c
-	// Line 5306, Address: 0x2a3fa8, Func Offset: 0x1a8
-	// Line 5307, Address: 0x2a3fb0, Func Offset: 0x1b0
-	// Line 5309, Address: 0x2a3fb4, Func Offset: 0x1b4
-	// Line 5310, Address: 0x2a3fbc, Func Offset: 0x1bc
-	// Line 5311, Address: 0x2a3fc0, Func Offset: 0x1c0
-	// Line 5312, Address: 0x2a3fc4, Func Offset: 0x1c4
-	// Line 5315, Address: 0x2a3fc8, Func Offset: 0x1c8
-	// Line 5316, Address: 0x2a3fdc, Func Offset: 0x1dc
-	// Line 5319, Address: 0x2a3fec, Func Offset: 0x1ec
-	// Func End, Address: 0x2a3ff4, Func Offset: 0x1f4
-	scePrintf("Combi_01 - UNIMPLEMENTED!\n");
+    unsigned short bullet1, bullet2;      
+    unsigned short itemid1, itemid2, itemid3;      
+    unsigned short bullettype00, bullettype01; 
+    unsigned short bltmax;       
+    unsigned char ok;        
+    
+    itemid1 = (*moto >> 16) & 0xFF;
+    itemid2 = (*aite >> 16) & 0xFF;
+    itemid3 = 0;
+
+    bullet1 = *moto;
+    bullet2 = *aite;
+
+    bullettype00 = (*moto >> 16) & 0xFF00;
+    bullettype01 = (*aite >> 16) & 0xFF00;
+    
+    if ((itemid1 == 42) || (itemid2 == 42)) 
+    {
+        bltmax = 300;
+    }
+    else
+    {
+        bltmax = 999; 
+    }
+    
+    if (itemid2 == 6) 
+    {
+        switch (itemid1)
+        {                           
+        case 16:
+            itemid3 = 4096;
+            break;
+        case 17:
+            itemid3 = 8192;
+            break;
+        case 37:
+            itemid3 = 16384;
+            break;
+        }
+        
+        switch (bullettype01 & 0x7000) 
+        {
+        case 0x1000:
+            itemid1 = 16;
+            break;
+        case 0x2000:
+            itemid1 = 17;
+            break;
+        case 0x4000:
+            itemid1 = 37;
+            break;
+        default:
+            itemid1 = 15;
+            break;
+        }
+    } 
+    else if (itemid2 == 7)
+    {
+        switch (itemid1) 
+        {                        
+        case 36:
+            itemid3 = 8192;
+            break;
+        } 
+        
+        switch (bullettype01 & 0x2000) 
+        {
+        case 0x2000:
+            itemid1 = 36;
+            break;
+        default:
+            itemid1 = 18;
+            break;
+        }
+    }
+    
+    bullet2 += bullet1;
+    
+    itemid3 = ((itemid3 | combidata[ps + 1]) | (bullettype00 & 0x800)) | (bullettype01 & 0x800);
+    
+    if (bltmax < bullet2)
+    {
+        bullet1 = bullet2 - bltmax;
+        bullet2 = bltmax;
+        
+        ok = 3;
+    } 
+    else 
+    {
+        itemid1 = 0;
+        bullet1 = 0;
+        
+        ok = 1;
+    }
+    
+    *moto = (itemid1 << 16) | bullet1;
+    *aite = (itemid3 << 16) | bullet2; 
+    
+    return ok;
 }
 
 // 
