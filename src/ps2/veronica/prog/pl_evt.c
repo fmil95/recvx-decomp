@@ -1,32 +1,29 @@
 #include "../../../ps2/veronica/prog/pl_evt.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/player.h"
 
-/*unsigned char basic_motion_pl[2][32];
-void(*bhCPM0_event_tbl)()[10];
-BH_PWORK* plp;
-unsigned short PlMtnAct[7][3][2];
-char PlFootSnd[7][2][0];
-_anon10* sys;
+/*unsigned char basic_motion_pl[2][32];*/
+void (*bhCPM0_event_tbl[10])() = 
+{
+	pl_smove00,
+	pl_smove01,
+	pl_smove02,
+	pl_smove03,
+	pl_smove04,
+	pl_smove05,
+	pl_smove06,
+	pl_smove07,
+	pl_smove08,
+	pl_smove00
+};
 
-void bhCPM0_event();
-void pl_smove00();
-void pl_smove01();
-void pl_smove02();
-void pl_smove03();
-void pl_smove04();
-void pl_smove05();
-void pl_smove06();
-void pl_smove07();
-void pl_smove08();
-
-// 
-// Start address: 0x171e50
+// 100% matching!
 void bhCPM0_event()
 {
-	// Line 148, Address: 0x171e50, Func Offset: 0
-	// Func End, Address: 0x171e78, Func Offset: 0x28
+	bhCPM0_event_tbl[plp->mode2]();
 }
 
-// 
+/*// 
 // Start address: 0x171e80
 void pl_smove00()
 {
