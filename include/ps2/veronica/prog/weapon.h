@@ -1706,8 +1706,8 @@ struct _anon48
 };*/
 
 void bhSetWeapon(O_WRK* op, int wpn_no, int flg);
-/*void bhObjWpn(_anon0* op);
-void bhActionWeapon(_anon0* op);*/
+void bhObjWpn(BH_PWORK* op);
+/*void bhActionWeapon(_anon0* op);*/
 short bhCheckBullet();
 int bhCountBullet();
 /*int bhCheckGunAtari(_anon21* gap);

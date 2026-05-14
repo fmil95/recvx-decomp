@@ -9,9 +9,128 @@
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/system.h"
+#include "../../../ps2/veronica/prog/weapon.h"
 
-/*void(*bhJumpObject)()[101];
-void(*bhJumpObject2)()[13];*/
+void (*bhJumpObject[101])() = 
+{
+	bhObjDmy,
+	bhObj001,
+	bhObj002,
+	bhObj003,
+	bhObj004,
+	bhObj005,
+	bhObj006,
+	bhObj007,
+	bhObj008,
+	bhObj009,
+	bhObj010,
+	bhObj011,
+	bhObj012,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjItmBox
+};
+void (*bhJumpObject2[13])() = 
+{
+	bhObjClpn,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjDmy,
+	bhObjWpn,
+	bhObjClpn,
+	bhObjWssg
+};
 unsigned int ulDrawGeneralPurposeWater;
 
 // 100% matching! 
@@ -539,13 +658,13 @@ void bhObjItmBox(O_WRK* op)
     }
 }
 
-/*// 
+// 
 // Start address: 0x2848e0
-void bhObj001(_anon0* op)
+void bhObj001(O_WRK* op)
 {
 	int pcflg;
-	_anon22* hp;
-	_anon32 pos;
+	//_anon22* hp;
+	//_anon32 pos;
 	// Line 781, Address: 0x2848e0, Func Offset: 0
 	// Line 786, Address: 0x2848f8, Func Offset: 0x18
 	// Line 788, Address: 0x284918, Func Offset: 0x38
@@ -830,7 +949,8 @@ void bhObj001(_anon0* op)
 	// Line 1017, Address: 0x285504, Func Offset: 0xc24
 	// Line 1021, Address: 0x285518, Func Offset: 0xc38
 	// Func End, Address: 0x285534, Func Offset: 0xc54
-}*/
+	scePrintf("bhObj001 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhObj002(O_WRK* op)
@@ -866,12 +986,12 @@ void bhObj004(O_WRK* op)
     }
 }
 
-/*// 
+// 
 // Start address: 0x285680
-void bhObj005(_anon0* op)
+void bhObj005(O_WRK* op)
 {
-	_anon36* pOrg;
-	_anon36* pCnk;
+	//_anon36* pOrg;
+	//_anon36* pCnk;
 	float* wty;
 	int wt_zp;
 	int zp;
@@ -879,9 +999,9 @@ void bhObj005(_anon0* op)
 	int nb;
 	int j;
 	int i;
-	_anon7* pp;
-	_anon7* ps;
-	_anon5* cmd;
+	//_anon7* pp;
+	//_anon7* ps;
+	//_anon5* cmd;
 	// Line 1072, Address: 0x285680, Func Offset: 0
 	// Line 1089, Address: 0x2856a0, Func Offset: 0x20
 	// Line 1091, Address: 0x2856c0, Func Offset: 0x40
@@ -1075,18 +1195,19 @@ void bhObj005(_anon0* op)
 	// Line 1846, Address: 0x285d84, Func Offset: 0x704
 	// Line 1858, Address: 0x285d8c, Func Offset: 0x70c
 	// Func End, Address: 0x285db0, Func Offset: 0x730
+	scePrintf("bhObj005 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x285db0
-void bhObj006(_anon0* op)
+void bhObj006(O_WRK* op)
 {
-	_anon3* lp;
+	//_anon3* lp;
 	float len;
-	_anon39 line;
-	_anon32 ps0;
-	_anon32 ps;
-	npobj* obp;
+	//_anon39 line;
+	//_anon32 ps0;
+	//_anon32 ps;
+	//npobj* obp;
 	// Line 2074, Address: 0x285db0, Func Offset: 0
 	// Line 2082, Address: 0x285ddc, Func Offset: 0x2c
 	// Line 2086, Address: 0x285de0, Func Offset: 0x30
@@ -1167,20 +1288,21 @@ void bhObj006(_anon0* op)
 	// Line 2156, Address: 0x286114, Func Offset: 0x364
 	// Line 2158, Address: 0x286124, Func Offset: 0x374
 	// Func End, Address: 0x286154, Func Offset: 0x3a4
+	scePrintf("bhObj006 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x286160
-void bhObj007(_anon0* op)
+void bhObj007(O_WRK* op)
 {
 	float inn;
 	float len2;
 	float len1;
 	float len0;
-	_anon32 ps2;
-	_anon32 ps1;
-	_anon32 ps0;
-	_anon39 lin;
+	//_anon32 ps2;
+	//_anon32 ps1;
+	//_anon32 ps0;
+	//_anon39 lin;
 	// Line 2165, Address: 0x286160, Func Offset: 0
 	// Line 2169, Address: 0x286194, Func Offset: 0x34
 	// Line 2170, Address: 0x2861b4, Func Offset: 0x54
@@ -1313,7 +1435,8 @@ void bhObj007(_anon0* op)
 	// Line 2311, Address: 0x286980, Func Offset: 0x820
 	// Line 2319, Address: 0x286984, Func Offset: 0x824
 	// Func End, Address: 0x2869bc, Func Offset: 0x85c
-}*/
+	scePrintf("bhObj007 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhObj008(O_WRK* op) 
@@ -1369,13 +1492,13 @@ void bhObj008(O_WRK* op)
     hp->pz = op->mlwP->owP->mtx[14] - 11.0f;
 }
 
-/*// 
+// 
 // Start address: 0x286b70
-void bhObj009(_anon0* op)
+void bhObj009(O_WRK* op)
 {
 	float ln;
-	_anon32 vec;
-	_anon9* ptp;
+	//_anon32 vec;
+	//_anon9* ptp;
 	// Line 2371, Address: 0x286b70, Func Offset: 0
 	// Line 2375, Address: 0x286b88, Func Offset: 0x18
 	// Line 2377, Address: 0x286ba8, Func Offset: 0x38
@@ -1457,7 +1580,8 @@ void bhObj009(_anon0* op)
 	// Line 2460, Address: 0x287070, Func Offset: 0x500
 	// Line 2465, Address: 0x287074, Func Offset: 0x504
 	// Func End, Address: 0x287090, Func Offset: 0x520
-}*/
+	scePrintf("bhObj009 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhObj010(O_WRK* op)
@@ -1531,27 +1655,27 @@ void bhObj012(O_WRK* op)
     hp->pz = op->mlwP->owP->mtx[14];
 }
 
-/*// 
+// 
 // Start address: 0x2872b0
-void bhObjClpn(_anon0* op)
+void bhObjClpn(O_WRK* op)
 {
 	float ln;
 	float pz;
 	float py;
-	_anon32 ps5;
-	_anon32 ps4;
-	_anon32 ps3;
-	_anon32 ps2;
-	_anon32 ps1;
-	_anon32* psp;
-	_anon32* g3p;
-	_anon32* p3p;
+	//_anon32 ps5;
+	//_anon32 ps4;
+	//_anon32 ps3;
+	//_anon32 ps2;
+	//_anon32 ps1;
+	//_anon32* psp;
+	//_anon32* g3p;
+	//_anon32* p3p;
 	short ry;
 	short rx;
 	short ay;
 	short ax;
 	int i;
-	_anon35* hair;
+	//_anon35* hair;
 	BH_PWORK* pp;
 	// Line 2547, Address: 0x2872b0, Func Offset: 0
 	// Line 2556, Address: 0x2872e8, Func Offset: 0x38
@@ -1766,7 +1890,8 @@ void bhObjClpn(_anon0* op)
 	// Line 2742, Address: 0x287b50, Func Offset: 0x8a0
 	// Line 2747, Address: 0x287b60, Func Offset: 0x8b0
 	// Func End, Address: 0x287b9c, Func Offset: 0x8ec
-}*/
+	scePrintf("bhObjClpn - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhObjWssg()
