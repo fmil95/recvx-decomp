@@ -2,7 +2,41 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/player.h"
 
-/*unsigned char basic_motion_pl[2][32];*/
+unsigned char basic_motion_pl[32][2] = 
+{
+    { 0, 200 },
+    { 0, 201 },
+    { 0, 202 },
+    { 0, 203 },
+    { 0, 204 },
+    { 1, 205 },
+    { 1, 206 },
+    { 1, 207 },
+    { 1, 208 },
+    { 1, 209 },
+    { 0, 210 },
+    { 0, 211 },
+    { 0, 212 },
+    { 0, 213 },
+    { 0, 214 },
+    { 1, 215 },
+    { 1, 216 },
+    { 1, 217 },
+    { 1, 218 },
+    { 1, 219 },
+    { 0, 220 },
+    { 0, 221 },
+    { 0, 222 },
+    { 0, 223 },
+    { 0, 224 },
+    { 1, 225 },
+    { 1, 226 },
+    { 1, 227 },
+    { 1, 228 },
+    { 1, 229 },
+    { 0,   0 },
+    { 0,   0 }
+};
 void (*bhCPM0_event_tbl[10])() = 
 {
 	pl_smove00,
@@ -384,53 +418,71 @@ void pl_smove04()
 	// Line 526, Address: 0x1734ac, Func Offset: 0x52c
 	// Line 527, Address: 0x1734bc, Func Offset: 0x53c
 	// Func End, Address: 0x1734cc, Func Offset: 0x54c
-}
+}*/
 
-// 
-// Start address: 0x1734d0
+// 100% matching!
 void pl_smove05()
 {
-	// Line 540, Address: 0x1734d0, Func Offset: 0
-	// Line 542, Address: 0x17351c, Func Offset: 0x4c
-	// Line 543, Address: 0x173524, Func Offset: 0x54
-	// Line 544, Address: 0x17352c, Func Offset: 0x5c
-	// Line 542, Address: 0x173530, Func Offset: 0x60
-	// Line 543, Address: 0x173538, Func Offset: 0x68
-	// Line 545, Address: 0x17353c, Func Offset: 0x6c
-	// Line 543, Address: 0x173540, Func Offset: 0x70
-	// Line 544, Address: 0x173544, Func Offset: 0x74
-	// Line 545, Address: 0x173550, Func Offset: 0x80
-	// Line 548, Address: 0x17355c, Func Offset: 0x8c
-	// Line 550, Address: 0x173588, Func Offset: 0xb8
-	// Line 552, Address: 0x173590, Func Offset: 0xc0
-	// Line 554, Address: 0x173598, Func Offset: 0xc8
-	// Line 561, Address: 0x17359c, Func Offset: 0xcc
-	// Line 562, Address: 0x1735bc, Func Offset: 0xec
-	// Line 565, Address: 0x1735c4, Func Offset: 0xf4
-	// Line 566, Address: 0x1735f8, Func Offset: 0x128
-	// Line 567, Address: 0x173600, Func Offset: 0x130
-	// Line 568, Address: 0x173608, Func Offset: 0x138
-	// Line 567, Address: 0x17360c, Func Offset: 0x13c
-	// Line 568, Address: 0x173610, Func Offset: 0x140
-	// Line 570, Address: 0x17361c, Func Offset: 0x14c
-	// Line 572, Address: 0x173624, Func Offset: 0x154
-	// Line 577, Address: 0x17362c, Func Offset: 0x15c
-	// Line 578, Address: 0x173648, Func Offset: 0x178
-	// Line 579, Address: 0x173650, Func Offset: 0x180
-	// Line 580, Address: 0x173658, Func Offset: 0x188
-	// Line 579, Address: 0x17365c, Func Offset: 0x18c
-	// Line 580, Address: 0x173660, Func Offset: 0x190
-	// Line 582, Address: 0x17366c, Func Offset: 0x19c
-	// Line 584, Address: 0x173680, Func Offset: 0x1b0
-	// Line 588, Address: 0x173688, Func Offset: 0x1b8
-	// Line 589, Address: 0x17368c, Func Offset: 0x1bc
-	// Line 588, Address: 0x173690, Func Offset: 0x1c0
-	// Line 589, Address: 0x173698, Func Offset: 0x1c8
-	// Line 633, Address: 0x1736ac, Func Offset: 0x1dc
-	// Func End, Address: 0x1736b4, Func Offset: 0x1e4
+    switch (plp->mode3)
+    { 
+    case 0:
+        plp->mtn_md &= ~0x2;
+        
+        plp->hokan_rate = 49152;
+        plp->hokan_count = 8;
+        
+        plp->mtn_add = 65536;
+        
+        switch (plp->ct0)
+        {
+        case 0:
+            plp->mode3 = 1;
+            break;
+        case 1:
+            plp->mode3 = 3;
+            break;
+        case 2:
+            plp->mode3 = 4;
+            break;
+        }
+        
+        plp->mtn_no = basic_motion_pl[plp->mode1][1];
+        break;
+    case 1:
+        if ((plp->mnwP[plp->mtn_no].frm_num - 1) <= ((unsigned int)plp->frm_no / 65536))
+        {
+            plp->hokan_rate = 49152;
+            plp->hokan_count = 4;
+
+            plp->mtn_add = 65536;
+            
+            plp->mode3 = 2;
+        }
+        
+        break;
+    case 2:
+        break;
+    case 3:
+        if ((plp->ct2 - 1) <= ((unsigned int)plp->frm_no / 65536))
+        {
+            plp->hokan_rate = 49152;
+            plp->hokan_count = 4;
+            
+            plp->mtn_add = 65536;
+            
+            plp->frm_no = (plp->ct2 - 2) * 65536;
+        }
+        
+        break;
+    case 4:
+        plp->ct2 = (unsigned int)plp->frm_no / 65536;
+        
+        plp->frm_no = (plp->ct2 - 1) * 65536;
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x1736c0
 void pl_smove06()
 {
