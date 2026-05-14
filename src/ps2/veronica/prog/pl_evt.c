@@ -527,44 +527,65 @@ void pl_smove07()
 	// Line 770, Address: 0x173cb0, Func Offset: 0x2c0
 	// Line 771, Address: 0x173cc0, Func Offset: 0x2d0
 	// Func End, Address: 0x173ccc, Func Offset: 0x2dc
-}
-
-// 
-// Start address: 0x173cd0
-void pl_smove08()
-{
-	// Line 783, Address: 0x173cd0, Func Offset: 0
-	// Line 785, Address: 0x173d1c, Func Offset: 0x4c
-	// Line 786, Address: 0x173d24, Func Offset: 0x54
-	// Line 785, Address: 0x173d2c, Func Offset: 0x5c
-	// Line 786, Address: 0x173d34, Func Offset: 0x64
-	// Line 791, Address: 0x173d3c, Func Offset: 0x6c
-	// Line 793, Address: 0x173d68, Func Offset: 0x98
-	// Line 795, Address: 0x173d70, Func Offset: 0xa0
-	// Line 797, Address: 0x173d78, Func Offset: 0xa8
-	// Line 806, Address: 0x173d7c, Func Offset: 0xac
-	// Line 807, Address: 0x173d84, Func Offset: 0xb4
-	// Line 806, Address: 0x173d88, Func Offset: 0xb8
-	// Line 807, Address: 0x173d8c, Func Offset: 0xbc
-	// Line 806, Address: 0x173d90, Func Offset: 0xc0
-	// Line 807, Address: 0x173d94, Func Offset: 0xc4
-	// Line 808, Address: 0x173da4, Func Offset: 0xd4
-	// Line 810, Address: 0x173de4, Func Offset: 0x114
-	// Line 813, Address: 0x173dec, Func Offset: 0x11c
-	// Line 814, Address: 0x173e20, Func Offset: 0x150
-	// Line 815, Address: 0x173e28, Func Offset: 0x158
-	// Line 818, Address: 0x173e34, Func Offset: 0x164
-	// Line 820, Address: 0x173e3c, Func Offset: 0x16c
-	// Line 825, Address: 0x173e44, Func Offset: 0x174
-	// Line 826, Address: 0x173e60, Func Offset: 0x190
-	// Line 827, Address: 0x173e68, Func Offset: 0x198
-	// Line 830, Address: 0x173e74, Func Offset: 0x1a4
-	// Line 832, Address: 0x173e88, Func Offset: 0x1b8
-	// Line 836, Address: 0x173e90, Func Offset: 0x1c0
-	// Line 837, Address: 0x173e94, Func Offset: 0x1c4
-	// Line 836, Address: 0x173e98, Func Offset: 0x1c8
-	// Line 837, Address: 0x173ea0, Func Offset: 0x1d0
-	// Line 881, Address: 0x173eb4, Func Offset: 0x1e4
-	// Func End, Address: 0x173ebc, Func Offset: 0x1ec
 }*/
 
+// 100% matching!
+void pl_smove08()
+{
+    switch (plp->mode3)
+    { 
+    case 0:
+        plp->mtn_md &= ~0x2;
+        
+        plp->hokan_rate = 49152;
+        
+        switch (plp->ct0)
+        {
+        case 0:
+            plp->mode3 = 1;
+            break;
+        case 1:
+            plp->mode3 = 3;
+            break;
+        case 2:
+            plp->mode3 = 4;
+            break;
+        }
+        
+        plp->mtn_no = plp->mode1;
+        
+        if (plp->mode1 == 42) 
+        {
+            plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][0];
+        }
+        
+        break;
+    case 1:
+        if ((plp->mnwP[plp->mtn_no].frm_num - 1) <= ((unsigned int)plp->frm_no / 65536))
+        {
+            plp->hokan_rate = 49152;
+            plp->hokan_count = 4;
+            
+            plp->mode3 = 2;
+        }
+        
+        break;
+    case 2:
+        break;
+    case 3:
+        if ((plp->ct2 - 1) <= ((unsigned int)plp->frm_no / 65536))
+        {
+            plp->hokan_rate = 49152;
+            plp->hokan_count = 4;
+            
+            plp->frm_no = (plp->ct2 - 2) * 65536;
+        }
+        
+        break;
+    case 4:
+        plp->ct2 = (unsigned int)plp->frm_no / 65536;
+        
+        plp->frm_no = (plp->ct2 - 1) * 65536;
+        break;
+    }
+}

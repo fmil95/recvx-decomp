@@ -129,6 +129,7 @@ void* bhGetTransZ(int mtn_no);
 extern const WPN_TAB WpnTab[23];
 extern unsigned short PlMtnWpn[5];
 extern EF_WORK WpnEffTab[23][4];
+extern const unsigned short PlMtnAct[2][3][7];
 
 /*typedef struct npobj;
 typedef struct _anon0;
