@@ -2,6 +2,7 @@
 #define _PL_EVT_H_
 
 #include "types.h"
+#include "macros.h"
 
 void bhCPM0_event();
 void pl_smove00();

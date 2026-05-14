@@ -57,53 +57,50 @@ void bhCPM0_event()
 	bhCPM0_event_tbl[plp->mode2]();
 }
 
-/*// 
-// Start address: 0x171e80
-void pl_smove00()
+// 100% matching!
+void pl_smove00() 
 {
-	// Line 169, Address: 0x171e80, Func Offset: 0
-	// Line 181, Address: 0x171eb4, Func Offset: 0x34
-	// Line 183, Address: 0x171ebc, Func Offset: 0x3c
-	// Line 182, Address: 0x171ec0, Func Offset: 0x40
-	// Line 183, Address: 0x171ec4, Func Offset: 0x44
-	// Line 181, Address: 0x171ec8, Func Offset: 0x48
-	// Line 182, Address: 0x171ed0, Func Offset: 0x50
-	// Line 184, Address: 0x171ed4, Func Offset: 0x54
-	// Line 185, Address: 0x171ed8, Func Offset: 0x58
-	// Line 186, Address: 0x171edc, Func Offset: 0x5c
-	// Line 182, Address: 0x171ee0, Func Offset: 0x60
-	// Line 183, Address: 0x171ee4, Func Offset: 0x64
-	// Line 182, Address: 0x171ee8, Func Offset: 0x68
-	// Line 183, Address: 0x171ef4, Func Offset: 0x74
-	// Line 184, Address: 0x171efc, Func Offset: 0x7c
-	// Line 183, Address: 0x171f00, Func Offset: 0x80
-	// Line 184, Address: 0x171f38, Func Offset: 0xb8
-	// Line 185, Address: 0x171f40, Func Offset: 0xc0
-	// Line 186, Address: 0x171f4c, Func Offset: 0xcc
-	// Line 187, Address: 0x171f58, Func Offset: 0xd8
-	// Line 188, Address: 0x171f64, Func Offset: 0xe4
-	// Line 189, Address: 0x171f70, Func Offset: 0xf0
-	// Line 188, Address: 0x171f74, Func Offset: 0xf4
-	// Line 189, Address: 0x171f78, Func Offset: 0xf8
-	// Line 191, Address: 0x171f88, Func Offset: 0x108
-	// Line 192, Address: 0x171fc8, Func Offset: 0x148
-	// Line 193, Address: 0x171fd0, Func Offset: 0x150
-	// Line 194, Address: 0x171fd8, Func Offset: 0x158
-	// Line 192, Address: 0x171fdc, Func Offset: 0x15c
-	// Line 197, Address: 0x171fe8, Func Offset: 0x168
-	// Line 192, Address: 0x171fec, Func Offset: 0x16c
-	// Line 195, Address: 0x172018, Func Offset: 0x198
-	// Line 192, Address: 0x17201c, Func Offset: 0x19c
-	// Line 193, Address: 0x172024, Func Offset: 0x1a4
-	// Line 194, Address: 0x17202c, Func Offset: 0x1ac
-	// Line 195, Address: 0x172038, Func Offset: 0x1b8
-	// Line 196, Address: 0x172044, Func Offset: 0x1c4
-	// Line 197, Address: 0x172050, Func Offset: 0x1d0
-	// Line 204, Address: 0x17205c, Func Offset: 0x1dc
-	// Func End, Address: 0x172064, Func Offset: 0x1e4
+    switch (plp->mode3)
+    {                         
+    case 0:
+        plp->flg |= 0xD0000;
+        
+        EXP1_I(0x0) |= 0x4;
+        
+        plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][6];
+        
+        plp->hokan_rate = 49152;
+        plp->hokan_count = 8;
+        
+        plp->mtn_add = 65536;
+        
+        plp->frm_no = 0;
+        
+        ((EXP_WORK*)plp->exp0)->arp = 0;
+        
+        plp->mode3++;
+    case 1:
+        if (((unsigned int)plp->frm_no / 65536) >= (plp->mnwP[plp->mtn_no].frm_num - 1))
+        {
+            plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][6] + 1;
+            
+            plp->hokan_rate = 49152;
+            plp->hokan_count = 4;
+            
+            plp->mtn_add = 65536;
+            
+            plp->frm_no = 0;
+            
+            plp->mode3 = 2;
+        }
+        
+        break;
+    case 2:
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x172070
 void pl_smove01()
 {
