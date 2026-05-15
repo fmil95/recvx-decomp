@@ -784,7 +784,7 @@ int bhCheckWallEx(BH_PWORK* pw, NJS_POINT3* npos, NJS_POINT3* opos, float par, f
 	scePrintf("bhCheckWallEx - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x25fbf0
 void bhCheckWall2Box(BH_PWORK* pw)
 {
@@ -805,10 +805,10 @@ void bhCheckWall2Box(BH_PWORK* pw)
 	int hit;
 	int j;
 	int i;
-	_anon0 ht;
-	_anon0* hp;
-	_anon39 l;
-	_anon20 pd;
+	//_anon0 ht;
+	//_anon0* hp;
+	//_anon39 l;
+	//_anon20 pd;
 	// Line 1154, Address: 0x25fbf0, Func Offset: 0
 	// Line 1168, Address: 0x25fc38, Func Offset: 0x48
 	// Line 1167, Address: 0x25fc40, Func Offset: 0x50
@@ -1222,7 +1222,8 @@ void bhCheckWall2Box(BH_PWORK* pw)
 	// Line 1646, Address: 0x2612e8, Func Offset: 0x16f8
 	// Line 1654, Address: 0x2612ec, Func Offset: 0x16fc
 	// Func End, Address: 0x261334, Func Offset: 0x1744
-}*/
+	scePrintf("bhCheckWall2Box - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x261340
@@ -1284,9 +1285,9 @@ ATR_WORK* bhCheckWallType(NJS_POINT3* pos, unsigned int flg, float ar, float ah)
 	scePrintf("bhCheckWallType - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x261830
-_anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, float ah, int idx_ct)
+ATR_WORK* bhCheckWallType2(NJS_POINT3* pos, unsigned int flg, float aw, float ad, float ah, int idx_ct)
 {
 	float h;
 	float zn;
@@ -1295,9 +1296,9 @@ _anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, flo
 	float px;
 	int wal_n;
 	int i;
-	_anon0* hp;
-	_anon44 box;
-	_anon7 sph;
+	//_anon0* hp;
+	//_anon44 box;
+	//_anon7 sph;
 	// Line 1755, Address: 0x261830, Func Offset: 0
 	// Line 1763, Address: 0x261870, Func Offset: 0x40
 	// Line 1764, Address: 0x2618a4, Func Offset: 0x74
@@ -1369,7 +1370,8 @@ _anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, flo
 	// Line 1848, Address: 0x261e60, Func Offset: 0x630
 	// Line 1849, Address: 0x261e64, Func Offset: 0x634
 	// Func End, Address: 0x261ea8, Func Offset: 0x678
-}*/
+	scePrintf("bhCheckWallType2 - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x261eb0

@@ -1,10 +1,8 @@
 #include "../../../ps2/veronica/prog/hitchkl.h"
 
-/*_anon37 PLANE;
-_anon0* sys;
-_anon12* rom;
+static NJS_PLANE PLANE;
 
-// 
+/*// 
 // Start address: 0x269370
 _anon6* bhCollisionCheckLine(_anon2* p1, _anon2* p2)
 {
@@ -825,14 +823,10 @@ int bhCollisionCheckL2YZPL(_anon2* p1, _anon2* p2, _anon2* pos, float h, float d
 	// Func End, Address: 0x26b89c, Func Offset: 0x19c
 }*/
 
-// 
-// Start address: 0x26b8a0
+// 100% matching!
 void bhGetHitCollisionNormal(NJS_POINT3* n)
 {
-	// Line 1083, Address: 0x26b8a0, Func Offset: 0
-	// Line 1084, Address: 0x26b8ac, Func Offset: 0xc
-	// Line 1085, Address: 0x26b8b8, Func Offset: 0x18
-	// Line 1086, Address: 0x26b8c0, Func Offset: 0x20
-	// Func End, Address: 0x26b8c8, Func Offset: 0x28
-	scePrintf("bhGetHitCollisionNormal - UNIMPLEMENTED!\n");
+	n->x = PLANE.vx;
+	n->y = PLANE.vy;
+	n->z = PLANE.vz;
 }

@@ -3,6 +3,20 @@
 
 #include "types.h"
 
+typedef struct PLANE
+{
+	// total size: 0x8
+    unsigned int xyzflag;  // offset 0x0, size 0x4
+    unsigned int clipmask; // offset 0x4, size 0x4
+} PLANE;
+
+typedef struct SCISSOR_PLANE
+{
+    // total size: 0x2C
+	PLANE plane[5];        // offset 0x0, size 0x28
+	unsigned int planeNum; // offset 0x28, size 0x4
+} SCISSOR_PLANE;
+
 void vu1SetScreenProjection(float fProjection);
 void vu1SetNearFarClip(float fNear, float fFar);
 void vu1SetScreenOffset(float fOffsetX, float fOffsetY);
