@@ -134,7 +134,7 @@ void bhAddSpeed(BH_PWORK* pp, int r)
     pp->pz -= pp->spd * njCos(angle);
 }
 
-/*// 
+// 
 // Start address: 0x14e4b0
 int bhGetFrameNum(unsigned int fnm_old, unsigned int fnm_new, int fno_now)
 {
@@ -151,7 +151,8 @@ int bhGetFrameNum(unsigned int fnm_old, unsigned int fnm_new, int fno_now)
 	// Line 345, Address: 0x14e560, Func Offset: 0xb0
 	// Line 347, Address: 0x14e570, Func Offset: 0xc0
 	// Func End, Address: 0x14e580, Func Offset: 0xd0
-}*/
+	scePrintf("bhGetFrameNum - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int bhCalcLockEneYR(BH_PWORK* pp, int idx)
@@ -201,7 +202,7 @@ int bhCalcLockEneYR(BH_PWORK* pp, int idx)
     return 10430.381f * atan2f(-vec.x, -vec.z);
 }
 
-/*// 
+// 
 // Start address: 0x14e730
 int bhSearchNearEnemy(BH_PWORK* pp, int* r, float* h, int* id)
 {
@@ -217,10 +218,10 @@ int bhSearchNearEnemy(BH_PWORK* pp, int* r, float* h, int* id)
 	float ln;
 	float er;
 	float a;
-	_anon40 cap;
-	_anon23 vc2;
-	_anon23 vc1;
-	_anon23 vc0;
+	//_anon40 cap;
+	//_anon23 vc2;
+	//_anon23 vc1;
+	//_anon23 vc0;
 	// Line 419, Address: 0x14e730, Func Offset: 0
 	// Line 430, Address: 0x14e770, Func Offset: 0x40
 	// Line 431, Address: 0x14e774, Func Offset: 0x44
@@ -297,9 +298,10 @@ int bhSearchNearEnemy(BH_PWORK* pp, int* r, float* h, int* id)
 	// Line 533, Address: 0x14ea94, Func Offset: 0x364
 	// Line 534, Address: 0x14ea98, Func Offset: 0x368
 	// Func End, Address: 0x14eadc, Func Offset: 0x3ac
+	scePrintf("bhSearchNearEnemy - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x14eae0
 int bhSearchNearEnemyB(_anon23* pos, int ay, int ar, float len)
 {
@@ -448,11 +450,11 @@ int bhSearchNearEnemy2(BH_PWORK* pp, int* r, float* h, int* id)
 	scePrintf("bhSearchNearEnemy2 - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x14f0b0
 int bhSearchNextEnemy(BH_PWORK* pp, int r, float h)
 {
-	_anon8 scw[128];
+	//_anon8 scw[128];
 	int yr;
 	int idc;
 	int id;
@@ -463,10 +465,10 @@ int bhSearchNextEnemy(BH_PWORK* pp, int r, float h)
 	float ln;
 	float er;
 	float a;
-	_anon40 cap;
-	_anon23 vc2;
-	_anon23 vc1;
-	_anon23 vc0;
+	//_anon40 cap;
+	//_anon23 vc2;
+	//_anon23 vc1;
+	//_anon23 vc0;
 	// Line 725, Address: 0x14f0b0, Func Offset: 0
 	// Line 736, Address: 0x14f0ec, Func Offset: 0x3c
 	// Line 738, Address: 0x14f0f8, Func Offset: 0x48
@@ -565,9 +567,10 @@ int bhSearchNextEnemy(BH_PWORK* pp, int r, float h)
 	// Line 875, Address: 0x14f5a0, Func Offset: 0x4f0
 	// Line 880, Address: 0x14f5a4, Func Offset: 0x4f4
 	// Func End, Address: 0x14f5dc, Func Offset: 0x52c
+	scePrintf("bhSearchNextEnemy - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x14f5e0
 int bhSearchPlayer(BH_PWORK* pp, int r)
 {

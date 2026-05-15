@@ -348,13 +348,13 @@ int SetLockOnDirection(int range, int count, int mode, int special)
 	// Line 593, Address: 0x14b448, Func Offset: 0x1e8
 	// Line 597, Address: 0x14b45c, Func Offset: 0x1fc
 	// Func End, Address: 0x14b474, Func Offset: 0x214
-}
+}*/
 
 // 
 // Start address: 0x14b480
 void bhCPM2_act_suw_pch()
 {
-	_search* lstP;
+	//_search* lstP;
 	// Line 611, Address: 0x14b480, Func Offset: 0
 	// Line 613, Address: 0x14b48c, Func Offset: 0xc
 	// Line 619, Address: 0x14b4b4, Func Offset: 0x34
@@ -437,26 +437,26 @@ void bhCPM2_act_suw_pch()
 	// Line 693, Address: 0x14b8c8, Func Offset: 0x448
 	// Line 694, Address: 0x14b928, Func Offset: 0x4a8
 	// Func End, Address: 0x14b938, Func Offset: 0x4b8
+	scePrintf("bhCPM2_act_suw_pch - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x14b940
 void bhCPM2_act_wsc_pch()
 {
-	// Line 778, Address: 0x14b940, Func Offset: 0
-	// Func End, Address: 0x14b948, Func Offset: 0x8
+	scePrintf("bhCPM2_act_wsc_pch - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x14b950
 void bhCPM2_act_atk_pch()
 {
-	_search* lstP;
-	_anon14* gaP;
-	_anon14* gaP;
-	_anon5* wet;
-	_anon1* wt;
-	_anon3* ppP;
+	//_search* lstP;
+	//_anon14* gaP;
+	//_anon14* gaP;
+	//_anon5* wet;
+	//_anon1* wt;
+	//_anon3* ppP;
 	// Line 785, Address: 0x14b950, Func Offset: 0
 	// Line 786, Address: 0x14b968, Func Offset: 0x18
 	// Line 787, Address: 0x14b970, Func Offset: 0x20
@@ -734,9 +734,10 @@ void bhCPM2_act_atk_pch()
 	// Line 1134, Address: 0x14cc3c, Func Offset: 0x12ec
 	// Line 1138, Address: 0x14cc50, Func Offset: 0x1300
 	// Func End, Address: 0x14cc6c, Func Offset: 0x131c
+	scePrintf("bhCPM2_act_atk_pch - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x14cc70
 _anon14* CheckGunHit(_anon1* wtP, int obj_no, int yaw)
 {

@@ -7,39 +7,146 @@
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/light.h"
+#include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/objitm.h"
 #include "../../../ps2/veronica/prog/playpch.h"
+#include "../../../ps2/veronica/prog/pl_evt.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/room.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/weapon.h"
-#include "../../../ps2/veronica/prog/main.h"
 
-ETTY_WORK lkmtab[2];       // DATA
-const float PlyInfo[4][2]; // DATA
-/*char PlyEyeTab[8];*/
-int KnfAtrTab[4]; // DATA
-char PlyLegRoute[2][7]; // DATA
-const char PlyFlip[23]; // DATA
+ETTY_WORK lkmtab[2] = 
+{
+    { 129, 1211, 0, 0, 4, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0, 0, { 0, 0, 0, 0 } },
+    { 129, 1212, 0, 0, 4, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0, 0, { 0, 0, 0, 0 } }
+};
+CPCL PlyCapColTab[18] = 
+{
+    {  1,  2, 10 },  
+    {  2,  3,  9 },  
+    {  3,  3, 12 },  
+    {  0, 15,  0 },  
+    {  4,  5,  4 },  
+    {  5,  5,  9 },  
+    {  0,  9,  0 },  
+    {  7,  8,  4 },  
+    {  8,  9,  3 },  
+    { 11, 12,  4 },  
+    { 12, 13,  3 },  
+    { 14, 15,  8 },  
+    { 15, 16,  6 },  
+    { 16, 17,  4 },  
+    { 18, 19,  8 },  
+    { 19, 20,  6 },  
+    { 20, 21,  4 },  
+    {  0,  0,  0 } 
+};
+EF_WORK WpnEffTab[23][4]; // DATA
+char PlyTrsZ[6][3] = 
+{
+    { 0,   1, 2  },
+    { 6,   7, 8  },
+    { 10, 10, 10 },
+    { 3,   4, 5  },
+    { 9,   9, 9  },
+    { 0,   0, 0  }
+};
+void (*bhCtrPly_mode0[9])() = 
+{
+    bhSetPlayer,
+    bhCPM0_action,
+    bhCPM0_damage,
+    bhCPM0_die,
+    bhCPM0_nage,
+    bhCPM0_enedam,
+    bhCPM0_enedie,
+    bhCPM0_event,
+    bhCPM0_nothing
+}; 
+
+const float PlyInfo[4][2] = 
+{
+    { 3.5f, 16.5f },
+    { 3.5f, 17.5f },
+    { 3.5f, 17.5f },
+    { 3.5f, 17.5f }
+};
+const char PlyEyeTab[8] = 
+{
+    0, 0, 1, 1, 2, 2, 1, 0
+};
+const int KnfAtrTab[4] = 
+{
+    6, 4, 4, 4
+}; 
+const char PlyLegRoute[2][7] = 
+{
+    { 0, 1, 14, 15, 16, 17, -1 },
+    { 0, 1, 18, 19, 20, 21, -1 }
+};
+const char PlyFlip[23] = 
+{
+    0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 6, 7, 8, 9, 18, 19, 20, 21, 14, 15, 16, 17, -1
+};
 const unsigned short PlMtnAct[2][3][7] = 
 {
     {
-        { 42, 39,  0, 4,  16, 52, 9 },  
-        { 43, 40,  2, 7,  18, 52, 9 },  
-        { 44, 41,  3, 8,  19, 52, 9 }  
+        { 42, 39, 0, 4, 16, 52, 9 },  
+        { 43, 40, 2, 7, 18, 52, 9 },  
+        { 44, 41, 3, 8, 19, 52, 9 }  
     },
     {
-        { 42, 39,  1, 6,  17, 54, 9 },  
-        { 43, 40,  2, 7,  18, 54, 9 },  
-        { 44, 41,  3, 8,  19, 54, 9 }  
+        { 42, 39, 1, 6, 17, 54, 9 },  
+        { 43, 40, 2, 7, 18, 54, 9 },  
+        { 44, 41, 3, 8, 19, 54, 9 }  
     }
 };
-unsigned short PlMtnWpn[5]; // DATA
-char PlFootSnd[4][2][7]; // DATA
-/*char PlKDU[3][2][4];*/
+const unsigned short PlMtnWpn[5] = 
+{
+    100,
+    104,
+    109,
+    114,
+    101
+}; 
+const char PlFootSnd[4][2][7] = 
+{
+    {
+        { 10,  8, 10, 10,  0, 21, 20 }, 
+        { 28, 18, 28, 30, 16,  8,  8 }
+    },
+    {
+        { 10,  8, 10, 10,  0, 21, 20 }, 
+        { 28, 18, 28, 30, 16,  8,  8 }
+    },
+    {
+        { 10,  8, 10, 10,  0, 21, 20 }, 
+        { 28, 18, 28, 30, 16,  8,  8 }
+    },
+    {
+        { 10,  8, 10, 10,  0, 21, 20 }, 
+        { 28, 18, 28, 30, 16,  8,  8 }
+    }
+};
+const char PlKDU[3][2][4] =
+{
+    { 
+        { 19,  6, 15, 19 }, 
+        {  6, 15, 21, 10 } 
+    },
+    {
+        { 15, 24, 18, 15 }, 
+        { 21, 10, 15, 21 }
+    },
+    {
+        { 14, 15, 21, 10 }, 
+        { 15, 24, 18, 15 }
+    }
+};
 const WPN_TAB WpnTab[23] = 
 {
     { 
@@ -388,19 +495,9 @@ const WPN_TAB WpnTab[23] =
         0, 0 
     }
 };
+/* unused below */
 /*char PlyClipTab[5];
 char PlySdwTab[8];*/
-CPCL PlyCapColTab[18]; // DATA
-EF_WORK WpnEffTab[23][4]; // DATA
-char PlyTrsZ[6][3]; // DATA
-/*BH_PWORK* plp;
-_anon10* rom;
-BH_PWORK ply;
-BH_PWORK ene[0];*/
-void (*bhCtrPly_mode0[9])(); // DATA
-/*_anon44 lgttab[0];
-_anon41 cam;
-_anon0 eff[0];*/
 
 // 100% matching! 
 void bhInitPlayer()
@@ -2315,7 +2412,7 @@ void bhCPM2_act_run()
     }
 }
 
-/*// 
+// 
 // Start address: 0x13d970
 void bhCPM2_act_bak()
 {
@@ -2458,6 +2555,7 @@ void bhCPM2_act_bak()
 	// Line 1777, Address: 0x13e194, Func Offset: 0x824
 	// Line 1778, Address: 0x13e1b0, Func Offset: 0x840
 	// Func End, Address: 0x13e1bc, Func Offset: 0x84c
+    scePrintf("bhCPM2_act_bak - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2605,6 +2703,7 @@ void bhCPM2_act_bk2()
 	// Line 1903, Address: 0x13ea20, Func Offset: 0x860
 	// Line 1904, Address: 0x13ea3c, Func Offset: 0x87c
 	// Func End, Address: 0x13ea4c, Func Offset: 0x88c
+    scePrintf("bhCPM2_act_bk2 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2616,9 +2715,9 @@ void bhCPM2_act_kdu()
 	int fsnd;
 	int flr_no;
 	int ang[3];
-	_anon35 pos2;
-	_anon35 pos;
-	_anon22* htp;
+	//_anon35 pos2;
+	//_anon35 pos;
+	//_anon22* htp;
 	// Line 1910, Address: 0x13ea50, Func Offset: 0
 	// Line 1911, Address: 0x13ea5c, Func Offset: 0xc
 	// Line 1917, Address: 0x13ea6c, Func Offset: 0x1c
@@ -2854,6 +2953,7 @@ void bhCPM2_act_kdu()
 	// Line 2069, Address: 0x13f63c, Func Offset: 0xbec
 	// Line 2073, Address: 0x13f650, Func Offset: 0xc00
 	// Func End, Address: 0x13f660, Func Offset: 0xc10
+    scePrintf("bhCPM2_act_kdu - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2865,9 +2965,9 @@ void bhCPM2_act_kdd()
 	int flr_no;
 	float py;
 	int ang[3];
-	_anon35 pos2;
-	_anon35 pos;
-	_anon22* htp;
+	//_anon35 pos2;
+	//_anon35 pos;
+	//_anon22* htp;
 	// Line 2079, Address: 0x13f660, Func Offset: 0
 	// Line 2080, Address: 0x13f670, Func Offset: 0x10
 	// Line 2086, Address: 0x13f680, Func Offset: 0x20
@@ -3058,6 +3158,7 @@ void bhCPM2_act_kdd()
 	// Line 2214, Address: 0x140038, Func Offset: 0x9d8
 	// Line 2218, Address: 0x14004c, Func Offset: 0x9ec
 	// Func End, Address: 0x140060, Func Offset: 0xa00
+    scePrintf("bhCPM2_act_kdd - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3237,6 +3338,7 @@ void bhCPM2_act_dnu()
 	// Line 2323, Address: 0x140700, Func Offset: 0x6a0
 	// Line 2336, Address: 0x140714, Func Offset: 0x6b4
 	// Func End, Address: 0x140724, Func Offset: 0x6c4
+    scePrintf("bhCPM2_act_dnu - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3246,7 +3348,7 @@ void bhCPM2_act_dnd()
 	int ay;
 	float py;
 	short ayn;
-	_anon22* hp;
+	//_anon22* hp;
 	// Line 2342, Address: 0x140730, Func Offset: 0
 	// Line 2346, Address: 0x140744, Func Offset: 0x14
 	// Line 2347, Address: 0x140750, Func Offset: 0x20
@@ -3465,6 +3567,7 @@ void bhCPM2_act_dnd()
 	// Line 2494, Address: 0x141188, Func Offset: 0xa58
 	// Line 2502, Address: 0x14119c, Func Offset: 0xa6c
 	// Func End, Address: 0x1411b4, Func Offset: 0xa84
+    scePrintf("bhCPM2_act_dnd - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3610,7 +3713,8 @@ void bhCPM2_act_psh()
 	// Line 2604, Address: 0x14173c, Func Offset: 0x57c
 	// Line 2609, Address: 0x14175c, Func Offset: 0x59c
 	// Func End, Address: 0x14176c, Func Offset: 0x5ac
-}*/
+    scePrintf("bhCPM2_act_psh - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhCPM2_act_cro()
@@ -3657,6 +3761,11 @@ void bhCPM2_act_cro()
             sys->cb_flg |= 0x10;
         }
     }
+}
+
+void bhCPM2_act_hsu() 
+{
+    scePrintf("bhCPM2_act_hsu - UNIMPLEMENTED!\n");
 }
 
 // 100% matching!
@@ -3747,12 +3856,12 @@ void bhCPM1_act_atk()
     }
 }
 
-/*// 
+// 
 // Start address: 0x1421d0
 void bhCPM2_act_hsd()
 {
 	short ayn;
-	_anon22* htp;
+	//_anon22* htp;
 	// Line 2808, Address: 0x1421d0, Func Offset: 0
 	// Line 2809, Address: 0x1421dc, Func Offset: 0xc
 	// Line 2813, Address: 0x1421ec, Func Offset: 0x1c
@@ -3950,6 +4059,7 @@ void bhCPM2_act_hsd()
 	// Line 2954, Address: 0x1429fc, Func Offset: 0x82c
 	// Line 2958, Address: 0x142a10, Func Offset: 0x840
 	// Func End, Address: 0x142a20, Func Offset: 0x850
+    scePrintf("bhCPM2_act_hsd - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4089,9 +4199,10 @@ void bhCPM2_act_rpsh()
 	// Line 3057, Address: 0x142f18, Func Offset: 0x4f8
 	// Line 3062, Address: 0x142f2c, Func Offset: 0x50c
 	// Func End, Address: 0x142f3c, Func Offset: 0x51c
+    scePrintf("bhCPM2_act_rpsh - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x142f40
 void bhCPM1_act_atk()
 {
@@ -4350,14 +4461,14 @@ void bhCPM2_act_suw()
     }
 }
 
-/*// 
+// 
 // Start address: 0x1439f0
 void bhCPM2_act_wpn()
 {
-	_anon35 fpsb;
-	_anon35 fps;
-	_anon40* eft;
-	_anon35 pos;
+	//_anon35 fpsb;
+	//_anon35 fps;
+	//_anon40* eft;
+	//_anon35 pos;
 	short bn;
 	int wno;
 	// Line 3282, Address: 0x1439f0, Func Offset: 0
@@ -4688,7 +4799,8 @@ void bhCPM2_act_wpn()
 	// Line 3593, Address: 0x144b1c, Func Offset: 0x112c
 	// Line 3621, Address: 0x144b28, Func Offset: 0x1138
 	// Func End, Address: 0x144b3c, Func Offset: 0x114c
-}*/
+    scePrintf("bhCPM2_act_wpn - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhCPM2_act_wre()
@@ -5444,7 +5556,7 @@ void bhCPM2_act_atk()
     }
 }
 
-/*// 
+// 
 // Start address: 0x1470c0
 void bhCPM2_act_rld()
 {
@@ -5599,7 +5711,8 @@ void bhCPM2_act_rld()
 	// Line 4354, Address: 0x147a38, Func Offset: 0x978
 	// Line 4359, Address: 0x147a44, Func Offset: 0x984
 	// Func End, Address: 0x147a58, Func Offset: 0x998
-}*/
+    scePrintf("bhCPM2_act_rld - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhCPM2_act_knf()
@@ -6499,7 +6612,7 @@ void bhLookNearEnemy()
     }
 }
 
-/*// 
+// 
 // Start address: 0x149c10
 void bhSetHeadRotation(short ax, short ay)
 {
@@ -6514,7 +6627,7 @@ void bhSetHeadRotation(short ax, short ay)
 	float pz;
 	float py;
 	float px;
-	_anon4* psp;
+	//_anon4* psp;
 	BH_PWORK* pwp;
 	// Line 5111, Address: 0x149c10, Func Offset: 0
 	// Line 5119, Address: 0x149c2c, Func Offset: 0x1c
@@ -6618,17 +6731,18 @@ void bhSetHeadRotation(short ax, short ay)
 	// Line 5211, Address: 0x14a1cc, Func Offset: 0x5bc
 	// Line 5212, Address: 0x14a1e4, Func Offset: 0x5d4
 	// Func End, Address: 0x14a204, Func Offset: 0x5f4
+    scePrintf("bhSetHeadRotation - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x14a210
-void bhCalcHair(_anon0* op, BH_PWORK* pp)
+void bhCalcHair(O_WRK* op, BH_PWORK* pp)
 {
 	short az;
 	short ay;
 	short ax;
-	_anon35 ps;
-	_anon34* hair;
+	//_anon35 ps;
+	//_anon34* hair;
 	// Line 5218, Address: 0x14a210, Func Offset: 0
 	// Line 5222, Address: 0x14a228, Func Offset: 0x18
 	// Line 5224, Address: 0x14a22c, Func Offset: 0x1c
@@ -6739,6 +6853,7 @@ void bhCalcHair(_anon0* op, BH_PWORK* pp)
 	// Line 5282, Address: 0x14a508, Func Offset: 0x2f8
 	// Line 5283, Address: 0x14a52c, Func Offset: 0x31c
 	// Func End, Address: 0x14a548, Func Offset: 0x338
+    scePrintf("bhCalcHair - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -6763,4 +6878,5 @@ void* bhGetTransZ(int mtn_no)
 	// Line 5301, Address: 0x14a598, Func Offset: 0x48
 	// Line 5303, Address: 0x14a5a8, Func Offset: 0x58
 	// Func End, Address: 0x14a5b0, Func Offset: 0x60
-}*/
+    scePrintf("bhGetTransZ - UNIMPLEMENTED!\n");
+}

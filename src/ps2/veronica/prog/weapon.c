@@ -441,13 +441,13 @@ int bhCountBullet()
     return 1;
 }
 
-/*// 
+// 
 // Start address: 0x28ad90
-int bhCheckGunAtari(_anon21* gap)
+int bhCheckGunAtari(GA_WORK* gap)
 {
-	_anon43 wtln;
-	_anon1 vec1;
-	_anon1 vec0;
+	//_anon43 wtln;
+	//_anon1 vec1;
+	//_anon1 vec0;
 	unsigned int wp_flg;
 	int wno;
 	int watflg;
@@ -458,7 +458,7 @@ int bhCheckGunAtari(_anon21* gap)
 	int id;
 	int j;
 	int i;
-	_anon24* wlp;
+	//_anon24* wlp;
 	BH_PWORK* pp;
 	float len;
 	float knr;
@@ -467,14 +467,14 @@ int bhCheckGunAtari(_anon21* gap)
 	float a;
 	float rmax;
 	float rn;
-	_anon43 gline;
-	_anon1 gvec;
-	_anon1 wps;
-	_anon1 sca;
-	_anon1 ps;
-	_anon1 ap;
-	_anon34 wal;
-	_anon34 gatr;
+	//_anon43 gline;
+	//_anon1 gvec;
+	//_anon1 wps;
+	//_anon1 sca;
+	//_anon1 ps;
+	//_anon1 ap;
+	//_anon34 wal;
+	//_anon34 gatr;
 	int igct;
 	// Line 403, Address: 0x28ad90, Func Offset: 0
 	// Line 415, Address: 0x28add8, Func Offset: 0x48
@@ -864,7 +864,8 @@ int bhCheckGunAtari(_anon21* gap)
 	// Line 860, Address: 0x28c270, Func Offset: 0x14e0
 	// Line 862, Address: 0x28c28c, Func Offset: 0x14fc
 	// Func End, Address: 0x28c2d8, Func Offset: 0x1548
-}*/
+	scePrintf("bhCheckGunAtari - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void bhCheckKnifeAtari(GA_WORK* gap) 

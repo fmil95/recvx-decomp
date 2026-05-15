@@ -209,7 +209,7 @@ void pl_smove01()
     plp->flg &= ~0x200000;
 }
 
-/*// 
+// 
 // Start address: 0x172570
 void pl_smove02()
 {
@@ -282,6 +282,7 @@ void pl_smove02()
 	// Line 362, Address: 0x172a68, Func Offset: 0x4f8
 	// Line 364, Address: 0x172a78, Func Offset: 0x508
 	// Func End, Address: 0x172a88, Func Offset: 0x518
+	scePrintf("pl_smove02 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -349,6 +350,7 @@ void pl_smove03()
 	// Line 429, Address: 0x172f54, Func Offset: 0x4c4
 	// Line 430, Address: 0x172f64, Func Offset: 0x4d4
 	// Func End, Address: 0x172f74, Func Offset: 0x4e4
+	scePrintf("pl_smove03 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -425,7 +427,8 @@ void pl_smove04()
 	// Line 526, Address: 0x1734ac, Func Offset: 0x52c
 	// Line 527, Address: 0x1734bc, Func Offset: 0x53c
 	// Func End, Address: 0x1734cc, Func Offset: 0x54c
-}*/
+	scePrintf("pl_smove04 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void pl_smove05()
@@ -489,7 +492,7 @@ void pl_smove05()
     }
 }
 
-/*// 
+// 
 // Start address: 0x1736c0
 void pl_smove06()
 {
@@ -543,6 +546,7 @@ void pl_smove06()
 	// Line 703, Address: 0x1739d0, Func Offset: 0x310
 	// Line 705, Address: 0x1739e0, Func Offset: 0x320
 	// Func End, Address: 0x1739ec, Func Offset: 0x32c
+	scePrintf("pl_smove06 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -586,7 +590,8 @@ void pl_smove07()
 	// Line 770, Address: 0x173cb0, Func Offset: 0x2c0
 	// Line 771, Address: 0x173cc0, Func Offset: 0x2d0
 	// Func End, Address: 0x173ccc, Func Offset: 0x2dc
-}*/
+	scePrintf("pl_smove07 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void pl_smove08()
