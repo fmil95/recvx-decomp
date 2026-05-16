@@ -5737,7 +5737,7 @@ unsigned char Use_00(S_WORK* st)
     itemid = curedata[itemid];
     
     healchk = itemid & 0xF;
-    psnchk = itemid & 0xF0; 
+    psnchk  = itemid & 0xF0; 
 
     if (sys->sb_id == 20)
     {

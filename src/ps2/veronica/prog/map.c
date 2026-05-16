@@ -1873,17 +1873,15 @@ void MapDrawPolyFill(_anon5* pnt, float pri, int pal)
 	// Line 3129, Address: 0x2b62d8, Func Offset: 0x8
 	// Line 3130, Address: 0x2b62f8, Func Offset: 0x28
 	// Func End, Address: 0x2b6310, Func Offset: 0x40
-}
+}*/
 
-// 
-// Start address: 0x2b6310
-void MapDrawMessage()
+// 100% matching!
+static void MapDrawMessage()
 {
-	// Line 3155, Address: 0x2b6310, Func Offset: 0
-	// Func End, Address: 0x2b6318, Func Offset: 0x8
+
 }
 
-// 
+/*// 
 // Start address: 0x2b6320
 int FsubZoomCursor(_anon8* fzP)
 {
