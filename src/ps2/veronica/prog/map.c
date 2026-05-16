@@ -2019,26 +2019,22 @@ int FsubZoomInfomation(_anon21* fiP)
 	// Line 3312, Address: 0x2b68bc, Func Offset: 0x24c
 	// Line 3313, Address: 0x2b68c0, Func Offset: 0x250
 	// Func End, Address: 0x2b68c8, Func Offset: 0x258
-}
+}*/
 
-// 
-// Start address: 0x2b68d0
-_anon39 MapCnvArgb2Color(_anon11* argbP)
+// 100% matching!
+static NJS_COLOR MapCnvArgb2Color(NJS_ARGB* argbP)
 {
-	_anon39 col;
-	// Line 3323, Address: 0x2b68d0, Func Offset: 0
-	// Line 3327, Address: 0x2b68e0, Func Offset: 0x10
-	// Line 3328, Address: 0x2b6900, Func Offset: 0x30
-	// Line 3329, Address: 0x2b6918, Func Offset: 0x48
-	// Line 3330, Address: 0x2b6930, Func Offset: 0x60
-	// Line 3332, Address: 0x2b6944, Func Offset: 0x74
-	// Line 3330, Address: 0x2b6948, Func Offset: 0x78
-	// Line 3332, Address: 0x2b694c, Func Offset: 0x7c
-	// Line 3333, Address: 0x2b6954, Func Offset: 0x84
-	// Func End, Address: 0x2b6968, Func Offset: 0x98
+    NJS_COLOR col;
+    
+    col.argb.a = 255.0f * argbP->a;
+    col.argb.r = 255.0f * argbP->r;
+    col.argb.g = 255.0f * argbP->g;
+    col.argb.b = 255.0f * argbP->b;
+
+    return col;
 }
 
-// 
+/*// 
 // Start address: 0x2b6970
 int FsubZoomScreen(_anon30* fsP)
 {
