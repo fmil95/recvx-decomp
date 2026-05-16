@@ -2550,7 +2550,7 @@ void bhEne01Worm(BH_PWORK* epw)
 
 // 
 // Start address: 0x18e1b0
-void bhEne01Worm_Init(BH_PWORK* epw)
+/*void bhEne01Worm_Init(BH_PWORK* epw)
 {
 	// Line 1871, Address: 0x18e1b0, Func Offset: 0
 	// Line 1872, Address: 0x18e1bc, Func Offset: 0xc

@@ -4,6 +4,14 @@
 #include "types.h"
 #include "macros.h"
 
+typedef struct {
+    float adist;
+    float ndist;
+    int ang;
+    int add_hp;
+    int add_atk;
+} EN01_PERSONAL_TYPE;
+
 void bhEne01_DmgCheckTypeDmmy();
 void bhEne01(BH_PWORK* epw);
 void bhEne01_MainLoop(BH_PWORK* epw);
