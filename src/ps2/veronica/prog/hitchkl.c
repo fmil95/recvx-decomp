@@ -1,4 +1,6 @@
 #include "../../../ps2/veronica/prog/hitchkl.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 
 static NJS_PLANE PLANE;
 
@@ -538,74 +540,60 @@ int bhCollisionCheckLineMain(_anon6* hp, _anon2* vec, _anon2* p1, _anon2* p2)
 	// Line 624, Address: 0x26ae50, Func Offset: 0x15e0
 	// Line 625, Address: 0x26ae54, Func Offset: 0x15e4
 	// Func End, Address: 0x26ae8c, Func Offset: 0x161c
-}
+}*/
 
-// 
-// Start address: 0x26ae90
-int bhCollisionCheckL2PL(_anon2* p1, _anon2* p2, _anon2* area, int num)
+// 100% matching!
+int bhCollisionCheckL2PL(NJS_POINT3* p1, NJS_POINT3* p2, NJS_POINT3* area, int num)
 {
-	float wlen;
-	float len;
-	int ret;
-	_anon2 dv;
-	_anon2 cp;
-	_anon37 ln;
-	_anon37 pl;
-	// Line 638, Address: 0x26ae90, Func Offset: 0
-	// Line 646, Address: 0x26aec0, Func Offset: 0x30
-	// Line 647, Address: 0x26aec4, Func Offset: 0x34
-	// Line 648, Address: 0x26aec8, Func Offset: 0x38
-	// Line 649, Address: 0x26aecc, Func Offset: 0x3c
-	// Line 646, Address: 0x26aed0, Func Offset: 0x40
-	// Line 647, Address: 0x26aed4, Func Offset: 0x44
-	// Line 643, Address: 0x26aee8, Func Offset: 0x58
-	// Line 647, Address: 0x26aeec, Func Offset: 0x5c
-	// Line 648, Address: 0x26aef0, Func Offset: 0x60
-	// Line 649, Address: 0x26aef8, Func Offset: 0x68
-	// Line 650, Address: 0x26af08, Func Offset: 0x78
-	// Line 651, Address: 0x26af18, Func Offset: 0x88
-	// Line 652, Address: 0x26af20, Func Offset: 0x90
-	// Line 651, Address: 0x26af24, Func Offset: 0x94
-	// Line 652, Address: 0x26af28, Func Offset: 0x98
-	// Line 654, Address: 0x26af30, Func Offset: 0xa0
-	// Line 652, Address: 0x26af34, Func Offset: 0xa4
-	// Line 654, Address: 0x26af38, Func Offset: 0xa8
-	// Line 655, Address: 0x26af44, Func Offset: 0xb4
-	// Line 660, Address: 0x26af48, Func Offset: 0xb8
-	// Line 655, Address: 0x26af50, Func Offset: 0xc0
-	// Line 656, Address: 0x26af54, Func Offset: 0xc4
-	// Line 657, Address: 0x26af5c, Func Offset: 0xcc
-	// Line 660, Address: 0x26af60, Func Offset: 0xd0
-	// Line 662, Address: 0x26af80, Func Offset: 0xf0
-	// Line 664, Address: 0x26afa8, Func Offset: 0x118
-	// Line 667, Address: 0x26afb0, Func Offset: 0x120
-	// Line 665, Address: 0x26afb4, Func Offset: 0x124
-	// Line 664, Address: 0x26afbc, Func Offset: 0x12c
-	// Line 666, Address: 0x26afc0, Func Offset: 0x130
-	// Line 667, Address: 0x26afc4, Func Offset: 0x134
-	// Line 664, Address: 0x26afc8, Func Offset: 0x138
-	// Line 665, Address: 0x26afcc, Func Offset: 0x13c
-	// Line 666, Address: 0x26afdc, Func Offset: 0x14c
-	// Line 667, Address: 0x26afe8, Func Offset: 0x158
-	// Line 669, Address: 0x26b008, Func Offset: 0x178
-	// Line 670, Address: 0x26b014, Func Offset: 0x184
-	// Line 672, Address: 0x26b024, Func Offset: 0x194
-	// Line 674, Address: 0x26b040, Func Offset: 0x1b0
-	// Line 679, Address: 0x26b044, Func Offset: 0x1b4
-	// Line 674, Address: 0x26b050, Func Offset: 0x1c0
-	// Line 675, Address: 0x26b054, Func Offset: 0x1c4
-	// Line 681, Address: 0x26b058, Func Offset: 0x1c8
-	// Line 675, Address: 0x26b05c, Func Offset: 0x1cc
-	// Line 676, Address: 0x26b060, Func Offset: 0x1d0
-	// Line 679, Address: 0x26b068, Func Offset: 0x1d8
-	// Line 688, Address: 0x26b078, Func Offset: 0x1e8
-	// Line 689, Address: 0x26b07c, Func Offset: 0x1ec
-	// Func End, Address: 0x26b0b0, Func Offset: 0x220
+	NJS_LINE pl; 
+    NJS_LINE ln;   
+    NJS_POINT3 cp;  
+    NJS_POINT3 dv;   
+    int ret;
+    float len, wlen;    
+
+    ret = 0;
+    
+    ln.px = p1->x;
+    ln.py = p1->y;
+    ln.pz = p1->z;
+    
+    ln.vx = p2->x - p1->x;
+    ln.vy = p2->y - p1->y;
+    ln.vz = p2->z - p1->z;
+    
+    wlen = njScalor((NJS_VECTOR*)&ln.vx);
+    
+    njGetPlaneNormal(area, (NJS_VECTOR*)&pl.vx);
+    
+    pl.px = area->x;
+    pl.py = area->y;
+    pl.pz = area->z;
+    
+    if ((njInnerProduct((NJS_VECTOR*)&ln.vx, (NJS_VECTOR*)&pl.vx) < 0) && (njDistanceL2PL((NJS_LINE*)&ln.px, (NJS_LINE*)&pl.px, &cp) == 0))
+    {
+        dv.x = cp.x - ln.px;
+        dv.y = cp.y - ln.py;
+        dv.z = cp.z - ln.pz;
+        
+        if ((njInnerProduct((NJS_VECTOR*)&ln.vx, &dv) >= 0) && (wlen > njDistanceP2P(&cp, p1)) && (bhInOutCheck(&cp, area, (NJS_POINT3*)&pl.vx, num) != 0)) 
+        {
+            ret = 1;
+            
+            p2->x = cp.x;
+            p2->y = cp.y;
+            p2->z = cp.z;
+            
+            PLANE = pl;
+        }
+    }
+    
+    return ret;
 }
 
 // 
 // Start address: 0x26b0b0
-int bhInOutCheck(_anon2* p, _anon2* area, _anon2* normal, int num)
+int bhInOutCheck(NJS_POINT3* p, NJS_POINT3* area, NJS_POINT3* normal, int num)
 {
 	float v2z;
 	float v2y;
@@ -613,9 +601,9 @@ int bhInOutCheck(_anon2* p, _anon2* area, _anon2* normal, int num)
 	float v1z;
 	float v1y;
 	float v1x;
-	_anon2 n;
-	_anon2* p2;
-	_anon2* p1;
+	NJS_POINT3 n;
+	NJS_POINT3* p2;
+	NJS_POINT3* p1;
 	int i;
 	// Line 702, Address: 0x26b0b0, Func Offset: 0
 	// Line 707, Address: 0x26b0c8, Func Offset: 0x18
@@ -650,7 +638,8 @@ int bhInOutCheck(_anon2* p, _anon2* area, _anon2* normal, int num)
 	// Line 739, Address: 0x26b1d8, Func Offset: 0x128
 	// Line 740, Address: 0x26b1dc, Func Offset: 0x12c
 	// Func End, Address: 0x26b1f4, Func Offset: 0x144
-}*/
+	scePrintf("bhInOutCheck - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x26b200
