@@ -5,37 +5,42 @@
 
 static NJS_PLANE PLANE;
 
-/*// 
-// Start address: 0x269370
-_anon6* bhCollisionCheckLine(_anon2* p1, _anon2* p2)
+// 100% matching!
+ATR_WORK* bhCollisionCheckLine(NJS_VECTOR* p1, NJS_VECTOR* p2)
 {
-	_anon2 vec;
-	int wal_n;
-	int i;
-	_anon6* ret;
-	_anon6* hp;
-	// Line 82, Address: 0x269370, Func Offset: 0
-	// Line 88, Address: 0x269394, Func Offset: 0x24
-	// Line 92, Address: 0x26939c, Func Offset: 0x2c
-	// Line 83, Address: 0x2693ac, Func Offset: 0x3c
-	// Line 88, Address: 0x2693b0, Func Offset: 0x40
-	// Line 92, Address: 0x2693b4, Func Offset: 0x44
-	// Line 88, Address: 0x2693bc, Func Offset: 0x4c
-	// Line 89, Address: 0x2693c0, Func Offset: 0x50
-	// Line 92, Address: 0x2693c8, Func Offset: 0x58
-	// Line 89, Address: 0x2693d0, Func Offset: 0x60
-	// Line 90, Address: 0x2693d8, Func Offset: 0x68
-	// Line 92, Address: 0x2693e8, Func Offset: 0x78
-	// Line 93, Address: 0x2693f4, Func Offset: 0x84
-	// Line 95, Address: 0x269404, Func Offset: 0x94
-	// Line 97, Address: 0x269450, Func Offset: 0xe0
-	// Line 98, Address: 0x269460, Func Offset: 0xf0
-	// Line 99, Address: 0x26947c, Func Offset: 0x10c
-	// Line 101, Address: 0x269480, Func Offset: 0x110
-	// Line 103, Address: 0x269490, Func Offset: 0x120
-	// Line 104, Address: 0x269494, Func Offset: 0x124
-	// Func End, Address: 0x2694bc, Func Offset: 0x14c
-}*/
+    ATR_WORK* hp; 
+    ATR_WORK* ret; 
+    int i;
+    int wal_n; 
+    NJS_VECTOR vec; 
+
+    ret = NULL;
+    
+    vec.x = p2->x - p1->x;
+    vec.y = p2->y - p1->y;
+    vec.z = p2->z - p1->z;
+    
+    wal_n = rom->wal_n + sys->mwal_n;
+    
+    for (i = 0; i < wal_n; i++)
+    {
+        if (i < rom->wal_n)
+        {
+            hp = &rom->walp[i];
+        }
+        else 
+        {
+            hp = &sys->mwalp[i - rom->wal_n];
+        }
+        
+        if (((hp->flg & 0x1)) && (bhCollisionCheckLineMain(hp, &vec, p1, p2) != 0))
+        {
+            ret = hp;
+        }
+    }
+    
+    return ret; 
+}
 
 // 100% matching!
 ATR_WORK* bhCollisionCheckLine2(NJS_POINT3* p1, NJS_POINT3* p2, unsigned int flg, char flr_no)
@@ -111,12 +116,12 @@ ATR_WORK* bhCollisionCheckLine3(NJS_POINT3* p1, NJS_POINT3* p2, unsigned int flg
     return ret;
 }
 
-/*// 
+// 
 // Start address: 0x269870
-int bhCollisionCheckLineMain(_anon6* hp, _anon2* vec, _anon2* p1, _anon2* p2)
+int bhCollisionCheckLineMain(ATR_WORK* hp, NJS_VECTOR* vec, NJS_POINT3* p1, NJS_POINT3* p2)
 {
-	_anon2 pos;
-	_anon2 area[8];
+	NJS_POINT3 pos;
+	NJS_POINT3 area[8];
 	int j;
 	int ret;
 	// Line 205, Address: 0x269870, Func Offset: 0
@@ -544,7 +549,8 @@ int bhCollisionCheckLineMain(_anon6* hp, _anon2* vec, _anon2* p1, _anon2* p2)
 	// Line 624, Address: 0x26ae50, Func Offset: 0x15e0
 	// Line 625, Address: 0x26ae54, Func Offset: 0x15e4
 	// Func End, Address: 0x26ae8c, Func Offset: 0x161c
-}*/
+	scePrintf("bhCollisionCheckLineMain - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int bhCollisionCheckL2PL(NJS_POINT3* p1, NJS_POINT3* p2, NJS_POINT3* area, int num)
