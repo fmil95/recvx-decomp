@@ -701,47 +701,47 @@ int bhCollisionCheckL2MDL(NJS_POINT3* p1, NJS_POINT3* p2, NJS_CNK_MODEL* mdl, NJ
 	scePrintf("bhCollisionCheckL2MDL - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x26b3c0
-int bhCollisionCheckL2XZPL(_anon2* p1, _anon2* p2, _anon2* pos, float w, float d, int flg)
+// 100% matching!
+int bhCollisionCheckL2XZPL(NJS_POINT3* p1, NJS_POINT3* p2, NJS_POINT3* pos, float w, float d, int flg)
 {
-	int ret;
-	_anon2 cp;
-	_anon37 ln;
-	_anon37 pl;
-	// Line 931, Address: 0x26b3c0, Func Offset: 0
-	// Line 937, Address: 0x26b3dc, Func Offset: 0x1c
-	// Line 935, Address: 0x26b3f0, Func Offset: 0x30
-	// Line 937, Address: 0x26b3f4, Func Offset: 0x34
-	// Line 938, Address: 0x26b3f8, Func Offset: 0x38
-	// Line 939, Address: 0x26b400, Func Offset: 0x40
-	// Line 940, Address: 0x26b408, Func Offset: 0x48
-	// Line 941, Address: 0x26b418, Func Offset: 0x58
-	// Line 942, Address: 0x26b428, Func Offset: 0x68
-	// Line 944, Address: 0x26b434, Func Offset: 0x74
-	// Line 945, Address: 0x26b438, Func Offset: 0x78
-	// Line 946, Address: 0x26b45c, Func Offset: 0x9c
-	// Line 947, Address: 0x26b460, Func Offset: 0xa0
-	// Line 952, Address: 0x26b464, Func Offset: 0xa4
-	// Line 947, Address: 0x26b470, Func Offset: 0xb0
-	// Line 948, Address: 0x26b474, Func Offset: 0xb4
-	// Line 949, Address: 0x26b47c, Func Offset: 0xbc
-	// Line 952, Address: 0x26b480, Func Offset: 0xc0
-	// Line 954, Address: 0x26b4a0, Func Offset: 0xe0
-	// Line 956, Address: 0x26b4fc, Func Offset: 0x13c
-	// Line 957, Address: 0x26b500, Func Offset: 0x140
-	// Line 961, Address: 0x26b504, Func Offset: 0x144
-	// Line 957, Address: 0x26b510, Func Offset: 0x150
-	// Line 958, Address: 0x26b514, Func Offset: 0x154
-	// Line 963, Address: 0x26b518, Func Offset: 0x158
-	// Line 958, Address: 0x26b51c, Func Offset: 0x15c
-	// Line 961, Address: 0x26b520, Func Offset: 0x160
-	// Line 967, Address: 0x26b530, Func Offset: 0x170
-	// Line 968, Address: 0x26b534, Func Offset: 0x174
-	// Func End, Address: 0x26b554, Func Offset: 0x194
+	NJS_LINE pl;   
+    NJS_LINE ln;   
+    NJS_POINT3 cp;   
+    int ret;
+
+    ret = 0;
+
+    ln.px = p1->x;
+    ln.py = p1->y;
+    ln.pz = p1->z;
+    
+    ln.vx = p2->x - p1->x;
+    ln.vy = p2->y - p1->y;
+    ln.vz = p2->z - p1->z;
+    
+    pl.vx = 0;
+    pl.vy = flg ? -1.0f : 1.0f;
+    pl.vz = 0;
+    
+    pl.px = pos->x;
+    pl.py = pos->y;
+    pl.pz = pos->z;
+    
+    if ((njDistanceL2PL(&ln, &pl, &cp) == 0) && (((cp.x >= pos->x) && (cp.x <= (pos->x + w))) && ((cp.z >= pos->z) && (cp.z <= (pos->z + d)))))
+    {
+        p2->x = cp.x;
+        p2->y = cp.y;
+        p2->z = cp.z;
+        
+        PLANE = pl;
+
+        ret = 1;
+    }
+    
+    return ret;
 }
 
-// 
+/*// 
 // Start address: 0x26b560
 int bhCollisionCheckL2XYPL(_anon2* p1, _anon2* p2, _anon2* pos, float w, float h, int flg)
 {
