@@ -3616,18 +3616,16 @@ void bhEne01_CollCheckWall(BH_PWORK* epw)
 // Start address: 0x17a020
 void bhEne01_InitType00(BH_PWORK* epw)
 {
-	// Line 3172, Address: 0x17a020, Func Offset: 0
-	// Line 3173, Address: 0x17a02c, Func Offset: 0xc
-	// Line 3174, Address: 0x17a034, Func Offset: 0x14
-	// Line 3175, Address: 0x17a038, Func Offset: 0x18
-	// Line 3176, Address: 0x17a03c, Func Offset: 0x1c
-	// Line 3178, Address: 0x17a040, Func Offset: 0x20
-	// Line 3180, Address: 0x17a050, Func Offset: 0x30
-	// Line 3181, Address: 0x17a054, Func Offset: 0x34
-	// Line 3185, Address: 0x17a05c, Func Offset: 0x3c
-	// Line 3187, Address: 0x17a064, Func Offset: 0x44
-	// Line 3189, Address: 0x17a06c, Func Offset: 0x4c
-	// Func End, Address: 0x17a07c, Func Offset: 0x5c
+	epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
+    if (epw->flg & 0x80) {
+        epw->mtn_no = 0xCA;
+    } else {
+        bhEne01_GetWalkMotion(epw);
+        epw->mtn_no = 2;
+    }
 }
 
 // 
