@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/map.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 
 /*_anon11 MapPal[32];
@@ -1696,20 +1697,26 @@ static void MapTagInit(int tag_num)
     mwP->tag_wrkP = (tag_wrk_typ*)bhGetFreeMemory(tag_num * 32, 4);
 }
 
-/*// 
-// Start address: 0x2b5e80
-void MapTagEntry(float basP[16], int rom_no, _anon14* posP)
+// 100% matching!
+static void MapTagEntry(NJS_MATRIX* basP, int rom_no, NJS_POINT3* posP)
 {
-	_tag_wrk_typ* twP;
-	// Line 2942, Address: 0x2b5e80, Func Offset: 0
-	// Line 2943, Address: 0x2b5e88, Func Offset: 0x8
-	// Line 2946, Address: 0x2b5ea8, Func Offset: 0x28
-	// Line 2947, Address: 0x2b5ec4, Func Offset: 0x44
-	// Line 2948, Address: 0x2b5edc, Func Offset: 0x5c
-	// Func End, Address: 0x2b5ee8, Func Offset: 0x68
+    tag_wrk_typ* twP;
+
+    twP = &mwP->tag_wrkP[mwP->tag_num++];
+    
+    twP->rom_no = rom_no;   
+    
+    if (basP != NULL) 
+    {
+        njCalcPoint(basP, posP, &twP->pos);
+    }
+    else 
+    {
+        twP->pos = *posP;
+    } 
 }
 
-// 
+/*// 
 // Start address: 0x2b5ef0
 _tag_wrk_typ* MapTagConnect(int rom_no)
 {
