@@ -306,75 +306,87 @@ void pl_smove02()
     bhAddSpeed(plp, 0);
 }
 
-#pragma divbyzerocheck off
-
-// 
-// Start address: 0x172a90
-void pl_smove03()
+// 99.97% matching
+void pl_smove03() 
 {
-	int fsnd;
-	// Line 374, Address: 0x172a90, Func Offset: 0
-	// Line 377, Address: 0x172a9c, Func Offset: 0xc
-	// Line 379, Address: 0x172ac4, Func Offset: 0x34
-	// Line 381, Address: 0x172ad0, Func Offset: 0x40
-	// Line 379, Address: 0x172ad8, Func Offset: 0x48
-	// Line 380, Address: 0x172ae0, Func Offset: 0x50
-	// Line 381, Address: 0x172aec, Func Offset: 0x5c
-	// Line 380, Address: 0x172af0, Func Offset: 0x60
-	// Line 381, Address: 0x172afc, Func Offset: 0x6c
-	// Line 384, Address: 0x172b7c, Func Offset: 0xec
-	// Line 385, Address: 0x172b84, Func Offset: 0xf4
-	// Line 386, Address: 0x172b88, Func Offset: 0xf8
-	// Line 381, Address: 0x172b8c, Func Offset: 0xfc
-	// Line 384, Address: 0x172b90, Func Offset: 0x100
-	// Line 387, Address: 0x172b98, Func Offset: 0x108
-	// Line 388, Address: 0x172b9c, Func Offset: 0x10c
-	// Line 384, Address: 0x172ba0, Func Offset: 0x110
-	// Line 385, Address: 0x172ba4, Func Offset: 0x114
-	// Line 384, Address: 0x172ba8, Func Offset: 0x118
-	// Line 385, Address: 0x172be0, Func Offset: 0x150
-	// Line 386, Address: 0x172be8, Func Offset: 0x158
-	// Line 387, Address: 0x172bf4, Func Offset: 0x164
-	// Line 388, Address: 0x172c00, Func Offset: 0x170
-	// Line 389, Address: 0x172c0c, Func Offset: 0x17c
-	// Line 388, Address: 0x172c10, Func Offset: 0x180
-	// Line 389, Address: 0x172c14, Func Offset: 0x184
-	// Line 391, Address: 0x172c24, Func Offset: 0x194
-	// Line 393, Address: 0x172c98, Func Offset: 0x208
-	// Line 391, Address: 0x172c9c, Func Offset: 0x20c
-	// Line 393, Address: 0x172ca0, Func Offset: 0x210
-	// Line 394, Address: 0x172cd4, Func Offset: 0x244
-	// Line 395, Address: 0x172d0c, Func Offset: 0x27c
-	// Line 397, Address: 0x172d38, Func Offset: 0x2a8
-	// Line 398, Address: 0x172d6c, Func Offset: 0x2dc
-	// Line 400, Address: 0x172d74, Func Offset: 0x2e4
-	// Line 404, Address: 0x172dac, Func Offset: 0x31c
-	// Line 405, Address: 0x172dec, Func Offset: 0x35c
-	// Line 408, Address: 0x172e04, Func Offset: 0x374
-	// Line 409, Address: 0x172e14, Func Offset: 0x384
-	// Line 410, Address: 0x172e1c, Func Offset: 0x38c
-	// Line 409, Address: 0x172e20, Func Offset: 0x390
-	// Line 410, Address: 0x172e24, Func Offset: 0x394
-	// Line 409, Address: 0x172e28, Func Offset: 0x398
-	// Line 410, Address: 0x172e30, Func Offset: 0x3a0
-	// Line 411, Address: 0x172e44, Func Offset: 0x3b4
-	// Line 412, Address: 0x172e58, Func Offset: 0x3c8
-	// Line 416, Address: 0x172e80, Func Offset: 0x3f0
-	// Line 417, Address: 0x172ec0, Func Offset: 0x430
-	// Line 420, Address: 0x172ed8, Func Offset: 0x448
-	// Line 421, Address: 0x172ee8, Func Offset: 0x458
-	// Line 422, Address: 0x172ef0, Func Offset: 0x460
-	// Line 421, Address: 0x172ef4, Func Offset: 0x464
-	// Line 422, Address: 0x172ef8, Func Offset: 0x468
-	// Line 421, Address: 0x172efc, Func Offset: 0x46c
-	// Line 422, Address: 0x172f04, Func Offset: 0x474
-	// Line 423, Address: 0x172f18, Func Offset: 0x488
-	// Line 424, Address: 0x172f2c, Func Offset: 0x49c
-	// Line 429, Address: 0x172f54, Func Offset: 0x4c4
-	// Line 430, Address: 0x172f64, Func Offset: 0x4d4
-	// Func End, Address: 0x172f74, Func Offset: 0x4e4
-	scePrintf("pl_smove03 - UNIMPLEMENTED!\n");
+    int fsnd;
+
+    switch (plp->mode3)
+    {
+    case 0:
+        plp->flg &= ~0xC0000;
+
+        EXP1_I(0) |= 0x4;
+        
+        plp->frm_no = bhGetFrameNum(plp->mnwP[plp->mtn_no].frm_num, plp->mnwP[PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][3]].frm_num, plp->frm_no);
+        plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][3];
+        
+        plp->hokan_rate = 32768;
+        plp->hokan_count = 4;
+        
+        plp->mtn_add = 65536;
+        
+        ((EXP_WORK*)plp->exp0)->arp = 3.0f;
+        
+        plp->mode3++;
+    case 1:
+        plp->spd = 0.9f + fabsf(0.1f * njSin(((int)plp->frm_no / 65536) * (65536 / plp->mnwP[plp->mtn_no].frm_num)));
+        
+        if ((plp->stflg & 0x100000))
+        {
+            plp->spd *= 0.8f;
+        }
+
+        if (((EXP_WORK*)plp->exp0)->dmlvl == 2) 
+        {
+            plp->spd *= 0.8f;
+        }
+        
+        switch (plp->mode1)
+        {
+        case 1:
+            plp->ay -= (int)(182.04445f * (4.5f * ((EXP_WORK*)plp->exp0)->rtspd));
+            break;
+        case 2:
+            plp->ay += (int)(182.04445f * (4.5f * ((EXP_WORK*)plp->exp0)->rtspd));
+            break;
+        }
+        
+        if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][1])
+        {
+            fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[17].mtx[12], plp->mlwP->owP[17].mtx[14]);
+            
+            CallPlayerFootStepSe(fsnd, 1, 1);
+            
+            plp->stflg |= 0x200;
+            
+            if ((plp->stflg & 0x100000)) 
+            {
+                bhSetEffect(108, (POINT*)&plp->px, NULL, 13);
+                bhSetWaterSplash(plp, 15, 1, 1.6f, 1.6f, 1.6f);
+            }
+        }
+        
+        if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][1][1])
+        {
+            fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[21].mtx[12], plp->mlwP->owP[21].mtx[14]);
+           
+            CallPlayerFootStepSe(fsnd, 1, 1);
+            
+            plp->stflg |= 0x200;
+            
+            if ((plp->stflg & 0x100000))
+            {
+                bhSetEffect(108, (POINT*)&plp->px, NULL, 13);
+                bhSetWaterSplash(plp, 19, 1, 1.6f, 1.6f, 1.6f);
+            }
+        }
+    }
+    
+    bhAddSpeed(plp, 0);
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x172f80
