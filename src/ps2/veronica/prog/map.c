@@ -1,14 +1,15 @@
 #include "../../../ps2/veronica/prog/map.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 
 /*_anon11 MapPal[32];
 _anon39 MapCol[3];
 _anon13 ItmDat[22];
 unsigned short CncDatA[81];
 unsigned short CncDatB[49];
-_map_wrk MapWrk;
-_map_wrk* mwP;
-_anon31* sys;
+_map_wrk MapWrk;*/
+static map_wrk* mwP;
+/*_anon31* sys;
 _anon17* rom;
 float BHD_ASPECT_Y;
 float BHD_ASPECT_X;
@@ -1686,20 +1687,16 @@ int FsubGaugeDraw(_anon3* fgP)
 	// Line 2910, Address: 0x2b5e2c, Func Offset: 0x18c
 	// Line 2911, Address: 0x2b5e30, Func Offset: 0x190
 	// Func End, Address: 0x2b5e38, Func Offset: 0x198
-}
+}*/
 
-// 
-// Start address: 0x2b5e40
-void MapTagInit(int tag_num)
+// 100% matching!
+static void MapTagInit(int tag_num)
 {
-	// Line 2921, Address: 0x2b5e40, Func Offset: 0
-	// Line 2924, Address: 0x2b5e48, Func Offset: 0x8
-	// Line 2925, Address: 0x2b5e50, Func Offset: 0x10
-	// Line 2932, Address: 0x2b5e6c, Func Offset: 0x2c
-	// Func End, Address: 0x2b5e78, Func Offset: 0x38
+    mwP->tag_num = 0;
+    mwP->tag_wrkP = (tag_wrk_typ*)bhGetFreeMemory(tag_num * 32, 4);
 }
 
-// 
+/*// 
 // Start address: 0x2b5e80
 void MapTagEntry(float basP[16], int rom_no, _anon14* posP)
 {
