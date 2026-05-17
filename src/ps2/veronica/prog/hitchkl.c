@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/hitchkl.h"
+#include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 
@@ -72,42 +73,44 @@ ATR_WORK* bhCollisionCheckLine2(NJS_POINT3* p1, NJS_POINT3* p2, unsigned int flg
 	scePrintf("bhCollisionCheckLine2 - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x269690
-_anon6* bhCollisionCheckLine3(_anon2* p1, _anon2* p2, unsigned int flg, char flr_no)
+// 100% matching!
+ATR_WORK* bhCollisionCheckLine3(NJS_POINT3* p1, NJS_POINT3* p2, unsigned int flg, char flr_no)
 {
-	_anon2 vec;
-	int wal_n;
-	int i;
-	_anon6* ret;
-	_anon6* hp;
-	// Line 163, Address: 0x269690, Func Offset: 0
-	// Line 169, Address: 0x2696bc, Func Offset: 0x2c
-	// Line 173, Address: 0x2696c4, Func Offset: 0x34
-	// Line 164, Address: 0x2696d4, Func Offset: 0x44
-	// Line 169, Address: 0x2696d8, Func Offset: 0x48
-	// Line 173, Address: 0x2696dc, Func Offset: 0x4c
-	// Line 169, Address: 0x2696e4, Func Offset: 0x54
-	// Line 170, Address: 0x2696e8, Func Offset: 0x58
-	// Line 173, Address: 0x2696f0, Func Offset: 0x60
-	// Line 170, Address: 0x2696f8, Func Offset: 0x68
-	// Line 171, Address: 0x269700, Func Offset: 0x70
-	// Line 173, Address: 0x269710, Func Offset: 0x80
-	// Line 174, Address: 0x26971c, Func Offset: 0x8c
-	// Line 176, Address: 0x26973c, Func Offset: 0xac
-	// Line 178, Address: 0x269788, Func Offset: 0xf8
-	// Line 180, Address: 0x269798, Func Offset: 0x108
-	// Line 181, Address: 0x2697a8, Func Offset: 0x118
-	// Line 187, Address: 0x269804, Func Offset: 0x174
-	// Line 188, Address: 0x269808, Func Offset: 0x178
-	// Line 189, Address: 0x269824, Func Offset: 0x194
-	// Line 191, Address: 0x269828, Func Offset: 0x198
-	// Line 193, Address: 0x269838, Func Offset: 0x1a8
-	// Line 194, Address: 0x26983c, Func Offset: 0x1ac
-	// Func End, Address: 0x26986c, Func Offset: 0x1dc
+    ATR_WORK* hp; 
+    ATR_WORK* ret; 
+    int i;
+    int wal_n; 
+    NJS_VECTOR vec; 
+
+    ret = NULL;
+    
+    vec.x = p2->x - p1->x;
+    vec.y = p2->y - p1->y;
+    vec.z = p2->z - p1->z;
+    
+    wal_n = rom->wal_n + sys->mwal_n;
+    
+    for (i = 0; i < wal_n; i++)
+    {
+        if (i < rom->wal_n)
+        {
+            hp = &rom->walp[i];
+        }
+        else 
+        {
+            hp = &sys->mwalp[i - rom->wal_n];
+        }
+        
+        if (((hp->flg & 0x1)) && ((hp->type == 7) || ((!(hp->type & 0x1)) || (!(flg & 0x400))) && ((!(hp->attr & 0x1)) || (hp->flr_no == flr_no)) && ((!(hp->attr & 0x2)) || (!(flg & 0x4000))) && (!(hp->attr & 0x4))) && (bhCollisionCheckLineMain(hp, &vec, p1, p2) != 0))
+        {
+            ret = hp;
+        }
+    }
+    
+    return ret;
 }
 
-// 
+/*// 
 // Start address: 0x269870
 int bhCollisionCheckLineMain(_anon6* hp, _anon2* vec, _anon2* p1, _anon2* p2)
 {
