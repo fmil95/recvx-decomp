@@ -1,6 +1,11 @@
 #include "../../../ps2/veronica/prog/pl_evt.h"
+#include "../../../ps2/veronica/prog/effect.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/player.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
 
 unsigned char basic_motion_pl[32][2] = 
 {
@@ -209,81 +214,99 @@ void pl_smove01()
     plp->flg &= ~0x200000;
 }
 
-// 
-// Start address: 0x172570
+#pragma divbyzerocheck on 
+
+// 99.97% matching
 void pl_smove02()
 {
-	int fsnd;
-	// Line 294, Address: 0x172570, Func Offset: 0
-	// Line 298, Address: 0x17257c, Func Offset: 0xc
-	// Line 300, Address: 0x1725a4, Func Offset: 0x34
-	// Line 301, Address: 0x1725b0, Func Offset: 0x40
-	// Line 300, Address: 0x1725b8, Func Offset: 0x48
-	// Line 301, Address: 0x1725c0, Func Offset: 0x50
-	// Line 302, Address: 0x1725d4, Func Offset: 0x64
-	// Line 303, Address: 0x1725d8, Func Offset: 0x68
-	// Line 304, Address: 0x1725e0, Func Offset: 0x70
-	// Line 308, Address: 0x172668, Func Offset: 0xf8
-	// Line 310, Address: 0x172678, Func Offset: 0x108
-	// Line 308, Address: 0x172680, Func Offset: 0x110
-	// Line 309, Address: 0x172684, Func Offset: 0x114
-	// Line 311, Address: 0x172688, Func Offset: 0x118
-	// Line 312, Address: 0x17268c, Func Offset: 0x11c
-	// Line 313, Address: 0x172690, Func Offset: 0x120
-	// Line 308, Address: 0x172694, Func Offset: 0x124
-	// Line 309, Address: 0x17269c, Func Offset: 0x12c
-	// Line 314, Address: 0x1726a0, Func Offset: 0x130
-	// Line 315, Address: 0x1726a4, Func Offset: 0x134
-	// Line 309, Address: 0x1726a8, Func Offset: 0x138
-	// Line 310, Address: 0x1726ac, Func Offset: 0x13c
-	// Line 309, Address: 0x1726b0, Func Offset: 0x140
-	// Line 310, Address: 0x1726bc, Func Offset: 0x14c
-	// Line 311, Address: 0x1726c4, Func Offset: 0x154
-	// Line 310, Address: 0x1726c8, Func Offset: 0x158
-	// Line 311, Address: 0x172700, Func Offset: 0x190
-	// Line 312, Address: 0x172708, Func Offset: 0x198
-	// Line 313, Address: 0x172714, Func Offset: 0x1a4
-	// Line 314, Address: 0x172720, Func Offset: 0x1b0
-	// Line 315, Address: 0x17272c, Func Offset: 0x1bc
-	// Line 314, Address: 0x172730, Func Offset: 0x1c0
-	// Line 315, Address: 0x172734, Func Offset: 0x1c4
-	// Line 316, Address: 0x172748, Func Offset: 0x1d8
-	// Line 317, Address: 0x17275c, Func Offset: 0x1ec
-	// Line 320, Address: 0x172770, Func Offset: 0x200
-	// Line 327, Address: 0x1727e4, Func Offset: 0x274
-	// Line 320, Address: 0x1727e8, Func Offset: 0x278
-	// Line 327, Address: 0x1727ec, Func Offset: 0x27c
-	// Line 328, Address: 0x172820, Func Offset: 0x2b0
-	// Line 330, Address: 0x17284c, Func Offset: 0x2dc
-	// Line 331, Address: 0x172880, Func Offset: 0x310
-	// Line 333, Address: 0x172888, Func Offset: 0x318
-	// Line 337, Address: 0x1728c0, Func Offset: 0x350
-	// Line 338, Address: 0x172900, Func Offset: 0x390
-	// Line 341, Address: 0x172918, Func Offset: 0x3a8
-	// Line 342, Address: 0x172928, Func Offset: 0x3b8
-	// Line 343, Address: 0x172930, Func Offset: 0x3c0
-	// Line 342, Address: 0x172934, Func Offset: 0x3c4
-	// Line 343, Address: 0x172938, Func Offset: 0x3c8
-	// Line 342, Address: 0x17293c, Func Offset: 0x3cc
-	// Line 343, Address: 0x172944, Func Offset: 0x3d4
-	// Line 344, Address: 0x172958, Func Offset: 0x3e8
-	// Line 345, Address: 0x17296c, Func Offset: 0x3fc
-	// Line 349, Address: 0x172994, Func Offset: 0x424
-	// Line 350, Address: 0x1729d4, Func Offset: 0x464
-	// Line 353, Address: 0x1729ec, Func Offset: 0x47c
-	// Line 354, Address: 0x1729fc, Func Offset: 0x48c
-	// Line 355, Address: 0x172a04, Func Offset: 0x494
-	// Line 354, Address: 0x172a08, Func Offset: 0x498
-	// Line 355, Address: 0x172a0c, Func Offset: 0x49c
-	// Line 354, Address: 0x172a10, Func Offset: 0x4a0
-	// Line 355, Address: 0x172a18, Func Offset: 0x4a8
-	// Line 356, Address: 0x172a2c, Func Offset: 0x4bc
-	// Line 357, Address: 0x172a40, Func Offset: 0x4d0
-	// Line 362, Address: 0x172a68, Func Offset: 0x4f8
-	// Line 364, Address: 0x172a78, Func Offset: 0x508
-	// Func End, Address: 0x172a88, Func Offset: 0x518
-	scePrintf("pl_smove02 - UNIMPLEMENTED!\n");
+    int fsnd;
+
+    switch (plp->mode3)
+    {
+    case 0:
+        plp->flg &= ~0xC0000;
+        
+        if (!(plp->flg & 0x800000))
+        {
+            plp->frm_no = 327680;
+        }
+        else 
+        {
+            plp->frm_no = bhGetFrameNum(plp->mnwP[plp->mtn_no].frm_num, plp->mnwP[PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][2]].frm_num, plp->frm_no);
+        }
+        
+        plp->flg &= ~0x800000;
+        
+        EXP1_I(0) |= 0x4;
+        
+        plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][2];
+        
+        plp->hokan_rate  = 32768;
+        plp->hokan_count = 8;
+        
+        plp->mtn_add = 65536;
+        
+        ((EXP_WORK*)plp->exp0)->arp = 2.0f;
+        
+        if ((plp->stflg & 0x100000))
+        {
+            bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
+        }
+        
+        plp->mode3++;
+    case 1:
+        plp->spd = 0.18f + fabsf(0.15f * njCos((plp->frm_no / 65536) * (65536 / plp->mnwP[plp->mtn_no].frm_num)));
+        
+        if ((plp->stflg & 0x100000))
+        {
+            plp->spd *= 0.8f;
+        }
+        
+        switch (plp->mode1)
+        {
+        case 1:
+            plp->ay -= (int)(182.04445f * (4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
+            break;
+        case 2:
+            plp->ay += (int)(182.04445f * (4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
+            break;
+        }
+        
+        if ((plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][0])
+        {
+            fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[17].mtx[12], plp->mlwP->owP[17].mtx[14]);
+            
+            CallPlayerFootStepSe(fsnd, 0, 1);
+            
+            plp->stflg |= 0x200;
+            
+            if ((plp->stflg & 0x100000)) 
+            {
+                bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
+                bhSetWaterSplash(plp, 15, 0, 0.8f, 0.8f, 0.8f);
+            }
+        }
+        
+        if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][1][0])
+        {
+            fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[21].mtx[12], plp->mlwP->owP[21].mtx[14]);
+            
+            CallPlayerFootStepSe(fsnd, 0, 1);
+            
+            plp->stflg |= 0x200;
+            
+            if ((plp->stflg & 0x100000))
+            {
+                bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
+                bhSetWaterSplash(plp, 19, 0, 0.8f, 0.8f, 0.8f);
+            }
+        }
+    }
+    
+    bhAddSpeed(plp, 0);
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x172a90

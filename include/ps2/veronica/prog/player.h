@@ -130,5 +130,6 @@ extern EF_WORK WpnEffTab[23][4];
 extern const WPN_TAB WpnTab[23];
 extern const unsigned short PlMtnWpn[5];
 extern const unsigned short PlMtnAct[2][3][7];
+extern const char PlFootSnd[4][2][7];
 
 #endif
