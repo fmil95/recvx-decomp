@@ -601,54 +601,57 @@ int bhCollisionCheckL2PL(NJS_POINT3* p1, NJS_POINT3* p2, NJS_POINT3* area, int n
     return ret;
 }
 
-// 
-// Start address: 0x26b0b0
+// 100% matching!
 int bhInOutCheck(NJS_POINT3* p, NJS_POINT3* area, NJS_POINT3* normal, int num)
 {
-	float v2z;
-	float v2y;
-	float v2x;
-	float v1z;
-	float v1y;
-	float v1x;
-	NJS_POINT3 n;
-	NJS_POINT3* p2;
-	NJS_POINT3* p1;
-	int i;
-	// Line 702, Address: 0x26b0b0, Func Offset: 0
-	// Line 707, Address: 0x26b0c8, Func Offset: 0x18
-	// Line 710, Address: 0x26b0e0, Func Offset: 0x30
-	// Line 711, Address: 0x26b0e8, Func Offset: 0x38
-	// Line 712, Address: 0x26b0f0, Func Offset: 0x40
-	// Line 713, Address: 0x26b0f8, Func Offset: 0x48
-	// Line 714, Address: 0x26b0fc, Func Offset: 0x4c
-	// Line 715, Address: 0x26b104, Func Offset: 0x54
-	// Line 719, Address: 0x26b110, Func Offset: 0x60
-	// Line 718, Address: 0x26b114, Func Offset: 0x64
-	// Line 719, Address: 0x26b118, Func Offset: 0x68
-	// Line 733, Address: 0x26b130, Func Offset: 0x80
-	// Line 721, Address: 0x26b134, Func Offset: 0x84
-	// Line 720, Address: 0x26b138, Func Offset: 0x88
-	// Line 721, Address: 0x26b13c, Func Offset: 0x8c
-	// Line 724, Address: 0x26b148, Func Offset: 0x98
-	// Line 727, Address: 0x26b150, Func Offset: 0xa0
-	// Line 726, Address: 0x26b154, Func Offset: 0xa4
-	// Line 725, Address: 0x26b15c, Func Offset: 0xac
-	// Line 724, Address: 0x26b164, Func Offset: 0xb4
-	// Line 728, Address: 0x26b168, Func Offset: 0xb8
-	// Line 727, Address: 0x26b16c, Func Offset: 0xbc
-	// Line 729, Address: 0x26b170, Func Offset: 0xc0
-	// Line 726, Address: 0x26b174, Func Offset: 0xc4
-	// Line 725, Address: 0x26b178, Func Offset: 0xc8
-	// Line 729, Address: 0x26b17c, Func Offset: 0xcc
-	// Line 728, Address: 0x26b180, Func Offset: 0xd0
-	// Line 733, Address: 0x26b184, Func Offset: 0xd4
-	// Line 735, Address: 0x26b1c0, Func Offset: 0x110
-	// Line 737, Address: 0x26b1c8, Func Offset: 0x118
-	// Line 739, Address: 0x26b1d8, Func Offset: 0x128
-	// Line 740, Address: 0x26b1dc, Func Offset: 0x12c
-	// Func End, Address: 0x26b1f4, Func Offset: 0x144
-	scePrintf("bhInOutCheck - UNIMPLEMENTED!\n");
+    int i;        
+    NJS_POINT3* p1, *p2; 
+    NJS_POINT3 n; 
+    float v1x, v1y, v1z;      
+    float v2x, v2y, v2z;   
+
+    if (num < 3) 
+    {
+        return 0;
+    }
+    
+    if (normal != NULL) 
+    {
+        n.x = normal->x;
+        n.y = normal->y;
+        n.z = normal->z;
+    } 
+    else 
+    {
+        njGetPlaneNormal(area, &n);
+    }
+    
+    p1 = area;
+    
+    for (i = 0; i < num; i++)
+    {
+        p2 = p1++;
+        
+        if (i == (num - 1))
+        {
+            p1 = area;
+        }
+        
+        v1x = p1->x - p2->x;
+        v1y = p1->y - p2->y;
+        v1z = p1->z - p2->z;
+        
+        v2x = p->x - p2->x;
+        v2y = p->y - p2->y;
+        v2z = p->z - p2->z;
+        
+        if (((n.z * ((v1x * v2y) - (v1y * v2x))) + ((n.x * ((v1y * v2z) - (v1z * v2y))) + (n.y * ((v1z * v2x) - (v1x * v2z))))) < 0)
+        {
+            return 0;
+        }
+    }
+    
+    return 1;
 }
 
 // 
