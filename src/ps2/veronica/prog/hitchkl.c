@@ -37,40 +37,41 @@ _anon6* bhCollisionCheckLine(_anon2* p1, _anon2* p2)
 	// Func End, Address: 0x2694bc, Func Offset: 0x14c
 }*/
 
-// 
-// Start address: 0x2694c0
+// 100% matching!
 ATR_WORK* bhCollisionCheckLine2(NJS_POINT3* p1, NJS_POINT3* p2, unsigned int flg, char flr_no)
 {
-	//_anon2 vec;
-	int wal_n;
-	int i;
-	//_anon6* ret;
-	//_anon6* hp;
-	// Line 118, Address: 0x2694c0, Func Offset: 0
-	// Line 124, Address: 0x2694ec, Func Offset: 0x2c
-	// Line 128, Address: 0x2694f4, Func Offset: 0x34
-	// Line 119, Address: 0x269504, Func Offset: 0x44
-	// Line 124, Address: 0x269508, Func Offset: 0x48
-	// Line 128, Address: 0x26950c, Func Offset: 0x4c
-	// Line 124, Address: 0x269514, Func Offset: 0x54
-	// Line 125, Address: 0x269518, Func Offset: 0x58
-	// Line 128, Address: 0x269520, Func Offset: 0x60
-	// Line 125, Address: 0x269528, Func Offset: 0x68
-	// Line 126, Address: 0x269530, Func Offset: 0x70
-	// Line 128, Address: 0x269540, Func Offset: 0x80
-	// Line 129, Address: 0x26954c, Func Offset: 0x8c
-	// Line 131, Address: 0x26956c, Func Offset: 0xac
-	// Line 133, Address: 0x2695b8, Func Offset: 0xf8
-	// Line 135, Address: 0x2695c8, Func Offset: 0x108
-	// Line 136, Address: 0x2695d8, Func Offset: 0x118
-	// Line 141, Address: 0x269624, Func Offset: 0x164
-	// Line 142, Address: 0x269628, Func Offset: 0x168
-	// Line 143, Address: 0x269644, Func Offset: 0x184
-	// Line 145, Address: 0x269648, Func Offset: 0x188
-	// Line 147, Address: 0x269658, Func Offset: 0x198
-	// Line 148, Address: 0x26965c, Func Offset: 0x19c
-	// Func End, Address: 0x26968c, Func Offset: 0x1cc
-	scePrintf("bhCollisionCheckLine2 - UNIMPLEMENTED!\n");
+	ATR_WORK* hp; 
+    ATR_WORK* ret; 
+    int i;
+    int wal_n; 
+    NJS_VECTOR vec; 
+
+    ret = NULL;
+    
+    vec.x = p2->x - p1->x;
+    vec.y = p2->y - p1->y;
+    vec.z = p2->z - p1->z;
+    
+    wal_n = rom->wal_n + sys->mwal_n;
+    
+    for (i = 0; i < wal_n; i++)
+    {
+        if (i < rom->wal_n)
+        {
+            hp = &rom->walp[i];
+        }
+        else 
+        {
+            hp = &sys->mwalp[i - rom->wal_n];
+        }
+        
+        if (((hp->flg & 0x1)) && ((hp->type == 7) || ((!(hp->type & 0x1)) || (!(flg & 0x400))) && ((!(hp->attr & 0x1)) || (hp->flr_no == flr_no)) && ((!(hp->attr & 0x2)) || (!(flg & 0x4000)))) && (bhCollisionCheckLineMain(hp, &vec, p1, p2) != 0))
+        {
+            ret = hp;
+        }
+    }
+    
+    return ret;
 }
 
 // 100% matching!
