@@ -741,48 +741,47 @@ int bhCollisionCheckL2XZPL(NJS_POINT3* p1, NJS_POINT3* p2, NJS_POINT3* pos, floa
     return ret;
 }
 
-/*// 
-// Start address: 0x26b560
-int bhCollisionCheckL2XYPL(_anon2* p1, _anon2* p2, _anon2* pos, float w, float h, int flg)
+// 100% matching!
+int bhCollisionCheckL2XYPL(NJS_POINT3* p1, NJS_POINT3* p2, NJS_POINT3* pos, float w, float h, int flg)
 {
-	int ret;
-	_anon2 cp;
-	_anon37 ln;
-	_anon37 pl;
-	// Line 983, Address: 0x26b560, Func Offset: 0
-	// Line 989, Address: 0x26b57c, Func Offset: 0x1c
-	// Line 987, Address: 0x26b590, Func Offset: 0x30
-	// Line 989, Address: 0x26b594, Func Offset: 0x34
-	// Line 990, Address: 0x26b598, Func Offset: 0x38
-	// Line 991, Address: 0x26b5a0, Func Offset: 0x40
-	// Line 992, Address: 0x26b5a8, Func Offset: 0x48
-	// Line 993, Address: 0x26b5b8, Func Offset: 0x58
-	// Line 994, Address: 0x26b5c8, Func Offset: 0x68
-	// Line 996, Address: 0x26b5d4, Func Offset: 0x74
-	// Line 997, Address: 0x26b5d8, Func Offset: 0x78
-	// Line 998, Address: 0x26b5dc, Func Offset: 0x7c
-	// Line 999, Address: 0x26b600, Func Offset: 0xa0
-	// Line 1004, Address: 0x26b604, Func Offset: 0xa4
-	// Line 999, Address: 0x26b610, Func Offset: 0xb0
-	// Line 1000, Address: 0x26b614, Func Offset: 0xb4
-	// Line 1001, Address: 0x26b61c, Func Offset: 0xbc
-	// Line 1004, Address: 0x26b620, Func Offset: 0xc0
-	// Line 1006, Address: 0x26b640, Func Offset: 0xe0
-	// Line 1008, Address: 0x26b69c, Func Offset: 0x13c
-	// Line 1009, Address: 0x26b6a0, Func Offset: 0x140
-	// Line 1013, Address: 0x26b6a4, Func Offset: 0x144
-	// Line 1015, Address: 0x26b6a8, Func Offset: 0x148
-	// Line 1009, Address: 0x26b6ac, Func Offset: 0x14c
-	// Line 1010, Address: 0x26b6b0, Func Offset: 0x150
-	// Line 1013, Address: 0x26b6b4, Func Offset: 0x154
-	// Line 1010, Address: 0x26b6bc, Func Offset: 0x15c
-	// Line 1013, Address: 0x26b6c0, Func Offset: 0x160
-	// Line 1019, Address: 0x26b6d0, Func Offset: 0x170
-	// Line 1020, Address: 0x26b6d4, Func Offset: 0x174
-	// Func End, Address: 0x26b6f4, Func Offset: 0x194
+    NJS_LINE pl;   
+    NJS_LINE ln;   
+    NJS_POINT3 cp;   
+    int ret;
+
+    ret = 0;
+
+    ln.px = p1->x;
+    ln.py = p1->y;
+    ln.pz = p1->z;
+    
+    ln.vx = p2->x - p1->x;
+    ln.vy = p2->y - p1->y;
+    ln.vz = p2->z - p1->z;
+    
+    pl.vx = 0;
+    pl.vy = 0;
+    pl.vz = flg ? -1.0f : 1.0f;
+    
+    pl.px = pos->x;
+    pl.py = pos->y;
+    pl.pz = pos->z;
+    
+    if ((njDistanceL2PL(&ln, &pl, &cp) == 0) && (((cp.x >= pos->x) && (cp.x <= (pos->x + w))) && ((cp.y >= pos->y) && (cp.y <= (pos->y + h)))))
+    {
+        p2->x = cp.x;
+        p2->y = cp.y;
+        p2->z = cp.z;
+        
+        PLANE = pl;
+
+        ret = 1;
+    }
+    
+    return ret;
 }
 
-// 
+/*// 
 // Start address: 0x26b700
 int bhCollisionCheckL2YZPL(_anon2* p1, _anon2* p2, _anon2* pos, float h, float d, int flg)
 {
