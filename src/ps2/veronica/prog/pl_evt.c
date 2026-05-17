@@ -321,7 +321,7 @@ void pl_smove03()
         plp->frm_no = bhGetFrameNum(plp->mnwP[plp->mtn_no].frm_num, plp->mnwP[PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][3]].frm_num, plp->frm_no);
         plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][3];
         
-        plp->hokan_rate = 32768;
+        plp->hokan_rate  = 32768;
         plp->hokan_count = 4;
         
         plp->mtn_add = 65536;
@@ -386,84 +386,99 @@ void pl_smove03()
     bhAddSpeed(plp, 0);
 }
 
-#pragma divbyzerocheck off
-
-// 
-// Start address: 0x172f80
+// 99.97% matching
 void pl_smove04()
 {
-	int fsnd;
-	// Line 441, Address: 0x172f80, Func Offset: 0
-	// Line 445, Address: 0x172f8c, Func Offset: 0xc
-	// Line 447, Address: 0x172fb4, Func Offset: 0x34
-	// Line 448, Address: 0x172fc0, Func Offset: 0x40
-	// Line 447, Address: 0x172fc4, Func Offset: 0x44
-	// Line 448, Address: 0x172fcc, Func Offset: 0x4c
-	// Line 449, Address: 0x172fd4, Func Offset: 0x54
-	// Line 448, Address: 0x172fd8, Func Offset: 0x58
-	// Line 449, Address: 0x172fe4, Func Offset: 0x64
-	// Line 451, Address: 0x17301c, Func Offset: 0x9c
-	// Line 452, Address: 0x173020, Func Offset: 0xa0
-	// Line 453, Address: 0x173028, Func Offset: 0xa8
-	// Line 457, Address: 0x1730b8, Func Offset: 0x138
-	// Line 458, Address: 0x1730c8, Func Offset: 0x148
-	// Line 457, Address: 0x1730d0, Func Offset: 0x150
-	// Line 458, Address: 0x1730d4, Func Offset: 0x154
-	// Line 459, Address: 0x1730d8, Func Offset: 0x158
-	// Line 460, Address: 0x1730dc, Func Offset: 0x15c
-	// Line 461, Address: 0x1730e0, Func Offset: 0x160
-	// Line 457, Address: 0x1730e4, Func Offset: 0x164
-	// Line 458, Address: 0x1730ec, Func Offset: 0x16c
-	// Line 463, Address: 0x1730f0, Func Offset: 0x170
-	// Line 464, Address: 0x1730f4, Func Offset: 0x174
-	// Line 458, Address: 0x1730f8, Func Offset: 0x178
-	// Line 459, Address: 0x1730fc, Func Offset: 0x17c
-	// Line 458, Address: 0x173100, Func Offset: 0x180
-	// Line 459, Address: 0x173138, Func Offset: 0x1b8
-	// Line 460, Address: 0x173140, Func Offset: 0x1c0
-	// Line 461, Address: 0x17314c, Func Offset: 0x1cc
-	// Line 462, Address: 0x173158, Func Offset: 0x1d8
-	// Line 463, Address: 0x173164, Func Offset: 0x1e4
-	// Line 464, Address: 0x173170, Func Offset: 0x1f0
-	// Line 463, Address: 0x173174, Func Offset: 0x1f4
-	// Line 464, Address: 0x173178, Func Offset: 0x1f8
-	// Line 465, Address: 0x17318c, Func Offset: 0x20c
-	// Line 466, Address: 0x1731a0, Func Offset: 0x220
-	// Line 484, Address: 0x1731b4, Func Offset: 0x234
-	// Line 490, Address: 0x173228, Func Offset: 0x2a8
-	// Line 484, Address: 0x17322c, Func Offset: 0x2ac
-	// Line 490, Address: 0x173230, Func Offset: 0x2b0
-	// Line 492, Address: 0x173264, Func Offset: 0x2e4
-	// Line 494, Address: 0x173290, Func Offset: 0x310
-	// Line 495, Address: 0x1732c4, Func Offset: 0x344
-	// Line 497, Address: 0x1732cc, Func Offset: 0x34c
-	// Line 501, Address: 0x173304, Func Offset: 0x384
-	// Line 502, Address: 0x173344, Func Offset: 0x3c4
-	// Line 505, Address: 0x17335c, Func Offset: 0x3dc
-	// Line 506, Address: 0x17336c, Func Offset: 0x3ec
-	// Line 507, Address: 0x173374, Func Offset: 0x3f4
-	// Line 506, Address: 0x173378, Func Offset: 0x3f8
-	// Line 507, Address: 0x17337c, Func Offset: 0x3fc
-	// Line 506, Address: 0x173380, Func Offset: 0x400
-	// Line 507, Address: 0x173388, Func Offset: 0x408
-	// Line 508, Address: 0x17339c, Func Offset: 0x41c
-	// Line 509, Address: 0x1733b0, Func Offset: 0x430
-	// Line 513, Address: 0x1733d8, Func Offset: 0x458
-	// Line 514, Address: 0x173418, Func Offset: 0x498
-	// Line 517, Address: 0x173430, Func Offset: 0x4b0
-	// Line 518, Address: 0x173440, Func Offset: 0x4c0
-	// Line 519, Address: 0x173448, Func Offset: 0x4c8
-	// Line 518, Address: 0x17344c, Func Offset: 0x4cc
-	// Line 519, Address: 0x173450, Func Offset: 0x4d0
-	// Line 518, Address: 0x173454, Func Offset: 0x4d4
-	// Line 519, Address: 0x17345c, Func Offset: 0x4dc
-	// Line 520, Address: 0x173470, Func Offset: 0x4f0
-	// Line 521, Address: 0x173484, Func Offset: 0x504
-	// Line 526, Address: 0x1734ac, Func Offset: 0x52c
-	// Line 527, Address: 0x1734bc, Func Offset: 0x53c
-	// Func End, Address: 0x1734cc, Func Offset: 0x54c
-	scePrintf("pl_smove04 - UNIMPLEMENTED!\n");
+    int fsnd;
+
+    switch (plp->mode3)
+    {
+    case 0:
+        plp->flg &= ~0xC0000;
+
+        EXP1_I(0) |= 0x4;
+
+        if ((!(sys->pad_old & 0x1)) && (!(plp->flg & 0x800000))) 
+        {
+            plp->frm_no = 1638400;
+        }
+        else
+        {
+            plp->frm_no = bhGetFrameNum(plp->mnwP[plp->mtn_no].frm_num, plp->mnwP[PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][4]].frm_num, plp->frm_no);
+        }
+
+        plp->flg &= ~0x800000;
+        
+        plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][4];
+        
+        plp->hokan_rate  = 49152;
+        plp->hokan_count = 8;
+        
+        plp->mtn_add = 65536;
+        
+        plp->ct0 = 0;
+        
+        ((EXP_WORK*)plp->exp0)->arp = -1.0f;
+        
+        if ((plp->stflg & 0x100000)) 
+        {
+            bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
+        }
+        
+        plp->mode3++;
+    case 1:
+        plp->spd = 0.14f + fabsf(0.15f * njCos((plp->frm_no / 65536) * (65536 / plp->mnwP[plp->mtn_no].frm_num)));
+        
+        if ((plp->stflg & 0x100000))
+        {
+            plp->spd *= 0.8f;
+        }
+        
+        switch (plp->mode1)
+        {
+        case 1:
+            plp->ay -= (int)(182.04445f * (4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
+            break;
+        case 2:
+            plp->ay += (int)(182.04445f * (4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
+            break;
+        }
+        
+        if ((plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][2])
+        {
+            fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[17].mtx[12], plp->mlwP->owP[17].mtx[14]);
+            
+            CallPlayerFootStepSe(fsnd, 0, 1);
+            
+            plp->stflg |= 0x200;
+            
+            if ((plp->stflg & 0x100000)) 
+            {
+                bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
+                bhSetWaterSplash(plp, 15, 0, 0.8f, 0.8f, 0.8f);
+            }
+        }
+        
+        if ((plp->frm_no / 65536) == PlFootSnd[sys->ply_id][1][2])
+        {
+            fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[21].mtx[12], plp->mlwP->owP[21].mtx[14]);
+            
+            CallPlayerFootStepSe(fsnd, 0, 1);
+            
+            plp->stflg |= 0x200;
+            
+            if ((plp->stflg & 0x100000))
+            {
+                bhSetEffect(108, (POINT*)&plp->px, NULL, 10);
+                bhSetWaterSplash(plp, 19, 0, 0.8f, 0.8f, 0.8f);
+            }
+        }
+    }
+    
+    bhAddSpeed(plp, 32768);
 }
+
+#pragma divbyzerocheck off
 
 // 100% matching!
 void pl_smove05()
