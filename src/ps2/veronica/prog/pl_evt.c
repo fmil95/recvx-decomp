@@ -43,7 +43,8 @@ unsigned char basic_motion_pl[32][2] =
     { 0,   0 },
     { 0,   0 }
 };
-void (*bhCPM0_event_tbl[10])() = 
+typedef void (*bhCPM0_event_proc)();
+bhCPM0_event_proc bhCPM0_event_tbl[10] = 
 {
 	pl_smove00,
 	pl_smove01,
@@ -595,51 +596,54 @@ void pl_smove06()
     bhAddSpeed(plp, 0);
 }
 
-#pragma divbyzerocheck off
-
-// 
-// Start address: 0x1739f0
-void pl_smove07()
+// 100% matching!
+void pl_smove07() 
 {
-	int fsnd;
-	// Line 715, Address: 0x1739f0, Func Offset: 0
-	// Line 720, Address: 0x1739f8, Func Offset: 0x8
-	// Line 722, Address: 0x173a20, Func Offset: 0x30
-	// Line 723, Address: 0x173a2c, Func Offset: 0x3c
-	// Line 722, Address: 0x173a34, Func Offset: 0x44
-	// Line 723, Address: 0x173a3c, Func Offset: 0x4c
-	// Line 726, Address: 0x173ac0, Func Offset: 0xd0
-	// Line 727, Address: 0x173ac8, Func Offset: 0xd8
-	// Line 728, Address: 0x173acc, Func Offset: 0xdc
-	// Line 723, Address: 0x173ad0, Func Offset: 0xe0
-	// Line 726, Address: 0x173ad4, Func Offset: 0xe4
-	// Line 729, Address: 0x173adc, Func Offset: 0xec
-	// Line 726, Address: 0x173ae0, Func Offset: 0xf0
-	// Line 727, Address: 0x173ae8, Func Offset: 0xf8
-	// Line 726, Address: 0x173aec, Func Offset: 0xfc
-	// Line 727, Address: 0x173b20, Func Offset: 0x130
-	// Line 728, Address: 0x173b28, Func Offset: 0x138
-	// Line 729, Address: 0x173b34, Func Offset: 0x144
-	// Line 730, Address: 0x173b40, Func Offset: 0x150
-	// Line 732, Address: 0x173b54, Func Offset: 0x164
-	// Line 739, Address: 0x173bc8, Func Offset: 0x1d8
-	// Line 732, Address: 0x173bdc, Func Offset: 0x1ec
-	// Line 739, Address: 0x173be0, Func Offset: 0x1f0
-	// Line 755, Address: 0x173c20, Func Offset: 0x230
-	// Line 739, Address: 0x173c24, Func Offset: 0x234
-	// Line 755, Address: 0x173c28, Func Offset: 0x238
-	// Line 739, Address: 0x173c2c, Func Offset: 0x23c
-	// Line 755, Address: 0x173c34, Func Offset: 0x244
-	// Line 756, Address: 0x173c48, Func Offset: 0x258
-	// Line 759, Address: 0x173c60, Func Offset: 0x270
-	// Line 762, Address: 0x173c70, Func Offset: 0x280
-	// Line 763, Address: 0x173c88, Func Offset: 0x298
-	// Line 766, Address: 0x173ca0, Func Offset: 0x2b0
-	// Line 770, Address: 0x173cb0, Func Offset: 0x2c0
-	// Line 771, Address: 0x173cc0, Func Offset: 0x2d0
-	// Func End, Address: 0x173ccc, Func Offset: 0x2dc
-	scePrintf("pl_smove07 - UNIMPLEMENTED!\n");
+    int fsnd;
+    short ct0; // not from DWARF
+
+    switch (plp->mode3)
+    { 
+    case 0:
+        plp->flg &= ~0xC0000;
+        
+        plp->frm_no = bhGetFrameNum(plp->mnwP[plp->mtn_no].frm_num, plp->mnwP[PlMtnAct[plp->wpnr_no][((EXP_WORK*)plp->exp0)->dmlvl][3]].frm_num, plp->frm_no);
+        plp->mtn_no = PlMtnAct[plp->wpnr_no][((EXP_WORK*)plp->exp0)->dmlvl][3];
+        
+        plp->hokan_rate  = 32768;
+        plp->hokan_count = 4;
+        
+        plp->mtn_add = 65536;
+        
+        plp->mode3++;
+    case 1:
+        plp->spd = 0.9f + fabsf(0.10f * njSin((plp->frm_no / 65536) * (65536 / plp->mnwP[plp->mtn_no].frm_num)));
+
+        ct0 = plp->ct0;
+        
+        plp->ay += bhSub_DirTarget(plp, 0.01f * (short)(plp->ct0 / 65536), 0.01f * ct0, 910);
+        
+        if ((plp->frm_no / 65536) == 10) 
+        {
+            fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[17].mtx[12], plp->mlwP->owP[17].mtx[14]);
+            
+            CallPlayerFootStepSe(fsnd, 1, 1);
+        }
+        
+        if ((plp->frm_no / 65536) == 0) 
+        {
+            fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[21].mtx[12], plp->mlwP->owP[21].mtx[14]);
+            
+            CallPlayerFootStepSe(fsnd, 1, 1);
+        }
+        
+        break;
+    }
+    
+    bhAddSpeed(plp, 0);
 }
+
+#pragma divbyzerocheck off
 
 // 100% matching!
 void pl_smove08()
