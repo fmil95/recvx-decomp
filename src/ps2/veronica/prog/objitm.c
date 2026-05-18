@@ -582,42 +582,58 @@ void bhSetAlphaFadeObject(O_WRK* op, int jntno, int jnt_n, int alpha, int count)
     fwk[1] = count;
 }
 
-/*// 
-// Start address: 0x284610
-void bhControlAlphaFadeObject(_anon0* op)
-{
-	float count;
-	float alpha;
-	float na;
-	int jnt_n;
-	int i;
-	float* fwk;
-	int* iwk;
-	npobj* objp;
-	// Line 702, Address: 0x284610, Func Offset: 0
-	// Line 715, Address: 0x284634, Func Offset: 0x24
-	// Line 712, Address: 0x28463c, Func Offset: 0x2c
-	// Line 713, Address: 0x284644, Func Offset: 0x34
-	// Line 714, Address: 0x284648, Func Offset: 0x38
-	// Line 715, Address: 0x28464c, Func Offset: 0x3c
-	// Line 710, Address: 0x284664, Func Offset: 0x54
-	// Line 715, Address: 0x284668, Func Offset: 0x58
-	// Line 716, Address: 0x28466c, Func Offset: 0x5c
-	// Line 717, Address: 0x284678, Func Offset: 0x68
-	// Line 719, Address: 0x284694, Func Offset: 0x84
-	// Line 720, Address: 0x2846cc, Func Offset: 0xbc
-	// Line 721, Address: 0x2846dc, Func Offset: 0xcc
-	// Line 722, Address: 0x2846f8, Func Offset: 0xe8
-	// Line 723, Address: 0x284718, Func Offset: 0x108
-	// Line 727, Address: 0x284730, Func Offset: 0x120
-	// Line 728, Address: 0x284740, Func Offset: 0x130
-	// Line 729, Address: 0x284748, Func Offset: 0x138
-	// Line 728, Address: 0x284750, Func Offset: 0x140
-	// Line 729, Address: 0x284754, Func Offset: 0x144
-	// Line 730, Address: 0x284778, Func Offset: 0x168
-	// Line 731, Address: 0x28477c, Func Offset: 0x16c
-	// Func End, Address: 0x2847a4, Func Offset: 0x194
-}*/
+// 91.58% matching
+void bhControlAlphaFadeObject(O_WRK* op) 
+{ 
+    NJS_CNK_OBJECT* objp; 
+    int* iwk;            
+    float* fwk;        
+    int i;              
+    int jnt_n;         
+    float na;            
+    float alpha;         
+    float count;     
+    
+    iwk =   (int*)&op->pv[0];
+    fwk = (float*)&op->pv[1];
+    
+    jnt_n = iwk[1]; 
+    
+    na    = fwk[0]; 
+    count = fwk[1]; 
+    
+    objp = &op->mlwP->objP[iwk[0]]; 
+    
+    for (i = 0; i < jnt_n; i++, objp++) 
+    { 
+        if ((objp->model != NULL) && (!(objp->evalflags & 0x8)))
+        { 
+            alpha = ((unsigned char*)&objp->model->plist[2])[3]; 
+            alpha += (na - alpha) / count; 
+            
+            if (alpha < 0)
+            {
+                alpha = 0; 
+            }
+            
+            if (alpha > 255.0f) 
+            {
+                alpha = 255.0f; 
+            }
+            
+            npSetAllMatAlphaColor(objp, 1, (unsigned int)alpha); 
+        }
+    }
+    
+    count -= 1.0f; 
+    
+    if (count <= 0) 
+    {
+        op->flg &= ~0x200000; 
+    }
+    
+    fwk[1] = count; 
+} 
 
 // 100% matching!
 void bhObjDmy()
