@@ -440,11 +440,10 @@ void bhCPM2_act_suw_pch()
 	scePrintf("bhCPM2_act_suw_pch - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x14b940
+// 100% matching!
 void bhCPM2_act_wsc_pch()
 {
-	scePrintf("bhCPM2_act_wsc_pch - UNIMPLEMENTED!\n");
+
 }
 
 // 
