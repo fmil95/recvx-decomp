@@ -6856,27 +6856,33 @@ void bhCalcHair(O_WRK* op, BH_PWORK* pp)
     scePrintf("bhCalcHair - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x14a550
+// 100% matching!
 void* bhGetTransZ(int mtn_no)
 {
-	int i;
-	unsigned int sz;
-	unsigned char* retp;
-	unsigned char* datp;
-	// Line 5294, Address: 0x14a550, Func Offset: 0
-	// Line 5293, Address: 0x14a554, Func Offset: 0x4
-	// Line 5295, Address: 0x14a55c, Func Offset: 0xc
-	// Line 5293, Address: 0x14a560, Func Offset: 0x10
-	// Line 5295, Address: 0x14a56c, Func Offset: 0x1c
-	// Line 5297, Address: 0x14a574, Func Offset: 0x24
-	// Line 5296, Address: 0x14a578, Func Offset: 0x28
-	// Line 5297, Address: 0x14a57c, Func Offset: 0x2c
-	// Line 5298, Address: 0x14a58c, Func Offset: 0x3c
-	// Line 5299, Address: 0x14a590, Func Offset: 0x40
-	// Line 5300, Address: 0x14a594, Func Offset: 0x44
-	// Line 5301, Address: 0x14a598, Func Offset: 0x48
-	// Line 5303, Address: 0x14a5a8, Func Offset: 0x58
-	// Func End, Address: 0x14a5b0, Func Offset: 0x60
-    scePrintf("bhGetTransZ - UNIMPLEMENTED!\n");
+	unsigned char* datp, *retp; 
+    unsigned int sz;     
+    int i;               
+
+    i = mtn_no + 1;
+
+    datp = sys->plzmtp;
+    
+    while (i-- != 0) 
+    {
+        sz = *(unsigned int*)datp;
+        
+        if (sz == -1) 
+        {
+            retp = NULL;
+            break;
+        }
+
+        datp += 4;
+
+        retp = datp;
+
+        datp = &datp[sz];
+    }
+
+    return retp;
 }
