@@ -257,7 +257,7 @@ void pl_smove02()
         
         plp->mode3++;
     case 1:
-        plp->spd = 0.18f + fabsf(0.15f * njCos((plp->frm_no / 65536) * (65536 / plp->mnwP[plp->mtn_no].frm_num)));
+        plp->spd = 0.18f + fabsf(0.15f * (float)njCos((int)(plp->frm_no / 65536) * (int)(65536 / plp->mnwP[plp->mtn_no].frm_num)));
         
         if ((plp->stflg & 0x100000))
         {
@@ -267,14 +267,14 @@ void pl_smove02()
         switch (plp->mode1)
         {
         case 1:
-            plp->ay -= (int)(182.04445f * (4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
+            plp->ay -= (int)(182.04445f * (float)(4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
             break;
         case 2:
-            plp->ay += (int)(182.04445f * (4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
+            plp->ay += (int)(182.04445f * (float)(4.0f * ((EXP_WORK*)plp->exp0)->rtspd));
             break;
         }
         
-        if ((plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][0])
+        if ((int)(plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][0])
         {
             fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[17].mtx[12], plp->mlwP->owP[17].mtx[14]);
             
@@ -289,7 +289,7 @@ void pl_smove02()
             }
         }
         
-        if (((int)plp->frm_no / 65536) == PlFootSnd[sys->ply_id][1][0])
+        if ((int)(plp->frm_no / 65536) == PlFootSnd[sys->ply_id][1][0])
         {
             fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[21].mtx[12], plp->mlwP->owP[21].mtx[14]);
             
@@ -446,7 +446,7 @@ void pl_smove04()
             break;
         }
         
-        if ((plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][2])
+        if ((int)(plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][2])
         {
             fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[17].mtx[12], plp->mlwP->owP[17].mtx[14]);
             
@@ -461,7 +461,7 @@ void pl_smove04()
             }
         }
         
-        if ((plp->frm_no / 65536) == PlFootSnd[sys->ply_id][1][2])
+        if ((int)(plp->frm_no / 65536) == PlFootSnd[sys->ply_id][1][2])
         {
             fsnd = bhCheckFloorSound(plp, plp->flr_no, plp->mlwP->owP[21].mtx[12], plp->mlwP->owP[21].mtx[14]);
             
