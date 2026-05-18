@@ -2,6 +2,7 @@
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/light.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
@@ -488,84 +489,139 @@ void bhDrawGeneralPurposeWater()
     }
 }
 
-// 
-// Start address: 0x283ba0
-void bhDrawObjItm()
+// 100% matching!
+void bhDrawObjItm() 
 {
-	float its;
-	//_anon32 vec;
-	int i;
-	//_anon0* op;
-	// Line 389, Address: 0x283ba0, Func Offset: 0
-	// Line 399, Address: 0x283bbc, Func Offset: 0x1c
-	// Line 401, Address: 0x283bd4, Func Offset: 0x34
-	// Line 402, Address: 0x283bec, Func Offset: 0x4c
-	// Line 405, Address: 0x283c10, Func Offset: 0x70
-	// Line 408, Address: 0x283c34, Func Offset: 0x94
-	// Line 410, Address: 0x283c80, Func Offset: 0xe0
-	// Line 411, Address: 0x283c98, Func Offset: 0xf8
-	// Line 414, Address: 0x283cbc, Func Offset: 0x11c
-	// Line 417, Address: 0x283ce0, Func Offset: 0x140
-	// Line 418, Address: 0x283cec, Func Offset: 0x14c
-	// Line 419, Address: 0x283d04, Func Offset: 0x164
-	// Line 422, Address: 0x283d28, Func Offset: 0x188
-	// Line 424, Address: 0x283d34, Func Offset: 0x194
-	// Line 434, Address: 0x283dfc, Func Offset: 0x25c
-	// Line 435, Address: 0x283e00, Func Offset: 0x260
-	// Line 436, Address: 0x283e14, Func Offset: 0x274
-	// Line 435, Address: 0x283e18, Func Offset: 0x278
-	// Line 436, Address: 0x283e1c, Func Offset: 0x27c
-	// Line 444, Address: 0x283e40, Func Offset: 0x2a0
-	// Line 448, Address: 0x283e60, Func Offset: 0x2c0
-	// Line 451, Address: 0x283e84, Func Offset: 0x2e4
-	// Line 455, Address: 0x283ea8, Func Offset: 0x308
-	// Line 459, Address: 0x283eb0, Func Offset: 0x310
-	// Line 460, Address: 0x283ec8, Func Offset: 0x328
-	// Line 461, Address: 0x283ed4, Func Offset: 0x334
-	// Line 462, Address: 0x283edc, Func Offset: 0x33c
-	// Line 463, Address: 0x283ef0, Func Offset: 0x350
-	// Line 470, Address: 0x283f10, Func Offset: 0x370
-	// Line 475, Address: 0x283f4c, Func Offset: 0x3ac
-	// Line 481, Address: 0x283f84, Func Offset: 0x3e4
-	// Line 492, Address: 0x283f88, Func Offset: 0x3e8
-	// Line 493, Address: 0x283fac, Func Offset: 0x40c
-	// Line 495, Address: 0x283fb8, Func Offset: 0x418
-	// Line 498, Address: 0x283fc8, Func Offset: 0x428
-	// Line 499, Address: 0x283fd8, Func Offset: 0x438
-	// Line 498, Address: 0x283fe0, Func Offset: 0x440
-	// Line 499, Address: 0x283fe4, Func Offset: 0x444
-	// Line 500, Address: 0x283ff4, Func Offset: 0x454
-	// Line 502, Address: 0x284004, Func Offset: 0x464
-	// Line 503, Address: 0x28401c, Func Offset: 0x47c
-	// Line 504, Address: 0x284030, Func Offset: 0x490
-	// Line 505, Address: 0x28403c, Func Offset: 0x49c
-	// Line 507, Address: 0x284044, Func Offset: 0x4a4
-	// Line 508, Address: 0x284054, Func Offset: 0x4b4
-	// Line 509, Address: 0x284068, Func Offset: 0x4c8
-	// Line 510, Address: 0x284074, Func Offset: 0x4d4
-	// Line 511, Address: 0x28407c, Func Offset: 0x4dc
-	// Line 512, Address: 0x284084, Func Offset: 0x4e4
-	// Line 513, Address: 0x284094, Func Offset: 0x4f4
-	// Line 515, Address: 0x2840b0, Func Offset: 0x510
-	// Line 516, Address: 0x2840c4, Func Offset: 0x524
-	// Line 518, Address: 0x2840d0, Func Offset: 0x530
-	// Line 519, Address: 0x2840e4, Func Offset: 0x544
-	// Line 520, Address: 0x2840f0, Func Offset: 0x550
-	// Line 522, Address: 0x2840f8, Func Offset: 0x558
-	// Line 523, Address: 0x284124, Func Offset: 0x584
-	// Line 524, Address: 0x284154, Func Offset: 0x5b4
-	// Line 525, Address: 0x284160, Func Offset: 0x5c0
-	// Line 527, Address: 0x284168, Func Offset: 0x5c8
-	// Line 528, Address: 0x28419c, Func Offset: 0x5fc
-	// Line 529, Address: 0x2841cc, Func Offset: 0x62c
-	// Line 530, Address: 0x2841d8, Func Offset: 0x638
-	// Line 533, Address: 0x2841e0, Func Offset: 0x640
-	// Line 534, Address: 0x2841f8, Func Offset: 0x658
-	// Line 535, Address: 0x284220, Func Offset: 0x680
-	// Line 537, Address: 0x284228, Func Offset: 0x688
-	// Line 542, Address: 0x284248, Func Offset: 0x6a8
-	// Func End, Address: 0x284268, Func Offset: 0x6c8
-	scePrintf("bhDrawObjItm - UNIMPLEMENTED!\n");
+    O_WRK* op;   
+    int i;     
+    NJS_VECTOR vec; 
+    float its;    
+
+    if ((sys->pt_flg & 0x4)) 
+    {
+        if (!(sys->st_flg & 0x20)) 
+        {
+            bhSetLight();
+        }
+        
+        njCnkSetEasyMultiAmbient(rom->amb_r[rom->amb_obj], rom->amb_g[rom->amb_obj], rom->amb_b[rom->amb_obj]);
+        njCnkSetSimpleMultiAmbient(rom->amb_r[rom->amb_obj], rom->amb_g[rom->amb_obj], rom->amb_b[rom->amb_obj]);
+        
+        for (i = 0; i < sys->ob_nlgn; i++) 
+        {
+            bhDrawObject(sys->ob_nlg[i]);
+        }
+        
+        if (!(sys->st_flg & 0x20)) 
+        {
+            bhSetHalfLight();
+        }
+        
+        njCnkSetEasyMultiAmbient(rom->amb_r[rom->amb_chr], rom->amb_g[rom->amb_chr], rom->amb_b[rom->amb_chr]);
+        njCnkSetSimpleMultiAmbient(rom->amb_r[rom->amb_chr], rom->amb_g[rom->amb_chr], rom->amb_b[rom->amb_chr]);
+        
+        for (i = 0; i < sys->ob_hlgn; i++) 
+        {
+            bhDrawObject(sys->ob_hlg[i]);
+        }
+        
+        for (i = 0; i < sys->ob_spcn; i++) 
+        {
+            if ((((sys->stg_no != 1) || (sys->rom_no != 13)) || (i != 0)) && (((sys->stg_no != 3) || (sys->rom_no != 6)) || (i != 0)) && (((sys->stg_no != 7) ||(sys->rom_no != 6)) || (i != 0)) && (((sys->stg_no != 7) || (sys->rom_no != 10)) || (i != 0)) && (((sys->stg_no != 9) || (sys->rom_no != 11)) || (i != 0)))
+            {
+                bhDrawSpObject(sys->ob_spc[i]);
+            } 
+        }
+    }
+    
+    if (!(sys->st_flg & 0x20)) 
+    {
+        bhSetLight();
+    }
+    
+    njCnkSetEasyMultiAmbient(rom->amb_r[rom->amb_itm], rom->amb_g[rom->amb_itm], rom->amb_b[rom->amb_itm]);
+    njCnkSetSimpleMultiAmbient(rom->amb_r[rom->amb_itm], rom->amb_g[rom->amb_itm], rom->amb_b[rom->amb_itm]);
+    
+    njControl3D(0x100);
+    
+    if ((sys->pt_flg & 0x8))
+    {
+        op = sys->itwp;
+        
+        for (i = 0; i < rom->itm_n; i++, op++) 
+        {
+            if (!(op->stflg & 0x1000000)) 
+            {
+                if ((op->flg & 0x1))
+                {
+                    if (!(op->mdflg & 0x1)) 
+                    {
+                        if (((!(op->flg & 0x40000000)) || ((sys->gm_flg & 0x40)) || ((cam.flg & 0x46))) || ((cam.ncut == op->hide[0]) || (cam.ncut == op->hide[1]) || (cam.ncut == op->hide[2]) || (cam.ncut == op->hide[3]))) 
+                        {
+                            if (((op->mdflg & 0x10)) && ((sys->st_flg & 0x2))) 
+                            {
+                                njFogDisable();
+                            }
+                                
+                            if ((op->mdflg & 0x80)) 
+                            {
+                                its = 0.1f * op->aspd;
+                                
+                                bhGetLightVector(57344, op->ayp, 0, &vec);
+                                
+                                njSetMatrix(NULL, cam.mtx);
+                                
+                                njCnkSetEasyMultiLightVector(vec.x, vec.y, vec.z);
+                                njCnkSetEasyMultiLightColor(1, its, its, its);
+                                njCnkSetEasyMultiLightSwitch(1, 1);
+                                njCnkSetEasyMultiLightMatrices();
+                                
+                                njCnkSetSimpleMultiLightVector(vec.x, vec.y, vec.z);
+                                njCnkSetSimpleMultiLightColor(1, its, its, its);
+                                njCnkSetSimpleMultiLightSwitch(1, 1);
+                                njCnkSetSimpleMultiLightMatrices();
+                            } 
+                            else
+                            {
+                                njSetMatrix(NULL, cam.mtx);
+                                
+                                if (!(sys->st_flg & 0x10000)) 
+                                {
+                                    njCnkSetEasyMultiLightColor(1, 0, 0, 0);
+                                    njCnkSetEasyMultiLightSwitch(1, 0);
+                                    
+                                    njCnkSetSimpleMultiLightColor(1, 0, 0, 0);
+                                    njCnkSetSimpleMultiLightSwitch(1, 0);
+                                } 
+                                else 
+                                {
+                                    njCnkSetEasyMultiLightColor(1, sys->lg_r, sys->lg_g, sys->lg_b);
+                                    njCnkSetEasyMultiLightVector(sys->lg_vx, sys->lg_vy, sys->lg_vz);
+                                    njCnkSetEasyMultiLightSwitch(1, 1);
+                                    njCnkSetEasyMultiLightMatrices();
+                                    
+                                    njCnkSetSimpleMultiLightColor(1, sys->lg_r, sys->lg_g, sys->lg_b);
+                                    njCnkSetSimpleMultiLightVector(sys->lg_vx, sys->lg_vy, sys->lg_vz);
+                                    njCnkSetSimpleMultiLightSwitch(1, 1);
+                                    njCnkSetSimpleMultiLightMatrices();
+                                }
+                            }
+                            
+                            if (op->mlwP->objP != NULL) 
+                            {
+                                bhPutModel((BH_PWORK*)op);
+                            }
+                            
+                            if (((op->mdflg & 0x10)) && ((sys->st_flg & 0x2)))
+                            {
+                                njFogEnable();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 // 100% matching! 
@@ -1469,7 +1525,7 @@ void bhObj007(O_WRK* op)
             
             njUnitVector(&ps0);
             
-            if ((inn > 0) && ((len0 + plp->ar) >= len1) && (len2 < plp->ar)) 
+            if ((inn > 0) && (((len0 + plp->ar) >= len1) && (len2 < plp->ar))) 
             {
                 plp->px = PEXP0_F(72) = ps2.x + (ps0.x * plp->ar);
                 plp->pz = PEXP0_F(80) = ps2.z + (ps0.z * plp->ar);
