@@ -4,6 +4,7 @@
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaFog.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
@@ -13,6 +14,8 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/system.h"
 #include "../../../ps2/veronica/prog/weapon.h"
+
+#pragma optimization_level 4
 
 void (*bhJumpObject[101])() = 
 {
@@ -1402,151 +1405,202 @@ void bhObj006(O_WRK* op)
 	scePrintf("bhObj006 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x286160
-void bhObj007(O_WRK* op)
+// 100% matching!
+void bhObj007(O_WRK* op) 
 {
-	float inn;
-	float len2;
-	float len1;
-	float len0;
-	//_anon32 ps2;
-	//_anon32 ps1;
-	//_anon32 ps0;
-	//_anon39 lin;
-	// Line 2165, Address: 0x286160, Func Offset: 0
-	// Line 2169, Address: 0x286194, Func Offset: 0x34
-	// Line 2170, Address: 0x2861b4, Func Offset: 0x54
-	// Line 2172, Address: 0x2861f8, Func Offset: 0x98
-	// Line 2174, Address: 0x2861fc, Func Offset: 0x9c
-	// Line 2176, Address: 0x286204, Func Offset: 0xa4
-	// Line 2177, Address: 0x28620c, Func Offset: 0xac
-	// Line 2178, Address: 0x286210, Func Offset: 0xb0
-	// Line 2179, Address: 0x286218, Func Offset: 0xb8
-	// Line 2180, Address: 0x286234, Func Offset: 0xd4
-	// Line 2181, Address: 0x286238, Func Offset: 0xd8
-	// Line 2182, Address: 0x286254, Func Offset: 0xf4
-	// Line 2183, Address: 0x28626c, Func Offset: 0x10c
-	// Line 2185, Address: 0x28627c, Func Offset: 0x11c
-	// Line 2186, Address: 0x286280, Func Offset: 0x120
-	// Line 2183, Address: 0x286284, Func Offset: 0x124
-	// Line 2184, Address: 0x28628c, Func Offset: 0x12c
-	// Line 2185, Address: 0x28629c, Func Offset: 0x13c
-	// Line 2186, Address: 0x2862a0, Func Offset: 0x140
-	// Line 2187, Address: 0x2862ac, Func Offset: 0x14c
-	// Line 2188, Address: 0x2862b4, Func Offset: 0x154
-	// Line 2189, Address: 0x2862c0, Func Offset: 0x160
-	// Line 2191, Address: 0x2862dc, Func Offset: 0x17c
-	// Line 2190, Address: 0x2862e4, Func Offset: 0x184
-	// Line 2191, Address: 0x2862e8, Func Offset: 0x188
-	// Line 2192, Address: 0x2862f4, Func Offset: 0x194
-	// Line 2199, Address: 0x286308, Func Offset: 0x1a8
-	// Line 2200, Address: 0x286314, Func Offset: 0x1b4
-	// Line 2201, Address: 0x286318, Func Offset: 0x1b8
-	// Line 2199, Address: 0x28631c, Func Offset: 0x1bc
-	// Line 2202, Address: 0x286320, Func Offset: 0x1c0
-	// Line 2199, Address: 0x286324, Func Offset: 0x1c4
-	// Line 2200, Address: 0x28632c, Func Offset: 0x1cc
-	// Line 2201, Address: 0x286330, Func Offset: 0x1d0
-	// Line 2202, Address: 0x28633c, Func Offset: 0x1dc
-	// Line 2203, Address: 0x286344, Func Offset: 0x1e4
-	// Line 2204, Address: 0x286350, Func Offset: 0x1f0
-	// Line 2205, Address: 0x28635c, Func Offset: 0x1fc
-	// Line 2204, Address: 0x286364, Func Offset: 0x204
-	// Line 2205, Address: 0x286368, Func Offset: 0x208
-	// Line 2208, Address: 0x28636c, Func Offset: 0x20c
-	// Line 2205, Address: 0x286370, Func Offset: 0x210
-	// Line 2206, Address: 0x28637c, Func Offset: 0x21c
-	// Line 2207, Address: 0x286380, Func Offset: 0x220
-	// Line 2208, Address: 0x28638c, Func Offset: 0x22c
-	// Line 2209, Address: 0x286394, Func Offset: 0x234
-	// Line 2210, Address: 0x2863a0, Func Offset: 0x240
-	// Line 2211, Address: 0x2863e8, Func Offset: 0x288
-	// Line 2212, Address: 0x28640c, Func Offset: 0x2ac
-	// Line 2213, Address: 0x286438, Func Offset: 0x2d8
-	// Line 2214, Address: 0x286450, Func Offset: 0x2f0
-	// Line 2215, Address: 0x286454, Func Offset: 0x2f4
-	// Line 2216, Address: 0x286468, Func Offset: 0x308
-	// Line 2221, Address: 0x286478, Func Offset: 0x318
-	// Line 2226, Address: 0x2864f0, Func Offset: 0x390
-	// Line 2230, Address: 0x286510, Func Offset: 0x3b0
-	// Line 2231, Address: 0x28651c, Func Offset: 0x3bc
-	// Line 2233, Address: 0x28652c, Func Offset: 0x3cc
-	// Line 2234, Address: 0x286540, Func Offset: 0x3e0
-	// Line 2235, Address: 0x286544, Func Offset: 0x3e4
-	// Line 2236, Address: 0x286554, Func Offset: 0x3f4
-	// Line 2237, Address: 0x28657c, Func Offset: 0x41c
-	// Line 2239, Address: 0x286588, Func Offset: 0x428
-	// Line 2237, Address: 0x28658c, Func Offset: 0x42c
-	// Line 2240, Address: 0x286594, Func Offset: 0x434
-	// Line 2241, Address: 0x28659c, Func Offset: 0x43c
-	// Line 2243, Address: 0x2865a8, Func Offset: 0x448
-	// Line 2241, Address: 0x2865ac, Func Offset: 0x44c
-	// Line 2243, Address: 0x2865b4, Func Offset: 0x454
-	// Line 2245, Address: 0x2865b8, Func Offset: 0x458
-	// Line 2246, Address: 0x2865c0, Func Offset: 0x460
-	// Line 2245, Address: 0x2865c4, Func Offset: 0x464
-	// Line 2246, Address: 0x2865c8, Func Offset: 0x468
-	// Line 2245, Address: 0x2865cc, Func Offset: 0x46c
-	// Line 2246, Address: 0x2865d4, Func Offset: 0x474
-	// Line 2247, Address: 0x2865dc, Func Offset: 0x47c
-	// Line 2251, Address: 0x2865e8, Func Offset: 0x488
-	// Line 2255, Address: 0x2865f0, Func Offset: 0x490
-	// Line 2257, Address: 0x2865f8, Func Offset: 0x498
-	// Line 2258, Address: 0x286610, Func Offset: 0x4b0
-	// Line 2259, Address: 0x286630, Func Offset: 0x4d0
-	// Line 2261, Address: 0x286638, Func Offset: 0x4d8
-	// Line 2263, Address: 0x286640, Func Offset: 0x4e0
-	// Line 2264, Address: 0x286674, Func Offset: 0x514
-	// Line 2263, Address: 0x286678, Func Offset: 0x518
-	// Line 2264, Address: 0x286680, Func Offset: 0x520
-	// Line 2265, Address: 0x286690, Func Offset: 0x530
-	// Line 2266, Address: 0x2866b4, Func Offset: 0x554
-	// Line 2267, Address: 0x2866d0, Func Offset: 0x570
-	// Line 2266, Address: 0x2866d4, Func Offset: 0x574
-	// Line 2267, Address: 0x2866e0, Func Offset: 0x580
-	// Line 2268, Address: 0x286714, Func Offset: 0x5b4
-	// Line 2269, Address: 0x28674c, Func Offset: 0x5ec
-	// Line 2271, Address: 0x286768, Func Offset: 0x608
-	// Line 2272, Address: 0x28676c, Func Offset: 0x60c
-	// Line 2273, Address: 0x286778, Func Offset: 0x618
-	// Line 2275, Address: 0x28677c, Func Offset: 0x61c
-	// Line 2272, Address: 0x286780, Func Offset: 0x620
-	// Line 2273, Address: 0x286784, Func Offset: 0x624
-	// Line 2275, Address: 0x286788, Func Offset: 0x628
-	// Line 2276, Address: 0x286798, Func Offset: 0x638
-	// Line 2279, Address: 0x2867a0, Func Offset: 0x640
-	// Line 2280, Address: 0x2867b0, Func Offset: 0x650
-	// Line 2282, Address: 0x2867b8, Func Offset: 0x658
-	// Line 2287, Address: 0x2867c0, Func Offset: 0x660
-	// Line 2288, Address: 0x2867d8, Func Offset: 0x678
-	// Line 2289, Address: 0x2867f8, Func Offset: 0x698
-	// Line 2291, Address: 0x286800, Func Offset: 0x6a0
-	// Line 2293, Address: 0x286808, Func Offset: 0x6a8
-	// Line 2294, Address: 0x28683c, Func Offset: 0x6dc
-	// Line 2293, Address: 0x286840, Func Offset: 0x6e0
-	// Line 2294, Address: 0x286848, Func Offset: 0x6e8
-	// Line 2295, Address: 0x286858, Func Offset: 0x6f8
-	// Line 2296, Address: 0x28687c, Func Offset: 0x71c
-	// Line 2297, Address: 0x286898, Func Offset: 0x738
-	// Line 2296, Address: 0x28689c, Func Offset: 0x73c
-	// Line 2297, Address: 0x2868a8, Func Offset: 0x748
-	// Line 2298, Address: 0x2868dc, Func Offset: 0x77c
-	// Line 2299, Address: 0x286914, Func Offset: 0x7b4
-	// Line 2301, Address: 0x286930, Func Offset: 0x7d0
-	// Line 2302, Address: 0x286934, Func Offset: 0x7d4
-	// Line 2303, Address: 0x286940, Func Offset: 0x7e0
-	// Line 2305, Address: 0x286944, Func Offset: 0x7e4
-	// Line 2302, Address: 0x286948, Func Offset: 0x7e8
-	// Line 2303, Address: 0x28694c, Func Offset: 0x7ec
-	// Line 2305, Address: 0x286950, Func Offset: 0x7f0
-	// Line 2306, Address: 0x286960, Func Offset: 0x800
-	// Line 2309, Address: 0x286968, Func Offset: 0x808
-	// Line 2310, Address: 0x286978, Func Offset: 0x818
-	// Line 2311, Address: 0x286980, Func Offset: 0x820
-	// Line 2319, Address: 0x286984, Func Offset: 0x824
-	// Func End, Address: 0x2869bc, Func Offset: 0x85c
-	scePrintf("bhObj007 - UNIMPLEMENTED!\n");
+    NJS_LINE lin;   
+    NJS_POINT3 ps0, ps1, ps2; 
+    float len0, len1, len2;  
+    float inn;   
+
+    if ((op->py >= 1.0f) && (op->mode0 != 4)) 
+    {
+        switch (op->mode0) 
+        {                     
+        case 0:
+            op->ct0 = 0;
+            
+            op->mode0 = 1;
+            break;
+        case 1:
+            lin.px = op->px;
+            lin.py = 0;
+            lin.pz = op->pz;
+            
+            lin.vx = -njSin((op->ay + 32767) + 1);
+            lin.vy = 0;
+            lin.vz = -njCos((op->ay + 32767) + 1);
+            
+            njDistanceP2L((NJS_POINT3*)&plp->px, &lin, &ps0);
+            
+            ps2 = ps0;
+            
+            ps0.x -= op->px;
+            ps0.y = 0;
+            ps0.z -= op->pz;
+             
+            len0 = njScalor(&ps0);
+            
+            njUnitVector(&ps0);
+            
+            if (len0 > 10.0f) 
+            {
+                len0 = 10.0f;
+                
+                ps2.x = op->px + (10.0f * lin.vx);
+                ps2.z = op->pz + (10.0f * lin.vz);
+            }
+            
+            ps1.x = plp->px - op->px;
+            ps1.y = 0;
+            ps1.z = plp->pz - op->pz;
+            
+            len1 = njScalor(&ps1);
+            
+            njUnitVector(&ps1);
+            
+            inn = njInnerProduct((NJS_VECTOR*)&lin.vx, &ps1);
+            
+            ps0.x = plp->px - ps2.x;
+            ps0.y = 0;
+            ps0.z = plp->pz - ps2.z;
+            
+            len2 = njScalor(&ps0);
+            
+            njUnitVector(&ps0);
+            
+            if ((inn > 0) && ((len0 + plp->ar) >= len1) && (len2 < plp->ar)) 
+            {
+                plp->px = PEXP0_F(72) = ps2.x + (ps0.x * plp->ar);
+                plp->pz = PEXP0_F(80) = ps2.z + (ps0.z * plp->ar);
+                
+                ps1.x = -njSin(plp->ay);
+                ps1.y = 0;
+                ps1.z = -njCos(plp->ay); 
+                
+                inn = njInnerProduct(&ps0, &ps1);
+                
+                if ((len0 < 8.4f) && (inn < -0.7f) && ((sys->pad_on & 0x1)) && (!(plp->stflg & 0x80))) 
+                {
+                    if ((plp->mode2 == 3) || (plp->mode2 == 4) || (plp->mode2 == 5))
+                    {
+                        op->ct0++;
+                        
+                        if (op->ct0 > 5) 
+                        {
+                            ps0.x = -njSin(op->ay + 16384);
+                            ps0.y = 0;
+                            ps0.z = -njCos(op->ay + 16384);
+                            
+                            if (njInnerProduct(&ps0, &ps1) > 0) 
+                            {
+                                plp->azp = op->ay + 16384;
+                                
+                                op->mode0 = 2;
+                            } 
+                            else
+                            {
+                                plp->azp = op->ay - 16384;
+                                
+                                op->mode0 = 3;
+                            }
+                            
+                            plp->stflg |= 0x80;
+                            
+                            plp->mode2 = 0x16;
+                            plp->mode3 = 0;
+                            
+                            op->spd = len0;
+                        }
+                    }
+                } 
+                else 
+                {
+                    op->ct0 = 0;
+                }
+            }
+            
+            break;
+        case 2:
+            if (plp->mode3 == 5)
+            {
+                if (!(sys->pad_on & 0x1))
+                {
+                    op->mode0 = 1;
+                    
+                    op->ct0 = 0;
+                    break;
+                }
+                
+                op->ay -= (int)(182.04445f * njSin(((plp->frm_no / 65536) * 819) & 0x7FFF)) & 0xFFFF;
+                
+                plp->ay = op->ay + 16384;
+                
+                ps0.x = op->px - (op->spd * njSin((op->ay + 32767) + 1));
+                ps0.z = op->pz - (op->spd * njCos((op->ay + 32767) + 1));
+                
+                plp->px = PEXP0_F(72) = ps0.x - (plp->ar * njSin(op->ay - 16384));
+                plp->pz = PEXP0_F(80) = ps0.z - (plp->ar * njCos(op->ay - 16384));
+                
+                if (ABS((short)op->ay) < 182)
+                {
+                    op->ay = 0;
+                    
+                    plp->mode3 = 6;
+                    op->mode0 = 4;
+                    
+                    bhStFlg(sys->ev_flg, 2);
+                }
+            } 
+            else if (!(plp->stflg & 0x80)) 
+            {
+                op->mode0 = 1;
+                
+                op->ct0 = 0;
+            }
+            
+            break;
+        case 3:
+            if (plp->mode3 == 5) 
+            {
+                if (!(sys->pad_on & 0x1)) 
+                {
+                    op->mode0 = 1;
+                    
+                    op->ct0 = 0;
+                    break;
+                }
+                
+                op->ay += (int)(182.04445f * njSin(((plp->frm_no / 65536) * 819) & 0x7FFF)) & 0xFFFF;
+                
+                plp->ay = op->ay - 16384;
+                
+                ps0.x = op->px - (op->spd * njSin((op->ay + 32767) + 1));
+                ps0.z = op->pz - (op->spd * njCos((op->ay + 32767) + 1));
+                
+                plp->px = PEXP0_F(72) = ps0.x - (plp->ar * njSin(op->ay + 16384));
+                plp->pz = PEXP0_F(80) = ps0.z - (plp->ar * njCos(op->ay + 16384));
+                
+                if (ABS((short)op->ay) < 182) 
+                {
+                    op->ay = 0;
+                    
+                    plp->mode3 = 6;
+                    op->mode0 = 4;
+                    
+                    bhStFlg(sys->ev_flg, 2);
+                }
+            } 
+            else if (!(plp->stflg & 0x80))
+            {
+                op->mode0 = 1;
+                
+                op->ct0 = 0;
+            }
+            
+            break;
+        }
+    }
 }
 
 // 100% matching!

@@ -2,6 +2,7 @@
 #define _OBJITM_H_
 
 #include "types.h"
+#include "macros.h"
 
 typedef struct HAIR_WORK 
 {
