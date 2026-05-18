@@ -3675,27 +3675,22 @@ void bhEne01_InitType06(BH_PWORK* epw)
 }
 
 // 
-// Start address: 0x17a1f0
+// 100% matching!
 void bhEne01_InitType10(BH_PWORK* epw)
 {
-	// Line 3304, Address: 0x17a1f0, Func Offset: 0
-	// Line 3306, Address: 0x17a1fc, Func Offset: 0xc
-	// Line 3314, Address: 0x17a204, Func Offset: 0x14
-	// Line 3308, Address: 0x17a208, Func Offset: 0x18
-	// Line 3306, Address: 0x17a20c, Func Offset: 0x1c
-	// Line 3308, Address: 0x17a214, Func Offset: 0x24
-	// Line 3309, Address: 0x17a218, Func Offset: 0x28
-	// Line 3310, Address: 0x17a21c, Func Offset: 0x2c
-	// Line 3311, Address: 0x17a220, Func Offset: 0x30
-	// Line 3314, Address: 0x17a224, Func Offset: 0x34
-	// Line 3316, Address: 0x17a238, Func Offset: 0x48
-	// Line 3318, Address: 0x17a248, Func Offset: 0x58
-	// Line 3319, Address: 0x17a24c, Func Offset: 0x5c
-	// Line 3323, Address: 0x17a254, Func Offset: 0x64
-	// Line 3325, Address: 0x17a25c, Func Offset: 0x6c
-	// Line 3327, Address: 0x17a264, Func Offset: 0x74
-	// Func End, Address: 0x17a274, Func Offset: 0x84
-	scePrintf("bhEne01_InitType10 - UNIMPLEMENTED!\n");
+	epw->flg &= 0xffffffdf;
+	epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
+	EXP0_I(0x40) &= 0xefffffff;
+	if (epw->flg & 0x80) {
+		epw->mtn_no = 0xca;
+	}
+	else {
+		bhEne01_GetWalkMotion(epw);
+		epw->mtn_no = 2;
+	}
 }
 
 // 
