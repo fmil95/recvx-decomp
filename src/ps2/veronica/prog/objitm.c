@@ -271,101 +271,193 @@ O_WRK* bhSetItem(ETTY_WORK* itp, int no, unsigned char* lkp)
     return opp;
 }
 
-// 
-// Start address: 0x283400
-void bhControlObjItm()
+// 100% matching!
+void bhControlObjItm() 
 {
-	int obj_n;
-	int i;
-	BH_PWORK* pp;
-	//_anon0* op;
-	// Line 168, Address: 0x283400, Func Offset: 0
-	// Line 174, Address: 0x283418, Func Offset: 0x18
-	// Line 176, Address: 0x283430, Func Offset: 0x30
-	// Line 177, Address: 0x28343c, Func Offset: 0x3c
-	// Line 181, Address: 0x283444, Func Offset: 0x44
-	// Line 177, Address: 0x283448, Func Offset: 0x48
-	// Line 178, Address: 0x283454, Func Offset: 0x54
-	// Line 179, Address: 0x283468, Func Offset: 0x68
-	// Line 181, Address: 0x283478, Func Offset: 0x78
-	// Line 182, Address: 0x2834a0, Func Offset: 0xa0
-	// Line 183, Address: 0x2834ac, Func Offset: 0xac
-	// Line 184, Address: 0x2834c0, Func Offset: 0xc0
-	// Line 186, Address: 0x2834d0, Func Offset: 0xd0
-	// Line 187, Address: 0x2834f8, Func Offset: 0xf8
-	// Line 188, Address: 0x28350c, Func Offset: 0x10c
-	// Line 192, Address: 0x283510, Func Offset: 0x110
-	// Line 194, Address: 0x283538, Func Offset: 0x138
-	// Line 196, Address: 0x283548, Func Offset: 0x148
-	// Line 197, Address: 0x283550, Func Offset: 0x150
-	// Line 198, Address: 0x283558, Func Offset: 0x158
-	// Line 200, Address: 0x283560, Func Offset: 0x160
-	// Line 201, Address: 0x283568, Func Offset: 0x168
-	// Line 202, Address: 0x283570, Func Offset: 0x170
-	// Line 205, Address: 0x283578, Func Offset: 0x178
-	// Line 206, Address: 0x283588, Func Offset: 0x188
-	// Line 211, Address: 0x28358c, Func Offset: 0x18c
-	// Line 218, Address: 0x2835b8, Func Offset: 0x1b8
-	// Line 219, Address: 0x2835d8, Func Offset: 0x1d8
-	// Line 220, Address: 0x2835e4, Func Offset: 0x1e4
-	// Line 221, Address: 0x2835ec, Func Offset: 0x1ec
-	// Line 225, Address: 0x283608, Func Offset: 0x208
-	// Line 226, Address: 0x28361c, Func Offset: 0x21c
-	// Line 227, Address: 0x283624, Func Offset: 0x224
-	// Line 244, Address: 0x283628, Func Offset: 0x228
-	// Line 245, Address: 0x283638, Func Offset: 0x238
-	// Line 247, Address: 0x28365c, Func Offset: 0x25c
-	// Line 250, Address: 0x283680, Func Offset: 0x280
-	// Line 251, Address: 0x2836a0, Func Offset: 0x2a0
-	// Line 252, Address: 0x2836b0, Func Offset: 0x2b0
-	// Line 254, Address: 0x2836f0, Func Offset: 0x2f0
-	// Line 255, Address: 0x28371c, Func Offset: 0x31c
-	// Line 256, Address: 0x283724, Func Offset: 0x324
-	// Line 257, Address: 0x28373c, Func Offset: 0x33c
-	// Line 258, Address: 0x283758, Func Offset: 0x358
-	// Line 260, Address: 0x28378c, Func Offset: 0x38c
-	// Line 263, Address: 0x2837bc, Func Offset: 0x3bc
-	// Line 265, Address: 0x2837c0, Func Offset: 0x3c0
-	// Line 269, Address: 0x2837d4, Func Offset: 0x3d4
-	// Line 270, Address: 0x2837dc, Func Offset: 0x3dc
-	// Line 272, Address: 0x2837e0, Func Offset: 0x3e0
-	// Line 274, Address: 0x283800, Func Offset: 0x400
-	// Line 276, Address: 0x28380c, Func Offset: 0x40c
-	// Line 277, Address: 0x283820, Func Offset: 0x420
-	// Line 279, Address: 0x28383c, Func Offset: 0x43c
-	// Line 280, Address: 0x283848, Func Offset: 0x448
-	// Line 281, Address: 0x283850, Func Offset: 0x450
-	// Line 282, Address: 0x283864, Func Offset: 0x464
-	// Line 284, Address: 0x283874, Func Offset: 0x474
-	// Line 285, Address: 0x28387c, Func Offset: 0x47c
-	// Line 286, Address: 0x283884, Func Offset: 0x484
-	// Line 288, Address: 0x28388c, Func Offset: 0x48c
-	// Line 289, Address: 0x283894, Func Offset: 0x494
-	// Line 290, Address: 0x28389c, Func Offset: 0x49c
-	// Line 292, Address: 0x2838a4, Func Offset: 0x4a4
-	// Line 294, Address: 0x2838b0, Func Offset: 0x4b0
-	// Line 296, Address: 0x2838d4, Func Offset: 0x4d4
-	// Line 297, Address: 0x2838e0, Func Offset: 0x4e0
-	// Line 298, Address: 0x2838f4, Func Offset: 0x4f4
-	// Line 299, Address: 0x283900, Func Offset: 0x500
-	// Line 300, Address: 0x283904, Func Offset: 0x504
-	// Line 301, Address: 0x283908, Func Offset: 0x508
-	// Line 303, Address: 0x283910, Func Offset: 0x510
-	// Line 305, Address: 0x283918, Func Offset: 0x518
-	// Line 306, Address: 0x283924, Func Offset: 0x524
-	// Line 307, Address: 0x283934, Func Offset: 0x534
-	// Line 308, Address: 0x283940, Func Offset: 0x540
-	// Line 309, Address: 0x283950, Func Offset: 0x550
-	// Line 311, Address: 0x283958, Func Offset: 0x558
-	// Line 313, Address: 0x283960, Func Offset: 0x560
-	// Line 314, Address: 0x283970, Func Offset: 0x570
-	// Line 316, Address: 0x283974, Func Offset: 0x574
-	// Line 321, Address: 0x2839b8, Func Offset: 0x5b8
-	// Line 323, Address: 0x2839d8, Func Offset: 0x5d8
-	// Line 325, Address: 0x2839e4, Func Offset: 0x5e4
-	// Line 326, Address: 0x283a08, Func Offset: 0x608
-	// Func End, Address: 0x283a24, Func Offset: 0x624
-	scePrintf("bhControlObjItm - UNIMPLEMENTED!\n");
+    O_WRK* op;    
+    BH_PWORK* pp; 
+    int i;     
+    int obj_n; 
+	
+    if ((sys->sp_flg & 0x4)) 
+    {
+        sys->ob_nlgn = 0;
+        sys->ob_hlgn = 0;
+        sys->ob_spcn = 0;
+        
+        op = sys->obwp;
+        
+        if ((sys->cb_flg & 0x40000000)) 
+        {
+            obj_n = 4;
+        } 
+        else 
+        {
+            obj_n = rom->obj_n;
+        }
+        
+        for (i = 0; i < obj_n; i++, op++)
+        {
+            sys->onow = i;
+            
+            if ((op->flg & 0x80)) 
+            {
+                if ((((O_WRK*)op->lkwkp)->stflg & 0x1000000)) 
+                {
+                    op->stflg |= 0x1000000;
+                } 
+                else 
+                {
+                    op->stflg &= ~0x1000000; 
+                }
+            }
+            
+            if ((!(op->stflg & 0x1000000)) || (pl_sleep_cnt != 0))
+            {
+                if ((op->flg & 0x1))
+                {
+                    op->pxb = op->px;
+                    op->pyb = op->py;
+                    op->pzb = op->pz;
+                    
+                    op->axb = op->ax;
+                    op->ayb = op->ay;
+                    op->azb = op->az;
+                    
+                    if ((op->flg & 0x80)) 
+                    {
+                        pp = (BH_PWORK*)op->lkwkp;
+                        
+                        njCalcPoint(&pp->mlwP->owP[op->lkono].mtx, (NJS_POINT3*)&op->lox, (NJS_POINT3*)&op->px);
+                        
+                        if ((!(pp->flg & 0x10)) && ((op->flg & 0x10))) 
+                        { 
+                            op->flg &= ~0x10000;
+                        }
+                        else if ((op->flg & 0x10)) 
+                        {
+                            op->flg |= 0x10000;
+                        }
+                    }
+                    
+                    if ((op->flg & 0xC80000)) 
+                    {
+                        bhActionWeapon((BH_PWORK*)op);
+                    }
+                    
+                    if (op->id >= 1200) 
+                    {
+                        bhJumpObject2[op->id - 1200](op);
+                    } 
+                    else
+                    {
+                        bhJumpObject[op->type]((BH_PWORK*)op);
+                    }
+                    
+                    if ((!(op->mdflg & 0x1)) && (op->mlwP->objP != NULL)) 
+                    {
+                        if (op->id >= 1000) 
+                        {
+                            if ((((sys->pt_flg & 0x1)) && (op->id >= 1210)) || (((sys->pt_flg & 0x2)) && (op->id < 1210))) 
+                            {
+                                sys->ob_hlg[sys->ob_hlgn++] = op;
+                            }
+                        } 
+                        else if ((sys->pt_flg & 0x4)) 
+                        {
+                            if ((op->type == 5) && (op->aspd != 0)) 
+                            {
+                                sys->ob_spc[sys->ob_spcn++] = op;
+                            } 
+                            else 
+                            {
+                                sys->ob_nlg[sys->ob_nlgn++] = op;
+                            }
+                        }
+                    }
+                    
+                    if ((op->flg & 0x10000)) 
+                    {
+                        bhCheckWall((BH_PWORK*)op);
+                    }
+                    
+                    if ((op->flg & 0x200000))
+                    {
+                        bhControlAlphaFadeObject(op);
+                    }
+                    
+                    bhCalcModel((BH_PWORK*)op);
+                }
+            }
+        }
+        
+        if (!(sys->cb_flg & 0x40000000))
+        {
+            op = sys->itwp;
+            
+            for (i = 0; i < rom->itm_n; i++, op++) 
+            {
+                if ((!(op->stflg & 0x1000000)) && ((op->flg & 0x1))) 
+                {
+                    op->pxb = op->px;
+                    op->pyb = op->py;
+                    op->pzb = op->pz;
+                    
+                    op->axb = op->ax;
+                    op->ayb = op->ay;
+                    op->azb = op->az;
+                    
+                    if (op->aspd != 0)
+                    {
+                        switch (op->ct0)
+                        {        
+                        case 1:
+                            op->ct1++;
+                            
+                            if (op->ct1 > op->ct2)
+                            {
+                                op->mdflg |= 0x80;
+                                
+                                op->ayp = 0;
+                                
+                                op->ct1 = 0;
+                                op->ct0++;
+                            }
+                            
+                            break;
+                        case 2:
+                            op->ayp += 8192;
+                            
+                            op->ct1 = (op->ct1 + 1) & 7;
+                            
+                            if (op->ct1 == 0) 
+                            {
+                                op->mdflg &= ~0x80;
+                                
+                                op->ct0++;
+                            }
+                            
+                            break;
+                        default:
+                            op->mdflg &= ~0x80;
+                            
+                            op->ct0 = 1;
+                            op->ct1 = 0;
+                            op->ct2 = (int)(30.0f * (-rand() / -2.1474836E9f)) + 60;
+                            break;
+                        }
+                    }
+                    
+                    if ((op->flg & 0x200000)) 
+                    {
+                        bhControlAlphaFadeObject(op);
+                    }
+                    
+                    bhCalcModel((BH_PWORK*)op);
+                }
+            }
+        }
+    }
 }
 
 // 100% matching!
@@ -608,7 +700,7 @@ void bhControlAlphaFadeObject(O_WRK* op)
     { 
         if ((objp->model != NULL) && (!(objp->evalflags & 0x8)))
         { 
-            alpha = ((unsigned char*)&objp->model->plist[2])[3]; 
+            alpha =  ((unsigned char*)&objp->model->plist[2])[3]; 
             alpha += (na - alpha) / count; 
             
             if (alpha < 0)
