@@ -1904,8 +1904,24 @@ EN01_PERSONAL_TYPE en01_PersonalType[27] = {
     { 30.0f, 70.0f,  0x38E3,  20,  10 },
     { 20.0f, 50.0f,  0x2AAA,  30,   0 }
 };
-/*_anon24 zob_lkmtab;
-_anon46 en01_BldTbl;
+EGG_WORK zob_lkmtab = {
+    0x00000081,   /* flg */
+    0x0001,       /* id */
+    0x0000,       /* type */
+    0x00,         /* flr_no */
+    0x00,         /* mdlver */
+    0x00,         /* wrk_no */
+    0x00,         /* prm1 */
+    0.0f,         /* px */
+    0.0f,         /* py */
+    0.0f,         /* pz */
+    0x0000,       /* ax */
+    0x0000,       /* az */
+    0x0000,       /* ay */
+    0x0000,       /* aspd */
+    {0, 0, 0, 0}  /* hide */
+};
+/*_anon46 en01_BldTbl;
 _anon46 en01_BldTbl2;*/
 char En01SdwTabW[5] = {
     0, 3, 4, 10, -1
@@ -2365,28 +2381,22 @@ void bhEne01_Init(BH_PWORK* epw)
     
 }
 
-// 
-// Start address: 0x176a40
+// 100% matching!
 BH_PWORK* bhEne01_SetLinkEnemy(BH_PWORK* epw, int lkono, short id)
 {
 	BH_PWORK* epp;
-	scePrintf("bhEne01_SetLinkEnemy - UNIMPLEMENTED!\n");
-	// Line 1128, Address: 0x176a40, Func Offset: 0
-	// Line 1131, Address: 0x176a54, Func Offset: 0x14
-	// Line 1132, Address: 0x176a78, Func Offset: 0x38
-	// Line 1139, Address: 0x176a7c, Func Offset: 0x3c
-	// Line 1132, Address: 0x176a80, Func Offset: 0x40
-	// Line 1133, Address: 0x176a88, Func Offset: 0x48
-	// Line 1134, Address: 0x176a94, Func Offset: 0x54
-	// Line 1135, Address: 0x176a98, Func Offset: 0x58
-	// Line 1136, Address: 0x176a9c, Func Offset: 0x5c
-	// Line 1137, Address: 0x176aa0, Func Offset: 0x60
-	// Line 1138, Address: 0x176aa4, Func Offset: 0x64
-	// Line 1139, Address: 0x176aa8, Func Offset: 0x68
-	// Line 1140, Address: 0x176aac, Func Offset: 0x6c
-	// Line 1141, Address: 0x176ab4, Func Offset: 0x74
-	// Line 1144, Address: 0x176ab8, Func Offset: 0x78
-	// Func End, Address: 0x176ad0, Func Offset: 0x90
+	
+	epp = bhSetEnemy(&zob_lkmtab, rom->ene_n);
+	epp->mdflg |= 1;
+	epp->mdflg |= 0x20;
+	epp->lkwkp = (unsigned char*)epw;
+	epp->lkono = lkono;
+	epp->lox = 0;
+	epp->loy = 0;
+	epp->loz = 0;
+	epp->mlwP = epw->mdl;
+	epp->mnwP = epw->mnwP;
+	epp->id = id;
 }
 
 // 
