@@ -80,6 +80,12 @@ zerobss:
 /*
  * flush data cache
  */
+	jal	InitThread
+	nop
+
+/*
+ * flush data cache
+ */
 	jal	FlushCache
 	move	$4, $0
 

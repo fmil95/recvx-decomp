@@ -107,7 +107,7 @@ VU0_CALCPOINT:
  /* 1c0 */    mulax.xyz accxyz,vf28xyz,vf05x  nop
  /* 1c8 */    madday.xyz accxyz,vf29xyz,vf05y         nop
  /* 1d0 */    maddz.xyz vf19xyz,vf30xyz,vf05z         nop
- /* 1d8 */    mul.xy vf06xy,vf18xy,vf17xy     div q,vf00w,vf00x
+ /* 1d8 */    mul.xy vf06xy,vf18xy,vf17xy     div q,vf00w,vf18z
  /* 1e0 */    sub.xyzw vf08xyzw,vf08xyzw,vf08xyzw     nop
  /* 1e8 */    subx.xyzw vf09xyzw,vf24xyzw,vf18x       lq.xyzw vf28xyzw,56(vi00)
  /* 1f0 */    suby.xyzw vf10xyzw,vf25xyzw,vf18y       lq.xyzw vf29xyzw,57(vi00)
@@ -206,7 +206,7 @@ LIGHT1_POINT:
 
 /* .vu.16 - instr 7 */
 LIGHT2:
- /* 448 */    mulz.xyz vf10xyz,vf19xyz,vf27z  rsqrt q,vf00w,vf00x
+ /* 448 */    mulz.xyz vf10xyz,vf19xyz,vf27z  rsqrt q,vf00w,vf05z
  /* 450 */    nop     iand vi01,vi14,vi07
  /* 458 */    nop     iand vi15,vi14,vi08
  /* 460 */    nop     ibeq vi01,vi00,LIGHT3
