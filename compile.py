@@ -29,7 +29,7 @@ SECTION_DICT = {
 }
 
 IS_LINUX = sys.platform.startswith("linux")
-COMPILE_ENV = os.environ | {"MWCIncludes": ""}
+COMPILE_ENV = os.environ | {"MWCIncludes": "", "MWLibraries": "", "MWLibraryFiles": ""}
 ASSEMBLER_CANDIDATES = [
     "mips-linux-gnu-as",
     "mipsel-linux-gnu-as",
@@ -150,7 +150,7 @@ def clean_asm(asm_file: Path, symbols: dict[int, list[Symbol]]):
     with asm_file.open("r", encoding="utf-8") as f:
         lines = f.readlines()
 
-    out = ["\n.include \"macro.inc\"\n"]
+    out = ["\n"]
     skip = False
     get_pos = False
     count = 1
@@ -165,10 +165,6 @@ def clean_asm(asm_file: Path, symbols: dict[int, list[Symbol]]):
             continue
 
         if line.startswith("enddlabel"):
-            continue
-
-        if line.startswith("  jlabel"):
-            out.append(line.replace("jlabel", "ljlabel"))
             continue
 
         if get_pos and line.startswith("    /* "):
@@ -192,6 +188,11 @@ def clean_asm(asm_file: Path, symbols: dict[int, list[Symbol]]):
 
         if line.startswith("endlabel"):
             out[last_section] += ".balign 16\n"
+            out.append(line)
+            out.append("\n")
+            skip = True
+        
+        if line.startswith(".balign"):
             out.append(line)
             out.append("\n")
             skip = True
@@ -292,15 +293,28 @@ def do_objdiff_setup():
         json.dump(cfg, f, indent=4)
 
     print("Fixing asm blobs")
+    # Special cases, thank god is only 3
+    p = Path("build/expected/cri/mwlib/ee/lib/libadxe/adx_dcd3.s")
+    text = p.read_text().replace("lwc1       $f15, %gp_rel(D_00362800)($gp)", "li.s       $f15, 0.6999999881")
+    p.write_text(text)
+    
+    p = Path("build/expected/cri/mwlib/ee/lib/libadxe/adx_amp.s")
+    text = p.read_text().replace("lwc1       $f0, %gp_rel(D_00362804)($gp)", "li.s       $f0, 0.1000000015")
+    p.write_text(text)
+    
+    p = Path("build/expected/sce/ee/gcc/ee/lib/libc/sbrkr.s")
+    text = p.read_text() + "\n/* 01E2CCC4 */ .comm errno,4,4 \n"
+    p.write_text(text)
+
+    # Now that all asm is proper we also need local jlabels
+    p = Path("config/include/macro.inc")
+    text = p.read_text().replace(".macro jlabel label, visibility=global", ".macro jlabel label, visibility=local")
+    p.write_text(text)
+
     for unit in cfg["units"]:
-        # hack...
-        if "adx_qtbl.o" in unit["target_path"]:
-            with open(Path(unit["target_path"]).with_suffix(".s"), "r+", ) as f:
-                content = f.read()
-                f.seek(0, 0)
-                f.write(".include \"macro.inc\"\n" + content)
-        elif "veronica" in unit["target_path"]:
-            clean_asm(Path(unit["target_path"]).with_suffix(".s"), split.symbols.all_symbols_dict)
+        if "veronica" in unit["target_path"]:
+            p = Path(unit["target_path"])
+            clean_asm(p.with_suffix(".s"), split.symbols.all_symbols_dict)
 
 
 def resolve_linux_tools() -> Path:
@@ -448,6 +462,22 @@ def compile_all(objects: list[CompileUnit], parallel: bool = False) -> bool:
     except RuntimeError:
         return True
 
+   
+def resolve_library_paths(config: dict) -> None:
+    # Canonicalize include/library paths
+    libs = []
+    pref = config["include_prefix"]
+    comp = config["include_comp"]
+    for p in config["libraries"]:
+        libs.append(p.format(prefix=pref, compiler=comp))
+    config["libraries"] = libs
+
+    incls = []
+    for p in config["common_includes"]:
+        incls.append(p.format(prefix=pref, compiler=comp))
+    config["common_includes"] = incls
+
+
 def main(args):
     """Main entry point for the build process."""
 
@@ -469,16 +499,32 @@ def main(args):
             shutil.move(asm_folder, "config/asm")
         return
 
-    raw_cfg = load_json(args.env_file)
+    raw_cfg: dict = load_json(args.env_file)
 
     if args.sdk303:
+        print("[CONFIG] Using EE 3.0.3 includes and libraries.")
+
         overrides = raw_cfg.get("sdk303_overrides", {})
         if not overrides:
             print("WARNING: --sdk303 was passed but no 'sdk303_overrides' key found in config.")
         else:
             raw_cfg.update(overrides)
             raw_cfg["defines"].append("SDK_303")
-            print("[CONFIG] Using EE 3.0.3 includes.")
+
+        # Clean the embedded library objects from the list
+        # so the .a files will be used
+        sources = []
+        for s in raw_cfg["source_files"]:
+            if not s.startswith("build/expected/sce"):
+                sources.append(s)
+        raw_cfg["source_files"] = sources
+    else:
+        print("[CONFIG] Using EE 2.0.0 includes and embedded libraries.")
+        # Use the libraries the game shipped with
+        # just need to clean the linker library list
+        raw_cfg["libs"] = []
+
+    resolve_library_paths(raw_cfg)
 
     compilers = cfg_get_compilers(raw_cfg)
     current_objects = cfg_get_current_objects(raw_cfg, compilers)
