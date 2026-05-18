@@ -1726,95 +1726,154 @@ void bhObj008(O_WRK* op)
     hp->pz = op->mlwP->owP->mtx[14] - 11.0f;
 }
 
-// 
-// Start address: 0x286b70
+// 100% matching!
 void bhObj009(O_WRK* op)
 {
-	float ln;
-	//_anon32 vec;
-	//_anon9* ptp;
-	// Line 2371, Address: 0x286b70, Func Offset: 0
-	// Line 2375, Address: 0x286b88, Func Offset: 0x18
-	// Line 2377, Address: 0x286ba8, Func Offset: 0x38
-	// Line 2379, Address: 0x286bc0, Func Offset: 0x50
-	// Line 2380, Address: 0x286bc8, Func Offset: 0x58
-	// Line 2385, Address: 0x286bcc, Func Offset: 0x5c
-	// Line 2379, Address: 0x286bd0, Func Offset: 0x60
-	// Line 2380, Address: 0x286bd4, Func Offset: 0x64
-	// Line 2381, Address: 0x286bd8, Func Offset: 0x68
-	// Line 2382, Address: 0x286be0, Func Offset: 0x70
-	// Line 2383, Address: 0x286bf8, Func Offset: 0x88
-	// Line 2384, Address: 0x286c14, Func Offset: 0xa4
-	// Line 2385, Address: 0x286c18, Func Offset: 0xa8
-	// Line 2386, Address: 0x286c34, Func Offset: 0xc4
-	// Line 2387, Address: 0x286c48, Func Offset: 0xd8
-	// Line 2388, Address: 0x286c54, Func Offset: 0xe4
-	// Line 2389, Address: 0x286c70, Func Offset: 0x100
-	// Line 2390, Address: 0x286c84, Func Offset: 0x114
-	// Line 2391, Address: 0x286c8c, Func Offset: 0x11c
-	// Line 2392, Address: 0x286c94, Func Offset: 0x124
-	// Line 2393, Address: 0x286c9c, Func Offset: 0x12c
-	// Line 2394, Address: 0x286cac, Func Offset: 0x13c
-	// Line 2395, Address: 0x286cb8, Func Offset: 0x148
-	// Line 2396, Address: 0x286cbc, Func Offset: 0x14c
-	// Line 2397, Address: 0x286cd4, Func Offset: 0x164
-	// Line 2398, Address: 0x286cec, Func Offset: 0x17c
-	// Line 2400, Address: 0x286cf8, Func Offset: 0x188
-	// Line 2401, Address: 0x286d08, Func Offset: 0x198
-	// Line 2402, Address: 0x286d10, Func Offset: 0x1a0
-	// Line 2408, Address: 0x286d14, Func Offset: 0x1a4
-	// Line 2402, Address: 0x286d1c, Func Offset: 0x1ac
-	// Line 2403, Address: 0x286d2c, Func Offset: 0x1bc
-	// Line 2404, Address: 0x286d40, Func Offset: 0x1d0
-	// Line 2405, Address: 0x286d48, Func Offset: 0x1d8
-	// Line 2406, Address: 0x286d50, Func Offset: 0x1e0
-	// Line 2408, Address: 0x286d6c, Func Offset: 0x1fc
-	// Line 2409, Address: 0x286d80, Func Offset: 0x210
-	// Line 2411, Address: 0x286d94, Func Offset: 0x224
-	// Line 2410, Address: 0x286d98, Func Offset: 0x228
-	// Line 2412, Address: 0x286d9c, Func Offset: 0x22c
-	// Line 2414, Address: 0x286da4, Func Offset: 0x234
-	// Line 2415, Address: 0x286dac, Func Offset: 0x23c
-	// Line 2419, Address: 0x286dcc, Func Offset: 0x25c
-	// Line 2420, Address: 0x286e0c, Func Offset: 0x29c
-	// Line 2421, Address: 0x286e50, Func Offset: 0x2e0
-	// Line 2422, Address: 0x286e6c, Func Offset: 0x2fc
-	// Line 2423, Address: 0x286e80, Func Offset: 0x310
-	// Line 2425, Address: 0x286ea4, Func Offset: 0x334
-	// Line 2426, Address: 0x286ee0, Func Offset: 0x370
-	// Line 2427, Address: 0x286ee8, Func Offset: 0x378
-	// Line 2429, Address: 0x286ef8, Func Offset: 0x388
-	// Line 2430, Address: 0x286f34, Func Offset: 0x3c4
-	// Line 2435, Address: 0x286f48, Func Offset: 0x3d8
-	// Line 2437, Address: 0x286f50, Func Offset: 0x3e0
-	// Line 2439, Address: 0x286f70, Func Offset: 0x400
-	// Line 2441, Address: 0x286f78, Func Offset: 0x408
-	// Line 2439, Address: 0x286f7c, Func Offset: 0x40c
-	// Line 2440, Address: 0x286f80, Func Offset: 0x410
-	// Line 2441, Address: 0x286f90, Func Offset: 0x420
-	// Line 2442, Address: 0x286fa0, Func Offset: 0x430
-	// Line 2451, Address: 0x286fbc, Func Offset: 0x44c
-	// Line 2442, Address: 0x286fc0, Func Offset: 0x450
-	// Line 2453, Address: 0x286fc4, Func Offset: 0x454
-	// Line 2443, Address: 0x286fc8, Func Offset: 0x458
-	// Line 2444, Address: 0x286fcc, Func Offset: 0x45c
-	// Line 2445, Address: 0x286fe0, Func Offset: 0x470
-	// Line 2446, Address: 0x286ff4, Func Offset: 0x484
-	// Line 2447, Address: 0x286ffc, Func Offset: 0x48c
-	// Line 2448, Address: 0x287004, Func Offset: 0x494
-	// Line 2449, Address: 0x287008, Func Offset: 0x498
-	// Line 2450, Address: 0x287014, Func Offset: 0x4a4
-	// Line 2451, Address: 0x28701c, Func Offset: 0x4ac
-	// Line 2452, Address: 0x287020, Func Offset: 0x4b0
-	// Line 2453, Address: 0x287028, Func Offset: 0x4b8
-	// Line 2455, Address: 0x28702c, Func Offset: 0x4bc
-	// Line 2457, Address: 0x287034, Func Offset: 0x4c4
-	// Line 2458, Address: 0x287040, Func Offset: 0x4d0
-	// Line 2459, Address: 0x287050, Func Offset: 0x4e0
-	// Line 2460, Address: 0x287070, Func Offset: 0x500
-	// Line 2465, Address: 0x287074, Func Offset: 0x504
-	// Func End, Address: 0x287090, Func Offset: 0x520
-	scePrintf("bhObj009 - UNIMPLEMENTED!\n");
+    POS* ptp;    
+    NJS_VECTOR vec; 
+    float ln;     
+
+    if (bhCkFlg(&sys->rm_flg, 31) != 0) 
+    {
+        switch (op->mode0) 
+        {
+        case 1:
+            ptp = rom->posp;
+            
+            op->px = op->gpx;
+            op->pz = op->gpz;
+            
+            op->ay += (op->ayp - op->ay) / 16;
+            
+            vec.x = ptp[op->ct0 + 1].px - ptp[op->ct0].px;
+            vec.y = 0;
+            vec.z = ptp[op->ct0 + 1].pz - ptp[op->ct0].pz;
+            
+            ln = njSqrt((vec.x * vec.x) + (vec.z * vec.z));
+            
+            njUnitVector(&vec);
+            
+            op->px += 0.25f * vec.x;
+            op->pz += 0.25f * vec.z;
+            
+            op->gpx = op->px;
+            op->gpz = op->pz; 
+            
+            op->spd += 0.25f;
+            
+            if (op->spd >= ln) 
+            {
+                op->ct0++;
+                
+                op->spd = 0;
+                
+                op->ayp = ptp[op->ct0 + 1].ay - 16384;
+                
+                if ((op->ayp & 0xFF00) != (op->ay & 0xFF00)) 
+                {
+                    op->xn = 0.8f;
+                }
+                
+                if (op->ct0 >= 14) 
+                {
+                    op->ct0 = 7;
+                    
+                    op->px = ptp[op->ct0].px;
+                    op->pz = ptp[op->ct0].pz;
+                    
+                    op->gpx = op->px;
+                    op->gpz = op->pz;
+                    
+                    op->ay = op->ayp = ptp[op->ct0].ay - 16384;
+                    
+                    if (bhCkFlg(sys->ev_flg, 60) != 0) 
+                    {
+                        bhCrFlg(&sys->rm_flg, 31);
+                        
+                        op->ct1 = 0;
+                        
+                        op->mode0 = 2;
+                        break;
+                    }
+                    
+                    op->mode1 = 1;
+                    
+                    bhSetScreenFade(sys->fade_pbk, 30.0f);
+                }
+            }
+            
+            op->px = op->gpx + ((op->xn - (0.5f * op->xn)) * (-rand() / -2.1474836E9f));
+            op->pz = op->gpz + ((op->xn - (0.5f * op->xn)) * (-rand() / -2.1474836E9f));
+            
+            if (op->xn > 0)
+            {
+                op->xn *= 0.9f;
+                
+                if (op->xn < 0.1f) 
+                {
+                    op->xn = 0;
+                }
+            }
+            
+            if ((op->ct0 == 13) && (op->spd >= (0.5f * ln)) && (op->ct2 == 0)) 
+            {
+                op->ct2++;
+                
+                bhSetScreenFade(0xFF000000, 30.0f);
+            }
+            
+            if ((op->mode1 != 0) && (op->ct0 == 11) && (op->spd >= (0.75f * ln))) 
+            {
+                bhCrFlg(&sys->rm_flg, 31);
+                
+                op->mode0 = 0;
+            }
+        }
+    } 
+    else 
+    {
+        switch (op->mode0) 
+        {                          
+        case 0:
+            ptp = rom->posp;
+            
+            vec.x = ptp[12].px - ptp[11].px;
+            vec.z = ptp[12].pz - ptp[11].pz;
+            
+            op->spd = 0.75f * njSqrt((vec.x * vec.x) + (vec.z * vec.z));
+            
+            op->px = ptp[11].px + (0.75f * vec.x);
+            op->pz = ptp[11].pz + (0.75f * vec.z);
+            
+            op->gpx = op->px;
+            op->gpz = op->pz;
+            
+            op->ay  = 0;
+            op->ayp = ptp[12].ay - 16384;
+            
+            op->zn = 0;
+            op->xn = 0;
+            
+            op->ct0 = 11;
+            op->ct2 = 0;
+            op->ct1 = 0;
+            
+            op->mode0 = 1;
+            op->mode1 = 0;
+            break;
+        case 2:
+            op->ct1++;
+            
+            if (op->ct1 >= 4) 
+            {
+                bhSetScreenFade(sys->fade_pbk, 20.0f);
+                
+                *(int*)&op->mode0 = 0;
+            }
+            
+            break;
+        }
+    }
 }
 
 // 100% matching!
