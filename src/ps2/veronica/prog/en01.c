@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/en01.h"
+#include "../../../ps2/veronica/prog/en01b.h"
 #include "../../../ps2/veronica/prog/en01sub.h"
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/effect.h"
@@ -1977,8 +1978,26 @@ void(*bhEne01_InitType[16])(BH_PWORK*) = {
 	bhEne01_InitType00,
 	bhEne01_InitType15
 };
-/*void(*bhEne01_MoveTypeW)(BH_PWORK*)[16];
-void(*bhEne01_MoveMode2W)(BH_PWORK*)[17];
+void(*bhEne01_MoveTypeW[16])(BH_PWORK*) = 
+{
+	bhEne01_MVType00,
+	bhEne01_MVType00,
+	bhEne01_MVType02,
+	bhEne01_MVType02,
+	bhEne01_MVType00,
+	bhEne01_MVType00,
+	bhEne01_MVType02,
+	bhEne01_MVType02,
+	bhEne01_MVType00,
+	bhEne01_MVType02,
+	bhEne01_MVType00,
+	bhEne01_MVType00,
+	bhEne01_MVType00,
+	bhEne01_MVType00,
+	bhEne01_MVType00,
+	bhEne01_MVType00,
+};
+/*void(*bhEne01_MoveMode2W)(BH_PWORK*)[17];
 void(*bhEne01_NageTypeW)(BH_PWORK*)[16];
 void(*bhEne01_NageMode2W)(BH_PWORK*)[4];
 void(*bhEne01_DamageTypeW)(BH_PWORK*)[16];*/
@@ -2031,6 +2050,8 @@ _anon28 WpnTab[0];
 BH_PWORK ene[0];
 float lcmat[16][0];
 _anon1 eff[0];*/
+
+void (* bhEne01_MoveTypeB[])(struct BH_PWORK *);
 
 // 100% matching!
 void bhEne01_DmgCheckTypeDmmy()
@@ -2399,37 +2420,36 @@ BH_PWORK* bhEne01_SetLinkEnemy(BH_PWORK* epw, int lkono, short id)
 	epp->id = id;
 }
 
-// 
-// Start address: 0x176ad0
+// 100% matching!
 void bhEne01_Move(BH_PWORK* epw)
 {
-	scePrintf("bhEne01_Move - UNIMPLEMENTED!\n");
-	// _anon11 pos;
-	// _anon2* owk;
-	// Line 1163, Address: 0x176ad0, Func Offset: 0
-	// Line 1168, Address: 0x176adc, Func Offset: 0xc
-	// Line 1170, Address: 0x176ae8, Func Offset: 0x18
-	// Line 1168, Address: 0x176aec, Func Offset: 0x1c
-	// Line 1170, Address: 0x176af8, Func Offset: 0x28
-	// Line 1173, Address: 0x176b04, Func Offset: 0x34
-	// Line 1177, Address: 0x176b0c, Func Offset: 0x3c
-	// Line 1173, Address: 0x176b14, Func Offset: 0x44
-	// Line 1174, Address: 0x176b1c, Func Offset: 0x4c
-	// Line 1175, Address: 0x176b24, Func Offset: 0x54
-	// Line 1176, Address: 0x176b2c, Func Offset: 0x5c
-	// Line 1177, Address: 0x176b30, Func Offset: 0x60
-	// Line 1180, Address: 0x176b3c, Func Offset: 0x6c
-	// Line 1177, Address: 0x176b40, Func Offset: 0x70
-	// Line 1180, Address: 0x176b44, Func Offset: 0x74
-	// Line 1182, Address: 0x176b5c, Func Offset: 0x8c
-	// Line 1185, Address: 0x176b6c, Func Offset: 0x9c
-	// Line 1187, Address: 0x176b78, Func Offset: 0xa8
-	// Line 1188, Address: 0x176b98, Func Offset: 0xc8
-	// Line 1191, Address: 0x176ba0, Func Offset: 0xd0
-	// Line 1194, Address: 0x176bb0, Func Offset: 0xe0
-	// Line 1196, Address: 0x176bbc, Func Offset: 0xec
-	// Line 1198, Address: 0x176bdc, Func Offset: 0x10c
-	// Func End, Address: 0x176bec, Func Offset: 0x11c
+	NJS_POINT3 pos; // sp+0x20
+	O_WORK* owk; // v0
+
+	EXP0_I(0x40) &= 0xfffff7ff;
+	if(epw->type != 10){
+		owk = plp->mlwP->owP;
+
+		pos.x = owk->mtx[12];
+		pos.y = plp->py;
+		pos.z = owk->mtx[14];
+		
+		EXP0_F(0x54) = njDistanceP2P(&pos, (NJS_POINT3*)((char*)epw + 0x10));
+
+		if (EXP0_I(0x40) & 0x80000000) {
+			if (epw->mode2 == 3) {
+				EXP0_I(0x40) |= 0x800;
+			}
+
+			bhEne01_MoveTypeB[epw->type](epw);
+		} else {
+			if (epw->mode2 != 9) {
+				EXP0_I(0x40) |= 0x800;
+			}
+
+			bhEne01_MoveTypeW[epw->type](epw);
+		}
+	}
 }
 
 // 
@@ -3980,7 +4000,7 @@ int bhEne01_ActionModeCheck(BH_PWORK* epw)
 	// Line 3926, Address: 0x17ae1c, Func Offset: 0x61c
 	// Line 3930, Address: 0x17ae20, Func Offset: 0x620
 	// Func End, Address: 0x17ae38, Func Offset: 0x638
-}
+}*/
 
 // 
 // Start address: 0x17ae40
@@ -4032,7 +4052,7 @@ void bhEne01_MVType02(BH_PWORK* epw)
 	// Func End, Address: 0x17b098, Func Offset: 0x178
 }
 
-// 
+/*// 
 // Start address: 0x17b0a0
 void bhEne01_MV00(BH_PWORK* epw)
 {

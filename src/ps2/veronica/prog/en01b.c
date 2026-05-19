@@ -1226,9 +1226,28 @@ struct _anon33
 	_anon14 c1;
 	_anon14 c2;
 	float r;
-};
+};*/
 
-void(*bhEne01_MoveTypeB)(BH_PWORK*)[16];*/
+void(*bhEne01_MoveTypeB[16])(BH_PWORK*) = 
+{
+	bhEne01_MVType00B,
+	bhEne01_MVType00B,
+	bhEne01_MVType02B,
+	bhEne01_MVType02B,
+	bhEne01_MVType00B,
+	bhEne01_MVType00B,
+	bhEne01_MVType02B,
+	bhEne01_MVType02B,
+	bhEne01_MVType00B,
+	bhEne01_MVType02B,
+	bhEne01_MVType00B,
+	bhEne01_MVType00B,
+	bhEne01_MVType00B,
+	bhEne01_MVType00B,
+	bhEne01_MVType00B,
+	bhEne01_MVType00B,
+
+};
 void (*bhEne01_MoveMode2B[17])(BH_PWORK*) = 
 {
 	bhEne01_Dummy,
@@ -1317,7 +1336,7 @@ void bhEne01_MVType00B(BH_PWORK* epw)
 	bhEne01_MoveMode2B[epw->mode2](epw);
 }
 
-/*// 
+// 
 // Start address: 0x18a540
 void bhEne01_MVType02B(BH_PWORK* epw)
 {
@@ -1358,7 +1377,7 @@ void bhEne01_MV13B(BH_PWORK* epw)
 	// Func End, Address: 0x18a710, Func Offset: 0xa0
 }
 
-// 
+/*// 
 // Start address: 0x18a710
 void bhEne01_NGType00B(BH_PWORK* epw)
 {
