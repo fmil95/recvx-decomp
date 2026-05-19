@@ -1879,14 +1879,12 @@ SDE_ERR	sdMultiUnitDownload( SDMEMBLK handle)
         
         sdBankDownload(handle, SDE_DATA_TYPE_SHOT_BANK, 0); 
 
-    #ifdef SDK_303
         do 
         {
             sndr_trans_func();
             
             SdrSendReq(0);
         } while (snd_data_down_load != 0); 
-    #endif
         
         handle->m_Member[1] = (int)(UnitAddress + ((int*)UnitAddress)[4]);
         handle->m_Member[2] = ((int*)UnitAddress)[5];
