@@ -1268,9 +1268,27 @@ void (*bhEne01_MoveMode2B[17])(BH_PWORK*) =
 	bhEne01_Dummy,
 	bhEne01_Dummy
 };
-/*void(*bhEne01_NageTypeB)(BH_PWORK*)[16];
-void(*bhEne01_NageMode2B)(BH_PWORK*)[4];
-void(*bhEne01_DamageTypeB)(BH_PWORK*)[16];*/
+void (*bhEne01_NageTypeB[16])(BH_PWORK*) = 
+{
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+	bhEne01_NGType00B,
+};
+/*void(*bhEne01_NageMode2B)(BH_PWORK*)[4];*/
+void (*bhEne01_DamageTypeB[16])(BH_PWORK*);
 void (*bhEne01_DamageMode2B[17])(BH_PWORK*) = 
 {
 	bhEne01_Dummy,
@@ -1377,7 +1395,7 @@ void bhEne01_MV13B(BH_PWORK* epw)
 	// Func End, Address: 0x18a710, Func Offset: 0xa0
 }
 
-/*// 
+// 
 // Start address: 0x18a710
 void bhEne01_NGType00B(BH_PWORK* epw)
 {
@@ -1392,7 +1410,7 @@ void bhEne01_NGType00B(BH_PWORK* epw)
 	// Func End, Address: 0x18a79c, Func Offset: 0x8c
 }
 
-// 
+/*// 
 // Start address: 0x18a7a0
 void bhEne01_NG03B(BH_PWORK* epw)
 {

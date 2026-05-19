@@ -1997,10 +1997,27 @@ void(*bhEne01_MoveTypeW[16])(BH_PWORK*) =
 	bhEne01_MVType00,
 	bhEne01_MVType00,
 };
-/*void(*bhEne01_MoveMode2W)(BH_PWORK*)[17];
-void(*bhEne01_NageTypeW)(BH_PWORK*)[16];
-void(*bhEne01_NageMode2W)(BH_PWORK*)[4];
-void(*bhEne01_DamageTypeW)(BH_PWORK*)[16];*/
+/*void(*bhEne01_MoveMode2W)(BH_PWORK*)[17];*/
+void (*bhEne01_NageTypeW[16])(BH_PWORK*) = {
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+	bhEne01_NGType00,
+};
+void (*bhEne01_NageMode2W[4])(BH_PWORK*);
+void (*bhEne01_DamageTypeW[16])(BH_PWORK*);
 void (*bhEne01_DamageMode2W[17])(BH_PWORK*) = 
 {
 	bhEne01_DG00,
@@ -2052,6 +2069,7 @@ float lcmat[16][0];
 _anon1 eff[0];*/
 
 void (* bhEne01_MoveTypeB[])(struct BH_PWORK *);
+void (* bhEne01_NageTypeB[])(struct BH_PWORK *);
 
 // 100% matching!
 void bhEne01_DmgCheckTypeDmmy()
@@ -2452,19 +2470,18 @@ void bhEne01_Move(BH_PWORK* epw)
 	}
 }
 
-// 
 // Start address: 0x176bf0
 void bhEne01_Nage(BH_PWORK* epw)
 {
-	scePrintf("bhEne01_Nage - UNIMPLEMENTED!\n");
-	// Line 1214, Address: 0x176bf0, Func Offset: 0
-	// Line 1216, Address: 0x176bf8, Func Offset: 0x8
-	// Line 1219, Address: 0x176c0c, Func Offset: 0x1c
-	// Line 1221, Address: 0x176c34, Func Offset: 0x44
-	// Line 1222, Address: 0x176c4c, Func Offset: 0x5c
-	// Line 1224, Address: 0x176c74, Func Offset: 0x84
-	// Line 1225, Address: 0x176c94, Func Offset: 0xa4
-	// Func End, Address: 0x176ca0, Func Offset: 0xb0
+	EXP0_I(0x40) &= 0xfffff7ff;
+	if (EXP0_I(0x44) & 0x80){
+		EXP0_I(0x44) &= 0xffffff7f;
+	}
+	if (EXP0_I(0x40) & 0x80000000){
+		bhEne01_NageTypeB[epw->type](epw);
+	} else {
+		bhEne01_NageTypeW[epw->type](epw);
+	}
 }
 
 // 
