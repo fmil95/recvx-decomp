@@ -2017,7 +2017,25 @@ void (*bhEne01_NageTypeW[16])(BH_PWORK*) = {
 	bhEne01_NGType00,
 };
 void (*bhEne01_NageMode2W[4])(BH_PWORK*);
-void (*bhEne01_DamageTypeW[16])(BH_PWORK*);
+void (*bhEne01_DamageTypeW[16])(BH_PWORK*) = 
+{
+	bhEne01_DGType00,
+	bhEne01_DGType00,
+	bhEne01_DGType02,
+	bhEne01_DGType02,
+	bhEne01_DGType00,
+	bhEne01_DGType00,
+	bhEne01_DGType02,
+	bhEne01_DGType02,
+	bhEne01_DGType00,
+	bhEne01_DGType02,
+	bhEne01_DGType00,
+	bhEne01_DGType00,
+	bhEne01_DGType00,
+	bhEne01_DGType00,
+	bhEne01_DGType00,
+	bhEne01_DGType00,
+};
 void (*bhEne01_DamageMode2W[17])(BH_PWORK*) = 
 {
 	bhEne01_DG00,
@@ -2070,6 +2088,8 @@ _anon1 eff[0];*/
 
 void (* bhEne01_MoveTypeB[])(struct BH_PWORK *);
 void (* bhEne01_NageTypeB[])(struct BH_PWORK *);
+void (* bhEne01_DamageTypeB[])(struct BH_PWORK *);
+void (* bhEne01_DieTypeB[])(struct BH_PWORK *);
 
 // 100% matching!
 void bhEne01_DmgCheckTypeDmmy()
@@ -2470,7 +2490,7 @@ void bhEne01_Move(BH_PWORK* epw)
 	}
 }
 
-// Start address: 0x176bf0
+// 100% matching!
 void bhEne01_Nage(BH_PWORK* epw)
 {
 	EXP0_I(0x40) &= 0xfffff7ff;
@@ -2484,19 +2504,18 @@ void bhEne01_Nage(BH_PWORK* epw)
 	}
 }
 
-// 
-// Start address: 0x176ca0
+// 100% matching!
 void bhEne01_Damage(BH_PWORK* epw)
 {
-	scePrintf("bhEne01_Damage - UNIMPLEMENTED!\n");
-	// Line 1242, Address: 0x176ca0, Func Offset: 0
-	// Line 1244, Address: 0x176ca8, Func Offset: 0x8
-	// Line 1247, Address: 0x176cbc, Func Offset: 0x1c
-	// Line 1249, Address: 0x176ce4, Func Offset: 0x44
-	// Line 1250, Address: 0x176cfc, Func Offset: 0x5c
-	// Line 1252, Address: 0x176d24, Func Offset: 0x84
-	// Line 1253, Address: 0x176d44, Func Offset: 0xa4
-	// Func End, Address: 0x176d50, Func Offset: 0xb0
+	EXP0_I(0x40) &= 0xfffff7ff;
+	if (EXP0_I(0x44) & 0x80){
+		EXP0_I(0x44) &= 0xffffff7f;
+	}
+	if (EXP0_I(0x40) & 0x80000000){
+		bhEne01_DamageTypeB[epw->type](epw);
+	} else {
+		bhEne01_DamageTypeW[epw->type](epw);
+	}
 }
 
 // 
