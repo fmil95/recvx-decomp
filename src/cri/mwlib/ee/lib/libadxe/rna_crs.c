@@ -4,13 +4,13 @@ Sint32 rna_crs_lvl = 0;
 Sint32 rna_crs_msk = 0; /* unused */
 
 // 100% matching!
-void RNACRS_Finish(void) 
+void RNACRS_Init(void) 
 {
     rna_crs_lvl = 0;
 }
 
 // 100% matching!
-void RNACRS_Init(void) 
+void RNACRS_Finish(void) 
 {
     rna_crs_lvl = 0;
 }

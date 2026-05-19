@@ -6,82 +6,17 @@
 #include <stdio.h>
 //#include <string.h> /* ERROR: causes linker to fail */
 
-char* volatile dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
-DVS_CI_OBJ dvg_ci_obj[40] = { 0 };
+char const * const dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
 CVF_FS_ERRFN dvg_ci_err_func = NULL;
 void *dvg_ci_err_obj = NULL;
-Sint8 dvg_ci_fname[297] __attribute__((aligned(64))) = { 0 };
 CVS_FS_IF dvg_ci_vtbl = { dvCiExecServer, dvCiEntryErrFunc, dvCiGetFileSize, NULL, dvCiOpen, dvCiClose, dvCiSeek, dvCiTell, dvCiReqRd, NULL, dvCiStopTr, dvCiGetStat, dvCiGetSctLen, NULL, dvCiGetNumTr, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+DVS_CI_OBJ dvg_ci_obj[40] = { 0 };
+Sint8 dvg_ci_fname[297] = { 0 };
 
 // 100% matching!
-static DVCI dvci_alloc(void)
+CVFS_IF dvCiGetInterface()
 {
-    DVCI dvci;
-    Sint32 i;
-    
-    dvci = NULL;
-    
-    for (i = 0; i < 40; i++) 
-    {
-        if (dvg_ci_obj[i].used == FALSE) 
-        {
-            dvci = &dvg_ci_obj[i];
-        }
-    }
-  
-    return dvci;
-}
-
-// 100% matching!
-void dvci_call_errfn(DVCI dvci, const char *msg)
-{
-    if (dvg_ci_err_func != NULL) 
-    {
-        dvg_ci_err_func(dvg_ci_err_obj, (const Sint8*)msg, dvci);
-    }
-}
-
-// 100% matching!
-void dvci_conv_fname(const Sint8 *spath, Sint8 *tpath)
-{
-    memset(tpath, 0, 297);
-    
-    strcpy(tpath, spath);
-
-    if (strcmp(spath + (strlen(spath) - 2), ";1") != 0) 
-    {
-        strcat(tpath, ";1");
-    }
-
-    dvci_to_large_to_yen(tpath);
-}
-
-// 100% matching!
-static void dvci_free(DVCI dvci)
-{
-    memset(dvci, 0, sizeof(DVS_CI_OBJ));
-}
-
-// 100% matching!
-void dvci_to_large_to_yen(Sint8 *fname)
-{
-    Uint32 len;
-    Uint32 lp;
-
-    len = strlen(fname);
-    
-    for (lp = 0; lp < len; lp++) 
-    {
-        if (fname[lp] == '/') 
-        {
-            fname[lp] = '\\';
-        }
-        
-        if ((fname[lp] >= 'a') && (fname[lp] <= 'z')) 
-        {
-            fname[lp] -= ' ';
-        }
-    } 
+    return &dvg_ci_vtbl;
 }
 
 // 100% matching!
@@ -93,30 +28,12 @@ static void dvci_wait(void)
 }
 
 // 100% matching!
-void dvCiClose(void *obj)
+void dvci_call_errfn(DVCI dvci, const char *msg)
 {
-    DVCI dvci;
-
-    dvci = obj;
-    
-    if (dvci != NULL) 
+    if (dvg_ci_err_func != NULL) 
     {
-        if ((dvci->stat != 0) && (dvci->stat != 1)) 
-        {
-            dvCiStopTr(dvci);
-        }
-        
-        dvci->used = FALSE;
-        
-        dvci_free(dvci);
+        dvg_ci_err_func(dvg_ci_err_obj, (const Sint8*)msg, dvci);
     }
-}
-
-// 100% matching!
-void dvCiEntryErrFunc(CVF_FS_ERRFN errfn, void *obj)
-{
-    dvg_ci_err_func = errfn;
-    dvg_ci_err_obj = obj;
 }
 
 // 100% matching!
@@ -166,6 +83,50 @@ void dvCiExecServer(void)
 }
 
 // 100% matching!
+void dvCiEntryErrFunc(CVF_FS_ERRFN errfn, void *obj)
+{
+    dvg_ci_err_func = errfn;
+    dvg_ci_err_obj = obj;
+}
+
+// 100% matching!
+void dvci_to_large_to_yen(Sint8 *fname)
+{
+    Uint32 len;
+    Uint32 lp;
+
+    len = strlen(fname);
+    
+    for (lp = 0; lp < len; lp++) 
+    {
+        if (fname[lp] == '/') 
+        {
+            fname[lp] = '\\';
+        }
+        
+        if ((fname[lp] >= 'a') && (fname[lp] <= 'z')) 
+        {
+            fname[lp] -= ' ';
+        }
+    } 
+}
+
+// 100% matching!
+void dvci_conv_fname(const Sint8 *spath, Sint8 *tpath)
+{
+    memset(tpath, 0, 297);
+    
+    strcpy(tpath, spath);
+
+    if (strcmp(spath + (strlen(spath) - 2), ";1") != 0) 
+    {
+        strcat(tpath, ";1");
+    }
+
+    dvci_to_large_to_yen(tpath);
+}
+
+// 100% matching!
 Sint32 dvCiGetFileSize(const Sint8 *fname) 
 {
     sceCdlFILE fp;
@@ -197,49 +158,28 @@ Sint32 dvCiGetFileSize(const Sint8 *fname)
 }
 
 // 100% matching!
-CVFS_IF dvCiGetInterface()
-{
-    return &dvg_ci_vtbl;
-}
-
-// 100% matching!
-Sint32 dvCiGetNumTr(void *obj)
+static DVCI dvci_alloc(void)
 {
     DVCI dvci;
-
-    dvci = obj;
+    Sint32 i;
     
-    if (dvci == NULL)
+    dvci = NULL;
+    
+    for (i = 0; i < 40; i++) 
     {
-        dvci_call_errfn(dvci, "E0092912:handl is null.");
-        
-        return 0;
+        if (dvg_ci_obj[i].used == FALSE) 
+        {
+            dvci = &dvg_ci_obj[i];
+        }
     }
-
-    return dvci->req_nsct * 2048;
+  
+    return dvci;
 }
 
 // 100% matching!
-Sint32 dvCiGetSctLen(void *obj)
+static void dvci_free(DVCI dvci)
 {
-    return 2048;
-}
-
-// 100% matching!
-CVE_FS_ST dvCiGetStat(void *obj)
-{
-    DVCI dvci;
-
-    dvci = obj;
-    
-    if (dvci == NULL) 
-    {
-        dvci_call_errfn(dvci, "E0092912:handl is null.");
-        
-        return CVE_FS_ST_IDLE;
-    }
-
-    return (CVE_FS_ST)dvci->stat;
+    memset(dvci, 0, sizeof(DVS_CI_OBJ));
 }
 
 // 100% matching!
@@ -309,6 +249,75 @@ void* dvCiOpen(Sint8 *fname, void *prm, CVE_FS_OP rw)
     dvci->stat = 0;
 
     return dvci;
+}
+
+// 100% matching!
+void dvCiClose(void *obj)
+{
+    DVCI dvci;
+
+    dvci = obj;
+    
+    if (dvci != NULL) 
+    {
+        if ((dvci->stat != 0) && (dvci->stat != 1)) 
+        {
+            dvCiStopTr(dvci);
+        }
+        
+        dvci->used = FALSE;
+        
+        dvci_free(dvci);
+    }
+}
+
+// 100% matching!
+Sint32 dvCiSeek(void *obj, Sint32 nsct, CVE_FS_SK mode)
+{
+    DVCI dvci;
+
+    dvci = obj;
+
+    if (dvci == NULL) 
+    {
+        dvci_call_errfn(dvci, "E0092912:handl is null.");
+        
+        return 0;
+    }
+
+    if (mode == CVE_FS_SK_SET) 
+    {
+        dvci->req_nsct = nsct;
+    } 
+    else if (mode == CVE_FS_SK_END) 
+    {
+        dvci->req_nsct = dvci->skpos + nsct;
+    } 
+    else if (mode == CVE_FS_SK_CUR)
+    {
+        dvci->req_nsct += nsct;
+    }
+
+    dvci->req_nsct = CLAMP(dvci->req_nsct, 0, dvci->skpos);
+    
+    return dvci->req_nsct;
+}
+
+// 100% matching!
+Sint32 dvCiTell(void *obj)
+{
+    DVCI dvci;
+
+    dvci = obj;
+    
+    if (dvci == NULL) 
+    {
+        dvci_call_errfn(dvci, "E0092912:handl is null.");
+        
+        return 0;
+    }
+
+    return dvci->req_nsct;
 }
 
 // 100% matching!
@@ -386,38 +395,6 @@ Sint32 dvCiReqRd(void *obj, Sint32 nsct, void *buf)
 }
 
 // 100% matching!
-Sint32 dvCiSeek(void *obj, Sint32 nsct, CVE_FS_SK mode)
-{
-    DVCI dvci;
-
-    dvci = obj;
-
-    if (dvci == NULL) 
-    {
-        dvci_call_errfn(dvci, "E0092912:handl is null.");
-        
-        return 0;
-    }
-
-    if (mode == CVE_FS_SK_SET) 
-    {
-        dvci->req_nsct = nsct;
-    } 
-    else if (mode == CVE_FS_SK_END) 
-    {
-        dvci->req_nsct = dvci->skpos + nsct;
-    } 
-    else if (mode == CVE_FS_SK_CUR)
-    {
-        dvci->req_nsct += nsct;
-    }
-
-    dvci->req_nsct = CLAMP(dvci->req_nsct, 0, dvci->skpos);
-    
-    return dvci->req_nsct;
-}
-
-// 100% matching!
 void dvCiStopTr(void *obj)
 {
     DVCI dvci;
@@ -461,7 +438,7 @@ void dvCiStopTr(void *obj)
 }
 
 // 100% matching!
-Sint32 dvCiTell(void *obj)
+CVE_FS_ST dvCiGetStat(void *obj)
 {
     DVCI dvci;
 
@@ -471,8 +448,31 @@ Sint32 dvCiTell(void *obj)
     {
         dvci_call_errfn(dvci, "E0092912:handl is null.");
         
+        return CVE_FS_ST_IDLE;
+    }
+
+    return (CVE_FS_ST)dvci->stat;
+}
+
+// 100% matching!
+Sint32 dvCiGetSctLen(void *obj)
+{
+    return 2048;
+}
+
+// 100% matching!
+Sint32 dvCiGetNumTr(void *obj)
+{
+    DVCI dvci;
+
+    dvci = obj;
+    
+    if (dvci == NULL)
+    {
+        dvci_call_errfn(dvci, "E0092912:handl is null.");
+        
         return 0;
     }
 
-    return dvci->req_nsct;
+    return dvci->req_nsct * 2048;
 }

@@ -13,62 +13,6 @@ Sint32 dtr_init_cnt = 0;
 DTR_OBJ dtr_obj[16] = { 0 };
 
 // 100% matching!
-DTR DTR_Create(SJ sjsrc, SJ sjdst)
-{
-    Sint32 i;
-    DTR dtr;
-
-    SJCRS_Lock();
-
-    for (i = 0; i < 16; i++)
-    {
-        dtr = &dtr_obj[i];
-
-        if (dtr->used == FALSE) 
-        {
-            break;
-        }
-    }
-
-    if (i == 16) 
-    {
-        dtr = NULL;
-    } 
-    else 
-    {
-        memset(dtr, 0, sizeof(DTR_OBJ));
-        
-        dtr->stat = DTR_STAT_STOP;
-        
-        dtr->blklen = 64;
-        
-        dtr->sjsrc = sjsrc;
-        dtr->sjdst = sjdst;
-        
-        dtr->trnflg = DTR_DTXFNO_CREATE;
-        
-        dtr->srclin = 1;
-        dtr->dstlin = 0;
-        
-        dtr->used = TRUE;
-    }
-
-    SJCRS_Unlock();
-    
-    return dtr;
-}
-
-// 100% matching!
-void DTR_Destroy(DTR dtr) 
-{
-    SJCRS_Lock();
-    
-    dtr->used = FALSE;
-    
-    SJCRS_Unlock();
-}
-
-// 100% matching!
 void DTR_ExecHndl(DTR dtr)
 {
     SJCK cks;
@@ -210,12 +154,6 @@ void DTR_ExecServer(void)
 }
 
 // 100% matching!
-void DTR_Finish(void) 
-{
-    dtr_init_cnt--;
-}
-
-// 100% matching!
 void DTR_Init(void)
 {
     printf("DTR_Init: in (%d)\n", dtr_init_cnt);
@@ -228,6 +166,68 @@ void DTR_Init(void)
     dtr_init_cnt++;
     
     printf("DTR_Init: out\n");
+}
+
+// 100% matching!
+void DTR_Finish(void) 
+{
+    dtr_init_cnt--;
+}
+
+// 100% matching!
+DTR DTR_Create(SJ sjsrc, SJ sjdst)
+{
+    Sint32 i;
+    DTR dtr;
+
+    SJCRS_Lock();
+
+    for (i = 0; i < 16; i++)
+    {
+        dtr = &dtr_obj[i];
+
+        if (dtr->used == FALSE) 
+        {
+            break;
+        }
+    }
+
+    if (i == 16) 
+    {
+        dtr = NULL;
+    } 
+    else 
+    {
+        memset(dtr, 0, sizeof(DTR_OBJ));
+        
+        dtr->stat = DTR_STAT_STOP;
+        
+        dtr->blklen = 64;
+        
+        dtr->sjsrc = sjsrc;
+        dtr->sjdst = sjdst;
+        
+        dtr->trnflg = DTR_DTXFNO_CREATE;
+        
+        dtr->srclin = 1;
+        dtr->dstlin = 0;
+        
+        dtr->used = TRUE;
+    }
+
+    SJCRS_Unlock();
+    
+    return dtr;
+}
+
+// 100% matching!
+void DTR_Destroy(DTR dtr) 
+{
+    SJCRS_Lock();
+    
+    dtr->used = FALSE;
+    
+    SJCRS_Unlock();
 }
 
 // 100% matching!

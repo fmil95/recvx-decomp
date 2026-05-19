@@ -15,44 +15,23 @@ Uint32 adxt_vsync_cnt = 0;
 ADX_TALK adxt_obj[ADXT_MAX_OBJ] = { 0 };
 
 // 100% matching!
+void ADXT_ConfigVsyncSvr(Sint32 vsync_svr_flag)
+{
+    adxt_vsync_svr_flag = vsync_svr_flag;
+}
+
+// 100% matching!
 void adxini_rnaerr_cbfn(void *obj, const Char8 *msg)
 {
     ADXERR_CallErrFunc1((const Sint8*)msg);
 }
 
 // 100% matching!
-void ADXT_ConfigVsyncSvr(Sint32 vsync_svr_flag)
+void ADXT_VsyncProc(void) 
 {
-    adxt_vsync_svr_flag = vsync_svr_flag;
-}
-
-// 100% matching! 
-void ADXT_Finish(void) 
-{
-    adxt_init_cnt--;
+    adxt_vsync_cnt++; 
     
-    if (adxt_init_cnt == 0) 
-    {
-        ADXCRS_Lock();
-        
-        LSC_Finish();
-        
-        ADXCRS_Unlock();
-        
-        ADXRNA_Finish();
-        
-        ADXCRS_Lock();
-        
-        ADXF_Finish();
-        ADXSJD_Finish();
-        ADXSTM_Finish();
-        ADXERR_Finish();
-        SJMEM_Finish();
-        SJRBF_Finish();
-        SJUNI_Finish();
-        
-        ADXCRS_Unlock();
-    }
+    ADXT_ExecServer();
 }
 
 // 100% matching! 
@@ -93,10 +72,31 @@ void ADXT_ResetLibrary(void)
     ADXT_Init();
 }
 
-// 100% matching!
-void ADXT_VsyncProc(void) 
+// 100% matching! 
+void ADXT_Finish(void) 
 {
-    adxt_vsync_cnt++; 
+    adxt_init_cnt--;
     
-    ADXT_ExecServer();
+    if (adxt_init_cnt == 0) 
+    {
+        ADXCRS_Lock();
+        
+        LSC_Finish();
+        
+        ADXCRS_Unlock();
+        
+        ADXRNA_Finish();
+        
+        ADXCRS_Lock();
+        
+        ADXF_Finish();
+        ADXSJD_Finish();
+        ADXSTM_Finish();
+        ADXERR_Finish();
+        SJMEM_Finish();
+        SJRBF_Finish();
+        SJUNI_Finish();
+        
+        ADXCRS_Unlock();
+    }
 }

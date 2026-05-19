@@ -7,6 +7,32 @@ SJ_IF sjuni_vtbl = { NULL, NULL, NULL, (void*)SJUNI_Destroy, (void*)SJUNI_GetUui
 Sint32 sjuni_init_cnt = 0;
 SJUNI_OBJ sjuni_obj[64] = { 0 };
 
+// 99.29% matching
+void SJUNI_Error(SJUNI uni, Sint32 errcode) 
+{
+    while (TRUE);
+}
+
+// 100% matching!
+void SJUNI_Init(void) 
+{ 
+    if (sjuni_init_cnt == 0)
+    {
+        memset(sjuni_obj, 0, sizeof(sjuni_obj));
+    }
+    
+    sjuni_init_cnt++;
+}
+
+// 100% matching!
+void SJUNI_Finish(void)
+{
+    if (--sjuni_init_cnt == 0) 
+    { 
+        memset(sjuni_obj, 0, sizeof(sjuni_obj));
+    }
+}
+
 // 100% matching!
 SJ SJUNI_Create(Sint32 mode, Sint8 *work, Sint32 wksize)
 {
@@ -64,6 +90,16 @@ void SJUNI_Destroy(SJ sj)
 }
 
 // 100% matching!
+const UUID* SJUNI_GetUuid(SJ sj) 
+{
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
+    
+    return uni->uuid;
+}
+
+// 100% matching!
 void SJUNI_EntryErrFunc(SJ sj, SJUNI_ERRFN func, void *obj)
 {
     SJUNI uni;
@@ -74,19 +110,67 @@ void SJUNI_EntryErrFunc(SJ sj, SJUNI_ERRFN func, void *obj)
     uni->errobj = obj;
 }
 
-// 99.29% matching
-void SJUNI_Error(SJUNI uni, Sint32 errcode) 
+// 100% matching!
+void SJUNI_Reset(SJ sj)
 {
-    while (TRUE);
+    SJUNI uni;
+	Sint32 i;
+	SJCK_CHAIN *ckchain;
+
+    uni = (SJUNI)sj;
+
+    ckchain = (SJCK_CHAIN*)uni->ckcnwk;
+
+    uni->pool = ckchain;
+
+    for (i = 0; i < (uni->nckcn - 1); i++)
+    {
+        ckchain[i].next = &ckchain[i + 1];
+        
+        ckchain[i].ck.data = NULL;
+        
+        ckchain[i].ck.len = 0;
+    }
+
+    ckchain[i].next = NULL;
+    
+    ckchain[i].ck.data = NULL;
+    
+    ckchain[i].ck.len = 0;
+
+    for (i = 0; i < 4; i++) 
+    {
+        uni->lin[i] = NULL;
+    }
 }
 
 // 100% matching!
-void SJUNI_Finish(void)
+Sint32 SJUNI_GetNumData(SJ sj, Sint32 id)
 {
-    if (--sjuni_init_cnt == 0) 
-    { 
-        memset(sjuni_obj, 0, sizeof(sjuni_obj));
+    Sint32 nbyte;
+	SJCKCN ckcn;
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
+
+    if ((Uint32)id >= 4) 
+    {
+        if (uni->errfunc != NULL)
+        {
+            uni->errfunc(uni->errobj, -3);
+        }
+    
+        return 0;
     }
+    
+    nbyte = 0;
+
+    for (ckcn = uni->lin[id]; ckcn != NULL; ckcn = ckcn->next)
+    {
+        nbyte += ckcn->ck.len; 
+    } 
+
+    return nbyte;
 }
 
 // 100% matching!
@@ -153,147 +237,6 @@ void SJUNI_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
     }
 
     SJCRS_Unlock();
-}
-
-// 100% matching!
-Sint32 SJUNI_GetNumChainPool(SJ sj)
-{
-    SJCKCN ckcn;
-	Sint32 i;
-    SJUNI uni;
-
-    uni = (SJUNI)sj;
-
-    i = 0;
-
-    for (ckcn = uni->pool; ckcn != NULL; ckcn = ckcn->next) 
-    {
-        i++;
-    }
-
-    return i;
-}
-
-// 100% matching!
-Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id)
-{
-    SJCKCN ckcn;
-	Sint32 i;
-    SJUNI uni;
-
-    uni = (SJUNI)sj;
-
-    i = 0;
-
-    for (ckcn = uni->lin[id]; ckcn != NULL; ckcn = ckcn->next) 
-    {
-        i++;
-    }
-
-    return i;
-}
-
-// 100% matching!
-Sint32 SJUNI_GetNumData(SJ sj, Sint32 id)
-{
-    Sint32 nbyte;
-	SJCKCN ckcn;
-    SJUNI uni;
-
-    uni = (SJUNI)sj;
-
-    if ((Uint32)id >= 4) 
-    {
-        if (uni->errfunc != NULL)
-        {
-            uni->errfunc(uni->errobj, -3);
-        }
-    
-        return 0;
-    }
-    
-    nbyte = 0;
-
-    for (ckcn = uni->lin[id]; ckcn != NULL; ckcn = ckcn->next)
-    {
-        nbyte += ckcn->ck.len; 
-    } 
-
-    return nbyte;
-}
-
-// 100% matching!
-const UUID* SJUNI_GetUuid(SJ sj) 
-{
-    SJUNI uni;
-
-    uni = (SJUNI)sj;
-    
-    return uni->uuid;
-}
-
-// 100% matching!
-void SJUNI_Init(void) 
-{ 
-    if (sjuni_init_cnt == 0)
-    {
-        memset(sjuni_obj, 0, sizeof(sjuni_obj));
-    }
-    
-    sjuni_init_cnt++;
-}
-
-// 100% matching!
-Sint32 SJUNI_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
-{
-    SJCKCN ckcn;
-	SJCK ck0;
-    SJUNI uni;
-
-    uni = (SJUNI)sj;
-
-    *rbyte = 0;
-
-    if ((Uint32)id >= 4) 
-    {
-        if (uni->errfunc != NULL)
-        {
-            uni->errfunc(uni->errobj, -3);
-        }
-
-        return 0;
-    }
-
-    if (uni->lin[id] == NULL) 
-    {
-        return 0;
-    }
-
-    ckcn = uni->lin[id];
-
-    ck0 = ckcn->ck;
-    
-    *rbyte = ck0.len;
-
-    if (uni->mode == 1)
-    {
-        if (ck0.len >= nbyte) 
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
-    } 
-    else if (ck0.len == nbyte)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
 }
 
 // 100% matching!
@@ -365,40 +308,6 @@ void SJUNI_PutChunk(SJ sj, Sint32 id, SJCK *ck)
 }
 
 // 100% matching!
-void SJUNI_Reset(SJ sj)
-{
-    SJUNI uni;
-	Sint32 i;
-	SJCK_CHAIN *ckchain;
-
-    uni = (SJUNI)sj;
-
-    ckchain = (SJCK_CHAIN*)uni->ckcnwk;
-
-    uni->pool = ckchain;
-
-    for (i = 0; i < (uni->nckcn - 1); i++)
-    {
-        ckchain[i].next = &ckchain[i + 1];
-        
-        ckchain[i].ck.data = NULL;
-        
-        ckchain[i].ck.len = 0;
-    }
-
-    ckchain[i].next = NULL;
-    
-    ckchain[i].ck.data = NULL;
-    
-    ckchain[i].ck.len = 0;
-
-    for (i = 0; i < 4; i++) 
-    {
-        uni->lin[i] = NULL;
-    }
-}
-
-// 100% matching!
 void SJUNI_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
 {
     SJCKCN ckcn;
@@ -457,4 +366,95 @@ void SJUNI_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
     }
 
     SJCRS_Unlock();
+}
+
+// 100% matching!
+Sint32 SJUNI_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
+{
+    SJCKCN ckcn;
+	SJCK ck0;
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
+
+    *rbyte = 0;
+
+    if ((Uint32)id >= 4) 
+    {
+        if (uni->errfunc != NULL)
+        {
+            uni->errfunc(uni->errobj, -3);
+        }
+
+        return 0;
+    }
+
+    if (uni->lin[id] == NULL) 
+    {
+        return 0;
+    }
+
+    ckcn = uni->lin[id];
+
+    ck0 = ckcn->ck;
+    
+    *rbyte = ck0.len;
+
+    if (uni->mode == 1)
+    {
+        if (ck0.len >= nbyte) 
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    } 
+    else if (ck0.len == nbyte)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+// 100% matching!
+Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id)
+{
+    SJCKCN ckcn;
+	Sint32 i;
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
+
+    i = 0;
+
+    for (ckcn = uni->lin[id]; ckcn != NULL; ckcn = ckcn->next) 
+    {
+        i++;
+    }
+
+    return i;
+}
+
+// 100% matching!
+Sint32 SJUNI_GetNumChainPool(SJ sj)
+{
+    SJCKCN ckcn;
+	Sint32 i;
+    SJUNI uni;
+
+    uni = (SJUNI)sj;
+
+    i = 0;
+
+    for (ckcn = uni->pool; ckcn != NULL; ckcn = ckcn->next) 
+    {
+        i++;
+    }
+
+    return i;
 }
