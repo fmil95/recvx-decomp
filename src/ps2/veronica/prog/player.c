@@ -3763,9 +3763,199 @@ void bhCPM2_act_cro()
     }
 }
 
-void bhCPM2_act_hsu() 
+// 100% matching!
+void bhCPM2_act_hsu()
 {
-    scePrintf("bhCPM2_act_hsu - UNIMPLEMENTED!\n");
+	ATR_WORK* htp;
+    short ayn;
+
+    htp = sys->pl_htp;
+    
+    sys->st_flg |= 0x4;
+    
+    switch (plp->mode3)
+    {
+    case 0:
+        plp->flg &= ~0x28C0008;
+        
+        EXP1_I(0) &= ~0x4;
+        EXP1_I(0) |= 0x1E0;
+        
+        plp->flg2 |= 0x1;
+        
+        plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][1];
+        
+        plp->hokan_rate  = 32768;
+        plp->hokan_count = 4;
+        
+        plp->mtn_add = 65536;
+        
+        ((EXP_WORK*)plp->exp0)->arp = 0;
+        
+        plp->frm_no = 0;
+        
+        plp->ayp = -((int)(182.04445f * (htp->prm1 * 90)) & 0xFFFF);
+        
+        ayn = plp->ay;
+        
+        if ((short)((short)plp->ayp - ayn) >= 0) 
+        {
+            plp->mode3 = 2;
+        }
+        else
+        {
+            plp->mode3 = 1;
+        }
+        
+        break;
+    case 1:      
+        ayn = plp->ay;
+        
+        if (ABS(((short)plp->ayp - ayn)) < 1310)
+        {
+            plp->mode3 = 3;
+        }
+        else
+        {
+            plp->ay -= (int)(182.04445f * (7.2f * ((EXP_WORK*)plp->exp0)->rtspd));
+        
+            plp->mtn_add = -65536;
+        }
+        
+        break;
+    case 2:         
+        ayn = plp->ay;
+        
+        if (ABS(((short)plp->ayp - ayn)) < 1310)
+        {
+            plp->mode3 = 3;
+        }
+        else
+        {
+            plp->ay += (int)(182.04445f * (7.2f * ((EXP_WORK*)plp->exp0)->rtspd));
+        
+            plp->mtn_add = 65536;
+        }
+        
+        break;
+    case 3:
+        plp->flg &= ~0x4C0000;
+        
+        plp->mtn_no = 62;
+        
+        plp->hokan_rate  = 32768;
+        plp->hokan_count = 4;
+        
+        plp->mtn_add = 65536;
+        
+        plp->frm_no = 0;
+        
+        plp->ay = -((int)(182.04445f * (htp->prm1 * 90)) & 0xFFFF);
+        
+        plp->ct0 = (htp->prm2 / 2) - 2;
+        
+        plp->mode3 = 4;
+        
+        plp->px = htp->px + (0.5f * htp->w);
+        plp->pz = htp->pz + (0.5f * htp->d);
+        
+        switch (htp->prm1)
+        {  
+        case 0:
+            plp->pz += 5.0f;
+            break;
+        case 1:
+            plp->px -= 5.0f;
+            break;
+        case 2:
+            plp->pz -= 5.0f;
+            break;
+        case 3:
+            plp->px += 5.0f; 
+            break;
+        }
+        
+        break;
+    case 4:
+        if ((plp->frm_no / 65536) == 0)
+        {
+            plp->px = plp->mlwP->owP->mtx[12];
+            plp->pz = plp->mlwP->owP->mtx[14];
+            plp->py = plp->mlwP->owP->mtx[13];
+            
+            plp->mode3 = 5;
+            
+            plp->mtn_no = 63;
+            plp->frm_no = 0;
+        }
+        
+        break;
+    case 5:
+        plp->flg |= 0x200000;
+        
+        if ((plp->flg & 0x400000)) 
+        {
+            plp->py = plp->mlwP->owP->mtx[13];
+            
+            plp->frm_no = 0;
+            
+            plp->ct0--;
+            
+            if (plp->ct0 <= 0) 
+            {
+                plp->px = plp->mlwP->owP->mtx[12];
+                plp->pz = plp->mlwP->owP->mtx[14];
+                
+                plp->mode3 = 6;
+                
+                plp->mtn_no = 64;
+                plp->frm_no = 0;
+            }
+        }
+        
+        break;
+    case 6:
+        if ((plp->frm_no / 65536) == 0) 
+        {
+            bhClrUseKaidanFlag(plp);
+            
+            plp->px = plp->mlwP->owP->mtx[12];
+            plp->py = htp->py + (4.0f * htp->prm2);
+            plp->pz = plp->mlwP->owP->mtx[14];
+            
+            ((EXP_WORK*)plp->exp0)->bpx = ((EXP_WORK*)plp->exp0)->bpxb = plp->px;
+            ((EXP_WORK*)plp->exp0)->bpy = ((EXP_WORK*)plp->exp0)->bpyb = 12.5f + plp->py;
+            ((EXP_WORK*)plp->exp0)->bpz = ((EXP_WORK*)plp->exp0)->bpzb = plp->pz;
+            
+            plp->pxb = plp->px;
+            plp->pyb = plp->py;
+            plp->pzb = plp->pz;
+            
+            plp->stflg &= ~0x80010010;
+            plp->flg   &= ~0xD0400;
+            
+            plp->flg |= 0x118;
+            
+            bhSetFloorNum(plp);
+            
+            plp->py = rom->grand[plp->flr_no + 2];
+            
+            *(int*)&plp->mode0 = 1;
+            
+            plp->mtn_no = PlMtnAct[((EXP_WORK*)plp->exp0)->wpntp][((EXP_WORK*)plp->exp0)->dmlvl][0];
+            
+            plp->hokan_rate  = 49152;
+            plp->hokan_count = 8;
+            
+            plp->mtn_add = 65536;
+            
+            plp->frm_no = 0;
+            
+            plp->mtn_md |= 0x100;
+        }
+
+        break;
+    }
 }
 
 // 100% matching!
