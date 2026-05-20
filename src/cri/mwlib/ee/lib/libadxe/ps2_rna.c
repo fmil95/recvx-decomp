@@ -63,7 +63,7 @@ Sint32 ps2rna_init_cnt = 0;
 void *ps2rna_eewk = NULL;
 void *ps2rna_iopwk = NULL;
 PS2PSJ_OBJ ps2psj_obj[8] = { 0 };
-Sint8 ps2psj_sjuni_eewk[8][256] __attribute__((aligned(64))) = { 0 }; 
+Sint8 ps2psj_sjuni_eewk[8][256] = { 0 }; 
 Sint32 ps2psj_sjiop_wk[8] = { 0 }; /* unused */
 Sint32 ps2psj_sjiop_buf[8] = { 0 }; /* unused */
 PS2RNA_OBJ ps2rna_obj[8] = { 0 };
@@ -72,20 +72,348 @@ Sint32 ps2rna_wklen = 0;
 Sint8 ps2rna_ee_work[2256] = { 0 };
 
 // 100% matching!
-void PS2RNA_ClearBuf(PS2RNA rna) 
+void ps2rna_init_psj(void) 
 {
-    printf("PS2RNA_ClearBuf: not implemented\n");
+    Sint32 i;
+	PS2PSJ psj;
+	Sint8 *wk;
 
-    while (TRUE);
+    if (ps2psj_iop_work0 == NULL) 
+    {
+        ps2psj_iop_work0 = sceSifAllocIopHeap(ps2psj_iop_wksize + 64);
+        
+        ps2psj_iop_work = (void*)(((Sint32)ps2psj_iop_work0 + 64) & 0xFFFFFFC0);
+        
+        ps2psj_alloc_flag = 1;
+    }
+
+    memset(ps2psj_obj, 0, sizeof(ps2psj_obj));
+    
+    wk = ps2psj_iop_work;
+
+    for (i = 0; i < ps2rna_max_voice; i++) 
+    {
+        psj = &ps2psj_obj[i];
+        
+        psj->used = FALSE;
+
+        if (((Sint32)wk & 0x3F))
+        {
+            printf("E0110101: ps2rna_init_psj wk size error\n");
+            
+            while (TRUE);
+        }
+
+        psj->sjiop = SJUNI_CreateRmt(1, wk, 256);
+
+        if (psj->sjiop == NULL) 
+        {
+            printf("E0110102: ps2rna_init_psj: can't creat SJUNI_CreaetRmt\n");
+            
+            while (TRUE);
+        }
+
+        wk += 256;
+        
+        if (((Sint32)wk & 0x3F)) 
+        {
+            printf("E0110103: ps2rna_init_psj: wk size error\n");
+            
+            while (TRUE);
+        }
+
+        psj->sjtmp = SJUNI_Create(1, ps2psj_sjuni_eewk[i], 256);
+
+        if (psj->sjtmp == NULL) 
+        {
+            printf("E0110104: ps2rna_init_psj: can't creat SJUNI_Creaet\n");
+            
+            while (TRUE);
+        }
+
+        psj->ck.len = 16384;
+        
+        psj->ck.data = wk;
+        
+        wk += 16384;
+        
+        SJ_PutChunk(psj->sjtmp, 0, &psj->ck);
+        
+        psj->sjx = SJX_Create(psj->sjtmp, psj->sjiop, 1);
+        
+        if (psj->sjx == NULL) 
+        {
+            printf("E0110105: ps2rna_init_psj: can't creat SJX_Create\n");
+            
+            while (TRUE);
+        }
+    }
+} 
+
+// 100% matching!
+void ps2rna_finish_psj(void)
+{
+    Sint32 i;
+    PS2PSJ psj;
+
+    for (i = 0; i < ps2rna_max_voice; i++) 
+    {
+        psj = &ps2psj_obj[i]; 
+
+        if (psj->sjiop != NULL) 
+        {
+            SJRMT_Destroy(psj->sjiop);
+        }
+
+        if (psj->sjtmp != NULL)
+        {
+            SJ_Destroy(psj->sjtmp);
+        }
+
+        if (psj->sjx != NULL)
+        {
+            SJX_Destroy(psj->sjx);
+        }
+
+        memset(psj, 0, sizeof(PS2PSJ_OBJ));
+    }
+
+    if (ps2psj_alloc_flag == 1)
+    {
+        sceSifFreeIopHeap(ps2psj_iop_work0);
+        
+        ps2psj_iop_work0 = NULL;
+        
+        ps2psj_alloc_flag = 0;
+    }
+}
+
+// 100% matching
+PS2PSJ ps2rna_get_psj(void)
+{
+    Sint32 i;
+    PS2PSJ psj;
+
+    psj = NULL;
+
+    for (i = 0; i < ps2rna_max_voice; i++) 
+    {
+        psj = &ps2psj_obj[i];
+
+        if (psj->used == FALSE) 
+        {
+            break;
+        }
+    }
+
+    if (i == 8) 
+    {
+        return NULL;
+    }
+
+    SJ_Reset(psj->sjtmp);
+    
+    SJ_PutChunk(psj->sjtmp, 0, &psj->ck); 
+    
+    SJRMT_Reset(psj->sjiop);
+    
+    psj->used = TRUE;
+    
+    return psj;
 }
 
 // 100% matching!
-void PS2RNA_ClearOverflow(PS2RNA rna)
+void ps2rna_release_psj(PS2PSJ psj)
 {
-    printf("PS2RNA_ClearOverflow: not implemented\n");
-    
-    while (TRUE);
+    psj->used = FALSE;
 }
+
+// 100% matching!
+void ps2rna_rcvcbf(void *obj, void *dt, Sint32 dtlen)
+{
+    PS2RNA_DTXFMT *fmt;
+	Sint32 ncmd;
+	Sint32 i;
+
+    fmt = dt;
+
+    if (fmt == NULL) 
+    {
+        while (TRUE);
+    }
+
+    ncmd = fmt->ncmd;
+
+    for (i = 0; i < ncmd; i++) 
+    {
+        
+    }
+}
+
+// 100% matching!
+void ps2rna_sndcbf(void *obj, void *dt, Sint32 dtlen)
+{
+    PS2RNA_DTXFMT *fmt;
+	PS2RNA_DTXCMD *cmd;
+	Sint32 i;
+	Sint32 ncmd;
+    Sint32 psmvol;
+    PS2RNA rna;
+
+    fmt = dt;
+    
+    cmd = fmt->cmd;  
+
+    ncmd = 0;
+    
+    for (i = 0; i < 8; i++) 
+    {
+        rna = &ps2rna_obj[i];
+        
+        if (rna->used == TRUE) 
+        {
+            if (ncmd == 128) 
+            {
+                goto label;
+            }
+            
+            if (rna->ee_plysw != rna->iop_plysw) 
+            {
+                cmd[ncmd].no = IOPRNA_CMD_SETPSW;
+                
+                cmd[ncmd].rna = rna->ioprna;
+                
+                cmd[ncmd].arg1 = rna->ee_plysw;
+                
+                rna->iop_plysw = rna->ee_plysw;
+                
+                ncmd++;
+            }
+            
+            if (ncmd == 128) 
+            {
+                goto label;
+            }
+            
+            if (rna->ee_nch != rna->iop_nch) 
+            {
+                cmd[ncmd].no = IOPRNA_CMD_SETNCH;
+                
+                cmd[ncmd].rna = rna->ioprna;
+                
+                cmd[ncmd].arg1 = rna->ee_nch;
+                
+                rna->iop_nch = rna->ee_nch;
+                
+                ncmd++;
+            }
+            
+            if (ncmd == 128) 
+            {
+                goto label;
+            }
+            
+            if (rna->ee_sfreq != rna->iop_sfreq) 
+            {
+                cmd[ncmd].no = IOPRNA_CMD_SETSFREQ;
+                
+                cmd[ncmd].rna = rna->ioprna;
+                
+                cmd[ncmd].arg1 = rna->ee_sfreq;
+                
+                rna->iop_sfreq = rna->ee_sfreq;
+                
+                ncmd++;
+            }
+            
+            if (ncmd == 128) 
+            {
+                goto label;
+            }
+            
+            if (rna->ee_vol != rna->iop_vol) 
+            {
+                psmvol = ps2rna_dbtbl[-rna->ee_vol];
+                
+                cmd[ncmd].no = IOPRNA_CMD_SETVOL;
+                
+                cmd[ncmd].rna = rna->ioprna;
+                
+                cmd[ncmd].arg1 = 0;
+                cmd[ncmd].arg2 = psmvol;
+                
+                ncmd++;
+                
+                rna->iop_vol = rna->ee_vol;
+            }
+                
+            if (ncmd == 128) 
+            {
+                goto label;
+            }
+        }
+    } 
+    
+label:
+    fmt->ncmd = ncmd;
+}
+
+// 100% matching!
+void PS2RNA_Init(void)
+{
+    ps2rna_build;
+    
+    if (ps2rna_init_cnt == 0) 
+    {
+        SJRMT_Init();
+        SJX_Init();
+        DTX_Init();
+        ps2rna_init_psj();
+        
+        ps2rna_wklen = 2176;
+        
+        ps2rna_eewk = (void*)(((Sint32)ps2rna_ee_work + 64) & 0xFFFFFFC0);
+        
+        if (ps2rna_iopwk == NULL) 
+        {
+            ps2rna_iopwk = sceSifAllocIopHeap(2256);
+            
+            if (ps2rna_iopwk == NULL) 
+            {
+                printf("E0100301: PS2RNA_Init can't allocate IOP Heap\n");
+                
+                while (TRUE);
+            }
+        }
+        
+        ps2rna_iopwk = (void*)(((Sint32)ps2rna_iopwk + 64) & 0xFFFFFFC0); 
+        
+        ps2rna_dtx = DTX_Create(1, ps2rna_eewk, ps2rna_iopwk, ps2rna_wklen);
+        
+        if (ps2rna_dtx == NULL) 
+        {
+            printf("E0100302: PS2RNA_Init can't create DTX\n");
+            
+            while (TRUE); 
+        } 
+        
+        DTX_SetRcvCbf(ps2rna_dtx, ps2rna_rcvcbf, NULL);
+        DTX_SetSndCbf(ps2rna_dtx, ps2rna_sndcbf, NULL);
+    }
+    
+    ps2rna_init_cnt++;
+}
+
+// 100% matching!
+void PS2RNA_Finish(void)
+{
+    if (--ps2rna_init_cnt == 0)
+    {
+        DTX_Finish();
+        SJX_Finish();
+        SJRMT_Finish();
+    }
+} 
 
 // 100% matching!
 PS2RNA PS2RNA_Create(SJ *sj, Sint32 maxnch)
@@ -203,12 +531,105 @@ void PS2RNA_Destroy(PS2RNA ps2rna)
 }
 
 // 100% matching!
-Sint32 PS2RNA_DiscardData(PS2RNA rna, Sint32 nsmpl)
+void PS2RNA_Start(PS2RNA rna)
 {
-    printf("PS2RNA_DiscardData: not implemented\n");
+    printf("PS2RNA_Start: not implemented\n");
 
-    while (TRUE); 
+    while (TRUE);
 }
+
+// 100% matching!
+void PS2RNA_Stop(PS2RNA rna)
+{
+    PS2RNA_SetTransSw(rna, 0);
+    PS2RNA_SetPlaySw(rna, 0);
+}
+
+// 100% matching!
+void PS2RNA_SetTransSw(PS2RNA rna, Sint32 sw)
+{
+    Sint32 i;
+
+    if (rna->trnsw == sw)
+    {
+        return;
+    }
+    
+    rna->trnsw = sw;
+    
+    if (sw != 1)
+    {
+        return;
+    }
+    
+    if (rna->dtrstop_flg == sw)
+    {
+        for (i = 0; i < rna->maxnch; i++) 
+        {
+            DTR_Start(rna->dtr[i]);
+        }
+
+        rna->dtrstop_flg = 0;
+    }
+
+    rna->flsh_size = 0;
+}
+
+// 100% matching!
+void PS2RNA_SetPlaySw(PS2RNA rna, Sint32 sw)
+{
+    Sint32 i;
+
+    rna->ee_plysw = sw;
+    
+    if (sw == 0) 
+    {
+        for (i = 0; i < rna->maxnch; i++) 
+        {
+            SJ_Reset(rna->psj[i]->sjtmp);
+            
+            SJ_PutChunk(rna->psj[i]->sjtmp, 0, &rna->psj[i]->ck);
+            
+            SJRMT_Reset(rna->psj[i]->sjiop); 
+        }
+    }
+}
+
+// 100% matching!
+void PS2RNA_ClearBuf(PS2RNA rna) 
+{
+    printf("PS2RNA_ClearBuf: not implemented\n");
+
+    while (TRUE);
+}
+
+// 100% matching!
+void PS2RNA_SetPcmType(PS2RNA rna, Sint32 type)
+{
+    printf("PS2RNA_SetPcmType: not implemented\n");
+
+    while (TRUE);
+}
+
+// 100% matching! 
+void PS2RNA_GetTime(PS2RNA rna, Sint32 *ncount, Sint32 *tscale)
+{
+    *ncount = 0;
+    
+    *tscale = 48000;
+}
+
+// 100% matching! 
+Sint32 PS2RNA_GetNumData(PS2RNA rna)
+{
+    return (Uint32)(16384 - SJ_GetNumData(rna->psj[0]->sjtmp, 0)) / 2;
+}
+
+// 100% matching! 
+Sint32 PS2RNA_GetNumRoom(PS2RNA rna)
+{
+    return (Uint32)SJ_GetNumData(rna->psj[0]->sjtmp, 0) / 2;
+} 
 
 // 100% matching!
 void PS2RNA_ExecHndl(PS2RNA rna)
@@ -292,345 +713,11 @@ void PS2RNA_ExecServer(void)
 }
 
 // 100% matching!
-void PS2RNA_Finish(void)
+void PS2RNA_SetStartSmpl(PS2RNA rna, Sint32 nsmpl)
 {
-    if (--ps2rna_init_cnt == 0)
-    {
-        DTX_Finish();
-        SJX_Finish();
-        SJRMT_Finish();
-    }
-} 
-
-// 100% matching!
-void ps2rna_finish_psj(void)
-{
-    Sint32 i;
-    PS2PSJ psj;
-
-    for (i = 0; i < ps2rna_max_voice; i++) 
-    {
-        psj = &ps2psj_obj[i]; 
-
-        if (psj->sjiop != NULL) 
-        {
-            SJRMT_Destroy(psj->sjiop);
-        }
-
-        if (psj->sjtmp != NULL)
-        {
-            SJ_Destroy(psj->sjtmp);
-        }
-
-        if (psj->sjx != NULL)
-        {
-            SJX_Destroy(psj->sjx);
-        }
-
-        memset(psj, 0, sizeof(PS2PSJ_OBJ));
-    }
-
-    if (ps2psj_alloc_flag == 1)
-    {
-        sceSifFreeIopHeap(ps2psj_iop_work0);
-        
-        ps2psj_iop_work0 = NULL;
-        
-        ps2psj_alloc_flag = 0;
-    }
-}
-
-// 100% matching!
-void PS2RNA_Flush(PS2RNA rna)
-{
-    printf("PS2RNA_Flush: not implemented\n");
+    printf("PS2RNA_SetStartSmpl: not implemented\n");
 
     while (TRUE);
-}
-
-// 100% matching
-PS2PSJ ps2rna_get_psj(void)
-{
-    Sint32 i;
-    PS2PSJ psj;
-
-    psj = NULL;
-
-    for (i = 0; i < ps2rna_max_voice; i++) 
-    {
-        psj = &ps2psj_obj[i];
-
-        if (psj->used == FALSE) 
-        {
-            break;
-        }
-    }
-
-    if (i == 8) 
-    {
-        return NULL;
-    }
-
-    SJ_Reset(psj->sjtmp);
-    
-    SJ_PutChunk(psj->sjtmp, 0, &psj->ck); 
-    
-    SJRMT_Reset(psj->sjiop);
-    
-    psj->used = TRUE;
-    
-    return psj;
-}
-
-// 100% matching!
-Sint32 PS2RNA_GetBitPerSmpl(PS2RNA rna) 
-{
-    return 16;
-}
-
-// 100% matching! 
-Sint32 PS2RNA_GetNumData(PS2RNA rna)
-{
-    return (Uint32)(16384 - SJ_GetNumData(rna->psj[0]->sjtmp, 0)) / 2;
-}
-
-// 100% matching! 
-Sint32 PS2RNA_GetNumRoom(PS2RNA rna)
-{
-    return (Uint32)SJ_GetNumData(rna->psj[0]->sjtmp, 0) / 2;
-} 
-
-// 100% matching!
-Sint32 PS2RNA_GetOutPan(PS2RNA rna, Sint32 chno)
-{
-    return rna->ee_pan[chno];
-}
-
-// 100% matching!
-Sint32 PS2RNA_GetOutVol(PS2RNA rna)
-{
-    return rna->ee_vol;
-}
-
-// 100% matching!
-Sint32 PS2RNA_GetSfreq(PS2RNA rna) 
-{
-    return rna->ee_sfreq;
-}
-
-// 100% matching!
-SJ PS2RNA_GetSjiop(PS2RNA rna, Sint32 chno)
-{
-    return rna->psj[chno]->sjiop; 
-}
-
-// 100% matching!
-SJ PS2RNA_GetSjtmp(PS2RNA rna, Sint32 chno)
-{
-    return rna->psj[chno]->sjtmp; 
-} 
-
-// 100% matching!
-Sint32 PS2RNA_GetStartSmpl(PS2RNA rna)
-{
-    printf("PS2RNA_GetStartSmpl: not implemented\n");
-    
-    while (TRUE);
-}
-
-// 100% matching! 
-void PS2RNA_GetTime(PS2RNA rna, Sint32 *ncount, Sint32 *tscale)
-{
-    *ncount = 0;
-    
-    *tscale = 48000;
-}
-
-// 100% matching!
-void PS2RNA_Init(void)
-{
-    ps2rna_build;
-    
-    if (ps2rna_init_cnt == 0) 
-    {
-        SJRMT_Init();
-        SJX_Init();
-        DTX_Init();
-        ps2rna_init_psj();
-        
-        ps2rna_wklen = 2176;
-        
-        ps2rna_eewk = (void*)(((Sint32)ps2rna_ee_work + 64) & 0xFFFFFFC0);
-        
-        if (ps2rna_iopwk == NULL) 
-        {
-            ps2rna_iopwk = sceSifAllocIopHeap(2256);
-            
-            if (ps2rna_iopwk == NULL) 
-            {
-                printf("E0100301: PS2RNA_Init can't allocate IOP Heap\n");
-                
-                while (TRUE);
-            }
-        }
-        
-        ps2rna_iopwk = (void*)(((Sint32)ps2rna_iopwk + 64) & 0xFFFFFFC0); 
-        
-        ps2rna_dtx = DTX_Create(1, ps2rna_eewk, ps2rna_iopwk, ps2rna_wklen);
-        
-        if (ps2rna_dtx == NULL) 
-        {
-            printf("E0100302: PS2RNA_Init can't create DTX\n");
-            
-            while (TRUE); 
-        } 
-        
-        DTX_SetRcvCbf(ps2rna_dtx, ps2rna_rcvcbf, NULL);
-        DTX_SetSndCbf(ps2rna_dtx, ps2rna_sndcbf, NULL);
-    }
-    
-    ps2rna_init_cnt++;
-}
-
-// 100% matching!
-void ps2rna_init_psj(void) 
-{
-    Sint32 i;
-	PS2PSJ psj;
-	Sint8 *wk;
-
-    if (ps2psj_iop_work0 == NULL) 
-    {
-        ps2psj_iop_work0 = sceSifAllocIopHeap(ps2psj_iop_wksize + 64);
-        
-        ps2psj_iop_work = (void*)(((Sint32)ps2psj_iop_work0 + 64) & 0xFFFFFFC0);
-        
-        ps2psj_alloc_flag = 1;
-    }
-
-    memset(ps2psj_obj, 0, sizeof(ps2psj_obj));
-    
-    wk = ps2psj_iop_work;
-
-    for (i = 0; i < ps2rna_max_voice; i++) 
-    {
-        psj = &ps2psj_obj[i];
-        
-        psj->used = FALSE;
-
-        if (((Sint32)wk & 0x3F))
-        {
-            printf("E0110101: ps2rna_init_psj wk size error\n");
-            
-            while (TRUE);
-        }
-
-        psj->sjiop = SJUNI_CreateRmt(1, wk, 256);
-
-        if (psj->sjiop == NULL) 
-        {
-            printf("E0110102: ps2rna_init_psj: can't creat SJUNI_CreaetRmt\n");
-            
-            while (TRUE);
-        }
-
-        wk += 256;
-        
-        if (((Sint32)wk & 0x3F)) 
-        {
-            printf("E0110103: ps2rna_init_psj: wk size error\n");
-            
-            while (TRUE);
-        }
-
-        psj->sjtmp = SJUNI_Create(1, ps2psj_sjuni_eewk[i], 256);
-
-        if (psj->sjtmp == NULL) 
-        {
-            printf("E0110104: ps2rna_init_psj: can't creat SJUNI_Creaet\n");
-            
-            while (TRUE);
-        }
-
-        psj->ck.len = 16384;
-        
-        psj->ck.data = wk;
-        
-        wk += 16384;
-        
-        SJ_PutChunk(psj->sjtmp, 0, &psj->ck);
-        
-        psj->sjx = SJX_Create(psj->sjtmp, psj->sjiop, 1);
-        
-        if (psj->sjx == NULL) 
-        {
-            printf("E0110105: ps2rna_init_psj: can't creat SJX_Create\n");
-            
-            while (TRUE);
-        }
-    }
-} 
-
-// 100% matching!
-Sint32 PS2RNA_IsOverflow(PS2RNA rna)
-{
-    printf("PS2RNA_IsOverflow: not implemented\n");
-
-    while (TRUE);
-}
-
-// 100% matching!
-Sint32 PS2RNA_IsPlySwOff(PS2RNA rna) 
-{
-    Sint32 ret;
-
-    ret = 0;
-    
-    if (PS2RNA_GetNumData(rna) <= 0) 
-    {
-        ret = rna->dtrstop_flg == 1;
-    }
-    
-    return ret;
-}
-
-// 100% matching!
-void ps2rna_rcvcbf(void *obj, void *dt, Sint32 dtlen)
-{
-    PS2RNA_DTXFMT *fmt;
-	Sint32 ncmd;
-	Sint32 i;
-
-    fmt = dt;
-
-    if (fmt == NULL) 
-    {
-        while (TRUE);
-    }
-
-    ncmd = fmt->ncmd;
-
-    for (i = 0; i < ncmd; i++) 
-    {
-        
-    }
-}
-
-// 100% matching!
-void ps2rna_release_psj(PS2PSJ psj)
-{
-    psj->used = FALSE;
-}
-
-// 100% matching!
-void PS2RNA_SetBitPerSmpl(PS2RNA rna, Sint32 bps)
-{
-    if (bps != 16) 
-    {
-        printf("PS2RNA_SetBitPerSmpl: not support %d bps\n");
-        
-        while (TRUE);
-    }
 }
 
 // 100% matching!
@@ -640,23 +727,9 @@ void PS2RNA_SetNumChan(PS2RNA rna, Sint32 nch)
 }
 
 // 100% matching!
-void PS2RNA_SetOutPan(PS2RNA rna, Sint32 chno, Sint32 pan)
+void PS2RNA_SetSfreq(PS2RNA rna, Sint32 sfreq)
 {
-    Sint32 val;
-
-    val = pan;
-
-    if (val < -15)
-    {
-        val = -15;
-    }
-
-    if (val > 15) 
-    {
-        val = 15;
-    }
-    
-    rna->ee_pan[chno] = val;
+    rna->ee_sfreq = sfreq;
 }
 
 // 100% matching!
@@ -680,43 +753,104 @@ void PS2RNA_SetOutVol(PS2RNA rna, Sint32 vol)
 }
 
 // 100% matching!
-void PS2RNA_SetPcmType(PS2RNA rna, Sint32 type)
+void PS2RNA_SetOutPan(PS2RNA rna, Sint32 chno, Sint32 pan)
 {
-    printf("PS2RNA_SetPcmType: not implemented\n");
+    Sint32 val;
+
+    val = pan;
+
+    if (val < -15)
+    {
+        val = -15;
+    }
+
+    if (val > 15) 
+    {
+        val = 15;
+    }
+    
+    rna->ee_pan[chno] = val;
+}
+
+// 100% matching!
+void PS2RNA_SetBitPerSmpl(PS2RNA rna, Sint32 bps)
+{
+    if (bps != 16) 
+    {
+        printf("PS2RNA_SetBitPerSmpl: not support %d bps\n");
+        
+        while (TRUE);
+    }
+}
+
+// 100% matching!
+Sint32 PS2RNA_GetStartSmpl(PS2RNA rna)
+{
+    printf("PS2RNA_GetStartSmpl: not implemented\n");
+    
+    while (TRUE);
+}
+
+// 100% matching!
+Sint32 PS2RNA_GetSfreq(PS2RNA rna) 
+{
+    return rna->ee_sfreq;
+}
+
+// 100% matching!
+Sint32 PS2RNA_GetOutVol(PS2RNA rna)
+{
+    return rna->ee_vol;
+}
+
+// 100% matching!
+Sint32 PS2RNA_GetOutPan(PS2RNA rna, Sint32 chno)
+{
+    return rna->ee_pan[chno];
+}
+
+// 100% matching!
+Sint32 PS2RNA_GetBitPerSmpl(PS2RNA rna) 
+{
+    return 16;
+}
+
+// 100% matching!
+Sint32 PS2RNA_IsOverflow(PS2RNA rna)
+{
+    printf("PS2RNA_IsOverflow: not implemented\n");
 
     while (TRUE);
 }
 
 // 100% matching!
-void PS2RNA_SetPlaySw(PS2RNA rna, Sint32 sw)
+void PS2RNA_ClearOverflow(PS2RNA rna)
 {
-    Sint32 i;
-
-    rna->ee_plysw = sw;
+    printf("PS2RNA_ClearOverflow: not implemented\n");
     
-    if (sw == 0) 
-    {
-        for (i = 0; i < rna->maxnch; i++) 
-        {
-            SJ_Reset(rna->psj[i]->sjtmp);
-            
-            SJ_PutChunk(rna->psj[i]->sjtmp, 0, &rna->psj[i]->ck);
-            
-            SJRMT_Reset(rna->psj[i]->sjiop); 
-        }
-    }
+    while (TRUE);
 }
 
 // 100% matching!
-void PS2RNA_SetSfreq(PS2RNA rna, Sint32 sfreq)
+void PS2RNA_Flush(PS2RNA rna)
 {
-    rna->ee_sfreq = sfreq;
+    printf("PS2RNA_Flush: not implemented\n");
+
+    while (TRUE);
 }
 
 // 100% matching!
-void PS2RNA_SetStartSmpl(PS2RNA rna, Sint32 nsmpl)
+Sint32 PS2RNA_DiscardData(PS2RNA rna, Sint32 nsmpl)
 {
-    printf("PS2RNA_SetStartSmpl: not implemented\n");
+    printf("PS2RNA_DiscardData: not implemented\n");
+
+    while (TRUE); 
+}
+
+// 100% matching!
+void PS2RNA_SetTotalNumSmpl(PS2RNA rna, Sint32 nsmpl)
+{
+    printf("PS2RNA_SetTotalNumSmpl: not implemented\n");
 
     while (TRUE);
 }
@@ -730,162 +864,28 @@ Sint32 PS2RNA_SetStmHdInfo(PS2RNA rna, void *snddat)
 }
 
 // 100% matching!
-void PS2RNA_SetTotalNumSmpl(PS2RNA rna, Sint32 nsmpl)
+Sint32 PS2RNA_IsPlySwOff(PS2RNA rna) 
 {
-    printf("PS2RNA_SetTotalNumSmpl: not implemented\n");
+    Sint32 ret;
 
-    while (TRUE);
-}
-
-// 100% matching!
-void PS2RNA_SetTransSw(PS2RNA rna, Sint32 sw)
-{
-    Sint32 i;
-
-    if (rna->trnsw == sw)
+    ret = 0;
+    
+    if (PS2RNA_GetNumData(rna) <= 0) 
     {
-        return;
+        ret = rna->dtrstop_flg == 1;
     }
     
-    rna->trnsw = sw;
-    
-    if (sw != 1)
-    {
-        return;
-    }
-    
-    if (rna->dtrstop_flg == sw)
-    {
-        for (i = 0; i < rna->maxnch; i++) 
-        {
-            DTR_Start(rna->dtr[i]);
-        }
-
-        rna->dtrstop_flg = 0;
-    }
-
-    rna->flsh_size = 0;
+    return ret;
 }
 
 // 100% matching!
-void ps2rna_sndcbf(void *obj, void *dt, Sint32 dtlen)
+SJ PS2RNA_GetSjtmp(PS2RNA rna, Sint32 chno)
 {
-    PS2RNA_DTXFMT *fmt;
-	PS2RNA_DTXCMD *cmd;
-	Sint32 i;
-	Sint32 ncmd;
-    Sint32 psmvol;
-    PS2RNA rna;
-
-    fmt = dt;
-    
-    cmd = fmt->cmd;  
-
-    ncmd = 0;
-    
-    for (i = 0; i < 8; i++) 
-    {
-        rna = &ps2rna_obj[i];
-        
-        if (rna->used == TRUE) 
-        {
-            if (ncmd == 128) 
-            {
-                goto label;
-            }
-            
-            if (rna->ee_plysw != rna->iop_plysw) 
-            {
-                cmd[ncmd].no = IOPRNA_CMD_SETPSW;
-                
-                cmd[ncmd].rna = rna->ioprna;
-                
-                cmd[ncmd].arg1 = rna->ee_plysw;
-                
-                rna->iop_plysw = rna->ee_plysw;
-                
-                ncmd++;
-            }
-            
-            if (ncmd == 128) 
-            {
-                goto label;
-            }
-            
-            if (rna->ee_nch != rna->iop_nch) 
-            {
-                cmd[ncmd].no = IOPRNA_CMD_SETNCH;
-                
-                cmd[ncmd].rna = rna->ioprna;
-                
-                cmd[ncmd].arg1 = rna->ee_nch;
-                
-                rna->iop_nch = rna->ee_nch;
-                
-                ncmd++;
-            }
-            
-            if (ncmd == 128) 
-            {
-                goto label;
-            }
-            
-            if (rna->ee_sfreq != rna->iop_sfreq) 
-            {
-                cmd[ncmd].no = IOPRNA_CMD_SETSFREQ;
-                
-                cmd[ncmd].rna = rna->ioprna;
-                
-                cmd[ncmd].arg1 = rna->ee_sfreq;
-                
-                rna->iop_sfreq = rna->ee_sfreq;
-                
-                ncmd++;
-            }
-            
-            if (ncmd == 128) 
-            {
-                goto label;
-            }
-            
-            if (rna->ee_vol != rna->iop_vol) 
-            {
-                psmvol = ps2rna_dbtbl[-rna->ee_vol];
-                
-                cmd[ncmd].no = IOPRNA_CMD_SETVOL;
-                
-                cmd[ncmd].rna = rna->ioprna;
-                
-                cmd[ncmd].arg1 = 0;
-                cmd[ncmd].arg2 = psmvol;
-                
-                ncmd++;
-                
-                rna->iop_vol = rna->ee_vol;
-            }
-                
-            if (ncmd == 128) 
-            {
-                goto label;
-            }
-        }
-    } 
-    
-label:
-    fmt->ncmd = ncmd;
-}
+    return rna->psj[chno]->sjtmp; 
+} 
 
 // 100% matching!
-void PS2RNA_Start(PS2RNA rna)
+SJ PS2RNA_GetSjiop(PS2RNA rna, Sint32 chno)
 {
-    printf("PS2RNA_Start: not implemented\n");
-
-    while (TRUE);
-}
-
-// 100% matching!
-void PS2RNA_Stop(PS2RNA rna)
-{
-    PS2RNA_SetTransSw(rna, 0);
-    PS2RNA_SetPlaySw(rna, 0);
+    return rna->psj[chno]->sjiop; 
 }

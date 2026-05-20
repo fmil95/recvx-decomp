@@ -10,15 +10,35 @@ Sint32 lsc_init_cnt = 0;
 LSC_OBJ lsc_obj[LSC_OBJ_MAX] = { 0 };
 
 // 100% matching!
+void lsc_EntrySvrInt(void)
+{
+
+}
+
+// 100% matching!
 void lsc_DeleteSvrInt(void) 
 {
 
 }
 
 // 100% matching!
-void lsc_EntrySvrInt(void)
+void LSC_Init(void)
 {
-
+    LSC_CRS crs;
+    
+    LSC_LockCrs(&crs);
+    
+    if (lsc_init_cnt == 0) 
+    {
+        memset(lsc_obj, 0, sizeof(lsc_obj));
+        
+        lsc_EntrySvrInt();
+        LSC_EntryErrFunc(NULL, NULL);
+    }
+    
+    lsc_init_cnt++;
+    
+    LSC_UnlockCrs(&crs);
 }
 
 // 100% matching!
@@ -47,26 +67,6 @@ void LSC_Finish(void)
         lsc_DeleteSvrInt();
         LSC_EntryErrFunc(NULL, NULL);
     }
-    
-    LSC_UnlockCrs(&crs);
-}
-
-// 100% matching!
-void LSC_Init(void)
-{
-    LSC_CRS crs;
-    
-    LSC_LockCrs(&crs);
-    
-    if (lsc_init_cnt == 0) 
-    {
-        memset(lsc_obj, 0, sizeof(lsc_obj));
-        
-        lsc_EntrySvrInt();
-        LSC_EntryErrFunc(NULL, NULL);
-    }
-    
-    lsc_init_cnt++;
     
     LSC_UnlockCrs(&crs);
 }

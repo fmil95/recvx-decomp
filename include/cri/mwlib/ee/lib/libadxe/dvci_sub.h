@@ -16,8 +16,8 @@ typedef struct
 { 
 	DVS_CI_FCACHE *finf;
 	Sint32 num;
-	Sint32 num_max;
-	Sint32 fname_max;
+	// Sint32 num_max;
+	// Sint32 fname_max;
 } DVCI_FLIST_TBL;
 
 extern sceCdRMode dvg_ci_cdrmode;

@@ -39,51 +39,6 @@ void adxps2_adx_thrd_func(void)
     }
 }
 
-// 100% matching!
-void ADXPS2_ExecServer(void) 
-{
-    ADXT_ExecServer();
-    ADXT_ExecFsSvr();
-}
-
-// 100% matching!
-void ADXPS2_Lock(void)
-{
-    ThreadParam info; 
-    Sint32 th_id;
-
-    if (adxps2_lock_count == 0)
-    {
-        th_id = GetThreadId();
-        
-        ReferThreadStatus(th_id, &info);
-        
-        ChangeThreadPriority(th_id, adxps2_save_tprm.prio_lock);
-        
-        adxps2_cur_prio = info.currentPriority;
-        
-        adxps2_cur_tid = th_id;
-        
-        if (adxps2_id_safe != 0)
-        {
-            ResumeThread(adxps2_id_safe);
-            
-            if (adxps2_id_safe != 0)
-            {
-                
-            }
-        }
-    }
-    
-    adxps2_lock_count++;
-}
-
-// 100% matching!
-void ADXPS2_RestoreVsyncCallback(void) 
-{
-    adxps2_old_cbf = (void*)sceGsSyncVCallback(ADXPS2_VsyncCallback);
-}
-
 // 99.29% matching
 void adxps2_safe_thrd_func(void) 
 {
@@ -93,6 +48,30 @@ void adxps2_safe_thrd_func(void)
         
         adxps2_scnt;
     }
+}
+
+// 100% matching!
+int ADXPS2_VsyncCallback(int arg)
+{
+    if ((adxps2_exec_svr == 0) && (adxps2_id_adx != 0)) 
+    {
+        iWakeupThread(adxps2_id_adx);
+    }
+    
+    adxps2_vcnt++;
+    
+    if (adxps2_old_cbf != NULL) 
+    {
+        return adxps2_old_cbf(arg);
+    }
+    
+    return 0;
+}
+
+// 100% matching!
+void ADXPS2_RestoreVsyncCallback(void) 
+{
+    adxps2_old_cbf = (void*)sceGsSyncVCallback(ADXPS2_VsyncCallback);
 }
 
 // 99.89% matching
@@ -168,18 +147,6 @@ void ADXPS2_SetupThrd(ADXPS2_TPRM *tprm)
 }
 
 // 100% matching!
-void ADXPS2_SetupUsvr(void) 
-{
-
-}
-
-// 100% matching!
-void ADXPS2_Shutdown(void) 
-{
-
-}
-
-// 100% matching!
 void ADXPS2_ShutdownThrd(void)
 {
     SuspendThread(adxps2_id_adx);
@@ -201,6 +168,38 @@ void ADXPS2_ShutdownThrd(void)
     adxps2_id_main = GetThreadId();
     
     ChangeThreadPriority(adxps2_id_main, adxps2_main_prio_def);
+}
+
+// 100% matching!
+void ADXPS2_Lock(void)
+{
+    ThreadParam info; 
+    Sint32 th_id;
+
+    if (adxps2_lock_count == 0)
+    {
+        th_id = GetThreadId();
+        
+        ReferThreadStatus(th_id, &info);
+        
+        ChangeThreadPriority(th_id, adxps2_save_tprm.prio_lock);
+        
+        adxps2_cur_prio = info.currentPriority;
+        
+        adxps2_cur_tid = th_id;
+        
+        if (adxps2_id_safe != 0)
+        {
+            ResumeThread(adxps2_id_safe);
+            
+            if (adxps2_id_safe != 0)
+            {
+                
+            }
+        }
+    }
+    
+    adxps2_lock_count++;
 }
 
 // 100% matching!
@@ -230,19 +229,20 @@ void ADXPS2_Unlock(void)
 }
 
 // 100% matching!
-int ADXPS2_VsyncCallback(int arg)
+void ADXPS2_ExecServer(void) 
 {
-    if ((adxps2_exec_svr == 0) && (adxps2_id_adx != 0)) 
-    {
-        iWakeupThread(adxps2_id_adx);
-    }
-    
-    adxps2_vcnt++;
-    
-    if (adxps2_old_cbf != NULL) 
-    {
-        return adxps2_old_cbf(arg);
-    }
-    
-    return 0;
+    ADXT_ExecServer();
+    ADXT_ExecFsSvr();
+}
+
+// 100% matching!
+void ADXPS2_SetupUsvr(void) 
+{
+
+}
+
+// 100% matching!
+void ADXPS2_Shutdown(void) 
+{
+
 }

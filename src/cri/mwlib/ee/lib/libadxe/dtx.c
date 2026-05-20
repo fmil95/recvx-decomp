@@ -10,7 +10,6 @@
 Char8* volatile dtx_build = "\nDTX Ver.0.95 Build:Jan 26 2001 09:57:12\n";
 Sint32 dtx_rpc_id = 0x7D000000;
 Sint32 volatile dtx_proc_init_flag = 0;
-Sint32 dtx_init_cnt = 0;
 DTX_OBJ dtx_clnt[8] = { 0 };
 DTX_OBJ dtx_svr[8] = { 0 }; /* unused */
 sceSifClientData dtx_cd = { 0 };
@@ -22,23 +21,117 @@ static Uint32 dtx_sbuf[64] __attribute__((aligned(64)));
 static Uint32 dtx_rbuf[64] __attribute__((aligned(64)));
 
 // 100% matching!
-Sint32 DTX_CallUrpc(Sint32 fno, Sint32 *in, Sint32 nin, Sint32 *out, Sint32 nout)
+void* dtx_rpc_func(unsigned int fno, void *data, int size)
 {
-    Sint32 i;
+    Sint32 *arg;
+    sceSifRpcFunc fn;
 
-    for (i = 0; i < nin; i++)
+    arg = data;
+
+    SJCRS_Lock();
+
+    switch (fno) 
     {
-        dtx_sbuf[i] = in[i];
-    }
-
-    sceSifCallRpc(&dtx_cd, fno + 1024, 0, dtx_sbuf, nin * sizeof(Uint32), dtx_rbuf, nout * sizeof(Uint32), NULL, NULL);
-
-    for (i = 0; i < nout; i++)
-    {
-        out[i] = dtx_rbuf[i];
+    case 0:
+    case 1:
+        break;
+    default:
+        if ((fno >= 1024) && (fno < 1088)) 
+        {
+            fn = dtx_urpc_fn[fno - 1024];
+            
+            if (fn != NULL) 
+            {
+                fn((Uint32)dtx_urpc_obj[fno - 1024], arg, (Uint32)size / 4);
+            }
+        }         
+        
+        break;
+    case 2:
+        arg[0] = (Sint32)DTX_Create(arg[0], (Sint8*)arg[1], (Sint8*)arg[2], arg[3]); 
+        break;
+    case 3:
+        DTX_Destroy((DTX)arg[0]);
+        break;
     }
     
-    return dtx_rbuf[0]; 
+    SJCRS_Unlock();
+    
+    return arg; 
+}
+
+// 100% matching!
+int dtx_svr_proc()
+{
+    sceSifQueueData qd;
+    sceSifQueueData qd0;
+
+    sceSifSetRpcQueue(&qd, GetThreadId());
+    sceSifSetRpcQueue(&qd0, GetThreadId());
+    
+    sceSifRegisterRpc(&dtx_sd, dtx_rpc_id, (sceSifRpcFunc)dtx_rpc_func, dtx_svrbuf, NULL, NULL, &qd);
+    
+    dtx_proc_init_flag = 1;
+    
+    sceSifRpcLoop(&qd);
+    
+    return 0;
+}
+
+// 100% matching!
+DTX dtx_create_rmt(Sint32 id, Sint8 *eewk, Sint8 *iopwk, Sint32 wklen)
+{
+    dtx_sbuf[0] = id;
+    dtx_sbuf[1] = (Sint32)eewk;
+    dtx_sbuf[2] = (Sint32)iopwk;
+    dtx_sbuf[3] = wklen;
+    
+    sceSifCallRpc(&dtx_cd, 2, 0, dtx_sbuf, 4 * sizeof(Uint32), dtx_rbuf, sizeof(Uint32), NULL, NULL);
+    
+    return (DTX)dtx_rbuf[0];
+}
+
+// 100% matching!
+void dtx_destroy_rmt(DTX dtx)
+{
+    dtx_sbuf[0] = (Sint32)dtx;
+    
+    sceSifCallRpc(&dtx_cd, 3, 0, dtx_sbuf, sizeof(Uint32), dtx_rbuf, 0, NULL, NULL);
+}
+
+// 100% matching!
+void dtx_def_rcvcbf(void *obj, void *dt, Sint32 dtlen)
+{
+    static Sint32 cnt = 0;
+    
+    cnt++;
+}
+
+// 100% matching!
+void dtx_def_sndcbf(void *obj, void *dt, Sint32 dtlen)
+{
+    static Sint32 cnt = 0;
+    Sint32 i;
+
+    for (i = 0; i < dtlen; i++) 
+    {
+        ((Sint8*)dt)[i] = -86;
+    }
+    
+    sprintf(dt, "Hello from EE (%d)", cnt);
+    
+    cnt++; 
+}
+
+// 100% matching!
+DTX DTX_Open(Sint32 id)
+{
+    if ((Uint32)id >= 8) 
+    {
+        return NULL;
+    }
+    
+    return &dtx_clnt[id];
 }
 
 // 100% matching!
@@ -130,43 +223,6 @@ DTX DTX_Create(Sint32 id, Sint8 *eewk, Sint8 *iopwk, Sint32 wklen)
 }
 
 // 100% matching!
-DTX dtx_create_rmt(Sint32 id, Sint8 *eewk, Sint8 *iopwk, Sint32 wklen)
-{
-    dtx_sbuf[0] = id;
-    dtx_sbuf[1] = (Sint32)eewk;
-    dtx_sbuf[2] = (Sint32)iopwk;
-    dtx_sbuf[3] = wklen;
-    
-    sceSifCallRpc(&dtx_cd, 2, 0, dtx_sbuf, 4 * sizeof(Uint32), dtx_rbuf, sizeof(Uint32), NULL, NULL);
-    
-    return (DTX)dtx_rbuf[0];
-}
-
-// 100% matching!
-void dtx_def_rcvcbf(void *obj, void *dt, Sint32 dtlen)
-{
-    static Sint32 cnt = 0;
-    
-    cnt++;
-}
-
-// 100% matching!
-void dtx_def_sndcbf(void *obj, void *dt, Sint32 dtlen)
-{
-    static Sint32 cnt = 0;
-    Sint32 i;
-
-    for (i = 0; i < dtlen; i++) 
-    {
-        ((Sint8*)dt)[i] = -86;
-    }
-    
-    sprintf(dt, "Hello from EE (%d)", cnt);
-    
-    cnt++; 
-}
-
-// 100% matching!
 void DTX_Destroy(DTX dtx)
 {
     dtx_destroy_rmt(dtx->dtxsvr);
@@ -175,11 +231,17 @@ void DTX_Destroy(DTX dtx)
 }
 
 // 100% matching!
-void dtx_destroy_rmt(DTX dtx)
+void DTX_SetRcvCbf(DTX dtx, DTX_RCVCBF fn, void *obj)
 {
-    dtx_sbuf[0] = (Sint32)dtx;
-    
-    sceSifCallRpc(&dtx_cd, 3, 0, dtx_sbuf, sizeof(Uint32), dtx_rbuf, 0, NULL, NULL);
+    dtx->rcvcbf = fn;
+    dtx->rcvcbo = obj;
+}
+
+// 100% matching!
+void DTX_SetSndCbf(DTX dtx, DTX_SNDCBF fn, void *obj)
+{
+    dtx->sndcbf = fn;
+    dtx->sndcbo = obj;
 }
 
 // 100% matching!
@@ -225,50 +287,7 @@ void DTX_ExecHndl(DTX dtx)
     }
 }
 
-// 100% matching!
-void DTX_ExecServer(void)
-{
-    Sint32 i;
-    DTX dtx;
-
-    SJCRS_Lock();
-
-    for (i = 0; i < 8; i++) 
-    {
-        dtx = &dtx_clnt[i];
-
-        if (dtx->used == TRUE) 
-        {
-            DTX_ExecHndl(dtx);
-        }
-    }
-
-    SJCRS_Unlock();
-}
-
-// 100% matching!
-void DTX_Finish(void)
-{
-    Sint32 i;
-    DTX dtx;
-
-    dtx = NULL;
-
-    if (--dtx_init_cnt == 0) 
-    {
-        dtx++; // FAKE: this operation is invalid, it's only allowed for match purposes
-        
-        for (i = 0; i < 8; i++) 
-        {
-            dtx = &dtx_clnt[i];
-    
-            if (dtx->used == TRUE)
-            {
-                DTX_Destroy(dtx);
-            }
-        }
-    }
-}
+Sint32 dtx_init_cnt = 0;
 
 // 99.76% matching
 void DTX_Init(void) 
@@ -299,84 +318,66 @@ void DTX_Init(void)
 }
 
 // 100% matching!
-DTX DTX_Open(Sint32 id)
+void DTX_Finish(void)
 {
-    if ((Uint32)id >= 8) 
+    Sint32 i;
+    DTX dtx;
+
+    dtx = NULL;
+
+    if (--dtx_init_cnt == 0) 
     {
-        return NULL;
-    }
+        dtx++; // FAKE: this operation is invalid, it's only allowed for match purposes
+        
+        for (i = 0; i < 8; i++) 
+        {
+            dtx = &dtx_clnt[i];
     
-    return &dtx_clnt[id];
+            if (dtx->used == TRUE)
+            {
+                DTX_Destroy(dtx);
+            }
+        }
+    }
 }
 
 // 100% matching!
-void* dtx_rpc_func(unsigned int fno, void *data, int size)
+Sint32 DTX_CallUrpc(Sint32 fno, Sint32 *in, Sint32 nin, Sint32 *out, Sint32 nout)
 {
-    Sint32 *arg;
-    sceSifRpcFunc fn;
+    Sint32 i;
 
-    arg = data;
+    for (i = 0; i < nin; i++)
+    {
+        dtx_sbuf[i] = in[i];
+    }
+
+    sceSifCallRpc(&dtx_cd, fno + 1024, 0, dtx_sbuf, nin * sizeof(Uint32), dtx_rbuf, nout * sizeof(Uint32), NULL, NULL);
+
+    for (i = 0; i < nout; i++)
+    {
+        out[i] = dtx_rbuf[i];
+    }
+    
+    return dtx_rbuf[0]; 
+}
+
+// 100% matching!
+void DTX_ExecServer(void)
+{
+    Sint32 i;
+    DTX dtx;
 
     SJCRS_Lock();
 
-    switch (fno) 
+    for (i = 0; i < 8; i++) 
     {
-    case 0:
-    case 1:
-        break;
-    default:
-        if ((fno >= 1024) && (fno < 1088)) 
+        dtx = &dtx_clnt[i];
+
+        if (dtx->used == TRUE) 
         {
-            fn = dtx_urpc_fn[fno - 1024];
-            
-            if (fn != NULL) 
-            {
-                fn((Uint32)dtx_urpc_obj[fno - 1024], arg, (Uint32)size / 4);
-            }
-        }         
-        
-        break;
-    case 2:
-        arg[0] = (Sint32)DTX_Create(arg[0], (Sint8*)arg[1], (Sint8*)arg[2], arg[3]); 
-        break;
-    case 3:
-        DTX_Destroy((DTX)arg[0]);
-        break;
+            DTX_ExecHndl(dtx);
+        }
     }
-    
+
     SJCRS_Unlock();
-    
-    return arg; 
-}
-
-// 100% matching!
-void DTX_SetRcvCbf(DTX dtx, DTX_RCVCBF fn, void *obj)
-{
-    dtx->rcvcbf = fn;
-    dtx->rcvcbo = obj;
-}
-
-// 100% matching!
-void DTX_SetSndCbf(DTX dtx, DTX_SNDCBF fn, void *obj)
-{
-    dtx->sndcbf = fn;
-    dtx->sndcbo = obj;
-}
-
-// 100% matching!
-int dtx_svr_proc()
-{
-    sceSifQueueData qd;
-    sceSifQueueData qd0;
-
-    sceSifSetRpcQueue(&qd, GetThreadId());
-    sceSifSetRpcQueue(&qd0, GetThreadId());
-    
-    sceSifRegisterRpc(&dtx_sd, dtx_rpc_id, (sceSifRpcFunc)dtx_rpc_func, dtx_svrbuf, NULL, NULL, &qd);
-    
-    dtx_proc_init_flag = 1;
-    
-    sceSifRpcLoop(&qd);
-    
-    return 0;
 }

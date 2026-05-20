@@ -23,12 +23,6 @@ options:
     .set I, $I
     .set R, $R
 
-    # A label referenced by a jumptable.
-    .macro ljlabel label, visibility=local
-        .\visibility "\label"
-        "\label":
-    .endm
-
   find_file_boundaries: False
   # disassemble_all: True
   asm_path: ../build/expected
@@ -57,6 +51,7 @@ options:
   rodata_string_guesser_level: 2
   data_string_guesser_level: 2
   ld_bss_is_noload: True
+  disasm_unknown: True
   # migrate_rodata_to_functions: False
 
 segments:
@@ -118,6 +113,8 @@ segments:
       - [0x012358, c, sce/ee/lib/libcdvd/cdvd000]
       - [0x0150D0, c, sce/ee/lib/libmc/libmc]
       - [0x0162B8, c, sce/ee/lib/libsdr/sdr_main]
+      - [auto, c, sce/ee/lib/libsdr/sdr_cb]
+      - [auto, c, sce/ee/lib/libssyn/ss_init]
       - [0x016600, c, sce/ee/lib/libssyn/ss_api]
       - [0x016B40, c, sce/ee/lib/libssyn/s_synth]
       - [0x0172B8, c, sce/ee/lib/libssyn/output]
@@ -129,6 +126,7 @@ segments:
       - [0x017DA0, c, sce/ee/lib/libssyn/lfo]
       - [0x0180E8, c, sce/ee/lib/libssyn/tvf]
       - [0x0184E8, c, sce/ee/lib/libssyn/util] # guessed
+      - [auto, c, sce/ee/lib/libssyn/variables]
       - [0x018748, c, sce/ee/lib/libssyn/tonegen]
       - [0x01A4F0, c, sce/ee/lib/libssyn/dma]
       - [0x01A6F8, c, sce/ee/lib/libssyn/part]
@@ -159,7 +157,9 @@ segments:
       - [0x020060, c, sce/ee/gcc/ee/lib/libm/sf_finite] # also in libc
       - [0x020088, c, sce/ee/gcc/ee/lib/libm/sf_floor]
       - [0x020170, c, sce/ee/gcc/ee/lib/libm/sf_frexp] # also in libc
+      - [auto, c, sce/ee/gcc/ee/lib/libm/s_infconst]
       - [0x020218, c, sce/ee/gcc/ee/lib/libm/sf_isnan] # also in libc
+      - [auto, c, sce/ee/gcc/ee/lib/libm/s_lib_ver]
       - [0x020240, c, sce/ee/gcc/ee/lib/libm/sf_scalbn] # also in libc
       - [0x0203A0, c, sce/ee/gcc/ee/lib/libm/sf_sin]
       - [0x020490, c, sce/ee/gcc/ee/lib/libm/sf_tan]
@@ -172,6 +172,7 @@ segments:
       - [0x020F78, c, sce/ee/gcc/ee/lib/libc/abs]
       - [0x020F90, c, sce/ee/gcc/ee/lib/libc/callocr]
       - [0x021050, c, sce/ee/gcc/ee/lib/libc/closer]
+      - [auto, c, sce/ee/gcc/ee/lib/libc/ctype_]
       - [0x0210A8, c, sce/ee/gcc/ee/lib/libc/dtoa]
       - [0x022490, c, sce/ee/gcc/ee/lib/libc/errno]
       - [0x0224A0, c, sce/ee/gcc/ee/lib/libc/exit]
@@ -182,6 +183,7 @@ segments:
       - [0x022DA0, c, sce/ee/gcc/ee/lib/libc/fvwrite]
       - [0x023178, c, sce/ee/gcc/ee/lib/libc/fwalk]
       - [0x023210, c, sce/ee/gcc/ee/lib/libc/index]
+      - [auto, c, sce/ee/gcc/ee/lib/libc/impure]
       - [0x023230, c, sce/ee/gcc/ee/lib/libc/locale]
       - [0x023320, c, sce/ee/gcc/ee/lib/libc/lseekr]
       - [0x023380, c, sce/ee/gcc/ee/lib/libc/makebuf]
@@ -437,8 +439,8 @@ segments:
       - [0x202130, .data, sce/ee/lib/libmpeg/mpc]
       - [0x202220, .data, sce/ee/lib/libmpeg/csc]
       - [0x202238, .data, sce/ee/lib/libmpeg/pack]
-      - [0x2022E8, .data, sce/ee/lib/libmpeg/mpeg] # guessed
-      - [0x202300, .data, sce/ee/lib/libmpeg/init] # guessed
+      - [0x2022E8, .data, sce/ee/lib/libmpeg/init]
+      - [0x202300, .data, sce/ee/lib/libipu/libipu]
       - [0x202BD0, .data, sce/ee/lib/libipu/ipuinit]
       - [0x202C50, .data, sce/ee/lib/libkernl/klib]
       - [0x202C60, .data, sce/ee/lib/libkernl/glue]
@@ -551,7 +553,7 @@ segments:
       - [0x238780, .data, ps2/veronica/prog/bup_00]
       - [0x2387A8, .data, ps2/veronica/prog/ps2_dummy]
       - [0x238820, .data, ps2/veronica/prog/ps2_NinjaCnk]
-      - [0x239360, .data, ps2/veronica/prog/ps2_NinjaCnk_prog]
+      # - [0x239360, .data, ps2/veronica/prog/ps2_NinjaCnk_prog]
       - [0x239380, .data, ps2/veronica/prog/ps2_Vu1Strip]
       - [0x239440, .data, ps2/veronica/prog/ps2_NaFog]
       - [0x239680, .data, ps2/veronica/prog/ps2_sfd_mw]
@@ -645,7 +647,7 @@ segments:
       - [0x254F00, .rodata, sce/ee/gcc/ee/lib/libm/wf_sqrt]
       - [0x254F10, .rodata, sce/ee/gcc/ee/lib/libc/ctype_]
       - [0x255020, .rodata, sce/ee/gcc/ee/lib/libc/dtoa]
-      - [0x255078, .rodata, sce/ee/gcc/ee/lib/libc/locale_] # unk
+      - [0x255078, .rodata, sce/ee/gcc/ee/lib/libc/impure]
       - [0x255080, .rodata, sce/ee/gcc/ee/lib/libc/locale]
       - [0x2550C8, .rodata, sce/ee/gcc/ee/lib/libc/mprec]
       - [0x2551F0, .rodata, sce/ee/gcc/ee/lib/libc/vfprintf]
@@ -745,7 +747,7 @@ segments:
       - [0x25FDF8, .rodata, cri/mwlib/ee/lib/libadxe/adx_fs]
       - [0x2604B8, .rodata, cri/mwlib/ee/lib/libadxe/adx_mps2]
       - [0x2604E8, .rodata, cri/mwlib/ee/lib/libadxe/adx_qtbl]
-      - [0x260D28, .rodata, cri/mwlib/ee/lib/libadxe/adx_dcd3]
+      - [0x260D28, .rodata, cri/mwlib/ee/lib/libadxe/adx_rnap]
       - [0x260D50, .rodata, cri/mwlib/ee/lib/libadxe/adx_stmc]
       - [0x260E18, .rodata, cri/mwlib/ee/lib/libadxe/adx_tlk]
       - [0x260EA8, .rodata, cri/mwlib/ee/lib/libadxe/adx_tlk2]
@@ -769,9 +771,11 @@ segments:
       - [0x262790, .rodata, ps2/veronica/prog/ps2_pxlconv]
       - [0x2627E8, pad]
       # CRI lit4
-      - [0x262880, .lit4, cri/mwlib/ee/lib/libadxe/adx_dcd3]
-      - [0x262884, .lit4, cri/mwlib/ee/lib/libadxe/adx_amp]
-      - [0x262888, pad]
+      - [0x262880, lit4]
+      # Handled during configure
+      # - [0x262880, .lit4, cri/mwlib/ee/lib/libadxe/adx_dcd3]
+      # - [0x262884, .lit4, cri/mwlib/ee/lib/libadxe/adx_amp]
+      # - [0x262888, pad]
       # CRI sdata
       - [0x262900, .sdata, cri/mwlib/ee/lib/libadxe/adx_amp]
       - [0x262908, .sdata, cri/mwlib/ee/lib/libadxe/adx_baif]
@@ -803,8 +807,8 @@ segments:
       - [0x262AB0, .sdata, cri/mwlib/ee/lib/libadxe/sjx]
       - [0x262AC8, pad]
       # 362a80-1e2cd00
-      - { vram: 0x00362A80, type: .bss, name: sce/ee/lib/libdma/libdma }
-      - { vram: 0x00362C00, type: .bss, name: sce/ee/lib/libmpeg/mpc }
+      - { vram: 0x00362A80, type: .bss, name: sce/ee/lib/crt0 }
+      - { vram: 0x00362C00, type: .bss, name: sce/ee/lib/libmpeg/init }
       - { vram: 0x00363610, type: .bss, name: sce/ee/lib/libkernl/thread }
       - { vram: 0x00363E20, type: .bss, name: sce/ee/lib/libkernl/deci2 }
       - { vram: 0x00363E80, type: .bss, name: sce/ee/lib/libkernl/tty }
@@ -902,7 +906,9 @@ segments:
       - { vram: 0x01E2CA40, type: .bss, name: cri/mwlib/ee/lib/libadxe/lsc_svr }
       - { vram: 0x01E2CA80, type: .bss, name: cri/mwlib/ee/lib/libadxe/sjr_clt }
       - { vram: 0x01E2CCC0, type: .bss, name: ps2/veronica/prog/ps2_pxlconv }
-      - { vram: 0x01E2CCC4, type: .bss, name: sce/ee/gcc/ee/lib/libc/sbrkr } # common
+      # common, handled during configure
+      - { vram: 0x01E2CCC4, type: .bss, name: comm }
+      # - { vram: 0x01E2CCC4, type: .bss, name: sce/ee/gcc/ee/lib/libc/sbrkr }
   - [0x262B00, databin, shstrtab] 
   - [0x262B60, databin, strtab] 
   - [0x284600, databin, symbtab] 

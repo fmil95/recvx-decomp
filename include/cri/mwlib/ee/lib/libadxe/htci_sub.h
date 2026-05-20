@@ -17,8 +17,8 @@ typedef struct
 { 
 	HTS_CI_FCACHE *finf;
 	Sint32 num;
-	Sint32 num_max;
-	Sint32 fname_max;
+	// Sint32 num_max;
+	// Sint32 fname_max;
 } HTCI_FLIST_TBL;
 
 extern Sint32 htg_ci_open_mode;
