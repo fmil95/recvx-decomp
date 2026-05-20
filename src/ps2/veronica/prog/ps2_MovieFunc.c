@@ -22,6 +22,16 @@ u_long128 test_tag[1400] __attribute__((aligned(64)));
 RMI_WORK rmi;
 MDSIZE_WORK mdSize __attribute__((aligned(64)));
 u_long128 new_tags[64] __attribute__((aligned(64)));
+
+// The original game has a bug and mistakenly overwrites the
+// first BSS variable (normally isCountVblank), as the current
+// version doesn't make that variable the first the UB breaks
+// FMVs, so in the meantime we add this variable to keep the
+// FMVs working
+#pragma force_active on
+static int unused;
+#pragma force_active off
+
 int isCountVblank;
 static int __image_w__;
 static int __image_h__;

@@ -6,9 +6,15 @@
 /* There's little here of interest, most of these functions are thunks for the console-specific audio renderer code in ps2_rna. */
 
 // 100% matching!
-void ADXRNA_ClearBuf(ADXRNA rna)
+void ADXRNA_Init(void)
 {
+    PS2RNA_Init();
+}
 
+// 100% matching!
+void ADXRNA_Finish(void)
+{
+    PS2RNA_Finish();
 }
 
 // 100% matching!
@@ -27,27 +33,33 @@ void ADXRNA_Destroy(ADXRNA rna)
 }
 
 // 100% matching!
-Sint32 ADXRNA_DiscardData(ADXRNA rna, Sint32 nsmpl)
+void ADXRNA_Start(ADXRNA rna)
 {
-    return PS2RNA_DiscardData(rna, nsmpl);
+    PS2RNA_Start(rna);
 }
 
 // 100% matching!
-void ADXRNA_ExecServer(void) 
+void ADXRNA_Stop(ADXRNA rna)
 {
-    PS2RNA_ExecServer();
+    PS2RNA_Stop(rna);
 }
 
 // 100% matching!
-void ADXRNA_Finish(void)
+void ADXRNA_SetTransSw(ADXRNA rna, Sint32 sw)
 {
-    PS2RNA_Finish();
+    PS2RNA_SetTransSw(rna, sw);
 }
 
 // 100% matching!
-Sint32 ADXRNA_GetBitPerSmpl(ADXRNA rna) 
+void ADXRNA_SetPlaySw(ADXRNA rna, Sint32 sw)
 {
-    return PS2RNA_GetBitPerSmpl(rna);
+    PS2RNA_SetPlaySw(rna, sw);
+}
+
+// 100% matching!
+void ADXRNA_GetTime(ADXRNA rna, Sint32 *ncount, Sint32 *tscale)
+{
+    PS2RNA_GetTime(rna, ncount, tscale);
 }
 
 // 100% matching!
@@ -63,24 +75,6 @@ Sint32 ADXRNA_GetNumRoom(ADXRNA rna)
 }
 
 // 100% matching!
-Sint32 ADXRNA_GetOutPan(ADXRNA rna, Sint32 chno)
-{
-    return PS2RNA_GetOutPan(rna, chno);
-}
-
-// 100% matching!
-Sint32 ADXRNA_GetOutVol(ADXRNA rna)
-{
-    return PS2RNA_GetOutVol(rna);
-}
-
-// 100% matching!
-Sint32 ADXRNA_GetSfreq(ADXRNA rna)
-{
-    return PS2RNA_GetSfreq(rna);
-}
-
-// 100% matching!
 Sint32 ADXRNA_GetStat(ADXRNA rna)
 {
     printf("ADXRNA_GetStat: not implemented\n");
@@ -89,57 +83,9 @@ Sint32 ADXRNA_GetStat(ADXRNA rna)
 }
 
 // 100% matching!
-void ADXRNA_GetTime(ADXRNA rna, Sint32 *ncount, Sint32 *tscale)
+void ADXRNA_ExecServer(void) 
 {
-    PS2RNA_GetTime(rna, ncount, tscale);
-}
-
-// 100% matching!
-void ADXRNA_Init(void)
-{
-    PS2RNA_Init();
-}
-
-// 100% matching!
-void ADXRNA_SetBitPerSmpl(ADXRNA rna, Sint32 bps)
-{
-    PS2RNA_SetBitPerSmpl(rna, bps);
-}
-
-// 100% matching!
-void ADXRNA_SetNumChan(ADXRNA rna, Sint32 nch) 
-{
-    PS2RNA_SetNumChan(rna, nch);
-}
-
-// 100% matching!
-void ADXRNA_SetOutPan(ADXRNA rna, Sint32 chno, Sint32 pan)
-{
-    PS2RNA_SetOutPan(rna, chno, pan);
-}
-
-// 100% matching!
-void ADXRNA_SetOutVol(ADXRNA rna, Sint32 vol)
-{
-    PS2RNA_SetOutVol(rna, vol);
-}
-
-// 100% matching!
-void ADXRNA_SetPcmType(ADXRNA rna, Sint32 type)
-{
-
-}
-
-// 100% matching!
-void ADXRNA_SetPlaySw(ADXRNA rna, Sint32 sw)
-{
-    PS2RNA_SetPlaySw(rna, sw);
-}
-
-// 100% matching!
-void ADXRNA_SetSfreq(ADXRNA rna, Sint32 sfreq)
-{
-    PS2RNA_SetSfreq(rna, sfreq);
+    PS2RNA_ExecServer();
 }
 
 // 100% matching!
@@ -149,11 +95,75 @@ void ADXRNA_SetStartSmpl(ADXRNA rna, Sint32 nsmpl)
 }
 
 // 100% matching!
-Sint32 ADXRNA_SetStmHdInfo(ADXRNA rna, void *snddat)
+void ADXRNA_SetNumChan(ADXRNA rna, Sint32 nch) 
 {
-    PS2RNA_SetStmHdInfo(rna, snddat);
-    
-    return 0;
+    PS2RNA_SetNumChan(rna, nch);
+}
+
+// 100% matching!
+void ADXRNA_SetSfreq(ADXRNA rna, Sint32 sfreq)
+{
+    PS2RNA_SetSfreq(rna, sfreq);
+}
+
+// 100% matching!
+void ADXRNA_SetOutVol(ADXRNA rna, Sint32 vol)
+{
+    PS2RNA_SetOutVol(rna, vol);
+}
+
+// 100% matching!
+void ADXRNA_SetOutPan(ADXRNA rna, Sint32 chno, Sint32 pan)
+{
+    PS2RNA_SetOutPan(rna, chno, pan);
+}
+
+// 100% matching!
+void ADXRNA_SetBitPerSmpl(ADXRNA rna, Sint32 bps)
+{
+    PS2RNA_SetBitPerSmpl(rna, bps);
+}
+
+// 100% matching!
+Sint32 ADXRNA_GetSfreq(ADXRNA rna)
+{
+    return PS2RNA_GetSfreq(rna);
+}
+
+// 100% matching!
+Sint32 ADXRNA_GetOutVol(ADXRNA rna)
+{
+    return PS2RNA_GetOutVol(rna);
+}
+
+// 100% matching!
+Sint32 ADXRNA_GetOutPan(ADXRNA rna, Sint32 chno)
+{
+    return PS2RNA_GetOutPan(rna, chno);
+}
+
+// 100% matching!
+Sint32 ADXRNA_GetBitPerSmpl(ADXRNA rna) 
+{
+    return PS2RNA_GetBitPerSmpl(rna);
+}
+
+// 100% matching!
+Sint32 ADXRNA_DiscardData(ADXRNA rna, Sint32 nsmpl)
+{
+    return PS2RNA_DiscardData(rna, nsmpl);
+}
+
+// 100% matching!
+void ADXRNA_ClearBuf(ADXRNA rna)
+{
+
+}
+
+// 100% matching!
+void ADXRNA_SetPcmType(ADXRNA rna, Sint32 type)
+{
+
 }
 
 // 100% matching!
@@ -163,25 +173,15 @@ void ADXRNA_SetTotalNumSmpl(ADXRNA rna, Sint32 nsmpl)
 }
 
 // 100% matching!
-void ADXRNA_SetTransSw(ADXRNA rna, Sint32 sw)
-{
-    PS2RNA_SetTransSw(rna, sw);
-}
-
-// 100% matching!
 void ADXRNA_SetWavFname(ADXRNA rna, const Sint8 *fname)
 {
 
 }
 
 // 100% matching!
-void ADXRNA_Start(ADXRNA rna)
+Sint32 ADXRNA_SetStmHdInfo(ADXRNA rna, void *snddat)
 {
-    PS2RNA_Start(rna);
-}
-
-// 100% matching!
-void ADXRNA_Stop(ADXRNA rna)
-{
-    PS2RNA_Stop(rna);
+    PS2RNA_SetStmHdInfo(rna, snddat);
+    
+    return 0;
 }

@@ -11,6 +11,23 @@ void adxt_err_dvd(void *obj, const char *msg, void *hndl)
 }
 
 // 100% matching!
+void ADXT_SetupDvdFs(ADXT_SPRM *sprm) 
+{
+    cvFsEntryErrFunc((void*)adxt_err_dvd, NULL);
+    
+    cvFsAddDev((Sint8*)"CDV", (void*)dvCiGetInterface, NULL);
+    
+    cvFsSetDefDev((Sint8*)"CDV");
+    
+    if (sprm != NULL) 
+    {
+        dvCiLoadFpCache((Sint8*)sprm->fname, (Sint8*)sprm->fpc, sprm->size);
+        
+        dvCiSetRdMode(sprm->nrtry, sprm->speed, sprm->dtype);
+    }
+}
+
+// 100% matching!
 Sint32 ADXT_LoadFpCacheDvd(ADXT_SPRM *sprm)
 {
     Sint32 size;
@@ -29,21 +46,4 @@ Sint32 ADXT_LoadFpCacheDvd(ADXT_SPRM *sprm)
 void ADXT_SetRdMode(ADXT_SPRM *sprm)
 {
     dvCiSetRdMode(sprm->nrtry, sprm->speed, sprm->dtype);
-}
-
-// 100% matching!
-void ADXT_SetupDvdFs(ADXT_SPRM *sprm) 
-{
-    cvFsEntryErrFunc((void*)adxt_err_dvd, NULL);
-    
-    cvFsAddDev((Sint8*)"CDV", (void*)dvCiGetInterface, NULL);
-    
-    cvFsSetDefDev((Sint8*)"CDV");
-    
-    if (sprm != NULL) 
-    {
-        dvCiLoadFpCache((Sint8*)sprm->fname, (Sint8*)sprm->fpc, sprm->size);
-        
-        dvCiSetRdMode(sprm->nrtry, sprm->speed, sprm->dtype);
-    }
 }

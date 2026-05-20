@@ -118,17 +118,6 @@ Sint32 ADX_DecodeInfoWav(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code,
 }
 
 // 100% matching!
-Sint32 ADXB_CheckWav(Sint8 *ibuf)
-{
-    if ((memcmp(ibuf, "RIFF", 4) == 0) && (memcmp(&ibuf[8], "WAVE", 4) == 0)) 
-    {
-        return 1;
-    }
-    
-    return 0;
-}
-
-// 100% matching!
 Sint32 ADXB_DecodeHeaderWav(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
 	Sint16 dlen;
@@ -178,36 +167,19 @@ Sint32 ADXB_DecodeHeaderWav(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 }
 
 // 100% matching!
-void ADXB_ExecOneWav(ADXB adxb)
-{
-    if (adxb->cdctype == 2) 
-    {                    
-        ADXB_ExecOneWav4(adxb);
-    }
-    else if (adxb->cdctype == 1) 
-    {
-        ADXB_ExecOneWav8(adxb);
-    }
-    else if (adxb->cdctype == 0)
-    { 
-        ADXB_ExecOneWav16(adxb);
-    }
-}
-
-// 100% matching!
-void ADXB_ExecOneWav4(ADXB adxb) 
+void ADXB_ExecOneWav16(ADXB adxb)
 {
 	AdxDecPara *dp;
 	Uint16 *pcmbuf;
 	Uint16 *pcmbuf_l;
 	Uint16 *pcmbuf_r;
-	Uint8 *ibuf;
+	Uint16 *ibuf;
 	Sint32 i;
 	Sint32 ndata;
 
     dp = &adxb->dp;
 
-    ibuf = (Uint8*)dp->ibuf;
+    ibuf = (Uint16*)dp->ibuf;
     
     if ((adxb->stat == 1) && (ADXPD_GetStat(adxb->xpd) == 0)) 
     {
@@ -228,15 +200,15 @@ void ADXB_ExecOneWav4(ADXB adxb)
             
             for (i = 0; i < ndata; i++) 
             {
-                pcmbuf_l[i] = ibuf[i * 4] | (ibuf[(i * 4) + 2] * 256);
-                pcmbuf_r[i] = ibuf[(i * 4) + 1] | (ibuf[(i * 4) + 3] * 256);
+                pcmbuf_l[i] = ibuf[i * 2];
+                pcmbuf_r[i] = ibuf[(i * 2) + 1];
             }
         } 
         else 
         {
             for (i = 0; i < ndata; i++)
             {
-                pcmbuf_l[i] = ibuf[i * 2] | (ibuf[(i * 2) + 1] * 256);
+                pcmbuf_l[i] = ibuf[i];
             }
         }
         
@@ -315,19 +287,19 @@ void ADXB_ExecOneWav8(ADXB adxb)
 }
 
 // 100% matching!
-void ADXB_ExecOneWav16(ADXB adxb)
+void ADXB_ExecOneWav4(ADXB adxb) 
 {
 	AdxDecPara *dp;
 	Uint16 *pcmbuf;
 	Uint16 *pcmbuf_l;
 	Uint16 *pcmbuf_r;
-	Uint16 *ibuf;
+	Uint8 *ibuf;
 	Sint32 i;
 	Sint32 ndata;
 
     dp = &adxb->dp;
 
-    ibuf = (Uint16*)dp->ibuf;
+    ibuf = (Uint8*)dp->ibuf;
     
     if ((adxb->stat == 1) && (ADXPD_GetStat(adxb->xpd) == 0)) 
     {
@@ -348,15 +320,15 @@ void ADXB_ExecOneWav16(ADXB adxb)
             
             for (i = 0; i < ndata; i++) 
             {
-                pcmbuf_l[i] = ibuf[i * 2];
-                pcmbuf_r[i] = ibuf[(i * 2) + 1];
+                pcmbuf_l[i] = ibuf[i * 4] | (ibuf[(i * 4) + 2] * 256);
+                pcmbuf_r[i] = ibuf[(i * 4) + 1] | (ibuf[(i * 4) + 3] * 256);
             }
         } 
         else 
         {
             for (i = 0; i < ndata; i++)
             {
-                pcmbuf_l[i] = ibuf[i];
+                pcmbuf_l[i] = ibuf[i * 2] | (ibuf[(i * 2) + 1] * 256);
             }
         }
         
@@ -371,5 +343,33 @@ void ADXB_ExecOneWav16(ADXB adxb)
         adxb->addwrfunc(adxb->addwrobj, adxb->total_decdtlen, adxb->total_decsmpl);
         
         adxb->stat = 3;
+    }
+}
+
+// 100% matching!
+Sint32 ADXB_CheckWav(Sint8 *ibuf)
+{
+    if ((memcmp(ibuf, "RIFF", 4) == 0) && (memcmp(&ibuf[8], "WAVE", 4) == 0)) 
+    {
+        return 1;
+    }
+    
+    return 0;
+}
+
+// 100% matching!
+void ADXB_ExecOneWav(ADXB adxb)
+{
+    if (adxb->cdctype == 2) 
+    {                    
+        ADXB_ExecOneWav4(adxb);
+    }
+    else if (adxb->cdctype == 1) 
+    {
+        ADXB_ExecOneWav8(adxb);
+    }
+    else if (adxb->cdctype == 0)
+    { 
+        ADXB_ExecOneWav16(adxb);
     }
 }

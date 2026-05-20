@@ -8,6 +8,32 @@ SJ_IF sjrbf_vtbl = { NULL, NULL, NULL, (void*)SJRBF_Destroy, (void*)SJRBF_GetUui
 Sint32 sjrbf_init_cnt = 0;
 SJRBF_OBJ sjrbf_obj[64] = { 0 };
 
+// 99.29% matching
+void SJRBF_Error(SJRBF rbf, Sint32 errcode)
+{
+    while (TRUE);
+}
+
+// 100% matching!
+void SJRBF_Init(void) 
+{
+    if (sjrbf_init_cnt == 0) 
+    {
+        memset(sjrbf_obj, 0, sizeof(sjrbf_obj));
+    }
+    
+    sjrbf_init_cnt++;
+}
+
+// 100% matching!
+void SJRBF_Finish(void) 
+{
+    if (--sjrbf_init_cnt == 0) 
+    {
+        memset(sjrbf_obj, 0, sizeof(sjrbf_obj));
+    }
+}
+
 // 100% matching!
 SJ SJRBF_Create(Sint8 *buf, Sint32 bsize, Sint32 xsize)
 {
@@ -74,6 +100,16 @@ void SJRBF_Destroy(SJ sj)
 }
 
 // 100% matching!
+const UUID* SJRBF_GetUuid(SJ sj)
+{
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
+    
+    return rbf->uuid;
+}
+
+// 100% matching!
 void SJRBF_EntryErrFunc(SJ sj, SJRBF_ERRFN func, void *obj)
 {
     SJRBF rbf;
@@ -84,31 +120,43 @@ void SJRBF_EntryErrFunc(SJ sj, SJRBF_ERRFN func, void *obj)
     rbf->errobj = obj;
 }
 
-// 99.29% matching
-void SJRBF_Error(SJRBF rbf, Sint32 errcode)
+// 100% matching!
+void SJRBF_Reset(SJ sj)
 {
-    while (TRUE);
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
+    
+    rbf->ndata = 0;
+    
+    rbf->wpos = 0;
+    
+    rbf->nroom = rbf->bsize;
+    
+    rbf->rpos = 0; 
 }
 
 // 100% matching!
-void SJRBF_Finish(void) 
+Sint32 SJRBF_GetNumData(SJ sj, Sint32 id)
 {
-    if (--sjrbf_init_cnt == 0) 
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
+    
+    if (id == 1) 
     {
-        memset(sjrbf_obj, 0, sizeof(sjrbf_obj));
+        return rbf->ndata;
     }
-}
-
-// 100% matching!
-Sint8* SJRBF_GetBufPtr(SJRBF sjrbf)
-{
-    return sjrbf->buf;
-}
-
-// 100% matching!
-Sint32 SJRBF_GetBufSize(SJRBF sjrbf)
-{
-    return sjrbf->bsize;
+    else if (id == 0) 
+    {
+        return rbf->nroom;
+    } 
+    else if (rbf->errfunc != NULL) 
+    {
+        rbf->errfunc(rbf->errobj, -3);
+    }
+    
+    return 0;
 }
 
 // 100% matching!
@@ -159,93 +207,6 @@ void SJRBF_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
     }
 
     SJCRS_Unlock();
-}
-
-// 100% matching!
-Sint32 SJRBF_GetNumData(SJ sj, Sint32 id)
-{
-    SJRBF rbf;
-
-    rbf = (SJRBF)sj;
-    
-    if (id == 1) 
-    {
-        return rbf->ndata;
-    }
-    else if (id == 0) 
-    {
-        return rbf->nroom;
-    } 
-    else if (rbf->errfunc != NULL) 
-    {
-        rbf->errfunc(rbf->errobj, -3);
-    }
-    
-    return 0;
-}
-
-// 100% matching!
-const UUID* SJRBF_GetUuid(SJ sj)
-{
-    SJRBF rbf;
-
-    rbf = (SJRBF)sj;
-    
-    return rbf->uuid;
-}
-
-// 100% matching!
-Sint32 SJRBF_GetXtrSize(SJRBF sjrbf) 
-{
-    return sjrbf->xsize;
-}
-
-// 100% matching!
-void SJRBF_Init(void) 
-{
-    if (sjrbf_init_cnt == 0) 
-    {
-        memset(sjrbf_obj, 0, sizeof(sjrbf_obj));
-    }
-    
-    sjrbf_init_cnt++;
-}
-
-// 100% matching!
-Sint32 SJRBF_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
-{
-    Sint32 cklen;
-    SJRBF rbf;
-
-    rbf = (SJRBF)sj;
-
-    SJCRS_Lock();
-    
-    if (id == 0) 
-    {
-        cklen = MIN(rbf->nroom, (rbf->bsize - rbf->wpos) + rbf->xsize);
-        cklen = MIN(cklen, nbyte);
-    } 
-    else if (id == 1) 
-    {
-        cklen = MIN(rbf->ndata, (rbf->bsize - rbf->rpos) + rbf->xsize);
-        cklen = MIN(cklen, nbyte);
-    } 
-    else 
-    {
-        cklen = 0;
-
-        if (rbf->errfunc != NULL)
-        {
-            rbf->errfunc(rbf->errobj, -3); 
-        }
-    }
-
-    *rbyte = cklen;
-    
-    SJCRS_Unlock();
-    
-    return cklen == nbyte;
 }
 
 // 100% matching!
@@ -302,22 +263,6 @@ void SJRBF_PutChunk(SJ sj, Sint32 id, SJCK *ck)
     
         SJCRS_Unlock();
     }
-}
-
-// 100% matching!
-void SJRBF_Reset(SJ sj)
-{
-    SJRBF rbf;
-
-    rbf = (SJRBF)sj;
-    
-    rbf->ndata = 0;
-    
-    rbf->wpos = 0;
-    
-    rbf->nroom = rbf->bsize;
-    
-    rbf->rpos = 0; 
 }
 
 // 100% matching!
@@ -379,4 +324,59 @@ void SJRBF_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
     
         SJCRS_Unlock();
     }
+}
+
+// 100% matching!
+Sint32 SJRBF_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
+{
+    Sint32 cklen;
+    SJRBF rbf;
+
+    rbf = (SJRBF)sj;
+
+    SJCRS_Lock();
+    
+    if (id == 0) 
+    {
+        cklen = MIN(rbf->nroom, (rbf->bsize - rbf->wpos) + rbf->xsize);
+        cklen = MIN(cklen, nbyte);
+    } 
+    else if (id == 1) 
+    {
+        cklen = MIN(rbf->ndata, (rbf->bsize - rbf->rpos) + rbf->xsize);
+        cklen = MIN(cklen, nbyte);
+    } 
+    else 
+    {
+        cklen = 0;
+
+        if (rbf->errfunc != NULL)
+        {
+            rbf->errfunc(rbf->errobj, -3); 
+        }
+    }
+
+    *rbyte = cklen;
+    
+    SJCRS_Unlock();
+    
+    return cklen == nbyte;
+}
+
+// 100% matching!
+Sint8* SJRBF_GetBufPtr(SJRBF sjrbf)
+{
+    return sjrbf->buf;
+}
+
+// 100% matching!
+Sint32 SJRBF_GetBufSize(SJRBF sjrbf)
+{
+    return sjrbf->bsize;
+}
+
+// 100% matching!
+Sint32 SJRBF_GetXtrSize(SJRBF sjrbf) 
+{
+    return sjrbf->xsize;
 }

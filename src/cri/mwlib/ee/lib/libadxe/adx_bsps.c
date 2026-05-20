@@ -69,12 +69,6 @@ Sint32 ADX_DecodeInfoSpsd(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code
 }
 
 // 100% matching!
-Sint32 ADXB_CheckSpsd(Sint8 *ibuf)
-{
-    return memcmp(ibuf, "SPSD", 4) == 0;
-}
-
-// 100% matching!
 Sint32 ADXB_DecodeHeaderSpsd(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
 	Sint16 dlen;
@@ -181,4 +175,10 @@ void ADXB_ExecOneSpsd(ADXB adxb)
         
         adxb->stat = 3;
     }
+}
+
+// 100% matching!
+Sint32 ADXB_CheckSpsd(Sint8 *ibuf)
+{
+    return memcmp(ibuf, "SPSD", 4) == 0;
 }
