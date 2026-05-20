@@ -4608,9 +4608,9 @@ void bhCPM2_act_suw()
                     
                     plp->at_flg = 0;
                 }
-                
-                return;
             }
+
+            return;
         } 
         else 
         {
@@ -4645,7 +4645,7 @@ void bhCPM2_act_suw()
                         
                         plp->wax = 0;
                         plp->waxp = 8192;
-                        break;
+                        return;
                     }
                 }
                 
@@ -4660,23 +4660,20 @@ void bhCPM2_act_suw()
                     
                     plp->wax = 0;
                     plp->waxp = -8192;
-                    break;
+                    return;
                 }
             }
-        // nested case
-        default:
-            if ((sys->pad_on & 0x8))
-            {
-                plp->ay -= (int)(182.04445f * (2.4f * ((EXP_WORK*)plp->exp0)->rtspd));
-            }
-            
-            if ((sys->pad_on & 0x4)) 
-            {
-                plp->ay += (int)(182.04445f * (2.4f * ((EXP_WORK*)plp->exp0)->rtspd));
-            }
-            
-            return;
         }
+    }
+
+    if ((sys->pad_on & 0x8))
+    {
+        plp->ay -= (int)(182.04445f * (2.4f * ((EXP_WORK*)plp->exp0)->rtspd));
+    }
+    
+    if ((sys->pad_on & 0x4)) 
+    {
+        plp->ay += (int)(182.04445f * (2.4f * ((EXP_WORK*)plp->exp0)->rtspd));
     }
 }
 
