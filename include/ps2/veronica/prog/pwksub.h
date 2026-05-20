@@ -11,7 +11,7 @@ void bhAddSpeed(BH_PWORK* pp, int r);
 int bhGetFrameNum(unsigned int fnm_old, unsigned int fnm_new, int fno_now);
 int bhCalcLockEneYR(BH_PWORK* pp, int idx);
 int bhSearchNearEnemy(BH_PWORK* pp, int* r, float* h, int* id);
-/*int bhSearchNearEnemyB(_anon23* pos, int ay, int ar, float len);*/
+int bhSearchNearEnemyB(NJS_POINT3* pos, int ay, int ar, float len);
 int bhSearchNearEnemy2(BH_PWORK* pp, int* r, float* h, int* id);
 int bhSearchNextEnemy(BH_PWORK* pp, int r, float h);
 int bhSearchPlayer(BH_PWORK* pp, int r);

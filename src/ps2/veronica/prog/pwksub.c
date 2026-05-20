@@ -301,19 +301,19 @@ int bhSearchNearEnemy(BH_PWORK* pp, int* r, float* h, int* id)
 	scePrintf("bhSearchNearEnemy - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x14eae0
-int bhSearchNearEnemyB(_anon23* pos, int ay, int ar, float len)
+int bhSearchNearEnemyB(NJS_POINT3* pos, int ay, int ar, float len)
 {
 	int i;
 	BH_PWORK* epp;
 	float ln;
 	float er;
 	float a;
-	_anon40 cap;
-	_anon23 vc2;
-	_anon23 vc1;
-	_anon23 vc0;
+	//_anon40 cap;
+	//_anon23 vc2;
+	//_anon23 vc1;
+	//_anon23 vc0;
 	// Line 549, Address: 0x14eae0, Func Offset: 0
 	// Line 555, Address: 0x14eb10, Func Offset: 0x30
 	// Line 557, Address: 0x14eb1c, Func Offset: 0x3c
@@ -358,7 +358,8 @@ int bhSearchNearEnemyB(_anon23* pos, int ay, int ar, float len)
 	// Line 597, Address: 0x14ed18, Func Offset: 0x238
 	// Line 598, Address: 0x14ed1c, Func Offset: 0x23c
 	// Func End, Address: 0x14ed44, Func Offset: 0x264
-}*/
+	scePrintf("bhSearchNearEnemyB - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x14ed50
