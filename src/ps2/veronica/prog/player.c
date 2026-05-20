@@ -2959,17 +2959,16 @@ void bhCPM2_act_kdu()
 // 100% matching!
 void bhCPM2_act_kdd()
 {
-    ATR_WORK *htp;
-    NJS_POINT3 pos;    
-    NJS_POINT3 pos2;    
+    ATR_WORK* htp;
+    NJS_POINT3 pos, pos2;    
     int ang[3];    
     float py;
-    int flr_no;
-    int fsnd;
+    int flr_no, fsnd;
     short ayn;
 
     htp = sys->pl_htp;
-    sys->st_flg |= 4;
+
+    sys->st_flg |= 0x4;
     
     switch (plp->mode3)
     {
@@ -3150,7 +3149,7 @@ void bhCPM2_act_kdd()
         if ((plp->frm_no / 65536) == PlFootSnd[sys->ply_id][0][6]) 
         {
             flr_no = bhCheckFloorNum(plp->mlwP->owP[17].mtx[13]);
-            fsnd = bhCheckFloorSound(plp, flr_no, plp->mlwP->owP[17].mtx[12], plp->mlwP->owP[17].mtx[14]);
+            fsnd   = bhCheckFloorSound(plp, flr_no, plp->mlwP->owP[17].mtx[12], plp->mlwP->owP[17].mtx[14]);
             
             CallPlayerFootStepSe(fsnd, 0, 1);
             
@@ -3160,7 +3159,7 @@ void bhCPM2_act_kdd()
         if ((plp->frm_no / 65536) == PlFootSnd[sys->ply_id][1][6]) 
         {
             flr_no = bhCheckFloorNum(plp->mlwP->owP[21].mtx[13]);
-            fsnd = bhCheckFloorSound(plp, flr_no, plp->mlwP->owP[21].mtx[12], plp->mlwP->owP[21].mtx[14]);
+            fsnd   = bhCheckFloorSound(plp, flr_no, plp->mlwP->owP[21].mtx[12], plp->mlwP->owP[21].mtx[14]);
             
             CallPlayerFootStepSe(fsnd, 0, 1);
             
