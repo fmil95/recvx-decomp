@@ -644,13 +644,13 @@ void bhCalcFixOffset(BH_PWORK* ewP, char* datP, NJS_POINT3* offP, NJS_POINT3* rt
     njPopMatrixEx();
 }
 
-/*// 
+// 
 // Start address: 0x130fb0
 void bhGetObjMotion(BH_PWORK* ewP, int obj_no, float* pos, int* ang)
 {
-	_anon3* mkaP;
-	_anon0* mkfP;
-	_anon2* md2P;
+	//_anon3* mkaP;
+	//_anon0* mkfP;
+	//_anon2* md2P;
 	char* rutP;
 	int s_flp;
 	float f_flp;
@@ -681,7 +681,8 @@ void bhGetObjMotion(BH_PWORK* ewP, int obj_no, float* pos, int* ang)
 	// Line 868, Address: 0x131090, Func Offset: 0xe0
 	// Line 872, Address: 0x13109c, Func Offset: 0xec
 	// Func End, Address: 0x1310a4, Func Offset: 0xf4
-}*/
+	scePrintf("bhGetObjMotion - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 void AngZyxToYzx(int* zyx, int* yzx)
