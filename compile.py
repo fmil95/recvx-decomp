@@ -107,7 +107,16 @@ class CompileUnit:
 
         deps = text.split(":", 1)[1].strip()
 
-        return [ Path(x.strip()) for x in deps.split("\n") ]
+        if IS_LINUX:
+            l = []
+            for x in deps.split("\n"):
+                x = x.strip()
+                if x[:3] == "Z:\\":
+                    x = x[2:]
+                l.append(Path(x.replace("\\", "/")))
+            return l
+        else:
+            return [ Path(x.strip()) for x in deps.split("\n") ]
 
     def needs_rebuild(self) -> bool:
         obj = self.obj_path
