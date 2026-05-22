@@ -29,7 +29,10 @@ SECTION_DICT = {
 }
 
 IS_LINUX = sys.platform.startswith("linux")
-COMPILE_ENV = os.environ | {"MWCIncludes": "", "MWLibraries": "", "MWLibraryFiles": "", "TMPDIR": os.environ["temp"]}
+COMPILE_ENV = os.environ | {"MWCIncludes": "", "MWLibraries": "", "MWLibraryFiles": ""}
+if "TMPDIR" not in COMPILE_ENV and "temp" in os.environ:
+    COMPILE_ENV["TMPDIR"] = os.environ["temp"]
+
 ASSEMBLER_CANDIDATES = [
     "mips-linux-gnu-as",
     "mipsel-linux-gnu-as",
