@@ -6,8 +6,6 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.h"
 #include "../../../cri/mwlib/ee/lib/libadxe/lsc.h"
 
-Char8* volatile adxt_build = "\nADXT Ver.6.24 Build:Mar 14 2001 14:23:32\n";
-
 // 100% matching! 
 void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
 {
@@ -16,6 +14,10 @@ void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
 	static Sint8 fname[256];
 	void *dir;
 	Sint8 msg[16];
+
+    if (0) {
+        printf("\nADXT Ver.6.24 Build:Mar 14 2001 14:23:32\n");
+    }
 
     ADXT_Stop(adxt);
     

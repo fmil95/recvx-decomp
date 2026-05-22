@@ -15,7 +15,7 @@
       "path_win": "compiler/windows/ee/gcc/bin/ee-gcc.exe",
       "path_linux": "compiler/linux/ee/gcc/bin/ee-gcc",
       "is_assembler": false,
-      "default_flags": ["-O2", "-g"],
+      "default_flags": ["-O2", "-g3"],
       "includes": []
     },
     {
@@ -45,14 +45,13 @@
   "common_includes": [
       "src/cri/mwlib/ee/lib/libadxe",
       "src/ps2/veronica/prog",
+      "{prefix}/usr/local/sce/ee/gcc/lib/gcc-lib/ee/{compiler}/include",
       "include/recvx-decomp-katana/KATANA/Include",
       "include/recvx-decomp-cri/cri/mwlib/include",
       "include/recvx-decomp-cri/cri/mwlib/ee/include",
       "{prefix}/usr/local/sce/ee/include",
       "{prefix}/usr/local/sce/common/include",
-      "{prefix}/usr/local/sce/ee/gcc/ee/include",
-      "{prefix}/usr/local/sce/ee/gcc/lib/gcc-lib/ee/{compiler}/include",
-      "{prefix}/usr/local/sce/iop/gcc/lib/gcc-lib/mipsel-scei-elfl/2.8.1/include"
+      "{prefix}/usr/local/sce/ee/gcc/ee/include"
   ],
   "libraries": [
       "{prefix}/usr/local/sce/ee/lib",

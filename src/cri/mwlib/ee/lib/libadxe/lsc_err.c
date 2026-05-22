@@ -22,13 +22,13 @@ void LSC_EntryErrFunc(LSC_ERRFN errfn, void *obj)
 }
 
 // 100% matching! 
-void LSC_CallErrFunc(const char *fmt, ...) // according to the symbols it is Sint8 instead of char, but char compiles easier
+void LSC_CallErrFunc(Sint8 *fmt, ...)
 {
     __gnuc_va_list ap;
 
     va_start(ap, fmt);
     
-    vsprintf((char*)lsc_err_msg, fmt, ap);
+    vsprintf(lsc_err_msg, fmt, ap);
     
     if (lsc_err_func != NULL) 
     {
