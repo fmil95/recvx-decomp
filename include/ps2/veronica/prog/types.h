@@ -51,6 +51,12 @@ typedef struct ML_WORK
 	O_WORK* owP;          // offset 0x14, size 0x4
 } ML_WORK;
 
+typedef struct NJS_MDATA2_MOD
+{
+    // total size: 0x8
+    void* p[2]; // offset 0x0, size 0x8
+} NJS_MDATA2_MOD; 
+
 typedef struct MN_WORK
 {
 	// total size: 0x18
@@ -58,7 +64,7 @@ typedef struct MN_WORK
     unsigned int obj_num; // offset 0x4, size 0x4
     unsigned int frm_num; // offset 0x8, size 0x4
     void* datP;           // offset 0xC, size 0x4
-	NJS_MDATA2* md2P;     // offset 0x10, size 0x4
+	NJS_MDATA2_MOD* md2P; // offset 0x10, size 0x4
 	unsigned short* atrP; // offset 0x14, size 0x4
 } MN_WORK;
 
