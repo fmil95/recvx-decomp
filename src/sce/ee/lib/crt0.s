@@ -78,7 +78,7 @@ zerobss:
 	syscall
 
 /*
- * flush data cache
+ * initialize main thread
  */
 	jal	InitThread
 	nop
