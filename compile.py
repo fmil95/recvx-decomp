@@ -30,6 +30,9 @@ SECTION_DICT = {
 
 IS_LINUX = sys.platform.startswith("linux")
 COMPILE_ENV = os.environ | {"MWCIncludes": "", "MWLibraries": "", "MWLibraryFiles": ""}
+if "TMPDIR" not in COMPILE_ENV and "temp" in os.environ:
+    COMPILE_ENV["TMPDIR"] = os.environ["temp"]
+
 ASSEMBLER_CANDIDATES = [
     "mips-linux-gnu-as",
     "mipsel-linux-gnu-as",
@@ -55,17 +58,32 @@ class Compiler:
 
     def compile(self, src: Path, obj: Path, extra_flags: list[str] = list()) -> bool:
         """Compiles the given source file with an optional extra flag list."""
+        env = dict()
         compile_command = [str(self.program)]
         compile_command += self.flags
         compile_command += extra_flags
         if self.is_assembler:
             compile_command += ["-o", obj.as_posix(), src.as_posix()]
+        elif self.name == "mwcc":
+            compile_command += ["-c", src.as_posix(), "-o", obj.parent.as_posix()]
+            compile_command.append('-MD')
+        elif self.name == "gcc":
+            # Have to delete the old .d file or GCC appends to it...
+            obj.with_suffix(".d").unlink(missing_ok=True)
+            env["SUNPRO_DEPENDENCIES"] = obj.with_suffix(".d").as_posix()
+            compile_command += ["-c", src.as_posix(), "-o", obj.as_posix()]
         else:
             compile_command += ["-c", src.as_posix(), "-o", obj.as_posix()]
         compile_command += [f'-I{inc}' for inc in self.includes]
         compile_command += [f'-D{d}' for d in self.defines]
 
-        return run_command(compile_command)
+        success = run_command(compile_command, env)
+        if success:
+            return success
+        else:
+            obj.unlink(missing_ok=True)
+            obj.with_suffix(".d").unlink(missing_ok=True)
+            return False
 
 
 @dataclass
@@ -74,15 +92,72 @@ class CompileUnit:
     obj_path: Path
     compiler: Compiler
     sdata_size: int | None = None
+    rebuilt: bool = False
 
-    def compile(self):
+    def _parse_depfile(self, dfile: Path) -> list[Path]:
+        text = dfile.read_text()
+
+        # normalize CRLF
+        text = text.replace("\r\n", "\n")
+        text = text.replace("\r", "\n")
+
+        # remove escapes, might want to change this eventually
+        text = text.replace("\\\n", "\n")
+        text = text.replace("\\ ", " ")
+
+        deps = text.split(":", 1)[1].strip()
+
+        if IS_LINUX:
+            l = []
+            for x in deps.split("\n"):
+                x = x.strip()
+                if x[:3] == "Z:\\":
+                    x = x[2:]
+                l.append(Path(x.replace("\\", "/")))
+            return l
+        else:
+            return [ Path(x.strip()) for x in deps.split("\n") ]
+
+    def needs_rebuild(self) -> bool:
+        obj = self.obj_path
+        if not obj.exists():
+            return True
+        
+        # For asm files we don't need dep files
+        if self.compiler.is_assembler:
+            return self.src_path.stat().st_mtime > obj.stat().st_mtime
+
+        dfile = obj.with_suffix(".d")
+        if not dfile.exists():
+            return True
+
+        obj_time = obj.stat().st_mtime
+
+        deps = self._parse_depfile(dfile)
+
+        for dep in deps:
+            if not dep.exists():
+                return True
+
+            if dep.stat().st_mtime > obj_time:
+                return True
+
+        return False
+
+    def compile(self, force: bool = False):
         """Compiles this CompileUnit."""
         
         extra_flags = list()
         if self.sdata_size is not None:
             extra_flags.append(self.compiler.get_sdata_flag(self.sdata_size))
-
-        return self.compiler.compile(self.src_path, self.obj_path, extra_flags)
+        
+        if self.needs_rebuild():
+            self.rebuilt = True
+            return self.compiler.compile(self.src_path, self.obj_path, extra_flags)
+        
+        # Didn't need rebuild, assume it's good
+        self.rebuilt = False
+        return True
 
 
 def load_json(filename):
@@ -91,8 +166,10 @@ def load_json(filename):
         return json.load(f)
 
 
-def run_command(command) -> bool:
+def run_command(command: list[str], extra_env: list[dict] = None) -> bool:
     """Run a shell command."""
+    if extra_env is None:
+        extra_env = dict()
 
     if IS_LINUX and command[0].endswith('.exe'):
         command = ['wibo'] + command
@@ -109,7 +186,7 @@ def run_command(command) -> bool:
                 msg += f" {cmd}"
         log_me(msg)
     
-    result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=COMPILE_ENV)
+    result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=COMPILE_ENV | extra_env)
     extra.append(result.stdout)
     extra.append(result.stderr)
 
@@ -442,14 +519,18 @@ def log_me(msg: str, extra: list[str] = list(), both: bool = False):
 def compile_all(objects: list[CompileUnit], parallel: bool = False) -> bool:
     def compile_shim(obj: CompileUnit):
         obj.obj_path.parent.mkdir(parents=True, exist_ok=True)
-        msg = f"[BUILD] {obj.compiler.name} {obj.src_path.as_posix()}"
+        msg = f"{obj.compiler.name} {obj.src_path.as_posix()}"
         if obj.sdata_size is not None:
             msg += f" using -sdatathreshold={obj.sdata_size}"
-        log_me(msg, both = True)
         ok = obj.compile()
         if not ok:
-            log_me(f"FAILED: {obj.src_path.as_posix()}", both = True)
+            log_me(f"FAILED TO BUILD: {obj.src_path.as_posix()}", both = True)
             raise RuntimeError(obj.src_path.as_posix())
+
+        if obj.rebuilt:
+            log_me("[COMPILED] " + msg, both = True)
+        else:
+            log_me("[UNCHANGED] " + msg, both = True)
 
     try:
         if parallel:
@@ -542,7 +623,7 @@ def main(args):
         compile_list = all_objects.values()
     else:
         compile_list = current_objects.values()
-    
+
     if args.single_file:
         obj = all_objects.get(args.single_file, None)
         if obj is not None:
