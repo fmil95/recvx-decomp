@@ -214,7 +214,7 @@ int bhMnbBinRealize(void* bin_datP, MN_WORK* mnwP)
     mnwP->frm_num = mtnP->nbFrame;
     
     mnwP->datP = bin_datP;
-    mnwP->md2P = (NJS_MDATA2*)md2P;
+    mnwP->md2P = (NJS_MDATA2_MOD*)md2P;
     mnwP->atrP = NULL;
     
     if (((int*)bin_datP)[3] != -1) 
