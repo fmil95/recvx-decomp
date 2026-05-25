@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/playpch.h"
+#include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 
 /*BH_PWORK* plp;
@@ -145,36 +146,55 @@ void MixSetToJointRot(npobj* basP, char* rutP, npobj* objP, int yaw)
 	// Line 255, Address: 0x14abdc, Func Offset: 0x13c
 	// Line 257, Address: 0x14ac00, Func Offset: 0x160
 	// Func End, Address: 0x14ac24, Func Offset: 0x184
-}
+}*/
 
-// 
-// Start address: 0x14ac30
-void GetOneObjectMotion(BH_PWORK* ewP, int obj_no, int* ang)
+// 100% matching!
+static void GetOneObjectMotion(BH_PWORK* ewP, int obj_no, int* ang) 
 {
-	_anon15* mkaP;
-	char* rutP;
-	int flp;
-	char NormalTbl[64];
-	// Line 286, Address: 0x14ac30, Func Offset: 0
-	// Line 287, Address: 0x14ac40, Func Offset: 0x10
-	// Line 289, Address: 0x14ac44, Func Offset: 0x14
-	// Line 290, Address: 0x14ac4c, Func Offset: 0x1c
-	// Line 291, Address: 0x14ac54, Func Offset: 0x24
-	// Line 295, Address: 0x14ac58, Func Offset: 0x28
-	// Line 293, Address: 0x14ac5c, Func Offset: 0x2c
-	// Line 295, Address: 0x14ac60, Func Offset: 0x30
-	// Line 297, Address: 0x14ac88, Func Offset: 0x58
-	// Line 298, Address: 0x14ac90, Func Offset: 0x60
-	// Line 299, Address: 0x14aca8, Func Offset: 0x78
-	// Line 300, Address: 0x14acb0, Func Offset: 0x80
-	// Line 301, Address: 0x14acbc, Func Offset: 0x8c
-	// Line 302, Address: 0x14acc4, Func Offset: 0x94
-	// Line 303, Address: 0x14accc, Func Offset: 0x9c
-	// Line 306, Address: 0x14acd8, Func Offset: 0xa8
-	// Func End, Address: 0x14ace0, Func Offset: 0xb0
+    int flp;             
+    char* rutP;          
+    NJS_MKEY_A_MOD* mkaP; 
+    static const char NormalTbl[64] = 
+	{
+		0,  1,  2,  3,  4,  5,  6,  7,
+		8,  9, 10, 11, 12, 13, 14, 15,
+		16, 17, 18, 19, 20, 21, 22, 23,
+		24, 25, 26, 27, 28, 29, 30, 31,
+		32, 33, 34, 35, 36, 37, 38, 39,
+		40, 41, 42, 43, 44, 45, 46, 47,
+		48, 49, 50, 51, 52, 53, 54, 55,
+		56, 57, 58, 59, 60, 61, 62, 63
+	};
+
+    if ((ewP->mtn_md & 0x2))
+    {
+        rutP = (char*)ewP->mtn_tp;
+        
+        flp = -1;
+    }
+    else
+    {
+        rutP = NormalTbl;
+        
+        flp = 1;
+    }
+    
+    if (ewP->mnwP[ewP->mtn_no].md2P[rutP[obj_no]].p[1] != NULL)
+    { 
+        mkaP = ewP->mnwP[ewP->mtn_no].md2P[rutP[obj_no]].p[1]; 
+        mkaP += ewP->frm_no / 65536;
+        
+        ang[0] = mkaP->key[0];
+        ang[1] = (mkaP->key[1] * flp); 
+        ang[2] = (mkaP->key[2] * flp);
+    } 
+    else 
+    {
+        ang[0] = ang[1] = ang[2] = 0;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x14ace0
 void SetOneObjectMotion(BH_PWORK* ewP, npobj* objP, int* ang)
 {
