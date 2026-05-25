@@ -2,9 +2,20 @@
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 
-/*char NormalTbl[64];
-_anon3 NullMka;
-int mka_ang[3];*/
+static int mka_ang[3];
+
+static const char NormalTbl[64] = 
+{
+     0,  1,  2,  3,  4,  5,  6,  7,
+     8,  9, 10, 11, 12, 13, 14, 15,
+    16, 17, 18, 19, 20, 21, 22, 23,
+    24, 25, 26, 27, 28, 29, 30, 31,
+    32, 33, 34, 35, 36, 37, 38, 39,
+    40, 41, 42, 43, 44, 45, 46, 47,
+    48, 49, 50, 51, 52, 53, 54, 55,
+    56, 57, 58, 59, 60, 61, 62, 63
+};
+static const NJS_MKEY_A_MOD NullMka;
 
 // 99.94% matching (matches on GC)
 int bhSetMotion(BH_PWORK* ewP, int add, int mode, void* datP) 
@@ -644,44 +655,54 @@ void bhCalcFixOffset(BH_PWORK* ewP, char* datP, NJS_POINT3* offP, NJS_POINT3* rt
     njPopMatrixEx();
 }
 
-// 
-// Start address: 0x130fb0
+// 100% matching!
 void bhGetObjMotion(BH_PWORK* ewP, int obj_no, float* pos, int* ang)
 {
-	//_anon3* mkaP;
-	//_anon0* mkfP;
-	//_anon2* md2P;
-	char* rutP;
-	int s_flp;
-	float f_flp;
-	// Line 839, Address: 0x130fb0, Func Offset: 0
-	// Line 842, Address: 0x130fc0, Func Offset: 0x10
-	// Line 840, Address: 0x130fc4, Func Offset: 0x14
-	// Line 841, Address: 0x130fcc, Func Offset: 0x1c
-	// Line 843, Address: 0x130fd0, Func Offset: 0x20
-	// Line 844, Address: 0x130fd8, Func Offset: 0x28
-	// Line 846, Address: 0x130fdc, Func Offset: 0x2c
-	// Line 844, Address: 0x130fe0, Func Offset: 0x30
-	// Line 846, Address: 0x130fe4, Func Offset: 0x34
-	// Line 845, Address: 0x130fe8, Func Offset: 0x38
-	// Line 846, Address: 0x130fec, Func Offset: 0x3c
-	// Line 851, Address: 0x130ff0, Func Offset: 0x40
-	// Line 853, Address: 0x131018, Func Offset: 0x68
-	// Line 855, Address: 0x13101c, Func Offset: 0x6c
-	// Line 856, Address: 0x131024, Func Offset: 0x74
-	// Line 857, Address: 0x13103c, Func Offset: 0x8c
-	// Line 859, Address: 0x131044, Func Offset: 0x94
-	// Line 860, Address: 0x131050, Func Offset: 0xa0
-	// Line 861, Address: 0x131058, Func Offset: 0xa8
-	// Line 863, Address: 0x131060, Func Offset: 0xb0
-	// Line 864, Address: 0x131068, Func Offset: 0xb8
-	// Line 865, Address: 0x131074, Func Offset: 0xc4
-	// Line 866, Address: 0x13107c, Func Offset: 0xcc
-	// Line 867, Address: 0x131084, Func Offset: 0xd4
-	// Line 868, Address: 0x131090, Func Offset: 0xe0
-	// Line 872, Address: 0x13109c, Func Offset: 0xec
-	// Func End, Address: 0x1310a4, Func Offset: 0xf4
-	scePrintf("bhGetObjMotion - UNIMPLEMENTED!\n");
+    float f_flp;        
+    int s_flp;         
+    char* rutP;        
+    NJS_MDATA2_MOD* md2P;
+    NJS_MKEY_F_MOD* mkfP;
+    NJS_MKEY_A_MOD* mkaP;
+    
+    if ((ewP->mtn_md & 0x2)) 
+    {
+        f_flp = -1.0f;
+        s_flp = -1;
+        
+        rutP = (char*)&ewP->mtn_tp[obj_no];
+    }
+    else 
+    {
+        f_flp = 1.0f;
+        s_flp = 1;
+        
+        rutP = (char*)&NormalTbl[obj_no];
+    }
+
+    md2P = &ewP->mnwP[ewP->mtn_no].md2P[*rutP];
+    
+    mkfP = (NJS_MKEY_F_MOD*)md2P->p[0];
+    mkaP = (NJS_MKEY_A_MOD*)md2P->p[1]; 
+    
+    if (mkaP != NULL) 
+    {
+        mkaP += ewP->frm_no / 65536; 
+        mkfP += ewP->frm_no / 65536;
+        
+        pos[0] = mkfP->key[0] * f_flp;
+        pos[1] = mkfP->key[1];
+        pos[2] = mkfP->key[2];
+        
+        ang[0] = mkaP->key[0];
+        ang[1] = mkaP->key[1] * s_flp;
+        ang[2] = mkaP->key[2] * s_flp;
+    }
+    else 
+    {
+        pos[0] = pos[1] = pos[2] = 0;
+        ang[0] = ang[1] = ang[2] = 0;
+    }
 }
 
 // 100% matching!
