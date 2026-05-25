@@ -429,83 +429,103 @@ void SetMtnFastHokan(BH_PWORK* ewP, char* datP, int mode, float rate)
 	scePrintf("SetMtnFastHokan - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1304b0
-void SetMtnSlow(BH_PWORK* ewP, char* datP, int mode)
+// 100% matching!
+static void SetMtnSlow(BH_PWORK* ewP, char* datP, int mode)
 {
-	short* dstP;
-	short* srcP;
-	//_anon3* mkaP;
-	int* angP;
-	float* posP;
-	//float* dstP;
-	//float* srcP;
-	//_anon0* mkfP;
-	//_anon6* owP;
-	//_anon2* md2P;
-	int obj_no;
-	float flp_f;
-	int flp_s;
-	int dst_no;
-	int src_no;
-	//_anon1* mnwP;
-	float frac;
-	// Line 547, Address: 0x1304b0, Func Offset: 0
-	// Line 549, Address: 0x1304dc, Func Offset: 0x2c
-	// Line 547, Address: 0x1304e0, Func Offset: 0x30
-	// Line 549, Address: 0x1304e8, Func Offset: 0x38
-	// Line 550, Address: 0x1304f4, Func Offset: 0x44
-	// Line 549, Address: 0x130500, Func Offset: 0x50
-	// Line 551, Address: 0x130508, Func Offset: 0x58
-	// Line 550, Address: 0x13050c, Func Offset: 0x5c
-	// Line 549, Address: 0x130514, Func Offset: 0x64
-	// Line 550, Address: 0x130518, Func Offset: 0x68
-	// Line 554, Address: 0x130520, Func Offset: 0x70
-	// Line 552, Address: 0x130524, Func Offset: 0x74
-	// Line 554, Address: 0x130528, Func Offset: 0x78
-	// Line 555, Address: 0x130538, Func Offset: 0x88
-	// Line 562, Address: 0x13054c, Func Offset: 0x9c
-	// Line 564, Address: 0x130550, Func Offset: 0xa0
-	// Line 565, Address: 0x130558, Func Offset: 0xa8
-	// Line 566, Address: 0x130560, Func Offset: 0xb0
-	// Line 567, Address: 0x130568, Func Offset: 0xb8
-	// Line 570, Address: 0x130574, Func Offset: 0xc4
-	// Line 571, Address: 0x1305a8, Func Offset: 0xf8
-	// Line 573, Address: 0x1305c4, Func Offset: 0x114
-	// Line 575, Address: 0x1305d4, Func Offset: 0x124
-	// Line 577, Address: 0x1305d8, Func Offset: 0x128
-	// Line 580, Address: 0x1305e0, Func Offset: 0x130
-	// Line 578, Address: 0x1305e4, Func Offset: 0x134
-	// Line 579, Address: 0x1305ec, Func Offset: 0x13c
-	// Line 582, Address: 0x1305f0, Func Offset: 0x140
-	// Line 579, Address: 0x1305f4, Func Offset: 0x144
-	// Line 582, Address: 0x1305f8, Func Offset: 0x148
-	// Line 580, Address: 0x1305fc, Func Offset: 0x14c
-	// Line 582, Address: 0x13060c, Func Offset: 0x15c
-	// Line 580, Address: 0x130610, Func Offset: 0x160
-	// Line 582, Address: 0x130618, Func Offset: 0x168
-	// Line 583, Address: 0x130628, Func Offset: 0x178
-	// Line 584, Address: 0x130640, Func Offset: 0x190
-	// Line 588, Address: 0x130658, Func Offset: 0x1a8
-	// Line 590, Address: 0x130668, Func Offset: 0x1b8
-	// Line 591, Address: 0x130670, Func Offset: 0x1c0
-	// Line 590, Address: 0x130674, Func Offset: 0x1c4
-	// Line 593, Address: 0x130690, Func Offset: 0x1e0
-	// Line 594, Address: 0x130698, Func Offset: 0x1e8
-	// Line 595, Address: 0x13069c, Func Offset: 0x1ec
-	// Line 594, Address: 0x1306a0, Func Offset: 0x1f0
-	// Line 597, Address: 0x1306a4, Func Offset: 0x1f4
-	// Line 598, Address: 0x1306dc, Func Offset: 0x22c
-	// Line 599, Address: 0x130720, Func Offset: 0x270
-	// Line 600, Address: 0x130760, Func Offset: 0x2b0
-	// Line 601, Address: 0x130768, Func Offset: 0x2b8
-	// Line 603, Address: 0x130774, Func Offset: 0x2c4
-	// Line 605, Address: 0x130778, Func Offset: 0x2c8
-	// Line 606, Address: 0x13077c, Func Offset: 0x2cc
-	// Line 608, Address: 0x130780, Func Offset: 0x2d0
-	// Line 611, Address: 0x130790, Func Offset: 0x2e0
-	// Func End, Address: 0x1307c8, Func Offset: 0x318
-	scePrintf("SetMtnSlow - UNIMPLEMENTED!\n");
+    float frac;          
+    MN_WORK* mnwP;     
+    int src_no, dst_no;         
+    int flp_s;         
+    float flp_f;        
+    int obj_no;          
+    NJS_MDATA2_MOD* md2P; 
+    O_WORK* owP;        
+    NJS_MKEY_F_MOD* mkfP;
+    float* posP;         
+    int* angP;           
+    NJS_MKEY_A_MOD* mkaP; 
+
+    frac = 0.000015258789f * (ewP->frm_no & 0xFFFF);
+    
+    src_no = ewP->frm_no / 65536;
+    
+    mnwP = &ewP->mnwP[ewP->mtn_no];
+    
+    dst_no = src_no + 1;
+    
+    if (dst_no >= mnwP->frm_num)
+    {
+        dst_no = 0;
+    }
+    
+    if (!(mode & 0x2)) 
+    {
+        datP = NormalTbl;
+    }
+    
+    obj_no = mnwP->obj_num;
+    md2P   = mnwP->md2P;
+    
+    if ((mode & 0x2))
+    {
+        flp_s = -1;
+        flp_f = -1.0f;
+    } 
+    else 
+    {
+        flp_s = 1;
+        flp_f = 1.0f;
+    }
+    
+    for ( ; obj_no > 0; datP++) 
+    {
+        owP = &ewP->mlwP->owP[*datP];
+        
+        if (!(owP->flg & 0x4)) 
+        {
+            mkfP = md2P->p[0];
+            
+            if (mkfP != NULL)
+            {
+                float* srcP, *dstP; 
+
+                srcP = mkfP[src_no].key; 
+                dstP = mkfP[dst_no].key;
+
+                posP = ewP->mlwP->objP[*datP].pos;
+                
+                posP[0] = flp_f * (srcP[0] + (frac * (dstP[0] - srcP[0])));
+                posP[1] = srcP[1]          + (frac * (dstP[1] - srcP[1]));
+                posP[2] = srcP[2]          + (frac * (dstP[2] - srcP[2]));
+            }
+            
+            if (!(owP->flg & 0x2)) 
+            {
+                mkaP = md2P->p[1];
+                
+                angP = ewP->mlwP->objP[*datP].ang;
+                
+                if (mkaP != NULL) 
+                {
+                    short* srcP, *dstP;         
+                    
+                    srcP = (short*)mkaP[src_no].key; 
+                    dstP = (short*)mkaP[dst_no].key;
+
+                    angP[0] = srcP[0]          + (frac * (short)(dstP[0] - srcP[0]));
+                    angP[1] = flp_s * (srcP[1] + (frac * (short)(dstP[1] - srcP[1])));
+                    angP[2] = flp_s * (srcP[2] + (frac * (short)(dstP[2] - srcP[2])));
+                } 
+                else
+                {
+                    angP[0] = angP[0] = angP[0] = 0;
+                }
+            }
+            
+            md2P++;
+            obj_no--;
+        }
+    } 
 }
 
 // 
