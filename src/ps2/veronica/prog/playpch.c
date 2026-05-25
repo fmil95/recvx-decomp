@@ -5,6 +5,7 @@
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/weapon.h"
 
 // 100% matching! 
 void PlyPchInit(BH_PWORK* ewP)
@@ -787,61 +788,51 @@ void bhCPM2_act_atk_pch()
 	scePrintf("bhCPM2_act_atk_pch - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x14cc70
-_anon14* CheckGunHit(_anon1* wtP, int obj_no, int yaw)
+// 100% matching!
+static GA_WORK* CheckGunHit(WPN_TAB* wtP, int obj_no, int yaw)
 {
-	_anon27 ps;
-	_anon14 gap;
-	// Line 1143, Address: 0x14cc70, Func Offset: 0
-	// Line 1147, Address: 0x14cc84, Func Offset: 0x14
-	// Line 1159, Address: 0x14cc8c, Func Offset: 0x1c
-	// Line 1160, Address: 0x14cc94, Func Offset: 0x24
-	// Line 1147, Address: 0x14cc9c, Func Offset: 0x2c
-	// Line 1160, Address: 0x14cca4, Func Offset: 0x34
-	// Line 1158, Address: 0x14ccb0, Func Offset: 0x40
-	// Line 1147, Address: 0x14ccb4, Func Offset: 0x44
-	// Line 1148, Address: 0x14ccb8, Func Offset: 0x48
-	// Line 1159, Address: 0x14ccc0, Func Offset: 0x50
-	// Line 1160, Address: 0x14ccc4, Func Offset: 0x54
-	// Line 1148, Address: 0x14ccc8, Func Offset: 0x58
-	// Line 1149, Address: 0x14cccc, Func Offset: 0x5c
-	// Line 1150, Address: 0x14ccd8, Func Offset: 0x68
-	// Line 1151, Address: 0x14cce4, Func Offset: 0x74
-	// Line 1152, Address: 0x14ccf0, Func Offset: 0x80
-	// Line 1153, Address: 0x14ccfc, Func Offset: 0x8c
-	// Line 1154, Address: 0x14cd08, Func Offset: 0x98
-	// Line 1155, Address: 0x14cd10, Func Offset: 0xa0
-	// Line 1160, Address: 0x14cd14, Func Offset: 0xa4
-	// Line 1156, Address: 0x14cd18, Func Offset: 0xa8
-	// Line 1158, Address: 0x14cd24, Func Offset: 0xb4
-	// Line 1159, Address: 0x14cd28, Func Offset: 0xb8
-	// Line 1158, Address: 0x14cd30, Func Offset: 0xc0
-	// Line 1159, Address: 0x14cd34, Func Offset: 0xc4
-	// Line 1160, Address: 0x14cd58, Func Offset: 0xe8
-	// Line 1161, Address: 0x14cd6c, Func Offset: 0xfc
-	// Line 1162, Address: 0x14cd88, Func Offset: 0x118
-	// Line 1161, Address: 0x14cd90, Func Offset: 0x120
-	// Line 1162, Address: 0x14cd9c, Func Offset: 0x12c
-	// Line 1164, Address: 0x14cda4, Func Offset: 0x134
-	// Line 1162, Address: 0x14cda8, Func Offset: 0x138
-	// Line 1164, Address: 0x14cdb4, Func Offset: 0x144
-	// Line 1165, Address: 0x14cdbc, Func Offset: 0x14c
-	// Line 1166, Address: 0x14cdd8, Func Offset: 0x168
-	// Line 1167, Address: 0x14cddc, Func Offset: 0x16c
-	// Line 1168, Address: 0x14cde4, Func Offset: 0x174
-	// Line 1166, Address: 0x14cde8, Func Offset: 0x178
-	// Line 1168, Address: 0x14cdec, Func Offset: 0x17c
-	// Line 1167, Address: 0x14cdf4, Func Offset: 0x184
-	// Line 1168, Address: 0x14cdf8, Func Offset: 0x188
-	// Line 1169, Address: 0x14ce04, Func Offset: 0x194
-	// Line 1172, Address: 0x14ce10, Func Offset: 0x1a0
-	// Line 1171, Address: 0x14ce20, Func Offset: 0x1b0
-	// Line 1172, Address: 0x14ce28, Func Offset: 0x1b8
-	// Func End, Address: 0x14ce30, Func Offset: 0x1c0
+    NJS_POINT3 ps;
+    static GA_WORK gap;
+    
+    gap.at_flg = plp->at_flg;
+    
+    gap.wpn_no = plp->wpnr_no;
+    
+    gap.r = wtP->r;
+    gap.l = wtP->l;
+    
+    gap.rn = wtP->rn;
+    gap.rmax = wtP->rmax;
+    
+    gap.ax = plp->wax;
+    gap.ay = yaw;
+    
+    plp->way = yaw;
+    plp->waz = 0;
+    
+    ps.x = ps.y = 0;
+    ps.z = WpnTab[plp->wpnr_no].wp_fps1.z; 
+    
+    njCalcPoint(&plp->mlwP->owP[obj_no].mtx, &ps, (NJS_POINT3*)&gap.gx);
+    
+    *(NJS_POINT3*)&gap.px = *(NJS_POINT3*)&gap.gx;
+    gap.py = 11.0f + plp->py;
+    
+    njUnitRotPortion(NULL);
+    
+    njRotateXYZ(NULL, plp->wax, yaw, plp->waz);
+    
+    ps.x = ps.y = 0;
+    ps.z = -gap.l;
+    
+    njCalcVector(NULL, &ps, (NJS_VECTOR*)&gap.vx);
+    
+    bhCheckGunAtari(&gap);
+    
+    return &gap;
 }
 
-// 
+/*// 
 // Start address: 0x14ce30
 void bhCPM2_SearchPch()
 {
