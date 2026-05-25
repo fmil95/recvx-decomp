@@ -115,56 +115,79 @@ int bhSetMotion(BH_PWORK* ewP, int add, int mode, void* datP)
     return 0;
 }
 
-// 
-// Start address: 0x12f7d0
-void SetMtnNormal(BH_PWORK* ewP, char* datP, int mode)
+// 100% matching!
+static void SetMtnNormal(BH_PWORK* ewP, char* datP, int mode) 
 {
-	int* dstP;
-	//_anon3* mkaP;
-	float* posP;
-	//_anon0* mkfP;
-	//_anon6* owP;
-	//_anon2* md2P;
-	int obj_no;
-	float flp_f;
-	int flp_s;
-	// Line 157, Address: 0x12f7d0, Func Offset: 0
-	// Line 162, Address: 0x12f7e4, Func Offset: 0x14
-	// Line 163, Address: 0x12f7fc, Func Offset: 0x2c
-	// Line 165, Address: 0x12f800, Func Offset: 0x30
-	// Line 166, Address: 0x12f808, Func Offset: 0x38
-	// Line 167, Address: 0x12f810, Func Offset: 0x40
-	// Line 168, Address: 0x12f818, Func Offset: 0x48
-	// Line 171, Address: 0x12f824, Func Offset: 0x54
-	// Line 172, Address: 0x12f82c, Func Offset: 0x5c
-	// Line 174, Address: 0x12f848, Func Offset: 0x78
-	// Line 178, Address: 0x12f858, Func Offset: 0x88
-	// Line 180, Address: 0x12f85c, Func Offset: 0x8c
-	// Line 181, Address: 0x12f864, Func Offset: 0x94
-	// Line 183, Address: 0x12f878, Func Offset: 0xa8
-	// Line 181, Address: 0x12f87c, Func Offset: 0xac
-	// Line 183, Address: 0x12f884, Func Offset: 0xb4
-	// Line 186, Address: 0x12f898, Func Offset: 0xc8
-	// Line 187, Address: 0x12f8a4, Func Offset: 0xd4
-	// Line 188, Address: 0x12f8ac, Func Offset: 0xdc
-	// Line 189, Address: 0x12f8b4, Func Offset: 0xe4
-	// Line 192, Address: 0x12f8b8, Func Offset: 0xe8
-	// Line 196, Address: 0x12f8c8, Func Offset: 0xf8
-	// Line 195, Address: 0x12f8d0, Func Offset: 0x100
-	// Line 196, Address: 0x12f8d4, Func Offset: 0x104
-	// Line 198, Address: 0x12f8f0, Func Offset: 0x120
-	// Line 199, Address: 0x12f8f8, Func Offset: 0x128
-	// Line 202, Address: 0x12f910, Func Offset: 0x140
-	// Line 203, Address: 0x12f918, Func Offset: 0x148
-	// Line 204, Address: 0x12f924, Func Offset: 0x154
-	// Line 205, Address: 0x12f92c, Func Offset: 0x15c
-	// Line 206, Address: 0x12f934, Func Offset: 0x164
-	// Line 211, Address: 0x12f940, Func Offset: 0x170
-	// Line 212, Address: 0x12f944, Func Offset: 0x174
-	// Line 214, Address: 0x12f948, Func Offset: 0x178
-	// Line 217, Address: 0x12f958, Func Offset: 0x188
-	// Func End, Address: 0x12f960, Func Offset: 0x190
-	scePrintf("SetMtnNormal - UNIMPLEMENTED!\n");
+    int flp_s;        
+    float flp_f;          
+    int obj_no;           
+    NJS_MDATA2_MOD* md2P; 
+    O_WORK* owP;       
+    NJS_MKEY_F_MOD* mkfP; 
+    float* posP;         
+    NJS_MKEY_A_MOD* mkaP; 
+    int* dstP;          
+
+    if (!(mode & 0x2)) 
+    {
+        datP = NormalTbl;
+    }
+   
+    obj_no = ewP->mnwP[ewP->mtn_no].obj_num;
+    md2P   = ewP->mnwP[ewP->mtn_no].md2P; 
+    
+    if ((mode & 0x2))
+    {
+        flp_s = -1;
+        flp_f = -1.0f;
+    } 
+    else 
+    {
+        flp_s = 1;
+        flp_f = 1.0f;
+    }
+    
+    for ( ; obj_no > 0; datP++) 
+    {
+        owP = &ewP->mlwP->owP[*datP];
+        
+        if (!(owP->flg & 0x4)) 
+        {
+            if (md2P->p[0] != NULL)
+            {
+                posP = ewP->mlwP->objP[*datP].pos;
+                
+                mkfP = md2P->p[0];
+                mkfP += ewP->frm_no / 65536;
+                
+                posP[0] = mkfP->key[0] * flp_f;
+                posP[1] = mkfP->key[1];
+                posP[2] = mkfP->key[2];
+            }
+            
+            if (!(owP->flg & 0x2))
+            {
+                dstP = ewP->mlwP->objP[*datP].ang;
+                
+                if (md2P->p[1] != NULL) 
+                {
+                    mkaP = md2P->p[1];
+                    mkaP += ewP->frm_no / 65536;
+                    
+                    dstP[0] = mkaP->key[0];
+                    dstP[1] = mkaP->key[1] * flp_s;
+                    dstP[2] = mkaP->key[2] * flp_s;
+                } 
+                else 
+                {
+                    dstP[0] = dstP[0] = dstP[0] = 0;
+                }
+            }
+            
+            md2P++;
+            obj_no--;
+        }
+    }
 }
 
 // 
