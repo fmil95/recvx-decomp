@@ -181,7 +181,7 @@ static void GetOneObjectMotion(BH_PWORK* ewP, int obj_no, int* ang)
     
     if (ewP->mnwP[ewP->mtn_no].md2P[rutP[obj_no]].p[1] != NULL)
     { 
-        mkaP = ewP->mnwP[ewP->mtn_no].md2P[rutP[obj_no]].p[1]; 
+        mkaP =  ewP->mnwP[ewP->mtn_no].md2P[rutP[obj_no]].p[1]; 
         mkaP += ewP->frm_no / 65536;
         
         ang[0] = mkaP->key[0];
@@ -194,62 +194,94 @@ static void GetOneObjectMotion(BH_PWORK* ewP, int obj_no, int* ang)
     }
 }
 
-/*// 
-// Start address: 0x14ace0
-void SetOneObjectMotion(BH_PWORK* ewP, npobj* objP, int* ang)
+// 100% matching!
+static void SetOneObjectMotion(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, int* ang) 
 {
-	int* srcP;
-	float rate;
-	short dlt;
-	int sum1;
-	int* srcP;
-	int tmpS[3];
-	int tmpD[3];
-	// Line 319, Address: 0x14ace0, Func Offset: 0
-	// Line 321, Address: 0x14acf8, Func Offset: 0x18
-	// Line 331, Address: 0x14ad0c, Func Offset: 0x2c
-	// Line 332, Address: 0x14ad44, Func Offset: 0x64
-	// Line 334, Address: 0x14ad58, Func Offset: 0x78
-	// Line 335, Address: 0x14ad6c, Func Offset: 0x8c
-	// Line 337, Address: 0x14ad80, Func Offset: 0xa0
-	// Line 340, Address: 0x14ada8, Func Offset: 0xc8
-	// Line 341, Address: 0x14ade0, Func Offset: 0x100
-	// Line 343, Address: 0x14adf8, Func Offset: 0x118
-	// Line 346, Address: 0x14ae00, Func Offset: 0x120
-	// Line 344, Address: 0x14ae04, Func Offset: 0x124
-	// Line 346, Address: 0x14ae08, Func Offset: 0x128
-	// Line 347, Address: 0x14ae0c, Func Offset: 0x12c
-	// Line 346, Address: 0x14ae10, Func Offset: 0x130
-	// Line 347, Address: 0x14ae1c, Func Offset: 0x13c
-	// Line 348, Address: 0x14ae28, Func Offset: 0x148
-	// Line 367, Address: 0x14ae3c, Func Offset: 0x15c
-	// Line 368, Address: 0x14ae4c, Func Offset: 0x16c
-	// Line 370, Address: 0x14ae5c, Func Offset: 0x17c
-	// Line 374, Address: 0x14ae60, Func Offset: 0x180
-	// Line 370, Address: 0x14ae68, Func Offset: 0x188
-	// Line 374, Address: 0x14ae7c, Func Offset: 0x19c
-	// Line 370, Address: 0x14ae80, Func Offset: 0x1a0
-	// Line 374, Address: 0x14ae84, Func Offset: 0x1a4
-	// Line 370, Address: 0x14ae88, Func Offset: 0x1a8
-	// Line 374, Address: 0x14ae8c, Func Offset: 0x1ac
-	// Line 375, Address: 0x14aeb4, Func Offset: 0x1d4
-	// Line 374, Address: 0x14aebc, Func Offset: 0x1dc
-	// Line 375, Address: 0x14aec8, Func Offset: 0x1e8
-	// Line 376, Address: 0x14aef8, Func Offset: 0x218
-	// Line 375, Address: 0x14af00, Func Offset: 0x220
-	// Line 376, Address: 0x14af0c, Func Offset: 0x22c
-	// Line 378, Address: 0x14af3c, Func Offset: 0x25c
-	// Line 376, Address: 0x14af48, Func Offset: 0x268
-	// Line 378, Address: 0x14af50, Func Offset: 0x270
-	// Line 382, Address: 0x14af58, Func Offset: 0x278
-	// Line 386, Address: 0x14af60, Func Offset: 0x280
-	// Line 387, Address: 0x14af68, Func Offset: 0x288
-	// Line 388, Address: 0x14af70, Func Offset: 0x290
-	// Line 391, Address: 0x14af78, Func Offset: 0x298
-	// Func End, Address: 0x14af94, Func Offset: 0x2b4
+    int* srcP;  
+    float rate;
+    short dlt;   
+    int sum1;    
+    static int tmpS[3], tmpD[3]; 
+    
+    if (ewP->hokan_count != 0) 
+    {
+        srcP = objP->ang;
+        
+        dlt = ang[0] - srcP[0];
+        
+        if (dlt < 0)
+        {
+            sum1 = -(dlt + (short)(dlt + 32768));
+        } 
+        else 
+        {
+            sum1 =   dlt + (short)(dlt + 32768);
+        }
+        
+        dlt = ang[1] - srcP[1];
+        
+        if (dlt < 0)
+        {
+            sum1 -= dlt;
+        } 
+        else 
+        {
+            sum1 += dlt;
+        }
+        
+        dlt = ang[1] - (32768 - srcP[1]);
+        
+        if (dlt < 0)
+        {
+            sum1 += dlt;
+        }
+        else 
+        {
+            sum1 -= dlt;
+        }
+        
+        dlt = ang[2] - srcP[2];
+        
+        if (dlt < 0) 
+        {
+            sum1 -= dlt + (short)(dlt + 32768);
+        } 
+        else 
+        {
+            sum1 += dlt + (short)(dlt + 32768);
+        }
+        
+        if (sum1 > 0) 
+        {
+            int* srcP;
+            
+            srcP = objP->ang;
+            
+            *srcP = 32768 + *srcP++;
+            *srcP = 32768 - *srcP;
+            *srcP = 32768 + *++srcP;
+        }
+        
+        AngZyxToYzx(objP->ang, tmpS);
+        AngZyxToYzx(ang,       tmpD);
+        
+        rate = 0.000015258789f * (65536 - ewP->hokan_rate);
+        
+        tmpS[0] += (int)(rate * (short)(tmpD[0] - tmpS[0]));
+        tmpS[1] += (int)(rate * (short)(tmpD[1] - tmpS[1]));
+        tmpS[2] += (int)(rate * (short)(tmpD[2] - tmpS[2]));
+        
+        AngYzxToZyx(tmpS, objP->ang);
+    }
+    else 
+    {
+        objP->ang[0] = ang[0];
+        objP->ang[1] = ang[1];
+        objP->ang[2] = ang[2];
+    }
 }
 
-// 
+/*// 
 // Start address: 0x14afa0
 _search* bhSearchEnemy(BH_PWORK* pwP, int rng, float hgt)
 {
