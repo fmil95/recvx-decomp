@@ -1,14 +1,10 @@
 #include "../../../ps2/veronica/prog/playpch.h"
 #include "../../../ps2/veronica/prog/Motion.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/player.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
-
-/*BH_PWORK* plp;
-_anon10* sys;
-_anon1 WpnTab[0];
-float lcmat[16][0];
-BH_PWORK ene[0];
-unsigned short PlMtnWpn[0];
-_anon5 WpnEffTab[4][0];*/
 
 // 100% matching! 
 void PlyPchInit(BH_PWORK* ewP)
@@ -116,37 +112,40 @@ void PlyPchMain(BH_PWORK* ewP)
 	scePrintf("PlyPchMain - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x14aaa0
-void MixSetToJointRot(npobj* basP, char* rutP, npobj* objP, int yaw)
+// 100% matching!
+static void MixSetToJointRot(NJS_CNK_OBJECT* basP, char* rutP, NJS_CNK_OBJECT* objP, int yaw)
 {
-	npobj* tmpP;
-	float mtx1P[16];
-	float mtx0P[16];
-	// Line 231, Address: 0x14aaa0, Func Offset: 0
-	// Line 232, Address: 0x14aac0, Func Offset: 0x20
-	// Line 233, Address: 0x14aac8, Func Offset: 0x28
-	// Line 235, Address: 0x14aad4, Func Offset: 0x34
-	// Line 237, Address: 0x14aaec, Func Offset: 0x4c
-	// Line 239, Address: 0x14aaf4, Func Offset: 0x54
-	// Line 241, Address: 0x14aaf8, Func Offset: 0x58
-	// Line 239, Address: 0x14aafc, Func Offset: 0x5c
-	// Line 241, Address: 0x14ab14, Func Offset: 0x74
-	// Line 242, Address: 0x14ab28, Func Offset: 0x88
-	// Line 244, Address: 0x14ab38, Func Offset: 0x98
-	// Line 246, Address: 0x14ab44, Func Offset: 0xa4
-	// Line 248, Address: 0x14ab58, Func Offset: 0xb8
-	// Line 249, Address: 0x14ab60, Func Offset: 0xc0
-	// Line 250, Address: 0x14ab6c, Func Offset: 0xcc
-	// Line 252, Address: 0x14ab78, Func Offset: 0xd8
-	// Line 253, Address: 0x14ab7c, Func Offset: 0xdc
-	// Line 252, Address: 0x14ab84, Func Offset: 0xe4
-	// Line 253, Address: 0x14ab98, Func Offset: 0xf8
-	// Line 254, Address: 0x14abb8, Func Offset: 0x118
-	// Line 255, Address: 0x14abdc, Func Offset: 0x13c
-	// Line 257, Address: 0x14ac00, Func Offset: 0x160
-	// Func End, Address: 0x14ac24, Func Offset: 0x184
-}*/
+    NJS_MATRIX* mtx0P, *mtx1P;    
+    NJS_CNK_OBJECT* tmpP; 
+    
+    mtx0P = &lcmat[0];
+    mtx1P = &lcmat[1];
+
+    njUnitMatrix(mtx0P);
+    
+    while (rutP[1] != -1) 
+    {
+        tmpP = &basP[rutP[0]];
+        
+        rutP++;
+        
+        njRotateXYZ(mtx0P, tmpP->ang[0], tmpP->ang[1], tmpP->ang[2]);
+    }
+    
+    njSetMatrix(mtx1P, mtx0P);
+    
+    njRotateXYZ(mtx1P, objP->ang[0], objP->ang[1], objP->ang[2]);
+    njInvertMatrix(mtx0P);
+    
+    njRotateY(mtx0P, yaw);
+    njMultiMatrix(mtx0P, mtx1P); 
+    
+    basP = &basP[rutP[0]];
+    
+    basP->ang[0] = (int)(10430.381f * atan2f(mtx0P[0][6], mtx0P[0][10]));
+    basP->ang[1] = (int)(10430.381f * asinf(-mtx0P[0][2]));
+    basP->ang[2] = (int)(10430.381f * atan2f(mtx0P[0][1], mtx0P[0][0]));
+}
 
 // 100% matching!
 static void GetOneObjectMotion(BH_PWORK* ewP, int obj_no, int* ang) 
