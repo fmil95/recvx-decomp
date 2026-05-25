@@ -1940,9 +1940,9 @@ int bhCheckC2Wall(NJS_CAPSULE* cap)
 	scePrintf("bhCheckC2Wall - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x1529b0
-int bhCheckC2WallN(_anon40* cap, unsigned int flg)
+int bhCheckC2WallN(NJS_CAPSULE* cap, unsigned int flg)
 {
 	int wal_n;
 	int i;
@@ -1955,14 +1955,14 @@ int bhCheckC2WallN(_anon40* cap, unsigned int flg)
 	float py;
 	float px;
 	float* psp;
-	_anon23 p[3];
-	_anon23 pt;
-	_anon23 ps;
-	_anon41 pl;
-	_anon41 lp;
-	_anon40 cap2;
-	_anon47 box;
-	_anon0* hp;
+	//_anon23 p[3];
+	//_anon23 pt;
+	//_anon23 ps;
+	//_anon41 pl;
+	//_anon41 lp;
+	//_anon40 cap2;
+	//_anon47 box;
+	//_anon0* hp;
 	// Line 2153, Address: 0x1529b0, Func Offset: 0
 	// Line 2162, Address: 0x152a08, Func Offset: 0x58
 	// Line 2163, Address: 0x152a0c, Func Offset: 0x5c
@@ -2192,7 +2192,8 @@ int bhCheckC2WallN(_anon40* cap, unsigned int flg)
 	// Line 2343, Address: 0x1531b0, Func Offset: 0x800
 	// Line 2344, Address: 0x1531b4, Func Offset: 0x804
 	// Func End, Address: 0x153210, Func Offset: 0x860
-}*/
+	scePrintf("bhCheckC2WallN - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int bhCheckClipModel(BH_PWORK* pp)

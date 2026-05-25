@@ -36,16 +36,16 @@ typedef struct PP_WORK
 
 void PlyPchInit(BH_PWORK* ewP);
 void PlyPchMain(BH_PWORK* ewP);
-/*void MixSetToJointRot(npobj* basP, char* rutP, npobj* objP, int yaw);*/
-void GetOneObjectMotion(BH_PWORK* ewP, int obj_no, int* ang);
-/*void SetOneObjectMotion(BH_PWORK* ewP, npobj* objP, int* ang);
-_search* bhSearchEnemy(BH_PWORK* pwP, int rng, float hgt);*/
-int SetLockOnDirection(int range, int count, int mode, int special);
+static void MixSetToJointRot(NJS_CNK_OBJECT* basP, char* rutP, NJS_CNK_OBJECT* objP, int yaw);
+static void GetOneObjectMotion(BH_PWORK* ewP, int obj_no, int* ang);
+static void SetOneObjectMotion(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, int* ang);
+static search* bhSearchEnemy(BH_PWORK* pwP, int rng, float hgt);
+static int SetLockOnDirection(int range, int count, int mode, int special);
 void bhCPM2_act_suw_pch();
 void bhCPM2_act_wsc_pch();
 void bhCPM2_act_atk_pch();
-/*_anon14* CheckGunHit(_anon1* wtP, int obj_no, int yaw);*/
+static GA_WORK* CheckGunHit(WPN_TAB* wtP, int obj_no, int yaw);
 void bhCPM2_SearchPch();
-/*void bhArmIkMdk(BH_PWORK* ewP, int bas_no, _anon27* effP, int rot);*/
+void bhArmIkMdk(BH_PWORK* ewP, int bas_no, NJS_POINT3* effP, int rot);
 
 #endif

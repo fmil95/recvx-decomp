@@ -1,8 +1,9 @@
+#include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/playpch.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
-#include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/weapon.h"
@@ -281,79 +282,90 @@ static void SetOneObjectMotion(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, int* ang)
     }
 }
 
-/*// 
-// Start address: 0x14afa0
-_search* bhSearchEnemy(BH_PWORK* pwP, int rng, float hgt)
+// 100% matching!
+static search* bhSearchEnemy(BH_PWORK* pwP, int rng, float hgt)
 {
-	_anon36 cap;
-	int i;
-	float dst;
-	float p_cs;
-	BH_PWORK* ewP;
-	_anon27 vct1;
-	_anon27 vct0;
-	_search* prvP;
-	_search* scnP;
-	_search* lstP;
-	_search* hedP;
-	// Line 403, Address: 0x14afa0, Func Offset: 0
-	// Line 410, Address: 0x14afd0, Func Offset: 0x30
-	// Line 412, Address: 0x14afdc, Func Offset: 0x3c
-	// Line 413, Address: 0x14afe0, Func Offset: 0x40
-	// Line 410, Address: 0x14afe4, Func Offset: 0x44
-	// Line 411, Address: 0x14afe8, Func Offset: 0x48
-	// Line 414, Address: 0x14afec, Func Offset: 0x4c
-	// Line 416, Address: 0x14aff0, Func Offset: 0x50
-	// Line 421, Address: 0x14aff8, Func Offset: 0x58
-	// Line 416, Address: 0x14b000, Func Offset: 0x60
-	// Line 421, Address: 0x14b004, Func Offset: 0x64
-	// Line 429, Address: 0x14b014, Func Offset: 0x74
-	// Line 422, Address: 0x14b020, Func Offset: 0x80
-	// Line 429, Address: 0x14b024, Func Offset: 0x84
-	// Line 430, Address: 0x14b02c, Func Offset: 0x8c
-	// Line 433, Address: 0x14b078, Func Offset: 0xd8
-	// Line 435, Address: 0x14b0a0, Func Offset: 0x100
-	// Line 437, Address: 0x14b0b0, Func Offset: 0x110
-	// Line 438, Address: 0x14b0b4, Func Offset: 0x114
-	// Line 435, Address: 0x14b0b8, Func Offset: 0x118
-	// Line 438, Address: 0x14b0bc, Func Offset: 0x11c
-	// Line 435, Address: 0x14b0c0, Func Offset: 0x120
-	// Line 436, Address: 0x14b0c8, Func Offset: 0x128
-	// Line 437, Address: 0x14b0dc, Func Offset: 0x13c
-	// Line 438, Address: 0x14b0ec, Func Offset: 0x14c
-	// Line 439, Address: 0x14b0f4, Func Offset: 0x154
-	// Line 442, Address: 0x14b0fc, Func Offset: 0x15c
-	// Line 439, Address: 0x14b100, Func Offset: 0x160
-	// Line 442, Address: 0x14b104, Func Offset: 0x164
-	// Line 445, Address: 0x14b120, Func Offset: 0x180
-	// Line 446, Address: 0x14b124, Func Offset: 0x184
-	// Line 449, Address: 0x14b128, Func Offset: 0x188
-	// Line 445, Address: 0x14b130, Func Offset: 0x190
-	// Line 446, Address: 0x14b138, Func Offset: 0x198
-	// Line 447, Address: 0x14b144, Func Offset: 0x1a4
-	// Line 448, Address: 0x14b150, Func Offset: 0x1b0
-	// Line 449, Address: 0x14b158, Func Offset: 0x1b8
-	// Line 450, Address: 0x14b160, Func Offset: 0x1c0
-	// Line 453, Address: 0x14b16c, Func Offset: 0x1cc
-	// Line 455, Address: 0x14b184, Func Offset: 0x1e4
-	// Line 456, Address: 0x14b1b0, Func Offset: 0x210
-	// Line 457, Address: 0x14b1b4, Func Offset: 0x214
-	// Line 458, Address: 0x14b1b8, Func Offset: 0x218
-	// Line 462, Address: 0x14b1bc, Func Offset: 0x21c
-	// Line 463, Address: 0x14b1c0, Func Offset: 0x220
-	// Line 465, Address: 0x14b1c8, Func Offset: 0x228
-	// Line 466, Address: 0x14b1dc, Func Offset: 0x23c
-	// Line 467, Address: 0x14b1e0, Func Offset: 0x240
-	// Line 470, Address: 0x14b1e4, Func Offset: 0x244
-	// Line 471, Address: 0x14b1f0, Func Offset: 0x250
-	// Line 472, Address: 0x14b1f8, Func Offset: 0x258
-	// Line 476, Address: 0x14b200, Func Offset: 0x260
-	// Line 478, Address: 0x14b228, Func Offset: 0x288
-	// Line 479, Address: 0x14b22c, Func Offset: 0x28c
-	// Func End, Address: 0x14b260, Func Offset: 0x2c0
+    search* hedP, *lstP, *scnP, *prvP;    
+    NJS_VECTOR vct0, vct1;
+    BH_PWORK* ewP;  
+    float p_cs;    
+    float dst;       
+    int i;          
+    NJS_CAPSULE cap; 
+    PP_WORK* ppP; // not from DWARF
+
+    ppP = (PP_WORK*)pwP->exp2;
+    
+    ppP->sch_hed.nextP = NULL;
+    ppP->sch_hed.dst   = 0;
+    
+    lstP = ppP->SchLst;
+    hedP = &ppP->sch_hed;
+    
+    ppP->sch_hed.dir = 0;
+    
+    p_cs = njCos(rng); 
+    
+    njSinCos((pwP->ay + 32768), &vct0.x, &vct0.z);
+    
+    ewP = ene;
+    
+    vct0.y = 0;
+    
+    for (i = 0; i < sys->ewk_n; i++, ewP++)
+    {
+        if (((((ewP->flg & 0x1)) && ((ewP->flg & 0x20))) && ((!(ewP->flg2 & 0x10)) && (!(ewP->flg & 0x2))) && (!(ewP->stflg & 0x41000000))) && ((!(ewP->flg & 0x80)) || (!(((O_WRK*)ewP->lkwkp)->stflg & 0x1000000)))) 
+        {
+            vct1.x = 0.5f * (ewP->watr.c1.x + ewP->watr.c2.x);
+            vct1.y = 0.5f * (ewP->watr.c1.y + ewP->watr.c2.y);
+            vct1.z = 0.5f * (ewP->watr.c1.z + ewP->watr.c2.z);
+            
+            njSubVector(&vct1, (NJS_VECTOR*)&pwP->px);
+            
+            dst = njScalor(&vct1);
+            
+            if ((p_cs * dst) <= njInnerProduct(&vct0, &vct1)) 
+            {
+                cap.c1.x = cap.c2.x = pwP->px;
+                cap.c1.y = cap.c2.y = pwP->py;
+                cap.c1.z = cap.c2.z = pwP->pz;
+                
+                cap.c1.y += hgt;
+                
+                njAddVector(&cap.c2, &vct1);
+                
+                cap.r = 0.1f;
+                
+                if (bhCheckC2WallN(&cap, 0x40000400) == 0)  
+                {
+                    lstP->dir = (int)(10430.381f * atan2f(vct1.x, vct1.z)) + 32768;
+                    lstP->dst = dst;                    
+                    lstP->ewP = ewP;
+                    lstP->idx = i;
+                    
+                    prvP = hedP; 
+                    
+                    for (scnP = hedP->nextP; scnP != NULL; scnP = scnP->nextP) 
+                    {
+                        if (scnP->dst >= dst) 
+                        {
+                            break;
+                        }
+                        
+                        prvP = scnP;
+                    }
+                    
+                    lstP->nextP = prvP->nextP;
+                    prvP->nextP = lstP++;
+                }
+            }
+        }
+    }
+    
+    return hedP->nextP; 
 }
 
-// 
+/*// 
 // Start address: 0x14b260
 int SetLockOnDirection(int range, int count, int mode, int special)
 {

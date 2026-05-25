@@ -17,7 +17,7 @@ int bhSearchNextEnemy(BH_PWORK* pp, int r, float h);
 int bhSearchPlayer(BH_PWORK* pp, int r);
 /*int bhCheckL2Wall(_anon41* lp, unsigned int flg, float* len);*/
 int bhCheckC2Wall(NJS_CAPSULE* cap);
-/*int bhCheckC2WallN(_anon40* cap, unsigned int flg);*/
+int bhCheckC2WallN(NJS_CAPSULE* cap, unsigned int flg);
 int bhCheckClipModel(BH_PWORK* pp);
 /*int bhCheckClipPoint(_anon23* pos);*/
 void bhSetWaterSplash(BH_PWORK* pp, int jno, int type, float sx, float sy, float sz);
