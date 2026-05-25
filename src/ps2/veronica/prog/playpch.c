@@ -832,36 +832,51 @@ static GA_WORK* CheckGunHit(WPN_TAB* wtP, int obj_no, int yaw)
     return &gap;
 }
 
-/*// 
-// Start address: 0x14ce30
-void bhCPM2_SearchPch()
+// 100% matching!
+void bhCPM2_SearchPch() 
 {
-	_anon3* ppP;
-	_search* lstP;
-	// Line 1187, Address: 0x14ce30, Func Offset: 0
-	// Line 1191, Address: 0x14ce38, Func Offset: 0x8
-	// Line 1194, Address: 0x14ce98, Func Offset: 0x68
-	// Line 1195, Address: 0x14cea0, Func Offset: 0x70
-	// Line 1196, Address: 0x14ceac, Func Offset: 0x7c
-	// Line 1195, Address: 0x14ceb0, Func Offset: 0x80
-	// Line 1196, Address: 0x14ceb4, Func Offset: 0x84
-	// Line 1195, Address: 0x14ceb8, Func Offset: 0x88
-	// Line 1196, Address: 0x14cec0, Func Offset: 0x90
-	// Line 1199, Address: 0x14cec8, Func Offset: 0x98
-	// Line 1196, Address: 0x14cecc, Func Offset: 0x9c
-	// Line 1199, Address: 0x14ced0, Func Offset: 0xa0
-	// Line 1201, Address: 0x14ced8, Func Offset: 0xa8
-	// Line 1202, Address: 0x14cef0, Func Offset: 0xc0
-	// Line 1206, Address: 0x14cef8, Func Offset: 0xc8
-	// Line 1207, Address: 0x14cf08, Func Offset: 0xd8
-	// Line 1208, Address: 0x14cf24, Func Offset: 0xf4
-	// Line 1209, Address: 0x14cf2c, Func Offset: 0xfc
-	// Line 1210, Address: 0x14cf38, Func Offset: 0x108
-	// Line 1209, Address: 0x14cf3c, Func Offset: 0x10c
-	// Line 1210, Address: 0x14cf40, Func Offset: 0x110
-	// Line 1216, Address: 0x14cf4c, Func Offset: 0x11c
-	// Func End, Address: 0x14cf58, Func Offset: 0x128
-}*/
+    search* lstP; // needs use
+    PP_WORK* ppP;
+    int special; // not from DWARF
+
+    special = sys->ply_id == 2;
+    
+    if (special != 0) 
+    {
+        special = plp->wpnr_no == 8;
+    }
+    
+    if (special != 0)
+    {
+        special = (plp->at_flg & 0xE) == 2;
+    }
+    
+    if (SetLockOnDirection(16384, 8, 1, special) != 0) 
+    {
+        plp->flg |= 0x100000;
+        
+        PEXP0_I(4) = 8;
+        
+        ppP = (PP_WORK*)plp->exp2;
+        
+        if ((ppP->mode & 0x8)) 
+        {
+            ppP->hed_rate = 0;
+        } 
+        else 
+        {
+            ppP->hed_rate = 65536;
+        }
+        
+        if (((ppP->mode & 0x4)) && ((plp->at_flg & 0xE) == 2))
+        {
+            plp->mtn_no = 117;
+            
+            plp->hokan_count = 8;
+            plp->hokan_rate  = 39321;  
+        }
+    }
+}
 
 // 
 // Start address: 0x14cf60
