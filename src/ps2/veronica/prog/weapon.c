@@ -1473,95 +1473,81 @@ int bhCheckCapCol2Capsule(BH_PWORK* pp, _anon34* cap, _anon1* hps)
 	// Line 1569, Address: 0x28da04, Func Offset: 0x374
 	// Line 1572, Address: 0x28da08, Func Offset: 0x378
 	// Func End, Address: 0x28da3c, Func Offset: 0x3ac
-}
-
-// 
-// Start address: 0x28da40
-void bhSetGunSplash(_anon21* gap, _anon1* pos, int wattr)
-{
-	_anon1 vec;
-	// Line 1634, Address: 0x28da40, Func Offset: 0
-	// Line 1636, Address: 0x28da58, Func Offset: 0x18
-	// Line 1638, Address: 0x28da60, Func Offset: 0x20
-	// Line 1636, Address: 0x28da6c, Func Offset: 0x2c
-	// Line 1637, Address: 0x28da74, Func Offset: 0x34
-	// Line 1638, Address: 0x28da80, Func Offset: 0x40
-	// Line 1639, Address: 0x28da88, Func Offset: 0x48
-	// Line 1640, Address: 0x28da94, Func Offset: 0x54
-	// Line 1641, Address: 0x28daa0, Func Offset: 0x60
-	// Line 1640, Address: 0x28daa4, Func Offset: 0x64
-	// Line 1641, Address: 0x28dab0, Func Offset: 0x70
-	// Line 1642, Address: 0x28dac4, Func Offset: 0x84
-	// Line 1643, Address: 0x28dad8, Func Offset: 0x98
-	// Line 1644, Address: 0x28daec, Func Offset: 0xac
-	// Line 1645, Address: 0x28db04, Func Offset: 0xc4
-	// Line 1646, Address: 0x28db1c, Func Offset: 0xdc
-	// Line 1647, Address: 0x28db34, Func Offset: 0xf4
-	// Line 1648, Address: 0x28db48, Func Offset: 0x108
-	// Line 1651, Address: 0x28db70, Func Offset: 0x130
-	// Line 1653, Address: 0x28db78, Func Offset: 0x138
-	// Line 1651, Address: 0x28db88, Func Offset: 0x148
-	// Line 1652, Address: 0x28db98, Func Offset: 0x158
-	// Line 1654, Address: 0x28dba0, Func Offset: 0x160
-	// Line 1655, Address: 0x28dba8, Func Offset: 0x168
-	// Line 1652, Address: 0x28dbb0, Func Offset: 0x170
-	// Line 1653, Address: 0x28dbbc, Func Offset: 0x17c
-	// Line 1657, Address: 0x28dbc8, Func Offset: 0x188
-	// Line 1653, Address: 0x28dbd0, Func Offset: 0x190
-	// Line 1657, Address: 0x28dbf4, Func Offset: 0x1b4
-	// Line 1653, Address: 0x28dbf8, Func Offset: 0x1b8
-	// Line 1654, Address: 0x28dc00, Func Offset: 0x1c0
-	// Line 1655, Address: 0x28dc38, Func Offset: 0x1f8
-	// Line 1656, Address: 0x28dc70, Func Offset: 0x230
-	// Line 1657, Address: 0x28dc90, Func Offset: 0x250
-	// Line 1658, Address: 0x28dca8, Func Offset: 0x268
-	// Line 1661, Address: 0x28dcb0, Func Offset: 0x270
-	// Line 1662, Address: 0x28dcb8, Func Offset: 0x278
-	// Line 1663, Address: 0x28dcc0, Func Offset: 0x280
-	// Line 1661, Address: 0x28dcc8, Func Offset: 0x288
-	// Line 1664, Address: 0x28dcd8, Func Offset: 0x298
-	// Line 1662, Address: 0x28dcdc, Func Offset: 0x29c
-	// Line 1664, Address: 0x28dce0, Func Offset: 0x2a0
-	// Line 1662, Address: 0x28dce4, Func Offset: 0x2a4
-	// Line 1666, Address: 0x28dcec, Func Offset: 0x2ac
-	// Line 1662, Address: 0x28dcf0, Func Offset: 0x2b0
-	// Line 1666, Address: 0x28dd14, Func Offset: 0x2d4
-	// Line 1662, Address: 0x28dd1c, Func Offset: 0x2dc
-	// Line 1663, Address: 0x28dd20, Func Offset: 0x2e0
-	// Line 1664, Address: 0x28dd54, Func Offset: 0x314
-	// Line 1665, Address: 0x28dd88, Func Offset: 0x348
-	// Line 1666, Address: 0x28dda4, Func Offset: 0x364
-	// Line 1667, Address: 0x28ddbc, Func Offset: 0x37c
-	// Line 1668, Address: 0x28ddc8, Func Offset: 0x388
-	// Line 1667, Address: 0x28ddd0, Func Offset: 0x390
-	// Line 1668, Address: 0x28dde0, Func Offset: 0x3a0
-	// Line 1669, Address: 0x28ddfc, Func Offset: 0x3bc
-	// Line 1672, Address: 0x28de04, Func Offset: 0x3c4
-	// Line 1673, Address: 0x28de0c, Func Offset: 0x3cc
-	// Line 1675, Address: 0x28de14, Func Offset: 0x3d4
-	// Line 1672, Address: 0x28de1c, Func Offset: 0x3dc
-	// Line 1673, Address: 0x28de2c, Func Offset: 0x3ec
-	// Line 1678, Address: 0x28de34, Func Offset: 0x3f4
-	// Line 1679, Address: 0x28de3c, Func Offset: 0x3fc
-	// Line 1673, Address: 0x28de44, Func Offset: 0x404
-	// Line 1674, Address: 0x28de50, Func Offset: 0x410
-	// Line 1680, Address: 0x28de58, Func Offset: 0x418
-	// Line 1674, Address: 0x28de5c, Func Offset: 0x41c
-	// Line 1680, Address: 0x28de60, Func Offset: 0x420
-	// Line 1674, Address: 0x28de64, Func Offset: 0x424
-	// Line 1675, Address: 0x28de70, Func Offset: 0x430
-	// Line 1682, Address: 0x28de7c, Func Offset: 0x43c
-	// Line 1675, Address: 0x28de88, Func Offset: 0x448
-	// Line 1676, Address: 0x28dea8, Func Offset: 0x468
-	// Line 1677, Address: 0x28decc, Func Offset: 0x48c
-	// Line 1678, Address: 0x28def8, Func Offset: 0x4b8
-	// Line 1679, Address: 0x28df2c, Func Offset: 0x4ec
-	// Line 1680, Address: 0x28df60, Func Offset: 0x520
-	// Line 1681, Address: 0x28df94, Func Offset: 0x554
-	// Line 1682, Address: 0x28dfa8, Func Offset: 0x568
-	// Line 1706, Address: 0x28dfc0, Func Offset: 0x580
-	// Func End, Address: 0x28dfdc, Func Offset: 0x59c
 }*/
+
+// 100% matching1
+void bhSetGunSplash(GA_WORK* gap, NJS_POINT3* pos, int wattr)
+{
+    NJS_VECTOR vec; 
+
+    vec.x = -gap->vx;
+    vec.y = -gap->vy;
+    vec.z = -gap->vz;
+    
+    njUnitVector(&vec);
+    
+    sys->ef.id  = 11;
+    sys->ef.flg = 1;
+    
+    sys->ef.mdlver = 1;
+    
+    sys->ef.type = wattr;
+    
+    sys->ef.px = pos->x;
+    sys->ef.py = pos->y;
+    sys->ef.pz = pos->z;
+    
+    sys->ef.ax = 0;
+    
+    switch (wattr)
+    {
+    case 0:
+    case 3:
+        sys->ef.type = 5;
+        
+        sys->ef.flr_no = 0;
+        
+        sys->ef.sx = 0.75f * WpnTab[gap->wpn_no].ef_scale;
+        sys->ef.sy = 0.75f * WpnTab[gap->wpn_no].ef_scale;
+        sys->ef.sz = 0.75f * WpnTab[gap->wpn_no].ef_scale;
+        
+        sys->ef.ay = gap->ay + 32768;
+        bhSetEffectTb(&sys->ef, &vec, NULL, 0);
+        break;
+    case 1:
+    case 2:
+        sys->ef.flr_no = 1;
+        
+        sys->ef.sx = WpnTab[gap->wpn_no].ef_scale;
+        sys->ef.sy = WpnTab[gap->wpn_no].ef_scale;
+        sys->ef.sz = WpnTab[gap->wpn_no].ef_scale;
+        
+        sys->ef.ay = gap->ay + 16384;
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        sys->ef.ay = gap->ay - 16384;
+        bhSetEffectTb(&sys->ef, &vec, NULL, 1);
+        break;
+    case 4:
+    case 5:
+        sys->ef.id = 10;
+        
+        sys->ef.flg  = 0x100001;
+        sys->ef.type = 1;
+        
+        sys->ef.px += 2.0f * vec.x;
+        sys->ef.py -= 2.0f;
+        sys->ef.pz += 2.0f * vec.z;
+        
+        sys->ef.sx = WpnTab[gap->wpn_no].ef_scale;
+        sys->ef.sy = WpnTab[gap->wpn_no].ef_scale;
+        sys->ef.sz = WpnTab[gap->wpn_no].ef_scale;
+        
+        sys->ef.ay = 0;
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        break;
+    }
+}
 
 // 99.93% matching
 void bhSetExplosion(NJS_POINT3* pos) 
