@@ -44,7 +44,7 @@ static int SetLockOnDirection(int range, int count, int mode, int special);
 void bhCPM2_act_suw_pch();
 void bhCPM2_act_wsc_pch();
 void bhCPM2_act_atk_pch();
-static GA_WORK* CheckGunHit(WPN_TAB* wtP, int obj_no, int yaw);
+static GA_WORK* CheckGunHit(const WPN_TAB* wtP, int obj_no, int yaw);
 void bhCPM2_SearchPch();
 void bhArmIkMdk(BH_PWORK* ewP, int bas_no, NJS_POINT3* effP, int rot);
 
