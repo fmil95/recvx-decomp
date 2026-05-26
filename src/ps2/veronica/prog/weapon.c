@@ -7,6 +7,7 @@
 #include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/sub1.h"
 #include "../../../ps2/veronica/prog/main.h"
@@ -79,7 +80,7 @@ const short EneDamMid[31][22]  =
 	{ 0, 0, 0, 13, 13, 13, 130, 13, 3, 10, 12, 30, 8, 80, 25, 40, 60, 5, 999, 120, 999, 0 },
 	{ 0, 0, 0, 13, 13, 13, 130, 13, 3, 10, 12, 30, 8, 80, 25, 25, 25, 5, 999, 120, 999, 0 }
 };
-/*const short EneDamFar[31][22];*/
+const short EneDamFar[31][22]; // DATA
 const int WpnAngTab[21][3] = 
 {
     {     0,     0,   0 }, {     0,     0,   0 }, {     0,     0,   0 }, {     0,     0,   0 }, {     0,     0,   0 }, {     0,     0,   0 },  
@@ -166,7 +167,7 @@ void bhSetWeapon(O_WRK* op, int wpn_no, int flg)
 }
 
 // 100% matching!
-void bhObjWpn(BH_PWORK* op)
+void bhObjWpn(BH_PWORK* op) // should be O_WRK?
 {
     if (op->lkono == 9) 
     {
@@ -186,7 +187,7 @@ void bhObjWpn(BH_PWORK* op)
 }
 
 // 100% matching!
-void bhActionWeapon(BH_PWORK* op)
+void bhActionWeapon(BH_PWORK* op) // should be O_WRK?
 {
     NJS_POINT3 pos; 
     NJS_CNK_OBJECT* obp; 
@@ -1013,105 +1014,117 @@ void bhCheckKnifeAtari(GA_WORK* gap)
     }
 }
 
-/*// 
-// Start address: 0x28c940
-int bhCheckFlyAtari(_anon21* gap, int eidx)
+// 100% matching1
+int bhCheckFlyAtari(GA_WORK* gap, int eidx)
 {
-	BH_PWORK* pp;
-	int kno;
-	int id;
-	int j;
-	int i;
-	float nr;
-	float ll;
-	float knr;
-	_anon1 ps;
-	_anon1 sca;
-	_anon46 spr;
-	_anon34 wal;
-	// Line 1057, Address: 0x28c940, Func Offset: 0
-	// Line 1068, Address: 0x28c96c, Func Offset: 0x2c
-	// Line 1088, Address: 0x28c970, Func Offset: 0x30
-	// Line 1087, Address: 0x28c974, Func Offset: 0x34
-	// Line 1088, Address: 0x28c978, Func Offset: 0x38
-	// Line 1068, Address: 0x28c97c, Func Offset: 0x3c
-	// Line 1069, Address: 0x28c980, Func Offset: 0x40
-	// Line 1089, Address: 0x28c98c, Func Offset: 0x4c
-	// Line 1069, Address: 0x28c990, Func Offset: 0x50
-	// Line 1070, Address: 0x28c994, Func Offset: 0x54
-	// Line 1071, Address: 0x28c99c, Func Offset: 0x5c
-	// Line 1089, Address: 0x28c9a0, Func Offset: 0x60
-	// Line 1090, Address: 0x28c9a8, Func Offset: 0x68
-	// Line 1096, Address: 0x28c9ec, Func Offset: 0xac
-	// Line 1098, Address: 0x28ca0c, Func Offset: 0xcc
-	// Line 1099, Address: 0x28ca10, Func Offset: 0xd0
-	// Line 1101, Address: 0x28ca24, Func Offset: 0xe4
-	// Line 1102, Address: 0x28ca34, Func Offset: 0xf4
-	// Line 1103, Address: 0x28ca38, Func Offset: 0xf8
-	// Line 1104, Address: 0x28ca3c, Func Offset: 0xfc
-	// Line 1108, Address: 0x28ca40, Func Offset: 0x100
-	// Line 1109, Address: 0x28ca48, Func Offset: 0x108
-	// Line 1102, Address: 0x28ca4c, Func Offset: 0x10c
-	// Line 1103, Address: 0x28ca50, Func Offset: 0x110
-	// Line 1104, Address: 0x28ca54, Func Offset: 0x114
-	// Line 1105, Address: 0x28ca58, Func Offset: 0x118
-	// Line 1109, Address: 0x28ca5c, Func Offset: 0x11c
-	// Line 1105, Address: 0x28ca60, Func Offset: 0x120
-	// Line 1106, Address: 0x28ca64, Func Offset: 0x124
-	// Line 1107, Address: 0x28ca6c, Func Offset: 0x12c
-	// Line 1109, Address: 0x28ca74, Func Offset: 0x134
-	// Line 1122, Address: 0x28ca84, Func Offset: 0x144
-	// Line 1138, Address: 0x28ca88, Func Offset: 0x148
-	// Line 1139, Address: 0x28ca8c, Func Offset: 0x14c
-	// Line 1122, Address: 0x28ca94, Func Offset: 0x154
-	// Line 1124, Address: 0x28ca9c, Func Offset: 0x15c
-	// Line 1111, Address: 0x28caa0, Func Offset: 0x160
-	// Line 1137, Address: 0x28caa4, Func Offset: 0x164
-	// Line 1124, Address: 0x28caa8, Func Offset: 0x168
-	// Line 1125, Address: 0x28caac, Func Offset: 0x16c
-	// Line 1126, Address: 0x28cab4, Func Offset: 0x174
-	// Line 1128, Address: 0x28cabc, Func Offset: 0x17c
-	// Line 1129, Address: 0x28cac4, Func Offset: 0x184
-	// Line 1130, Address: 0x28cacc, Func Offset: 0x18c
-	// Line 1132, Address: 0x28cad4, Func Offset: 0x194
-	// Line 1133, Address: 0x28cadc, Func Offset: 0x19c
-	// Line 1135, Address: 0x28cae4, Func Offset: 0x1a4
-	// Line 1139, Address: 0x28cae8, Func Offset: 0x1a8
-	// Line 1140, Address: 0x28caf0, Func Offset: 0x1b0
-	// Line 1143, Address: 0x28caf8, Func Offset: 0x1b8
-	// Line 1140, Address: 0x28cafc, Func Offset: 0x1bc
-	// Line 1141, Address: 0x28cb0c, Func Offset: 0x1cc
-	// Line 1142, Address: 0x28cb28, Func Offset: 0x1e8
-	// Line 1143, Address: 0x28cb40, Func Offset: 0x200
-	// Line 1144, Address: 0x28cb48, Func Offset: 0x208
-	// Line 1146, Address: 0x28cb70, Func Offset: 0x230
-	// Line 1145, Address: 0x28cb74, Func Offset: 0x234
-	// Line 1146, Address: 0x28cb78, Func Offset: 0x238
-	// Line 1148, Address: 0x28cb7c, Func Offset: 0x23c
-	// Line 1150, Address: 0x28cb94, Func Offset: 0x254
-	// Line 1152, Address: 0x28cb98, Func Offset: 0x258
-	// Line 1153, Address: 0x28cba8, Func Offset: 0x268
-	// Line 1154, Address: 0x28cbf0, Func Offset: 0x2b0
-	// Line 1155, Address: 0x28cbf8, Func Offset: 0x2b8
-	// Line 1157, Address: 0x28cc00, Func Offset: 0x2c0
-	// Line 1160, Address: 0x28cc08, Func Offset: 0x2c8
-	// Line 1157, Address: 0x28cc0c, Func Offset: 0x2cc
-	// Line 1158, Address: 0x28cc14, Func Offset: 0x2d4
-	// Line 1159, Address: 0x28cc24, Func Offset: 0x2e4
-	// Line 1160, Address: 0x28cc30, Func Offset: 0x2f0
-	// Line 1161, Address: 0x28cc38, Func Offset: 0x2f8
-	// Line 1163, Address: 0x28cc54, Func Offset: 0x314
-	// Line 1164, Address: 0x28cc9c, Func Offset: 0x35c
-	// Line 1165, Address: 0x28cca4, Func Offset: 0x364
-	// Line 1167, Address: 0x28ccac, Func Offset: 0x36c
-	// Line 1168, Address: 0x28ccf4, Func Offset: 0x3b4
-	// Line 1173, Address: 0x28cd00, Func Offset: 0x3c0
-	// Line 1177, Address: 0x28cd28, Func Offset: 0x3e8
-	// Line 1178, Address: 0x28cd2c, Func Offset: 0x3ec
-	// Func End, Address: 0x28cd5c, Func Offset: 0x41c
+    NJS_CAPSULE wal; 
+    NJS_SPHERE spr;  
+    NJS_VECTOR sca;  
+    NJS_POINT3 ps;   
+    float knr, ll, nr;      
+    int i, j;         
+    int id;        
+    int kno;       
+    BH_PWORK* pp;    
+
+    id = -1;
+    
+    pp = ene;
+    
+    spr.c.x = gap->px;
+    spr.c.y = gap->py;
+    spr.c.z = gap->pz;
+    spr.r   = gap->r;
+    
+    for (i = 0; i < sys->ewk_n; i++, pp++)
+    {
+        if ((((pp->flg & 0x1)) && ((pp->flg & 0x20)) && (!(pp->flg & 0x2)) && (!(pp->stflg & 0x1000000))) && (eidx != i) && ((!(pp->flg & 0x80)) || (!(((O_WRK*)pp->lkwkp)->stflg & 0x1000000))) && (npCollisionCheckSC(&spr, &pp->watr) != 0)) 
+        {
+            npDistanceP2C((NJS_POINT3*)&gap->px, &pp->watr, &ps);
+            
+            wal.c1.x = ps.x;
+            wal.c1.y = ps.y; 
+            wal.c1.z = ps.z;
+            
+            wal.c2.x = gap->px;
+            wal.c2.y = gap->py;
+            wal.c2.z = gap->pz;
+            
+            wal.r    = 0.1f;
+            
+            if (bhCheckC2WallN(&wal, 0x400) == 0) 
+            {
+                knr = 0;
+                
+                pp->flg |= 0x4;
+                
+                id = i;
+                
+                kno = 0;
+                
+                pp->dpx = gap->px;
+                pp->dpy = gap->py;
+                pp->dpz = gap->pz;
+                
+                pp->dvx = gap->vx;
+                pp->dvy = gap->vy;
+                pp->dvz = gap->vz;
+                
+                pp->dax = gap->ax;
+                pp->day = gap->ay;
+                
+                pp->wpnr_no = gap->wpn_no;
+                
+                for (j = 1; j < (int)pp->mlwP->obj_num; j++) 
+                { 
+                    sca.x = gap->px - pp->mlwP->owP[j].mtx[12];
+                    sca.y = gap->py - pp->mlwP->owP[j].mtx[13];
+                    sca.z = gap->pz - pp->mlwP->owP[j].mtx[14];
+                    
+                    ll = njScalor(&sca);
+                    
+                    if ((knr == 0) || (knr > ll))
+                    {
+                        knr = ll;
+                        kno = j;
+                    }
+                }
+                
+                pp->djnt_no = kno;
+                
+                if ((gap->at_flg & 0x80)) 
+                {
+                    pp->dam[kno] += EneDamFar[pp->id][gap->wpn_no];
+                    
+                    pp->comb_flg |= 0x40;
+                } 
+                else
+                {
+                    sca.x = gap->px - gap->gx;
+                    sca.y = gap->py - gap->gy;
+                    sca.z = gap->pz - gap->gz;
+                    
+                    if (njScalor(&sca) < 15.0f)
+                    {
+                        pp->dam[kno] += EneDamNear[pp->id][gap->wpn_no];
+                        
+                        pp->comb_flg |= 0x10;
+                    }
+                    else 
+                    {
+                        pp->dam[kno] += EneDamMid[pp->id][gap->wpn_no];
+                        
+                        pp->comb_flg |= 0x20;
+                    }
+                }
+            }
+        }
+    }
+    
+    return id;
 }
 
-// 
+/*// 
 // Start address: 0x28cd60
 void bhSetBowDamage()
 {
