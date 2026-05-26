@@ -2966,12 +2966,12 @@ void bhSetYakkyou(BH_PWORK* pp, int wno, int jno, int hand, int ang) // fifth pa
 	scePrintf("bhSetYakkyou - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x155680
 void bhSetMagazine(BH_PWORK* pp, int wno, int jno, int hand, int ang)
 {
-	_anon23 ops;
-	_anon13* eft;
+	//_anon23 ops;
+	//_anon13* eft;
 	// Line 3170, Address: 0x155680, Func Offset: 0
 	// Line 3173, Address: 0x155688, Func Offset: 0x8
 	// Line 3178, Address: 0x155694, Func Offset: 0x14
@@ -3010,7 +3010,8 @@ void bhSetMagazine(BH_PWORK* pp, int wno, int jno, int hand, int ang)
 	// Line 3214, Address: 0x155794, Func Offset: 0x114
 	// Line 3216, Address: 0x1557b8, Func Offset: 0x138
 	// Func End, Address: 0x1557c4, Func Offset: 0x144
-}*/
+	scePrintf("bhSetMagazine - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x1557d0
