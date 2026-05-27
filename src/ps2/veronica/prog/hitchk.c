@@ -3861,37 +3861,47 @@ void bhCheckFloorP(BH_PWORK* pp)
 	scePrintf("bhCheckFloorP - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x268040
-void bhCheckDansa(BH_PWORK* pp)
+// 100% matching!
+void bhCheckDansa(BH_PWORK* pp) 
 {
-	int etc_n;
-	int i;
-	float* dp;
-	float pz;
-	float px;
-	//_anon0* exp;
-	// Line 4345, Address: 0x268040, Func Offset: 0
-	// Line 4342, Address: 0x268044, Func Offset: 0x4
-	// Line 4344, Address: 0x268048, Func Offset: 0x8
-	// Line 4345, Address: 0x26804c, Func Offset: 0xc
-	// Line 4346, Address: 0x268054, Func Offset: 0x14
-	// Line 4345, Address: 0x268058, Func Offset: 0x18
-	// Line 4346, Address: 0x268060, Func Offset: 0x20
-	// Line 4347, Address: 0x268080, Func Offset: 0x40
-	// Line 4354, Address: 0x268090, Func Offset: 0x50
-	// Line 4358, Address: 0x268094, Func Offset: 0x54
-	// Line 4349, Address: 0x268098, Func Offset: 0x58
-	// Line 4350, Address: 0x2680e4, Func Offset: 0xa4
-	// Line 4351, Address: 0x2680f4, Func Offset: 0xb4
-	// Line 4354, Address: 0x26815c, Func Offset: 0x11c
-	// Line 4356, Address: 0x268170, Func Offset: 0x130
-	// Line 4358, Address: 0x26818c, Func Offset: 0x14c
-	// Line 4363, Address: 0x268194, Func Offset: 0x154
-	// Line 4364, Address: 0x268198, Func Offset: 0x158
-	// Line 4365, Address: 0x2681a8, Func Offset: 0x168
-	// Func End, Address: 0x2681b0, Func Offset: 0x170
-	scePrintf("bhCheckDansa - UNIMPLEMENTED!\n");
+    ATR_WORK* exp; 
+    float px, pz;     
+    float* dp;  
+    int i;       
+    int etc_n;     
+ 
+    px = pp->px;
+    pz = pp->pz;
+    
+    pp->stflg &= ~0x20000;
+    
+    etc_n = rom->etc_n + sys->metc_n;
+    
+    for (i = 0; i < etc_n; i++) 
+    {
+        if (i < rom->etc_n) 
+        {
+            exp = rom->etcp + i;
+        }
+        else
+        {
+            exp = &sys->metcp[i - rom->etc_n];
+        }
+        
+        if (((exp->flg & 0x1)) && (((exp->px <= px) && ((exp->px + exp->w) >= px)) && ((exp->pz <= pz) && ((exp->pz + exp->d) >= pz))) && (exp->flr_no == pp->flr_no))
+        {
+            switch (exp->type) 
+            {
+            case 2:
+                if ((!(pp->stflg & 0x30)) && (exp->prm0 != 0)) 
+                { 
+                    pp->stflg |= 0x20000;  
+                }
+                
+                break;
+            }
+        }
+    } 
 }
 
 // 100% matching! 
