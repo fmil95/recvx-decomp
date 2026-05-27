@@ -3532,30 +3532,49 @@ void bhSetUseKaidanFlag(BH_PWORK* pp, ATR_WORK* exp, int idx)
     }
 }
 
-// 
-// Start address: 0x267220
-void bhClrUseKaidanFlag(BH_PWORK* pp)
+// 100% matching!
+void bhClrUseKaidanFlag(BH_PWORK* pp) 
 {
-	int idx;
-	//_anon0* exp2;
-	//_anon0* exp;
-	// Line 4006, Address: 0x267220, Func Offset: 0
-	// Line 4007, Address: 0x267224, Func Offset: 0x4
-	// Line 4008, Address: 0x26722c, Func Offset: 0xc
-	// Line 4009, Address: 0x267230, Func Offset: 0x10
-	// Line 4011, Address: 0x267238, Func Offset: 0x18
-	// Line 4009, Address: 0x26723c, Func Offset: 0x1c
-	// Line 4011, Address: 0x267248, Func Offset: 0x28
-	// Line 4013, Address: 0x267254, Func Offset: 0x34
-	// Line 4014, Address: 0x267284, Func Offset: 0x64
-	// Line 4015, Address: 0x2672ac, Func Offset: 0x8c
-	// Line 4016, Address: 0x2672c0, Func Offset: 0xa0
-	// Line 4017, Address: 0x2672c4, Func Offset: 0xa4
-	// Line 4018, Address: 0x2672d4, Func Offset: 0xb4
-	// Line 4021, Address: 0x2672dc, Func Offset: 0xbc
-	// Line 4023, Address: 0x267308, Func Offset: 0xe8
-	// Func End, Address: 0x267310, Func Offset: 0xf0
-	scePrintf("bhClrUseKaidanFlag - UNIMPLEMENTED!\n");
+    ATR_WORK* exp, *exp2;
+    int idx;
+	
+    exp = (ATR_WORK*)pp->kdnp;
+    
+    if (exp != NULL) 
+    {
+        idx = pp->kdnidx;
+        
+        exp->attr &= ~0x400000;
+        
+        if (exp->prm3 == 0xFF) 
+        {
+            if (idx < rom->etc_n) 
+            {
+                exp2 = &rom->etcp[idx];
+            } 
+            else 
+            {
+                exp2 = &sys->metcp[idx - rom->etc_n];
+            }
+            
+            if (exp->prm0 == 0)
+            {
+                exp2++;
+            } 
+            else 
+            {
+                exp2--;
+            }
+            
+            exp2->attr &= ~0x400000;
+        }
+        else
+        {
+            exp = &rom->etcp[exp->prm3];
+            
+            exp->attr &= ~0x400000;
+        }
+    }
 }
 
 /*// 
