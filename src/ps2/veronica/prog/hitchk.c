@@ -3963,25 +3963,33 @@ ATR_WORK* bhCheckFloorEnemy(int flr_no, float px, float pz)
     return NULL;
 }
 
-// 
-// Start address: 0x268420
+// 100% matching!
 ATR_WORK* bhCheckFloorEffect(int flr_no, float px, float pz)
 {
-	int flr_n;
-	int i;
-	//_anon0* fp;
-	// Line 4448, Address: 0x268420, Func Offset: 0
-	// Line 4449, Address: 0x268444, Func Offset: 0x24
-	// Line 4452, Address: 0x268454, Func Offset: 0x34
-	// Line 4451, Address: 0x268458, Func Offset: 0x38
-	// Line 4452, Address: 0x268494, Func Offset: 0x74
-	// Line 4453, Address: 0x2684b0, Func Offset: 0x90
-	// Line 4456, Address: 0x268514, Func Offset: 0xf4
-	// Line 4459, Address: 0x26851c, Func Offset: 0xfc
-	// Line 4460, Address: 0x268530, Func Offset: 0x110
-	// Line 4461, Address: 0x268534, Func Offset: 0x114
-	// Func End, Address: 0x26853c, Func Offset: 0x11c
-	scePrintf("bhCheckFloorEffect - UNIMPLEMENTED!\n");
+    ATR_WORK* fp;
+    int i;
+    int flr_n;
+	
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++) 
+    {
+        if (i < rom->flr_n)
+        {
+            fp = rom->flrp + i;
+        } 
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if ((((fp->flg & 0x1)) && (fp->type == 3)) && (((fp->px <= px) && ((fp->px + fp->w) >= px)) && ((fp->pz <= pz) && ((fp->pz + fp->d) >= pz))) && (fp->flr_no == flr_no)) 
+        {
+            return fp;
+        }
+    }
+    
+    return NULL;
 }
 
 // 
