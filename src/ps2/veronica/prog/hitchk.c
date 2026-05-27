@@ -4265,22 +4265,31 @@ void bhCheckEnemies(BH_PWORK* pp)
 	scePrintf("bhCheckEnemies - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2692e0
+// 100% matching!
 int bhCheckWallAttrB89(ATR_WORK* hp)
 {
-	unsigned char* cnop;
-	int i;
-	// Line 4902, Address: 0x2692e0, Func Offset: 0
-	// Line 4903, Address: 0x269308, Func Offset: 0x28
-	// Line 4905, Address: 0x269314, Func Offset: 0x34
-	// Line 4908, Address: 0x269328, Func Offset: 0x48
-	// Line 4907, Address: 0x269330, Func Offset: 0x50
-	// Line 4908, Address: 0x269334, Func Offset: 0x54
-	// Line 4909, Address: 0x269338, Func Offset: 0x58
-	// Line 4910, Address: 0x26934c, Func Offset: 0x6c
-	// Line 4912, Address: 0x26935c, Func Offset: 0x7c
-	// Line 4913, Address: 0x269360, Func Offset: 0x80
-	// Func End, Address: 0x269368, Func Offset: 0x88
-	scePrintf("bhCheckWallAttrB89 - UNIMPLEMENTED!\n");
+    int i;
+    unsigned char* cnop;
+    
+    if ((!(hp->attr & 0x100)) || ((sys->st_flg & 0x1))) 
+    {
+        return 1;
+    }
+    
+    if (!(hp->attr & 0x200))
+    {
+        return 0;
+    }
+    
+    cnop = &hp->prm1;
+    
+    for (i = 0; i < 3; i++, cnop++) 
+    {
+        if (*cnop == (unsigned char)cam.ncut) 
+        {
+            return 0;
+        }
+    }
+    
+    return 1;
 }
