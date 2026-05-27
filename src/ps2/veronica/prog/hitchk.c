@@ -3492,27 +3492,44 @@ void bhCheckExmAtari(BH_PWORK* pp)
 	scePrintf("bhCheckExmAtari - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x267140
+// 100% matching!
 void bhSetUseKaidanFlag(BH_PWORK* pp, ATR_WORK* exp, int idx)
 {
-	ATR_WORK* exp2;
-	// Line 3978, Address: 0x267140, Func Offset: 0
-	// Line 3979, Address: 0x267144, Func Offset: 0x4
-	// Line 3980, Address: 0x267148, Func Offset: 0x8
-	// Line 3982, Address: 0x267150, Func Offset: 0x10
-	// Line 3980, Address: 0x267154, Func Offset: 0x14
-	// Line 3982, Address: 0x26715c, Func Offset: 0x1c
-	// Line 3984, Address: 0x267168, Func Offset: 0x28
-	// Line 3985, Address: 0x267198, Func Offset: 0x58
-	// Line 3986, Address: 0x2671c0, Func Offset: 0x80
-	// Line 3987, Address: 0x2671d4, Func Offset: 0x94
-	// Line 3988, Address: 0x2671d8, Func Offset: 0x98
-	// Line 3989, Address: 0x2671e4, Func Offset: 0xa4
-	// Line 3992, Address: 0x2671ec, Func Offset: 0xac
-	// Line 3994, Address: 0x267218, Func Offset: 0xd8
-	// Func End, Address: 0x267220, Func Offset: 0xe0
-	scePrintf("bhSetUseKaidanFlag - UNIMPLEMENTED!\n");
+    ATR_WORK* exp2;
+    
+    pp->kdnp   = &exp->flg;
+    pp->kdnidx = idx;
+    
+    exp->attr |= 0x400000;
+    
+    if (exp->prm3 == 0xFF) 
+    {
+        if (idx < rom->etc_n)
+        {
+            exp2 = &rom->etcp[idx];
+        } 
+        else 
+        {
+            exp2 = &sys->metcp[idx - rom->etc_n];
+        }
+        
+        if (exp->prm0 == 0) 
+        {
+            exp2++;
+        } 
+        else 
+        {
+            exp2--;
+        }
+        
+        exp2->attr |= 0x400000;
+    }
+    else 
+    {
+        exp2 = &rom->etcp[exp->prm3];
+        
+        exp2->attr |= 0x400000;
+    }
 }
 
 // 
