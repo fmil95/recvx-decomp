@@ -3934,25 +3934,34 @@ int bhCheckFloorSound(BH_PWORK* pp, int flr_no, float px, float pz)
     return sno;
 }
 
-/*// 
-// Start address: 0x268300
-_anon0* bhCheckFloorEnemy(int flr_no, float px, float pz)
+// 100% matching!
+ATR_WORK* bhCheckFloorEnemy(int flr_no, float px, float pz)
 {
-	int flr_n;
-	int i;
-	_anon0* fp;
-	// Line 4419, Address: 0x268300, Func Offset: 0
-	// Line 4420, Address: 0x268324, Func Offset: 0x24
-	// Line 4423, Address: 0x268334, Func Offset: 0x34
-	// Line 4422, Address: 0x268338, Func Offset: 0x38
-	// Line 4423, Address: 0x268374, Func Offset: 0x74
-	// Line 4424, Address: 0x268390, Func Offset: 0x90
-	// Line 4427, Address: 0x2683f4, Func Offset: 0xf4
-	// Line 4430, Address: 0x2683fc, Func Offset: 0xfc
-	// Line 4431, Address: 0x268410, Func Offset: 0x110
-	// Line 4432, Address: 0x268414, Func Offset: 0x114
-	// Func End, Address: 0x26841c, Func Offset: 0x11c
-}*/
+    ATR_WORK* fp;
+    int i;
+    int flr_n;
+	
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++) 
+    {
+        if (i < rom->flr_n)
+        {
+            fp = rom->flrp + i;
+        } 
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if ((((fp->flg & 0x1)) && (fp->type == 2)) && (((fp->px <= px) && ((fp->px + fp->w) >= px)) && ((fp->pz <= pz) && ((fp->pz + fp->d) >= pz))) && (fp->flr_no == flr_no)) 
+        {
+            return fp;
+        }
+    }
+    
+    return NULL;
+}
 
 // 
 // Start address: 0x268420
