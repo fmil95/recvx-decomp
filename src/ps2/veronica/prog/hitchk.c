@@ -3992,25 +3992,33 @@ ATR_WORK* bhCheckFloorEffect(int flr_no, float px, float pz)
     return NULL;
 }
 
-// 
-// Start address: 0x268540
-ATR_WORK* bhCheckWater(NJS_POINT3* pos)
+// 100% matching!
+ATR_WORK* bhCheckWater(NJS_POINT3* pos) 
 {
-	int flr_n;
-	int i;
-	//_anon0* fp;
-	// Line 4475, Address: 0x268540, Func Offset: 0
-	// Line 4476, Address: 0x268564, Func Offset: 0x24
-	// Line 4479, Address: 0x268574, Func Offset: 0x34
-	// Line 4478, Address: 0x26857c, Func Offset: 0x3c
-	// Line 4479, Address: 0x2685b8, Func Offset: 0x78
-	// Line 4480, Address: 0x2685e0, Func Offset: 0xa0
-	// Line 4483, Address: 0x268670, Func Offset: 0x130
-	// Line 4486, Address: 0x268678, Func Offset: 0x138
-	// Line 4487, Address: 0x268688, Func Offset: 0x148
-	// Line 4488, Address: 0x26868c, Func Offset: 0x14c
-	// Func End, Address: 0x268694, Func Offset: 0x154
-	scePrintf("bhCheckWater - UNIMPLEMENTED!\n");
+    ATR_WORK* fp; 
+    int i;        
+    int flr_n;   
+
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++) 
+    {
+        if (i < rom->flr_n)
+        {
+            fp = rom->flrp + i;
+        }
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if ((((fp->flg & 0x1)) && (fp->type == 3)) && (fp->prm0 == 1) && (((fp->px <= pos->x) && ((fp->px + fp->w) >= pos->x)) && ((fp->pz <= pos->z) && ((fp->pz + fp->d) >= pos->z)) && ((fp->py <= pos->y) && ((fp->py + fp->h) >= pos->y)))) 
+        {
+            return fp;
+        }
+    }
+    
+    return NULL;
 }
 
 // 
