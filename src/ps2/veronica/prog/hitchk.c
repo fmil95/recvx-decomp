@@ -3035,69 +3035,105 @@ int bhCheckBox(ATR_WORK* hp, NJS_POINT3* pos, float ar, float ah, unsigned int a
 	scePrintf("bhCheckBox - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x265ba0
-int bhCheckBox2Box(_anon0* hp, _anon20* pos, float aw, float ad, float ah)
+// 100% matching!
+int bhCheckBox2Box(ATR_WORK* hp, NJS_POINT3* pos, float aw, float ad, float ah)
 {
-	float abz;
-	float abx;
-	float h;
-	float wpz;
-	float wpx;
-	float zn;
-	float xn;
-	float pz;
-	float px;
-	// Line 3438, Address: 0x265ba0, Func Offset: 0
-	// Line 3443, Address: 0x265ba4, Func Offset: 0x4
-	// Line 3438, Address: 0x265ba8, Func Offset: 0x8
-	// Line 3443, Address: 0x265bc0, Func Offset: 0x20
-	// Line 3444, Address: 0x265bec, Func Offset: 0x4c
-	// Line 3445, Address: 0x265bfc, Func Offset: 0x5c
-	// Line 3448, Address: 0x265c00, Func Offset: 0x60
-	// Line 3444, Address: 0x265c04, Func Offset: 0x64
-	// Line 3445, Address: 0x265c08, Func Offset: 0x68
-	// Line 3450, Address: 0x265c0c, Func Offset: 0x6c
-	// Line 3446, Address: 0x265c10, Func Offset: 0x70
-	// Line 3444, Address: 0x265c14, Func Offset: 0x74
-	// Line 3445, Address: 0x265c18, Func Offset: 0x78
-	// Line 3448, Address: 0x265c20, Func Offset: 0x80
-	// Line 3449, Address: 0x265c28, Func Offset: 0x88
-	// Line 3448, Address: 0x265c30, Func Offset: 0x90
-	// Line 3450, Address: 0x265c38, Func Offset: 0x98
-	// Line 3453, Address: 0x265cbc, Func Offset: 0x11c
-	// Line 3454, Address: 0x265ccc, Func Offset: 0x12c
-	// Line 3456, Address: 0x265cdc, Func Offset: 0x13c
-	// Line 3457, Address: 0x265ce8, Func Offset: 0x148
-	// Line 3458, Address: 0x265cf4, Func Offset: 0x154
-	// Line 3459, Address: 0x265d0c, Func Offset: 0x16c
-	// Line 3460, Address: 0x265d10, Func Offset: 0x170
-	// Line 3463, Address: 0x265d18, Func Offset: 0x178
-	// Line 3464, Address: 0x265d20, Func Offset: 0x180
-	// Line 3463, Address: 0x265d24, Func Offset: 0x184
-	// Line 3464, Address: 0x265d28, Func Offset: 0x188
-	// Line 3465, Address: 0x265d34, Func Offset: 0x194
-	// Line 3466, Address: 0x265d4c, Func Offset: 0x1ac
-	// Line 3467, Address: 0x265d50, Func Offset: 0x1b0
-	// Line 3470, Address: 0x265d58, Func Offset: 0x1b8
-	// Line 3472, Address: 0x265d68, Func Offset: 0x1c8
-	// Line 3473, Address: 0x265d78, Func Offset: 0x1d8
-	// Line 3474, Address: 0x265d84, Func Offset: 0x1e4
-	// Line 3475, Address: 0x265d9c, Func Offset: 0x1fc
-	// Line 3476, Address: 0x265da0, Func Offset: 0x200
-	// Line 3479, Address: 0x265da8, Func Offset: 0x208
-	// Line 3480, Address: 0x265db4, Func Offset: 0x214
-	// Line 3479, Address: 0x265db8, Func Offset: 0x218
-	// Line 3480, Address: 0x265dbc, Func Offset: 0x21c
-	// Line 3481, Address: 0x265dc8, Func Offset: 0x228
-	// Line 3482, Address: 0x265de0, Func Offset: 0x240
-	// Line 3483, Address: 0x265de4, Func Offset: 0x244
-	// Line 3487, Address: 0x265dec, Func Offset: 0x24c
-	// Line 3488, Address: 0x265df0, Func Offset: 0x250
-	// Func End, Address: 0x265e10, Func Offset: 0x270
+    float px, pz;  
+    float xn, zn;  
+    float wpx, wpz; 
+    float h;   
+    float abx, abz; 
+
+    if (hp->h)
+    {
+        h = hp->h;
+    } 
+    else 
+    {
+        h = rom->h;
+    }
+    
+    wpx = hp->px + (0.5f * hp->w);
+    wpz = hp->pz + (0.5f * hp->d);
+    
+    px = hp->px - aw;
+    pz = hp->pz - ad;
+    
+    xn = hp->w + (2.0f * aw);
+    zn = hp->d + (2.0f * ad);
+    
+    if ((((pos->x - px) >= 0) && ((pos->x - px) < xn)) && (((pos->z - pz) >= 0) && ((pos->z - pz) < zn)) && (((pos->y + ah) >= hp->py) && (pos->y <= (hp->py + h))))
+    {
+        if (pos->x < wpx) 
+        {
+            if (pos->z < wpz)
+            {
+                abx = fabsf(pos->x - px);
+                abz = fabsf(pos->z - pz);
+                
+                if (abx > abz)
+                {
+                    pos->z = pz;
+                } 
+                else 
+                {
+                    pos->x = px;
+                }
+                
+                return 1;
+            }
+            
+            abx = fabsf(pos->x - px);
+            abz = fabsf(pos->z - (pz + zn));
+            
+            if (abx > abz)
+            {
+                pos->z = pz + zn;
+            }
+            else
+            {
+                pos->x = px;
+            }
+            
+            return 1;
+        }
+        
+        if (pos->z < wpz) 
+        {
+            abx = fabsf(pos->x - (px + xn));
+            abz = fabsf(pos->z - pz);
+            
+            if (abx > abz)
+            {
+                pos->z = pz;
+            } 
+            else
+            {
+                pos->x = px + xn;
+            }
+            
+            return 1;
+        }
+        
+        abx = fabsf(pos->x - (px + xn));
+        abz = fabsf(pos->z - (pz + zn));
+        
+        if (abx > abz) 
+        {
+            pos->z = pz + zn;
+        } 
+        else 
+        {
+            pos->x = px + xn;
+        }
+        
+        return 1;
+    } 
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x265e10
 int bhCheckInnerP4(_anon33* pos, _anon33* p0, _anon33* p1, _anon33* p2, _anon33* p3)
 {
