@@ -3,6 +3,7 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaView.h"
 
 /*_anon4* sys;
@@ -4031,71 +4032,72 @@ ATR_WORK* bhCheckWater(NJS_POINT3* pos)
     return NULL;
 }
 
-// 
-// Start address: 0x2686a0
+// 100% matching!
 ATR_WORK* bhCheckL2Water(NJS_LINE* lp, NJS_POINT3* pos)
 {
-	int flr_n;
-	int i;
-	float sca;
-	float pz;
-	float px;
-	//_anon20 ll;
-	//_anon20 pt;
-	//_anon20 ps;
-	//_anon39 pl;
-	//_anon0* fp;
-	// Line 4499, Address: 0x2686a0, Func Offset: 0
-	// Line 4505, Address: 0x2686cc, Func Offset: 0x2c
-	// Line 4507, Address: 0x2686dc, Func Offset: 0x3c
-	// Line 4505, Address: 0x2686e4, Func Offset: 0x44
-	// Line 4507, Address: 0x2686e8, Func Offset: 0x48
-	// Line 4508, Address: 0x268704, Func Offset: 0x64
-	// Line 4510, Address: 0x268714, Func Offset: 0x74
-	// Line 4511, Address: 0x268760, Func Offset: 0xc0
-	// Line 4513, Address: 0x268790, Func Offset: 0xf0
-	// Line 4517, Address: 0x268794, Func Offset: 0xf4
-	// Line 4519, Address: 0x268798, Func Offset: 0xf8
-	// Line 4513, Address: 0x2687a0, Func Offset: 0x100
-	// Line 4514, Address: 0x2687a4, Func Offset: 0x104
-	// Line 4519, Address: 0x2687ac, Func Offset: 0x10c
-	// Line 4514, Address: 0x2687b0, Func Offset: 0x110
-	// Line 4515, Address: 0x2687b8, Func Offset: 0x118
-	// Line 4516, Address: 0x2687c0, Func Offset: 0x120
-	// Line 4517, Address: 0x2687c4, Func Offset: 0x124
-	// Line 4519, Address: 0x2687c8, Func Offset: 0x128
-	// Line 4520, Address: 0x2687e8, Func Offset: 0x148
-	// Line 4521, Address: 0x2687f0, Func Offset: 0x150
-	// Line 4522, Address: 0x2687f4, Func Offset: 0x154
-	// Line 4523, Address: 0x2687f8, Func Offset: 0x158
-	// Line 4520, Address: 0x2687fc, Func Offset: 0x15c
-	// Line 4523, Address: 0x268800, Func Offset: 0x160
-	// Line 4520, Address: 0x268804, Func Offset: 0x164
-	// Line 4521, Address: 0x268808, Func Offset: 0x168
-	// Line 4522, Address: 0x268818, Func Offset: 0x178
-	// Line 4523, Address: 0x268824, Func Offset: 0x184
-	// Line 4524, Address: 0x268844, Func Offset: 0x1a4
-	// Line 4526, Address: 0x26884c, Func Offset: 0x1ac
-	// Line 4525, Address: 0x268850, Func Offset: 0x1b0
-	// Line 4524, Address: 0x268858, Func Offset: 0x1b8
-	// Line 4526, Address: 0x26885c, Func Offset: 0x1bc
-	// Line 4525, Address: 0x268864, Func Offset: 0x1c4
-	// Line 4527, Address: 0x268868, Func Offset: 0x1c8
-	// Line 4529, Address: 0x268870, Func Offset: 0x1d0
-	// Line 4527, Address: 0x268874, Func Offset: 0x1d4
-	// Line 4528, Address: 0x26887c, Func Offset: 0x1dc
-	// Line 4529, Address: 0x268884, Func Offset: 0x1e4
-	// Line 4533, Address: 0x2688dc, Func Offset: 0x23c
-	// Line 4536, Address: 0x2688e0, Func Offset: 0x240
-	// Line 4533, Address: 0x2688e4, Func Offset: 0x244
-	// Line 4534, Address: 0x2688e8, Func Offset: 0x248
-	// Line 4535, Address: 0x2688f0, Func Offset: 0x250
-	// Line 4536, Address: 0x2688f4, Func Offset: 0x254
-	// Line 4541, Address: 0x2688fc, Func Offset: 0x25c
-	// Line 4542, Address: 0x268910, Func Offset: 0x270
-	// Line 4543, Address: 0x268914, Func Offset: 0x274
-	// Func End, Address: 0x268944, Func Offset: 0x2a4
-	scePrintf("bhCheckL2Water - UNIMPLEMENTED!\n");
+    ATR_WORK* fp;  
+    NJS_LINE pl;  
+    NJS_POINT3 ps, pt; 
+    NJS_POINT3 ll; 
+    float px, pz;     
+    float sca;   
+    int i;         
+    int flr_n;     
+
+    sca = njScalor((NJS_VECTOR*)&lp->vx);
+    
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++) 
+    {
+        if (i < rom->flr_n) 
+        {
+            fp = &rom->flrp[i];
+        } 
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if ((((fp->flg & 0x1)) && (fp->type == 3)) && (fp->prm0 == 1)) 
+        {
+            pl.px = fp->px;
+            pl.py = fp->py + fp->h;
+            pl.pz = fp->pz;
+            
+            pl.vx = 0;
+            pl.vy = 1.0f;
+            pl.vz = 0;
+            
+            if (!njDistanceL2PL(lp, &pl, &pt)) 
+            {
+                ps.x = pt.x - lp->px;
+                ps.y = pt.y - lp->py;
+                ps.z = pt.z - lp->pz;
+                
+                if ((njInnerProduct((NJS_VECTOR*)&lp->vx, &ps) > 0))
+                {
+                    px = pt.x - fp->px;
+                    pz = pt.z - fp->pz;
+                    
+                    ll.x = lp->px - pt.x;
+                    ll.y = lp->py - pt.y;
+                    ll.z = lp->pz - pt.z;
+                    
+                    if ((((px >= 0) && (px <= fp->w)) && ((pz >= 0) && (pz <= fp->d))) && (njScalor(&ll) <= sca)) 
+                    {
+                        pos->x = pt.x;
+                        pos->y = pt.y;
+                        pos->z = pt.z;
+                        
+                        return fp;
+                    }
+                }
+            }
+        }
+    }
+    
+    return NULL;
 }
 
 // 100% matching! 
