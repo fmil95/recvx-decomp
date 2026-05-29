@@ -1,20 +1,9 @@
 #include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/main.h"
-
-/*_anon12* sys;
-BH_PWORK* plp;
-char PlyFlip[0];
-float PlyInfo[2][0];
-_anon1 eff[0];
-_anon11* rom;
-BH_PWORK ene[0];
-_anon39 cam;
-_anon21 WpnTab[0];
-_anon13 WpnEffTab[4][0];
-_anon43 lgttab[0];*/
 
 // 100% matching! 
 unsigned char* bhGetFreeMemory(int size, int param) // second parameter is not present on the debugging symbols  
@@ -39,40 +28,50 @@ unsigned char* bhGetFreeMemory(int size, int param) // second parameter is not p
     return temp;
 }
 
-// 
-// Start address: 0x14e0a0
+// 100% matching! 
 void bhCalcLinkModel(BH_PWORK* pp)
 {
-	int i;
-	//_anon1* op;
 	BH_PWORK* ep;
-	// Line 218, Address: 0x14e0a0, Func Offset: 0
-	// Line 223, Address: 0x14e0b4, Func Offset: 0x14
-	// Line 224, Address: 0x14e0c4, Func Offset: 0x24
-	// Line 225, Address: 0x14e0cc, Func Offset: 0x2c
-	// Line 231, Address: 0x14e10c, Func Offset: 0x6c
-	// Line 233, Address: 0x14e120, Func Offset: 0x80
-	// Line 235, Address: 0x14e148, Func Offset: 0xa8
-	// Line 236, Address: 0x14e154, Func Offset: 0xb4
-	// Line 237, Address: 0x14e15c, Func Offset: 0xbc
-	// Line 243, Address: 0x14e19c, Func Offset: 0xfc
-	// Line 245, Address: 0x14e1b0, Func Offset: 0x110
-	// Line 247, Address: 0x14e1d0, Func Offset: 0x130
-	// Line 248, Address: 0x14e1e4, Func Offset: 0x144
-	// Line 249, Address: 0x14e1ec, Func Offset: 0x14c
-	// Line 254, Address: 0x14e22c, Func Offset: 0x18c
-	// Line 256, Address: 0x14e240, Func Offset: 0x1a0
-	// Line 258, Address: 0x14e260, Func Offset: 0x1c0
-	// Line 259, Address: 0x14e268, Func Offset: 0x1c8
-	// Line 260, Address: 0x14e26c, Func Offset: 0x1cc
-	// Line 267, Address: 0x14e29c, Func Offset: 0x1fc
-	// Line 268, Address: 0x14e2c4, Func Offset: 0x224
-	// Line 269, Address: 0x14e2d8, Func Offset: 0x238
-	// Line 270, Address: 0x14e2ec, Func Offset: 0x24c
-	// Line 271, Address: 0x14e2f0, Func Offset: 0x250
-	// Line 272, Address: 0x14e300, Func Offset: 0x260
-	// Func End, Address: 0x14e318, Func Offset: 0x278
-	scePrintf("bhCalcLinkModel - UNIMPLEMENTED!\n");
+    O_WRK* op;
+    int i;
+    unsigned int flg; // not from DWARF
+
+    flg = (unsigned int)pp & ~0x80000000;
+    
+    for (ep = ene, i = 0; i < sys->ewk_n; i++, ep++)
+    {
+        if ((((unsigned int)ep & ~0x80000000) != flg) && (((ep->flg & 0x1)) && ((ep->flg & 0x80))) && (((unsigned int)ep->lkwkp & ~0x80000000) == flg) && (ep->mlwP != NULL))
+        {
+            bhCalcModel(ep);
+        }
+    }
+    
+    for (op = sys->obwp, i = 0; i < rom->obj_n; i++, op++)
+    {
+        if ((((unsigned int)op & ~0x80000000) != flg) && (((op->flg & 0x1)) && ((op->flg & 0x80))) && (((unsigned int)op->lkwkp & ~0x80000000) == flg) && (op->mlwP != NULL))
+        {
+            bhCalcModel((BH_PWORK*)op);
+        }
+    }
+    
+    for (op = sys->itwp, i = 0; i < rom->itm_n; i++, op++)
+    {
+        if ((((unsigned int)op & ~0x80000000) != flg) && (((op->flg & 0x1)) && ((op->flg & 0x80))) && (((unsigned int)op->lkwkp & ~0x80000000) == flg) && (op->mlwP != NULL))
+        {
+            bhCalcModel((BH_PWORK*)op);
+        }
+    }
+    
+    for (op = eff, i = 0; i < 512; i++, op++)
+    {
+        if ((((op->flg & 0x1)) && ((op->flg & 0x80))) && (((unsigned int)op->lkwkp & ~0x80000000) == flg)) 
+        {
+            njSetMatrix(op->mtx, &((BH_PWORK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
+            
+            njTranslate(op->mtx, op->lox, op->loy, op->loz);
+            njRotateXYZ(op->mtx, op->ax,  op->ay,  op->az);
+        }
+    }
 }
 
 // 100% matching!
