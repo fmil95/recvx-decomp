@@ -134,24 +134,30 @@ void bhAddSpeed(BH_PWORK* pp, int r)
     pp->pz -= pp->spd * njCos(angle);
 }
 
-// 
-// Start address: 0x14e4b0
+// 70.10% matching (matches on NGC)
 int bhGetFrameNum(unsigned int fnm_old, unsigned int fnm_new, int fno_now)
-{
-	int frm;
-	float fnew;
-	float fold;
-	// Line 335, Address: 0x14e4b0, Func Offset: 0
-	// Line 338, Address: 0x14e4bc, Func Offset: 0xc
-	// Line 339, Address: 0x14e4ec, Func Offset: 0x3c
-	// Line 341, Address: 0x14e51c, Func Offset: 0x6c
-	// Line 342, Address: 0x14e538, Func Offset: 0x88
-	// Line 343, Address: 0x14e548, Func Offset: 0x98
-	// Line 344, Address: 0x14e554, Func Offset: 0xa4
-	// Line 345, Address: 0x14e560, Func Offset: 0xb0
-	// Line 347, Address: 0x14e570, Func Offset: 0xc0
-	// Func End, Address: 0x14e580, Func Offset: 0xd0
-	scePrintf("bhGetFrameNum - UNIMPLEMENTED!\n");
+{ 
+    float fold, fnew; 
+    int frm; 
+
+    fold = fnm_old;
+    fnew = fnm_new;
+
+    fold = fnew * ((100.0f / fold) * (fno_now / 65536)); 
+     
+    frm = (int)(fold / 100.0f) * 65536; 
+    
+    if (frm < 0)
+    {
+        frm = 0;
+    }
+
+    if (frm > fnm_new) 
+    {
+        frm = fnm_new;
+    }
+  
+    return frm;
 }
 
 // 100% matching!
