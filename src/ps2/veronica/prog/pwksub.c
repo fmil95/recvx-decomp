@@ -2352,38 +2352,31 @@ void bhSetWaterSplash2(BH_PWORK* pp, _anon23* pos, int type, float sx, float sy,
 	// Func End, Address: 0x153918, Func Offset: 0x258
 }*/
 
-// 
-// Start address: 0x153920
+// 100% matching!
 void bhSetWaterSplash3(NJS_POINT3* pos, int ang, int type, float sx, float sy, float sz)
 {
-	// Line 2563, Address: 0x153920, Func Offset: 0
-	// Line 2564, Address: 0x15392c, Func Offset: 0xc
-	// Line 2565, Address: 0x15393c, Func Offset: 0x1c
-	// Line 2564, Address: 0x153940, Func Offset: 0x20
-	// Line 2565, Address: 0x15394c, Func Offset: 0x2c
-	// Line 2575, Address: 0x153954, Func Offset: 0x34
-	// Line 2576, Address: 0x153958, Func Offset: 0x38
-	// Line 2565, Address: 0x153960, Func Offset: 0x40
-	// Line 2566, Address: 0x15396c, Func Offset: 0x4c
-	// Line 2567, Address: 0x153980, Func Offset: 0x60
-	// Line 2568, Address: 0x153994, Func Offset: 0x74
-	// Line 2576, Address: 0x15399c, Func Offset: 0x7c
-	// Line 2568, Address: 0x1539a0, Func Offset: 0x80
-	// Line 2569, Address: 0x1539ac, Func Offset: 0x8c
-	// Line 2570, Address: 0x1539c0, Func Offset: 0xa0
-	// Line 2571, Address: 0x1539d4, Func Offset: 0xb4
-	// Line 2572, Address: 0x1539e8, Func Offset: 0xc8
-	// Line 2573, Address: 0x153a00, Func Offset: 0xe0
-	// Line 2574, Address: 0x153a18, Func Offset: 0xf8
-	// Line 2575, Address: 0x153a30, Func Offset: 0x110
-	// Line 2576, Address: 0x153a44, Func Offset: 0x124
-	// Line 2577, Address: 0x153a5c, Func Offset: 0x13c
-	// Line 2578, Address: 0x153a68, Func Offset: 0x148
-	// Line 2577, Address: 0x153a70, Func Offset: 0x150
-	// Line 2578, Address: 0x153a7c, Func Offset: 0x15c
-	// Line 2579, Address: 0x153a98, Func Offset: 0x178
-	// Func End, Address: 0x153aa8, Func Offset: 0x188
-	scePrintf("bhSetWaterSplash3 - UNIMPLEMENTED!\n");
+    sys->ef.id  = 11;
+    sys->ef.flg = 1;
+    
+    sys->ef.mdlver = 0;
+    
+    sys->ef.type = type;
+    
+    sys->ef.flr_no = 0;
+    
+    sys->ef.sx = sx;
+    sys->ef.sy = sy;
+    sys->ef.sz = sz;
+    
+    sys->ef.px = pos->x;
+    sys->ef.py = pos->y;
+    sys->ef.pz = pos->z;
+    
+    sys->ef.ay = ang + 16384;
+    bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    
+    sys->ef.ay = ang - 16384;
+    bhSetEffectTb(&sys->ef, NULL, NULL, 1);
 }
 
 // 100% matching!
