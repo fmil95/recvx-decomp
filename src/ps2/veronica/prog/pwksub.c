@@ -310,64 +310,73 @@ int bhSearchNearEnemy(BH_PWORK* pp, int* r, float* h, int* id)
 	scePrintf("bhSearchNearEnemy - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x14eae0
+// 100% matching!
 int bhSearchNearEnemyB(NJS_POINT3* pos, int ay, int ar, float len)
 {
-	int i;
-	BH_PWORK* epp;
-	float ln;
-	float er;
-	float a;
-	//_anon40 cap;
-	//_anon23 vc2;
-	//_anon23 vc1;
-	//_anon23 vc0;
-	// Line 549, Address: 0x14eae0, Func Offset: 0
-	// Line 555, Address: 0x14eb10, Func Offset: 0x30
-	// Line 557, Address: 0x14eb1c, Func Offset: 0x3c
-	// Line 556, Address: 0x14eb20, Func Offset: 0x40
-	// Line 558, Address: 0x14eb24, Func Offset: 0x44
-	// Line 557, Address: 0x14eb28, Func Offset: 0x48
-	// Line 558, Address: 0x14eb2c, Func Offset: 0x4c
-	// Line 559, Address: 0x14eb34, Func Offset: 0x54
-	// Line 560, Address: 0x14eb3c, Func Offset: 0x5c
-	// Line 561, Address: 0x14eb48, Func Offset: 0x68
-	// Line 562, Address: 0x14eb58, Func Offset: 0x78
-	// Line 563, Address: 0x14eb64, Func Offset: 0x84
-	// Line 564, Address: 0x14eb74, Func Offset: 0x94
-	// Line 565, Address: 0x14eb84, Func Offset: 0xa4
-	// Line 568, Address: 0x14eb88, Func Offset: 0xa8
-	// Line 569, Address: 0x14eb90, Func Offset: 0xb0
-	// Line 565, Address: 0x14eb98, Func Offset: 0xb8
-	// Line 566, Address: 0x14eb9c, Func Offset: 0xbc
-	// Line 571, Address: 0x14eba0, Func Offset: 0xc0
-	// Line 566, Address: 0x14eba4, Func Offset: 0xc4
-	// Line 567, Address: 0x14eba8, Func Offset: 0xc8
-	// Line 571, Address: 0x14ebb0, Func Offset: 0xd0
-	// Line 572, Address: 0x14ebb8, Func Offset: 0xd8
-	// Line 578, Address: 0x14ec04, Func Offset: 0x124
-	// Line 581, Address: 0x14ec28, Func Offset: 0x148
-	// Line 583, Address: 0x14ec38, Func Offset: 0x158
-	// Line 581, Address: 0x14ec3c, Func Offset: 0x15c
-	// Line 587, Address: 0x14ec44, Func Offset: 0x164
-	// Line 581, Address: 0x14ec48, Func Offset: 0x168
-	// Line 582, Address: 0x14ec50, Func Offset: 0x170
-	// Line 583, Address: 0x14ec64, Func Offset: 0x184
-	// Line 584, Address: 0x14ec78, Func Offset: 0x198
-	// Line 585, Address: 0x14ec88, Func Offset: 0x1a8
-	// Line 586, Address: 0x14ec8c, Func Offset: 0x1ac
-	// Line 587, Address: 0x14ec98, Func Offset: 0x1b8
-	// Line 588, Address: 0x14eca0, Func Offset: 0x1c0
-	// Line 589, Address: 0x14ecb0, Func Offset: 0x1d0
-	// Line 590, Address: 0x14ecb8, Func Offset: 0x1d8
-	// Line 591, Address: 0x14ecc4, Func Offset: 0x1e4
-	// Line 593, Address: 0x14ece8, Func Offset: 0x208
-	// Line 596, Address: 0x14ecf0, Func Offset: 0x210
-	// Line 597, Address: 0x14ed18, Func Offset: 0x238
-	// Line 598, Address: 0x14ed1c, Func Offset: 0x23c
-	// Func End, Address: 0x14ed44, Func Offset: 0x264
-	scePrintf("bhSearchNearEnemyB - UNIMPLEMENTED!\n");
+    NJS_VECTOR vc0, vc1, vc2; 
+    NJS_CAPSULE cap; 
+    float a;       
+    float er;     
+    float ln;   
+    BH_PWORK* epp;
+    int i;          
+
+    if (ar == 0)
+    {
+        ar = 32768;
+    }
+    
+    vc1.x = 0;
+    vc1.y = 0;
+    vc1.z = -1.0f;
+    
+    njUnitMatrix(NULL);
+    
+    njRotateY(NULL, ay);
+    njCalcVector(NULL,  &vc1, &vc0);
+    
+    njRotateY(NULL, ar);
+    njCalcVector(NULL, &vc1, &vc2);
+    
+    er = -njInnerProduct(&vc0, &vc2);
+    
+    cap.c1.x = pos->x;
+    cap.c1.y = pos->y;
+    cap.c1.z = pos->z;
+    
+    cap.r = 0.1f;
+     
+    epp = ene;
+    
+    for (i = 0; i < sys->ewk_n; i++, epp++) 
+    {
+        if ((((epp->flg & 0x1)) && ((epp->flg & 0x20)) && (!(epp->flg & 0x8002)) && (!(epp->flg2 & 0x10)) && (!(epp->stflg & 0x41000000))) && ((!(epp->flg & 0x80)) || (!(((O_WRK*)epp->lkwkp)->stflg & 0x1000000))))
+        {
+            cap.c2.x = 0.5f * (epp->watr.c1.x + epp->watr.c2.x);
+            cap.c2.y = 0.5f * (epp->watr.c1.y + epp->watr.c2.y); 
+            cap.c2.z = 0.5f * (epp->watr.c1.z + epp->watr.c2.z);
+            
+            vc1.x = pos->x - cap.c2.x;
+            vc1.y = 0;
+            vc1.z = pos->z - cap.c2.z;
+            
+            ln = njScalor(&vc1);
+            
+            if (ln <= len) 
+            {
+                njUnitVector(&vc1);
+                
+                a = njInnerProduct(&vc0, &vc1);
+                
+                if ((a < er) && (bhCheckC2WallN(&cap, 0x400) == 0)) 
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+    
+    return 0;
 }
 
 // 
