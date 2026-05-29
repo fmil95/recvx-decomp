@@ -2238,20 +2238,22 @@ int bhCheckClipModel(BH_PWORK* pp)
     return 1;
 }
 
-// 
-// Start address: 0x153360
+// 100% matching!
 int bhCheckClipPoint(NJS_POINT3* pos)
 {
-	//_anon23 p3;
-	//_anon35 p2;
-	// Line 2466, Address: 0x153360, Func Offset: 0
-	// Line 2469, Address: 0x153370, Func Offset: 0x10
-	// Line 2470, Address: 0x153384, Func Offset: 0x24
-	// Line 2471, Address: 0x153398, Func Offset: 0x38
-	// Line 2473, Address: 0x153424, Func Offset: 0xc4
-	// Line 2474, Address: 0x15342c, Func Offset: 0xcc
-	// Line 2475, Address: 0x153430, Func Offset: 0xd0
-	// Func End, Address: 0x153440, Func Offset: 0xe0
+	NJS_POINT2 p2;
+    NJS_POINT3 p3;
+    
+    njProjectScreen(cam.mtx, pos, &p2);
+    
+    njCalcPoint(cam.mtx, pos, &p3);
+    
+    if (((p2.x > 1472.0f) && (p2.x < 2624.0f)) && ((p2.y > 1632.0f) && (p2.y < 2624.0f)) && (p3.z > -1.0f))
+    {
+        return 0;
+    }
+    
+    return 1;
 }
 
 // 
