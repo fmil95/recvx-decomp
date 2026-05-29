@@ -22,7 +22,7 @@ void PlyPchMain(BH_PWORK* ewP)
     NJS_CNK_OBJECT* objP;       
     int dir;                     
     int* atP, *dstP;               
-    static const char RouteArmLn_0[5] = { 1, 2, 10, 11, 0xFF }, RouteArmRn_0[5] = { 1, 2, 6, 7, 0xFF }; 
+    static const char RouteArmRn_0[5] = { 1, 2, 6, 7, 0xFF }, RouteArmLn_0[5] = { 1, 2, 10, 11, 0xFF }; 
     
     ppP = (PP_WORK*)ewP->exp2;
     
@@ -397,54 +397,83 @@ static search* bhSearchEnemy(BH_PWORK* pwP, int rng, float hgt)
     return hedP->nextP; 
 }
 
-// 
-// Start address: 0x14b260
-static int SetLockOnDirection(int range, int count, int mode, int special)
+// 99.92% matching
+static int SetLockOnDirection(int range, int count, int mode, int special) 
 {
-	//_search* tgtP;
-	//_search* lstP;
-	//_search* topP;
-	//_anon3* ppP;
-	// Line 495, Address: 0x14b260, Func Offset: 0
-	// Line 496, Address: 0x14b274, Func Offset: 0x14
-	// Line 501, Address: 0x14b280, Func Offset: 0x20
-	// Line 502, Address: 0x14b290, Func Offset: 0x30
-	// Line 504, Address: 0x14b294, Func Offset: 0x34
-	// Line 506, Address: 0x14b2c8, Func Offset: 0x68
-	// Line 509, Address: 0x14b2d0, Func Offset: 0x70
-	// Line 538, Address: 0x14b2d8, Func Offset: 0x78
-	// Line 535, Address: 0x14b2dc, Func Offset: 0x7c
-	// Line 538, Address: 0x14b2e0, Func Offset: 0x80
-	// Line 539, Address: 0x14b2e4, Func Offset: 0x84
-	// Line 541, Address: 0x14b2e8, Func Offset: 0x88
-	// Line 543, Address: 0x14b2fc, Func Offset: 0x9c
-	// Line 546, Address: 0x14b30c, Func Offset: 0xac
-	// Line 550, Address: 0x14b31c, Func Offset: 0xbc
-	// Line 555, Address: 0x14b324, Func Offset: 0xc4
-	// Line 557, Address: 0x14b338, Func Offset: 0xd8
-	// Line 559, Address: 0x14b350, Func Offset: 0xf0
-	// Line 560, Address: 0x14b358, Func Offset: 0xf8
-	// Line 561, Address: 0x14b35c, Func Offset: 0xfc
-	// Line 562, Address: 0x14b36c, Func Offset: 0x10c
-	// Line 563, Address: 0x14b37c, Func Offset: 0x11c
-	// Line 565, Address: 0x14b384, Func Offset: 0x124
-	// Line 568, Address: 0x14b398, Func Offset: 0x138
-	// Line 569, Address: 0x14b3a0, Func Offset: 0x140
-	// Line 570, Address: 0x14b3b4, Func Offset: 0x154
-	// Line 571, Address: 0x14b3c8, Func Offset: 0x168
-	// Line 572, Address: 0x14b3d0, Func Offset: 0x170
-	// Line 573, Address: 0x14b3e4, Func Offset: 0x184
-	// Line 575, Address: 0x14b3fc, Func Offset: 0x19c
-	// Line 578, Address: 0x14b404, Func Offset: 0x1a4
-	// Line 580, Address: 0x14b40c, Func Offset: 0x1ac
-	// Line 582, Address: 0x14b418, Func Offset: 0x1b8
-	// Line 583, Address: 0x14b420, Func Offset: 0x1c0
-	// Line 586, Address: 0x14b428, Func Offset: 0x1c8
-	// Line 589, Address: 0x14b430, Func Offset: 0x1d0
-	// Line 593, Address: 0x14b448, Func Offset: 0x1e8
-	// Line 597, Address: 0x14b45c, Func Offset: 0x1fc
-	// Func End, Address: 0x14b474, Func Offset: 0x214
-	scePrintf("SetLockOnDirection - UNIMPLEMENTED!\n");
+    PP_WORK* ppP; 
+    search* topP, *lstP /* needs use */, *tgtP; 
+    BH_PWORK* pwP; // not from DWARF 
+    
+    pwP = plp; 
+    ppP = (PP_WORK*)pwP->exp2;
+    
+    if (mode == 0) 
+    {
+        ppP->endPP = ppP->LckTbl;
+    }
+    
+    ppP->count = count;
+    
+    topP = bhSearchEnemy(pwP, range, pwP->mlwP[pwP->mdl_no].owP[5].mtx[13] - pwP->py);
+    
+    if (topP != NULL)
+    {
+        ppP->endPP = ppP->LckTbl;
+        
+        tgtP = topP;
+        
+        pwP->ayp = topP->dir;
+        
+        ppP->arm_dl = ppP->arm_dr = 0;
+        
+        if (special != 0) 
+        {
+            ppP->mode |= 0x4;
+        }
+        
+        ppP->mode &= ~0x8;
+        
+        if (!(ppP->mode & 0x10))
+        {
+            while ((tgtP = tgtP->nextP) != NULL) 
+            {
+                if (((short)(tgtP->dir - topP->dir) >= -16384) && ((short)(tgtP->dir - topP->dir) <= 16384)) 
+                {
+                    pwP->ayp = pwP->ay + (((short)(((((short)(tgtP->dir - topP->dir) * 32768) / 65536) + topP->dir) - pwP->ay) * 57344) / 65536);
+                    
+                    if ((short)(tgtP->dir - topP->dir) > 0) 
+                    {
+                        ppP->arm_dl = (short)(tgtP->dir - pwP->ayp); 
+                        ppP->arm_dr = (short)(topP->dir - pwP->ayp);
+                    } 
+                    else
+                    {
+                        ppP->arm_dl = (short)(topP->dir - pwP->ayp);
+                        ppP->arm_dr = (short)(tgtP->dir - pwP->ayp);
+                        
+                        ppP->mode |= 0x8;
+                    }
+                    
+                    break;
+                }
+            } 
+        } 
+        else 
+        {
+            tgtP = topP->nextP;
+        }
+        
+        ppP->mode ^= 0x10;
+        
+        if (tgtP != NULL)
+        {
+            ppP->mode &= ~0x4;
+        }
+        
+        *ppP->endPP++ = topP->ewP;
+    }
+    
+    return (int)topP;
 }
 
 // 100% matching!
