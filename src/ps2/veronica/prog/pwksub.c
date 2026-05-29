@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/effect.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/light.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/player.h"
@@ -2310,50 +2311,49 @@ void bhSetWaterSplash(BH_PWORK* pp, int jno, int type, float sx, float sy, float
 	scePrintf("bhSetWaterSplash - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x1536c0
-void bhSetWaterSplash2(BH_PWORK* pp, _anon23* pos, int type, float sx, float sy, float sz)
+// 100% matching!
+void bhSetWaterSplash2(BH_PWORK* pp, NJS_POINT3* pos, int type, float sx, float sy, float sz)
 {
-	_anon23 ps;
-	_anon0* hp;
-	// Line 2525, Address: 0x1536c0, Func Offset: 0
-	// Line 2528, Address: 0x1536e4, Func Offset: 0x24
-	// Line 2529, Address: 0x1536e8, Func Offset: 0x28
-	// Line 2528, Address: 0x1536fc, Func Offset: 0x3c
-	// Line 2529, Address: 0x153700, Func Offset: 0x40
-	// Line 2530, Address: 0x153710, Func Offset: 0x50
-	// Line 2531, Address: 0x153714, Func Offset: 0x54
-	// Line 2532, Address: 0x153720, Func Offset: 0x60
-	// Line 2533, Address: 0x15372c, Func Offset: 0x6c
-	// Line 2534, Address: 0x153734, Func Offset: 0x74
-	// Line 2535, Address: 0x153740, Func Offset: 0x80
-	// Line 2546, Address: 0x153744, Func Offset: 0x84
-	// Line 2534, Address: 0x153748, Func Offset: 0x88
-	// Line 2535, Address: 0x153754, Func Offset: 0x94
-	// Line 2546, Address: 0x15375c, Func Offset: 0x9c
-	// Line 2535, Address: 0x153764, Func Offset: 0xa4
-	// Line 2536, Address: 0x153770, Func Offset: 0xb0
-	// Line 2537, Address: 0x153784, Func Offset: 0xc4
-	// Line 2538, Address: 0x153798, Func Offset: 0xd8
-	// Line 2539, Address: 0x1537ac, Func Offset: 0xec
-	// Line 2540, Address: 0x1537c0, Func Offset: 0x100
-	// Line 2541, Address: 0x1537d4, Func Offset: 0x114
-	// Line 2542, Address: 0x1537e8, Func Offset: 0x128
-	// Line 2543, Address: 0x153800, Func Offset: 0x140
-	// Line 2544, Address: 0x153820, Func Offset: 0x160
-	// Line 2545, Address: 0x153838, Func Offset: 0x178
-	// Line 2546, Address: 0x153854, Func Offset: 0x194
-	// Line 2547, Address: 0x15386c, Func Offset: 0x1ac
-	// Line 2548, Address: 0x153878, Func Offset: 0x1b8
-	// Line 2547, Address: 0x153884, Func Offset: 0x1c4
-	// Line 2548, Address: 0x153894, Func Offset: 0x1d4
-	// Line 2549, Address: 0x1538ac, Func Offset: 0x1ec
-	// Line 2550, Address: 0x1538b8, Func Offset: 0x1f8
-	// Line 2549, Address: 0x1538c0, Func Offset: 0x200
-	// Line 2550, Address: 0x1538d4, Func Offset: 0x214
-	// Line 2552, Address: 0x1538f0, Func Offset: 0x230
-	// Func End, Address: 0x153918, Func Offset: 0x258
-}*/
+    ATR_WORK* hp;  
+    NJS_POINT3 ps; 
+
+    ps.x = pos->x;
+    ps.y = pp->py;
+    ps.z = pos->z;
+    
+    ps.y = bhGetGroundPosition(&ps);
+    
+    hp = bhCheckWater(&ps);
+    
+    if (hp != NULL)
+    {
+        sys->ef.id  = 11;
+        sys->ef.flg = 1;
+        
+        sys->ef.mdlver = 0;
+        
+        sys->ef.type = type;
+        
+        sys->ef.flr_no = 0;
+        
+        sys->ef.sx = sx;
+        sys->ef.sy = sy;
+        sys->ef.sz = sz;
+        
+        sys->ef.px = pos->x;
+        sys->ef.py = hp->py + hp->h;
+        sys->ef.pz = pos->z;
+        
+        sys->ef.ay = pp->ay + 16384;
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        sys->ef.ay = pp->ay - 16384;
+        bhSetEffectTb(&sys->ef, NULL, NULL, 1);
+        
+        sys->ef.ay = pp->ay + 32768; 
+        bhSetEffectTb(&sys->ef, NULL, NULL, 2);
+    }
+}
 
 // 100% matching!
 void bhSetWaterSplash3(NJS_POINT3* pos, int ang, int type, float sx, float sy, float sz)
