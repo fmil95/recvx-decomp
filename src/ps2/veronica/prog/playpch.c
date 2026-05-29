@@ -14,104 +14,136 @@ void PlyPchInit(BH_PWORK* ewP)
     ewP->exp2 = bhGetFreeMemory(1712, 32);
 }
 
-// 
-// Start address: 0x14a5e0
-void PlyPchMain(BH_PWORK* ewP)
+// 100% matching!
+void PlyPchMain(BH_PWORK* ewP) 
 {
-	int* dstP;
-	int* atP;
-	int dir;
-	//npobj* objP;
-	//_anon11* mlwP;
-	//_anon3* ppP;
-	char RouteArmLn_0[5];
-	char RouteArmRn_0[5];
-	// Line 101, Address: 0x14a5e0, Func Offset: 0
-	// Line 111, Address: 0x14a5f4, Func Offset: 0x14
-	// Line 108, Address: 0x14a600, Func Offset: 0x20
-	// Line 111, Address: 0x14a608, Func Offset: 0x28
-	// Line 112, Address: 0x14a638, Func Offset: 0x58
-	// Line 115, Address: 0x14a654, Func Offset: 0x74
-	// Line 116, Address: 0x14a664, Func Offset: 0x84
-	// Line 118, Address: 0x14a674, Func Offset: 0x94
-	// Line 126, Address: 0x14a678, Func Offset: 0x98
-	// Line 120, Address: 0x14a680, Func Offset: 0xa0
-	// Line 121, Address: 0x14a698, Func Offset: 0xb8
-	// Line 123, Address: 0x14a6b0, Func Offset: 0xd0
-	// Line 126, Address: 0x14a6bc, Func Offset: 0xdc
-	// Line 127, Address: 0x14a6d0, Func Offset: 0xf0
-	// Line 128, Address: 0x14a6e0, Func Offset: 0x100
-	// Line 129, Address: 0x14a6f0, Func Offset: 0x110
-	// Line 130, Address: 0x14a708, Func Offset: 0x128
-	// Line 133, Address: 0x14a710, Func Offset: 0x130
-	// Line 134, Address: 0x14a718, Func Offset: 0x138
-	// Line 133, Address: 0x14a71c, Func Offset: 0x13c
-	// Line 135, Address: 0x14a724, Func Offset: 0x144
-	// Line 136, Address: 0x14a72c, Func Offset: 0x14c
-	// Line 137, Address: 0x14a738, Func Offset: 0x158
-	// Line 138, Address: 0x14a748, Func Offset: 0x168
-	// Line 140, Address: 0x14a750, Func Offset: 0x170
-	// Line 141, Address: 0x14a754, Func Offset: 0x174
-	// Line 143, Address: 0x14a758, Func Offset: 0x178
-	// Line 140, Address: 0x14a760, Func Offset: 0x180
-	// Line 141, Address: 0x14a768, Func Offset: 0x188
-	// Line 143, Address: 0x14a76c, Func Offset: 0x18c
-	// Line 148, Address: 0x14a780, Func Offset: 0x1a0
-	// Line 152, Address: 0x14a784, Func Offset: 0x1a4
-	// Line 148, Address: 0x14a790, Func Offset: 0x1b0
-	// Line 149, Address: 0x14a79c, Func Offset: 0x1bc
-	// Line 152, Address: 0x14a7a8, Func Offset: 0x1c8
-	// Line 153, Address: 0x14a7b0, Func Offset: 0x1d0
-	// Line 155, Address: 0x14a7c0, Func Offset: 0x1e0
-	// Line 156, Address: 0x14a7d0, Func Offset: 0x1f0
-	// Line 159, Address: 0x14a7e0, Func Offset: 0x200
-	// Line 163, Address: 0x14a7ec, Func Offset: 0x20c
-	// Line 166, Address: 0x14a81c, Func Offset: 0x23c
-	// Line 168, Address: 0x14a850, Func Offset: 0x270
-	// Line 172, Address: 0x14a85c, Func Offset: 0x27c
-	// Line 173, Address: 0x14a874, Func Offset: 0x294
-	// Line 179, Address: 0x14a88c, Func Offset: 0x2ac
-	// Line 180, Address: 0x14a8b8, Func Offset: 0x2d8
-	// Line 181, Address: 0x14a8e4, Func Offset: 0x304
-	// Line 183, Address: 0x14a908, Func Offset: 0x328
-	// Line 185, Address: 0x14a914, Func Offset: 0x334
-	// Line 192, Address: 0x14a920, Func Offset: 0x340
-	// Line 190, Address: 0x14a924, Func Offset: 0x344
-	// Line 192, Address: 0x14a928, Func Offset: 0x348
-	// Line 193, Address: 0x14a92c, Func Offset: 0x34c
-	// Line 185, Address: 0x14a930, Func Offset: 0x350
-	// Line 193, Address: 0x14a938, Func Offset: 0x358
-	// Line 192, Address: 0x14a93c, Func Offset: 0x35c
-	// Line 185, Address: 0x14a940, Func Offset: 0x360
-	// Line 192, Address: 0x14a94c, Func Offset: 0x36c
-	// Line 193, Address: 0x14a950, Func Offset: 0x370
-	// Line 194, Address: 0x14a958, Func Offset: 0x378
-	// Line 198, Address: 0x14a960, Func Offset: 0x380
-	// Line 199, Address: 0x14a964, Func Offset: 0x384
-	// Line 194, Address: 0x14a96c, Func Offset: 0x38c
-	// Line 195, Address: 0x14a984, Func Offset: 0x3a4
-	// Line 196, Address: 0x14a9a0, Func Offset: 0x3c0
-	// Line 198, Address: 0x14a9a8, Func Offset: 0x3c8
-	// Line 199, Address: 0x14a9b4, Func Offset: 0x3d4
-	// Line 200, Address: 0x14a9bc, Func Offset: 0x3dc
-	// Line 201, Address: 0x14a9dc, Func Offset: 0x3fc
-	// Line 202, Address: 0x14a9f8, Func Offset: 0x418
-	// Line 206, Address: 0x14a9fc, Func Offset: 0x41c
-	// Line 207, Address: 0x14aa04, Func Offset: 0x424
-	// Line 208, Address: 0x14aa0c, Func Offset: 0x42c
-	// Line 207, Address: 0x14aa10, Func Offset: 0x430
-	// Line 208, Address: 0x14aa20, Func Offset: 0x440
-	// Line 209, Address: 0x14aa28, Func Offset: 0x448
-	// Line 208, Address: 0x14aa2c, Func Offset: 0x44c
-	// Line 209, Address: 0x14aa3c, Func Offset: 0x45c
-	// Line 210, Address: 0x14aa44, Func Offset: 0x464
-	// Line 209, Address: 0x14aa48, Func Offset: 0x468
-	// Line 210, Address: 0x14aa58, Func Offset: 0x478
-	// Line 212, Address: 0x14aa70, Func Offset: 0x490
-	// Line 213, Address: 0x14aa80, Func Offset: 0x4a0
-	// Line 218, Address: 0x14aa84, Func Offset: 0x4a4
-	// Func End, Address: 0x14aa9c, Func Offset: 0x4bc
-	scePrintf("PlyPchMain - UNIMPLEMENTED!\n");
+    PP_WORK* ppP;               
+    ML_WORK* mlwP;            
+    NJS_CNK_OBJECT* objP;       
+    int dir;                     
+    int* atP, *dstP;               
+    static const char RouteArmLn_0[5] = { 1, 2, 10, 11, 0xFF }, RouteArmRn_0[5] = { 1, 2, 6, 7, 0xFF }; 
+    
+    ppP = (PP_WORK*)ewP->exp2;
+    
+    if ((WpnTab[plp->wpnr_no].flg & 0x800)) 
+    {
+        if ((plp->mode0 == 1) && (plp->mode1 != 0)) 
+        {
+            mlwP = plp->mlwP;
+            
+            if (plp->mode2 == 164) 
+            {
+                if (!(ppP->mode & 0x1)) 
+                {
+                    objP = mlwP->objP;
+                    
+                    *(NJS_POINT3*)&ppP->obj_l.ang[0] = *(NJS_POINT3*)&objP[11].ang[0];
+                    *(NJS_POINT3*)&ppP->obj_r.ang[0] = *(NJS_POINT3*)&objP[7].ang[0];
+                    
+                    ppP->mode |= 0x1;
+                    
+                    EXP1_I(0) &= ~0x1E4;
+                    
+                    mlwP->owP[5].flg |= 0x2;
+                    mlwP->owP[4].flg |= 0x2;
+                    
+                    if ((ppP->mode & 0x8)) 
+                    {
+                        ppP->hed_rate = 0;
+                    } 
+                    else 
+                    {
+                        ppP->hed_rate = 65536;
+                    }
+                }
+                
+                ppP->mode &= ~0x4;
+                
+                ppP->gun_delay = -1;
+            } 
+            else if ((plp->mode2 == 68) && (!(ppP->mode & 0x2)))
+            {
+                ppP->arm_dl = ppP->arm_dr = 0;
+                
+                ppP->mode |= 0x2;
+                
+                ppP->count = 12;
+                
+                EXP1_I(0) &= ~0x8;
+            }
+            
+            mlwP->owP[7].flg  |= 0x2;
+            mlwP->owP[11].flg |= 0x2;
+            
+            GetOneObjectMotion(ewP, 7, ppP->ang_tmp); 
+            SetOneObjectMotion(ewP, &ppP->obj_r, ppP->ang_tmp);
+            
+            GetOneObjectMotion(ewP, 11, ppP->ang_tmp);
+            SetOneObjectMotion(ewP, &ppP->obj_l, ppP->ang_tmp);
+            
+            if (ppP->count != 0)
+            {
+                ppP->arm_al += (short)(ppP->arm_dl - ppP->arm_al) / ppP->count;
+                ppP->arm_ar += (short)(ppP->arm_dr - ppP->arm_ar) / ppP->count;
+                
+                ppP->count--;
+            }
+            
+            MixSetToJointRot(mlwP->objP, (char*)RouteArmRn_0, &ppP->obj_r, ppP->arm_ar);
+            MixSetToJointRot(mlwP->objP, (char*)RouteArmLn_0, &ppP->obj_l, ppP->arm_al);
+            
+            if ((sys->pad_on & 0x8))
+            {
+                ppP->hed_rate += 3276;
+            }
+            
+            if ((sys->pad_on & 0x4))
+            {
+                ppP->hed_rate -= 3276;
+            }
+            
+            if (ppP->hed_rate > 65536)
+            {
+                ppP->hed_rate = 65536;
+            } 
+            else if (ppP->hed_rate < 0) 
+            {
+                ppP->hed_rate = 0;
+            }
+            
+            dir = (ppP->arm_dl + ((ppP->hed_rate * (ppP->arm_dr - ppP->arm_dl)) / 65536)) / 2;
+            
+            atP  = ppP->ang_tmp;
+            dstP = plp->mlwP->objP[5].ang;
+            
+            GetOneObjectMotion(plp, 5, atP);
+            
+            dstP[0] += (short)(atP[0] - dstP[0]) / 4;
+            dstP[1] += (short)(dir - dstP[1])    / 4;
+            dstP[2] = atP[2];
+            
+            dstP = plp->mlwP->objP[4].ang;
+            
+            GetOneObjectMotion(plp, 4, atP);
+            
+            dstP[0] += (short)(atP[0] - dstP[0]) / 4;
+            dstP[1] += (short)(dir - dstP[1])    / 4; 
+            dstP[2] = atP[2]; 
+        }
+        else 
+        { 
+            plp->mlwP->owP[7].flg  &= ~0x2;
+            plp->mlwP->owP[11].flg &= ~0x2;
+            plp->mlwP->owP[5].flg  &= ~0x2;
+            plp->mlwP->owP[4].flg  &= ~0x2;
+            
+            ppP->arm_dl = ppP->arm_dr = 0;
+            ppP->arm_al = ppP->arm_ar = 0;
+            
+            ppP->mode = 0;
+        }
+    }
 }
 
 // 100% matching!
