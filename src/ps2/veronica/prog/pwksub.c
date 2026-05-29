@@ -2386,38 +2386,32 @@ void bhSetWaterSplash3(NJS_POINT3* pos, int ang, int type, float sx, float sy, f
 	scePrintf("bhSetWaterSplash3 - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x153ab0
-void bhSetWaterSplash4(_anon23* pos, int ang, int type, float sx, float sy, float sz)
+// 100% matching!
+void bhSetWaterSplash4(NJS_POINT3* pos, int ang, int type, float sx, float sy, float sz) 
 {
-	// Line 2590, Address: 0x153ab0, Func Offset: 0
-	// Line 2591, Address: 0x153abc, Func Offset: 0xc
-	// Line 2594, Address: 0x153ac8, Func Offset: 0x18
-	// Line 2591, Address: 0x153acc, Func Offset: 0x1c
-	// Line 2592, Address: 0x153adc, Func Offset: 0x2c
-	// Line 2602, Address: 0x153ae8, Func Offset: 0x38
-	// Line 2603, Address: 0x153aec, Func Offset: 0x3c
-	// Line 2592, Address: 0x153af0, Func Offset: 0x40
-	// Line 2593, Address: 0x153afc, Func Offset: 0x4c
-	// Line 2603, Address: 0x153b04, Func Offset: 0x54
-	// Line 2593, Address: 0x153b0c, Func Offset: 0x5c
-	// Line 2594, Address: 0x153b18, Func Offset: 0x68
-	// Line 2595, Address: 0x153b2c, Func Offset: 0x7c
-	// Line 2596, Address: 0x153b40, Func Offset: 0x90
-	// Line 2597, Address: 0x153b54, Func Offset: 0xa4
-	// Line 2598, Address: 0x153b68, Func Offset: 0xb8
-	// Line 2599, Address: 0x153b7c, Func Offset: 0xcc
-	// Line 2600, Address: 0x153b94, Func Offset: 0xe4
-	// Line 2601, Address: 0x153bac, Func Offset: 0xfc
-	// Line 2602, Address: 0x153bc4, Func Offset: 0x114
-	// Line 2603, Address: 0x153bd8, Func Offset: 0x128
-	// Line 2604, Address: 0x153bf0, Func Offset: 0x140
-	// Line 2605, Address: 0x153bfc, Func Offset: 0x14c
-	// Line 2604, Address: 0x153c04, Func Offset: 0x154
-	// Line 2605, Address: 0x153c10, Func Offset: 0x160
-	// Line 2606, Address: 0x153c2c, Func Offset: 0x17c
-	// Func End, Address: 0x153c3c, Func Offset: 0x18c
-}*/
+    sys->ef.id  = 11;
+    sys->ef.flg = 1;
+    
+    sys->ef.mdlver = 0;
+    
+    sys->ef.type = type + 10;
+    
+    sys->ef.flr_no = 0;
+    
+    sys->ef.sx = sx;
+    sys->ef.sy = sy;
+    sys->ef.sz = sz;
+    
+    sys->ef.px = pos->x;
+    sys->ef.py = pos->y;
+    sys->ef.pz = pos->z;
+    
+    sys->ef.ay = ang + 16384;
+    bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    
+    sys->ef.ay = ang - 16384;
+    bhSetEffectTb(&sys->ef, NULL, NULL, 1);
+}
 
 // 
 // Start address: 0x153c40
