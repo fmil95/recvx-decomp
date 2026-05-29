@@ -1155,72 +1155,68 @@ void bhCPM2_SearchPch()
     }
 }
 
-// 
-// Start address: 0x14cf60
+// 100% matching! 
 void bhArmIkMdk(BH_PWORK* ewP, int bas_no, NJS_POINT3* effP, int rot)
 {
-	//npobj* obj1P;
-	//npobj* obj0P;
-	//_anon27* vtP;
-	//_anon27* vb1P;
-	//_anon27* vyP;
-	//_anon27* vhP;
-	float l01;
-	float lb0;
-	float lb1;
-	int Ta;
-	//_anon27 vu;
-	// Line 1235, Address: 0x14cf60, Func Offset: 0
-	// Line 1241, Address: 0x14cf8c, Func Offset: 0x2c
-	// Line 1235, Address: 0x14cf90, Func Offset: 0x30
-	// Line 1241, Address: 0x14cf94, Func Offset: 0x34
-	// Line 1235, Address: 0x14cf98, Func Offset: 0x38
-	// Line 1242, Address: 0x14cfa0, Func Offset: 0x40
-	// Line 1235, Address: 0x14cfa4, Func Offset: 0x44
-	// Line 1242, Address: 0x14cfa8, Func Offset: 0x48
-	// Line 1235, Address: 0x14cfac, Func Offset: 0x4c
-	// Line 1250, Address: 0x14cfb0, Func Offset: 0x50
-	// Line 1245, Address: 0x14cfb4, Func Offset: 0x54
-	// Line 1243, Address: 0x14cfc4, Func Offset: 0x64
-	// Line 1250, Address: 0x14cfcc, Func Offset: 0x6c
-	// Line 1245, Address: 0x14cfd0, Func Offset: 0x70
-	// Line 1244, Address: 0x14cfd4, Func Offset: 0x74
-	// Line 1245, Address: 0x14cfdc, Func Offset: 0x7c
-	// Line 1250, Address: 0x14cff8, Func Offset: 0x98
-	// Line 1245, Address: 0x14d00c, Func Offset: 0xac
-	// Line 1250, Address: 0x14d010, Func Offset: 0xb0
-	// Line 1252, Address: 0x14d018, Func Offset: 0xb8
-	// Line 1253, Address: 0x14d020, Func Offset: 0xc0
-	// Line 1254, Address: 0x14d02c, Func Offset: 0xcc
-	// Line 1256, Address: 0x14d03c, Func Offset: 0xdc
-	// Line 1257, Address: 0x14d048, Func Offset: 0xe8
-	// Line 1258, Address: 0x14d054, Func Offset: 0xf4
-	// Line 1261, Address: 0x14d05c, Func Offset: 0xfc
-	// Line 1260, Address: 0x14d060, Func Offset: 0x100
-	// Line 1263, Address: 0x14d064, Func Offset: 0x104
-	// Line 1264, Address: 0x14d078, Func Offset: 0x118
-	// Line 1266, Address: 0x14d080, Func Offset: 0x120
-	// Line 1267, Address: 0x14d090, Func Offset: 0x130
-	// Line 1269, Address: 0x14d098, Func Offset: 0x138
-	// Line 1271, Address: 0x14d0a8, Func Offset: 0x148
-	// Line 1273, Address: 0x14d0f4, Func Offset: 0x194
-	// Line 1274, Address: 0x14d104, Func Offset: 0x1a4
-	// Line 1282, Address: 0x14d108, Func Offset: 0x1a8
-	// Line 1274, Address: 0x14d118, Func Offset: 0x1b8
-	// Line 1275, Address: 0x14d120, Func Offset: 0x1c0
-	// Line 1276, Address: 0x14d124, Func Offset: 0x1c4
-	// Line 1282, Address: 0x14d12c, Func Offset: 0x1cc
-	// Line 1283, Address: 0x14d134, Func Offset: 0x1d4
-	// Line 1285, Address: 0x14d13c, Func Offset: 0x1dc
-	// Line 1286, Address: 0x14d14c, Func Offset: 0x1ec
-	// Line 1288, Address: 0x14d154, Func Offset: 0x1f4
-	// Line 1289, Address: 0x14d178, Func Offset: 0x218
-	// Line 1290, Address: 0x14d19c, Func Offset: 0x23c
-	// Line 1291, Address: 0x14d1bc, Func Offset: 0x25c
-	// Line 1290, Address: 0x14d1c0, Func Offset: 0x260
-	// Line 1291, Address: 0x14d1c4, Func Offset: 0x264
-	// Line 1293, Address: 0x14d204, Func Offset: 0x2a4
-	// Line 1295, Address: 0x14d20c, Func Offset: 0x2ac
-	// Func End, Address: 0x14d250, Func Offset: 0x2f0
-	scePrintf("bhArmIkMdk - UNIMPLEMENTED!\n");
+    int Ta; // needs use               
+    float lb1, lb0;           
+    float l01;            
+    NJS_POINT3* vhP, *vyP, *vb1P, *vtP;      
+    NJS_CNK_OBJECT* obj0P, *obj1P; 
+    NJS_CNK_OBJECT* basP; // not from DWARF 
+    static NJS_POINT3 vu = { 0, 1.0f, 0 };
+
+    vhP =  (NJS_VECTOR*)&lcmat[0][0];
+    vyP =  (NJS_VECTOR*)&lcmat[0][4]; 
+    vb1P = (NJS_VECTOR*)&lcmat[0][8]; 
+    vtP =  (NJS_VECTOR*)&lcmat[0][12]; 
+    
+    basP = &plp->mlwP->objP[bas_no];
+    
+    obj0P = &basP[1];
+    obj1P = &basP[2];
+    
+    njPushMatrix(&ewP->mlwP->owP[bas_no].mtx);
+    njInvertMatrix(NULL);
+    
+    njGetMatrix(lcmat);
+    
+    njCalcPoint(NULL, effP, vb1P);
+    
+    njSubVector(vb1P, (NJS_VECTOR*)obj0P->pos);
+    
+    lb1 = njScalor(vb1P);
+    
+    njUnitVector(vb1P);
+    
+    l01 =  basP[3].pos[0];
+    lb0 = obj1P[0].pos[0]; 
+    
+    njOuterProduct(&vu, vb1P, vyP);
+    njUnitVector(vyP);
+    
+    njOuterProduct(vb1P, vyP, vhP);
+    njUnitVector(vhP);
+    
+    njRotateZ(lcmat, rot);
+    
+    njSinCos((int)(10430.381f * acosf(((((lb1 * lb1) + (lb0 * lb0)) - (l01 * l01)) / ((2.0f * lb1) * lb0)))), &vtP->x, &vtP->z);
+    
+    vtP->x *= lb0;
+    vtP->y = 0;
+    vtP->z *= lb0;
+    
+    njCalcVector(lcmat, vtP, vtP);
+    njUnitVector(vtP);
+    
+    njOuterProduct(vtP, vyP, vb1P);
+    njUnitVector(vb1P);
+    
+    obj0P->ang[2] = (int)(10430.381f * atan2f(vtP->y, vtP->x));
+    obj0P->ang[1] = (int)(10430.381f * asinf(-vtP->z));
+    
+    obj0P->ang[0] = (int)(10430.381f * atan2f(vyP->z, vb1P->z));
+    obj1P->ang[1] = (int)(10430.381f * acosf((((lb1 * lb1) - (lb0 * lb0)) - (l01 * l01)) / ((2.0f * lb0) * l01)));
+    
+    njPopMatrixEx();
 }
