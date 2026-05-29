@@ -1,6 +1,9 @@
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/effect.h"
+#include "../../../ps2/veronica/prog/light.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/main.h"
@@ -3023,58 +3026,41 @@ void bhSetMagazine(BH_PWORK* pp, int wno, int jno, int hand, int ang)
     }
 }
 
-// 
-// Start address: 0x1557d0
+// 100% matching! 
 void bhSetLighterFire(O_WRK* op, int flg)
 {
-	// Line 3226, Address: 0x1557d0, Func Offset: 0
-	// Line 3228, Address: 0x1557dc, Func Offset: 0xc
-	// Line 3229, Address: 0x1557e4, Func Offset: 0x14
-	// Line 3230, Address: 0x1557ec, Func Offset: 0x1c
-	// Line 3229, Address: 0x1557f4, Func Offset: 0x24
-	// Line 3240, Address: 0x1557f8, Func Offset: 0x28
-	// Line 3229, Address: 0x1557fc, Func Offset: 0x2c
-	// Line 3230, Address: 0x155808, Func Offset: 0x38
-	// Line 3240, Address: 0x155810, Func Offset: 0x40
-	// Line 3231, Address: 0x155814, Func Offset: 0x44
-	// Line 3235, Address: 0x155818, Func Offset: 0x48
-	// Line 3230, Address: 0x15581c, Func Offset: 0x4c
-	// Line 3231, Address: 0x155828, Func Offset: 0x58
-	// Line 3240, Address: 0x155830, Func Offset: 0x60
-	// Line 3231, Address: 0x155838, Func Offset: 0x68
-	// Line 3232, Address: 0x155844, Func Offset: 0x74
-	// Line 3233, Address: 0x15585c, Func Offset: 0x8c
-	// Line 3234, Address: 0x155874, Func Offset: 0xa4
-	// Line 3235, Address: 0x15588c, Func Offset: 0xbc
-	// Line 3236, Address: 0x1558a0, Func Offset: 0xd0
-	// Line 3237, Address: 0x1558b4, Func Offset: 0xe4
-	// Line 3238, Address: 0x1558c8, Func Offset: 0xf8
-	// Line 3239, Address: 0x1558dc, Func Offset: 0x10c
-	// Line 3240, Address: 0x1558f0, Func Offset: 0x120
-	// Line 3244, Address: 0x155908, Func Offset: 0x138
-	// Line 3245, Address: 0x155914, Func Offset: 0x144
-	// Line 3247, Address: 0x155918, Func Offset: 0x148
-	// Line 3245, Address: 0x15591c, Func Offset: 0x14c
-	// Line 3247, Address: 0x155920, Func Offset: 0x150
-	// Line 3245, Address: 0x155928, Func Offset: 0x158
-	// Line 3246, Address: 0x15592c, Func Offset: 0x15c
-	// Line 3247, Address: 0x155930, Func Offset: 0x160
-	// Line 3249, Address: 0x155938, Func Offset: 0x168
-	// Line 3250, Address: 0x155940, Func Offset: 0x170
-	// Line 3249, Address: 0x155944, Func Offset: 0x174
-	// Line 3250, Address: 0x155948, Func Offset: 0x178
-	// Line 3249, Address: 0x15594c, Func Offset: 0x17c
-	// Line 3250, Address: 0x155958, Func Offset: 0x188
-	// Line 3251, Address: 0x155964, Func Offset: 0x194
-	// Line 3254, Address: 0x15596c, Func Offset: 0x19c
-	// Line 3255, Address: 0x155974, Func Offset: 0x1a4
-	// Line 3254, Address: 0x155978, Func Offset: 0x1a8
-	// Line 3255, Address: 0x15597c, Func Offset: 0x1ac
-	// Line 3254, Address: 0x155980, Func Offset: 0x1b0
-	// Line 3255, Address: 0x155984, Func Offset: 0x1b4
-	// Line 3254, Address: 0x155988, Func Offset: 0x1b8
-	// Line 3255, Address: 0x155994, Func Offset: 0x1c4
-	// Line 3257, Address: 0x1559a4, Func Offset: 0x1d4
-	// Func End, Address: 0x1559b4, Func Offset: 0x1e4
-	scePrintf("bhSetLighterFire - UNIMPLEMENTED!\n");
+    if (flg == 0)
+    {
+        sys->ef.id  = 9;
+        sys->ef.flg = 0x4100001;
+        
+        sys->ef.type = 3;
+        
+        sys->ef.px = op->px;
+        sys->ef.py = op->py;
+        sys->ef.pz = op->pz;
+        
+        sys->ef.sx = 0.5f;
+        sys->ef.sy = 0.5f;
+        sys->ef.sz = 0.5f;
+        
+        sys->ef.ay = sys->ef.ax = 0;
+        
+        bhSetEffectTb(&sys->ef, (NJS_POINT3*)&WpnTab[1].wp_fps1, (unsigned char*)op, 0);
+        
+        lgttab->ct2 = 3; 
+        lgttab->ct3 = op->idx_ct;
+        
+        lgttab->wpx = 0;
+        
+        bhSetLightTab((LGT_WORK*)&lgttab->mode, 1);
+        
+        rom->lgtp[1].flg |= 0x2;
+        sys->st_flg      |= 0x20000000;
+    } 
+    else 
+    {
+        rom->lgtp[1].flg &= ~0x2;
+        sys->st_flg      &= ~0x20000000;
+    }
 }
