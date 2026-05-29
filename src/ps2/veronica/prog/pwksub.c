@@ -2960,51 +2960,67 @@ void bhSetYakkyou(BH_PWORK* pp, int wno, int jno, int hand, int ang) // fifth pa
 	scePrintf("bhSetYakkyou - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x155680
+// 91.30% matching (matches on NGC)
 void bhSetMagazine(BH_PWORK* pp, int wno, int jno, int hand, int ang)
 {
-	//_anon23 ops;
-	//_anon13* eft;
-	// Line 3170, Address: 0x155680, Func Offset: 0
-	// Line 3173, Address: 0x155688, Func Offset: 0x8
-	// Line 3178, Address: 0x155694, Func Offset: 0x14
-	// Line 3175, Address: 0x155698, Func Offset: 0x18
-	// Line 3173, Address: 0x1556a0, Func Offset: 0x20
-	// Line 3174, Address: 0x1556ac, Func Offset: 0x2c
-	// Line 3175, Address: 0x1556b4, Func Offset: 0x34
-	// Line 3176, Address: 0x1556bc, Func Offset: 0x3c
-	// Line 3177, Address: 0x1556c0, Func Offset: 0x40
-	// Line 3180, Address: 0x1556c8, Func Offset: 0x48
-	// Line 3183, Address: 0x1556cc, Func Offset: 0x4c
-	// Line 3177, Address: 0x1556d0, Func Offset: 0x50
-	// Line 3178, Address: 0x1556e0, Func Offset: 0x60
-	// Line 3179, Address: 0x1556e4, Func Offset: 0x64
-	// Line 3180, Address: 0x1556e8, Func Offset: 0x68
-	// Line 3181, Address: 0x1556ec, Func Offset: 0x6c
-	// Line 3183, Address: 0x1556f0, Func Offset: 0x70
-	// Line 3185, Address: 0x15570c, Func Offset: 0x8c
-	// Line 3186, Address: 0x155714, Func Offset: 0x94
-	// Line 3187, Address: 0x155720, Func Offset: 0xa0
-	// Line 3189, Address: 0x155724, Func Offset: 0xa4
-	// Line 3191, Address: 0x15572c, Func Offset: 0xac
-	// Line 3192, Address: 0x155734, Func Offset: 0xb4
-	// Line 3193, Address: 0x155740, Func Offset: 0xc0
-	// Line 3194, Address: 0x155744, Func Offset: 0xc4
-	// Line 3195, Address: 0x155748, Func Offset: 0xc8
-	// Line 3197, Address: 0x155750, Func Offset: 0xd0
-	// Line 3198, Address: 0x155754, Func Offset: 0xd4
-	// Line 3199, Address: 0x15575c, Func Offset: 0xdc
-	// Line 3200, Address: 0x155764, Func Offset: 0xe4
-	// Line 3202, Address: 0x155768, Func Offset: 0xe8
-	// Line 3203, Address: 0x155770, Func Offset: 0xf0
-	// Line 3204, Address: 0x155778, Func Offset: 0xf8
-	// Line 3205, Address: 0x15577c, Func Offset: 0xfc
-	// Line 3212, Address: 0x155780, Func Offset: 0x100
-	// Line 3214, Address: 0x155794, Func Offset: 0x114
-	// Line 3216, Address: 0x1557b8, Func Offset: 0x138
-	// Func End, Address: 0x1557c4, Func Offset: 0x144
-	scePrintf("bhSetMagazine - UNIMPLEMENTED!\n");
+    EF_WORK* eft;  
+    NJS_POINT3 ops; 
+    
+    eft = &sys->ef;
+
+    eft->id  = 7;
+    eft->flg = 0x40001;
+    
+    eft->type = 0;
+    
+    eft->flr_no = sys->mg_ct;
+    
+    eft->ay = ang + 16384;
+    eft->ax = 0;
+    
+    eft->sx = 1.0f;
+    eft->sy = 1.0f;
+    eft->sz = 1.0f;
+    
+    switch (wno) 
+    {                                 
+    case 12:
+        eft->mdlver = 1;
+        
+        ops.x = 2.2f;
+        ops.y = 0;
+        ops.z = 0;
+        break;
+    case 13:
+        eft->mdlver = 2;
+        
+        ops.x = 1.8f;
+        ops.y = 0;
+        ops.z = -1.0f;
+        break;
+    default:
+        eft->mdlver = 0;
+        
+        if (hand == 0)
+        {
+            ops.x = 1.0f;
+            ops.y = 0;
+            ops.z = 0;
+        } 
+        else 
+        {
+            ops.x = -0.5f;
+            ops.y = 0;
+            ops.z = 0;
+        }
+        
+        break;
+    }
+    
+    if (bhSetEffectTb(eft, &ops, (unsigned char*)pp, jno) >= 0) 
+    {
+        sys->mg_ct = (sys->mg_ct + 1) & 7;
+    }
 }
 
 // 
