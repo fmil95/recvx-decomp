@@ -2260,55 +2260,55 @@ int bhCheckClipPoint(NJS_POINT3* pos)
     return 1;
 }
 
-// 
-// Start address: 0x153440
+// 98.30% matching (matches on NGC)
 void bhSetWaterSplash(BH_PWORK* pp, int jno, int type, float sx, float sy, float sz)
 {
-	//_anon23 ps;
-	//_anon0* hp;
-	//_anon31* owp;
-	// Line 2486, Address: 0x153440, Func Offset: 0
-	// Line 2487, Address: 0x153468, Func Offset: 0x28
-	// Line 2490, Address: 0x15346c, Func Offset: 0x2c
-	// Line 2491, Address: 0x15347c, Func Offset: 0x3c
-	// Line 2487, Address: 0x153480, Func Offset: 0x40
-	// Line 2490, Address: 0x153494, Func Offset: 0x54
-	// Line 2492, Address: 0x1534a0, Func Offset: 0x60
-	// Line 2490, Address: 0x1534a4, Func Offset: 0x64
-	// Line 2491, Address: 0x1534a8, Func Offset: 0x68
-	// Line 2492, Address: 0x1534b0, Func Offset: 0x70
-	// Line 2493, Address: 0x1534b4, Func Offset: 0x74
-	// Line 2494, Address: 0x1534c0, Func Offset: 0x80
-	// Line 2495, Address: 0x1534cc, Func Offset: 0x8c
-	// Line 2496, Address: 0x1534d4, Func Offset: 0x94
-	// Line 2497, Address: 0x1534e0, Func Offset: 0xa0
-	// Line 2508, Address: 0x1534e4, Func Offset: 0xa4
-	// Line 2496, Address: 0x1534e8, Func Offset: 0xa8
-	// Line 2497, Address: 0x1534f4, Func Offset: 0xb4
-	// Line 2508, Address: 0x1534fc, Func Offset: 0xbc
-	// Line 2497, Address: 0x153504, Func Offset: 0xc4
-	// Line 2498, Address: 0x153510, Func Offset: 0xd0
-	// Line 2499, Address: 0x153524, Func Offset: 0xe4
-	// Line 2500, Address: 0x153538, Func Offset: 0xf8
-	// Line 2501, Address: 0x15354c, Func Offset: 0x10c
-	// Line 2502, Address: 0x153560, Func Offset: 0x120
-	// Line 2503, Address: 0x153574, Func Offset: 0x134
-	// Line 2504, Address: 0x153588, Func Offset: 0x148
-	// Line 2505, Address: 0x1535a0, Func Offset: 0x160
-	// Line 2506, Address: 0x1535c0, Func Offset: 0x180
-	// Line 2507, Address: 0x1535d8, Func Offset: 0x198
-	// Line 2508, Address: 0x1535f4, Func Offset: 0x1b4
-	// Line 2509, Address: 0x15360c, Func Offset: 0x1cc
-	// Line 2510, Address: 0x153618, Func Offset: 0x1d8
-	// Line 2509, Address: 0x153624, Func Offset: 0x1e4
-	// Line 2510, Address: 0x153634, Func Offset: 0x1f4
-	// Line 2511, Address: 0x15364c, Func Offset: 0x20c
-	// Line 2512, Address: 0x153658, Func Offset: 0x218
-	// Line 2511, Address: 0x153660, Func Offset: 0x220
-	// Line 2512, Address: 0x153674, Func Offset: 0x234
-	// Line 2514, Address: 0x153690, Func Offset: 0x250
-	// Func End, Address: 0x1536bc, Func Offset: 0x27c
-	scePrintf("bhSetWaterSplash - UNIMPLEMENTED!\n");
+    O_WORK* owp;  
+    ATR_WORK* hp; 
+    NJS_POINT3 ps; 
+    NJS_POINT3* tmp, *tmp2; // not from DWARF
+
+    owp = &pp->mlwP->owP[jno];
+    
+    tmp  = (NJS_POINT3*)&owp->mtx[12];
+    tmp2 = (NJS_POINT3*)&owp->mtx[14];
+    
+    ps.x = owp->mtx[12];
+    ps.y = pp->py;
+    ps.z = owp->mtx[14];
+    
+    ps.y = bhGetGroundPosition(&ps);
+    
+    hp = bhCheckWater(&ps);
+    
+    if (hp != NULL) 
+    {
+        sys->ef.id  = 11;
+        sys->ef.flg = 1;
+        
+        sys->ef.mdlver = 0;
+        
+        sys->ef.type = type;
+        
+        sys->ef.flr_no = 0;
+        
+        sys->ef.sx = sx;
+        sys->ef.sy = sy;
+        sys->ef.sz = sz;
+        
+        sys->ef.px = tmp->x;
+        sys->ef.py = hp->py + hp->h;
+        sys->ef.pz = tmp2->x;
+        
+        sys->ef.ay = pp->ay + 16384;
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        sys->ef.ay = pp->ay - 16384;
+        bhSetEffectTb(&sys->ef, NULL, NULL, 1);
+        
+        sys->ef.ay = pp->ay + 32768; 
+        bhSetEffectTb(&sys->ef, NULL, NULL, 2);
+    }
 }
 
 // 100% matching!
