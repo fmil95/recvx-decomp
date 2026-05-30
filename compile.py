@@ -505,15 +505,14 @@ def log_me(msg: str, extra: list[str] = list(), both: bool = False):
     """saved to the log file, use both True save both"""
 
     with print_lock:
-        if msg.strip():
+        if msg:
             print(msg)
     
     with log_lock, LOG_FILE.open('a') as f:
-        if both and msg.strip(): 
-            f.write(msg + "\n")
+        if both and msg: 
+            f.write(msg)
         if extra:
-            f.write("\n".join([x.strip() for x in extra]))
-            f.write("\n")
+            f.write("\n".join(extra))
         f.flush()
 
 
