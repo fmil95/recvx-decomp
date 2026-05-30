@@ -3795,107 +3795,150 @@ ATR_WORK* bhCheckDansaAtari(int flr_no, float px, float pz)
     return NULL;
 }
 
-// 
-// Start address: 0x267a50
-void bhCheckFloorP(BH_PWORK* pp)
+// 100% matching!
+void bhCheckFloorP(BH_PWORK* pp) 
 {
-	int ang;
-	int flr_n;
-	int i;
-	float* dp;
-	float spz;
-	float spx;
-	float pz;
-	float py;
-	float px;
-	//_anon0* fp;
-	// Line 4212, Address: 0x267a50, Func Offset: 0
-	// Line 4219, Address: 0x267a68, Func Offset: 0x18
-	// Line 4220, Address: 0x267a6c, Func Offset: 0x1c
-	// Line 4221, Address: 0x267a70, Func Offset: 0x20
-	// Line 4223, Address: 0x267a78, Func Offset: 0x28
-	// Line 4224, Address: 0x267a88, Func Offset: 0x38
-	// Line 4233, Address: 0x267a9c, Func Offset: 0x4c
-	// Line 4224, Address: 0x267aa4, Func Offset: 0x54
-	// Line 4235, Address: 0x267aa8, Func Offset: 0x58
-	// Line 4226, Address: 0x267aac, Func Offset: 0x5c
-	// Line 4234, Address: 0x267ab0, Func Offset: 0x60
-	// Line 4235, Address: 0x267ab4, Func Offset: 0x64
-	// Line 4224, Address: 0x267ab8, Func Offset: 0x68
-	// Line 4235, Address: 0x267ac0, Func Offset: 0x70
-	// Line 4224, Address: 0x267ac4, Func Offset: 0x74
-	// Line 4226, Address: 0x267ad8, Func Offset: 0x88
-	// Line 4233, Address: 0x267af8, Func Offset: 0xa8
-	// Line 4234, Address: 0x267b04, Func Offset: 0xb4
-	// Line 4235, Address: 0x267b10, Func Offset: 0xc0
-	// Line 4236, Address: 0x267b18, Func Offset: 0xc8
-	// Line 4235, Address: 0x267b1c, Func Offset: 0xcc
-	// Line 4236, Address: 0x267b24, Func Offset: 0xd4
-	// Line 4237, Address: 0x267b44, Func Offset: 0xf4
-	// Line 4239, Address: 0x267b54, Func Offset: 0x104
-	// Line 4240, Address: 0x267b9c, Func Offset: 0x14c
-	// Line 4241, Address: 0x267bac, Func Offset: 0x15c
-	// Line 4243, Address: 0x267bc8, Func Offset: 0x178
-	// Line 4246, Address: 0x267c38, Func Offset: 0x1e8
-	// Line 4249, Address: 0x267c54, Func Offset: 0x204
-	// Line 4250, Address: 0x267c58, Func Offset: 0x208
-	// Line 4249, Address: 0x267c5c, Func Offset: 0x20c
-	// Line 4250, Address: 0x267c64, Func Offset: 0x214
-	// Line 4256, Address: 0x267cc0, Func Offset: 0x270
-	// Line 4257, Address: 0x267ccc, Func Offset: 0x27c
-	// Line 4256, Address: 0x267cd0, Func Offset: 0x280
-	// Line 4257, Address: 0x267cd8, Func Offset: 0x288
-	// Line 4259, Address: 0x267ce4, Func Offset: 0x294
-	// Line 4260, Address: 0x267cec, Func Offset: 0x29c
-	// Line 4263, Address: 0x267d70, Func Offset: 0x320
-	// Line 4265, Address: 0x267d94, Func Offset: 0x344
-	// Line 4268, Address: 0x267db0, Func Offset: 0x360
-	// Line 4269, Address: 0x267db4, Func Offset: 0x364
-	// Line 4268, Address: 0x267db8, Func Offset: 0x368
-	// Line 4269, Address: 0x267dc0, Func Offset: 0x370
-	// Line 4274, Address: 0x267e2c, Func Offset: 0x3dc
-	// Line 4275, Address: 0x267e30, Func Offset: 0x3e0
-	// Line 4276, Address: 0x267e3c, Func Offset: 0x3ec
-	// Line 4275, Address: 0x267e40, Func Offset: 0x3f0
-	// Line 4276, Address: 0x267e48, Func Offset: 0x3f8
-	// Line 4277, Address: 0x267e54, Func Offset: 0x404
-	// Line 4279, Address: 0x267e5c, Func Offset: 0x40c
-	// Line 4280, Address: 0x267e7c, Func Offset: 0x42c
-	// Line 4281, Address: 0x267e80, Func Offset: 0x430
-	// Line 4282, Address: 0x267e84, Func Offset: 0x434
-	// Line 4284, Address: 0x267e8c, Func Offset: 0x43c
-	// Line 4286, Address: 0x267eb4, Func Offset: 0x464
-	// Line 4287, Address: 0x267ec0, Func Offset: 0x470
-	// Line 4289, Address: 0x267ec8, Func Offset: 0x478
-	// Line 4290, Address: 0x267ecc, Func Offset: 0x47c
-	// Line 4289, Address: 0x267ed0, Func Offset: 0x480
-	// Line 4291, Address: 0x267ed8, Func Offset: 0x488
-	// Line 4293, Address: 0x267ee0, Func Offset: 0x490
-	// Line 4294, Address: 0x267ee4, Func Offset: 0x494
-	// Line 4293, Address: 0x267ee8, Func Offset: 0x498
-	// Line 4294, Address: 0x267ef4, Func Offset: 0x4a4
-	// Line 4295, Address: 0x267f04, Func Offset: 0x4b4
-	// Line 4304, Address: 0x267f18, Func Offset: 0x4c8
-	// Line 4306, Address: 0x267f28, Func Offset: 0x4d8
-	// Line 4307, Address: 0x267f34, Func Offset: 0x4e4
-	// Line 4306, Address: 0x267f38, Func Offset: 0x4e8
-	// Line 4307, Address: 0x267f40, Func Offset: 0x4f0
-	// Line 4308, Address: 0x267f54, Func Offset: 0x504
-	// Line 4309, Address: 0x267f60, Func Offset: 0x510
-	// Line 4311, Address: 0x267f68, Func Offset: 0x518
-	// Line 4312, Address: 0x267f84, Func Offset: 0x534
-	// Line 4313, Address: 0x267f90, Func Offset: 0x540
-	// Line 4315, Address: 0x267f98, Func Offset: 0x548
-	// Line 4316, Address: 0x267fb4, Func Offset: 0x564
-	// Line 4317, Address: 0x267fc0, Func Offset: 0x570
-	// Line 4319, Address: 0x267fc8, Func Offset: 0x578
-	// Line 4320, Address: 0x267fe4, Func Offset: 0x594
-	// Line 4321, Address: 0x267ff0, Func Offset: 0x5a0
-	// Line 4323, Address: 0x267ff8, Func Offset: 0x5a8
-	// Line 4324, Address: 0x268014, Func Offset: 0x5c4
-	// Line 4327, Address: 0x268024, Func Offset: 0x5d4
-	// Func End, Address: 0x268040, Func Offset: 0x5f0
-	scePrintf("bhCheckFloorP - UNIMPLEMENTED!\n");
+    ATR_WORK* fp; 
+    float px, py, pz;    
+    float spx, spz;    
+    float* dp;   
+    int i;        
+    int flr_n;   
+    int ang;     
+  
+    px = pp->px;
+    py = pp->py;
+    pz = pp->pz;
+    
+    njSinCos(pp->ay, &spx, &spz);
+    
+    dp = (float*)plp->exp0;
+    spx = dp[9] - (spx * (3.0f + (3.0f - dp[7])));
+    
+    dp = (float*)plp->exp0;
+    spz = dp[11] - (spz * (3.0f + (3.0f - dp[7])));
+    
+    pp->stflg &= ~0x100000;
+    pp->flg2  &= ~0x8;
+    
+    sys->cb_flg &= ~0x8000200;
+    
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++)
+    {
+        if (i < rom->flr_n) 
+        {
+            fp = &rom->flrp[i];
+        } 
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if ((fp->flg & 0x1)) 
+        {
+            if ((fp->type == 0) && ((fp->attr & 0x1))) 
+            {
+                if ((((fp->px <= spx) && ((fp->px + fp->w) >= spx)) && ((fp->pz <= spz) && ((fp->pz + fp->d) >= spz)) && (fp->flr_no == pp->flr_no)) && ((!(plp->flg & 0x4)) && (!(plp->flg & 0x2)))) 
+                {
+                    ang = (pp->ay + 8192) & 0xC000; 
+                    
+                    if ((((ang == 32768) == 0) || (!(fp->attr & 0x400))) && ((ang != 16384) || (!(fp->attr & 0x800))) && ((ang != 0) || (!(fp->attr & 0x1000))) && ((ang != 49152) || (!(fp->attr & 0x2000)))) 
+                    {
+                        sys->cb_flg |= 0x200;
+                        
+                        sys->flr_idx = i; 
+                    }
+                }
+            } 
+            else 
+            {
+                if (((fp->px <= px) && ((fp->px + fp->w) >= px)) && ((fp->py <= py) && ((fp->py + fp->h) >= py)) && ((fp->pz <= pz) && ((fp->pz + fp->d) >= pz))) 
+                {
+                    switch ((unsigned short)fp->type) 
+                    { 
+                    case 0:         
+                        if ((!(plp->flg & 0x4)) && (!(plp->flg & 0x2)))
+                        {
+                            ang = (pp->ay + 8192) & 0xC000; 
+                            
+                            if (((ang != 32768) || (!(fp->attr & 0x400))) && ((ang != 16384) || (!(fp->attr & 0x800))) && ((ang != 0) || (!(fp->attr & 0x1000))) && ((ang != 49152) || (!(fp->attr & 0x2000))))
+                            {
+                                sys->cb_flg |= 0x200;
+                                
+                                sys->flr_idx = i; 
+                            }
+                        } 
+                        
+                        break;
+                    case 1:             
+                        if ((!(fp->attr & 0x1)) || ((pp->stflg & 0x10)))
+                        {
+                            pp->flr_snd = fp->prm0;
+                        } 
+                        
+                        break;
+                    case 3:        
+                        switch (fp->prm0) 
+                        { 
+                        case 1:         
+                            pp->stflg |= 0x100000;
+                            break;
+                        case 3:         
+                            pp->flg2 |= 0x8;
+                            
+                            pp->footeff = 2;
+                            break;
+                        case 4:         
+                            sys->flr_idx = i;
+                            
+                            if ((pp->flg & 0x10000000)) 
+                            {
+                                sys->cb_flg |= 0x8000000;
+                            }
+                            
+                            break;
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    pp->stflg &= ~0x20000;
+    
+    if (bhCheckDansaAtari(pp->flr_no, px, pz) != NULL) 
+    {
+        pp->stflg |= 0x20000;
+        return;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px, pz - pp->ar) != NULL) 
+    {
+        pp->stflg |= 0x20000;
+        return;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px + pp->ar, pz) != NULL) 
+    {
+        pp->stflg |= 0x20000;
+        return;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px, pz + pp->ar) != NULL) 
+    {
+        pp->stflg |= 0x20000;
+        return;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px - pp->ar, pz) != NULL) 
+    {
+        pp->stflg |= 0x20000;
+        return;
+    }
 }
 
 // 100% matching!
