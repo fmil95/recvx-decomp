@@ -589,50 +589,59 @@ int bhSearchNextEnemy(BH_PWORK* pp, int r, float h)
 	scePrintf("bhSearchNextEnemy - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x14f5e0
-int bhSearchPlayer(BH_PWORK* pp, int r)
+// 100% matching!
+int bhSearchPlayer(BH_PWORK* pp, int r) 
 {
-	int yr;
-	float er;
-	float a;
-	_anon23 vc2;
-	_anon23 vc1;
-	_anon23 vc0;
-	// Line 891, Address: 0x14f5e0, Func Offset: 0
-	// Line 898, Address: 0x14f600, Func Offset: 0x20
-	// Line 900, Address: 0x14f60c, Func Offset: 0x2c
-	// Line 899, Address: 0x14f610, Func Offset: 0x30
-	// Line 901, Address: 0x14f614, Func Offset: 0x34
-	// Line 900, Address: 0x14f618, Func Offset: 0x38
-	// Line 901, Address: 0x14f61c, Func Offset: 0x3c
-	// Line 902, Address: 0x14f624, Func Offset: 0x44
-	// Line 903, Address: 0x14f62c, Func Offset: 0x4c
-	// Line 904, Address: 0x14f638, Func Offset: 0x58
-	// Line 905, Address: 0x14f648, Func Offset: 0x68
-	// Line 906, Address: 0x14f654, Func Offset: 0x74
-	// Line 907, Address: 0x14f664, Func Offset: 0x84
-	// Line 926, Address: 0x14f670, Func Offset: 0x90
-	// Line 907, Address: 0x14f678, Func Offset: 0x98
-	// Line 926, Address: 0x14f67c, Func Offset: 0x9c
-	// Line 929, Address: 0x14f680, Func Offset: 0xa0
-	// Line 926, Address: 0x14f684, Func Offset: 0xa4
-	// Line 927, Address: 0x14f690, Func Offset: 0xb0
-	// Line 928, Address: 0x14f6a0, Func Offset: 0xc0
-	// Line 929, Address: 0x14f6ac, Func Offset: 0xcc
-	// Line 930, Address: 0x14f6b4, Func Offset: 0xd4
-	// Line 931, Address: 0x14f6c0, Func Offset: 0xe0
-	// Line 936, Address: 0x14f6d0, Func Offset: 0xf0
-	// Line 937, Address: 0x14f6dc, Func Offset: 0xfc
-	// Line 936, Address: 0x14f6e0, Func Offset: 0x100
-	// Line 937, Address: 0x14f6ec, Func Offset: 0x10c
-	// Line 938, Address: 0x14f6fc, Func Offset: 0x11c
-	// Line 939, Address: 0x14f724, Func Offset: 0x144
-	// Line 940, Address: 0x14f730, Func Offset: 0x150
-	// Line 941, Address: 0x14f738, Func Offset: 0x158
-	// Line 944, Address: 0x14f73c, Func Offset: 0x15c
-	// Func End, Address: 0x14f75c, Func Offset: 0x17c
-}*/
+    NJS_VECTOR vc0, vc1, vc2; 
+    float a, er;      
+    int yr;       
+ 
+    if (r == 0) 
+    {
+        r = 32768;
+    }
+    
+    vc1.x = 0;
+    vc1.y = 0;
+    vc1.z = -1.0f;
+    
+    njUnitMatrix(NULL);
+    
+    njRotateY(NULL, pp->ay);
+    njCalcVector(NULL, &vc1, &vc0);
+    
+    njRotateY(NULL, r);
+    njCalcVector(NULL, &vc1, &vc2);
+    
+    er = -njInnerProduct(&vc0, &vc2);
+    
+    vc1.x = pp->px - plp->px;
+    vc1.y = pp->py - plp->py;
+    vc1.z = pp->pz - plp->pz;
+    
+    njUnitVector(&vc1);
+    
+    a = njInnerProduct(&vc0, &vc1);
+    
+    if (a < er)
+    {
+        vc0.x = plp->px - pp->px;
+        vc0.z = plp->pz - pp->pz;
+        
+        yr = (int)(10430.381f * atan2f(-vc0.x, -vc0.z));
+        
+        if (yr == -1) 
+        {
+            yr = -2;
+        }
+    } 
+    else 
+    {
+        yr = -1;
+    }
+    
+    return yr;
+}
 
 // 
 // Start address: 0x14f760
