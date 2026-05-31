@@ -1125,72 +1125,68 @@ int bhCheckFlyAtari(GA_WORK* gap, int eidx)
     return id;
 }
 
-/*// 
-// Start address: 0x28cd60
+// 99.09% matching (matches on NGC)
 void bhSetBowDamage()
 {
-	BH_PWORK* pp;
-	int kno;
-	int j;
-	int i;
-	float ll;
-	float knr;
-	_anon1 sca;
-	// Line 1188, Address: 0x28cd60, Func Offset: 0
-	// Line 1196, Address: 0x28cd84, Func Offset: 0x24
-	// Line 1188, Address: 0x28cd88, Func Offset: 0x28
-	// Line 1196, Address: 0x28cd8c, Func Offset: 0x2c
-	// Line 1188, Address: 0x28cd90, Func Offset: 0x30
-	// Line 1197, Address: 0x28cd94, Func Offset: 0x34
-	// Line 1198, Address: 0x28cd9c, Func Offset: 0x3c
-	// Line 1203, Address: 0x28cdd8, Func Offset: 0x78
-	// Line 1206, Address: 0x28cdf8, Func Offset: 0x98
-	// Line 1207, Address: 0x28ce28, Func Offset: 0xc8
-	// Line 1211, Address: 0x28ce34, Func Offset: 0xd4
-	// Line 1207, Address: 0x28ce38, Func Offset: 0xd8
-	// Line 1208, Address: 0x28ce3c, Func Offset: 0xdc
-	// Line 1207, Address: 0x28ce44, Func Offset: 0xe4
-	// Line 1209, Address: 0x28ce48, Func Offset: 0xe8
-	// Line 1211, Address: 0x28ce4c, Func Offset: 0xec
-	// Line 1218, Address: 0x28ce50, Func Offset: 0xf0
-	// Line 1209, Address: 0x28ce54, Func Offset: 0xf4
-	// Line 1208, Address: 0x28ce58, Func Offset: 0xf8
-	// Line 1224, Address: 0x28ce5c, Func Offset: 0xfc
-	// Line 1228, Address: 0x28ce60, Func Offset: 0x100
-	// Line 1207, Address: 0x28ce64, Func Offset: 0x104
-	// Line 1211, Address: 0x28ce68, Func Offset: 0x108
-	// Line 1226, Address: 0x28ce70, Func Offset: 0x110
-	// Line 1209, Address: 0x28ce74, Func Offset: 0x114
-	// Line 1213, Address: 0x28ce78, Func Offset: 0x118
-	// Line 1208, Address: 0x28ce7c, Func Offset: 0x11c
-	// Line 1209, Address: 0x28ce80, Func Offset: 0x120
-	// Line 1214, Address: 0x28ce84, Func Offset: 0x124
-	// Line 1215, Address: 0x28ce88, Func Offset: 0x128
-	// Line 1217, Address: 0x28ce8c, Func Offset: 0x12c
-	// Line 1218, Address: 0x28ce90, Func Offset: 0x130
-	// Line 1219, Address: 0x28ce94, Func Offset: 0x134
-	// Line 1221, Address: 0x28ce98, Func Offset: 0x138
-	// Line 1222, Address: 0x28ce9c, Func Offset: 0x13c
-	// Line 1227, Address: 0x28cea0, Func Offset: 0x140
-	// Line 1228, Address: 0x28cea4, Func Offset: 0x144
-	// Line 1229, Address: 0x28ceac, Func Offset: 0x14c
-	// Line 1232, Address: 0x28ceb0, Func Offset: 0x150
-	// Line 1229, Address: 0x28ceb4, Func Offset: 0x154
-	// Line 1230, Address: 0x28cec4, Func Offset: 0x164
-	// Line 1231, Address: 0x28cedc, Func Offset: 0x17c
-	// Line 1232, Address: 0x28cef0, Func Offset: 0x190
-	// Line 1233, Address: 0x28cef8, Func Offset: 0x198
-	// Line 1235, Address: 0x28cf20, Func Offset: 0x1c0
-	// Line 1234, Address: 0x28cf24, Func Offset: 0x1c4
-	// Line 1235, Address: 0x28cf28, Func Offset: 0x1c8
-	// Line 1237, Address: 0x28cf2c, Func Offset: 0x1cc
-	// Line 1239, Address: 0x28cf44, Func Offset: 0x1e4
-	// Line 1240, Address: 0x28cf48, Func Offset: 0x1e8
-	// Line 1241, Address: 0x28cf78, Func Offset: 0x218
-	// Line 1244, Address: 0x28cf84, Func Offset: 0x224
-	// Line 1245, Address: 0x28cfb0, Func Offset: 0x250
-	// Func End, Address: 0x28cfe0, Func Offset: 0x280
-}*/
+    NJS_VECTOR sca; 
+    float knr;     
+    float ll;      
+    int i, j;         
+    int kno;      
+    BH_PWORK* pp;   
+    float px, py, pz; // not from DWARF
+
+    pp = ene;  
+    
+    for (i = 0; i < sys->ewk_n; i++, pp++) 
+    {
+        if (((((pp->flg & 0x1)) && ((pp->flg & 0x20)) && (!(pp->flg & 0x2))) && (!(pp->stflg & 0x1000000)) && ((!(pp->flg & 0x80)) || (!(((O_WRK*)pp->lkwkp)->stflg & 0x1000000)))) && (EneDamFar[pp->id][17] != 0))
+        {
+            px = 0.5f * (pp->watr.c1.x + pp->watr.c2.x);
+            py = 0.5f * (pp->watr.c1.y + pp->watr.c2.y);
+            pz = 0.5f * (pp->watr.c1.z + pp->watr.c2.z);
+            
+            pp->flg |= 0x4;
+            
+            pp->dpx = px;
+            pp->dpy = py; 
+            pp->dpz = pz;
+            
+            pp->dvx = 0;
+            pp->dvy = 1.0f;
+            pp->dvz = 0;
+            
+            pp->dax = 0;
+            pp->day = 0;
+            
+            pp->wpnr_no = 17;
+            
+            kno = 0;
+            knr = 0;
+            
+            for (j = 1; j < (int)pp->mlwP->obj_num; j++)
+            { 
+                sca.x = px - pp->mlwP->owP[j].mtx[12];
+                sca.y = py - pp->mlwP->owP[j].mtx[13];
+                sca.z = pz - pp->mlwP->owP[j].mtx[14];   
+                
+                ll = njScalor(&sca); 
+                
+                if ((knr == 0) || (knr > ll)) 
+                {
+                    kno = j; 
+                    knr = ll;
+                }
+            }
+            
+            pp->djnt_no = kno;
+            
+            pp->dam[kno] += (int)(0.5f * pp->hp); 
+            
+            pp->comb_flg |= 0x40;
+        }
+    }
+}
 
 // 100% matching!
 void bhCheckBombAtari(NJS_POINT3* pos, float ar, int dmax, int dmin)
