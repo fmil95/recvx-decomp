@@ -23,7 +23,7 @@ int bhCheckClipModel(BH_PWORK* pp);
 void bhSetWaterSplash(BH_PWORK* pp, int jno, int type, float sx, float sy, float sz);
 /*void bhSetWaterSplash2(BH_PWORK* pp, _anon23* pos, int type, float sx, float sy, float sz);*/
 void bhSetWaterSplash3(NJS_POINT3* pos, int ang, int type, float sx, float sy, float sz);
-/*void bhSetWaterSplash4(_anon23* pos, int ang, int type, float sx, float sy, float sz);*/
+void bhSetWaterSplash4(NJS_POINT3* pos, int ang, int type, float sx, float sy, float sz);
 void bhSetGunFire(BH_PWORK* pp, int wno, int jno, int hand, int ang);
 void bhSetYakkyou(BH_PWORK* pp, int wno, int jno, int hand, int ang);
 void bhSetMagazine(BH_PWORK* pp, int wno, int jno, int hand, int ang);
