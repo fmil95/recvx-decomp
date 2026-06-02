@@ -2056,7 +2056,24 @@ void (*bhEne01_DamageMode2W[17])(BH_PWORK*) =
 	bhEne01_DG15,
 	bhEne01_DG16
 }; 
-/*void(*bhEne01_DieTypeW)(BH_PWORK*)[16];*/
+void (*bhEne01_DieTypeW[16])(BH_PWORK*) = {
+    bhEne01_DDType00,
+    bhEne01_DDType00,
+    bhEne01_DDType02,
+    bhEne01_DDType02,
+    bhEne01_DDType00,
+    bhEne01_DDType00,
+    bhEne01_DDType02,
+    bhEne01_DDType02,
+    bhEne01_DDType00,
+    bhEne01_DDType02,
+    bhEne01_DDType00,
+    bhEne01_DDType00,
+    bhEne01_DDType00,
+    bhEne01_DDType00,
+    bhEne01_DDType00,
+    bhEne01_DDType00
+};
 void (*bhEne01_DieMode2W[4])(BH_PWORK*) =
 {
 	bhEne01_DD00,
@@ -2520,25 +2537,35 @@ void bhEne01_Damage(BH_PWORK* epw)
 
 // 
 // Start address: 0x176d50
-void bhEne01_Die(BH_PWORK* epw)
-{
-	BH_PWORK* epp;
-	scePrintf("bhEne01_Die - UNIMPLEMENTED!\n");
-	// Line 1270, Address: 0x176d50, Func Offset: 0
-	// Line 1272, Address: 0x176d5c, Func Offset: 0xc
-	// Line 1275, Address: 0x176d70, Func Offset: 0x20
-	// Line 1277, Address: 0x176d98, Func Offset: 0x48
-	// Line 1281, Address: 0x176db0, Func Offset: 0x60
-	// Line 1283, Address: 0x176dd0, Func Offset: 0x80
-	// Line 1286, Address: 0x176de0, Func Offset: 0x90
-	// Line 1289, Address: 0x176dec, Func Offset: 0x9c
-	// Line 1290, Address: 0x176e08, Func Offset: 0xb8
-	// Line 1292, Address: 0x176e1c, Func Offset: 0xcc
-	// Line 1294, Address: 0x176e34, Func Offset: 0xe4
-	// Line 1297, Address: 0x176e3c, Func Offset: 0xec
-	// Line 1299, Address: 0x176e5c, Func Offset: 0x10c
-	// Func End, Address: 0x176e6c, Func Offset: 0x11c
+void bhEne01_Die(BH_PWORK* epw) {
+    BH_PWORK* epp;
+    
+    EXP0_I(0x40) &= 0xfffff7ff;
+	if (EXP0_I(0x44) & 0x80){
+		EXP0_I(0x44) &= 0xffffff7f;
+	}
+	if (EXP0_I(0x40) & 0x80000000){
+        epp = (BH_PWORK*)(epw->lkwkp);
+		bhEne01_DieTypeB[epw->type](epw);
+        
+        if (*(int*)(epp->exp0 + 0x38)) {
+            epp->mdflg |= 0x400;
+            
+            if ((*(int*)(epp->exp0 + 0x3c) & 0xffffff) > 0) {
+                *(int *)(epp->exp0 + 0x3c) += 0xfffefeff; 
+            }
+            
+            npSetAllMatColor(
+                epp->mlwP->objP,
+                epp->mlwP->obj_num,
+                *(unsigned int*)(epp->exp0 + 0x3c)
+            );
+        }
+	} else {
+		bhEne01_DieTypeW[epw->type](epw);
+	}
 }
+
 
 //
 // Start address: 0x176e70
