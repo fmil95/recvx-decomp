@@ -5530,83 +5530,85 @@ void bhCPM2_act_atk()
                 sys->obwp->mode0 = 0;
             }
             
-            if (((WpnTab[plp->wpnr_no].flg & 0x10000000)) && (
-            gap.at_flg = plp->at_flg,
-            
-            gap.wpn_no = plp->wpnr_no,
-            
-            gap.r = WpnTab[plp->wpnr_no].r,
-            gap.l = WpnTab[plp->wpnr_no].l,
-            
-            gap.rn   = WpnTab[plp->wpnr_no].rn,
-            gap.rmax = WpnTab[plp->wpnr_no].rmax,
-            
-            gap.ax = plp->wax,
-            gap.ay = plp->ay,
-    
-            plp->way = plp->ay,
-            plp->waz = 0,
-    
-            njSetMatrix(NULL, &plp->mlwP->owP[9].mtx),
-    
-            ps.x = ps.y = 0,
-            ps.z = WpnTab[plp->wpnr_no].wp_fps1.z,
-    
-            njCalcPoint(NULL, &ps, (NJS_POINT3*)&gap.gx),
-            
-            njSinCos(plp->ay, &gap.px, &gap.pz),
-    
-            gap.px = plp->px - (gap.px * (3.0f + gap.r)),
-            gap.py = 11.0f + plp->py,
-            gap.pz = plp->pz - (gap.pz * (3.0f + gap.r)),
-    
-            njUnitRotPortion(NULL),
-            njRotateXYZ(NULL, plp->wax, plp->way, plp->waz),
-    
-            ps.x = 0,
-            ps.y = 0,
-            ps.z = -gap.l,
-    
-            njCalcVector(NULL, &ps, (NJS_POINT3 *)&gap.vx),
-            
-            bhCheckGunAtari(&gap),
-            
-            (bhCountBullet() == 0)))
+            if ((WpnTab[plp->wpnr_no].flg & 0x10000000)) 
             {
-                sys->gm_flg |= 0x40000;
+                gap.at_flg = plp->at_flg;
                 
-                plp->mode3 = 3;
+                gap.wpn_no = plp->wpnr_no;
                 
-                if (!(WpnTab[plp->wpnr_no].flg & 0x200)) 
+                gap.r = WpnTab[plp->wpnr_no].r;
+                gap.l = WpnTab[plp->wpnr_no].l;
+                
+                gap.rn   = WpnTab[plp->wpnr_no].rn;
+                gap.rmax = WpnTab[plp->wpnr_no].rmax;
+                
+                gap.ax = plp->wax;
+                gap.ay = plp->ay;
+        
+                plp->way = plp->ay;
+                plp->waz = 0;
+        
+                njSetMatrix(NULL, &plp->mlwP->owP[9].mtx);
+        
+                ps.x = ps.y = 0;
+                ps.z = WpnTab[plp->wpnr_no].wp_fps1.z;
+        
+                njCalcPoint(NULL, &ps, (NJS_POINT3*)&gap.gx);
+                
+                njSinCos(plp->ay, &gap.px, &gap.pz);
+        
+                gap.px = plp->px - (gap.px * (3.0f + gap.r));
+                gap.py = 11.0f + plp->py;
+                gap.pz = plp->pz - (gap.pz * (3.0f + gap.r));
+        
+                njUnitRotPortion(NULL);
+                njRotateXYZ(NULL, plp->wax, plp->way, plp->waz);
+        
+                ps.x = 0;
+                ps.y = 0;
+                ps.z = -gap.l;
+        
+                njCalcVector(NULL, &ps, (NJS_POINT3*)&gap.vx);
+                
+                bhCheckGunAtari(&gap);
+                
+                if (bhCountBullet() == 0)
                 {
-                    switch (plp->at_flg & 0xE)
-                    {
-                    case 2:
-                        plp->mtn_no = 102;
-                        break;
-                    case 4:
-                        plp->mtn_no = 107;
-                        break;
-                    case 8:
-                        plp->mtn_no = 112;
-                        break;
-                    }
-                }
-            } 
-            else 
-            {
-                if (WpnTab[plp->wpnr_no].seno0 != 0)
-                {
-                    CallPlayerWeaponSeEx((NJS_POINT3*)&plp->mlwP->owP[9].mtx[12], (unsigned short)WpnTab[plp->wpnr_no].seno0, 0);
+                    sys->gm_flg |= 0x40000;
                     
-                    if (!(WpnTab[plp->wpnr_no].flg & 0x100)) 
+                    plp->mode3 = 3;
+                    
+                    if (!(WpnTab[plp->wpnr_no].flg & 0x200)) 
                     {
-                        plp->stflg |= 0x100;
+                        switch (plp->at_flg & 0xE)
+                        {
+                        case 2:
+                            plp->mtn_no = 102;
+                            break;
+                        case 4:
+                            plp->mtn_no = 107;
+                            break;
+                        case 8:
+                            plp->mtn_no = 112;
+                            break;
+                        }
                     }
-                }
+    
+                    break;
+                } 
+            }
+            
+            if (WpnTab[plp->wpnr_no].seno0 != 0)
+            {
+                CallPlayerWeaponSeEx((NJS_POINT3*)&plp->mlwP->owP[9].mtx[12], (unsigned short)WpnTab[plp->wpnr_no].seno0, 0);
                 
-                plp->mode3 = 2;
-        // nested case
+                if (!(WpnTab[plp->wpnr_no].flg & 0x100)) 
+                {
+                    plp->stflg |= 0x100;
+                }
+            }
+            
+            plp->mode3 = 2;
         case 2:
             if ((plp->ct0 == WpnTab[plp->wpnr_no].ef_yct) && (WpnEffTab[plp->wpnr_no][3].flg != 0)) 
             {
@@ -5641,9 +5643,8 @@ void bhCPM2_act_atk()
                     }
                 }
             }
-        }
 
-        break;
+            break;
         case 3:
             if ((plp->ct0 == WpnTab[plp->wpnr_no].ef_yct) && (WpnEffTab[plp->wpnr_no][3].flg != 0)) 
             {
