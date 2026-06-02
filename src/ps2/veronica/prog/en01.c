@@ -2081,8 +2081,12 @@ void (*bhEne01_DieMode2W[4])(BH_PWORK*) =
 	bhEne01_DD02,
 	bhEne01_DD03
 }; 
-/*void(*bhEne01_PlyDmgMode)(BH_PWORK*, BH_PWORK*)[2];
-void(*bhEne01_DmgCheckType)(BH_PWORK*)[16];
+void (*bhEne01_PlyDmgMode[2])(BH_PWORK*, BH_PWORK*) = 
+{
+	bhEne01_PlyDG00,
+	bhEne01_PlyDG01
+};
+/*void(*bhEne01_DmgCheckType)(BH_PWORK*)[16];
 BH_PWORK* plp;
 _anon27* sys;
 void(*bhEne01Parent)(BH_PWORK*);
@@ -2566,18 +2570,14 @@ void bhEne01_Die(BH_PWORK* epw) {
 	}
 }
 
-
-//
-// Start address: 0x176e70
+// 100% matching!
 void bhEne01_PlayerControl(BH_PWORK* pl, BH_PWORK* epw)
 {
-	scePrintf("bhEne01_PlayerControl - UNIMPLEMENTED!\n");
-	// Line 1319, Address: 0x176e70, Func Offset: 0
-	// Line 1320, Address: 0x176e78, Func Offset: 0x8
-	// Line 1323, Address: 0x176e90, Func Offset: 0x20
-	// Line 1324, Address: 0x176eac, Func Offset: 0x3c
-	// Line 1325, Address: 0x176ecc, Func Offset: 0x5c
-	// Func End, Address: 0x176ed8, Func Offset: 0x68
+	if (EXP0_I(0x40) & 0x00020000){
+		if (pl->mode0 == 4 || pl->mode0 == 6){
+			bhEne01_PlyDmgMode[pl->mode2](pl, epw);
+		}
+	}
 }
 
 // 
