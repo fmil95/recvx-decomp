@@ -3,10 +3,11 @@
 
 extern void VU0_CLIP_VIEW_VOLUME() __attribute__((section(".vutext")));
 extern void VU0_CLIP_VIEW_VOLUME_ALL() __attribute__((section(".vutext")));
-extern void VU0_SET_NODE_ARRAY() __attribute__((section(".vutext")));
 extern void VU0_LOAD_SCISSOR_WORK() __attribute__((section(".vutext")));
 extern void VU0_LOAD_SCISSOR_WORKi() __attribute__((section(".vutext")));
 extern void VU0_LOAD_SCISSOR_WORKb() __attribute__((section(".vutext")));
+extern void VU0_SET_NODE_ARRAY() __attribute__((section(".vutext")));
+extern void VU0_STORE_SCISSOR_WORK() __attribute__((section(".vutext")));
 
 // 98.80% matching
 void DrawScissorPolygonOpaque2(int count, unsigned long ulType)
@@ -195,7 +196,7 @@ int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1
         
         viadd      vi5, vi0, vi4
     
-        vcallms    VU0_LOAD_SCISSOR_WORK
+        vcallms    VU0_LOAD_SCISSOR_WORKi
     
         mfc1       t2, f12
     
@@ -213,7 +214,7 @@ int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1
         vmove.xyzw vf6, vf10
         vmove.xyzw vf7, vf11
         
-        vcallms    VU0_LOAD_SCISSOR_WORK
+        vcallms    VU0_LOAD_SCISSOR_WORKi
     
         vclipw.xyz vf4, vf4w                   
         vclipw.xyz vf8, vf8w                 
@@ -293,7 +294,7 @@ int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1
         
         vadd.xyzw  vf7, vf7, vf14
         
-        vcallms    VU0_LOAD_SCISSOR_WORKb
+        vcallms    VU0_STORE_SCISSOR_WORK
     
         addi       t5, t5, 1 
         nop
@@ -308,7 +309,7 @@ int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1
         beqz       %0, l_002D3E6C
         nop
     
-        vcallms    VU0_LOAD_SCISSOR_WORKb
+        vcallms    VU0_STORE_SCISSOR_WORK
     
         vmulx.w    vf13, vf4, vf12x
         vmulx.w    vf14, vf8, vf12x
@@ -364,7 +365,7 @@ int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1
         
         vadd.xyzw  vf7, vf7, vf14
         
-        vcallms    VU0_LOAD_SCISSOR_WORKb
+        vcallms    VU0_STORE_SCISSOR_WORK
     
         addi       t5, t5, 2 
         nop
@@ -373,7 +374,7 @@ int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1
         nop
     
         l_002D3E6C:
-        vcallms    VU0_LOAD_SCISSOR_WORKb
+        vcallms    VU0_STORE_SCISSOR_WORK
     
         addi       t5, t5, 1 
     
@@ -384,8 +385,8 @@ int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1
         bnez       t3, l_002D3CE4
         nop
     
-        vcallms    VU0_LOAD_SCISSOR_WORKi
         vcallms    VU0_LOAD_SCISSOR_WORKb
+        vcallms    VU0_STORE_SCISSOR_WORK
     
         addu       %0, t5, zero
         addi       %0, %0, 0 

@@ -181,7 +181,7 @@ CNK_LIGHTING NaCnkLighting[4] __attribute__((aligned(64))) = { { &NaCnkLightEs, 
 														       { &NaCnkLightSs, 1, &NaCnkDiffuseMaterial, &NaCnkSpeculaMaterial, &NaCnkAmbientSs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 														       { NaCnkLightSm, 6, &NaCnkDiffuseMaterial, &NaCnkDefaultOne, &NaCnkAmbientSm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 /*unsigned int njCnkConvTest; - unused*/
-extern void VU0_MINMAX() __attribute__((section(".vutext")));
+extern void VU0_CALCPOINT() __attribute__((section(".vutext")));
 extern void VU0_CALCPOINT_END() __attribute__((section(".vutext")));
 extern void VU0_CALCPOINT_INIT() __attribute__((section(".vutext")));
 
@@ -1385,12 +1385,12 @@ CHUNK_HEAD* njCnkCvVnPs2(CHUNK_HEAD* pCnk)
     asm volatile 
     ("
     .set noreorder
-        vcallms  VU0_MINMAX 
+        vcallms  VU0_CALCPOINT_INIT 
     
         lqc2     vf4,    0(%2)
         lqc2     vf5, 0x10(%2)
         
-        vcallms  VU0_CALCPOINT_END 
+        vcallms  VU0_CALCPOINT 
     
         qmfc2.i  t0, vf7 
         qmfc2.i  t1, vf18 
@@ -1421,7 +1421,7 @@ CHUNK_HEAD* njCnkCvVnPs2(CHUNK_HEAD* pCnk)
             lqc2    vf4,    0(%0)
             lqc2    vf5, 0x10(%0)
             
-            vcallms VU0_CALCPOINT_END
+            vcallms VU0_CALCPOINT
             nop
         .set reorder
         " : : "r"(fpCnk) : "$s2", "memory" 
@@ -1463,7 +1463,7 @@ CHUNK_HEAD* njCnkCvVnPs2(CHUNK_HEAD* pCnk)
     asm volatile 
     ("
     .set noreorder 
-        vcallms VU0_CALCPOINT_INIT 
+        vcallms VU0_CALCPOINT_END 
     .set reorder 
     ");
     
