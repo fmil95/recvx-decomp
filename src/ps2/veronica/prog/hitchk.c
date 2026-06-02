@@ -3,6 +3,7 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaView.h"
 
 /*_anon4* sys;
@@ -784,7 +785,7 @@ int bhCheckWallEx(BH_PWORK* pw, NJS_POINT3* npos, NJS_POINT3* opos, float par, f
 	scePrintf("bhCheckWallEx - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x25fbf0
 void bhCheckWall2Box(BH_PWORK* pw)
 {
@@ -805,10 +806,10 @@ void bhCheckWall2Box(BH_PWORK* pw)
 	int hit;
 	int j;
 	int i;
-	_anon0 ht;
-	_anon0* hp;
-	_anon39 l;
-	_anon20 pd;
+	//_anon0 ht;
+	//_anon0* hp;
+	//_anon39 l;
+	//_anon20 pd;
 	// Line 1154, Address: 0x25fbf0, Func Offset: 0
 	// Line 1168, Address: 0x25fc38, Func Offset: 0x48
 	// Line 1167, Address: 0x25fc40, Func Offset: 0x50
@@ -1222,7 +1223,8 @@ void bhCheckWall2Box(BH_PWORK* pw)
 	// Line 1646, Address: 0x2612e8, Func Offset: 0x16f8
 	// Line 1654, Address: 0x2612ec, Func Offset: 0x16fc
 	// Func End, Address: 0x261334, Func Offset: 0x1744
-}*/
+	scePrintf("bhCheckWall2Box - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x261340
@@ -1284,9 +1286,9 @@ ATR_WORK* bhCheckWallType(NJS_POINT3* pos, unsigned int flg, float ar, float ah)
 	scePrintf("bhCheckWallType - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x261830
-_anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, float ah, int idx_ct)
+ATR_WORK* bhCheckWallType2(NJS_POINT3* pos, unsigned int flg, float aw, float ad, float ah, int idx_ct)
 {
 	float h;
 	float zn;
@@ -1295,9 +1297,9 @@ _anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, flo
 	float px;
 	int wal_n;
 	int i;
-	_anon0* hp;
-	_anon44 box;
-	_anon7 sph;
+	//_anon0* hp;
+	//_anon44 box;
+	//_anon7 sph;
 	// Line 1755, Address: 0x261830, Func Offset: 0
 	// Line 1763, Address: 0x261870, Func Offset: 0x40
 	// Line 1764, Address: 0x2618a4, Func Offset: 0x74
@@ -1369,7 +1371,8 @@ _anon0* bhCheckWallType2(_anon20* pos, unsigned int flg, float aw, float ad, flo
 	// Line 1848, Address: 0x261e60, Func Offset: 0x630
 	// Line 1849, Address: 0x261e64, Func Offset: 0x634
 	// Func End, Address: 0x261ea8, Func Offset: 0x678
-}*/
+	scePrintf("bhCheckWallType2 - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x261eb0
@@ -3032,69 +3035,105 @@ int bhCheckBox(ATR_WORK* hp, NJS_POINT3* pos, float ar, float ah, unsigned int a
 	scePrintf("bhCheckBox - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x265ba0
-int bhCheckBox2Box(_anon0* hp, _anon20* pos, float aw, float ad, float ah)
+// 100% matching!
+int bhCheckBox2Box(ATR_WORK* hp, NJS_POINT3* pos, float aw, float ad, float ah)
 {
-	float abz;
-	float abx;
-	float h;
-	float wpz;
-	float wpx;
-	float zn;
-	float xn;
-	float pz;
-	float px;
-	// Line 3438, Address: 0x265ba0, Func Offset: 0
-	// Line 3443, Address: 0x265ba4, Func Offset: 0x4
-	// Line 3438, Address: 0x265ba8, Func Offset: 0x8
-	// Line 3443, Address: 0x265bc0, Func Offset: 0x20
-	// Line 3444, Address: 0x265bec, Func Offset: 0x4c
-	// Line 3445, Address: 0x265bfc, Func Offset: 0x5c
-	// Line 3448, Address: 0x265c00, Func Offset: 0x60
-	// Line 3444, Address: 0x265c04, Func Offset: 0x64
-	// Line 3445, Address: 0x265c08, Func Offset: 0x68
-	// Line 3450, Address: 0x265c0c, Func Offset: 0x6c
-	// Line 3446, Address: 0x265c10, Func Offset: 0x70
-	// Line 3444, Address: 0x265c14, Func Offset: 0x74
-	// Line 3445, Address: 0x265c18, Func Offset: 0x78
-	// Line 3448, Address: 0x265c20, Func Offset: 0x80
-	// Line 3449, Address: 0x265c28, Func Offset: 0x88
-	// Line 3448, Address: 0x265c30, Func Offset: 0x90
-	// Line 3450, Address: 0x265c38, Func Offset: 0x98
-	// Line 3453, Address: 0x265cbc, Func Offset: 0x11c
-	// Line 3454, Address: 0x265ccc, Func Offset: 0x12c
-	// Line 3456, Address: 0x265cdc, Func Offset: 0x13c
-	// Line 3457, Address: 0x265ce8, Func Offset: 0x148
-	// Line 3458, Address: 0x265cf4, Func Offset: 0x154
-	// Line 3459, Address: 0x265d0c, Func Offset: 0x16c
-	// Line 3460, Address: 0x265d10, Func Offset: 0x170
-	// Line 3463, Address: 0x265d18, Func Offset: 0x178
-	// Line 3464, Address: 0x265d20, Func Offset: 0x180
-	// Line 3463, Address: 0x265d24, Func Offset: 0x184
-	// Line 3464, Address: 0x265d28, Func Offset: 0x188
-	// Line 3465, Address: 0x265d34, Func Offset: 0x194
-	// Line 3466, Address: 0x265d4c, Func Offset: 0x1ac
-	// Line 3467, Address: 0x265d50, Func Offset: 0x1b0
-	// Line 3470, Address: 0x265d58, Func Offset: 0x1b8
-	// Line 3472, Address: 0x265d68, Func Offset: 0x1c8
-	// Line 3473, Address: 0x265d78, Func Offset: 0x1d8
-	// Line 3474, Address: 0x265d84, Func Offset: 0x1e4
-	// Line 3475, Address: 0x265d9c, Func Offset: 0x1fc
-	// Line 3476, Address: 0x265da0, Func Offset: 0x200
-	// Line 3479, Address: 0x265da8, Func Offset: 0x208
-	// Line 3480, Address: 0x265db4, Func Offset: 0x214
-	// Line 3479, Address: 0x265db8, Func Offset: 0x218
-	// Line 3480, Address: 0x265dbc, Func Offset: 0x21c
-	// Line 3481, Address: 0x265dc8, Func Offset: 0x228
-	// Line 3482, Address: 0x265de0, Func Offset: 0x240
-	// Line 3483, Address: 0x265de4, Func Offset: 0x244
-	// Line 3487, Address: 0x265dec, Func Offset: 0x24c
-	// Line 3488, Address: 0x265df0, Func Offset: 0x250
-	// Func End, Address: 0x265e10, Func Offset: 0x270
+    float px, pz;  
+    float xn, zn;  
+    float wpx, wpz; 
+    float h;   
+    float abx, abz; 
+
+    if (hp->h)
+    {
+        h = hp->h;
+    } 
+    else 
+    {
+        h = rom->h;
+    }
+    
+    wpx = hp->px + (0.5f * hp->w);
+    wpz = hp->pz + (0.5f * hp->d);
+    
+    px = hp->px - aw;
+    pz = hp->pz - ad;
+    
+    xn = hp->w + (2.0f * aw);
+    zn = hp->d + (2.0f * ad);
+    
+    if ((((pos->x - px) >= 0) && ((pos->x - px) < xn)) && (((pos->z - pz) >= 0) && ((pos->z - pz) < zn)) && (((pos->y + ah) >= hp->py) && (pos->y <= (hp->py + h))))
+    {
+        if (pos->x < wpx) 
+        {
+            if (pos->z < wpz)
+            {
+                abx = fabsf(pos->x - px);
+                abz = fabsf(pos->z - pz);
+                
+                if (abx > abz)
+                {
+                    pos->z = pz;
+                } 
+                else 
+                {
+                    pos->x = px;
+                }
+                
+                return 1;
+            }
+            
+            abx = fabsf(pos->x - px);
+            abz = fabsf(pos->z - (pz + zn));
+            
+            if (abx > abz)
+            {
+                pos->z = pz + zn;
+            }
+            else
+            {
+                pos->x = px;
+            }
+            
+            return 1;
+        }
+        
+        if (pos->z < wpz) 
+        {
+            abx = fabsf(pos->x - (px + xn));
+            abz = fabsf(pos->z - pz);
+            
+            if (abx > abz)
+            {
+                pos->z = pz;
+            } 
+            else
+            {
+                pos->x = px + xn;
+            }
+            
+            return 1;
+        }
+        
+        abx = fabsf(pos->x - (px + xn));
+        abz = fabsf(pos->z - (pz + zn));
+        
+        if (abx > abz) 
+        {
+            pos->z = pz + zn;
+        } 
+        else 
+        {
+            pos->x = px + xn;
+        }
+        
+        return 1;
+    } 
+    
+    return 0;
 }
 
-// 
+/*// 
 // Start address: 0x265e10
 int bhCheckInnerP4(_anon33* pos, _anon33* p0, _anon33* p1, _anon33* p2, _anon33* p3)
 {
@@ -3490,53 +3529,89 @@ void bhCheckExmAtari(BH_PWORK* pp)
 	scePrintf("bhCheckExmAtari - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x267140
+// 100% matching!
 void bhSetUseKaidanFlag(BH_PWORK* pp, ATR_WORK* exp, int idx)
 {
-	ATR_WORK* exp2;
-	// Line 3978, Address: 0x267140, Func Offset: 0
-	// Line 3979, Address: 0x267144, Func Offset: 0x4
-	// Line 3980, Address: 0x267148, Func Offset: 0x8
-	// Line 3982, Address: 0x267150, Func Offset: 0x10
-	// Line 3980, Address: 0x267154, Func Offset: 0x14
-	// Line 3982, Address: 0x26715c, Func Offset: 0x1c
-	// Line 3984, Address: 0x267168, Func Offset: 0x28
-	// Line 3985, Address: 0x267198, Func Offset: 0x58
-	// Line 3986, Address: 0x2671c0, Func Offset: 0x80
-	// Line 3987, Address: 0x2671d4, Func Offset: 0x94
-	// Line 3988, Address: 0x2671d8, Func Offset: 0x98
-	// Line 3989, Address: 0x2671e4, Func Offset: 0xa4
-	// Line 3992, Address: 0x2671ec, Func Offset: 0xac
-	// Line 3994, Address: 0x267218, Func Offset: 0xd8
-	// Func End, Address: 0x267220, Func Offset: 0xe0
-	scePrintf("bhSetUseKaidanFlag - UNIMPLEMENTED!\n");
+    ATR_WORK* exp2;
+    
+    pp->kdnp   = &exp->flg;
+    pp->kdnidx = idx;
+    
+    exp->attr |= 0x400000;
+    
+    if (exp->prm3 == 0xFF) 
+    {
+        if (idx < rom->etc_n)
+        {
+            exp2 = &rom->etcp[idx];
+        } 
+        else 
+        {
+            exp2 = &sys->metcp[idx - rom->etc_n];
+        }
+        
+        if (exp->prm0 == 0) 
+        {
+            exp2++;
+        } 
+        else 
+        {
+            exp2--;
+        }
+        
+        exp2->attr |= 0x400000;
+    }
+    else 
+    {
+        exp2 = &rom->etcp[exp->prm3];
+        
+        exp2->attr |= 0x400000;
+    }
 }
 
-// 
-// Start address: 0x267220
-void bhClrUseKaidanFlag(BH_PWORK* pp)
+// 100% matching!
+void bhClrUseKaidanFlag(BH_PWORK* pp) 
 {
-	int idx;
-	//_anon0* exp2;
-	//_anon0* exp;
-	// Line 4006, Address: 0x267220, Func Offset: 0
-	// Line 4007, Address: 0x267224, Func Offset: 0x4
-	// Line 4008, Address: 0x26722c, Func Offset: 0xc
-	// Line 4009, Address: 0x267230, Func Offset: 0x10
-	// Line 4011, Address: 0x267238, Func Offset: 0x18
-	// Line 4009, Address: 0x26723c, Func Offset: 0x1c
-	// Line 4011, Address: 0x267248, Func Offset: 0x28
-	// Line 4013, Address: 0x267254, Func Offset: 0x34
-	// Line 4014, Address: 0x267284, Func Offset: 0x64
-	// Line 4015, Address: 0x2672ac, Func Offset: 0x8c
-	// Line 4016, Address: 0x2672c0, Func Offset: 0xa0
-	// Line 4017, Address: 0x2672c4, Func Offset: 0xa4
-	// Line 4018, Address: 0x2672d4, Func Offset: 0xb4
-	// Line 4021, Address: 0x2672dc, Func Offset: 0xbc
-	// Line 4023, Address: 0x267308, Func Offset: 0xe8
-	// Func End, Address: 0x267310, Func Offset: 0xf0
-	scePrintf("bhClrUseKaidanFlag - UNIMPLEMENTED!\n");
+    ATR_WORK* exp, *exp2;
+    int idx;
+	
+    exp = (ATR_WORK*)pp->kdnp;
+    
+    if (exp != NULL) 
+    {
+        idx = pp->kdnidx;
+        
+        exp->attr &= ~0x400000;
+        
+        if (exp->prm3 == 0xFF) 
+        {
+            if (idx < rom->etc_n) 
+            {
+                exp2 = &rom->etcp[idx];
+            } 
+            else 
+            {
+                exp2 = &sys->metcp[idx - rom->etc_n];
+            }
+            
+            if (exp->prm0 == 0)
+            {
+                exp2++;
+            } 
+            else 
+            {
+                exp2--;
+            }
+            
+            exp2->attr &= ~0x400000;
+        }
+        else
+        {
+            exp = &rom->etcp[exp->prm3];
+            
+            exp->attr &= ~0x400000;
+        }
+    }
 }
 
 /*// 
@@ -3720,140 +3795,193 @@ ATR_WORK* bhCheckDansaAtari(int flr_no, float px, float pz)
     return NULL;
 }
 
-// 
-// Start address: 0x267a50
-void bhCheckFloorP(BH_PWORK* pp)
+// 100% matching!
+void bhCheckFloorP(BH_PWORK* pp) 
 {
-	int ang;
-	int flr_n;
-	int i;
-	float* dp;
-	float spz;
-	float spx;
-	float pz;
-	float py;
-	float px;
-	//_anon0* fp;
-	// Line 4212, Address: 0x267a50, Func Offset: 0
-	// Line 4219, Address: 0x267a68, Func Offset: 0x18
-	// Line 4220, Address: 0x267a6c, Func Offset: 0x1c
-	// Line 4221, Address: 0x267a70, Func Offset: 0x20
-	// Line 4223, Address: 0x267a78, Func Offset: 0x28
-	// Line 4224, Address: 0x267a88, Func Offset: 0x38
-	// Line 4233, Address: 0x267a9c, Func Offset: 0x4c
-	// Line 4224, Address: 0x267aa4, Func Offset: 0x54
-	// Line 4235, Address: 0x267aa8, Func Offset: 0x58
-	// Line 4226, Address: 0x267aac, Func Offset: 0x5c
-	// Line 4234, Address: 0x267ab0, Func Offset: 0x60
-	// Line 4235, Address: 0x267ab4, Func Offset: 0x64
-	// Line 4224, Address: 0x267ab8, Func Offset: 0x68
-	// Line 4235, Address: 0x267ac0, Func Offset: 0x70
-	// Line 4224, Address: 0x267ac4, Func Offset: 0x74
-	// Line 4226, Address: 0x267ad8, Func Offset: 0x88
-	// Line 4233, Address: 0x267af8, Func Offset: 0xa8
-	// Line 4234, Address: 0x267b04, Func Offset: 0xb4
-	// Line 4235, Address: 0x267b10, Func Offset: 0xc0
-	// Line 4236, Address: 0x267b18, Func Offset: 0xc8
-	// Line 4235, Address: 0x267b1c, Func Offset: 0xcc
-	// Line 4236, Address: 0x267b24, Func Offset: 0xd4
-	// Line 4237, Address: 0x267b44, Func Offset: 0xf4
-	// Line 4239, Address: 0x267b54, Func Offset: 0x104
-	// Line 4240, Address: 0x267b9c, Func Offset: 0x14c
-	// Line 4241, Address: 0x267bac, Func Offset: 0x15c
-	// Line 4243, Address: 0x267bc8, Func Offset: 0x178
-	// Line 4246, Address: 0x267c38, Func Offset: 0x1e8
-	// Line 4249, Address: 0x267c54, Func Offset: 0x204
-	// Line 4250, Address: 0x267c58, Func Offset: 0x208
-	// Line 4249, Address: 0x267c5c, Func Offset: 0x20c
-	// Line 4250, Address: 0x267c64, Func Offset: 0x214
-	// Line 4256, Address: 0x267cc0, Func Offset: 0x270
-	// Line 4257, Address: 0x267ccc, Func Offset: 0x27c
-	// Line 4256, Address: 0x267cd0, Func Offset: 0x280
-	// Line 4257, Address: 0x267cd8, Func Offset: 0x288
-	// Line 4259, Address: 0x267ce4, Func Offset: 0x294
-	// Line 4260, Address: 0x267cec, Func Offset: 0x29c
-	// Line 4263, Address: 0x267d70, Func Offset: 0x320
-	// Line 4265, Address: 0x267d94, Func Offset: 0x344
-	// Line 4268, Address: 0x267db0, Func Offset: 0x360
-	// Line 4269, Address: 0x267db4, Func Offset: 0x364
-	// Line 4268, Address: 0x267db8, Func Offset: 0x368
-	// Line 4269, Address: 0x267dc0, Func Offset: 0x370
-	// Line 4274, Address: 0x267e2c, Func Offset: 0x3dc
-	// Line 4275, Address: 0x267e30, Func Offset: 0x3e0
-	// Line 4276, Address: 0x267e3c, Func Offset: 0x3ec
-	// Line 4275, Address: 0x267e40, Func Offset: 0x3f0
-	// Line 4276, Address: 0x267e48, Func Offset: 0x3f8
-	// Line 4277, Address: 0x267e54, Func Offset: 0x404
-	// Line 4279, Address: 0x267e5c, Func Offset: 0x40c
-	// Line 4280, Address: 0x267e7c, Func Offset: 0x42c
-	// Line 4281, Address: 0x267e80, Func Offset: 0x430
-	// Line 4282, Address: 0x267e84, Func Offset: 0x434
-	// Line 4284, Address: 0x267e8c, Func Offset: 0x43c
-	// Line 4286, Address: 0x267eb4, Func Offset: 0x464
-	// Line 4287, Address: 0x267ec0, Func Offset: 0x470
-	// Line 4289, Address: 0x267ec8, Func Offset: 0x478
-	// Line 4290, Address: 0x267ecc, Func Offset: 0x47c
-	// Line 4289, Address: 0x267ed0, Func Offset: 0x480
-	// Line 4291, Address: 0x267ed8, Func Offset: 0x488
-	// Line 4293, Address: 0x267ee0, Func Offset: 0x490
-	// Line 4294, Address: 0x267ee4, Func Offset: 0x494
-	// Line 4293, Address: 0x267ee8, Func Offset: 0x498
-	// Line 4294, Address: 0x267ef4, Func Offset: 0x4a4
-	// Line 4295, Address: 0x267f04, Func Offset: 0x4b4
-	// Line 4304, Address: 0x267f18, Func Offset: 0x4c8
-	// Line 4306, Address: 0x267f28, Func Offset: 0x4d8
-	// Line 4307, Address: 0x267f34, Func Offset: 0x4e4
-	// Line 4306, Address: 0x267f38, Func Offset: 0x4e8
-	// Line 4307, Address: 0x267f40, Func Offset: 0x4f0
-	// Line 4308, Address: 0x267f54, Func Offset: 0x504
-	// Line 4309, Address: 0x267f60, Func Offset: 0x510
-	// Line 4311, Address: 0x267f68, Func Offset: 0x518
-	// Line 4312, Address: 0x267f84, Func Offset: 0x534
-	// Line 4313, Address: 0x267f90, Func Offset: 0x540
-	// Line 4315, Address: 0x267f98, Func Offset: 0x548
-	// Line 4316, Address: 0x267fb4, Func Offset: 0x564
-	// Line 4317, Address: 0x267fc0, Func Offset: 0x570
-	// Line 4319, Address: 0x267fc8, Func Offset: 0x578
-	// Line 4320, Address: 0x267fe4, Func Offset: 0x594
-	// Line 4321, Address: 0x267ff0, Func Offset: 0x5a0
-	// Line 4323, Address: 0x267ff8, Func Offset: 0x5a8
-	// Line 4324, Address: 0x268014, Func Offset: 0x5c4
-	// Line 4327, Address: 0x268024, Func Offset: 0x5d4
-	// Func End, Address: 0x268040, Func Offset: 0x5f0
-	scePrintf("bhCheckFloorP - UNIMPLEMENTED!\n");
+    ATR_WORK* fp; 
+    float px, py, pz;    
+    float spx, spz;    
+    float* dp;   
+    int i;        
+    int flr_n;   
+    int ang;     
+  
+    px = pp->px;
+    py = pp->py;
+    pz = pp->pz;
+    
+    njSinCos(pp->ay, &spx, &spz);
+    
+    dp = (float*)plp->exp0;
+    spx = dp[9] - (spx * (3.0f + (3.0f - dp[7])));
+    
+    dp = (float*)plp->exp0;
+    spz = dp[11] - (spz * (3.0f + (3.0f - dp[7])));
+    
+    pp->stflg &= ~0x100000;
+    pp->flg2  &= ~0x8;
+    
+    sys->cb_flg &= ~0x8000200;
+    
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++)
+    {
+        if (i < rom->flr_n) 
+        {
+            fp = &rom->flrp[i];
+        } 
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if ((fp->flg & 0x1)) 
+        {
+            if ((fp->type == 0) && ((fp->attr & 0x1))) 
+            {
+                if ((((fp->px <= spx) && ((fp->px + fp->w) >= spx)) && ((fp->pz <= spz) && ((fp->pz + fp->d) >= spz)) && (fp->flr_no == pp->flr_no)) && ((!(plp->flg & 0x4)) && (!(plp->flg & 0x2)))) 
+                {
+                    ang = (pp->ay + 8192) & 0xC000; 
+                    
+                    if ((((ang == 32768) == 0) || (!(fp->attr & 0x400))) && ((ang != 16384) || (!(fp->attr & 0x800))) && ((ang != 0) || (!(fp->attr & 0x1000))) && ((ang != 49152) || (!(fp->attr & 0x2000)))) 
+                    {
+                        sys->cb_flg |= 0x200;
+                        
+                        sys->flr_idx = i; 
+                    }
+                }
+            } 
+            else 
+            {
+                if (((fp->px <= px) && ((fp->px + fp->w) >= px)) && ((fp->py <= py) && ((fp->py + fp->h) >= py)) && ((fp->pz <= pz) && ((fp->pz + fp->d) >= pz))) 
+                {
+                    switch ((unsigned short)fp->type) 
+                    { 
+                    case 0:         
+                        if ((!(plp->flg & 0x4)) && (!(plp->flg & 0x2)))
+                        {
+                            ang = (pp->ay + 8192) & 0xC000; 
+                            
+                            if (((ang != 32768) || (!(fp->attr & 0x400))) && ((ang != 16384) || (!(fp->attr & 0x800))) && ((ang != 0) || (!(fp->attr & 0x1000))) && ((ang != 49152) || (!(fp->attr & 0x2000))))
+                            {
+                                sys->cb_flg |= 0x200;
+                                
+                                sys->flr_idx = i; 
+                            }
+                        } 
+                        
+                        break;
+                    case 1:             
+                        if ((!(fp->attr & 0x1)) || ((pp->stflg & 0x10)))
+                        {
+                            pp->flr_snd = fp->prm0;
+                        } 
+                        
+                        break;
+                    case 3:        
+                        switch (fp->prm0) 
+                        { 
+                        case 1:         
+                            pp->stflg |= 0x100000;
+                            break;
+                        case 3:         
+                            pp->flg2 |= 0x8;
+                            
+                            pp->footeff = 2;
+                            break;
+                        case 4:         
+                            sys->flr_idx = i;
+                            
+                            if ((pp->flg & 0x10000000)) 
+                            {
+                                sys->cb_flg |= 0x8000000;
+                            }
+                            
+                            break;
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    pp->stflg &= ~0x20000;
+    
+    if (bhCheckDansaAtari(pp->flr_no, px, pz) != NULL) 
+    {
+        pp->stflg |= 0x20000;
+        return;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px, pz - pp->ar) != NULL) 
+    {
+        pp->stflg |= 0x20000;
+        return;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px + pp->ar, pz) != NULL) 
+    {
+        pp->stflg |= 0x20000;
+        return;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px, pz + pp->ar) != NULL) 
+    {
+        pp->stflg |= 0x20000;
+        return;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px - pp->ar, pz) != NULL) 
+    {
+        pp->stflg |= 0x20000;
+        return;
+    }
 }
 
-// 
-// Start address: 0x268040
-void bhCheckDansa(BH_PWORK* pp)
+// 100% matching!
+void bhCheckDansa(BH_PWORK* pp) 
 {
-	int etc_n;
-	int i;
-	float* dp;
-	float pz;
-	float px;
-	//_anon0* exp;
-	// Line 4345, Address: 0x268040, Func Offset: 0
-	// Line 4342, Address: 0x268044, Func Offset: 0x4
-	// Line 4344, Address: 0x268048, Func Offset: 0x8
-	// Line 4345, Address: 0x26804c, Func Offset: 0xc
-	// Line 4346, Address: 0x268054, Func Offset: 0x14
-	// Line 4345, Address: 0x268058, Func Offset: 0x18
-	// Line 4346, Address: 0x268060, Func Offset: 0x20
-	// Line 4347, Address: 0x268080, Func Offset: 0x40
-	// Line 4354, Address: 0x268090, Func Offset: 0x50
-	// Line 4358, Address: 0x268094, Func Offset: 0x54
-	// Line 4349, Address: 0x268098, Func Offset: 0x58
-	// Line 4350, Address: 0x2680e4, Func Offset: 0xa4
-	// Line 4351, Address: 0x2680f4, Func Offset: 0xb4
-	// Line 4354, Address: 0x26815c, Func Offset: 0x11c
-	// Line 4356, Address: 0x268170, Func Offset: 0x130
-	// Line 4358, Address: 0x26818c, Func Offset: 0x14c
-	// Line 4363, Address: 0x268194, Func Offset: 0x154
-	// Line 4364, Address: 0x268198, Func Offset: 0x158
-	// Line 4365, Address: 0x2681a8, Func Offset: 0x168
-	// Func End, Address: 0x2681b0, Func Offset: 0x170
-	scePrintf("bhCheckDansa - UNIMPLEMENTED!\n");
+    ATR_WORK* exp; 
+    float px, pz;     
+    float* dp;  
+    int i;       
+    int etc_n;     
+ 
+    px = pp->px;
+    pz = pp->pz;
+    
+    pp->stflg &= ~0x20000;
+    
+    etc_n = rom->etc_n + sys->metc_n;
+    
+    for (i = 0; i < etc_n; i++) 
+    {
+        if (i < rom->etc_n) 
+        {
+            exp = rom->etcp + i;
+        }
+        else
+        {
+            exp = &sys->metcp[i - rom->etc_n];
+        }
+        
+        if (((exp->flg & 0x1)) && (((exp->px <= px) && ((exp->px + exp->w) >= px)) && ((exp->pz <= pz) && ((exp->pz + exp->d) >= pz))) && (exp->flr_no == pp->flr_no))
+        {
+            switch (exp->type) 
+            {
+            case 2:
+                if ((!(pp->stflg & 0x30)) && (exp->prm0 != 0)) 
+                { 
+                    pp->stflg |= 0x20000;  
+                }
+                
+                break;
+            }
+        }
+    } 
 }
 
 // 100% matching! 
@@ -3896,133 +4024,159 @@ int bhCheckFloorSound(BH_PWORK* pp, int flr_no, float px, float pz)
     return sno;
 }
 
-/*// 
-// Start address: 0x268300
-_anon0* bhCheckFloorEnemy(int flr_no, float px, float pz)
+// 100% matching!
+ATR_WORK* bhCheckFloorEnemy(int flr_no, float px, float pz)
 {
-	int flr_n;
-	int i;
-	_anon0* fp;
-	// Line 4419, Address: 0x268300, Func Offset: 0
-	// Line 4420, Address: 0x268324, Func Offset: 0x24
-	// Line 4423, Address: 0x268334, Func Offset: 0x34
-	// Line 4422, Address: 0x268338, Func Offset: 0x38
-	// Line 4423, Address: 0x268374, Func Offset: 0x74
-	// Line 4424, Address: 0x268390, Func Offset: 0x90
-	// Line 4427, Address: 0x2683f4, Func Offset: 0xf4
-	// Line 4430, Address: 0x2683fc, Func Offset: 0xfc
-	// Line 4431, Address: 0x268410, Func Offset: 0x110
-	// Line 4432, Address: 0x268414, Func Offset: 0x114
-	// Func End, Address: 0x26841c, Func Offset: 0x11c
-}*/
+    ATR_WORK* fp;
+    int i;
+    int flr_n;
+	
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++) 
+    {
+        if (i < rom->flr_n)
+        {
+            fp = rom->flrp + i;
+        } 
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if ((((fp->flg & 0x1)) && (fp->type == 2)) && (((fp->px <= px) && ((fp->px + fp->w) >= px)) && ((fp->pz <= pz) && ((fp->pz + fp->d) >= pz))) && (fp->flr_no == flr_no)) 
+        {
+            return fp;
+        }
+    }
+    
+    return NULL;
+}
 
-// 
-// Start address: 0x268420
+// 100% matching!
 ATR_WORK* bhCheckFloorEffect(int flr_no, float px, float pz)
 {
-	int flr_n;
-	int i;
-	//_anon0* fp;
-	// Line 4448, Address: 0x268420, Func Offset: 0
-	// Line 4449, Address: 0x268444, Func Offset: 0x24
-	// Line 4452, Address: 0x268454, Func Offset: 0x34
-	// Line 4451, Address: 0x268458, Func Offset: 0x38
-	// Line 4452, Address: 0x268494, Func Offset: 0x74
-	// Line 4453, Address: 0x2684b0, Func Offset: 0x90
-	// Line 4456, Address: 0x268514, Func Offset: 0xf4
-	// Line 4459, Address: 0x26851c, Func Offset: 0xfc
-	// Line 4460, Address: 0x268530, Func Offset: 0x110
-	// Line 4461, Address: 0x268534, Func Offset: 0x114
-	// Func End, Address: 0x26853c, Func Offset: 0x11c
-	scePrintf("bhCheckFloorEffect - UNIMPLEMENTED!\n");
+    ATR_WORK* fp;
+    int i;
+    int flr_n;
+	
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++) 
+    {
+        if (i < rom->flr_n)
+        {
+            fp = rom->flrp + i;
+        } 
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if ((((fp->flg & 0x1)) && (fp->type == 3)) && (((fp->px <= px) && ((fp->px + fp->w) >= px)) && ((fp->pz <= pz) && ((fp->pz + fp->d) >= pz))) && (fp->flr_no == flr_no)) 
+        {
+            return fp;
+        }
+    }
+    
+    return NULL;
 }
 
-// 
-// Start address: 0x268540
-ATR_WORK* bhCheckWater(NJS_POINT3* pos)
+// 100% matching!
+ATR_WORK* bhCheckWater(NJS_POINT3* pos) 
 {
-	int flr_n;
-	int i;
-	//_anon0* fp;
-	// Line 4475, Address: 0x268540, Func Offset: 0
-	// Line 4476, Address: 0x268564, Func Offset: 0x24
-	// Line 4479, Address: 0x268574, Func Offset: 0x34
-	// Line 4478, Address: 0x26857c, Func Offset: 0x3c
-	// Line 4479, Address: 0x2685b8, Func Offset: 0x78
-	// Line 4480, Address: 0x2685e0, Func Offset: 0xa0
-	// Line 4483, Address: 0x268670, Func Offset: 0x130
-	// Line 4486, Address: 0x268678, Func Offset: 0x138
-	// Line 4487, Address: 0x268688, Func Offset: 0x148
-	// Line 4488, Address: 0x26868c, Func Offset: 0x14c
-	// Func End, Address: 0x268694, Func Offset: 0x154
-	scePrintf("bhCheckWater - UNIMPLEMENTED!\n");
+    ATR_WORK* fp; 
+    int i;        
+    int flr_n;   
+
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++) 
+    {
+        if (i < rom->flr_n)
+        {
+            fp = rom->flrp + i;
+        }
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if ((((fp->flg & 0x1)) && (fp->type == 3)) && (fp->prm0 == 1) && (((fp->px <= pos->x) && ((fp->px + fp->w) >= pos->x)) && ((fp->pz <= pos->z) && ((fp->pz + fp->d) >= pos->z)) && ((fp->py <= pos->y) && ((fp->py + fp->h) >= pos->y)))) 
+        {
+            return fp;
+        }
+    }
+    
+    return NULL;
 }
 
-// 
-// Start address: 0x2686a0
+// 100% matching!
 ATR_WORK* bhCheckL2Water(NJS_LINE* lp, NJS_POINT3* pos)
 {
-	int flr_n;
-	int i;
-	float sca;
-	float pz;
-	float px;
-	//_anon20 ll;
-	//_anon20 pt;
-	//_anon20 ps;
-	//_anon39 pl;
-	//_anon0* fp;
-	// Line 4499, Address: 0x2686a0, Func Offset: 0
-	// Line 4505, Address: 0x2686cc, Func Offset: 0x2c
-	// Line 4507, Address: 0x2686dc, Func Offset: 0x3c
-	// Line 4505, Address: 0x2686e4, Func Offset: 0x44
-	// Line 4507, Address: 0x2686e8, Func Offset: 0x48
-	// Line 4508, Address: 0x268704, Func Offset: 0x64
-	// Line 4510, Address: 0x268714, Func Offset: 0x74
-	// Line 4511, Address: 0x268760, Func Offset: 0xc0
-	// Line 4513, Address: 0x268790, Func Offset: 0xf0
-	// Line 4517, Address: 0x268794, Func Offset: 0xf4
-	// Line 4519, Address: 0x268798, Func Offset: 0xf8
-	// Line 4513, Address: 0x2687a0, Func Offset: 0x100
-	// Line 4514, Address: 0x2687a4, Func Offset: 0x104
-	// Line 4519, Address: 0x2687ac, Func Offset: 0x10c
-	// Line 4514, Address: 0x2687b0, Func Offset: 0x110
-	// Line 4515, Address: 0x2687b8, Func Offset: 0x118
-	// Line 4516, Address: 0x2687c0, Func Offset: 0x120
-	// Line 4517, Address: 0x2687c4, Func Offset: 0x124
-	// Line 4519, Address: 0x2687c8, Func Offset: 0x128
-	// Line 4520, Address: 0x2687e8, Func Offset: 0x148
-	// Line 4521, Address: 0x2687f0, Func Offset: 0x150
-	// Line 4522, Address: 0x2687f4, Func Offset: 0x154
-	// Line 4523, Address: 0x2687f8, Func Offset: 0x158
-	// Line 4520, Address: 0x2687fc, Func Offset: 0x15c
-	// Line 4523, Address: 0x268800, Func Offset: 0x160
-	// Line 4520, Address: 0x268804, Func Offset: 0x164
-	// Line 4521, Address: 0x268808, Func Offset: 0x168
-	// Line 4522, Address: 0x268818, Func Offset: 0x178
-	// Line 4523, Address: 0x268824, Func Offset: 0x184
-	// Line 4524, Address: 0x268844, Func Offset: 0x1a4
-	// Line 4526, Address: 0x26884c, Func Offset: 0x1ac
-	// Line 4525, Address: 0x268850, Func Offset: 0x1b0
-	// Line 4524, Address: 0x268858, Func Offset: 0x1b8
-	// Line 4526, Address: 0x26885c, Func Offset: 0x1bc
-	// Line 4525, Address: 0x268864, Func Offset: 0x1c4
-	// Line 4527, Address: 0x268868, Func Offset: 0x1c8
-	// Line 4529, Address: 0x268870, Func Offset: 0x1d0
-	// Line 4527, Address: 0x268874, Func Offset: 0x1d4
-	// Line 4528, Address: 0x26887c, Func Offset: 0x1dc
-	// Line 4529, Address: 0x268884, Func Offset: 0x1e4
-	// Line 4533, Address: 0x2688dc, Func Offset: 0x23c
-	// Line 4536, Address: 0x2688e0, Func Offset: 0x240
-	// Line 4533, Address: 0x2688e4, Func Offset: 0x244
-	// Line 4534, Address: 0x2688e8, Func Offset: 0x248
-	// Line 4535, Address: 0x2688f0, Func Offset: 0x250
-	// Line 4536, Address: 0x2688f4, Func Offset: 0x254
-	// Line 4541, Address: 0x2688fc, Func Offset: 0x25c
-	// Line 4542, Address: 0x268910, Func Offset: 0x270
-	// Line 4543, Address: 0x268914, Func Offset: 0x274
-	// Func End, Address: 0x268944, Func Offset: 0x2a4
-	scePrintf("bhCheckL2Water - UNIMPLEMENTED!\n");
+    ATR_WORK* fp;  
+    NJS_LINE pl;  
+    NJS_POINT3 ps, pt; 
+    NJS_POINT3 ll; 
+    float px, pz;     
+    float sca;   
+    int i;         
+    int flr_n;     
+
+    sca = njScalor((NJS_VECTOR*)&lp->vx);
+    
+    flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++) 
+    {
+        if (i < rom->flr_n) 
+        {
+            fp = &rom->flrp[i];
+        } 
+        else 
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if ((((fp->flg & 0x1)) && (fp->type == 3)) && (fp->prm0 == 1)) 
+        {
+            pl.px = fp->px;
+            pl.py = fp->py + fp->h;
+            pl.pz = fp->pz;
+            
+            pl.vx = 0;
+            pl.vy = 1.0f;
+            pl.vz = 0;
+            
+            if (!njDistanceL2PL(lp, &pl, &pt)) 
+            {
+                ps.x = pt.x - lp->px;
+                ps.y = pt.y - lp->py;
+                ps.z = pt.z - lp->pz;
+                
+                if ((njInnerProduct((NJS_VECTOR*)&lp->vx, &ps) > 0))
+                {
+                    px = pt.x - fp->px;
+                    pz = pt.z - fp->pz;
+                    
+                    ll.x = lp->px - pt.x;
+                    ll.y = lp->py - pt.y;
+                    ll.z = lp->pz - pt.z;
+                    
+                    if ((((px >= 0) && (px <= fp->w)) && ((pz >= 0) && (pz <= fp->d))) && (njScalor(&ll) <= sca)) 
+                    {
+                        pos->x = pt.x;
+                        pos->y = pt.y;
+                        pos->z = pt.z;
+                        
+                        return fp;
+                    }
+                }
+            }
+        }
+    }
+    
+    return NULL;
 }
 
 // 100% matching! 
@@ -4263,22 +4417,31 @@ void bhCheckEnemies(BH_PWORK* pp)
 	scePrintf("bhCheckEnemies - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2692e0
+// 100% matching!
 int bhCheckWallAttrB89(ATR_WORK* hp)
 {
-	unsigned char* cnop;
-	int i;
-	// Line 4902, Address: 0x2692e0, Func Offset: 0
-	// Line 4903, Address: 0x269308, Func Offset: 0x28
-	// Line 4905, Address: 0x269314, Func Offset: 0x34
-	// Line 4908, Address: 0x269328, Func Offset: 0x48
-	// Line 4907, Address: 0x269330, Func Offset: 0x50
-	// Line 4908, Address: 0x269334, Func Offset: 0x54
-	// Line 4909, Address: 0x269338, Func Offset: 0x58
-	// Line 4910, Address: 0x26934c, Func Offset: 0x6c
-	// Line 4912, Address: 0x26935c, Func Offset: 0x7c
-	// Line 4913, Address: 0x269360, Func Offset: 0x80
-	// Func End, Address: 0x269368, Func Offset: 0x88
-	scePrintf("bhCheckWallAttrB89 - UNIMPLEMENTED!\n");
+    int i;
+    unsigned char* cnop;
+    
+    if ((!(hp->attr & 0x100)) || ((sys->st_flg & 0x1))) 
+    {
+        return 1;
+    }
+    
+    if (!(hp->attr & 0x200))
+    {
+        return 0;
+    }
+    
+    cnop = &hp->prm1;
+    
+    for (i = 0; i < 3; i++, cnop++) 
+    {
+        if (*cnop == (unsigned char)cam.ncut) 
+        {
+            return 0;
+        }
+    }
+    
+    return 1;
 }

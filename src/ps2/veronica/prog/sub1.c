@@ -5719,99 +5719,171 @@ PARTS* BulletSet(S_WORK* st, PARTS* pb1, PARTS* pb2, unsigned int itemid, unsign
 	scePrintf("BulletSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2a31b0
+// 100% matching!
 unsigned char Use_00(S_WORK* st)
 {
-	unsigned char herbuse;
-	unsigned char poison2;
-	unsigned char itemid;
-	unsigned short psnchk;
-	unsigned short healchk;
-	// _anon29* pw;
-	// Line 4888, Address: 0x2a31b0, Func Offset: 0
-	// Line 4895, Address: 0x2a31c8, Func Offset: 0x18
-	// Line 4897, Address: 0x2a31d0, Func Offset: 0x20
-	// Line 4889, Address: 0x2a31d8, Func Offset: 0x28
-	// Line 4895, Address: 0x2a31e0, Func Offset: 0x30
-	// Line 4900, Address: 0x2a31f0, Func Offset: 0x40
-	// Line 4893, Address: 0x2a31f4, Func Offset: 0x44
-	// Line 4895, Address: 0x2a31f8, Func Offset: 0x48
-	// Line 4900, Address: 0x2a31fc, Func Offset: 0x4c
-	// Line 4895, Address: 0x2a3200, Func Offset: 0x50
-	// Line 4897, Address: 0x2a3204, Func Offset: 0x54
-	// Line 4898, Address: 0x2a3210, Func Offset: 0x60
-	// Line 4900, Address: 0x2a3214, Func Offset: 0x64
-	// Line 4902, Address: 0x2a3228, Func Offset: 0x78
-	// Line 4904, Address: 0x2a3264, Func Offset: 0xb4
-	// Line 4905, Address: 0x2a3278, Func Offset: 0xc8
-	// Line 4906, Address: 0x2a3288, Func Offset: 0xd8
-	// Line 4907, Address: 0x2a3290, Func Offset: 0xe0
-	// Line 4909, Address: 0x2a32a0, Func Offset: 0xf0
-	// Line 4911, Address: 0x2a32a8, Func Offset: 0xf8
-	// Line 4912, Address: 0x2a32bc, Func Offset: 0x10c
-	// Line 4913, Address: 0x2a32cc, Func Offset: 0x11c
-	// Line 4914, Address: 0x2a32d4, Func Offset: 0x124
-	// Line 4916, Address: 0x2a32e4, Func Offset: 0x134
-	// Line 4918, Address: 0x2a32ec, Func Offset: 0x13c
-	// Line 4919, Address: 0x2a3304, Func Offset: 0x154
-	// Line 4920, Address: 0x2a3310, Func Offset: 0x160
-	// Line 4921, Address: 0x2a3318, Func Offset: 0x168
-	// Line 4923, Address: 0x2a3324, Func Offset: 0x174
-	// Line 4925, Address: 0x2a332c, Func Offset: 0x17c
-	// Line 4926, Address: 0x2a3344, Func Offset: 0x194
-	// Line 4927, Address: 0x2a3350, Func Offset: 0x1a0
-	// Line 4928, Address: 0x2a3358, Func Offset: 0x1a8
-	// Line 4935, Address: 0x2a3368, Func Offset: 0x1b8
-	// Line 4936, Address: 0x2a3380, Func Offset: 0x1d0
-	// Line 4937, Address: 0x2a339c, Func Offset: 0x1ec
-	// Line 4939, Address: 0x2a33a0, Func Offset: 0x1f0
-	// Line 4940, Address: 0x2a33a8, Func Offset: 0x1f8
-	// Line 4941, Address: 0x2a33c4, Func Offset: 0x214
-	// Line 4945, Address: 0x2a33cc, Func Offset: 0x21c
-	// Line 4948, Address: 0x2a33e4, Func Offset: 0x234
-	// Line 4949, Address: 0x2a33f4, Func Offset: 0x244
-	// Line 4948, Address: 0x2a33f8, Func Offset: 0x248
-	// Line 4949, Address: 0x2a33fc, Func Offset: 0x24c
-	// Line 4948, Address: 0x2a3400, Func Offset: 0x250
-	// Line 4949, Address: 0x2a3408, Func Offset: 0x258
-	// Line 4950, Address: 0x2a3424, Func Offset: 0x274
-	// Line 4956, Address: 0x2a3428, Func Offset: 0x278
-	// Line 4957, Address: 0x2a3444, Func Offset: 0x294
-	// Line 4959, Address: 0x2a3454, Func Offset: 0x2a4
-	// Line 4960, Address: 0x2a3468, Func Offset: 0x2b8
-	// Line 4961, Address: 0x2a346c, Func Offset: 0x2bc
-	// Line 4962, Address: 0x2a3480, Func Offset: 0x2d0
-	// Line 4963, Address: 0x2a3484, Func Offset: 0x2d4
-	// Line 4964, Address: 0x2a348c, Func Offset: 0x2dc
-	// Line 4969, Address: 0x2a3494, Func Offset: 0x2e4
-	// Line 4970, Address: 0x2a34a4, Func Offset: 0x2f4
-	// Line 4973, Address: 0x2a34a8, Func Offset: 0x2f8
-	// Line 4974, Address: 0x2a34b0, Func Offset: 0x300
-	// Line 4975, Address: 0x2a34c8, Func Offset: 0x318
-	// Line 4976, Address: 0x2a34d4, Func Offset: 0x324
-	// Line 4980, Address: 0x2a34f0, Func Offset: 0x340
-	// Line 4981, Address: 0x2a34f8, Func Offset: 0x348
-	// Line 4982, Address: 0x2a3500, Func Offset: 0x350
-	// Line 4983, Address: 0x2a3504, Func Offset: 0x354
-	// Line 4984, Address: 0x2a3508, Func Offset: 0x358
-	// Line 4982, Address: 0x2a350c, Func Offset: 0x35c
-	// Line 4983, Address: 0x2a3514, Func Offset: 0x364
-	// Line 4985, Address: 0x2a3520, Func Offset: 0x370
-	// Line 4986, Address: 0x2a3530, Func Offset: 0x380
-	// Line 4988, Address: 0x2a354c, Func Offset: 0x39c
-	// Line 4989, Address: 0x2a3554, Func Offset: 0x3a4
-	// Line 4990, Address: 0x2a3558, Func Offset: 0x3a8
-	// Line 4989, Address: 0x2a355c, Func Offset: 0x3ac
-	// Line 4990, Address: 0x2a3564, Func Offset: 0x3b4
-	// Line 4992, Address: 0x2a3570, Func Offset: 0x3c0
-	// Line 4993, Address: 0x2a3578, Func Offset: 0x3c8
-	// Line 4994, Address: 0x2a3590, Func Offset: 0x3e0
-	// Line 4995, Address: 0x2a359c, Func Offset: 0x3ec
-	// Line 4998, Address: 0x2a35b8, Func Offset: 0x408
-	// Line 5000, Address: 0x2a35bc, Func Offset: 0x40c
-	// Func End, Address: 0x2a35d8, Func Offset: 0x428
-	scePrintf("Use_00 - UNIMPLEMENTED!\n");
+    PULSE_WORK* pw;      
+    unsigned short healchk;
+    unsigned short psnchk;  
+    unsigned char itemid;  
+    unsigned char poison2;  
+    unsigned char herbuse;  
+
+    pw = &pulsework;
+    
+    poison2 = 0;
+    
+    itemid = sys->sb_id - 20;
+    itemid = curedata[itemid];
+    
+    healchk = itemid & 0xF;
+    psnchk  = itemid & 0xF0; 
+
+    if (sys->sb_id == 20)
+    {
+        sys->spray_ct++; 
+    }
+    
+    switch (healchk) 
+    {                        
+    case 1:
+        if (sys->gm_mode == 2)
+        {
+            plp->hp += 100;
+        } 
+        else
+        {
+            plp->hp += 50;
+        }
+        
+        break;
+    case 2:
+        if (sys->gm_mode == 2)
+        {
+            plp->hp += 200;
+        }
+        else
+        {
+            plp->hp += 100;
+        }
+        
+        break;
+    case 3:
+        if (sys->gm_mode == 2)
+        {
+            plp->hp = 320;
+        } 
+        else
+        {
+            plp->hp = 160;
+        }
+        
+        break;
+    case 4:
+        if (sys->gm_mode == 2) 
+        {
+            plp->hp = 320;
+        } 
+        else
+        {
+            plp->hp = 160;
+        }
+        
+        break;
+    }
+    
+    if (sys->gm_mode == 2) 
+    {
+        if (plp->hp > 320) 
+        {
+            plp->hp = 320;
+        }
+    } 
+    else
+    {
+        if (plp->hp > 160)
+        {
+            plp->hp = 160;
+        }
+    }
+
+    switch ((unsigned short)psnchk)
+    {
+    case 0x10:
+        plp->stflg &= ~0x80000;
+        
+        if (((plp->stflg & 0x200000)) && (!healchk))
+        {
+            poison2 = 1;
+        }
+    }
+    
+    if (!(plp->stflg & 0x280000)) 
+    {
+        if (plp->hp >= 120) 
+        {
+            st->abc = 0;
+        } 
+        else if (plp->hp >= 60)
+        {
+            st->abc = 1;
+        } 
+        else if (plp->hp >= 30) 
+        {
+            st->abc = 2;
+        }
+        else 
+        {
+            st->abc = 3;
+        }
+    }
+    
+    itemid = st->hp;
+    
+    if (itemid != st->abc) 
+    {
+        st->hp = st->abc;
+    }
+    
+    if ((poison2) && (!(sys->st_flg & 0x200))) 
+    {
+        bhSetMessage(1, 198);
+        
+        swork.statusflg &= ~0x100000;
+    }
+    
+    if (healchk) 
+    {
+        PulseInit();
+        
+        pw->pulseflg    |= 0x40;
+        swork.statusflg |= 0x20;
+        
+        herbuse = 1;
+    }
+    else if (psnchk) 
+    {
+        if (!(plp->stflg & 0x200000)) 
+        {
+            herbuse = 1; 
+            
+            PulseInit();
+            
+            pw->pulseflg    |= 0x80;
+            swork.statusflg |= 0x20;
+        }
+    } 
+    else
+    {
+        if (!(sys->st_flg & 0x200))  
+        {
+            bhSetMessage(1, 161);
+            
+            swork.statusflg &= ~0x100000;
+        }
+    }
+    
+    return herbuse;
 }
 
 // 100% matching!

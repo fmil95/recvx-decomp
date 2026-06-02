@@ -6,31 +6,32 @@ from dataclasses import dataclass, field
 from typing import BinaryIO
 
 SCRIPT_DIR = Path("./").resolve()
-SDK_DEFAULT = "include/recvx-decomp-ps2_sdk"
-SDK_303 = "include/recvx-decomp-ps2_sdk303"
+SDK_303_PATH = "include/recvx-decomp-ps2_sdk303"
 REPLACEMENTS_TEMPLATE = {
-    "SLUS_201.84"                   : ("elf/main.elf",                                         False),
-    "PS2_DATA/MODULES/IOPRP213.IMG" : ("usr/local/sce/iop/modules/ioprp{ioprp}.img",           True),
-    "PS2_DATA/MODULES/SIO2MAN.IRX"  : ("usr/local/sce/iop/modules/sio2man.irx",                True),
-    "PS2_DATA/MODULES/PADMAN.IRX"   : ("usr/local/sce/iop/modules/padman.irx",                 True),
-    "PS2_DATA/MODULES/MCMAN.IRX"    : ("usr/local/sce/iop/modules/mcman.irx",                  True),
-    "PS2_DATA/MODULES/MCSERV.IRX"   : ("usr/local/sce/iop/modules/mcserv.irx",                 True),
-    "PS2_DATA/MODULES/LIBSD.IRX"    : ("usr/local/sce/iop/modules/libsd.irx",                  True),
-    "PS2_DATA/MODULES/MODHSYN.IRX"  : ("usr/local/sce/iop/modules/modhsyn.irx",                True),
-    "PS2_DATA/MODULES/MODMIDI.IRX"  : ("usr/local/sce/iop/modules/modmidi.irx",                True),
-    "PS2_DATA/MODULES/MODMSIN.IRX"  : ("usr/local/sce/iop/modules/modmsin.irx",                True),
-    # "PS2_DATA/MODULES/TSNDDRV.IRX" : ("tsnddrv.irx",                                          False),
+    "PS2_DATA/MODULES/IOPRP213.IMG" : "usr/local/sce/iop/modules/ioprp{ioprp}.img",
+    "PS2_DATA/MODULES/SIO2MAN.IRX"  : "usr/local/sce/iop/modules/sio2man.irx",
+    "PS2_DATA/MODULES/PADMAN.IRX"   : "usr/local/sce/iop/modules/padman.irx",
+    "PS2_DATA/MODULES/MCMAN.IRX"    : "usr/local/sce/iop/modules/mcman.irx",
+    "PS2_DATA/MODULES/MCSERV.IRX"   : "usr/local/sce/iop/modules/mcserv.irx",
+    "PS2_DATA/MODULES/LIBSD.IRX"    : "usr/local/sce/iop/modules/libsd.irx",
+    "PS2_DATA/MODULES/MODHSYN.IRX"  : "usr/local/sce/iop/modules/modhsyn.irx",
+    "PS2_DATA/MODULES/MODMIDI.IRX"  : "usr/local/sce/iop/modules/modmidi.irx",
+    "PS2_DATA/MODULES/MODMSIN.IRX"  : "usr/local/sce/iop/modules/modmsin.irx",
+    # "PS2_DATA/MODULES/TSNDDRV.IRX" : "tsnddrv.irx",
 }
 
 
 def build_replacements(use_sdk303: bool) -> dict:
-    sdk_dir  = SDK_303 if use_sdk303 else SDK_DEFAULT
-    ioprp_ver = "300" if use_sdk303 else "20"
-    result = {}
-    for disc_path, (rel_path, uses_sdk) in REPLACEMENTS_TEMPLATE.items():
-        rel_path = rel_path.format(ioprp=ioprp_ver)
-        full_path = f"{sdk_dir}/{rel_path}" if uses_sdk else rel_path
-        result[disc_path] = full_path
+    # ELF is replaced regardless of SDK choice
+    result = {"SLUS_201.84" : "elf/main.elf"}
+
+    if use_sdk303:
+        sdk_dir  = SDK_303_PATH
+        ioprp_ver = "300"
+        for disc_path, rel_path in REPLACEMENTS_TEMPLATE.items():
+            rel_path = rel_path.format(ioprp=ioprp_ver)
+            result[disc_path] = f"{sdk_dir}/{rel_path}"
+
     return result
 
 
@@ -144,7 +145,7 @@ def get_arguments(argv=None):
         "--sdk303",
         required=False,
         action="store_true",
-        help="use ioprp300 image (EE 3.03) instead of the default ioprp20 one",
+        help="use ioprp300 image (EE 3.03) instead of the default one",
     )
 
     args = parser.parse_args()

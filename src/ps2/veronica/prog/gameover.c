@@ -529,58 +529,51 @@ void bhExitGameOver()
     bhPopGameData();
 } 
 
-/*// 
-// Start address: 0x2bb070
+// 100% matching!
 void bhDrawGameOver()
 {
-	int y;
-	int x;
-	_anon15 uv[32];
-	_anon15 cl[32];
-	_anon27 pt[32];
-	_anon32 p3c;
-	_anon0* gv;
-	// Line 602, Address: 0x2bb070, Func Offset: 0
-	// Line 603, Address: 0x2bb084, Func Offset: 0x14
-	// Line 609, Address: 0x2bb098, Func Offset: 0x28
-	// Line 610, Address: 0x2bb0a0, Func Offset: 0x30
-	// Line 611, Address: 0x2bb0ac, Func Offset: 0x3c
-	// Line 612, Address: 0x2bb0b8, Func Offset: 0x48
-	// Line 613, Address: 0x2bb0d0, Func Offset: 0x60
-	// Line 614, Address: 0x2bb0d8, Func Offset: 0x68
-	// Line 615, Address: 0x2bb0e0, Func Offset: 0x70
-	// Line 616, Address: 0x2bb0e8, Func Offset: 0x78
-	// Line 617, Address: 0x2bb0f0, Func Offset: 0x80
-	// Line 618, Address: 0x2bb0f8, Func Offset: 0x88
-	// Line 619, Address: 0x2bb100, Func Offset: 0x90
-	// Line 621, Address: 0x2bb120, Func Offset: 0xb0
-	// Line 624, Address: 0x2bb134, Func Offset: 0xc4
-	// Line 628, Address: 0x2bb13c, Func Offset: 0xcc
-	// Line 621, Address: 0x2bb144, Func Offset: 0xd4
-	// Line 622, Address: 0x2bb148, Func Offset: 0xd8
-	// Line 628, Address: 0x2bb14c, Func Offset: 0xdc
-	// Line 631, Address: 0x2bb154, Func Offset: 0xe4
-	// Line 622, Address: 0x2bb15c, Func Offset: 0xec
-	// Line 623, Address: 0x2bb160, Func Offset: 0xf0
-	// Line 634, Address: 0x2bb164, Func Offset: 0xf4
-	// Line 633, Address: 0x2bb16c, Func Offset: 0xfc
-	// Line 623, Address: 0x2bb170, Func Offset: 0x100
-	// Line 624, Address: 0x2bb174, Func Offset: 0x104
-	// Line 633, Address: 0x2bb178, Func Offset: 0x108
-	// Line 624, Address: 0x2bb17c, Func Offset: 0x10c
-	// Line 625, Address: 0x2bb180, Func Offset: 0x110
-	// Line 626, Address: 0x2bb188, Func Offset: 0x118
-	// Line 628, Address: 0x2bb190, Func Offset: 0x120
-	// Line 629, Address: 0x2bb198, Func Offset: 0x128
-	// Line 630, Address: 0x2bb1a0, Func Offset: 0x130
-	// Line 631, Address: 0x2bb1a8, Func Offset: 0x138
-	// Line 633, Address: 0x2bb1ac, Func Offset: 0x13c
-	// Line 631, Address: 0x2bb1b0, Func Offset: 0x140
-	// Line 632, Address: 0x2bb1b4, Func Offset: 0x144
-	// Line 633, Address: 0x2bb1bc, Func Offset: 0x14c
-	// Line 634, Address: 0x2bb1c8, Func Offset: 0x158
-	// Line 635, Address: 0x2bb1d0, Func Offset: 0x160
-	// Line 639, Address: 0x2bb1e4, Func Offset: 0x174
-	// Line 640, Address: 0x2bb1f4, Func Offset: 0x184
-	// Func End, Address: 0x2bb20c, Func Offset: 0x19c
-}*/
+    GV_WORK* gv;     
+    NJS_POINT3COL p3c; 
+    NJS_POINT3 pt[32]; 
+    NJS_COLOR cl[32], uv[32]; 
+    int x, y;             
+
+    gv = sys->gov_exp;
+    
+    njTextureFilterMode(1);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(4);
+    
+    p3c.p   = pt;
+    p3c.col = cl;
+    p3c.tex = uv;
+    p3c.num = 32; 
+    
+    for (y = 0; y < 15; y++) 
+    {
+        for (x = 0; x < 16; x++) 
+        {
+            pt[x * 2].x = gv->pt[x + (y * 16)].x;
+            pt[x * 2].y = gv->pt[x + (y * 16)].y;
+            pt[x * 2].z = gv->pt[x + (y * 16)].z;
+            
+            uv[x * 2].tex.u = gv->uv[x + (y * 16)].tex.u;
+            uv[x * 2].tex.v = gv->uv[x + (y * 16)].tex.v;  
+            cl[x * 2].color = gv->cl[x + (y * 16)].color;
+            
+            pt[(x * 2) + 1].x = gv->pt[x + ((y + 1) * 16)].x;
+            pt[(x * 2) + 1].y = gv->pt[x + ((y + 1) * 16)].y; 
+            pt[(x * 2) + 1].z = gv->pt[x + ((y + 1) * 16)].z; 
+            
+            uv[(x * 2) + 1].tex.u = gv->uv[x + ((y + 1) * 16)].tex.u;
+            uv[(x * 2) + 1].tex.v = gv->uv[x + ((y + 1) * 16)].tex.v;
+            cl[(x * 2) + 1].color = gv->cl[x + ((y + 1) * 16)].color;
+        }
+        
+        njDrawTriangle3D(&p3c, 30, 0x80000062);
+    } 
+}

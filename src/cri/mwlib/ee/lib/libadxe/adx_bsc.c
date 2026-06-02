@@ -12,16 +12,39 @@
 ADX_BASIC adxb_obj[8] = { 0 };
 
 // 100% matching!
-void ADXB_CopyExtraBufMono(Sint16 *obuf, Sint32 obsize, Sint32 xsize, Sint32 nxsmpl)
+void ADXB_Init(void) 
 {
-    memcpy2(obuf, &obuf[obsize], nxsmpl);
+    ADXPD_Init();
+    
+    memset(adxb_obj, 0, sizeof(adxb_obj));
 }
 
 // 100% matching!
-void ADXB_CopyExtraBufSte(Sint16 *obuf, Sint32 obsize, Sint32 obdist, Sint32 nxsmpl)
+void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
 {
-    memcpy2(obuf, &obuf[obsize], nxsmpl);
-    memcpy2(&obuf[obdist], &obuf[obdist + obsize], nxsmpl);
+    ADXB adxb;
+
+    adxb = obj;
+    
+    *wpos = adxb->curwpos;
+    
+    *nroom = adxb->pcmbsize - adxb->curwpos;
+    
+    *lp_nsmpl = adxb->total_nsmpl - adxb->total_ndecsmpl;
+    
+    return adxb->pcmbuf;
+}
+
+// 100% matching!
+void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl)
+{
+    ADXB adxb;
+
+    adxb = obj;
+    
+    adxb->curwpos += wnsmpl;
+    
+    adxb->total_ndecsmpl += wnsmpl;
 }
 
 // 100% matching!
@@ -78,30 +101,16 @@ ADXB ADXB_Create(Sint32 maxnch, Sint16 *obuf, Sint32 bsize, Sint32 bdist)
 }
 
 // 100% matching!
-Sint32 ADXB_DecodeHeader(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
+void ADXB_Destroy(ADXB adxb)
 {
-    if (BSWAP_U16_EX(*(Uint16*)ibuf) == 0x8000) 
+    if (adxb != NULL) 
     {
-        return ADXB_DecodeHeaderAdx(adxb, ibuf, ibuflen);
+        ADXPD_Destroy(adxb->xpd);
+        
+        memset(adxb, 0, sizeof(ADX_BASIC));
+        
+        adxb->used = FALSE;
     }
-    else if (ADXB_CheckSpsd(ibuf) != 0) 
-    {
-        return ADXB_DecodeHeaderSpsd(adxb, ibuf, ibuflen);
-    }
-    else if (ADXB_CheckWav(ibuf) != 0) 
-    {
-        return ADXB_DecodeHeaderWav(adxb, ibuf, ibuflen);
-    }
-    else if (ADXB_CheckAiff(ibuf) != 0) 
-    {
-        return ADXB_DecodeHeaderAiff(adxb, ibuf, ibuflen);
-    }
-    else if (ADXB_CheckAu(ibuf) != 0) 
-    {
-        return ADXB_DecodeHeaderAu(adxb, ibuf, ibuflen);
-    }
-    
-    return 0;
 }
 
 // 100% matching!
@@ -150,104 +159,37 @@ Sint32 ADXB_DecodeHeaderAdx(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 }
 
 // 100% matching!
-void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl)
+Sint32 ADXB_DecodeHeader(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
-    ADXB adxb;
-
-    adxb = obj;
-    
-    adxb->curwpos += wnsmpl;
-    
-    adxb->total_ndecsmpl += wnsmpl;
-}
-
-// 100% matching!
-void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
-{
-    ADXB adxb;
-
-    adxb = obj;
-    
-    *wpos = adxb->curwpos;
-    
-    *nroom = adxb->pcmbsize - adxb->curwpos;
-    
-    *lp_nsmpl = adxb->total_nsmpl - adxb->total_ndecsmpl;
-    
-    return adxb->pcmbuf;
-}
-
-// 100% matching!
-void ADXB_Destroy(ADXB adxb)
-{
-    if (adxb != NULL) 
+    if (BSWAP_U16_EX(*(Uint16*)ibuf) == 0x8000) 
     {
-        ADXPD_Destroy(adxb->xpd);
-        
-        memset(adxb, 0, sizeof(ADX_BASIC));
-        
-        adxb->used = FALSE;
+        return ADXB_DecodeHeaderAdx(adxb, ibuf, ibuflen);
     }
+    else if (ADXB_CheckSpsd(ibuf) != 0) 
+    {
+        return ADXB_DecodeHeaderSpsd(adxb, ibuf, ibuflen);
+    }
+    else if (ADXB_CheckWav(ibuf) != 0) 
+    {
+        return ADXB_DecodeHeaderWav(adxb, ibuf, ibuflen);
+    }
+    else if (ADXB_CheckAiff(ibuf) != 0) 
+    {
+        return ADXB_DecodeHeaderAiff(adxb, ibuf, ibuflen);
+    }
+    else if (ADXB_CheckAu(ibuf) != 0) 
+    {
+        return ADXB_DecodeHeaderAu(adxb, ibuf, ibuflen);
+    }
+    
+    return 0;
 }
 
 // 100% matching!
-void ADXB_EndDecode(ADXB adxb)
+void ADXB_EntryGetWrFunc(ADXB adxb, void* (*func)(), void *obj)
 {
-	AdxDecPara *dp;
-	Sint32 blknsmpl;
-	Sint32 blksize;
-	Sint32 lppos;
-	Sint32 wpos;
-	Sint16 *pcmbuf;
-	Sint32 pcmbsize;
-	Sint32 pcmbdist;
-	Sint32 ndecblk;
-	Sint32 ndecsmpl;
-	Sint32 ndelsmpl;
-    
-    dp = &adxb->dp;
-
-    blknsmpl = dp->blknsmpl;
-    blksize = dp->blksize;
-
-    lppos = dp->lp_nsmpl;
-
-    pcmbuf = (Sint16*)dp->pcmbuf;
-
-    pcmbsize = adxb->pcmbsize;
-    pcmbdist = adxb->pcmbdist;
-    
-    wpos = dp->wpos;
-    
-    ndecsmpl = ((dp->lp_nsmpl + blknsmpl) - 1) % blknsmpl;
-    ndelsmpl = (blknsmpl - 1) - ndecsmpl;
-    
-    lppos = ((dp->lp_nsmpl + blknsmpl) - 1) / blknsmpl;
-
-    ndecblk = ADXPD_GetNumBlk(adxb->xpd);
-    
-    blknsmpl = (ndecblk * blknsmpl) / dp->nch;
-    
-    ndecsmpl = (ndecblk < lppos) ? blknsmpl : blknsmpl - ndelsmpl;
-    
-    adxb->total_decsmpl = ndecsmpl;
-    adxb->total_decdtlen = ndecblk * blksize;
-    
-    wpos += adxb->total_decsmpl;
-    
-    if (wpos >= pcmbsize) 
-    {
-        wpos -= pcmbsize;
-        
-        if (dp->nch == 2) 
-        {
-            ADXB_CopyExtraBufSte(pcmbuf, pcmbsize, pcmbdist, wpos);
-        } 
-        else
-        {
-            ADXB_CopyExtraBufMono(pcmbuf, pcmbsize, pcmbdist, wpos);
-        }
-    }
+    adxb->getwrfunc = func;
+    adxb->getwrobj = obj;
 }
 
 // 100% matching!
@@ -255,6 +197,131 @@ void ADXB_EntryAddWrFunc(ADXB adxb, void (*func)(), void *obj)
 {
     adxb->addwrfunc = func;
     adxb->addwrobj = obj;
+}
+
+// 100% matching!
+Sint16* ADXB_GetPcmBuf(ADXB adxb)
+{
+    return adxb->pcmbuf;
+}
+
+// 100% matching!
+Sint32 ADXB_GetFormat(ADXB adxb)
+{
+    return adxb->fmttype;
+}
+
+// 100% matching!
+Sint32 ADXB_GetSfreq(ADXB adxb)
+{
+    return adxb->sfreq;
+}
+
+// 100% matching!
+Sint32 ADXB_GetNumChan(ADXB adxb)
+{
+    return adxb->nch;
+}
+
+// 100% matching!
+Sint32 ADXB_GetFmtBps(ADXB adxb)
+{
+    return adxb->bps;
+}
+
+// 100% matching!
+Sint32 ADXB_GetOutBps(ADXB adxb)
+{
+    if (adxb->fmttype == 0) 
+    {
+        return 16;
+    }
+
+    if (adxb->fmttype == 2)
+    {
+        if (adxb->cdctype == 2)
+        {
+            return 4;
+        } 
+        else if (adxb->cdctype == 1) 
+        {
+            return 8;
+        }
+        
+        return 16;
+    }
+    else if (adxb->fmttype == 1) 
+    {
+        return (adxb->cdctype != 2) ? 16 : 4;
+    }
+    
+    return 16;
+}
+
+// 100% matching!
+Sint32 ADXB_GetBlkSmpl(ADXB adxb)
+{
+    return adxb->blknsmpl;
+}
+
+// 100% matching!
+Sint32 ADXB_GetBlkLen(ADXB adxb)
+{
+    return adxb->blklen;
+}
+
+// 100% matching!
+Sint32 ADXB_GetTotalNumSmpl(ADXB adxb)
+{
+    return adxb->total_nsmpl;
+}
+
+// 100% matching!
+Sint32 ADXB_GetCof(ADXB adxb)
+{
+    return adxb->cof;
+}
+
+// 100% matching!
+Sint32 ADXB_GetLpInsNsmpl(ADXB adxb)
+{
+    return adxb->lp_ins_nsmpl;
+}
+
+// 100% matching!
+Sint32 ADXB_GetNumLoop(ADXB adxb)
+{
+    return adxb->nloop;
+}
+
+// 100% matching!
+Sint32 ADXB_GetLpStartPos(ADXB adxb) 
+{
+    return adxb->lp_spos;
+}
+
+// 100% matching!
+Sint32 ADXB_GetLpStartOfst(ADXB adxb)
+{
+    return adxb->lp_sofst;
+}
+
+// 100% matching!
+Sint32 ADXB_GetLpEndPos(ADXB adxb)
+{
+    return adxb->lp_epos;
+}
+
+// 100% matching!
+Sint32 ADXB_GetLpEndOfst(ADXB adxb)
+{
+    return adxb->lp_eofst;
+}
+
+// 100% matching!
+Sint32 ADXB_GetStat(ADXB adxb)
+{
+    return adxb->stat;
 }
 
 // 100% matching!
@@ -285,10 +352,91 @@ void ADXB_EntryData(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 }
 
 // 100% matching!
-void ADXB_EntryGetWrFunc(ADXB adxb, void* (*func)(), void *obj)
+void ADXB_Start(ADXB adxb)
 {
-    adxb->getwrfunc = func;
-    adxb->getwrobj = obj;
+    if (adxb->stat == 0) 
+    {
+        adxb->stat = 1;
+    }
+}
+
+// 100% matching!
+void ADXB_Stop(ADXB adxb)
+{
+    ADXPD_Stop(adxb->xpd);
+    
+    adxb->stat = 0;
+}
+
+// 100% matching!
+void ADXB_Reset(ADXB adxb)
+{
+    if (adxb->stat == 3) 
+    {
+        ADXPD_Reset(adxb->xpd);
+        
+        adxb->curwpos = 0;
+        
+        adxb->stat = 0;
+    }
+}
+
+// 100% matching!
+Sint32 ADXB_GetDecDtLen(ADXB adxb) 
+{
+    return adxb->total_decdtlen;
+}
+
+// 100% matching!
+Sint32 ADXB_GetDecNumSmpl(ADXB adxb)
+{
+    return adxb->total_decsmpl;
+}
+
+// 100% matching!
+ADXPD ADXB_GetAdxpd(ADXB adxb) 
+{
+    return adxb->xpd;
+}
+
+// 100% matching!
+void ADXB_EvokeExpandMono(ADXB adxb, Sint32 nblk) 
+{
+	AdxDecPara *dp;
+	ADXPD xpd;
+	Sint16 *obuf_l;
+
+    dp = &adxb->dp;
+
+    xpd = adxb->xpd;
+
+    obuf_l = (Sint16*)dp->pcmbuf;
+    
+    obuf_l += dp->wpos;
+    
+    ADXPD_EntryMono(xpd, dp->ibuf, nblk, obuf_l);
+    
+    ADXPD_Start(xpd);
+}
+
+// 100% matching!
+void ADXB_EvokeExpandSte(ADXB adxb, Sint32 nblk)
+{
+	AdxDecPara *dp;
+	ADXPD xpd;
+	Sint16 *obuf_l;
+
+    dp = &adxb->dp;
+
+    xpd = adxb->xpd;
+    
+    obuf_l = (Sint16*)dp->pcmbuf;
+    
+    obuf_l += dp->wpos;
+    
+    ADXPD_EntrySte(xpd, dp->ibuf, nblk * 2, obuf_l, obuf_l + dp->pcmbdist);
+    
+    ADXPD_Start(xpd);
 }
 
 // 100% matching!
@@ -354,67 +502,84 @@ void ADXB_EvokeDecode(ADXB adxb)
 }
 
 // 100% matching!
-void ADXB_EvokeExpandMono(ADXB adxb, Sint32 nblk) 
+void memcpy2(Sint16 *dst, const Sint16 *src, Sint32 nword)
 {
-	AdxDecPara *dp;
-	ADXPD xpd;
-	Sint16 *obuf_l;
-
-    dp = &adxb->dp;
-
-    xpd = adxb->xpd;
-
-    obuf_l = (Sint16*)dp->pcmbuf;
-    
-    obuf_l += dp->wpos;
-    
-    ADXPD_EntryMono(xpd, dp->ibuf, nblk, obuf_l);
-    
-    ADXPD_Start(xpd);
+    for ( ; nword > 0; nword--) 
+    {
+        *dst++ = *src++;
+    }
 }
 
 // 100% matching!
-void ADXB_EvokeExpandSte(ADXB adxb, Sint32 nblk)
+void ADXB_CopyExtraBufSte(Sint16 *obuf, Sint32 obsize, Sint32 obdist, Sint32 nxsmpl)
 {
-	AdxDecPara *dp;
-	ADXPD xpd;
-	Sint16 *obuf_l;
-
-    dp = &adxb->dp;
-
-    xpd = adxb->xpd;
-    
-    obuf_l = (Sint16*)dp->pcmbuf;
-    
-    obuf_l += dp->wpos;
-    
-    ADXPD_EntrySte(xpd, dp->ibuf, nblk * 2, obuf_l, obuf_l + dp->pcmbdist);
-    
-    ADXPD_Start(xpd);
+    memcpy2(obuf, &obuf[obsize], nxsmpl);
+    memcpy2(&obuf[obdist], &obuf[obdist + obsize], nxsmpl);
 }
 
 // 100% matching!
-void ADXB_ExecHndl(ADXB adxb) 
+void ADXB_CopyExtraBufMono(Sint16 *obuf, Sint32 obsize, Sint32 xsize, Sint32 nxsmpl)
 {
-    if (adxb->fmttype == 0) 
+    memcpy2(obuf, &obuf[obsize], nxsmpl);
+}
+
+// 100% matching!
+void ADXB_EndDecode(ADXB adxb)
+{
+	AdxDecPara *dp;
+	Sint32 blknsmpl;
+	Sint32 blksize;
+	Sint32 lppos;
+	Sint32 wpos;
+	Sint16 *pcmbuf;
+	Sint32 pcmbsize;
+	Sint32 pcmbdist;
+	Sint32 ndecblk;
+	Sint32 ndecsmpl;
+	Sint32 ndelsmpl;
+    
+    dp = &adxb->dp;
+
+    blknsmpl = dp->blknsmpl;
+    blksize = dp->blksize;
+
+    lppos = dp->lp_nsmpl;
+
+    pcmbuf = (Sint16*)dp->pcmbuf;
+
+    pcmbsize = adxb->pcmbsize;
+    pcmbdist = adxb->pcmbdist;
+    
+    wpos = dp->wpos;
+    
+    ndecsmpl = ((dp->lp_nsmpl + blknsmpl) - 1) % blknsmpl;
+    ndelsmpl = (blknsmpl - 1) - ndecsmpl;
+    
+    lppos = ((dp->lp_nsmpl + blknsmpl) - 1) / blknsmpl;
+
+    ndecblk = ADXPD_GetNumBlk(adxb->xpd);
+    
+    blknsmpl = (ndecblk * blknsmpl) / dp->nch;
+    
+    ndecsmpl = (ndecblk < lppos) ? blknsmpl : blknsmpl - ndelsmpl;
+    
+    adxb->total_decsmpl = ndecsmpl;
+    adxb->total_decdtlen = ndecblk * blksize;
+    
+    wpos += adxb->total_decsmpl;
+    
+    if (wpos >= pcmbsize) 
     {
-        ADXB_ExecOneAdx(adxb);
-    } 
-    else if (adxb->fmttype == 2) 
-    {
-        ADXB_ExecOneSpsd(adxb);
-    } 
-    else if (adxb->fmttype == 3)
-    {
-        ADXB_ExecOneAiff(adxb);
-    } 
-    else if (adxb->fmttype == 4) 
-    {
-        ADXB_ExecOneAu(adxb);
-    } 
-    else if (adxb->fmttype == 1) 
-    {
-        ADXB_ExecOneWav(adxb);
+        wpos -= pcmbsize;
+        
+        if (dp->nch == 2) 
+        {
+            ADXB_CopyExtraBufSte(pcmbuf, pcmbsize, pcmbdist, wpos);
+        } 
+        else
+        {
+            ADXB_CopyExtraBufMono(pcmbuf, pcmbsize, pcmbdist, wpos);
+        }
     }
 }
 
@@ -451,6 +616,31 @@ void ADXB_ExecOneAdx(ADXB adxb)
 }
 
 // 100% matching!
+void ADXB_ExecHndl(ADXB adxb) 
+{
+    if (adxb->fmttype == 0) 
+    {
+        ADXB_ExecOneAdx(adxb);
+    } 
+    else if (adxb->fmttype == 2) 
+    {
+        ADXB_ExecOneSpsd(adxb);
+    } 
+    else if (adxb->fmttype == 3)
+    {
+        ADXB_ExecOneAiff(adxb);
+    } 
+    else if (adxb->fmttype == 4) 
+    {
+        ADXB_ExecOneAu(adxb);
+    } 
+    else if (adxb->fmttype == 1) 
+    {
+        ADXB_ExecOneWav(adxb);
+    }
+}
+
+// 100% matching!
 void ADXB_ExecServer(void) 
 {
     ADXB adxb;
@@ -464,195 +654,5 @@ void ADXB_ExecServer(void)
         {
             ADXB_ExecHndl(adxb);
         }
-    }
-}
-
-// 100% matching!
-ADXPD ADXB_GetAdxpd(ADXB adxb) 
-{
-    return adxb->xpd;
-}
-
-// 100% matching!
-Sint32 ADXB_GetBlkLen(ADXB adxb)
-{
-    return adxb->blklen;
-}
-
-// 100% matching!
-Sint32 ADXB_GetBlkSmpl(ADXB adxb)
-{
-    return adxb->blknsmpl;
-}
-
-// 100% matching!
-Sint32 ADXB_GetCof(ADXB adxb)
-{
-    return adxb->cof;
-}
-
-// 100% matching!
-Sint32 ADXB_GetDecDtLen(ADXB adxb) 
-{
-    return adxb->total_decdtlen;
-}
-
-// 100% matching!
-Sint32 ADXB_GetDecNumSmpl(ADXB adxb)
-{
-    return adxb->total_decsmpl;
-}
-
-// 100% matching!
-Sint32 ADXB_GetFmtBps(ADXB adxb)
-{
-    return adxb->bps;
-}
-
-// 100% matching!
-Sint32 ADXB_GetFormat(ADXB adxb)
-{
-    return adxb->fmttype;
-}
-
-// 100% matching!
-Sint32 ADXB_GetLpEndOfst(ADXB adxb)
-{
-    return adxb->lp_eofst;
-}
-
-// 100% matching!
-Sint32 ADXB_GetLpEndPos(ADXB adxb)
-{
-    return adxb->lp_epos;
-}
-
-// 100% matching!
-Sint32 ADXB_GetLpInsNsmpl(ADXB adxb)
-{
-    return adxb->lp_ins_nsmpl;
-}
-
-// 100% matching!
-Sint32 ADXB_GetLpStartOfst(ADXB adxb)
-{
-    return adxb->lp_sofst;
-}
-
-// 100% matching!
-Sint32 ADXB_GetLpStartPos(ADXB adxb) 
-{
-    return adxb->lp_spos;
-}
-
-// 100% matching!
-Sint32 ADXB_GetNumChan(ADXB adxb)
-{
-    return adxb->nch;
-}
-
-// 100% matching!
-Sint32 ADXB_GetNumLoop(ADXB adxb)
-{
-    return adxb->nloop;
-}
-
-// 100% matching!
-Sint32 ADXB_GetOutBps(ADXB adxb)
-{
-    if (adxb->fmttype == 0) 
-    {
-        return 16;
-    }
-
-    if (adxb->fmttype == 2)
-    {
-        if (adxb->cdctype == 2)
-        {
-            return 4;
-        } 
-        else if (adxb->cdctype == 1) 
-        {
-            return 8;
-        }
-        
-        return 16;
-    }
-    else if (adxb->fmttype == 1) 
-    {
-        return (adxb->cdctype != 2) ? 16 : 4;
-    }
-    
-    return 16;
-}
-
-// 100% matching!
-Sint16* ADXB_GetPcmBuf(ADXB adxb)
-{
-    return adxb->pcmbuf;
-}
-
-// 100% matching!
-Sint32 ADXB_GetSfreq(ADXB adxb)
-{
-    return adxb->sfreq;
-}
-
-// 100% matching!
-Sint32 ADXB_GetStat(ADXB adxb)
-{
-    return adxb->stat;
-}
-
-// 100% matching!
-Sint32 ADXB_GetTotalNumSmpl(ADXB adxb)
-{
-    return adxb->total_nsmpl;
-}
-
-// 100% matching!
-void ADXB_Init(void) 
-{
-    ADXPD_Init();
-    
-    memset(adxb_obj, 0, sizeof(adxb_obj));
-}
-
-// 100% matching!
-void ADXB_Reset(ADXB adxb)
-{
-    if (adxb->stat == 3) 
-    {
-        ADXPD_Reset(adxb->xpd);
-        
-        adxb->curwpos = 0;
-        
-        adxb->stat = 0;
-    }
-}
-
-// 100% matching!
-void ADXB_Start(ADXB adxb)
-{
-    if (adxb->stat == 0) 
-    {
-        adxb->stat = 1;
-    }
-}
-
-// 100% matching!
-void ADXB_Stop(ADXB adxb)
-{
-    ADXPD_Stop(adxb->xpd);
-    
-    adxb->stat = 0;
-}
-
-// 100% matching!
-void memcpy2(Sint16 *dst, const Sint16 *src, Sint32 nword)
-{
-    for ( ; nword > 0; nword--) 
-    {
-        *dst++ = *src++;
     }
 }

@@ -15,6 +15,8 @@
 #include <stdio.h>
 //#include <string.h>
 
+#define	ADXT_OBUF_DIST	(0x2020)
+
 Sint32 adxt_time_mode = 0;
 Sint32 adxt_tsvr_enter_cnt; /* unused */
 Uint32 adxt_time_adjust_cnt; /* unused */
@@ -32,20 +34,42 @@ Sint32 adxt_time_unit = 0;
 float adxt_diff_av = 0;
 
 // 100% matching! 
-void ADXT_ClearErrCode(ADXT adxt)
+void adxt_disp_rna_stat(ADXT adxt)
 {
-    adxt->ercode = ADXT_ERR_OK;
+    PS2RNA rna;
+	SJ sjiop;
+	SJ sjtmp;
+	Sint32 ntmp0;
+	Sint32 ntmp2;
+	Sint32 niop0;
+	Sint32 niop2;
+    Sint32 sum;
+    Sint32 ttl;
     
-    adxt->edecpos = 0;
-    adxt->edeccnt = 0;
+    rna = adxt->rna;
     
-    adxt->eshrtcnt = 0;
-} 
-
-// 100% matching! 
-void ADXT_CloseAllHandles(void)
-{
-    ADXT_DestroyAll();
+    sjiop = PS2RNA_GetSjiop(rna, 0);
+    sjtmp = PS2RNA_GetSjtmp(rna, 0);
+    
+    ntmp0 = SJ_GetNumData(sjtmp, 1);
+    ntmp2 = SJ_GetNumData(sjtmp, 0);
+    
+    niop0 = SJRMT_GetNumData(sjiop, 1);
+    niop2 = SJRMT_GetNumData(sjiop, 0);
+    
+    sum = ntmp0 + ntmp2;
+    
+    printf("ntmp0=%4d, ntmp2=%4d, sum=%4d\n", ntmp0, ntmp2, sum);
+    
+    sum = niop0 + niop2;
+    
+    printf("niop0=%4d, niop2=%4d, sum=%4d\n", niop0, niop2, sum);
+    
+    sum = ntmp0 + niop2;
+    
+    ttl = niop0 + ntmp2;
+    
+    printf("stat=%4d, ttl=%4d\n", adxt->stat, sum + ttl);
 }
 
 // 100% matching! 
@@ -143,7 +167,7 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
     
     adxt->svrfreq = ADXT_DEF_SVRFREQ;
     
-    adxt->minsct = adxt->maxsct * 1.23456789; 
+    adxt->minsct = adxt->maxsct * 0.85; 
     
     adxt->outvol = ADXT_DEF_OUTVOL;
     
@@ -268,625 +292,9 @@ void ADXT_DestroyAll(void)
 }
 
 // 100% matching! 
-Sint32 ADXT_DiscardSmpl(ADXT adxt, Sint32 nsmpl)
+void ADXT_CloseAllHandles(void)
 {
-    Sint32 nd;
-	Sint32 ncount;
-	Sint32 tscale;
-
-    if (adxt->pause_flag == 0)
-    {
-        return 0;
-    }
-    
-    nd = ADXRNA_DiscardData(adxt->rna, nsmpl);
-    
-    ADXT_ExecServer();
-    
-    ADXRNA_GetTime(adxt->rna, &ncount, &tscale);
-    
-    adxt->svcnt = adxt_vsync_cnt;
-    
-    adxt->tvofst = (Sint32)(((float)ncount / tscale) * adxt_time_unit);
-    
-    return nd;
-}
-
-// 100% matching! 
-void adxt_disp_rna_stat(ADXT adxt)
-{
-    PS2RNA rna;
-	SJ sjiop;
-	SJ sjtmp;
-	Sint32 ntmp0;
-	Sint32 ntmp2;
-	Sint32 niop0;
-	Sint32 niop2;
-    Sint32 sum;
-    Sint32 ttl;
-    
-    rna = adxt->rna;
-    
-    sjiop = PS2RNA_GetSjiop(rna, 0);
-    sjtmp = PS2RNA_GetSjtmp(rna, 0);
-    
-    ntmp0 = SJ_GetNumData(sjtmp, 1);
-    ntmp2 = SJ_GetNumData(sjtmp, 0);
-    
-    niop0 = SJRMT_GetNumData(sjiop, 1);
-    niop2 = SJRMT_GetNumData(sjiop, 0);
-    
-    sum = ntmp0 + ntmp2;
-    
-    printf("ntmp0=%4d, ntmp2=%4d, sum=%4d\n", ntmp0, ntmp2, sum);
-    
-    sum = niop0 + niop2;
-    
-    printf("niop0=%4d, niop2=%4d, sum=%4d\n", niop0, niop2, sum);
-    
-    sum = ntmp0 + niop2;
-    
-    ttl = niop0 + ntmp2;
-    
-    printf("stat=%4d, ttl=%4d\n", adxt->stat, sum + ttl);
-}
-
-// 100% matching! 
-void ADXT_EntryErrFunc(void (*func)(), void *obj)
-{
-    ADXERR_EntryErrFunc(func, obj);
-}
-
-// 100% matching! 
-void ADXT_EntryFltFunc(ADXT adxt, void (*f)(), void *obj)
-{
-    ADXSJD_EntryFltFunc(adxt->sjd, f, obj);
-}
-
-// 100% matching!
-void ADXT_ExecServer(void) 
-{
-    ADXT adxt;
-    Sint32 no;
-
-    ADXSJD_ExecServer();
-    
-    adxt_svrcnt_sjd = 0;
-    
-    ADXRNA_ExecServer();
-    
-    adxt_svrcnt_rna = 0;
-    
-    for (no = 0; no < ADXT_MAX_OBJ; no++)
-    {
-        adxt = &adxt_obj[no];
-        
-        if (adxt->used == TRUE) 
-        {
-            ADXT_ExecHndl(adxt);
-        }
-    }
-    
-    LSC_ExecServer();
-    
-    adxt_svrcnt_hndl = 0;
-    
-    adxt_svrcnt = 0;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetDecNumSmpl(ADXT adxt)
-{
-    return ADXSJD_GetDecNumSmpl(adxt->sjd);
-}
-
-// 100% matching! 
-Sint32 ADXT_GetErrCode(ADXT adxt)
-{
-    return adxt->ercode;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetFmtBps(ADXT adxt)
-{
-    if (adxt->stat >= ADXT_STAT_PREP) 
-    {
-        return ADXSJD_GetFmtBps(adxt->sjd);
-    }
-    
-    return 0;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetHdrLen(ADXT adxt)
-{
-    if (adxt->stat >= ADXT_STAT_PREP)
-    {
-        return ADXSJD_GetHdrLen(adxt->sjd);
-    }
-    
-    return 0;
-}
-
-// 100% matching! 
-float ADXT_GetIbufRemainTime(ADXT adxt) 
-{
-    Sint32 nbyte;
-	Sint32 nch;
-	float sfreq;
-	float time;
-    
-    time = 0;
-    
-    if ((ADXT_GetStat(adxt) >= ADXT_STAT_PREP) && (adxt->sji != NULL))
-    {
-        nbyte = SJ_GetNumData(adxt->sji, 1);
-        
-        nch = ADXT_GetNumChan(adxt);
-        
-        sfreq = ADXT_GetSfreq(adxt);
-        
-        time = ((nbyte / (18 * nch)) * 32) / sfreq;
-    }
-    
-    return time;
-}
-
-// 100% matching! 
-SJ ADXT_GetInputSj(ADXT adxt)
-{
-    return adxt->sji;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetLnkSw(ADXT adxt)
-{
-    return adxt->lnkflg;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetLpCnt(ADXT adxt)
-{
-    return adxt->lpcnt;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetNumChan(ADXT adxt)
-{
-    if (adxt->stat >= ADXT_STAT_PREP) 
-    {
-        return ADXSJD_GetNumChan(adxt->sjd);
-    }
-    
-    return 0;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetNumSctIbuf(ADXT adxt)
-{
-    if (adxt->sji != NULL) 
-    {
-        return SJ_GetNumData(adxt->sji, 1) / 2048;
-    }
-    
-    return 0;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetNumSmpl(ADXT adxt)
-{
-    if (adxt->stat >= ADXT_STAT_PREP) 
-    {
-        return ADXSJD_GetTotalNumSmpl(adxt->sjd);
-    }
-    
-    return 0;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetNumSmplObuf(ADXT adxt, Sint32 chno)
-{
-    if (adxt->sjo[chno] != NULL) 
-    {
-        return SJ_GetNumData(adxt->sjo[chno], 1) / 2;
-    }
-
-    return 0;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetOutPan(ADXT adxt, Sint32 ch) 
-{
-    return adxt->outpan[ch];
-}
-
-// 100% matching! 
-Sint32 ADXT_GetOutVol(ADXT adxt) 
-{
-    return adxt->outvol;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetSfreq(ADXT adxt) 
-{
-    if (adxt->stat >= ADXT_STAT_PREP) 
-    {
-        return ADXSJD_GetSfreq(adxt->sjd);
-    }
-    
-    return 0;
-}
-
-// 100% matching!
-Sint32 ADXT_GetStat(ADXT adxt)
-{
-    return adxt->stat;
-}
-
-// 100% matching! 
-void ADXT_GetTime(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
-{
-    Sint32 ncount0;
-	Sint32 tscale0;
-	Sint32 tmode;
-    
-    tmode = adxt_time_mode;
-    
-    if (tmode == 0) 
-    {
-        ADXT_GetTimeSfreq2(adxt, ncount, tscale);
-        return;
-    }
-
-    adxt_diff_av = 0;
-
-    if ((adxt->stat == ADXT_STAT_PLAYING) || (adxt->stat == ADXT_STAT_DECEND)) 
-    {
-        if (adxt->pause_flag == 0) 
-        {
-            *ncount = ((adxt_vsync_cnt - adxt->svcnt) * 100) + adxt->tvofst;
-        }
-        else 
-        {
-            *ncount = adxt->tvofst;
-        }
-
-        ADXT_GetTimeSfreq2(adxt, &ncount0, &tscale0);
-        
-        adxt_diff_av = (((float)ncount0 / tscale0) - ((float)*ncount / adxt_time_unit)) * 1000.0f;
-
-        if ((adxt_diff_av > 60.0f) || (adxt_diff_av < -60.0f)) 
-        {
-            ADXRNA_GetTime(adxt->rna, &ncount0, &tscale0);
-
-            adxt->tvofst = (Sint32)(((float)ncount0 / tscale0) * adxt_time_unit);
-            
-            adxt->svcnt = adxt_vsync_cnt;
-        }
-    }
-    else if (adxt->stat == ADXT_STAT_PLAYEND) 
-    {
-        ncount0 = ADXSJD_GetTotalNumSmpl(adxt->sjd);
-        
-        tscale0 = ADXSJD_GetSfreq(adxt->sjd);
-        
-        ncount0 *= 16 / ADXSJD_GetOutBps(adxt->sjd);
-        
-        *ncount = ((float)ncount0 / tscale0) * adxt_time_unit;
-        
-        *ncount += adxt->tvofst + 1;
-    }
-    else 
-    {
-        *ncount = 0;
-    }
-
-    *ncount += adxt->time_ofst;
-
-    *tscale = adxt_time_unit;
-}
-
-// 100% matching! 
-Sint32 ADXT_GetTimeReal(ADXT adxt)
-{
-    Sint32 time;
-	Sint32 tunit;
-    
-    ADXT_GetTime(adxt, &time, &tunit);
-    
-    return ((double)time / tunit) * 100.0f;
-}
-
-// 100% matching! 
-void ADXT_GetTimeSfreq(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
-{
-    if ((adxt->stat == ADXT_STAT_PLAYING) || (adxt->stat == ADXT_STAT_DECEND))
-    {
-        ADXRNA_GetTime(adxt->rna, ncount, tscale);
-    } 
-    else if (adxt->stat == ADXT_STAT_PLAYEND) 
-    {
-        *ncount = ADXSJD_GetTotalNumSmpl(adxt->sjd);
-        
-        *tscale = ADXSJD_GetSfreq(adxt->sjd);
-        
-        *ncount *= 16 / ADXSJD_GetOutBps(adxt->sjd);
-    } 
-    else
-    {
-        *ncount = 0;
-        
-        *tscale = 1;
-    }
-
-    *ncount += adxt->time_ofst;
-}
-
-// 100% matching! 
-void ADXT_GetTimeSfreq2(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
-{
-    Sint32 nsmpl;
-    
-    if ((adxt->stat == ADXT_STAT_PLAYING) || (adxt->stat == ADXT_STAT_DECEND))
-    {
-        *tscale = ADXSJD_GetSfreq(adxt->sjd);
-
-        nsmpl = ADXSJD_GetDecNumSmpl(adxt->sjd) - ADXRNA_GetNumData(adxt->rna);
-        
-        *ncount = nsmpl;
-    } 
-    else if (adxt->stat == ADXT_STAT_PLAYEND) 
-    {
-        *ncount = ADXSJD_GetTotalNumSmpl(adxt->sjd);
-        
-        *tscale = ADXSJD_GetSfreq(adxt->sjd);
-        
-        *ncount *= 16 / ADXSJD_GetOutBps(adxt->sjd);
-    } 
-    else
-    {
-        *ncount = 0;
-        
-        *tscale = 1;
-    }
-
-    *ncount += adxt->time_ofst;
-}
-
-// 100% matching! 
-Sint32 ADXT_InsertSilence(ADXT adxt, Sint32 nch, Sint32 nsmpl)
-{
-    SJ sj;
-	SJCK ck;
-	SJCK ck2;
-	Sint32 nblk; 
-	Sint32 nbyte;
-	Sint32 nbyte2;
-	Sint32 wsize;
-	Sint32 blklen; 
-
-    sj = adxt->sji;
-   
-    if (sj == NULL) 
-    {
-        return 0;
-    }
-    
-    nblk = nch * 18;
-    
-    nbyte = nsmpl / 32;
-    
-    nbyte *= nblk;
-    
-    SJ_GetChunk(sj, 0, nbyte, &ck);
-    
-    nbyte2 = (ck.len / nblk) * nblk;
-    
-    memset(ck.data, 0, nbyte2);
-    
-    SJ_SplitChunk(&ck, nbyte2, &ck, &ck2);
-    
-    blklen = nbyte2;
-    
-    SJ_PutChunk(sj, 1, &ck);
-    
-    SJ_UngetChunk(sj, 0, &ck2);
-    
-    SJ_GetChunk(sj, 0, nbyte - blklen, &ck);
-    
-    nbyte2 = (ck.len / nblk) * nblk;
-    
-    memset(ck.data, 0, nbyte2);
-    
-    SJ_SplitChunk(&ck, nbyte2, &ck, &ck2);
-    
-    blklen += nbyte2;
-    
-    SJ_PutChunk(sj, 1, &ck);
-    
-    SJ_UngetChunk(sj, 0, &ck2);
-    
-    wsize = (blklen / nblk) * 32;
-    
-    return wsize;
-}
-
-// 100% matching! 
-Sint32 ADXT_IsCompleted(ADXT adxt)
-{
-    return adxt->stat == ADXT_STAT_PLAYEND;
-}
-
-// 100% matching! 
-Sint32 ADXT_IsEndcode(Sint8 *adr, Sint32 siz, Sint32 *endsiz)
-{
-    if (siz <= 1) 
-    {
-        return 0;
-    }
-
-    if (BSWAP_U16(adr) != 0x8001) 
-    {
-        return 0;
-    }
-
-    *endsiz = siz;
-
-    return 1;
-}
-
-// 100% matching! 
-Sint32 ADXT_IsHeader(Sint8 *adr, Sint32 siz, Sint32 *hdrsiz)
-{
-    Sint16 dlen;
-	Sint8 code;
-	Sint8 bps;
-	Sint8 blksize;
-	Sint8 nch;
-	Sint32 sfreq;
-	Sint32 total_nsmpl;
-	Sint32 nsmpl_blk;
-
-    if (siz < 2) 
-    {
-        return 0;
-    }
-    
-    if (BSWAP_U16(adr) != 0x8000) 
-    {
-        return 0;
-    }
-    
-    if (ADX_DecodeInfo(adr, siz, &dlen, &code, &bps, &blksize, &nch, &sfreq, &total_nsmpl, &nsmpl_blk) < 0) 
-    {  
-        return 0;
-    }
-   
-    *hdrsiz = dlen;
-    
-    return 1;
-}
-
-// 100% matching! 
-Sint32 ADXT_IsIbufSafety(ADXT adxt)
-{
-    if (adxt->sji != NULL) 
-    {
-        return SJ_GetNumData(adxt->sji, 1) >= (adxt->minsct * 2048);
-    }
-    
-    return FALSE;
-}
-
-// 100% matching! 
-Sint32 ADXT_IsReadyPlayStart(ADXT adxt)
-{
-    return adxt->pstready_flag;
-}
-
-// 100% matching!
-void ADXT_SetAutoRcvr(ADXT adxt, Sint32 rmode)
-{
-    adxt->autorcvr = rmode;
-}
-
-// 100% matching!
-void ADXT_SetLnkSw(ADXT adxt, Sint32 sw)
-{
-    adxt->lnkflg = sw;
-}
-
-// 100% matching!
-void ADXT_SetLpFlg(ADXT adxt, Sint32 flg)
-{
-    adxt->lpflg = flg;
-}
-
-// 100% matching!
-void ADXT_SetOutPan(ADXT adxt, Sint32 ch, Sint32 pan)
-{
-    adxt->outpan[ch] = pan;
-    
-    if (ch < adxt->maxnch) 
-    {
-        ADXRNA_SetOutPan(adxt->rna, ch, pan);
-    }
-    else 
-    {
-        ADXERR_CallErrFunc1((const Sint8*)"E8101208 ADXT_SetOutPan: parameter error");
-    }
-}
-
-// 100% matching!
-void ADXT_SetOutputMono(Sint32 flag)
-{
-    ADX_SetDecodeSteAsMonoSw(flag);
-}
-
-// 100% matching!
-void ADXT_SetOutVol(ADXT adxt, Sint32 vol)
-{
-    adxt->outvol = vol; 
-    
-    ADXRNA_SetOutVol(adxt->rna, vol);
-}
-
-// 100% matching!
-Sint32 ADXT_SetPauseBuf(void) 
-{
-    return 16384;
-}
-
-// 100% matching! 
-void ADXT_SetReloadSct(ADXT adxt, Sint32 minsct)
-{
-    adxt->minsct = minsct;
-}
-
-// 100% matching! 
-void ADXT_SetReloadTime(ADXT adxt, float time, Sint32 nch, Sint32 sfreq)
-{
-    Sint32 nblk;
-    Sint32 nsct;
-
-    nblk = nch * 18;
-    
-    nsct = (((Sint32)(time * sfreq) / 32) * nblk) / 2048;
-    
-    adxt->minsct = (nsct < adxt->maxsct) ? nsct : adxt->maxsct;
-}
-
-// 100% matching! 
-void ADXT_SetSvrFreq(ADXT adxt, Sint32 freq)
-{
-    adxt->svrfreq = freq;
-}
-
-// 100% matching! 
-void ADXT_SetTimeMode(Sint32 mode)
-{
-    if (mode == 1) 
-    {
-        adxt_time_unit = 5994;
-    }
-    else if (mode == 2) 
-    {
-        adxt_time_unit = 5000;
-    }
-    
-    adxt_time_mode = mode;
-}
-
-// 100% matching! 
-void ADXT_SetTimeOfst(ADXT adxt, Sint32 ofst)
-{
-    adxt->time_ofst = ofst;
-}
-
-// 100% matching! 
-void ADXT_SetWaitPlayStart(ADXT adxt, Sint32 flg)
-{
-    adxt->pstwait_flag = flg;
+    ADXT_DestroyAll();
 }
 
 // 100% matching! 
@@ -966,22 +374,6 @@ void ADXT_StartSj(ADXT adxt, SJ sj)
     adxt->svcnt = adxt_vsync_cnt;
     
     ADXCRS_Unlock();
-}
-
-// 100% matching! 
-void ADXT_Stop(ADXT adxt)
-{
-    if (adxt->pmode == ADXT_PMODE_SLFILE) 
-    {
-        LSC_Stop(adxt->lsc);
-        
-        if (adxt->sji != NULL) 
-        {
-            SJ_Reset(adxt->sji);
-        }
-    }
-    
-    ADXT_StopWithoutLsc(adxt);
 }
 
 // 100% matching!
@@ -1065,4 +457,614 @@ void ADXT_StopWithoutLsc(ADXT adxt)
     adxt->stat = ADXT_STAT_STOP;
     
     ADXCRS_Unlock();
+}
+
+// 100% matching! 
+void ADXT_Stop(ADXT adxt)
+{
+    if (adxt->pmode == ADXT_PMODE_SLFILE) 
+    {
+        LSC_Stop(adxt->lsc);
+        
+        if (adxt->sji != NULL) 
+        {
+            SJ_Reset(adxt->sji);
+        }
+    }
+    
+    ADXT_StopWithoutLsc(adxt);
+}
+
+// 100% matching!
+Sint32 ADXT_GetStat(ADXT adxt)
+{
+    return adxt->stat;
+}
+
+// 100% matching! 
+void ADXT_SetTimeMode(Sint32 mode)
+{
+    if (mode == 1) 
+    {
+        adxt_time_unit = 5994;
+    }
+    else if (mode == 2) 
+    {
+        adxt_time_unit = 5000;
+    }
+    
+    adxt_time_mode = mode;
+}
+
+// 100% matching! 
+void ADXT_GetTimeSfreq(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
+{
+    if ((adxt->stat == ADXT_STAT_PLAYING) || (adxt->stat == ADXT_STAT_DECEND))
+    {
+        ADXRNA_GetTime(adxt->rna, ncount, tscale);
+    } 
+    else if (adxt->stat == ADXT_STAT_PLAYEND) 
+    {
+        *ncount = ADXSJD_GetTotalNumSmpl(adxt->sjd);
+        
+        *tscale = ADXSJD_GetSfreq(adxt->sjd);
+        
+        *ncount *= 16 / ADXSJD_GetOutBps(adxt->sjd);
+    } 
+    else
+    {
+        *ncount = 0;
+        
+        *tscale = 1;
+    }
+
+    *ncount += adxt->time_ofst;
+}
+
+// 100% matching! 
+void ADXT_GetTimeSfreq2(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
+{
+    Sint32 nsmpl;
+    
+    if ((adxt->stat == ADXT_STAT_PLAYING) || (adxt->stat == ADXT_STAT_DECEND))
+    {
+        *tscale = ADXSJD_GetSfreq(adxt->sjd);
+
+        nsmpl = ADXSJD_GetDecNumSmpl(adxt->sjd) - ADXRNA_GetNumData(adxt->rna);
+        
+        *ncount = nsmpl;
+    } 
+    else if (adxt->stat == ADXT_STAT_PLAYEND) 
+    {
+        *ncount = ADXSJD_GetTotalNumSmpl(adxt->sjd);
+        
+        *tscale = ADXSJD_GetSfreq(adxt->sjd);
+        
+        *ncount *= 16 / ADXSJD_GetOutBps(adxt->sjd);
+    } 
+    else
+    {
+        *ncount = 0;
+        
+        *tscale = 1;
+    }
+
+    *ncount += adxt->time_ofst;
+}
+
+// 100% matching! 
+void ADXT_GetTime(ADXT adxt, Sint32 *ncount, Sint32 *tscale)
+{
+    Sint32 ncount0;
+	Sint32 tscale0;
+	Sint32 tmode;
+    
+    tmode = adxt_time_mode;
+    
+    if (tmode == 0) 
+    {
+        ADXT_GetTimeSfreq2(adxt, ncount, tscale);
+        return;
+    }
+
+    adxt_diff_av = 0;
+
+    if ((adxt->stat == ADXT_STAT_PLAYING) || (adxt->stat == ADXT_STAT_DECEND)) 
+    {
+        if (adxt->pause_flag == 0) 
+        {
+            *ncount = ((adxt_vsync_cnt - adxt->svcnt) * 100) + adxt->tvofst;
+        }
+        else 
+        {
+            *ncount = adxt->tvofst;
+        }
+
+        ADXT_GetTimeSfreq2(adxt, &ncount0, &tscale0);
+        
+        adxt_diff_av = (((float)ncount0 / tscale0) - ((float)*ncount / adxt_time_unit)) * 1000.0f;
+
+        if ((adxt_diff_av > 60.0f) || (adxt_diff_av < -60.0f)) 
+        {
+            ADXRNA_GetTime(adxt->rna, &ncount0, &tscale0);
+
+            adxt->tvofst = (Sint32)(((float)ncount0 / tscale0) * adxt_time_unit);
+            
+            adxt->svcnt = adxt_vsync_cnt;
+        }
+    }
+    else if (adxt->stat == ADXT_STAT_PLAYEND) 
+    {
+        ncount0 = ADXSJD_GetTotalNumSmpl(adxt->sjd);
+        
+        tscale0 = ADXSJD_GetSfreq(adxt->sjd);
+        
+        ncount0 *= 16 / ADXSJD_GetOutBps(adxt->sjd);
+        
+        *ncount = ((float)ncount0 / tscale0) * adxt_time_unit;
+        
+        *ncount += adxt->tvofst + 1;
+    }
+    else 
+    {
+        *ncount = 0;
+    }
+
+    *ncount += adxt->time_ofst;
+
+    *tscale = adxt_time_unit;
+}
+
+// 100% matching! 
+Sint32 ADXT_GetTimeReal(ADXT adxt)
+{
+    Sint32 time;
+	Sint32 tunit;
+    
+    ADXT_GetTime(adxt, &time, &tunit);
+    
+    return ((double)time / tunit) * 100.0f;
+}
+
+// 100% matching! 
+Sint32 ADXT_GetNumSmpl(ADXT adxt)
+{
+    if (adxt->stat >= ADXT_STAT_PREP) 
+    {
+        return ADXSJD_GetTotalNumSmpl(adxt->sjd);
+    }
+    
+    return 0;
+}
+
+// 100% matching! 
+Sint32 ADXT_GetSfreq(ADXT adxt) 
+{
+    if (adxt->stat >= ADXT_STAT_PREP) 
+    {
+        return ADXSJD_GetSfreq(adxt->sjd);
+    }
+    
+    return 0;
+}
+
+// 100% matching! 
+Sint32 ADXT_GetNumChan(ADXT adxt)
+{
+    if (adxt->stat >= ADXT_STAT_PREP) 
+    {
+        return ADXSJD_GetNumChan(adxt->sjd);
+    }
+    
+    return 0;
+}
+
+// 100% matching! 
+Sint32 ADXT_GetHdrLen(ADXT adxt)
+{
+    if (adxt->stat >= ADXT_STAT_PREP)
+    {
+        return ADXSJD_GetHdrLen(adxt->sjd);
+    }
+    
+    return 0;
+}
+
+// 100% matching! 
+Sint32 ADXT_GetFmtBps(ADXT adxt)
+{
+    if (adxt->stat >= ADXT_STAT_PREP) 
+    {
+        return ADXSJD_GetFmtBps(adxt->sjd);
+    }
+    
+    return 0;
+}
+
+// 100% matching!
+void ADXT_SetOutPan(ADXT adxt, Sint32 ch, Sint32 pan)
+{
+    adxt->outpan[ch] = pan;
+    
+    if (ch < adxt->maxnch) 
+    {
+        ADXRNA_SetOutPan(adxt->rna, ch, pan);
+    }
+    else 
+    {
+        ADXERR_CallErrFunc1((const Sint8*)"E8101208 ADXT_SetOutPan: parameter error");
+    }
+}
+
+// 100% matching! 
+Sint32 ADXT_GetOutPan(ADXT adxt, Sint32 ch) 
+{
+    return adxt->outpan[ch];
+}
+
+// 100% matching!
+void ADXT_SetOutVol(ADXT adxt, Sint32 vol)
+{
+    adxt->outvol = vol; 
+    
+    ADXRNA_SetOutVol(adxt->rna, vol);
+}
+
+// 100% matching! 
+Sint32 ADXT_GetOutVol(ADXT adxt) 
+{
+    return adxt->outvol;
+}
+
+// 100% matching! 
+void ADXT_SetSvrFreq(ADXT adxt, Sint32 freq)
+{
+    adxt->svrfreq = freq;
+}
+
+// 100% matching! 
+void ADXT_SetReloadTime(ADXT adxt, float time, Sint32 nch, Sint32 sfreq)
+{
+    Sint32 nblk;
+    Sint32 nsct;
+
+    nblk = nch * 18;
+    
+    nsct = (((Sint32)(time * sfreq) / 32) * nblk) / 2048;
+    
+    adxt->minsct = (nsct < adxt->maxsct) ? nsct : adxt->maxsct;
+}
+
+// 100% matching! 
+void ADXT_SetReloadSct(ADXT adxt, Sint32 minsct)
+{
+    adxt->minsct = minsct;
+}
+
+// 100% matching! 
+Sint32 ADXT_GetNumSctIbuf(ADXT adxt)
+{
+    if (adxt->sji != NULL) 
+    {
+        return SJ_GetNumData(adxt->sji, 1) / 2048;
+    }
+    
+    return 0;
+}
+
+// 100% matching! 
+Sint32 ADXT_GetNumSmplObuf(ADXT adxt, Sint32 chno)
+{
+    if (adxt->sjo[chno] != NULL) 
+    {
+        return SJ_GetNumData(adxt->sjo[chno], 1) / 2;
+    }
+
+    return 0;
+}
+
+// 100% matching! 
+float ADXT_GetIbufRemainTime(ADXT adxt) 
+{
+    Sint32 nbyte;
+	Sint32 nch;
+	float sfreq;
+	float time;
+    
+    time = 0;
+    
+    if ((ADXT_GetStat(adxt) >= ADXT_STAT_PREP) && (adxt->sji != NULL))
+    {
+        nbyte = SJ_GetNumData(adxt->sji, 1);
+        
+        nch = ADXT_GetNumChan(adxt);
+        
+        sfreq = ADXT_GetSfreq(adxt);
+        
+        time = ((nbyte / (18 * nch)) * 32) / sfreq;
+    }
+    
+    return time;
+}
+
+// 100% matching! 
+Sint32 ADXT_IsIbufSafety(ADXT adxt)
+{
+    if (adxt->sji != NULL) 
+    {
+        return SJ_GetNumData(adxt->sji, 1) >= (adxt->minsct * 2048);
+    }
+    
+    return FALSE;
+}
+
+// 100% matching!
+void ADXT_SetAutoRcvr(ADXT adxt, Sint32 rmode)
+{
+    adxt->autorcvr = rmode;
+}
+
+// 100% matching! 
+Sint32 ADXT_IsCompleted(ADXT adxt)
+{
+    return adxt->stat == ADXT_STAT_PLAYEND;
+}
+
+// 100% matching!
+void ADXT_ExecServer(void) 
+{
+    ADXT adxt;
+    Sint32 no;
+
+    ADXSJD_ExecServer();
+    
+    adxt_svrcnt_sjd = 0;
+    
+    ADXRNA_ExecServer();
+    
+    adxt_svrcnt_rna = 0;
+    
+    for (no = 0; no < ADXT_MAX_OBJ; no++)
+    {
+        adxt = &adxt_obj[no];
+        
+        if (adxt->used == TRUE) 
+        {
+            ADXT_ExecHndl(adxt);
+        }
+    }
+    
+    LSC_ExecServer();
+    
+    adxt_svrcnt_hndl = 0;
+    
+    adxt_svrcnt = 0;
+}
+
+// 100% matching! 
+Sint32 ADXT_GetErrCode(ADXT adxt)
+{
+    return adxt->ercode;
+}
+
+// 100% matching! 
+void ADXT_ClearErrCode(ADXT adxt)
+{
+    adxt->ercode = ADXT_ERR_OK;
+    
+    adxt->edecpos = 0;
+    adxt->edeccnt = 0;
+    
+    adxt->eshrtcnt = 0;
+} 
+
+// 100% matching! 
+Sint32 ADXT_GetLpCnt(ADXT adxt)
+{
+    return adxt->lpcnt;
+}
+
+// 100% matching!
+void ADXT_SetLpFlg(ADXT adxt, Sint32 flg)
+{
+    adxt->lpflg = flg;
+}
+
+// 100% matching! 
+SJ ADXT_GetInputSj(ADXT adxt)
+{
+    return adxt->sji;
+}
+
+// 100% matching! 
+void ADXT_SetWaitPlayStart(ADXT adxt, Sint32 flg)
+{
+    adxt->pstwait_flag = flg;
+}
+
+// 100% matching! 
+Sint32 ADXT_IsReadyPlayStart(ADXT adxt)
+{
+    return adxt->pstready_flag;
+}
+
+// 100% matching! 
+void ADXT_EntryErrFunc(void (*func)(), void *obj)
+{
+    ADXERR_EntryErrFunc(func, obj);
+}
+
+// 100% matching!
+Sint32 ADXT_SetPauseBuf(void) 
+{
+    return 16384;
+}
+
+// 100% matching! 
+Sint32 ADXT_DiscardSmpl(ADXT adxt, Sint32 nsmpl)
+{
+    Sint32 nd;
+	Sint32 ncount;
+	Sint32 tscale;
+
+    if (adxt->pause_flag == 0)
+    {
+        return 0;
+    }
+    
+    nd = ADXRNA_DiscardData(adxt->rna, nsmpl);
+    
+    ADXT_ExecServer();
+    
+    ADXRNA_GetTime(adxt->rna, &ncount, &tscale);
+    
+    adxt->svcnt = adxt_vsync_cnt;
+    
+    adxt->tvofst = (Sint32)(((float)ncount / tscale) * adxt_time_unit);
+    
+    return nd;
+}
+
+// 100% matching! 
+void ADXT_SetTimeOfst(ADXT adxt, Sint32 ofst)
+{
+    adxt->time_ofst = ofst;
+}
+
+// 100% matching!
+void ADXT_SetLnkSw(ADXT adxt, Sint32 sw)
+{
+    adxt->lnkflg = sw;
+}
+
+// 100% matching! 
+Sint32 ADXT_GetLnkSw(ADXT adxt)
+{
+    return adxt->lnkflg;
+}
+
+// 100% matching! 
+void ADXT_EntryFltFunc(ADXT adxt, void (*f)(), void *obj)
+{
+    ADXSJD_EntryFltFunc(adxt->sjd, f, obj);
+}
+
+// 100% matching! 
+Sint32 ADXT_GetDecNumSmpl(ADXT adxt)
+{
+    return ADXSJD_GetDecNumSmpl(adxt->sjd);
+}
+
+// 100% matching! 
+Sint32 ADXT_IsHeader(Sint8 *adr, Sint32 siz, Sint32 *hdrsiz)
+{
+    Sint16 dlen;
+	Sint8 code;
+	Sint8 bps;
+	Sint8 blksize;
+	Sint8 nch;
+	Sint32 sfreq;
+	Sint32 total_nsmpl;
+	Sint32 nsmpl_blk;
+
+    if (siz < 2) 
+    {
+        return 0;
+    }
+    
+    if (BSWAP_U16(adr) != 0x8000) 
+    {
+        return 0;
+    }
+    
+    if (ADX_DecodeInfo(adr, siz, &dlen, &code, &bps, &blksize, &nch, &sfreq, &total_nsmpl, &nsmpl_blk) < 0) 
+    {  
+        return 0;
+    }
+   
+    *hdrsiz = dlen;
+    
+    return 1;
+}
+
+// 100% matching! 
+Sint32 ADXT_IsEndcode(Sint8 *adr, Sint32 siz, Sint32 *endsiz)
+{
+    if (siz <= 1) 
+    {
+        return 0;
+    }
+
+    if (BSWAP_U16(adr) != 0x8001) 
+    {
+        return 0;
+    }
+
+    *endsiz = siz;
+
+    return 1;
+}
+
+// 100% matching! 
+Sint32 ADXT_InsertSilence(ADXT adxt, Sint32 nch, Sint32 nsmpl)
+{
+    SJ sj;
+	SJCK ck;
+	SJCK ck2;
+	Sint32 nblk; 
+	Sint32 nbyte;
+	Sint32 nbyte2;
+	Sint32 wsize;
+	Sint32 blklen; 
+
+    sj = adxt->sji;
+   
+    if (sj == NULL) 
+    {
+        return 0;
+    }
+    
+    nblk = nch * 18;
+    
+    nbyte = nsmpl / 32;
+    
+    nbyte *= nblk;
+    
+    SJ_GetChunk(sj, 0, nbyte, &ck);
+    
+    nbyte2 = (ck.len / nblk) * nblk;
+    
+    memset(ck.data, 0, nbyte2);
+    
+    SJ_SplitChunk(&ck, nbyte2, &ck, &ck2);
+    
+    blklen = nbyte2;
+    
+    SJ_PutChunk(sj, 1, &ck);
+    
+    SJ_UngetChunk(sj, 0, &ck2);
+    
+    SJ_GetChunk(sj, 0, nbyte - blklen, &ck);
+    
+    nbyte2 = (ck.len / nblk) * nblk;
+    
+    memset(ck.data, 0, nbyte2);
+    
+    SJ_SplitChunk(&ck, nbyte2, &ck, &ck2);
+    
+    blklen += nbyte2;
+    
+    SJ_PutChunk(sj, 1, &ck);
+    
+    SJ_UngetChunk(sj, 0, &ck2);
+    
+    wsize = (blklen / nblk) * 32;
+    
+    return wsize;
+}
+
+// 100% matching!
+void ADXT_SetOutputMono(Sint32 flag)
+{
+    ADX_SetDecodeSteAsMonoSw(flag);
 }

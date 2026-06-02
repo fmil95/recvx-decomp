@@ -3,22 +3,22 @@
 
 #include "types.h"
 
-/*int njIsParalellL2L(_anon1* pLine1, _anon1* pLine2);
-int njIsParalellL2PL(_anon1* pLine, _anon1* pPlane);*/
+Bool	njIsParalellL2L(NJS_LINE *l1, NJS_LINE *l2);
+Bool	njIsParalellL2PL(NJS_LINE *l, NJS_PLANE *pl);
 Float	njDistanceP2P(NJS_POINT3 *p1, NJS_POINT3 *p2);
-/*float njDistanceP2L(_anon0* pPoint, _anon1* pLine, _anon0* pCross);
-float njDistanceP2PL(_anon0* pPoint, _anon1* pPlane, _anon0* pCross);
-float njDistanceL2L(_anon1* pLine1, _anon1* pLine2, _anon0* pCross1, _anon0* pCross2);
-float njDistanceL2PL(_anon1* pLine, _anon1* pPlane, _anon0* pCross);
-void njGetPlaneNormal(_anon0* pPoint, _anon0* pVector);*/
+Float	njDistanceP2L(NJS_POINT3 *p, NJS_LINE *l, NJS_POINT3 *cp);
+Float	njDistanceP2PL(NJS_POINT3 *p, NJS_PLANE *pl, NJS_POINT3 *cp);
+Float	njDistanceL2L(NJS_LINE *l1, NJS_LINE *l2, NJS_POINT3 *cp1, NJS_POINT3 *cp2);
+Float	njDistanceL2PL(NJS_LINE *l, NJS_PLANE *pl, NJS_POINT3 *cp);
+void	njGetPlaneNormal(NJS_POINT3 *p, NJS_VECTOR *v);
 void	njGetPlaneNormal2(NJS_POINT3 *p0, NJS_POINT3 *p1, NJS_POINT3 *p2, NJS_VECTOR *v);
-/*int njCollisionCheckSS(_anon4* pSphere1, _anon4* pSphere2);
-int njCollisionCheckCC(_anon2* pCap1, _anon2* pCap2);
-int njCollisionCheckSC(_anon4* pSphere, _anon2* pCapsule);
-int njCollisionCheckBS(_anon3* pBox, _anon4* pSphere);
-int njCollisionCheckBC(_anon3* pBox, _anon2* pCapsule);
-int njCheckPlane4AndLine(_anon0* pP1, _anon0* pP2, _anon0* pP3, _anon0* pP4, _anon0* pPN, _anon1* pLine);
-int njCollisionCheckBC2(_anon3* pBox, _anon2* pCapsule);
-int njCheckPlane4IncludePoint(_anon0* pP1, _anon0* pP2, _anon0* pP3, _anon0* pP4, _anon0* pPC);*/
+Int     njCollisionCheckSS(NJS_SPHERE *sphere1, NJS_SPHERE *sphere2);
+Int     njCollisionCheckCC(NJS_CAPSULE *h1, NJS_CAPSULE *h2);
+Int     njCollisionCheckSC(NJS_SPHERE *sphere, NJS_CAPSULE *capsule);
+Int     njCollisionCheckBS(NJS_BOX *box, NJS_SPHERE *sphere);
+Int     njCollisionCheckBC(NJS_BOX *box, NJS_CAPSULE *capsule);
+int njCheckPlane4AndLine(NJS_POINT3* pP1, NJS_POINT3* pP2, NJS_POINT3* pP3, NJS_POINT3* pP4, NJS_POINT3* pPN, NJS_LINE* pLine);
+int njCollisionCheckBC2(NJS_BOX* pBox, NJS_CAPSULE* pCapsule);
+int njCheckPlane4IncludePoint(NJS_POINT3* pP1, NJS_POINT3* pP2, NJS_POINT3* pP3, NJS_POINT3* pP4, NJS_POINT3* pPC);
 
 #endif

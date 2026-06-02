@@ -5,9 +5,8 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include "lsc.h"
 #include <stdarg.h>
-#include <va-mips.h>
 
-void LSC_CallErrFunc(const char *fmt, ...);
+void LSC_CallErrFunc(Sint8 *fmt, ...);
 void LSC_EntryErrFunc(LSC_ERRFN errfn, void *obj);
 
 #endif

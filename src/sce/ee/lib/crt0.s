@@ -78,6 +78,12 @@ zerobss:
 	syscall
 
 /*
+ * initialize main thread
+ */
+	jal	InitThread
+	nop
+
+/*
  * flush data cache
  */
 	jal	FlushCache

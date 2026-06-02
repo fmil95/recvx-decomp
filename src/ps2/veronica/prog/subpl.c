@@ -19,7 +19,21 @@ Subpl_proc Subpl_tbl[7] =
     em_sce,
     em_sce
 };
-InitSubpl_proc subpl_init_tbl[120] = { em60_init };
+InitSubpl_proc subpl_init_tbl[120] = 
+{ 
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init,
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init,
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init,
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init,
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init,
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init,
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init,
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init,
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init,
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init,
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init,
+    em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init, em60_init
+};
 MvSubpl_proc subpl_mv_tbl[1] = { bhEne_Event2 };
 Mv00Subpl_proc subpl_mv00_tbl[15] = 
 {
