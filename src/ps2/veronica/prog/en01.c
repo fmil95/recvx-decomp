@@ -2580,50 +2580,48 @@ void bhEne01_PlayerControl(BH_PWORK* pl, BH_PWORK* epw)
 	}
 }
 
-// 
-// Start address: 0x176ee0
 void bhEne01_SearchNeck(BH_PWORK* epw)
 {
-	// npobj* obj;
-	BH_PWORK* epp;
-	scePrintf("bhEne01_SearchNeck - UNIMPLEMENTED!\n");
-	// Line 1343, Address: 0x176ee0, Func Offset: 0
-	// Line 1347, Address: 0x176ef0, Func Offset: 0x10
-	// Line 1344, Address: 0x176ef4, Func Offset: 0x14
-	// Line 1347, Address: 0x176ef8, Func Offset: 0x18
-	// Line 1349, Address: 0x176f04, Func Offset: 0x24
-	// Line 1352, Address: 0x176f1c, Func Offset: 0x3c
-	// Line 1354, Address: 0x176f3c, Func Offset: 0x5c
-	// Line 1355, Address: 0x176f40, Func Offset: 0x60
-	// Line 1354, Address: 0x176f44, Func Offset: 0x64
-	// Line 1355, Address: 0x176f48, Func Offset: 0x68
-	// Line 1357, Address: 0x176f4c, Func Offset: 0x6c
-	// Line 1358, Address: 0x176f5c, Func Offset: 0x7c
-	// Line 1359, Address: 0x176f64, Func Offset: 0x84
-	// Line 1363, Address: 0x176fbc, Func Offset: 0xdc
-	// Line 1364, Address: 0x176fc0, Func Offset: 0xe0
-	// Line 1365, Address: 0x176fc4, Func Offset: 0xe4
-	// Line 1363, Address: 0x176fd0, Func Offset: 0xf0
-	// Line 1365, Address: 0x176fd4, Func Offset: 0xf4
-	// Line 1364, Address: 0x176fd8, Func Offset: 0xf8
-	// Line 1365, Address: 0x176fdc, Func Offset: 0xfc
-	// Line 1366, Address: 0x176fe8, Func Offset: 0x108
-	// Line 1367, Address: 0x176ff0, Func Offset: 0x110
-	// Line 1371, Address: 0x176ff8, Func Offset: 0x118
-	// Line 1372, Address: 0x176ffc, Func Offset: 0x11c
-	// Line 1371, Address: 0x177004, Func Offset: 0x124
-	// Line 1372, Address: 0x177008, Func Offset: 0x128
-	// Line 1374, Address: 0x177010, Func Offset: 0x130
-	// Line 1376, Address: 0x177020, Func Offset: 0x140
-	// Line 1377, Address: 0x17702c, Func Offset: 0x14c
-	// Line 1378, Address: 0x177040, Func Offset: 0x160
-	// Line 1381, Address: 0x177048, Func Offset: 0x168
-	// Line 1382, Address: 0x17704c, Func Offset: 0x16c
-	// Line 1381, Address: 0x177050, Func Offset: 0x170
-	// Line 1382, Address: 0x177058, Func Offset: 0x178
-	// Line 1385, Address: 0x177074, Func Offset: 0x194
-	// Line 1388, Address: 0x177080, Func Offset: 0x1a0
-	// Func End, Address: 0x177094, Func Offset: 0x1b4
+	NJS_CNK_OBJECT * obj;  // r2
+	struct BH_PWORK * epp; // r5
+
+	epp = (struct BH_PWORK *)epw->lkwkp;
+
+	if (epw->mode0 < 5) {
+		if (EXP0_I(0x40) & 0x80000000) {
+			if ((EPP_EXP0_I(0x40) & 0x1000) || (EXP0_I(0x40) & 0x1000)) {
+				epw->mlwP->objP[8].ang[1] = epw->wax;
+				epw->mlwP->objP[11].ang[1] = EXP0_I(0x50);
+			} else {
+				if ((((EPP_EXP0_I(0x40) & 0x800) || (EXP0_I(0x40) & 0x800)) &&
+					 ((EPP_EXP0_UC(0x28) & 0x40) || (EXP0_UC(0x28) & 0x40))) &&
+					(EXP0_F(0x54) < 35.0f)) {
+					obj = &epw->mlwP->objP[11];
+					obj->ang[1] = EXP0_I(0x50);
+					bhEne01_RotNeck(epw, 11, plp, 5);
+					EXP0_I(0x50) = obj->ang[1];
+				} else {
+					obj = &epw->mlwP->objP[11];
+
+					if (EXP0_I(0x50) != 0) {
+						if (EXP0_I(0x50) < 0x8000) {
+							EXP0_I(0x50) -= 0x38E;
+							if (EXP0_I(0x50) < 0) {
+								EXP0_I(0x50) = 0;
+							}
+						} else {
+							EXP0_I(0x50) += 0x38E;
+							if (EXP0_I(0x50) >= 0x10000) {
+								EXP0_I(0x50) = 0;
+							}
+						}
+					}
+
+					obj->ang[1] = EXP0_I(0x50);
+				}
+			}
+		}
+	}
 }
 
 // 
