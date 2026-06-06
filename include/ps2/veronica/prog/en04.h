@@ -2,6 +2,7 @@
 #define _EN04_H_
 
 #include "types.h"
+#include "macros.h"
 
 void bhEne04_DmmyBrain();
 void bhEne04(BH_PWORK* epw);
