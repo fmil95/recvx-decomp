@@ -1648,14 +1648,30 @@ int en04_atari_flg;
 void(*bhEne04_Mode0)(BH_PWORK*)[6];
 void(*bhEne04_MoveType)(BH_PWORK*)[3];
 void(*bhEne04_NageType)(BH_PWORK*)[3];
-void(*bhEne04_DamageType)(BH_PWORK*)[3];
-void(*bhEne04_DieType)(BH_PWORK*)[3];
+*/
+void (*bhEne04_DamageType[3])(BH_PWORK*) = {
+    bhEne04_DGType00, 
+    bhEne04_DGType00, 
+    bhEne04_DGType00  
+};
+
+void (*bhEne04_DieType[3])(BH_PWORK*) = {
+    bhEne04_DDType00,
+    bhEne04_DDType00,
+    bhEne04_DDType00
+};
+/*
 void(*bhEne04_BrainMode2)(BH_PWORK*)[12];
 void(*bhEne04_MoveMode2)(BH_PWORK*)[13];
 void(*bhEne04_NageMode2)(BH_PWORK*)[2];
 void(*bhEne04_DamageMode2)(BH_PWORK*)[3];
 void(*bhEne04_DieMode2)(BH_PWORK*)[1];
-void(*bhEne04_PlyDmgMode)(BH_PWORK*, BH_PWORK*)[2];
+*/
+void (*bhEne04_PlyDmgMode[2])(BH_PWORK*, BH_PWORK*) = {
+    bhEne04_PlyDG00, 
+    bhEne04_PlyDG01  
+};
+/*
 _anon11* rom;
 _anon19* sys;
 BH_PWORK* plp;
@@ -1664,14 +1680,14 @@ float lcmat[16][0];
 BH_PWORK ene[0];
 int kaidan_ang[0];
 void(*bhEne04Sub_Mode0)(BH_PWORK*)[4];
+*/
 
-// 
-// Start address: 0x1a4ec0
-void bhEne04_DmmyBrain()
+// 100% matching!
+void bhEne04_DmmyBrain(void)
 {
-	// Line 103, Address: 0x1a4ec0, Func Offset: 0
-	// Func End, Address: 0x1a4ec8, Func Offset: 0x8
-}*/
+
+}
+
 
 // 
 // Start address: 0x1a4ed0
@@ -1908,19 +1924,16 @@ void bhEne04_DamageAdd(BH_PWORK* epw)
 	// Line 1025, Address: 0x1a58c4, Func Offset: 0x284
 	// Func End, Address: 0x1a58e0, Func Offset: 0x2a0
 }
-
-// 
-// Start address: 0x1a58e0
+*/
+// 100% matching!
 void bhEne04_PlayerControl(BH_PWORK* pl, BH_PWORK* epw)
 {
-	// Line 1044, Address: 0x1a58e0, Func Offset: 0
-	// Line 1045, Address: 0x1a58e8, Func Offset: 0x8
-	// Line 1047, Address: 0x1a5900, Func Offset: 0x20
-	// Line 1048, Address: 0x1a591c, Func Offset: 0x3c
-	// Line 1049, Address: 0x1a593c, Func Offset: 0x5c
-	// Func End, Address: 0x1a5948, Func Offset: 0x68
+    if ((EXP0_I(0x10) & 0x40000) && (pl->mode0 == 4 || pl->mode0 == 6))
+    {
+        bhEne04_PlyDmgMode[pl->mode1](pl, epw);
+    }
 }
-
+/*
 // 
 // Start address: 0x1a5950
 void bhEne04_PlayerLink(BH_PWORK* pl, BH_PWORK* epw)
@@ -2143,33 +2156,22 @@ void bhEne04_Nage(BH_PWORK* epw)
 	// Line 1508, Address: 0x1a605c, Func Offset: 0x1c
 	// Func End, Address: 0x1a6074, Func Offset: 0x34
 }
-
-// 
-// Start address: 0x1a6080
-void bhEne04_Damage(BH_PWORK* epw)
+*/
+// 100% matching!
+void bhEne04_Damage(BH_PWORK* epw /* r2 */)
 {
-	// Line 1526, Address: 0x1a6080, Func Offset: 0
-	// Line 1528, Address: 0x1a6084, Func Offset: 0x4
-	// Line 1526, Address: 0x1a6088, Func Offset: 0x8
-	// Line 1528, Address: 0x1a608c, Func Offset: 0xc
-	// Line 1526, Address: 0x1a6090, Func Offset: 0x10
-	// Line 1528, Address: 0x1a609c, Func Offset: 0x1c
-	// Func End, Address: 0x1a60b4, Func Offset: 0x34
+  EXP0_I(0x10) &= 0xFFFFFF7F;
+  (*bhEne04_DamageType[epw->type])(epw);
 }
 
-// 
-// Start address: 0x1a60c0
-void bhEne04_Die(BH_PWORK* epw)
+// 100% matching!
+void bhEne04_Die(BH_PWORK* epw /* r2 */)
 {
-	// Line 1546, Address: 0x1a60c0, Func Offset: 0
-	// Line 1548, Address: 0x1a60c4, Func Offset: 0x4
-	// Line 1546, Address: 0x1a60c8, Func Offset: 0x8
-	// Line 1548, Address: 0x1a60cc, Func Offset: 0xc
-	// Line 1546, Address: 0x1a60d0, Func Offset: 0x10
-	// Line 1548, Address: 0x1a60dc, Func Offset: 0x1c
-	// Func End, Address: 0x1a60f4, Func Offset: 0x34
+  EXP0_I(0x10) &= 0xFFFFFF7F;
+  (*bhEne04_DieType[epw->type])(epw);
 }
 
+/*
 // 
 // Start address: 0x1a6100
 void bhEne04_MVType00(BH_PWORK* epw)
@@ -4597,4 +4599,3 @@ void bhEne04_SePlay(BH_PWORK* epw, int no)
 	// Line 5838, Address: 0x1ac7ac, Func Offset: 0x3c
 	// Func End, Address: 0x1ac7b8, Func Offset: 0x48
 }*/
-
