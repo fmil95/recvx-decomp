@@ -1649,13 +1649,15 @@ void(*bhEne04_Mode0)(BH_PWORK*)[6];
 void(*bhEne04_MoveType)(BH_PWORK*)[3];
 void(*bhEne04_NageType)(BH_PWORK*)[3];
 */
-void (*bhEne04_DamageType[3])(BH_PWORK*) = {
+void (*bhEne04_DamageType[3])(BH_PWORK*) =
+{
     bhEne04_DGType00, 
     bhEne04_DGType00, 
     bhEne04_DGType00  
 };
 
-void (*bhEne04_DieType[3])(BH_PWORK*) = {
+void (*bhEne04_DieType[3])(BH_PWORK*) = 
+{
     bhEne04_DDType00,
     bhEne04_DDType00,
     bhEne04_DDType00
@@ -1667,7 +1669,8 @@ void(*bhEne04_NageMode2)(BH_PWORK*)[2];
 void(*bhEne04_DamageMode2)(BH_PWORK*)[3];
 void(*bhEne04_DieMode2)(BH_PWORK*)[1];
 */
-void (*bhEne04_PlyDmgMode[2])(BH_PWORK*, BH_PWORK*) = {
+void (*bhEne04_PlyDmgMode[2])(BH_PWORK*, BH_PWORK*) = 
+{
     bhEne04_PlyDG00, 
     bhEne04_PlyDG01  
 };
