@@ -31,6 +31,11 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 
+typedef struct {
+    float x;
+    float z;
+} NJS_POINT2_XZ;
+
 typedef struct O_WORK
 {
 	// total size: 0x50
