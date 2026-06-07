@@ -1,7 +1,8 @@
 #include "../../../ps2/veronica/prog/en27.h"
+#include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
-#include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/Motion.h"
 
 void (*bhEne27_Mode0[6])(BH_PWORK*);     // DATA
 void (*bhEne27_BrainType[1])(BH_PWORK*); // DATA
@@ -399,29 +400,27 @@ void bhEne27_Die()
 
 }
 
-// 
-// Start address: 0x2107e0
+// 100% matching!
 void bhEne27_IncubateEffect(BH_PWORK* epw)
 {
-	// Line 589, Address: 0x2107e0, Func Offset: 0
-	// Line 590, Address: 0x2107ec, Func Offset: 0xc
-	// Line 596, Address: 0x2107f0, Func Offset: 0x10
-	// Line 589, Address: 0x2107f4, Func Offset: 0x14
-	// Line 590, Address: 0x210800, Func Offset: 0x20
-	// Line 601, Address: 0x210808, Func Offset: 0x28
-	// Line 590, Address: 0x21080c, Func Offset: 0x2c
-	// Line 591, Address: 0x210818, Func Offset: 0x38
-	// Line 592, Address: 0x21082c, Func Offset: 0x4c
-	// Line 593, Address: 0x210840, Func Offset: 0x60
-	// Line 594, Address: 0x210854, Func Offset: 0x74
-	// Line 595, Address: 0x210868, Func Offset: 0x88
-	// Line 596, Address: 0x21087c, Func Offset: 0x9c
-	// Line 597, Address: 0x210890, Func Offset: 0xb0
-	// Line 598, Address: 0x2108a4, Func Offset: 0xc4
-	// Line 599, Address: 0x2108b8, Func Offset: 0xd8
-	// Line 601, Address: 0x2108cc, Func Offset: 0xec
-	// Func End, Address: 0x2108ec, Func Offset: 0x10c
-	scePrintf("bhEne27_IncubateEffect - UNIMPLEMENTED!\n");
+    sys->ef.id = 5;
+    
+    sys->ef.flg  = 1;
+    sys->ef.type = 0;
+    
+    sys->ef.mdlver = 0;
+    
+    sys->ef.px = 0.0f;
+    sys->ef.py = 0.0f;
+    sys->ef.pz = 0.0f;
+    
+    sys->ef.sx = 1.0f;
+    sys->ef.sy = 1.0f;
+    sys->ef.sz = 1.0f;
+    
+    sys->ef.ay = 0;
+    
+    bhSetEffectTb(&sys->ef, (NJS_POINT3*)&epw->lox, epw->lkwkp, epw->lkono); 
 }
 
 // 
