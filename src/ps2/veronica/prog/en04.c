@@ -1,4 +1,6 @@
 #include "../../../ps2/veronica/prog/en04.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/zonzon.h"
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;
@@ -2465,18 +2467,16 @@ void bhEne04_Brain(BH_PWORK* epw)
 	// Line 2188, Address: 0x1a6ddc, Func Offset: 0x11c
 	// Func End, Address: 0x1a6dec, Func Offset: 0x12c
 }
-
-// 
-// Start address: 0x1a6df0
+*/
+// 100% matching!
 void bhEne04_Brain00(BH_PWORK* epw)
 {
-	// Line 2205, Address: 0x1a6df0, Func Offset: 0
-	// Line 2207, Address: 0x1a6dfc, Func Offset: 0xc
-	// Line 2211, Address: 0x1a6e94, Func Offset: 0xa4
-	// Line 2213, Address: 0x1a6ea8, Func Offset: 0xb8
-	// Func End, Address: 0x1a6eb8, Func Offset: 0xc8
+    if (((ikou3(epw, (NJS_VECTOR*)&plp->px, 0x3000) == 0) && (EXP0_F(0x20) < 35.0f)) || ((plp->mode1 == 1) && (plp->mode2 == 0x45)) || ((plp->mode2 == 6) && (EXP0_F(0x20) < 40.0f)))
+    {
+        EXP0_I(0x10) |= 0x400000;
+    }
 }
-
+/*
 // 
 // Start address: 0x1a6ec0
 void bhEne04_Brain01(BH_PWORK* epw)
