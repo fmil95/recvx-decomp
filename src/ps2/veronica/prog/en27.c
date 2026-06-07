@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/en27.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 
@@ -93,28 +94,39 @@ void bhEne27_Brain(BH_PWORK* epw)
 	bhEne27_BrainType[0](epw);
 }
 
-/*// 
-// Start address: 0x20fe10
+// 100% matching!
 void bhEne27_BR00(BH_PWORK* epw)
 {
-	_anon7* hp;
-	// Line 249, Address: 0x20fe10, Func Offset: 0
-	// Line 253, Address: 0x20fe1c, Func Offset: 0xc
-	// Line 255, Address: 0x20fe34, Func Offset: 0x24
-	// Line 257, Address: 0x20fe44, Func Offset: 0x34
-	// Line 258, Address: 0x20fe54, Func Offset: 0x44
-	// Line 260, Address: 0x20fe78, Func Offset: 0x68
-	// Line 261, Address: 0x20fe94, Func Offset: 0x84
-	// Line 262, Address: 0x20fe9c, Func Offset: 0x8c
-	// Line 267, Address: 0x20fea0, Func Offset: 0x90
-	// Line 272, Address: 0x20fea8, Func Offset: 0x98
-	// Line 273, Address: 0x20feb4, Func Offset: 0xa4
-	// Line 274, Address: 0x20febc, Func Offset: 0xac
-	// Line 275, Address: 0x20fec8, Func Offset: 0xb8
-	// Line 276, Address: 0x20fed0, Func Offset: 0xc0
-	// Line 279, Address: 0x20fed4, Func Offset: 0xc4
-	// Func End, Address: 0x20fee4, Func Offset: 0xd4
-}*/
+    ATR_WORK* hp;
+    
+    if ((!(plp->flg & 0x4)) && (!(plp->stflg & 0x30))) 
+    {
+        hp = bhCheckFloorEnemy(plp->flr_no, plp->px, plp->pz);
+        
+        if ((hp != NULL) && ((hp->prm0 == 27) && (hp->prm2 == 0))) 
+        {
+            if ((hp->prm1 == 0) || (hp->prm1 == (epw->type + 1))) 
+            {
+                epw->mode2 = 1;
+                epw->mode3 = 0;
+                
+                hp->prm2 = 1;
+                return;
+            }
+        } 
+        
+        if (epw->ct2 > 0)
+        {
+            epw->ct2--;
+            
+            if (epw->ct2 == 0) 
+            {
+                epw->mode2 = 1;
+                epw->mode3 = 0;
+            }
+        }
+    }
+}
 
 // 100% matching!
 void bhEne27_Move(BH_PWORK* epw)
