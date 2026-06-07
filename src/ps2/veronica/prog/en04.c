@@ -1666,7 +1666,14 @@ void (*bhEne04_DieType[3])(BH_PWORK*) =
 void(*bhEne04_BrainMode2)(BH_PWORK*)[12];
 void(*bhEne04_MoveMode2)(BH_PWORK*)[13];
 void(*bhEne04_NageMode2)(BH_PWORK*)[2];
-void(*bhEne04_DamageMode2)(BH_PWORK*)[3];
+*/
+void (*bhEne04_DamageMode2[3])(BH_PWORK*) =
+{
+    bhEne04_DG00, 
+    bhEne04_DG01,
+    bhEne04_DG00
+};
+/*
 void(*bhEne04_DieMode2)(BH_PWORK*)[1];
 */
 void (*bhEne04_PlyDmgMode[2])(BH_PWORK*, BH_PWORK*) = 
@@ -3805,15 +3812,13 @@ void bhEne04_NG01(BH_PWORK* epw)
 	// Line 4570, Address: 0x1aab24, Func Offset: 0x194
 	// Func End, Address: 0x1aab34, Func Offset: 0x1a4
 }
-
-// 
-// Start address: 0x1aab40
-void bhEne04_DGType00(BH_PWORK* epw)
+*/
+// 100% matching!
+void bhEne04_DGType00(BH_PWORK *epw)
 {
-	// Line 4588, Address: 0x1aab40, Func Offset: 0
-	// Func End, Address: 0x1aab60, Func Offset: 0x20
+    (*bhEne04_DamageMode2[epw->mode2])(epw);
 }
-
+/*
 // 
 // Start address: 0x1aab60
 void bhEne04_DG00(BH_PWORK* epw)
