@@ -1490,9 +1490,9 @@ struct _anon43
 	unsigned char* recp;
 };
 
-void(*bhEne27_Mode0)(BH_PWORK*)[6];
-void(*bhEne27_BrainType)(BH_PWORK*)[1];
-void(*bhEne27_MoveMode2)(BH_PWORK*)[3];
+void(*bhEne27_Mode0)(BH_PWORK*)[6];*/
+void (*bhEne27_BrainType[1])(BH_PWORK*); // DATA
+/*void(*bhEne27_MoveMode2)(BH_PWORK*)[3];
 _anon25* sys;
 _anon10* rom;
 BH_PWORK* plp;*/
@@ -1577,17 +1577,15 @@ void bhEne27_Init(BH_PWORK* epw)
 	// Line 226, Address: 0x20fde4, Func Offset: 0x294
 	// Line 227, Address: 0x20fdf0, Func Offset: 0x2a0
 	// Func End, Address: 0x20fe00, Func Offset: 0x2b0
-}
+}*/
 
-// 
-// Start address: 0x20fe00
+// 100% matching!
 void bhEne27_Brain(BH_PWORK* epw)
 {
-	// Line 238, Address: 0x20fe00, Func Offset: 0
-	// Func End, Address: 0x20fe10, Func Offset: 0x10
+	bhEne27_BrainType[0](epw);
 }
 
-// 
+/*// 
 // Start address: 0x20fe10
 void bhEne27_BR00(BH_PWORK* epw)
 {

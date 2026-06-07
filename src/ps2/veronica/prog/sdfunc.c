@@ -1402,6 +1402,7 @@ void StopSystemSe() {
 }
 
 // 100% matching!
+// syukan = custom; habit; manners
 void SetSyukanModeSoundParam() {
     if (sys->gm_flg & 0x01000000) {
         RequestInfo.Volume = 0;
@@ -1578,6 +1579,7 @@ void CallPlayerWeaponSeEx(NJS_POINT3* pPos, int SeNo, int SlotNo)
 }
 
 // 100% matching!
+// yakkyou = (ammunition) cartridge; shell case
 void CallYakkyouSe(NJS_POINT3* pPos, int SeNo) 
 {
     if (SpqFileReadRequestFlag != 2) 
