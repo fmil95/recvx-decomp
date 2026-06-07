@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/en04.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;
@@ -2414,33 +2415,53 @@ _anon12* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned ch
 	// Line 2066, Address: 0x1a6b7c, Func Offset: 0xec
 	// Func End, Address: 0x1a6b84, Func Offset: 0xf4
 }
-
-// 
-// Start address: 0x1a6b90
+*/
+// 100% matching 
 void bhEne04_EneSearch(BH_PWORK* epw)
 {
-	// Line 2089, Address: 0x1a6b90, Func Offset: 0
-	// Line 2090, Address: 0x1a6b9c, Func Offset: 0xc
-	// Line 2093, Address: 0x1a6bac, Func Offset: 0x1c
-	// Line 2095, Address: 0x1a6bc4, Func Offset: 0x34
-	// Line 2098, Address: 0x1a6bd8, Func Offset: 0x48
-	// Line 2100, Address: 0x1a6be8, Func Offset: 0x58
-	// Line 2101, Address: 0x1a6bf0, Func Offset: 0x60
-	// Line 2105, Address: 0x1a6bf8, Func Offset: 0x68
-	// Line 2107, Address: 0x1a6c20, Func Offset: 0x90
-	// Line 2112, Address: 0x1a6c2c, Func Offset: 0x9c
-	// Line 2114, Address: 0x1a6c44, Func Offset: 0xb4
-	// Line 2117, Address: 0x1a6c50, Func Offset: 0xc0
-	// Line 2118, Address: 0x1a6c54, Func Offset: 0xc4
-	// Line 2121, Address: 0x1a6c5c, Func Offset: 0xcc
-	// Line 2123, Address: 0x1a6c64, Func Offset: 0xd4
-	// Line 2126, Address: 0x1a6c74, Func Offset: 0xe4
-	// Line 2129, Address: 0x1a6c84, Func Offset: 0xf4
-	// Line 2131, Address: 0x1a6c9c, Func Offset: 0x10c
-	// Line 2133, Address: 0x1a6ca4, Func Offset: 0x114
-	// Func End, Address: 0x1a6cb4, Func Offset: 0x124
-}
+    EXP0_UC(0) |= 0x80;
 
+    if ((EXP0_UC(0) & 0x1F) < 4)
+    {
+        if (bhSearchPlayer(epw, 0x471C) != -1)
+        {
+            if ((unsigned char*)EXP0_I(0x44) == NULL)
+            {
+                EXP0_UC(0) |= 0x20;
+            }
+            else
+            {
+                if (*(unsigned char*)(EXP0_I(0x44) + 1) == 1 || 
+                    *(unsigned char*)(EXP0_I(0x44) + 1) == 3 || 
+                    *(unsigned char*)(EXP0_I(0x44) + 1) == 5) 
+                {
+                    EXP0_UC(0) |= 0x20;
+                }
+            }
+        }
+
+        if ((EXP0_UC(0) & 0x1F) == 3)
+        {
+            if (EXP0_UC(0) & 0x20)
+            {
+                EXP0_UC(0) |= 0x40;
+            }
+            else
+            {
+                EXP0_UC(0) &= ~0x40;
+            }
+            EXP0_UC(0) &= 0x5F;
+        }
+    }
+
+    EXP0_UC(0)++;
+
+    if (0xF < (EXP0_UC(0) & 0x1F))
+    {
+        EXP0_UC(0) &= 0xE0;
+    }
+}
+/*
 // 
 // Start address: 0x1a6cc0
 void bhEne04_Brain(BH_PWORK* epw)
