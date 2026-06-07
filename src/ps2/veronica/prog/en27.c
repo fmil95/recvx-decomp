@@ -1,22 +1,22 @@
 #include "../../../ps2/veronica/prog/en27.h"
+#include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 
 void (*bhEne27_Mode0[6])(BH_PWORK*);     // DATA
 void (*bhEne27_BrainType[1])(BH_PWORK*); // DATA
 void (*bhEne27_MoveMode2[3])(BH_PWORK*); // DATA
 
-// 
-// Start address: 0x20fae0
+// 100% matching!
 void bhEne27(BH_PWORK* epw)
 {
-	// Line 132, Address: 0x20fae0, Func Offset: 0
-	// Line 134, Address: 0x20faf0, Func Offset: 0x10
-	// Line 136, Address: 0x20fb10, Func Offset: 0x30
-	// Line 137, Address: 0x20fb20, Func Offset: 0x40
-	// Line 138, Address: 0x20fb34, Func Offset: 0x54
-	// Line 140, Address: 0x20fb3c, Func Offset: 0x5c
-	// Func End, Address: 0x20fb4c, Func Offset: 0x6c
-	scePrintf("bhEne27 - UNIMPLEMENTED!\n");
+    bhEne27_Mode0[epw->mode0](epw);
+    
+    if (epw->mode2 > 1) 
+    {
+        bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+        
+        bhEne27_CallSE(epw); 
+    }
 }
 
 /*// 
@@ -411,13 +411,13 @@ void bhEne27_IncubateEffect(BH_PWORK* epw)
 	// Line 599, Address: 0x2108b8, Func Offset: 0xd8
 	// Line 601, Address: 0x2108cc, Func Offset: 0xec
 	// Func End, Address: 0x2108ec, Func Offset: 0x10c
-}
+}*/
 
 // 
 // Start address: 0x2108f0
 void bhEne27_CallSE(BH_PWORK* epw)
 {
-	_anon33 pos;
+	//_anon33 pos;
 	int fno;
 	char NullTree[2];
 	// Line 615, Address: 0x2108f0, Func Offset: 0
@@ -436,4 +436,5 @@ void bhEne27_CallSE(BH_PWORK* epw)
 	// Line 637, Address: 0x2109d8, Func Offset: 0xe8
 	// Line 641, Address: 0x2109ec, Func Offset: 0xfc
 	// Func End, Address: 0x210a00, Func Offset: 0x110
-}*/
+	scePrintf("bhEne27_CallSE - UNIMPLEMENTED!\n");
+}
