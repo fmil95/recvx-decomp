@@ -133,53 +133,51 @@ void bhEne27_MV00()
 
 }
 
-/*// 
-// Start address: 0x20ff60
+// 100% matching!
 void bhEne27_MV01(BH_PWORK* epw)
 {
-	// Line 317, Address: 0x20ff60, Func Offset: 0
-	// Line 318, Address: 0x20ff6c, Func Offset: 0xc
-	// Line 321, Address: 0x20ff80, Func Offset: 0x20
-	// Line 322, Address: 0x20ff88, Func Offset: 0x28
-	// Line 326, Address: 0x20ff8c, Func Offset: 0x2c
-	// Line 321, Address: 0x20ff90, Func Offset: 0x30
-	// Line 322, Address: 0x20ff98, Func Offset: 0x38
-	// Line 325, Address: 0x20ff9c, Func Offset: 0x3c
-	// Line 326, Address: 0x20ffa0, Func Offset: 0x40
-	// Line 330, Address: 0x20ffa4, Func Offset: 0x44
-	// Line 332, Address: 0x20ffac, Func Offset: 0x4c
-	// Line 333, Address: 0x20ffb0, Func Offset: 0x50
-	// Line 334, Address: 0x20ffb4, Func Offset: 0x54
-	// Line 335, Address: 0x20ffb8, Func Offset: 0x58
-	// Line 336, Address: 0x20ffbc, Func Offset: 0x5c
-	// Line 337, Address: 0x20ffc0, Func Offset: 0x60
-	// Line 339, Address: 0x20ffc4, Func Offset: 0x64
-	// Line 344, Address: 0x20ffd4, Func Offset: 0x74
-	// Line 349, Address: 0x20ffd8, Func Offset: 0x78
-	// Line 339, Address: 0x20ffdc, Func Offset: 0x7c
-	// Line 340, Address: 0x20ffe0, Func Offset: 0x80
-	// Line 352, Address: 0x20ffe4, Func Offset: 0x84
-	// Line 353, Address: 0x20ffe8, Func Offset: 0x88
-	// Line 339, Address: 0x20ffec, Func Offset: 0x8c
-	// Line 340, Address: 0x20fff4, Func Offset: 0x94
-	// Line 341, Address: 0x20fffc, Func Offset: 0x9c
-	// Line 340, Address: 0x210000, Func Offset: 0xa0
-	// Line 341, Address: 0x210008, Func Offset: 0xa8
-	// Line 344, Address: 0x210010, Func Offset: 0xb0
-	// Line 341, Address: 0x210014, Func Offset: 0xb4
-	// Line 344, Address: 0x21001c, Func Offset: 0xbc
-	// Line 345, Address: 0x210024, Func Offset: 0xc4
-	// Line 346, Address: 0x210030, Func Offset: 0xd0
-	// Line 349, Address: 0x21003c, Func Offset: 0xdc
-	// Line 350, Address: 0x210048, Func Offset: 0xe8
-	// Line 351, Address: 0x210054, Func Offset: 0xf4
-	// Line 352, Address: 0x210060, Func Offset: 0x100
-	// Line 353, Address: 0x21006c, Func Offset: 0x10c
-	// Line 355, Address: 0x210078, Func Offset: 0x118
-	// Func End, Address: 0x210088, Func Offset: 0x128
+    switch (epw->mode3) 
+    {
+    case 0:
+        epw->mlwP = &plp->mdl[7];
+            
+        epw->mdl_no = 8;
+            
+        epw->mode1 = 0;
+        epw->mode2 = 2;
+        epw->mode3 = 0;
+            
+        bhEne27_IncubateEffect(epw);
+            
+        epw->lox = 0;
+        epw->loy = 0;
+        epw->loz = 0;
+            
+        epw->ax = 0;
+        epw->ay = 0;
+        epw->az = 0;
+            
+        plp->flg  |= 0x10004;
+        plp->flg2 |= 0x1;
+            
+        plp->stflg |= 0x10000;
+            
+        plp->mode0 = 4;
+        plp->mode2 = 0;
+        plp->mode3 = 0;
+            
+        plp->mtn_no = 90;
+        plp->frm_no = 0;
+            
+        plp->mtn_add = 0;
+            
+        plp->hokan_count = 10;
+        plp->hokan_rate  = 45875;
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x210090
 void bhEne27_MV02(BH_PWORK* epw)
 {
@@ -389,7 +387,7 @@ void bhEne27_Die()
 
 }
 
-/*// 
+// 
 // Start address: 0x2107e0
 void bhEne27_IncubateEffect(BH_PWORK* epw)
 {
@@ -411,7 +409,8 @@ void bhEne27_IncubateEffect(BH_PWORK* epw)
 	// Line 599, Address: 0x2108b8, Func Offset: 0xd8
 	// Line 601, Address: 0x2108cc, Func Offset: 0xec
 	// Func End, Address: 0x2108ec, Func Offset: 0x10c
-}*/
+	scePrintf("bhEne27_IncubateEffect - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2108f0
