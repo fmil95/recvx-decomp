@@ -3,6 +3,7 @@
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/Motion.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
 
 void (*bhEne27_Mode0[6])(BH_PWORK*);     // DATA
 void (*bhEne27_BrainType[1])(BH_PWORK*); // DATA
@@ -423,28 +424,39 @@ void bhEne27_IncubateEffect(BH_PWORK* epw)
     bhSetEffectTb(&sys->ef, (NJS_POINT3*)&epw->lox, epw->lkwkp, epw->lkono); 
 }
 
-// 
-// Start address: 0x2108f0
+// 100% matching!
 void bhEne27_CallSE(BH_PWORK* epw)
 {
-	//_anon33 pos;
-	int fno;
-	char NullTree[2];
-	// Line 615, Address: 0x2108f0, Func Offset: 0
-	// Line 616, Address: 0x2108fc, Func Offset: 0xc
-	// Line 615, Address: 0x210904, Func Offset: 0x14
-	// Line 616, Address: 0x210908, Func Offset: 0x18
-	// Line 621, Address: 0x210910, Func Offset: 0x20
-	// Line 622, Address: 0x210920, Func Offset: 0x30
-	// Line 624, Address: 0x210924, Func Offset: 0x34
-	// Line 628, Address: 0x210960, Func Offset: 0x70
-	// Line 629, Address: 0x210968, Func Offset: 0x78
-	// Line 631, Address: 0x21097c, Func Offset: 0x8c
-	// Line 632, Address: 0x21099c, Func Offset: 0xac
-	// Line 634, Address: 0x2109b0, Func Offset: 0xc0
-	// Line 636, Address: 0x2109b8, Func Offset: 0xc8
-	// Line 637, Address: 0x2109d8, Func Offset: 0xe8
-	// Line 641, Address: 0x2109ec, Func Offset: 0xfc
-	// Func End, Address: 0x210a00, Func Offset: 0x110
-	scePrintf("bhEne27_CallSE - UNIMPLEMENTED!\n");
+    char NullTree[2] = { 0, 0xFF };  
+    int fno;                    
+    NJS_POINT3 pos;        
+    
+    bhEne_GetPartsPos(epw, NullTree, &pos);
+    
+    fno = epw->frm_no / 65536;
+    
+    switch (epw->mtn_no) 
+    {                        
+    case 93:
+    case 94:
+    case 95:
+        if (fno == 0) 
+        {
+            bhEne_CallSE(epw, &pos, 74564);
+        }
+        
+        if ((fno % 12) == 11) 
+        {
+            bhEne_CallSE(epw, &pos, 74565);
+        }
+        
+        break;
+    case 96:
+        if ((fno % 10) == 9) 
+        {
+            bhEne_CallSE(epw, &pos, 74566);
+        }
+        
+        break;
+    }
 }
