@@ -2506,25 +2506,28 @@ void bhEne04_Brain(BH_PWORK* epw)
 // 100% matching!
 void bhEne04_Brain00(BH_PWORK* epw)
 {
-    if (((ikou3(epw, (NJS_VECTOR*)&plp->px, 0x3000) == 0) && (EXP0_F(0x20) < 35.0f)) || ((plp->mode1 == 1) && (plp->mode2 == 0x45)) || ((plp->mode2 == 6) && (EXP0_F(0x20) < 40.0f)))
+    if (((ikou3(epw, (NJS_VECTOR*)&plp->px, 0x3000) == 0) && (EXP0_F(0x20) < 35.0f)) ||
+        ((plp->mode1 == 1) && (plp->mode2 == 0x45)) ||
+        ((plp->mode2 == 6) && (EXP0_F(0x20) < 40.0f)))
     {
         EXP0_I(0x10) |= 0x400000;
     }
 }
-/*
-// 
-// Start address: 0x1a6ec0
+
+// 100% matching!
 void bhEne04_Brain01(BH_PWORK* epw)
 {
-	// Line 2229, Address: 0x1a6ec0, Func Offset: 0
-	// Line 2231, Address: 0x1a6ecc, Func Offset: 0xc
-	// Line 2236, Address: 0x1a6f78, Func Offset: 0xb8
-	// Line 2237, Address: 0x1a6f80, Func Offset: 0xc0
-	// Line 2238, Address: 0x1a6f88, Func Offset: 0xc8
-	// Line 2240, Address: 0x1a6f8c, Func Offset: 0xcc
-	// Func End, Address: 0x1a6f9c, Func Offset: 0xdc
+    if (((ikou3(epw, (NJS_VECTOR*)&plp->px, 0x2000) == 0) && (EXP0_F(0x20) < 20.0f)) ||
+        ((plp->mode1 == 1) && (plp->mode2 == 0x45)) ||
+        ((plp->mode2 == 6) && (EXP0_F(0x20) < 40.0f)) ||
+        (EXP0_I(0x10) & 0x8000)) 
+    {
+        epw->mode1 = 1;
+        epw->mode2 = 2;
+        epw->mode3 = 0;
+    }
 }
-
+/*
 // 
 // Start address: 0x1a6fa0
 void bhEne04_Brain02(BH_PWORK* epw)
