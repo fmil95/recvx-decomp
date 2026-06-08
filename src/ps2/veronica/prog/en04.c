@@ -3,6 +3,7 @@
 #include "../../../ps2/veronica/prog/zonzon.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/effsub3.h"
+#include "../../../ps2/veronica/prog/subpl.h"
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;
@@ -1667,9 +1668,14 @@ void (*bhEne04_MoveType[3])(BH_PWORK*) =
     bhEne04_MVType01,
     bhEne04_MVType02
 };
-/*
-void(*bhEne04_NageType)(BH_PWORK*)[3];
-*/
+
+void (*bhEne04_NageType[3])(BH_PWORK*) =
+{
+    bhEne04_NGType00,
+    bhEne04_NGType00,
+    bhEne04_NGType00
+};
+
 void (*bhEne04_DamageType[3])(BH_PWORK*) =
 {
     bhEne04_DGType00, 
@@ -2168,24 +2174,17 @@ void bhEne04_Init(BH_PWORK* epw)
 // 100% matching!
 void bhEne04_Move(BH_PWORK* epw) 
 {
-    EXP0_I(0x10) &= 0xFFFFFF7F;
-    
+    EXP0_I(0x10) &= 0xFFFFFF7F;    
     (*bhEne04_MoveType[epw->type])(epw);
 }
-/*
-// 
-// Start address: 0x1a6040
+
+// 100% matching!
 void bhEne04_Nage(BH_PWORK* epw)
 {
-	// Line 1506, Address: 0x1a6040, Func Offset: 0
-	// Line 1508, Address: 0x1a6044, Func Offset: 0x4
-	// Line 1506, Address: 0x1a6048, Func Offset: 0x8
-	// Line 1508, Address: 0x1a604c, Func Offset: 0xc
-	// Line 1506, Address: 0x1a6050, Func Offset: 0x10
-	// Line 1508, Address: 0x1a605c, Func Offset: 0x1c
-	// Func End, Address: 0x1a6074, Func Offset: 0x34
+    EXP0_I(0x10) &= 0xFFFFFF7F;
+    (*bhEne04_NageType[epw->type])(epw);
 }
-*/
+
 // 100% matching!
 void bhEne04_Damage(BH_PWORK* epw /* r2 */)
 {
@@ -3709,7 +3708,7 @@ int bhEne04_Escape(BH_PWORK* epw, int res, int r)
 	// Line 4340, Address: 0x1aa544, Func Offset: 0x324
 	// Func End, Address: 0x1aa54c, Func Offset: 0x32c
 }
-
+*/
 // 
 // Start address: 0x1aa550
 void bhEne04_NGType00(BH_PWORK* epw)
@@ -3723,8 +3722,9 @@ void bhEne04_NGType00(BH_PWORK* epw)
 	// Line 4373, Address: 0x1aa5ac, Func Offset: 0x5c
 	// Line 4374, Address: 0x1aa5cc, Func Offset: 0x7c
 	// Func End, Address: 0x1aa5dc, Func Offset: 0x8c
+    scePrintf("bhEne04_NGType00 - UNIMPLEMENTED!\n");
 }
-
+/*
 // 
 // Start address: 0x1aa5e0
 void bhEne04_NG00(BH_PWORK* epw)
