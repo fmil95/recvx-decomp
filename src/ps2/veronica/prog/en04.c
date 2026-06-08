@@ -4,6 +4,7 @@
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/subpl.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;
@@ -1767,7 +1768,7 @@ void bhEne04(BH_PWORK* epw)
 
 /*// 
 // Start address: 0x1a5040
-void bhEne04_MainLoop(BH_PWORK* epw)
+void bhEne04_MainLoop(BH_PWORK* epw) // matched it https://decomp.me/scratch/B0Jhw but I will decompile other functions first before adding it here 
 {
 	// Line 477, Address: 0x1a5040, Func Offset: 0
 	// Line 480, Address: 0x1a5050, Func Offset: 0x10
@@ -4372,6 +4373,7 @@ void bhEne04_RunMotion(BH_PWORK* epw, int rot)
 	// Func End, Address: 0x1abda0, Func Offset: 0x100
 }
 */
+// 100% matching!
 int bhEne04_ChgMtn(BH_PWORK* epw, u_int no, int frm, int rate)
 {
     epw->mtn_add = 0x10000; 
@@ -4646,14 +4648,12 @@ int bhEne04_SearchNeck(BH_PWORK* epw)
 	// Line 5815, Address: 0x1ac754, Func Offset: 0xf4
 	// Func End, Address: 0x1ac76c, Func Offset: 0x10c
 }
-
-// 
-// Start address: 0x1ac770
+*/
+// 100% matching!
 void bhEne04_SePlay(BH_PWORK* epw, int no)
 {
-	// Line 5834, Address: 0x1ac770, Func Offset: 0
-	// Line 5835, Address: 0x1ac77c, Func Offset: 0xc
-	// Line 5837, Address: 0x1ac790, Func Offset: 0x20
-	// Line 5838, Address: 0x1ac7ac, Func Offset: 0x3c
-	// Func End, Address: 0x1ac7b8, Func Offset: 0x48
-}*/
+    if (!(epw->flg & 0x10000))
+    {
+        RequestEnemySe(sys->enow, (NJS_VECTOR*)&epw->px, no);
+    }
+}
