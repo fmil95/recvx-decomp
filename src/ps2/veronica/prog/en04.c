@@ -4371,29 +4371,25 @@ void bhEne04_RunMotion(BH_PWORK* epw, int rot)
 	// Line 5369, Address: 0x1abd94, Func Offset: 0xf4
 	// Func End, Address: 0x1abda0, Func Offset: 0x100
 }
-
-// 
-// Start address: 0x1abda0
-int bhEne04_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate)
+*/
+int bhEne04_ChgMtn(BH_PWORK* epw, u_int no, int frm, int rate)
 {
-	// Line 5392, Address: 0x1abda0, Func Offset: 0
-	// Line 5393, Address: 0x1abda8, Func Offset: 0x8
-	// Line 5395, Address: 0x1abdb4, Func Offset: 0x14
-	// Line 5396, Address: 0x1abdb8, Func Offset: 0x18
-	// Line 5397, Address: 0x1abdbc, Func Offset: 0x1c
-	// Line 5398, Address: 0x1abdc0, Func Offset: 0x20
-	// Line 5399, Address: 0x1abdc8, Func Offset: 0x28
-	// Line 5402, Address: 0x1abdcc, Func Offset: 0x2c
-	// Line 5404, Address: 0x1abdd8, Func Offset: 0x38
-	// Line 5406, Address: 0x1abde0, Func Offset: 0x40
-	// Line 5402, Address: 0x1abde4, Func Offset: 0x44
-	// Line 5404, Address: 0x1abdec, Func Offset: 0x4c
-	// Line 5406, Address: 0x1abdf4, Func Offset: 0x54
-	// Line 5408, Address: 0x1abdfc, Func Offset: 0x5c
-	// Line 5409, Address: 0x1abe00, Func Offset: 0x60
-	// Func End, Address: 0x1abe08, Func Offset: 0x68
-}
+    epw->mtn_add = 0x10000; 
+    if (epw->mtn_no != no)
+    {
+        epw->mtn_no = no;
+        epw->frm_no = frm;            
+        epw->hokan_count = rate;
+        epw->hokan_rate = 0x8000;            
+        epw->mtn_md = 0;    
+        epw->flg &= 0xFFFBFFFF;
+        epw->flg &= 0xFDFFFFFF;         
+        return 0;
+    }
 
+    return -1;
+}
+/*
 // 
 // Start address: 0x1abe10
 int bhEne04_SetMtn(BH_PWORK* epw)
