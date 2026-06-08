@@ -1676,9 +1676,12 @@ void (*bhEne04_DamageMode2[3])(BH_PWORK*) =
     bhEne04_DG01,
     bhEne04_DG00
 };
-/*
-void(*bhEne04_DieMode2)(BH_PWORK*)[1];
-*/
+
+void (*bhEne04_DieMode2[1])(BH_PWORK*) = 
+{
+    bhEne04_DD00
+};
+
 void (*bhEne04_PlyDmgMode[2])(BH_PWORK*, BH_PWORK*) = 
 {
     bhEne04_PlyDG00, 
@@ -2416,7 +2419,7 @@ _anon12* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned ch
 	// Func End, Address: 0x1a6b84, Func Offset: 0xf4
 }
 */
-// 100% matching 
+// 100% matching! 
 void bhEne04_EneSearch(BH_PWORK* epw)
 {
     EXP0_UC(0) |= 0x80;
@@ -4041,15 +4044,12 @@ void bhEne04_DG01(BH_PWORK* epw)
 	// Line 4886, Address: 0x1ab390, Func Offset: 0x440
 	// Func End, Address: 0x1ab3a4, Func Offset: 0x454
 }
-
-// 
-// Start address: 0x1ab3b0
-void bhEne04_DDType00(BH_PWORK* epw)
-{
-	// Line 4905, Address: 0x1ab3b0, Func Offset: 0
-	// Func End, Address: 0x1ab3d0, Func Offset: 0x20
+*/
+// 100% matching!
+void bhEne04_DDType00(BH_PWORK* epw) {
+    (*bhEne04_DieMode2[epw->mode2])(epw);
 }
-
+/*
 // 
 // Start address: 0x1ab3d0
 void bhEne04_DD00(BH_PWORK* epw)
