@@ -2,6 +2,7 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/effsub3.h"
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;
@@ -1642,7 +1643,17 @@ _anon18 En04_WpnDamageTbl[22];
 _anon46 CombWepTbl[21];
 _anon50 CombJointTbl[19];
 _anon28 Ene04CapColTab[17];
-_anon37 en04_BldTbl;
+*/
+BP_WORK en04_BldTbl =
+{
+    {0.0f, 0.1f, 0.0f},                     /* off_pos */
+    0,                                      /* srd_dir */
+    0.0f,                                   /* srd_pos */
+    0.08f,                                  /* bld_spd */
+    {0.8f, 0.6f, 0.0f, 0.8f, 0.9f},         /* srt_spd */
+    {0, 4, 8, 12, 14}                       /* srt_dir */
+};
+/*
 _anon8 en04prt_blood_tbl[19];
 int en04_hp_tbl[16][2];
 char en04_flipTree[20];
@@ -4046,29 +4057,31 @@ void bhEne04_DG01(BH_PWORK* epw)
 }
 */
 // 100% matching!
-void bhEne04_DDType00(BH_PWORK* epw) {
+void bhEne04_DDType00(BH_PWORK* epw)
+{
     (*bhEne04_DieMode2[epw->mode2])(epw);
 }
-/*
-// 
-// Start address: 0x1ab3d0
+
+// 100% matching!
 void bhEne04_DD00(BH_PWORK* epw)
-{
-	// Line 4925, Address: 0x1ab3d0, Func Offset: 0
-	// Line 4926, Address: 0x1ab3dc, Func Offset: 0xc
-	// Line 4929, Address: 0x1ab3fc, Func Offset: 0x2c
-	// Line 4933, Address: 0x1ab400, Func Offset: 0x30
-	// Line 4930, Address: 0x1ab408, Func Offset: 0x38
-	// Line 4929, Address: 0x1ab40c, Func Offset: 0x3c
-	// Line 4930, Address: 0x1ab414, Func Offset: 0x44
-	// Line 4933, Address: 0x1ab418, Func Offset: 0x48
-	// Line 4930, Address: 0x1ab41c, Func Offset: 0x4c
-	// Line 4933, Address: 0x1ab424, Func Offset: 0x54
-	// Line 4934, Address: 0x1ab430, Func Offset: 0x60
-	// Line 4939, Address: 0x1ab43c, Func Offset: 0x6c
-	// Func End, Address: 0x1ab44c, Func Offset: 0x7c
+ {
+    switch (epw->mode3)
+    {
+    case 0:
+        epw->flg |= 2;
+        
+        epw->flg &= ~0x28;
+        
+        bhSetBloodPoolLnk(epw, (NJS_VECTOR*)&epw->px, epw->ay, &en04_BldTbl, 0);
+        
+        epw->mode3++;
+        
+    case 1:
+        return;
+    }
 }
 
+/*
 // 
 // Start address: 0x1ab450
 void bhEne04_PlyDG00(BH_PWORK* pl, BH_PWORK* epw)
