@@ -3853,7 +3853,7 @@ void bhEne04_DGType00(BH_PWORK *epw)
 {
     (*bhEne04_DamageMode2[epw->mode2])(epw);
 }
-/*
+
 // 
 // Start address: 0x1aab60
 void bhEne04_DG00(BH_PWORK* epw)
@@ -3949,6 +3949,7 @@ void bhEne04_DG00(BH_PWORK* epw)
 	// Line 4736, Address: 0x1aaf20, Func Offset: 0x3c0
 	// Line 4742, Address: 0x1aaf34, Func Offset: 0x3d4
 	// Func End, Address: 0x1aaf48, Func Offset: 0x3e8
+    scePrintf("bhEne04_DG00 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3958,8 +3959,8 @@ void bhEne04_DG01(BH_PWORK* epw)
 	float pz;
 	float px;
 	float dist;
-	_anon36 p2;
-	_anon36 p1;
+	//_anon36 p2;
+	//_anon36 p1;
 	// Line 4763, Address: 0x1aaf50, Func Offset: 0
 	// Line 4769, Address: 0x1aaf60, Func Offset: 0x10
 	// Line 4773, Address: 0x1aaf8c, Func Offset: 0x3c
@@ -4054,8 +4055,9 @@ void bhEne04_DG01(BH_PWORK* epw)
 	// Line 4880, Address: 0x1ab37c, Func Offset: 0x42c
 	// Line 4886, Address: 0x1ab390, Func Offset: 0x440
 	// Func End, Address: 0x1ab3a4, Func Offset: 0x454
+    scePrintf("bhEne04_DG01 - UNIMPLEMENTED!\n");
 }
-*/
+
 // 100% matching!
 void bhEne04_DDType00(BH_PWORK* epw)
 {
@@ -4081,14 +4083,14 @@ void bhEne04_DD00(BH_PWORK* epw)
     }
 }
 
-/*
+
 // 
 // Start address: 0x1ab450
 void bhEne04_PlyDG00(BH_PWORK* pl, BH_PWORK* epw)
 {
-	_anon4* owk;
-	npobj* obj;
-	_anon36 ply_ofs_pos[4];
+	//_anon4* owk;
+	//npobj* obj;
+	//_anon36 ply_ofs_pos[4];
 	// Line 4960, Address: 0x1ab450, Func Offset: 0
 	// Line 4974, Address: 0x1ab45c, Func Offset: 0xc
 	// Line 4977, Address: 0x1ab488, Func Offset: 0x38
@@ -4175,6 +4177,7 @@ void bhEne04_PlyDG00(BH_PWORK* pl, BH_PWORK* epw)
 	// Line 5060, Address: 0x1ab750, Func Offset: 0x300
 	// Line 5064, Address: 0x1ab760, Func Offset: 0x310
 	// Func End, Address: 0x1ab770, Func Offset: 0x320
+    scePrintf("bhEne04_PlyDG00 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -4245,8 +4248,9 @@ void bhEne04_PlyDG01(BH_PWORK* pl, BH_PWORK* epw)
 	// Line 5163, Address: 0x1ab9e4, Func Offset: 0x274
 	// Line 5170, Address: 0x1ab9f0, Func Offset: 0x280
 	// Func End, Address: 0x1aba08, Func Offset: 0x298
+    scePrintf("bhEne04_PlyDG01 - UNIMPLEMENTED!\n");
 }
-
+/*
 // 
 // Start address: 0x1aba10
 int bhEne04_PlyDamageCheck(BH_PWORK* epw, int type)
