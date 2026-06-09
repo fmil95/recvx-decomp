@@ -5,6 +5,7 @@
 #include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;
@@ -1997,19 +1998,19 @@ void bhEne04_PlayerLink(BH_PWORK* pl, BH_PWORK* epw)
 	// Line 1121, Address: 0x1a59e4, Func Offset: 0x94
 	// Func End, Address: 0x1a59f8, Func Offset: 0xa8
 }
+*/
 
-// 
-// Start address: 0x1a5a00
-void bhEne04_CollisionCheck(BH_PWORK* epw)
-{
-	// Line 1137, Address: 0x1a5a00, Func Offset: 0
-	// Line 1138, Address: 0x1a5a0c, Func Offset: 0xc
-	// Line 1141, Address: 0x1a5a1c, Func Offset: 0x1c
-	// Line 1143, Address: 0x1a5a44, Func Offset: 0x44
-	// Line 1147, Address: 0x1a5a4c, Func Offset: 0x4c
-	// Line 1177, Address: 0x1a5a58, Func Offset: 0x58
-	// Line 1178, Address: 0x1a5a60, Func Offset: 0x60
-	// Func End, Address: 0x1a5a70, Func Offset: 0x70
+// 100% matching!
+void bhEne04_CollisionCheck(BH_PWORK* epw) {
+    if (!(epw->flg & 2))
+    {
+        if ((EXP0_I(0x10) & 0x20) && (plp->hp >= 0))
+        {
+            bhCheckPlayer(epw);
+        }
+        bhCheckEnemies(epw);
+    }
+    bhEne04_CollCheckWall(epw);
 }
 
 // 
@@ -2017,11 +2018,11 @@ void bhEne04_CollisionCheck(BH_PWORK* epw)
 void bhEne04_CollCheckWall(BH_PWORK* epw)
 {
 	char ply_tree[7];
-	_anon4* owk;
-	_anon36 pd;
-	_anon36 ops;
-	_anon36 ps;
-	_anon12* hp;
+	//_anon4* owk;
+	//_anon36 pd;
+	//_anon36 ops;
+	//_anon36 ps;
+	//_anon12* hp;
 	// Line 1196, Address: 0x1a5a70, Func Offset: 0
 	// Line 1204, Address: 0x1a5a8c, Func Offset: 0x1c
 	// Line 1206, Address: 0x1a5ab0, Func Offset: 0x40
@@ -2098,8 +2099,10 @@ void bhEne04_CollCheckWall(BH_PWORK* epw)
 	// Line 1275, Address: 0x1a5d58, Func Offset: 0x2e8
 	// Line 1278, Address: 0x1a5d68, Func Offset: 0x2f8
 	// Func End, Address: 0x1a5d88, Func Offset: 0x318
+    scePrintf("bhEne04_CollCheckWall - UNIMPLEMENTED!\n");
 }
 
+/*
 // 
 // Start address: 0x1a5d90
 void bhEne04_Init(BH_PWORK* epw)
