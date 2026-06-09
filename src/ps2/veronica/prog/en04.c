@@ -2181,28 +2181,28 @@ void bhEne04_Init(BH_PWORK* epw)
 void bhEne04_Move(BH_PWORK* epw) 
 {
     EXP0_I(0x10) &= ~0x80;    
-    (*bhEne04_MoveType[epw->type])(epw);
+    bhEne04_MoveType[epw->type](epw);
 }
 
 // 100% matching!
 void bhEne04_Nage(BH_PWORK* epw)
 {
     EXP0_I(0x10) &= ~0x80;
-    (*bhEne04_NageType[epw->type])(epw);
+    bhEne04_NageType[epw->type](epw);
 }
 
 // 100% matching!
-void bhEne04_Damage(BH_PWORK* epw /* r2 */)
+void bhEne04_Damage(BH_PWORK* epw)
 {
-  EXP0_I(0x10) &= ~0x80;
-  (*bhEne04_DamageType[epw->type])(epw);
+    EXP0_I(0x10) &= ~0x80;
+    bhEne04_DamageType[epw->type](epw);
 }
 
 // 100% matching!
-void bhEne04_Die(BH_PWORK* epw /* r2 */)
+void bhEne04_Die(BH_PWORK* epw)
 {
-  EXP0_I(0x10) &= ~0x80;
-  (*bhEne04_DieType[epw->type])(epw);
+    EXP0_I(0x10) &= ~0x80;
+    bhEne04_DieType[epw->type](epw);
 }
 
 
@@ -2447,7 +2447,7 @@ void bhEne04_EneSearch(BH_PWORK* epw)
 
     if ((EXP0_UC(0) & 0x1F) < 4)
     {
-        if (bhSearchPlayer(epw, 0x471C) != -1)
+        if (bhSearchPlayer(epw, 18204) != -1)
         {
             if ((unsigned char*)EXP0_I(0x44) == NULL)
             {
@@ -2516,7 +2516,7 @@ void bhEne04_Brain(BH_PWORK* epw)
 // 100% matching!
 void bhEne04_Brain00(BH_PWORK* epw)
 {
-    if (((ikou3(epw, (NJS_VECTOR*)&plp->px, 0x3000) == 0) && (EXP0_F(0x20) < 35.0f)) ||
+    if (((ikou3(epw, (NJS_POINT3*)&plp->px, 12288) == 0) && (EXP0_F(0x20) < 35.0f)) ||
         ((plp->mode1 == 1) && (plp->mode2 == 69)) ||
         ((plp->mode2 == 6) && (EXP0_F(0x20) < 40.0f)))
     {
@@ -2527,7 +2527,7 @@ void bhEne04_Brain00(BH_PWORK* epw)
 // 100% matching!
 void bhEne04_Brain01(BH_PWORK* epw)
 {
-    if (((ikou3(epw, (NJS_VECTOR*)&plp->px, 0x2000) == 0) && (EXP0_F(0x20) < 20.0f)) ||
+    if (((ikou3(epw, (NJS_POINT3*)&plp->px, 8192) == 0) && (EXP0_F(0x20) < 20.0f)) ||
         ((plp->mode1 == 1) && (plp->mode2 == 69)) ||
         ((plp->mode2 == 6) && (EXP0_F(0x20) < 40.0f)) ||
         (EXP0_I(0x10) & 0x8000)) 
@@ -4078,7 +4078,7 @@ void bhEne04_DG01(BH_PWORK* epw)
 // 100% matching!
 void bhEne04_DDType00(BH_PWORK* epw)
 {
-    (*bhEne04_DieMode2[epw->mode2])(epw);
+    bhEne04_DieMode2[epw->mode2](epw);
 }
 
 // 100% matching!
@@ -4091,12 +4091,12 @@ void bhEne04_DD00(BH_PWORK* epw)
         
         epw->flg &= ~0x28;
         
-        bhSetBloodPoolLnk(epw, (NJS_VECTOR*)&epw->px, epw->ay, &en04_BldTbl, 0);
+        bhSetBloodPoolLnk(epw, (NJS_POINT3*)&epw->px, epw->ay, &en04_BldTbl, 0);
         
         epw->mode3++;
         
     case 1:
-        return;
+        break;
     }
 }
 
@@ -4374,7 +4374,7 @@ void bhEne04_RunMotion(BH_PWORK* epw, int rot)
 }
 */
 // 100% matching!
-int bhEne04_ChgMtn(BH_PWORK* epw, u_int no, int frm, int rate)
+int bhEne04_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate)
 {
     epw->mtn_add = 65536; 
     if (epw->mtn_no != no)
@@ -4654,6 +4654,6 @@ void bhEne04_SePlay(BH_PWORK* epw, int no)
 {
     if (!(epw->flg & 0x10000))
     {
-        RequestEnemySe(sys->enow, (NJS_VECTOR*)&epw->px, no);
+        RequestEnemySe(sys->enow, (NJS_POINT3*)&epw->px, no);
     }
 }
