@@ -2180,28 +2180,28 @@ void bhEne04_Init(BH_PWORK* epw)
 // 100% matching!
 void bhEne04_Move(BH_PWORK* epw) 
 {
-    EXP0_I(0x10) &= 0xFFFFFF7F;    
+    EXP0_I(0x10) &= ~0x80;    
     (*bhEne04_MoveType[epw->type])(epw);
 }
 
 // 100% matching!
 void bhEne04_Nage(BH_PWORK* epw)
 {
-    EXP0_I(0x10) &= 0xFFFFFF7F;
+    EXP0_I(0x10) &= ~0x80;
     (*bhEne04_NageType[epw->type])(epw);
 }
 
 // 100% matching!
 void bhEne04_Damage(BH_PWORK* epw /* r2 */)
 {
-  EXP0_I(0x10) &= 0xFFFFFF7F;
+  EXP0_I(0x10) &= ~0x80;
   (*bhEne04_DamageType[epw->type])(epw);
 }
 
 // 100% matching!
 void bhEne04_Die(BH_PWORK* epw /* r2 */)
 {
-  EXP0_I(0x10) &= 0xFFFFFF7F;
+  EXP0_I(0x10) &= ~0x80;
   (*bhEne04_DieType[epw->type])(epw);
 }
 
@@ -2480,7 +2480,7 @@ void bhEne04_EneSearch(BH_PWORK* epw)
 
     EXP0_UC(0)++;
 
-    if (0xF < (EXP0_UC(0) & 0x1F))
+    if (15 < (EXP0_UC(0) & 0x1F))
     {
         EXP0_UC(0) &= 0xE0;
     }
@@ -2517,7 +2517,7 @@ void bhEne04_Brain(BH_PWORK* epw)
 void bhEne04_Brain00(BH_PWORK* epw)
 {
     if (((ikou3(epw, (NJS_VECTOR*)&plp->px, 0x3000) == 0) && (EXP0_F(0x20) < 35.0f)) ||
-        ((plp->mode1 == 1) && (plp->mode2 == 0x45)) ||
+        ((plp->mode1 == 1) && (plp->mode2 == 69)) ||
         ((plp->mode2 == 6) && (EXP0_F(0x20) < 40.0f)))
     {
         EXP0_I(0x10) |= 0x400000;
@@ -2528,7 +2528,7 @@ void bhEne04_Brain00(BH_PWORK* epw)
 void bhEne04_Brain01(BH_PWORK* epw)
 {
     if (((ikou3(epw, (NJS_VECTOR*)&plp->px, 0x2000) == 0) && (EXP0_F(0x20) < 20.0f)) ||
-        ((plp->mode1 == 1) && (plp->mode2 == 0x45)) ||
+        ((plp->mode1 == 1) && (plp->mode2 == 69)) ||
         ((plp->mode2 == 6) && (EXP0_F(0x20) < 40.0f)) ||
         (EXP0_I(0x10) & 0x8000)) 
     {
@@ -4376,16 +4376,16 @@ void bhEne04_RunMotion(BH_PWORK* epw, int rot)
 // 100% matching!
 int bhEne04_ChgMtn(BH_PWORK* epw, u_int no, int frm, int rate)
 {
-    epw->mtn_add = 0x10000; 
+    epw->mtn_add = 65536; 
     if (epw->mtn_no != no)
     {
         epw->mtn_no = no;
         epw->frm_no = frm;            
         epw->hokan_count = rate;
-        epw->hokan_rate = 0x8000;            
+        epw->hokan_rate = 32768;            
         epw->mtn_md = 0;    
-        epw->flg &= 0xFFFBFFFF;
-        epw->flg &= 0xFDFFFFFF;         
+        epw->flg &= ~0x40000;
+        epw->flg &= ~0x2000000;         
         return 0;
     }
 
