@@ -3866,9 +3866,9 @@ void bhEne04_NG01(BH_PWORK* epw)
 }
 
 // 100% matching!
-void bhEne04_DGType00(BH_PWORK *epw)
+void bhEne04_DGType00(BH_PWORK* epw)
 {
-    (*bhEne04_DamageMode2[epw->mode2])(epw);
+    bhEne04_DamageMode2[epw->mode2](epw);
 }
 
 // 
@@ -4318,31 +4318,33 @@ int bhEne04_PlyDamageCheck(BH_PWORK* epw, int type)
 	// Line 5257, Address: 0x1abc00, Func Offset: 0x1f0
 	// Func End, Address: 0x1abc18, Func Offset: 0x208
 }
-
-// 
-// Start address: 0x1abc20
+*/
+// 100% matching!
 void bhEne04_SpeedUp(float* spd, float g, float limit)
 {
-	// Line 5279, Address: 0x1abc20, Func Offset: 0
-	// Line 5281, Address: 0x1abc34, Func Offset: 0x14
-	// Line 5282, Address: 0x1abc38, Func Offset: 0x18
-	// Line 5283, Address: 0x1abc48, Func Offset: 0x28
-	// Line 5285, Address: 0x1abc4c, Func Offset: 0x2c
-	// Func End, Address: 0x1abc54, Func Offset: 0x34
+    if (*spd < limit)
+    {
+        *spd += g;       
+        if (*spd > limit)
+        {
+            *spd = limit;
+        }
+    }
 }
 
-// 
-// Start address: 0x1abc60
+// 100% matching!
 void bhEne04_SpeedDown(float* spd, float g, float limit)
 {
-	// Line 5304, Address: 0x1abc60, Func Offset: 0
-	// Line 5306, Address: 0x1abc74, Func Offset: 0x14
-	// Line 5307, Address: 0x1abc78, Func Offset: 0x18
-	// Line 5308, Address: 0x1abc88, Func Offset: 0x28
-	// Line 5310, Address: 0x1abc8c, Func Offset: 0x2c
-	// Func End, Address: 0x1abc94, Func Offset: 0x34
+    if (*spd > limit)
+    {
+        *spd -= g;       
+        if (*spd < limit)
+        {
+            *spd = limit;
+        }
+    }
 }
-
+/*
 // 
 // Start address: 0x1abca0
 void bhEne04_RunMotion(BH_PWORK* epw, int rot)
