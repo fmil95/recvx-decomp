@@ -4645,58 +4645,59 @@ void bhEne04_ShakeWire(_anon0* obwp)
 	// Line 5739, Address: 0x1ac610, Func Offset: 0x160
 	// Func End, Address: 0x1ac624, Func Offset: 0x174
 }
+*/
 
-// 
-// Start address: 0x1ac630
-void bhEne04_RotNeck(BH_PWORK* epw, int ry)
-{
-	npobj* obj;
-	// Line 5748, Address: 0x1ac630, Func Offset: 0
-	// Line 5756, Address: 0x1ac634, Func Offset: 0x4
-	// Line 5748, Address: 0x1ac638, Func Offset: 0x8
-	// Line 5756, Address: 0x1ac63c, Func Offset: 0xc
-	// Line 5762, Address: 0x1ac640, Func Offset: 0x10
-	// Line 5750, Address: 0x1ac648, Func Offset: 0x18
-	// Line 5756, Address: 0x1ac64c, Func Offset: 0x1c
-	// Line 5764, Address: 0x1ac650, Func Offset: 0x20
-	// Func End, Address: 0x1ac658, Func Offset: 0x28
+// 100% matching!
+void bhEne04_RotNeck(BH_PWORK* epw, int rx, int ry, int rz) // signature differs from DWARF
+{ 
+    NJS_CNK_OBJECT* obj;
+
+    obj = epw->mlwP->objP;
+    obj[2].ang[1] = ry;
+    obj[3].ang[1] = (ry + (ry / 4));
+    obj[4].ang[1] = (ry + (ry / 2));
 }
 
-// 
-// Start address: 0x1ac660
+// 100% matching!
 int bhEne04_SearchNeck(BH_PWORK* epw)
 {
-	int lim;
-	int d_tmp;
-	int rot2;
-	int rot;
-	// Line 5768, Address: 0x1ac660, Func Offset: 0
-	// Line 5772, Address: 0x1ac674, Func Offset: 0x14
-	// Line 5774, Address: 0x1ac690, Func Offset: 0x30
-	// Line 5775, Address: 0x1ac694, Func Offset: 0x34
-	// Line 5774, Address: 0x1ac69c, Func Offset: 0x3c
-	// Line 5775, Address: 0x1ac6a0, Func Offset: 0x40
-	// Line 5774, Address: 0x1ac6a8, Func Offset: 0x48
-	// Line 5775, Address: 0x1ac6ac, Func Offset: 0x4c
-	// Line 5776, Address: 0x1ac6bc, Func Offset: 0x5c
-	// Line 5781, Address: 0x1ac6c8, Func Offset: 0x68
-	// Line 5783, Address: 0x1ac6d4, Func Offset: 0x74
-	// Line 5785, Address: 0x1ac6e4, Func Offset: 0x84
-	// Line 5786, Address: 0x1ac6f0, Func Offset: 0x90
-	// Line 5789, Address: 0x1ac6f8, Func Offset: 0x98
-	// Line 5802, Address: 0x1ac708, Func Offset: 0xa8
-	// Line 5804, Address: 0x1ac720, Func Offset: 0xc0
-	// Line 5805, Address: 0x1ac724, Func Offset: 0xc4
-	// Line 5804, Address: 0x1ac728, Func Offset: 0xc8
-	// Line 5808, Address: 0x1ac72c, Func Offset: 0xcc
-	// Line 5810, Address: 0x1ac744, Func Offset: 0xe4
-	// Line 5811, Address: 0x1ac748, Func Offset: 0xe8
-	// Line 5810, Address: 0x1ac74c, Func Offset: 0xec
-	// Line 5814, Address: 0x1ac750, Func Offset: 0xf0
-	// Line 5815, Address: 0x1ac754, Func Offset: 0xf4
-	// Func End, Address: 0x1ac76c, Func Offset: 0x10c
+    int rot; // r2
+    int rot2; // r2
+    int d_tmp; // r18
+    int lim; // r16
+   
+    lim = 0;
+    bhEne04_RotNeck(epw, 0, EXP0_I(0x1C), 0); // signature differs from DWARF
+    rot = epw->ay + EXP0_I(0x1C);
+    d_tmp = NitenDir_ck(epw->px, epw->pz, plp->px, plp->pz);
+    rot2 = ((d_tmp - rot) + 512) & 0xFFFF;
+    
+    if (1024 < rot2)
+    {
+        if (32768 >= rot2)
+        {
+            EXP0_I(0x1C) += 256;
+        }
+        else
+        {
+            EXP0_I(0x1C) -= 256;
+        }
+    }
+
+    if (EXP0_I(0x1C) < -4096)
+    {
+        lim = 1;
+        EXP0_I(0x1C) = -4096;
+    }
+
+    if (4096 < EXP0_I(0x1C))
+    {
+        EXP0_I(0x1C) = 4096;
+        lim = 1;
+    }
+    return lim;
 }
-*/
+
 // 100% matching!
 void bhEne04_SePlay(BH_PWORK* epw, int no)
 {
