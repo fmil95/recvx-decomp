@@ -6,6 +6,7 @@
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;
@@ -3874,102 +3875,144 @@ void bhEne04_DGType00(BH_PWORK* epw)
     bhEne04_DamageMode2[epw->mode2](epw);
 }
 
-// 
-// Start address: 0x1aab60
-void bhEne04_DG00(BH_PWORK* epw)
-{
-	int h_cnt;
+// 100% matching!
+void bhEne04_DG00(BH_PWORK* epw) {
+    int h_cnt;
 	int mtn_no;
-	// Line 4608, Address: 0x1aab60, Func Offset: 0
-	// Line 4613, Address: 0x1aab70, Func Offset: 0x10
-	// Line 4619, Address: 0x1aab9c, Func Offset: 0x3c
-	// Line 4621, Address: 0x1aaba4, Func Offset: 0x44
-	// Line 4623, Address: 0x1aabb8, Func Offset: 0x58
-	// Line 4624, Address: 0x1aabc0, Func Offset: 0x60
-	// Line 4625, Address: 0x1aabc8, Func Offset: 0x68
-	// Line 4623, Address: 0x1aabcc, Func Offset: 0x6c
-	// Line 4624, Address: 0x1aabd4, Func Offset: 0x74
-	// Line 4625, Address: 0x1aabd8, Func Offset: 0x78
-	// Line 4626, Address: 0x1aabe0, Func Offset: 0x80
-	// Line 4627, Address: 0x1aabe4, Func Offset: 0x84
-	// Line 4624, Address: 0x1aabe8, Func Offset: 0x88
-	// Line 4627, Address: 0x1aabec, Func Offset: 0x8c
-	// Line 4624, Address: 0x1aabf8, Func Offset: 0x98
-	// Line 4625, Address: 0x1aac00, Func Offset: 0xa0
-	// Line 4626, Address: 0x1aac0c, Func Offset: 0xac
-	// Line 4627, Address: 0x1aac10, Func Offset: 0xb0
-	// Line 4628, Address: 0x1aac18, Func Offset: 0xb8
-	// Line 4629, Address: 0x1aac20, Func Offset: 0xc0
-	// Line 4631, Address: 0x1aac2c, Func Offset: 0xcc
-	// Line 4635, Address: 0x1aac38, Func Offset: 0xd8
-	// Line 4634, Address: 0x1aac3c, Func Offset: 0xdc
-	// Line 4633, Address: 0x1aac40, Func Offset: 0xe0
-	// Line 4636, Address: 0x1aac44, Func Offset: 0xe4
-	// Line 4641, Address: 0x1aac4c, Func Offset: 0xec
-	// Line 4640, Address: 0x1aac50, Func Offset: 0xf0
-	// Line 4639, Address: 0x1aac54, Func Offset: 0xf4
-	// Line 4641, Address: 0x1aac58, Func Offset: 0xf8
-	// Line 4643, Address: 0x1aac5c, Func Offset: 0xfc
-	// Line 4644, Address: 0x1aac60, Func Offset: 0x100
-	// Line 4643, Address: 0x1aac64, Func Offset: 0x104
-	// Line 4644, Address: 0x1aac68, Func Offset: 0x108
-	// Line 4645, Address: 0x1aac74, Func Offset: 0x114
-	// Line 4647, Address: 0x1aac84, Func Offset: 0x124
-	// Line 4651, Address: 0x1aac8c, Func Offset: 0x12c
-	// Line 4655, Address: 0x1aac98, Func Offset: 0x138
-	// Line 4654, Address: 0x1aac9c, Func Offset: 0x13c
-	// Line 4653, Address: 0x1aaca0, Func Offset: 0x140
-	// Line 4656, Address: 0x1aaca4, Func Offset: 0x144
-	// Line 4661, Address: 0x1aacac, Func Offset: 0x14c
-	// Line 4660, Address: 0x1aacb0, Func Offset: 0x150
-	// Line 4659, Address: 0x1aacb4, Func Offset: 0x154
-	// Line 4661, Address: 0x1aacb8, Func Offset: 0x158
-	// Line 4663, Address: 0x1aacbc, Func Offset: 0x15c
-	// Line 4664, Address: 0x1aaccc, Func Offset: 0x16c
-	// Line 4667, Address: 0x1aace4, Func Offset: 0x184
-	// Line 4670, Address: 0x1aacf0, Func Offset: 0x190
-	// Line 4673, Address: 0x1aad00, Func Offset: 0x1a0
-	// Line 4674, Address: 0x1aad34, Func Offset: 0x1d4
-	// Line 4673, Address: 0x1aad38, Func Offset: 0x1d8
-	// Line 4674, Address: 0x1aad44, Func Offset: 0x1e4
-	// Line 4677, Address: 0x1aad6c, Func Offset: 0x20c
-	// Line 4680, Address: 0x1aad74, Func Offset: 0x214
-	// Line 4681, Address: 0x1aad84, Func Offset: 0x224
-	// Line 4680, Address: 0x1aad8c, Func Offset: 0x22c
-	// Line 4681, Address: 0x1aad94, Func Offset: 0x234
-	// Line 4683, Address: 0x1aad9c, Func Offset: 0x23c
-	// Line 4684, Address: 0x1aada4, Func Offset: 0x244
-	// Line 4687, Address: 0x1aadac, Func Offset: 0x24c
-	// Line 4689, Address: 0x1aadc0, Func Offset: 0x260
-	// Line 4690, Address: 0x1aadf0, Func Offset: 0x290
-	// Line 4691, Address: 0x1aae0c, Func Offset: 0x2ac
-	// Line 4692, Address: 0x1aae18, Func Offset: 0x2b8
-	// Line 4697, Address: 0x1aae24, Func Offset: 0x2c4
-	// Line 4699, Address: 0x1aae38, Func Offset: 0x2d8
-	// Line 4701, Address: 0x1aae40, Func Offset: 0x2e0
-	// Line 4702, Address: 0x1aae50, Func Offset: 0x2f0
-	// Line 4703, Address: 0x1aae64, Func Offset: 0x304
-	// Line 4704, Address: 0x1aae70, Func Offset: 0x310
-	// Line 4712, Address: 0x1aae74, Func Offset: 0x314
-	// Line 4713, Address: 0x1aae84, Func Offset: 0x324
-	// Line 4714, Address: 0x1aaea0, Func Offset: 0x340
-	// Line 4716, Address: 0x1aaea8, Func Offset: 0x348
-	// Line 4719, Address: 0x1aaeb0, Func Offset: 0x350
-	// Line 4721, Address: 0x1aaee0, Func Offset: 0x380
-	// Line 4723, Address: 0x1aaee4, Func Offset: 0x384
-	// Line 4725, Address: 0x1aaef0, Func Offset: 0x390
-	// Line 4726, Address: 0x1aaef8, Func Offset: 0x398
-	// Line 4727, Address: 0x1aaefc, Func Offset: 0x39c
-	// Line 4729, Address: 0x1aaf00, Func Offset: 0x3a0
-	// Line 4732, Address: 0x1aaf08, Func Offset: 0x3a8
-	// Line 4734, Address: 0x1aaf10, Func Offset: 0x3b0
-	// Line 4733, Address: 0x1aaf14, Func Offset: 0x3b4
-	// Line 4734, Address: 0x1aaf18, Func Offset: 0x3b8
-	// Line 4735, Address: 0x1aaf1c, Func Offset: 0x3bc
-	// Line 4736, Address: 0x1aaf20, Func Offset: 0x3c0
-	// Line 4742, Address: 0x1aaf34, Func Offset: 0x3d4
-	// Func End, Address: 0x1aaf48, Func Offset: 0x3e8
-    scePrintf("bhEne04_DG00 - UNIMPLEMENTED!\n");
+
+    switch (epw->mode3)
+    {
+    case 0:
+        epw->ct0 = 0;
+        bhClrUseKaidanFlag(epw);
+
+        if (EXP0_I(0x10) & 0x400)
+        {
+            epw->flg &= ~0x100;
+            EXP0_I(0x10) &= ~0x8400;
+            epw->py += 3.8f;
+            EXP0_F(0x48) = 1.0f;
+            bhEne04_ChgMtn(epw, 12, 0, 5);
+        }
+        else if (EXP0_I(0x10) & 0x8000)
+        {
+            if (EXP0_I(0x10) & 0x100)
+            {
+                epw->spd = 0.0f;
+                epw->way = -28672;
+                mtn_no = 45;                
+            }
+            else
+            {
+                epw->spd = 0.0f;
+                epw->way = 4096;                
+                mtn_no = 44;
+            }
+            
+            epw->mode3 = 2;
+
+            bhEne04_ChgMtn(epw, mtn_no, 0, 5);
+            EXP0_I(0x10) |= 0x40000000;
+            return;
+        }
+        else
+        {
+            if (EXP0_I(0x10) & 0x100)
+            {
+                epw->spd = 0.0f;
+                epw->way = -28672;
+                mtn_no = 10;
+            }
+            else
+            {
+                epw->spd = 0.0f;
+                epw->way = 4096;
+                mtn_no = 11;
+            }
+
+            bhEne04_ChgMtn(epw, mtn_no, 0, 5);
+            EXP0_I(0x10) &= ~0x40000000;
+
+        }
+        epw->mode3++;
+
+    case 1:        
+        if (epw->mtn_no == 12)
+        {
+            epw->py += (fabsf(EXP0_F(0x48)) * njSin(8192)) - 0.2f * epw->ct0;
+            
+            if (rom->grand[epw->flr_no + 2] > epw->py)
+            {
+                epw->py = rom->grand[epw->flr_no + 2];
+            } 
+            else
+            {
+                float tmp = njCos(8192); // cant find a way to match it without a variable
+                epw->spd = EXP0_F(0x48) * tmp;
+                bhAddSpeed(epw, 32768);
+            }
+            
+            epw->ct0++;
+        } 
+        else
+        {
+            if (3 < (epw->frm_no / 65536))
+            {
+                epw->spd += (0.25f - (0.05f * epw->ct0));
+                
+                if (epw->spd < 0.0f)
+                {
+                    epw->spd = 0.0f;
+                }
+                
+                bhAddSpeed(epw, epw->way);
+                epw->ct0++;
+            }
+        }
+
+        if ((epw->flg & 0x2000000) != 0)
+        {
+            epw->flg |= 0x100;
+            h_cnt = 0;
+            
+            if (epw->mtn_no == 11)
+            {
+                epw->ay += 32768;
+            } 
+            else if(epw->mtn_no == 12)
+            {
+                h_cnt = 5; 
+            }
+            
+            bhEne04_ChgMtn(epw, 14, 0, h_cnt);
+            epw->py = rom->grand[epw->flr_no + 2];
+            epw->mode3++;
+        }
+        break;
+
+    case 2:
+        if ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num - 1))
+        {            
+            epw->mtn_add = 0;
+            
+            if (epw->hp < 0)
+            {
+                epw->mode0 = 4;
+                epw->mode1 = 0;
+                epw->mode2 = 0;
+                epw->mode3 = 0;
+                break;
+            }
+            
+            epw->mode0 = 1;
+            epw->mode1 = 0;
+            epw->mode2 = 5;
+            epw->mode3 = 0;
+            
+            EXP0_I(0x10) |= 0x2100000;
+        }
+        break;
+    }
 }
 
 // 
