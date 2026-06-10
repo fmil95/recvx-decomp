@@ -1663,8 +1663,18 @@ int en04_hp_tbl[16][2];
 char en04_flipTree[20];
 int en04_contact_flg;
 int en04_atari_flg;
-void(*bhEne04_Mode0)(BH_PWORK*)[6];
 */
+
+void (*bhEne04_Mode0[6])(BH_PWORK*) =
+{
+    bhEne04_Init,
+    bhEne04_Move,
+    bhEne04_Nage,
+    bhEne04_Damage,
+    bhEne04_Die,
+    bhEne_Event
+};
+
 void (*bhEne04_MoveType[3])(BH_PWORK*) =
 {
     bhEne04_MVType00,
@@ -1768,31 +1778,48 @@ void bhEne04(BH_PWORK* epw)
 	scePrintf("bhEne04 - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x1a5040
-void bhEne04_MainLoop(BH_PWORK* epw) // matched it https://decomp.me/scratch/B0Jhw but I will decompile other functions first before adding it here 
+void bhEne04_MainLoop(BH_PWORK* epw)
 {
-	// Line 477, Address: 0x1a5040, Func Offset: 0
-	// Line 480, Address: 0x1a5050, Func Offset: 0x10
-	// Line 483, Address: 0x1a5070, Func Offset: 0x30
-	// Line 486, Address: 0x1a5080, Func Offset: 0x40
-	// Line 487, Address: 0x1a5094, Func Offset: 0x54
-	// Line 490, Address: 0x1a509c, Func Offset: 0x5c
-	// Line 493, Address: 0x1a50ac, Func Offset: 0x6c
-	// Line 495, Address: 0x1a50c0, Func Offset: 0x80
-	// Line 496, Address: 0x1a50c8, Func Offset: 0x88
-	// Line 499, Address: 0x1a50d0, Func Offset: 0x90
-	// Line 501, Address: 0x1a50dc, Func Offset: 0x9c
-	// Line 503, Address: 0x1a50f0, Func Offset: 0xb0
-	// Line 504, Address: 0x1a50fc, Func Offset: 0xbc
-	// Line 505, Address: 0x1a5110, Func Offset: 0xd0
-	// Line 508, Address: 0x1a5118, Func Offset: 0xd8
-	// Line 509, Address: 0x1a5124, Func Offset: 0xe4
-	// Line 511, Address: 0x1a513c, Func Offset: 0xfc
-	// Line 631, Address: 0x1a5154, Func Offset: 0x114
-	// Func End, Address: 0x1a5164, Func Offset: 0x124
+    bhEne04_Mode0[epw->mode0](epw); 
+    
+    bhEne04_PlayerControl(plp, epw);
+    
+    if (!(EXP0_I(0x10) & 0x40))
+    {
+        bhEne04_SetMtn(epw);
+    }   
+    if (epw->mode0 != 5)
+    {        
+        if (EXP0_I(0x10) & 0x80)
+        {
+            bhEne04_SearchNeck(epw);           
+            return;
+        }
+        if (EXP0_I(0x1C) != 0)
+        {
+            if ((EXP0_I(0x1C) & 0xFFFF) < 32768)
+            {
+                EXP0_I(0x1C) -= 256;                
+                if (EXP0_I(0x1C) < 0)
+                {
+                    EXP0_I(0x1C) = 0;
+                }
+            } 
+            else
+            {
+                EXP0_I(0x1C) += 256;
+                
+                if (EXP0_I(0x1C) >= 0)
+                {
+                  EXP0_I(0x1C) = 0;  
+                }
+            }
+            bhEne04_RotNeck(epw, 0, EXP0_I(0x1C), 0); // signature differs from DWARF
+        }
+    }
 }
 
+/*
 // 
 // Start address: 0x1a5170
 void bhEne04_SetCollision(BH_PWORK* epw)
@@ -2103,7 +2130,6 @@ void bhEne04_CollCheckWall(BH_PWORK* epw)
     scePrintf("bhEne04_CollCheckWall - UNIMPLEMENTED!\n");
 }
 
-/*
 // 
 // Start address: 0x1a5d90
 void bhEne04_Init(BH_PWORK* epw)
@@ -2179,8 +2205,9 @@ void bhEne04_Init(BH_PWORK* epw)
 	// Line 1411, Address: 0x1a5fe0, Func Offset: 0x250
 	// Line 1423, Address: 0x1a5fe4, Func Offset: 0x254
 	// Func End, Address: 0x1a5ff4, Func Offset: 0x264
+    scePrintf("bhEne04_Init - UNIMPLEMENTED!\n");
 }
-*/
+
 // 100% matching!
 void bhEne04_Move(BH_PWORK* epw) 
 {
@@ -4439,15 +4466,15 @@ int bhEne04_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate)
 
     return -1;
 }
-/*
+
 // 
 // Start address: 0x1abe10
 int bhEne04_SetMtn(BH_PWORK* epw)
 {
-	_anon36 pos;
+	//_anon36 pos;
 	int frm;
 	int ret;
-	npobj* obj;
+	//npobj* obj;
 	// Line 5429, Address: 0x1abe10, Func Offset: 0
 	// Line 5435, Address: 0x1abe28, Func Offset: 0x18
 	// Line 5436, Address: 0x1abe2c, Func Offset: 0x1c
@@ -4541,8 +4568,9 @@ int bhEne04_SetMtn(BH_PWORK* epw)
 	// Line 5571, Address: 0x1ac198, Func Offset: 0x388
 	// Line 5572, Address: 0x1ac19c, Func Offset: 0x38c
 	// Func End, Address: 0x1ac1b4, Func Offset: 0x3a4
+    scePrintf("bhEne04_SetMtn - UNIMPLEMENTED!\n");
 }
-
+/*
 // 
 // Start address: 0x1ac1c0
 void bhEne04_CheckMtnTbl(BH_PWORK* epw, int frm)
@@ -4661,10 +4689,10 @@ void bhEne04_RotNeck(BH_PWORK* epw, int rx, int ry, int rz) // signature differs
 // 100% matching!
 int bhEne04_SearchNeck(BH_PWORK* epw)
 {
-    int rot; // r2
-    int rot2; // r2
-    int d_tmp; // r18
-    int lim; // r16
+    int rot;
+    int rot2;
+    int d_tmp;
+    int lim;
    
     lim = 0;
     bhEne04_RotNeck(epw, 0, EXP0_I(0x1C), 0); // signature differs from DWARF
