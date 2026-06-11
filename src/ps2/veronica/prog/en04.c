@@ -1661,7 +1661,9 @@ BP_WORK en04_BldTbl =
 _anon8 en04prt_blood_tbl[19];
 int en04_hp_tbl[16][2];
 char en04_flipTree[20];
+*/
 int en04_contact_flg;
+/*
 int en04_atari_flg;
 */
 
@@ -2683,38 +2685,42 @@ void bhEne04_Brain04(BH_PWORK* epw)
 	// Line 2441, Address: 0x1a74b0, Func Offset: 0x180
 	// Func End, Address: 0x1a74c0, Func Offset: 0x190
 }
-
-// 
-// Start address: 0x1a74c0
+*/
+// 100% matching!
 void bhEne04_Brain06(BH_PWORK* epw)
 {
-	// Line 2458, Address: 0x1a74c0, Func Offset: 0
-	// Line 2459, Address: 0x1a74cc, Func Offset: 0xc
-	// Line 2461, Address: 0x1a74ec, Func Offset: 0x2c
-	// Line 2463, Address: 0x1a74f0, Func Offset: 0x30
-	// Line 2461, Address: 0x1a7500, Func Offset: 0x40
-	// Line 2463, Address: 0x1a7508, Func Offset: 0x48
-	// Line 2465, Address: 0x1a7520, Func Offset: 0x60
-	// Line 2468, Address: 0x1a752c, Func Offset: 0x6c
-	// Line 2474, Address: 0x1a7594, Func Offset: 0xd4
-	// Line 2473, Address: 0x1a7598, Func Offset: 0xd8
-	// Line 2474, Address: 0x1a759c, Func Offset: 0xdc
-	// Line 2475, Address: 0x1a75a0, Func Offset: 0xe0
-	// Line 2477, Address: 0x1a75a4, Func Offset: 0xe4
-	// Line 2479, Address: 0x1a75b4, Func Offset: 0xf4
-	// Line 2482, Address: 0x1a75bc, Func Offset: 0xfc
-	// Line 2483, Address: 0x1a75c4, Func Offset: 0x104
-	// Line 2482, Address: 0x1a75cc, Func Offset: 0x10c
-	// Line 2483, Address: 0x1a75d8, Func Offset: 0x118
-	// Line 2486, Address: 0x1a7614, Func Offset: 0x154
-	// Line 2490, Address: 0x1a7620, Func Offset: 0x160
-	// Line 2495, Address: 0x1a7680, Func Offset: 0x1c0
-	// Line 2496, Address: 0x1a7688, Func Offset: 0x1c8
-	// Line 2497, Address: 0x1a7690, Func Offset: 0x1d0
-	// Line 2499, Address: 0x1a7694, Func Offset: 0x1d4
-	// Func End, Address: 0x1a76a4, Func Offset: 0x1e4
+    if (EXP0_F(0x20) < 11.0f)
+    {
+        epw->ct1++;
+        if ((plp->spd >= 0.9f))
+        {
+            epw->ct1 += 20;
+        }
+        if ((ikou3(epw, (NJS_POINT3*)&plp->px, 2048) == 0) && !(plp->flg & 4) && (epw->flr_no == plp->flr_no) && !(EXP0_F(0x20) <= 8.0f))
+        {
+            epw->mode1 = 0;
+            epw->mode2 = 7;
+            epw->mode3 = 0;
+            en04_contact_flg |= 2;
+        }
+    }
+    else
+    {
+        epw->ct1 -= epw->ct2 > 0;
+        if ((ikou3(epw, (NJS_POINT3*)&plp->px, 2048) == 0) && (plp->spd >= 0.9f))
+        {
+            epw->ct1 += 6;
+        }
+    }
+    
+    if ((epw->ct1 >= 65) || ((plp->mode1 == 1) && (plp->mode2 == 69)) || (en04_contact_flg & 2) || (EXP0_I(0x10) & 0x8000))
+    {
+        epw->mode1 = 1;
+        epw->mode2 = 2;
+        epw->mode3 = 0;
+    }
 }
-
+/*
 // 
 // Start address: 0x1a76b0
 void bhEne04_MV00(BH_PWORK* epw)
