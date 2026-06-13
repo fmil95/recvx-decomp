@@ -7,6 +7,10 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/effect.h"
+#include "../../../ps2/veronica/prog/eneset.h"
+
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;
@@ -1642,12 +1646,37 @@ int En04_PlyMtn_OffsetTbl[4];
 _anon32 en04_mtn_tbl[30];
 _anon32 en04_mtn_tbl2[6];
 char en04_tree[8][1];
-char En04SdwTab[6];
+*/
+char En04SdwTab[6] =
+{
+    0x05, 0x0F, 0x12, 0x08, 0x0B, 0xFF
+};
+/*
 _anon18 En04_WpnDamageTbl[22];
 _anon46 CombWepTbl[21];
 _anon50 CombJointTbl[19];
-_anon28 Ene04CapColTab[17];
 */
+CPCL Ene04CapColTab[17] =
+{
+    { 1,  2,  13 }, 
+    { 2,  3,  13 }, 
+    { 4,  4,  14 }, 
+    { 0,  4,  -6 }, 
+    { 5,  5,  12 }, 
+    { 0,  2,  -8 }, 
+    { 12, 12, 15 }, 
+    { 0,  0,  10 }, 
+    { 6,  7,   8 }, 
+    { 7,  8,   4 },
+    { 9,  10,  8 },
+    { 10, 11,  4 },
+    { 13, 14,  8 },
+    { 14, 15,  4 },
+    { 16, 17,  8 },
+    { 17, 18,  4 },
+    { 0,  0,   0 } 
+};
+
 BP_WORK en04_BldTbl =
 {
     {0.0f, 0.1f, 0.0f},                     /* off_pos */
@@ -1657,15 +1686,28 @@ BP_WORK en04_BldTbl =
     {0.8f, 0.6f, 0.0f, 0.8f, 0.9f},         /* srt_spd */
     {0, 4, 8, 12, 14}                       /* srt_dir */
 };
+
 /*
 _anon8 en04prt_blood_tbl[19];
-int en04_hp_tbl[16][2];
-char en04_flipTree[20];
 */
+
+const int en04_hp_tbl[2][16] =
+{
+    { 60, 60, 60, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 120, 120, 120 },
+    { 30, 30, 30, 45, 45, 45, 45, 45, 60, 60, 60, 60, 60,  75,  75,  75 } 
+};
+
+char en04_flipTree[20] =
+{
+    0x00, 0x01, 0x02, 0x03, 0x04,
+    0x05, 0x09, 0x0A, 0x0B, 0x06,
+    0x07, 0x08, 0x0C, 0x10, 0x11,
+    0x12, 0x0D, 0x0E, 0x0F, 0xFF
+};
+
 int en04_contact_flg;
-/*
 int en04_atari_flg;
-*/
+
 
 void (*bhEne04_Mode0[6])(BH_PWORK*) =
 {
@@ -2132,84 +2174,87 @@ void bhEne04_CollCheckWall(BH_PWORK* epw)
     scePrintf("bhEne04_CollCheckWall - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1a5d90
+// 99.90% matching
 void bhEne04_Init(BH_PWORK* epw)
 {
-	int size;
-	unsigned char* addr;
-	int i;
-	// Line 1294, Address: 0x1a5d90, Func Offset: 0
-	// Line 1299, Address: 0x1a5d9c, Func Offset: 0xc
-	// Line 1300, Address: 0x1a5da4, Func Offset: 0x14
-	// Line 1303, Address: 0x1a5dac, Func Offset: 0x1c
-	// Line 1304, Address: 0x1a5db4, Func Offset: 0x24
-	// Line 1305, Address: 0x1a5dbc, Func Offset: 0x2c
-	// Line 1306, Address: 0x1a5dc0, Func Offset: 0x30
-	// Line 1307, Address: 0x1a5dc4, Func Offset: 0x34
-	// Line 1308, Address: 0x1a5dcc, Func Offset: 0x3c
-	// Line 1309, Address: 0x1a5dd0, Func Offset: 0x40
-	// Line 1312, Address: 0x1a5dd4, Func Offset: 0x44
-	// Line 1313, Address: 0x1a5dec, Func Offset: 0x5c
-	// Line 1315, Address: 0x1a5e24, Func Offset: 0x94
-	// Line 1316, Address: 0x1a5e58, Func Offset: 0xc8
-	// Line 1319, Address: 0x1a5e7c, Func Offset: 0xec
-	// Line 1320, Address: 0x1a5e80, Func Offset: 0xf0
-	// Line 1321, Address: 0x1a5e84, Func Offset: 0xf4
-	// Line 1324, Address: 0x1a5e88, Func Offset: 0xf8
-	// Line 1322, Address: 0x1a5e8c, Func Offset: 0xfc
-	// Line 1324, Address: 0x1a5e90, Func Offset: 0x100
-	// Line 1323, Address: 0x1a5e94, Func Offset: 0x104
-	// Line 1324, Address: 0x1a5e98, Func Offset: 0x108
-	// Line 1325, Address: 0x1a5e9c, Func Offset: 0x10c
-	// Line 1328, Address: 0x1a5ea0, Func Offset: 0x110
-	// Line 1330, Address: 0x1a5eac, Func Offset: 0x11c
-	// Line 1340, Address: 0x1a5eb8, Func Offset: 0x128
-	// Line 1347, Address: 0x1a5ec0, Func Offset: 0x130
-	// Line 1349, Address: 0x1a5ec4, Func Offset: 0x134
-	// Line 1351, Address: 0x1a5ed0, Func Offset: 0x140
-	// Line 1352, Address: 0x1a5ed4, Func Offset: 0x144
-	// Line 1351, Address: 0x1a5ed8, Func Offset: 0x148
-	// Line 1352, Address: 0x1a5edc, Func Offset: 0x14c
-	// Line 1353, Address: 0x1a5eec, Func Offset: 0x15c
-	// Line 1373, Address: 0x1a5ef0, Func Offset: 0x160
-	// Line 1382, Address: 0x1a5ef4, Func Offset: 0x164
-	// Line 1379, Address: 0x1a5ef8, Func Offset: 0x168
-	// Line 1382, Address: 0x1a5efc, Func Offset: 0x16c
-	// Line 1373, Address: 0x1a5f00, Func Offset: 0x170
-	// Line 1378, Address: 0x1a5f0c, Func Offset: 0x17c
-	// Line 1379, Address: 0x1a5f18, Func Offset: 0x188
-	// Line 1382, Address: 0x1a5f24, Func Offset: 0x194
-	// Line 1385, Address: 0x1a5f28, Func Offset: 0x198
-	// Line 1387, Address: 0x1a5f38, Func Offset: 0x1a8
-	// Line 1388, Address: 0x1a5f60, Func Offset: 0x1d0
-	// Line 1392, Address: 0x1a5f6c, Func Offset: 0x1dc
-	// Line 1393, Address: 0x1a5f70, Func Offset: 0x1e0
-	// Line 1392, Address: 0x1a5f74, Func Offset: 0x1e4
-	// Line 1393, Address: 0x1a5f78, Func Offset: 0x1e8
-	// Line 1392, Address: 0x1a5f7c, Func Offset: 0x1ec
-	// Line 1393, Address: 0x1a5f84, Func Offset: 0x1f4
-	// Line 1396, Address: 0x1a5f94, Func Offset: 0x204
-	// Line 1397, Address: 0x1a5f98, Func Offset: 0x208
-	// Line 1396, Address: 0x1a5f9c, Func Offset: 0x20c
-	// Line 1397, Address: 0x1a5fa0, Func Offset: 0x210
-	// Line 1398, Address: 0x1a5fa4, Func Offset: 0x214
-	// Line 1399, Address: 0x1a5fac, Func Offset: 0x21c
-	// Line 1400, Address: 0x1a5fb4, Func Offset: 0x224
-	// Line 1401, Address: 0x1a5fbc, Func Offset: 0x22c
-	// Line 1402, Address: 0x1a5fc0, Func Offset: 0x230
-	// Line 1406, Address: 0x1a5fc8, Func Offset: 0x238
-	// Line 1403, Address: 0x1a5fcc, Func Offset: 0x23c
-	// Line 1406, Address: 0x1a5fd0, Func Offset: 0x240
-	// Line 1407, Address: 0x1a5fd4, Func Offset: 0x244
-	// Line 1408, Address: 0x1a5fd8, Func Offset: 0x248
-	// Line 1409, Address: 0x1a5fdc, Func Offset: 0x24c
-	// Line 1411, Address: 0x1a5fe0, Func Offset: 0x250
-	// Line 1423, Address: 0x1a5fe4, Func Offset: 0x254
-	// Func End, Address: 0x1a5ff4, Func Offset: 0x264
-    scePrintf("bhEne04_Init - UNIMPLEMENTED!\n");
-}
+    int i;
+    u_char* addr;
+    int size;
 
+    en04_contact_flg = 0;
+    en04_atari_flg = 0;
+    epw->ar = 3.0f;
+    epw->ah = 4.0f;
+    epw->aw = 0.0f;
+    epw->ad = 0.0f;
+    epw->car = 3.5f;
+    epw->cah = 4.0f;
+    epw->stflg = 0;
+    if (sys->gm_mode != 2)
+    {
+        epw->hp = en04_hp_tbl[0][rand() % 16];
+    }
+    else
+    {
+        epw->hp = en04_hp_tbl[1][rand() % 16];
+    }
+
+    for (i = 0; i < 64; i++)
+    {
+        epw->dam[i] = 0;
+    }
+    
+    epw->hokan_rate = 0;
+    epw->hokan_count = 0;
+    epw->mtn_no = 0;
+    epw->mtn_add = 0;
+    epw->frm_no = 0;
+    epw->mtn_tp = (unsigned char*) en04_flipTree;
+    epw->mtn_md = 0;
+
+    if (epw->exp0 == NULL)
+    {
+        epw->exp0 = bhEne_CallocWork(88, 8);
+    }
+    else
+    {
+        size = 88;
+        addr = epw->exp0;
+        while (size--)
+        {
+            *addr++ = 0;
+        }
+    }
+
+    EXP0_I(0x10) |= 0x21;
+    epw->flg |= 0x178;
+    epw->flg &= ~2;
+    epw->cpcl = Ene04CapColTab;
+    if (!(epw->flg & 0x800))
+    {
+        bhSetShadow(En04SdwTab, (unsigned char*)epw, 1, 3.0f, 3.0f, 6.0f);
+        epw->flg |= 0x800;
+    }
+    epw->mdflg &= ~0x400;
+
+    npSetAllMatColor(epw->mlwP->objP, epw->mlwP->obj_num, 0xFFB2B2B2);
+    
+    epw->clp_jno[0] = 4;
+    epw->clp_jno[1] = 5;
+    epw->clp_jno[2] = 6;
+    epw->clp_jno[3] = 9;
+    epw->clp_jno[4] = 15;
+    epw->clp_jno[5] = 15;
+    epw->clp_jno[6] = -1;
+    epw->clp_jno[7] = 0;
+    
+    epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
+    
+    epw->lok_jno = 4;
+}
 // 100% matching!
 void bhEne04_Move(BH_PWORK* epw) 
 {
