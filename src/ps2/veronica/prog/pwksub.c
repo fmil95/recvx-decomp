@@ -211,103 +211,112 @@ int bhCalcLockEneYR(BH_PWORK* pp, int idx)
     return 10430.381f * atan2f(-vec.x, -vec.z);
 }
 
-// 
-// Start address: 0x14e730
-int bhSearchNearEnemy(BH_PWORK* pp, int* r, float* h, int* id)
+// 100% matching!
+int bhSearchNearEnemy(BH_PWORK* pp, int* r, float* h, int* id) 
 {
-	int yr;
-	int ar;
-	int idx;
-	int i;
-	BH_PWORK* epp;
-	float epz;
-	float epx;
-	float ah;
-	float nr;
-	float ln;
-	float er;
-	float a;
-	//_anon40 cap;
-	//_anon23 vc2;
-	//_anon23 vc1;
-	//_anon23 vc0;
-	// Line 419, Address: 0x14e730, Func Offset: 0
-	// Line 430, Address: 0x14e770, Func Offset: 0x40
-	// Line 431, Address: 0x14e774, Func Offset: 0x44
-	// Line 432, Address: 0x14e784, Func Offset: 0x54
-	// Line 434, Address: 0x14e790, Func Offset: 0x60
-	// Line 433, Address: 0x14e794, Func Offset: 0x64
-	// Line 435, Address: 0x14e798, Func Offset: 0x68
-	// Line 434, Address: 0x14e79c, Func Offset: 0x6c
-	// Line 435, Address: 0x14e7a0, Func Offset: 0x70
-	// Line 436, Address: 0x14e7a8, Func Offset: 0x78
-	// Line 437, Address: 0x14e7b0, Func Offset: 0x80
-	// Line 438, Address: 0x14e7bc, Func Offset: 0x8c
-	// Line 439, Address: 0x14e7cc, Func Offset: 0x9c
-	// Line 440, Address: 0x14e7d8, Func Offset: 0xa8
-	// Line 441, Address: 0x14e7e8, Func Offset: 0xb8
-	// Line 460, Address: 0x14e7f8, Func Offset: 0xc8
-	// Line 463, Address: 0x14e7fc, Func Offset: 0xcc
-	// Line 464, Address: 0x14e804, Func Offset: 0xd4
-	// Line 461, Address: 0x14e808, Func Offset: 0xd8
-	// Line 465, Address: 0x14e80c, Func Offset: 0xdc
-	// Line 460, Address: 0x14e810, Func Offset: 0xe0
-	// Line 461, Address: 0x14e814, Func Offset: 0xe4
-	// Line 464, Address: 0x14e818, Func Offset: 0xe8
-	// Line 466, Address: 0x14e81c, Func Offset: 0xec
-	// Line 467, Address: 0x14e820, Func Offset: 0xf0
-	// Line 461, Address: 0x14e824, Func Offset: 0xf4
-	// Line 462, Address: 0x14e82c, Func Offset: 0xfc
-	// Line 467, Address: 0x14e834, Func Offset: 0x104
-	// Line 468, Address: 0x14e83c, Func Offset: 0x10c
-	// Line 474, Address: 0x14e888, Func Offset: 0x158
-	// Line 476, Address: 0x14e8ac, Func Offset: 0x17c
-	// Line 477, Address: 0x14e8b0, Func Offset: 0x180
-	// Line 478, Address: 0x14e8c4, Func Offset: 0x194
-	// Line 477, Address: 0x14e8c8, Func Offset: 0x198
-	// Line 479, Address: 0x14e8cc, Func Offset: 0x19c
-	// Line 483, Address: 0x14e8d0, Func Offset: 0x1a0
-	// Line 477, Address: 0x14e8d4, Func Offset: 0x1a4
-	// Line 478, Address: 0x14e8dc, Func Offset: 0x1ac
-	// Line 479, Address: 0x14e8f0, Func Offset: 0x1c0
-	// Line 480, Address: 0x14e904, Func Offset: 0x1d4
-	// Line 481, Address: 0x14e914, Func Offset: 0x1e4
-	// Line 482, Address: 0x14e924, Func Offset: 0x1f4
-	// Line 483, Address: 0x14e930, Func Offset: 0x200
-	// Line 485, Address: 0x14e938, Func Offset: 0x208
-	// Line 483, Address: 0x14e93c, Func Offset: 0x20c
-	// Line 485, Address: 0x14e940, Func Offset: 0x210
-	// Line 486, Address: 0x14e948, Func Offset: 0x218
-	// Line 487, Address: 0x14e954, Func Offset: 0x224
-	// Line 493, Address: 0x14e97c, Func Offset: 0x24c
-	// Line 496, Address: 0x14e9a8, Func Offset: 0x278
-	// Line 497, Address: 0x14e9ac, Func Offset: 0x27c
-	// Line 494, Address: 0x14e9b0, Func Offset: 0x280
-	// Line 495, Address: 0x14e9b4, Func Offset: 0x284
-	// Line 501, Address: 0x14e9b8, Func Offset: 0x288
-	// Line 502, Address: 0x14e9e0, Func Offset: 0x2b0
-	// Line 503, Address: 0x14e9ec, Func Offset: 0x2bc
-	// Line 505, Address: 0x14e9f0, Func Offset: 0x2c0
-	// Line 503, Address: 0x14e9f4, Func Offset: 0x2c4
-	// Line 504, Address: 0x14e9f8, Func Offset: 0x2c8
-	// Line 505, Address: 0x14ea08, Func Offset: 0x2d8
-	// Line 504, Address: 0x14ea0c, Func Offset: 0x2dc
-	// Line 505, Address: 0x14ea18, Func Offset: 0x2e8
-	// Line 506, Address: 0x14ea2c, Func Offset: 0x2fc
-	// Line 508, Address: 0x14ea30, Func Offset: 0x300
-	// Line 509, Address: 0x14ea34, Func Offset: 0x304
-	// Line 506, Address: 0x14ea38, Func Offset: 0x308
-	// Line 507, Address: 0x14ea40, Func Offset: 0x310
-	// Line 508, Address: 0x14ea44, Func Offset: 0x314
-	// Line 509, Address: 0x14ea4c, Func Offset: 0x31c
-	// Line 510, Address: 0x14ea54, Func Offset: 0x324
-	// Line 511, Address: 0x14ea7c, Func Offset: 0x34c
-	// Line 512, Address: 0x14ea84, Func Offset: 0x354
-	// Line 531, Address: 0x14ea8c, Func Offset: 0x35c
-	// Line 533, Address: 0x14ea94, Func Offset: 0x364
-	// Line 534, Address: 0x14ea98, Func Offset: 0x368
-	// Func End, Address: 0x14eadc, Func Offset: 0x3ac
-	scePrintf("bhSearchNearEnemy - UNIMPLEMENTED!\n");
+    NJS_VECTOR vc0, vc1, vc2;  
+    NJS_CAPSULE cap; 
+    float a;         
+    float er;      
+    float ln;       
+    float nr;        
+    float ah;      
+    float epx, epz;       
+    BH_PWORK* epp; 
+    int i;          
+    int idx;         
+    int ar;          
+    int yr;          
+
+    ar = *r;
+    ah = *h;
+    
+    if (ar == 0) 
+    {
+        ar = 32768;
+    }
+    
+    vc1.x = 0;
+    vc1.y = 0;
+    vc1.z = -1.0f;
+    
+    njUnitMatrix(NULL);
+    
+    njRotateY(NULL, pp->ay);
+    njCalcVector(NULL, &vc1, &vc0);
+    
+    njRotateY(NULL, ar);
+    njCalcVector(NULL, &vc1, &vc2);
+    
+    er = -njInnerProduct(&vc0, &vc2);
+    
+    cap.c1.x = pp->px;
+    cap.c1.y = pp->py + ah;
+    cap.c1.z = pp->pz;
+    cap.r    = 0.1f;
+    
+    nr = 0;
+    
+    epp = ene;
+    
+    idx = -1;
+    
+    for (i = 0; i < sys->ewk_n; i++, epp++)
+    {
+        if ((((epp->flg & 0x1)) && ((epp->flg & 0x20)) && (!(epp->flg & 0x2)) && (!(epp->flg2 & 0x10))) && (!(epp->stflg & 0x41000000)) && ((!(epp->flg & 0x80)) || (!(((O_WRK*)epp->lkwkp)->stflg & 0x1000000)))) 
+        {
+            cap.c2.x = 0.5f * (epp->watr.c1.x + epp->watr.c2.x);
+            cap.c2.y = 0.5f * (epp->watr.c1.y + epp->watr.c2.y);
+            cap.c2.z = 0.5f * (epp->watr.c1.z + epp->watr.c2.z);
+            
+            vc1.x = pp->px - cap.c2.x;
+            vc1.y = cap.c1.y - cap.c2.y;
+            vc1.z = pp->pz - cap.c2.z;
+            
+            ln = njScalor(&vc1);
+            
+            vc1.y = 0;
+            
+            njUnitVector(&vc1);
+            
+            if ((njInnerProduct(&vc0, &vc1) < er) && (bhCheckC2WallN(&cap, 0x40000400) == 0) && ((ln < nr) || (nr == 0)))
+            {
+                epx = cap.c2.x;
+                epz = cap.c2.z;
+                
+                nr = ln;
+                
+                idx = i;
+            }
+        }
+    }
+    
+    if (idx != -1) 
+    {
+        *id = idx;
+        
+        epp = &ene[idx];
+        
+        if (pp == plp) 
+        {
+            epp->stflg |= 0x800;
+        }
+        
+        vc0.x = epx - pp->px;
+        vc0.y = 0;
+        vc0.z = epz - pp->pz;
+        
+        njUnitVector(&vc0);
+
+        yr = 10430.381f * atan2f(-vc0.x, -vc0.z);
+        
+        *r = yr;
+        *h = nr;
+        
+        return 1;
+    }
+    
+    return 0;
 }
 
 // 100% matching!
