@@ -3005,7 +3005,7 @@ void bhEne04_MV04(BH_PWORK* epw)
         epw->mode3++;
     case 1:
         epw->ay += ikou3(epw, (NJS_POINT3*)&plp->mlwP->owP->mtx[12], 512);
-        if (epw->flg & 0x02000000)
+        if (epw->flg & 0x2000000)
         {
             bhEne04_ChgMtn(epw, 49, 0, 0);
             EXP0_I(0x10) &= ~0x40000000;
@@ -3020,48 +3020,61 @@ void bhEne04_MV04(BH_PWORK* epw)
             epw->mode1 = 1;
             epw->mode2 = 2;
             epw->mode3 = 0;
-            EXP0_I(0x10) &= ~0x02000000;
+            EXP0_I(0x10) &= ~0x2000000;
         }
         break;
     }
 }
 
-/*
-// 
-// Start address: 0x1a85c0
+// 100% matching!
 void bhEne04_MV05(BH_PWORK* epw)
 {
-	// Line 3124, Address: 0x1a85c0, Func Offset: 0
-	// Line 3125, Address: 0x1a85d0, Func Offset: 0x10
-	// Line 3128, Address: 0x1a85f0, Func Offset: 0x30
-	// Line 3129, Address: 0x1a8600, Func Offset: 0x40
-	// Line 3131, Address: 0x1a8610, Func Offset: 0x50
-	// Line 3133, Address: 0x1a8624, Func Offset: 0x64
-	// Line 3134, Address: 0x1a8638, Func Offset: 0x78
-	// Line 3135, Address: 0x1a864c, Func Offset: 0x8c
-	// Line 3138, Address: 0x1a8654, Func Offset: 0x94
-	// Line 3141, Address: 0x1a8668, Func Offset: 0xa8
-	// Line 3142, Address: 0x1a867c, Func Offset: 0xbc
-	// Line 3143, Address: 0x1a8688, Func Offset: 0xc8
-	// Line 3146, Address: 0x1a8694, Func Offset: 0xd4
-	// Line 3148, Address: 0x1a86b8, Func Offset: 0xf8
-	// Line 3150, Address: 0x1a86cc, Func Offset: 0x10c
-	// Line 3153, Address: 0x1a86e4, Func Offset: 0x124
-	// Line 3155, Address: 0x1a8714, Func Offset: 0x154
-	// Line 3157, Address: 0x1a8728, Func Offset: 0x168
-	// Line 3158, Address: 0x1a8730, Func Offset: 0x170
-	// Line 3159, Address: 0x1a8738, Func Offset: 0x178
-	// Line 3161, Address: 0x1a873c, Func Offset: 0x17c
-	// Line 3162, Address: 0x1a8750, Func Offset: 0x190
-	// Line 3166, Address: 0x1a8758, Func Offset: 0x198
-	// Line 3165, Address: 0x1a875c, Func Offset: 0x19c
-	// Line 3166, Address: 0x1a8760, Func Offset: 0x1a0
-	// Line 3167, Address: 0x1a8764, Func Offset: 0x1a4
-	// Line 3170, Address: 0x1a8768, Func Offset: 0x1a8
-	// Line 3174, Address: 0x1a8778, Func Offset: 0x1b8
-	// Func End, Address: 0x1a8788, Func Offset: 0x1c8
+    switch (epw->mode3)
+    {
+    case 0:
+        if (epw->mtn_no == 45)
+        {
+            epw->ay += 32768;
+        }
+        if (EXP0_I(0x10) & 0x8000)
+        {
+            bhEne04_ChgMtn(epw, 46, 0, 0);
+            EXP0_I(0x10) &= ~0x40000000;
+        }
+        else
+        {
+            bhEne04_ChgMtn(epw, 15, 0, 0);
+        }
+        EXP0_I(0x10) |= 0x100000;
+        epw->flg2 |= 1;
+        epw->mode3++;
+    case 1:
+        epw->ay += ikou3(epw, (NJS_POINT3*)&plp->px, 512);
+        if ((epw->frm_no / 65536) >= 30)
+        {
+            EXP0_I(0x10) &= ~0x100000;
+        }
+        if ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num - 1))
+        {
+            if (EXP0_I(0x10) & 0x8000)
+            {
+                epw->mode1 = 1;
+                epw->mode2 = 2;
+                epw->mode3 = 0;
+                EXP0_I(0x10) &= ~0x2000000;
+            }
+            else
+            {
+                epw->mode1 = 0;
+                epw->mode2 = 4;
+                epw->mode3 = 0;
+            }
+            epw->flg2 &= ~1;
+        }
+        break;
+    }
 }
-
+/*
 // 
 // Start address: 0x1a8790
 void bhEne04_MV06(BH_PWORK* epw)
