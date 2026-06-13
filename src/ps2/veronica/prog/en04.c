@@ -2992,40 +2992,41 @@ void bhEne04_MV03(BH_PWORK* epw)
 	// Line 3042, Address: 0x1a8434, Func Offset: 0x224
 	// Func End, Address: 0x1a8444, Func Offset: 0x234
 }
-
-// 
-// Start address: 0x1a8450
+*/
+// 100% matching!
 void bhEne04_MV04(BH_PWORK* epw)
 {
-	// Line 3062, Address: 0x1a8450, Func Offset: 0
-	// Line 3065, Address: 0x1a845c, Func Offset: 0xc
-	// Line 3068, Address: 0x1a8488, Func Offset: 0x38
-	// Line 3069, Address: 0x1a8498, Func Offset: 0x48
-	// Line 3070, Address: 0x1a84ac, Func Offset: 0x5c
-	// Line 3073, Address: 0x1a84b0, Func Offset: 0x60
-	// Line 3077, Address: 0x1a84bc, Func Offset: 0x6c
-	// Line 3079, Address: 0x1a84e0, Func Offset: 0x90
-	// Line 3077, Address: 0x1a84e4, Func Offset: 0x94
-	// Line 3079, Address: 0x1a84ec, Func Offset: 0x9c
-	// Line 3081, Address: 0x1a84fc, Func Offset: 0xac
-	// Line 3082, Address: 0x1a8510, Func Offset: 0xc0
-	// Line 3083, Address: 0x1a851c, Func Offset: 0xcc
-	// Line 3082, Address: 0x1a8520, Func Offset: 0xd0
-	// Line 3083, Address: 0x1a852c, Func Offset: 0xdc
-	// Line 3084, Address: 0x1a8530, Func Offset: 0xe0
-	// Line 3086, Address: 0x1a8538, Func Offset: 0xe8
-	// Line 3090, Address: 0x1a8540, Func Offset: 0xf0
-	// Line 3092, Address: 0x1a8560, Func Offset: 0x110
-	// Line 3090, Address: 0x1a8564, Func Offset: 0x114
-	// Line 3092, Address: 0x1a856c, Func Offset: 0x11c
-	// Line 3094, Address: 0x1a8580, Func Offset: 0x130
-	// Line 3095, Address: 0x1a8588, Func Offset: 0x138
-	// Line 3096, Address: 0x1a8590, Func Offset: 0x140
-	// Line 3099, Address: 0x1a8594, Func Offset: 0x144
-	// Line 3104, Address: 0x1a85ac, Func Offset: 0x15c
-	// Func End, Address: 0x1a85bc, Func Offset: 0x16c
+    switch (epw->mode3)
+    {
+    case 0:
+        bhEne04_ChgMtn(epw, 7, 0, 7);
+        EXP0_I(0x10) |= 0x40000000;
+        epw->mode1 = 0;
+        epw->mode3++;
+    case 1:
+        epw->ay += ikou3(epw, (NJS_POINT3*)&plp->mlwP->owP->mtx[12], 512);
+        if (epw->flg & 0x02000000)
+        {
+            bhEne04_ChgMtn(epw, 49, 0, 0);
+            EXP0_I(0x10) &= ~0x40000000;
+            epw->mode1 = 1;
+            epw->mode3++;
+        }
+        break;
+    case 2:
+        epw->ay += ikou3(epw, (NJS_POINT3*)&plp->mlwP->owP->mtx[12], 512);
+        if (!(plp->flg & 4))
+        {
+            epw->mode1 = 1;
+            epw->mode2 = 2;
+            epw->mode3 = 0;
+            EXP0_I(0x10) &= ~0x02000000;
+        }
+        break;
+    }
 }
 
+/*
 // 
 // Start address: 0x1a85c0
 void bhEne04_MV05(BH_PWORK* epw)
