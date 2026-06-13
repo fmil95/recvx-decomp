@@ -379,94 +379,115 @@ int bhSearchNearEnemyB(NJS_POINT3* pos, int ay, int ar, float len)
     return 0;
 }
 
-// 
-// Start address: 0x14ed50
-int bhSearchNearEnemy2(BH_PWORK* pp, int* r, float* h, int* id)
+// 100% matching!
+int bhSearchNearEnemy2(BH_PWORK* pp, int* r, float* h, int* id) 
 {
-	int yr;
-	int ar;
-	int idx;
-	int i;
-	BH_PWORK* epp;
-	float nr;
-	float ln;
-	float er;
-	float a;
-	float epz;
-	float epy;
-	float epx;
-	//_anon40 cap;
-	//_anon23 vc2;
-	//_anon23 vc1;
-	//_anon23 vc0;
-	// Line 616, Address: 0x14ed50, Func Offset: 0
-	// Line 632, Address: 0x14ed94, Func Offset: 0x44
-	// Line 635, Address: 0x14ed9c, Func Offset: 0x4c
-	// Line 632, Address: 0x14edac, Func Offset: 0x5c
-	// Line 633, Address: 0x14edb4, Func Offset: 0x64
-	// Line 634, Address: 0x14edc0, Func Offset: 0x70
-	// Line 635, Address: 0x14edc8, Func Offset: 0x78
-	// Line 636, Address: 0x14edcc, Func Offset: 0x7c
-	// Line 638, Address: 0x14edd0, Func Offset: 0x80
-	// Line 640, Address: 0x14eddc, Func Offset: 0x8c
-	// Line 639, Address: 0x14ede0, Func Offset: 0x90
-	// Line 641, Address: 0x14ede4, Func Offset: 0x94
-	// Line 640, Address: 0x14ede8, Func Offset: 0x98
-	// Line 641, Address: 0x14edec, Func Offset: 0x9c
-	// Line 642, Address: 0x14edf4, Func Offset: 0xa4
-	// Line 643, Address: 0x14edfc, Func Offset: 0xac
-	// Line 644, Address: 0x14ee08, Func Offset: 0xb8
-	// Line 645, Address: 0x14ee18, Func Offset: 0xc8
-	// Line 646, Address: 0x14ee24, Func Offset: 0xd4
-	// Line 647, Address: 0x14ee34, Func Offset: 0xe4
-	// Line 648, Address: 0x14ee40, Func Offset: 0xf0
-	// Line 649, Address: 0x14ee48, Func Offset: 0xf8
-	// Line 650, Address: 0x14ee4c, Func Offset: 0xfc
-	// Line 647, Address: 0x14ee50, Func Offset: 0x100
-	// Line 651, Address: 0x14ee54, Func Offset: 0x104
-	// Line 652, Address: 0x14ee5c, Func Offset: 0x10c
-	// Line 656, Address: 0x14ee8c, Func Offset: 0x13c
-	// Line 659, Address: 0x14eeb0, Func Offset: 0x160
-	// Line 661, Address: 0x14eebc, Func Offset: 0x16c
-	// Line 662, Address: 0x14eec0, Func Offset: 0x170
-	// Line 663, Address: 0x14eec4, Func Offset: 0x174
-	// Line 664, Address: 0x14eecc, Func Offset: 0x17c
-	// Line 665, Address: 0x14eee8, Func Offset: 0x198
-	// Line 666, Address: 0x14eeec, Func Offset: 0x19c
-	// Line 667, Address: 0x14eef4, Func Offset: 0x1a4
-	// Line 668, Address: 0x14eef8, Func Offset: 0x1a8
-	// Line 671, Address: 0x14ef00, Func Offset: 0x1b0
-	// Line 668, Address: 0x14ef04, Func Offset: 0x1b4
-	// Line 669, Address: 0x14ef14, Func Offset: 0x1c4
-	// Line 670, Address: 0x14ef24, Func Offset: 0x1d4
-	// Line 671, Address: 0x14ef30, Func Offset: 0x1e0
-	// Line 673, Address: 0x14ef38, Func Offset: 0x1e8
-	// Line 671, Address: 0x14ef3c, Func Offset: 0x1ec
-	// Line 673, Address: 0x14ef40, Func Offset: 0x1f0
-	// Line 674, Address: 0x14ef48, Func Offset: 0x1f8
-	// Line 676, Address: 0x14ef58, Func Offset: 0x208
-	// Line 679, Address: 0x14ef80, Func Offset: 0x230
-	// Line 680, Address: 0x14ef84, Func Offset: 0x234
-	// Line 681, Address: 0x14ef88, Func Offset: 0x238
-	// Line 677, Address: 0x14ef8c, Func Offset: 0x23c
-	// Line 678, Address: 0x14ef90, Func Offset: 0x240
-	// Line 685, Address: 0x14ef94, Func Offset: 0x244
-	// Line 686, Address: 0x14efc0, Func Offset: 0x270
-	// Line 690, Address: 0x14efcc, Func Offset: 0x27c
-	// Line 691, Address: 0x14efec, Func Offset: 0x29c
-	// Line 693, Address: 0x14eff8, Func Offset: 0x2a8
-	// Line 694, Address: 0x14f000, Func Offset: 0x2b0
-	// Line 691, Address: 0x14f004, Func Offset: 0x2b4
-	// Line 692, Address: 0x14f014, Func Offset: 0x2c4
-	// Line 693, Address: 0x14f018, Func Offset: 0x2c8
-	// Line 694, Address: 0x14f024, Func Offset: 0x2d4
-	// Line 695, Address: 0x14f02c, Func Offset: 0x2dc
-	// Line 696, Address: 0x14f054, Func Offset: 0x304
-	// Line 708, Address: 0x14f058, Func Offset: 0x308
-	// Line 710, Address: 0x14f064, Func Offset: 0x314
-	// Line 711, Address: 0x14f068, Func Offset: 0x318
-	// Func End, Address: 0x14f0ac, Func Offset: 0x35c
-	scePrintf("bhSearchNearEnemy2 - UNIMPLEMENTED!\n");
+    NJS_VECTOR vc0, vc1, vc2;  
+    NJS_CAPSULE cap; 
+    float epx, epy, epz;   
+    float a;        
+    float er;      
+    float ln;        
+    float nr;      
+    BH_PWORK* epp;  
+    int i;        
+    int idx;      
+    int ar;       
+    int yr;      
+
+    cap.c1.x = plp->px;
+    cap.c1.y = EXP1_F(16);
+    cap.c1.z = plp->pz;
+    
+    cap.r = 0.1f;
+    
+    ar = *r;
+    
+    if (ar == 0)
+    {
+        ar = 32768;
+    }
+    
+    vc1.x = 0;
+    vc1.y = 0;
+    vc1.z = -1.0f;
+    
+    njUnitMatrix(NULL);
+    
+    njRotateY(NULL, pp->ay);
+    njCalcVector(NULL, &vc1, &vc0);
+    
+    njRotateY(NULL, ar);
+    njCalcVector(NULL, &vc1, &vc2);
+    
+    er = -njInnerProduct(&vc0, &vc2);
+    
+    epp = ene;
+    
+    nr = 0;
+    
+    idx = -1;
+    
+    for (i = 0; i < sys->ewk_n; i++, epp++) 
+    {
+        if (((epp->flg & 0x1)) && (!(epp->flg & 0x8000)) && (!(epp->stflg & 0x41000000)) && ((!(epp->flg & 0x80)) || (!(((O_WRK*)epp->lkwkp)->stflg & 0x1000000))))
+        {
+            if (epp->lok_jno == 0) 
+            {
+                epx = epp->px;
+                epy = epp->py;
+                epz = epp->pz;
+            } 
+            else
+            {
+                epx = epp->mlwP->owP[epp->lok_jno].mtx[12];
+                epy = epp->mlwP->owP[epp->lok_jno].mtx[13];
+                epz = epp->mlwP->owP[epp->lok_jno].mtx[14];
+            }
+            
+            vc1.x = EXP1_F(12) - epx;
+            vc1.y = EXP1_F(16) - epy;
+            vc1.z = EXP1_F(20) - epz;
+            
+            ln = njScalor(&vc1);
+            
+            if ((njInnerProduct(&vc0, &vc1) < er) && ((ln < nr) || (nr == 0))) 
+            {
+                cap.c2.x = epx;
+                cap.c2.y = epy;
+                cap.c2.z = epz;
+                
+                nr = ln;
+                
+                idx = i;
+            }
+        }
+    }
+    
+    if (idx != -1) 
+    {
+        *id = idx;
+        
+        if (bhCheckC2WallN(&cap, 0x400) != 0)
+        {
+            return 0;
+        }
+        
+        vc0.x = cap.c2.x - EXP1_F(12);
+        vc0.y = 0;
+        vc0.z = cap.c2.z - EXP1_F(20);
+        
+        njUnitVector(&vc0);
+
+        yr = 10430.381f * atan2f(-vc0.x, -vc0.z);
+        
+        *r = yr;
+        *h = nr;
+        
+        return 1;
+    }
+    
+    return 0;
 }
 
 // 
