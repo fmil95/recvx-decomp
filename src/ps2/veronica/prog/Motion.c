@@ -274,58 +274,74 @@ void SetMtnNormalHokan(BH_PWORK* ewP, char* datP, int mode, float rate)
 	scePrintf("SetMtnNormalHokan - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x12fda0
-void SetMtnFast(BH_PWORK* ewP, char* datP, int mode)
+// 99.53% matching
+static void SetMtnFast(BH_PWORK* ewP, char* datP, int mode)
 {
-	int* dstP;
-	//_anon3* mkaP;
-	//_anon6* owP;
-	//_anon2* md2P;
-	int obj_no;
-	int flp;
-	float* posP;
-	float* keyP;
-	// Line 353, Address: 0x12fda0, Func Offset: 0
-	// Line 358, Address: 0x12fdb4, Func Offset: 0x14
-	// Line 359, Address: 0x12fdb8, Func Offset: 0x18
-	// Line 358, Address: 0x12fdbc, Func Offset: 0x1c
-	// Line 359, Address: 0x12fdc4, Func Offset: 0x24
-	// Line 358, Address: 0x12fdc8, Func Offset: 0x28
-	// Line 359, Address: 0x12fdd0, Func Offset: 0x30
-	// Line 358, Address: 0x12fdd4, Func Offset: 0x34
-	// Line 359, Address: 0x12fdf4, Func Offset: 0x54
-	// Line 358, Address: 0x12fe08, Func Offset: 0x68
-	// Line 359, Address: 0x12fe0c, Func Offset: 0x6c
-	// Line 363, Address: 0x12fe10, Func Offset: 0x70
-	// Line 373, Address: 0x12fe34, Func Offset: 0x94
-	// Line 363, Address: 0x12fe40, Func Offset: 0xa0
-	// Line 364, Address: 0x12fe48, Func Offset: 0xa8
-	// Line 365, Address: 0x12fe50, Func Offset: 0xb0
-	// Line 370, Address: 0x12fe58, Func Offset: 0xb8
-	// Line 375, Address: 0x12fe74, Func Offset: 0xd4
-	// Line 376, Address: 0x12fe7c, Func Offset: 0xdc
-	// Line 378, Address: 0x12fe98, Func Offset: 0xf8
-	// Line 379, Address: 0x12fea8, Func Offset: 0x108
-	// Line 383, Address: 0x12feb4, Func Offset: 0x114
-	// Line 382, Address: 0x12fec8, Func Offset: 0x128
-	// Line 383, Address: 0x12fecc, Func Offset: 0x12c
-	// Line 385, Address: 0x12fed4, Func Offset: 0x134
-	// Line 386, Address: 0x12fedc, Func Offset: 0x13c
-	// Line 390, Address: 0x12fef4, Func Offset: 0x154
-	// Line 391, Address: 0x12fefc, Func Offset: 0x15c
-	// Line 392, Address: 0x12ff08, Func Offset: 0x168
-	// Line 393, Address: 0x12ff10, Func Offset: 0x170
-	// Line 394, Address: 0x12ff18, Func Offset: 0x178
-	// Line 395, Address: 0x12ff1c, Func Offset: 0x17c
-	// Line 396, Address: 0x12ff20, Func Offset: 0x180
-	// Line 398, Address: 0x12ff24, Func Offset: 0x184
-	// Line 400, Address: 0x12ff28, Func Offset: 0x188
-	// Line 401, Address: 0x12ff2c, Func Offset: 0x18c
-	// Line 403, Address: 0x12ff30, Func Offset: 0x190
-	// Line 406, Address: 0x12ff40, Func Offset: 0x1a0
-	// Func End, Address: 0x12ff48, Func Offset: 0x1a8
-	scePrintf("SetMtnFast - UNIMPLEMENTED!\n");
+    float* keyP, *posP;     
+    int flp;         
+    int obj_no;          
+    NJS_MDATA2_MOD* md2P; 
+    O_WORK* owP;        
+    NJS_MKEY_A_MOD* mkaP;
+    int* dstP;           
+    
+    if (!(mode & 0x2))
+    {
+        datP = NormalTbl;
+    }
+    
+    keyP = &((float*)ewP->mnwP[ewP->mtn_no].md2P->p[0])[(ewP->frm_no / 65536) * 3];
+    posP = ewP->mlwP->objP[*datP].pos;
+    
+    posP[0] = keyP[0] * (((mode & 0x2)) ? -1.0f : 1.0f);
+    posP[1] = keyP[1]; 
+    posP[2] = keyP[2];
+    
+    obj_no = ewP->mnwP[ewP->mtn_no].obj_num;
+    md2P   = ewP->mnwP[ewP->mtn_no].md2P;
+    
+    if ((mode & 0x2)) 
+    {
+        flp = -1;
+    }
+    else 
+    {
+        flp = 1;
+    }
+    
+    while (obj_no > 0)
+    {
+        owP = &ewP->mlwP->owP[*datP];
+        
+        if (!(owP->flg & 0x4)) 
+        { 
+            if (!(owP->flg & 0x2)) 
+            {
+                dstP = ewP->mlwP->objP[*datP].ang;
+                
+                if (md2P->p[1] != NULL) 
+                {
+                    mkaP =  md2P->p[1];
+                    mkaP += ewP->frm_no / 65536;
+                    
+                    dstP[0] = mkaP->key[0];
+                    dstP[1] = mkaP->key[1] * flp;
+                    dstP[2] = mkaP->key[2] * flp; 
+                } 
+                else 
+                {
+                    dstP[0] = 0;
+                    dstP[1] = 0;
+                    dstP[2] = 0;
+                }
+            }
+            
+            md2P++;
+            obj_no--;
+        }
+        
+        datP++;
+    }
 }
 
 // 
