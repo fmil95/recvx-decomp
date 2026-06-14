@@ -7,6 +7,7 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/eneset.h"
@@ -2068,25 +2069,23 @@ void bhEne04_PlayerControl(BH_PWORK* pl, BH_PWORK* epw)
         bhEne04_PlyDmgMode[pl->mode1](pl, epw);
     }
 }
-/*
-// 
-// Start address: 0x1a5950
+
+// 100% matching!
 void bhEne04_PlayerLink(BH_PWORK* pl, BH_PWORK* epw)
 {
-	_anon36 pd;
-	// Line 1069, Address: 0x1a5950, Func Offset: 0
-	// Line 1074, Address: 0x1a5964, Func Offset: 0x14
-	// Line 1076, Address: 0x1a597c, Func Offset: 0x2c
-	// Line 1077, Address: 0x1a5984, Func Offset: 0x34
-	// Line 1078, Address: 0x1a5998, Func Offset: 0x48
-	// Line 1079, Address: 0x1a59ac, Func Offset: 0x5c
-	// Line 1080, Address: 0x1a59c0, Func Offset: 0x70
-	// Line 1081, Address: 0x1a59c8, Func Offset: 0x78
-	// Line 1082, Address: 0x1a59d0, Func Offset: 0x80
-	// Line 1121, Address: 0x1a59e4, Func Offset: 0x94
-	// Func End, Address: 0x1a59f8, Func Offset: 0xa8
+    NJS_POINT3 pd;
+
+    if (EXP0_I(0x10) & 0x80000)
+    {
+        njUnitMatrix(NULL);
+        njTranslate(NULL, epw->px, epw->py, epw->pz);
+        njRotateXYZ(NULL, epw->ax, epw->ay, epw->az);
+        njCalcPoint(NULL, (NJS_POINT3*) &EXP0_UC(0x30), &pd);
+        pl->px = pd.x;
+        pl->pz = pd.z;
+        pl->ay = (epw->ay + epw->waxp) & 0xFFFF;
+    }
 }
-*/
 
 // 100% matching!
 void bhEne04_CollisionCheck(BH_PWORK* epw) {
