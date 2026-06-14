@@ -77,12 +77,6 @@ python mkiso.py -m insert
 
 If successful, you will now see an ISO called "RECVX_NEW" in the iso folder that you can use to test the results with an emulator (preferrably PCSX2 for its debugging capabilities) or console.  
 
-## Community
-
-The primary way to discuss the project is through the [REDACTED] server on Discord, which has a dedicated channel for the decomp called `resident-evil-code-veronica-x`. See you there!
-
-[REDACTED]
-
 ## Resources
 
 Associated decomp projects:
