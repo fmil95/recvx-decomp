@@ -2,6 +2,7 @@
 #define _EN04_H_
 
 #include "types.h"
+#include "macros.h"
 
 void bhEne04_DmmyBrain();
 void bhEne04(BH_PWORK* epw);
@@ -65,7 +66,7 @@ int bhEne04_SetMtn(BH_PWORK* epw);
 void bhEne04_CheckMtnTbl(BH_PWORK* epw, int frm);
 int bhEne04_KaidanCheck(BH_PWORK* epw);
 /*void bhEne04_ShakeWire(_anon0* obwp);*/
-void bhEne04_RotNeck(BH_PWORK* epw, int ry);
+void bhEne04_RotNeck(BH_PWORK* epw, int rx, int ry, int rz); // signature differs from DWARF
 int bhEne04_SearchNeck(BH_PWORK* epw);
 void bhEne04_SePlay(BH_PWORK* epw, int no);
 
