@@ -10,6 +10,7 @@
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/eneset.h"
+#include "../../../ps2/veronica/prog/rutchk.h"
 
 
 /*typedef struct npobj;
@@ -1746,8 +1747,23 @@ void (*bhEne04_DieType[3])(BH_PWORK*) =
     bhEne04_DDType00,
     bhEne04_DDType00
 };
+
+void (*bhEne04_BrainMode2[12])(BH_PWORK*) =
+{
+    bhEne04_Brain00,
+    bhEne04_Brain01,
+    bhEne04_Brain02,
+    bhEne04_DmmyBrain,
+    bhEne04_Brain04,
+    bhEne04_DmmyBrain,
+    bhEne04_Brain06,
+    bhEne04_DmmyBrain,
+    bhEne04_DmmyBrain,
+    bhEne04_DmmyBrain,
+    bhEne04_DmmyBrain,
+    bhEne04_DmmyBrain
+};
 /*
-void(*bhEne04_BrainMode2)(BH_PWORK*)[12];
 void(*bhEne04_MoveMode2)(BH_PWORK*)[13];
 */
 void (*bhEne04_NageMode2[2])(BH_PWORK*) =
@@ -2563,34 +2579,40 @@ void bhEne04_EneSearch(BH_PWORK* epw)
         EXP0_UC(0) &= 0xE0;
     }
 }
-/*
-// 
-// Start address: 0x1a6cc0
+
+// 100% matching!
 void bhEne04_Brain(BH_PWORK* epw)
 {
-	_anon36 pos;
-	// Line 2151, Address: 0x1a6cc0, Func Offset: 0
-	// Line 2156, Address: 0x1a6ccc, Func Offset: 0xc
-	// Line 2160, Address: 0x1a6cd4, Func Offset: 0x14
-	// Line 2162, Address: 0x1a6ce8, Func Offset: 0x28
-	// Line 2164, Address: 0x1a6cf4, Func Offset: 0x34
-	// Line 2168, Address: 0x1a6d38, Func Offset: 0x78
-	// Line 2169, Address: 0x1a6d3c, Func Offset: 0x7c
-	// Line 2168, Address: 0x1a6d40, Func Offset: 0x80
-	// Line 2169, Address: 0x1a6d44, Func Offset: 0x84
-	// Line 2170, Address: 0x1a6d50, Func Offset: 0x90
-	// Line 2173, Address: 0x1a6d58, Func Offset: 0x98
-	// Line 2174, Address: 0x1a6d70, Func Offset: 0xb0
-	// Line 2175, Address: 0x1a6d7c, Func Offset: 0xbc
-	// Line 2177, Address: 0x1a6d84, Func Offset: 0xc4
-	// Line 2180, Address: 0x1a6d8c, Func Offset: 0xcc
-	// Line 2181, Address: 0x1a6da4, Func Offset: 0xe4
-	// Line 2182, Address: 0x1a6db0, Func Offset: 0xf0
-	// Line 2187, Address: 0x1a6dbc, Func Offset: 0xfc
-	// Line 2188, Address: 0x1a6ddc, Func Offset: 0x11c
-	// Func End, Address: 0x1a6dec, Func Offset: 0x12c
+    NJS_POINT3 pos;
+
+    bhEne04_EneSearch(epw);
+
+    if (!(EXP0_UC(0) & 0x80))
+    {
+        if (EXP0_UC(0) & 0x40)
+        {
+            if ((EXP0_F(0x20) < 50.0f) && (EXP0_I(0x44) == 0) && (epw->flr_no == plp->flr_no))
+            {
+                EXP0_F(0x24) = plp->px;
+                EXP0_F(0x2C) = plp->pz;
+            }
+            else
+            {
+                bhCheckRoute((NJS_POINT3*)&epw->px, (NJS_POINT3*)&plp->px, &pos);
+                EXP0_F(0x24) = pos.x;
+                EXP0_F(0x2C) = pos.z;
+            }
+        }
+        else
+        {
+            bhCheckRoute((NJS_POINT3*)&epw->px,(NJS_POINT3*) &plp->px, &pos);
+            EXP0_F(0x24) = pos.x;
+            EXP0_F(0x2C) = pos.z;
+        }
+    }
+    bhEne04_BrainMode2[epw->mode2](epw);
 }
-*/
+
 // 100% matching!
 void bhEne04_Brain00(BH_PWORK* epw)
 {
@@ -2615,14 +2637,14 @@ void bhEne04_Brain01(BH_PWORK* epw)
         epw->mode3 = 0;
     }
 }
-/*
+
 // 
 // Start address: 0x1a6fa0
 void bhEne04_Brain02(BH_PWORK* epw)
 {
 	int back_flg;
-	_anon36 pos2;
-	_anon36 pos;
+	//_anon36 pos2;
+	//_anon36 pos;
 	// Line 2257, Address: 0x1a6fa0, Func Offset: 0
 	// Line 2262, Address: 0x1a6fac, Func Offset: 0xc
 	// Line 2268, Address: 0x1a7004, Func Offset: 0x64
@@ -2686,14 +2708,15 @@ void bhEne04_Brain02(BH_PWORK* epw)
 	// Line 2362, Address: 0x1a7310, Func Offset: 0x370
 	// Line 2364, Address: 0x1a731c, Func Offset: 0x37c
 	// Func End, Address: 0x1a732c, Func Offset: 0x38c
+    scePrintf("bhEne04_Brain022 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1a7330
 void bhEne04_Brain04(BH_PWORK* epw)
 {
-	_anon36 pos2;
-	_anon36 pos;
+	//_anon36 pos2;
+	//_anon36 pos;
 	// Line 2381, Address: 0x1a7330, Func Offset: 0
 	// Line 2385, Address: 0x1a733c, Func Offset: 0xc
 	// Line 2388, Address: 0x1a7350, Func Offset: 0x20
@@ -2729,8 +2752,9 @@ void bhEne04_Brain04(BH_PWORK* epw)
 	// Line 2435, Address: 0x1a7498, Func Offset: 0x168
 	// Line 2441, Address: 0x1a74b0, Func Offset: 0x180
 	// Func End, Address: 0x1a74c0, Func Offset: 0x190
+    scePrintf("bhEne04_Brain04 - UNIMPLEMENTED!\n");
 }
-*/
+
 // 100% matching!
 void bhEne04_Brain06(BH_PWORK* epw)
 {
