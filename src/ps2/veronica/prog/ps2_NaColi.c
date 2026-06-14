@@ -971,9 +971,9 @@ Int     njCollisionCheckBC(NJS_BOX *box, NJS_CAPSULE *capsule)
     return 0;
 }
 
-/*// 
+// 
 // Start address: 0x2e4bc0
-int njCheckPlane4AndLine(_anon0* pP1, _anon0* pP2, _anon0* pP3, _anon0* pP4, _anon0* pPN, _anon1* pLine)
+int njCheckPlane4AndLine(NJS_POINT3* pP1, NJS_POINT3* pP2, NJS_POINT3* pP3, NJS_POINT3* pP4, NJS_POINT3* pPN, NJS_LINE* pLine)
 {
 	float fT4;
 	float fT3;
@@ -1089,7 +1089,8 @@ int njCheckPlane4AndLine(_anon0* pP1, _anon0* pP2, _anon0* pP3, _anon0* pP4, _an
 	// Line 1144, Address: 0x2e4fdc, Func Offset: 0x41c
 	// Line 1151, Address: 0x2e5034, Func Offset: 0x474
 	// Func End, Address: 0x2e5084, Func Offset: 0x4c4
-}*/
+    scePrintf("njCheckPlane4AndLine - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 int njCollisionCheckBC2(NJS_BOX* pBox, NJS_CAPSULE* pCapsule) 
