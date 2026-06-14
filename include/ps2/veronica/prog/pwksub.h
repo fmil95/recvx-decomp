@@ -3,6 +3,13 @@
 
 #include "types.h"
 
+typedef struct SC_WORK 
+{
+    // total size: 0x8
+    int idx;  // offset 0x0, size 0x4
+    float ln; // offset 0x4, size 0x4
+} SC_WORK;
+
 unsigned char* bhGetFreeMemory(int size, int param);
 void bhCalcLinkModel(BH_PWORK* pp);
 void bhSetFloorNum(BH_PWORK* pp);
