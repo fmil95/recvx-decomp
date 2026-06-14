@@ -3734,44 +3734,45 @@ void bhEne04_MV11(BH_PWORK* epw)
 	// Line 3992, Address: 0x1aa080, Func Offset: 0x390
 	// Func End, Address: 0x1aa090, Func Offset: 0x3a0
 }
-
-// 
-// Start address: 0x1aa090
+*/
+// 100% matching!
 void bhEne04_MV12(BH_PWORK* epw)
 {
-	_anon4* owk;
-	// Line 4164, Address: 0x1aa090, Func Offset: 0
-	// Line 4168, Address: 0x1aa0a0, Func Offset: 0x10
-	// Line 4171, Address: 0x1aa0d8, Func Offset: 0x48
-	// Line 4172, Address: 0x1aa0e8, Func Offset: 0x58
-	// Line 4175, Address: 0x1aa0f4, Func Offset: 0x64
-	// Line 4177, Address: 0x1aa0fc, Func Offset: 0x6c
-	// Line 4178, Address: 0x1aa104, Func Offset: 0x74
-	// Line 4175, Address: 0x1aa10c, Func Offset: 0x7c
-	// Line 4178, Address: 0x1aa118, Func Offset: 0x88
-	// Line 4179, Address: 0x1aa120, Func Offset: 0x90
-	// Line 4181, Address: 0x1aa134, Func Offset: 0xa4
-	// Line 4179, Address: 0x1aa13c, Func Offset: 0xac
-	// Line 4181, Address: 0x1aa144, Func Offset: 0xb4
-	// Line 4184, Address: 0x1aa15c, Func Offset: 0xcc
-	// Line 4185, Address: 0x1aa170, Func Offset: 0xe0
-	// Line 4186, Address: 0x1aa184, Func Offset: 0xf4
-	// Line 4188, Address: 0x1aa18c, Func Offset: 0xfc
-	// Line 4192, Address: 0x1aa194, Func Offset: 0x104
-	// Line 4194, Address: 0x1aa1b4, Func Offset: 0x124
-	// Line 4192, Address: 0x1aa1b8, Func Offset: 0x128
-	// Line 4194, Address: 0x1aa1c0, Func Offset: 0x130
-	// Line 4196, Address: 0x1aa1d0, Func Offset: 0x140
-	// Line 4197, Address: 0x1aa1dc, Func Offset: 0x14c
-	// Line 4196, Address: 0x1aa1e4, Func Offset: 0x154
-	// Line 4197, Address: 0x1aa1e8, Func Offset: 0x158
-	// Line 4196, Address: 0x1aa1f0, Func Offset: 0x160
-	// Line 4197, Address: 0x1aa1f4, Func Offset: 0x164
-	// Line 4198, Address: 0x1aa1fc, Func Offset: 0x16c
-	// Line 4205, Address: 0x1aa208, Func Offset: 0x178
-	// Func End, Address: 0x1aa21c, Func Offset: 0x18c
-}
+    O_WORK* owk;
 
+    switch (epw->mode3)
+    {
+    case 0:
+        bhEne04_ChgMtn(epw, 0, 0, 7);
+        epw->mode3++;
+
+    case 1:
+        owk = &plp->mlwP->owP[1];
+        epw->spd = 0.15f;
+        bhAddSpeed(epw, 0);
+        epw->ay += ikou3(epw, (NJS_POINT3*)&owk->mtx[12], 256);
+        if (EXP0_F(0x20) <= 9.0f)
+        {
+            bhEne04_ChgMtn(epw, 42, 0, 7);
+            EXP0_I(0x10) |= 0x40000000;
+            epw->mode3++;
+        }
+        break;
+        
+    case 2:
+        epw->ay += ikou3(epw, (NJS_POINT3*)&plp->mlwP->owP[1].mtx[12], 256);
+        if (epw->flg & 0x2000000)
+        {
+            EXP0_I(0x10) &= ~0x40000000;
+            bhEne04_ChgMtn(epw, 43, 0, 7);
+            epw->mode3++;
+        } 
+        
+    case 3:
+        break;    
+    }
+}
+/*
 // 
 // Start address: 0x1aa220
 int bhEne04_Escape(BH_PWORK* epw, int res, int r)
