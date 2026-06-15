@@ -2838,45 +2838,65 @@ void bhEne04_Brain06(BH_PWORK* epw)
         epw->mode3 = 0;
     }
 }
-/*
-// 
-// Start address: 0x1a76b0
+
+// 100% matching!
 void bhEne04_MV00(BH_PWORK* epw)
 {
-	// Line 2522, Address: 0x1a76b0, Func Offset: 0
-	// Line 2523, Address: 0x1a76bc, Func Offset: 0xc
-	// Line 2526, Address: 0x1a76e8, Func Offset: 0x38
-	// Line 2527, Address: 0x1a76f4, Func Offset: 0x44
-	// Line 2529, Address: 0x1a770c, Func Offset: 0x5c
-	// Line 2530, Address: 0x1a771c, Func Offset: 0x6c
-	// Line 2531, Address: 0x1a7740, Func Offset: 0x90
-	// Line 2532, Address: 0x1a7748, Func Offset: 0x98
-	// Line 2535, Address: 0x1a7754, Func Offset: 0xa4
-	// Line 2536, Address: 0x1a7758, Func Offset: 0xa8
-	// Line 2535, Address: 0x1a775c, Func Offset: 0xac
-	// Line 2536, Address: 0x1a7768, Func Offset: 0xb8
-	// Line 2537, Address: 0x1a7770, Func Offset: 0xc0
-	// Line 2538, Address: 0x1a777c, Func Offset: 0xcc
-	// Line 2540, Address: 0x1a77ac, Func Offset: 0xfc
-	// Line 2542, Address: 0x1a77c0, Func Offset: 0x110
-	// Line 2544, Address: 0x1a77dc, Func Offset: 0x12c
-	// Line 2545, Address: 0x1a77ec, Func Offset: 0x13c
-	// Line 2547, Address: 0x1a77f4, Func Offset: 0x144
-	// Line 2549, Address: 0x1a77fc, Func Offset: 0x14c
-	// Line 2553, Address: 0x1a7804, Func Offset: 0x154
-	// Line 2555, Address: 0x1a7820, Func Offset: 0x170
-	// Line 2558, Address: 0x1a782c, Func Offset: 0x17c
-	// Line 2560, Address: 0x1a785c, Func Offset: 0x1ac
-	// Line 2562, Address: 0x1a7874, Func Offset: 0x1c4
-	// Line 2563, Address: 0x1a787c, Func Offset: 0x1cc
-	// Line 2565, Address: 0x1a7884, Func Offset: 0x1d4
-	// Line 2568, Address: 0x1a788c, Func Offset: 0x1dc
-	// Line 2569, Address: 0x1a7894, Func Offset: 0x1e4
-	// Line 2570, Address: 0x1a7898, Func Offset: 0x1e8
-	// Line 2577, Address: 0x1a789c, Func Offset: 0x1ec
-	// Func End, Address: 0x1a78ac, Func Offset: 0x1fc
+    switch (epw->mode3)
+    {
+    case 0:
+        if (epw->type == 0)
+        {
+            bhEne04_ChgMtn(epw, 47, 0, 7);
+        }
+        else
+        {
+            bhEne04_ChgMtn(epw, 49, 0, 7);
+        }
+        epw->ct0 = (rand() % 128) + 100;
+        epw->mode1 = 1;
+        epw->mode3++;
+
+    case 1:
+        EXP0_I(0x10) |= 0x80;
+        EXP0_I(0x1C) = 4096;
+        epw->ct0--;
+        if (((epw->ct0 <= 0) || (EXP0_I(0x10) & 0x400000)) && (epw->type == 0))
+        {
+            bhEne04_ChgMtn(epw, 48, 0, 10);
+            if (!(EXP0_I(0x10) & 0x400000))
+            {
+                EXP0_I(0x10) &= ~0x80;
+                EXP0_I(0x1C) = 0;
+            }
+            epw->mode3++;
+        }
+        break;
+        
+    case 2:
+        if (EXP0_I(0x10) & 0x400000)
+        {
+            EXP0_I(0x10) |= 0x80;
+        }
+        if ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num - 1)) 
+        {
+            if (EXP0_I(0x10) & 0x400000)
+            {
+                epw->mode1 = 1;
+                epw->mode2 = 2;
+                epw->mode3 = 0;
+            }
+            else 
+            {
+                epw->mode1 = 1;
+                epw->mode2 = 1;
+                epw->mode3 = 0;
+            }
+        }
+    }
 }
 
+/*
 // 
 // Start address: 0x1a78b0
 void bhEne04_MV01(BH_PWORK* epw)
