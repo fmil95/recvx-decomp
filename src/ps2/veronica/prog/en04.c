@@ -1810,7 +1810,8 @@ void bhEne04_DmmyBrain(void)
 }
 
 // 100% matching!
-void bhEne04(BH_PWORK* epw) {
+void bhEne04(BH_PWORK* epw)
+{
     int i;
     O_WRK* op;
 
@@ -1897,29 +1898,30 @@ void bhEne04_MainLoop(BH_PWORK* epw)
     }
 }
 
-
-// 
-// Start address: 0x1a5170
+// 100% matching!
 void bhEne04_SetCollision(BH_PWORK* epw)
 {
-	//_anon36 pd;
-	//_anon36 ps;
-	// Line 647, Address: 0x1a5170, Func Offset: 0
-	// Line 653, Address: 0x1a517c, Func Offset: 0xc
-	// Line 655, Address: 0x1a5194, Func Offset: 0x24
-	// Line 667, Address: 0x1a51a8, Func Offset: 0x38
-	// Line 670, Address: 0x1a51b0, Func Offset: 0x40
-	// Line 671, Address: 0x1a51b8, Func Offset: 0x48
-	// Line 672, Address: 0x1a51cc, Func Offset: 0x5c
-	// Line 673, Address: 0x1a51e0, Func Offset: 0x70
-	// Line 674, Address: 0x1a51ec, Func Offset: 0x7c
-	// Line 673, Address: 0x1a51f4, Func Offset: 0x84
-	// Line 674, Address: 0x1a51f8, Func Offset: 0x88
-	// Line 675, Address: 0x1a5200, Func Offset: 0x90
-	// Line 676, Address: 0x1a5210, Func Offset: 0xa0
-	// Line 678, Address: 0x1a5220, Func Offset: 0xb0
-	// Func End, Address: 0x1a5230, Func Offset: 0xc0
-    scePrintf("bhEne04_SetCollision - UNIMPLEMENTED!\n");
+	NJS_POINT3 pd;
+	NJS_POINT3 ps;
+
+    njGetTranslation(&epw->mlwP->owP[1].mtx, &epw->watr.c1);
+    njGetTranslation(&epw->mlwP->owP[4].mtx, &epw->watr.c2);
+    
+    epw->watr.r = 2.0f;
+    
+    njUnitMatrix(NULL);
+    
+    njTranslate(NULL, epw->px, epw->py, epw->pz);
+    njRotateXYZ(NULL, epw->ax, epw->ay, epw->az);
+    
+    pd.x = 0.0f;
+    pd.y = 0.0f;
+    pd.z = -3.0f;
+    
+    njCalcPoint(NULL, &pd, &ps);
+    
+    epw->aox = ps.x - epw->px;
+    epw->aoz = ps.z - epw->pz;
 }
 
 // 
