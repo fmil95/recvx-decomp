@@ -12,6 +12,7 @@
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/rutchk.h"
+#include "../../../ps2/veronica/prog/hitchkl.h"
 
 
 /*typedef struct npobj;
@@ -2707,51 +2708,55 @@ void bhEne04_Brain02(BH_PWORK* epw)
 	// Line 2362, Address: 0x1a7310, Func Offset: 0x370
 	// Line 2364, Address: 0x1a731c, Func Offset: 0x37c
 	// Func End, Address: 0x1a732c, Func Offset: 0x38c
-    scePrintf("bhEne04_Brain022 - UNIMPLEMENTED!\n");
+    scePrintf("bhEne04_Brain02 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1a7330
+// 100% matching!
 void bhEne04_Brain04(BH_PWORK* epw)
 {
-	//_anon36 pos2;
-	//_anon36 pos;
-	// Line 2381, Address: 0x1a7330, Func Offset: 0
-	// Line 2385, Address: 0x1a733c, Func Offset: 0xc
-	// Line 2388, Address: 0x1a7350, Func Offset: 0x20
-	// Line 2387, Address: 0x1a7354, Func Offset: 0x24
-	// Line 2388, Address: 0x1a7358, Func Offset: 0x28
-	// Line 2389, Address: 0x1a735c, Func Offset: 0x2c
-	// Line 2392, Address: 0x1a7360, Func Offset: 0x30
-	// Line 2393, Address: 0x1a7374, Func Offset: 0x44
-	// Line 2397, Address: 0x1a737c, Func Offset: 0x4c
-	// Line 2403, Address: 0x1a73cc, Func Offset: 0x9c
-	// Line 2406, Address: 0x1a73e8, Func Offset: 0xb8
-	// Line 2408, Address: 0x1a73fc, Func Offset: 0xcc
-	// Line 2411, Address: 0x1a7400, Func Offset: 0xd0
-	// Line 2414, Address: 0x1a7408, Func Offset: 0xd8
-	// Line 2408, Address: 0x1a7410, Func Offset: 0xe0
-	// Line 2409, Address: 0x1a7414, Func Offset: 0xe4
-	// Line 2410, Address: 0x1a741c, Func Offset: 0xec
-	// Line 2411, Address: 0x1a7424, Func Offset: 0xf4
-	// Line 2412, Address: 0x1a742c, Func Offset: 0xfc
-	// Line 2413, Address: 0x1a7434, Func Offset: 0x104
-	// Line 2414, Address: 0x1a7438, Func Offset: 0x108
-	// Line 2417, Address: 0x1a7448, Func Offset: 0x118
-	// Line 2416, Address: 0x1a744c, Func Offset: 0x11c
-	// Line 2417, Address: 0x1a7450, Func Offset: 0x120
-	// Line 2418, Address: 0x1a7454, Func Offset: 0x124
-	// Line 2421, Address: 0x1a7458, Func Offset: 0x128
-	// Line 2426, Address: 0x1a746c, Func Offset: 0x13c
-	// Line 2429, Address: 0x1a7474, Func Offset: 0x144
-	// Line 2432, Address: 0x1a7488, Func Offset: 0x158
-	// Line 2431, Address: 0x1a748c, Func Offset: 0x15c
-	// Line 2432, Address: 0x1a7490, Func Offset: 0x160
-	// Line 2433, Address: 0x1a7494, Func Offset: 0x164
-	// Line 2435, Address: 0x1a7498, Func Offset: 0x168
-	// Line 2441, Address: 0x1a74b0, Func Offset: 0x180
-	// Func End, Address: 0x1a74c0, Func Offset: 0x190
-    scePrintf("bhEne04_Brain04 - UNIMPLEMENTED!\n");
+	NJS_POINT3 pos;
+	NJS_POINT3 pos2;
+
+    if (plp->hp < 0)
+    {
+        epw->mode1 = 0;
+        epw->mode2 = 12;
+        epw->mode3 = 0;
+        EXP0_I(0x10) &= ~0x2000000;
+        return;
+    }
+    
+    if ((EXP0_F(0x20) < 20.0f) && !(EXP0_I(0x10) & 0x8000) && !(plp->flg & 4) && (epw->flr_no == plp->flr_no))
+    {
+        if (!(EXP0_F(0x20) <= 11.0f))
+        {
+            if (ikou3(epw, (NJS_POINT3*)&plp->px, 1024) == 0)
+            {
+                pos.x = epw->px;
+                pos.y = epw->py;
+                pos.z = epw->pz;
+                
+                pos2.x = plp->px;
+                pos2.y = plp->py;
+                pos2.z = plp->pz;
+                
+                if (bhCollisionCheckLine((NJS_POINT3*)&pos, (NJS_POINT3*)&pos2) == NULL)
+                {
+                    epw->mode1 = 0;
+                    epw->mode2 = 7;
+                    epw->mode3 = 0;
+                    EXP0_I(0x10) &= ~0x2000000;
+                }
+            }
+        }
+        else if (ikou3(epw, (NJS_POINT3*)&plp->px, 2048) == 0)
+        {
+            epw->mode1 = 0;
+            epw->mode2 = 9;
+            epw->mode3 = 0;
+            EXP0_I(0x10) &= ~0x2000000;
+        }
+    }
 }
 
 // 100% matching!
