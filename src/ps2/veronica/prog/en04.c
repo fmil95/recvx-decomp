@@ -3660,48 +3660,54 @@ void bhEne04_MV09(BH_PWORK* epw)
 	// Line 3814, Address: 0x1a9b58, Func Offset: 0x1b8
 	// Func End, Address: 0x1a9b68, Func Offset: 0x1c8
 }
-
-// 
-// Start address: 0x1a9b70
+*/
+// 100% matching! (99.64% on decomp.me)
 void bhEne04_MV10(BH_PWORK* epw)
 {
-	// Line 3833, Address: 0x1a9b70, Func Offset: 0
-	// Line 3834, Address: 0x1a9b7c, Func Offset: 0xc
-	// Line 3837, Address: 0x1a9b9c, Func Offset: 0x2c
-	// Line 3840, Address: 0x1a9bac, Func Offset: 0x3c
-	// Line 3842, Address: 0x1a9bc0, Func Offset: 0x50
-	// Line 3846, Address: 0x1a9bd4, Func Offset: 0x64
-	// Line 3847, Address: 0x1a9bf4, Func Offset: 0x84
-	// Line 3849, Address: 0x1a9c00, Func Offset: 0x90
-	// Line 3851, Address: 0x1a9c14, Func Offset: 0xa4
-	// Line 3853, Address: 0x1a9c28, Func Offset: 0xb8
-	// Line 3854, Address: 0x1a9c2c, Func Offset: 0xbc
-	// Line 3855, Address: 0x1a9c30, Func Offset: 0xc0
-	// Line 3856, Address: 0x1a9c34, Func Offset: 0xc4
-	// Line 3857, Address: 0x1a9c38, Func Offset: 0xc8
-	// Line 3858, Address: 0x1a9c4c, Func Offset: 0xdc
-	// Line 3860, Address: 0x1a9c70, Func Offset: 0x100
-	// Line 3862, Address: 0x1a9c74, Func Offset: 0x104
-	// Line 3860, Address: 0x1a9c7c, Func Offset: 0x10c
-	// Line 3861, Address: 0x1a9c80, Func Offset: 0x110
-	// Line 3860, Address: 0x1a9c84, Func Offset: 0x114
-	// Line 3863, Address: 0x1a9c88, Func Offset: 0x118
-	// Line 3866, Address: 0x1a9c8c, Func Offset: 0x11c
-	// Line 3867, Address: 0x1a9c90, Func Offset: 0x120
-	// Line 3860, Address: 0x1a9c94, Func Offset: 0x124
-	// Line 3861, Address: 0x1a9c9c, Func Offset: 0x12c
-	// Line 3862, Address: 0x1a9cac, Func Offset: 0x13c
-	// Line 3863, Address: 0x1a9cb0, Func Offset: 0x140
-	// Line 3864, Address: 0x1a9cbc, Func Offset: 0x14c
-	// Line 3863, Address: 0x1a9cc0, Func Offset: 0x150
-	// Line 3864, Address: 0x1a9cc4, Func Offset: 0x154
-	// Line 3866, Address: 0x1a9cd4, Func Offset: 0x164
-	// Line 3867, Address: 0x1a9cd8, Func Offset: 0x168
-	// Line 3868, Address: 0x1a9cdc, Func Offset: 0x16c
-	// Line 3872, Address: 0x1a9ce0, Func Offset: 0x170
-	// Func End, Address: 0x1a9cf0, Func Offset: 0x180
-}
+    switch (epw->mode3)
+    {
+    case 0:
+        bhEne04_ChgMtn(epw, 33, 0, 5);
+      
+    case 1:
+        if ((epw->frm_no / 65536) < 8)
+        {
+            epw->ay += epw->ayp / 8;
+        }
 
+        bhEne04_SpeedUp(&epw->spd, 0.1f, 1.2f); // float memes? :(
+        bhAddSpeed(epw, 0);
+
+        if (epw->flg & 0x2000000)
+        {
+            bhEne04_ChgMtn(epw, 1, 0, 0);
+
+            epw->wax = 0;
+
+            epw->ct0 = 0;
+            epw->ct1 = 0;
+            epw->ct2 = 0;
+
+            if (EXP0_I(0x10) & 0x800)
+            {
+                epw->ct1 = (rand() % 15) + 20;
+            }
+
+            EXP0_I(0x10) &= ~0x3000;
+            EXP0_I(0x10) &= ~0x4000;
+
+            epw->spd = 0.6f;
+
+            EXP0_F(0x24) = plp->px;
+            EXP0_F(0x2C) = plp->pz;
+
+            epw->mode1 = 1;
+            epw->mode2 = 2;
+            epw->mode3 = 1;
+        }
+    }
+}
+/*
 // 
 // Start address: 0x1a9cf0
 void bhEne04_MV11(BH_PWORK* epw)
