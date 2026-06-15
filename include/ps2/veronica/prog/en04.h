@@ -65,7 +65,7 @@ int bhEne04_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate);
 int bhEne04_SetMtn(BH_PWORK* epw);
 void bhEne04_CheckMtnTbl(BH_PWORK* epw, int frm);
 int bhEne04_KaidanCheck(BH_PWORK* epw);
-/*void bhEne04_ShakeWire(_anon0* obwp);*/
+void bhEne04_ShakeWire(O_WRK* obwp);
 void bhEne04_RotNeck(BH_PWORK* epw, int rx, int ry, int rz); // signature differs from DWARF
 int bhEne04_SearchNeck(BH_PWORK* epw);
 void bhEne04_SePlay(BH_PWORK* epw, int no);
