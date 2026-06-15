@@ -13,6 +13,7 @@
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/rutchk.h"
 #include "../../../ps2/veronica/prog/hitchkl.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
 
 
 /*typedef struct npobj;
@@ -1808,38 +1809,53 @@ void bhEne04_DmmyBrain(void)
 
 }
 
+// 100% matching!
+void bhEne04(BH_PWORK* epw) {
+    int i;
+    O_WRK* op;
 
-// 
-// Start address: 0x1a4ed0
-void bhEne04(BH_PWORK* epw)
-{
-	//_anon0* op;
-	int i;
-	// Line 282, Address: 0x1a4ed0, Func Offset: 0
-	// Line 288, Address: 0x1a4ee4, Func Offset: 0x14
-	// Line 291, Address: 0x1a4eec, Func Offset: 0x1c
-	// Line 294, Address: 0x1a4ef4, Func Offset: 0x24
-	// Line 296, Address: 0x1a4f04, Func Offset: 0x34
-	// Line 297, Address: 0x1a4f0c, Func Offset: 0x3c
-	// Line 298, Address: 0x1a4f28, Func Offset: 0x58
-	// Line 302, Address: 0x1a4f38, Func Offset: 0x68
-	// Line 305, Address: 0x1a4f44, Func Offset: 0x74
-	// Line 308, Address: 0x1a4f54, Func Offset: 0x84
-	// Line 311, Address: 0x1a4f5c, Func Offset: 0x8c
-	// Line 315, Address: 0x1a4f64, Func Offset: 0x94
-	// Line 317, Address: 0x1a4f6c, Func Offset: 0x9c
-	// Line 315, Address: 0x1a4f70, Func Offset: 0xa0
-	// Line 317, Address: 0x1a4f7c, Func Offset: 0xac
-	// Line 320, Address: 0x1a4f84, Func Offset: 0xb4
-	// Line 321, Address: 0x1a4fb4, Func Offset: 0xe4
-	// Line 322, Address: 0x1a4fc0, Func Offset: 0xf0
-	// Line 327, Address: 0x1a4fe4, Func Offset: 0x114
-	// Line 328, Address: 0x1a5004, Func Offset: 0x134
-	// Line 329, Address: 0x1a5024, Func Offset: 0x154
-	// Func End, Address: 0x1a503c, Func Offset: 0x16c
-	scePrintf("bhEne04 - UNIMPLEMENTED!\n");
+    bhEne04_DmgChk(epw);
+    bhEne04_MainLoop(epw);
+    
+    if (epw->flg & 0x4)
+    {
+        for (i = 0; i < 64; i++)
+        {
+            epw->dam[i] = 0;
+        }
+        
+        epw->flg &= ~0x4;
+    }
+    
+    bhEne04_CollisionCheck(epw);
+    bhEne04_PlayerLink(plp, epw);
+    bhCalcModel(epw);
+    bhEne04_SetCollision(epw);
+    
+    i = 4;
+    op = &sys->obwp[i];
+    while (i < (rom->obj_n - 1))
+    {
+        if ((op->flg & 1) && (op->id == 52) && (op->flg2 & 1))
+        {
+            bhEne04_ShakeWire(op);
+        }
+        i++;
+        op++;
+    }
+
+    if (EXP0_I(0x14) > 0)
+    {
+        EXP0_I(0x14)--;
+    }
+
+    if (EXP0_I(0x18) > 0)
+    {
+        EXP0_I(0x18)--;
+    }
 }
 
+// 100% matching!
 void bhEne04_MainLoop(BH_PWORK* epw)
 {
     bhEne04_Mode0[epw->mode0](epw); 
@@ -1881,13 +1897,13 @@ void bhEne04_MainLoop(BH_PWORK* epw)
     }
 }
 
-/*
+
 // 
 // Start address: 0x1a5170
 void bhEne04_SetCollision(BH_PWORK* epw)
 {
-	_anon36 pd;
-	_anon36 ps;
+	//_anon36 pd;
+	//_anon36 ps;
 	// Line 647, Address: 0x1a5170, Func Offset: 0
 	// Line 653, Address: 0x1a517c, Func Offset: 0xc
 	// Line 655, Address: 0x1a5194, Func Offset: 0x24
@@ -1903,6 +1919,7 @@ void bhEne04_SetCollision(BH_PWORK* epw)
 	// Line 676, Address: 0x1a5210, Func Offset: 0xa0
 	// Line 678, Address: 0x1a5220, Func Offset: 0xb0
 	// Func End, Address: 0x1a5230, Func Offset: 0xc0
+    scePrintf("bhEne04_SetCollision - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -1962,8 +1979,9 @@ void bhEne04_DmgChk(BH_PWORK* epw)
 	// Line 770, Address: 0x1a54e8, Func Offset: 0x2b8
 	// Line 860, Address: 0x1a5500, Func Offset: 0x2d0
 	// Func End, Address: 0x1a5510, Func Offset: 0x2e0
+    scePrintf("bhEne04_DmgChk - UNIMPLEMENTED!\n");
 }
-
+/*
 // 
 // Start address: 0x1a5510
 void bhEne04_ChgDmgMode(BH_PWORK* epw)
@@ -4763,12 +4781,12 @@ int bhEne04_KaidanCheck(BH_PWORK* epw)
 	// Func End, Address: 0x1ac4b0, Func Offset: 0x190
     scePrintf("bhEne04_KaidanCheck - UNIMPLEMENTED!\n");
 }
-/*
+
 // 
 // Start address: 0x1ac4b0
-void bhEne04_ShakeWire(_anon0* obwp)
+void bhEne04_ShakeWire(O_WRK* obwp)
 {
-	_anon36 pos[10];
+	//_anon36 pos[10];
 	// Line 5702, Address: 0x1ac4b0, Func Offset: 0
 	// Line 5703, Address: 0x1ac4c0, Func Offset: 0x10
 	// Line 5702, Address: 0x1ac4d0, Func Offset: 0x20
@@ -4792,8 +4810,8 @@ void bhEne04_ShakeWire(_anon0* obwp)
 	// Line 5736, Address: 0x1ac60c, Func Offset: 0x15c
 	// Line 5739, Address: 0x1ac610, Func Offset: 0x160
 	// Func End, Address: 0x1ac624, Func Offset: 0x174
+    scePrintf("bhEne04_ShakeWire - UNIMPLEMENTED!\n");
 }
-*/
 
 // 100% matching!
 void bhEne04_RotNeck(BH_PWORK* epw, int rx, int ry, int rz) // signature differs from DWARF
