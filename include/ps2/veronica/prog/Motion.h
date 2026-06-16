@@ -16,12 +16,12 @@ typedef struct NJS_MKEY_F_MOD
 } NJS_MKEY_F_MOD;
 
 int bhSetMotion(BH_PWORK* ewP, int add, int mode, void* datP);
-void SetMtnNormal(BH_PWORK* ewP, char* datP, int mode);
-void SetMtnNormalHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
-void SetMtnFast(BH_PWORK* ewP, char* datP, int mode);
-void SetMtnFastHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
-void SetMtnSlow(BH_PWORK* ewP, char* datP, int mode);
-void SetMtnSlowHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
+static void SetMtnNormal(BH_PWORK* ewP, char* datP, int mode);
+static void SetMtnNormalHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
+static void SetMtnFast(BH_PWORK* ewP, char* datP, int mode);
+static void SetMtnFastHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
+static void SetMtnSlow(BH_PWORK* ewP, char* datP, int mode);
+static void SetMtnSlowHokan(BH_PWORK* ewP, char* datP, int mode, float rate);
 void bhFixPosition(BH_PWORK* ewP, char* datP);
 void bhCalcFixOffset(BH_PWORK* ewP, char* datP, NJS_POINT3* offP, NJS_POINT3* rtnP);
 void bhGetObjMotion(BH_PWORK* ewP, int obj_no, float* pos, int* ang);
