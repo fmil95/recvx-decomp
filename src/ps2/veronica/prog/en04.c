@@ -4800,42 +4800,58 @@ void bhEne04_CheckMtnTbl(BH_PWORK* epw, int frm)
 	// Func End, Address: 0x1ac31c, Func Offset: 0x15c
 }
 */
-// 
-// Start address: 0x1ac320
+// 100% matching!
 int bhEne04_KaidanCheck(BH_PWORK* epw)
 {
+    ATR_WORK* hp;
+    BH_PWORK* ep;
+    int i;
 	int idx;
-	int i;
-	BH_PWORK* ep;
-	//_anon12* hp;
-	// Line 5642, Address: 0x1ac320, Func Offset: 0
-	// Line 5648, Address: 0x1ac32c, Func Offset: 0xc
-	// Line 5644, Address: 0x1ac334, Func Offset: 0x14
-	// Line 5648, Address: 0x1ac33c, Func Offset: 0x1c
-	// Line 5652, Address: 0x1ac358, Func Offset: 0x38
-	// Line 5654, Address: 0x1ac37c, Func Offset: 0x5c
-	// Line 5660, Address: 0x1ac3b8, Func Offset: 0x98
-	// Line 5662, Address: 0x1ac3c8, Func Offset: 0xa8
-	// Line 5665, Address: 0x1ac3d0, Func Offset: 0xb0
-	// Line 5668, Address: 0x1ac3e4, Func Offset: 0xc4
-	// Line 5670, Address: 0x1ac400, Func Offset: 0xe0
-	// Line 5672, Address: 0x1ac418, Func Offset: 0xf8
-	// Line 5675, Address: 0x1ac424, Func Offset: 0x104
-	// Line 5678, Address: 0x1ac440, Func Offset: 0x120
-	// Line 5679, Address: 0x1ac444, Func Offset: 0x124
-	// Line 5678, Address: 0x1ac448, Func Offset: 0x128
-	// Line 5679, Address: 0x1ac44c, Func Offset: 0x12c
-	// Line 5680, Address: 0x1ac458, Func Offset: 0x138
-	// Line 5686, Address: 0x1ac460, Func Offset: 0x140
-	// Line 5689, Address: 0x1ac47c, Func Offset: 0x15c
-	// Line 5690, Address: 0x1ac480, Func Offset: 0x160
-	// Line 5689, Address: 0x1ac484, Func Offset: 0x164
-	// Line 5690, Address: 0x1ac488, Func Offset: 0x168
-	// Line 5691, Address: 0x1ac494, Func Offset: 0x174
-	// Line 5695, Address: 0x1ac49c, Func Offset: 0x17c
-	// Line 5696, Address: 0x1ac4a0, Func Offset: 0x180
-	// Func End, Address: 0x1ac4b0, Func Offset: 0x190
-    scePrintf("bhEne04_KaidanCheck - UNIMPLEMENTED!\n");
+    
+    ep = ene;
+    if (plp->stflg & 0x80000000)
+    {
+        return 0;
+    }
+   
+    for (i = 0; i < sys->ewk_n; i++, ep++)
+    {
+        if (ep->id == 4 &&
+            (ep->flg & 1) &&
+            !(ep->flg & 2) &&
+            ep->exp0 != NULL &&
+            ep != epw &&
+            (EP_EXP0_I(0x10) & 0x20000))
+        {
+            return 0;
+        }
+    }
+
+    hp = bhKaidanAtrCheck(epw, 7.0f, &idx);
+
+    if (hp != NULL) 
+    {
+        if (hp->prm2 != 4)
+        {
+            return 0;
+        }
+        if (hp->prm0 == 0)
+        {
+            if (plp->flr_no > epw->flr_no)
+            {
+                EXP0_I(0x40) = (int)hp;
+                bhSetUseKaidanFlag(epw, hp, idx);
+                return 1;
+            }
+        } 
+        else if (plp->flr_no < epw->flr_no)
+        {
+            EXP0_I(0x40) = (int)hp;
+            bhSetUseKaidanFlag(epw, hp, idx);
+            return 1;
+        }
+    }
+    return 0;
 }
 
 // 
