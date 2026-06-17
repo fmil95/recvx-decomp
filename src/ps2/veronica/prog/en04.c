@@ -2896,58 +2896,86 @@ void bhEne04_MV00(BH_PWORK* epw)
     }
 }
 
-/*
-// 
-// Start address: 0x1a78b0
+// 100% matching!
 void bhEne04_MV01(BH_PWORK* epw)
 {
-	int hit;
-	// Line 2596, Address: 0x1a78b0, Func Offset: 0
-	// Line 2600, Address: 0x1a78c0, Func Offset: 0x10
-	// Line 2602, Address: 0x1a78f4, Func Offset: 0x44
-	// Line 2605, Address: 0x1a7900, Func Offset: 0x50
-	// Line 2608, Address: 0x1a792c, Func Offset: 0x7c
-	// Line 2609, Address: 0x1a7940, Func Offset: 0x90
-	// Line 2610, Address: 0x1a7944, Func Offset: 0x94
-	// Line 2611, Address: 0x1a7968, Func Offset: 0xb8
-	// Line 2612, Address: 0x1a796c, Func Offset: 0xbc
-	// Line 2613, Address: 0x1a797c, Func Offset: 0xcc
-	// Line 2612, Address: 0x1a7980, Func Offset: 0xd0
-	// Line 2613, Address: 0x1a7984, Func Offset: 0xd4
-	// Line 2614, Address: 0x1a7994, Func Offset: 0xe4
-	// Line 2617, Address: 0x1a79a0, Func Offset: 0xf0
-	// Line 2619, Address: 0x1a79ac, Func Offset: 0xfc
-	// Line 2621, Address: 0x1a79e0, Func Offset: 0x130
-	// Line 2623, Address: 0x1a79f0, Func Offset: 0x140
-	// Line 2626, Address: 0x1a79fc, Func Offset: 0x14c
-	// Line 2628, Address: 0x1a7a18, Func Offset: 0x168
-	// Line 2630, Address: 0x1a7a34, Func Offset: 0x184
-	// Line 2631, Address: 0x1a7a64, Func Offset: 0x1b4
-	// Line 2634, Address: 0x1a7a6c, Func Offset: 0x1bc
-	// Line 2636, Address: 0x1a7a74, Func Offset: 0x1c4
-	// Line 2637, Address: 0x1a7a7c, Func Offset: 0x1cc
-	// Line 2638, Address: 0x1a7a84, Func Offset: 0x1d4
-	// Line 2639, Address: 0x1a7a8c, Func Offset: 0x1dc
-	// Line 2642, Address: 0x1a7a94, Func Offset: 0x1e4
-	// Line 2644, Address: 0x1a7a98, Func Offset: 0x1e8
-	// Line 2647, Address: 0x1a7aa0, Func Offset: 0x1f0
-	// Line 2648, Address: 0x1a7aa8, Func Offset: 0x1f8
-	// Line 2647, Address: 0x1a7aac, Func Offset: 0x1fc
-	// Line 2648, Address: 0x1a7ab0, Func Offset: 0x200
-	// Line 2650, Address: 0x1a7ab8, Func Offset: 0x208
-	// Line 2651, Address: 0x1a7ac8, Func Offset: 0x218
-	// Line 2653, Address: 0x1a7ad4, Func Offset: 0x224
-	// Line 2655, Address: 0x1a7ae0, Func Offset: 0x230
-	// Line 2656, Address: 0x1a7ae4, Func Offset: 0x234
-	// Line 2662, Address: 0x1a7b08, Func Offset: 0x258
-	// Line 2663, Address: 0x1a7b0c, Func Offset: 0x25c
-	// Line 2662, Address: 0x1a7b10, Func Offset: 0x260
-	// Line 2663, Address: 0x1a7b18, Func Offset: 0x268
-	// Line 2665, Address: 0x1a7b34, Func Offset: 0x284
-	// Line 2667, Address: 0x1a7b44, Func Offset: 0x294
-	// Func End, Address: 0x1a7b54, Func Offset: 0x2a4
+    int hit;
+
+    if ((EXP0_UC(0x0) & 0x40) && (EXP0_F(0x20) < 35.0f))
+    {
+        EXP0_I(0x10) |= 0x80;
+    }
+    
+    switch (epw->mode3)
+    {
+    case 0:
+        bhEne04_ChgMtn(epw, 0, 0, 7);
+        
+        epw->way = 256;
+        epw->ct0 = (rand() % 32) + 75;
+        epw->ct2 = 0;
+
+        EXP0_F(0x24) = plp->px; 
+        EXP0_F(0x2C) = plp->pz; 
+
+        epw->mode3++; 
+
+    case 1:
+        epw->spd = 0.15f;
+
+        if ((EXP0_UC(0x0) & 0x40) && (EXP0_F(0x20) < 35.0f))
+        {
+            ikou(epw, (NJS_POINT3*)&EXP0_UC(0x24), epw->way);
+        }
+
+        bhAddSpeed(epw, 0);
+
+        if (EXP0_I(0x3C) != 0 || epw->ct0 == 0)
+        {
+            hit = bhEne_CheckSideWall(epw, 10.0f, 0);
+            
+            if (hit == 0)
+            {
+                epw->way = ((rand() % 2) != 0) ? 256 : -256;
+            } 
+            else
+            {
+                epw->way = hit * 256;
+            }
+
+            epw->ct0 = 16384;
+            epw->ct1 = 256;
+            epw->mode3++;
+        } 
+        else
+        {
+            epw->ct0--;
+        }
+        break;
+
+    case 2:
+        epw->spd = 0.08f;
+        bhAddSpeed(epw, 0x10);
+
+        epw->ay += epw->way;
+        epw->ct0 -= 256;
+
+        if (epw->ct0 < 0)
+        {
+            epw->mode3 = 1;
+            epw->ct0 = (rand() % 32) + 75;
+        }
+    }
+
+    epw->ct2++;
+    
+    if ((epw->ct2 % 90) == 0)
+    {
+        bhEne04_SePlay(epw, 0x01012302); // hex or decimal?
+    }
 }
 
+/*
 // 
 // Start address: 0x1a7b60
 void bhEne04_MV02(BH_PWORK* epw)
