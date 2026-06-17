@@ -115,12 +115,14 @@ void dvci_to_large_to_yen(Sint8 *fname)
 void dvci_conv_fname(const Sint8 *spath, Sint8 *tpath)
 {
     memset(tpath, 0, 297);
-    
-    strcpy(tpath, spath);
 
-    if (strcmp(spath + (strlen(spath) - 2), ";1") != 0) 
+    if (strcmp(spath + (strlen(spath) - 2), ";1") != 0)
     {
-        strcat(tpath, ";1");
+        snprintf((char*)tpath, 297, "%s;1", spath);
+    }
+    else
+    {
+        snprintf((char*)tpath, 297, "%s", spath);
     }
 
     dvci_to_large_to_yen(tpath);
