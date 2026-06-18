@@ -16,6 +16,7 @@
 #include "../../../ps2/veronica/prog/hitchkl.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/player.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
 
 
 /*typedef struct npobj;
@@ -1761,7 +1762,6 @@ char en04_flipTree[20] =
 static int en04_contact_flg;
 static int en04_atari_flg;
 
-
 void (*bhEne04_Mode0[6])(BH_PWORK*) =
 {
     bhEne04_Init,
@@ -1815,9 +1815,24 @@ void (*bhEne04_BrainMode2[12])(BH_PWORK*) =
     bhEne04_DmmyBrain,
     bhEne04_DmmyBrain
 };
-/*
-void(*bhEne04_MoveMode2)(BH_PWORK*)[13];
-*/
+
+void (*bhEne04_MoveMode2[13])(BH_PWORK*) =
+{
+    bhEne04_MV00,  
+    bhEne04_MV01,
+    bhEne04_MV02,
+    bhEne04_MV03, 
+    bhEne04_MV04,
+    bhEne04_MV05,
+    bhEne04_MV06,
+    bhEne04_MV07,
+    bhEne04_MV08,
+    bhEne04_MV09,
+    bhEne04_MV10,
+    bhEne04_MV11,
+    bhEne04_MV12
+};
+
 void (*bhEne04_NageMode2[2])(BH_PWORK*) =
 {
     bhEne04_NG00,
@@ -2466,40 +2481,40 @@ void bhEne04_MVType01(BH_PWORK* epw)
     scePrintf("bhEne04_MVType01 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1a64d0
-void bhEne04_MVType02(BH_PWORK* epw)
-{
-	//_anon36 pos;
-	//_anon4* owk;
-	// Line 1744, Address: 0x1a64d0, Func Offset: 0
-	// Line 1752, Address: 0x1a64dc, Func Offset: 0xc
-	// Line 1756, Address: 0x1a64e8, Func Offset: 0x18
-	// Line 1752, Address: 0x1a64ec, Func Offset: 0x1c
-	// Line 1753, Address: 0x1a64f4, Func Offset: 0x24
-	// Line 1754, Address: 0x1a64fc, Func Offset: 0x2c
-	// Line 1755, Address: 0x1a6504, Func Offset: 0x34
-	// Line 1756, Address: 0x1a6508, Func Offset: 0x38
-	// Line 1777, Address: 0x1a6518, Func Offset: 0x48
-	// Line 1756, Address: 0x1a651c, Func Offset: 0x4c
-	// Line 1777, Address: 0x1a6520, Func Offset: 0x50
-	// Line 1780, Address: 0x1a6530, Func Offset: 0x60
-	// Line 1782, Address: 0x1a6538, Func Offset: 0x68
-	// Line 1783, Address: 0x1a6540, Func Offset: 0x70
-	// Line 1784, Address: 0x1a6548, Func Offset: 0x78
-	// Line 1786, Address: 0x1a654c, Func Offset: 0x7c
-	// Line 1790, Address: 0x1a6554, Func Offset: 0x84
-	// Line 1792, Address: 0x1a6568, Func Offset: 0x98
-	// Line 1793, Address: 0x1a6570, Func Offset: 0xa0
-	// Line 1794, Address: 0x1a6578, Func Offset: 0xa8
-	// Line 1795, Address: 0x1a657c, Func Offset: 0xac
-	// Line 1799, Address: 0x1a6580, Func Offset: 0xb0
-	// Line 1800, Address: 0x1a6590, Func Offset: 0xc0
-	// Line 1801, Address: 0x1a65b0, Func Offset: 0xe0
-	// Func End, Address: 0x1a65c0, Func Offset: 0xf0
-    scePrintf("bhEne04_MVType02 - UNIMPLEMENTED!\n");
+// 100% matching!
+void bhEne04_MVType02(BH_PWORK* epw) {
+    O_WORK* owk;
+    NJS_POINT3 pos;
+
+    owk = &plp->mlwP->owP[1];   
+    pos.x = owk->mtx[12];
+    pos.y = epw->py;
+    pos.z = owk->mtx[14];
+    
+    EXP0_F(0x20) = njDistanceP2P((NJS_POINT3*)&pos.x, (NJS_POINT3*)&epw->px);
+    
+    if (en04_contact_flg & 1)
+    {
+        bhEne04_AtariCheck2(epw);
+        epw->mode1 = 1;
+        epw->mode2 = 2;
+        epw->mode3 = 0;
+        epw->type = 0;
+    }
+    else if (bhEne04_AtariCheck(epw) != 0)
+    {
+        epw->mode1 = 1;
+        epw->mode2 = 2;
+        epw->mode3 = 0;
+        epw->type = 0;
+    }
+    
+    if (epw->mode0 == 1)
+    {
+        bhEne04_MoveMode2[epw->mode2](epw);
+    }
 }
-/*
+
 // 
 // Start address: 0x1a65c0
 int bhEne04_AtariCheck(BH_PWORK* epw)
@@ -2542,6 +2557,7 @@ int bhEne04_AtariCheck(BH_PWORK* epw)
 	// Line 1948, Address: 0x1a6814, Func Offset: 0x254
 	// Line 1949, Address: 0x1a6818, Func Offset: 0x258
 	// Func End, Address: 0x1a682c, Func Offset: 0x26c
+    scePrintf("bhEne04_AtariCheck - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2587,15 +2603,17 @@ int bhEne04_AtariCheck2(BH_PWORK* epw)
 	// Line 2022, Address: 0x1a6a74, Func Offset: 0x244
 	// Line 2023, Address: 0x1a6a78, Func Offset: 0x248
 	// Func End, Address: 0x1a6a8c, Func Offset: 0x25c
+    scePrintf("bhEne04_AtariCheck2 - UNIMPLEMENTED!\n");
 }
-*/
 
 // 100% matching! 
 ATR_WORK* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip)
 {
     ATR_WORK* fp;
     int i;
-    int flr_n = rom->flr_n + sys->mflr_n;
+    int flr_n;
+
+    flr_n = rom->flr_n + sys->mflr_n;
     
     for (i = 0; i < flr_n; i++)
     {
@@ -3043,7 +3061,6 @@ void bhEne04_MV01(BH_PWORK* epw)
     }
 }
 
-/*
 // 
 // Start address: 0x1a7b60
 void bhEne04_MV02(BH_PWORK* epw)
@@ -3168,6 +3185,7 @@ void bhEne04_MV02(BH_PWORK* epw)
 	// Line 2906, Address: 0x1a81ec, Func Offset: 0x68c
 	// Line 2907, Address: 0x1a81f8, Func Offset: 0x698
 	// Func End, Address: 0x1a820c, Func Offset: 0x6ac
+    scePrintf("bhEne04_MV02 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3225,8 +3243,9 @@ void bhEne04_MV03(BH_PWORK* epw)
 	// Line 3041, Address: 0x1a8428, Func Offset: 0x218
 	// Line 3042, Address: 0x1a8434, Func Offset: 0x224
 	// Func End, Address: 0x1a8444, Func Offset: 0x234
+    scePrintf("bhEne04_MV03 - UNIMPLEMENTED!\n");
 }
-*/
+
 // 100% matching!
 void bhEne04_MV04(BH_PWORK* epw)
 {
@@ -3308,7 +3327,7 @@ void bhEne04_MV05(BH_PWORK* epw)
         break;
     }
 }
-/*
+
 // 
 // Start address: 0x1a8790
 void bhEne04_MV06(BH_PWORK* epw)
@@ -3358,6 +3377,7 @@ void bhEne04_MV06(BH_PWORK* epw)
 	// Line 3253, Address: 0x1a8a2c, Func Offset: 0x29c
 	// Line 3256, Address: 0x1a8a30, Func Offset: 0x2a0
 	// Func End, Address: 0x1a8a40, Func Offset: 0x2b0
+    scePrintf("bhEne04_MV06 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3365,11 +3385,11 @@ void bhEne04_MV06(BH_PWORK* epw)
 void bhEne04_MV07(BH_PWORK* epw)
 {
 	int ret;
-	_anon36 pos3;
-	_anon36 pos2;
-	_anon36 pos;
-	_anon4* owk;
-	_anon12* hp;
+	//_anon36 pos3;
+	//_anon36 pos2;
+	//_anon36 pos;
+	//_anon4* owk;
+	//_anon12* hp;
 	// Line 3275, Address: 0x1a8a40, Func Offset: 0
 	// Line 3282, Address: 0x1a8a54, Func Offset: 0x14
 	// Line 3285, Address: 0x1a8a80, Func Offset: 0x40
@@ -3550,6 +3570,7 @@ void bhEne04_MV07(BH_PWORK* epw)
 	// Line 3518, Address: 0x1a926c, Func Offset: 0x82c
 	// Line 3522, Address: 0x1a9270, Func Offset: 0x830
 	// Func End, Address: 0x1a9288, Func Offset: 0x848
+    scePrintf("bhEne04_MV07 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3558,7 +3579,7 @@ void bhEne04_MV08(BH_PWORK* epw)
 {
 	float jump;
 	int frm;
-	_anon36 pos;
+	//_anon36 pos;
 	// Line 3542, Address: 0x1a9290, Func Offset: 0
 	// Line 3549, Address: 0x1a92a4, Func Offset: 0x14
 	// Line 3552, Address: 0x1a92d0, Func Offset: 0x40
@@ -3722,6 +3743,7 @@ void bhEne04_MV08(BH_PWORK* epw)
 	// Line 3742, Address: 0x1a997c, Func Offset: 0x6ec
 	// Line 3745, Address: 0x1a9988, Func Offset: 0x6f8
 	// Func End, Address: 0x1a99a0, Func Offset: 0x710
+    scePrintf("bhEne04_MV08 - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -3777,8 +3799,9 @@ void bhEne04_MV09(BH_PWORK* epw)
 	// Line 3810, Address: 0x1a9b54, Func Offset: 0x1b4
 	// Line 3814, Address: 0x1a9b58, Func Offset: 0x1b8
 	// Func End, Address: 0x1a9b68, Func Offset: 0x1c8
+    scePrintf("bhEne04_MV09 - UNIMPLEMENTED!\n");
 }
-*/
+
 // 100% matching! (99.64% on decomp.me)
 void bhEne04_MV10(BH_PWORK* epw)
 {
@@ -3825,7 +3848,7 @@ void bhEne04_MV10(BH_PWORK* epw)
         }
     }
 }
-/*
+
 // 
 // Start address: 0x1a9cf0
 void bhEne04_MV11(BH_PWORK* epw)
@@ -3905,8 +3928,9 @@ void bhEne04_MV11(BH_PWORK* epw)
 	// Line 3988, Address: 0x1aa07c, Func Offset: 0x38c
 	// Line 3992, Address: 0x1aa080, Func Offset: 0x390
 	// Func End, Address: 0x1aa090, Func Offset: 0x3a0
+    scePrintf("bhEne04_MV11 - UNIMPLEMENTED!\n");
 }
-*/
+
 // 100% matching!
 void bhEne04_MV12(BH_PWORK* epw)
 {
