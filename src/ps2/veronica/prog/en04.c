@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/en04.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/subpl.h"
@@ -14,6 +15,7 @@
 #include "../../../ps2/veronica/prog/rutchk.h"
 #include "../../../ps2/veronica/prog/hitchkl.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/player.h"
 
 
 /*typedef struct npobj;
@@ -1657,9 +1659,55 @@ char En04SdwTab[6] =
 };
 /*
 _anon18 En04_WpnDamageTbl[22];
-_anon46 CombWepTbl[21];
-_anon50 CombJointTbl[19];
 */
+static COMBWEP_WORK CombWepTbl[21] =
+{
+    {0, {0, 0, 0}, 0, 0}, 
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0},
+    {0, {0, 0, 0}, 0, 0}
+};
+
+static COMBJOINT_WORK CombJointTbl[19] =
+{
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0}
+};
+
 CPCL Ene04CapColTab[17] =
 {
     { 1,  2,  13 }, 
@@ -1709,8 +1757,8 @@ char en04_flipTree[20] =
     0x12, 0x0D, 0x0E, 0x0F, 0xFF
 };
 
-int en04_contact_flg;
-int en04_atari_flg;
+static int en04_contact_flg;
+static int en04_atari_flg;
 
 
 void (*bhEne04_Mode0[6])(BH_PWORK*) =
@@ -1924,72 +1972,75 @@ void bhEne04_SetCollision(BH_PWORK* epw)
     epw->aoz = ps.z - epw->pz;
 }
 
-// 
-// Start address: 0x1a5230
+// 100% matching!
 void bhEne04_DmgChk(BH_PWORK* epw)
 {
-	// Line 696, Address: 0x1a5230, Func Offset: 0
-	// Line 697, Address: 0x1a523c, Func Offset: 0xc
-	// Line 700, Address: 0x1a5258, Func Offset: 0x28
-	// Line 702, Address: 0x1a526c, Func Offset: 0x3c
-	// Line 705, Address: 0x1a5278, Func Offset: 0x48
-	// Line 715, Address: 0x1a5300, Func Offset: 0xd0
-	// Line 717, Address: 0x1a530c, Func Offset: 0xdc
-	// Line 719, Address: 0x1a531c, Func Offset: 0xec
-	// Line 722, Address: 0x1a532c, Func Offset: 0xfc
-	// Line 725, Address: 0x1a5338, Func Offset: 0x108
-	// Line 728, Address: 0x1a5348, Func Offset: 0x118
-	// Line 729, Address: 0x1a5354, Func Offset: 0x124
-	// Line 732, Address: 0x1a535c, Func Offset: 0x12c
-	// Line 735, Address: 0x1a5370, Func Offset: 0x140
-	// Line 738, Address: 0x1a5378, Func Offset: 0x148
-	// Line 741, Address: 0x1a5394, Func Offset: 0x164
-	// Line 742, Address: 0x1a53a0, Func Offset: 0x170
-	// Line 744, Address: 0x1a53a4, Func Offset: 0x174
-	// Line 741, Address: 0x1a53a8, Func Offset: 0x178
-	// Line 742, Address: 0x1a53b0, Func Offset: 0x180
-	// Line 745, Address: 0x1a53b4, Func Offset: 0x184
-	// Line 747, Address: 0x1a53bc, Func Offset: 0x18c
-	// Line 742, Address: 0x1a53c4, Func Offset: 0x194
-	// Line 744, Address: 0x1a53c8, Func Offset: 0x198
-	// Line 742, Address: 0x1a53cc, Func Offset: 0x19c
-	// Line 744, Address: 0x1a53d8, Func Offset: 0x1a8
-	// Line 745, Address: 0x1a53f8, Func Offset: 0x1c8
-	// Line 746, Address: 0x1a5404, Func Offset: 0x1d4
-	// Line 745, Address: 0x1a5408, Func Offset: 0x1d8
-	// Line 746, Address: 0x1a5410, Func Offset: 0x1e0
-	// Line 747, Address: 0x1a5418, Func Offset: 0x1e8
-	// Line 746, Address: 0x1a541c, Func Offset: 0x1ec
-	// Line 747, Address: 0x1a5424, Func Offset: 0x1f4
-	// Line 748, Address: 0x1a542c, Func Offset: 0x1fc
-	// Line 747, Address: 0x1a5430, Func Offset: 0x200
-	// Line 748, Address: 0x1a5438, Func Offset: 0x208
-	// Line 749, Address: 0x1a5440, Func Offset: 0x210
-	// Line 751, Address: 0x1a544c, Func Offset: 0x21c
-	// Line 749, Address: 0x1a5450, Func Offset: 0x220
-	// Line 751, Address: 0x1a5454, Func Offset: 0x224
-	// Line 754, Address: 0x1a5468, Func Offset: 0x238
-	// Line 755, Address: 0x1a5470, Func Offset: 0x240
-	// Line 756, Address: 0x1a5480, Func Offset: 0x250
-	// Line 757, Address: 0x1a548c, Func Offset: 0x25c
-	// Line 759, Address: 0x1a54a8, Func Offset: 0x278
-	// Line 760, Address: 0x1a54b0, Func Offset: 0x280
-	// Line 763, Address: 0x1a54b8, Func Offset: 0x288
-	// Line 765, Address: 0x1a54c8, Func Offset: 0x298
-	// Line 766, Address: 0x1a54d8, Func Offset: 0x2a8
-	// Line 769, Address: 0x1a54e0, Func Offset: 0x2b0
-	// Line 770, Address: 0x1a54e8, Func Offset: 0x2b8
-	// Line 860, Address: 0x1a5500, Func Offset: 0x2d0
-	// Func End, Address: 0x1a5510, Func Offset: 0x2e0
-    scePrintf("bhEne04_DmgChk - UNIMPLEMENTED!\n");
+    if ((epw->flg & 4) && !(epw->flg & 2) && (bhEne_CalcDamage(epw, CombWepTbl, CombJointTbl), (epw->total_dam != 0)))
+    {        
+        if (!(EXP0_I(0x10) & 0x2000000) || 
+            (epw->flr_no > plp->flr_no) || 
+            ((WpnTab[epw->wpnr_no].flg & 0x20) != 0) || 
+            (WpnTab[epw->wpnr_no].flg & 0x20000000) || 
+            !(plp->at_flg & 2))
+        {            
+            bhEne04_DamageAdd(epw);
+            if (epw->type != 0)
+            {
+                epw->type = 0;
+            }
+            if (epw->mode0 < 3)
+            {
+                epw->flg |= 0x40;
+                if (epw->comb_flg & 4)
+                {
+                    EXP0_I(0x10) |= 0x100;
+                }
+                else
+                {
+                    EXP0_I(0x10) &= ~0x100;
+                }
+                bhEne04_ChgDmgMode(epw);
+                if (EXP0_I(0x10) & 0x4000000)
+                {
+                    EXP0_I(0x10) &= ~0x40C0000;
+                    *(unsigned int*)plp->exp1 |= 4;
+                    sys->pad_on &= ~0xF;
+                    plp->flg &= ~0x10000;
+                    plp->flg |= 8;
+                    plp->stflg &= ~0x50000;
+                    plp->at_flg = 0;
+                    plp->mnwP = plp->mnwPb;
+                    if (plp->flg2 & 0x200)
+                    {
+                        plp->mode0 = 2;
+                        plp->mode2 = 1;
+                        plp->mode3 = 0;
+                        if (bhDGCdirCheck((NJS_VECTOR*)&plp->dvx, plp->ay) == 0)
+                        {
+                            plp->mode1 = 0;
+                        }
+                        else
+                        {
+                            plp->mode1 = 1;
+                        }
+                        plp->flg |= 4;
+                        return;
+                    }
+                    *(int*)&plp->mode0 = 1;
+                    plp->flg &= ~4;
+                }
+            }
+        }
+    }
 }
-/*
+
+
 // 
 // Start address: 0x1a5510
 void bhEne04_ChgDmgMode(BH_PWORK* epw)
 {
 	int act;
-	_anon18* wp_tbl;
+	//_anon18* wp_tbl;
 	// Line 865, Address: 0x1a5510, Func Offset: 0
 	// Line 869, Address: 0x1a551c, Func Offset: 0xc
 	// Line 866, Address: 0x1a5524, Func Offset: 0x14
@@ -2022,17 +2073,18 @@ void bhEne04_ChgDmgMode(BH_PWORK* epw)
 	// Line 917, Address: 0x1a5628, Func Offset: 0x118
 	// Line 920, Address: 0x1a5630, Func Offset: 0x120
 	// Func End, Address: 0x1a5640, Func Offset: 0x130
+    scePrintf("bhEne04_ChgDmgMode - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1a5640
 void bhEne04_DamageAdd(BH_PWORK* epw)
 {
-	_anon4* owk;
+	//_anon4* owk;
 	int i;
 	int* d;
-	_anon36 ofp;
-	_anon18* wp_tbl;
+	//_anon36 ofp;
+	//_anon18* wp_tbl;
 	// Line 938, Address: 0x1a5640, Func Offset: 0
 	// Line 939, Address: 0x1a5658, Func Offset: 0x18
 	// Line 940, Address: 0x1a5660, Func Offset: 0x20
@@ -2080,8 +2132,9 @@ void bhEne04_DamageAdd(BH_PWORK* epw)
 	// Line 1022, Address: 0x1a58b0, Func Offset: 0x270
 	// Line 1025, Address: 0x1a58c4, Func Offset: 0x284
 	// Func End, Address: 0x1a58e0, Func Offset: 0x2a0
+    scePrintf("bhEne04_DamageAdd - UNIMPLEMENTED!\n");
 }
-*/
+
 // 100% matching!
 void bhEne04_PlayerControl(BH_PWORK* pl, BH_PWORK* epw)
 {
