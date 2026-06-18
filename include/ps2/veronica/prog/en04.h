@@ -25,7 +25,7 @@ void bhEne04_MVType01(BH_PWORK* epw);
 void bhEne04_MVType02(BH_PWORK* epw);
 int bhEne04_AtariCheck(BH_PWORK* epw);
 int bhEne04_AtariCheck2(BH_PWORK* epw);
-/*_anon12* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip);*/
+ATR_WORK* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip);
 void bhEne04_EneSearch(BH_PWORK* epw);
 void bhEne04_Brain(BH_PWORK* epw);
 void bhEne04_Brain00(BH_PWORK* epw);
