@@ -718,6 +718,7 @@ struct _anon12
 	unsigned char prm3;
 };
 
+
 struct _anon13
 {
 	unsigned char flg;
@@ -1976,7 +1977,7 @@ void bhEne04_SetCollision(BH_PWORK* epw)
 void bhEne04_DmgChk(BH_PWORK* epw)
 {
     if ((epw->flg & 4) && !(epw->flg & 2) && (bhEne_CalcDamage(epw, CombWepTbl, CombJointTbl), (epw->total_dam != 0)))
-    {        
+{        
         if (!(EXP0_I(0x10) & 0x2000000) || 
             (epw->flr_no > plp->flr_no) || 
             ((WpnTab[epw->wpnr_no].flg & 0x20) != 0) || 
@@ -2506,9 +2507,9 @@ int bhEne04_AtariCheck(BH_PWORK* epw)
 	int i;
 	int atr_num;
 	int flr_n;
-	_anon12* fp;
-	_anon12* hp2;
-	_anon12* hp;
+	ATR_WORK* fp;
+	ATR_WORK* hp2;
+	ATR_WORK* hp;
 	// Line 1886, Address: 0x1a65c0, Func Offset: 0
 	// Line 1893, Address: 0x1a65d0, Func Offset: 0x10
 	// Line 1895, Address: 0x1a65f4, Func Offset: 0x34
@@ -2550,10 +2551,10 @@ int bhEne04_AtariCheck2(BH_PWORK* epw)
 	int i;
 	int atr_num;
 	int flr_n;
-	_anon12* work[32];
-	_anon12* fp;
-	_anon12* hp2;
-	_anon12* hp;
+	ATR_WORK* work[32];
+	ATR_WORK* fp;
+	ATR_WORK* hp2;
+	ATR_WORK* hp;
 	// Line 1957, Address: 0x1a6830, Func Offset: 0
 	// Line 1965, Address: 0x1a6840, Func Offset: 0x10
 	// Line 1967, Address: 0x1a6860, Func Offset: 0x30
@@ -2587,26 +2588,40 @@ int bhEne04_AtariCheck2(BH_PWORK* epw)
 	// Line 2023, Address: 0x1a6a78, Func Offset: 0x248
 	// Func End, Address: 0x1a6a8c, Func Offset: 0x25c
 }
-
-// 
-// Start address: 0x1a6a90
-_anon12* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip)
-{
-	int flr_n;
-	int i;
-	_anon12* fp;
-	// Line 2049, Address: 0x1a6a90, Func Offset: 0
-	// Line 2050, Address: 0x1a6ab4, Func Offset: 0x24
-	// Line 2054, Address: 0x1a6acc, Func Offset: 0x3c
-	// Line 2053, Address: 0x1a6ad0, Func Offset: 0x40
-	// Line 2054, Address: 0x1a6b0c, Func Offset: 0x7c
-	// Line 2061, Address: 0x1a6b60, Func Offset: 0xd0
-	// Line 2063, Address: 0x1a6b68, Func Offset: 0xd8
-	// Line 2065, Address: 0x1a6b78, Func Offset: 0xe8
-	// Line 2066, Address: 0x1a6b7c, Func Offset: 0xec
-	// Func End, Address: 0x1a6b84, Func Offset: 0xf4
-}
 */
+
+// 100% matching! 
+ATR_WORK* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip)
+{
+    ATR_WORK* fp;
+    int i;
+    int flr_n = rom->flr_n + sys->mflr_n;
+    
+    for (i = 0; i < flr_n; i++)
+    {
+        if (i < rom->flr_n)
+        {
+            fp = &rom->flrp[i];
+        }
+        else
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+        
+        if ((fp->flg & 1) && 
+            (fp->type == 2) && 
+            (fp->flr_no == epw->flr_no) && 
+            (fp->prm0 == epw->id) && 
+            (fp->prm1 == type) && 
+            (fp->prm3 == ip))
+        {            
+            return fp;
+        }
+    }
+
+    return NULL;
+}
+
 // 100% matching! 
 void bhEne04_EneSearch(BH_PWORK* epw)
 {
