@@ -2448,37 +2448,39 @@ void bhEne04_MVType00(BH_PWORK* epw)
     scePrintf("bhEne04_MVType00 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1a63d0
+// 100% matching!
 void bhEne04_MVType01(BH_PWORK* epw)
 {
+    O_WORK* owk;
+    NJS_POINT3 pos;
+    ATR_WORK* hp;
 	unsigned char no;
-	//_anon12* hp;
-	//_anon36 pos;
-	//_anon4* owk;
-	// Line 1694, Address: 0x1a63d0, Func Offset: 0
-	// Line 1701, Address: 0x1a63e0, Func Offset: 0x10
-	// Line 1705, Address: 0x1a63ec, Func Offset: 0x1c
-	// Line 1701, Address: 0x1a63f0, Func Offset: 0x20
-	// Line 1702, Address: 0x1a63f8, Func Offset: 0x28
-	// Line 1703, Address: 0x1a6400, Func Offset: 0x30
-	// Line 1704, Address: 0x1a6408, Func Offset: 0x38
-	// Line 1705, Address: 0x1a640c, Func Offset: 0x3c
-	// Line 1708, Address: 0x1a641c, Func Offset: 0x4c
-	// Line 1705, Address: 0x1a6424, Func Offset: 0x54
-	// Line 1708, Address: 0x1a6428, Func Offset: 0x58
-	// Line 1710, Address: 0x1a6444, Func Offset: 0x74
-	// Line 1712, Address: 0x1a6448, Func Offset: 0x78
-	// Line 1714, Address: 0x1a6464, Func Offset: 0x94
-	// Line 1716, Address: 0x1a6474, Func Offset: 0xa4
-	// Line 1717, Address: 0x1a647c, Func Offset: 0xac
-	// Line 1718, Address: 0x1a6484, Func Offset: 0xb4
-	// Line 1719, Address: 0x1a6488, Func Offset: 0xb8
-	// Line 1724, Address: 0x1a648c, Func Offset: 0xbc
-	// Line 1726, Address: 0x1a649c, Func Offset: 0xcc
-	// Line 1727, Address: 0x1a64bc, Func Offset: 0xec
-	// Func End, Address: 0x1a64d0, Func Offset: 0x100
-    scePrintf("bhEne04_MVType01 - UNIMPLEMENTED!\n");
+    
+    owk = &plp->mlwP->owP[1];   
+    pos.x = owk->mtx[12];
+    pos.y = epw->py;
+    pos.z = owk->mtx[14];
+    
+    EXP0_F(0x20) = njDistanceP2P((NJS_POINT3*)&pos.x, (NJS_POINT3*)&epw->px);
+    
+    hp = bhEne_EnemyAtariCheck((NJS_POINT3*)&plp->px, plp->flr_no, epw->id, 1);    
+    if (hp != NULL)
+    {
+        no = hp->prm3;
+        hp = bhEne_EnemyAtariCheck((NJS_POINT3*) &epw->px, epw->flr_no, epw->id, 2);
+        if ((hp != NULL) && (hp->prm3 == no))
+        {
+            epw->mode1 = 1;
+            epw->mode2 = 2;
+            epw->mode3 = 0;
+            epw->type = 0;
+        }
+    }
+    
+    if (epw->mode0 == 1)
+    {
+        bhEne04_MoveMode2[epw->mode2](epw);
+    }
 }
 
 // 100% matching!
