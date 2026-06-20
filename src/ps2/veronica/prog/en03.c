@@ -5040,15 +5040,15 @@ _anon0* bhEne03_GetWall(BH_PWORK* epw)
 	// Line 5277, Address: 0x19f51c, Func Offset: 0xac
 	// Func End, Address: 0x19f528, Func Offset: 0xb8
 }
-
+*/
 // 
 // Start address: 0x19f530
-_anon0* bhEne03_Collision(BH_PWORK* epw)
+ATR_WORK* bhEne03_Collision(BH_PWORK* epw)
 {
 	int wal_n;
 	int i;
-	_anon0* ret;
-	_anon0* hp;
+	//_anon0* ret;
+	//_anon0* hp;
 	// Line 5287, Address: 0x19f530, Func Offset: 0
 	// Line 5291, Address: 0x19f550, Func Offset: 0x20
 	// Line 5288, Address: 0x19f55c, Func Offset: 0x2c
@@ -5075,8 +5075,9 @@ _anon0* bhEne03_Collision(BH_PWORK* epw)
 	// Line 5339, Address: 0x19f728, Func Offset: 0x1f8
 	// Line 5340, Address: 0x19f72c, Func Offset: 0x1fc
 	// Func End, Address: 0x19f750, Func Offset: 0x220
+    scePrintf("bhEne03_Collision - UNIMPLEMENTED!\n");
 }
-
+/*
 // 
 // Start address: 0x19f750
 _anon0* bhEne03_Collision2(BH_PWORK* epw, _anon0* gnd)
@@ -6668,4 +6669,3 @@ void bhEne03_HitMark(BH_PWORK* epw)
 	// Line 7661, Address: 0x1a3c3c, Func Offset: 0x4cc
 	// Func End, Address: 0x1a3c60, Func Offset: 0x4f0
 }*/
-
