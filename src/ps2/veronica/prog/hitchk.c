@@ -2962,31 +2962,50 @@ int bhCheckInnerTriangle2(ATR_WORK* hp, NJS_POINT3* pos, float aw, float ad, flo
 	scePrintf("bhCheckInnerTriangle2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x265400
+// 100% matching!
 int bhCheckInnerTriangle3(ATR_WORK* hp, NJS_POINT3* pos)
 {
 	float h;
-	// Line 3190, Address: 0x265400, Func Offset: 0
-	// Line 3194, Address: 0x265404, Func Offset: 0x4
-	// Line 3190, Address: 0x265408, Func Offset: 0x8
-	// Line 3194, Address: 0x265418, Func Offset: 0x18
-	// Line 3196, Address: 0x265448, Func Offset: 0x48
-	// Line 3198, Address: 0x265480, Func Offset: 0x80
-	// Line 3199, Address: 0x26549c, Func Offset: 0x9c
-	// Line 3201, Address: 0x2654a0, Func Offset: 0xa0
-	// Line 3202, Address: 0x2654a8, Func Offset: 0xa8
-	// Line 3205, Address: 0x2654b0, Func Offset: 0xb0
-	// Line 3206, Address: 0x2654cc, Func Offset: 0xcc
-	// Line 3208, Address: 0x2654d0, Func Offset: 0xd0
-	// Line 3209, Address: 0x2654d8, Func Offset: 0xd8
-	// Line 3212, Address: 0x2654e0, Func Offset: 0xe0
-	// Line 3213, Address: 0x265528, Func Offset: 0x128
-	// Line 3216, Address: 0x265534, Func Offset: 0x134
-	// Line 3217, Address: 0x265560, Func Offset: 0x160
-	// Line 3219, Address: 0x265594, Func Offset: 0x194
-	// Func End, Address: 0x2655ac, Func Offset: 0x1ac
-	scePrintf("bhCheckInnerTriangle3 - UNIMPLEMENTED!\n");
+	float min_x, max_x; // not from DWARF
+	float min_z, max_z; // not from DWARF
+	float abx; // not from DWARF
+	float abz; // not from DWARF
+
+	h = hp->h ? hp->h : rom->h;
+
+	if (hp->py > pos->y || (hp->py + h) < pos->y) {
+    	return 0;
+	}
+
+	if (hp->w > 0.0f) {
+		max_x = hp->px + hp->w;
+		min_x = hp->px;
+	}
+	else {
+		min_x = hp->px + hp->w;
+    	max_x = hp->px;
+	}
+
+	if (hp->d > 0.0f) {
+		min_z = hp->pz;
+		max_z = hp->pz + hp->d;
+	}
+	else {
+		max_z = hp->pz;
+		min_z = hp->pz + hp->d;
+	}
+
+	if (min_x > pos->x || max_x <= pos->x || min_z > pos->z || max_z <= pos->z) {
+    	return 0;
+	}
+
+	abx = fabsf(hp->d / (hp->w / (pos->x - hp->px)));
+	abz = fabsf((hp->pz + hp->d) - pos->z);
+	if (abz <= abx) {
+    	return 0;
+	}
+
+	return 1;
 }
 
 // 
