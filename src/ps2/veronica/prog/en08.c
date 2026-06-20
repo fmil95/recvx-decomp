@@ -95,12 +95,11 @@ void bhEne08_MV00(BH_PWORK* epw)
         epw->hokan_count = 8;
         epw->hokan_rate = 45875;
 
-        epw->ct0 = (int)(180.0f * (-rand() / -2.1474836e9f)) + 120;
-        epw->ct1 = ((-rand()) / -2.1474836e9f > 0.5f) ? 1 : -1;
+        epw->ct0 = (int)(njRandom() * 180.0f) + 120;
+        epw->ct1 = (njRandom() > 0.5f) ? 1 : -1;
         epw->spd = 0.01f;
-        epw->ayp = epw->ay + ((-rand() / -2.1474836e9f) * 1092.0f) - 546.0f;
-        
-        epw->yn  = epw->py + 2.0f * (-rand() / -2.1474836e9f) - 1.0f;
+        epw->ayp = epw->ay + bhRandomAngle(3);
+        epw->yn  = njRandom() * 2.0f + epw->py - 1.0f;
         epw->mode3++;
             
     case 1:
@@ -120,7 +119,7 @@ void bhEne08_MV00(BH_PWORK* epw)
     dy = (epw->yn - epw->py) / 100.0f; 
     epw->py += dy;
     
-    epw->axp = atan2f(dy, 0.1f) * 10430.381f;
+    epw->axp = njArcTan2(dy, 0.1f);
 
     epw->ax += (short)(epw->axp - epw->ax) / 16;
 
@@ -128,8 +127,7 @@ void bhEne08_MV00(BH_PWORK* epw)
     pos.y = epw->py;
     pos.z = epw->pz - njCos(epw->ayp) * 20.0f;
 
-    hp = bhCheckWallType(&pos, 0, 5.0f, 1.0f);
-    if (hp != NULL)
+    if (bhCheckWallType(&pos, 0, 5.0f, 1.0f))
     {
         epw->ayp += epw->ct1 * 91;
     }
@@ -138,7 +136,8 @@ void bhEne08_MV00(BH_PWORK* epw)
     pos.y = epw->py;
     pos.z = epw->pz - njCos(epw->ayp) * 7.0f;
 
-    if (bhCollisionCheckLine((NJS_VECTOR*)&epw->px, &pos) != NULL)
+    hp = bhCollisionCheckLine((NJS_VECTOR*)&epw->px, (NJS_VECTOR*)&pos);
+    if (hp != NULL)
     {
         bhGetHitCollisionNormal(&vec);
         njUnitVector(&vec);
@@ -156,7 +155,7 @@ void bhEne08_MV00(BH_PWORK* epw)
             epw->ct1 = -1;
         }
 
-        epw->ayp = asinf(vec.z) * 10430.381f;
+        epw->ayp = njArcSin(vec.z);
         
         epw->mode2 = 2;
         epw->mode3 = 0;
@@ -174,22 +173,20 @@ void bhEne08_MV01(BH_PWORK* epw)
     switch (epw->mode3)
     {
     case 0:
-
         epw->mtn_no = 1;
         epw->frm_no = 0;
         epw->hokan_count = 8;
         epw->hokan_rate = 45875;
 
-        epw->ct0 = (int)(60.0f * (-rand() / -2.1474836e9f)) + 90;
-        epw->spd = 0.2f + 0.2f * (-rand() / -2.1474836e9f);
-        epw->ayp = ((epw->ay + (-rand() / -2.1474836e9f) * 3640.0f) - 1820.0f);
-        epw->yn  = epw->py + 6.0f * (-rand() / -2.1474836e9f) - 3.0f;
+        epw->ct0 = (int)(60.0f * njRandom()) + 90;
+        epw->spd = 0.2f + 0.2f * njRandom();
+        epw->ayp = epw->ay + bhRandomAngle(10);
+        epw->yn  = epw->py + 6.0f * njRandom() - 3.0f;
 
         epw->mode3++;
         break;
 
     case 1:
-
         if (epw->frm_no == 0)
         {
             epw->mtn_no = 0;
@@ -203,7 +200,6 @@ void bhEne08_MV01(BH_PWORK* epw)
             epw->mode2 = 0;
             epw->mode3 = 0;
         }
-        break;
     }
     bhAddSpeed(epw, 0);
 
@@ -218,10 +214,9 @@ void bhEne08_MV01(BH_PWORK* epw)
     dy = (epw->yn - epw->py) / 100.0f; 
     epw->py += dy;
     
-    epw->axp = atan2f(dy, 0.1f) * 10430.381f;
+    epw->axp = njArcTan2(dy, 0.1f);
 
     epw->ax += (short)(epw->axp - epw->ax) / 16;
-
 
     pos.x = epw->px - njSin(epw->ayp) * 20.0f;
     pos.y = epw->py;
@@ -255,7 +250,7 @@ void bhEne08_MV01(BH_PWORK* epw)
             epw->ct1 = -1;
         }
 
-        epw->ayp = asinf(vec.z) * 10430.381f;
+        epw->ayp = njArcSin(vec.z);
         
         epw->mode2 = 2;
         epw->mode3 = 0;
