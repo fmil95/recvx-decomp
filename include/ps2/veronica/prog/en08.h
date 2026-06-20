@@ -2,6 +2,7 @@
 #define _EN08_H_
 
 #include "types.h"
+#include "macros.h"
 
 void bhEne08(BH_PWORK* epw);
 void bhEne08_Init(BH_PWORK* epw);
