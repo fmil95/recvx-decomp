@@ -1105,36 +1105,37 @@ void bhDrawSpEvtComFade()
 	// Line 1054, Address: 0x2bf988, Func Offset: 0xa8
 	// Line 1055, Address: 0x2bf990, Func Offset: 0xb0
 	// Func End, Address: 0x2bf99c, Func Offset: 0xbc
-}
+}*/
 
-// 
-// Start address: 0x2bf9a0
-void bhEntrySpEvtBoxLine(_anon41* line)
+// 100% matching!
+void bhEntrySpEvtBoxLine(NJS_LINE* line)
 {
-	int i;
-	_anon7* ce;
-	// Line 1062, Address: 0x2bf9a0, Func Offset: 0
-	// Line 1064, Address: 0x2bf9a8, Func Offset: 0x8
-	// Line 1062, Address: 0x2bf9ac, Func Offset: 0xc
-	// Line 1065, Address: 0x2bf9bc, Func Offset: 0x1c
-	// Line 1066, Address: 0x2bf9cc, Func Offset: 0x2c
-	// Line 1067, Address: 0x2bf9dc, Func Offset: 0x3c
-	// Line 1073, Address: 0x2bf9f0, Func Offset: 0x50
-	// Line 1067, Address: 0x2bf9f4, Func Offset: 0x54
-	// Line 1068, Address: 0x2bf9f8, Func Offset: 0x58
-	// Line 1073, Address: 0x2bf9fc, Func Offset: 0x5c
-	// Line 1068, Address: 0x2bfa00, Func Offset: 0x60
-	// Line 1069, Address: 0x2bfa04, Func Offset: 0x64
-	// Line 1070, Address: 0x2bfa0c, Func Offset: 0x6c
-	// Line 1071, Address: 0x2bfa14, Func Offset: 0x74
-	// Line 1072, Address: 0x2bfa1c, Func Offset: 0x7c
-	// Line 1074, Address: 0x2bfa24, Func Offset: 0x84
-	// Line 1076, Address: 0x2bfa2c, Func Offset: 0x8c
-	// Line 1077, Address: 0x2bfa40, Func Offset: 0xa0
-	// Func End, Address: 0x2bfa48, Func Offset: 0xa8
+    COM_EVT_WORK* ce; 
+    int i;           
+    
+    ce = sys->com_exp;
+    
+    for (i = 0; i < 128; i++) 
+    {
+        if (!(ce->lnfg[i] & 0x1))
+        {
+            ce->lnfg[i] = 1;
+            
+            ce->line[i].px = line->px;
+            ce->line[i].py = line->py;
+            ce->line[i].pz = line->pz;
+            
+            ce->line[i].vx = line->vx;
+            ce->line[i].vy = line->vy;
+            ce->line[i].vz = line->vz;
+            
+            ce->lnct[i] = 240;
+            break;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2bfa50
 void bhDrawSpEvtBoxLine()
 {
@@ -1592,4 +1593,3 @@ void bhControlComEvtKeyboard()
 	// Line 1575, Address: 0x2c0d28, Func Offset: 0x6d8
 	// Func End, Address: 0x2c0d3c, Func Offset: 0x6ec
 }*/
-
