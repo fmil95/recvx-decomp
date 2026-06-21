@@ -12,29 +12,29 @@
 
 typedef void (*bhCtrSpEvtCom_mode0_proc)();
 
-/*char* comevt_message_tst[27];
+char* comevt_message_tst[27];
 unsigned char comevt_script_tst[181];
-_anon20 acs_no0[1];
+QUAD acs_no0[1];
 char* comevt_message_no1[19];
 unsigned char comevt_script_no1[141];
-_anon20 acs_no1[8];
+QUAD acs_no1[8];
 char* comevt_message_no2[17];
 unsigned char comevt_script_no2[140];
-_anon20 acs_no2[9];
+QUAD acs_no2[9];
 char* comevt_message_no3[23];
 unsigned char comevt_script_no3[126];
-_anon20 acs_no3[8];
+QUAD acs_no3[8];
 char* comevt_message_no4[20];
 unsigned char comevt_script_no4[41];
 unsigned char comevt_script_no5[83];
 unsigned char comevt_script_no6[18];
-_anon20 acs_no4[9];
+QUAD acs_no4[9];
 char* comevt_message_no7[4];
 unsigned char comevt_script_no7[40];
-_anon20 acs_no7[8];
+QUAD acs_no7[8];
 void* comevt_message_tab[8];
 void* comevt_script_tab[8];
-void* comevt_acs_tab[8];*/
+void* comevt_acs_tab[8];
 bhCtrSpEvtCom_mode0_proc bhCtrSpEvtCom_mode0[3] = 
 {
 	bhInitSpEvtComputer,
@@ -1038,32 +1038,41 @@ void bhSetSpEvtComFade(float fdst, float fcnt)
     sys->com_flg |= 0x2;
 }
 
-/*// 
-// Start address: 0x2bf810
-void bhCalcSpEvtComFade()
+// 99.71% matching
+void bhCalcSpEvtComFade() 
 {
-	int nn;
-	_anon7* ce;
-	// Line 1014, Address: 0x2bf810, Func Offset: 0
-	// Line 1019, Address: 0x2bf814, Func Offset: 0x4
-	// Line 1014, Address: 0x2bf818, Func Offset: 0x8
-	// Line 1015, Address: 0x2bf820, Func Offset: 0x10
-	// Line 1018, Address: 0x2bf828, Func Offset: 0x18
-	// Line 1015, Address: 0x2bf830, Func Offset: 0x20
-	// Line 1017, Address: 0x2bf83c, Func Offset: 0x2c
-	// Line 1018, Address: 0x2bf84c, Func Offset: 0x3c
-	// Line 1019, Address: 0x2bf854, Func Offset: 0x44
-	// Line 1020, Address: 0x2bf864, Func Offset: 0x54
-	// Line 1021, Address: 0x2bf88c, Func Offset: 0x7c
-	// Line 1023, Address: 0x2bf894, Func Offset: 0x84
-	// Line 1024, Address: 0x2bf8ac, Func Offset: 0x9c
-	// Line 1025, Address: 0x2bf8b8, Func Offset: 0xa8
-	// Line 1026, Address: 0x2bf8c8, Func Offset: 0xb8
-	// Line 1027, Address: 0x2bf8d0, Func Offset: 0xc0
-	// Func End, Address: 0x2bf8e0, Func Offset: 0xd0
+	COM_EVT_WORK* ce;
+    int nn;
+    
+    ce = sys->com_exp;
+    
+    ce->fsrc += ce->fcal;
+
+    ce->fcnt -= 1.0f;
+    
+    if (ce->fcnt <= 0)
+    {
+        sys->com_flg &= ~0x2;
+        
+        ce->fsrc = ce->fdst;
+    }
+
+    nn = (unsigned int)(ce->fsrc * 255.0f);
+
+    if (nn < 0)
+    {
+        nn = 0;
+    } 
+    
+    if (nn > 255)
+    {
+        nn = 255;
+    }
+
+    ce->fcol = nn << 24;
 }
 
-// 
+/*// 
 // Start address: 0x2bf8e0
 void bhDrawSpEvtComFade()
 {
