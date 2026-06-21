@@ -3,6 +3,7 @@
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_sg_syrtc.h"
@@ -12,29 +13,320 @@
 
 typedef void (*bhCtrSpEvtCom_mode0_proc)();
 
-char* comevt_message_tst[27];
-unsigned char comevt_script_tst[181];
-QUAD acs_no0[1];
-char* comevt_message_no1[19];
-unsigned char comevt_script_no1[141];
-QUAD acs_no1[8];
-char* comevt_message_no2[17];
-unsigned char comevt_script_no2[140];
-QUAD acs_no2[9];
-char* comevt_message_no3[23];
-unsigned char comevt_script_no3[126];
-QUAD acs_no3[8];
-char* comevt_message_no4[20];
-unsigned char comevt_script_no4[41];
-unsigned char comevt_script_no5[83];
-unsigned char comevt_script_no6[18];
-QUAD acs_no4[9];
-char* comevt_message_no7[4];
-unsigned char comevt_script_no7[40];
-QUAD acs_no7[8];
-void* comevt_message_tab[8];
-void* comevt_script_tab[8];
-void* comevt_acs_tab[8];
+char* comevt_message_tst[27] = 
+{
+    "COMPUTER SYSTEM Ver0.01",
+    "Test message....",
+    "--[Check change color.]--",
+    "'Red'   color",
+    "'Green' color",
+    "'Blue'  color",
+    "--[Check wait command.]--",
+    "Wait",
+    "--[Check scroll text.]--",
+    ".A",
+    "..B",
+    "...C",
+    "....D",
+    ".....E",
+    "......F",
+    ".......G",
+    "........H",
+    "--[Check button wait.]--",
+    "--[Check soft keyboard.]--",
+    "Enter pass code_A.",
+    ">",
+    "Enter pass code_B.",
+    "JHON",
+    "ASTOR",
+    "------------- Ok!",
+    "---------- Error!",
+    "--[ End of script! ]--",
+};
+unsigned char comevt_script_tst[181] =
+{
+    0xE0, 0x00, 0xFE, 0xE0, 0x01, 0xFE, 0xE0, 0x02, 0xFE, 0xE3, 0xE0, 0x00,
+    0x00, 0xE0, 0x03, 0xFE, 0xE3, 0x00, 0xE0, 0x00, 0xE0, 0x04, 0xFE, 0xE3,
+    0x00, 0x00, 0xE0, 0xE0, 0x05, 0xFE, 0xE3, 0xFF, 0xFF, 0xFF, 0xE0, 0x06,
+    0xFE, 0xE0, 0x07, 0xE4, 0x2E, 0xE1, 0x0F, 0xE4, 0x2E, 0xE1, 0x0F, 0xE4,
+    0x2E, 0xE1, 0x0F, 0xE4, 0x2E, 0xE1, 0x0F, 0xE4, 0x2E, 0xE1, 0x0F, 0xE4,
+    0x2E, 0xE1, 0x0F, 0xFE, 0xE0, 0x08, 0xFE, 0xE0, 0x09, 0xFE, 0xE0, 0x0A,
+    0xFE, 0xE0, 0x0B, 0xFE, 0xE0, 0x0C, 0xFE, 0xE0, 0x0D, 0xFE, 0xE0, 0x0E,
+    0xFE, 0xE0, 0x0F, 0xFE, 0xE0, 0x10, 0xFE, 0xFE, 0xE0, 0x11, 0xE2, 0xFE,
+    0xE0, 0x12, 0xFE, 0xEB, 0x00, 0xE0, 0x13, 0xFE, 0xE0, 0x14, 0xE5, 0x08,
+    0x00, 0xFE, 0xE0, 0x15, 0xFE, 0xE0, 0x14, 0xE9, 0xFE, 0xE6, 0xEA, 0x00,
+    0x16, 0x00, 0xEA, 0x01, 0x17, 0x01, 0xED, 0x00, 0x01, 0xEC, 0x02, 0xEB,
+    0x01, 0xED, 0x01, 0x03, 0xEB, 0x02, 0xE3, 0xE0, 0x00, 0x00, 0xE0, 0x19,
+    0xFE, 0xE3, 0xFF, 0xFF, 0xFF, 0xEC, 0x00, 0xEB, 0x03, 0xE3, 0x00, 0xE0,
+    0xE0, 0xE0, 0x18, 0xFE, 0xE3, 0xFF, 0xFF, 0xFF, 0xEB, 0x04, 0xE7, 0xEF,
+    0x1F, 0x00, 0xEE, 0x00, 0x00, 0x01, 0x00, 0xE2, 0xE0, 0x1A, 0xE1, 0x1E,
+    0xFF,
+};
+QUAD acs_no0[1] = 
+{
+    { -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+};
+char* comevt_message_no1[19] = 
+{
+    "Self-destruct Safety ",
+    "Lock Release System.",
+    "Please enter the ",
+    "security code.",
+    ">",
+    "Verification in progress.",
+    "Please wait",
+    "The security code has ",
+    "been confirmed. The ",
+    "Self-destruct Safety",
+    "Lock Release System has ",
+    "been released.",
+    "All door locks have ",
+    "been released in order ",
+    "to help expedite the ",
+    "evacuation process.",
+    "ERROR. Security code ",
+    "does not match. ",
+    "VERONICA",
+};
+unsigned char comevt_script_no1[141] = 
+{
+    0xF1, 0x15, 0x02, 0xE0, 0x00, 0xFE, 0xE0, 0x01, 0xFE, 0xE2, 0xFE, 0xEB,
+    0x00, 0xF4, 0xF1, 0x16, 0x02, 0xE0, 0x02, 0xFE, 0xE0, 0x03, 0xFE, 0xE0,
+    0x04, 0xE2, 0xF2, 0xE5, 0x08, 0x00, 0xF5, 0xE6, 0xFE, 0xFE, 0xEA, 0x00,
+    0x12, 0x00, 0xF1, 0x18, 0x02, 0xE0, 0x05, 0xFE, 0xE0, 0x06, 0xE4, 0x2E,
+    0xE1, 0x0F, 0xE4, 0x2E, 0xE1, 0x0F, 0xE4, 0x2E, 0xE1, 0x0F, 0xE4, 0x2E,
+    0xE1, 0x0F, 0xFE, 0xED, 0x00, 0x01, 0xF1, 0x1B, 0x02, 0xE3, 0xE0, 0x00,
+    0x00, 0xFE, 0xE0, 0x10, 0xFE, 0xE0, 0x11, 0xFE, 0xE3, 0xFF, 0xFF, 0xFF,
+    0xE2, 0xFE, 0xF3, 0xEC, 0x00, 0xEB, 0x01, 0xF1, 0x19, 0x02, 0xE3, 0x00,
+    0xE0, 0xE0, 0xFE, 0xE0, 0x07, 0xFE, 0xE0, 0x08, 0xFE, 0xE0, 0x09, 0xFE,
+    0xE0, 0x0A, 0xFE, 0xE0, 0x0B, 0xFE, 0xE3, 0xFF, 0xFF, 0xFF, 0xE2, 0xFE,
+    0xF1, 0x1A, 0x02, 0xE0, 0x0C, 0xFE, 0xE0, 0x0D, 0xFE, 0xE0, 0x0E, 0xFE,
+    0xE0, 0x0F, 0xFE, 0xF0, 0x05, 0x00, 0xE2, 0xF2, 0xFF,
+};
+QUAD acs_no1[8] =
+{
+    { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+    { 448.0f, 64.0f, 608.0f, 216.0f, 0.6875f, 0.3046875f, 1.0f, 0.6015625f },
+    { 32.0f, 256.0f, 104.0f, 336.0f, 0.0f, 0.375f, 0.140625f, 0.53125f },
+    { 560.0f, 40.0f, 628.0f, 100.0f, 0.7265625f, 0.1171875f, 0.859375f, 0.234375f },
+    { 560.0f, 120.0f, 628.0f, 180.0f, 0.8671875f, 0.1171875f, 1.0f, 0.234375f },
+    { 552.0f, 392.0f, 600.0f, 424.0f, 0.8984375f, 0.234375f, 0.9921875f, 0.296875f },
+    { 352.0f, 272.0f, 520.0f, 424.0f, 0.375f, 0.0f, 0.703125f, 0.296875f },
+    { -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+};
+char* comevt_message_no2[17] = 
+{
+    "Security lock system",          
+    "is active.",                    
+    "Enter an employee ID to",       
+    "activate the unlocking",        
+    "device.",                       
+    "Please enter your ID",          
+    "number.",                       
+    ">",                             
+    "ID verification in ",           
+    "progress. Please wait",         
+    "ID verification has been",      
+    "confirmed.",                    
+    "The Security Lock System",      
+    "is deactivated.",               
+    "ERROR. ID verification ",       
+    "has been rejected.",            
+    "NTC0394"                        
+};
+unsigned char comevt_script_no2[140] = 
+{
+    0xF1, 0x00, 0x02, 0xE0, 0x00, 0xFE, 0xE0, 0x01, 0xFE, 0xE2, 0xFE, 0xF1,
+    0x01, 0x02, 0xE0, 0x02, 0xFE, 0xE0, 0x03, 0xFE, 0xE0, 0x04, 0xFE, 0xE2,
+    0xFE, 0xEB, 0x00, 0xF4, 0xF1, 0x0B, 0x02, 0xE0, 0x05, 0xFE, 0xE0, 0x06,
+    0xFE, 0xE0, 0x07, 0xE2, 0xF2, 0xE5, 0x08, 0x00, 0xF5, 0xE6, 0xFE, 0xFE,
+    0xEA, 0x00, 0x10, 0x00, 0xF1, 0x0C, 0x02, 0xE0, 0x08, 0xFE, 0xE0, 0x09,
+    0xE4, 0x2E, 0xE1, 0x0F, 0xE4, 0x2E, 0xE1, 0x0F, 0xE4, 0x2E, 0xE1, 0x0F,
+    0xE4, 0x2E, 0xE1, 0x0F, 0xFE, 0xED, 0x00, 0x01, 0xF1, 0x02, 0x02, 0xE3,
+    0xE0, 0x00, 0x00, 0xFE, 0xE0, 0x0E, 0xFE, 0xE0, 0x0F, 0xFE, 0xE3, 0xFF,
+    0xFF, 0xFF, 0xE2, 0xFE, 0xF3, 0xEC, 0x00, 0xEB, 0x01, 0xF1, 0x03, 0x02,
+    0xE3, 0x00, 0xE0, 0xE0, 0xFE, 0xE0, 0x0A, 0xFE, 0xE0, 0x0B, 0xFE, 0xE3,
+    0xFF, 0xFF, 0xFF, 0xE2, 0xFE, 0xF1, 0x0F, 0x02, 0xE0, 0x0C, 0xFE, 0xE0,
+    0x0D, 0xFE, 0xF0, 0x04, 0x00, 0xE2, 0xF2, 0xFF,
+};
+QUAD acs_no2[9] = 
+{
+    { 424.0f, 120.0f, 584.0f, 280.0f, 0.6875f, 0.609375f, 1.0f, 0.921875f },
+    { 416.0f, 104.0f, 600.0f, 296.0f, 0.0f, 0.0f, 0.359375f, 0.375f },
+    { 96.0f, 32.0f, 256.0f, 184.0f, 0.6875f, 0.3046875f, 1.0f, 0.6015625f },
+    { 24.0f, 216.0f, 96.0f, 296.0f, 0.0f, 0.375f, 0.140625f, 0.53125f },
+    { 64.0f, 352.0f, 132.0f, 412.0f, 0.7265625f, 0.1171875f, 0.859375f, 0.234375f },
+    { 144.0f, 352.0f, 212.0f, 412.0f, 0.8671875f, 0.1171875f, 1.0f, 0.234375f },
+    { 552.0f, 392.0f, 600.0f, 424.0f, 0.8984375f, 0.234375f, 0.9921875f, 0.296875f },
+    { 352.0f, 272.0f, 520.0f, 424.0f, 0.375f, 0.0f, 0.703125f, 0.296875f },
+    { -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+};
+char* comevt_message_no3[23] = 
+{
+    "--- THE ALBINOID ---",              
+    "--- DESCRIPTION  ---",              
+    "A creature which is",               
+    "created by injecting the",          
+    "T-virus into the genes of",         
+    "a salamander.",                     
+    "--- CHARACTERISTICS ---",           
+    "Similar to a normal ",              
+    "amphibian, an Albinoid's",          
+    "body will change as it ",           
+    "grows with age.",                   
+    "When young, an Albinoid",           
+    "is small in size, but it ",         
+    "can grow to over seven ",           
+    "feet in a very short time",         
+    "frame (10+ hours).",                
+    "They possess high ",                
+    "mobility and are able ",            
+    "to discharge electricity.",         
+    "These characteristics are",         
+    "most notable when they ",           
+    "are under water in their",          
+    "adult form."                        
+};
+unsigned char comevt_script_no3[126] = 
+{
+    0xF1, 0x0B, 0x02, 0xE3, 0xE0, 0x00, 0x00, 0xE0, 0x00, 0xFE, 0xE0, 0x01,
+    0xFE, 0xE2, 0xFE, 0xF1, 0x0C, 0x02, 0xE3, 0xFF, 0xFF, 0xFF, 0xE0, 0x02,
+    0xFE, 0xE0, 0x03, 0xFE, 0xE0, 0x04, 0xFE, 0xE0, 0x05, 0xFE, 0xE2, 0xFE,
+    0xF1, 0x0D, 0x02, 0xE3, 0xE0, 0x00, 0x00, 0xE0, 0x06, 0xFE, 0xE2, 0xFE,
+    0xE7, 0xEF, 0x03, 0x00, 0xEE, 0x00, 0x00, 0x01, 0x00, 0xF1, 0x0E, 0x02,
+    0xE3, 0xFF, 0xFF, 0xFF, 0xE0, 0x07, 0xFE, 0xE0, 0x08, 0xFE, 0xE0, 0x09,
+    0xFE, 0xE0, 0x0A, 0xFE, 0xE2, 0xFE, 0xF1, 0x0F, 0x02, 0xE0, 0x0B, 0xFE,
+    0xE0, 0x0C, 0xFE, 0xE0, 0x0D, 0xFE, 0xE0, 0x0E, 0xFE, 0xE0, 0x0F, 0xFE,
+    0xE2, 0xFE, 0xF1, 0x10, 0x02, 0xE0, 0x10, 0xFE, 0xE0, 0x11, 0xFE, 0xE0,
+    0x12, 0xFE, 0xE0, 0x13, 0xFE, 0xE0, 0x14, 0xFE, 0xE0, 0x15, 0xFE, 0xE0,
+    0x16, 0xFE, 0xE2, 0xFE, 0xF2, 0xFF,
+};
+QUAD acs_no3[8] = 
+{
+    { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+    { 96.0f, 32.0f, 256.0f, 184.0f, 0.6875f, 0.3046875f, 1.0f, 0.6015625f },
+    { 24.0f, 216.0f, 96.0f, 296.0f, 0.0f, 0.375f, 0.140625f, 0.53125f },
+    { 64.0f, 352.0f, 132.0f, 412.0f, 0.7265625f, 0.1171875f, 0.859375f, 0.234375f },
+    { 144.0f, 352.0f, 212.0f, 412.0f, 0.8671875f, 0.1171875f, 1.0f, 0.234375f },
+    { 552.0f, 392.0f, 600.0f, 424.0f, 0.8984375f, 0.234375f, 0.9921875f, 0.296875f },
+    { 352.0f, 272.0f, 520.0f, 424.0f, 0.375f, 0.0f, 0.703125f, 0.296875f },
+    { -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+};
+const char* comevt_message_no4[20] = 
+{
+    "Activating the enhanced",      
+    "3D scanner...",                
+    "Please place the material",    
+    "you wish to have scanned",     
+    "on the scanner portion",       
+    "of this machine.",             
+    "Scanning in progress.",        
+    "Please wait...",               
+    "Scanning complete.",           
+    "Transmitting the data.",       
+    "Please wait",                  
+    "Transmission complete.",       
+    "Please place the material",    
+    "you wish to have",             
+    "converted on the",             
+    "duplicator portion of",        
+    "this machine.",                
+    "Duplication in progress.",     
+    "Please wait...",               
+    "Duplication complete."         
+};
+unsigned char comevt_script_no4[41] = 
+{
+    0xF5, 0xF1, 0x05, 0x02, 0xE0, 0x00, 0xFE, 0xE0, 0x01, 0xE4, 0x2E, 0xE1,
+    0x0F, 0xE4, 0x2E, 0xE1, 0x0F, 0xE4, 0x2E, 0xE1, 0x0F, 0xFE, 0xFE, 0xF1,
+    0x07, 0x02, 0xE0, 0x02, 0xFE, 0xE0, 0x03, 0xFE, 0xE0, 0x04, 0xFE, 0xE0,
+    0x05, 0xFE, 0xE2, 0xF2, 0xFF,
+};
+unsigned char comevt_script_no5[83] = 
+{
+    0xF5, 0xF1, 0x09, 0x02, 0xE3, 0x00, 0xE0, 0xE0, 0xE0, 0x08, 0xFE, 0xE2,
+    0xFE, 0xE3, 0xFF, 0xFF, 0xFF, 0xF1, 0x0A, 0x02, 0xE0, 0x09, 0xFE, 0xE0,
+    0x0A, 0xE4, 0x2E, 0xE1, 0x0F, 0xE4, 0x2E, 0xE1, 0x0F, 0xE4, 0x2E, 0xE1,
+    0x0F, 0xE4, 0x2E, 0xE1, 0x0F, 0xE4, 0x2E, 0xE1, 0x0F, 0xFE, 0xFE, 0xF1,
+    0x0B, 0x02, 0xE3, 0x00, 0xE0, 0x00, 0xE0, 0x0B, 0xFE, 0xE3, 0xFF, 0xFF,
+    0xFF, 0xFE, 0xF1, 0x08, 0x02, 0xE0, 0x0C, 0xFE, 0xE0, 0x0D, 0xFE, 0xE0,
+    0x0E, 0xFE, 0xE0, 0x0F, 0xFE, 0xE0, 0x10, 0xFE, 0xE2, 0xF2, 0xFF,
+};
+unsigned char comevt_script_no6[18] = 
+{
+    0xF5, 0xF1, 0x0E, 0x02, 0xE3, 0x00, 0xE0, 0xE0, 0xE0, 0x13, 0xFE, 0xE3,
+    0xFF, 0xFF, 0xFF, 0xE2, 0xF2, 0xFF,
+};
+QUAD acs_no4[9] = 
+{
+    { 424.0f, 120.0f, 584.0f, 280.0f, 0.375f, 0.609375f, 0.6875f, 0.921875f },
+    { 416.0f, 104.0f, 600.0f, 296.0f, 0.0f, 0.0f, 0.359375f, 0.375f },
+    { 96.0f, 32.0f, 256.0f, 184.0f, 0.6875f, 0.3046875f, 1.0f, 0.6015625f },
+    { 24.0f, 216.0f, 96.0f, 296.0f, 0.0f, 0.375f, 0.140625f, 0.53125f },
+    { 64.0f, 352.0f, 132.0f, 412.0f, 0.7265625f, 0.1171875f, 0.859375f, 0.234375f },
+    { 144.0f, 352.0f, 212.0f, 412.0f, 0.8671875f, 0.1171875f, 1.0f, 0.234375f },
+    { 552.0f, 392.0f, 600.0f, 424.0f, 0.8984375f, 0.234375f, 0.9921875f, 0.296875f },
+    { 352.0f, 272.0f, 520.0f, 424.0f, 0.375f, 0.0f, 0.703125f, 0.296875f },
+    { -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+};
+char* comevt_message_no7[4] =
+{
+    "Please enter the ",
+    "password.",        
+    ">",                
+    "1971"              
+};
+unsigned char comevt_script_no7[40] = 
+{
+    0xF1, 0x06, 0x02, 0xE0, 0x00, 0xFE, 0xE0, 0x01, 0xFE, 0xE0, 0x02, 0xE2,
+    0xF2, 0xE5, 0x04, 0x01, 0xF5, 0xE6, 0xFE, 0xFE, 0xEA, 0x00, 0x03, 0x00,
+    0xED, 0x00, 0x00, 0xF0, 0x3E, 0x00, 0xEC, 0x01, 0xEB, 0x00, 0xF0, 0x3D,
+    0x00, 0xEB, 0x01, 0xFF,
+};
+QUAD acs_no7[8] = 
+{
+    { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+    { 448.0f, 30.0f, 616.0f, 166.0f, 0.0f, 0.5390625f, 0.328125f, 0.8046875f },
+    { 32.0f, 64.0f, 104.0f, 144.0f, 0.0f, 0.375f, 0.140625f, 0.53125f },
+    { 64.0f, 284.0f, 132.0f, 344.0f, 0.7265625f, 0.0f, 0.859375f, 0.1171875f },
+    { 64.0f, 352.0f, 132.0f, 412.0f, 0.8671875f, 0.0f, 1.0f, 0.1171875f },
+    { 552.0f, 392.0f, 600.0f, 424.0f, 0.8984375f, 0.234375f, 0.9921875f, 0.296875f },
+    { 352.0f, 272.0f, 520.0f, 424.0f, 0.375f, 0.0f, 0.703125f, 0.296875f },
+    { -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+};
+void* comevt_message_tab[8] = 
+{
+	comevt_message_tst,
+	comevt_message_no1,
+	comevt_message_no2,
+	comevt_message_no3,
+	comevt_message_no4,
+	comevt_message_no4,
+	comevt_message_no4,
+	comevt_message_no7
+};
+void* comevt_script_tab[8] = 
+{
+	comevt_script_tst,
+	comevt_script_no1,
+	comevt_script_no2,
+	comevt_script_no3,
+	comevt_script_no4,
+	comevt_script_no5,
+	comevt_script_no6,
+	comevt_script_no7
+};
+void* comevt_acs_tab[8] = 
+{
+	acs_no0,
+	acs_no1,
+	acs_no2,
+	acs_no3,
+	acs_no4,
+	acs_no4,
+	acs_no4,
+	acs_no7
+};
 bhCtrSpEvtCom_mode0_proc bhCtrSpEvtCom_mode0[3] = 
 {
 	bhInitSpEvtComputer,
@@ -1072,47 +1364,40 @@ void bhCalcSpEvtComFade()
     ce->fcol = nn << 24;
 }
 
-/*// 
-// Start address: 0x2bf8e0
+// 100% matching!
 void bhDrawSpEvtComFade()
 {
-	_anon26 col[4];
-	_anon37 p[4];
-	_anon43 p2c;
-	_anon7* ce;
-	// Line 1033, Address: 0x2bf8e0, Func Offset: 0
-	// Line 1034, Address: 0x2bf8e8, Func Offset: 0x8
-	// Line 1038, Address: 0x2bf8f0, Func Offset: 0x10
-	// Line 1039, Address: 0x2bf8f4, Func Offset: 0x14
-	// Line 1034, Address: 0x2bf8fc, Func Offset: 0x1c
-	// Line 1054, Address: 0x2bf908, Func Offset: 0x28
-	// Line 1041, Address: 0x2bf910, Func Offset: 0x30
-	// Line 1054, Address: 0x2bf914, Func Offset: 0x34
-	// Line 1048, Address: 0x2bf918, Func Offset: 0x38
-	// Line 1038, Address: 0x2bf91c, Func Offset: 0x3c
-	// Line 1039, Address: 0x2bf920, Func Offset: 0x40
-	// Line 1040, Address: 0x2bf924, Func Offset: 0x44
-	// Line 1041, Address: 0x2bf928, Func Offset: 0x48
-	// Line 1042, Address: 0x2bf92c, Func Offset: 0x4c
-	// Line 1051, Address: 0x2bf934, Func Offset: 0x54
-	// Line 1054, Address: 0x2bf938, Func Offset: 0x58
-	// Line 1042, Address: 0x2bf940, Func Offset: 0x60
-	// Line 1043, Address: 0x2bf944, Func Offset: 0x64
-	// Line 1054, Address: 0x2bf94c, Func Offset: 0x6c
-	// Line 1043, Address: 0x2bf950, Func Offset: 0x70
-	// Line 1044, Address: 0x2bf954, Func Offset: 0x74
-	// Line 1045, Address: 0x2bf960, Func Offset: 0x80
-	// Line 1046, Address: 0x2bf96c, Func Offset: 0x8c
-	// Line 1047, Address: 0x2bf970, Func Offset: 0x90
-	// Line 1048, Address: 0x2bf974, Func Offset: 0x94
-	// Line 1049, Address: 0x2bf978, Func Offset: 0x98
-	// Line 1050, Address: 0x2bf97c, Func Offset: 0x9c
-	// Line 1051, Address: 0x2bf980, Func Offset: 0xa0
-	// Line 1052, Address: 0x2bf984, Func Offset: 0xa4
-	// Line 1054, Address: 0x2bf988, Func Offset: 0xa8
-	// Line 1055, Address: 0x2bf990, Func Offset: 0xb0
-	// Func End, Address: 0x2bf99c, Func Offset: 0xbc
-}*/
+    COM_EVT_WORK* ce; 
+    NJS_POINT2COL p2c; 
+    NJS_POINT2 p[4];   
+    NJS_COLOR col[4];  
+
+    ce = sys->com_exp;
+    
+    p2c.p = p;
+    p2c.col = col;
+    p2c.tex = NULL;
+    p2c.num = 1;
+    
+    p2c.col[0].color = ce->fcol;
+    p2c.col[1].color = ce->fcol;
+    p2c.col[2].color = ce->fcol;
+    p2c.col[3].color = ce->fcol;
+    
+    p[0].x = 0;
+    p[0].y = 0;
+    
+    p[1].x = 640.0f; 
+    p[1].y = 0;
+    
+    p[2].x = 640.0f;
+    p[2].y = 480.0f;
+    
+    p[3].x = 0;
+    p[3].y = 480.0f;
+    
+    njDrawPolygon2D(&p2c, 4, -0.8f, 0x60);
+}
 
 // 100% matching!
 void bhEntrySpEvtBoxLine(NJS_LINE* line)
