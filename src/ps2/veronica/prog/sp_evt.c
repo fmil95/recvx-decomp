@@ -1413,56 +1413,57 @@ void bhEntrySpEvtBoxLine(NJS_LINE* line)
     }
 }
 
-/*// 
-// Start address: 0x2bfa50
+// 100% matching!
 void bhDrawSpEvtBoxLine()
 {
-	unsigned int argb;
-	int i;
-	_anon26 col[4];
-	_anon37 p[4];
-	_anon43 p2c;
-	_anon7* ce;
-	// Line 1083, Address: 0x2bfa50, Func Offset: 0
-	// Line 1084, Address: 0x2bfa6c, Func Offset: 0x1c
-	// Line 1090, Address: 0x2bfa74, Func Offset: 0x24
-	// Line 1091, Address: 0x2bfa78, Func Offset: 0x28
-	// Line 1084, Address: 0x2bfa80, Func Offset: 0x30
-	// Line 1093, Address: 0x2bfa8c, Func Offset: 0x3c
-	// Line 1094, Address: 0x2bfa90, Func Offset: 0x40
-	// Line 1090, Address: 0x2bfa94, Func Offset: 0x44
-	// Line 1091, Address: 0x2bfa98, Func Offset: 0x48
-	// Line 1092, Address: 0x2bfa9c, Func Offset: 0x4c
-	// Line 1093, Address: 0x2bfaa0, Func Offset: 0x50
-	// Line 1095, Address: 0x2bfaac, Func Offset: 0x5c
-	// Line 1096, Address: 0x2bfabc, Func Offset: 0x6c
-	// Line 1109, Address: 0x2bfac0, Func Offset: 0x70
-	// Line 1097, Address: 0x2bfacc, Func Offset: 0x7c
-	// Line 1109, Address: 0x2bfad0, Func Offset: 0x80
-	// Line 1096, Address: 0x2bfad4, Func Offset: 0x84
-	// Line 1097, Address: 0x2bfaec, Func Offset: 0x9c
-	// Line 1098, Address: 0x2bfaf0, Func Offset: 0xa0
-	// Line 1109, Address: 0x2bfaf4, Func Offset: 0xa4
-	// Line 1098, Address: 0x2bfafc, Func Offset: 0xac
-	// Line 1099, Address: 0x2bfb00, Func Offset: 0xb0
-	// Line 1100, Address: 0x2bfb08, Func Offset: 0xb8
-	// Line 1101, Address: 0x2bfb10, Func Offset: 0xc0
-	// Line 1102, Address: 0x2bfb18, Func Offset: 0xc8
-	// Line 1103, Address: 0x2bfb20, Func Offset: 0xd0
-	// Line 1104, Address: 0x2bfb30, Func Offset: 0xe0
-	// Line 1105, Address: 0x2bfb38, Func Offset: 0xe8
-	// Line 1106, Address: 0x2bfb48, Func Offset: 0xf8
-	// Line 1107, Address: 0x2bfb58, Func Offset: 0x108
-	// Line 1108, Address: 0x2bfb60, Func Offset: 0x110
-	// Line 1109, Address: 0x2bfb6c, Func Offset: 0x11c
-	// Line 1110, Address: 0x2bfb74, Func Offset: 0x124
-	// Line 1111, Address: 0x2bfb80, Func Offset: 0x130
-	// Line 1113, Address: 0x2bfb90, Func Offset: 0x140
-	// Line 1111, Address: 0x2bfb98, Func Offset: 0x148
-	// Line 1113, Address: 0x2bfba0, Func Offset: 0x150
-	// Line 1114, Address: 0x2bfba8, Func Offset: 0x158
-	// Func End, Address: 0x2bfbc8, Func Offset: 0x178
-}*/
+    COM_EVT_WORK* ce;  
+    NJS_POINT2COL p2c; 
+    NJS_POINT2 p[4];  
+    NJS_COLOR col[4]; 
+    int i;            
+    unsigned int argb;
+
+    ce = sys->com_exp;
+    
+    p2c.p   = p;
+    p2c.col = col;
+    p2c.tex = NULL;
+    p2c.num = 1;
+    
+    for (i = 0; i < 128; i++)
+    {
+        if ((ce->lnfg[i] & 0x1)) 
+        {
+            argb = (ce->lnct[i] << 0) | ((ce->lnct[i] << 8) | ((ce->lnct[i] << 24) | (ce->lnct[i] << 16)));
+            
+            p2c.col[0].color = argb;
+            p2c.col[1].color = argb;
+            p2c.col[2].color = argb;
+            p2c.col[3].color = argb;
+            
+            p[0].x = ce->line[i].px;
+            p[0].y = ce->line[i].py;
+            
+            p[1].x = ce->line[i].px + ce->line[i].vx;
+            p[1].y = ce->line[i].py;
+            
+            p[2].x = ce->line[i].px + ce->line[i].vx;
+            p[2].y = ce->line[i].py + ce->line[i].vy;
+            
+            p[3].x = ce->line[i].px;
+            p[3].y = ce->line[i].py + ce->line[i].vy;
+            
+            njDrawPolygon2D(&p2c, 4, -0.85f, 0x40);
+            
+            ce->lnct[i] -= 30;
+            
+            if (ce->lnct[i] <= 0) 
+            {
+                ce->lnfg[i] = 0;
+            }
+        }
+    } 
+}
 
 // 100% matching!
 void bhClearComEvtText()
