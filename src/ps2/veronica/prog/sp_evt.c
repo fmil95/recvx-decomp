@@ -1,6 +1,16 @@
 #include "../../../ps2/veronica/prog/sp_evt.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/player.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaMem.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_sg_syrtc.h"
+#include "../../../ps2/veronica/prog/ps2_texture.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/screen.h"
+
+typedef void (*bhCtrSpEvtCom_mode0_proc)();
 
 /*char* comevt_message_tst[27];
 unsigned char comevt_script_tst[181];
@@ -25,20 +35,12 @@ _anon20 acs_no7[8];
 void* comevt_message_tab[8];
 void* comevt_script_tab[8];
 void* comevt_acs_tab[8];*/
-typedef void (*bhCtrSpEvtCom_mode0_proc)();
 bhCtrSpEvtCom_mode0_proc bhCtrSpEvtCom_mode0[3] = 
 {
 	bhInitSpEvtComputer,
 	bhMainSpEvtComputer,
-	bhMainSpEvtComputer
+	bhExitSpEvtComputer
 };
-/*_anon11* sys;
-unsigned int palbuf[0];
-_anon12* rom;
-float fNaViwClipFar;
-float cmat[16];
-BH_PWORK ene[0];
-float fNaViwClipNear;*/
 
 // 100% matching!
 void bhControlSpEvtComputer()
@@ -303,53 +305,49 @@ void bhMainSpEvtComputer()
 	scePrintf("bhMainSpEvtComputer - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2bddd0
+// 100% matching!
 void bhExitSpEvtComputer()
 {
-	//_anon7* ce;
-	// Line 382, Address: 0x2bddd0, Func Offset: 0
-	// Line 383, Address: 0x2bdddc, Func Offset: 0xc
-	// Line 384, Address: 0x2bddf0, Func Offset: 0x20
-	// Line 386, Address: 0x2bde10, Func Offset: 0x40
-	// Line 388, Address: 0x2bde1c, Func Offset: 0x4c
-	// Line 391, Address: 0x2bde28, Func Offset: 0x58
-	// Line 393, Address: 0x2bde44, Func Offset: 0x74
-	// Line 394, Address: 0x2bde5c, Func Offset: 0x8c
-	// Line 396, Address: 0x2bde64, Func Offset: 0x94
-	// Line 394, Address: 0x2bde6c, Func Offset: 0x9c
-	// Line 396, Address: 0x2bde70, Func Offset: 0xa0
-	// Line 394, Address: 0x2bde74, Func Offset: 0xa4
-	// Line 396, Address: 0x2bde7c, Func Offset: 0xac
-	// Line 398, Address: 0x2bde90, Func Offset: 0xc0
-	// Line 401, Address: 0x2bde9c, Func Offset: 0xcc
-	// Line 402, Address: 0x2bdea4, Func Offset: 0xd4
-	// Line 398, Address: 0x2bdea8, Func Offset: 0xd8
-	// Line 399, Address: 0x2bdeac, Func Offset: 0xdc
-	// Line 402, Address: 0x2bdeb4, Func Offset: 0xe4
-	// Line 403, Address: 0x2bdeb8, Func Offset: 0xe8
-	// Line 404, Address: 0x2bdebc, Func Offset: 0xec
-	// Line 399, Address: 0x2bdec0, Func Offset: 0xf0
-	// Line 400, Address: 0x2bdecc, Func Offset: 0xfc
-	// Line 401, Address: 0x2bded8, Func Offset: 0x108
-	// Line 400, Address: 0x2bdedc, Func Offset: 0x10c
-	// Line 401, Address: 0x2bdee4, Func Offset: 0x114
-	// Line 402, Address: 0x2bdeec, Func Offset: 0x11c
-	// Line 401, Address: 0x2bdef0, Func Offset: 0x120
-	// Line 402, Address: 0x2bdef8, Func Offset: 0x128
-	// Line 403, Address: 0x2bdf00, Func Offset: 0x130
-	// Line 402, Address: 0x2bdf04, Func Offset: 0x134
-	// Line 403, Address: 0x2bdf0c, Func Offset: 0x13c
-	// Line 404, Address: 0x2bdf14, Func Offset: 0x144
-	// Line 403, Address: 0x2bdf18, Func Offset: 0x148
-	// Line 404, Address: 0x2bdf20, Func Offset: 0x150
-	// Line 406, Address: 0x2bdf28, Func Offset: 0x158
-	// Line 404, Address: 0x2bdf2c, Func Offset: 0x15c
-	// Line 406, Address: 0x2bdf34, Func Offset: 0x164
-	// Line 408, Address: 0x2bdf4c, Func Offset: 0x17c
-	// Line 409, Address: 0x2bdf54, Func Offset: 0x184
-	// Func End, Address: 0x2bdf64, Func Offset: 0x194
-	scePrintf("bhExitSpEvtComputer - UNIMPLEMENTED!\n");
+    COM_EVT_WORK* ce;
+    
+    ce = sys->com_exp;
+
+    if ((sys->com_flg & 0x100))
+    {
+        syRtcFinish();
+    }
+    
+    njReleaseTexture(&ce->com_tlist);
+    
+    bhGarbageTexture(NULL, 0);
+
+    if (rom->mdl.texP != NULL)
+    {
+        bhCopyMainmem2Texmem(rom->mdl.texP);
+    }
+    
+    njMemCopy4(palbuf, &palbuf[3072], 1024);
+    
+    sys->gm_flg |= 0x4;
+    
+    bhSetScreenFade(sys->fade_pbk, 3.0f);
+    
+    sys->sp_flg = -1;
+    
+    sys->bcl_ct = 0;
+    
+    sys->gm_flg |=  0x8000;
+    
+    sys->st_flg &= ~0x4000000;
+    
+    sys->cb_flg &= ~0x400000;   
+    
+    sys->ts_flg |=  0x20000;
+    sys->ts_flg &= ~0x80;
+    
+    sys->memp = sys->sbs_sp;
+    
+    bhStandPlayerMotion();
 }
 
 /*// 
