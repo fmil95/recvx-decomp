@@ -1203,60 +1203,78 @@ void bhClearComEvtText()
     npSetMemoryL((unsigned int*)ce->txt, sizeof(ce->txt) / 4, 0);
 }
 
-/*// 
-// Start address: 0x2bfc00
+// 100% matching!
 void bhInitComEvtScript()
 {
-	int end;
-	unsigned char cmd;
+    COM_EVT_WORK* ce;
 	unsigned char* scp;
-	_anon7* ce;
-	// Line 1129, Address: 0x2bfc00, Func Offset: 0
-	// Line 1130, Address: 0x2bfc14, Func Offset: 0x14
-	// Line 1133, Address: 0x2bfc1c, Func Offset: 0x1c
-	// Line 1135, Address: 0x2bfc24, Func Offset: 0x24
-	// Line 1130, Address: 0x2bfc28, Func Offset: 0x28
-	// Line 1131, Address: 0x2bfc34, Func Offset: 0x34
-	// Line 1133, Address: 0x2bfc38, Func Offset: 0x38
-	// Line 1134, Address: 0x2bfc3c, Func Offset: 0x3c
-	// Line 1138, Address: 0x2bfc40, Func Offset: 0x40
-	// Line 1137, Address: 0x2bfc78, Func Offset: 0x78
-	// Line 1138, Address: 0x2bfc7c, Func Offset: 0x7c
-	// Line 1140, Address: 0x2bfcf4, Func Offset: 0xf4
-	// Line 1141, Address: 0x2bfcf8, Func Offset: 0xf8
-	// Line 1143, Address: 0x2bfd00, Func Offset: 0x100
-	// Line 1144, Address: 0x2bfd04, Func Offset: 0x104
-	// Line 1148, Address: 0x2bfd0c, Func Offset: 0x10c
-	// Line 1149, Address: 0x2bfd10, Func Offset: 0x110
-	// Line 1151, Address: 0x2bfd18, Func Offset: 0x118
-	// Line 1152, Address: 0x2bfd1c, Func Offset: 0x11c
-	// Line 1155, Address: 0x2bfd24, Func Offset: 0x124
-	// Line 1156, Address: 0x2bfd28, Func Offset: 0x128
-	// Line 1160, Address: 0x2bfd30, Func Offset: 0x130
-	// Line 1161, Address: 0x2bfd34, Func Offset: 0x134
-	// Line 1163, Address: 0x2bfd3c, Func Offset: 0x13c
-	// Line 1164, Address: 0x2bfd4c, Func Offset: 0x14c
-	// Line 1165, Address: 0x2bfd50, Func Offset: 0x150
-	// Line 1167, Address: 0x2bfd58, Func Offset: 0x158
-	// Line 1168, Address: 0x2bfd5c, Func Offset: 0x15c
-	// Line 1171, Address: 0x2bfd64, Func Offset: 0x164
-	// Line 1172, Address: 0x2bfd68, Func Offset: 0x168
-	// Line 1177, Address: 0x2bfd70, Func Offset: 0x170
-	// Line 1178, Address: 0x2bfd74, Func Offset: 0x174
-	// Line 1181, Address: 0x2bfd7c, Func Offset: 0x17c
-	// Line 1182, Address: 0x2bfd80, Func Offset: 0x180
-	// Line 1185, Address: 0x2bfd88, Func Offset: 0x188
-	// Line 1186, Address: 0x2bfd8c, Func Offset: 0x18c
-	// Line 1189, Address: 0x2bfd94, Func Offset: 0x194
-	// Line 1190, Address: 0x2bfd98, Func Offset: 0x198
-	// Line 1192, Address: 0x2bfda0, Func Offset: 0x1a0
-	// Line 1194, Address: 0x2bfda4, Func Offset: 0x1a4
-	// Line 1195, Address: 0x2bfda8, Func Offset: 0x1a8
-	// Line 1196, Address: 0x2bfdb0, Func Offset: 0x1b0
-	// Func End, Address: 0x2bfdc8, Func Offset: 0x1c8
+	unsigned char cmd;    
+	int end;
+
+    ce = sys->com_exp;
+    
+    scp = ce->scp;
+    
+    ce->txcol = 0xFFFF00;
+    ce->txflg = 0;
+    
+    end = 1;
+    
+    while (end != 0)
+    {
+        cmd = *scp++;
+        
+        switch (cmd)
+        {
+        case 224:
+            scp++;
+            break;
+        case 225:
+            scp++;
+            break;
+        case 227:
+            scp += 3;
+            break;
+        case 228:
+            scp++;
+            break;
+        case 229:
+            scp += 2;
+            break;
+        case 234:
+            scp += 3;
+            break;
+        case 235:
+            ce->sclb[*scp] = scp + 1;
+            
+            scp++;
+            break;
+        case 236:
+            scp++;
+            break;
+        case 237:
+            scp += 2;
+            break;
+        case 238:
+            scp += 4;
+            break;
+        case 239:
+            scp += 2;
+            break;
+        case 240:
+            scp += 2;
+            break;
+        case 241:
+            scp += 2;
+            break;
+        case 255:
+            end = 0;
+            break;
+        }
+    } 
 }
 
-// 
+/*// 
 // Start address: 0x2bfdd0
 void bhControlComEvtScript()
 {
