@@ -7227,126 +7227,98 @@ void bhSetHeadRotation(short ax, short ay)
     scePrintf("bhSetHeadRotation - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x14a210
+// 100% matching!
 void bhCalcHair(O_WRK* op, BH_PWORK* pp)
-{
-	short az;
-	short ay;
-	short ax;
-	//_anon35 ps;
-	//_anon34* hair;
-	// Line 5218, Address: 0x14a210, Func Offset: 0
-	// Line 5222, Address: 0x14a228, Func Offset: 0x18
-	// Line 5224, Address: 0x14a22c, Func Offset: 0x1c
-	// Line 5225, Address: 0x14a234, Func Offset: 0x24
-	// Line 5226, Address: 0x14a23c, Func Offset: 0x2c
-	// Line 5231, Address: 0x14a244, Func Offset: 0x34
-	// Line 5228, Address: 0x14a248, Func Offset: 0x38
-	// Line 5229, Address: 0x14a24c, Func Offset: 0x3c
-	// Line 5230, Address: 0x14a250, Func Offset: 0x40
-	// Line 5231, Address: 0x14a254, Func Offset: 0x44
-	// Line 5233, Address: 0x14a25c, Func Offset: 0x4c
-	// Line 5232, Address: 0x14a260, Func Offset: 0x50
-	// Line 5234, Address: 0x14a264, Func Offset: 0x54
-	// Line 5235, Address: 0x14a268, Func Offset: 0x58
-	// Line 5236, Address: 0x14a26c, Func Offset: 0x5c
-	// Line 5231, Address: 0x14a270, Func Offset: 0x60
-	// Line 5233, Address: 0x14a274, Func Offset: 0x64
-	// Line 5237, Address: 0x14a278, Func Offset: 0x68
-	// Line 5232, Address: 0x14a27c, Func Offset: 0x6c
-	// Line 5239, Address: 0x14a280, Func Offset: 0x70
-	// Line 5231, Address: 0x14a284, Func Offset: 0x74
-	// Line 5233, Address: 0x14a288, Func Offset: 0x78
-	// Line 5231, Address: 0x14a28c, Func Offset: 0x7c
-	// Line 5234, Address: 0x14a290, Func Offset: 0x80
-	// Line 5238, Address: 0x14a294, Func Offset: 0x84
-	// Line 5232, Address: 0x14a298, Func Offset: 0x88
-	// Line 5234, Address: 0x14a29c, Func Offset: 0x8c
-	// Line 5232, Address: 0x14a2a0, Func Offset: 0x90
-	// Line 5235, Address: 0x14a2a4, Func Offset: 0x94
-	// Line 5240, Address: 0x14a2a8, Func Offset: 0x98
-	// Line 5235, Address: 0x14a2ac, Func Offset: 0x9c
-	// Line 5233, Address: 0x14a2b0, Func Offset: 0xa0
-	// Line 5236, Address: 0x14a2b4, Func Offset: 0xa4
-	// Line 5241, Address: 0x14a2b8, Func Offset: 0xa8
-	// Line 5236, Address: 0x14a2bc, Func Offset: 0xac
-	// Line 5234, Address: 0x14a2c0, Func Offset: 0xb0
-	// Line 5237, Address: 0x14a2c4, Func Offset: 0xb4
-	// Line 5242, Address: 0x14a2c8, Func Offset: 0xb8
-	// Line 5237, Address: 0x14a2cc, Func Offset: 0xbc
-	// Line 5235, Address: 0x14a2d0, Func Offset: 0xc0
-	// Line 5238, Address: 0x14a2d4, Func Offset: 0xc4
-	// Line 5243, Address: 0x14a2d8, Func Offset: 0xc8
-	// Line 5238, Address: 0x14a2dc, Func Offset: 0xcc
-	// Line 5236, Address: 0x14a2e0, Func Offset: 0xd0
-	// Line 5239, Address: 0x14a2e4, Func Offset: 0xd4
-	// Line 5244, Address: 0x14a2e8, Func Offset: 0xd8
-	// Line 5239, Address: 0x14a2ec, Func Offset: 0xdc
-	// Line 5237, Address: 0x14a2f0, Func Offset: 0xe0
-	// Line 5240, Address: 0x14a2f4, Func Offset: 0xe4
-	// Line 5245, Address: 0x14a2f8, Func Offset: 0xe8
-	// Line 5240, Address: 0x14a2fc, Func Offset: 0xec
-	// Line 5238, Address: 0x14a300, Func Offset: 0xf0
-	// Line 5241, Address: 0x14a304, Func Offset: 0xf4
-	// Line 5246, Address: 0x14a308, Func Offset: 0xf8
-	// Line 5247, Address: 0x14a30c, Func Offset: 0xfc
-	// Line 5239, Address: 0x14a310, Func Offset: 0x100
-	// Line 5242, Address: 0x14a314, Func Offset: 0x104
-	// Line 5240, Address: 0x14a318, Func Offset: 0x108
-	// Line 5241, Address: 0x14a31c, Func Offset: 0x10c
-	// Line 5242, Address: 0x14a324, Func Offset: 0x114
-	// Line 5243, Address: 0x14a328, Func Offset: 0x118
-	// Line 5248, Address: 0x14a32c, Func Offset: 0x11c
-	// Line 5242, Address: 0x14a330, Func Offset: 0x120
-	// Line 5244, Address: 0x14a334, Func Offset: 0x124
-	// Line 5243, Address: 0x14a338, Func Offset: 0x128
-	// Line 5245, Address: 0x14a33c, Func Offset: 0x12c
-	// Line 5243, Address: 0x14a340, Func Offset: 0x130
-	// Line 5246, Address: 0x14a344, Func Offset: 0x134
-	// Line 5244, Address: 0x14a348, Func Offset: 0x138
-	// Line 5245, Address: 0x14a350, Func Offset: 0x140
-	// Line 5247, Address: 0x14a358, Func Offset: 0x148
-	// Line 5248, Address: 0x14a35c, Func Offset: 0x14c
-	// Line 5249, Address: 0x14a360, Func Offset: 0x150
-	// Line 5250, Address: 0x14a364, Func Offset: 0x154
-	// Line 5251, Address: 0x14a368, Func Offset: 0x158
-	// Line 5253, Address: 0x14a36c, Func Offset: 0x15c
-	// Line 5248, Address: 0x14a370, Func Offset: 0x160
-	// Line 5246, Address: 0x14a374, Func Offset: 0x164
-	// Line 5247, Address: 0x14a378, Func Offset: 0x168
-	// Line 5246, Address: 0x14a37c, Func Offset: 0x16c
-	// Line 5247, Address: 0x14a380, Func Offset: 0x170
-	// Line 5253, Address: 0x14a384, Func Offset: 0x174
-	// Line 5254, Address: 0x14a388, Func Offset: 0x178
-	// Line 5248, Address: 0x14a38c, Func Offset: 0x17c
-	// Line 5254, Address: 0x14a390, Func Offset: 0x180
-	// Line 5255, Address: 0x14a394, Func Offset: 0x184
-	// Line 5257, Address: 0x14a39c, Func Offset: 0x18c
-	// Line 5258, Address: 0x14a3ac, Func Offset: 0x19c
-	// Line 5259, Address: 0x14a3bc, Func Offset: 0x1ac
-	// Line 5271, Address: 0x14a3c4, Func Offset: 0x1b4
-	// Line 5259, Address: 0x14a3c8, Func Offset: 0x1b8
-	// Line 5268, Address: 0x14a3d0, Func Offset: 0x1c0
-	// Line 5269, Address: 0x14a3e0, Func Offset: 0x1d0
-	// Line 5270, Address: 0x14a3e4, Func Offset: 0x1d4
-	// Line 5271, Address: 0x14a3f0, Func Offset: 0x1e0
-	// Line 5272, Address: 0x14a3f8, Func Offset: 0x1e8
-	// Line 5273, Address: 0x14a40c, Func Offset: 0x1fc
-	// Line 5274, Address: 0x14a420, Func Offset: 0x210
-	// Line 5275, Address: 0x14a434, Func Offset: 0x224
-	// Line 5276, Address: 0x14a444, Func Offset: 0x234
-	// Line 5277, Address: 0x14a44c, Func Offset: 0x23c
-	// Line 5276, Address: 0x14a458, Func Offset: 0x248
-	// Line 5277, Address: 0x14a460, Func Offset: 0x250
-	// Line 5278, Address: 0x14a478, Func Offset: 0x268
-	// Line 5279, Address: 0x14a49c, Func Offset: 0x28c
-	// Line 5280, Address: 0x14a4c0, Func Offset: 0x2b0
-	// Line 5281, Address: 0x14a4e4, Func Offset: 0x2d4
-	// Line 5282, Address: 0x14a508, Func Offset: 0x2f8
-	// Line 5283, Address: 0x14a52c, Func Offset: 0x31c
-	// Func End, Address: 0x14a548, Func Offset: 0x338
-    scePrintf("bhCalcHair - UNIMPLEMENTED!\n");
+{    
+    HAIR_WORK* hair; 
+    NJS_POINT3 ps;   
+    short ax, ay, az;        
+
+    hair = (HAIR_WORK*)op->exp3;
+    
+    hair->axb = hair->ax;
+    hair->ayb = hair->ay;
+    hair->azb = hair->az;
+    
+    ax = pp->ax + pp->mlwP->objP[0].ang[0];
+    ay = pp->ay + pp->mlwP->objP[0].ang[1];
+    az = pp->az + pp->mlwP->objP[0].ang[2];
+    
+    ax += pp->mlwP->objP[1].ang[0];
+    ay += pp->mlwP->objP[1].ang[1];
+    az += pp->mlwP->objP[1].ang[2];
+    
+    ax += pp->mlwP->objP[2].ang[0];
+    ay += pp->mlwP->objP[2].ang[1];
+    az += pp->mlwP->objP[2].ang[2];
+    
+    ax += pp->mlwP->objP[3].ang[0];
+    ay += pp->mlwP->objP[3].ang[1];
+    az += pp->mlwP->objP[3].ang[2];
+    
+    ax += pp->mlwP->objP[4].ang[0];
+    ay += pp->mlwP->objP[4].ang[1];
+    az += pp->mlwP->objP[4].ang[2];
+    
+    ax += pp->mlwP->objP[5].ang[0];
+    ay += pp->mlwP->objP[5].ang[1];
+    az += pp->mlwP->objP[5].ang[2];
+    
+    hair->ax = ax;
+    hair->ay = ay;
+    hair->az = az;
+    
+    hair->oxb = hair->ox;
+    hair->oyb = hair->oy;
+    hair->ozb = hair->oz;
+    
+    hair->ox = op->mlwP->owP->mtx[12];
+    hair->oy = op->mlwP->owP->mtx[13];
+    hair->oz = op->mlwP->owP->mtx[14];
+    
+    ps.x = hair->ox - hair->oxb;
+    ps.y = 0;
+    ps.z = hair->oz - hair->ozb;
+    
+    njUnitMatrix(NULL);
+    
+    njRotateY(NULL, -ay);
+    njRotateX(NULL, -ax);
+    njRotateZ(NULL, -az);
+    
+    njCalcPoint(NULL, &ps, (NJS_POINT3*)&hair->spx);
+    
+    hair->spy = hair->oy - hair->oyb;
+    
+    if (hair->spx > 1.0f)
+    {
+        hair->spx = 1.0f;
+    }
+    
+    if (hair->spx < -1.0f) 
+    {
+        hair->spx = -1.0f;
+    }
+    
+    if (hair->spy > 1.0f) 
+    {
+        hair->spy = 1.0f;
+    }
+    
+    if (hair->spy < -1.0f)
+    {
+        hair->spy = -1.0f;
+    }
+    
+    if (hair->spz > 1.0f)
+    {
+        hair->spz = 1.0f;
+    }
+    
+    if (hair->spz < -1.0f) 
+    {
+        hair->spz = -1.0f;
+    }
 }
 
 // 100% matching!
