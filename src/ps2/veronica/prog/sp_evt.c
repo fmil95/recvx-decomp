@@ -1091,35 +1091,37 @@ void bhDrawSpEvtComputer()
 	// Line 796, Address: 0x2bef74, Func Offset: 0x4e4
 	// Line 800, Address: 0x2befbc, Func Offset: 0x52c
 	// Func End, Address: 0x2beff0, Func Offset: 0x560
-}
+}*/
 
-// 
-// Start address: 0x2beff0
+// 78.98% matching (matches on NGC)
 void bhDrawSpEvtComTime()
 {
-	int sec;
-	int min;
-	int hour;
-	_SYS_RTC_DATE date;
-	// Line 807, Address: 0x2beff0, Func Offset: 0
-	// Line 811, Address: 0x2bf004, Func Offset: 0x14
-	// Line 812, Address: 0x2bf024, Func Offset: 0x34
-	// Line 813, Address: 0x2bf028, Func Offset: 0x38
-	// Line 815, Address: 0x2bf02c, Func Offset: 0x3c
-	// Line 816, Address: 0x2bf034, Func Offset: 0x44
-	// Line 817, Address: 0x2bf040, Func Offset: 0x50
-	// Line 818, Address: 0x2bf044, Func Offset: 0x54
-	// Line 819, Address: 0x2bf048, Func Offset: 0x58
-	// Line 840, Address: 0x2bf050, Func Offset: 0x60
-	// Line 841, Address: 0x2bf080, Func Offset: 0x90
-	// Line 845, Address: 0x2bf0a8, Func Offset: 0xb8
-	// Line 846, Address: 0x2bf0d8, Func Offset: 0xe8
-	// Line 850, Address: 0x2bf0fc, Func Offset: 0x10c
-	// Line 854, Address: 0x2bf114, Func Offset: 0x124
-	// Line 855, Address: 0x2bf14c, Func Offset: 0x15c
-	// Line 856, Address: 0x2bf174, Func Offset: 0x184
-	// Func End, Address: 0x2bf18c, Func Offset: 0x19c
-}*/
+    SYS_RTC_DATE date; 
+    int hour, min, sec;         
+  
+    if (!(sys->com_flg & 0x100)) 
+    {
+        hour = 21;
+        min  = 35;
+        sec  = 12;
+    } 
+    else 
+    {
+        syRtcGetDate(&date);
+        
+        hour = date.hour;
+        min  = date.minute;
+        sec  = date.second;
+    }
+    
+    bhDrawSpEvtComVal(hour / 10, 364.0f, 304.0f);
+    bhDrawSpEvtComVal(hour % 10, 380.0f, 304.0f);
+    bhDrawSpEvtComVal(min / 10,  400.0f, 304.0f);
+    bhDrawSpEvtComVal(min % 10,  416.0f, 304.0f);
+    bhDrawSpEvtComVal(11,        432.0f, 304.0f);
+    bhDrawSpEvtComVal(sec / 10,  440.0f, 304.0f);
+    bhDrawSpEvtComVal(sec % 10,  456.0f, 304.0f);
+}
 
 // 100% matching!
 void bhDrawSpEvtComVal(int val, float px, float py)
