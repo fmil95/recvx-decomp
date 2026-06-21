@@ -3,6 +3,7 @@
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
@@ -1118,52 +1119,35 @@ void bhDrawSpEvtComTime()
 	// Line 855, Address: 0x2bf14c, Func Offset: 0x15c
 	// Line 856, Address: 0x2bf174, Func Offset: 0x184
 	// Func End, Address: 0x2bf18c, Func Offset: 0x19c
-}
+}*/
 
-// 
-// Start address: 0x2bf190
+// 100% matching!
 void bhDrawSpEvtComVal(int val, float px, float py)
 {
-	_anon20 qt;
-	// Line 867, Address: 0x2bf190, Func Offset: 0
-	// Line 863, Address: 0x2bf198, Func Offset: 0x8
-	// Line 867, Address: 0x2bf19c, Func Offset: 0xc
-	// Line 863, Address: 0x2bf1a0, Func Offset: 0x10
-	// Line 865, Address: 0x2bf1a4, Func Offset: 0x14
-	// Line 866, Address: 0x2bf1a8, Func Offset: 0x18
-	// Line 868, Address: 0x2bf1ac, Func Offset: 0x1c
-	// Line 867, Address: 0x2bf1b0, Func Offset: 0x20
-	// Line 868, Address: 0x2bf1b4, Func Offset: 0x24
-	// Line 869, Address: 0x2bf1b8, Func Offset: 0x28
-	// Line 868, Address: 0x2bf1bc, Func Offset: 0x2c
-	// Line 869, Address: 0x2bf1c0, Func Offset: 0x30
-	// Line 870, Address: 0x2bf1e0, Func Offset: 0x50
-	// Line 869, Address: 0x2bf1e4, Func Offset: 0x54
-	// Line 870, Address: 0x2bf1ec, Func Offset: 0x5c
-	// Line 871, Address: 0x2bf1f4, Func Offset: 0x64
-	// Line 869, Address: 0x2bf1f8, Func Offset: 0x68
-	// Line 870, Address: 0x2bf1fc, Func Offset: 0x6c
-	// Line 869, Address: 0x2bf200, Func Offset: 0x70
-	// Line 870, Address: 0x2bf208, Func Offset: 0x78
-	// Line 872, Address: 0x2bf210, Func Offset: 0x80
-	// Line 873, Address: 0x2bf214, Func Offset: 0x84
-	// Line 869, Address: 0x2bf218, Func Offset: 0x88
-	// Line 870, Address: 0x2bf21c, Func Offset: 0x8c
-	// Line 871, Address: 0x2bf220, Func Offset: 0x90
-	// Line 870, Address: 0x2bf224, Func Offset: 0x94
-	// Line 871, Address: 0x2bf230, Func Offset: 0xa0
-	// Line 872, Address: 0x2bf234, Func Offset: 0xa4
-	// Line 871, Address: 0x2bf23c, Func Offset: 0xac
-	// Line 872, Address: 0x2bf244, Func Offset: 0xb4
-	// Line 873, Address: 0x2bf24c, Func Offset: 0xbc
-	// Line 874, Address: 0x2bf254, Func Offset: 0xc4
-	// Line 875, Address: 0x2bf264, Func Offset: 0xd4
-	// Line 876, Address: 0x2bf278, Func Offset: 0xe8
-	// Line 877, Address: 0x2bf280, Func Offset: 0xf0
-	// Func End, Address: 0x2bf28c, Func Offset: 0xfc
+    QUAD qt; 
+
+    qt.x1 = px;
+    qt.y1 = py;
+    
+    qt.x2 = 16.0f + px;
+    qt.y2 = 20.0f + py;
+    
+    qt.u1 = (((val % 8) * 16) + 204) / 512.0f;
+    qt.v1 = (((val / 8) * 24) + 208) / 512.0f;
+    
+    qt.u2 = 0.03125f  + qt.u1;
+    qt.v2 = 0.046875f + qt.v1;
+    
+    njQuadTextureStart(1);
+    
+    njSetQuadTexture(2, 0xFFC0C0C0);
+    
+    njDrawQuadTexture(&qt, 0.15f);
+    
+    njQuadTextureEnd();
 }
 
-// 
+/*// 
 // Start address: 0x2bf290
 void bhDrawSpEvtComBar(int barno, int col0, int col1)
 {
@@ -1374,7 +1358,7 @@ void bhDrawSpEvtComFade()
 
     ce = sys->com_exp;
     
-    p2c.p = p;
+    p2c.p   = p;
     p2c.col = col;
     p2c.tex = NULL;
     p2c.num = 1;
