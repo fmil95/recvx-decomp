@@ -1149,98 +1149,52 @@ void bhDrawSpEvtComVal(int val, float px, float py)
     njQuadTextureEnd();
 }
 
-/*// 
-// Start address: 0x2bf290
+// 100% matching!
 void bhDrawSpEvtComBar(int barno, int col0, int col1)
 {
-	_anon7* ce;
-	_anon20 qt;
-	// Line 884, Address: 0x2bf290, Func Offset: 0
-	// Line 886, Address: 0x2bf2bc, Func Offset: 0x2c
-	// Line 887, Address: 0x2bf2c8, Func Offset: 0x38
-	// Line 886, Address: 0x2bf2d0, Func Offset: 0x40
-	// Line 887, Address: 0x2bf2dc, Func Offset: 0x4c
-	// Line 888, Address: 0x2bf2e4, Func Offset: 0x54
-	// Line 889, Address: 0x2bf2ec, Func Offset: 0x5c
-	// Line 890, Address: 0x2bf300, Func Offset: 0x70
-	// Line 889, Address: 0x2bf304, Func Offset: 0x74
-	// Line 890, Address: 0x2bf308, Func Offset: 0x78
-	// Line 889, Address: 0x2bf30c, Func Offset: 0x7c
-	// Line 890, Address: 0x2bf310, Func Offset: 0x80
-	// Line 889, Address: 0x2bf314, Func Offset: 0x84
-	// Line 890, Address: 0x2bf318, Func Offset: 0x88
-	// Line 893, Address: 0x2bf324, Func Offset: 0x94
-	// Line 892, Address: 0x2bf328, Func Offset: 0x98
-	// Line 893, Address: 0x2bf330, Func Offset: 0xa0
-	// Line 890, Address: 0x2bf334, Func Offset: 0xa4
-	// Line 891, Address: 0x2bf338, Func Offset: 0xa8
-	// Line 894, Address: 0x2bf33c, Func Offset: 0xac
-	// Line 895, Address: 0x2bf340, Func Offset: 0xb0
-	// Line 891, Address: 0x2bf344, Func Offset: 0xb4
-	// Line 896, Address: 0x2bf348, Func Offset: 0xb8
-	// Line 893, Address: 0x2bf34c, Func Offset: 0xbc
-	// Line 890, Address: 0x2bf354, Func Offset: 0xc4
-	// Line 893, Address: 0x2bf35c, Func Offset: 0xcc
-	// Line 891, Address: 0x2bf364, Func Offset: 0xd4
-	// Line 893, Address: 0x2bf368, Func Offset: 0xd8
-	// Line 895, Address: 0x2bf36c, Func Offset: 0xdc
-	// Line 893, Address: 0x2bf370, Func Offset: 0xe0
-	// Line 891, Address: 0x2bf374, Func Offset: 0xe4
-	// Line 894, Address: 0x2bf378, Func Offset: 0xe8
-	// Line 896, Address: 0x2bf37c, Func Offset: 0xec
-	// Line 891, Address: 0x2bf380, Func Offset: 0xf0
-	// Line 895, Address: 0x2bf388, Func Offset: 0xf8
-	// Line 893, Address: 0x2bf38c, Func Offset: 0xfc
-	// Line 895, Address: 0x2bf390, Func Offset: 0x100
-	// Line 892, Address: 0x2bf394, Func Offset: 0x104
-	// Line 896, Address: 0x2bf398, Func Offset: 0x108
-	// Line 893, Address: 0x2bf39c, Func Offset: 0x10c
-	// Line 895, Address: 0x2bf3a4, Func Offset: 0x114
-	// Line 894, Address: 0x2bf3a8, Func Offset: 0x118
-	// Line 895, Address: 0x2bf3ac, Func Offset: 0x11c
-	// Line 896, Address: 0x2bf3b4, Func Offset: 0x124
-	// Line 897, Address: 0x2bf3bc, Func Offset: 0x12c
-	// Line 899, Address: 0x2bf3d0, Func Offset: 0x140
-	// Line 898, Address: 0x2bf3d4, Func Offset: 0x144
-	// Line 899, Address: 0x2bf3dc, Func Offset: 0x14c
-	// Line 901, Address: 0x2bf3e0, Func Offset: 0x150
-	// Line 903, Address: 0x2bf3e4, Func Offset: 0x154
-	// Line 900, Address: 0x2bf3ec, Func Offset: 0x15c
-	// Line 901, Address: 0x2bf3f0, Func Offset: 0x160
-	// Line 899, Address: 0x2bf3f4, Func Offset: 0x164
-	// Line 903, Address: 0x2bf3f8, Func Offset: 0x168
-	// Line 900, Address: 0x2bf400, Func Offset: 0x170
-	// Line 903, Address: 0x2bf404, Func Offset: 0x174
-	// Line 900, Address: 0x2bf408, Func Offset: 0x178
-	// Line 903, Address: 0x2bf40c, Func Offset: 0x17c
-	// Line 906, Address: 0x2bf410, Func Offset: 0x180
-	// Line 900, Address: 0x2bf418, Func Offset: 0x188
-	// Line 905, Address: 0x2bf41c, Func Offset: 0x18c
-	// Line 900, Address: 0x2bf420, Func Offset: 0x190
-	// Line 903, Address: 0x2bf424, Func Offset: 0x194
-	// Line 902, Address: 0x2bf428, Func Offset: 0x198
-	// Line 904, Address: 0x2bf42c, Func Offset: 0x19c
-	// Line 900, Address: 0x2bf430, Func Offset: 0x1a0
-	// Line 905, Address: 0x2bf434, Func Offset: 0x1a4
-	// Line 903, Address: 0x2bf438, Func Offset: 0x1a8
-	// Line 905, Address: 0x2bf43c, Func Offset: 0x1ac
-	// Line 901, Address: 0x2bf440, Func Offset: 0x1b0
-	// Line 906, Address: 0x2bf448, Func Offset: 0x1b8
-	// Line 903, Address: 0x2bf44c, Func Offset: 0x1bc
-	// Line 901, Address: 0x2bf450, Func Offset: 0x1c0
-	// Line 902, Address: 0x2bf458, Func Offset: 0x1c8
-	// Line 903, Address: 0x2bf45c, Func Offset: 0x1cc
-	// Line 905, Address: 0x2bf460, Func Offset: 0x1d0
-	// Line 904, Address: 0x2bf464, Func Offset: 0x1d4
-	// Line 905, Address: 0x2bf468, Func Offset: 0x1d8
-	// Line 906, Address: 0x2bf470, Func Offset: 0x1e0
-	// Line 907, Address: 0x2bf478, Func Offset: 0x1e8
-	// Line 908, Address: 0x2bf48c, Func Offset: 0x1fc
-	// Line 909, Address: 0x2bf494, Func Offset: 0x204
-	// Func End, Address: 0x2bf4c4, Func Offset: 0x234
+    QUAD qt;         
+    COM_EVT_WORK* ce;
+    
+    ce = sys->com_exp;
+    
+    njQuadTextureStart(1);
+    
+    qt.x1 = 364.0f;
+    qt.y1 = (barno * 20) + 344;
+    
+    qt.x2 = qt.x1 + ce->bar[barno][2];
+    qt.y2 = 12.0f + qt.y1;
+    
+    qt.u1 = 0.40039063f;
+    qt.v1 = ((col1 * 12) + 156) / 512.0f;
+    
+    qt.u2 = 0.6796875f;
+    qt.v2 = ((col1 * 12) + 168) / 512.0f;
+    
+    njSetQuadTexture(2, 0xFFC0C0C0);
+    
+    njDrawQuadTexture(&qt, 0.15f);
+    
+    qt.x1 = 364.0f;
+    qt.y1 = (barno * 20) + 344;
+    
+    qt.x2 = qt.x1 + ce->bar[barno][0];
+    qt.y2 = 12.0f + qt.y1;
+    
+    qt.u1 = 0.40039063f;
+    qt.v1 = ((col0 * 12) + 156) / 512.0f;
+    
+    qt.u2 = 0.6796875f;
+    qt.v2 = ((col0 * 12) + 168) / 512.0f;
+    
+    njSetQuadTexture(2, 0xFFC0C0C0);
+    
+    njDrawQuadTexture(&qt, 0.151f);
+    
+    njQuadTextureEnd();
 }
 
-// 
+/*// 
 // Start address: 0x2bf4d0
 void bhDrawSpEvtComCharacter()
 {

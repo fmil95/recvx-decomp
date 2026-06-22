@@ -79,7 +79,7 @@ void bhEne08_Move(BH_PWORK* epw)
     bhEne08_MoveMode2[epw->mode2](epw); 
 }
 
-// 99% matching
+// 99.96% matching
 void bhEne08_MV00(BH_PWORK* epw)
 {
 	NJS_POINT3 pos;
@@ -136,7 +136,7 @@ void bhEne08_MV00(BH_PWORK* epw)
     pos.y = epw->py;
     pos.z = epw->pz - njCos(epw->ayp) * 7.0f;
 
-    hp = bhCollisionCheckLine((NJS_VECTOR*)&epw->px, (NJS_VECTOR*)&pos);
+    hp = bhCollisionCheckLine((NJS_POINT3*)&epw->px, &pos);
     if (hp != NULL)
     {
         bhGetHitCollisionNormal(&vec);
@@ -162,7 +162,7 @@ void bhEne08_MV00(BH_PWORK* epw)
     }
 }
 
-// 99% matching
+// 99.96% matching
 void bhEne08_MV01(BH_PWORK* epw)
 {
 	NJS_POINT3 pos;
@@ -232,7 +232,7 @@ void bhEne08_MV01(BH_PWORK* epw)
     pos.y = epw->py;
     pos.z = epw->pz - njCos(epw->ayp) * 7.0f;
 
-    if (bhCollisionCheckLine((NJS_VECTOR*)&epw->px, &pos) != NULL)
+    if (bhCollisionCheckLine((NJS_POINT3*)&epw->px, &pos) != NULL)
     {
         bhGetHitCollisionNormal(&vec);
         njUnitVector(&vec);
