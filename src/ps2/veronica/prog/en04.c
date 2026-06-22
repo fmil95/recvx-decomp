@@ -1898,7 +1898,7 @@ void bhEne04(BH_PWORK* epw) {
     
     for (i = 4, op = &sys->obwp[i]; i < (rom->obj_n - 1); i++, op++)
     {
-        if ((op->flg & 0x1) && op->id == 52 && (op->flg2 & 0x1))
+        if ((op->flg & 0x1) && (op->id == 52) && (op->flg2 & 0x1))
         {
             bhEne04_ShakeWire(op);
         }
@@ -4940,35 +4940,46 @@ int bhEne04_KaidanCheck(BH_PWORK* epw)
     return 0;
 }
 
-// 
-// Start address: 0x1ac4b0
+// 100% matching!
 void bhEne04_ShakeWire(O_WRK* obwp)
 {
-	//_anon36 pos[10];
-	// Line 5702, Address: 0x1ac4b0, Func Offset: 0
-	// Line 5703, Address: 0x1ac4c0, Func Offset: 0x10
-	// Line 5702, Address: 0x1ac4d0, Func Offset: 0x20
-	// Line 5703, Address: 0x1ac4d4, Func Offset: 0x24
-	// Line 5716, Address: 0x1ac4f4, Func Offset: 0x44
-	// Line 5703, Address: 0x1ac4f8, Func Offset: 0x48
-	// Line 5716, Address: 0x1ac4fc, Func Offset: 0x4c
-	// Line 5719, Address: 0x1ac524, Func Offset: 0x74
-	// Line 5720, Address: 0x1ac528, Func Offset: 0x78
-	// Line 5721, Address: 0x1ac52c, Func Offset: 0x7c
-	// Line 5724, Address: 0x1ac538, Func Offset: 0x88
-	// Line 5725, Address: 0x1ac55c, Func Offset: 0xac
-	// Line 5726, Address: 0x1ac598, Func Offset: 0xe8
-	// Line 5727, Address: 0x1ac5d0, Func Offset: 0x120
-	// Line 5728, Address: 0x1ac5dc, Func Offset: 0x12c
-	// Line 5730, Address: 0x1ac5ec, Func Offset: 0x13c
-	// Line 5731, Address: 0x1ac5f0, Func Offset: 0x140
-	// Line 5730, Address: 0x1ac5f4, Func Offset: 0x144
-	// Line 5731, Address: 0x1ac5fc, Func Offset: 0x14c
-	// Line 5733, Address: 0x1ac604, Func Offset: 0x154
-	// Line 5736, Address: 0x1ac60c, Func Offset: 0x15c
-	// Line 5739, Address: 0x1ac610, Func Offset: 0x160
-	// Func End, Address: 0x1ac624, Func Offset: 0x174
-    scePrintf("bhEne04_ShakeWire - UNIMPLEMENTED!\n");
+    NJS_POINT3 pos[10] =
+    {
+        { 0.0f,   0.1f,   0.05f },
+        { 0.0f,  -0.1f,   0.1f  },
+        { 0.0f,   0.1f,   0.35f },
+        { 0.0f,  -0.1f,   0.0f  },
+        { 0.0f,   0.1f,   0.0f  },   
+        { 0.0f,  -0.1f,  -0.2f  },   
+        { 0.0f,   0.1f,  -0.15f }, 
+        { 0.0f,  -0.1f,  -0.1f  },
+        { 0.0f,   0.1f,  -0.05f },
+        { 0.0f,  -0.1f,   0.0f  }
+    };
+    
+    switch (obwp->mode3)
+    {
+    case 0:
+        obwp->ct0 = 0;
+        obwp->mode1 = 1;
+        obwp->mode3++;
+    case 1:
+        obwp->py += pos[obwp->ct0].y;
+        
+        obwp->px -= pos[obwp->ct0].z * njSin(obwp->ay + obwp->ayp);
+        obwp->pz -= pos[obwp->ct0].z * njCos(obwp->ay + obwp->ayp);
+
+        obwp->ct0++;
+
+        if (obwp->ct0 >= 10) {
+            obwp->mode3++;
+            obwp->flg2 &= ~1;
+        }
+        break;
+
+    case 2:
+        obwp->mode1 = 0;
+    }
 }
 
 // 100% matching!
