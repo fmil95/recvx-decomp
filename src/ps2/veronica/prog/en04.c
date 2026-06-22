@@ -1874,8 +1874,7 @@ void bhEne04_DmmyBrain(void)
 }
 
 // 100% matching!
-void bhEne04(BH_PWORK* epw)
-{
+void bhEne04(BH_PWORK* epw) {
     int i;
     O_WRK* op;
 
@@ -1897,16 +1896,12 @@ void bhEne04(BH_PWORK* epw)
     bhCalcModel(epw);
     bhEne04_SetCollision(epw);
     
-    i = 4;
-    op = &sys->obwp[i];
-    while (i < (rom->obj_n - 1))
+    for (i = 4, op = &sys->obwp[i]; i < (rom->obj_n - 1); i++, op++)
     {
-        if ((op->flg & 1) && (op->id == 52) && (op->flg2 & 1))
+        if ((op->flg & 0x1) && op->id == 52 && (op->flg2 & 0x1))
         {
             bhEne04_ShakeWire(op);
         }
-        i++;
-        op++;
     }
 
     if (EXP0_I(0x14) > 0)
@@ -2461,7 +2456,7 @@ void bhEne04_MVType01(BH_PWORK* epw)
     pos.y = epw->py;
     pos.z = owk->mtx[14];
     
-    EXP0_F(0x20) = njDistanceP2P((NJS_POINT3*)&pos.x, (NJS_POINT3*)&epw->px);
+    EXP0_F(0x20) = njDistanceP2P(&pos, (NJS_POINT3*)&epw->px);
     
     hp = bhEne_EnemyAtariCheck((NJS_POINT3*)&plp->px, plp->flr_no, epw->id, 1);    
     if (hp != NULL)
@@ -2493,7 +2488,7 @@ void bhEne04_MVType02(BH_PWORK* epw) {
     pos.y = epw->py;
     pos.z = owk->mtx[14];
     
-    EXP0_F(0x20) = njDistanceP2P((NJS_POINT3*)&pos.x, (NJS_POINT3*)&epw->px);
+    EXP0_F(0x20) = njDistanceP2P(&pos, (NJS_POINT3*)&epw->px);
     
     if (en04_contact_flg & 1)
     {
@@ -2769,7 +2764,7 @@ void bhEne04_Brain02(BH_PWORK* epw) {
                     pos2.y = plp->py;
                     pos2.z = plp->pz;
                     
-                    if (!bhCollisionCheckLine((NJS_POINT3*)&pos, (NJS_POINT3*)&pos2))
+                    if (!bhCollisionCheckLine(&pos, &pos2))
                     {
                         epw->mode1 = 0;
                         epw->mode2 = 7;
@@ -2819,16 +2814,13 @@ void bhEne04_Brain02(BH_PWORK* epw) {
         }
     }
 
-    if (EXP0_F(0x20) >= 8.0f)
+    if (EXP0_F(0x20) >= 8.0f && EXP0_F(0x20) <= 15.0f && (plp->flg & 0x4))
     {
-        if (EXP0_F(0x20) <= 15.0f && (plp->flg & 0x4))
+        if (!ikou3(epw, (NJS_POINT3*)&plp->px, 4096))
         {
-            if (!ikou3(epw, (NJS_POINT3*)&plp->px, 4096))
-            {
-                epw->mode1 = 0;
-                epw->mode2 = 4;
-                epw->mode3 = 0;
-            }
+            epw->mode1 = 0;
+            epw->mode2 = 4;
+            epw->mode3 = 0;
         }
     }
 
@@ -2873,7 +2865,7 @@ void bhEne04_Brain04(BH_PWORK* epw)
                 pos2.y = plp->py;
                 pos2.z = plp->pz;
                 
-                if (bhCollisionCheckLine((NJS_POINT3*)&pos, (NJS_POINT3*)&pos2) == NULL)
+                if (bhCollisionCheckLine(&pos, &pos2) == NULL)
                 {
                     epw->mode1 = 0;
                     epw->mode2 = 7;
@@ -3043,7 +3035,7 @@ void bhEne04_MV01(BH_PWORK* epw)
 
     case 2:
         epw->spd = 0.08f;
-        bhAddSpeed(epw, 0x10);
+        bhAddSpeed(epw, 16);
 
         epw->ay += epw->way;
         epw->ct0 -= 256;
@@ -3059,7 +3051,7 @@ void bhEne04_MV01(BH_PWORK* epw)
     
     if ((epw->ct2 % 90) == 0)
     {
-        bhEne04_SePlay(epw, 0x01012302); // hex or decimal?
+        bhEne04_SePlay(epw, 16851714);
     }
 }
 
@@ -3804,7 +3796,7 @@ void bhEne04_MV09(BH_PWORK* epw)
     scePrintf("bhEne04_MV09 - UNIMPLEMENTED!\n");
 }
 
-// 100% matching! (99.64% on decomp.me)
+// 99.64% matching
 void bhEne04_MV10(BH_PWORK* epw)
 {
     switch (epw->mode3)
