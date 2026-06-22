@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 52.76085,
+    "fuzzy_match_percent": 52.97119,
     "total_code": "1904472",
-    "matched_code": "827492",
-    "matched_code_percent": 43.449944,
+    "matched_code": "831516",
+    "matched_code_percent": 43.661232,
     "total_data": "28428164",
     "matched_data": "28224076",
     "matched_data_percent": 99.28209,
     "total_functions": 4529,
-    "matched_functions": 2920,
-    "matched_functions_percent": 64.4734,
+    "matched_functions": 2922,
+    "matched_functions_percent": 64.517555,
     "total_units": 200
   },
   "units": [
@@ -1189,14 +1189,14 @@
     {
       "name": "ps2/veronica/prog/player",
       "measures": {
-        "fuzzy_match_percent": 94.32789,
+        "fuzzy_match_percent": 99.80375,
         "total_code": "73172",
-        "matched_code": "32520",
-        "matched_code_percent": 44.44323,
+        "matched_code": "36544",
+        "matched_code_percent": 49.9426,
         "total_data": "7224",
         "total_functions": 49,
-        "matched_functions": 33,
-        "matched_functions_percent": 67.34694,
+        "matched_functions": 35,
+        "matched_functions_percent": 71.42857,
         "total_units": 1
       },
       "sections": [
@@ -1217,13 +1217,13 @@
         {
           "name": ".rodata",
           "size": "3200",
-          "fuzzy_match_percent": 95.46485,
+          "fuzzy_match_percent": 96.37188,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "73440",
-          "fuzzy_match_percent": 94.32789,
+          "fuzzy_match_percent": 99.80375,
           "metadata": {}
         },
         {
@@ -1361,7 +1361,7 @@
         {
           "name": "bhCPM2_act_wlk",
           "size": "1740",
-          "fuzzy_match_percent": 99.37471,
+          "fuzzy_match_percent": 99.42069,
           "metadata": {},
           "address": "17520"
         },
@@ -1543,7 +1543,7 @@
         {
           "name": "bhControlPlayerHead",
           "size": "2500",
-          "fuzzy_match_percent": 0.36,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "68064"
         },
@@ -1557,7 +1557,7 @@
         {
           "name": "bhSetHeadRotation",
           "size": "1524",
-          "fuzzy_match_percent": 0.5905512,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "70976"
         },
@@ -14554,7 +14554,7 @@
     {
       "name": "ps2/veronica/prog/effect",
       "measures": {
-        "fuzzy_match_percent": 99.96915,
+        "fuzzy_match_percent": 99.96291,
         "total_code": "12836",
         "matched_code": "11192",
         "matched_code_percent": 87.192276,
@@ -14590,7 +14590,7 @@
         {
           "name": ".text",
           "size": "12992",
-          "fuzzy_match_percent": 99.96915,
+          "fuzzy_match_percent": 99.96291,
           "metadata": {}
         },
         {
@@ -14728,7 +14728,7 @@
         {
           "name": "bhDrawPolEffect",
           "size": "752",
-          "fuzzy_match_percent": 99.92553,
+          "fuzzy_match_percent": 99.819145,
           "metadata": {},
           "address": "5984"
         },
@@ -40805,16 +40805,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 50.580822,
+        "fuzzy_match_percent": 50.80087,
         "total_code": "1820460",
-        "matched_code": "743480",
-        "matched_code_percent": 40.840225,
+        "matched_code": "747504",
+        "matched_code_percent": 41.06127,
         "total_data": "28336764",
         "matched_data": "28157788",
         "matched_data_percent": 99.3684,
         "total_functions": 3834,
-        "matched_functions": 2225,
-        "matched_functions_percent": 58.033382,
+        "matched_functions": 2227,
+        "matched_functions_percent": 58.08555,
         "total_units": 152
       }
     },

@@ -38,6 +38,7 @@
 #define EXP0_I(o) (*(int   *)((char *)epw->exp0 + (o)))
 #define EXP0_F(o) (*(float *)((char *)epw->exp0 + (o)))
 
+#define EXP1_UC(o) (*(unsigned char  *)((unsigned char *)plp->exp1 + (o)))
 #define EXP1_C(o) (*(char  *)((char *)plp->exp1 + (o)))
 #define EXP1_S(o) (*(short *)((char *)plp->exp1 + (o)))
 #define EXP1_I(o) (*(int   *)((char *)plp->exp1 + (o)))

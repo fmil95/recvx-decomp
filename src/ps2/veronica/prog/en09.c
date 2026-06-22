@@ -1,5 +1,7 @@
 #include "../../../ps2/veronica/prog/en09.h"
 
+// ENEMY: Bandersnatch 
+
 /*typedef struct BH_PWORK;
 typedef struct npobj;
 typedef struct _anon0;

@@ -6,6 +6,8 @@
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 
+// ENEMY: Bat 
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

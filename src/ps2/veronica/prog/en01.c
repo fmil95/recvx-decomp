@@ -3,6 +3,8 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/player.h"
 
+// ENEMY: Zombie 
+
 /*typedef struct _anon0;
 typedef struct BH_PWORK;
 typedef struct _anon1;
