@@ -54,4 +54,22 @@
 
 #define SCE_GIF_PRIM(prim, iip, tme, fge, abe, aa1, fst, ctxt, fix) SCE_GIF_SET_TAG(0, 0, 0, SCE_GS_SET_PRIM(prim, iip, tme, fge, abe, aa1, fst, ctxt, fix), 0, 0)
 
+#define RAND_MAX 0x7fffffff
+
+#ifndef RAND_MAX
+#define RAND_MAX  32767
+#endif
+
+/*
+ *  ANGLE MACRO
+ */
+#define NJM_RAD_ANG(n)  ((Angle)((n) * (65536.0f / PI_2)))
+#define NJM_ANG_DEG(n)  ((n) * 360.0f / 65536.0f)
+#define NJM_DEG_ANG(n)  ((Angle)(((n) * 65536.0f) / 360.0f))
+#define njRandom()       ((Float)((Float)-rand()/(Float)(RAND_MAX+1)))
+#define bhRandomAngle(deg)      njRandom() * ((Float)(NJM_DEG_ANG(deg)) * 2) - NJM_DEG_ANG(deg)
+
+#define njArcSin(n)      ((Angle)NJM_RAD_ANG(asinf  ((Float)(n)) ))
+#define njArcTan2(y,x)   ((Angle)NJM_RAD_ANG(atan2f ((Float)(y),(Float)(x)) ))
+
 #endif
