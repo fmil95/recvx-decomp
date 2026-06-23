@@ -1870,9 +1870,14 @@ BH_PWORK* plp;
 _anon22 WpnTab[0];
 float lcmat[16][0];
 BH_PWORK ene[0];
-int kaidan_ang[0];
+*/
+
+/* extern */ int kaidan_ang[4]; // this belongs to en01?
+
+/*
 void(*bhEne04Sub_Mode0)(BH_PWORK*)[4];
 */
+
 
 // 100% matching!
 void bhEne04_DmmyBrain(void)
@@ -3850,86 +3855,82 @@ void bhEne04_MV10(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1a9cf0
 void bhEne04_MV11(BH_PWORK* epw)
 {
-	// Line 3892, Address: 0x1a9cf0, Func Offset: 0
-	// Line 3896, Address: 0x1a9d00, Func Offset: 0x10
-	// Line 3899, Address: 0x1a9d2c, Func Offset: 0x3c
-	// Line 3902, Address: 0x1a9d40, Func Offset: 0x50
-	// Line 3903, Address: 0x1a9d44, Func Offset: 0x54
-	// Line 3904, Address: 0x1a9d4c, Func Offset: 0x5c
-	// Line 3903, Address: 0x1a9d50, Func Offset: 0x60
-	// Line 3904, Address: 0x1a9d70, Func Offset: 0x80
-	// Line 3905, Address: 0x1a9d7c, Func Offset: 0x8c
-	// Line 3909, Address: 0x1a9d84, Func Offset: 0x94
-	// Line 3911, Address: 0x1a9d88, Func Offset: 0x98
-	// Line 3909, Address: 0x1a9d90, Func Offset: 0xa0
-	// Line 3910, Address: 0x1a9d94, Func Offset: 0xa4
-	// Line 3911, Address: 0x1a9dbc, Func Offset: 0xcc
-	// Line 3913, Address: 0x1a9dcc, Func Offset: 0xdc
-	// Line 3917, Address: 0x1a9dd4, Func Offset: 0xe4
-	// Line 3919, Address: 0x1a9ddc, Func Offset: 0xec
-	// Line 3913, Address: 0x1a9de0, Func Offset: 0xf0
-	// Line 3914, Address: 0x1a9de4, Func Offset: 0xf4
-	// Line 3917, Address: 0x1a9df4, Func Offset: 0x104
-	// Line 3918, Address: 0x1a9e10, Func Offset: 0x120
-	// Line 3919, Address: 0x1a9e24, Func Offset: 0x134
-	// Line 3920, Address: 0x1a9e40, Func Offset: 0x150
-	// Line 3922, Address: 0x1a9e4c, Func Offset: 0x15c
-	// Line 3920, Address: 0x1a9e50, Func Offset: 0x160
-	// Line 3922, Address: 0x1a9e70, Func Offset: 0x180
-	// Line 3923, Address: 0x1a9e74, Func Offset: 0x184
-	// Line 3926, Address: 0x1a9e80, Func Offset: 0x190
-	// Line 3928, Address: 0x1a9e90, Func Offset: 0x1a0
-	// Line 3940, Address: 0x1a9ea0, Func Offset: 0x1b0
-	// Line 3941, Address: 0x1a9ecc, Func Offset: 0x1dc
-	// Line 3942, Address: 0x1a9ed4, Func Offset: 0x1e4
-	// Line 3943, Address: 0x1a9ed8, Func Offset: 0x1e8
-	// Line 3941, Address: 0x1a9edc, Func Offset: 0x1ec
-	// Line 3942, Address: 0x1a9ee8, Func Offset: 0x1f8
-	// Line 3943, Address: 0x1a9ef8, Func Offset: 0x208
-	// Line 3945, Address: 0x1a9f08, Func Offset: 0x218
-	// Line 3946, Address: 0x1a9f14, Func Offset: 0x224
-	// Line 3947, Address: 0x1a9f20, Func Offset: 0x230
-	// Line 3948, Address: 0x1a9f2c, Func Offset: 0x23c
-	// Line 3949, Address: 0x1a9f38, Func Offset: 0x248
-	// Line 3953, Address: 0x1a9f40, Func Offset: 0x250
-	// Line 3955, Address: 0x1a9f48, Func Offset: 0x258
-	// Line 3959, Address: 0x1a9f50, Func Offset: 0x260
-	// Line 3962, Address: 0x1a9f68, Func Offset: 0x278
-	// Line 3966, Address: 0x1a9f80, Func Offset: 0x290
-	// Line 3968, Address: 0x1a9fb0, Func Offset: 0x2c0
-	// Line 3969, Address: 0x1a9fbc, Func Offset: 0x2cc
-	// Line 3970, Address: 0x1a9fc8, Func Offset: 0x2d8
-	// Line 3973, Address: 0x1a9fcc, Func Offset: 0x2dc
-	// Line 3969, Address: 0x1a9fd0, Func Offset: 0x2e0
-	// Line 3973, Address: 0x1a9fdc, Func Offset: 0x2ec
-	// Line 3969, Address: 0x1a9fe8, Func Offset: 0x2f8
-	// Line 3970, Address: 0x1a9fec, Func Offset: 0x2fc
-	// Line 3973, Address: 0x1a9ff4, Func Offset: 0x304
-	// Line 3974, Address: 0x1a9ffc, Func Offset: 0x30c
-	// Line 3977, Address: 0x1aa000, Func Offset: 0x310
-	// Line 3974, Address: 0x1aa004, Func Offset: 0x314
-	// Line 3977, Address: 0x1aa008, Func Offset: 0x318
-	// Line 3980, Address: 0x1aa010, Func Offset: 0x320
-	// Line 3982, Address: 0x1aa018, Func Offset: 0x328
-	// Line 3983, Address: 0x1aa01c, Func Offset: 0x32c
-	// Line 3984, Address: 0x1aa024, Func Offset: 0x334
-	// Line 3982, Address: 0x1aa02c, Func Offset: 0x33c
-	// Line 3986, Address: 0x1aa034, Func Offset: 0x344
-	// Line 3987, Address: 0x1aa038, Func Offset: 0x348
-	// Line 3982, Address: 0x1aa03c, Func Offset: 0x34c
-	// Line 3983, Address: 0x1aa044, Func Offset: 0x354
-	// Line 3984, Address: 0x1aa054, Func Offset: 0x364
-	// Line 3985, Address: 0x1aa064, Func Offset: 0x374
-	// Line 3986, Address: 0x1aa074, Func Offset: 0x384
-	// Line 3987, Address: 0x1aa078, Func Offset: 0x388
-	// Line 3988, Address: 0x1aa07c, Func Offset: 0x38c
-	// Line 3992, Address: 0x1aa080, Func Offset: 0x390
-	// Func End, Address: 0x1aa090, Func Offset: 0x3a0
-    scePrintf("bhEne04_MV11 - UNIMPLEMENTED!\n");
+    switch (epw->mode3)
+    {
+    case 0:
+        if (*(unsigned char*)((char*)EXP0_I(0x40) + 0x20) == 0)
+        {
+            EXP0_UC(0x5) = 0;
+            epw->yn = epw->py + (*(unsigned char*)((char*)EXP0_I(0x40) + 0x22) * 2);
+            EXP0_I(0x10) |= 0x10000;
+        } 
+        else
+        {
+            EXP0_C(0x5) = *(unsigned char*)((char*)EXP0_I(0x40) + 0x22);
+            epw->yn = epw->py - (*(unsigned char*)((char*)EXP0_I(0x40) + 0x22) * 2);
+            EXP0_I(0x10) &= ~0x10000;
+        }
+        
+        EXP0_C(0x4) = epw->flr_no;
+        EXP0_I(0x10) |= 0x10;
+        
+        epw->axp = kaidan_ang[*(unsigned char*)((char*)EXP0_I(0x40) + 0x21)];
+        epw->ayp = (epw->axp - epw->ay) & 0xFFFF;
+        if (epw->ayp > 0x8000)
+        {
+            epw->ayp -= 0x10000;
+        }
+        epw->ayp /= 10;
+        epw->ct0 = 10;
+        epw->mode3++;
+    case 1:
+        epw->ay += epw->ayp;
+        if (--epw->ct0 < 0)
+        {
+            bhEne04_ChgMtn(epw, (EXP0_I(0x10) & 0x10000) ? 37 : 38, 0, 5);
+            
+            EXP0_I(0x10) |= 0x40000000;
+            EXP0_I(0x10) |= 0x20000;
+            EXP0_I(0x10) &= ~0x20;
+            
+            epw->flg2 |= 1;
+            
+            EXP0_F(0x30) = epw->px;
+            EXP0_F(0x34) = epw->py;
+            EXP0_F(0x38) = epw->pz;
+            
+            epw->ay = epw->axp;
+            epw->mode3++;
+        }
+        break;
+    case 2:
+        if (EXP0_I(0x10) & 0x10000)
+        {
+            epw->cah = epw->mlwP->owP[5].mtx[13] - epw->py;
+        }
+        
+        if ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num - 1))
+        {
+            epw->flr_no = bhCheckFloorNum(epw->yn);            
+            epw->py = rom->grand[2 + epw->flr_no];            
+            epw->flg2 &= ~1;            
+            bhEne04_ChgMtn(epw, 1, 0, 10);           
+            epw->mtn_md |= 0x100;            
+            bhClrUseKaidanFlag(epw);
+            epw->cah = 4.0f;
+            
+            EXP0_I(0x10) &= ~0x10;
+            EXP0_I(0x10) &= ~0x40000000;
+            EXP0_I(0x10) &= ~0x20000;
+            EXP0_I(0x10) |= 0x20;
+            
+            epw->mode1 = 1;            
+            epw->mode2 = 2;
+            epw->mode3 = 0;
+        }
+    }
 }
 
 // 100% matching!
