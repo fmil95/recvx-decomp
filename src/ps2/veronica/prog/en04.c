@@ -3194,62 +3194,90 @@ void bhEne04_MV02(BH_PWORK* epw)
     scePrintf("bhEne04_MV02 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1a8210
+// 100% matching!
 void bhEne04_MV03(BH_PWORK* epw)
 {
-	int rot;
-	int hit;
-	// Line 2927, Address: 0x1a8210, Func Offset: 0
-	// Line 2931, Address: 0x1a821c, Func Offset: 0xc
-	// Line 2934, Address: 0x1a8254, Func Offset: 0x44
-	// Line 2936, Address: 0x1a826c, Func Offset: 0x5c
-	// Line 2938, Address: 0x1a8288, Func Offset: 0x78
-	// Line 2941, Address: 0x1a82b0, Func Offset: 0xa0
-	// Line 2944, Address: 0x1a82b8, Func Offset: 0xa8
-	// Line 2946, Address: 0x1a82c8, Func Offset: 0xb8
-	// Line 2947, Address: 0x1a82d0, Func Offset: 0xc0
-	// Line 2948, Address: 0x1a82d4, Func Offset: 0xc4
-	// Line 2951, Address: 0x1a82e0, Func Offset: 0xd0
-	// Line 2952, Address: 0x1a82e8, Func Offset: 0xd8
-	// Line 2951, Address: 0x1a82f0, Func Offset: 0xe0
-	// Line 2952, Address: 0x1a82f4, Func Offset: 0xe4
-	// Line 2954, Address: 0x1a82fc, Func Offset: 0xec
-	// Line 2956, Address: 0x1a8308, Func Offset: 0xf8
-	// Line 2957, Address: 0x1a830c, Func Offset: 0xfc
-	// Line 2960, Address: 0x1a8314, Func Offset: 0x104
-	// Line 2962, Address: 0x1a8324, Func Offset: 0x114
-	// Line 2963, Address: 0x1a832c, Func Offset: 0x11c
-	// Line 2965, Address: 0x1a8334, Func Offset: 0x124
-	// Line 2964, Address: 0x1a8338, Func Offset: 0x128
-	// Line 2994, Address: 0x1a833c, Func Offset: 0x12c
-	// Line 2997, Address: 0x1a8344, Func Offset: 0x134
-	// Line 2998, Address: 0x1a834c, Func Offset: 0x13c
-	// Line 2997, Address: 0x1a8350, Func Offset: 0x140
-	// Line 2998, Address: 0x1a8354, Func Offset: 0x144
-	// Line 3000, Address: 0x1a835c, Func Offset: 0x14c
-	// Line 3002, Address: 0x1a836c, Func Offset: 0x15c
-	// Line 3003, Address: 0x1a8374, Func Offset: 0x164
-	// Line 3005, Address: 0x1a837c, Func Offset: 0x16c
-	// Line 3004, Address: 0x1a8380, Func Offset: 0x170
-	// Line 3006, Address: 0x1a8384, Func Offset: 0x174
-	// Line 3009, Address: 0x1a838c, Func Offset: 0x17c
-	// Line 3011, Address: 0x1a83a4, Func Offset: 0x194
-	// Line 3012, Address: 0x1a83ac, Func Offset: 0x19c
-	// Line 3013, Address: 0x1a83b8, Func Offset: 0x1a8
-	// Line 3016, Address: 0x1a83c0, Func Offset: 0x1b0
-	// Line 3019, Address: 0x1a83c8, Func Offset: 0x1b8
-	// Line 3020, Address: 0x1a83e8, Func Offset: 0x1d8
-	// Line 3021, Address: 0x1a83fc, Func Offset: 0x1ec
-	// Line 3023, Address: 0x1a840c, Func Offset: 0x1fc
-	// Line 3024, Address: 0x1a8414, Func Offset: 0x204
-	// Line 3026, Address: 0x1a841c, Func Offset: 0x20c
-	// Line 3025, Address: 0x1a8420, Func Offset: 0x210
-	// Line 3026, Address: 0x1a8424, Func Offset: 0x214
-	// Line 3041, Address: 0x1a8428, Func Offset: 0x218
-	// Line 3042, Address: 0x1a8434, Func Offset: 0x224
-	// Func End, Address: 0x1a8444, Func Offset: 0x234
-    scePrintf("bhEne04_MV03 - UNIMPLEMENTED!\n");
+    int hit;
+    int rot; 
+    
+    switch (epw->mode3)
+    { 
+    case 0:
+        hit = bhEne_CheckSideWall(epw, 10.0f, 0);
+        
+        if (hit == 0)
+        {
+            rot = ikou3(epw, (NJS_POINT3*)&EXP0_UC(0x24), 1536);
+            rot = (rot == 0) ? ((rand() % 2) ? 1536 : -1536) : rot;
+        } 
+        else
+        {
+            rot = hit * 1536;
+        }
+        
+        epw->way = rot;
+        
+        epw->ct0 = 8;
+        epw->ct1 = 0;
+        epw->mode3++;
+        
+    case 1:
+        epw->ay += epw->way;
+        bhAddSpeed(epw, 0);
+        
+        if (epw->ct0 > 0)
+        {
+            epw->ct0--;
+        }
+        else if (EXP0_I(0x3C) == 0)
+        {
+            epw->mode1 = 1;
+            epw->mode2 = 2;
+            epw->mode3 = 0;
+
+            epw->way = 1152;
+        }
+        break;
+        
+    case 2:
+        epw->ay += epw->way;
+        bhAddSpeed(epw, 0);
+        
+        if (EXP0_I(0x3C) == 0)
+        {
+            epw->mode1 = 1;
+            epw->mode2 = 2;
+            epw->mode3 = 0;
+            
+            epw->way = 1152;
+            break;
+        }
+
+        if (epw->ct0++ >= 8)
+        {
+            epw->ct0 = 19;
+            epw->spd = 0.3f;
+            epw->mode3++;
+        }
+        break;
+        
+    case 3:
+        bhEne04_SpeedDown(&epw->spd, 0.1f, 0.08f);
+        ikou(epw, (NJS_POINT3*)&EXP0_UC(0x24), 256);
+
+        if (epw->ct0-- <= 0)
+        {
+            epw->mode1 = 1;
+            epw->mode2 = 2;
+            epw->mode3 = 0;
+            
+            epw->way = 1152;
+            break;
+        }
+        break;
+    }
+    
+    bhEne04_RunMotion(epw, epw->way);
 }
 
 // 100% matching!
