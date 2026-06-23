@@ -4138,48 +4138,52 @@ void bhEne04_NG00(BH_PWORK* epw)
     scePrintf("bhEne04_NG00 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1aa990
+// 100% matching!
 void bhEne04_NG01(BH_PWORK* epw)
 {
-	//_anon4* owk;
-	// Line 4521, Address: 0x1aa990, Func Offset: 0
-	// Line 4524, Address: 0x1aa99c, Func Offset: 0xc
-	// Line 4527, Address: 0x1aa9c8, Func Offset: 0x38
-	// Line 4528, Address: 0x1aa9d4, Func Offset: 0x44
-	// Line 4527, Address: 0x1aa9dc, Func Offset: 0x4c
-	// Line 4528, Address: 0x1aa9e8, Func Offset: 0x58
-	// Line 4529, Address: 0x1aa9f4, Func Offset: 0x64
-	// Line 4530, Address: 0x1aaa14, Func Offset: 0x84
-	// Line 4532, Address: 0x1aaa1c, Func Offset: 0x8c
-	// Line 4533, Address: 0x1aaa20, Func Offset: 0x90
-	// Line 4535, Address: 0x1aaa24, Func Offset: 0x94
-	// Line 4530, Address: 0x1aaa28, Func Offset: 0x98
-	// Line 4532, Address: 0x1aaa30, Func Offset: 0xa0
-	// Line 4538, Address: 0x1aaa34, Func Offset: 0xa4
-	// Line 4539, Address: 0x1aaa3c, Func Offset: 0xac
-	// Line 4532, Address: 0x1aaa40, Func Offset: 0xb0
-	// Line 4533, Address: 0x1aaa4c, Func Offset: 0xbc
-	// Line 4535, Address: 0x1aaa5c, Func Offset: 0xcc
-	// Line 4536, Address: 0x1aaa6c, Func Offset: 0xdc
-	// Line 4538, Address: 0x1aaa7c, Func Offset: 0xec
-	// Line 4539, Address: 0x1aaa84, Func Offset: 0xf4
-	// Line 4540, Address: 0x1aaa90, Func Offset: 0x100
-	// Line 4541, Address: 0x1aaa9c, Func Offset: 0x10c
-	// Line 4542, Address: 0x1aaaa8, Func Offset: 0x118
-	// Line 4545, Address: 0x1aaab4, Func Offset: 0x124
-	// Line 4547, Address: 0x1aaac8, Func Offset: 0x138
-	// Line 4550, Address: 0x1aaacc, Func Offset: 0x13c
-	// Line 4547, Address: 0x1aaadc, Func Offset: 0x14c
-	// Line 4548, Address: 0x1aaae0, Func Offset: 0x150
-	// Line 4549, Address: 0x1aaae8, Func Offset: 0x158
-	// Line 4550, Address: 0x1aaaec, Func Offset: 0x15c
-	// Line 4552, Address: 0x1aaaf4, Func Offset: 0x164
-	// Line 4553, Address: 0x1aab0c, Func Offset: 0x17c
-	// Line 4555, Address: 0x1aab18, Func Offset: 0x188
-	// Line 4570, Address: 0x1aab24, Func Offset: 0x194
-	// Func End, Address: 0x1aab34, Func Offset: 0x1a4
-    scePrintf("bhEne04_NG01 - UNIMPLEMENTED!\n");
+    O_WORK* owk;
+
+    switch (epw->mode3)
+    {
+    case 0:
+        epw->py = rom->grand[epw->flr_no + 2];
+        
+        bhEne04_ChgMtn(epw, 16, 0, 5);
+        
+        epw->ay = NitenDir_ck(epw->px, epw->pz, plp->px, plp->pz);
+        
+        epw->flg &= ~0x40;
+        
+        EXP0_I(0x10) |= 0x40000;
+        EXP0_I(0x10) |= 0x80000;
+        EXP0_I(0x10) &= ~0xF;
+        EXP0_I(0x10) |= 2;
+
+        plp->mode0 = 6;
+        plp->mode1 = 1;
+        plp->mode2 = 0;
+        plp->mode3 = 0;
+        epw->mode3++;
+
+    case 1:
+        if (epw->flg & 0x02000000)
+        {
+            owk = epw->mlwP->owP;
+            epw->px = owk->mtx[12];
+            epw->pz = owk->mtx[14];
+            
+            bhEne04_ChgMtn(epw, 25, 0, 0);
+            
+            EXP0_I(0x10) &= ~0x40C0000;
+            
+            epw->flg |= 0x20;
+            
+            epw->mode3++;
+        }
+
+    case 2:
+        break;
+    }
 }
 
 // 100% matching!
