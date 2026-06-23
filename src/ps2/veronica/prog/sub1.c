@@ -6088,137 +6088,196 @@ void TrigerSet(S_WORK* st)
     }
 }
 
-// 
-// Start address: 0x2a2c80
+#pragma divbyzerocheck on 
+
+// 100% matching!
 PARTS* BulletSet(S_WORK* st, PARTS* pb1, PARTS* pb2, unsigned int itemid, unsigned short mode) // first parameter not present on DWARF
 {
-	unsigned short mugen;
-	unsigned short bullettype;
-	int bullet;
-	unsigned short bltnum[4];
-	short num4;
-	short num3;
-	short num2;
-	short num1;
-	// Line 4765, Address: 0x2a2c80, Func Offset: 0
-	// Line 4768, Address: 0x2a2c8c, Func Offset: 0xc
-	// Line 4771, Address: 0x2a2c90, Func Offset: 0x10
-	// Line 4769, Address: 0x2a2c94, Func Offset: 0x14
-	// Line 4760, Address: 0x2a2c98, Func Offset: 0x18
-	// Line 4770, Address: 0x2a2c9c, Func Offset: 0x1c
-	// Line 4769, Address: 0x2a2ca0, Func Offset: 0x20
-	// Line 4760, Address: 0x2a2ca4, Func Offset: 0x24
-	// Line 4762, Address: 0x2a2ca8, Func Offset: 0x28
-	// Line 4773, Address: 0x2a2cb0, Func Offset: 0x30
-	// Line 4774, Address: 0x2a2cb8, Func Offset: 0x38
-	// Line 4776, Address: 0x2a2cf8, Func Offset: 0x78
-	// Line 4777, Address: 0x2a2cfc, Func Offset: 0x7c
-	// Line 4778, Address: 0x2a2d08, Func Offset: 0x88
-	// Line 4777, Address: 0x2a2d0c, Func Offset: 0x8c
-	// Line 4779, Address: 0x2a2d1c, Func Offset: 0x9c
-	// Line 4777, Address: 0x2a2d24, Func Offset: 0xa4
-	// Line 4778, Address: 0x2a2d28, Func Offset: 0xa8
-	// Line 4780, Address: 0x2a2d2c, Func Offset: 0xac
-	// Line 4781, Address: 0x2a2d34, Func Offset: 0xb4
-	// Line 4778, Address: 0x2a2d3c, Func Offset: 0xbc
-	// Line 4781, Address: 0x2a2d40, Func Offset: 0xc0
-	// Line 4778, Address: 0x2a2d48, Func Offset: 0xc8
-	// Line 4779, Address: 0x2a2d50, Func Offset: 0xd0
-	// Line 4780, Address: 0x2a2d6c, Func Offset: 0xec
-	// Line 4783, Address: 0x2a2d8c, Func Offset: 0x10c
-	// Line 4787, Address: 0x2a2d94, Func Offset: 0x114
-	// Line 4788, Address: 0x2a2dd8, Func Offset: 0x158
-	// Line 4789, Address: 0x2a2de0, Func Offset: 0x160
-	// Line 4790, Address: 0x2a2de8, Func Offset: 0x168
-	// Line 4791, Address: 0x2a2df0, Func Offset: 0x170
-	// Line 4793, Address: 0x2a2e04, Func Offset: 0x184
-	// Line 4794, Address: 0x2a2e10, Func Offset: 0x190
-	// Line 4793, Address: 0x2a2e14, Func Offset: 0x194
-	// Line 4796, Address: 0x2a2e24, Func Offset: 0x1a4
-	// Line 4793, Address: 0x2a2e2c, Func Offset: 0x1ac
-	// Line 4794, Address: 0x2a2e30, Func Offset: 0x1b0
-	// Line 4797, Address: 0x2a2e34, Func Offset: 0x1b4
-	// Line 4798, Address: 0x2a2e3c, Func Offset: 0x1bc
-	// Line 4794, Address: 0x2a2e44, Func Offset: 0x1c4
-	// Line 4798, Address: 0x2a2e48, Func Offset: 0x1c8
-	// Line 4794, Address: 0x2a2e50, Func Offset: 0x1d0
-	// Line 4795, Address: 0x2a2e58, Func Offset: 0x1d8
-	// Line 4796, Address: 0x2a2e5c, Func Offset: 0x1dc
-	// Line 4797, Address: 0x2a2e78, Func Offset: 0x1f8
-	// Line 4802, Address: 0x2a2e98, Func Offset: 0x218
-	// Line 4803, Address: 0x2a2ea0, Func Offset: 0x220
-	// Line 4805, Address: 0x2a2ea4, Func Offset: 0x224
-	// Line 4804, Address: 0x2a2ea8, Func Offset: 0x228
-	// Line 4805, Address: 0x2a2eac, Func Offset: 0x22c
-	// Line 4806, Address: 0x2a2eb0, Func Offset: 0x230
-	// Line 4810, Address: 0x2a2ec0, Func Offset: 0x240
-	// Line 4811, Address: 0x2a2ef8, Func Offset: 0x278
-	// Line 4812, Address: 0x2a2f20, Func Offset: 0x2a0
-	// Line 4814, Address: 0x2a2f30, Func Offset: 0x2b0
-	// Line 4816, Address: 0x2a2f50, Func Offset: 0x2d0
-	// Line 4817, Address: 0x2a2f60, Func Offset: 0x2e0
-	// Line 4818, Address: 0x2a2f68, Func Offset: 0x2e8
-	// Line 4819, Address: 0x2a2f7c, Func Offset: 0x2fc
-	// Line 4820, Address: 0x2a2f84, Func Offset: 0x304
-	// Line 4821, Address: 0x2a2f9c, Func Offset: 0x31c
-	// Line 4823, Address: 0x2a2fa0, Func Offset: 0x320
-	// Line 4830, Address: 0x2a2fb0, Func Offset: 0x330
-	// Line 4823, Address: 0x2a2fb4, Func Offset: 0x334
-	// Line 4834, Address: 0x2a2fb8, Func Offset: 0x338
-	// Line 4823, Address: 0x2a2fbc, Func Offset: 0x33c
-	// Line 4825, Address: 0x2a2fc0, Func Offset: 0x340
-	// Line 4826, Address: 0x2a2fc4, Func Offset: 0x344
-	// Line 4827, Address: 0x2a2fc8, Func Offset: 0x348
-	// Line 4828, Address: 0x2a2fd0, Func Offset: 0x350
-	// Line 4830, Address: 0x2a2fd8, Func Offset: 0x358
-	// Line 4832, Address: 0x2a2fdc, Func Offset: 0x35c
-	// Line 4833, Address: 0x2a2fe8, Func Offset: 0x368
-	// Line 4834, Address: 0x2a2ff4, Func Offset: 0x374
-	// Line 4835, Address: 0x2a2ff8, Func Offset: 0x378
-	// Line 4836, Address: 0x2a2ffc, Func Offset: 0x37c
-	// Line 4837, Address: 0x2a3000, Func Offset: 0x380
-	// Line 4839, Address: 0x2a3004, Func Offset: 0x384
-	// Line 4840, Address: 0x2a3014, Func Offset: 0x394
-	// Line 4841, Address: 0x2a3020, Func Offset: 0x3a0
-	// Line 4843, Address: 0x2a304c, Func Offset: 0x3cc
-	// Line 4844, Address: 0x2a3054, Func Offset: 0x3d4
-	// Line 4846, Address: 0x2a305c, Func Offset: 0x3dc
-	// Line 4847, Address: 0x2a3064, Func Offset: 0x3e4
-	// Line 4849, Address: 0x2a306c, Func Offset: 0x3ec
-	// Line 4850, Address: 0x2a3074, Func Offset: 0x3f4
-	// Line 4852, Address: 0x2a307c, Func Offset: 0x3fc
-	// Line 4855, Address: 0x2a3084, Func Offset: 0x404
-	// Line 4856, Address: 0x2a3098, Func Offset: 0x418
-	// Line 4858, Address: 0x2a30ac, Func Offset: 0x42c
-	// Line 4859, Address: 0x2a30b4, Func Offset: 0x434
-	// Line 4861, Address: 0x2a30bc, Func Offset: 0x43c
-	// Line 4864, Address: 0x2a30c4, Func Offset: 0x444
-	// Line 4865, Address: 0x2a30cc, Func Offset: 0x44c
-	// Line 4867, Address: 0x2a30d4, Func Offset: 0x454
-	// Line 4868, Address: 0x2a30e8, Func Offset: 0x468
-	// Line 4869, Address: 0x2a30f4, Func Offset: 0x474
-	// Line 4870, Address: 0x2a30fc, Func Offset: 0x47c
-	// Line 4871, Address: 0x2a3120, Func Offset: 0x4a0
-	// Line 4872, Address: 0x2a3128, Func Offset: 0x4a8
-	// Line 4873, Address: 0x2a313c, Func Offset: 0x4bc
-	// Line 4874, Address: 0x2a3144, Func Offset: 0x4c4
-	// Line 4875, Address: 0x2a314c, Func Offset: 0x4cc
-	// Line 4879, Address: 0x2a3158, Func Offset: 0x4d8
-	// Line 4880, Address: 0x2a315c, Func Offset: 0x4dc
-	// Line 4879, Address: 0x2a3160, Func Offset: 0x4e0
-	// Line 4880, Address: 0x2a3164, Func Offset: 0x4e4
-	// Line 4878, Address: 0x2a3168, Func Offset: 0x4e8
-	// Line 4879, Address: 0x2a3170, Func Offset: 0x4f0
-	// Line 4880, Address: 0x2a3174, Func Offset: 0x4f4
-	// Line 4882, Address: 0x2a3178, Func Offset: 0x4f8
-	// Line 4880, Address: 0x2a3180, Func Offset: 0x500
-	// Line 4882, Address: 0x2a3184, Func Offset: 0x504
-	// Line 4884, Address: 0x2a319c, Func Offset: 0x51c
-	// Line 4883, Address: 0x2a31a0, Func Offset: 0x520
-	// Line 4884, Address: 0x2a31a4, Func Offset: 0x524
-	// Func End, Address: 0x2a31ac, Func Offset: 0x52c
-	scePrintf("BulletSet - UNIMPLEMENTED!\n");
+    short num1, num2, num3, num4;              
+    unsigned short bltnum[4]; 
+    int bullet;                
+    unsigned short bullettype; 
+    unsigned short mugen;     
+    unsigned short bullettype0; // not from DWARF       
+ 
+    num3 = 0;
+    num4 = 0;
+    
+    bullettype0 = (itemid >> 16) & 0xFF00;
+    bullettype  =  itemid;
+    
+    bullet = bullettype;
+    
+    itemid = (itemid >> 16) & 0xFF;
+    
+    mugen = bullettype0 & 0x800;
+    
+    bullettype0 &= 0x7000;
+
+    if (!mugen) 
+    {
+        switch (itemdata[itemid].type & 0x1800)
+        {
+        case 0x800:
+            bltnum[0] = bullet;
+            
+            bltnum[1] = bltnum[0] % 100;
+            bltnum[2] = bltnum[1] % 10;
+            
+            bltnum[0] /= 100;
+            bltnum[1] = bltnum[1] / 10;
+            
+            num1 = 3;
+            break;
+        case 0x1000:
+            bltnum[0] = bullet / (itemdata[itemid].max / 100);
+            
+            if (!bullet) 
+            {
+                if (!bullet) // redundant check
+                {
+                    bltnum[0] = 0;
+                }
+            } 
+            else if (!bltnum[0]) 
+            {
+                bltnum[0] = 1;
+            }
+            
+            bltnum[1] = bltnum[0] % 100;
+            bltnum[2] = bltnum[1] % 10;
+            
+            bltnum[3] = 10;
+            
+            bltnum[0] /= 100;
+            bltnum[1] = bltnum[1] / 10;
+            
+            num1 = 4;
+            break;
+        }
+    } 
+    else
+    {
+        bltnum[0] = 0;
+        bltnum[1] = 0;
+        bltnum[2] = 11;
+        
+        num1 = 3;
+    }
+
+    for (num2 = 0; num2 < num1; num2++) 
+    {
+        if (((itemdata[itemid].type & 0x1000)) && (num2 == (num1 - 2))) 
+        {
+            num4 = 1;
+        }
+        
+        if (mugen) 
+        {
+            num4 = 0;
+        }
+        
+        if ((bltnum[num2]) || ((num4) || (num2 == (num1 - 1)))) 
+        {
+            pb1->pos[0] = pb2->pos[0] + (num3 * 10);
+            
+            if (!mode)
+            {
+                pb1->pos[1] = 32.0f + pb2->pos[1];
+            } 
+            else
+            {
+                pb1->pos[1] = 19.0f + pb2->pos[1];
+            }
+            
+            pb1->pos[2] = pb2->pos[2] - 0.1f;
+            
+            pb1->ang = 0;
+            
+            pb1->atr = 0;
+            
+            pb1->anim = bltnum[num2];
+            
+            pb1->cen_no    = pb2->cen_no;
+            pb1->parts_num = 20;
+            
+            pb1->atr |= 0x20;
+            
+            pb1->color &= ~0x17;
+            
+            pb1->col.a = 1.0f;
+            pb1->col.r = 1.0f;
+            pb1->col.g = 1.0f;
+            pb1->col.b = 1.0f;
+
+            if ((itemdata[itemid].type & 0x1)) 
+            {
+                if (itemid == 6)
+                {
+                    switch (bullettype0) 
+                    {
+                    case 0x1000:
+                        pb1->color |= 0x10;
+                        break;
+                    case 0x2000:
+                        pb1->color |= 0x1;
+                        break;
+                    case 0x4000:
+                        pb1->color |= 0x2;
+                        break;
+                    default:
+                        pb1->color |= 0x4;
+                        break;
+                    }
+                } 
+                else if (itemid == 7) 
+                {
+                    switch (bullettype0) 
+                    {
+                    case 0x2000:
+                        pb1->color |= 0x1;
+                        break;
+                    default:
+                        pb1->color |= 0x4;
+                        break;
+                    }
+                } 
+                else 
+                { 
+                    pb1->color |= 0x4;
+                }
+            } 
+            else if ((itemdata[itemid].type & 0x56)) 
+            {
+                if (itemid == 16) 
+                {
+                    pb1->color |= 0x10;
+                } 
+                else if ((itemid == 17) || (itemid == 36)) 
+                {
+                    pb1->color |= 0x1;
+                } 
+                else if (itemid == 37)
+                {
+                    pb1->color |= 0x2;
+                } 
+                else 
+                {
+                    pb1->color |= 0x4;
+                }
+            }
+            
+            pb1++;
+            num3++;
+            
+            num4 = 1;
+        }
+    }
+
+    return pb1;
 }
+
+#pragma divbyzerocheck off 
 
 // 100% matching!
 unsigned char Use_00(S_WORK* st)
