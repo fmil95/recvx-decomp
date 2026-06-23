@@ -1649,8 +1649,15 @@ struct _anon50
 	int flg;
 	int correct;
 };
-
-int En04_PlyMtn_OffsetTbl[4];
+*/
+int En04_PlyMtn_OffsetTbl[4] =
+{
+    0x64,
+    0x69,
+    0x64,
+    0x69
+};
+/*
 _anon32 en04_mtn_tbl[30];
 _anon32 en04_mtn_tbl2[6];
 char en04_tree[8][1];
@@ -4549,75 +4556,85 @@ void bhEne04_PlyDG00(BH_PWORK* pl, BH_PWORK* epw)
     scePrintf("bhEne04_PlyDG00 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1ab770
+// 100% matching!
 void bhEne04_PlyDG01(BH_PWORK* pl, BH_PWORK* epw)
 {
 	int frm;
-	// Line 5085, Address: 0x1ab770, Func Offset: 0
-	// Line 5090, Address: 0x1ab788, Func Offset: 0x18
-	// Line 5093, Address: 0x1ab7b4, Func Offset: 0x44
-	// Line 5095, Address: 0x1ab7c8, Func Offset: 0x58
-	// Line 5096, Address: 0x1ab7d8, Func Offset: 0x68
-	// Line 5095, Address: 0x1ab7e0, Func Offset: 0x70
-	// Line 5098, Address: 0x1ab7e4, Func Offset: 0x74
-	// Line 5095, Address: 0x1ab7e8, Func Offset: 0x78
-	// Line 5098, Address: 0x1ab7f4, Func Offset: 0x84
-	// Line 5099, Address: 0x1ab7f8, Func Offset: 0x88
-	// Line 5095, Address: 0x1ab7fc, Func Offset: 0x8c
-	// Line 5096, Address: 0x1ab804, Func Offset: 0x94
-	// Line 5097, Address: 0x1ab80c, Func Offset: 0x9c
-	// Line 5098, Address: 0x1ab814, Func Offset: 0xa4
-	// Line 5100, Address: 0x1ab81c, Func Offset: 0xac
-	// Line 5103, Address: 0x1ab824, Func Offset: 0xb4
-	// Line 5104, Address: 0x1ab834, Func Offset: 0xc4
-	// Line 5103, Address: 0x1ab83c, Func Offset: 0xcc
-	// Line 5106, Address: 0x1ab840, Func Offset: 0xd0
-	// Line 5103, Address: 0x1ab848, Func Offset: 0xd8
-	// Line 5104, Address: 0x1ab85c, Func Offset: 0xec
-	// Line 5105, Address: 0x1ab864, Func Offset: 0xf4
-	// Line 5106, Address: 0x1ab86c, Func Offset: 0xfc
-	// Line 5107, Address: 0x1ab874, Func Offset: 0x104
-	// Line 5111, Address: 0x1ab878, Func Offset: 0x108
-	// Line 5115, Address: 0x1ab880, Func Offset: 0x110
-	// Line 5118, Address: 0x1ab884, Func Offset: 0x114
-	// Line 5119, Address: 0x1ab888, Func Offset: 0x118
-	// Line 5111, Address: 0x1ab88c, Func Offset: 0x11c
-	// Line 5115, Address: 0x1ab890, Func Offset: 0x120
-	// Line 5125, Address: 0x1ab894, Func Offset: 0x124
-	// Line 5111, Address: 0x1ab898, Func Offset: 0x128
-	// Line 5121, Address: 0x1ab89c, Func Offset: 0x12c
-	// Line 5126, Address: 0x1ab8a4, Func Offset: 0x134
-	// Line 5111, Address: 0x1ab8a8, Func Offset: 0x138
-	// Line 5115, Address: 0x1ab8b0, Func Offset: 0x140
-	// Line 5118, Address: 0x1ab8c4, Func Offset: 0x154
-	// Line 5119, Address: 0x1ab8d0, Func Offset: 0x160
-	// Line 5121, Address: 0x1ab8d4, Func Offset: 0x164
-	// Line 5123, Address: 0x1ab8e0, Func Offset: 0x170
-	// Line 5124, Address: 0x1ab8e8, Func Offset: 0x178
-	// Line 5125, Address: 0x1ab8ec, Func Offset: 0x17c
-	// Line 5126, Address: 0x1ab8f0, Func Offset: 0x180
-	// Line 5127, Address: 0x1ab8f4, Func Offset: 0x184
-	// Line 5128, Address: 0x1ab8f8, Func Offset: 0x188
-	// Line 5129, Address: 0x1ab900, Func Offset: 0x190
-	// Line 5132, Address: 0x1ab908, Func Offset: 0x198
-	// Line 5133, Address: 0x1ab90c, Func Offset: 0x19c
-	// Line 5132, Address: 0x1ab910, Func Offset: 0x1a0
-	// Line 5133, Address: 0x1ab914, Func Offset: 0x1a4
-	// Line 5136, Address: 0x1ab91c, Func Offset: 0x1ac
-	// Line 5139, Address: 0x1ab928, Func Offset: 0x1b8
-	// Line 5142, Address: 0x1ab93c, Func Offset: 0x1cc
-	// Line 5143, Address: 0x1ab954, Func Offset: 0x1e4
-	// Line 5147, Address: 0x1ab964, Func Offset: 0x1f4
-	// Line 5151, Address: 0x1ab96c, Func Offset: 0x1fc
-	// Line 5152, Address: 0x1ab990, Func Offset: 0x220
-	// Line 5159, Address: 0x1ab9a0, Func Offset: 0x230
-	// Line 5161, Address: 0x1ab9d0, Func Offset: 0x260
-	// Line 5162, Address: 0x1ab9d4, Func Offset: 0x264
-	// Line 5163, Address: 0x1ab9e4, Func Offset: 0x274
-	// Line 5170, Address: 0x1ab9f0, Func Offset: 0x280
-	// Func End, Address: 0x1aba08, Func Offset: 0x298
-    scePrintf("bhEne04_PlyDG01 - UNIMPLEMENTED!\n");
+
+    switch (pl->mode3)
+    {
+    case 0:
+        if (EXP0_I(0x10) & 0x200)
+        {
+            pl->mtn_no = En04_PlyMtn_OffsetTbl[sys->ply_id] + 3;
+            
+            EXP0_F(0x30) = 0.000104f;
+            EXP0_F(0x34) = 0.0f;
+            EXP0_F(0x38) = -5.032532f;
+            
+            epw->waxp = -0x8000;
+        }
+        else
+        {
+            pl->mtn_no = En04_PlyMtn_OffsetTbl[sys->ply_id] + 4;
+            
+            EXP0_F(0x30) = -0.785082;
+            EXP0_F(0x34) = 0;
+            EXP0_F(0x38) = -4.901211;
+            
+            epw->waxp = 0;
+        }
+        EXP1_I(0) |= 0x1E0;      
+        EXP1_I(0) &= ~4;
+        
+        pl->stflg |= 0x40000;
+        pl->hp = -1;
+        
+        pl->flg &= ~0x40000;
+        
+        pl->mnwP = epw->mnwP;
+        
+        pl->frm_no = 0;
+        
+        pl->hokan_count = 5;
+        
+        pl->mtn_add = 0x10000;
+        pl->mtn_md = 0;
+        
+        pl->mode3++;
+        
+        break;
+        
+    case 1:
+        frm = pl->frm_no / 65536;
+        if (frm == 3)
+        {
+            bhEne_PlayerSePlay(epw, 1025);
+        }
+        
+        if ((EXP0_I(0x10) & 0x200))
+        {
+            if ((frm == 20) || (frm == 29))
+            {
+                bhEne04_SePlay(epw, 70408);
+            }
+        } 
+        else if ((frm == 9) || (frm == 15) || (frm == 22))
+        {
+            bhEne04_SePlay(epw, 70408);
+        }
+        
+        if ((pl->frm_no / 65536) == (pl->mnwP[pl->mtn_no].frm_num - 1))
+        {
+            pl->mtn_add = 0;
+            
+            pl->flg &= ~8;
+            pl->flg |= 2;
+        }
+        
+    case 2:
+        break;
+    }
 }
 /*
 // 
