@@ -3855,6 +3855,7 @@ void bhEne04_MV10(BH_PWORK* epw)
     }
 }
 
+// 100% matching!
 void bhEne04_MV11(BH_PWORK* epw)
 {
     switch (epw->mode3)
@@ -3878,9 +3879,9 @@ void bhEne04_MV11(BH_PWORK* epw)
         
         epw->axp = kaidan_ang[*(unsigned char*)((char*)EXP0_I(0x40) + 0x21)];
         epw->ayp = (epw->axp - epw->ay) & 0xFFFF;
-        if (epw->ayp > 0x8000)
+        if (epw->ayp > 32768)
         {
-            epw->ayp -= 0x10000;
+            epw->ayp -= 65536;
         }
         epw->ayp /= 10;
         epw->ct0 = 10;
@@ -4718,37 +4719,53 @@ void bhEne04_SpeedDown(float* spd, float g, float limit)
         }
     }
 }
-/*
-// 
-// Start address: 0x1abca0
+
+// 100% matching!
 void bhEne04_RunMotion(BH_PWORK* epw, int rot)
-{
-	int no;
-	int mtn_tbl2[3];
-	int mtn_tbl[3];
-	// Line 5329, Address: 0x1abca0, Func Offset: 0
-	// Line 5328, Address: 0x1abcb0, Func Offset: 0x10
-	// Line 5329, Address: 0x1abcb4, Func Offset: 0x14
-	// Line 5330, Address: 0x1abcb8, Func Offset: 0x18
-	// Line 5329, Address: 0x1abcc0, Func Offset: 0x20
-	// Line 5330, Address: 0x1abcc4, Func Offset: 0x24
-	// Line 5329, Address: 0x1abcc8, Func Offset: 0x28
-	// Line 5330, Address: 0x1abccc, Func Offset: 0x2c
-	// Line 5348, Address: 0x1abcdc, Func Offset: 0x3c
-	// Line 5350, Address: 0x1abcf0, Func Offset: 0x50
-	// Line 5351, Address: 0x1abd20, Func Offset: 0x80
-	// Line 5354, Address: 0x1abd28, Func Offset: 0x88
-	// Line 5357, Address: 0x1abd60, Func Offset: 0xc0
-	// Line 5359, Address: 0x1abd6c, Func Offset: 0xcc
-	// Line 5360, Address: 0x1abd70, Func Offset: 0xd0
-	// Line 5362, Address: 0x1abd80, Func Offset: 0xe0
-	// Line 5366, Address: 0x1abd88, Func Offset: 0xe8
-	// Line 5365, Address: 0x1abd8c, Func Offset: 0xec
-	// Line 5366, Address: 0x1abd90, Func Offset: 0xf0
-	// Line 5369, Address: 0x1abd94, Func Offset: 0xf4
-	// Func End, Address: 0x1abda0, Func Offset: 0x100
+{    
+    int mtn_tbl[3] = { 3, 1, 2 };     
+    int mtn_tbl2[3] = { 41, 34, 40 }; 
+	int no;                          
+    int idx;                          // not from DWARF
+
+    if (EXP0_I(0x10) & 0x8000)
+    {        
+        if (rot != 0)
+        {
+            idx = (rot > 0) ? 0 : 2;
+        }
+        else
+        {
+            idx = 1;
+        }
+        no = mtn_tbl2[idx];
+    }
+    else
+    {
+        if (rot != 0) 
+        {
+            idx = (rot > 0) ? 0 : 2;
+        }
+        else
+        {
+            idx = 1;
+        }
+        no = mtn_tbl[idx];
+    }
+
+    if (epw->mtn_no != no)
+    {
+        epw->mtn_no = no;
+
+        if (epw->hokan_count < 8)
+        {
+            epw->hokan_count = 7;
+            epw->hokan_rate = 0;
+            epw->mtn_md = 32;
+        }
+    }
 }
-*/
+
 // 100% matching!
 int bhEne04_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate)
 {
