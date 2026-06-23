@@ -3752,60 +3752,63 @@ void bhEne04_MV08(BH_PWORK* epw)
     scePrintf("bhEne04_MV08 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1a99a0
+// 100% matching!
 void bhEne04_MV09(BH_PWORK* epw)
 {
-	int frm;
-	// Line 3764, Address: 0x1a99a0, Func Offset: 0
-	// Line 3768, Address: 0x1a99ac, Func Offset: 0xc
-	// Line 3771, Address: 0x1a99cc, Func Offset: 0x2c
-	// Line 3773, Address: 0x1a99dc, Func Offset: 0x3c
-	// Line 3772, Address: 0x1a99e0, Func Offset: 0x40
-	// Line 3773, Address: 0x1a99e4, Func Offset: 0x44
-	// Line 3774, Address: 0x1a99e8, Func Offset: 0x48
-	// Line 3775, Address: 0x1a99fc, Func Offset: 0x5c
-	// Line 3778, Address: 0x1a9a08, Func Offset: 0x68
-	// Line 3779, Address: 0x1a9a10, Func Offset: 0x70
-	// Line 3781, Address: 0x1a9a28, Func Offset: 0x88
-	// Line 3783, Address: 0x1a9a30, Func Offset: 0x90
-	// Line 3781, Address: 0x1a9a38, Func Offset: 0x98
-	// Line 3783, Address: 0x1a9a3c, Func Offset: 0x9c
-	// Line 3786, Address: 0x1a9a4c, Func Offset: 0xac
-	// Line 3790, Address: 0x1a9a60, Func Offset: 0xc0
-	// Line 3792, Address: 0x1a9a74, Func Offset: 0xd4
-	// Line 3793, Address: 0x1a9a80, Func Offset: 0xe0
-	// Line 3792, Address: 0x1a9a88, Func Offset: 0xe8
-	// Line 3793, Address: 0x1a9a8c, Func Offset: 0xec
-	// Line 3792, Address: 0x1a9a94, Func Offset: 0xf4
-	// Line 3793, Address: 0x1a9a98, Func Offset: 0xf8
-	// Line 3795, Address: 0x1a9aa0, Func Offset: 0x100
-	// Line 3796, Address: 0x1a9aa4, Func Offset: 0x104
-	// Line 3797, Address: 0x1a9aa8, Func Offset: 0x108
-	// Line 3798, Address: 0x1a9aac, Func Offset: 0x10c
-	// Line 3799, Address: 0x1a9ab0, Func Offset: 0x110
-	// Line 3800, Address: 0x1a9ac4, Func Offset: 0x124
-	// Line 3802, Address: 0x1a9ae8, Func Offset: 0x148
-	// Line 3804, Address: 0x1a9aec, Func Offset: 0x14c
-	// Line 3802, Address: 0x1a9af4, Func Offset: 0x154
-	// Line 3803, Address: 0x1a9af8, Func Offset: 0x158
-	// Line 3802, Address: 0x1a9afc, Func Offset: 0x15c
-	// Line 3805, Address: 0x1a9b00, Func Offset: 0x160
-	// Line 3808, Address: 0x1a9b04, Func Offset: 0x164
-	// Line 3809, Address: 0x1a9b08, Func Offset: 0x168
-	// Line 3802, Address: 0x1a9b0c, Func Offset: 0x16c
-	// Line 3803, Address: 0x1a9b14, Func Offset: 0x174
-	// Line 3804, Address: 0x1a9b24, Func Offset: 0x184
-	// Line 3805, Address: 0x1a9b28, Func Offset: 0x188
-	// Line 3806, Address: 0x1a9b34, Func Offset: 0x194
-	// Line 3805, Address: 0x1a9b38, Func Offset: 0x198
-	// Line 3806, Address: 0x1a9b3c, Func Offset: 0x19c
-	// Line 3808, Address: 0x1a9b4c, Func Offset: 0x1ac
-	// Line 3809, Address: 0x1a9b50, Func Offset: 0x1b0
-	// Line 3810, Address: 0x1a9b54, Func Offset: 0x1b4
-	// Line 3814, Address: 0x1a9b58, Func Offset: 0x1b8
-	// Func End, Address: 0x1a9b68, Func Offset: 0x1c8
-    scePrintf("bhEne04_MV09 - UNIMPLEMENTED!\n");
+    int frm;
+
+    switch (epw->mode3)
+    {
+    case 0:
+        bhEne04_ChgMtn(epw, 36, 0, 5);
+        epw->spd = 0.0f;
+        epw->way = -546;
+        EXP0_I(0x10) |= 0x40000000;
+        epw->mode3++;
+
+    case 1:
+        frm = epw->frm_no / 65536;
+        if ((frm >= 4) && (frm < 14))
+        {
+            epw->ay += epw->way;
+            
+            if (bhEne04_PlyDamageCheck(epw, 0) != 0)
+            {
+                plp->hp -= 6;
+            }
+        }
+        
+        if (epw->flg & 0x2000000)
+        {
+            EXP0_I(0x10) &= ~0x40000000;
+            
+            bhEne04_ChgMtn(epw, 1, 0, 0);
+            
+            epw->wax = 0;
+            
+            epw->ct0 = 0;
+            epw->ct1 = 0;
+            epw->ct2 = 0;
+            
+            if (EXP0_I(0x10) & 0x800)
+            {
+                epw->ct1 = (rand() % 15) + 20;
+            }
+            
+            EXP0_I(0x10) &= ~0x3000;
+            EXP0_I(0x10) &= ~0x4000;
+            
+            epw->spd = 0.6f;
+            
+            EXP0_F(0x24) = plp->px;
+            EXP0_F(0x2C) = plp->pz;
+            
+            epw->mode1 = 1;
+            epw->mode2 = 2;
+            epw->mode3 = 1;
+        }
+        break;
+    }
 }
 
 // 99.64% matching
@@ -4642,15 +4645,15 @@ void bhEne04_PlyDG01(BH_PWORK* pl, BH_PWORK* epw)
         break;
     }
 }
-/*
+
 // 
 // Start address: 0x1aba10
 int bhEne04_PlyDamageCheck(BH_PWORK* epw, int type)
 {
 	int rot;
-	_anon36 pos;
+	//_anon36 pos;
 	int hit;
-	_anon47 at;
+	//_anon47 at;
 	// Line 5191, Address: 0x1aba10, Func Offset: 0
 	// Line 5196, Address: 0x1aba28, Func Offset: 0x18
 	// Line 5200, Address: 0x1aba64, Func Offset: 0x54
@@ -4692,8 +4695,9 @@ int bhEne04_PlyDamageCheck(BH_PWORK* epw, int type)
 	// Line 5256, Address: 0x1abbfc, Func Offset: 0x1ec
 	// Line 5257, Address: 0x1abc00, Func Offset: 0x1f0
 	// Func End, Address: 0x1abc18, Func Offset: 0x208
+    scePrintf("bhEne04_PlyDamageCheck - UNIMPLEMENTED!\n");
 }
-*/
+
 // 100% matching!
 void bhEne04_SpeedUp(float* spd, float g, float limit)
 {
