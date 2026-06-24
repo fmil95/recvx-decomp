@@ -7,6 +7,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_NaView.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
@@ -355,48 +356,56 @@ void bhKeepSpEvtComputer()
     }
 }
 
-// 
-// Start address: 0x2bd0e0
-void bhInitSpEvtComputer()
+// 100% matching!
+void bhInitSpEvtComputer() 
 {
-	int i;
-	//_anon7* ce;
-	// Line 112, Address: 0x2bd0e0, Func Offset: 0
-	// Line 116, Address: 0x2bd0f4, Func Offset: 0x14
-	// Line 119, Address: 0x2bd0fc, Func Offset: 0x1c
-	// Line 116, Address: 0x2bd104, Func Offset: 0x24
-	// Line 118, Address: 0x2bd120, Func Offset: 0x40
-	// Line 119, Address: 0x2bd134, Func Offset: 0x54
-	// Line 121, Address: 0x2bd13c, Func Offset: 0x5c
-	// Line 124, Address: 0x2bd144, Func Offset: 0x64
-	// Line 121, Address: 0x2bd148, Func Offset: 0x68
-	// Line 124, Address: 0x2bd14c, Func Offset: 0x6c
-	// Line 121, Address: 0x2bd150, Func Offset: 0x70
-	// Line 122, Address: 0x2bd15c, Func Offset: 0x7c
-	// Line 124, Address: 0x2bd170, Func Offset: 0x90
-	// Line 125, Address: 0x2bd190, Func Offset: 0xb0
-	// Line 127, Address: 0x2bd198, Func Offset: 0xb8
-	// Line 129, Address: 0x2bd1b0, Func Offset: 0xd0
-	// Line 130, Address: 0x2bd1b4, Func Offset: 0xd4
-	// Line 132, Address: 0x2bd1d8, Func Offset: 0xf8
-	// Line 133, Address: 0x2bd1e0, Func Offset: 0x100
-	// Line 134, Address: 0x2bd1e8, Func Offset: 0x108
-	// Line 136, Address: 0x2bd1fc, Func Offset: 0x11c
-	// Line 138, Address: 0x2bd204, Func Offset: 0x124
-	// Line 139, Address: 0x2bd210, Func Offset: 0x130
-	// Line 141, Address: 0x2bd21c, Func Offset: 0x13c
-	// Line 143, Address: 0x2bd224, Func Offset: 0x144
-	// Line 144, Address: 0x2bd290, Func Offset: 0x1b0
-	// Line 145, Address: 0x2bd2cc, Func Offset: 0x1ec
-	// Line 144, Address: 0x2bd2d0, Func Offset: 0x1f0
-	// Line 145, Address: 0x2bd2d4, Func Offset: 0x1f4
-	// Line 144, Address: 0x2bd2d8, Func Offset: 0x1f8
-	// Line 145, Address: 0x2bd2dc, Func Offset: 0x1fc
-	// Line 146, Address: 0x2bd2e4, Func Offset: 0x204
-	// Line 148, Address: 0x2bd320, Func Offset: 0x240
-	// Line 149, Address: 0x2bd354, Func Offset: 0x274
-	// Func End, Address: 0x2bd36c, Func Offset: 0x28c
-	scePrintf("bhInitSpEvtComputer - UNIMPLEMENTED!\n");
+    COM_EVT_WORK* ce;
+    int i;           
+    
+    sys->com_flg &= 0x1;
+    
+    ce = sys->com_exp;
+    
+    npSetMemory((unsigned char*)ce, sizeof(COM_EVT_WORK), 0);
+    
+    sys->com_md0 = 1;
+    sys->com_md1 = 0;
+    
+    ce->scp = comevt_script_tab[sys->com_num];
+    
+    bhInitComEvtScript(1);
+    
+    njMemCopy4(&palbuf[3072], palbuf, 1024);
+    
+    ce->com_tlist.textures  = ce->com_tex;
+    ce->com_tlist.nbTexture = bhSetMemPvpTexture(&ce->com_tlist, sys->subtxp, 0);
+    
+    ce->fcol = 0xFF000000;
+    ce->fsrc = 1.0f;
+    
+    bhSetSpEvtComFade(0, 10.0f);
+    
+    njTextureFilterMode(0);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    for (i = 0; i < 3; i++) 
+    {
+        ce->bar[i][0] = ce->bar[i][1] = ((7 - (i - 1)) * 6) + (((i + 1) * 30) * (-rand() / -2.1474836E9f));
+        
+        ce->bar_ct[i] = 30.0f * (-rand() / -2.1474836E9f);
+    } 
+    
+    if (sys->com_num == 1) 
+    {
+        sys->com_flg |= 0x4;
+    }
+    
+    if (syRtcInit() == 0)
+    {
+        sys->com_flg |= 0x100;
+    }
 }
 
 // 
@@ -1227,7 +1236,7 @@ void bhDrawSpEvtComCharacter()
     pp->frm_no = ce->frm_no;
     
     pp->ax = pp->ay = pp->az = 0;
-    pp->px = pp->py = pp->pz = 0.0f;
+    pp->px = pp->py = pp->pz = 0;
     
     if (pp->skp[pp->mdl_no] != NULL) 
     {
