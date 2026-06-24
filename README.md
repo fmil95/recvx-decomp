@@ -79,6 +79,8 @@ If successful, you will now see an ISO called "RECVX_NEW" in the iso folder that
 
 ## Resources
 
+AshfordFamily's fan art provided by [fishiiarts_](https://www.instagram.com/fishiiarts_/).
+
 Associated decomp projects:
 - [Resident Evil - Code: Veronica X (Nintendo GameCube)](https://github.com/fmil95/recvx-gc-decomp)
 - [Resident Evil - Code: Veronica (Dreamcast)](https://github.com/fmil95/recv-dc-decomp)
