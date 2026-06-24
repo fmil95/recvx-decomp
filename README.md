@@ -23,7 +23,7 @@ Additionally, this project also consists of reverse-engineering the CRI Middlewa
 
 The very first step should be to clone the repository: 
 ```
-git clone --recursive https://github.com/fmil95/recvx-decomp.git
+git clone --recursive https://github.com/AshfordFamily/recvx-decomp.git
 ```
 
 Next you have to place your copy of the SLUS_201.84 file in the config folder. The setup now depends on whether you want to use a dev container or not.
@@ -91,4 +91,4 @@ Associated decomp projects:
 
 ## Disclaimer
 
-This repository and the code therein, is made public on this site by fmil95 for preservational and educational purposes. I do not claim to hold any affiliation to the Resident Evil franchise, Capcom Co., Ltd or any other related party, nor mean to infringe upon the copyright of Resident Evil: Code: Veronica X.
+This repository and the code therein, is made public on this site by AshfordFamily for preservational and educational purposes. I do not claim to hold any affiliation to the Resident Evil franchise, Capcom Co., Ltd or any other related party, nor mean to infringe upon the copyright of Resident Evil: Code: Veronica X.
