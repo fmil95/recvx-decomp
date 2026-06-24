@@ -5,8 +5,11 @@
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/ps2_sg_syrtc.h"
 #include "../../../ps2/veronica/prog/ps2_texture.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
@@ -1194,65 +1197,86 @@ void bhDrawSpEvtComBar(int barno, int col0, int col1)
     njQuadTextureEnd();
 }
 
-/*// 
-// Start address: 0x2bf4d0
-void bhDrawSpEvtComCharacter()
+// 99.39% matching
+void bhDrawSpEvtComCharacter() 
 {
-	float near;
-	BH_PWORK* pp;
-	_anon5 scrn;
-	_anon7* ce;
-	// Line 915, Address: 0x2bf4d0, Func Offset: 0
-	// Line 916, Address: 0x2bf4f4, Func Offset: 0x24
-	// Line 923, Address: 0x2bf4fc, Func Offset: 0x2c
-	// Line 922, Address: 0x2bf504, Func Offset: 0x34
-	// Line 923, Address: 0x2bf50c, Func Offset: 0x3c
-	// Line 916, Address: 0x2bf514, Func Offset: 0x44
-	// Line 923, Address: 0x2bf51c, Func Offset: 0x4c
-	// Line 926, Address: 0x2bf524, Func Offset: 0x54
-	// Line 927, Address: 0x2bf52c, Func Offset: 0x5c
-	// Line 928, Address: 0x2bf538, Func Offset: 0x68
-	// Line 929, Address: 0x2bf544, Func Offset: 0x74
-	// Line 930, Address: 0x2bf550, Func Offset: 0x80
-	// Line 931, Address: 0x2bf558, Func Offset: 0x88
-	// Line 933, Address: 0x2bf564, Func Offset: 0x94
-	// Line 934, Address: 0x2bf578, Func Offset: 0xa8
-	// Line 933, Address: 0x2bf57c, Func Offset: 0xac
-	// Line 934, Address: 0x2bf5ac, Func Offset: 0xdc
-	// Line 935, Address: 0x2bf5b0, Func Offset: 0xe0
-	// Line 936, Address: 0x2bf5b8, Func Offset: 0xe8
-	// Line 937, Address: 0x2bf5c4, Func Offset: 0xf4
-	// Line 939, Address: 0x2bf5d0, Func Offset: 0x100
-	// Line 940, Address: 0x2bf5e8, Func Offset: 0x118
-	// Line 949, Address: 0x2bf5f4, Func Offset: 0x124
-	// Line 953, Address: 0x2bf5f8, Func Offset: 0x128
-	// Line 949, Address: 0x2bf5fc, Func Offset: 0x12c
-	// Line 950, Address: 0x2bf604, Func Offset: 0x134
-	// Line 951, Address: 0x2bf610, Func Offset: 0x140
-	// Line 953, Address: 0x2bf61c, Func Offset: 0x14c
-	// Line 954, Address: 0x2bf628, Func Offset: 0x158
-	// Line 955, Address: 0x2bf640, Func Offset: 0x170
-	// Line 957, Address: 0x2bf65c, Func Offset: 0x18c
-	// Line 967, Address: 0x2bf67c, Func Offset: 0x1ac
-	// Line 968, Address: 0x2bf690, Func Offset: 0x1c0
-	// Line 970, Address: 0x2bf6a4, Func Offset: 0x1d4
-	// Line 971, Address: 0x2bf6c0, Func Offset: 0x1f0
-	// Line 974, Address: 0x2bf6d8, Func Offset: 0x208
-	// Line 976, Address: 0x2bf6e4, Func Offset: 0x214
-	// Line 977, Address: 0x2bf6f4, Func Offset: 0x224
-	// Line 978, Address: 0x2bf704, Func Offset: 0x234
-	// Line 983, Address: 0x2bf714, Func Offset: 0x244
-	// Line 984, Address: 0x2bf72c, Func Offset: 0x25c
-	// Line 987, Address: 0x2bf738, Func Offset: 0x268
-	// Line 988, Address: 0x2bf744, Func Offset: 0x274
-	// Line 989, Address: 0x2bf74c, Func Offset: 0x27c
-	// Line 990, Address: 0x2bf754, Func Offset: 0x284
-	// Line 991, Address: 0x2bf75c, Func Offset: 0x28c
-	// Line 992, Address: 0x2bf760, Func Offset: 0x290
-	// Line 994, Address: 0x2bf76c, Func Offset: 0x29c
-	// Line 996, Address: 0x2bf77c, Func Offset: 0x2ac
-	// Func End, Address: 0x2bf7a4, Func Offset: 0x2d4
-}*/
+    COM_EVT_WORK* ce; 
+    NJS_SCREEN scrn;  
+    BH_PWORK* pp;    
+    float near;       
+ 
+    ce = sys->com_exp;
+    
+    near = fNaViwClipNear;
+    
+    njClipZ(-1.0f, fNaViwClipFar);
+    
+    scrn.dist = 600.0f;
+    
+    scrn.w = 608.0f;
+    scrn.h = 416.0f;
+    
+    scrn.cx = 528.0f;
+    scrn.cy = 336.0f;
+    
+    njSetScreen(&scrn);
+    
+    pp = &ene[rom->enep[ce->chr_no].wrk_no];
+    
+    pp->mtn_no = ce->mtn_no;
+    pp->frm_no = ce->frm_no;
+    
+    pp->ax = pp->ay = pp->az = 0;
+    pp->px = pp->py = pp->pz = 0.0f;
+    
+    if (pp->skp[pp->mdl_no] != NULL) 
+    {
+        npRetSkinConvert(pp->mlwP->objP, pp->skp[pp->mdl_no]);
+    }
+    
+    pp->mlwP->objP[1].ang[0] = 0;
+    pp->mlwP->objP[1].ang[1] = 0;
+    pp->mlwP->objP[1].ang[2] = 0;
+    
+    njSetMatrix(NULL, cmat);
+    
+    njCnkSetEasyLightColor(1.0f, 1.0f, 1.0f);
+    njCnkSetEasyLightIntensity(1.0f, 0.2f);
+    njCnkSetEasyLight(4.0f, 6.0f, 10.0f);
+    
+    njTranslate(NULL, ce->cox, ce->coy, ce->coz);
+    njRotateXYZ(NULL, ce->cax, ce->cay, ce->caz);
+    
+    njScale(NULL, 0.05f, 0.05f, 0.05f);
+    
+    if (pp->mlwP->texP != NULL) 
+    {
+        njSetTexture(pp->mlwP->texP);
+    }
+    
+    njCnkEasyDrawObject(pp->mlwP->objP);
+    
+    ce->cax += ce->caxn;
+    ce->cay += ce->cayn;
+    ce->caz += ce->cazn;
+    
+    if (pp->skp[pp->mdl_no] != NULL) 
+    {
+        npSkinConvert(pp->mlwP->objP, pp->skp[pp->mdl_no]);
+    }
+    
+    njSetTexture(&ce->com_tlist);
+    
+    scrn.w = 640.0f;
+    scrn.h = 480.0f;
+    
+    scrn.cx = 320.0f;
+    scrn.cy = 240.0f;
+    
+    njSetScreen(&scrn);
+    
+    njClipZ(near, fNaViwClipFar);
+}
 
 // 100% matching!
 void bhSetSpEvtComFade(float fdst, float fcnt)
