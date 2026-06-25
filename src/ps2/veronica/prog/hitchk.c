@@ -4445,81 +4445,97 @@ void bhCheckPlayer(BH_PWORK* pp)
     }
 }
 
-// 
-// Start address: 0x268fb0
+// 100% matching!
 void bhCheckEnemies(BH_PWORK* pp)
 {
-	//_anon20 ps[128];
-	int hct;
-	int i;
-	int r;
-	float ez1;
-	float ey1;
-	float ex1;
-	float ez0;
-	float ey0;
-	float ex0;
-	float ln;
-	float pz;
-	float px;
-	// Line 4691, Address: 0x268fb0, Func Offset: 0
-	// Line 4698, Address: 0x268fec, Func Offset: 0x3c
-	// Line 4699, Address: 0x268ffc, Func Offset: 0x4c
-	// Line 4700, Address: 0x269004, Func Offset: 0x54
-	// Line 4701, Address: 0x26900c, Func Offset: 0x5c
-	// Line 4819, Address: 0x269018, Func Offset: 0x68
-	// Line 4699, Address: 0x26901c, Func Offset: 0x6c
-	// Line 4700, Address: 0x269028, Func Offset: 0x78
-	// Line 4818, Address: 0x26902c, Func Offset: 0x7c
-	// Line 4819, Address: 0x269030, Func Offset: 0x80
-	// Line 4701, Address: 0x269038, Func Offset: 0x88
-	// Line 4819, Address: 0x26903c, Func Offset: 0x8c
-	// Line 4821, Address: 0x269044, Func Offset: 0x94
-	// Line 4825, Address: 0x269084, Func Offset: 0xd4
-	// Line 4827, Address: 0x2690a8, Func Offset: 0xf8
-	// Line 4829, Address: 0x2690cc, Func Offset: 0x11c
-	// Line 4830, Address: 0x2690d0, Func Offset: 0x120
-	// Line 4832, Address: 0x2690d8, Func Offset: 0x128
-	// Line 4831, Address: 0x2690e0, Func Offset: 0x130
-	// Line 4830, Address: 0x2690e8, Func Offset: 0x138
-	// Line 4832, Address: 0x2690ec, Func Offset: 0x13c
-	// Line 4833, Address: 0x2690f0, Func Offset: 0x140
-	// Line 4835, Address: 0x2690f4, Func Offset: 0x144
-	// Line 4834, Address: 0x2690f8, Func Offset: 0x148
-	// Line 4831, Address: 0x2690fc, Func Offset: 0x14c
-	// Line 4835, Address: 0x269100, Func Offset: 0x150
-	// Line 4836, Address: 0x269108, Func Offset: 0x158
-	// Line 4841, Address: 0x269154, Func Offset: 0x1a4
-	// Line 4842, Address: 0x269174, Func Offset: 0x1c4
-	// Line 4844, Address: 0x26917c, Func Offset: 0x1cc
-	// Line 4845, Address: 0x269190, Func Offset: 0x1e0
-	// Line 4865, Address: 0x269198, Func Offset: 0x1e8
-	// Line 4864, Address: 0x26919c, Func Offset: 0x1ec
-	// Line 4845, Address: 0x2691a0, Func Offset: 0x1f0
-	// Line 4846, Address: 0x2691b0, Func Offset: 0x200
-	// Line 4865, Address: 0x2691c8, Func Offset: 0x218
-	// Line 4866, Address: 0x2691d4, Func Offset: 0x224
-	// Line 4867, Address: 0x2691dc, Func Offset: 0x22c
-	// Line 4868, Address: 0x2691e4, Func Offset: 0x234
-	// Line 4872, Address: 0x2691f4, Func Offset: 0x244
-	// Line 4873, Address: 0x269218, Func Offset: 0x268
-	// Line 4874, Address: 0x269220, Func Offset: 0x270
-	// Line 4875, Address: 0x26922c, Func Offset: 0x27c
-	// Line 4876, Address: 0x269230, Func Offset: 0x280
-	// Line 4877, Address: 0x269240, Func Offset: 0x290
-	// Line 4878, Address: 0x269244, Func Offset: 0x294
-	// Line 4879, Address: 0x269248, Func Offset: 0x298
-	// Line 4877, Address: 0x269250, Func Offset: 0x2a0
-	// Line 4878, Address: 0x269254, Func Offset: 0x2a4
-	// Line 4879, Address: 0x269258, Func Offset: 0x2a8
-	// Line 4880, Address: 0x269260, Func Offset: 0x2b0
-	// Line 4881, Address: 0x269274, Func Offset: 0x2c4
-	// Line 4882, Address: 0x269280, Func Offset: 0x2d0
-	// Line 4883, Address: 0x269288, Func Offset: 0x2d8
-	// Line 4884, Address: 0x269290, Func Offset: 0x2e0
-	// Line 4888, Address: 0x269298, Func Offset: 0x2e8
-	// Func End, Address: 0x2692d8, Func Offset: 0x328
-	scePrintf("bhCheckEnemies - UNIMPLEMENTED!\n");
+    float px;         
+    float pz;        
+    float ln;          
+    float ex0;        
+    float ey0;    
+    float ez0;        
+    float ex1;     
+    float ey1;         
+    float ez1;        
+    int r;            
+    int i;           
+    int hct;            
+    NJS_POINT3 ps[128];
+    BH_PWORK* enep; // not from DWARF
+    float car;      // not from DWARF
+
+    if (!(pp->flg2 & 0x1)) 
+    {
+        ex0 = pp->px + pp->aox;
+        ey0 = pp->py + pp->aoy;
+        ez0 = pp->pz + pp->aoz;
+        
+        hct = 0;
+        
+        for (i = 0; i < sys->ewk_n; i++) 
+        {
+            enep = &ene[i];
+            
+            if (((((enep->flg & 0x1)) && ((enep->flg & 0x8))) && (!(enep->stflg & 0x1000000))) && ((((unsigned int)pp & ~0x80000000)) != (((unsigned int)enep & ~0x80000000))) && ((((((unsigned int)pp & ~0x80000000)) != (((unsigned int)plp & ~0x80000000))) || ((enep->flg & 0x40))) && ((!(enep->flg & 0x80)) || (!(((O_WRK*)enep->lkwkp)->stflg & 0x1000000))))) 
+            {
+                ex1 = enep->px + enep->aox;
+                ey1 = enep->py + enep->aoy;
+                ez1 = enep->pz + enep->aoz;
+                
+                px = ex0 - ex1;
+                pz = ez0 - ez1;
+                
+                ln = njSqrt((px * px) + (pz * pz));
+                
+                car = pp->car + enep->car;
+                
+                if ((ln < car) && ((ey1 <= (ey0 + pp->cah)) && ((ey1 + enep->cah) >= ey0)))
+                {
+                    r = 10430.381f * atan2f(ex1 - ex0, ez1 - ez0);
+                    
+                    car = pp->car + enep->car;
+                    
+                    njSinCos(r, &ps[hct].x, &ps[hct].z);
+                    
+                    ps[hct].x = (ex1 - (car * ps[hct].x)) - pp->aox; 
+                    ps[hct].z = (ez1 - (car * ps[hct].z)) - pp->aoz;
+                    
+                    hct++;
+                    
+                    if (pp == plp) 
+                    { 
+                        enep->stflg |= 0x4;
+                    } 
+                    else 
+                    {
+                        enep->stflg |= 0x2;
+                    }
+                } 
+            }
+        }
+        
+        if (hct != 0) 
+        {
+            if (hct > 1) 
+            {
+                px = pz = 0;
+                
+                for (i = 0; i < hct; i++) 
+                {
+                    px += ps[i].x;
+                    pz += ps[i].z;
+                } 
+                
+                pp->px = px / hct;
+                pp->pz = pz / hct;
+            } 
+            else 
+            {
+                pp->px = ps->x;
+                pp->pz = ps->z;
+            }
+        }
+    }
 }
 
 // 100% matching!
