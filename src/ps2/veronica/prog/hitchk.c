@@ -3720,157 +3720,170 @@ void bhClrUseKaidanFlag(BH_PWORK* pp)
     }
 }
 
-// 
-// Start address: 0x267310
-void bhSetDansaLimitAtari(BH_PWORK* pp)
+// 99.21% matching
+void bhSetDansaLimitAtari(BH_PWORK* pp) 
 {
-	int etc_n;
-	int i;
-	float arh;
-	float px3;
-	float pz2;
-	float px1;
-	float pz0;
-	float px0;
-	//_anon0* pop;
-	//_anon0* exp;
-	//_anon0* hp;
-	// Line 4054, Address: 0x267310, Func Offset: 0
-	// Line 4062, Address: 0x26733c, Func Offset: 0x2c
-	// Line 4072, Address: 0x267344, Func Offset: 0x34
-	// Line 4073, Address: 0x267350, Func Offset: 0x40
-	// Line 4075, Address: 0x267354, Func Offset: 0x44
-	// Line 4062, Address: 0x267358, Func Offset: 0x48
-	// Line 4074, Address: 0x267364, Func Offset: 0x54
-	// Line 4063, Address: 0x26736c, Func Offset: 0x5c
-	// Line 4064, Address: 0x267370, Func Offset: 0x60
-	// Line 4074, Address: 0x267378, Func Offset: 0x68
-	// Line 4072, Address: 0x267380, Func Offset: 0x70
-	// Line 4074, Address: 0x267384, Func Offset: 0x74
-	// Line 4064, Address: 0x267390, Func Offset: 0x80
-	// Line 4074, Address: 0x267394, Func Offset: 0x84
-	// Line 4065, Address: 0x267398, Func Offset: 0x88
-	// Line 4074, Address: 0x26739c, Func Offset: 0x8c
-	// Line 4068, Address: 0x2673a0, Func Offset: 0x90
-	// Line 4075, Address: 0x2673a4, Func Offset: 0x94
-	// Line 4069, Address: 0x2673a8, Func Offset: 0x98
-	// Line 4075, Address: 0x2673ac, Func Offset: 0x9c
-	// Line 4078, Address: 0x2673b8, Func Offset: 0xa8
-	// Line 4077, Address: 0x2673bc, Func Offset: 0xac
-	// Line 4078, Address: 0x2673f8, Func Offset: 0xe8
-	// Line 4082, Address: 0x267430, Func Offset: 0x120
-	// Line 4085, Address: 0x267488, Func Offset: 0x178
-	// Line 4088, Address: 0x267490, Func Offset: 0x180
-	// Line 4089, Address: 0x2674a0, Func Offset: 0x190
-	// Line 4090, Address: 0x2674b0, Func Offset: 0x1a0
-	// Line 4092, Address: 0x2674b4, Func Offset: 0x1a4
-	// Line 4093, Address: 0x2674bc, Func Offset: 0x1ac
-	// Line 4094, Address: 0x2674cc, Func Offset: 0x1bc
-	// Line 4098, Address: 0x2674d4, Func Offset: 0x1c4
-	// Line 4099, Address: 0x2674e4, Func Offset: 0x1d4
-	// Line 4105, Address: 0x2674ec, Func Offset: 0x1dc
-	// Line 4108, Address: 0x2674f4, Func Offset: 0x1e4
-	// Line 4105, Address: 0x2674f8, Func Offset: 0x1e8
-	// Line 4101, Address: 0x2674fc, Func Offset: 0x1ec
-	// Line 4099, Address: 0x267500, Func Offset: 0x1f0
-	// Line 4108, Address: 0x267508, Func Offset: 0x1f8
-	// Line 4099, Address: 0x26750c, Func Offset: 0x1fc
-	// Line 4104, Address: 0x267510, Func Offset: 0x200
-	// Line 4107, Address: 0x267514, Func Offset: 0x204
-	// Line 4109, Address: 0x267518, Func Offset: 0x208
-	// Line 4099, Address: 0x26751c, Func Offset: 0x20c
-	// Line 4108, Address: 0x267524, Func Offset: 0x214
-	// Line 4099, Address: 0x267528, Func Offset: 0x218
-	// Line 4100, Address: 0x267530, Func Offset: 0x220
-	// Line 4101, Address: 0x267578, Func Offset: 0x268
-	// Line 4102, Address: 0x26757c, Func Offset: 0x26c
-	// Line 4103, Address: 0x267580, Func Offset: 0x270
-	// Line 4104, Address: 0x267588, Func Offset: 0x278
-	// Line 4105, Address: 0x26758c, Func Offset: 0x27c
-	// Line 4106, Address: 0x267598, Func Offset: 0x288
-	// Line 4107, Address: 0x2675a0, Func Offset: 0x290
-	// Line 4108, Address: 0x2675ac, Func Offset: 0x29c
-	// Line 4109, Address: 0x2675b8, Func Offset: 0x2a8
-	// Line 4110, Address: 0x2675bc, Func Offset: 0x2ac
-	// Line 4111, Address: 0x2675c0, Func Offset: 0x2b0
-	// Line 4117, Address: 0x2675d0, Func Offset: 0x2c0
-	// Line 4118, Address: 0x2675e8, Func Offset: 0x2d8
-	// Line 4126, Address: 0x2675f0, Func Offset: 0x2e0
-	// Line 4120, Address: 0x2675f8, Func Offset: 0x2e8
-	// Line 4126, Address: 0x2675fc, Func Offset: 0x2ec
-	// Line 4129, Address: 0x267600, Func Offset: 0x2f0
-	// Line 4118, Address: 0x267604, Func Offset: 0x2f4
-	// Line 4129, Address: 0x267610, Func Offset: 0x300
-	// Line 4123, Address: 0x267614, Func Offset: 0x304
-	// Line 4128, Address: 0x267618, Func Offset: 0x308
-	// Line 4129, Address: 0x26761c, Func Offset: 0x30c
-	// Line 4118, Address: 0x267620, Func Offset: 0x310
-	// Line 4119, Address: 0x267630, Func Offset: 0x320
-	// Line 4120, Address: 0x267678, Func Offset: 0x368
-	// Line 4121, Address: 0x26767c, Func Offset: 0x36c
-	// Line 4122, Address: 0x267680, Func Offset: 0x370
-	// Line 4123, Address: 0x267688, Func Offset: 0x378
-	// Line 4124, Address: 0x26768c, Func Offset: 0x37c
-	// Line 4125, Address: 0x2676a0, Func Offset: 0x390
-	// Line 4126, Address: 0x2676a8, Func Offset: 0x398
-	// Line 4127, Address: 0x2676b4, Func Offset: 0x3a4
-	// Line 4128, Address: 0x2676b8, Func Offset: 0x3a8
-	// Line 4129, Address: 0x2676bc, Func Offset: 0x3ac
-	// Line 4130, Address: 0x2676c8, Func Offset: 0x3b8
-	// Line 4136, Address: 0x2676d8, Func Offset: 0x3c8
-	// Line 4137, Address: 0x2676f0, Func Offset: 0x3e0
-	// Line 4143, Address: 0x2676f8, Func Offset: 0x3e8
-	// Line 4146, Address: 0x267700, Func Offset: 0x3f0
-	// Line 4143, Address: 0x267704, Func Offset: 0x3f4
-	// Line 4139, Address: 0x267708, Func Offset: 0x3f8
-	// Line 4137, Address: 0x26770c, Func Offset: 0x3fc
-	// Line 4146, Address: 0x267714, Func Offset: 0x404
-	// Line 4137, Address: 0x267718, Func Offset: 0x408
-	// Line 4142, Address: 0x26771c, Func Offset: 0x40c
-	// Line 4146, Address: 0x267720, Func Offset: 0x410
-	// Line 4147, Address: 0x267724, Func Offset: 0x414
-	// Line 4137, Address: 0x267728, Func Offset: 0x418
-	// Line 4138, Address: 0x267738, Func Offset: 0x428
-	// Line 4139, Address: 0x267780, Func Offset: 0x470
-	// Line 4140, Address: 0x267784, Func Offset: 0x474
-	// Line 4141, Address: 0x267788, Func Offset: 0x478
-	// Line 4142, Address: 0x267790, Func Offset: 0x480
-	// Line 4143, Address: 0x267794, Func Offset: 0x484
-	// Line 4144, Address: 0x2677a0, Func Offset: 0x490
-	// Line 4145, Address: 0x2677a8, Func Offset: 0x498
-	// Line 4146, Address: 0x2677bc, Func Offset: 0x4ac
-	// Line 4147, Address: 0x2677c8, Func Offset: 0x4b8
-	// Line 4148, Address: 0x2677cc, Func Offset: 0x4bc
-	// Line 4149, Address: 0x2677d0, Func Offset: 0x4c0
-	// Line 4155, Address: 0x2677e0, Func Offset: 0x4d0
-	// Line 4156, Address: 0x2677f8, Func Offset: 0x4e8
-	// Line 4162, Address: 0x267800, Func Offset: 0x4f0
-	// Line 4158, Address: 0x267808, Func Offset: 0x4f8
-	// Line 4162, Address: 0x26780c, Func Offset: 0x4fc
-	// Line 4167, Address: 0x267810, Func Offset: 0x500
-	// Line 4156, Address: 0x267814, Func Offset: 0x504
-	// Line 4167, Address: 0x267820, Func Offset: 0x510
-	// Line 4161, Address: 0x267824, Func Offset: 0x514
-	// Line 4162, Address: 0x267828, Func Offset: 0x518
-	// Line 4166, Address: 0x26782c, Func Offset: 0x51c
-	// Line 4156, Address: 0x267830, Func Offset: 0x520
-	// Line 4167, Address: 0x267838, Func Offset: 0x528
-	// Line 4156, Address: 0x26783c, Func Offset: 0x52c
-	// Line 4157, Address: 0x267844, Func Offset: 0x534
-	// Line 4158, Address: 0x26788c, Func Offset: 0x57c
-	// Line 4159, Address: 0x267890, Func Offset: 0x580
-	// Line 4160, Address: 0x267894, Func Offset: 0x584
-	// Line 4161, Address: 0x26789c, Func Offset: 0x58c
-	// Line 4162, Address: 0x2678a0, Func Offset: 0x590
-	// Line 4163, Address: 0x2678ac, Func Offset: 0x59c
-	// Line 4164, Address: 0x2678b4, Func Offset: 0x5a4
-	// Line 4165, Address: 0x2678c0, Func Offset: 0x5b0
-	// Line 4166, Address: 0x2678c4, Func Offset: 0x5b4
-	// Line 4167, Address: 0x2678c8, Func Offset: 0x5b8
-	// Line 4168, Address: 0x2678d4, Func Offset: 0x5c4
-	// Line 4173, Address: 0x2678e4, Func Offset: 0x5d4
-	// Func End, Address: 0x267914, Func Offset: 0x604
-	scePrintf("bhSetDansaLimitAtari - UNIMPLEMENTED!\n");
+    // modified order of local variables in regards to DWARF
+    ATR_WORK* hp;  
+    ATR_WORK* exp; 
+    ATR_WORK* pop; 
+    float px1;      
+    float pz2;      
+    float px3;      
+    float tmp; // not from DWARF 
+    float arh;      
+    float px0;      
+    float pz0;      
+    int i;          
+    int etc_n;      
+    float pz1; // not from DWARF       
+
+    sys->dla_n = 0;
+    
+    px0 = pp->px;
+    pz0 = pp->pz;
+    
+    arh = pp->ar;
+    
+    pz1 = pz0 - arh;
+    px1 = px0 + arh;
+    pz2 = pz0 + arh;
+    px3 = px0 - arh;
+    
+    tmp = 0.5f * arh;
+    
+    pop = NULL;
+    
+    etc_n = rom->etc_n + sys->metc_n;
+    
+    for (i = 0; i < etc_n; i++) 
+    {
+        if (i < rom->etc_n) 
+        {
+            exp = &rom->etcp[i];
+        } 
+        else 
+        {
+            exp = &sys->metcp[i - rom->etc_n];
+        }
+        
+        if (((exp->flg & 0x1)) && (exp->type == 2) && (exp->prm0 != 0) && (exp->flr_no == pp->flr_no) && ((exp->px <= px0) && ((exp->px + exp->w) >= px0)) && ((exp->pz <= pz0) && ((exp->pz + exp->d) >= pz0))) 
+        {
+            pop = exp;
+            break; 
+        } 
+    }
+    
+    if (pop == NULL) 
+    {
+        pop = pp->dan_ap;
+    } 
+    else 
+    {
+        pp->dan_ap = pop;
+    }
+    
+    if (pop == NULL) 
+    {
+        pp->stflg &= ~0x20000;
+        return;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px0, pz1) == NULL) 
+    {
+        sys->dla_n++;
+        
+        hp = &sys->mwalp[sys->mwal_n++];
+        
+        hp->flg  = 1;
+        hp->type = 1;
+        
+        hp->flr_no = pp->flr_no;
+        
+        hp->attr = 0x800000;
+        
+        hp->px = pop->px - (2.0f * arh);
+        hp->py = pop->py;
+        hp->pz = pop->pz - ((2.0f * arh) + tmp);
+        
+        hp->w = pop->w + (4.0f * arh);
+        hp->h = 1.0f;
+        hp->d = 2.0f * arh;
+        
+        hp->prm0 = hp->prm1 = hp->prm2 = hp->prm3 = 0;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px1, pz0) == NULL)
+    {
+        sys->dla_n++;
+        
+        hp = &sys->mwalp[sys->mwal_n++];
+        
+        hp->flg  = 1;
+        hp->type = 1;
+        
+        hp->flr_no = pp->flr_no;
+        
+        hp->attr = 0x800000;
+        
+        hp->px = tmp + (pop->px + pop->w);
+        hp->py = pop->py;
+        hp->pz = pop->pz - (2.0f * arh);
+        
+        hp->w = 2.0f * arh;
+        hp->h = 1.0f;
+        hp->d = pop->d + (4.0f * arh);
+        
+        hp->prm0 = hp->prm1 = hp->prm2 = hp->prm3 = 0;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px0, pz2) == NULL)
+    {
+        sys->dla_n++;
+        
+        hp = &sys->mwalp[sys->mwal_n++];
+        
+        hp->flg  = 1;
+        hp->type = 1;
+        
+        hp->flr_no = pp->flr_no;
+        
+        hp->attr = 0x800000;
+        
+        hp->px = pop->px - (2.0f * arh);
+        hp->py = pop->py;
+        hp->pz = tmp + (pop->pz + pop->d);
+        
+        hp->w = pop->w + (4.0f * arh);
+        hp->h = 1.0f;
+        hp->d = 2.0f * arh;
+        
+        hp->prm0 = hp->prm1 = hp->prm2 = hp->prm3 = 0;
+    }
+    
+    if (bhCheckDansaAtari(pp->flr_no, px3, pz0) == NULL) 
+    {
+        sys->dla_n++;
+        
+        hp = &sys->mwalp[sys->mwal_n++];
+        
+        hp->flg  = 1;
+        hp->type = 1;
+        
+        hp->flr_no = pp->flr_no;
+        
+        hp->attr = 0x800000;
+        
+        hp->px = pop->px - ((2.0f * arh) + tmp);
+        hp->py = pop->py;
+        hp->pz = pop->pz - (2.0f * arh);
+        
+        hp->w = 2.0f * arh;
+        hp->h = 1.0f;
+        hp->d = pop->d + (4.0f * arh);
+        
+        hp->prm0 = hp->prm1 = hp->prm2 = hp->prm3 = 0;
+    }
 }
 
 // 100% matching! 
