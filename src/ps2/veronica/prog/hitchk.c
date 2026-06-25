@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
@@ -4368,82 +4369,80 @@ void bhResetAtariAttr()
     } 
 }
 
-// 
-// Start address: 0x268ce0
+// 100% matching!
 void bhCheckPlayer(BH_PWORK* pp)
 {
-	int r;
-	float ppz;
-	float ppy;
-	float ppx;
-	float ln;
-	float ey;
-	float pz;
-	float px;
-	//_anon20 vec;
-	// Line 4609, Address: 0x268ce0, Func Offset: 0
-	// Line 4617, Address: 0x268d08, Func Offset: 0x28
-	// Line 4620, Address: 0x268d44, Func Offset: 0x64
-	// Line 4622, Address: 0x268d4c, Func Offset: 0x6c
-	// Line 4623, Address: 0x268d60, Func Offset: 0x80
-	// Line 4624, Address: 0x268d68, Func Offset: 0x88
-	// Line 4625, Address: 0x268d6c, Func Offset: 0x8c
-	// Line 4623, Address: 0x268d70, Func Offset: 0x90
-	// Line 4624, Address: 0x268d74, Func Offset: 0x94
-	// Line 4625, Address: 0x268d78, Func Offset: 0x98
-	// Line 4623, Address: 0x268d7c, Func Offset: 0x9c
-	// Line 4624, Address: 0x268d80, Func Offset: 0xa0
-	// Line 4626, Address: 0x268d84, Func Offset: 0xa4
-	// Line 4627, Address: 0x268d8c, Func Offset: 0xac
-	// Line 4628, Address: 0x268d94, Func Offset: 0xb4
-	// Line 4629, Address: 0x268d9c, Func Offset: 0xbc
-	// Line 4627, Address: 0x268da4, Func Offset: 0xc4
-	// Line 4628, Address: 0x268da8, Func Offset: 0xc8
-	// Line 4629, Address: 0x268dac, Func Offset: 0xcc
-	// Line 4634, Address: 0x268db0, Func Offset: 0xd0
-	// Line 4635, Address: 0x268db8, Func Offset: 0xd8
-	// Line 4632, Address: 0x268dc0, Func Offset: 0xe0
-	// Line 4634, Address: 0x268dc8, Func Offset: 0xe8
-	// Line 4635, Address: 0x268dcc, Func Offset: 0xec
-	// Line 4634, Address: 0x268dd0, Func Offset: 0xf0
-	// Line 4635, Address: 0x268dd4, Func Offset: 0xf4
-	// Line 4636, Address: 0x268dd8, Func Offset: 0xf8
-	// Line 4632, Address: 0x268ddc, Func Offset: 0xfc
-	// Line 4636, Address: 0x268de0, Func Offset: 0x100
-	// Line 4637, Address: 0x268de8, Func Offset: 0x108
-	// Line 4639, Address: 0x268e3c, Func Offset: 0x15c
-	// Line 4640, Address: 0x268e5c, Func Offset: 0x17c
-	// Line 4641, Address: 0x268e78, Func Offset: 0x198
-	// Line 4643, Address: 0x268e84, Func Offset: 0x1a4
-	// Line 4641, Address: 0x268e8c, Func Offset: 0x1ac
-	// Line 4643, Address: 0x268e90, Func Offset: 0x1b0
-	// Line 4644, Address: 0x268e9c, Func Offset: 0x1bc
-	// Line 4645, Address: 0x268eb4, Func Offset: 0x1d4
-	// Line 4650, Address: 0x268ec8, Func Offset: 0x1e8
-	// Line 4651, Address: 0x268ed0, Func Offset: 0x1f0
-	// Line 4652, Address: 0x268ed4, Func Offset: 0x1f4
-	// Line 4654, Address: 0x268ed8, Func Offset: 0x1f8
-	// Line 4651, Address: 0x268edc, Func Offset: 0x1fc
-	// Line 4653, Address: 0x268ee0, Func Offset: 0x200
-	// Line 4651, Address: 0x268ee4, Func Offset: 0x204
-	// Line 4655, Address: 0x268ee8, Func Offset: 0x208
-	// Line 4656, Address: 0x268ef4, Func Offset: 0x214
-	// Line 4658, Address: 0x268ef8, Func Offset: 0x218
-	// Line 4656, Address: 0x268efc, Func Offset: 0x21c
-	// Line 4657, Address: 0x268f04, Func Offset: 0x224
-	// Line 4658, Address: 0x268f10, Func Offset: 0x230
-	// Line 4659, Address: 0x268f1c, Func Offset: 0x23c
-	// Line 4658, Address: 0x268f20, Func Offset: 0x240
-	// Line 4659, Address: 0x268f28, Func Offset: 0x248
-	// Line 4660, Address: 0x268f3c, Func Offset: 0x25c
-	// Line 4661, Address: 0x268f4c, Func Offset: 0x26c
-	// Line 4663, Address: 0x268f5c, Func Offset: 0x27c
-	// Line 4664, Address: 0x268f60, Func Offset: 0x280
-	// Line 4663, Address: 0x268f64, Func Offset: 0x284
-	// Line 4664, Address: 0x268f6c, Func Offset: 0x28c
-	// Line 4667, Address: 0x268f7c, Func Offset: 0x29c
-	// Func End, Address: 0x268fa8, Func Offset: 0x2c8
-	scePrintf("bhCheckPlayer - UNIMPLEMENTED!\n");
+    NJS_VECTOR vec;
+    float px, pz;     
+    float ey;    
+    float ln;       
+    float ppx, ppy, ppz;     
+    int r;        
+    float car; // not from DWARF
+
+    if ((!(pp->flg & 0x8)) || ((pp->stflg & 0x40000000)) || ((pp->flg2 & 0x1)) || (!(pp->flg & 0x40))) 
+    {
+        return;
+    }
+    
+    if (!(plp->flg & 0x8)) 
+    {
+        ppx = ((EXP_WORK*)plp->exp0)->nlxb + plp->aox; 
+        ppy = ((EXP_WORK*)plp->exp0)->nlyb + plp->aoy;
+        ppz = ((EXP_WORK*)plp->exp0)->nlzb + plp->aoz;
+    }
+    else 
+    {
+        ppx = plp->px + plp->aox;
+        ppy = plp->py + plp->aoy;
+        ppz = plp->pz + plp->aoz;
+    }
+
+    ey = pp->py + pp->aoy;
+    
+    px = ppx - (pp->px + pp->aox); 
+    pz = ppz - (pp->pz + pp->aoz);
+    
+    ln = njSqrt((px * px) + (pz * pz)); 
+    
+    car = plp->car + pp->car;
+    
+    if ((ln < car) && ((ppy <= (ey + pp->cah)) && ((ppy + plp->cah) >= ey))) 
+    {
+        if (((plp->flg2 & 0x1)) || ((pp->flg2 & 0x40))) 
+        {
+            r = 10430.381f * atan2f(px, pz);
+            
+            car = plp->car + pp->car;
+            
+            njSinCos(r, &pp->px, &pp->pz);
+            
+            pp->px = (ppx - (pp->px * car)) - pp->aox;
+            pp->pz = (ppz - (pp->pz * car)) - pp->aoz;
+        } 
+        else 
+        {
+            car = 0.5f * (car - ln);
+            
+            vec.x = px;
+            vec.y = 0;
+            vec.z = pz;
+            
+            njUnitVector(&vec);
+            
+            vec.x *= car;
+            vec.z *= car;
+            
+            plp->px += vec.x;
+            plp->pz += vec.z;
+            
+            pp->px -= vec.x;
+            pp->pz -= vec.z;
+        }
+        
+        pp->stflg  |= 0x4;
+        plp->stflg |= 0x2;
+    }
 }
 
 // 
