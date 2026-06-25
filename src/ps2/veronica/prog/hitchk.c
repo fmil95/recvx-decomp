@@ -2892,138 +2892,201 @@ int bhCheckInnerTriangle(ATR_WORK* hp, NJS_POINT3* pos, float ar, float ah)
     return 1;
 }
 
-// 
-// Start address: 0x264e50
+// 100% matching!
 int bhCheckInnerTriangle2(ATR_WORK* hp, NJS_POINT3* pos, float aw, float ad, float ah)
 {
-	float h;
-	float pz;
-	float px;
-	//_anon33 pd;
-	//_anon33 pc;
-	//_anon33 pb;
-	//_anon33 pa;
-	//_anon33 ps;
-	// Line 3077, Address: 0x264e50, Func Offset: 0
-	// Line 3082, Address: 0x264e54, Func Offset: 0x4
-	// Line 3077, Address: 0x264e58, Func Offset: 0x8
-	// Line 3082, Address: 0x264e7c, Func Offset: 0x2c
-	// Line 3084, Address: 0x264eb4, Func Offset: 0x64
-	// Line 3086, Address: 0x264ef0, Func Offset: 0xa0
-	// Line 3087, Address: 0x264f0c, Func Offset: 0xbc
-	// Line 3088, Address: 0x264f10, Func Offset: 0xc0
-	// Line 3089, Address: 0x264f14, Func Offset: 0xc4
-	// Line 3090, Address: 0x264f1c, Func Offset: 0xcc
-	// Line 3093, Address: 0x264f28, Func Offset: 0xd8
-	// Line 3094, Address: 0x264f44, Func Offset: 0xf4
-	// Line 3095, Address: 0x264f48, Func Offset: 0xf8
-	// Line 3096, Address: 0x264f4c, Func Offset: 0xfc
-	// Line 3097, Address: 0x264f54, Func Offset: 0x104
-	// Line 3100, Address: 0x264f60, Func Offset: 0x110
-	// Line 3101, Address: 0x264fa8, Func Offset: 0x158
-	// Line 3103, Address: 0x264fb4, Func Offset: 0x164
-	// Line 3105, Address: 0x264fdc, Func Offset: 0x18c
-	// Line 3106, Address: 0x265008, Func Offset: 0x1b8
-	// Line 3110, Address: 0x265038, Func Offset: 0x1e8
-	// Line 3111, Address: 0x26503c, Func Offset: 0x1ec
-	// Line 3114, Address: 0x265040, Func Offset: 0x1f0
-	// Line 3112, Address: 0x265044, Func Offset: 0x1f4
-	// Line 3113, Address: 0x265048, Func Offset: 0x1f8
-	// Line 3114, Address: 0x265050, Func Offset: 0x200
-	// Line 3116, Address: 0x265084, Func Offset: 0x234
-	// Line 3117, Address: 0x265088, Func Offset: 0x238
-	// Line 3121, Address: 0x26508c, Func Offset: 0x23c
-	// Line 3124, Address: 0x265090, Func Offset: 0x240
-	// Line 3116, Address: 0x265094, Func Offset: 0x244
-	// Line 3124, Address: 0x265098, Func Offset: 0x248
-	// Line 3116, Address: 0x2650a0, Func Offset: 0x250
-	// Line 3117, Address: 0x2650a4, Func Offset: 0x254
-	// Line 3118, Address: 0x2650a8, Func Offset: 0x258
-	// Line 3124, Address: 0x2650ac, Func Offset: 0x25c
-	// Line 3118, Address: 0x2650b4, Func Offset: 0x264
-	// Line 3119, Address: 0x2650bc, Func Offset: 0x26c
-	// Line 3120, Address: 0x2650c4, Func Offset: 0x274
-	// Line 3119, Address: 0x2650c8, Func Offset: 0x278
-	// Line 3121, Address: 0x2650cc, Func Offset: 0x27c
-	// Line 3122, Address: 0x2650d8, Func Offset: 0x288
-	// Line 3123, Address: 0x2650e4, Func Offset: 0x294
-	// Line 3124, Address: 0x2650ec, Func Offset: 0x29c
-	// Line 3127, Address: 0x265104, Func Offset: 0x2b4
-	// Line 3125, Address: 0x265108, Func Offset: 0x2b8
-	// Line 3127, Address: 0x26510c, Func Offset: 0x2bc
-	// Line 3130, Address: 0x265138, Func Offset: 0x2e8
-	// Line 3131, Address: 0x26513c, Func Offset: 0x2ec
-	// Line 3135, Address: 0x265140, Func Offset: 0x2f0
-	// Line 3130, Address: 0x265144, Func Offset: 0x2f4
-	// Line 3131, Address: 0x265148, Func Offset: 0x2f8
-	// Line 3135, Address: 0x26514c, Func Offset: 0x2fc
-	// Line 3138, Address: 0x265150, Func Offset: 0x300
-	// Line 3131, Address: 0x265158, Func Offset: 0x308
-	// Line 3138, Address: 0x26515c, Func Offset: 0x30c
-	// Line 3131, Address: 0x265164, Func Offset: 0x314
-	// Line 3138, Address: 0x265168, Func Offset: 0x318
-	// Line 3131, Address: 0x26516c, Func Offset: 0x31c
-	// Line 3132, Address: 0x265170, Func Offset: 0x320
-	// Line 3133, Address: 0x26517c, Func Offset: 0x32c
-	// Line 3134, Address: 0x265188, Func Offset: 0x338
-	// Line 3135, Address: 0x265198, Func Offset: 0x348
-	// Line 3136, Address: 0x26519c, Func Offset: 0x34c
-	// Line 3137, Address: 0x2651a8, Func Offset: 0x358
-	// Line 3138, Address: 0x2651b0, Func Offset: 0x360
-	// Line 3141, Address: 0x2651c8, Func Offset: 0x378
-	// Line 3139, Address: 0x2651cc, Func Offset: 0x37c
-	// Line 3141, Address: 0x2651d0, Func Offset: 0x380
-	// Line 3144, Address: 0x2651fc, Func Offset: 0x3ac
-	// Line 3145, Address: 0x265200, Func Offset: 0x3b0
-	// Line 3149, Address: 0x265204, Func Offset: 0x3b4
-	// Line 3152, Address: 0x265208, Func Offset: 0x3b8
-	// Line 3144, Address: 0x26520c, Func Offset: 0x3bc
-	// Line 3152, Address: 0x265210, Func Offset: 0x3c0
-	// Line 3144, Address: 0x265218, Func Offset: 0x3c8
-	// Line 3145, Address: 0x26521c, Func Offset: 0x3cc
-	// Line 3146, Address: 0x265220, Func Offset: 0x3d0
-	// Line 3152, Address: 0x265224, Func Offset: 0x3d4
-	// Line 3146, Address: 0x26522c, Func Offset: 0x3dc
-	// Line 3147, Address: 0x265234, Func Offset: 0x3e4
-	// Line 3148, Address: 0x26523c, Func Offset: 0x3ec
-	// Line 3147, Address: 0x265240, Func Offset: 0x3f0
-	// Line 3149, Address: 0x265244, Func Offset: 0x3f4
-	// Line 3150, Address: 0x265250, Func Offset: 0x400
-	// Line 3151, Address: 0x26525c, Func Offset: 0x40c
-	// Line 3152, Address: 0x265264, Func Offset: 0x414
-	// Line 3155, Address: 0x26527c, Func Offset: 0x42c
-	// Line 3153, Address: 0x265280, Func Offset: 0x430
-	// Line 3155, Address: 0x265284, Func Offset: 0x434
-	// Line 3158, Address: 0x2652b0, Func Offset: 0x460
-	// Line 3159, Address: 0x2652b4, Func Offset: 0x464
-	// Line 3163, Address: 0x2652b8, Func Offset: 0x468
-	// Line 3158, Address: 0x2652bc, Func Offset: 0x46c
-	// Line 3159, Address: 0x2652c0, Func Offset: 0x470
-	// Line 3163, Address: 0x2652c4, Func Offset: 0x474
-	// Line 3166, Address: 0x2652c8, Func Offset: 0x478
-	// Line 3159, Address: 0x2652d0, Func Offset: 0x480
-	// Line 3166, Address: 0x2652d4, Func Offset: 0x484
-	// Line 3159, Address: 0x2652dc, Func Offset: 0x48c
-	// Line 3166, Address: 0x2652e0, Func Offset: 0x490
-	// Line 3159, Address: 0x2652e4, Func Offset: 0x494
-	// Line 3160, Address: 0x2652e8, Func Offset: 0x498
-	// Line 3161, Address: 0x2652f4, Func Offset: 0x4a4
-	// Line 3162, Address: 0x265300, Func Offset: 0x4b0
-	// Line 3163, Address: 0x265310, Func Offset: 0x4c0
-	// Line 3164, Address: 0x265314, Func Offset: 0x4c4
-	// Line 3165, Address: 0x265320, Func Offset: 0x4d0
-	// Line 3166, Address: 0x265328, Func Offset: 0x4d8
-	// Line 3169, Address: 0x265340, Func Offset: 0x4f0
-	// Line 3167, Address: 0x265344, Func Offset: 0x4f4
-	// Line 3169, Address: 0x265348, Func Offset: 0x4f8
-	// Line 3173, Address: 0x265374, Func Offset: 0x524
-	// Line 3174, Address: 0x26539c, Func Offset: 0x54c
-	// Line 3173, Address: 0x2653a4, Func Offset: 0x554
-	// Line 3174, Address: 0x2653a8, Func Offset: 0x558
-	// Line 3176, Address: 0x2653c8, Func Offset: 0x578
-	// Line 3177, Address: 0x2653cc, Func Offset: 0x57c
-	// Func End, Address: 0x2653f8, Func Offset: 0x5a8
-	scePrintf("bhCheckInnerTriangle2 - UNIMPLEMENTED!\n");
+    NJS_POINT2 ps, pa, pb, pc, pd;     
+    float px, pz;        
+    float h, w, d;    // w and d are not from DWARF
+    float minx, maxx; // not from DWARF
+	float minz, maxz; // not from DWARF
+    float abx, abz;   // not from DWARF
+  
+    if (hp->h) 
+    {
+        h = hp->h;
+    } 
+    else 
+    {
+        h = rom->h;
+    }
+    
+    if ((hp->py > (pos->y + ah)) || ((hp->py + h) < pos->y)) 
+    {
+        return 0;
+    } 
+    
+    w = hp->w;
+    
+    if (w > 0) 
+    {
+        minx = hp->px;
+        maxx = aw + (minx + w);
+    } 
+    else 
+    {
+        maxx = hp->px;
+        minx = (maxx + w) - aw;
+    }
+    
+    d = hp->d;
+    
+    if (d > 0) 
+    { 
+        minz = hp->pz;
+        maxz = ad + (minz + d);
+    } 
+    else 
+    {
+        maxz = hp->pz;
+        minz = (maxz + d) - ad;
+    }
+    
+    if (((minx > pos->x) || (maxx <= pos->x)) || ((minz > pos->z) || (maxz <= pos->z)))
+    {
+    	return 0;
+	}
+    
+    if ((!aw) && (!ad)) 
+    {
+        abx = fabsf(d / (w / (pos->x - hp->px)));
+        abz = fabsf((hp->pz + hp->d) - pos->z);
+        
+        if (abz <= abx) 
+        {
+            return 0;
+        }
+    }
+    else 
+    {
+        px = hp->px;
+        pz = hp->pz;
+        
+        ps.x = pos->x;
+        ps.y = pos->z;
+        
+        switch (hp->id) 
+        {                     
+        case 0:
+            pa.x = px + hp->w;
+            pa.y = pz;
+            
+            pb.x = pa.x + aw;
+            pb.y = pa.y + ad;
+            
+            pc.x = px;
+            pc.y = pz + hp->d;
+            
+            pd.x = pc.x + aw;
+            pd.y = pc.y + ad;
+            
+            if (bhCheckInnerP4(&ps, &pa, &pb, &pc, &pd) != 0) 
+            {
+                return 1;
+            }
+            
+            px += aw;
+            pz += ad;
+            
+            if ((px > pos->x) || (pz > pos->z)) 
+            {
+                return 0;
+            }
+            
+            break;
+        case 1:
+            pa.x = px + aw;
+            pa.y = (pz + hp->d) - ad;
+            
+            pb.x = pa.x - aw;
+            pb.y = pa.y + ad;
+            
+            pc.x = aw + (px + hp->w);
+            pc.y = pz - ad;
+            
+            pd.x = pc.x - aw;
+            pd.y = pc.y + ad;
+            
+            if (bhCheckInnerP4(&ps, &pa, &pb, &pc, &pd) != 0) 
+            {
+                return 1;
+            }
+            
+            px += aw;
+            pz -= ad;
+            
+            if ((px > pos->x) || (pz <= pos->z)) 
+            {
+                return 0;
+            }
+            
+            break;
+        case 2:
+            pa.x = px + hp->w;
+            pa.y = pz;
+            
+            pb.x = pa.x - aw;
+            pb.y = pa.y + ad;
+            
+            pc.x = px;
+            pc.y = pz + hp->d;
+            
+            pd.x = pc.x - aw;
+            pd.y = pc.y + ad;
+            
+            if (bhCheckInnerP4(&ps, &pa, &pb, &pc, &pd) != 0) 
+            {
+                return 1;
+            }
+            
+            px -= aw;
+            pz += ad;
+            
+            if ((px <= pos->x) || (pz > pos->z)) 
+            {
+                return 0;
+            }
+            
+            break;
+        case 3:
+            pa.x = px - aw;
+            pa.y = (pz + hp->d) - ad;
+            
+            pb.x = pa.x + aw;
+            pb.y = pa.y + ad;
+            
+            pc.x = (px + hp->w) - aw;
+            pc.y = pz - ad;
+            
+            pd.x = pc.x + aw;
+            pd.y = pc.y + ad;
+            
+            if (bhCheckInnerP4(&ps, &pa, &pb, &pc, &pd) != 0) 
+            {
+                return 1;
+            }
+            
+            px -= aw;
+            pz -= ad;
+            
+            if ((px <= pos->x) || (pz <= pos->z)) 
+            {
+                return 0;
+            }
+            
+            break;
+        }
+    
+        abx = fabsf(d / (w / (pos->x - px)));
+        abz = fabsf((pz + d) - pos->z);
+        
+        if (abz <= abx) 
+        {
+            return 0; 
+        }
+    }
+    
+    return 1;
 }
 
 // 100% matching!
