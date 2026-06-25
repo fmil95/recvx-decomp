@@ -3135,135 +3135,192 @@ int bhCheckInnerTriangle3(ATR_WORK* hp, NJS_POINT3* pos)
 	return 1;
 }
 
-// 
-// Start address: 0x2655b0
+// 100% matching!
 int bhCheckBox(ATR_WORK* hp, NJS_POINT3* pos, float ar, float ah, unsigned int aflg)
 {
-	int r;
-	float abz;
-	float abx;
-	float h;
-	float wpz;
-	float wpx;
-	float ln;
-	float zn;
-	float xn;
-	float pz;
-	float px;
-	// Line 3260, Address: 0x2655b0, Func Offset: 0
-	// Line 3266, Address: 0x2655b4, Func Offset: 0x4
-	// Line 3260, Address: 0x2655b8, Func Offset: 0x8
-	// Line 3266, Address: 0x2655dc, Func Offset: 0x2c
-	// Line 3267, Address: 0x265614, Func Offset: 0x64
-	// Line 3268, Address: 0x265624, Func Offset: 0x74
-	// Line 3271, Address: 0x265628, Func Offset: 0x78
-	// Line 3267, Address: 0x26562c, Func Offset: 0x7c
-	// Line 3268, Address: 0x265630, Func Offset: 0x80
-	// Line 3273, Address: 0x265634, Func Offset: 0x84
-	// Line 3269, Address: 0x265638, Func Offset: 0x88
-	// Line 3267, Address: 0x26563c, Func Offset: 0x8c
-	// Line 3268, Address: 0x265640, Func Offset: 0x90
-	// Line 3271, Address: 0x265644, Func Offset: 0x94
-	// Line 3268, Address: 0x26564c, Func Offset: 0x9c
-	// Line 3271, Address: 0x265650, Func Offset: 0xa0
-	// Line 3272, Address: 0x265658, Func Offset: 0xa8
-	// Line 3273, Address: 0x26565c, Func Offset: 0xac
-	// Line 3276, Address: 0x2656e0, Func Offset: 0x130
-	// Line 3277, Address: 0x2656f0, Func Offset: 0x140
-	// Line 3280, Address: 0x265700, Func Offset: 0x150
-	// Line 3281, Address: 0x26570c, Func Offset: 0x15c
-	// Line 3282, Address: 0x265718, Func Offset: 0x168
-	// Line 3284, Address: 0x265744, Func Offset: 0x194
-	// Line 3285, Address: 0x26574c, Func Offset: 0x19c
-	// Line 3284, Address: 0x265754, Func Offset: 0x1a4
-	// Line 3285, Address: 0x265758, Func Offset: 0x1a8
-	// Line 3286, Address: 0x26575c, Func Offset: 0x1ac
-	// Line 3287, Address: 0x265768, Func Offset: 0x1b8
-	// Line 3288, Address: 0x265778, Func Offset: 0x1c8
-	// Line 3290, Address: 0x265798, Func Offset: 0x1e8
-	// Line 3291, Address: 0x2657a8, Func Offset: 0x1f8
-	// Line 3297, Address: 0x2657b0, Func Offset: 0x200
-	// Line 3291, Address: 0x2657b4, Func Offset: 0x204
-	// Line 3292, Address: 0x2657c0, Func Offset: 0x210
-	// Line 3297, Address: 0x2657d0, Func Offset: 0x220
-	// Line 3299, Address: 0x2657d8, Func Offset: 0x228
-	// Line 3309, Address: 0x2657e4, Func Offset: 0x234
-	// Line 3310, Address: 0x2657fc, Func Offset: 0x24c
-	// Line 3311, Address: 0x265800, Func Offset: 0x250
-	// Line 3315, Address: 0x265808, Func Offset: 0x258
-	// Line 3316, Address: 0x265810, Func Offset: 0x260
-	// Line 3315, Address: 0x265814, Func Offset: 0x264
-	// Line 3316, Address: 0x265818, Func Offset: 0x268
-	// Line 3317, Address: 0x265824, Func Offset: 0x274
-	// Line 3320, Address: 0x265850, Func Offset: 0x2a0
-	// Line 3319, Address: 0x265858, Func Offset: 0x2a8
-	// Line 3320, Address: 0x265860, Func Offset: 0x2b0
-	// Line 3319, Address: 0x265868, Func Offset: 0x2b8
-	// Line 3320, Address: 0x26586c, Func Offset: 0x2bc
-	// Line 3321, Address: 0x265870, Func Offset: 0x2c0
-	// Line 3322, Address: 0x26587c, Func Offset: 0x2cc
-	// Line 3323, Address: 0x26588c, Func Offset: 0x2dc
-	// Line 3325, Address: 0x2658ac, Func Offset: 0x2fc
-	// Line 3326, Address: 0x2658bc, Func Offset: 0x30c
-	// Line 3332, Address: 0x2658c4, Func Offset: 0x314
-	// Line 3326, Address: 0x2658c8, Func Offset: 0x318
-	// Line 3327, Address: 0x2658d4, Func Offset: 0x324
-	// Line 3332, Address: 0x2658e8, Func Offset: 0x338
-	// Line 3334, Address: 0x2658f0, Func Offset: 0x340
-	// Line 3344, Address: 0x2658fc, Func Offset: 0x34c
-	// Line 3345, Address: 0x265914, Func Offset: 0x364
-	// Line 3346, Address: 0x265918, Func Offset: 0x368
-	// Line 3349, Address: 0x265920, Func Offset: 0x370
-	// Line 3352, Address: 0x265930, Func Offset: 0x380
-	// Line 3353, Address: 0x265940, Func Offset: 0x390
-	// Line 3354, Address: 0x26594c, Func Offset: 0x39c
-	// Line 3356, Address: 0x265978, Func Offset: 0x3c8
-	// Line 3357, Address: 0x265984, Func Offset: 0x3d4
-	// Line 3356, Address: 0x26598c, Func Offset: 0x3dc
-	// Line 3357, Address: 0x265994, Func Offset: 0x3e4
-	// Line 3358, Address: 0x265998, Func Offset: 0x3e8
-	// Line 3359, Address: 0x2659a4, Func Offset: 0x3f4
-	// Line 3360, Address: 0x2659b4, Func Offset: 0x404
-	// Line 3362, Address: 0x2659d4, Func Offset: 0x424
-	// Line 3363, Address: 0x2659e4, Func Offset: 0x434
-	// Line 3369, Address: 0x2659f0, Func Offset: 0x440
-	// Line 3363, Address: 0x2659f4, Func Offset: 0x444
-	// Line 3364, Address: 0x265a00, Func Offset: 0x450
-	// Line 3369, Address: 0x265a10, Func Offset: 0x460
-	// Line 3371, Address: 0x265a18, Func Offset: 0x468
-	// Line 3381, Address: 0x265a24, Func Offset: 0x474
-	// Line 3382, Address: 0x265a3c, Func Offset: 0x48c
-	// Line 3383, Address: 0x265a40, Func Offset: 0x490
-	// Line 3387, Address: 0x265a48, Func Offset: 0x498
-	// Line 3388, Address: 0x265a54, Func Offset: 0x4a4
-	// Line 3387, Address: 0x265a58, Func Offset: 0x4a8
-	// Line 3388, Address: 0x265a5c, Func Offset: 0x4ac
-	// Line 3389, Address: 0x265a68, Func Offset: 0x4b8
-	// Line 3391, Address: 0x265a94, Func Offset: 0x4e4
-	// Line 3392, Address: 0x265a9c, Func Offset: 0x4ec
-	// Line 3391, Address: 0x265aa4, Func Offset: 0x4f4
-	// Line 3392, Address: 0x265aa8, Func Offset: 0x4f8
-	// Line 3391, Address: 0x265aac, Func Offset: 0x4fc
-	// Line 3392, Address: 0x265ab0, Func Offset: 0x500
-	// Line 3391, Address: 0x265ab4, Func Offset: 0x504
-	// Line 3392, Address: 0x265ab8, Func Offset: 0x508
-	// Line 3393, Address: 0x265abc, Func Offset: 0x50c
-	// Line 3394, Address: 0x265ac8, Func Offset: 0x518
-	// Line 3395, Address: 0x265ad8, Func Offset: 0x528
-	// Line 3397, Address: 0x265af8, Func Offset: 0x548
-	// Line 3398, Address: 0x265b08, Func Offset: 0x558
-	// Line 3404, Address: 0x265b14, Func Offset: 0x564
-	// Line 3398, Address: 0x265b18, Func Offset: 0x568
-	// Line 3399, Address: 0x265b24, Func Offset: 0x574
-	// Line 3404, Address: 0x265b38, Func Offset: 0x588
-	// Line 3406, Address: 0x265b40, Func Offset: 0x590
-	// Line 3416, Address: 0x265b4c, Func Offset: 0x59c
-	// Line 3417, Address: 0x265b64, Func Offset: 0x5b4
-	// Line 3418, Address: 0x265b68, Func Offset: 0x5b8
-	// Line 3422, Address: 0x265b70, Func Offset: 0x5c0
-	// Line 3423, Address: 0x265b74, Func Offset: 0x5c4
-	// Func End, Address: 0x265ba0, Func Offset: 0x5f0
-	scePrintf("bhCheckBox - UNIMPLEMENTED!\n");
+    float px, pz;  
+    float xn, zn;  
+    float ln;  
+    float wpx, wpz; 
+    float h;  
+    float abx, abz; 
+    int r;    
+    
+    if (hp->h) 
+    {
+        h = hp->h;
+    } 
+    else
+    {
+        h = rom->h;
+    }
+    
+    wpx = hp->px + (0.5f * hp->w);
+    wpz = hp->pz + (0.5f * hp->d);
+    
+    px = hp->px - ar;
+    pz = hp->pz - ar;
+    
+    xn = hp->w + (2.0f * ar);
+    zn = hp->d + (2.0f * ar); 
+    
+    if ((((pos->x - px) >= 0) && ((pos->x - px) < xn)) && (((pos->z - pz) >= 0) && ((pos->z - pz) < zn)) && (((pos->y + ah) >= hp->py) && (pos->y <= (hp->py + h))))  
+    {
+        if (pos->x < wpx)
+        {
+            if (pos->z < wpz) 
+            {
+                abx = fabsf(pos->x - px);
+                abz = fabsf(pos->z - pz);
+                
+                if (((abx < ar) && (abz < ar)) && (!(aflg & 0x1))) 
+                {
+                    px = hp->px - pos->x;
+                    pz = hp->pz - pos->z;
+                    
+                    ln = njSqrt((px * px) + (pz * pz));
+                    
+                    if (ln <= ar) 
+                    {
+                        r = 10430.381f * atan2f(px, pz);
+                        
+                        njSinCos(r, &pos->x, &pos->z);
+                        
+                        pos->x = hp->px - (pos->x * ar); 
+                        pos->z = hp->pz - (pos->z * ar);
+                        
+                        return 1;
+                    }
+                    
+                    return 0;
+                }
+                
+                if (abx > abz) 
+                {
+                    pos->z = pz;
+                } 
+                else
+                {
+                    pos->x = px;
+                }
+                
+                return 1;
+            }
+            
+            abx = fabsf(pos->x - px);
+            abz = fabsf(pos->z - (pz + zn));
+            
+            if (((abx < ar) && (abz < ar)) && (!(aflg & 0x2))) 
+            {
+                px = hp->px - pos->x;
+                pz = (hp->pz + hp->d) - pos->z;
+                
+                ln = njSqrt((px * px) + (pz * pz));
+                
+                if (ln <= ar) 
+                {
+                    r = 10430.381f * atan2f(px, pz);
+                    
+                    njSinCos(r, &pos->x, &pos->z);
+                    
+                    pos->x = hp->px - (pos->x * ar);
+                    pos->z = (hp->pz + hp->d) - (pos->z * ar);
+                    
+                    return 1;
+                }
+                
+                return 0;
+            }
+            
+            if (abx > abz) 
+            {
+                pos->z = pz + zn;
+            } 
+            else 
+            {
+                pos->x = px;
+            }
+            
+            return 1;
+        }
+        
+        if (pos->z < wpz)
+        {
+            abx = fabsf(pos->x - (px + xn));
+            abz = fabsf(pos->z - pz);
+            
+            if (((abx < ar) && (abz < ar)) && (!(aflg & 0x4))) 
+            {
+                px = (hp->px + hp->w) - pos->x;
+                pz = hp->pz - pos->z;
+                
+                ln = njSqrt((px * px) + (pz * pz));
+                
+                if (ln <= ar)
+                {
+                    r = 10430.381f * atan2f(px, pz);
+                    
+                    njSinCos(r, &pos->x, &pos->z);
+                    
+                    pos->x = (hp->px + hp->w) - (pos->x * ar);
+                    pos->z = hp->pz - (pos->z * ar);
+                    
+                    return 1;
+                }
+                
+                return 0;
+            }
+            
+            if (abx > abz) 
+            {
+                pos->z = pz;
+            }
+            else
+            {
+                pos->x = px + xn;
+            }
+            
+            return 1;
+        }
+        
+        abx = fabsf(pos->x - (px + xn));
+        abz = fabsf(pos->z - (pz + zn));
+        
+        if (((abx < ar) && (abz < ar)) && (!(aflg & 0x8))) 
+        {
+            px = (hp->px + hp->w) - pos->x;
+            pz = (hp->pz + hp->d) - pos->z; 
+            
+            ln = njSqrt((px * px) + (pz * pz));
+            
+            if (ln <= ar) 
+            {
+                r = 10430.381f * atan2f(px, pz);
+                
+                njSinCos(r, &pos->x, &pos->z);
+                
+                pos->x = (hp->px + hp->w) - (pos->x * ar); 
+                pos->z = (hp->pz + hp->d) - (pos->z * ar); 
+                
+                return 1; 
+            }
+            
+            return 0;
+        }
+        
+        if (abx > abz) 
+        {
+            pos->z = pz + zn;
+        } 
+        else
+        {
+            pos->x = px + xn;
+        }
+        
+        return 1;
+    }
+    
+    return 0;
 }
 
 // 100% matching!
