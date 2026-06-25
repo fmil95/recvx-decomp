@@ -1916,158 +1916,300 @@ void bhControlComEvtScript()
 	scePrintf("bhControlComEvtScript - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2c0650
+// 100% matching!
 void bhControlComEvtKeyboard()
 {
-	int adt;
-	int sel;
-	int i;
-	//_anon7* ce;
-	// Line 1389, Address: 0x2c0650, Func Offset: 0
-	// Line 1390, Address: 0x2c0660, Func Offset: 0x10
-	// Line 1395, Address: 0x2c0674, Func Offset: 0x24
-	// Line 1397, Address: 0x2c06ac, Func Offset: 0x5c
-	// Line 1398, Address: 0x2c06b8, Func Offset: 0x68
-	// Line 1399, Address: 0x2c06c8, Func Offset: 0x78
-	// Line 1400, Address: 0x2c06cc, Func Offset: 0x7c
-	// Line 1403, Address: 0x2c06d4, Func Offset: 0x84
-	// Line 1404, Address: 0x2c06d8, Func Offset: 0x88
-	// Line 1406, Address: 0x2c06dc, Func Offset: 0x8c
-	// Line 1407, Address: 0x2c0708, Func Offset: 0xb8
-	// Line 1408, Address: 0x2c0714, Func Offset: 0xc4
-	// Line 1409, Address: 0x2c0724, Func Offset: 0xd4
-	// Line 1411, Address: 0x2c072c, Func Offset: 0xdc
-	// Line 1412, Address: 0x2c073c, Func Offset: 0xec
-	// Line 1413, Address: 0x2c074c, Func Offset: 0xfc
-	// Line 1414, Address: 0x2c0750, Func Offset: 0x100
-	// Line 1417, Address: 0x2c0758, Func Offset: 0x108
-	// Line 1418, Address: 0x2c075c, Func Offset: 0x10c
-	// Line 1420, Address: 0x2c0760, Func Offset: 0x110
-	// Line 1422, Address: 0x2c0764, Func Offset: 0x114
-	// Line 1420, Address: 0x2c0770, Func Offset: 0x120
-	// Line 1421, Address: 0x2c0778, Func Offset: 0x128
-	// Line 1422, Address: 0x2c0780, Func Offset: 0x130
-	// Line 1423, Address: 0x2c0788, Func Offset: 0x138
-	// Line 1425, Address: 0x2c0790, Func Offset: 0x140
-	// Line 1426, Address: 0x2c07a0, Func Offset: 0x150
-	// Line 1427, Address: 0x2c07b0, Func Offset: 0x160
-	// Line 1428, Address: 0x2c07b4, Func Offset: 0x164
-	// Line 1431, Address: 0x2c07bc, Func Offset: 0x16c
-	// Line 1432, Address: 0x2c07c0, Func Offset: 0x170
-	// Line 1434, Address: 0x2c07c4, Func Offset: 0x174
-	// Line 1435, Address: 0x2c07c8, Func Offset: 0x178
-	// Line 1434, Address: 0x2c07d4, Func Offset: 0x184
-	// Line 1435, Address: 0x2c07d8, Func Offset: 0x188
-	// Line 1436, Address: 0x2c07e0, Func Offset: 0x190
-	// Line 1438, Address: 0x2c07e8, Func Offset: 0x198
-	// Line 1439, Address: 0x2c07f8, Func Offset: 0x1a8
-	// Line 1440, Address: 0x2c0808, Func Offset: 0x1b8
-	// Line 1441, Address: 0x2c080c, Func Offset: 0x1bc
-	// Line 1444, Address: 0x2c0814, Func Offset: 0x1c4
-	// Line 1445, Address: 0x2c0818, Func Offset: 0x1c8
-	// Line 1447, Address: 0x2c081c, Func Offset: 0x1cc
-	// Line 1449, Address: 0x2c0820, Func Offset: 0x1d0
-	// Line 1447, Address: 0x2c082c, Func Offset: 0x1dc
-	// Line 1448, Address: 0x2c0834, Func Offset: 0x1e4
-	// Line 1449, Address: 0x2c083c, Func Offset: 0x1ec
-	// Line 1450, Address: 0x2c0844, Func Offset: 0x1f4
-	// Line 1452, Address: 0x2c084c, Func Offset: 0x1fc
-	// Line 1453, Address: 0x2c085c, Func Offset: 0x20c
-	// Line 1454, Address: 0x2c086c, Func Offset: 0x21c
-	// Line 1455, Address: 0x2c0870, Func Offset: 0x220
-	// Line 1458, Address: 0x2c0878, Func Offset: 0x228
-	// Line 1459, Address: 0x2c087c, Func Offset: 0x22c
-	// Line 1461, Address: 0x2c0880, Func Offset: 0x230
-	// Line 1462, Address: 0x2c08ac, Func Offset: 0x25c
-	// Line 1463, Address: 0x2c08b8, Func Offset: 0x268
-	// Line 1464, Address: 0x2c08c8, Func Offset: 0x278
-	// Line 1466, Address: 0x2c08d0, Func Offset: 0x280
-	// Line 1467, Address: 0x2c08e0, Func Offset: 0x290
-	// Line 1468, Address: 0x2c08f0, Func Offset: 0x2a0
-	// Line 1469, Address: 0x2c08f4, Func Offset: 0x2a4
-	// Line 1472, Address: 0x2c08fc, Func Offset: 0x2ac
-	// Line 1473, Address: 0x2c0900, Func Offset: 0x2b0
-	// Line 1475, Address: 0x2c0904, Func Offset: 0x2b4
-	// Line 1477, Address: 0x2c0908, Func Offset: 0x2b8
-	// Line 1475, Address: 0x2c0914, Func Offset: 0x2c4
-	// Line 1476, Address: 0x2c091c, Func Offset: 0x2cc
-	// Line 1477, Address: 0x2c0924, Func Offset: 0x2d4
-	// Line 1478, Address: 0x2c092c, Func Offset: 0x2dc
-	// Line 1480, Address: 0x2c0934, Func Offset: 0x2e4
-	// Line 1481, Address: 0x2c0944, Func Offset: 0x2f4
-	// Line 1482, Address: 0x2c0954, Func Offset: 0x304
-	// Line 1483, Address: 0x2c0958, Func Offset: 0x308
-	// Line 1486, Address: 0x2c0960, Func Offset: 0x310
-	// Line 1487, Address: 0x2c0964, Func Offset: 0x314
-	// Line 1489, Address: 0x2c0968, Func Offset: 0x318
-	// Line 1490, Address: 0x2c096c, Func Offset: 0x31c
-	// Line 1489, Address: 0x2c0978, Func Offset: 0x328
-	// Line 1490, Address: 0x2c097c, Func Offset: 0x32c
-	// Line 1491, Address: 0x2c0984, Func Offset: 0x334
-	// Line 1493, Address: 0x2c098c, Func Offset: 0x33c
-	// Line 1494, Address: 0x2c099c, Func Offset: 0x34c
-	// Line 1495, Address: 0x2c09ac, Func Offset: 0x35c
-	// Line 1496, Address: 0x2c09b0, Func Offset: 0x360
-	// Line 1499, Address: 0x2c09b8, Func Offset: 0x368
-	// Line 1500, Address: 0x2c09bc, Func Offset: 0x36c
-	// Line 1502, Address: 0x2c09c0, Func Offset: 0x370
-	// Line 1504, Address: 0x2c09c4, Func Offset: 0x374
-	// Line 1502, Address: 0x2c09d0, Func Offset: 0x380
-	// Line 1503, Address: 0x2c09d8, Func Offset: 0x388
-	// Line 1504, Address: 0x2c09e0, Func Offset: 0x390
-	// Line 1505, Address: 0x2c09e8, Func Offset: 0x398
-	// Line 1507, Address: 0x2c09f0, Func Offset: 0x3a0
-	// Line 1508, Address: 0x2c09f8, Func Offset: 0x3a8
-	// Line 1511, Address: 0x2c09fc, Func Offset: 0x3ac
-	// Line 1512, Address: 0x2c0a10, Func Offset: 0x3c0
-	// Line 1513, Address: 0x2c0a24, Func Offset: 0x3d4
-	// Line 1514, Address: 0x2c0a38, Func Offset: 0x3e8
-	// Line 1516, Address: 0x2c0a4c, Func Offset: 0x3fc
-	// Line 1518, Address: 0x2c0a6c, Func Offset: 0x41c
-	// Line 1520, Address: 0x2c0a70, Func Offset: 0x420
-	// Line 1518, Address: 0x2c0a74, Func Offset: 0x424
-	// Line 1519, Address: 0x2c0a7c, Func Offset: 0x42c
-	// Line 1520, Address: 0x2c0a94, Func Offset: 0x444
-	// Line 1522, Address: 0x2c0ac8, Func Offset: 0x478
-	// Line 1523, Address: 0x2c0acc, Func Offset: 0x47c
-	// Line 1524, Address: 0x2c0ae0, Func Offset: 0x490
-	// Line 1526, Address: 0x2c0ae8, Func Offset: 0x498
-	// Line 1527, Address: 0x2c0af4, Func Offset: 0x4a4
-	// Line 1528, Address: 0x2c0b04, Func Offset: 0x4b4
-	// Line 1529, Address: 0x2c0b10, Func Offset: 0x4c0
-	// Line 1530, Address: 0x2c0b28, Func Offset: 0x4d8
-	// Line 1531, Address: 0x2c0b34, Func Offset: 0x4e4
-	// Line 1532, Address: 0x2c0b60, Func Offset: 0x510
-	// Line 1535, Address: 0x2c0b68, Func Offset: 0x518
-	// Line 1536, Address: 0x2c0b78, Func Offset: 0x528
-	// Line 1537, Address: 0x2c0b88, Func Offset: 0x538
-	// Line 1539, Address: 0x2c0b94, Func Offset: 0x544
-	// Line 1541, Address: 0x2c0b9c, Func Offset: 0x54c
-	// Line 1542, Address: 0x2c0bac, Func Offset: 0x55c
-	// Line 1543, Address: 0x2c0bc0, Func Offset: 0x570
-	// Line 1545, Address: 0x2c0bcc, Func Offset: 0x57c
-	// Line 1546, Address: 0x2c0be4, Func Offset: 0x594
-	// Line 1548, Address: 0x2c0bec, Func Offset: 0x59c
-	// Line 1550, Address: 0x2c0bf8, Func Offset: 0x5a8
-	// Line 1551, Address: 0x2c0c00, Func Offset: 0x5b0
-	// Line 1553, Address: 0x2c0c0c, Func Offset: 0x5bc
-	// Line 1554, Address: 0x2c0c14, Func Offset: 0x5c4
-	// Line 1557, Address: 0x2c0c18, Func Offset: 0x5c8
-	// Line 1559, Address: 0x2c0c1c, Func Offset: 0x5cc
-	// Line 1560, Address: 0x2c0c24, Func Offset: 0x5d4
-	// Line 1559, Address: 0x2c0c28, Func Offset: 0x5d8
-	// Line 1560, Address: 0x2c0c54, Func Offset: 0x604
-	// Line 1561, Address: 0x2c0c6c, Func Offset: 0x61c
-	// Line 1562, Address: 0x2c0c84, Func Offset: 0x634
-	// Line 1563, Address: 0x2c0c90, Func Offset: 0x640
-	// Line 1568, Address: 0x2c0c9c, Func Offset: 0x64c
-	// Line 1569, Address: 0x2c0cbc, Func Offset: 0x66c
-	// Line 1570, Address: 0x2c0cc4, Func Offset: 0x674
-	// Line 1571, Address: 0x2c0d00, Func Offset: 0x6b0
-	// Line 1572, Address: 0x2c0d0c, Func Offset: 0x6bc
-	// Line 1573, Address: 0x2c0d10, Func Offset: 0x6c0
-	// Line 1575, Address: 0x2c0d28, Func Offset: 0x6d8
-	// Func End, Address: 0x2c0d3c, Func Offset: 0x6ec
-	scePrintf("bhControlComEvtKeyboard - UNIMPLEMENTED!\n");
+    COM_EVT_WORK* ce;
+    int i;
+    int sel;
+    int adt;
+
+    ce = sys->com_exp;
+    
+    switch (sys->pad_on & 0xF) 
+    {
+    case 1:
+        if (ce->khk == 0)
+        {
+            if (ce->krep < 8)
+            {
+                ce->krep++;
+                break;
+            }
+        } 
+        else 
+        {
+            ce->khk  = 0;
+            ce->krep = 0;
+        }
+        
+        if ((ce->kx == 9) && (ce->ky == 3))
+        {
+            ce->ky -= 2;
+        }
+        else 
+        {
+            ce->ky--;
+        }
+        
+        CallSystemSe(0, 0x8000026F);
+        break;
+    case 9:
+        if (ce->khk == 1)
+        {
+            if (ce->krep < 8)
+            {
+                ce->krep++;
+                break;
+            }
+        } 
+        else
+        {
+            ce->khk  = 1;
+            ce->krep = 0;
+        }
+        
+        ce->kx++;
+        ce->ky--;
+        
+        CallSystemSe(0, 0x8000026F);
+        break;
+    case 8:
+        if (ce->khk == 2) 
+        {
+            if (ce->krep < 8)
+            {
+                ce->krep++;
+                break;
+            }
+        } 
+        else
+        {
+            ce->khk  = 2;
+            ce->krep = 0;
+        }
+        
+        ce->kx++;
+        
+        CallSystemSe(0, 0x8000026F);
+        break;
+    case 10:
+        if (ce->khk == 3) 
+        {
+            if (ce->krep < 8) 
+            {
+                ce->krep++;
+                break;
+            }
+        } 
+        else
+        {
+            ce->khk  = 3;
+            ce->krep = 0;
+        }
+        
+        ce->kx++;
+        ce->ky++;
+        
+        CallSystemSe(0, 0x8000026F);
+        break;
+    case 2:
+        if (ce->khk == 4) 
+        {
+            if (ce->krep < 8)
+            {
+                ce->krep++;
+                break;
+            }
+        } 
+        else 
+        {
+            ce->khk  = 4;
+            ce->krep = 0;
+        }
+        
+        if ((ce->kx == 9) && (ce->ky == 2)) 
+        {
+            ce->ky += 2;
+        } 
+        else
+        {
+            ce->ky++;
+        }
+        
+        CallSystemSe(0, 0x8000026F);
+        break;
+    case 6:
+        if (ce->khk == 5)
+        {
+            if (ce->krep < 8) 
+            {
+                ce->krep++;
+                break;
+            }
+        }
+        else
+        {
+            ce->khk  = 5;
+            ce->krep = 0;
+        }
+        
+        ce->kx--;
+        ce->ky++;
+        
+        CallSystemSe(0, 0x8000026F);
+        break;
+    case 4:
+        if (ce->khk == 6)
+        {
+            if (ce->krep < 8) 
+            {
+                ce->krep++;
+                break;
+            }
+        } 
+        else
+        {
+            ce->khk  = 6;
+            ce->krep = 0;
+        }
+        
+        ce->kx--;
+        
+        CallSystemSe(0, 0x8000026F);
+        break;
+    case 5:
+        if (ce->khk == 7) 
+        {
+            if (ce->krep < 8)
+            {
+                ce->krep++;
+                break;
+            }
+        }
+        else 
+        {
+            ce->khk  = 7;
+            ce->krep = 0;
+        }
+        
+        ce->kx--;
+        ce->ky--;
+        
+        CallSystemSe(0, 0x8000026F);
+        break;
+    default:
+        ce->khk  = -1;
+        ce->krep = 0;
+        break;
+    }
+    
+    if (ce->kx < 0) 
+    {
+        ce->kx = 9;
+    }
+    
+    if (ce->kx > 9) 
+    {
+        ce->kx = 0;
+    }
+    
+    if (ce->ky < 0) 
+    {
+        ce->ky = 3;
+    }
+    
+    if (ce->ky > 3) 
+    {
+        ce->ky = 0;
+    }
+    
+    if ((sys->pad_ps & 0x800)) 
+    {
+        ce->txflg |= 0x10;
+        
+        sel = ce->kx + (ce->ky * 10);
+        
+        switch (sel) 
+        {
+        case 10:
+            ce->ct0 = 0;
+            
+            sys->com_md1 = 20;
+            break;
+        case 19:
+            if (ce->kbn > 0) 
+            {
+                CallSystemSe(0, 0x8000026C);
+                
+                ce->kbn--;
+                
+                ce->word[ce->wordn][ce->kbn] = 0;
+                
+                ce->tx--;
+                
+                ce->txt[ce->ty][ce->tx] = ce->txcol;
+            }
+            
+            break;
+        case 29:
+        case 39:
+            CallSystemSe(0, 0x8000026D);
+            
+            ce->txflg &= ~0x8;
+            
+            ce->wordn++;
+            
+            ce->kbn = 0;
+            break;
+        default:
+            CallSystemSe(0, 0x8000026B);
+            
+            if (ce->kbn < ce->wordmax)
+            {
+                if (sel < 10)
+                {
+                    adt = ((sel + 1) % 10) + 16;
+                } 
+                else
+                {
+                    if (sel < 19) 
+                    {
+                        adt = sel - 11;
+                    } 
+                    else if (sel < 29)
+                    {
+                        adt = sel - 12;
+                    }
+                    else 
+                    {
+                        adt = sel - 13;
+                    }
+                    
+                    adt += 33;
+                }
+                
+                ce->txt[ce->ty][ce->tx] = ce->txcol | adt;
+                
+                ce->word[ce->wordn][ce->kbn]     = adt + 32;
+                ce->word[ce->wordn][ce->kbn + 1] = 0;
+                
+                ce->tx++;
+                ce->kbn++;
+            }
+            
+            break;
+        }
+    }
+    
+    if ((sys->com_flg & 0x400)) 
+    {
+        for (i = 0; i < ce->wordmax; i++) 
+        {
+            if ((unsigned char)ce->txt[ce->wdy][ce->wdx + i] == 0)
+            {
+                ce->txt[ce->wdy][ce->wdx + i] = ce->txcol | 60;
+            }
+        }
+    }
 }
