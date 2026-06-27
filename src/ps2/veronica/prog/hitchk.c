@@ -1460,445 +1460,730 @@ ATR_WORK* bhCheckWallType2(NJS_POINT3* pos, unsigned int flg, float aw, float ad
     return NULL;
 }
 
-// 
-// Start address: 0x261eb0
+// 99.95% matching
 ATR_WORK* bhCheckWallRefAngle(NJS_POINT3* pos, unsigned int flg, float ar, float ah, int* ay)
 {
-	int r;
-	float abz;
-	float aby;
-	float abx;
-	float h;
-	float wpz;
-	float wpx;
-	float ln2;
-	float ln;
-	float zn;
-	float xn;
-	float pz;
-	float py;
-	float px;
-	int wal_n;
-	int i;
-	//_anon0 ht;
-	//_anon0* hp;
-	//_anon39 l;
-	//_anon20 pd;
-	// Line 1865, Address: 0x261eb0, Func Offset: 0
-	// Line 1875, Address: 0x261f08, Func Offset: 0x58
-	// Line 1876, Address: 0x261f3c, Func Offset: 0x8c
-	// Line 1877, Address: 0x261f64, Func Offset: 0xb4
-	// Line 1878, Address: 0x261f88, Func Offset: 0xd8
-	// Line 1879, Address: 0x261fb0, Func Offset: 0x100
-	// Line 1881, Address: 0x261fc0, Func Offset: 0x110
-	// Line 1882, Address: 0x261fec, Func Offset: 0x13c
-	// Line 1885, Address: 0x262018, Func Offset: 0x168
-	// Line 1888, Address: 0x262048, Func Offset: 0x198
-	// Line 1889, Address: 0x262058, Func Offset: 0x1a8
-	// Line 1888, Address: 0x262060, Func Offset: 0x1b0
-	// Line 1894, Address: 0x262064, Func Offset: 0x1b4
-	// Line 1888, Address: 0x262068, Func Offset: 0x1b8
-	// Line 1889, Address: 0x26206c, Func Offset: 0x1bc
-	// Line 1890, Address: 0x262070, Func Offset: 0x1c0
-	// Line 1889, Address: 0x262074, Func Offset: 0x1c4
-	// Line 1894, Address: 0x262078, Func Offset: 0x1c8
-	// Line 1891, Address: 0x262080, Func Offset: 0x1d0
-	// Line 1892, Address: 0x262084, Func Offset: 0x1d4
-	// Line 1894, Address: 0x262088, Func Offset: 0x1d8
-	// Line 1897, Address: 0x262100, Func Offset: 0x250
-	// Line 1898, Address: 0x262108, Func Offset: 0x258
-	// Line 1899, Address: 0x26211c, Func Offset: 0x26c
-	// Line 1901, Address: 0x262130, Func Offset: 0x280
-	// Line 1902, Address: 0x26213c, Func Offset: 0x28c
-	// Line 1903, Address: 0x262148, Func Offset: 0x298
-	// Line 1904, Address: 0x262158, Func Offset: 0x2a8
-	// Line 1906, Address: 0x262178, Func Offset: 0x2c8
-	// Line 1907, Address: 0x26217c, Func Offset: 0x2cc
-	// Line 1909, Address: 0x262188, Func Offset: 0x2d8
-	// Line 1910, Address: 0x262190, Func Offset: 0x2e0
-	// Line 1912, Address: 0x2621b0, Func Offset: 0x300
-	// Line 1913, Address: 0x2621b4, Func Offset: 0x304
-	// Line 1916, Address: 0x2621bc, Func Offset: 0x30c
-	// Line 1918, Address: 0x2621c4, Func Offset: 0x314
-	// Line 1919, Address: 0x2621d4, Func Offset: 0x324
-	// Line 1920, Address: 0x2621e4, Func Offset: 0x334
-	// Line 1921, Address: 0x2621f4, Func Offset: 0x344
-	// Line 1923, Address: 0x262214, Func Offset: 0x364
-	// Line 1924, Address: 0x262218, Func Offset: 0x368
-	// Line 1926, Address: 0x262224, Func Offset: 0x374
-	// Line 1927, Address: 0x26222c, Func Offset: 0x37c
-	// Line 1929, Address: 0x26224c, Func Offset: 0x39c
-	// Line 1930, Address: 0x262250, Func Offset: 0x3a0
-	// Line 1934, Address: 0x262258, Func Offset: 0x3a8
-	// Line 1935, Address: 0x262260, Func Offset: 0x3b0
-	// Line 1937, Address: 0x262274, Func Offset: 0x3c4
-	// Line 1938, Address: 0x262284, Func Offset: 0x3d4
-	// Line 1939, Address: 0x262290, Func Offset: 0x3e0
-	// Line 1940, Address: 0x2622a0, Func Offset: 0x3f0
-	// Line 1942, Address: 0x2622c0, Func Offset: 0x410
-	// Line 1943, Address: 0x2622c4, Func Offset: 0x414
-	// Line 1945, Address: 0x2622d0, Func Offset: 0x420
-	// Line 1946, Address: 0x2622d8, Func Offset: 0x428
-	// Line 1948, Address: 0x2622f8, Func Offset: 0x448
-	// Line 1949, Address: 0x2622fc, Func Offset: 0x44c
-	// Line 1952, Address: 0x262304, Func Offset: 0x454
-	// Line 1954, Address: 0x26230c, Func Offset: 0x45c
-	// Line 1955, Address: 0x26231c, Func Offset: 0x46c
-	// Line 1956, Address: 0x26232c, Func Offset: 0x47c
-	// Line 1957, Address: 0x26233c, Func Offset: 0x48c
-	// Line 1959, Address: 0x26235c, Func Offset: 0x4ac
-	// Line 1960, Address: 0x262360, Func Offset: 0x4b0
-	// Line 1962, Address: 0x26236c, Func Offset: 0x4bc
-	// Line 1963, Address: 0x262374, Func Offset: 0x4c4
-	// Line 1965, Address: 0x262394, Func Offset: 0x4e4
-	// Line 1966, Address: 0x262398, Func Offset: 0x4e8
-	// Line 1972, Address: 0x2623a4, Func Offset: 0x4f4
-	// Line 1977, Address: 0x2623ac, Func Offset: 0x4fc
-	// Line 1980, Address: 0x2623d8, Func Offset: 0x528
-	// Line 1981, Address: 0x2623e0, Func Offset: 0x530
-	// Line 1980, Address: 0x2623e8, Func Offset: 0x538
-	// Line 1981, Address: 0x2623ec, Func Offset: 0x53c
-	// Line 1982, Address: 0x2623f0, Func Offset: 0x540
-	// Line 1983, Address: 0x262400, Func Offset: 0x550
-	// Line 1985, Address: 0x262448, Func Offset: 0x598
-	// Line 1987, Address: 0x262468, Func Offset: 0x5b8
-	// Line 1986, Address: 0x26246c, Func Offset: 0x5bc
-	// Line 1987, Address: 0x262470, Func Offset: 0x5c0
-	// Line 1985, Address: 0x262474, Func Offset: 0x5c4
-	// Line 1987, Address: 0x262478, Func Offset: 0x5c8
-	// Line 1986, Address: 0x26247c, Func Offset: 0x5cc
-	// Line 1987, Address: 0x262480, Func Offset: 0x5d0
-	// Line 1988, Address: 0x262488, Func Offset: 0x5d8
-	// Line 1990, Address: 0x2624a4, Func Offset: 0x5f4
-	// Line 1991, Address: 0x2624b4, Func Offset: 0x604
-	// Line 1997, Address: 0x2624b8, Func Offset: 0x608
-	// Line 1991, Address: 0x2624bc, Func Offset: 0x60c
-	// Line 1997, Address: 0x2624c0, Func Offset: 0x610
-	// Line 1991, Address: 0x2624c4, Func Offset: 0x614
-	// Line 1992, Address: 0x2624d0, Func Offset: 0x620
-	// Line 1997, Address: 0x2624e4, Func Offset: 0x634
-	// Line 1998, Address: 0x2624f0, Func Offset: 0x640
-	// Line 1999, Address: 0x2624f8, Func Offset: 0x648
-	// Line 2002, Address: 0x262504, Func Offset: 0x654
-	// Line 2007, Address: 0x26250c, Func Offset: 0x65c
-	// Line 2011, Address: 0x262538, Func Offset: 0x688
-	// Line 2012, Address: 0x262554, Func Offset: 0x6a4
-	// Line 2013, Address: 0x26255c, Func Offset: 0x6ac
-	// Line 2015, Address: 0x262594, Func Offset: 0x6e4
-	// Line 2016, Address: 0x262598, Func Offset: 0x6e8
-	// Line 2015, Address: 0x26259c, Func Offset: 0x6ec
-	// Line 2017, Address: 0x2625a0, Func Offset: 0x6f0
-	// Line 2019, Address: 0x2625a8, Func Offset: 0x6f8
-	// Line 2020, Address: 0x2625ac, Func Offset: 0x6fc
-	// Line 2019, Address: 0x2625b0, Func Offset: 0x700
-	// Line 2021, Address: 0x2625b4, Func Offset: 0x704
-	// Line 2023, Address: 0x2625bc, Func Offset: 0x70c
-	// Line 2024, Address: 0x2625c0, Func Offset: 0x710
-	// Line 2023, Address: 0x2625c4, Func Offset: 0x714
-	// Line 2025, Address: 0x2625c8, Func Offset: 0x718
-	// Line 2027, Address: 0x2625d0, Func Offset: 0x720
-	// Line 2028, Address: 0x2625d4, Func Offset: 0x724
-	// Line 2027, Address: 0x2625d8, Func Offset: 0x728
-	// Line 2028, Address: 0x2625dc, Func Offset: 0x72c
-	// Line 2031, Address: 0x2625e0, Func Offset: 0x730
-	// Line 2032, Address: 0x2625e4, Func Offset: 0x734
-	// Line 2035, Address: 0x2625e8, Func Offset: 0x738
-	// Line 2032, Address: 0x2625f4, Func Offset: 0x744
-	// Line 2033, Address: 0x2625fc, Func Offset: 0x74c
-	// Line 2034, Address: 0x262604, Func Offset: 0x754
-	// Line 2035, Address: 0x26260c, Func Offset: 0x75c
-	// Line 2037, Address: 0x262614, Func Offset: 0x764
-	// Line 2036, Address: 0x262618, Func Offset: 0x768
-	// Line 2037, Address: 0x262620, Func Offset: 0x770
-	// Line 2036, Address: 0x262628, Func Offset: 0x778
-	// Line 2037, Address: 0x26262c, Func Offset: 0x77c
-	// Line 2038, Address: 0x262630, Func Offset: 0x780
-	// Line 2039, Address: 0x262640, Func Offset: 0x790
-	// Line 2040, Address: 0x262654, Func Offset: 0x7a4
-	// Line 2041, Address: 0x262664, Func Offset: 0x7b4
-	// Line 2042, Address: 0x26266c, Func Offset: 0x7bc
-	// Line 2043, Address: 0x262674, Func Offset: 0x7c4
-	// Line 2044, Address: 0x262694, Func Offset: 0x7e4
-	// Line 2045, Address: 0x2626a8, Func Offset: 0x7f8
-	// Line 2046, Address: 0x2626b0, Func Offset: 0x800
-	// Line 2049, Address: 0x2626bc, Func Offset: 0x80c
-	// Line 2052, Address: 0x2626c4, Func Offset: 0x814
-	// Line 2055, Address: 0x2626fc, Func Offset: 0x84c
-	// Line 2058, Address: 0x262700, Func Offset: 0x850
-	// Line 2061, Address: 0x262704, Func Offset: 0x854
-	// Line 2055, Address: 0x262714, Func Offset: 0x864
-	// Line 2056, Address: 0x262718, Func Offset: 0x868
-	// Line 2061, Address: 0x26271c, Func Offset: 0x86c
-	// Line 2056, Address: 0x262720, Func Offset: 0x870
-	// Line 2057, Address: 0x262724, Func Offset: 0x874
-	// Line 2058, Address: 0x26272c, Func Offset: 0x87c
-	// Line 2059, Address: 0x262730, Func Offset: 0x880
-	// Line 2060, Address: 0x26273c, Func Offset: 0x88c
-	// Line 2061, Address: 0x262744, Func Offset: 0x894
-	// Line 2063, Address: 0x262754, Func Offset: 0x8a4
-	// Line 2064, Address: 0x262758, Func Offset: 0x8a8
-	// Line 2063, Address: 0x26275c, Func Offset: 0x8ac
-	// Line 2064, Address: 0x262760, Func Offset: 0x8b0
-	// Line 2067, Address: 0x262768, Func Offset: 0x8b8
-	// Line 2070, Address: 0x262770, Func Offset: 0x8c0
-	// Line 2067, Address: 0x262780, Func Offset: 0x8d0
-	// Line 2068, Address: 0x262784, Func Offset: 0x8d4
-	// Line 2070, Address: 0x26278c, Func Offset: 0x8dc
-	// Line 2068, Address: 0x262790, Func Offset: 0x8e0
-	// Line 2069, Address: 0x262794, Func Offset: 0x8e4
-	// Line 2070, Address: 0x262798, Func Offset: 0x8e8
-	// Line 2072, Address: 0x2627a8, Func Offset: 0x8f8
-	// Line 2073, Address: 0x2627ac, Func Offset: 0x8fc
-	// Line 2072, Address: 0x2627b0, Func Offset: 0x900
-	// Line 2073, Address: 0x2627b4, Func Offset: 0x904
-	// Line 2078, Address: 0x2627bc, Func Offset: 0x90c
-	// Line 2080, Address: 0x2627c0, Func Offset: 0x910
-	// Line 2084, Address: 0x2627c4, Func Offset: 0x914
-	// Line 2078, Address: 0x2627d4, Func Offset: 0x924
-	// Line 2079, Address: 0x2627d8, Func Offset: 0x928
-	// Line 2084, Address: 0x2627dc, Func Offset: 0x92c
-	// Line 2079, Address: 0x2627e0, Func Offset: 0x930
-	// Line 2080, Address: 0x2627e4, Func Offset: 0x934
-	// Line 2081, Address: 0x2627f4, Func Offset: 0x944
-	// Line 2082, Address: 0x2627fc, Func Offset: 0x94c
-	// Line 2083, Address: 0x262808, Func Offset: 0x958
-	// Line 2084, Address: 0x262814, Func Offset: 0x964
-	// Line 2086, Address: 0x262824, Func Offset: 0x974
-	// Line 2087, Address: 0x262828, Func Offset: 0x978
-	// Line 2086, Address: 0x26282c, Func Offset: 0x97c
-	// Line 2087, Address: 0x262830, Func Offset: 0x980
-	// Line 2090, Address: 0x262838, Func Offset: 0x988
-	// Line 2094, Address: 0x262844, Func Offset: 0x994
-	// Line 2090, Address: 0x262850, Func Offset: 0x9a0
-	// Line 2094, Address: 0x262854, Func Offset: 0x9a4
-	// Line 2090, Address: 0x26285c, Func Offset: 0x9ac
-	// Line 2091, Address: 0x262860, Func Offset: 0x9b0
-	// Line 2092, Address: 0x26286c, Func Offset: 0x9bc
-	// Line 2093, Address: 0x262878, Func Offset: 0x9c8
-	// Line 2094, Address: 0x26287c, Func Offset: 0x9cc
-	// Line 2096, Address: 0x26288c, Func Offset: 0x9dc
-	// Line 2097, Address: 0x262890, Func Offset: 0x9e0
-	// Line 2096, Address: 0x262894, Func Offset: 0x9e4
-	// Line 2097, Address: 0x262898, Func Offset: 0x9e8
-	// Line 2102, Address: 0x2628a0, Func Offset: 0x9f0
-	// Line 2108, Address: 0x2628ac, Func Offset: 0x9fc
-	// Line 2102, Address: 0x2628b8, Func Offset: 0xa08
-	// Line 2108, Address: 0x2628bc, Func Offset: 0xa0c
-	// Line 2102, Address: 0x2628c0, Func Offset: 0xa10
-	// Line 2103, Address: 0x2628c4, Func Offset: 0xa14
-	// Line 2105, Address: 0x2628c8, Func Offset: 0xa18
-	// Line 2103, Address: 0x2628cc, Func Offset: 0xa1c
-	// Line 2104, Address: 0x2628d0, Func Offset: 0xa20
-	// Line 2105, Address: 0x2628d8, Func Offset: 0xa28
-	// Line 2106, Address: 0x2628dc, Func Offset: 0xa2c
-	// Line 2107, Address: 0x2628e8, Func Offset: 0xa38
-	// Line 2108, Address: 0x2628f0, Func Offset: 0xa40
-	// Line 2110, Address: 0x262900, Func Offset: 0xa50
-	// Line 2111, Address: 0x262904, Func Offset: 0xa54
-	// Line 2110, Address: 0x262908, Func Offset: 0xa58
-	// Line 2111, Address: 0x26290c, Func Offset: 0xa5c
-	// Line 2114, Address: 0x262914, Func Offset: 0xa64
-	// Line 2118, Address: 0x262920, Func Offset: 0xa70
-	// Line 2114, Address: 0x262930, Func Offset: 0xa80
-	// Line 2118, Address: 0x262934, Func Offset: 0xa84
-	// Line 2114, Address: 0x262938, Func Offset: 0xa88
-	// Line 2115, Address: 0x26293c, Func Offset: 0xa8c
-	// Line 2116, Address: 0x26294c, Func Offset: 0xa9c
-	// Line 2117, Address: 0x262958, Func Offset: 0xaa8
-	// Line 2118, Address: 0x26295c, Func Offset: 0xaac
-	// Line 2120, Address: 0x26296c, Func Offset: 0xabc
-	// Line 2121, Address: 0x262970, Func Offset: 0xac0
-	// Line 2120, Address: 0x262974, Func Offset: 0xac4
-	// Line 2121, Address: 0x262978, Func Offset: 0xac8
-	// Line 2126, Address: 0x262980, Func Offset: 0xad0
-	// Line 2132, Address: 0x26298c, Func Offset: 0xadc
-	// Line 2126, Address: 0x262998, Func Offset: 0xae8
-	// Line 2132, Address: 0x26299c, Func Offset: 0xaec
-	// Line 2126, Address: 0x2629a0, Func Offset: 0xaf0
-	// Line 2127, Address: 0x2629a4, Func Offset: 0xaf4
-	// Line 2128, Address: 0x2629a8, Func Offset: 0xaf8
-	// Line 2127, Address: 0x2629ac, Func Offset: 0xafc
-	// Line 2128, Address: 0x2629b0, Func Offset: 0xb00
-	// Line 2129, Address: 0x2629c0, Func Offset: 0xb10
-	// Line 2130, Address: 0x2629c8, Func Offset: 0xb18
-	// Line 2131, Address: 0x2629d4, Func Offset: 0xb24
-	// Line 2132, Address: 0x2629e0, Func Offset: 0xb30
-	// Line 2134, Address: 0x2629f0, Func Offset: 0xb40
-	// Line 2135, Address: 0x2629f4, Func Offset: 0xb44
-	// Line 2134, Address: 0x2629f8, Func Offset: 0xb48
-	// Line 2135, Address: 0x2629fc, Func Offset: 0xb4c
-	// Line 2138, Address: 0x262a04, Func Offset: 0xb54
-	// Line 2139, Address: 0x262a10, Func Offset: 0xb60
-	// Line 2143, Address: 0x262a14, Func Offset: 0xb64
-	// Line 2138, Address: 0x262a20, Func Offset: 0xb70
-	// Line 2143, Address: 0x262a24, Func Offset: 0xb74
-	// Line 2138, Address: 0x262a28, Func Offset: 0xb78
-	// Line 2139, Address: 0x262a2c, Func Offset: 0xb7c
-	// Line 2143, Address: 0x262a34, Func Offset: 0xb84
-	// Line 2139, Address: 0x262a38, Func Offset: 0xb88
-	// Line 2140, Address: 0x262a40, Func Offset: 0xb90
-	// Line 2141, Address: 0x262a50, Func Offset: 0xba0
-	// Line 2142, Address: 0x262a5c, Func Offset: 0xbac
-	// Line 2143, Address: 0x262a60, Func Offset: 0xbb0
-	// Line 2145, Address: 0x262a70, Func Offset: 0xbc0
-	// Line 2146, Address: 0x262a74, Func Offset: 0xbc4
-	// Line 2145, Address: 0x262a78, Func Offset: 0xbc8
-	// Line 2146, Address: 0x262a7c, Func Offset: 0xbcc
-	// Line 2153, Address: 0x262a84, Func Offset: 0xbd4
-	// Line 2156, Address: 0x262b18, Func Offset: 0xc68
-	// Line 2159, Address: 0x262b50, Func Offset: 0xca0
-	// Line 2160, Address: 0x262b64, Func Offset: 0xcb4
-	// Line 2163, Address: 0x262b6c, Func Offset: 0xcbc
-	// Line 2164, Address: 0x262b80, Func Offset: 0xcd0
-	// Line 2167, Address: 0x262b88, Func Offset: 0xcd8
-	// Line 2168, Address: 0x262b9c, Func Offset: 0xcec
-	// Line 2171, Address: 0x262ba4, Func Offset: 0xcf4
-	// Line 2173, Address: 0x262bbc, Func Offset: 0xd0c
-	// Line 2174, Address: 0x262bc0, Func Offset: 0xd10
-	// Line 2176, Address: 0x262bd0, Func Offset: 0xd20
-	// Line 2177, Address: 0x262bd8, Func Offset: 0xd28
-	// Line 2176, Address: 0x262bec, Func Offset: 0xd3c
-	// Line 2183, Address: 0x262bf0, Func Offset: 0xd40
-	// Line 2177, Address: 0x262bf4, Func Offset: 0xd44
-	// Line 2178, Address: 0x262bf8, Func Offset: 0xd48
-	// Line 2177, Address: 0x262c00, Func Offset: 0xd50
-	// Line 2179, Address: 0x262c04, Func Offset: 0xd54
-	// Line 2183, Address: 0x262c08, Func Offset: 0xd58
-	// Line 2178, Address: 0x262c0c, Func Offset: 0xd5c
-	// Line 2181, Address: 0x262c10, Func Offset: 0xd60
-	// Line 2180, Address: 0x262c14, Func Offset: 0xd64
-	// Line 2178, Address: 0x262c18, Func Offset: 0xd68
-	// Line 2183, Address: 0x262c1c, Func Offset: 0xd6c
-	// Line 2184, Address: 0x262c24, Func Offset: 0xd74
-	// Line 2186, Address: 0x262c38, Func Offset: 0xd88
-	// Line 2187, Address: 0x262c44, Func Offset: 0xd94
-	// Line 2188, Address: 0x262c50, Func Offset: 0xda0
-	// Line 2189, Address: 0x262c60, Func Offset: 0xdb0
-	// Line 2191, Address: 0x262c78, Func Offset: 0xdc8
-	// Line 2192, Address: 0x262c7c, Func Offset: 0xdcc
-	// Line 2194, Address: 0x262c88, Func Offset: 0xdd8
-	// Line 2195, Address: 0x262c90, Func Offset: 0xde0
-	// Line 2197, Address: 0x262ca8, Func Offset: 0xdf8
-	// Line 2198, Address: 0x262cac, Func Offset: 0xdfc
-	// Line 2201, Address: 0x262cb4, Func Offset: 0xe04
-	// Line 2203, Address: 0x262cbc, Func Offset: 0xe0c
-	// Line 2204, Address: 0x262cc8, Func Offset: 0xe18
-	// Line 2203, Address: 0x262ccc, Func Offset: 0xe1c
-	// Line 2204, Address: 0x262cd0, Func Offset: 0xe20
-	// Line 2205, Address: 0x262cdc, Func Offset: 0xe2c
-	// Line 2206, Address: 0x262cec, Func Offset: 0xe3c
-	// Line 2208, Address: 0x262d04, Func Offset: 0xe54
-	// Line 2209, Address: 0x262d08, Func Offset: 0xe58
-	// Line 2211, Address: 0x262d14, Func Offset: 0xe64
-	// Line 2212, Address: 0x262d1c, Func Offset: 0xe6c
-	// Line 2214, Address: 0x262d34, Func Offset: 0xe84
-	// Line 2215, Address: 0x262d38, Func Offset: 0xe88
-	// Line 2219, Address: 0x262d40, Func Offset: 0xe90
-	// Line 2220, Address: 0x262d48, Func Offset: 0xe98
-	// Line 2222, Address: 0x262d5c, Func Offset: 0xeac
-	// Line 2223, Address: 0x262d6c, Func Offset: 0xebc
-	// Line 2224, Address: 0x262d78, Func Offset: 0xec8
-	// Line 2225, Address: 0x262d88, Func Offset: 0xed8
-	// Line 2227, Address: 0x262da0, Func Offset: 0xef0
-	// Line 2228, Address: 0x262da4, Func Offset: 0xef4
-	// Line 2230, Address: 0x262db0, Func Offset: 0xf00
-	// Line 2231, Address: 0x262db8, Func Offset: 0xf08
-	// Line 2233, Address: 0x262dd0, Func Offset: 0xf20
-	// Line 2234, Address: 0x262dd4, Func Offset: 0xf24
-	// Line 2237, Address: 0x262ddc, Func Offset: 0xf2c
-	// Line 2239, Address: 0x262de4, Func Offset: 0xf34
-	// Line 2240, Address: 0x262df0, Func Offset: 0xf40
-	// Line 2239, Address: 0x262df4, Func Offset: 0xf44
-	// Line 2240, Address: 0x262df8, Func Offset: 0xf48
-	// Line 2241, Address: 0x262e04, Func Offset: 0xf54
-	// Line 2242, Address: 0x262e14, Func Offset: 0xf64
-	// Line 2244, Address: 0x262e2c, Func Offset: 0xf7c
-	// Line 2245, Address: 0x262e30, Func Offset: 0xf80
-	// Line 2247, Address: 0x262e3c, Func Offset: 0xf8c
-	// Line 2248, Address: 0x262e44, Func Offset: 0xf94
-	// Line 2250, Address: 0x262e5c, Func Offset: 0xfac
-	// Line 2251, Address: 0x262e60, Func Offset: 0xfb0
-	// Line 2256, Address: 0x262e6c, Func Offset: 0xfbc
-	// Line 2261, Address: 0x262e74, Func Offset: 0xfc4
-	// Line 2262, Address: 0x262e90, Func Offset: 0xfe0
-	// Line 2263, Address: 0x262ea0, Func Offset: 0xff0
-	// Line 2262, Address: 0x262ea8, Func Offset: 0xff8
-	// Line 2268, Address: 0x262eac, Func Offset: 0xffc
-	// Line 2262, Address: 0x262eb0, Func Offset: 0x1000
-	// Line 2263, Address: 0x262eb4, Func Offset: 0x1004
-	// Line 2264, Address: 0x262eb8, Func Offset: 0x1008
-	// Line 2263, Address: 0x262ebc, Func Offset: 0x100c
-	// Line 2268, Address: 0x262ec0, Func Offset: 0x1010
-	// Line 2265, Address: 0x262ec8, Func Offset: 0x1018
-	// Line 2266, Address: 0x262ecc, Func Offset: 0x101c
-	// Line 2268, Address: 0x262ed0, Func Offset: 0x1020
-	// Line 2276, Address: 0x262fd8, Func Offset: 0x1128
-	// Line 2277, Address: 0x262fe8, Func Offset: 0x1138
-	// Line 2278, Address: 0x262ffc, Func Offset: 0x114c
-	// Line 2280, Address: 0x263010, Func Offset: 0x1160
-	// Line 2281, Address: 0x26301c, Func Offset: 0x116c
-	// Line 2282, Address: 0x263028, Func Offset: 0x1178
-	// Line 2283, Address: 0x263038, Func Offset: 0x1188
-	// Line 2284, Address: 0x263048, Func Offset: 0x1198
-	// Line 2285, Address: 0x26304c, Func Offset: 0x119c
-	// Line 2286, Address: 0x263054, Func Offset: 0x11a4
-	// Line 2287, Address: 0x263058, Func Offset: 0x11a8
-	// Line 2289, Address: 0x263064, Func Offset: 0x11b4
-	// Line 2290, Address: 0x26306c, Func Offset: 0x11bc
-	// Line 2291, Address: 0x26307c, Func Offset: 0x11cc
-	// Line 2292, Address: 0x263080, Func Offset: 0x11d0
-	// Line 2293, Address: 0x263088, Func Offset: 0x11d8
-	// Line 2294, Address: 0x26308c, Func Offset: 0x11dc
-	// Line 2297, Address: 0x263094, Func Offset: 0x11e4
-	// Line 2299, Address: 0x26309c, Func Offset: 0x11ec
-	// Line 2300, Address: 0x2630ac, Func Offset: 0x11fc
-	// Line 2301, Address: 0x2630bc, Func Offset: 0x120c
-	// Line 2302, Address: 0x2630cc, Func Offset: 0x121c
-	// Line 2303, Address: 0x2630dc, Func Offset: 0x122c
-	// Line 2304, Address: 0x2630e0, Func Offset: 0x1230
-	// Line 2305, Address: 0x2630e8, Func Offset: 0x1238
-	// Line 2306, Address: 0x2630ec, Func Offset: 0x123c
-	// Line 2308, Address: 0x2630f8, Func Offset: 0x1248
-	// Line 2309, Address: 0x263100, Func Offset: 0x1250
-	// Line 2310, Address: 0x263110, Func Offset: 0x1260
-	// Line 2311, Address: 0x263114, Func Offset: 0x1264
-	// Line 2312, Address: 0x26311c, Func Offset: 0x126c
-	// Line 2313, Address: 0x263120, Func Offset: 0x1270
-	// Line 2317, Address: 0x263128, Func Offset: 0x1278
-	// Line 2318, Address: 0x263130, Func Offset: 0x1280
-	// Line 2320, Address: 0x263144, Func Offset: 0x1294
-	// Line 2321, Address: 0x263154, Func Offset: 0x12a4
-	// Line 2322, Address: 0x263160, Func Offset: 0x12b0
-	// Line 2323, Address: 0x263170, Func Offset: 0x12c0
-	// Line 2324, Address: 0x263180, Func Offset: 0x12d0
-	// Line 2325, Address: 0x263184, Func Offset: 0x12d4
-	// Line 2326, Address: 0x26318c, Func Offset: 0x12dc
-	// Line 2327, Address: 0x263190, Func Offset: 0x12e0
-	// Line 2329, Address: 0x26319c, Func Offset: 0x12ec
-	// Line 2330, Address: 0x2631a4, Func Offset: 0x12f4
-	// Line 2332, Address: 0x2631c0, Func Offset: 0x1310
-	// Line 2333, Address: 0x2631c4, Func Offset: 0x1314
-	// Line 2336, Address: 0x2631cc, Func Offset: 0x131c
-	// Line 2338, Address: 0x2631d4, Func Offset: 0x1324
-	// Line 2339, Address: 0x2631e4, Func Offset: 0x1334
-	// Line 2340, Address: 0x2631f4, Func Offset: 0x1344
-	// Line 2341, Address: 0x263204, Func Offset: 0x1354
-	// Line 2342, Address: 0x263214, Func Offset: 0x1364
-	// Line 2343, Address: 0x263218, Func Offset: 0x1368
-	// Line 2344, Address: 0x263220, Func Offset: 0x1370
-	// Line 2345, Address: 0x263224, Func Offset: 0x1374
-	// Line 2347, Address: 0x263230, Func Offset: 0x1380
-	// Line 2348, Address: 0x263238, Func Offset: 0x1388
-	// Line 2349, Address: 0x263248, Func Offset: 0x1398
-	// Line 2350, Address: 0x26324c, Func Offset: 0x139c
-	// Line 2351, Address: 0x263254, Func Offset: 0x13a4
-	// Line 2352, Address: 0x263258, Func Offset: 0x13a8
-	// Line 2358, Address: 0x263264, Func Offset: 0x13b4
-	// Line 2362, Address: 0x26326c, Func Offset: 0x13bc
-	// Line 2363, Address: 0x263280, Func Offset: 0x13d0
-	// Line 2364, Address: 0x263284, Func Offset: 0x13d4
-	// Func End, Address: 0x2632e0, Func Offset: 0x1430
-	scePrintf("bhCheckWallRefAngle - UNIMPLEMENTED!\n");
+    NJS_POINT3 pd; 
+    NJS_LINE l;    
+    ATR_WORK* hp; 
+    ATR_WORK ht;  
+    int i;         
+    int wal_n;    
+    float px, py, pz;    
+    float xn, zn;    
+    float ln, ln2;     
+    float wpx, wpz;    
+    float h;     
+    float abx, aby, abz;    
+    int r;         
+
+    wal_n = rom->wal_n + sys->mwal_n;
+    
+    for (i = 0; i < wal_n; i++) 
+    {
+        if (i < rom->wal_n) 
+        {
+            hp = &rom->walp[i];
+        }
+        else
+        {
+            hp = &sys->mwalp[i - rom->wal_n];
+        }
+        
+        if ((hp->flg & 0x1))
+        {
+            if (hp->h)
+            {
+                h = hp->h;
+            }
+            else
+            {
+                h = rom->h;
+            }
+            
+            switch (hp->type)
+            {                      
+            case 0:                                 
+            case 1:                                 
+                if (((!(hp->type & 0x1)) || (!(flg & 0x400))) && ((!(hp->attr & 0x20)) || (!(flg & 0x200))))  
+                {
+                    wpx = hp->px + (0.5f * hp->w);
+                    wpz = hp->pz + (0.5f * hp->d);
+                    
+                    px = hp->px - ar;
+                    pz = hp->pz - ar;
+                    
+                    xn = hp->w + (2.0f * ar);
+                    zn = hp->d + (2.0f * ar);
+                    
+                    if ((((pos->x - px) >= 0) && ((pos->x - px) < xn)) && (((pos->z - pz) >= 0) && ((pos->z - pz) < zn)) && (((pos->y + ah) >= hp->py) && (pos->y <= (hp->py + h))))
+                    {
+                        aby = fabsf(pos->y - (hp->py + h));
+                        
+                        if (pos->x < wpx) 
+                        {
+                            if (pos->z < wpz)
+                            {
+                                abx = fabsf(pos->x - px);
+                                abz = fabsf(pos->z - pz);
+                                
+                                if (abx > abz) 
+                                {
+                                    if (aby < abz)
+                                    {
+                                        pos->y = hp->py + h;
+                                    }
+                                    else 
+                                    {
+                                        pos->z = pz;
+                                        
+                                        *ay = 32768 - *ay;
+                                    }
+                                } 
+                                else if (aby < abx)
+                                {
+                                    pos->y = hp->py + h;
+                                } 
+                                else
+                                {
+                                    pos->x = px;
+                                    
+                                    *ay = -*ay;
+                                }
+                            } 
+                            else
+                            {
+                                abx = fabsf(pos->x - px);
+                                abz = fabsf(pos->z - (pz + zn));
+                                
+                                if (abx > abz) 
+                                {
+                                    if (aby < abz) 
+                                    {
+                                        pos->y = hp->py + h;
+                                    } 
+                                    else 
+                                    {
+                                        pos->z = pz + zn;
+                                        
+                                        *ay = 32768 - *ay;
+                                    }
+                                } 
+                                else if (aby < abx) 
+                                {
+                                    pos->y = hp->py + h;
+                                } 
+                                else
+                                {
+                                    pos->x = px;
+                                    
+                                    *ay = -*ay;
+                                }
+                            }
+                        } 
+                        else 
+                        {
+                            if (pos->z < wpz) 
+                            {
+                                abx = fabsf(pos->x - (px + xn));
+                                abz = fabsf(pos->z - pz);
+                                
+                                if (abx > abz) 
+                                {
+                                    if (aby < abz) 
+                                    {
+                                        pos->y = hp->py + h;
+                                    }
+                                    else
+                                    {
+                                        pos->z = pz;
+                                        
+                                        *ay = 32768 - *ay;
+                                    }
+                                }
+                                else if (aby < abx)
+                                {
+                                    pos->y = hp->py + h;
+                                } 
+                                else 
+                                {
+                                    pos->x = px + xn;
+                                    
+                                    *ay = -*ay;
+                                }
+                            } 
+                            else 
+                            {
+                                abx = fabsf(pos->x - (px + xn));
+                                abz = fabsf(pos->z - (pz + zn));
+                                
+                                if (abx > abz) 
+                                {
+                                    if (aby < abz) 
+                                    {
+                                        pos->y = hp->py + h;
+                                    }
+                                    else
+                                    {
+                                        pos->z = pz + zn;
+                                        
+                                        *ay = 32768 - *ay;
+                                    }
+                                }
+                                else if (aby < abx)
+                                {
+                                    pos->y = hp->py + h;
+                                } 
+                                else 
+                                {
+                                    pos->x = px + xn;
+                                    
+                                    *ay = -*ay;
+                                }
+                            }
+                        }
+                        
+                        return hp;
+                    }
+                }
+                
+                break;
+            case 2:                                 
+            case 3:                                 
+                if (((!(hp->type & 0x1)) || (!(flg & 0x400))) && ((!(hp->attr & 0x20)) || (!(flg & 0x200)))) 
+                {
+                    px = hp->px - pos->x;
+                    pz = hp->pz - pos->z;
+                    
+                    ln = njSqrt((px * px) + (pz * pz));
+                    
+                    if ((ln < (ar + hp->w)) && (((pos->y + ah) >= hp->py) && (pos->y <= (hp->py + h))))
+                    {
+                        r = 10430.381f * atan2f(px, pz); 
+                        
+                        ln2 = ar + hp->w;
+                        
+                        aby = fabsf(pos->y - (hp->py + h));
+                        abx = fabsf(ln2    - ln); 
+                        
+                        if (abx < aby) 
+                        {
+                            njSinCos(r, &pos->x, &pos->z);
+                            
+                            pos->x = hp->px - (pos->x * ln2);
+                            pos->z = hp->pz - (pos->z * ln2);
+                            
+                            *ay = r + ((r + 32768) - *ay);
+                        }
+                        else 
+                        {
+                            pos->y = hp->py + h;
+                        }
+                        
+                        return hp;
+                    }
+                }
+                
+                break;
+            case 4:                                 
+            case 5:                                 
+                if (((!(hp->type & 0x1)) || (!(flg & 0x400))) && ((!(hp->attr & 0x20)) || (!(flg & 0x200)))) 
+                {
+                    if (bhCheckInnerTriangle(hp, pos, ar, ah) != 0) 
+                    {
+                        l.vy = 0;
+                        l.py = 0; 
+                        
+                        switch (hp->id) 
+                        {          
+                        case 0:                     
+                            px = hp->px + ar;
+                            pz = hp->pz + ar;
+                            break;
+                        case 1:                     
+                            px = hp->px + ar;
+                            pz = hp->pz - ar;
+                            break;
+                        case 2:                     
+                            px = hp->px - ar;
+                            pz = hp->pz + ar;
+                            break;
+                        case 3:                     
+                            px = hp->px - ar;
+                            pz = hp->pz - ar;
+                            break;
+                        }
+                        
+                        l.px = px;
+                        l.pz = pz + hp->d;
+                        
+                        l.vx =  hp->w;
+                        l.vz = -hp->d;
+                        
+                        njDistanceP2L(pos, &l, &pd);
+                        
+                        px = pd.x - pos->x; 
+                        pz = pd.z - pos->z;
+                        
+                        ln2 = njSqrt((px * px) + (pz * pz));
+                        
+                        aby = fabsf(pos->y - (hp->py + h));
+                        
+                        if (aby >= ln2) 
+                        {
+                            pos->x = pd.x;
+                            pos->z = pd.z;
+                            
+                            r = 10430.381f * atan2f(hp->w, hp->d);
+                            
+                            *ay = r + ((r + 32768) - *ay);
+                        } 
+                        else 
+                        {
+                            pos->y = hp->py + h;
+                        }
+                        
+                        return hp;
+                    }
+                    
+                    switch (hp->id) 
+                    {            
+                    case 0:                         
+                        ht.px = hp->px;
+                        ht.py = hp->py;
+                        ht.pz = hp->pz;
+                        
+                        ht.w = 0;
+                        ht.h = hp->h;
+                        ht.d = hp->d;
+                        
+                        if (bhCheckBox(&ht, pos, ar, ah, 12) != 0) 
+                        {
+                            *ay = -*ay;
+                            
+                            return hp;
+                        }
+                        
+                        ht.w = hp->w;
+                        ht.h = hp->h;
+                        ht.d = 0;
+                        
+                        if (bhCheckBox(&ht, pos, ar, ah, 10) != 0)
+                        {
+                            *ay = -*ay;
+                            
+                            return hp;
+                        }
+                        
+                        break;
+                    case 1:                         
+                        ht.px = hp->px;
+                        ht.py = hp->py;
+                        ht.pz = hp->pz + hp->d;
+                        
+                        ht.w =  0;
+                        ht.h =  hp->h;
+                        ht.d = -hp->d;
+                        
+                        if (bhCheckBox(&ht, pos, ar, ah, 12) != 0) 
+                        {
+                            *ay = -*ay;
+                            
+                            return hp;
+                        }
+                        
+                        r = 0;
+                        
+                        ht.pz = hp->pz - r;
+                        
+                        ht.w = hp->w;
+                        ht.h = hp->h;
+                        ht.d = 0;
+                        
+                        if (bhCheckBox(&ht, pos, ar, ah, 5) != 0) 
+                        {
+                            *ay = -*ay;
+                            
+                            return hp;
+                        }
+                        
+                        break;
+                    case 2:          
+                        r = 0;
+                        
+                        ht.px = hp->px - r;
+                        ht.py = hp->py;
+                        ht.pz = hp->pz;
+                        
+                        ht.w = 0;
+                        ht.h = hp->h;
+                        ht.d = hp->d;
+                        
+                        if (bhCheckBox(&ht, pos, ar, ah, 3) != 0)
+                        {
+                            *ay = -*ay;
+                            
+                            return hp;
+                        }
+                        
+                        ht.px = hp->px + hp->w;
+                        
+                        ht.w = -hp->w;
+                        ht.h =  hp->h;
+                        ht.d =  0;
+                        
+                        if (bhCheckBox(&ht, pos, ar, ah, 10) != 0)
+                        {
+                            *ay = -*ay;
+                            
+                            return hp;
+                        }
+                        
+                        break;
+                    case 3:                   
+                        r = 0;
+                        
+                        ht.px = hp->px - r;
+                        ht.py = hp->py;
+                        ht.pz = hp->pz + hp->d;
+                        
+                        ht.w =  0;
+                        ht.h =  hp->h;
+                        ht.d = -hp->d;
+                        
+                        if (bhCheckBox(&ht, pos, ar, ah, 3) != 0)
+                        {
+                            *ay = -*ay;
+                            
+                            return hp;
+                        }
+                        
+                        ht.px = hp->px + hp->w;
+                        ht.pz = hp->pz - r;
+                        
+                        ht.w = -hp->w;
+                        ht.h =  hp->h;
+                        ht.d =  0;
+                        
+                        if (bhCheckBox(&ht, pos, ar, ah, 5) != 0)
+                        {
+                            *ay = -*ay;
+                            
+                            return hp;
+                        }
+                        
+                        break;
+                    }
+                }
+                
+                break;
+            case 6:                                 
+                if ((((pos->x - hp->px) >= 0) && ((pos->x - hp->px) < hp->w)) && (((pos->z - hp->pz) >= 0) && ((pos->z - hp->pz) < hp->d)) && (((pos->y + ah) >= hp->py) && (pos->y <= (hp->py + h))))
+                {
+                    // this switch is identical to the one found on bhSetWallRefAngle, however here registers won't match
+                    switch (hp->id) 
+                    { 
+                    case 0:         
+                        py = hp->py + ((hp->h / hp->w) * (pos->x - hp->px));
+                        break;
+                    case 1:         
+                        py = hp->h + (hp->py + ((hp->h / hp->d) * (hp->pz - pos->z)));
+                        break;
+                    case 2:         
+                        py = hp->py + ((hp->h / hp->d) * (pos->z - hp->pz));
+                        break;
+                    case 3:         
+                        py = hp->h + (hp->py + ((hp->h / hp->w) * (hp->px - pos->x)));
+                        break;
+                    }
+                    
+                    if (pos->y < py) 
+                    {
+                        aby = fabsf(pos->y - py);
+                        
+                        wpx = hp->px + (0.5f * hp->w);
+                        wpz = hp->pz + (0.5f * hp->d);
+                        
+                        px = hp->px - ar;
+                        pz = hp->pz - ar;
+                        
+                        xn = hp->w + (2.0f * ar);
+                        zn = hp->d + (2.0f * ar);
+                        
+                        if (pos->x < wpx) 
+                        {
+                            if (pos->z < wpz) 
+                            {
+                                abx = fabsf(pos->x - px);
+                                abz = fabsf(pos->z - pz);
+                                
+                                if (abx > abz) 
+                                {
+                                    if (aby < abz) 
+                                    {
+                                        pos->y = py;
+                                    } 
+                                    else 
+                                    {
+                                        pos->z = pz;
+                                        
+                                        *ay = 32768 - *ay;
+                                    }
+                                } 
+                                else if (aby < abx) 
+                                {
+                                    pos->y = py;
+                                } 
+                                else 
+                                {
+                                    pos->x = px;
+                                    
+                                    *ay = -*ay;
+                                }
+                            } 
+                            else 
+                            {
+                                abx = fabsf(pos->x - px);
+                                abz = fabsf(pos->z - (pz + zn));
+                                
+                                if (abx > abz)
+                                {
+                                    if (aby < abz)
+                                    {
+                                        pos->y = py;
+                                    } 
+                                    else 
+                                    {
+                                        pos->z = pz + zn;
+                                        
+                                        *ay = 32768 - *ay;
+                                    }
+                                } 
+                                else if (aby < abx) 
+                                {
+                                    pos->y = py;
+                                } 
+                                else 
+                                {
+                                    pos->x = px;
+                                    
+                                    *ay = -*ay;
+                                }
+                            }
+                        }
+                        else if (pos->z < wpz) 
+                        {
+                            abx = fabsf(pos->x - (px + xn));
+                            abz = fabsf(pos->z - pz);
+                            
+                            if (abx > abz) 
+                            {
+                                if (aby < abz) 
+                                {
+                                    pos->y = py;
+                                } 
+                                else 
+                                {
+                                    pos->z = pz;
+                                    
+                                    *ay = 32768 - *ay;
+                                }
+                            } 
+                            else if (aby < abx) 
+                            {
+                                pos->y = py;
+                            } 
+                            else 
+                            {
+                                pos->x = px + xn;
+                                
+                                *ay = -*ay;
+                            }
+                        } 
+                        else 
+                        {
+                            abx = fabsf(pos->x - (px + xn));
+                            abz = fabsf(pos->z - (pz + zn));
+                            
+                            if (abx > abz) 
+                            {
+                                if (aby < abz) 
+                                {
+                                    pos->y = py;
+                                }
+                                else 
+                                {
+                                    pos->z = pz + zn;
+                                    
+                                    *ay = 32768 - *ay;
+                                }
+                            } 
+                            else if (aby < abx) 
+                            {
+                                pos->y = py;
+                            } 
+                            else 
+                            {
+                                pos->x = px + xn;
+                                
+                                *ay = -*ay;
+                            }
+                        }
+                        
+                        return hp;
+                    }
+                    
+                    break;
+                }
+                
+                break;
+            case 7:                                 
+                if ((!(hp->attr & 0x20)) || (!(flg & 0x200))) 
+                {
+                    wpx = hp->px + (0.5f * hp->w);
+                    wpz = hp->pz + (0.5f * hp->d);
+                    
+                    px = hp->px - ar;
+                    pz = hp->pz - ar;
+                    
+                    xn = hp->w + (2.0f * ar);
+                    zn = hp->d + (2.0f * ar);
+                    
+                    if (((((pos->x - px) >= 0) && ((pos->x - px) < xn)) && (((pos->z - pz) >= 0) && ((pos->z - pz) < zn)) && ((pos->y < (hp->py + hp->h)) && ((pos->y + ah) > (hp->py + hp->h))) && ((flg & 0x100))) || ((((pos->x - px) >= 0) && ((pos->x - px) < xn)) && (((pos->z - pz) >= 0) && ((pos->z - pz) < zn)) && (((pos->y + ah) >= (hp->py + hp->h)) && (pos->y < hp->py)) && (!(flg & 0x100)))) 
+                    {
+                        aby = fabsf(pos->y - hp->py);
+                        
+                        if (pos->x < wpx)
+                        {
+                            if (pos->z < wpz) 
+                            {
+                                abx = fabsf(pos->x - px);
+                                abz = fabsf(pos->z - pz);
+                                
+                                if (abx > abz) 
+                                {
+                                    if (aby < abz) 
+                                    {
+                                        pos->y = hp->py;
+                                    } 
+                                    else 
+                                    {
+                                        pos->z = pz;
+                                        
+                                        *ay = 32768 - *ay;
+                                    }
+                                } 
+                                else if (aby < abx) 
+                                {
+                                    pos->y = hp->py;
+                                } 
+                                else 
+                                {
+                                    pos->x = px;
+                                    
+                                    *ay = -*ay;
+                                }
+                            }
+                            else 
+                            {
+                                abx = fabsf(pos->x - px);
+                                abz = fabsf(pos->z - (pz + zn));
+                                
+                                if (abx > abz)
+                                {
+                                    if (aby < abz) 
+                                    {
+                                        pos->y = hp->py;
+                                    } 
+                                    else 
+                                    {
+                                        pos->z = pz + zn;
+                                        
+                                        *ay = 32768 - *ay;
+                                    }
+                                } 
+                                else if (aby < abx) 
+                                {
+                                    pos->y = hp->py;
+                                } 
+                                else
+                                {
+                                    pos->x = px;
+                                    
+                                    *ay = -*ay;
+                                }
+                            }
+                        } 
+                        else
+                        {
+                            if (pos->z < wpz) 
+                            {
+                                abx = fabsf(pos->x - (px + xn));
+                                abz = fabsf(pos->z - pz);
+                                
+                                if (abx > abz)
+                                {
+                                    if (aby < abz)
+                                    {
+                                        pos->y = hp->py;
+                                    }
+                                    else 
+                                    {
+                                        pos->z = pz;
+                                        
+                                        *ay = 32768 - *ay;
+                                    }
+                                } 
+                                else if (aby < abx) 
+                                {
+                                    pos->y = hp->py;
+                                }
+                                else 
+                                {
+                                    pos->x = px + xn;
+                                    
+                                    *ay = -*ay;
+                                }
+                            } 
+                            else 
+                            {
+                                abx = fabsf(pos->x - (px + xn));
+                                abz = fabsf(pos->z - (pz + zn));
+                                
+                                if (abx > abz) 
+                                {
+                                    if (aby < abz) 
+                                    {
+                                        pos->y = hp->py;
+                                    }
+                                    else 
+                                    {
+                                        pos->z = pz + zn;
+                                        
+                                        *ay = 32768 - *ay;
+                                    }
+                                } 
+                                else if (aby < abx) 
+                                {
+                                    pos->y = hp->py;
+                                }
+                                else 
+                                {
+                                    pos->x = px + xn;
+                                    
+                                    *ay = -*ay;
+                                }
+                            }
+                        }
+                        
+                        return hp;
+                    }
+                }
+            }
+        } 
+    } 
+    
+    return NULL;
 }
 
 // 100% matching!
