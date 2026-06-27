@@ -2395,64 +2395,73 @@ void bhEne04_Die(BH_PWORK* epw)
     bhEne04_DieType[epw->type](epw);
 }
 
-
-// 
-// Start address: 0x1a6100
+// 100% matching!
 void bhEne04_MVType00(BH_PWORK* epw)
 {
-	//_anon12* hp;
-	//_anon36 pos;
-	//_anon4* owk;
-	int ang_tbl[4];
-	// Line 1568, Address: 0x1a6100, Func Offset: 0
-	// Line 1569, Address: 0x1a6110, Func Offset: 0x10
-	// Line 1568, Address: 0x1a6114, Func Offset: 0x14
-	// Line 1569, Address: 0x1a6118, Func Offset: 0x18
-	// Line 1575, Address: 0x1a6124, Func Offset: 0x24
-	// Line 1577, Address: 0x1a612c, Func Offset: 0x2c
-	// Line 1569, Address: 0x1a6130, Func Offset: 0x30
-	// Line 1575, Address: 0x1a6134, Func Offset: 0x34
-	// Line 1578, Address: 0x1a6138, Func Offset: 0x38
-	// Line 1579, Address: 0x1a613c, Func Offset: 0x3c
-	// Line 1575, Address: 0x1a6140, Func Offset: 0x40
-	// Line 1576, Address: 0x1a6148, Func Offset: 0x48
-	// Line 1577, Address: 0x1a6150, Func Offset: 0x50
-	// Line 1578, Address: 0x1a6158, Func Offset: 0x58
-	// Line 1579, Address: 0x1a615c, Func Offset: 0x5c
-	// Line 1583, Address: 0x1a616c, Func Offset: 0x6c
-	// Line 1579, Address: 0x1a6174, Func Offset: 0x74
-	// Line 1583, Address: 0x1a6178, Func Offset: 0x78
-	// Line 1585, Address: 0x1a6194, Func Offset: 0x94
-	// Line 1586, Address: 0x1a61a4, Func Offset: 0xa4
-	// Line 1589, Address: 0x1a61ac, Func Offset: 0xac
-	// Line 1593, Address: 0x1a61c4, Func Offset: 0xc4
-	// Line 1594, Address: 0x1a61d4, Func Offset: 0xd4
-	// Line 1596, Address: 0x1a61dc, Func Offset: 0xdc
-	// Line 1598, Address: 0x1a61ec, Func Offset: 0xec
-	// Line 1599, Address: 0x1a620c, Func Offset: 0x10c
-	// Line 1601, Address: 0x1a6224, Func Offset: 0x124
-	// Line 1599, Address: 0x1a6228, Func Offset: 0x128
-	// Line 1600, Address: 0x1a6230, Func Offset: 0x130
-	// Line 1601, Address: 0x1a6234, Func Offset: 0x134
-	// Line 1603, Address: 0x1a624c, Func Offset: 0x14c
-	// Line 1604, Address: 0x1a6258, Func Offset: 0x158
-	// Line 1607, Address: 0x1a6260, Func Offset: 0x160
-	// Line 1611, Address: 0x1a6278, Func Offset: 0x178
-	// Line 1613, Address: 0x1a6294, Func Offset: 0x194
-	// Line 1615, Address: 0x1a62b0, Func Offset: 0x1b0
-	// Line 1617, Address: 0x1a62c0, Func Offset: 0x1c0
-	// Line 1619, Address: 0x1a62fc, Func Offset: 0x1fc
-	// Line 1624, Address: 0x1a6300, Func Offset: 0x200
-	// Line 1620, Address: 0x1a6308, Func Offset: 0x208
-	// Line 1624, Address: 0x1a630c, Func Offset: 0x20c
-	// Line 1619, Address: 0x1a6310, Func Offset: 0x210
-	// Line 1620, Address: 0x1a6320, Func Offset: 0x220
-	// Line 1621, Address: 0x1a6350, Func Offset: 0x250
-	// Line 1624, Address: 0x1a6388, Func Offset: 0x288
-	// Line 1674, Address: 0x1a6390, Func Offset: 0x290
-	// Line 1675, Address: 0x1a63b0, Func Offset: 0x2b0
-	// Func End, Address: 0x1a63c8, Func Offset: 0x2c8
-    scePrintf("bhEne04_MVType00 - UNIMPLEMENTED!\n");
+    int ang_tbl[4] =
+    {
+        0,          // 0°
+        49152,      // 270°
+        32768,      // 180°
+        16384       // 90°
+    };
+
+	O_WORK* owk;
+	NJS_POINT3 pos;    
+	ATR_WORK* hp;
+
+    owk = plp->mlwP->owP;
+    pos.x = owk[1].mtx[12];
+    pos.y = epw->py;
+    pos.z = owk[1].mtx[14];
+    
+    EXP0_F(0x20) = njDistanceP2P(&pos, (NJS_POINT3*)&epw->px);
+    
+    if (bhEne_EnemyAtariCheck((NJS_POINT3*)&plp->px, plp->flr_no, epw->id, 0) != NULL)
+    {
+        EXP0_I(0x10) |= 0x200000;
+    }
+    else
+    {
+        EXP0_I(0x10) &= ~0x200000;
+    }
+    
+    if (epw->mode1 == 1)
+    {
+        bhEne04_Brain(epw);
+    }
+    
+    if (epw->mode0 == 1)
+    {
+        pos.x = epw->px - (6.0f * njSin(epw->ay));
+        pos.z = epw->pz - (6.0f * njCos(epw->ay));
+        pos.y = 0.0f;
+        if (bhEne_EnemyAtariCheck(&pos, epw->flr_no, epw->id, 5) != NULL)
+        {
+            EXP0_I(0x10) |= 0x8000;
+        } 
+        else
+        {
+            EXP0_I(0x10) &= ~0x8000;
+        }
+
+        if ((epw->mode2 == 2) || (epw->mode2 == 3))
+        {
+            hp = bhEne_EnemyAtariCheck(&pos, epw->flr_no, epw->id, 4);
+            if ((hp != NULL) && (hp->prm1 == 4))
+            {
+                if (sys->obwp[hp->prm2].mode1 == 0)
+                {
+                    sys->obwp[hp->prm2].ayp = ang_tbl[hp->prm3];
+                    sys->obwp[hp->prm2].mode3 = 0;
+                    sys->obwp[hp->prm2].flg2 |= 1;
+
+                    bhEne04_SePlay(epw, 70415);
+                }
+            }
+        }
+        bhEne04_MoveMode2[epw->mode2](epw);
+    }
 }
 
 // 100% matching!
@@ -2491,7 +2500,8 @@ void bhEne04_MVType01(BH_PWORK* epw)
 }
 
 // 100% matching!
-void bhEne04_MVType02(BH_PWORK* epw) {
+void bhEne04_MVType02(BH_PWORK* epw)
+{
     O_WORK* owk;
     NJS_POINT3 pos;
 
