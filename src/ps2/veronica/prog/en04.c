@@ -2608,52 +2608,84 @@ int bhEne04_AtariCheck(BH_PWORK* epw)
     return 0;
 }
 
+#pragma divbyzerocheck on 
 
-// 
-// Start address: 0x1a6830
-int bhEne04_AtariCheck2(BH_PWORK* epw)
-{
-	int i;
-	int atr_num;
-	int flr_n;
-	ATR_WORK* work[32];
-	ATR_WORK* fp;
-	ATR_WORK* hp2;
+// 100% matching!
+int bhEne04_AtariCheck2(BH_PWORK* epw) {
 	ATR_WORK* hp;
-	// Line 1957, Address: 0x1a6830, Func Offset: 0
-	// Line 1965, Address: 0x1a6840, Func Offset: 0x10
-	// Line 1967, Address: 0x1a6860, Func Offset: 0x30
-	// Line 1970, Address: 0x1a6870, Func Offset: 0x40
-	// Line 1974, Address: 0x1a6888, Func Offset: 0x58
-	// Line 1973, Address: 0x1a6890, Func Offset: 0x60
-	// Line 1974, Address: 0x1a6894, Func Offset: 0x64
-	// Line 1975, Address: 0x1a68b0, Func Offset: 0x80
-	// Line 1979, Address: 0x1a68c4, Func Offset: 0x94
-	// Line 1978, Address: 0x1a68cc, Func Offset: 0x9c
-	// Line 1979, Address: 0x1a6908, Func Offset: 0xd8
-	// Line 1986, Address: 0x1a6958, Func Offset: 0x128
-	// Line 1987, Address: 0x1a6960, Func Offset: 0x130
-	// Line 1988, Address: 0x1a6964, Func Offset: 0x134
-	// Line 1989, Address: 0x1a6968, Func Offset: 0x138
-	// Line 1991, Address: 0x1a6978, Func Offset: 0x148
-	// Line 1993, Address: 0x1a6980, Func Offset: 0x150
-	// Line 1996, Address: 0x1a698c, Func Offset: 0x15c
-	// Line 1999, Address: 0x1a6994, Func Offset: 0x164
-	// Line 2003, Address: 0x1a69bc, Func Offset: 0x18c
-	// Line 2005, Address: 0x1a69d0, Func Offset: 0x1a0
-	// Line 2008, Address: 0x1a69d8, Func Offset: 0x1a8
-	// Line 2010, Address: 0x1a69e8, Func Offset: 0x1b8
-	// Line 2008, Address: 0x1a69f0, Func Offset: 0x1c0
-	// Line 2009, Address: 0x1a69fc, Func Offset: 0x1cc
-	// Line 2010, Address: 0x1a6a10, Func Offset: 0x1e0
-	// Line 2013, Address: 0x1a6a20, Func Offset: 0x1f0
-	// Line 2016, Address: 0x1a6a44, Func Offset: 0x214
-	// Line 2018, Address: 0x1a6a68, Func Offset: 0x238
-	// Line 2022, Address: 0x1a6a74, Func Offset: 0x244
-	// Line 2023, Address: 0x1a6a78, Func Offset: 0x248
-	// Func End, Address: 0x1a6a8c, Func Offset: 0x25c
-    scePrintf("bhEne04_AtariCheck2 - UNIMPLEMENTED!\n");
+	ATR_WORK* hp2;
+    ATR_WORK* fp;
+    ATR_WORK* work[32];
+    int flr_n;
+    int atr_num;
+	int i;
+
+    hp = bhEne_EnemyAtariCheck((NJS_POINT3*)&plp->px, plp->flr_no, epw->id, 6);
+    
+    if (hp == NULL)
+    {
+        return 0;
+    }
+    
+    if (32 < hp->prm3)
+    {
+        return 0;
+    }
+    
+    atr_num = 0;
+    flr_n = rom->flr_n + sys->mflr_n;
+    for (i = 0; i < flr_n; i++) 
+    {
+        if (i < rom->flr_n)
+        {
+            fp = &rom->flrp[i];
+        } 
+        else
+        {
+            fp = &sys->mflrp[i - rom->flr_n];
+        }
+    
+        if ((fp->flg & 1) && 
+            (fp->type == 2) && 
+            (fp != hp) && 
+            (fp->flr_no == epw->flr_no) && 
+            (fp->prm0 == epw->id) && 
+            (fp->prm1 == 6)) 
+        {
+            work[atr_num++] = fp;
+        }
+    }
+    
+    if (atr_num > 0)
+    {
+        if (atr_num == 1)
+        {
+            fp = work[0];
+        }
+        else
+        {
+            fp = work[rand() % atr_num];
+        }
+        
+        hp2 = bhEne04_EnemyAtariCheck2(epw, 7, fp->prm3);
+        if (hp2 != NULL)
+        {
+            epw->px = hp2->px + (hp2->w / 2.0f);
+            epw->pz = hp2->pz + (hp2->d / 2.0f);
+            
+            epw->ay = kaidan_ang[hp2->prm2];
+            if ((rand() % 3) == 0)
+            {
+                sys->rm_flg |= 1 << (hp2->prm3 + 16);
+            }
+            return 1;
+        }
+
+    }
+    return 0;
 }
+
+#pragma divbyzerocheck off
 
 // 100% matching! 
 ATR_WORK* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip)
