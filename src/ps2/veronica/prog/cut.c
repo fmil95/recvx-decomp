@@ -659,11 +659,6 @@ void bhSetHideObject(int offset)
     }
 }
 
-// TODO: remove these and call njArcTan2 directly, which currently gets called incorrectly from ninjaapi.h
-#define NJD_PI_MOD  3.141592f
-#define NJM_RAD_ANG_MOD(n)  ((Angle)((n) * (65536.0f / (2 * NJD_PI_MOD))))
-#define njArcTan2_MOD(y,x)   ((Angle)NJM_RAD_ANG_MOD(atan2f ((Float)(y),(Float)(x)) ))
-
 // 99.76% matching 
 void bhInitActiveCamera(int flg)
 {
@@ -844,7 +839,7 @@ void bhInitActiveCamera(int flg)
         
         py = cam.ply - cam.py;
         
-        ax = -njArcTan2_MOD(py, d);
+        ax = -njArcTan2(py, d);
         
         if ((((ci->flg & 0x2)) && (flg == 0)) || ((((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4)))) 
         {
@@ -868,7 +863,7 @@ void bhInitActiveCamera(int flg)
             cam.plz = plp->gpz;
         }
         
-        ay = (-njArcTan2_MOD(cam.plx - cam.px, cam.plz - cam.pz) + 32767) + 1;
+        ay = (-njArcTan2(cam.plx - cam.px, cam.plz - cam.pz) + 32767) + 1;
         
         if ((((ci->flg & 0x2)) && (flg == 0)) || ((((cam.ocflg & 0x2)) && (flg == 0)) || ((cam.flg & 0x4)))) 
         {
@@ -905,7 +900,7 @@ void bhInitActiveCamera(int flg)
             
             py = cam.ply - cam.py;
             
-            xr = (short)-njArcTan2_MOD(py, d);
+            xr = (short)-njArcTan2(py, d);
             
             ax = xr - ax;
             
@@ -946,7 +941,7 @@ void bhInitActiveCamera(int flg)
                 cam.plz = plp->gpz;
             }
             
-            yr = (short)(-njArcTan2_MOD(cam.plx - cam.px, cam.plz - cam.pz) + 32767 + 1); 
+            yr = (short)(-njArcTan2(cam.plx - cam.px, cam.plz - cam.pz) + 32767 + 1); 
             
             ay = yr - ay;
             
@@ -996,7 +991,7 @@ void bhInitActiveCamera(int flg)
             
             py = cam.ply - cam.py;
             
-            ay = -njArcTan2_MOD(py, d);
+            ay = -njArcTan2(py, d);
             ay -= ax;
             
             yr = ci->ax;
@@ -1038,7 +1033,7 @@ void bhInitActiveCamera(int flg)
                 cam.plz = plp->gpz;
             }
             
-            ax = (-njArcTan2_MOD(cam.plx - cam.px, cam.plz - cam.pz) + 32767) + 1;
+            ax = (-njArcTan2(cam.plx - cam.px, cam.plz - cam.pz) + 32767) + 1;
             ax -= ay;
             
             yr = ci->ay;
@@ -1175,388 +1170,474 @@ void bhCheckNearAttrOffCutRange(CUT_WORK* cp, unsigned int sft, float* px, float
     }
 }
 
-// 
-// Start address: 0x27cb60
-void bhControlActiveCamera()
+// 99.52% matching
+void bhControlActiveCamera() 
 {
-	//_anon28 sca;
-	short ahkn;
-	float hkn;
-	short aa;
-	short ay;
-	short ax;
-	int yr;
-	int xr;
-	unsigned int attr;
-	float fa1;
-	float fa0;
+    CUT_WORK* cp;
+    CAM_WRK* ci;
+	float px, py, pz;
 	float aa_spd;
-	float pz;
-	float py;
-	float px;
-	//_anon21* ci;
-	//_anon10* cp;
-	// Line 1011, Address: 0x27cb60, Func Offset: 0
-	// Line 1019, Address: 0x27cb80, Func Offset: 0x20
-	// Line 1022, Address: 0x27cb88, Func Offset: 0x28
-	// Line 1019, Address: 0x27cb8c, Func Offset: 0x2c
-	// Line 1020, Address: 0x27cb98, Func Offset: 0x38
-	// Line 1019, Address: 0x27cba0, Func Offset: 0x40
-	// Line 1022, Address: 0x27cbb0, Func Offset: 0x50
-	// Line 1019, Address: 0x27cbb8, Func Offset: 0x58
-	// Line 1020, Address: 0x27cbc0, Func Offset: 0x60
-	// Line 1022, Address: 0x27cbd8, Func Offset: 0x78
-	// Line 1024, Address: 0x27cc20, Func Offset: 0xc0
-	// Line 1026, Address: 0x27cc30, Func Offset: 0xd0
-	// Line 1027, Address: 0x27cc44, Func Offset: 0xe4
-	// Line 1028, Address: 0x27cc60, Func Offset: 0x100
-	// Line 1029, Address: 0x27cc70, Func Offset: 0x110
-	// Line 1031, Address: 0x27cc78, Func Offset: 0x118
-	// Line 1033, Address: 0x27cca4, Func Offset: 0x144
-	// Line 1034, Address: 0x27ccc4, Func Offset: 0x164
-	// Line 1036, Address: 0x27cce4, Func Offset: 0x184
-	// Line 1037, Address: 0x27ccec, Func Offset: 0x18c
-	// Line 1039, Address: 0x27ccf8, Func Offset: 0x198
-	// Line 1040, Address: 0x27cd0c, Func Offset: 0x1ac
-	// Line 1041, Address: 0x27cd28, Func Offset: 0x1c8
-	// Line 1047, Address: 0x27cd3c, Func Offset: 0x1dc
-	// Line 1048, Address: 0x27cd58, Func Offset: 0x1f8
-	// Line 1049, Address: 0x27cd60, Func Offset: 0x200
-	// Line 1052, Address: 0x27cd70, Func Offset: 0x210
-	// Line 1053, Address: 0x27cd78, Func Offset: 0x218
-	// Line 1056, Address: 0x27cd7c, Func Offset: 0x21c
-	// Line 1070, Address: 0x27cd88, Func Offset: 0x228
-	// Line 1056, Address: 0x27cd90, Func Offset: 0x230
-	// Line 1070, Address: 0x27cda0, Func Offset: 0x240
-	// Line 1073, Address: 0x27cdd0, Func Offset: 0x270
-	// Line 1077, Address: 0x27ce10, Func Offset: 0x2b0
-	// Line 1080, Address: 0x27ce4c, Func Offset: 0x2ec
-	// Line 1084, Address: 0x27ce98, Func Offset: 0x338
-	// Line 1085, Address: 0x27cef0, Func Offset: 0x390
-	// Line 1086, Address: 0x27cefc, Func Offset: 0x39c
-	// Line 1094, Address: 0x27cf14, Func Offset: 0x3b4
-	// Line 1096, Address: 0x27cf24, Func Offset: 0x3c4
-	// Line 1097, Address: 0x27cf30, Func Offset: 0x3d0
-	// Line 1098, Address: 0x27cf40, Func Offset: 0x3e0
-	// Line 1097, Address: 0x27cf48, Func Offset: 0x3e8
-	// Line 1099, Address: 0x27cf4c, Func Offset: 0x3ec
-	// Line 1098, Address: 0x27cf50, Func Offset: 0x3f0
-	// Line 1099, Address: 0x27cf5c, Func Offset: 0x3fc
-	// Line 1101, Address: 0x27cf64, Func Offset: 0x404
-	// Line 1103, Address: 0x27cfa0, Func Offset: 0x440
-	// Line 1107, Address: 0x27cfac, Func Offset: 0x44c
-	// Line 1110, Address: 0x27cfb8, Func Offset: 0x458
-	// Line 1112, Address: 0x27d00c, Func Offset: 0x4ac
-	// Line 1115, Address: 0x27d014, Func Offset: 0x4b4
-	// Line 1117, Address: 0x27d01c, Func Offset: 0x4bc
-	// Line 1120, Address: 0x27d028, Func Offset: 0x4c8
-	// Line 1121, Address: 0x27d034, Func Offset: 0x4d4
-	// Line 1123, Address: 0x27d040, Func Offset: 0x4e0
-	// Line 1122, Address: 0x27d048, Func Offset: 0x4e8
-	// Line 1123, Address: 0x27d04c, Func Offset: 0x4ec
-	// Line 1124, Address: 0x27d054, Func Offset: 0x4f4
-	// Line 1123, Address: 0x27d05c, Func Offset: 0x4fc
-	// Line 1125, Address: 0x27d060, Func Offset: 0x500
-	// Line 1124, Address: 0x27d064, Func Offset: 0x504
-	// Line 1125, Address: 0x27d070, Func Offset: 0x510
-	// Line 1127, Address: 0x27d078, Func Offset: 0x518
-	// Line 1130, Address: 0x27d0a8, Func Offset: 0x548
-	// Line 1127, Address: 0x27d0ac, Func Offset: 0x54c
-	// Line 1128, Address: 0x27d0b8, Func Offset: 0x558
-	// Line 1130, Address: 0x27d0c0, Func Offset: 0x560
-	// Line 1128, Address: 0x27d0c8, Func Offset: 0x568
-	// Line 1130, Address: 0x27d0cc, Func Offset: 0x56c
-	// Line 1131, Address: 0x27d0e4, Func Offset: 0x584
-	// Line 1132, Address: 0x27d100, Func Offset: 0x5a0
-	// Line 1137, Address: 0x27d10c, Func Offset: 0x5ac
-	// Line 1138, Address: 0x27d118, Func Offset: 0x5b8
-	// Line 1142, Address: 0x27d124, Func Offset: 0x5c4
-	// Line 1139, Address: 0x27d12c, Func Offset: 0x5cc
-	// Line 1142, Address: 0x27d130, Func Offset: 0x5d0
-	// Line 1145, Address: 0x27d170, Func Offset: 0x610
-	// Line 1142, Address: 0x27d174, Func Offset: 0x614
-	// Line 1143, Address: 0x27d180, Func Offset: 0x620
-	// Line 1145, Address: 0x27d188, Func Offset: 0x628
-	// Line 1143, Address: 0x27d190, Func Offset: 0x630
-	// Line 1145, Address: 0x27d194, Func Offset: 0x634
-	// Line 1146, Address: 0x27d1ac, Func Offset: 0x64c
-	// Line 1147, Address: 0x27d1c8, Func Offset: 0x668
-	// Line 1151, Address: 0x27d1d0, Func Offset: 0x670
-	// Line 1154, Address: 0x27d1d8, Func Offset: 0x678
-	// Line 1155, Address: 0x27d1e4, Func Offset: 0x684
-	// Line 1157, Address: 0x27d1f0, Func Offset: 0x690
-	// Line 1156, Address: 0x27d1f8, Func Offset: 0x698
-	// Line 1157, Address: 0x27d1fc, Func Offset: 0x69c
-	// Line 1158, Address: 0x27d204, Func Offset: 0x6a4
-	// Line 1157, Address: 0x27d20c, Func Offset: 0x6ac
-	// Line 1159, Address: 0x27d210, Func Offset: 0x6b0
-	// Line 1158, Address: 0x27d214, Func Offset: 0x6b4
-	// Line 1159, Address: 0x27d220, Func Offset: 0x6c0
-	// Line 1161, Address: 0x27d228, Func Offset: 0x6c8
-	// Line 1163, Address: 0x27d258, Func Offset: 0x6f8
-	// Line 1161, Address: 0x27d260, Func Offset: 0x700
-	// Line 1165, Address: 0x27d26c, Func Offset: 0x70c
-	// Line 1162, Address: 0x27d270, Func Offset: 0x710
-	// Line 1164, Address: 0x27d274, Func Offset: 0x714
-	// Line 1162, Address: 0x27d27c, Func Offset: 0x71c
-	// Line 1165, Address: 0x27d284, Func Offset: 0x724
-	// Line 1166, Address: 0x27d29c, Func Offset: 0x73c
-	// Line 1167, Address: 0x27d2a4, Func Offset: 0x744
-	// Line 1166, Address: 0x27d2ac, Func Offset: 0x74c
-	// Line 1167, Address: 0x27d2b0, Func Offset: 0x750
-	// Line 1168, Address: 0x27d2c4, Func Offset: 0x764
-	// Line 1169, Address: 0x27d2cc, Func Offset: 0x76c
-	// Line 1170, Address: 0x27d2e0, Func Offset: 0x780
-	// Line 1171, Address: 0x27d2e8, Func Offset: 0x788
-	// Line 1170, Address: 0x27d2f0, Func Offset: 0x790
-	// Line 1171, Address: 0x27d2f4, Func Offset: 0x794
-	// Line 1174, Address: 0x27d30c, Func Offset: 0x7ac
-	// Line 1179, Address: 0x27d318, Func Offset: 0x7b8
-	// Line 1180, Address: 0x27d324, Func Offset: 0x7c4
-	// Line 1184, Address: 0x27d330, Func Offset: 0x7d0
-	// Line 1181, Address: 0x27d338, Func Offset: 0x7d8
-	// Line 1184, Address: 0x27d33c, Func Offset: 0x7dc
-	// Line 1186, Address: 0x27d374, Func Offset: 0x814
-	// Line 1184, Address: 0x27d37c, Func Offset: 0x81c
-	// Line 1188, Address: 0x27d384, Func Offset: 0x824
-	// Line 1184, Address: 0x27d388, Func Offset: 0x828
-	// Line 1187, Address: 0x27d38c, Func Offset: 0x82c
-	// Line 1184, Address: 0x27d390, Func Offset: 0x830
-	// Line 1185, Address: 0x27d398, Func Offset: 0x838
-	// Line 1188, Address: 0x27d3a0, Func Offset: 0x840
-	// Line 1187, Address: 0x27d3a8, Func Offset: 0x848
-	// Line 1185, Address: 0x27d3ac, Func Offset: 0x84c
-	// Line 1188, Address: 0x27d3b0, Func Offset: 0x850
-	// Line 1189, Address: 0x27d3c0, Func Offset: 0x860
-	// Line 1190, Address: 0x27d3c8, Func Offset: 0x868
-	// Line 1189, Address: 0x27d3d0, Func Offset: 0x870
-	// Line 1190, Address: 0x27d3d4, Func Offset: 0x874
-	// Line 1191, Address: 0x27d3e8, Func Offset: 0x888
-	// Line 1192, Address: 0x27d3f0, Func Offset: 0x890
-	// Line 1193, Address: 0x27d404, Func Offset: 0x8a4
-	// Line 1194, Address: 0x27d40c, Func Offset: 0x8ac
-	// Line 1193, Address: 0x27d414, Func Offset: 0x8b4
-	// Line 1194, Address: 0x27d418, Func Offset: 0x8b8
-	// Line 1197, Address: 0x27d430, Func Offset: 0x8d0
-	// Line 1204, Address: 0x27d43c, Func Offset: 0x8dc
-	// Line 1205, Address: 0x27d46c, Func Offset: 0x90c
-	// Line 1206, Address: 0x27d478, Func Offset: 0x918
-	// Line 1211, Address: 0x27d498, Func Offset: 0x938
-	// Line 1212, Address: 0x27d4a8, Func Offset: 0x948
-	// Line 1213, Address: 0x27d4b4, Func Offset: 0x954
-	// Line 1215, Address: 0x27d4c8, Func Offset: 0x968
-	// Line 1216, Address: 0x27d4d0, Func Offset: 0x970
-	// Line 1219, Address: 0x27d4dc, Func Offset: 0x97c
-	// Line 1221, Address: 0x27d4f0, Func Offset: 0x990
-	// Line 1227, Address: 0x27d4f8, Func Offset: 0x998
-	// Line 1221, Address: 0x27d500, Func Offset: 0x9a0
-	// Line 1230, Address: 0x27d504, Func Offset: 0x9a4
-	// Line 1221, Address: 0x27d50c, Func Offset: 0x9ac
-	// Line 1222, Address: 0x27d528, Func Offset: 0x9c8
-	// Line 1230, Address: 0x27d534, Func Offset: 0x9d4
-	// Line 1222, Address: 0x27d538, Func Offset: 0x9d8
-	// Line 1223, Address: 0x27d554, Func Offset: 0x9f4
-	// Line 1224, Address: 0x27d57c, Func Offset: 0xa1c
-	// Line 1225, Address: 0x27d584, Func Offset: 0xa24
-	// Line 1226, Address: 0x27d58c, Func Offset: 0xa2c
-	// Line 1228, Address: 0x27d598, Func Offset: 0xa38
-	// Line 1227, Address: 0x27d59c, Func Offset: 0xa3c
-	// Line 1228, Address: 0x27d5a0, Func Offset: 0xa40
-	// Line 1227, Address: 0x27d5a4, Func Offset: 0xa44
-	// Line 1228, Address: 0x27d5a8, Func Offset: 0xa48
-	// Line 1227, Address: 0x27d5ac, Func Offset: 0xa4c
-	// Line 1228, Address: 0x27d5b0, Func Offset: 0xa50
-	// Line 1229, Address: 0x27d5b4, Func Offset: 0xa54
-	// Line 1230, Address: 0x27d5b8, Func Offset: 0xa58
-	// Line 1232, Address: 0x27d5c8, Func Offset: 0xa68
-	// Line 1233, Address: 0x27d5d0, Func Offset: 0xa70
-	// Line 1236, Address: 0x27d5d8, Func Offset: 0xa78
-	// Line 1239, Address: 0x27d5e0, Func Offset: 0xa80
-	// Line 1234, Address: 0x27d5e8, Func Offset: 0xa88
-	// Line 1239, Address: 0x27d5f0, Func Offset: 0xa90
-	// Line 1235, Address: 0x27d5f4, Func Offset: 0xa94
-	// Line 1237, Address: 0x27d600, Func Offset: 0xaa0
-	// Line 1236, Address: 0x27d604, Func Offset: 0xaa4
-	// Line 1237, Address: 0x27d608, Func Offset: 0xaa8
-	// Line 1236, Address: 0x27d60c, Func Offset: 0xaac
-	// Line 1237, Address: 0x27d610, Func Offset: 0xab0
-	// Line 1236, Address: 0x27d614, Func Offset: 0xab4
-	// Line 1237, Address: 0x27d618, Func Offset: 0xab8
-	// Line 1238, Address: 0x27d61c, Func Offset: 0xabc
-	// Line 1239, Address: 0x27d620, Func Offset: 0xac0
-	// Line 1241, Address: 0x27d630, Func Offset: 0xad0
-	// Line 1243, Address: 0x27d638, Func Offset: 0xad8
-	// Line 1245, Address: 0x27d640, Func Offset: 0xae0
-	// Line 1250, Address: 0x27d648, Func Offset: 0xae8
-	// Line 1245, Address: 0x27d650, Func Offset: 0xaf0
-	// Line 1247, Address: 0x27d654, Func Offset: 0xaf4
-	// Line 1245, Address: 0x27d658, Func Offset: 0xaf8
-	// Line 1247, Address: 0x27d65c, Func Offset: 0xafc
-	// Line 1245, Address: 0x27d660, Func Offset: 0xb00
-	// Line 1250, Address: 0x27d664, Func Offset: 0xb04
-	// Line 1247, Address: 0x27d668, Func Offset: 0xb08
-	// Line 1250, Address: 0x27d684, Func Offset: 0xb24
-	// Line 1251, Address: 0x27d69c, Func Offset: 0xb3c
-	// Line 1252, Address: 0x27d6b8, Func Offset: 0xb58
-	// Line 1254, Address: 0x27d6d0, Func Offset: 0xb70
-	// Line 1256, Address: 0x27d6e4, Func Offset: 0xb84
-	// Line 1258, Address: 0x27d6ec, Func Offset: 0xb8c
-	// Line 1262, Address: 0x27d6f4, Func Offset: 0xb94
-	// Line 1258, Address: 0x27d6fc, Func Offset: 0xb9c
-	// Line 1260, Address: 0x27d700, Func Offset: 0xba0
-	// Line 1258, Address: 0x27d704, Func Offset: 0xba4
-	// Line 1260, Address: 0x27d708, Func Offset: 0xba8
-	// Line 1258, Address: 0x27d70c, Func Offset: 0xbac
-	// Line 1262, Address: 0x27d710, Func Offset: 0xbb0
-	// Line 1260, Address: 0x27d714, Func Offset: 0xbb4
-	// Line 1262, Address: 0x27d730, Func Offset: 0xbd0
-	// Line 1265, Address: 0x27d744, Func Offset: 0xbe4
-	// Line 1270, Address: 0x27d74c, Func Offset: 0xbec
-	// Line 1276, Address: 0x27d758, Func Offset: 0xbf8
-	// Line 1270, Address: 0x27d760, Func Offset: 0xc00
-	// Line 1274, Address: 0x27d768, Func Offset: 0xc08
-	// Line 1270, Address: 0x27d76c, Func Offset: 0xc0c
-	// Line 1276, Address: 0x27d770, Func Offset: 0xc10
-	// Line 1270, Address: 0x27d778, Func Offset: 0xc18
-	// Line 1276, Address: 0x27d77c, Func Offset: 0xc1c
-	// Line 1277, Address: 0x27d7a0, Func Offset: 0xc40
-	// Line 1278, Address: 0x27d7d4, Func Offset: 0xc74
-	// Line 1284, Address: 0x27d808, Func Offset: 0xca8
-	// Line 1285, Address: 0x27d818, Func Offset: 0xcb8
-	// Line 1288, Address: 0x27d820, Func Offset: 0xcc0
-	// Line 1291, Address: 0x27d828, Func Offset: 0xcc8
-	// Line 1286, Address: 0x27d830, Func Offset: 0xcd0
-	// Line 1291, Address: 0x27d838, Func Offset: 0xcd8
-	// Line 1287, Address: 0x27d83c, Func Offset: 0xcdc
-	// Line 1289, Address: 0x27d848, Func Offset: 0xce8
-	// Line 1288, Address: 0x27d84c, Func Offset: 0xcec
-	// Line 1289, Address: 0x27d850, Func Offset: 0xcf0
-	// Line 1288, Address: 0x27d854, Func Offset: 0xcf4
-	// Line 1289, Address: 0x27d858, Func Offset: 0xcf8
-	// Line 1288, Address: 0x27d85c, Func Offset: 0xcfc
-	// Line 1289, Address: 0x27d860, Func Offset: 0xd00
-	// Line 1290, Address: 0x27d864, Func Offset: 0xd04
-	// Line 1291, Address: 0x27d868, Func Offset: 0xd08
-	// Line 1293, Address: 0x27d878, Func Offset: 0xd18
-	// Line 1294, Address: 0x27d880, Func Offset: 0xd20
-	// Line 1297, Address: 0x27d888, Func Offset: 0xd28
-	// Line 1300, Address: 0x27d890, Func Offset: 0xd30
-	// Line 1295, Address: 0x27d898, Func Offset: 0xd38
-	// Line 1300, Address: 0x27d8a0, Func Offset: 0xd40
-	// Line 1296, Address: 0x27d8a4, Func Offset: 0xd44
-	// Line 1298, Address: 0x27d8b0, Func Offset: 0xd50
-	// Line 1297, Address: 0x27d8b4, Func Offset: 0xd54
-	// Line 1298, Address: 0x27d8b8, Func Offset: 0xd58
-	// Line 1297, Address: 0x27d8bc, Func Offset: 0xd5c
-	// Line 1298, Address: 0x27d8c0, Func Offset: 0xd60
-	// Line 1297, Address: 0x27d8c4, Func Offset: 0xd64
-	// Line 1298, Address: 0x27d8c8, Func Offset: 0xd68
-	// Line 1299, Address: 0x27d8cc, Func Offset: 0xd6c
-	// Line 1300, Address: 0x27d8d0, Func Offset: 0xd70
-	// Line 1302, Address: 0x27d8e0, Func Offset: 0xd80
-	// Line 1304, Address: 0x27d8e8, Func Offset: 0xd88
-	// Line 1306, Address: 0x27d8f0, Func Offset: 0xd90
-	// Line 1311, Address: 0x27d8f8, Func Offset: 0xd98
-	// Line 1306, Address: 0x27d900, Func Offset: 0xda0
-	// Line 1308, Address: 0x27d904, Func Offset: 0xda4
-	// Line 1306, Address: 0x27d908, Func Offset: 0xda8
-	// Line 1308, Address: 0x27d90c, Func Offset: 0xdac
-	// Line 1306, Address: 0x27d910, Func Offset: 0xdb0
-	// Line 1311, Address: 0x27d914, Func Offset: 0xdb4
-	// Line 1308, Address: 0x27d918, Func Offset: 0xdb8
-	// Line 1311, Address: 0x27d934, Func Offset: 0xdd4
-	// Line 1312, Address: 0x27d948, Func Offset: 0xde8
-	// Line 1313, Address: 0x27d950, Func Offset: 0xdf0
-	// Line 1316, Address: 0x27d958, Func Offset: 0xdf8
-	// Line 1323, Address: 0x27d960, Func Offset: 0xe00
-	// Line 1314, Address: 0x27d968, Func Offset: 0xe08
-	// Line 1315, Address: 0x27d970, Func Offset: 0xe10
-	// Line 1318, Address: 0x27d97c, Func Offset: 0xe1c
-	// Line 1322, Address: 0x27d980, Func Offset: 0xe20
-	// Line 1318, Address: 0x27d984, Func Offset: 0xe24
-	// Line 1322, Address: 0x27d988, Func Offset: 0xe28
-	// Line 1318, Address: 0x27d98c, Func Offset: 0xe2c
-	// Line 1316, Address: 0x27d990, Func Offset: 0xe30
-	// Line 1322, Address: 0x27d994, Func Offset: 0xe34
-	// Line 1316, Address: 0x27d998, Func Offset: 0xe38
-	// Line 1318, Address: 0x27d99c, Func Offset: 0xe3c
-	// Line 1316, Address: 0x27d9a0, Func Offset: 0xe40
-	// Line 1322, Address: 0x27d9a4, Func Offset: 0xe44
-	// Line 1323, Address: 0x27d9ac, Func Offset: 0xe4c
-	// Line 1325, Address: 0x27d9c0, Func Offset: 0xe60
-	// Line 1326, Address: 0x27d9c8, Func Offset: 0xe68
-	// Line 1329, Address: 0x27d9d0, Func Offset: 0xe70
-	// Line 1336, Address: 0x27d9d8, Func Offset: 0xe78
-	// Line 1327, Address: 0x27d9e0, Func Offset: 0xe80
-	// Line 1328, Address: 0x27d9e8, Func Offset: 0xe88
-	// Line 1331, Address: 0x27d9f4, Func Offset: 0xe94
-	// Line 1335, Address: 0x27d9f8, Func Offset: 0xe98
-	// Line 1331, Address: 0x27d9fc, Func Offset: 0xe9c
-	// Line 1335, Address: 0x27da00, Func Offset: 0xea0
-	// Line 1331, Address: 0x27da04, Func Offset: 0xea4
-	// Line 1329, Address: 0x27da08, Func Offset: 0xea8
-	// Line 1335, Address: 0x27da0c, Func Offset: 0xeac
-	// Line 1329, Address: 0x27da10, Func Offset: 0xeb0
-	// Line 1331, Address: 0x27da14, Func Offset: 0xeb4
-	// Line 1329, Address: 0x27da18, Func Offset: 0xeb8
-	// Line 1335, Address: 0x27da1c, Func Offset: 0xebc
-	// Line 1336, Address: 0x27da24, Func Offset: 0xec4
-	// Line 1338, Address: 0x27da38, Func Offset: 0xed8
-	// Line 1340, Address: 0x27da40, Func Offset: 0xee0
-	// Line 1342, Address: 0x27da48, Func Offset: 0xee8
-	// Line 1351, Address: 0x27da50, Func Offset: 0xef0
-	// Line 1342, Address: 0x27da58, Func Offset: 0xef8
-	// Line 1348, Address: 0x27da5c, Func Offset: 0xefc
-	// Line 1342, Address: 0x27da60, Func Offset: 0xf00
-	// Line 1348, Address: 0x27da64, Func Offset: 0xf04
-	// Line 1342, Address: 0x27da68, Func Offset: 0xf08
-	// Line 1348, Address: 0x27da6c, Func Offset: 0xf0c
-	// Line 1351, Address: 0x27da74, Func Offset: 0xf14
-	// Line 1348, Address: 0x27da78, Func Offset: 0xf18
-	// Line 1351, Address: 0x27da98, Func Offset: 0xf38
-	// Line 1354, Address: 0x27dab0, Func Offset: 0xf50
-	// Line 1361, Address: 0x27dabc, Func Offset: 0xf5c
-	// Line 1369, Address: 0x27dac4, Func Offset: 0xf64
-	// Line 1354, Address: 0x27dac8, Func Offset: 0xf68
-	// Line 1369, Address: 0x27dad4, Func Offset: 0xf74
-	// Line 1354, Address: 0x27dad8, Func Offset: 0xf78
-	// Line 1359, Address: 0x27daf0, Func Offset: 0xf90
-	// Line 1369, Address: 0x27daf8, Func Offset: 0xf98
-	// Line 1361, Address: 0x27dafc, Func Offset: 0xf9c
-	// Line 1367, Address: 0x27db00, Func Offset: 0xfa0
-	// Line 1361, Address: 0x27db08, Func Offset: 0xfa8
-	// Line 1367, Address: 0x27db0c, Func Offset: 0xfac
-	// Line 1361, Address: 0x27db10, Func Offset: 0xfb0
-	// Line 1367, Address: 0x27db14, Func Offset: 0xfb4
-	// Line 1369, Address: 0x27db3c, Func Offset: 0xfdc
-	// Line 1372, Address: 0x27db54, Func Offset: 0xff4
-	// Line 1377, Address: 0x27db5c, Func Offset: 0xffc
-	// Line 1372, Address: 0x27db64, Func Offset: 0x1004
-	// Line 1377, Address: 0x27db70, Func Offset: 0x1010
-	// Line 1379, Address: 0x27db84, Func Offset: 0x1024
-	// Line 1383, Address: 0x27db9c, Func Offset: 0x103c
-	// Line 1385, Address: 0x27dbac, Func Offset: 0x104c
-	// Line 1389, Address: 0x27dbb4, Func Offset: 0x1054
-	// Line 1385, Address: 0x27dbb8, Func Offset: 0x1058
-	// Line 1386, Address: 0x27dbbc, Func Offset: 0x105c
-	// Line 1385, Address: 0x27dbc0, Func Offset: 0x1060
-	// Line 1386, Address: 0x27dbc8, Func Offset: 0x1068
-	// Line 1387, Address: 0x27dbd0, Func Offset: 0x1070
-	// Line 1386, Address: 0x27dbd4, Func Offset: 0x1074
-	// Line 1387, Address: 0x27dbd8, Func Offset: 0x1078
-	// Line 1386, Address: 0x27dbdc, Func Offset: 0x107c
-	// Line 1387, Address: 0x27dbe0, Func Offset: 0x1080
-	// Line 1388, Address: 0x27dbe4, Func Offset: 0x1084
-	// Line 1387, Address: 0x27dbec, Func Offset: 0x108c
-	// Line 1388, Address: 0x27dbf4, Func Offset: 0x1094
-	// Line 1389, Address: 0x27dbfc, Func Offset: 0x109c
-	// Line 1390, Address: 0x27dc04, Func Offset: 0x10a4
-	// Line 1392, Address: 0x27dc10, Func Offset: 0x10b0
-	// Line 1393, Address: 0x27dc48, Func Offset: 0x10e8
-	// Line 1394, Address: 0x27dc6c, Func Offset: 0x110c
-	// Line 1401, Address: 0x27dc90, Func Offset: 0x1130
-	// Func End, Address: 0x27dcb4, Func Offset: 0x1154
-	scePrintf("bhControlActiveCamera - UNIMPLEMENTED!\n");
+	float fa0, fa1;
+	unsigned int attr;
+	int xr, yr;
+	short ax, ay;
+	short aa;
+	float hkn;
+	short ahkn;
+    NJS_POINT3 sca;
+    float inn;           // not from DWARF
+    float len;           // not from DWARF
+    short tmp, tmp2;     // not from DWARF
+    short axn, ayn, azn; // not from DWARF
+    short pers, ppers;   // not from DWARF
+ 
+    cp = &rom->cutp[cam.ncut];
+    ci = &cp->cam[cam.camver];
+    
+    if (((plp->mode0 == 1) && (plp->mode1 == 0) && (plp->mode2 != 13)) || (((plp->flg & 0x200000)) && (plp->mode0 != 7)))
+    {
+        if ((plp->stflg & 0x30))
+        {
+            cam.plx = plp->mlwP->owP->mtx[12];
+            cam.ply = plp->mlwP->owP->mtx[13] + ci->h;
+            cam.plz = plp->mlwP->owP->mtx[14];
+        } 
+        else 
+        {
+            cam.plx += 0.5f * (((float*)plp->exp0)[24] - cam.plx);
+            cam.ply = rom->grand[plp->flr_no + 2] + ci->h;
+            cam.plz += 0.5f * (((float*)plp->exp0)[26] - cam.plz); 
+        }
+    }
+    else if (plp->mode0 == 7) 
+    {
+        cam.plx = plp->mlwP->owP->mtx[12];
+        cam.ply = plp->mlwP->owP->mtx[13] + ci->h;
+        cam.plz = plp->mlwP->owP->mtx[14];
+    }
+ 
+    attr = bhCheckCutAttribute(cam.plx, cam.plz, plp->flr_no);
+    cam.attr = attr;
+    
+    if (cam.camver != 0) 
+    {
+        attr >>= 16;
+    } 
+    else 
+    {
+        attr &= 0xFFFF;
+    }
+    
+    aa_spd = 0.01f * ci->aa_spd;
+   
+    if (((ci->w) && (cp->cw)) && (!(attr & 0x20)))
+    {
+        cam.pxp = (ci->px - (0.5f * ((0.01f * cp->cw) * ci->w))) + (ci->w * (0.01f * (cam.plx - cp->cx)));
+    }
+    
+    if (((ci->d) && (cp->cd)) && (!(attr & 0x8))) 
+    {
+        cam.pzp = (ci->pz - (0.5f * ((0.01f * cp->cd) * ci->d))) + (ci->d * (0.01f * (cam.plz - cp->cz)));
+    }
+    
+    if (((ci->y0) || (ci->y1) || (ci->y2) || (ci->y3)) && (!(attr & 0x10)))  
+    {
+        cam.pyp = ci->py + bhCalcActiveYpos(cp);
+    } 
+
+    if ((ci->flg & 0x4))
+    {
+        if (!(attr & 0x4)) 
+        {
+            px = cam.plx - cam.px;
+            pz = cam.plz - cam.pz;
+            
+            fa0 = njSqrt((px * px) + (pz * pz));
+            
+            py = cam.ply - cam.py;
+            
+            ax = -njArcTan2(py, fa0);
+            cam.axp = ax & 0xFFFF;
+        }
+        
+        if (!(attr & 0x2)) 
+        {
+            ay = -njArcTan2(cam.plx - cam.px, cam.plz - cam.pz) + 32768;
+            
+            cam.ayp = ay & 0xFFFF;
+        }
+    } 
+    else if (!(ci->flg & 0x1))
+    {
+        if ((ci->lax != 0) && (!(attr & 0x4)))
+        {
+            ax = ci->ax;
+            
+            px = cam.plx - cam.px;
+            pz = cam.plz - cam.pz;
+            
+            fa0 = njSqrt((px * px) + (pz * pz));
+            fa1 = cam.ply - cam.py;
+            
+            xr = tmp = -njArcTan2(fa1, fa0);
+            
+            aa = tmp - ax;
+            
+            if (aa < (short)-ci->lax) 
+            {
+                xr = ci->ax - ci->lax;
+            }
+            
+            if ((short)ci->lax < aa) 
+            {
+                xr = ci->ax + ci->lax;
+            }
+            
+            cam.axp = xr & 0xFFFF;
+        }
+        
+        if ((ci->lay != 0) && (!(attr & 0x2)))
+        {
+            ay = ci->ay;
+            
+            px = cam.plx - cam.px;
+            pz = cam.plz - cam.pz;
+            
+            yr = tmp = -njArcTan2(px, pz) + 32768;
+            
+            aa = tmp - ay;
+            
+            if (aa < (short)-ci->lay) 
+            {
+                yr = ci->ay - ci->lay;
+            }
+            
+            if ((short)ci->lay < aa) 
+            {
+                yr = ci->ay + ci->lay;
+            }
+            
+            cam.ayp = yr & 0xFFFF;
+        }
+    } 
+    else 
+    {
+        if ((ci->lax != 0) && (!(attr & 0x4))) 
+        {
+            ax = ci->ax;
+            
+            px = cam.plx - cam.px;
+            pz = cam.plz - cam.pz;
+            
+            fa0 = njSqrt((px * px) + (pz * pz));
+            
+            ay = -njArcTan2(cam.ply - cam.py, fa0);
+            ay -= ax;
+            
+            xr  = cam.ax;
+            axn = cam.ax;
+            
+            if (ay < (short)-ci->lax) 
+            {
+                xr = ci->ax + (ay + ci->lax);
+                
+                if (((short)xr - axn) > 0)
+                {
+                    xr = axn;
+                }
+            }
+            else if ((short)ci->lax < ay) 
+            {
+                xr = (ay - ci->lax) + ci->ax;
+                
+                if (((short)xr - axn) < 0) 
+                {
+                    xr = axn;
+                }
+            }
+            
+            cam.axp = xr & 0xFFFF;
+        }
+        
+        if ((ci->lay != 0) && (!(attr & 0x2)))
+        {
+            ay = ci->ay;
+            
+            px = cam.plx - cam.px;
+            pz = cam.plz - cam.pz;
+            
+            ax = -njArcTan2(px, pz) + 32768;
+            ax -= ay;
+            
+            yr  = cam.ay;
+            ayn = cam.ay;
+            
+            if (ax < (short)-ci->lay) 
+            {
+                yr = ci->ay + (ax + ci->lay);
+                
+                if (((short)yr - ayn) > 0) 
+                { 
+                    yr = ayn; 
+                }
+            } 
+            else if ((short)ci->lay < ax) 
+            {
+                yr = (ax - ci->lay) + ci->ay;
+                
+                if (((short)yr - ayn) < 0) 
+                {
+                    yr = ayn;
+                }
+            }
+            
+            cam.ayp = yr & 0xFFFF;
+        }
+    }
+    
+    if (((ci->laz0 != 0) || (ci->laz1 != 0) || (ci->laz2 != 0) || (ci->laz3 != 0)) && (!(attr & 0x1)))  
+    {
+        cam.azp = (short)ci->az + bhCalcActiveZang(cp);
+    }
+    
+    if ((ci->flg & 0x20)) 
+    {
+        if (!(attr & 0x40)) 
+        {
+            cam.ppers = bhCalcActivePers(cp);
+        }
+    } 
+    else 
+    {
+        cam.ppers = ci->pers;
+    }
+    
+    if (!(cam.flg & 0x1)) 
+    {   
+        cam.px += ci->am_spd * (cam.pxp - cam.px);
+        cam.py += ci->am_spd * (cam.pyp - cam.py);
+        cam.pz += ci->am_spd * (cam.pzp - cam.pz);
+        
+        tmp2 = cam.axp;
+        ax   = cam.ax;
+        
+        aa = tmp2 - ax;
+        
+        fa0 = NJM_ANG_DEG(ax);
+        fa1 = NJM_ANG_DEG(aa) * aa_spd;
+        
+        fa0 += fa1;
+        
+        ax = NJM_DEG_ANG(fa0);
+
+        cam.ax = ax;
+        
+        tmp2 = cam.ayp;
+        ay   = cam.ay;
+        
+        aa = tmp2 - ay;
+        
+        fa0 = NJM_ANG_DEG(ay);
+        fa1 = NJM_ANG_DEG(aa) * aa_spd;
+        
+        fa0 += fa1;
+        
+        ay = NJM_DEG_ANG(fa0);
+        
+        cam.ay = ay;
+        
+        tmp2 = cam.azp;
+        azn  = cam.az;
+        
+        fa0 = NJM_ANG_DEG(azn);
+        fa1 = NJM_ANG_DEG(tmp2 - azn);
+        
+        fa0 += fa1 * aa_spd;
+        
+        azn    = NJM_DEG_ANG(fa0);
+        cam.az = azn;
+        
+        if (ci->ln != cam.ln) 
+        {
+            cam.ln += ci->am_spd * (ci->ln - cam.ln);
+        }
+        
+        if (ci->pers != cam.pers)
+        { 
+            pers  = cam.pers;
+            ppers = cam.ppers;
+            
+            fa0 = NJM_ANG_DEG(pers);
+            fa1 = NJM_ANG_DEG(ppers - pers);
+            
+            fa0 += fa1 * aa_spd;
+            
+            pers     = NJM_DEG_ANG(fa0);
+            cam.pers = pers;
+        }
+    } 
+    else 
+    {
+        hkn = 1.0f / (ci->spd + 1);
+      
+        ahkn = ci->spd + 1;
+        
+        cam.px = cam.px + (cam.hct * (hkn * (cam.pxp - cam.px)));
+        cam.py = cam.py + (cam.hct * (hkn * (cam.pyp - cam.py)));
+        cam.pz = cam.pz + (cam.hct * (hkn * (cam.pzp - cam.pz)));
+
+        if ((ci->flg & 0x4)) 
+        { 
+            short tmp, tmp2, tmp3; // not from DWARF
+            float fa0, fa1;        // not from DWARF
+            
+            tmp  = cam.axp;
+            tmp2 = cam.ax;
+            
+            tmp3 = tmp - tmp2;
+            
+            fa0 = NJM_ANG_DEG(tmp2);
+            fa1 = NJM_ANG_DEG(tmp3) * aa_spd;
+            
+            fa0 += fa1;
+            
+            tmp3 = NJM_DEG_ANG(fa0);
+            
+            cam.ax = tmp3;
+            
+            tmp  = cam.ayp;
+            tmp2 = cam.ay;
+            
+            tmp3 = tmp - tmp2;
+            
+            fa0 = NJM_ANG_DEG(tmp2);
+            fa1 = NJM_ANG_DEG(tmp3) * aa_spd;
+            
+            fa0 += fa1;
+            
+            tmp3 = NJM_DEG_ANG(fa0);
+            
+            cam.ay = tmp3;
+            
+            tmp2 = cam.az;
+            tmp  = cam.azp;
+            
+            fa0 = NJM_ANG_DEG(tmp2);
+            fa1 = NJM_ANG_DEG(tmp - tmp2);
+            
+            fa0 += fa1 * aa_spd;
+            
+            tmp3 = NJM_DEG_ANG(fa0);
+            
+            cam.az = tmp3;
+        } 
+        else
+        { 
+            short tmp, tmp2, tmp3; // not from DWARF
+            float fa0, fa1, fa2;   // not from DWARF
+            
+            tmp  = cam.axp;
+            tmp2 = cam.ax;
+            
+            tmp3 = tmp - tmp2;
+            
+            fa2 = NJM_ANG_DEG(tmp2);
+            fa1 = NJM_ANG_DEG(tmp3) * hkn;
+            
+            fa0  = fa1 * cam.hct;     
+            fa2 += fa0;
+            
+            tmp3 = NJM_DEG_ANG(fa2);
+            
+            cam.ax = tmp3;
+            
+            tmp  = cam.ayp;
+            tmp2 = cam.ay;
+            
+            tmp3 = tmp - tmp2;
+            
+            fa2 = NJM_ANG_DEG(tmp2);
+            fa1 = NJM_ANG_DEG(tmp3) * hkn;
+                 
+            fa0  = fa1 * cam.hct;     
+            fa2 += fa0;
+            
+            tmp3 = NJM_DEG_ANG(fa2);
+            
+            cam.ay = tmp3;
+            
+            tmp2 = cam.az;
+            tmp  = cam.azp;
+            
+            fa2 = NJM_ANG_DEG(tmp2);
+            fa1 = NJM_ANG_DEG(tmp - tmp2);
+                 
+            fa0  = fa1 * hkn;     
+            fa2 += fa0 * cam.hct;
+            
+            tmp3 = NJM_DEG_ANG(fa2);
+            
+            cam.az = tmp3;
+        }
+        
+        cam.ln += cam.hct * (hkn * (ci->ln - cam.ln));
+        
+        {
+        short pers, ppers;   // not from DWARF
+        float fa0, fa1, fa2; // not from DWARF
+            
+        pers  = cam.pers;
+        ppers = cam.ppers;
+            
+        fa2 = NJM_ANG_DEG(pers);
+        fa1 = NJM_ANG_DEG(ppers - pers);
+            
+        fa0  = fa1 * hkn;
+        fa2 += fa0 * cam.hct;
+        
+        pers     = NJM_DEG_ANG(fa2);
+        cam.pers = pers;
+        
+        cam.hct++;
+        }
+        
+        if (cam.hct >= ahkn) 
+        {
+            cam.flg &= ~0x1;
+        }
+    }
+    
+    if ((ci->flg & 0xC0)) 
+    {
+        sys->gm_flg |= 0x10;
+        
+        sca.x = cam.wpx - ci->px;
+        sca.y = cam.wpy - ci->py;
+        sca.z = cam.wpz - ci->pz;
+        
+        len = njScalor(&sca);
+        
+        njUnitVector(&sca);
+        
+        if (len) 
+        { 
+            inn = njInnerProduct((NJS_VECTOR*)&cam.vx, &sca); 
+        }
+        else 
+        { 
+            inn = 1.0f; 
+        }
+        
+        if ((ci->flg & 0x40)) 
+        { 
+            cam.fog_nr = ci->fog_nr + (len * inn); 
+        }
+        
+        if ((ci->flg & 0x80)) 
+        { 
+            cam.fog_fr = ci->fog_fr + (len * inn); 
+        }
+    }
 }
 
 // 100% matching! 
