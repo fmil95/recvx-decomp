@@ -35,6 +35,7 @@
 
 #define EXP0_UC(o) (*(unsigned char  *)((char *)epw->exp0 + (o)))
 #define EXP0_S(o) (*(short *)((char *)epw->exp0 + (o)))
+#define EXP0_US(o) (*(unsigned short *)((char *)epw->exp0 + (o)))
 #define EXP0_I(o) (*(int   *)((char *)epw->exp0 + (o)))
 #define EXP0_F(o) (*(float *)((char *)epw->exp0 + (o)))
 
