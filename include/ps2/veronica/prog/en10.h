@@ -2,6 +2,7 @@
 #define _EN10_H_
 
 #include "types.h"
+#include "macros.h"
 
 void bhEne10(BH_PWORK* epw);
 void bhEne10_Init(BH_PWORK* epw);
