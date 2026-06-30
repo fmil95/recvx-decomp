@@ -33,6 +33,7 @@
 #define SET_VEC4_AT(_src, _off, _data) (*((u_long128*)(((unsigned char*)(_src)) + _off)) = *(u_long128*)_data)
 #define SET_DATA_AT(_src, _off, _type, _data) (*((_type*)(((unsigned char*)(_src)) + _off)) = _data)
 
+#define EXP0_C(o) (*(char  *)((char *)epw->exp0 + (o)))
 #define EXP0_UC(o) (*(unsigned char  *)((char *)epw->exp0 + (o)))
 #define EXP0_S(o) (*(short *)((char *)epw->exp0 + (o)))
 #define EXP0_US(o) (*(unsigned short *)((char *)epw->exp0 + (o)))
