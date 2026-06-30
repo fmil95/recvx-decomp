@@ -1,17 +1,18 @@
 #include "../../../ps2/veronica/prog/en20.h"
 #include "../../../ps2/veronica/prog/eneset.h"
+#include "../../../ps2/veronica/prog/subpl.h"
 
 typedef void (*Mode0_proc)(BH_PWORK*);
 typedef void (*MoveMode2_proc)(BH_PWORK*);
 
 Mode0_proc bhEne20_Mode0[6] =
 {
-    bhEne20,
     bhEne20_Init,
     bhEne20_Move,
     bhEne20_Nage,
     bhEne20_Damage,
-    bhEne20_Die
+    bhEne20_Die,
+    bhEne_Event
 };
 
 MoveMode2_proc bhEne20_MoveMode2[8] =

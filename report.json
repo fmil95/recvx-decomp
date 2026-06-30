@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 55.43532,
+    "fuzzy_match_percent": 55.55708,
     "total_code": "1904472",
-    "matched_code": "854864",
-    "matched_code_percent": 44.88719,
+    "matched_code": "857192",
+    "matched_code_percent": 45.00943,
     "total_data": "28428164",
-    "matched_data": "28224100",
-    "matched_data_percent": 99.28217,
+    "matched_data": "28224164",
+    "matched_data_percent": 99.2824,
     "total_functions": 4529,
-    "matched_functions": 2939,
-    "matched_functions_percent": 64.892914,
+    "matched_functions": 2953,
+    "matched_functions_percent": 65.202034,
     "total_units": 200
   },
   "units": [
@@ -11334,10 +11334,16 @@
     {
       "name": "ps2/veronica/prog/en20",
       "measures": {
-        "fuzzy_match_percent": 0.39518902,
+        "fuzzy_match_percent": 100.0,
         "total_code": "2328",
+        "matched_code": "2328",
+        "matched_code_percent": 100.0,
         "total_data": "64",
+        "matched_data": "64",
+        "matched_data_percent": 100.0,
         "total_functions": 14,
+        "matched_functions": 14,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -11348,6 +11354,7 @@
         {
           "name": ".data",
           "size": "64",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -11357,7 +11364,7 @@
         {
           "name": ".text",
           "size": "2432",
-          "fuzzy_match_percent": 0.39518902,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -11369,85 +11376,98 @@
         {
           "name": "bhEne20",
           "size": "92",
-          "fuzzy_match_percent": 10.0,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         },
         {
           "name": "bhEne20_Init",
           "size": "268",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "96"
         },
         {
           "name": "bhEne20_Move",
           "size": "68",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "368"
         },
         {
           "name": "bhEne20_MV00",
           "size": "248",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "448"
         },
         {
           "name": "bhEne20_MV01",
           "size": "296",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "704"
         },
         {
           "name": "bhEne20_MV02",
           "size": "204",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1008"
         },
         {
           "name": "bhEne20_MV03",
           "size": "204",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1216"
         },
         {
           "name": "bhEne20_MV04",
           "size": "200",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1424"
         },
         {
           "name": "bhEne20_MV05",
           "size": "200",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1632"
         },
         {
           "name": "bhEne20_MV06",
           "size": "264",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1840"
         },
         {
           "name": "bhEne20_MV07",
           "size": "260",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2112"
         },
         {
           "name": "bhEne20_Nage",
           "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2384"
         },
         {
           "name": "bhEne20_Damage",
           "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2400"
         },
         {
           "name": "bhEne20_Die",
           "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2416"
         }
@@ -40826,16 +40846,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 53.378716,
+        "fuzzy_match_percent": 53.506096,
         "total_code": "1820460",
-        "matched_code": "770852",
-        "matched_code_percent": 42.343803,
+        "matched_code": "773180",
+        "matched_code_percent": 42.471684,
         "total_data": "28336764",
-        "matched_data": "28157812",
-        "matched_data_percent": 99.368484,
+        "matched_data": "28157876",
+        "matched_data_percent": 99.368706,
         "total_functions": 3834,
-        "matched_functions": 2244,
-        "matched_functions_percent": 58.528954,
+        "matched_functions": 2258,
+        "matched_functions_percent": 58.894104,
         "total_units": 152
       }
     },
