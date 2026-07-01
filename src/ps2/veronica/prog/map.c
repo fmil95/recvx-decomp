@@ -168,31 +168,55 @@ void bhExitMap()
     sys->gm_flg &= ~0x80000;
 }
 
-/*// 
-// Start address: 0x2b2490
-int bhReadMapData(char* namP)
+// 100% matching!
+static int bhReadMapData(char* namP)
 {
+    int code;
 	int status;
-	int code;
-	// Line 576, Address: 0x2b2490, Func Offset: 0
-	// Line 579, Address: 0x2b24a4, Func Offset: 0x14
-	// Line 644, Address: 0x2b24d8, Func Offset: 0x48
-	// Line 645, Address: 0x2b24ec, Func Offset: 0x5c
-	// Line 648, Address: 0x2b2518, Func Offset: 0x88
-	// Line 649, Address: 0x2b2538, Func Offset: 0xa8
-	// Line 650, Address: 0x2b2544, Func Offset: 0xb4
-	// Line 652, Address: 0x2b254c, Func Offset: 0xbc
-	// Line 656, Address: 0x2b255c, Func Offset: 0xcc
-	// Line 657, Address: 0x2b2560, Func Offset: 0xd0
-	// Line 664, Address: 0x2b2568, Func Offset: 0xd8
-	// Line 665, Address: 0x2b2570, Func Offset: 0xe0
-	// Line 667, Address: 0x2b2584, Func Offset: 0xf4
-	// Line 675, Address: 0x2b2590, Func Offset: 0x100
-	// Line 676, Address: 0x2b2594, Func Offset: 0x104
-	// Func End, Address: 0x2b25a8, Func Offset: 0x118
+
+    code = 0;
+    
+    switch (mwP->fil_mode)
+    {
+    case 0:
+        if (mwP->map_bufP != NULL) 
+        {
+            bhReleaseFreeMemory(mwP->map_bufP);
+        }
+        
+        mwP->map_bufP = bhGetFreeMemory(GetInsideFileSize(mwP->prti_no, (unsigned int)namP), 32);
+        
+        if (RequestReadInsideFile(mwP->prti_no, (unsigned int)namP, mwP->map_bufP) == 0) 
+        {
+            mwP->fil_mode = 2;
+            break;
+        }
+        else 
+        {
+            mwP->fil_mode = 1;
+        }
+    case 1:
+        code = -1;
+        break;
+    case 2:
+        status = GetReadFileStatus(mwP);
+        
+        if (status == -1) 
+        {
+            code = -1;
+        }
+        else if (status == 0) 
+        {
+            code = 1;
+        }
+        
+        break;
+    }
+    
+    return code;
 }
 
-// 
+/*// 
 // Start address: 0x2b25b0
 void MapCnvStatus2Flag()
 {
