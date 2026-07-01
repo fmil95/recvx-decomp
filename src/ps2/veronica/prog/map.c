@@ -1095,23 +1095,23 @@ static func_wrk_typ* MapFuncIns(func_wrk_typ* bsP, func_wrk_typ* fwP)
     bsP->nextP        = fwP;
 }
 
-/*// 
-// Start address: 0x2b46b0
-void MapFuncExec()
+// 100% matching!
+static void MapFuncExec() 
 {
-	_func_wrk_typ* nxP;
-	_func_wrk_typ* fwP;
-	// Line 1935, Address: 0x2b46b0, Func Offset: 0
-	// Line 1936, Address: 0x2b46bc, Func Offset: 0xc
-	// Line 1938, Address: 0x2b46c8, Func Offset: 0x18
-	// Line 1942, Address: 0x2b46d0, Func Offset: 0x20
-	// Line 1943, Address: 0x2b46e8, Func Offset: 0x38
-	// Line 1944, Address: 0x2b46ec, Func Offset: 0x3c
-	// Line 1945, Address: 0x2b4704, Func Offset: 0x54
-	// Func End, Address: 0x2b4714, Func Offset: 0x64
+    func_wrk_typ* fwP, *nxP;
+
+    for (nxP = mwP->busy_funcP->nextP; nxP != mwP->busy_funcP; nxP = fwP) 
+    {
+        fwP = nxP->nextP;
+        
+        if (nxP->funcP != NULL) 
+        {
+            nxP->funcP(nxP);
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2b4720
 int FsubMapDraw(_func_wrk_typ* fwP)
 {
