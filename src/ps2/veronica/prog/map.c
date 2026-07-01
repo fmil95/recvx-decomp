@@ -1049,27 +1049,31 @@ void MapFuncInit(int func_num)
 	scePrintf("MapFuncInit - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2b4590
-_func_wrk_typ* MapFuncAlloc(int(*funcP)(_func_wrk_typ*), int param0)
+// 100% matching!
+static func_wrk_typ* MapFuncAlloc(int(*funcP)(func_wrk_typ*), int param0) 
 {
-	_func_wrk_typ* fwP;
-	// Line 1859, Address: 0x2b4590, Func Offset: 0
-	// Line 1860, Address: 0x2b45a4, Func Offset: 0x14
-	// Line 1862, Address: 0x2b45bc, Func Offset: 0x2c
-	// Line 1863, Address: 0x2b45c4, Func Offset: 0x34
-	// Line 1865, Address: 0x2b45d8, Func Offset: 0x48
-	// Line 1866, Address: 0x2b45dc, Func Offset: 0x4c
-	// Line 1867, Address: 0x2b45e0, Func Offset: 0x50
-	// Line 1868, Address: 0x2b45e4, Func Offset: 0x54
-	// Line 1869, Address: 0x2b45e8, Func Offset: 0x58
-	// Line 1870, Address: 0x2b45ec, Func Offset: 0x5c
-	// Line 1871, Address: 0x2b45fc, Func Offset: 0x6c
-	// Line 1872, Address: 0x2b460c, Func Offset: 0x7c
-	// Line 1878, Address: 0x2b4610, Func Offset: 0x80
-	// Line 1879, Address: 0x2b4614, Func Offset: 0x84
-	// Func End, Address: 0x2b462c, Func Offset: 0x9c
-}*/
+    func_wrk_typ* fwP;
+    
+    fwP = mwP->free_funcP->nextP;
+    
+    MapFuncDel(fwP);
+    MapFuncIns(mwP->busy_funcP, fwP);
+    
+    fwP->funcP = funcP;
+    
+    fwP->mode = 0;
+    
+    fwP->param0 = param0;
+    fwP->param1 = 0;
+    fwP->param2 = 0;
+    
+    fwP->FreeWrk[0] = fwP->FreeWrk[1] = fwP->FreeWrk[2] = fwP->FreeWrk[3] = 0;
+    fwP->FreeWrk[4] = fwP->FreeWrk[5] = fwP->FreeWrk[6] = fwP->FreeWrk[7] = 0;
+    
+    fwP->FreeWrk[8] = 0;
+    
+    return fwP;
+}
 
 // 100% matching!
 static void MapFuncFree(func_wrk_typ* fwP) 
