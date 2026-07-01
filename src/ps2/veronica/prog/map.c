@@ -23,21 +23,7 @@ static map_wrk* mwP = &MapWrk;
 _anon39 MapCol[3];
 _anon13 ItmDat[22];
 unsigned short CncDatA[81];
-unsigned short CncDatB[49];
-int(*FtskMapExit)(_anon35*);
-int(*FtskMapZoom)(_anon35*);
-int(*FtskMapNormal)(_anon35*);
-int(*FsubMapDraw)(_func_wrk_typ*);
-int(*FtskMapRead)(_anon35*);
-int(*FsubModeMessage)(_anon49*);
-int(*FsubCompass)(_anon38*);
-int(*FtskMapWait)(_anon35*);
-int(*FsubZoomScreen)(_anon30*);
-int(*FsubBackDraw)(_func_wrk_typ*);
-int(*FsubTaskMain)(_anon56*);
-int(*FsubGaugeDraw)(_anon3*);
-int(*FsubZoomInfomation)(_anon21*);
-int(*FsubZoomCursor)(_anon8*);*/
+unsigned short CncDatB[49];*/
 
 // 98.45% matching
 void bhInitMap(enum_2 set_mod)
@@ -611,7 +597,7 @@ void MapPaletteMain()
 	// Line 1210, Address: 0x2b3440, Func Offset: 0x250
 	// Line 1212, Address: 0x2b3448, Func Offset: 0x258
 	// Func End, Address: 0x2b3464, Func Offset: 0x274
-}
+}*/
 
 // 
 // Start address: 0x2b3470
@@ -620,14 +606,14 @@ void MapCodeProcess()
 	int off_tim;
 	int bnk_tim;
 	int snd_no;
-	_anon14 pos;
+	//_anon14 pos;
 	int pal_no;
 	int mrk_no;
-	_anon14 pos;
+	//_anon14 pos;
 	int rom_no;
 	float scl;
 	unsigned char typ;
-	unsigned char typ;
+	//unsigned char typ;
 	int ck_rom;
 	float tz;
 	float ty;
@@ -635,10 +621,10 @@ void MapCodeProcess()
 	int az;
 	int ay;
 	int ax;
-	_anon14 pos;
-	int mrk_no;
+	//_anon14 pos;
+	//int mrk_no;
 	int mode;
-	npobj* objP;
+	//npobj* objP;
 	int* stsP;
 	short* ocP;
 	int SndTbl[1];
@@ -853,7 +839,8 @@ void MapCodeProcess()
 	// Line 1495, Address: 0x2b3ce8, Func Offset: 0x878
 	// Line 1497, Address: 0x2b3cf0, Func Offset: 0x880
 	// Func End, Address: 0x2b3d0c, Func Offset: 0x89c
-}*/
+	scePrintf("MapCodeProcess - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 static void MapBoolSet(int bol, int mod) 
@@ -1113,27 +1100,39 @@ static void MapFuncExec()
     }
 }
 
-/*// 
-// Start address: 0x2b4720
-int FsubMapDraw(_func_wrk_typ* fwP)
+// 100% matching!
+static int FsubMapDraw(func_wrk_typ* fwP)
 {
-	// Line 1955, Address: 0x2b4720, Func Offset: 0
-	// Line 1957, Address: 0x2b4728, Func Offset: 0x8
-	// Line 1958, Address: 0x2b4740, Func Offset: 0x20
-	// Line 1959, Address: 0x2b4744, Func Offset: 0x24
-	// Line 1960, Address: 0x2b474c, Func Offset: 0x2c
-	// Line 1961, Address: 0x2b4754, Func Offset: 0x34
-	// Line 1962, Address: 0x2b475c, Func Offset: 0x3c
-	// Line 1963, Address: 0x2b4774, Func Offset: 0x54
-	// Line 1965, Address: 0x2b477c, Func Offset: 0x5c
-	// Line 1966, Address: 0x2b4794, Func Offset: 0x74
-	// Line 1969, Address: 0x2b479c, Func Offset: 0x7c
-	// Line 1970, Address: 0x2b47bc, Func Offset: 0x9c
-	// Line 1984, Address: 0x2b47d0, Func Offset: 0xb0
-	// Line 1983, Address: 0x2b47d4, Func Offset: 0xb4
-	// Line 1984, Address: 0x2b47d8, Func Offset: 0xb8
-	// Func End, Address: 0x2b47e0, Func Offset: 0xc0
-}*/
+    tag_wrk_typ* curP; // not from DWARF
+
+    if (mwP->map_mode == MP_MOD_MAP_READ) 
+    {
+        mwP->map_objP = NULL;
+        mwP->map_cdeP = NULL;
+        
+        MapFuncFree(fwP);
+    } 
+    else if ((mwP->map_objP != NULL) && (mwP->map_cdeP != NULL)) 
+    {
+        MapCodeProcess();
+        
+        if (!(mwP->status & 0x100)) 
+        {
+            mwP->status |= 0x100;
+            
+            curP = MapTagConnect(mwP->rom_no);
+            
+            mwP->cur_tagP = curP;
+            
+            if (curP == NULL) 
+            {
+                mwP->cur_tagP = MapTagCenter();
+            }
+        }
+    }
+    
+    return 1;
+}
 
 // 100% matching!
 static int FsubBackDraw() 
@@ -1787,17 +1786,17 @@ static void MapTagEntry(NJS_MATRIX* basP, int rom_no, NJS_POINT3* posP)
     } 
 }
 
-/*// 
+// 
 // Start address: 0x2b5ef0
-_tag_wrk_typ* MapTagConnect(int rom_no)
+tag_wrk_typ* MapTagConnect(int rom_no)
 {
 	int dir;
 	float d;
-	_tag_wrk_typ* twP;
+	tag_wrk_typ* twP;
 	float dst[4];
 	int i;
-	_tag_wrk_typ* basP;
-	_tag_wrk_typ* rtnP;
+	tag_wrk_typ* basP;
+	tag_wrk_typ* rtnP;
 	int num;
 	// Line 2959, Address: 0x2b5ef0, Func Offset: 0
 	// Line 2962, Address: 0x2b5f14, Func Offset: 0x24
@@ -1827,20 +1826,21 @@ _tag_wrk_typ* MapTagConnect(int rom_no)
 	// Line 2993, Address: 0x2b6020, Func Offset: 0x130
 	// Line 2994, Address: 0x2b6024, Func Offset: 0x134
 	// Func End, Address: 0x2b604c, Func Offset: 0x15c
+	scePrintf("MapTagConnect - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2b6050
-_tag_wrk_typ* MapTagCenter()
+tag_wrk_typ* MapTagCenter()
 {
 	float d;
-	_tag_wrk_typ* rtnP;
-	_tag_wrk_typ* twP;
+	tag_wrk_typ* rtnP;
+	tag_wrk_typ* twP;
 	float dst;
 	int num;
-	_tag_wrk_typ* twP;
+	//tag_wrk_typ* twP;
 	float f_num;
-	int num;
+	//int num;
 	// Line 3013, Address: 0x2b6050, Func Offset: 0
 	// Line 3007, Address: 0x2b605c, Func Offset: 0xc
 	// Line 3013, Address: 0x2b6060, Func Offset: 0x10
@@ -1875,7 +1875,8 @@ _tag_wrk_typ* MapTagCenter()
 	// Line 3049, Address: 0x2b6100, Func Offset: 0xb0
 	// Line 3053, Address: 0x2b6110, Func Offset: 0xc0
 	// Func End, Address: 0x2b6118, Func Offset: 0xc8
-}*/
+	scePrintf("MapTagCenter - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 static void MapDrawLine2(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal) 

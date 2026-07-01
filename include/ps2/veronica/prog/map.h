@@ -202,10 +202,10 @@ int FsubGaugeDrawZ(_anon3* fgP);
 int FsubGaugeDrawX(_anon3* fgP);
 int FsubGaugeDraw(_anon3* fgP);*/
 void MapTagInit(int tag_num);
-/*void MapTagEntry(float basP[16], int rom_no, _anon14* posP);
-_tag_wrk_typ* MapTagConnect(int rom_no);
-_tag_wrk_typ* MapTagCenter();
-void MapDrawLine2(_anon5* srcP, _anon5* dstP, float pri, int pal);
+/*void MapTagEntry(float basP[16], int rom_no, _anon14* posP);*/
+tag_wrk_typ* MapTagConnect(int rom_no);
+tag_wrk_typ* MapTagCenter();
+/*void MapDrawLine2(_anon5* srcP, _anon5* dstP, float pri, int pal);
 void MapDrawLine(_anon5* srcP, _anon5* dstP, float pri, int pal);
 void MapDrawFill(_anon5* srcP, _anon5* dstP, float pri, int pal);*/
 static void MapDrawPolyFill(NJS_POINT2* pnt, float pri, int pal);
