@@ -1369,19 +1369,24 @@ int FtskMapWait()
 	// Line 2343, Address: 0x2b4fe0, Func Offset: 0
 	// Line 2346, Address: 0x2b4ffc, Func Offset: 0x1c
 	// Func End, Address: 0x2b5004, Func Offset: 0x24
-}
+}*/
 
-// 
-// Start address: 0x2b5010
-int FtskMapExit()
+// 100% matching!
+static int FtskMapExit() 
 {
-	int bol;
-	// Line 2359, Address: 0x2b5010, Func Offset: 0
-	// Line 2362, Address: 0x2b502c, Func Offset: 0x1c
-	// Func End, Address: 0x2b5034, Func Offset: 0x24
+    int bol;
+
+    bol = 1;
+    
+    if (!(sys->cb_flg & 0x2)) 
+    {
+        bol = 0;
+    }
+    
+    return bol;
 }
 
-// 
+/*// 
 // Start address: 0x2b5040
 int FtskMapRead(_anon35* ftsP)
 {
