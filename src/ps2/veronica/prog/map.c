@@ -1875,29 +1875,27 @@ _tag_wrk_typ* MapTagCenter()
 	// Line 3049, Address: 0x2b6100, Func Offset: 0xb0
 	// Line 3053, Address: 0x2b6110, Func Offset: 0xc0
 	// Func End, Address: 0x2b6118, Func Offset: 0xc8
-}
+}*/
 
-// 
-// Start address: 0x2b6120
-void MapDrawLine2(_anon5* srcP, _anon5* dstP, float pri, int pal)
+// 100% matching!
+static void MapDrawLine2(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal) 
 {
-	_anon57 p2c;
-	_anon39 col[2];
-	_anon5 pnt[2];
-	// Line 3068, Address: 0x2b6120, Func Offset: 0
-	// Line 3073, Address: 0x2b6128, Func Offset: 0x8
-	// Line 3068, Address: 0x2b612c, Func Offset: 0xc
-	// Line 3069, Address: 0x2b6130, Func Offset: 0x10
-	// Line 3070, Address: 0x2b613c, Func Offset: 0x1c
-	// Line 3073, Address: 0x2b6144, Func Offset: 0x24
-	// Line 3070, Address: 0x2b6148, Func Offset: 0x28
-	// Line 3071, Address: 0x2b614c, Func Offset: 0x2c
-	// Line 3072, Address: 0x2b6158, Func Offset: 0x38
-	// Line 3073, Address: 0x2b6168, Func Offset: 0x48
-	// Func End, Address: 0x2b6178, Func Offset: 0x58
+    static NJS_POINT2 pnt[2];
+    static NJS_COLOR col[2];
+    static NJS_POINT2COL p2c = { pnt, col, NULL, 1 };
+
+    pnt[0].x = srcP->x;
+    pnt[0].y = srcP->y;
+
+    pnt[1].x = dstP->x;
+    pnt[1].y = dstP->y;
+
+    col[0].color = col[1].color = pal;
+
+    njDrawLine2D(&p2c, p2c.num, pri, 0x40);
 }
 
-// 
+/*// 
 // Start address: 0x2b6180
 void MapDrawLine(_anon5* srcP, _anon5* dstP, float pri, int pal)
 {
