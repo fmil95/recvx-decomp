@@ -2,6 +2,7 @@
 #define _EN04_H_
 
 #include "types.h"
+#include "macros.h"
 
 void bhEne04_DmmyBrain();
 void bhEne04(BH_PWORK* epw);
@@ -24,7 +25,7 @@ void bhEne04_MVType01(BH_PWORK* epw);
 void bhEne04_MVType02(BH_PWORK* epw);
 int bhEne04_AtariCheck(BH_PWORK* epw);
 int bhEne04_AtariCheck2(BH_PWORK* epw);
-/*_anon12* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip);*/
+ATR_WORK* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip);
 void bhEne04_EneSearch(BH_PWORK* epw);
 void bhEne04_Brain(BH_PWORK* epw);
 void bhEne04_Brain00(BH_PWORK* epw);
@@ -64,8 +65,8 @@ int bhEne04_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate);
 int bhEne04_SetMtn(BH_PWORK* epw);
 void bhEne04_CheckMtnTbl(BH_PWORK* epw, int frm);
 int bhEne04_KaidanCheck(BH_PWORK* epw);
-/*void bhEne04_ShakeWire(_anon0* obwp);*/
-void bhEne04_RotNeck(BH_PWORK* epw, int ry);
+void bhEne04_ShakeWire(O_WRK* obwp);
+void bhEne04_RotNeck(BH_PWORK* epw, int rx, int ry, int rz); // signature differs from DWARF
 int bhEne04_SearchNeck(BH_PWORK* epw);
 void bhEne04_SePlay(BH_PWORK* epw, int no);
 
