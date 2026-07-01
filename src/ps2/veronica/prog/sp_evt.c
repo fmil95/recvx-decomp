@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/sp_evt.h"
+#include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/message.h"
 #include "../../../ps2/veronica/prog/njplus.h"
@@ -18,6 +19,8 @@
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/screen.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
+
+//#include <string.h>
 
 typedef void (*bhCtrSpEvtCom_mode0_proc)();
 
@@ -1725,195 +1728,257 @@ void bhInitComEvtScript()
     } 
 }
 
-// 
-// Start address: 0x2bfdd0
+// 100% matching!
 void bhControlComEvtScript()
 {
-	char* wcpb;
-	char* wcpa;
-	unsigned short flgno;
-	unsigned int* mstb;
-	unsigned int bit;
-	unsigned char b;
-	unsigned char g;
-	unsigned char r;
-	unsigned char cmd;
-	//_anon7* ce;
-	// Line 1202, Address: 0x2bfdd0, Func Offset: 0
-	// Line 1203, Address: 0x2bfde0, Func Offset: 0x10
-	// Line 1209, Address: 0x2bfdf4, Func Offset: 0x24
-	// Line 1211, Address: 0x2bfe24, Func Offset: 0x54
-	// Line 1212, Address: 0x2bfe2c, Func Offset: 0x5c
-	// Line 1213, Address: 0x2bfe38, Func Offset: 0x68
-	// Line 1215, Address: 0x2bfe50, Func Offset: 0x80
-	// Line 1217, Address: 0x2bfe5c, Func Offset: 0x8c
-	// Line 1219, Address: 0x2bfe64, Func Offset: 0x94
-	// Line 1220, Address: 0x2bfe6c, Func Offset: 0x9c
-	// Line 1221, Address: 0x2bfe74, Func Offset: 0xa4
-	// Line 1222, Address: 0x2bfe78, Func Offset: 0xa8
-	// Line 1221, Address: 0x2bfe84, Func Offset: 0xb4
-	// Line 1222, Address: 0x2bfec4, Func Offset: 0xf4
-	// Line 1223, Address: 0x2bfecc, Func Offset: 0xfc
-	// Line 1224, Address: 0x2bfed8, Func Offset: 0x108
-	// Line 1227, Address: 0x2bfef8, Func Offset: 0x128
-	// Line 1228, Address: 0x2bff04, Func Offset: 0x134
-	// Line 1229, Address: 0x2bff08, Func Offset: 0x138
-	// Line 1231, Address: 0x2bff10, Func Offset: 0x140
-	// Line 1232, Address: 0x2bff20, Func Offset: 0x150
-	// Line 1234, Address: 0x2bff48, Func Offset: 0x178
-	// Line 1237, Address: 0x2bff4c, Func Offset: 0x17c
-	// Line 1234, Address: 0x2bff58, Func Offset: 0x188
-	// Line 1235, Address: 0x2bff60, Func Offset: 0x190
-	// Line 1237, Address: 0x2bff74, Func Offset: 0x1a4
-	// Line 1238, Address: 0x2bffa0, Func Offset: 0x1d0
-	// Line 1240, Address: 0x2bffa8, Func Offset: 0x1d8
-	// Line 1241, Address: 0x2bffb8, Func Offset: 0x1e8
-	// Line 1243, Address: 0x2bffc0, Func Offset: 0x1f0
-	// Line 1244, Address: 0x2bffc8, Func Offset: 0x1f8
-	// Line 1246, Address: 0x2bffd0, Func Offset: 0x200
-	// Line 1247, Address: 0x2bffe0, Func Offset: 0x210
-	// Line 1249, Address: 0x2bffe4, Func Offset: 0x214
-	// Line 1247, Address: 0x2bffec, Func Offset: 0x21c
-	// Line 1248, Address: 0x2bfff8, Func Offset: 0x228
-	// Line 1249, Address: 0x2bfffc, Func Offset: 0x22c
-	// Line 1248, Address: 0x2c0008, Func Offset: 0x238
-	// Line 1249, Address: 0x2c0014, Func Offset: 0x244
-	// Line 1250, Address: 0x2c0020, Func Offset: 0x250
-	// Line 1252, Address: 0x2c0028, Func Offset: 0x258
-	// Line 1253, Address: 0x2c002c, Func Offset: 0x25c
-	// Line 1252, Address: 0x2c0038, Func Offset: 0x268
-	// Line 1253, Address: 0x2c0078, Func Offset: 0x2a8
-	// Line 1254, Address: 0x2c0080, Func Offset: 0x2b0
-	// Line 1255, Address: 0x2c0088, Func Offset: 0x2b8
-	// Line 1257, Address: 0x2c0090, Func Offset: 0x2c0
-	// Line 1258, Address: 0x2c00a4, Func Offset: 0x2d4
-	// Line 1259, Address: 0x2c00e4, Func Offset: 0x314
-	// Line 1260, Address: 0x2c0108, Func Offset: 0x338
-	// Line 1262, Address: 0x2c010c, Func Offset: 0x33c
-	// Line 1265, Address: 0x2c0110, Func Offset: 0x340
-	// Line 1267, Address: 0x2c0114, Func Offset: 0x344
-	// Line 1260, Address: 0x2c0118, Func Offset: 0x348
-	// Line 1261, Address: 0x2c011c, Func Offset: 0x34c
-	// Line 1272, Address: 0x2c0120, Func Offset: 0x350
-	// Line 1261, Address: 0x2c012c, Func Offset: 0x35c
-	// Line 1262, Address: 0x2c0130, Func Offset: 0x360
-	// Line 1263, Address: 0x2c0150, Func Offset: 0x380
-	// Line 1264, Address: 0x2c015c, Func Offset: 0x38c
-	// Line 1265, Address: 0x2c0168, Func Offset: 0x398
-	// Line 1266, Address: 0x2c016c, Func Offset: 0x39c
-	// Line 1267, Address: 0x2c0170, Func Offset: 0x3a0
-	// Line 1268, Address: 0x2c0174, Func Offset: 0x3a4
-	// Line 1269, Address: 0x2c0178, Func Offset: 0x3a8
-	// Line 1270, Address: 0x2c017c, Func Offset: 0x3ac
-	// Line 1272, Address: 0x2c0180, Func Offset: 0x3b0
-	// Line 1273, Address: 0x2c0188, Func Offset: 0x3b8
-	// Line 1274, Address: 0x2c019c, Func Offset: 0x3cc
-	// Line 1276, Address: 0x2c01a4, Func Offset: 0x3d4
-	// Line 1278, Address: 0x2c01ac, Func Offset: 0x3dc
-	// Line 1276, Address: 0x2c01b0, Func Offset: 0x3e0
-	// Line 1278, Address: 0x2c01b4, Func Offset: 0x3e4
-	// Line 1277, Address: 0x2c01b8, Func Offset: 0x3e8
-	// Line 1276, Address: 0x2c01bc, Func Offset: 0x3ec
-	// Line 1278, Address: 0x2c01c8, Func Offset: 0x3f8
-	// Line 1276, Address: 0x2c01cc, Func Offset: 0x3fc
-	// Line 1278, Address: 0x2c01dc, Func Offset: 0x40c
-	// Line 1279, Address: 0x2c01e4, Func Offset: 0x414
-	// Line 1280, Address: 0x2c01f8, Func Offset: 0x428
-	// Line 1283, Address: 0x2c0200, Func Offset: 0x430
-	// Line 1284, Address: 0x2c0214, Func Offset: 0x444
-	// Line 1285, Address: 0x2c0228, Func Offset: 0x458
-	// Line 1287, Address: 0x2c0230, Func Offset: 0x460
-	// Line 1289, Address: 0x2c0238, Func Offset: 0x468
-	// Line 1287, Address: 0x2c023c, Func Offset: 0x46c
-	// Line 1289, Address: 0x2c0240, Func Offset: 0x470
-	// Line 1288, Address: 0x2c0244, Func Offset: 0x474
-	// Line 1287, Address: 0x2c0248, Func Offset: 0x478
-	// Line 1289, Address: 0x2c0254, Func Offset: 0x484
-	// Line 1287, Address: 0x2c0258, Func Offset: 0x488
-	// Line 1289, Address: 0x2c0268, Func Offset: 0x498
-	// Line 1290, Address: 0x2c0270, Func Offset: 0x4a0
-	// Line 1291, Address: 0x2c0284, Func Offset: 0x4b4
-	// Line 1293, Address: 0x2c028c, Func Offset: 0x4bc
-	// Line 1294, Address: 0x2c0294, Func Offset: 0x4c4
-	// Line 1296, Address: 0x2c029c, Func Offset: 0x4cc
-	// Line 1297, Address: 0x2c02ac, Func Offset: 0x4dc
-	// Line 1296, Address: 0x2c02b0, Func Offset: 0x4e0
-	// Line 1297, Address: 0x2c02bc, Func Offset: 0x4ec
-	// Line 1296, Address: 0x2c02c0, Func Offset: 0x4f0
-	// Line 1297, Address: 0x2c02cc, Func Offset: 0x4fc
-	// Line 1298, Address: 0x2c02d4, Func Offset: 0x504
-	// Line 1297, Address: 0x2c02d8, Func Offset: 0x508
-	// Line 1298, Address: 0x2c02e4, Func Offset: 0x514
-	// Line 1299, Address: 0x2c02f8, Func Offset: 0x528
-	// Line 1298, Address: 0x2c02fc, Func Offset: 0x52c
-	// Line 1299, Address: 0x2c0300, Func Offset: 0x530
-	// Line 1300, Address: 0x2c0308, Func Offset: 0x538
-	// Line 1301, Address: 0x2c0318, Func Offset: 0x548
-	// Line 1304, Address: 0x2c0328, Func Offset: 0x558
-	// Line 1305, Address: 0x2c0330, Func Offset: 0x560
-	// Line 1309, Address: 0x2c0344, Func Offset: 0x574
-	// Line 1311, Address: 0x2c034c, Func Offset: 0x57c
-	// Line 1312, Address: 0x2c0354, Func Offset: 0x584
-	// Line 1314, Address: 0x2c035c, Func Offset: 0x58c
-	// Line 1315, Address: 0x2c0378, Func Offset: 0x5a8
-	// Line 1317, Address: 0x2c0380, Func Offset: 0x5b0
-	// Line 1318, Address: 0x2c0384, Func Offset: 0x5b4
-	// Line 1317, Address: 0x2c0388, Func Offset: 0x5b8
-	// Line 1318, Address: 0x2c0394, Func Offset: 0x5c4
-	// Line 1320, Address: 0x2c03a8, Func Offset: 0x5d8
-	// Line 1323, Address: 0x2c03cc, Func Offset: 0x5fc
-	// Line 1324, Address: 0x2c03d4, Func Offset: 0x604
-	// Line 1326, Address: 0x2c03dc, Func Offset: 0x60c
-	// Line 1335, Address: 0x2c03e4, Func Offset: 0x614
-	// Line 1336, Address: 0x2c03ec, Func Offset: 0x61c
-	// Line 1337, Address: 0x2c03f4, Func Offset: 0x624
-	// Line 1326, Address: 0x2c03f8, Func Offset: 0x628
-	// Line 1327, Address: 0x2c0414, Func Offset: 0x644
-	// Line 1328, Address: 0x2c0428, Func Offset: 0x658
-	// Line 1329, Address: 0x2c0440, Func Offset: 0x670
-	// Line 1330, Address: 0x2c0458, Func Offset: 0x688
-	// Line 1334, Address: 0x2c0470, Func Offset: 0x6a0
-	// Line 1335, Address: 0x2c0474, Func Offset: 0x6a4
-	// Line 1336, Address: 0x2c0478, Func Offset: 0x6a8
-	// Line 1337, Address: 0x2c047c, Func Offset: 0x6ac
-	// Line 1338, Address: 0x2c0480, Func Offset: 0x6b0
-	// Line 1340, Address: 0x2c0484, Func Offset: 0x6b4
-	// Line 1342, Address: 0x2c048c, Func Offset: 0x6bc
-	// Line 1343, Address: 0x2c04a0, Func Offset: 0x6d0
-	// Line 1344, Address: 0x2c04b0, Func Offset: 0x6e0
-	// Line 1346, Address: 0x2c04b8, Func Offset: 0x6e8
-	// Line 1348, Address: 0x2c04bc, Func Offset: 0x6ec
-	// Line 1346, Address: 0x2c04c0, Func Offset: 0x6f0
-	// Line 1347, Address: 0x2c04cc, Func Offset: 0x6fc
-	// Line 1348, Address: 0x2c04dc, Func Offset: 0x70c
-	// Line 1347, Address: 0x2c04e0, Func Offset: 0x710
-	// Line 1348, Address: 0x2c04e8, Func Offset: 0x718
-	// Line 1349, Address: 0x2c04f4, Func Offset: 0x724
-	// Line 1351, Address: 0x2c04fc, Func Offset: 0x72c
-	// Line 1353, Address: 0x2c0500, Func Offset: 0x730
-	// Line 1351, Address: 0x2c0504, Func Offset: 0x734
-	// Line 1352, Address: 0x2c0514, Func Offset: 0x744
-	// Line 1353, Address: 0x2c0528, Func Offset: 0x758
-	// Line 1354, Address: 0x2c0544, Func Offset: 0x774
-	// Line 1356, Address: 0x2c054c, Func Offset: 0x77c
-	// Line 1357, Address: 0x2c0570, Func Offset: 0x7a0
-	// Line 1360, Address: 0x2c0578, Func Offset: 0x7a8
-	// Line 1362, Address: 0x2c0580, Func Offset: 0x7b0
-	// Line 1363, Address: 0x2c05a4, Func Offset: 0x7d4
-	// Line 1365, Address: 0x2c05ac, Func Offset: 0x7dc
-	// Line 1366, Address: 0x2c05cc, Func Offset: 0x7fc
-	// Line 1368, Address: 0x2c05d4, Func Offset: 0x804
-	// Line 1369, Address: 0x2c05e4, Func Offset: 0x814
-	// Line 1370, Address: 0x2c05e8, Func Offset: 0x818
-	// Line 1371, Address: 0x2c05f4, Func Offset: 0x824
-	// Line 1373, Address: 0x2c0604, Func Offset: 0x834
-	// Line 1374, Address: 0x2c0608, Func Offset: 0x838
-	// Line 1377, Address: 0x2c0614, Func Offset: 0x844
-	// Line 1379, Address: 0x2c061c, Func Offset: 0x84c
-	// Line 1380, Address: 0x2c0620, Func Offset: 0x850
-	// Line 1383, Address: 0x2c0638, Func Offset: 0x868
-	// Func End, Address: 0x2c064c, Func Offset: 0x87c
-	scePrintf("bhControlComEvtScript - UNIMPLEMENTED!\n");
+    COM_EVT_WORK* ce;     
+    unsigned char cmd;    
+    unsigned char r, g, b;   
+    unsigned int bit;   
+    unsigned int* mstb; 
+    unsigned short flgno;
+    char* wcpa, *wcpb;         
+ 
+    ce = sys->com_exp;
+    
+    if (!(ce->txflg & 0x2)) 
+    {
+        if ((sys->com_flg & 0x10)) 
+        {
+            switch (ce->txflg & 0x8) 
+            {
+            case 0:
+                break;
+            default:
+                return;
+            }
+        }
+        
+        if ((ce->txflg & 0x4)) 
+        {
+            if ((sys->pad_ps & 0x800)) 
+            {
+                ce->txflg &= ~0x4;
+            }
+            
+            return;
+        } 
+        else if ((ce->txflg & 0x1)) 
+        {
+            ce->curct = 16384;
+            
+            ce->txt[ce->ty][ce->tx] = ce->txcol | (*ce->mesp++ - 32);
+            
+            CallSystemSe(0, 0x8000026E);
+            
+            ce->tx++;
+            
+            if (*ce->mesp)
+            {
+                return;
+            }
+            
+            ce->txflg &= ~0x1;
+        }
+        
+        if (ce->txwait != 0)
+        {
+            ce->txwait--;
+            return;
+        }
+        
+        switch (*ce->scp++) 
+        {
+        case 224:
+            ce->txflg |= 0x1;
+            ce->txmes = *ce->scp++;
+
+            ce->mesp = ((unsigned char***)comevt_message_tab)[sys->com_num][ce->txmes];
+            break;
+        case 225:
+            ce->txwait = *ce->scp++;
+            break;
+        case 226:
+            ce->txflg |= 0x4;
+            break;
+        case 227:
+            r = *ce->scp++;
+            g = *ce->scp++;
+            b = *ce->scp++;
+            
+            ce->txcol = ((r & 0xF8) << 16) | ((g & 0xFC) << 11) | ((b & 0xF8) << 5);
+            break;
+        case 228:
+            ce->txt[ce->ty][ce->tx] = ce->txcol | (*ce->scp++ - 32);
+            
+            CallSystemSe(0, 0x8000026E);
+            
+            ce->tx++;
+            break;
+        case 229:
+            ce->wordmax = *ce->scp++;
+            
+            if (*ce->scp++ != 0)
+            {
+                sys->com_flg |=  0x400;
+            } 
+            else 
+            {
+                sys->com_flg &= ~0x400;
+            }
+            
+            ce->wdx = ce->tx;
+            ce->wdy = ce->ty;
+            
+            sys->com_flg |= 0x10;
+            
+            ce->txflg &= 0x7;
+            ce->txflg |= 0x8;
+            
+            ce->kx = 1;
+            ce->ky = 1;
+            
+            ce->khk  = -1;
+            ce->krep = 0;
+            ce->kbn  = 0;
+            
+            ce->wordn = 0;
+            
+            ce->ct0 = 0;
+            
+            CallSystemSe(0, 0x8000026A);
+            
+            sys->com_md1 = 3; 
+            break;
+        case 230:
+            sys->com_flg &= ~0x10;
+            
+            ce->ct0 = 16384;
+            
+            CallSystemSe(0, 0x8000026A);
+            
+            sys->com_md1 = 19; 
+            break;
+        case 231:
+            ce->ct0 = 0;
+            
+            CallSystemSe(0, 0x8000026A);
+            
+            sys->com_md1 = 5; 
+            break;
+        case 232:
+            sys->com_flg &= ~0x60;
+            
+            ce->ct0 = 16384;
+            
+            CallSystemSe(0, 0x8000026A);
+            
+            sys->com_md1 = 18; 
+            break;
+        case 233:
+            ce->txflg |= 0x8;
+            break;
+        case 234:
+            mstb = comevt_message_tab[sys->com_num];
+            
+            wcpa = (char*)ce->word[*ce->scp++];
+            wcpb = (char*)mstb[*ce->scp++];
+            
+            bit = *ce->scp++;
+            
+            if (strcmp(wcpa, wcpb) == 0) 
+            {
+                ce->lcflg |= 1 << bit;
+            }
+            else 
+            {
+                ce->lcflg &= ~(1 << bit);
+            }
+            
+            break;
+        case 235:
+            ce->scp++;
+            break;
+        case 236:
+            ce->scp = ce->sclb[*ce->scp++];
+            break;
+        case 237:
+            if ((ce->lcflg & (1 << *ce->scp++))) 
+            {
+                ce->scp = ce->sclb[*ce->scp++];
+            }
+            else 
+            {
+                ce->scp++;
+            }
+            
+            break;
+        case 238:
+            sys->com_flg |= 0x40;
+            
+            ce->chr_no = *ce->scp++;
+            
+            ce->caxn = (char)*ce->scp++ << 8;
+            ce->cayn = (char)*ce->scp++ << 8;
+            ce->cazn = (char)*ce->scp++ << 8;
+            
+            ce->cox =  0;
+            ce->coy =  0.1f;
+            ce->coz = -1.4f;
+            
+            ce->cax = 16384;
+            ce->cay = 0;
+            ce->caz = 0;
+            break;
+        case 239:
+            ce->mtn_no = *ce->scp++;
+            ce->frm_no = *ce->scp++;
+            break;
+        case 240:
+            flgno = *ce->scp++ | (*ce->scp++ << 8);
+            
+            bhStFlg(sys->ev_flg, flgno);
+            break;
+        case 241:
+            ce->mes_no = *ce->scp++;
+            ce->mes_ln = *ce->scp++;
+            
+            sys->com_flg |= 0x80;
+            break;
+        case 242:
+            sys->com_flg &= ~0x80;
+            break;
+        case 243:
+            ce->lcflg = 0;
+            break;
+        case 244:
+            sys->com_flg &= ~0x200;
+            break;
+        case 245:
+            sys->com_flg |= 0x200;
+            break;
+        case 246:
+            CallSystemSe(0, 0x8000026E);
+            
+            ce->tx = 0;
+            ce->ty++;
+            
+            if (ce->ty >= 11) 
+            {
+                ce->ty--;
+                
+                ce->txflg |= 0x2;
+                ce->txsct  = 0;
+            }
+            
+            break;
+        case 0xFF:
+            ce->ct0 = 0;
+            
+            sys->com_md1 = 20; 
+            break;
+        }
+    }
 }
 
 // 100% matching!
