@@ -482,27 +482,29 @@ void MapPadMain()
 	// Line 1090, Address: 0x2b2fc0, Func Offset: 0x1f0
 	// Line 1093, Address: 0x2b2fcc, Func Offset: 0x1fc
 	// Func End, Address: 0x2b2fd4, Func Offset: 0x204
-}
+}*/
 
-// 
-// Start address: 0x2b2fe0
-void MapViewMain()
+// 100% matching!
+static void MapViewMain()
 {
-	float mtxP[16];
-	// Line 1103, Address: 0x2b2fe0, Func Offset: 0
-	// Line 1104, Address: 0x2b2fec, Func Offset: 0xc
-	// Line 1107, Address: 0x2b2ff8, Func Offset: 0x18
-	// Line 1108, Address: 0x2b3000, Func Offset: 0x20
-	// Line 1111, Address: 0x2b300c, Func Offset: 0x2c
-	// Line 1113, Address: 0x2b302c, Func Offset: 0x4c
-	// Line 1114, Address: 0x2b3044, Func Offset: 0x64
-	// Line 1115, Address: 0x2b305c, Func Offset: 0x7c
-	// Line 1116, Address: 0x2b3074, Func Offset: 0x94
-	// Line 1117, Address: 0x2b309c, Func Offset: 0xbc
-	// Func End, Address: 0x2b30ac, Func Offset: 0xcc
+    NJS_MATRIX* mtxP;
+
+    mtxP = mwP->vew_mtxP;
+    
+    njUnitMatrix(mtxP);
+    
+    njRotateX(mtxP, 32768);
+    
+    njTranslate(mtxP, 0, 0, -mwP->vew_zom);
+    
+    njRotateZ(mtxP, -mwP->vew_ang[2]);
+    njRotateX(mtxP, -mwP->vew_ang[0]);
+    njRotateY(mtxP, -mwP->vew_ang[1]);
+    
+    njTranslate(mtxP, -mwP->vew_pos.x, -mwP->vew_pos.y, -mwP->vew_pos.z);
 }
 
-// 
+/*// 
 // Start address: 0x2b30b0
 void MapLightMain()
 {
