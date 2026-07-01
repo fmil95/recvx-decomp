@@ -854,21 +854,26 @@ void MapCodeProcess()
 	// Line 1495, Address: 0x2b3ce8, Func Offset: 0x878
 	// Line 1497, Address: 0x2b3cf0, Func Offset: 0x880
 	// Func End, Address: 0x2b3d0c, Func Offset: 0x89c
-}
+}*/
 
-// 
-// Start address: 0x2b3d10
-void MapBoolSet(int bol, int mod)
+// 100% matching!
+static void MapBoolSet(int bol, int mod) 
 {
-	// Line 1509, Address: 0x2b3d10, Func Offset: 0
-	// Line 1511, Address: 0x2b3d38, Func Offset: 0x28
-	// Line 1512, Address: 0x2b3d48, Func Offset: 0x38
-	// Line 1513, Address: 0x2b3d60, Func Offset: 0x50
-	// Line 1515, Address: 0x2b3d74, Func Offset: 0x64
-	// Func End, Address: 0x2b3d7c, Func Offset: 0x6c
+    switch (mod) 
+    {                                 
+    case 0:
+        mwP->cde_bol = bol;
+        break;
+    case 0x4000:
+        mwP->cde_bol &= bol;
+        break;
+    case 0x8000:
+        mwP->cde_bol |= bol;
+        break;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x2b3d80
 void MapDrawMarker(int mrk_no, _anon14* posP, int pal_no)
 {
