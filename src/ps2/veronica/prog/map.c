@@ -1,8 +1,13 @@
 #include "../../../ps2/veronica/prog/map.h"
+#include "../../../ps2/veronica/prog/event.h"
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
+#include "../../../ps2/veronica/prog/ps2_texture.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
 
 /*_anon11 MapPal[32];
 _anon39 MapCol[3];
@@ -134,22 +139,33 @@ void bhSetMap()
 
 }
 
-// 
-// Start address: 0x2b23c0
+// 100% matching!
 void bhExitMap()
 {
-	// Line 531, Address: 0x2b23c0, Func Offset: 0
-	// Line 536, Address: 0x2b23c8, Func Offset: 0x8
-	// Line 538, Address: 0x2b23dc, Func Offset: 0x1c
-	// Line 541, Address: 0x2b23f0, Func Offset: 0x30
-	// Line 542, Address: 0x2b2410, Func Offset: 0x50
-	// Line 544, Address: 0x2b2430, Func Offset: 0x70
-	// Line 548, Address: 0x2b243c, Func Offset: 0x7c
-	// Line 551, Address: 0x2b2458, Func Offset: 0x98
-	// Line 554, Address: 0x2b2468, Func Offset: 0xa8
-	// Line 562, Address: 0x2b2484, Func Offset: 0xc4
-	// Func End, Address: 0x2b2490, Func Offset: 0xd0
-	scePrintf("bhExitMap - UNIMPLEMENTED!\n");
+    njClipZ(GameNear, GameFar);
+    
+    njSetAspect(BHD_ASPECT_X, BHD_ASPECT_Y);
+    
+    if ((mwP->status & 0x8)) 
+    {
+        njReleaseTexture(mwP->map_texP);
+    }
+    
+    if ((mwP->status & 0x10)) 
+    {
+        njReleaseTexture(mwP->stg_texP);
+    }
+    
+    bhGarbageTexture(NULL, 0);
+    
+    if (mwP->rom_texP != NULL) 
+    {
+        bhCopyMainmem2Texmem(mwP->rom_texP);
+    }
+    
+    bhReleaseFreeMemory(mwP->mem_bakP);
+    
+    sys->gm_flg &= ~0x80000;
 }
 
 /*// 
