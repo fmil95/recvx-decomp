@@ -4,6 +4,7 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
@@ -14,19 +15,14 @@
 #include "../../../ps2/veronica/prog/screen.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
+static map_wrk MapWrk;
+static map_wrk* mwP = &MapWrk;
+
 /*_anon11 MapPal[32];
 _anon39 MapCol[3];
 _anon13 ItmDat[22];
 unsigned short CncDatA[81];
 unsigned short CncDatB[49];
-_map_wrk MapWrk;*/
-static map_wrk* mwP;
-/*_anon31* sys;
-_anon17* rom;
-float BHD_ASPECT_Y;
-float BHD_ASPECT_X;
-float GameFar;
-float GameNear;
 int(*FtskMapExit)(_anon35*);
 int(*FtskMapZoom)(_anon35*);
 int(*FtskMapNormal)(_anon35*);
@@ -34,12 +30,9 @@ int(*FsubMapDraw)(_func_wrk_typ*);
 int(*FtskMapRead)(_anon35*);
 int(*FsubModeMessage)(_anon49*);
 int(*FsubCompass)(_anon38*);
-BH_PWORK* plp;
 int(*FtskMapWait)(_anon35*);
 int(*FsubZoomScreen)(_anon30*);
 int(*FsubBackDraw)(_func_wrk_typ*);
-_anon9 _nj_screen_;
-float lcmat[16][0];
 int(*FsubTaskMain)(_anon56*);
 int(*FsubGaugeDraw)(_anon3*);
 int(*FsubZoomInfomation)(_anon21*);
@@ -504,43 +497,33 @@ static void MapViewMain()
     njTranslate(mtxP, -mwP->vew_pos.x, -mwP->vew_pos.y, -mwP->vew_pos.z);
 }
 
-/*// 
-// Start address: 0x2b30b0
-void MapLightMain()
+// 99.61% matching
+static void MapLightMain()
 {
-	float scl;
-	int yaw;
-	int pitch;
-	// Line 1127, Address: 0x2b30b0, Func Offset: 0
-	// Line 1129, Address: 0x2b30c4, Func Offset: 0x14
-	// Line 1127, Address: 0x2b30c8, Func Offset: 0x18
-	// Line 1129, Address: 0x2b30d0, Func Offset: 0x20
-	// Line 1130, Address: 0x2b30dc, Func Offset: 0x2c
-	// Line 1132, Address: 0x2b30f4, Func Offset: 0x44
-	// Line 1138, Address: 0x2b30fc, Func Offset: 0x4c
-	// Line 1132, Address: 0x2b3104, Func Offset: 0x54
-	// Line 1136, Address: 0x2b3108, Func Offset: 0x58
-	// Line 1132, Address: 0x2b310c, Func Offset: 0x5c
-	// Line 1136, Address: 0x2b3110, Func Offset: 0x60
-	// Line 1138, Address: 0x2b3114, Func Offset: 0x64
-	// Line 1137, Address: 0x2b3118, Func Offset: 0x68
-	// Line 1136, Address: 0x2b311c, Func Offset: 0x6c
-	// Line 1138, Address: 0x2b3120, Func Offset: 0x70
-	// Line 1140, Address: 0x2b3124, Func Offset: 0x74
-	// Line 1138, Address: 0x2b3128, Func Offset: 0x78
-	// Line 1140, Address: 0x2b3130, Func Offset: 0x80
-	// Line 1141, Address: 0x2b3148, Func Offset: 0x98
-	// Line 1142, Address: 0x2b3150, Func Offset: 0xa0
-	// Line 1144, Address: 0x2b316c, Func Offset: 0xbc
-	// Line 1145, Address: 0x2b3178, Func Offset: 0xc8
-	// Line 1149, Address: 0x2b31a0, Func Offset: 0xf0
-	// Line 1151, Address: 0x2b31b0, Func Offset: 0x100
-	// Line 1153, Address: 0x2b31b8, Func Offset: 0x108
-	// Line 1155, Address: 0x2b31c0, Func Offset: 0x110
-	// Func End, Address: 0x2b31e4, Func Offset: 0x134
+	int pitch, yaw;
+    float scl;
+
+    njCnkSetEasyMultiLightSwitch(1, 1);
+    njCnkSetEasyMultiAmbient(mwP->ar, mwP->ag, mwP->ab);
+    
+    mwP->lgt_scale = mwP->map_scale;
+    
+    yaw   = mwP->yaw;
+    pitch = mwP->pitch;
+    
+    scl = 1.0f / mwP->map_scale;
+    
+    njCnkSetEasyMultiLightVector(-njSin(yaw) * njCos(pitch), njSin(pitch), -njCos(yaw) * njCos(pitch));
+    njCnkSetEasyMultiLightColor(1, mwP->pr * scl, mwP->pg * scl, mwP->pb * scl);
+    
+    njPushMatrix(mwP->vew_mtxP);
+    
+    njCnkSetEasyMultiLightMatrices();
+    
+    njPopMatrixEx();
 }
 
-// 
+/*// 
 // Start address: 0x2b31f0
 void MapPaletteMain()
 {
