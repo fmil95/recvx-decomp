@@ -4,6 +4,7 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
@@ -1935,19 +1936,20 @@ void MapDrawFill(_anon5* srcP, _anon5* dstP, float pri, int pal)
 	// Line 3112, Address: 0x2b62c4, Func Offset: 0x64
 	// Line 3113, Address: 0x2b62c8, Func Offset: 0x68
 	// Func End, Address: 0x2b62d0, Func Offset: 0x70
-}
-
-// 
-// Start address: 0x2b62d0
-void MapDrawPolyFill(_anon5* pnt, float pri, int pal)
-{
-	_anon57 p2c;
-	_anon39 col[4];
-	// Line 3128, Address: 0x2b62d0, Func Offset: 0
-	// Line 3129, Address: 0x2b62d8, Func Offset: 0x8
-	// Line 3130, Address: 0x2b62f8, Func Offset: 0x28
-	// Func End, Address: 0x2b6310, Func Offset: 0x40
 }*/
+
+// 100% matching!
+static void MapDrawPolyFill(NJS_POINT2* pnt, float pri, int pal) 
+{
+    static NJS_COLOR col[4];
+    static NJS_POINT2COL p2c = { NULL, col, NULL, 4 };
+
+    p2c.p = pnt;
+    
+    col[0].color = col[1].color = col[2].color = col[3].color = pal;
+    
+    njDrawPolygon2D(&p2c, p2c.num, pri, 0x60);
+}
 
 // 100% matching!
 static void MapDrawMessage()
