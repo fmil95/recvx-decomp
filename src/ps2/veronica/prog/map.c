@@ -1359,17 +1359,22 @@ int FsubTaskMain(_anon56* ftP)
 	// Line 2329, Address: 0x2b4fd0, Func Offset: 0x40
 	// Line 2330, Address: 0x2b4fd4, Func Offset: 0x44
 	// Func End, Address: 0x2b4fdc, Func Offset: 0x4c
-}
-
-// 
-// Start address: 0x2b4fe0
-int FtskMapWait()
-{
-	int bol;
-	// Line 2343, Address: 0x2b4fe0, Func Offset: 0
-	// Line 2346, Address: 0x2b4ffc, Func Offset: 0x1c
-	// Func End, Address: 0x2b5004, Func Offset: 0x24
 }*/
+
+// 100% matching!
+static int FtskMapWait()
+{
+    int bol;
+
+    bol = 1;
+    
+    if (!(sys->st_flg & 0x8)) 
+    {
+        bol = 0;
+    }
+    
+    return bol;
+}
 
 // 100% matching!
 static int FtskMapExit() 
