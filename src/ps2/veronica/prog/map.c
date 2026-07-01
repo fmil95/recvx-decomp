@@ -1062,18 +1062,14 @@ _func_wrk_typ* MapFuncAlloc(int(*funcP)(_func_wrk_typ*), int param0)
 	// Line 1878, Address: 0x2b4610, Func Offset: 0x80
 	// Line 1879, Address: 0x2b4614, Func Offset: 0x84
 	// Func End, Address: 0x2b462c, Func Offset: 0x9c
-}
-
-// 
-// Start address: 0x2b4630
-void MapFuncFree(_func_wrk_typ* fwP)
-{
-	// Line 1889, Address: 0x2b4630, Func Offset: 0
-	// Line 1890, Address: 0x2b463c, Func Offset: 0xc
-	// Line 1891, Address: 0x2b4644, Func Offset: 0x14
-	// Line 1896, Address: 0x2b4658, Func Offset: 0x28
-	// Func End, Address: 0x2b4668, Func Offset: 0x38
 }*/
+
+// 100% matching!
+static void MapFuncFree(func_wrk_typ* fwP) 
+{
+    MapFuncDel(fwP);
+    MapFuncIns(mwP->free_funcP, fwP);
+}
 
 // 100% matching!
 static void MapFuncDel(func_wrk_typ* fwP)
