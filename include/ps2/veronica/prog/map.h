@@ -161,6 +161,32 @@ typedef struct _map_wrk
     unsigned int Dummy3[2];           // offset 0x5D0, size 0x8
 } map_wrk;
 
+typedef struct ID_WORK
+{
+    // total size: 0x2
+    unsigned char itm_no; // offset 0x0, size 0x1
+    unsigned char flg_no; // offset 0x1, size 0x1
+} ID_WORK;
+
+typedef struct TSK_WORK
+{
+	// total size: 0x10
+    int param0; // offset 0x0, size 0x4
+    int param1; // offset 0x4, size 0x4
+    int param2; // offset 0x8, size 0x4
+    int param3; // offset 0xC, size 0x4
+} TSK_WORK;
+
+typedef struct FT_WORK 
+{
+    // total size: 0x20
+    int mode;               // offset 0x0, size 0x4
+    mp_mod* map_mdeP;       // offset 0x4, size 0x4
+    int chg_mde;            // offset 0x8, size 0x4
+    int (*tskP)(TSK_WORK*); // offset 0xC, size 0x4
+    TSK_WORK tsk_sub;       // offset 0x10, size 0x10
+} FT_WORK;
+
 void bhInitMap(enum_2 set_mod);
 void bhSetMap();
 void bhExitMap();

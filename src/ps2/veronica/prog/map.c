@@ -17,13 +17,44 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
 static map_wrk MapWrk;
+
 static map_wrk* mwP = &MapWrk;
 
-/*_anon11 MapPal[32];
-_anon39 MapCol[3];
-_anon13 ItmDat[22];
-unsigned short CncDatA[81];
-unsigned short CncDatB[49];*/
+const NJS_ARGB MapPal[32] = 
+{
+    { 1.0f, 0.7f, 0.7f, 0.7f }, { 1.0f, 0.1f, 0.2f, 0.4f }, { 1.0f, 0.4f, 0.1f, 0.2f }, { 0.5f, 1.0f, 0.5f, 0.0f },
+    { 1.0f, 0.6f, 0.1f, 0.5f }, { 0.3f, 0.2f, 0.2f, 0.8f }, { 1.0f, 1.0f, 1.0f, 0.0f }, { 1.0f, 0.0f, 0.4f, 0.8f },
+    { 1.0f, 0.8f, 0.0f, 0.4f }, { 0.8f, 1.0f, 0.5f, 0.0f }, { 1.0f, 1.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 0.0f, 1.0f },
+    { 1.0f, 0.8f, 0.8f, 0.0f }, { 1.0f, 0.8f, 0.0f, 0.8f }, { 1.0f, 0.0f, 0.8f, 0.8f }, { 1.0f, 0.8f, 0.8f, 0.0f },
+    { 1.0f, 0.0f, 0.8f, 0.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }, { 0.8f, 0.6f, 0.4f, 0.0f },
+    { 1.0f, 0.8f, 0.0f, 0.0f }, { 1.0f, 0.0f, 0.8f, 0.0f }, { 1.0f, 0.0f, 0.0f, 0.8f }, { 1.0f, 0.0f, 1.0f, 1.0f },
+    { 1.0f, 0.5f, 0.1f, 0.1f }, { 1.0f, 0.5f, 0.3f, 0.3f }, { 1.0f, 1.0f, 1.0f, 1.0f }, { 1.0f, 1.0f, 1.0f, 1.0f },
+    { 1.0f, 0.8f, 0.8f, 0.0f }, { 1.0f, 0.8f, 0.0f, 0.8f }, { 1.0f, 0.0f, 0.8f, 0.8f }, { 1.0f, 0.8f, 0.8f, 0.0f }
+};
+const NJS_COLOR MapCol[3] = 
+{
+    { 0xFF000800 }, { 0xFF003000 }, { 0xC0A0A0A0 }
+};
+const ID_WORK ItmDat[22] = 
+{
+    { 59, 96 },  { 86, 96 },  { 84, 97 },  { 56, 98 },  { 51, 99 },  { 67, 100 }, { 68, 101 }, { 33, 102 },  { 73, 103 }, { 62, 104 }, 
+	{ 93, 105 }, { 76, 106 }, { 75, 107 }, { 89, 108 }, { 90, 109 }, { 81, 110 }, { 92, 111 }, { 105, 112 }, { 66, 113 }, { 44, 114 },
+    { 46, 115 }, { 108, 116 }
+};
+const unsigned short CncDatA[81] = 
+{
+    65284, 1, 65285, 256, 416, 65325, 40960, 40961, 41121, 65347, 41376, 41232, 41233, 41234, 65287, 4113, 65288, 4368, 4370, 4513, 4400, 
+	4401, 4402, 65289, 4625, 65294, 12337, 65295, 12592, 12594, 12560, 12561, 12562, 12706, 65296, 12849, 65345, 41520, 41521, 41522, 
+	41504, 41505, 41506, 41507, 65290, 8225, 8354, 8256, 8257, 65291, 8480, 8482, 65292, 8737, 8739, 65293, 8994, 65297, 16449, 16416,
+    16417, 16418, 16419, 16464, 65298, 16704, 65299, 20544, 20545, 20576, 20577, 20578, 65300, 24673, 65301, 24928, 24930, 24912, 65302, 
+	25185, 65535
+};
+const unsigned short CncDatB[49] = 
+{
+    65303, 28785, 65304, 29040, 29042, 65294, 29297, 29299, 65295, 29554, 29556, 29568, 29569, 65296, 29811, 65297, 32897, 32880, 32881, 
+	32882, 32883, 32884, 32912, 32913, 32914, 32915, 32916, 32917, 65298, 33152, 65305, 37009, 65306, 37264, 37266, 65307, 37521, 37523, 
+	65308, 37778, 37780, 65300, 38035, 38037, 65301, 38292, 38272, 38273, 65535
+};
 
 // 98.45% matching
 void bhInitMap(enum_2 set_mod)
@@ -1341,21 +1372,20 @@ _anon56* MapEntryTask(int(*tskP)(_anon35*), _enum_1 chg_mde, int param0)
 	// Line 2310, Address: 0x2b4f68, Func Offset: 0x58
 	// Line 2311, Address: 0x2b4f6c, Func Offset: 0x5c
 	// Func End, Address: 0x2b4f84, Func Offset: 0x74
-}
-
-// 
-// Start address: 0x2b4f90
-int FsubTaskMain(_anon56* ftP)
-{
-	// Line 2322, Address: 0x2b4f90, Func Offset: 0
-	// Line 2324, Address: 0x2b4fa0, Func Offset: 0x10
-	// Line 2325, Address: 0x2b4fb4, Func Offset: 0x24
-	// Line 2326, Address: 0x2b4fbc, Func Offset: 0x2c
-	// Line 2330, Address: 0x2b4fc8, Func Offset: 0x38
-	// Line 2329, Address: 0x2b4fd0, Func Offset: 0x40
-	// Line 2330, Address: 0x2b4fd4, Func Offset: 0x44
-	// Func End, Address: 0x2b4fdc, Func Offset: 0x4c
 }*/
+
+// 100% matching!
+static int FsubTaskMain(FT_WORK* ftP) 
+{
+    if (ftP->tskP(&ftP->tsk_sub) == 0) 
+    {
+        *ftP->map_mdeP = ftP->chg_mde;
+        
+        MapFuncFree((func_wrk_typ*)ftP);
+    }
+    
+    return 1;
+}
 
 // 100% matching!
 static int FtskMapWait()
