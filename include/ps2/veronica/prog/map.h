@@ -207,8 +207,8 @@ _tag_wrk_typ* MapTagConnect(int rom_no);
 _tag_wrk_typ* MapTagCenter();
 void MapDrawLine2(_anon5* srcP, _anon5* dstP, float pri, int pal);
 void MapDrawLine(_anon5* srcP, _anon5* dstP, float pri, int pal);
-void MapDrawFill(_anon5* srcP, _anon5* dstP, float pri, int pal);
-void MapDrawPolyFill(_anon5* pnt, float pri, int pal);*/
+void MapDrawFill(_anon5* srcP, _anon5* dstP, float pri, int pal);*/
+static void MapDrawPolyFill(NJS_POINT2* pnt, float pri, int pal);
 void MapDrawMessage();
 /*int FsubZoomCursor(_anon8* fzP);
 int FsubZoomInfomation(_anon21* fiP);

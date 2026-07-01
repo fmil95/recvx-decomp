@@ -1919,24 +1919,27 @@ void MapDrawLine(_anon5* srcP, _anon5* dstP, float pri, int pal)
 	// Line 3095, Address: 0x2b623c, Func Offset: 0xbc
 	// Line 3096, Address: 0x2b6244, Func Offset: 0xc4
 	// Func End, Address: 0x2b6260, Func Offset: 0xe0
-}
-
-// 
-// Start address: 0x2b6260
-void MapDrawFill(_anon5* srcP, _anon5* dstP, float pri, int pal)
-{
-	_anon5 pnt[4];
-	// Line 3109, Address: 0x2b6260, Func Offset: 0
-	// Line 3113, Address: 0x2b6268, Func Offset: 0x8
-	// Line 3109, Address: 0x2b626c, Func Offset: 0xc
-	// Line 3110, Address: 0x2b627c, Func Offset: 0x1c
-	// Line 3111, Address: 0x2b6294, Func Offset: 0x34
-	// Line 3112, Address: 0x2b62ac, Func Offset: 0x4c
-	// Line 3113, Address: 0x2b62c0, Func Offset: 0x60
-	// Line 3112, Address: 0x2b62c4, Func Offset: 0x64
-	// Line 3113, Address: 0x2b62c8, Func Offset: 0x68
-	// Func End, Address: 0x2b62d0, Func Offset: 0x70
 }*/
+
+// 100% matching!
+static void MapDrawFill(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal) 
+{
+    static NJS_POINT2 pnt[4];
+    
+    pnt[0].x = srcP->x;
+    pnt[0].y = srcP->y;
+
+    pnt[1].x = dstP->x;
+    pnt[1].y = srcP->y;
+    
+    pnt[2].x = dstP->x;
+    pnt[2].y = dstP->y;
+    
+    pnt[3].x = srcP->x;
+    pnt[3].y = dstP->y;
+    
+    MapDrawPolyFill(pnt, pri, pal);
+}
 
 // 100% matching!
 static void MapDrawPolyFill(NJS_POINT2* pnt, float pri, int pal) 
