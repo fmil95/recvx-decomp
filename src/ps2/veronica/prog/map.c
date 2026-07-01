@@ -908,15 +908,15 @@ void MapDrawMarker(int mrk_no, _anon14* posP, int pal_no)
 	// Line 1590, Address: 0x2b3f4c, Func Offset: 0x1cc
 	// Line 1595, Address: 0x2b3f58, Func Offset: 0x1d8
 	// Func End, Address: 0x2b3f70, Func Offset: 0x1f0
-}
+}*/
 
 // 
 // Start address: 0x2b3f70
-void MapDrawBackground(float depth, _anon5* p0P, _anon5* p1P)
+void MapDrawBackground(float depth, NJS_POINT2* p0P, NJS_POINT2* p1P)
 {
 	float dst;
-	_anon5 p1;
-	_anon5 p0;
+	//NJS_POINT2 p1;
+	//NJS_POINT2 p0;
 	// Line 1607, Address: 0x2b3f70, Func Offset: 0
 	// Line 1610, Address: 0x2b3f90, Func Offset: 0x20
 	// Line 1617, Address: 0x2b3fac, Func Offset: 0x3c
@@ -937,9 +937,10 @@ void MapDrawBackground(float depth, _anon5* p0P, _anon5* p1P)
 	// Line 1644, Address: 0x2b40c0, Func Offset: 0x150
 	// Line 1646, Address: 0x2b40fc, Func Offset: 0x18c
 	// Func End, Address: 0x2b4120, Func Offset: 0x1b0
+	scePrintf("MapDrawBackground - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2b4120
 void MapDrawSprite(_anon14* posP, int col, _enum_4 spr_no)
 {
@@ -1135,21 +1136,17 @@ int FsubMapDraw(_func_wrk_typ* fwP)
 	// Line 1983, Address: 0x2b47d4, Func Offset: 0xb4
 	// Line 1984, Address: 0x2b47d8, Func Offset: 0xb8
 	// Func End, Address: 0x2b47e0, Func Offset: 0xc0
-}
+}*/
 
-// 
-// Start address: 0x2b47e0
-int FsubBackDraw()
+// 100% matching!
+static int FsubBackDraw() 
 {
-	// Line 1994, Address: 0x2b47e0, Func Offset: 0
-	// Line 1995, Address: 0x2b47e8, Func Offset: 0x8
-	// Line 1998, Address: 0x2b4800, Func Offset: 0x20
-	// Line 1997, Address: 0x2b4804, Func Offset: 0x24
-	// Line 1998, Address: 0x2b4808, Func Offset: 0x28
-	// Func End, Address: 0x2b4810, Func Offset: 0x30
+    MapDrawBackground(mwP->bck_depth, &mwP->bck_p0, &mwP->bck_p1);
+    
+    return 1;
 }
 
-// 
+/*// 
 // Start address: 0x2b4810
 void MapEntrySprite(_enum_0 set_no, int mode)
 {
