@@ -454,28 +454,41 @@ int bhControlMap()
 	scePrintf("bhControlMap - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x2b2dd0
-void MapPadMain()
+// 100% matching!
+static void MapPadMain()
 {
-	// Line 1074, Address: 0x2b2dd0, Func Offset: 0
-	// Line 1075, Address: 0x2b2de8, Func Offset: 0x18
-	// Line 1076, Address: 0x2b2dec, Func Offset: 0x1c
-	// Line 1078, Address: 0x2b2e18, Func Offset: 0x48
-	// Line 1079, Address: 0x2b2e20, Func Offset: 0x50
-	// Line 1081, Address: 0x2b2e38, Func Offset: 0x68
-	// Line 1082, Address: 0x2b2e88, Func Offset: 0xb8
-	// Line 1083, Address: 0x2b2ed4, Func Offset: 0x104
-	// Line 1082, Address: 0x2b2ee0, Func Offset: 0x110
-	// Line 1083, Address: 0x2b2ee4, Func Offset: 0x114
-	// Line 1084, Address: 0x2b2f30, Func Offset: 0x160
-	// Line 1086, Address: 0x2b2f48, Func Offset: 0x178
-	// Line 1087, Address: 0x2b2f54, Func Offset: 0x184
-	// Line 1088, Address: 0x2b2fa8, Func Offset: 0x1d8
-	// Line 1090, Address: 0x2b2fc0, Func Offset: 0x1f0
-	// Line 1093, Address: 0x2b2fcc, Func Offset: 0x1fc
-	// Func End, Address: 0x2b2fd4, Func Offset: 0x204
-}*/
+    if ((mwP->status & 0x400)) 
+    {
+        mwP->pad_ps = 0;
+        
+        mwP->pad_ax = mwP->pad_ay = 0;
+        mwP->pad_al = mwP->pad_ar = 0;
+        return;
+    }
+    
+    mwP->pad_ps = sys->pad_ps;
+    
+    mwP->pad_al = sys->pad_al;
+    mwP->pad_ar = sys->pad_ar;
+    
+    if ((sys->pad_ax > 40.0f) || (sys->pad_ax < -40.0f))
+    {
+        mwP->pad_ax = sys->pad_ax;
+    }
+    else 
+    {
+        mwP->pad_ax = 0;
+    }
+    
+    if ((sys->pad_ay > 40.0f) || (sys->pad_ay < -40.0f))
+    {
+        mwP->pad_ay = sys->pad_ay;
+    }
+    else
+    {
+        mwP->pad_ay = 0;
+    }
+}
 
 // 100% matching!
 static void MapViewMain()
