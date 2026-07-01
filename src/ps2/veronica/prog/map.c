@@ -2,11 +2,16 @@
 #include "../../../ps2/veronica/prog/event.h"
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_NaView.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/ps2_texture.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
+#include "../../../ps2/veronica/prog/screen.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
 /*_anon11 MapPal[32];
@@ -40,97 +45,113 @@ int(*FsubGaugeDraw)(_anon3*);
 int(*FsubZoomInfomation)(_anon21*);
 int(*FsubZoomCursor)(_anon8*);*/
 
-// 
-// Start address: 0x2b1ef0
+// 98.45% matching
 void bhInitMap(enum_2 set_mod)
 {
-	//_anon2* texP;
-	// Line 402, Address: 0x2b1ef0, Func Offset: 0
-	// Line 400, Address: 0x2b1ef8, Func Offset: 0x8
-	// Line 402, Address: 0x2b1efc, Func Offset: 0xc
-	// Line 400, Address: 0x2b1f00, Func Offset: 0x10
-	// Line 402, Address: 0x2b1f04, Func Offset: 0x14
-	// Line 400, Address: 0x2b1f08, Func Offset: 0x18
-	// Line 402, Address: 0x2b1f0c, Func Offset: 0x1c
-	// Line 403, Address: 0x2b1f18, Func Offset: 0x28
-	// Line 404, Address: 0x2b1f34, Func Offset: 0x44
-	// Line 407, Address: 0x2b1f44, Func Offset: 0x54
-	// Line 410, Address: 0x2b1f58, Func Offset: 0x68
-	// Line 439, Address: 0x2b1f6c, Func Offset: 0x7c
-	// Line 410, Address: 0x2b1f70, Func Offset: 0x80
-	// Line 439, Address: 0x2b1f74, Func Offset: 0x84
-	// Line 412, Address: 0x2b1f78, Func Offset: 0x88
-	// Line 428, Address: 0x2b1f7c, Func Offset: 0x8c
-	// Line 430, Address: 0x2b1f80, Func Offset: 0x90
-	// Line 410, Address: 0x2b1f84, Func Offset: 0x94
-	// Line 412, Address: 0x2b1f8c, Func Offset: 0x9c
-	// Line 442, Address: 0x2b1f90, Func Offset: 0xa0
-	// Line 432, Address: 0x2b1f98, Func Offset: 0xa8
-	// Line 435, Address: 0x2b1f9c, Func Offset: 0xac
-	// Line 436, Address: 0x2b1fa0, Func Offset: 0xb0
-	// Line 412, Address: 0x2b1fa4, Func Offset: 0xb4
-	// Line 416, Address: 0x2b1fbc, Func Offset: 0xcc
-	// Line 417, Address: 0x2b1fcc, Func Offset: 0xdc
-	// Line 423, Address: 0x2b1fdc, Func Offset: 0xec
-	// Line 424, Address: 0x2b1fe8, Func Offset: 0xf8
-	// Line 423, Address: 0x2b1fec, Func Offset: 0xfc
-	// Line 424, Address: 0x2b1ff4, Func Offset: 0x104
-	// Line 426, Address: 0x2b1ffc, Func Offset: 0x10c
-	// Line 424, Address: 0x2b2000, Func Offset: 0x110
-	// Line 426, Address: 0x2b2008, Func Offset: 0x118
-	// Line 427, Address: 0x2b2018, Func Offset: 0x128
-	// Line 426, Address: 0x2b201c, Func Offset: 0x12c
-	// Line 427, Address: 0x2b2020, Func Offset: 0x130
-	// Line 428, Address: 0x2b2050, Func Offset: 0x160
-	// Line 430, Address: 0x2b2080, Func Offset: 0x190
-	// Line 432, Address: 0x2b208c, Func Offset: 0x19c
-	// Line 433, Address: 0x2b2098, Func Offset: 0x1a8
-	// Line 434, Address: 0x2b20a4, Func Offset: 0x1b4
-	// Line 435, Address: 0x2b20b0, Func Offset: 0x1c0
-	// Line 436, Address: 0x2b20bc, Func Offset: 0x1cc
-	// Line 438, Address: 0x2b20c8, Func Offset: 0x1d8
-	// Line 439, Address: 0x2b20ec, Func Offset: 0x1fc
-	// Line 440, Address: 0x2b2110, Func Offset: 0x220
-	// Line 441, Address: 0x2b211c, Func Offset: 0x22c
-	// Line 442, Address: 0x2b2128, Func Offset: 0x238
-	// Line 444, Address: 0x2b2134, Func Offset: 0x244
-	// Line 445, Address: 0x2b214c, Func Offset: 0x25c
-	// Line 446, Address: 0x2b2164, Func Offset: 0x274
-	// Line 447, Address: 0x2b2184, Func Offset: 0x294
-	// Line 448, Address: 0x2b21a4, Func Offset: 0x2b4
-	// Line 452, Address: 0x2b21e0, Func Offset: 0x2f0
-	// Line 453, Address: 0x2b21f8, Func Offset: 0x308
-	// Line 454, Address: 0x2b2204, Func Offset: 0x314
-	// Line 453, Address: 0x2b2208, Func Offset: 0x318
-	// Line 454, Address: 0x2b220c, Func Offset: 0x31c
-	// Line 455, Address: 0x2b221c, Func Offset: 0x32c
-	// Line 456, Address: 0x2b2238, Func Offset: 0x348
-	// Line 455, Address: 0x2b223c, Func Offset: 0x34c
-	// Line 456, Address: 0x2b2248, Func Offset: 0x358
-	// Line 457, Address: 0x2b2264, Func Offset: 0x374
-	// Line 459, Address: 0x2b2290, Func Offset: 0x3a0
-	// Line 457, Address: 0x2b2298, Func Offset: 0x3a8
-	// Line 459, Address: 0x2b22a0, Func Offset: 0x3b0
-	// Line 462, Address: 0x2b22a8, Func Offset: 0x3b8
-	// Line 464, Address: 0x2b22b0, Func Offset: 0x3c0
-	// Line 474, Address: 0x2b22e0, Func Offset: 0x3f0
-	// Line 475, Address: 0x2b22ec, Func Offset: 0x3fc
-	// Line 476, Address: 0x2b2300, Func Offset: 0x410
-	// Line 477, Address: 0x2b2308, Func Offset: 0x418
-	// Line 480, Address: 0x2b2310, Func Offset: 0x420
-	// Line 481, Address: 0x2b2320, Func Offset: 0x430
-	// Line 482, Address: 0x2b2334, Func Offset: 0x444
-	// Line 483, Address: 0x2b233c, Func Offset: 0x44c
-	// Line 487, Address: 0x2b2344, Func Offset: 0x454
-	// Line 490, Address: 0x2b2350, Func Offset: 0x460
-	// Line 493, Address: 0x2b2358, Func Offset: 0x468
-	// Line 497, Address: 0x2b2360, Func Offset: 0x470
-	// Line 508, Address: 0x2b2374, Func Offset: 0x484
-	// Line 497, Address: 0x2b2378, Func Offset: 0x488
-	// Line 508, Address: 0x2b237c, Func Offset: 0x48c
-	// Line 509, Address: 0x2b239c, Func Offset: 0x4ac
-	// Func End, Address: 0x2b23ac, Func Offset: 0x4bc
-	scePrintf("bhInitMap - UNIMPLEMENTED!\n");
+    NJS_TEXLIST* texP;
+
+    njClipZ(-2.0f, -20000.0f);
+    
+    njSetAspect(1.174f, 1.0f);
+    njSetBackColor(0, 0, 0);
+    
+    npSetMemory((unsigned char*)mwP, sizeof(map_wrk), 0);
+    
+    mwP->status |= (1 << set_mod) & 7;
+    
+    mwP->mem_bakP = sys->memp;
+    
+    mwP->vew_mtxP = (NJS_MATRIX*)mwP->Vew_Mtx;
+    mwP->rom_mtxP = (NJS_MATRIX*)mwP->Rom_Mtx;
+    
+    mwP->cur_mtxP = &mwP->rom_mtxP[1];
+    mwP->tmp_mtxP = &mwP->rom_mtxP[2];
+    
+    mwP->ply_stg = sys->stg_no;
+    mwP->ply_rom = sys->rom_no + (sys->stg_no * 100);
+    
+    mwP->vew_max.y = 600.0f;
+    mwP->vew_min.y = 600.0f;
+    
+    mwP->dst_zom = 600.0f;
+    mwP->vew_zom = 600.0f;
+    
+    mwP->vew_ang[0] = -16384;
+    
+    mwP->bck_depth = -1600.0f;
+    
+    mwP->bck_p0.x = 0;
+    mwP->bck_p0.y = 0;
+    
+    mwP->bck_p1.x = 640.0f;
+    mwP->bck_p1.y = 480.0f;
+    
+    mwP->ar = mwP->ag = mwP->ab = 0;
+    mwP->pr = mwP->pg = mwP->pb = 0.6f;
+    
+    mwP->pitch = -16384;
+    
+    mwP->yaw = 0;
+    
+    mwP->map_scale = 0.001f;
+    
+    if ((mwP->status & 0x2)) 
+    {
+        mwP->bnk_mde = sys->mp_prm[0];
+        mwP->bnk_stg = sys->mp_prm[1];
+        mwP->bnk_flr = sys->mp_prm[2];
+        mwP->bnk_rom = sys->mp_prm[3] + (mwP->bnk_stg * 100);
+    }
+    
+    if (!(mwP->status & 0x4)) 
+    {
+        mwP->rom_texP = rom->mdl.texP;
+        
+        if (mwP->rom_texP != NULL) 
+        {
+            sys->memp = (unsigned char*)(((int)sys->memp + 31) & ~0x1F);
+            
+            mwP->rom_bakP = sys->memp;
+            
+            sys->memp = (unsigned char*)bhCopyTexmem2Mainmem(mwP->rom_texP, (char*)sys->memp);
+            
+            bhGarbageTexture(NULL, 0);
+            
+            Ps2ClearOT();
+            
+            if (sys->fade_an > 0) 
+            {
+                bhDrawScreenFade();
+            }
+        }
+    }
+    
+    texP = (NJS_TEXLIST*)bhGetFreeMemory(8, 4);
+    
+    texP->textures  = (NJS_TEXNAME*)bhGetFreeMemory(12, 4);
+    texP->nbTexture = 1;
+    
+    mwP->map_texP = texP;
+    
+    texP = (NJS_TEXLIST*)bhGetFreeMemory(8, 4);
+    
+    texP->textures  = (NJS_TEXNAME*)bhGetFreeMemory(12, 4);
+    texP->nbTexture = 1;
+    
+    mwP->stg_texP = texP;
+    
+    MapFuncInit(24);
+    
+    njCnkSetEasyMultiLight(1);
+    
+    MapCnvStatus2Flag();
+    
+    mwP->prti_no = sys->dor_partid;
+    
+    if (!(mwP->status & 0x4)) 
+    {
+        CallSystemSe(0, 3);
+    }
 }
 
 // 100% matching! 
@@ -216,14 +237,14 @@ static int bhReadMapData(char* namP)
     return code;
 }
 
-/*// 
+// 
 // Start address: 0x2b25b0
 void MapCnvStatus2Flag()
 {
 	unsigned int* itmP;
 	int itm;
 	int chk;
-	_anon13* datP;
+	//_anon13* datP;
 	unsigned int* itm_basP;
 	int id;
 	// Line 686, Address: 0x2b25b0, Func Offset: 0
@@ -253,7 +274,8 @@ void MapCnvStatus2Flag()
 	// Line 733, Address: 0x2b26e0, Func Offset: 0x130
 	// Line 736, Address: 0x2b26ec, Func Offset: 0x13c
 	// Func End, Address: 0x2b2704, Func Offset: 0x154
-}*/
+	scePrintf("MapCnvStatus2Flag - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2b2710
@@ -1000,13 +1022,13 @@ void MapPurgeTree(_anon19* mlwP)
 	// Line 1820, Address: 0x2b44d0, Func Offset: 0x130
 	// Line 1822, Address: 0x2b44d8, Func Offset: 0x138
 	// Func End, Address: 0x2b44f0, Func Offset: 0x150
-}
+}*/
 
 // 
 // Start address: 0x2b44f0
 void MapFuncInit(int func_num)
 {
-	_func_wrk_typ* fwP;
+	//_func_wrk_typ* fwP;
 	// Line 1832, Address: 0x2b44f0, Func Offset: 0
 	// Line 1835, Address: 0x2b4500, Func Offset: 0x10
 	// Line 1836, Address: 0x2b4524, Func Offset: 0x34
@@ -1017,9 +1039,10 @@ void MapFuncInit(int func_num)
 	// Line 1843, Address: 0x2b4560, Func Offset: 0x70
 	// Line 1848, Address: 0x2b4570, Func Offset: 0x80
 	// Func End, Address: 0x2b4584, Func Offset: 0x94
+	scePrintf("MapFuncInit - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x2b4590
 _func_wrk_typ* MapFuncAlloc(int(*funcP)(_func_wrk_typ*), int param0)
 {
