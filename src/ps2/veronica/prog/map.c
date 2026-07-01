@@ -1083,20 +1083,19 @@ void MapFuncDel(_func_wrk_typ* fwP)
 	// Line 1908, Address: 0x2b467c, Func Offset: 0xc
 	// Line 1909, Address: 0x2b4684, Func Offset: 0x14
 	// Func End, Address: 0x2b468c, Func Offset: 0x1c
-}
+}*/
 
-// 
-// Start address: 0x2b4690
-_func_wrk_typ* MapFuncIns(_func_wrk_typ* bsP, _func_wrk_typ* fwP)
+// 100% matching!
+static func_wrk_typ* MapFuncIns(func_wrk_typ* bsP, func_wrk_typ* fwP)
 {
-	// Line 1921, Address: 0x2b4690, Func Offset: 0
-	// Line 1922, Address: 0x2b4698, Func Offset: 0x8
-	// Line 1923, Address: 0x2b469c, Func Offset: 0xc
-	// Line 1925, Address: 0x2b46a4, Func Offset: 0x14
-	// Func End, Address: 0x2b46ac, Func Offset: 0x1c
+    fwP->nextP = bsP->nextP;
+    fwP->prevP = bsP;
+    
+    bsP->nextP->prevP = fwP;
+    bsP->nextP        = fwP;
 }
 
-// 
+/*// 
 // Start address: 0x2b46b0
 void MapFuncExec()
 {
