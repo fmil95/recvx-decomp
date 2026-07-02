@@ -168,14 +168,14 @@ typedef struct ID_WORK
     unsigned char flg_no; // offset 0x1, size 0x1
 } ID_WORK;
 
-typedef struct TSK_WORK
+typedef struct FTS_WORK
 {
 	// total size: 0x10
     int param0; // offset 0x0, size 0x4
     int param1; // offset 0x4, size 0x4
     int param2; // offset 0x8, size 0x4
     int param3; // offset 0xC, size 0x4
-} TSK_WORK;
+} FTS_WORK;
 
 typedef struct FT_WORK 
 {
@@ -183,8 +183,8 @@ typedef struct FT_WORK
     int mode;               // offset 0x0, size 0x4
     mp_mod* map_mdeP;       // offset 0x4, size 0x4
     int chg_mde;            // offset 0x8, size 0x4
-    int (*tskP)(TSK_WORK*); // offset 0xC, size 0x4
-    TSK_WORK tsk_sub;       // offset 0x10, size 0x10
+    int (*tskP)(FTS_WORK*); // offset 0xC, size 0x4
+    FTS_WORK tsk_sub;       // offset 0x10, size 0x10
 } FT_WORK;
 
 void bhInitMap(enum_2 set_mod);
@@ -199,26 +199,26 @@ void MapLightMain();
 void MapPaletteMain();
 void MapCodeProcess();
 void MapBoolSet(int bol, int mod);
-/*void MapDrawMarker(int mrk_no, _anon14* posP, int pal_no);
-void MapDrawBackground(float depth, _anon5* p0P, _anon5* p1P);
-void MapDrawSprite(_anon14* posP, int col, _enum_4 spr_no);*/
+void MapDrawMarker(int mrk_no, NJS_POINT3* posP, int pal_no);
+void MapDrawBackground(float depth, NJS_POINT2* p0P, NJS_POINT2* p1P);
+/*void MapDrawSprite(NJS_POINT3* posP, int col, _enum_4 spr_no);*/
 int MapGetFloorNo(void* datP, int rom_no, float pos_y);
-/*void MapPurgeTree(_anon19* mlwP);*/
+void MapPurgeTree(ML_WORK* mlwP);
 void MapFuncInit(int func_num);
-/*_func_wrk_typ* MapFuncAlloc(int(*funcP)(_func_wrk_typ*), int param0);*/
+func_wrk_typ* MapFuncAlloc(int(*funcP)(func_wrk_typ*), int param0);
 void MapFuncFree(func_wrk_typ* fwP);
 void MapFuncDel(func_wrk_typ* fwP);
 func_wrk_typ* MapFuncIns(func_wrk_typ* bsP, func_wrk_typ* fwP);
-/*void MapFuncExec();
-int FsubMapDraw(_func_wrk_typ* fwP);*/
+void MapFuncExec();
+int FsubMapDraw(func_wrk_typ* fwP);
 int FsubBackDraw();
 /*void MapEntrySprite(_enum_0 set_no, int mode);
 int FsprSpriteDraw(_anon22* fsP);
 int FsprSilhouetteDraw(_anon22* fsP);
 int FsprArrowDraw(_anon22* fsP);
 int FsprArrowDraw2(_anon22* fsP);
-_anon56* MapEntryTask(int(*tskP)(_anon35*), _enum_1 chg_mde, int param0);
-int FsubTaskMain(_anon56* ftP);*/
+FT_WORK* MapEntryTask(int(*tskP)(_anon35*), mp_mod chg_mde, int param0)*/;
+int FsubTaskMain(FT_WORK* ftP);
 int FtskMapWait();
 int FtskMapExit();
 /*int FtskMapRead(_anon35* ftsP);
@@ -228,12 +228,12 @@ int FsubGaugeDrawZ(_anon3* fgP);
 int FsubGaugeDrawX(_anon3* fgP);
 int FsubGaugeDraw(_anon3* fgP);*/
 void MapTagInit(int tag_num);
-/*void MapTagEntry(float basP[16], int rom_no, _anon14* posP);*/
+void MapTagEntry(NJS_MATRIX* basP, int rom_no, NJS_POINT3* posP);
 tag_wrk_typ* MapTagConnect(int rom_no);
 tag_wrk_typ* MapTagCenter();
-/*void MapDrawLine2(_anon5* srcP, _anon5* dstP, float pri, int pal);
-void MapDrawLine(_anon5* srcP, _anon5* dstP, float pri, int pal);
-void MapDrawFill(_anon5* srcP, _anon5* dstP, float pri, int pal);*/
+void MapDrawLine2(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal);
+void MapDrawLine(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal);
+void MapDrawFill(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal);
 static void MapDrawPolyFill(NJS_POINT2* pnt, float pri, int pal);
 void MapDrawMessage();
 /*int FsubZoomCursor(_anon8* fzP);
@@ -246,7 +246,7 @@ void MapCncInit(int map_num, int flr_num);
 /*_cnc_wrk_typ* MapCncGet(int map_no, int flr_no);
 void MapCnc(_enum_3 dst, _enum_3 src, int status);*/
 void MapCncConnect(unsigned short* datP);
-/*_anon1* MapCheckNextMap(_anon1* mnP);*/
+map_nxt* MapCheckNextMap(map_nxt* mnP);
 static int GetGameMode();
 
 #endif

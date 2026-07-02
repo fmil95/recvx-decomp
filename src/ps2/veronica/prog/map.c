@@ -1417,24 +1417,32 @@ static int FtskMapExit()
     return bol;
 }
 
-/*// 
-// Start address: 0x2b5040
-int FtskMapRead(_anon35* ftsP)
+// 100% matching!
+static int FtskMapRead(FTS_WORK* ftsP) 
 {
-	int bol;
-	// Line 2372, Address: 0x2b5040, Func Offset: 0
-	// Line 2378, Address: 0x2b504c, Func Offset: 0xc
-	// Line 2376, Address: 0x2b5050, Func Offset: 0x10
-	// Line 2378, Address: 0x2b5054, Func Offset: 0x14
-	// Line 2381, Address: 0x2b506c, Func Offset: 0x2c
-	// Line 2382, Address: 0x2b5078, Func Offset: 0x38
-	// Line 2386, Address: 0x2b5084, Func Offset: 0x44
-	// Line 2390, Address: 0x2b5098, Func Offset: 0x58
-	// Line 2391, Address: 0x2b509c, Func Offset: 0x5c
-	// Func End, Address: 0x2b50ac, Func Offset: 0x6c
+    int bol;
+
+    bol = 1;
+    
+    switch (ftsP->param3) 
+    {                          
+    case 0:
+        mwP->fil_mode = 0;
+        
+        ftsP->param3++;
+    case 1:
+        if (bhReadMapData((char*)ftsP->param0) != 0) 
+        {
+            bol = 0;
+        }
+        
+        break;
+    }
+    
+    return bol;
 }
 
-// 
+/*// 
 // Start address: 0x2b50b0
 int FtskMapNormal(_anon35* ftsP)
 {
