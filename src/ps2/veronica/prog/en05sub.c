@@ -93,8 +93,6 @@ void bhEne05s_MV01(BH_PWORK* epw)
             epw->ct0 = 3;
             epw->ct1 = 0;
             epw->mode3 += 1;
-        
-            /* fallthrough */
         case 1:
             if (EXP0_US(0x40) & 1)
             {
@@ -125,8 +123,6 @@ void bhEne05s_MV01(BH_PWORK* epw)
             epw->mtx[0][0xC] = epw->px;
             epw->mtx[0][0xD] = epw->py;
             epw->mtx[0][0xE] = epw->pz;
-        
-            /* fallthrough */
         case 2:
             if (epw->ct1-- == 0)
             {
@@ -165,8 +161,6 @@ void bhEne05s_MV02(BH_PWORK* epw)
             epw->ct0 = (int)(25.0f * (-rand() / -2.1474836e9f)) + 0x19;
             epw->ct1 = (int)(15.0f * (-rand() / -2.1474836e9f)) + 5;
             epw->mode3 += 1;
-        
-            /* fallthrough */
         case 1:
             njSetMatrix(NULL, &owk->mtx);
             njMultiMatrix(NULL, (NJS_MATRIX *) epw->exp0);

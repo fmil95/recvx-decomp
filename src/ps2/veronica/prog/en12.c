@@ -754,8 +754,6 @@ void bhEne12_MV01(BH_PWORK* epw)
         epw->mtn_add = 65536;
 
         epw->mode3 += 1;
-        /* fallthrough */
-        
     case 1:
         epw->xn =  plp->px;
         epw->zn =  plp->pz;
@@ -985,7 +983,6 @@ void bhEne12_MV04(BH_PWORK* epw)
         }
 
         epw->mode3 += 1;
-        /* fallthrough */
     case 1:
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 2;
         epw->mtn_add = 65536;
@@ -1155,7 +1152,6 @@ void bhEne12_NG00(BH_PWORK* epw)
         ((int*)plp->exp1)[0] &= ~1; 
         plp->mlwP->texP = plp->txp[0];
         epw->mode3 += 1;
-        /* fallthrough */
     case 1:
         if (epw->ct0-- == 0) {
             bhEne_GetPartsPos(epw, &joint_tree[0][0], &wp);
@@ -1334,7 +1330,6 @@ void bhEne12_DD00(BH_PWORK* epw)
         epw->hokan_count = 10;
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
         epw->mode3 += 1;
-        /* fallthrough */
     case 1:
         bhEne_AddNullTrans(epw, vm1_014);
         if (epw->ct0-- == 0) {
@@ -1721,8 +1716,6 @@ void bhEne12_PlayerControl(BH_PWORK* epw)
                 plp->hokan_rate = 52428;
                 plp->mtn_add = 0;
                 plp->mode3++;
-                /* fallthrough */
-
             case 1:
                 if ((plp->ct0)-- == 0) {
                     plp->mtn_add = 65536;

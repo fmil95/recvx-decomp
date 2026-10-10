@@ -2518,7 +2518,6 @@ void bhEne04_MV08(BH_PWORK* epw)
             epw->way *= 546;
         }
         epw->mode3++;
-        /* fallthrough */
     case 3:
         frm = epw->frm_no / 65536;
         if (frm >= 4 && frm < 14)

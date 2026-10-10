@@ -108,8 +108,6 @@ void bhEne20_MV00(BH_PWORK* epw)
             
             epw->ct0 = (rand() % 10) + 10;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (epw->ct0-- == 0) 
             {
@@ -155,8 +153,6 @@ void bhEne20_MV01(BH_PWORK* epw)
             epw->ct0 = (rand() % 10) + 10;
             epw->spd = 0.0f;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             bhAddSpeed(epw, 0);
             
@@ -209,8 +205,6 @@ void bhEne20_MV02(BH_PWORK* epw)
             epw->ct0 = (rand() % 10) + 0xA;
             epw->spd = 0.0f;
             epw->mode3++;
-            
-            /* fallthrough */
         case 1:
             bhAddSpeed(epw, 0);
             
@@ -241,8 +235,6 @@ void bhEne20_MV03(BH_PWORK* epw)
             epw->ct0 = (rand() % 10) + 0xA;
             epw->spd = 0.0f;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             bhAddSpeed(epw, 0);
             
@@ -273,8 +265,6 @@ void bhEne20_MV04(BH_PWORK* epw)
             epw->ct0 = epw->mnwP[epw->mtn_no].frm_num;
             epw->spd = 0.0f;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             bhAddSpeed(epw, 0);
             
@@ -305,8 +295,6 @@ void bhEne20_MV05(BH_PWORK* epw)
             epw->ct0 = epw->mnwP[epw->mtn_no].frm_num;
             epw->spd = 0.0f;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             bhAddSpeed(epw, 0);
             
@@ -336,8 +324,6 @@ void bhEne20_MV06(BH_PWORK* epw)
             
             epw->ct0 = epw->mnwP[epw->mtn_no].frm_num;    
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (epw->ct0-- == 0)
             {
@@ -378,8 +364,6 @@ void bhEne20_MV07(BH_PWORK* epw)
             
             epw->ct0 = epw->mnwP[epw->mtn_no].frm_num;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (epw->ct0-- == 0)
             {

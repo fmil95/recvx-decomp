@@ -3691,8 +3691,6 @@ void bhEne09_MV00(BH_PWORK* epw)
             }
             
             epw->mode3 += 1;
-        
-            /* fallthrough */
         case 1:
             epw->ct0 -= 1;
             
@@ -3724,8 +3722,6 @@ void bhEne09_MV01(BH_PWORK* epw)
             
             epw->flg |= 0x40000;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (EXP0_I(0x18) & 0x1000)
             {
@@ -3798,8 +3794,6 @@ void bhEne09_MV03(BH_PWORK* epw)
             epw->flg |= 0x20;
             epw->flg2 |= 1;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             temp = epw->ct0 - 1;
             epw->ct0 = temp;
@@ -3882,8 +3876,6 @@ void bhEne09_MV04(BH_PWORK* epw)
             
             epw->flg2 |= 1;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             frm = epw->frm_no >> 0x10;
             
@@ -4072,8 +4064,6 @@ void bhEne09_MV05(BH_PWORK* epw)
             
             epw->ayp = bhEne09_ChkDiffAngle(epw->ay, epw->ayp);
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if ((epw->frm_no >> 0x10) == (epw->mnwP[epw->mtn_no].frm_num - 3)) 
             {
@@ -4334,8 +4324,6 @@ void bhEne09_MV06(BH_PWORK* epw)
             obj[3].pos[0] = EXP0_F(0xC);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             owk = plp->mlwP->owP;
             
@@ -4502,8 +4490,6 @@ void bhEne09_MV07(BH_PWORK* epw)
             epw->way = 0x600;
             epw->ct0 = 5;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (--epw->ct0 >= 0) 
             {
@@ -4604,8 +4590,6 @@ void bhEne09_MV08(BH_PWORK* epw)
             
             epw->ct0 = 0xC;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             epw->ay += epw->ayp;
             
@@ -4639,8 +4623,6 @@ void bhEne09_MV09(BH_PWORK* epw)
             
             epw->ct0 = 0xA;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (--epw->ct0 >= 0)
             {
@@ -4697,8 +4679,6 @@ void bhEne09_MV10(BH_PWORK* epw)
             epw->pz = EXP0_F(0x34);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (epw->flg & 0x02000000)
             {
@@ -4781,8 +4761,6 @@ void bhEne09_MV11(BH_PWORK* epw)
             epw->pz = EXP0_F(0x34);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (epw->flg & 0x02000000)
             {
@@ -4875,8 +4853,6 @@ void bhEne09_MV12(BH_PWORK* epw)
             EXP0_I(0x18) |= 0x100;
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             frm = epw->frm_no >> 0x10;
             
@@ -4984,8 +4960,6 @@ void bhEne09_MV13(BH_PWORK* epw)
             EXP0_I(0x18) |= 0x100;
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             frm = epw->frm_no >> 0x10;
             
@@ -5091,8 +5065,6 @@ void bhEne09_MV14(BH_PWORK* epw)
             
             epw->flg2 |= 1;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             frm = epw->frm_no >> 0x10;
             
@@ -5250,8 +5222,6 @@ void bhEne09_NG00(BH_PWORK* epw)
                 epw->flg2 &= ~1;
                 epw->mode3 += 1;
             }
-        
-            /* fallthrough */
         case 1:
             break;
     }
@@ -5400,8 +5370,6 @@ void bhEne09_PlyDG00(BH_PWORK* pl, BH_PWORK* epw)
             {
                 bhEne09_SetSmokeEffect(epw, &ps, epw->ay + NJM_DEG_ANG(247.5f) + (i * NJM_DEG_ANG(45.0f)));
             } 
-        
-            /* fallthrough */
         case 1:
             frm = pl->frm_no >> 0x10;
             
@@ -5625,8 +5593,6 @@ void bhEne09_PlyDG01(BH_PWORK* pl, BH_PWORK* epw)
             
             pl->hp = -1;
             pl->mode3++;
-        
-            /* fallthrough */
         case 5:
             frm = pl->frm_no >> 0x10;
             
@@ -5803,8 +5769,6 @@ void bhEne09_DG00(BH_PWORK* epw)
             EXP0_F(0x78) = obj[3].pos[0] - EXP0_F(0xC);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if ((epw->frm_no >> 0x10) == 5) 
             {
@@ -5902,8 +5866,6 @@ void bhEne09_DG01(BH_PWORK* epw)
             EXP0_F(0x78) = obj[3].pos[0] - EXP0_F(0xC);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             mtn_no = epw->mtn_no;
             
@@ -6006,8 +5968,6 @@ void bhEne09_DG02(BH_PWORK* epw)
             EXP0_F(0x78) = obj[3].pos[0] - EXP0_F(0xC);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             mtn_no = epw->mtn_no;
                 
@@ -6507,8 +6467,6 @@ void bhEne09_DG06(BH_PWORK* epw)
             EXP0_F(0x78) = obj[3].pos[0] - EXP0_F(0xC);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             epw->py += fabsf(EXP0_F(0x58)) * njSin(0x2000) - epw->ct0 * 0.23f;
                 
@@ -6601,8 +6559,6 @@ void bhEne09_DG07(BH_PWORK* epw)
             EXP0_F(0x78) = obj[3].pos[0] - EXP0_F(0xC);
             
             epw->mode3++;
-            
-            /* fallthrough */
         case 1:
             obj = epw->mlwP->objP + 7;
                 
@@ -6687,8 +6643,6 @@ void bhEne09_DG08(BH_PWORK* epw)
             EXP0_F(0x78) = obj[3].pos[0] - EXP0_F(0xC);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             epw->py += fabsf(EXP0_F(0x58)) * njSin(0x2000) - epw->ct0 * 0.23f;
             
@@ -6793,8 +6747,6 @@ void bhEne09_DG09(BH_PWORK* epw)
             EXP0_F(0x78) = obj[3].pos[0] - EXP0_F(0xC);
             
             epw->mode3++;
-            
-            /* fallthrough */
         case 1:
             epw->py += fabsf(EXP0_F(0x58)) * njSin(0x2800) - epw->ct0 * 0.23f;
             
@@ -6888,8 +6840,6 @@ void bhEne09_DG10(BH_PWORK* epw)
             }
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if ((epw->frm_no >> 0x10) == (epw->mnwP[epw->mtn_no].frm_num - 1)) 
             {
@@ -6947,8 +6897,6 @@ void bhEne09_DD00(BH_PWORK* epw)
             bhSetBloodPoolLnk(epw, (NJS_VECTOR* ) &epw->px, epw->ay, &en09_BldTbl, 0);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (epw->ct0-- <= 0) 
             {
@@ -7589,8 +7537,6 @@ void bhEne09_MtnTblPlay(BH_PWORK* epw, int frm)
                                     vec2.x = 0;
                                     vec2.y = 0;
                                     vec2.z = -1.5f;
-                                
-                                    /* fallthrough */
                                 case 0:
                                     if (EXP0_I(0x18) & 0x10000000) 
                                     {
@@ -7610,8 +7556,6 @@ void bhEne09_MtnTblPlay(BH_PWORK* epw, int frm)
                                     vec2.x = 0;
                                     vec2.y = 0;
                                     vec2.z = -1.5f;
-                                
-                                    /* fallthrough */
                                 case 1:
                                     if (EXP0_I(0x18) & 0x10000000)
                                     {

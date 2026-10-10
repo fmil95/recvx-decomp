@@ -434,7 +434,6 @@ void bhEne07_MV00(BH_PWORK* epw)
         epw->flg |= 0x500000;
         epw->ct0 = 20 + (int)(63.0f * njRandom());
         epw->mode3++;
-        // Fallthrough
     case 1:
         if (epw->ct0--) break;
 
@@ -471,7 +470,6 @@ void bhEne07_MV01(BH_PWORK* epw)
     case 0:
         epw->ct0 = 20.0f * njRandom();
         epw->mode3++;
-        // Fallthrough
     case 1:
         if (epw->ct0--) break;
 
@@ -534,7 +532,6 @@ void bhEne07_MV02(BH_PWORK* epw)
         epw->ct3 = 0;
         epw->yn = plp->py + 10.0f + (10.0f * njRandom());
         epw->mode3++;
-        // Fallthrough
     case 1:
         if (fabsf(epw->yn - epw->py) > 0.3)
         {
@@ -602,7 +599,6 @@ void bhEne07_MV03(BH_PWORK* epw)
         epw->flg |= 0x100000;
         epw->ct0 = 40 + (int)(63.0f * njRandom());
         epw->mode3++;
-        // Fallthrough
     case 1:
         epw->ay += bhEne_DirTarget(epw, plp->px, plp->pz, NJM_DEG_ANG(10));
 
@@ -649,7 +645,6 @@ void bhEne07_MV04(BH_PWORK* epw)
 
         epw->yn = 10.0f + bhGetGroundPosition((NJS_POINT3*)&epw->px) + (10.0f * njRandom());
         epw->mode3++;
-        // Fallthrough
     case 1:
         if (fabsf(epw->yn - epw->py) > 0.3)
         {
@@ -730,7 +725,6 @@ void bhEne07_MV05(BH_PWORK* epw)
         epw->ayp = epw->ay + NJM_DEG_ANG(40) - (NJM_DEG_ANG(20) * njRandom());
         EXP0_F(0x28) = 0.9f * njSin(epw->ayp);
         EXP0_F(0x30) = 0.9f * njCos(epw->ayp);
-        // Fallthrough
     case 1:
         epw->ax -= (short)epw->ax / 16;
         epw->ay += (short)(epw->ayp - epw->ay) / 16;
@@ -789,7 +783,6 @@ void bhEne07_MV08(BH_PWORK* epw)
         epw->hokan_rate = 0x8000;
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num;
         epw->mode3++;
-        // Fallthrough
     case 1:
         if (epw->ct0-- == 0)
         {
@@ -851,7 +844,6 @@ void bhEne07_NG00(BH_PWORK* epw)
         epw->ct2 = 0;
         epw->mode3++;
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x2302);
-        // Fallthrough
     case 1:
         epw->ay += (short)(plp->ay + AtkAngle[EXP0_UC(0x35)] - epw->ay) / 8;
         njCalcPoint((NJS_MATRIX*)plp->mlwP->owP[AtkPos[EXP0_UC(0x35)]].mtx, &AtkOffset[EXP0_UC(0x35)], &pos);
@@ -935,7 +927,6 @@ void bhEne07_NG01(BH_PWORK* epw)
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x2302);
         bhEne_CallPlayerVoice(2);
         StartVibrationEx(1, 9);
-        // Fallthrough
     case 1:
         {
             NJS_POINT3 pos;
@@ -1167,7 +1158,6 @@ void bhEne07_DD00(BH_PWORK* epw)
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x2307);
         epw->ct1 = 2;
         epw->mode3++;
-        // Fallthrough
     case 1:
         if (epw->flg & 0x200000) break;
 
@@ -1276,7 +1266,6 @@ void bhEne07_DD01(BH_PWORK* epw)
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x2307);
         epw->ct1 = 2;
         epw->mode3++;
-        // Fallthrough
     case 1:
         if (epw->flg & 0x200000) break;
 
@@ -1377,7 +1366,6 @@ void bhEne07_DD02(BH_PWORK* epw)
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x2307);
         epw->ct1 = 2;
         epw->mode3++;
-        // Fallthrough
     case 1:
         if (epw->ct0-- == 0)
         {
@@ -1401,7 +1389,6 @@ void bhEne07_DD02(BH_PWORK* epw)
             epw->mode3++;
             epw->flg |= 0x200000;
         }
-        // Fallthrough
     case 2:
         if (epw->flg & 0x200000) break;
 
@@ -1518,7 +1505,6 @@ void bhEne07_DD03(BH_PWORK* epw)
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x2307);
         epw->ct1 = 2;
         epw->mode3++;
-        // Fallthrough
     case 1:
         if (epw->ct0-- == 0)
         {
@@ -1542,7 +1528,6 @@ void bhEne07_DD03(BH_PWORK* epw)
             epw->mode3++;
             epw->flg |= 0x200000;
         }
-        // Fallthrough
     case 2:
         if (epw->flg & 0x200000) break;
 
@@ -1652,7 +1637,6 @@ void bhEne07_DD04(BH_PWORK* epw)
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num;
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x2307);
         epw->mode3++;
-        // Fallthrough
     case 1:
         epw->ay += (short)(epw->ayp - epw->ay) / 8;
         epw->px += (EXP0_F(0x14) - epw->px) / 8;
@@ -1742,7 +1726,6 @@ void bhEne07_DD05(BH_PWORK* epw)
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num;
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x2307);
         epw->mode3++;
-        // Fallthrough
     case 1:
         epw->ay += (short)(epw->ayp - epw->ay) / 8;
         epw->px += (EXP0_F(0x14) - epw->px) / 8;
@@ -2197,7 +2180,6 @@ void bhEne07_PlayerControl(BH_PWORK* epw)
             EXP1_I(0) &= ~0x4;
             plp->ct0 = plp->mnwP[plp->mtn_no].frm_num - 1;
             plp->mode3++;
-            // Fallthrough
         case 1:
             if (plp->ct0-- == 0) {
                 plp->mnwP = plp->mnwPb;
@@ -2239,7 +2221,6 @@ void bhEne07_PlayerControl(BH_PWORK* epw)
             plp->mtn_add = 0x10000;
             plp->ct0 = plp->mnwP[plp->mtn_no].frm_num - 1;
             plp->mode3++;
-            // Fallthrough
         case 1:
             if (plp->ct0-- == 0) {
                 plp->mnwP = plp->mnwPb;

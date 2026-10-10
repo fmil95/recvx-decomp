@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 99.78426,
+    "fuzzy_match_percent": 99.784294,
     "total_code": "1904472",
-    "matched_code": "1630532",
-    "matched_code_percent": 85.61596,
+    "matched_code": "1631096",
+    "matched_code_percent": 85.64558,
     "total_data": "28428164",
     "matched_data": "28399956",
     "matched_data_percent": 99.90078,
     "total_functions": 4529,
-    "matched_functions": 4314,
-    "matched_functions_percent": 95.252815,
+    "matched_functions": 4315,
+    "matched_functions_percent": 95.274895,
     "total_units": 200
   },
   "units": [
@@ -6756,16 +6756,16 @@
     {
       "name": "ps2/veronica/prog/en04",
       "measures": {
-        "fuzzy_match_percent": 99.98718,
+        "fuzzy_match_percent": 99.98901,
         "total_code": "30592",
-        "matched_code": "26392",
-        "matched_code_percent": 86.27092,
+        "matched_code": "26956",
+        "matched_code_percent": 88.11454,
         "total_data": "4088",
         "matched_data": "4088",
         "matched_data_percent": 100.0,
         "total_functions": 65,
-        "matched_functions": 60,
-        "matched_functions_percent": 92.30769,
+        "matched_functions": 61,
+        "matched_functions_percent": 93.84615,
         "total_units": 1
       },
       "sections": [
@@ -6798,7 +6798,7 @@
         {
           "name": ".text",
           "size": "30976",
-          "fuzzy_match_percent": 99.98718,
+          "fuzzy_match_percent": 99.98901,
           "metadata": {}
         },
         {
@@ -7034,7 +7034,7 @@
         {
           "name": "bhEne04_MV03",
           "size": "564",
-          "fuzzy_match_percent": 99.90071,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "13136"
         },
@@ -42251,16 +42251,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 99.77431,
+        "fuzzy_match_percent": 99.774345,
         "total_code": "1820460",
-        "matched_code": "1546520",
-        "matched_code_percent": 84.952156,
+        "matched_code": "1547084",
+        "matched_code_percent": 84.98313,
         "total_data": "28336764",
         "matched_data": "28333668",
         "matched_data_percent": 99.989075,
         "total_functions": 3834,
-        "matched_functions": 3619,
-        "matched_functions_percent": 94.39228,
+        "matched_functions": 3620,
+        "matched_functions_percent": 94.418365,
         "total_units": 152
       }
     },

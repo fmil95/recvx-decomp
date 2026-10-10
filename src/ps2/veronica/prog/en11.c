@@ -253,8 +253,6 @@ void bhEne11_MV00(BH_PWORK* epw)
         case 0:
             epw->ct0 = 0x1E;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (epw->ct0-- == 0)
             {
@@ -293,8 +291,6 @@ void bhEne11_MV01(BH_PWORK* epw)
             epw->ay = bhArcTan2(-EXP0_F(0x28), -EXP0_F(0x20));
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             ang = epw->ay + (epw->ct2 * 0x28F);
             
@@ -358,8 +354,6 @@ void bhEne11_MV02(BH_PWORK* epw)
             epw->ct0 = 0x63;
             epw->mode3 += 1;
             epw->spd = 0.2f;
-        
-            /* fallthrough */
         case 1:
             bhEne11_GoFoward(epw);
             
@@ -426,8 +420,6 @@ void bhEne11_MV03(BH_PWORK* epw)
             
             epw->ct1 = 0x10;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             njRotateY((NJS_MATRIX *)&EXP0_F(0x0), epw->way);
             
@@ -499,8 +491,6 @@ void bhEne11_MV04(BH_PWORK* epw)
             bhEne11_LightControl(epw, 0);
             epw->spd = 0.2f;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             f = 16.0f + (16.0f * njSin(epw->ct2 * 0x28F));
             
@@ -571,8 +561,6 @@ void bhEne11_MV05(BH_PWORK* epw)
             bhEne11_LightControl(epw, 0);
             epw->spd = 0.2f;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             f = 16.0f + (16.0f * njSin(epw->ct2 * 0x28F));
             
@@ -643,8 +631,6 @@ void bhEne11_MV06(BH_PWORK* epw)
             bhEne11_LightControl(epw, 0);
             epw->spd = 0.2f;
             epw->mode3++;
-            
-            /* fallthrough */
         case 1:
             ang = (int)(16384.0f + (16384.0f * njCos(epw->ct2 * 0x28F)));
             

@@ -265,8 +265,6 @@ void bhEne10_MV01(BH_PWORK* epw)
         case 0:
             epw->ct0 = (rand() % 10) + 0xA;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             epw->ay += EXP0_I(0x4);
             
@@ -389,8 +387,6 @@ void bhEne10_Nage(BH_PWORK* epw)
             
             bhSetEffectTb(&sys->ef, NULL, NULL, 0);
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (epw->ct0-- == 0)
             {
