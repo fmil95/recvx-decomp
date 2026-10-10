@@ -191,27 +191,27 @@ void bhSetDoor()
     static DMO_CLIP dmo_clip[2] = 
     {
         {
-            1,        /* dmo_typ */
-            5,        /* prti_no */
-            4,        /* vew_no */
-            -10.0f,   /* near */
-            -34.0f    /* far */
+            1,        
+            5,        
+            4,        
+            -10.0f,   
+            -34.0f    
         },
         {
-            -1,       /* dmo_typ */
-            -1,       /* prti_no */
-            -1,       /* vew_no */
-            -2.0f,    /* near */
-            -20000.0f /* far */
+            -1,       
+            -1,       
+            -1,       
+            -2.0f,    
+            -20000.0f 
         }
     };
     static const PURUPROC_WORK DkiPru = 
     {
-        0,   /* wait_time */
-        768, /* loop_time */
-        0,   /* snd_no */
-        13,  /* pru_no */
-        20   /* pru_wait */
+        0,   
+        768, 
+        0,   
+        13,  
+        20   
     };  
     
     dwP = &DoorWrk;

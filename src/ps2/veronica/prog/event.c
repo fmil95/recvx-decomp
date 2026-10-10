@@ -13209,156 +13209,156 @@ void bhChangeViewClip(char stg_no, char rom_no, char rcase, int evc_no)
     static VIEW_CLIP* ViewClipTbl;
     static VIEW_CLIP ViewClipSt0[8] =
 	{
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -24.0f,      /* far */ -5000.0f  }, 
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 4,  /* near */ -25.0f,      /* far */ -20000.0f }, 
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 12, /* near */ -9.0f,       /* far */ -20000.0f }, 
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 3,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 23, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 29, /* near */ -10.0f,      /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,        /* far */ 0.0f      }
+        { 2,  0,  1,  -24.0f,      -5000.0f  }, 
+        { 2,  0,  4,  -25.0f,      -20000.0f }, 
+        { 2,  0,  12, -9.0f,       -20000.0f }, 
+        { 3,  0,  3,  -1.0f,       -20000.0f }, 
+        { 3,  0,  23, -1.0f,       -20000.0f }, 
+        { 3,  0,  29, -10.0f,      -20000.0f }, 
+        { 5,  0,  1,  -1.0f,       -20000.0f }, 
+        { -1, -1, -1, 0.0f,        0.0f      }
     };
     static VIEW_CLIP ViewClipSt1[15] =
 	{
-        { /* room */ 0,  /* rcase */ 2,  /* evc_no */ 8,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 2,  /* evc_no */ 33, /* near */ -10.0f,      /* far */ -20000.0f }, 
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 5,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 8,  /* near */ -4.0f,       /* far */ -20000.0f }, 
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 11, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 15, /* near */ -1.9f,       /* far */ -20000.0f }, 
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 17, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 34, /* near */ -1.1f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 16, /* near */ -20.0f,      /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 20, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 21, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 23, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 29, /* near */ -1.5f,       /* far */ -20000.0f }, 
-        { /* room */ 12, /* rcase */ 2,  /* evc_no */ 13, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,        /* far */ 0.0f      }
+        { 0,  2,  8,  -1.0f,       -20000.0f }, 
+        { 0,  2,  33, -10.0f,      -20000.0f }, 
+        { 2,  0,  5,  -1.0f,       -20000.0f }, 
+        { 2,  0,  8,  -4.0f,       -20000.0f }, 
+        { 2,  0,  11, -1.0f,       -20000.0f }, 
+        { 2,  0,  15, -1.9f,       -20000.0f }, 
+        { 2,  0,  17, -1.0f,       -20000.0f }, 
+        { 2,  0,  34, -1.1f,       -20000.0f }, 
+        { 5,  0,  16, -20.0f,      -20000.0f }, 
+        { 5,  0,  20, -1.0f,       -20000.0f }, 
+        { 5,  0,  21, -1.0f,       -20000.0f }, 
+        { 5,  0,  23, -1.0f,       -20000.0f }, 
+        { 5,  0,  29, -1.5f,       -20000.0f }, 
+        { 12, 2,  13, -1.0f,       -20000.0f }, 
+        { -1, -1, -1, 0.0f,        0.0f      }
     };
     static VIEW_CLIP ViewClipSt2[10] = 
 	{
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 12, /* near */ -5.0f,       /* far */ -20000.0f }, 
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 8,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -10.0f,      /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 7,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 8,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 19, /* near */ -1.8f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 20, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 22, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,        /* far */ 0.0f      }
+        { 3,  0,  12, -5.0f,       -20000.0f }, 
+        { 4,  0,  8,  -1.0f,       -20000.0f }, 
+        { 5,  0,  0,  -1.0f,       -20000.0f }, 
+        { 5,  0,  1,  -10.0f,      -20000.0f }, 
+        { 5,  0,  7,  -1.0f,       -20000.0f }, 
+        { 5,  0,  8,  -1.0f,       -20000.0f }, 
+        { 5,  0,  19, -1.8f,       -20000.0f }, 
+        { 5,  0,  20, -1.0f,       -20000.0f }, 
+        { 5,  0,  22, -1.0f,       -20000.0f }, 
+        { -1, -1, -1, 0.0f,        0.0f      }
     };
     static VIEW_CLIP ViewClipSt3[21] = 
 	{
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 3,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 5,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 7,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 31, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 40, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 1,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 9,  /* near */ -1.01f,      /* far */ -5000.0f  }, 
-        { /* room */ 8,  /* rcase */ 0,  /* evc_no */ 7,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 18, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 21, /* near */ -1.7f,       /* far */ -20000.0f }, 
-        { /* room */ 13, /* rcase */ 0,  /* evc_no */ 28, /* near */ -20.799999f, /* far */ -20000.0f }, 
-        { /* room */ 14, /* rcase */ 0,  /* evc_no */ 7,  /* near */ -5.0f,       /* far */ -20000.0f }, 
-        { /* room */ 14, /* rcase */ 0,  /* evc_no */ 8,  /* near */ -1.1f,       /* far */ -20000.0f }, 
-        { /* room */ 23, /* rcase */ 0,  /* evc_no */ 11, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 24, /* rcase */ 0,  /* evc_no */ 4,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 24, /* rcase */ 0,  /* evc_no */ 5,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 24, /* rcase */ 0,  /* evc_no */ 6,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 24, /* rcase */ 0,  /* evc_no */ 9,  /* near */ -60.0f,      /* far */ -20000.0f }, 
-        { /* room */ 24, /* rcase */ 0,  /* evc_no */ 11, /* near */ -1.5f,       /* far */ -20000.0f }, 
-        { /* room */ 24, /* rcase */ 0,  /* evc_no */ 28, /* near */ -26.0f,      /* far */ -20000.0f }, 
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,        /* far */ 0.0f      }
+        { 0,  0,  3,  -1.0f,       -20000.0f }, 
+        { 0,  0,  5,  -1.0f,       -20000.0f }, 
+        { 0,  0,  7,  -1.0f,       -20000.0f }, 
+        { 0,  0,  31, -1.0f,       -20000.0f }, 
+        { 0,  0,  40, -1.0f,       -20000.0f }, 
+        { 1,  0,  2,  -1.0f,       -20000.0f }, 
+        { 2,  0,  9,  -1.01f,      -5000.0f  }, 
+        { 8,  0,  7,  -1.0f,       -20000.0f }, 
+        { 10, 0,  18, -1.0f,       -20000.0f }, 
+        { 10, 0,  21, -1.7f,       -20000.0f }, 
+        { 13, 0,  28, -20.799999f, -20000.0f }, 
+        { 14, 0,  7,  -5.0f,       -20000.0f }, 
+        { 14, 0,  8,  -1.1f,       -20000.0f }, 
+        { 23, 0,  11, -1.0f,       -20000.0f }, 
+        { 24, 0,  4,  -1.0f,       -20000.0f }, 
+        { 24, 0,  5,  -1.0f,       -20000.0f }, 
+        { 24, 0,  6,  -1.0f,       -20000.0f }, 
+        { 24, 0,  9,  -60.0f,      -20000.0f }, 
+        { 24, 0,  11, -1.5f,       -20000.0f }, 
+        { 24, 0,  28, -26.0f,      -20000.0f }, 
+        { -1, -1, -1, 0.0f,        0.0f      }
     };
     static VIEW_CLIP ViewClipSt4[3] = 
 	{
-        { /* room */ 1,  /* rcase */ 0,  /* evc_no */ 8,  /* near */ -10.0f,      /* far */ -1000.0f  }, 
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 3,  /* near */ -20.0f,      /* far */ -20000.0f }, 
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,        /* far */ 0.0f      }
+        { 1,  0,  8,  -10.0f,      -1000.0f  }, 
+        { 4,  0,  3,  -20.0f,      -20000.0f }, 
+        { -1, -1, -1, 0.0f,        0.0f      }
     };
     static VIEW_CLIP ViewClipSt5[10] = 
 	{
-        { /* room */ 0,  /* rcase */ 1,  /* evc_no */ 1,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 1,  /* evc_no */ 9,  /* near */ -10.0f,      /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 1,  /* evc_no */ 11, /* near */ -60.0f,      /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 1,  /* evc_no */ 17, /* near */ -20.0f,      /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 1,  /* evc_no */ 19, /* near */ -10.0f,      /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 1,  /* evc_no */ 21, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 1,  /* rcase */ 0,  /* evc_no */ 26, /* near */ -1.5599999f, /* far */ -20000.0f }, 
-        { /* room */ 1,  /* rcase */ 0,  /* evc_no */ 30, /* near */ -1.2f,       /* far */ -20000.0f }, 
-        { /* room */ 1,  /* rcase */ 0,  /* evc_no */ 32, /* near */ -1.01f,      /* far */ -20000.0f }, 
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,        /* far */ 0.0f      }
+        { 0,  1,  1,  -1.0f,       -20000.0f }, 
+        { 0,  1,  9,  -10.0f,      -20000.0f }, 
+        { 0,  1,  11, -60.0f,      -20000.0f }, 
+        { 0,  1,  17, -20.0f,      -20000.0f }, 
+        { 0,  1,  19, -10.0f,      -20000.0f }, 
+        { 0,  1,  21, -1.0f,       -20000.0f }, 
+        { 1,  0,  26, -1.5599999f, -20000.0f }, 
+        { 1,  0,  30, -1.2f,       -20000.0f }, 
+        { 1,  0,  32, -1.01f,      -20000.0f }, 
+        { -1, -1, -1, 0.0f,        0.0f      }
     };
     static VIEW_CLIP ViewClipSt6[16] = 
 	{
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 10, /* near */ -10.0f,      /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 8,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 40, /* near */ -44.0f,      /* far */ -20000.0f }, 
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 17, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 18, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 20, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 21, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 35, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 1,  /* evc_no */ 13, /* near */ -1.2f,       /* far */ -20000.0f }, 
-        { /* room */ 6,  /* rcase */ 0,  /* evc_no */ 7,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 16, /* near */ -1.1f,       /* far */ -20000.0f }, 
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 17, /* near */ -5.0f,       /* far */ -20000.0f }, 
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 19, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 30, /* near */ -1.01f,      /* far */ -20000.0f }, 
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 32, /* near */ -550.0f,     /* far */ -20000.0f }, 
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,        /* far */ 0.0f      }
+        { 0,  0,  10, -10.0f,      -20000.0f }, 
+        { 0,  0,  8,  -1.0f,       -20000.0f }, 
+        { 0,  0,  40, -44.0f,      -20000.0f }, 
+        { 4,  0,  17, -1.0f,       -20000.0f }, 
+        { 4,  0,  18, -1.0f,       -20000.0f }, 
+        { 4,  0,  20, -1.0f,       -20000.0f }, 
+        { 4,  0,  21, -1.0f,       -20000.0f }, 
+        { 4,  0,  35, -1.0f,       -20000.0f }, 
+        { 5,  1,  13, -1.2f,       -20000.0f }, 
+        { 6,  0,  7,  -1.0f,       -20000.0f }, 
+        { 10, 0,  16, -1.1f,       -20000.0f }, 
+        { 10, 0,  17, -5.0f,       -20000.0f }, 
+        { 10, 0,  19, -1.0f,       -20000.0f }, 
+        { 10, 0,  30, -1.01f,      -20000.0f }, 
+        { 10, 0,  32, -550.0f,     -20000.0f }, 
+        { -1, -1, -1, 0.0f,        0.0f      }
     };
     static VIEW_CLIP ViewClipSt7[9] = 
 	{
-        { /* room */ 7,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 7,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -5.0f,       /* far */ -20000.0f }, 
-        { /* room */ 7,  /* rcase */ 0,  /* evc_no */ 4,  /* near */ -20.0f,      /* far */ -20000.0f }, 
-        { /* room */ 7,  /* rcase */ 0,  /* evc_no */ 15, /* near */ -1.5f,       /* far */ -20000.0f }, 
-        { /* room */ 7,  /* rcase */ 0,  /* evc_no */ 26, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 8,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ -1.01f,      /* far */ -20000.0f }, 
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 5,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 24, /* rcase */ 0,  /* evc_no */ 2,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,        /* far */ 0.0f      }
+        { 7,  0,  0,  -1.0f,       -20000.0f }, 
+        { 7,  0,  1,  -5.0f,       -20000.0f }, 
+        { 7,  0,  4,  -20.0f,      -20000.0f }, 
+        { 7,  0,  15, -1.5f,       -20000.0f }, 
+        { 7,  0,  26, -1.0f,       -20000.0f }, 
+        { 8,  0,  2,  -1.01f,      -20000.0f }, 
+        { 10, 0,  5,  -1.0f,       -20000.0f }, 
+        { 24, 0,  2,  -1.0f,       -20000.0f }, 
+        { -1, -1, -1, 0.0f,        0.0f      }
     };
     static VIEW_CLIP ViewClipSt8[4] = 
 	{
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -1.01f,      /* far */ -20000.0f }, 
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 4,  /* near */ -35.0f,      /* far */ -20000.0f }, 
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 9,  /* near */ -1.1f,       /* far */ -20000.0f }, 
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,        /* far */ 0.0f      }
+        { 3,  0,  0,  -1.01f,      -20000.0f }, 
+        { 3,  0,  4,  -35.0f,      -20000.0f }, 
+        { 3,  0,  9,  -1.1f,       -20000.0f }, 
+        { -1, -1, -1, 0.0f,        0.0f      }
     };
     static VIEW_CLIP ViewClipSt9[27] = 
 	{
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 4,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 8,  /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 14, /* near */ -10.0f,      /* far */ -20000.0f }, 
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 34, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 4,  /* near */ -1.1f,       /* far */ -20000.0f }, 
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 6,  /* near */ -27.0f,      /* far */ -20000.0f }, 
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 16, /* near */ -35.0f,      /* far */ -8000.0f  }, 
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 28, /* near */ -125.0f,     /* far */ -20000.0f }, 
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 43, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 58, /* near */ -5.0f,       /* far */ -20000.0f }, 
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 61, /* near */ -30.0f,      /* far */ -20000.0f }, 
-        { /* room */ 16, /* rcase */ 0,  /* evc_no */ 0,  /* near */ -10.0f,      /* far */ -1000.0f  }, 
-        { /* room */ 28, /* rcase */ 0,  /* evc_no */ 10, /* near */ -1.01f,      /* far */ -170.0f   }, 
-        { /* room */ 28, /* rcase */ 0,  /* evc_no */ 34, /* near */ -2.0f,       /* far */ -183.0f   }, 
-        { /* room */ 29, /* rcase */ 0,  /* evc_no */ 3,  /* near */ -1.2f,       /* far */ -20000.0f }, 
-        { /* room */ 32, /* rcase */ 1,  /* evc_no */ 41, /* near */ -1.01f,      /* far */ -20000.0f }, 
-        { /* room */ 34, /* rcase */ 0,  /* evc_no */ 13, /* near */ -150.0f,     /* far */ -20000.0f }, 
-        { /* room */ 34, /* rcase */ 0,  /* evc_no */ 27, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 35, /* rcase */ 0,  /* evc_no */ 11, /* near */ -10.0f,      /* far */ -20000.0f }, 
-        { /* room */ 35, /* rcase */ 0,  /* evc_no */ 20, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 35, /* rcase */ 0,  /* evc_no */ 26, /* near */ -1.01f,      /* far */ -20000.0f }, 
-        { /* room */ 35, /* rcase */ 0,  /* evc_no */ 41, /* near */ -1.2f,       /* far */ -20000.0f }, 
-        { /* room */ 35, /* rcase */ 0,  /* evc_no */ 48, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 37, /* rcase */ 0,  /* evc_no */ 33, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ 37, /* rcase */ 0,  /* evc_no */ 62, /* near */ -1.0f,       /* far */ -20000.0f }, 
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,        /* far */ 0.0f      }
+        { 5,  0,  2,  -1.0f,       -20000.0f }, 
+        { 5,  0,  4,  -1.0f,       -20000.0f }, 
+        { 5,  0,  8,  -1.0f,       -20000.0f }, 
+        { 5,  0,  14, -10.0f,      -20000.0f }, 
+        { 5,  0,  34, -1.0f,       -20000.0f }, 
+        { 9,  0,  4,  -1.1f,       -20000.0f }, 
+        { 9,  0,  6,  -27.0f,      -20000.0f }, 
+        { 9,  0,  16, -35.0f,      -8000.0f  }, 
+        { 9,  0,  28, -125.0f,     -20000.0f }, 
+        { 9,  0,  43, -1.0f,       -20000.0f }, 
+        { 9,  0,  58, -5.0f,       -20000.0f }, 
+        { 9,  0,  61, -30.0f,      -20000.0f }, 
+        { 16, 0,  0,  -10.0f,      -1000.0f  }, 
+        { 28, 0,  10, -1.01f,      -170.0f   }, 
+        { 28, 0,  34, -2.0f,       -183.0f   }, 
+        { 29, 0,  3,  -1.2f,       -20000.0f }, 
+        { 32, 1,  41, -1.01f,      -20000.0f }, 
+        { 34, 0,  13, -150.0f,     -20000.0f }, 
+        { 34, 0,  27, -1.0f,       -20000.0f }, 
+        { 35, 0,  11, -10.0f,      -20000.0f }, 
+        { 35, 0,  20, -1.0f,       -20000.0f }, 
+        { 35, 0,  26, -1.01f,      -20000.0f }, 
+        { 35, 0,  41, -1.2f,       -20000.0f }, 
+        { 35, 0,  48, -1.0f,       -20000.0f }, 
+        { 37, 0,  33, -1.0f,       -20000.0f }, 
+        { 37, 0,  62, -1.0f,       -20000.0f }, 
+        { -1, -1, -1, 0.0f,        0.0f      }
     };
     static VIEW_CLIP* ViewClipStage[10] = 
 	{
@@ -13421,94 +13421,94 @@ void bhChangeViewClipRM()
     static VIEW_CLIP* ViewClipTbl;
     static VIEW_CLIP ViewClipSt0[9] = 
 	{
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -10.0f,     /* far */ -1000.0f  },
-        { /* room */ 1,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -1.5,       /* far */ -20000.0f },
-        { /* room */ 1,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -1.01f,     /* far */ -20000.0f },
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 4,  /* near */ -4.0f,      /* far */ -20000.0f },
-        { /* room */ 2,  /* rcase */ 1,  /* evc_no */ 4,  /* near */ -4.0f,      /* far */ -20000.0f },
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 1,  /* near */ -8.72,      /* far */ -20000.0f },
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 2,  /* near */ -5.0f,      /* far */ -20000.0f },
-        { /* room */ 16, /* rcase */ 0,  /* evc_no */ 2,  /* near */ -6.0f,      /* far */ -20000.0f },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,       /* far */ 0.0f      }
+        { 0,  0,  1,  -10.0f,     -1000.0f  },
+        { 1,  0,  0,  -1.5,       -20000.0f },
+        { 1,  0,  1,  -1.01f,     -20000.0f },
+        { 2,  0,  4,  -4.0f,      -20000.0f },
+        { 2,  1,  4,  -4.0f,      -20000.0f },
+        { 10, 0,  1,  -8.72,      -20000.0f },
+        { 10, 0,  2,  -5.0f,      -20000.0f },
+        { 16, 0,  2,  -6.0f,      -20000.0f },
+        { -1, -1, -1, 0.0f,       0.0f      }
     };
     static VIEW_CLIP ViewClipSt1[6] = 
 	{
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 6,  /* near */ -10.0f,     /* far */ -1000.0f  },
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -10.0f,     /* far */ -1000.0f  },
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -22.0f,     /* far */ -20000.0f },
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -20.0f,     /* far */ -20000.0f },
-        { /* room */ 11, /* rcase */ 0,  /* evc_no */ 2,  /* near */ -10.0f,     /* far */ -20000.0f },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,       /* far */ 0.0f      }
+        { 2,  0,  6,  -10.0f,     -1000.0f  },
+        { 4,  0,  0,  -10.0f,     -1000.0f  },
+        { 4,  0,  1,  -22.0f,     -20000.0f },
+        { 5,  0,  1,  -20.0f,     -20000.0f },
+        { 11, 0,  2,  -10.0f,     -20000.0f },
+        { -1, -1, -1, 0.0f,       0.0f      }
     };
     static VIEW_CLIP ViewClipSt2[6] = 
 	{
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -10.0f,     /* far */ -1000.0f  },
-        { /* room */ 2,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ -10.0f,     /* far */ -1000.0f  },
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ -3.1199999, /* far */ -20000.0f },
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -10.0f,     /* far */ -2000.0f  },
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -10.0f,     /* far */ -1000.0f  },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,       /* far */ 0.0f      }
+        { 2,  0,  0,  -10.0f,     -1000.0f  },
+        { 2,  0,  2,  -10.0f,     -1000.0f  },
+        { 3,  0,  2,  -3.1199999, -20000.0f },
+        { 4,  0,  0,  -10.0f,     -2000.0f  },
+        { 5,  0,  1,  -10.0f,     -1000.0f  },
+        { -1, -1, -1, 0.0f,       0.0f      }
     };
     static VIEW_CLIP ViewClipSt3[5] = 
 	{
-        { /* room */ 7,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -3.5,       /* far */ -20000.0f },
-        { /* room */ 8,  /* rcase */ 0,  /* evc_no */ 5,  /* near */ -1.0f,      /* far */ -20000.0f },
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 8,  /* near */ -9.0f,      /* far */ -20000.0f },
-        { /* room */ 15, /* rcase */ 0,  /* evc_no */ 1,  /* near */ -1.0f,      /* far */ -600.0f   },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,       /* far */ 0.0f      }
+        { 7,  0,  0,  -3.5,       -20000.0f },
+        { 8,  0,  5,  -1.0f,      -20000.0f },
+        { 10, 0,  8,  -9.0f,      -20000.0f },
+        { 15, 0,  1,  -1.0f,      -600.0f   },
+        { -1, -1, -1, 0.0f,       0.0f      }
     };
     static VIEW_CLIP ViewClipSt4[5] = 
 	{
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ -4.0f,      /* far */ -20000.0f },
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -22.0f,     /* far */ -20000.0f },
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ -22.0f,     /* far */ -20000.0f },
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 3,  /* near */ -15.0f,     /* far */ -20000.0f },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,       /* far */ 0.0f      }
+        { 0,  0,  2,  -4.0f,      -20000.0f },
+        { 4,  0,  1,  -22.0f,     -20000.0f },
+        { 4,  0,  2,  -22.0f,     -20000.0f },
+        { 4,  0,  3,  -15.0f,     -20000.0f },
+        { -1, -1, -1, 0.0f,       0.0f      }
     };
     static VIEW_CLIP ViewClipSt5[4] = 
 	{
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -10.0f,     /* far */ -1000.0f  },
-        { /* room */ 1,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -1.1,       /* far */ -20000.0f },
-        { /* room */ 51, /* rcase */ 0,  /* evc_no */ 2,  /* near */ -10.0f,     /* far */ -20000.0f },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,       /* far */ 0.0f      }
+        { 0,  0,  1,  -10.0f,     -1000.0f  },
+        { 1,  0,  0,  -1.1,       -20000.0f },
+        { 51, 0,  2,  -10.0f,     -20000.0f },
+        { -1, -1, -1, 0.0f,       0.0f      }
     };
     static VIEW_CLIP ViewClipSt6[7] = 
 	{
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -44.0f,     /* far */ -20000.0f },
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -1.0f,      /* far */ -1000.0f  },
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -1.4,       /* far */ -20000.0f },
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -20.0f,     /* far */ -20000.0f },
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ -25.5,      /* far */ -1000.0f  },
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 3,  /* near */ -25.5,      /* far */ -1000.0f  },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,       /* far */ 0.0f      }
+        { 0,  0,  1,  -44.0f,     -20000.0f },
+        { 3,  0,  0,  -1.0f,      -1000.0f  },
+        { 3,  0,  1,  -1.4,       -20000.0f },
+        { 4,  0,  0,  -20.0f,     -20000.0f },
+        { 9,  0,  2,  -25.5,      -1000.0f  },
+        { 9,  0,  3,  -25.5,      -1000.0f  },
+        { -1, -1, -1, 0.0f,       0.0f      }
     };
     static VIEW_CLIP ViewClipSt7[4] = 
 	{
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -15.0f,     /* far */ -20000.0f },
-        { /* room */ 15, /* rcase */ 0,  /* evc_no */ 1,  /* near */ -10.0f,     /* far */ -20000.0f },
-        { /* room */ 16, /* rcase */ 0,  /* evc_no */ 3,  /* near */ -10.0f,     /* far */ -20000.0f },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,       /* far */ 0.0f      }
+        { 9,  0,  1,  -15.0f,     -20000.0f },
+        { 15, 0,  1,  -10.0f,     -20000.0f },
+        { 16, 0,  3,  -10.0f,     -20000.0f },
+        { -1, -1, -1, 0.0f,       0.0f      }
     };
     static VIEW_CLIP ViewClipSt8[2] = 
 	{
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ -4.0f,      /* far */ -20000.0f },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,       /* far */ 0.0f      }
+        { 0,  0,  2,  -4.0f,      -20000.0f },
+        { -1, -1, -1, 0.0f,       0.0f      }
     };
     static VIEW_CLIP ViewClipSt9[13] = 
 	{
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -44.0f,     /* far */ -20000.0f },
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -1.0f,      /* far */ -20000.0f },
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -1.0f,      /* far */ -20000.0f },
-        { /* room */ 4,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ -20.0f,     /* far */ -20000.0f },
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ -10.0f,     /* far */ -1000.0f  },
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ -10.0f,     /* far */ -20000.0f },
-        { /* room */ 8,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ -11.33,     /* far */ -20000.0f },
-        { /* room */ 12, /* rcase */ 0,  /* evc_no */ 1,  /* near */ -3.4,       /* far */ -20000.0f },
-        { /* room */ 14, /* rcase */ 0,  /* evc_no */ 0,  /* near */ -10.0f,     /* far */ -20000.0f },
-        { /* room */ 14, /* rcase */ 0,  /* evc_no */ 2,  /* near */ -12.0f,     /* far */ -20000.0f },
-        { /* room */ 15, /* rcase */ 0,  /* evc_no */ 3,  /* near */ -4.0f,      /* far */ -1000.0f  },
-        { /* room */ 22, /* rcase */ 0,  /* evc_no */ 0,  /* near */ -5.0f,      /* far */ -20000.0f },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,       /* far */ 0.0f      }
+        { 0,  0,  1,  -44.0f,     -20000.0f },
+        { 3,  0,  0,  -1.0f,      -20000.0f },
+        { 3,  0,  1,  -1.0f,      -20000.0f },
+        { 4,  0,  0,  -20.0f,     -20000.0f },
+        { 5,  0,  1,  -10.0f,     -1000.0f  },
+        { 5,  0,  2,  -10.0f,     -20000.0f },
+        { 8,  0,  2,  -11.33,     -20000.0f },
+        { 12, 0,  1,  -3.4,       -20000.0f },
+        { 14, 0,  0,  -10.0f,     -20000.0f },
+        { 14, 0,  2,  -12.0f,     -20000.0f },
+        { 15, 0,  3,  -4.0f,      -1000.0f  },
+        { 22, 0,  0,  -5.0f,      -20000.0f },
+        { -1, -1, -1, 0.0f,       0.0f      }
     };
     static VIEW_CLIP* ViewClipStage[10] =
 	{
@@ -13564,50 +13564,50 @@ void bhChangeClipVolume(char stg_no, char rom_no, char rcase, int evc_no)
 	static VIEW_CLIP* ViewClipTbl;
     static VIEW_CLIP ViewClipSt0[1] = 
 	{
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt1[1] = 
 	{
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt2[1] = 
 	{
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt3[2] = 
 	{
-        { /* room */ 15, /* rcase */ 0,  /* evc_no */ 3,  /* near */ -320.0f, /* far */ -240.0f },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { 15, 0,  3,  -320.0f, -240.0f },
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt4[1] = 
 	{
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt5[2] = 
 	{
-        { /* room */ 0,  /* rcase */ 1,  /* evc_no */ 0,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { 0,  1,  0,  1024.0f, 960.0f  },
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt6[3] = 
 	{
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 24, /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 10, /* rcase */ 0,  /* evc_no */ 30, /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { 10, 0,  24, 1024.0f, 960.0f  },
+        { 10, 0,  30, 1024.0f, 960.0f  },
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt7[1] = 
 	{
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt8[1] = 
 	{
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt9[4] = 
 	{
-        { /* room */ 28, /* rcase */ 0,  /* evc_no */ 7,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 29, /* rcase */ 0,  /* evc_no */ 0,  /* near */ -320.0f, /* far */ -240.0f },
-        { /* room */ 35, /* rcase */ 0,  /* evc_no */ 45, /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { 28, 0,  7,  1024.0f, 960.0f  },
+        { 29, 0,  0,  -320.0f, -240.0f },
+        { 35, 0,  45, 1024.0f, 960.0f  },
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP* ViewClipStage[10] = 
 	{
@@ -13651,81 +13651,81 @@ void bhChangeClipVolumeRM()
 	static VIEW_CLIP* ViewClipTbl;
     static VIEW_CLIP ViewClipSt0[5] =
 	{
-        { /* room */ 7,  /* rcase */ 0,  /* evc_no */ 6,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 15, /* rcase */ 0,  /* evc_no */ 0,  /* near */ 1740.0f, /* far */ 1740.0f },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { 7,  0,  6,  1024.0f, 960.0f  },
+        { 9,  0,  0,  1024.0f, 960.0f  },
+        { 9,  0,  2,  1024.0f, 960.0f  },
+        { 15, 0,  0,  1740.0f, 1740.0f },
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt1[3] = 
 	{
-        { /* room */ 0,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 6,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { 0,  0,  1,  1024.0f, 960.0f  },
+        { 6,  0,  1,  1024.0f, 960.0f  },
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt2[1] = 
 	{
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt3[4] = 
 	{
-        { /* room */ 8,  /* rcase */ 0,  /* evc_no */ 7,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 12, /* rcase */ 0,  /* evc_no */ 3,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 16, /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { 8,  0,  7,  1024.0f, 960.0f  },
+        { 12, 0,  3,  1024.0f, 960.0f  },
+        { 16, 0,  1,  1024.0f, 960.0f  },
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt4[1] = 
 	{
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt5[5] = 
 	{
-        { /* room */ 54, /* rcase */ 0,  /* evc_no */ 7,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 63, /* rcase */ 0,  /* evc_no */ 3,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 66, /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 68, /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { 54, 0,  7,  1024.0f, 960.0f  },
+        { 63, 0,  3,  1024.0f, 960.0f  },
+        { 66, 0,  1,  1024.0f, 960.0f  },
+        { 68, 0,  1,  1024.0f, 960.0f  },
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt6[5] = 
 	{
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { 3,  0,  0,  1024.0f, 960.0f  },
+        { 3,  0,  1,  1024.0f, 960.0f  },
+        { 9,  0,  0,  1024.0f, 960.0f  },
+        { 9,  0,  1,  1024.0f, 960.0f  },
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt7[8] = 
 	{
-        { /* room */ 3,  /* rcase */ 1,  /* evc_no */ 3,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 7,  /* rcase */ 0,  /* evc_no */ 5,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 8,  /* rcase */ 0,  /* evc_no */ 3,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 8,  /* rcase */ 0,  /* evc_no */ 4,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 9,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 20, /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 22, /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { 3,  1,  3,  1024.0f, 960.0f  },
+        { 7,  0,  5,  1024.0f, 960.0f  },
+        { 8,  0,  3,  1024.0f, 960.0f  },
+        { 8,  0,  4,  1024.0f, 960.0f  },
+        { 9,  0,  1,  1024.0f, 960.0f  },
+        { 20, 0,  1,  1024.0f, 960.0f  },
+        { 22, 0,  1,  1024.0f, 960.0f  },
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt8[1] = 
 	{
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP ViewClipSt9[15] = 
 	{
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 3,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 0,  /* near */ 1740.0f, /* far */ 1740.0f },
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1740.0f, /* far */ 1740.0f },
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 2,  /* near */ 1740.0f, /* far */ 1740.0f },
-        { /* room */ 5,  /* rcase */ 0,  /* evc_no */ 3,  /* near */ 1740.0f, /* far */ 1740.0f },
-        { /* room */ 12, /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1740.0f, /* far */ 1740.0f },
-        { /* room */ 12, /* rcase */ 0,  /* evc_no */ 2,  /* near */ 1740.0f, /* far */ 1740.0f },
-        { /* room */ 15, /* rcase */ 0,  /* evc_no */ 3,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 15, /* rcase */ 0,  /* evc_no */ 8,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 18, /* rcase */ 0,  /* evc_no */ 1,  /* near */ 1740.0f, /* far */ 1740.0f },
-        { /* room */ 32, /* rcase */ 0,  /* evc_no */ 8,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ 32, /* rcase */ 1,  /* evc_no */ 8,  /* near */ 1024.0f, /* far */ 960.0f  },
-        { /* room */ -1, /* rcase */ -1, /* evc_no */ -1, /* near */ 0.0f,    /* far */ 0.0f    }
+        { 3,  0,  0,  1024.0f, 960.0f  },
+        { 3,  0,  1,  1024.0f, 960.0f  },
+        { 3,  0,  2,  1024.0f, 960.0f  },
+        { 5,  0,  0,  1740.0f, 1740.0f },
+        { 5,  0,  1,  1740.0f, 1740.0f },
+        { 5,  0,  2,  1740.0f, 1740.0f },
+        { 5,  0,  3,  1740.0f, 1740.0f },
+        { 12, 0,  1,  1740.0f, 1740.0f },
+        { 12, 0,  2,  1740.0f, 1740.0f },
+        { 15, 0,  3,  1024.0f, 960.0f  },
+        { 15, 0,  8,  1024.0f, 960.0f  },
+        { 18, 0,  1,  1740.0f, 1740.0f },
+        { 32, 0,  8,  1024.0f, 960.0f  },
+        { 32, 1,  8,  1024.0f, 960.0f  },
+        { -1, -1, -1, 0.0f,    0.0f    }
     };
     static VIEW_CLIP* ViewClipStage[10] = 
 	{
