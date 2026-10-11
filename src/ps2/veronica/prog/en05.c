@@ -19,6 +19,7 @@
 // ENEMY: Hunter/Sweeper 
 
 #pragma optimization_level 4
+#pragma divbyzerocheck on
 
 NJS_VECTOR hu_020[25] =
 {
@@ -2530,8 +2531,6 @@ void bhEne05_MV11(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void bhEne05_MV12(BH_PWORK* epw)
 {
@@ -2788,8 +2787,6 @@ void bhEne05_MV13(BH_PWORK* epw)
         }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne05_MV14(BH_PWORK* epw)
@@ -3464,8 +3461,6 @@ void bhEne05_DG06(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on
-
 // 99.94% matching
 void bhEne05_DG07(BH_PWORK* epw)
 {
@@ -3532,8 +3527,6 @@ void bhEne05_DG07(BH_PWORK* epw)
         }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne05_DG08(BH_PWORK* epw)
@@ -3689,8 +3682,6 @@ void bhEne05_DG09(BH_PWORK* epw)
         }
     }
 }
-
-#pragma divbyzerocheck on
 
 // 99.97% matching
 void bhEne05_DG10(BH_PWORK* epw)
@@ -4076,8 +4067,6 @@ void bhEne05_DG13(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck off
-
 // 100% matching!
 void bhEne05_ChainDamage(BH_PWORK* epw)
 {	
@@ -4179,8 +4168,6 @@ void bhEne05_DD00(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void bhEne05_DD01(BH_PWORK* epw)
 {
@@ -4251,8 +4238,6 @@ void bhEne05_DD01(BH_PWORK* epw)
         break;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne05_DD02(BH_PWORK* epw)
@@ -4361,8 +4346,6 @@ void bhEne05_DD03(BH_PWORK* epw)
         epw->mode3++;
     }
 }
-
-#pragma divbyzerocheck on
 
 // 100% matching!
 void bhEne05_DD04(BH_PWORK* epw)
@@ -4550,8 +4533,6 @@ void bhEne05_DD05(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck off
-
 // 100% matching!
 void bhEne05_DD06(BH_PWORK* epw)
 {
@@ -4602,8 +4583,6 @@ void bhEne05_DD06(BH_PWORK* epw)
         }
     }
 }
-
-#pragma divbyzerocheck on
 
 // 100% matching!
 void bhEne05_DD07(BH_PWORK* epw)
@@ -4778,8 +4757,6 @@ void bhEne05_DD08(BH_PWORK* epw)
         }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne05_SearchPlayer(BH_PWORK* epw)

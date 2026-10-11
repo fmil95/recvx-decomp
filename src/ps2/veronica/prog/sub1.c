@@ -21,6 +21,7 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
 #pragma optimization_level 4
+#pragma divbyzerocheck on 
 
 static unsigned short sakai;
 static unsigned short cnt;
@@ -6088,8 +6089,6 @@ void TrigerSet(S_WORK* st)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 PARTS* BulletSet(S_WORK* st, PARTS* pb1, PARTS* pb2, unsigned int itemid, unsigned short mode) // first parameter not present on DWARF
 {
@@ -6276,8 +6275,6 @@ PARTS* BulletSet(S_WORK* st, PARTS* pb1, PARTS* pb2, unsigned int itemid, unsign
 
     return pb1;
 }
-
-#pragma divbyzerocheck off 
 
 // 100% matching!
 unsigned char Use_00(S_WORK* st)
@@ -7171,8 +7168,6 @@ unsigned char Combi_99(short ps, unsigned short moto, unsigned short aite) // fi
     return ok;
 }
 
-#pragma	divbyzerocheck on
-
 // 100% matching!
 void ItemBox(S_WORK* st) 
 {
@@ -7750,8 +7745,6 @@ void ItemBox(S_WORK* st)
         }
     }
 }
-
-#pragma	divbyzerocheck off
 
 /* WARNING: this code has a much lower matching percent than the usual fuzzy matches included in the project, and thus it isn't reliable.
    So far it seems to be functionally equivalent, but bugs might still arise. */

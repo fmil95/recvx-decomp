@@ -15,6 +15,8 @@
 
 // ENEMY: Third Form Alexia 
 
+#pragma divbyzerocheck on
+
 static unsigned char flip_tree[22] = { 0, 1, 2, 3, 4, 5, 6, 9, 10, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 };
 static char SdwTab[5] = { 1, 6, 11, 12, -1 };
 static DMG_REACT DmgReact[21] =
@@ -948,8 +950,6 @@ void bhEne14_InitDamage(BH_PWORK* epw)
 	bhEne14_HitMark(epw);
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void bhEne14_LookPlayaer(BH_PWORK* epw)
 {
@@ -1081,8 +1081,6 @@ void bhEne14_LookPlayaer(BH_PWORK* epw)
     njRotateXYZ(NULL, rx, ry, rz);
     njGetMatrix(&epw->mlwP->owP[6].mtx);
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne14_TailInit(BH_PWORK* epw)

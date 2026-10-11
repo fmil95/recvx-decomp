@@ -15,6 +15,8 @@
 
 // ENEMY: Moth 
 
+#pragma divbyzerocheck on
+
 static int ENE06_HITPOINT[16] = 
 {
     1, 1, 1, 1,
@@ -488,8 +490,6 @@ void bhEne06_MV00(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void bhEne06_MV01(BH_PWORK* epw)
 {
@@ -563,8 +563,6 @@ void bhEne06_MV01(BH_PWORK* epw)
         }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne06_MV02(BH_PWORK* epw)
@@ -782,8 +780,6 @@ void bhEne06_MV04(void)
 
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void bhEne06_MV05(BH_PWORK* epw)
 {
@@ -853,8 +849,6 @@ void bhEne06_MV05(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck off
-
 // 100% matching!
 void bhEne06_MV06(void)
 {
@@ -866,8 +860,6 @@ void bhEne06_MV07(void)
 {
 
 }
-
-#pragma divbyzerocheck on
 
 // 100% matching!
 void bhEne06_MV08(BH_PWORK* epw)
@@ -922,8 +914,6 @@ void bhEne06_MV08(BH_PWORK* epw)
         }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne06_MV09(BH_PWORK* epw)
@@ -1075,7 +1065,6 @@ void bhEne06_Nage(BH_PWORK* epw)
 }
 
 #pragma mpwc_relax on
-#pragma divbyzerocheck on
 
 // 99.76% matching!
 void bhEne06_NG00(BH_PWORK* epw)
@@ -1190,7 +1179,6 @@ void bhEne06_NG00(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck off
 #pragma mpwc_relax off
 
 // 100% matching!
@@ -2108,7 +2096,6 @@ int bhEne06_AvoidWall(BH_PWORK* epw, int dir)
     }
     return ret;
 }
-#pragma divbyzerocheck on
 
 // 100% matching!
 void bhEne06_PlayerControl(BH_PWORK* epw)
@@ -2171,8 +2158,6 @@ void bhEne06_PlayerControl(BH_PWORK* epw)
         plp->pz -= dz;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne06_SetRinpunEffect(BH_PWORK* epw, int num, int flg)

@@ -6,6 +6,8 @@
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
 
+#pragma divbyzerocheck on 
+
 // 100% matching!
 int setentry(unsigned short id, unsigned short type, O_WRK* op) 
 {
@@ -3056,8 +3058,6 @@ void bhEff192(O_WRK* op)
     op->type = op->mode0 = op->mode1 = 0;
 }
 
-#pragma divbyzerocheck on 
-
 // 99.31% matching (matches on GC)
 void bhEff193(O_WRK* op)
 {
@@ -3171,8 +3171,6 @@ void bhEff193(O_WRK* op)
         sys->ef_trsn++;
     }
 }
-
-#pragma divbyzerocheck off 
 
 // 100% matching!
 void bhEff194(O_WRK* op)

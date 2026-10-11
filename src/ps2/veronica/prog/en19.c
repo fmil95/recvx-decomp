@@ -17,6 +17,8 @@
 
 // ENEMY: Tyrant T-078 
 
+#pragma divbyzerocheck on
+
 static void (*bhEne19_Mode0[6])(BH_PWORK*) = 
 { 
 	bhEne19_Init,
@@ -2752,8 +2754,6 @@ static int bhEne19_ActionChange(BH_PWORK* ewP, FW_WORK* fwP, int act_dst)
     return 0;
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 static int bhEne19_ActionMain(BH_PWORK* ewP, FW_WORK* fwP)
 {
@@ -2846,8 +2846,6 @@ static int bhEne19_ActionMain(BH_PWORK* ewP, FW_WORK* fwP)
     
     return 0;
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 static void bhEne19_TargetAnalyze(BH_PWORK* ewP, FW_WORK* fwP)
@@ -4543,8 +4541,6 @@ static void bhEne_PlyActionInit(BH_PWORK* ewP, PAW_WORK* pawP, ACT_TBL_WORK* act
     pawP->p_paramP = ewP->exp0;
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 static void bhEne_PlyActionMain(BH_PWORK* plP, PAW_WORK* pawP)
 {
@@ -4569,8 +4565,6 @@ static void bhEne_PlyActionMain(BH_PWORK* plP, PAW_WORK* pawP)
         pawP->p_act_flg &= ~0x1;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 static int bhEne_PlyActionChange(BH_PWORK* plP, PAW_WORK* pawP, int act_no)
@@ -4625,8 +4619,6 @@ static int bhEne_PlyActionChange(BH_PWORK* plP, PAW_WORK* pawP, int act_no)
     return 0;
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 static int bhEne_CalcCombRate(BH_PWORK* ewP, COMBWEP_WORK* cwP)
 {
@@ -4652,8 +4644,6 @@ static int bhEne_CalcCombRate(BH_PWORK* ewP, COMBWEP_WORK* cwP)
 
     return cmb_lvl;
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 static TY_DMG_MODE bhEne19_CheckDmgLvl0(BH_PWORK* ewP, FW_WORK* fwP)

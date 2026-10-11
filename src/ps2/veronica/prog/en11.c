@@ -15,6 +15,8 @@
 
 // ENEMY: Spotter 
 
+#pragma divbyzerocheck on
+
 typedef void (*Mode0_proc)(BH_PWORK*);
 typedef void (*BrainType_proc)(BH_PWORK*);
 typedef void (*MoveMode2_proc)(BH_PWORK*);
@@ -1007,8 +1009,6 @@ void bhEne11_CollisionBoxEdge2(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void bhEne11_CameraSet(BH_PWORK* epw, NJS_VECTOR* vec, int hcnt)
 {
@@ -1066,8 +1066,6 @@ void bhEne11_CameraSet(BH_PWORK* epw, NJS_VECTOR* vec, int hcnt)
     objP[2].ang[1] = ax;
     objP[3].ang[0] = ay;
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne11_MoveNearWall(BH_PWORK* epw) 

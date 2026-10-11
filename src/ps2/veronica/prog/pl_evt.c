@@ -8,6 +8,8 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 
+#pragma divbyzerocheck on 
+
 unsigned char basic_motion_pl[32][2] = 
 {
     { 0, 200 },
@@ -215,8 +217,6 @@ void pl_smove01()
     
     plp->flg &= ~0x200000;
 }
-
-#pragma divbyzerocheck on 
 
 // 99.97% matching
 void pl_smove02()
@@ -642,8 +642,6 @@ void pl_smove07()
     
     bhAddSpeed(plp, 0);
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void pl_smove08()

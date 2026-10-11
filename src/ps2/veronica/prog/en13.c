@@ -12,6 +12,8 @@
 
 // ENEMY: Second Form Alexia 
 
+#pragma divbyzerocheck on
+
 static EGG_WORK ene18 = 
 {
     0x8081, 18, 0, 0, 0, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0, 0, { 0, 0, 0, 0 } 
@@ -1155,8 +1157,6 @@ int bhEne13_SelectTentacle(BH_PWORK* epw)
     return 0;
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void bhEne13_PlayerControl(BH_PWORK* epw) 
 {
@@ -1385,5 +1385,3 @@ void bhEne13_PlayerControl(BH_PWORK* epw)
         plp->flg |= 0x200000;
     }
 }
-
-#pragma divbyzerocheck off 

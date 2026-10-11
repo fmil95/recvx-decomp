@@ -19,6 +19,7 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
 #pragma	optimization_level 4
+#pragma divbyzerocheck on
 
 // ENEMY: Zombie 
 
@@ -4934,8 +4935,6 @@ void bhEne01_MVType02(BH_PWORK* epw)
     bhEne01_MoveMode2W[epw->mode2 + 10](epw);
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void bhEne01_MV00(BH_PWORK* epw)
 {
@@ -5000,8 +4999,6 @@ void bhEne01_MV00(BH_PWORK* epw)
         epw->ct3 = (rand() % 120) + 180;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne01_MV01(BH_PWORK* epw)
@@ -6748,8 +6745,6 @@ void bhEne01_NGType00(BH_PWORK* epw)
     bhEne01_NageMode2W[epw->mode2](epw);
 }
 
-#pragma divbyzerocheck on
-
 void bhEne01_NG00(BH_PWORK* epw)
 {
 	BH_PWORK* cepw;
@@ -7318,8 +7313,6 @@ void bhEne01_NG01(BH_PWORK* epw)
         }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne01_NG02(BH_PWORK* epw)
@@ -8336,8 +8329,6 @@ void bhEne01_DG02(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void bhEne01_DG03(BH_PWORK* epw)
 {	
@@ -8858,8 +8849,6 @@ void bhEne01_DG04(BH_PWORK* epw)
 
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne01_DG05(BH_PWORK* epw)

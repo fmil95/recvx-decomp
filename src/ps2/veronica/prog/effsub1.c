@@ -18,6 +18,8 @@
 #include "../../../ps2/veronica/prog/weapon.h"
 #include "../../../ps2/veronica/prog/main.h"
 
+#pragma divbyzerocheck on 
+
 STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
 
 // 100% matching!
@@ -7199,8 +7201,6 @@ void bhEff112(O_WRK* op)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 99.87% matching
 void bhEff113(O_WRK* op)
 {
@@ -7304,8 +7304,6 @@ void bhEff113(O_WRK* op)
     op->flg = 0;
 }
 
-#pragma divbyzerocheck off
-
 // 100% matching!
 void bhDraw114(O_WRK* op) 
 {
@@ -7353,8 +7351,6 @@ void bhDraw114(O_WRK* op)
     
     njPopMatrixEx();
 }
-
-#pragma divbyzerocheck on 
 
 // 100% matching!
 void bhEff114(O_WRK* op) 
@@ -7547,8 +7543,6 @@ void bhEff114(O_WRK* op)
 
     sys->ef_fnc[sys->ef_fncn++] = op;
 }
-
-#pragma divbyzerocheck off
 
 // 99.30% matching (matches on GC)
 void bhEff115(O_WRK* op) 

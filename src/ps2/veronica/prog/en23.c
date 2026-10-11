@@ -19,6 +19,8 @@
 
 // ENEMY: Giant Black Widow 
 
+#pragma divbyzerocheck on 
+
 NJS_POINT3 spl_051[80] = 
 {
     { 0.0f,          0.0f,          0.0f },
@@ -1428,8 +1430,6 @@ void bhEne23_MV05(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void bhEne23_MV06(BH_PWORK* epw) 
 {
@@ -1483,8 +1483,6 @@ void bhEne23_MV06(BH_PWORK* epw)
         break;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne23_MV07()
@@ -2126,8 +2124,6 @@ void bhEne23_DG05()
 
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void bhEne23_DG06(BH_PWORK* epw) 
 {
@@ -2517,8 +2513,6 @@ void bhEne23_DG07(BH_PWORK* epw)
     EXP0_I(280) = 0;
 }
 
-#pragma divbyzerocheck off 
-
 // 100% matching!
 void bhEne23_Die(BH_PWORK* epw)
 {
@@ -2566,8 +2560,6 @@ void bhEne23_DD00(BH_PWORK* epw)
 
     EXP0_I(280) = 0;
 }
-
-#pragma divbyzerocheck on 
 
 // 100% matching!
 void bhEne23_DD01(BH_PWORK* epw) 
@@ -2764,15 +2756,11 @@ void bhEne23_DD01(BH_PWORK* epw)
     EXP0_I(280) = 0;
 }
 
-#pragma divbyzerocheck off
-
 // 100% matching!
 void bhEne23_DD02()
 {
 	
 }
-
-#pragma divbyzerocheck on 
 
 // 100% matching!
 void bhEne23_DD03(BH_PWORK* epw)
@@ -2956,8 +2944,6 @@ void bhEne23_DD03(BH_PWORK* epw)
 
     EXP0_I(280) = 0;
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne23_CollisionWalls(BH_PWORK* epw)

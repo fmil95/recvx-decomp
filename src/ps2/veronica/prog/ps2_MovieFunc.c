@@ -11,6 +11,8 @@
 
 //#include <string.h>
 
+#pragma divbyzerocheck on 
+
 int videoDecTh;
 int frd;
 int movie_draw;
@@ -158,8 +160,6 @@ void initAll()
     StartThread(videoDecTh, &videoDec);
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void readMpeg()
 {
@@ -238,8 +238,6 @@ void readMpeg()
         rmi.iMovieState = 3;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 int readBufEndGet(READ_BUF *b, int size)
@@ -455,8 +453,6 @@ static int copy2area(u_char *pd0, int d0, u_char *pd1, int d1, u_char *ps0, int 
     return s0 + s1;
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 int audioDecSendToIOP(AudioDec *ad) 
 {
@@ -538,8 +534,6 @@ static void iopGetArea(int *pd0, int *d0, int *pd1, int *d1, AudioDec *ad, int p
     	*d1 = len - (ad->iopBuffSize - ad->iopLastPos);
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching! 
 static int sendToIOP2area(int pd0, int d0, int pd1, int d1, u_char *ps0, int s0, u_char *ps1, int s1)
@@ -727,8 +721,6 @@ void *DmaAddr(void *val)
     return (void*)((u_int)val & UNCMASK);
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching! 
 void viBufBeginPut(ViBuf *f, u_char **ptr0, int *len0, u_char **ptr1, int *len1)
 {
@@ -765,8 +757,6 @@ void viBufBeginPut(ViBuf *f, u_char **ptr0, int *len0, u_char **ptr1, int *len1)
     SIGNALSEMA(f->sema);
 }
 
-#pragma divbyzerocheck off
-
 // 100% matching! 
 void viBufEndPut(ViBuf *f, int size)
 {
@@ -777,8 +767,6 @@ void viBufEndPut(ViBuf *f, int size)
 
     SIGNALSEMA(f->sema);
 }
-
-#pragma divbyzerocheck on
 
 // 100% matching! 
 int viBufModifyPts(ViBuf *f, TimeStamp *new_ts) 
@@ -886,8 +874,6 @@ int viBufPutTs(ViBuf *f, TimeStamp *ts)
 
     return ret;
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void voBufIncCount(VoBuf *f)
@@ -1148,8 +1134,6 @@ int videoCallback(sceMpeg *mp, sceMpegCbDataStr *str, void *data)
     return (len > 0) ? 1 : 0;
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 int pcmCallback(sceMpeg *mp, sceMpegCbDataStr *str, void *data) 
 {
@@ -1219,8 +1203,6 @@ int pcmCallback(sceMpeg *mp, sceMpegCbDataStr *str, void *data)
     return (ret > 0) ? 1 : 0;
 }
 
-#pragma divbyzerocheck off
-
 // 100% matching!
 int mpegError(sceMpeg *mp, sceMpegCbDataError *cberror, void *anyData)
 {
@@ -1228,8 +1210,6 @@ int mpegError(sceMpeg *mp, sceMpegCbDataError *cberror, void *anyData)
     
     return 1;
 }
-
-#pragma divbyzerocheck on
 
 // 100% matching!
 int mpegNodata(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData) 
@@ -1306,8 +1286,6 @@ int mpegNodata(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
     return 1;
 }
 
-#pragma divbyzerocheck off
-
 // 100% matching!
 int mpegStopDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
 {
@@ -1341,8 +1319,6 @@ int mpegStopDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
 
     return 1;
 }
-
-#pragma divbyzerocheck on 
 
 // 100% matching!
 int mpegRestartDMA(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData)
@@ -1506,5 +1482,3 @@ int mpegTS(sceMpeg *mp, sceMpegCbDataTimeStamp *cbts, void *anyData)
     
     return 1;
 }
-
-#pragma divbyzerocheck off

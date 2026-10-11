@@ -15,6 +15,8 @@
 
 // ENEMY: Gulp Worm 
 
+#pragma divbyzerocheck on 
+
 typedef void (*bhEne02_Mode0_proc)(BH_PWORK*);
 typedef void (*bhEne02_MoveMode2_proc)(BH_PWORK*);
 typedef void (*bhEne02_DamageMode2_proc)(BH_PWORK*);
@@ -1050,8 +1052,6 @@ void bhEne02_MV00(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 99.70% matching
 void bhEne02_MV02(BH_PWORK* epw) 
 {
@@ -1588,8 +1588,6 @@ void bhEne02_MV03(BH_PWORK* epw)
         break;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne02_MV04(BH_PWORK* epw) 
@@ -2655,8 +2653,6 @@ void bhEne02_SandEffectP(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void bhEne02_PlayerControl(BH_PWORK* epw)
 {
@@ -2937,8 +2933,6 @@ void bhEne02_PlayerControl(BH_PWORK* epw)
 		plp->flg |= 0x200000;
 	}
 }
-
-#pragma divbyzerocheck off 
 
 // 100% matching!
 void bhEne02_DamageInit(BH_PWORK* epw) 

@@ -23,6 +23,8 @@
 
 // ENEMY: Cerberus 
 
+#pragma divbyzerocheck on 
+
 int En04_PlyMtn_OffsetTbl[4] =
 {
     0x64,
@@ -1258,8 +1260,6 @@ int bhEne04_AtariCheck(BH_PWORK* epw)
     return 0;
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 int bhEne04_AtariCheck2(BH_PWORK* epw) {
 	ATR_WORK* hp;
@@ -1334,8 +1334,6 @@ int bhEne04_AtariCheck2(BH_PWORK* epw) {
     }
     return 0;
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching! 
 ATR_WORK* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip)

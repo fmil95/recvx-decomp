@@ -6,6 +6,8 @@
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 
+#pragma divbyzerocheck on
+
 typedef void (*Mode0_proc)(BH_PWORK*);
 typedef void (*MoveMode2_proc)(BH_PWORK*);
 
@@ -75,8 +77,6 @@ void bhEne06s_Move(BH_PWORK* epw)
 {
     bhEne06s_MoveMode2[epw->mode2](epw);
 }
-
-#pragma divbyzerocheck on
 
 // 100% matching!
 void bhEne06s_MV00(BH_PWORK* epw)
@@ -278,8 +278,6 @@ void bhEne06s_MV01(BH_PWORK* epw)
 		break;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne06s_Dummy()

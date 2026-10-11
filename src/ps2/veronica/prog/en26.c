@@ -19,6 +19,7 @@
 #include "../../../ps2/veronica/prog/Motion.h"
 
 #pragma optimization_level 4
+#pragma divbyzerocheck on
 
 // ENEMY: Anatomist Zombie 
 
@@ -2075,7 +2076,6 @@ int bhEne26_ActionModeCheck(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on
 // 100% matching!
 void bhEne26_MV00(BH_PWORK* epw)
 {
@@ -2108,8 +2108,6 @@ void bhEne26_MV00(BH_PWORK* epw)
         break;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne26_MV01(BH_PWORK* epw)

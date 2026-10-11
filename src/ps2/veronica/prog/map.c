@@ -20,6 +20,8 @@
 #include "../../../ps2/veronica/prog/screen.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 
+#pragma divbyzerocheck on 
+
 static map_wrk MapWrk;
 
 static map_wrk* mwP = &MapWrk;
@@ -712,8 +714,6 @@ static void MapPaletteMain()
     } 
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 static void MapCodeProcess()
 {
@@ -1015,8 +1015,6 @@ static void MapCodeProcess()
     
     njControl3D(0);
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 static void MapBoolSet(int bol, int mod) 

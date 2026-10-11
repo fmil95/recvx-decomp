@@ -16,6 +16,8 @@
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
 
+#pragma divbyzerocheck on 
+
 static unsigned int owk_scn_noG;
 
 static void (*FuncTbl[4])(O_WRK* oP) = 
@@ -1101,8 +1103,6 @@ O_WRK* bhSetEffParticleMk2(BH_PWORK* ewP, int lnk_no, NJS_POINT3* offP, NJS_POIN
     return oP;
 }
 
-#pragma divbyzerocheck on
-
 // 99.94% matching
 void bhEff302(O_WRK* oP) 
 {
@@ -1379,8 +1379,6 @@ void bhEff302(O_WRK* oP)
     }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 static void bhEff_PtclSpriteDrawB(O_WRK* oP)
@@ -1773,8 +1771,6 @@ void bhEff304(O_WRK* oP)
     }
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void bhEff305(O_WRK* oP) 
 {
@@ -1937,8 +1933,6 @@ void bhEff305(O_WRK* oP)
     }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEff306(O_WRK* oP)
@@ -2486,8 +2480,6 @@ void bhSetEffSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, uns
     }
 }
 
-#pragma divbyzerocheck on
-
 // 99.95% matching
 void bhEff308(OR_WORK* orP) 
 {
@@ -2688,8 +2680,6 @@ void bhEff308(OR_WORK* orP)
     }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEff308Drw(OR_WORK* orP) 
@@ -3099,8 +3089,6 @@ static void ryRapDspSet(NJS_POINT3* posP, DSP_WRK* dspP, float scl)
     *vbP   = 0;
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 static void ryRapAnmColSet(ANM_WORK* anmP, int src_col, int dst_col, int col_cnt)
 {
@@ -3159,8 +3147,6 @@ static void ryRapAnmColSet(ANM_WORK* anmP, int src_col, int dst_col, int col_cnt
         *addP |= (tmp & 0xFF00)  << 16;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEff30a(OR_WORK* orP)

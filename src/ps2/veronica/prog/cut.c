@@ -8,6 +8,8 @@
 #include "../../../ps2/veronica/prog/ps2_NaView.h"
 #include "../../../ps2/veronica/prog/main.h"
 
+#pragma divbyzerocheck on 
+
 // 100% matching!
 void bhCheckCut(int flg)
 {
@@ -2466,8 +2468,6 @@ void bhGetEvtCamLockPosition(CAM_KEYF_WORK* kfp, NJS_POINT3* pos)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 99.84% matching
 void bhControlPlEyeCamera(unsigned int attr) 
 {
@@ -2614,8 +2614,6 @@ void bhControlPlEyeCamera(unsigned int attr)
         break;
     }
 }
-
-#pragma divbyzerocheck off 
 
 // 100% matching!
 void bhInitPlEyeCamera()

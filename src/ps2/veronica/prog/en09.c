@@ -18,6 +18,8 @@
 
 // ENEMY: Bandersnatch 
 
+#pragma divbyzerocheck on
+
 typedef void (*Mode0_proc)(BH_PWORK*);
 typedef void (*MoveType_proc)(BH_PWORK*);
 typedef void (*DamageType_proc)(BH_PWORK*);
@@ -3656,8 +3658,6 @@ int bhEne09_AramLineCheck(BH_PWORK* epw, NJS_VECTOR* p1, NJS_VECTOR* p2)
     return 0;
 }
 
-#pragma divbyzerocheck on
-
 // 100% matching!
 void bhEne09_MV00(BH_PWORK* epw)
 {
@@ -3705,8 +3705,6 @@ void bhEne09_MV00(BH_PWORK* epw)
             }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne09_MV01(BH_PWORK* epw)
@@ -4012,8 +4010,6 @@ void bhEne09_MV04(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on
-
 // 99.98% matching!
 void bhEne09_MV05(BH_PWORK* epw) 
 {
@@ -4292,8 +4288,6 @@ void bhEne09_MV05(BH_PWORK* epw)
             break;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne09_MV06(BH_PWORK* epw) 

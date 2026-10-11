@@ -9,6 +9,8 @@
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 
+#pragma divbyzerocheck on 
+
 // 100% matching!
 void bhEff200(O_WRK* op) 
 {
@@ -292,8 +294,6 @@ void bhEff202(O_WRK* op)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 99.80% matching (matches on NGC)
 void bhEff203(O_WRK* op)
 {
@@ -462,8 +462,6 @@ void bhEff203(O_WRK* op)
         sys->ef_trsn++;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEff204(O_WRK* op)
@@ -2015,8 +2013,6 @@ void bhEff219(O_WRK* op)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 99.87% matching (matches on NGC)
 void bhEff220(O_WRK* op) 
 {
@@ -2104,8 +2100,6 @@ void bhEff220(O_WRK* op)
     
     op->type = op->mode1 = 0;
 }
-
-#pragma divbyzerocheck on
 
 // 99.49% matching (matches on NGC)
 void bhEff221(O_WRK* op) 
@@ -2301,8 +2295,6 @@ void bhEff221(O_WRK* op)
     }
 }
 
-#pragma divbyzerocheck off
-
 // 100% matching!
 void bhDrawEff221(O_WRK* op) 
 {
@@ -2429,8 +2421,6 @@ void bhEff222(O_WRK* op)
         break;
     }
 }
-
-#pragma divbyzerocheck on 
 
 // 99.43% matching (matches on NGC)
 void bhEff223(O_WRK* op) 
@@ -2567,8 +2557,6 @@ void bhEff223(O_WRK* op)
         sys->ef_trsn++;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEff224(O_WRK* op)
@@ -3537,8 +3525,6 @@ void bhEff232(O_WRK* op)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 98.17% matching (matches on NGC)
 void bhEff233(O_WRK* op)
 {
@@ -3825,8 +3811,6 @@ void bhEff235(O_WRK* op)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void bhEff236(O_WRK* op)
 {
@@ -3986,8 +3970,6 @@ void bhEff236(O_WRK* op)
         }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhDrawEff236(O_WRK* op)
@@ -4310,8 +4292,6 @@ void bhEff239(O_WRK* op)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 99.87% matching (matches on NGC)
 void bhEff240(O_WRK* op)
 {
@@ -4399,8 +4379,6 @@ void bhEff240(O_WRK* op)
     
     op->type = op->mode1 = 0;
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEff241(O_WRK* op) 
@@ -4855,8 +4833,6 @@ void bhDrawEff243(O_WRK* op)
     njColorBlendingMode(1, 6);
 }
 
-#pragma divbyzerocheck on 
-
 // 99.13% matching (matches on NGC)
 void bhEff244(O_WRK* op) 
 {
@@ -4948,8 +4924,6 @@ void bhEff244(O_WRK* op)
         sys->ef_trsn++;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEff245(O_WRK* op) 
@@ -5310,8 +5284,6 @@ void bhEff247(O_WRK* op)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void bhEff248(O_WRK* op) 
 {
@@ -5571,8 +5543,6 @@ void bhEff249(O_WRK* op)
     }
 }
 
-#pragma divbyzerocheck off
-
 // 94.57% matching (matches on NGC)
 EFF5SNOWRECT* CreateEff5SnowRect(int lSnowMax)
 {
@@ -5699,8 +5669,6 @@ void DeleteEff5SnowRect(EFF5SNOWRECT* pSnow)
     pSnow->flg = 0;
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void ExecEff5SnowRect(EFF5SNOWRECT* pSnow) 
 {
@@ -5795,8 +5763,6 @@ void ExecEff5SnowRect(EFF5SNOWRECT* pSnow)
         pSnowGrp++;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 94.71% matching
 void DrawEff5SnowRect(O_WRK* op) 

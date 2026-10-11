@@ -4,6 +4,8 @@
 
 //#include <string.h>
 
+#pragma divbyzerocheck on 
+
 unsigned char clear_buff[1024];
 
 // 100% matching! 
@@ -448,8 +450,6 @@ int P32_Image_Load(TIM2_PICTUREHEADER* ph, unsigned long image_addr)
     return 0;
 }
 
-#pragma divbyzerocheck on
-
 // 99.91% matching
 int Tim2_Image_Load(TIM2_PICTUREHEADER* ph, unsigned long image_addr)
 {
@@ -521,8 +521,6 @@ int Tim2_Image_Load(TIM2_PICTUREHEADER* ph, unsigned long image_addr)
     
     return 0;
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void Ps2PxlconvCheck(void* timadr)

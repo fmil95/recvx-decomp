@@ -19,6 +19,8 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/weapon.h"
 
+#pragma divbyzerocheck on 
+
 ETTY_WORK lkmtab[2] = 
 {
     { 129, 1211, 0, 0, 4, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0, 0, { 0, 0, 0, 0 } },
@@ -1343,8 +1345,6 @@ void (*bhCtrPly_mode0[9])() =
     bhCPM0_nothing
 }; 
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void bhControlPlayer()
 {
@@ -1770,8 +1770,6 @@ void bhControlPlayer()
         rom->lgtp[1].flg &= ~0x2;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhCPM0_action()

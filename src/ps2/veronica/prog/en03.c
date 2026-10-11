@@ -18,6 +18,8 @@
 
 // ENEMY: Black Widow 
 
+#pragma divbyzerocheck on 
+
 NJS_POINT3 spm_016[45] =
 {
     { 0.0f,             0.0f,           0.0f },
@@ -1615,8 +1617,6 @@ void bhEne03_MV05(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void bhEne03_MV06(BH_PWORK* epw)
 {
@@ -1678,8 +1678,6 @@ void bhEne03_MV06(BH_PWORK* epw)
         break;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne03_MV07(BH_PWORK* epw) 
@@ -1814,8 +1812,6 @@ void bhEne03_MV07(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void bhEne03_MV08(BH_PWORK* epw)
 {
@@ -1875,8 +1871,6 @@ void bhEne03_MV08(BH_PWORK* epw)
         break;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne03_MV09(BH_PWORK* epw) 
@@ -2705,8 +2699,6 @@ void bhEne03_Nage(BH_PWORK* epw)
 	bhEne03_NageMode2[epw->mode2](epw);
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void bhEne03_NG00(BH_PWORK* epw) 
 {
@@ -3211,8 +3203,6 @@ void bhEne03_NG01(BH_PWORK* epw)
         break;
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne03_Damage(BH_PWORK* epw)
@@ -3742,8 +3732,6 @@ void bhEne03_DG09(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void bhEne03_DG10(BH_PWORK* epw)
 {    
@@ -3876,8 +3864,6 @@ void bhEne03_DG10(BH_PWORK* epw)
         break;
     }
 }
-
-#pragma divbyzerocheck on 
 
 // 100% matching!
 void bhEne03_DG11(BH_PWORK* epw)
@@ -4225,8 +4211,6 @@ void bhEne03_DG12(BH_PWORK* epw)
     }
 }
 
-#pragma divbyzerocheck off 
-
 // 100% matching!
 void bhEne03_Die(BH_PWORK* epw)
 {
@@ -4284,8 +4268,6 @@ void bhEne03_DD00(BH_PWORK* epw)
         break;
     }
 }
-
-#pragma divbyzerocheck on 
 
 // 100% matching!
 void bhEne03_DD01(BH_PWORK* epw) 
@@ -4451,8 +4433,6 @@ void bhEne03_DD01(BH_PWORK* epw)
 
     epw->ar += (6.0f - epw->ar) / 16.0f;
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne03_DD02(BH_PWORK* epw)
@@ -6794,8 +6774,6 @@ int bhEne03_CheckJumpSpace(BH_PWORK* epw)
     return 1;
 }
 
-#pragma divbyzerocheck on 
-
 // 100% matching!
 void bhEne03_PlayerControl(BH_PWORK* epw) 
 {
@@ -7112,8 +7090,6 @@ void bhEne03_PlayerControl(BH_PWORK* epw)
         }
     }
 }
-
-#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne03_CallSE(BH_PWORK* epw) 
