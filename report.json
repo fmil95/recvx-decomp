@@ -1,9 +1,9 @@
 {
   "measures": {
-    "fuzzy_match_percent": 99.782936,
+    "fuzzy_match_percent": 99.78421,
     "total_code": "1904472",
-    "matched_code": "1630652",
-    "matched_code_percent": 85.62226,
+    "matched_code": "1631096",
+    "matched_code_percent": 85.64558,
     "total_data": "28428164",
     "matched_data": "28399956",
     "matched_data_percent": 99.90078,
@@ -1189,16 +1189,16 @@
     {
       "name": "ps2/veronica/prog/player",
       "measures": {
-        "fuzzy_match_percent": 99.83447,
+        "fuzzy_match_percent": 99.88138,
         "total_code": "73172",
-        "matched_code": "44588",
-        "matched_code_percent": 60.93588,
+        "matched_code": "43728",
+        "matched_code_percent": 59.760563,
         "total_data": "7224",
         "matched_data": "7224",
         "matched_data_percent": 100.0,
         "total_functions": 49,
-        "matched_functions": 40,
-        "matched_functions_percent": 81.63265,
+        "matched_functions": 39,
+        "matched_functions_percent": 79.591835,
         "total_units": 1
       },
       "sections": [
@@ -1225,7 +1225,7 @@
         {
           "name": ".text",
           "size": "73440",
-          "fuzzy_match_percent": 99.83447,
+          "fuzzy_match_percent": 99.88138,
           "metadata": {}
         },
         {
@@ -1370,21 +1370,21 @@
         {
           "name": "bhCPM2_act_run",
           "size": "1884",
-          "fuzzy_match_percent": 99.35881,
+          "fuzzy_match_percent": 99.808914,
           "metadata": {},
           "address": "19264"
         },
         {
           "name": "bhCPM2_act_bak",
           "size": "2124",
-          "fuzzy_match_percent": 98.16196,
+          "fuzzy_match_percent": 98.55179,
           "metadata": {},
           "address": "21152"
         },
         {
           "name": "bhCPM2_act_bk2",
           "size": "2188",
-          "fuzzy_match_percent": 99.023766,
+          "fuzzy_match_percent": 99.87203,
           "metadata": {},
           "address": "23280"
         },
@@ -1475,7 +1475,7 @@
         {
           "name": "bhCPM2_act_wre",
           "size": "860",
-          "fuzzy_match_percent": 100.0,
+          "fuzzy_match_percent": 99.88372,
           "metadata": {},
           "address": "50288"
         },
@@ -3770,16 +3770,16 @@
     {
       "name": "ps2/veronica/prog/pl_evt",
       "measures": {
-        "fuzzy_match_percent": 99.99514,
+        "fuzzy_match_percent": 100.0,
         "total_code": "8232",
-        "matched_code": "6928",
-        "matched_code_percent": 84.15938,
+        "matched_code": "8232",
+        "matched_code_percent": 100.0,
         "total_data": "112",
         "matched_data": "112",
         "matched_data_percent": 100.0,
         "total_functions": 10,
-        "matched_functions": 9,
-        "matched_functions_percent": 90.0,
+        "matched_functions": 10,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -3800,7 +3800,7 @@
         {
           "name": ".text",
           "size": "8304",
-          "fuzzy_match_percent": 99.99514,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -3833,7 +3833,7 @@
         {
           "name": "pl_smove02",
           "size": "1304",
-          "fuzzy_match_percent": 99.96932,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1824"
         },
@@ -26472,7 +26472,7 @@
     {
       "name": "ps2/veronica/prog/map",
       "measures": {
-        "fuzzy_match_percent": 99.304855,
+        "fuzzy_match_percent": 99.25503,
         "total_code": "21676",
         "matched_code": "17400",
         "matched_code_percent": 80.27312,
@@ -26514,7 +26514,7 @@
         {
           "name": ".text",
           "size": "22048",
-          "fuzzy_match_percent": 99.304855,
+          "fuzzy_match_percent": 99.25503,
           "metadata": {}
         },
         {
@@ -26869,7 +26869,7 @@
         {
           "name": "FsubZoomCursor",
           "size": "844",
-          "fuzzy_match_percent": 93.90995,
+          "fuzzy_match_percent": 92.63033,
           "metadata": {},
           "address": "17456"
         },
@@ -42251,10 +42251,10 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 99.77292,
+        "fuzzy_match_percent": 99.774254,
         "total_code": "1820460",
-        "matched_code": "1546640",
-        "matched_code_percent": 84.95874,
+        "matched_code": "1547084",
+        "matched_code_percent": 84.98313,
         "total_data": "28336764",
         "matched_data": "28333668",
         "matched_data_percent": 99.989075,
