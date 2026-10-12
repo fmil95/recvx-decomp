@@ -1,6 +1,6 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/cri_cvfs.h"
 
-//#include <string.h>
+#include <string.h>
 
 // 100% byte-matching object! 
 

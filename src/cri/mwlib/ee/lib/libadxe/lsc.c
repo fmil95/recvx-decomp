@@ -5,7 +5,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/lsc_ini.h"
 #include "../../../cri/mwlib/ee/lib/libadxe/lsc_svr.h"
 
-//#include <string.h>
+#include <string.h>
 
 // 100% byte-matching object! 
 

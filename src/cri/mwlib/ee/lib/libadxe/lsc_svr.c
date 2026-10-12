@@ -2,7 +2,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
 #include "../../../cri/mwlib/ee/lib/libadxe/lsc_err.h"
 
-//#include <string.h>
+#include <string.h>
 
 // 100% byte-matching object! 
 

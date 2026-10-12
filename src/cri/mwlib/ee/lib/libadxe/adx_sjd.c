@@ -3,7 +3,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_rbf.h"
 
-//#include <string.h>
+#include <string.h>
 
 // 100% byte-matching object! 
 

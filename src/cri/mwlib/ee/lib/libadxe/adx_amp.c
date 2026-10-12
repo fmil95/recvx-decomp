@@ -1,7 +1,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_amp.h"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
 
-//#include <string.h>
+#include <string.h>
 
 // 100% byte-matching object! 
 

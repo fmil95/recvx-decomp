@@ -13,7 +13,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/sjr_clt.h"
 
 #include <stdio.h>
-//#include <string.h>
+#include <string.h>
 
 // 100% byte-matching object! 
 

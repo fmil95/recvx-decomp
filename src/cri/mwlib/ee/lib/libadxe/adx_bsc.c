@@ -7,7 +7,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd3.h"
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
 
-//#include <string.h>
+#include <string.h>
 
 // 100% byte-matching object! 
 

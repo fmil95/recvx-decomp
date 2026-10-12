@@ -2,7 +2,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/dvci.h"
 
 #include <stdio.h>
-//#include <string.h>
+//#include <string.h> /* ERROR: causes linker to fail */
 
 // 100% byte-matching object! 
 
