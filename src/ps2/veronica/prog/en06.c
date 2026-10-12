@@ -1064,8 +1064,6 @@ void bhEne06_Nage(BH_PWORK* epw)
     bhEne06_NageMode2[epw->mode2](epw);
 }
 
-#pragma mpwc_relax on
-
 // 99.76% matching!
 void bhEne06_NG00(BH_PWORK* epw)
 {
@@ -1170,7 +1168,7 @@ void bhEne06_NG00(BH_PWORK* epw)
                     type = 0;
                 }
             }
-                epw2 = bhSetEnemy(&ene27, rom->ene_n); // #pragma mpwc_relax on was needed for this line to properly work
+                epw2 = bhSetEnemy(&ene27, rom->ene_n); 
                 epw2->type = (unsigned short)type;
                 epw2->mode2 = 1;
             }
@@ -1178,8 +1176,6 @@ void bhEne06_NG00(BH_PWORK* epw)
         break;
     }
 }
-
-#pragma mpwc_relax off
 
 // 100% matching!
 void bhEne06_Damage(BH_PWORK* epw)

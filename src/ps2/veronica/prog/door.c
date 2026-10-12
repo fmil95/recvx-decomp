@@ -2005,8 +2005,6 @@ static int CompareFloat(float val_a, int cmp_typ, float val_b)
     }
 }
 
-#pragma optimization_level 3
-
 // 100% matching! 
 static void VectorMove(NJS_POINT3* posP, int yaw, int pitch, float speed)
 {
