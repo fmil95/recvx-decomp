@@ -3,6 +3,8 @@
 
 #include <libgraph.h>
 
+// 100% byte-matching object! 
+
 char* volatile adxps2_build = "\nADXPS2 Ver.1.01 Build:Mar 14 2001 14:23:33\n";
 static ADXPS2_TPRM adxps2_save_tprm __attribute__((aligned(64))) = { 0 };
 int volatile adxps2_id_safe = 0;
@@ -19,7 +21,6 @@ int adxps2_main_prio_def = 0;
 static char adxps2_stk_adx[DEF_STACK_SIZE] bss_align(64);
 static char adxps2_stk_safe[DEF_STACK_SIZE] bss_align(64); 
 
-// 100% matching!
 void adxps2_adx_thrd_func(void)
 {
     while (TRUE) 
@@ -39,7 +40,6 @@ void adxps2_adx_thrd_func(void)
     }
 }
 
-// 99.29% matching
 void adxps2_safe_thrd_func(void) 
 {
     while (TRUE) 
@@ -50,7 +50,6 @@ void adxps2_safe_thrd_func(void)
     }
 }
 
-// 100% matching!
 int ADXPS2_VsyncCallback(int arg)
 {
     if ((adxps2_exec_svr == 0) && (adxps2_id_adx != 0)) 
@@ -68,13 +67,11 @@ int ADXPS2_VsyncCallback(int arg)
     return 0;
 }
 
-// 100% matching!
 void ADXPS2_RestoreVsyncCallback(void) 
 {
     adxps2_old_cbf = (void*)sceGsSyncVCallback(ADXPS2_VsyncCallback);
 }
 
-// 99.89% matching
 void ADXPS2_SetupThrd(ADXPS2_TPRM *tprm)
 {
     ThreadParam th0;
@@ -146,7 +143,6 @@ void ADXPS2_SetupThrd(ADXPS2_TPRM *tprm)
     ADXPS2_RestoreVsyncCallback();
 }
 
-// 100% matching!
 void ADXPS2_ShutdownThrd(void)
 {
     SuspendThread(adxps2_id_adx);
@@ -170,7 +166,6 @@ void ADXPS2_ShutdownThrd(void)
     ChangeThreadPriority(adxps2_id_main, adxps2_main_prio_def);
 }
 
-// 100% matching!
 void ADXPS2_Lock(void)
 {
     ThreadParam info; 
@@ -202,7 +197,6 @@ void ADXPS2_Lock(void)
     adxps2_lock_count++;
 }
 
-// 100% matching!
 void ADXPS2_Unlock(void)
 {
     adxps2_lock_count--;
@@ -228,20 +222,17 @@ void ADXPS2_Unlock(void)
     }
 }
 
-// 100% matching!
 void ADXPS2_ExecServer(void) 
 {
     ADXT_ExecServer();
     ADXT_ExecFsSvr();
 }
 
-// 100% matching!
 void ADXPS2_SetupUsvr(void) 
 {
 
 }
 
-// 100% matching!
 void ADXPS2_Shutdown(void) 
 {
 

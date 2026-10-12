@@ -1,12 +1,13 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/sjr_clt.h"
 #include "../../../cri/mwlib/ee/lib/libadxe/dtx.h"
 
+// 100% byte-matching object! 
+
 Char8* volatile sjrmt_build = "\nSJRMT Ver 0.93 Build:Jan 26 2001 09:59:44\n";
 Sint32 sjrmt_init_cnt = 0;
 static Sint32 sjrmt_sbuf[64] __attribute__((aligned(64)));
 static Sint32 sjrmt_rbuf[64] __attribute__((aligned(64)));
 
-// 100% matching!
 SJ SJRBF_CreateRmt(Sint8 *buf, Sint32 bsize, Sint32 xsize)
 {
     sjrmt_sbuf[0] = (Sint32)buf;
@@ -18,7 +19,6 @@ SJ SJRBF_CreateRmt(Sint8 *buf, Sint32 bsize, Sint32 xsize)
     return (SJ)sjrmt_rbuf[0];
 }
 
-// 100% matching!
 SJ SJMEM_CreateRmt(Sint8 *data, Sint32 dtsize)
 {
     sjrmt_sbuf[0] = (Sint32)data;
@@ -29,7 +29,6 @@ SJ SJMEM_CreateRmt(Sint8 *data, Sint32 dtsize)
     return (SJ)sjrmt_rbuf[0];
 }
 
-// 100% matching!
 SJ SJUNI_CreateRmt(Sint32 mode, Sint8 *wk, Sint32 wksize)
 {
     sjrmt_sbuf[0] = mode;
@@ -41,7 +40,6 @@ SJ SJUNI_CreateRmt(Sint32 mode, Sint8 *wk, Sint32 wksize)
     return (SJ)sjrmt_rbuf[0];
 }
 
-// 100% matching!
 void SJRMT_Destroy(SJ sj)
 {
     sjrmt_sbuf[0] = (Sint32)sj;
@@ -49,7 +47,6 @@ void SJRMT_Destroy(SJ sj)
     DTX_CallUrpc(SJRMT_DESTROY, sjrmt_sbuf, 1, NULL, 0);
 }
 
-// 100% matching!
 const UUID* SJRMT_GetUuid(SJ sj)
 {
     static UUID uuid; 
@@ -69,7 +66,6 @@ const UUID* SJRMT_GetUuid(SJ sj)
     return &uuid; // maybe should return tmp instead?
 }
 
-// 100% matching!
 void SJRMT_Reset(SJ sj)
 {
     sjrmt_sbuf[0] = (Sint32)sj;
@@ -77,7 +73,6 @@ void SJRMT_Reset(SJ sj)
     DTX_CallUrpc(SJRMT_RESET, sjrmt_sbuf, 1, NULL, 0);
 }
 
-// 100% matching!
 void SJRMT_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
 {
     sjrmt_sbuf[0] = (Sint32)sj;
@@ -91,7 +86,6 @@ void SJRMT_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
     ck->len = sjrmt_rbuf[1];
 }
 
-// 100% matching!
 void SJRMT_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
 {
     sjrmt_sbuf[0] = (Sint32)sj;
@@ -102,7 +96,6 @@ void SJRMT_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
     DTX_CallUrpc(SJRMT_UNGET_CHUNK, sjrmt_sbuf, 4, NULL, 0);
 }
 
-// 100% matching!
 void SJRMT_PutChunk(SJ sj, Sint32 id, SJCK *ck)
 {
     sjrmt_sbuf[0] = (Sint32)sj;
@@ -113,7 +106,6 @@ void SJRMT_PutChunk(SJ sj, Sint32 id, SJCK *ck)
     DTX_CallUrpc(SJRMT_PUT_CHUNK, sjrmt_sbuf, 4, NULL, 0);
 }
 
-// 100% matching!
 Sint32 SJRMT_GetNumData(SJ sj, Sint32 id)
 {
     sjrmt_sbuf[0] = (Sint32)sj;
@@ -124,7 +116,6 @@ Sint32 SJRMT_GetNumData(SJ sj, Sint32 id)
     return sjrmt_rbuf[0];
 }
 
-// 100% matching!
 Sint32 SJRMT_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
 {
     sjrmt_sbuf[0] = (Sint32)sj;
@@ -138,7 +129,6 @@ Sint32 SJRMT_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
     return sjrmt_rbuf[0];
 }
 
-// 100% matching!
 void SJRMT_Init(void) 
 {
     if (sjrmt_init_cnt == 0) 
@@ -149,7 +139,6 @@ void SJRMT_Init(void)
     sjrmt_init_cnt++;
 }
 
-// 100% matching!
 void SJRMT_Finish(void) 
 {
     if (--sjrmt_init_cnt == 0) 

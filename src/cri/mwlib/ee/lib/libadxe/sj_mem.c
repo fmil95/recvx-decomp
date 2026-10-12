@@ -2,18 +2,18 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 static const UUID sjmem_uuid = { 0xDD9EEE41, 0x1679, 0x11D2, { 0x93, 0x6C, 0x00, 0x60, 0x08, 0x94, 0x48, 0xBC } };
 SJ_IF sjmem_vtbl = { NULL, NULL, NULL, (void*)SJMEM_Destroy, (void*)SJMEM_GetUuid, (void*)SJMEM_Reset, (void*)SJMEM_GetChunk,(void*)SJMEM_UngetChunk, (void*)SJMEM_PutChunk, (void*)SJMEM_GetNumData, (void*)SJMEM_IsGetChunk, (void*)SJMEM_EntryErrFunc };
 Sint32 sjmem_init_cnt = 0;
 SJMEM_OBJ sjmem_obj[32] = { 0 };
 
-// 99.29% matching
 void SJMEM_Error(void *obj, Sint32 errcode)
 {
     while (TRUE);
 }
 
-// 100% matching!
 void SJMEM_Init(void) 
 {
     if (sjmem_init_cnt == 0) 
@@ -24,7 +24,6 @@ void SJMEM_Init(void)
     sjmem_init_cnt++;
 }
 
-// 100% matching!
 void SJMEM_Finish(void)
 {
     if (--sjmem_init_cnt == 0)
@@ -33,7 +32,6 @@ void SJMEM_Finish(void)
     }
 }
 
-// 100% matching!
 SJ SJMEM_Create(Sint8 *data, Sint32 dtsize)
 {
     Sint32 no;
@@ -71,7 +69,6 @@ SJ SJMEM_Create(Sint8 *data, Sint32 dtsize)
     return (SJ)sjmem;
 }
 
-// 100% matching!
 void SJMEM_Destroy(SJ sj)
 {
     SJMEM sjmem;
@@ -86,7 +83,6 @@ void SJMEM_Destroy(SJ sj)
     }
 }
 
-// 100% matching!
 const UUID* SJMEM_GetUuid(SJ sj)
 {
     SJMEM sjmem;
@@ -96,7 +92,6 @@ const UUID* SJMEM_GetUuid(SJ sj)
     return sjmem->uuid;
 }
 
-// 100% matching!
 void SJMEM_EntryErrFunc(SJ sj, SJMEM_ERRFN func, void *obj)
 {
     SJMEM sjmem;
@@ -107,7 +102,6 @@ void SJMEM_EntryErrFunc(SJ sj, SJMEM_ERRFN func, void *obj)
     sjmem->errobj = obj;
 }
 
-// 100% matching!
 void SJMEM_Reset(SJ sj)
 {
     SJMEM sjmem;
@@ -119,7 +113,6 @@ void SJMEM_Reset(SJ sj)
     sjmem->ndata = sjmem->bsize;
 }
 
-// 100% matching!
 Sint32 SJMEM_GetNumData(SJ sj, Sint32 id)
 {
     SJMEM sjmem;
@@ -139,7 +132,6 @@ Sint32 SJMEM_GetNumData(SJ sj, Sint32 id)
     return 0;
 }
 
-// 100% matching!
 void SJMEM_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
 {
     SJMEM sjmem;
@@ -179,7 +171,6 @@ void SJMEM_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
     SJCRS_Unlock();
 }
 
-// 100% matching!
 void SJMEM_PutChunk(SJ sj, Sint32 id, SJCK *ck)
 {
     SJMEM sjmem;
@@ -214,7 +205,6 @@ void SJMEM_PutChunk(SJ sj, Sint32 id, SJCK *ck)
     }
 }
 
-// 100% matching!
 void SJMEM_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
 {
     Sint32 pos;
@@ -265,7 +255,6 @@ void SJMEM_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
     }
 }
 
-// 100% matching!
 Sint32 SJMEM_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
 {
     Sint32 cklen;
@@ -300,13 +289,11 @@ Sint32 SJMEM_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
     return cklen == nbyte;
 }
 
-// 100% matching!
 Sint8* SJMEM_GetBufPtr(SJMEM sjmem)
 {
     return sjmem->buf;
 }
 
-// 100% matching!
 Sint32 SJMEM_GetBufSize(SJMEM sjmem) 
 {
     return sjmem->bsize;

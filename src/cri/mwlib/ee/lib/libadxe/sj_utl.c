@@ -1,6 +1,7 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/sj_utl.h"
 
-// 100% matching!
+// 100% byte-matching object! 
+
 void SJ_SplitChunk(SJCK *ck, Sint32 nbyte, SJCK *ck1, SJCK *ck2)
 {
     *ck1 = *ck;

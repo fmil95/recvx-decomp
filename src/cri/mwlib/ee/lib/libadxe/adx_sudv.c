@@ -4,13 +4,13 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/dvci.h"
 #include "../../../cri/mwlib/ee/lib/libadxe/dvci_sub.h"
 
-// 100% matching!
+// 100% byte-matching object! 
+
 void adxt_err_dvd(void *obj, const char *msg, void *hndl)
 {
     ADXERR_CallErrFunc1((const Sint8*)msg);
 }
 
-// 100% matching!
 void ADXT_SetupDvdFs(ADXT_SPRM *sprm) 
 {
     cvFsEntryErrFunc((void*)adxt_err_dvd, NULL);
@@ -27,7 +27,6 @@ void ADXT_SetupDvdFs(ADXT_SPRM *sprm)
     }
 }
 
-// 100% matching!
 Sint32 ADXT_LoadFpCacheDvd(ADXT_SPRM *sprm)
 {
     Sint32 size;
@@ -42,7 +41,6 @@ Sint32 ADXT_LoadFpCacheDvd(ADXT_SPRM *sprm)
     return size;
 }
 
-// 100% matching!
 void ADXT_SetRdMode(ADXT_SPRM *sprm)
 {
     dvCiSetRdMode(sprm->nrtry, sprm->speed, sprm->dtype);

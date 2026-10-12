@@ -9,9 +9,10 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 ADX_BASIC adxb_obj[8] = { 0 };
 
-// 100% matching!
 void ADXB_Init(void) 
 {
     ADXPD_Init();
@@ -19,7 +20,6 @@ void ADXB_Init(void)
     memset(adxb_obj, 0, sizeof(adxb_obj));
 }
 
-// 100% matching!
 void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
 {
     ADXB adxb;
@@ -35,7 +35,6 @@ void* adxb_DefGetWr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
     return adxb->pcmbuf;
 }
 
-// 100% matching!
 void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl)
 {
     ADXB adxb;
@@ -47,7 +46,6 @@ void adxb_DefAddWr(void *obj, Sint32 wlen, Sint32 wnsmpl)
     adxb->total_ndecsmpl += wnsmpl;
 }
 
-// 100% matching!
 ADXB ADXB_Create(Sint32 maxnch, Sint16 *obuf, Sint32 bsize, Sint32 bdist)
 {
     Sint32 no;
@@ -100,7 +98,6 @@ ADXB ADXB_Create(Sint32 maxnch, Sint16 *obuf, Sint32 bsize, Sint32 bdist)
     return adxb2;
 }
 
-// 100% matching!
 void ADXB_Destroy(ADXB adxb)
 {
     if (adxb != NULL) 
@@ -113,7 +110,6 @@ void ADXB_Destroy(ADXB adxb)
     }
 }
 
-// 100% matching!
 Sint32 ADXB_DecodeHeaderAdx(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
     Sint16 dlen;
@@ -158,7 +154,6 @@ Sint32 ADXB_DecodeHeaderAdx(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     return dlen;
 }
 
-// 100% matching!
 Sint32 ADXB_DecodeHeader(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
     if (BSWAP_U16_EX(*(Uint16*)ibuf) == 0x8000) 
@@ -185,51 +180,43 @@ Sint32 ADXB_DecodeHeader(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     return 0;
 }
 
-// 100% matching!
 void ADXB_EntryGetWrFunc(ADXB adxb, void* (*func)(), void *obj)
 {
     adxb->getwrfunc = func;
     adxb->getwrobj = obj;
 }
 
-// 100% matching!
 void ADXB_EntryAddWrFunc(ADXB adxb, void (*func)(), void *obj)
 {
     adxb->addwrfunc = func;
     adxb->addwrobj = obj;
 }
 
-// 100% matching!
 Sint16* ADXB_GetPcmBuf(ADXB adxb)
 {
     return adxb->pcmbuf;
 }
 
-// 100% matching!
 Sint32 ADXB_GetFormat(ADXB adxb)
 {
     return adxb->fmttype;
 }
 
-// 100% matching!
 Sint32 ADXB_GetSfreq(ADXB adxb)
 {
     return adxb->sfreq;
 }
 
-// 100% matching!
 Sint32 ADXB_GetNumChan(ADXB adxb)
 {
     return adxb->nch;
 }
 
-// 100% matching!
 Sint32 ADXB_GetFmtBps(ADXB adxb)
 {
     return adxb->bps;
 }
 
-// 100% matching!
 Sint32 ADXB_GetOutBps(ADXB adxb)
 {
     if (adxb->fmttype == 0) 
@@ -258,73 +245,61 @@ Sint32 ADXB_GetOutBps(ADXB adxb)
     return 16;
 }
 
-// 100% matching!
 Sint32 ADXB_GetBlkSmpl(ADXB adxb)
 {
     return adxb->blknsmpl;
 }
 
-// 100% matching!
 Sint32 ADXB_GetBlkLen(ADXB adxb)
 {
     return adxb->blklen;
 }
 
-// 100% matching!
 Sint32 ADXB_GetTotalNumSmpl(ADXB adxb)
 {
     return adxb->total_nsmpl;
 }
 
-// 100% matching!
 Sint32 ADXB_GetCof(ADXB adxb)
 {
     return adxb->cof;
 }
 
-// 100% matching!
 Sint32 ADXB_GetLpInsNsmpl(ADXB adxb)
 {
     return adxb->lp_ins_nsmpl;
 }
 
-// 100% matching!
 Sint32 ADXB_GetNumLoop(ADXB adxb)
 {
     return adxb->nloop;
 }
 
-// 100% matching!
 Sint32 ADXB_GetLpStartPos(ADXB adxb) 
 {
     return adxb->lp_spos;
 }
 
-// 100% matching!
 Sint32 ADXB_GetLpStartOfst(ADXB adxb)
 {
     return adxb->lp_sofst;
 }
 
-// 100% matching!
 Sint32 ADXB_GetLpEndPos(ADXB adxb)
 {
     return adxb->lp_epos;
 }
 
-// 100% matching!
 Sint32 ADXB_GetLpEndOfst(ADXB adxb)
 {
     return adxb->lp_eofst;
 }
 
-// 100% matching!
 Sint32 ADXB_GetStat(ADXB adxb)
 {
     return adxb->stat;
 }
 
-// 100% matching!
 void ADXB_EntryData(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
     if (adxb->fmttype == 0) 
@@ -351,7 +326,6 @@ void ADXB_EntryData(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     }
 }
 
-// 100% matching!
 void ADXB_Start(ADXB adxb)
 {
     if (adxb->stat == 0) 
@@ -360,7 +334,6 @@ void ADXB_Start(ADXB adxb)
     }
 }
 
-// 100% matching!
 void ADXB_Stop(ADXB adxb)
 {
     ADXPD_Stop(adxb->xpd);
@@ -368,7 +341,6 @@ void ADXB_Stop(ADXB adxb)
     adxb->stat = 0;
 }
 
-// 100% matching!
 void ADXB_Reset(ADXB adxb)
 {
     if (adxb->stat == 3) 
@@ -381,25 +353,21 @@ void ADXB_Reset(ADXB adxb)
     }
 }
 
-// 100% matching!
 Sint32 ADXB_GetDecDtLen(ADXB adxb) 
 {
     return adxb->total_decdtlen;
 }
 
-// 100% matching!
 Sint32 ADXB_GetDecNumSmpl(ADXB adxb)
 {
     return adxb->total_decsmpl;
 }
 
-// 100% matching!
 ADXPD ADXB_GetAdxpd(ADXB adxb) 
 {
     return adxb->xpd;
 }
 
-// 100% matching!
 void ADXB_EvokeExpandMono(ADXB adxb, Sint32 nblk) 
 {
 	AdxDecPara *dp;
@@ -419,7 +387,6 @@ void ADXB_EvokeExpandMono(ADXB adxb, Sint32 nblk)
     ADXPD_Start(xpd);
 }
 
-// 100% matching!
 void ADXB_EvokeExpandSte(ADXB adxb, Sint32 nblk)
 {
 	AdxDecPara *dp;
@@ -439,7 +406,6 @@ void ADXB_EvokeExpandSte(ADXB adxb, Sint32 nblk)
     ADXPD_Start(xpd);
 }
 
-// 100% matching!
 void ADXB_EvokeDecode(ADXB adxb)
 {
 	AdxDecPara *dp;
@@ -501,7 +467,6 @@ void ADXB_EvokeDecode(ADXB adxb)
     }
 }
 
-// 100% matching!
 void memcpy2(Sint16 *dst, const Sint16 *src, Sint32 nword)
 {
     for ( ; nword > 0; nword--) 
@@ -510,20 +475,17 @@ void memcpy2(Sint16 *dst, const Sint16 *src, Sint32 nword)
     }
 }
 
-// 100% matching!
 void ADXB_CopyExtraBufSte(Sint16 *obuf, Sint32 obsize, Sint32 obdist, Sint32 nxsmpl)
 {
     memcpy2(obuf, &obuf[obsize], nxsmpl);
     memcpy2(&obuf[obdist], &obuf[obdist + obsize], nxsmpl);
 }
 
-// 100% matching!
 void ADXB_CopyExtraBufMono(Sint16 *obuf, Sint32 obsize, Sint32 xsize, Sint32 nxsmpl)
 {
     memcpy2(obuf, &obuf[obsize], nxsmpl);
 }
 
-// 100% matching!
 void ADXB_EndDecode(ADXB adxb)
 {
 	AdxDecPara *dp;
@@ -583,7 +545,6 @@ void ADXB_EndDecode(ADXB adxb)
     }
 }
 
-// 100% matching!
 void ADXB_ExecOneAdx(ADXB adxb) 
 {
     if (adxb->stat == 1)
@@ -615,7 +576,6 @@ void ADXB_ExecOneAdx(ADXB adxb)
     }
 }
 
-// 100% matching!
 void ADXB_ExecHndl(ADXB adxb) 
 {
     if (adxb->fmttype == 0) 
@@ -640,7 +600,6 @@ void ADXB_ExecHndl(ADXB adxb)
     }
 }
 
-// 100% matching!
 void ADXB_ExecServer(void) 
 {
     ADXB adxb;

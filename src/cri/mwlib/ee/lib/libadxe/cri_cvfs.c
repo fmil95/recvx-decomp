@@ -2,6 +2,8 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 char* volatile cvfs_build = "\ncvFs Ver.2.11 Build:Jan 26 2001 09:55:14\n";
 static CVF_FS_ERRFN cvfs_errfn = NULL;
 static void *cvfs_errobj = NULL; 
@@ -10,7 +12,6 @@ static CVS_FS_OBJ cvfs_obj[40];
 static CVF_FS_TBL cvfs_tbl[32];
 static Sint8 cvfs_defdev[9];
 
-// 100% matching!
 void cvFsCallUsrErrFn(void *obj, const Sint8 *msg, void *hndl)
 {
     if (cvfs_errfn != NULL) 
@@ -19,13 +20,11 @@ void cvFsCallUsrErrFn(void *obj, const Sint8 *msg, void *hndl)
     }
 }
 
-// 100% matching!
 void cvFsError(const Sint8 *msg)
 {
     cvFsCallUsrErrFn(&cvfs_errobj, msg, NULL);
 }
 
-// 100% matching!
 void cvFsInit(void) 
 {
     CVFS cvfs;
@@ -56,7 +55,6 @@ void cvFsInit(void)
     cvfs_init_cnt++;
 }
 
-// 100% matching!
 void cvFsFinish(void) 
 {
     CVFS cvfs;
@@ -93,7 +91,6 @@ void cvFsFinish(void)
     }
 }
 
-// 100% matching!
 void cvFsAddDev(Sint8 *devname, CVF_FS_VTBLFN vtblfn, void *init_prm)
 {
     CVFS_IF fsif;
@@ -117,7 +114,6 @@ void cvFsAddDev(Sint8 *devname, CVF_FS_VTBLFN vtblfn, void *init_prm)
     }
 }
 
-// 100% matching!
 static CVFS_IF addDevice(Sint8 *devname, CVF_FS_VTBLFN func)
 {
     Sint32 lp;
@@ -154,7 +150,6 @@ static CVFS_IF addDevice(Sint8 *devname, CVF_FS_VTBLFN func)
     return fsif;
 }
 
-// 100% matching!
 static CVFS_IF getDevice(const Sint8 *devname) 
 {
     Uint32 len;
@@ -173,7 +168,6 @@ static CVFS_IF getDevice(const Sint8 *devname)
     return NULL;
 }
 
-// 100% matching!
 static void toUpperStr(Sint8 *src)
 {
     Uint32 len;
@@ -190,7 +184,6 @@ static void toUpperStr(Sint8 *src)
     }
 }
 
-// 100% matching!
 void cvFsDelDev(Sint8 *devname)
 {
     Uint32 len;
@@ -214,7 +207,6 @@ void cvFsDelDev(Sint8 *devname)
     }
 }
 
-// 100% matching!
 void cvFsSetDefDev(Sint8 *devname)
 {
     Uint32 len;
@@ -244,7 +236,6 @@ void cvFsSetDefDev(Sint8 *devname)
     cvFsError((const Sint8*)"cvFsSetDefDev #2:unknown device name");
 }
 
-// 100% matching!
 static Sint32 isExistDev(const Sint8 *devname, Sint32 len)
 {
     Sint32 lp;
@@ -260,13 +251,11 @@ static Sint32 isExistDev(const Sint8 *devname, Sint32 len)
     return 0;
 }
 
-// 100% matching!
 Sint8* cvFsGetDefDev(void)
 {
     return cvfs_defdev;
 }
 
-// 100% matching!
 CVFS cvFsOpen(const Sint8 *fname, void *prm, CVE_FS_OP op_mode)
 {
     CVFS cvfs;
@@ -347,7 +336,6 @@ CVFS cvFsOpen(const Sint8 *fname, void *prm, CVE_FS_OP op_mode)
     return cvfs;
 }
 
-// 100% matching!
 static void* allocCvFsHn()
 {
     Sint32 lp;
@@ -368,7 +356,6 @@ static void* allocCvFsHn()
     return &cvfs_obj[lp];
 }
 
-// 100% matching!
 static void releaseCvFsHn(CVFS cvfs)
 {
     cvfs->obj = NULL;
@@ -376,7 +363,6 @@ static void releaseCvFsHn(CVFS cvfs)
     cvfs->vtbl = NULL;
 }
 
-// 100% matching!
 static void getDevName(Sint8 *dname, Sint8 *fname, const Sint8 *fn)
 {
     Sint32 dlp;
@@ -416,7 +402,6 @@ static void getDevName(Sint8 *dname, Sint8 *fname, const Sint8 *fn)
     toUpperStr(dname);
 }
 
-// 100% matching!
 static void getDefDev(Sint8 *dev)
 {
     Sint32 len;
@@ -433,7 +418,6 @@ static void getDefDev(Sint8 *dev)
     }
 }
 
-// 100% matching!
 void cvFsClose(CVFS cvfs)
 {
     if (cvfs == NULL) 
@@ -455,7 +439,6 @@ void cvFsClose(CVFS cvfs)
     }
 }
 
-// 100% matching!
 Sint32 cvFsTell(CVFS cvfs) 
 {
     Sint32 val;
@@ -481,7 +464,6 @@ Sint32 cvFsTell(CVFS cvfs)
     return val;
 }
 
-// 100% matching!
 Sint32 cvFsSeek(CVFS cvfs, Sint32 nsct, CVE_FS_SK sk_mode)
 {
     Sint32 val;
@@ -507,7 +489,6 @@ Sint32 cvFsSeek(CVFS cvfs, Sint32 nsct, CVE_FS_SK sk_mode)
     return val;
 }
 
-// 100% matching!
 Sint32 cvFsReqRd(CVFS cvfs, Sint32 nsct, void *buf)
 {
     Sint32 val;
@@ -533,7 +514,6 @@ Sint32 cvFsReqRd(CVFS cvfs, Sint32 nsct, void *buf)
     return val;
 }
 
-// 100% matching!
 Sint32 cvFsReqWr(CVFS cvfs, Sint32 nsct, void *buf)
 {
     Sint32 val;
@@ -559,7 +539,6 @@ Sint32 cvFsReqWr(CVFS cvfs, Sint32 nsct, void *buf)
     return val;
 }
 
-// 100% matching!
 void cvFsStopTr(CVFS cvfs) 
 {
     if (cvfs == NULL) 
@@ -576,7 +555,6 @@ void cvFsStopTr(CVFS cvfs)
     }
 }
 
-// 100% matching!
 void cvFsExecServer(void) 
 {
     CVFS_IF cvfsif;
@@ -593,7 +571,6 @@ void cvFsExecServer(void)
     }
 } 
 
-// 100% matching!
 CVE_FS_ST cvFsGetStat(CVFS cvfs)
 {
     CVE_FS_ST val;
@@ -619,7 +596,6 @@ CVE_FS_ST cvFsGetStat(CVFS cvfs)
     return val;
 }
 
-// 100% matching!
 Sint32 cvFsGetFileSize(const Sint8 *fname)
 {
     Sint32 val;
@@ -678,7 +654,6 @@ Sint32 cvFsGetFileSize(const Sint8 *fname)
     return val; 
 }
 
-// 100% matching!
 Sint32 cvFsGetFileSizeEx(const Sint8 *fname, void *prm)
 {
     Sint32 val;
@@ -737,7 +712,6 @@ Sint32 cvFsGetFileSizeEx(const Sint8 *fname, void *prm)
     return val; 
 }
 
-// 100% matching!
 Sint32 cvFsGetFreeSize(Sint8 *devname)
 {
     Sint32 val;
@@ -796,7 +770,6 @@ Sint32 cvFsGetFreeSize(Sint8 *devname)
     return val;
 }
 
-// 100% matching!
 Sint32 cvFsGetSctLen(CVFS cvfs)
 {
     Sint32 val;
@@ -822,7 +795,6 @@ Sint32 cvFsGetSctLen(CVFS cvfs)
     return val;
 }
 
-// 100% matching!
 void cvFsSetSctLen(CVFS cvfs, Sint32 sctlen)
 {
     if (cvfs == NULL)
@@ -839,7 +811,6 @@ void cvFsSetSctLen(CVFS cvfs, Sint32 sctlen)
     }
 }
 
-// 100% matching!
 Sint32 cvFsGetNumTr(CVFS cvfs)
 {
     Sint32 val;
@@ -865,7 +836,6 @@ Sint32 cvFsGetNumTr(CVFS cvfs)
     return val;
 }
 
-// 100% matching!
 Sint32 cvFsChangeDir(const Sint8 *dirname)
 {
     Sint32 ret;
@@ -924,7 +894,6 @@ Sint32 cvFsChangeDir(const Sint8 *dirname)
     return ret; 
 }
 
-// 100% matching!
 Sint32 cvFsIsExistFile(const Sint8 *fname)
 {
     Sint32 ret;
@@ -976,7 +945,6 @@ Sint32 cvFsIsExistFile(const Sint8 *fname)
     return ret; 
 }
 
-// 100% matching!
 Sint32 cvFsGetNumFiles(const Sint8 *devname)
 {
     Sint32 val;
@@ -998,7 +966,6 @@ Sint32 cvFsGetNumFiles(const Sint8 *devname)
     return val;
 }
 
-// 100% matching!
 static Sint32 getNumFilesAll(void)
 {
     CVFS_IF cvfsif;
@@ -1020,7 +987,6 @@ static Sint32 getNumFilesAll(void)
     return val;
 }
 
-// 100% matching!
 static Sint32 getNumFiles(const Sint8 *devname)
 {
     CVFS_IF cvfsif;
@@ -1049,7 +1015,6 @@ static Sint32 getNumFiles(const Sint8 *devname)
     return val;
 }
 
-// 100% matching!
 Sint32 cvFsLoadDirInfo(const Sint8 *name, void *inf, Sint32 num) 
 {
     Sint32 ret;
@@ -1083,7 +1048,6 @@ Sint32 cvFsLoadDirInfo(const Sint8 *name, void *inf, Sint32 num)
     return ret; 
 }
 
-// 100% matching!
 Sint32 cvFsGetMaxByteRate(CVFS cvfs)
 {
     Sint32 val;
@@ -1108,7 +1072,6 @@ Sint32 cvFsGetMaxByteRate(CVFS cvfs)
     return val;
 }
 
-// 100% matching!
 Sint32 cvFsMakeDir(const Sint8 *dirname)
 {
     Sint32 ret;
@@ -1167,7 +1130,6 @@ Sint32 cvFsMakeDir(const Sint8 *dirname)
     return ret; 
 }
 
-// 100% matching!
 Sint32 cvFsRemoveDir(const Sint8 *dirname)
 {
     Sint32 ret;
@@ -1226,7 +1188,6 @@ Sint32 cvFsRemoveDir(const Sint8 *dirname)
     return ret; 
 }
 
-// 100% matching!
 Sint32 cvFsDeleteFile(const Sint8 *fname)
 {
     Sint32 ret;
@@ -1285,7 +1246,6 @@ Sint32 cvFsDeleteFile(const Sint8 *fname)
     return ret; 
 }
 
-// 100% matching!
 Sint8* cvFsGetDevName(CVFS cvfs)
 {
     Sint32 lp;
@@ -1308,7 +1268,6 @@ Sint8* cvFsGetDevName(CVFS cvfs)
     return cvfs_tbl[lp].dname;
 }
 
-// 100% matching!
 void cvFsEntryErrFunc(CVF_FS_ERRFN errfn, void *obj)
 {
     if (errfn == NULL)
@@ -1323,7 +1282,6 @@ void cvFsEntryErrFunc(CVF_FS_ERRFN errfn, void *obj)
     }
 }
 
-// 100% matching!
 Sint32 cvFsOptFn1(CVFS cvfs, Sint32 p0, Sint32 p1, Sint32 p2)
 {
     Sint32 val;
@@ -1349,7 +1307,6 @@ Sint32 cvFsOptFn1(CVFS cvfs, Sint32 p0, Sint32 p1, Sint32 p2)
     return val;
 }
 
-// 100% matching!
 Sint32 cvFsOptFn2(CVFS cvfs, Sint32 p0, Sint32 p1, Sint32 p2)
 {
     Sint32 val;

@@ -5,9 +5,10 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 ADX_SJDEC adxsjd_obj[8] = { 0 };
 
-// 100% matching!
 void ADXSJD_Init(void) 
 {
     ADXB_Init();
@@ -15,13 +16,11 @@ void ADXSJD_Init(void)
     memset(adxsjd_obj, 0, sizeof(adxsjd_obj));
 }
 
-// 100% matching!
 void ADXSJD_Finish(void)
 {
     memset(adxsjd_obj, 0, sizeof(adxsjd_obj));
 }
 
-// 100% matching!
 void adxsjd_clear(ADXSJD sjd)
 {
     sjd->dtrpsmpl = -1;
@@ -43,7 +42,6 @@ void adxsjd_clear(ADXSJD sjd)
     sjd->empty_end = 0;
 }
 
-// 100% matching!
 ADXSJD ADXSJD_Create(SJ sji, Sint32 maxnch, SJ *sjo)
 {
     ADXSJD sjd;
@@ -107,7 +105,6 @@ ADXSJD ADXSJD_Create(SJ sji, Sint32 maxnch, SJ *sjo)
     return sjd;
 }
 
-// 100% matching!
 void ADXSJD_Destroy(ADXSJD sjd) 
 {
     ADXB adxb;
@@ -129,31 +126,26 @@ void ADXSJD_Destroy(ADXSJD sjd)
     }
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetStat(ADXSJD sjd)
 {
     return sjd->stat;
 }
 
-// 100% matching!
 void ADXSJD_SetInSj(ADXSJD sjd, SJ sj)
 {
     sjd->sji = sj;
 }
 
-// 100% matching!
 void ADXSJD_SetOutSj(ADXSJD sjd, Sint32 chno, SJ sj)
 {
     sjd->sjo[chno] = sj;
 }
 
-// 100% matching!
 void ADXSJD_SetMaxDecSmpl(ADXSJD sjd, Sint32 nsmpl)
 {
     sjd->maxdecsmpl = nsmpl;
 }
 
-// 100% matching!
 void ADXSJD_Start(ADXSJD sjd)
 {
     adxsjd_clear(sjd);
@@ -161,7 +153,6 @@ void ADXSJD_Start(ADXSJD sjd)
     sjd->stat = 1;
 }
 
-// 100% matching!
 void ADXSJD_Stop(ADXSJD sjd) 
 {
     ADXB_Stop(sjd->adxb);
@@ -169,7 +160,6 @@ void ADXSJD_Stop(ADXSJD sjd)
     sjd->stat = 0;
 }
 
-// 100% matching!
 void adxsjd_decode_prep(ADXSJD sjd)
 {
     ADXB adxb;
@@ -224,7 +214,6 @@ void adxsjd_decode_prep(ADXSJD sjd)
     sjd->stat = 2;
 }
 
-// 100% matching!
 void* adxsjd_get_wr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl) 
 {
     ADXSJD sjd;
@@ -267,7 +256,6 @@ void* adxsjd_get_wr(void *obj, Sint32 *wpos, Sint32 *nroom, Sint32 *lp_nsmpl)
     return ADXB_GetPcmBuf(sjd->adxb);
 }
 
-// 100% matching!
 void adxsjd_decexec_start(ADXSJD sjd) 
 {
     ADXB adxb;
@@ -318,7 +306,6 @@ void adxsjd_decexec_start(ADXSJD sjd)
     ADXB_Start(adxb);
 }
 
-// 100% matching!
 void adxsjd_decexec_end(ADXSJD sjd) 
 {
     ADXB adxb;
@@ -380,7 +367,6 @@ void adxsjd_decexec_end(ADXSJD sjd)
     ADXB_Reset(adxb);
 }
 
-// 100% matching!
 void adxsjd_decode_exec(ADXSJD sjd)
 {
     ADXB adxb;
@@ -400,7 +386,6 @@ void adxsjd_decode_exec(ADXSJD sjd)
     }
 }
 
-// 100% matching!
 void ADXSJD_ExecHndl(ADXSJD sjd)
 {
     if (sjd->stat == 2)
@@ -413,7 +398,6 @@ void ADXSJD_ExecHndl(ADXSJD sjd)
     }
 }
 
-// 100% matching!
 void ADXSJD_ExecServer(void) 
 {
     ADXSJD sjd;
@@ -430,177 +414,148 @@ void ADXSJD_ExecServer(void)
     }
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetDecDtLen(ADXSJD sjd) 
 {
     return sjd->total_decdtlen;
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetDecNumSmpl(ADXSJD sjd) 
 {
     return sjd->total_decsmpl;
 }
 
-// 100% matching!
 void ADXSJD_SetDecPos(ADXSJD sjd, Sint32 decpos) 
 {
     sjd->decpos = decpos;
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetDecPos(ADXSJD sjd) 
 {
     return sjd->decpos;
 }
 
-// 100% matching!
 void ADXSJD_EntryFltFunc(ADXSJD sjd, void (*f)(), void *obj)
 {
     sjd->dfltfunc = f;
     sjd->dfltobj = obj;
 }
 
-// 100% matching!
 void ADXSJD_EntryTrapFunc(ADXSJD sjd, void (*f)(), void *obj)
 {
     sjd->dtrpfunc = f;
     sjd->dtrpobj = obj;
 }
 
-// 100% matching!
 void ADXSJD_SetTrapNumSmpl(ADXSJD sjd, Sint32 nsmpl)
 {
     sjd->dtrpsmpl = nsmpl;
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetTrapNumSmpl(ADXSJD sjd)
 {
     return sjd->dtrpsmpl;
 }
 
-// 100% matching!
 void ADXSJD_SetTrapCnt(ADXSJD sjd, Sint32 nsmpl)
 {
     sjd->dtrpcnt = nsmpl;
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetTrapCnt(ADXSJD sjd)
 {
     return sjd->dtrpcnt;
 }
 
-// 100% matching!
 void ADXSJD_SetTrapDtLen(ADXSJD sjd, Sint32 nbyte)
 {
     sjd->dtrpdtlen = nbyte;
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetTrapDtLen(ADXSJD sjd)
 {
     return sjd->dtrpdtlen;
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetFormat(ADXSJD sjd)
 {
     return ADXB_GetFormat(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetSfreq(ADXSJD sjd)
 {
     return ADXB_GetSfreq(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetNumChan(ADXSJD sjd)
 {
     return ADXB_GetNumChan(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetOutBps(ADXSJD sjd)
 {
     return ADXB_GetOutBps(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetBlkSmpl(ADXSJD sjd)
 {
     return ADXB_GetBlkSmpl(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetBlkLen(ADXSJD sjd)
 {
     return ADXB_GetBlkLen(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetTotalNumSmpl(ADXSJD sjd)
 {
     return ADXB_GetTotalNumSmpl(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetCof(ADXSJD sjd)
 {
     return ADXB_GetCof(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetNumLoop(ADXSJD sjd)
 {
     return ADXB_GetNumLoop(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetLpInsNsmpl(ADXSJD sjd)
 {
     return ADXB_GetLpInsNsmpl(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetLpStartPos(ADXSJD sjd)
 {
     return ADXB_GetLpStartPos(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetLpStartOfst(ADXSJD sjd)
 {
     return ADXB_GetLpStartOfst(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetLpEndPos(ADXSJD sjd)
 {
     return ADXB_GetLpEndPos(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetLpEndOfst(ADXSJD sjd)
 {
     return ADXB_GetLpEndOfst(sjd->adxb);
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetHdrLen(ADXSJD sjd)
 {
     return sjd->hdrlen;
 }
 
-// 100% matching!
 Sint32 ADXSJD_GetFmtBps(ADXSJD sjd)
 {
     return ADXB_GetFmtBps(sjd->adxb);
 }
 
-// 100% matching!
 void* ADXSJD_GetSpsdInfo(ADXSJD sjd)
 {
     return sjd->spsdinfo;

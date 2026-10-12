@@ -4,6 +4,8 @@
 #include <stdio.h>
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 Char8* volatile sjx_build = "\nSJX Ver 1.00 Build:Jan 26 2001 09:59:55\n";
 Sint32 sjx_init_cnt = 0;
 void *sjx_eewk = NULL;
@@ -13,7 +15,6 @@ DTX sjx_dtx = NULL;
 Sint32 sjx_wklen = 0;
 Sint8 sjx_ee_work[2256] = { 0 };
 
-// 100% matching!
 void sjx_rcvcbf(void *obj, void *dt, Sint32 dtlen)
 {
     SJX_DTXFMT *fmt;
@@ -51,7 +52,6 @@ void sjx_rcvcbf(void *obj, void *dt, Sint32 dtlen)
     SJCRS_Unlock();
 }
 
-// 100% matching!
 void sjx_sndcbf(void *obj, void *dt, Sint32 dtlen)
 {
     SJX_DTXFMT *fmt;
@@ -108,13 +108,11 @@ label:
     fmt->ncmd = ncmd;
 }
 
-// 100% matching!
 void SJX_ExecServer(void) 
 {
     DTX_ExecServer();
 }
 
-// 100% matching!
 void SJX_Init(void)
 {
     if (sjx_init_cnt == 0)
@@ -155,13 +153,11 @@ void SJX_Init(void)
     sjx_init_cnt++;
 }
 
-// 100% matching!
 void SJX_Finish(void) 
 {
     sjx_init_cnt--;
 }
 
-// 100% matching!
 SJX SJX_Create(SJ sjsrc, SJ sjdst, Sint32 lin)
 {
     Sint32 i;
@@ -209,7 +205,6 @@ SJX SJX_Create(SJ sjsrc, SJ sjdst, Sint32 lin)
     return sjx;
 }
 
-// 100% matching!
 void SJX_Destroy(SJX sjx)
 {
     Sint32 arg[1];
@@ -221,7 +216,6 @@ void SJX_Destroy(SJX sjx)
     sjx->used = FALSE;
 }
 
-// 100% matching!
 void SJX_Reset(SJX sjx)
 {
     Sint32 arg[2];

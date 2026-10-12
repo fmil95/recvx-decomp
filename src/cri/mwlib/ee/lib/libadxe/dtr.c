@@ -8,11 +8,12 @@
 #include <eekernel.h>
 #include <sifrpc.h>
 
+// 100% byte-matching object! 
+
 Char8* volatile dtr_build = "\nDTR Ver.0.91 Build:Jan 26 2001 09:57:01\n";
 Sint32 dtr_init_cnt = 0;
 DTR_OBJ dtr_obj[16] = { 0 };
 
-// 100% matching!
 void DTR_ExecHndl(DTR dtr)
 {
     SJCK cks;
@@ -134,7 +135,6 @@ void DTR_ExecHndl(DTR dtr)
     }
 }
 
-// 100% matching!
 void DTR_ExecServer(void) 
 {
     Sint32 i;
@@ -153,7 +153,6 @@ void DTR_ExecServer(void)
     DTX_ExecServer();
 }
 
-// 100% matching!
 void DTR_Init(void)
 {
     printf("DTR_Init: in (%d)\n", dtr_init_cnt);
@@ -168,13 +167,11 @@ void DTR_Init(void)
     printf("DTR_Init: out\n");
 }
 
-// 100% matching!
 void DTR_Finish(void) 
 {
     dtr_init_cnt--;
 }
 
-// 100% matching!
 DTR DTR_Create(SJ sjsrc, SJ sjdst)
 {
     Sint32 i;
@@ -220,7 +217,6 @@ DTR DTR_Create(SJ sjsrc, SJ sjdst)
     return dtr;
 }
 
-// 100% matching!
 void DTR_Destroy(DTR dtr) 
 {
     SJCRS_Lock();
@@ -230,7 +226,6 @@ void DTR_Destroy(DTR dtr)
     SJCRS_Unlock();
 }
 
-// 100% matching!
 void DTR_Start(DTR dtr) 
 {
     dtr->total_tbyte = 0;
@@ -238,7 +233,6 @@ void DTR_Start(DTR dtr)
     dtr->stat = DTR_STAT_EXEC;
 }
 
-// 100% matching!
 void DTR_Stop(DTR dtr)
 {
     dtr->stat = DTR_STAT_STOP;

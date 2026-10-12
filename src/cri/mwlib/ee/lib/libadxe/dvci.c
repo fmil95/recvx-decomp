@@ -6,6 +6,8 @@
 #include <stdio.h>
 //#include <string.h> /* ERROR: causes linker to fail */
 
+// 100% byte-matching object! 
+
 char const * const dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
 CVF_FS_ERRFN dvg_ci_err_func = NULL;
 void *dvg_ci_err_obj = NULL;
@@ -13,13 +15,11 @@ CVS_FS_IF dvg_ci_vtbl = { dvCiExecServer, dvCiEntryErrFunc, dvCiGetFileSize, NUL
 DVS_CI_OBJ dvg_ci_obj[40] = { 0 };
 Sint8 dvg_ci_fname[297] = { 0 };
 
-// 100% matching!
 CVFS_IF dvCiGetInterface()
 {
     return &dvg_ci_vtbl;
 }
 
-// 100% matching!
 static void dvci_wait(void)
 {
     Sint32 i;
@@ -27,7 +27,6 @@ static void dvci_wait(void)
     for (i = 0; i < 32768; i++);
 }
 
-// 100% matching!
 void dvci_call_errfn(DVCI dvci, const char *msg)
 {
     if (dvg_ci_err_func != NULL) 
@@ -36,7 +35,6 @@ void dvci_call_errfn(DVCI dvci, const char *msg)
     }
 }
 
-// 100% matching!
 void dvCiExecHndl(DVCI dvci)
 {
     Sint32 sync_stat;
@@ -65,7 +63,6 @@ void dvCiExecHndl(DVCI dvci)
     }
 }
 
-// 100% matching!
 void dvCiExecServer(void) 
 {
     DVCI dvci;
@@ -82,14 +79,12 @@ void dvCiExecServer(void)
     }
 }
 
-// 100% matching!
 void dvCiEntryErrFunc(CVF_FS_ERRFN errfn, void *obj)
 {
     dvg_ci_err_func = errfn;
     dvg_ci_err_obj = obj;
 }
 
-// 100% matching!
 void dvci_to_large_to_yen(Sint8 *fname)
 {
     Uint32 len;
@@ -111,7 +106,6 @@ void dvci_to_large_to_yen(Sint8 *fname)
     } 
 }
 
-// 100% matching!
 void dvci_conv_fname(const Sint8 *spath, Sint8 *tpath)
 {
     memset(tpath, 0, 297);
@@ -126,7 +120,6 @@ void dvci_conv_fname(const Sint8 *spath, Sint8 *tpath)
     dvci_to_large_to_yen(tpath);
 }
 
-// 100% matching!
 Sint32 dvCiGetFileSize(const Sint8 *fname) 
 {
     sceCdlFILE fp;
@@ -157,7 +150,6 @@ Sint32 dvCiGetFileSize(const Sint8 *fname)
     return fp.size;
 }
 
-// 100% matching!
 static DVCI dvci_alloc(void)
 {
     DVCI dvci;
@@ -176,13 +168,11 @@ static DVCI dvci_alloc(void)
     return dvci;
 }
 
-// 100% matching!
 static void dvci_free(DVCI dvci)
 {
     memset(dvci, 0, sizeof(DVS_CI_OBJ));
 }
 
-// 100% matching!
 void* dvCiOpen(Sint8 *fname, void *prm, CVE_FS_OP rw)
 {
     DVCI dvci;
@@ -251,7 +241,6 @@ void* dvCiOpen(Sint8 *fname, void *prm, CVE_FS_OP rw)
     return dvci;
 }
 
-// 100% matching!
 void dvCiClose(void *obj)
 {
     DVCI dvci;
@@ -271,7 +260,6 @@ void dvCiClose(void *obj)
     }
 }
 
-// 100% matching!
 Sint32 dvCiSeek(void *obj, Sint32 nsct, CVE_FS_SK mode)
 {
     DVCI dvci;
@@ -303,7 +291,6 @@ Sint32 dvCiSeek(void *obj, Sint32 nsct, CVE_FS_SK mode)
     return dvci->req_nsct;
 }
 
-// 100% matching!
 Sint32 dvCiTell(void *obj)
 {
     DVCI dvci;
@@ -320,7 +307,6 @@ Sint32 dvCiTell(void *obj)
     return dvci->req_nsct;
 }
 
-// 100% matching!
 Sint32 dvCiReqRd(void *obj, Sint32 nsct, void *buf)
 {
     DVCI dvci;
@@ -394,7 +380,6 @@ Sint32 dvCiReqRd(void *obj, Sint32 nsct, void *buf)
     return dvci->tr_nsct;
 }
 
-// 100% matching!
 void dvCiStopTr(void *obj)
 {
     DVCI dvci;
@@ -437,7 +422,6 @@ void dvCiStopTr(void *obj)
     }
 }
 
-// 100% matching!
 CVE_FS_ST dvCiGetStat(void *obj)
 {
     DVCI dvci;
@@ -454,13 +438,11 @@ CVE_FS_ST dvCiGetStat(void *obj)
     return (CVE_FS_ST)dvci->stat;
 }
 
-// 100% matching!
 Sint32 dvCiGetSctLen(void *obj)
 {
     return 2048;
 }
 
-// 100% matching!
 Sint32 dvCiGetNumTr(void *obj)
 {
     DVCI dvci;

@@ -2,11 +2,12 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 void (*adxerr_func)(void *obj, const Sint8 *msg) = NULL;
 void *adxerr_obj = NULL;
 Sint8 adxerr_msg[256] __attribute__((aligned(64))) = { 0 }; 
 
-// 100% matching!
 void ADXERR_Init(void)
 {
     memset(adxerr_msg, 0, sizeof(adxerr_msg));
@@ -15,7 +16,6 @@ void ADXERR_Init(void)
     adxerr_obj = NULL;
 }
 
-// 100% matching!
 void ADXERR_Finish(void) 
 {
     memset(adxerr_msg, 0, sizeof(adxerr_msg));
@@ -24,14 +24,12 @@ void ADXERR_Finish(void)
     adxerr_obj = NULL;
 }
 
-// 100% matching! 
 void ADXERR_EntryErrFunc(void (*func)(), void *obj)
 {
     adxerr_func = func; 
     adxerr_obj = obj;
 }
 
-// 100% matching!
 void ADXERR_CallErrFunc1(const Sint8 *msg) 
 {
     strncpy((char*)adxerr_msg, (char*)msg, sizeof(adxerr_msg) - 1);
@@ -42,7 +40,6 @@ void ADXERR_CallErrFunc1(const Sint8 *msg)
     }
 }
 
-// 100% matching! 
 void ADXERR_CallErrFunc2(const Sint8 *msg1, const Sint8 *msg2)
 {
     strncpy((char*)adxerr_msg, (char*)msg1, sizeof(adxerr_msg) - 1);
@@ -54,7 +51,6 @@ void ADXERR_CallErrFunc2(const Sint8 *msg1, const Sint8 *msg2)
     }
 }
 
-// 100% matching!
 void ADXERR_ItoA(Sint32 val, Sint8 *str, Sint32 len)
 {
     static Sint8 buf[32];
@@ -86,7 +82,6 @@ void ADXERR_ItoA(Sint32 val, Sint8 *str, Sint32 len)
     str[i] = '\0';
 }
 
-// 100% matching!
 void ADXERR_ItoA2(Sint32 val, Sint32 val2, Sint8 *str, Sint32 len) 
 {
     ADXERR_ItoA(val, str, len);

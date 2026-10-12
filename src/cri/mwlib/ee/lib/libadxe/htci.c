@@ -4,6 +4,8 @@
 #include <stdio.h>
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 char* const htci_build = "\nhtCi Ver.2.16 Build:Jan 26 2001 09:56:20\n";
 CVF_FS_ERRFN htg_ci_err_func = NULL;
 void *htg_ci_err_obj = NULL;
@@ -11,13 +13,11 @@ CVS_FS_IF htci_vtbl = { htCiExecServer, htCiEntryErrFunc, htCiGetFileSize, NULL,
 HTS_CI_OBJ htg_ci_obj[13] = { 0 };
 Uint8 htg_ci_fname[297] = { 0 };
 
-// 100% matching!
 CVFS_IF htCiGetInterface(void)
 {
     return &htci_vtbl;
 }
 
-// 100% matching!
 void htci_wait(void) 
 {
     Sint32 i;
@@ -25,7 +25,6 @@ void htci_wait(void)
     for (i = 0; i < 32768; i++);
 }
 
-// 100% matching!
 void htci_call_errfn(HTCI htci, const char *msg)
 {
     if (htg_ci_err_func != NULL) 
@@ -34,7 +33,6 @@ void htci_call_errfn(HTCI htci, const char *msg)
     }
 }
 
-// 100% matching!
 Sint32 htci_is_one_excute(HTCI htci)
 {
     if (sceIoctl(htci->fd, SCE_FS_EXECUTING, &htci->end_fg) < 0) 
@@ -47,7 +45,6 @@ Sint32 htci_is_one_excute(HTCI htci)
     }
 }
 
-// 100% matching!
 Sint32 htci_is_all_excute(void)
 {
     Sint32 i;
@@ -63,13 +60,11 @@ Sint32 htci_is_all_excute(void)
     return 1;
 }
 
-// 100% matching!
 void htci_wait_io(void) 
 {
     while (htci_is_all_excute() == 0);
 }
 
-// 100% matching!
 Sint32 htci_wait_by_fd(int fd)
 {
     Sint32 end_fg;
@@ -86,7 +81,6 @@ Sint32 htci_wait_by_fd(int fd)
     return 0;
 }
 
-// 100% matching!
 void htCiExecHndl(HTCI htci)
 {
     Sint32 sync_stat;
@@ -123,7 +117,6 @@ void htCiExecHndl(HTCI htci)
     }
 }
 
-// 100% matching!
 void htCiExecServer(void) 
 {
     HTCI htci;
@@ -140,14 +133,12 @@ void htCiExecServer(void)
     }
 }
 
-// 100% matching!
 void htCiEntryErrFunc(CVF_FS_ERRFN errfn, void *obj)
 {
     htg_ci_err_func = errfn;
     htg_ci_err_obj = obj;
 }
 
-// 100% matching!
 void htci_conv_fname(const Char8 *spath, Char8 *tpath)  
 {
     Sint32 i;
@@ -182,7 +173,6 @@ void htci_conv_fname(const Char8 *spath, Char8 *tpath)
     } 
 }
 
-// 100% matching!
 Sint32 htCiGetFileSize(const Sint8 *fname)
 {
     Sint32 fsize;
@@ -243,7 +233,6 @@ Sint32 htCiGetFileSize(const Sint8 *fname)
     return fsize;
 }
 
-// 100% matching!
 Sint32 htci_get_fsize_opened(Sint32 fd) 
 {
     Sint32 fsize;
@@ -262,7 +251,6 @@ Sint32 htci_get_fsize_opened(Sint32 fd)
     return (fsize <= -1) ? 0 : fsize;
 }
 
-// 100% matching!
 HTCI htci_alloc(void) 
 {
     HTCI htci;
@@ -281,13 +269,11 @@ HTCI htci_alloc(void)
     return htci;
 }
 
-// 100% matching!
 void htci_free(HTCI htci)
 {
     memset(htci, 0, sizeof(HTS_CI_OBJ));
 }
 
-// 100% matching!
 void* htCiOpen(Sint8 *fname, void *prm, CVE_FS_OP rw)
 {
     HTCI htci;
@@ -376,7 +362,6 @@ void* htCiOpen(Sint8 *fname, void *prm, CVE_FS_OP rw)
     return htci;
 }
 
-// 100% matching!
 void htCiClose(void *obj)
 {
     HTCI htci;
@@ -406,7 +391,6 @@ void htCiClose(void *obj)
     }
 }
 
-// 100% matching!
 Sint32 htCiSeek(void *obj, Sint32 nsct, CVE_FS_SK mode)
 {
     HTCI htci;
@@ -438,7 +422,6 @@ Sint32 htCiSeek(void *obj, Sint32 nsct, CVE_FS_SK mode)
     return htci->req_nsct;
 }
 
-// 100% matching!
 Sint32 htCiTell(void *obj)
 {
     HTCI htci;
@@ -455,7 +438,6 @@ Sint32 htCiTell(void *obj)
     return htci->req_nsct;
 }
 
-// 100% matching!
 Sint32 htCiReqRd(void *obj, Sint32 nsct, void *buf)
 {
     HTCI htci;
@@ -508,7 +490,6 @@ Sint32 htCiReqRd(void *obj, Sint32 nsct, void *buf)
     return htci->tr_nsct;
 }
 
-// 100% matching!
 void htCiStopTr(void *obj)
 {
     HTCI htci;
@@ -543,7 +524,6 @@ void htCiStopTr(void *obj)
     }
 }
 
-// 100% matching!
 CVE_FS_ST htCiGetStat(void *obj)
 {
     HTCI htci;
@@ -560,13 +540,11 @@ CVE_FS_ST htCiGetStat(void *obj)
     return (CVE_FS_ST)htci->stat;
 }
 
-// 100% matching!
 Sint32 htCiGetSctLen(void *obj)
 {
     return 2048;
 }
 
-// 100% matching!
 Sint32 htCiGetNumTr(void *obj)
 {
     HTCI htci;

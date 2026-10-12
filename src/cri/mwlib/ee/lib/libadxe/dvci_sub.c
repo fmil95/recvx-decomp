@@ -4,11 +4,12 @@
 #include <stdio.h>
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 static DVCI_FLIST_TBL dvg_flist_tbl = { 0 };
 static Sint8 dvg_rbuf[4096] __attribute__((aligned(64)));
 sceCdRMode dvg_ci_cdrmode = { 0 };
 
-// 100% matching!
 static void conv_to_tpath(Sint8 *spath, Sint8 *tpath)
 {
     strcpy(spath, tpath);
@@ -21,7 +22,6 @@ static void conv_to_tpath(Sint8 *spath, Sint8 *tpath)
     dvci_to_large_to_yen(spath);
 }
 
-// 100% matching!
 static Sint32 analysis_flist(void *inf, Sint8 *buf, Sint32 num)
 {
     Sint32 pos;
@@ -60,7 +60,6 @@ static Sint32 analysis_flist(void *inf, Sint8 *buf, Sint32 num)
     return len;
 }
 
-// 100% matching!
 static Sint32 load_flist(Sint8 *fname, Sint8 *rbuf)
 {
     sceCdlFILE fp;
@@ -76,7 +75,6 @@ static Sint32 load_flist(Sint8 *fname, Sint8 *rbuf)
     return 1;
 }
 
-// 100% matching!
 static Sint32 search_fstate(void *inf, Sint32 num)
 {
     Char8 fname[128] = { 0 };
@@ -125,7 +123,6 @@ static Sint32 search_fstate(void *inf, Sint32 num)
     return found;
 }
 
-// 100% matching!
 static void get_fp_from_fname(sceCdlFILE *fp, const Sint8 *fname, void *inf, Sint32 num)
 {
     Sint32 lp;
@@ -149,13 +146,11 @@ static void get_fp_from_fname(sceCdlFILE *fp, const Sint8 *fname, void *inf, Sin
     fp->size = 0;
 }
 
-// 100% matching!
 void dvci_init_flist(void) 
 {
     *(Sint64*)&dvg_flist_tbl = 0;
 }
 
-// 100% matching!
 void dvci_get_fstate(const Sint8 *fname, sceCdlFILE *fp)
 {
     fp->lsn = 0;
@@ -168,7 +163,6 @@ void dvci_get_fstate(const Sint8 *fname, sceCdlFILE *fp)
     }
 }
 
-// 100% matching!
 Sint32 dvCiLoadFpCache(Sint8 *fls_fname, Sint8 *fpc_ptr, Sint32 fpc_size)
 {
     Char8 fname[128] = { 0 };
@@ -199,7 +193,6 @@ Sint32 dvCiLoadFpCache(Sint8 *fls_fname, Sint8 *fpc_ptr, Sint32 fpc_size)
     return search_fstate(fpc_ptr, analysis_flist(fpc_ptr, dvg_rbuf, (Uint32)fpc_size / 140)) * 140;
 }
 
-// 100% matching!
 void dvCiSetRdMode(Sint32 nrtry, Sint32 speed, Sint32 dtype)
 {
     dvg_ci_cdrmode.trycount = nrtry;

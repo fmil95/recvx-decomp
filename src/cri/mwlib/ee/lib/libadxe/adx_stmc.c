@@ -4,6 +4,8 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 Sint32 adxstmf_rtim_ofst = 0; 
 Sint32 adxstmf_rtim_num = 8; 
 Sint32 adxstmf_nrml_ofst = 8;
@@ -12,20 +14,17 @@ Sint32 adxstmf_num_rtry = -1;
 Sint32 adxstm_sj_internal_error_cnt = 0;
 ADXSTM_FILE adxstmf_obj[40] = { 0 };
 
-// 100% matching!
 void ADXT_SetupRtimeNumStm(Sint32 num)
 {
     adxstmf_rtim_num = num;
 }
 
-// 100% matching!
 void ADXT_SetupNrmlNumStm(Sint32 num)
 {
     adxstmf_nrml_num = num;
     adxstmf_nrml_ofst = 40 - num;
 }
 
-// 100% matching!
 Sint32 ADXSTM_Init(void)
 {
     memset(adxstmf_obj, 0, sizeof(adxstmf_obj));
@@ -33,19 +32,16 @@ Sint32 ADXSTM_Init(void)
     return 1;
 }
 
-// 100% matching!
 void ADXSTM_Reset(void) 
 {
 
 }
 
-// 100% matching!
 void ADXSTM_Finish(void)
 {
     cvFsFinish();
 }
 
-// 100% matching!
 void ADXSTMF_SetupHandleMember(ADXSTMF stmf, CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
 {
     stmf->stat = 1;
@@ -69,7 +65,6 @@ void ADXSTMF_SetupHandleMember(ADXSTMF stmf, CVFS fp, Sint32 fofst, Sint32 fsize
     stmf->used = TRUE;
 }
 
-// 100% matching!
 ADXSTMF ADXSTMF_CreateCvfsRt(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
 {
     ADXSTMF stmf;
@@ -97,7 +92,6 @@ ADXSTMF ADXSTMF_CreateCvfsRt(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
     return stmf;
 }
 
-// 100% matching!
 ADXSTMF ADXSTMF_CreateCvfs(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
 {
     ADXSTMF stmf;
@@ -125,13 +119,11 @@ ADXSTMF ADXSTMF_CreateCvfs(CVFS fp, Sint32 fofst, Sint32 fsize, SJ sj)
     return stmf;
 }
 
-// 100% matching!
 void ADXSTMF_Destroy(ADXSTMF stmf)
 {
     memset(stmf, 0, sizeof(ADXSTM_FILE));
 }
 
-// 100% matching!
 ADXSTM ADXSTM_OpenFileRangeEx(const Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct, SJ sj)
 {
     ADXSTMF stmf;
@@ -156,7 +148,6 @@ ADXSTM ADXSTM_OpenFileRangeEx(const Sint8 *fname, void *dir, Sint32 ofst, Sint32
     return stmf;
 }
 
-// 100% matching!
 ADXSTM ADXSTM_OpenFileRangeExRt(const Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct, SJ sj)
 {
     ADXSTMF stmf;
@@ -181,7 +172,6 @@ ADXSTM ADXSTM_OpenFileRangeExRt(const Sint8 *fname, void *dir, Sint32 ofst, Sint
     return stmf;
 }
 
-// 100% matching!
 ADXSTM ADXSTM_OpenFnameEx(const Sint8 *fname, void *dir, SJ sj)
 {
     Sint32 fsize;
@@ -216,7 +206,6 @@ ADXSTM ADXSTM_OpenFnameEx(const Sint8 *fname, void *dir, SJ sj)
     return stmf;
 }
 
-// 100% matching!
 ADXSTM ADXSTM_OpenFname(const Sint8 *fname, SJ sj)
 {
     Sint32 fsize;
@@ -244,13 +233,11 @@ ADXSTM ADXSTM_OpenFname(const Sint8 *fname, SJ sj)
     return stmf;
 }
 
-// 100% matching!
 ADXSTM ADXSTM_OpenFileRange(const Sint8 *fname, Sint32 ofst, Sint32 nsct, SJ sj)
 {
     return ADXSTM_OpenFileRangeExRt(fname, NULL, ofst, nsct, sj);
 }
 
-// 100% matching!
 void ADXSTM_Close(ADXSTM stm) 
 {
     ADXSTMF stmf;
@@ -270,7 +257,6 @@ void ADXSTM_Close(ADXSTM stm)
     }
 }
 
-// 100% matching!
 Sint32 ADXSTM_GetStat(ADXSTM stm) 
 {
     ADXSTMF stmf;
@@ -280,7 +266,6 @@ Sint32 ADXSTM_GetStat(ADXSTM stm)
     return stmf->stat;
 }
 
-// 100% matching!
 Sint32 ADXSTM_Seek(ADXSTM stm, Sint32 ofst) 
 {
     ADXSTMF stmf;
@@ -292,7 +277,6 @@ Sint32 ADXSTM_Seek(ADXSTM stm, Sint32 ofst)
     return cvFsTell(stmf->fp) - stmf->fofst;
 }
 
-// 100% matching!
 Sint32 ADXSTM_Tell(ADXSTM stm)
 {
     ADXSTMF stmf;
@@ -307,7 +291,6 @@ Sint32 ADXSTM_Tell(ADXSTM stm)
     return 0;
 }
 
-// 100% matching!
 Sint32 ADXSTM_Start(ADXSTM stm) 
 {
     ADXSTMF stmf;
@@ -336,7 +319,6 @@ Sint32 ADXSTM_Start(ADXSTM stm)
     return 1;
 }
 
-// 100% matching!
 void ADXSTM_Stop(ADXSTM stm) 
 {
     ADXSTMF stmf;
@@ -357,7 +339,6 @@ void ADXSTM_Stop(ADXSTM stm)
     stmf->stat = 1;
 }
 
-// 100% matching!
 void ADXSTM_EntryEosFunc(ADXSTM stm, void (*fn)(), void *obj)
 {
     ADXSTMF stmf;
@@ -368,7 +349,6 @@ void ADXSTM_EntryEosFunc(ADXSTM stm, void (*fn)(), void *obj)
     stmf->eosobj = obj;
 }
 
-// 100% matching!
 void ADXSTM_SetEos(ADXSTM stm, Sint32 esct)
 {
     ADXSTMF stmf;
@@ -385,13 +365,11 @@ void ADXSTM_SetEos(ADXSTM stm, Sint32 esct)
     }
 }
 
-// 100% matching!
 void adxstm_sj_internal_error(void) 
 {
     adxstm_sj_internal_error_cnt++;
 }
 
-// 100% matching!
 void adxstmf_stat_exec(ADXSTMF stmf) 
 {
     SJ sj;
@@ -516,7 +494,6 @@ void adxstmf_stat_exec(ADXSTMF stmf)
     }
 }
 
-// 100% matching!
 void ADXSTMF_ExecHndl(ADXSTMF stmf)
 {
     if (stmf->stat == 2) 
@@ -525,7 +502,6 @@ void ADXSTMF_ExecHndl(ADXSTMF stmf)
     }
 }
 
-// 100% matching!
 void ADXSTM_ExecServer(void)
 {
     ADXSTMF stmf;
@@ -542,7 +518,6 @@ void ADXSTM_ExecServer(void)
     }
 }
 
-// 100% matching!
 Sint32 ADXSTM_GetCurOfst(ADXSTM stm, Sint32 *ofst)
 {
     ADXSTMF stmf;
@@ -554,7 +529,6 @@ Sint32 ADXSTM_GetCurOfst(ADXSTM stm, Sint32 *ofst)
     return 1;
 }
 
-// 100% matching!
 Sint32 ADXSTM_GetBufSize(ADXSTM stm, Sint32 *min, Sint32 *max) 
 {
     ADXSTMF stmf;
@@ -567,7 +541,6 @@ Sint32 ADXSTM_GetBufSize(ADXSTM stm, Sint32 *min, Sint32 *max)
     return 1;
 }
 
-// 100% matching!
 SJ ADXSTM_GetSj(ADXSTM stm) 
 {
     ADXSTMF stmf;
@@ -577,7 +550,6 @@ SJ ADXSTM_GetSj(ADXSTM stm)
     return stmf->sj;
 }
 
-// 100% matching!
 Sint32 ADXSTM_SetBufSize(ADXSTM stm, Sint32 min, Sint32 max)
 {
     ADXSTMF stmf;
@@ -590,7 +562,6 @@ Sint32 ADXSTM_SetBufSize(ADXSTM stm, Sint32 min, Sint32 max)
     return 1;
 }
 
-// 100% matching!
 Sint32 ADXSTM_SetReqRdSize(ADXSTM stm, Sint32 sct) 
 {
     ADXSTMF stmf;
@@ -602,13 +573,11 @@ Sint32 ADXSTM_SetReqRdSize(ADXSTM stm, Sint32 sct)
     return 1;
 }
 
-// 100% matching!
 void ADXSTM_EntryErrFunc(void (*errfn)(), void *obj)
 {
 
 }
 
-// 100% matching!
 Sint32 ADXSTM_GetFileLen(ADXSTM stm)
 {
     ADXSTMF stmf;
@@ -618,7 +587,6 @@ Sint32 ADXSTM_GetFileLen(ADXSTM stm)
     return stmf->fsize;
 }
 
-// 100% matching!
 void ADXSTM_GetCvdfsStat(ADXSTM stm, Sint32 *cvfsst) 
 {
     ADXSTMF stmf;
@@ -628,7 +596,6 @@ void ADXSTM_GetCvdfsStat(ADXSTM stm, Sint32 *cvfsst)
     *cvfsst = cvFsGetStat(stmf->fp);
 }
 
-// 100% matching!
 Sint32 ADXSTM_GetFad(const Sint8 *fname, Sint32 *fad)
 {
     *fad = 0;
@@ -636,7 +603,6 @@ Sint32 ADXSTM_GetFad(const Sint8 *fname, Sint32 *fad)
     return 1;
 }
 
-// 100% matching!
 Sint32 ADXSTM_GetFsizeSct(const Sint8 *fname, Sint32 *fnsct) 
 {
     Sint32 fsize;
@@ -648,7 +614,6 @@ Sint32 ADXSTM_GetFsizeSct(const Sint8 *fname, Sint32 *fnsct)
     return 1;
 }
 
-// 100% matching!
 Sint32 ADXSTM_GetFsizeByte(const Sint8 *fname, Sint32 *fsize) 
 {
     *fsize = cvFsGetFileSize(fname);
@@ -656,7 +621,6 @@ Sint32 ADXSTM_GetFsizeByte(const Sint8 *fname, Sint32 *fsize)
     return 1;
 }
 
-// 100% matching!
 void ADXSTM_SetSj(ADXSTM stm, SJ sj)
 {
     ADXSTMF stmf;
@@ -668,7 +632,6 @@ void ADXSTM_SetSj(ADXSTM stm, SJ sj)
     stmf->minsize = stmf->maxsize = SJ_GetNumData(sj, 0);
 }
 
-// 100% matching!
 void ADXSTM_SetRdSct(ADXSTM stm, Sint32 nsct) 
 {
     ADXSTMF stmf;
@@ -678,7 +641,6 @@ void ADXSTM_SetRdSct(ADXSTM stm, Sint32 nsct)
     stmf->fsize = nsct * 2048;
 }
 
-// 100% matching!
 void ADXSTM_SetOfst(ADXSTM stm, Sint32 ofst) 
 {
     ADXSTMF stmf;
@@ -690,7 +652,6 @@ void ADXSTM_SetOfst(ADXSTM stm, Sint32 ofst)
     ADXSTM_Seek(stm, 0);
 }
 
-// 100% matching!
 void ADXT_SetNumRetry(Sint32 num) 
 {
     adxstmf_num_rtry = num;

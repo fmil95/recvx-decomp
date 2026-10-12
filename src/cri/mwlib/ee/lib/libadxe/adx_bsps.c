@@ -3,7 +3,8 @@
 
 //#include <string.h>
 
-// 100% matching!
+// 100% byte-matching object! 
+
 Sint32 ADX_DecodeInfoSpsd(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk, Sint16 *cdc)
 {
 	Uint8 bitsize; 
@@ -68,7 +69,6 @@ Sint32 ADX_DecodeInfoSpsd(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code
     return 0;
 }
 
-// 100% matching!
 Sint32 ADXB_DecodeHeaderSpsd(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
 	Sint16 dlen;
@@ -117,7 +117,6 @@ Sint32 ADXB_DecodeHeaderSpsd(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     return dlen;
 }
 
-// 100% matching!
 void ADXB_ExecOneSpsd(ADXB adxb) 
 {
 	AdxDecPara *dp;
@@ -177,7 +176,6 @@ void ADXB_ExecOneSpsd(ADXB adxb)
     }
 }
 
-// 100% matching!
 Sint32 ADXB_CheckSpsd(Sint8 *ibuf)
 {
     return memcmp(ibuf, "SPSD", 4) == 0;

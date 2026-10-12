@@ -7,13 +7,14 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 Uint32 adxf_tcnt[10] = { 0 };
 Uint32 adxf_chkp_tcnt[10] = { 0 };
 static Sint32 work[2112];
 static Sint8 *wrk32;
 static Sint32 *buf;
 
-// 100% matching!
 void adxf_SetCmdHstry(Sint32 cmdid, Sint32 fg, Sint32 prm0, Sint32 prm1, Sint32 prm2)
 {
     ADXF_CMD_HSTRY *hstry;
@@ -40,7 +41,6 @@ void adxf_SetCmdHstry(Sint32 cmdid, Sint32 fg, Sint32 prm0, Sint32 prm1, Sint32 
     hstry->prm[2] = prm2;
 }
 
-// 100% matching!
 void adxf_wait_1ms(void) 
 {
     Sint32 i;
@@ -48,7 +48,6 @@ void adxf_wait_1ms(void)
     for (i = 0; i < 50000; i++);
 }
 
-// 100% matching!
 Sint32 adxf_ChkPrmPt(Sint32 ptid, void *ptinfo)
 {
     if ((Uint32)ptid >= ADXF_PART_MAX) 
@@ -68,7 +67,6 @@ Sint32 adxf_ChkPrmPt(Sint32 ptid, void *ptinfo)
     return ADXF_ERR_OK;
 }
 
-// 100% matching!
 Sint32 adxf_LoadData(ADXF adxf, Sint32 nsct, void *rdbuf) 
 {
     while (ADXF_ReadNw32(adxf, nsct, rdbuf) <= 0) 
@@ -97,7 +95,6 @@ Sint32 adxf_LoadData(ADXF adxf, Sint32 nsct, void *rdbuf)
     return ADXF_GetNumReadSct(adxf);
 }
 
-// 100% matching!
 Sint32 ADXF_LoadPartition(Sint32 ptid, Char8 *fname, void *ptinfo, Sint32 nfile)
 {
     Sint32 ret;
@@ -221,7 +218,6 @@ label:
     return ret;
 }
 
-// 100% matching!
 Sint32 ADXF_LoadPartitionEx(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
 {
 	Sint32 ret;
@@ -344,7 +340,6 @@ label:
     return ret;
 }
 
-// 100% matching!
 Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo) 
 {
     Sint32 rqsct;
@@ -409,7 +404,6 @@ Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
     return ret;
 }
 
-// 100% matching!
 void adxf_CloseLdptnwHn(void) 
 {
     ADXF_Close(adxf_ldptnw_hn);
@@ -421,7 +415,6 @@ void adxf_CloseLdptnwHn(void)
     adxf_flno = 0;
 }
 
-// 100% matching!
 void ADXF_StopPtLd(void)
 {
     if ((adxf_ldptnw_hn != NULL) && (adxf_ldptnw_ptid >= 0)) 
@@ -435,7 +428,6 @@ void ADXF_StopPtLd(void)
     }
 }
 
-// 100% matching!
 Sint32 ADXF_GetPtStat(Sint32 ptid) 
 {
     Uint16 *infotbl;
@@ -527,7 +519,6 @@ Sint32 ADXF_GetPtStat(Sint32 ptid)
     return stat;
 }
 
-// 100% matching!
 Sint32 ADXF_AddPartition(Sint32 ptid, Char8 *fname, void *ptinfo, Sint32 nfile)
 {
 	Sint32 ret;
@@ -657,7 +648,6 @@ label:
     return ret;
 }
 
-// 100% matching!
 Sint32 ADXF_GetPtinfoSize(Sint32 ptid)
 {
     ADXF_PTINFO *info;
@@ -667,7 +657,6 @@ Sint32 ADXF_GetPtinfoSize(Sint32 ptid)
     return info->size;
 }
 
-// 100% matching!
 ADXF adxf_AllocAdxFs(void) 
 {
     Sint32 i;
@@ -687,7 +676,6 @@ ADXF adxf_AllocAdxFs(void)
     return adxf;
 }
 
-// 100% matching!
 ADXF adxf_CreateAdxFs(void) 
 {
     ADXF adxf;
@@ -719,7 +707,6 @@ ADXF adxf_CreateAdxFs(void)
     return adxf;
 }
 
-// 100% matching!
 Sint32 adxf_SetFileInfoEx(ADXF adxf, Sint8 *fname, void *atr)
 {
     Sint32 fnsct;
@@ -758,7 +745,6 @@ Sint32 adxf_SetFileInfoEx(ADXF adxf, Sint8 *fname, void *atr)
     return ADXF_ERR_OK;
 }
 
-// 100% matching!
 ADXF ADXF_Open(Char8 *fname, void *atr)
 {
     ADXF adxf;
@@ -783,7 +769,6 @@ ADXF ADXF_Open(Char8 *fname, void *atr)
     return adxf;
 }
 
-// 100% matching!
 Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
 {
     Sint32 fnsct;
@@ -814,7 +799,6 @@ Sint32 adxf_SetAfsFileInfo(ADXF adxf, Sint32 ptid, Sint32 flid)
     return ADXF_ERR_OK;
 }
 
-// 100% matching!
 ADXF ADXF_OpenAfs(Sint32 ptid, Sint32 flid)
 {
     ADXF adxf;
@@ -839,7 +823,6 @@ ADXF ADXF_OpenAfs(Sint32 ptid, Sint32 flid)
     return adxf;
 }
 
-// 100% matching!
 void adxf_CloseSjStm(ADXF adxf)
 {
     if ((adxf->sj != NULL) && (adxf->sjflag == 0)) 
@@ -855,7 +838,6 @@ void adxf_CloseSjStm(ADXF adxf)
     }
 }
 
-// 100% matching!
 void ADXF_Close(ADXF adxf)
 {
     adxf_SetCmdHstry(3, 0, (Sint32)adxf, -1, -1);
@@ -882,7 +864,6 @@ void ADXF_Close(ADXF adxf)
     }
 }
 
-// 100% matching!
 void ADXF_CloseAll(void)
 {
     Sint32 i;
@@ -896,7 +877,6 @@ void ADXF_CloseAll(void)
     }
 }
 
-// 100% matching!
 Sint32 adxf_read_sj32(ADXF adxf, Sint32 nsct, SJ sj) 
 {
     Sint32 ret;
@@ -938,7 +918,6 @@ Sint32 adxf_read_sj32(ADXF adxf, Sint32 nsct, SJ sj)
     return ret;
 }
 
-// 100% matching!
 Sint32 ADXF_ReadSj32(ADXF adxf, Sint32 nsct, SJ sj)
 {
     Sint32 ret;
@@ -980,7 +959,6 @@ Sint32 ADXF_ReadSj32(ADXF adxf, Sint32 nsct, SJ sj)
     return ret;
 }
 
-// 100% matching!
 Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
 {
     SJ sj;
@@ -1090,7 +1068,6 @@ Sint32 ADXF_ReadNw32(ADXF adxf, Sint32 nsct, void *buf)
     return ADXF_ERR_OK;
 }
 
-// 100% matching!
 Sint32 ADXF_ReadNw(ADXF adxf, Sint32 nsct, void *buf)
 {
     if (((Sint32)buf & 0x3F)) 
@@ -1103,7 +1080,6 @@ Sint32 ADXF_ReadNw(ADXF adxf, Sint32 nsct, void *buf)
     return ADXF_ReadNw32(adxf, nsct, buf);
 }
 
-// 100% matching!
 Sint32 ADXF_Stop(ADXF adxf)
 {
     Sint32 rdsct;
@@ -1153,7 +1129,6 @@ Sint32 ADXF_Stop(ADXF adxf)
     }
 }
 
-// 100% matching!
 void adxf_ExecOne(ADXF adxf) 
 {
     Sint32 rdsct;
@@ -1175,7 +1150,6 @@ void adxf_ExecOne(ADXF adxf)
     }
 }
 
-// 100% matching!
 void ADXF_ExecServer(void)
 {
     Sint32 no;
@@ -1193,7 +1167,6 @@ void ADXF_ExecServer(void)
     ADXCRS_Unlock();
 }
 
-// 100% matching!
 Sint32 ADXF_Seek(ADXF adxf, Sint32 pos, Sint32 type)
 {
     adxf_SetCmdHstry(6, 0, (Sint32)adxf, pos, type);
@@ -1245,7 +1218,6 @@ Sint32 ADXF_Seek(ADXF adxf, Sint32 pos, Sint32 type)
     return adxf->skpos;
 }
 
-// 100% matching!
 Sint32 ADXF_Tell(ADXF adxf)
 {
     if (adxf == NULL) 
@@ -1258,7 +1230,6 @@ Sint32 ADXF_Tell(ADXF adxf)
     return adxf->skpos;
 }
 
-// 100% matching!
 Sint32 ADXF_GetFsizeSct(ADXF adxf)
 {
     if (adxf == NULL) 
@@ -1271,7 +1242,6 @@ Sint32 ADXF_GetFsizeSct(ADXF adxf)
     return adxf->fnsct;
 }
 
-// 100% matching!
 Sint32 ADXF_GetFsizeByte(ADXF adxf)
 {
     if (adxf == NULL) 
@@ -1284,7 +1254,6 @@ Sint32 ADXF_GetFsizeByte(ADXF adxf)
     return adxf->fsize;
 }
 
-// 100% matching!
 Sint32 ADXF_GetNumReqSct(ADXF adxf, Sint32 *seekpos)
 {
     if (adxf == NULL) 
@@ -1301,7 +1270,6 @@ Sint32 ADXF_GetNumReqSct(ADXF adxf, Sint32 *seekpos)
     return adxf->rqsct;
 }
 
-// 100% matching!
 Sint32 ADXF_GetNumReadSct(ADXF adxf)
 {
     if (adxf == NULL) 
@@ -1314,7 +1282,6 @@ Sint32 ADXF_GetNumReadSct(ADXF adxf)
     return adxf->rdsct;
 }
 
-// 100% matching!
 Sint32 ADXF_GetStat(ADXF adxf)
 {
     if (adxf == NULL)
@@ -1327,7 +1294,6 @@ Sint32 ADXF_GetStat(ADXF adxf)
     return adxf->stat;
 }
 
-// 100% matching!
 Sint32 adxf_ChkPrmGfr(Sint32 ptid, Sint32 flid)
 {
     ADXF_PTINFO *info;
@@ -1358,7 +1324,6 @@ Sint32 adxf_ChkPrmGfr(Sint32 ptid, Sint32 flid)
     return ADXF_ERR_OK;
 }
 
-// 100% matching!
 Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, Sint32 *fnsct)
 {
     ADXF_PTINFO *info;
@@ -1415,7 +1380,6 @@ Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, 
     return ret;
 }
 
-// 100% matching!
 Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, Sint32 *ofst, Sint32 *fnsct)
 {
     ADXF_PTINFO *info;
@@ -1478,13 +1442,11 @@ Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, 
     return ret;
 }
 
-// 100% matching!
 void ADXF_SetOcbiSw(Sint32 sw) 
 {
     adxf_ocbi_fg = sw;
 }
 
-// 100% matching!
 void ADXF_SetReqRdSct(ADXF adxf, Sint32 nsct)
 {
     if (adxf->stat == ADXF_STAT_READING) 

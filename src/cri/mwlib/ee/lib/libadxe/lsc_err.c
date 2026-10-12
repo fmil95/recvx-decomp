@@ -2,11 +2,12 @@
 
 #include <stdio.h>
 
+// 100% byte-matching object! 
+
 LSC_ERRFN lsc_err_func = NULL;
 void *lsc_err_obj = NULL;
 Sint8 lsc_err_msg[256] = { 0 }; 
 
-// 100% matching! 
 void LSC_EntryErrFunc(LSC_ERRFN errfn, void *obj) 
 {
     if (errfn == NULL) 
@@ -21,7 +22,6 @@ void LSC_EntryErrFunc(LSC_ERRFN errfn, void *obj)
     }
 }
 
-// 100% matching! 
 void LSC_CallErrFunc(Sint8 *fmt, ...)
 {
     __gnuc_va_list ap;

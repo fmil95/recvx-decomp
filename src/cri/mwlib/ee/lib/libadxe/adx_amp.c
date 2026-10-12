@@ -3,10 +3,11 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 Sint32 adxsmp_init_cnt = 0;
 ADX_AMP adxamp_obj[8] = { 0 };
 
-// 100% matching! 
 void ADXAMP_Init(void) 
 {
     if (adxsmp_init_cnt == 0) 
@@ -17,7 +18,6 @@ void ADXAMP_Init(void)
     adxsmp_init_cnt++;
 }
 
-// 100% matching!
 void ADXAMP_Finish(void) 
 {
     if (--adxsmp_init_cnt == 0) 
@@ -26,7 +26,6 @@ void ADXAMP_Finish(void)
     }
 }
 
-// 100% matching!
 ADXAMP ADXAMP_Create(Sint32 maxnch, SJ *sji, SJ *sjo) 
 {
     ADXAMP amp;
@@ -78,7 +77,6 @@ ADXAMP ADXAMP_Create(Sint32 maxnch, SJ *sji, SJ *sjo)
     return NULL;
 }
 
-// 100% matching!
 void ADXAMP_Destroy(ADXAMP amp) 
 {
     if (amp != NULL)
@@ -91,13 +89,11 @@ void ADXAMP_Destroy(ADXAMP amp)
     }
 }
 
-// 100% matching! 
 Sint32 ADXAMP_GetStat(ADXAMP amp)
 {
     return amp->stat;
 }
 
-// 100% matching!
 void ADXAMP_Start(ADXAMP amp) 
 {
     Sint32 chno;
@@ -112,13 +108,11 @@ void ADXAMP_Start(ADXAMP amp)
     amp->stat = 2;
 }
 
-// 100% matching!
 void ADXAMP_Stop(ADXAMP amp)
 {
     amp->stat = 0;
 }
 
-// 100% matching!
 void adxamp_extract(ADXAMP amp) 
 {
     Sint32 insmpl;
@@ -204,7 +198,6 @@ void adxamp_extract(ADXAMP amp)
     }
 }
 
-// 100% matching!
 void ADXAMP_ExecHndl(ADXAMP amp) 
 {
     if (amp->stat == 2)
@@ -213,7 +206,6 @@ void ADXAMP_ExecHndl(ADXAMP amp)
     }
 }
 
-// 100% matching!
 void ADXAMP_ExecServer(void)
 {
     ADXAMP amp;
@@ -230,43 +222,36 @@ void ADXAMP_ExecServer(void)
     } 
 }
 
-// 100% matching! 
 Sint32 ADXAMP_GetExtractNumSmpl(ADXAMP amp) 
 {
     return amp->total_exsmpl[0];
 }
 
-// 100% matching!
 void ADXAMP_SetSfreq(ADXAMP amp, Sint32 sfreq) 
 {
     amp->sfreq = sfreq;
 }
 
-// 100% matching! 
 Sint32 ADXAMP_GetSfreq(ADXAMP amp)
 {
     return amp->sfreq;
 }
 
-// 100% matching!
 void ADXAMP_SetFrmLen(ADXAMP amp, Float32 len_sec) 
 {
     amp->frm_len = len_sec;
 }
 
-// 100% matching! 
 Float32 ADXAMP_GetFrmLen(ADXAMP amp)
 {
     return amp->frm_len;
 }
 
-// 100% matching!
 void ADXAMP_SetFrmPrd(ADXAMP amp, Float32 prd_sec) 
 {
     amp->frm_prd = prd_sec;
 }
 
-// 100% matching! 
 Float32 ADXAMP_GetFrmPrd(ADXAMP amp) 
 {
     return amp->frm_prd;

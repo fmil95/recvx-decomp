@@ -4,7 +4,8 @@
 
 //#include <string.h>
 
-// 100% matching!
+// 100% byte-matching object! 
+
 void lsc_StatWait(LSC lsc)
 {
     LSC_SINFO *sinfo;
@@ -51,7 +52,6 @@ void lsc_StatWait(LSC lsc)
     }
 }
 
-// 100% matching! 
 void lsc_StatRead(LSC lsc) 
 {
     LSC_SINFO *sinfo;
@@ -83,7 +83,6 @@ void lsc_StatRead(LSC lsc)
     }
 }
 
-// 100% matching!
 void lsc_StatEnd(LSC lsc) 
 {
     static Sint8 fname[LSC_FNAME_MAX];
@@ -137,7 +136,6 @@ void lsc_StatEnd(LSC lsc)
     }
 }
 
-// 100% matching! 
 void lsc_ExecHndl(LSC lsc) 
 {
     if ((lsc->pause == TRUE) || (lsc->stat != LSC_STAT_EXEC) || (lsc->nstm <= 0)) 

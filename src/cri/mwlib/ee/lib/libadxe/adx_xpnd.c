@@ -4,16 +4,16 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 Sint32 adxpd_internal_error = 0;
 ADX_XPDOBJ adxpd_obj[8] = { 0 };
 
-// 100% matching!
 void ADXPD_Init(void) 
 {
     memset(adxpd_obj, 0, sizeof(adxpd_obj));
 }
 
-// 100% matching!
 ADXPD ADXPD_Create(void)
 {
     Sint32 no;
@@ -54,13 +54,11 @@ ADXPD ADXPD_Create(void)
     return xpd2;
 }
 
-// 100% matching!
 void ADXPD_SetCoef(ADXPD xpd, Sint32 sfreq, Sint32 cof) 
 {
     ADX_GetCoefficient(cof, sfreq, &xpd->k[0], &xpd->k[1]);
 }
 
-// 100% matching!
 void ADXPD_Destroy(ADXPD xpd)
 {
     if (xpd != NULL) 
@@ -71,19 +69,16 @@ void ADXPD_Destroy(ADXPD xpd)
     }
 }
 
-// 100% matching!
 void ADXPD_SetMode(ADXPD xpd, Sint32 mode)
 {
     xpd->mode = mode;
 }
 
-// 100% matching!
 Sint32 ADXPD_GetStat(ADXPD xpd)
 {
     return xpd->stat;
 }
 
-// 100% matching!
 Sint32 ADXPD_EntryMono(ADXPD xpd, Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l)
 {
     if (xpd->stat == 0)
@@ -103,7 +98,6 @@ Sint32 ADXPD_EntryMono(ADXPD xpd, Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l)
     return 0;
 }
 
-// 100% matching!
 Sint32 ADXPD_EntrySte(ADXPD xpd, Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l, Sint16 *obuf_r)
 {
     if (xpd->stat == 0)
@@ -123,7 +117,6 @@ Sint32 ADXPD_EntrySte(ADXPD xpd, Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l, Sint1
     return 0;
 }
 
-// 100% matching!
 void ADXPD_Start(ADXPD xpd)
 {
     if (xpd->stat == 0)
@@ -134,7 +127,6 @@ void ADXPD_Start(ADXPD xpd)
     }
 }
 
-// 100% matching!
 void ADXPD_Stop(ADXPD xpd)
 {
     xpd->stat = 0;
@@ -142,7 +134,6 @@ void ADXPD_Stop(ADXPD xpd)
     memset(xpd->dly, 0, sizeof(xpd->dly));
 }
 
-// 100% matching!
 void ADXPD_Reset(ADXPD xpd)
 {
     if (xpd->stat == 3) 
@@ -151,19 +142,16 @@ void ADXPD_Reset(ADXPD xpd)
     }
 }
 
-// 100% matching!
 Sint32 ADXPD_GetNumBlk(ADXPD xpd)
 {
     return xpd->ndecblk;
 }
 
-// 100% matching!
 void adxpd_error(void) 
 {
     adxpd_internal_error = 1;
 }
 
-// 100% matching!
 void ADXPD_ExecHndl(ADXPD xpd)
 {
     if (xpd->stat == 1) 
@@ -191,7 +179,6 @@ void ADXPD_ExecHndl(ADXPD xpd)
     }
 }
 
-// 100% matching!
 void ADXPD_ExecServer(void) 
 {
     ADXPD xpd;

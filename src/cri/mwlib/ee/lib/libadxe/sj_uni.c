@@ -2,18 +2,18 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 static const UUID sjuni_uuid = { 0x2E534FA3, 0xAF97, 0x11D2, { 0xA5, 0x27, 0x00, 0x60, 0x08, 0x94, 0x48, 0xBC } };
 SJ_IF sjuni_vtbl = { NULL, NULL, NULL, (void*)SJUNI_Destroy, (void*)SJUNI_GetUuid, (void*)SJUNI_Reset, (void*)SJUNI_GetChunk,(void*)SJUNI_UngetChunk, (void*)SJUNI_PutChunk, (void*)SJUNI_GetNumData, (void*)SJUNI_IsGetChunk, (void*)SJUNI_EntryErrFunc };
 Sint32 sjuni_init_cnt = 0;
 SJUNI_OBJ sjuni_obj[64] = { 0 };
 
-// 99.29% matching
 void SJUNI_Error(SJUNI uni, Sint32 errcode) 
 {
     while (TRUE);
 }
 
-// 100% matching!
 void SJUNI_Init(void) 
 { 
     if (sjuni_init_cnt == 0)
@@ -24,7 +24,6 @@ void SJUNI_Init(void)
     sjuni_init_cnt++;
 }
 
-// 100% matching!
 void SJUNI_Finish(void)
 {
     if (--sjuni_init_cnt == 0) 
@@ -33,7 +32,6 @@ void SJUNI_Finish(void)
     }
 }
 
-// 100% matching!
 SJ SJUNI_Create(Sint32 mode, Sint8 *work, Sint32 wksize)
 {
     Sint32 no;
@@ -74,7 +72,6 @@ SJ SJUNI_Create(Sint32 mode, Sint8 *work, Sint32 wksize)
     return (SJ)uni;
 }
 
-// 100% matching!
 void SJUNI_Destroy(SJ sj)
 {
     SJUNI uni;
@@ -89,7 +86,6 @@ void SJUNI_Destroy(SJ sj)
     }
 }
 
-// 100% matching!
 const UUID* SJUNI_GetUuid(SJ sj) 
 {
     SJUNI uni;
@@ -99,7 +95,6 @@ const UUID* SJUNI_GetUuid(SJ sj)
     return uni->uuid;
 }
 
-// 100% matching!
 void SJUNI_EntryErrFunc(SJ sj, SJUNI_ERRFN func, void *obj)
 {
     SJUNI uni;
@@ -110,7 +105,6 @@ void SJUNI_EntryErrFunc(SJ sj, SJUNI_ERRFN func, void *obj)
     uni->errobj = obj;
 }
 
-// 100% matching!
 void SJUNI_Reset(SJ sj)
 {
     SJUNI uni;
@@ -144,7 +138,6 @@ void SJUNI_Reset(SJ sj)
     }
 }
 
-// 100% matching!
 Sint32 SJUNI_GetNumData(SJ sj, Sint32 id)
 {
     Sint32 nbyte;
@@ -173,7 +166,6 @@ Sint32 SJUNI_GetNumData(SJ sj, Sint32 id)
     return nbyte;
 }
 
-// 100% matching!
 void SJUNI_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
 {
     SJCKCN ckcn;
@@ -239,7 +231,6 @@ void SJUNI_GetChunk(SJ sj, Sint32 id, Sint32 nbyte, SJCK *ck)
     SJCRS_Unlock();
 }
 
-// 100% matching!
 void SJUNI_PutChunk(SJ sj, Sint32 id, SJCK *ck)
 {
     SJCKCN ckcn;
@@ -307,7 +298,6 @@ void SJUNI_PutChunk(SJ sj, Sint32 id, SJCK *ck)
     SJCRS_Unlock();
 }
 
-// 100% matching!
 void SJUNI_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
 {
     SJCKCN ckcn;
@@ -368,7 +358,6 @@ void SJUNI_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
     SJCRS_Unlock();
 }
 
-// 100% matching!
 Sint32 SJUNI_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
 {
     SJCKCN ckcn;
@@ -421,7 +410,6 @@ Sint32 SJUNI_IsGetChunk(SJ sj, Sint32 id, Sint32 nbyte, Sint32 *rbyte)
     }
 }
 
-// 100% matching!
 Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id)
 {
     SJCKCN ckcn;
@@ -440,7 +428,6 @@ Sint32 SJUNI_GetNumChunk(SJ sj, Sint32 id)
     return i;
 }
 
-// 100% matching!
 Sint32 SJUNI_GetNumChainPool(SJ sj)
 {
     SJCKCN ckcn;

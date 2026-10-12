@@ -11,11 +11,12 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 Sint32 adxt_dbg_nch = 0;
 Sint32 adxt_dbg_ndt = 0;
 Sint32 adxt_dbg_rna_ndata = 0;
 
-// 100% matching!
 void adxt_trap_entry(void *obj)
 {
     ADXT adxt;
@@ -71,7 +72,6 @@ void adxt_trap_entry(void *obj)
     }
 }
 
-// 100% matching!
 void adxt_eos_entry(void *obj)
 {
     ADXT adxt;
@@ -96,7 +96,6 @@ void adxt_eos_entry(void *obj)
     }
 }
 
-// 100% matching!
 void adxt_set_outpan(ADXT adxt) 
 {
     if (ADXSJD_GetNumChan(adxt->sjd) == 1) 
@@ -129,7 +128,6 @@ void adxt_set_outpan(ADXT adxt)
     ADXRNA_SetOutPan(adxt->rna, 1, adxt->outpan[1]);
 }
 
-// 100% matching!
 void adxt_nlp_trap_entry(void *obj)
 {
     ADXT adxt;
@@ -233,7 +231,6 @@ void adxt_nlp_trap_entry(void *obj)
     }
 }
 
-// 100% matching!
 void adxt_stat_decinfo(ADXT adxt)
 {
     ADXSJD sjd;
@@ -356,7 +353,6 @@ void adxt_stat_decinfo(ADXT adxt)
     }
 }
 
-// 100% matching!
 void adxt_stat_prep(ADXT adxt) 
 {
     ADXRNA rna;
@@ -413,7 +409,6 @@ void adxt_stat_prep(ADXT adxt)
     }
 }
 
-// 100% matching!
 void adxt_stat_playing(ADXT adxt) 
 {
     Sint32 i;
@@ -442,7 +437,6 @@ void adxt_stat_playing(ADXT adxt)
     }
 }
 
-// 100% matching!
 void adxt_stat_decend(ADXT adxt)
 {
     adxt_dbg_rna_ndata = ADXRNA_GetNumData(adxt->rna);
@@ -455,13 +449,11 @@ void adxt_stat_decend(ADXT adxt)
     }
 }
 
-// 100% matching!
 void adxt_stat_playend(ADXT adxt) 
 {
 
 }
 
-// 100% matching!
 void adxt_RcvrReplay(ADXT adxt) 
 {
     Sint32 i;
@@ -497,7 +489,6 @@ void adxt_RcvrReplay(ADXT adxt)
     ADXCRS_Unlock();
 }
 
-// 100% matching!
 void ADXT_ExecErrChk(ADXT adxt)
 {
     Sint32 stat;
@@ -613,7 +604,6 @@ void ADXT_ExecErrChk(ADXT adxt)
     }
 }
 
-// 100% matching!
 void ADXT_ExecErrChkPS2(ADXT adxt)  
 {
     if ((adxt->stm != NULL) && (ADXSTM_GetStat(adxt->stm) == 4)) 
@@ -622,7 +612,6 @@ void ADXT_ExecErrChkPS2(ADXT adxt)
     }
 }
 
-// 100% matching!
 void ADXT_ExecHndl(ADXT adxt)
 {
     if (adxt->stat == ADXT_STAT_PLAYING) 

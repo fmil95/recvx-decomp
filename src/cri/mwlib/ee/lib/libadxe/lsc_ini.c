@@ -4,24 +4,23 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 char* volatile lsc_build = "\nCRI LSC Ver 2.00 Build:Jan 26 2001 09:57:23\n";
 Sint8 lsc_obj_mark[16] = "MARK:lsc_obj"; /* unused */
 Sint32 lsc_init_cnt = 0;
 LSC_OBJ lsc_obj[LSC_OBJ_MAX] = { 0 };
 
-// 100% matching!
 void lsc_EntrySvrInt(void)
 {
 
 }
 
-// 100% matching!
 void lsc_DeleteSvrInt(void) 
 {
 
 }
 
-// 100% matching!
 void LSC_Init(void)
 {
     LSC_CRS crs;
@@ -41,7 +40,6 @@ void LSC_Init(void)
     LSC_UnlockCrs(&crs);
 }
 
-// 100% matching!
 void LSC_Finish(void)
 {
     LSC lsc;

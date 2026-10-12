@@ -6,7 +6,8 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.h"
 #include "../../../cri/mwlib/ee/lib/libadxe/lsc.h"
 
-// 100% matching! 
+// 100% byte-matching object! 
+
 void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
 {
     Sint32 ofst;
@@ -45,7 +46,6 @@ void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)
     ADXCRS_Unlock();
 }
 
-// 100% matching!
 void ADXT_StartFname(ADXT adxt, Char8 *fname)
 {
     ADXT_Stop(adxt);
@@ -70,13 +70,11 @@ void ADXT_StartFname(ADXT adxt, Char8 *fname)
     ADXCRS_Unlock();
 }
 
-// 100% matching!
 void ADXT_StartMem(ADXT adxt, void *adxdat)
 {
     ADXT_StartMem2(adxt, adxdat, ADXT_MAX_DATASIZE);
 }
 
-// 100% matching!
 void ADXT_StartMem2(ADXT adxt, void *adxdat, Sint32 datlen)
 {
     SJ sj;
@@ -105,7 +103,6 @@ void ADXT_StartMem2(ADXT adxt, void *adxdat, Sint32 datlen)
     ADXCRS_Unlock();
 }
 
-// 100% matching!
 void ADXT_StartMemIdx(ADXT adxt, void *acx, Sint32 no)
 {
     SJ sj;

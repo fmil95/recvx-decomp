@@ -2,6 +2,8 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 char* volatile adxf_build = "\nADXF Ver 6.07 Build:Mar 13 2001 11:41:26\n";
 Sint32 adxf_init_cnt = 0;
 ADX_FS adxf_obj[ADXF_OBJ_MAX] = { 0 };
@@ -14,7 +16,6 @@ Sint32 adxf_flno = 0;
 ADXF adxf_ldptnw_hn = NULL;
 Sint32 adxf_ldptnw_ptid = 0;
 
-// 100% matching!
 void ADXF_Init(void) 
 {
     adxf_build;
@@ -39,7 +40,6 @@ void ADXF_Init(void)
     adxf_init_cnt++;
 } 
 
-// 100% matching!
 void ADXF_Finish(void)
 {
     if (--adxf_init_cnt == 0)

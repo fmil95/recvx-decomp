@@ -3,7 +3,8 @@
 
 //#include <string.h>
 
-// 100% matching!
+// 100% byte-matching object! 
+
 static void* AIFF_GetInfo(void *hdr, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Sint32 *nsmpl)
 {
 	Uint8 *pdw;
@@ -136,7 +137,6 @@ static void* AIFF_GetInfo(void *hdr, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Si
     return data;
 }
 
-// 100% matching!
 Sint32 ADXB_CheckAiff(Sint8 *ibuf)
 {
     if ((memcmp(ibuf, "FORM", 4) == 0) && (memcmp(&ibuf[8], "AIFF", 4) == 0))
@@ -147,7 +147,6 @@ Sint32 ADXB_CheckAiff(Sint8 *ibuf)
     return 0;
 }
 
-// 100% matching!
 Sint32 ADX_DecodeInfoAiff(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk)
 {
 	Sint8 *dt;
@@ -194,7 +193,6 @@ Sint32 ADX_DecodeInfoAiff(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code
     return 0;
 }
 
-// 100% matching!
 Sint32 ADXB_DecodeHeaderAiff(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
 	Sint16 dlen;
@@ -252,7 +250,6 @@ Sint32 ADXB_DecodeHeaderAiff(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     return dlen;
 }
 
-// 100% matching!
 void ADXB_ExecOneAiff16(ADXB adxb)
 {
 	AdxDecPara *dp;
@@ -320,7 +317,6 @@ void ADXB_ExecOneAiff16(ADXB adxb)
     }
 }
 
-// 100% matching!
 void ADXB_ExecOneAiff8(ADXB adxb) 
 {
 	AdxDecPara *dp;
@@ -380,7 +376,6 @@ void ADXB_ExecOneAiff8(ADXB adxb)
     }
 }
 
-// 100% matching!
 void ADXB_ExecOneAiff(ADXB adxb)
 {
     if (adxb->cdctype == 1)

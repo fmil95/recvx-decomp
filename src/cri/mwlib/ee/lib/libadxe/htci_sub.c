@@ -4,12 +4,13 @@
 #include <stdio.h>
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 static Sint32 htg_found = FALSE;
 static HTCI_FLIST_TBL htg_flist_tbl = { 0 };
 Sint32 htg_ci_open_mode = 0x8001;
 static Sint8 htg_rbuf[4096] __attribute__((aligned(64)));
 
-// 100% matching!
 static void conv_to_tpath(Char8 *spath, Char8 *tpath)
 {
     Sint32 i;
@@ -37,7 +38,6 @@ static void conv_to_tpath(Char8 *spath, Char8 *tpath)
     } 
 }
 
-// 100% matching!
 static Sint32 analysis_flist(void *inf, Sint8 *buf, Sint32 num)
 {
     Uint32 pos;
@@ -88,7 +88,6 @@ static Sint32 analysis_flist(void *inf, Sint8 *buf, Sint32 num)
     return len;
 }
 
-// 100% matching!
 static Sint32 load_flist(Sint8 *fname, Sint8 *rbuf)
 {
     int fd;
@@ -120,7 +119,6 @@ static Sint32 load_flist(Sint8 *fname, Sint8 *rbuf)
     return 1;
 }
 
-// 100% matching!
 static Sint32 open_file_all(void *inf, Sint32 num)
 {
     char fname[256] = { 0 };
@@ -175,7 +173,6 @@ static Sint32 open_file_all(void *inf, Sint32 num)
     return found;
 }
 
-// 100% matching!
 static Sint32 close_file_all(void)
 {
     HTS_CI_FCACHE *inf;
@@ -231,7 +228,6 @@ static Sint32 close_file_all(void)
     return 1;
 }
 
-// 100% matching!
 static void get_fstate(HTS_CI_FCACHE *finf, const Uint8 *fname, HTS_CI_FCACHE *inf, Sint32 num)
 {
     Sint32 lp;
@@ -252,7 +248,6 @@ static void get_fstate(HTS_CI_FCACHE *finf, const Uint8 *fname, HTS_CI_FCACHE *i
     finf->size = 0;
 }
 
-// 100% matching!
 void htci_init_flist(void) 
 {
     *(Sint64*)&htg_flist_tbl = 0; 
@@ -260,7 +255,6 @@ void htci_init_flist(void)
     htg_found = FALSE;
 }
 
-// 100% matching!
 void htci_get_finf(const Uint8 *fname, HTS_CI_FCACHE *inf)
 {
     inf->fd = 0;
@@ -273,7 +267,6 @@ void htci_get_finf(const Uint8 *fname, HTS_CI_FCACHE *inf)
     } 
 }
 
-// 100% matching!
 Sint32 htCiLoadFpCache(Sint8 *fls_fname, Sint8 *fpc_ptr, Sint32 fpc_size)
 {
     char fname[256] = { 0 };
@@ -310,7 +303,6 @@ Sint32 htCiLoadFpCache(Sint8 *fls_fname, Sint8 *fpc_ptr, Sint32 fpc_size)
     return 0;
 }
 
-// 100% matching!
 void htCiSetOpenMode(Sint32 mode)
 {
     if (mode != 0) 

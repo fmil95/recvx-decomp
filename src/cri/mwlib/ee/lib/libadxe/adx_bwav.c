@@ -3,7 +3,8 @@
 
 //#include <string.h>
 
-// 100% matching!
+// 100% byte-matching object! 
+
 Sint32 ADX_DecodeInfoWav(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk, Sint16 *cdc)
 {
 	WAVEFORMATEX *wfex;
@@ -117,7 +118,6 @@ Sint32 ADX_DecodeInfoWav(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code,
     return 0;
 }
 
-// 100% matching!
 Sint32 ADXB_DecodeHeaderWav(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
 	Sint16 dlen;
@@ -166,7 +166,6 @@ Sint32 ADXB_DecodeHeaderWav(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
     return dlen;
 }
 
-// 100% matching!
 void ADXB_ExecOneWav16(ADXB adxb)
 {
 	AdxDecPara *dp;
@@ -226,7 +225,6 @@ void ADXB_ExecOneWav16(ADXB adxb)
     }
 }
 
-// 100% matching!
 void ADXB_ExecOneWav8(ADXB adxb)
 {
 	AdxDecPara *dp;
@@ -286,7 +284,6 @@ void ADXB_ExecOneWav8(ADXB adxb)
     }
 }
 
-// 100% matching!
 void ADXB_ExecOneWav4(ADXB adxb) 
 {
 	AdxDecPara *dp;
@@ -346,7 +343,6 @@ void ADXB_ExecOneWav4(ADXB adxb)
     }
 }
 
-// 100% matching!
 Sint32 ADXB_CheckWav(Sint8 *ibuf)
 {
     if ((memcmp(ibuf, "RIFF", 4) == 0) && (memcmp(&ibuf[8], "WAVE", 4) == 0)) 
@@ -357,7 +353,6 @@ Sint32 ADXB_CheckWav(Sint8 *ibuf)
     return 0;
 }
 
-// 100% matching!
 void ADXB_ExecOneWav(ADXB adxb)
 {
     if (adxb->cdctype == 2) 

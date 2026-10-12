@@ -7,13 +7,14 @@
 
 //#include <string.h>
 
+// 100% byte-matching object! 
+
 /* The KATANA SDK has a header for this file, cri_lsc.h, while the PS2 CRIware headers don't. */
 
 LSC_STATFN lsc_stat_func = NULL;
 void *lsc_stat_obj1 = NULL;
 void *lsc_stat_obj2 = NULL;
 
-// 100% matching!
 LSC lsc_Alloc(void) 
 {
     LSC lsc;
@@ -33,7 +34,6 @@ LSC lsc_Alloc(void)
     return lsc;
 }
 
-// 100% matching!
 LSC LSC_Create(SJ sj)
 {
     LSC lsc;
@@ -78,7 +78,6 @@ LSC LSC_Create(SJ sj)
     return lsc;
 }
 
-// 100% matching!
 void LSC_Destroy(LSC lsc) 
 {
     LSC_CRS crs;
@@ -97,7 +96,6 @@ void LSC_Destroy(LSC lsc)
     }
 }
 
-// 100% matching!
 Sint32 LSC_EntryFname(LSC lsc, Sint8 *fname) 
 {
     void *fp;
@@ -120,7 +118,6 @@ Sint32 LSC_EntryFname(LSC lsc, Sint8 *fname)
     return fsize;
 }
 
-// 100% matching!
 Sint32 LSC_EntryFileRange(LSC lsc, Sint8 *fname, void *dir, Sint32 ofst, Sint32 nsct) 
 {
     LSC_SINFO *sinfo;
@@ -183,7 +180,6 @@ Sint32 LSC_EntryFileRange(LSC lsc, Sint8 *fname, void *dir, Sint32 ofst, Sint32 
     return sid;
 }
 
-// 100% matching!
 void LSC_Start(LSC lsc)
 {
     LSC_CRS crs;
@@ -213,7 +209,6 @@ void LSC_Start(LSC lsc)
     LSC_UnlockCrs(&crs);
 }
 
-// 100% matching!
 void LSC_Stop(LSC lsc) 
 {
     LSC_CRS crs;
@@ -254,7 +249,6 @@ void LSC_Stop(LSC lsc)
     LSC_UnlockCrs(&crs); 
 }
 
-// 100% matching!
 void LSC_Pause(LSC lsc, Sint32 sw)
 {
     if (lsc == NULL)
@@ -273,7 +267,6 @@ void LSC_Pause(LSC lsc, Sint32 sw)
     }
 }
 
-// 100% matching!
 void LSC_ExecServer(void)
 {
     LSC lsc;
@@ -295,7 +288,6 @@ void LSC_ExecServer(void)
     LSC_UnlockCrs(&crs);
 }
 
-// 100% matching!
 Sint32 LSC_GetStat(LSC lsc) 
 {
     if (lsc == NULL) 
@@ -308,7 +300,6 @@ Sint32 LSC_GetStat(LSC lsc)
     return lsc->stat;
 }
 
-// 100% matching!
 Sint32 LSC_GetNumStm(LSC lsc) 
 {
     if (lsc == NULL) 
@@ -321,7 +312,6 @@ Sint32 LSC_GetNumStm(LSC lsc)
     return lsc->nstm;
 }
 
-// 100% matching!
 Sint32 LSC_GetStmId(LSC lsc, Sint32 no)
 {
     Sint32 pos;
@@ -345,7 +335,6 @@ Sint32 LSC_GetStmId(LSC lsc, Sint32 no)
     return lsc->sinfo[pos].sid;
 }
 
-// 100% matching!
 Sint8* LSC_GetStmFname(LSC lsc, Sint32 sid)
 {
     Sint32 i;
@@ -375,7 +364,6 @@ Sint8* LSC_GetStmFname(LSC lsc, Sint32 sid)
     return lsc->sinfo[i].fname;
 }
 
-// 100% matching!
 Sint32 LSC_GetStmStat(LSC lsc, Sint32 sid) 
 {
     Sint32 i;
@@ -405,7 +393,6 @@ Sint32 LSC_GetStmStat(LSC lsc, Sint32 sid)
     return lsc->sinfo[i].stat;
 }
 
-// 100% matching!
 Sint32 LSC_GetStmRdSct(LSC lsc, Sint32 sid)
 {
     Sint32 i;
@@ -435,7 +422,6 @@ Sint32 LSC_GetStmRdSct(LSC lsc, Sint32 sid)
     return lsc->sinfo[i].rdsct;
 }
 
-// 100% matching!
 void LSC_SetFlowLimit(LSC lsc, Sint32 min)
 {
     if (lsc == NULL) 
@@ -453,7 +439,6 @@ void LSC_SetFlowLimit(LSC lsc, Sint32 min)
     lsc->bufmin = min;
 }
 
-// 100% matching!
 Sint32 LSC_GetFlowLimit(LSC lsc) 
 {
     if (lsc == NULL) 
@@ -466,7 +451,6 @@ Sint32 LSC_GetFlowLimit(LSC lsc)
     return lsc->bufmin;
 }
 
-// 100% matching!
 void LSC_EntryChgStatFunc(LSC_STATFN statfn, void *obj1, void *obj2)
 {
     if (statfn == NULL) 
@@ -485,7 +469,6 @@ void LSC_EntryChgStatFunc(LSC_STATFN statfn, void *obj1, void *obj2)
     }
 }
 
-// 100% matching!
 void LSC_CallStatFunc(void) 
 {
     if (lsc_stat_func != NULL) 
@@ -494,7 +477,6 @@ void LSC_CallStatFunc(void)
     }
 }
 
-// 100% matching!
 void LSC_SetLpFlg(LSC lsc, Sint32 flg)
 {
     if (lsc == NULL) 

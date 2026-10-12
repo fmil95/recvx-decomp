@@ -2,7 +2,8 @@
 
 #include <mathf.h>
 
-// 100% matching!
+// 100% byte-matching object! 
+
 void ADX_GetCoefficient(Sint32 cof, Sint32 sfreq, Sint16 *k0, Sint16 *k1)
 {
     double val1;
@@ -18,7 +19,6 @@ void ADX_GetCoefficient(Sint32 cof, Sint32 sfreq, Sint16 *k0, Sint16 *k1)
     *k1 = (-r * r) * 4096; 
 }
 
-// 100% matching!
 Sint32 ADX_ScanInfoCode(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen)
 {
 	Sint16 code;
@@ -52,7 +52,6 @@ Sint32 ADX_ScanInfoCode(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen)
     }
 }
 
-// 100% matching!
 Sint32 ADX_DecodeInfo(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk) 
 {
     Sint32 temp;
@@ -88,7 +87,6 @@ Sint32 ADX_DecodeInfo(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Si
     return 0;
 }
 
-// 100% matching!
 Sint32 ADX_DecodeInfoExADPCM2(Sint8 *ibuf, Sint32 ibuflen, Sint16 *cof) 
 {
 	Sint32 dlen; 
@@ -113,7 +111,6 @@ Sint32 ADX_DecodeInfoExADPCM2(Sint8 *ibuf, Sint32 ibuflen, Sint16 *cof)
     return 0;
 }
 
-// 100% matching!
 Sint32 ADX_DecodeInfoExLoop(Sint8 *ibuf, Sint32 ibuflen, Sint32 *lp_ins_nsmpl, Sint16 *nloop, Sint16 *lp_type, Sint32 *lp_spos, Sint32 *lp_sofst, Sint32 *lp_epos, Sint32 *lp_eofst)
 {
 	Sint32 dlen;
@@ -179,7 +176,6 @@ Sint32 ADX_DecodeInfoExLoop(Sint8 *ibuf, Sint32 ibuflen, Sint32 *lp_ins_nsmpl, S
     return 0;
 }
 
-// 100% matching!
 Sint32 ADX_DecodeFooter(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen) 
 {
     if (ibuflen < 16) 

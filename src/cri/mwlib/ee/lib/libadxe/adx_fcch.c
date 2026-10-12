@@ -4,7 +4,8 @@
 #include <eekernel.h>
 #include <sifrpc.h>
 
-// 100% matching!
+// 100% byte-matching object! 
+
 void ADXF_Ocbi(void *address, Uint64 size)
 {
     Sint8* temp; // TODO: this variable is not really needed, MWCC doesn't like arithmetic with void pointers, so remove this when GCC is finally added
