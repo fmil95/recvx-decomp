@@ -2,7 +2,9 @@
 #include "../../../cri/mwlib/ee/lib/libadxe/dvci.h"
 
 #include <stdio.h>
-//#include <string.h> /* ERROR: causes linker to fail */
+#include <string.h> // TODO: the header that gets linked here is the one from the KATANA lib, it should use the one from the PS2 kit instead 
+#undef strcpy
+#undef strcmp
 
 // 100% byte-matching object! 
 
