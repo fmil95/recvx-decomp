@@ -149,7 +149,7 @@ int bhDGCdirCheck2(NJS_VECTOR* dv, O_WORK* owk)
 // 100% matching!
 int bhDGCdirCheck3(NJS_VECTOR* dv, int rot) 
 {
-    int ang; // r2
+    int ang; 
 
     ang = ((int) (atan2f(dv->x, dv->z) * 10430.381f) - rot) & 0xffff;
 

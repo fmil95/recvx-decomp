@@ -1069,11 +1069,11 @@ void bhEne06_Nage(BH_PWORK* epw)
 // 99.76% matching!
 void bhEne06_NG00(BH_PWORK* epw)
 {
-    NJS_POINT3 pos; // r29+0x30
-    O_WORK* owk; // r17
-    BH_PWORK* epw2; // r2
-    int i; // r4   
-    int type; // r16
+    NJS_POINT3 pos; 
+    O_WORK* owk; 
+    BH_PWORK* epw2; 
+    int i;  
+    int type; 
 
     switch (epw->mode3)
     {
@@ -1102,8 +1102,8 @@ void bhEne06_NG00(BH_PWORK* epw)
         if (epw->mtn_no == 6)
         {
             {
-                NJS_VECTOR offset = { 0.0f, 1.0f, 2.5f }; // r29+0x40
-                NJS_VECTOR v = { 0.0f, 0.0f, -1.0f }; // r29+0x50
+                NJS_VECTOR offset = { 0.0f, 1.0f, 2.5f };
+                NJS_VECTOR v = { 0.0f, 0.0f, -1.0f }; 
                     
                 owk = &plp->mlwP->owP[3];
                 njCalcPoint((NJS_MATRIX*) &owk->mtx, &offset, &pos);
@@ -1152,7 +1152,7 @@ void bhEne06_NG00(BH_PWORK* epw)
         if (((epw->frm_no / 65536) == 29) && (epw->ct2 < 30))
         {
             {
-            unsigned int flg[3] = { 0x8000000, 0x10000000, 0x20000000 }; // r29+0x60       
+            unsigned int flg[3] = { 0x8000000, 0x10000000, 0x20000000 };  
 
             bhEne_CallSE(epw, (NJS_VECTOR*) &epw->px, 0x12303);
             type = (int)(3.0f * njRandom());
@@ -1345,12 +1345,12 @@ void bhEne06_DG00(BH_PWORK* epw) {
 // 99.87% matching
 void bhEne06_DG01(BH_PWORK* epw)
 {
-	NJS_POINT3 pos; // r29+0x40
+	NJS_POINT3 pos; 
 	int pno;
 	O_WORK* owk;
-	char parts[4] = { 0xB, 0xC, 0xD, 0xE }; // r29+0x5C    
+	char parts[4] = { 0xB, 0xC, 0xD, 0xE };   
 	NJS_MKEY* mkfP;
-	NJS_VECTOR trans; // r29+0x50
+	NJS_VECTOR trans; 
 
     switch (epw->mode3)
     {
@@ -1941,20 +1941,20 @@ int bhEne06_CheckLeaningWall(BH_PWORK* epw)
 // 99.81% matching
 int bhEne06_AvoidWall(BH_PWORK* epw, int dir)
 {
-    NJS_POINT3 pos1; // r29+0xB0
-    NJS_POINT3 pos2; // r29+0xC0
-    ATR_WORK* hp1; // r16
-    ATR_WORK* hp2; // r2
-    NJS_VECTOR ofp; // r29+0xD0
-    NJS_VECTOR trans; // r29+0xE0
-    int ret; // r17    
-    NJS_MKEY_A_MOD* mkaP; // r16
-    int i; // r16
-    BH_PWORK* ep; // r18
-    BH_PWORK* ep2; // r19    
-    float dist; // r29+0xF0
-    float wdist; // r20   
-    NJS_CNK_OBJECT* objP; // r2
+    NJS_POINT3 pos1; 
+    NJS_POINT3 pos2; 
+    ATR_WORK* hp1; 
+    ATR_WORK* hp2; 
+    NJS_VECTOR ofp; 
+    NJS_VECTOR trans; 
+    int ret; 
+    NJS_MKEY_A_MOD* mkaP; 
+    int i; 
+    BH_PWORK* ep; 
+    BH_PWORK* ep2;   
+    float dist; 
+    float wdist; 
+    NJS_CNK_OBJECT* objP; 
 
     ep = ene;
     ret = 0;

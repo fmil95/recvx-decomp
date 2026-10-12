@@ -4451,7 +4451,7 @@ void bhEne09_MV06(BH_PWORK* epw)
 // 99.96% matching!
 void bhEne09_MV07(BH_PWORK* epw) 
 {
-	NJS_SPHERE at;    // r29+0x30
+	NJS_SPHERE at;    
     int rot;
     int frm;
 
@@ -7337,14 +7337,14 @@ const float en09_mogmog[40] =
 // 99.93% matching!
 int bhEne09_SetMtn(BH_PWORK* epw)
 {
-	int rot_tbl[4] = // r29+0x50
+	int rot_tbl[4] = 
     {
         0x00000800,
         0x00001600,
         0x00001800,
         0x00001800
     };
-    int rot_tbl2[4] = // r29+0x60
+    int rot_tbl2[4] = 
     {
         0xFFFFF800,
         0xFFFFEA00,
