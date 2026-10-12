@@ -1215,33 +1215,31 @@ unsigned char menuanim[3][4] =
     { 0, 1, 2, 3 }
 };
 
-#pragma mpwc_relax on
-
 NJS_TEXANIM* testset[23] = 
 {
-	&parts_00,
-	&parts_01,
-	&parts_02,
-	&parts_03,
-	&parts_04,
-	&parts_05,
-	&parts_11,
-	&parts_07,
-	&parts_08,
-	&parts_09,
-	&parts_10,
-	&parts_11,
-	&parts_12,
-	&parts_13,
-	&parts_14,
-	&parts_15,
-	&parts_16,
-	&parts_11,
-	&parts_18,
-	&parts_19,
-	&parts_20,
-	&parts_21,
-	&parts_22
+	parts_00,
+	parts_01,
+	parts_02,
+	parts_03,
+	parts_04,
+	parts_05,
+	parts_11,
+	parts_07,
+	parts_08,
+	parts_09,
+	parts_10,
+	parts_11,
+	parts_12,
+	parts_13,
+	parts_14,
+	parts_15,
+	parts_16,
+	parts_11,
+	parts_18,
+	parts_19,
+	parts_20,
+	parts_21,
+	parts_22
 };
 PARTS* sprset[15] = 
 {
@@ -1263,27 +1261,25 @@ PARTS* sprset[15] =
 };
 PARTS* itembox[14] = 
 {
-    &parts_04b,
-    &parts_05b,
-    &parts_07b,
-    &parts_09b,
-    &parts_11b,
-    &parts_15b,
-    &parts_16b,
-    &parts_17b,
-    &parts_18b,
-    &parts_21b,
-    &parts_03b,
-    &parts_14b,
-    &parts_19b,
-    &parts_20b
+    parts_04b,
+    parts_05b,
+    parts_07b,
+    parts_09b,
+    parts_11b,
+    parts_15b,
+    parts_16b,
+    parts_17b,
+    parts_18b,
+    parts_21b,
+    parts_03b,
+    parts_14b,
+    parts_19b,
+    parts_20b
 };
 PARTS* filescreen[1] = 
 {
-	&parts_22b
+	parts_22b
 };
-
-#pragma mpwc_relax off
 
 short standard[3][2] = 
 { 
@@ -1293,36 +1289,11 @@ short standard[3][2] =
 };
 short u_k = 200;
 short v_k = 116;
-/*unsigned short cnt;
-unsigned int Ps2_current_texbreak;
-_anon38* sys;
-_anon16 sitem;
-_anon4 swork;
-BH_PWORK* plp;
-_anon58 itemdata[0];
-char ViewCnt;
-_anon7 parts_18[16];
-FV_WORK fvwork;
-_anon53 cam;
-float GameFar;
-float GameNear;
-unsigned int Ps2_rendertex_initflag;
-float BHD_ASPECT_Y;
-float BHD_ASPECT_X;
-_anon21* rom;
-unsigned short itemidtbl[0];
-unsigned char itemflg[8][0];
-_anon60 dsptbl[0];
-unsigned char BackColorFlag;
-unsigned int getbulletmax[4][0];
-short combidata[0];
-unsigned char curedata[0];
-_anon7 parts_21[8];
-float x_k;
+/* unused below */
+/*float x_k;
 float y_k;
 float xend;
-short uend;
-int SoftResetFlag;*/
+short uend;*/
 
 // TODO: find a way to match StatusInit without using this
 static inline void StatusInit_Parts06bCheck() 
