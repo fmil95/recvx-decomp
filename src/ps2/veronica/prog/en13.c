@@ -14,11 +14,11 @@
 
 #pragma divbyzerocheck on
 
-static EGG_WORK ene18 = 
+static ETTY_WORK ene18 = 
 {
     0x8081, 18, 0, 0, 0, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0, 0, { 0, 0, 0, 0 } 
 };
-static EGG_WORK ene13B = 
+static ETTY_WORK ene13B = 
 {
     0x8081, 31, 0, 0, 0, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0, 0, { 0, 0, 0, 0 } 
 };

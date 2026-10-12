@@ -1043,7 +1043,7 @@ void bhResetPlayer()
 // 100% matching! 
 void bhCheckMothEgg()
 {
-    EGG_WORK egg = 
+    ETTY_WORK egg = 
     {
         1, 27, 0, 0, 0, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0, 0, {0, 0, 0, 0}    
     };

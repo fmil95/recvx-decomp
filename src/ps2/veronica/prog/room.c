@@ -565,7 +565,7 @@ void bhSetEneMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno)
 
     emdlp = datp;
     
-    epp = bhSetEnemy((EGG_WORK*)ep, eno);
+    epp = bhSetEnemy(ep, eno);
     
     epp->mlwP = (ML_WORK*)&epp->mdl;
     

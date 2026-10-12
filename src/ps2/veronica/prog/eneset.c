@@ -167,7 +167,7 @@ void bhInitEnemy()
 }
 
 // 100% matching!
-BH_PWORK* bhSetEnemy(EGG_WORK* etp, int unused) // second parameter is not present on the debugging symbols
+BH_PWORK* bhSetEnemy(ETTY_WORK* etp, int unused) // second parameter is not present on the debugging symbols
 {
     BH_PWORK* epp;
     int i;

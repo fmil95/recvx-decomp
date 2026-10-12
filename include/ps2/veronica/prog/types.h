@@ -1302,7 +1302,7 @@ typedef struct ETTY_WORK
     short ay;             // offset 0x1C, size 0x2
     short aspd;           // offset 0x1E, size 0x2
     char hide[4];         // offset 0x20, size 0x4
-} ETTY_WORK, EGG_WORK;
+} ETTY_WORK;
 
 typedef struct EF_WRK
 {

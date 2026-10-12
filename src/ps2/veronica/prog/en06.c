@@ -338,7 +338,7 @@ void bhEne06_Init(BH_PWORK* epw)
                 else
                 {
 					ene_n = rom->ene_n;
-					ep_leader = bhSetEnemy((EGG_WORK*)&ene06_leader, ene_n);
+					ep_leader = bhSetEnemy((ETTY_WORK*)&ene06_leader, ene_n);
 					epw->exp2 = (unsigned char*)ep_leader;
 					ep_leader->mdflg |= 0x21;
 					ep_leader->exp1 = epw->exp1;
@@ -352,7 +352,7 @@ void bhEne06_Init(BH_PWORK* epw)
 		for (i = 0; i < 14; i++, epw2++)
         {
 			ene_n = rom->ene_n;
-			*epw2 = bhSetEnemy((EGG_WORK*)&ene06_child, ene_n);
+			*epw2 = bhSetEnemy((ETTY_WORK*)&ene06_child, ene_n);
 			(*epw2)->lkwkp = (unsigned char*)epw;
 			(*epw2)->lkono = i;
 			(*epw2)->lox = 0.0f;

@@ -222,7 +222,7 @@ NJS_POINT3 cher_063[50] =
     { -0.072509f, 0.025227f, 0.040813f },
 };
 
-static EGG_WORK child = 
+static ETTY_WORK child = 
 { 
 	0x8001, 31, 0 
 };

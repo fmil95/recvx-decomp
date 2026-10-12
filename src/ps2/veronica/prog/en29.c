@@ -1710,7 +1710,7 @@ static void SetDmgEne(BH_PWORK* ewP, en29_freework* fwP, DS_WORK* dsP, int set_n
     {
         BH_PWORK* ewP;
 
-        ewP = bhSetEnemy((ETTY_WORK*)&En29DmgDat, 0);
+        ewP = bhSetEnemy(&En29DmgDat, 0);
         
         ewP->flg2 |= dsP->or_flg2;
         

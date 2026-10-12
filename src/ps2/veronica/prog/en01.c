@@ -1091,7 +1091,7 @@ EN01_PERSONAL_TYPE en01_PersonalType[27] =
     {  20.0f,  50.0f, 10922,  30,   0 }
 };
 
-EGG_WORK zob_lkmtab = 
+ETTY_WORK zob_lkmtab = 
 {
     0x81, 1, 0, 0, 0, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0, 0, { 0, 0, 0, 0 } 
 };
