@@ -156,7 +156,7 @@ void ResetAdvSystem()
 // 100% matching! 
 void MountAdvAfs() 
 { 
-    ADV_WORK* temp; // not from the debugging symbols
+    ADV_WORK* temp; // not from the DWARF
 
     temp = (ADV_WORK*)&AdvWork;
     
@@ -207,7 +207,7 @@ void AdvCheckSoftReset(int Flag)
 } 
 
 // 100% matching!
-void AdvPushRoomTexture(int param) // parameter is not present on the debugging symbols
+void AdvPushRoomTexture(int param) // parameter is not present on the DWARF
 { 
     ADV_WORK* ap; 
 
@@ -249,7 +249,7 @@ void AdvPopRoomTexture()
 // 100% matching!
 void AdvPushPaletteData() 
 { 
-    ADV_WORK* temp; // not from the debugging symbols
+    ADV_WORK* temp; // not from the DWARF
 
     temp = (ADV_WORK*)&AdvWork;
     
@@ -261,7 +261,7 @@ void AdvPushPaletteData()
 // 100% matching!
 void AdvPopPaletteData() 
 { 
-    ADV_WORK* temp; // not from the debugging symbols
+    ADV_WORK* temp; // not from the DWARF
 
     temp = (ADV_WORK*)&AdvWork;
     
@@ -300,7 +300,7 @@ void RequestAdvInsideFile(int InsideFileId)
 // 100% matching!
 void FreeAdvMemoryEx(int MemoryBlockNo)
 { 
-    ADV_WORK* temp; // not from the debugging symbols
+    ADV_WORK* temp; // not from the DWARF
 
     temp = (ADV_WORK*)&AdvWork; 
 
@@ -408,7 +408,7 @@ void RequestAdvFade(int FadeType, float FadeSpeed)
 // 100% matching!
 int CheckAdvFade() 
 { 
-    ADV_WORK* temp; // not from the debugging symbols
+    ADV_WORK* temp; // not from the DWARF
 
     temp = (ADV_WORK*)&AdvWork; 
     
@@ -573,7 +573,7 @@ unsigned int AdvGetCancelButton()
 } 
 
 // 100% matching!
-void SetPvrInfo(NJS_TEXNAME* np, NJS_TEXINFO* ip, unsigned char* pp, int param1, unsigned int param2) // fourth and fifth parameters are not present on the debugging symbols
+void SetPvrInfo(NJS_TEXNAME* np, NJS_TEXINFO* ip, unsigned char* pp, int param1, unsigned int param2) // fourth and fifth parameters are not present on the DWARF
 { 
     TIM2_PICTUREHEADER* pPichd;
     unsigned int GlobalIndex;
@@ -594,8 +594,8 @@ void SetPvrInfo(NJS_TEXNAME* np, NJS_TEXINFO* ip, unsigned char* pp, int param1,
 int TransPvpData(unsigned char* pp, int Mode) 
 { 
     PVP_INFO* pPvp;
-    unsigned short temp; // not from the debugging symbols
-    short temp2; // not from the debugging symbols
+    unsigned short temp; // not from the DWARF
+    short temp2; // not from the DWARF
 
     pPvp = (PVP_INFO*)pp;
 
@@ -739,7 +739,7 @@ void SetQuadUv2Ex(float u, float v, float SizeX, float SizeY, unsigned int ListN
 { 
     float TexX;
     float TexY;
-    NJS_TEXMEMLIST* temp; // not from the debugging symbols
+    NJS_TEXMEMLIST* temp; // not from the DWARF
 
     temp = (NJS_TEXMEMLIST*)AdvTexList[ListNo].textures[TexNo].texaddr; 
     
@@ -861,7 +861,7 @@ void AdvEasyTransTextureBasic(int ListNo, int TexNum, int Flag)
 // 100% matching!
 void AdvEasyTransTextureEx(int ListNo)
 { 
-    ADV_WORK* temp; // not from the debugging symbols
+    ADV_WORK* temp; // not from the DWARF
 
     temp = (ADV_WORK*)&AdvWork;
     
@@ -877,7 +877,7 @@ void AdvEasyTransTexture()
 // 100% matching!
 void AdvEasyReleaseTextureEx(int ListNo) 
 { 
-    ADV_WORK* temp; // not from the debugging symbols
+    ADV_WORK* temp; // not from the DWARF
 
     temp = (ADV_WORK*)&AdvWork;
 
@@ -922,7 +922,7 @@ int AdvGetCurrentPort()
 } 
 
 // 100% matching!
-int CheckConnectVmDrive(int param, int SlotNo) // first parameter is not present on the debugging symbols
+int CheckConnectVmDrive(int param, int SlotNo) // first parameter is not present on the DWARF
 { 
     MEMORYCARDSTATE McDrive;
     MEMORYCARDSTATE* pMcDrive;
@@ -970,7 +970,7 @@ float AdvEasyDispMessage(float PosX, float PosY, unsigned int MessageNo)
     unsigned char* smp;
     unsigned short* mp;
     unsigned short* nmp;
-    unsigned int* temp; // not from the debugging symbols
+    unsigned int* temp; // not from the DWARF
     int x;
     int y;
     int LoopFlag = 1;
@@ -978,7 +978,7 @@ float AdvEasyDispMessage(float PosX, float PosY, unsigned int MessageNo)
     float sx;
     float SizeX;
     float sy;
-    ADV_WORK* temp2; // not from the debugging symbols
+    ADV_WORK* temp2; // not from the DWARF
 
     sy = PosY;
 
@@ -1059,7 +1059,7 @@ float AutoSaveLoadEasyDispMessage(float PosX, float PosY, unsigned char* ucpMsbT
     unsigned char* smp;
     unsigned short* mp;
     unsigned short* nmp;
-    unsigned int* temp; // not from the debugging symbols
+    unsigned int* temp; // not from the DWARF
     int x;
     int y;
     int LoopFlag = 1;
@@ -1170,7 +1170,7 @@ int DispVmWarningMessage(int MsgId)
 // 100% matching!
 void DefaultSetOption()
 { 
-    ADV_WORK* temp; // not from the debugging symbols
+    ADV_WORK* temp; // not from the DWARF
 
     temp = (ADV_WORK*)&AdvWork;
     
@@ -1582,7 +1582,7 @@ void DisplayTitleBg()
 void DisplayPressStartPlate(float FadeRate)
 { 
     QUAD* qp; 
-    float temp; // not from the debugging symbols
+    float temp; // not from the DWARF
 
     qp = &Qtex[1]; 
 
@@ -2028,7 +2028,7 @@ int CheckButton(int Level, int Flag, int MaxFlag)
 // 100% matching! 
 int CheckStartButton() 
 { 
-    ADV_WORK* temp; // not from the debugging symbols
+    ADV_WORK* temp; // not from the DWARF
 
     temp = (ADV_WORK*)&AdvWork;
         
@@ -3313,7 +3313,7 @@ int DisplayOptionPlateLevel3(int PortId, int Flag)
     NJS_POLYGON_VTX poly[4];        
     COLBAR_DEF ColorBarDef[8] = { 0xFF7F7F7F, 0xFF010101, 0xFF7F7F00, 0xFF010100, 0xFF007F7F, 0xFF000101, 0xFF007F00, 0xFF000100, 0xFF7F007F, 0xFF010001, 0xFF7F0000, 0xFF010000, 0xFF00007F, 0xFF000001, 0xFF000000, 0xFF000000 }; 
     unsigned int PolyCol;        
-    int temp, temp2; // not from the debugging symbols
+    int temp, temp2; // not from the DWARF
 
     ReturnCode = 3;
     

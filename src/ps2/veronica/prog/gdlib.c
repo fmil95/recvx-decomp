@@ -31,7 +31,7 @@ void LfInitLib()
 } 
 
 // 100% matching! 
-void CallbackGdErrorFunc(int param, int err) // first parameter is not present on the debugging symbols
+void CallbackGdErrorFunc(int param, int err) // first parameter is not present on the DWARF
 {
     if ((err == -23) || (err == -33)) 
     { 

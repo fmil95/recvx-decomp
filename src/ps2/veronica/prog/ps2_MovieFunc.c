@@ -164,7 +164,7 @@ void initAll()
 void readMpeg()
 {
     unsigned int uiReadError;
-    int count; // not from the debugging symbols
+    int count; // not from the DWARF
 
     if ((rmi.iMovieState == 2) && ((!(rmi.uiContFlag & 0x2)) && (!(rmi.uiContFlag & 0x4)))) 
     {
@@ -311,9 +311,9 @@ void vbrank_draw()
 {
     unsigned long* tag;
     const unsigned long giftag_eop[2] = { SCE_GIF_SET_TAG(0, 1, 0, 0, 0, 1), 0x000000000000000EL }; 
-    int u, v; // not from the debugging symbols
-    int y; // not from the debugging symbols
-    int w, h; // not from the debugging symbols
+    int u, v; // not from the DWARF
+    int y; // not from the DWARF
+    int w, h; // not from the DWARF
 
     D2_SyncTag();
     
@@ -1425,9 +1425,9 @@ int mpegTS(sceMpeg *mp, sceMpegCbDataTimeStamp *cbts, void *anyData)
     int isEnd;
     int tscount;
     int i;
-    TimeStamp ts; // not from the debugging symbols
-    unsigned int d4madr_next; // not from the debugging symbols
-    int wt; // not from the debugging symbols
+    TimeStamp ts; // not from the DWARF
+    unsigned int d4madr_next; // not from the DWARF
+    int wt; // not from the DWARF
     
     d4madr = *D4_MADR;
 

@@ -4,6 +4,121 @@
 #include "types.h"
 #include "macros.h"
 
+/* vibuf.h */
+
+#define VIBUF_ELM_SIZE 2048
+#define VIBUF_SIZE 256
+#define VIBUF_TS_SIZE (VIBUF_SIZE*2)
+
+typedef struct {
+    __int128 *data;	// data array
+    __int128 *tag;	// tag array
+    int n;		// the number of data/tag element in ViBuf
+    int dmaStart;	// DMA area start position
+    int dmaN;		// DMA area size
+    int readBytes;	// read area size
+    int buffSize;	// buffer size of ViBuf(bytes)
+    sceIpuDmaEnv env;	// DMA environment
+    int sema;		// semaphore
+    int isActive;	// flag to check CSC period
+    long totalBytes;	// total bytes of data which sent to ViBuf
+
+    TimeStamp *ts;	// time stamp array
+    int n_ts;		// time stamp array size
+    int count_ts;	// the number of time stamps in the array
+    int wt_ts;		// write position of time stamp array
+} ViBuf;
+
+typedef struct {
+    unsigned int *micro[3][2];
+} CscVu1;
+
+/* videodec.h */
+
+#define VD_STATE_NORMAL    0
+#define VD_STATE_ABORT     1
+#define VD_STATE_FLUSH     2
+#define VD_STATE_END       3
+
+typedef struct {
+    sceMpeg mpeg;	// MPEG decoder
+    ViBuf vibuf;	// video input buffer
+    u_int state;	// video decoder state
+    int sema;		// semaphore
+
+    int hid_endimage;	// handler to check the end of image transfer
+    int hid_vblank;	// vlbank handler
+
+} VideoDec;
+
+/* defs.h */
+
+#define TS_NONE (-1)
+
+#define min(x, y) (((x) > (y))? (y): (x))
+#define max(x, y) (((x) < (y))? (y): (x))
+
+/* audiodec.c */
+
+#define AUTODMA_CH 1 // modified
+#define AU_HEADER_SIZE 40
+#define UNIT_SIZE 1024
+#define PRESET_VALUE(count)	(count)
+#define ZERO_BUFF_SIZE	0x800
+
+/* audiodec.h */
+
+#define AU_STATE_INIT		0
+#define AU_STATE_PRESET		1
+#define AU_STATE_PLAY		2
+#define AU_STATE_PAUSE		3
+
+#define AU_HDR_SIZE		(sizeof(SpuStreamHeader) 					+ sizeof(SpuStreamBody))
+
+typedef struct {
+    char id[4];		// 'S''S''h''d'
+    int size;		// 24
+    int type;		// 0: 16bit big endian
+    			// 1: 16bit little endian
+			// 2: SPU2-ADPCM (VAG) 
+    int rate;		// sampling rate
+    int ch;		// number of channels
+    int interSize;	// interleave size ... needs to be 512
+    int loopStart;	// loop start block address
+    int loopEnd;	// loop end block sddress
+} SpuStreamHeader;
+
+typedef struct {
+    char id[4];		// 'S''S''b''d'
+    int size;		// size of audio data
+} SpuStreamBody;
+
+typedef struct {
+
+    int state;
+
+    // header of ADS format
+    SpuStreamHeader sshd;
+    SpuStreamBody   ssbd;
+    int hdrCount;
+
+    // audio buffer
+    u_char *data;
+    int put;
+    int count;
+    int size;
+    int totalBytes;
+
+    // buffer on IOP
+    int iopBuff;
+    int iopBuffSize;
+    int iopLastPos;
+    int iopPausePos;
+    int totalBytesSent;
+    int iopZero;
+
+} AudioDec;
+
 typedef struct RMI_WORK
 {
     // total size: 0x54

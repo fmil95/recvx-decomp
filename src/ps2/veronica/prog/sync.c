@@ -176,7 +176,7 @@ void bhControlEOR()
         } 
         else if ((cam.flg & 0x2))
         {
-            CAM_KEYF_WORK *temp; // not from the debugging symbols
+            CAM_KEYF_WORK *temp; // not from the DWARF
             
             if (sys->fog_ct != 0)
             {
@@ -221,7 +221,7 @@ void bhControlEOR()
             
             if (sys->fog_ct <= 0) 
             {
-                CAM_WRK *temp; // not from the debugging symbols
+                CAM_WRK *temp; // not from the DWARF
                 
                 sys->gm_flg &= ~0x10;
 

@@ -438,7 +438,7 @@ void    njSetCheapShadowMode( Int mode )
 // 99.95% matching 
 void	njUserClipping(Int mode ,NJS_POINT2 *p)
 { 
-    unsigned long* np; // changed the original var name from the debugging symbols 
+    unsigned long* np; // changed the original var name from the DWARF 
     sceVu0FVECTOR posf;
     sceVu0IVECTOR posi;
 

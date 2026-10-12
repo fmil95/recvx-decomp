@@ -56,7 +56,7 @@ SDE_ERR	sdBankDownload( SDMEMBLK handle, const SDE_DATA_TYPE bank_type, const Si
     SND_WORK* chk_snd_work; 
     unsigned int* snd_data; 
     int i;                  
-    unsigned int *temp; // not from the debugging symbols
+    unsigned int *temp; // not from the DWARF
 
     if (__sg_sd_snd_init__ != 0)
     {
@@ -366,7 +366,7 @@ SDE_ERR	sdMemBlkSetPrm( SDMEMBLK handle, const Void *src_blk_ptr, const Sint32 s
 // 100% matching!
 SDE_ERR	sdMidiClosePort( SDMIDI handle)
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
 
     if (__sg_sd_snd_init__ != 0) 
     {
@@ -411,7 +411,7 @@ SDE_ERR	sdMidiClosePort( SDMIDI handle)
 // 100% matching!
 SDE_ERR	sdMidiGetStat( SDMIDI handle, SDS_MIDI_STAT *midi_stat)
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
     
     if (__sg_sd_snd_init__ != 0) 
     {
@@ -442,7 +442,7 @@ SDE_ERR	sdMidiOpenPort( SDMIDI *handle)
 {
     int i;
     SND_WORK* check_snd_work;
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
 	
     if (__sg_sd_snd_init__ != 0) 
     {
@@ -494,7 +494,7 @@ SDE_ERR	sdMidiOpenPort( SDMIDI *handle)
 // 100% matching!
 SDE_ERR	sdMidiPlay( SDMIDI handle, const Sint8 bank_num, const Sint8 data_num, const Sint8 priority)
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
     unsigned int ch_check;
 
     if (__sg_sd_snd_init__ != 0)
@@ -552,7 +552,7 @@ SDE_ERR	sdMidiSetFxLev( SDMIDI handle, const Sint8 fx_lev)
 // 100% matching!
 SDE_ERR	sdMidiSetPan( SDMIDI handle, const Sint8 pan, const Sint32 fade_time)
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
     char set_pan;
 
     if (__sg_sd_snd_init__ != 0)
@@ -594,7 +594,7 @@ SDE_ERR	sdMidiSetPan( SDMIDI handle, const Sint8 pan, const Sint32 fade_time)
 // 100% matching!
 SDE_ERR	sdMidiSetPitch( SDMIDI handle, const Sint16 pitch, const Sint32 fade_time)
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
     unsigned short set_pitch;
 
     if (__sg_sd_snd_init__ != 0)
@@ -669,7 +669,7 @@ SDE_ERR	sdMidiSetSpeed( SDMIDI handle, const Sint16 speed, const Sint32 fade_tim
 // 100% matching!
 SDE_ERR	sdMidiSetVol( SDMIDI handle, const Sint8 vol, const Sint32 fade_time)
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
 
     if (__sg_sd_snd_init__ != 0)
     {
@@ -732,7 +732,7 @@ SDE_ERR	sdMidiSetVol( SDMIDI handle, const Sint8 vol, const Sint32 fade_time)
 // 100% matching!
 SDE_ERR	sdMidiStop( SDMIDI handle)
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
 
     if (__sg_sd_snd_init__ != 0) 
     {
@@ -757,7 +757,7 @@ SDE_ERR	sdMidiStop( SDMIDI handle)
 // 100% matching!
 SDE_ERR	sdShotClosePort( SDSHOT handle)
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
 
     if (__sg_sd_snd_init__ != 0) 
     {
@@ -804,7 +804,7 @@ SDE_ERR	sdShotClosePort( SDSHOT handle)
 // 100% matching! 
 SDE_ERR	sdShotGetStat( SDSHOT handle, SDS_SHOT_STAT *shot_stat)
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
 
     if (__sg_sd_snd_init__ != 0)
     {
@@ -879,7 +879,7 @@ SDE_ERR	sdShotOpenPort( SDSHOT *handle)
 // 100% matching!
 SDE_ERR	sdShotPlay( SDSHOT handle, const Sint8 bank_num, const Sint8 data_num, const Sint8 priority)
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
     unsigned int ch_check; 
     unsigned short* check_se_channel; 
     int cancel_flag;
@@ -976,7 +976,7 @@ SDE_ERR	sdShotSetFxLev( SDSHOT handle, const Sint8 fx_lev)
 // 100% matching!
 SDE_ERR	sdShotSetPan( SDSHOT handle, const Sint8 pan, const Sint32 fade_time)
 { 
-    SND_WORK* check_snd_work; // not from the debugging symbols
+    SND_WORK* check_snd_work; // not from the DWARF
     char set_pan;
 
     if (__sg_sd_snd_init__ != 0) 
@@ -1056,7 +1056,7 @@ static unsigned char Panpot_Control(SND_WORK* set_snd_work)
 // 100% matching!
 SDE_ERR	sdShotSetPitch( SDSHOT handle, const Sint16 pitch, const Sint32 fade_time) 
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
     unsigned short set_pitch;
     
     if (__sg_sd_snd_init__ != 0) 
@@ -1144,7 +1144,7 @@ static short Pitch_Control(SND_WORK* set_snd_work)
 // 100% matching!
 SDE_ERR	sdShotSetVol( SDSHOT handle, const Sint8 vol, const Sint32 fade_time)
 {
-    SND_WORK* temp; // not from the debugging symbols
+    SND_WORK* temp; // not from the DWARF
 
     if (__sg_sd_snd_init__ != 0) 
     {

@@ -208,7 +208,7 @@ void bhClrEff_YT()
 int bhPushEffectWork()
 {
     unsigned int pssz;
-    int nb; // not from the debugging symbols
+    int nb; // not from the DWARF
 
     pssz = ((int)&sys->ob_nlgn - (int)&sys->ef_poln) + 0x9C000; 
     
@@ -233,7 +233,7 @@ int bhPushEffectWork()
 // 100% matching!
 void bhPopEffectWork()
 {
-    int nb; // not from the debugging symbols
+    int nb; // not from the DWARF
 
     if (sys->ef_psp != NULL) 
     {

@@ -640,8 +640,8 @@ int Ps2TextureFree(NJS_TEXMEMLIST* p)
     TIM2_PICTUREHEADER_EX* before; 
     TIM2_PICTUREHEADER_EX* after; 
     TIM2_PICTUREHEADER_EX* timp; 
-    unsigned int* temp; // not from the debugging symbols
-    unsigned int* temp2; // not from the debugging symbols
+    unsigned int* temp; // not from the DWARF
+    unsigned int* temp2; // not from the DWARF
 
     (void)&temp; // FAKE
 
@@ -722,7 +722,7 @@ int Ps2TextureGarbageCollectionAll()
     TIM2_PICTUREHEADER_EX* after2; 
     unsigned int size; 
     unsigned char* real_p; 
-    TIM2_PICTUREHEADER_EX* temp; // not from the debugging symbols
+    TIM2_PICTUREHEADER_EX* temp; // not from the DWARF
     
     ring_check();
     

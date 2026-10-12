@@ -22,7 +22,7 @@ void bhReadPlayerData()
     unsigned char* plmdlp; 
     unsigned char* mempb;  
     unsigned char* plmtnp; 
-    int temp; // not from the debugging symbols
+    int temp; // not from the DWARF
 
     mempb = sys->memp;
     datp = sys->memp;
@@ -178,7 +178,7 @@ void bhReadWeaponData()
     MN_WORK* mtnp;         
     int mtsz;              
     unsigned char* plmtnp; 
-    int temp; // not from the debugging symbols
+    int temp; // not from the DWARF
 
     wpn_no = plp->wpnr_no;
     

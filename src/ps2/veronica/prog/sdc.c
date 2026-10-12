@@ -34,7 +34,7 @@ unsigned int CheckTransComplete()
 // 100% matching!
 void SetupSoundDriver(void* pSndDrv, unsigned int SndDrvSize)
 {
-    void* temp; // not from the debugging symbols
+    void* temp; // not from the DWARF
 
     temp = TransWaitCallBackFunction;
     
@@ -652,7 +652,7 @@ void RequestMidiFadeFunction(int SlotNo, int Func, short Timer)
 void RequestMidiFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 {
     SDS_INFO* mp;
-    int Func; // not from the debugging symbols
+    int Func; // not from the DWARF
 
     mp = &MidiInfo[SlotNo];
 
@@ -726,7 +726,7 @@ void RequestSeFadeFunction(int SlotNo, int Func, short Timer)
 void RequestSeFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
 {
     SDS_INFO* sp;
-    int Func; // not from the debugging symbols
+    int Func; // not from the DWARF
     
     sp = &SeInfo[SlotNo];
     

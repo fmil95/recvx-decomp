@@ -13,9 +13,9 @@
 #include "../../../ps2/veronica/prog/main.h"
 
 // 100% matching! 
-unsigned char* bhGetFreeMemory(int size, int param) // second parameter is not present on the debugging symbols  
+unsigned char* bhGetFreeMemory(int size, int param) // second parameter is not present on the DWARF  
 {
-    unsigned char *temp; // not from the debugging symbols
+    unsigned char *temp; // not from the DWARF
     
     sys->memp = (unsigned char*)(((int)sys->memp + 63) & ~0x3F);
     

@@ -10001,7 +10001,7 @@ int Common_controll()
             int v2; 
             BH_PWORK* epw; 
             POS* e_posp; 
-            ETTY_WORK* temp; // not from the debugging symbols
+            ETTY_WORK* temp; // not from the DWARF
             
             bhScePtr++;
             v0 = *bhScePtr++;
@@ -10369,7 +10369,7 @@ int Common_controll()
         break;
         case 40:
         {
-            int v0; // not from the debugging symbols
+            int v0; // not from the DWARF
             
             bhScePtr++;
             v0 = *(unsigned short *)bhScePtr;

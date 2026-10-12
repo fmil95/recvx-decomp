@@ -206,7 +206,7 @@ int GetBootDiscId()
 void InitSofdecSystem(int Mode)
 {
     MWS_PLY_INIT_SFD iprm;
-    int temp; // not from the debugging symbols
+    int temp; // not from the DWARF
 
     memset(&iprm, 0, sizeof(MWS_PLY_INIT_SFD));
     
@@ -851,7 +851,7 @@ int Get3DSoundParameter(NJS_POINT3* pP1, NJS_POINT3* pP2, char* pPan, char* pVol
     int Ang; 
     NJS_POINT2 ScreenPos;
     NJS_POINT3 pd;
-    int pan_idx; // not from the debugging symbols
+    int pan_idx; // not from the DWARF
 
     *pDist = njDistanceP2P(pP1, pP2);
     
@@ -1391,7 +1391,7 @@ void CallSystemSeEx(int SeNo, int Volume) {
 }
 
 // 100% matching!
-void CallSystemSe(int param, int SeNo) // first parameter is not present on the debugging symbols
+void CallSystemSe(int param, int SeNo) // first parameter is not present on the DWARF
 {
     CallSystemSeEx(SeNo, 0);
 }
@@ -1547,7 +1547,7 @@ void CallPlayerWeaponSeEx(NJS_POINT3* pPos, int SeNo, int SlotNo)
 {
     int SlotDef[2] = { 8, 9 };   
     int NeoSlotNo;            
-    int temp; // not from the debugging symbols
+    int temp; // not from the DWARF
 
     if (SpqFileReadRequestFlag != 2) 
     {
@@ -3082,7 +3082,7 @@ int GetIsoFileSize(char* FileName)
 // 100% matching!
 int GetInsideFileSize(unsigned int PartitionId, unsigned int FileId)
 {
-    unsigned int temp; // not from the debugging symbols
+    unsigned int temp; // not from the DWARF
     int SlotNo;
     int FileSize;
     
@@ -3454,13 +3454,13 @@ void ExitPlayLogSystem()
 }
 
 // 100% matching! 
-void ReadPlayLog(unsigned char* param1, unsigned char* param2) // parameters are not present on the debugging symbols
+void ReadPlayLog(unsigned char* param1, unsigned char* param2) // parameters are not present on the DWARF
 {
 
 }
 
 // 100% matching! 
-void WritePlayLog(int param1, int param2) // parameters are not present on the debugging symbols
+void WritePlayLog(int param1, int param2) // parameters are not present on the DWARF
 {
 
 }

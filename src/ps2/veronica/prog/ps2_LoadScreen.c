@@ -7,7 +7,7 @@
 #include "../../../ps2/veronica/prog/main.h"
 
 // 100% matching!
-LOAD_SCREEN* CreateLoadScreen(LOAD_SCREEN* pLoad, void* vpWorkPtrSys) // second parameter is not present on the debugging symbols
+LOAD_SCREEN* CreateLoadScreen(LOAD_SCREEN* pLoad, void* vpWorkPtrSys) // second parameter is not present on the DWARF
 {
     pLoad->ulState = 0;
     pLoad->ulSubState = 0;
@@ -1032,8 +1032,8 @@ void CheckDispLoadMemoryCard(LOAD_SCREEN* pLoad)
 {
     int lPort0Card, lPort1Card;
     int lPort0CurX, lPort1CurX; 
-    int lPort0CurY, lPort1CurY; // not from the debugging symbols
-    short temp; // not from the debugging symbols
+    int lPort0CurY, lPort1CurY; // not from the DWARF
+    short temp; // not from the DWARF
     
     lPort0Card = GetMemoryCardSelectPortState(pLoad->pMcState, 0); 
     lPort1Card = GetMemoryCardSelectPortState(pLoad->pMcState, 1);

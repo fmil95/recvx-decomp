@@ -777,7 +777,7 @@ int _Check_DisplayAreaPoint(NJS_VECTOR* vec)
 void DrawScissorPolygonOpaque(SCISSOR* scissor, unsigned long ulType)
 {
     SCISSOR_NODE* in; 
-    VU1_PRIM_BUF* pP; // not from the debugging symbols
+    VU1_PRIM_BUF* pP; // not from the DWARF
 
     in = scissor->in;
     
@@ -1587,7 +1587,7 @@ void vu1GetVertexColor(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim)
 }
 
 // 100% matching!
-void vu1GetVertexColorCM(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) // first parameter is not present on the debugging symbols
+void vu1GetVertexColorCM(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) // first parameter is not present on the DWARF
 {
     asm volatile 
     ("
@@ -1605,7 +1605,7 @@ void vu1GetVertexColorCM(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) // first pa
 }
 
 // 100% matching!
-void vu1GetVertexColorIgnore(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) // first parameter is not present on the debugging symbols
+void vu1GetVertexColorIgnore(VU1_STRIP_BUF* pStrip, VU1_PRIM_BUF* pPrim) // first parameter is not present on the DWARF
 {
     asm volatile 
     ("
@@ -2043,7 +2043,7 @@ void vu1DrawTriangleStripTransDoubleI(unsigned long ulType, VU1_STRIP_BUF* pS, u
 void DrawScissorPolygonTrans1P(SCISSOR* scissor, unsigned long ulType)
 {
     SCISSOR_NODE* in; 
-    VU1_PRIM_BUF* pP; // not from the debugging symbols
+    VU1_PRIM_BUF* pP; // not from the DWARF
 
     in = scissor->in;
     

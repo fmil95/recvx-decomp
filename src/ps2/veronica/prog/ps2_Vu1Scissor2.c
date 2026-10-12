@@ -169,7 +169,7 @@ void _Set_NodeArray(VU1_STRIP_BUF* pS, VU1_PRIM_BUF* pP)
 int _ClipInter(int mask1, int mask2, int xyzflg, float sin, int work0, int work1, int count)
 {
     int ret;
-    int pad[4]; // not from the debugging symbols
+    int pad[4]; // not from the DWARF
 
     ret = 0;
 

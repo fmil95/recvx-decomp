@@ -235,8 +235,8 @@ void _Make_ClipMatrix(sceVu0FMATRIX sc, float scr, float near, float far)
 	float gsx;
 	float gsy;
     NJS_POINT4* cv;
-    float (*mp)[4]; // not from the debugging symbols
-    register float (*mp2)[4], *fM, *fw, *fh; // not from the debugging symbols
+    float (*mp)[4]; // not from the DWARF
+    register float (*mp2)[4], *fM, *fw, *fh; // not from the DWARF
 
     mp = sc;
     

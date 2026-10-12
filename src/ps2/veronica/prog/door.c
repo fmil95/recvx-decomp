@@ -1928,7 +1928,7 @@ static void LightProc2(_door_wrk* dwP)
 // 100% matching!
 static int CompareSint32(int val_a, int cmp_typ, int val_b)
 {
-    int ret; // not from the debugging symbols
+    int ret; // not from the DWARF
 
     // the statement below is just to get rid of the warning
     if (0) 

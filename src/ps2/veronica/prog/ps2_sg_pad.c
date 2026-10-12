@@ -72,7 +72,7 @@ const PDS_PERIPHERAL* pdGetPeripheral(Uint32 port)
     static PDS_PERIPHERAL pp;
     PAD_WORK *pad_wk; 
     unsigned char *pad_data; 
-    int temp; // not from the debugging symbols
+    int temp; // not from the DWARF
 
     pad_wk = &Ps2_pad.pad1;
     

@@ -819,7 +819,7 @@ void bhDrawFullScreenRenderTexture()
     int y;                    
     int y1;                   
     NJS_SCREEN scr_tex;      
-    int i; // not from the debugging symbols
+    int i; // not from the DWARF
     
     njSetRenderWidth(512);
     njSetPerspective(cam.pers);

@@ -1729,8 +1729,8 @@ void CheckDispMemoryCard(SAVE_SCREEN* pSave)
 {
     int lPort0Card, lPort1Card;
     int lPort0CurX, lPort1CurX; 
-    int lPort0CurY, lPort1CurY; // not from the debugging symbols
-    short temp; // not from the debugging symbols
+    int lPort0CurY, lPort1CurY; // not from the DWARF
+    short temp; // not from the DWARF
     
     lPort0Card = GetMemoryCardSelectPortState(pSave->pMcState, 0); 
     lPort1Card = GetMemoryCardSelectPortState(pSave->pMcState, 1);

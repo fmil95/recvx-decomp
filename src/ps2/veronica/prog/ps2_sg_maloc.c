@@ -63,7 +63,7 @@ label:
     } 
     else 
     { 
-        HM* temp; // not from the debugging symbols
+        HM* temp; // not from the DWARF
 
         temp = search_work->pNext_work;
         

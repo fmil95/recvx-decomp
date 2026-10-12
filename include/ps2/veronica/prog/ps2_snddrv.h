@@ -4,6 +4,8 @@
 #include "types.h"
 #include "macros.h"
 
+typedef	void (*AlarmCallBack)(int, unsigned short, void*);
+
 typedef struct SND_STATUS 
 {
     // total size: 0x42

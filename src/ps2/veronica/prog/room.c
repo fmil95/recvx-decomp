@@ -62,7 +62,7 @@ void bhSetRoom()
     unsigned int* romp;   
     unsigned char* datp;  
     unsigned char* reladr; 
-    unsigned char* texdat; // not from the debugging symbols
+    unsigned char* texdat; // not from the DWARF
     
     reladr = sys->rdtp;
     
@@ -650,7 +650,7 @@ void bhSetEneMtn(unsigned char* datp, BH_PWORK* ep, int id)
     int sz;          
     int mno;             
     unsigned char* emtnp; 
-    unsigned int* memp; // not from the debugging symbols
+    unsigned int* memp; // not from the DWARF
 
     memp = (unsigned int*)&sys->memp;
     
@@ -691,7 +691,7 @@ void bhSetRoomMtn(unsigned char* datp)
     int sz;          
     int mno;             
     unsigned char* emtnp; 
-    unsigned int* memp; // not from the debugging symbols
+    unsigned int* memp; // not from the DWARF
 
     memp = (unsigned int*)&sys->memp;
     
@@ -723,7 +723,7 @@ void bhSetRoomMtn(unsigned char* datp)
 }
 
 // 100% matching!
-void bhSetObjMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // third parameter is not present on the debugging symbols
+void bhSetObjMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // third parameter is not present on the DWARF
 {
     O_WRK* epp;
     int sz;
@@ -754,7 +754,7 @@ void bhSetObjMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // thir
 }
 
 // 100% matching!
-void bhSetItmMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // third parameter is not present on the debugging symbols
+void bhSetItmMdl(unsigned char* datp, ETTY_WORK* ep, int mdlno, int eno) // third parameter is not present on the DWARF
 {
     O_WRK* epp;
 

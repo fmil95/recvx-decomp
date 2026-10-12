@@ -16,7 +16,7 @@ void (*bhJumpCnkDraw[4])(BH_PWORK* ewP, NJS_CNK_OBJECT* objP, O_WORK* owP, int o
 // 100% matching! 
 void bhPutModel(BH_PWORK* ewP) 
 {
-    // these variables are arranged in an order different from the debugging symbols
+    // these variables are arranged in an order different from the DWARF
     O_WORK* owP;       
     int draw_tp;       
     ML_WORK* mlwP;     

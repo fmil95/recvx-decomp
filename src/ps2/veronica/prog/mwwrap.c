@@ -132,7 +132,7 @@ void CreateSfdHandle(void* mp, void* pp, char* fname)
 }
 
 // 100% matching!
-void CreateWaveHandle(void* unused) // parameter not present on the debugging symbols 
+void CreateWaveHandle(void* unused) // parameter not present on the DWARF 
 {
 
 }

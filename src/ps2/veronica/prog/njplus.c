@@ -1132,8 +1132,8 @@ void npSkinConvSub(NJS_CNK_OBJECT* objp)
     int flg;               
     int mno;               
     HDR_PS* pHdr;      
-    unsigned short max; // not from the debugging symbols
-    float x, y, z; // not from the debugging symbols
+    unsigned short max; // not from the DWARF
+    float x, y, z; // not from the DWARF
 
     flg = *np.sknp++;
     

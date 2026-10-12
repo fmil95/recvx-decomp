@@ -117,7 +117,7 @@ u_long128* MakeRenderTexHeader(void* tex_adr)
     unsigned int fsize;    
     unsigned int psize;      
     unsigned int loop;        
-    TIM2_PICTUREHEADER_EX *temp; // not from the debugging symbols
+    TIM2_PICTUREHEADER_EX *temp; // not from the DWARF
 
     work = tex_adr;
     

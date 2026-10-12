@@ -198,7 +198,7 @@ int SdrInit()
 // 100% matching!
 int SdrSeReq(int req, char vol, char pan, short pitch)
 { 
-	char temp; // not from the debugging symbols
+	char temp; // not from the DWARF
     
 	if (sndque_tbl[sque_w_idx].cmd >= 0) 
     { 
@@ -242,7 +242,7 @@ int SdrSeCancel(int req)
 // 100% matching!
 int SdrSeChg(int req, char vol, char pan, short pitch)
 {
-	char temp; // not from the debugging symbols
+	char temp; // not from the DWARF
 
 	if (sndque_tbl[sque_w_idx].cmd >= 0)
     {

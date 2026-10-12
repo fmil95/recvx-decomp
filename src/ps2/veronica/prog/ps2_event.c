@@ -9,7 +9,7 @@ void bhChangeBackColor()
 {
     int i;                           
     unsigned int BackCol;             
-    char ev_flag; // not from the debugging symbols
+    char ev_flag; // not from the DWARF
     static EVT_WRK* BackColTbl;
     static EVT_WRK BackColSt0[5] =
     {
@@ -250,7 +250,7 @@ void bhChangeBackColorEvt()
 {
     int i;                           
     unsigned int BackCol;             
-    char ev_flag; // not from the debugging symbols
+    char ev_flag; // not from the DWARF
     static EVT_WRK* BackColTbl;
     static EVT_WRK BackColSt0[1] = 
     {

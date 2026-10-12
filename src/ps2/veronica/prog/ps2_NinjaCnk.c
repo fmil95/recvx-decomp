@@ -285,7 +285,7 @@ void    njCnkSetEasyMultiLight(Int num)
 // 100% matching!
 void    njCnkSetEasyMultiLightSwitch(Int light, Int flag) 
 {
-    int lCnt; // not from the debugging symbols
+    int lCnt; // not from the DWARF
 
     if (light == 0) 
     {
@@ -315,7 +315,7 @@ void    njCnkSetEasyMultiAmbient(Float ar, Float ag, Float ab)
 // 100% matching!
 void    njCnkSetEasyMultiLightColor(Int light, Float lr, Float lg, Float lb)
 {
-    int lCnt; // not from the debugging symbols
+    int lCnt; // not from the DWARF
 
     lCnt = light - 1;
     
@@ -337,7 +337,7 @@ void    njCnkSetEasyMultiLightVector(Float vx, Float vy, Float vz)
 // 100% matching!
 void    njCnkSetEasyMultiLightPoint(Int light, Float px, Float py, Float pz)
 {
-    int lCnt; // not from the debugging symbols
+    int lCnt; // not from the DWARF
 
     lCnt = light - 1;
     
@@ -351,7 +351,7 @@ void    njCnkSetEasyMultiLightPoint(Int light, Float px, Float py, Float pz)
 // 100% matching!
 void    njCnkSetEasyMultiLightRange(Int light, Float nrange, Float frange)
 {
-    int lCnt; // not from the debugging symbols
+    int lCnt; // not from the DWARF
 
     lCnt = light - 1;
 
@@ -425,7 +425,7 @@ void    njCnkSetSimpleMultiLight(Int num)
 // 100% matching!
 void    njCnkSetSimpleMultiLightSwitch(Int light, Int flag)
 {
-    int lCnt; // not from the debugging symbols
+    int lCnt; // not from the DWARF
 
     if (light == 0) 
     {
@@ -455,7 +455,7 @@ void    njCnkSetSimpleMultiAmbient(Float ar, Float ag, Float ab)
 // 100% matching!
 void    njCnkSetSimpleMultiLightColor(Int light, Float lr, Float lg, Float lb)
 {
-    int lCnt; // not from the debugging symbols
+    int lCnt; // not from the DWARF
 
     lCnt = light - 1;
     
@@ -477,7 +477,7 @@ void    njCnkSetSimpleMultiLightVector(Float vx, Float vy, Float vz)
 // 100% matching!
 void    njCnkSetSimpleMultiLightPoint(Int light, Float px, Float py, Float pz)
 {
-    int lCnt; // not from the debugging symbols
+    int lCnt; // not from the DWARF
 
     lCnt = light - 1;
     
@@ -491,7 +491,7 @@ void    njCnkSetSimpleMultiLightPoint(Int light, Float px, Float py, Float pz)
 // 100% matching!
 void    njCnkSetSimpleMultiLightRange(Int light, Float nrange, Float frange)
 {
-    int lCnt; // not from the debugging symbols
+    int lCnt; // not from the DWARF
 
     lCnt = light - 1;
     
@@ -679,7 +679,7 @@ int njCnkDrawModelLocal(NJS_CNK_MODEL* pModel)
     float fZ;                 
     CHUNK_HEAD* pCnk;           
     unsigned int modelclipflag; 
-    float temp, temp2; // not from the debugging symbols
+    float temp, temp2; // not from the DWARF
 
     modelclipflag = 0;
     
@@ -781,7 +781,7 @@ int njCnkDrawModelLocalMod(NJS_CNK_MODEL* pModel)
     float fSX, fSY;              
     float fZ;                 
     CHUNK_HEAD* pCnk;           
-    float temp, temp2, temp3; // not from the debugging symbols
+    float temp, temp2, temp3; // not from the DWARF
 
     if (ulNaCnkFlagModelClip != 0) 
     {
@@ -1122,7 +1122,7 @@ CHUNK_HEAD* njCnkCoSt(CHUNK_HEAD* pCnk)
 // 100% matching! 
 CHUNK_HEAD* njCnkCvVn(CHUNK_HEAD* pCnk)
 {
-    // these variables are arranged in an order different from the debugging symbols
+    // these variables are arranged in an order different from the DWARF
     VU1_STRIP_BUF* pBuffer;
     float* fpCnk;         
     unsigned int ulIndex;  
@@ -1154,10 +1154,10 @@ CHUNK_HEAD* njCnkCvVn(CHUNK_HEAD* pCnk)
     float fTRX;             
     float fTRY;             
     float fTRZ;             
-    float f3;            // not from the debugging symbols
-    float f25;           // not from the debugging symbols
-    float f26, f27, f28; // not from the debugging symbols
-    float f29, f30, f31; // not from the debugging symbols
+    float f3;            // not from the DWARF
+    float f25;           // not from the DWARF
+    float f26, f27, f28; // not from the DWARF
+    float f29, f30, f31; // not from the DWARF
 
     pBuffer = &pNaCnkVerBufTop[*(unsigned short*)&pCnk[1]];
     
@@ -1483,7 +1483,7 @@ CHUNK_HEAD* njCnkCvVMod(CHUNK_HEAD* pCnk)
     float fR10, fR11, fR12;
     float fR20, fR21, fR22;
     float fTRX, fTRY, fTRZ;
-    float temp; // not from the debugging symbols
+    float temp; // not from the DWARF
 
     pBuffer = &pNaCnkVerBufTop[((unsigned short*)&pCnk[1])[0]];
     
@@ -1557,7 +1557,7 @@ CHUNK_HEAD* njCnkCoP3(CHUNK_HEAD* pCnk)
     unsigned short usNext;  
     unsigned short usPoly;  
     float fNormal;          
-    void *dp; // not from the debugging symbols
+    void *dp; // not from the DWARF
 
     uspCnk = (unsigned short*)&pCnk[1];
     
@@ -1725,12 +1725,12 @@ CHUNK_HEAD* njCnkCs(CHUNK_HEAD* pCnk)
     unsigned short usMax;
     unsigned short usClip;
     unsigned short usColorCalc;
-    int ulMode; // not from the debugging symbols
+    int ulMode; // not from the DWARF
     unsigned long ulType;           
     unsigned short usCnt;
     unsigned short* uspCnk;                                                        
     unsigned short usStrip;                                                      
-    unsigned short usColorCalc2; // not from the debugging symbols
+    unsigned short usColorCalc2; // not from the DWARF
     void (*pVu1Func)(unsigned long, VU1_STRIP_BUF*, unsigned short, unsigned short); 
 
     ulType = 0x12000000000000;

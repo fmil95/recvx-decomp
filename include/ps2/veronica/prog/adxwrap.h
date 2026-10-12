@@ -85,7 +85,7 @@ int GetAdxStatus(unsigned int SlotNo);
 void SetVolumeAdx(unsigned int SlotNo, int Volume);
 void SetVolumeAdxEx(unsigned int SlotNo, float Volume, float MaxVolume);
 void SetVolumeAdx2(unsigned int SlotNo, float Volume);
-void SetPanAdx2(unsigned int SlotNo, int Channel, float Pan); // second parameter is not present on the debugging symbols
+void SetPanAdx2(unsigned int SlotNo, int Channel, float Pan); // second parameter is not present on the DWARF
 void SetPanAdx(unsigned int SlotNo, int Channel, int Pan);
 int GetAdxPlayTime(unsigned int SlotNo);
 void RequestAdxFadeFunction2(int SlotNo, int Func, int Timer, int FirstVolume);

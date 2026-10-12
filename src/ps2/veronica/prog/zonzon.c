@@ -1278,8 +1278,8 @@ ATR_WORK* bhEne_CheckDirWall2(BH_PWORK* epw, int ang, float step)
 // 100% matching!
 ATR_WORK* bhEne_CheckDirWall3(BH_PWORK* epw, NJS_POINT3* pos, int ang, float step)
 {
-    int angle; // not from debugging symbols
-    float float_angle; // not from debugging symbols
+    int angle; // not from DWARF
+    float float_angle; // not from DWARF
 
     ATR_WORK* hp;
 	NJS_POINT3 ps;

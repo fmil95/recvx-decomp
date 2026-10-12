@@ -138,7 +138,7 @@ void Ps2_pad_actuater()
 // 100% matching! 
 static void Ps2_pad_act_start(PAD_ACT* pPact)
 {
-    unsigned char temp; // not from the debugging symbols
+    unsigned char temp; // not from the DWARF
 
     if ((pPact->be_flag & 0x2)) 
     {

@@ -61,7 +61,7 @@ void TypewriterKeepMemory()
 }
 
 // 100% matching! 
-void CountDisplay(int disppoint, NJS_POINT2* pos, unsigned int col, int param) // fourth parameter is not present on the debugging symbols   
+void CountDisplay(int disppoint, NJS_POINT2* pos, unsigned int col, int param) // fourth parameter is not present on the DWARF   
 {
     NJS_POINT2COL p2c; 
     NJS_POINT2 p[4];   

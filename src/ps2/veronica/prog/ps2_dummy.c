@@ -1282,7 +1282,7 @@ int Ps2DrawOTagSub(int start_no)
     int save_alpha[3]; 
     TIM2_PICTUREHEADER_EX* timp; 
     unsigned int tex_cache_num; 
-    PS2_OT *temp; // not from the debugging symbols 
+    PS2_OT *temp; // not from the DWARF 
     unsigned int t_flag;
     unsigned int p_flag; 
     unsigned int t_no; 
@@ -1528,7 +1528,7 @@ int Ps2TexLoad(NJS_TEXMEMLIST* addr)
     unsigned long* p;        
     TIM2_PICTUREHEADER_EX* timp; 
     unsigned int cache_flag;  
-    unsigned int temp; // not from the debugging symbols
+    unsigned int temp; // not from the DWARF
 
     cache_flag = 1;
 
@@ -1741,8 +1741,8 @@ int Ps2CheckTextureAlpha(void* pp)
     unsigned int *cp;  
     unsigned int num;  
     unsigned int flag; 
-    unsigned int temp; // not from the debugging symbols
-    TIM2_PICTUREHEADER_EX* temp2; // not from the debugging symbols
+    unsigned int temp; // not from the DWARF
+    TIM2_PICTUREHEADER_EX* temp2; // not from the DWARF
 
     temp2 = pp;
     
