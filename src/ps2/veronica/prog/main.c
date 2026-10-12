@@ -11,7 +11,6 @@
 #include <../../../ps2/veronica/prog/katana_extra.h>
 
 #include "../../../ps2/veronica/prog/types.h"
-#include "../../../ps2/veronica/prog/enums.h"
 #include "../../../ps2/veronica/prog/macros.h"
 
 #include "../../../ps2/veronica/prog/main.h"

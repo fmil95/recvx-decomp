@@ -2,7 +2,13 @@
 #define _MAP_H_
 
 #include "types.h"
-#include "enums.h"
+
+typedef enum enum_2
+{
+	MP_SET_GAME,
+	MP_SET_EVENT,
+	MP_SET_SUB
+} enum_2;
 
 typedef enum _mp_no 
 {

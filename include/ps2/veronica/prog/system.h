@@ -2,7 +2,6 @@
 #define _SYSTEM_H_
 
 #include "types.h"
-#include "enums.h"
 #include "macros.h"
 
 typedef struct RDT_WORK
