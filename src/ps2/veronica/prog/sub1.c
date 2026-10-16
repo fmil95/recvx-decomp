@@ -7717,10 +7717,7 @@ void ItemBox(S_WORK* st)
     }
 }
 
-/* WARNING: this code has a much lower matching percent than the usual fuzzy matches included in the project, and thus it isn't reliable.
-   So far it seems to be functionally equivalent, but bugs might still arise. */
-
-// 67.97% matching
+// 100% matching!
 void ItemBoxChange(S_WORK* st, unsigned short ibcsr) 
 {
     unsigned int itemid1, itemid2, itemid3;  
@@ -7735,20 +7732,21 @@ void ItemBoxChange(S_WORK* st, unsigned short ibcsr)
     unsigned char bmax;    
     unsigned char chk2;    
     unsigned char max;    
-
-    lt_c3 = 0;
+ 
+	lt_c3 = 0;
     lt_c2 = lt_c = st->listcsr_0;
     
     chk2 = 0;
     
-    itemid3 = st->bxp[ibcsr];
+	itemid1 = st->pip[lt_c];
+	itemid2 = st->bxp[ibcsr];
     
-    id1 = (st->pip[lt_c] >> 16) & 0xFF;
-    id2 = (itemid3       >> 16) & 0xFF;
+	id1 = (st->pip[lt_c]  >> 16) & 0xFF;
+    id2 = (st->bxp[ibcsr] >> 16) & 0xFF;
     
     arms = (st->pip[*st->pip] >> 16) & 0xFF;
-
-    if (sys->ply_id == 0) 
+ 
+	if (sys->ply_id == 0) 
     {
         if (((itemdata[id2].type & 0x40)) && ((sys->stg_no == 9) && (sys->rom_no == 26))) 
         {
@@ -7774,10 +7772,17 @@ void ItemBoxChange(S_WORK* st, unsigned short ibcsr)
             return;
         } 
     }
-
-    bmax = max = (sys->gm_flg & 0x8000000) ? 10 : 8;
     
-    for (num1 = 0; num1 < max; num1++) 
+	if ((sys->gm_flg & 0x8000000))
+	{
+		max = 10;
+	}
+	else
+	{
+		max = 8;
+	}
+
+	for (num1 = 0, bmax = max; num1 < max; num1++) 
     {
         wpn = (st->pip[num1 + 2] >> 16) & 0xFF;
         
@@ -7790,164 +7795,195 @@ void ItemBoxChange(S_WORK* st, unsigned short ibcsr)
             bmax--; 
         }
     }
-
-    if ((itemdata[id2].type & 0x100)) 
-    {
-        if (lt_c == 1) 
-        {
-            if (bmax >= 2) 
-            {
-                lt_c3 = max + 1;
-                lt_c2 = lt_c;
-                
-                itemid3 = 0;
-                
-                chk2 = 1;
-            }
-        } 
-        else 
-        {
-            if ((itemdata[id1].type & 0x100)) 
-            {
-                chk2 = 1; 
-            } 
-            else if (id1) 
-            {
-                if (bmax >= 1) 
-                {
-                    chk2 = 1; 
-                }
-            } 
-            else if (bmax >= 2) 
-            {
-                chk2 = 1; 
-            }
-        }
-    } 
-    else 
-    {
-        if (lt_c == 1) 
-        {
-            if ((id2 != standard[sys->ply_id][0]) && (id2 != standard[sys->ply_id][1])) 
-            {
-                if ((bmax >= 1) || (!id2)) 
-                {
-                    lt_c3 = max + 1;
-                    lt_c2 = lt_c;
+ 
+	if ((itemdata[id2].type & 0x100))
+	{
+		if (lt_c == 1)
+		{
+			if (bmax >= 2)
+			{
+				if ((id1 == standard[sys->ply_id][0]) || (id1 == standard[sys->ply_id][1]))
+				{
+					lt_c3 = max + 1;
+					lt_c2 = lt_c;
                     
-                    itemid3 = 0;
-                    
+					itemid3 = itemid2;
+					itemid2 = 0;
+					
                     chk2 = 1;
-                }
-            } 
-            else 
-            {
-                chk2 = 1;
-            }
-        } 
-        else 
-        {
-            chk2 = 1;
+				}
+				else
+				{
+					lt_c3 = max + 1;
+					lt_c2 = lt_c;
+					
+                    itemid3 = itemid2;
+					itemid2 = 0;
+					
+                    chk2 = 1;
+				}
+			}
+		}
+		else
+		{
+			if ((itemdata[id1].type & 0x100))
+			{
+				chk2 = 1;
+			}
+			else if (id1)
+			{
+				if (bmax >= 1)
+				{
+					chk2 = 1;
+				}
+			}
+			else if (bmax >= 2)
+			{
+				chk2 = 1;
+			}
+		}
+	}
+	else
+	{
+		if (lt_c == 1)
+		{
+			if ((id2 != standard[sys->ply_id][0]) && (id2 != standard[sys->ply_id][1]))
+			{
+				if (bmax >= 1)
+				{
+					lt_c3 = max + 1;
+					lt_c2 = lt_c;
+                    
+					itemid3 = itemid2;
+					itemid2 = 0;
+					
+                    chk2 = 1;
+				}
+				else if (!id2)
+				{
+					chk2 = 1;
+				}
+			}
+			else
+			{
+				chk2 = 1;
+			}
+		}
+		else
+		{
+			chk2 = 1;
             
-            if ((id2 == standard[sys->ply_id][0]) || (id2 == standard[sys->ply_id][1])) 
-            {
-                lt_c3 = lt_c;
-                lt_c2 = 1;
-                
-                chk2 = 0;
-            }
-        }
-    }
-
-    if ((itemdata[id2].type & 0x200)) 
-    {
-        if (id1 == id2) 
-        {
-            chk2 = 2; 
-            num1 = lt_c;
-        } 
-        else if (!id1) 
-        {
-            for (x = 0; x < max; x++) 
-            {
-                if ((((st->pip[x + 2] >> 16) & 0xFF) == id2) && ((st->pip[x + 2] & 0xFFFF) < 999)) 
+			if ((id2 == standard[sys->ply_id][0]) || (id2 == standard[sys->ply_id][1]))
+			{
+				lt_c3 = lt_c;
+				lt_c2 = 1;
+				
+                itemid3 = 0;
+			}
+		}
+	}
+    
+	if ((itemdata[id2].type & 0x200))
+	{
+		if (id1 == id2)
+		{
+			chk2 = 2;
+			
+            num1 = st->listcsr_0;
+		}
+		else if (!id1)
+		{
+			for (x = 0; x < max; x++)
+			{
+				id1    = (st->pip[(unsigned int)x + 2] >> 16) & 0xFF;   
+                bullet = (st->pip[(unsigned int)x + 2] >> 0)  & 0xFFFF;      
+ 
+				if ((id1 == id2) && (bullet < 999))
+				{
+					chk2 = 2;
+                    
+					num1 = x + 2;
+					
+                    x = max;
+				}
+			}
+		}
+	}
+    
+	if (chk2 != 2)
+	{
+		id1 = (st->pip[lt_c]  >> 16) & 0xFF;
+		id2 = (st->bxp[ibcsr] >> 16) & 0xFF;
+	}
+    
+	if (chk2 == 1)
+	{
+		if (*st->pip == lt_c)
+		{
+			parts_14b->atr &= ~0x20;
+            
+			*st->pip = 0;
+            
+			plp->mode3 = 0;
+            
+			plp->wpnr_no = 0;
+            
+			*(int*)&sys->mn_mode0 = 3;
+		}
+        
+		st->bxp[ibcsr] = itemid1;
+		st->pip[lt_c2] = itemid2;
+		
+        if (lt_c3)
+		{
+			st->pip[lt_c3] = itemid3;
+		}
+        
+		if ((*st->pip > 1) && (lt_c != 1))
+		{
+			if ((!id2) || ((id2 == standard[sys->ply_id][0]) || (id2 == standard[sys->ply_id][1])))
+			{
+				if (lt_c < *st->pip)
+				{
+					*st->pip -= 1;
+				}
+			}
+			else if (id2)
+			{
+                if (id1) 
                 {
-                    chk2 = 2;
-                    num1 = x + 2;
-                    break;
-                }
-            }
-        }
-    }
-
-    if (chk2 == 1) 
-    {
-        itemid1 = lt_c;
-        num1    = lt_c2;
-
-        if (*st->pip == lt_c) 
-        {
-            parts_14b->atr &= ~0x20;
-            
-            *st->pip = 0;
-            
-            plp->mode3   = 0;
-            plp->wpnr_no = 0;
-            
-            sys->mn_mode0 = 3;
-            
-            num1 = lt_c2;
-        }
-
-        st->bxp[ibcsr] = st->pip[lt_c];
-        st->pip[num1]  = itemid3;
-
-        if (lt_c3) 
-        {
-            st->pip[lt_c3] = 2;
-        }
-
-        if (*st->pip > 1) 
-        {
-            if (itemid1 != 1) 
-            {
-                if ((id2) && ((id2 == standard[sys->ply_id][0]) || (id2 == standard[sys->ply_id][1]))) 
-                {
-                    if (itemid1 < *st->pip) 
+                    if ((itemdata[id2].type & 0x100)) 
                     {
-                        *st->pip -= 1;
-                        return;
-                    }
-
-                    if (id1) 
-                    {
-                        if ((itemdata[id2].type & 0x100)) 
+                        if (((!(itemdata[id1].type & 0x100)) && (!(itemdata[arms].type & 0x100))) && (*st->pip < lt_c)) 
                         {
-                            if (((!(itemdata[id1].type & 0x100)) && (!(itemdata[arms].type & 0x100))) && (itemid1 < *st->pip)) 
-                            {
-                                *st->pip += 1;
-                            }
-                        } 
-                        else if (((!(itemdata[id2].type & 0x100)) && ((itemdata[id1].type & 0x100))) && (itemid1 > *st->pip) && ((itemdata[arms].type & 0x100))) 
-                        {
-                            *st->pip -= 1;
+                            *st->pip += 1;
                         }
                     } 
-                    else if (((itemdata[id2].type & 0x100)) && (!(itemdata[arms].type & 0x100))) 
+                    else if (((!(itemdata[id2].type & 0x100)) && ((itemdata[id1].type & 0x100))) && (*st->pip > lt_c) && ((itemdata[arms].type & 0x100))) 
                     {
-                        *st->pip += 1;
+                        *st->pip -= 1;
                     }
+                } 
+                else if (((itemdata[id2].type & 0x100)) && (!(itemdata[arms].type & 0x100))) 
+                {
+                    *st->pip += 1;
                 }
-            }
-        } 
-        else if ((*st->pip > 1) && (itemid1 == 1) && ((itemdata[id2].type & 0x100))) 
-        {
-            *st->pip += 1;
-        }
-
-        if ((itemid1 != 1) && ((st->listcsr_0 > sakai) || (((st->listcsr_2 & 0x1)) && (st->listcsr_0 == (sakai - 1))))) 
-        {
-            if (((itemdata[id1].type & 0x100)) && (!(itemdata[id2].type & 0x100))) 
+			}
+		}
+		else if ((*st->pip > 1) && (lt_c == 1))
+		{
+			chk  = *st->pip;
+			arms = (st->pip[chk] >> 16) & 0xFF;
+            
+			if (((itemdata[id2].type & 0x100)) && (!(itemdata[arms].type & 0x100)))
+			{
+				*st->pip += 1;
+			}
+		}
+        
+		if ((lt_c != 1) && ((st->listcsr_0 > sakai) || (((st->listcsr_2 & 0x1)) && (st->listcsr_0 == (sakai - 1))))) 
+		{
+			if (((itemdata[id1].type & 0x100)) && (!(itemdata[id2].type & 0x100))) 
             {
                 st->listcsr_0++;
             }
@@ -7956,33 +7992,34 @@ void ItemBoxChange(S_WORK* st, unsigned short ibcsr)
             {
                 st->listcsr_0--;
             }
-        }
-
-        if ((st->pip[lt_c]) && (parts_15b[18].anim == 16)) 
+		}
+        
+		if ((itemid1) && (parts_15b[18].anim == 16)) 
         {
             parts_15b[18].anim = 17;
             parts_15b[19].anim = 17;
         }
-    } 
-    else if (chk2 == 2) 
+	}
+	else if (chk2 == 2) 
     {
         bullet = itemdata[id2].cmb;
         
         if (bullet >= 0) 
-        {
-            y = combidata[bullet]; 
-
-            for (x = bullet + 1; y > 0; y--, x += 3) 
-            {
-                if (id1 == combidata[x]) 
+		{
+			y = combidata[bullet];
+            
+			for (x = bullet + 1; y > 0; y--) 
+			{
+				if (id1 == combidata[x]) 
                 {
                     Combi_01(x, &st->bxp[ibcsr], &st->pip[num1]);
-                    break;
                 }
-            }
-        }
-    } 
-    else if (!(sys->st_flg & 0x200)) 
+
+                x += 3;
+			}
+		}
+	}
+	else if (!(sys->st_flg & 0x200)) 
     {
         bhSetMessage(1, 159);
         
