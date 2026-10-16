@@ -401,7 +401,7 @@ void ADXB_EvokeExpandSte(ADXB adxb, Sint32 nblk)
     
     obuf_l += dp->wpos;
     
-    ADXPD_EntrySte(xpd, dp->ibuf, nblk * 2, obuf_l, obuf_l + dp->pcmbdist);
+    ADXPD_EntrySte(xpd, dp->ibuf, nblk * 2, obuf_l, &obuf_l[dp->pcmbdist]);
     
     ADXPD_Start(xpd);
 }

@@ -20,18 +20,18 @@
 #define	ADXT_OBUF_DIST	(0x2020)
 
 Sint32 adxt_time_mode = 0;
-Sint32 adxt_tsvr_enter_cnt; /* unused */
-Uint32 adxt_time_adjust_cnt; /* unused */
-Uint32 adxt_time_adjust_sw; /* unused */
+Sint32 adxt_tsvr_enter_cnt; // unused
+Uint32 adxt_time_adjust_cnt; // unused
+Uint32 adxt_time_adjust_sw; // unused
 Uint32 adxt_svrcnt = 0;
 Uint32 adxt_svrcnt_sjd = 0;
 Uint32 adxt_svrcnt_rna = 0;
-Uint32 adxt_svrcnt_adxf = 0; /* unused */
-Uint32 adxt_svrcnt_adxstm = 0; /* unused */
+Uint32 adxt_svrcnt_adxf = 0; // unused
+Uint32 adxt_svrcnt_adxstm = 0; // unused
 Uint32 adxt_svrcnt_hndl = 0;
-Sint32 adxt_mviop_f = 0; /* unused */
-Sint32 adxt_mviop_d = 0; /* unused */
-Sint32 adxt_mvtmp_d = 0; /* unused */
+Sint32 adxt_mviop_f = 0; // unused
+Sint32 adxt_mviop_d = 0; // unused
+Sint32 adxt_mvtmp_d = 0; // unused
 Sint32 adxt_time_unit = 0;
 float adxt_diff_av = 0;
 
@@ -81,7 +81,7 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
 	Sint8 *wk64;
 	Sint32 wk64size;
     
-    wk64 = (Sint8*)(((Uint32)work + (ADXT_MIN_BUFDATA - 1)) & ~(ADXT_MIN_BUFDATA - 1));
+    wk64 = (Uint32)&work[ADXT_MIN_BUFDATA - 1] & ~(ADXT_MIN_BUFDATA - 1);
     
     wk64size = worksize - ((Sint32)wk64 - (Sint32)work);
 
@@ -104,7 +104,7 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
 
     adxt->maxnch = maxnch;
     
-    adxt->ibuf = (Sint8*)(wk64 + ADXT_CALC_OBUFSIZE(maxnch));
+    adxt->ibuf = (Sint8*)&wk64[ADXT_CALC_OBUFSIZE(maxnch)];
     adxt->obuf = (Sint16*)wk64;
     
     adxt->ibufxlen = ADXT_IBUF_XLEN;
@@ -126,7 +126,7 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize)
 
     for (i = 0; i < maxnch; i++) 
     {
-        adxt->sjo[i] = SJRBF_Create((Sint8*)(adxt->obuf + (adxt->obufdist * i)), adxt->obufsize * 2, (adxt->obufdist - adxt->obufsize) * 2);
+        adxt->sjo[i] = SJRBF_Create(&adxt->obuf[adxt->obufdist * i], adxt->obufsize * 2, (adxt->obufdist - adxt->obufsize) * 2);
 
         if (adxt->sjo[i] == NULL) 
         {

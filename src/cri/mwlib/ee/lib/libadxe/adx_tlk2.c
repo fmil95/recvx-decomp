@@ -109,11 +109,11 @@ void ADXT_StartMemIdx(ADXT adxt, void *acx, Sint32 no)
 
     ADXT_Stop(adxt);
     
-    if ((no < BSWAP_S32(((Sint32*)acx)[1])) && (no >= 0)) // TODO: simplify this line when GCC is added
+    if ((no < BSWAP_S32(((Sint32*)acx)[1])) && (no >= 0)) 
     {
         ADXCRS_Lock();
         
-        sj = SJMEM_Create((Sint8*)acx + BSWAP_S32(((Sint32*)acx + (no * 2))[2]), ADXT_MAX_DATASIZE); // this one too
+        sj = SJMEM_Create(&acx[BSWAP_S32(((Sint32*)acx)[(no * 2) + 2])], ADXT_MAX_DATASIZE); 
         
         if (sj == NULL) 
         {

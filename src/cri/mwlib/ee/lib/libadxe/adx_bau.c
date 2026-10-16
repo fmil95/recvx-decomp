@@ -97,7 +97,7 @@ static void* AU_GetInfo(void *hdr, Sint32 hdrlen, Sint32 *sfreq, Sint32 *nch, Si
         *nsmpl = 0x7FFF0000;
     }
     
-    return (void*)((Sint32)hdr + hdr_size); // TODO: simplify this line when adding GCC
+    return &hdr[hdr_size]; 
 }
 
 Sint32 ADXB_CheckAu(Sint8 *ibuf)

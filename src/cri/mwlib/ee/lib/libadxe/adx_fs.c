@@ -138,9 +138,9 @@ Sint32 ADXF_LoadPartition(Sint32 ptid, Char8 *fname, void *ptinfo, Sint32 nfile)
     
     info->type = 0;
 
-    buf = (Sint32*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F); 
+    buf = (Uint32)&work[ADXF_DEF_DMA_ALIGN] & ~0x3F; 
     
-    wrk32 = (Sint8*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F);
+    wrk32 = (Uint32)&work[ADXF_DEF_DMA_ALIGN] & ~0x3F;
     
     ftbl = (Uint16*)&info->top + 1;
 
@@ -263,9 +263,9 @@ Sint32 ADXF_LoadPartitionEx(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
     
     info->type = 0;
 
-    buf = (Sint32*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F); 
+    buf = (Uint32)&work[ADXF_DEF_DMA_ALIGN] & ~0x3F; 
     
-    wrk32 = (Sint8*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F);
+    wrk32 = (Uint32)&work[ADXF_DEF_DMA_ALIGN] & ~0x3F;
     
     ftbl = (Uint16*)&info->top + 1;
 
@@ -381,9 +381,9 @@ Sint32 ADXF_LoadPartitionNw(Sint32 ptid, Char8 *fname, void *dir, void *ptinfo)
         
         ((ADXF_PTINFO*)ptinfo)->curdir = dir;
         
-        wrk32 = (Sint8*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F);
+        wrk32 = (Uint32)&work[ADXF_DEF_DMA_ALIGN] & ~0x3F;
 
-        buf = (Sint32*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F);
+        buf = (Uint32)&work[ADXF_DEF_DMA_ALIGN] & ~0x3F;
         
         rqsct = ADXF_ReadNw32(adxf_ldptnw_hn, 1, buf);
         
@@ -561,9 +561,9 @@ Sint32 ADXF_AddPartition(Sint32 ptid, Char8 *fname, void *ptinfo, Sint32 nfile)
     
     info->type = 1;
 
-    buf = (Sint32*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F); 
+    buf = (Uint32)&work[ADXF_DEF_DMA_ALIGN] & ~0x3F; 
     
-    wrk32 = (Sint8*)(((Uint32)work + ADXF_DEF_DMA_ALIGN) & ~0x3F);
+    wrk32 = (Uint32)&work[ADXF_DEF_DMA_ALIGN] & ~0x3F;
 
     flno = 0;
 
@@ -641,7 +641,7 @@ label:
     
     info->size = info->next->size;
     
-    info->size += 276 + (info->nentry * 8); // 276 should be size of ADXF_PTINFO, but something doesn't match
+    info->size += 276 + (info->nentry * 8); // TODO: 276 should instead be sizeof(ADXF_PTINFO), but something is mismatching
     
     ADXF_Close(adxf);
     

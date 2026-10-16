@@ -10,7 +10,7 @@
 
 // 100% byte-matching object! 
 
-Sint8 adxt_obj_mark[16] = "MARK:adxt_obj"; /* unused */
+Sint8 adxt_obj_mark[16] = "MARK:adxt_obj"; // unused
 Sint32 adxt_init_cnt = 0;
 Sint32 adxt_vsync_svr_flag = 1;
 Uint32 adxt_vsync_cnt = 0;

@@ -377,9 +377,9 @@ void adxstmf_stat_exec(ADXSTMF stmf)
 	Sint32 nsct;
 	Sint32 rbyte;
 	Sint32 stat;
-	Sint32 fsize; /* unused */
+	Sint32 fsize; // needs use
 	Sint32 fnsct;
-	Sint32 esct; /* unused */
+	Sint32 esct; // needs use
 	SJCK ck;
 	SJCK ck2;
     

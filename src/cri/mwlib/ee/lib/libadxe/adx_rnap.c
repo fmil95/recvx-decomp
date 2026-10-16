@@ -5,7 +5,7 @@
 
 // 100% byte-matching object! 
 
-/* There's little here of interest, most of these functions are thunks for the console-specific audio renderer code in ps2_rna. */
+/* There's little of interest here, most of these functions are thunks for the console-specific audio renderer code in ps2_rna. */
 
 void ADXRNA_Init(void)
 {

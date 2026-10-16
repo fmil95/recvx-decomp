@@ -4,7 +4,7 @@
 // 100% byte-matching object! 
 
 Sint32 adxcrs_lvl = 0;
-Sint32 adxcrs_msk = 0; /* unused */
+Sint32 adxcrs_msk = 0; // unused
 
 void ADXCRS_Init(void) 
 {
