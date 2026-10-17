@@ -1295,22 +1295,6 @@ float y_k;
 float xend;
 short uend;*/
 
-// TODO: find a way to match StatusInit without using this
-static inline void StatusInit_Parts06bCheck() 
-{
-    PARTS* pb;
-    short test;
-    
-    pb = parts_06b;
-    
-    for (test = 0; test < 5; test++, pb++)
-    {
-        pb[13].atr &= ~0x4;
-        
-        pb[13].color &= ~0x8;
-    }
-}
-
 // 100% matching! 
 void Ps2ZbuffOffI()
 {
@@ -1356,7 +1340,6 @@ void Ps2DrawOTagI()
 	Ps2_current_texbreak = 1;
 }
 
-
 // 100% matching!
 void StatusInit(S_WORK* st)
 {
@@ -1364,6 +1347,7 @@ void StatusInit(S_WORK* st)
     PARTS* pb2; // not from DWARF
     unsigned int num1;
     short test;
+    PARTS* pbtmp; // not from DWARF
 
     njSetFogColor(0x404040);
     
@@ -1383,7 +1367,14 @@ void StatusInit(S_WORK* st)
     parts_08b[1].pos[1] = 124.0f;
     parts_08b[3].pos[0] = 366.0f;
 
-    StatusInit_Parts06bCheck(); 
+    pbtmp = parts_06b;
+    
+    for (test = 0; test < 5; test++, pbtmp++)
+    {
+        pbtmp[13].atr &= ~0x4;
+        
+        pbtmp[13].color &= ~0x8;
+    }
     
     pb = parts_22b;
     

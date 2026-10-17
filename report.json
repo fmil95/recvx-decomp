@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 99.82577,
+    "fuzzy_match_percent": 99.82619,
     "total_code": "1904472",
-    "matched_code": "1633852",
-    "matched_code_percent": 85.79029,
+    "matched_code": "1636088",
+    "matched_code_percent": 85.9077,
     "total_data": "28428164",
     "matched_data": "28399956",
     "matched_data_percent": 99.90078,
     "total_functions": 4529,
-    "matched_functions": 4316,
-    "matched_functions_percent": 95.296974,
+    "matched_functions": 4318,
+    "matched_functions_percent": 95.34113,
     "total_units": 200
   },
   "units": [
@@ -25149,16 +25149,16 @@
     {
       "name": "ps2/veronica/prog/sub1",
       "measures": {
-        "fuzzy_match_percent": 99.865906,
+        "fuzzy_match_percent": 99.8789,
         "total_code": "60972",
-        "matched_code": "52052",
-        "matched_code_percent": 85.37033,
+        "matched_code": "54288",
+        "matched_code_percent": 89.03759,
         "total_data": "27824",
         "matched_data": "27824",
         "matched_data_percent": 100.0,
         "total_functions": 71,
-        "matched_functions": 64,
-        "matched_functions_percent": 90.14085,
+        "matched_functions": 66,
+        "matched_functions_percent": 92.95775,
         "total_units": 1
       },
       "sections": [
@@ -25191,7 +25191,7 @@
         {
           "name": ".text",
           "size": "61440",
-          "fuzzy_match_percent": 99.865906,
+          "fuzzy_match_percent": 99.8789,
           "metadata": {}
         },
         {
@@ -25217,14 +25217,14 @@
         {
           "name": "StatusInit",
           "size": "1412",
-          "fuzzy_match_percent": 99.966,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "288"
         },
         {
           "name": "ItemBoxInit",
           "size": "824",
-          "fuzzy_match_percent": 99.097084,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1712"
         },
@@ -42251,16 +42251,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 99.817726,
+        "fuzzy_match_percent": 99.81816,
         "total_code": "1820460",
-        "matched_code": "1549840",
-        "matched_code_percent": 85.13452,
+        "matched_code": "1552076",
+        "matched_code_percent": 85.257355,
         "total_data": "28336764",
         "matched_data": "28333668",
         "matched_data_percent": 99.989075,
         "total_functions": 3834,
-        "matched_functions": 3621,
-        "matched_functions_percent": 94.44444,
+        "matched_functions": 3623,
+        "matched_functions_percent": 94.496605,
         "total_units": 152
       }
     },
