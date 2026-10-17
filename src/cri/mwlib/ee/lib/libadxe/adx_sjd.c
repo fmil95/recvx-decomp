@@ -275,7 +275,7 @@ void adxsjd_decexec_start(ADXSJD sjd)
 
     SJ_GetChunk(sji, 1, SJCK_LEN_MAX, &sjd->cki);
 
-    if ((ADXB_GetFormat(adxb) == 0) && ((sjd->cki.len >= 2) && (BSWAP_U16_EX(*(Uint16*)sjd->cki.data) == 0x8001))) 
+    if ((ADXB_GetFormat(adxb) == 0) && ((sjd->cki.len >= 2) && (BSWAP_U16EX(*(Uint16*)sjd->cki.data) == 0x8001))) 
     {
         sjd->stat = 3;
         

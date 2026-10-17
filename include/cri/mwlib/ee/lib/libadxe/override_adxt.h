@@ -1,9 +1,9 @@
 #ifndef _OVERRIDE_ADXT_H_
 #define _OVERRIDE_ADXT_H_
 
-/* The purpose of this file is to properly define the ADXSJD struct, since the cri_adxt header defines an opaque handle for it. */
+/* The purpose of this file is to properly define here those structs from the cri_adxt header which are obfuscated there. */
 
-/* adx_xpnd structs */
+// adx_xpnd structs 
 
 typedef struct _adx_xpnd_param
 { 
@@ -27,7 +27,7 @@ typedef struct _adx_xpdobj
 } ADX_XPDOBJ;
 typedef ADX_XPDOBJ *ADXPD;
 
-/* adx_bsc structs */
+// adx_bsc structs 
 
 typedef struct _adx_dec_para 
 { 
@@ -91,7 +91,7 @@ typedef struct _adx_intbuf
 } ADX_BASIC;
 typedef ADX_BASIC *ADXB;
 
-/* adx_sjd struct */
+// adx_sjd struct 
 
 #ifndef ADXSJD_DEFINED
 #define ADXSJD_DEFINED

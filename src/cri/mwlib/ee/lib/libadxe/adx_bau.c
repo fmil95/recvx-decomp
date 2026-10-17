@@ -18,7 +18,7 @@ static void* AU_GetInfo(void *hdr, Sint32 hdrlen, Sint32 *sfreq, Sint32 *nch, Si
 
     pdw = (Uint8*)hdr;
 
-    magic = READ_INT32(pdw);
+    magic = READ_S32(pdw);
     
     pdw += 4;
     
@@ -27,7 +27,7 @@ static void* AU_GetInfo(void *hdr, Sint32 hdrlen, Sint32 *sfreq, Sint32 *nch, Si
         return NULL;
     }
     
-    hdr_size = READ_INT32(pdw);
+    hdr_size = READ_S32(pdw);
     hdr_size = BSWAP_U32(hdr_size);
     
     pdw += 4;
@@ -37,12 +37,12 @@ static void* AU_GetInfo(void *hdr, Sint32 hdrlen, Sint32 *sfreq, Sint32 *nch, Si
         return NULL;
     }
     
-    data_size = READ_INT32(pdw);
+    data_size = READ_S32(pdw);
     data_size = BSWAP_U32(data_size);
     
     pdw += 4;
 
-    encoding = READ_INT32(pdw);
+    encoding = READ_S32(pdw);
     encoding = BSWAP_U32(encoding);
     
     pdw += 4;
@@ -68,13 +68,13 @@ static void* AU_GetInfo(void *hdr, Sint32 hdrlen, Sint32 *sfreq, Sint32 *nch, Si
         return NULL;
     }
    
-    temp = READ_INT32(pdw);
+    temp = READ_S32(pdw);
     
     *sfreq = BSWAP_S32(temp);
     
     pdw += 4;
 
-    temp2 = READ_INT32(pdw);
+    temp2 = READ_S32(pdw);
     
     *nch = BSWAP_S32(temp2);
     

@@ -36,7 +36,7 @@ Sint32 ADX_DecodeMonoFloat(Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l, Sint16 *dly
     
     for (blkno2 = 0; blkno2 < nblk; blkno2++) 
     {
-        code = BSWAP_U16_EX(*(Uint16*)ibufdt);
+        code = BSWAP_U16EX(*(Uint16*)ibufdt);
         
         if ((code & 0x8000)) 
         {
@@ -121,7 +121,7 @@ Sint32 ADX_DecodeSteFloatAsSte(Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l, Sint16 
         
         ibufdt_r += 18;
         
-        code = BSWAP_U16_EX(*(Uint16*)ibufdt);
+        code = BSWAP_U16EX(*(Uint16*)ibufdt);
         
         if ((code & 0x8000)) 
         {
@@ -130,7 +130,7 @@ Sint32 ADX_DecodeSteFloatAsSte(Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l, Sint16 
         
         gain = (code & 0x1FFF) + 1;
         
-        code = BSWAP_U16_EX(*(Uint16*)ibufdt_r);
+        code = BSWAP_U16EX(*(Uint16*)ibufdt_r);
         
         if ((code & 0x8000))
         {
@@ -240,7 +240,7 @@ Sint32 ADX_DecodeSteFloatAsMono(Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l, Sint16
         
         ibufdt_r += 18;
         
-        code = BSWAP_U16_EX(*(Uint16*)ibufdt);
+        code = BSWAP_U16EX(*(Uint16*)ibufdt);
         
         if ((code & 0x8000)) 
         {
@@ -249,7 +249,7 @@ Sint32 ADX_DecodeSteFloatAsMono(Sint8 *ibuf, Sint32 nblk, Sint16 *obuf_l, Sint16
         
         gain = (code & 0x1FFF) + 1;
         
-        code = BSWAP_U16_EX(*(Uint16*)ibufdt_r);
+        code = BSWAP_U16EX(*(Uint16*)ibufdt_r);
         
         if ((code & 0x8000))
         {

@@ -96,7 +96,7 @@ Sint32 ADX_DecodeInfoExADPCM2(Sint8 *ibuf, Sint32 ibuflen, Sint16 *cof)
         return -1;
     }
     
-    if (BSWAP_U16_EX(((Uint16*)ibuf)[0]) != 0x8000) 
+    if (BSWAP_U16EX(((Uint16*)ibuf)[0]) != 0x8000) 
     {
         return -2;
     }
@@ -106,7 +106,7 @@ Sint32 ADX_DecodeInfoExADPCM2(Sint8 *ibuf, Sint32 ibuflen, Sint16 *cof)
         return -1;
     }
 
-    *cof = BSWAP_U16_EX(((Uint16*)ibuf)[8]);
+    *cof = BSWAP_U16EX(((Uint16*)ibuf)[8]);
     
     return 0;
 }
@@ -128,12 +128,12 @@ Sint32 ADX_DecodeInfoExLoop(Sint8 *ibuf, Sint32 ibuflen, Sint32 *lp_ins_nsmpl, S
         return -1;
     }
     
-    if (BSWAP_U16_EX(((Uint16*)ibuf)[0]) != 0x8000) 
+    if (BSWAP_U16EX(((Uint16*)ibuf)[0]) != 0x8000) 
     {
         return -2;
     }
     
-    if ((Sint16)BSWAP_U16_EX(((Uint16*)ibuf)[1]) < (lp_inf_len - 4)) 
+    if ((Sint16)BSWAP_U16EX(((Uint16*)ibuf)[1]) < (lp_inf_len - 4)) 
     {
         return -1; 
     }
@@ -183,12 +183,12 @@ Sint32 ADX_DecodeFooter(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen)
         return -1;
     }
     
-    if (BSWAP_U16_EX(((Uint16*)ibuf)[0]) != 0x8001) 
+    if (BSWAP_U16EX(((Uint16*)ibuf)[0]) != 0x8001) 
     {
         return -2;
     }
 
-    *dlen = BSWAP_U16_EX(((Uint16*)ibuf)[1]) + 4;
+    *dlen = BSWAP_U16EX(((Uint16*)ibuf)[1]) + 4;
     
     return 0;
 }

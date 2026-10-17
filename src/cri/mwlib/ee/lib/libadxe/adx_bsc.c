@@ -156,7 +156,7 @@ Sint32 ADXB_DecodeHeaderAdx(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 
 Sint32 ADXB_DecodeHeader(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
-    if (BSWAP_U16_EX(*(Uint16*)ibuf) == 0x8000) 
+    if (BSWAP_U16EX(*(Uint16*)ibuf) == 0x8000) 
     {
         return ADXB_DecodeHeaderAdx(adxb, ibuf, ibuflen);
     }
