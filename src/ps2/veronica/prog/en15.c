@@ -245,24 +245,6 @@ static char joint_tree_buf[12];*/
 
 STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
 
-// TODO: find a way to match LockLeg without using this
-static inline int LockLeg_CheckEnd(int prm0, char prm1)
-{
-    int temp; 
-
-    temp = 0;
-    
-    if (prm0 == prm1) 
-    {
-        if (prm0 == -1)
-        {
-            temp = 1;
-        }
-    }
-    
-    return (temp != 0) ? 1 : 0;
-}
-
 // 100% matching!
 static int target_direction(BH_PWORK* epw)
 {
@@ -2024,14 +2006,15 @@ static void LockLeg(BH_PWORK* epw)
 {
     int i, j;        
 	char lock_leg;
-
-    for (i = 0; LockLeg_CheckEnd(leglock_tab[i].mtn_no, leglock_tab[i].default_lr) == 0; i++)
+    int ii, jj; // not from DWARF
+ 
+    for (i = 0; ii = 0, ((leglock_tab[i].mtn_no == leglock_tab[i].default_lr) ? ((leglock_tab[i].mtn_no == -1) ? (ii = 1) : 0) : 0, ((ii != 0) ? 1 : 0)) == 0; i++) // convoluted isn't the word
     {
         if (epw->mtn_no == leglock_tab[i].mtn_no)
         {
             lock_leg = leglock_tab[i].default_lr;
-
-            for (j = 0; LockLeg_CheckEnd(leglock_tab[i].list[j].start, leglock_tab[i].list[j].end) == 0; j++)
+ 
+            for (j = 0; jj = 0, ((leglock_tab[i].list[j].start == leglock_tab[i].list[j].end) ? ((leglock_tab[i].list[j].start == -1) ? (jj = 1) : 0) : 0, ((jj != 0) ? 1 : 0)) == 0; j++)
             {
                 if ((leglock_tab[i].list[j].start <= (epw->frm_no / 65536)) && (leglock_tab[i].list[j].end > (epw->frm_no / 65536)))
                 {
@@ -2045,7 +2028,7 @@ static void LockLeg(BH_PWORK* epw)
                     }
                 }
             }
-
+ 
             if (lock_leg == 0)
             {
                 bhFixPosition(epw, rfoot_joint_tree);
@@ -2060,7 +2043,7 @@ static void LockLeg(BH_PWORK* epw)
     }
 } 
 
-// 100% decompiled
+// 100% matching! 
 int bhEne15_AttackPlayerCC(NJS_CAPSULE* cap, NJS_VECTOR* attack_v, int damage)
 {
     int j;
