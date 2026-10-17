@@ -21,6 +21,6 @@ void SJ_SplitChunk(SJCK *ck, Sint32 nbyte, SJCK *ck1, SJCK *ck2)
     } 
     else
     {
-        ck2->data = ck1->data + ck1->len;
+        ck2->data = &ck1->data[ck1->len];
     } 
 }

@@ -13,7 +13,7 @@ Char8* volatile dtx_build = "\nDTX Ver.0.95 Build:Jan 26 2001 09:57:12\n";
 Sint32 dtx_rpc_id = 0x7D000000;
 Sint32 volatile dtx_proc_init_flag = 0;
 DTX_OBJ dtx_clnt[8] = { 0 };
-DTX_OBJ dtx_svr[8] = { 0 }; /* unused */
+DTX_OBJ dtx_svr[8] = { 0 }; // unused 
 sceSifClientData dtx_cd = { 0 };
 sceSifServeData dtx_sd = { 0 };
 u_long128 dtx_svrbuf[16] = { 0 };
@@ -193,7 +193,7 @@ DTX DTX_Create(Sint32 id, Sint8 *eewk, Sint8 *iopwk, Sint32 wklen)
     
     dtx->trdt = iopwk;
     
-    dtx->ftr = (void*)(((Sint32)eewk + dtx->dtlen) | UNCBASE); // casts added for MWCC compatibility
+    dtx->ftr = (Sint32)&eewk[dtx->dtlen] | UNCBASE; 
     
     dtx->dt = eewk;
     
@@ -201,8 +201,8 @@ DTX DTX_Create(Sint32 id, Sint8 *eewk, Sint8 *iopwk, Sint32 wklen)
     
     memset(eewk, 0, dtx->dtlen);
     
-    SyncDCache(dtx->dt, (void*)(((Sint8*)dtx->dt + dtx->dtlen) + 63)); // same as above 
-    InvalidDCache(dtx->dt, (void*)(((Sint8*)dtx->dt + dtx->dtlen) + 63)); 
+    SyncDCache(dtx->dt, (Sint32)&dtx->dt[dtx->dtlen] + 63); 
+    InvalidDCache(dtx->dt, (Sint32)&dtx->dt[dtx->dtlen] + 63); 
     
     dtx->rcvcbf = (void*)dtx_def_rcvcbf;
     dtx->sndcbf = (void*)dtx_def_sndcbf;
@@ -242,7 +242,7 @@ void DTX_ExecHndl(DTX dtx)
 
     if ((dtx->wait_flag == 1) && (dtx->ticket_no < dtx->ftr->ticket_no)) 
     {
-        InvalidDCache(dtx->dt, (void*)((Sint8*)dtx->dt + (dtx->dtlen - 1))); // casts added for MWCC compatibility
+        InvalidDCache(dtx->dt, &dtx->dt[dtx->dtlen - 1]); 
         
         dtx->rcvcbf(dtx->rcvcbo, dtx->dt, dtx->dtlen);
         
@@ -259,8 +259,8 @@ void DTX_ExecHndl(DTX dtx)
         
         dtx->ftr->ticket_no = dtx->ticket_no;
         
-        SyncDCache(dtx->dt, (void*)(((Sint8*)dtx->dt + dtx->dtlen) - 1)); // same as above
-        InvalidDCache(dtx->dt, (void*)(((Sint8*)dtx->dt + dtx->dtlen) + 63)); 
+        SyncDCache(dtx->dt, (Sint32)&dtx->dt[dtx->dtlen] - 1); 
+        InvalidDCache(dtx->dt, (Sint32)&dtx->dt[dtx->dtlen] + 63); 
         
         dtx->dma.data = (Sint32)dtx->dt & 0xFFFFFFF;
         

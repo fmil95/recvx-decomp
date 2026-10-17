@@ -4,7 +4,7 @@
 
 void LSC_LockCrs(LSC_CRS *crs)
 {
-    Sint32 temp; // FAKE: this var is not really needed, for some reason the compiler decided not to do tail-call for this function and this temp prevents it as well 
+    Sint32 temp; // FAKE: the compiler decided not to do tail-call for this function, and this temp forces the stack usage 
     
     SJCRS_Lock(); 
 

@@ -3,7 +3,7 @@
 // 100% byte-matching object! 
 
 Sint32 sjcrs_lvl = 0;
-Sint32 sjcrs_msk = 0; /* unused */
+Sint32 sjcrs_msk = 0; // unused 
 
 void SJCRS_Init(void) 
 {

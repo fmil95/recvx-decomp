@@ -122,7 +122,7 @@ Sint32 LSC_EntryFileRange(LSC lsc, Sint8 *fname, void *dir, Sint32 ofst, Sint32 
 {
     LSC_SINFO *sinfo;
 	Sint32 sid;
-	Sint32 pre_sid; /* unused */
+	Sint32 pre_sid; // needs use
 	Sint32 pos;
 
     sid = 0;
@@ -150,7 +150,7 @@ Sint32 LSC_EntryFileRange(LSC lsc, Sint8 *fname, void *dir, Sint32 ofst, Sint32 
     
     pos = (lsc->wpos + 15) % LSC_STM_MAX;
     
-    sid = ((lsc->sinfo[pos].sid) == 0x7FFFFFFF) ? 0 : lsc->sinfo[pos].sid + 1;
+    sid = (lsc->sinfo[pos].sid == 0x7FFFFFFF) ? 0 : lsc->sinfo[pos].sid + 1;
     
     sinfo->sid = sid;
 

@@ -216,7 +216,7 @@ void SJRBF_PutChunk(SJ sj, Sint32 id, SJCK *ck)
     
         if (id == 1) 
         {
-            len = (Sint32)ck->data - (Sint32)rbf->buf; // casts added for MWCC compatibility
+            len = ck->data - rbf->buf; 
             
             rbf->ndata += ck->len;
     
@@ -224,16 +224,16 @@ void SJRBF_PutChunk(SJ sj, Sint32 id, SJCK *ck)
             {
                 pos = MIN(ck->len, rbf->xsize - len);
                 
-                memcpy((void*)((Sint32)rbf->buf + (rbf->bsize + len)), ck->data, pos); // same as above
+                memcpy(&rbf->buf[rbf->bsize + len], ck->data, pos); 
             }
      
-            len = ((Sint32)ck->data - (Sint32)rbf->buf) + ck->len; 
+            len = (ck->data - rbf->buf) + ck->len; 
      
             if (len > rbf->bsize) 
             {
                 pos2 = MIN(ck->len, len - rbf->bsize);
                 
-                memcpy(rbf->buf, (void*)((Sint32)rbf->buf + (len - pos2)), pos2); 
+                memcpy(rbf->buf, &rbf->buf[len - pos2], pos2); 
             }
         } 
         else if (id == 0)
@@ -271,7 +271,7 @@ void SJRBF_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
         if (id == 0) 
         {
             pos = ((rbf->wpos + rbf->bsize) - ck->len) % rbf->bsize;
-            pos2 = ((Sint32)ck->data - (Sint32)rbf->buf) % rbf->bsize; // casts added for MWCC compatibility
+            pos2 = (ck->data - rbf->buf) % rbf->bsize; 
     
             if (pos == pos2) 
             {
@@ -287,7 +287,7 @@ void SJRBF_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
         else if (id == 1)
         {
             pos = ((rbf->rpos + rbf->bsize) - ck->len) % rbf->bsize;
-            pos2 = ((Sint32)ck->data - (Sint32)rbf->buf) % rbf->bsize; // same as above
+            pos2 = (ck->data - rbf->buf) % rbf->bsize; 
     
             if (pos == pos2) 
             {

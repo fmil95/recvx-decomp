@@ -66,8 +66,8 @@ void *ps2rna_eewk = NULL;
 void *ps2rna_iopwk = NULL;
 PS2PSJ_OBJ ps2psj_obj[8] = { 0 };
 Sint8 ps2psj_sjuni_eewk[8][256] = { 0 }; 
-Sint32 ps2psj_sjiop_wk[8] = { 0 }; /* unused */
-Sint32 ps2psj_sjiop_buf[8] = { 0 }; /* unused */
+Sint32 ps2psj_sjiop_wk[8] = { 0 }; // unused 
+Sint32 ps2psj_sjiop_buf[8] = { 0 }; // unused 
 PS2RNA_OBJ ps2rna_obj[8] = { 0 };
 DTX ps2rna_dtx = NULL;
 Sint32 ps2rna_wklen = 0;
@@ -83,7 +83,7 @@ void ps2rna_init_psj(void)
     {
         ps2psj_iop_work0 = sceSifAllocIopHeap(ps2psj_iop_wksize + 64);
         
-        ps2psj_iop_work = (void*)(((Sint32)ps2psj_iop_work0 + 64) & 0xFFFFFFC0);
+        ps2psj_iop_work = (Sint32)&ps2psj_iop_work0[64] & 0xFFFFFFC0;
         
         ps2psj_alloc_flag = 1;
     }
@@ -367,7 +367,7 @@ void PS2RNA_Init(void)
         
         ps2rna_wklen = 2176;
         
-        ps2rna_eewk = (void*)(((Sint32)ps2rna_ee_work + 64) & 0xFFFFFFC0);
+        ps2rna_eewk = (Sint32)&ps2rna_ee_work[64] & 0xFFFFFFC0;
         
         if (ps2rna_iopwk == NULL) 
         {
@@ -381,7 +381,7 @@ void PS2RNA_Init(void)
             }
         }
         
-        ps2rna_iopwk = (void*)(((Sint32)ps2rna_iopwk + 64) & 0xFFFFFFC0); 
+        ps2rna_iopwk = (Sint32)&ps2rna_iopwk[64] & 0xFFFFFFC0; 
         
         ps2rna_dtx = DTX_Create(1, ps2rna_eewk, ps2rna_iopwk, ps2rna_wklen);
         

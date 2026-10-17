@@ -268,7 +268,7 @@ void SJUNI_PutChunk(SJ sj, Sint32 id, SJCK *ck)
         ckcnp = &ckcn->next;
     }
 
-    if ((uni->mode == 1) && (ckcn != NULL) && ((ckcn->ck.data + ckcn->ck.len) == ck->data)) 
+    if ((uni->mode == 1) && (ckcn != NULL) && (&ckcn->ck.data[ckcn->ck.len] == ck->data)) 
     {
         ckcn->ck.len += ck->len;
     } 
@@ -324,7 +324,7 @@ void SJUNI_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
     
     ckcn = uni->lin[id];
 
-    if ((uni->mode == 1) && (ckcn != NULL) && ((ck->data + ck->len) == ckcn->ck.data)) 
+    if ((uni->mode == 1) && (ckcn != NULL) && (&ck->data[ck->len] == ckcn->ck.data)) 
     {
         ckcn->ck.data = ck->data;
         

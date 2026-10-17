@@ -3,7 +3,7 @@
 // 100% byte-matching object! 
 
 Sint32 rna_crs_lvl = 0;
-Sint32 rna_crs_msk = 0; /* unused */
+Sint32 rna_crs_msk = 0; // unused 
 
 void RNACRS_Init(void) 
 {

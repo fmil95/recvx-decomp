@@ -63,7 +63,7 @@ const UUID* SJRMT_GetUuid(SJ sj)
     tmp[2] = sjrmt_rbuf[2];
     tmp[3] = sjrmt_rbuf[3];
     
-    return &uuid; // maybe should return tmp instead?
+    return &uuid; 
 }
 
 void SJRMT_Reset(SJ sj)

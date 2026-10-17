@@ -10,7 +10,7 @@
 
 // 100% byte-matching object! 
 
-char const * const dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
+char const *const dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";
 CVF_FS_ERRFN dvg_ci_err_func = NULL;
 void *dvg_ci_err_obj = NULL;
 CVS_FS_IF dvg_ci_vtbl = { dvCiExecServer, dvCiEntryErrFunc, dvCiGetFileSize, NULL, dvCiOpen, dvCiClose, dvCiSeek, dvCiTell, dvCiReqRd, NULL, dvCiStopTr, dvCiGetStat, dvCiGetSctLen, NULL, dvCiGetNumTr, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
@@ -56,7 +56,7 @@ void dvCiExecHndl(DVCI dvci)
         }
         else if (sync_stat == 0) 
         {
-            InvalidDCache(dvci->buf, (dvci->buf + (dvci->tr_nsct * 2048)) - 1);
+            InvalidDCache(dvci->buf, &dvci->buf[dvci->tr_nsct * 2048] - 1);
             
             dvci->stat = 1;
             
@@ -114,7 +114,7 @@ void dvci_conv_fname(const Sint8 *spath, Sint8 *tpath)
     
     strcpy(tpath, spath);
 
-    if (strcmp(spath + (strlen(spath) - 2), ";1") != 0) 
+    if (strcmp(&spath[strlen(spath) - 2], ";1") != 0) 
     {
         strcat(tpath, ";1");
     }
@@ -368,7 +368,7 @@ Sint32 dvCiReqRd(void *obj, Sint32 nsct, void *buf)
     
     lsn = dvci->fp.lsn + dvci->req_nsct;
     
-    InvalidDCache(dvci->buf, (dvci->buf + (dvci->tr_nsct * 2048)) - 1);
+    InvalidDCache(dvci->buf, &dvci->buf[dvci->tr_nsct * 2048] - 1);
     
     if (sceCdRead(lsn, dvci->tr_nsct, dvci->buf, &dvci->mode) == 0) 
     {
@@ -418,7 +418,7 @@ void dvCiStopTr(void *obj)
             }
         }
         
-        InvalidDCache(dvci->buf, (dvci->buf + (dvci->tr_nsct * 2048)) - 1);
+        InvalidDCache(dvci->buf, &dvci->buf[dvci->tr_nsct * 2048] - 1);
         
         dvci->stat = 0;
     }

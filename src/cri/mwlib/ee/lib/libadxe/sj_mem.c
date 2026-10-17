@@ -232,7 +232,7 @@ void SJMEM_UngetChunk(SJ sj, Sint32 id, SJCK *ck)
             
             sjmem->ndata = MIN(sjmem->bsize, sjmem->ndata + ck->len);
 
-            pos2 = (Sint32)ck->data - (Sint32)sjmem->buf; // casts added for MWCC compatibility
+            pos2 = ck->data - sjmem->buf; 
             
             if ((sjmem->rpos != pos2) && (sjmem->errfunc != NULL))
             {
