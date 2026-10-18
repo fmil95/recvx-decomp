@@ -1,14 +1,5 @@
 # recvx-decomp
 
-[![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] 
-
-[Build Status]: https://github.com/AshfordFamily/recvx-decomp/actions/workflows/progress.yml/badge.svg
-[actions]: https://github.com/AshfordFamily/recvx-decomp/actions/workflows/progress.yml
-
-[Code Progress]: https://decomp.dev/AshfordFamily/recvx-decomp.svg?mode=shield&label=Code&measure=fuzzy_match_percent
-[Data Progress]: https://decomp.dev/AshfordFamily/recvx-decomp.svg?mode=shield&label=Data&measure=matched_data_percent
-[progress]: https://decomp.dev/AshfordFamily/recvx-decomp
-
 <img src="https://i.imgur.com/FreVpxO.png"/> 
 
 ## About
