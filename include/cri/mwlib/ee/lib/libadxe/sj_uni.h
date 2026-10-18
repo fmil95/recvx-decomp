@@ -4,6 +4,8 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
 
+typedef void (*SJUNI_ERRFN)(void *obj, Sint32 errcode);
+
 typedef struct _sjck_chain
 { 
 	struct _sjck_chain *next;
@@ -11,8 +13,6 @@ typedef struct _sjck_chain
 	SJCK ck;
 } SJCK_CHAIN;
 typedef struct _sjck_chain *SJCKCN;
-
-typedef void (*SJUNI_ERRFN)(void *obj, Sint32 errcode);
 
 typedef struct 
 { 

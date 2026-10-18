@@ -6,7 +6,7 @@
 #include "override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 
-#define	ADXT_MAX_OBJ		(8) 
+#define	ADXT_MAX_OBJ		(8) // this is redefined here to decrease the amount of objects from 16 (ADXT default) to 8 
 
 extern Sint32 adxt_init_cnt;
 extern ADX_TALK adxt_obj[ADXT_MAX_OBJ];

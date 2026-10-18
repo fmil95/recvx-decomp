@@ -3,6 +3,8 @@
 
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 
+typedef void (*CVF_FS_ERRFN)(void *err_obj, const Sint8 *msg, void *obj);
+
 typedef enum 
 {
 	CVE_FS_ST_IDLE = 0,
@@ -56,8 +58,6 @@ typedef struct _cvfs_vtbl
     Sint32  (*OptFn1)(void* dev);
     Sint32  (*OptFn2)(void* dev);
 } CVFS_VTBL;
-
-typedef void (*CVF_FS_ERRFN)(void *err_obj, const Sint8 *msg, void *obj);
 
 typedef struct _vfs_vtbl 
 {

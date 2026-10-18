@@ -1,17 +1,20 @@
 #ifndef	_MACROS_H_
 #define	_MACROS_H_
 
+#define PI 3.14159265
+#define PI_2 (PI * 2)
+
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define MAX(a, b) ((a) < (b) ? (b) : (a))
 
 #define CLAMP(val, min, max) (MAX(MIN((val), (max)), (min))) 
 
-#define AIFF_IMAGIC (0x46464941) /* 'AIFF', endian swapped */
-#define COMM_IMAGIC (0x4D4D4F43) /* 'COMM', endian swapped */
-#define FORM_IMAGIC (0x4D524F46) /* 'FORM', endian swapped */
-#define SD_IMAGIC   (0x0064732E) /* 'SD',   endian swapped */
-#define SND_IMAGIC  (0x646E732E) /* 'SND',  endian swapped */
-#define SSND_IMAGIC (0x444E5353) /* 'SSND', endian swapped */
+#define AIFF_IMAGIC (0x46464941) // 'AIFF', endian swapped 
+#define COMM_IMAGIC (0x4D4D4F43) // 'COMM', endian swapped 
+#define FORM_IMAGIC (0x4D524F46) // 'FORM', endian swapped 
+#define SD_IMAGIC   (0x0064732E) // 'SD',   endian swapped 
+#define SND_IMAGIC  (0x646E732E) // 'SND',  endian swapped 
+#define SSND_IMAGIC (0x444E5353) // 'SSND', endian swapped 
 
 #define BSWAP_U16(_val)   (Uint16)((*(Uint16*)_val >> 8) | (*(Uint16*)_val << 8)) 
 #define BSWAP_U16EX(_val) (Uint16)(((_val & 0xFF00) >> 8) | ((_val << 8) & 0xFF00)) 
@@ -22,5 +25,11 @@
 #define READ_S16EX(buf, i) (buf[i * 2] | (buf[(i * 2) + 1] << 8))
 #define READ_S32(buf)      (buf[0] | (buf[1] << 8) | (buf[2] << 16) | (buf[3] << 24))
 #define READ_S32EX(buf, i) (buf[i * 4] | (buf[(i * 4) + 1] << 8) | (buf[(i * 4) + 2] << 16) | (buf[(i * 4) + 3] << 24))
+
+#define REG_RCNT0_COUNT     (volatile int *)0x10000000
+#define getRcnt0CountShort() *REG_RCNT0_COUNT & 0xFFFF
+
+#define bss_align(val) \
+    __attribute__ ((aligned(val))) __attribute__ ((section (".bss"))) 
 
 #endif

@@ -6,7 +6,7 @@
 #include "override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 
-/* structs are located in the override_adxt header */
+// structs are located in the override_adxt header 
 
 ADXPD ADXPD_Create(void);
 void ADXPD_Destroy(ADXPD xpd);

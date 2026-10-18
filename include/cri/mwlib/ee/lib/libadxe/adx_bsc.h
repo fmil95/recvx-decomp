@@ -7,7 +7,7 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 #include "macros.h"
 
-/* structs are located in the override_adxt header */
+// structs are located in the override_adxt header 
 
 void ADXB_CopyExtraBufMono(Sint16 *obuf, Sint32 obsize, Sint32 xsize, Sint32 nxsmpl);
 void ADXB_CopyExtraBufSte(Sint16 *obuf, Sint32 obsize, Sint32 obdist, Sint32 nxsmpl);

@@ -3,13 +3,11 @@
 
 #include <adx_ps2.h>
 #include <eekernel.h>
+#include "macros.h"
 
-#define bss_align(val) \
-    __attribute__ ((aligned(val))) __attribute__ ((section (".bss"))) 
+#define DEF_STACK_SIZE    2048 // borrowed from PS2 devkit sample code 
 
-#define DEF_STACK_SIZE    2048
-
-typedef struct ThreadParam ThreadParam; 
+typedef struct ThreadParam ThreadParam; // this struct lacks a typedef where it gets defined in the SDK
 
 void adxps2_adx_thrd_func(void);
 void ADXPS2_ExecServer(void);

@@ -7,8 +7,10 @@
 #include <sif.h>
 #include <sifrpc.h>
 
-// TODO: move this define somewhere else
-#define UNCBASE 0x20000000
+#define UNCBASE 0x20000000 // borrowed from PS2 devkit sample code 
+
+typedef void (*DTX_RCVCBF)(void *obj, void *dt, Sint32 dtlen);
+typedef void (*DTX_SNDCBF)(void *obj, void *dt, Sint32 dtlen);
 
 // TODO: use this
 typedef enum
@@ -38,9 +40,6 @@ typedef struct
 	Sint32 rsv14;
 	Sint32 ticket_no;
 } DTX_FOOTER;
-
-typedef void (*DTX_RCVCBF)(void *obj, void *dt, Sint32 dtlen);
-typedef void (*DTX_SNDCBF)(void *obj, void *dt, Sint32 dtlen);
 
 typedef struct dtx_obj 
 { 
