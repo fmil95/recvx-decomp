@@ -2503,7 +2503,7 @@ int bhEne09_DmgCheck(BH_PWORK* epw)
             && !(WpnTab[epw->wpnr_no].flg & 0x20000000)
             && (plp->at_flg & 2))
         {
-            return;
+            return; // no value 
         }
         
         bhEne09_DamageAdd(epw);

@@ -2074,6 +2074,8 @@ int bhEne26_ActionModeCheck(BH_PWORK* epw)
             }
         }
     }
+
+    // no return
 }
 
 // 100% matching!

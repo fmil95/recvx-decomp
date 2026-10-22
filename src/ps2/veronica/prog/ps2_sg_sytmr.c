@@ -3,5 +3,5 @@
 // 100% matching! 
 Uint32 syTmrGetCount(void)
 {
-
+    // no return 
 }

@@ -659,6 +659,8 @@ unsigned int bhSet()
         
         return 1;
     }
+
+    // no return 
 }
 
 // 100% matching!
@@ -729,6 +731,8 @@ unsigned int bhCmpB()
     case 5: 
         return v0 != v1; 
     }
+
+    // no return 
 }
 
 // 100% matching! 
@@ -790,6 +794,8 @@ unsigned int bhCmpW()
     case 5:                                         
         return v0 != v1; 
     }
+
+    // no return 
 }
 
 // 100% matching!
@@ -2415,6 +2421,8 @@ unsigned int bhDieEventCk()
     case 5: 
         return die_cnt != v2; 
     }
+
+    // no return 
 }
 
 // 100% matching!
@@ -9703,6 +9711,8 @@ int Player_controll()
         bhScePtr++;
         break;
     }
+
+    // no return 
 }
 
 // 100% matching!
@@ -9740,7 +9750,7 @@ int Obj_controll()
         bhScePtr++;
         break;
     default:
-        return;
+        return; // no value
     }
 }
 
@@ -9947,6 +9957,8 @@ int Sub_controll()
         bhScePtr++;
         break;
     }
+
+    // no return 
 }
 
 // 100% matching!
@@ -12707,6 +12719,8 @@ int Common_controll()
             bhScePtr++;
         break;
     }
+
+    // no return 
 }
 
 // 100% matching! 
@@ -12995,6 +13009,8 @@ int Event_init(BH_SCEWORK* a0, unsigned int evt_id)
     a0->ian[3][0] = 0;
     a0->ian[3][1] = 0;
     a0->ian[3][2] = 0;
+
+    // no return 
 }
 
 // 100% matching!
@@ -13062,6 +13078,8 @@ int bhEventScheduler2()
             }
         } 
     }
+
+    // no return 
 }
 
 // 100% matching!
@@ -13199,6 +13217,8 @@ unsigned int bhFlagSet(unsigned char type, unsigned int cnt, unsigned char flag)
         
         return 1;
     }
+
+    // no return 
 }
 
 // 100% matching!

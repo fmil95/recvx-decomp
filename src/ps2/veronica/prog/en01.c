@@ -4856,7 +4856,7 @@ int bhEne01_ActionModeCheck(BH_PWORK *epw)
         }
     }
 
-    return;
+    // no return 
 }
 
 // 100% matching!

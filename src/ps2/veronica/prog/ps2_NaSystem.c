@@ -107,6 +107,8 @@ int vsync_func(int)
     }
     
     ExitHandler(); 
+
+	// no return 
 } 
 
 #pragma optimization_level reset

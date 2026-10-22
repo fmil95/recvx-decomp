@@ -86,6 +86,8 @@ Sint32 pdVibMxStart(Uint32 port, const PDS_VIBPARAM* param)
     {
         pPact->time = 4;
     }
+
+    // no return 
 }
 
 // 100% matching! 

@@ -1354,6 +1354,8 @@ static func_wrk_typ* MapFuncIns(func_wrk_typ* bsP, func_wrk_typ* fwP)
     
     bsP->nextP->prevP = fwP;
     bsP->nextP        = fwP;
+
+    // no return 
 }
 
 // 100% matching!

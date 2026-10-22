@@ -367,6 +367,8 @@ GDFS  gdFsOpen(const char *fname, GDFS_DIRREC gf_dirrec)
             }
         }
     }
+
+    // no return 
 }
 
 // 100% matching! 

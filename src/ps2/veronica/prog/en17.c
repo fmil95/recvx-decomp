@@ -448,6 +448,8 @@ int bhEne17_DmgChk(BH_PWORK* epw)
             }
         }
     }
+
+    // no return
 }
 
 // 100% matching
@@ -1675,14 +1677,16 @@ int bhEne17_CameraControl(BH_PWORK* epw)
         if (!(EXP0_F(24) <= 0.01f)) {
             cam.ofy = (EXP0_F(24) * (-rand() / -2.1474836e9f)) - (EXP0_F(24) / 2.0f);
             EXP0_F(24) *= 0.8f;
-            return;
         }
-        
-        cam.ofx = 0.0f;
-        cam.ofy = 0.0f;
-        cam.ofz = 0.0f;
-        ((unsigned int*)epw->exp0)[2] &= ~0x800;
+        else {
+            cam.ofx = 0.0f;
+            cam.ofy = 0.0f;
+            cam.ofz = 0.0f;
+            ((unsigned int*)epw->exp0)[2] &= ~0x800;
+        }
     }
+
+    // no return
 }
 
 // 100% matching!

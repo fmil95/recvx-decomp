@@ -2003,6 +2003,8 @@ static int CompareFloat(float val_a, int cmp_typ, float val_b)
         
         break;
     }
+
+    // no return 
 }
 
 // 100% matching! 

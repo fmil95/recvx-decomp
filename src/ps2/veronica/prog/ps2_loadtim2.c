@@ -332,6 +332,8 @@ int Send_1024_Clut_data(void* clt_adr, unsigned long send_clut_adr)
             pClut += 4;
         }
     } 
+
+    // no return 
 } 
 
 // 100% matching! 

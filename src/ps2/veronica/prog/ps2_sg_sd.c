@@ -1656,6 +1656,8 @@ int sndr_trans_func()
         
         break;
     }
+
+    // no return 
 }
 
 // 100% matching!

@@ -344,6 +344,8 @@ Sint32	njSetTexture(NJS_TEXLIST *texlist)
         
         Ps2_current_texno = 0;
     }
+
+    // no return 
 }
 
 // 100% matching! 
@@ -361,6 +363,8 @@ Sint32	njSetTextureNum(Uint32 n)
     Ps2_current_gindex = ((TIM2_PICTUREHEADER_EX*)(Ps2_current_texmemlist->texinfo.texsurface.pSurface))->Gindex; 
     
     Ps2TexLoad(Ps2_current_texmemlist);
+
+    // no return 
 }
 
 // 100% matching!
@@ -383,12 +387,16 @@ Sint32	njSetTextureNumG(Uint32 globalIndex)
         
         exit(0);
     }
+
+    // no return 
 }
 
 // 100% matching!
 int njSetTextureNumSys(unsigned int n)
 {
     Ps2TexLoad((NJS_TEXMEMLIST*)Ps2_current_texlist->textures[n].texaddr);
+
+    // no return 
 }
 
 // 100% matching!
@@ -452,6 +460,8 @@ Sint32	njReleaseTexture(NJS_TEXLIST *texlist)
     } 
     
     ring_check();
+
+    // no return 
 }
 
 // 100% matching! 
@@ -527,7 +537,7 @@ void 	njSetPaletteMode(Uint32 mode)
 // 100% matching!
 Uint32	njGetPaletteMode(void)
 {
-
+    // no return 
 }
 
 // 100% matching!
@@ -782,7 +792,7 @@ int ring_check()
         
         if (p == &Ps2_tm_list_last) 
         {
-            return;
+            return; // no value 
         }
     } while (*(int*)p->FileId == MAKE_MAGIC('T', 'I', 'M', '2'));
 

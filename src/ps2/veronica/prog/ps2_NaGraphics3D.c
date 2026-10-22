@@ -85,6 +85,8 @@ int CalcIntersectionCone(float* ans, float* v0, float* v1)
     
     sceVu0ScaleVector(ans, tmp1, tmpf);
     sceVu0AddVector(ans, ans, v0);
+
+    // no return 
 }
 
 // 100% matching!

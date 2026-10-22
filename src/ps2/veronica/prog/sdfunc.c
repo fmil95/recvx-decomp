@@ -1441,6 +1441,8 @@ int GetPlayerActionSeSlotNo(int Type, int Id)
     case 6:
         return 6;
     }
+
+    // no return 
 }
 
 // 100% matching!

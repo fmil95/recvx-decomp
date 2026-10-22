@@ -1799,12 +1799,16 @@ void njScaleEx(NJS_VECTOR *v)
 Bool njPushMatrixEx( void )
 {
     njPushMatrix(NULL);
+
+    // no return 
 }
 
 // 100% matching!
 Bool njPopMatrixEx( void )
 {
     njPopMatrix(1);
+
+    // no return 
 }
 
 // 100% matching! 
