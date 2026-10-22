@@ -1257,26 +1257,22 @@ void bhDrawNtxEffect3D(unsigned int* owp, int ct)
                     op->stflg |= 0x10;
                     
                     njPopMatrixEx();
+
+                    continue;
                 } 
-                else 
-                {
-                    op->stflg &= ~0x10;
-                    goto label;
-                }
+
+                op->stflg &= ~0x10;
             } 
-            else 
-            {
-label:
-                njColorBlendingMode(0, op->bl_src);
-                njColorBlendingMode(1, op->bl_dst);
-                
-                njDrawPolygon3DExSetData(op->pvp, op->pn);
-                
-                njColorBlendingMode(0, 8);
-                njColorBlendingMode(1, 6);
-                
-                njPopMatrixEx();
-            }
+
+            njColorBlendingMode(0, op->bl_src);
+            njColorBlendingMode(1, op->bl_dst);
+            
+            njDrawPolygon3DExSetData(op->pvp, op->pn);
+            
+            njColorBlendingMode(0, 8);
+            njColorBlendingMode(1, 6);
+            
+            njPopMatrixEx();
         } 
     }
     
@@ -1392,33 +1388,29 @@ void bhDrawTrsEffect3D(unsigned int* owp, int ct)
                     op->stflg |= 0x10;
                     
                     njPopMatrixEx();
+
+                    continue;
                 } 
-                else 
-                {
-                    op->stflg &= ~0x10;
-                    goto label;
-                }
+
+                op->stflg &= ~0x10;
+            } 
+
+            njColorBlendingMode(0, op->bl_src);
+            njColorBlendingMode(1, op->bl_dst);
+            
+            if ((op->id == 128) || (op->id == 353) || (op->id == 123)) 
+            {
+                njDrawTexture3DEx1P(op->tvp, op->pn, 1);
             } 
             else 
             {
-label:
-                njColorBlendingMode(0, op->bl_src);
-                njColorBlendingMode(1, op->bl_dst);
-                
-                if ((op->id == 128) || (op->id == 353) || (op->id == 123)) 
-                {
-                    njDrawTexture3DEx1P(op->tvp, op->pn, 1);
-                } 
-                else 
-                {
-                    njDrawTexture3DEx(op->tvp, op->pn, 1);
-                }
-                
-                njColorBlendingMode(0, 8);
-                njColorBlendingMode(1, 6);
-                
-                njPopMatrixEx();
+                njDrawTexture3DEx(op->tvp, op->pn, 1);
             }
+            
+            njColorBlendingMode(0, 8);
+            njColorBlendingMode(1, 6);
+            
+            njPopMatrixEx();
         } 
     }
 }
@@ -1533,27 +1525,23 @@ void bhDrawOpqEffect3D(unsigned int* owp, int ct)
                     op->stflg |= 0x10;
                     
                     njPopMatrixEx();
+                    
+                    continue;
                 } 
-                else 
-                {
-                    op->stflg &= ~0x10;
-                    goto label;
-                }
+
+                op->stflg &= ~0x10;
+            } 
+
+            if (op->id == 204) 
+            {
+                njDrawTexture3DEx1P(op->tvp, op->pn, 1);
             } 
             else 
             {
-label:
-                if (op->id == 204) 
-                {
-                    njDrawTexture3DEx1P(op->tvp, op->pn, 1);
-                } 
-                else 
-                {
-                    njDrawTexture3DEx(op->tvp, op->pn, 1);
-                }
-                
-                njPopMatrixEx();
+                njDrawTexture3DEx(op->tvp, op->pn, 1);
             }
+            
+            njPopMatrixEx();
         } 
     }
 }
@@ -1668,58 +1656,54 @@ void bhDrawThlEffect3D(unsigned int* owp, int ct)
                     op->stflg |= 0x10;
                     
                     njPopMatrixEx();
+
+                    continue;
                 } 
-                else 
-                {
-                    op->stflg &= ~0x10;
-                    goto label;
-                }
+
+                op->stflg &= ~0x10;
             } 
-            else 
+            
+            if ((op->flg & 0x2000000)) 
             {
-label:
-                if ((op->flg & 0x2000000)) 
-                {
-                    njPushMatrixEx();
-                    
-                    vc0.y = 0;
-                    vc0.x = 0;
-                    vc0.z = -1.0f;
-                    
-                    njUnitMatrix(NULL);
-                    njRotateXYZ(NULL, op->ax, op->ay, 0);
-                    
-                    njCalcVector(NULL, &vc0, &vc1);
-                    
-                    it = fabsf(njInnerProduct((NJS_VECTOR*)&vc1, (NJS_VECTOR*)&cam.vx));
-                    
-                    pt = (int)(128.0f * njCos((int)(182.04445f * (360.0f * it)) & 0xFFFF)) + 127;
-                    
-                    tvp[3].ocol = tvp[2].ocol = tvp[1].ocol = tvp->ocol = pt | ((pt << 8) | ((pt << 24) | (pt << 16)));
-                    
-                    njPopMatrixEx();
-                }
+                njPushMatrixEx();
                 
-                if ((op->bl_src == 0) && (op->bl_dst == 0)) 
-                {
-                    njColorBlendingMode(0, 8);
-                    njColorBlendingMode(1, 6);
-                    
-                    njDrawTexture3DHEx(tvp, op->pn, 0);
-                }
-                else
-                {
-                    njColorBlendingMode(0, op->bl_src);
-                    njColorBlendingMode(1, op->bl_dst);
-                    
-                    njDrawTexture3DHEx(tvp, op->pn, 1);
-                    
-                    njColorBlendingMode(0, 8);
-                    njColorBlendingMode(1, 6);
-                }
+                vc0.y = 0;
+                vc0.x = 0;
+                vc0.z = -1.0f;
+                
+                njUnitMatrix(NULL);
+                njRotateXYZ(NULL, op->ax, op->ay, 0);
+                
+                njCalcVector(NULL, &vc0, &vc1);
+                
+                it = fabsf(njInnerProduct((NJS_VECTOR*)&vc1, (NJS_VECTOR*)&cam.vx));
+                
+                pt = (int)(128.0f * njCos((int)(182.04445f * (360.0f * it)) & 0xFFFF)) + 127;
+                
+                tvp[3].ocol = tvp[2].ocol = tvp[1].ocol = tvp->ocol = pt | ((pt << 8) | ((pt << 24) | (pt << 16)));
                 
                 njPopMatrixEx();
             }
+            
+            if ((op->bl_src == 0) && (op->bl_dst == 0)) 
+            {
+                njColorBlendingMode(0, 8);
+                njColorBlendingMode(1, 6);
+                
+                njDrawTexture3DHEx(tvp, op->pn, 0);
+            }
+            else
+            {
+                njColorBlendingMode(0, op->bl_src);
+                njColorBlendingMode(1, op->bl_dst);
+                
+                njDrawTexture3DHEx(tvp, op->pn, 1);
+                
+                njColorBlendingMode(0, 8);
+                njColorBlendingMode(1, 6);
+            }
+            
+            njPopMatrixEx();
         }
     }
 }
