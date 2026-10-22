@@ -2458,6 +2458,8 @@ unsigned int* bhEne22_GetDengekiColorAddr(NJS_CNK_OBJECT* objp, int no)
             break;
         }
     }
+
+    // no return 
 }
 
 // 100% matching!

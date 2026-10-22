@@ -593,7 +593,7 @@ void ContinueAdx(unsigned int SlotNo)
 // 100% matching!
 int GetAdxStatus(unsigned int SlotNo)
 {
-    ADXT_GetStat(AdxTInfo[SlotNo].Handle);
+    return ADXT_GetStat(AdxTInfo[SlotNo].Handle);
 }
 
 // 100% matching!

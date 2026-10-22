@@ -6342,6 +6342,8 @@ int bhEne03_GetWallDir(NJS_VECTOR* v)
     {
         return 3;
     }
+
+    // no return 
 }
 
 // 100% matching!

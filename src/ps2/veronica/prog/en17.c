@@ -1660,6 +1660,8 @@ int bhEne17_PlayerDGCheck(BH_PWORK* epw, BH_PWORK* pl)
         i++;
         j += 12;
     }
+
+    // no return 
 }
 
 // 100% matching!

@@ -2828,6 +2828,8 @@ BH_PWORK* bhEne01_SetLinkEnemy(BH_PWORK* epw, int lkono, short id)
 	epp->mlwP = epw->mdl;
 	epp->mnwP = epw->mnwP;
 	epp->id = id;
+
+    return epp;
 }
 
 // 100% matching!
