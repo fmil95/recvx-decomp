@@ -9,7 +9,7 @@
 static Sint32 htg_found = FALSE;
 static HTCI_FLIST_TBL htg_flist_tbl = { 0 };
 Sint32 htg_ci_open_mode = 0x8001;
-static Sint8 htg_rbuf[4096] __attribute__((aligned(64)));
+static Sint8 htg_rbuf[4096] align(64);
 
 static void conv_to_tpath(Char8 *spath, Char8 *tpath)
 {

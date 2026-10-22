@@ -5,8 +5,8 @@
 
 Char8* volatile sjrmt_build = "\nSJRMT Ver 0.93 Build:Jan 26 2001 09:59:44\n";
 Sint32 sjrmt_init_cnt = 0;
-static Sint32 sjrmt_sbuf[64] __attribute__((aligned(64)));
-static Sint32 sjrmt_rbuf[64] __attribute__((aligned(64)));
+static Sint32 sjrmt_sbuf[64] align(64);
+static Sint32 sjrmt_rbuf[64] align(64);
 
 SJ SJRBF_CreateRmt(Sint8 *buf, Sint32 bsize, Sint32 xsize)
 {

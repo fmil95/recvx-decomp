@@ -19,8 +19,8 @@ sceSifServeData dtx_sd = { 0 };
 u_long128 dtx_svrbuf[16] = { 0 };
 sceSifRpcFunc dtx_urpc_fn[64] = { 0 };
 void *dtx_urpc_obj[64] = { 0 }; 
-static Uint32 dtx_sbuf[64] __attribute__((aligned(64))); 
-static Uint32 dtx_rbuf[64] __attribute__((aligned(64)));
+static Uint32 dtx_sbuf[64] align(64); 
+static Uint32 dtx_rbuf[64] align(64);
 
 void* dtx_rpc_func(unsigned int fno, void *data, int size)
 {

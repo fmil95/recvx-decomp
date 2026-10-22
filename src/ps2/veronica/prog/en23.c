@@ -3177,9 +3177,9 @@ int bhEne23_CheckClimbWall(BH_PWORK* epw, int flg)
             
             njRotateY(NULL, ang);
     
-            pos = *(NJS_POINT3*)&mkfP->key[0];
+            pos = *(NJS_POINT3*)&mkfP->key[0]; // bad form 
             
-            pos.x *= flg;
+            pos.x *= flg; // this sucks
     
             njCalcVector(NULL, &pos, &pos);
             

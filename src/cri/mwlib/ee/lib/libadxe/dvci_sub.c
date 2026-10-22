@@ -9,7 +9,7 @@
 // 100% byte-matching object! 
 
 static DVCI_FLIST_TBL dvg_flist_tbl = { 0 };
-static Sint8 dvg_rbuf[4096] __attribute__((aligned(64)));
+static Sint8 dvg_rbuf[4096] align(64);
 sceCdRMode dvg_ci_cdrmode = { 0 };
 
 static void conv_to_tpath(Sint8 *spath, Sint8 *tpath)

@@ -30,6 +30,8 @@
 #define getRcnt0CountShort() *REG_RCNT0_COUNT & 0xFFFF
 
 #define bss_align(val) \
-    __attribute__ ((aligned(val))) __attribute__ ((section (".bss"))) 
+    __attribute__ ((aligned(val))) __attribute__ ((section (".bss"))) // borrowed from PS2 devkit sample code 
+#define align(val) \
+    __attribute__ ((aligned(val))) 
 
 #endif

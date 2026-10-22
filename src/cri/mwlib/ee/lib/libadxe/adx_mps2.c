@@ -6,7 +6,7 @@
 // 100% byte-matching object! 
 
 char* volatile adxps2_build = "\nADXPS2 Ver.1.01 Build:Mar 14 2001 14:23:33\n";
-static ADXPS2_TPRM adxps2_save_tprm __attribute__((aligned(64))) = { 0 };
+static ADXPS2_TPRM adxps2_save_tprm align(64) = { 0 };
 int volatile adxps2_id_safe = 0;
 int volatile adxps2_id_adx = 0;
 int volatile adxps2_id_main = 0;

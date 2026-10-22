@@ -6,6 +6,7 @@
 #include <eetypes.h>
 #include <sif.h>
 #include <sifrpc.h>
+#include "macros.h"
 
 #define UNCBASE 0x20000000 // borrowed from PS2 devkit sample code 
 

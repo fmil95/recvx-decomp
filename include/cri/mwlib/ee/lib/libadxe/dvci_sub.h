@@ -3,6 +3,7 @@
 
 #include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <libcdvd.h>
+#include "macros.h"
 
 typedef struct 
 { 
