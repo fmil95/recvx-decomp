@@ -742,112 +742,108 @@ void bhControlLight()
                 if (!(pwp->flg & 0x1)) 
                 {
                     lp->flg &= ~0x3;
+
+                    continue;
                 }
+
+                if (lp->lkono == 0) 
+                {
+                    njCalcPoint(pwp->mtx, (NJS_POINT3*)&lp->lx, (NJS_POINT3*)&lp->px);
+                } 
                 else 
                 {
-                    if (lp->lkono == 0) 
-                    {
-                        njCalcPoint(pwp->mtx, (NJS_POINT3*)&lp->lx, (NJS_POINT3*)&lp->px);
-                    } 
-                    else 
-                    {
-                        njCalcPoint(&pwp->mlwP->owP[lp->lkono].mtx, (NJS_POINT3*)&lp->lx, (NJS_POINT3*)&lp->px);
-                    }
-                    
-                    px = lp->px;
-                    py = lp->py;
-                    pz = lp->pz;
-                    goto label;
-                }
-            }
-            else 
-            {
-label:
-                switch (lp->lsrc) 
-                {            
-                case 2:                         
-                    if (dirf == 0) 
-                    {
-                        dirf = 1;
-                        
-                        sys->lg_vx = vx;
-                        sys->lg_vy = vy;
-                        sys->lg_vz = vz;
-                        
-                        sys->lg_r = r;
-                        sys->lg_g = g;
-                        sys->lg_b = b;
-                    }
-                    
-                    break;
-                case 4:                         
-                    if (lct < 5) 
-                    {
-                        if (!(sys->st_flg & 0x1000000))
-                        {
-                            if ((ci->flg & 0x10)) 
-                            {
-                                npos.x = px;
-                                npos.y = py;
-                                npos.z = pz;
-                               
-                                clp = 2.0f * (unsigned char)ci->frame;
-                                
-                                njProjectScreen(cam.mtx, &npos, &lpos);
-                                
-                                if (!((lpos.x >= ((-clp + fNaViwOffsetX) - 320.0f)) && (lpos.x <= (((640.0f + clp) + fNaViwOffsetX) - 320.0f)) && (lpos.y >= ((-clp + fNaViwOffsetY) - 240.0f)) && (lpos.y <= (((480.0f + clp) + fNaViwOffsetY) - 240.0f))))
-                                {
-                                    break;
-                                }
-                            } 
-                        } 
-                        
-                        njCnkSetEasyMultiLightPoint(lct, px, py, pz);
-                        njCnkSetEasyMultiLightRange(lct, nr, fr);
-                        njCnkSetEasyMultiLightColor(lct, r, g, b);
-                        njCnkSetEasyMultiLightSwitch(lct, 1);
-                        
-                        njCnkSetSimpleMultiLightPoint(lct, px, py, pz);
-                        njCnkSetSimpleMultiLightRange(lct, nr, fr);
-                        njCnkSetSimpleMultiLightColor(lct, r, g, b);
-                        njCnkSetSimpleMultiLightSwitch(lct, 1);
-                        
-                        lptb->ps.x = px;
-                        lptb->ps.y = py;
-                        lptb->ps.z = pz;
-                        
-                        lptb->nr = nr;
-                        lptb->fr = fr;
-                        
-                        lptb->cr = r;
-                        lptb->cg = g;
-                        lptb->cb = b;
-                        
-                        lptb++;
-                        lct++;
-                        sys->lg_pnt++;
-                    }
-                    
-                    break;
+                    njCalcPoint(&pwp->mlwP->owP[lp->lkono].mtx, (NJS_POINT3*)&lp->lx, (NJS_POINT3*)&lp->px);
                 }
                 
-                if ((sys->sp_flg & 0x80)) 
+                px = lp->px;
+                py = lp->py;
+                pz = lp->pz;
+            }
+
+            switch (lp->lsrc) 
+            {            
+            case 2:                         
+                if (dirf == 0) 
                 {
-                    lp->wpx = px;
-                    lp->wpy = py;
-                    lp->wpz = pz;
+                    dirf = 1;
                     
-                    lp->wvx = vx;
-                    lp->wvy = vy;
-                    lp->wvz = vz;
+                    sys->lg_vx = vx;
+                    sys->lg_vy = vy;
+                    sys->lg_vz = vz;
                     
-                    lp->wr = r;
-                    lp->wg = g;
-                    lp->wb = b;
-                    
-                    lp->wnr = nr;
-                    lp->wfr = fr;
+                    sys->lg_r = r;
+                    sys->lg_g = g;
+                    sys->lg_b = b;
                 }
+                
+                break;
+            case 4:                         
+                if (lct < 5) 
+                {
+                    if (!(sys->st_flg & 0x1000000))
+                    {
+                        if ((ci->flg & 0x10)) 
+                        {
+                            npos.x = px;
+                            npos.y = py;
+                            npos.z = pz;
+                            
+                            clp = 2.0f * (unsigned char)ci->frame;
+                            
+                            njProjectScreen(cam.mtx, &npos, &lpos);
+                            
+                            if (!((lpos.x >= ((-clp + fNaViwOffsetX) - 320.0f)) && (lpos.x <= (((640.0f + clp) + fNaViwOffsetX) - 320.0f)) && (lpos.y >= ((-clp + fNaViwOffsetY) - 240.0f)) && (lpos.y <= (((480.0f + clp) + fNaViwOffsetY) - 240.0f))))
+                            {
+                                break;
+                            }
+                        } 
+                    } 
+                    
+                    njCnkSetEasyMultiLightPoint(lct, px, py, pz);
+                    njCnkSetEasyMultiLightRange(lct, nr, fr);
+                    njCnkSetEasyMultiLightColor(lct, r, g, b);
+                    njCnkSetEasyMultiLightSwitch(lct, 1);
+                    
+                    njCnkSetSimpleMultiLightPoint(lct, px, py, pz);
+                    njCnkSetSimpleMultiLightRange(lct, nr, fr);
+                    njCnkSetSimpleMultiLightColor(lct, r, g, b);
+                    njCnkSetSimpleMultiLightSwitch(lct, 1);
+                    
+                    lptb->ps.x = px;
+                    lptb->ps.y = py;
+                    lptb->ps.z = pz;
+                    
+                    lptb->nr = nr;
+                    lptb->fr = fr;
+                    
+                    lptb->cr = r;
+                    lptb->cg = g;
+                    lptb->cb = b;
+                    
+                    lptb++;
+                    lct++;
+                    sys->lg_pnt++;
+                }
+                
+                break;
+            }
+            
+            if ((sys->sp_flg & 0x80)) 
+            {
+                lp->wpx = px;
+                lp->wpy = py;
+                lp->wpz = pz;
+                
+                lp->wvx = vx;
+                lp->wvy = vy;
+                lp->wvz = vz;
+                
+                lp->wr = r;
+                lp->wg = g;
+                lp->wb = b;
+                
+                lp->wnr = nr;
+                lp->wfr = fr;
             }
         }
     } 
